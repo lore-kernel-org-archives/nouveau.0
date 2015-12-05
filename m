@@ -1,13 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: bad things happened, 4.4-rc3, nve7, virgl test server
-Date: Sat, 5 Dec 2015 10:46:55 -0500
-Message-ID: <CAKb7UvgbFJ8DLb2ztPKRWme-aX5Ui0018WisHDoUA4d6ugva0Q@mail.gmail.com>
-References: <CAPM=9tyP5f5yH+6ROOaGGkjGcGMLM-eV5gfRQCEgqeeBhgZ4dA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93267] New: BUG: unable to handle kernel paging
+ request in reservation_object_wait_timeout_rcu
+Date: Sat, 05 Dec 2015 21:59:46 +0000
+Message-ID: <bug-93267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1928723729=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAPM=9tyP5f5yH+6ROOaGGkjGcGMLM-eV5gfRQCEgqeeBhgZ4dA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,71 +15,268 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBEZWMgNSwgMjAxNSBhdCAzOjEyIEFNLCBEYXZlIEFpcmxpZSA8YWlybGllZEBnbWFp
-bC5jb20+IHdyb3RlOgo+IFsgNjA0Ny43MzQ4NTBdIGx0LXZpcmdsX3Rlc3Rfc1syMTM5NV06IHNl
-Z2ZhdWx0IGF0IDI0OTg3MmZmOCBpcAo+IDAwMDAwMDMxZWQ2ODM3OGQgc3AgMDAwMDdmZmUyY2Rl
-OWEzMCBlcnJvciA0IGluCj4gbGliYy0yLjIxLnNvWzMxZWQ2MDAwMDArMWI3MDAwXQo+IFsgNjA0
-OC44MDA2NTRdIGx0LXZpcmdsX3Rlc3Rfc1syMTQxNV06IHNlZ2ZhdWx0IGF0IDI0Yjg4NzcwOCBp
-cAo+IDAwMDA3ZjcxMWU3MDM4YTcgc3AgMDAwMDdmZmUyY2RlOWE4MCBlcnJvciA2IGluCj4gbm91
-dmVhdV9kcmkuc29bN2Y3MTFlNGI5MDAwKzg0NzAwMF0KCkknZCBkZWZpbml0ZWx5IGJlIGEgYXQg
-bGVhc3QgYSBsaXR0bGUgaW50ZXJlc3RlZCBpZiB5b3UgY291bGQgcHJvdmlkZQptZSB3aXRoIGEg
-YmFja3RyYWNlIGZvciB0aGlzIG9uZS4KCj4gWyA2MDUwLjc4MjMwOV0gQlVHOiB1bmFibGUgdG8g
-aGFuZGxlIGtlcm5lbCBwYWdpbmcgcmVxdWVzdCBhdCBmZmZmYzkwMDAyMzc4MDAwCj4gWyA2MDUw
-Ljc4MjMzMF0gSVA6IFs8ZmZmZmZmZmY4MTNkN2RjZT5dIGlvd3JpdGUzMisweDJlLzB4NDAKPiBb
-IDYwNTAuNzgyMzQxXSBQR0QgNDVlODk5MDY3IFBVRCA0NWU4OWEwNjcgUE1EIDQ1NzA4YzA2NyBQ
-VEUgMAo+IFsgNjA1MC43ODIzNTJdIE9vcHM6IDAwMDIgWyMxXSBTTVAKPiBbIDYwNTAuNzgyMzYw
-XSBNb2R1bGVzIGxpbmtlZCBpbjogZnVzZSB4dF9DSEVDS1NVTSBpcHRfTUFTUVVFUkFERQo+IG5m
-X25hdF9tYXNxdWVyYWRlX2lwdjQgdHVuIGNjbSBpcDZ0X1JFSkVDVCBuZl9yZWplY3RfaXB2NiB4
-dF9jb25udHJhY2sKPiBlYnRhYmxlX25hdCBlYnRhYmxlX2Jyb3V0ZSBicmlkZ2Ugc3RwIGxsYyBl
-YnRhYmxlX2ZpbHRlciBlYnRhYmxlcwo+IGlwNnRhYmxlX25hdCBuZl9jb25udHJhY2tfaXB2NiBu
-Zl9kZWZyYWdfaXB2NiBuZl9uYXRfaXB2Ngo+IGlwNnRhYmxlX21hbmdsZSBpcDZ0YWJsZV9zZWN1
-cml0eSBpcDZ0YWJsZV9yYXcgaXA2dGFibGVfZmlsdGVyCj4gaXA2X3RhYmxlcyBpcHRhYmxlX25h
-dCBuZl9jb25udHJhY2tfaXB2NCBuZl9kZWZyYWdfaXB2NCBuZl9uYXRfaXB2NAo+IG5mX25hdCBu
-Zl9jb25udHJhY2sgaXB0YWJsZV9tYW5nbGUgaXB0YWJsZV9zZWN1cml0eSBpcHRhYmxlX3JhdyBq
-b3lkZXYKPiBiY201OTc0IG5sc191dGY4IGhmc3BsdXMgYXJjNCBiNDMgc3NiIG1hYzgwMjExIGNm
-ZzgwMjExIHJma2lsbAo+IHNuZF9oZGFfY29kZWNfaGRtaSBhcHBsZXNtYyBzbmRfaGRhX2NvZGVj
-X2NpcnJ1cyBzbmRfaGRhX2NvZGVjX2dlbmVyaWMKPiBpbnB1dF9wb2xsZGV2IHNuZF9oZGFfaW50
-ZWwgc25kX2hkYV9jb2RlYyBzbmRfaHdkZXAgc25kX2hkYV9jb3JlIGJjbWEKPiB4ODZfcGtnX3Rl
-bXBfdGhlcm1hbCB0aHVuZGVyYm9sdCBjb3JldGVtcCBrdm1faW50ZWwgc2JzIGt2bSBpcnFieXBh
-c3MKPiBzYnNoYyBjcmMzMmNfaW50ZWwgc25kX3BjbSBzbmRfdGltZXIgYXBwbGVfZ211eCBscGNf
-aWNoIHNuZCBtZmRfY29yZQo+IHNvdW5kY29yZQo+IFsgNjA1MC43ODI1MjNdICBpMmNfaTgwMSBh
-cHBsZV9ibCBwY3Nwa3Igc2RoY2lfcGNpIG5vdXZlYXUgc2RoY2kKPiBteG1fd21pIG1tY19jb3Jl
-IHdtaSBpOTE1IHR0bSBpMmNfYWxnb19iaXQgZHJtX2ttc19oZWxwZXIgZHJtIGkyY19jb3JlCj4g
-dmlkZW8KPiBbIDYwNTAuNzgyNTU3XSBDUFU6IDQgUElEOiAyMTQ3OSBDb21tOiBsdC12aXJnbF90
-ZXN0X3MgTm90IHRhaW50ZWQKPiA0LjQuMC1yYzMrICM0NAo+IFsgNjA1MC43ODI1NjZdIEhhcmR3
-YXJlIG5hbWU6IEFwcGxlIEluYy4KPiBNYWNCb29rUHJvMTAsMS9NYWMtQzNFQzdDRDIyMjkyOTgx
-RiwgQklPUwo+IE1CUDEwMS44OFouMDBFRS5CMDIuMTIwODA4MTEzMiAwOC8wOC8yMDEyCj4gWyA2
-MDUwLjc4MjU3NV0gdGFzazogZmZmZjg4MDNiMDIxMjU0MCB0aTogZmZmZjg4MDA3YzNjYzAwMCB0
-YXNrLnRpOgo+IGZmZmY4ODAwN2MzY2MwMDAKPiBbIDYwNTAuNzgyNTgzXSBSSVA6IDAwMTA6Wzxm
-ZmZmZmZmZjgxM2Q3ZGNlPl0gIFs8ZmZmZmZmZmY4MTNkN2RjZT5dCj4gaW93cml0ZTMyKzB4MmUv
-MHg0MAo+IFsgNjA1MC43ODI1OTNdIFJTUDogMDAxODpmZmZmODgwMDdjM2NmYWYwICBFRkxBR1M6
-IDAwMDEwMjkyCj4gWyA2MDUwLjc4MjU5OF0gUkFYOiBmZmZmODgwNDU3ZDdmMzcwIFJCWDogMDAw
-MDAwMDAwMDAwODAwNCBSQ1g6IGZmZmY4ODA0NTczMjI1MTgKPiBbIDYwNTAuNzgyNjA2XSBSRFg6
-IDAwMDAwMDAwMDAwMDAwMTAgUlNJOiBmZmZmYzkwMDAyMzc4MDAwIFJESTogMDAwMDAwMDAwMDAw
-MDAxMAo+IFsgNjA1MC43ODI2MTNdIFJCUDogZmZmZjg4MDA3YzNjZmFmOCBSMDg6IGZmZmY4ODAw
-N2MzY2ZhYjAgUjA5OiBmZmZmZmZmZmEwMzM3MDgwCj4gWyA2MDUwLjc4MjYxOV0gUjEwOiAwMDAw
-MDAwMDAwMDAwMDAwIFIxMTogMDAwMDAwMDAwMDAwMDAwMCBSMTI6IGZmZmY4ODA0NDNjMjIwMDAK
-PiBbIDYwNTAuNzgyNjI3XSBSMTM6IGZmZmY4ODAwODlkMDY0MDAgUjE0OiAwMDAwMDAwMDAwMDAx
-MDAxIFIxNTogZmZmZjg4MDQ1NmUyOGM0MAo+IFsgNjA1MC43ODI2MzRdIEZTOiAgMDAwMDdmNzEx
-ZjNjNzcwMCgwMDAwKSBHUzpmZmZmODgwNDZmMzAwMDAwKDAwMDApCj4ga25sR1M6MDAwMDAwMDAw
-MDAwMDAwMAo+IFsgNjA1MC43ODI2NDJdIENTOiAgMDAxMCBEUzogMDAwMCBFUzogMDAwMCBDUjA6
-IDAwMDAwMDAwODAwNTAwMzMKPiBbIDYwNTAuNzgyNjQ4XSBDUjI6IGZmZmZjOTAwMDIzNzgwMDAg
-Q1IzOiAwMDAwMDAwMDY3ZmQyMDAwIENSNDogMDAwMDAwMDAwMDE0MDZlMAo+IFsgNjA1MC43ODI2
-NTVdIFN0YWNrOgo+IFsgNjA1MC43ODI2NThdICBmZmZmZmZmZmEwMmE4NjM0IGZmZmY4ODAwN2Mz
-Y2ZiODAgZmZmZmZmZmZhMDJjZmUyOAo+IDAwMDAwMDAwMDAwMDAwMDAKPiBbIDYwNTAuNzgyNjcw
-XSAgZmZmZjg4MDQ1NzMyMjAyOCAwMDAwMDAwMDAwMDAwMDA3IGZmZmY4ODA0NTczMjIwMDAKPiBm
-ZmZmODgwNDU3MzIyNTE4Cj4gWyA2MDUwLjc4MjY4Ml0gIGZmZmY4ODAzYjAyMTJkMTAgZmZmZjg4
-MDA3YzNjZmI3MCBmZmZmZmZmZjgxMGY0ZmVmCj4gZmZmZjg4MDNiMDIxMjU0MAo+IFsgNjA1MC43
-ODI2OTVdIENhbGwgVHJhY2U6Cj4gWyA2MDUwLjc4MjczMF0gIFs8ZmZmZmZmZmZhMDJhODYzND5d
-ID8gbnZrbV9pbnN0b2JqX3dyMzIrMHgxNC8weDIwIFtub3V2ZWF1XQo+IFsgNjA1MC43ODc0Nzld
-ICBbPGZmZmZmZmZmYTAyY2ZlMjg+XQo+IGdrMTA0X2ZpZm9fcnVubGlzdF91cGRhdGUrMHhkOC8w
-eDJiMCBbbm91dmVhdV0KClRoaXMgaXMgbW9zdCBsaWtlbHkgaGVscGVkIGJ5CgpodHRwOi8vY2dp
-dC5mcmVlZGVza3RvcC5vcmcvfmRhcmt0YW1hL25vdXZlYXUvY29tbWl0Lz9pZD1lOTQ4NjcxNzNl
-MWNhMjU0YzMwYjEyZjk4NTlmMDBjOTkwMjY4YWJiCgpDaGVlcnMsCgogIC1pbGlhCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1928723729==
+Content-Type: multipart/alternative; boundary="1449352786.fb32cAc1.15450"; charset="UTF-8"
+
+
+--1449352786.fb32cAc1.15450
+Date: Sat, 5 Dec 2015 21:59:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93267
+
+            Bug ID: 93267
+           Summary: BUG: unable to handle kernel paging request in
+                    reservation_object_wait_timeout_rcu
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+BUG: unable to handle kernel paging request at ffffc9000327f018
+IP: [<ffffffff81533a4d>] reservation_object_wait_timeout_rcu+0x31d/0x510
+PGD 13a8a1067 PUD 13a8a2067 PMD 31d16067 PTE 0
+Oops: 0000 [#1] PREEMPT SMP 
+Modules linked in: drbg ctr ccm rfcomm bnep binfmt_misc arc4 iwldvm mac80211
+iwlwifi uvcvideo cfg80211 snd_hda_codec_hdmi rtsx_usb snd_hda_codec_idt
+snd_hda_codec_generic btusb videobuf2_vmalloc snd_hda_intel btrtl snd_hda_codec
+btbcm videobuf2_memops btintel bluetooth videobuf2_v4l2 videobuf2_core
+v4l2_common snd_hwdep videodev snd_hda_core snd_pcm dell_wmi dell_laptop
+sparse_keymap dcdbas snd_seq_midi snd_seq_midi_event snd_rawmidi snd_seq
+x86_pkg_temp_thermal serio_raw coretemp snd_timer snd_seq_device snd soundcore
+lpc_ich parport_pc ppdev lp parport hid_generic nouveau ahci psmouse i915
+libahci mxm_wmi ttm i2c_algo_bit drm_kms_helper usbhid syscopyarea hid
+sysfillrect sysimgblt fb_sys_fops drm wmi video
+CPU: 1 PID: 976 Comm: Xorg Not tainted 4.4.0-rc3 #60
+Hardware name: Dell Inc.          Inspiron 7720/04M3YM, BIOS A07 08/16/2012
+task: ffff880032b2a540 ti: ffff8801346c4000 task.ti: ffff8801346c4000
+RIP: 0010:[<ffffffff81533a4d>]  [<ffffffff81533a4d>]
+reservation_object_wait_timeout_rcu+0x31d/0x510
+RSP: 0018:ffff8801346c7ce8  EFLAGS: 00010246
+RAX: ffffc9000327f000 RBX: ffff88011e6b0300 RCX: 000000000327d000
+RDX: 000000000327d000 RSI: 0000000000000000 RDI: ffffffff81c5efc0
+RBP: ffff8801346c7d30 R08: 0000000000000000 R09: 0000000000000000
+R10: ffff880032b2a540 R11: 0000000000000000 R12: ffff880032c99d58
+R13: 0000000000000000 R14: 0000000000001d4c R15: ffff8800330009b8
+FS:  00007f9271ca1980(0000) GS:ffff88013f240000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffc9000327f018 CR3: 0000000135f80000 CR4: 00000000001406e0
+Stack:
+ ffffffff815337cd 00000001817432f1 ffff880033000a50 00000002016c7d30
+ 00000000fffffff0 0000000000000000 ffff880033000800 ffff880033000bf0
+ ffffffffa03cd4f0 ffff8801346c7d68 ffffffffa035dced ffffffffa035dd23
+Call Trace:
+ [<ffffffff815337cd>] ? reservation_object_wait_timeout_rcu+0x9d/0x510
+ [<ffffffffa035dced>] nouveau_gem_ioctl_cpu_prep+0x6d/0x160 [nouveau]
+ [<ffffffffa035dd23>] ? nouveau_gem_ioctl_cpu_prep+0xa3/0x160 [nouveau]
+ [<ffffffffa0072a2b>] drm_ioctl+0x14b/0x530 [drm]
+ [<ffffffffa035dc80>] ? nouveau_gem_ioctl_pushbuf+0xce0/0xce0 [nouveau]
+ [<ffffffff814e98a0>] ? rpm_resume+0xf0/0x7b0
+ [<ffffffff814e9fad>] ? __pm_runtime_resume+0x4d/0x60
+ [<ffffffff8110848d>] ? trace_hardirqs_on+0xd/0x10
+ [<ffffffff81743392>] ? _raw_spin_unlock_irqrestore+0x42/0x70
+ [<ffffffffa0354777>] nouveau_drm_ioctl+0x67/0xc0 [nouveau]
+ [<ffffffff8124aa11>] do_vfs_ioctl+0x301/0x550
+ [<ffffffff812566aa>] ? __fget_light+0x2a/0x90
+ [<ffffffff8124acd9>] SyS_ioctl+0x79/0x90
+ [<ffffffff81743c5b>] entry_SYSCALL_64_fastpath+0x16/0x73
+Code: fe ff ff 48 c7 c2 18 f1 a2 81 be 92 03 00 00 48 c7 c7 f5 eb a2 81 c6 05
+50 65 7f 00 01 e8 ec 30 bd ff e9 2a fe ff ff 48 8b 43 08 <48> 8b 40 18 48 85 c0
+0f 84 03 fe ff ff 48 89 df ff d0 84 c0 0f 
+RIP  [<ffffffff81533a4d>] reservation_object_wait_timeout_rcu+0x31d/0x510
+ RSP <ffff8801346c7ce8>
+CR2: ffffc9000327f018
+---[ end trace 4f0c12fc10089ab5 ]---
+
+For some reason it's easy to reproduce using Warsow 2.0 - I had hit it twice in
+the main menu.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1449352786.fb32cAc1.15450
+Date: Sat, 5 Dec 2015 21:59:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - BUG: unable to handle kernel paging request in reservation_object_wait_timeout_rcu"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93267">93267</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>BUG: unable to handle kernel paging request in reservation_object_wait_timeout_rcu
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>marcin.slusarz&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>BUG: unable to handle kernel paging request at ffffc9000327f018
+IP: [&lt;ffffffff81533a4d&gt;] reservation_object_wait_timeout_rcu+0x31d/0x510
+PGD 13a8a1067 PUD 13a8a2067 PMD 31d16067 PTE 0
+Oops: 0000 [#1] PREEMPT SMP 
+Modules linked in: drbg ctr ccm rfcomm bnep binfmt_misc arc4 iwldvm mac80211
+iwlwifi uvcvideo cfg80211 snd_hda_codec_hdmi rtsx_usb snd_hda_codec_idt
+snd_hda_codec_generic btusb videobuf2_vmalloc snd_hda_intel btrtl snd_hda_codec
+btbcm videobuf2_memops btintel bluetooth videobuf2_v4l2 videobuf2_core
+v4l2_common snd_hwdep videodev snd_hda_core snd_pcm dell_wmi dell_laptop
+sparse_keymap dcdbas snd_seq_midi snd_seq_midi_event snd_rawmidi snd_seq
+x86_pkg_temp_thermal serio_raw coretemp snd_timer snd_seq_device snd soundcore
+lpc_ich parport_pc ppdev lp parport hid_generic nouveau ahci psmouse i915
+libahci mxm_wmi ttm i2c_algo_bit drm_kms_helper usbhid syscopyarea hid
+sysfillrect sysimgblt fb_sys_fops drm wmi video
+CPU: 1 PID: 976 Comm: Xorg Not tainted 4.4.0-rc3 #60
+Hardware name: Dell Inc.          Inspiron 7720/04M3YM, BIOS A07 08/16/2012
+task: ffff880032b2a540 ti: ffff8801346c4000 task.ti: ffff8801346c4000
+RIP: 0010:[&lt;ffffffff81533a4d&gt;]  [&lt;ffffffff81533a4d&gt;]
+reservation_object_wait_timeout_rcu+0x31d/0x510
+RSP: 0018:ffff8801346c7ce8  EFLAGS: 00010246
+RAX: ffffc9000327f000 RBX: ffff88011e6b0300 RCX: 000000000327d000
+RDX: 000000000327d000 RSI: 0000000000000000 RDI: ffffffff81c5efc0
+RBP: ffff8801346c7d30 R08: 0000000000000000 R09: 0000000000000000
+R10: ffff880032b2a540 R11: 0000000000000000 R12: ffff880032c99d58
+R13: 0000000000000000 R14: 0000000000001d4c R15: ffff8800330009b8
+FS:  00007f9271ca1980(0000) GS:ffff88013f240000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffc9000327f018 CR3: 0000000135f80000 CR4: 00000000001406e0
+Stack:
+ ffffffff815337cd 00000001817432f1 ffff880033000a50 00000002016c7d30
+ 00000000fffffff0 0000000000000000 ffff880033000800 ffff880033000bf0
+ ffffffffa03cd4f0 ffff8801346c7d68 ffffffffa035dced ffffffffa035dd23
+Call Trace:
+ [&lt;ffffffff815337cd&gt;] ? reservation_object_wait_timeout_rcu+0x9d/0x510
+ [&lt;ffffffffa035dced&gt;] nouveau_gem_ioctl_cpu_prep+0x6d/0x160 [nouveau]
+ [&lt;ffffffffa035dd23&gt;] ? nouveau_gem_ioctl_cpu_prep+0xa3/0x160 [nouveau]
+ [&lt;ffffffffa0072a2b&gt;] drm_ioctl+0x14b/0x530 [drm]
+ [&lt;ffffffffa035dc80&gt;] ? nouveau_gem_ioctl_pushbuf+0xce0/0xce0 [nouveau]
+ [&lt;ffffffff814e98a0&gt;] ? rpm_resume+0xf0/0x7b0
+ [&lt;ffffffff814e9fad&gt;] ? __pm_runtime_resume+0x4d/0x60
+ [&lt;ffffffff8110848d&gt;] ? trace_hardirqs_on+0xd/0x10
+ [&lt;ffffffff81743392&gt;] ? _raw_spin_unlock_irqrestore+0x42/0x70
+ [&lt;ffffffffa0354777&gt;] nouveau_drm_ioctl+0x67/0xc0 [nouveau]
+ [&lt;ffffffff8124aa11&gt;] do_vfs_ioctl+0x301/0x550
+ [&lt;ffffffff812566aa&gt;] ? __fget_light+0x2a/0x90
+ [&lt;ffffffff8124acd9&gt;] SyS_ioctl+0x79/0x90
+ [&lt;ffffffff81743c5b&gt;] entry_SYSCALL_64_fastpath+0x16/0x73
+Code: fe ff ff 48 c7 c2 18 f1 a2 81 be 92 03 00 00 48 c7 c7 f5 eb a2 81 c6 05
+50 65 7f 00 01 e8 ec 30 bd ff e9 2a fe ff ff 48 8b 43 08 &lt;48&gt; 8b 40 18 48 85 c0
+0f 84 03 fe ff ff 48 89 df ff d0 84 c0 0f 
+RIP  [&lt;ffffffff81533a4d&gt;] reservation_object_wait_timeout_rcu+0x31d/0x510
+ RSP &lt;ffff8801346c7ce8&gt;
+CR2: ffffc9000327f018
+---[ end trace 4f0c12fc10089ab5 ]---
+
+For some reason it's easy to reproduce using Warsow 2.0 - I had hit it twice in
+the main menu.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1449352786.fb32cAc1.15450--
+
+--===============1928723729==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1928723729==--
