@@ -1,17 +1,17 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Subject: Re: [mesa v2 5/9] nouveau: fix screen creation failure
-	paths
-Date: Sun, 6 Dec 2015 22:53:18 -0500
-Message-ID: <CAKb7Uvj_3wzh19C+TPe9c_1QJuGgU=JwrZeasjswZ4uM3JcoiA@mail.gmail.com>
+ paths
+Date: Mon, 7 Dec 2015 13:57:02 +1000
+Message-ID: <5665038E.4020905@redhat.com>
 References: <1448586301-8351-1-git-send-email-skeggsb@gmail.com>
  <1448586301-8351-5-git-send-email-skeggsb@gmail.com>
  <CAKb7UvjwbztKvR3-PaUA+8=A+NZqBzCeP1KT7AfrNLq4HQsReQ@mail.gmail.com>
  <566501AA.9010600@gmail.com>
+ <CAKb7Uvj_3wzh19C+TPe9c_1QJuGgU=JwrZeasjswZ4uM3JcoiA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1078711342=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <566501AA.9010600-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <CAKb7Uvj_3wzh19C+TPe9c_1QJuGgU=JwrZeasjswZ4uM3JcoiA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,180 +21,323 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBEZWMgNiwgMjAxNSBhdCAxMDo0OCBQTSwgQmVuIFNrZWdncyA8c2tlZ2dzYkBnbWFp
-bC5jb20+IHdyb3RlOgo+IE9uIDEyLzA3LzIwMTUgMDE6NDAgUE0sIElsaWEgTWlya2luIHdyb3Rl
-Ogo+PiBUaGlzIGFsbCBzZWVtcyB2ZXJ5IHJvdW5kYWJvdXQuLi4gQ2FuJ3Qgd2UgZG8gdGhpcyBp
-biBhIHNvbWV3aGF0Cj4+IGNvbnNpc3RlbnQgd2F5IHdpdGggdGhlIGRldmljZSBiZWluZyBjbGVh
-bmVkIHVwIGluIG9uZSBwbGFjZSBvcgo+PiBhbm90aGVyIGJ1dCBub3QgYm90aD8KPiBUaGF0IHdv
-dWxkIGJlIGxvdmVseSwgYnV0IG5vdCBwb3NzaWJsZS4gIEl0IGhhcyB0byBiZSBjbGVhbmVkIHVw
-IGJ5IHRoZQo+IHBpcGUgc2NyZWVuIGRlc3Ryb3koKSBmdW5jdGlvbiwgYXMgdGhhdCdzIHRoZSBu
-b3JtYWwgZXhpdCBwYXRoLiAgSWYgdGhlCj4gcGlwZSBkcml2ZXIgY3JlYXRpb24gcGF0aCBmYWls
-cyBiZWZvcmUgaXQncyBnb3QgYSBzdHJ1Y3QsIHRoZW4gdGhlCj4gd2luc3lzIHdpbGwgaGF2ZSB0
-byBjbGVhbiB1cCBhZnRlciBpdHNlbGYgaW5zdGVhZC4KCkNvdWxkbid0IHlvdSBtYWtlIHRoZSBw
-aXBlX3NjcmVlbl9jcmVhdGUoKSBmdW5jdGlvbiBkZXN0cm95IHRoZSBkZXZpY2UKaW4gYWxsIGZh
-aWx1cmUgcGF0aHM/Cgo+Cj4+Cj4+IE9uIFRodSwgTm92IDI2LCAyMDE1IGF0IDg6MDQgUE0sIEJl
-biBTa2VnZ3MgPHNrZWdnc2JAZ21haWwuY29tPiB3cm90ZToKPj4+IEZyb206IEJlbiBTa2VnZ3Mg
-PGJza2VnZ3NAcmVkaGF0LmNvbT4KPj4+Cj4+PiBUaGUgd2luc3lzIGxheWVyIHdvdWxkIGF0dGVt
-cHQgdG8gY2xlYW51cCB0aGUgbm91dmVhdV9kZXZpY2UgaWYgc2NyZWVuCj4+PiBpbml0IGZhaWxl
-ZCwgaG93ZXZlciwgaW4gbW9zdCBwYXRocyB0aGUgcGlwZSBkcml2ZXIgd291bGQgaGF2ZSBhbHJl
-YWR5Cj4+PiBkZXN0cm95ZWQgaXQsIHJlc3VsdGluZyBpbiBhY2Nlc3NlcyB0byBmcmVlZCBtZW1v
-cnkgZXRjLgo+Pj4KPj4+IFRoaXMgY29tbWl0IGZpeGVzIHRoZSBwcm9ibGVtIGJ5IGFsbG93aW5n
-IHRoZSB3aW5zeXMgdG8gZGV0ZWN0IHdoZXRoZXIKPj4+IHRoZSBwaXBlIGRyaXZlcidzIGRlc3Ry
-b3kgZnVuY3Rpb24gbmVlZHMgdG8gYmUgY2FsbGVkIG9yIG5vdC4KPj4+Cj4+PiBTaWduZWQtb2Zm
-LWJ5OiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cj4+PiAtLS0KPj4+ICBzcmMvZ2Fs
-bGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9zY3JlZW4uYyAgICAgICAgfCAgOCArKysrKyst
-LQo+Pj4gIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfc2NyZWVuLmMgICAg
-ICB8IDE5ICsrKysrKysrKystLS0tLS0tLS0KPj4+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvbnY1MC9udjUwX3NjcmVlbi5jICAgICAgfCAgNiArKystLS0KPj4+ICBzcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jICAgICAgfCAgOSArKysrLS0tLS0KPj4+
-ICBzcmMvZ2FsbGl1bS93aW5zeXMvbm91dmVhdS9kcm0vbm91dmVhdV9kcm1fd2luc3lzLmMgfCAx
-NiArKysrKysrKysrLS0tLS0tCj4+PiAgNSBmaWxlcyBjaGFuZ2VkLCAzMyBpbnNlcnRpb25zKCsp
-LCAyNSBkZWxldGlvbnMoLSkKPj4+Cj4+PiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L25vdXZlYXVfc2NyZWVuLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bm91dmVhdV9zY3JlZW4uYwo+Pj4gaW5kZXggYTAxMjU3OS4uM2NkY2MyMCAxMDA2NDQKPj4+IC0t
-LSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X3NjcmVlbi5jCj4+PiArKysg
-Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9zY3JlZW4uYwo+Pj4gQEAgLTE0
-Nyw2ICsxNDcsMTIgQEAgbm91dmVhdV9zY3JlZW5faW5pdChzdHJ1Y3Qgbm91dmVhdV9zY3JlZW4g
-KnNjcmVlbiwgc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXYpCj4+PiAgICAgaWYgKG52X2RiZykK
-Pj4+ICAgICAgICBub3V2ZWF1X21lc2FfZGVidWcgPSBhdG9pKG52X2RiZyk7Cj4+Pgo+Pj4gKyAg
-IC8qIFRoZXNlIG11c3QgYmUgc2V0IGJlZm9yZSBhbnkgZmFpbHVyZSBpcyBwb3NzaWJsZSwgYXMg
-dGhlIGNsZWFudXAKPj4+ICsgICAgKiBwYXRocyBhc3N1bWUgdGhleSdyZSByZXNwb25zaWJsZSBm
-b3IgZGVsZXRpbmcgdGhlbS4KPj4+ICsgICAgKi8KPj4+ICsgICBzY3JlZW4tPmRybSA9IG5vdXZl
-YXVfZHJtKCZkZXYtPm9iamVjdCk7Cj4+PiArICAgc2NyZWVuLT5kZXZpY2UgPSBkZXY7Cj4+PiAr
-Cj4+PiAgICAgLyoKPj4+ICAgICAgKiB0aGlzIGlzIGluaXRpYWxpemVkIHRvIDEgaW4gbm91dmVh
-dV9kcm1fc2NyZWVuX2NyZWF0ZSBhZnRlciBzY3JlZW4KPj4+ICAgICAgKiBpcyBmdWxseSBjb25z
-dHJ1Y3RlZCBhbmQgYWRkZWQgdG8gdGhlIGdsb2JhbCBzY3JlZW4gbGlzdC4KPj4+IEBAIC0xNzUs
-OCArMTgxLDYgQEAgbm91dmVhdV9zY3JlZW5faW5pdChzdHJ1Y3Qgbm91dmVhdV9zY3JlZW4gKnNj
-cmVlbiwgc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXYpCj4+PiAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIGRhdGEsIHNpemUsICZzY3JlZW4tPmNoYW5uZWwpOwo+Pj4gICAgIGlmIChyZXQp
-Cj4+PiAgICAgICAgcmV0dXJuIHJldDsKPj4+IC0gICBzY3JlZW4tPmRybSA9IG5vdXZlYXVfZHJt
-KCZkZXYtPm9iamVjdCk7Cj4+PiAtICAgc2NyZWVuLT5kZXZpY2UgPSBkZXY7Cj4+Pgo+Pj4gICAg
-IHJldCA9IG5vdXZlYXVfY2xpZW50X25ldyhzY3JlZW4tPmRldmljZSwgJnNjcmVlbi0+Y2xpZW50
-KTsKPj4+ICAgICBpZiAocmV0KQo+Pj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMv
-bm91dmVhdS9udjMwL252MzBfc2NyZWVuLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bnYzMC9udjMwX3NjcmVlbi5jCj4+PiBpbmRleCBlYTI5ODExLi44NTRmNzBjIDEwMDY0NAo+Pj4g
-LS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9zY3JlZW4uYwo+Pj4g
-KysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9zY3JlZW4uYwo+Pj4g
-QEAgLTQxMywyMyArNDEzLDIwIEBAIG52MzBfc2NyZWVuX2Rlc3Ryb3koc3RydWN0IHBpcGVfc2Ny
-ZWVuICpwc2NyZWVuKQo+Pj4gICNkZWZpbmUgRkFJTF9TQ1JFRU5fSU5JVChzdHIsIGVycikgICAg
-ICAgICAgICAgICAgICAgIFwKPj4+ICAgICBkbyB7ICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICBcCj4+PiAgICAgICAgTk9VVkVBVV9FUlIoc3RyLCBlcnIpOyAg
-ICAgICAgICAgICAgICAgICAgICAgICAgXAo+Pj4gLSAgICAgIG52MzBfc2NyZWVuX2Rlc3Ryb3ko
-cHNjcmVlbik7ICAgICAgICAgICAgICAgICAgIFwKPj4+IC0gICAgICByZXR1cm4gTlVMTDsgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcCj4+PiArICAgICAgc2NyZWVuLT5iYXNl
-LmJhc2UuY29udGV4dF9jcmVhdGUgPSBOVUxMOyAgICAgICAgXAo+Pj4gKyAgICAgIHJldHVybiAm
-c2NyZWVuLT5iYXNlOyAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKPj4+ICAgICB9IHdoaWxl
-KDApCj4+Pgo+Pj4gIHN0cnVjdCBub3V2ZWF1X3NjcmVlbiAqCj4+PiAgbnYzMF9zY3JlZW5fY3Jl
-YXRlKHN0cnVjdCBub3V2ZWF1X2RldmljZSAqZGV2KQo+Pj4gIHsKPj4+IC0gICBzdHJ1Y3QgbnYz
-MF9zY3JlZW4gKnNjcmVlbiA9IENBTExPQ19TVFJVQ1QobnYzMF9zY3JlZW4pOwo+Pj4gKyAgIHN0
-cnVjdCBudjMwX3NjcmVlbiAqc2NyZWVuOwo+Pj4gICAgIHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNj
-cmVlbjsKPj4+ICAgICBzdHJ1Y3Qgbm91dmVhdV9wdXNoYnVmICpwdXNoOwo+Pj4gICAgIHN0cnVj
-dCBudjA0X2ZpZm8gKmZpZm87Cj4+PiAgICAgdW5zaWduZWQgb2NsYXNzID0gMDsKPj4+ICAgICBp
-bnQgcmV0LCBpOwo+Pj4KPj4+IC0gICBpZiAoIXNjcmVlbikKPj4+IC0gICAgICByZXR1cm4gTlVM
-TDsKPj4+IC0KPj4+ICAgICBzd2l0Y2ggKGRldi0+Y2hpcHNldCAmIDB4ZjApIHsKPj4+ICAgICBj
-YXNlIDB4MzA6Cj4+PiAgICAgICAgaWYgKFJBTktJTkVfMDM5N19DSElQU0VUICYgKDEgPDwgKGRl
-di0+Y2hpcHNldCAmIDB4MGYpKSkKPj4+IEBAIC00NTgsMTAgKzQ1NSwxNiBAQCBudjMwX3NjcmVl
-bl9jcmVhdGUoc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXYpCj4+Pgo+Pj4gICAgIGlmICghb2Ns
-YXNzKSB7Cj4+PiAgICAgICAgTk9VVkVBVV9FUlIoInVua25vd24gM2QgY2xhc3MgZm9yIDB4JTAy
-eFxuIiwgZGV2LT5jaGlwc2V0KTsKPj4+IC0gICAgICBGUkVFKHNjcmVlbik7Cj4+PiAgICAgICAg
-cmV0dXJuIE5VTEw7Cj4+PiAgICAgfQo+Pj4KPj4+ICsgICBzY3JlZW4gPSBDQUxMT0NfU1RSVUNU
-KG52MzBfc2NyZWVuKTsKPj4+ICsgICBpZiAoIXNjcmVlbikKPj4+ICsgICAgICByZXR1cm4gTlVM
-TDsKPj4+ICsKPj4+ICsgICBwc2NyZWVuID0gJnNjcmVlbi0+YmFzZS5iYXNlOwo+Pj4gKyAgIHBz
-Y3JlZW4tPmRlc3Ryb3kgPSBudjMwX3NjcmVlbl9kZXN0cm95Owo+Pj4gKwo+Pj4gICAgIC8qCj4+
-PiAgICAgICogU29tZSBtb2Rlcm4gYXBwcyB0cnkgdG8gdXNlIG1zYWEgd2l0aG91dCBrZWVwaW5n
-IGluIG1pbmQgdGhlCj4+PiAgICAgICogcmVzdHJpY3Rpb25zIG9uIHZpZGVvbWVtIG9mIG9sZGVy
-IGNhcmRzLiBSZXN1bHRpbmcgaW4gZG1lc2cgc2F5aW5nOgo+Pj4gQEAgLTQ3OSw4ICs0ODIsNiBA
-QCBudjMwX3NjcmVlbl9jcmVhdGUoc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXYpCj4+PiAgICAg
-aWYgKHNjcmVlbi0+bWF4X3NhbXBsZV9jb3VudCA+IDQpCj4+PiAgICAgICAgc2NyZWVuLT5tYXhf
-c2FtcGxlX2NvdW50ID0gNDsKPj4+Cj4+PiAtICAgcHNjcmVlbiA9ICZzY3JlZW4tPmJhc2UuYmFz
-ZTsKPj4+IC0gICBwc2NyZWVuLT5kZXN0cm95ID0gbnYzMF9zY3JlZW5fZGVzdHJveTsKPj4+ICAg
-ICBwc2NyZWVuLT5nZXRfcGFyYW0gPSBudjMwX3NjcmVlbl9nZXRfcGFyYW07Cj4+PiAgICAgcHNj
-cmVlbi0+Z2V0X3BhcmFtZiA9IG52MzBfc2NyZWVuX2dldF9wYXJhbWY7Cj4+PiAgICAgcHNjcmVl
-bi0+Z2V0X3NoYWRlcl9wYXJhbSA9IG52MzBfc2NyZWVuX2dldF9zaGFkZXJfcGFyYW07Cj4+PiBk
-aWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4u
-YyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc2NyZWVuLmMKPj4+IGlu
-ZGV4IDgyYjllOTMuLjQ2YzgxMmIgMTAwNjQ0Cj4+PiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJz
-L25vdXZlYXUvbnY1MC9udjUwX3NjcmVlbi5jCj4+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJz
-L25vdXZlYXUvbnY1MC9udjUwX3NjcmVlbi5jCj4+PiBAQCAtNzYyLDYgKzc2Miw3IEBAIG52NTBf
-c2NyZWVuX2NyZWF0ZShzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldikKPj4+ICAgICBpZiAoIXNj
-cmVlbikKPj4+ICAgICAgICByZXR1cm4gTlVMTDsKPj4+ICAgICBwc2NyZWVuID0gJnNjcmVlbi0+
-YmFzZS5iYXNlOwo+Pj4gKyAgIHBzY3JlZW4tPmRlc3Ryb3kgPSBudjUwX3NjcmVlbl9kZXN0cm95
-Owo+Pj4KPj4+ICAgICByZXQgPSBub3V2ZWF1X3NjcmVlbl9pbml0KCZzY3JlZW4tPmJhc2UsIGRl
-dik7Cj4+PiAgICAgaWYgKHJldCkgewo+Pj4gQEAgLTc4Miw3ICs3ODMsNiBAQCBudjUwX3NjcmVl
-bl9jcmVhdGUoc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXYpCj4+Pgo+Pj4gICAgIGNoYW4gPSBz
-Y3JlZW4tPmJhc2UuY2hhbm5lbDsKPj4+Cj4+PiAtICAgcHNjcmVlbi0+ZGVzdHJveSA9IG52NTBf
-c2NyZWVuX2Rlc3Ryb3k7Cj4+PiAgICAgcHNjcmVlbi0+Y29udGV4dF9jcmVhdGUgPSBudjUwX2Ny
-ZWF0ZTsKPj4+ICAgICBwc2NyZWVuLT5pc19mb3JtYXRfc3VwcG9ydGVkID0gbnY1MF9zY3JlZW5f
-aXNfZm9ybWF0X3N1cHBvcnRlZDsKPj4+ICAgICBwc2NyZWVuLT5nZXRfcGFyYW0gPSBudjUwX3Nj
-cmVlbl9nZXRfcGFyYW07Cj4+PiBAQCAtOTY0LDggKzk2NCw4IEBAIG52NTBfc2NyZWVuX2NyZWF0
-ZShzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldikKPj4+ICAgICByZXR1cm4gJnNjcmVlbi0+YmFz
-ZTsKPj4+Cj4+PiAgZmFpbDoKPj4+IC0gICBudjUwX3NjcmVlbl9kZXN0cm95KHBzY3JlZW4pOwo+
-Pj4gLSAgIHJldHVybiBOVUxMOwo+Pj4gKyAgIHNjcmVlbi0+YmFzZS5iYXNlLmNvbnRleHRfY3Jl
-YXRlID0gTlVMTDsKPj4+ICsgICByZXR1cm4gJnNjcmVlbi0+YmFzZTsKPj4+ICB9Cj4+Pgo+Pj4g
-IGludAo+Pj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252
-YzBfc2NyZWVuLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVl
-bi5jCj4+PiBpbmRleCBlNDUwMzFhLi40ODk3ZWJlIDEwMDY0NAo+Pj4gLS0tIGEvc3JjL2dhbGxp
-dW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYwo+Pj4gKysrIGIvc3JjL2dhbGxp
-dW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYwo+Pj4gQEAgLTYxNyw4ICs2MTcs
-NyBAQCBudmMwX3NjcmVlbl9yZXNpemVfdGxzX2FyZWEoc3RydWN0IG52YzBfc2NyZWVuICpzY3Jl
-ZW4sCj4+PiAgI2RlZmluZSBGQUlMX1NDUkVFTl9JTklUKHN0ciwgZXJyKSAgICAgICAgICAgICAg
-ICAgICAgXAo+Pj4gICAgIGRvIHsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIFwKPj4+ICAgICAgICBOT1VWRUFVX0VSUihzdHIsIGVycik7ICAgICAgICAgICAg
-ICAgICAgICAgICAgICBcCj4+PiAtICAgICAgbnZjMF9zY3JlZW5fZGVzdHJveShwc2NyZWVuKTsg
-ICAgICAgICAgICAgICAgICAgXAo+Pj4gLSAgICAgIHJldHVybiBOVUxMOyAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIFwKPj4+ICsgICAgICBnb3RvIGZhaWw7ICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICBcCj4+PiAgICAgfSB3aGlsZSgwKQo+Pj4KPj4+ICBz
-dHJ1Y3Qgbm91dmVhdV9zY3JlZW4gKgo+Pj4gQEAgLTY1MCw2ICs2NDksNyBAQCBudmMwX3NjcmVl
-bl9jcmVhdGUoc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXYpCj4+PiAgICAgaWYgKCFzY3JlZW4p
-Cj4+PiAgICAgICAgcmV0dXJuIE5VTEw7Cj4+PiAgICAgcHNjcmVlbiA9ICZzY3JlZW4tPmJhc2Uu
-YmFzZTsKPj4+ICsgICBwc2NyZWVuLT5kZXN0cm95ID0gbnZjMF9zY3JlZW5fZGVzdHJveTsKPj4+
-Cj4+PiAgICAgcmV0ID0gbm91dmVhdV9zY3JlZW5faW5pdCgmc2NyZWVuLT5iYXNlLCBkZXYpOwo+
-Pj4gICAgIGlmIChyZXQpIHsKPj4+IEBAIC02NzIsNyArNjcyLDYgQEAgbnZjMF9zY3JlZW5fY3Jl
-YXRlKHN0cnVjdCBub3V2ZWF1X2RldmljZSAqZGV2KQo+Pj4gICAgICAgIHNjcmVlbi0+YmFzZS52
-aWRtZW1fYmluZGluZ3MgPSAwOwo+Pj4gICAgIH0KPj4+Cj4+PiAtICAgcHNjcmVlbi0+ZGVzdHJv
-eSA9IG52YzBfc2NyZWVuX2Rlc3Ryb3k7Cj4+PiAgICAgcHNjcmVlbi0+Y29udGV4dF9jcmVhdGUg
-PSBudmMwX2NyZWF0ZTsKPj4+ICAgICBwc2NyZWVuLT5pc19mb3JtYXRfc3VwcG9ydGVkID0gbnZj
-MF9zY3JlZW5faXNfZm9ybWF0X3N1cHBvcnRlZDsKPj4+ICAgICBwc2NyZWVuLT5nZXRfcGFyYW0g
-PSBudmMwX3NjcmVlbl9nZXRfcGFyYW07Cj4+PiBAQCAtMTA2NSw4ICsxMDY0LDggQEAgbnZjMF9z
-Y3JlZW5fY3JlYXRlKHN0cnVjdCBub3V2ZWF1X2RldmljZSAqZGV2KQo+Pj4gICAgIHJldHVybiAm
-c2NyZWVuLT5iYXNlOwo+Pj4KPj4+ICBmYWlsOgo+Pj4gLSAgIG52YzBfc2NyZWVuX2Rlc3Ryb3ko
-cHNjcmVlbik7Cj4+PiAtICAgcmV0dXJuIE5VTEw7Cj4+PiArICAgc2NyZWVuLT5iYXNlLmJhc2Uu
-Y29udGV4dF9jcmVhdGUgPSBOVUxMOwo+Pj4gKyAgIHJldHVybiAmc2NyZWVuLT5iYXNlOwo+Pj4g
-IH0KPj4+Cj4+PiAgaW50Cj4+PiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vd2luc3lzL25vdXZl
-YXUvZHJtL25vdXZlYXVfZHJtX3dpbnN5cy5jIGIvc3JjL2dhbGxpdW0vd2luc3lzL25vdXZlYXUv
-ZHJtL25vdXZlYXVfZHJtX3dpbnN5cy5jCj4+PiBpbmRleCBlMTE3ZGZjLi40NTY1MzBkIDEwMDY0
-NAo+Pj4gLS0tIGEvc3JjL2dhbGxpdW0vd2luc3lzL25vdXZlYXUvZHJtL25vdXZlYXVfZHJtX3dp
-bnN5cy5jCj4+PiArKysgYi9zcmMvZ2FsbGl1bS93aW5zeXMvbm91dmVhdS9kcm0vbm91dmVhdV9k
-cm1fd2luc3lzLmMKPj4+IEBAIC01OSw3ICs1OSw3IEBAIG5vdXZlYXVfZHJtX3NjcmVlbl9jcmVh
-dGUoaW50IGZkKQo+Pj4gIHsKPj4+ICAgICAgICAgc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXYg
-PSBOVUxMOwo+Pj4gICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9zY3JlZW4gKigqaW5pdCkoc3RydWN0
-IG5vdXZlYXVfZGV2aWNlICopOwo+Pj4gLSAgICAgICBzdHJ1Y3Qgbm91dmVhdV9zY3JlZW4gKnNj
-cmVlbjsKPj4+ICsgICAgICAgc3RydWN0IG5vdXZlYXVfc2NyZWVuICpzY3JlZW4gPSBOVUxMOwo+
-Pj4gICAgICAgICBpbnQgcmV0LCBkdXBmZCA9IC0xOwo+Pj4KPj4+ICAgICAgICAgcGlwZV9tdXRl
-eF9sb2NrKG5vdXZlYXVfc2NyZWVuX211dGV4KTsKPj4+IEBAIC0xMTcsNyArMTE3LDcgQEAgbm91
-dmVhdV9kcm1fc2NyZWVuX2NyZWF0ZShpbnQgZmQpCj4+PiAgICAgICAgIH0KPj4+Cj4+PiAgICAg
-ICAgIHNjcmVlbiA9IGluaXQoZGV2KTsKPj4+IC0gICAgICAgaWYgKCFzY3JlZW4pCj4+PiArICAg
-ICAgIGlmICghc2NyZWVuIHx8ICFzY3JlZW4tPmJhc2UuY29udGV4dF9jcmVhdGUpCj4+PiAgICAg
-ICAgICAgICAgICAgZ290byBlcnI7Cj4+Pgo+Pj4gICAgICAgICAvKiBVc2UgZHVwZmQgaW4gaGFz
-aCB0YWJsZSwgdG8gYXZvaWQgZXJyb3JzIGlmIHRoZSBvcmlnaW5hbCBmZCBnZXRzCj4+PiBAQCAt
-MTMwLDEwICsxMzAsMTQgQEAgbm91dmVhdV9kcm1fc2NyZWVuX2NyZWF0ZShpbnQgZmQpCj4+PiAg
-ICAgICAgIHJldHVybiAmc2NyZWVuLT5iYXNlOwo+Pj4KPj4+ICBlcnI6Cj4+PiAtICAgICAgIGlm
-IChkZXYpCj4+PiAtICAgICAgICAgICAgICAgbm91dmVhdV9kZXZpY2VfZGVsKCZkZXYpOwo+Pj4g
-LSAgICAgICBlbHNlIGlmIChkdXBmZCA+PSAwKQo+Pj4gLSAgICAgICAgICAgICAgIGNsb3NlKGR1
-cGZkKTsKPj4+ICsgICAgICAgaWYgKHNjcmVlbikgewo+Pj4gKyAgICAgICAgICAgICAgIHNjcmVl
-bi0+YmFzZS5kZXN0cm95KCZzY3JlZW4tPmJhc2UpOwo+Pj4gKyAgICAgICB9IGVsc2Ugewo+Pj4g
-KyAgICAgICAgICAgICAgIGlmIChkZXYpCj4+PiArICAgICAgICAgICAgICAgICAgICAgICBub3V2
-ZWF1X2RldmljZV9kZWwoJmRldik7Cj4+PiArICAgICAgICAgICAgICAgZWxzZSBpZiAoZHVwZmQg
-Pj0gMCkKPj4+ICsgICAgICAgICAgICAgICAgICAgICAgIGNsb3NlKGR1cGZkKTsKPj4+ICsgICAg
-ICAgfQo+Pj4gICAgICAgICBwaXBlX211dGV4X3VubG9jayhub3V2ZWF1X3NjcmVlbl9tdXRleCk7
-Cj4+PiAgICAgICAgIHJldHVybiBOVUxMOwo+Pj4gIH0KPj4+IC0tCj4+PiAyLjYuMwo+Pj4KPj4+
-IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+PiBOb3V2
-ZWF1IG1haWxpbmcgbGlzdAo+Pj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4+IGh0
-dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1078711342==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="k31rMNTd4Cpfrx9GJb1WhQGhnKotiroCQ"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--k31rMNTd4Cpfrx9GJb1WhQGhnKotiroCQ
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+On 12/07/2015 01:53 PM, Ilia Mirkin wrote:
+> On Sun, Dec 6, 2015 at 10:48 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> On 12/07/2015 01:40 PM, Ilia Mirkin wrote:
+>>> This all seems very roundabout... Can't we do this in a somewhat
+>>> consistent way with the device being cleaned up in one place or
+>>> another but not both?
+>> That would be lovely, but not possible.  It has to be cleaned up by th=
+e
+>> pipe screen destroy() function, as that's the normal exit path.  If th=
+e
+>> pipe driver creation path fails before it's got a struct, then the
+>> winsys will have to clean up after itself instead.
+>=20
+> Couldn't you make the pipe_screen_create() function destroy the device
+> in all failure paths?
+Probably.  I guess that's slightly nicer, I'll re-spin them shortly.
+
+>=20
+>>
+>>>
+>>> On Thu, Nov 26, 2015 at 8:04 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote=
+:
+>>>> From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+>>>>
+>>>> The winsys layer would attempt to cleanup the nouveau_device if scre=
+en
+>>>> init failed, however, in most paths the pipe driver would have alrea=
+dy
+>>>> destroyed it, resulting in accesses to freed memory etc.
+>>>>
+>>>> This commit fixes the problem by allowing the winsys to detect wheth=
+er
+>>>> the pipe driver's destroy function needs to be called or not.
+>>>>
+>>>> Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+>>>> ---
+>>>>  src/gallium/drivers/nouveau/nouveau_screen.c        |  8 ++++++--
+>>>>  src/gallium/drivers/nouveau/nv30/nv30_screen.c      | 19 ++++++++++=
+---------
+>>>>  src/gallium/drivers/nouveau/nv50/nv50_screen.c      |  6 +++---
+>>>>  src/gallium/drivers/nouveau/nvc0/nvc0_screen.c      |  9 ++++-----
+>>>>  src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c | 16 ++++++++++=
+------
+>>>>  5 files changed, 33 insertions(+), 25 deletions(-)
+>>>>
+>>>> diff --git a/src/gallium/drivers/nouveau/nouveau_screen.c b/src/gall=
+ium/drivers/nouveau/nouveau_screen.c
+>>>> index a012579..3cdcc20 100644
+>>>> --- a/src/gallium/drivers/nouveau/nouveau_screen.c
+>>>> +++ b/src/gallium/drivers/nouveau/nouveau_screen.c
+>>>> @@ -147,6 +147,12 @@ nouveau_screen_init(struct nouveau_screen *scre=
+en, struct nouveau_device *dev)
+>>>>     if (nv_dbg)
+>>>>        nouveau_mesa_debug =3D atoi(nv_dbg);
+>>>>
+>>>> +   /* These must be set before any failure is possible, as the clea=
+nup
+>>>> +    * paths assume they're responsible for deleting them.
+>>>> +    */
+>>>> +   screen->drm =3D nouveau_drm(&dev->object);
+>>>> +   screen->device =3D dev;
+>>>> +
+>>>>     /*
+>>>>      * this is initialized to 1 in nouveau_drm_screen_create after s=
+creen
+>>>>      * is fully constructed and added to the global screen list.
+>>>> @@ -175,8 +181,6 @@ nouveau_screen_init(struct nouveau_screen *scree=
+n, struct nouveau_device *dev)
+>>>>                              data, size, &screen->channel);
+>>>>     if (ret)
+>>>>        return ret;
+>>>> -   screen->drm =3D nouveau_drm(&dev->object);
+>>>> -   screen->device =3D dev;
+>>>>
+>>>>     ret =3D nouveau_client_new(screen->device, &screen->client);
+>>>>     if (ret)
+>>>> diff --git a/src/gallium/drivers/nouveau/nv30/nv30_screen.c b/src/ga=
+llium/drivers/nouveau/nv30/nv30_screen.c
+>>>> index ea29811..854f70c 100644
+>>>> --- a/src/gallium/drivers/nouveau/nv30/nv30_screen.c
+>>>> +++ b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
+>>>> @@ -413,23 +413,20 @@ nv30_screen_destroy(struct pipe_screen *pscree=
+n)
+>>>>  #define FAIL_SCREEN_INIT(str, err)                    \
+>>>>     do {                                               \
+>>>>        NOUVEAU_ERR(str, err);                          \
+>>>> -      nv30_screen_destroy(pscreen);                   \
+>>>> -      return NULL;                                    \
+>>>> +      screen->base.base.context_create =3D NULL;        \
+>>>> +      return &screen->base;                           \
+>>>>     } while(0)
+>>>>
+>>>>  struct nouveau_screen *
+>>>>  nv30_screen_create(struct nouveau_device *dev)
+>>>>  {
+>>>> -   struct nv30_screen *screen =3D CALLOC_STRUCT(nv30_screen);
+>>>> +   struct nv30_screen *screen;
+>>>>     struct pipe_screen *pscreen;
+>>>>     struct nouveau_pushbuf *push;
+>>>>     struct nv04_fifo *fifo;
+>>>>     unsigned oclass =3D 0;
+>>>>     int ret, i;
+>>>>
+>>>> -   if (!screen)
+>>>> -      return NULL;
+>>>> -
+>>>>     switch (dev->chipset & 0xf0) {
+>>>>     case 0x30:
+>>>>        if (RANKINE_0397_CHIPSET & (1 << (dev->chipset & 0x0f)))
+>>>> @@ -458,10 +455,16 @@ nv30_screen_create(struct nouveau_device *dev)=
+
+>>>>
+>>>>     if (!oclass) {
+>>>>        NOUVEAU_ERR("unknown 3d class for 0x%02x\n", dev->chipset);
+>>>> -      FREE(screen);
+>>>>        return NULL;
+>>>>     }
+>>>>
+>>>> +   screen =3D CALLOC_STRUCT(nv30_screen);
+>>>> +   if (!screen)
+>>>> +      return NULL;
+>>>> +
+>>>> +   pscreen =3D &screen->base.base;
+>>>> +   pscreen->destroy =3D nv30_screen_destroy;
+>>>> +
+>>>>     /*
+>>>>      * Some modern apps try to use msaa without keeping in mind the
+>>>>      * restrictions on videomem of older cards. Resulting in dmesg s=
+aying:
+>>>> @@ -479,8 +482,6 @@ nv30_screen_create(struct nouveau_device *dev)
+>>>>     if (screen->max_sample_count > 4)
+>>>>        screen->max_sample_count =3D 4;
+>>>>
+>>>> -   pscreen =3D &screen->base.base;
+>>>> -   pscreen->destroy =3D nv30_screen_destroy;
+>>>>     pscreen->get_param =3D nv30_screen_get_param;
+>>>>     pscreen->get_paramf =3D nv30_screen_get_paramf;
+>>>>     pscreen->get_shader_param =3D nv30_screen_get_shader_param;
+>>>> diff --git a/src/gallium/drivers/nouveau/nv50/nv50_screen.c b/src/ga=
+llium/drivers/nouveau/nv50/nv50_screen.c
+>>>> index 82b9e93..46c812b 100644
+>>>> --- a/src/gallium/drivers/nouveau/nv50/nv50_screen.c
+>>>> +++ b/src/gallium/drivers/nouveau/nv50/nv50_screen.c
+>>>> @@ -762,6 +762,7 @@ nv50_screen_create(struct nouveau_device *dev)
+>>>>     if (!screen)
+>>>>        return NULL;
+>>>>     pscreen =3D &screen->base.base;
+>>>> +   pscreen->destroy =3D nv50_screen_destroy;
+>>>>
+>>>>     ret =3D nouveau_screen_init(&screen->base, dev);
+>>>>     if (ret) {
+>>>> @@ -782,7 +783,6 @@ nv50_screen_create(struct nouveau_device *dev)
+>>>>
+>>>>     chan =3D screen->base.channel;
+>>>>
+>>>> -   pscreen->destroy =3D nv50_screen_destroy;
+>>>>     pscreen->context_create =3D nv50_create;
+>>>>     pscreen->is_format_supported =3D nv50_screen_is_format_supported=
+;
+>>>>     pscreen->get_param =3D nv50_screen_get_param;
+>>>> @@ -964,8 +964,8 @@ nv50_screen_create(struct nouveau_device *dev)
+>>>>     return &screen->base;
+>>>>
+>>>>  fail:
+>>>> -   nv50_screen_destroy(pscreen);
+>>>> -   return NULL;
+>>>> +   screen->base.base.context_create =3D NULL;
+>>>> +   return &screen->base;
+>>>>  }
+>>>>
+>>>>  int
+>>>> diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c b/src/ga=
+llium/drivers/nouveau/nvc0/nvc0_screen.c
+>>>> index e45031a..4897ebe 100644
+>>>> --- a/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+>>>> +++ b/src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+>>>> @@ -617,8 +617,7 @@ nvc0_screen_resize_tls_area(struct nvc0_screen *=
+screen,
+>>>>  #define FAIL_SCREEN_INIT(str, err)                    \
+>>>>     do {                                               \
+>>>>        NOUVEAU_ERR(str, err);                          \
+>>>> -      nvc0_screen_destroy(pscreen);                   \
+>>>> -      return NULL;                                    \
+>>>> +      goto fail;                                      \
+>>>>     } while(0)
+>>>>
+>>>>  struct nouveau_screen *
+>>>> @@ -650,6 +649,7 @@ nvc0_screen_create(struct nouveau_device *dev)
+>>>>     if (!screen)
+>>>>        return NULL;
+>>>>     pscreen =3D &screen->base.base;
+>>>> +   pscreen->destroy =3D nvc0_screen_destroy;
+>>>>
+>>>>     ret =3D nouveau_screen_init(&screen->base, dev);
+>>>>     if (ret) {
+>>>> @@ -672,7 +672,6 @@ nvc0_screen_create(struct nouveau_device *dev)
+>>>>        screen->base.vidmem_bindings =3D 0;
+>>>>     }
+>>>>
+>>>> -   pscreen->destroy =3D nvc0_screen_destroy;
+>>>>     pscreen->context_create =3D nvc0_create;
+>>>>     pscreen->is_format_supported =3D nvc0_screen_is_format_supported=
+;
+>>>>     pscreen->get_param =3D nvc0_screen_get_param;
+>>>> @@ -1065,8 +1064,8 @@ nvc0_screen_create(struct nouveau_device *dev)=
+
+>>>>     return &screen->base;
+>>>>
+>>>>  fail:
+>>>> -   nvc0_screen_destroy(pscreen);
+>>>> -   return NULL;
+>>>> +   screen->base.base.context_create =3D NULL;
+>>>> +   return &screen->base;
+>>>>  }
+>>>>
+>>>>  int
+>>>> diff --git a/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c b/s=
+rc/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c
+>>>> index e117dfc..456530d 100644
+>>>> --- a/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c
+>>>> +++ b/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c
+>>>> @@ -59,7 +59,7 @@ nouveau_drm_screen_create(int fd)
+>>>>  {
+>>>>         struct nouveau_device *dev =3D NULL;
+>>>>         struct nouveau_screen *(*init)(struct nouveau_device *);
+>>>> -       struct nouveau_screen *screen;
+>>>> +       struct nouveau_screen *screen =3D NULL;
+>>>>         int ret, dupfd =3D -1;
+>>>>
+>>>>         pipe_mutex_lock(nouveau_screen_mutex);
+>>>> @@ -117,7 +117,7 @@ nouveau_drm_screen_create(int fd)
+>>>>         }
+>>>>
+>>>>         screen =3D init(dev);
+>>>> -       if (!screen)
+>>>> +       if (!screen || !screen->base.context_create)
+>>>>                 goto err;
+>>>>
+>>>>         /* Use dupfd in hash table, to avoid errors if the original =
+fd gets
+>>>> @@ -130,10 +130,14 @@ nouveau_drm_screen_create(int fd)
+>>>>         return &screen->base;
+>>>>
+>>>>  err:
+>>>> -       if (dev)
+>>>> -               nouveau_device_del(&dev);
+>>>> -       else if (dupfd >=3D 0)
+>>>> -               close(dupfd);
+>>>> +       if (screen) {
+>>>> +               screen->base.destroy(&screen->base);
+>>>> +       } else {
+>>>> +               if (dev)
+>>>> +                       nouveau_device_del(&dev);
+>>>> +               else if (dupfd >=3D 0)
+>>>> +                       close(dupfd);
+>>>> +       }
+>>>>         pipe_mutex_unlock(nouveau_screen_mutex);
+>>>>         return NULL;
+>>>>  }
+>>>> --
+>>>> 2.6.3
+>>>>
+>>>> _______________________________________________
+>>>> Nouveau mailing list
+>>>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>>>> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>>
+
+
+--k31rMNTd4Cpfrx9GJb1WhQGhnKotiroCQ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJWZQOOAAoJEHYLnGJQkpH7pI8P+wfzljrzVVCoVl+a3su4QTdq
+QFRMliPju98ICteObLQsTSnwFvxe81xpM254aLkmtbF2kMZoneBYoUGsImvgNtfG
+PnF3FdAuxk6kXoT11pmJgwzXsUR1EYJMfQCQQVt/ivs9nGC4f4MvfrlXLET8e90g
+uFWA2ya01JBMQziJtNIaiBimHUxy+3F5KDGEx129oWJZKeEgTF0jiuAEVw9LWrE/
+eTmn8EXxzRGRSCKRXeJPy9UjT7iWLhLKhuVzsDVlVp2XAF6Wgj2/A3klbWkdhojz
+L+JsQqUJUqOARB9f3zEjta0Yk4au1xcfoZr5kPQFcKqyCmb1thVeWCRT5KVmSRfd
+/szlVnGoDpxj73Skqyia7yhAShv4EHe1FOmeJoCc6TkzUIUOaldkYfh2L703q1ke
+Ggochz+2jE+GRrc2DTv9OPJrvAuExps6mYB+2MYWAz7LB69VqewG25dmhGBAS6SH
+vx2sIWvET9CNq7FobcIkuguTS3q1XWcacTKICACrMqKHAEr2jTAOimJ0gFjbU1Uu
+6VMDHBKTYB+SLIIqdbWh3kpH1U7oaEsxAQO64TmwVlBj7noHSng/CtXn1BxKsjRn
+bVo8LV/tWcih4CYJzCl1Y5fTpiQDKbWF2Wgwb0kIucwYJJ9PvBCAM6MF7iCF1QOQ
+mwyUH7KK4+cFmwKQP53p
+=4asM
+-----END PGP SIGNATURE-----
+
+--k31rMNTd4Cpfrx9GJb1WhQGhnKotiroCQ--
+
+--===============1078711342==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1078711342==--
