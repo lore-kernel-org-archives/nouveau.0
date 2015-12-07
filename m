@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90887] PhiMovesPass in register allocator broken
-Date: Mon, 07 Dec 2015 19:50:33 +0000
-Message-ID: <bug-90887-8800-19WTPVxGXI@http.bugs.freedesktop.org/>
+Date: Mon, 07 Dec 2015 19:56:27 +0000
+Message-ID: <bug-90887-8800-goEQduK9MX@http.bugs.freedesktop.org/>
 References: <bug-90887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0576829788=="
+Content-Type: multipart/mixed; boundary="===============1464229738=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,34 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0576829788==
-Content-Type: multipart/alternative; boundary="1449517833.cdCD352.28922"; charset="UTF-8"
+--===============1464229738==
+Content-Type: multipart/alternative; boundary="1449518187.c0CcfAB2.30696"; charset="UTF-8"
 
 
---1449517833.cdCD352.28922
-Date: Mon, 7 Dec 2015 19:50:33 +0000
+--1449518187.c0CcfAB2.30696
+Date: Mon, 7 Dec 2015 19:56:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90887
 
---- Comment #40 from jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
-Created attachment 120393
-  --> https://bugs.freedesktop.org/attachment.cgi?id=120393&action=edit
-Patch to simplify test case creation
+jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> changed:
 
-Thanks. I finally had some time to look at the problem again. With the attached
-patch it is easier to recreate the problem, because it causes every if without
-an else clause to create a critical edge with the right property (i.e. not
-being the first incoming edge).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #41 from jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
+After doing some tests with this change I'm sure that the reported problem is
+fully fixed by Ilja's patch. That splitting more edges seems to help in some
+cases most probably has a different cause. I'll try to take another look at the
+hearthstone shaders (may not be soon).
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1449517833.cdCD352.28922
-Date: Mon, 7 Dec 2015 19:50:33 +0000
+--1449518187.c0CcfAB2.30696
+Date: Mon, 7 Dec 2015 19:56:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,26 +58,51 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:j-r&#64;online.de" title="jr &lt;j-r&#64;online.de&gt;"> <span class="fn">jr</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c40">Comment # 40</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c41">Comment # 41</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - PhiMovesPass in register allocator broken"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
               from <span class="vcard"><a class="email" href="mailto:j-r&#64;online.de" title="jr &lt;j-r&#64;online.de&gt;"> <span class="fn">jr</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=120393" name="attach_120393" title="Patch to simplify test case creation">attachment 120393</a> <a href="attachment.cgi?id=120393&amp;action=edit" title="Patch to simplify test case creation">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=90887&amp;attachment=120393'>[review]</a>
-Patch to simplify test case creation
-
-Thanks. I finally had some time to look at the problem again. With the attached
-patch it is easier to recreate the problem, because it causes every if without
-an else clause to create a critical edge with the right property (i.e. not
-being the first incoming edge).</pre>
+        <pre>After doing some tests with this change I'm sure that the reported problem is
+fully fixed by Ilja's patch. That splitting more edges seems to help in some
+cases most probably has a different cause. I'll try to take another look at the
+hearthstone shaders (may not be soon).</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +115,9 @@ being the first incoming edge).</pre>
     </body>
 </html>
 
---1449517833.cdCD352.28922--
+--1449518187.c0CcfAB2.30696--
 
---===============0576829788==
+--===============1464229738==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0576829788==--
+--===============1464229738==--
