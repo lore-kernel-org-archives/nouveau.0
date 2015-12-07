@@ -1,16 +1,12 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: NV50 compute support questions
-Date: Mon, 7 Dec 2015 17:18:48 +0100
-Message-ID: <5665B168.9020203@gmail.com>
-References: <564EF7CA.4090809@redhat.com> <564F452A.1010206@gmail.com>
- <564F4A54.7050704@redhat.com> <5653314D.7010905@gmail.com>
- <565F0F82.9040300@redhat.com> <565F3988.10500@gmail.com>
- <566152BE.1080107@redhat.com> <5665A161.90400@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90887] PhiMovesPass in register allocator broken
+Date: Mon, 07 Dec 2015 19:50:33 +0000
+Message-ID: <bug-90887-8800-19WTPVxGXI@http.bugs.freedesktop.org/>
+References: <bug-90887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0576829788=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5665A161.90400-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,41 +16,87 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAxMi8wNy8yMDE1IDA0OjEwIFBNLCBIYW5zIGRlIEdvZWRlIHdyb3RlOgo+IEhpCj4KCkhp
-LAoKPiBPbiAwNC0xMi0xNSAwOTo0NSwgSGFucyBkZSBHb2VkZSB3cm90ZToKPgo+PiBJJ3ZlIG9y
-ZGVyZWQgYSBHVFg3NDAgKEdLMTA3KSBjYXJkLCB3aGljaCBzaG91bGQgYXJyaXZlIHNvb24sIGFu
-ZAo+PiBJJ2xsIGJlIHVzaW5nIHRoYXQgc28gSSBjYW4gKGhvcGVmdWxseSkgZm9jdXMgb24gdGhl
-IGxsdm0gdGdzaSBiaXRzCj4+IGFnYWluLgo+Cj4gU28gdGhlIGNhcmQgYXJyaXZlZCB0b2RheSBh
-bmQgSSd2ZSBwbHVnZ2VkIGl0IGluIHRlc3RzL3RyaXZpYWwvY29tcHV0ZQo+IGxvb2tzIG11Y2gg
-YmV0dGVyIHdpdGggdGhpcy4gQnV0IHRoZXJlIGRvZXMgc2VlbSB0byBiZSBvbmUgaXNzdWUKPiAo
-b3RoZXIgdGhlbiB0aGUgYXRvbWljIGJpdHMgbm90IHdvcmtpbmcpIDoKPgo+IC0gdGVzdF9yZXNv
-dXJjZV9pbmRpcmVjdAoKRXhhY3RseSwgdHdvIG9yIHRocmVlIHRlc3QgZG9uJ3Qgd29yayBvbiBL
-ZXBsZXIgPCBHSzExMC4KSXQncyBvbiBteSB0b2RvbGlzdCwgYnV0IHdpdGggYSBsb3cgcHJpb3Jp
-dHkuIDotKQoKVGhhbmtzIGZvciByZXBvcnRpbmcgdGhpcyBhbnl3YXkuCgo+ICgxLCAwKVswXTog
-Z290IDB4Mi8wLjAwMDAwMCwgZXhwZWN0ZWQgMHgzLzAuMDAwMDAwCj4gKDMsIDApWzBdOiBnb3Qg
-MHg2LzAuMDAwMDAwLCBleHBlY3RlZCAweDcvMC4wMDAwMDAKPiAoNSwgMClbMF06IGdvdCAweGEv
-MC4wMDAwMDAsIGV4cGVjdGVkIDB4Yi8wLjAwMDAwMAo+ICg3LCAwKVswXTogZ290IDB4ZS8wLjAw
-MDAwMCwgZXhwZWN0ZWQgMHhmLzAuMDAwMDAwCj4gKDksIDApWzBdOiBnb3QgMHgxMi8wLjAwMDAw
-MCwgZXhwZWN0ZWQgMHgxMy8wLjAwMDAwMAo+ICgxMSwgMClbMF06IGdvdCAweDE2LzAuMDAwMDAw
-LCBleHBlY3RlZCAweDE3LzAuMDAwMDAwCj4gKDEzLCAwKVswXTogZ290IDB4MWEvMC4wMDAwMDAs
-IGV4cGVjdGVkIDB4MWIvMC4wMDAwMDAKPiAoMTUsIDApWzBdOiBnb3QgMHgxZS8wLjAwMDAwMCwg
-ZXhwZWN0ZWQgMHgxZi8wLjAwMDAwMAo+ICgxNywgMClbMF06IGdvdCAweDIyLzAuMDAwMDAwLCBl
-eHBlY3RlZCAweDIzLzAuMDAwMDAwCj4gKDE5LCAwKVswXTogZ290IDB4MjYvMC4wMDAwMDAsIGV4
-cGVjdGVkIDB4MjcvMC4wMDAwMDAKPiAoMjEsIDApWzBdOiBnb3QgMHgyYS8wLjAwMDAwMCwgZXhw
-ZWN0ZWQgMHgyYi8wLjAwMDAwMAo+ICgyMywgMClbMF06IGdvdCAweDJlLzAuMDAwMDAwLCBleHBl
-Y3RlZCAweDJmLzAuMDAwMDAwCj4gKDI1LCAwKVswXTogZ290IDB4MzIvMC4wMDAwMDAsIGV4cGVj
-dGVkIDB4MzMvMC4wMDAwMDAKPiAoMjcsIDApWzBdOiBnb3QgMHgzNi8wLjAwMDAwMCwgZXhwZWN0
-ZWQgMHgzNy8wLjAwMDAwMAo+ICgyOSwgMClbMF06IGdvdCAweDNhLzAuMDAwMDAwLCBleHBlY3Rl
-ZCAweDNiLzAuMDAwMDAwCj4gKDMxLCAwKVswXTogZ290IDB4M2UvMC4wMDAwMDAsIGV4cGVjdGVk
-IDB4M2YvMC4wMDAwMDAKPiAoMzMsIDApWzBdOiBnb3QgMHg0Mi8wLjAwMDAwMCwgZXhwZWN0ZWQg
-MHg0My8wLjAwMDAwMAo+ICgzNSwgMClbMF06IGdvdCAweDQ2LzAuMDAwMDAwLCBleHBlY3RlZCAw
-eDQ3LzAuMDAwMDAwCj4gKDM3LCAwKVswXTogZ290IDB4NGEvMC4wMDAwMDAsIGV4cGVjdGVkIDB4
-NGIvMC4wMDAwMDAKPiAoMzksIDApWzBdOiBnb3QgMHg0ZS8wLjAwMDAwMCwgZXhwZWN0ZWQgMHg0
-Zi8wLjAwMDAwMAo+ICg2NCwgMSk6IEZBSUwgKDMyKQo+Cj4gUmVnYXJkcywKPgo+IEhhbnMKCi0t
-IAotU2FtdWVsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0576829788==
+Content-Type: multipart/alternative; boundary="1449517833.cdCD352.28922"; charset="UTF-8"
+
+
+--1449517833.cdCD352.28922
+Date: Mon, 7 Dec 2015 19:50:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90887
+
+--- Comment #40 from jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
+Created attachment 120393
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120393&action=edit
+Patch to simplify test case creation
+
+Thanks. I finally had some time to look at the problem again. With the attached
+patch it is easier to recreate the problem, because it causes every if without
+an else clause to create a critical edge with the right property (i.e. not
+being the first incoming edge).
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1449517833.cdCD352.28922
+Date: Mon, 7 Dec 2015 19:50:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c40">Comment # 40</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
+              from <span class="vcard"><a class="email" href="mailto:j-r&#64;online.de" title="jr &lt;j-r&#64;online.de&gt;"> <span class="fn">jr</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120393" name="attach_120393" title="Patch to simplify test case creation">attachment 120393</a> <a href="attachment.cgi?id=120393&amp;action=edit" title="Patch to simplify test case creation">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=90887&amp;attachment=120393'>[review]</a>
+Patch to simplify test case creation
+
+Thanks. I finally had some time to look at the problem again. With the attached
+patch it is easier to recreate the problem, because it causes every if without
+an else clause to create a critical edge with the right property (i.e. not
+being the first incoming edge).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1449517833.cdCD352.28922--
+
+--===============0576829788==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0576829788==--
