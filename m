@@ -1,13 +1,13 @@
 From: Craig Garner <craigcgarner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [Bug 90887] PhiMovesPass in register allocator broken
-Date: Mon, 7 Dec 2015 14:57:28 -0500
-Message-ID: <CAGfK2pf1_qEhwNAcpFfOxKfK1s8EtFLV2dmPmq3AK4KH-x6nsQ@mail.gmail.com>
+Date: Mon, 7 Dec 2015 15:04:43 -0500
+Message-ID: <CAGfK2pfN3DLKd_XJ3XQcBZLgivVHxA5iy=AfWTifFnEjKSbtvw@mail.gmail.com>
 References: <bug-90887-8800@http.bugs.freedesktop.org/>
- <bug-90887-8800-19WTPVxGXI@http.bugs.freedesktop.org/>
+ <bug-90887-8800-goEQduK9MX@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0582327378=="
+Content-Type: multipart/mixed; boundary="===============1319783865=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90887-8800-19WTPVxGXI-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90887-8800-goEQduK9MX-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,35 @@ To: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0582327378==
-Content-Type: multipart/alternative; boundary=001a1141bc5c46fba00526544441
+--===============1319783865==
+Content-Type: multipart/alternative; boundary=001a11409e024123cc0526545ecd
 
---001a1141bc5c46fba00526544441
+--001a11409e024123cc0526545ecd
 Content-Type: text/plain; charset=UTF-8
 
-I'll be done with my current project in a couple days.  I can give you all
-the info you want for my quad head setup.  I would like to be able to at
-least keep up with Fedora Current :)
+I'll give you my 2 cents worth when there is an update to the driver, X, or
+whatever is causing the issue in fc23.  If I push it, I might be able to
+test something tomorrow if there are any updates for fc22->fc23.
 
-Tell me what you need so I'll have it before hand.  I have a laptop I can
-still communicate with people and a full workstation backup.
+Thanks for all your hard work!!!
+
+Craig
 
 
-On Mon, Dec 7, 2015 at 2:50 PM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
+On Mon, Dec 7, 2015 at 2:56 PM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
 
-> *Comment # 40 <https://bugs.freedesktop.org/show_bug.cgi?id=90887#c40> on
+> jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> changed bug 90887
+> <https://bugs.freedesktop.org/show_bug.cgi?id=90887>
+> What Removed Added Status NEW RESOLVED Resolution --- FIXED
+>
+> *Comment # 41 <https://bugs.freedesktop.org/show_bug.cgi?id=90887#c41> on
 > bug 90887 <https://bugs.freedesktop.org/show_bug.cgi?id=90887> from jr
 > <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> *
 >
-> Created attachment 120393 <https://bugs.freedesktop.org/attachment.cgi?id=120393> [details] <https://bugs.freedesktop.org/attachment.cgi?id=120393&action=edit> [review] <https://bugs.freedesktop.org/page.cgi?id=splinter.html&bug=90887&attachment=120393>
-> Patch to simplify test case creation
->
-> Thanks. I finally had some time to look at the problem again. With the attached
-> patch it is easier to recreate the problem, because it causes every if without
-> an else clause to create a critical edge with the right property (i.e. not
-> being the first incoming edge).
+> After doing some tests with this change I'm sure that the reported problem is
+> fully fixed by Ilja's patch. That splitting more edges seems to help in some
+> cases most probably has a different cause. I'll try to take another look at the
+> hearthstone shaders (may not be soon).
 >
 > ------------------------------
 > You are receiving this mail because:
@@ -63,53 +65,72 @@ On Mon, Dec 7, 2015 at 2:50 PM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.g
 >
 >
 
---001a1141bc5c46fba00526544441
+--001a11409e024123cc0526545ecd
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I&#39;ll be done with my current project in a couple =
-days.=C2=A0 I can give you all the info you want for my quad head setup.=C2=
-=A0 I would like to be able to at least keep up with Fedora Current :)<br><=
-br></div>Tell me what you need so I&#39;ll have it before hand.=C2=A0 I hav=
-e a laptop I can still communicate with people and a full workstation backu=
-p.<br><br></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">O=
-n Mon, Dec 7, 2015 at 2:50 PM,  <span dir=3D"ltr">&lt;<a href=3D"mailto:bug=
-zilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org" target=3D"_blank">bugzilla-daemon@freedesktop=
-.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<div dir=3D"ltr"><div><div>I&#39;ll give you my 2 cents worth when there is=
+ an update to the driver, X, or whatever is causing the issue in fc23.=C2=
+=A0 If I push it, I might be able to test something tomorrow if there are a=
+ny updates for fc22-&gt;fc23.<br><br></div>Thanks for all your hard work!!!=
+<br><br></div>Craig<br><br></div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Mon, Dec 7, 2015 at 2:56 PM,  <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org" target=3D"_blank">bugzilla-=
+daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_=
+quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
+ex">
    =20
      =20
    =20
-    <div>
+    <div><span><a href=3D"mailto:j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org" title=3D"jr &lt;j-r@online.=
+de&gt;" target=3D"_blank"> <span>jr</span></a>
+</span> changed
+              <a title=3D"RESOLVED FIXED - PhiMovesPass in register allocat=
+or broken" href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90887" ta=
+rget=3D"_blank">bug 90887</a>
+          <br>
+             <table cellpadding=3D"8" cellspacing=3D"0" border=3D"1">
+          <tbody><tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></tbody></table>
       <p>
         </p><div>
-            <b><a title=3D"NEW - PhiMovesPass in register allocator broken"=
- href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90887#c40" target=
-=3D"_blank">Comment # 40</a>
-              on <a title=3D"NEW - PhiMovesPass in register allocator broke=
-n" href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90887" target=3D"=
-_blank">bug 90887</a>
+            <b><a title=3D"RESOLVED FIXED - PhiMovesPass in register alloca=
+tor broken" href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90887#c4=
+1" target=3D"_blank">Comment # 41</a>
+              on <a title=3D"RESOLVED FIXED - PhiMovesPass in register allo=
+cator broken" href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90887"=
+ target=3D"_blank">bug 90887</a>
               from <span><a href=3D"mailto:j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org" title=3D"jr &lt;j=
 -r@online.de&gt;" target=3D"_blank"> <span>jr</span></a>
 </span></b>
-        <pre>Created <span><a href=3D"https://bugs.freedesktop.org/attachme=
-nt.cgi?id=3D120393" name=3D"1517dfee26fdf8a6_attach_120393" title=3D"Patch =
-to simplify test case creation" target=3D"_blank">attachment 120393</a> <a =
-href=3D"https://bugs.freedesktop.org/attachment.cgi?id=3D120393&amp;action=
-=3Dedit" title=3D"Patch to simplify test case creation" target=3D"_blank">[=
-details]</a></span> <a href=3D"https://bugs.freedesktop.org/page.cgi?id=3Ds=
-plinter.html&amp;bug=3D90887&amp;attachment=3D120393" target=3D"_blank">[re=
-view]</a>
-Patch to simplify test case creation
-
-Thanks. I finally had some time to look at the problem again. With the atta=
-ched
-patch it is easier to recreate the problem, because it causes every if with=
-out
-an else clause to create a critical edge with the right property (i.e. not
-being the first incoming edge).</pre>
+        <pre>After doing some tests with this change I&#39;m sure that the =
+reported problem is
+fully fixed by Ilja&#39;s patch. That splitting more edges seems to help in=
+ some
+cases most probably has a different cause. I&#39;ll try to take another loo=
+k at the
+hearthstone shaders (may not be soon).</pre>
         </div>
-      <p></p>
+      <p></p><span class=3D"">
       <hr>
       <span>You are receiving this mail because:</span>
      =20
@@ -117,7 +138,7 @@ being the first incoming edge).</pre>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
-    </div>
+    </span></div>
 
 <br>_______________________________________________<br>
 Nouveau mailing list<br>
@@ -128,9 +149,9 @@ referrer" target=3D"_blank">http://lists.freedesktop.org/mailman/listinfo/n=
 ouveau</a><br>
 <br></blockquote></div><br></div>
 
---001a1141bc5c46fba00526544441--
+--001a11409e024123cc0526545ecd--
 
---===============0582327378==
+--===============1319783865==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -140,4 +161,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0582327378==--
+--===============1319783865==--
