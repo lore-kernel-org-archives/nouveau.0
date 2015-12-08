@@ -1,17 +1,13 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [mesa v2 8/9] nvc0: remove allocation of unused sw
- class
-Date: Tue, 8 Dec 2015 17:05:52 +0100
-Message-ID: <5666FFE0.8080305@gmail.com>
-References: <1448586301-8351-1-git-send-email-skeggsb@gmail.com>
- <1448586301-8351-8-git-send-email-skeggsb@gmail.com>
- <5666EF90.2000701@gmail.com>
- <CACvgo50HH6fk+AtpGRsbkfzsn8nPDndcqzMo54cUfwX4hCjFsg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
+	laptop
+Date: Tue, 08 Dec 2015 18:17:05 +0000
+Message-ID: <bug-56615-8800-cz8BQJDdRV@http.bugs.freedesktop.org/>
+References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1436796204=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACvgo50HH6fk+AtpGRsbkfzsn8nPDndcqzMo54cUfwX4hCjFsg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +17,82 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAxMi8wOC8yMDE1IDA0OjMwIFBNLCBFbWlsIFZlbGlrb3Ygd3JvdGU6Cj4gT24gOCBEZWNl
-bWJlciAyMDE1IGF0IDE0OjU2LCBTYW11ZWwgUGl0b2lzZXQgPHNhbXVlbC5waXRvaXNldEBnbWFp
-bC5jb20+IHdyb3RlOgo+PiBOQUNLLgo+Pgo+PiBUaGlzIHBhdGNoZXMgYnJlYWtzIE1QIHBlcmZv
-cm1hbmNlIGNvdW50ZXJzIG9uIEZlcm1pL0tlcGxlciBiZWNhdXNlIHRoZXkKPj4gYWN0dWFsbHkg
-dXNlIHNvZnR3YXJlIG1ldGhvZHMgdG8gY29uZmlndXJlIG11bHRpcGxleGVycy4gR2xvYmFsIHBl
-cmYKPj4gY291bnRlcnMgd2lsbCBhbHNvIHVzZSBzb2Z0d2FyZSBtZXRob2RzIHRvIGluaXQsIHNh
-bXBsZSBhbmQgcmVhZCBoYXJkd2FyZQo+PiBjb3VudGVycywgc28gdGhpcyBTVyBvYmplY3QgaXMg
-ZGVmaW5pdGVseSBuZWVkZWQuCj4+Cj4gSSdtIGN1cmlvdXMgaG93IGV4YWN0bHkgdGhpcyBoYXBw
-ZW5zLiBBZmFpY3QgdGhlcmUgaXMgbm8gcmVmZXJlbmNlIHRvCj4gdGhlIG52c3cgb2JqZWN0LCB3
-aGljaCBvdWdodCB0byBiZSB1c2VkLCB3b3VsZG4ndCBpdCA/Cj4gSW1obyBpZiB0aGVyZSBpcyBz
-b21ldGhpbmcgc3VidGxlIGl0J3Mgd29ydGggYWRkaW5nIGEgY29tbWVudC4KClVzdWFsbHksIHdl
-IG5lZWQgdG8gInJlZ2lzdGVyIiBhIHN1YmNoYW5uZWwgdXNpbmcKdGhlIE5WMDFfU1VCQ0hBTl9P
-QkpFQ1QgY29tbWFuZCwgYnV0IHN1cnByaXNpbmdseSB0aGlzIGRvZXNuJ3Qgc2VlbSB0byAKYmUg
-bmVlZGVkIGZvciB0aGlzIFNXIHN1YmNoYW4uIFByb2JhYmx5IGJlY2F1c2UgaXQncyBub3QgKnJl
-YWxseSogYSAKc3ViY2hhbiBsaWtlIDNELCAyRCwgQ09NUFVURSwgTTJNRiBhbmQgc28gb24uCgpJ
-J20gbm90IHN1cmUgaWYgdGhlIHJpZ2h0IHdheSBpcyB0byB1c2UgTlYwMV9TVUJDSEFOX09CSkVD
-VCBsaWtlIG90aGVyIApzdWJjaGFucyAoZXZlbiBpZiB0aGlzIG9uZSB3b24ndCBjaGFuZ2UgYW55
-dGhpbmcpLCBvciB0byBhZGQgYSBjb21tZW50LgoKQmVuLCBhbnkgaWRlYXM/Cgo+Cj4gLUVtaWwK
-PgoKLS0gCi1TYW11ZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1436796204==
+Content-Type: multipart/alternative; boundary="1449598624.edC1fAd2.22520"; charset="UTF-8"
+
+
+--1449598624.edC1fAd2.22520
+Date: Tue, 8 Dec 2015 18:17:04 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=56615
+
+Stefan <ste.lendl-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Priority|medium                      |high
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1449598624.edC1fAd2.22520
+Date: Tue, 8 Dec 2015 18:17:04 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:ste.lendl&#64;gmail.com" title="Stefan &lt;ste.lendl&#64;gmail.com&gt;"> <span class="fn">Stefan</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Priority</td>
+           <td>medium
+           </td>
+           <td>high
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1449598624.edC1fAd2.22520--
+
+--===============1436796204==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1436796204==--
