@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93300] Two Worlds 2 renders water incorrectly
-Date: Tue, 08 Dec 2015 20:36:02 +0000
-Message-ID: <bug-93300-8800-NyGhFRv4d9@http.bugs.freedesktop.org/>
+Date: Wed, 09 Dec 2015 04:29:06 +0000
+Message-ID: <bug-93300-8800-f8PNgjRpKS@http.bugs.freedesktop.org/>
 References: <bug-93300-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1718358727=="
+Content-Type: multipart/mixed; boundary="===============1911168295=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93300-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,69 +20,61 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1718358727==
-Content-Type: multipart/alternative; boundary="1449606962.2ac34bf2.10692"; charset="UTF-8"
+--===============1911168295==
+Content-Type: multipart/alternative; boundary="1449635346.1Efa1.17755"; charset="UTF-8"
 
 
---1449606962.2ac34bf2.10692
-Date: Tue, 8 Dec 2015 20:36:02 +0000
+--1449635346.1Efa1.17755
+Date: Wed, 9 Dec 2015 04:29:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93300
+https://bugs.freedesktop.org/show_bug.cgi?id=93300
 
-B=C3=A9la Gyebr=C3=B3szki <gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
---- Comment #3 from B=C3=A9la Gyebr=C3=B3szki <gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #1)
-> Thanks for testing :) I find it difficult to believe that NV50_PROG_OPTIM=
-IZE=3D0 > wouldn't fix the issue -- probably you just don't have a debug me=
-sa build.
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Fix pushed:
 
-Yes indeed, disabling optimizations works around the problem with a debug b=
-uild
-(originally I tested with a non-debug Mesa build).
+commit 0f647bd65bae16c7a2dc7a960c96593ad6ab729c
+Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Date:   Tue Dec 8 16:48:06 2015 -0500
 
-(In reply to Ilia Mirkin from comment #2)
-> Created attachment 120418 [details] [review]
-> potential patch
->=20
-> Does the attached patch help? If so I'll put something a bit more generic
-> together.
+    nv50/ir: check if the target supports the new offset before inlining
 
-The patch fixes the problem, thank you.
+    Fixes: abd326e81b (nv50/ir: propagate indirect loads into instructions)
+    Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=93300
+    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 
---=20
+Double-checked that this updated version actually fixed your trace as well.
+
+-- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1449606962.2ac34bf2.10692
-Date: Tue, 8 Dec 2015 20:36:02 +0000
+--1449635346.1Efa1.17755
+Date: Wed, 9 Dec 2015 04:29:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gyebro69&=
-#64;gmail.com" title=3D"B=C3=A9la Gyebr=C3=B3szki &lt;gyebro69&#64;gmail.co=
-m&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Two Worlds 2 renders water incorrectly"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93300">bug 93300<=
-/a>
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Two Worlds 2 renders water incorrectly"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93300">bug 93300</a>
           <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+             <table border="1" cellspacing="0" cellpadding="8">
           <tr>
             <th>What</th>
             <th>Removed</th>
@@ -90,58 +82,53 @@ m&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>gyebro69&#64;gmail.com
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
            </td>
          </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Two Worlds 2 renders water incorrectly"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93300#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Two Worlds 2 renders water incorrectly"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93300">bug 93300<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gyebro69&#64;gmail.com" title=3D"B=C3=A9la Gyebr=C3=B3szki &lt;gyebro69&#64=
-;gmail.com&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Two Worlds 2 renders water incorrectly"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93300#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Two Worlds 2 renders water incorrectly"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93300">bug 93300</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D933=
-00#c1">comment #1</a>)
-<span class=3D"quote">&gt; Thanks for testing :) I find it difficult to bel=
-ieve that NV50_PROG_OPTIMIZE=3D0 &gt; wouldn't fix the issue -- probably yo=
-u just don't have a debug mesa build.</span >
+        <pre>Fix pushed:
 
-Yes indeed, disabling optimizations works around the problem with a debug b=
-uild
-(originally I tested with a non-debug Mesa build).
+commit 0f647bd65bae16c7a2dc7a960c96593ad6ab729c
+Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
+Date:   Tue Dec 8 16:48:06 2015 -0500
 
-(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D93300#c2">commen=
-t #2</a>)
-<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
-gi?id=3D120418" name=3D"attach_120418" title=3D"potential patch">attachment=
- 120418</a> <a href=3D"attachment.cgi?id=3D120418&amp;action=3Dedit" title=
-=3D"potential patch">[details]</a></span> <a href=3D'page.cgi?id=3Dsplinter=
-.html&amp;bug=3D93300&amp;attachment=3D120418'>[review]</a> [review]
-&gt; potential patch
-&gt;=20
-&gt; Does the attached patch help? If so I'll put something a bit more gene=
-ric
-&gt; together.</span >
+    nv50/ir: check if the target supports the new offset before inlining
 
-The patch fixes the problem, thank you.</pre>
+    Fixes: abd326e81b (nv50/ir: propagate indirect loads into instructions)
+    Bugzilla: <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Two Worlds 2 renders water incorrectly"
+   href="show_bug.cgi?id=93300">https://bugs.freedesktop.org/show_bug.cgi?id=93300</a>
+    Signed-off-by: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
+
+Double-checked that this updated version actually fixed your trace as well.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
@@ -149,9 +136,9 @@ The patch fixes the problem, thank you.</pre>
     </body>
 </html>
 
---1449606962.2ac34bf2.10692--
+--1449635346.1Efa1.17755--
 
---===============1718358727==
+--===============1911168295==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -161,4 +148,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1718358727==--
+--===============1911168295==--
