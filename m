@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93004] Guild Wars 2 crash on nouveau DX11 cards
-Date: Wed, 09 Dec 2015 20:51:28 +0000
-Message-ID: <bug-93004-8800-asaj1qmyB9@http.bugs.freedesktop.org/>
-References: <bug-93004-8800@http.bugs.freedesktop.org/>
+From: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [ANNOUNCE] xf86-video-nouveau 1.0.12
+Date: Thu, 10 Dec 2015 12:26:05 +1000
+Message-ID: <1449714365-9359-1-git-send-email-airlied@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1065789887=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93004-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,152 +15,74 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: xorg-announce-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1065789887==
-Content-Type: multipart/alternative; boundary="1449694288.c12b61.14472"; charset="UTF-8"
-
-
---1449694288.c12b61.14472
-Date: Wed, 9 Dec 2015 20:51:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93004
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Pushed this out as:
-
-commit 432a798cf5c7fab18a3e32d4073840df7d0d37cb
-Author: Patrick Rudolph <siro-afHDD34IFkZrovVCs/uTlw@public.gmane.org>
-Date:   Sun Dec 6 10:11:59 2015 +0100
-
-    nv50,nvc0: fix use-after-free when vertex buffers are unbound
-
-    Always reset the vertex bufctx to make sure there's no pointer to
-    an already freed pipe_resource left after unbinding buffers.
-    Fixes use after free crash in nvc0_bufctx_fence().
-
-    Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=93004
-    Signed-off-by: Patrick Rudolph <siro-afHDD34IFkZrovVCs/uTlw@public.gmane.org>
-    [imirkin: simplify nvc0 fix, apply to nv50]
-    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-    Cc: "11.0 11.1" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-
-I believe this should fix everything. Not sure why you didn't see issues with a
-G84... probably gets lucky somehow. Thanks for debugging it and tracking the
-issue down!
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1449694288.c12b61.14472
-Date: Wed, 9 Dec 2015 20:51:28 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Guild Wars 2 crash on nouveau DX11 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93004">bug 93004</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Guild Wars 2 crash on nouveau DX11 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93004#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Guild Wars 2 crash on nouveau DX11 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93004">bug 93004</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Pushed this out as:
-
-commit 432a798cf5c7fab18a3e32d4073840df7d0d37cb
-Author: Patrick Rudolph &lt;<a href="mailto:siro&#64;das-labor.org">siro&#64;das-labor.org</a>&gt;
-Date:   Sun Dec 6 10:11:59 2015 +0100
-
-    nv50,nvc0: fix use-after-free when vertex buffers are unbound
-
-    Always reset the vertex bufctx to make sure there's no pointer to
-    an already freed pipe_resource left after unbinding buffers.
-    Fixes use after free crash in nvc0_bufctx_fence().
-
-    Bugzilla: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Guild Wars 2 crash on nouveau DX11 cards"
-   href="show_bug.cgi?id=93004">https://bugs.freedesktop.org/show_bug.cgi?id=93004</a>
-    Signed-off-by: Patrick Rudolph &lt;<a href="mailto:siro&#64;das-labor.org">siro&#64;das-labor.org</a>&gt;
-    [imirkin: simplify nvc0 fix, apply to nv50]
-    Signed-off-by: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-    Cc: &quot;11.0 11.1&quot; &lt;<a href="mailto:mesa-stable&#64;lists.freedesktop.org">mesa-stable&#64;lists.freedesktop.org</a>&gt;
-
-I believe this should fix everything. Not sure why you didn't see issues with a
-G84... probably gets lucky somehow. Thanks for debugging it and tracking the
-issue down!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1449694288.c12b61.14472--
-
---===============1065789887==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1065789887==--
+LS0tLS1CRUdJTiBQR1AgU0lHTkVEIE1FU1NBR0UtLS0tLQpIYXNoOiBTSEExCgoKTmV3IG5vdXZl
+YXUgRERYIHJlbGVhc2UuCgpCZW4gU2tlZ2dzICgxKToKICAgICAgQnVtcCB2ZXJzaW9uIHRvIDEu
+MC4xMgoKSWxpYSBNaXJraW4gKDE0KToKICAgICAgY29weTogZG9uJ3QgYm90aGVyIHRyeWluZyB0
+byBjcmVhdGUgY29weSBvbiBwcmUtbnZhMwogICAgICBhbGxvdyBwYXRoIHRvIGVudnlhcyBiaW5h
+cnkgdG8gYmUgc3BlY2lmaWVkCiAgICAgIGtlcGxlcjogcmVtb3ZlIHVubmVjZXNzYXJ5IHRleGJh
+cnMsIGFkZCBsaXZlLW9ubHkgdGV4IGZvciBudmYwCiAgICAgIHVzZSBkZWZpbmVkIG1ldGhvZCBu
+YW1lcyB3aGVyZSBhdmFpbGFibGUKICAgICAgbnY1MDogZXhwbGljaXRseSBkaXNhYmxlIFpFVEEg
+YnVmZmVyCiAgICAgIENoZWNrIGJlZm9yZSB0cnlpbmcgYSBzb2xpZCBmaWxsCiAgICAgIG52MDQt
+bnY0MDogZG9uJ3QgYXR0ZW1wdCB0byBkbyAzMi1iaXQgc2hpZnRzCiAgICAgIG9sZGVyIGhhcmR3
+YXJlIHByZWZlcnMgY29weSB0byBjbGVhciwgc28gdXNlIHRoYXQKICAgICAgbnY1MC9leGE6IGFk
+ZCBjb21tZW50cyBzaG93aW5nIHRoZSBjb2RlIHRoYXQgbWFrZXMgdXAgdGhlIHByb2dyYW1zCiAg
+ICAgIEF2b2lkIGJ1aWxkIGZhaWwgd2l0aG91dCBDT01QT1NJVEUKICAgICAgZ2xhbW9yOiByZW1v
+dmUKICAgICAgcmVtb3ZlIG1heHdlbGwgR00xMHggc3VwcG9ydCBmb3Igbm93CiAgICAgIHh2OiB1
+c2UgY29ycmVjdCBtYXggd2lkdGgvaGVpZ2h0IHNldHRpbmdzCiAgICAgIGZpeCBidWlsZCBhZnRl
+ciBnbGFtb3IgcmVtb3ZhbAoKTWFhcnRlbiBMYW5raG9yc3QgKDEzKToKICAgICAgZW5hYmxlIGRy
+aTMgc3VwcG9ydCB3aXRob3V0IGdsYW1vcgogICAgICBtb3ZlIGRvd24gY2FsbCB0byBub3V2ZWF1
+X3ByZXNlbnRfaW5pdCB1bnRpbCBhZnRlciBmYiBpbml0LgogICAgICBmaXggY3Jhc2ggaW4gbm91
+dmVhdV9nbGFtb3Jfc2V0X3NoYXJlZF9waXhtYXBfYmFja2luZwogICAgICBmaXggIURSSTMgY2Fz
+ZQogICAgICByZXdvcmsgaW5pdGlhbGl6YXRpb24gdG8gcHJldmVudCBzb21lIGNyYXNoZXMKICAg
+ICAgY2hlY2sgbWVtb3J5IGFsbG9jYXRpb24gaW4gbm91dmVhdV9nbGFtb3Jfc2V0X3NoYXJlZF9w
+aXhtYXBfYmFja2luZwogICAgICBmaXggbnVsbCBwb2ludGVyIGRlcmVmCiAgICAgIE1ha2UgdGhl
+IGRkeCBsb2FkIHdpdGggcGxhdGZvcm0gZGV2aWNlcwogICAgICBVc2UgdGhlIGNvcnJlY3QgY2xh
+c3MgYW5kIHNoYWRlciBvcHMgZm9yIEdLMjBBLgogICAgICBVc2UgZHJtR2V0UmVuZGVyRGV2aWNl
+TmFtZUZyb21GZCB0byBvYnRhaW4gdGhlIGRyaTMgbm9kZS4KICAgICAgU2ltcGxpZnkgbm91dmVh
+dV9hbGxvY2F0ZV9zdXJmYWNlJ3MgcGl0Y2ggY2FsY3VsYXRpb24uCiAgICAgIFRyeSB1c2luZyBF
+WEEgb3BzIGhhcmRlciBpbiBkcm1tb2RlX2ZiY29uX2NvcHkgZmFsbGJhY2sKICAgICAgQWN0dWFs
+bHkgZG8gYSBjbGVhciBpbnN0ZWFkIG9mIGRvaW5nIGEgYm9ndXMgY29weS4KCk1hcmlvIEtsZWlu
+ZXIgKDMpOgogICAgICBwcmVzZW50OiBGaXh1cCByZXR1cm4gdHlwZSBvZiBub3V2ZWF1X3ByZXNl
+bnRfaW5pdCgpCiAgICAgIEFkZCBPcHRpb24gIkRSSSIgdG8gYWxsb3cgc2VsZWN0aW9uIG9mIG1h
+eGltdW0gRFJJIGxldmVsLiAodjIpCiAgICAgIFRha2Ugc2hpZnQgaW4gY3J0YyBwb3NpdGlvbnMg
+Zm9yIFphcGhvZEhlYWRzIGNvbmZpZ3MgaW50byBhY2NvdW50LgoKU2FtdWVsIFBpdG9pc2V0ICgx
+KToKICAgICAgZml4IGEgd3JvbmcgdXNlIG9mIGEgbG9naWNhbCBvcGVyYXRvciBpbiBkcm1tb2Rl
+X291dHB1dF9kcG1zKCkKClZhZGltIFJ1dGtvdnNreSAoMSk6CiAgICAgIEFkYXB0IHRvIG5ldyBk
+aXJ0eSB0cmFja2luZyBhcGkKCmdpdCB0YWc6IHhmODYtdmlkZW8tbm91dmVhdS0xLjAuMTIKCmh0
+dHA6Ly94b3JnLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlL2luZGl2aWR1YWwvZHJpdmVyL3hmODYt
+dmlkZW8tbm91dmVhdS0xLjAuMTIudGFyLmJ6MgpNRDU6ICBkYzc5OTEwYzdiOWUzMjMyMWNlZmM3
+YWYyNTBjNzc2NSAgeGY4Ni12aWRlby1ub3V2ZWF1LTEuMC4xMi50YXIuYnoyClNIQTE6IDQ4MGE4
+ZTFkYTA1NjgzZTliYmVkYmE2MTg4NWNkNTZlNzYyM2JjMDAgIHhmODYtdmlkZW8tbm91dmVhdS0x
+LjAuMTIudGFyLmJ6MgpTSEEyNTY6IDBlYTA1N2FkN2ZjMzFjYWJhMmQ0ZTQ2YzdlNDE4ZmUyYjNj
+NzYyYjA0ZmI4ZDM4MmY1MzM4MzM5N2ZkODM5MWUgIHhmODYtdmlkZW8tbm91dmVhdS0xLjAuMTIu
+dGFyLmJ6MgpQR1A6ICBodHRwOi8veG9yZy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZS9pbmRpdmlk
+dWFsL2RyaXZlci94Zjg2LXZpZGVvLW5vdXZlYXUtMS4wLjEyLnRhci5iejIuc2lnCgpodHRwOi8v
+eG9yZy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZS9pbmRpdmlkdWFsL2RyaXZlci94Zjg2LXZpZGVv
+LW5vdXZlYXUtMS4wLjEyLnRhci5negpNRDU6ICA1ZGZiYzA4OTMzZjJkYjk5NGIyZTEwMGI5YzQ5
+ZjQ4MCAgeGY4Ni12aWRlby1ub3V2ZWF1LTEuMC4xMi50YXIuZ3oKU0hBMTogYzBhZDNjY2RmYWIy
+OWM0M2QyNDc3NDAwMDY5ZTQwYzU0Yzg0OGUyOSAgeGY4Ni12aWRlby1ub3V2ZWF1LTEuMC4xMi50
+YXIuZ3oKU0hBMjU2OiBiODJlZDc0NGUzNDMxZDA3N2M1NDUxNmQ4NDQ3ZGEyOTJhOTAyOGIxYjFj
+ZTEwNTVhMjA2MjgwN2IwOGMyNGI2ICB4Zjg2LXZpZGVvLW5vdXZlYXUtMS4wLjEyLnRhci5negpQ
+R1A6ICBodHRwOi8veG9yZy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZS9pbmRpdmlkdWFsL2RyaXZl
+ci94Zjg2LXZpZGVvLW5vdXZlYXUtMS4wLjEyLnRhci5nei5zaWcKCi0tLS0tQkVHSU4gUEdQIFNJ
+R05BVFVSRS0tLS0tClZlcnNpb246IEdudVBHIHYxCgppUUljQkFFQkFnQUdCUUpXYU9LUkFBb0pF
+QXgwODFsNXhJYStPcTRRQUo3RE1zMGErMzlWVElNTHlNbUw1LzJvCkZMZjVodHc1dlNBa3JYMkdp
+em9sTmxpNEY1NjBxK05TNzdwUjJXVk1Ldlg5bm9xak1aUWNBVTBtOHc2SzVPbVIKMjh4TW1hODlD
+WFhaTmNKM1VpWVRyNUN5REJMOE4zS3FySXhMK2E4UURJZTdqSTdKL0lBRkJTQ0x0RWFEaERmUwp6
+OHIvUGoyOEx2RUdCbjRkQ3ZSamZsVG9FNHNNeGxrekdndEZpV0c4aFFwdXRzUTFSRUdpQ2h1QXgr
+MER6TUFHClhHcExsaVNqMU5jMWUxYi90VkNCdXBJb0VncXU0MitjWC9TYzMvRUNhT2hYL1ZsTmI4
+YXYzQ2hKalBrVHR3R1UKR3E0UDE3Mi80M1U1LzM0L004UkoxT3haKzNDbS9BTmFkazl3MEtheTFo
+eTR6N0VMRmZkcG1KRVhXbElWZTRkRQplMzJ2bm1HVmlsK2FMV3UrbzZPamNQU0krQ2czSGdaQVVL
+dTBQcm5PTlNSUnpaVURHWTlEVkxIc0h1UGVSR3F3CnVxRzcrTUVWVDBjSm0zY3VlZXl5aUFHbitv
+UGs5SVJweG1aZUorVEZmOTVIRVdMWkUzWkhMb1JTZm1iNmZCTVYKMWRSa3BRNGcveVVJQUdxR240
+citYclY3MGI4Y1FEQ1ppcm9GWHMwYmR0WTlja1hhR2c0NngramUwTk1JVUJHMgp2aHdSVUdONnJR
+Y3RuR3dua2w3dnpLbUhSMksxVk5pK1ZNclY4eWtkNGI2bVFjUEJ3M1F2bzFMaXUrc3RZNEVBCnZV
+eDRtS0M1SERzMlBrYStOeGs2Z09TQlVhZHBYNlRmSC9aRjd6WUJqWGpFVElsc0dQV2hZSnNRQjAw
+NHBTZXIKT1ZyTjJUUXNQUEFtdlVweG9ReVQKPWI0V00KLS0tLS1FTkQgUEdQIFNJR05BVFVSRS0t
+LS0tCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
+YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
