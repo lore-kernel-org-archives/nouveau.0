@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93371] [NV108] lockup in fan/alarm logic, kernel 4.3
-Date: Mon, 14 Dec 2015 16:18:02 +0000
-Message-ID: <bug-93371-8800-rLzWPC9VOp@http.bugs.freedesktop.org/>
+Date: Mon, 14 Dec 2015 16:24:51 +0000
+Message-ID: <bug-93371-8800-VB36rWqkst@http.bugs.freedesktop.org/>
 References: <bug-93371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2112552782=="
+Content-Type: multipart/mixed; boundary="===============2061749952=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2112552782==
-Content-Type: multipart/alternative; boundary="1450109882.Da5b2.26594"; charset="UTF-8"
+--===============2061749952==
+Content-Type: multipart/alternative; boundary="1450110291.C6312BE61.29180"; charset="UTF-8"
 
 
---1450109882.Da5b2.26594
-Date: Mon, 14 Dec 2015 16:18:02 +0000
+--1450110291.C6312BE61.29180
+Date: Mon, 14 Dec 2015 16:24:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93371
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please upload a copy of your vbios, available at
-/sys/kernel/debug/dri/0/vbios.rom
+--- Comment #2 from Mark Janssen <praseodym-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 120497
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120497&action=edit
+vbios
+
+Please find a copy of the vbios attached.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1450109882.Da5b2.26594
-Date: Mon, 14 Dec 2015 16:18:02 +0000
+--1450110291.C6312BE61.29180
+Date: Mon, 14 Dec 2015 16:24:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,15 +57,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV108] lockup in fan/alarm logic, kernel 4.3"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93371#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93371#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV108] lockup in fan/alarm logic, kernel 4.3"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93371">bug 93371</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:praseodym&#64;gmail.com" title="Mark Janssen &lt;praseodym&#64;gmail.com&gt;"> <span class="fn">Mark Janssen</span></a>
 </span></b>
-        <pre>Please upload a copy of your vbios, available at
-/sys/kernel/debug/dri/0/vbios.rom</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120497" name="attach_120497" title="vbios">attachment 120497</a> <a href="attachment.cgi?id=120497&amp;action=edit" title="vbios">[details]</a></span>
+vbios
+
+Please find a copy of the vbios attached.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +79,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1450109882.Da5b2.26594--
+--1450110291.C6312BE61.29180--
 
---===============2112552782==
+--===============2061749952==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2112552782==--
+--===============2061749952==--
