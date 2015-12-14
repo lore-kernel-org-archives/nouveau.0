@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92515] Virtualbox with 3D acceleration and with
- installed vbox-additions crashes
-Date: Sun, 13 Dec 2015 21:43:35 +0000
-Message-ID: <bug-92515-8800-75acYyZCuK@http.bugs.freedesktop.org/>
-References: <bug-92515-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93371] New: Hard lockup under load with nouveau
+	loaded
+Date: Mon, 14 Dec 2015 16:15:28 +0000
+Message-ID: <bug-93371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0761917645=="
+Content-Type: multipart/mixed; boundary="===============1283224107=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92515-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +19,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0761917645==
-Content-Type: multipart/alternative; boundary="1450043015.3e3DA1.22457"; charset="UTF-8"
+--===============1283224107==
+Content-Type: multipart/alternative; boundary="1450109729.BE61df1.25750"; charset="UTF-8"
 
 
---1450043015.3e3DA1.22457
-Date: Sun, 13 Dec 2015 21:43:35 +0000
+--1450109729.BE61df1.25750
+Date: Mon, 14 Dec 2015 16:15:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92515
+https://bugs.freedesktop.org/show_bug.cgi?id=93371
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I think it's been pretty much established that vbox uses opengl from multiple
-threads at the same time. This is likely to lead to crashes with nouveau... no
-amount of upgrading will fix this. [However it should be noted that 10.6 series
-was end-of-lifed a long time ago... 11.0.x series is the supported one, with
-11.1 coming out soon.]
+            Bug ID: 93371
+           Summary: Hard lockup under load with nouveau loaded
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: praseodym-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Resolving this issue is very low on my todo list. Right now I'm aware of two
-applications this affects -- vbox, a proprietary closed source app which
-includes a kernel module that taints the kernel, and warsow 2.0, which just
-came out, and includes a workaround to disable the multithreading. And this
-wouldn't matter, but it's also a giant pain to fix in a way that doesn't break
-perf for 99.9999% of the users.
+Created attachment 120496
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120496&action=edit
+Kernel log and system information
+
+After running under full load for about half a day, my kernel starts to
+misbehave with soft and hard lockups. Booting with the 'nomodeset' option
+resolves all issues, so it seems like the Nouveau driver the culprit. See the
+attached file for kernel log and system information.
+
+Originally reported to the Debian Kernel Team:
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=805873
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1450043015.3e3DA1.22457
-Date: Sun, 13 Dec 2015 21:43:35 +0000
+--1450109729.BE61df1.25750
+Date: Mon, 14 Dec 2015 16:15:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,46 +69,113 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Hard lockup under load with nouveau loaded"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93371">93371</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Hard lockup under load with nouveau loaded
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>praseodym&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Virtualbox with 3D acceleration and with installed vbox-additions crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92515#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Virtualbox with 3D acceleration and with installed vbox-additions crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92515">bug 92515</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>I think it's been pretty much established that vbox uses opengl from multiple
-threads at the same time. This is likely to lead to crashes with nouveau... no
-amount of upgrading will fix this. [However it should be noted that 10.6 series
-was end-of-lifed a long time ago... 11.0.x series is the supported one, with
-11.1 coming out soon.]
+        <pre>Created <span class=""><a href="attachment.cgi?id=120496" name="attach_120496" title="Kernel log and system information">attachment 120496</a> <a href="attachment.cgi?id=120496&amp;action=edit" title="Kernel log and system information">[details]</a></span>
+Kernel log and system information
 
-Resolving this issue is very low on my todo list. Right now I'm aware of two
-applications this affects -- vbox, a proprietary closed source app which
-includes a kernel module that taints the kernel, and warsow 2.0, which just
-came out, and includes a workaround to disable the multithreading. And this
-wouldn't matter, but it's also a giant pain to fix in a way that doesn't break
-perf for 99.9999% of the users.</pre>
+After running under full load for about half a day, my kernel starts to
+misbehave with soft and hard lockups. Booting with the 'nomodeset' option
+resolves all issues, so it seems like the Nouveau driver the culprit. See the
+attached file for kernel log and system information.
+
+Originally reported to the Debian Kernel Team:
+<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=805873">https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=805873</a></pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1450043015.3e3DA1.22457--
+--1450109729.BE61df1.25750--
 
---===============0761917645==
+--===============1283224107==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +185,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0761917645==--
+--===============1283224107==--
