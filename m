@@ -1,14 +1,10 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Fix pre-nv50 pageflip events (v4)
-Date: Tue, 15 Dec 2015 11:21:46 +0000
-Message-ID: <CACvgo52MEzy-VovQa0UPrMq+ZsB6pzDA++FcRw_A-=YSMC8i2A@mail.gmail.com>
-References: <1447173451-27890-1-git-send-email-thierry.reding@gmail.com>
- <20151110164139.GA27962@ulmo> <566FF56C.8000803@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93385] New: Dual head issues with xrandr
+Date: Tue, 15 Dec 2015 11:33:57 +0000
+Message-ID: <bug-93385-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0333035666=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <566FF56C.8000803-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,17 +14,182 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, russianneuromancer-k+OT61UuxXo@public.gmane.org, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "# 3.13+" <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ikey Doherty <ikey-3z5XHjlC/y4j9eliCJ546QC/G2K4zDHf@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTUgRGVjZW1iZXIgMjAxNSBhdCAxMToxMSwgcG9tYSA8cG9taWRvcmFiZWxpc2ltYUBnbWFp
-bC5jb20+IHdyb3RlOgoKPgo+IEFwcGFyZW50bHkgbm90IHJlYWNoZWQgQHN0YWJsZSAoc3RhYmxl
-OiA0LjMuMyAyMDE1LTEyLTE1KSwKPiBzbyBoZXJlJ3Mgb25lIG1vcmUgdGltZS4KPgpJdCBoYXMg
-cmVhY2hlZCA0LjQtcmNYIGFuZCB3aWxsIGdldCBwaWNrZWQgYnkgdGhlIHN0YWJsZSBtYWludGFp
-bmVyCihHcmVnPykgaW4gZHVlIHRpbWUuIE1lYW53aGlsZSB5b3UgY2FuIGFzayB5b3VyIGRpc3Ry
-byBtYWludGFpbmVycyB0bwphcHBseSBpdCBsb2NhbGx5IHVudGlsIHdlIGdldCBhbiBvZmZpY2lh
-bCByZWxlYXNlIHRoYXQgaW5jbHVkZXMgaXQuCgotRW1pbApfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+
+--===============0333035666==
+Content-Type: multipart/alternative; boundary="1450179237.5DDC8c1.2048"; charset="UTF-8"
+
+
+--1450179237.5DDC8c1.2048
+Date: Tue, 15 Dec 2015 11:33:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93385
+
+            Bug ID: 93385
+           Summary: Dual head issues with xrandr
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: astrofacile-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 120523
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120523&action=edit
+config-xrandr script
+
+For some reasons I wrote a script that configures my dual screen with Xrandr
+and Nouveau, that I manually launch with the command line (see attached
+"config-xrandr" file).
+
+All this worked perfectly until an update of Xorg and Nouveau, when it totally
+fails to configure my dual screen and the display is completely broken, as you
+can see on this photo: http://i.imgur.com/yyAqHZI.jpg
+
+I took a screenshot: http://i.imgur.com/WkbXCPC.png and saw that the size of
+the left screen (the external) and the position of the right screen (the
+internal) were not correct.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1450179237.5DDC8c1.2048
+Date: Tue, 15 Dec 2015 11:33:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Dual head issues with xrandr"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93385">93385</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Dual head issues with xrandr
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>astrofacile&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120523" name="attach_120523" title="config-xrandr script">attachment 120523</a> <a href="attachment.cgi?id=120523&amp;action=edit" title="config-xrandr script">[details]</a></span>
+config-xrandr script
+
+For some reasons I wrote a script that configures my dual screen with Xrandr
+and Nouveau, that I manually launch with the command line (see attached
+&quot;config-xrandr&quot; file).
+
+All this worked perfectly until an update of Xorg and Nouveau, when it totally
+fails to configure my dual screen and the display is completely broken, as you
+can see on this photo: <a href="http://i.imgur.com/yyAqHZI.jpg">http://i.imgur.com/yyAqHZI.jpg</a>
+
+I took a screenshot: <a href="http://i.imgur.com/WkbXCPC.png">http://i.imgur.com/WkbXCPC.png</a> and saw that the size of
+the left screen (the external) and the position of the right screen (the
+internal) were not correct.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1450179237.5DDC8c1.2048--
+
+--===============0333035666==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0333035666==--
