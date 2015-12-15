@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93385] New: Dual head issues with xrandr
-Date: Tue, 15 Dec 2015 11:33:57 +0000
-Message-ID: <bug-93385-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93385] Dual head issues with xrandr
+Date: Tue, 15 Dec 2015 11:34:56 +0000
+Message-ID: <bug-93385-8800-SuPtWAM08M@http.bugs.freedesktop.org/>
+References: <bug-93385-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0333035666=="
+Content-Type: multipart/mixed; boundary="===============1136394555=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93385-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,53 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0333035666==
-Content-Type: multipart/alternative; boundary="1450179237.5DDC8c1.2048"; charset="UTF-8"
+--===============1136394555==
+Content-Type: multipart/alternative; boundary="1450179296.d2C4CA1.2502"; charset="UTF-8"
 
 
---1450179237.5DDC8c1.2048
-Date: Tue, 15 Dec 2015 11:33:57 +0000
+--1450179296.d2C4CA1.2502
+Date: Tue, 15 Dec 2015 11:34:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93385
 
-            Bug ID: 93385
-           Summary: Dual head issues with xrandr
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: astrofacile-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 120523
-  --> https://bugs.freedesktop.org/attachment.cgi?id=120523&action=edit
-config-xrandr script
-
-For some reasons I wrote a script that configures my dual screen with Xrandr
-and Nouveau, that I manually launch with the command line (see attached
-"config-xrandr" file).
-
-All this worked perfectly until an update of Xorg and Nouveau, when it totally
-fails to configure my dual screen and the display is completely broken, as you
-can see on this photo: http://i.imgur.com/yyAqHZI.jpg
-
-I took a screenshot: http://i.imgur.com/WkbXCPC.png and saw that the size of
-the left screen (the external) and the position of the right screen (the
-internal) were not correct.
+--- Comment #1 from Deuchnord <astrofacile-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 120524
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120524&action=edit
+Xorg.0.log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1450179237.5DDC8c1.2048
-Date: Tue, 15 Dec 2015 11:33:57 +0000
+--1450179296.d2C4CA1.2502
+Date: Tue, 15 Dec 2015 11:34:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,103 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Dual head issues with xrandr"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93385">93385</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Dual head issues with xrandr
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>astrofacile&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=120523" name="attach_120523" title="config-xrandr script">attachment 120523</a> <a href="attachment.cgi?id=120523&amp;action=edit" title="config-xrandr script">[details]</a></span>
-config-xrandr script
-
-For some reasons I wrote a script that configures my dual screen with Xrandr
-and Nouveau, that I manually launch with the command line (see attached
-&quot;config-xrandr&quot; file).
-
-All this worked perfectly until an update of Xorg and Nouveau, when it totally
-fails to configure my dual screen and the display is completely broken, as you
-can see on this photo: <a href="http://i.imgur.com/yyAqHZI.jpg">http://i.imgur.com/yyAqHZI.jpg</a>
-
-I took a screenshot: <a href="http://i.imgur.com/WkbXCPC.png">http://i.imgur.com/WkbXCPC.png</a> and saw that the size of
-the left screen (the external) and the position of the right screen (the
-internal) were not correct.</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Dual head issues with xrandr"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93385#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Dual head issues with xrandr"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93385">bug 93385</a>
+              from <span class="vcard"><a class="email" href="mailto:astrofacile&#64;gmail.com" title="Deuchnord &lt;astrofacile&#64;gmail.com&gt;"> <span class="fn">Deuchnord</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120524" name="attach_120524" title="Xorg.0.log">attachment 120524</a> <a href="attachment.cgi?id=120524&amp;action=edit" title="Xorg.0.log">[details]</a></span>
+Xorg.0.log</pre>
         </div>
       </p>
       <hr>
@@ -180,9 +75,9 @@ internal) were not correct.</pre>
     </body>
 </html>
 
---1450179237.5DDC8c1.2048--
+--1450179296.d2C4CA1.2502--
 
---===============0333035666==
+--===============1136394555==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -192,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0333035666==--
+--===============1136394555==--
