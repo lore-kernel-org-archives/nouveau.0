@@ -1,168 +1,107 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93373] GLAMOR triggers visual artifacts with nouveau
-	GL backend
-Date: Mon, 14 Dec 2015 17:08:40 +0000
-Message-ID: <bug-93373-8800-ILr2SXTMpb@http.bugs.freedesktop.org/>
-References: <bug-93373-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima@gmail.com>
+Subject: Re: [PATCH] drm/nouveau: Fix pre-nv50 pageflip events (v4)
+Date: Tue, 15 Dec 2015 12:11:40 +0100
+Message-ID: <566FF56C.8000803@gmail.com>
+References: <1447173451-27890-1-git-send-email-thierry.reding@gmail.com>
+ <20151110164139.GA27962@ulmo>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1017823113=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20151110164139.GA27962@ulmo>
+Sender: stable-owner@vger.kernel.org
+To: Thierry Reding <thierry.reding@gmail.com>, David Airlie <airlied@linux.ie>, stable@vger.kernel.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Mario Kleiner <mario.kleiner.de@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>, russianneuromancer@ya.ru, Ikey Doherty <ikey@solus-project.com>, dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>, Thierry Reding <treding@nvidia.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
+On 10.11.2015 17:41, Thierry Reding wrote:
+> On Tue, Nov 10, 2015 at 05:37:31PM +0100, Thierry Reding wrote:
+>> From: Daniel Vetter <daniel.vetter@ffwll.ch>
+>>
+>> Apparently pre-nv50 pageflip events happen before the actual vblank
+>> period. Therefore that functionality got semi-disabled in
+>>
+>> commit af4870e406126b7ac0ae7c7ce5751f25ebe60f28
+>> Author: Mario Kleiner <mario.kleiner.de@gmail.com>
+>> Date:   Tue May 13 00:42:08 2014 +0200
+>>
+>>     drm/nouveau/kms/nv04-nv40: fix pageflip events via special case.
+>>
+>> Unfortunately that hack got uprooted in
+>>
+>> commit cc1ef118fc099295ae6aabbacc8af94d8d8885eb
+>> Author: Thierry Reding <treding@nvidia.com>
+>> Date:   Wed Aug 12 17:00:31 2015 +0200
+>>
+>>     drm/irq: Make pipe unsigned and name consistent
+>>
+>> Triggering a warning when trying to sample the vblank timestamp for =
+a
+>> non-existing pipe. There's a few ways to fix this:
+>>
+>> - Open-code the old behaviour, which just enshrines this slight
+>>   breakage of the userspace ABI.
+>>
+>> - Revert Mario's commit and again inflict broken timestamps, again n=
+ot
+>>   pretty.
+>>
+>> - Fix this for real by delaying the pageflip TS until the next vblan=
+k
+>>   interrupt, thereby making it accurate.
+>>
+>> This patch implements the third option. Since having a page flip
+>> interrupt that happens when the pageflip gets armed and not when it
+>> completes in the next vblank seems to be fairly common (older i915 h=
+w
+>> works very similarly) create a new helper to arm vblank events for
+>> such drivers.
+>>
+>> v2 (Mario Kleiner):
+>> - Fix function prototypes in drmP.h
+>> - Add missing vblank_put() for pageflip completion without
+>>   pageflip event.
+>> - Initialize sequence number for queued pageflip event to avoid
+>>   trouble in drm_handle_vblank_events().
+>> - Remove dead code and spelling fix.
+>>
+>> v3 (Mario Kleiner):
+>> - Add a signed-off-by and cc stable tag per Ilja's advice.
+>>
+>> v4 (Thierry Reding):
+>> - Fix kerneldoc typo, discovered by Michel D=C3=A4nzer
+>> - Rearrange tags and changelog
+>>
+>> Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=3D106431
+>> Cc: Thierry Reding <treding@nvidia.com>
+>> Cc: Mario Kleiner <mario.kleiner.de@gmail.com>
+>> Cc: Ben Skeggs <bskeggs@redhat.com>
+>> Cc: Ilia Mirkin <imirkin@alum.mit.edu>
+>> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+>> Reviewed-by: Mario Kleiner <mario.kleiner.de@gmail.com>
+>> Cc: stable@vger.kernel.org # v4.3
+>> Signed-off-by: Mario Kleiner <mario.kleiner.de@gmail.com>
+>> Signed-off-by: Thierry Reding <treding@nvidia.com>
+>> ---
+>>  drivers/gpu/drm/drm_irq.c                 | 54 ++++++++++++++++++++=
+++++++++++-
+>>  drivers/gpu/drm/nouveau/nouveau_display.c | 19 ++++++-----
+>>  include/drm/drmP.h                        |  4 +++
+>>  3 files changed, 68 insertions(+), 9 deletions(-)
+>=20
+> Hi Dave,
+>=20
+> It'd be great if you could queue this up for fixes, since it gets rid=
+ of
+> a WARN_ON() that is triggered on a number of cards in v4.3. I realize
+> that this is a tad big for stable, but it's the right way to fix this=
+=2E
+> If you'd prefer something smaller, I think we can fix the regression
+> using a one-line band-aid and then apply this one on top for v4.4.
+>=20
+> Thierry
+>=20
 
---===============1017823113==
-Content-Type: multipart/alternative; boundary="1450112920.f1dEaf2B1.7845"; charset="UTF-8"
 
-
---1450112920.f1dEaf2B1.7845
-Date: Mon, 14 Dec 2015 17:08:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93373
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|sometimes hickup with       |GLAMOR triggers visual
-                   |persistent garbaby          |artifacts with nouveau GL
-                   |                            |backend
-
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, you're using a GM107, which means that you're *not* using
-xf86-video-nouveau 1.0.12 since we dropped our GLAMOR integration (since it was
-buggy). You're now using xf86-video-modesetting, which has a functioning GLAMOR
-integration.
-
-Unfortunately GLAMOR does something which makes nouveau very sad. I've found a
-solution, but it's roughly equivalent to pouring cement into the piping. If
-you'd like, you can patch your mesa build with
-
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
-b/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
-index c464904..b3b6627 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
-@@ -976,6 +976,7 @@ nvc0_draw_vbo(struct pipe_context *pipe, const struct
-pipe_draw_info *info)
-    nvc0_update_prim_restart(nvc0, info->primitive_restart,
-info->restart_index);
-
-    if (nvc0->base.vbo_dirty) {
-+      IMMED_NVC0(push, SUBC_3D(NV10_SUBCHAN_REF_CNT), 0);
-       if (nvc0->screen->eng3d->oclass < GM107_3D_CLASS)
-          IMMED_NVC0(push, NVC0_3D(VERTEX_ARRAY_FLUSH), 0);
-       nvc0->base.vbo_dirty = false;
-
-But I haven't the faintest clue why this helps. (I actually haven't tested on
-Maxwell, but it helped on Kepler.)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1450112920.f1dEaf2B1.7845
-Date: Mon, 14 Dec 2015 17:08:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GLAMOR triggers visual artifacts with nouveau GL backend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93373">bug 93373</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>sometimes hickup with persistent garbaby
-           </td>
-           <td>GLAMOR triggers visual artifacts with nouveau GL backend
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GLAMOR triggers visual artifacts with nouveau GL backend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93373#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GLAMOR triggers visual artifacts with nouveau GL backend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93373">bug 93373</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>OK, you're using a GM107, which means that you're *not* using
-xf86-video-nouveau 1.0.12 since we dropped our GLAMOR integration (since it was
-buggy). You're now using xf86-video-modesetting, which has a functioning GLAMOR
-integration.
-
-Unfortunately GLAMOR does something which makes nouveau very sad. I've found a
-solution, but it's roughly equivalent to pouring cement into the piping. If
-you'd like, you can patch your mesa build with
-
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
-b/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
-index c464904..b3b6627 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_vbo.c
-&#64;&#64; -976,6 +976,7 &#64;&#64; nvc0_draw_vbo(struct pipe_context *pipe, const struct
-pipe_draw_info *info)
-    nvc0_update_prim_restart(nvc0, info-&gt;primitive_restart,
-info-&gt;restart_index);
-
-    if (nvc0-&gt;base.vbo_dirty) {
-+      IMMED_NVC0(push, SUBC_3D(NV10_SUBCHAN_REF_CNT), 0);
-       if (nvc0-&gt;screen-&gt;eng3d-&gt;oclass &lt; GM107_3D_CLASS)
-          IMMED_NVC0(push, NVC0_3D(VERTEX_ARRAY_FLUSH), 0);
-       nvc0-&gt;base.vbo_dirty = false;
-
-But I haven't the faintest clue why this helps. (I actually haven't tested on
-Maxwell, but it helped on Kepler.)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1450112920.f1dEaf2B1.7845--
-
---===============1017823113==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1017823113==--
+Apparently not reached @stable (stable:	4.3.3 2015-12-15),
+so here's one more time.
