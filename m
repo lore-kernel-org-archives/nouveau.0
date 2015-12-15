@@ -1,107 +1,34 @@
-From: poma <pomidorabelisima@gmail.com>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH] drm/nouveau: Fix pre-nv50 pageflip events (v4)
-Date: Tue, 15 Dec 2015 12:11:40 +0100
-Message-ID: <566FF56C.8000803@gmail.com>
+Date: Tue, 15 Dec 2015 11:21:46 +0000
+Message-ID: <CACvgo52MEzy-VovQa0UPrMq+ZsB6pzDA++FcRw_A-=YSMC8i2A@mail.gmail.com>
 References: <1447173451-27890-1-git-send-email-thierry.reding@gmail.com>
- <20151110164139.GA27962@ulmo>
+ <20151110164139.GA27962@ulmo> <566FF56C.8000803@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20151110164139.GA27962@ulmo>
-Sender: stable-owner@vger.kernel.org
-To: Thierry Reding <thierry.reding@gmail.com>, David Airlie <airlied@linux.ie>, stable@vger.kernel.org
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Mario Kleiner <mario.kleiner.de@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>, russianneuromancer@ya.ru, Ikey Doherty <ikey@solus-project.com>, dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>, Thierry Reding <treding@nvidia.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <566FF56C.8000803-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, russianneuromancer-k+OT61UuxXo@public.gmane.org, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "# 3.13+" <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ikey Doherty <ikey-3z5XHjlC/y4j9eliCJ546QC/G2K4zDHf@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On 10.11.2015 17:41, Thierry Reding wrote:
-> On Tue, Nov 10, 2015 at 05:37:31PM +0100, Thierry Reding wrote:
->> From: Daniel Vetter <daniel.vetter@ffwll.ch>
->>
->> Apparently pre-nv50 pageflip events happen before the actual vblank
->> period. Therefore that functionality got semi-disabled in
->>
->> commit af4870e406126b7ac0ae7c7ce5751f25ebe60f28
->> Author: Mario Kleiner <mario.kleiner.de@gmail.com>
->> Date:   Tue May 13 00:42:08 2014 +0200
->>
->>     drm/nouveau/kms/nv04-nv40: fix pageflip events via special case.
->>
->> Unfortunately that hack got uprooted in
->>
->> commit cc1ef118fc099295ae6aabbacc8af94d8d8885eb
->> Author: Thierry Reding <treding@nvidia.com>
->> Date:   Wed Aug 12 17:00:31 2015 +0200
->>
->>     drm/irq: Make pipe unsigned and name consistent
->>
->> Triggering a warning when trying to sample the vblank timestamp for =
-a
->> non-existing pipe. There's a few ways to fix this:
->>
->> - Open-code the old behaviour, which just enshrines this slight
->>   breakage of the userspace ABI.
->>
->> - Revert Mario's commit and again inflict broken timestamps, again n=
-ot
->>   pretty.
->>
->> - Fix this for real by delaying the pageflip TS until the next vblan=
-k
->>   interrupt, thereby making it accurate.
->>
->> This patch implements the third option. Since having a page flip
->> interrupt that happens when the pageflip gets armed and not when it
->> completes in the next vblank seems to be fairly common (older i915 h=
-w
->> works very similarly) create a new helper to arm vblank events for
->> such drivers.
->>
->> v2 (Mario Kleiner):
->> - Fix function prototypes in drmP.h
->> - Add missing vblank_put() for pageflip completion without
->>   pageflip event.
->> - Initialize sequence number for queued pageflip event to avoid
->>   trouble in drm_handle_vblank_events().
->> - Remove dead code and spelling fix.
->>
->> v3 (Mario Kleiner):
->> - Add a signed-off-by and cc stable tag per Ilja's advice.
->>
->> v4 (Thierry Reding):
->> - Fix kerneldoc typo, discovered by Michel D=C3=A4nzer
->> - Rearrange tags and changelog
->>
->> Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=3D106431
->> Cc: Thierry Reding <treding@nvidia.com>
->> Cc: Mario Kleiner <mario.kleiner.de@gmail.com>
->> Cc: Ben Skeggs <bskeggs@redhat.com>
->> Cc: Ilia Mirkin <imirkin@alum.mit.edu>
->> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
->> Reviewed-by: Mario Kleiner <mario.kleiner.de@gmail.com>
->> Cc: stable@vger.kernel.org # v4.3
->> Signed-off-by: Mario Kleiner <mario.kleiner.de@gmail.com>
->> Signed-off-by: Thierry Reding <treding@nvidia.com>
->> ---
->>  drivers/gpu/drm/drm_irq.c                 | 54 ++++++++++++++++++++=
-++++++++++-
->>  drivers/gpu/drm/nouveau/nouveau_display.c | 19 ++++++-----
->>  include/drm/drmP.h                        |  4 +++
->>  3 files changed, 68 insertions(+), 9 deletions(-)
->=20
-> Hi Dave,
->=20
-> It'd be great if you could queue this up for fixes, since it gets rid=
- of
-> a WARN_ON() that is triggered on a number of cards in v4.3. I realize
-> that this is a tad big for stable, but it's the right way to fix this=
-=2E
-> If you'd prefer something smaller, I think we can fix the regression
-> using a one-line band-aid and then apply this one on top for v4.4.
->=20
-> Thierry
->=20
-
-
-Apparently not reached @stable (stable:	4.3.3 2015-12-15),
-so here's one more time.
+T24gMTUgRGVjZW1iZXIgMjAxNSBhdCAxMToxMSwgcG9tYSA8cG9taWRvcmFiZWxpc2ltYUBnbWFp
+bC5jb20+IHdyb3RlOgoKPgo+IEFwcGFyZW50bHkgbm90IHJlYWNoZWQgQHN0YWJsZSAoc3RhYmxl
+OiA0LjMuMyAyMDE1LTEyLTE1KSwKPiBzbyBoZXJlJ3Mgb25lIG1vcmUgdGltZS4KPgpJdCBoYXMg
+cmVhY2hlZCA0LjQtcmNYIGFuZCB3aWxsIGdldCBwaWNrZWQgYnkgdGhlIHN0YWJsZSBtYWludGFp
+bmVyCihHcmVnPykgaW4gZHVlIHRpbWUuIE1lYW53aGlsZSB5b3UgY2FuIGFzayB5b3VyIGRpc3Ry
+byBtYWludGFpbmVycyB0bwphcHBseSBpdCBsb2NhbGx5IHVudGlsIHdlIGdldCBhbiBvZmZpY2lh
+bCByZWxlYXNlIHRoYXQgaW5jbHVkZXMgaXQuCgotRW1pbApfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
