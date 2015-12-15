@@ -1,39 +1,46 @@
-From: poma <pomidorabelisima@gmail.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
 Subject: Re: [Nouveau] [PATCH] drm/nouveau: Fix pre-nv50 pageflip events (v4)
-Date: Tue, 15 Dec 2015 16:01:13 +0100
-Message-ID: <56702B39.5040903@gmail.com>
+Date: Tue, 15 Dec 2015 15:17:21 +0000
+Message-ID: <CACvgo53PUcP43isv85p2DVO5YtgBajm7_n5Thsg1Y7zzf+zsMQ@mail.gmail.com>
 References: <1447173451-27890-1-git-send-email-thierry.reding@gmail.com>
- <20151110164139.GA27962@ulmo> <566FF56C.8000803@gmail.com>
- <CACvgo52MEzy-VovQa0UPrMq+ZsB6pzDA++FcRw_A-=YSMC8i2A@mail.gmail.com>
+	<20151110164139.GA27962@ulmo>
+	<566FF56C.8000803@gmail.com>
+	<CACvgo52MEzy-VovQa0UPrMq+ZsB6pzDA++FcRw_A-=YSMC8i2A@mail.gmail.com>
+	<56702B39.5040903@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CACvgo52MEzy-VovQa0UPrMq+ZsB6pzDA++FcRw_A-=YSMC8i2A@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Emil Velikov <emil.l.velikov@gmail.com>
-Cc: russianneuromancer@ya.ru, ML dri-devel <dri-devel@lists.freedesktop.org>, "# 3.13+" <stable@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@intel.com>, Thierry Reding <treding@nvidia.com>, Ikey Doherty <ikey@solus-project.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <56702B39.5040903@gmail.com>
+Sender: stable-owner@vger.kernel.org
+To: poma <pomidorabelisima@gmail.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, David Airlie <airlied@linux.ie>, "# 3.13+" <stable@vger.kernel.org>, Mario Kleiner <mario.kleiner.de@gmail.com>, ML dri-devel <dri-devel@lists.freedesktop.org>, Ikey Doherty <ikey@solus-project.com>, Ben Skeggs <bskeggs@redhat.com>, russianneuromancer@ya.ru, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@intel.com>, Thierry Reding <treding@nvidia.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gMTUuMTIuMjAxNSAxMjoyMSwgRW1pbCBWZWxpa292IHdyb3RlOgo+IE9uIDE1IERlY2VtYmVy
-IDIwMTUgYXQgMTE6MTEsIHBvbWEgPHBvbWlkb3JhYmVsaXNpbWFAZ21haWwuY29tPiB3cm90ZToK
-PiAKPj4KPj4gQXBwYXJlbnRseSBub3QgcmVhY2hlZCBAc3RhYmxlIChzdGFibGU6IDQuMy4zIDIw
-MTUtMTItMTUpLAo+PiBzbyBoZXJlJ3Mgb25lIG1vcmUgdGltZS4KPj4KPiBJdCBoYXMgcmVhY2hl
-ZCA0LjQtcmNYIGFuZCB3aWxsIGdldCBwaWNrZWQgYnkgdGhlIHN0YWJsZSBtYWludGFpbmVyCj4g
-KEdyZWc/KSBpbiBkdWUgdGltZS4gTWVhbndoaWxlIHlvdSBjYW4gYXNrIHlvdXIgZGlzdHJvIG1h
-aW50YWluZXJzIHRvCj4gYXBwbHkgaXQgbG9jYWxseSB1bnRpbCB3ZSBnZXQgYW4gb2ZmaWNpYWwg
-cmVsZWFzZSB0aGF0IGluY2x1ZGVzIGl0Lgo+IAo+IC1FbWlsCj4gCgpJdCBpcyBhbGwgYnV0IHVu
-a25vd24gOykKaHR0cHM6Ly9idWd6aWxsYS5yZWRoYXQuY29tL3Nob3dfYnVnLmNnaT9pZD0xMjgx
-MzY4CgpFbWlsLCB0aGUgcG9pbnQgaXMgLSBpZiBpdCBoYXMgLW5vdC0gcmVhY2hlZCBzdGFibGVA
-dmdlci5rZXJuZWwub3JnLCBob3cgY2FuIGl0IGJlIGFwcGxpZWQsIGluIHRoZSBmaXJzdCBwbGFj
-ZS4KCkF5ZQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-ZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+On 15 December 2015 at 15:01, poma <pomidorabelisima@gmail.com> wrote:
+> On 15.12.2015 12:21, Emil Velikov wrote:
+>> On 15 December 2015 at 11:11, poma <pomidorabelisima@gmail.com> wrote:
+>>
+>>>
+>>> Apparently not reached @stable (stable: 4.3.3 2015-12-15),
+>>> so here's one more time.
+>>>
+>> It has reached 4.4-rcX and will get picked by the stable maintainer
+>> (Greg?) in due time. Meanwhile you can ask your distro maintainers to
+>> apply it locally until we get an official release that includes it.
+>>
+>> -Emil
+>>
+>
+> It is all but unknown ;)
+> https://bugzilla.redhat.com/show_bug.cgi?id=1281368
+>
+> Emil, the point is - if it has -not- reached stable@vger.kernel.org, how can it be applied, in the first place.
+>
+The same way many others do ? I'd imagine there is a tool/script which
+parses through the development tree, which would explain why (many?)
+people explicitly suppress git from sending an email yet things still
+work. There is extra information in the documentation [1] if you're
+interested.
+
+-Emil
+[1] https://www.kernel.org/doc/Documentation/stable_kernel_rules.txt
