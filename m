@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92307] G98/GM206: WARNING: ... at
- include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
- [drm_kms_helper]()
-Date: Tue, 15 Dec 2015 16:54:30 +0000
-Message-ID: <bug-92307-8800-Z6f7xvYKl1@http.bugs.freedesktop.org/>
-References: <bug-92307-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Debugging INVALID_OPCODE / MULTIPLE_WARP_ERRORS ?
+Date: Tue, 15 Dec 2015 12:00:03 -0500
+Message-ID: <CAKb7Uvg-Gs1WtbucN2Qx4YENf8zNQ_OA4KhCarTu_4b6PE_N0A@mail.gmail.com>
+References: <5670208F.7070800@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1499493659=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <5670208F.7070800-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,124 +17,60 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1499493659==
-Content-Type: multipart/alternative; boundary="1450198470.78Fa42.32166"; charset="UTF-8"
-
-
---1450198470.78Fa42.32166
-Date: Tue, 15 Dec 2015 16:54:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92307
-
---- Comment #26 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-
-When engaged, Xfwm4 GL compositor with XPresent VSync
-$ XFWM4_USE_PRESENT=1 xfwm4
-xrandr related problemos(--off/--auto/--rotate) start with this particular
-commita
-"enable dri3 support without glamor"
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=241e728
-
-With the former commita, which works OK
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=762b22f
-while "xrandr-ing", there is no warning in the kernel ring buffer, whatsoever.
-Still, SEGV catches xfdesktop.
-
-Yet with commita 762b22f, while S3 RESUME, warnings are still occurring,
-very persistent, aye. :)
-
-
-In contrast, when engaged, Xfwm4 GL compositor with default VSync,
-xrandr related problemos(--off/--auto/--rotate) are "all the way",
-at least I have tested from xf86-video-nouveau-1.0.3 up to the latest,
-xf86-video-nouveau-1.0.12.
-So there is no love there at all.
-
-I wonder whether this problemo is comparable to one occurs with the
-clutter/mutter/gnome-shell
-https://bugzilla.gnome.org/buglist.cgi?quicksearch=meta_monitor_manager_xrandr_handle_xevent
-https://bugzilla.redhat.com/buglist.cgi?quicksearch=meta_monitor_manager_xrandr_handle_xevent
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1450198470.78Fa42.32166
-Date: Tue, 15 Dec 2015 16:54:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307#c26">Comment # 26</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>
-When engaged, Xfwm4 GL compositor with XPresent VSync
-$ XFWM4_USE_PRESENT=1 xfwm4
-xrandr related problemos(--off/--auto/--rotate) start with this particular
-commita
-&quot;enable dri3 support without glamor&quot;
-<a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=241e728">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=241e728</a>
-
-With the former commita, which works OK
-<a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=762b22f">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=762b22f</a>
-while &quot;xrandr-ing&quot;, there is no warning in the kernel ring buffer, whatsoever.
-Still, SEGV catches xfdesktop.
-
-Yet with commita 762b22f, while S3 RESUME, warnings are still occurring,
-very persistent, aye. :)
-
-
-In contrast, when engaged, Xfwm4 GL compositor with default VSync,
-xrandr related problemos(--off/--auto/--rotate) are &quot;all the way&quot;,
-at least I have tested from xf86-video-nouveau-1.0.3 up to the latest,
-xf86-video-nouveau-1.0.12.
-So there is no love there at all.
-
-I wonder whether this problemo is comparable to one occurs with the
-clutter/mutter/gnome-shell
-<a href="https://bugzilla.gnome.org/buglist.cgi?quicksearch=meta_monitor_manager_xrandr_handle_xevent">https://bugzilla.gnome.org/buglist.cgi?quicksearch=meta_monitor_manager_xrandr_handle_xevent</a>
-<a href="https://bugzilla.redhat.com/buglist.cgi?quicksearch=meta_monitor_manager_xrandr_handle_xevent">https://bugzilla.redhat.com/buglist.cgi?quicksearch=meta_monitor_manager_xrandr_handle_xevent</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1450198470.78Fa42.32166--
-
---===============1499493659==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1499493659==--
+QSBmZXcgdGhpbmdzIHRoYXQgc3RhbmQgb3V0OgoKICAwOiBsZCB1MzIgJXIyMTkgYzBbMHgwMDAw
+MDAwMDAwMDAwMDAwKzB4MF0gKDApCgp3dGYgaXMgdGhhdCAweDAwMDAwMDAwMDAwMDAgdGhpbmcg
+ZG9pbmcgdGhlcmU/IFdhcyBpdCBhICVyWCB3aGljaCBnb3QKY29uc3RhbnQtZm9sZGVkIGludG8g
+MD8gVGhhdCBpbmRpcmVjdG5lc3Mgc2hvdWxkIGhhdmUgdGhlbiBiZWVuCnJlbW92ZWQuLi4gdGhh
+dCBzYWlkLCB0aGUgZmluYWwgZW5jb2RpbmcgbG9va3MgZmluZS4KCkkgYmVsaWV2ZSB0aGF0IGtl
+cGxlciBoYXMgdGhpcyBsYXVuY2ggZGVzY3JpcHRvciB0aGluZyB0b28uLi4gaXMgdGhhdApiZWlu
+ZyBzZXQgY29ycmVjdGx5PyBQbGVhc2UgZ2VuZXJhdGUgYSBtbXQgdHJhY2UsIGFuZCB3ZSBjYW4g
+c2VlIGlmCmFueXRoaW5nIHN0YW5kcyBvdXQgY29tcGFyZWQgdG8gYSBibG9iIHRyYWNlIHRoYXQg
+YWxzbyBkb2VzIGNvbXB1dGUuCgpDaGVlcnMsCgogIC1pbGlhCgpPbiBUdWUsIERlYyAxNSwgMjAx
+NSBhdCA5OjE1IEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPiB3cm90ZToK
+PiBIaSBhbGwsCj4KPiBBcyBwYXJ0IG9mIG15IGNvbXB1dGUgd29yayBJJ20gdHJ5aW5nIHRvIGdl
+dCBzb21lIFRHU0kgY29tcHV0ZQo+IGNvZGUgdG8gd29yay4gVGhlIGNvZGUgZnJvbSBtZXNhL3Ny
+Yy9nYWxsaXVtL3Rlc3RzL3RyaXZpYWwuYwo+IHdvcmtzLgo+Cj4gU28gbm93IEknbSB0cnlpbmcg
+dG8gZ2V0IGEgIm5hdGl2ZSIgdGdzaSBrZXJuZWwgdG8gcnVuIHZpYQo+IGNsb3ZlciwgSSdtIHVz
+aW5nIEZyYW5jaXNjbydzIG5ib2R5LmMgZXhhbXBsZSBmb3IgdGhpczoKPgo+IGh0dHBzOi8vZmVk
+b3JhcGVvcGxlLm9yZy9+andyZGVnb2VkZS9uYm9keS5jCj4KPiBXaGljaCBkb2VzIG5vdCB3b3Jr
+LCBhdCBmaXJzdCBJIHRob3VnaHQgdGhlcmUgd2FzIGFuIGlzc3VlCj4gd2l0aCB0aGUgc2V0dXAg
+b2YgdGhlIGlucHV0IC8gb3V0cHV0IGJ1ZmZlcnMsIGJ1dCB0aGF0IHNlZW1zIHRvCj4gd29yayBm
+aW5lLCBhbmQgbW9yZW92ZXIgSSBmaW5hbGx5IGdvdCB0aGUgc21hcnQgaWRlYSB0byBsb29rCj4g
+aW4gZG1lc2csIHdoaWNoIHNheXM6Cj4KPiBbIDk5MjAuODAyNDM1XSBub3V2ZWF1IDAwMDA6MDE6
+MDAuMDogZ3I6IFRSQVAgY2ggNiBbMDA3ZjdmYTAwMCBuYm9keVszMTg4MV1dCj4gWyA5OTIwLjgw
+MjQ0OV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBHUEMwL1RQQzAvTVAgdHJhcDogZ2xvYmFs
+IDAwMDAwMDAwCj4gW10gd2FycCAxMDAwOSBbSU5WQUxJRF9PUENPREVdCj4gWyA5OTIwLjgwMjQ1
+Nl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBHUEMwL1RQQzEvTVAgdHJhcDogZ2xvYmFsIDAw
+MDAwMDA0Cj4gW01VTFRJUExFX1dBUlBfRVJST1JTXSB3YXJwIDIwMDA5IFtJTlZBTElEX09QQ09E
+RV0KPgo+IGFuZCByZXBlYXRzIHRoYXQgZm9yIGV2ZXJ5ICJzdGVwIiBpbiB0aGUgbm9ib2R5IHNp
+bXVsYXRpb24sIHRoaXMgaXMgb24gYQo+IGdrMTA3IGNhcmQuCj4KPiBTbyB0aGF0IHNlZW1zIHRv
+IGJlIHRoZSByZWFsIHByb2JsZW0sIHNpbmNlIHRoZQo+IGVycm9yIHNheXMgIklOVkFMSURfT1BD
+T0RFIiwgSSd2ZSBwdXQgdGhlIHRnc2kgY29kZSBmcm9tIG5ib2R5LmMKPiB0aHJvdWdoICJub3V2
+ZWF1X2NvbXBpbGVyIC1hIGU0IiBhbmQgdGhlbiBydW4gIm52ZGlzYXNtIC1iIFNNMzAiCj4gb24g
+aXQsIGJ1dCB0aGUgb3V0cHV0IGxvb2tzIG9rLiBUaGVyZSBpcyBhIDggYnl0ZSBzZXF1ZW5jZSB3
+aGljaCBkb2VzCj4gbm90IGdldCBkZWNvZGVkIGV2ZXJ5IDY0IGJ5dGVzIGJ1dCBBRkFJSyB0aGF0
+IGlzIHRoZSBzY2hlZHVsaW5nIGluZm8sCj4gc28gdGhhdCBzaG91bGQgYmUgZmluZS4KPgo+IE9u
+ZSB0aGluZyB3aGljaCBkb2VzIHN0YW5kIG91dCBpcyB0aGF0IHRoaXM6Cj4KPiAgIDA6IGxkIHUz
+MiAlcjIxOSBjMFsweDAwMDAwMDAwMDAwMDAwMDArMHgwXSAoMCkKPiAgIDE6IGxkIHUzMiAlcjIy
+MiBjMFsweDRdICgwKQo+ICAgMjogbGQgdTY0IHsgJXIyMjUgJXIyMjggfSBjMFsweDhdICgwKQo+
+ICAgMzogbGQgdTMyICVyMjM0IGMwWzB4MTBdICgwKQo+Cj4gR2V0cyB0cmFuc2xhdGVkIGludG8g
+KG52ZGlzYXNtIG91dHB1dCkgOgo+Cj4gICAgICAgICAvKjAwMDgqLyAgICAgICAgICAgICAgICAg
+ICBMREMgUjQsIGNbMHgwXVsweDBdOwo+IC8qIDB4MTQwMDAwMDAwM2YxMWM4NiAqLwo+ICAgICAg
+ICAgLyowMDEwKi8gICAgICAgICAgICAgICAgICAgTU9WIFIyLCBjWzB4MF1bMHg0XTsKPiAvKiAw
+eDI4MDA0MDAwMTAwMDlkZTQgKi8KPiAgICAgICAgIC8qMDAxOCovICAgICAgICAgICAgICAgICAg
+IExEQy42NCBSMCwgY1sweDBdWzB4OF07Cj4gLyogMHgxNDAwMDAwMDIzZjAxY2E2ICovCj4gICAg
+ICAgICAvKjAwMjAqLyAgICAgICAgICAgICAgICAgICBNT1YgUjMsIGNbMHgwXVsweDEwXTsKPiAv
+KiAweDI4MDA0MDAwNDAwMGRkZTQgKi8KPgo+IFdoZXJlIEkgd291bGQgZXhwZWN0IGZvciBMREMg
+aW5zdHJ1Y3Rpb25zLCBjb3VsZCB0aGF0IGJlIHRoZSBwcm9ibGVtID8KPgo+IElmIHRoYXQgaXMg
+bm90IHRoZSBwcm9ibGVtLCB0aGVuIGhpbnRzIGhvdyB0byBkZWJ1ZyB0aGlzIGZ1cnRoZXIgd291
+bGQgYmUKPiBncmVhdGx5IGFwcHJlY2lhdGVkLgo+Cj4gUmVnYXJkcywKPgo+IEhhbnMKPiBfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFp
+bGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
+ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
