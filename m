@@ -1,46 +1,127 @@
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: Fix pre-nv50 pageflip events (v4)
-Date: Tue, 15 Dec 2015 15:17:21 +0000
-Message-ID: <CACvgo53PUcP43isv85p2DVO5YtgBajm7_n5Thsg1Y7zzf+zsMQ@mail.gmail.com>
-References: <1447173451-27890-1-git-send-email-thierry.reding@gmail.com>
-	<20151110164139.GA27962@ulmo>
-	<566FF56C.8000803@gmail.com>
-	<CACvgo52MEzy-VovQa0UPrMq+ZsB6pzDA++FcRw_A-=YSMC8i2A@mail.gmail.com>
-	<56702B39.5040903@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
+Date: Tue, 15 Dec 2015 16:23:23 +0000
+Message-ID: <bug-59069-8800-9KMeS06nj8@http.bugs.freedesktop.org/>
+References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <56702B39.5040903@gmail.com>
-Sender: stable-owner@vger.kernel.org
-To: poma <pomidorabelisima@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, David Airlie <airlied@linux.ie>, "# 3.13+" <stable@vger.kernel.org>, Mario Kleiner <mario.kleiner.de@gmail.com>, ML dri-devel <dri-devel@lists.freedesktop.org>, Ikey Doherty <ikey@solus-project.com>, Ben Skeggs <bskeggs@redhat.com>, russianneuromancer@ya.ru, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@intel.com>, Thierry Reding <treding@nvidia.com>
+Content-Type: multipart/mixed; boundary="===============0215045065=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 15 December 2015 at 15:01, poma <pomidorabelisima@gmail.com> wrote:
-> On 15.12.2015 12:21, Emil Velikov wrote:
->> On 15 December 2015 at 11:11, poma <pomidorabelisima@gmail.com> wrote:
->>
->>>
->>> Apparently not reached @stable (stable: 4.3.3 2015-12-15),
->>> so here's one more time.
->>>
->> It has reached 4.4-rcX and will get picked by the stable maintainer
->> (Greg?) in due time. Meanwhile you can ask your distro maintainers to
->> apply it locally until we get an official release that includes it.
->>
->> -Emil
->>
->
-> It is all but unknown ;)
-> https://bugzilla.redhat.com/show_bug.cgi?id=1281368
->
-> Emil, the point is - if it has -not- reached stable@vger.kernel.org, how can it be applied, in the first place.
->
-The same way many others do ? I'd imagine there is a tool/script which
-parses through the development tree, which would explain why (many?)
-people explicitly suppress git from sending an email yet things still
-work. There is extra information in the documentation [1] if you're
-interested.
 
--Emil
-[1] https://www.kernel.org/doc/Documentation/stable_kernel_rules.txt
+--===============0215045065==
+Content-Type: multipart/alternative; boundary="1450196603.5aBee3.24464"; charset="UTF-8"
+
+
+--1450196603.5aBee3.24464
+Date: Tue, 15 Dec 2015 16:23:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=59069
+
+peter swain <swine-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |swine-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org
+
+--- Comment #32 from peter swain <swine-e+AXbWqSrlAAvxtiuMwx3w@public.gmane.org> ---
+Created attachment 120530
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120530&action=edit
+kern.log from 4.2.0-19-generic ubuntu-15.10 with dual-head NV44
+
+Working nicely until woken from overnight screen blanking, then the classic
+ttm_validate issue.
+This is with ppa.launchpad.net/graphics-drivers/'s xserver-xorg-video-nouveau
+amd64 1:1.0.11-1ubuntu3
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1450196603.5aBee3.24464
+Date: Tue, 15 Dec 2015 16:23:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:swine&#64;pobox.com" title="peter swain &lt;swine&#64;pobox.com&gt;"> <span class="fn">peter swain</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>swine&#64;pobox.com
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c32">Comment # 32</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
+              from <span class="vcard"><a class="email" href="mailto:swine&#64;pobox.com" title="peter swain &lt;swine&#64;pobox.com&gt;"> <span class="fn">peter swain</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120530" name="attach_120530" title="kern.log from 4.2.0-19-generic ubuntu-15.10 with dual-head NV44">attachment 120530</a> <a href="attachment.cgi?id=120530&amp;action=edit" title="kern.log from 4.2.0-19-generic ubuntu-15.10 with dual-head NV44">[details]</a></span>
+kern.log from 4.2.0-19-generic ubuntu-15.10 with dual-head NV44
+
+Working nicely until woken from overnight screen blanking, then the classic
+ttm_validate issue.
+This is with ppa.launchpad.net/graphics-drivers/'s xserver-xorg-video-nouveau
+amd64 1:1.0.11-1ubuntu3</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1450196603.5aBee3.24464--
+
+--===============0215045065==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0215045065==--
