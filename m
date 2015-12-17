@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
  blob fw doesn't help
-Date: Thu, 17 Dec 2015 17:46:14 +0000
-Message-ID: <bug-70354-8800-MXDBn3V7DM@http.bugs.freedesktop.org/>
+Date: Thu, 17 Dec 2015 17:48:54 +0000
+Message-ID: <bug-70354-8800-kVAdKjs4ZL@http.bugs.freedesktop.org/>
 References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1017932682=="
+Content-Type: multipart/mixed; boundary="===============2028543708=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,83 +21,98 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1017932682==
-Content-Type: multipart/alternative; boundary="1450374374.6DBa6dD1.7642"; charset="UTF-8"
+--===============2028543708==
+Content-Type: multipart/alternative; boundary="1450374534.aEdb8061.8146"; charset="UTF-8"
 
 
---1450374374.6DBa6dD1.7642
-Date: Thu, 17 Dec 2015 17:46:14 +0000
+--1450374534.aEdb8061.8146
+Date: Thu, 17 Dec 2015 17:48:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D70354
+https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
---- Comment #91 from Bozhan Boyadzhiev <bozhan-uiMcrn6V0Vs@public.gmane.org> ---
-(In reply to bruno.pagani from comment #80)
-> Well initial report was for 3.11 here, so don=E2=80=99t think something h=
-as changed.
->=20
-> Also why do you set nouveau.runpm=3D0? Doesn=E2=80=99t work without it?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-It is not needed.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
---=20
+--- Comment #92 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The latest kernel, 4.4-rc5, actually enables this workaround by default, for
+everyone. Marking this as fixed.
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1450374374.6DBa6dD1.7642
-Date: Thu, 17 Dec 2015 17:46:14 +0000
+--1450374534.aEdb8061.8146
+Date: Thu, 17 Dec 2015 17:48:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn=
-'t help"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70354#c91">Commen=
-t # 91</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn=
-'t help"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70354">bug 70354<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bozhan&#64;abv.bg" title=3D"Bozhan Boyadzhiev &lt;bozhan&#64;abv.bg&gt;"> <=
-span class=3D"fn">Bozhan Boyadzhiev</span></a>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c92">Comment # 92</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to bruno.pagani from <a href=3D"show_bug.cgi?id=3D70=
-354#c80">comment #80</a>)
-<span class=3D"quote">&gt; Well initial report was for 3.11 here, so don=E2=
-=80=99t think something has changed.
-&gt;=20
-&gt; Also why do you set nouveau.runpm=3D0? Doesn=E2=80=99t work without it=
-?</span >
-
-It is not needed.</pre>
+        <pre>The latest kernel, 4.4-rc5, actually enables this workaround by default, for
+everyone. Marking this as fixed.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1450374374.6DBa6dD1.7642--
+--1450374534.aEdb8061.8146--
 
---===============1017932682==
+--===============2028543708==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1017932682==--
+--===============2028543708==--
