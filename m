@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Thu, 17 Dec 2015 17:48:54 +0000
-Message-ID: <bug-70354-8800-kVAdKjs4ZL@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [libdrm v3 13/14] nouveau: clean up nouveau.h,
+ noting deprecated members/functions
+Date: Thu, 17 Dec 2015 23:18:43 +0000
+Message-ID: <CACvgo53yEEY8kNUc+vmXdOq2ucY4d2BR--uTVZMjUzMNzqrF_Q@mail.gmail.com>
+References: <1450308070-11707-1-git-send-email-skeggsb@gmail.com>
+ <1450308070-11707-13-git-send-email-skeggsb@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2028543708=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1450308070-11707-13-git-send-email-skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,109 +19,128 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2028543708==
-Content-Type: multipart/alternative; boundary="1450374534.aEdb8061.8146"; charset="UTF-8"
-
-
---1450374534.aEdb8061.8146
-Date: Thu, 17 Dec 2015 17:48:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #92 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The latest kernel, 4.4-rc5, actually enables this workaround by default, for
-everyone. Marking this as fixed.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1450374534.aEdb8061.8146
-Date: Thu, 17 Dec 2015 17:48:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c92">Comment # 92</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>The latest kernel, 4.4-rc5, actually enables this workaround by default, for
-everyone. Marking this as fixed.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1450374534.aEdb8061.8146--
-
---===============2028543708==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2028543708==--
+SGkgQmVuLAoKQSBjb3VwbGUgb2Ygc2lkZSBub3Rlcywgbm90IHJlYWxseSBhbnl0aGluZyB3ZSBz
+aG91bGQgZG8gYXQgdGhpcyBwb2ludC4KCk9uIDE2IERlY2VtYmVyIDIwMTUgYXQgMjM6MjEsIEJl
+biBTa2VnZ3MgPHNrZWdnc2JAZ21haWwuY29tPiB3cm90ZToKPiBGcm9tOiBCZW4gU2tlZ2dzIDxi
+c2tlZ2dzQHJlZGhhdC5jb20+Cj4KPiBTaWduZWQtb2ZmLWJ5OiBCZW4gU2tlZ2dzIDxic2tlZ2dz
+QHJlZGhhdC5jb20+Cj4gLS0tCj4gIG5vdXZlYXUvbm91dmVhdS5oIHwgMjI3ICsrKysrKysrKysr
+KysrKysrKysrKysrKysrKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+ICAxIGZpbGUgY2hh
+bmdlZCwgMTE0IGluc2VydGlvbnMoKyksIDExMyBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQg
+YS9ub3V2ZWF1L25vdXZlYXUuaCBiL25vdXZlYXUvbm91dmVhdS5oCj4gaW5kZXggZjNjZjhmNS4u
+MzM1Y2U3NyAxMDA2NDQKPiAtLS0gYS9ub3V2ZWF1L25vdXZlYXUuaAo+ICsrKyBiL25vdXZlYXUv
+bm91dmVhdS5oCj4gQEAgLTQsMjQgKzQsNDMgQEAKPiAgI2luY2x1ZGUgPHN0ZGludC5oPgo+ICAj
+aW5jbHVkZSA8c3RkYm9vbC5oPgo+Cj4gLSNkZWZpbmUgTk9VVkVBVV9ERVZJQ0VfQ0xBU1MgICAg
+ICAgMHg4MDAwMDAwMAo+IC0jZGVmaW5lIE5PVVZFQVVfRklGT19DSEFOTkVMX0NMQVNTIDB4ODAw
+MDAwMDEKPiAtI2RlZmluZSBOT1VWRUFVX05PVElGSUVSX0NMQVNTICAgICAweDgwMDAwMDAyCj4g
+LSNkZWZpbmUgTk9VVkVBVV9QQVJFTlRfQ0xBU1MgICAgICAgMHhmZmZmZmZmZgo+ICsvKiBTdXBw
+b3J0ZWQgY2xhc3MgaW5mb3JtYXRpb24sIHByb3ZpZGVkIGJ5IHRoZSBrZXJuZWwgKi8KPiArc3Ry
+dWN0IG5vdXZlYXVfc2NsYXNzIHsKPiArICAgICAgIGludDMyX3Qgb2NsYXNzOwo+ICsgICAgICAg
+aW50IG1pbnZlcjsKPiArICAgICAgIGludCBtYXh2ZXI7Cj4gK307Cj4KPiAtc3RydWN0IG5vdXZl
+YXVfbGlzdCB7Cj4gLSAgICAgICBzdHJ1Y3Qgbm91dmVhdV9saXN0ICpwcmV2Owo+IC0gICAgICAg
+c3RydWN0IG5vdXZlYXVfbGlzdCAqbmV4dDsKPiArLyogQ2xpZW50LXByb3ZpZGVkIGFycmF5IGRl
+c2NyaWJpbmcgY2xhc3MgdmVyc2lvbnMgdGhhdCBhcmUgZGVzaXJlZC4KPiArICoKPiArICogVGhl
+c2UgYXJlIHVzZWQgdG8gbWF0Y2ggYWdhaW5zdCB0aGUga2VybmVsJ3MgbGlzdCBvZiBzdXBwb3J0
+ZWQgY2xhc3Nlcy4KPiArICovCj4gK3N0cnVjdCBub3V2ZWF1X21jbGFzcyB7Cj4gKyAgICAgICBp
+bnQzMl90IG9jbGFzczsKPiArICAgICAgIGludCB2ZXJzaW9uOwo+ICsgICAgICAgdm9pZCAqZGF0
+YTsKPiAgfTsKPgo+ICBzdHJ1Y3Qgbm91dmVhdV9vYmplY3Qgewo+ICAgICAgICAgc3RydWN0IG5v
+dXZlYXVfb2JqZWN0ICpwYXJlbnQ7Cj4gICAgICAgICB1aW50NjRfdCBoYW5kbGU7Cj4gICAgICAg
+ICB1aW50MzJfdCBvY2xhc3M7Cj4gLSAgICAgICB1aW50MzJfdCBsZW5ndGg7Cj4gLSAgICAgICB2
+b2lkICpkYXRhOwo+ICsgICAgICAgdWludDMyX3QgbGVuZ3RoOyAgICAgICAgLyogZGVwcmVjYXRl
+ZCAqLwo+ICsgICAgICAgdm9pZCAqZGF0YTsgICAgICAgICAgICAgLyogZGVwcmVjYXRlZCAqLwpO
+b3QgMTAwJSBzdXJlIGJ1dCB3ZSBtaWdodCBnZXQgYXdheSB3aXRoIGFubm90YXRpbmcgdGhlc2Ug
+YXMKX19hdHRyaWJ1dGVfXyAoKGRlcHJlY2F0ZWQpKS4KCj4gIH07Cj4KPiAraW50IG5vdXZlYXVf
+b2JqZWN0X25ldyhzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKnBhcmVudCwgdWludDY0X3QgaGFuZGxl
+LAo+ICsgICAgICAgICAgICAgICAgICAgICAgdWludDMyX3Qgb2NsYXNzLCB2b2lkICpkYXRhLCB1
+aW50MzJfdCBsZW5ndGgsCj4gKyAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9v
+YmplY3QgKiopOwo+ICt2b2lkIG5vdXZlYXVfb2JqZWN0X2RlbChzdHJ1Y3Qgbm91dmVhdV9vYmpl
+Y3QgKiopOwo+ICtpbnQgbm91dmVhdV9vYmplY3RfbXRoZChzdHJ1Y3Qgbm91dmVhdV9vYmplY3Qg
+KiwgdWludDMyX3QgbXRoZCwKPiArICAgICAgICAgICAgICAgICAgICAgICB2b2lkICpkYXRhLCB1
+aW50MzJfdCBzaXplKTsKPiAraW50IG5vdXZlYXVfb2JqZWN0X3NjbGFzc19nZXQoc3RydWN0IG5v
+dXZlYXVfb2JqZWN0ICosCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IG5v
+dXZlYXVfc2NsYXNzICoqKTsKPiArdm9pZCBub3V2ZWF1X29iamVjdF9zY2xhc3NfcHV0KHN0cnVj
+dCBub3V2ZWF1X3NjbGFzcyAqKik7Cj4gK2ludCBub3V2ZWF1X29iamVjdF9tY2xhc3Moc3RydWN0
+IG5vdXZlYXVfb2JqZWN0ICosCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICBjb25zdCBzdHJ1
+Y3Qgbm91dmVhdV9tY2xhc3MgKik7Cj4gKwo+ICBzdHJ1Y3Qgbm91dmVhdV9kcm0gewo+ICAgICAg
+ICAgc3RydWN0IG5vdXZlYXVfb2JqZWN0IGNsaWVudDsKPiAgICAgICAgIGludCBmZDsKPiBAQCAt
+NDAsODEgKzU5LDExIEBAIG5vdXZlYXVfZHJtKHN0cnVjdCBub3V2ZWF1X29iamVjdCAqb2JqKQo+
+ICBpbnQgbm91dmVhdV9kcm1fbmV3KGludCBmZCwgc3RydWN0IG5vdXZlYXVfZHJtICoqKTsKPiAg
+dm9pZCBub3V2ZWF1X2RybV9kZWwoc3RydWN0IG5vdXZlYXVfZHJtICoqKTsKPgo+IC1zdHJ1Y3Qg
+bm91dmVhdV9maWZvIHsKPiAtICAgICAgIHN0cnVjdCBub3V2ZWF1X29iamVjdCAqb2JqZWN0Owo+
+IC0gICAgICAgdWludDMyX3QgY2hhbm5lbDsKPiAtICAgICAgIHVpbnQzMl90IHB1c2hidWY7Cj4g
+LSAgICAgICB1aW50NjRfdCB1bnVzZWQxWzNdOwo+IC19Owo+IC0KPiAtc3RydWN0IG52MDRfZmlm
+byB7Cj4gLSAgICAgICBzdHJ1Y3Qgbm91dmVhdV9maWZvIGJhc2U7Cj4gLSAgICAgICB1aW50MzJf
+dCB2cmFtOwo+IC0gICAgICAgdWludDMyX3QgZ2FydDsKPiAtICAgICAgIHVpbnQzMl90IG5vdGlm
+eTsKPiAtfTsKPiAtCj4gLXN0cnVjdCBudmMwX2ZpZm8gewo+IC0gICAgICAgc3RydWN0IG5vdXZl
+YXVfZmlmbyBiYXNlOwo+IC0gICAgICAgdWludDMyX3Qgbm90aWZ5Owo+IC19Owo+IC0KPiAtI2Rl
+ZmluZSBOVkUwX0ZJRk9fRU5HSU5FX0dSICAweDAwMDAwMDAxCj4gLSNkZWZpbmUgTlZFMF9GSUZP
+X0VOR0lORV9WUCAgMHgwMDAwMDAwMgo+IC0jZGVmaW5lIE5WRTBfRklGT19FTkdJTkVfUFBQIDB4
+MDAwMDAwMDQKPiAtI2RlZmluZSBOVkUwX0ZJRk9fRU5HSU5FX0JTUCAweDAwMDAwMDA4Cj4gLSNk
+ZWZpbmUgTlZFMF9GSUZPX0VOR0lORV9DRTAgMHgwMDAwMDAxMAo+IC0jZGVmaW5lIE5WRTBfRklG
+T19FTkdJTkVfQ0UxIDB4MDAwMDAwMjAKPiAtI2RlZmluZSBOVkUwX0ZJRk9fRU5HSU5FX0VOQyAw
+eDAwMDAwMDQwCj4gLQo+IC1zdHJ1Y3QgbnZlMF9maWZvIHsKPiAtICAgICAgIHN0cnVjdCB7Cj4g
+LSAgICAgICAgICAgICAgIHN0cnVjdCBub3V2ZWF1X2ZpZm8gYmFzZTsKPiAtICAgICAgICAgICAg
+ICAgdWludDMyX3Qgbm90aWZ5Owo+IC0gICAgICAgfTsKPiAtICAgICAgIHVpbnQzMl90IGVuZ2lu
+ZTsKPiAtfTsKPiAtCj4gLXN0cnVjdCBudjA0X25vdGlmeSB7Cj4gLSAgICAgICBzdHJ1Y3Qgbm91
+dmVhdV9vYmplY3QgKm9iamVjdDsKPiAtICAgICAgIHVpbnQzMl90IG9mZnNldDsKPiAtICAgICAg
+IHVpbnQzMl90IGxlbmd0aDsKPiAtfTsKPiAtCj4gLS8qIFN1cHBvcnRlZCBjbGFzcyBpbmZvcm1h
+dGlvbiwgcHJvdmlkZWQgYnkgdGhlIGtlcm5lbCAqLwo+IC1zdHJ1Y3Qgbm91dmVhdV9zY2xhc3Mg
+ewo+IC0gICAgICAgaW50MzJfdCBvY2xhc3M7Cj4gLSAgICAgICBpbnQgbWludmVyOwo+IC0gICAg
+ICAgaW50IG1heHZlcjsKPiAtfTsKPiAtCj4gLS8qIENsaWVudC1wcm92aWRlZCBhcnJheSBkZXNj
+cmliaW5nIGNsYXNzIHZlcnNpb25zIHRoYXQgYXJlIGRlc2lyZWQuCj4gLSAqCj4gLSAqIFRoZXNl
+IGFyZSB1c2VkIHRvIG1hdGNoIGFnYWluc3QgdGhlIGtlcm5lbCdzIGxpc3Qgb2Ygc3VwcG9ydGVk
+IGNsYXNzZXMuCj4gLSAqLwo+IC1zdHJ1Y3Qgbm91dmVhdV9tY2xhc3Mgewo+IC0gICAgICAgaW50
+MzJfdCBvY2xhc3M7IC8qIDAgPT0gRU9MICovCj4gLSAgICAgICBpbnQgdmVyc2lvbjsKPiAtICAg
+ICAgIHZvaWQgKmRhdGE7Cj4gLX07Cj4gLQo+IC1pbnQgIG5vdXZlYXVfb2JqZWN0X25ldyhzdHJ1
+Y3Qgbm91dmVhdV9vYmplY3QgKnBhcmVudCwgdWludDY0X3QgaGFuZGxlLAo+IC0gICAgICAgICAg
+ICAgICAgICAgICAgIHVpbnQzMl90IG9jbGFzcywgdm9pZCAqZGF0YSwgdWludDMyX3QgbGVuZ3Ro
+LAo+IC0gICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBub3V2ZWF1X29iamVjdCAqKik7Cj4g
+LXZvaWQgbm91dmVhdV9vYmplY3RfZGVsKHN0cnVjdCBub3V2ZWF1X29iamVjdCAqKik7Cj4gLWlu
+dCAgbm91dmVhdV9vYmplY3RfbXRoZChzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKiwgdWludDMyX3Qg
+bXRoZCwKPiAtICAgICAgICAgICAgICAgICAgICAgICAgdm9pZCAqZGF0YSwgdWludDMyX3Qgc2l6
+ZSk7Cj4gLWludCAgbm91dmVhdV9vYmplY3Rfc2NsYXNzX2dldChzdHJ1Y3Qgbm91dmVhdV9vYmpl
+Y3QgKiwKPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IG5vdXZlYXVfc2Ns
+YXNzICoqKTsKPiAtdm9pZCBub3V2ZWF1X29iamVjdF9zY2xhc3NfcHV0KHN0cnVjdCBub3V2ZWF1
+X3NjbGFzcyAqKik7Cj4gLWludCAgbm91dmVhdV9vYmplY3RfbWNsYXNzKHN0cnVjdCBub3V2ZWF1
+X29iamVjdCAqLAo+IC0gICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBub3V2
+ZWF1X21jbGFzcyAqKTsKPiAtCj4gIHN0cnVjdCBub3V2ZWF1X2RldmljZSB7Cj4gICAgICAgICBz
+dHJ1Y3Qgbm91dmVhdV9vYmplY3Qgb2JqZWN0Owo+IC0gICAgICAgaW50IGZkOwo+IC0gICAgICAg
+dWludDMyX3QgbGliX3ZlcnNpb247Cj4gLSAgICAgICB1aW50MzJfdCBkcm1fdmVyc2lvbjsKPiAr
+ICAgICAgIGludCBmZDsgICAgICAgICAgICAgICAgIC8qIGRlcHJlY2F0ZWQgKi8KPiArICAgICAg
+IHVpbnQzMl90IGxpYl92ZXJzaW9uOyAgIC8qIGRlcHJlY2F0ZWQgKi8KPiArICAgICAgIHVpbnQz
+Ml90IGRybV92ZXJzaW9uOyAgIC8qIGRlcHJlY2F0ZWQgKi8KPiAgICAgICAgIHVpbnQzMl90IGNo
+aXBzZXQ7Cj4gICAgICAgICB1aW50NjRfdCB2cmFtX3NpemU7Cj4gICAgICAgICB1aW50NjRfdCBn
+YXJ0X3NpemU7Cj4gQEAgLTEyMiwyMCArNzEsMjMgQEAgc3RydWN0IG5vdXZlYXVfZGV2aWNlIHsK
+PiAgICAgICAgIHVpbnQ2NF90IGdhcnRfbGltaXQ7Cj4gIH07Cj4KPiAtaW50ICBub3V2ZWF1X2Rl
+dmljZV9uZXcoc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpwYXJlbnQsIGludDMyX3Qgb2NsYXNzLAo+
+IC0gICAgICAgICAgICAgICAgICAgICAgIHZvaWQgKmRhdGEsIHVpbnQzMl90IHNpemUsIHN0cnVj
+dCBub3V2ZWF1X2RldmljZSAqKik7Cj4gLWludCAgbm91dmVhdV9kZXZpY2Vfd3JhcChpbnQgZmQs
+IGludCBjbG9zZSwgc3RydWN0IG5vdXZlYXVfZGV2aWNlICoqKTsKPiAtaW50ICBub3V2ZWF1X2Rl
+dmljZV9vcGVuKGNvbnN0IGNoYXIgKmJ1c2lkLCBzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKiopOwo+
+ICtpbnQgbm91dmVhdV9kZXZpY2VfbmV3KHN0cnVjdCBub3V2ZWF1X29iamVjdCAqcGFyZW50LCBp
+bnQzMl90IG9jbGFzcywKPiArICAgICAgICAgICAgICAgICAgICAgIHZvaWQgKmRhdGEsIHVpbnQz
+Ml90IHNpemUsIHN0cnVjdCBub3V2ZWF1X2RldmljZSAqKik7Cj4gIHZvaWQgbm91dmVhdV9kZXZp
+Y2VfZGVsKHN0cnVjdCBub3V2ZWF1X2RldmljZSAqKik7Cj4gLWludCAgbm91dmVhdV9nZXRwYXJh
+bShzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKiwgdWludDY0X3QgcGFyYW0sIHVpbnQ2NF90ICp2YWx1
+ZSk7Cj4gLWludCAgbm91dmVhdV9zZXRwYXJhbShzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKiwgdWlu
+dDY0X3QgcGFyYW0sIHVpbnQ2NF90IHZhbHVlKTsKPiArCj4gK2ludCBub3V2ZWF1X2dldHBhcmFt
+KHN0cnVjdCBub3V2ZWF1X2RldmljZSAqLCB1aW50NjRfdCBwYXJhbSwgdWludDY0X3QgKnZhbHVl
+KTsKPiAraW50IG5vdXZlYXVfc2V0cGFyYW0oc3RydWN0IG5vdXZlYXVfZGV2aWNlICosIHVpbnQ2
+NF90IHBhcmFtLCB1aW50NjRfdCB2YWx1ZSk7Cj4gKwo+ICsvKiBkZXByZWNhdGVkICovCj4gK2lu
+dCBub3V2ZWF1X2RldmljZV93cmFwKGludCBmZCwgaW50IGNsb3NlLCBzdHJ1Y3Qgbm91dmVhdV9k
+ZXZpY2UgKiopOwo+ICtpbnQgbm91dmVhdV9kZXZpY2Vfb3Blbihjb25zdCBjaGFyICpidXNpZCwg
+c3RydWN0IG5vdXZlYXVfZGV2aWNlICoqKTsKV2hpbGUgaGVyZSwgdGhlIHRhZyB3aWxsIGRlZmlu
+aXRlbHkgd29yay4gVGhlbiBhZ2Fpbi4uLiB3ZSBjYW4gZXZlbgpudWtlIHRoZSBkZXByZWNhdGVk
+IHN5bWJvbHMgd2l0aCByZWxhdGl2ZSBlYXNlKi4gSnVzdCByZW5hbWUgdGhlCmxpYnJhcnksIC5w
+YyBmaWxlIGFuZCBsaWJkcm1fbm91dmVhdWluY2x1ZGVkaXIgZm9sZGVyIHRvIChzb21ldGhpbmcK
+bGlrZSkgbGliZHJtX25vdXZlYXUtMiBhbmQgcG9pbnQgbWVzYS9vdGhlcnMgdG8gdXNlIHRoZSBu
+ZXcgbGlicmFyeS4KCkl0IHdpbGwgc3BhcmUgdXMgdGhlIGlzc3VlcyB3ZSBoYWQgd2l0aCBidW1w
+aW5nIHRoZSBTT05BTUUgKGhhdmUgdG8KbG92ZSB0aGF0IHdlIGFsbG93IHVucmVzb2x2ZWQgc3lt
+Ym9scyBpbiB0aGUgZGR4KSBhbmQgb25lIGNhbiBtaXggdGhlCm5ldyBhbmQgb2xkIGxpYmRybV9u
+b3V2ZWF1IGVhY2ggd2l0aCBpdHMgcmVzcGVjdGl2ZSB1c2VyLgoKSnVzdCB0aGlua2luZyBvdXQg
+bG91ZCA6LSkKCi1FbWlsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
