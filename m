@@ -1,13 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH] bios/fan: hardcode the fan mode to linear
-Date: Thu, 17 Dec 2015 19:18:44 +0200
-Message-ID: <5672EE74.6090403@free.fr>
-References: <1448806218-6029-1-git-send-email-martin.peres@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
+Date: Thu, 17 Dec 2015 17:46:14 +0000
+Message-ID: <bug-70354-8800-MXDBn3V7DM@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1017932682=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1448806218-6029-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +20,91 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAyOS8xMS8xNSAxNjoxMCwgTWFydGluIFBlcmVzIHdyb3RlOgo+IFRoaXMgaXMgYW4gb3Zl
-cnNpZ2h0IHRoYXQgbWFkZSB1c2Ugb2YgdGhlIHRyaXAtcG9pbnQtYmFzZWQgZmFuIG1hbmFnZW5l
-bnQgb24KPiBjYXJkcyB0aGF0IG5ldmVyIGV4cG9zZSB0aG9zZS4gVGhpcyBsZWQgdGhlIGZhbiB0
-byBzdGF5IGF0IGZhbl9taW4uCj4KPiBGb3J0dW5hdGVseSwgdGhlIGVtZXJnZW5jeSBjb2RlIHdv
-dWxkIGtpY2sgd2hlbiB0aGUgdGVtcGVyYXR1cmUgd291bGQgcmVhY2gKPiA5MMKwQy4KPgo+IFJl
-cG9ydGVkLWJ5OiBUb20gRW5nbHVuZCA8dG9tZW5nbHVuZDI2QGdtYWlsLmNvbT4KPiBUZXN0ZWQt
-Ynk6IFRvbSBFbmdsdW5kIDx0b21lbmdsdW5kMjZAZ21haWwuY29tPgoKVGVzdGVkLWJ5OiBEYWVt
-b24zMiA8bG5mLnB1cnBsZUBnbWFpbC5jb20+CkJ1Z3ppbGxhOiBodHRwczovL2J1Z3MuZnJlZWRl
-c2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD05MjEyNgoKPiBTaWduZWQtb2ZmLWJ5OiBNYXJ0aW4g
-UGVyZXMgPG1hcnRpbi5wZXJlc0BmcmVlLmZyPgo+IC0tLQo+ICAgZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvYmlvcy9mYW4uYyB8IDEgKwo+ICAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCsp
-Cj4KPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9mYW4uYyBiL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvZmFuLmMKPiBpbmRleCA0MzAwNmRiLi44MGZlZDdl
-IDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvZmFuLmMKPiArKysg
-Yi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL2Zhbi5jCj4gQEAgLTgzLDYgKzgzLDcgQEAg
-bnZiaW9zX2Zhbl9wYXJzZShzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zLCBzdHJ1Y3QgbnZiaW9zX3Ro
-ZXJtX2ZhbiAqZmFuKQo+ICAgCQkJZmFuLT50eXBlID0gTlZCSU9TX1RIRVJNX0ZBTl9VTks7Cj4g
-ICAJCX0KPgo+ICsJCWZhbi0+ZmFuX21vZGUgPSBOVkJJT1NfVEhFUk1fRkFOX0xJTkVBUjsKPiAg
-IAkJZmFuLT5taW5fZHV0eSA9IG52Ymlvc19yZDA4KGJpb3MsIGRhdGEgKyAweDAyKTsKPiAgIAkJ
-ZmFuLT5tYXhfZHV0eSA9IG52Ymlvc19yZDA4KGJpb3MsIGRhdGEgKyAweDAzKTsKPgo+CgpCZW4s
-IGNhbiB5b3UgbWVyZ2UgdGhpcyBwYXRjaD8gSXQgaXMga2luZCBvZiBjcml0aWNhbCA6cyBBbmQg
-aXQgc2hvdWxkIApiZSBDQ2VkIHRvIHN0YWJsZSB0b28sIHdpdGhvdXQgaXQsIHNvbWUga2VwbGVy
-L21heHdlbGwgZ2V0IDAlIGZhbiBwb3dlciAKd2hpY2ggaXMga2luZCBvZiBkYW5nZXJvdXMsIGV2
-ZW4gd2l0aG91dCByZWNsb2NraW5nIQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQo=
+
+--===============1017932682==
+Content-Type: multipart/alternative; boundary="1450374374.6DBa6dD1.7642"; charset="UTF-8"
+
+
+--1450374374.6DBa6dD1.7642
+Date: Thu, 17 Dec 2015 17:46:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D70354
+
+--- Comment #91 from Bozhan Boyadzhiev <bozhan-uiMcrn6V0Vs@public.gmane.org> ---
+(In reply to bruno.pagani from comment #80)
+> Well initial report was for 3.11 here, so don=E2=80=99t think something h=
+as changed.
+>=20
+> Also why do you set nouveau.runpm=3D0? Doesn=E2=80=99t work without it?
+
+It is not needed.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1450374374.6DBa6dD1.7642
+Date: Thu, 17 Dec 2015 17:46:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn=
+'t help"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70354#c91">Commen=
+t # 91</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn=
+'t help"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70354">bug 70354<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+bozhan&#64;abv.bg" title=3D"Bozhan Boyadzhiev &lt;bozhan&#64;abv.bg&gt;"> <=
+span class=3D"fn">Bozhan Boyadzhiev</span></a>
+</span></b>
+        <pre>(In reply to bruno.pagani from <a href=3D"show_bug.cgi?id=3D70=
+354#c80">comment #80</a>)
+<span class=3D"quote">&gt; Well initial report was for 3.11 here, so don=E2=
+=80=99t think something has changed.
+&gt;=20
+&gt; Also why do you set nouveau.runpm=3D0? Doesn=E2=80=99t work without it=
+?</span >
+
+It is not needed.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1450374374.6DBa6dD1.7642--
+
+--===============1017932682==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1017932682==--
