@@ -1,18 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Debugging INVALID_OPCODE / MULTIPLE_WARP_ERRORS ?
-Date: Fri, 18 Dec 2015 15:46:24 -0500
-Message-ID: <CAKb7UvjQym29vWDS3L3Pnptk6jY9PJCfw4U0-BzufjKWPz8V+Q@mail.gmail.com>
-References: <5670208F.7070800@redhat.com>
- <CAKb7Uvg-Gs1WtbucN2Qx4YENf8zNQ_OA4KhCarTu_4b6PE_N0A@mail.gmail.com>
- <CAKb7Uvh0Cj6rrn_Y1X2sTnODxvxuzp=+s5tVs0+xAjZuk3b6CQ@mail.gmail.com>
- <56719A2C.4000501@redhat.com>
- <CAKb7UvhQRs6QrCEi1uEP9JhMbE91g=n4xwq-ufW-NMgy=7pMgw@mail.gmail.com>
- <56740253.5030900@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 81363] [NV84] Black screen after UDEV is intialized
+Date: Sat, 19 Dec 2015 00:58:37 +0000
+Message-ID: <bug-81363-8800-xcuqGNoLD2@http.bugs.freedesktop.org/>
+References: <bug-81363-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1155566056=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56740253.5030900-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-81363-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,50 +16,96 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBEZWMgMTgsIDIwMTUgYXQgNzo1NSBBTSwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVA
-cmVkaGF0LmNvbT4gd3JvdGU6Cj4gSGksCj4KPiBPbiAxNi0xMi0xNSAxODoyNCwgSWxpYSBNaXJr
-aW4gd3JvdGU6Cj4+Cj4+IEkgYmVsaWV2ZSB0aGF0IHlvdXIgcHJvYmxlbSBpcyB0aGlzOgo+Pgo+
-PiAgICAgICAgICAvKjAxYTAqLyAgICAgICAgICAgICAgICAgICBMRCBSOCwgW1I4XTsKPj4gICAg
-ICAgICAgICAgLyogMHg4MDAwMDAwMDAwODIxYzg1ICovCj4+Cj4+IFRoYXQgbmVlZHMgdG8gYmUg
-TEQuRSAoYW5kIHlvdXIgU1QncyBuZWVkIHRvIGJlIFNULkUpLiBZb3UncmUgdXNpbmcgYQo+PiAz
-Mi1iaXQgZ21lbSBhZGRyZXNzLCBidXQgeW91IG5lZWQgdG8gYmUgdXNpbmcgYSA2NC1iaXQgb25l
-LiBJIGJlbGlldmUKPj4gdGhlIDMyLWJpdCBvbmVzIHdvcmsgb24gZmVybWksIGJ1dCBhZmFpayBu
-b3Qgb24gS2VwbGVyLgo+Cj4KPiBJIGRvIG5vdCB0aGluayB0aGF0IGlzIHRoZSBwcm9ibGVtLCBz
-cmMvZ2FsbGl1bS90ZXN0cy90cml2aWFsL2NvbXB1dGUKPiB0ZXN0X2lucHV0X2dsb2JhbCgpIGhh
-czoKPgo+IENPTVAKPiBEQ0wgU1ZbMF0sIFRIUkVBRF9JRAo+IERDTCBURU1QWzBdLCBMT0NBTAo+
-IERDTCBURU1QWzFdLCBMT0NBTAo+IElNTVswXSBVSU5UMzIgezgsIDAsIDAsIDB9Cj4gICAwOiBC
-R05TVUIgOjAKPiAgIDE6ICAgVU1VTCBURU1QWzBdLCBTVlswXSwgSU1NWzBdCj4gICAyOiAgIExP
-QUQgVEVNUFsxXS54eSwgUkVTWzMyNzY0XSwgVEVNUFswXQo+ICAgMzogICBMT0FEIFRFTVBbMF0u
-eCwgUkVTWzMyNzY3XSwgVEVNUFsxXS55eXl5Cj4gICA0OiAgIFVBREQgVEVNUFsxXS54LCBURU1Q
-WzBdLCAtVEVNUFsxXQo+ICAgNTogICBTVE9SRSBSRVNbMzI3NjddLngsIFRFTVBbMV0ueXl5eSwg
-VEVNUFsxXQo+ICAgNjogICBSRVQKPiAgIDc6IEVORFNVQgo+Cj4gV2hpY2ggdHJhbnNsYXRlcyB0
-bzoKPgo+IFNVQjowICgpCj4gQkI6MCAoNyBpbnN0cnVjdGlvbnMpIC0gZGYgPSB7IH0KPiAgLT4g
-QkI6MSAoY3Jvc3MpCj4gICAwOiByZHN2IHUzMiAkcjAgc3ZbVElEOjBdICg4KQo+ICAgMTogc2hs
-IHUzMiAkcjIgJHIwIDB4MDAwMDAwMDMgKDgpCj4gICAyOiBsZCB1NjQgJHIwZCBjMFskcjIrMHgw
-XSAoOCkKPiAgIDM6IGxkIHUzMiAkcjIgZ1skcjErMHgwXSAoOCkKPiAgIDQ6IGFkZCB1MzIgJHIw
-ICRyMiBuZWcgJHIwICg4KQo+ICAgNTogc3QgdTMyICMgZ1skcjErMHgwXSAkcjAgKDgpCj4gICA2
-OiByZXQgKDgpCj4gQkI6MSAoMCBpbnN0cnVjdGlvbnMpIC0gaWRvbSA9IEJCOjAsIGRmID0geyB9
-Cj4KPiBNQUlOOi0xICgpCj4gQkI6MCAoMCBpbnN0cnVjdGlvbnMpIC0gZGYgPSB7IH0KPgo+IFdo
-aWNoIGlzIGFsc28gdXNpbmcgMzIgYml0cyBsb2FkcyBmcm9tIGdsb2JhbCBtZW1vcnkKPiBhbmQg
-dGhhdCB3b3JrcyBmaW5lIG9uIG15IEdLMTA3IFtHZUZvcmNlIEdUIDc0MF0uCj4KPiBJIHRoaW5r
-IHRoYXQgZm9yIG5vdyBJJ2xsIGp1c3QgZm9jdXMgb24gdHJhbnNsYXRpbmcKPiB0aGUgdGVzdHMg
-ZnJvbSByYy9nYWxsaXVtL3Rlc3RzL3RyaXZpYWwvY29tcHV0ZS5jIHRvCj4gb3BlbmNsIGFuZCBn
-ZXR0aW5nIHRoZSBlbnRpcmUgb3BlbmNsIC0+IGxsdm0gLT4gdGdzaSAtPgo+IG5vdXZlYXVfY29t
-cGlsZXIgLT4gaGFyZHdhcmUgY2hhaW4gdG8gd29yayB0aGF0IHdheS4KPgo+IFN0aWxsIHdvdWxk
-IGJlIGdvb2QgdG8gZ2V0IG5ib2R5LmMgdG8gd29yayB0aG91Z2guCgpIbW1tbSBvZGQuIE5vdCBz
-dXJlIGhvdyAzMi1iaXQgYWRkcmVzc2VzIHdvcmsgdGhlcmUuIChPciBvbiBGZXJtaQp0YmguKSBQ
-cm9iYWJseSBhc3N1bWVzIHRoYXQgdGhlIHVwcGVyIDggYml0cyBvZiB0aGUgNDAtYml0IFZBIGFy
-ZSAwPwpBbnl3YXlzLCBhbm90aGVyIHRoaW5nIEkgcmVtZW1iZXIgaXMgdGhhdCBJIGNvdWxkbid0
-IGdldCBiYXJyaWVycyB0bwp3b3JrIGF0IGFsbCB3aXRoIHRlc3MgKHdpdGggaWlyYywgaW52YWxp
-ZCBvcGNvZGUgZXJyb3JzKS4gTXkgc29sdXRpb24KdG8gdGhlIHByb2JsZW0gd2FzIHRvIGp1c3Qg
-ZGlzY2FyZCB0aGVtLCBzaW5jZSB0aGF0J3Mgd2hhdCB0aGUgYmxvYgpzZWVtZWQgdG8gZG8sIGFu
-ZCBJIGFzc3VtZWQgdGhleSBrbmV3IHdoYXQgdGhleSB3ZXJlIGRvaW5nLgoKUGVyaGFwcyBJIHdh
-cyBqdXN0IGVtaXR0aW5nIGl0IHdyb25nLiBJJ2QgdGFrZSBhIGNhcmVmdWwgbG9vayBhdCBob3cK
-dGhlIGJsb2IgZW1pdHMgdGhhdCBCQVIuU1lOQyBwcmltaXRpdmUuCgpDaGVlcnMsCgogIC1pbGlh
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1155566056==
+Content-Type: multipart/alternative; boundary="1450486717.042Da81.16466"; charset="UTF-8"
+
+
+--1450486717.042Da81.16466
+Date: Sat, 19 Dec 2015 00:58:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=81363
+
+--- Comment #11 from Jeff <jrsx13-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This is still not working on Kernel 4.2. But during this test I had the laptop
+connected to a DVI output. And the DVI output worked great. So it seems this is
+not working for the LVDS only, which has the black light on but remains
+blank/black.
+
+I noticed on a Google search that there had been blank screen issues on
+pre-nv50 drivers: http://patchwork.ozlabs.org/patch/215168/
+
+I wonder if this is something that exists on my card as well. I was glad to see
+the display working on the DVI output, but I am hoping to have this working on
+LVDS at some point.
+
+Thanks
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1450486717.042Da81.16466
+Date: Sat, 19 Dec 2015 00:58:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV84] Black screen after UDEV is intialized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV84] Black screen after UDEV is intialized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363">bug 81363</a>
+              from <span class="vcard"><a class="email" href="mailto:jrsx13&#64;gmail.com" title="Jeff &lt;jrsx13&#64;gmail.com&gt;"> <span class="fn">Jeff</span></a>
+</span></b>
+        <pre>This is still not working on Kernel 4.2. But during this test I had the laptop
+connected to a DVI output. And the DVI output worked great. So it seems this is
+not working for the LVDS only, which has the black light on but remains
+blank/black.
+
+I noticed on a Google search that there had been blank screen issues on
+pre-nv50 drivers: <a href="http://patchwork.ozlabs.org/patch/215168/">http://patchwork.ozlabs.org/patch/215168/</a>
+
+I wonder if this is something that exists on my card as well. I was glad to see
+the display working on the DVI output, but I am hoping to have this working on
+LVDS at some point.
+
+Thanks</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1450486717.042Da81.16466--
+
+--===============1155566056==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1155566056==--
