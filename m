@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 81363] [NV84] Black screen after UDEV is intialized
-Date: Sat, 19 Dec 2015 00:58:37 +0000
-Message-ID: <bug-81363-8800-xcuqGNoLD2@http.bugs.freedesktop.org/>
+Date: Sat, 19 Dec 2015 18:49:44 +0000
+Message-ID: <bug-81363-8800-hBJSUukSVG@http.bugs.freedesktop.org/>
 References: <bug-81363-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1155566056=="
+Content-Type: multipart/mixed; boundary="===============1612252098=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-81363-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,38 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1155566056==
-Content-Type: multipart/alternative; boundary="1450486717.042Da81.16466"; charset="UTF-8"
+--===============1612252098==
+Content-Type: multipart/alternative; boundary="1450550984.fFbb702.12480"; charset="UTF-8"
 
 
---1450486717.042Da81.16466
-Date: Sat, 19 Dec 2015 00:58:37 +0000
+--1450550984.fFbb702.12480
+Date: Sat, 19 Dec 2015 18:49:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=81363
 
---- Comment #11 from Jeff <jrsx13-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This is still not working on Kernel 4.2. But during this test I had the laptop
-connected to a DVI output. And the DVI output worked great. So it seems this is
-not working for the LVDS only, which has the black light on but remains
-blank/black.
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+A random thing to try -- boot with
 
-I noticed on a Google search that there had been blank screen issues on
-pre-nv50 drivers: http://patchwork.ozlabs.org/patch/215168/
+video=LVDS-2:d
 
-I wonder if this is something that exists on my card as well. I was glad to see
-the display working on the DVI output, but I am hoping to have this working on
-LVDS at some point.
-
-Thanks
+(It appears that you have 2 GPUs... perhaps they're both connected to the LVDS
+somehow, and the second one turns it off?)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1450486717.042Da81.16466
-Date: Sat, 19 Dec 2015 00:58:37 +0000
+--1450550984.fFbb702.12480
+Date: Sat, 19 Dec 2015 18:49:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,26 +58,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV84] Black screen after UDEV is intialized"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV84] Black screen after UDEV is intialized"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=81363">bug 81363</a>
-              from <span class="vcard"><a class="email" href="mailto:jrsx13&#64;gmail.com" title="Jeff &lt;jrsx13&#64;gmail.com&gt;"> <span class="fn">Jeff</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>This is still not working on Kernel 4.2. But during this test I had the laptop
-connected to a DVI output. And the DVI output worked great. So it seems this is
-not working for the LVDS only, which has the black light on but remains
-blank/black.
+        <pre>A random thing to try -- boot with
 
-I noticed on a Google search that there had been blank screen issues on
-pre-nv50 drivers: <a href="http://patchwork.ozlabs.org/patch/215168/">http://patchwork.ozlabs.org/patch/215168/</a>
+video=LVDS-2:d
 
-I wonder if this is something that exists on my card as well. I was glad to see
-the display working on the DVI output, but I am hoping to have this working on
-LVDS at some point.
-
-Thanks</pre>
+(It appears that you have 2 GPUs... perhaps they're both connected to the LVDS
+somehow, and the second one turns it off?)</pre>
         </div>
       </p>
       <hr>
@@ -96,9 +82,9 @@ Thanks</pre>
     </body>
 </html>
 
---1450486717.042Da81.16466--
+--1450550984.fFbb702.12480--
 
---===============1155566056==
+--===============1612252098==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1155566056==--
+--===============1612252098==--
