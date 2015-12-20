@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93454] Can't build with LLVM/clang 3.7.0 - SSSE3
- instruction set not enabled
-Date: Sun, 20 Dec 2015 03:06:28 +0000
-Message-ID: <bug-93454-8800-7n0J4ZCkhf@http.bugs.freedesktop.org/>
-References: <bug-93454-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 81363] [NV84] Black screen after UDEV is intialized
+Date: Sun, 20 Dec 2015 03:09:35 +0000
+Message-ID: <bug-81363-8800-7Cdk6sOAYa@http.bugs.freedesktop.org/>
+References: <bug-81363-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2142536585=="
+Content-Type: multipart/mixed; boundary="===============0905708612=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93454-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-81363-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,86 +20,87 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2142536585==
-Content-Type: multipart/alternative; boundary="1450580787.a2D5E0C50.31235"; charset="UTF-8"
+--===============0905708612==
+Content-Type: multipart/alternative; boundary="1450580975.4b8dfD61.31863"; charset="UTF-8"
 
 
---1450580787.a2D5E0C50.31235
-Date: Sun, 20 Dec 2015 03:06:27 +0000
+--1450580975.4b8dfD61.31863
+Date: Sun, 20 Dec 2015 03:09:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93454
+https://bugs.freedesktop.org/show_bug.cgi?id=81363
 
---- Comment #5 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #4)
+--- Comment #13 from Jeff <jrsx13-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #12)
+> A random thing to try -- boot with
+> 
+> video=LVDS-2:d
+> 
+> (It appears that you have 2 GPUs... perhaps they're both connected to the
+> LVDS somehow, and the second one turns it off?)
 
-> clang -E -dM - < /dev/null | grep GNUC
+I tried this. And it was still a black/blank screen. However maybe you are onto
+something as this is a laptop with a Nvidia 8700m setup as an sli card. Though
+with the proprietary driver and with Windows it has no issue booting up
+properly. However I find windows really slow and would like to switch to
+nouveau to future proof my laptop since I am betting Nvidia won't develop a
+Wayland driver for this card.
 
-#define __GNUC_MINOR__ 9
-#define __GNUC_PATCHLEVEL__ 1
-#define __GNUC_STDC_INLINE__ 1
-#define __GNUC__4
-
---=20
+-- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1450580787.a2D5E0C50.31235
-Date: Sun, 20 Dec 2015 03:06:27 +0000
+--1450580975.4b8dfD61.31863
+Date: Sun, 20 Dec 2015 03:09:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set=
- not enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW - [NV84] Black screen after UDEV is intialized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363#c13">Comment # 13</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set=
- not enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454">bug 93454<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tpgxyz&#64;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.=
-com&gt;"> <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
+   title="NEW - [NV84] Black screen after UDEV is intialized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363">bug 81363</a>
+              from <span class="vcard"><a class="email" href="mailto:jrsx13&#64;gmail.com" title="Jeff &lt;jrsx13&#64;gmail.com&gt;"> <span class="fn">Jeff</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D934=
-54#c4">comment #4</a>)
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=81363#c12">comment #12</a>)
+<span class="quote">&gt; A random thing to try -- boot with
+&gt; 
+&gt; video=LVDS-2:d
+&gt; 
+&gt; (It appears that you have 2 GPUs... perhaps they're both connected to the
+&gt; LVDS somehow, and the second one turns it off?)</span >
 
-<span class=3D"quote">&gt; clang -E -dM - &lt; /dev/null | grep GNUC</span >
-
-#define __GNUC_MINOR__ 9
-#define __GNUC_PATCHLEVEL__ 1
-#define __GNUC_STDC_INLINE__ 1
-#define __GNUC__4</pre>
+I tried this. And it was still a black/blank screen. However maybe you are onto
+something as this is a laptop with a Nvidia 8700m setup as an sli card. Though
+with the proprietary driver and with Windows it has no issue booting up
+properly. However I find windows really slow and would like to switch to
+nouveau to future proof my laptop since I am betting Nvidia won't develop a
+Wayland driver for this card.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1450580787.a2D5E0C50.31235--
+--1450580975.4b8dfD61.31863--
 
---===============2142536585==
+--===============0905708612==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2142536585==--
+--===============0905708612==--
