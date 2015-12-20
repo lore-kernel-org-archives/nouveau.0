@@ -1,157 +1,204 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH] nvc0: add hardware ETC2 and ASTC support
-	where possible
-Date: Sat, 19 Dec 2015 18:06:21 -0500
-Message-ID: <CAKb7Uvi9mDNnP7RAk0DB3QRW8+8TKeG0VvFtepc3yTWH=XhXLw@mail.gmail.com>
-References: <1450551218-22157-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93454] New: Can't build with LLVM/clang 3.7.0
+Date: Sun, 20 Dec 2015 01:49:10 +0000
+Message-ID: <bug-93454-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1450551218-22157-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0309113585=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBEZWMgMTksIDIwMTUgYXQgMTo1MyBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
-bS5taXQuZWR1PiB3cm90ZToKPiBUaGVzZSBhcmUgc3VwcG9ydGVkIG9uIEdLMjBBIGFuZCBHTTEw
-Ny4KPgo+IFNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4K
-PiAtLS0KPgo+IFdhcyBhIGJpdCB0b3JuIG9uIHdoZXJlIHRvIHBsYWNlIHRoZSBlbnVtcy4uLiB3
-ZSdyZSBhYm91dCB0byBndXQgYWxsCj4gdGhlIHhtbCBkZWZpbml0aW9ucyBzbyB0aGlzIHNlZW1l
-ZCBhcHByb3ByaWF0ZSBmb3Igbm93Lgo+Cj4gVGVzdGVkIG9uIEdLMjBBIG9ubHkuCj4KPiAgc3Jj
-L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9mb3JtYXRzLmMgfCA2NCArKysrKysr
-KysrKysrKysrKysrKysrKysrCj4gIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252
-YzBfc2NyZWVuLmMgIHwgMTAgKysrKwo+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZj
-MC9udmMwX3RleC5jICAgICB8ICA0ICstCj4gIDMgZmlsZXMgY2hhbmdlZCwgNzcgaW5zZXJ0aW9u
-cygrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMv
-bm91dmVhdS9udjUwL252NTBfZm9ybWF0cy5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
-L252NTAvbnY1MF9mb3JtYXRzLmMKPiBpbmRleCA0OWE5M2JmLi45NzFmYzY0IDEwMDY0NAo+IC0t
-LSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfZm9ybWF0cy5jCj4gKysr
-IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9mb3JtYXRzLmMKPiBAQCAt
-ODQsNiArODQsMjkgQEAKPiAgI2RlZmluZSBOVjUwX1RJQ18wX0ZNVF9CUFRDX0ZMT0FUICAgTlZD
-MF9USUNfMF9GTVRfQlBUQ19GTE9BVAo+ICAjZGVmaW5lIE5WNTBfVElDXzBfRk1UX0JQVENfVUZM
-T0FUICBOVkMwX1RJQ18wX0ZNVF9CUFRDX1VGTE9BVAo+Cj4gKy8qIEdLMjBBIGFuZCBHTTEwNysg
-Zm9ybWF0cyAqLwo+ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1UX0VUQzJfUkdCICAgICAgMHgwNgo+
-ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1UX0VUQzJfUkdCQTEgICAgMHgwYQo+ICsjZGVmaW5lIE5W
-NTBfVElDXzBfRk1UX0VUQzJfUkdCQSAgICAgMHgwYgo+ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1U
-X0VUQzJfUjExICAgICAgMHgxOQo+ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1UX0VUQzJfUkcxMSAg
-ICAgMHgxYQo+ICsKPiArLyogT24gR0syMEEsIHRoZSBoaWdoIGJpdCBnb2VzIGVsc2V3aGVyZSAq
-Lwo+ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1UX0FTVENfMkRfNFg0ICAgMHg0MAo+ICsjZGVmaW5l
-IE5WNTBfVElDXzBfRk1UX0FTVENfMkRfNVg0ICAgMHg1MAo+ICsjZGVmaW5lIE5WNTBfVElDXzBf
-Rk1UX0FTVENfMkRfNVg1ICAgMHg0MQo+ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1UX0FTVENfMkRf
-Nlg1ICAgMHg1MQo+ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1UX0FTVENfMkRfNlg2ICAgMHg0Mgo+
-ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1UX0FTVENfMkRfOFg1ICAgMHg1NQo+ICsjZGVmaW5lIE5W
-NTBfVElDXzBfRk1UX0FTVENfMkRfOFg2ICAgMHg1Mgo+ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1U
-X0FTVENfMkRfOFg4ICAgMHg0NAo+ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1UX0FTVENfMkRfMTBY
-NSAgMHg1Ngo+ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1UX0FTVENfMkRfMTBYNiAgMHg1Nwo+ICsj
-ZGVmaW5lIE5WNTBfVElDXzBfRk1UX0FTVENfMkRfMTBYOCAgMHg1Mwo+ICsjZGVmaW5lIE5WNTBf
-VElDXzBfRk1UX0FTVENfMkRfMTBYMTAgMHg0NQo+ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1UX0FT
-VENfMkRfMTJYMTAgMHg1NAo+ICsjZGVmaW5lIE5WNTBfVElDXzBfRk1UX0FTVENfMkRfMTJYMTIg
-MHg0Ngo+ICsKPiAgI2lmIE5PVVZFQVVfRFJJVkVSID09IDB4YzAKPiAgIyBkZWZpbmUgTlZYWF8z
-RF9WQUZfU0laRShzKSBOVkMwXzNEX1ZFUlRFWF9BVFRSSUJfRk9STUFUX1NJWkVfIyNzCj4gICMg
-ZGVmaW5lIE5WWFhfM0RfVkFGX1RZUEUodCkgTlZDMF8zRF9WRVJURVhfQVRUUklCX0ZPUk1BVF9U
-WVBFXyMjdAo+IEBAIC0yOTYsNiArMzE5LDQ3IEBAIGNvbnN0IHN0cnVjdCBudjUwX2Zvcm1hdCBu
-djUwX2Zvcm1hdF90YWJsZVtQSVBFX0ZPUk1BVF9DT1VOVF0gPQo+ICAgICBGM0IoQlBUQ19SR0Jf
-RkxPQVQsICBOT05FLCBDMCwgQzEsIEMyLCB4eCwgRkxPQVQsIEJQVENfRkxPQVQsIHQpLAo+ICAg
-ICBGM0IoQlBUQ19SR0JfVUZMT0FULCBOT05FLCBDMCwgQzEsIEMyLCB4eCwgRkxPQVQsIEJQVENf
-VUZMT0FULCB0KSwKPgo+ICsgICBGM0IoRVRDMl9SR0I4LCAgICAgICBOT05FLCBDMCwgQzEsIEMy
-LCB4eCwgVU5PUk0sIEVUQzJfUkdCLCAgIHQpLAo+ICsgICBGM0IoRVRDMl9TUkdCOCwgICAgICBO
-T05FLCBDMCwgQzEsIEMyLCB4eCwgVU5PUk0sIEVUQzJfUkdCLCAgIHQpLAo+ICsgICBDNEIoRVRD
-Ml9SR0I4QTEsICAgICBOT05FLCBDMCwgQzEsIEMyLCBDMywgVU5PUk0sIEVUQzJfUkdCQTEsIHQp
-LAo+ICsgICBDNEIoRVRDMl9TUkdCOEExLCAgICBOT05FLCBDMCwgQzEsIEMyLCBDMywgVU5PUk0s
-IEVUQzJfUkdCQTEsIHQpLAo+ICsgICBDNEIoRVRDMl9SR0JBOCwgICAgICBOT05FLCBDMCwgQzEs
-IEMyLCBDMywgVU5PUk0sIEVUQzJfUkdCQSwgIHQpLAo+ICsgICBDNEIoRVRDMl9TUkdCQTgsICAg
-ICBOT05FLCBDMCwgQzEsIEMyLCBDMywgVU5PUk0sIEVUQzJfUkdCQSwgIHQpLAo+ICsgICBGMUIo
-RVRDMl9SMTFfVU5PUk0sICBOT05FLCBDMCwgeHgsIHh4LCB4eCwgVU5PUk0sIEVUQzJfUjExLCAg
-IHQpLAo+ICsgICBGMUIoRVRDMl9SMTFfU05PUk0sICBOT05FLCBDMCwgeHgsIHh4LCB4eCwgU05P
-Uk0sIEVUQzJfUjExLCAgIHQpLAo+ICsgICBGMkIoRVRDMl9SRzExX1VOT1JNLCBOT05FLCBDMCwg
-QzEsIHh4LCB4eCwgVU5PUk0sIEVUQzJfUkcxMSwgIHQpLAo+ICsgICBGMkIoRVRDMl9SRzExX1NO
-T1JNLCBOT05FLCBDMCwgQzEsIHh4LCB4eCwgU05PUk0sIEVUQzJfUkcxMSwgIHQpLAo+ICsKPiAr
-ICAgQzRCKEFTVENfNHg0LCAgICAgICAgTk9ORSwgQzAsIEMxLCBDMiwgQzMsIFVOT1JNLCBBU1RD
-XzJEXzRYNCwgICB0KSwKPiArICAgQzRCKEFTVENfNXg0LCAgICAgICAgTk9ORSwgQzAsIEMxLCBD
-MiwgQzMsIFVOT1JNLCBBU1RDXzJEXzVYNCwgICB0KSwKPiArICAgQzRCKEFTVENfNXg1LCAgICAg
-ICAgTk9ORSwgQzAsIEMxLCBDMiwgQzMsIFVOT1JNLCBBU1RDXzJEXzVYNSwgICB0KSwKPiArICAg
-QzRCKEFTVENfNng1LCAgICAgICAgTk9ORSwgQzAsIEMxLCBDMiwgQzMsIFVOT1JNLCBBU1RDXzJE
-XzZYNSwgICB0KSwKPiArICAgQzRCKEFTVENfNng2LCAgICAgICAgTk9ORSwgQzAsIEMxLCBDMiwg
-QzMsIFVOT1JNLCBBU1RDXzJEXzZYNiwgICB0KSwKPiArICAgQzRCKEFTVENfOHg1LCAgICAgICAg
-Tk9ORSwgQzAsIEMxLCBDMiwgQzMsIFVOT1JNLCBBU1RDXzJEXzhYNSwgICB0KSwKPiArICAgQzRC
-KEFTVENfOHg2LCAgICAgICAgTk9ORSwgQzAsIEMxLCBDMiwgQzMsIFVOT1JNLCBBU1RDXzJEXzhY
-NiwgICB0KSwKPiArICAgQzRCKEFTVENfOHg4LCAgICAgICAgTk9ORSwgQzAsIEMxLCBDMiwgQzMs
-IFVOT1JNLCBBU1RDXzJEXzhYOCwgICB0KSwKPiArICAgQzRCKEFTVENfMTB4NSwgICAgICAgTk9O
-RSwgQzAsIEMxLCBDMiwgQzMsIFVOT1JNLCBBU1RDXzJEXzEwWDUsICB0KSwKPiArICAgQzRCKEFT
-VENfMTB4NiwgICAgICAgTk9ORSwgQzAsIEMxLCBDMiwgQzMsIFVOT1JNLCBBU1RDXzJEXzEwWDYs
-ICB0KSwKPiArICAgQzRCKEFTVENfMTB4OCwgICAgICAgTk9ORSwgQzAsIEMxLCBDMiwgQzMsIFVO
-T1JNLCBBU1RDXzJEXzEwWDgsICB0KSwKPiArICAgQzRCKEFTVENfMTB4MTAsICAgICAgTk9ORSwg
-QzAsIEMxLCBDMiwgQzMsIFVOT1JNLCBBU1RDXzJEXzEwWDEwLCB0KSwKPiArICAgQzRCKEFTVENf
-MTJ4MTAsICAgICAgTk9ORSwgQzAsIEMxLCBDMiwgQzMsIFVOT1JNLCBBU1RDXzJEXzEyWDEwLCB0
-KSwKPiArICAgQzRCKEFTVENfMTJ4MTIsICAgICAgTk9ORSwgQzAsIEMxLCBDMiwgQzMsIFVOT1JN
-LCBBU1RDXzJEXzEyWDEyLCB0KSwKPiArCj4gKyAgIEM0QihBU1RDXzR4NF9TUkdCLCAgIE5PTkUs
-IEMwLCBDMSwgQzIsIEMzLCBVTk9STSwgQVNUQ18yRF80WDQsICAgdCksCj4gKyAgIEM0QihBU1RD
-XzV4NF9TUkdCLCAgIE5PTkUsIEMwLCBDMSwgQzIsIEMzLCBVTk9STSwgQVNUQ18yRF81WDQsICAg
-dCksCj4gKyAgIEM0QihBU1RDXzV4NV9TUkdCLCAgIE5PTkUsIEMwLCBDMSwgQzIsIEMzLCBVTk9S
-TSwgQVNUQ18yRF81WDUsICAgdCksCj4gKyAgIEM0QihBU1RDXzZ4NV9TUkdCLCAgIE5PTkUsIEMw
-LCBDMSwgQzIsIEMzLCBVTk9STSwgQVNUQ18yRF82WDUsICAgdCksCj4gKyAgIEM0QihBU1RDXzZ4
-Nl9TUkdCLCAgIE5PTkUsIEMwLCBDMSwgQzIsIEMzLCBVTk9STSwgQVNUQ18yRF82WDYsICAgdCks
-Cj4gKyAgIEM0QihBU1RDXzh4NV9TUkdCLCAgIE5PTkUsIEMwLCBDMSwgQzIsIEMzLCBVTk9STSwg
-QVNUQ18yRF84WDUsICAgdCksCj4gKyAgIEM0QihBU1RDXzh4Nl9TUkdCLCAgIE5PTkUsIEMwLCBD
-MSwgQzIsIEMzLCBVTk9STSwgQVNUQ18yRF84WDYsICAgdCksCj4gKyAgIEM0QihBU1RDXzh4OF9T
-UkdCLCAgIE5PTkUsIEMwLCBDMSwgQzIsIEMzLCBVTk9STSwgQVNUQ18yRF84WDgsICAgdCksCj4g
-KyAgIEM0QihBU1RDXzEweDVfU1JHQiwgIE5PTkUsIEMwLCBDMSwgQzIsIEMzLCBVTk9STSwgQVNU
-Q18yRF8xMFg1LCAgdCksCj4gKyAgIEM0QihBU1RDXzEweDZfU1JHQiwgIE5PTkUsIEMwLCBDMSwg
-QzIsIEMzLCBVTk9STSwgQVNUQ18yRF8xMFg2LCAgdCksCj4gKyAgIEM0QihBU1RDXzEweDhfU1JH
-QiwgIE5PTkUsIEMwLCBDMSwgQzIsIEMzLCBVTk9STSwgQVNUQ18yRF8xMFg4LCAgdCksCj4gKyAg
-IEM0QihBU1RDXzEweDEwX1NSR0IsIE5PTkUsIEMwLCBDMSwgQzIsIEMzLCBVTk9STSwgQVNUQ18y
-RF8xMFgxMCwgdCksCj4gKyAgIEM0QihBU1RDXzEyeDEwX1NSR0IsIE5PTkUsIEMwLCBDMSwgQzIs
-IEMzLCBVTk9STSwgQVNUQ18yRF8xMlgxMCwgdCksCj4gKyAgIEM0QihBU1RDXzEyeDEyX1NSR0Is
-IE5PTkUsIEMwLCBDMSwgQzIsIEMzLCBVTk9STSwgQVNUQ18yRF8xMlgxMiwgdCksCj4gKwo+ICAg
-ICBDNEEoUjMyRzMyQjMyQTMyX0ZMT0FULCBSR0JBMzJfRkxPQVQsIEMwLCBDMSwgQzIsIEMzLCBG
-TE9BVCwgMzJfMzJfMzJfMzIsCj4gICAgICAgICBJQlYsIDApLAo+ICAgICBDNEEoUjMyRzMyQjMy
-QTMyX1VOT1JNLCBOT05FLCBDMCwgQzEsIEMyLCBDMywgVU5PUk0sIDMyXzMyXzMyXzMyLCBUViwg
-MCksCj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBf
-c2NyZWVuLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5j
-Cj4gaW5kZXggNDc1N2ZlMi4uMWM4ODU4MCAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2
-ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jCj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYwo+IEBAIC00Myw2ICs0Myw3IEBAIG52YzBfc2Ny
-ZWVuX2lzX2Zvcm1hdF9zdXBwb3J0ZWQoc3RydWN0IHBpcGVfc2NyZWVuICpwc2NyZWVuLAo+ICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVuc2lnbmVkIHNhbXBsZV9jb3VudCwKPiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1bnNpZ25lZCBiaW5kaW5ncykKPiAgewo+
-ICsgICBjb25zdCBzdHJ1Y3QgdXRpbF9mb3JtYXRfZGVzY3JpcHRpb24gKmRlc2MgPSB1dGlsX2Zv
-cm1hdF9kZXNjcmlwdGlvbihmb3JtYXQpOwo+ICAgICBpZiAoc2FtcGxlX2NvdW50ID4gOCkKPiAg
-ICAgICAgcmV0dXJuIGZhbHNlOwo+ICAgICBpZiAoISgweDExNyAmICgxIDw8IHNhbXBsZV9jb3Vu
-dCkpKSAvKiAwLCAxLCAyLCA0IG9yIDggKi8KPiBAQCAtNTUsNiArNTYsMTUgQEAgbnZjMF9zY3Jl
-ZW5faXNfZm9ybWF0X3N1cHBvcnRlZChzdHJ1Y3QgcGlwZV9zY3JlZW4gKnBzY3JlZW4sCj4gICAg
-ICAgIGlmICh1dGlsX2Zvcm1hdF9nZXRfYmxvY2tzaXplYml0cyhmb3JtYXQpID09IDMgKiAzMikK
-PiAgICAgICAgICAgcmV0dXJuIGZhbHNlOwo+Cj4gKyAgIC8qIFJlc3RyaWN0IEVUQzIgYW5kIEFT
-VEMgZm9ybWF0cyBoZXJlLiBUaGVzZSBhcmUgb25seSBzdXBwb3J0ZWQgb24gR00xMDcrCj4gKyAg
-ICAqIGFuZCBHSzIwQS4KPiArICAgICovCj4gKyAgIGlmICgoZGVzYy0+bGF5b3V0ID09IFVUSUxf
-Rk9STUFUX0xBWU9VVF9FVEMgfHwKPiArICAgICAgICBkZXNjLT5sYXlvdXQgPT0gVVRJTF9GT1JN
-QVRfTEFZT1VUX0FTVEMpICYmCj4gKyAgICAgICBub3V2ZWF1X3NjcmVlbihwc2NyZWVuKS0+Y2xh
-c3NfM2QgPCBHTTEwN18zRF9DTEFTUyAmJgo+ICsgICAgICAgbm91dmVhdV9zY3JlZW4ocHNjcmVl
-biktPmNsYXNzXzNkICE9IE5WRUFfM0RfQ0xBU1MpCj4gKyAgICAgIHJldHVybiBmYWxzZTsKPiAr
-Cj4gICAgIC8qIHRyYW5zZmVycyAmIHNoYXJlZCBhcmUgYWx3YXlzIHN1cHBvcnRlZCAqLwo+ICAg
-ICBiaW5kaW5ncyAmPSB+KFBJUEVfQklORF9UUkFOU0ZFUl9SRUFEIHwKPiAgICAgICAgICAgICAg
-ICAgICBQSVBFX0JJTkRfVFJBTlNGRVJfV1JJVEUgfAo+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1
-bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3RleC5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9u
-b3V2ZWF1L252YzAvbnZjMF90ZXguYwo+IGluZGV4IDc0MDkwY2UuLmJjNjQ4ZmUgMTAwNjQ0Cj4g
-LS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF90ZXguYwo+ICsrKyBi
-L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfdGV4LmMKPiBAQCAtMTAyLDcg
-KzEwMiw5IEBAIG52YzBfY3JlYXRlX3RleHR1cmVfdmlldyhzdHJ1Y3QgcGlwZV9jb250ZXh0ICpw
-aXBlLAo+Cj4gICAgIGRlc2MgPSB1dGlsX2Zvcm1hdF9kZXNjcmlwdGlvbih2aWV3LT5waXBlLmZv
-cm1hdCk7Cj4KPiAtICAgdGljWzBdID0gbnZjMF9mb3JtYXRfdGFibGVbdmlldy0+cGlwZS5mb3Jt
-YXRdLnRpYzsKPiArICAgdGljWzBdID0gbnZjMF9mb3JtYXRfdGFibGVbdmlldy0+cGlwZS5mb3Jt
-YXRdLnRpYyAmIDB4M2Y7CgpOYXR1cmFsbHkgdGhpcyBuZWVkcyB0byBiZSB+MHg0MC4gT29wcy4g
-Rml4ZWQgbG9jYWxseS4KCj4gKyAgIGlmIChudmMwX2Zvcm1hdF90YWJsZVt2aWV3LT5waXBlLmZv
-cm1hdF0udGljICYgMHg0MCkKPiArICAgICAgdGljWzBdIHw9IDFVIDw8IDMxOwo+Cj4gICAgIHRl
-eF9pbnQgPSB1dGlsX2Zvcm1hdF9pc19wdXJlX2ludGVnZXIodmlldy0+cGlwZS5mb3JtYXQpOwo+
-Cj4gLS0KPiAyLjQuMTAKPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRl
-dgo=
+
+--===============0309113585==
+Content-Type: multipart/alternative; boundary="1450576150.4aD380.14152"; charset="UTF-8"
+
+
+--1450576150.4aD380.14152
+Date: Sun, 20 Dec 2015 01:49:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93454
+
+            Bug ID: 93454
+           Summary: Can't build with LLVM/clang 3.7.0
+           Product: Mesa
+           Version: 11.0
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+System is OpenMandriva Cooker running LLVM/clang 3.7.0 as default compiler.
+
+When i build mesa i got this error:
+
+Makefile:1205: recipe for target 'nv50/nv84_video_vp.lo' failed
+make[3]: Leaving directory
+'/builddir/build/BUILD/mesa-11.0.7/src/gallium/drivers/nouveau'
+In file included from nv50/nv84_video_vp.c:25:
+In file included from ../../../../src/gallium/auxiliary/util/u_sse.h:140:
+/usr/bin/../lib64/clang/3.7.0/include/tmmintrin.h:28:2: error: "SSSE3
+instruction set not enabled"
+#error "SSSE3 instruction set not enabled"
+ ^
+1 error generated.
+make[3]: *** [nv50/nv84_video_vp.lo] Error 1
+make[3]: *** Waiting for unfinished jobs....
+
+Adding -mssse3 to CFLAGS will not work for all hardware.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1450576150.4aD380.14152
+Date: Sun, 20 Dec 2015 01:49:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Can't build with LLVM/clang 3.7.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93454">93454</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Can't build with LLVM/clang 3.7.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>11.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>tpgxyz&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>System is OpenMandriva Cooker running LLVM/clang 3.7.0 as default compiler.
+
+When i build mesa i got this error:
+
+Makefile:1205: recipe for target 'nv50/nv84_video_vp.lo' failed
+make[3]: Leaving directory
+'/builddir/build/BUILD/mesa-11.0.7/src/gallium/drivers/nouveau'
+In file included from nv50/nv84_video_vp.c:25:
+In file included from ../../../../src/gallium/auxiliary/util/u_sse.h:140:
+/usr/bin/../lib64/clang/3.7.0/include/tmmintrin.h:28:2: error: &quot;SSSE3
+instruction set not enabled&quot;
+#error &quot;SSSE3 instruction set not enabled&quot;
+ ^
+1 error generated.
+make[3]: *** [nv50/nv84_video_vp.lo] Error 1
+make[3]: *** Waiting for unfinished jobs....
+
+Adding -mssse3 to CFLAGS will not work for all hardware.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1450576150.4aD380.14152--
+
+--===============0309113585==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0309113585==--
