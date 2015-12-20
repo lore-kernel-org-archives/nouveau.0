@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93454] Can't build with LLVM/clang 3.7.0 - SSSE3
  instruction set not enabled
-Date: Sun, 20 Dec 2015 10:37:50 +0000
-Message-ID: <bug-93454-8800-qFJF6BEI5f@http.bugs.freedesktop.org/>
+Date: Sun, 20 Dec 2015 10:58:15 +0000
+Message-ID: <bug-93454-8800-7EpC2JA9zg@http.bugs.freedesktop.org/>
 References: <bug-93454-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1659807435=="
+Content-Type: multipart/mixed; boundary="===============0858900345=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93454-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,117 +21,101 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1659807435==
-Content-Type: multipart/alternative; boundary="1450607870.fDfBb1.23402"; charset="UTF-8"
+--===============0858900345==
+Content-Type: multipart/alternative; boundary="1450609095.C87E4af0.27135"; charset="UTF-8"
 
 
---1450607870.fDfBb1.23402
-Date: Sun, 20 Dec 2015 10:37:50 +0000
+--1450609095.C87E4af0.27135
+Date: Sun, 20 Dec 2015 10:58:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93454
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93454
 
---- Comment #6 from Jose Fonseca <jfonseca-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org> ---
-The issue is simple:
+Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-- GCC used to require -msse3 in order to include tmmintrin.h 
-- MSVC/ICC does not
-- GCC 4.9 finally eliminated that awkward requirement -- it's now possible to
-use SSE3 instrinsics without giving GCC carte blanch to emit SSSE3 whenever it
-wants
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                URL|                            |https://llvm.org/bugs/show_
+                   |                            |bug.cgi?id=3D24990
 
-- it appears Clang claims to be GCC 4.9 but does not in fact support this.
+--- Comment #7 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi, thanks for the workaround
+I found this bug report https://llvm.org/bugs/show_bug.cgi?id=3D24990 and i=
+ was
+paring commits for llvm and clang and i did not found anything that would
+corresponds to above bug.
 
-
-We can workaround by adding   
-
-diff --git a/src/gallium/include/pipe/p_config.h
-b/src/gallium/include/pipe/p_config.h
-index 0b570c7..7d5d7d4 100644
---- a/src/gallium/include/pipe/p_config.h
-+++ b/src/gallium/include/pipe/p_config.h
-@@ -96,7 +96,7 @@
- #else
- #define PIPE_ARCH_SSE
- #endif
--#if defined(PIPE_CC_GCC) && (__GNUC__ * 100 + __GNUC_MINOR__) < 409 &&
-!defined(__SSSE3__)
-+#if defined(PIPE_CC_GCC) && ((__GNUC__ * 100 + __GNUC_MINOR__) < 409 ||
-defined(__clang__)) && !defined(__SSSE3__)
- /* #warning SSE3 support requires -msse3 compiler options before GCC 4.9 */
- #else
- #define PIPE_ARCH_SSSE3
-
-
-But this is above all a bug in Clang 3.7.  If that strive/claim to be GCC 4.9
-then they should handle this too.
-
--- 
+--=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1450607870.fDfBb1.23402
-Date: Sun, 20 Dec 2015 10:37:50 +0000
+--1450609095.C87E4af0.27135
+Date: Sun, 20 Dec 2015 10:58:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:tpgxyz&#6=
+4;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.com&gt;">=
+ <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
+</span> changed
+              <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set=
+ not enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454">bug 93454<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">URL</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://llvm.org/bugs/show_bug.cgi?id=3D24990
+           </td>
+         </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93454#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set=
+ not enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93454">bug 93454</a>
-              from <span class="vcard"><a class="email" href="mailto:jfonseca&#64;vmware.com" title="Jose Fonseca &lt;jfonseca&#64;vmware.com&gt;"> <span class="fn">Jose Fonseca</span></a>
+   title=3D"NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set=
+ not enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454">bug 93454<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tpgxyz&#64;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.=
+com&gt;"> <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
 </span></b>
-        <pre>The issue is simple:
-
-- GCC used to require -msse3 in order to include tmmintrin.h 
-- MSVC/ICC does not
-- GCC 4.9 finally eliminated that awkward requirement -- it's now possible to
-use SSE3 instrinsics without giving GCC carte blanch to emit SSSE3 whenever it
-wants
-
-- it appears Clang claims to be GCC 4.9 but does not in fact support this.
-
-
-We can workaround by adding   
-
-diff --git a/src/gallium/include/pipe/p_config.h
-b/src/gallium/include/pipe/p_config.h
-index 0b570c7..7d5d7d4 100644
---- a/src/gallium/include/pipe/p_config.h
-+++ b/src/gallium/include/pipe/p_config.h
-&#64;&#64; -96,7 +96,7 &#64;&#64;
- #else
- #define PIPE_ARCH_SSE
- #endif
--#if defined(PIPE_CC_GCC) &amp;&amp; (__GNUC__ * 100 + __GNUC_MINOR__) &lt; 409 &amp;&amp;
-!defined(__SSSE3__)
-+#if defined(PIPE_CC_GCC) &amp;&amp; ((__GNUC__ * 100 + __GNUC_MINOR__) &lt; 409 ||
-defined(__clang__)) &amp;&amp; !defined(__SSSE3__)
- /* #warning SSE3 support requires -msse3 compiler options before GCC 4.9 */
- #else
- #define PIPE_ARCH_SSSE3
-
-
-But this is above all a bug in Clang 3.7.  If that strive/claim to be GCC 4.9
-then they should handle this too.</pre>
+        <pre>Hi, thanks for the workaround
+I found this bug report <a href=3D"https://llvm.org/bugs/show_bug.cgi?id=3D=
+24990">https://llvm.org/bugs/show_bug.cgi?id=3D24990</a> and i was
+paring commits for llvm and clang and i did not found anything that would
+corresponds to above bug.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
@@ -139,9 +123,9 @@ then they should handle this too.</pre>
     </body>
 </html>
 
---1450607870.fDfBb1.23402--
+--1450609095.C87E4af0.27135--
 
---===============1659807435==
+--===============0858900345==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -151,4 +135,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1659807435==--
+--===============0858900345==--
