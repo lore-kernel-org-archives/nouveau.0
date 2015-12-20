@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93454] Can't build with LLVM/clang 3.7.0 - SSSE3
  instruction set not enabled
-Date: Sun, 20 Dec 2015 01:56:27 +0000
-Message-ID: <bug-93454-8800-hK6RrYta0l@http.bugs.freedesktop.org/>
+Date: Sun, 20 Dec 2015 02:14:59 +0000
+Message-ID: <bug-93454-8800-nh4kUfbgxW@http.bugs.freedesktop.org/>
 References: <bug-93454-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0678384294=="
+Content-Type: multipart/mixed; boundary="===============1908797241=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93454-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,89 +21,61 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0678384294==
-Content-Type: multipart/alternative; boundary="1450576587.E8Db1.15670"; charset="UTF-8"
+--===============1908797241==
+Content-Type: multipart/alternative; boundary="1450577698.068dEC6f0.19708"; charset="UTF-8"
 
 
---1450576587.E8Db1.15670
-Date: Sun, 20 Dec 2015 01:56:27 +0000
+--1450577698.068dEC6f0.19708
+Date: Sun, 20 Dec 2015 02:14:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93454
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93454
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Hmmm... this comes from
+--- Comment #3 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Let me try that in src/gallium/include/pipe/p_config.h
 
-#if defined(PIPE_ARCH_SSSE3)
-
-#include <tmmintrin.h>
-
-Which in turn comes from, hilariously,
-
-#if defined(PIPE_CC_GCC) && (__GNUC__ * 100 + __GNUC_MINOR__) < 409 &&
-!defined(__SSSE3__)
-/* #warning SSE3 support requires -msse3 compiler options before GCC 4.9 */
-#else
-#define PIPE_ARCH_SSSE3
-#endif
-
-I'm guessing that was meant to be
-
-#if defined(PIPE_CC_GCC) && (__GNUC__ * 100 + __GNUC_MINOR__) < 409 ||
-!defined(__SSSE3__)
-
--- 
+--=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1450576587.E8Db1.15670
-Date: Sun, 20 Dec 2015 01:56:27 +0000
+--1450577698.068dEC6f0.19708
+Date: Sun, 20 Dec 2015 02:14:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93454#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set=
+ not enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93454">bug 93454</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set=
+ not enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454">bug 93454<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tpgxyz&#64;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.=
+com&gt;"> <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
 </span></b>
-        <pre>Hmmm... this comes from
-
-#if defined(PIPE_ARCH_SSSE3)
-
-#include &lt;tmmintrin.h&gt;
-
-Which in turn comes from, hilariously,
-
-#if defined(PIPE_CC_GCC) &amp;&amp; (__GNUC__ * 100 + __GNUC_MINOR__) &lt; 409 &amp;&amp;
-!defined(__SSSE3__)
-/* #warning SSE3 support requires -msse3 compiler options before GCC 4.9 */
-#else
-#define PIPE_ARCH_SSSE3
-#endif
-
-I'm guessing that was meant to be
-
-#if defined(PIPE_CC_GCC) &amp;&amp; (__GNUC__ * 100 + __GNUC_MINOR__) &lt; 409 ||
-!defined(__SSSE3__)</pre>
+        <pre>Let me try that in src/gallium/include/pipe/p_config.h</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
@@ -111,9 +83,9 @@ I'm guessing that was meant to be
     </body>
 </html>
 
---1450576587.E8Db1.15670--
+--1450577698.068dEC6f0.19708--
 
---===============0678384294==
+--===============1908797241==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0678384294==--
+--===============1908797241==--
