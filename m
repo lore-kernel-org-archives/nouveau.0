@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81363] [NV84] Black screen after UDEV is intialized
-Date: Sun, 20 Dec 2015 03:09:35 +0000
-Message-ID: <bug-81363-8800-7Cdk6sOAYa@http.bugs.freedesktop.org/>
-References: <bug-81363-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Broke my system again to get this info
+Date: Sat, 19 Dec 2015 22:09:37 -0500
+Message-ID: <CAKb7UvjoXyQ_p6mXbwbmLfxwfuyANgYF4Yb5+vkVNpdTwGR+jQ@mail.gmail.com>
+References: <CAGfK2peHY4dc1+ORqqwJAFwGdkkP-gV0o-zJtx9LHcwbbvBfDA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0905708612=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81363-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAGfK2peHY4dc1+ORqqwJAFwGdkkP-gV0o-zJtx9LHcwbbvBfDA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,98 +17,34 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Craig Garner <craigcgarner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0905708612==
-Content-Type: multipart/alternative; boundary="1450580975.4b8dfD61.31863"; charset="UTF-8"
-
-
---1450580975.4b8dfD61.31863
-Date: Sun, 20 Dec 2015 03:09:35 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=81363
-
---- Comment #13 from Jeff <jrsx13-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #12)
-> A random thing to try -- boot with
-> 
-> video=LVDS-2:d
-> 
-> (It appears that you have 2 GPUs... perhaps they're both connected to the
-> LVDS somehow, and the second one turns it off?)
-
-I tried this. And it was still a black/blank screen. However maybe you are onto
-something as this is a laptop with a Nvidia 8700m setup as an sli card. Though
-with the proprietary driver and with Windows it has no issue booting up
-properly. However I find windows really slow and would like to switch to
-nouveau to future proof my laptop since I am betting Nvidia won't develop a
-Wayland driver for this card.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1450580975.4b8dfD61.31863
-Date: Sun, 20 Dec 2015 03:09:35 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV84] Black screen after UDEV is intialized"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363#c13">Comment # 13</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV84] Black screen after UDEV is intialized"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363">bug 81363</a>
-              from <span class="vcard"><a class="email" href="mailto:jrsx13&#64;gmail.com" title="Jeff &lt;jrsx13&#64;gmail.com&gt;"> <span class="fn">Jeff</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=81363#c12">comment #12</a>)
-<span class="quote">&gt; A random thing to try -- boot with
-&gt; 
-&gt; video=LVDS-2:d
-&gt; 
-&gt; (It appears that you have 2 GPUs... perhaps they're both connected to the
-&gt; LVDS somehow, and the second one turns it off?)</span >
-
-I tried this. And it was still a black/blank screen. However maybe you are onto
-something as this is a laptop with a Nvidia 8700m setup as an sli card. Though
-with the proprietary driver and with Windows it has no issue booting up
-properly. However I find windows really slow and would like to switch to
-nouveau to future proof my laptop since I am betting Nvidia won't develop a
-Wayland driver for this card.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1450580975.4b8dfD61.31863--
-
---===============0905708612==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0905708612==--
+VGhlIGRtZXNnIGFwcGVhcnMgcmVhc29uYWJsZS4uLiBhbHRob3VnaCBJJ2QgcmVjb21tZW5kIHVz
+aW5nIHRoZSBHSzIwOAphcyB0aGUgcHJpbWFyeSBHUFUsIG5vdCB0aGUgRzg0LiBUaGUgeG9yZyBs
+b2cgaXMgbGlrZWx5IGZyb20gYQpkaWZmZXJlbnQgYm9vdCwgc2luY2UgeW91J3ZlIGJsYWNrbGlz
+dGVkIG5vdXZlYXUgb24gaXQuLi4gdGhlIG52aWRpYQpibG9iIGRyaXZlciBmcmVha3Mgb3V0IGJl
+Y2F1c2UgeW91IGhhdmUgYSBibG9iIHZlcnNpb24gaW5zdGFsbGVkCnRoYXQncyB0b28gbmV3IGZv
+ciB5b3VyIEc4NCBncHUsIGFuZCBldmVyeXRoaW5nIGVuZHMgdXAgZmFsbGluZyBiYWNrCnRvIHRo
+ZSBWRVNBIGRyaXZlci4gSWYgeW91IHdlcmUgdG8gZmxpcCB3aGljaCBhZGFwdGVyIHdlcmUgcHJp
+bWFyeSwKdGhpbmdzIHdvdWxkIHByb2JhYmx5IHdvcmsgYmV0dGVyIHRoZXJlLgoKT24gU2F0LCBE
+ZWMgMTksIDIwMTUgYXQgOTo1NCBQTSwgQ3JhaWcgR2FybmVyIDxjcmFpZ2NnYXJuZXJAZ21haWwu
+Y29tPiB3cm90ZToKPiBJIGRvbid0IGtub3cgaWYgYW55dGhpbmcgd2lsbCBoZWxwIG9yIG5vdC4g
+IEl0IGhhcyAyIGRpZmZlcmVudCBOVmlkaWEgY2FyZHMKPiBydW5uaW5nIDIgRFZJLCAxIEhETUks
+IDEgVkdBLCBhbmQgMSB1bnVzZWQgSERNSS4gIEl0IHdvcmtzIG9uIEZDMjIgZnJvbSB0aGUKPiBp
+bnN0YWxsIGRpc2sgb24uICBCcmVha3Mgb24gYWJpIGdvaW5nIHRvIGZjMjMuICBIZXJlIGFyZSB0
+aGUgbG9nIGZpbGVzLiAgVGhlCj4gc3lzdGVtIHdhcyBpbiBzdWNoIGEgc3RhdGUsIHRoYXQgYSBk
+byBub3Qgd2FudCB0byBnbyBiYWNrIHRoZXJlIGFnYWluLiAgSQo+IHJlcG9ydGVkIHRoaXMgYSB3
+aGlsZSBiYWNrIGJ1dCBkaWQgbm90IGdhdGhlciBhbnl0aGluZyBiZWNhdXNlIEkgd2FzIGluIG5l
+ZWQKPiBvZiBnZXR0aW5nIGJhY2sgYW5kIHJ1bm5pbmcgaW1tZWRpYXRlbHkuCj4KPiBJIGhvcGUg
+c29tZXRoaW5nIGhlbHBzLgo+Cj4gVGhlcmUgaXMgb25lIHRoaW5nIGluIEZDMjIuICBXaGVuIHlv
+dSBsb2cgaW4gaXQgbGVhdmVzIGEgImdob3N0IGN1cnNvciIgdGhhdAo+IGRvZXNuJ3QgZ28gYXdh
+eS4gIEkganVzdCBtb3ZlIG15IG1vdXNlIGluIHRvIHRoZSBjb3JuZXIgc28gaXQgaXMganVzdCBh
+IGRvdAo+IGFuZCBteSB3b3JraW5nIGN1cnNvciBpcyB0aGVyZSBhZnRlciBsb2dpbi4KPgo+Cj4g
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1
+IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
