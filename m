@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93454] Can't build with LLVM/clang 3.7.0 - SSSE3
  instruction set not enabled
-Date: Sun, 20 Dec 2015 03:03:10 +0000
-Message-ID: <bug-93454-8800-93Z7U52IzR@http.bugs.freedesktop.org/>
+Date: Sun, 20 Dec 2015 03:06:28 +0000
+Message-ID: <bug-93454-8800-7n0J4ZCkhf@http.bugs.freedesktop.org/>
 References: <bug-93454-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0304233678=="
+Content-Type: multipart/mixed; boundary="===============2142536585=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93454-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,108 +21,76 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0304233678==
-Content-Type: multipart/alternative; boundary="1450580589.35cFa61.30581"; charset="UTF-8"
+--===============2142536585==
+Content-Type: multipart/alternative; boundary="1450580787.a2D5E0C50.31235"; charset="UTF-8"
 
 
---1450580589.35cFa61.30581
-Date: Sun, 20 Dec 2015 03:03:09 +0000
+--1450580787.a2D5E0C50.31235
+Date: Sun, 20 Dec 2015 03:06:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93454
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93454
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #5 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #4)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |jfonseca-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org
+> clang -E -dM - < /dev/null | grep GNUC
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This logic was last altered in the change below... My copy of clang 3.5
-purports to be gcc 4.2.1. What does clang 3.7 report?
+#define __GNUC_MINOR__ 9
+#define __GNUC_PATCHLEVEL__ 1
+#define __GNUC_STDC_INLINE__ 1
+#define __GNUC__4
 
-clang -E -dM - < /dev/null | grep GNUC
-
-commit eb643db30e1bdf5171d0a012674016c317925b6e
-Author: Jose Fonseca <jfonseca-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
-Date:   Sun Aug 9 11:21:03 2015 +0100
-
-    gallium: GCC 4.9 allows to include tmmintrin.h without -msse3.
-
-    Fixes build with MinGW x86_64 build with GCC 4.9, due to conflicting
-    definition _mm_shuffle_epi8 of u_sse.h and system headers.
-
-    Trivial.
-
--- 
+--=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1450580589.35cFa61.30581
-Date: Sun, 20 Dec 2015 03:03:09 +0000
+--1450580787.a2D5E0C50.31235
+Date: Sun, 20 Dec 2015 03:06:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93454">bug 93454</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>jfonseca&#64;vmware.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93454#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set=
+ not enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93454">bug 93454</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set=
+ not enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454">bug 93454<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tpgxyz&#64;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.=
+com&gt;"> <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
 </span></b>
-        <pre>This logic was last altered in the change below... My copy of clang 3.5
-purports to be gcc 4.2.1. What does clang 3.7 report?
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D934=
+54#c4">comment #4</a>)
 
-clang -E -dM - &lt; /dev/null | grep GNUC
+<span class=3D"quote">&gt; clang -E -dM - &lt; /dev/null | grep GNUC</span >
 
-commit eb643db30e1bdf5171d0a012674016c317925b6e
-Author: Jose Fonseca &lt;<a href="mailto:jfonseca&#64;vmware.com">jfonseca&#64;vmware.com</a>&gt;
-Date:   Sun Aug 9 11:21:03 2015 +0100
-
-    gallium: GCC 4.9 allows to include tmmintrin.h without -msse3.
-
-    Fixes build with MinGW x86_64 build with GCC 4.9, due to conflicting
-    definition _mm_shuffle_epi8 of u_sse.h and system headers.
-
-    Trivial.</pre>
+#define __GNUC_MINOR__ 9
+#define __GNUC_PATCHLEVEL__ 1
+#define __GNUC_STDC_INLINE__ 1
+#define __GNUC__4</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
@@ -130,9 +98,9 @@ Date:   Sun Aug 9 11:21:03 2015 +0100
     </body>
 </html>
 
---1450580589.35cFa61.30581--
+--1450580787.a2D5E0C50.31235--
 
---===============0304233678==
+--===============2142536585==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -142,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0304233678==--
+--===============2142536585==--
