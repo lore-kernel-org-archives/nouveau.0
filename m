@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93454] Can't build with LLVM/clang 3.7.0 - SSSE3
  instruction set not enabled
-Date: Sun, 20 Dec 2015 01:49:32 +0000
-Message-ID: <bug-93454-8800-bfTw105Ebb@http.bugs.freedesktop.org/>
+Date: Sun, 20 Dec 2015 01:49:45 +0000
+Message-ID: <bug-93454-8800-oZ51m9MdKr@http.bugs.freedesktop.org/>
 References: <bug-93454-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1953866919=="
+Content-Type: multipart/mixed; boundary="===============1006588216=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93454-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1953866919==
-Content-Type: multipart/alternative; boundary="1450576172.bfccD440.14249"; charset="UTF-8"
+--===============1006588216==
+Content-Type: multipart/alternative; boundary="1450576184.1DaaFA1.14249"; charset="UTF-8"
 
 
---1450576172.bfccD440.14249
-Date: Sun, 20 Dec 2015 01:49:32 +0000
+--1450576184.1DaaFA1.14249
+Date: Sun, 20 Dec 2015 01:49:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -37,17 +37,17 @@ Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Can't build with LLVM/clang |Can't build with LLVM/clang
-                   |3.7.0                       |3.7.0 - SSSE3 instruction
-                   |                            |set not enabled
+           Hardware|Other                       |x86-64 (AMD64)
+                 OS|All                         |Linux (All)
+           Severity|normal                      |major
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1450576172.bfccD440.14249
-Date: Sun, 20 Dec 2015 01:49:32 +0000
+--1450576184.1DaaFA1.14249
+Date: Sun, 20 Dec 2015 01:49:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,11 +75,26 @@ Content-Transfer-Encoding: quoted-printable
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>Can't build with LLVM/clang 3.7.0
+           <td style=3D"text-align:right;">Hardware</td>
+           <td>Other
            </td>
-           <td>Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set no=
-t enabled
+           <td>x86-64 (AMD64)
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">OS</td>
+           <td>All
+           </td>
+           <td>Linux (All)
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Severity</td>
+           <td>normal
+           </td>
+           <td>major
            </td>
          </tr></table>
       <p>
@@ -94,9 +109,9 @@ t enabled
     </body>
 </html>
 
---1450576172.bfccD440.14249--
+--1450576184.1DaaFA1.14249--
 
---===============1953866919==
+--===============1006588216==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +121,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1953866919==--
+--===============1006588216==--
