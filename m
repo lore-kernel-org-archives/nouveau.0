@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93454] Can't build with LLVM/clang 3.7.0 - SSSE3
- instruction set not enabled
-Date: Sun, 20 Dec 2015 10:58:15 +0000
-Message-ID: <bug-93454-8800-7EpC2JA9zg@http.bugs.freedesktop.org/>
-References: <bug-93454-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92307] G98/G94: WARNING: ... at
+ include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
+ [drm_kms_helper]()
+Date: Sun, 20 Dec 2015 13:41:32 +0000
+Message-ID: <bug-92307-8800-hkLxcD7TAQ@http.bugs.freedesktop.org/>
+References: <bug-92307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0858900345=="
+Content-Type: multipart/mixed; boundary="===============0211948919=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93454-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,59 +22,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0858900345==
-Content-Type: multipart/alternative; boundary="1450609095.C87E4af0.27135"; charset="UTF-8"
+--===============0211948919==
+Content-Type: multipart/alternative; boundary="1450618892.A8fA22.29901"; charset="UTF-8"
 
 
---1450609095.C87E4af0.27135
-Date: Sun, 20 Dec 2015 10:58:15 +0000
+--1450618892.A8fA22.29901
+Date: Sun, 20 Dec 2015 13:41:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93454
+https://bugs.freedesktop.org/show_bug.cgi?id=92307
 
-Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                URL|                            |https://llvm.org/bugs/show_
-                   |                            |bug.cgi?id=3D24990
+            Summary|G98/GM206: WARNING: ... at  |G98/G94: WARNING: ... at
+                   |include/drm/drm_crtc.h:1577 |include/drm/drm_crtc.h:1577
+                   |drm_helper_choose_encoder_d |drm_helper_choose_encoder_d
+                   |pms+0x8a/0x90               |pms+0x8a/0x90
+                   |[drm_kms_helper]()          |[drm_kms_helper]()
 
---- Comment #7 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi, thanks for the workaround
-I found this bug report https://llvm.org/bugs/show_bug.cgi?id=3D24990 and i=
- was
-paring commits for llvm and clang and i did not found anything that would
-corresponds to above bug.
-
---=20
+-- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1450609095.C87E4af0.27135
-Date: Sun, 20 Dec 2015 10:58:15 +0000
+--1450618892.A8fA22.29901
+Date: Sun, 20 Dec 2015 13:41:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:tpgxyz&#6=
-4;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.com&gt;">=
- <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
 </span> changed
-              <a class=3D"bz_bug_link=20
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set=
- not enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454">bug 93454<=
-/a>
+   title="NEW - G98/G94: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
           <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+             <table border="1" cellspacing="0" cellpadding="8">
           <tr>
             <th>What</th>
             <th>Removed</th>
@@ -81,51 +71,26 @@ Content-Transfer-Encoding: quoted-printable
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">URL</td>
-           <td>
-               &nbsp;
+           <td style="text-align:right;">Summary</td>
+           <td>G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()
            </td>
-           <td>https://llvm.org/bugs/show_bug.cgi?id=3D24990
+           <td>G98/G94: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set=
- not enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set=
- not enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454">bug 93454<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tpgxyz&#64;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.=
-com&gt;"> <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
-</span></b>
-        <pre>Hi, thanks for the workaround
-I found this bug report <a href=3D"https://llvm.org/bugs/show_bug.cgi?id=3D=
-24990">https://llvm.org/bugs/show_bug.cgi?id=3D24990</a> and i was
-paring commits for llvm and clang and i did not found anything that would
-corresponds to above bug.</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1450609095.C87E4af0.27135--
+--1450618892.A8fA22.29901--
 
---===============0858900345==
+--===============0211948919==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0858900345==--
+--===============0211948919==--
