@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93454] Can't build with LLVM/clang 3.7.0 - SSSE3
  instruction set not enabled
-Date: Sun, 20 Dec 2015 01:54:14 +0000
-Message-ID: <bug-93454-8800-PGyTcc3syR@http.bugs.freedesktop.org/>
+Date: Sun, 20 Dec 2015 01:56:27 +0000
+Message-ID: <bug-93454-8800-hK6RrYta0l@http.bugs.freedesktop.org/>
 References: <bug-93454-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0240198717=="
+Content-Type: multipart/mixed; boundary="===============0678384294=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93454-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,18 +21,18 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0240198717==
-Content-Type: multipart/alternative; boundary="1450576453.756f1.15107"; charset="UTF-8"
+--===============0678384294==
+Content-Type: multipart/alternative; boundary="1450576587.E8Db1.15670"; charset="UTF-8"
 
 
---1450576453.756f1.15107
-Date: Sun, 20 Dec 2015 01:54:13 +0000
+--1450576587.E8Db1.15670
+Date: Sun, 20 Dec 2015 01:56:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93454
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 Hmmm... this comes from
 
 #if defined(PIPE_ARCH_SSSE3)
@@ -58,8 +58,8 @@ You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1450576453.756f1.15107
-Date: Sun, 20 Dec 2015 01:54:13 +0000
+--1450576587.E8Db1.15670
+Date: Sun, 20 Dec 2015 01:56:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,7 +73,7 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set not enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93454#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93454#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Can't build with LLVM/clang 3.7.0 - SSSE3 instruction set not enabled"
@@ -111,9 +111,9 @@ I'm guessing that was meant to be
     </body>
 </html>
 
---1450576453.756f1.15107--
+--1450576587.E8Db1.15670--
 
---===============0240198717==
+--===============0678384294==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0240198717==--
+--===============0678384294==--
