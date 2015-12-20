@@ -1,13 +1,14 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Broke my system again to get this info
-Date: Sat, 19 Dec 2015 22:09:37 -0500
-Message-ID: <CAKb7UvjoXyQ_p6mXbwbmLfxwfuyANgYF4Yb5+vkVNpdTwGR+jQ@mail.gmail.com>
-References: <CAGfK2peHY4dc1+ORqqwJAFwGdkkP-gV0o-zJtx9LHcwbbvBfDA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92307] G98/GM206: WARNING: ... at
+ include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
+ [drm_kms_helper]()
+Date: Sun, 20 Dec 2015 10:27:48 +0000
+Message-ID: <bug-92307-8800-zgyqFmPXNr@http.bugs.freedesktop.org/>
+References: <bug-92307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1897416155=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAGfK2peHY4dc1+ORqqwJAFwGdkkP-gV0o-zJtx9LHcwbbvBfDA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,34 +18,74 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Craig Garner <craigcgarner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIGRtZXNnIGFwcGVhcnMgcmVhc29uYWJsZS4uLiBhbHRob3VnaCBJJ2QgcmVjb21tZW5kIHVz
-aW5nIHRoZSBHSzIwOAphcyB0aGUgcHJpbWFyeSBHUFUsIG5vdCB0aGUgRzg0LiBUaGUgeG9yZyBs
-b2cgaXMgbGlrZWx5IGZyb20gYQpkaWZmZXJlbnQgYm9vdCwgc2luY2UgeW91J3ZlIGJsYWNrbGlz
-dGVkIG5vdXZlYXUgb24gaXQuLi4gdGhlIG52aWRpYQpibG9iIGRyaXZlciBmcmVha3Mgb3V0IGJl
-Y2F1c2UgeW91IGhhdmUgYSBibG9iIHZlcnNpb24gaW5zdGFsbGVkCnRoYXQncyB0b28gbmV3IGZv
-ciB5b3VyIEc4NCBncHUsIGFuZCBldmVyeXRoaW5nIGVuZHMgdXAgZmFsbGluZyBiYWNrCnRvIHRo
-ZSBWRVNBIGRyaXZlci4gSWYgeW91IHdlcmUgdG8gZmxpcCB3aGljaCBhZGFwdGVyIHdlcmUgcHJp
-bWFyeSwKdGhpbmdzIHdvdWxkIHByb2JhYmx5IHdvcmsgYmV0dGVyIHRoZXJlLgoKT24gU2F0LCBE
-ZWMgMTksIDIwMTUgYXQgOTo1NCBQTSwgQ3JhaWcgR2FybmVyIDxjcmFpZ2NnYXJuZXJAZ21haWwu
-Y29tPiB3cm90ZToKPiBJIGRvbid0IGtub3cgaWYgYW55dGhpbmcgd2lsbCBoZWxwIG9yIG5vdC4g
-IEl0IGhhcyAyIGRpZmZlcmVudCBOVmlkaWEgY2FyZHMKPiBydW5uaW5nIDIgRFZJLCAxIEhETUks
-IDEgVkdBLCBhbmQgMSB1bnVzZWQgSERNSS4gIEl0IHdvcmtzIG9uIEZDMjIgZnJvbSB0aGUKPiBp
-bnN0YWxsIGRpc2sgb24uICBCcmVha3Mgb24gYWJpIGdvaW5nIHRvIGZjMjMuICBIZXJlIGFyZSB0
-aGUgbG9nIGZpbGVzLiAgVGhlCj4gc3lzdGVtIHdhcyBpbiBzdWNoIGEgc3RhdGUsIHRoYXQgYSBk
-byBub3Qgd2FudCB0byBnbyBiYWNrIHRoZXJlIGFnYWluLiAgSQo+IHJlcG9ydGVkIHRoaXMgYSB3
-aGlsZSBiYWNrIGJ1dCBkaWQgbm90IGdhdGhlciBhbnl0aGluZyBiZWNhdXNlIEkgd2FzIGluIG5l
-ZWQKPiBvZiBnZXR0aW5nIGJhY2sgYW5kIHJ1bm5pbmcgaW1tZWRpYXRlbHkuCj4KPiBJIGhvcGUg
-c29tZXRoaW5nIGhlbHBzLgo+Cj4gVGhlcmUgaXMgb25lIHRoaW5nIGluIEZDMjIuICBXaGVuIHlv
-dSBsb2cgaW4gaXQgbGVhdmVzIGEgImdob3N0IGN1cnNvciIgdGhhdAo+IGRvZXNuJ3QgZ28gYXdh
-eS4gIEkganVzdCBtb3ZlIG15IG1vdXNlIGluIHRvIHRoZSBjb3JuZXIgc28gaXQgaXMganVzdCBh
-IGRvdAo+IGFuZCBteSB3b3JraW5nIGN1cnNvciBpcyB0aGVyZSBhZnRlciBsb2dpbi4KPgo+Cj4g
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1
-IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1897416155==
+Content-Type: multipart/alternative; boundary="1450607268.C0A4a12.21465"; charset="UTF-8"
+
+
+--1450607268.C0A4a12.21465
+Date: Sun, 20 Dec 2015 10:27:48 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92307
+
+--- Comment #27 from Zlatko Calusic <zcalusic-7aYyyD3GOf7R7s880joybQ@public.gmane.org> ---
+Have the same issue on G94, 4.4.0-rc5+ kernel. Tried the patch from comment
+#13, didn't help.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1450607268.C0A4a12.21465
+Date: Sun, 20 Dec 2015 10:27:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307#c27">Comment # 27</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
+              from <span class="vcard"><a class="email" href="mailto:zcalusic&#64;bitsync.net" title="Zlatko Calusic &lt;zcalusic&#64;bitsync.net&gt;"> <span class="fn">Zlatko Calusic</span></a>
+</span></b>
+        <pre>Have the same issue on G94, 4.4.0-rc5+ kernel. Tried the patch from <a href="show_bug.cgi?id=92307#c13">comment
+#13</a>, didn't help.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1450607268.C0A4a12.21465--
+
+--===============1897416155==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1897416155==--
