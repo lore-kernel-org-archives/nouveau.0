@@ -1,12 +1,12 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Translating tests/trivial/compute.c gallium tests to
- opencl (input / help wanted)
-Date: Tue, 22 Dec 2015 12:37:29 +0100
-Message-ID: <567935F9.1080802@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 81690] nouveau GPU locks up under memory pressure
+Date: Tue, 22 Dec 2015 12:15:10 +0000
+Message-ID: <bug-81690-8800-lzz5txbMOT@http.bugs.freedesktop.org/>
+References: <bug-81690-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1827985567=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-81690-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,101 +16,188 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgQWxsLAoKSSd2ZSBiZWVuIHdvcmtpbmcgb24gdHJhbnNsYXRpbmcgdGhlIHRlc3RzL3RyaXZp
-YWwvY29tcHV0ZS5jIHRlc3RzCnRvIG9wZW5jbCAoZm9yIHRoZSBidWZmZXIgc2V0dXAgYW5kIGtl
-cm5lbCBsYXVuY2gsIEknbSBrZWVwaW5nIHRoZSBjb21wdXRlCmtlcm5lbHMgaW4gdGdzaSBhcyBh
-biBpbnRlcm1lZGlhdGUgc3RlcCkuCgpJJ3ZlIGdvdCB0aGUgdGVzdF9pbnB1dF9nbG9iYWwoKSB0
-ZXN0IHdvcmtpbmcsIHNlZToKCmh0dHBzOi8vZmVkb3JhcGVvcGxlLm9yZy9+andyZGVnb2VkZS9j
-b21wdXRlLW9wZW5jbC10Z3NpLmMKCk5leHQgSSB3YW50ZWQgdG8gY29udmVydCB0aGUgdGVzdF9z
-eXN0ZW1fdmFsdWVzKCkgdGVzdCBhbmQgdGhlcmUKSSd2ZSBnb3R0ZW4gc3R1Y2suIEl0IHVzZXMg
-YSBQSVBFX0JVRkZFUiB3aGljaCBpdCBydy1iaW5kcyBhcyBhCnJlc291cmNlLiBXaGljaCBPcGVu
-Q0wgZG9lcyBub3QgYWxsb3cuIFRoZSBjbG9zZXN0IHRoaW5nIGlzIGEKY29uc3RhbnQgcGFyYW1l
-dGVyIGluIE9wZW5DTCwgYXQgZmlyc3QgSSd2ZSB0cmllZCBiaW5kaW5nIHRoaXMKYXMgYSAyZCBp
-bWFnZSwgYnV0IHRoYXQgbGVhZHMgdG8gdGhlIGdwdSBoYW5naW5nLCB0aGlzIGlzIHRoZQpjb2Rl
-IGFjdGl2YXRlZCB3aXRoICIjZGVmaW5lIFVTRV9JTUFHRV9GT1JfQlVGIDEiIGluIHRoZSBhYm92
-ZQpmaWxlLgoKU28gaW4gYSAybmQgYXR0ZW1wdCBJJ3ZlIGhhY2tlZCBjbG92ZXIgdG8gYmluZCBj
-bF9tZW0gb2JqZWN0cyBwYXNzZWQKaW4gYXMgY29uc3RhbnRzIGFzIHJ3LiBUaGlzIGlzIHRoZSBj
-b2RlIHdoZW4gVVNFX0lNQUdFX0ZPUl9CVUYgaXMgbm90CmRlZmluZWQgYW5kIHdvcmtzLgoKSW4g
-YSAzdGggYXR0ZW1wdCBiZWNhdXNlIHRoZSBoYWNrIGlzIG5vdCBzb21ldGhpbmcgd29ya2FibGUg
-aW4gdGhlIGxvbmcgcnVuLApJJ3ZlIHRyaWVkIHRvIHJld3JpdGUgdGhlIHRlc3QgdG8gdXNlIGEg
-Z2xvYmFsIGJ1ZmZlciAobm90IHN1cmUgdGhpcyBpcyB0aGUKYmVzdCBhcHByb2FjaCBvdGhlciBp
-ZGVhcyBhcmUgd2VsY29tZSksIGxlYWRpbmcgdG8gdGhpcyBkaWZmOgoKLS0tIGEvc3JjL2dhbGxp
-dW0vdGVzdHMvdHJpdmlhbC9jb21wdXRlLmMKKysrIGIvc3JjL2dhbGxpdW0vdGVzdHMvdHJpdmlh
-bC9jb21wdXRlLmMKQEAgLTQzMSw3ICs0MzEsNiBAQCBzdGF0aWMgdm9pZCBsYXVuY2hfZ3JpZChz
-dHJ1Y3QgY29udGV4dCAqY3R4LCBjb25zdCB1aW50ICpibG9ja19sYXlvdXQsCiAgc3RhdGljIHZv
-aWQgdGVzdF9zeXN0ZW1fdmFsdWVzKHN0cnVjdCBjb250ZXh0ICpjdHgpCiAgewogICAgICAgICAg
-Y29uc3QgY2hhciAqc3JjID0gIkNPTVBcbiIKLSAgICAgICAgICAgICAgICAiRENMIFJFU1swXSwg
-QlVGRkVSLCBSQVcsIFdSXG4iCiAgICAgICAgICAgICAgICAgICJEQ0wgU1ZbMF0sIEJMT0NLX0lE
-WzBdXG4iCiAgICAgICAgICAgICAgICAgICJEQ0wgU1ZbMV0sIEJMT0NLX1NJWkVbMF1cbiIKICAg
-ICAgICAgICAgICAgICAgIkRDTCBTVlsyXSwgR1JJRF9TSVpFWzBdXG4iCkBAIC00NTIsMTMgKzQ1
-MSwxNSBAQCBzdGF0aWMgdm9pZCB0ZXN0X3N5c3RlbV92YWx1ZXMoc3RydWN0IGNvbnRleHQgKmN0
-eCkKQEAgLTQ1MiwxMyArNDUxLDE1IEBAIHN0YXRpYyB2b2lkIHRlc3Rfc3lzdGVtX3ZhbHVlcyhz
-dHJ1Y3QgY29udGV4dCAqY3R4KQogICAgICAgICAgICAgICAgICAiICBVQUREIFRFTVBbMF0ueHks
-IFRFTVBbMF0ueHl4eSwgVEVNUFswXS56d3p3XG4iCiAgICAgICAgICAgICAgICAgICIgIFVBREQg
-VEVNUFswXS54LCBURU1QWzBdLnh4eHgsIFRFTVBbMF0ueXl5eVxuIgogICAgICAgICAgICAgICAg
-ICAiICBVTVVMIFRFTVBbMF0ueCwgVEVNUFswXSwgSU1NWzBdXG4iCi0gICAgICAgICAgICAgICAg
-IiAgU1RPUkUgUkVTWzBdLnh5encsIFRFTVBbMF0sIFNWWzBdXG4iCisgICAgICAgICAgICAgICAg
-IiAgTE9BRCBURU1QWzFdLngsIFJJTlBVVCwgSU1NWzJdXG4iCisgICAgICAgICAgICAgICAgIiAg
-VUFERCBURU1QWzBdLngsIFRFTVBbMF0sIFRFTVBbMV1cbiIKKyAgICAgICAgICAgICAgICAiICBT
-VE9SRSBSR0xPQkFMLnh5encsIFRFTVBbMF0sIFNWWzBdXG4iCiAgICAgICAgICAgICAgICAgICIg
-IFVBREQgVEVNUFswXS54LCBURU1QWzBdLCBJTU1bMV1cbiIKLSAgICAgICAgICAgICAgICAiICBT
-VE9SRSBSRVNbMF0ueHl6dywgVEVNUFswXSwgU1ZbMV1cbiIKKyAgICAgICAgICAgICAgICAiICBT
-VE9SRSBSR0xPQkFMLnh5encsIFRFTVBbMF0sIFNWWzFdXG4iCiAgICAgICAgICAgICAgICAgICIg
-IFVBREQgVEVNUFswXS54LCBURU1QWzBdLCBJTU1bMV1cbiIKLSAgICAgICAgICAgICAgICAiICBT
-VE9SRSBSRVNbMF0ueHl6dywgVEVNUFswXSwgU1ZbMl1cbiIKKyAgICAgICAgICAgICAgICAiICBT
-VE9SRSBSR0xPQkFMLnh5encsIFRFTVBbMF0sIFNWWzJdXG4iCiAgICAgICAgICAgICAgICAgICIg
-IFVBREQgVEVNUFswXS54LCBURU1QWzBdLCBJTU1bMV1cbiIKLSAgICAgICAgICAgICAgICAiICBT
-VE9SRSBSRVNbMF0ueHl6dywgVEVNUFswXSwgU1ZbM11cbiIKKyAgICAgICAgICAgICAgICAiICBT
-VE9SRSBSR0xPQkFMLnh5encsIFRFTVBbMF0sIFNWWzNdXG4iCiAgICAgICAgICAgICAgICAgICIg
-IFJFVFxuIgogICAgICAgICAgICAgICAgICAiRU5EU1VCXG4iOwogICAgICAgICAgdm9pZCBpbml0
-KHZvaWQgKnAsIGludCBzLCBpbnQgeCwgaW50IHkpIHsKQEAgLTQ4NSwxNiArNDg2LDE4IEBAIHN0
-YXRpYyB2b2lkIHRlc3Rfc3lzdGVtX3ZhbHVlcyhzdHJ1Y3QgY29udGV4dCAqY3R4KQogICAgICAg
-ICAgICAgICAgICAgICAgICAgIGJyZWFrOwogICAgICAgICAgICAgICAgICB9CiAgICAgICAgICB9
-CisgICAgICAgIHVpbnQzMl90IGlucHV0OwoKICAgICAgICAgIHByaW50ZigiLSAlc1xuIiwgX19m
-dW5jX18pOwoKLSAgICAgICAgaW5pdF9wcm9nKGN0eCwgMCwgMCwgMCwgc3JjLCBOVUxMKTsKKyAg
-ICAgICAgaW5pdF9wcm9nKGN0eCwgMCwgMCwgNCwgc3JjLCBOVUxMKTsKICAgICAgICAgIGluaXRf
-dGV4KGN0eCwgMCwgUElQRV9CVUZGRVIsIHRydWUsIFBJUEVfRk9STUFUX1IzMl9GTE9BVCwKICAg
-ICAgICAgICAgICAgICAgIDc2ODAwLCAwLCBpbml0KTsKLSAgICAgICAgaW5pdF9jb21wdXRlX3Jl
-c291cmNlcyhjdHgsIChpbnQgW10pIHsgMCwgLTEgfSk7Ci0gICAgICAgIGxhdW5jaF9ncmlkKGN0
-eCwgKHVpbnQgW10pezQsIDMsIDV9LCAodWludCBbXSl7NSwgNCwgMX0sIDAsIE5VTEwpOworICAg
-ICAgICBpbml0X2dsb2JhbHMoY3R4LCAoaW50IFtdKXsgMCwgLTEgfSwKKyAgICAgICAgICAgICAg
-ICAgICAgICh1aW50MzJfdCAqW10peyAmaW5wdXQgfSk7CisgICAgICAgIGxhdW5jaF9ncmlkKGN0
-eCwgKHVpbnQgW10pezQsIDMsIDV9LCAodWludCBbXSl7NSwgNCwgMX0sIDAsICZpbnB1dCk7CiAg
-ICAgICAgICBjaGVja190ZXgoY3R4LCAwLCBleHBlY3QsIE5VTEwpOwotICAgICAgICBkZXN0cm95
-X2NvbXB1dGVfcmVzb3VyY2VzKGN0eCk7CisgICAgICAgIGRlc3Ryb3lfZ2xvYmFscyhjdHgpOwog
-ICAgICAgICAgZGVzdHJveV90ZXgoY3R4KTsKICAgICAgICAgIGRlc3Ryb3lfcHJvZyhjdHgpOwog
-IH0KCldoaWNoIGFsc28gYmVoYXZlcyB3ZWlyZCwgdGhlIG91dHB1dCBpczoKLSB0ZXN0X3N5c3Rl
-bV92YWx1ZXMKKDEsIDApWzBdOiBnb3QgMHgxLzAuMDAwMDAwLCBleHBlY3RlZCAweDAvMC4wMDAw
-MDAKKDIsIDApWzBdOiBnb3QgMHgxLzAuMDAwMDAwLCBleHBlY3RlZCAweDAvMC4wMDAwMDAKKDMs
-IDApWzBdOiBnb3QgMHgxLzAuMDAwMDAwLCBleHBlY3RlZCAweDAvMC4wMDAwMDAKKDUsIDApWzBd
-OiBnb3QgMHgxLzAuMDAwMDAwLCBleHBlY3RlZCAweDMvMC4wMDAwMDAKKDYsIDApWzBdOiBnb3Qg
-MHgxLzAuMDAwMDAwLCBleHBlY3RlZCAweDUvMC4wMDAwMDAKKDksIDApWzBdOiBnb3QgMHgxLzAu
-MDAwMDAwLCBleHBlY3RlZCAweDQvMC4wMDAwMDAKKDEzLCAwKVswXTogZ290IDB4MS8wLjAwMDAw
-MCwgZXhwZWN0ZWQgMHgwLzAuMDAwMDAwCigxNCwgMClbMF06IGdvdCAweDEvMC4wMDAwMDAsIGV4
-cGVjdGVkIDB4MC8wLjAwMDAwMAooMTUsIDApWzBdOiBnb3QgMHgxLzAuMDAwMDAwLCBleHBlY3Rl
-ZCAweDAvMC4wMDAwMDAKKDE3LCAwKVswXTogZ290IDB4MS8wLjAwMDAwMCwgZXhwZWN0ZWQgMHgw
-LzAuMDAwMDAwCigxOCwgMClbMF06IGdvdCAweDEvMC4wMDAwMDAsIGV4cGVjdGVkIDB4MC8wLjAw
-MDAwMAooMTksIDApWzBdOiBnb3QgMHgxLzAuMDAwMDAwLCBleHBlY3RlZCAweDAvMC4wMDAwMDAK
-KDIxLCAwKVswXTogZ290IDB4MS8wLjAwMDAwMCwgZXhwZWN0ZWQgMHgzLzAuMDAwMDAwCigyMiwg
-MClbMF06IGdvdCAweDEvMC4wMDAwMDAsIGV4cGVjdGVkIDB4NS8wLjAwMDAwMAooMjUsIDApWzBd
-OiBnb3QgMHgxLzAuMDAwMDAwLCBleHBlY3RlZCAweDQvMC4wMDAwMDAKKDI5LCAwKVswXTogZ290
-IDB4MS8wLjAwMDAwMCwgZXhwZWN0ZWQgMHgwLzAuMDAwMDAwCigzMCwgMClbMF06IGdvdCAweDEv
-MC4wMDAwMDAsIGV4cGVjdGVkIDB4MC8wLjAwMDAwMAooMzEsIDApWzBdOiBnb3QgMHgxLzAuMDAw
-MDAwLCBleHBlY3RlZCAweDAvMC4wMDAwMDAKKDMzLCAwKVswXTogZ290IDB4MS8wLjAwMDAwMCwg
-ZXhwZWN0ZWQgMHgwLzAuMDAwMDAwCigzNCwgMClbMF06IGdvdCAweDEvMC4wMDAwMDAsIGV4cGVj
-dGVkIDB4MC8wLjAwMDAwMAooMTkyMDAsIDEpOiBGQUlMICgxMDkyMCkKClNvIGl0IHNlZW1zIHRo
-YXQgdGhlc2UgdGdzaSBvcHM6CgorICIgU1RPUkUgUkdMT0JBTC54eXp3LCBURU1QWzBdLCBTVlsx
-XVxuIgoKU3RvcmUgdGhlIHJpZ2h0IHZhbHVlIGluIFJHTE9CQUwueCBidXQgbm90IGluClJHTE9C
-QUwueXp3IGZvciBzb21lIHJlYXNvbiA/CgpJJ3ZlIHRyaWVkIGNoYW5naW5nIHRoaXMgdG86Cgor
-ICIgU1RPUkUgUkdMT0JBTC54eXp3LCBURU1QWzBdLCBTVlsxXS54eHh4XG4iCgpXaGljaCBvZiBj
-b3Vyc2UgaXMgd3JvbmcsIGJ1dCBpdCBkb2VzIGxlYWQgdG8gZGlmZmVyZW50CmVycm9ycywgc28g
-aXQgaXMgcmVhbGx5IHdyaXRpbmcgNCBmbG9hdHMgKHdlIGFscmVhZHkKa25ldyByZWFsbHksIG90
-aGVyd2lzZSB3ZSB3b3VsZCBleHBlY3QgMHhkZWFkYmVhZiB2YWx1ZXMpLApidXQgZm9yIHNvbWUg
-cmVhc29uIHRoZSB2YWx1ZXMgaXMgaXQgc3RvcmluZyBpbiBSR0xPQkFMLnl6dwphcmUgZGlmZmVy
-ZW50IHRoZW4gdGhlIG9uZXMgc3RvcmVkIGJ5IHRoZSBvbGQgY29kZSBpbgpSRVNbMF0ueXp3PwoK
-UmVnYXJkcywKCkhhbnMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1827985567==
+Content-Type: multipart/alternative; boundary="1450786510.e1174.15482"; charset="UTF-8"
+
+
+--1450786510.e1174.15482
+Date: Tue, 22 Dec 2015 12:15:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=81690
+
+--- Comment #10 from Philippe "RzR" Coval <philippe.coval.pro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I think I am also affected by this nouveau bug, on :
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GK106 [GeForce GTX 645
+OEM] (rev a1)
+
+
+Now I have installed koops,
+I can provide more traces or data if anyone want to tell me what to do.
+
+
+[ 1480.528031] ------------[ cut here ]------------
+[ 1480.528033] WARNING: CPU: 0 PID: 4 at
+/home/kernel/COD/linux/include/drm/drm_crtc.h:1565
+drm_helper_choose_crtc_dpms+0x93/0xa0 [drm_kms_helper]()
+[ 1480.528034] Modules linked in: bnep rfcomm bluetooth uvcvideo joydev
+videobuf2_vmalloc videobuf2_memops videobuf2_v4l2 videobuf2_core v4l2_common
+intel_rapl videodev x86_pkg_temp_thermal media intel_powerclamp input_leds
+coretemp kvm_intel kvm irqbypass snd_hda_codec_hdmi snd_hda_codec_realtek
+snd_hda_codec_generic snd_hda_intel snd_hda_codec snd_hda_core snd_hwdep mei_me
+dcdbas snd_pcm snd_seq_midi snd_seq_midi_event snd_rawmidi snd_seq
+snd_seq_device snd_timer snd soundcore mei shpchp lpc_ich 8250_fintek mac_hid
+serio_raw binfmt_misc parport_pc ppdev lp parport drbg ansi_cprng dm_crypt
+hid_generic usbhid hid uas usb_storage nouveau mxm_wmi wmi i2c_algo_bit ttm
+drm_kms_helper crct10dif_pclmul crc32_pclmul syscopyarea sysfillrect sysimgblt
+fb_sys_fops aesni_intel aes_x86_64 lrw gf128mul glue_helper e1000e drm
+ablk_helper cryptd psmouse ahci ptp libahci pps_core video fjes
+[ 1480.528054] CPU: 0 PID: 4 Comm: kworker/0:0 Tainted: G        W      
+4.4.0-999-generic #201512202100
+[ 1480.528055] Hardware name: Dell Inc. OptiPlex 9020/0PC5F7, BIOS A02
+08/15/2013
+[ 1480.528060] Workqueue: events nvif_notify_work [nouveau]
+[ 1480.528061]  0000000000000000 0000000097f6c821 ffff88040b663d10
+ffffffff813c9124
+[ 1480.528062]  0000000000000000 ffff88040b663d48 ffffffff8107db92
+ffff880035ec0000
+[ 1480.528063]  ffff880035ecb000 ffff880035ecb000 0000000000000003
+0000000000000000
+[ 1480.528064] Call Trace:
+[ 1480.528066]  [<ffffffff813c9124>] dump_stack+0x44/0x60
+[ 1480.528067]  [<ffffffff8107db92>] warn_slowpath_common+0x82/0xc0
+[ 1480.528068]  [<ffffffff8107dcda>] warn_slowpath_null+0x1a/0x20
+[ 1480.528070]  [<ffffffffc0263353>] drm_helper_choose_crtc_dpms+0x93/0xa0
+[drm_kms_helper]
+[ 1480.528072]  [<ffffffffc02633d7>] drm_helper_connector_dpms+0x77/0x100
+[drm_kms_helper]
+[ 1480.528088]  [<ffffffffc038eb70>] ? nv50_display_crtc_get+0x20/0x20
+[nouveau]
+[ 1480.528102]  [<ffffffffc038b53b>] nouveau_connector_hotplug+0x3b/0xb0
+[nouveau]
+[ 1480.528108]  [<ffffffffc02eaa77>] nvif_notify_work+0x27/0xa0 [nouveau]
+[ 1480.528109]  [<ffffffff81094f6d>] ? pwq_dec_nr_in_flight+0x4d/0xa0
+[ 1480.528111]  [<ffffffff8109687a>] process_one_work+0x1aa/0x440
+[ 1480.528112]  [<ffffffff81096b5b>] worker_thread+0x4b/0x4c0
+[ 1480.528113]  [<ffffffff81096b10>] ? process_one_work+0x440/0x440
+[ 1480.528115]  [<ffffffff8109ccd8>] kthread+0xd8/0xf0
+[ 1480.528116]  [<ffffffff8109cc00>] ? kthread_create_on_node+0x1a0/0x1a0
+[ 1480.528118]  [<ffffffff817fd38f>] ret_from_fork+0x3f/0x70
+[ 1480.528119]  [<ffffffff8109cc00>] ? kthread_create_on_node+0x1a0/0x1a0
+[ 1480.528120] ---[ end trace 83b6c8059d499e87 ]---
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1450786510.e1174.15482
+Date: Tue, 22 Dec 2015 12:15:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau GPU locks up under memory pressure"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81690#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau GPU locks up under memory pressure"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81690">bug 81690</a>
+              from <span class="vcard"><a class="email" href="mailto:philippe.coval.pro&#64;gmail.com" title="Philippe &quot;RzR&quot; Coval &lt;philippe.coval.pro&#64;gmail.com&gt;"> <span class="fn">Philippe &quot;RzR&quot; Coval</span></a>
+</span></b>
+        <pre>I think I am also affected by this nouveau bug, on :
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GK106 [GeForce GTX 645
+OEM] (rev a1)
+
+
+Now I have installed koops,
+I can provide more traces or data if anyone want to tell me what to do.
+
+
+[ 1480.528031] ------------[ cut here ]------------
+[ 1480.528033] WARNING: CPU: 0 PID: 4 at
+/home/kernel/COD/linux/include/drm/drm_crtc.h:1565
+drm_helper_choose_crtc_dpms+0x93/0xa0 [drm_kms_helper]()
+[ 1480.528034] Modules linked in: bnep rfcomm bluetooth uvcvideo joydev
+videobuf2_vmalloc videobuf2_memops videobuf2_v4l2 videobuf2_core v4l2_common
+intel_rapl videodev x86_pkg_temp_thermal media intel_powerclamp input_leds
+coretemp kvm_intel kvm irqbypass snd_hda_codec_hdmi snd_hda_codec_realtek
+snd_hda_codec_generic snd_hda_intel snd_hda_codec snd_hda_core snd_hwdep mei_me
+dcdbas snd_pcm snd_seq_midi snd_seq_midi_event snd_rawmidi snd_seq
+snd_seq_device snd_timer snd soundcore mei shpchp lpc_ich 8250_fintek mac_hid
+serio_raw binfmt_misc parport_pc ppdev lp parport drbg ansi_cprng dm_crypt
+hid_generic usbhid hid uas usb_storage nouveau mxm_wmi wmi i2c_algo_bit ttm
+drm_kms_helper crct10dif_pclmul crc32_pclmul syscopyarea sysfillrect sysimgblt
+fb_sys_fops aesni_intel aes_x86_64 lrw gf128mul glue_helper e1000e drm
+ablk_helper cryptd psmouse ahci ptp libahci pps_core video fjes
+[ 1480.528054] CPU: 0 PID: 4 Comm: kworker/0:0 Tainted: G        W      
+4.4.0-999-generic #201512202100
+[ 1480.528055] Hardware name: Dell Inc. OptiPlex 9020/0PC5F7, BIOS A02
+08/15/2013
+[ 1480.528060] Workqueue: events nvif_notify_work [nouveau]
+[ 1480.528061]  0000000000000000 0000000097f6c821 ffff88040b663d10
+ffffffff813c9124
+[ 1480.528062]  0000000000000000 ffff88040b663d48 ffffffff8107db92
+ffff880035ec0000
+[ 1480.528063]  ffff880035ecb000 ffff880035ecb000 0000000000000003
+0000000000000000
+[ 1480.528064] Call Trace:
+[ 1480.528066]  [&lt;ffffffff813c9124&gt;] dump_stack+0x44/0x60
+[ 1480.528067]  [&lt;ffffffff8107db92&gt;] warn_slowpath_common+0x82/0xc0
+[ 1480.528068]  [&lt;ffffffff8107dcda&gt;] warn_slowpath_null+0x1a/0x20
+[ 1480.528070]  [&lt;ffffffffc0263353&gt;] drm_helper_choose_crtc_dpms+0x93/0xa0
+[drm_kms_helper]
+[ 1480.528072]  [&lt;ffffffffc02633d7&gt;] drm_helper_connector_dpms+0x77/0x100
+[drm_kms_helper]
+[ 1480.528088]  [&lt;ffffffffc038eb70&gt;] ? nv50_display_crtc_get+0x20/0x20
+[nouveau]
+[ 1480.528102]  [&lt;ffffffffc038b53b&gt;] nouveau_connector_hotplug+0x3b/0xb0
+[nouveau]
+[ 1480.528108]  [&lt;ffffffffc02eaa77&gt;] nvif_notify_work+0x27/0xa0 [nouveau]
+[ 1480.528109]  [&lt;ffffffff81094f6d&gt;] ? pwq_dec_nr_in_flight+0x4d/0xa0
+[ 1480.528111]  [&lt;ffffffff8109687a&gt;] process_one_work+0x1aa/0x440
+[ 1480.528112]  [&lt;ffffffff81096b5b&gt;] worker_thread+0x4b/0x4c0
+[ 1480.528113]  [&lt;ffffffff81096b10&gt;] ? process_one_work+0x440/0x440
+[ 1480.528115]  [&lt;ffffffff8109ccd8&gt;] kthread+0xd8/0xf0
+[ 1480.528116]  [&lt;ffffffff8109cc00&gt;] ? kthread_create_on_node+0x1a0/0x1a0
+[ 1480.528118]  [&lt;ffffffff817fd38f&gt;] ret_from_fork+0x3f/0x70
+[ 1480.528119]  [&lt;ffffffff8109cc00&gt;] ? kthread_create_on_node+0x1a0/0x1a0
+[ 1480.528120] ---[ end trace 83b6c8059d499e87 ]---</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1450786510.e1174.15482--
+
+--===============1827985567==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1827985567==--
