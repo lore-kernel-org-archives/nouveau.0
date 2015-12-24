@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93454] Can't build with LLVM/clang 3.7.0 - SSSE3
- instruction set not enabled
-Date: Wed, 23 Dec 2015 10:42:43 +0000
-Message-ID: <bug-93454-8800-Id2bAD6sYh@http.bugs.freedesktop.org/>
-References: <bug-93454-8800@http.bugs.freedesktop.org/>
+From: Thomas Martitz <kugel-UCKwuKHb1aVAfugRpC6u6w@public.gmane.org>
+Subject: Re: [RFC PATCH v2 0/7] stabilize kepler reclocking
+Date: Fri, 25 Dec 2015 00:08:05 +0100
+Message-ID: <567C7AD5.9050000@rockbox.org>
+References: <1449073474-3445-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0369877759=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93454-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1449073474-3445-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,169 +20,45 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0369877759==
-Content-Type: multipart/alternative; boundary="1450867363.ae5DD21.10028"; charset="UTF-8"
-
-
---1450867363.ae5DD21.10028
-Date: Wed, 23 Dec 2015 10:42:43 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93454
-
-Jose Fonseca <jfonseca-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |NOTOURBUG
-
---- Comment #8 from Jose Fonseca <jfonseca-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org> ---
-(In reply to Tomasz Pawe=C5=82 Gajc from comment #7)
-> Hi, thanks for the workaround
-> I found this bug report https://llvm.org/bugs/show_bug.cgi?id=3D24990 and=
- i
-> was paring commits for llvm and clang and i did not found anything that
-> would corresponds to above bug.
-
-It looks like they had fixed this already before the bug report.
-
-From the git history, the fix is=20
-
-=20
-https://github.com/llvm-mirror/clang/commit/41885d36e85ead75a1d18ef7d2f4366=
-3f90ed67e
-
-Not sure what clang version got it in the end.
-
-But given this has already been fixed in Clang, I think we shouldn't fix it=
- in
-Mesa, otherwise we'll need complex logic to detect exactly which clang vers=
-ions
-support or not this.
-
-OpenMandriva Cooker made the decision to use LLVM/clang 3.7.0 as default
-compiler, so they should crossport any fixes necessary to keep light on.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1450867363.ae5DD21.10028
-Date: Wed, 23 Dec 2015 10:42:43 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jfonseca&=
-#64;vmware.com" title=3D"Jose Fonseca &lt;jfonseca&#64;vmware.com&gt;"> <sp=
-an class=3D"fn">Jose Fonseca</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - Can't build with LLVM/clang 3.7.0 - SSSE3 =
-instruction set not enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454">bug 93454<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTOURBUG
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - Can't build with LLVM/clang 3.7.0 - SSSE3 =
-instruction set not enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454#c8">Comment=
- # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - Can't build with LLVM/clang 3.7.0 - SSSE3 =
-instruction set not enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93454">bug 93454<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jfonseca&#64;vmware.com" title=3D"Jose Fonseca &lt;jfonseca&#64;vmware.com&=
-gt;"> <span class=3D"fn">Jose Fonseca</span></a>
-</span></b>
-        <pre>(In reply to Tomasz Pawe=C5=82 Gajc from <a href=3D"show_bug.c=
-gi?id=3D93454#c7">comment #7</a>)
-<span class=3D"quote">&gt; Hi, thanks for the workaround
-&gt; I found this bug report <a href=3D"https://llvm.org/bugs/show_bug.cgi?=
-id=3D24990">https://llvm.org/bugs/show_bug.cgi?id=3D24990</a> and i
-&gt; was paring commits for llvm and clang and i did not found anything that
-&gt; would corresponds to above bug.</span >
-
-It looks like they had fixed this already before the bug report.
-
-From the git history, the fix is=20
-
-=20
-<a href=3D"https://github.com/llvm-mirror/clang/commit/41885d36e85ead75a1d1=
-8ef7d2f43663f90ed67e">https://github.com/llvm-mirror/clang/commit/41885d36e=
-85ead75a1d18ef7d2f43663f90ed67e</a>
-
-Not sure what clang version got it in the end.
-
-But given this has already been fixed in Clang, I think we shouldn't fix it=
- in
-Mesa, otherwise we'll need complex logic to detect exactly which clang vers=
-ions
-support or not this.
-
-OpenMandriva Cooker made the decision to use LLVM/clang 3.7.0 as default
-compiler, so they should crossport any fixes necessary to keep light on.</p=
-re>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1450867363.ae5DD21.10028--
-
---===============0369877759==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0369877759==--
+SGVsbG8sCgpmaXJzdCBvZiBhbGwsIEknbSBuZXcgdG8gdGhpcyBsaXN0LCBzbyBwbGVhc2UgYmVl
+ciB3aXRoIG1lLiBPbiB0aGUgb3RoZXIgCmhhbmQsIEknbSBhIGdyYWR1YXRlIGNvbXB1dGVyIHN5
+c3RlbXMgZW5naW5lZXIgd2l0aCBleHBlcmllbmNlIGluIExpbnV4IAprZXJuZWwgY29kZSwgc28g
+SSBjYW4gaG9wZWZ1bGx5IHByb3ZpZGUgdXNlZnVsIGlucHV0L2Fzc2lzdGFuY2Ugb24gdGhpcyAK
+dG9waWMuCgpJJ20gcmVwbHlpbmcgYmVjYXVzZSBJIHRyaWVkIHlvdXIgcGF0Y2hlcyBvbiBteSBz
+ZXR1cCBpbiB0aGUgaG9wZSB0aGV5J2QgCmZpeCBteSBsb2NrdXBzLiBVbmZvcnR1bmF0ZWx5IHRo
+ZXkgZGlkbid0LCBzbyBJJ20gb2ZmZXJpbmcgZGVidWcgCmFzc2lzdGFuY2UgdG8gbWFrZSBteSBz
+eXN0ZW0gd29yayBhcyB3ZWxsLgoKSGVyZSdzIG15IHNldHVwOgotIEFyY2ggTGludXgKLSBMZW5v
+dm8gVGhpbmtwYWQgeDIzMCBsYXB0b3Agd2l0aCBpbnRlZ3JhdGVkIGludGVsIChpdnkgYnJpZGdl
+KQotIEV4dGVybmFsIEdQVSAoZUdQVSkgY29ubmVjdGVkIHZpYSBFeHByZXNzQ2FyZCA8LT4gUENJ
+ZSBhZGFwdG9yLCBhIApudmlkaWEgR2VGb3JjZSA2NTAgVGkgKEtlcGxlcikuIFRoZSBQQ0llIGxp
+bmsgaXMgdW5mb3J0dW5hdGVseSBsaW1pdGVkIAp0byBHZW4gMSBhbmQgb25lIGxhbmUuCi0gUFJJ
+TUUgd2l0aCBlR1BVIGFzIHByaW1hcnkgKGZvbGxvd2luZyB0aGlzIGd1aWRlOiAKaHR0cHM6Ly93
+aWtpLmFyY2hsaW51eC5vcmcvaW5kZXgucGhwL1BSSU1FI0Rpc2NyZXRlX0NhcmRfYXNfUHJpbWFy
+eV9HUFUpCi0gVGhpcyBzZXR1cCB3b3JrcyBmaW5lIHVuZGVyIFdpbmRvd3MgMTAsIGFuZCB0aGUg
+ZUdQVSBnaXZlcyBhIGxvdCAKYmV0dGVyIHBlcmZvcm1hbmNlIHRoYW4gdGhlIGludGVsIGNoaXAg
+ZXZlbiB3aXRoIHRoZSBsaW1pdGVkIFBDSWUgbGluay4KLSBJIGNvbXBpbGVkIG5vdXZlYXUua28s
+IGFuZCBub3RoaW5nIGVsc2UsIGZyb20geW91ciBvdXQtb2YtdHJlZSBmb3JrIAooYnJhbmNoIHN0
+YWJsZV9yZWNsb2NraW5nX2tlcGxlciwgSEVBRCBhdCBiYzQ3NjdjIChiaW9zL2ZhbjogaGFyZGNv
+ZGUgCnRoZSBmYW4gbW9kZSB0byBsaW5lYXIpKQoKV2l0aCBhbmQgd2l0aG91dCB5b3VyIHBhdGNo
+ZXMsIEkgZ2V0IGxvY2t1cHMgd2hlbiBhdHRlbXB0aW5nIHRvIHJlY2xvY2sgCnRvIHRoZSBoaWdo
+ZXN0IGxldmVsIChlY2hvIDBmID4gL3N5cy8uLi4vcHN0YXRlKSBhbmQgdGhlbiBydW5uaW5nIGFu
+IAphY3R1YWwgZ2FtZSAoRG90YSAyIGluIHRoaXMgaW5zdGFuY2UpLiBSZWNsb2NrIGFzIHN1Y2gg
+YXBwZWFycyB0byB3b3JrIApmaW5lIGluaXRpYWxseSwgYnV0IHRoZSB3aG9sZSBzeXN0ZW0gbG9j
+a3MgdXAgYXMgc29vbiBhcyBJIHN0YXJ0IERvdGEgMi4gCmdseGdlYXJzIHJ1bnMgZmluZS4gZWNo
+byAwYSA+IC9zeXMvLi4uL3BzdGF0ZSB3b3JrcyBhcyB3ZWwsIGhvd2V2ZXIgdGhlIApwZXJmb3Jt
+YW5jZSBpcyBwb29yLgoKSSBzdXNwZWN0ZWQgdGhhdCByZWNsb2NraW5nIGRvZXNuJ3Qgd29yayBm
+dWxseSBpbiB0aGF0IHRoZSBjb3JlIHZvbHRhZ2UgCmlzbid0IHJhbXBlZCBoaWdoIGVub3VnaCwg
+c28gdGhhdCB0aGUgR1BVIChhbmQgcmVzdCBvZiB0aGUgc3lzdGVtKSBsb2NrcyAKdXAgd2hlbiB0
+aGUgbG9hZCBnb2VzIGFib3ZlIHNvbWUgdGhyZXNob2xkIChnbHhnZWFycyB3b3JrcyBhZnRlciBh
+bGwpLiAKVW5mb3J0dW5hdGVseSwgSSBjYW4ndCBzZWUgYW55IGltcHJvdmVtZW50IHdpdGggeW91
+ciBwYXRjaGVzLgoKRldJVywgSSBtYWRlIHN1cmUgdGhhdCB0aGUgc2VsZi1jb21waWxlZCBub3V2
+ZWF1LmtvIGlzIHVzZWQgYnkgcnVubmluZyAKbWFrZSBpbnN0YWxsIGFuZCB0aGVuIGRlbGV0aW5n
+IHRoZSBkaXN0cm8ncyBzaGlwcGVkIG5vdXZlYXUua28uIEkgCnZlcmlmaWVkIHRoaXMgYnkgcnVu
+bmluZyBtb2Rwcm9iZSAtbnYgbm91dmVhdSAoaXQgYWxzbyBzaG93cyB0aGF0IApwc3RhdGU9MSBp
+cyBjb3JyZWN0bHkgcGFzc2VkIHRvIGl0KS4gVGhlIG5vdXZlYXUua28gKC5rby5neiBhY3R1YWxs
+eSkgaXMgCnBsYWNlZCB1bmRlciAvbGliL21vZHVsZXMvNC4zLjMtMi1BUkNIL2V4dHJhL25vdXZl
+YXUua28uZ3ouCgpUaGFua3MgZm9yIHlvdXIgb25nb2luZyBlZmZvcnQgdG8gaW1wcm92ZSB0aGUg
+c2l0dWF0aW9uIG9uIG52aWRpYSBjYXJkcy4gCkkgaG9wZSBJIGNhbiBiZSBvZiBhbnkgaGVscC4K
+CkJlc3QgcmVnYXJkcy4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
