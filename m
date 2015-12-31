@@ -1,16 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [RFC PATCH v2 0/7] stabilize kepler reclocking
-Date: Thu, 31 Dec 2015 14:47:27 -0500
-Message-ID: <CAKb7UvhERoeBQTtMs8zWq0y=owA8dkr4NLBAWYVLYaFop9bZSg@mail.gmail.com>
-References: <1449073474-3445-1-git-send-email-nouveau@karolherbst.de>
- <567C7AD5.9050000@rockbox.org> <567CEDB4.1010504@rockbox.org>
- <1617684914.182932.1451068655247.JavaMail.open-xchange@www.ud-mail.de>
- <56845DD0.6010508@rockbox.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93547] Built failed for "Mesa (master): nouveau:
+ remove use of deprecated nouveau_device:: drm_version"
+Date: Thu, 31 Dec 2015 21:32:13 +0000
+Message-ID: <bug-93547-8800-IoJ0kea25s@http.bugs.freedesktop.org/>
+References: <bug-93547-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0396329559=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56845DD0.6010508-UCKwuKHb1aVAfugRpC6u6w@public.gmane.org>
+In-Reply-To: <bug-93547-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +17,84 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Thomas Martitz <kugel-UCKwuKHb1aVAfugRpC6u6w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBEZWMgMzAsIDIwMTUgYXQgNTo0MiBQTSwgVGhvbWFzIE1hcnRpdHogPGt1Z2VsQHJv
-Y2tib3gub3JnPiB3cm90ZToKPiBBbSAyNS4xMi4yMDE1IHVtIDE5OjM3IHNjaHJpZWIgS2Fyb2wg
-SGVyYnN0Ogo+Pgo+PiBIaSBUaG9tYXMsCj4+Cj4+IHRoYW5rcyBmb3IgdHJ5aW5nIHRoZSBicmFu
-Y2ggb3V0LiBDb3VsZCB5b3UgcGxlYXNlIHNlbmQgbWUgeW91ciB2Ymlvcz8KPj4KPj4gWW91IGNh
-biBnZXQgaXQgdGhyb3VnaCBpbnN0YWxsaW5nIGVudnl0b29scyBhbmQgbnZhZ2V0YmlvcyBvciBp
-bnNpZGUKPj4gL3N5cy9rZXJuZWwvZGVidWcvZHJpLyovdmJpb3Mucm9tCj4+Cj4+IFRoZSBsb29r
-dXBzIGNhbiBhY3R1YWxseSBoYXBwZW4gZHVlIHRvIHVuZGVydm9sdGluZywgbXkgYnJhbmNoIGp1
-c3QgZml4Cj4+IHRoZQo+PiBpc3N1ZSB0aGF0IG5vdXZlYXUgZG9lc24ndCByZWNsb2NrIGF0IGFs
-bC4KPj4gQnV0IGZpeGVzIHJlbGF0ZWQgdG8gdGhhdCBhcmUgYWxyZWFkeSBpbiBkaXNjdXNzaW9u
-IGFuZCB3aWxsIG5lZWQgc29tZQo+PiB0aW1lIHRvCj4+IGFjdHVhbGx5IGxhbmQuCj4KPgo+IFBy
-b2JhYmx5IGV4cGVjdGVkLCBidXQgdGhlcmUgd2FzIG1vcmUgdGhhbiBvbmUgdmJpb3Mucm9tIGZp
-bGUuIEVhY2ggaXMgMTY3S0IKPiBiaWcuIEkgYXR0YWNoZWQgYWxsIG9mIHRoZW0uCj4KPiBUaGUg
-ZmlsZW5hbWVzIGFyZSBkZXJpdmVkIGZyb20gdGhlIGxvY2F0aW9uIGluc2lkZSBkZWJ1Z2ZzLgo+
-Cj4gIyBscyAvc3lzL2tlcm5lbC9kZWJ1Zy9kcmkvKi92Ymlvcy5yb20KPiAvc3lzL2tlcm5lbC9k
-ZWJ1Zy9kcmkvMS92Ymlvcy5yb20KPiAvc3lzL2tlcm5lbC9kZWJ1Zy9kcmkvMTI5L3ZiaW9zLnJv
-bS9zeXMva2VybmVsL2RlYnVnL2RyaS82NS92Ymlvcy5yb20KCkkgYmVsaWV2ZSB0aGF0J3MganVz
-dCBhbiBhcnRpZmFjdCBvZiBob3cgdGhlIGRlYnVnZnMgc3R1ZmYgaXMgaG9va2VkCnVwIC0tIGl0
-J3MgYSBzaW5nbGUgdmJpb3MuIEJ1dCBtdWx0aXBsZSBEUkkgbm9kZXMsIHNvIG11bHRpcGxlIGRl
-YnVnZnMKZW50cmllcy4gQWxsIDMgc2hvdWxkIGJlIGJpdC1mb3ItYml0IGlkZW50aWNhbC4KCiAg
-LWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0396329559==
+Content-Type: multipart/alternative; boundary="1451597532.fD2B0.21367"; charset="UTF-8"
+
+
+--1451597532.fD2B0.21367
+Date: Thu, 31 Dec 2015 21:32:12 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93547
+
+--- Comment #2 from davidtecher <davidtecher-Qt13gs6zZMY@public.gmane.org> ---
+Yes both drm and nouveau are synch'ed with their own master.
+
+I tested/built drm/nouveau with the latest versions and got this issue
+
+I am not a expert but could it be related to the kernel version that I am
+using. I am on Kernel 4.1.13
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1451597532.fD2B0.21367
+Date: Thu, 31 Dec 2015 21:32:12 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Built failed for &quot;Mesa (master): nouveau: remove use of deprecated nouveau_device:: drm_version&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93547#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Built failed for &quot;Mesa (master): nouveau: remove use of deprecated nouveau_device:: drm_version&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93547">bug 93547</a>
+              from <span class="vcard"><a class="email" href="mailto:davidtecher&#64;yahoo.fr" title="davidtecher &lt;davidtecher&#64;yahoo.fr&gt;"> <span class="fn">davidtecher</span></a>
+</span></b>
+        <pre>Yes both drm and nouveau are synch'ed with their own master.
+
+I tested/built drm/nouveau with the latest versions and got this issue
+
+I am not a expert but could it be related to the kernel version that I am
+using. I am on Kernel 4.1.13</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1451597532.fD2B0.21367--
+
+--===============0396329559==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0396329559==--
