@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93563] Hack'n'Slash hangs with Nouveau driver
-Date: Sat, 02 Jan 2016 23:42:01 +0000
-Message-ID: <bug-93563-8800-nSSADcKwsc@http.bugs.freedesktop.org/>
+Date: Sat, 02 Jan 2016 23:47:10 +0000
+Message-ID: <bug-93563-8800-bCBr3Rbk91@http.bugs.freedesktop.org/>
 References: <bug-93563-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0046067923=="
+Content-Type: multipart/mixed; boundary="===============1562028610=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93563-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,36 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0046067923==
-Content-Type: multipart/alternative; boundary="1451778121.AAc2fE0.28296"; charset="UTF-8"
+--===============1562028610==
+Content-Type: multipart/alternative; boundary="1451778430.66c0e1.29577"; charset="UTF-8"
 
 
---1451778121.AAc2fE0.28296
-Date: Sat, 2 Jan 2016 23:42:01 +0000
+--1451778430.66c0e1.29577
+Date: Sat, 2 Jan 2016 23:47:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93563
 
---- Comment #2 from Steven Zakulec <spzakulec-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I just tested Hack'n'Slash with the Nvidia driver to be sure I wasn't
-remembering the wrong thing, and that it really did work with that driver.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Yeah, I'm sure it works with blob drivers... they probably move some of the
+resources to sysmem. Nouveau sadly doesn't support that right now. It just
+hopes for the best, and when a submit fails, you end up with a ton of
+additional errors due to things not being where they are supposed to be.
 
-With Nvidia's 340.96 driver, the game runs just fine, and gets past that
-trouble spot without an issue.
+Making it more resilient to errors is on my list... better resource management
+is too, but even further down =/
 
-Is there anything else I can do to help you figure out what's going on here,
-and hopefully end up with the same behavior for both drivers??
-
-Thanks!
+Your best bet for now is turning down some sort of quality knob so that the
+game doesn't use as many resources. FWIW it does say it wants 512MB VRAM while
+you only have 256...
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1451778121.AAc2fE0.28296
-Date: Sat, 2 Jan 2016 23:42:01 +0000
+--1451778430.66c0e1.29577
+Date: Sat, 2 Jan 2016 23:47:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,23 +64,24 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Hack'n'Slash hangs with Nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93563#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93563#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Hack'n'Slash hangs with Nouveau driver"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93563">bug 93563</a>
-              from <span class="vcard"><a class="email" href="mailto:spzakulec&#64;gmail.com" title="Steven Zakulec &lt;spzakulec&#64;gmail.com&gt;"> <span class="fn">Steven Zakulec</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I just tested Hack'n'Slash with the Nvidia driver to be sure I wasn't
-remembering the wrong thing, and that it really did work with that driver.
+        <pre>Yeah, I'm sure it works with blob drivers... they probably move some of the
+resources to sysmem. Nouveau sadly doesn't support that right now. It just
+hopes for the best, and when a submit fails, you end up with a ton of
+additional errors due to things not being where they are supposed to be.
 
-With Nvidia's 340.96 driver, the game runs just fine, and gets past that
-trouble spot without an issue.
+Making it more resilient to errors is on my list... better resource management
+is too, but even further down =/
 
-Is there anything else I can do to help you figure out what's going on here,
-and hopefully end up with the same behavior for both drivers??
-
-Thanks!</pre>
+Your best bet for now is turning down some sort of quality knob so that the
+game doesn't use as many resources. FWIW it does say it wants 512MB VRAM while
+you only have 256...</pre>
         </div>
       </p>
       <hr>
@@ -92,9 +94,9 @@ Thanks!</pre>
     </body>
 </html>
 
---1451778121.AAc2fE0.28296--
+--1451778430.66c0e1.29577--
 
---===============0046067923==
+--===============1562028610==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0046067923==--
+--===============1562028610==--
