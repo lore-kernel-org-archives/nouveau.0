@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93563] Hack'n'Slash hangs with Nouveau driver
-Date: Sat, 02 Jan 2016 18:50:00 +0000
-Message-ID: <bug-93563-8800-mEL88RKTv3@http.bugs.freedesktop.org/>
-References: <bug-93563-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] gr/gf100: provide a bit more info for various
+	errors
+Date: Sat,  2 Jan 2016 17:46:43 -0500
+Message-ID: <1451774803-9438-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1011605443=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93563-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,84 +16,103 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1011605443==
-Content-Type: multipart/alternative; boundary="1451760599.D6F2da1.11220"; charset="UTF-8"
-
-
---1451760599.D6F2da1.11220
-Date: Sat, 2 Jan 2016 18:49:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93563
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The error appears to indicate that you ran out of VRAM... nouveau handles this
-in a less-than-graceful manner as you've observed. I would recommend trying to
-turn down graphics quality settings in the game if that's possible.
-
-You might also try a more recent kernel, although it is unlikely to affect the
-issue.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1451760599.D6F2da1.11220
-Date: Sat, 2 Jan 2016 18:49:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Hack'n'Slash hangs with Nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93563#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Hack'n'Slash hangs with Nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93563">bug 93563</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>The error appears to indicate that you ran out of VRAM... nouveau handles this
-in a less-than-graceful manner as you've observed. I would recommend trying to
-turn down graphics quality settings in the game if that's possible.
-
-You might also try a more recent kernel, although it is unlikely to affect the
-issue.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1451760599.D6F2da1.11220--
-
---===============1011605443==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1011605443==--
+U2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KIGRy
+bS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMgfCA4MSArKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKystLS0tLQogMSBmaWxlIGNoYW5nZWQsIDcxIGluc2VydGlvbnMoKyksIDEw
+IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dm
+MTAwLmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jCmluZGV4IDQxNDUyMWIu
+Ljc5NGUyNDkgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMK
+KysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwpAQCAtODU2LDcgKzg1Niw0
+MSBAQCBnZjEwMF9ncl91bml0cyhzdHJ1Y3QgbnZrbV9nciAqYmFzZSkKIAlyZXR1cm4gY2ZnOwog
+fQogCitzdGF0aWMgY29uc3Qgc3RydWN0IG52a21fYml0ZmllbGQgZ2YxMDBfZGlzcGF0Y2hfZXJy
+b3JbXSA9IHsKKwl7IDB4MDAwMDAwMDEsICJJTkpFQ1RFRF9CVU5ETEVfRVJST1IiIH0sCisJeyAw
+eDAwMDAwMDAyLCAiQ0xBU1NfU1VCQ0hfTUlTTUFUQ0giIH0sCisJeyAweDAwMDAwMDA0LCAiU1VC
+Q0hTV19EVVJJTkdfTk9USUZZIiB9LAorCXt9Cit9OworCitzdGF0aWMgY29uc3Qgc3RydWN0IG52
+a21fYml0ZmllbGQgZ2YxMDBfbTJtZl9lcnJvcltdID0geworCXsgMHgwMDAwMDAwMSwgIlBVU0hf
+VE9PX01VQ0hfREFUQSIgfSwKKwl7IDB4MDAwMDAwMDIsICJQVVNIX05PVF9FTk9VR0hfREFUQSIg
+fSwKKwl7fQorfTsKKworc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX2JpdGZpZWxkIGdmMTAwX3Vu
+azZfZXJyb3JbXSA9IHsKKwl7IDB4MDAwMDAwMDEsICJURU1QX1RPT19TTUFMTCIgfSwKKwl7fQor
+fTsKKworc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX2JpdGZpZWxkIGdmMTAwX2NjYWNoZV9lcnJv
+cltdID0geworCXsgMHgwMDAwMDAwMSwgIklOVFIiIH0sCisJeyAweDAwMDAwMDAyLCAiTERDT05T
+VF9PT0IiIH0sCisJe30KK307CisKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgbnZrbV9iaXRmaWVsZCBn
+ZjEwMF9tYWNyb19lcnJvcltdID0geworCXsgMHgwMDAwMDAwMSwgIlRPT19GRVdfUEFSQU1TIiB9
+LAorCXsgMHgwMDAwMDAwMiwgIlRPT19NQU5ZX1BBUkFNUyIgfSwKKwl7IDB4MDAwMDAwMDQsICJJ
+TExFR0FMX09QQ09ERSIgfSwKKwl7IDB4MDAwMDAwMDgsICJET1VCTEVfQlJBTkNIIiB9LAorCXsg
+MHgwMDAwMDAxMCwgIldBVENIRE9HIiB9LAorCXt9Cit9OworCiBzdGF0aWMgY29uc3Qgc3RydWN0
+IG52a21fYml0ZmllbGQgZ2sxMDRfc2tlZF9lcnJvcltdID0geworCXsgMHgwMDAwMDA0MCwgIkNU
+QV9SRVNVTUUiIH0sCiAJeyAweDAwMDAwMDgwLCAiQ09OU1RBTlRfQlVGRkVSX1NJWkUiIH0sCiAJ
+eyAweDAwMDAwMjAwLCAiTE9DQUxfTUVNT1JZX1NJWkVfUE9TIiB9LAogCXsgMHgwMDAwMDQwMCwg
+IkxPQ0FMX01FTU9SWV9TSVpFX05FRyIgfSwKQEAgLTg2Niw2ICs5MDAsOCBAQCBzdGF0aWMgY29u
+c3Qgc3RydWN0IG52a21fYml0ZmllbGQgZ2sxMDRfc2tlZF9lcnJvcltdID0gewogCXsgMHgwMDA0
+MDAwMCwgIlRPVEFMX1RIUkVBRFMiIH0sCiAJeyAweDAwMTAwMDAwLCAiUFJPR1JBTV9PRkZTRVQi
+IH0sCiAJeyAweDAwMjAwMDAwLCAiU0hBUkVEX01FTU9SWV9TSVpFIiB9LAorCXsgMHgwMDgwMDAw
+MCwgIkNUQV9USFJFQURfRElNRU5TSU9OX1pFUk8iIH0sCisJeyAweDAxMDAwMDAwLCAiTUVNT1JZ
+X1dJTkRPV19PVkVSTEFQIiB9LAogCXsgMHgwMjAwMDAwMCwgIlNIQVJFRF9DT05GSUdfVE9PX1NN
+QUxMIiB9LAogCXsgMHgwNDAwMDAwMCwgIlRPVEFMX1JFR0lTVEVSX0NPVU5UIiB9LAogCXt9CkBA
+IC0xMDM1LDEyICsxMDcxLDE2IEBAIGdmMTAwX2dyX3RyYXBfaW50cihzdHJ1Y3QgZ2YxMDBfZ3Ig
+KmdyKQogewogCXN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gJmdyLT5iYXNlLmVuZ2luZS5z
+dWJkZXY7CiAJc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBzdWJkZXYtPmRldmljZTsKKwlj
+aGFyIGVycm9yWzEyOF07CiAJdTMyIHRyYXAgPSBudmttX3JkMzIoZGV2aWNlLCAweDQwMDEwOCk7
+CiAJaW50IHJvcCwgZ3BjOwogCiAJaWYgKHRyYXAgJiAweDAwMDAwMDAxKSB7CiAJCXUzMiBzdGF0
+ID0gbnZrbV9yZDMyKGRldmljZSwgMHg0MDQwMDApOwotCQludmttX2Vycm9yKHN1YmRldiwgIkRJ
+U1BBVENIICUwOHhcbiIsIHN0YXQpOworCisJCW52a21fc25wcmludGJmKGVycm9yLCBzaXplb2Yo
+ZXJyb3IpLCBnZjEwMF9kaXNwYXRjaF9lcnJvciwKKwkJCSAgICAgICBzdGF0ICYgMHgzZmZmZmZm
+Zik7CisJCW52a21fZXJyb3Ioc3ViZGV2LCAiRElTUEFUQ0ggJTA4eCBbJXNdXG4iLCBzdGF0LCBl
+cnJvcik7CiAJCW52a21fd3IzMihkZXZpY2UsIDB4NDA0MDAwLCAweGMwMDAwMDAwKTsKIAkJbnZr
+bV93cjMyKGRldmljZSwgMHg0MDAxMDgsIDB4MDAwMDAwMDEpOwogCQl0cmFwICY9IH4weDAwMDAw
+MDAxOwpAQCAtMTA0OCw3ICsxMDg4LDExIEBAIGdmMTAwX2dyX3RyYXBfaW50cihzdHJ1Y3QgZ2Yx
+MDBfZ3IgKmdyKQogCiAJaWYgKHRyYXAgJiAweDAwMDAwMDAyKSB7CiAJCXUzMiBzdGF0ID0gbnZr
+bV9yZDMyKGRldmljZSwgMHg0MDQ2MDApOwotCQludmttX2Vycm9yKHN1YmRldiwgIk0yTUYgJTA4
+eFxuIiwgc3RhdCk7CisKKwkJbnZrbV9zbnByaW50YmYoZXJyb3IsIHNpemVvZihlcnJvciksIGdm
+MTAwX20ybWZfZXJyb3IsCisJCQkgICAgICAgc3RhdCAmIDB4M2ZmZmZmZmYpOworCQludmttX2Vy
+cm9yKHN1YmRldiwgIk0yTUYgJTA4eCBbJXNdXG4iLCBzdGF0LCBlcnJvcik7CisKIAkJbnZrbV93
+cjMyKGRldmljZSwgMHg0MDQ2MDAsIDB4YzAwMDAwMDApOwogCQludmttX3dyMzIoZGV2aWNlLCAw
+eDQwMDEwOCwgMHgwMDAwMDAwMik7CiAJCXRyYXAgJj0gfjB4MDAwMDAwMDI7CkBAIC0xMDU2LDcg
+KzExMDAsMTAgQEAgZ2YxMDBfZ3JfdHJhcF9pbnRyKHN0cnVjdCBnZjEwMF9nciAqZ3IpCiAKIAlp
+ZiAodHJhcCAmIDB4MDAwMDAwMDgpIHsKIAkJdTMyIHN0YXQgPSBudmttX3JkMzIoZGV2aWNlLCAw
+eDQwODAzMCk7Ci0JCW52a21fZXJyb3Ioc3ViZGV2LCAiQ0NBQ0hFICUwOHhcbiIsIHN0YXQpOwor
+CisJCW52a21fc25wcmludGJmKGVycm9yLCBzaXplb2YoZXJyb3IpLCBnZjEwMF9tMm1mX2Vycm9y
+LAorCQkJICAgICAgIHN0YXQgJiAweDNmZmZmZmZmKTsKKwkJbnZrbV9lcnJvcihzdWJkZXYsICJD
+Q0FDSEUgJTA4eCBbJXNdXG4iLCBzdGF0LCBlcnJvcik7CiAJCW52a21fd3IzMihkZXZpY2UsIDB4
+NDA4MDMwLCAweGMwMDAwMDAwKTsKIAkJbnZrbV93cjMyKGRldmljZSwgMHg0MDAxMDgsIDB4MDAw
+MDAwMDgpOwogCQl0cmFwICY9IH4weDAwMDAwMDA4OwpAQCAtMTA2NCw3ICsxMTExLDggQEAgZ2Yx
+MDBfZ3JfdHJhcF9pbnRyKHN0cnVjdCBnZjEwMF9nciAqZ3IpCiAKIAlpZiAodHJhcCAmIDB4MDAw
+MDAwMTApIHsKIAkJdTMyIHN0YXQgPSBudmttX3JkMzIoZGV2aWNlLCAweDQwNTg0MCk7Ci0JCW52
+a21fZXJyb3Ioc3ViZGV2LCAiU0hBREVSICUwOHhcbiIsIHN0YXQpOworCQludmttX2Vycm9yKHN1
+YmRldiwgIlNIQURFUiAlMDh4LCBzcGg6IDB4JTA2eCwgc3RhZ2U6IDB4JTAyeFxuIiwKKwkJCSAg
+IHN0YXQsIHN0YXQgJiAweGZmZmZmZiwgKHN0YXQgPj4gMjQpICYgMHgzZik7CiAJCW52a21fd3Iz
+MihkZXZpY2UsIDB4NDA1ODQwLCAweGMwMDAwMDAwKTsKIAkJbnZrbV93cjMyKGRldmljZSwgMHg0
+MDAxMDgsIDB4MDAwMDAwMTApOwogCQl0cmFwICY9IH4weDAwMDAwMDEwOwpAQCAtMTA3Miw3ICsx
+MTIwLDExIEBAIGdmMTAwX2dyX3RyYXBfaW50cihzdHJ1Y3QgZ2YxMDBfZ3IgKmdyKQogCiAJaWYg
+KHRyYXAgJiAweDAwMDAwMDQwKSB7CiAJCXUzMiBzdGF0ID0gbnZrbV9yZDMyKGRldmljZSwgMHg0
+MDYwMWMpOwotCQludmttX2Vycm9yKHN1YmRldiwgIlVOSzYgJTA4eFxuIiwgc3RhdCk7CisKKwkJ
+bnZrbV9zbnByaW50YmYoZXJyb3IsIHNpemVvZihlcnJvciksIGdmMTAwX3VuazZfZXJyb3IsCisJ
+CQkgICAgICAgc3RhdCAmIDB4M2ZmZmZmZmYpOworCQludmttX2Vycm9yKHN1YmRldiwgIlVOSzYg
+JTA4eCBbJXNdXG4iLCBzdGF0LCBlcnJvcik7CisKIAkJbnZrbV93cjMyKGRldmljZSwgMHg0MDYw
+MWMsIDB4YzAwMDAwMDApOwogCQludmttX3dyMzIoZGV2aWNlLCAweDQwMDEwOCwgMHgwMDAwMDA0
+MCk7CiAJCXRyYXAgJj0gfjB4MDAwMDAwNDA7CkBAIC0xMDgwLDE4ICsxMTMyLDI3IEBAIGdmMTAw
+X2dyX3RyYXBfaW50cihzdHJ1Y3QgZ2YxMDBfZ3IgKmdyKQogCiAJaWYgKHRyYXAgJiAweDAwMDAw
+MDgwKSB7CiAJCXUzMiBzdGF0ID0gbnZrbV9yZDMyKGRldmljZSwgMHg0MDQ0OTApOwotCQludmtt
+X2Vycm9yKHN1YmRldiwgIk1BQ1JPICUwOHhcbiIsIHN0YXQpOworCQl1MzIgcGMgPSBudmttX3Jk
+MzIoZGV2aWNlLCAweDQwNDQ5NCk7CisJCXUzMiBvcCA9IG52a21fcmQzMihkZXZpY2UsIDB4NDA0
+NDljKTsKKworCQludmttX3NucHJpbnRiZihlcnJvciwgc2l6ZW9mKGVycm9yKSwgZ2YxMDBfbWFj
+cm9fZXJyb3IsCisJCQkgICAgICAgc3RhdCAmIDB4MWZmZmZmZmYpOworCQludmttX2Vycm9yKHN1
+YmRldiwgIk1BQ1JPICUwOHggWyVzXSwgcGM6IDB4JTAzeCVzLCBvcDogMHglMDh4XG4iLAorCQkJ
+ICAgc3RhdCwgZXJyb3IsIHBjICYgMHg3ZmYsCisJCQkgICAocGMgJiAweDEwMDAwMDAwKSA/ICIi
+IDogIiAoaW52YWxpZCkiLAorCQkJICAgb3ApOworCiAJCW52a21fd3IzMihkZXZpY2UsIDB4NDA0
+NDkwLCAweGMwMDAwMDAwKTsKIAkJbnZrbV93cjMyKGRldmljZSwgMHg0MDAxMDgsIDB4MDAwMDAw
+ODApOwogCQl0cmFwICY9IH4weDAwMDAwMDgwOwogCX0KIAogCWlmICh0cmFwICYgMHgwMDAwMDEw
+MCkgewotCQl1MzIgc3RhdCA9IG52a21fcmQzMihkZXZpY2UsIDB4NDA3MDIwKSAmIDB4M2ZmZmZm
+ZmY7Ci0JCWNoYXIgc2tlZFsxMjhdOworCQl1MzIgc3RhdCA9IG52a21fcmQzMihkZXZpY2UsIDB4
+NDA3MDIwKTsKIAotCQludmttX3NucHJpbnRiZihza2VkLCBzaXplb2Yoc2tlZCksIGdrMTA0X3Nr
+ZWRfZXJyb3IsIHN0YXQpOwotCQludmttX2Vycm9yKHN1YmRldiwgIlNLRUQ6ICUwOHggWyVzXVxu
+Iiwgc3RhdCwgc2tlZCk7CisJCW52a21fc25wcmludGJmKGVycm9yLCBzaXplb2YoZXJyb3IpLCBn
+azEwNF9za2VkX2Vycm9yLAorCQkJICAgICAgIHN0YXQgJiAweDNmZmZmZmZmKTsKKwkJbnZrbV9l
+cnJvcihzdWJkZXYsICJTS0VEOiAlMDh4IFslc11cbiIsIHN0YXQsIGVycm9yKTsKIAogCQlpZiAo
+c3RhdCkKIAkJCW52a21fd3IzMihkZXZpY2UsIDB4NDA3MDIwLCAweDQwMDAwMDAwKTsKLS0gCjIu
+NC4xMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
