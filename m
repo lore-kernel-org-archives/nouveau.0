@@ -1,12 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH v2] gr/gf100: provide a bit more info for various
-	errors
-Date: Sat,  2 Jan 2016 17:54:51 -0500
-Message-ID: <1451775291-10606-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93563] Hack'n'Slash hangs with Nouveau driver
+Date: Sat, 02 Jan 2016 23:42:01 +0000
+Message-ID: <bug-93563-8800-nSSADcKwsc@http.bugs.freedesktop.org/>
+References: <bug-93563-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0046067923=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93563-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,105 +16,92 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KCnYx
-IC0+IHYyOiB1bmRvIHNsaWdodCBjaGFuZ2UgdG8gU0tFRCBzdGF0IGhhbmRsaW5nLCB3aGljaCB3
-b3VsZCBjYXVzZSB3cml0ZXMKd2hlcmUgdGhlcmUgcHJldmlvdXNseSBtaWdodCBub3QgaGF2ZSBi
-ZWVuIGFueS4KCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jIHwgNzggKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA2OSBpbnNl
-cnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20v
-ZW5naW5lL2dyL2dmMTAwLmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jCmlu
-ZGV4IDQxNDUyMWIuLjFmODEwNjkgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5l
-L2dyL2dmMTAwLmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwpAQCAt
-ODU2LDcgKzg1Niw0MSBAQCBnZjEwMF9ncl91bml0cyhzdHJ1Y3QgbnZrbV9nciAqYmFzZSkKIAly
-ZXR1cm4gY2ZnOwogfQogCitzdGF0aWMgY29uc3Qgc3RydWN0IG52a21fYml0ZmllbGQgZ2YxMDBf
-ZGlzcGF0Y2hfZXJyb3JbXSA9IHsKKwl7IDB4MDAwMDAwMDEsICJJTkpFQ1RFRF9CVU5ETEVfRVJS
-T1IiIH0sCisJeyAweDAwMDAwMDAyLCAiQ0xBU1NfU1VCQ0hfTUlTTUFUQ0giIH0sCisJeyAweDAw
-MDAwMDA0LCAiU1VCQ0hTV19EVVJJTkdfTk9USUZZIiB9LAorCXt9Cit9OworCitzdGF0aWMgY29u
-c3Qgc3RydWN0IG52a21fYml0ZmllbGQgZ2YxMDBfbTJtZl9lcnJvcltdID0geworCXsgMHgwMDAw
-MDAwMSwgIlBVU0hfVE9PX01VQ0hfREFUQSIgfSwKKwl7IDB4MDAwMDAwMDIsICJQVVNIX05PVF9F
-Tk9VR0hfREFUQSIgfSwKKwl7fQorfTsKKworc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX2JpdGZp
-ZWxkIGdmMTAwX3VuazZfZXJyb3JbXSA9IHsKKwl7IDB4MDAwMDAwMDEsICJURU1QX1RPT19TTUFM
-TCIgfSwKKwl7fQorfTsKKworc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX2JpdGZpZWxkIGdmMTAw
-X2NjYWNoZV9lcnJvcltdID0geworCXsgMHgwMDAwMDAwMSwgIklOVFIiIH0sCisJeyAweDAwMDAw
-MDAyLCAiTERDT05TVF9PT0IiIH0sCisJe30KK307CisKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgbnZr
-bV9iaXRmaWVsZCBnZjEwMF9tYWNyb19lcnJvcltdID0geworCXsgMHgwMDAwMDAwMSwgIlRPT19G
-RVdfUEFSQU1TIiB9LAorCXsgMHgwMDAwMDAwMiwgIlRPT19NQU5ZX1BBUkFNUyIgfSwKKwl7IDB4
-MDAwMDAwMDQsICJJTExFR0FMX09QQ09ERSIgfSwKKwl7IDB4MDAwMDAwMDgsICJET1VCTEVfQlJB
-TkNIIiB9LAorCXsgMHgwMDAwMDAxMCwgIldBVENIRE9HIiB9LAorCXt9Cit9OworCiBzdGF0aWMg
-Y29uc3Qgc3RydWN0IG52a21fYml0ZmllbGQgZ2sxMDRfc2tlZF9lcnJvcltdID0geworCXsgMHgw
-MDAwMDA0MCwgIkNUQV9SRVNVTUUiIH0sCiAJeyAweDAwMDAwMDgwLCAiQ09OU1RBTlRfQlVGRkVS
-X1NJWkUiIH0sCiAJeyAweDAwMDAwMjAwLCAiTE9DQUxfTUVNT1JZX1NJWkVfUE9TIiB9LAogCXsg
-MHgwMDAwMDQwMCwgIkxPQ0FMX01FTU9SWV9TSVpFX05FRyIgfSwKQEAgLTg2Niw2ICs5MDAsOCBA
-QCBzdGF0aWMgY29uc3Qgc3RydWN0IG52a21fYml0ZmllbGQgZ2sxMDRfc2tlZF9lcnJvcltdID0g
-ewogCXsgMHgwMDA0MDAwMCwgIlRPVEFMX1RIUkVBRFMiIH0sCiAJeyAweDAwMTAwMDAwLCAiUFJP
-R1JBTV9PRkZTRVQiIH0sCiAJeyAweDAwMjAwMDAwLCAiU0hBUkVEX01FTU9SWV9TSVpFIiB9LAor
-CXsgMHgwMDgwMDAwMCwgIkNUQV9USFJFQURfRElNRU5TSU9OX1pFUk8iIH0sCisJeyAweDAxMDAw
-MDAwLCAiTUVNT1JZX1dJTkRPV19PVkVSTEFQIiB9LAogCXsgMHgwMjAwMDAwMCwgIlNIQVJFRF9D
-T05GSUdfVE9PX1NNQUxMIiB9LAogCXsgMHgwNDAwMDAwMCwgIlRPVEFMX1JFR0lTVEVSX0NPVU5U
-IiB9LAogCXt9CkBAIC0xMDM1LDEyICsxMDcxLDE2IEBAIGdmMTAwX2dyX3RyYXBfaW50cihzdHJ1
-Y3QgZ2YxMDBfZ3IgKmdyKQogewogCXN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gJmdyLT5i
-YXNlLmVuZ2luZS5zdWJkZXY7CiAJc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBzdWJkZXYt
-PmRldmljZTsKKwljaGFyIGVycm9yWzEyOF07CiAJdTMyIHRyYXAgPSBudmttX3JkMzIoZGV2aWNl
-LCAweDQwMDEwOCk7CiAJaW50IHJvcCwgZ3BjOwogCiAJaWYgKHRyYXAgJiAweDAwMDAwMDAxKSB7
-CiAJCXUzMiBzdGF0ID0gbnZrbV9yZDMyKGRldmljZSwgMHg0MDQwMDApOwotCQludmttX2Vycm9y
-KHN1YmRldiwgIkRJU1BBVENIICUwOHhcbiIsIHN0YXQpOworCisJCW52a21fc25wcmludGJmKGVy
-cm9yLCBzaXplb2YoZXJyb3IpLCBnZjEwMF9kaXNwYXRjaF9lcnJvciwKKwkJCSAgICAgICBzdGF0
-ICYgMHgzZmZmZmZmZik7CisJCW52a21fZXJyb3Ioc3ViZGV2LCAiRElTUEFUQ0ggJTA4eCBbJXNd
-XG4iLCBzdGF0LCBlcnJvcik7CiAJCW52a21fd3IzMihkZXZpY2UsIDB4NDA0MDAwLCAweGMwMDAw
-MDAwKTsKIAkJbnZrbV93cjMyKGRldmljZSwgMHg0MDAxMDgsIDB4MDAwMDAwMDEpOwogCQl0cmFw
-ICY9IH4weDAwMDAwMDAxOwpAQCAtMTA0OCw3ICsxMDg4LDExIEBAIGdmMTAwX2dyX3RyYXBfaW50
-cihzdHJ1Y3QgZ2YxMDBfZ3IgKmdyKQogCiAJaWYgKHRyYXAgJiAweDAwMDAwMDAyKSB7CiAJCXUz
-MiBzdGF0ID0gbnZrbV9yZDMyKGRldmljZSwgMHg0MDQ2MDApOwotCQludmttX2Vycm9yKHN1YmRl
-diwgIk0yTUYgJTA4eFxuIiwgc3RhdCk7CisKKwkJbnZrbV9zbnByaW50YmYoZXJyb3IsIHNpemVv
-ZihlcnJvciksIGdmMTAwX20ybWZfZXJyb3IsCisJCQkgICAgICAgc3RhdCAmIDB4M2ZmZmZmZmYp
-OworCQludmttX2Vycm9yKHN1YmRldiwgIk0yTUYgJTA4eCBbJXNdXG4iLCBzdGF0LCBlcnJvcik7
-CisKIAkJbnZrbV93cjMyKGRldmljZSwgMHg0MDQ2MDAsIDB4YzAwMDAwMDApOwogCQludmttX3dy
-MzIoZGV2aWNlLCAweDQwMDEwOCwgMHgwMDAwMDAwMik7CiAJCXRyYXAgJj0gfjB4MDAwMDAwMDI7
-CkBAIC0xMDU2LDcgKzExMDAsMTAgQEAgZ2YxMDBfZ3JfdHJhcF9pbnRyKHN0cnVjdCBnZjEwMF9n
-ciAqZ3IpCiAKIAlpZiAodHJhcCAmIDB4MDAwMDAwMDgpIHsKIAkJdTMyIHN0YXQgPSBudmttX3Jk
-MzIoZGV2aWNlLCAweDQwODAzMCk7Ci0JCW52a21fZXJyb3Ioc3ViZGV2LCAiQ0NBQ0hFICUwOHhc
-biIsIHN0YXQpOworCisJCW52a21fc25wcmludGJmKGVycm9yLCBzaXplb2YoZXJyb3IpLCBnZjEw
-MF9tMm1mX2Vycm9yLAorCQkJICAgICAgIHN0YXQgJiAweDNmZmZmZmZmKTsKKwkJbnZrbV9lcnJv
-cihzdWJkZXYsICJDQ0FDSEUgJTA4eCBbJXNdXG4iLCBzdGF0LCBlcnJvcik7CiAJCW52a21fd3Iz
-MihkZXZpY2UsIDB4NDA4MDMwLCAweGMwMDAwMDAwKTsKIAkJbnZrbV93cjMyKGRldmljZSwgMHg0
-MDAxMDgsIDB4MDAwMDAwMDgpOwogCQl0cmFwICY9IH4weDAwMDAwMDA4OwpAQCAtMTA2NCw3ICsx
-MTExLDggQEAgZ2YxMDBfZ3JfdHJhcF9pbnRyKHN0cnVjdCBnZjEwMF9nciAqZ3IpCiAKIAlpZiAo
-dHJhcCAmIDB4MDAwMDAwMTApIHsKIAkJdTMyIHN0YXQgPSBudmttX3JkMzIoZGV2aWNlLCAweDQw
-NTg0MCk7Ci0JCW52a21fZXJyb3Ioc3ViZGV2LCAiU0hBREVSICUwOHhcbiIsIHN0YXQpOworCQlu
-dmttX2Vycm9yKHN1YmRldiwgIlNIQURFUiAlMDh4LCBzcGg6IDB4JTA2eCwgc3RhZ2U6IDB4JTAy
-eFxuIiwKKwkJCSAgIHN0YXQsIHN0YXQgJiAweGZmZmZmZiwgKHN0YXQgPj4gMjQpICYgMHgzZik7
-CiAJCW52a21fd3IzMihkZXZpY2UsIDB4NDA1ODQwLCAweGMwMDAwMDAwKTsKIAkJbnZrbV93cjMy
-KGRldmljZSwgMHg0MDAxMDgsIDB4MDAwMDAwMTApOwogCQl0cmFwICY9IH4weDAwMDAwMDEwOwpA
-QCAtMTA3Miw3ICsxMTIwLDExIEBAIGdmMTAwX2dyX3RyYXBfaW50cihzdHJ1Y3QgZ2YxMDBfZ3Ig
-KmdyKQogCiAJaWYgKHRyYXAgJiAweDAwMDAwMDQwKSB7CiAJCXUzMiBzdGF0ID0gbnZrbV9yZDMy
-KGRldmljZSwgMHg0MDYwMWMpOwotCQludmttX2Vycm9yKHN1YmRldiwgIlVOSzYgJTA4eFxuIiwg
-c3RhdCk7CisKKwkJbnZrbV9zbnByaW50YmYoZXJyb3IsIHNpemVvZihlcnJvciksIGdmMTAwX3Vu
-azZfZXJyb3IsCisJCQkgICAgICAgc3RhdCAmIDB4M2ZmZmZmZmYpOworCQludmttX2Vycm9yKHN1
-YmRldiwgIlVOSzYgJTA4eCBbJXNdXG4iLCBzdGF0LCBlcnJvcik7CisKIAkJbnZrbV93cjMyKGRl
-dmljZSwgMHg0MDYwMWMsIDB4YzAwMDAwMDApOwogCQludmttX3dyMzIoZGV2aWNlLCAweDQwMDEw
-OCwgMHgwMDAwMDA0MCk7CiAJCXRyYXAgJj0gfjB4MDAwMDAwNDA7CkBAIC0xMDgwLDcgKzExMzIs
-MTYgQEAgZ2YxMDBfZ3JfdHJhcF9pbnRyKHN0cnVjdCBnZjEwMF9nciAqZ3IpCiAKIAlpZiAodHJh
-cCAmIDB4MDAwMDAwODApIHsKIAkJdTMyIHN0YXQgPSBudmttX3JkMzIoZGV2aWNlLCAweDQwNDQ5
-MCk7Ci0JCW52a21fZXJyb3Ioc3ViZGV2LCAiTUFDUk8gJTA4eFxuIiwgc3RhdCk7CisJCXUzMiBw
-YyA9IG52a21fcmQzMihkZXZpY2UsIDB4NDA0NDk0KTsKKwkJdTMyIG9wID0gbnZrbV9yZDMyKGRl
-dmljZSwgMHg0MDQ0OWMpOworCisJCW52a21fc25wcmludGJmKGVycm9yLCBzaXplb2YoZXJyb3Ip
-LCBnZjEwMF9tYWNyb19lcnJvciwKKwkJCSAgICAgICBzdGF0ICYgMHgxZmZmZmZmZik7CisJCW52
-a21fZXJyb3Ioc3ViZGV2LCAiTUFDUk8gJTA4eCBbJXNdLCBwYzogMHglMDN4JXMsIG9wOiAweCUw
-OHhcbiIsCisJCQkgICBzdGF0LCBlcnJvciwgcGMgJiAweDdmZiwKKwkJCSAgIChwYyAmIDB4MTAw
-MDAwMDApID8gIiIgOiAiIChpbnZhbGlkKSIsCisJCQkgICBvcCk7CisKIAkJbnZrbV93cjMyKGRl
-dmljZSwgMHg0MDQ0OTAsIDB4YzAwMDAwMDApOwogCQludmttX3dyMzIoZGV2aWNlLCAweDQwMDEw
-OCwgMHgwMDAwMDA4MCk7CiAJCXRyYXAgJj0gfjB4MDAwMDAwODA7CkBAIC0xMDg4LDEwICsxMTQ5
-LDkgQEAgZ2YxMDBfZ3JfdHJhcF9pbnRyKHN0cnVjdCBnZjEwMF9nciAqZ3IpCiAKIAlpZiAodHJh
-cCAmIDB4MDAwMDAxMDApIHsKIAkJdTMyIHN0YXQgPSBudmttX3JkMzIoZGV2aWNlLCAweDQwNzAy
-MCkgJiAweDNmZmZmZmZmOwotCQljaGFyIHNrZWRbMTI4XTsKIAotCQludmttX3NucHJpbnRiZihz
-a2VkLCBzaXplb2Yoc2tlZCksIGdrMTA0X3NrZWRfZXJyb3IsIHN0YXQpOwotCQludmttX2Vycm9y
-KHN1YmRldiwgIlNLRUQ6ICUwOHggWyVzXVxuIiwgc3RhdCwgc2tlZCk7CisJCW52a21fc25wcmlu
-dGJmKGVycm9yLCBzaXplb2YoZXJyb3IpLCBnazEwNF9za2VkX2Vycm9yLCBzdGF0KTsKKwkJbnZr
-bV9lcnJvcihzdWJkZXYsICJTS0VEOiAlMDh4IFslc11cbiIsIHN0YXQsIGVycm9yKTsKIAogCQlp
-ZiAoc3RhdCkKIAkJCW52a21fd3IzMihkZXZpY2UsIDB4NDA3MDIwLCAweDQwMDAwMDAwKTsKLS0g
-CjIuNC4xMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0046067923==
+Content-Type: multipart/alternative; boundary="1451778121.AAc2fE0.28296"; charset="UTF-8"
+
+
+--1451778121.AAc2fE0.28296
+Date: Sat, 2 Jan 2016 23:42:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93563
+
+--- Comment #2 from Steven Zakulec <spzakulec-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I just tested Hack'n'Slash with the Nvidia driver to be sure I wasn't
+remembering the wrong thing, and that it really did work with that driver.
+
+With Nvidia's 340.96 driver, the game runs just fine, and gets past that
+trouble spot without an issue.
+
+Is there anything else I can do to help you figure out what's going on here,
+and hopefully end up with the same behavior for both drivers??
+
+Thanks!
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1451778121.AAc2fE0.28296
+Date: Sat, 2 Jan 2016 23:42:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Hack'n'Slash hangs with Nouveau driver"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93563#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Hack'n'Slash hangs with Nouveau driver"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93563">bug 93563</a>
+              from <span class="vcard"><a class="email" href="mailto:spzakulec&#64;gmail.com" title="Steven Zakulec &lt;spzakulec&#64;gmail.com&gt;"> <span class="fn">Steven Zakulec</span></a>
+</span></b>
+        <pre>I just tested Hack'n'Slash with the Nvidia driver to be sure I wasn't
+remembering the wrong thing, and that it really did work with that driver.
+
+With Nvidia's 340.96 driver, the game runs just fine, and gets past that
+trouble spot without an issue.
+
+Is there anything else I can do to help you figure out what's going on here,
+and hopefully end up with the same behavior for both drivers??
+
+Thanks!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1451778121.AAc2fE0.28296--
+
+--===============0046067923==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0046067923==--
