@@ -1,15 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Nouveau support for GeForce GT 730 or GTX 750 Ti?
-Date: Sun, 3 Jan 2016 14:11:22 -0500
-Message-ID: <CAKb7UvgEEwcXyMZBiy14UC5qszbnt0FhKbwqbotdhrTuZik5AQ@mail.gmail.com>
-References: <CAONhAovrqiF4EHEs2K7HNbuvzoMsbik5y-AKMOACi2n=+kuAnA@mail.gmail.com>
- <CAKb7UvifWuWo8i-4gh6r9Gw4CP58c0bAbuARGQuy+8=qGQT9WA@mail.gmail.com>
- <CAONhAosKywXvxmjZzOACPdLKTnDNfWLv2576Q2jHOHk3PjyyQQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
+ KDE/KDM on Nvidia GeForce 7025 / nForce 630a
+Date: Sun, 03 Jan 2016 23:03:31 +0000
+Message-ID: <bug-93557-8800-MTwhT2pKVp@http.bugs.freedesktop.org/>
+References: <bug-93557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2024289351=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAONhAosKywXvxmjZzOACPdLKTnDNfWLv2576Q2jHOHk3PjyyQQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,55 +17,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: csanyipal-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBKYW4gMywgMjAxNiBhdCAxOjUyIFBNLCBDc8OhbnlpIFDDoWwgPGNzYW55aXBhbEBn
-bWFpbC5jb20+IHdyb3RlOgo+IDIwMTYtMDEtMDMgMTk6MzIgR01UKzAxOjAwIElsaWEgTWlya2lu
-IDxpbWlya2luQGFsdW0ubWl0LmVkdT46Cj4gSSBjYW4ndCBrbm93IHdpdGhvdXQgYnV5aW5nIGl0
-IHdoZXRoZXIgaXMgaXQgRmVybWkgb3IgS2VwbGVyLCByaWdodD8KPiBJIGdldCBvbmx5IHRoZXNl
-IGluZm9ybWF0aW9ucyBmcm9tIHRoYXQgY2FyZDoKPiBWR0EgR0lHQUJZVEUgTlZJRElBIEdFRk9S
-Q0UgR1Q3MzAsIEdWLU43MzBENS0yR0ksIDJHQiBERFI1LAo+IDkwMi81MDAwTUh6LCBIRE1JLCBE
-VkktRCwgRC1zdWIKPgo+IElzIHRoaXMgYSBGZXJtaSBvciBhIEtlcGxlciBjYXJkPwoKTW9kZXJh
-dGVseSBzdXJlIHRoaXMgaXMgYSBHSzIwOCAoS2VwbGVyMiksIHlvdSBjYW4gdGVsbCBiZWNhdXNl
-IGl0J3MKeDggUENJZSwgbm90IHgxNiwgYW5kIDI4bm0gcHJvY2Vzcywgd2hpbGUgRmVybWkncyAo
-YW5kIG90aGVyIEtlcGxlcnMpCndlcmUgaGlnaGVyLCBhbmQgaXQgc3VwcG9ydHMgNGsgc2NyZWVu
-cywgd2hpY2ggSSBkb24ndCB0aGluayBGZXJtaQpkaWQuIEl0IGFsc28gbWF0Y2hlcyB0aGUgbGFz
-dCBjb2x1bW4gb2YKCmh0dHA6Ly93d3cuZ2Vmb3JjZS5jb20vaGFyZHdhcmUvZGVza3RvcC1ncHVz
-L2dlZm9yY2UtZ3QtNzMwL3NwZWNpZmljYXRpb25zCgp3aGljaCwgd2hpbGUgbm90IGF1dGhvcml0
-YXRpdmUsIGRvZXMgdGVuZCB0byBpbmRpY2F0ZSBpdCdzIGEgS2VwbGVyLgooV2hpbGUgaWYgaXQg
-bWF0Y2hlZCB0aGUgZmlyc3QgY29sdW1uLCBpdCdkIGJlIGEgRmVybWkgLSBub3RlIHRoZQpoaWdo
-ZXIgd2F0dGFnZSBhbmQgbG93ZXIgY29yZSBjb3VudC4pCgo+ID4gRm9yIHRoZSBiZXN0IG9wZW4t
-c291cmNlIHN1cHBvcnQsIEkgcmVjb21tZW5kIHN0aWNraW5nIHdpdGggYW4KPiA+IG9uLWJvYXJk
-IEludGVsIEdQVSwgb3IgaWYgdGhhdCdzIGluc3VmZmljaWVudCAoZXNwIHJlY2VudCBzdHVmZiBo
-YXMKPiA+IGJlZW4gZ2V0dGluZyBwcmV0dHkgc3BlZWR5KSwgZ2V0dGluZyBzb21ldGhpbmcgZnJv
-bSBBTUQuCj4KPiBJIGRvbid0IGhhdmUgb24tYm9hcmQgSW50ZWwgR1BVIG9uIHRoaXMgbW90aGVy
-Ym9hcmQuCj4KPiBTbyB0aGVyZSBpcyBhbiBBTUQgY2FyZCB0b286Cj4gVkdBIEFTVVMgQU1EIFJh
-ZGVvbiBSNyAyNDAsIFI3MjQwLTJHRDMtTCwgMkdCIEREUjMsIDEyOGJpdCwKPiA3MzAvMTgwME1I
-eiwgSERNSSwgRFZJLUQsIEQtc3ViCj4KPiBXaGF0IHdvdWxkIGJlIHRoZSBiZXN0IGNob2ljZSBo
-ZXJlOgo+IEdFRk9SQ0UgR1QgNzMwCj4gb3IKPiBBTUQgUmFkZW9uIFI3IDI0MCA/CgpJIGRvbid0
-IHdhbnQgdG8gcmVjb21tZW5kIG9uZSBvciB0aGUgb3RoZXIsIGVzcCBhcyBJJ20gdW5hd2FyZSBv
-ZiB0aGUKc3BlY2lmaWNzIGFyb3VuZCBleGFjdCBBTUQgR1BVIHN1cHBvcnQuIEJ1dCBpbiBnZW5l
-cmFsLCBpZiB0aGluZ3MKZG9uJ3QgSnVzdCBXb3JrICh0bSksIEFNRCBoYXMgZnVsbC10aW1lIGVt
-cGxveWVlcyAocGx1cmFsKSB3b3JraW5nIG9uCnZhcmlvdXMgYXNwZWN0cyBvZiB0aGUgZHJpdmVy
-LCBhbmQgdGhvc2UgZW1wbG95ZWVzIGFyZSBhcm1lZCB3aXRoCmRvY3VtZW50YXRpb24gYW5kIGFj
-Y2VzcyB0byBoYXJkd2FyZSBlbmdpbmVlcnMuIE5WSURJQSBwcm92aWRlcyBuZXh0CnRvIG5vIHN1
-cHBvcnQgZm9yIHRoZSBub3V2ZWF1IHRlYW0gb3V0c2lkZSBvZiB3aGF0J3MgYXBwbGljYWJsZSB0
-bwpUZWdyYSAoZW1iZWRkZWQpIGRldmljZXMsIHRoZXJlJ3MgY3VycmVudGx5IG9uZSBlbXBsb3ll
-ZSBhdCBSZWRIYXQKd2hvJ3MgdGhlIG1haW50YWluZXIsIGFuZCBhbm90aGVyIHdobyBpcyBjdXJy
-ZW50bHkgbG9va2luZyBhdCBtYWtpbmcKT3BlbkNMIGEgcmVhbGl0eSBvbiBub3V2ZWF1LiBBbmQg
-SSBjb250cmlidXRlIHdoYXQgSSBjYW4gaW4gbXkgc3BhcmUKdGltZSwgYWxvbmcgd2l0aCBhIGZl
-dyBvdGhlciB2b2x1bnRlZXJzLiBbTlZJRElBIGRvZXMsIG9uIG9jY2FzaW9uLApwcm92aWRlIGV4
-dHJlbWVseSBoZWxwZnVsIGJpdHMgb2YgaW5mbywgYW5kIHdlJ3JlIHRoYW5rZnVsIGZvciB0aGVt
-LApidXQgaXQgZG9lc24ndCBjb21wYXJlIHRvIGhhdmluZyBmdWxsIGFjY2VzcyB0byBkb2N1bWVu
-dGF0aW9uLl0gSWYgSQp3ZXJlIGJldHRpbmcgb24gYSB0ZWFtLCBJJ2QgZGVmaW5pdGVseSBiZXQg
-b24gdGhlIEFNRCBvbmUgOikKCk9UT0ggdGhlIE5WSURJQSBwcm9wcmlldGFyeSBkcml2ZXIgaXMg
-d2hhdCBhbGwgbGludXggZ2FtZSBwb3J0cyBhcmUKZGV2ZWxvcGVkIGFnYWluc3QsIHNvIGJ5IHVz
-aW5nIGl0IHlvdSdyZSBtb3JlIG9yIGxlc3MgZ3VhcmFudGVlZCB0bwpoYXZlIHNvbWV0aGluZyB0
-aGF0IHdvcmtzLiAoTm90IGJlY2F1c2UgaXQgY29uZm9ybXMgdG8gc3RhbmRhcmRzIC0tIGl0CmRv
-ZXNuJ3QgLS0gYnV0IGJlY2F1c2UgdGhlIGFwcGxpY2F0aW9ucyBleHBlY3QgcHJlY2lzZWx5IGl0
-cyBsZXZlbCBvZgpub24tY29tcGxpYW5jZS4pIFlvdXIgY2FsbCA6KQoKICAtaWxpYQpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============2024289351==
+Content-Type: multipart/alternative; boundary="1451862211.bDFcAbAf2.1145"; charset="UTF-8"
+
+
+--1451862211.bDFcAbAf2.1145
+Date: Sun, 3 Jan 2016 23:03:31 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93557
+
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This commit should fix the oops:
+
+https://github.com/skeggsb/nouveau/commit/b09b9c5b0f84a84d6ef99d999428042cbab93473
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1451862211.bDFcAbAf2.1145
+Date: Sun, 3 Jan 2016 23:03:31 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557">bug 93557</a>
+              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
+</span></b>
+        <pre>This commit should fix the oops:
+
+<a href="https://github.com/skeggsb/nouveau/commit/b09b9c5b0f84a84d6ef99d999428042cbab93473">https://github.com/skeggsb/nouveau/commit/b09b9c5b0f84a84d6ef99d999428042cbab93473</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1451862211.bDFcAbAf2.1145--
+
+--===============2024289351==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2024289351==--
