@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93573] New: bad performance with 4k h264 video
-Date: Mon, 04 Jan 2016 05:25:16 +0000
-Message-ID: <bug-93573-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93573] bad performance with 4k h264 video
+Date: Mon, 04 Jan 2016 05:56:52 +0000
+Message-ID: <bug-93573-8800-2ZW2mgEs5C@http.bugs.freedesktop.org/>
+References: <bug-93573-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1590425142=="
+Content-Type: multipart/mixed; boundary="===============0313551301=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93573-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,47 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1590425142==
-Content-Type: multipart/alternative; boundary="1451885116.EdeD08AB1.3148"; charset="UTF-8"
+--===============0313551301==
+Content-Type: multipart/alternative; boundary="1451887012.08cEED8E1.10167"; charset="UTF-8"
 
 
---1451885116.EdeD08AB1.3148
-Date: Mon, 4 Jan 2016 05:25:16 +0000
+--1451887012.08cEED8E1.10167
+Date: Mon, 4 Jan 2016 05:56:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93573
 
-            Bug ID: 93573
-           Summary: bad performance with 4k h264 video
-           Product: xorg
-           Version: git
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
+Created attachment 120787
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120787&action=edit
+screenshot of the video
 
-I noticed a while back already, that nouveau handles 4k video not that well
-currently.
-
-I tried it out with the cactus-4k video from here:
-http://www.elementaltechnologies.com/resources/4k-test-sequences
-
-Nvidia doesn't have any problem playing that video at full speed, but on my
-kepler nve6 card even full reclocked nouveau only handles this at 45% speed and
-the PVLD engine is at max load (only around 80% with nvidia)
+also I noticed that the output is total garbage. so I assume something else is
+fishy here.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1451885116.EdeD08AB1.3148
-Date: Mon, 4 Jan 2016 05:25:16 +0000
+--1451887012.08cEED8E1.10167
+Date: Mon, 4 Jan 2016 05:56:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,98 +52,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - bad performance with 4k h264 video"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93573">93573</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>bad performance with 4k h264 video
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>freedesktop&#64;karolherbst.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>I noticed a while back already, that nouveau handles 4k video not that well
-currently.
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - bad performance with 4k h264 video"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93573#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - bad performance with 4k h264 video"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93573">bug 93573</a>
+              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120787" name="attach_120787" title="screenshot of the video">attachment 120787</a> <a href="attachment.cgi?id=120787&amp;action=edit" title="screenshot of the video">[details]</a></span>
+screenshot of the video
 
-I tried it out with the cactus-4k video from here:
-<a href="http://www.elementaltechnologies.com/resources/4k-test-sequences">http://www.elementaltechnologies.com/resources/4k-test-sequences</a>
-
-Nvidia doesn't have any problem playing that video at full speed, but on my
-kepler nve6 card even full reclocked nouveau only handles this at 45% speed and
-the PVLD engine is at max load (only around 80% with nvidia)</pre>
+also I noticed that the output is total garbage. so I assume something else is
+fishy here.</pre>
         </div>
       </p>
       <hr>
@@ -169,9 +81,9 @@ the PVLD engine is at max load (only around 80% with nvidia)</pre>
     </body>
 </html>
 
---1451885116.EdeD08AB1.3148--
+--1451887012.08cEED8E1.10167--
 
---===============1590425142==
+--===============0313551301==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -181,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1590425142==--
+--===============0313551301==--
