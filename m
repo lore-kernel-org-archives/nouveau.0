@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
- KDE/KDM on Nvidia GeForce 7025 / nForce 630a
-Date: Mon, 04 Jan 2016 18:00:55 +0000
-Message-ID: <bug-93557-8800-9cY0GFHS6F@http.bugs.freedesktop.org/>
-References: <bug-93557-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Nouveau support for GeForce GT 730 or GTX 750 Ti or
+ AMD Radeon R7 240 and AMD ATI RADEON R7 260X ??
+Date: Mon, 4 Jan 2016 14:26:07 -0500
+Message-ID: <CAKb7UvjJsOGnN-DUrGtQN5kAPGgPkSH4UxwxY+tt0Wy+PM5kHw@mail.gmail.com>
+References: <CAONhAotA9L7RMbC6m4uP0GAQezd56B7Q=TxYP0jb-HWnWbD=3A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0288576979=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAONhAotA9L7RMbC6m4uP0GAQezd56B7Q=TxYP0jb-HWnWbD=3A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,84 +18,43 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Pal Csanyi <csanyipal-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0288576979==
-Content-Type: multipart/alternative; boundary="1451930454.D72EE11.15485"; charset="UTF-8"
-
-
---1451930454.D72EE11.15485
-Date: Mon, 4 Jan 2016 18:00:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93557
-
---- Comment #5 from xgfwtvdh-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
-They are REDLINED in dmesg. More/bigger warning is not possible for the users.
-It were something like a big red flashing "WARNING, MOTOR FAILURE" on the
-Screen of your car and then someone would say "nah, that warning is just fine,
-ignore it".
-
-I would like to help fixing them by testing something when you need me testing
-something.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1451930454.D72EE11.15485
-Date: Mon, 4 Jan 2016 18:00:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557">bug 93557</a>
-              from <span class="vcard"><a class="email" href="mailto:xgfwtvdh&#64;sharklasers.com" title="xgfwtvdh&#64;sharklasers.com">xgfwtvdh&#64;sharklasers.com</a>
-</span></b>
-        <pre>They are REDLINED in dmesg. More/bigger warning is not possible for the users.
-It were something like a big red flashing &quot;WARNING, MOTOR FAILURE&quot; on the
-Screen of your car and then someone would say &quot;nah, that warning is just fine,
-ignore it&quot;.
-
-I would like to help fixing them by testing something when you need me testing
-something.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1451930454.D72EE11.15485--
-
---===============0288576979==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0288576979==--
+T24gTW9uLCBKYW4gNCwgMjAxNiBhdCAzOjAyIEFNLCBDc8OhbnlpIFDDoWwgPGNzYW55aXBhbEBn
+bWFpbC5jb20+IHdyb3RlOgo+IDIwMTYtMDEtMDMgMjA6MTEgR01UKzAxOjAwIElsaWEgTWlya2lu
+IDxpbWlya2luQGFsdW0ubWl0LmVkdT46Cj4+IE9uIFN1biwgSmFuIDMsIDIwMTYgYXQgMTo1MiBQ
+TSwgQ3PDoW55aSBQw6FsIDxjc2FueWlwYWxAZ21haWwuY29tPiB3cm90ZToKPgo+Pj4gU28gdGhl
+cmUgaXMgYW4gQU1EIGNhcmQgdG9vOgo+Pj4gVkdBIEFTVVMgQU1EIFJhZGVvbiBSNyAyNDAsIFI3
+MjQwLTJHRDMtTCwgMkdCIEREUjMsIDEyOGJpdCwKPj4+IDczMC8xODAwTUh6LCBIRE1JLCBEVkkt
+RCwgRC1zdWIKPj4+Cj4+PiBXaGF0IHdvdWxkIGJlIHRoZSBiZXN0IGNob2ljZSBoZXJlOgo+Pj4g
+R0VGT1JDRSBHVCA3MzAKPj4+IG9yCj4+PiBBTUQgUmFkZW9uIFI3IDI0MCA/Cj4+Cj4+IEkgZG9u
+J3Qgd2FudCB0byByZWNvbW1lbmQgb25lIG9yIHRoZSBvdGhlciwgZXNwIGFzIEknbSB1bmF3YXJl
+IG9mIHRoZQo+PiBzcGVjaWZpY3MgYXJvdW5kIGV4YWN0IEFNRCBHUFUgc3VwcG9ydC4gQnV0IGlu
+IGdlbmVyYWwsIGlmIHRoaW5ncwo+PiBkb24ndCBKdXN0IFdvcmsgKHRtKSwgQU1EIGhhcyBmdWxs
+LXRpbWUgZW1wbG95ZWVzIChwbHVyYWwpIHdvcmtpbmcgb24KPj4gdmFyaW91cyBhc3BlY3RzIG9m
+IHRoZSBkcml2ZXIsIGFuZCB0aG9zZSBlbXBsb3llZXMgYXJlIGFybWVkIHdpdGgKPj4gZG9jdW1l
+bnRhdGlvbiBhbmQgYWNjZXNzIHRvIGhhcmR3YXJlIGVuZ2luZWVycy4KPgo+PiBJZiBJIHdlcmUg
+YmV0dGluZyBvbiBhIHRlYW0sIEknZCBkZWZpbml0ZWx5IGJldCBvbiB0aGUgQU1EIG9uZSA6KQo+
+Cj4gV2VsbCwgbXkgbW90aGVyYm9hcmQgaXMgUDVFLUUgU0xJIHdpdGgKPiBDaGlwc2V0Ogo+IE5v
+cnRoIEJyaWRnZTogTlZJRElBIG5Gb3JjZSA2NTBpIFNMSSAoQzU1KQo+IFNvdXRoIEJyaWRnZTog
+TlZJRElBIG5Gb3JjZSA0MzBpIChNUEMgNTEpCj4KPiBFeHBhbnNpb24gc2xvdHM6Cj4gMiB4IFBD
+SSBFeHByZXNzIHgxNiBzbG90cyB3aXRoIFNMSSBzdXBwb3J0Cj4gMXggUENJIEV4cHJlc3MgeDEg
+c2xvdAo+IDJ4IFBDSSBzbG90cyAoUENJIDIuMikKPgo+IFNvIGNhbiBiZSB1c2VkIG9uIHRoaXMg
+bW90aGVyYm9hcmQgQU1EIFJhZGVvbiBncmFwaGljcyBjYXJkcyBhdCBhbGw/Cj4KPiBJZiB5ZXMs
+IGRvZXMgbm91dmVhdSBzdXBwb3J0IHRoZXNlIHR3byBSYWRlb24gY2FyZHMKPiB3aXRoIE9wZW5H
+TCBvZiBjb3Vyc2U6Cj4gMS4KPiBWR0EgQVNVUyBBTUQgUmFkZW9uIFI3IDI0MCwgUjcyNDAtMkdE
+My1MLCAyR0IgRERSMywgMTI4Yml0LAo+IDczMC8xODAwTUh6LCBIRE1JLCBEVkktRCwgRC1zdWIK
+Pgo+IDIuCj4gVkdBIEFTVVMgUjcyNjBYLU9DLTJHRDUsIEFNRCBBVEkgUkFERU9OIFI3IDI2MFgs
+IDJHQiBHRERSNSwgMTI4LWJpdCwKPiAxMDc1LzUwMDBNSHosIDJ4IERWSSwgMXggSERNSSwgMSB4
+IERpc3BsYXkgUG9ydCwgMSB4IERWSSB0byBELVN1Ygo+IGFkYXB0b3IsIFBDSSBFeHByZXNzIDMu
+MAoKRWl0aGVyIHNob3VsZCBiZSBmaW5lLCBJIHRoaW5rLCBvYnZpb3VzbHkgdGhlIGxhdHRlciBp
+cyBtb3JlIHBvd2VyZnVsLgpOb3RlIHRoYXQgdGhpcyB3aWxsIHJ1biB3aXRoIHRoZSByYWRlb24g
+KG9yIGFtZGdwdSkgZHJpdmVycywgbm90Cm5vdXZlYXUuIFlvdSBzaG91bGQgYXNrIHRoZSByYWRl
+b24gZm9sayBhcyB0aGV5IHdpbGwga25vdyB0aGlzIHN0dWZmCmZvciBzdXJlLiBUaGUgYmVzdCB3
+YXkgdG8gb2J0YWluIHRoaXMgdHlwZSBvZiBpbmZvIGlzIG92ZXIgSVJDCihpcmMuZnJlZW5vZGUu
+bmV0ICNyYWRlb24pCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cg==
