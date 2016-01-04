@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93573] bad performance with 4k h264 video
-Date: Mon, 04 Jan 2016 05:56:52 +0000
-Message-ID: <bug-93573-8800-2ZW2mgEs5C@http.bugs.freedesktop.org/>
+Date: Mon, 04 Jan 2016 06:06:07 +0000
+Message-ID: <bug-93573-8800-pKWKgIzu86@http.bugs.freedesktop.org/>
 References: <bug-93573-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0313551301=="
+Content-Type: multipart/mixed; boundary="===============1953577815=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93573-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0313551301==
-Content-Type: multipart/alternative; boundary="1451887012.08cEED8E1.10167"; charset="UTF-8"
+--===============1953577815==
+Content-Type: multipart/alternative; boundary="1451887567.d8bE3A1.11689"; charset="UTF-8"
 
 
---1451887012.08cEED8E1.10167
-Date: Mon, 4 Jan 2016 05:56:52 +0000
+--1451887567.d8bE3A1.11689
+Date: Mon, 4 Jan 2016 06:06:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93573
 
---- Comment #1 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
-Created attachment 120787
-  --> https://bugs.freedesktop.org/attachment.cgi?id=120787&action=edit
-screenshot of the video
-
-also I noticed that the output is total garbage. so I assume something else is
-fishy here.
+--- Comment #2 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
+Created attachment 120788
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120788&action=edit
+debug output of mesa
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1451887012.08cEED8E1.10167
-Date: Mon, 4 Jan 2016 05:56:52 +0000
+--1451887567.d8bE3A1.11689
+Date: Mon, 4 Jan 2016 06:06:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - bad performance with 4k h264 video"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93573#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93573#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - bad performance with 4k h264 video"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93573">bug 93573</a>
               from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=120787" name="attach_120787" title="screenshot of the video">attachment 120787</a> <a href="attachment.cgi?id=120787&amp;action=edit" title="screenshot of the video">[details]</a></span>
-screenshot of the video
-
-also I noticed that the output is total garbage. so I assume something else is
-fishy here.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120788" name="attach_120788" title="debug output of mesa">attachment 120788</a> <a href="attachment.cgi?id=120788&amp;action=edit" title="debug output of mesa">[details]</a></span>
+debug output of mesa</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +75,9 @@ fishy here.</pre>
     </body>
 </html>
 
---1451887012.08cEED8E1.10167--
+--1451887567.d8bE3A1.11689--
 
---===============0313551301==
+--===============1953577815==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0313551301==--
+--===============1953577815==--
