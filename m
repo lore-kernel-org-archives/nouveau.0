@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91954] "link training failed": nouveau does not
- recover from monitor suspend
-Date: Mon, 04 Jan 2016 13:02:46 +0000
-Message-ID: <bug-91954-8800-oA5KP59b92@http.bugs.freedesktop.org/>
-References: <bug-91954-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH] bios/fan: hardcode the fan mode to linear
+Date: Mon, 4 Jan 2016 16:56:14 +0200
+Message-ID: <568A880E.1070603@free.fr>
+References: <1448806218-6029-1-git-send-email-martin.peres@free.fr>
+ <5672EE74.6090403@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0721936386=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91954-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <5672EE74.6090403-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,75 +18,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0721936386==
-Content-Type: multipart/alternative; boundary="1451912566.e3D5BFbB3.23293"; charset="UTF-8"
-
-
---1451912566.e3D5BFbB3.23293
-Date: Mon, 4 Jan 2016 13:02:46 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91954
-
---- Comment #5 from Julien HENRY <henryju-Qt13gs6zZMY@public.gmane.org> ---
-Created attachment 120791
-  --> https://bugs.freedesktop.org/attachment.cgi?id=120791&action=edit
-Kernel logs
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1451912566.e3D5BFbB3.23293
-Date: Mon, 4 Jan 2016 13:02:46 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - &quot;link training failed&quot;: nouveau does not recover from monitor suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91954#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - &quot;link training failed&quot;: nouveau does not recover from monitor suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91954">bug 91954</a>
-              from <span class="vcard"><a class="email" href="mailto:henryju&#64;yahoo.fr" title="Julien HENRY &lt;henryju&#64;yahoo.fr&gt;"> <span class="fn">Julien HENRY</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=120791" name="attach_120791" title="Kernel logs">attachment 120791</a> <a href="attachment.cgi?id=120791&amp;action=edit" title="Kernel logs">[details]</a></span>
-Kernel logs</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1451912566.e3D5BFbB3.23293--
-
---===============0721936386==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0721936386==--
+T24gMTcvMTIvMTUgMTk6MTgsIE1hcnRpbiBQZXJlcyB3cm90ZToKPgo+Cj4gT24gMjkvMTEvMTUg
+MTY6MTAsIE1hcnRpbiBQZXJlcyB3cm90ZToKPj4gVGhpcyBpcyBhbiBvdmVyc2lnaHQgdGhhdCBt
+YWRlIHVzZSBvZiB0aGUgdHJpcC1wb2ludC1iYXNlZCBmYW4gCj4+IG1hbmFnZW5lbnQgb24KPj4g
+Y2FyZHMgdGhhdCBuZXZlciBleHBvc2UgdGhvc2UuIFRoaXMgbGVkIHRoZSBmYW4gdG8gc3RheSBh
+dCBmYW5fbWluLgo+Pgo+PiBGb3J0dW5hdGVseSwgdGhlIGVtZXJnZW5jeSBjb2RlIHdvdWxkIGtp
+Y2sgd2hlbiB0aGUgdGVtcGVyYXR1cmUgd291bGQgCj4+IHJlYWNoCj4+IDkwwrBDLgo+Pgo+PiBS
+ZXBvcnRlZC1ieTogVG9tIEVuZ2x1bmQgPHRvbWVuZ2x1bmQyNkBnbWFpbC5jb20+Cj4+IFRlc3Rl
+ZC1ieTogVG9tIEVuZ2x1bmQgPHRvbWVuZ2x1bmQyNkBnbWFpbC5jb20+Cj4KPiBUZXN0ZWQtYnk6
+IERhZW1vbjMyIDxsbmYucHVycGxlQGdtYWlsLmNvbT4KPiBCdWd6aWxsYTogaHR0cHM6Ly9idWdz
+LmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9OTIxMjYKPgo+PiBTaWduZWQtb2ZmLWJ5
+OiBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BmcmVlLmZyPgo+PiAtLS0KPj4gICBkcm0vbm91
+dmVhdS9udmttL3N1YmRldi9iaW9zL2Zhbi5jIHwgMSArCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDEg
+aW5zZXJ0aW9uKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9i
+aW9zL2Zhbi5jIAo+PiBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvZmFuLmMKPj4gaW5k
+ZXggNDMwMDZkYi4uODBmZWQ3ZSAxMDA2NDQKPj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJk
+ZXYvYmlvcy9mYW4uYwo+PiArKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL2Zhbi5j
+Cj4+IEBAIC04Myw2ICs4Myw3IEBAIG52Ymlvc19mYW5fcGFyc2Uoc3RydWN0IG52a21fYmlvcyAq
+Ymlvcywgc3RydWN0IAo+PiBudmJpb3NfdGhlcm1fZmFuICpmYW4pCj4+ICAgICAgICAgICAgICAg
+ZmFuLT50eXBlID0gTlZCSU9TX1RIRVJNX0ZBTl9VTks7Cj4+ICAgICAgICAgICB9Cj4+Cj4+ICsg
+ICAgICAgIGZhbi0+ZmFuX21vZGUgPSBOVkJJT1NfVEhFUk1fRkFOX0xJTkVBUjsKPj4gICAgICAg
+ICAgIGZhbi0+bWluX2R1dHkgPSBudmJpb3NfcmQwOChiaW9zLCBkYXRhICsgMHgwMik7Cj4+ICAg
+ICAgICAgICBmYW4tPm1heF9kdXR5ID0gbnZiaW9zX3JkMDgoYmlvcywgZGF0YSArIDB4MDMpOwo+
+Pgo+Pgo+Cj4gQmVuLCBjYW4geW91IG1lcmdlIHRoaXMgcGF0Y2g/IEl0IGlzIGtpbmQgb2YgY3Jp
+dGljYWwgOnMgQW5kIGl0IHNob3VsZCAKPiBiZSBDQ2VkIHRvIHN0YWJsZSB0b28sIHdpdGhvdXQg
+aXQsIHNvbWUga2VwbGVyL21heHdlbGwgZ2V0IDAlIGZhbiAKPiBwb3dlciB3aGljaCBpcyBraW5k
+IG9mIGRhbmdlcm91cywgZXZlbiB3aXRob3V0IHJlY2xvY2tpbmchCgpQaW5nLCB0aGlzIGlzIHJl
+YWxseSBpbXBvcnRhbnQgOnMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
