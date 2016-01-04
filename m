@@ -1,14 +1,13 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] bios/fan: hardcode the fan mode to linear
-Date: Mon, 4 Jan 2016 16:42:13 +0000
-Message-ID: <CACvgo502iJJzC8qj4CA=+2UucHMhWQ=+X=ZpQ22xkiRS4PzDoQ@mail.gmail.com>
-References: <1448806218-6029-1-git-send-email-martin.peres@free.fr>
- <5672EE74.6090403@free.fr> <568A880E.1070603@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
+ KDE/KDM on Nvidia GeForce 7025 / nForce 630a
+Date: Mon, 04 Jan 2016 17:16:47 +0000
+Message-ID: <bug-93557-8800-7JRs7TaDEm@http.bugs.freedesktop.org/>
+References: <bug-93557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0268897617=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <568A880E.1070603-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,41 +17,160 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gNCBKYW51YXJ5IDIwMTYgYXQgMTQ6NTYsIE1hcnRpbiBQZXJlcyA8bWFydGluLnBlcmVzQGZy
-ZWUuZnI+IHdyb3RlOgo+IE9uIDE3LzEyLzE1IDE5OjE4LCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4+
-IE9uIDI5LzExLzE1IDE2OjEwLCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4+Pgo+Pj4gVGhpcyBpcyBh
-biBvdmVyc2lnaHQgdGhhdCBtYWRlIHVzZSBvZiB0aGUgdHJpcC1wb2ludC1iYXNlZCBmYW4gbWFu
-YWdlbmVudAo+Pj4gb24KPj4+IGNhcmRzIHRoYXQgbmV2ZXIgZXhwb3NlIHRob3NlLiBUaGlzIGxl
-ZCB0aGUgZmFuIHRvIHN0YXkgYXQgZmFuX21pbi4KPj4+Cj4+PiBGb3J0dW5hdGVseSwgdGhlIGVt
-ZXJnZW5jeSBjb2RlIHdvdWxkIGtpY2sgd2hlbiB0aGUgdGVtcGVyYXR1cmUgd291bGQKPj4+IHJl
-YWNoCj4+PiA5MMKwQy4KPj4+Cj4+PiBSZXBvcnRlZC1ieTogVG9tIEVuZ2x1bmQgPHRvbWVuZ2x1
-bmQyNkBnbWFpbC5jb20+Cj4+PiBUZXN0ZWQtYnk6IFRvbSBFbmdsdW5kIDx0b21lbmdsdW5kMjZA
-Z21haWwuY29tPgo+Pgo+Pgo+PiBUZXN0ZWQtYnk6IERhZW1vbjMyIDxsbmYucHVycGxlQGdtYWls
-LmNvbT4KPj4gQnVnemlsbGE6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcu
-Y2dpP2lkPTkyMTI2Cj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5w
-ZXJlc0BmcmVlLmZyPgo+Pj4gLS0tCj4+PiAgIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mv
-ZmFuLmMgfCAxICsKPj4+ICAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCj4+Pgo+Pj4g
-ZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvZmFuLmMKPj4+IGIvZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9mYW4uYwo+Pj4gaW5kZXggNDMwMDZkYi4uODBmZWQ3
-ZSAxMDA2NDQKPj4+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvZmFuLmMKPj4+
-ICsrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvZmFuLmMKPj4+IEBAIC04Myw2ICs4
-Myw3IEBAIG52Ymlvc19mYW5fcGFyc2Uoc3RydWN0IG52a21fYmlvcyAqYmlvcywgc3RydWN0Cj4+
-PiBudmJpb3NfdGhlcm1fZmFuICpmYW4pCj4+PiAgICAgICAgICAgICAgIGZhbi0+dHlwZSA9IE5W
-QklPU19USEVSTV9GQU5fVU5LOwo+Pj4gICAgICAgICAgIH0KPj4+Cj4+PiArICAgICAgICBmYW4t
-PmZhbl9tb2RlID0gTlZCSU9TX1RIRVJNX0ZBTl9MSU5FQVI7Cj4+PiAgICAgICAgICAgZmFuLT5t
-aW5fZHV0eSA9IG52Ymlvc19yZDA4KGJpb3MsIGRhdGEgKyAweDAyKTsKPj4+ICAgICAgICAgICBm
-YW4tPm1heF9kdXR5ID0gbnZiaW9zX3JkMDgoYmlvcywgZGF0YSArIDB4MDMpOwo+Pj4KPj4+Cj4+
-Cj4+IEJlbiwgY2FuIHlvdSBtZXJnZSB0aGlzIHBhdGNoPyBJdCBpcyBraW5kIG9mIGNyaXRpY2Fs
-IDpzIEFuZCBpdCBzaG91bGQgYmUKPj4gQ0NlZCB0byBzdGFibGUgdG9vLCB3aXRob3V0IGl0LCBz
-b21lIGtlcGxlci9tYXh3ZWxsIGdldCAwJSBmYW4gcG93ZXIgd2hpY2gKPj4gaXMga2luZCBvZiBk
-YW5nZXJvdXMsIGV2ZW4gd2l0aG91dCByZWNsb2NraW5nIQo+Cj4KPiBQaW5nLCB0aGlzIGlzIHJl
-YWxseSBpbXBvcnRhbnQgOnMKPgpOb3Qgc3VyZSB3aG8gcGlja2VkIGl0IHVwLCBidXQgaXQgc2Vl
-bXMgdG8gYmUgaW4gdGhlIGxhdGVzdCBmaXhlcyBiYXRjaCBbMV0uCgpbMV0gaHR0cDovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9kcmktZGV2ZWwvMjAxNS1EZWNlbWJlci8wOTc1ODku
-aHRtbAoKLUVtaWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0268897617==
+Content-Type: multipart/alternative; boundary="1451927807.1eEb41.7926"; charset="UTF-8"
+
+
+--1451927807.1eEb41.7926
+Date: Mon, 4 Jan 2016 17:16:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93557
+
+--- Comment #3 from xgfwtvdh-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
+The bug is half solved!
+I compiled a new kernel image. I did not get the kernel panic any more but
+still get the full dmesg full of errors like:
+
+[ 1059.265197] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b020
+[ 1059.265516] nouveau 0000:00:0d.0: bus: MMIO write of 010d0001 FAULT at
+00b010
+[ 1060.724984] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b010
+[ 1060.847845] nouveau 0000:00:0d.0: bus: MMIO write of 010a0001 FAULT at
+00b010
+[ 1060.848340] nouveau 0000:00:0d.0: bus: MMIO write of 010c0001 FAULT at
+00b020
+[ 1061.073132] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b010
+[ 1061.073350] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b020
+[ 1061.265858] nouveau 0000:00:0d.0: bus: MMIO write of 01890001 FAULT at
+00b010
+[ 1061.266331] nouveau 0000:00:0d.0: bus: MMIO write of 018c0001 FAULT at
+00b020
+[ 1061.266954] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b010
+[ 1068.679841] nouveau 0000:00:0d.0: bus: MMIO write of 01890001 FAULT at
+00b010
+[ 1068.691605] nouveau 0000:00:0d.0: bus: MMIO write of 018b0001 FAULT at
+00b030
+[ 1069.007856] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b010
+[ 1069.008076] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b030
+[ 1069.009128] nouveau 0000:00:0d.0: bus: MMIO write of 04200001 FAULT at
+00b010
+[ 1071.267098] nouveau 0000:00:0d.0: bus: MMIO write of 01890001 FAULT at
+00b030
+[ 1071.267686] nouveau 0000:00:0d.0: bus: MMIO write of 018b0001 FAULT at
+00b040
+[ 1075.811130] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b030
+[ 1075.811472] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b040
+
+Could you quickly push the fix that is already done to solve the kernel panic
+in kernel 4.4 before it gets stable?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1451927807.1eEb41.7926
+Date: Mon, 4 Jan 2016 17:16:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557">bug 93557</a>
+              from <span class="vcard"><a class="email" href="mailto:xgfwtvdh&#64;sharklasers.com" title="xgfwtvdh&#64;sharklasers.com">xgfwtvdh&#64;sharklasers.com</a>
+</span></b>
+        <pre>The bug is half solved!
+I compiled a new kernel image. I did not get the kernel panic any more but
+still get the full dmesg full of errors like:
+
+[ 1059.265197] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b020
+[ 1059.265516] nouveau 0000:00:0d.0: bus: MMIO write of 010d0001 FAULT at
+00b010
+[ 1060.724984] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b010
+[ 1060.847845] nouveau 0000:00:0d.0: bus: MMIO write of 010a0001 FAULT at
+00b010
+[ 1060.848340] nouveau 0000:00:0d.0: bus: MMIO write of 010c0001 FAULT at
+00b020
+[ 1061.073132] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b010
+[ 1061.073350] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b020
+[ 1061.265858] nouveau 0000:00:0d.0: bus: MMIO write of 01890001 FAULT at
+00b010
+[ 1061.266331] nouveau 0000:00:0d.0: bus: MMIO write of 018c0001 FAULT at
+00b020
+[ 1061.266954] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b010
+[ 1068.679841] nouveau 0000:00:0d.0: bus: MMIO write of 01890001 FAULT at
+00b010
+[ 1068.691605] nouveau 0000:00:0d.0: bus: MMIO write of 018b0001 FAULT at
+00b030
+[ 1069.007856] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b010
+[ 1069.008076] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b030
+[ 1069.009128] nouveau 0000:00:0d.0: bus: MMIO write of 04200001 FAULT at
+00b010
+[ 1071.267098] nouveau 0000:00:0d.0: bus: MMIO write of 01890001 FAULT at
+00b030
+[ 1071.267686] nouveau 0000:00:0d.0: bus: MMIO write of 018b0001 FAULT at
+00b040
+[ 1075.811130] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b030
+[ 1075.811472] nouveau 0000:00:0d.0: bus: MMIO write of 00000000 FAULT at
+00b040
+
+Could you quickly push the fix that is already done to solve the kernel panic
+in kernel 4.4 before it gets stable?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1451927807.1eEb41.7926--
+
+--===============0268897617==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0268897617==--
