@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
- KDE/KDM on Nvidia GeForce 7025 / nForce 630a
-Date: Sun, 03 Jan 2016 23:03:31 +0000
-Message-ID: <bug-93557-8800-MTwhT2pKVp@http.bugs.freedesktop.org/>
-References: <bug-93557-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93573] New: bad performance with 4k h264 video
+Date: Mon, 04 Jan 2016 05:25:16 +0000
+Message-ID: <bug-93573-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2024289351=="
+Content-Type: multipart/mixed; boundary="===============1590425142=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +18,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2024289351==
-Content-Type: multipart/alternative; boundary="1451862211.bDFcAbAf2.1145"; charset="UTF-8"
+--===============1590425142==
+Content-Type: multipart/alternative; boundary="1451885116.EdeD08AB1.3148"; charset="UTF-8"
 
 
---1451862211.bDFcAbAf2.1145
-Date: Sun, 3 Jan 2016 23:03:31 +0000
+--1451885116.EdeD08AB1.3148
+Date: Mon, 4 Jan 2016 05:25:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93557
+https://bugs.freedesktop.org/show_bug.cgi?id=93573
 
---- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This commit should fix the oops:
+            Bug ID: 93573
+           Summary: bad performance with 4k h264 video
+           Product: xorg
+           Version: git
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-https://github.com/skeggsb/nouveau/commit/b09b9c5b0f84a84d6ef99d999428042cbab93473
+I noticed a while back already, that nouveau handles 4k video not that well
+currently.
+
+I tried it out with the cactus-4k video from here:
+http://www.elementaltechnologies.com/resources/4k-test-sequences
+
+Nvidia doesn't have any problem playing that video at full speed, but on my
+kepler nve6 card even full reclocked nouveau only handles this at 45% speed and
+the PVLD engine is at max load (only around 80% with nvidia)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1451862211.bDFcAbAf2.1145
-Date: Sun, 3 Jan 2016 23:03:31 +0000
+--1451885116.EdeD08AB1.3148
+Date: Mon, 4 Jan 2016 05:25:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +66,98 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - bad performance with 4k h264 video"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93573">93573</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>bad performance with 4k h264 video
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>freedesktop&#64;karolherbst.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557">bug 93557</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>This commit should fix the oops:
+        <pre>I noticed a while back already, that nouveau handles 4k video not that well
+currently.
 
-<a href="https://github.com/skeggsb/nouveau/commit/b09b9c5b0f84a84d6ef99d999428042cbab93473">https://github.com/skeggsb/nouveau/commit/b09b9c5b0f84a84d6ef99d999428042cbab93473</a></pre>
+I tried it out with the cactus-4k video from here:
+<a href="http://www.elementaltechnologies.com/resources/4k-test-sequences">http://www.elementaltechnologies.com/resources/4k-test-sequences</a>
+
+Nvidia doesn't have any problem playing that video at full speed, but on my
+kepler nve6 card even full reclocked nouveau only handles this at 45% speed and
+the PVLD engine is at max load (only around 80% with nvidia)</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +169,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1451862211.bDFcAbAf2.1145--
+--1451885116.EdeD08AB1.3148--
 
---===============2024289351==
+--===============1590425142==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +181,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2024289351==--
+--===============1590425142==--
