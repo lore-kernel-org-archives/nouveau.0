@@ -1,13 +1,13 @@
-From: =?UTF-8?B?Q3PDoW55aSBQw6Fs?= <csanyipal-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Nouveau support for GeForce GT 730 or GTX 750 Ti or
- AMD Radeon R7 240 and AMD ATI RADEON R7 260X ??
-Date: Mon, 4 Jan 2016 09:02:42 +0100
-Message-ID: <CAONhAotA9L7RMbC6m4uP0GAQezd56B7Q=TxYP0jb-HWnWbD=3A@mail.gmail.com>
-Reply-To: csanyipal-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91954] "link training failed": nouveau does not
+ recover from monitor suspend
+Date: Mon, 04 Jan 2016 13:02:46 +0000
+Message-ID: <bug-91954-8800-oA5KP59b92@http.bugs.freedesktop.org/>
+References: <bug-91954-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0721936386=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91954-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,34 +17,75 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-MjAxNi0wMS0wMyAyMDoxMSBHTVQrMDE6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
-ZWR1PjoKPiBPbiBTdW4sIEphbiAzLCAyMDE2IGF0IDE6NTIgUE0sIENzw6FueWkgUMOhbCA8Y3Nh
-bnlpcGFsQGdtYWlsLmNvbT4gd3JvdGU6Cgo+PiBTbyB0aGVyZSBpcyBhbiBBTUQgY2FyZCB0b286
-Cj4+IFZHQSBBU1VTIEFNRCBSYWRlb24gUjcgMjQwLCBSNzI0MC0yR0QzLUwsIDJHQiBERFIzLCAx
-MjhiaXQsCj4+IDczMC8xODAwTUh6LCBIRE1JLCBEVkktRCwgRC1zdWIKPj4KPj4gV2hhdCB3b3Vs
-ZCBiZSB0aGUgYmVzdCBjaG9pY2UgaGVyZToKPj4gR0VGT1JDRSBHVCA3MzAKPj4gb3IKPj4gQU1E
-IFJhZGVvbiBSNyAyNDAgPwo+Cj4gSSBkb24ndCB3YW50IHRvIHJlY29tbWVuZCBvbmUgb3IgdGhl
-IG90aGVyLCBlc3AgYXMgSSdtIHVuYXdhcmUgb2YgdGhlCj4gc3BlY2lmaWNzIGFyb3VuZCBleGFj
-dCBBTUQgR1BVIHN1cHBvcnQuIEJ1dCBpbiBnZW5lcmFsLCBpZiB0aGluZ3MKPiBkb24ndCBKdXN0
-IFdvcmsgKHRtKSwgQU1EIGhhcyBmdWxsLXRpbWUgZW1wbG95ZWVzIChwbHVyYWwpIHdvcmtpbmcg
-b24KPiB2YXJpb3VzIGFzcGVjdHMgb2YgdGhlIGRyaXZlciwgYW5kIHRob3NlIGVtcGxveWVlcyBh
-cmUgYXJtZWQgd2l0aAo+IGRvY3VtZW50YXRpb24gYW5kIGFjY2VzcyB0byBoYXJkd2FyZSBlbmdp
-bmVlcnMuCgo+IElmIEkgd2VyZSBiZXR0aW5nIG9uIGEgdGVhbSwgSSdkIGRlZmluaXRlbHkgYmV0
-IG9uIHRoZSBBTUQgb25lIDopCgpXZWxsLCBteSBtb3RoZXJib2FyZCBpcyBQNUUtRSBTTEkgd2l0
-aApDaGlwc2V0OgpOb3J0aCBCcmlkZ2U6IE5WSURJQSBuRm9yY2UgNjUwaSBTTEkgKEM1NSkKU291
-dGggQnJpZGdlOiBOVklESUEgbkZvcmNlIDQzMGkgKE1QQyA1MSkKCkV4cGFuc2lvbiBzbG90czoK
-MiB4IFBDSSBFeHByZXNzIHgxNiBzbG90cyB3aXRoIFNMSSBzdXBwb3J0CjF4IFBDSSBFeHByZXNz
-IHgxIHNsb3QKMnggUENJIHNsb3RzIChQQ0kgMi4yKQoKU28gY2FuIGJlIHVzZWQgb24gdGhpcyBt
-b3RoZXJib2FyZCBBTUQgUmFkZW9uIGdyYXBoaWNzIGNhcmRzIGF0IGFsbD8KCklmIHllcywgZG9l
-cyBub3V2ZWF1IHN1cHBvcnQgdGhlc2UgdHdvIFJhZGVvbiBjYXJkcwp3aXRoIE9wZW5HTCBvZiBj
-b3Vyc2U6CjEuClZHQSBBU1VTIEFNRCBSYWRlb24gUjcgMjQwLCBSNzI0MC0yR0QzLUwsIDJHQiBE
-RFIzLCAxMjhiaXQsCjczMC8xODAwTUh6LCBIRE1JLCBEVkktRCwgRC1zdWIKCjIuClZHQSBBU1VT
-IFI3MjYwWC1PQy0yR0Q1LCBBTUQgQVRJIFJBREVPTiBSNyAyNjBYLCAyR0IgR0REUjUsIDEyOC1i
-aXQsCjEwNzUvNTAwME1IeiwgMnggRFZJLCAxeCBIRE1JLCAxIHggRGlzcGxheSBQb3J0LCAxIHgg
-RFZJIHRvIEQtU3ViCmFkYXB0b3IsIFBDSSBFeHByZXNzIDMuMAoKLS0gCkJlc3QsIFBhbGkKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0721936386==
+Content-Type: multipart/alternative; boundary="1451912566.e3D5BFbB3.23293"; charset="UTF-8"
+
+
+--1451912566.e3D5BFbB3.23293
+Date: Mon, 4 Jan 2016 13:02:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91954
+
+--- Comment #5 from Julien HENRY <henryju-Qt13gs6zZMY@public.gmane.org> ---
+Created attachment 120791
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120791&action=edit
+Kernel logs
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1451912566.e3D5BFbB3.23293
+Date: Mon, 4 Jan 2016 13:02:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - &quot;link training failed&quot;: nouveau does not recover from monitor suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91954#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - &quot;link training failed&quot;: nouveau does not recover from monitor suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91954">bug 91954</a>
+              from <span class="vcard"><a class="email" href="mailto:henryju&#64;yahoo.fr" title="Julien HENRY &lt;henryju&#64;yahoo.fr&gt;"> <span class="fn">Julien HENRY</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120791" name="attach_120791" title="Kernel logs">attachment 120791</a> <a href="attachment.cgi?id=120791&amp;action=edit" title="Kernel logs">[details]</a></span>
+Kernel logs</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1451912566.e3D5BFbB3.23293--
+
+--===============0721936386==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0721936386==--
