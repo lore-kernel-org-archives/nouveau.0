@@ -1,15 +1,16 @@
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 Subject: Re: [PATCH] bios/fan: hardcode the fan mode to linear
-Date: Tue, 5 Jan 2016 18:38:56 +1000
-Message-ID: <568B8120.2050500@redhat.com>
+Date: Tue, 5 Jan 2016 10:58:11 +0200
+Message-ID: <568B85A3.30601@free.fr>
 References: <1448806218-6029-1-git-send-email-martin.peres@free.fr>
  <5672EE74.6090403@free.fr> <568A880E.1070603@free.fr>
  <CACvgo502iJJzC8qj4CA=+2UucHMhWQ=+X=ZpQ22xkiRS4PzDoQ@mail.gmail.com>
- <568B8042.6020800@free.fr>
+ <568B8042.6020800@free.fr> <568B8120.2050500@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0350462777=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <568B8042.6020800-GANU6spQydw@public.gmane.org>
+In-Reply-To: <568B8120.2050500-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,120 +20,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0350462777==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="eKauN9au20qkmXWWwBoWeWbu5mFWvrNW3"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---eKauN9au20qkmXWWwBoWeWbu5mFWvrNW3
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-On 01/05/2016 06:35 PM, Martin Peres wrote:
-> On 04/01/16 18:42, Emil Velikov wrote:
->> On 4 January 2016 at 14:56, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> wrote:=
-
->>> On 17/12/15 19:18, Martin Peres wrote:
->>>> On 29/11/15 16:10, Martin Peres wrote:
->>>>> This is an oversight that made use of the trip-point-based fan
->>>>> managenent
->>>>> on
->>>>> cards that never expose those. This led the fan to stay at fan_min.=
-
->>>>>
->>>>> Fortunately, the emergency code would kick when the temperature wou=
-ld
->>>>> reach
->>>>> 90=C2=B0C.
->>>>>
->>>>> Reported-by: Tom Englund <tomenglund26-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->>>>> Tested-by: Tom Englund <tomenglund26-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->>>>
->>>> Tested-by: Daemon32 <lnf.purple-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->>>> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=3D92126
->>>>
->>>>> Signed-off-by: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
->>>>> ---
->>>>>    drm/nouveau/nvkm/subdev/bios/fan.c | 1 +
->>>>>    1 file changed, 1 insertion(+)
->>>>>
->>>>> diff --git a/drm/nouveau/nvkm/subdev/bios/fan.c
->>>>> b/drm/nouveau/nvkm/subdev/bios/fan.c
->>>>> index 43006db..80fed7e 100644
->>>>> --- a/drm/nouveau/nvkm/subdev/bios/fan.c
->>>>> +++ b/drm/nouveau/nvkm/subdev/bios/fan.c
->>>>> @@ -83,6 +83,7 @@ nvbios_fan_parse(struct nvkm_bios *bios, struct
->>>>> nvbios_therm_fan *fan)
->>>>>                fan->type =3D NVBIOS_THERM_FAN_UNK;
->>>>>            }
->>>>>
->>>>> +        fan->fan_mode =3D NVBIOS_THERM_FAN_LINEAR;
->>>>>            fan->min_duty =3D nvbios_rd08(bios, data + 0x02);
->>>>>            fan->max_duty =3D nvbios_rd08(bios, data + 0x03);
->>>>>
->>>>>
->>>> Ben, can you merge this patch? It is kind of critical :s And it
->>>> should be
->>>> CCed to stable too, without it, some kepler/maxwell get 0% fan power=
-
->>>> which
->>>> is kind of dangerous, even without reclocking!
->>>
->>> Ping, this is really important :s
->>>
->> Not sure who picked it up, but it seems to be in the latest fixes
->> batch [1].
->>
->> [1]
->> http://lists.freedesktop.org/archives/dri-devel/2015-December/097589.h=
-tml
->=20
-> Thanks Emil, Karol pointed it out to me on IRC too. Thanks to whoever
-> picked it up :)
-I did, my apologies for not communicating that better!
-
-Ben.
-
-
---eKauN9au20qkmXWWwBoWeWbu5mFWvrNW3
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBCAAGBQJWi4EgAAoJEHYLnGJQkpH7qZQQAINPs0WejII3AsnOoH0QFG5p
-UkSu0aE/fV33w38L6rnpAnDd4khx5hIuc/kG0os3YnKDKTfF0XlZDraq+GWOpPoD
-Hm6MvZey3MJmTpU68vgHzj8iNuBgqF+YwMyXqY5MW4ZEfJAgs+Fqa/qBw5iX0k9C
-BuLcL1CM4F41HmtIidvzyVsECDTK+TjYrHNncCtzNuytzQEqMbso1/VsLP9zPMuS
-9DIb35jNqldXVDf3UOx5sk+ipu81vWIspPfmhTHe/3aKfdvUuHetaZ55qdzFOa3b
-i8B4CXXOv4bpAn0GueRkUGuTxYUeTlhde5sGFPSWYV5ulF2fyb5gXQdMhv7FzKMC
-orP/x2ZhawdqilzZi6/nAcFT+inwb438Og3UQNUPSPm3hJF1M7OcD484B9g+GAgI
-Oi5wzYQiE5hLf4cn+z1IAyepSWV6+jnp3AoU3dju1IZlh1loGhAxEBVeqRlQmPYT
-iYZucF+OHiyIurjA/lAg0DZzQ9/U7ZaqCdMPdDTxCaJJElJl/obf7d3wLxoK3ggo
-Fp1/eBoI47DUAItka9tkE82uyHSY/ce4nYWCoHeZZUi/84qx6jBfsgwWfriWOxZo
-pmV5ZvJHA38on0W/kZ4pejA4mSmRQaxwBZ+35a/QxtZNP841an6W/jU5CmUgiPmv
-XWZxj2p6ox1wJGNFhIN5
-=uYea
------END PGP SIGNATURE-----
-
---eKauN9au20qkmXWWwBoWeWbu5mFWvrNW3--
-
---===============0350462777==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0350462777==--
+T24gMDUvMDEvMTYgMTA6MzgsIEJlbiBTa2VnZ3Mgd3JvdGU6Cj4gT24gMDEvMDUvMjAxNiAwNjoz
+NSBQTSwgTWFydGluIFBlcmVzIHdyb3RlOgo+PiBPbiAwNC8wMS8xNiAxODo0MiwgRW1pbCBWZWxp
+a292IHdyb3RlOgo+Pj4gT24gNCBKYW51YXJ5IDIwMTYgYXQgMTQ6NTYsIE1hcnRpbiBQZXJlcyA8
+bWFydGluLnBlcmVzQGZyZWUuZnI+IHdyb3RlOgo+Pj4+IE9uIDE3LzEyLzE1IDE5OjE4LCBNYXJ0
+aW4gUGVyZXMgd3JvdGU6Cj4+Pj4+IE9uIDI5LzExLzE1IDE2OjEwLCBNYXJ0aW4gUGVyZXMgd3Jv
+dGU6Cj4+Pj4+PiBUaGlzIGlzIGFuIG92ZXJzaWdodCB0aGF0IG1hZGUgdXNlIG9mIHRoZSB0cmlw
+LXBvaW50LWJhc2VkIGZhbgo+Pj4+Pj4gbWFuYWdlbmVudAo+Pj4+Pj4gb24KPj4+Pj4+IGNhcmRz
+IHRoYXQgbmV2ZXIgZXhwb3NlIHRob3NlLiBUaGlzIGxlZCB0aGUgZmFuIHRvIHN0YXkgYXQgZmFu
+X21pbi4KPj4+Pj4+Cj4+Pj4+PiBGb3J0dW5hdGVseSwgdGhlIGVtZXJnZW5jeSBjb2RlIHdvdWxk
+IGtpY2sgd2hlbiB0aGUgdGVtcGVyYXR1cmUgd291bGQKPj4+Pj4+IHJlYWNoCj4+Pj4+PiA5MMKw
+Qy4KPj4+Pj4+Cj4+Pj4+PiBSZXBvcnRlZC1ieTogVG9tIEVuZ2x1bmQgPHRvbWVuZ2x1bmQyNkBn
+bWFpbC5jb20+Cj4+Pj4+PiBUZXN0ZWQtYnk6IFRvbSBFbmdsdW5kIDx0b21lbmdsdW5kMjZAZ21h
+aWwuY29tPgo+Pj4+PiBUZXN0ZWQtYnk6IERhZW1vbjMyIDxsbmYucHVycGxlQGdtYWlsLmNvbT4K
+Pj4+Pj4gQnVnemlsbGE6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dp
+P2lkPTkyMTI2Cj4+Pj4+Cj4+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBNYXJ0aW4gUGVyZXMgPG1hcnRp
+bi5wZXJlc0BmcmVlLmZyPgo+Pj4+Pj4gLS0tCj4+Pj4+PiAgICAgZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvYmlvcy9mYW4uYyB8IDEgKwo+Pj4+Pj4gICAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2Vy
+dGlvbigrKQo+Pj4+Pj4KPj4+Pj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di9iaW9zL2Zhbi5jCj4+Pj4+PiBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvZmFuLmMK
+Pj4+Pj4+IGluZGV4IDQzMDA2ZGIuLjgwZmVkN2UgMTAwNjQ0Cj4+Pj4+PiAtLS0gYS9kcm0vbm91
+dmVhdS9udmttL3N1YmRldi9iaW9zL2Zhbi5jCj4+Pj4+PiArKysgYi9kcm0vbm91dmVhdS9udmtt
+L3N1YmRldi9iaW9zL2Zhbi5jCj4+Pj4+PiBAQCAtODMsNiArODMsNyBAQCBudmJpb3NfZmFuX3Bh
+cnNlKHN0cnVjdCBudmttX2Jpb3MgKmJpb3MsIHN0cnVjdAo+Pj4+Pj4gbnZiaW9zX3RoZXJtX2Zh
+biAqZmFuKQo+Pj4+Pj4gICAgICAgICAgICAgICAgIGZhbi0+dHlwZSA9IE5WQklPU19USEVSTV9G
+QU5fVU5LOwo+Pj4+Pj4gICAgICAgICAgICAgfQo+Pj4+Pj4KPj4+Pj4+ICsgICAgICAgIGZhbi0+
+ZmFuX21vZGUgPSBOVkJJT1NfVEhFUk1fRkFOX0xJTkVBUjsKPj4+Pj4+ICAgICAgICAgICAgIGZh
+bi0+bWluX2R1dHkgPSBudmJpb3NfcmQwOChiaW9zLCBkYXRhICsgMHgwMik7Cj4+Pj4+PiAgICAg
+ICAgICAgICBmYW4tPm1heF9kdXR5ID0gbnZiaW9zX3JkMDgoYmlvcywgZGF0YSArIDB4MDMpOwo+
+Pj4+Pj4KPj4+Pj4+Cj4+Pj4+IEJlbiwgY2FuIHlvdSBtZXJnZSB0aGlzIHBhdGNoPyBJdCBpcyBr
+aW5kIG9mIGNyaXRpY2FsIDpzIEFuZCBpdAo+Pj4+PiBzaG91bGQgYmUKPj4+Pj4gQ0NlZCB0byBz
+dGFibGUgdG9vLCB3aXRob3V0IGl0LCBzb21lIGtlcGxlci9tYXh3ZWxsIGdldCAwJSBmYW4gcG93
+ZXIKPj4+Pj4gd2hpY2gKPj4+Pj4gaXMga2luZCBvZiBkYW5nZXJvdXMsIGV2ZW4gd2l0aG91dCBy
+ZWNsb2NraW5nIQo+Pj4+IFBpbmcsIHRoaXMgaXMgcmVhbGx5IGltcG9ydGFudCA6cwo+Pj4+Cj4+
+PiBOb3Qgc3VyZSB3aG8gcGlja2VkIGl0IHVwLCBidXQgaXQgc2VlbXMgdG8gYmUgaW4gdGhlIGxh
+dGVzdCBmaXhlcwo+Pj4gYmF0Y2ggWzFdLgo+Pj4KPj4+IFsxXQo+Pj4gaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9kcmktZGV2ZWwvMjAxNS1EZWNlbWJlci8wOTc1ODkuaHRt
+bAo+PiBUaGFua3MgRW1pbCwgS2Fyb2wgcG9pbnRlZCBpdCBvdXQgdG8gbWUgb24gSVJDIHRvby4g
+VGhhbmtzIHRvIHdob2V2ZXIKPj4gcGlja2VkIGl0IHVwIDopCj4gSSBkaWQsIG15IGFwb2xvZ2ll
+cyBmb3Igbm90IGNvbW11bmljYXRpbmcgdGhhdCBiZXR0ZXIhCk5vIHByb2JzIDopIERpZG4ndCBr
+bm93IHlvdSBtb3ZlZCB0byBnaXRodWIgdG9vLCBpdCBtYXkgYmUgd29ydGggc2VuZGluZyAKYW4g
+ZW1haWwgb24gdGhlIE1MIGFuZCB3ZSBuZWVkIHRvIHVwZGF0ZSB0aGUgd2lraS4gQXJlIHlvdSBw
+bGFubmluZyBvbiAKdXNpbmcgdGhlIG1lcmdlIHJlcXVlc3QgZmVhdHVyZSB0byBrZWVwIHRyYWNr
+IG9mIHRoZSByZXZpZXcgeW91IG5lZWQgdG8gCm1ha2U/CgpXZSBjYW4gYWxzbyBhc2sgRGFtaWVu
+IExlc3BpYXUgdG8gc2V0IHVwIGEgTm91dmVhdSBpbnN0YW5jZSBvZiAKcGF0Y2h3b3JrOiBodHRw
+czovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
