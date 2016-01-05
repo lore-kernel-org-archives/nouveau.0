@@ -1,15 +1,12 @@
-From: Thomas Richter <richter-Jqd5/X81recL63KmMnjC+CEWGD4kr0XT@public.gmane.org>
-Subject: Re: Activate DVI-I behind KVM on FX 5200
-Date: Tue, 5 Jan 2016 14:47:05 +0100
-Message-ID: <568BC959.3070109@tik.uni-stuttgart.de>
-References: <568B339D.2090102@tik.uni-stuttgart.de>
- <568B9DCE.8080407@gmail.com>
-Reply-To: richter-Jqd5/X81recL63KmMnjC+CEWGD4kr0XT@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 47846] Nouveau -> overscan using HDMI
+Date: Tue, 05 Jan 2016 14:56:29 +0000
+Message-ID: <bug-47846-8800-cvWYPzWPQm@http.bugs.freedesktop.org/>
+References: <bug-47846-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1940671580=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <568B9DCE.8080407-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-47846-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,29 +16,92 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QW0gMDUuMDEuMjAxNiB1bSAxMTo0MSBzY2hyaWViIHBvbWE6Cgo+IAo+IGFwcGVuZCB0byBrZXJu
-ZWwgY21kbGluZToKPiBkcm1fa21zX2hlbHBlci5lZGlkX2Zpcm13YXJlPURWSS1JLTE6ZWRpZC9l
-ZGlkLmJpbgo+IAo+ICQgY2F0IC9wcm9jL2NtZGxpbmUKPiAuLi4gZHJtX2ttc19oZWxwZXIuZWRp
-ZF9maXJtd2FyZT1EVkktSS0xOmVkaWQvZWRpZC5iaW4gLi4uCj4gCgpXZWxsLCBubyBiYW5hbmEu
-IFllcywgdGhlIGtlcm5lbCBsb2FkcyB0aGUgZWRpZCwgYnV0IHRoZSBzY3JlZW4ga2VlcHMKYmxh
-bmsgaWYgSSBzd2l0Y2ggdGhlIG1vbml0b3IgdG8gdGhlIHN5c3RlbSBhZnRlciBib290c3RyYXAu
-ICktOgoKWyAgIDIwLjMxOTI3MV0gW2RybV0gR290IGV4dGVybmFsIEVESUQgYmFzZSBibG9jayBh
-bmQgMCBleHRlbnNpb25zIGZyb20KImVkaWQvZWRpZC5iaW4iIGZvciBjb25uZWN0b3IgIkRWSS1J
-LTEiClsgICAyMC4zNDcyNzRdIFtkcm1dIEdvdCBleHRlcm5hbCBFRElEIGJhc2UgYmxvY2sgYW5k
-IDAgZXh0ZW5zaW9ucyBmcm9tCiJlZGlkL2VkaWQuYmluIiBmb3IgY29ubmVjdG9yICJEVkktSS0x
-IgoKSSBhbHNvIHJlcGxhY2VkIHRoYXQgd2l0aCB0aGUgImR1bW15IiBlZGlkLzEyODB4MTAyNC5i
-aW4gcGFyYW1ldGVyLCBzYW1lCnRoaW5nLgoKSWYgSSBib290IHdpdGggdGhlIG1vbml0b3IgY29u
-bmVjdGVkLCBldmVyeXRoaW5nIGlzIGZpbmUuIElmIEkgYm9vdCB3aXRoCml0IGRpc2Nvbm5lY3Rl
-ZCwgbm8gY2hhbmNlLgoKSSBhbHNvIHRyaWVkIHRvIGZvcmNlIHRoZSBEVkkgY29ubmVjdG9yIG9u
-OgoKdmlkZW89RFZJLUktMTplCgpUaGUgcmVzdWx0IGlzIHRoYXQgdGhlIGtlcm5lbCBzdGlsbCBs
-b2FkcyB0aGUgZWRpZCwgYnV0IHRoZSBzY3JlZW4KcmVtYWlucyBub3cgYmxhbmsgYWxsIHRoZSB0
-aW1lLCBldmVuIGlmIEkgYm9vdCB3aXRoIHRoZSBtb25pdG9yIGNvbm5lY3RlZC4KClllcywgaXQg
-aXMgcmVhbGx5IGNvbm5lY3RlZCB0byBEVkktSS0xLCBhdCBsZWFzdCBhY2NvcmRpbmcgdG8geHJh
-bmRyCndpdGhvdXQgdGhlICJ2aWRlbyIgcGFyYW1ldGVyLCBhbmQgd2l0aCB0aGUgbW9uaXRvciBj
-b25uZWN0ZWQuCgpHcmVldGluZ3MsCglUaG9tYXMKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1Cg==
+
+--===============1940671580==
+Content-Type: multipart/alternative; boundary="1452005789.17f0221.2854"; charset="UTF-8"
+
+
+--1452005789.17f0221.2854
+Date: Tue, 5 Jan 2016 14:56:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=47846
+
+--- Comment #18 from ITwrx <info-4raFRpJX58rYtjvyW6yDsg@public.gmane.org> ---
+I can confirm that overscan makes a polaroid 40" tv (tla-04011c) pretty useless
+with nouveau. It has no option in TV menu to modify the overscan and remote is
+MIA but i have my doubts that they bothered to include it there either. nvidia
+driver has underscan option which when set to 50 brings the DE menus, etc back
+on screen. Kodi in fullscreen acts like it didn't get the memo but i haven't
+looked into addressing that yet. It would be nice if there were a command line
+or kernel line setting in grub for designating underscan, if that would solve
+the problem. I haven't tested enough with nvidia to verify it's actually
+universally solved. I'd much rather use nouveau.
+
+thanks for your work.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1452005789.17f0221.2854
+Date: Tue, 5 Jan 2016 14:56:29 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Nouveau -&gt; overscan using HDMI"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47846#c18">Comment # 18</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Nouveau -&gt; overscan using HDMI"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47846">bug 47846</a>
+              from <span class="vcard"><a class="email" href="mailto:info&#64;itwrx.org" title="ITwrx &lt;info&#64;itwrx.org&gt;"> <span class="fn">ITwrx</span></a>
+</span></b>
+        <pre>I can confirm that overscan makes a polaroid 40&quot; tv (tla-04011c) pretty useless
+with nouveau. It has no option in TV menu to modify the overscan and remote is
+MIA but i have my doubts that they bothered to include it there either. nvidia
+driver has underscan option which when set to 50 brings the DE menus, etc back
+on screen. Kodi in fullscreen acts like it didn't get the memo but i haven't
+looked into addressing that yet. It would be nice if there were a command line
+or kernel line setting in grub for designating underscan, if that would solve
+the problem. I haven't tested enough with nvidia to verify it's actually
+universally solved. I'd much rather use nouveau.
+
+thanks for your work.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1452005789.17f0221.2854--
+
+--===============1940671580==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1940671580==--
