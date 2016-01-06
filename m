@@ -1,118 +1,49 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
- KDE/KDM on Nvidia GeForce 7025 / nForce 630a
-Date: Wed, 06 Jan 2016 21:50:53 +0000
-Message-ID: <bug-93557-8800-V8qJhQi897@http.bugs.freedesktop.org/>
-References: <bug-93557-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nv50/ir: don't touch degree on physreg RIG nodes
+Date: Wed,  6 Jan 2016 17:30:58 -0500
+Message-ID: <1452119458-6205-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0354831230=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: "11.0 11.1" <mesa-stable@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0354831230==
-Content-Type: multipart/alternative; boundary="1452117052.32562.30672"; charset="UTF-8"
-
-
---1452117052.32562.30672
-Date: Wed, 6 Jan 2016 21:50:52 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93557
-
---- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to xgfwtvdh from comment #5)
-> They are REDLINED in dmesg. More/bigger warning is not possible for the
-> users.
-> It were something like a big red flashing "WARNING, MOTOR FAILURE" on the
-> Screen of your car and then someone would say "nah, that warning is just
-> fine, ignore it".
-> 
-> I would like to help fixing them by testing something when you need me
-> testing something.
-
-If you can get a mmiotrace[1] of the binary driver, that might be useful.
-
-Thanks,
-Ben.
-
-[1] http://nouveau.freedesktop.org/wiki/MmioTrace/
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1452117052.32562.30672
-Date: Wed, 6 Jan 2016 21:50:52 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557">bug 93557</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>(In reply to xgfwtvdh from <a href="show_bug.cgi?id=93557#c5">comment #5</a>)
-<span class="quote">&gt; They are REDLINED in dmesg. More/bigger warning is not possible for the
-&gt; users.
-&gt; It were something like a big red flashing &quot;WARNING, MOTOR FAILURE&quot; on the
-&gt; Screen of your car and then someone would say &quot;nah, that warning is just
-&gt; fine, ignore it&quot;.
-&gt; 
-&gt; I would like to help fixing them by testing something when you need me
-&gt; testing something.</span >
-
-If you can get a mmiotrace[1] of the binary driver, that might be useful.
-
-Thanks,
-Ben.
-
-[1] <a href="http://nouveau.freedesktop.org/wiki/MmioTrace/">http://nouveau.freedesktop.org/wiki/MmioTrace/</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1452117052.32562.30672--
-
---===============0354831230==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0354831230==--
+VGhlc2Ugbm9kZXMgZG9uJ3QgZ28gdGhyb3VnaCByZWR1Y3Rpb24sIHNvIHdlIHNob3VsZG4ndCBi
+ZSBpbmNyZWFzaW5nCnRoZWlyIGRlZ3JlZXMuCgpCdWd6aWxsYTogaHR0cHM6Ly9idWdzLmZyZWVk
+ZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9OTE4OTUKU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJr
+aW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgpDYzogIjExLjAgMTEuMSIgPG1lc2Etc3RhYmxlQGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZz4KLS0tCgpJIHdvdWxkIGxpa2UgdG8gc2VlIGEgKmJ1bmNoKiBv
+ZiB0ZXN0aW5nIG9uIHRoaXMgYmVmb3JlIG1lcmdpbmcgaXQuLi4gUkEtbGFuZAppcyBmYXIgZnJv
+bSBteSBleHBlcnRpc2UuIEhvd2V2ZXIgaXQgZG9lcyBmaXggdGhlIHNoYWRlcnMgaW4gdGhlIG9y
+aWdpbmFsIGJ1ZwphbmQgZG9lc24ndCByZWdyZXNzIHRoZSBmZXcgYWRkaXRpb25hbCB0aGluZ3Mg
+dGhhdCBJIHRyaWVkLgoKIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBf
+aXJfcmEuY3BwIHwgOCArKysrKy0tLQogMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwg
+MyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
+Y29kZWdlbi9udjUwX2lyX3JhLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2Rl
+Z2VuL252NTBfaXJfcmEuY3BwCmluZGV4IGNkOGM0MmMuLmYxZmZjYmEgMTAwNjQ0Ci0tLSBhL3Ny
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwCisrKyBiL3Ny
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwCkBAIC0xMTI5
+LDkgKzExMjksMTEgQEAgR0NSQTo6ZG9Db2FsZXNjZShBcnJheUxpc3QmIGluc25zLCB1bnNpZ25l
+ZCBpbnQgbWFzaykKIHZvaWQKIEdDUkE6OlJJR19Ob2RlOjphZGRJbnRlcmZlcmVuY2UoUklHX05v
+ZGUgKm5vZGUpCiB7Ci0gICB0aGlzLT5kZWdyZWUgKz0gcmVsRGVncmVlW25vZGUtPmNvbG9yc11b
+Y29sb3JzXTsKLSAgIG5vZGUtPmRlZ3JlZSArPSByZWxEZWdyZWVbY29sb3JzXVtub2RlLT5jb2xv
+cnNdOwotCisgICAvLyBkb24ndCBhZGQgZGVncmVlIGZvciBwaHlzcmVncyBzaW5jZSB0aGV5IHdv
+bid0IGdvIHRocm91Z2ggc2ltcGxpZnkoKQorICAgaWYgKHRoaXMtPnJlZyA8IDApCisgICAgICB0
+aGlzLT5kZWdyZWUgKz0gcmVsRGVncmVlW25vZGUtPmNvbG9yc11bY29sb3JzXTsKKyAgIGlmIChu
+b2RlLT5yZWcgPCAwKQorICAgICAgbm9kZS0+ZGVncmVlICs9IHJlbERlZ3JlZVtjb2xvcnNdW25v
+ZGUtPmNvbG9yc107CiAgICB0aGlzLT5hdHRhY2gobm9kZSwgR3JhcGg6OkVkZ2U6OkNST1NTKTsK
+IH0KIAotLSAKMi40LjEwCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRl
+dgo=
