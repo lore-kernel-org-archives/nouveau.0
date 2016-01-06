@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90513] Odd gray and red flicker in The Talos
-	Principle on GK104
-Date: Wed, 06 Jan 2016 19:09:11 +0000
-Message-ID: <bug-90513-8800-GSsHPXgQ0f@http.bugs.freedesktop.org/>
-References: <bug-90513-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93612] New: Unable to force-enable output if monitor
+ disconnected
+Date: Wed, 06 Jan 2016 19:49:53 +0000
+Message-ID: <bug-93612-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1634346602=="
+Content-Type: multipart/mixed; boundary="===============0811355815=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +19,66 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1634346602==
-Content-Type: multipart/alternative; boundary="1452107351.beaeCBd1.26640"; charset="UTF-8"
+--===============0811355815==
+Content-Type: multipart/alternative; boundary="1452109793.dF67eB741.3644"; charset="UTF-8"
 
 
---1452107351.beaeCBd1.26640
-Date: Wed, 6 Jan 2016 19:09:11 +0000
+--1452109793.dF67eB741.3644
+Date: Wed, 6 Jan 2016 19:49:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90513
+https://bugs.freedesktop.org/show_bug.cgi?id=93612
 
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Interesting... same issues don't occur on nv50 (GT215). Need to try to disable
-features one-by-one until we find which ext is causing some difference to be
-happening.
+            Bug ID: 93612
+           Summary: Unable to force-enable output if monitor disconnected
+           Product: xorg
+           Version: 7.7 (2012.06)
+          Hardware: x86 (IA32)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: thor-zyMqRySHjtZMYopoZt5u/LNAH6kLmebB@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+If autoprobing outputs fails - probably because the monitor sits behind a KVM -
+neither the xorg driver nor the nouveau kernel module can force-enable an
+output.
+
+Details are as possible: 
+
+I have here an old GForce FX 5200 card whose DVI-I ouptut is connected to a
+monitor behind a KVM switch (an ATEN CS22D). If I turn the system on with the
+monitor switched away, then switch back after the system booted up, the monitor
+remains blank. The system is running a custom 4.1.15 kernel with xorg 7.7.
+
+I tried the following:
+
+*) Downloaded the edid of the monitor and placed it in lib/firmware. Then
+enforced loading the custom edid with the kernel parameter
+drm_kms_helper.load_edid=edid/edid.bin. The kernel log indicates that the
+custom edid is loaded correctly when the monitor is connected, though the
+overall problem does not change. The monitor still remains blank when
+disconnected during bootstrap and reconnected after boot-up.
+
+According to the system, the monitor is connected to the output DVI-I-1, and I
+verified this with both the kernel log and xrandr.
+
+*) Inserted the kernel parameter video=DVI-I-1:e to force-enable the output.
+The result of this is that the video output now remains always blank,
+regardless of whether the monitor is connected during bootstrap or not. Thus,
+the parameter does quite the opposite of what it should do. It rather
+force-disables the output.
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1452107351.beaeCBd1.26640
-Date: Wed, 6 Jan 2016 19:09:11 +0000
+--1452109793.dF67eB741.3644
+Date: Wed, 6 Jan 2016 19:49:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,37 +86,131 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Unable to force-enable output if monitor disconnected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93612">93612</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Unable to force-enable output if monitor disconnected
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>7.7 (2012.06)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>thor&#64;math.tu-berlin.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513">bug 90513</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Interesting... same issues don't occur on nv50 (GT215). Need to try to disable
-features one-by-one until we find which ext is causing some difference to be
-happening.</pre>
+        <pre>If autoprobing outputs fails - probably because the monitor sits behind a KVM -
+neither the xorg driver nor the nouveau kernel module can force-enable an
+output.
+
+Details are as possible: 
+
+I have here an old GForce FX 5200 card whose DVI-I ouptut is connected to a
+monitor behind a KVM switch (an ATEN CS22D). If I turn the system on with the
+monitor switched away, then switch back after the system booted up, the monitor
+remains blank. The system is running a custom 4.1.15 kernel with xorg 7.7.
+
+I tried the following:
+
+*) Downloaded the edid of the monitor and placed it in lib/firmware. Then
+enforced loading the custom edid with the kernel parameter
+drm_kms_helper.load_edid=edid/edid.bin. The kernel log indicates that the
+custom edid is loaded correctly when the monitor is connected, though the
+overall problem does not change. The monitor still remains blank when
+disconnected during bootstrap and reconnected after boot-up.
+
+According to the system, the monitor is connected to the output DVI-I-1, and I
+verified this with both the kernel log and xrandr.
+
+*) Inserted the kernel parameter video=DVI-I-1:e to force-enable the output.
+The result of this is that the video output now remains always blank,
+regardless of whether the monitor is connected during bootstrap or not. Thus,
+the parameter does quite the opposite of what it should do. It rather
+force-disables the output.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1452107351.beaeCBd1.26640--
+--1452109793.dF67eB741.3644--
 
---===============1634346602==
+--===============0811355815==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +220,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1634346602==--
+--===============0811355815==--
