@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93613] 3D acceleration/OpenGL corrupts output on
- GeForce FX-5200
-Date: Wed, 06 Jan 2016 20:13:16 +0000
-Message-ID: <bug-93613-8800-E9RR41xkvO@http.bugs.freedesktop.org/>
-References: <bug-93613-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
+ KDE/KDM on Nvidia GeForce 7025 / nForce 630a
+Date: Wed, 06 Jan 2016 21:50:53 +0000
+Message-ID: <bug-93557-8800-V8qJhQi897@http.bugs.freedesktop.org/>
+References: <bug-93557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1740879767=="
+Content-Type: multipart/mixed; boundary="===============0354831230=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93613-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1740879767==
-Content-Type: multipart/alternative; boundary="1452111196.8c5aA7771.9841"; charset="UTF-8"
+--===============0354831230==
+Content-Type: multipart/alternative; boundary="1452117052.32562.30672"; charset="UTF-8"
 
 
---1452111196.8c5aA7771.9841
-Date: Wed, 6 Jan 2016 20:13:16 +0000
+--1452117052.32562.30672
+Date: Wed, 6 Jan 2016 21:50:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93613
+https://bugs.freedesktop.org/show_bug.cgi?id=93557
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You selected mesa 10.3 which was released quite a while ago. Does the issue
-persist with Mesa 11.1?
+--- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to xgfwtvdh from comment #5)
+> They are REDLINED in dmesg. More/bigger warning is not possible for the
+> users.
+> It were something like a big red flashing "WARNING, MOTOR FAILURE" on the
+> Screen of your car and then someone would say "nah, that warning is just
+> fine, ignore it".
+> 
+> I would like to help fixing them by testing something when you need me
+> testing something.
 
-Note that there's an issue that I haven't gotten around to addressing whereby
-if you select a 16-bit color (rgb565) and 24-bit depth, or vice-versa
-(rgba8/rgbx8 + 16-bit depth), then we basically fail at rendering. Hopefully
-etracer isn't doing that.
+If you can get a mmiotrace[1] of the binary driver, that might be useful.
 
-If the issue persists with a recent mesa, please make a short apitrace of the
-issue.
+Thanks,
+Ben.
+
+[1] http://nouveau.freedesktop.org/wiki/MmioTrace/
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1452111196.8c5aA7771.9841
-Date: Wed, 6 Jan 2016 20:13:16 +0000
+--1452117052.32562.30672
+Date: Wed, 6 Jan 2016 21:50:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,39 +68,44 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - 3D acceleration/OpenGL corrupts output on GeForce FX-5200"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93613#c1">Comment # 1</a>
+   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - 3D acceleration/OpenGL corrupts output on GeForce FX-5200"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93613">bug 93613</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557">bug 93557</a>
+              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
 </span></b>
-        <pre>You selected mesa 10.3 which was released quite a while ago. Does the issue
-persist with Mesa 11.1?
+        <pre>(In reply to xgfwtvdh from <a href="show_bug.cgi?id=93557#c5">comment #5</a>)
+<span class="quote">&gt; They are REDLINED in dmesg. More/bigger warning is not possible for the
+&gt; users.
+&gt; It were something like a big red flashing &quot;WARNING, MOTOR FAILURE&quot; on the
+&gt; Screen of your car and then someone would say &quot;nah, that warning is just
+&gt; fine, ignore it&quot;.
+&gt; 
+&gt; I would like to help fixing them by testing something when you need me
+&gt; testing something.</span >
 
-Note that there's an issue that I haven't gotten around to addressing whereby
-if you select a 16-bit color (rgb565) and 24-bit depth, or vice-versa
-(rgba8/rgbx8 + 16-bit depth), then we basically fail at rendering. Hopefully
-etracer isn't doing that.
+If you can get a mmiotrace[1] of the binary driver, that might be useful.
 
-If the issue persists with a recent mesa, please make a short apitrace of the
-issue.</pre>
+Thanks,
+Ben.
+
+[1] <a href="http://nouveau.freedesktop.org/wiki/MmioTrace/">http://nouveau.freedesktop.org/wiki/MmioTrace/</a></pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1452111196.8c5aA7771.9841--
+--1452117052.32562.30672--
 
---===============1740879767==
+--===============0354831230==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1740879767==--
+--===============0354831230==--
