@@ -1,13 +1,13 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Activate DVI-I behind KVM on FX 5200
-Date: Wed, 6 Jan 2016 15:33:57 +0100
-Message-ID: <568D25D5.3030201@gmail.com>
-References: <568B339D.2090102@tik.uni-stuttgart.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90513] Odd gray and red flicker in The Talos
+	Principle on GK104
+Date: Wed, 06 Jan 2016 19:09:11 +0000
+Message-ID: <bug-90513-8800-GSsHPXgQ0f@http.bugs.freedesktop.org/>
+References: <bug-90513-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1634346602=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <568B339D.2090102-Jqd5/X81recL63KmMnjC+CEWGD4kr0XT@public.gmane.org>
+In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,57 +17,78 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: richter-Jqd5/X81recL63KmMnjC+CEWGD4kr0XT@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDUuMDEuMjAxNiAwNDowOCwgVGhvbWFzIFJpY2h0ZXIgd3JvdGU6Cj4gSGkgZm9sa3MsCj4g
-Cj4gSSBkb24ndCBzZWVtIHRvIGJlIGFibGUgdG8gZW5hYmxlIHRoZSBEVkktSSBvdXRwdXQgb2Yg
-YW4gb2xkIEZYIDUyMDAKPiBiZWhpbmQgYSBLVk0gc3dpdGNoLiBBdXRvZGV0ZWN0aW9uIHdvcmtz
-IGZpbmUgaWYgdGhlIEZYIDUyMDAgRFZJIG91dHB1dAo+IGlzIHN3aXRjaGVkIHRvIHRoZSBtb25p
-dG9yLCBidXQgd2hlbiBpdCBpcyBub3QsIEkgaGF2ZSBub3QgZm91bmQgYSB3YXkKPiB0byBmb3Jj
-ZS1lbmFibGUgaXQuCj4gCj4gSGVyZSBpcyB3aGF0IEkgdHJpZWQ6Cj4gCj4gKikgdXNlZCB0aGUg
-dmlkZW89RFZJLUktMToxMjgweDEwMjQtMjRANjBlIGtlcm5lbCBwYXJhbWV0ZXIKPiAoZnJhbWVi
-dWZmZXIgc3RpbGwgc2l0cyBhdCAxMDI0eDc2OCkKPiAKLi4uCgpUZXN0ZWQgaGVyZSwKCmluICJ2
-aWRlbz1EVkktSS0xOjEyODB4MTAyNC0yNEA2MGUiIGRpcmVjdGl2ZQpwcm9ibGVtYXRpYyBhcmU6
-Cgpjb2xvciBkZXB0aCAoYnBwKSAyNAotYW5kLQonZScgYXMgImZvcmNlZCBkaXNwbGF5IGVuYWJs
-ZW1lbnQiCgpjYXVzaW5nIGRpc3BsYXkgLXN3aXRjaGluZyBvZmYtIGF0IHRoZSBleGFjdCBtb21l
-bnQ6CmZiOiBzd2l0Y2hpbmcgdG8gbm91dmVhdWZiIGZyb20gVkVTQSBWR0EKCgpDb250cmFpcmVt
-ZW50IMOgIGNlIHF1ZSwKdGhlc2UgMyBleGFtcGxlcyBoYXZlIGJlZW4gc3VjY2Vzc2Z1bGx5IHRl
-c3RlZDoKCjEuICB2aWRlbz1EVkktSS0xOjEyODB4MTAyNAoyLiAgdmlkZW89RFZJLUktMToxMjgw
-eDEwMjRANjAKMy4gIHZpZGVvPURWSS1JLTE6MTI4MHgxMDI0LTE2QDYwCgp+fn5+fn5+fn5+fn5+
-fn5+fn5+fn5+fn5+fn5+fn4KCiMgY2F0IC9wcm9jL2NtZGxpbmUKLi4uIHZpZGVvPURWSS1JLTE6
-MTI4MHgxMDI0IC4uLgoKCiMgZmJzZXQgLWkKCm1vZGUgIjEyODB4MTAyNCIKICAgIGdlb21ldHJ5
-IDEyODAgMTAyNCAxMjgwIDEwMjQgMzIKICAgIHRpbWluZ3MgMCAwIDAgMCAwIDAgMAogICAgYWNj
-ZWwgdHJ1ZQogICAgcmdiYSA4LzE2LDgvOCw4LzAsMC8wCmVuZG1vZGUKCkZyYW1lIGJ1ZmZlciBk
-ZXZpY2UgaW5mb3JtYXRpb246CiAgICBOYW1lICAgICAgICA6IG5vdXZlYXVmYgogICAgQWRkcmVz
-cyAgICAgOiAweGQwMDA2MDAwCiAgICBTaXplICAgICAgICA6IDUyNDI4ODAKICAgIFR5cGUgICAg
-ICAgIDogUEFDS0VEIFBJWEVMUwogICAgVmlzdWFsICAgICAgOiBUUlVFQ09MT1IKICAgIFhQYW5T
-dGVwICAgIDogMQogICAgWVBhblN0ZXAgICAgOiAxCiAgICBZV3JhcFN0ZXAgICA6IDAKICAgIExp
-bmVMZW5ndGggIDogNTEyMAogICAgQWNjZWxlcmF0b3IgOiBObwoKCiMgZG1lc2cgLXQgfCBlZ3Jl
-cCBmYjpcIDB4Cm5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IGFsbG9jYXRlZCAxMjgweDEwMjQg
-ZmI6IDB4NTAwMDAsIGJvIGZmZmY4ODAwN2Y1ZDI4MDAKCn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
-fn5+fn5+fn5+fn4KCiMgY2F0IC9wcm9jL2NtZGxpbmUKLi4uIHZpZGVvPURWSS1JLTE6MTI4MHgx
-MDI0QDYwIC4uLgoKCiMgZmJzZXQgLWkKCm1vZGUgIjEyODB4MTAyNCIKICAgIGdlb21ldHJ5IDEy
-ODAgMTAyNCAxMjgwIDEwMjQgMzIKICAgIHRpbWluZ3MgMCAwIDAgMCAwIDAgMAogICAgYWNjZWwg
-dHJ1ZQogICAgcmdiYSA4LzE2LDgvOCw4LzAsMC8wCmVuZG1vZGUKCkZyYW1lIGJ1ZmZlciBkZXZp
-Y2UgaW5mb3JtYXRpb246CiAgICBOYW1lICAgICAgICA6IG5vdXZlYXVmYgogICAgQWRkcmVzcyAg
-ICAgOiAweGQwMDA2MDAwCiAgICBTaXplICAgICAgICA6IDUyNDI4ODAKICAgIFR5cGUgICAgICAg
-IDogUEFDS0VEIFBJWEVMUwogICAgVmlzdWFsICAgICAgOiBUUlVFQ09MT1IKICAgIFhQYW5TdGVw
-ICAgIDogMQogICAgWVBhblN0ZXAgICAgOiAxCiAgICBZV3JhcFN0ZXAgICA6IDAKICAgIExpbmVM
-ZW5ndGggIDogNTEyMAogICAgQWNjZWxlcmF0b3IgOiBObwoKfn5+fn5+fn5+fn5+fn5+fn5+fn5+
-fn5+fn5+fn5+fn5+fn5+fgoKIyBjYXQgL3Byb2MvY21kbGluZQouLi4gdmlkZW89RFZJLUktMTox
-MjgweDEwMjQtMTZANjAgLi4uCgoKIyBmYnNldCAtaQoKbW9kZSAiMTI4MHgxMDI0IgogICAgZ2Vv
-bWV0cnkgMTI4MCAxMDI0IDEyODAgMTAyNCAxNgogICAgdGltaW5ncyAwIDAgMCAwIDAgMCAwCiAg
-ICBhY2NlbCB0cnVlCiAgICByZ2JhIDUvMTEsNi81LDUvMCwwLzAKZW5kbW9kZQoKRnJhbWUgYnVm
-ZmVyIGRldmljZSBpbmZvcm1hdGlvbjoKICAgIE5hbWUgICAgICAgIDogbm91dmVhdWZiCiAgICBB
-ZGRyZXNzICAgICA6IDB4ZDAwMDYwMDAKICAgIFNpemUgICAgICAgIDogMjYyMTQ0MAogICAgVHlw
-ZSAgICAgICAgOiBQQUNLRUQgUElYRUxTCiAgICBWaXN1YWwgICAgICA6IFRSVUVDT0xPUgogICAg
-WFBhblN0ZXAgICAgOiAxCiAgICBZUGFuU3RlcCAgICA6IDEKICAgIFlXcmFwU3RlcCAgIDogMAog
-ICAgTGluZUxlbmd0aCAgOiAyNTYwCiAgICBBY2NlbGVyYXRvciA6IE5vCgoKClJlZi4KaHR0cHM6
-Ly93d3cua2VybmVsLm9yZy9kb2MvRG9jdW1lbnRhdGlvbi9mYi9tb2RlZGIudHh0CgpwLnMuCkNh
-biB5b3UgcGFzdGUgaGVyZSB0aGUgb3V0cHV0IG9mIHRoZXNlIHR3byBvbmVsaW5lcnM6CiQgY2Qg
-L3N5cy9jbGFzcy9kcm0gOyBscyAtMWQgY2FyZDAtKiB8IHNlZCBzL2NhcmQwLS8vIHwgc29ydAok
-IHhyYW5kciB8IGdyZXAgY29ubmVjdGVkIHwgYXdrICd7cHJpbnQgJDF9JyB8IHNvcnQKCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
-bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1634346602==
+Content-Type: multipart/alternative; boundary="1452107351.beaeCBd1.26640"; charset="UTF-8"
+
+
+--1452107351.beaeCBd1.26640
+Date: Wed, 6 Jan 2016 19:09:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90513
+
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Interesting... same issues don't occur on nv50 (GT215). Need to try to disable
+features one-by-one until we find which ext is causing some difference to be
+happening.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1452107351.beaeCBd1.26640
+Date: Wed, 6 Jan 2016 19:09:11 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513">bug 90513</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Interesting... same issues don't occur on nv50 (GT215). Need to try to disable
+features one-by-one until we find which ext is causing some difference to be
+happening.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1452107351.beaeCBd1.26640--
+
+--===============1634346602==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1634346602==--
