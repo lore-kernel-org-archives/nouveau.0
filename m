@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93405] nouveau: Xorg crashes sooner or later in
 	3840x2160 mode
-Date: Thu, 07 Jan 2016 20:23:00 +0000
-Message-ID: <bug-93405-8800-78WHu9SPbn@http.bugs.freedesktop.org/>
+Date: Thu, 07 Jan 2016 20:24:33 +0000
+Message-ID: <bug-93405-8800-g3QZCfTHZa@http.bugs.freedesktop.org/>
 References: <bug-93405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1768966300=="
+Content-Type: multipart/mixed; boundary="===============2086618270=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1768966300==
-Content-Type: multipart/alternative; boundary="1452198179.Bf8cdAF1.2746"; charset="UTF-8"
+--===============2086618270==
+Content-Type: multipart/alternative; boundary="1452198273.83C0c01.3000"; charset="UTF-8"
 
 
---1452198179.Bf8cdAF1.2746
-Date: Thu, 7 Jan 2016 20:22:59 +0000
+--1452198273.83C0c01.3000
+Date: Thu, 7 Jan 2016 20:24:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93405
 
---- Comment #10 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Good news: I can now set various 3840x2160 modes without making nouveau halt or
-crash (It may still hang after a heavy reconfiguration session though). The
-only drawback about it is that my displays (AOC u2868pqu, Samsung flat-tv) will
-stay dark (3840x2160 non-interlaced) or in a fact show a 2560x1600 mode when I
-try to set a 3840x2160 interlaced mode (the monitor does not claim to support
-interlaced modes by its EDID though). Tested with various modelines as well as
-the modeline suggested by my xorg.conf. Would anyone have a look whether it
-should be possible to achieve 3840x2160 with this hardware configuration
-(Xorg.0.log is available; decoded edid will come shortly.)?
+--- Comment #11 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 120878
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120878&action=edit
+AOC u2868pqu: decoded EDID
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1452198179.Bf8cdAF1.2746
-Date: Thu, 7 Jan 2016 20:22:59 +0000
+--1452198273.83C0c01.3000
+Date: Thu, 7 Jan 2016 20:24:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,22 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c10">Comment # 10</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
               from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Good news: I can now set various 3840x2160 modes without making nouveau halt or
-crash (It may still hang after a heavy reconfiguration session though). The
-only drawback about it is that my displays (AOC u2868pqu, Samsung flat-tv) will
-stay dark (3840x2160 non-interlaced) or in a fact show a 2560x1600 mode when I
-try to set a 3840x2160 interlaced mode (the monitor does not claim to support
-interlaced modes by its EDID though). Tested with various modelines as well as
-the modeline suggested by my xorg.conf. Would anyone have a look whether it
-should be possible to achieve 3840x2160 with this hardware configuration
-(Xorg.0.log is available; decoded edid will come shortly.)?</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120878" name="attach_120878" title="AOC u2868pqu: decoded EDID">attachment 120878</a> <a href="attachment.cgi?id=120878&amp;action=edit" title="AOC u2868pqu: decoded EDID">[details]</a></span>
+AOC u2868pqu: decoded EDID</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +76,9 @@ should be possible to achieve 3840x2160 with this hardware configuration
     </body>
 </html>
 
---1452198179.Bf8cdAF1.2746--
+--1452198273.83C0c01.3000--
 
---===============1768966300==
+--===============2086618270==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1768966300==--
+--===============2086618270==--
