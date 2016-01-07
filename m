@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93629] [NVE6] complete system freeze,
  PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
-Date: Thu, 07 Jan 2016 14:02:50 +0000
-Message-ID: <bug-93629-8800-4mbP6RHVCq@http.bugs.freedesktop.org/>
+Date: Thu, 07 Jan 2016 14:10:49 +0000
+Message-ID: <bug-93629-8800-xZWC3X12zu@http.bugs.freedesktop.org/>
 References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0641975642=="
+Content-Type: multipart/mixed; boundary="===============2088278026=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0641975642==
-Content-Type: multipart/alternative; boundary="1452175370.ffd33D3.9716"; charset="UTF-8"
+--===============2088278026==
+Content-Type: multipart/alternative; boundary="1452175849.ec73842.11654"; charset="UTF-8"
 
 
---1452175370.ffd33D3.9716
-Date: Thu, 7 Jan 2016 14:02:50 +0000
+--1452175849.ec73842.11654
+Date: Thu, 7 Jan 2016 14:10:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93629
 
---- Comment #3 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 120863
-  --> https://bugs.freedesktop.org/attachment.cgi?id=120863&action=edit
-Xorg log
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I doubt this is it, but this patch only made it into 4.1.13:
+
+https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/commit/?id=930a50a45963c8da0a27fbee73ae462d8ea54aca
+
+The manifestation of that bug was different though, so ... probably unrelated.
+Wouldn't hurt to update though.
+
+There have also been slight updates to the ctxsw fw in kernel 4.4, so you could
+try 4.4-rc8 and see if the issues remain. (Also the driver got a substantial
+refactor/rewrite in kernel 4.3.)
+
+Either way, please check on latest to see if issues persist.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1452175370.ffd33D3.9716
-Date: Thu, 7 Jan 2016 14:02:50 +0000
+--1452175849.ec73842.11654
+Date: Thu, 7 Jan 2016 14:10:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +65,25 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] complete system freeze, PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93629#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93629#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] complete system freeze, PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93629">bug 93629</a>
-              from <span class="vcard"><a class="email" href="mailto:matthias.h.nagel&#64;gmail.com" title="Matthias Nagel &lt;matthias.h.nagel&#64;gmail.com&gt;"> <span class="fn">Matthias Nagel</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=120863" name="attach_120863" title="Xorg log">attachment 120863</a> <a href="attachment.cgi?id=120863&amp;action=edit" title="Xorg log">[details]</a></span>
-Xorg log</pre>
+        <pre>I doubt this is it, but this patch only made it into 4.1.13:
+
+<a href="https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/commit/?id=930a50a45963c8da0a27fbee73ae462d8ea54aca">https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/commit/?id=930a50a45963c8da0a27fbee73ae462d8ea54aca</a>
+
+The manifestation of that bug was different though, so ... probably unrelated.
+Wouldn't hurt to update though.
+
+There have also been slight updates to the ctxsw fw in kernel 4.4, so you could
+try 4.4-rc8 and see if the issues remain. (Also the driver got a substantial
+refactor/rewrite in kernel 4.3.)
+
+Either way, please check on latest to see if issues persist.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +95,9 @@ Xorg log</pre>
     </body>
 </html>
 
---1452175370.ffd33D3.9716--
+--1452175849.ec73842.11654--
 
---===============0641975642==
+--===============2088278026==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0641975642==--
+--===============2088278026==--
