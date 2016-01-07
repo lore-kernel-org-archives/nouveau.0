@@ -1,10 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93634] New: WARN_ON triggered on DPMS event
-Date: Thu, 07 Jan 2016 19:25:32 +0000
-Message-ID: <bug-93634-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93405] nouveau: Xorg crashes sooner or later in
+	3840x2160 mode
+Date: Thu, 07 Jan 2016 20:07:10 +0000
+Message-ID: <bug-93405-8800-nn3gxYmWJR@http.bugs.freedesktop.org/>
+References: <bug-93405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1275731476=="
+Content-Type: multipart/mixed; boundary="===============1300718178=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,43 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1275731476==
-Content-Type: multipart/alternative; boundary="1452194732.642f51.22865"; charset="UTF-8"
+--===============1300718178==
+Content-Type: multipart/alternative; boundary="1452197230.cbcBad31.31909"; charset="UTF-8"
 
 
---1452194732.642f51.22865
-Date: Thu, 7 Jan 2016 19:25:32 +0000
+--1452197230.cbcBad31.31909
+Date: Thu, 7 Jan 2016 20:07:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93634
+https://bugs.freedesktop.org/show_bug.cgi?id=93405
 
-            Bug ID: 93634
-           Summary: WARN_ON triggered on DPMS event
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: kevin_Steffensen-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #9 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 120877
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120877&action=edit
+waitcard0 - script used from now on to start the X server
 
-Created attachment 120876
-  --> https://bugs.freedesktop.org/attachment.cgi?id=120876&action=edit
-dmesg showing warning
-
-Kernel log shows that a WARN_ON is triggered when the monitor is switched off
+Hi; at first I thought that there was something screwed up with my xorg.conf;
+however as I wanted to post an Xorg.0.log I found that the following script
+(waitcard0) will help. Likely this is just a configuration issue which should
+be reported to my distributor. Many thanks for your immediate offer to help me,
+Karol and Ilia! It is very appreciated.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1452194732.642f51.22865
-Date: Thu, 7 Jan 2016 19:25:32 +0000
+--1452197230.cbcBad31.31909
+Date: Thu, 7 Jan 2016 20:07:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,93 +56,27 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - WARN_ON triggered on DPMS event"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93634">93634</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>WARN_ON triggered on DPMS event
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>kevin_Steffensen&#64;hotmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=120876" name="attach_120876" title="dmesg showing warning">attachment 120876</a> <a href="attachment.cgi?id=120876&amp;action=edit" title="dmesg showing warning">[details]</a></span>
-dmesg showing warning
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
+              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120877" name="attach_120877" title="waitcard0 - script used from now on to start the X server">attachment 120877</a> <a href="attachment.cgi?id=120877&amp;action=edit" title="waitcard0 - script used from now on to start the X server">[details]</a></span>
+waitcard0 - script used from now on to start the X server
 
-Kernel log shows that a WARN_ON is triggered when the monitor is switched off</pre>
+Hi; at first I thought that there was something screwed up with my xorg.conf;
+however as I wanted to post an Xorg.0.log I found that the following script
+(waitcard0) will help. Likely this is just a configuration issue which should
+be reported to my distributor. Many thanks for your immediate offer to help me,
+Karol and Ilia! It is very appreciated.</pre>
         </div>
       </p>
       <hr>
@@ -160,9 +88,9 @@ Kernel log shows that a WARN_ON is triggered when the monitor is switched off</p
     </body>
 </html>
 
---1452194732.642f51.22865--
+--1452197230.cbcBad31.31909--
 
---===============1275731476==
+--===============1300718178==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -172,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1275731476==--
+--===============1300718178==--
