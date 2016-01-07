@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93405] nouveau: Xorg crashes sooner or later in
-	3840x2160 mode
-Date: Thu, 07 Jan 2016 21:12:59 +0000
-Message-ID: <bug-93405-8800-9GN40Vq1DC@http.bugs.freedesktop.org/>
-References: <bug-93405-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47846] Nouveau -> overscan using HDMI
+Date: Thu, 07 Jan 2016 22:21:21 +0000
+Message-ID: <bug-47846-8800-fEKXcF22kn@http.bugs.freedesktop.org/>
+References: <bug-47846-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1594790118=="
+Content-Type: multipart/mixed; boundary="===============0078146980=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47846-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1594790118==
-Content-Type: multipart/alternative; boundary="1452201178.f86C2.13455"; charset="UTF-8"
+--===============0078146980==
+Content-Type: multipart/alternative; boundary="1452205280.6dAD4Cb1.29210"; charset="UTF-8"
 
 
---1452201178.f86C2.13455
-Date: Thu, 7 Jan 2016 21:12:58 +0000
+--1452205280.6dAD4Cb1.29210
+Date: Thu, 7 Jan 2016 22:21:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93405
+https://bugs.freedesktop.org/show_bug.cgi?id=47846
 
---- Comment #12 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-I highly doubt your card could output 4K (maybe on perflvl 0f, but for
-reclocking on that card you need kernel 4.4), and even if it did, I don't think
-it supports HDMI 1.4 or DisplayPort 1.3(?) which are needed to support 4K at,
-at least, 30Hz.
+--- Comment #21 from lameventanas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+(In reply to ITwrx from comment #20)
+> @lameventanas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+> 
+> i ran "kodi -send --action='ActivateWindow(screencalibration)'"
+> 
+> but it just opened up kodi in default fashion and underscan was still not
+> accounted for. was "screencalibration" above just an example?
+> 
+> thanks
+
+You have to run this (don't insert a space):
+"kodi-send --action='ActivateWindow(screencalibration)'"
+
+once Kodi is already running, it will trigger the screen calibration dialog,
+where you can compensate for overscan/underscan by yourself (in Kodi).  You can
+also find it somewhere in the Settings window.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1452201178.f86C2.13455
-Date: Thu, 7 Jan 2016 21:12:58 +0000
+--1452205280.6dAD4Cb1.29210
+Date: Thu, 7 Jan 2016 22:21:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,19 +66,31 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c12">Comment # 12</a>
+          bz_status_REOPENED "
+   title="REOPENED - Nouveau -&gt; overscan using HDMI"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47846#c21">Comment # 21</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+          bz_status_REOPENED "
+   title="REOPENED - Nouveau -&gt; overscan using HDMI"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47846">bug 47846</a>
+              from <span class="vcard"><a class="email" href="mailto:lameventanas&#64;gmail.com" title="lameventanas&#64;gmail.com">lameventanas&#64;gmail.com</a>
 </span></b>
-        <pre>I highly doubt your card could output 4K (maybe on perflvl 0f, but for
-reclocking on that card you need kernel 4.4), and even if it did, I don't think
-it supports HDMI 1.4 or DisplayPort 1.3(?) which are needed to support 4K at,
-at least, 30Hz.</pre>
+        <pre>(In reply to ITwrx from <a href="show_bug.cgi?id=47846#c20">comment #20</a>)
+<span class="quote">&gt; &#64;<a href="mailto:lameventanas&#64;gmail.com">lameventanas&#64;gmail.com</a>
+&gt; 
+&gt; i ran &quot;kodi -send --action='ActivateWindow(screencalibration)'&quot;
+&gt; 
+&gt; but it just opened up kodi in default fashion and underscan was still not
+&gt; accounted for. was &quot;screencalibration&quot; above just an example?
+&gt; 
+&gt; thanks</span >
+
+You have to run this (don't insert a space):
+&quot;kodi-send --action='ActivateWindow(screencalibration)'&quot;
+
+once Kodi is already running, it will trigger the screen calibration dialog,
+where you can compensate for overscan/underscan by yourself (in Kodi).  You can
+also find it somewhere in the Settings window.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +102,9 @@ at least, 30Hz.</pre>
     </body>
 </html>
 
---1452201178.f86C2.13455--
+--1452205280.6dAD4Cb1.29210--
 
---===============1594790118==
+--===============0078146980==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1594790118==--
+--===============0078146980==--
