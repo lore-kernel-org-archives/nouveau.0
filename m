@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93629] [NVE6] complete system freeze,
  PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
-Date: Thu, 07 Jan 2016 14:22:06 +0000
-Message-ID: <bug-93629-8800-A9lXSbF1Mw@http.bugs.freedesktop.org/>
+Date: Thu, 07 Jan 2016 14:28:29 +0000
+Message-ID: <bug-93629-8800-2ylWak2DLQ@http.bugs.freedesktop.org/>
 References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0159999907=="
+Content-Type: multipart/mixed; boundary="===============0526951862=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0159999907==
-Content-Type: multipart/alternative; boundary="1452176526.1f75481.14143"; charset="UTF-8"
+--===============0526951862==
+Content-Type: multipart/alternative; boundary="1452176909.fBB21.15548"; charset="UTF-8"
 
 
---1452176526.1f75481.14143
-Date: Thu, 7 Jan 2016 14:22:06 +0000
+--1452176909.fBB21.15548
+Date: Thu, 7 Jan 2016 14:28:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93629
 
---- Comment #5 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I also reported bug #93630 at the same time. Both problems occur in turns. I do
-not know if they are related, because the symptoms are completely different,
-but they both disappear using the blob firmware.
+--- Comment #6 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+OK, I will test kernel 4.1.13 and 4.3.3. Both are available in the unstable
+branch of my distro. I cannot test 4.4.x yet. Let's see what I will find out.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1452176526.1f75481.14143
-Date: Thu, 7 Jan 2016 14:22:06 +0000
+--1452176909.fBB21.15548
+Date: Thu, 7 Jan 2016 14:28:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,19 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] complete system freeze, PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93629#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93629#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] complete system freeze, PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93629">bug 93629</a>
               from <span class="vcard"><a class="email" href="mailto:matthias.h.nagel&#64;gmail.com" title="Matthias Nagel &lt;matthias.h.nagel&#64;gmail.com&gt;"> <span class="fn">Matthias Nagel</span></a>
 </span></b>
-        <pre>I also reported <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] disrupted display, cannot switch VT, everything else still works, E[ PDISP] link training failed"
-   href="show_bug.cgi?id=93630">bug #93630</a> at the same time. Both problems occur in turns. I do
-not know if they are related, because the symptoms are completely different,
-but they both disappear using the blob firmware.</pre>
+        <pre>OK, I will test kernel 4.1.13 and 4.3.3. Both are available in the unstable
+branch of my distro. I cannot test 4.4.x yet. Let's see what I will find out.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +75,9 @@ but they both disappear using the blob firmware.</pre>
     </body>
 </html>
 
---1452176526.1f75481.14143--
+--1452176909.fBB21.15548--
 
---===============0159999907==
+--===============0526951862==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0159999907==--
+--===============0526951862==--
