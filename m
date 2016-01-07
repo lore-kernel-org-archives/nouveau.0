@@ -1,49 +1,30 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] nv50/ir: don't touch degree on physreg RIG nodes
-Date: Wed,  6 Jan 2016 17:30:58 -0500
-Message-ID: <1452119458-6205-1-git-send-email-imirkin@alum.mit.edu>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: League of Legends Refueled
+Date: Thu, 7 Jan 2016 02:47:14 +0100
+Message-ID: <568DC3A2.9040908@gmail.com>
+References: <bug-93557-8800@http.bugs.freedesktop.org/>
+ <bug-93557-8800-MTwhT2pKVp@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: "11.0 11.1" <mesa-stable@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93557-8800-MTwhT2pKVp-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlc2Ugbm9kZXMgZG9uJ3QgZ28gdGhyb3VnaCByZWR1Y3Rpb24sIHNvIHdlIHNob3VsZG4ndCBi
-ZSBpbmNyZWFzaW5nCnRoZWlyIGRlZ3JlZXMuCgpCdWd6aWxsYTogaHR0cHM6Ly9idWdzLmZyZWVk
-ZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9OTE4OTUKU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJr
-aW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgpDYzogIjExLjAgMTEuMSIgPG1lc2Etc3RhYmxlQGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZz4KLS0tCgpJIHdvdWxkIGxpa2UgdG8gc2VlIGEgKmJ1bmNoKiBv
-ZiB0ZXN0aW5nIG9uIHRoaXMgYmVmb3JlIG1lcmdpbmcgaXQuLi4gUkEtbGFuZAppcyBmYXIgZnJv
-bSBteSBleHBlcnRpc2UuIEhvd2V2ZXIgaXQgZG9lcyBmaXggdGhlIHNoYWRlcnMgaW4gdGhlIG9y
-aWdpbmFsIGJ1ZwphbmQgZG9lc24ndCByZWdyZXNzIHRoZSBmZXcgYWRkaXRpb25hbCB0aGluZ3Mg
-dGhhdCBJIHRyaWVkLgoKIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBf
-aXJfcmEuY3BwIHwgOCArKysrKy0tLQogMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwg
-MyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-Y29kZWdlbi9udjUwX2lyX3JhLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2Rl
-Z2VuL252NTBfaXJfcmEuY3BwCmluZGV4IGNkOGM0MmMuLmYxZmZjYmEgMTAwNjQ0Ci0tLSBhL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwCisrKyBiL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwCkBAIC0xMTI5
-LDkgKzExMjksMTEgQEAgR0NSQTo6ZG9Db2FsZXNjZShBcnJheUxpc3QmIGluc25zLCB1bnNpZ25l
-ZCBpbnQgbWFzaykKIHZvaWQKIEdDUkE6OlJJR19Ob2RlOjphZGRJbnRlcmZlcmVuY2UoUklHX05v
-ZGUgKm5vZGUpCiB7Ci0gICB0aGlzLT5kZWdyZWUgKz0gcmVsRGVncmVlW25vZGUtPmNvbG9yc11b
-Y29sb3JzXTsKLSAgIG5vZGUtPmRlZ3JlZSArPSByZWxEZWdyZWVbY29sb3JzXVtub2RlLT5jb2xv
-cnNdOwotCisgICAvLyBkb24ndCBhZGQgZGVncmVlIGZvciBwaHlzcmVncyBzaW5jZSB0aGV5IHdv
-bid0IGdvIHRocm91Z2ggc2ltcGxpZnkoKQorICAgaWYgKHRoaXMtPnJlZyA8IDApCisgICAgICB0
-aGlzLT5kZWdyZWUgKz0gcmVsRGVncmVlW25vZGUtPmNvbG9yc11bY29sb3JzXTsKKyAgIGlmIChu
-b2RlLT5yZWcgPCAwKQorICAgICAgbm9kZS0+ZGVncmVlICs9IHJlbERlZ3JlZVtjb2xvcnNdW25v
-ZGUtPmNvbG9yc107CiAgICB0aGlzLT5hdHRhY2gobm9kZSwgR3JhcGg6OkVkZ2U6OkNST1NTKTsK
-IH0KIAotLSAKMi40LjEwCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRl
-dgo=
+Cmh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9+ZGFya3RhbWEvbm91dmVhdQpodHRwczovL2dp
+dGh1Yi5jb20vc2tlZ2dzYi9ub3V2ZWF1CgpJcyB0aGUgb25lIGF0IGZyZWVkZXNrdG9wLm9yZyAt
+IHJpZGUgb24gZGllc2VsLCBiZWNhbWUgYSBwYXJ0IG9mIG11c2V1bSdzIGNvbGxlY3Rpb24/Cgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
