@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93630] [NVE6] disrupted display, cannot switch VT,
  everything else still works, E[   PDISP] link training failed
-Date: Thu, 07 Jan 2016 14:18:39 +0000
-Message-ID: <bug-93630-8800-idODyIraBl@http.bugs.freedesktop.org/>
+Date: Thu, 07 Jan 2016 14:21:06 +0000
+Message-ID: <bug-93630-8800-NTB746frta@http.bugs.freedesktop.org/>
 References: <bug-93630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0809479700=="
+Content-Type: multipart/mixed; boundary="===============1458314452=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0809479700==
-Content-Type: multipart/alternative; boundary="1452176319.Faf018f67.13087"; charset="UTF-8"
+--===============1458314452==
+Content-Type: multipart/alternative; boundary="1452176466.1Abc0F171.13933"; charset="UTF-8"
 
 
---1452176319.Faf018f67.13087
-Date: Thu, 7 Jan 2016 14:18:39 +0000
+--1452176466.1Abc0F171.13933
+Date: Thu, 7 Jan 2016 14:21:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93630
 
---- Comment #4 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 120868
-  --> https://bugs.freedesktop.org/attachment.cgi?id=120868&action=edit
-Xorg log
+--- Comment #5 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I also reported bug #93629 at the same time. Both problems occur in turns. I do
+not know if they are related, because the symptoms are completely different,
+but they both disappear using the blob firmware.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1452176319.Faf018f67.13087
-Date: Thu, 7 Jan 2016 14:18:39 +0000
+--1452176466.1Abc0F171.13933
+Date: Thu, 7 Jan 2016 14:21:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] disrupted display, cannot switch VT, everything else still works, E[ PDISP] link training failed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93630#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93630#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] disrupted display, cannot switch VT, everything else still works, E[ PDISP] link training failed"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93630">bug 93630</a>
               from <span class="vcard"><a class="email" href="mailto:matthias.h.nagel&#64;gmail.com" title="Matthias Nagel &lt;matthias.h.nagel&#64;gmail.com&gt;"> <span class="fn">Matthias Nagel</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=120868" name="attach_120868" title="Xorg log">attachment 120868</a> <a href="attachment.cgi?id=120868&amp;action=edit" title="Xorg log">[details]</a></span>
-Xorg log</pre>
+        <pre>I also reported <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6] complete system freeze, PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href="show_bug.cgi?id=93629">bug #93629</a> at the same time. Both problems occur in turns. I do
+not know if they are related, because the symptoms are completely different,
+but they both disappear using the blob firmware.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +80,9 @@ Xorg log</pre>
     </body>
 </html>
 
---1452176319.Faf018f67.13087--
+--1452176466.1Abc0F171.13933--
 
---===============0809479700==
+--===============1458314452==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +92,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0809479700==--
+--===============1458314452==--
