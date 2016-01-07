@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93629] [NVE6] complete system freeze,
  PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
-Date: Thu, 07 Jan 2016 14:02:01 +0000
-Message-ID: <bug-93629-8800-A3HuLadjeZ@http.bugs.freedesktop.org/>
+Date: Thu, 07 Jan 2016 14:02:31 +0000
+Message-ID: <bug-93629-8800-tj8dfdw2NF@http.bugs.freedesktop.org/>
 References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0907771866=="
+Content-Type: multipart/mixed; boundary="===============0410404943=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0907771866==
-Content-Type: multipart/alternative; boundary="1452175321.27be41.9631"; charset="UTF-8"
+--===============0410404943==
+Content-Type: multipart/alternative; boundary="1452175351.4e44261.9716"; charset="UTF-8"
 
 
---1452175321.27be41.9631
-Date: Thu, 7 Jan 2016 14:02:01 +0000
+--1452175351.4e44261.9716
+Date: Thu, 7 Jan 2016 14:02:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93629
 
---- Comment #1 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 120861
-  --> https://bugs.freedesktop.org/attachment.cgi?id=120861&action=edit
-dmesg boot messages
+--- Comment #2 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 120862
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120862&action=edit
+lspic -v output
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1452175321.27be41.9631
-Date: Thu, 7 Jan 2016 14:02:01 +0000
+--1452175351.4e44261.9716
+Date: Thu, 7 Jan 2016 14:02:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] complete system freeze, PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93629#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93629#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] complete system freeze, PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93629">bug 93629</a>
               from <span class="vcard"><a class="email" href="mailto:matthias.h.nagel&#64;gmail.com" title="Matthias Nagel &lt;matthias.h.nagel&#64;gmail.com&gt;"> <span class="fn">Matthias Nagel</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=120861" name="attach_120861" title="dmesg boot messages">attachment 120861</a> <a href="attachment.cgi?id=120861&amp;action=edit" title="dmesg boot messages">[details]</a></span>
-dmesg boot messages</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120862" name="attach_120862" title="lspic -v output">attachment 120862</a> <a href="attachment.cgi?id=120862&amp;action=edit" title="lspic -v output">[details]</a></span>
+lspic -v output</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ dmesg boot messages</pre>
     </body>
 </html>
 
---1452175321.27be41.9631--
+--1452175351.4e44261.9716--
 
---===============0907771866==
+--===============0410404943==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0907771866==--
+--===============0410404943==--
