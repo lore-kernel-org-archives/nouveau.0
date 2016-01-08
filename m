@@ -1,59 +1,98 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH] nv50/ir: don't touch degree on physreg RIG
-	nodes
-Date: Thu, 7 Jan 2016 20:41:51 -0500
-Message-ID: <CAKb7UviLQ335Fw1K=dzhoLW68A+0f5UJqzcugsXyK+Cd+H6LqA@mail.gmail.com>
-References: <1452119458-6205-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93629] [NVE6] complete system freeze,
+ PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
+Date: Fri, 08 Jan 2016 11:15:02 +0000
+Message-ID: <bug-93629-8800-B9knfIDv9x@http.bugs.freedesktop.org/>
+References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1452119458-6205-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
-Cc: "11.0 11.1" <mesa-stable@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0284987751=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2l0aGRyYXduLiBUaGlzIGZpeCBpcyBib2d1cyAtLSBpdCBkb2Vzbid0IGFjdHVhbGx5IGZpeCB0
-aGUgb3JpZ2luYWwKaXNzdWUhIEl0J3MgdGhlIHJlc3VsdCBvZiBtZSBmdXR6aW5nIGEgbG90IGFu
-ZCBhIHNpbWlsYXItYnV0LWRpZmZlcmVudApmaXggZGlkIGNoYW5nZSB0aGluZ3MgYXJvdW5kIGVu
-b3VnaCB0byBmaXggdGhlIG9yaWdpbmFsIGlzc3VlIGJ1dCB0aGVuCnByb2NlZWRlZCB0byBicmVh
-ayBvdGhlciBzdHVmZi4gU28uLi4gaWdub3JlLgoKT24gV2VkLCBKYW4gNiwgMjAxNiBhdCA1OjMw
-IFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+IFRoZXNlIG5v
-ZGVzIGRvbid0IGdvIHRocm91Z2ggcmVkdWN0aW9uLCBzbyB3ZSBzaG91bGRuJ3QgYmUgaW5jcmVh
-c2luZwo+IHRoZWlyIGRlZ3JlZXMuCj4KPiBCdWd6aWxsYTogaHR0cHM6Ly9idWdzLmZyZWVkZXNr
-dG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9OTE4OTUKPiBTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtp
-biA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4gQ2M6ICIxMS4wIDExLjEiIDxtZXNhLXN0YWJsZUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmc+Cj4gLS0tCj4KPiBJIHdvdWxkIGxpa2UgdG8gc2VlIGEgKmJ1
-bmNoKiBvZiB0ZXN0aW5nIG9uIHRoaXMgYmVmb3JlIG1lcmdpbmcgaXQuLi4gUkEtbGFuZAo+IGlz
-IGZhciBmcm9tIG15IGV4cGVydGlzZS4gSG93ZXZlciBpdCBkb2VzIGZpeCB0aGUgc2hhZGVycyBp
-biB0aGUgb3JpZ2luYWwgYnVnCj4gYW5kIGRvZXNuJ3QgcmVncmVzcyB0aGUgZmV3IGFkZGl0aW9u
-YWwgdGhpbmdzIHRoYXQgSSB0cmllZC4KPgo+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-Y29kZWdlbi9udjUwX2lyX3JhLmNwcCB8IDggKysrKystLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDUg
-aW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1
-bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3JhLmNwcCBiL3NyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwCj4gaW5kZXggY2Q4YzQyYy4uZjFm
-ZmNiYSAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9u
-djUwX2lyX3JhLmNwcAo+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2Vu
-L252NTBfaXJfcmEuY3BwCj4gQEAgLTExMjksOSArMTEyOSwxMSBAQCBHQ1JBOjpkb0NvYWxlc2Nl
-KEFycmF5TGlzdCYgaW5zbnMsIHVuc2lnbmVkIGludCBtYXNrKQo+ICB2b2lkCj4gIEdDUkE6OlJJ
-R19Ob2RlOjphZGRJbnRlcmZlcmVuY2UoUklHX05vZGUgKm5vZGUpCj4gIHsKPiAtICAgdGhpcy0+
-ZGVncmVlICs9IHJlbERlZ3JlZVtub2RlLT5jb2xvcnNdW2NvbG9yc107Cj4gLSAgIG5vZGUtPmRl
-Z3JlZSArPSByZWxEZWdyZWVbY29sb3JzXVtub2RlLT5jb2xvcnNdOwo+IC0KPiArICAgLy8gZG9u
-J3QgYWRkIGRlZ3JlZSBmb3IgcGh5c3JlZ3Mgc2luY2UgdGhleSB3b24ndCBnbyB0aHJvdWdoIHNp
-bXBsaWZ5KCkKPiArICAgaWYgKHRoaXMtPnJlZyA8IDApCj4gKyAgICAgIHRoaXMtPmRlZ3JlZSAr
-PSByZWxEZWdyZWVbbm9kZS0+Y29sb3JzXVtjb2xvcnNdOwo+ICsgICBpZiAobm9kZS0+cmVnIDwg
-MCkKPiArICAgICAgbm9kZS0+ZGVncmVlICs9IHJlbERlZ3JlZVtjb2xvcnNdW25vZGUtPmNvbG9y
-c107Cj4gICAgIHRoaXMtPmF0dGFjaChub2RlLCBHcmFwaDo6RWRnZTo6Q1JPU1MpOwo+ICB9Cj4K
-PiAtLQo+IDIuNC4xMAo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2
-Cg==
+
+--===============0284987751==
+Content-Type: multipart/alternative; boundary="1452251702.DceA3ACD1.20265"; charset="UTF-8"
+
+
+--1452251702.DceA3ACD1.20265
+Date: Fri, 8 Jan 2016 11:15:02 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93629
+
+--- Comment #7 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The error also occurs with kernel 4.1.13 and 4.3.3.
+
+First time it happened while playing a H.264 video with mplayer, the second
+time while scrolling a LibreOffice document.
+
+Same dmesg messages.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1452251702.DceA3ACD1.20265
+Date: Fri, 8 Jan 2016 11:15:02 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6] complete system freeze, PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93629#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6] complete system freeze, PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93629">bug 93629</a>
+              from <span class="vcard"><a class="email" href="mailto:matthias.h.nagel&#64;gmail.com" title="Matthias Nagel &lt;matthias.h.nagel&#64;gmail.com&gt;"> <span class="fn">Matthias Nagel</span></a>
+</span></b>
+        <pre>The error also occurs with kernel 4.1.13 and 4.3.3.
+
+First time it happened while playing a H.264 video with mplayer, the second
+time while scrolling a LibreOffice document.
+
+Same dmesg messages.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1452251702.DceA3ACD1.20265--
+
+--===============0284987751==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0284987751==--
