@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90932] gm107 font glitches with kernel 4.1rc
-Date: Fri, 15 Jan 2016 16:21:52 +0000
-Message-ID: <bug-90932-8800-WrKDCTjcPV@http.bugs.freedesktop.org/>
-References: <bug-90932-8800@http.bugs.freedesktop.org/>
+From: Wakko Warner <wakko-WZdgCHJQUilg9hUCZPvPmw@public.gmane.org>
+Subject: linux v4.4.0 nouveau fails
+Date: Mon, 11 Jan 2016 19:23:42 -0500
+Message-ID: <20160112002341.GA30730@animx.eu.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0277720987=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,79 +19,55 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0277720987==
-Content-Type: multipart/alternative; boundary="1452874912.DC81c43.2012"; charset="UTF-8"
-
-
---1452874912.DC81c43.2012
-Date: Fri, 15 Jan 2016 16:21:52 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90932
-
---- Comment #22 from Roman Elshin <roman.elshin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #20)
-> This (mesa) patch seems to help Ben when using GLAMOR on Kepler chips. Could
-> give it a shot to see if it improves the Maxwell situation as well. Doubtful
-> that it's the "right" thing though.
-
-This patch helps with 750ti too (at least at first sight).
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1452874912.DC81c43.2012
-Date: Fri, 15 Jan 2016 16:21:52 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - gm107 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c22">Comment # 22</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - gm107 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
-              from <span class="vcard"><a class="email" href="mailto:roman.elshin&#64;gmail.com" title="Roman Elshin &lt;roman.elshin&#64;gmail.com&gt;"> <span class="fn">Roman Elshin</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90932#c20">comment #20</a>)
-<span class="quote">&gt; This (mesa) patch seems to help Ben when using GLAMOR on Kepler chips. Could
-&gt; give it a shot to see if it improves the Maxwell situation as well. Doubtful
-&gt; that it's the &quot;right&quot; thing though.</span >
-
-This patch helps with 750ti too (at least at first sight).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1452874912.DC81c43.2012--
-
---===============0277720987==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0277720987==--
+UGxlYXNlIGtlZXAgbWUgaW4gdGhlIENDLiAgSSBhbSBub3Qgc3Vic2NyaWJlZCB0byB0aGlzIGxp
+c3QuCgpXaGVuIGJvb3RpbmcgNC40LjAgb24gb25lIG9mIG15IHN5c3RlbXMsIHdoZW4gbm91dmVh
+dSBsb2FkcywgdGhlIHNjcmVlbiBnb2VzCmludG8gcG93ZXJzYXZlLiAgSXQgZG9lc24ndCBhcHBl
+YXIgdG8gcmVnaXN0ZXIgdGhlIGZiMCBkZXZpY2UuCldoZW4gWCBzdGFydHMgdXAsIHRoZSBzY3Jl
+ZW4gY29tZXMgYmFjayBhbmQgSSdtIGFibGUgdG8gbG9naW4uICBXaGVuCmxhdW5jaGluZyBhbnl0
+aGluZyB0aGF0IGFjY2Vzc2VzIDNELCB0aGUgc2NyZWVuIGZyZWV6ZXMuICBOb3RoaW5nIGlzIGxv
+Z2dlZAppbiBlaXRoZXIgWCBvciBkbWVzZy4KClRoaXMgc2FtZSBzeXN0ZW0gd29ya3Mgd2l0aCA0
+LjIuNi4gIEkgdW5kZXJzdGFuZCB0aGF0IHRoZSB2ZXJzaW9uIGluIDQuMyB3YXMKYSByZXdyaXRl
+LgoKU3lzdGVtOiBHaWdhYnl0ZSBFUDQ1LURTM1IsIE5WSURJQSBRdWFkcm8gRlggMzUwMCAoMTBk
+ZTowMjlkIHN1YnN5cwoxMGRlOjAzMmIpClRoaXMgc3lzdGVtIGJvb3RzIG92ZXIgdGhlIG5ldHdv
+cmsgd2l0aCB0aGUgb25ib2FyZCBSVEwgbmljLgpOT1RFOiBTeXNsaW51eCA0LjA0IGZhaWxzIHRv
+IGJvb3QgdGhpcyBrZXJuZWwsIGJ1dCB3aWxsIGJvb3QgNC4yLngganVzdApmaW5lLiAgU3lzdGVt
+IHdhcyBib290ZWQgd2l0aCBncnViIGJ1aWx0IGZvciBweGUgYm9vdC4KQWNjb3JkaW5nIHRvIFgg
+bG9nLCB0aGUgY2hpcHNldCBpcyBOVjQ5LiAgWG9yZyBsb2cgYXZhaWxhYmxlIG9uIHJlcXVlc3Qu
+CgpkbWVzZyByZWxldmVudCB0byBub3V2ZWF1ClsgICAgOC4wNTE5OTBdIG5vdXZlYXUgMDAwMDow
+MTowMC4wOiBOVklESUEgRzcxICgwNDlkMDBhMikKWyAgICA4LjI0ODc1Nl0gbm91dmVhdSAwMDAw
+OjAxOjAwLjA6IGJpb3M6IHZlcnNpb24gMDUuNzEuMjIuMjkuMDYKWyAgICA4LjI0OTE4OV0gbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IGZiOiAyNTYgTWlCIEdERFIzClsgICAgOC4zMDQ1ODZdIFtUVE1d
+IFpvbmUgIGtlcm5lbDogQXZhaWxhYmxlIGdyYXBoaWNzIG1lbW9yeTogNDA4NTA0NCBraUIKWyAg
+ICA4LjMwNDYyN10gW1RUTV0gWm9uZSAgIGRtYTMyOiBBdmFpbGFibGUgZ3JhcGhpY3MgbWVtb3J5
+OiAyMDk3MTUyIGtpQgpbICAgIDguMzA0NjY0XSBbVFRNXSBJbml0aWFsaXppbmcgcG9vbCBhbGxv
+Y2F0b3IKWyAgICA4LjMwNDcwNF0gW1RUTV0gSW5pdGlhbGl6aW5nIERNQSBwb29sIGFsbG9jYXRv
+cgpbICAgIDguMzA0NzUzXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBWUkFNOiAyNTAgTWlC
+ClsgICAgOC4zMDQ3ODldIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEdBUlQ6IDUxMiBNaUIK
+WyAgICA4LjMwNDgyOF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogVE1EUyB0YWJsZSB2ZXJz
+aW9uIDEuMQpbICAgIDguMzA0ODY1XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBUTURTIHRh
+YmxlIHNjcmlwdCBwb2ludGVycyBub3Qgc3R1YmJlZApbICAgIDguMzA0OTAzXSBub3V2ZWF1IDAw
+MDA6MDE6MDAuMDogRFJNOiBEQ0IgdmVyc2lvbiAzLjAKWyAgICA4LjMwNDk0MF0gbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IERSTTogRENCIG91dHAgMDA6IDAxMDAwMzAwIDAwMDAwMDI4ClsgICAgOC4z
+MDQ5NzldIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAxOiAwMzAwMDMwMiAw
+MDAwMDAwMApbICAgIDguMzA1MDE2XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0
+cCAwMjogMDQwMTEzMTAgMDAwMDAwMjgKWyAgICA4LjMwNTA1NF0gbm91dmVhdSAwMDAwOjAxOjAw
+LjA6IERSTTogRENCIG91dHAgMDM6IDBjMDExMzEyIDAwMDAwMDAwClsgICAgOC4zMDUwOTJdIG5v
+dXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAwOiAxMDMwClsgICAgOC4zMDUxMjld
+IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAxOiAyMTMwClsgICAgOC4zMDUx
+NjVdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAyOiAwMjYwClsgICAgOC4z
+MDUzMzddIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IFNhdmluZyBWR0EgZm9udHMKWyAgICA4
+LjM0Mzk1OV0gW2RybV0gU3VwcG9ydHMgdmJsYW5rIHRpbWVzdGFtcCBjYWNoaW5nIFJldiAyICgy
+MS4xMC4yMDEzKS4KWyAgICA4LjM0Mzk5Nl0gW2RybV0gRHJpdmVyIHN1cHBvcnRzIHByZWNpc2Ug
+dmJsYW5rIHRpbWVzdGFtcCBxdWVyeS4KWyAgICA4LjM0NDA1M10gbm91dmVhdSAwMDAwOjAxOjAw
+LjA6IERSTTogMHhCREY4OiBQYXJzaW5nIGRpZ2l0YWwgb3V0cHV0IHNjcmlwdCB0YWJsZQpbICAg
+IDguMzkzNzA5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiAweEJFM0E6IFBhcnNpbmcgZGln
+aXRhbCBvdXRwdXQgc2NyaXB0IHRhYmxlClsgICAgOC40NDQ2NDZdIG5vdXZlYXUgMDAwMDowMTow
+MC4wOiBEUk06IE1NOiB1c2luZyBNMk1GIGZvciBidWZmZXIgY29waWVzClsgICAgOC40NDQ2ODld
+IFtkcm1dIEluaXRpYWxpemVkIG5vdXZlYXUgMS4zLjEgMjAxMjA4MDEgZm9yIDAwMDA6MDE6MDAu
+MCBvbiBtaW5vciAwCjxhZnRlciBYIHN0YXJ0cz4KWyAxMDExLjEwOTUzNF0gbm91dmVhdSAwMDAw
+OjAxOjAwLjA6IERSTTogMHhCREY4OiBQYXJzaW5nIGRpZ2l0YWwgb3V0cHV0IHNjcmlwdCB0YWJs
+ZQoKCi0tIAogTWljcm9zb2Z0IGhhcyBiZWF0ZW4gVm9sa3N3YWdlbidzIHdvcmxkIHJlY29yZC4g
+IFZvbGtzd2FnZW4gb25seSBjcmVhdGVkIDIyCiBtaWxsaW9uIGJ1Z3MuCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
