@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nv50/ir: only use FILE_LOCAL_MEMORY for temp
-	arrays that use indirection
-Date: Wed, 13 Jan 2016 21:27:49 -0500
-Message-ID: <1452738469-3297-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93670] Reverse PRIME using two external screens on
+ Nvidia card leads to "Configure crtc 5 failed" since xorg-server 1.18.0
+Date: Thu, 14 Jan 2016 03:33:26 +0000
+Message-ID: <bug-93670-8800-jIeaEu9ByF@http.bugs.freedesktop.org/>
+References: <bug-93670-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1867767016=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93670-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,166 +17,148 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UHJldmlvdXNseSB3ZSB3ZXJlIHRyZWF0aW5nIGFueSBpbmRpcmVjdCB0ZW1wIGFycmF5IHVzYWdl
-IHRvIG1lYW4gdGhhdApldmVyeXRoaW5nIHNob3VsZCBlbmQgdXAgaW4gbG1lbS4gVGhlIE1lbW9y
-eU9wdCBwYXNzIHdvdWxkIGNsZWFuIGEgbG90Cm9mIHRoYXQgdXAgbGF0ZXIsIGJ1dCBpbiB0aGUg
-bWVhbndoaWxlIHdlIHdvdWxkIGxvc2UgYSBsb3Qgb2YKb3Bwb3J0dW5pdHkgZm9yIG9wdGltaXph
-dGlvbi4KClRoaXMgaGVscHMgYSBsb3Qgb2YgTWV0cm8gMjAzMyBSZWR1eCBhbmQgYSBoYW5kZnVs
-IG9mIEtTUCBzaGFkZXJzOgoKdG90YWwgaW5zdHJ1Y3Rpb25zIGluIHNoYXJlZCBwcm9ncmFtcyA6
-IDYyODgzNzMgLT4gNjI2MTUxNyAoLTAuNDMlKQp0b3RhbCBncHJzIHVzZWQgaW4gc2hhcmVkIHBy
-b2dyYW1zICAgIDogOTQ0MDUxIC0+IDk0NTEzMSAoMC4xMSUpCnRvdGFsIGxvY2FsIHVzZWQgaW4g
-c2hhcmVkIHByb2dyYW1zICAgOiA1NDExNiAtPiA1NDExNiAoMC4wMCUpCnRvdGFsIGJ5dGVzIHVz
-ZWQgaW4gc2hhcmVkIHByb2dyYW1zICAgOiA1MDMwNjk4NCAtPiA1MDA5MjEzNiAoLTAuNDMlKQoK
-QSB0eXBpY2FsIGNhc2UgaXMgZm9yIHJlZ2lzdGVyIHVzYWdlIHRvIGRvdWJsZSBhbmQgZm9yIGlu
-c3RydWN0aW9ucyB0bwpoYWx2ZS4gQSBmdXR1cmUgY29tbWl0IGNhbiBhbHNvIG9wdGltaXplIGxv
-Y2FsIG1lbW9yeSB1c2FnZSBzaXplIHRvIGJlCnJlZHVjZWQgd2l0aCBiZXR0ZXIgcGFja2luZy4K
-ClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KLS0tCiAu
-Li4vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwICB8IDY1ICsr
-KysrKysrKysrKysrKysrLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA1MCBpbnNlcnRpb25zKCspLCAx
-NSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-Y29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKaW5kZXggN2UzYjA5My4uNTA3NzQ5ZCAx
-MDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9m
-cm9tX3Rnc2kuY3BwCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252
-NTBfaXJfZnJvbV90Z3NpLmNwcApAQCAtOTYsNiArOTYsMTMgQEAgcHVibGljOgogICAgICAgICAg
-cmV0dXJuIHRnc2lfdXRpbF9nZXRfc3JjX3JlZ2lzdGVyX3N3aXp6bGUoJnJlZywgY2hhbik7CiAg
-ICAgICB9CiAKKyAgICAgIGludCBnZXRBcnJheUlkKCkgY29uc3QKKyAgICAgIHsKKyAgICAgICAg
-IGlmIChpc0luZGlyZWN0KDApKQorICAgICAgICAgICAgcmV0dXJuIGZzci0+SW5kaXJlY3QuQXJy
-YXlJRDsKKyAgICAgICAgIHJldHVybiAwOworICAgICAgfQorCiAgICAgICBudjUwX2lyOjpNb2Rp
-ZmllciBnZXRNb2QoaW50IGNoYW4pIGNvbnN0OwogCiAgICAgICBTcmNSZWdpc3RlciBnZXRJbmRp
-cmVjdChpbnQgZGltKSBjb25zdApAQCAtMTU1LDYgKzE2MiwxMyBAQCBwdWJsaWM6CiAgICAgICAg
-ICByZXR1cm4gU3JjUmVnaXN0ZXIoZmRyLT5JbmRpcmVjdCk7CiAgICAgICB9CiAKKyAgICAgIGlu
-dCBnZXRBcnJheUlkKCkgY29uc3QKKyAgICAgIHsKKyAgICAgICAgIGlmIChpc0luZGlyZWN0KDAp
-KQorICAgICAgICAgICAgcmV0dXJuIGZkci0+SW5kaXJlY3QuQXJyYXlJRDsKKyAgICAgICAgIHJl
-dHVybiAwOworICAgICAgfQorCiAgICBwcml2YXRlOgogICAgICAgY29uc3Qgc3RydWN0IHRnc2lf
-ZHN0X3JlZ2lzdGVyIHJlZzsKICAgICAgIGNvbnN0IHN0cnVjdCB0Z3NpX2Z1bGxfZHN0X3JlZ2lz
-dGVyICpmZHI7CkBAIC04MjYsNyArODQwLDggQEAgcHVibGljOgogICAgLy8gdGhlc2UgcmVnaXN0
-ZXJzIGFyZSBwZXItc3Vicm91dGluZSwgY2Fubm90IGJlIHVzZWQgZm9yIHBhcmFtZXRlciBwYXNz
-aW5nCiAgICBzdGQ6OnNldDxMb2NhdGlvbj4gbG9jYWxzOwogCi0gICBib29sIG1haW5UZW1wc0lu
-TE1lbTsKKyAgIHN0ZDo6c2V0PGludD4gaW5kaXJlY3RUZW1wQXJyYXlzOworICAgc3RkOjp2ZWN0
-b3I8aW50PiB0ZW1wQXJyYXlJZDsKIAogICAgaW50IGNsaXBWZXJ0ZXhPdXRwdXQ7CiAKQEAgLTg1
-OSw4ICs4NzQsNiBAQCBTb3VyY2U6OlNvdXJjZShzdHJ1Y3QgbnY1MF9pcl9wcm9nX2luZm8gKnBy
-b2cpIDogaW5mbyhwcm9nKQogCiAgICBpZiAocHJvZy0+ZGJnRmxhZ3MgJiBOVjUwX0lSX0RFQlVH
-X0JBU0lDKQogICAgICAgdGdzaV9kdW1wKHRva2VucywgMCk7Ci0KLSAgIG1haW5UZW1wc0luTE1l
-bSA9IGZhbHNlOwogfQogCiBTb3VyY2U6On5Tb3VyY2UoKQpAQCAtODkwLDYgKzkwMyw3IEBAIGJv
-b2wgU291cmNlOjpzY2FuU291cmNlKCkKIAogICAgdGV4dHVyZVZpZXdzLnJlc2l6ZShzY2FuLmZp
-bGVfbWF4W1RHU0lfRklMRV9TQU1QTEVSX1ZJRVddICsgMSk7CiAgICByZXNvdXJjZXMucmVzaXpl
-KHNjYW4uZmlsZV9tYXhbVEdTSV9GSUxFX0lNQUdFXSArIDEpOworICAgdGVtcEFycmF5SWQucmVz
-aXplKHNjYW4uZmlsZV9tYXhbVEdTSV9GSUxFX1RFTVBPUkFSWV0gKyAxKTsKIAogICAgaW5mby0+
-aW1tZC5idWZTaXplID0gMDsKIApAQCAtOTM1LDcgKzk0OSw4IEBAIGJvb2wgU291cmNlOjpzY2Fu
-U291cmNlKCkKICAgIH0KICAgIHRnc2lfcGFyc2VfZnJlZSgmcGFyc2UpOwogCi0gICBpZiAobWFp
-blRlbXBzSW5MTWVtKQorICAgLy8gVE9ETzogQ29tcHV0ZSBiYXNlZCBvbiByZWxldmFudCBhcnJh
-eSBzaXplcworICAgaWYgKGluZGlyZWN0VGVtcEFycmF5cy5zaXplKCkpCiAgICAgICBpbmZvLT5i
-aW4udGxzU3BhY2UgKz0gKHNjYW4uZmlsZV9tYXhbVEdTSV9GSUxFX1RFTVBPUkFSWV0gKyAxKSAq
-IDE2OwogCiAgICBpZiAoaW5mby0+aW8uZ2VuVXNlckNsaXAgPiAwKSB7CkBAIC0xMDQ2LDYgKzEw
-NjEsNyBAQCBib29sIFNvdXJjZTo6c2NhbkRlY2xhcmF0aW9uKGNvbnN0IHN0cnVjdCB0Z3NpX2Z1
-bGxfZGVjbGFyYXRpb24gKmRlY2wpCiAgICB1bnNpZ25lZCBzbiA9IFRHU0lfU0VNQU5USUNfR0VO
-RVJJQzsKICAgIHVuc2lnbmVkIHNpID0gMDsKICAgIGNvbnN0IHVuc2lnbmVkIGZpcnN0ID0gZGVj
-bC0+UmFuZ2UuRmlyc3QsIGxhc3QgPSBkZWNsLT5SYW5nZS5MYXN0OworICAgY29uc3QgaW50IGFy
-cmF5SWQgPSBkZWNsLT5BcnJheS5BcnJheUlEOwogCiAgICBpZiAoZGVjbC0+RGVjbGFyYXRpb24u
-U2VtYW50aWMpIHsKICAgICAgIHNuID0gZGVjbC0+U2VtYW50aWMuTmFtZTsKQEAgLTExODksOCAr
-MTIwNSwxMSBAQCBib29sIFNvdXJjZTo6c2NhbkRlY2xhcmF0aW9uKGNvbnN0IHN0cnVjdCB0Z3Np
-X2Z1bGxfZGVjbGFyYXRpb24gKmRlY2wpCiAgICAgICBmb3IgKGkgPSBmaXJzdDsgaSA8PSBsYXN0
-OyArK2kpCiAgICAgICAgICB0ZXh0dXJlVmlld3NbaV0udGFyZ2V0ID0gZGVjbC0+U2FtcGxlclZp
-ZXcuUmVzb3VyY2U7CiAgICAgICBicmVhazsKLSAgIGNhc2UgVEdTSV9GSUxFX05VTEw6CiAgICBj
-YXNlIFRHU0lfRklMRV9URU1QT1JBUlk6CisgICAgICBmb3IgKGkgPSBmaXJzdDsgaSA8PSBsYXN0
-OyArK2kpCisgICAgICAgICB0ZW1wQXJyYXlJZFtpXSA9IGFycmF5SWQ7CisgICAgICBicmVhazsK
-KyAgIGNhc2UgVEdTSV9GSUxFX05VTEw6CiAgICBjYXNlIFRHU0lfRklMRV9BRERSRVNTOgogICAg
-Y2FzZSBUR1NJX0ZJTEVfQ09OU1RBTlQ6CiAgICBjYXNlIFRHU0lfRklMRV9JTU1FRElBVEU6CkBA
-IC0xMjQxLDcgKzEyNjAsNyBAQCBib29sIFNvdXJjZTo6c2Nhbkluc3RydWN0aW9uKGNvbnN0IHN0
-cnVjdCB0Z3NpX2Z1bGxfaW5zdHJ1Y3Rpb24gKmluc3QpCiAgICAgICB9IGVsc2UKICAgICAgIGlm
-IChpbnNuLmdldERzdCgwKS5nZXRGaWxlKCkgPT0gVEdTSV9GSUxFX1RFTVBPUkFSWSkgewogICAg
-ICAgICAgaWYgKGluc24uZ2V0RHN0KDApLmlzSW5kaXJlY3QoMCkpCi0gICAgICAgICAgICBtYWlu
-VGVtcHNJbkxNZW0gPSB0cnVlOworICAgICAgICAgICAgaW5kaXJlY3RUZW1wQXJyYXlzLmluc2Vy
-dChpbnNuLmdldERzdCgwKS5nZXRBcnJheUlkKCkpOwogICAgICAgfSBlbHNlCiAgICAgICBpZiAo
-aW5zbi5nZXREc3QoMCkuZ2V0RmlsZSgpID09IFRHU0lfRklMRV9CVUZGRVIpIHsKICAgICAgICAg
-IGluZm8tPmlvLmdsb2JhbEFjY2VzcyB8PSAweDI7CkBAIC0xMjUyLDcgKzEyNzEsNyBAQCBib29s
-IFNvdXJjZTo6c2Nhbkluc3RydWN0aW9uKGNvbnN0IHN0cnVjdCB0Z3NpX2Z1bGxfaW5zdHJ1Y3Rp
-b24gKmluc3QpCiAgICAgICBJbnN0cnVjdGlvbjo6U3JjUmVnaXN0ZXIgc3JjID0gaW5zbi5nZXRT
-cmMocyk7CiAgICAgICBpZiAoc3JjLmdldEZpbGUoKSA9PSBUR1NJX0ZJTEVfVEVNUE9SQVJZKSB7
-CiAgICAgICAgICBpZiAoc3JjLmlzSW5kaXJlY3QoMCkpCi0gICAgICAgICAgICBtYWluVGVtcHNJ
-bkxNZW0gPSB0cnVlOworICAgICAgICAgICAgaW5kaXJlY3RUZW1wQXJyYXlzLmluc2VydChzcmMu
-Z2V0QXJyYXlJZCgpKTsKICAgICAgIH0gZWxzZQogICAgICAgaWYgKHNyYy5nZXRGaWxlKCkgPT0g
-VEdTSV9GSUxFX0JVRkZFUikgewogICAgICAgICAgaW5mby0+aW8uZ2xvYmFsQWNjZXNzIHw9IChp
-bnNuLmdldE9wY29kZSgpID09IFRHU0lfT1BDT0RFX0xPQUQpID8KQEAgLTE0MzQsNiArMTQ1Myw3
-IEBAIHByaXZhdGU6CiAgICBEYXRhVHlwZSBzcmNUeTsKIAogICAgRGF0YUFycmF5IHREYXRhOyAv
-LyBUR1NJX0ZJTEVfVEVNUE9SQVJZCisgICBEYXRhQXJyYXkgbERhdGE7IC8vIFRHU0lfRklMRV9U
-RU1QT1JBUlksIGZvciBpbmRpcmVjdCBhcnJheXMKICAgIERhdGFBcnJheSBhRGF0YTsgLy8gVEdT
-SV9GSUxFX0FERFJFU1MKICAgIERhdGFBcnJheSBwRGF0YTsgLy8gVEdTSV9GSUxFX1BSRURJQ0FU
-RQogICAgRGF0YUFycmF5IG9EYXRhOyAvLyBUR1NJX0ZJTEVfT1VUUFVUIChpZiBvdXRwdXRzIGlu
-IHJlZ2lzdGVycykKQEAgLTE2MzcsNyArMTY1Nyw3IEBAIENvbnZlcnRlcjo6Z2V0QXJyYXlGb3JG
-aWxlKHVuc2lnbmVkIGZpbGUsIGludCBpZHgpCiB7CiAgICBzd2l0Y2ggKGZpbGUpIHsKICAgIGNh
-c2UgVEdTSV9GSUxFX1RFTVBPUkFSWToKLSAgICAgIHJldHVybiAmdERhdGE7CisgICAgICByZXR1
-cm4gaWR4ID09IDAgPyAmdERhdGEgOiAmbERhdGE7CiAgICBjYXNlIFRHU0lfRklMRV9QUkVESUNB
-VEU6CiAgICAgICByZXR1cm4gJnBEYXRhOwogICAgY2FzZSBUR1NJX0ZJTEVfQUREUkVTUzoKQEAg
-LTE2NjIsNyArMTY4Miw3IEBAIENvbnZlcnRlcjo6c2hpZnRBZGRyZXNzKFZhbHVlICppbmRleCkK
-IFZhbHVlICoKIENvbnZlcnRlcjo6ZmV0Y2hTcmModGdzaTo6SW5zdHJ1Y3Rpb246OlNyY1JlZ2lz
-dGVyIHNyYywgaW50IGMsIFZhbHVlICpwdHIpCiB7Ci0gICBjb25zdCBpbnQgaWR4MmQgPSBzcmMu
-aXMyRCgpID8gc3JjLmdldEluZGV4KDEpIDogMDsKKyAgIGludCBpZHgyZCA9IHNyYy5pczJEKCkg
-PyBzcmMuZ2V0SW5kZXgoMSkgOiAwOwogICAgY29uc3QgaW50IGlkeCA9IHNyYy5nZXRJbmRleCgw
-KTsKICAgIGNvbnN0IGludCBzd3ogPSBzcmMuZ2V0U3dpenpsZShjKTsKICAgIEluc3RydWN0aW9u
-ICpsZDsKQEAgLTE3MDQsNiArMTcyNCwxNCBAQCBDb252ZXJ0ZXI6OmZldGNoU3JjKHRnc2k6Oklu
-c3RydWN0aW9uOjpTcmNSZWdpc3RlciBzcmMsIGludCBjLCBWYWx1ZSAqcHRyKQogICAgICAgbGQg
-PSBta09wMShPUF9SRFNWLCBUWVBFX1UzMiwgZ2V0U1NBKCksIHNyY1RvU3ltKHNyYywgYykpOwog
-ICAgICAgbGQtPnBlclBhdGNoID0gaW5mby0+c3ZbaWR4XS5wYXRjaDsKICAgICAgIHJldHVybiBs
-ZC0+Z2V0RGVmKDApOworICAgY2FzZSBUR1NJX0ZJTEVfVEVNUE9SQVJZOiB7CisgICAgICBpbnQg
-YXJyYXlpZCA9IHNyYy5nZXRBcnJheUlkKCk7CisgICAgICBpZiAoIWFycmF5aWQpCisgICAgICAg
-ICBhcnJheWlkID0gY29kZS0+dGVtcEFycmF5SWRbaWR4XTsKKyAgICAgIGlkeDJkID0gKGNvZGUt
-PmluZGlyZWN0VGVtcEFycmF5cy5maW5kKGFycmF5aWQpICE9CisgICAgICAgICAgICAgICBjb2Rl
-LT5pbmRpcmVjdFRlbXBBcnJheXMuZW5kKCkpOworICAgfQorICAgICAgLyogZmFsbHRocm91Z2gg
-Ki8KICAgIGRlZmF1bHQ6CiAgICAgICByZXR1cm4gZ2V0QXJyYXlGb3JGaWxlKHNyYy5nZXRGaWxl
-KCksIGlkeDJkKS0+bG9hZCgKICAgICAgICAgIHN1Yi5jdXItPnZhbHVlcywgaWR4LCBzd3osIHNo
-aWZ0QWRkcmVzcyhwdHIpKTsKQEAgLTE3MTYsNyArMTc0NCw3IEBAIENvbnZlcnRlcjo6YWNxdWly
-ZURzdChpbnQgZCwgaW50IGMpCiAgICBjb25zdCB0Z3NpOjpJbnN0cnVjdGlvbjo6RHN0UmVnaXN0
-ZXIgZHN0ID0gdGdzaS5nZXREc3QoZCk7CiAgICBjb25zdCB1bnNpZ25lZCBmID0gZHN0LmdldEZp
-bGUoKTsKICAgIGNvbnN0IGludCBpZHggPSBkc3QuZ2V0SW5kZXgoMCk7Ci0gICBjb25zdCBpbnQg
-aWR4MmQgPSBkc3QuaXMyRCgpID8gZHN0LmdldEluZGV4KDEpIDogMDsKKyAgIGludCBpZHgyZCA9
-IGRzdC5pczJEKCkgPyBkc3QuZ2V0SW5kZXgoMSkgOiAwOwogCiAgICBpZiAoZHN0LmlzTWFza2Vk
-KGMpIHx8IGYgPT0gVEdTSV9GSUxFX0JVRkZFUiB8fCBmID09IFRHU0lfRklMRV9JTUFHRSkKICAg
-ICAgIHJldHVybiBOVUxMOwpAQCAtMTcyNiw2ICsxNzU0LDEwIEBAIENvbnZlcnRlcjo6YWNxdWly
-ZURzdChpbnQgZCwgaW50IGMpCiAgICAgICAgKGYgPT0gVEdTSV9GSUxFX09VVFBVVCAmJiBwcm9n
-LT5nZXRUeXBlKCkgIT0gUHJvZ3JhbTo6VFlQRV9GUkFHTUVOVCkpCiAgICAgICByZXR1cm4gZ2V0
-U2NyYXRjaCgpOwogCisgICBpZiAoZiA9PSBUR1NJX0ZJTEVfVEVNUE9SQVJZKQorICAgICAgaWR4
-MmQgPSBjb2RlLT5pbmRpcmVjdFRlbXBBcnJheXMuZmluZChjb2RlLT50ZW1wQXJyYXlJZFtpZHhd
-KSAhPQorICAgICAgICAgY29kZS0+aW5kaXJlY3RUZW1wQXJyYXlzLmVuZCgpOworCiAgICByZXR1
-cm4gZ2V0QXJyYXlGb3JGaWxlKGYsIGlkeDJkKS0+IGFjcXVpcmUoc3ViLmN1ci0+dmFsdWVzLCBp
-ZHgsIGMpOwogfQogCkBAIC0xNzU4LDcgKzE3OTAsNyBAQCBDb252ZXJ0ZXI6OnN0b3JlRHN0KGNv
-bnN0IHRnc2k6Okluc3RydWN0aW9uOjpEc3RSZWdpc3RlciBkc3QsIGludCBjLAogewogICAgY29u
-c3QgdW5zaWduZWQgZiA9IGRzdC5nZXRGaWxlKCk7CiAgICBjb25zdCBpbnQgaWR4ID0gZHN0Lmdl
-dEluZGV4KDApOwotICAgY29uc3QgaW50IGlkeDJkID0gZHN0LmlzMkQoKSA/IGRzdC5nZXRJbmRl
-eCgxKSA6IDA7CisgICBpbnQgaWR4MmQgPSBkc3QuaXMyRCgpID8gZHN0LmdldEluZGV4KDEpIDog
-MDsKIAogICAgaWYgKGYgPT0gVEdTSV9GSUxFX1NZU1RFTV9WQUxVRSkgewogICAgICAgYXNzZXJ0
-KCFwdHIpOwpAQCAtMTc4MSw2ICsxODEzLDEwIEBAIENvbnZlcnRlcjo6c3RvcmVEc3QoY29uc3Qg
-dGdzaTo6SW5zdHJ1Y3Rpb246OkRzdFJlZ2lzdGVyIGRzdCwgaW50IGMsCiAgICAgICAgZiA9PSBU
-R1NJX0ZJTEVfUFJFRElDQVRFIHx8CiAgICAgICAgZiA9PSBUR1NJX0ZJTEVfQUREUkVTUyB8fAog
-ICAgICAgIGYgPT0gVEdTSV9GSUxFX09VVFBVVCkgeworICAgICAgaWYgKGYgPT0gVEdTSV9GSUxF
-X1RFTVBPUkFSWSkKKyAgICAgICAgIGlkeDJkID0gY29kZS0+aW5kaXJlY3RUZW1wQXJyYXlzLmZp
-bmQoY29kZS0+dGVtcEFycmF5SWRbaWR4XSkgIT0KKyAgICAgICAgICAgIGNvZGUtPmluZGlyZWN0
-VGVtcEFycmF5cy5lbmQoKTsKKwogICAgICAgZ2V0QXJyYXlGb3JGaWxlKGYsIGlkeDJkKS0+c3Rv
-cmUoc3ViLmN1ci0+dmFsdWVzLCBpZHgsIGMsIHB0ciwgdmFsKTsKICAgIH0gZWxzZSB7CiAgICAg
-ICBhc3NlcnQoISJpbnZhbGlkIGRzdCBmaWxlIik7CkBAIC0zNDE3LDE4ICszNDUzLDE3IEBAIENv
-bnZlcnRlcjo6ZXhwb3J0T3V0cHV0cygpCiBDb252ZXJ0ZXI6OkNvbnZlcnRlcihQcm9ncmFtICpp
-ciwgY29uc3QgdGdzaTo6U291cmNlICpjb2RlKSA6IEJ1aWxkVXRpbChpciksCiAgICAgIGNvZGUo
-Y29kZSksCiAgICAgIHRnc2koTlVMTCksCi0gICAgIHREYXRhKHRoaXMpLCBhRGF0YSh0aGlzKSwg
-cERhdGEodGhpcyksIG9EYXRhKHRoaXMpCisgICAgIHREYXRhKHRoaXMpLCBsRGF0YSh0aGlzKSwg
-YURhdGEodGhpcyksIHBEYXRhKHRoaXMpLCBvRGF0YSh0aGlzKQogewogICAgaW5mbyA9IGNvZGUt
-PmluZm87CiAKLSAgIGNvbnN0IERhdGFGaWxlIHRGaWxlID0gY29kZS0+bWFpblRlbXBzSW5MTWVt
-ID8gRklMRV9NRU1PUllfTE9DQUwgOiBGSUxFX0dQUjsKLQogICAgY29uc3QgdW5zaWduZWQgdFNp
-emUgPSBjb2RlLT5maWxlU2l6ZShUR1NJX0ZJTEVfVEVNUE9SQVJZKTsKICAgIGNvbnN0IHVuc2ln
-bmVkIHBTaXplID0gY29kZS0+ZmlsZVNpemUoVEdTSV9GSUxFX1BSRURJQ0FURSk7CiAgICBjb25z
-dCB1bnNpZ25lZCBhU2l6ZSA9IGNvZGUtPmZpbGVTaXplKFRHU0lfRklMRV9BRERSRVNTKTsKICAg
-IGNvbnN0IHVuc2lnbmVkIG9TaXplID0gY29kZS0+ZmlsZVNpemUoVEdTSV9GSUxFX09VVFBVVCk7
-CiAKLSAgIHREYXRhLnNldHVwKFRHU0lfRklMRV9URU1QT1JBUlksIDAsIDAsIHRTaXplLCA0LCA0
-LCB0RmlsZSwgMCk7CisgICB0RGF0YS5zZXR1cChUR1NJX0ZJTEVfVEVNUE9SQVJZLCAwLCAwLCB0
-U2l6ZSwgNCwgNCwgRklMRV9HUFIsIDApOworICAgbERhdGEuc2V0dXAoVEdTSV9GSUxFX1RFTVBP
-UkFSWSwgMCwgMCwgdFNpemUsIDQsIDQsIEZJTEVfTUVNT1JZX0xPQ0FMLCAwKTsKICAgIHBEYXRh
-LnNldHVwKFRHU0lfRklMRV9QUkVESUNBVEUsIDAsIDAsIHBTaXplLCA0LCA0LCBGSUxFX1BSRURJ
-Q0FURSwgMCk7CiAgICBhRGF0YS5zZXR1cChUR1NJX0ZJTEVfQUREUkVTUywgMCwgMCwgYVNpemUs
-IDQsIDQsIEZJTEVfR1BSLCAwKTsKICAgIG9EYXRhLnNldHVwKFRHU0lfRklMRV9PVVRQVVQsIDAs
-IDAsIG9TaXplLCA0LCA0LCBGSUxFX0dQUiwgMCk7Ci0tIAoyLjQuMTAKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1867767016==
+Content-Type: multipart/alternative; boundary="1452742406.B2EBD2.3098"; charset="UTF-8"
+
+
+--1452742406.B2EBD2.3098
+Date: Thu, 14 Jan 2016 03:33:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93670
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Michel D=C3=A4nzer from comment #8)
+> The xf86-video-nouveau needs a port of
+> http://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/
+> ?id=3Dff9a6b6f079a8419f4e6fadfee778060618bf735 .
+
+This is done:
+http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=3Db824d36=
+c28124955eda4aced5e637aa75eea4d6c
+
+Thomas, please reopen if the issue persists if you use xf86-video-nouveau f=
+rom
+git with xorg-server 1.18.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1452742406.B2EBD2.3098
+Date: Thu, 14 Jan 2016 03:33:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Reverse PRIME using two external screens on Nv=
+idia card leads to &quot;Configure crtc 5 failed&quot; since xorg-server 1.=
+18.0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93670">bug 93670<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Reverse PRIME using two external screens on Nv=
+idia card leads to &quot;Configure crtc 5 failed&quot; since xorg-server 1.=
+18.0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93670#c9">Comment=
+ # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Reverse PRIME using two external screens on Nv=
+idia card leads to &quot;Configure crtc 5 failed&quot; since xorg-server 1.=
+18.0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93670">bug 93670<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Michel D=C3=A4nzer from <a href=3D"show_bug.cgi?i=
+d=3D93670#c8">comment #8</a>)
+<span class=3D"quote">&gt; The xf86-video-nouveau needs a port of
+&gt; <a href=3D"http://cgit.freedesktop.org/xorg/driver/xf86-video-ati/comm=
+it/">http://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/</a>
+&gt; ?id=3Dff9a6b6f079a8419f4e6fadfee778060618bf735 .</span >
+
+This is done:
+<a href=3D"http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?i=
+d=3Db824d36c28124955eda4aced5e637aa75eea4d6c">http://cgit.freedesktop.org/n=
+ouveau/xf86-video-nouveau/commit/?id=3Db824d36c28124955eda4aced5e637aa75eea=
+4d6c</a>
+
+Thomas, please reopen if the issue persists if you use xf86-video-nouveau f=
+rom
+git with xorg-server 1.18.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1452742406.B2EBD2.3098--
+
+--===============1867767016==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1867767016==--
