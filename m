@@ -1,12 +1,12 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] ltc/gm107: wait on relevant bit in
-	gm107_ltc_cbc_wait
-Date: Fri, 15 Jan 2016 11:53:24 +0900
-Message-ID: <1452826404-21094-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90932] gm107 font glitches with kernel 4.1rc
+Date: Fri, 15 Jan 2016 16:21:52 +0000
+Message-ID: <bug-90932-8800-WrKDCTjcPV@http.bugs.freedesktop.org/>
+References: <bug-90932-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0277720987=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,31 +16,82 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UGF0Y2ggImx0Yy9nbTEwNzogdXNlIG52a21fbWFzayB0byBzZXQgY2JjX2N0cmwxIiBzZXRzIHRo
-ZSAzcmQgYml0Cm9mIHRoZSBDVFJMMSByZWdpc3RlciBpbnN0ZWFkIG9mIHdyaXRpbmcgaXQgZW50
-aXJlbHkgaW4KZ20xMDdfbHRjX2NiY19jbGVhcigpLiBBcyBhIGNvdW50ZXJwYXJ0LCBnbTEwN19s
-dGNfY2JjX3dhaXQoKSBtdXN0IGFsc28KYmUgbW9kaWZpZWQgdG8gd2FpdCBvbiB0aGF0IHNpbmds
-ZSBiaXQgb25seSwgb3RoZXJ3aXNlIGEgdGltZW91dCBtYXkKb2NjdXIgaWYgc29tZSBvdGhlciBi
-aXQgb2YgdGhhdCByZWdpc3RlciBpcyBzZXQuIFRoaXMgaGFwcGVuZWQgYXQgbGVhc3QKb24gR00y
-MDYgd2hlbiBydW5uaW5nIGdsbWFyazItZHJtLgoKV2hpbGUgd2UgYXJlIGF0IGl0LCB1c2UgdGhl
-IG1vcmUgY29tcGFjdCBudmttX3dhaXRfbXNlYygpIHRvIHdhaXQgZm9yCnRoZSBiaXQgdG8gY2xl
-YXIuCgpTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNv
-bT4KLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9sdGMvZ20xMDcuYyB8IDYgKystLS0tCiAx
-IGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
-dCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2x0Yy9nbTEwNy5jIGIvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvbHRjL2dtMTA3LmMKaW5kZXggMmFmMWY5ZTEwMGZjLi40N2M0ZTcxNTM3MGYgMTAw
-NjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2x0Yy9nbTEwNy5jCisrKyBiL2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2x0Yy9nbTEwNy5jCkBAIC00MywxMCArNDMsOCBAQCBnbTEwN19s
-dGNfY2JjX3dhaXQoc3RydWN0IG52a21fbHRjICpsdGMpCiAJZm9yIChjID0gMDsgYyA8IGx0Yy0+
-bHRjX25yOyBjKyspIHsKIAkJZm9yIChzID0gMDsgcyA8IGx0Yy0+bHRzX25yOyBzKyspIHsKIAkJ
-CWNvbnN0IHUzMiBhZGRyID0gMHgxNDA0NmMgKyAoYyAqIDB4MjAwMCkgKyAocyAqIDB4MjAwKTsK
-LQkJCW52a21fbXNlYyhkZXZpY2UsIDIwMDAsCi0JCQkJaWYgKCFudmttX3JkMzIoZGV2aWNlLCBh
-ZGRyKSkKLQkJCQkJYnJlYWs7Ci0JCQkpOworCQkJbnZrbV93YWl0X21zZWMoZGV2aWNlLCAyMDAw
-LCBhZGRyLAorCQkJCSAgICAgICAweDAwMDAwMDA0LCAweDAwMDAwMDAwKTsKIAkJfQogCX0KIH0K
-LS0gCjIuNy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0277720987==
+Content-Type: multipart/alternative; boundary="1452874912.DC81c43.2012"; charset="UTF-8"
+
+
+--1452874912.DC81c43.2012
+Date: Fri, 15 Jan 2016 16:21:52 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90932
+
+--- Comment #22 from Roman Elshin <roman.elshin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #20)
+> This (mesa) patch seems to help Ben when using GLAMOR on Kepler chips. Could
+> give it a shot to see if it improves the Maxwell situation as well. Doubtful
+> that it's the "right" thing though.
+
+This patch helps with 750ti too (at least at first sight).
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1452874912.DC81c43.2012
+Date: Fri, 15 Jan 2016 16:21:52 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - gm107 font glitches with kernel 4.1rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c22">Comment # 22</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - gm107 font glitches with kernel 4.1rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
+              from <span class="vcard"><a class="email" href="mailto:roman.elshin&#64;gmail.com" title="Roman Elshin &lt;roman.elshin&#64;gmail.com&gt;"> <span class="fn">Roman Elshin</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90932#c20">comment #20</a>)
+<span class="quote">&gt; This (mesa) patch seems to help Ben when using GLAMOR on Kepler chips. Could
+&gt; give it a shot to see if it improves the Maxwell situation as well. Doubtful
+&gt; that it's the &quot;right&quot; thing though.</span >
+
+This patch helps with 750ti too (at least at first sight).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1452874912.DC81c43.2012--
+
+--===============0277720987==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0277720987==--
