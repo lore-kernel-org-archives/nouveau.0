@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93733] Kernel message spam when HDMI display is
-	turned off
-Date: Sat, 16 Jan 2016 18:49:19 +0000
-Message-ID: <bug-93733-8800-S3IpzjLXJZ@http.bugs.freedesktop.org/>
-References: <bug-93733-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
+ KDE/KDM on Nvidia GeForce 7025 / nForce 630a
+Date: Sat, 16 Jan 2016 22:04:46 +0000
+Message-ID: <bug-93557-8800-QeoE5sv0MU@http.bugs.freedesktop.org/>
+References: <bug-93557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1275232811=="
+Content-Type: multipart/mixed; boundary="===============0601511377=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93733-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1275232811==
-Content-Type: multipart/alternative; boundary="1452970159.2ddC1aB2.23242"; charset="UTF-8"
+--===============0601511377==
+Content-Type: multipart/alternative; boundary="1452981894.Aa5BFA3c1.32494"; charset="UTF-8"
 
 
---1452970159.2ddC1aB2.23242
-Date: Sat, 16 Jan 2016 18:49:19 +0000
+--1452981894.Aa5BFA3c1.32494
+Date: Sat, 16 Jan 2016 22:04:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93733
+https://bugs.freedesktop.org/show_bug.cgi?id=93557
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I believe this commit:
-
-https://github.com/skeggsb/linux/commit/0a882cadbc63fd2da3994af7115b4ada2fcbd638.patch
-
-should fix the problem.
+--- Comment #7 from xgfwtvdh-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
+Created attachment 121076
+  --> https://bugs.freedesktop.org/attachment.cgi?id=121076&action=edit
+mmiotrace nvidia 304.131 driver on ubuntu 14.04.3
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1452970159.2ddC1aB2.23242
-Date: Sat, 16 Jan 2016 18:49:19 +0000
+--1452981894.Aa5BFA3c1.32494
+Date: Sat, 16 Jan 2016 22:04:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,19 +55,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Kernel message spam when HDMI display is turned off"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93733#c2">Comment # 2</a>
+   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Kernel message spam when HDMI display is turned off"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93733">bug 93733</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557">bug 93557</a>
+              from <span class="vcard"><a class="email" href="mailto:xgfwtvdh&#64;sharklasers.com" title="xgfwtvdh&#64;sharklasers.com">xgfwtvdh&#64;sharklasers.com</a>
 </span></b>
-        <pre>I believe this commit:
-
-<a href="https://github.com/skeggsb/linux/commit/0a882cadbc63fd2da3994af7115b4ada2fcbd638.patch">https://github.com/skeggsb/linux/commit/0a882cadbc63fd2da3994af7115b4ada2fcbd638.patch</a>
-
-should fix the problem.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=121076" name="attach_121076" title="mmiotrace nvidia 304.131 driver on ubuntu 14.04.3">attachment 121076</a> <a href="attachment.cgi?id=121076&amp;action=edit" title="mmiotrace nvidia 304.131 driver on ubuntu 14.04.3">[details]</a></span>
+mmiotrace nvidia 304.131 driver on ubuntu 14.04.3</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +76,9 @@ should fix the problem.</pre>
     </body>
 </html>
 
---1452970159.2ddC1aB2.23242--
+--1452981894.Aa5BFA3c1.32494--
 
---===============1275232811==
+--===============0601511377==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1275232811==--
+--===============0601511377==--
