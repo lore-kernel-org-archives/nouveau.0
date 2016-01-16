@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93458] page allocation failure: order:5,
-	mode:0x240c0c0
-Date: Sat, 16 Jan 2016 11:24:55 +0000
-Message-ID: <bug-93458-8800-XZ2NNcK1tn@http.bugs.freedesktop.org/>
-References: <bug-93458-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93732] New: SW cursor flicker in-game
+Date: Sat, 16 Jan 2016 12:33:30 +0000
+Message-ID: <bug-93732-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1926780259=="
+Content-Type: multipart/mixed; boundary="===============0316166629=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93458-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +18,67 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1926780259==
-Content-Type: multipart/alternative; boundary="1452943495.D811032.16409"; charset="UTF-8"
+--===============0316166629==
+Content-Type: multipart/alternative; boundary="1452947610.3fdCD80.10378"; charset="UTF-8"
 
 
---1452943495.D811032.16409
-Date: Sat, 16 Jan 2016 11:24:55 +0000
+--1452947610.3fdCD80.10378
+Date: Sat, 16 Jan 2016 12:33:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93458
+https://bugs.freedesktop.org/show_bug.cgi?id=93732
 
---- Comment #4 from Zlatko Calusic <zcalusic-7aYyyD3GOf7R7s880joybQ@public.gmane.org> ---
-Created attachment 121071
-  --> https://bugs.freedesktop.org/attachment.cgi?id=121071&action=edit
-Use vzalloc instad of kzalloc in nvkm_ramht_new()
+            Bug ID: 93732
+           Summary: SW cursor flicker in-game
+           Product: Mesa
+           Version: 11.0
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: kugel-UCKwuKHb1aVAfugRpC6u6w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-I've had lots of success using the attached patch. 4 days and still running
-strong, no page allocation failures. But, some core developer should probably
-confirm that using vmalloc instead of kmalloc is ok in that function.
+Created attachment 121072
+  --> https://bugs.freedesktop.org/attachment.cgi?id=121072&action=edit
+glxinfo
+
+I've got a GeForce 650 Ti, and when I'm using the SW cursor (either manually
+through xorg.conf, or enforced in a Reverse PRIME setup), the cursor begins to
+flicker heavily in the Dota 2 game.
+
+It seems that not only the cursor flickers heavily but also clicking is harder
+(as if the click didn't work when the cursor is invisible).
+
+I do not experience this with HW cursor or on the desktop or with the game in
+windowed mode.
+
+This is on GNOME 3 which disables compositing in full-screen applications.
+
+X -version
+
+X.Org X Server 1.18.0
+Release Date: 2015-11-09
+X Protocol Version 11, Revision 0
+Build Operating System: Linux 4.3.3-2-ARCH x86_64 
+Current Operating System: Linux thomas-nb 4.3.3-2-ARCH #1 SMP PREEMPT Wed Dec
+23 20:09:18 CET 2015 x86_64
+Kernel command line: initrd=\intel-ucode.img initrd=\initramfs-linux.img
+root=/dev/sda2 rw nouveau.pstate=1 nouveau.War00C800_0=1
+nouveau.config=War00C800_0=1
+Build Date: 16 January 2016  01:12:20PM
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1452943495.D811032.16409
-Date: Sat, 16 Jan 2016 11:24:55 +0000
+--1452947610.3fdCD80.10378
+Date: Sat, 16 Jan 2016 12:33:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,39 +86,131 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - SW cursor flicker in-game"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93732">93732</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>SW cursor flicker in-game
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>11.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>kugel&#64;rockbox.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - page allocation failure: order:5, mode:0x240c0c0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93458#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - page allocation failure: order:5, mode:0x240c0c0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93458">bug 93458</a>
-              from <span class="vcard"><a class="email" href="mailto:zcalusic&#64;bitsync.net" title="Zlatko Calusic &lt;zcalusic&#64;bitsync.net&gt;"> <span class="fn">Zlatko Calusic</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=121071" name="attach_121071" title="Use vzalloc instad of kzalloc in nvkm_ramht_new()">attachment 121071</a> <a href="attachment.cgi?id=121071&amp;action=edit" title="Use vzalloc instad of kzalloc in nvkm_ramht_new()">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=93458&amp;attachment=121071'>[review]</a>
-Use vzalloc instad of kzalloc in nvkm_ramht_new()
+        <pre>Created <span class=""><a href="attachment.cgi?id=121072" name="attach_121072" title="glxinfo">attachment 121072</a> <a href="attachment.cgi?id=121072&amp;action=edit" title="glxinfo">[details]</a></span>
+glxinfo
 
-I've had lots of success using the attached patch. 4 days and still running
-strong, no page allocation failures. But, some core developer should probably
-confirm that using vmalloc instead of kmalloc is ok in that function.</pre>
+I've got a GeForce 650 Ti, and when I'm using the SW cursor (either manually
+through xorg.conf, or enforced in a Reverse PRIME setup), the cursor begins to
+flicker heavily in the Dota 2 game.
+
+It seems that not only the cursor flickers heavily but also clicking is harder
+(as if the click didn't work when the cursor is invisible).
+
+I do not experience this with HW cursor or on the desktop or with the game in
+windowed mode.
+
+This is on GNOME 3 which disables compositing in full-screen applications.
+
+X -version
+
+X.Org X Server 1.18.0
+Release Date: 2015-11-09
+X Protocol Version 11, Revision 0
+Build Operating System: Linux 4.3.3-2-ARCH x86_64 
+Current Operating System: Linux thomas-nb 4.3.3-2-ARCH #1 SMP PREEMPT Wed Dec
+23 20:09:18 CET 2015 x86_64
+Kernel command line: initrd=\intel-ucode.img initrd=\initramfs-linux.img
+root=/dev/sda2 rw nouveau.pstate=1 nouveau.War00C800_0=1
+nouveau.config=War00C800_0=1
+Build Date: 16 January 2016  01:12:20PM</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1452943495.D811032.16409--
+--1452947610.3fdCD80.10378--
 
---===============1926780259==
+--===============0316166629==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +220,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1926780259==--
+--===============0316166629==--
