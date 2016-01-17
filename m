@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92307] G98/G94/GK106/GM204: WARNING: ... at
- include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
- [drm_kms_helper]()/
+Subject: [Bug 93634] WARN_ON triggered on DPMS event
 Date: Sun, 17 Jan 2016 18:04:11 +0000
-Message-ID: <bug-92307-8800-hUn2k4RaI1@http.bugs.freedesktop.org/>
-References: <bug-92307-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-93634-8800-gb4StlK0yA@http.bugs.freedesktop.org/>
+References: <bug-93634-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0167146962=="
+Content-Type: multipart/mixed; boundary="===============0541295387=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93634-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,36 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0167146962==
-Content-Type: multipart/alternative; boundary="14530538514.0E7cfB.31694";
+--===============0541295387==
+Content-Type: multipart/alternative; boundary="14530538520.a2BCE9.31694";
  charset="UTF-8"
 
 
---14530538514.0E7cfB.31694
-Date: Sun, 17 Jan 2016 18:04:11 +0000
+--14530538520.a2BCE9.31694
+Date: Sun, 17 Jan 2016 18:04:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92307
+https://bugs.freedesktop.org/show_bug.cgi?id=93634
 
 poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=93634
-            Summary|G98/G94/GK106: WARNING: ... |G98/G94/GK106/GM204:
-                   |at                          |WARNING: ... at
-                   |include/drm/drm_crtc.h:1577 |include/drm/drm_crtc.h:1577
-                   |drm_helper_choose_encoder_d |drm_helper_choose_encoder_d
-                   |pms+0x8a/0x90               |pms+0x8a/0x90
-                   |[drm_kms_helper]()          |[drm_kms_helper]()/
+                   |                            |g/show_bug.cgi?id=92307
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14530538514.0E7cfB.31694
-Date: Sun, 17 Jan 2016 18:04:11 +0000
+--14530538520.a2BCE9.31694
+Date: Sun, 17 Jan 2016 18:04:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -62,9 +54,9 @@ Content-Type: text/html
     <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98/G94/GK106/GM204: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()/"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - WARN_ON triggered on DPMS event"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93634">bug 93634</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -78,15 +70,7 @@ Content-Type: text/html
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=93634
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>G98/G94/GK106: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()
-           </td>
-           <td>G98/G94/GK106/GM204: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()/
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=92307
            </td>
          </tr></table>
       <p>
@@ -99,9 +83,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14530538514.0E7cfB.31694--
+--14530538520.a2BCE9.31694--
 
---===============0167146962==
+--===============0541295387==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0167146962==--
+--===============0541295387==--
