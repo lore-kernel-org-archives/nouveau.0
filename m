@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92307] G98/G94/GK106: WARNING: ... at
- include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
- [drm_kms_helper]()
+Subject: [Bug 93733] Kernel message spam when HDMI display is
+	turned off
 Date: Sun, 17 Jan 2016 17:56:30 +0000
-Message-ID: <bug-92307-8800-WdJBHDyRlR@http.bugs.freedesktop.org/>
-References: <bug-92307-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-93733-8800-KfrQAkEkjU@http.bugs.freedesktop.org/>
+References: <bug-93733-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2118835470=="
+Content-Type: multipart/mixed; boundary="===============1310722298=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93733-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,36 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2118835470==
-Content-Type: multipart/alternative; boundary="14530533900.fdaC1F.28973";
+--===============1310722298==
+Content-Type: multipart/alternative; boundary="14530533912.3142Aee.28973";
  charset="UTF-8"
 
 
---14530533900.fdaC1F.28973
-Date: Sun, 17 Jan 2016 17:56:30 +0000
+--14530533912.3142Aee.28973
+Date: Sun, 17 Jan 2016 17:56:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92307
+https://bugs.freedesktop.org/show_bug.cgi?id=93733
 
 poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|G98/G94: WARNING: ... at    |G98/G94/GK106: WARNING: ...
-                   |include/drm/drm_crtc.h:1577 |at
-                   |drm_helper_choose_encoder_d |include/drm/drm_crtc.h:1577
-                   |pms+0x8a/0x90               |drm_helper_choose_encoder_d
-                   |[drm_kms_helper]()          |pms+0x8a/0x90
-                   |                            |[drm_kms_helper]()
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=93733
+                   |                            |g/show_bug.cgi?id=92307
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14530533900.fdaC1F.28973
-Date: Sun, 17 Jan 2016 17:56:30 +0000
+--14530533912.3142Aee.28973
+Date: Sun, 17 Jan 2016 17:56:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -63,8 +56,8 @@ Content-Type: text/html
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - G98/G94/GK106: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
+   title="NEW - Kernel message spam when HDMI display is turned off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93733">bug 93733</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -74,19 +67,11 @@ Content-Type: text/html
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>G98/G94: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()
-           </td>
-           <td>G98/G94/GK106: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()
-           </td>
-         </tr>
-
-         <tr>
            <td style="text-align:right;">See Also</td>
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=93733
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=92307
            </td>
          </tr></table>
       <p>
@@ -99,9 +84,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14530533900.fdaC1F.28973--
+--14530533912.3142Aee.28973--
 
---===============2118835470==
+--===============1310722298==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2118835470==--
+--===============1310722298==--
