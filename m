@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
- KDE/KDM on Nvidia GeForce 7025 / nForce 630a
-Date: Sat, 16 Jan 2016 22:04:46 +0000
-Message-ID: <bug-93557-8800-QeoE5sv0MU@http.bugs.freedesktop.org/>
-References: <bug-93557-8800@http.bugs.freedesktop.org/>
+From: Wakko Warner <wakko-WZdgCHJQUilg9hUCZPvPmw@public.gmane.org>
+Subject: Re: linux v4.4.0 nouveau fails
+Date: Sat, 16 Jan 2016 20:07:42 -0500
+Message-ID: <20160117010742.GA10294@animx.eu.org>
+References: <20160112002341.GA30730@animx.eu.org>
+ <CAKb7Uvi4SZf0qGJj+53WSP_KAd1KaiGSMzjhBAvz798OexDu=w@mail.gmail.com>
+ <20160115220417.GA10587@animx.eu.org>
+ <CAKb7UvhCXXtB9JTYCZxYYbbdEEFFc09hXnVT=YFah0EH92vErA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0601511377=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UvhCXXtB9JTYCZxYYbbdEEFFc09hXnVT=YFah0EH92vErA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,75 +21,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0601511377==
-Content-Type: multipart/alternative; boundary="1452981894.Aa5BFA3c1.32494"; charset="UTF-8"
-
-
---1452981894.Aa5BFA3c1.32494
-Date: Sat, 16 Jan 2016 22:04:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93557
-
---- Comment #7 from xgfwtvdh-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
-Created attachment 121076
-  --> https://bugs.freedesktop.org/attachment.cgi?id=121076&action=edit
-mmiotrace nvidia 304.131 driver on ubuntu 14.04.3
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1452981894.Aa5BFA3c1.32494
-Date: Sat, 16 Jan 2016 22:04:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on Nvidia GeForce 7025 / nForce 630a"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93557">bug 93557</a>
-              from <span class="vcard"><a class="email" href="mailto:xgfwtvdh&#64;sharklasers.com" title="xgfwtvdh&#64;sharklasers.com">xgfwtvdh&#64;sharklasers.com</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=121076" name="attach_121076" title="mmiotrace nvidia 304.131 driver on ubuntu 14.04.3">attachment 121076</a> <a href="attachment.cgi?id=121076&amp;action=edit" title="mmiotrace nvidia 304.131 driver on ubuntu 14.04.3">[details]</a></span>
-mmiotrace nvidia 304.131 driver on ubuntu 14.04.3</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1452981894.Aa5BFA3c1.32494--
-
---===============0601511377==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0601511377==--
+UGxlYXNlIGtlZXAgbWUgaW4gQ0MgYXMgSSBhbSBub3Qgb24gdGhlIGxpc3QuCgpJbGlhIE1pcmtp
+biB3cm90ZToKPiBPbiBGcmksIEphbiAxNSwgMjAxNiBhdCA1OjA0IFBNLCBXYWtrbyBXYXJuZXIg
+PHdha2tvQGFuaW14LmV1Lm9yZz4gd3JvdGU6Cj4gPiBJbGlhIE1pcmtpbiB3cm90ZToKPiA+PiBJ
+IHN1c3BlY3QgdGhlIGZiMCBpc3N1ZSBpcyBiZWNhdXNlIHlvdSBkaXNhYmxlZAo+ID4+IENPTkZJ
+R19EUk1fRkJERVZfRU1VTEFUSU9OPyBEb2VzIHRoZSBmcmVlemUgYWxzbyBoYXBwZW4gd2l0aCA0
+LjM/IEFueQo+ID4+IGNoYW5jZSB5b3UgY291bGQgYmlzZWN0Pwo+ID4KPiA+IEkgc2F3IHRoaXMg
+Y29uZmlnIG9wdGlvbiwgYnV0IEkgZGlkbid0IHJlYWxpemUgdGhhdC4KPiA+IFRoZSBpc3N1ZSBh
+bHNvIG9jY3VycyB3aXRoIDQuMy4gIEkgZXZlbiB0cmllZCA0LjMtcmMxIHdpdGggdGhlIHNhbWUg
+cmVzdWx0cy4KPiA+Cj4gPiBXb3VsZCB0aGUgRFJNX0ZCREVWX0VNVUxBVElPTiBlZmZlY3QgM0Q/
+Cj4gCj4gU2hvdWxkbid0LCBidXQuLi4gd2hvIGtub3dzLiBUaGUgcmV3cml0ZSBpbiA0LjMgd2Fz
+IGRvbmUgaW4gYQo+IGJpc2VjdGFibGUgd2F5LCBzbyBpdCBzaG91bGQgYmUgcG9zc2libGUgdG8g
+ZmlndXJlIG91dCB3aGVyZSB3ZSB3ZW50Cj4gd3JvbmcuIE5vdCBhIHRvbiBvZiB0ZXN0aW5nIGlz
+IGRvbmUgb24gcHJlLUc4MCBncHUncyBub3dhZGF5cywgc28KPiB0aGVzZSBpc3N1ZXMgc29tZXRp
+bWVzIHNuZWFrIGluLgoKSSBlbmFibGVkIHRoZSBEUk1fRkJERVZfRU1VTEFUSU9OIGFuZCAzRCBp
+cyB3b3JraW5nIGZvciA0LjQuMC4gIEkgb25seQp0cmllZCB3aXRoIGdlYXJzIGZyb20geHNjcmVl
+bnNhdmVyLiAgSSdtIGdvaW5nIHRvIHRyeSB3aXRoIHNvbWV0aGluZyBlbHNlIGFzCndlbGwuCgpB
+cyBhIGN1cmlvc2l0eSwgd2h5IHdhcyBEUk1fRkJERVZfRU1VTEFUSU9OIGFkZGVkIGluIDQuMz8K
+Ci0tIAogTWljcm9zb2Z0IGhhcyBiZWF0ZW4gVm9sa3N3YWdlbidzIHdvcmxkIHJlY29yZC4gIFZv
+bGtzd2FnZW4gb25seSBjcmVhdGVkIDIyCiBtaWxsaW9uIGJ1Z3MuCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
