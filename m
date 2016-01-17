@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93634] WARN_ON triggered on DPMS event
-Date: Sun, 17 Jan 2016 18:04:11 +0000
-Message-ID: <bug-93634-8800-gb4StlK0yA@http.bugs.freedesktop.org/>
-References: <bug-93634-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92307] G98/G94/GK106/GM204: WARNING: ... at
+ include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
+ [drm_kms_helper]()/
+Date: Sun, 17 Jan 2016 19:26:13 +0000
+Message-ID: <bug-92307-8800-IT9tcpFafE@http.bugs.freedesktop.org/>
+References: <bug-92307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0541295387=="
+Content-Type: multipart/mixed; boundary="===============1848182570=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93634-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +22,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0541295387==
-Content-Type: multipart/alternative; boundary="14530538520.a2BCE9.31694";
+--===============1848182570==
+Content-Type: multipart/alternative; boundary="14530587734.c054b15.23517";
  charset="UTF-8"
 
 
---14530538520.a2BCE9.31694
-Date: Sun, 17 Jan 2016 18:04:12 +0000
+--14530587734.c054b15.23517
+Date: Sun, 17 Jan 2016 19:26:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93634
+https://bugs.freedesktop.org/show_bug.cgi?id=92307
 
-poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #28 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=92307
+Commit:
+"drm/nouveau/kms: take mode_config mutex in connector hotplug path"
+https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/drivers/gpu/drm/nouveau/nouveau_connector.c?id=0a882cad
+https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/patch/drivers/gpu/drm/nouveau/nouveau_connector.c?id=0a882cad
+
+solves only WARNING(s),
+everything else is equally broken - "xrandr-ing" with GL(X) compositing.
+
+Tested with 4.5.0-0.rc0.git3.1.fc24.x86_64
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14530538520.a2BCE9.31694
-Date: Sun, 17 Jan 2016 18:04:12 +0000
+--14530587734.c054b15.23517
+Date: Sun, 17 Jan 2016 19:26:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -51,29 +58,30 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - WARN_ON triggered on DPMS event"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93634">bug 93634</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=92307
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - G98/G94/GK106/GM204: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()/"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307#c28">Comment # 28</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - G98/G94/GK106/GM204: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()/"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>
+Commit:
+&quot;drm/nouveau/kms: take mode_config mutex in connector hotplug path&quot;
+<a href="https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/drivers/gpu/drm/nouveau/nouveau_connector.c?id=0a882cad">https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/drivers/gpu/drm/nouveau/nouveau_connector.c?id=0a882cad</a>
+<a href="https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/patch/drivers/gpu/drm/nouveau/nouveau_connector.c?id=0a882cad">https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/patch/drivers/gpu/drm/nouveau/nouveau_connector.c?id=0a882cad</a>
+
+solves only WARNING(s),
+everything else is equally broken - &quot;xrandr-ing&quot; with GL(X) compositing.
+
+Tested with 4.5.0-0.rc0.git3.1.fc24.x86_64</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +91,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14530538520.a2BCE9.31694--
+--14530587734.c054b15.23517--
 
---===============0541295387==
+--===============1848182570==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0541295387==--
+--===============1848182570==--
