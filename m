@@ -1,36 +1,55 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Recommendation for cherry-pick between 3.12 and 4.2: 0a363e85cdaf
-Date: Sun, 17 Jan 2016 14:28:13 -0500
-Message-ID: <CAKb7UvhmjD5HfNRDwR8phUhFwYhGS0QPMMucnNc+YWZUb5M-dg@mail.gmail.com>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 2/5] gr/gf100: use the nvkm_firmware functions
+Date: Mon, 18 Jan 2016 15:07:10 +0900
+Message-ID: <1453097233-11838-3-git-send-email-acourbot@nvidia.com>
+References: <1453097233-11838-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <stable-owner@vger.kernel.org>
-Sender: stable-owner@vger.kernel.org
-To: stable <stable@vger.kernel.org>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1453097233-11838-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hello,
-
-I'd like to recommend backporting this commit:
-
-commit 0a363e85cdafbceeee6a49b91c604d0d4d070dc7
-Author: Hans de Goede <hdegoede@redhat.com>
-Date:   Thu Jul 23 17:20:12 2015 +0200
-
-    drm/nouveau/nv46: Change mc subdev oclass from nv44 to nv4c
-
-This disables MSI by default on G72 (NV46) devices where it's
-apparently a bit buggy. We have a later patch which turns MSI back on
-with a quirk, but it isn't extremely necessary for these devices, and
-disabling (or, rather, not enabling) MSI is a pretty safe thing to do.
-
-The patch went upstream in 4.3-rc1, however I believe that there are
-still a number of kernels between 3.12 (where MSI was first enabled by
-default - commit a27e56996) and 4.2 (inclusive) which are still being
-maintained. To those maintainers, please consider including this in
-your trees.
-
-Cheers,
-
-  -ilia
+VXNlIHRoZSBudmttX2Zpcm13YXJlXyogZnVuY3Rpb25zIHdoZW4gbG9hZGluZyBleHRlcm5hbCBm
+aXJtd2FyZSB0bwphdm9pZCBkdXBsaWNhdGUgY29kZS4KClNpZ25lZC1vZmYtYnk6IEFsZXhhbmRy
+ZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgotLS0KIGRybS9ub3V2ZWF1L252a20vZW5n
+aW5lL2dyL2dmMTAwLmMgfCAxOCArKystLS0tLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAz
+IGluc2VydGlvbnMoKyksIDE1IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1
+L252a20vZW5naW5lL2dyL2dmMTAwLmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEw
+MC5jCmluZGV4IDFmODEwNjllZGM1OC4uZjI0MTBhZmYwN2NmIDEwMDY0NAotLS0gYS9kcm0vbm91
+dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5l
+L2dyL2dmMTAwLmMKQEAgLTI3LDYgKzI3LDcgQEAKIAogI2luY2x1ZGUgPGNvcmUvY2xpZW50Lmg+
+CiAjaW5jbHVkZSA8Y29yZS9vcHRpb24uaD4KKyNpbmNsdWRlIDxjb3JlL2Zpcm13YXJlLmg+CiAj
+aW5jbHVkZSA8c3ViZGV2L2ZiLmg+CiAjaW5jbHVkZSA8c3ViZGV2L21jLmg+CiAjaW5jbHVkZSA8
+c3ViZGV2L3BtdS5oPgpAQCAtMTcyMCwyMiArMTcyMSw5IEBAIGdmMTAwX2dyX2N0b3JfZncoc3Ry
+dWN0IGdmMTAwX2dyICpnciwgY29uc3QgY2hhciAqZnduYW1lLAogCXN0cnVjdCBudmttX3N1YmRl
+diAqc3ViZGV2ID0gJmdyLT5iYXNlLmVuZ2luZS5zdWJkZXY7CiAJc3RydWN0IG52a21fZGV2aWNl
+ICpkZXZpY2UgPSBzdWJkZXYtPmRldmljZTsKIAljb25zdCBzdHJ1Y3QgZmlybXdhcmUgKmZ3Owot
+CWNoYXIgZls2NF07Ci0JY2hhciBjbmFtZVsxNl07CiAJaW50IHJldDsKLQlpbnQgaTsKLQotCS8q
+IENvbnZlcnQgZGV2aWNlIG5hbWUgdG8gbG93ZXJjYXNlICovCi0Jc3RybmNweShjbmFtZSwgZGV2
+aWNlLT5jaGlwLT5uYW1lLCBzaXplb2YoY25hbWUpKTsKLQljbmFtZVtzaXplb2YoY25hbWUpIC0g
+MV0gPSAnXDAnOwotCWkgPSBzdHJsZW4oY25hbWUpOwotCXdoaWxlIChpKSB7Ci0JCS0taTsKLQkJ
+Y25hbWVbaV0gPSB0b2xvd2VyKGNuYW1lW2ldKTsKLQl9CiAKLQlzbnByaW50ZihmLCBzaXplb2Yo
+ZiksICJudmlkaWEvJXMvJXMuYmluIiwgY25hbWUsIGZ3bmFtZSk7Ci0JcmV0ID0gcmVxdWVzdF9m
+aXJtd2FyZSgmZncsIGYsIGRldmljZS0+ZGV2KTsKKwlyZXQgPSBudmttX2Zpcm13YXJlX2dldChk
+ZXZpY2UsIGZ3bmFtZSwgJmZ3KTsKIAlpZiAocmV0KSB7CiAJCW52a21fZXJyb3Ioc3ViZGV2LCAi
+ZmFpbGVkIHRvIGxvYWQgJXNcbiIsIGZ3bmFtZSk7CiAJCXJldHVybiByZXQ7CkBAIC0xNzQzLDcg
+KzE3MzEsNyBAQCBnZjEwMF9ncl9jdG9yX2Z3KHN0cnVjdCBnZjEwMF9nciAqZ3IsIGNvbnN0IGNo
+YXIgKmZ3bmFtZSwKIAogCWZ1Yy0+c2l6ZSA9IGZ3LT5zaXplOwogCWZ1Yy0+ZGF0YSA9IGttZW1k
+dXAoZnctPmRhdGEsIGZ1Yy0+c2l6ZSwgR0ZQX0tFUk5FTCk7Ci0JcmVsZWFzZV9maXJtd2FyZShm
+dyk7CisJbnZrbV9maXJtd2FyZV9wdXQoZncpOwogCXJldHVybiAoZnVjLT5kYXRhICE9IE5VTEwp
+ID8gMCA6IC1FTk9NRU07CiB9CiAKLS0gCjIuNy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
