@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92307] G98/G94/GK106/GM204/GF119: WARNING: ... at
- include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
- [drm_kms_helper]()
-Date: Wed, 20 Jan 2016 14:48:39 +0000
-Message-ID: <bug-92307-8800-Tg2LfABDpK@http.bugs.freedesktop.org/>
-References: <bug-92307-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93795] New: G98: GL(X) compositing - XRandR DPMS
+	trouble
+Date: Wed, 20 Jan 2016 16:18:17 +0000
+Message-ID: <bug-93795-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1269193424=="
+Content-Type: multipart/mixed; boundary="===============1274562003=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,40 +19,58 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1269193424==
-Content-Type: multipart/alternative; boundary="14533013190.DCB9a6.32221";
+--===============1274562003==
+Content-Type: multipart/alternative; boundary="14533066970.2BdB3.21278";
  charset="UTF-8"
 
 
---14533013190.DCB9a6.32221
-Date: Wed, 20 Jan 2016 14:48:39 +0000
+--14533066970.2BdB3.21278
+Date: Wed, 20 Jan 2016 16:18:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92307
+https://bugs.freedesktop.org/show_bug.cgi?id=93795
 
---- Comment #32 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to poma from comment #31)
-> While GL(X) compositing,
-> 
-> not only that DRI3 introduces cca. 1 sec lag,
-> i.e. slowdown as reported here:
-> https://bugs.freedesktop.org/show_bug.cgi?id=92271
-> 
-> but it breaks overall "xrandr --rotate ..." routine.
-> 
-> Tested with Latest n' Greatest on Rawhide - Xfce, GNOME and KDE.
+            Bug ID: 93795
+           Summary: G98: GL(X) compositing - XRandR DPMS trouble
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-
-In this sense "overall" means, "xrandr-ial" rotation can easily produce
-unusable session screen,
+The case with the Xfce GLX compositing is,
+output disablement/enablement via xrandr:
+$ xrandr --output <output> --off ; xrandr --auto
+produces unusable session screen - the mouse cursor is visible and motile, but
+the rest of the screen is as blanked,
 and the only thing left is to zap the xserver and re-log.
+
+Both, Xfce(Xfwm) XRender compositing and DRI3, are NOT problematic in this
+sense.
+
+
+The case with the GNOME GL compositing is not essentially different,
+output disablement/enablement via xrandr produces clutter/mutter/scooter
+breakage,
+thus gnome-shell terminates with signal SIGSEGV thereby reappears display
+manager greeter screen.
+https://bugzilla.redhat.com/attachment.cgi?id=1106815
+
+
+The case with the KDE GL compositing is comparable with the Xfce one.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14533013190.DCB9a6.32221
-Date: Wed, 20 Jan 2016 14:48:39 +0000
+--14533066970.2BdB3.21278
+Date: Wed, 20 Jan 2016 16:18:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -63,37 +78,109 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - G98: GL(X) compositing - XRandR DPMS trouble"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93795">93795</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>G98: GL(X) compositing - XRandR DPMS trouble
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>pomidorabelisima&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98/G94/GK106/GM204/GF119: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307#c32">Comment # 32</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98/G94/GK106/GM204/GF119: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>(In reply to poma from <a href="show_bug.cgi?id=92307#c31">comment #31</a>)
-<span class="quote">&gt; While GL(X) compositing,
-&gt; 
-&gt; not only that DRI3 introduces cca. 1 sec lag,
-&gt; i.e. slowdown as reported here:
-&gt; <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Unusably slow OpenGL performance on nouveau (GeForce 9600 GT) with rotated output under DRI 3"
-   href="show_bug.cgi?id=92271">https://bugs.freedesktop.org/show_bug.cgi?id=92271</a>
-&gt; 
-&gt; but it breaks overall &quot;xrandr --rotate ...&quot; routine.
-&gt; 
-&gt; Tested with Latest n' Greatest on Rawhide - Xfce, GNOME and KDE.</span >
+        <pre>The case with the Xfce GLX compositing is,
+output disablement/enablement via xrandr:
+$ xrandr --output &lt;output&gt; --off ; xrandr --auto
+produces unusable session screen - the mouse cursor is visible and motile, but
+the rest of the screen is as blanked,
+and the only thing left is to zap the xserver and re-log.
+
+Both, Xfce(Xfwm) XRender compositing and DRI3, are NOT problematic in this
+sense.
 
 
-In this sense &quot;overall&quot; means, &quot;xrandr-ial&quot; rotation can easily produce
-unusable session screen,
-and the only thing left is to zap the xserver and re-log.</pre>
+The case with the GNOME GL compositing is not essentially different,
+output disablement/enablement via xrandr produces clutter/mutter/scooter
+breakage,
+thus gnome-shell terminates with signal SIGSEGV thereby reappears display
+manager greeter screen.
+<a href="https://bugzilla.redhat.com/attachment.cgi?id=1106815">https://bugzilla.redhat.com/attachment.cgi?id=1106815</a>
+
+
+The case with the KDE GL compositing is comparable with the Xfce one.</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +191,9 @@ and the only thing left is to zap the xserver and re-log.</pre>
       </ul>
     </body>
 </html>
---14533013190.DCB9a6.32221--
+--14533066970.2BdB3.21278--
 
---===============1269193424==
+--===============1274562003==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +203,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1269193424==--
+--===============1274562003==--
