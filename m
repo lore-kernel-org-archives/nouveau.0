@@ -1,111 +1,134 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH v2 2/5] core: add support for secure boot
-Date: Thu, 21 Jan 2016 22:13:46 +1000
-Message-ID: <56A0CB7A.9010104@gmail.com>
-References: <1453097447-12152-1-git-send-email-acourbot@nvidia.com>
- <1453097447-12152-3-git-send-email-acourbot@nvidia.com>
- <CACvgo50P8JQ5EkCEMmnGQGO4jMsc0O4cRB1QO04V0KQS7Y8AYA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 54700] Distorted graphics (double cursor) with
+ GeForce 4200Go (NV28M)
+Date: Thu, 21 Jan 2016 12:20:07 +0000
+Message-ID: <bug-54700-8800-hVydlUX22i@http.bugs.freedesktop.org/>
+References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="b51RNc033w8xGfcmBBFKjP2Sk8uj3sLOl"
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <CACvgo50P8JQ5EkCEMmnGQGO4jMsc0O4cRB1QO04V0KQS7Y8AYA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1273374749=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---b51RNc033w8xGfcmBBFKjP2Sk8uj3sLOl
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 
-On 01/21/2016 10:09 PM, Emil Velikov wrote:
-> Hi Alexandre,
->=20
-> On 18 January 2016 at 06:10, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wr=
-ote:
->=20
-> [snip]
->> +static const char *
->> +managed_falcons_names[] =3D {
->> +       [NVKM_SECBOOT_FALCON_PMU] =3D "PMU",
->> +       [NVKM_SECBOOT_FALCON_RESERVED] =3D "<invalid>",
-> "<reserved>" perhaps ? we already have one invalid below.
-Does <reserved> really mean: "we don't want to tell you?" here? :)
-
->=20
->> +       [NVKM_SECBOOT_FALCON_FECS] =3D "FECS",
->> +       [NVKM_SECBOOT_FALCON_GPCCS] =3D "GPCCS",
->> +       [NVKM_SECBOOT_FALCON_END] =3D "<invalid>",
->> +};
->> +
->=20
-> [snip]
->> +int
->> +nvkm_secboot_ctor(const struct nvkm_secboot_func *func,
->> +                 struct nvkm_device *device, int index,
->> +                 struct nvkm_secboot *sb)
->> +{
->> +       unsigned long fid;
->> +
->> +       nvkm_subdev_ctor(&nvkm_secboot, device, index, 0, &sb->subdev)=
-;
->> +       sb->func =3D func;
->> +
-> Move these two after the switch statement ?
-They need to be done here to make the failure path cleanup stuff work
-correctly, so it's correct as-is.
-
->=20
->> +       /* setup the performing falcon's base address and masks */
->> +       switch (func->boot_falcon) {
->> +       case NVKM_SECBOOT_FALCON_PMU:
->> +               sb->base =3D 0x10a000;
->> +               sb->irq_mask =3D 0x1000000;
->> +               sb->enable_mask =3D 0x2000;
->> +               break;
->> +       default:
->> +               nvdev_error(device, "invalid secure boot falcon\n");
->> +               return -EINVAL;
->> +       };
->> +
->> +       nvkm_info(&sb->subdev, "securely managed falcons:\n");
->> +       for_each_set_bit(fid, &sb->func->managed_falcons,
->> +                        NVKM_SECBOOT_FALCON_END)
->> +               nvkm_info(&sb->subdev, "- %s\n", managed_falcons_names=
-[fid]);
->> +
->> +       return 0;
->> +}
->=20
-> Cheers,
-> Emil
->=20
+--===============1273374749==
+Content-Type: multipart/alternative; boundary="14533788071.411A0E6F1.3001";
+ charset="UTF-8"
 
 
---b51RNc033w8xGfcmBBFKjP2Sk8uj3sLOl
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+--14533788071.411A0E6F1.3001
+Date: Thu, 21 Jan 2016 12:20:07 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+https://bugs.freedesktop.org/show_bug.cgi?id=54700
 
-iQIcBAEBCAAGBQJWoMt6AAoJEHYLnGJQkpH7q1AQAOX0aAIVQ7XSnRpYLGEbX09L
-7en0wmcckOEEDKSjMaLLsNkLdb5lyiG+VeG1sYub9aSCS+sAPPq9LKx+nM0SME9z
-DuGLvxYZsip7zo+8ItvdSf2MPNKe5kkVloce2T5297xIo2+0aSr/BIQV4yLY6IUZ
-YkPoYHjiRgQEhdIKRvxc7ERv0KMWkfZCvt7vGGzfir+m60iB76NpAWozdkC5HTxk
-REED7lCnhqpNvG4V8qGliVAZEkDPvlo2POMBAkJV0g7FI6bx9mtD0EWwkDm8S5Fv
-fcavnleiH5Y8Jw01sYFxrnU1gMAsCnxbhaeL89l5YZQsnv4rW+NIMexJN/jJ+jnR
-8OVnbgIqCBb7l/+U4rI8cdvHf0fAaMcC1UTc70TppoV/PiUWkUpVH2B/r8omGmpV
-FqG0aorgiOdbLWntJtS50kMq83t3IZYnrQQOB0v3a/VgFSxY1e6vul3WWGMChQO5
-uIRVgqklVIUJco/0zcEipW4y93iMH5lzbLVFmO38SJ1L4CseSR8FVZhlcbqeA2mK
-ESUHrQi9nOJNN4oB9r7sx6PgHR04/itLMS3xiHM2Zix8uAHCkxVc/+d5ql63S/99
-r6iX6gqW7QD9wymjDbd0m+/yLIo9WSpEj99yfUVE/5C8qfPbEuj+6cMxpjPgfD/9
-OgA8g9gpxUosvpdx6Is6
-=RvpX
------END PGP SIGNATURE-----
+AndrewK <kurn-z1KUqvL5UUQ@public.gmane.org> changed:
 
---b51RNc033w8xGfcmBBFKjP2Sk8uj3sLOl--
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |kurn-z1KUqvL5UUQ@public.gmane.org
+
+--- Comment #73 from AndrewK <kurn-z1KUqvL5UUQ@public.gmane.org> ---
+(In reply to nv28m from comment #71)
+> nouveau.agpmode=0 seems to work here too, also after comming back from
+> suspend.
+> 
+> Still I think I'm stuck with the modesetting driver with the bit 24 hack in
+> boot/suspend scripts. The scrolling and rxvt performance is just better.
+
+The parameter name seems to be changed.  nouveau.modeset=0 is what worked for
+me.
+
+I add my thanks for the hard work done by Mr. nv28m.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14533788071.411A0E6F1.3001
+Date: Thu, 21 Jan 2016 12:20:07 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:kurn&#64;sfu.ca" title="AndrewK &lt;kurn&#64;sfu.ca&gt;"> <span class="fn">AndrewK</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28M)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>kurn&#64;sfu.ca
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28M)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c73">Comment # 73</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28M)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
+              from <span class="vcard"><a class="email" href="mailto:kurn&#64;sfu.ca" title="AndrewK &lt;kurn&#64;sfu.ca&gt;"> <span class="fn">AndrewK</span></a>
+</span></b>
+        <pre>(In reply to nv28m from <a href="show_bug.cgi?id=54700#c71">comment #71</a>)
+<span class="quote">&gt; nouveau.agpmode=0 seems to work here too, also after comming back from
+&gt; suspend.
+&gt; 
+&gt; Still I think I'm stuck with the modesetting driver with the bit 24 hack in
+&gt; boot/suspend scripts. The scrolling and rxvt performance is just better.</span >
+
+The parameter name seems to be changed.  nouveau.modeset=0 is what worked for
+me.
+
+I add my thanks for the hard work done by Mr. nv28m.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14533788071.411A0E6F1.3001--
+
+--===============1273374749==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1273374749==--
