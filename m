@@ -1,117 +1,67 @@
 From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/5] core: add firmware handling functions
-Date: Thu, 21 Jan 2016 11:41:41 +0000
-Message-ID: <CACvgo51AqAvTH5D9AUmzZWPQu+DkWnuGgms3-L8iL8S_tJyiNA@mail.gmail.com>
-References: <1453097233-11838-1-git-send-email-acourbot@nvidia.com>
- <1453097233-11838-2-git-send-email-acourbot@nvidia.com>
+Subject: Re: [Nouveau] [PATCH v2 2/5] core: add support for secure boot
+Date: Thu, 21 Jan 2016 12:09:21 +0000
+Message-ID: <CACvgo50P8JQ5EkCEMmnGQGO4jMsc0O4cRB1QO04V0KQS7Y8AYA@mail.gmail.com>
+References: <1453097447-12152-1-git-send-email-acourbot@nvidia.com>
+	<1453097447-12152-3-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1453097233-11838-2-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <1453097447-12152-3-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGkgQWxleGFuZHJlLAoKT24gMTggSmFudWFyeSAyMDE2IGF0IDA2OjA3LCBBbGV4YW5kcmUgQ291
-cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4gd3JvdGU6Cj4gQWRkIHR3byBmdW5jdGlvbnMgbnZr
-bV9maXJtd2FyZV9nZXQoKSBhbmQgbnZrbV9maXJtd2FyZV9wdXQoKSB0byBsb2FkIGEKPiBmaXJt
-d2FyZSBmaWxlIGFuZCBmcmVlIGl0cyByZXNvdXJjZXMsIHJlc3BlY3RpdmVseS4gU2luY2UgZmly
-bXdhcmUgZmlsZXMKPiBhcmUgYmVjb21pbmcgYSBuZWNlc3NpdHkgZm9yIG5ldyBHUFVzLCBhbmQg
-dGhlaXIgbG9jYXRpb24gaGFzIGJlZW4KPiBzdGFuZGFyZGl6ZWQgdG8gbnZpZGlhL2NoaXAvLCB0
-aGlzIHdpbGwgcHJldmVudCBkdXBsaWNhdGUgYW5kCj4gZXJyb3ItcHJvbmUgbmFtZS1nZW5lcmF0
-aW9uIGNvZGUuCj4KU3RyaWN0bHkgc3BlYWtpbmcgdGhpcyB3aWxsIGJyZWFrIHZpZGVvIGRlY29k
-aW5nIChhbmQgbWF5YmUgb3RoZXJzKQphbHRob3VnaCBJJ20gbm90IHN1cmUgaG93IG11Y2ggb25l
-IGNvdWxkIGNhcmUuIFRoZW4gYWdhaW4gcGluZ2luZwpwZW9wbGUgdG8gdXBkYXRlIHRoZSBzY3Jp
-cHRzIFsxXSB3aWxsIGJlIGdvb2QgOikKClsxXSBodHRwOi8vbm91dmVhdS5mcmVlZGVza3RvcC5v
-cmcvd2lraS9WaWRlb0FjY2VsZXJhdGlvbi8jZmlybXdhcmUKCj4gU2lnbmVkLW9mZi1ieTogQWxl
-eGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Cj4gLS0tCj4gIGRybS9ub3V2ZWF1
-L2luY2x1ZGUvbnZrbS9jb3JlL2Zpcm13YXJlLmggfCAxMSArKysrKysKPiAgZHJtL25vdXZlYXUv
-bnZrbS9jb3JlL0tidWlsZCAgICAgICAgICAgICB8ICAxICsKPiAgZHJtL25vdXZlYXUvbnZrbS9j
-b3JlL2Zpcm13YXJlLmMgICAgICAgICB8IDY0ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrCj4gIDMgZmlsZXMgY2hhbmdlZCwgNzYgaW5zZXJ0aW9ucygrKQo+ICBjcmVhdGUgbW9kZSAx
-MDA2NDQgZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUvZmlybXdhcmUuaAo+ICBjcmVhdGUg
-bW9kZSAxMDA2NDQgZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMKPgo+IGRpZmYgLS1n
-aXQgYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vY29yZS9maXJtd2FyZS5oIGIvZHJtL25vdXZl
-YXUvaW5jbHVkZS9udmttL2NvcmUvZmlybXdhcmUuaAo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4g
-aW5kZXggMDAwMDAwMDAwMDAwLi5hNjI2Y2UzNzhmMDQKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIv
-ZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUvZmlybXdhcmUuaAo+IEBAIC0wLDAgKzEsMTEg
-QEAKPiArI2lmbmRlZiBfX05WS01fRklSTVdBUkVfSF9fCj4gKyNkZWZpbmUgX19OVktNX0ZJUk1X
-QVJFX0hfXwo+ICsKPiArI2luY2x1ZGUgPGNvcmUvZGV2aWNlLmg+Cj4gKwo+ICtpbnQgbnZrbV9m
-aXJtd2FyZV9nZXQoc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UsIGNvbnN0IGNoYXIgKmZ3bmFt
-ZSwKPiArICAgICAgICAgICAgICAgICAgICAgY29uc3Qgc3RydWN0IGZpcm13YXJlICoqZncpOwo+
-ICsKPiArdm9pZCBudmttX2Zpcm13YXJlX3B1dChjb25zdCBzdHJ1Y3QgZmlybXdhcmUgKmZ3KTsK
-PiArCj4gKyNlbmRpZgo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2NvcmUvS2J1aWxk
-IGIvZHJtL25vdXZlYXUvbnZrbS9jb3JlL0tidWlsZAo+IGluZGV4IDdmNjY5NjNmMzA1Yy4uODZh
-MzFhOGUxZTUxIDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vY29yZS9LYnVpbGQKPiAr
-KysgYi9kcm0vbm91dmVhdS9udmttL2NvcmUvS2J1aWxkCj4gQEAgLTIsNiArMiw3IEBAIG52a20t
-eSA6PSBudmttL2NvcmUvY2xpZW50Lm8KPiAgbnZrbS15ICs9IG52a20vY29yZS9lbmdpbmUubwo+
-ICBudmttLXkgKz0gbnZrbS9jb3JlL2VudW0ubwo+ICBudmttLXkgKz0gbnZrbS9jb3JlL2V2ZW50
-Lm8KPiArbnZrbS15ICs9IG52a20vY29yZS9maXJtd2FyZS5vCj4gIG52a20teSArPSBudmttL2Nv
-cmUvZ3B1b2JqLm8KPiAgbnZrbS15ICs9IG52a20vY29yZS9pb2N0bC5vCj4gIG52a20teSArPSBu
-dmttL2NvcmUvbWVtb3J5Lm8KPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zp
-cm13YXJlLmMgYi9kcm0vbm91dmVhdS9udmttL2NvcmUvZmlybXdhcmUuYwo+IG5ldyBmaWxlIG1v
-ZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMDAwMDAwLi40YTRiNGE1ZDU1YTgKPiAtLS0gL2Rldi9u
-dWxsCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMKPiBAQCAtMCwwICsx
-LDY0IEBACj4gKy8qCj4gKyAqIENvcHlyaWdodCAoYykgMjAxNiwgTlZJRElBIENPUlBPUkFUSU9O
-LiBBbGwgcmlnaHRzIHJlc2VydmVkLgo+ICsgKgo+ICsgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBn
-cmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQo+ICsgKiBj
-b3B5IG9mIHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAo
-dGhlICJTb2Z0d2FyZSIpLAo+ICsgKiB0byBkZWFsIGluIHRoZSBTb2Z0d2FyZSB3aXRob3V0IHJl
-c3RyaWN0aW9uLCBpbmNsdWRpbmcgd2l0aG91dCBsaW1pdGF0aW9uCj4gKyAqIHRoZSByaWdodHMg
-dG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNl
-bnNlLAo+ICsgKiBhbmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBhbmQgdG8gcGVy
-bWl0IHBlcnNvbnMgdG8gd2hvbSB0aGUKPiArICogU29mdHdhcmUgaXMgZnVybmlzaGVkIHRvIGRv
-IHNvLCBzdWJqZWN0IHRvIHRoZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKPiArICoKPiArICogVGhl
-IGFib3ZlIGNvcHlyaWdodCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBub3RpY2Ugc2hhbGwg
-YmUgaW5jbHVkZWQgaW4KPiArICogYWxsIGNvcGllcyBvciBzdWJzdGFudGlhbCBwb3J0aW9ucyBv
-ZiB0aGUgU29mdHdhcmUuCj4gKyAqCj4gKyAqIFRIRSBTT0ZUV0FSRSBJUyBQUk9WSURFRCAiQVMg
-SVMiLCBXSVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBSRVNTIE9SCj4gKyAqIElNUExJ
-RUQsIElOQ0xVRElORyBCVVQgTk9UIExJTUlURUQgVE8gVEhFIFdBUlJBTlRJRVMgT0YgTUVSQ0hB
-TlRBQklMSVRZLAo+ICsgKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9O
-SU5GUklOR0VNRU5ULiAgSU4gTk8gRVZFTlQgU0hBTEwKPiArICogVEhFIEFVVEhPUlMgT1IgQ09Q
-WVJJR0hUIEhPTERFUlMgQkUgTElBQkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMgT1IgT1RIRVIK
-PiArICogTElBQklMSVRZLCBXSEVUSEVSIElOIEFOIEFDVElPTiBPRiBDT05UUkFDVCwgVE9SVCBP
-UiBPVEhFUldJU0UsIEFSSVNJTkcKPiArICogRlJPTSwgT1VUIE9GIE9SIElOIENPTk5FQ1RJT04g
-V0lUSCBUSEUgU09GVFdBUkUgT1IgVEhFIFVTRSBPUiBPVEhFUgo+ICsgKiBERUFMSU5HUyBJTiBU
-SEUgU09GVFdBUkUuCj4gKyAqLwo+ICsKPiArI2luY2x1ZGUgPGNvcmUvZGV2aWNlLmg+Cj4gKwo+
-ICsjaW5jbHVkZSA8bGludXgvZmlybXdhcmUuaD4KPiArCj4gKy8qKgo+ICsgKiBudmttX2Zpcm13
-YXJlX2dldCAtIGxvYWQgZmlybXdhcmUgZnJvbSB0aGUgb2ZmaWNpYWwgbnZpZGlhL2NoaXAvIGRp
-cmVjdG9yeQo+ICsgKiBAZGV2aWNlICAgICBkZXZpY2UgdGhhdCB3aWxsIHVzZSB0aGF0IGZpcm13
-YXJlCj4gKyAqIEBmd25hbWUgICAgIG5hbWUgb2YgZmlybXdhcmUgZmlsZSB0byBsb2FkCj4gKyAq
-IEBmdyAgICAgICAgIGZpcm13YXJlIHN0cnVjdHVyZSB0byBsb2FkIHRvCj4gKyAqCj4gKyAqIFVz
-ZSB0aGlzIGZ1bmN0aW9uIHRvIGxvYWQgZmlybXdhcmUgZmlsZXMgaW4gdGhlIGZvcm0gbnZpZGlh
-L2NoaXAvZnduYW1lLmJpbi4KPiArICogRmlybXdhcmUgZmlsZXMgcmVsZWFzZWQgYnkgTlZJRElB
-IHdpbGwgYWx3YXlzIGZvbGxvdyB0aGlzIGZvcm1hdC4KPiArICovCj4gK2ludAo+ICtudmttX2Zp
-cm13YXJlX2dldChzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwgY29uc3QgY2hhciAqZnduYW1l
-LAo+ICsgICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBmaXJtd2FyZSAqKmZ3KQo+ICt7Cj4g
-KyAgICAgICBjaGFyIGZbNjRdOwo+ICsgICAgICAgY2hhciBjbmFtZVsxNl07Cj4gKyAgICAgICBp
-bnQgaTsKPiArCj4gKyAgICAgICAvKiBDb252ZXJ0IGRldmljZSBuYW1lIHRvIGxvd2VyY2FzZSAq
-Lwo+ICsgICAgICAgc3RybmNweShjbmFtZSwgZGV2aWNlLT5jaGlwLT5uYW1lLCBzaXplb2YoY25h
-bWUpKTsKPiArICAgICAgIGNuYW1lW3NpemVvZihjbmFtZSkgLSAxXSA9ICdcMCc7Cj4gKyAgICAg
-ICBpID0gc3RybGVuKGNuYW1lKTsKPiArICAgICAgIHdoaWxlIChpKSB7Cj4gKyAgICAgICAgICAg
-ICAgIC0taTsKPiArICAgICAgICAgICAgICAgY25hbWVbaV0gPSB0b2xvd2VyKGNuYW1lW2ldKTsK
-PiArICAgICAgIH0KPiArCkNvbnNpZGVyaW5nIHRoZXJlJ3Mgb25seSBvbmUgdXNlciB0aGF0IG1p
-Z2h0IG5lZWQgdGhpcywgaXMgaXQgd29ydGgKYWRkaW5nIGl0IGhlcmUgb3IganVzdCBrZWVwaW5n
-IGl0IHdoZXJlIG5lZWRlZCA/Cgo+ICsgICAgICAgc25wcmludGYoZiwgc2l6ZW9mKGYpLCAibnZp
-ZGlhLyVzLyVzLmJpbiIsIGNuYW1lLCBmd25hbWUpOwo+ICsgICAgICAgcmV0dXJuIHJlcXVlc3Rf
-ZmlybXdhcmUoZncsIGYsIGRldmljZS0+ZGV2KTsKPiArfQo+ICsKPiArLyoqCj4gKyAqIG52a21f
-ZmlybXdhcmVfcHV0IC0gcmVsZWFzZSBmaXJtd2FyZSBsb2FkZWQgd2l0aCBudmttX2Zpcm13YXJl
-X2dldAo+ICsgKi8KPiArdm9pZAo+ICtudmttX2Zpcm13YXJlX3B1dChjb25zdCBzdHJ1Y3QgZmly
-bXdhcmUgKmZ3KQo+ICt7Cj4gKyAgICAgICByZWxlYXNlX2Zpcm13YXJlKGZ3KTsKSWYgdGhlIGFi
-b3ZlIHN1Z2dlc3Rpb24gbWFrZXMgc2Vuc2UsIHRoZW4gaXQgbWlnaHQgYmUgYmV0dGVyIHRvIGtl
-ZXAKdGhlc2UgdHdvIGluIHRoZSBoZWFkZXIgYXMgc3RhdGljIGlubGluZXMgPwoKTm90IHRoYXQg
-ZWl0aGVyIG9mIHRoZSB0d28gaXMgYSBob3QgcGF0aCwgdGhlbiBhZ2FpbiBoYXZpbmcgYSBvbmUv
-dHdvCmxpbmVyIGFzIHNlcGFyYXRlIGZ1bmN0aW9uIGZlZWxzIG9kZC4KCkNoZWVycywKRW1pbApf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
-aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+Hi Alexandre,
+
+On 18 January 2016 at 06:10, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+
+[snip]
+> +static const char *
+> +managed_falcons_names[] = {
+> +       [NVKM_SECBOOT_FALCON_PMU] = "PMU",
+> +       [NVKM_SECBOOT_FALCON_RESERVED] = "<invalid>",
+"<reserved>" perhaps ? we already have one invalid below.
+
+> +       [NVKM_SECBOOT_FALCON_FECS] = "FECS",
+> +       [NVKM_SECBOOT_FALCON_GPCCS] = "GPCCS",
+> +       [NVKM_SECBOOT_FALCON_END] = "<invalid>",
+> +};
+> +
+
+[snip]
+> +int
+> +nvkm_secboot_ctor(const struct nvkm_secboot_func *func,
+> +                 struct nvkm_device *device, int index,
+> +                 struct nvkm_secboot *sb)
+> +{
+> +       unsigned long fid;
+> +
+> +       nvkm_subdev_ctor(&nvkm_secboot, device, index, 0, &sb->subdev);
+> +       sb->func = func;
+> +
+Move these two after the switch statement ?
+
+> +       /* setup the performing falcon's base address and masks */
+> +       switch (func->boot_falcon) {
+> +       case NVKM_SECBOOT_FALCON_PMU:
+> +               sb->base = 0x10a000;
+> +               sb->irq_mask = 0x1000000;
+> +               sb->enable_mask = 0x2000;
+> +               break;
+> +       default:
+> +               nvdev_error(device, "invalid secure boot falcon\n");
+> +               return -EINVAL;
+> +       };
+> +
+> +       nvkm_info(&sb->subdev, "securely managed falcons:\n");
+> +       for_each_set_bit(fid, &sb->func->managed_falcons,
+> +                        NVKM_SECBOOT_FALCON_END)
+> +               nvkm_info(&sb->subdev, "- %s\n", managed_falcons_names[fid]);
+> +
+> +       return 0;
+> +}
+
+Cheers,
+Emil
