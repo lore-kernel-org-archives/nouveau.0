@@ -1,11 +1,14 @@
-From: Logan Anteau <logan.anteau-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Issues with GeForce 6800 Ultra (NV40) and nouveau on
-	linux 4.4 (powerpc)
-Date: Thu, 21 Jan 2016 00:35:39 -0500
-Message-ID: <CAJiik2ZL03e9tRA+cDkR0cfirfGybgLfjne5en+SVaD7L=TTaA@mail.gmail.com>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/5] core: add firmware handling functions
+Date: Thu, 21 Jan 2016 11:41:41 +0000
+Message-ID: <CACvgo51AqAvTH5D9AUmzZWPQu+DkWnuGgms3-L8iL8S_tJyiNA@mail.gmail.com>
+References: <1453097233-11838-1-git-send-email-acourbot@nvidia.com>
+ <1453097233-11838-2-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1552734796=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1453097233-11838-2-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,116 +18,100 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1552734796==
-Content-Type: multipart/alternative; boundary=047d7b47245a14c9090529d179af
-
---047d7b47245a14c9090529d179af
-Content-Type: text/plain; charset=UTF-8
-
-I recently acquired an old PowerMac G5 that has an AGP GeForce 6800 Ultra
-(NV40) in it. I put debian stretch (testing) on it and am having issues
-getting the 6800 Ultra working with nouveau.
-
-Software versions:
-linux: 4.4.0 (powerpc)
-libdrm: 2.4.65
-mesa: 11.0.8
-nouveau: 1.0.12
-
-On boot when the system starts Xorg I get an initially black screen that
-finally changes to a screen that has distorted multicolored bars in the
-screen.
-
-Two interesting lines from dmesg:
-
-[   25.965156] nouveau 0000:f0:10.0: gr: intr 00100000 [ERROR] nsource
-00000010 [LIMIT_COLOR] nstatus 04000000 [PROTECTION_FAULT] ch 1 [0008e000
-Xorg[847]] subc 4 class 009f mthd 0308 data 04380780
-
-
-[   67.550355] nouveau 0000:f0:10.0: DRM: GPU lockup - switching to
-software fbcon
-
-
-Full dmesg:
-
-http://pastebin.com/WhfMbu9M
-
-Full Xorg.0.log:
-
-http://pastebin.com/2nn4CVkx
-
-lspci -v:
-
-http://pastebin.com/wRK9PwdZ
-
-
-Please let me know if there is any other information that would be helpful.
-I hope someone has some ideas of what to try next. Thanks in advance for
-everyone's time!
-
-
-Logan
-
---047d7b47245a14c9090529d179af
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I recently acquired an old PowerMac G5 that has an AGP GeF=
-orce 6800 Ultra (NV40) in it. I put debian stretch (testing) on it and am h=
-aving issues getting the 6800 Ultra working with nouveau.<div><br></div><di=
-v>Software versions:</div><div>linux: 4.4.0 (powerpc)</div><div>libdrm: 2.4=
-.65</div><div>mesa: 11.0.8</div><div>nouveau: 1.0.12</div><div><br></div><d=
-iv>On boot when the system starts Xorg I get an initially black screen that=
- finally changes to a screen that has distorted multicolored bars in the sc=
-reen.</div><div><br></div><div>Two interesting lines from dmesg:</div><div>
-
-
-
-
-
-
-
-<p class=3D""><span class=3D"">[ =C2=A0 25.965156] </span><span class=3D"">=
-nouveau 0000:f0:10.0</span><span class=3D"">: gr: intr 00100000 [ERROR] nso=
-urce 00000010 [LIMIT_COLOR] nstatus 04000000 [PROTECTION_FAULT] ch 1 [0008e=
-000 Xorg[847]] subc 4 class 009f mthd 0308 data 04380780</span></p><p class=
-=3D""><span class=3D""><br></span></p><p class=3D""><span class=3D"">
-
-
-
-
-
-
-
-</span></p><p class=3D""><span class=3D"">[ =C2=A0 67.550355] </span><span =
-class=3D"">nouveau 0000:f0:10.0</span><span class=3D"">: DRM: GPU lockup - =
-switching to software fbcon</span></p><p class=3D""><span class=3D""><br></=
-span></p><p class=3D""><span class=3D"">Full dmesg:</span></p><p class=3D""=
-><span class=3D""><a href=3D"http://pastebin.com/WhfMbu9M">http://pastebin.=
-com/WhfMbu9M</a></span></p><p class=3D""><span class=3D"">Full Xorg.0.log:<=
-/span></p><p class=3D""><span class=3D""><a href=3D"http://pastebin.com/2nn=
-4CVkx">http://pastebin.com/2nn4CVkx</a></span></p><p class=3D""><span class=
-=3D"">lspci -v:</span></p><p class=3D""><span class=3D""><a href=3D"http://=
-pastebin.com/wRK9PwdZ">http://pastebin.com/wRK9PwdZ</a><br></span></p><p cl=
-ass=3D""><br></p><p class=3D"">Please let me know if there is any other inf=
-ormation that would be helpful. I hope someone has some ideas of what to tr=
-y next. Thanks in advance for everyone&#39;s time!</p><p class=3D""><br></p=
-><p class=3D"">Logan</p></div></div>
-
---047d7b47245a14c9090529d179af--
-
---===============1552734796==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1552734796==--
+SGkgQWxleGFuZHJlLAoKT24gMTggSmFudWFyeSAyMDE2IGF0IDA2OjA3LCBBbGV4YW5kcmUgQ291
+cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4gd3JvdGU6Cj4gQWRkIHR3byBmdW5jdGlvbnMgbnZr
+bV9maXJtd2FyZV9nZXQoKSBhbmQgbnZrbV9maXJtd2FyZV9wdXQoKSB0byBsb2FkIGEKPiBmaXJt
+d2FyZSBmaWxlIGFuZCBmcmVlIGl0cyByZXNvdXJjZXMsIHJlc3BlY3RpdmVseS4gU2luY2UgZmly
+bXdhcmUgZmlsZXMKPiBhcmUgYmVjb21pbmcgYSBuZWNlc3NpdHkgZm9yIG5ldyBHUFVzLCBhbmQg
+dGhlaXIgbG9jYXRpb24gaGFzIGJlZW4KPiBzdGFuZGFyZGl6ZWQgdG8gbnZpZGlhL2NoaXAvLCB0
+aGlzIHdpbGwgcHJldmVudCBkdXBsaWNhdGUgYW5kCj4gZXJyb3ItcHJvbmUgbmFtZS1nZW5lcmF0
+aW9uIGNvZGUuCj4KU3RyaWN0bHkgc3BlYWtpbmcgdGhpcyB3aWxsIGJyZWFrIHZpZGVvIGRlY29k
+aW5nIChhbmQgbWF5YmUgb3RoZXJzKQphbHRob3VnaCBJJ20gbm90IHN1cmUgaG93IG11Y2ggb25l
+IGNvdWxkIGNhcmUuIFRoZW4gYWdhaW4gcGluZ2luZwpwZW9wbGUgdG8gdXBkYXRlIHRoZSBzY3Jp
+cHRzIFsxXSB3aWxsIGJlIGdvb2QgOikKClsxXSBodHRwOi8vbm91dmVhdS5mcmVlZGVza3RvcC5v
+cmcvd2lraS9WaWRlb0FjY2VsZXJhdGlvbi8jZmlybXdhcmUKCj4gU2lnbmVkLW9mZi1ieTogQWxl
+eGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Cj4gLS0tCj4gIGRybS9ub3V2ZWF1
+L2luY2x1ZGUvbnZrbS9jb3JlL2Zpcm13YXJlLmggfCAxMSArKysrKysKPiAgZHJtL25vdXZlYXUv
+bnZrbS9jb3JlL0tidWlsZCAgICAgICAgICAgICB8ICAxICsKPiAgZHJtL25vdXZlYXUvbnZrbS9j
+b3JlL2Zpcm13YXJlLmMgICAgICAgICB8IDY0ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+KysrCj4gIDMgZmlsZXMgY2hhbmdlZCwgNzYgaW5zZXJ0aW9ucygrKQo+ICBjcmVhdGUgbW9kZSAx
+MDA2NDQgZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUvZmlybXdhcmUuaAo+ICBjcmVhdGUg
+bW9kZSAxMDA2NDQgZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMKPgo+IGRpZmYgLS1n
+aXQgYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vY29yZS9maXJtd2FyZS5oIGIvZHJtL25vdXZl
+YXUvaW5jbHVkZS9udmttL2NvcmUvZmlybXdhcmUuaAo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4g
+aW5kZXggMDAwMDAwMDAwMDAwLi5hNjI2Y2UzNzhmMDQKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIv
+ZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUvZmlybXdhcmUuaAo+IEBAIC0wLDAgKzEsMTEg
+QEAKPiArI2lmbmRlZiBfX05WS01fRklSTVdBUkVfSF9fCj4gKyNkZWZpbmUgX19OVktNX0ZJUk1X
+QVJFX0hfXwo+ICsKPiArI2luY2x1ZGUgPGNvcmUvZGV2aWNlLmg+Cj4gKwo+ICtpbnQgbnZrbV9m
+aXJtd2FyZV9nZXQoc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UsIGNvbnN0IGNoYXIgKmZ3bmFt
+ZSwKPiArICAgICAgICAgICAgICAgICAgICAgY29uc3Qgc3RydWN0IGZpcm13YXJlICoqZncpOwo+
+ICsKPiArdm9pZCBudmttX2Zpcm13YXJlX3B1dChjb25zdCBzdHJ1Y3QgZmlybXdhcmUgKmZ3KTsK
+PiArCj4gKyNlbmRpZgo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2NvcmUvS2J1aWxk
+IGIvZHJtL25vdXZlYXUvbnZrbS9jb3JlL0tidWlsZAo+IGluZGV4IDdmNjY5NjNmMzA1Yy4uODZh
+MzFhOGUxZTUxIDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vY29yZS9LYnVpbGQKPiAr
+KysgYi9kcm0vbm91dmVhdS9udmttL2NvcmUvS2J1aWxkCj4gQEAgLTIsNiArMiw3IEBAIG52a20t
+eSA6PSBudmttL2NvcmUvY2xpZW50Lm8KPiAgbnZrbS15ICs9IG52a20vY29yZS9lbmdpbmUubwo+
+ICBudmttLXkgKz0gbnZrbS9jb3JlL2VudW0ubwo+ICBudmttLXkgKz0gbnZrbS9jb3JlL2V2ZW50
+Lm8KPiArbnZrbS15ICs9IG52a20vY29yZS9maXJtd2FyZS5vCj4gIG52a20teSArPSBudmttL2Nv
+cmUvZ3B1b2JqLm8KPiAgbnZrbS15ICs9IG52a20vY29yZS9pb2N0bC5vCj4gIG52a20teSArPSBu
+dmttL2NvcmUvbWVtb3J5Lm8KPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zp
+cm13YXJlLmMgYi9kcm0vbm91dmVhdS9udmttL2NvcmUvZmlybXdhcmUuYwo+IG5ldyBmaWxlIG1v
+ZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMDAwMDAwLi40YTRiNGE1ZDU1YTgKPiAtLS0gL2Rldi9u
+dWxsCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMKPiBAQCAtMCwwICsx
+LDY0IEBACj4gKy8qCj4gKyAqIENvcHlyaWdodCAoYykgMjAxNiwgTlZJRElBIENPUlBPUkFUSU9O
+LiBBbGwgcmlnaHRzIHJlc2VydmVkLgo+ICsgKgo+ICsgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBn
+cmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQo+ICsgKiBj
+b3B5IG9mIHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAo
+dGhlICJTb2Z0d2FyZSIpLAo+ICsgKiB0byBkZWFsIGluIHRoZSBTb2Z0d2FyZSB3aXRob3V0IHJl
+c3RyaWN0aW9uLCBpbmNsdWRpbmcgd2l0aG91dCBsaW1pdGF0aW9uCj4gKyAqIHRoZSByaWdodHMg
+dG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNl
+bnNlLAo+ICsgKiBhbmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBhbmQgdG8gcGVy
+bWl0IHBlcnNvbnMgdG8gd2hvbSB0aGUKPiArICogU29mdHdhcmUgaXMgZnVybmlzaGVkIHRvIGRv
+IHNvLCBzdWJqZWN0IHRvIHRoZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKPiArICoKPiArICogVGhl
+IGFib3ZlIGNvcHlyaWdodCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBub3RpY2Ugc2hhbGwg
+YmUgaW5jbHVkZWQgaW4KPiArICogYWxsIGNvcGllcyBvciBzdWJzdGFudGlhbCBwb3J0aW9ucyBv
+ZiB0aGUgU29mdHdhcmUuCj4gKyAqCj4gKyAqIFRIRSBTT0ZUV0FSRSBJUyBQUk9WSURFRCAiQVMg
+SVMiLCBXSVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBSRVNTIE9SCj4gKyAqIElNUExJ
+RUQsIElOQ0xVRElORyBCVVQgTk9UIExJTUlURUQgVE8gVEhFIFdBUlJBTlRJRVMgT0YgTUVSQ0hB
+TlRBQklMSVRZLAo+ICsgKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9O
+SU5GUklOR0VNRU5ULiAgSU4gTk8gRVZFTlQgU0hBTEwKPiArICogVEhFIEFVVEhPUlMgT1IgQ09Q
+WVJJR0hUIEhPTERFUlMgQkUgTElBQkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMgT1IgT1RIRVIK
+PiArICogTElBQklMSVRZLCBXSEVUSEVSIElOIEFOIEFDVElPTiBPRiBDT05UUkFDVCwgVE9SVCBP
+UiBPVEhFUldJU0UsIEFSSVNJTkcKPiArICogRlJPTSwgT1VUIE9GIE9SIElOIENPTk5FQ1RJT04g
+V0lUSCBUSEUgU09GVFdBUkUgT1IgVEhFIFVTRSBPUiBPVEhFUgo+ICsgKiBERUFMSU5HUyBJTiBU
+SEUgU09GVFdBUkUuCj4gKyAqLwo+ICsKPiArI2luY2x1ZGUgPGNvcmUvZGV2aWNlLmg+Cj4gKwo+
+ICsjaW5jbHVkZSA8bGludXgvZmlybXdhcmUuaD4KPiArCj4gKy8qKgo+ICsgKiBudmttX2Zpcm13
+YXJlX2dldCAtIGxvYWQgZmlybXdhcmUgZnJvbSB0aGUgb2ZmaWNpYWwgbnZpZGlhL2NoaXAvIGRp
+cmVjdG9yeQo+ICsgKiBAZGV2aWNlICAgICBkZXZpY2UgdGhhdCB3aWxsIHVzZSB0aGF0IGZpcm13
+YXJlCj4gKyAqIEBmd25hbWUgICAgIG5hbWUgb2YgZmlybXdhcmUgZmlsZSB0byBsb2FkCj4gKyAq
+IEBmdyAgICAgICAgIGZpcm13YXJlIHN0cnVjdHVyZSB0byBsb2FkIHRvCj4gKyAqCj4gKyAqIFVz
+ZSB0aGlzIGZ1bmN0aW9uIHRvIGxvYWQgZmlybXdhcmUgZmlsZXMgaW4gdGhlIGZvcm0gbnZpZGlh
+L2NoaXAvZnduYW1lLmJpbi4KPiArICogRmlybXdhcmUgZmlsZXMgcmVsZWFzZWQgYnkgTlZJRElB
+IHdpbGwgYWx3YXlzIGZvbGxvdyB0aGlzIGZvcm1hdC4KPiArICovCj4gK2ludAo+ICtudmttX2Zp
+cm13YXJlX2dldChzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwgY29uc3QgY2hhciAqZnduYW1l
+LAo+ICsgICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBmaXJtd2FyZSAqKmZ3KQo+ICt7Cj4g
+KyAgICAgICBjaGFyIGZbNjRdOwo+ICsgICAgICAgY2hhciBjbmFtZVsxNl07Cj4gKyAgICAgICBp
+bnQgaTsKPiArCj4gKyAgICAgICAvKiBDb252ZXJ0IGRldmljZSBuYW1lIHRvIGxvd2VyY2FzZSAq
+Lwo+ICsgICAgICAgc3RybmNweShjbmFtZSwgZGV2aWNlLT5jaGlwLT5uYW1lLCBzaXplb2YoY25h
+bWUpKTsKPiArICAgICAgIGNuYW1lW3NpemVvZihjbmFtZSkgLSAxXSA9ICdcMCc7Cj4gKyAgICAg
+ICBpID0gc3RybGVuKGNuYW1lKTsKPiArICAgICAgIHdoaWxlIChpKSB7Cj4gKyAgICAgICAgICAg
+ICAgIC0taTsKPiArICAgICAgICAgICAgICAgY25hbWVbaV0gPSB0b2xvd2VyKGNuYW1lW2ldKTsK
+PiArICAgICAgIH0KPiArCkNvbnNpZGVyaW5nIHRoZXJlJ3Mgb25seSBvbmUgdXNlciB0aGF0IG1p
+Z2h0IG5lZWQgdGhpcywgaXMgaXQgd29ydGgKYWRkaW5nIGl0IGhlcmUgb3IganVzdCBrZWVwaW5n
+IGl0IHdoZXJlIG5lZWRlZCA/Cgo+ICsgICAgICAgc25wcmludGYoZiwgc2l6ZW9mKGYpLCAibnZp
+ZGlhLyVzLyVzLmJpbiIsIGNuYW1lLCBmd25hbWUpOwo+ICsgICAgICAgcmV0dXJuIHJlcXVlc3Rf
+ZmlybXdhcmUoZncsIGYsIGRldmljZS0+ZGV2KTsKPiArfQo+ICsKPiArLyoqCj4gKyAqIG52a21f
+ZmlybXdhcmVfcHV0IC0gcmVsZWFzZSBmaXJtd2FyZSBsb2FkZWQgd2l0aCBudmttX2Zpcm13YXJl
+X2dldAo+ICsgKi8KPiArdm9pZAo+ICtudmttX2Zpcm13YXJlX3B1dChjb25zdCBzdHJ1Y3QgZmly
+bXdhcmUgKmZ3KQo+ICt7Cj4gKyAgICAgICByZWxlYXNlX2Zpcm13YXJlKGZ3KTsKSWYgdGhlIGFi
+b3ZlIHN1Z2dlc3Rpb24gbWFrZXMgc2Vuc2UsIHRoZW4gaXQgbWlnaHQgYmUgYmV0dGVyIHRvIGtl
+ZXAKdGhlc2UgdHdvIGluIHRoZSBoZWFkZXIgYXMgc3RhdGljIGlubGluZXMgPwoKTm90IHRoYXQg
+ZWl0aGVyIG9mIHRoZSB0d28gaXMgYSBob3QgcGF0aCwgdGhlbiBhZ2FpbiBoYXZpbmcgYSBvbmUv
+dHdvCmxpbmVyIGFzIHNlcGFyYXRlIGZ1bmN0aW9uIGZlZWxzIG9kZC4KCkNoZWVycywKRW1pbApf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
