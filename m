@@ -1,15 +1,13 @@
-From: Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>
-Subject: Re: nouveau contributor dinner Friday evening before
- FOSDEM?
-Date: Thu, 21 Jan 2016 18:20:41 +0000
-Message-ID: <56A12179.1060000@nimrod-online.com>
-References: <56A0D878.5080309@redhat.com> <20160121131714.GA3612@pmoreau.org>
- <314696375.3220.1453390187393.JavaMail.open-xchange@www.ud-mail.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 54700] Distorted graphics (double cursor) with
+ GeForce 4200Go (NV28M)
+Date: Thu, 21 Jan 2016 19:38:11 +0000
+Message-ID: <bug-54700-8800-taI8CkRKkO@http.bugs.freedesktop.org/>
+References: <bug-54700-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0844346779=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <314696375.3220.1453390187393.JavaMail.open-xchange-KNm3LHm9FEhKTQ5g00o1eQ@public.gmane.org>
+In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,37 +20,94 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-KzEKCm9yIGluIGxheW1hbiB0ZXJtcywgSSdsbCBiZSB0aGVyZSA7LSkKClJveQoKT3AgMjEtMDEt
-MTYgb20gMTU6Mjkgc2NocmVlZiBLYXJvbCBIZXJic3Q6Cj4gSGkgZXZlcnlib2R5LAo+Cj4geWVh
-aCwgc291bmRzIGdvb2QKPgo+IGdyZWV0aW5ncwo+Cj4gS2Fyb2wKPgo+PiBQaWVycmUgTW9yZWF1
-IDxwaWVycmUubW9ycm93QGZyZWUuZnI+IGhhdCBhbSAyMS4gSmFudWFyIDIwMTYgdW0gMTQ6MTcK
-Pj4gZ2VzY2hyaWViZW46Cj4+Cj4+IEhlbGxvIGV2ZXJ5b25lLAo+Pgo+PiBJJ20gaW4gZm9yIHRo
-ZSBkaW5uZXIhIEFzIGZvciB0aGUgcmVzdGF1cmFudCwgc2luY2UgSSBuZXZlciB3ZW50IHRvIEJy
-dXNzZWxzLAo+PiBJJ2xsIGZvbGxvdyB0aGUgZ3JvdXAncyBkZWNpc2lvbi4gU29tZSB0aW1lIGFy
-b3VuZCAxOTozMOKAkzIwOjAwPyBNb3N0IG9mIHVzCj4+IHNob3VsZCBiZSBpbiBCcnVzc2Vscycg
-Y2VudHJlIGJ5IHRoZW4gSSB0aGluay4KPj4KPj4gQ2hlZXJzLAo+PiBQaWVycmUKPj4KPj4gT24g
-MDI6MDkgUE0gLSBKYW4gMjEgMjAxNiwgSGFucyBkZSBHb2VkZSB3cm90ZToKPj4+IEhpIEFsbCwK
-Pj4+Cj4+PiAkc3ViamVjdCBzYXlzIGl0IHByZXR0eSBtdWNoIGFsbC4gQUZBSWsgcXVpdGUgYSBm
-ZXcKPj4+IG5vdXZlYXUgY29udHJpYnV0b3JzIGFyZSBjb21pbmcgdG8gRm9zZGVtLCBhbmQgSSB0
-aGluayBpdAo+Pj4gd291bGQgYmUgbmljZSB0byBoYXZlIGRpbm5lciB0b2dldGhlciBGcmlkYXkg
-ZXZlbmluZwo+Pj4gYmVmb3JlIEZPU0RFTS4KPj4+Cj4+PiBTbyBhbnkgdGFrZXJzPyBJZiB5b3Ug
-d2FudCB0byBqb2luIHBsZWFzZSByZXBseSB0byB0aGlzCj4+PiBtYWlsIHRocmVhZCBiZWZvcmUg
-Y29taW5nIFRodXJzZGF5LCBJIHdpbGwgdHJ5IHRvIHJlc2VydmUgYSB0YWJsZSBhdDoKPj4+Cj4+
-PiBodHRwOi8vd3d3LnRyaXBhZHZpc29yLmNvbS9SZXN0YXVyYW50X1Jldmlldy1nMTg4NjQ0LWQ4
-MDIyMzItUmV2aWV3cy1MZV9GYWxzdGFmZi1CcnVzc2Vscy5odG1sCj4+Pgo+Pj4gV2hpY2ggaXMg
-bm90IGFzIGJhZCBhcyB0aGUgcmV2aWV3cyB0aGVyZSBtYWtlIGl0IG91dCB0byBiZSwKPj4+IG5v
-dGUgSSdtIG9wZW4gdG8gYmV0dGVyIHN1Z2dlc3Rpb25zLCBlc3AuIGZyb20gbG9jYWxzLCBMZSBG
-YWxzdGFmZgo+Pj4gaXMgc29ydCBvZiBteSBmYWxsYmFjayBwbGFjZSB0byBnbyB0byBpbiBCcnVz
-c2Vscy4KPj4+Cj4+PiBSZWdhcmRzLAo+Pj4KPj4+IEhhbnMKPj4+Cj4+PiBfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4gTm91dmVhdSBtYWlsaW5nIGxp
-c3QKPj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+PiBodHRwOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+PiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+
-PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQo=
+
+--===============0844346779==
+Content-Type: multipart/alternative; boundary="14534050920.DD6Ef7e42.11320";
+ charset="UTF-8"
+
+
+--14534050920.DD6Ef7e42.11320
+Date: Thu, 21 Jan 2016 19:38:12 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=54700
+
+--- Comment #75 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to AndrewK from comment #73)
+> (In reply to nv28m from comment #71)
+> > nouveau.agpmode=0 seems to work here too, also after comming back from
+> > suspend.
+> > 
+> > Still I think I'm stuck with the modesetting driver with the bit 24 hack in
+> > boot/suspend scripts. The scrolling and rxvt performance is just better.
+> 
+> The parameter name seems to be changed.  nouveau.modeset=0 is what worked
+> for me.
+> 
+> I add my thanks for the hard work done by Mr. nv28m.
+
+nouveau.modeset=0 just disables nouveau entirely.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14534050920.DD6Ef7e42.11320
+Date: Thu, 21 Jan 2016 19:38:12 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28M)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c75">Comment # 75</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28M)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to AndrewK from <a href="show_bug.cgi?id=54700#c73">comment #73</a>)
+<span class="quote">&gt; (In reply to nv28m from <a href="show_bug.cgi?id=54700#c71">comment #71</a>)
+&gt; &gt; nouveau.agpmode=0 seems to work here too, also after comming back from
+&gt; &gt; suspend.
+&gt; &gt; 
+&gt; &gt; Still I think I'm stuck with the modesetting driver with the bit 24 hack in
+&gt; &gt; boot/suspend scripts. The scrolling and rxvt performance is just better.
+&gt; 
+&gt; The parameter name seems to be changed.  nouveau.modeset=0 is what worked
+&gt; for me.
+&gt; 
+&gt; I add my thanks for the hard work done by Mr. nv28m.</span >
+
+nouveau.modeset=0 just disables nouveau entirely.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14534050920.DD6Ef7e42.11320--
+
+--===============0844346779==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0844346779==--
