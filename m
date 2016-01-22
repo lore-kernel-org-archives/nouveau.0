@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54700] Distorted graphics (double cursor) with
- GeForce 4200Go (NV28M)
-Date: Fri, 22 Jan 2016 09:55:34 +0000
-Message-ID: <bug-54700-8800-RTSxfL4srh@http.bugs.freedesktop.org/>
-References: <bug-54700-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71659] [NVD9] Hangs under load with ![
+ PFIFO][0000:01:00.0] unhandled status 0x00800000
+Date: Fri, 22 Jan 2016 14:18:26 +0000
+Message-ID: <bug-71659-8800-MWdRA3hhmv@http.bugs.freedesktop.org/>
+References: <bug-71659-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0460944460=="
+Content-Type: multipart/mixed; boundary="===============1573977949=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0460944460==
-Content-Type: multipart/alternative; boundary="14534565400.9fCd3E2B.2944";
+--===============1573977949==
+Content-Type: multipart/alternative; boundary="14534723070.D52cC.30673";
  charset="UTF-8"
 
 
---14534565400.9fCd3E2B.2944
-Date: Fri, 22 Jan 2016 09:55:40 +0000
+--14534723070.D52cC.30673
+Date: Fri, 22 Jan 2016 14:18:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54700
+https://bugs.freedesktop.org/show_bug.cgi?id=71659
 
---- Comment #77 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-agpmode and modeset are not even remotely related I'm afraid. With 4.3 onward
-one should be using nouveau.config="NvAGP=0" as documented [1]
-
-[1] http://nouveau.freedesktop.org/wiki/KernelModuleParameters/#config
+--- Comment #33 from Viorel-Cătălin Răpițeanu <rapiteanu.catalin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I've tested this problem again with the latest nouveau driver and the latest
+devel kernel kernel and is still reproducible.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14534565400.9fCd3E2B.2944
-Date: Fri, 22 Jan 2016 09:55:40 +0000
+--14534723070.D52cC.30673
+Date: Fri, 22 Jan 2016 14:18:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -56,18 +54,16 @@ Content-Type: text/html
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c77">Comment # 77</a>
+   title="NEW - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c33">Comment # 33</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+   title="NEW - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659">bug 71659</a>
+              from <span class="vcard"><a class="email" href="mailto:rapiteanu.catalin&#64;gmail.com" title="Viorel-Cătălin Răpițeanu &lt;rapiteanu.catalin&#64;gmail.com&gt;"> <span class="fn">Viorel-Cătălin Răpițeanu</span></a>
 </span></b>
-        <pre>agpmode and modeset are not even remotely related I'm afraid. With 4.3 onward
-one should be using nouveau.config=&quot;NvAGP=0&quot; as documented [1]
-
-[1] <a href="http://nouveau.freedesktop.org/wiki/KernelModuleParameters/#config">http://nouveau.freedesktop.org/wiki/KernelModuleParameters/#config</a></pre>
+        <pre>I've tested this problem again with the latest nouveau driver and the latest
+devel kernel kernel and is still reproducible.</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +74,9 @@ one should be using nouveau.config=&quot;NvAGP=0&quot; as documented [1]
       </ul>
     </body>
 </html>
---14534565400.9fCd3E2B.2944--
+--14534723070.D52cC.30673--
 
---===============0460944460==
+--===============1573977949==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +86,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0460944460==--
+--===============1573977949==--
