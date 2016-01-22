@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93828] Xorg hangs randomly with nouveau driver
-Date: Fri, 22 Jan 2016 21:19:48 +0000
-Message-ID: <bug-93828-8800-GZpEQ0VJVH@http.bugs.freedesktop.org/>
-References: <bug-93828-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93795] G98: GL(X) compositing - XRandR DPMS trouble
+Date: Fri, 22 Jan 2016 22:48:49 +0000
+Message-ID: <bug-93795-8800-TXtJpHcaHD@http.bugs.freedesktop.org/>
+References: <bug-93795-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0178357509=="
+Content-Type: multipart/mixed; boundary="===============1246767817=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93828-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93795-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0178357509==
-Content-Type: multipart/alternative; boundary="14534975880.E39c.32132";
+--===============1246767817==
+Content-Type: multipart/alternative; boundary="14535029291.71Bca.9156";
  charset="UTF-8"
 
 
---14534975880.E39c.32132
-Date: Fri, 22 Jan 2016 21:19:48 +0000
+--14535029291.71Bca.9156
+Date: Fri, 22 Jan 2016 22:48:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93828
+https://bugs.freedesktop.org/show_bug.cgi?id=93795
 
---- Comment #2 from Marek Greško <mgresko8-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Just forgot to mention, I am running xorg-x11-drv-nouveau-1.0.12-1.fc23.x86_64
- version (latest from fedora 23 repository).
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                URL|http://url.dsl.pp.ua/875575 |
+                   |/pils/page.php              |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14534975880.E39c.32132
-Date: Fri, 22 Jan 2016 21:19:48 +0000
+--14535029291.71Bca.9156
+Date: Fri, 22 Jan 2016 22:48:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -48,22 +51,29 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - G98: GL(X) compositing - XRandR DPMS trouble"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93795">bug 93795</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">URL</td>
+           <td>http://url.dsl.pp.ua/875575/pils/page.php
+           </td>
+           <td>
+               &nbsp;
+           </td>
+         </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Xorg hangs randomly with nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93828#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Xorg hangs randomly with nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93828">bug 93828</a>
-              from <span class="vcard"><a class="email" href="mailto:mgresko8&#64;gmail.com" title="Marek Greško &lt;mgresko8&#64;gmail.com&gt;"> <span class="fn">Marek Greško</span></a>
-</span></b>
-        <pre>Just forgot to mention, I am running xorg-x11-drv-nouveau-1.0.12-1.fc23.x86_64
- version (latest from fedora 23 repository).</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -73,9 +83,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14534975880.E39c.32132--
+--14535029291.71Bca.9156--
 
---===============0178357509==
+--===============1246767817==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0178357509==--
+--===============1246767817==--
