@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93405] nouveau: Xorg crashes sooner or later in
 	3840x2160 mode
-Date: Sat, 23 Jan 2016 16:35:09 +0000
-Message-ID: <bug-93405-8800-h86BMiFd3n@http.bugs.freedesktop.org/>
+Date: Sat, 23 Jan 2016 16:47:53 +0000
+Message-ID: <bug-93405-8800-0sxKUekNyW@http.bugs.freedesktop.org/>
 References: <bug-93405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1130243478=="
+Content-Type: multipart/mixed; boundary="===============0925593247=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,40 +21,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1130243478==
-Content-Type: multipart/alternative; boundary="14535669090.EAb3.5079";
+--===============0925593247==
+Content-Type: multipart/alternative; boundary="14535676731.EFA0697B.8439";
  charset="UTF-8"
 
 
---14535669090.EAb3.5079
-Date: Sat, 23 Jan 2016 16:35:09 +0000
+--14535676731.EFA0697B.8439
+Date: Sat, 23 Jan 2016 16:47:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93405
 
---- Comment #14 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-  Now that tells us what is officially supported. I have just yielded
-3840x2160@30 with an Nvidia G96GLM [Quadro FX 770M] (Windows 7) which is a very
-similar but better card than the Nvidia G96M [Geforce 9600M GT] as mentioned in
-this report. This even though my Celsius H270 just has a DVI output; I have
-converted it into HDMI with an adapter and plugged the HDMI2.0 cable into the
-HDMI1.4 port of my u2868pqu monitor. The Amilo Xi3650 notebook as shipped with
-the G96M card [ Geforce 9600M GT] on the other hand would have a native HDMI
-output (can`t tell on whether it is HDMI1.4 or sth else though).
-  Pierre, may I come back to you after I have compiled kernel 4.4 and as far as
-recommended a fitting Xorg? If there was a chance to get the card running under
-3840x2160@30 with perflvl 0f I would really like to give that a try. Even much
-more important I had some painful problems with s2ram and the u2868pqu which
-are device driver related (kernel bug 108561). Perhaps you can help me with
-this issue as well; have my full endeavor if you think that you can do
-something about it.
+--- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I can't quite tell what you're trying to do, but here are a few pieces of
+information that you may find useful:
+
+HDMI cables can only carry a single TMDS link. (Not enough pins for more.)
+DVI cables can carry one or two TMDS links, each maxing at 165mhz (for a total
+of 330mhz for dual-link DVI).
+
+The maximum TMDS link speed nouveau will allow on HDMI connectors is 165MHz.
+
+With kernel 4.5 (or anything that includes
+https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=1a0c96c075bb4517d4ce4fb6750ee0a3cf38714c
+and a few of the surrounding commits), you will be able to override this by
+setting nouveau.hdmimhz=anything-you-want. We have no idea where to get the
+limits from, so we just set it to
+
+165mhz for tesla and earlier
+225mhz for fermi
+297mhz for kepler+
+
+We'll have to figure something out for HDMI 2.0 eventually. But again, this is
+all with the above commits; with kernel 4.4 it's just 165mhz for HDMI.
+
+Assuming your connector and cables support it, dual-link DVI will give you the
+highest maximum frequency.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14535669090.EAb3.5079
-Date: Sat, 23 Jan 2016 16:35:09 +0000
+--14535676731.EFA0697B.8439
+Date: Sat, 23 Jan 2016 16:47:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -68,28 +77,37 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c14">Comment # 14</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
-              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>  Now that tells us what is officially supported. I have just yielded
-3840x2160&#64;30 with an Nvidia G96GLM [Quadro FX 770M] (Windows 7) which is a very
-similar but better card than the Nvidia G96M [Geforce 9600M GT] as mentioned in
-this report. This even though my Celsius H270 just has a DVI output; I have
-converted it into HDMI with an adapter and plugged the HDMI2.0 cable into the
-HDMI1.4 port of my u2868pqu monitor. The Amilo Xi3650 notebook as shipped with
-the G96M card [ Geforce 9600M GT] on the other hand would have a native HDMI
-output (can`t tell on whether it is HDMI1.4 or sth else though).
-  Pierre, may I come back to you after I have compiled kernel 4.4 and as far as
-recommended a fitting Xorg? If there was a chance to get the card running under
-3840x2160&#64;30 with perflvl 0f I would really like to give that a try. Even much
-more important I had some painful problems with s2ram and the u2868pqu which
-are device driver related (kernel bug 108561). Perhaps you can help me with
-this issue as well; have my full endeavor if you think that you can do
-something about it.</pre>
+        <pre>I can't quite tell what you're trying to do, but here are a few pieces of
+information that you may find useful:
+
+HDMI cables can only carry a single TMDS link. (Not enough pins for more.)
+DVI cables can carry one or two TMDS links, each maxing at 165mhz (for a total
+of 330mhz for dual-link DVI).
+
+The maximum TMDS link speed nouveau will allow on HDMI connectors is 165MHz.
+
+With kernel 4.5 (or anything that includes
+<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=1a0c96c075bb4517d4ce4fb6750ee0a3cf38714c">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=1a0c96c075bb4517d4ce4fb6750ee0a3cf38714c</a>
+and a few of the surrounding commits), you will be able to override this by
+setting nouveau.hdmimhz=anything-you-want. We have no idea where to get the
+limits from, so we just set it to
+
+165mhz for tesla and earlier
+225mhz for fermi
+297mhz for kepler+
+
+We'll have to figure something out for HDMI 2.0 eventually. But again, this is
+all with the above commits; with kernel 4.4 it's just 165mhz for HDMI.
+
+Assuming your connector and cables support it, dual-link DVI will give you the
+highest maximum frequency.</pre>
         </div>
       </p>
       <hr>
@@ -100,9 +118,9 @@ something about it.</pre>
       </ul>
     </body>
 </html>
---14535669090.EAb3.5079--
+--14535676731.EFA0697B.8439--
 
---===============1130243478==
+--===============0925593247==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +130,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1130243478==--
+--===============0925593247==--
