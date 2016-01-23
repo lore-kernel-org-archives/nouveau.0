@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93795] G98: GL(X) compositing - XRandR DPMS trouble
-Date: Fri, 22 Jan 2016 22:48:49 +0000
-Message-ID: <bug-93795-8800-TXtJpHcaHD@http.bugs.freedesktop.org/>
-References: <bug-93795-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: nouveau contributor dinner Friday evening before
+ FOSDEM?
+Date: Sat, 23 Jan 2016 04:14:46 +0200
+Message-ID: <56A2E216.6080300@free.fr>
+References: <56A0D878.5080309@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1246767817=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93795-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <56A0D878.5080309-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,80 +21,11 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1246767817==
-Content-Type: multipart/alternative; boundary="14535029291.71Bca.9156";
- charset="UTF-8"
-
-
---14535029291.71Bca.9156
-Date: Fri, 22 Jan 2016 22:48:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93795
-
-poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                URL|http://url.dsl.pp.ua/875575 |
-                   |/pils/page.php              |
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14535029291.71Bca.9156
-Date: Fri, 22 Jan 2016 22:48:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98: GL(X) compositing - XRandR DPMS trouble"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93795">bug 93795</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">URL</td>
-           <td>http://url.dsl.pp.ua/875575/pils/page.php
-           </td>
-           <td>
-               &nbsp;
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14535029291.71Bca.9156--
-
---===============1246767817==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1246767817==--
+T24gMjEvMDEvMTYgMTU6MDksIEhhbnMgZGUgR29lZGUgd3JvdGU6Cj4gSGkgQWxsLAo+Cj4gJHN1
+YmplY3Qgc2F5cyBpdCBwcmV0dHkgbXVjaCBhbGwuIEFGQUlrIHF1aXRlIGEgZmV3Cj4gbm91dmVh
+dSBjb250cmlidXRvcnMgYXJlIGNvbWluZyB0byBGb3NkZW0sIGFuZCBJIHRoaW5rIGl0Cj4gd291
+bGQgYmUgbmljZSB0byBoYXZlIGRpbm5lciB0b2dldGhlciBGcmlkYXkgZXZlbmluZwo+IGJlZm9y
+ZSBGT1NERU0uCj4KPiBTbyBhbnkgdGFrZXJzPwoKSSdtIGluIQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
