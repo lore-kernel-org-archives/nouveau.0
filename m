@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92274] nouveau black screen and errors with two
- monitors attached
-Date: Sat, 23 Jan 2016 10:21:48 +0000
-Message-ID: <bug-92274-8800-PTNxU6qVwO@http.bugs.freedesktop.org/>
-References: <bug-92274-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93405] nouveau: Xorg crashes sooner or later in
+	3840x2160 mode
+Date: Sat, 23 Jan 2016 10:40:02 +0000
+Message-ID: <bug-93405-8800-OULFZMZo6z@http.bugs.freedesktop.org/>
+References: <bug-93405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1883257021=="
+Content-Type: multipart/mixed; boundary="===============2044567829=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1883257021==
-Content-Type: multipart/alternative; boundary="14535445081.Af2Ba9.6252";
+--===============2044567829==
+Content-Type: multipart/alternative; boundary="14535456012.4A4b8dD0.9151";
  charset="UTF-8"
 
 
---14535445081.Af2Ba9.6252
-Date: Sat, 23 Jan 2016 10:21:48 +0000
+--14535456012.4A4b8dD0.9151
+Date: Sat, 23 Jan 2016 10:40:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92274
+https://bugs.freedesktop.org/show_bug.cgi?id=93405
 
---- Comment #20 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(In reply to Joseph Thommes from comment #19)
-> Created attachment 121229 [details]
-> kernel log after upgrade to gentoo-4.1.15-r1
-> 
-> The monitors still turn off and I think it's the exact same thing as before.
-> Just wanted to keep this up-to-date.
+--- Comment #13 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Just did a small search on NVIDIA's website: only Kepler+ cards support 4K,
+with the notice for Kepler cards at least, that
 
-The latest release would be 4.4, which includes the big rewrite from 4.3,
-whereas 4.1.15 will only include fixes that were back ported (and Nouveau
-doesn't send many fixes to stable version).
+>  3840x2160 at 30Hz or 4096x2160 at 24Hz supported over HDMI. 4096x2160 (including 3840x2160) at 60Hz supported over Displayport. Support for 4k tiled MST displays requires 326.19 driver or later.
 
-Sorry I can't help more than that: I don't have the correct setup and have no
-knowledge about that part of Nouveau.
+Tesla and Fermi cards are advertised of having a "Maximum Digital Resolution"
+of 2560x1600, so no, 3840x2160 won't work on your G96M, sorry.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14535445081.Af2Ba9.6252
-Date: Sat, 23 Jan 2016 10:21:48 +0000
+--14535456012.4A4b8dD0.9151
+Date: Sat, 23 Jan 2016 10:40:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -65,27 +59,21 @@ Content-Type: text/html
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c20">Comment # 20</a>
+   title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
+   title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
               from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>(In reply to Joseph Thommes from <a href="show_bug.cgi?id=92274#c19">comment #19</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=121229" name="attach_121229" title="kernel log after upgrade to gentoo-4.1.15-r1">attachment 121229</a> <a href="attachment.cgi?id=121229&amp;action=edit" title="kernel log after upgrade to gentoo-4.1.15-r1">[details]</a></span>
-&gt; kernel log after upgrade to gentoo-4.1.15-r1
-&gt; 
-&gt; The monitors still turn off and I think it's the exact same thing as before.
-&gt; Just wanted to keep this up-to-date.</span >
+        <pre>Just did a small search on NVIDIA's website: only Kepler+ cards support 4K,
+with the notice for Kepler cards at least, that
 
-The latest release would be 4.4, which includes the big rewrite from 4.3,
-whereas 4.1.15 will only include fixes that were back ported (and Nouveau
-doesn't send many fixes to stable version).
+<span class="quote">&gt;  3840x2160 at 30Hz or 4096x2160 at 24Hz supported over HDMI. 4096x2160 (including 3840x2160) at 60Hz supported over Displayport. Support for 4k tiled MST displays requires 326.19 driver or later.</span >
 
-Sorry I can't help more than that: I don't have the correct setup and have no
-knowledge about that part of Nouveau.</pre>
+Tesla and Fermi cards are advertised of having a &quot;Maximum Digital Resolution&quot;
+of 2560x1600, so no, 3840x2160 won't work on your G96M, sorry.</pre>
         </div>
       </p>
       <hr>
@@ -96,9 +84,9 @@ knowledge about that part of Nouveau.</pre>
       </ul>
     </body>
 </html>
---14535445081.Af2Ba9.6252--
+--14535456012.4A4b8dD0.9151--
 
---===============1883257021==
+--===============2044567829==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1883257021==--
+--===============2044567829==--
