@@ -1,42 +1,40 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH v2 2/5] core: add support for secure boot
-Date: Mon, 25 Jan 2016 11:17:41 +0900
-Message-ID: <CAAVeFuJadD7nAP+3UVK4HrvdZ+BCXzch9NMb3UTTrz1hr7Z=9Q@mail.gmail.com>
-References: <1453097447-12152-1-git-send-email-acourbot@nvidia.com>
- <1453097447-12152-3-git-send-email-acourbot@nvidia.com> <CACvgo50P8JQ5EkCEMmnGQGO4jMsc0O4cRB1QO04V0KQS7Y8AYA@mail.gmail.com>
- <56A0CB7A.9010104@gmail.com> <CACvgo53cqvn73=Ks-syi=12eO7vrjRcwKJHpgfHh75hHT0sPkQ@mail.gmail.com>
- <CAAVeFuLXwo0hb7Z_h3+gOA4u+fp0u=zLPuGxFBW+uY0MsQY-aQ@mail.gmail.com>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] device: call nvkm_device_fini if nvkm_device_init
+	fails
+Date: Mon, 25 Jan 2016 18:44:23 +0900
+Message-ID: <1453715064-14160-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <CAAVeFuLXwo0hb7Z_h3+gOA4u+fp0u=zLPuGxFBW+uY0MsQY-aQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jan 25, 2016 at 11:15 AM, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On Thu, Jan 21, 2016 at 9:31 PM, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->> On 21 January 2016 at 12:13, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->>> On 01/21/2016 10:09 PM, Emil Velikov wrote:
->>>> Hi Alexandre,
->>>>
->>>> On 18 January 2016 at 06:10, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
->>>>
->>>> [snip]
->>>>> +static const char *
->>>>> +managed_falcons_names[] = {
->>>>> +       [NVKM_SECBOOT_FALCON_PMU] = "PMU",
->>>>> +       [NVKM_SECBOOT_FALCON_RESERVED] = "<invalid>",
->>>> "<reserved>" perhaps ? we already have one invalid below.
->>> Does <reserved> really mean: "we don't want to tell you?" here? :)
->>>
->> That or we have some secret WIP that we're haven't decided if it'll work out :-)
->
-> That's just how it appears on our end. :) But since this enum does not
-> seem to be used by the hardware anyway, I will simply remove the
-> "_RESERVED" entry. Thanks.
-
-Meh, stupid me - these values also appear in the firmware files, so I
-must keep the same numbering, and thus the _RESERVED entry. Sorry for
-the noise.
+bnZrbV9kZXZpY2VfZmluaSBpcyBuZXZlciBjYWxsZWQgaWYgYSBmYWlsdXJlIG9jY3VycyBpbgpu
+dmttX2RldmljZV9pbml0LCBldmVuIHdoZW4gdW5sb2FkaW5nIHRoZSBtb2R1bGUuIFRoaXMgY2Fu
+IGxlYWQgdG8gYQpyZXNvdXJjZXMgbGVhayAob25lIGV4YW1wbGUgaXMgdGhlIFRlZ3JhIGludGVy
+cnVwdCB3aGljaCB3b3VsZCBuZXZlciBiZQpmcmVlZCBpbiB0aGF0IGNhc2UpLiBGaXggdGhpcyBi
+eSBjYWxsaW5nIG52a21fZGV2aWNlX2ZpbmkgaW4KbnZrbV9kZXZpY2VfaW5pdCdzIGZhaWx1cmUg
+cGF0aC4KClNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEu
+Y29tPgotLS0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgfCAyICsrCiAx
+IGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUv
+bnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rldmlj
+ZS9iYXNlLmMKaW5kZXggYjFiYTFjNzgyYTJiLi44ZWYwYWU4NTQwMzggMTAwNjQ0Ci0tLSBhL2Ry
+bS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMKKysrIGIvZHJtL25vdXZlYXUvbnZr
+bS9lbmdpbmUvZGV2aWNlL2Jhc2UuYwpAQCAtMjI2MSw2ICsyMjYxLDggQEAgZmFpbF9zdWJkZXY6
+CiAJfSB3aGlsZSAoLS1pID49IDApOwogCiBmYWlsOgorCW52a21fZGV2aWNlX2ZpbmkoZGV2aWNl
+LCBmYWxzZSk7CisKIAludmRldl9lcnJvcihkZXZpY2UsICJpbml0IGZhaWxlZCB3aXRoICVkXG4i
+LCByZXQpOwogCXJldHVybiByZXQ7CiB9Ci0tIAoyLjcuMAoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
