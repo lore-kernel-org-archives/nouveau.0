@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH] device: call nvkm_device_fini if
- nvkm_device_init fails
-Date: Mon, 25 Jan 2016 10:17:36 -0500
-Message-ID: <CAKb7UvgrPC9=hJPyRMULYjwsrNU+6oopgfTkuT8c2pUNc1PRaQ@mail.gmail.com>
-References: <1453715064-14160-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92274] nouveau black screen and errors with two
+ monitors attached
+Date: Mon, 25 Jan 2016 18:19:10 +0000
+Message-ID: <bug-92274-8800-nrPgwNwV5c@http.bugs.freedesktop.org/>
+References: <bug-92274-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0653012300=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1453715064-14160-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,31 +17,75 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2hvdWxkIHRoZXNlIGdldCBiYWNrLXBvcnRlZCB0byBhbnkgcmVsZWFzZWQga2VybmVscz8KCk9u
-IE1vbiwgSmFuIDI1LCAyMDE2IGF0IDQ6NDQgQU0sIEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJv
-dEBudmlkaWEuY29tPiB3cm90ZToKPiBudmttX2RldmljZV9maW5pIGlzIG5ldmVyIGNhbGxlZCBp
-ZiBhIGZhaWx1cmUgb2NjdXJzIGluCj4gbnZrbV9kZXZpY2VfaW5pdCwgZXZlbiB3aGVuIHVubG9h
-ZGluZyB0aGUgbW9kdWxlLiBUaGlzIGNhbiBsZWFkIHRvIGEKPiByZXNvdXJjZXMgbGVhayAob25l
-IGV4YW1wbGUgaXMgdGhlIFRlZ3JhIGludGVycnVwdCB3aGljaCB3b3VsZCBuZXZlciBiZQo+IGZy
-ZWVkIGluIHRoYXQgY2FzZSkuIEZpeCB0aGlzIGJ5IGNhbGxpbmcgbnZrbV9kZXZpY2VfZmluaSBp
-bgo+IG52a21fZGV2aWNlX2luaXQncyBmYWlsdXJlIHBhdGguCj4KPiBTaWduZWQtb2ZmLWJ5OiBB
-bGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KPiAtLS0KPiAgZHJtL25vdXZl
-YXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYyB8IDIgKysKPiAgMSBmaWxlIGNoYW5nZWQsIDIg
-aW5zZXJ0aW9ucygrKQo+Cj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rl
-dmljZS9iYXNlLmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jCj4gaW5k
-ZXggYjFiYTFjNzgyYTJiLi44ZWYwYWU4NTQwMzggMTAwNjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUv
-bnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYwo+ICsrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5l
-L2RldmljZS9iYXNlLmMKPiBAQCAtMjI2MSw2ICsyMjYxLDggQEAgZmFpbF9zdWJkZXY6Cj4gICAg
-ICAgICB9IHdoaWxlICgtLWkgPj0gMCk7Cj4KPiAgZmFpbDoKPiArICAgICAgIG52a21fZGV2aWNl
-X2ZpbmkoZGV2aWNlLCBmYWxzZSk7Cj4gKwo+ICAgICAgICAgbnZkZXZfZXJyb3IoZGV2aWNlLCAi
-aW5pdCBmYWlsZWQgd2l0aCAlZFxuIiwgcmV0KTsKPiAgICAgICAgIHJldHVybiByZXQ7Cj4gIH0K
-PiAtLQo+IDIuNy4wCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0653012300==
+Content-Type: multipart/alternative; boundary="14537459501.720fF.23329";
+ charset="UTF-8"
+
+
+--14537459501.720fF.23329
+Date: Mon, 25 Jan 2016 18:19:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92274
+
+--- Comment #21 from Joseph Thommes <joseph-thommes-Mmb7MZpHnFY@public.gmane.org> ---
+I meant the latest kernel release in sys-kernel/gentoo-sources, but I think,
+I'll try some more recent sources to find out whether the problem is fixed or
+not and I'll keep this thread up-to-date.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14537459501.720fF.23329
+Date: Mon, 25 Jan 2016 18:19:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau black screen and errors with two monitors attached"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c21">Comment # 21</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau black screen and errors with two monitors attached"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
+              from <span class="vcard"><a class="email" href="mailto:joseph-thommes&#64;gmx.de" title="Joseph Thommes &lt;joseph-thommes&#64;gmx.de&gt;"> <span class="fn">Joseph Thommes</span></a>
+</span></b>
+        <pre>I meant the latest kernel release in sys-kernel/gentoo-sources, but I think,
+I'll try some more recent sources to find out whether the problem is fixed or
+not and I'll keep this thread up-to-date.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14537459501.720fF.23329--
+
+--===============0653012300==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0653012300==--
