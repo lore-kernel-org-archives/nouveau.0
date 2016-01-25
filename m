@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86539] [NVAC] Trying to register nv_backlight after
-	NV96 did it
-Date: Sun, 24 Jan 2016 15:18:09 +0000
-Message-ID: <bug-86539-8800-iyglbEZqV1@http.bugs.freedesktop.org/>
-References: <bug-86539-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/5] core: add firmware handling functions
+Date: Mon, 25 Jan 2016 11:11:58 +0900
+Message-ID: <CAAVeFuK+FpokzjphGweewv3N5v08isgcuRbpkfbWoxEB2L7a_A@mail.gmail.com>
+References: <1453097233-11838-1-git-send-email-acourbot@nvidia.com>
+ <1453097233-11838-2-git-send-email-acourbot@nvidia.com>
+ <CACvgo51AqAvTH5D9AUmzZWPQu+DkWnuGgms3-L8iL8S_tJyiNA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0576179998=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86539-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CACvgo51AqAvTH5D9AUmzZWPQu+DkWnuGgms3-L8iL8S_tJyiNA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,119 +19,104 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0576179998==
-Content-Type: multipart/alternative; boundary="14536486891.BBBa01aB.14984";
- charset="UTF-8"
-
-
---14536486891.BBBa01aB.14984
-Date: Sun, 24 Jan 2016 15:18:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86539
-
---- Comment #6 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
-To add to this discussion, radeon has a quirk for the MacBookPro8,1 wherein a
-backlight is *not* registered since this machine has a gmux built in. See
-radeon_atom_backlight_init  in atombios_encoders.c:
-
-http://cgit.freedesktop.org/~airlied/linux/tree/drivers/gpu/drm/radeon/atombios_encoders.c?h=drm-next#n189
-
-    /* Mac laptops with multiple GPUs use the gmux driver for backlight
-     * so don't register a backlight device
-     */
-    if ((rdev->pdev->subsystem_vendor == PCI_VENDOR_ID_APPLE) &&
-        (rdev->pdev->device == 0x6741))
-        return;
-
-The code is wrong though in that it tries to recognize gmux by way of the
-machine's PCI ID. The MacBookPro8,1 was available with multiple different AMD
-GPUs and we'd need to hardcode all of their PCI IDs. Also, the MacBookPro 11,5
-has an AMD GPU and we'd need to add its PCI ID as well.
-
-A more sensible solution, as Pierre suggests, is to detect the presence of gmux
-and not register a backlight if gmux is found. So basically a quirk specific to
-all dual GPU MacBook Pros.
-
-This patch adds a handy function to detect the presence of gmux. Unfortunately
-noone has reviewed the series it belongs to so far:
-http://lists.freedesktop.org/archives/dri-devel/2016-January/098403.html
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14536486891.BBBa01aB.14984
-Date: Sun, 24 Jan 2016 15:18:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVAC] Trying to register nv_backlight after NV96 did it"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86539#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVAC] Trying to register nv_backlight after NV96 did it"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86539">bug 86539</a>
-              from <span class="vcard"><a class="email" href="mailto:lukas&#64;wunner.de" title="Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <span class="fn">Lukas Wunner</span></a>
-</span></b>
-        <pre>To add to this discussion, radeon has a quirk for the MacBookPro8,1 wherein a
-backlight is *not* registered since this machine has a gmux built in. See
-radeon_atom_backlight_init  in atombios_encoders.c:
-
-<a href="http://cgit.freedesktop.org/~airlied/linux/tree/drivers/gpu/drm/radeon/atombios_encoders.c?h=drm-next#n189">http://cgit.freedesktop.org/~airlied/linux/tree/drivers/gpu/drm/radeon/atombios_encoders.c?h=drm-next#n189</a>
-
-    /* Mac laptops with multiple GPUs use the gmux driver for backlight
-     * so don't register a backlight device
-     */
-    if ((rdev-&gt;pdev-&gt;subsystem_vendor == PCI_VENDOR_ID_APPLE) &amp;&amp;
-        (rdev-&gt;pdev-&gt;device == 0x6741))
-        return;
-
-The code is wrong though in that it tries to recognize gmux by way of the
-machine's PCI ID. The MacBookPro8,1 was available with multiple different AMD
-GPUs and we'd need to hardcode all of their PCI IDs. Also, the MacBookPro 11,5
-has an AMD GPU and we'd need to add its PCI ID as well.
-
-A more sensible solution, as Pierre suggests, is to detect the presence of gmux
-and not register a backlight if gmux is found. So basically a quirk specific to
-all dual GPU MacBook Pros.
-
-This patch adds a handy function to detect the presence of gmux. Unfortunately
-noone has reviewed the series it belongs to so far:
-<a href="http://lists.freedesktop.org/archives/dri-devel/2016-January/098403.html">http://lists.freedesktop.org/archives/dri-devel/2016-January/098403.html</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14536486891.BBBa01aB.14984--
-
---===============0576179998==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0576179998==--
+T24gVGh1LCBKYW4gMjEsIDIwMTYgYXQgODo0MSBQTSwgRW1pbCBWZWxpa292IDxlbWlsLmwudmVs
+aWtvdkBnbWFpbC5jb20+IHdyb3RlOgo+IEhpIEFsZXhhbmRyZSwKPgo+IE9uIDE4IEphbnVhcnkg
+MjAxNiBhdCAwNjowNywgQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+IHdy
+b3RlOgo+PiBBZGQgdHdvIGZ1bmN0aW9ucyBudmttX2Zpcm13YXJlX2dldCgpIGFuZCBudmttX2Zp
+cm13YXJlX3B1dCgpIHRvIGxvYWQgYQo+PiBmaXJtd2FyZSBmaWxlIGFuZCBmcmVlIGl0cyByZXNv
+dXJjZXMsIHJlc3BlY3RpdmVseS4gU2luY2UgZmlybXdhcmUgZmlsZXMKPj4gYXJlIGJlY29taW5n
+IGEgbmVjZXNzaXR5IGZvciBuZXcgR1BVcywgYW5kIHRoZWlyIGxvY2F0aW9uIGhhcyBiZWVuCj4+
+IHN0YW5kYXJkaXplZCB0byBudmlkaWEvY2hpcC8sIHRoaXMgd2lsbCBwcmV2ZW50IGR1cGxpY2F0
+ZSBhbmQKPj4gZXJyb3ItcHJvbmUgbmFtZS1nZW5lcmF0aW9uIGNvZGUuCj4+Cj4gU3RyaWN0bHkg
+c3BlYWtpbmcgdGhpcyB3aWxsIGJyZWFrIHZpZGVvIGRlY29kaW5nIChhbmQgbWF5YmUgb3RoZXJz
+KQo+IGFsdGhvdWdoIEknbSBub3Qgc3VyZSBob3cgbXVjaCBvbmUgY291bGQgY2FyZS4gVGhlbiBh
+Z2FpbiBwaW5naW5nCj4gcGVvcGxlIHRvIHVwZGF0ZSB0aGUgc2NyaXB0cyBbMV0gd2lsbCBiZSBn
+b29kIDopCj4KPiBbMV0gaHR0cDovL25vdXZlYXUuZnJlZWRlc2t0b3Aub3JnL3dpa2kvVmlkZW9B
+Y2NlbGVyYXRpb24vI2Zpcm13YXJlCgpZZWFoLCB0aGVzZSBmdW5jdGlvbnMgYXJlIGFjdHVhbGx5
+IGRlc2lnbmVkIHRvIGxvYWQgTlZJRElBLXByb3ZpZGVkCmZpcm13YXJlLiBJIHRob3VnaHQgaXQg
+d291bGQgYmUgbmljZSB0byBoYXZlIGEgc2luZ2xlIGZ1bmN0aW9uIGZvciBhbGwKb2YgTm91dmVh
+dSdzIGZpcm13YXJlIG5lZWRzIHRob3VnaC4KCj4KPj4gU2lnbmVkLW9mZi1ieTogQWxleGFuZHJl
+IENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Cj4+IC0tLQo+PiAgZHJtL25vdXZlYXUvaW5j
+bHVkZS9udmttL2NvcmUvZmlybXdhcmUuaCB8IDExICsrKysrKwo+PiAgZHJtL25vdXZlYXUvbnZr
+bS9jb3JlL0tidWlsZCAgICAgICAgICAgICB8ICAxICsKPj4gIGRybS9ub3V2ZWF1L252a20vY29y
+ZS9maXJtd2FyZS5jICAgICAgICAgfCA2NCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+Kwo+PiAgMyBmaWxlcyBjaGFuZ2VkLCA3NiBpbnNlcnRpb25zKCspCj4+ICBjcmVhdGUgbW9kZSAx
+MDA2NDQgZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUvZmlybXdhcmUuaAo+PiAgY3JlYXRl
+IG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20vY29yZS9maXJtd2FyZS5jCj4+Cj4+IGRpZmYg
+LS1naXQgYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vY29yZS9maXJtd2FyZS5oIGIvZHJtL25v
+dXZlYXUvaW5jbHVkZS9udmttL2NvcmUvZmlybXdhcmUuaAo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0
+NAo+PiBpbmRleCAwMDAwMDAwMDAwMDAuLmE2MjZjZTM3OGYwNAo+PiAtLS0gL2Rldi9udWxsCj4+
+ICsrKyBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2Zpcm13YXJlLmgKPj4gQEAgLTAs
+MCArMSwxMSBAQAo+PiArI2lmbmRlZiBfX05WS01fRklSTVdBUkVfSF9fCj4+ICsjZGVmaW5lIF9f
+TlZLTV9GSVJNV0FSRV9IX18KPj4gKwo+PiArI2luY2x1ZGUgPGNvcmUvZGV2aWNlLmg+Cj4+ICsK
+Pj4gK2ludCBudmttX2Zpcm13YXJlX2dldChzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwgY29u
+c3QgY2hhciAqZnduYW1lLAo+PiArICAgICAgICAgICAgICAgICAgICAgY29uc3Qgc3RydWN0IGZp
+cm13YXJlICoqZncpOwo+PiArCj4+ICt2b2lkIG52a21fZmlybXdhcmVfcHV0KGNvbnN0IHN0cnVj
+dCBmaXJtd2FyZSAqZncpOwo+PiArCj4+ICsjZW5kaWYKPj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2
+ZWF1L252a20vY29yZS9LYnVpbGQgYi9kcm0vbm91dmVhdS9udmttL2NvcmUvS2J1aWxkCj4+IGlu
+ZGV4IDdmNjY5NjNmMzA1Yy4uODZhMzFhOGUxZTUxIDEwMDY0NAo+PiAtLS0gYS9kcm0vbm91dmVh
+dS9udmttL2NvcmUvS2J1aWxkCj4+ICsrKyBiL2RybS9ub3V2ZWF1L252a20vY29yZS9LYnVpbGQK
+Pj4gQEAgLTIsNiArMiw3IEBAIG52a20teSA6PSBudmttL2NvcmUvY2xpZW50Lm8KPj4gIG52a20t
+eSArPSBudmttL2NvcmUvZW5naW5lLm8KPj4gIG52a20teSArPSBudmttL2NvcmUvZW51bS5vCj4+
+ICBudmttLXkgKz0gbnZrbS9jb3JlL2V2ZW50Lm8KPj4gK252a20teSArPSBudmttL2NvcmUvZmly
+bXdhcmUubwo+PiAgbnZrbS15ICs9IG52a20vY29yZS9ncHVvYmoubwo+PiAgbnZrbS15ICs9IG52
+a20vY29yZS9pb2N0bC5vCj4+ICBudmttLXkgKz0gbnZrbS9jb3JlL21lbW9yeS5vCj4+IGRpZmYg
+LS1naXQgYS9kcm0vbm91dmVhdS9udmttL2NvcmUvZmlybXdhcmUuYyBiL2RybS9ub3V2ZWF1L252
+a20vY29yZS9maXJtd2FyZS5jCj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4+IGluZGV4IDAwMDAw
+MDAwMDAwMC4uNGE0YjRhNWQ1NWE4Cj4+IC0tLSAvZGV2L251bGwKPj4gKysrIGIvZHJtL25vdXZl
+YXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMKPj4gQEAgLTAsMCArMSw2NCBAQAo+PiArLyoKPj4gKyAq
+IENvcHlyaWdodCAoYykgMjAxNiwgTlZJRElBIENPUlBPUkFUSU9OLiBBbGwgcmlnaHRzIHJlc2Vy
+dmVkLgo+PiArICoKPj4gKyAqIFBlcm1pc3Npb24gaXMgaGVyZWJ5IGdyYW50ZWQsIGZyZWUgb2Yg
+Y2hhcmdlLCB0byBhbnkgcGVyc29uIG9idGFpbmluZyBhCj4+ICsgKiBjb3B5IG9mIHRoaXMgc29m
+dHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAodGhlICJTb2Z0d2FyZSIp
+LAo+PiArICogdG8gZGVhbCBpbiB0aGUgU29mdHdhcmUgd2l0aG91dCByZXN0cmljdGlvbiwgaW5j
+bHVkaW5nIHdpdGhvdXQgbGltaXRhdGlvbgo+PiArICogdGhlIHJpZ2h0cyB0byB1c2UsIGNvcHks
+IG1vZGlmeSwgbWVyZ2UsIHB1Ymxpc2gsIGRpc3RyaWJ1dGUsIHN1YmxpY2Vuc2UsCj4+ICsgKiBh
+bmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBhbmQgdG8gcGVybWl0IHBlcnNvbnMg
+dG8gd2hvbSB0aGUKPj4gKyAqIFNvZnR3YXJlIGlzIGZ1cm5pc2hlZCB0byBkbyBzbywgc3ViamVj
+dCB0byB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnM6Cj4+ICsgKgo+PiArICogVGhlIGFib3ZlIGNv
+cHlyaWdodCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBub3RpY2Ugc2hhbGwgYmUgaW5jbHVk
+ZWQgaW4KPj4gKyAqIGFsbCBjb3BpZXMgb3Igc3Vic3RhbnRpYWwgcG9ydGlvbnMgb2YgdGhlIFNv
+ZnR3YXJlLgo+PiArICoKPj4gKyAqIFRIRSBTT0ZUV0FSRSBJUyBQUk9WSURFRCAiQVMgSVMiLCBX
+SVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBSRVNTIE9SCj4+ICsgKiBJTVBMSUVELCBJ
+TkNMVURJTkcgQlVUIE5PVCBMSU1JVEVEIFRPIFRIRSBXQVJSQU5USUVTIE9GIE1FUkNIQU5UQUJJ
+TElUWSwKPj4gKyAqIEZJVE5FU1MgRk9SIEEgUEFSVElDVUxBUiBQVVJQT1NFIEFORCBOT05JTkZS
+SU5HRU1FTlQuICBJTiBOTyBFVkVOVCBTSEFMTAo+PiArICogVEhFIEFVVEhPUlMgT1IgQ09QWVJJ
+R0hUIEhPTERFUlMgQkUgTElBQkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMgT1IgT1RIRVIKPj4g
+KyAqIExJQUJJTElUWSwgV0hFVEhFUiBJTiBBTiBBQ1RJT04gT0YgQ09OVFJBQ1QsIFRPUlQgT1Ig
+T1RIRVJXSVNFLCBBUklTSU5HCj4+ICsgKiBGUk9NLCBPVVQgT0YgT1IgSU4gQ09OTkVDVElPTiBX
+SVRIIFRIRSBTT0ZUV0FSRSBPUiBUSEUgVVNFIE9SIE9USEVSCj4+ICsgKiBERUFMSU5HUyBJTiBU
+SEUgU09GVFdBUkUuCj4+ICsgKi8KPj4gKwo+PiArI2luY2x1ZGUgPGNvcmUvZGV2aWNlLmg+Cj4+
+ICsKPj4gKyNpbmNsdWRlIDxsaW51eC9maXJtd2FyZS5oPgo+PiArCj4+ICsvKioKPj4gKyAqIG52
+a21fZmlybXdhcmVfZ2V0IC0gbG9hZCBmaXJtd2FyZSBmcm9tIHRoZSBvZmZpY2lhbCBudmlkaWEv
+Y2hpcC8gZGlyZWN0b3J5Cj4+ICsgKiBAZGV2aWNlICAgICBkZXZpY2UgdGhhdCB3aWxsIHVzZSB0
+aGF0IGZpcm13YXJlCj4+ICsgKiBAZnduYW1lICAgICBuYW1lIG9mIGZpcm13YXJlIGZpbGUgdG8g
+bG9hZAo+PiArICogQGZ3ICAgICAgICAgZmlybXdhcmUgc3RydWN0dXJlIHRvIGxvYWQgdG8KPj4g
+KyAqCj4+ICsgKiBVc2UgdGhpcyBmdW5jdGlvbiB0byBsb2FkIGZpcm13YXJlIGZpbGVzIGluIHRo
+ZSBmb3JtIG52aWRpYS9jaGlwL2Z3bmFtZS5iaW4uCj4+ICsgKiBGaXJtd2FyZSBmaWxlcyByZWxl
+YXNlZCBieSBOVklESUEgd2lsbCBhbHdheXMgZm9sbG93IHRoaXMgZm9ybWF0Lgo+PiArICovCj4+
+ICtpbnQKPj4gK252a21fZmlybXdhcmVfZ2V0KHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlLCBj
+b25zdCBjaGFyICpmd25hbWUsCj4+ICsgICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBmaXJt
+d2FyZSAqKmZ3KQo+PiArewo+PiArICAgICAgIGNoYXIgZls2NF07Cj4+ICsgICAgICAgY2hhciBj
+bmFtZVsxNl07Cj4+ICsgICAgICAgaW50IGk7Cj4+ICsKPj4gKyAgICAgICAvKiBDb252ZXJ0IGRl
+dmljZSBuYW1lIHRvIGxvd2VyY2FzZSAqLwo+PiArICAgICAgIHN0cm5jcHkoY25hbWUsIGRldmlj
+ZS0+Y2hpcC0+bmFtZSwgc2l6ZW9mKGNuYW1lKSk7Cj4+ICsgICAgICAgY25hbWVbc2l6ZW9mKGNu
+YW1lKSAtIDFdID0gJ1wwJzsKPj4gKyAgICAgICBpID0gc3RybGVuKGNuYW1lKTsKPj4gKyAgICAg
+ICB3aGlsZSAoaSkgewo+PiArICAgICAgICAgICAgICAgLS1pOwo+PiArICAgICAgICAgICAgICAg
+Y25hbWVbaV0gPSB0b2xvd2VyKGNuYW1lW2ldKTsKPj4gKyAgICAgICB9Cj4+ICsKPiBDb25zaWRl
+cmluZyB0aGVyZSdzIG9ubHkgb25lIHVzZXIgdGhhdCBtaWdodCBuZWVkIHRoaXMsIGlzIGl0IHdv
+cnRoCj4gYWRkaW5nIGl0IGhlcmUgb3IganVzdCBrZWVwaW5nIGl0IHdoZXJlIG5lZWRlZCA/CgpT
+byBmb3Igbm93IEdSIHVzZXMgaXQgYXMgR0syMEEgKGFuZCBob3BlZnVsbHkgc29vbiwgYWxsIEdN
+MjBYcykgaGF2ZQpmaXJtd2FyZSBwcm92aWRlZCBieSBOVklESUEuIEdSIGlzIHRoZSBvbmx5IHVz
+ZXIgY3VycmVudGx5LCBidXQgdGhlCnNlY3VyZS1ib290IGZlYXR1cmUgYWxzbyBtYWtlcyBoZWF2
+eSB1c2Ugb2YgdGhpcy4KCkRlcGVuZGluZyBvbiBob3cgbXVjaCBmaXJtd2FyZSB3ZSBjYW4gcmVs
+ZWFzZSwgd2UgbWF5IGFsc28gdXBkYXRlCm90aGVyIGZpcm13YXJlIGNvbnN1bWVycyB0byB1c2Ug
+dGhlc2UuIEFzIGZhciBhcyBJIHVuZGVyc3RhbmQsIHRoZXJlCmlzIHJlYWwgIm9mZmljaWFsIiBs
+b2NhdGlvbiBmb3IgZmlybXdhcmUgZmlsZXMgYXQgdGhlIG1vbWVudC4KX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
