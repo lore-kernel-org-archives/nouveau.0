@@ -1,15 +1,13 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] device: call nvkm_device_fini if
- nvkm_device_init fails
-Date: Tue, 26 Jan 2016 09:01:23 +0900
-Message-ID: <CAAVeFu+CpP8WZY39k7hpGMGC0dg+pHr37hPeR8TJ2em9pst++A@mail.gmail.com>
-References: <1453715064-14160-1-git-send-email-acourbot@nvidia.com>
- <CAKb7UvgrPC9=hJPyRMULYjwsrNU+6oopgfTkuT8c2pUNc1PRaQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 86539] [NVAC] Trying to register nv_backlight after
+	NV96 did it
+Date: Tue, 26 Jan 2016 11:14:27 +0000
+Message-ID: <bug-86539-8800-Hj47uKS7TC@http.bugs.freedesktop.org/>
+References: <bug-86539-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1359342898=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgrPC9=hJPyRMULYjwsrNU+6oopgfTkuT8c2pUNc1PRaQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-86539-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,38 +17,187 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKYW4gMjYsIDIwMTYgYXQgMTI6MTcgQU0sIElsaWEgTWlya2luIDxpbWlya2luQGFs
-dW0ubWl0LmVkdT4gd3JvdGU6Cj4gU2hvdWxkIHRoZXNlIGdldCBiYWNrLXBvcnRlZCB0byBhbnkg
-cmVsZWFzZWQga2VybmVscz8KClByb2JhYmx5IG9rIG5vdCB0bywgSSBmb3VuZCB0aGVzZSB3aGls
-ZSB0ZXN0aW5nIHRoZSBlcnJvciBwYXRocyBmb3Igc2VjdXJlIGJvb3QuCgo+Cj4gT24gTW9uLCBK
-YW4gMjUsIDIwMTYgYXQgNDo0NCBBTSwgQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRp
-YS5jb20+IHdyb3RlOgo+PiBudmttX2RldmljZV9maW5pIGlzIG5ldmVyIGNhbGxlZCBpZiBhIGZh
-aWx1cmUgb2NjdXJzIGluCj4+IG52a21fZGV2aWNlX2luaXQsIGV2ZW4gd2hlbiB1bmxvYWRpbmcg
-dGhlIG1vZHVsZS4gVGhpcyBjYW4gbGVhZCB0byBhCj4+IHJlc291cmNlcyBsZWFrIChvbmUgZXhh
-bXBsZSBpcyB0aGUgVGVncmEgaW50ZXJydXB0IHdoaWNoIHdvdWxkIG5ldmVyIGJlCj4+IGZyZWVk
-IGluIHRoYXQgY2FzZSkuIEZpeCB0aGlzIGJ5IGNhbGxpbmcgbnZrbV9kZXZpY2VfZmluaSBpbgo+
-PiBudmttX2RldmljZV9pbml0J3MgZmFpbHVyZSBwYXRoLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBB
-bGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KPj4gLS0tCj4+ICBkcm0vbm91
-dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jIHwgMiArKwo+PiAgMSBmaWxlIGNoYW5nZWQs
-IDIgaW5zZXJ0aW9ucygrKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdp
-bmUvZGV2aWNlL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMK
-Pj4gaW5kZXggYjFiYTFjNzgyYTJiLi44ZWYwYWU4NTQwMzggMTAwNjQ0Cj4+IC0tLSBhL2RybS9u
-b3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMKPj4gKysrIGIvZHJtL25vdXZlYXUvbnZr
-bS9lbmdpbmUvZGV2aWNlL2Jhc2UuYwo+PiBAQCAtMjI2MSw2ICsyMjYxLDggQEAgZmFpbF9zdWJk
-ZXY6Cj4+ICAgICAgICAgfSB3aGlsZSAoLS1pID49IDApOwo+Pgo+PiAgZmFpbDoKPj4gKyAgICAg
-ICBudmttX2RldmljZV9maW5pKGRldmljZSwgZmFsc2UpOwo+PiArCj4+ICAgICAgICAgbnZkZXZf
-ZXJyb3IoZGV2aWNlLCAiaW5pdCBmYWlsZWQgd2l0aCAlZFxuIiwgcmV0KTsKPj4gICAgICAgICBy
-ZXR1cm4gcmV0Owo+PiAgfQo+PiAtLQo+PiAyLjcuMAo+Pgo+PiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+PiBO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cg==
+
+--===============1359342898==
+Content-Type: multipart/alternative; boundary="14538068671.9D69.31352";
+ charset="UTF-8"
+
+
+--14538068671.9D69.31352
+Date: Tue, 26 Jan 2016 11:14:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=86539
+
+--- Comment #7 from Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
+(In reply to Lukas Wunner from comment #6)
+> To add to this discussion, radeon has a quirk for the MacBookPro8,1 wherein
+> a backlight is *not* registered since this machine has a gmux built in. See
+> radeon_atom_backlight_init  in atombios_encoders.c:
+> 
+> http://cgit.freedesktop.org/~airlied/linux/tree/drivers/gpu/drm/radeon/
+> atombios_encoders.c?h=drm-next#n189
+> 
+> 	/* Mac laptops with multiple GPUs use the gmux driver for backlight
+> 	 * so don't register a backlight device
+> 	 */
+> 	if ((rdev->pdev->subsystem_vendor == PCI_VENDOR_ID_APPLE) &&
+> 	    (rdev->pdev->device == 0x6741))
+> 		return;
+> 
+> The code is wrong though in that it tries to recognize gmux by way of the
+> machine's PCI ID. The MacBookPro8,1 was available with multiple different
+> AMD GPUs and we'd need to hardcode all of their PCI IDs. Also, the
+> MacBookPro 11,5 has an AMD GPU and we'd need to add its PCI ID as well.
+> 
+> A more sensible solution, as Pierre suggests, is to detect the presence of
+> gmux and not register a backlight if gmux is found. So basically a quirk
+> specific to all dual GPU MacBook Pros.
+> 
+> This patch adds a handy function to detect the presence of gmux.
+> Unfortunately noone has reviewed the series it belongs to so far:
+> http://lists.freedesktop.org/archives/dri-devel/2016-January/098403.html
+
+Hi,
+
+I agree that having an apple_gmux_present() helper is present then the current
+code in the radeon driver, and we could use that in the nouveau driver too. But
+this really should not be necessary at all. Things should work fine with the
+radeon / nouveau driver registering their native / BACKLIGHT_RAW backlight
+interfaces in sysfs, userspace should prefer the apple_gmux sysfs entry over a
+raw type sysfs entry.
+
+This is how things work on regular x86 laptops too, which often have both an
+acpi_video backlight interface and a native one, so they have 2 backlight sysfs
+interfaces too.
+
+With that said I do agree that not registering a native driver at all in these
+cases is better. So I think your apple_gmux patch + matching patches in the
+nouveau / ati drivers are a good idea, but I do wonder if
+this is really necessary.
+
+Eitherway we should first solve the namespace clash when nouveau tries to
+register multiple backlights, that may happen in non apple weird setups too, so
+is something which we should fix anyways IMHO,
+and fixing that before not registering a native backlight when the apple_gmux
+is present allows us to actually test that fix :)
+
+Pierre, can you whip up a patch for the nouveau_bl name clash, and that test
+that on your affected machine ? Note I understand if you will delay this till
+after Fosdem :)
+
+Regards,
+
+Hans
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14538068671.9D69.31352
+Date: Tue, 26 Jan 2016 11:14:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVAC] Trying to register nv_backlight after NV96 did it"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86539#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVAC] Trying to register nv_backlight after NV96 did it"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86539">bug 86539</a>
+              from <span class="vcard"><a class="email" href="mailto:jwrdegoede&#64;fedoraproject.org" title="Hans de Goede &lt;jwrdegoede&#64;fedoraproject.org&gt;"> <span class="fn">Hans de Goede</span></a>
+</span></b>
+        <pre>(In reply to Lukas Wunner from <a href="show_bug.cgi?id=86539#c6">comment #6</a>)
+<span class="quote">&gt; To add to this discussion, radeon has a quirk for the MacBookPro8,1 wherein
+&gt; a backlight is *not* registered since this machine has a gmux built in. See
+&gt; radeon_atom_backlight_init  in atombios_encoders.c:
+&gt; 
+&gt; <a href="http://cgit.freedesktop.org/~airlied/linux/tree/drivers/gpu/drm/radeon/">http://cgit.freedesktop.org/~airlied/linux/tree/drivers/gpu/drm/radeon/</a>
+&gt; atombios_encoders.c?h=drm-next#n189
+&gt; 
+&gt; 	/* Mac laptops with multiple GPUs use the gmux driver for backlight
+&gt; 	 * so don't register a backlight device
+&gt; 	 */
+&gt; 	if ((rdev-&gt;pdev-&gt;subsystem_vendor == PCI_VENDOR_ID_APPLE) &amp;&amp;
+&gt; 	    (rdev-&gt;pdev-&gt;device == 0x6741))
+&gt; 		return;
+&gt; 
+&gt; The code is wrong though in that it tries to recognize gmux by way of the
+&gt; machine's PCI ID. The MacBookPro8,1 was available with multiple different
+&gt; AMD GPUs and we'd need to hardcode all of their PCI IDs. Also, the
+&gt; MacBookPro 11,5 has an AMD GPU and we'd need to add its PCI ID as well.
+&gt; 
+&gt; A more sensible solution, as Pierre suggests, is to detect the presence of
+&gt; gmux and not register a backlight if gmux is found. So basically a quirk
+&gt; specific to all dual GPU MacBook Pros.
+&gt; 
+&gt; This patch adds a handy function to detect the presence of gmux.
+&gt; Unfortunately noone has reviewed the series it belongs to so far:
+&gt; <a href="http://lists.freedesktop.org/archives/dri-devel/2016-January/098403.html">http://lists.freedesktop.org/archives/dri-devel/2016-January/098403.html</a></span >
+
+Hi,
+
+I agree that having an apple_gmux_present() helper is present then the current
+code in the radeon driver, and we could use that in the nouveau driver too. But
+this really should not be necessary at all. Things should work fine with the
+radeon / nouveau driver registering their native / BACKLIGHT_RAW backlight
+interfaces in sysfs, userspace should prefer the apple_gmux sysfs entry over a
+raw type sysfs entry.
+
+This is how things work on regular x86 laptops too, which often have both an
+acpi_video backlight interface and a native one, so they have 2 backlight sysfs
+interfaces too.
+
+With that said I do agree that not registering a native driver at all in these
+cases is better. So I think your apple_gmux patch + matching patches in the
+nouveau / ati drivers are a good idea, but I do wonder if
+this is really necessary.
+
+Eitherway we should first solve the namespace clash when nouveau tries to
+register multiple backlights, that may happen in non apple weird setups too, so
+is something which we should fix anyways IMHO,
+and fixing that before not registering a native backlight when the apple_gmux
+is present allows us to actually test that fix :)
+
+Pierre, can you whip up a patch for the nouveau_bl name clash, and that test
+that on your affected machine ? Note I understand if you will delay this till
+after Fosdem :)
+
+Regards,
+
+Hans</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14538068671.9D69.31352--
+
+--===============1359342898==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1359342898==--
