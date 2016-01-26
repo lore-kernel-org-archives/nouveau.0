@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93405] nouveau: Xorg crashes sooner or later in
-	3840x2160 mode
-Date: Tue, 26 Jan 2016 22:16:15 +0000
-Message-ID: <bug-93405-8800-sL9cpRIBjr@http.bugs.freedesktop.org/>
-References: <bug-93405-8800@http.bugs.freedesktop.org/>
+From: don fisher <hdf3-Wuw85uim5zDR7s880joybQ@public.gmane.org>
+Subject: Re: help with signal from monitor
+Date: Tue, 26 Jan 2016 15:19:22 -0700
+Message-ID: <56A7F0EA.2040104@comcast.net>
+References: <56A7E475.5080307@comcast.net>
+ <CAKb7UvjU+XcjaJaQQia44rHHNBOGK42iH0Fzzf4j5PJ8bX_5RQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0829473031=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvjU+XcjaJaQQia44rHHNBOGK42iH0Fzzf4j5PJ8bX_5RQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,133 +18,46 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0829473031==
-Content-Type: multipart/alternative; boundary="14538465751.5556C5.26507";
- charset="UTF-8"
-
-
---14538465751.5556C5.26507
-Date: Tue, 26 Jan 2016 22:16:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93405
-
---- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Elmar Stellnberger from comment #16)
-> let my HDMI output simply stay black. The support of the hdmimhz parameter
-> is an amazing feature that no proprietary driver will give; neat work!
-
-From the NVIDIA blob readme file:
-
-"""
-Option "ModeValidation" "string"
-
-"NoMaxPClkCheck": each mode has a pixel clock; this pixel clock is validated
-against the maximum pixel clock of the hardware (for a DFP, this is the maximum
-pixel clock of the TMDS encoder, for a CRT, this is the maximum pixel clock of
-the DAC). This argument disables the maximum pixel clock checking stage of the
-mode validation pipeline.
-
-"NoEdidMaxPClkCheck": a display device's EDID can specify the maximum pixel
-clock that the display device supports; a mode's pixel clock is validated
-against this pixel clock maximum. This argument disables this stage of the mode
-validation pipeline.
-
-"NoMaxSizeCheck": each NVIDIA GPU has a maximum resolution that it can drive;
-this argument disables this stage of the mode validation pipeline.
-"""
-
-And a whole bunch of others.
-
-(In reply to Elmar Stellnberger from comment #17)
-> By the way does anyone know whether there is a similar feature for the
-> radeon driver? I have an XFX Radeon R5 230 card which was advertised as 4K
-> ready. However I did never get any of the 4K modes to work.
-
-Wrong place to ask.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14538465751.5556C5.26507
-Date: Tue, 26 Jan 2016 22:16:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c18">Comment # 18</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Elmar Stellnberger from <a href="show_bug.cgi?id=93405#c16">comment #16</a>)
-<span class="quote">&gt; let my HDMI output simply stay black. The support of the hdmimhz parameter
-&gt; is an amazing feature that no proprietary driver will give; neat work!</span >
-
-From the NVIDIA blob readme file:
-
-&quot;&quot;&quot;
-Option &quot;ModeValidation&quot; &quot;string&quot;
-
-&quot;NoMaxPClkCheck&quot;: each mode has a pixel clock; this pixel clock is validated
-against the maximum pixel clock of the hardware (for a DFP, this is the maximum
-pixel clock of the TMDS encoder, for a CRT, this is the maximum pixel clock of
-the DAC). This argument disables the maximum pixel clock checking stage of the
-mode validation pipeline.
-
-&quot;NoEdidMaxPClkCheck&quot;: a display device's EDID can specify the maximum pixel
-clock that the display device supports; a mode's pixel clock is validated
-against this pixel clock maximum. This argument disables this stage of the mode
-validation pipeline.
-
-&quot;NoMaxSizeCheck&quot;: each NVIDIA GPU has a maximum resolution that it can drive;
-this argument disables this stage of the mode validation pipeline.
-&quot;&quot;&quot;
-
-And a whole bunch of others.
-
-(In reply to Elmar Stellnberger from <a href="show_bug.cgi?id=93405#c17">comment #17</a>)
-<span class="quote">&gt; By the way does anyone know whether there is a similar feature for the
-&gt; radeon driver? I have an XFX Radeon R5 230 card which was advertised as 4K
-&gt; ready. However I did never get any of the 4K modes to work.</span >
-
-Wrong place to ask.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14538465751.5556C5.26507--
-
---===============0829473031==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0829473031==--
+T24gMDEvMjYvMjAxNiAwMjo0MCBQTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gV2hhdCB5b3UncmUg
+YXNraW5nIGZvciBpc24ndCBwYXJ0aWN1bGFybHkgY2xlYXIuLi4gd2hlbiBEUE1TIGlzCj4gZW5h
+YmxlZCwgaW5zdGVhZCBvZiBzdXNwZW5kaW5nIHRoZSBtb25pdG9yIHNheXMgIm5vIHNpZ25hbCIg
+YXMgaWYgaXQKPiBoYWQgYmVlbiB1bnBsdWdnZWQ/IE9yIGlzIHNvbWV0aGluZyBlbHNlIGdvaW5n
+IG9uPyBUaGVuIHlvdSB0YWxrIGFib3V0Cj4gcGFzc2luZyBzaWduYWxzICJ1cCB0aGUgY2hhaW4i
+IGFuZCAiZmlsdGVyaW5nIj8gV2hhdCBzaWduYWxzPyBXaGF0Cj4gY2hhaW4/Cj4KPiBDYW4geW91
+IHJlcGhyYXNlIHlvdXIgcXVlc3Rpb24/Cj4KPiAgICAtaWxpYQo+Cj4KPiBPbiBUdWUsIEphbiAy
+NiwgMjAxNiBhdCA0OjI2IFBNLCBkb24gZmlzaGVyIDxoZGYzQGNvbWNhc3QubmV0PiB3cm90ZToK
+Pj4gSSBoYXZlIGFuIEFsaWVud2FyZSBsYXB0b3AgdGhhdCBoYXMgTnZpZGlhIEdUWCA4ODBNIGhh
+cmR3YXJlIGRyaXZlbiBieSB0aGlzCj4+IGRyaXZlci4gSSByZWNlbnRseSBwdXJjaGFzZWQgYW4g
+QVNVU19WTjI4OUggbW9uaXRvci4gV2hlbiBteSBzeXN0ZW0gZ2l2ZXMgYQo+PiBibGFua2luZyBj
+b21tYW5kLCB0aGUgbW9uaXRvciByZXR1cm5zIHNvbWUgc29ydCBvZiBsb3N0IHNpZ25hbCBtZXNz
+YWdlIHdoaWNoCj4+IGNhdXNlcyB0aGUgbW9uaXRvciB0byB1bmJsYW5rIGFuZCB0aGUgdGltZSBv
+dXQgSSByZXF1ZXN0ZWQgaXMgY2FuY2VsbGVkLgo+PiBUaGlzIGlzIHByb2JhYmx5IG1vcmUgb2Yg
+YW4gSERNSSBxdWVzdGlvbiB0aGFuIHNwZWNpZmljIHRvIHRoaXMgaGFyZHdhcmUsCj4+IGJ1dCBJ
+IHdhcyB3b25kZXJpbmcgaWYgdGhlcmUgd2FzIGFueSB3YXkgdG8gY29udHJvbCB3aGF0IHNpZ25h
+bHMgZ2VuZXJhdGVkCj4+IGJ1eSB0aGUgbW9uaXRvciBhcmUgcGFzc2VkIHVwIHRoZSBjaGFpbiwg
+YW5kIGlmIHRoZXkgY2FuIGJlIGZpbHRlcmVkLiBJIGFsc28KPj4gaGF2ZSBhbiBBQ0VSIG1vbml0
+b3IgdGhhdCBkb2VzIG5vdCBkbyB0aGlzLgo+Pgo+PiBTb3JyeSBpZiB0aGlzIGlzIG9mZiB0b3Bp
+YyBmb3IgdGhpcyBsaXN0LiBBbnkgcG9pbnRlciB3b3VsZCBiZSBhcHByZWNpYXRlZC4KPj4KPj4g
+RG9uCj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+
+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+
+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4K
+SSBhbSBydW5uaW5nIHVuZGVyIG9wZW5TdXNlLCBidXQgdHJ5aW5nIHRvIGF2b2lkIG1vc3Qgb2Yg
+dGhlIEdVSXMuIEkgCmNhbm5vdCBnZXQgeHNldCB0byBibGFuayB0aGUgc2NyZWVuLCBzbyBJIGFk
+ZGVkIGNvbnNvbGVibGFuaz02MDAgaW4gdGhlIApncnViIGZpbGUgdG8gYmUgYWRkZWQgdG8gdGhl
+IGtlcm5lbCBjb21tYW5kIGxpbmUuIFRoZSBzeXN0ZW0gYmxhbmtzIAphZnRlciAxMCBtaW51dGVz
+LCBhcyBleHBlY3RlZC4gVGhlIG1vbml0b3IgdGhlbiBkaXNwbGF5cyAiSERNSS9NSEwtMSBOTyAK
+U0lHTkFMIiwgdGhlIG1vbml0b3IgYmxhbmtzLCBwcmludHMgYW5vdGhlciBtZXNzYWdlIHRoYXQg
+c2F5cyBub3RoaW5nIAphbmQgdGhlIG1vbml0b3IgaXMgdW5ibGFua2VkLiBJIGJlbGlldmUgdGhh
+dCB0aGUgbW9uaXRvciBpcyBzZW5kaW5nIHNvbWUgCnNvcnQgb2YgIk5PIFNJR05BTCIgbWVzc2Fn
+ZSBiYWNrIHRvIHRoZSBzeXN0ZW0sIHdoaWNoIGludGVycHJldHMgaXQgdG8gCm1lYW4gc2VuZCB0
+aGUgdmlkZW8gc2lnbmFsIGFnYWluLiBJIGFzc3VtZWQgdGhhdCB0aGVyZSB3YXMgYSBtZXNzYWdl
+IApzZW50IGJ5IHRoZSBtb25pdG9yLCBpbnRlcnByZXRlZCBieSB0aGUgZHJpdmVyLCBhbmQgc29t
+ZSBzaWduYWwgd2FzIHNlbnQgCnRvIHRoZSBPUyB0byB1bmJsYW5rIHRoZSBtb25pdG9yLiBJIGtu
+b3cgbm8gbW9yZSB0aGFuIHRoaXMsIGV4Y2VwdCB0aGF0IAphbm90aGVyIHVzZXIgb24gdGhlIG9w
+ZW5TdXNlIGxpc3RzIHBvc3RlZCBhIHNpbWlsYXIgY29tcGxhaW50IHJlbGF0aW5nIAp0byBhbiBB
+U1VTIG1vbml0b3IuCgpEb24KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
