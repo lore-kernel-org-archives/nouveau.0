@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92274] nouveau black screen and errors with two
- monitors attached
-Date: Mon, 25 Jan 2016 21:51:44 +0000
-Message-ID: <bug-92274-8800-mY43TGgspI@http.bugs.freedesktop.org/>
-References: <bug-92274-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] device: call nvkm_device_fini if
+ nvkm_device_init fails
+Date: Tue, 26 Jan 2016 09:01:23 +0900
+Message-ID: <CAAVeFu+CpP8WZY39k7hpGMGC0dg+pHr37hPeR8TJ2em9pst++A@mail.gmail.com>
+References: <1453715064-14160-1-git-send-email-acourbot@nvidia.com>
+ <CAKb7UvgrPC9=hJPyRMULYjwsrNU+6oopgfTkuT8c2pUNc1PRaQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0375704447=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvgrPC9=hJPyRMULYjwsrNU+6oopgfTkuT8c2pUNc1PRaQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,112 +19,38 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0375704447==
-Content-Type: multipart/alternative; boundary="14537587040.308e9FeC9.4256";
- charset="UTF-8"
-
-
---14537587040.308e9FeC9.4256
-Date: Mon, 25 Jan 2016 21:51:44 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92274
-
-Joseph Thommes <joseph-thommes-Mmb7MZpHnFY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #121229|0                           |1
-        is obsolete|                            |
-
---- Comment #22 from Joseph Thommes <joseph-thommes-Mmb7MZpHnFY@public.gmane.org> ---
-Created attachment 121284
-  --> https://bugs.freedesktop.org/attachment.cgi?id=121284&action=edit
-dmesg of the 4.4 kernel from the gentoo sys-kernel/git-sources
-
-I upgraded to the 4.4 release of the kernel today, but still the same error
-happens. I think the syntax of the output was slightly changed, but all in all
-it's still the same thing.
-If you need any other information, tell me.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14537587040.308e9FeC9.4256
-Date: Mon, 25 Jan 2016 21:51:44 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:joseph-thommes&#64;gmx.de" title="Joseph Thommes &lt;joseph-thommes&#64;gmx.de&gt;"> <span class="fn">Joseph Thommes</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #121229 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c22">Comment # 22</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
-              from <span class="vcard"><a class="email" href="mailto:joseph-thommes&#64;gmx.de" title="Joseph Thommes &lt;joseph-thommes&#64;gmx.de&gt;"> <span class="fn">Joseph Thommes</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=121284" name="attach_121284" title="dmesg of the 4.4 kernel from the gentoo sys-kernel/git-sources">attachment 121284</a> <a href="attachment.cgi?id=121284&amp;action=edit" title="dmesg of the 4.4 kernel from the gentoo sys-kernel/git-sources">[details]</a></span>
-dmesg of the 4.4 kernel from the gentoo sys-kernel/git-sources
-
-I upgraded to the 4.4 release of the kernel today, but still the same error
-happens. I think the syntax of the output was slightly changed, but all in all
-it's still the same thing.
-If you need any other information, tell me.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14537587040.308e9FeC9.4256--
-
---===============0375704447==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0375704447==--
+T24gVHVlLCBKYW4gMjYsIDIwMTYgYXQgMTI6MTcgQU0sIElsaWEgTWlya2luIDxpbWlya2luQGFs
+dW0ubWl0LmVkdT4gd3JvdGU6Cj4gU2hvdWxkIHRoZXNlIGdldCBiYWNrLXBvcnRlZCB0byBhbnkg
+cmVsZWFzZWQga2VybmVscz8KClByb2JhYmx5IG9rIG5vdCB0bywgSSBmb3VuZCB0aGVzZSB3aGls
+ZSB0ZXN0aW5nIHRoZSBlcnJvciBwYXRocyBmb3Igc2VjdXJlIGJvb3QuCgo+Cj4gT24gTW9uLCBK
+YW4gMjUsIDIwMTYgYXQgNDo0NCBBTSwgQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRp
+YS5jb20+IHdyb3RlOgo+PiBudmttX2RldmljZV9maW5pIGlzIG5ldmVyIGNhbGxlZCBpZiBhIGZh
+aWx1cmUgb2NjdXJzIGluCj4+IG52a21fZGV2aWNlX2luaXQsIGV2ZW4gd2hlbiB1bmxvYWRpbmcg
+dGhlIG1vZHVsZS4gVGhpcyBjYW4gbGVhZCB0byBhCj4+IHJlc291cmNlcyBsZWFrIChvbmUgZXhh
+bXBsZSBpcyB0aGUgVGVncmEgaW50ZXJydXB0IHdoaWNoIHdvdWxkIG5ldmVyIGJlCj4+IGZyZWVk
+IGluIHRoYXQgY2FzZSkuIEZpeCB0aGlzIGJ5IGNhbGxpbmcgbnZrbV9kZXZpY2VfZmluaSBpbgo+
+PiBudmttX2RldmljZV9pbml0J3MgZmFpbHVyZSBwYXRoLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBB
+bGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KPj4gLS0tCj4+ICBkcm0vbm91
+dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jIHwgMiArKwo+PiAgMSBmaWxlIGNoYW5nZWQs
+IDIgaW5zZXJ0aW9ucygrKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdp
+bmUvZGV2aWNlL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMK
+Pj4gaW5kZXggYjFiYTFjNzgyYTJiLi44ZWYwYWU4NTQwMzggMTAwNjQ0Cj4+IC0tLSBhL2RybS9u
+b3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMKPj4gKysrIGIvZHJtL25vdXZlYXUvbnZr
+bS9lbmdpbmUvZGV2aWNlL2Jhc2UuYwo+PiBAQCAtMjI2MSw2ICsyMjYxLDggQEAgZmFpbF9zdWJk
+ZXY6Cj4+ICAgICAgICAgfSB3aGlsZSAoLS1pID49IDApOwo+Pgo+PiAgZmFpbDoKPj4gKyAgICAg
+ICBudmttX2RldmljZV9maW5pKGRldmljZSwgZmFsc2UpOwo+PiArCj4+ICAgICAgICAgbnZkZXZf
+ZXJyb3IoZGV2aWNlLCAiaW5pdCBmYWlsZWQgd2l0aCAlZFxuIiwgcmV0KTsKPj4gICAgICAgICBy
+ZXR1cm4gcmV0Owo+PiAgfQo+PiAtLQo+PiAyLjcuMAo+Pgo+PiBfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+PiBO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Cg==
