@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86539] [NVAC] Trying to register nv_backlight after
-	NV96 did it
-Date: Tue, 26 Jan 2016 20:33:20 +0000
-Message-ID: <bug-86539-8800-6iDNGr0xK8@http.bugs.freedesktop.org/>
-References: <bug-86539-8800@http.bugs.freedesktop.org/>
+From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Subject: Re: [PATCH] device/tegra: fix uninitialized IRQ number
+Date: Tue, 26 Jan 2016 21:44:06 +0100
+Message-ID: <1453841046.2816.9.camel@lynxeye.de>
+References: <1453715064-14160-1-git-send-email-acourbot@nvidia.com>
+ <1453715064-14160-2-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1103209233=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86539-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1453715064-14160-2-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,110 +18,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1103209233==
-Content-Type: multipart/alternative; boundary="14538404000.cEA9F2C8.8519";
- charset="UTF-8"
-
-
---14538404000.cEA9F2C8.8519
-Date: Tue, 26 Jan 2016 20:33:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86539
-
-Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org
-
---- Comment #9 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
-Hi Pierre,
-
-> The apple_gmux detection could fail on those laptops, if ever it gets
-> registered after Nouveau.
-
-No worries, apple_gmux_present() checks for presence of gmux' ACPI device, so
-it works even if its driver isn't loaded.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14538404000.cEA9F2C8.8519
-Date: Tue, 26 Jan 2016 20:33:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:lukas&#64;wunner.de" title="Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <span class="fn">Lukas Wunner</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVAC] Trying to register nv_backlight after NV96 did it"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86539">bug 86539</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>lukas&#64;wunner.de
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVAC] Trying to register nv_backlight after NV96 did it"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86539#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVAC] Trying to register nv_backlight after NV96 did it"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86539">bug 86539</a>
-              from <span class="vcard"><a class="email" href="mailto:lukas&#64;wunner.de" title="Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <span class="fn">Lukas Wunner</span></a>
-</span></b>
-        <pre>Hi Pierre,
-
-<span class="quote">&gt; The apple_gmux detection could fail on those laptops, if ever it gets
-&gt; registered after Nouveau.</span >
-
-No worries, apple_gmux_present() checks for presence of gmux' ACPI device, so
-it works even if its driver isn't loaded.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14538404000.cEA9F2C8.8519--
-
---===============1103209233==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1103209233==--
+QW0gTW9udGFnLCBkZW4gMjUuMDEuMjAxNiwgMTg6NDQgKzA5MDAgc2NocmllYiBBbGV4YW5kcmUg
+Q291cmJvdDoKPiBudmttX2RldmljZV90ZWdyYV9uZXcgaW5pdGlhbGl6ZXMgdGhlIGlycSBtZW1i
+ZXIgb2YgdGhlIFRlZ3JhIGRldmljZQo+IHRvIC0xIGluIG9yZGVyIHRvIHNpZ25hbCB0aGF0IGl0
+IGlzIHVuaW5pdGlhbGl6ZWQuIEhvd2V2ZXIsCj4gbnZrbV9kZXZpY2VfdGVncmFfZmluaSB0ZXN0
+cyBpdCBhZ2FpbnN0IDAgdG8gY2hlY2sgd2hldGhlciBhbiBJUlEgaGFzCj4gYmVlbiBhbGxvY2F0
+ZWQgb3Igbm90LiBUaGlzIGxlYWRzIHRvIGZyZWVfaXJxIGJlaW5nIGNhbGxlZCBvbiAtMQo+IGR1
+cmluZwo+IGRldmljZSBpbml0aWFsaXphdGlvbi4KPiAKVGhlIGNvbnZlbnRpb24gaW4gb3RoZXIg
+cGFydHMgb2YgdGhlIExpbnV4IGtlcm5lbCBpcyB0aGF0IElSUSBudW1iZXIgMAptZWFucyB1bmFs
+bG9jYXRlZC9pbnZhbGlkIElSUS4gU28gSSB0aGluayBpdCBpcyB0aGUgaW5pdGlhbGl6YXRpb24g
+dG8KLTEgdGhhdCBzaG91bGQgYmUgZml4ZWQgaW5zdGVhZC4KCj4gU2lnbmVkLW9mZi1ieTogQWxl
+eGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Cj4gLS0tCj4gwqBkcm0vbm91dmVh
+dS9udmttL2VuZ2luZS9kZXZpY2UvdGVncmEuYyB8IDQgKystLQo+IMKgMSBmaWxlIGNoYW5nZWQs
+IDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJtL25v
+dXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3RlZ3JhLmMKPiBiL2RybS9ub3V2ZWF1L252a20vZW5n
+aW5lL2RldmljZS90ZWdyYS5jCj4gaW5kZXggN2Y4YTQyNzIxZWIyLi4wYTIyNDM5ZmQ5YWUgMTAw
+NjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3RlZ3JhLmMKPiArKysg
+Yi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvdGVncmEuYwo+IEBAIC0xOTUsOSArMTk1
+LDkgQEAgc3RhdGljIHZvaWQKPiDCoG52a21fZGV2aWNlX3RlZ3JhX2Zpbmkoc3RydWN0IG52a21f
+ZGV2aWNlICpkZXZpY2UsIGJvb2wgc3VzcGVuZCkKPiDCoHsKPiDCoAlzdHJ1Y3QgbnZrbV9kZXZp
+Y2VfdGVncmEgKnRkZXYgPSBudmttX2RldmljZV90ZWdyYShkZXZpY2UpOwo+IC0JaWYgKHRkZXYt
+PmlycSkgewo+ICsJaWYgKHRkZXYtPmlycSAhPSAtMSkgewo+IMKgCQlmcmVlX2lycSh0ZGV2LT5p
+cnEsIHRkZXYpOwo+IC0JCXRkZXYtPmlycSA9IDA7Cj4gKwkJdGRldi0+aXJxID0gLTE7Cj4gwqAJ
+fTsKPiDCoH0KPiDCoApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
