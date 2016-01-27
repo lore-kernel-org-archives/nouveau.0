@@ -1,99 +1,54 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54700] Distorted graphics (double cursor) with
- GeForce 4200Go (NV28M)
-Date: Wed, 27 Jan 2016 07:24:46 +0000
-Message-ID: <bug-54700-8800-VYEvHbFkOw@http.bugs.freedesktop.org/>
-References: <bug-54700-8800@http.bugs.freedesktop.org/>
+From: Luis Henriques <luis.henriques@canonical.com>
+Subject: Re: Recommendation for cherry-pick between 3.12 and 4.2: 0a363e85cdaf
+Date: Wed, 27 Jan 2016 14:24:09 +0000
+Message-ID: <20160127142409.GA1872@charon.olymp>
+References: <CAKb7UvhmjD5HfNRDwR8phUhFwYhGS0QPMMucnNc+YWZUb5M-dg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1853082147=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Return-path: <stable-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UvhmjD5HfNRDwR8phUhFwYhGS0QPMMucnNc+YWZUb5M-dg@mail.gmail.com>
+Sender: stable-owner@vger.kernel.org
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: stable <stable@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
+On Sun, Jan 17, 2016 at 02:28:13PM -0500, Ilia Mirkin wrote:
+> Hello,
+>=20
+> I'd like to recommend backporting this commit:
+>=20
+> commit 0a363e85cdafbceeee6a49b91c604d0d4d070dc7
+> Author: Hans de Goede <hdegoede@redhat.com>
+> Date:   Thu Jul 23 17:20:12 2015 +0200
+>=20
+>     drm/nouveau/nv46: Change mc subdev oclass from nv44 to nv4c
+>=20
+> This disables MSI by default on G72 (NV46) devices where it's
+> apparently a bit buggy. We have a later patch which turns MSI back on
+> with a quirk, but it isn't extremely necessary for these devices, and
+> disabling (or, rather, not enabling) MSI is a pretty safe thing to do=
+=2E
+>=20
+> The patch went upstream in 4.3-rc1, however I believe that there are
+> still a number of kernels between 3.12 (where MSI was first enabled b=
+y
+> default - commit a27e56996) and 4.2 (inclusive) which are still being
+> maintained. To those maintainers, please consider including this in
+> your trees.
+>=20
 
---===============1853082147==
-Content-Type: multipart/alternative; boundary="14538794851.cfbc0.24662";
- charset="UTF-8"
+Thank you Ilia, I'm queuing it for the 3.16 kernel as well.
 
+Cheers,
+--
+Lu=EDs
 
---14538794851.cfbc0.24662
-Date: Wed, 27 Jan 2016 07:24:45 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=54700
-
---- Comment #79 from AndrewK <kurn-z1KUqvL5UUQ@public.gmane.org> ---
-(In reply to Emil Velikov from comment #77)
-> agpmode and modeset are not even remotely related I'm afraid. With 4.3
-> onward one should be using nouveau.config="NvAGP=0" as documented [1]
-> 
-> [1] http://nouveau.freedesktop.org/wiki/KernelModuleParameters/#config
-
-Yes.  The syntax given seems to do the trick.  Thanks much.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14538794851.cfbc0.24662
-Date: Wed, 27 Jan 2016 07:24:45 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c79">Comment # 79</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:kurn&#64;sfu.ca" title="AndrewK &lt;kurn&#64;sfu.ca&gt;"> <span class="fn">AndrewK</span></a>
-</span></b>
-        <pre>(In reply to Emil Velikov from <a href="show_bug.cgi?id=54700#c77">comment #77</a>)
-<span class="quote">&gt; agpmode and modeset are not even remotely related I'm afraid. With 4.3
-&gt; onward one should be using nouveau.config=&quot;NvAGP=0&quot; as documented [1]
-&gt; 
-&gt; [1] <a href="http://nouveau.freedesktop.org/wiki/KernelModuleParameters/#config">http://nouveau.freedesktop.org/wiki/KernelModuleParameters/#config</a></span >
-
-Yes.  The syntax given seems to do the trick.  Thanks much.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14538794851.cfbc0.24662--
-
---===============1853082147==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1853082147==--
+> Cheers,
+>=20
+>   -ilia
+> --
+> To unsubscribe from this list: send the line "unsubscribe stable" in
+> the body of a message to majordomo@vger.kernel.org
+> More majordomo info at  http://vger.kernel.org/majordomo-info.html
