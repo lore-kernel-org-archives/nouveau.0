@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93887] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI
  monitor stays black after s2ram
-Date: Wed, 27 Jan 2016 16:03:51 +0000
-Message-ID: <bug-93887-8800-9oZd3DFY8u@http.bugs.freedesktop.org/>
+Date: Wed, 27 Jan 2016 16:04:25 +0000
+Message-ID: <bug-93887-8800-3bNU2XPfip@http.bugs.freedesktop.org/>
 References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0776668180=="
+Content-Type: multipart/mixed; boundary="===============0411499694=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0776668180==
-Content-Type: multipart/alternative; boundary="14539106310.Baf1599aB.18944";
+--===============0411499694==
+Content-Type: multipart/alternative; boundary="14539106641.6d12FF92.18902";
  charset="UTF-8"
 
 
---14539106310.Baf1599aB.18944
-Date: Wed, 27 Jan 2016 16:03:51 +0000
+--14539106641.6d12FF92.18902
+Date: Wed, 27 Jan 2016 16:04:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93887
 
---- Comment #1 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 121326
-  --> https://bugs.freedesktop.org/attachment.cgi?id=121326&action=edit
-clean journal under runlevel 1 with s2ram at last (without hdmimhz)
+Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
 
-Here comes the journal of when I had tested this issue some time ago.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 OS|All                         |Linux (All)
+           Hardware|Other                       |x86-64 (AMD64)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14539106310.Baf1599aB.18944
-Date: Wed, 27 Jan 2016 16:03:51 +0000
+--14539106641.6d12FF92.18902
+Date: Wed, 27 Jan 2016 16:04:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -52,24 +52,36 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
-              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=121326" name="attach_121326" title="clean journal under runlevel 1 with s2ram at last (without hdmimhz)">attachment 121326</a> <a href="attachment.cgi?id=121326&amp;action=edit" title="clean journal under runlevel 1 with s2ram at last (without hdmimhz)">[details]</a></span>
-clean journal under runlevel 1 with s2ram at last (without hdmimhz)
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Here comes the journal of when I had tested this issue some time ago.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">OS</td>
+           <td>All
+           </td>
+           <td>Linux (All)
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Hardware</td>
+           <td>Other
+           </td>
+           <td>x86-64 (AMD64)
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -79,9 +91,9 @@ Here comes the journal of when I had tested this issue some time ago.</pre>
       </ul>
     </body>
 </html>
---14539106310.Baf1599aB.18944--
+--14539106641.6d12FF92.18902--
 
---===============0776668180==
+--===============0411499694==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0776668180==--
+--===============0411499694==--
