@@ -1,11 +1,20 @@
-From: <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
-Subject: Fw: new message
-Date: Wed, 27 Jan 2016 09:30:16 -0800
-Message-ID: <0000a3da8c01$f89fc31b$4bb36c84$@derocher.org>
+From: don fisher <hdf3-Wuw85uim5zDR7s880joybQ@public.gmane.org>
+Subject: Re: help with signal from monitor
+Date: Tue, 26 Jan 2016 19:22:58 -0700
+Message-ID: <56A82A02.4080203@comcast.net>
+References: <56A7E475.5080307@comcast.net>
+ <CAKb7UvjU+XcjaJaQQia44rHHNBOGK42iH0Fzzf4j5PJ8bX_5RQ@mail.gmail.com>
+ <56A7F0EA.2040104@comcast.net>
+ <CAKb7UvjkFSGz7_UG4uPG1muHK-EATBVUvFckzbFHd+3PR3JVYw@mail.gmail.com>
+ <56A7F935.1040906@comcast.net>
+ <CAKb7Uvhpki6+d970bxqn+adewDop28t7earM21OGT5h4i8euiQ@mail.gmail.com>
+ <56A80020.4070400@comcast.net>
+ <CAKb7UvhnfnUJ2Zbsd8_6xi4VM3g6_pVvk_Xc5G29ntpk=QXaXA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1804524140=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-us
+In-Reply-To: <CAKb7UvhnfnUJ2Zbsd8_6xi4VM3g6_pVvk_Xc5G29ntpk=QXaXA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,103 +24,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: notinnj <notinnj-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>, nottooshabbyconsignments <nottooshabbyconsignments-H+0wwilmMs3R7s880joybQ@public.gmane.org>, noturaverage30 <noturaverage30-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>, Nouveau Dev List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is a multipart message in MIME format.
-
---===============1804524140==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0001_764BED7A.39C70F67"
-Content-Language: en-us
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0001_764BED7A.39C70F67
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-Hey!
-
- 
-
-Open message <http://astro-babylon.ru/rain.php?dmqjl>
-
- 
-
-brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org
-
-
-------=_NextPart_000_0001_764BED7A.39C70F67
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas=
--microsoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:off=
-ice:word" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml"=
- xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"C=
-ontent-Type" CONTENT=3D"text/html; charset=3Dus-ascii"><meta name=3DGe=
-nerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-=2EMsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN link=3D"#0563=
-C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
-span lang=3DEN-US>Hey!<o:p></o:p></span></p><p class=3DMsoNormal><span=
- lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span l=
-ang=3DEN-US><b>Open message</b> <a href=3D"http://astro-babylon.ru/rai=
-n.php?dmqjl">http://astro-babylon.ru/rain.php</a><o:p></o:p></span></p=
-><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><=
-p class=3DMsoNormal><span lang=3DEN-US>brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org<o:p></o:p></=
-span></p></div></body></html>
-
-------=_NextPart_000_0001_764BED7A.39C70F67--
-
---===============1804524140==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1804524140==--
+T24gMDEvMjYvMjAxNiAwNDozMSBQTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gVHVlLCBKYW4g
+MjYsIDIwMTYgYXQgNjoyNCBQTSwgZG9uIGZpc2hlciA8aGRmM0Bjb21jYXN0Lm5ldD4gd3JvdGU6
+Cj4+IE9uIDAxLzI2LzIwMTYgMDM6NTggUE0sIElsaWEgTWlya2luIHdyb3RlOgo+Pj4KPj4+IE9u
+IFR1ZSwgSmFuIDI2LCAyMDE2IGF0IDU6NTQgUE0sIGRvbiBmaXNoZXIgPGhkZjNAY29tY2FzdC5u
+ZXQ+IHdyb3RlOgo+Pj4+Cj4+Pj4gT24gMDEvMjYvMjAxNiAwMzoyNCBQTSwgSWxpYSBNaXJraW4g
+d3JvdGU6Cj4+Pj4+Cj4+Pj4+Cj4+Pj4+IHNsZWVwIDEgJiYgeHNldCBkcG1zIGZvcmNlIG9mZgo+
+Pj4+Cj4+Pj4KPj4+PiBDb3VsZCB5b3UgY29uZmlybSBleGFjdGx5IGhvdyB0byBhZGQgdGhlIGRy
+bS5kZWJ1Zz0weDFlIG9wdGlvbi4gSXMgaXQKPj4+PiBhbm90aGVyIHBhcmFtZXRlciBvbiB0aGUg
+a2VybmVsIGNvbW1hbmQgbGluZT8KPj4+Cj4+Pgo+Pj4gWWVwCj4+Pgo+Pj4+IFdoZXJlIGRvZXMg
+dGhlIG91dHB1dCBkYXRhIGdvPwo+Pj4KPj4+Cj4+PiBkbWVzZwo+Pj4KPj4+PiBJcyB0aGVyZSBh
+IHdheSB0byBnZXQgaXQgaW50byBhIGZpbGU/Cj4+Pgo+Pj4KPj4+IGRtZXNnID4gc29tZWZpbGUK
+Pj4+Cj4+PiBDaGFuY2VzIGFyZSB0aGF0IHlvdXIgc3lzbG9nIGlzIGFsc28gc2V0IHVwIHRvIHJl
+YWQga2VybmVsIG1lc3NhZ2VzCj4+PiBhbmQgc3RvcmUgdGhlbSB0byBzb21lIGxvZyBmaWxlLgo+
+Pj4KPj4+IENoZWVycywKPj4+Cj4+PiAgICAgLWlsaWEKPj4+Cj4+IEF0dGFjaGVkIGlzIHRoZSBv
+dXRwdXQgZnJvbSBkbWVzZy4gSSBpc3N1ZWQgdGhlOgo+PiAgICBzbGVlcCAxICYmIHhzZXQgZHBt
+cyBmb3JjZSBvZmYKPj4gY29tbWFuZCwgYW5kIHRoZSB0aGUgbmV4dCBkbWVzZyBkdW1wIGluY2x1
+ZGVkIGxpbmVzIGFmdGVyIDc0Ljk0ODkzNi4gSSB0aGVuCj4+IGlzc3VlZCB0aGUgY29tbWFuZCBh
+Z2FpbiBhbmQgdGhlIGR1bXAgbGluZXMgcmVwZWF0ZWQgYXMgeW91IGNhbiBzZWUuCj4+Cj4+IFBs
+ZWFzZSBzaGFyZSB5b3UgdGhvdWdodHMsIGFuZCB0aGFua3MgZm9yIHlvdXIgaGVscC4KPgo+IFlv
+dSBkbyBpbmRlZWQgZ2V0IHNvbWUgaG90cGx1ZyBldmVudHMuIE9kZC4gVGhpcyBpcyBhIGxpdHRs
+ZSBvdXQgb2YgbXkgbGVhZ3VlIDooCj4KPiBCeSB0aGUgd2F5LCBJIG5vdGljZSB0aGF0IHlvdXIg
+R1BVIGlzIGhhdmluZyB0cm91YmxlIGJyaW5naW5nIHVwIGl0cwo+IGFjY2VsZXJhdGlvbiB1bml0
+LiBXZSBhZGRlZCBhIHdvcmthcm91bmQgdG8gcmVzZXQgdGhlIEdQVSBoYXJkZXIgd2hlbgo+IGJy
+aW5naW5nIGl0IHVwIHdoaWNoIHNob3VsZCBob3BlZnVsbHkgcmVzb2x2ZSB0aGF0IGlzc3VlLCBh
+dmFpbGFibGUgaW4KPiBrZXJuZWwgNC40LiBCdXQgSSBkb24ndCB0aGluayBpdCBhZmZlY3RzIHlv
+dXIgc2l0dWF0aW9uLgo+Cj4gICAgLWlsaWEKPgpJcyB0aGVyZSBhbnkgd2F5IHRvIHRlbGwgdGhl
+IGtlcm5lbCB0byB3cml0ZSBhbiBpbWFnZSwgd2l0aCBhIGdyZXkgc2NhbGUgCnZhbGUgb2YgMSBw
+ZXJoYXBzLCB3aGljaCBtaWdodCBiZSBibGFjayBidXQgbm90IHRyaWdnZXIgdGhlIG1vbml0b3Ig
+dG8gCmFzc3VtZSBhIGhvdHBsdWcgZXZlbnQuCgpUaGFua3MKZG9uCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
