@@ -1,54 +1,195 @@
-From: Luis Henriques <luis.henriques@canonical.com>
-Subject: Re: Recommendation for cherry-pick between 3.12 and 4.2: 0a363e85cdaf
-Date: Wed, 27 Jan 2016 14:24:09 +0000
-Message-ID: <20160127142409.GA1872@charon.olymp>
-References: <CAKb7UvhmjD5HfNRDwR8phUhFwYhGS0QPMMucnNc+YWZUb5M-dg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93887] New: Amilo Xi 3650: G96M [GeForce 9600M GT]:
+ HDMI monitor stays black after s2ram
+Date: Wed, 27 Jan 2016 16:00:53 +0000
+Message-ID: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-Return-path: <stable-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <CAKb7UvhmjD5HfNRDwR8phUhFwYhGS0QPMMucnNc+YWZUb5M-dg@mail.gmail.com>
-Sender: stable-owner@vger.kernel.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: stable <stable@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============0973422462=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Jan 17, 2016 at 02:28:13PM -0500, Ilia Mirkin wrote:
-> Hello,
->=20
-> I'd like to recommend backporting this commit:
->=20
-> commit 0a363e85cdafbceeee6a49b91c604d0d4d070dc7
-> Author: Hans de Goede <hdegoede@redhat.com>
-> Date:   Thu Jul 23 17:20:12 2015 +0200
->=20
->     drm/nouveau/nv46: Change mc subdev oclass from nv44 to nv4c
->=20
-> This disables MSI by default on G72 (NV46) devices where it's
-> apparently a bit buggy. We have a later patch which turns MSI back on
-> with a quirk, but it isn't extremely necessary for these devices, and
-> disabling (or, rather, not enabling) MSI is a pretty safe thing to do=
-=2E
->=20
-> The patch went upstream in 4.3-rc1, however I believe that there are
-> still a number of kernels between 3.12 (where MSI was first enabled b=
-y
-> default - commit a27e56996) and 4.2 (inclusive) which are still being
-> maintained. To those maintainers, please consider including this in
-> your trees.
->=20
 
-Thank you Ilia, I'm queuing it for the 3.16 kernel as well.
+--===============0973422462==
+Content-Type: multipart/alternative; boundary="14539104530.EF71.17598";
+ charset="UTF-8"
 
-Cheers,
---
-Lu=EDs
 
-> Cheers,
->=20
->   -ilia
-> --
-> To unsubscribe from this list: send the line "unsubscribe stable" in
-> the body of a message to majordomo@vger.kernel.org
-> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+--14539104530.EF71.17598
+Date: Wed, 27 Jan 2016 16:00:53 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93887
+
+            Bug ID: 93887
+           Summary: Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor
+                    stays black after s2ram
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+When my machine awakes from 'systemctl suspend' my integrated LVDS display
+comes up fine while an external HDMI monitor stays black with 'no signal'. As
+far as tested the VGA output of my G96M will resume without a problem.
+  I have tested the following kernel parameters in addition to a plain boot
+with nouveau.hdmimhz=225:
+* acpi_sleep=s3=bios: resumes well but HDMI stays without a signal
+* acpi_sleep=s3_mode: crash on resume with total blackscreen of LVDS as well as
+HDMI, a hard reset is the only way out.
+* acpi_sleep=s3_bios,s3_mode: same as s3_mode
+
+kernel version: 4.5.0-rc1-ARCH #2 SMP
+nouveau version of the Arch package: 1.0.12-1
+
+  Is there anything else I can try or do?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14539104530.EF71.17598
+Date: Wed, 27 Jan 2016 16:00:53 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">93887</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>estellnb&#64;elstel.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>When my machine awakes from 'systemctl suspend' my integrated LVDS display
+comes up fine while an external HDMI monitor stays black with 'no signal'. As
+far as tested the VGA output of my G96M will resume without a problem.
+  I have tested the following kernel parameters in addition to a plain boot
+with nouveau.hdmimhz=225:
+* acpi_sleep=s3=bios: resumes well but HDMI stays without a signal
+* acpi_sleep=s3_mode: crash on resume with total blackscreen of LVDS as well as
+HDMI, a hard reset is the only way out.
+* acpi_sleep=s3_bios,s3_mode: same as s3_mode
+
+kernel version: 4.5.0-rc1-ARCH #2 SMP
+nouveau version of the Arch package: 1.0.12-1
+
+  Is there anything else I can try or do?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14539104530.EF71.17598--
+
+--===============0973422462==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0973422462==--
