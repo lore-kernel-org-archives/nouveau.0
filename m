@@ -1,9 +1,9 @@
 From: <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
 Subject: Fw: new message
-Date: Wed, 27 Jan 2016 09:30:21 -0800
-Message-ID: <0000257314dc$0330f933$c867706f$@derocher.org>
+Date: Wed, 27 Jan 2016 09:30:16 -0800
+Message-ID: <0000a3da8c01$f89fc31b$4bb36c84$@derocher.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1492250283=="
+Content-Type: multipart/mixed; boundary="===============1804524140=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Language: en-us
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -15,19 +15,19 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-r6msFfcMed6UevrW7tnuMEsOKLKoXr+P@public.gmane.org>, nov17sales <nov17sales-YDxpq3io04c@public.gmane.org>, NoVA LUG <novalug-iQai9MGU/dxeaX7ILU0IGw@public.gmane.org>, NOVA LUG <novalug-Qrep2KDt+0DYEY55K8J4Zw@public.gmane.org>
+To: notinnj <notinnj-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>, nottooshabbyconsignments <nottooshabbyconsignments-H+0wwilmMs3R7s880joybQ@public.gmane.org>, noturaverage30 <noturaverage30-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>, Nouveau Dev List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 This is a multipart message in MIME format.
 
---===============1492250283==
+--===============1804524140==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0001_60F49F94.2FBC33EB"
+	boundary="----=_NextPart_000_0001_764BED7A.39C70F67"
 Content-Language: en-us
 
 This is a multipart message in MIME format.
 
-------=_NextPart_000_0001_60F49F94.2FBC33EB
+------=_NextPart_000_0001_764BED7A.39C70F67
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
@@ -35,14 +35,14 @@ Hey!
 
  
 
-Open message <http://lawnbowls.com.au/rather.php?aoz8z>
+Open message <http://astro-babylon.ru/rain.php?dmqjl>
 
  
 
 brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org
 
 
-------=_NextPart_000_0001_60F49F94.2FBC33EB
+------=_NextPart_000_0001_764BED7A.39C70F67
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -96,15 +96,15 @@ div.WordSection1
 C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
 span lang=3DEN-US>Hey!<o:p></o:p></span></p><p class=3DMsoNormal><span=
  lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span l=
-ang=3DEN-US><b>Open message</b> <a href=3D"http://lawnbowls.com.au/rat=
-her.php?aoz8z">http://lawnbowls.com.au/rather.php</a><o:p></o:p></span=
-></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span><=
-/p><p class=3DMsoNormal><span lang=3DEN-US>brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org<o:p></o:=
-p></span></p></div></body></html>
+ang=3DEN-US><b>Open message</b> <a href=3D"http://astro-babylon.ru/rai=
+n.php?dmqjl">http://astro-babylon.ru/rain.php</a><o:p></o:p></span></p=
+><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><=
+p class=3DMsoNormal><span lang=3DEN-US>brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org<o:p></o:p></=
+span></p></div></body></html>
 
-------=_NextPart_000_0001_60F49F94.2FBC33EB--
+------=_NextPart_000_0001_764BED7A.39C70F67--
 
---===============1492250283==
+--===============1804524140==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1492250283==--
+--===============1804524140==--
