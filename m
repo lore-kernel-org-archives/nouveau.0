@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
  GT]: HDMI monitor stays black after s2ram
-Date: Wed, 27 Jan 2016 16:49:26 +0000
-Message-ID: <bug-93887-8800-XWMVpIhd1B@http.bugs.freedesktop.org/>
+Date: Wed, 27 Jan 2016 20:14:34 +0000
+Message-ID: <bug-93887-8800-YclkCtq6Zk@http.bugs.freedesktop.org/>
 References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1169505033=="
+Content-Type: multipart/mixed; boundary="===============0682867843=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1169505033==
-Content-Type: multipart/alternative; boundary="14539133660.03ed.27484";
+--===============0682867843==
+Content-Type: multipart/alternative; boundary="14539256741.7a72b.30049";
  charset="UTF-8"
 
 
---14539133660.03ed.27484
-Date: Wed, 27 Jan 2016 16:49:26 +0000
+--14539256741.7a72b.30049
+Date: Wed, 27 Jan 2016 20:14:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93887
 
---- Comment #3 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-  Plugging and unplugging does not help; so it permanently stays without a
-signal after resume from s2ram.
-  Besides this I forgot to say that the proprietary nvidia driver for this card
-has a working resume for the HDMI output; i.e. the monitor comes up again.
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you boot with "nouveau.debug=debug,bios=trace drm.debug=0x1e" in your
+kernel cmdline and include dmesg, including doing a unplug/plug after s2ram?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14539133660.03ed.27484
-Date: Wed, 27 Jan 2016 16:49:26 +0000
+--14539256741.7a72b.30049
+Date: Wed, 27 Jan 2016 20:14:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -57,17 +55,15 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
-              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>  Plugging and unplugging does not help; so it permanently stays without a
-signal after resume from s2ram.
-  Besides this I forgot to say that the proprietary nvidia driver for this card
-has a working resume for the HDMI output; i.e. the monitor comes up again.</pre>
+        <pre>Can you boot with &quot;nouveau.debug=debug,bios=trace drm.debug=0x1e&quot; in your
+kernel cmdline and include dmesg, including doing a unplug/plug after s2ram?</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +74,9 @@ has a working resume for the HDMI output; i.e. the monitor comes up again.</pre>
       </ul>
     </body>
 </html>
---14539133660.03ed.27484--
+--14539256741.7a72b.30049--
 
---===============1169505033==
+--===============0682867843==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +86,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1169505033==--
+--===============0682867843==--
