@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93887] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI
- monitor stays black after s2ram
-Date: Wed, 27 Jan 2016 16:04:25 +0000
-Message-ID: <bug-93887-8800-3bNU2XPfip@http.bugs.freedesktop.org/>
+Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
+ GT]: HDMI monitor stays black after s2ram
+Date: Wed, 27 Jan 2016 16:44:19 +0000
+Message-ID: <bug-93887-8800-BHHF02bwuM@http.bugs.freedesktop.org/>
 References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0411499694=="
+Content-Type: multipart/mixed; boundary="===============0022275085=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0411499694==
-Content-Type: multipart/alternative; boundary="14539106641.6d12FF92.18902";
+--===============0022275085==
+Content-Type: multipart/alternative; boundary="14539130580.0b7b.26514";
  charset="UTF-8"
 
 
---14539106641.6d12FF92.18902
-Date: Wed, 27 Jan 2016 16:04:24 +0000
+--14539130580.0b7b.26514
+Date: Wed, 27 Jan 2016 16:44:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93887
 
-Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 OS|All                         |Linux (All)
-           Hardware|Other                       |x86-64 (AMD64)
+            Summary|Amilo Xi 3650: G96M         |[NV96] Amilo Xi 3650: G96M
+                   |[GeForce 9600M GT]: HDMI    |[GeForce 9600M GT]: HDMI
+                   |monitor stays black after   |monitor stays black after
+                   |s2ram                       |s2ram
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+What happens if you unplug/plug the monitor? Does it start working? Or is HDMI
+permanently hosed?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14539106641.6d12FF92.18902
-Date: Wed, 27 Jan 2016 16:04:24 +0000
+--14539130580.0b7b.26514
+Date: Wed, 27 Jan 2016 16:44:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -52,11 +58,11 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -67,21 +73,27 @@ Content-Type: text/html
           </tr>
 
          <tr>
-           <td style="text-align:right;">OS</td>
-           <td>All
+           <td style="text-align:right;">Summary</td>
+           <td>Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram
            </td>
-           <td>Linux (All)
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
+           <td>[NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>What happens if you unplug/plug the monitor? Does it start working? Or is HDMI
+permanently hosed?</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -91,9 +103,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14539106641.6d12FF92.18902--
+--14539130580.0b7b.26514--
 
---===============0411499694==
+--===============0022275085==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0411499694==--
+--===============0022275085==--
