@@ -1,15 +1,13 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: nouveau contributor dinner Friday evening before
- FOSDEM?
-Date: Thu, 28 Jan 2016 11:51:36 +0100
-Message-ID: <56A9F2B8.8000205@redhat.com>
-References: <56A0D878.5080309@redhat.com> <56A9EDF8.1080006@redhat.com>
- <CACvgo52jgik+DFtn8_mAvwYzteMa5AHRVKdA9CO9ii_uuZZG8Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
+ GT]: HDMI monitor stays black after s2ram
+Date: Thu, 28 Jan 2016 11:49:20 +0000
+Message-ID: <bug-93887-8800-nUOoQ1Hdjf@http.bugs.freedesktop.org/>
+References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1109174061=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACvgo52jgik+DFtn8_mAvwYzteMa5AHRVKdA9CO9ii_uuZZG8Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,36 +17,74 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpPbiAyOC0wMS0xNiAxMTo0OCwgRW1pbCBWZWxpa292IHdyb3RlOgo+IEhpIEhhbnMsCj4K
-PiBPbiAyOCBKYW51YXJ5IDIwMTYgYXQgMTI6MzEsIEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJl
-ZGhhdC5jb20+IHdyb3RlOgo+PiBIaSBBbGwsCj4+Cj4+IE9uIDIxLTAxLTE2IDE0OjA5LCBIYW5z
-IGRlIEdvZWRlIHdyb3RlOgo+Pj4KPj4+IEhpIEFsbCwKPj4+Cj4+PiAkc3ViamVjdCBzYXlzIGl0
-IHByZXR0eSBtdWNoIGFsbC4gQUZBSWsgcXVpdGUgYSBmZXcKPj4+IG5vdXZlYXUgY29udHJpYnV0
-b3JzIGFyZSBjb21pbmcgdG8gRm9zZGVtLCBhbmQgSSB0aGluayBpdAo+Pj4gd291bGQgYmUgbmlj
-ZSB0byBoYXZlIGRpbm5lciB0b2dldGhlciBGcmlkYXkgZXZlbmluZwo+Pj4gYmVmb3JlIEZPU0RF
-TS4KPj4+Cj4+PiBTbyBhbnkgdGFrZXJzPyBJZiB5b3Ugd2FudCB0byBqb2luIHBsZWFzZSByZXBs
-eSB0byB0aGlzCj4+PiBtYWlsIHRocmVhZCBiZWZvcmUgY29taW5nIFRodXJzZGF5LCBJIHdpbGwg
-dHJ5IHRvIHJlc2VydmUgYSB0YWJsZSBhdDoKPj4+Cj4+Pgo+Pj4gaHR0cDovL3d3dy50cmlwYWR2
-aXNvci5jb20vUmVzdGF1cmFudF9SZXZpZXctZzE4ODY0NC1kODAyMjMyLVJldmlld3MtTGVfRmFs
-c3RhZmYtQnJ1c3NlbHMuaHRtbAo+Pj4KPj4+IFdoaWNoIGlzIG5vdCBhcyBiYWQgYXMgdGhlIHJl
-dmlld3MgdGhlcmUgbWFrZSBpdCBvdXQgdG8gYmUsCj4+PiBub3RlIEknbSBvcGVuIHRvIGJldHRl
-ciBzdWdnZXN0aW9ucywgZXNwLiBmcm9tIGxvY2FscywgTGUgRmFsc3RhZmYKPj4+IGlzIHNvcnQg
-b2YgbXkgZmFsbGJhY2sgcGxhY2UgdG8gZ28gdG8gaW4gQnJ1c3NlbHMuCj4+Cj4+Cj4+IE9rLCBJ
-J3ZlIHJlY2VpdmVkIGNvbmZpcm1hdGlvbnMgZnJvbSB0aGUgZm9sbG93aW5nIHBlb3BsZToKPj4K
-Pj4gSGFucyBkZSBHb2VkZQo+PiBQaWVycmUgTW9yZWF1Cj4+IEthcm9sIEhlcmJzdAo+PiBSb3kg
-U3BsaWV0Cj4+IE1hcnRpbiBQZXJlcwo+Pgo+PiBTbyBJJ3ZlIGdvbmUgYWhlYWQgYW5kIHJlc2Vy
-dmVkIGEgdGFibGUgZm9yIDYgYXQ6Cj4+Cj4+IExlIEZhbHN0YWZmCj4+IFJ1ZSBIZW5yaSBNYXVz
-IDE5IC8gSGVucmkgTWF1c3N0cmFhdCAxOQo+PiAxMDAwIEJydXNzZWxzCj4+Cj4+IE5vdGUgdGhp
-cyBvbiB0aGUgIkxhIEJvdXJzZSIgc3F1YXJlLCB3aGljaCBpcyBxdWl0ZSBuZWFyIHRoZSBHcmFu
-ZCBQbGFjZS4KPj4KPj4gSWYgYW55b25lIGVsc2Ugd2FudHMgdG8gam9pbiBwbGVhc2UgbGV0IG1l
-IGtub3cgdGhlbiBJJ2xsIGxldCB0aGUgcmVzdGF1cmFudAo+PiBrbm93IHRoYXQgd2Ugd2lsbCBi
-ZSB3aXRoIG1vcmUgYmVmb3JlaGFuZC4KPj4KPiBXYXMgbWVhbnQgdG8gc2hvdXQgZWFybGllciAt
-IEknZCBsaWtlIHlvdSBqb2luIHlvdSBndXlzIDotKQoKTm8gcHJvYmxlbSwgc2VlIHlvdSB0aGVy
-ZSEKClJlZ2FyZHMsCgpIYW5zCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cg==
+
+--===============1109174061==
+Content-Type: multipart/alternative; boundary="14539817600.CCdf6BfA1.16212";
+ charset="UTF-8"
+
+
+--14539817600.CCdf6BfA1.16212
+Date: Thu, 28 Jan 2016 11:49:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93887
+
+--- Comment #5 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 121348
+  --> https://bugs.freedesktop.org/attachment.cgi?id=121348&action=edit
+debug boot log including plug and unplug event after wakeup
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14539817600.CCdf6BfA1.16212
+Date: Thu, 28 Jan 2016 11:49:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
+              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=121348" name="attach_121348" title="debug boot log including plug and unplug event after wakeup">attachment 121348</a> <a href="attachment.cgi?id=121348&amp;action=edit" title="debug boot log including plug and unplug event after wakeup">[details]</a></span>
+debug boot log including plug and unplug event after wakeup</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14539817600.CCdf6BfA1.16212--
+
+--===============1109174061==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1109174061==--
