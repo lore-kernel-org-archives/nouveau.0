@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93896] Nvidia GeForce GTX 970M unsupported,
- no backlight control
-Date: Thu, 28 Jan 2016 06:37:57 +0000
-Message-ID: <bug-93896-8800-T6NhJHRIlo@http.bugs.freedesktop.org/>
-References: <bug-93896-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: nouveau contributor dinner Friday evening before
+	FOSDEM?
+Date: Thu, 28 Jan 2016 11:31:20 +0100
+Message-ID: <56A9EDF8.1080006@redhat.com>
+References: <56A0D878.5080309@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1714486583=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93896-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <56A0D878.5080309-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,76 +18,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1714486583==
-Content-Type: multipart/alternative; boundary="14539630770.FB9d973.23037";
- charset="UTF-8"
-
-
---14539630770.FB9d973.23037
-Date: Thu, 28 Jan 2016 06:37:57 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93896
-
---- Comment #2 from Javantea <jvoss-Cpl0xJrrQRvQT0dZR+AlfA@public.gmane.org> ---
-Created attachment 121346
-  --> https://bugs.freedesktop.org/attachment.cgi?id=121346&action=edit
-Xorg.0.log on the affected system
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
---14539630770.FB9d973.23037
-Date: Thu, 28 Jan 2016 06:37:57 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nvidia GeForce GTX 970M unsupported, no backlight control"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93896#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nvidia GeForce GTX 970M unsupported, no backlight control"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93896">bug 93896</a>
-              from <span class="vcard"><a class="email" href="mailto:jvoss&#64;altsci.com" title="Javantea &lt;jvoss&#64;altsci.com&gt;"> <span class="fn">Javantea</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=121346" name="attach_121346" title="Xorg.0.log on the affected system">attachment 121346</a> <a href="attachment.cgi?id=121346&amp;action=edit" title="Xorg.0.log on the affected system">[details]</a></span>
-Xorg.0.log on the affected system</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14539630770.FB9d973.23037--
-
---===============1714486583==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1714486583==--
+SGkgQWxsLAoKT24gMjEtMDEtMTYgMTQ6MDksIEhhbnMgZGUgR29lZGUgd3JvdGU6Cj4gSGkgQWxs
+LAo+Cj4gJHN1YmplY3Qgc2F5cyBpdCBwcmV0dHkgbXVjaCBhbGwuIEFGQUlrIHF1aXRlIGEgZmV3
+Cj4gbm91dmVhdSBjb250cmlidXRvcnMgYXJlIGNvbWluZyB0byBGb3NkZW0sIGFuZCBJIHRoaW5r
+IGl0Cj4gd291bGQgYmUgbmljZSB0byBoYXZlIGRpbm5lciB0b2dldGhlciBGcmlkYXkgZXZlbmlu
+Zwo+IGJlZm9yZSBGT1NERU0uCj4KPiBTbyBhbnkgdGFrZXJzPyBJZiB5b3Ugd2FudCB0byBqb2lu
+IHBsZWFzZSByZXBseSB0byB0aGlzCj4gbWFpbCB0aHJlYWQgYmVmb3JlIGNvbWluZyBUaHVyc2Rh
+eSwgSSB3aWxsIHRyeSB0byByZXNlcnZlIGEgdGFibGUgYXQ6Cj4KPiBodHRwOi8vd3d3LnRyaXBh
+ZHZpc29yLmNvbS9SZXN0YXVyYW50X1Jldmlldy1nMTg4NjQ0LWQ4MDIyMzItUmV2aWV3cy1MZV9G
+YWxzdGFmZi1CcnVzc2Vscy5odG1sCj4KPiBXaGljaCBpcyBub3QgYXMgYmFkIGFzIHRoZSByZXZp
+ZXdzIHRoZXJlIG1ha2UgaXQgb3V0IHRvIGJlLAo+IG5vdGUgSSdtIG9wZW4gdG8gYmV0dGVyIHN1
+Z2dlc3Rpb25zLCBlc3AuIGZyb20gbG9jYWxzLCBMZSBGYWxzdGFmZgo+IGlzIHNvcnQgb2YgbXkg
+ZmFsbGJhY2sgcGxhY2UgdG8gZ28gdG8gaW4gQnJ1c3NlbHMuCgpPaywgSSd2ZSByZWNlaXZlZCBj
+b25maXJtYXRpb25zIGZyb20gdGhlIGZvbGxvd2luZyBwZW9wbGU6CgpIYW5zIGRlIEdvZWRlClBp
+ZXJyZSBNb3JlYXUKS2Fyb2wgSGVyYnN0ClJveSBTcGxpZXQKTWFydGluIFBlcmVzCgpTbyBJJ3Zl
+IGdvbmUgYWhlYWQgYW5kIHJlc2VydmVkIGEgdGFibGUgZm9yIDYgYXQ6CgpMZSBGYWxzdGFmZgpS
+dWUgSGVucmkgTWF1cyAxOSAvIEhlbnJpIE1hdXNzdHJhYXQgMTkKMTAwMCBCcnVzc2VscwoKTm90
+ZSB0aGlzIG9uIHRoZSAiTGEgQm91cnNlIiBzcXVhcmUsIHdoaWNoIGlzIHF1aXRlIG5lYXIgdGhl
+IEdyYW5kIFBsYWNlLgoKSWYgYW55b25lIGVsc2Ugd2FudHMgdG8gam9pbiBwbGVhc2UgbGV0IG1l
+IGtub3cgdGhlbiBJJ2xsIGxldCB0aGUgcmVzdGF1cmFudAprbm93IHRoYXQgd2Ugd2lsbCBiZSB3
+aXRoIG1vcmUgYmVmb3JlaGFuZC4KClJlZ2FyZHMsCgpIYW5zCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
