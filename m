@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93934] DRI_PRIME=1: DeadIsland crash
-Date: Sat, 30 Jan 2016 02:34:58 +0000
-Message-ID: <bug-93934-8800-oxHGG7EU3X@http.bugs.freedesktop.org/>
+Date: Sat, 30 Jan 2016 02:40:16 +0000
+Message-ID: <bug-93934-8800-HZ6BHtYmjA@http.bugs.freedesktop.org/>
 References: <bug-93934-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0830089256=="
+Content-Type: multipart/mixed; boundary="===============1929731561=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93934-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,69 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0830089256==
-Content-Type: multipart/alternative; boundary="14541212970.c8dc116.32143";
+--===============1929731561==
+Content-Type: multipart/alternative; boundary="14541216160.B2E5.31703";
  charset="UTF-8"
 
 
---14541212970.c8dc116.32143
-Date: Sat, 30 Jan 2016 02:34:57 +0000
+--14541216160.B2E5.31703
+Date: Sat, 30 Jan 2016 02:40:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93934
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #1 from Marcos Souza <marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I don't know if this helps, but this is some output of demsg while running the
+game:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #121406|text/plain                  |application/octet-stream
-          mime type|                            |
+[ 5604.958910] nouveau 0000:04:00.0: DRM: resuming kernel object tree...
+[ 5605.066267] nouveau 0000:04:00.0: DRM: resuming client object trees...
+[ 5612.931359] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+[ 5612.931715] ACPI: \_SB_.PCI0.RP05.PEGP: failed to evaluate _DSM
+[ 5612.931720] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+[ 5612.931881] nouveau 0000:04:00.0: DRM: evicting buffers...
+[ 5612.971139] nouveau 0000:04:00.0: DRM: waiting for kernel channels to go
+idle...
+[ 5612.971174] nouveau 0000:04:00.0: DRM: suspending client object trees...
+[ 5612.971546] nouveau 0000:04:00.0: DRM: suspending kernel object tree...
+[ 5614.303597] nouveau 0000:04:00.0: DRM: resuming kernel object tree...
+[ 5614.419667] nouveau 0000:04:00.0: DRM: resuming client object trees...
+[ 5633.956289] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+[ 5633.956562] ACPI: \_SB_.PCI0.RP05.PEGP: failed to evaluate _DSM
+[ 5633.956566] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+[ 5633.956702] nouveau 0000:04:00.0: DRM: evicting buffers...
+[ 5634.304888] nouveau 0000:04:00.0: DRM: waiting for kernel channels to go
+idle...
+[ 5634.304927] nouveau 0000:04:00.0: DRM: suspending client object trees...
+[ 5634.305325] nouveau 0000:04:00.0: DRM: suspending kernel object tree...
+[ 5636.107703] nouveau 0000:04:00.0: DRM: resuming kernel object tree...
+[ 5636.233536] nouveau 0000:04:00.0: DRM: resuming client object trees...
+[ 5705.167328] DeadIslandGame[6952]: segfault at 0 ip 00000000f6f8a106 sp
+00000000ffe1ec88 error 4 in libc-2.22.so[f6ef2000+1c7000]
+[ 5710.009638] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+[ 5710.010004] ACPI: \_SB_.PCI0.RP05.PEGP: failed to evaluate _DSM
+[ 5710.010010] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+[ 5710.010213] nouveau 0000:04:00.0: DRM: evicting buffers...
+[ 5711.269442] nouveau 0000:04:00.0: DRM: waiting for kernel channels to go
+idle...
+[ 5711.269481] nouveau 0000:04:00.0: DRM: suspending client object trees...
+[ 5711.269903] nouveau 0000:04:00.0: DRM: suspending kernel object tree...
+[ 5721.336572] nouveau 0000:04:00.0: DRM: resuming kernel object tree...
+[ 5721.472976] nouveau 0000:04:00.0: DRM: resuming client object trees...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.
---14541212970.c8dc116.32143
-Date: Sat, 30 Jan 2016 02:34:57 +0000
+--14541216160.B2E5.31703
+Date: Sat, 30 Jan 2016 02:40:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -52,28 +90,63 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - DRI_PRIME=1: DeadIsland crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93934#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - DRI_PRIME=1: DeadIsland crash"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93934">bug 93934</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:marcos.souza.org&#64;gmail.com" title="Marcos Souza &lt;marcos.souza.org&#64;gmail.com&gt;"> <span class="fn">Marcos Souza</span></a>
+</span></b>
+        <pre>I don't know if this helps, but this is some output of demsg while running the
+game:
 
-         <tr>
-           <td style="text-align:right;">Attachment #121406 mime type</td>
-           <td>text/plain
-           </td>
-           <td>application/octet-stream
-           </td>
-         </tr></table>
-      <p>
+[ 5604.958910] nouveau 0000:04:00.0: DRM: resuming kernel object tree...
+[ 5605.066267] nouveau 0000:04:00.0: DRM: resuming client object trees...
+[ 5612.931359] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+[ 5612.931715] ACPI: \_SB_.PCI0.RP05.PEGP: failed to evaluate _DSM
+[ 5612.931720] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+[ 5612.931881] nouveau 0000:04:00.0: DRM: evicting buffers...
+[ 5612.971139] nouveau 0000:04:00.0: DRM: waiting for kernel channels to go
+idle...
+[ 5612.971174] nouveau 0000:04:00.0: DRM: suspending client object trees...
+[ 5612.971546] nouveau 0000:04:00.0: DRM: suspending kernel object tree...
+[ 5614.303597] nouveau 0000:04:00.0: DRM: resuming kernel object tree...
+[ 5614.419667] nouveau 0000:04:00.0: DRM: resuming client object trees...
+[ 5633.956289] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+[ 5633.956562] ACPI: \_SB_.PCI0.RP05.PEGP: failed to evaluate _DSM
+[ 5633.956566] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+[ 5633.956702] nouveau 0000:04:00.0: DRM: evicting buffers...
+[ 5634.304888] nouveau 0000:04:00.0: DRM: waiting for kernel channels to go
+idle...
+[ 5634.304927] nouveau 0000:04:00.0: DRM: suspending client object trees...
+[ 5634.305325] nouveau 0000:04:00.0: DRM: suspending kernel object tree...
+[ 5636.107703] nouveau 0000:04:00.0: DRM: resuming kernel object tree...
+[ 5636.233536] nouveau 0000:04:00.0: DRM: resuming client object trees...
+[ 5705.167328] DeadIslandGame[6952]: segfault at 0 ip 00000000f6f8a106 sp
+00000000ffe1ec88 error 4 in libc-2.22.so[f6ef2000+1c7000]
+[ 5710.009638] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+[ 5710.010004] ACPI: \_SB_.PCI0.RP05.PEGP: failed to evaluate _DSM
+[ 5710.010010] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+[ 5710.010213] nouveau 0000:04:00.0: DRM: evicting buffers...
+[ 5711.269442] nouveau 0000:04:00.0: DRM: waiting for kernel channels to go
+idle...
+[ 5711.269481] nouveau 0000:04:00.0: DRM: suspending client object trees...
+[ 5711.269903] nouveau 0000:04:00.0: DRM: suspending kernel object tree...
+[ 5721.336572] nouveau 0000:04:00.0: DRM: resuming kernel object tree...
+[ 5721.472976] nouveau 0000:04:00.0: DRM: resuming client object trees...</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +157,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14541212970.c8dc116.32143--
+--14541216160.B2E5.31703--
 
---===============0830089256==
+--===============1929731561==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +169,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0830089256==--
+--===============1929731561==--
