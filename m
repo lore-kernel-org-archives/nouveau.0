@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93932] New: Xorg/Nouveau crashes with Segmentation
- fault when setting i7-Skylake iGPU as primary grapics device in BIOS
-Date: Sat, 30 Jan 2016 01:35:31 +0000
-Message-ID: <bug-93932-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93934] New: DRI_PRIME=1: DeadIsland crashes when
+	loading finish
+Date: Sat, 30 Jan 2016 02:33:42 +0000
+Message-ID: <bug-93934-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1160656352=="
+Content-Type: multipart/mixed; boundary="===============1561763715=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,90 +19,85 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1160656352==
-Content-Type: multipart/alternative; boundary="14541177310.73b6.22632";
+--===============1561763715==
+Content-Type: multipart/alternative; boundary="14541212220.Ba01B1.31703";
  charset="UTF-8"
 
 
---14541177310.73b6.22632
-Date: Sat, 30 Jan 2016 01:35:31 +0000
+--14541212220.Ba01B1.31703
+Date: Sat, 30 Jan 2016 02:33:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93932
+https://bugs.freedesktop.org/show_bug.cgi?id=93934
 
-            Bug ID: 93932
-           Summary: Xorg/Nouveau crashes with Segmentation fault when
-                    setting i7-Skylake iGPU as primary grapics device in
-                    BIOS
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
+            Bug ID: 93934
+           Summary: DRI_PRIME=1: DeadIsland crashes when loading finish
+           Product: Mesa
+           Version: 11.0
+          Hardware: Other
+                OS: All
             Status: NEW
           Severity: normal
           Priority: medium
-         Component: Driver/nouveau
+         Component: Drivers/DRI/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: m.prechtl97-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Reporter: marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-Created attachment 121404
-  --> https://bugs.freedesktop.org/attachment.cgi?id=121404&action=edit
-Apport crash dump
+Created attachment 121406
+  --> https://bugs.freedesktop.org/attachment.cgi?id=121406&action=edit
+Output of game when running steam on console using DRI_PRIME=1
 
-Xorg/Nouveau crashes with Segmentation fault when setting i7-Skylake iGPU as
-primary grapics device in BIOS
+DeadIsland starts OK, you choose the character, and the loading starts. When
+the loading finishes, screen goes black and the game crashes. I'm using Fedora
+23 with mesa from reporitory.
 
-Hardware:
-CPU: i7-6700k (Intel HD Graphics 530)
-MB: Asus H110M2 D3
-GPU: NVIDIA GeForce GTX 750ti
+DRI_PRIME=1 glxinfo | grep OpenGL
+OpenGL vendor string: nouveau
+OpenGL renderer string: Gallium 0.4 on NVD7
+OpenGL core profile version string: 4.1 (Core Profile) Mesa 11.1.0
+(git-525f3c2)
+OpenGL core profile shading language version string: 4.10
+OpenGL core profile context flags: (none)
+OpenGL core profile profile mask: core profile
+OpenGL core profile extensions:
+OpenGL version string: 3.0 Mesa 11.1.0 (git-525f3c2)
+OpenGL shading language version string: 1.30
+OpenGL context flags: (none)
+OpenGL extensions:
+OpenGL ES profile version string: OpenGL ES 3.0 Mesa 11.1.0 (git-525f3c2)
+OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.00
+OpenGL ES profile extensions:
 
-How to reproduce:
-- Install fresh Ubuntu Gnome 15.10 (Side note, graphic issues with standard
-drivers, goes away with NVIDIA drivers so no big problem there)
-- Install Kernel 4.3.4
-- Install Intel drivers / compile and install latest Intel drivers
-- Reboot
-- iGPU isn't recognized as VGA compatible card
-- Reboot and set primary graphics device to 'CPU Graphics' in BIOS
---> iGPU now is recognized
---> Xorg lives for approx. 1-2 seconds and then crashes
+This problem also happens when using my Haswell card, and it crashes of the
+same point:
+OpenGL vendor string: Intel Open Source Technology Center
+OpenGL renderer string: Mesa DRI Intel(R) Haswell Mobile 
+OpenGL core profile version string: 3.3 (Core Profile) Mesa 11.1.0
+(git-525f3c2)
+OpenGL core profile shading language version string: 3.30
+OpenGL core profile context flags: (none)
+OpenGL core profile profile mask: core profile
+OpenGL core profile extensions:
+OpenGL version string: 3.0 Mesa 11.1.0 (git-525f3c2)
+OpenGL shading language version string: 1.30
+OpenGL context flags: (none)
+OpenGL extensions:
+OpenGL ES profile version string: OpenGL ES 3.0 Mesa 11.1.0 (git-525f3c2)
+OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.00
+OpenGL ES profile extensions:
 
-Xorg Version: X.Org X Server 1.17.2
+Please, let me know if more info is needed.
 
-Excerpt from error log:
-
-[     9.322] (EE) 
-[     9.322] (EE) Backtrace:
-[     9.322] (EE) 0: /usr/bin/X (xorg_backtrace+0x4e) [0x56165770c68e]
-[     9.322] (EE) 1: /usr/bin/X (0x561657558000+0x1b89f9) [0x5616577109f9]
-[     9.323] (EE) 2: /lib/x86_64-linux-gnu/libc.so.6 (0x7f40fc83e000+0x352f0)
-[0x7f40fc8732f0]
-[     9.323] (EE) 3: /usr/lib/xorg/modules/drivers/nouveau_drv.so
-(0x7f40f87bd000+0xd74f) [0x7f40f87ca74f]
-[     9.323] (EE) 4: /usr/bin/X (PixmapShareToSlave+0x8e) [0x5616575cc94e]
-[     9.323] (EE) 5: /usr/bin/X (RRCrtcSet+0x670) [0x561657671870]
-[     9.323] (EE) 6: /usr/bin/X (ProcRRSetCrtcConfig+0x38b) [0x56165767289b]
-[     9.323] (EE) 7: /usr/bin/X (0x561657558000+0x5818f) [0x5616575b018f]
-[     9.323] (EE) 8: /usr/bin/X (0x561657558000+0x5c34b) [0x5616575b434b]
-[     9.323] (EE) 9: /lib/x86_64-linux-gnu/libc.so.6 (__libc_start_main+0xf0)
-[0x7f40fc85ea40]
-[     9.323] (EE) 10: /usr/bin/X (_start+0x29) [0x56165759e6c9]
-[     9.323] (EE) 
-[     9.323] (EE) Segmentation fault at address 0x8
-[     9.323] (EE) 
-Fatal server error:
-[     9.323] (EE) Caught signal 11 (Segmentation fault). Server aborting
-[     9.323] (EE) 
-[     9.323] (EE)
+Thanks.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
---14541177310.73b6.22632
-Date: Sat, 30 Jan 2016 01:35:31 +0000
+--14541212220.Ba01B1.31703
+Date: Sat, 30 Jan 2016 02:33:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -115,38 +110,38 @@ Content-Type: text/html
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Xorg/Nouveau crashes with Segmentation fault when setting i7-Skylake iGPU as primary grapics device in BIOS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93932">93932</a>
+   title="NEW - DRI_PRIME=1: DeadIsland crashes when loading finish"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93934">93934</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>Xorg/Nouveau crashes with Segmentation fault when setting i7-Skylake iGPU as primary grapics device in BIOS
+          <td>DRI_PRIME=1: DeadIsland crashes when loading finish
           </td>
         </tr>
 
         <tr>
           <th>Product</th>
-          <td>xorg
+          <td>Mesa
           </td>
         </tr>
 
         <tr>
           <th>Version</th>
-          <td>unspecified
+          <td>11.0
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>x86-64 (AMD64)
+          <td>Other
           </td>
         </tr>
 
         <tr>
           <th>OS</th>
-          <td>Linux (All)
+          <td>All
           </td>
         </tr>
 
@@ -170,7 +165,7 @@ Content-Type: text/html
 
         <tr>
           <th>Component</th>
-          <td>Driver/nouveau
+          <td>Drivers/DRI/nouveau
           </td>
         </tr>
 
@@ -182,79 +177,76 @@ Content-Type: text/html
 
         <tr>
           <th>Reporter</th>
-          <td>m.prechtl97&#64;googlemail.com
+          <td>marcos.souza.org&#64;gmail.com
           </td>
         </tr>
 
         <tr>
           <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
+          <td>nouveau&#64;lists.freedesktop.org
           </td>
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=121404" name="attach_121404" title="Apport crash dump">attachment 121404</a> <a href="attachment.cgi?id=121404&amp;action=edit" title="Apport crash dump">[details]</a></span>
-Apport crash dump
+        <pre>Created <span class=""><a href="attachment.cgi?id=121406" name="attach_121406" title="Output of game when running steam on console using DRI_PRIME=1">attachment 121406</a> <a href="attachment.cgi?id=121406&amp;action=edit" title="Output of game when running steam on console using DRI_PRIME=1">[details]</a></span>
+Output of game when running steam on console using DRI_PRIME=1
 
-Xorg/Nouveau crashes with Segmentation fault when setting i7-Skylake iGPU as
-primary grapics device in BIOS
+DeadIsland starts OK, you choose the character, and the loading starts. When
+the loading finishes, screen goes black and the game crashes. I'm using Fedora
+23 with mesa from reporitory.
 
-Hardware:
-CPU: i7-6700k (Intel HD Graphics 530)
-MB: Asus H110M2 D3
-GPU: NVIDIA GeForce GTX 750ti
+DRI_PRIME=1 glxinfo | grep OpenGL
+OpenGL vendor string: nouveau
+OpenGL renderer string: Gallium 0.4 on NVD7
+OpenGL core profile version string: 4.1 (Core Profile) Mesa 11.1.0
+(git-525f3c2)
+OpenGL core profile shading language version string: 4.10
+OpenGL core profile context flags: (none)
+OpenGL core profile profile mask: core profile
+OpenGL core profile extensions:
+OpenGL version string: 3.0 Mesa 11.1.0 (git-525f3c2)
+OpenGL shading language version string: 1.30
+OpenGL context flags: (none)
+OpenGL extensions:
+OpenGL ES profile version string: OpenGL ES 3.0 Mesa 11.1.0 (git-525f3c2)
+OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.00
+OpenGL ES profile extensions:
 
-How to reproduce:
-- Install fresh Ubuntu Gnome 15.10 (Side note, graphic issues with standard
-drivers, goes away with NVIDIA drivers so no big problem there)
-- Install Kernel 4.3.4
-- Install Intel drivers / compile and install latest Intel drivers
-- Reboot
-- iGPU isn't recognized as VGA compatible card
-- Reboot and set primary graphics device to 'CPU Graphics' in BIOS
---&gt; iGPU now is recognized
---&gt; Xorg lives for approx. 1-2 seconds and then crashes
+This problem also happens when using my Haswell card, and it crashes of the
+same point:
+OpenGL vendor string: Intel Open Source Technology Center
+OpenGL renderer string: Mesa DRI Intel(R) Haswell Mobile 
+OpenGL core profile version string: 3.3 (Core Profile) Mesa 11.1.0
+(git-525f3c2)
+OpenGL core profile shading language version string: 3.30
+OpenGL core profile context flags: (none)
+OpenGL core profile profile mask: core profile
+OpenGL core profile extensions:
+OpenGL version string: 3.0 Mesa 11.1.0 (git-525f3c2)
+OpenGL shading language version string: 1.30
+OpenGL context flags: (none)
+OpenGL extensions:
+OpenGL ES profile version string: OpenGL ES 3.0 Mesa 11.1.0 (git-525f3c2)
+OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.00
+OpenGL ES profile extensions:
 
-Xorg Version: X.Org X Server 1.17.2
+Please, let me know if more info is needed.
 
-Excerpt from error log:
-
-[     9.322] (EE) 
-[     9.322] (EE) Backtrace:
-[     9.322] (EE) 0: /usr/bin/X (xorg_backtrace+0x4e) [0x56165770c68e]
-[     9.322] (EE) 1: /usr/bin/X (0x561657558000+0x1b89f9) [0x5616577109f9]
-[     9.323] (EE) 2: /lib/x86_64-linux-gnu/libc.so.6 (0x7f40fc83e000+0x352f0)
-[0x7f40fc8732f0]
-[     9.323] (EE) 3: /usr/lib/xorg/modules/drivers/nouveau_drv.so
-(0x7f40f87bd000+0xd74f) [0x7f40f87ca74f]
-[     9.323] (EE) 4: /usr/bin/X (PixmapShareToSlave+0x8e) [0x5616575cc94e]
-[     9.323] (EE) 5: /usr/bin/X (RRCrtcSet+0x670) [0x561657671870]
-[     9.323] (EE) 6: /usr/bin/X (ProcRRSetCrtcConfig+0x38b) [0x56165767289b]
-[     9.323] (EE) 7: /usr/bin/X (0x561657558000+0x5818f) [0x5616575b018f]
-[     9.323] (EE) 8: /usr/bin/X (0x561657558000+0x5c34b) [0x5616575b434b]
-[     9.323] (EE) 9: /lib/x86_64-linux-gnu/libc.so.6 (__libc_start_main+0xf0)
-[0x7f40fc85ea40]
-[     9.323] (EE) 10: /usr/bin/X (_start+0x29) [0x56165759e6c9]
-[     9.323] (EE) 
-[     9.323] (EE) Segmentation fault at address 0x8
-[     9.323] (EE) 
-Fatal server error:
-[     9.323] (EE) Caught signal 11 (Segmentation fault). Server aborting
-[     9.323] (EE) 
-[     9.323] (EE)</pre>
+Thanks.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
---14541177310.73b6.22632--
+--14541212220.Ba01B1.31703--
 
---===============1160656352==
+--===============1561763715==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -264,4 +256,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1160656352==--
+--===============1561763715==--
