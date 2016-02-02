@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93968] BUG in nouveau_fbcon_sync()
-Date: Tue, 02 Feb 2016 22:59:14 +0000
-Message-ID: <bug-93968-8800-r49OFyLw8N@http.bugs.freedesktop.org/>
-References: <bug-93968-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
+Date: Tue, 02 Feb 2016 23:16:08 +0000
+Message-ID: <bug-70354-8800-FeFpCILLVR@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0318771576=="
+Content-Type: multipart/mixed; boundary="===============0504434732=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93968-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0318771576==
-Content-Type: multipart/alternative; boundary="14544539541.9De62E.22894";
+--===============0504434732==
+Content-Type: multipart/alternative; boundary="14544549680.9656Fb9f.28641";
  charset="UTF-8"
 
 
---14544539541.9De62E.22894
-Date: Tue, 2 Feb 2016 22:59:14 +0000
+--14544549680.9656Fb9f.28641
+Date: Tue, 2 Feb 2016 23:16:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93968
+https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
---- Comment #1 from Peter Hurley <peter-WaGBZJeGNqdsbIuE7sb01tBPR1lH4CV8@public.gmane.org> ---
-Except this is 4.5-rc1+, not 4.4-rc5+. Sorry.
+--- Comment #94 from bruno.pagani-vYW+cPY1g1pg9hUCZPvPmw@public.gmane.org ---
+So, after 4.4 landed on Arch, finally got this working.
+
+Though, like previous poster, I have some messages in dmesg:
+
+[  336.351782] nouveau 0000:02:00.0: bus: MMIO write of 00000002 FAULT at
+4188ac [ IBUS ]
+[  336.410877] nouveau 0000:02:00.0: DRM: Pointer to TMDS table invalid
+[  336.410880] nouveau 0000:02:00.0: DRM: Pointer to flat panel table invalid
+
+Should I open a new bug for those?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14544539541.9De62E.22894
-Date: Tue, 2 Feb 2016 22:59:14 +0000
+--14544549680.9656Fb9f.28641
+Date: Tue, 2 Feb 2016 23:16:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -51,16 +61,25 @@ Content-Type: text/html
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - BUG in nouveau_fbcon_sync()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93968#c1">Comment # 1</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c94">Comment # 94</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - BUG in nouveau_fbcon_sync()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93968">bug 93968</a>
-              from <span class="vcard"><a class="email" href="mailto:peter&#64;hurleysoftware.com" title="Peter Hurley &lt;peter&#64;hurleysoftware.com&gt;"> <span class="fn">Peter Hurley</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+              from <span class="vcard"><a class="email" href="mailto:bruno.pagani&#64;ens-lyon.org" title="bruno.pagani&#64;ens-lyon.org">bruno.pagani&#64;ens-lyon.org</a>
 </span></b>
-        <pre>Except this is 4.5-rc1+, not 4.4-rc5+. Sorry.</pre>
+        <pre>So, after 4.4 landed on Arch, finally got this working.
+
+Though, like previous poster, I have some messages in dmesg:
+
+[  336.351782] nouveau 0000:02:00.0: bus: MMIO write of 00000002 FAULT at
+4188ac [ IBUS ]
+[  336.410877] nouveau 0000:02:00.0: DRM: Pointer to TMDS table invalid
+[  336.410880] nouveau 0000:02:00.0: DRM: Pointer to flat panel table invalid
+
+Should I open a new bug for those?</pre>
         </div>
       </p>
       <hr>
@@ -71,9 +90,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14544539541.9De62E.22894--
+--14544549680.9656Fb9f.28641--
 
---===============0318771576==
+--===============0504434732==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -83,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0318771576==--
+--===============0504434732==--
