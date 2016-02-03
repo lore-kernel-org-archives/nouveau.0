@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93405] nouveau: Xorg crashes sooner or later in
 	3840x2160 mode
-Date: Wed, 03 Feb 2016 17:23:58 +0000
-Message-ID: <bug-93405-8800-ulm9uGh9Qz@http.bugs.freedesktop.org/>
+Date: Wed, 03 Feb 2016 17:27:37 +0000
+Message-ID: <bug-93405-8800-BrZmJXOmXY@http.bugs.freedesktop.org/>
 References: <bug-93405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1857089257=="
+Content-Type: multipart/mixed; boundary="===============1082007527=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1857089257==
-Content-Type: multipart/alternative; boundary="14545202381.DE78.14926";
+--===============1082007527==
+Content-Type: multipart/alternative; boundary="14545204561.99E4cC2B.15602";
  charset="UTF-8"
 
 
---14545202381.DE78.14926
-Date: Wed, 3 Feb 2016 17:23:58 +0000
+--14545204561.99E4cC2B.15602
+Date: Wed, 3 Feb 2016 17:27:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93405
 
-Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
-
---- Comment #20 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
- For now everything here has been resolved to my full satisfaction; marking as
-fixed. If you are ready to help me some the more pls. have a closer look at Bug
-93887 (nouveau and s2ram) or Bug 93885 (radeon and TMDS overclocking). Thx!
+--- Comment #21 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Once more thanks a lot to everyone who has participated in extending/fixing on
+this issue! 2160p/UHD/4K is really a great experience especially on Core 2 /
+BIOS based hardware (which I personally prefer over UEFI systems).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14545202381.DE78.14926
-Date: Wed, 3 Feb 2016 17:23:58 +0000
+--14545204561.99E4cC2B.15602
+Date: Wed, 3 Feb 2016 17:27:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -57,56 +50,22 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c20">Comment # 20</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
               from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre> For now everything here has been resolved to my full satisfaction; marking as
-fixed. If you are ready to help me some the more pls. have a closer look at <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="show_bug.cgi?id=93887">Bug
-93887</a> (nouveau and s2ram) or <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - radeon: allow the user to set a maximum HDMI pixel clock (in MHz) by a kernel parameter"
-   href="show_bug.cgi?id=93885">Bug 93885</a> (radeon and TMDS overclocking). Thx!</pre>
+        <pre>Once more thanks a lot to everyone who has participated in extending/fixing on
+this issue! 2160p/UHD/4K is really a great experience especially on Core 2 /
+BIOS based hardware (which I personally prefer over UEFI systems).</pre>
         </div>
       </p>
       <hr>
@@ -117,9 +76,9 @@ fixed. If you are ready to help me some the more pls. have a closer look at <a c
       </ul>
     </body>
 </html>
---14545202381.DE78.14926--
+--14545204561.99E4cC2B.15602--
 
---===============1857089257==
+--===============1082007527==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1857089257==--
+--===============1082007527==--
