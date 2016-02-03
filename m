@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92892] [NVA8/NV98] KDE Plasma locks up: Nouveau
  reports error "resource sanity check" "unable to handle kernel paging
  request"
-Date: Wed, 03 Feb 2016 03:31:28 +0000
-Message-ID: <bug-92892-8800-H9pcWh08yo@http.bugs.freedesktop.org/>
+Date: Wed, 03 Feb 2016 05:21:21 +0000
+Message-ID: <bug-92892-8800-meAuE0BZmJ@http.bugs.freedesktop.org/>
 References: <bug-92892-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1366186088=="
+Content-Type: multipart/mixed; boundary="===============0916167974=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92892-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,13 +22,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1366186088==
-Content-Type: multipart/alternative; boundary="14544702880.2Cae3.31221";
+--===============0916167974==
+Content-Type: multipart/alternative; boundary="14544768800.1CeCA0.13088";
  charset="UTF-8"
 
 
---14544702880.2Cae3.31221
-Date: Wed, 3 Feb 2016 03:31:28 +0000
+--14544768800.1CeCA0.13088
+Date: Wed, 3 Feb 2016 05:21:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
@@ -38,15 +38,15 @@ poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           See Also|                            |https://bugzilla.opensuse.o
-                   |                            |rg/show_bug.cgi?id=959732
+           See Also|                            |https://bugzilla.redhat.com
+                   |                            |/show_bug.cgi?id=1303643
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
---14544702880.2Cae3.31221
-Date: Wed, 3 Feb 2016 03:31:28 +0000
+--14544768800.1CeCA0.13088
+Date: Wed, 3 Feb 2016 05:21:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -73,7 +73,7 @@ Content-Type: text/html
            <td>
                &nbsp;
            </td>
-           <td>https://bugzilla.opensuse.org/show_bug.cgi?id=959732
+           <td>https://bugzilla.redhat.com/show_bug.cgi?id=1303643
            </td>
          </tr></table>
       <p>
@@ -87,9 +87,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14544702880.2Cae3.31221--
+--14544768800.1CeCA0.13088--
 
---===============1366186088==
+--===============0916167974==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1366186088==--
+--===============0916167974==--
