@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92892] [NVA8/NV98] KDE Plasma locks up: Nouveau
  reports error "resource sanity check" "unable to handle kernel paging
  request"
-Date: Wed, 03 Feb 2016 03:30:55 +0000
-Message-ID: <bug-92892-8800-hQu5zBuckl@http.bugs.freedesktop.org/>
+Date: Wed, 03 Feb 2016 03:31:16 +0000
+Message-ID: <bug-92892-8800-9N7sbt69IV@http.bugs.freedesktop.org/>
 References: <bug-92892-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2106411124=="
+Content-Type: multipart/mixed; boundary="===============1715555681=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92892-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,13 +22,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2106411124==
-Content-Type: multipart/alternative; boundary="14544702550.EDbC.31144";
+--===============1715555681==
+Content-Type: multipart/alternative; boundary="14544702763.35932CB.31397";
  charset="UTF-8"
 
 
---14544702550.EDbC.31144
-Date: Wed, 3 Feb 2016 03:30:55 +0000
+--14544702763.35932CB.31397
+Date: Wed, 3 Feb 2016 03:31:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
@@ -38,15 +38,15 @@ poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=92962
+           See Also|                            |https://bugs.kde.org/show_b
+                   |                            |ug.cgi?id=358142
 
 -- 
 You are receiving this mail because:
-You are the assignee for the bug.
 You are the QA Contact for the bug.
---14544702550.EDbC.31144
-Date: Wed, 3 Feb 2016 03:30:55 +0000
+You are the assignee for the bug.
+--14544702763.35932CB.31397
+Date: Wed, 3 Feb 2016 03:31:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -73,7 +73,7 @@ Content-Type: text/html
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=92962
+           <td>https://bugs.kde.org/show_bug.cgi?id=358142
            </td>
          </tr></table>
       <p>
@@ -82,14 +82,14 @@ Content-Type: text/html
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
---14544702550.EDbC.31144--
+--14544702763.35932CB.31397--
 
---===============2106411124==
+--===============1715555681==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2106411124==--
+--===============1715555681==--
