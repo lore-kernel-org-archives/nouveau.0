@@ -1,14 +1,13 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] pci: fix typo in nvkm_pcie_set_link()
-Date: Wed, 3 Feb 2016 22:22:27 +0900
-Message-ID: <CAAVeFuKT22_XRmUmOHr9BYKXnhr-d3QAY31H362hizS3UOWqTg@mail.gmail.com>
-References: <1454491991-5839-1-git-send-email-acourbot@nvidia.com>
- <56B1D07E.1030704@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93405] nouveau: Xorg crashes sooner or later in
+	3840x2160 mode
+Date: Wed, 03 Feb 2016 17:19:10 +0000
+Message-ID: <bug-93405-8800-i9jELN1Ark@http.bugs.freedesktop.org/>
+References: <bug-93405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0029229236=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56B1D07E.1030704-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-93405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,32 +17,86 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBGZWIgMywgMjAxNiBhdCA3OjAzIFBNLCBTYW11ZWwgUGl0b2lzZXQKPHNhbXVlbC5w
-aXRvaXNldEBnbWFpbC5jb20+IHdyb3RlOgo+Cj4KPiBPbiAwMi8wMy8yMDE2IDEwOjMzIEFNLCBB
-bGV4YW5kcmUgQ291cmJvdCB3cm90ZToKPj4KPj4gRml4IGEgdGVzdCB0aGF0IHdvdWxkIGVpdGhl
-ciBkbyBub3RoaW5nIG9uIFBDSSBzeXN0ZW1zLCBvciBjcmFzaCBiYWRseQo+PiBvbiBUZWdyYS4K
-Pj4KPj4gU2lnbmVkLW9mZi1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5j
-b20+Cj4+IENjOiBLYXJvbCBIZXJic3QgPG5vdXZlYXVAa2Fyb2xoZXJic3QuZGU+Cj4+IC0tLQo+
-PiAgIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9wY2llLmMgfCAyICstCj4+ICAgMSBmaWxl
-IGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4+Cj4+IGRpZmYgLS1naXQg
-YS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvcGNpZS5jCj4+IGIvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvcGNpL3BjaWUuYwo+PiBpbmRleCBiMzI5NTRmNTMxMWUuLmQ3MWU1ZGI1MDI4YSAx
-MDA2NDQKPj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL3BjaWUuYwo+PiArKysg
-Yi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvcGNpZS5jCj4+IEBAIC0xMTksNyArMTE5LDcg
-QEAgbnZrbV9wY2llX3NldF9saW5rKHN0cnVjdCBudmttX3BjaSAqcGNpLCBlbnVtCj4+IG52a21f
-cGNpZV9zcGVlZCBzcGVlZCwgdTggd2lkdGgpCj4+ICAgICAgICAgc3RydWN0IHBjaV9idXMgKnBi
-dXM7Cj4+ICAgICAgICAgaW50IHJldDsKPj4KPj4gLSAgICAgICBpZiAocGNpIHx8ICFwY2lfaXNf
-cGNpZShwY2ktPnBkZXYpKQo+PiArICAgICAgIGlmICghcGNpIHx8ICFwY2lfaXNfcGNpZShwY2kt
-PnBkZXYpKQo+PiAgICAgICAgICAgICAgICAgcmV0dXJuIDA7Cj4+ICAgICAgICAgcGJ1cyA9IHBj
-aS0+cGRldi0+YnVzOwo+Cj4KPiBUaGlzIGhhcyBhbHJlYWR5IGJlZW4gZml4ZWQgYnV0IEJlbiBz
-dGlsbCBkaWRuJ3QgYXBwbHkgdGhpcyBjaGFuZ2UgdG8gaGlzCj4gcmVwb3NpdG9yeS4KPgo+IGh0
-dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9+YWlybGllZC9saW51eC90cmVlL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9wY2llLmM/aD1kcm0tbmV4dCNuMTIyCgpBaCwg
-cGVyZmVjdCB0aGVuLiBEcm9wcGluZyB0aGlzIHBhdGNoLgoKQ2hlZXJzLApBbGV4LgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0029229236==
+Content-Type: multipart/alternative; boundary="14545199500.2ce8CB.12997";
+ charset="UTF-8"
+
+
+--14545199500.2ce8CB.12997
+Date: Wed, 3 Feb 2016 17:19:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93405
+
+--- Comment #19 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 121499
+  --> https://bugs.freedesktop.org/attachment.cgi?id=121499&action=edit
+tried automatic configuration parameters: 1080p would be the maximum
+
+ The automatic configuration parameters you have suggested, Ilia, and even some
+more of them can not replace a good manual configuration of modelines (if
+stated herein correctly). Nonetheless I can promise that I will give a good
+description on how to configure nouveau and other drivers for higher graphics
+modes, manually, sooner or later on my homepage which is www.elstel.org.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14545199500.2ce8CB.12997
+Date: Wed, 3 Feb 2016 17:19:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c19">Comment # 19</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
+              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=121499" name="attach_121499" title="tried automatic configuration parameters: 1080p would be the maximum">attachment 121499</a> <a href="attachment.cgi?id=121499&amp;action=edit" title="tried automatic configuration parameters: 1080p would be the maximum">[details]</a></span>
+tried automatic configuration parameters: 1080p would be the maximum
+
+ The automatic configuration parameters you have suggested, Ilia, and even some
+more of them can not replace a good manual configuration of modelines (if
+stated herein correctly). Nonetheless I can promise that I will give a good
+description on how to configure nouveau and other drivers for higher graphics
+modes, manually, sooner or later on my homepage which is www.elstel.org.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14545199500.2ce8CB.12997--
+
+--===============0029229236==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0029229236==--
