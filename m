@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92892] [NVA8/NV98] KDE Plasma locks up: Nouveau
  reports error "resource sanity check" "unable to handle kernel paging
  request"
-Date: Wed, 03 Feb 2016 05:21:21 +0000
-Message-ID: <bug-92892-8800-meAuE0BZmJ@http.bugs.freedesktop.org/>
+Date: Wed, 03 Feb 2016 05:23:01 +0000
+Message-ID: <bug-92892-8800-MSZrA1QRmH@http.bugs.freedesktop.org/>
 References: <bug-92892-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0916167974=="
+Content-Type: multipart/mixed; boundary="===============2045684445=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92892-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,31 +22,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0916167974==
-Content-Type: multipart/alternative; boundary="14544768800.1CeCA0.13088";
+--===============2045684445==
+Content-Type: multipart/alternative; boundary="14544769803.D1dAbb.13234";
  charset="UTF-8"
 
 
---14544768800.1CeCA0.13088
-Date: Wed, 3 Feb 2016 05:21:20 +0000
+--14544769803.D1dAbb.13234
+Date: Wed, 3 Feb 2016 05:23:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92892
 
-poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #14 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugzilla.redhat.com
-                   |                            |/show_bug.cgi?id=1303643
+After upgrade to:
+$ rpm --query --file /usr/lib64/libQt5Qml.so.5.6.0
+qt5-qtdeclarative-5.6.0-0.8.beta.fc24.x86_64
+KDE5 starts without hassle
+
+
+Ref.
+- Info: qt5-qtdeclarative-5.6.0-0.8.beta.fc24
+  http://koji.fedoraproject.org/koji/buildinfo?buildID=715479
+  "build with -fno-delete-null-pointer-checks to workaround gcc6-related
+runtime crashes (#1303643)"
+
+- "qt5-qtdeclarative-5.6.0-0.7.beta.fc24 broken"
+  https://bugzilla.redhat.com/show_bug.cgi?id=1303643
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
---14544768800.1CeCA0.13088
-Date: Wed, 3 Feb 2016 05:21:20 +0000
+You are the QA Contact for the bug.
+--14544769803.D1dAbb.13234
+Date: Wed, 3 Feb 2016 05:23:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -54,42 +64,48 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA8/NV98] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA8/NV98] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92892">bug 92892</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>
+After upgrade to:
+$ rpm --query --file /usr/lib64/libQt5Qml.so.5.6.0
+qt5-qtdeclarative-5.6.0-0.8.beta.fc24.x86_64
+KDE5 starts without hassle
 
-         <tr>
-           <td style="text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugzilla.redhat.com/show_bug.cgi?id=1303643
-           </td>
-         </tr></table>
-      <p>
+
+Ref.
+- Info: qt5-qtdeclarative-5.6.0-0.8.beta.fc24
+  <a href="http://koji.fedoraproject.org/koji/buildinfo?buildID=715479">http://koji.fedoraproject.org/koji/buildinfo?buildID=715479</a>
+  &quot;build with -fno-delete-null-pointer-checks to workaround gcc6-related
+runtime crashes (#1303643)&quot;
+
+- &quot;qt5-qtdeclarative-5.6.0-0.7.beta.fc24 broken&quot;
+  <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1303643">https://bugzilla.redhat.com/show_bug.cgi?id=1303643</a></pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>
---14544768800.1CeCA0.13088--
+--14544769803.D1dAbb.13234--
 
---===============0916167974==
+--===============2045684445==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0916167974==--
+--===============2045684445==--
