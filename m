@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93405] nouveau: Xorg crashes sooner or later in
 	3840x2160 mode
-Date: Wed, 03 Feb 2016 17:19:10 +0000
-Message-ID: <bug-93405-8800-i9jELN1Ark@http.bugs.freedesktop.org/>
+Date: Wed, 03 Feb 2016 17:23:58 +0000
+Message-ID: <bug-93405-8800-ulm9uGh9Qz@http.bugs.freedesktop.org/>
 References: <bug-93405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0029229236=="
+Content-Type: multipart/mixed; boundary="===============1857089257=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0029229236==
-Content-Type: multipart/alternative; boundary="14545199500.2ce8CB.12997";
+--===============1857089257==
+Content-Type: multipart/alternative; boundary="14545202381.DE78.14926";
  charset="UTF-8"
 
 
---14545199500.2ce8CB.12997
-Date: Wed, 3 Feb 2016 17:19:10 +0000
+--14545202381.DE78.14926
+Date: Wed, 3 Feb 2016 17:23:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93405
 
---- Comment #19 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 121499
-  --> https://bugs.freedesktop.org/attachment.cgi?id=121499&action=edit
-tried automatic configuration parameters: 1080p would be the maximum
+Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
 
- The automatic configuration parameters you have suggested, Ilia, and even some
-more of them can not replace a good manual configuration of modelines (if
-stated herein correctly). Nonetheless I can promise that I will give a good
-description on how to configure nouveau and other drivers for higher graphics
-modes, manually, sooner or later on my homepage which is www.elstel.org.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
+
+--- Comment #20 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+ For now everything here has been resolved to my full satisfaction; marking as
+fixed. If you are ready to help me some the more pls. have a closer look at Bug
+93887 (nouveau and s2ram) or Bug 93885 (radeon and TMDS overclocking). Thx!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14545199500.2ce8CB.12997
-Date: Wed, 3 Feb 2016 17:19:10 +0000
+--14545202381.DE78.14926
+Date: Wed, 3 Feb 2016 17:23:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -56,27 +57,56 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c19">Comment # 19</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c20">Comment # 20</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
               from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=121499" name="attach_121499" title="tried automatic configuration parameters: 1080p would be the maximum">attachment 121499</a> <a href="attachment.cgi?id=121499&amp;action=edit" title="tried automatic configuration parameters: 1080p would be the maximum">[details]</a></span>
-tried automatic configuration parameters: 1080p would be the maximum
-
- The automatic configuration parameters you have suggested, Ilia, and even some
-more of them can not replace a good manual configuration of modelines (if
-stated herein correctly). Nonetheless I can promise that I will give a good
-description on how to configure nouveau and other drivers for higher graphics
-modes, manually, sooner or later on my homepage which is www.elstel.org.</pre>
+        <pre> For now everything here has been resolved to my full satisfaction; marking as
+fixed. If you are ready to help me some the more pls. have a closer look at <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   href="show_bug.cgi?id=93887">Bug
+93887</a> (nouveau and s2ram) or <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - radeon: allow the user to set a maximum HDMI pixel clock (in MHz) by a kernel parameter"
+   href="show_bug.cgi?id=93885">Bug 93885</a> (radeon and TMDS overclocking). Thx!</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +117,9 @@ modes, manually, sooner or later on my homepage which is www.elstel.org.</pre>
       </ul>
     </body>
 </html>
---14545199500.2ce8CB.12997--
+--14545202381.DE78.14926--
 
---===============0029229236==
+--===============1857089257==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +129,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0029229236==--
+--===============1857089257==--
