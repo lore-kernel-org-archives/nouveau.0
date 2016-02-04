@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92892] [NVA8/NV98] KDE Plasma locks up: Nouveau
- reports error "resource sanity check" "unable to handle kernel paging
- request"
-Date: Thu, 04 Feb 2016 14:04:35 +0000
-Message-ID: <bug-92892-8800-CQ5y0y8Ew2@http.bugs.freedesktop.org/>
-References: <bug-92892-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91526] World of Warcraft (on Wine) has UI corruption
+ with nouveau
+Date: Thu, 04 Feb 2016 17:09:17 +0000
+Message-ID: <bug-91526-8800-bvDlV9HDwn@http.bugs.freedesktop.org/>
+References: <bug-91526-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1019210560=="
+Content-Type: multipart/mixed; boundary="===============0219354570=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92892-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91526-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,37 +21,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1019210560==
-Content-Type: multipart/alternative; boundary="14545946750.5c3bc25C.14146";
+--===============0219354570==
+Content-Type: multipart/alternative; boundary="14546057570.bCDbFD4D2.26075";
  charset="UTF-8"
 
 
---14545946750.5c3bc25C.14146
-Date: Thu, 4 Feb 2016 14:04:35 +0000
+--14546057570.bCDbFD4D2.26075
+Date: Thu, 4 Feb 2016 17:09:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92892
+https://bugs.freedesktop.org/show_bug.cgi?id=91526
 
-poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Gediminas Jakutis from comment #7)
+> This is still an issue[1], so I suppose it should be re-opened.
+> I assume commit d68226087cf5f2f686d6c8f3377c5a1dec3d8bc4 might be at fault,
+> but I haven't tested the game around that time, so I can't tell. I can
+> bisect, if needed.
+> 
+> [1] I just re-tested with the current mesa git head on a fully patched WoW
+> client and the problem is there.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
+Argh! You're right :( Just retested with latest mesa and the trace you
+originally supplied didn't work. But I *swear* it worked for me at commit
+d68226087c. Maybe it was through luck? Or perhaps something in st/mesa changed
+and it's taking a different path now...
 
---- Comment #15 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-
-http://download.opensuse.org/tumbleweed/iso/
-openSUSE-Tumbleweed-KDE-Live-x86_64-Snapshot20160130-Media.iso
-works OK
+--- Comment #9 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
+Diablo 3 seems to be hitting the exact same issue, BTW.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
---14545946750.5c3bc25C.14146
-Date: Thu, 4 Feb 2016 14:04:35 +0000
+--14546057570.bCDbFD4D2.26075
+Date: Thu, 4 Feb 2016 17:09:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -60,51 +64,45 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVA8/NV98] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892">bug 92892</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVA8/NV98] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892#c15">Comment # 15</a>
+          bz_status_REOPENED "
+   title="REOPENED - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526#c9">Comment # 9</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVA8/NV98] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892">bug 92892</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+          bz_status_REOPENED "
+   title="REOPENED - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526">bug 91526</a>
+              from <span class="vcard"><a class="email" href="mailto:gediminas&#64;varciai.lt" title="Gediminas Jakutis &lt;gediminas&#64;varciai.lt&gt;"> <span class="fn">Gediminas Jakutis</span></a>
 </span></b>
-        <pre>
-<a href="http://download.opensuse.org/tumbleweed/iso/">http://download.opensuse.org/tumbleweed/iso/</a>
-openSUSE-Tumbleweed-KDE-Live-x86_64-Snapshot20160130-Media.iso
-works OK</pre>
+        <pre>Diablo 3 seems to be hitting the exact same issue, BTW.</pre>
+        </div>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526">bug 91526</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Gediminas Jakutis from <a href="show_bug.cgi?id=91526#c7">comment #7</a>)
+<span class="quote">&gt; This is still an issue[1], so I suppose it should be re-opened.
+&gt; I assume commit d68226087cf5f2f686d6c8f3377c5a1dec3d8bc4 might be at fault,
+&gt; but I haven't tested the game around that time, so I can't tell. I can
+&gt; bisect, if needed.
+&gt; 
+&gt; [1] I just re-tested with the current mesa git head on a fully patched WoW
+&gt; client and the problem is there.</span >
+
+Argh! You're right :( Just retested with latest mesa and the trace you
+originally supplied didn't work. But I *swear* it worked for me at commit
+d68226087c. Maybe it was through luck? Or perhaps something in st/mesa changed
+and it's taking a different path now...</pre>
         </div>
       </p>
       <hr>
@@ -116,9 +114,9 @@ works OK</pre>
       </ul>
     </body>
 </html>
---14545946750.5c3bc25C.14146--
+--14546057570.bCDbFD4D2.26075--
 
---===============1019210560==
+--===============0219354570==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -128,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1019210560==--
+--===============0219354570==--
