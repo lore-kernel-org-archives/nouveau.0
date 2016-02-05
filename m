@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93385] Dual head issues with xrandr
-Date: Fri, 05 Feb 2016 08:51:23 +0000
-Message-ID: <bug-93385-8800-FTX6SlDQjj@http.bugs.freedesktop.org/>
-References: <bug-93385-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89969] nouveau: add support for chunk decoding in
+ order to support vaapi (st/va)
+Date: Fri, 05 Feb 2016 17:50:56 +0000
+Message-ID: <bug-89969-8800-mthlS7kN6F@http.bugs.freedesktop.org/>
+References: <bug-89969-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1076728542=="
+Content-Type: multipart/mixed; boundary="===============2060201465=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93385-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1076728542==
-Content-Type: multipart/alternative; boundary="14546622831.1331fd4.5053";
+--===============2060201465==
+Content-Type: multipart/alternative; boundary="14546946561.F24e.25645";
  charset="UTF-8"
 
 
---14546622831.1331fd4.5053
-Date: Fri, 5 Feb 2016 08:51:23 +0000
+--14546946561.F24e.25645
+Date: Fri, 5 Feb 2016 17:50:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93385
+https://bugs.freedesktop.org/show_bug.cgi?id=89969
 
-Deuchnord <astrofacile-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+         Resolution|---                         |FIXED
 
---- Comment #3 from Deuchnord <astrofacile-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Just found that my issue didn't come from Nouveau but from Compiz.
-
-Sorry.
+--- Comment #31 from Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Fixed in current master.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
---14546622831.1331fd4.5053
-Date: Fri, 5 Feb 2016 08:51:23 +0000
+--14546946561.F24e.25645
+Date: Fri, 5 Feb 2016 17:50:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -56,12 +56,12 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:astrofacile&#64;gmail.com" title="Deuchnord &lt;astrofacile&#64;gmail.com&gt;"> <span class="fn">Deuchnord</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Dual head issues with xrandr"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93385">bug 93385</a>
+   title="RESOLVED FIXED - nouveau: add support for chunk decoding in order to support vaapi (st/va)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -82,37 +82,36 @@ Content-Type: text/html
            <td style="text-align:right;">Resolution</td>
            <td>---
            </td>
-           <td>INVALID
+           <td>FIXED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Dual head issues with xrandr"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93385#c3">Comment # 3</a>
+   title="RESOLVED FIXED - nouveau: add support for chunk decoding in order to support vaapi (st/va)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c31">Comment # 31</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Dual head issues with xrandr"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93385">bug 93385</a>
-              from <span class="vcard"><a class="email" href="mailto:astrofacile&#64;gmail.com" title="Deuchnord &lt;astrofacile&#64;gmail.com&gt;"> <span class="fn">Deuchnord</span></a>
+   title="RESOLVED FIXED - nouveau: add support for chunk decoding in order to support vaapi (st/va)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
+              from <span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
 </span></b>
-        <pre>Just found that my issue didn't come from Nouveau but from Compiz.
-
-Sorry.</pre>
+        <pre>Fixed in current master.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
---14546622831.1331fd4.5053--
+--14546946561.F24e.25645--
 
---===============1076728542==
+--===============2060201465==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -122,4 +121,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1076728542==--
+--===============2060201465==--
