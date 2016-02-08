@@ -1,78 +1,127 @@
-From: Darren Hart <dvhart@infradead.org>
-Subject: Re: [PATCH v5 00/12] Enable GPU switching on pre-retina MacBook Pro
-Date: Mon, 8 Feb 2016 10:10:00 -0800
-Message-ID: <20160208181000.GL1779@malice.jf.intel.com>
-References: <cover.1452525860.git.lukas@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 83957] [NV50 - NVAF][MCP89] Major screen corruption
+ and X crash soon after log in
+Date: Mon, 08 Feb 2016 20:26:27 +0000
+Message-ID: <bug-83957-8800-HAZY1nOg9C@http.bugs.freedesktop.org/>
+References: <bug-83957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <cover.1452525860.git.lukas@wunner.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Lukas Wunner <lukas@wunner.de>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org, Seth Forshee <seth.forshee@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, Thierry Reding <treding@nvidia.com>
+Content-Type: multipart/mixed; boundary="===============0296453073=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-83957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKYW4gMTEsIDIwMTYgYXQgMDg6MDk6MjBQTSArMDEwMCwgTHVrYXMgV3VubmVyIHdy
-b3RlOgo+IEVuYWJsZSBHUFUgc3dpdGNoaW5nIG9uIHRoZSBwcmUtcmV0aW5hIE1hY0Jvb2sgUHJv
-ICgyMDA4IC0gMjAxMyksIHY1Lgo+IAo+IFRoZSBtYWluIG9ic3RhY2xlIG9uIHRoZXNlIG1hY2hp
-bmVzIGlzIHRoYXQgdGhlIHBhbmVsIG1vZGUgaW4gVkJJT1MKPiBpcyBib2d1cy4gRm9ydHVuYXRl
-bHkgZ211eCBjYW4gc3dpdGNoIEREQyBpbmRlcGVuZGVudGx5IGZyb20gdGhlCj4gZGlzcGxheSwg
-dGhlcmVieSBhbGxvd2luZyB0aGUgaW5hY3RpdmUgR1BVIHRvIHByb2JlIHRoZSBwYW5lbCdzIEVE
-SUQuCj4gCj4gSW4gc2hvcnQsIHZnYV9zd2l0Y2hlcm9vIGFuZCBhcHBsZS1nbXV4IGFyZSBhbWVu
-ZGVkIHdpdGggaG9va3MgdG8KPiBzd2l0Y2ggRERDLCBEUk0gY29yZSBpcyBhbWVuZGVkIHdpdGgg
-YSBkcm1fZ2V0X2VkaWRfc3dpdGNoZXJvbygpIGhlbHBlciwKPiBhbmQgcmVsZXZhbnQgZHJpdmVy
-cyBhcmUgYW1lbmRlZCB0byBjYWxsIHRoYXQgZm9yIExWRFMgb3V0cHV0cy4KPiAKPiBUaGUgcmV0
-aW5hIE1hY0Jvb2sgUHJvICgyMDEyIC0gcHJlc2VudCkgdXNlcyBlRFAgYW5kIGNhbm5vdCBzd2l0
-Y2gKPiBBVVggaW5kZXBlbmRlbnRseSBmcm9tIHRoZSBtYWluIGxpbmsuIFRoZSBtYWluIG9ic3Rh
-Y2xlIHRoZXJlIGlzIGxpbmsKPiB0cmFpbmluZywgSSdtIGN1cnJlbnRseSB3b3JraW5nIG9uIHRo
-aXMsIGl0IHdpbGwgYmUgYWRkcmVzc2VkIGluIGEKPiBmdXR1cmUgcGF0Y2ggc2V0Lgo+IAo+IFRo
-aXMgc2VyaWVzIGlzIGFsc28gcmV2aWV3YWJsZSBvbiBHaXRIdWI6Cj4gaHR0cHM6Ly9naXRodWIu
-Y29tL2wxay9saW51eC9jb21taXRzL21icF9zd2l0Y2hlcm9vX3Y1Cj4gCj4gQ2hhbmdlczoKPiAK
-PiAqIE5ldyBwYXRjaCBbMDEvMTJdOiB2Z2Ffc3dpdGNoZXJvbyBoYW5kbGVyIGZsYWdzCj4gICBB
-bGV4IERldWNoZXIgYXNrZWQgaWYgdGhpcyBzZXJpZXMgbWlnaHQgcmVncmVzcyBvbiBub24tQXBw
-bGUgbGFwdG9wcy4KPiAgIFRvIGFkZHJlc3MgdGhpcyBjb25jZXJuLCBJIGxldCBoYW5kbGVycyBk
-ZWNsYXJlIHRoZWlyIGNhcGFiaWxpdGllcyBpbgo+ICAgYSBiaXRtYXNrLiBEUk0gZHJpdmVycyBj
-YWxsIGRybV9nZXRfZWRpZF9zd2l0Y2hlcm9vKCkgb25seSBpZiB0aGUKPiAgIGhhbmRsZXIgaGFz
-IHNldCB0aGUgVkdBX1NXSVRDSEVST09fQ0FOX1NXSVRDSF9EREMgZmxhZy4KPiAgIEN1cnJlbnRs
-eSBqdXN0IG9uZSBvdGhlciBmbGFnIGlzIGRlZmluZWQgd2hpY2ggaXMgdXNlZCBvbiByZXRpbmFz
-Lgo+IAo+ICogQ2hhbmdlZCBwYXRjaCBbMDIvMTJdOiB2Z2Ffc3dpdGNoZXJvbyBEREMgbG9ja2lu
-Zwo+ICAgUmVuYW1lIGRkY19sb2NrIHRvIG11eF9od19sb2NrLCBzdWdnZXN0ZWQgYnkgRGFuaWVs
-IFZldHRlci4KPiAKPiAqIE5ldyBwYXRjaCBbMDMvMTJdOiB0cmFjayBzd2l0Y2ggc3RhdGUgb2Yg
-YXBwbGUtZ211eAo+ICAgRml4ZXMgYSBidWcgaW4gcHJldmlvdXMgdmVyc2lvbnMgb2YgdGhpcyBz
-ZXJpZXMgd2hpY2ggb2NjdXJyZWQgaWYKPiAgIHRoZSBzeXN0ZW0gd2FzIHN1c3BlbmRlZCB3aGls
-ZSBEREMgd2FzIHRlbXBvcmFyaWx5IHN3aXRjaGVkOgo+ICAgT24gcmVzdW1lIEREQyB3YXMgc3dp
-dGNoZWQgdG8gdGhlIHdyb25nIEdQVS4KPiAKPiAqIE5ldyBwYXRjaGVzIFswOS8xMiAtIDEyLzEy
-XTogZGVmZXJyZWQgcHJvYmluZwo+ICAgUHJldmlvdXNseSBJIHVzZWQgY29ubmVjdG9yIHJlcHJv
-YmluZyBpZiB0aGUgaW5hY3RpdmUgR1BVJ3MgZHJpdmVyCj4gICBsb2FkZWQgYmVmb3JlIGdtdXgu
-IEkndmUgZGl0Y2hlZCB0aGF0IGluIGZhdm9yIG9mIGRlZmVycmVkIGRyaXZlcgo+ICAgcHJvYmlu
-Zywgd2hpY2ggaXMgbXVjaCBzaW1wbGVyLiBUaGFua3MgdG8gRGFuaWVsIFZldHRlciBmb3IgdGhl
-Cj4gICBzdWdnZXN0aW9uLgo+IAo+IENhdXRpb246IFBhdGNoIFswOS8xMl0gZGVwZW5kcyBvbiBh
-IG5ldyBhY3BpX2Rldl9wcmVzZW50KCkgQVBJIHdoaWNoCj4gd2lsbCBsYW5kIGluIDQuNSB2aWEg
-UmFmYWVsIEouIFd5c29ja2kncyB0cmVlLgo+IAo+IEkgd291bGQgcGFydGljdWxhcmx5IGJlIGlu
-dGVyZXN0ZWQgaW4gZmVlZGJhY2sgb24gdGhlIGhhbmRsZXIgZmxhZ3MKPiBwYXRjaCBbMDEvMTJd
-LiBJJ20gbm90IDEwMCUgaGFwcHkgd2l0aCB0aGUgbnVtYmVyIG9mIGNoYXJhY3RlcnMKPiByZXF1
-aXJlZCB0byBxdWVyeSB0aGUgZmxhZ3MgKGUuZy46IGlmICh2Z2Ffc3dpdGNoZXJvb19oYW5kbGVy
-X2ZsYWdzKCkgJgo+IFZHQV9TV0lUQ0hFUk9PX0NBTl9TV0lUQ0hfRERDKSksIGJ1dCBmYWlsZWQg
-dG8gY29tZSB1cCB3aXRoIHNvbWV0aGluZwo+IHNob3J0ZXIuIFRoaWVycnkgUmVkaW5nIHVzZWQg
-YSBzdHJ1Y3Qgb2YgYm9vbHMgaW5zdGVhZCBvZiBhIGJpdG1hc2sKPiBmb3IgaGlzIHJlY2VudCBk
-cm1fZHBfbGlua19jYXBzIHBhdGNoZXMuIE1heWJlIHVzZSB0aGF0IGluc3RlYWQ/Cj4gaHR0cDov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9kcmktZGV2ZWwvMjAxNS1EZWNlbWJlci8w
-OTcwMjUuaHRtbAoKTm8gb2JqZWN0aW9uIGZyb20gdGhlIHBsYXRmb3JtLWRyaXZlci14ODYgc2lk
-ZS4gSSBjYW4gcHVsbCB0aGVzZSBzZXBhcmF0ZWx5IG9uY2UKdGhlIGNvcmUgaXMgaW4sIG9yIHRo
-ZXNlIGNhbiBiZSBpbmNsdWRlZCB3aXRoIHRoYXQgY29yZSAocHJlZmVycmVkKSB3aXRoIG15ClJl
-dmlld2VkLWJ5IGZvciAxLCAzLCA0LCBhbmQgOS4KClJldmlld2VkLWJ5OiBEYXJyZW4gSGFydCA8
-ZHZoYXJ0QGxpbnV4LmludGVsLmNvbT4KCi0tIApEYXJyZW4gSGFydApJbnRlbCBPcGVuIFNvdXJj
-ZSBUZWNobm9sb2d5IENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9k
-cmktZGV2ZWwK
+
+--===============0296453073==
+Content-Type: multipart/alternative; boundary="14549631870.8EBaCC6c.10981";
+ charset="UTF-8"
+
+
+--14549631870.8EBaCC6c.10981
+Date: Mon, 8 Feb 2016 20:26:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=83957
+
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
+
+--- Comment #8 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Hello Loïc,
+
+I tested Nouveau on a friend's laptop (an MBP with an MCP89 as well), and I
+don't recall seeing any screen corruption as he used it and played some games.
+It was with kernel ~4.1 IIRC. Are you still experiencing this issue with kernel
+4.3 or 4.4?
+
+Sorry for not coming back earlier…
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14549631870.8EBaCC6c.10981
+Date: Mon, 8 Feb 2016 20:26:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NV50 - NVAF][MCP89] Major screen corruption and X crash soon after log in"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83957">bug 83957</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NV50 - NVAF][MCP89] Major screen corruption and X crash soon after log in"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83957#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NV50 - NVAF][MCP89] Major screen corruption and X crash soon after log in"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83957">bug 83957</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>Hello Loïc,
+
+I tested Nouveau on a friend's laptop (an MBP with an MCP89 as well), and I
+don't recall seeing any screen corruption as he used it and played some games.
+It was with kernel ~4.1 IIRC. Are you still experiencing this issue with kernel
+4.3 or 4.4?
+
+Sorry for not coming back earlier…</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14549631870.8EBaCC6c.10981--
+
+--===============0296453073==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0296453073==--
