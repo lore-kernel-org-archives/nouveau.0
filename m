@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83957] [NV50 - NVAF][MCP89] Major screen corruption
- and X crash soon after log in
-Date: Mon, 08 Feb 2016 20:26:27 +0000
-Message-ID: <bug-83957-8800-HAZY1nOg9C@http.bugs.freedesktop.org/>
-References: <bug-83957-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH v5 00/12] Enable GPU switching on pre-retina
+	MacBook Pro
+Date: Tue, 9 Feb 2016 10:01:52 +0100
+Message-ID: <20160209090152.GZ11240@phenom.ffwll.local>
+References: <cover.1452525860.git.lukas@wunner.de>
+ <20160208181000.GL1779@malice.jf.intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0296453073=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20160208181000.GL1779-Z5kFBHtJu+EzCVHREhWfF0EOCMrvLtNR@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,111 +20,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Darren Hart <dvhart-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, platform-driver-x86-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Seth Forshee <seth.forshee-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0296453073==
-Content-Type: multipart/alternative; boundary="14549631870.8EBaCC6c.10981";
- charset="UTF-8"
-
-
---14549631870.8EBaCC6c.10981
-Date: Mon, 8 Feb 2016 20:26:27 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=83957
-
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-
---- Comment #8 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Hello Loïc,
-
-I tested Nouveau on a friend's laptop (an MBP with an MCP89 as well), and I
-don't recall seeing any screen corruption as he used it and played some games.
-It was with kernel ~4.1 IIRC. Are you still experiencing this issue with kernel
-4.3 or 4.4?
-
-Sorry for not coming back earlier…
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14549631870.8EBaCC6c.10981
-Date: Mon, 8 Feb 2016 20:26:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - [NV50 - NVAF][MCP89] Major screen corruption and X crash soon after log in"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83957">bug 83957</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - [NV50 - NVAF][MCP89] Major screen corruption and X crash soon after log in"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83957#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - [NV50 - NVAF][MCP89] Major screen corruption and X crash soon after log in"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83957">bug 83957</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Hello Loïc,
-
-I tested Nouveau on a friend's laptop (an MBP with an MCP89 as well), and I
-don't recall seeing any screen corruption as he used it and played some games.
-It was with kernel ~4.1 IIRC. Are you still experiencing this issue with kernel
-4.3 or 4.4?
-
-Sorry for not coming back earlier…</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14549631870.8EBaCC6c.10981--
-
---===============0296453073==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0296453073==--
+T24gTW9uLCBGZWIgMDgsIDIwMTYgYXQgMTA6MTA6MDBBTSAtMDgwMCwgRGFycmVuIEhhcnQgd3Jv
+dGU6Cj4gT24gTW9uLCBKYW4gMTEsIDIwMTYgYXQgMDg6MDk6MjBQTSArMDEwMCwgTHVrYXMgV3Vu
+bmVyIHdyb3RlOgo+ID4gRW5hYmxlIEdQVSBzd2l0Y2hpbmcgb24gdGhlIHByZS1yZXRpbmEgTWFj
+Qm9vayBQcm8gKDIwMDggLSAyMDEzKSwgdjUuCj4gPiAKPiA+IFRoZSBtYWluIG9ic3RhY2xlIG9u
+IHRoZXNlIG1hY2hpbmVzIGlzIHRoYXQgdGhlIHBhbmVsIG1vZGUgaW4gVkJJT1MKPiA+IGlzIGJv
+Z3VzLiBGb3J0dW5hdGVseSBnbXV4IGNhbiBzd2l0Y2ggRERDIGluZGVwZW5kZW50bHkgZnJvbSB0
+aGUKPiA+IGRpc3BsYXksIHRoZXJlYnkgYWxsb3dpbmcgdGhlIGluYWN0aXZlIEdQVSB0byBwcm9i
+ZSB0aGUgcGFuZWwncyBFRElELgo+ID4gCj4gPiBJbiBzaG9ydCwgdmdhX3N3aXRjaGVyb28gYW5k
+IGFwcGxlLWdtdXggYXJlIGFtZW5kZWQgd2l0aCBob29rcyB0bwo+ID4gc3dpdGNoIEREQywgRFJN
+IGNvcmUgaXMgYW1lbmRlZCB3aXRoIGEgZHJtX2dldF9lZGlkX3N3aXRjaGVyb28oKSBoZWxwZXIs
+Cj4gPiBhbmQgcmVsZXZhbnQgZHJpdmVycyBhcmUgYW1lbmRlZCB0byBjYWxsIHRoYXQgZm9yIExW
+RFMgb3V0cHV0cy4KPiA+IAo+ID4gVGhlIHJldGluYSBNYWNCb29rIFBybyAoMjAxMiAtIHByZXNl
+bnQpIHVzZXMgZURQIGFuZCBjYW5ub3Qgc3dpdGNoCj4gPiBBVVggaW5kZXBlbmRlbnRseSBmcm9t
+IHRoZSBtYWluIGxpbmsuIFRoZSBtYWluIG9ic3RhY2xlIHRoZXJlIGlzIGxpbmsKPiA+IHRyYWlu
+aW5nLCBJJ20gY3VycmVudGx5IHdvcmtpbmcgb24gdGhpcywgaXQgd2lsbCBiZSBhZGRyZXNzZWQg
+aW4gYQo+ID4gZnV0dXJlIHBhdGNoIHNldC4KPiA+IAo+ID4gVGhpcyBzZXJpZXMgaXMgYWxzbyBy
+ZXZpZXdhYmxlIG9uIEdpdEh1YjoKPiA+IGh0dHBzOi8vZ2l0aHViLmNvbS9sMWsvbGludXgvY29t
+bWl0cy9tYnBfc3dpdGNoZXJvb192NQo+ID4gCj4gPiBDaGFuZ2VzOgo+ID4gCj4gPiAqIE5ldyBw
+YXRjaCBbMDEvMTJdOiB2Z2Ffc3dpdGNoZXJvbyBoYW5kbGVyIGZsYWdzCj4gPiAgIEFsZXggRGV1
+Y2hlciBhc2tlZCBpZiB0aGlzIHNlcmllcyBtaWdodCByZWdyZXNzIG9uIG5vbi1BcHBsZSBsYXB0
+b3BzLgo+ID4gICBUbyBhZGRyZXNzIHRoaXMgY29uY2VybiwgSSBsZXQgaGFuZGxlcnMgZGVjbGFy
+ZSB0aGVpciBjYXBhYmlsaXRpZXMgaW4KPiA+ICAgYSBiaXRtYXNrLiBEUk0gZHJpdmVycyBjYWxs
+IGRybV9nZXRfZWRpZF9zd2l0Y2hlcm9vKCkgb25seSBpZiB0aGUKPiA+ICAgaGFuZGxlciBoYXMg
+c2V0IHRoZSBWR0FfU1dJVENIRVJPT19DQU5fU1dJVENIX0REQyBmbGFnLgo+ID4gICBDdXJyZW50
+bHkganVzdCBvbmUgb3RoZXIgZmxhZyBpcyBkZWZpbmVkIHdoaWNoIGlzIHVzZWQgb24gcmV0aW5h
+cy4KPiA+IAo+ID4gKiBDaGFuZ2VkIHBhdGNoIFswMi8xMl06IHZnYV9zd2l0Y2hlcm9vIEREQyBs
+b2NraW5nCj4gPiAgIFJlbmFtZSBkZGNfbG9jayB0byBtdXhfaHdfbG9jaywgc3VnZ2VzdGVkIGJ5
+IERhbmllbCBWZXR0ZXIuCj4gPiAKPiA+ICogTmV3IHBhdGNoIFswMy8xMl06IHRyYWNrIHN3aXRj
+aCBzdGF0ZSBvZiBhcHBsZS1nbXV4Cj4gPiAgIEZpeGVzIGEgYnVnIGluIHByZXZpb3VzIHZlcnNp
+b25zIG9mIHRoaXMgc2VyaWVzIHdoaWNoIG9jY3VycmVkIGlmCj4gPiAgIHRoZSBzeXN0ZW0gd2Fz
+IHN1c3BlbmRlZCB3aGlsZSBEREMgd2FzIHRlbXBvcmFyaWx5IHN3aXRjaGVkOgo+ID4gICBPbiBy
+ZXN1bWUgRERDIHdhcyBzd2l0Y2hlZCB0byB0aGUgd3JvbmcgR1BVLgo+ID4gCj4gPiAqIE5ldyBw
+YXRjaGVzIFswOS8xMiAtIDEyLzEyXTogZGVmZXJyZWQgcHJvYmluZwo+ID4gICBQcmV2aW91c2x5
+IEkgdXNlZCBjb25uZWN0b3IgcmVwcm9iaW5nIGlmIHRoZSBpbmFjdGl2ZSBHUFUncyBkcml2ZXIK
+PiA+ICAgbG9hZGVkIGJlZm9yZSBnbXV4LiBJJ3ZlIGRpdGNoZWQgdGhhdCBpbiBmYXZvciBvZiBk
+ZWZlcnJlZCBkcml2ZXIKPiA+ICAgcHJvYmluZywgd2hpY2ggaXMgbXVjaCBzaW1wbGVyLiBUaGFu
+a3MgdG8gRGFuaWVsIFZldHRlciBmb3IgdGhlCj4gPiAgIHN1Z2dlc3Rpb24uCj4gPiAKPiA+IENh
+dXRpb246IFBhdGNoIFswOS8xMl0gZGVwZW5kcyBvbiBhIG5ldyBhY3BpX2Rldl9wcmVzZW50KCkg
+QVBJIHdoaWNoCj4gPiB3aWxsIGxhbmQgaW4gNC41IHZpYSBSYWZhZWwgSi4gV3lzb2NraSdzIHRy
+ZWUuCj4gPiAKPiA+IEkgd291bGQgcGFydGljdWxhcmx5IGJlIGludGVyZXN0ZWQgaW4gZmVlZGJh
+Y2sgb24gdGhlIGhhbmRsZXIgZmxhZ3MKPiA+IHBhdGNoIFswMS8xMl0uIEknbSBub3QgMTAwJSBo
+YXBweSB3aXRoIHRoZSBudW1iZXIgb2YgY2hhcmFjdGVycwo+ID4gcmVxdWlyZWQgdG8gcXVlcnkg
+dGhlIGZsYWdzIChlLmcuOiBpZiAodmdhX3N3aXRjaGVyb29faGFuZGxlcl9mbGFncygpICYKPiA+
+IFZHQV9TV0lUQ0hFUk9PX0NBTl9TV0lUQ0hfRERDKSksIGJ1dCBmYWlsZWQgdG8gY29tZSB1cCB3
+aXRoIHNvbWV0aGluZwo+ID4gc2hvcnRlci4gVGhpZXJyeSBSZWRpbmcgdXNlZCBhIHN0cnVjdCBv
+ZiBib29scyBpbnN0ZWFkIG9mIGEgYml0bWFzawo+ID4gZm9yIGhpcyByZWNlbnQgZHJtX2RwX2xp
+bmtfY2FwcyBwYXRjaGVzLiBNYXliZSB1c2UgdGhhdCBpbnN0ZWFkPwo+ID4gaHR0cDovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9kcmktZGV2ZWwvMjAxNS1EZWNlbWJlci8wOTcwMjUu
+aHRtbAo+IAo+IE5vIG9iamVjdGlvbiBmcm9tIHRoZSBwbGF0Zm9ybS1kcml2ZXIteDg2IHNpZGUu
+IEkgY2FuIHB1bGwgdGhlc2Ugc2VwYXJhdGVseSBvbmNlCj4gdGhlIGNvcmUgaXMgaW4sIG9yIHRo
+ZXNlIGNhbiBiZSBpbmNsdWRlZCB3aXRoIHRoYXQgY29yZSAocHJlZmVycmVkKSB3aXRoIG15Cj4g
+UmV2aWV3ZWQtYnkgZm9yIDEsIDMsIDQsIGFuZCA5Lgo+IAo+IFJldmlld2VkLWJ5OiBEYXJyZW4g
+SGFydCA8ZHZoYXJ0QGxpbnV4LmludGVsLmNvbT4KCkkgcHVsbGVkIHRoZW0gYWxsIGluIHRocm91
+Z2ggZHJtLW1pc2MsIHRoYW5rcy4KLURhbmllbAotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBF
+bmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
