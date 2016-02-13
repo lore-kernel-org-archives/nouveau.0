@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94131] G98: DRM: GPU lockup
-Date: Sat, 13 Feb 2016 07:42:25 +0000
-Message-ID: <bug-94131-8800-pYq8aZ7el4@http.bugs.freedesktop.org/>
-References: <bug-94131-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?Q?Fran=c3=a7ois_Patte?= <francois.patte-M1t/trIVwLZOoxE5K68scG/KedPJEj8Q@public.gmane.org>
+Subject: dual head question
+Date: Sat, 13 Feb 2016 10:45:00 +0100
+Message-ID: <56BEFB1C.60006@mi.parisdescartes.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0962382358=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94131-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,71 +18,28 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0962382358==
-Content-Type: multipart/alternative; boundary="14553493450.313Ce9.920";
- charset="UTF-8"
-
-
---14553493450.313Ce9.920
-Date: Sat, 13 Feb 2016 07:42:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=94131
-
---- Comment #2 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 121734
-  --> https://bugs.freedesktop.org/attachment.cgi?id=121734&action=edit
-Xorg.0.log 1.18.1 nouveau ddx 1.0.12
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14553493450.313Ce9.920
-Date: Sat, 13 Feb 2016 07:42:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98: DRM: GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94131#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98: DRM: GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94131">bug 94131</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=121734" name="attach_121734" title="Xorg.0.log 1.18.1 nouveau ddx 1.0.12">attachment 121734</a> <a href="attachment.cgi?id=121734&amp;action=edit" title="Xorg.0.log 1.18.1 nouveau ddx 1.0.12">[details]</a></span>
-Xorg.0.log 1.18.1 nouveau ddx 1.0.12</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14553493450.313Ce9.920--
-
---===============0962382358==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0962382358==--
+LS0tLS1CRUdJTiBQR1AgU0lHTkVEIE1FU1NBR0UtLS0tLQpIYXNoOiBTSEExCgpCb25qb3VyLAoK
+SSBoYXZlIHR3byBtb25pdG9ycyBhbmQgYW4gbnZpZGlhIGdyYXBoaWMgY2FyZC4gSSB1c2VzIHRo
+ZSBudmlkaWEKcHJvcHJpZXRhcnkgZHJpdmVyIGZyb20gcnBtZnVzaW9uIGFuZCBoYXZlIGNvbmZp
+Z3VyZWQgdGhlIHN5c3RlbSB0bwp1c2UgdGhlIHR3aW52aWV3IG9wdGlvbi4KCkkgbmVlZCB0byBs
+b2FkIGFuIGljYyBwcm9maWxlIGZvciBlYWNoIHNjcmVlbiAodGhleSBhcmUgbm90IGV4YWN0bHkK
+dGhlIHNhbWUpIGFuZCB0aGlzIHNlZW1zIHRvIGJlIGltcG9zc2libGUgdW5kZXIgdGhpcyBjb25m
+aWd1cmF0aW9uLi4uLgpBbSBJIHJpZ2h0PwoKU28gSSBjaGFuZ2VkIG15IGNvbmZpZzogc2VwYXJh
+dGUgc2NyZWVucyArIHhpbmVyYW1hCldpdGggdGhpcyBjb25maWcsIEkgY2FuIGxvYWQgb25lIGlj
+YyBwcm9maWxlIGZvciBlYWNoIHNjcmVlbiAqYnV0Kgp3aGVuIEkgaGF2ZSB0byB1c2UgYSBRdCB3
+aW5kb3cgKEVtYWNzLCBza3lwZSwgcnh2dC4uLi4pIHRoZSBYIHNlcnZlcgpjcmFzaGVzLi4uLi4K
+CkkgZG9uJ3Qga25vdyB3aGF0IGlzIHJlcG9uc2libGU6IG52aWRpYSBkcml2ZXIgb3IgUXQsIGJ1
+dCBJIGRvIG5lZWQgdG8KdXNlIEVtYWNzIGFuZCBzb21lIG90aGVyIGFwcGxpY2F0aW9uIHVzaW5n
+IFF0LgoKSXMgdGhlcmUgYSBzb2x1dGlvbiB0byBteSBwcm9ibGVtOiBsb2FkIGFuIGljYyBwcm9m
+aWxlIGZvciBlYWNoIHNjcmVlbgp3aXRoIHRoZSBub3V2ZWF1IGRyaXZlcj8KClRoYW5rIHlvdQoK
+LSAtLSAKRnJhbsOnb2lzIFBhdHRlClVGUiBkZSBtYXRow6ltYXRpcXVlcyBldCBpbmZvcm1hdGlx
+dWUKTGFib3JhdG9pcmUgQ05SUyBNQVA1LCBVTVIgODE0NQpVbml2ZXJzaXTDqSBQYXJpcyBEZXNj
+YXJ0ZXMKNDUsIHJ1ZSBkZXMgU2FpbnRzIFDDqHJlcwpGLTc1MjcwIFBhcmlzIENlZGV4IDA2ClTD
+qWwuICszMyAoMCkxIDgzOTQgNTg0OQpodHRwOi8vd3d3Lm1hdGgtaW5mby51bml2LXBhcmlzNS5m
+ci9+cGF0dGUKLS0tLS1CRUdJTiBQR1AgU0lHTkFUVVJFLS0tLS0KVmVyc2lvbjogR251UEcgdjIK
+CmlFWUVBUkVDQUFZRkFsYSsreHdBQ2drUWRFNkMyZGhWMkpVKzhnQ2ZYK1ZSVDlHQ2J0SUdnNklG
+dFNkd3RxeDgKNXdBQW4xZXNaWjFpV2lQZkhHY24yMXhHeUpYNmFJNDAKPThXb3AKLS0tLS1FTkQg
+UEdQIFNJR05BVFVSRS0tLS0tCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQo=
