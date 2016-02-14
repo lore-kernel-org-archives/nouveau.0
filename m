@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
- GT]: HDMI monitor stays black after s2ram
-Date: Sat, 13 Feb 2016 15:26:41 +0000
-Message-ID: <bug-93887-8800-knKHMjFTm0@http.bugs.freedesktop.org/>
-References: <bug-93887-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?Q?Fran=c3=a7ois_Patte?= <francois.patte-M1t/trIVwLZOoxE5K68scG/KedPJEj8Q@public.gmane.org>
+Subject: Re: dual head question
+Date: Sun, 14 Feb 2016 10:46:40 +0100
+Message-ID: <56C04D00.8020306@mi.parisdescartes.fr>
+References: <56BEFB1C.60006@mi.parisdescartes.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0235791287=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <56BEFB1C.60006-M1t/trIVwLZOoxE5K68scG/KedPJEj8Q@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,70 +20,37 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0235791287==
-Content-Type: multipart/alternative; boundary="14553772011.4fBec2dD.31035";
- charset="UTF-8"
-
-
---14553772011.4fBec2dD.31035
-Date: Sat, 13 Feb 2016 15:26:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93887
-
---- Comment #6 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Ilia; is there anything in the logs that could be helpful?
-Would you like to have a similar log with the proprietary driver?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14553772011.4fBec2dD.31035
-Date: Sat, 13 Feb 2016 15:26:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
-              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
-</span></b>
-        <pre>Ilia; is there anything in the logs that could be helpful?
-Would you like to have a similar log with the proprietary driver?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14553772011.4fBec2dD.31035--
-
---===============0235791287==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0235791287==--
+LS0tLS1CRUdJTiBQR1AgU0lHTkVEIE1FU1NBR0UtLS0tLQpIYXNoOiBTSEExCgpMZSAxMy8wMi8y
+MDE2IDEwOjQ1LCBGcmFuw6dvaXMgUGF0dGUgYSDDqWNyaXQgOgo+IEJvbmpvdXIsCj4gCj4gSSBo
+YXZlIHR3byBtb25pdG9ycyBhbmQgYW4gbnZpZGlhIGdyYXBoaWMgY2FyZC4gSSB1c2VzIHRoZSBu
+dmlkaWEgCj4gcHJvcHJpZXRhcnkgZHJpdmVyIGZyb20gcnBtZnVzaW9uIGFuZCBoYXZlIGNvbmZp
+Z3VyZWQgdGhlIHN5c3RlbQo+IHRvIHVzZSB0aGUgdHdpbnZpZXcgb3B0aW9uLgo+IAo+IEkgbmVl
+ZCB0byBsb2FkIGFuIGljYyBwcm9maWxlIGZvciBlYWNoIHNjcmVlbiAodGhleSBhcmUgbm90Cj4g
+ZXhhY3RseSB0aGUgc2FtZSkgYW5kIHRoaXMgc2VlbXMgdG8gYmUgaW1wb3NzaWJsZSB1bmRlciB0
+aGlzCj4gY29uZmlndXJhdGlvbi4uLi4gQW0gSSByaWdodD8KPiAKPiBTbyBJIGNoYW5nZWQgbXkg
+Y29uZmlnOiBzZXBhcmF0ZSBzY3JlZW5zICsgeGluZXJhbWEgV2l0aCB0aGlzCj4gY29uZmlnLCBJ
+IGNhbiBsb2FkIG9uZSBpY2MgcHJvZmlsZSBmb3IgZWFjaCBzY3JlZW4gKmJ1dCogd2hlbiBJCj4g
+aGF2ZSB0byB1c2UgYSBRdCB3aW5kb3cgKEVtYWNzLCBza3lwZSwgcnh2dC4uLi4pIHRoZSBYIHNl
+cnZlciAKPiBjcmFzaGVzLi4uLi4KPiAKPiBJIGRvbid0IGtub3cgd2hhdCBpcyByZXBvbnNpYmxl
+OiBudmlkaWEgZHJpdmVyIG9yIFF0LCBidXQgSSBkbyBuZWVkCj4gdG8gdXNlIEVtYWNzIGFuZCBz
+b21lIG90aGVyIGFwcGxpY2F0aW9uIHVzaW5nIFF0LgoKSSB0cmllZCB0byBpbnN0YWxsIG5vdXZl
+YXUgZHJpdmVyIHdpdGggeGluZXJhbWEgZW5hYmxlZDogc2FtZSBwcm9ibGVtClggc2VydmVyIGNy
+YXNoZXMhCgpUaGUgbmV4dCBxdWVzdGlvbiBzdGlsbCByZW1haW5zLi4uLgo+IAo+IElzIHRoZXJl
+IGEgc29sdXRpb24gdG8gbXkgcHJvYmxlbTogbG9hZCBhbiBpY2MgcHJvZmlsZSBmb3IgZWFjaAo+
+IHNjcmVlbiB3aXRoIHRoZSBub3V2ZWF1IGRyaXZlcj8KCldoYXQgaXMgdGhlIHR3aW52aWV3IGVx
+dWl2YWxlbnQgZm9yIHRoZSBkcml2ZXIgbm91dmVhdT8gSSBjYW5ub3QgZmluZApzb21lIGNsZWFy
+IGRvYyBhYm91dCB0aGUgY29uZmlndXJhdGlvbiBmb3IgYSBkdWFsIGhlYWQgaW5zdGFsbAoKPiAK
+PiBUaGFuayB5b3UKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXyBOb3V2ZWF1IG1haWxpbmcKPiBsaXN0IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnIAo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo+IAoKLSAtLSAKRnJhbsOnb2lzIFBhdHRlClVGUiBkZSBtYXRow6ltYXRpcXVlcyBldCBp
+bmZvcm1hdGlxdWUKTGFib3JhdG9pcmUgQ05SUyBNQVA1LCBVTVIgODE0NQpVbml2ZXJzaXTDqSBQ
+YXJpcyBEZXNjYXJ0ZXMKNDUsIHJ1ZSBkZXMgU2FpbnRzIFDDqHJlcwpGLTc1MjcwIFBhcmlzIENl
+ZGV4IDA2ClTDqWwuICszMyAoMCkxIDgzOTQgNTg0OQpodHRwOi8vd3d3Lm1hdGgtaW5mby51bml2
+LXBhcmlzNS5mci9+cGF0dGUKLS0tLS1CRUdJTiBQR1AgU0lHTkFUVVJFLS0tLS0KVmVyc2lvbjog
+R251UEcgdjIKCmlFWUVBUkVDQUFZRkFsYkFUUUFBQ2drUWRFNkMyZGhWMkpVbGZBQ2d1U1lpOWht
+cUtNZlhiVWJZb1pPa2oyenMKZUdBQW9Ja3pCY3RNeXVMTk9EVU5yNzNxaHNRNG9ZRzEKPTJhUnUK
+LS0tLS1FTkQgUEdQIFNJR05BVFVSRS0tLS0tCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQo=
