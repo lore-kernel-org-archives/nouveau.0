@@ -1,77 +1,197 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PREVIEW] GM200/GM204 signed firmware for Nouveau
-Date: Mon, 15 Feb 2016 17:40:49 +0900
-Message-ID: <56C18F11.9040003@nvidia.com>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [PREVIEW] GM200/GM204 signed firmware for Nouveau
+Date: Mon, 15 Feb 2016 19:59:06 +1000
+Message-ID: <CACAvsv5qv029Cv=eeqnMPbtXsEQ9HJRt1sqg-rnN8uc-uQc46A@mail.gmail.com>
+References: <56C18F11.9040003@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0275497636=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <56C18F11.9040003@nvidia.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgZXZlcnlvbmUsCgpJIGtub3csIGl0J3MgYWJvdXQgZioqa2luZyB0aW1lIGFuZCBJIGFwb2xv
-Z2l6ZSBmb3IgdGhlIHRpbWUgaXQgdG9vayB1cyAKdG8gZmluYWxseSBwdXQgdGhpcyB0b2dldGhl
-ci4gbShfXyltCgpJIGhhdmUgcHVzaGVkIHR3byBnaXQgYnJhbmNoZXMgd2hpY2ggZW5hYmxlIEdN
-MjAwIGFuZCBHTTIwNCAoR00yMDYgdG8gCmZvbGxvdyBzb29uKSBvd25lcnMgdG8gZmluYWxseSBs
-b2FkIE5WSURJQS1wcm92aWRlZCBzaWduZWQgZmlybXdhcmUgYW5kIApzdGFydCBHUjoKCi0gaHR0
-cHM6Ly9naXRodWIuY29tL0dudXJvdS9saW51eC1maXJtd2FyZS90cmVlL3NlY2Jvb3QgY29udGFp
-bnMgdGhlIApzaWduZWQgZmlybXdhcmUgZm9yIEdNMjAwIGFuZCBHTTIwNCAodGhleSBhcmUgbW9z
-dGx5IHRoZSBzYW1lKS4gRm9yIGVhY2ggCmNoaXAsICJnciIgY29udGFpbnMgdGhlIHNpZ25lZCBm
-aXJtd2FyZSBmb3IgR1IsIGFuZCAiYWNyIiB0aGUgc2lnbmVkIApmaXJtd2FyZSBsb2FkZXIuIEFD
-UiBzdGFuZHMgZm9yIEFjY2VzcyBDb250cm9sbGVkIFJlZ2lvbnMgYW5kIGlzIGEgCnNlY3VyZSBm
-aXJtd2FyZSB0aGF0IHJ1bnMgb24gdGhlIFBNVSBhbmQgaXMgcmVzcG9uc2libGUgZm9yIHNldHRp
-bmcgdXAgYSAKd3JpdGUtcHJvdGVjdGVkIChXUFIpIHJlZ2lvbiBpbiBWUkFNIHdoZXJlIHRoZSBv
-dGhlciBzaWduZWQgZmlybXdhcmUgY2FuIApiZSB2ZXJpZmllZCBhbmQgbG9hZGVkIHdpdGhvdXQg
-YW55b25lIHRhbXBlcmluZyBpdC4gVGhlIEFDUiBpdHNlbGYgaXMgCmFsc28gc2lnbmVkIGFuZCB2
-ZXJpZmllZCBieSB0aGUgaGFyZHdhcmUuIE1vcmUgZGV0YWlscyBvbiB0aGUgc2lnbmVkIApmaXJt
-d2FyZSBsb2FkaW5nIHByb2Nlc3MgY2FuIGJlIGZvdW5kIGF0IApmdHA6Ly9kb3dubG9hZC5udmlk
-aWEuY29tL29wZW4tZ3B1LWRvYy9GYWxjb24tU2VjdXJpdHkvMS9GYWxjb24tU2VjdXJpdHkuaHRt
-bCAKLgoKVGhpcyBBQ1IgYmluYXJ5IGlzIGN1cnJlbnRseSBjdXN0b20tYnVpbHQgZm9yIE5vdXZl
-YXUgYW5kIGFsbG93cyB0byBvbmx5IApsb2FkIEdSLiBUaGlzIG1lYW5zIHRoYXQgb3RoZXIgZmFs
-Y29ucyB3aGljaCByZXF1aXJlIHNpZ25lZCBmaXJtd2FyZSAKKGxpa2UgUE1VKSBjYW5ub3QgYmUg
-dXNlZCBhcyBvZiBub3cuIE91ciBnb2FsIGlzIHRvIGV2ZW50dWFsbHkgaGF2ZSAKTm91dmVhdSB1
-c2UgdGhlIHNhbWUgZmlybXdhcmUgYXMgb3VyIG93biBkcml2ZXIgKFJNKSwgYnV0IHRoaXMgd2ls
-bCB0YWtlIApzb21lIG1vcmUgd29yay4gT25lIG9mIHRoZSBvYnN0YWNsZXMgYmVpbmcgdGhhdCBz
-aW5jZSBSTSBlbWJlZHMgdGhlIApmaXJtd2FyZSwgYm90aCBjYW4gc2FmZWx5IGV2b2x2ZSBpbiBs
-b2Nrc3RlcCwgd2hpbGUgaW4gdGhlIGNvbnRleHQgb2YgCk5vdXZlYXUgd2UgbXVzdCBtYWtlIHN1
-cmUgb2xkZXIga2VybmVscyByZW1haW4gc3VwcG9ydGVkIGZvcmV2ZXIgYW5kIAplaXRoZXIgYXZv
-aWQgaW5jb21wYXRpYmxlIGNoYW5nZXMgb3IgbWFuYWdlIGRpZmZlcmVudCBmaXJtd2FyZSB2ZXJz
-aW9ucy4KCi0gaHR0cHM6Ly9naXRodWIuY29tL0dudXJvdS9ub3V2ZWF1L3RyZWUvc2VjYm9vdCBp
-cyBhIE5vdXZlYXUgYnJhbmNoIApjYXBhYmxlIG9mIGxvYWRpbmcgdGhlIHNpZ25lZCBmaXJtd2Fy
-ZS4gVGhlIHBhdGNoZXMgYXJlIG1vc3RseSBpbiBnb29kIApzaGFwZSBhbmQgSSBob3BlIHRoYXQg
-dGhleSB3aWxsIGJlIG1lcmdlZCBvbmNlIHdlIGlyb24gb3V0IHRoZSBsYXN0IApkZXRhaWxzIGFi
-b3V0IHRoZSBmaXJtd2FyZSBmb3JtYXQsIGhvcGVmdWxseSBpbiB0aW1lIGZvciA0LjYuIEkgc3Rp
-bGwgCmhhdmUgaXNzdWVzIHdpdGggc3VzcGVuZC9yZXN1bWUgKG1vZHVsZSB1bmxvYWQvcmVsb2Fk
-IHdvcmtzIGZpbmUgdGhvdWdoKSAKYnV0IGhvcGUgdG8gc29ydCB0aGlzIG91dCBzb29uLgoKVG8g
-dGVzdCB0aGlzLCBjaGVja291dCBteSBsaW51eC1maXJtd2FyZSBzZWNib290IGJyYW5jaCBhbmQg
-Y29weSBpdCB0byAKL2xpYi9maXJtd2FyZSwgdGhlbiBidWlsZCBOb3V2ZWF1IGZyb20gdGhlIHNl
-Y2Jvb3QgYnJhbmNoIG9mIG15IHJlcG8gYW5kIApsb2FkIGl0LiBJZiB5b3VyIGNvbnNvbGUgc3dp
-dGNoZXMgdG8gbm91dmVhdWZiIGFuZCB5b3UgZG9uJ3Qgc2VlIE5vdXZlYXUgCmNvbXBsYWluaW5n
-IGFib3V0IEFDUiBib290IGZhaWxpbmcsIGNvbmdyYXR1bGF0aW9ucyEgR1IgaXMgbm93IHJlYWR5
-IHRvIAp3b3JrLiBZb3Ugd29uJ3QgZ28gbXVjaCBmdXJ0aGVyIHRob3VnaCB1bmxlc3MgeW91IGNh
-biBhZGQgc3VwcG9ydCBmb3IgCk1heHdlbGwgMiBpbnRvIE1lc2EgLSBidXQgdGhlIGNoYW5nZXMg
-Zm9yIGJhc2ljIHN1cHBvcnQgYXJlIHJhdGhlciAKbW9kZXN0LCBhbmQgaG9wZWZ1bGx5IHRoaXMg
-cHJlLXJlbGVhc2Ugd2lsbCBiZSBlbm91Z2ggdG8gZW5hYmxlIHBhdGNoZXMgCnRvIGxhbmQgaW4g
-TWVzYS4KCkFuIG9mZmljaWFsIHN1Ym1pdCB0byBsaW51eC1maXJtd2FyZSB3aWxsIGhhcHBlbiBv
-bmNlIHdlIGFncmVlIG9uIHRoZSAKZmluYWwgZmlybXdhcmUgZm9ybWF0IGFuZCB0aGUga2VybmVs
-IGNvZGUgaXMgZ29vZCB0byBnby4gRm9yIG5vdywgcGxlYXNlIApjb25zaWRlciB0aGVzZSBicmFu
-Y2hlcyBhcyB3b3JrLWluLXByb2dyZXNzIGFuZCBkbyBub3QgZGlzdHJpYnV0ZSB0aGVtIApvciBl
-bWJlZCB0aGVtIGFueXdoZXJlIHRvIGF2b2lkIGNvbXBhdGlibGl0eSBpc3N1ZXMuIEFsc28gdXBk
-YXRlIGJvdGggCnRvZ2V0aGVyIEkgYXMgd2lsbCBoZWF2aWx5IHJlYmFzZSBpbiB0aGUgbmV4dCBm
-ZXcgZGF5cy4KClNvIHdoaWxlIHdlIGhhdmUgc3RpbGwgc29tZSB3b3JrIGFoZWFkLCB0aGlzIGF0
-IGxlYXN0IHVubG9ja3MgYSB2ZXJ5IAp1bnBsZWFzYW50IHNpdHVhdGlvbiBmb3IgZXZlcnlvbmUs
-IGFuZCB3ZSB3aWxsIHRha2UgZnVydGhlciBzdGVwcyB0byAKa2VlcCBpbXByb3ZpbmcgaXQuCgpQ
-bGVhc2UgdGVzdCwgaGFjayBNZXNhLCBhbmQgY29tbWVudCBvbiB0aGUga2VybmVsIGNvZGUgc28g
-dGhhdCB3ZSBjYW4gCmdldCBhbGwgdGhpcyBpbiB0aW1lIGZvciA0LjYhIDopCgpDaGVlcnMsCkFs
-ZXguCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+--===============0275497636==
+Content-Type: multipart/alternative; boundary=047d7b6dc06e3f3749052bcc1184
+
+--047d7b6dc06e3f3749052bcc1184
+Content-Type: text/plain; charset=UTF-8
+
+On 15 Feb 2016 18:40, "Alexandre Courbot" <acourbot@nvidia.com> wrote:
+>
+> Hi everyone,
+>
+> I know, it's about f**king time and I apologize for the time it took us
+to finally put this together. m(__)m
+>
+> I have pushed two git branches which enable GM200 and GM204 (GM206 to
+follow soon) owners to finally load NVIDIA-provided signed firmware and
+start GR:
+>
+> - https://github.com/Gnurou/linux-firmware/tree/secboot contains the
+signed firmware for GM200 and GM204 (they are mostly the same). For each
+chip, "gr" contains the signed firmware for GR, and "acr" the signed
+firmware loader. ACR stands for Access Controlled Regions and is a secure
+firmware that runs on the PMU and is responsible for setting up a
+write-protected (WPR) region in VRAM where the other signed firmware can be
+verified and loaded without anyone tampering it. The ACR itself is also
+signed and verified by the hardware. More details on the signed firmware
+loading process can be found at
+ftp://download.nvidia.com/open-gpu-doc/Falcon-Security/1/Falcon-Security.html
+.
+>
+> This ACR binary is currently custom-built for Nouveau and allows to only
+load GR. This means that other falcons which require signed firmware (like
+PMU) cannot be used as of now. Our goal is to eventually have Nouveau use
+the same firmware as our own driver (RM), but this will take some more
+work. One of the obstacles being that since RM embeds the firmware, both
+can safely evolve in lockstep, while in the context of Nouveau we must make
+sure older kernels remain supported forever and either avoid incompatible
+changes or manage different firmware versions.
+>
+> - https://github.com/Gnurou/nouveau/tree/secboot is a Nouveau branch
+capable of loading the signed firmware. The patches are mostly in good
+shape and I hope that they will be merged once we iron out the last details
+about the firmware format, hopefully in time for 4.6. I still have issues
+with suspend/resume (module unload/reload works fine though) but hope to
+sort this out soon.
+>
+> To test this, checkout my linux-firmware secboot branch and copy it to
+/lib/firmware, then build Nouveau from the secboot branch of my repo and
+load it. If your console switches to nouveaufb and you don't see Nouveau
+complaining about ACR boot failing, congratulations! GR is now ready to
+work. You won't go much further though unless you can add support for
+Maxwell 2 into Mesa - but the changes for basic support are rather modest,
+and hopefully this pre-release will be enough to enable patches to land in
+Mesa.
+>
+> An official submit to linux-firmware will happen once we agree on the
+final firmware format and the kernel code is good to go. For now, please
+consider these branches as work-in-progress and do not distribute them or
+embed them anywhere to avoid compatiblity issues. Also update both together
+I as will heavily rebase in the next few days.
+>
+> So while we have still some work ahead, this at least unlocks a very
+unpleasant situation for everyone, and we will take further steps to keep
+improving it.
+>
+> Please test, hack Mesa, and comment on the kernel code so that we can get
+all this in time for 4.6! :)
+Thanks for this Alex!
+
+I'll attempt to post the Mesa patches tomorrow to get the ball rolling :)
+
+Ben.
+
+>
+> Cheers,
+> Alex.
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--047d7b6dc06e3f3749052bcc1184
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr">On 15 Feb 2016 18:40, &quot;Alexandre Courbot&quot; &lt;<a h=
+ref=3D"mailto:acourbot@nvidia.com">acourbot@nvidia.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hi everyone,<br>
+&gt;<br>
+&gt; I know, it&#39;s about f**king time and I apologize for the time it to=
+ok us to finally put this together. m(__)m<br>
+&gt;<br>
+&gt; I have pushed two git branches which enable GM200 and GM204 (GM206 to =
+follow soon) owners to finally load NVIDIA-provided signed firmware and sta=
+rt GR:<br>
+&gt;<br>
+&gt; - <a href=3D"https://github.com/Gnurou/linux-firmware/tree/secboot">ht=
+tps://github.com/Gnurou/linux-firmware/tree/secboot</a> contains the signed=
+ firmware for GM200 and GM204 (they are mostly the same). For each chip, &q=
+uot;gr&quot; contains the signed firmware for GR, and &quot;acr&quot; the s=
+igned firmware loader. ACR stands for Access Controlled Regions and is a se=
+cure firmware that runs on the PMU and is responsible for setting up a writ=
+e-protected (WPR) region in VRAM where the other signed firmware can be ver=
+ified and loaded without anyone tampering it. The ACR itself is also signed=
+ and verified by the hardware. More details on the signed firmware loading =
+process can be found at <a href=3D"ftp://download.nvidia.com/open-gpu-doc/F=
+alcon-Security/1/Falcon-Security.html">ftp://download.nvidia.com/open-gpu-d=
+oc/Falcon-Security/1/Falcon-Security.html</a> .<br>
+&gt;<br>
+&gt; This ACR binary is currently custom-built for Nouveau and allows to on=
+ly load GR. This means that other falcons which require signed firmware (li=
+ke PMU) cannot be used as of now. Our goal is to eventually have Nouveau us=
+e the same firmware as our own driver (RM), but this will take some more wo=
+rk. One of the obstacles being that since RM embeds the firmware, both can =
+safely evolve in lockstep, while in the context of Nouveau we must make sur=
+e older kernels remain supported forever and either avoid incompatible chan=
+ges or manage different firmware versions.<br>
+&gt;<br>
+&gt; - <a href=3D"https://github.com/Gnurou/nouveau/tree/secboot">https://g=
+ithub.com/Gnurou/nouveau/tree/secboot</a> is a Nouveau branch capable of lo=
+ading the signed firmware. The patches are mostly in good shape and I hope =
+that they will be merged once we iron out the last details about the firmwa=
+re format, hopefully in time for 4.6. I still have issues with suspend/resu=
+me (module unload/reload works fine though) but hope to sort this out soon.=
+<br>
+&gt;<br>
+&gt; To test this, checkout my linux-firmware secboot branch and copy it to=
+ /lib/firmware, then build Nouveau from the secboot branch of my repo and l=
+oad it. If your console switches to nouveaufb and you don&#39;t see Nouveau=
+ complaining about ACR boot failing, congratulations! GR is now ready to wo=
+rk. You won&#39;t go much further though unless you can add support for Max=
+well 2 into Mesa - but the changes for basic support are rather modest, and=
+ hopefully this pre-release will be enough to enable patches to land in Mes=
+a.<br>
+&gt;<br>
+&gt; An official submit to linux-firmware will happen once we agree on the =
+final firmware format and the kernel code is good to go. For now, please co=
+nsider these branches as work-in-progress and do not distribute them or emb=
+ed them anywhere to avoid compatiblity issues. Also update both together I =
+as will heavily rebase in the next few days.<br>
+&gt;<br>
+&gt; So while we have still some work ahead, this at least unlocks a very u=
+npleasant situation for everyone, and we will take further steps to keep im=
+proving it.<br>
+&gt;<br>
+&gt; Please test, hack Mesa, and comment on the kernel code so that we can =
+get all this in time for 4.6! :)<br>
+Thanks for this Alex! </p>
+<p dir=3D"ltr">I&#39;ll attempt to post the Mesa patches tomorrow to get th=
+e ball rolling :) </p>
+<p dir=3D"ltr">Ben. </p>
+<p dir=3D"ltr">&gt;<br>
+&gt; Cheers,<br>
+&gt; Alex.<br>
+&gt; _______________________________________________<br>
+&gt; Nouveau mailing list<br>
+&gt; <a href=3D"mailto:Nouveau@lists.freedesktop.org">Nouveau@lists.freedes=
+ktop.org</a><br>
+&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau">htt=
+ps://lists.freedesktop.org/mailman/listinfo/nouveau</a><br>
+</p>
+
+--047d7b6dc06e3f3749052bcc1184--
+
+--===============0275497636==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============0275497636==--
