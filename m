@@ -1,17 +1,12 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 23/23] nvc0: implement support for maxwell
- texture headers
-Date: Tue, 16 Feb 2016 15:42:14 +1000
-Message-ID: <56C2B6B6.5090808@gmail.com>
-References: <1455514736-8909-1-git-send-email-skeggsb@gmail.com>
- <1455514736-8909-23-git-send-email-skeggsb@gmail.com>
- <CAKb7UvgjAjgyvMUS31fS8Jq+vqsO_XyeVreuFsaioU1etoQ_pw@mail.gmail.com>
- <56C245BF.50908@gmail.com>
- <CAKb7UvgRddt2RbF9AJOauTtC22hkhmjR2zKApYBa8Q00Z8Z9MA@mail.gmail.com>
+From: Stefan Welte <post-tiVLYqYf2GioJcnyES077Q@public.gmane.org>
+Subject: "Unknown LVDS configuration bits, please report"
+Date: Tue, 16 Feb 2016 10:29:30 +0100 (CET)
+Message-ID: <1220861042.6700.1455614970268.JavaMail.open-xchange@app01.ox.hosteurope.de>
+Reply-To: Stefan Welte <post-tiVLYqYf2GioJcnyES077Q@public.gmane.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0336605977=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgRddt2RbF9AJOauTtC22hkhmjR2zKApYBa8Q00Z8Z9MA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,101 +16,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0336605977==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="INf2c9CUN3QddFbtAxIT7s9dD7XkutwF5"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---INf2c9CUN3QddFbtAxIT7s9dD7XkutwF5
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-On 02/16/2016 08:08 AM, Ilia Mirkin wrote:
-> On Mon, Feb 15, 2016 at 4:40 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->> On 02/16/2016 03:47 AM, Ilia Mirkin wrote:
->>> Can you push this to a repo somewhere? I want to see what the final
->>> version looks like after all your changes, but it's hard to see that
->>> with these patches.
->> https://github.com/skeggsb/Mesa/commits/master
->=20
-> Thanks. I looked over this series and it seems fine. I don't hate the
-> outcome in nv50_formats.c although it would have been kinda nice to
-> keep it together. However outside of new compressed formats, I doubt
-> it'll be getting too many updates.
->=20
-> Perhaps tic.maxwell should really be tic.version? Presumably later
-> GPUs will also use this new TIC format? [There's also a v0 that we
-> don't really use but the only tic version supported by G80, which does
-> the colorkey thing and doesn't support first/last level.]
->=20
-> I would really appreciate it if you could do a piglit run comparison
-> against both a nv50 and nvc0 GPU (and not maxwell - those can have
-> extra-special issues). If there are no format-related regressions
-> (there are a handful of flaky tests), I'm fine with this getting
-> pushed.
-Hey Ilia,
-
-I've pushed an updated branch containing a small typo fix to the GM107
-texture header commit, as well as an extra commit recognising GM20x
-chipsets.
-
-The piglit comparisons you requested are at:
-
-G96:
-https://drive.google.com/file/d/0B66cGbmsDhPvTUV6TTNuZHJaVGc/view?usp=3Ds=
-haring
-GF100:
-https://drive.google.com/file/d/0B66cGbmsDhPvT0hhMGU2UTRDVG8/view?usp=3Ds=
-haring
-
-Thanks,
-Ben.
-
-
->=20
->   -ilia
->=20
-
-
---INf2c9CUN3QddFbtAxIT7s9dD7XkutwF5
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBCAAGBQJWwra2AAoJEHYLnGJQkpH7OvUQAMBLs4pzpUU4LLtw8cln2lMc
-pfbwXdXt8RafADhrYKHeIaTy+EbtY94QQj+grSVgGsow5Rs1ixMgPqPFZhJyJwtx
-oS/0uGp/hsZ8T0muFdmml3n8GkPa8oxPL1tHDZ2M28ylw0IBizeQu3AQYpDwypNU
-CuJuEXcsnn/8Nug8GyVDn/wsxsalVPg4+gERJHhxVuwU6KGOtK7AWKffxJQY5kG5
-6kMTVWGMlPC8Me7ScRSyNEqtTCMnJ6s/ZtosymTHg8FOVkaHF6xVS6KvhimVt6gI
-ikdRHllD7OzosNXpXHaBbX8iuTCDzYiDOlFcp8hMbbRRbQ17NOS0dQKxwzAHd4z1
-xpQtS5+eyMjzf/euv0ZErcR+qi+7wWpE6N1pigGAHryWs8Au1eyCtAjBorSKMkEH
-ZITfeIuGs5rotRifUvSCEwTY8xMiYh7mSFIdzc0XxihOEY1g0MyuaWdj8BUgY3AM
-e+dFgZwqOvvOteWhq5EwrdM+/v/A/t2eRdKAO1LKG2mvQd5ZpamguYZbgqm76Cmk
-qdXj4zojlFraTSlgZ4WQmqpaYySpDc8Z6dJO/XYjR1s/bJB5xsx0wzV4miERWKnE
-Db2HF5XNy9lvDvcs1oheryxQgNYK4vj1MXHccph9c9ukOMTkAAWSro1nnRWbMPMZ
-69y7Io37YpPU4V6WGcRm
-=3fhS
------END PGP SIGNATURE-----
-
---INf2c9CUN3QddFbtAxIT7s9dD7XkutwF5--
-
---===============0336605977==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0336605977==--
+V2hlbiBib290aW5nIGFyY2ggbGludXggb24gbGFwdG9wIERlbGwgTGF0aXR1ZGUgRDgwMCwgdGhl
+cmUgaXMgZGlzcGxheWVkIGZvbGxvd2luZyBpbiBvbmUgb2YgdGhlIGZpcnN0CnRlbiBsaW5lcy4K
+IltOb3V2ZWF1XSAiVW5rbm93biBMVkRTIGNvbmZpZ3VyYXRpb24gYml0cywgcGxlYXNlIHJlcG9y
+dCIiCgpbcm9vdEBhcmNoIH5dIyBkbWVzZyB8IGdyZXAgbm91dmVhdQpbICAgIDAuODQ4MjA5XSBu
+b3V2ZWF1ICBbICBERVZJQ0VdWzAwMDA6MDE6MDAuMF0gQk9PVDAgIDogMHgwMjg2MDBhMgpbICAg
+IDAuODQ4MjE5XSBub3V2ZWF1ICBbICBERVZJQ0VdWzAwMDA6MDE6MDAuMF0gQ2hpcHNldDogTlYy
+OCAoTlYyOCkKWyAgICAwLjg0ODIyM10gbm91dmVhdSAgWyAgREVWSUNFXVswMDAwOjAxOjAwLjBd
+IEZhbWlseSA6IE5WMjAKWyAgICAwLjk0Mzk4NF0gbm91dmVhdSAgWyAgIFZCSU9TXVswMDAwOjAx
+OjAwLjBdIHVzaW5nIGltYWdlIGZyb20gUFJBTUlOClsgICAgMC45NDM5OTBdIG5vdXZlYXUgIFsg
+ICBWQklPU11bMDAwMDowMTowMC4wXSBCTVAgdmVyc2lvbiA1LjI1ClsgICAgMC45NDQyNDVdIG5v
+dXZlYXUgIFsgICBWQklPU11bMDAwMDowMTowMC4wXSB2ZXJzaW9uIDA0LjI4LjIwLjI5LjAwClsg
+ICAgMC45NDQ1OTZdIG5vdXZlYXUgV1sgIFBUSU1FUl1bMDAwMDowMTowMC4wXSB1bmtub3duIGlu
+cHV0IGNsb2NrIGZyZXEKWyAgICAwLjk0NDYxMV0gbm91dmVhdSAgWyAgICAgUEZCXVswMDAwOjAx
+OjAwLjBdIFJBTSB0eXBlOiBTRFJBTQpbICAgIDAuOTQ0NjE1XSBub3V2ZWF1ICBbICAgICBQRkJd
+WzAwMDA6MDE6MDAuMF0gUkFNIHNpemU6IDMyIE1pQgpbICAgIDAuOTQ0NjE5XSBub3V2ZWF1ICBb
+ICAgICBQRkJdWzAwMDA6MDE6MDAuMF0gICAgWkNPTVA6IDQ5MTUyIHRhZ3MKWyAgICAwLjk1MzYz
+NF0gbm91dmVhdSAgWyAgICAgQ0xLXVswMDAwOjAxOjAwLjBdIC0tOiAgIApbICAgIDAuOTU0NTcz
+XSBub3V2ZWF1ICBbICAgICBEUk1dIFZSQU06IDMxIE1pQgpbICAgIDAuOTU0NTgwXSBub3V2ZWF1
+ICBbICAgICBEUk1dIEdBUlQ6IDEyOCBNaUIKWyAgICAwLjk1NDU4Nl0gbm91dmVhdSAgWyAgICAg
+RFJNXSBCTVAgdmVyc2lvbiA1LjM3ClsgICAgMC45NTQ1OTFdIG5vdXZlYXUgIFsgICAgIERSTV0g
+RENCIHZlcnNpb24gMi4yClsgICAgMC45NTQ1OTddIG5vdXZlYXUgIFsgICAgIERSTV0gRENCIG91
+dHAgMDA6IDAxMDAwMTAwIDAwMDA4OGI4ClsgICAgMC45NTQ2MDJdIG5vdXZlYXUgIFsgICAgIERS
+TV0gRENCIG91dHAgMDE6IDAyMTEwMjIzIDAwMDAwMDY0ClsgICAgMC45NTQ2MDZdIG5vdXZlYXUg
+RVsgICAgIERSTV0gVW5rbm93biBMVkRTIGNvbmZpZ3VyYXRpb24gYml0cywgcGxlYXNlIHJlcG9y
+dApbICAgIDAuOTU0NjcxXSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBvdXRwIDAyOiAwMTEyMDMx
+MiAwMDAwMDA0MApbICAgIDAuOTU0Njc1XSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBvdXRwIDAz
+OiAwMTEzMDMyMSAwMDAwMDAwMQpbICAgIDAuOTU0OTA2XSBub3V2ZWF1ICBbICAgICBEUk1dIEJJ
+T1MgRlAgbW9kZTogMTQwMXgxMDUwICgxMDgwMDBrSHogcGl4ZWwgY2xvY2spClsgICAgMC45NTU1
+MTldIG5vdXZlYXUgIFsgICAgIERSTV0gU2F2aW5nIFZHQSBmb250cwpbICAgIDEuMDc4Njc4XSBu
+b3V2ZWF1ICBbICAgICBJMkNdWzAwMDA6MDE6MDAuMF0gZGV0ZWN0ZWQgVFYgZW5jb2RlcjogY2g3
+MDA2ClsgICAgMS4wODU2NDFdIG5vdXZlYXUgIFsgICAgIERSTV0gTU06IHVzaW5nIE0yTUYgZm9y
+IGJ1ZmZlciBjb3BpZXMKWyAgICAxLjA4NTY1Nl0gbm91dmVhdSAgWyAgICAgRFJNXSBDYWxsaW5n
+IExWRFMgc2NyaXB0IDE6ClsgICAgMS4wODU2NjJdIG5vdXZlYXUgIFsgICAgIERSTV0gQ2FsbGlu
+ZyBMVkRTIHNjcmlwdCA2OgpbICAgIDEuMDg1NjY3XSBub3V2ZWF1ICBbICAgICBEUk1dIDB4REZC
+OTogUGFyc2luZyBkaWdpdGFsIG91dHB1dCBzY3JpcHQgdGFibGUKWyAgICAxLjc1MDA2N10gbm91
+dmVhdSAgWyAgICAgRFJNXSBhbGxvY2F0ZWQgMTI4MHg4MDAgZmI6IDB4OTAwMCwgYm8gYzFkMzU4
+MDAKWyAgICAxLjc1MDIyNF0gZmJjb246IG5vdXZlYXVmYiAoZmIwKSBpcyBwcmltYXJ5IGRldmlj
+ZQpbICAgIDEuNzc1NTc1XSBub3V2ZWF1ICBbICAgICBEUk1dIENhbGxpbmcgTFZEUyBzY3JpcHQg
+NjoKWyAgICAxLjc3NTU3OV0gbm91dmVhdSAgWyAgICAgRFJNXSAweERGQjk6IFBhcnNpbmcgZGln
+aXRhbCBvdXRwdXQgc2NyaXB0IHRhYmxlClsgICAgMi4zNDU2NzBdIG5vdXZlYXUgIFsgICAgIERS
+TV0gQ2FsbGluZyBMVkRTIHNjcmlwdCAyOgpbICAgIDIuMzQ1NjczXSBub3V2ZWF1ICBbICAgICBE
+Uk1dIDB4REZFNzogUGFyc2luZyBkaWdpdGFsIG91dHB1dCBzY3JpcHQgdGFibGUKWyAgICAyLjM2
+MTY4OF0gbm91dmVhdSAgWyAgICAgRFJNXSBDYWxsaW5nIExWRFMgc2NyaXB0IDU6ClsgICAgMi4z
+NjE2OTFdIG5vdXZlYXUgIFsgICAgIERSTV0gMHhERjMyOiBQYXJzaW5nIGRpZ2l0YWwgb3V0cHV0
+IHNjcmlwdCB0YWJsZQpbICAgIDIuNTc1NDUxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmIwOiBu
+b3V2ZWF1ZmIgZnJhbWUgYnVmZmVyIGRldmljZQpbICAgIDIuNTc1NDU1XSBub3V2ZWF1IDAwMDA6
+MDE6MDAuMDogcmVnaXN0ZXJlZCBwYW5pYyBub3RpZmllcgpbICAgIDIuNTc1NDY3XSBbZHJtXSBJ
+bml0aWFsaXplZCBub3V2ZWF1IDEuMi4yIDIwMTIwODAxIGZvciAwMDAwOjAxOjAwLjAgb24gbWlu
+b3IgMAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgClsgICA0OC41NTU5ODldIG5vdXZlYXUgIFsgICAgIERSTV0g
+Q2FsbGluZyBMVkRTIHNjcmlwdCA2OgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAKWyAgIDQ4LjU1NjAwN10gbm91dmVhdSAgWyAgICAgRFJNXSAweERGQjk6IFBhcnNp
+bmcgZGlnaXRhbCBvdXRwdXQgc2NyaXB0IHRhYmxlCiAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIApbICAg
+NDkuMTQ3ODA5XSBub3V2ZWF1ICBbICAgICBEUk1dIENhbGxpbmcgTFZEUyBzY3JpcHQgMjoKICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgClsgICA0OS4xNDc4MjFdIG5v
+dXZlYXUgIFsgICAgIERSTV0gMHhERkU3OiBQYXJzaW5nIGRpZ2l0YWwgb3V0cHV0IHNjcmlwdCB0
+YWJsZQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAKWyAgIDQ5LjE2Mzg0N10gbm91dmVhdSAgWyAgICAg
+RFJNXSBDYWxsaW5nIExWRFMgc2NyaXB0IDU6CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIApbICAgNDkuMTYzODU3XSBub3V2ZWF1ICBbICAgICBEUk1dIDB4REYzMjog
+UGFyc2luZyBkaWdpdGFsIG91dHB1dCBzY3JpcHQgdGFibGUKWyAxOTEyLjMwODk5MV0gbm91dmVh
+dSAgWyAgICAgRFJNXSBDYWxsaW5nIExWRFMgc2NyaXB0IDY6ClsgMTkxMi4zMDkwMTBdIG5vdXZl
+YXUgIFsgICAgIERSTV0gMHhERkI5OiBQYXJzaW5nIGRpZ2l0YWwgb3V0cHV0IHNjcmlwdCB0YWJs
+ZQpbMjU5ODQuNDcyMjQ3XSBub3V2ZWF1ICBbICAgICBEUk1dIENhbGxpbmcgTFZEUyBzY3JpcHQg
+MjoKWzI1OTg0LjQ3MjI2NF0gbm91dmVhdSAgWyAgICAgRFJNXSAweERGRTc6IFBhcnNpbmcgZGln
+aXRhbCBvdXRwdXQgc2NyaXB0IHRhYmxlClsyNTk4NC40ODgyOTJdIG5vdXZlYXUgIFsgICAgIERS
+TV0gQ2FsbGluZyBMVkRTIHNjcmlwdCA1OgpbMjU5ODQuNDg4MzAyXSBub3V2ZWF1ICBbICAgICBE
+Uk1dIDB4REYzMjogUGFyc2luZyBkaWdpdGFsIG91dHB1dCBzY3JpcHQgdGFibGUKWzI2NzI4LjM5
+MjMwMl0gbm91dmVhdSAgWyAgICAgRFJNXSBDYWxsaW5nIExWRFMgc2NyaXB0IDY6ClsyNjcyOC4z
+OTIzMjFdIG5vdXZlYXUgIFsgICAgIERSTV0gMHhERkI5OiBQYXJzaW5nIGRpZ2l0YWwgb3V0cHV0
+IHNjcmlwdCB0YWJsZQpbMjY5MTAuMTQyNjE3XSBub3V2ZWF1ICBbICAgICBEUk1dIENhbGxpbmcg
+TFZEUyBzY3JpcHQgMjoKWzI2OTEwLjE0MjYzNV0gbm91dmVhdSAgWyAgICAgRFJNXSAweERGRTc6
+IFBhcnNpbmcgZGlnaXRhbCBvdXRwdXQgc2NyaXB0IHRhYmxlClsyNjkxMC4xNTg2NjFdIG5vdXZl
+YXUgIFsgICAgIERSTV0gQ2FsbGluZyBMVkRTIHNjcmlwdCA1OgpbMjY5MTAuMTU4NjcyXSBub3V2
+ZWF1ICBbICAgICBEUk1dIDB4REYzMjogUGFyc2luZyBkaWdpdGFsIG91dHB1dCBzY3JpcHQgdGFi
+bGUKCltyb290QGFyY2ggfl0jIGxzcGNpIC1rbnxncmVwIC1BIDMgXjAxCjAxOjAwLjAgMDMwMDog
+MTBkZTowMjg2IChyZXYgYTEpCiAgICAgICAgU3Vic3lzdGVtOiAxMDI4OjAxNzkKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
