@@ -1,18 +1,18 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: NVIDIA signed firmware release format
-Date: Thu, 18 Feb 2016 15:03:30 +0900
-Message-ID: <56C55EB2.4070608@nvidia.com>
+Date: Thu, 18 Feb 2016 16:42:05 +1000
+Message-ID: <56C567BD.80702@gmail.com>
 References: <56C53CDE.8030904@nvidia.com>
  <CAKb7UviMC-NgPM+ofSzgki5Hiwir4cAqugUMWf2kkX3NEVyAow@mail.gmail.com>
  <56C55154.1070009@nvidia.com>
  <CAKb7Uvgr5u9RKGP0xWza7p+yyd+NWRXhkO=vOXsn+xff0QsK-Q@mail.gmail.com>
  <56C55A14.9060308@nvidia.com>
  <CAKb7Uvh4PZyK3ip8B3Y5_wz9juvQEv_d76zwkB9-vXAXn96dqg@mail.gmail.com>
+ <56C55EB2.4070608@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2039570346=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvh4PZyK3ip8B3Y5_wz9juvQEv_d76zwkB9-vXAXn96dqg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <56C55EB2.4070608-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,119 +22,266 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDIvMTgvMjAxNiAwMjo1NCBQTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gVGh1LCBGZWIg
-MTgsIDIwMTYgYXQgMTI6NDMgQU0sIEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEu
-Y29tPiB3cm90ZToKPj4gT24gMDIvMTgvMjAxNiAwMjozNyBQTSwgSWxpYSBNaXJraW4gd3JvdGU6
-Cj4+Pgo+Pj4gT24gVGh1LCBGZWIgMTgsIDIwMTYgYXQgMTI6MDYgQU0sIEFsZXhhbmRyZSBDb3Vy
-Ym90IDxhY291cmJvdEBudmlkaWEuY29tPgo+Pj4gd3JvdGU6Cj4+Pj4KPj4+PiBPbiAwMi8xOC8y
-MDE2IDEyOjQ3IFBNLCBJbGlhIE1pcmtpbiB3cm90ZToKPj4+Pj4KPj4+Pj4KPj4+Pj4gT24gV2Vk
-LCBGZWIgMTcsIDIwMTYgYXQgMTA6MzkgUE0sIEFsZXhhbmRyZSBDb3VyYm90Cj4+Pj4+IDxhY291
-cmJvdEBudmlkaWEuY29tPgo+Pj4+PiB3cm90ZToKPj4+Pj4+Cj4+Pj4+Pgo+Pj4+Pj4gSGkgZXZl
-cnlvbmUsCj4+Pj4+Pgo+Pj4+Pj4gVGhpcyBlbWFpbCBpcyB0byBzdGFydCBhIGRpc2N1c3Npb24g
-YWJvdXQgdGhlIGZvcm1hdCBpbnRvIHdoaWNoIE5WSURJQQo+Pj4+Pj4gZmlybXdhcmUgaXMgZ29p
-bmcgdG8gYmUgcHJvdmlkZWQuIElmIHlvdSBoYWQgYSBsb29rIGF0IHRoZQo+Pj4+Pj4gbGludXgt
-ZmlybXdhcmUKPj4+Pj4+IGJyYW5jaCB3ZSBwdXNoZWQgZWFybGllciBbMV0geW91IG1heSBhbHJl
-YWR5IGhhdmUgYW4gaWRlYSBvZiB0aGUKPj4+Pj4+IGdlbmVyYWwKPj4+Pj4+IG9yZ2FuaXphdGlv
-biwgYnV0IHRoaXMgZW1haWwgaXMgdG8gZGlzY3VzcyBtb3JlIHNwZWNpZmljIGRldGFpbHMuCj4+
-Pj4+Pgo+Pj4+Pj4gT2ZmaWNpYWwgZmlybXdhcmUgaXMgb3JnYW5pemVkIHBlci1jaGlwLCB3aXRo
-IGFuIGFkZGl0aW9uYWwgbGV2ZWwgb2YKPj4+Pj4+IGhpZXJhcmNoeSBmb3IgdGhlIGRpZmZlcmVu
-dCBtYW5hZ2VkIHN1YnN5c3RlbXMuCj4+Pj4+Pgo+Pj4+Pj4gRm9yIGV4YW1wbGUsIGdtMjAwIGN1
-cnJlbnRseSBoYXMgdHdvIHN1Yi1kaXJlY3RvcmllcywgYWNyIGFuZCBnciwgd2hpY2gKPj4+Pj4+
-IGNvbnRhaW4gdGhlIGZpcm13YXJlIGZpbGVzIGZvciBzZWN1cmUgYm9vdCAoQUNSKSBhbmQgUEdS
-QVBIIChHUikuCj4+Pj4+Pgo+Pj4+Pj4gQUNSIGlzIGEgcGFydGljdWxhciBjYXNlIGFuZCBjb21l
-cyBpbiB0aGUgZm9ybSBvZiBzZWxmLWNvbnRhaW5lZCB1bml0cwo+Pj4+Pj4gKGNvZGUsIGRhdGEs
-IHNpZ25hdHVyZSkgdGhhdCBjYW4gYmUgcnVuIG9uIGEgaGlnaC1zZWN1cmUgZmFsY29uCj4+Pj4+
-PiAoY3VycmVudGx5Cj4+Pj4+PiBQTVUpLiBJdCBjb25zdW1lcyBhIGJsb2IgdGhhdCBpcyBidWls
-dCBieSB0aGUga2VybmVsIGFuZCBjb250YWlucyB0aGUKPj4+Pj4+IHNpZ25lZAo+Pj4+Pj4gZmly
-bXdhcmVzIG9mIHRoZSBsb3ctc2VjdXJlIGZhbGNvbnMgdG8gbG9hZCBhbmQgbWFuYWdlLgo+Pj4+
-Pj4KPj4+Pj4+IFRoZSBBQ1IgYmxvYiBpcyBtYWRlIG9mIGEgaGVhZGVyIGRlc2NyaWJpbmcgdGhl
-IG1hbmFnZWQgZmFsY29ucyBhbmQgdGhlCj4+Pj4+PiBvZmZzZXMgb2YgdGhlaXIgYm9vdGxvYWRl
-ciwgY29kZSBhbmQgZGF0YSB3aXRoaW4gdGhlIGJsb2IsIGFzIHdlbGwgYXMKPj4+Pj4+IGJvb3Rs
-b2FkZXIvY29kZS9kYXRhIHNlY3Rpb25zIGZvciBlYWNoIGZhbGNvbi4KPj4+Pj4+Cj4+Pj4+PiBB
-IHNpZ25lZCwgbG93LXNlY3VyZSBmYWxjb24gZmlybXdhcmUgaW4gdGhlIEFDUiBibG9iIGlzIHRo
-dXMgdGhlCj4+Pj4+PiBhZ2dyZWdhdGlvbgo+Pj4+Pj4gb2YgdGhyZWUgZGlmZmVyZW50IGNvbXBv
-bmVudHM6Cj4+Pj4+Pgo+Pj4+Pj4gLSBBbiBpbWFnZSBjb250YWluaW5nIHRoZSBibCwgY29kZSBh
-bmQgZGF0YSBzZWN0aW9ucwo+Pj4+Pj4gLSBBIGRlc2NyaXB0b3Igd2l0aCB0aGUgb2Zmc2V0cyBv
-ZiB0aGVzZSBzZWN0aW9ucyB3aXRoaW4gdGhlIGltYWdlCj4+Pj4+PiAtIEEgc2lnbmF0dXJlIHRo
-YXQgdGhlIEFDUiB3aWxsIHZlcmlmeSBhZ2FpbnN0Cj4+Pj4+Pgo+Pj4+Pj4gVGhlc2UgdGhyZWUg
-Y29tcG9uZW50cyBjYW4gY29tZSBhcyBmaWxlcyB0byBiZSBkaXJlY3RseSBsb2FkZWQuIEhvd2V2
-ZXIKPj4+Pj4+IGZvcgo+Pj4+Pj4gdGhlIGN1cnJlbnQgR1IgZmlybXdhcmUgd2UgdG9vayB0aGUg
-YXBwcm9hY2ggb2Ygc3BsaXR0aW5nIHRoZSBibCwgY29kZQo+Pj4+Pj4gYW5kCj4+Pj4+PiBkYXRh
-IHNlY3Rpb25zIGludG8gdGhlaXIgb3duIGZpbGVzLCBhbmQgYnVpbGRpbmcgdGhlIGltYWdlIGFu
-ZAo+Pj4+Pj4gZGVzY3JpcHRvcgo+Pj4+Pj4gb24tdGhlLWZseSwgYXMgeW91IGNhbiBzZWUgZnJv
-bSBnbTIwMC9ncjoKPj4+Pj4+Cj4+Pj4+PiBnbTIwMC9nci9mZWNzX2JsLmJpbgo+Pj4+Pj4gZ20y
-MDAvZ3IvZmVjc19kYXRhLmJpbgo+Pj4+Pj4gZ20yMDAvZ3IvZmVjc19pbnN0LmJpbgo+Pj4+Pj4g
-Z20yMDAvZ3IvZmVjc19zaWcuYmluCj4+Pj4+Pgo+Pj4+Pj4gVGhlIGJsLCBkYXRhLCBhbmQgaW5z
-dCBmaWxlcyBhcmUgbG9hZGVkIGFuZCBjb21iaW5lZCBpbnRvIGFuIGltYWdlCj4+Pj4+PiB3aGls
-ZQo+Pj4+Pj4gdGhlCj4+Pj4+PiBjb3JyZXNwb25kaW5nIGRlc2NyaXB0b3IgaXMgYnVpbHQuIFRo
-aXMgaXMgZG9uZSBpbiB0aGUKPj4+Pj4+IGxzX3Vjb2RlX2ltZ19idWlsZCgpCj4+Pj4+PiBmdW5j
-dGlvbi4KPj4+Pj4+Cj4+Pj4+PiBUaGUgbWFpbiByZWFzb24gZm9yIGRvaW5nIHRoaXMgaXMgdGhl
-cmUgaXMgdGhhdCBmb3IgYSBnaXZlbiBHUFUKPj4+Pj4+IGdlbmVyYXRpb24sCj4+Pj4+PiB0aGUg
-X2JsIGFuZCBfaW5zdCBmaWxlcyBhcmUgdmVyeSBsaWtlbHkgZ29pbmcgdG8gYmUgZXhhY3RseSB0
-aGUgc2FtZSwKPj4+Pj4+IHdpdGgKPj4+Pj4+IG9ubHkgdGhlIGRhdGEgYW5kIHNpZ25hdHVyZSB2
-YXJ5aW5nLiBTcGxpdHRpbmcgdGhlIHNlY3Rpb25zIGFsbG93IHVzIHRvCj4+Pj4+PiBzeW1saW5r
-IGlkZW50aWNhbCBmaWxlcy4gRm9yIGluc3RhbmNlLCBnci9nbTIwMCB3ZWlnaHRzIDYxS0IsIHdo
-aWxlCj4+Pj4+PiBnbTIwNC9nciwgd2hpY2ggbW9zdGx5IHN5bWxpbmtzIHRvIHRoZSBmb3JtZXIs
-IG9ubHkgdGFrZXMgOC41S0IuCj4+Pj4+Pgo+Pj4+Pj4gQW5vdGhlciBhZHZhbnRhZ2UgaXMgdGhh
-dCB0aGlzIGFsc28gYWxsb3dzIHRoZSBjb2RlIGFuZCBkYXRhIHRvIGJlCj4+Pj4+PiBkaXJlY3Rs
-eQo+Pj4+Pj4gbG9hZGVkIHZpYSB0aGUgdHJhZGl0aW9uYWwgbWV0aG9kIGludG8gYSBmdXNlZCBu
-b24tc2VjdXJlIGJvYXJkLAo+Pj4+Pj4gYWx0aG91Z2gKPj4+Pj4+IHRoaXMgYWR2YW50YWdlIGlz
-IG5vdCB0b28gcmVsZXZhbnQgZm9yIHRoZSBjb21tdW5pdHkuCj4+Pj4+Pgo+Pj4+Pj4gVGhhdCdz
-IHRoZSBkZXNpZ24gd2UgdG9vayBmb3Igbm93IC0gaXQgaXMgcG9zc2libGUgdG8gc3dpdGNoIHRv
-IGEgbW9yZQo+Pj4+Pj4gc21hbGxlciBudW1iZXIgb2YgZmlsZXMgcGVyIGNoaXAsIGFuZCByZW1v
-dmUgYSBiaXQgb2Yga2VybmVsIGNvZGUsIGF0Cj4+Pj4+PiB0aGUKPj4+Pj4+IGNvc3Qgb2YgZmly
-bXdhcmUgZm9vdHByaW50Lgo+Pj4+Pj4KPj4+Pj4+IEkganVzdCB3YW50ZWQgdG8gbWFrZSBzdXJl
-IHRoaXMgZGVzaWduIHdhcyBvayBhbmQgdGFrZSBhbnkgb2JqZWN0aW9uCj4+Pj4+PiBpbnRvCj4+
-Pj4+PiBhY2NvdW50IGJlZm9yZSB0aGUgcGxhbm5lZCBtZXJnZSBvZiB0aGUga2VybmVsIHN1cHBv
-cnQgZm9yIHNpZ25lZAo+Pj4+Pj4gZmlybXdhcmUsCj4+Pj4+PiBob3BlZnVsbHkgbmV4dCB3ZWVr
-Lgo+Pj4+Pgo+Pj4+Pgo+Pj4+Pgo+Pj4+PiBTaW5jZSB0aGUgZmlybXdhcmUgaXMgY29tcGxldGVs
-eSBzZXBhcmF0ZSBmcm9tIHRoZSBrZXJuZWwsIHlvdSBuZWVkIHRvCj4+Pj4+IHRoaW5rIGFib3V0
-IHZlcnNpb25pbmcuIFRoZSBmaXJtd2FyZSBwcmVzZW50cyBhbiBBQkkgdG8gdGhlIGtlcm5lbCwK
-Pj4+Pj4gYW5kIHVubGVzcyB5b3UgcHJvbWlzZSB0byBuZXZlciBldmVyIGV2ZXIgZXZlciBldmVy
-IGNoYW5nZSB0aGUgQUJJCj4+Pj4+IHdpdGggbGF0ZXIgdXBkYXRlcywgdmVyc2lvbmluZyB0aGUg
-ZmlybXdhcmUgZmlsZXMgaXMgc29tZXRoaW5nIHlvdSdyZQo+Pj4+PiBnb2luZyB0byBoYXZlIHRv
-IHRoaW5rIGFib3V0LiBTb21ldGltZXMgaXQncyBkb25lIHZpYSBmaWxlbmFtZXMsIGUuZy4KPj4+
-Pj4gLTEsIC0yLCBldGMuIFNvbWV0aW1lcyBpdCdzIGRvbmUgYnkgcGFja2luZyBtdWx0aXBsZSBk
-YXRhIGZpbGVzIGludG8gYQo+Pj4+PiBzaW5nbGUgb25lLCBhbGxvd2luZyB0aGUgY29kZSB0byBw
-aWNrIHdoaWNoZXZlciBvbmUgaXQgd2FudHMuCj4+Pj4KPj4+Pgo+Pj4+Cj4+Pj4gRm9yIHZlcnNp
-b25pbmcgcHVycG9zZXMsIEkgdGhvdWdodCBhYm91dCB1c2luZyBkaWZmZXJlbnQgZmlsZW5hbWVz
-LiBJdCBpcwo+Pj4+IHNpbXBsZSBhbmQgZWZmZWN0aXZlLCBhbmQgc2luY2UgSSBjYW5ub3QgcHJl
-ZGljdCB0aGUgc2NvcGUgb2YgY2hhbmdlcwo+Pj4+IHRoZXNlCj4+Pj4gZmlsZXMgbWF5IHVuZGVy
-Z28sIGl0IGFsc28gc2VlbXMgdG8gYmUgdGhlIG1vc3QgZmxleGlibGUgc29sdXRpb24uCj4+Pj4K
-Pj4+PiBOb3RlIHRoYXQgdGhlIGZvcm1hdCBvZiBmaWxlcyBuYW1lZCBzaW1pbGFybHkgZm9yIGRp
-ZmZlcmVudCBHUFVzIG1pZ2h0Cj4+Pj4gYWxzbwo+Pj4+IGJlIGRpZmZlcmVudC4gV2hhdCBpcyBn
-dWFyYW50ZWVkIGlzIHRoYXQgYSBnaXZlbiBmaWxlIHdpbGwgZm9yZXZlciByZW1haW4KPj4+PiBi
-YWNrd2FyZC1jb21wYXRpYmxlLgo+Pj4+Cj4+Pj4gVGhlcmUgYWxyZWFkeSBhcmUgZGlmZmVyZW5j
-ZXMgYmV0d2VlbiB0aGUgR00yMEIgKFRlZ3JhKSBmaXJtd2FyZSBmaWxlcwo+Pj4+IGFuZAo+Pj4+
-IHRoZSBvdGhlciBHTTIwWCBkdWUgdG8gR00yMEIgY29taW5nIGZyb20gYSBkaWZmZXJlbnQgdHJl
-ZSwgc28gYWx0aG91Z2ggaXQKPj4+PiBtYXkgYmUgYSBsaXR0bGUgYml0IGNvbmZ1c2luZyB0aGlz
-IGlzIGEgbmVjZXNzYXJ5IGV2aWwuIEFuZCBpdCdzIG5vdCBsaWtlCj4+Pj4gd2UKPj4+PiBhcmUg
-bm90IHVzZWQgdG8gZGVhbGluZyB3aXRoIGNoaXAtc3BlY2lmaWMgb3BzIGluIE5vdXZlYXUgYW55
-d2F5LiA6KQo+Pj4KPj4+Cj4+PiBJIG1lYW50IG1vcmUgbGlrZSBhbiB1cGRhdGUgZm9yLCBzYXks
-IEdNMjBCLCB3aGVyZSB5b3Ugd2FudCB0byB1cGRhdGUKPj4+IHRoZSBBQkkgYmV0d2VlbiB0aGUg
-ZHJpdmVyIGFuZCB0aGUgZmlybXdhcmUuIFNvIHlvdSBoYXZlIHRoZSBvbGQKPj4+IGZpcm13YXJl
-LCBhbmQgbm93IHlvdSBoYXZlIGEgbmV3IHZlcnNpb24gb2YgdGhlIHNhbWUgZmlybXdhcmUsIGZv
-ciBhCj4+PiBwYXJ0aWN1bGFyIGNoaXAuLi4KPj4KPj4KPj4gUmlnaHQsIHNvIGZvciB0aGF0IGNh
-c2UgR00yMEIgY2FuIHVzZSBkaWZmZXJlbnQgb3BzIHRoYW4gdGhlIG90aGVyIEdNMjBYIHRvCj4+
-IGhhbmRsZSBpdHMgZmlybXdhcmUuIEFuZCBpZiBhbiB1cGRhdGVkIChhbmQgaW5jb21wYXRpYmxl
-KSBmaXJtd2FyZSBsYW5kcyBmb3IKPj4gYW4gYWxyZWFkeSBleGlzdGluZyBjaGlwLCBpdCB3aWxs
-IGJlIHJlY29yZGVkIHVuZGVyIGEgZGlmZmVyZW50IGZpbGVuYW1lLgo+PiBUaGlzIHdpbGwgZW5z
-dXJlIHRoYXQgb2xkIGtlcm5lbHMgY2FuIGtlZXAgYm9vdGluZyBmb3JldmVyLiBPciBhbSBJIG1p
-c3NpbmcKPj4gc29tZXRoaW5nPwo+Cj4gTm8sIHRoYXQgd29ya3MuIFNvIGluc3RlYWQgb2YgZ20y
-MGIvZ3IvZmVjc19pbnN0LmJpbiBpdCdsbCBiZQo+IGdtMjBiL2dyL2ZlY3NfaW5zdC0yLmJpbiBh
-bmQgc28gb24/CgpUaGF0J3Mgd2hhdCBJIGhhZCBpbiBtaW5kLCB5ZXMuIE5ldyBrZXJuZWxzIHdv
-dWxkIHRyeSB0byBsb2FkIHRoZSBuZXdlc3QgCnZlcnNpb24sIHdoaWxlIG9sZGVyIG9uZXMgd2ls
-bCBzdGlsbCBmaW5kIHRoZSBpbml0aWFsIG9uZS4KCk9mIGNvdXJzZSB3ZSB3aWxsIHRyeSB0byBw
-cmV2ZW50IHRoaXMgZnJvbSBoYXBwZW5pbmcgdG9vIG9mdGVuLCBidXQgaXQgCndpbGwgYmUgc29t
-ZXRpbWVzIG5lY2Vzc2FyeSAob25lIGV4YW1wbGUgaXMgaWYvd2hlbiB3ZSByZWxlYXNlIGEgbmV3
-ZXIgCkFDUiB3aXRoIFBNVSBzdXBwb3J0IC0gdGhlIGtlcm5lbCB3aWxsIHVzZSB0aGUgUE1VIHRv
-IHN0YXJ0L3Jlc2V0IG90aGVyIApmYWxjb25zIGluc3RlYWQgb2YgcmVkb2luZyBBQ1IgYXMgd2Ug
-Y3VycmVudGx5IGRvKS4KCkluIHRoZSBjYXNlIG9mIGZlY3NfaW5zdC5iaW4gdGhhdCB5b3UgbGlz
-dGVkLCBJIGRvbid0IGV4cGVjdCBpdCB0byAKY2hhbmdlLCBhdCBsZWFzdCBub3QgaW4gaW5jb21w
-YXRpYmxlIHdheXMuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============2039570346==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="mWhTsvfeAfiHQkS2kaIMVp02S0bjFuSkQ"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--mWhTsvfeAfiHQkS2kaIMVp02S0bjFuSkQ
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+On 02/18/2016 04:03 PM, Alexandre Courbot wrote:
+> On 02/18/2016 02:54 PM, Ilia Mirkin wrote:
+>> On Thu, Feb 18, 2016 at 12:43 AM, Alexandre Courbot
+>> <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+>>> On 02/18/2016 02:37 PM, Ilia Mirkin wrote:
+>>>>
+>>>> On Thu, Feb 18, 2016 at 12:06 AM, Alexandre Courbot
+>>>> <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>>>> wrote:
+>>>>>
+>>>>> On 02/18/2016 12:47 PM, Ilia Mirkin wrote:
+>>>>>>
+>>>>>>
+>>>>>> On Wed, Feb 17, 2016 at 10:39 PM, Alexandre Courbot
+>>>>>> <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>>>>>> wrote:
+>>>>>>>
+>>>>>>>
+>>>>>>> Hi everyone,
+>>>>>>>
+>>>>>>> This email is to start a discussion about the format into which
+>>>>>>> NVIDIA
+>>>>>>> firmware is going to be provided. If you had a look at the
+>>>>>>> linux-firmware
+>>>>>>> branch we pushed earlier [1] you may already have an idea of the
+>>>>>>> general
+>>>>>>> organization, but this email is to discuss more specific details.=
+
+>>>>>>>
+>>>>>>> Official firmware is organized per-chip, with an additional level=
+ of
+>>>>>>> hierarchy for the different managed subsystems.
+>>>>>>>
+>>>>>>> For example, gm200 currently has two sub-directories, acr and gr,=
+
+>>>>>>> which
+>>>>>>> contain the firmware files for secure boot (ACR) and PGRAPH (GR).=
+
+>>>>>>>
+>>>>>>> ACR is a particular case and comes in the form of self-contained
+>>>>>>> units
+>>>>>>> (code, data, signature) that can be run on a high-secure falcon
+>>>>>>> (currently
+>>>>>>> PMU). It consumes a blob that is built by the kernel and contains=
+
+>>>>>>> the
+>>>>>>> signed
+>>>>>>> firmwares of the low-secure falcons to load and manage.
+>>>>>>>
+>>>>>>> The ACR blob is made of a header describing the managed falcons
+>>>>>>> and the
+>>>>>>> offses of their bootloader, code and data within the blob, as
+>>>>>>> well as
+>>>>>>> bootloader/code/data sections for each falcon.
+>>>>>>>
+>>>>>>> A signed, low-secure falcon firmware in the ACR blob is thus the
+>>>>>>> aggregation
+>>>>>>> of three different components:
+>>>>>>>
+>>>>>>> - An image containing the bl, code and data sections
+>>>>>>> - A descriptor with the offsets of these sections within the imag=
+e
+>>>>>>> - A signature that the ACR will verify against
+>>>>>>>
+>>>>>>> These three components can come as files to be directly loaded.
+>>>>>>> However
+>>>>>>> for
+>>>>>>> the current GR firmware we took the approach of splitting the bl,=
+
+>>>>>>> code
+>>>>>>> and
+>>>>>>> data sections into their own files, and building the image and
+>>>>>>> descriptor
+>>>>>>> on-the-fly, as you can see from gm200/gr:
+>>>>>>>
+>>>>>>> gm200/gr/fecs_bl.bin
+>>>>>>> gm200/gr/fecs_data.bin
+>>>>>>> gm200/gr/fecs_inst.bin
+>>>>>>> gm200/gr/fecs_sig.bin
+>>>>>>>
+>>>>>>> The bl, data, and inst files are loaded and combined into an imag=
+e
+>>>>>>> while
+>>>>>>> the
+>>>>>>> corresponding descriptor is built. This is done in the
+>>>>>>> ls_ucode_img_build()
+>>>>>>> function.
+>>>>>>>
+>>>>>>> The main reason for doing this is there is that for a given GPU
+>>>>>>> generation,
+>>>>>>> the _bl and _inst files are very likely going to be exactly the
+>>>>>>> same,
+>>>>>>> with
+>>>>>>> only the data and signature varying. Splitting the sections allow=
+
+>>>>>>> us to
+>>>>>>> symlink identical files. For instance, gr/gm200 weights 61KB, whi=
+le
+>>>>>>> gm204/gr, which mostly symlinks to the former, only takes 8.5KB.
+>>>>>>>
+>>>>>>> Another advantage is that this also allows the code and data to b=
+e
+>>>>>>> directly
+>>>>>>> loaded via the traditional method into a fused non-secure board,
+>>>>>>> although
+>>>>>>> this advantage is not too relevant for the community.
+>>>>>>>
+>>>>>>> That's the design we took for now - it is possible to switch to a=
+
+>>>>>>> more
+>>>>>>> smaller number of files per chip, and remove a bit of kernel
+>>>>>>> code, at
+>>>>>>> the
+>>>>>>> cost of firmware footprint.
+>>>>>>>
+>>>>>>> I just wanted to make sure this design was ok and take any object=
+ion
+>>>>>>> into
+>>>>>>> account before the planned merge of the kernel support for signed=
+
+>>>>>>> firmware,
+>>>>>>> hopefully next week.
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> Since the firmware is completely separate from the kernel, you
+>>>>>> need to
+>>>>>> think about versioning. The firmware presents an ABI to the kernel=
+,
+>>>>>> and unless you promise to never ever ever ever ever change the ABI=
+
+>>>>>> with later updates, versioning the firmware files is something you=
+'re
+>>>>>> going to have to think about. Sometimes it's done via filenames, e=
+=2Eg.
+>>>>>> -1, -2, etc. Sometimes it's done by packing multiple data files
+>>>>>> into a
+>>>>>> single one, allowing the code to pick whichever one it wants.
+>>>>>
+>>>>>
+>>>>>
+>>>>> For versioning purposes, I thought about using different filenames.=
+
+>>>>> It is
+>>>>> simple and effective, and since I cannot predict the scope of chang=
+es
+>>>>> these
+>>>>> files may undergo, it also seems to be the most flexible solution.
+>>>>>
+>>>>> Note that the format of files named similarly for different GPUs mi=
+ght
+>>>>> also
+>>>>> be different. What is guaranteed is that a given file will forever
+>>>>> remain
+>>>>> backward-compatible.
+>>>>>
+>>>>> There already are differences between the GM20B (Tegra) firmware fi=
+les
+>>>>> and
+>>>>> the other GM20X due to GM20B coming from a different tree, so
+>>>>> although it
+>>>>> may be a little bit confusing this is a necessary evil. And it's
+>>>>> not like
+>>>>> we
+>>>>> are not used to dealing with chip-specific ops in Nouveau anyway. :=
+)
+>>>>
+>>>>
+>>>> I meant more like an update for, say, GM20B, where you want to updat=
+e
+>>>> the ABI between the driver and the firmware. So you have the old
+>>>> firmware, and now you have a new version of the same firmware, for a=
+
+>>>> particular chip...
+>>>
+>>>
+>>> Right, so for that case GM20B can use different ops than the other
+>>> GM20X to
+>>> handle its firmware. And if an updated (and incompatible) firmware
+>>> lands for
+>>> an already existing chip, it will be recorded under a different
+>>> filename.
+>>> This will ensure that old kernels can keep booting forever. Or am I
+>>> missing
+>>> something?
+>>
+>> No, that works. So instead of gm20b/gr/fecs_inst.bin it'll be
+>> gm20b/gr/fecs_inst-2.bin and so on?
+>=20
+> That's what I had in mind, yes. New kernels would try to load the newes=
+t
+> version, while older ones will still find the initial one.
+>=20
+> Of course we will try to prevent this from happening too often, but it
+> will be sometimes necessary (one example is if/when we release a newer
+> ACR with PMU support - the kernel will use the PMU to start/reset other=
+
+> falcons instead of redoing ACR as we currently do).
+>=20
+> In the case of fecs_inst.bin that you listed, I don't expect it to
+> change, at least not in incompatible ways.
+I'm also fine with the current method of shipping the firmware.
+Versioned filenames seem adequate for handling incompatible ABIs also.
+
+Thanks,
+Ben.
+
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+
+--mWhTsvfeAfiHQkS2kaIMVp02S0bjFuSkQ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJWxWe9AAoJEHYLnGJQkpH7qRgP/007QI+zEr5m3EsWCfsdGX6Z
+WQbDTEF8O7sCrEVusT4co+fvKOIvJO47Y/y0oPXbHHb9v7lXSmFbOnbVQamdnQwa
+p5gqXC5/9r+jmGntyWLCeBke6ybi3aUrZlLH3CegnMa1OkQGkqjJz0OtiSYjbe5D
+JsSj4JlmM6CiRFlTs4ec8CBzkqKMoah77y+VWTyhP0KIHx9WLX56VB7m0SZhOsX1
+SSeVIujcBH050oL/CtOZ/eUyhMaqTN6lieLjKQVSlvGo6W7zxyNwTQRA8BAGCJg6
+2OtiWSnBWsGtRcRkolXpIeNjX6KVDzCH6xTLGiNqL7/N4WV0ny9MYyyBLMUH+m1H
+09WxH5dSPSpH/0+Ihz3BIkDQrc1LEK0KX7dO+lX3KLqfGO6N/LDz9zCB8BYK9uk+
+gZDo9bGytuade0sT3m5ngahGAJVni1+VuvEVye9KgVaxSnPdrgJHdSViGn3yA1Bk
+YylEJs4Q/lW+wfuNZ6JHlxtLps7j5luOXg8c7tnhdvVo8WsSFWQaxeagB7t4AScZ
+oIJyO8jIkgzb9xjPPQilKKeJ6oJEi0FyjfJnBHV0+u9LwrnY2dvjzh3Maiy5YB1X
+ttHolftIVkpdTLJQtVLsoQhm1Nxc3gQHtE8ACcs4UpRVFlb/UebQa5n2rU83MvoA
+qkL+UD4IXrz1xS7UVOsH
+=gJAx
+-----END PGP SIGNATURE-----
+
+--mWhTsvfeAfiHQkS2kaIMVp02S0bjFuSkQ--
+
+--===============2039570346==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2039570346==--
