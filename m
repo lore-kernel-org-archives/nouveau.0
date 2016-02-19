@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Dealing with opencl kernel parameters in nouveau now
- that RES support is gone
-Date: Thu, 18 Feb 2016 11:39:05 -0500
-Message-ID: <CAKb7UvidnYPcG4w=R=1CKhc0AFmSKzmdgYA9XAKT3sBHwnpGcw@mail.gmail.com>
-References: <56C5D8F9.6030408@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
+	laptop
+Date: Fri, 19 Feb 2016 00:04:36 +0000
+Message-ID: <bug-56615-8800-KErKSdhh0K@http.bugs.freedesktop.org/>
+References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1011483771=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56C5D8F9.6030408-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,70 +17,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBGZWIgMTgsIDIwMTYgYXQgOTo0NSBBTSwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVA
-cmVkaGF0LmNvbT4gd3JvdGU6Cj4gQnV0IHRoaXMgZG9lcyBub3Qgc2VlbSB0byBiZSBob29rZWQg
-dXAgeWV0IGZvciBub3V2ZWF1LgoKU2FtdWVsIGhhcyBwYXRjaGVzLiBTZWUKaHR0cHM6Ly9jZ2l0
-LmZyZWVkZXNrdG9wLm9yZy9+aGFrenNhbS9tZXNhL2xvZy8/aD1hcmJfY29tcHV0ZV9zaGFkZXJf
-djMKCj4KPiBTbyBzb21lIHF1ZXN0aW9uczoKPiAtVGhlIGNvbW1pdCBieSBTYW11YWwgc2F5czoK
-PiAgVGhpcyBpbnRyb2R1Y2VzIFRHU0lfRklMRV9NRU1PUlkgZm9yIHNoYXJlZCwgZ2xvYmFsIGFu
-ZCBsb2NhbCBtZW1vcnkuIE9ubHkKPiBzaGFyZWQgbWVtb3J5IGlzIGN1cnJlbnRseSBzdXBwb3J0
-ZWQuCj4KPiAgVGhlIGNvbW1pdCBpbnRyb2R1Y2VzIE1FTU9SWVt4XSBhbmQgTUVNT1JZW3hdLFNI
-QVJFRCBzbyBpbiByZWFsaXR5IGl0IGFsc28KPiBpbnRyb2R1Y2VzCj4gIGEgc2Vjb25kIG9wdGlv
-biBuZXh0IHRvIHNoYXJlZCwgc28gd2hhdCBhcmUgd2UgZ29pbmcgdG8gdXNlIHBsYWluIE1FTU9S
-WVt4XQo+IGZvcj8KPiAgSSBzdWdnZXN0IHVzaW5nIGl0IGZvciBnbG9iYWwgbWVtb3J5IGJ1dCB3
-ZSBuZWVkIHRvIGJlIGluIGFncmVlbWVudCBvbgo+IHRoaXMuCgpUaGF0IHNvdW5kcyBmaW5lIHRv
-IG1lLiBIb3dldmVyIHdoYXQgSSBoYWQgaW4gbWluZCB3YXMgc3dpdGNoaW5nIHRoZQpTSEFSRUQg
-ZmllbGQgaW50byBhIDItYml0IGZpZWxkIGFuZCBtYWtpbmcgaXQKCjEgPSBTSEFSRUQKMiA9IEdM
-T0JBTAozID0gTE9DQUwKCihzaW5jZSBmb3IgT3BlbkNMIHlvdSBhbHNvIG5lZWQgdG8gYmUgYWJs
-ZSB0byBhZGRyZXNzIGxvY2FsIG9yIHByaXZhdGUKbWVtb3J5KS4gSSBzb3J0YSB3YW50ZWQgU2Ft
-dWVsIHRvIGRvIGl0LCBidXQgc2luY2UgSSBoYWQgbm8gaWRlYSB3aGVyZQp5b3Ugd2VyZSBhdCwg
-b3IgaWYgeW91IHdlcmUgZXZlbiBzdGlsbCB3b3JraW5nIG9uIHRoaXMsIEkgZmlndXJlZCBpdApz
-aG91bGQgYmUgZml4ZWQgdXAgYnkgdGhlIGZpcnN0IHBlcnNvbiB3aG8gbmVlZGVkIGl0LgoKPgo+
-IC1XaGF0IGFib3V0IGtlcm5lbCBpbnB1dCBwYXJhbWV0ZXJzLCBzbyBmYXIgdGhlc2UgaGF2ZSBi
-ZWVuIHVzaW5nIFJFU1szMjc2NF0KPiAgSSBtdXN0IGFkbWl0IHRoYXQgSSBkbyBub3QgdW5kZXJz
-dGFuZCB3aGVyZSB0aGUgZmlsZV9pbmRleCBvZiAzMjc2NCBjb21lcwo+ICBmcm9tIChvciB3aGVy
-ZSBhbnkgb2YgdGhlIGZpbGUgaW5kZXhlcyBjb21lIGZyb20gZm9yCj4gc3JjL2dhbGxpdW0vdGVz
-dHMvdHJpdmlhbC9jb21wdXRlLmMgPwo+ICBJIGhhdmUgdGhlIGZlZWxpbmcgdGhhdCB0aGVzZSBh
-cmUgbm90IHVzZWQgYXQgYWxsLCBhbmQgZXZlcnl0aGluZyBzaW1wbHkKPiBnb2VzCj4gIHRvIGEg
-ZmxhdCAodmlydHVhbCkgbWVtb3J5IHNwYWNlLCB3aXRoIHRoZSBwYXJhbXMgYXQgYWRkcmVzcyAw
-LCBjb3JyZWN0ID8KCkl0IHdhcyBuZXZlciBwYXJ0aWN1bGFybHkgd2VsbC1zcGVjaWZpZWQsIHdo
-aWNoIHdhcyBvbmUgb2YgdGhlIHJlYXNvbnMKaXQgd2VudCBhd2F5LiBJdCBhbHNvIGRpZG4ndCBt
-YXAgbmljZWx5IG9udG8gdGhlIE9wZW5HTCBtb2RlbC4gVGhlcmUKaXMgYSByZW1haW5pbmcgcXVl
-c3Rpb24gb2YgaG93IHRvIGRvIGFkZHJlc3NpbmcgaW4gbWVtb3J5Li4uIHRoZXJlJ3MKNDAgYml0
-cyBvZiBhZGRyZXNzIHNwYWNlLiBTaG91bGQgdGhlc2UgaW1wbGljaXRseSBiZSBVNjQKKGR1YWwt
-Y29tcG9uZW50IGluIFRHU0kpIGFkZHJlc3NlcyB0aGF0IGFyZSBwYXNzZWQgYXJvdW5kPyBOb3Qg
-c3VyZQp3aGF0IHRoZSBPcGVuQ0wgcG9zaXRpb24gb24gYWxsIHRoaXMgaXMuCgpBbHNvIGl0IHdv
-dWxkIGJlIGhpZ2hseSBwcmVmZXJhYmxlIHRvIGF2b2lkIHVzaW5nIEdMT0JBTCBhdCBhbGwgaW4g
-dGhlCmZpcnN0IHBsYWNlLCBhbmQganVzdCB1c2UgQlVGRkVSW10gb3IgSU1BR0VbXSBvciB3aGF0
-ZXZlci4gSG93ZXZlcgphZnRlciBoYXZpbmcgYSBsb29rIGF0IGhvdyBPcGVuQ0wgd29ya3MsIEkg
-ZG9uJ3QgdGhpbmsgdGhhdCdzCnBvc3NpYmxlLiBCdXQgcGVyaGFwcyBJIG1pc3NlZCBzb21ldGhp
-bmc/Cgo+Cj4gIFRoaXMgc2VlbXMgbGlrZSBhIG52aWRpYSBpbXBsZW1lbnRhdGlvbiBkZXRhaWwg
-dGhvdWdoLCBhbmQgd2Ugc2hvdWxkIElNSE8KPiBzdGlsbAo+ICBpbXBsZW1lbnQgYSBzcGVjaWZp
-YyBUR1NJIHJlZ2lzdGVyIGZpbGUgZm9yIGFjY2Vzc2luZyBrZXJuZWwgaW5wdXQgcGFyYW1zLAo+
-ICBhZ3JlZWQgPwoKSSBiZWxpZXZlIHRoYXQga2VybmVsIGlucHV0IHBhcmFtcyBzaG91bGQgYmUg
-cGFzc2VkIGluIHZpYSB1c2VyCnVuaWZvcm1zLiBpLmUuIENPTlNULiBJdCBkb2Vzbid0IGhhdmUg
-dG8gYmUgYSBzZXBhcmF0ZSBVQk8sIGl0IGNhbiB1c2UKdGhlIHVzZXIgYnVmZmVyIHRoaW5nLCB3
-aGljaCBpcyBiYXNpY2FsbHkgd2hhdCBpdCBpcyBub3cuCgo+Cj4gSWYgd2UgY2FuIGFncmVlIG9u
-IHRoZSBUR1NJIHN5bnRheCBmb3IgYWxsIHRoaXMsIHRoZW4gSSdtIHByZXR0eSBzdXJlIEkgY2Fu
-Cj4gaGFjawo+IHNvbWV0aGluZyB0b2dldGhlciB0byBnZXQgdGhpbmdzIHRvIHdvcmsgd2l0aCB0
-aGUgbGF0ZXN0IG1hc3RlciBhZ2FpbiwgYW5kCj4gdGhlbiB3ZQo+IGNhbiB1c2UgdGhpcyBhcyBh
-IHN0YXJ0aW5nIHBvaW50IGZvciBwcm9wZXJseSBpbXBsZW1lbnRpbmcgdGhpcy4KPgo+IFJlZ2Fy
-ZHMsCj4KPiBIYW5zCj4KPgo+IHAucy4KPgo+IEkgbXVzdCBzYXkgSSB3YXMgc29tZXdoYXQgdW5w
-bGVhc2FudGx5IHN1cnByaXNlZCBieSB0aGUgUkVTIGJyZWFrYWdlLCB5ZXMgSQo+IGtub3cKPiBz
-b21lIGNoYW5nZXMgd2VyZSBjb21pbmcgYnV0IHN0aWxsLiBJbiB0aGUgZnV0dXJlIHdoZW4gbXkg
-bGx2bS0+dGdzaSB3b3JrIGlzCj4gbW9yZQo+IHN0YWJsZSBhbmQgSSdsbCBiZSBwdXNoaW5nIGl0
-IHRvIGxsdm0gdXBzdHJlYW0gd2UgcmVhbGx5IGNhbm5vdCBtYWtlCj4gYnJlYWtpbmcgdGdzaQo+
-IGNoYW5nZXMgbGlrZSB0aGlzLgoKSSB0aG91Z2h0IEkgaGFkIHN1ZmZpY2llbnRseSBleHBsYWlu
-ZWQgdG8geW91IHRoYXQgdGhlIHJlc291cmNlIHRoaW5nCndhcyBnb2luZyBhd2F5IC0tIGl0IHdh
-cyBuZXZlciBzcGVjJ2QsIGFuZCB0aGVyZSB3ZXJlIG5vIHVzZXJzLgpQZXJoYXBzIEkgZGlkbid0
-IG1ha2UgaXQgY2xlYXIgZW5vdWdoIHRob3VnaCAtLSBzb3JyeS4gVGhlIHJlYWxpdHkgaXMKdGhh
-dCBUR1NJIGlzIGEgbGl2aW5nIHRoaW5nLCBhbmQgdGhpbmdzIGNoYW5nZSBldmVyeSBzbyBvZnRl
-bi4gSSBkb24ndAp0aGluayBwZW9wbGUgd291bGQgYmUgY29tZm9ydGFibGUgd2l0aCBsb2NraW5n
-IGRvd24gVEdTSSBpbiBzdWNoIGEKd2F5LgoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1011483771==
+Content-Type: multipart/alternative; boundary="14558402760.6aFF.9754";
+ charset="UTF-8"
+
+
+--14558402760.6aFF.9754
+Date: Fri, 19 Feb 2016 00:04:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=56615
+
+--- Comment #36 from Stefan <ste.lendl-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Debian updated to linux 4.3 now and I decided to try nouveau again.
+
+The problem comes from having three displays attached when the graphics card
+can only drive two! (one being a projector I don't always use)
+
+When I boot the error shows up, when I then unplug one of the screens,
+immediately  the login (gdm3) shows up.
+
+Is it possible to ignore a display on startup but allowing it to be turned on,
+reconfigured afterwards?
+or defining a set of displays be considered at startup?
+
+Thank you.
+Stefan
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14558402760.6aFF.9754
+Date: Fri, 19 Feb 2016 00:04:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c36">Comment # 36</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
+              from <span class="vcard"><a class="email" href="mailto:ste.lendl&#64;gmail.com" title="Stefan &lt;ste.lendl&#64;gmail.com&gt;"> <span class="fn">Stefan</span></a>
+</span></b>
+        <pre>Debian updated to linux 4.3 now and I decided to try nouveau again.
+
+The problem comes from having three displays attached when the graphics card
+can only drive two! (one being a projector I don't always use)
+
+When I boot the error shows up, when I then unplug one of the screens,
+immediately  the login (gdm3) shows up.
+
+Is it possible to ignore a display on startup but allowing it to be turned on,
+reconfigured afterwards?
+or defining a set of displays be considered at startup?
+
+Thank you.
+Stefan</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14558402760.6aFF.9754--
+
+--===============1011483771==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1011483771==--
