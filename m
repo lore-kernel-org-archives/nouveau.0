@@ -1,14 +1,11 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH v3 1/4] subdev/iccsense: add new subdev for power
-	sensors
-Date: Sat, 20 Feb 2016 02:25:41 +0100
-Message-ID: <1455931544-6883-2-git-send-email-nouveau@karolherbst.de>
-References: <1455931544-6883-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94225] New: Mesa crash with "nouveau" driver and
+	Minetest
+Date: Sat, 20 Feb 2016 03:03:47 +0000
+Message-ID: <bug-94225-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0984430256=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1455931544-6883-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,365 +18,485 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4KClNpZ25lZC1vZmYtYnk6
-IEthcm9sIEhlcmJzdCA8bm91dmVhdUBrYXJvbGhlcmJzdC5kZT4KLS0tCiBkcm0vbm91dmVhdS9p
-bmNsdWRlL252a20vY29yZS9kZXZpY2UuaCAgICAgfCAgODMgKysrKysrKysrLS0tLS0tLS0tLQog
-ZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9pY2NzZW5zZS5oIHwgIDEwICsrKwogZHJt
-L25vdXZlYXUvbnZrbS9jb3JlL3N1YmRldi5jICAgICAgICAgICAgIHwgIDgzICsrKysrKysrKy0t
-LS0tLS0tLS0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgICAgICB8IDEy
-NCArKysrKysrKysrKysrKystLS0tLS0tLS0tLS0tLQogZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
-ZGV2aWNlL3ByaXYuaCAgICAgIHwgICAxICsKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L0tidWls
-ZCAgICAgICAgICAgICB8ICAgMSArCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9L
-YnVpbGQgICAgfCAgIDEgKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vuc2UvYmFzZS5j
-ICAgIHwgIDQzICsrKysrKysrKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2ljY3NlbnNlL3By
-aXYuaCAgICB8ICAgOCArKwogOSBmaWxlcyBjaGFuZ2VkLCAyMTIgaW5zZXJ0aW9ucygrKSwgMTQy
-IGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZr
-bS9zdWJkZXYvaWNjc2Vuc2UuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20v
-c3ViZGV2L2ljY3NlbnNlL0tidWlsZAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252
-a20vc3ViZGV2L2ljY3NlbnNlL2Jhc2UuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1
-L252a20vc3ViZGV2L2ljY3NlbnNlL3ByaXYuaAoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2lu
-Y2x1ZGUvbnZrbS9jb3JlL2RldmljZS5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUv
-ZGV2aWNlLmgKaW5kZXggOTEzMTkyYy4uMDk0MDQ0MiAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUv
-aW5jbHVkZS9udmttL2NvcmUvZGV2aWNlLmgKKysrIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmtt
-L2NvcmUvZGV2aWNlLmgKQEAgLTIyLDYgKzIyLDcgQEAgZW51bSBudmttX2RldmlkeCB7CiAJTlZL
-TV9TVUJERVZfQkFSLAogCU5WS01fU1VCREVWX1BNVSwKIAlOVktNX1NVQkRFVl9WT0xULAorCU5W
-S01fU1VCREVWX0lDQ1NFTlNFLAogCU5WS01fU1VCREVWX1RIRVJNLAogCU5WS01fU1VCREVWX0NM
-SywKIApAQCAtMTA5LDYgKzExMCw3IEBAIHN0cnVjdCBudmttX2RldmljZSB7CiAJc3RydWN0IG52
-a21fZ3BpbyAqZ3BpbzsKIAlzdHJ1Y3QgbnZrbV9pMmMgKmkyYzsKIAlzdHJ1Y3QgbnZrbV9zdWJk
-ZXYgKmlidXM7CisJc3RydWN0IG52a21faWNjc2Vuc2UgKmljY3NlbnNlOwogCXN0cnVjdCBudmtt
-X2luc3RtZW0gKmltZW07CiAJc3RydWN0IG52a21fbHRjICpsdGM7CiAJc3RydWN0IG52a21fbWMg
-Km1jOwpAQCAtMTY0LDQ2ICsxNjYsNDcgQEAgc3RydWN0IG52a21fZGV2aWNlX3F1aXJrIHsKIHN0
-cnVjdCBudmttX2RldmljZV9jaGlwIHsKIAljb25zdCBjaGFyICpuYW1lOwogCi0JaW50ICgqYmFy
-ICAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX2JhciAqKik7
-Ci0JaW50ICgqYmlvcyAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBu
-dmttX2Jpb3MgKiopOwotCWludCAoKmJ1cyAgICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQg
-aWR4LCBzdHJ1Y3QgbnZrbV9idXMgKiopOwotCWludCAoKmNsayAgICApKHN0cnVjdCBudmttX2Rl
-dmljZSAqLCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9jbGsgKiopOwotCWludCAoKmRldmluaXQpKHN0
-cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9kZXZpbml0ICoqKTsKLQlp
-bnQgKCpmYiAgICAgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21f
-ZmIgKiopOwotCWludCAoKmZ1c2UgICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4LCBz
-dHJ1Y3QgbnZrbV9mdXNlICoqKTsKLQlpbnQgKCpncGlvICAgKShzdHJ1Y3QgbnZrbV9kZXZpY2Ug
-KiwgaW50IGlkeCwgc3RydWN0IG52a21fZ3BpbyAqKik7Ci0JaW50ICgqaTJjICAgICkoc3RydWN0
-IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX2kyYyAqKik7Ci0JaW50ICgqaWJ1
-cyAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX3N1YmRldiAq
-Kik7Ci0JaW50ICgqaW1lbSAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVj
-dCBudmttX2luc3RtZW0gKiopOwotCWludCAoKmx0YyAgICApKHN0cnVjdCBudmttX2RldmljZSAq
-LCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9sdGMgKiopOwotCWludCAoKm1jICAgICApKHN0cnVjdCBu
-dmttX2RldmljZSAqLCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9tYyAqKik7Ci0JaW50ICgqbW11ICAg
-ICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX21tdSAqKik7Ci0J
-aW50ICgqbXhtICAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmtt
-X3N1YmRldiAqKik7Ci0JaW50ICgqcGNpICAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBp
-ZHgsIHN0cnVjdCBudmttX3BjaSAqKik7Ci0JaW50ICgqcG11ICAgICkoc3RydWN0IG52a21fZGV2
-aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX3BtdSAqKik7Ci0JaW50ICgqdGhlcm0gICkoc3Ry
-dWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX3RoZXJtICoqKTsKLQlpbnQg
-KCp0aW1lciAgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fdGlt
-ZXIgKiopOwotCWludCAoKnZvbHQgICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4LCBz
-dHJ1Y3QgbnZrbV92b2x0ICoqKTsKLQotCWludCAoKmJzcCAgICApKHN0cnVjdCBudmttX2Rldmlj
-ZSAqLCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9lbmdpbmUgKiopOwotCWludCAoKmNlWzNdICApKHN0
-cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9lbmdpbmUgKiopOwotCWlu
-dCAoKmNpcGhlciApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9l
-bmdpbmUgKiopOwotCWludCAoKmRpc3AgICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4
-LCBzdHJ1Y3QgbnZrbV9kaXNwICoqKTsKLQlpbnQgKCpkbWEgICAgKShzdHJ1Y3QgbnZrbV9kZXZp
-Y2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fZG1hICoqKTsKLQlpbnQgKCpmaWZvICAgKShzdHJ1
-Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fZmlmbyAqKik7Ci0JaW50ICgq
-Z3IgICAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX2dyICoq
-KTsKLQlpbnQgKCppZmIgICAgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0
-IG52a21fZW5naW5lICoqKTsKLQlpbnQgKCptZSAgICAgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwg
-aW50IGlkeCwgc3RydWN0IG52a21fZW5naW5lICoqKTsKLQlpbnQgKCptcGVnICAgKShzdHJ1Y3Qg
-bnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fZW5naW5lICoqKTsKLQlpbnQgKCpt
-c2VuYyAgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fZW5naW5l
-ICoqKTsKLQlpbnQgKCptc3BkZWMgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3Ry
-dWN0IG52a21fZW5naW5lICoqKTsKLQlpbnQgKCptc3BwcCAgKShzdHJ1Y3QgbnZrbV9kZXZpY2Ug
-KiwgaW50IGlkeCwgc3RydWN0IG52a21fZW5naW5lICoqKTsKLQlpbnQgKCptc3ZsZCAgKShzdHJ1
-Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fZW5naW5lICoqKTsKLQlpbnQg
-KCpwbSAgICAgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fcG0g
-KiopOwotCWludCAoKnNlYyAgICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4LCBzdHJ1
-Y3QgbnZrbV9lbmdpbmUgKiopOwotCWludCAoKnN3ICAgICApKHN0cnVjdCBudmttX2RldmljZSAq
-LCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9zdyAqKik7Ci0JaW50ICgqdmljICAgICkoc3RydWN0IG52
-a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX2VuZ2luZSAqKik7Ci0JaW50ICgqdnAg
-ICAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX2VuZ2luZSAq
-Kik7CisJaW50ICgqYmFyICAgICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4LCBzdHJ1
-Y3QgbnZrbV9iYXIgKiopOworCWludCAoKmJpb3MgICAgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwg
-aW50IGlkeCwgc3RydWN0IG52a21fYmlvcyAqKik7CisJaW50ICgqYnVzICAgICApKHN0cnVjdCBu
-dmttX2RldmljZSAqLCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9idXMgKiopOworCWludCAoKmNsayAg
-ICAgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fY2xrICoqKTsK
-KwlpbnQgKCpkZXZpbml0ICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBu
-dmttX2RldmluaXQgKiopOworCWludCAoKmZiICAgICAgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwg
-aW50IGlkeCwgc3RydWN0IG52a21fZmIgKiopOworCWludCAoKmZ1c2UgICAgKShzdHJ1Y3QgbnZr
-bV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fZnVzZSAqKik7CisJaW50ICgqZ3BpbyAg
-ICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9ncGlvICoqKTsK
-KwlpbnQgKCppMmMgICAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBu
-dmttX2kyYyAqKik7CisJaW50ICgqaWJ1cyAgICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQg
-aWR4LCBzdHJ1Y3QgbnZrbV9zdWJkZXYgKiopOworCWludCAoKmljY3NlbnNlKShzdHJ1Y3QgbnZr
-bV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21faWNjc2Vuc2UgKiopOworCWludCAoKmlt
-ZW0gICAgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21faW5zdG1l
-bSAqKik7CisJaW50ICgqbHRjICAgICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4LCBz
-dHJ1Y3QgbnZrbV9sdGMgKiopOworCWludCAoKm1jICAgICAgKShzdHJ1Y3QgbnZrbV9kZXZpY2Ug
-KiwgaW50IGlkeCwgc3RydWN0IG52a21fbWMgKiopOworCWludCAoKm1tdSAgICAgKShzdHJ1Y3Qg
-bnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fbW11ICoqKTsKKwlpbnQgKCpteG0g
-ICAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX3N1YmRldiAq
-Kik7CisJaW50ICgqcGNpICAgICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4LCBzdHJ1
-Y3QgbnZrbV9wY2kgKiopOworCWludCAoKnBtdSAgICAgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwg
-aW50IGlkeCwgc3RydWN0IG52a21fcG11ICoqKTsKKwlpbnQgKCp0aGVybSAgICkoc3RydWN0IG52
-a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX3RoZXJtICoqKTsKKwlpbnQgKCp0aW1l
-ciAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX3RpbWVyICoq
-KTsKKwlpbnQgKCp2b2x0ICAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVj
-dCBudmttX3ZvbHQgKiopOworCisJaW50ICgqYnNwICAgICApKHN0cnVjdCBudmttX2RldmljZSAq
-LCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9lbmdpbmUgKiopOworCWludCAoKmNlWzNdICAgKShzdHJ1
-Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fZW5naW5lICoqKTsKKwlpbnQg
-KCpjaXBoZXIgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX2Vu
-Z2luZSAqKik7CisJaW50ICgqZGlzcCAgICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4
-LCBzdHJ1Y3QgbnZrbV9kaXNwICoqKTsKKwlpbnQgKCpkbWEgICAgICkoc3RydWN0IG52a21fZGV2
-aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX2RtYSAqKik7CisJaW50ICgqZmlmbyAgICApKHN0
-cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9maWZvICoqKTsKKwlpbnQg
-KCpnciAgICAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX2dy
-ICoqKTsKKwlpbnQgKCppZmIgICAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0
-cnVjdCBudmttX2VuZ2luZSAqKik7CisJaW50ICgqbWUgICAgICApKHN0cnVjdCBudmttX2Rldmlj
-ZSAqLCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9lbmdpbmUgKiopOworCWludCAoKm1wZWcgICAgKShz
-dHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fZW5naW5lICoqKTsKKwlp
-bnQgKCptc2VuYyAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmtt
-X2VuZ2luZSAqKik7CisJaW50ICgqbXNwZGVjICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQg
-aWR4LCBzdHJ1Y3QgbnZrbV9lbmdpbmUgKiopOworCWludCAoKm1zcHBwICAgKShzdHJ1Y3QgbnZr
-bV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fZW5naW5lICoqKTsKKwlpbnQgKCptc3Zs
-ZCAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVjdCBudmttX2VuZ2luZSAq
-Kik7CisJaW50ICgqcG0gICAgICApKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQgaWR4LCBzdHJ1
-Y3QgbnZrbV9wbSAqKik7CisJaW50ICgqc2VjICAgICApKHN0cnVjdCBudmttX2RldmljZSAqLCBp
-bnQgaWR4LCBzdHJ1Y3QgbnZrbV9lbmdpbmUgKiopOworCWludCAoKnN3ICAgICAgKShzdHJ1Y3Qg
-bnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fc3cgKiopOworCWludCAoKnZpYyAg
-ICAgKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50IGlkeCwgc3RydWN0IG52a21fZW5naW5lICoq
-KTsKKwlpbnQgKCp2cCAgICAgICkoc3RydWN0IG52a21fZGV2aWNlICosIGludCBpZHgsIHN0cnVj
-dCBudmttX2VuZ2luZSAqKik7CiB9OwogCiBzdHJ1Y3QgbnZrbV9kZXZpY2UgKm52a21fZGV2aWNl
-X2ZpbmQodTY0IG5hbWUpOwpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1
-YmRldi9pY2NzZW5zZS5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9pY2NzZW5z
-ZS5oCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAuLjdmZWU0MWQKLS0tIC9kZXYv
-bnVsbAorKysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2ljY3NlbnNlLmgKQEAg
-LTAsMCArMSwxMCBAQAorI2lmbmRlZiBfX05WS01fSUNDU0VOU0VfSF9fCisjZGVmaW5lIF9fTlZL
-TV9JQ0NTRU5TRV9IX18KKworI2luY2x1ZGUgPGNvcmUvc3ViZGV2Lmg+CisKK3N0cnVjdCBudmtt
-X2ljY3NlbnNlIHsKKwlzdHJ1Y3QgbnZrbV9zdWJkZXYgc3ViZGV2OworfTsKKworI2VuZGlmCmRp
-ZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2NvcmUvc3ViZGV2LmMgYi9kcm0vbm91dmVhdS9u
-dmttL2NvcmUvc3ViZGV2LmMKaW5kZXggN2RlOTg0Ny4uMzcwMDQxZiAxMDA2NDQKLS0tIGEvZHJt
-L25vdXZlYXUvbnZrbS9jb3JlL3N1YmRldi5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vY29yZS9z
-dWJkZXYuYwpAQCAtMjksNDcgKzI5LDQ4IEBAIHN0YXRpYyBzdHJ1Y3QgbG9ja19jbGFzc19rZXkg
-bnZrbV9zdWJkZXZfbG9ja19jbGFzc1tOVktNX1NVQkRFVl9OUl07CiAKIGNvbnN0IGNoYXIgKgog
-bnZrbV9zdWJkZXZfbmFtZVtOVktNX1NVQkRFVl9OUl0gPSB7Ci0JW05WS01fU1VCREVWX0JBUiAg
-ICBdID0gImJhciIsCi0JW05WS01fU1VCREVWX1ZCSU9TICBdID0gImJpb3MiLAotCVtOVktNX1NV
-QkRFVl9CVVMgICAgXSA9ICJidXMiLAotCVtOVktNX1NVQkRFVl9DTEsgICAgXSA9ICJjbGsiLAot
-CVtOVktNX1NVQkRFVl9ERVZJTklUXSA9ICJkZXZpbml0IiwKLQlbTlZLTV9TVUJERVZfRkIgICAg
-IF0gPSAiZmIiLAotCVtOVktNX1NVQkRFVl9GVVNFICAgXSA9ICJmdXNlIiwKLQlbTlZLTV9TVUJE
-RVZfR1BJTyAgIF0gPSAiZ3BpbyIsCi0JW05WS01fU1VCREVWX0kyQyAgICBdID0gImkyYyIsCi0J
-W05WS01fU1VCREVWX0lCVVMgICBdID0gInByaXYiLAotCVtOVktNX1NVQkRFVl9JTlNUTUVNXSA9
-ICJpbWVtIiwKLQlbTlZLTV9TVUJERVZfTFRDICAgIF0gPSAibHRjIiwKLQlbTlZLTV9TVUJERVZf
-TUMgICAgIF0gPSAibWMiLAotCVtOVktNX1NVQkRFVl9NTVUgICAgXSA9ICJtbXUiLAotCVtOVktN
-X1NVQkRFVl9NWE0gICAgXSA9ICJteG0iLAotCVtOVktNX1NVQkRFVl9QQ0kgICAgXSA9ICJwY2ki
-LAotCVtOVktNX1NVQkRFVl9QTVUgICAgXSA9ICJwbXUiLAotCVtOVktNX1NVQkRFVl9USEVSTSAg
-XSA9ICJ0aGVybSIsCi0JW05WS01fU1VCREVWX1RJTUVSICBdID0gInRtciIsCi0JW05WS01fU1VC
-REVWX1ZPTFQgICBdID0gInZvbHQiLAotCVtOVktNX0VOR0lORV9CU1AgICAgXSA9ICJic3AiLAot
-CVtOVktNX0VOR0lORV9DRTAgICAgXSA9ICJjZTAiLAotCVtOVktNX0VOR0lORV9DRTEgICAgXSA9
-ICJjZTEiLAotCVtOVktNX0VOR0lORV9DRTIgICAgXSA9ICJjZTIiLAotCVtOVktNX0VOR0lORV9D
-SVBIRVIgXSA9ICJjaXBoZXIiLAotCVtOVktNX0VOR0lORV9ESVNQICAgXSA9ICJkaXNwIiwKLQlb
-TlZLTV9FTkdJTkVfRE1BT0JKIF0gPSAiZG1hIiwKLQlbTlZLTV9FTkdJTkVfRklGTyAgIF0gPSAi
-ZmlmbyIsCi0JW05WS01fRU5HSU5FX0dSICAgICBdID0gImdyIiwKLQlbTlZLTV9FTkdJTkVfSUZC
-ICAgIF0gPSAiaWZiIiwKLQlbTlZLTV9FTkdJTkVfTUUgICAgIF0gPSAibWUiLAotCVtOVktNX0VO
-R0lORV9NUEVHICAgXSA9ICJtcGVnIiwKLQlbTlZLTV9FTkdJTkVfTVNFTkMgIF0gPSAibXNlbmMi
-LAotCVtOVktNX0VOR0lORV9NU1BERUMgXSA9ICJtc3BkZWMiLAotCVtOVktNX0VOR0lORV9NU1BQ
-UCAgXSA9ICJtc3BwcCIsCi0JW05WS01fRU5HSU5FX01TVkxEICBdID0gIm1zdmxkIiwKLQlbTlZL
-TV9FTkdJTkVfUE0gICAgIF0gPSAicG0iLAotCVtOVktNX0VOR0lORV9TRUMgICAgXSA9ICJzZWMi
-LAotCVtOVktNX0VOR0lORV9TVyAgICAgXSA9ICJzdyIsCi0JW05WS01fRU5HSU5FX1ZJQyAgICBd
-ID0gInZpYyIsCi0JW05WS01fRU5HSU5FX1ZQICAgICBdID0gInZwIiwKKwlbTlZLTV9TVUJERVZf
-QkFSICAgICBdID0gImJhciIsCisJW05WS01fU1VCREVWX1ZCSU9TICAgXSA9ICJiaW9zIiwKKwlb
-TlZLTV9TVUJERVZfQlVTICAgICBdID0gImJ1cyIsCisJW05WS01fU1VCREVWX0NMSyAgICAgXSA9
-ICJjbGsiLAorCVtOVktNX1NVQkRFVl9ERVZJTklUIF0gPSAiZGV2aW5pdCIsCisJW05WS01fU1VC
-REVWX0ZCICAgICAgXSA9ICJmYiIsCisJW05WS01fU1VCREVWX0ZVU0UgICAgXSA9ICJmdXNlIiwK
-KwlbTlZLTV9TVUJERVZfR1BJTyAgICBdID0gImdwaW8iLAorCVtOVktNX1NVQkRFVl9JMkMgICAg
-IF0gPSAiaTJjIiwKKwlbTlZLTV9TVUJERVZfSUJVUyAgICBdID0gInByaXYiLAorCVtOVktNX1NV
-QkRFVl9JQ0NTRU5TRV0gPSAiaWNjc2Vuc2UiLAorCVtOVktNX1NVQkRFVl9JTlNUTUVNIF0gPSAi
-aW1lbSIsCisJW05WS01fU1VCREVWX0xUQyAgICAgXSA9ICJsdGMiLAorCVtOVktNX1NVQkRFVl9N
-QyAgICAgIF0gPSAibWMiLAorCVtOVktNX1NVQkRFVl9NTVUgICAgIF0gPSAibW11IiwKKwlbTlZL
-TV9TVUJERVZfTVhNICAgICBdID0gIm14bSIsCisJW05WS01fU1VCREVWX1BDSSAgICAgXSA9ICJw
-Y2kiLAorCVtOVktNX1NVQkRFVl9QTVUgICAgIF0gPSAicG11IiwKKwlbTlZLTV9TVUJERVZfVEhF
-Uk0gICBdID0gInRoZXJtIiwKKwlbTlZLTV9TVUJERVZfVElNRVIgICBdID0gInRtciIsCisJW05W
-S01fU1VCREVWX1ZPTFQgICAgXSA9ICJ2b2x0IiwKKwlbTlZLTV9FTkdJTkVfQlNQICAgICBdID0g
-ImJzcCIsCisJW05WS01fRU5HSU5FX0NFMCAgICAgXSA9ICJjZTAiLAorCVtOVktNX0VOR0lORV9D
-RTEgICAgIF0gPSAiY2UxIiwKKwlbTlZLTV9FTkdJTkVfQ0UyICAgICBdID0gImNlMiIsCisJW05W
-S01fRU5HSU5FX0NJUEhFUiAgXSA9ICJjaXBoZXIiLAorCVtOVktNX0VOR0lORV9ESVNQICAgIF0g
-PSAiZGlzcCIsCisJW05WS01fRU5HSU5FX0RNQU9CSiAgXSA9ICJkbWEiLAorCVtOVktNX0VOR0lO
-RV9GSUZPICAgIF0gPSAiZmlmbyIsCisJW05WS01fRU5HSU5FX0dSICAgICAgXSA9ICJnciIsCisJ
-W05WS01fRU5HSU5FX0lGQiAgICAgXSA9ICJpZmIiLAorCVtOVktNX0VOR0lORV9NRSAgICAgIF0g
-PSAibWUiLAorCVtOVktNX0VOR0lORV9NUEVHICAgIF0gPSAibXBlZyIsCisJW05WS01fRU5HSU5F
-X01TRU5DICAgXSA9ICJtc2VuYyIsCisJW05WS01fRU5HSU5FX01TUERFQyAgXSA9ICJtc3BkZWMi
-LAorCVtOVktNX0VOR0lORV9NU1BQUCAgIF0gPSAibXNwcHAiLAorCVtOVktNX0VOR0lORV9NU1ZM
-RCAgIF0gPSAibXN2bGQiLAorCVtOVktNX0VOR0lORV9QTSAgICAgIF0gPSAicG0iLAorCVtOVktN
-X0VOR0lORV9TRUMgICAgIF0gPSAic2VjIiwKKwlbTlZLTV9FTkdJTkVfU1cgICAgICBdID0gInN3
-IiwKKwlbTlZLTV9FTkdJTkVfVklDICAgICBdID0gInZpYyIsCisJW05WS01fRU5HSU5FX1ZQICAg
-ICAgXSA9ICJ2cCIsCiB9OwogCiB2b2lkCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2Vu
-Z2luZS9kZXZpY2UvYmFzZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2Uu
-YwppbmRleCAzZjRiODY4Li5hMjM5ZTQ5IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL2Vu
-Z2luZS9kZXZpY2UvYmFzZS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9i
-YXNlLmMKQEAgLTIxMDIsMjYgKzIxMDIsMjcgQEAgbnZrbV9kZXZpY2Vfc3ViZGV2KHN0cnVjdCBu
-dmttX2RldmljZSAqZGV2aWNlLCBpbnQgaW5kZXgpCiAKIAlzd2l0Y2ggKGluZGV4KSB7CiAjZGVm
-aW5lIF8obixwLG0pIGNhc2UgTlZLTV9TVUJERVZfIyNuOiBpZiAocCkgcmV0dXJuIChtKTsgYnJl
-YWsKLQlfKEJBUiAgICAsIGRldmljZS0+YmFyICAgICwgJmRldmljZS0+YmFyLT5zdWJkZXYpOwot
-CV8oVkJJT1MgICwgZGV2aWNlLT5iaW9zICAgLCAmZGV2aWNlLT5iaW9zLT5zdWJkZXYpOwotCV8o
-QlVTICAgICwgZGV2aWNlLT5idXMgICAgLCAmZGV2aWNlLT5idXMtPnN1YmRldik7Ci0JXyhDTEsg
-ICAgLCBkZXZpY2UtPmNsayAgICAsICZkZXZpY2UtPmNsay0+c3ViZGV2KTsKLQlfKERFVklOSVQs
-IGRldmljZS0+ZGV2aW5pdCwgJmRldmljZS0+ZGV2aW5pdC0+c3ViZGV2KTsKLQlfKEZCICAgICAs
-IGRldmljZS0+ZmIgICAgICwgJmRldmljZS0+ZmItPnN1YmRldik7Ci0JXyhGVVNFICAgLCBkZXZp
-Y2UtPmZ1c2UgICAsICZkZXZpY2UtPmZ1c2UtPnN1YmRldik7Ci0JXyhHUElPICAgLCBkZXZpY2Ut
-PmdwaW8gICAsICZkZXZpY2UtPmdwaW8tPnN1YmRldik7Ci0JXyhJMkMgICAgLCBkZXZpY2UtPmky
-YyAgICAsICZkZXZpY2UtPmkyYy0+c3ViZGV2KTsKLQlfKElCVVMgICAsIGRldmljZS0+aWJ1cyAg
-ICwgIGRldmljZS0+aWJ1cyk7Ci0JXyhJTlNUTUVNLCBkZXZpY2UtPmltZW0gICAsICZkZXZpY2Ut
-PmltZW0tPnN1YmRldik7Ci0JXyhMVEMgICAgLCBkZXZpY2UtPmx0YyAgICAsICZkZXZpY2UtPmx0
-Yy0+c3ViZGV2KTsKLQlfKE1DICAgICAsIGRldmljZS0+bWMgICAgICwgJmRldmljZS0+bWMtPnN1
-YmRldik7Ci0JXyhNTVUgICAgLCBkZXZpY2UtPm1tdSAgICAsICZkZXZpY2UtPm1tdS0+c3ViZGV2
-KTsKLQlfKE1YTSAgICAsIGRldmljZS0+bXhtICAgICwgIGRldmljZS0+bXhtKTsKLQlfKFBDSSAg
-ICAsIGRldmljZS0+cGNpICAgICwgJmRldmljZS0+cGNpLT5zdWJkZXYpOwotCV8oUE1VICAgICwg
-ZGV2aWNlLT5wbXUgICAgLCAmZGV2aWNlLT5wbXUtPnN1YmRldik7Ci0JXyhUSEVSTSAgLCBkZXZp
-Y2UtPnRoZXJtICAsICZkZXZpY2UtPnRoZXJtLT5zdWJkZXYpOwotCV8oVElNRVIgICwgZGV2aWNl
-LT50aW1lciAgLCAmZGV2aWNlLT50aW1lci0+c3ViZGV2KTsKLQlfKFZPTFQgICAsIGRldmljZS0+
-dm9sdCAgICwgJmRldmljZS0+dm9sdC0+c3ViZGV2KTsKKwlfKEJBUiAgICAgLCBkZXZpY2UtPmJh
-ciAgICAgLCAmZGV2aWNlLT5iYXItPnN1YmRldik7CisJXyhWQklPUyAgICwgZGV2aWNlLT5iaW9z
-ICAgICwgJmRldmljZS0+Ymlvcy0+c3ViZGV2KTsKKwlfKEJVUyAgICAgLCBkZXZpY2UtPmJ1cyAg
-ICAgLCAmZGV2aWNlLT5idXMtPnN1YmRldik7CisJXyhDTEsgICAgICwgZGV2aWNlLT5jbGsgICAg
-ICwgJmRldmljZS0+Y2xrLT5zdWJkZXYpOworCV8oREVWSU5JVCAsIGRldmljZS0+ZGV2aW5pdCAs
-ICZkZXZpY2UtPmRldmluaXQtPnN1YmRldik7CisJXyhGQiAgICAgICwgZGV2aWNlLT5mYiAgICAg
-ICwgJmRldmljZS0+ZmItPnN1YmRldik7CisJXyhGVVNFICAgICwgZGV2aWNlLT5mdXNlICAgICwg
-JmRldmljZS0+ZnVzZS0+c3ViZGV2KTsKKwlfKEdQSU8gICAgLCBkZXZpY2UtPmdwaW8gICAgLCAm
-ZGV2aWNlLT5ncGlvLT5zdWJkZXYpOworCV8oSTJDICAgICAsIGRldmljZS0+aTJjICAgICAsICZk
-ZXZpY2UtPmkyYy0+c3ViZGV2KTsKKwlfKElCVVMgICAgLCBkZXZpY2UtPmlidXMgICAgLCAgZGV2
-aWNlLT5pYnVzKTsKKwlfKElDQ1NFTlNFLCBkZXZpY2UtPmljY3NlbnNlLCAmZGV2aWNlLT5pY2Nz
-ZW5zZS0+c3ViZGV2KTsKKwlfKElOU1RNRU0gLCBkZXZpY2UtPmltZW0gICAgLCAmZGV2aWNlLT5p
-bWVtLT5zdWJkZXYpOworCV8oTFRDICAgICAsIGRldmljZS0+bHRjICAgICAsICZkZXZpY2UtPmx0
-Yy0+c3ViZGV2KTsKKwlfKE1DICAgICAgLCBkZXZpY2UtPm1jICAgICAgLCAmZGV2aWNlLT5tYy0+
-c3ViZGV2KTsKKwlfKE1NVSAgICAgLCBkZXZpY2UtPm1tdSAgICAgLCAmZGV2aWNlLT5tbXUtPnN1
-YmRldik7CisJXyhNWE0gICAgICwgZGV2aWNlLT5teG0gICAgICwgIGRldmljZS0+bXhtKTsKKwlf
-KFBDSSAgICAgLCBkZXZpY2UtPnBjaSAgICAgLCAmZGV2aWNlLT5wY2ktPnN1YmRldik7CisJXyhQ
-TVUgICAgICwgZGV2aWNlLT5wbXUgICAgICwgJmRldmljZS0+cG11LT5zdWJkZXYpOworCV8oVEhF
-Uk0gICAsIGRldmljZS0+dGhlcm0gICAsICZkZXZpY2UtPnRoZXJtLT5zdWJkZXYpOworCV8oVElN
-RVIgICAsIGRldmljZS0+dGltZXIgICAsICZkZXZpY2UtPnRpbWVyLT5zdWJkZXYpOworCV8oVk9M
-VCAgICAsIGRldmljZS0+dm9sdCAgICAsICZkZXZpY2UtPnZvbHQtPnN1YmRldik7CiAjdW5kZWYg
-XwogCWRlZmF1bHQ6CiAJCWVuZ2luZSA9IG52a21fZGV2aWNlX2VuZ2luZShkZXZpY2UsIGluZGV4
-KTsKQEAgLTI1NTEsNDcgKzI1NTIsNDggQEAgbnZrbV9kZXZpY2VfY3Rvcihjb25zdCBzdHJ1Y3Qg
-bnZrbV9kZXZpY2VfZnVuYyAqZnVuYywKIAl9ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKIAlicmVhawogCQlzd2l0
-Y2ggKGkpIHsKLQkJXyhOVktNX1NVQkRFVl9CQVIgICAgLCAgICAgYmFyKTsKLQkJXyhOVktNX1NV
-QkRFVl9WQklPUyAgLCAgICBiaW9zKTsKLQkJXyhOVktNX1NVQkRFVl9CVVMgICAgLCAgICAgYnVz
-KTsKLQkJXyhOVktNX1NVQkRFVl9DTEsgICAgLCAgICAgY2xrKTsKLQkJXyhOVktNX1NVQkRFVl9E
-RVZJTklULCBkZXZpbml0KTsKLQkJXyhOVktNX1NVQkRFVl9GQiAgICAgLCAgICAgIGZiKTsKLQkJ
-XyhOVktNX1NVQkRFVl9GVVNFICAgLCAgICBmdXNlKTsKLQkJXyhOVktNX1NVQkRFVl9HUElPICAg
-LCAgICBncGlvKTsKLQkJXyhOVktNX1NVQkRFVl9JMkMgICAgLCAgICAgaTJjKTsKLQkJXyhOVktN
-X1NVQkRFVl9JQlVTICAgLCAgICBpYnVzKTsKLQkJXyhOVktNX1NVQkRFVl9JTlNUTUVNLCAgICBp
-bWVtKTsKLQkJXyhOVktNX1NVQkRFVl9MVEMgICAgLCAgICAgbHRjKTsKLQkJXyhOVktNX1NVQkRF
-Vl9NQyAgICAgLCAgICAgIG1jKTsKLQkJXyhOVktNX1NVQkRFVl9NTVUgICAgLCAgICAgbW11KTsK
-LQkJXyhOVktNX1NVQkRFVl9NWE0gICAgLCAgICAgbXhtKTsKLQkJXyhOVktNX1NVQkRFVl9QQ0kg
-ICAgLCAgICAgcGNpKTsKLQkJXyhOVktNX1NVQkRFVl9QTVUgICAgLCAgICAgcG11KTsKLQkJXyhO
-VktNX1NVQkRFVl9USEVSTSAgLCAgIHRoZXJtKTsKLQkJXyhOVktNX1NVQkRFVl9USU1FUiAgLCAg
-IHRpbWVyKTsKLQkJXyhOVktNX1NVQkRFVl9WT0xUICAgLCAgICB2b2x0KTsKLQkJXyhOVktNX0VO
-R0lORV9CU1AgICAgLCAgICAgYnNwKTsKLQkJXyhOVktNX0VOR0lORV9DRTAgICAgLCAgIGNlWzBd
-KTsKLQkJXyhOVktNX0VOR0lORV9DRTEgICAgLCAgIGNlWzFdKTsKLQkJXyhOVktNX0VOR0lORV9D
-RTIgICAgLCAgIGNlWzJdKTsKLQkJXyhOVktNX0VOR0lORV9DSVBIRVIgLCAgY2lwaGVyKTsKLQkJ
-XyhOVktNX0VOR0lORV9ESVNQICAgLCAgICBkaXNwKTsKLQkJXyhOVktNX0VOR0lORV9ETUFPQkog
-LCAgICAgZG1hKTsKLQkJXyhOVktNX0VOR0lORV9GSUZPICAgLCAgICBmaWZvKTsKLQkJXyhOVktN
-X0VOR0lORV9HUiAgICAgLCAgICAgIGdyKTsKLQkJXyhOVktNX0VOR0lORV9JRkIgICAgLCAgICAg
-aWZiKTsKLQkJXyhOVktNX0VOR0lORV9NRSAgICAgLCAgICAgIG1lKTsKLQkJXyhOVktNX0VOR0lO
-RV9NUEVHICAgLCAgICBtcGVnKTsKLQkJXyhOVktNX0VOR0lORV9NU0VOQyAgLCAgIG1zZW5jKTsK
-LQkJXyhOVktNX0VOR0lORV9NU1BERUMgLCAgbXNwZGVjKTsKLQkJXyhOVktNX0VOR0lORV9NU1BQ
-UCAgLCAgIG1zcHBwKTsKLQkJXyhOVktNX0VOR0lORV9NU1ZMRCAgLCAgIG1zdmxkKTsKLQkJXyhO
-VktNX0VOR0lORV9QTSAgICAgLCAgICAgIHBtKTsKLQkJXyhOVktNX0VOR0lORV9TRUMgICAgLCAg
-ICAgc2VjKTsKLQkJXyhOVktNX0VOR0lORV9TVyAgICAgLCAgICAgIHN3KTsKLQkJXyhOVktNX0VO
-R0lORV9WSUMgICAgLCAgICAgdmljKTsKLQkJXyhOVktNX0VOR0lORV9WUCAgICAgLCAgICAgIHZw
-KTsKKwkJXyhOVktNX1NVQkRFVl9CQVIgICAgICwgICAgICBiYXIpOworCQlfKE5WS01fU1VCREVW
-X1ZCSU9TICAgLCAgICAgYmlvcyk7CisJCV8oTlZLTV9TVUJERVZfQlVTICAgICAsICAgICAgYnVz
-KTsKKwkJXyhOVktNX1NVQkRFVl9DTEsgICAgICwgICAgICBjbGspOworCQlfKE5WS01fU1VCREVW
-X0RFVklOSVQgLCAgZGV2aW5pdCk7CisJCV8oTlZLTV9TVUJERVZfRkIgICAgICAsICAgICAgIGZi
-KTsKKwkJXyhOVktNX1NVQkRFVl9GVVNFICAgICwgICAgIGZ1c2UpOworCQlfKE5WS01fU1VCREVW
-X0dQSU8gICAgLCAgICAgZ3Bpbyk7CisJCV8oTlZLTV9TVUJERVZfSTJDICAgICAsICAgICAgaTJj
-KTsKKwkJXyhOVktNX1NVQkRFVl9JQlVTICAgICwgICAgIGlidXMpOworCQlfKE5WS01fU1VCREVW
-X0lDQ1NFTlNFLCBpY2NzZW5zZSk7CisJCV8oTlZLTV9TVUJERVZfSU5TVE1FTSAsICAgICBpbWVt
-KTsKKwkJXyhOVktNX1NVQkRFVl9MVEMgICAgICwgICAgICBsdGMpOworCQlfKE5WS01fU1VCREVW
-X01DICAgICAgLCAgICAgICBtYyk7CisJCV8oTlZLTV9TVUJERVZfTU1VICAgICAsICAgICAgbW11
-KTsKKwkJXyhOVktNX1NVQkRFVl9NWE0gICAgICwgICAgICBteG0pOworCQlfKE5WS01fU1VCREVW
-X1BDSSAgICAgLCAgICAgIHBjaSk7CisJCV8oTlZLTV9TVUJERVZfUE1VICAgICAsICAgICAgcG11
-KTsKKwkJXyhOVktNX1NVQkRFVl9USEVSTSAgICwgICAgdGhlcm0pOworCQlfKE5WS01fU1VCREVW
-X1RJTUVSICAgLCAgICB0aW1lcik7CisJCV8oTlZLTV9TVUJERVZfVk9MVCAgICAsICAgICB2b2x0
-KTsKKwkJXyhOVktNX0VOR0lORV9CU1AgICAgICwgICAgICBic3ApOworCQlfKE5WS01fRU5HSU5F
-X0NFMCAgICAgLCAgICBjZVswXSk7CisJCV8oTlZLTV9FTkdJTkVfQ0UxICAgICAsICAgIGNlWzFd
-KTsKKwkJXyhOVktNX0VOR0lORV9DRTIgICAgICwgICAgY2VbMl0pOworCQlfKE5WS01fRU5HSU5F
-X0NJUEhFUiAgLCAgIGNpcGhlcik7CisJCV8oTlZLTV9FTkdJTkVfRElTUCAgICAsICAgICBkaXNw
-KTsKKwkJXyhOVktNX0VOR0lORV9ETUFPQkogICwgICAgICBkbWEpOworCQlfKE5WS01fRU5HSU5F
-X0ZJRk8gICAgLCAgICAgZmlmbyk7CisJCV8oTlZLTV9FTkdJTkVfR1IgICAgICAsICAgICAgIGdy
-KTsKKwkJXyhOVktNX0VOR0lORV9JRkIgICAgICwgICAgICBpZmIpOworCQlfKE5WS01fRU5HSU5F
-X01FICAgICAgLCAgICAgICBtZSk7CisJCV8oTlZLTV9FTkdJTkVfTVBFRyAgICAsICAgICBtcGVn
-KTsKKwkJXyhOVktNX0VOR0lORV9NU0VOQyAgICwgICAgbXNlbmMpOworCQlfKE5WS01fRU5HSU5F
-X01TUERFQyAgLCAgIG1zcGRlYyk7CisJCV8oTlZLTV9FTkdJTkVfTVNQUFAgICAsICAgIG1zcHBw
-KTsKKwkJXyhOVktNX0VOR0lORV9NU1ZMRCAgICwgICAgbXN2bGQpOworCQlfKE5WS01fRU5HSU5F
-X1BNICAgICAgLCAgICAgICBwbSk7CisJCV8oTlZLTV9FTkdJTkVfU0VDICAgICAsICAgICAgc2Vj
-KTsKKwkJXyhOVktNX0VOR0lORV9TVyAgICAgICwgICAgICAgc3cpOworCQlfKE5WS01fRU5HSU5F
-X1ZJQyAgICAgLCAgICAgIHZpYyk7CisJCV8oTlZLTV9FTkdJTkVfVlAgICAgICAsICAgICAgIHZw
-KTsKIAkJZGVmYXVsdDoKIAkJCVdBUk5fT04oMSk7CiAJCQljb250aW51ZTsKZGlmZiAtLWdpdCBh
-L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9wcml2LmggYi9kcm0vbm91dmVhdS9udmtt
-L2VuZ2luZS9kZXZpY2UvcHJpdi5oCmluZGV4IGVkM2FkMmMuLjQ5OTgxYTEgMTAwNjQ0Ci0tLSBh
-L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9wcml2LmgKKysrIGIvZHJtL25vdXZlYXUv
-bnZrbS9lbmdpbmUvZGV2aWNlL3ByaXYuaApAQCAtMTIsNiArMTIsNyBAQAogI2luY2x1ZGUgPHN1
-YmRldi9ncGlvLmg+CiAjaW5jbHVkZSA8c3ViZGV2L2kyYy5oPgogI2luY2x1ZGUgPHN1YmRldi9p
-YnVzLmg+CisjaW5jbHVkZSA8c3ViZGV2L2ljY3NlbnNlLmg+CiAjaW5jbHVkZSA8c3ViZGV2L2lu
-c3RtZW0uaD4KICNpbmNsdWRlIDxzdWJkZXYvbHRjLmg+CiAjaW5jbHVkZSA8c3ViZGV2L21jLmg+
-CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9LYnVpbGQgYi9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9LYnVpbGQKaW5kZXggZWUyYzM4Zi4uNjNkMDU4NyAxMDA2NDQKLS0tIGEv
-ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvS2J1aWxkCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L0tidWlsZApAQCAtOCw2ICs4LDcgQEAgaW5jbHVkZSAkKHNyYykvbnZrbS9zdWJkZXYvZnVz
-ZS9LYnVpbGQKIGluY2x1ZGUgJChzcmMpL252a20vc3ViZGV2L2dwaW8vS2J1aWxkCiBpbmNsdWRl
-ICQoc3JjKS9udmttL3N1YmRldi9pMmMvS2J1aWxkCiBpbmNsdWRlICQoc3JjKS9udmttL3N1YmRl
-di9pYnVzL0tidWlsZAoraW5jbHVkZSAkKHNyYykvbnZrbS9zdWJkZXYvaWNjc2Vuc2UvS2J1aWxk
-CiBpbmNsdWRlICQoc3JjKS9udmttL3N1YmRldi9pbnN0bWVtL0tidWlsZAogaW5jbHVkZSAkKHNy
-YykvbnZrbS9zdWJkZXYvbHRjL0tidWlsZAogaW5jbHVkZSAkKHNyYykvbnZrbS9zdWJkZXYvbWMv
-S2J1aWxkCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9LYnVp
-bGQgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9LYnVpbGQKbmV3IGZpbGUgbW9k
-ZSAxMDA2NDQKaW5kZXggMDAwMDAwMC4uYjY4NjNkYQotLS0gL2Rldi9udWxsCisrKyBiL2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2ljY3NlbnNlL0tidWlsZApAQCAtMCwwICsxIEBACitudmttLXkg
-Kz0gbnZrbS9zdWJkZXYvaWNjc2Vuc2UvYmFzZS5vCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9pY2NzZW5zZS9iYXNlLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pY2Nz
-ZW5zZS9iYXNlLmMKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMC4uNWRmYTJmZAot
-LS0gL2Rldi9udWxsCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ljY3NlbnNlL2Jhc2Uu
-YwpAQCAtMCwwICsxLDQzIEBACisvKgorICogQ29weXJpZ2h0IDIwMTUgTWFydGluIFBlcmVzCisg
-KgorICogUGVybWlzc2lvbiBpcyBoZXJlYnkgZ3JhbnRlZCwgZnJlZSBvZiBjaGFyZ2UsIHRvIGFu
-eSBwZXJzb24gb2J0YWluaW5nIGEKKyAqIGNvcHkgb2YgdGhpcyBzb2Z0d2FyZSBhbmQgYXNzb2Np
-YXRlZCBkb2N1bWVudGF0aW9uIGZpbGVzICh0aGUgIlNvZnR3YXJlIiksCisgKiB0byBkZWFsIGlu
-IHRoZSBTb2Z0d2FyZSB3aXRob3V0IHJlc3RyaWN0aW9uLCBpbmNsdWRpbmcgd2l0aG91dCBsaW1p
-dGF0aW9uCisgKiB0aGUgcmlnaHRzIHRvIHVzZSwgY29weSwgbW9kaWZ5LCBtZXJnZSwgcHVibGlz
-aCwgZGlzdHJpYnV0ZSwgc3VibGljZW5zZSwKKyAqIGFuZC9vciBzZWxsIGNvcGllcyBvZiB0aGUg
-U29mdHdhcmUsIGFuZCB0byBwZXJtaXQgcGVyc29ucyB0byB3aG9tIHRoZQorICogU29mdHdhcmUg
-aXMgZnVybmlzaGVkIHRvIGRvIHNvLCBzdWJqZWN0IHRvIHRoZSBmb2xsb3dpbmcgY29uZGl0aW9u
-czoKKyAqCisgKiBUaGUgYWJvdmUgY29weXJpZ2h0IG5vdGljZSBhbmQgdGhpcyBwZXJtaXNzaW9u
-IG5vdGljZSBzaGFsbCBiZSBpbmNsdWRlZCBpbgorICogYWxsIGNvcGllcyBvciBzdWJzdGFudGlh
-bCBwb3J0aW9ucyBvZiB0aGUgU29mdHdhcmUuCisgKgorICogVEhFIFNPRlRXQVJFIElTIFBST1ZJ
-REVEICJBUyBJUyIsIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJTkQsIEVYUFJFU1MgT1IKKyAq
-IElNUExJRUQsIElOQ0xVRElORyBCVVQgTk9UIExJTUlURUQgVE8gVEhFIFdBUlJBTlRJRVMgT0Yg
-TUVSQ0hBTlRBQklMSVRZLAorICogRklUTkVTUyBGT1IgQSBQQVJUSUNVTEFSIFBVUlBPU0UgQU5E
-IE5PTklORlJJTkdFTUVOVC4gIElOIE5PIEVWRU5UIFNIQUxMCisgKiBUSEUgQ09QWVJJR0hUIEhP
-TERFUihTKSBPUiBBVVRIT1IoUykgQkUgTElBQkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMgT1IK
-KyAqIE9USEVSIExJQUJJTElUWSwgV0hFVEhFUiBJTiBBTiBBQ1RJT04gT0YgQ09OVFJBQ1QsIFRP
-UlQgT1IgT1RIRVJXSVNFLAorICogQVJJU0lORyBGUk9NLCBPVVQgT0YgT1IgSU4gQ09OTkVDVElP
-TiBXSVRIIFRIRSBTT0ZUV0FSRSBPUiBUSEUgVVNFIE9SCisgKiBPVEhFUiBERUFMSU5HUyBJTiBU
-SEUgU09GVFdBUkUuCisgKgorICogQXV0aG9yczogTWFydGluIFBlcmVzCisgKi8KKyNpbmNsdWRl
-ICJwcml2LmgiCisKK3N0cnVjdCBudmttX3N1YmRldl9mdW5jIGljY3NlbnNlX2Z1bmMgPSB7IDAg
-fTsKKworaW50CitudmttX2ljY3NlbnNlX2N0b3Ioc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2Us
-IGludCBpbmRleCwKKwkJICAgc3RydWN0IG52a21faWNjc2Vuc2UgKmljY3NlbnNlKQoreworCW52
-a21fc3ViZGV2X2N0b3IoJmljY3NlbnNlX2Z1bmMsIGRldmljZSwgaW5kZXgsIDAsICZpY2NzZW5z
-ZS0+c3ViZGV2KTsKKwlyZXR1cm4gMDsKK30KKworaW50CitudmttX2ljY3NlbnNlX25ld18oc3Ry
-dWN0IG52a21fZGV2aWNlICpkZXZpY2UsIGludCBpbmRleCwKKwkJICAgc3RydWN0IG52a21faWNj
-c2Vuc2UgKippY2NzZW5zZSkKK3sKKwlpZiAoISgqaWNjc2Vuc2UgPSBremFsbG9jKHNpemVvZigq
-KmljY3NlbnNlKSwgR0ZQX0tFUk5FTCkpKQorCQlyZXR1cm4gLUVOT01FTTsKKwlyZXR1cm4gbnZr
-bV9pY2NzZW5zZV9jdG9yKGRldmljZSwgaW5kZXgsICppY2NzZW5zZSk7Cit9CmRpZmYgLS1naXQg
-YS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9wcml2LmggYi9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9pY2NzZW5zZS9wcml2LmgKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAw
-MDAwMC4uZjBhYTE3YQotLS0gL2Rldi9udWxsCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2
-L2ljY3NlbnNlL3ByaXYuaApAQCAtMCwwICsxLDggQEAKKyNpZm5kZWYgX19OVktNX0lDQ1NFTlNF
-X1BSSVZfSF9fCisjZGVmaW5lIF9fTlZLTV9JQ0NTRU5TRV9QUklWX0hfXworI2RlZmluZSBudmtt
-X2ljY3NlbnNlKHApIGNvbnRhaW5lcl9vZigocCksIHN0cnVjdCBudmttX2ljY3NlbnNlLCBzdWJk
-ZXYpCisjaW5jbHVkZSA8c3ViZGV2L2ljY3NlbnNlLmg+CisKK2ludCBudmttX2ljY3NlbnNlX2N0
-b3Ioc3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21faWNjc2Vuc2UgKik7Citp
-bnQgbnZrbV9pY2NzZW5zZV9uZXdfKHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQsIHN0cnVjdCBu
-dmttX2ljY3NlbnNlICoqKTsKKyNlbmRpZgotLSAKMi43LjEKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0984430256==
+Content-Type: multipart/alternative; boundary="14559374270.b16Ec6285.17018";
+ charset="UTF-8"
+
+
+--14559374270.b16Ec6285.17018
+Date: Sat, 20 Feb 2016 03:03:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=94225
+
+            Bug ID: 94225
+           Summary: Mesa crash with "nouveau" driver and Minetest
+           Product: Mesa
+           Version: 10.2
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: yugiohjcj-D/iA7guW19M@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Hello,
+
+I remark that Minetest 0.4.13 is crashing often (about 1 time by hour) when I
+am using the "nouveau" driver.
+I have already reported this bug to Minetest [1].
+As Minetest is using Irrlicht as its engine, I suspect Irrlicht to be a
+possible cause of my problem.
+For this reason, I have also reported this bug to Irrlicht [2].
+But regarding the log, I also see that Mesa itself could be suspected as it is
+present at the top of the backtrace.
+
+Here is the crash log:
+
+$ gdb minetest
+GNU gdb (GDB) 7.6.1
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i486-slackware-linux".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /usr/bin/minetest...done.
+(gdb) run
+Starting program: /usr/bin/minetest 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/libthread_db.so.1".
+Automatically selecting world at [/home/yugiohjcj/.minetest/worlds/toto]
+AL lib: alcOpenDevice: Option 'format' is deprecated, please use 'channels' and
+'sample-type'
+[New Thread 0xb1517b40 (LWP 7062)]
+[New Thread 0xacbfeb40 (LWP 7063)]
+[New Thread 0xac3feb40 (LWP 7064)]
+[New Thread 0xab7ffb40 (LWP 7065)]
+[New Thread 0xaafffb40 (LWP 7066)]
+[New Thread 0xaa7ffb40 (LWP 7067)]
+[Thread 0xacbfeb40 (LWP 7063) exited]
+[Thread 0xb1517b40 (LWP 7062) exited]
+[Thread 0xac3feb40 (LWP 7064) exited]
+[Thread 0xaafffb40 (LWP 7066) exited]
+[Thread 0xaa7ffb40 (LWP 7067) exited]
+[Thread 0xab7ffb40 (LWP 7065) exited]
+AL lib: alcOpenDevice: Option 'format' is deprecated, please use 'channels' and
+'sample-type'
+[New Thread 0xaa7ffb40 (LWP 7068)]
+[New Thread 0xaafffb40 (LWP 7069)]
+[New Thread 0xab7ffb40 (LWP 7070)]
+[New Thread 0xac3feb40 (LWP 7071)]
+[New Thread 0xb1517b40 (LWP 7072)]
+[New Thread 0xa7bf0b40 (LWP 7073)]
+2016-02-19 17:48:30: ACTION[main]: Irrlicht: Could not open file of texture:
+character.png
+2016-02-19 17:48:30: ACTION[main]: Irrlicht: Could not open file of texture:
+character.png
+2016-02-19 17:49:41: ACTION[main]: Irrlicht: Could not open file of texture:
+character.png
+2016-02-19 17:49:41: ACTION[main]: Irrlicht: Could not open file of texture:
+character.png
+2016-02-19 17:53:45: ACTION[main]: Irrlicht: Could not open file of texture:
+character.png
+2016-02-19 17:53:45: ACTION[main]: Irrlicht: Could not open file of texture:
+character.png
+
+Program received signal SIGSEGV, Segmentation fault.
+0xb5cebcf8 in PUSH_DATA (push=0x8614038, data=268496912)
+    at ./nouveau_winsys.h:35
+35  ./nouveau_winsys.h: No such file or directory.
+(gdb) bt
+#0  0xb5cebcf8 in PUSH_DATA (push=0x8614038, data=268496912)
+    at ./nouveau_winsys.h:35
+#1  nvc0_screen_fence_emit (pscreen=0x8613cf8, sequence=0xe0faa30)
+    at nvc0/nvc0_screen.c:491
+#2  0xb5c16747 in nouveau_fence_emit (fence=0xe0faa20) at nouveau_fence.c:102
+#3  0xb5c16a08 in nouveau_fence_next (screen=screen@entry=0x8613cf8)
+    at nouveau_fence.c:227
+#4  0xb5ce9a83 in nvc0_default_kick_notify (push=0x8614038)
+    at nvc0/nvc0_context.c:170
+#5  0xb5b8a04e in pushbuf_submit (push=push@entry=0x8614038, 
+    chan=<optimized out>, chan=<optimized out>) at pushbuf.c:325
+#6  0xb5b8a39a in pushbuf_flush (push=push@entry=0x8614038) at pushbuf.c:402
+#7  0xb5b8ad27 in nouveau_pushbuf_space (push=push@entry=0x8614038, dwords=0, 
+    relocs=0, pushes=<optimized out>, pushes@entry=0) at pushbuf.c:676
+#8  0xb5b8ade3 in pushbuf_validate (push=0x8614038, retry=<optimized out>)
+    at pushbuf.c:492
+#9  0xb5b8b13e in nouveau_pushbuf_validate (push=0x8614038) at pushbuf.c:749
+#10 0xb5cf3906 in nvc0_state_validate (nvc0=nvc0@entry=0x8625880, 
+    mask=mask@entry=4294967295, words=words@entry=8)
+    at nvc0/nvc0_state_validate.c:619
+#11 0xb5cfdc1c in nvc0_draw_vbo (pipe=0x8625880, info=0xbfffdca0)
+    at nvc0/nvc0_vbo.c:829
+#12 0xb5f1d5c0 in cso_draw_vbo (cso=0x8692948, info=info@entry=0xbfffdca0)
+---Type <return> to continue, or q <return> to quit---
+    at cso_cache/cso_context.c:1428
+#13 0xb5e468ba in st_draw_vbo (ctx=0x8650160, prims=0xbfffdd74, nr_prims=1, 
+    ib=0xbfffdd64, index_bounds_valid=0 '\000', min_index=0, max_index=2431, 
+    tfb_vertcount=0x0, indirect=0x0) at state_tracker/st_draw.c:276
+#14 0xb5e1a7a0 in vbo_handle_primitive_restart (ctx=ctx@entry=0x8650160, 
+    prim=prim@entry=0xbfffdd74, nr_prims=nr_prims@entry=1, 
+    ib=ib@entry=0xbfffdd64, index_bounds_valid=0 '\000', 
+    min_index=min_index@entry=4294967295, max_index=max_index@entry=4294967295)
+    at vbo/vbo_exec_array.c:591
+#15 0xb5e1be7c in vbo_validated_drawrangeelements (ctx=ctx@entry=0x8650160, 
+    mode=mode@entry=4, index_bounds_valid=index_bounds_valid@entry=0 '\000', 
+    start=start@entry=4294967295, end=end@entry=4294967295, 
+    count=count@entry=3648, type=type@entry=5123, 
+    indices=indices@entry=0x1717d500, basevertex=basevertex@entry=0, 
+    numInstances=numInstances@entry=1, baseInstance=baseInstance@entry=0)
+    at vbo/vbo_exec_array.c:1014
+#16 0xb5e1c509 in vbo_exec_DrawElements (mode=4, count=3648, type=5123, 
+    indices=0x1717d500) at vbo/vbo_exec_array.c:1164
+#17 0xb7cb1820 in irr::video::COpenGLDriver::renderArray (this=0x868b8d0, 
+    indexList=0x1717d500, primitiveCount=1216, 
+    pType=irr::scene::EPT_TRIANGLES, iType=irr::video::EIT_16BIT)
+    at COpenGLDriver.cpp:1743
+#18 0xb7cb1372 in irr::video::COpenGLDriver::drawVertexPrimitiveList (
+---Type <return> to continue, or q <return> to quit---
+    this=0x868b8d0, vertices=0x1b312db0, vertexCount=2432, 
+    indexList=0x1717d500, primitiveCount=1216, vType=irr::video::EVT_TANGENTS, 
+    pType=irr::scene::EPT_TRIANGLES, iType=irr::video::EIT_16BIT)
+    at COpenGLDriver.cpp:1586
+#19 0xb7ca5ab2 in irr::video::CNullDriver::drawMeshBuffer (this=0x868b8d0, mb=
+    0xc3ac3c0) at CNullDriver.cpp:1521
+#20 0x08222581 in ClientMap::renderMap(irr::video::IVideoDriver*, int) ()
+#21 0x08228ef4 in ClientMap::render() ()
+#22 0xb7c638a9 in irr::scene::CSceneManager::drawAll (this=0x86e3880)
+    at CSceneManager.cpp:1501
+#23 0x082914e2 in draw_scene(irr::video::IVideoDriver*,
+irr::scene::ISceneManager*, Camera&, Client&, LocalPlayer*, Hud&, Mapper&,
+irr::gui::IGUIEnvironment*, std::vector<irr::core::aabbox3d<float>,
+std::allocator<irr::core::aabbox3d<float> > >, irr::core::vector2d<unsigned
+int> const&, irr::video::SColor, bool, bool)
+    ()
+#24 0x082ca1c9 in Game::updateFrame(std::vector<irr::core::aabbox3d<float>,
+std::allocator<irr::core::aabbox3d<float> > >&, ProfilerGraph*, RunStats*,
+GameRunData*, float, VolatileRunFlags const&, CameraOrientation const&) ()
+#25 0x082ce688 in Game::run() ()
+#26 0x082cee6a in the_game(bool*, bool, InputHandler*, irr::IrrlichtDevice*,
+std::string const&, std::string const&, std::string const&, std::string const&,
+unsigned short, std::string&, ChatBackend&, bool*, SubgameSpec const&, bool) ()
+#27 0x080e8e3c in ClientLauncher::run(GameParams&, Settings const&) ()
+---Type <return> to continue, or q <return> to quit---
+#28 0x080e1c39 in main ()
+(gdb) quit
+A debugging session is active.
+
+    Inferior 1 [process 7058] will be killed.
+
+Quit anyway? (y or n) y
+
+Here is my configuration:
+
+    minetest-0.4.13
+    mesa-10.2.5
+    libdrm-2.4.56
+    xf86-video-nouveau-1.0.11
+    irrlicht-1.8.1
+
+I let you verify through this log that Mesa is or not the cause of the crash.
+If you have a better/smaller example than Minetest/Irrlicht to reproduce the
+bug please tell me.
+
+Thank you.
+Best regards.
+
+[1] https://github.com/minetest/minetest/issues/3744
+[2] https://sourceforge.net/p/irrlicht/bugs/438
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+--14559374270.b16Ec6285.17018
+Date: Sat, 20 Feb 2016 03:03:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Mesa crash with &quot;nouveau&quot; driver and Minetest"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94225">94225</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Mesa crash with &quot;nouveau&quot; driver and Minetest
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>10.2
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>yugiohjcj&#64;1s.fr
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Hello,
+
+I remark that Minetest 0.4.13 is crashing often (about 1 time by hour) when I
+am using the &quot;nouveau&quot; driver.
+I have already reported this bug to Minetest [1].
+As Minetest is using Irrlicht as its engine, I suspect Irrlicht to be a
+possible cause of my problem.
+For this reason, I have also reported this bug to Irrlicht [2].
+But regarding the log, I also see that Mesa itself could be suspected as it is
+present at the top of the backtrace.
+
+Here is the crash log:
+
+$ gdb minetest
+GNU gdb (GDB) 7.6.1
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;<a href="http://gnu.org/licenses/gpl.html">http://gnu.org/licenses/gpl.html</a>&gt;
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type &quot;show copying&quot;
+and &quot;show warranty&quot; for details.
+This GDB was configured as &quot;i486-slackware-linux&quot;.
+For bug reporting instructions, please see:
+&lt;<a href="http://www.gnu.org/software/gdb/bugs/">http://www.gnu.org/software/gdb/bugs/</a>&gt;...
+Reading symbols from /usr/bin/minetest...done.
+(gdb) run
+Starting program: /usr/bin/minetest 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library &quot;/lib/libthread_db.so.1&quot;.
+Automatically selecting world at [/home/yugiohjcj/.minetest/worlds/toto]
+AL lib: alcOpenDevice: Option 'format' is deprecated, please use 'channels' and
+'sample-type'
+[New Thread 0xb1517b40 (LWP 7062)]
+[New Thread 0xacbfeb40 (LWP 7063)]
+[New Thread 0xac3feb40 (LWP 7064)]
+[New Thread 0xab7ffb40 (LWP 7065)]
+[New Thread 0xaafffb40 (LWP 7066)]
+[New Thread 0xaa7ffb40 (LWP 7067)]
+[Thread 0xacbfeb40 (LWP 7063) exited]
+[Thread 0xb1517b40 (LWP 7062) exited]
+[Thread 0xac3feb40 (LWP 7064) exited]
+[Thread 0xaafffb40 (LWP 7066) exited]
+[Thread 0xaa7ffb40 (LWP 7067) exited]
+[Thread 0xab7ffb40 (LWP 7065) exited]
+AL lib: alcOpenDevice: Option 'format' is deprecated, please use 'channels' and
+'sample-type'
+[New Thread 0xaa7ffb40 (LWP 7068)]
+[New Thread 0xaafffb40 (LWP 7069)]
+[New Thread 0xab7ffb40 (LWP 7070)]
+[New Thread 0xac3feb40 (LWP 7071)]
+[New Thread 0xb1517b40 (LWP 7072)]
+[New Thread 0xa7bf0b40 (LWP 7073)]
+2016-02-19 17:48:30: ACTION[main]: Irrlicht: Could not open file of texture:
+character.png
+2016-02-19 17:48:30: ACTION[main]: Irrlicht: Could not open file of texture:
+character.png
+2016-02-19 17:49:41: ACTION[main]: Irrlicht: Could not open file of texture:
+character.png
+2016-02-19 17:49:41: ACTION[main]: Irrlicht: Could not open file of texture:
+character.png
+2016-02-19 17:53:45: ACTION[main]: Irrlicht: Could not open file of texture:
+character.png
+2016-02-19 17:53:45: ACTION[main]: Irrlicht: Could not open file of texture:
+character.png
+
+Program received signal SIGSEGV, Segmentation fault.
+0xb5cebcf8 in PUSH_DATA (push=0x8614038, data=268496912)
+    at ./nouveau_winsys.h:35
+35  ./nouveau_winsys.h: No such file or directory.
+(gdb) bt
+#0  0xb5cebcf8 in PUSH_DATA (push=0x8614038, data=268496912)
+    at ./nouveau_winsys.h:35
+#1  nvc0_screen_fence_emit (pscreen=0x8613cf8, sequence=0xe0faa30)
+    at nvc0/nvc0_screen.c:491
+#2  0xb5c16747 in nouveau_fence_emit (fence=0xe0faa20) at nouveau_fence.c:102
+#3  0xb5c16a08 in nouveau_fence_next (screen=screen&#64;entry=0x8613cf8)
+    at nouveau_fence.c:227
+#4  0xb5ce9a83 in nvc0_default_kick_notify (push=0x8614038)
+    at nvc0/nvc0_context.c:170
+#5  0xb5b8a04e in pushbuf_submit (push=push&#64;entry=0x8614038, 
+    chan=&lt;optimized out&gt;, chan=&lt;optimized out&gt;) at pushbuf.c:325
+#6  0xb5b8a39a in pushbuf_flush (push=push&#64;entry=0x8614038) at pushbuf.c:402
+#7  0xb5b8ad27 in nouveau_pushbuf_space (push=push&#64;entry=0x8614038, dwords=0, 
+    relocs=0, pushes=&lt;optimized out&gt;, pushes&#64;entry=0) at pushbuf.c:676
+#8  0xb5b8ade3 in pushbuf_validate (push=0x8614038, retry=&lt;optimized out&gt;)
+    at pushbuf.c:492
+#9  0xb5b8b13e in nouveau_pushbuf_validate (push=0x8614038) at pushbuf.c:749
+#10 0xb5cf3906 in nvc0_state_validate (nvc0=nvc0&#64;entry=0x8625880, 
+    mask=mask&#64;entry=4294967295, words=words&#64;entry=8)
+    at nvc0/nvc0_state_validate.c:619
+#11 0xb5cfdc1c in nvc0_draw_vbo (pipe=0x8625880, info=0xbfffdca0)
+    at nvc0/nvc0_vbo.c:829
+#12 0xb5f1d5c0 in cso_draw_vbo (cso=0x8692948, info=info&#64;entry=0xbfffdca0)
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    at cso_cache/cso_context.c:1428
+#13 0xb5e468ba in st_draw_vbo (ctx=0x8650160, prims=0xbfffdd74, nr_prims=1, 
+    ib=0xbfffdd64, index_bounds_valid=0 '\000', min_index=0, max_index=2431, 
+    tfb_vertcount=0x0, indirect=0x0) at state_tracker/st_draw.c:276
+#14 0xb5e1a7a0 in vbo_handle_primitive_restart (ctx=ctx&#64;entry=0x8650160, 
+    prim=prim&#64;entry=0xbfffdd74, nr_prims=nr_prims&#64;entry=1, 
+    ib=ib&#64;entry=0xbfffdd64, index_bounds_valid=0 '\000', 
+    min_index=min_index&#64;entry=4294967295, max_index=max_index&#64;entry=4294967295)
+    at vbo/vbo_exec_array.c:591
+#15 0xb5e1be7c in vbo_validated_drawrangeelements (ctx=ctx&#64;entry=0x8650160, 
+    mode=mode&#64;entry=4, index_bounds_valid=index_bounds_valid&#64;entry=0 '\000', 
+    start=start&#64;entry=4294967295, end=end&#64;entry=4294967295, 
+    count=count&#64;entry=3648, type=type&#64;entry=5123, 
+    indices=indices&#64;entry=0x1717d500, basevertex=basevertex&#64;entry=0, 
+    numInstances=numInstances&#64;entry=1, baseInstance=baseInstance&#64;entry=0)
+    at vbo/vbo_exec_array.c:1014
+#16 0xb5e1c509 in vbo_exec_DrawElements (mode=4, count=3648, type=5123, 
+    indices=0x1717d500) at vbo/vbo_exec_array.c:1164
+#17 0xb7cb1820 in irr::video::COpenGLDriver::renderArray (this=0x868b8d0, 
+    indexList=0x1717d500, primitiveCount=1216, 
+    pType=irr::scene::EPT_TRIANGLES, iType=irr::video::EIT_16BIT)
+    at COpenGLDriver.cpp:1743
+#18 0xb7cb1372 in irr::video::COpenGLDriver::drawVertexPrimitiveList (
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    this=0x868b8d0, vertices=0x1b312db0, vertexCount=2432, 
+    indexList=0x1717d500, primitiveCount=1216, vType=irr::video::EVT_TANGENTS, 
+    pType=irr::scene::EPT_TRIANGLES, iType=irr::video::EIT_16BIT)
+    at COpenGLDriver.cpp:1586
+#19 0xb7ca5ab2 in irr::video::CNullDriver::drawMeshBuffer (this=0x868b8d0, mb=
+    0xc3ac3c0) at CNullDriver.cpp:1521
+#20 0x08222581 in ClientMap::renderMap(irr::video::IVideoDriver*, int) ()
+#21 0x08228ef4 in ClientMap::render() ()
+#22 0xb7c638a9 in irr::scene::CSceneManager::drawAll (this=0x86e3880)
+    at CSceneManager.cpp:1501
+#23 0x082914e2 in draw_scene(irr::video::IVideoDriver*,
+irr::scene::ISceneManager*, Camera&amp;, Client&amp;, LocalPlayer*, Hud&amp;, Mapper&amp;,
+irr::gui::IGUIEnvironment*, std::vector&lt;irr::core::aabbox3d&lt;float&gt;,
+std::allocator&lt;irr::core::aabbox3d&lt;float&gt; &gt; &gt;, irr::core::vector2d&lt;unsigned
+int&gt; const&amp;, irr::video::SColor, bool, bool)
+    ()
+#24 0x082ca1c9 in Game::updateFrame(std::vector&lt;irr::core::aabbox3d&lt;float&gt;,
+std::allocator&lt;irr::core::aabbox3d&lt;float&gt; &gt; &gt;&amp;, ProfilerGraph*, RunStats*,
+GameRunData*, float, VolatileRunFlags const&amp;, CameraOrientation const&amp;) ()
+#25 0x082ce688 in Game::run() ()
+#26 0x082cee6a in the_game(bool*, bool, InputHandler*, irr::IrrlichtDevice*,
+std::string const&amp;, std::string const&amp;, std::string const&amp;, std::string const&amp;,
+unsigned short, std::string&amp;, ChatBackend&amp;, bool*, SubgameSpec const&amp;, bool) ()
+#27 0x080e8e3c in ClientLauncher::run(GameParams&amp;, Settings const&amp;) ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#28 0x080e1c39 in main ()
+(gdb) quit
+A debugging session is active.
+
+    Inferior 1 [process 7058] will be killed.
+
+Quit anyway? (y or n) y
+
+Here is my configuration:
+
+    minetest-0.4.13
+    mesa-10.2.5
+    libdrm-2.4.56
+    xf86-video-nouveau-1.0.11
+    irrlicht-1.8.1
+
+I let you verify through this log that Mesa is or not the cause of the crash.
+If you have a better/smaller example than Minetest/Irrlicht to reproduce the
+bug please tell me.
+
+Thank you.
+Best regards.
+
+[1] <a href="https://github.com/minetest/minetest/issues/3744">https://github.com/minetest/minetest/issues/3744</a>
+[2] <a href="https://sourceforge.net/p/irrlicht/bugs/438">https://sourceforge.net/p/irrlicht/bugs/438</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14559374270.b16Ec6285.17018--
+
+--===============0984430256==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0984430256==--
