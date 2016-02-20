@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94225] Mesa crash with "nouveau" driver and Minetest
-Date: Sat, 20 Feb 2016 03:06:28 +0000
-Message-ID: <bug-94225-8800-w8f7b6eW7X@http.bugs.freedesktop.org/>
-References: <bug-94225-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: [PATCH v4 0/6] Suppor for various power sensors on GF100+
+Date: Sat, 20 Feb 2016 18:11:33 +0100
+Message-ID: <1455988299-2300-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1287975193=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94225-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,74 +18,53 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1287975193==
-Content-Type: multipart/alternative; boundary="14559375880.9ed4cCf24.17933";
- charset="UTF-8"
-
-
---14559375880.9ed4cCf24.17933
-Date: Sat, 20 Feb 2016 03:06:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=94225
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Mesa 10.2 was released in mid-2014. A ton of fixes have gone in over the past 2
-years. I would highly recommend testing with Mesa 11.1.2, which is the most
-recent release.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
---14559375880.9ed4cCf24.17933
-Date: Sat, 20 Feb 2016 03:06:28 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Mesa crash with &quot;nouveau&quot; driver and Minetest"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94225#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Mesa crash with &quot;nouveau&quot; driver and Minetest"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94225">bug 94225</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Mesa 10.2 was released in mid-2014. A ton of fixes have gone in over the past 2
-years. I would highly recommend testing with Mesa 11.1.2, which is the most
-recent release.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14559375880.9ed4cCf24.17933--
-
---===============1287975193==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1287975193==--
+VGhpcyBpcyBhIGNvbXBsZXRlIHJld29yayBmcm9tIHRoZSBmaXJzdCB2ZXJzaW9uIEkgc2VudCBv
+dXQuCgpOb3cgdGhlIGltcGxlbWVudGF0aW9uIGlzIG1vcmUgY2VudGVyZWQgYXJvdW5kIHRoZSBw
+b3dlcl9yYWlscyB3ZSBmaW5kIGluIHRoZQpTRU5TRSB0YWJsZSBpbnN0ZWFkIG9mIGV4dGRldiBj
+ZW50ZXJlZC4gVGhpcyBtYWtlcyB0aGUgaW1wbGVtZW50YXRpb24gYSBsb3QKZWFzaWVyIGFuZCBz
+dHJhaWdodGZvcndhcmQuCgpJJ3ZlIGFkZGVkIHN1cHBvcnQgZm9yIHRoZSBJTkEyMTksIElOQTIw
+OSBhbmQgSU5BMzIyMSBzZW5zb3JzIGZvdW5kIG9uIG11bHRpcGxlCkZlcm1pIGFuZCBLZXBsZXIg
+Y2FyZHMuCgpUaGUgcG93ZXIgY29uc3VtcHRpb24gaXMgYWxzbyBleHBvcnRlZCB2aWEgaHdtb24s
+IHNvICJzZW5zb3JzIiB3aWxsIGJlIGFibGUgdG8KcHJpbnQgaXQgaW4gdXNlcnNwYWNlLgoKVGhp
+cyB3b3JrIGlzIGJhc2VkIG9uIE1hcnRpbnMgaW5pdGlhbCBwb3dlciBzZW5zb3Igd29yayBhbmQg
+bW9zdCBvZiB0aGUgZ3JvdW5kCndvcmsgd2FzIGp1c3QgY29waWVkIGZyb20gaGltLgoKSGFwcHkg
+dGVzdGluZwoKY2hhbmdlcyBpbiB2MzogZml4ZXMgaW5hMng5LCByZWJhc2Ugb24gY3VycmVudCBt
+YXN0ZXIKY2hhbmdlcyBpbiB2NDogc29tZSBtaW5vciBpbmEyeDkgZml4ZXMgYW5kIGdldCBpdCB0
+byB3b3JrIG9uIG1heHdlbGwgZ2VuMgoKVGVzdGVkLWJ5OiBTdGVmYW4gSMO8aG5lciA8c3RlZmFu
+QGh1ZWhuZXIub3JnPiBvbiBnbTIwNgoKS2Fyb2wgSGVyYnN0ICg0KToKICBpY2NzZW5zZTogaW1w
+bGVtZW50IGZvciBpbmEyMDksIGluYTIxOSBhbmQgaW5hMzIyMQogIGh3bW9uOiBhZGQgcG93ZXIg
+Y29uc3VtcHRpb24KICBod21vbjogZG9uJ3QgcmVxdWlyZSB0aGVybSB0byBiZSB2YWxpZCB0byBn
+ZXQgYW55IGRhdGEKICBiaW9zL2V4dGRldjogYWxzbyBwYXJzZSB2NC4xIHRhYmxlCgpNYXJ0aW4g
+UGVyZXMgKDIpOgogIHN1YmRldi9pY2NzZW5zZTogYWRkIG5ldyBzdWJkZXYgZm9yIHBvd2VyIHNl
+bnNvcnMKICBudmJpb3MvaWNjc2Vuc2U6IGFkZCBwYXJzaW5nIG9mIHRoZSBTRU5TRSB0YWJsZQoK
+IGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZpZi9kZXZpY2UuaCAgICAgICAgICAgICAgIHwgICAxICsK
+IGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2RldmljZS5oICAgICAgICAgIHwgIDgzICsr
+KysrLS0tLS0KIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9leHRkZXYuaCAg
+IHwgICAzICsKIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9pY2NzZW5zZS5o
+IHwgIDE2ICsrCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2kyYy5oICAgICAgICAg
+ICB8ICAzMSArKysrCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2ljY3NlbnNlLmgg
+ICAgICB8ICAxNSArKwogZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jICAgICAgICAgICAgICAg
+ICAgICAgfCAgNzggKysrKysrKy0tLQogZHJtL25vdXZlYXUvbnZrbS9jb3JlL3N1YmRldi5jICAg
+ICAgICAgICAgICAgICAgfCAgODMgKysrKystLS0tLQogZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
+ZGV2aWNlL2Jhc2UuYyAgICAgICAgICAgfCAxNDQgKysrKysrKysrKy0tLS0tLS0tCiBkcm0vbm91
+dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcHJpdi5oICAgICAgICAgICB8ICAgMSArCiBkcm0vbm91
+dmVhdS9udmttL3N1YmRldi9LYnVpbGQgICAgICAgICAgICAgICAgICB8ICAgMSArCiBkcm0vbm91
+dmVhdS9udmttL3N1YmRldi9iaW9zL0tidWlsZCAgICAgICAgICAgICB8ICAgMSArCiBkcm0vbm91
+dmVhdS9udmttL3N1YmRldi9iaW9zL2V4dGRldi5jICAgICAgICAgICB8ICAgMiArLQogZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9pY2NzZW5zZS5jICAgICAgICAgfCAgOTcgKysrKysrKysr
+KysrCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9LYnVpbGQgICAgICAgICB8ICAg
+MiArCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9iYXNlLmMgICAgICAgICB8IDE5
+MSArKysrKysrKysrKysrKysrKysrKysrKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2ljY3Nl
+bnNlL2dmMTAwLmMgICAgICAgIHwgIDMxICsrKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2lj
+Y3NlbnNlL3ByaXYuaCAgICAgICAgIHwgIDE2ICsrCiAxOCBmaWxlcyBjaGFuZ2VkLCA2MzMgaW5z
+ZXJ0aW9ucygrKSwgMTYzIGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2
+ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9pY2NzZW5zZS5oCiBjcmVhdGUgbW9kZSAxMDA2
+NDQgZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9pY2NzZW5zZS5oCiBjcmVhdGUgbW9k
+ZSAxMDA2NDQgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9pY2NzZW5zZS5jCiBjcmVhdGUg
+bW9kZSAxMDA2NDQgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vuc2UvS2J1aWxkCiBjcmVh
+dGUgbW9kZSAxMDA2NDQgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vuc2UvYmFzZS5jCiBj
+cmVhdGUgbW9kZSAxMDA2NDQgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vuc2UvZ2YxMDAu
+YwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2ljY3NlbnNlL3By
+aXYuaAoKLS0gCjIuNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
