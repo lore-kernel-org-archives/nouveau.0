@@ -1,14 +1,13 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH v4 5/6] hwmon: don't require therm to be valid to
-	get any data
-Date: Sat, 20 Feb 2016 18:11:38 +0100
-Message-ID: <1455988299-2300-6-git-send-email-nouveau@karolherbst.de>
-References: <1455988299-2300-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
+ GT]: HDMI monitor stays black after s2ram
+Date: Sun, 21 Feb 2016 13:49:32 +0000
+Message-ID: <bug-93887-8800-ryMbsVhpMw@http.bugs.freedesktop.org/>
+References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1397908021=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1455988299-2300-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +20,88 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgotLS0K
-IGRybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYyB8IDM5ICsrKysrKysrKysrKysrKysrKystLS0t
-LS0tLS0tLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDE5IGluc2VydGlvbnMoKyksIDIwIGRl
-bGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYyBiL2Ry
-bS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYwppbmRleCBjNGY3N2Y1Li5hNjMwMTkyIDEwMDY0NAot
-LS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMKKysrIGIvZHJtL25vdXZlYXUvbm91dmVh
-dV9od21vbi5jCkBAIC02NDMsOSArNjQzLDYgQEAgbm91dmVhdV9od21vbl9pbml0KHN0cnVjdCBk
-cm1fZGV2aWNlICpkZXYpCiAJCXJldHVybiAtRU5PTUVNOwogCWh3bW9uLT5kZXYgPSBkZXY7CiAK
-LQlpZiAoIXRoZXJtIHx8ICF0aGVybS0+YXR0cl9nZXQgfHwgIXRoZXJtLT5hdHRyX3NldCkKLQkJ
-cmV0dXJuIC1FTk9ERVY7Ci0KIAlod21vbl9kZXYgPSBod21vbl9kZXZpY2VfcmVnaXN0ZXIoJmRl
-di0+cGRldi0+ZGV2KTsKIAlpZiAoSVNfRVJSKGh3bW9uX2RldikpIHsKIAkJcmV0ID0gUFRSX0VS
-Uihod21vbl9kZXYpOwpAQCAtNjU5LDI2ICs2NTYsMjggQEAgbm91dmVhdV9od21vbl9pbml0KHN0
-cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJaWYgKHJldCkKIAkJZ290byBlcnJvcjsKIAotCS8qIGlm
-IHRoZSBjYXJkIGhhcyBhIHdvcmtpbmcgdGhlcm1hbCBzZW5zb3IgKi8KLQlpZiAobnZrbV90aGVy
-bV90ZW1wX2dldCh0aGVybSkgPj0gMCkgewotCQlyZXQgPSBzeXNmc19jcmVhdGVfZ3JvdXAoJmh3
-bW9uX2Rldi0+a29iaiwgJmh3bW9uX3RlbXBfYXR0cmdyb3VwKTsKLQkJaWYgKHJldCkKLQkJCWdv
-dG8gZXJyb3I7Ci0JfQotCi0JLyogaWYgdGhlIGNhcmQgaGFzIGEgcHdtIGZhbiAqLwotCS8qWFhY
-OiBpbmNvcnJlY3QsIG5lZWQgYmV0dGVyIGRldGVjdGlvbiBmb3IgdGhpcywgc29tZSBib2FyZHMg
-aGF2ZQotCSAqICAgICB0aGUgZ3BpbyBlbnRyaWVzIGZvciBwd20gZmFuIGNvbnRyb2wgZXZlbiB3
-aGVuIHRoZXJlJ3Mgbm8KLQkgKiAgICAgYWN0dWFsIGZhbiBjb25uZWN0ZWQgdG8gaXQuLi4gdGhl
-cm0gdGFibGU/ICovCi0JaWYgKHRoZXJtLT5mYW5fZ2V0ICYmIHRoZXJtLT5mYW5fZ2V0KHRoZXJt
-KSA+PSAwKSB7Ci0JCXJldCA9IHN5c2ZzX2NyZWF0ZV9ncm91cCgmaHdtb25fZGV2LT5rb2JqLAot
-CQkJCQkgJmh3bW9uX3B3bV9mYW5fYXR0cmdyb3VwKTsKLQkJaWYgKHJldCkKLQkJCWdvdG8gZXJy
-b3I7CisJaWYgKHRoZXJtICYmIHRoZXJtLT5hdHRyX2dldCAmJiB0aGVybS0+YXR0cl9zZXQpIHsK
-KwkJLyogaWYgdGhlIGNhcmQgaGFzIGEgd29ya2luZyB0aGVybWFsIHNlbnNvciAqLworCQlpZiAo
-bnZrbV90aGVybV90ZW1wX2dldCh0aGVybSkgPj0gMCkgeworCQkJcmV0ID0gc3lzZnNfY3JlYXRl
-X2dyb3VwKCZod21vbl9kZXYtPmtvYmosICZod21vbl90ZW1wX2F0dHJncm91cCk7CisJCQlpZiAo
-cmV0KQorCQkJCWdvdG8gZXJyb3I7CisJCX0KKworCQkvKiBpZiB0aGUgY2FyZCBoYXMgYSBwd20g
-ZmFuICovCisJCS8qWFhYOiBpbmNvcnJlY3QsIG5lZWQgYmV0dGVyIGRldGVjdGlvbiBmb3IgdGhp
-cywgc29tZSBib2FyZHMgaGF2ZQorCQkgKiAgICAgdGhlIGdwaW8gZW50cmllcyBmb3IgcHdtIGZh
-biBjb250cm9sIGV2ZW4gd2hlbiB0aGVyZSdzIG5vCisJCSAqICAgICBhY3R1YWwgZmFuIGNvbm5l
-Y3RlZCB0byBpdC4uLiB0aGVybSB0YWJsZT8gKi8KKwkJaWYgKHRoZXJtLT5mYW5fZ2V0ICYmIHRo
-ZXJtLT5mYW5fZ2V0KHRoZXJtKSA+PSAwKSB7CisJCQlyZXQgPSBzeXNmc19jcmVhdGVfZ3JvdXAo
-Jmh3bW9uX2Rldi0+a29iaiwKKwkJCQkJCSAmaHdtb25fcHdtX2Zhbl9hdHRyZ3JvdXApOworCQkJ
-aWYgKHJldCkKKwkJCQlnb3RvIGVycm9yOworCQl9CiAJfQogCiAJLyogaWYgdGhlIGNhcmQgY2Fu
-IHJlYWQgdGhlIGZhbiBycG0gKi8KLQlpZiAobnZrbV90aGVybV9mYW5fc2Vuc2UodGhlcm0pID49
-IDApIHsKKwlpZiAodGhlcm0gJiYgbnZrbV90aGVybV9mYW5fc2Vuc2UodGhlcm0pID49IDApIHsK
-IAkJcmV0ID0gc3lzZnNfY3JlYXRlX2dyb3VwKCZod21vbl9kZXYtPmtvYmosCiAJCQkJCSAmaHdt
-b25fZmFuX3JwbV9hdHRyZ3JvdXApOwogCQlpZiAocmV0KQotLSAKMi43LjEKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1397908021==
+Content-Type: multipart/alternative; boundary="14560625721.2618.16230";
+ charset="UTF-8"
+
+
+--14560625721.2618.16230
+Date: Sun, 21 Feb 2016 13:49:32 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93887
+
+--- Comment #7 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Now, I have compiled and installed suspend-utils and tested s2ram with the
+following parameters:
+s2ram --no_kms no_kms --nofbsuspend --force --pci_save --acpi_sleep=1
+s2ram --no_kms no_kms --nofbsuspend --force
+
+... and the result is still the same as with a pure systemctl suspend: the
+external HDMI monitor stays black while the integrated LVDS comes up well.
+Possibly these tests could point you in the right direction when searching for
+an error why the external monitor does not come up again. Likely not a simple
+KMS issue; perhaps some extra code would be needed to post the HDMI port or so.
+  Anyone here who could tell me the relevance of these test results?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14560625721.2618.16230
+Date: Sun, 21 Feb 2016 13:49:32 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
+              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>Now, I have compiled and installed suspend-utils and tested s2ram with the
+following parameters:
+s2ram --no_kms no_kms --nofbsuspend --force --pci_save --acpi_sleep=1
+s2ram --no_kms no_kms --nofbsuspend --force
+
+... and the result is still the same as with a pure systemctl suspend: the
+external HDMI monitor stays black while the integrated LVDS comes up well.
+Possibly these tests could point you in the right direction when searching for
+an error why the external monitor does not come up again. Likely not a simple
+KMS issue; perhaps some extra code would be needed to post the HDMI port or so.
+  Anyone here who could tell me the relevance of these test results?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14560625721.2618.16230--
+
+--===============1397908021==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1397908021==--
