@@ -1,8 +1,8 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Subject: Re: Dealing with opencl kernel parameters in nouveau now
  that RES support is gone
-Date: Tue, 23 Feb 2016 13:12:25 +0100
-Message-ID: <20160223121211.GA3402@Sovereign.cs.lth.se>
+Date: Tue, 23 Feb 2016 15:36:56 -0500
+Message-ID: <CAKb7Uvh5H4aFGtbv9SywRF4u9zES3O9ykZ4nNVyV7j3JKt-uLg@mail.gmail.com>
 References: <56CB1870.4030606@redhat.com>
  <CAKb7Uvg0_3=BiV0rbgxiAhiQbT-3J7wiQY9C9Yr2WSCBPQY1=g@mail.gmail.com>
  <56CB2031.1050507@redhat.com>
@@ -13,10 +13,12 @@ References: <56CB1870.4030606@redhat.com>
  <56CB3C6F.7070907@redhat.com>
  <CAKb7UvhxMakSzgVzqgxSJ7J641_MaP=3nEqnX7xRANiv3M7FWg@mail.gmail.com>
  <56CC37EA.3030703@redhat.com>
+ <20160223121211.GA3402@Sovereign.cs.lth.se>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0182542027=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56CC37EA.3030703-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <20160223121211.GA3402-V5oniRM6A16axBhUmp6zfjAV6s6igYVG@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -26,142 +28,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0182542027==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="uZ3hkaAS1mZxFaxD"
-Content-Disposition: inline
-
-
---uZ3hkaAS1mZxFaxD
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 11:43 AM - Feb 23 2016, Hans de Goede wrote:
-> Hi,
->=20
-
-[snip]
-
->=20
-> >You may have to add LOAD64/STORE64 for 64-bit
-> >addresses though. Or we could decree that all addressing on global
-> >memory shall be 64-bit (and thus read the .xy components of the
-> >address source).
->=20
-> I would prefer to keep LOAD / STORE semantics the same as with
-> other LOAD / STORE -s to / from 1d buffers.
->=20
-> I think that in the end the tgsi backend for llvm will get both
-> a 32 bit and a 64 bit mode, like the nvptx backend already has.
->=20
-> And then the 64 bit backend will use a new LOAD64 / STORE64
-> also do not forget that keeping 64 bit pointers takes twice as
-> much registers, so 32 bit will likely be optimal in a lot of
-> cases. I guess since OpenCL does not give the user a way
-> to select which mode to use we will end up with some sort
-> of heuristic based on the amount of memory on the card or
-> some such.
->=20
-> After all using 64 bit pointers does not make a lot of sense
-> on a card with only 1 GB of RAM (yes I know we're talking virtual
-> address space here).
->=20
-> Anyways this all really is too soon to tell. Maybe the performance
-> impact of using 64 bit pointers is negligible. But I think it would
-> be good (and consistent) to keep LOAD / STORE taking 32 bit addresses
-> even for MEMORY and add a LOAD64 / STORE64 when I get around to
-> implementing a 64 bit mode for the llvm tgsi backend (or when others
-> need them).
->=20
-> >>>Another way of looking at it is that instead of having the hacky
-> >>>RES[12345] being hardcoded to mean something special, you now have a
-> >>>dedicated file called 'MEMORY', which has identical semantics.
-> >>
-> >>
-> >>I'm all for getting rid of the RES[12345] hack :)
-> >>
-> >>I guess where you write "you now have a dedicated file called 'MEMORY'"
-> >>You mean up to X dedicated MEMORY[#] files, one for each of GLOBAL, SHA=
-RED
-> >>and LOCAL at least, and probably as discussed one for INPUT ?
-> >>
-> >>This all sounds good to me, as said my worry was that MEMORY would have
-> >>an implied base address like BUFFER has, now that you've
-> >>made clear that MEMORY does not have this I'm happy :)
-> >
-> >There's a bit of a wrinkle here, and it's questionable whether we want
-> >to allow for this somehow, but... Tesla actually has no way to address
-> >global memory. It's always done with a base offset (which can be set
-> >to 0). The trick is that it can only address 32 bits at a time,
-> >there's no 64-bit addressing. But it has *16* such "global" memory
-> >spaces, i.e. which are each base + up to 32-bit offset [and ultimately
-> >only 40 bits of addressability]. I don't know if OpenCL provides
-> >something good for that, if it does we can use semantic indices on the
-> >GLOBAL to make it like
-> >
-> >DCL MEMORY[0], GLOBAL[0]
-> >DCL MEMORY[1], GLOBAL[1]
-> >
-> >etc. But again, this is pretty optional.
->=20
-> I think that for Tesla we can just only support the tgsi32 target
-> and not the tgsi64 target, at least that is how I envision things
-> today, who knows what tomorrow will bring :)
-
-Fermi is the first family supporting 64 bit addresses, on top of 32 bit
-addresses, while Kepler can only do 64 bit IIRC (or is it Maxwell which dro=
-pped
-the 32 bit support?).
-
-Regards,
-Pierre
-
->=20
-> Regards,
->=20
-> Hans
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---uZ3hkaAS1mZxFaxD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAABCgAGBQJWzEypAAoJEI7uMhYTPh3wSzMP/3jM2l8FlnZrtTjuM/Y4ig+v
-juGAbQrIhD3Iv3w2wAU9vbYM0W/p7NMm42PSoGhg+eiss886mWHDG+KkYGoa1FIi
-6wsyzVx8yPHKSdqx8uXfBSAJ2R5pypFEWJkITJCOuzXbukv5Ly4OoH9iQt650UVy
-kJwloDzEZmKN5x9goGrKOfqYx73SFyywKrrHNk5FOnlouw8wVom3QpKbjLlAf4o0
-iEp/zPlcgsOmtODCEDDt+LSepWF6is3gs0oyVUb0QsXPMUUqbm5hICdyzwemxZ+P
-NHWWA3ohVO3eLUlrxFGD/Dwp41qP02jaXeDYrRiBsIRnyu8OcbI47jwDN0tjTRwQ
-7sucCEiYekroko63HGGIdZYD5TkqRhXuwSKAbzXHerTd1x4dtDMSs5HEM6keB1ti
-WhOoC1Ds83JcJoRnQnsoz1JsioWgkw+DWdc5AfrOf0oKCR1vDZ2aQlhDGsu0/Bv6
-HC4WgsctfunlHH6GgforgJzOKYpV7UKtSjim2qC8sv+7Jcnhj1JeGx8tl6YWbGbQ
-3AmXgopV7sX5OmtEx/z3YCDuaE3cFF+T2h9U2aFxIBH9LyRdszivPjxrHje7qm/m
-cS8v7rCbEB2dwNQcp4ToRpCnBSlu/bVepqav9IULz6vqHXUzaCZ/up7+29w0HwJu
-a4ms4YJq7JBiSrYJ/z+6
-=5BfF
------END PGP SIGNATURE-----
-
---uZ3hkaAS1mZxFaxD--
-
---===============0182542027==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0182542027==--
+T24gVHVlLCBGZWIgMjMsIDIwMTYgYXQgNzoxMiBBTSwgUGllcnJlIE1vcmVhdSA8cGllcnJlLm1v
+cnJvd0BmcmVlLmZyPiB3cm90ZToKPiBPbiAxMTo0MyBBTSAtIEZlYiAyMyAyMDE2LCBIYW5zIGRl
+IEdvZWRlIHdyb3RlOgo+PiBIaSwKPj4KPgo+IFtzbmlwXQo+Cj4+Cj4+ID5Zb3UgbWF5IGhhdmUg
+dG8gYWRkIExPQUQ2NC9TVE9SRTY0IGZvciA2NC1iaXQKPj4gPmFkZHJlc3NlcyB0aG91Z2guIE9y
+IHdlIGNvdWxkIGRlY3JlZSB0aGF0IGFsbCBhZGRyZXNzaW5nIG9uIGdsb2JhbAo+PiA+bWVtb3J5
+IHNoYWxsIGJlIDY0LWJpdCAoYW5kIHRodXMgcmVhZCB0aGUgLnh5IGNvbXBvbmVudHMgb2YgdGhl
+Cj4+ID5hZGRyZXNzIHNvdXJjZSkuCj4+Cj4+IEkgd291bGQgcHJlZmVyIHRvIGtlZXAgTE9BRCAv
+IFNUT1JFIHNlbWFudGljcyB0aGUgc2FtZSBhcyB3aXRoCj4+IG90aGVyIExPQUQgLyBTVE9SRSAt
+cyB0byAvIGZyb20gMWQgYnVmZmVycy4KPj4KPj4gSSB0aGluayB0aGF0IGluIHRoZSBlbmQgdGhl
+IHRnc2kgYmFja2VuZCBmb3IgbGx2bSB3aWxsIGdldCBib3RoCj4+IGEgMzIgYml0IGFuZCBhIDY0
+IGJpdCBtb2RlLCBsaWtlIHRoZSBudnB0eCBiYWNrZW5kIGFscmVhZHkgaGFzLgo+Pgo+PiBBbmQg
+dGhlbiB0aGUgNjQgYml0IGJhY2tlbmQgd2lsbCB1c2UgYSBuZXcgTE9BRDY0IC8gU1RPUkU2NAo+
+PiBhbHNvIGRvIG5vdCBmb3JnZXQgdGhhdCBrZWVwaW5nIDY0IGJpdCBwb2ludGVycyB0YWtlcyB0
+d2ljZSBhcwo+PiBtdWNoIHJlZ2lzdGVycywgc28gMzIgYml0IHdpbGwgbGlrZWx5IGJlIG9wdGlt
+YWwgaW4gYSBsb3Qgb2YKPj4gY2FzZXMuIEkgZ3Vlc3Mgc2luY2UgT3BlbkNMIGRvZXMgbm90IGdp
+dmUgdGhlIHVzZXIgYSB3YXkKPj4gdG8gc2VsZWN0IHdoaWNoIG1vZGUgdG8gdXNlIHdlIHdpbGwg
+ZW5kIHVwIHdpdGggc29tZSBzb3J0Cj4+IG9mIGhldXJpc3RpYyBiYXNlZCBvbiB0aGUgYW1vdW50
+IG9mIG1lbW9yeSBvbiB0aGUgY2FyZCBvcgo+PiBzb21lIHN1Y2guCj4+Cj4+IEFmdGVyIGFsbCB1
+c2luZyA2NCBiaXQgcG9pbnRlcnMgZG9lcyBub3QgbWFrZSBhIGxvdCBvZiBzZW5zZQo+PiBvbiBh
+IGNhcmQgd2l0aCBvbmx5IDEgR0Igb2YgUkFNICh5ZXMgSSBrbm93IHdlJ3JlIHRhbGtpbmcgdmly
+dHVhbAo+PiBhZGRyZXNzIHNwYWNlIGhlcmUpLgo+Pgo+PiBBbnl3YXlzIHRoaXMgYWxsIHJlYWxs
+eSBpcyB0b28gc29vbiB0byB0ZWxsLiBNYXliZSB0aGUgcGVyZm9ybWFuY2UKPj4gaW1wYWN0IG9m
+IHVzaW5nIDY0IGJpdCBwb2ludGVycyBpcyBuZWdsaWdpYmxlLiBCdXQgSSB0aGluayBpdCB3b3Vs
+ZAo+PiBiZSBnb29kIChhbmQgY29uc2lzdGVudCkgdG8ga2VlcCBMT0FEIC8gU1RPUkUgdGFraW5n
+IDMyIGJpdCBhZGRyZXNzZXMKPj4gZXZlbiBmb3IgTUVNT1JZIGFuZCBhZGQgYSBMT0FENjQgLyBT
+VE9SRTY0IHdoZW4gSSBnZXQgYXJvdW5kIHRvCj4+IGltcGxlbWVudGluZyBhIDY0IGJpdCBtb2Rl
+IGZvciB0aGUgbGx2bSB0Z3NpIGJhY2tlbmQgKG9yIHdoZW4gb3RoZXJzCj4+IG5lZWQgdGhlbSku
+Cj4+Cj4+ID4+PkFub3RoZXIgd2F5IG9mIGxvb2tpbmcgYXQgaXQgaXMgdGhhdCBpbnN0ZWFkIG9m
+IGhhdmluZyB0aGUgaGFja3kKPj4gPj4+UkVTWzEyMzQ1XSBiZWluZyBoYXJkY29kZWQgdG8gbWVh
+biBzb21ldGhpbmcgc3BlY2lhbCwgeW91IG5vdyBoYXZlIGEKPj4gPj4+ZGVkaWNhdGVkIGZpbGUg
+Y2FsbGVkICdNRU1PUlknLCB3aGljaCBoYXMgaWRlbnRpY2FsIHNlbWFudGljcy4KPj4gPj4KPj4g
+Pj4KPj4gPj5JJ20gYWxsIGZvciBnZXR0aW5nIHJpZCBvZiB0aGUgUkVTWzEyMzQ1XSBoYWNrIDop
+Cj4+ID4+Cj4+ID4+SSBndWVzcyB3aGVyZSB5b3Ugd3JpdGUgInlvdSBub3cgaGF2ZSBhIGRlZGlj
+YXRlZCBmaWxlIGNhbGxlZCAnTUVNT1JZJyIKPj4gPj5Zb3UgbWVhbiB1cCB0byBYIGRlZGljYXRl
+ZCBNRU1PUllbI10gZmlsZXMsIG9uZSBmb3IgZWFjaCBvZiBHTE9CQUwsIFNIQVJFRAo+PiA+PmFu
+ZCBMT0NBTCBhdCBsZWFzdCwgYW5kIHByb2JhYmx5IGFzIGRpc2N1c3NlZCBvbmUgZm9yIElOUFVU
+ID8KPj4gPj4KPj4gPj5UaGlzIGFsbCBzb3VuZHMgZ29vZCB0byBtZSwgYXMgc2FpZCBteSB3b3Jy
+eSB3YXMgdGhhdCBNRU1PUlkgd291bGQgaGF2ZQo+PiA+PmFuIGltcGxpZWQgYmFzZSBhZGRyZXNz
+IGxpa2UgQlVGRkVSIGhhcywgbm93IHRoYXQgeW91J3ZlCj4+ID4+bWFkZSBjbGVhciB0aGF0IE1F
+TU9SWSBkb2VzIG5vdCBoYXZlIHRoaXMgSSdtIGhhcHB5IDopCj4+ID4KPj4gPlRoZXJlJ3MgYSBi
+aXQgb2YgYSB3cmlua2xlIGhlcmUsIGFuZCBpdCdzIHF1ZXN0aW9uYWJsZSB3aGV0aGVyIHdlIHdh
+bnQKPj4gPnRvIGFsbG93IGZvciB0aGlzIHNvbWVob3csIGJ1dC4uLiBUZXNsYSBhY3R1YWxseSBo
+YXMgbm8gd2F5IHRvIGFkZHJlc3MKPj4gPmdsb2JhbCBtZW1vcnkuIEl0J3MgYWx3YXlzIGRvbmUg
+d2l0aCBhIGJhc2Ugb2Zmc2V0ICh3aGljaCBjYW4gYmUgc2V0Cj4+ID50byAwKS4gVGhlIHRyaWNr
+IGlzIHRoYXQgaXQgY2FuIG9ubHkgYWRkcmVzcyAzMiBiaXRzIGF0IGEgdGltZSwKPj4gPnRoZXJl
+J3Mgbm8gNjQtYml0IGFkZHJlc3NpbmcuIEJ1dCBpdCBoYXMgKjE2KiBzdWNoICJnbG9iYWwiIG1l
+bW9yeQo+PiA+c3BhY2VzLCBpLmUuIHdoaWNoIGFyZSBlYWNoIGJhc2UgKyB1cCB0byAzMi1iaXQg
+b2Zmc2V0IFthbmQgdWx0aW1hdGVseQo+PiA+b25seSA0MCBiaXRzIG9mIGFkZHJlc3NhYmlsaXR5
+XS4gSSBkb24ndCBrbm93IGlmIE9wZW5DTCBwcm92aWRlcwo+PiA+c29tZXRoaW5nIGdvb2QgZm9y
+IHRoYXQsIGlmIGl0IGRvZXMgd2UgY2FuIHVzZSBzZW1hbnRpYyBpbmRpY2VzIG9uIHRoZQo+PiA+
+R0xPQkFMIHRvIG1ha2UgaXQgbGlrZQo+PiA+Cj4+ID5EQ0wgTUVNT1JZWzBdLCBHTE9CQUxbMF0K
+Pj4gPkRDTCBNRU1PUllbMV0sIEdMT0JBTFsxXQo+PiA+Cj4+ID5ldGMuIEJ1dCBhZ2FpbiwgdGhp
+cyBpcyBwcmV0dHkgb3B0aW9uYWwuCj4+Cj4+IEkgdGhpbmsgdGhhdCBmb3IgVGVzbGEgd2UgY2Fu
+IGp1c3Qgb25seSBzdXBwb3J0IHRoZSB0Z3NpMzIgdGFyZ2V0Cj4+IGFuZCBub3QgdGhlIHRnc2k2
+NCB0YXJnZXQsIGF0IGxlYXN0IHRoYXQgaXMgaG93IEkgZW52aXNpb24gdGhpbmdzCj4+IHRvZGF5
+LCB3aG8ga25vd3Mgd2hhdCB0b21vcnJvdyB3aWxsIGJyaW5nIDopCj4KPiBGZXJtaSBpcyB0aGUg
+Zmlyc3QgZmFtaWx5IHN1cHBvcnRpbmcgNjQgYml0IGFkZHJlc3Nlcywgb24gdG9wIG9mIDMyIGJp
+dAo+IGFkZHJlc3Nlcywgd2hpbGUgS2VwbGVyIGNhbiBvbmx5IGRvIDY0IGJpdCBJSVJDIChvciBp
+cyBpdCBNYXh3ZWxsIHdoaWNoIGRyb3BwZWQKPiB0aGUgMzIgYml0IHN1cHBvcnQ/KS4KCkkndmUg
+b25seSBldmVyIHNlZW4gdGhlIGJsb2IgZG8gNjQtYml0IGFkZHJlc3NpbmcgaW4gT3BlbkdMIHNo
+YWRlcnMgb24KRmVybWkrLiBIb3dldmVyIEhhbnMgYXNzdXJlcyBtZSB0aGF0IDMyLWJpdCBhZGRy
+ZXNzaW5nIGFjdHVhbGx5IHdvcmtzCmZpbmUsIHByZXN1bWFibHkgdGhlIHVwcGVyIDggYml0cyBh
+cmUgc2V0IHRvIDAgb3Igc29tZSBjb25zdGFudApzdXBwbGllZCB2aWEgc29tZSByZWdpc3RlciBz
+b21ld2hlcmUuIEFsbCBvZiB0aGUgU00yMCsgSVNBJ3MgaGF2ZSBhCnNlcGFyYXRlICJ3aWRlIGFk
+ZHJlc3MiIGJpdCBpbiB0aGVpciBnbWVtLXVzaW5nIGluc3RydWN0aW9ucy4gKGFrYSAiRSIKaW4g
+bnZkaXNhc20pCgpBbnl3YXlzLCB0aGUgb25seSByZWFzb24gdG8gYWRkIExPQUQ2NCBpcyBub3Qg
+dG8gbXVkZHkgTE9BRCBzZW1hbnRpY3MuCkxPQUQgc2hvdWxkIHJlbWFpbiAzMi1iaXQgKHNpbmds
+ZS1jb21wb25lbnQpLCB3aGlsZSBMT0FENjQgd291bGQgYmUKZGVmaW5lZCBvbmx5IGZvciAxZCBl
+bnRpdGllcyBhbmQgY29tYmluZSB0aGUgZmlyc3QgMiBjb21wb25lbnRzIG9mIHRoZQphZGRyZXNz
+IHNvdXJjZS4KCkkgdGhpbmsgSGFucyBhbmQgSSBhcmUgaW4gYWdyZWVtZW50IG9uIG1vc3QgcG9p
+bnRzIG5vdy4uLiB0aGUgb25seQppc3N1ZSBpcyB0aGF0IHdlIGRvbid0IHJlYWxseSBjb250cm9s
+IHdoZXJlIGluIFZBIHNwYWNlIGJ1ZmZlcnMgYXJlCmFsbG9jYXRlZCwgc28geW91IGV2ZW4gaWYg
+eW91IGhhdmUgMU1CIG9mIHZyYW0sIGl0IG1pZ2h0IGVuZCB1cCBiZWluZwpzb21ld2hlcmUgaW4g
+ZmFyLW9mZiA0MC1iaXQgbGFuZC4gQmVuIGhhcyBwcm9taXNlZCB0byBwcm92aWRlIHN1Y2gKY29u
+dHJvbCBpbiB0aGUgZnV0dXJlLCBidXQgd2hvIGtub3dzIHdoZW4gdGhhdCB3b3JrIHdpbGwgbGFu
+ZC4KCiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
