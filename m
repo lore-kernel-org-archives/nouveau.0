@@ -1,155 +1,187 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [GIT,PULL] Signed firmware for NVIDIA Maxwell 2 GPUs
-Date: Tue, 23 Feb 2016 18:55:59 +0900
-Message-ID: <56CC2CAF.8080102@nvidia.com>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: Dealing with opencl kernel parameters in nouveau now
+ that RES support is gone
+Date: Tue, 23 Feb 2016 11:43:54 +0100
+Message-ID: <56CC37EA.3030703@redhat.com>
+References: <56C5D8F9.6030408@redhat.com>
+ <CAKb7UvidnYPcG4w=R=1CKhc0AFmSKzmdgYA9XAKT3sBHwnpGcw@mail.gmail.com>
+ <56C6F031.6060308@redhat.com>
+ <CAKb7UvgzKeOCm3Xh+j4=E_ru5_F_xGnx9NHkVT9sJoDw17OhVg@mail.gmail.com>
+ <56CAF059.3090608@redhat.com> <56CB01EB.9040705@gmail.com>
+ <56CB0340.3010403@redhat.com> <56CB074B.9070406@gmail.com>
+ <56CB0865.7070108@redhat.com>
+ <CAKb7UvgZoRLeLhnqa-H6bLG+gyLRYj+arCNQP39Q8zPR6Gu4jA@mail.gmail.com>
+ <CAKb7UviPZtExOcgUDxuxyhGf6C0QL+apn6ZjJEdJ8DhM_sfChw@mail.gmail.com>
+ <56CB1870.4030606@redhat.com>
+ <CAKb7Uvg0_3=BiV0rbgxiAhiQbT-3J7wiQY9C9Yr2WSCBPQY1=g@mail.gmail.com>
+ <56CB2031.1050507@redhat.com>
+ <CAKb7UvgjtVfYZR2hW_bttjmyVFa0kDGW7ZejS+j-MVsxcnwNoQ@mail.gmail.com>
+ <56CB2E42.60905@redhat.com>
+ <CAKb7Uvjd0zNyKLri+h4O-h2Wcb1pLc3_B27+MYz-VHgf3z+1Pg@mail.gmail.com>
+ <CAKb7UviNRmhSQUOkKvQqDipcQFjxep8S2m-QRreRsWVWf8tHSg@mail.gmail.com>
+ <56CB3C6F.7070907@redhat.com>
+ <CAKb7UvhxMakSzgVzqgxSJ7J641_MaP=3nEqnX7xRANiv3M7FWg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: linux-firmware-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvhxMakSzgVzqgxSJ7J641_MaP=3nEqnX7xRANiv3M7FWg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi linux-firmware maintainers,
-
-The following changes since commit f66eccaab7d605d433cb82e389441b21ec99b40f:
-
-   Update Intel OPA hfi1 firmware (2016-02-15 08:34:16 -0500)
-
-are available in the git repository at:
-
-   https://github.com/Gnurou/linux-firmware.git secboot
-
-for you to fetch changes up to 8d1fd61a3723ab8cb6b7bfeb8be38e16282cc1ed:
-
-   nvidia: Add GM20B signed firmware (2016-02-23 18:48:41 +0900)
-
-These two patches add the NVIDIA-released firmwares necessary to enable 
-rendering on desktop and mobile Maxwell 2 GPUs. Kernel support is ready 
-to be merged once this pull request is officially accepted.
-
-Thanks!
-
-----------------------------------------------------------------
-Alexandre Courbot (2):
-       nvidia: Add GM200, GM204 and GM206 signed firmware
-       nvidia: Add GM20B signed firmware
-
-  WHENCE                             |  61 
-++++++++++++++++++++++++++++++++++++-
-  nvidia/gm200/acr/bl.bin            | Bin 0 -> 832 bytes
-  nvidia/gm200/acr/ucode_load.bin    | Bin 0 -> 10144 bytes
-  nvidia/gm200/acr/ucode_unload.bin  | Bin 0 -> 1440 bytes
-  nvidia/gm200/gr/fecs_bl.bin        | Bin 0 -> 576 bytes
-  nvidia/gm200/gr/fecs_data.bin      | Bin 0 -> 1968 bytes
-  nvidia/gm200/gr/fecs_inst.bin      | Bin 0 -> 16271 bytes
-  nvidia/gm200/gr/fecs_sig.bin       | Bin 0 -> 76 bytes
-  nvidia/gm200/gr/gpccs_bl.bin       | Bin 0 -> 576 bytes
-  nvidia/gm200/gr/gpccs_data.bin     | Bin 0 -> 2056 bytes
-  nvidia/gm200/gr/gpccs_inst.bin     | Bin 0 -> 9768 bytes
-  nvidia/gm200/gr/gpccs_sig.bin      | Bin 0 -> 76 bytes
-  nvidia/gm200/gr/sw_bundle_init.bin | Bin 0 -> 7616 bytes
-  nvidia/gm200/gr/sw_ctx.bin         | Bin 0 -> 5592 bytes
-  nvidia/gm200/gr/sw_method_init.bin | Bin 0 -> 10800 bytes
-  nvidia/gm200/gr/sw_nonctx.bin      | Bin 0 -> 1440 bytes
-  nvidia/gm204/acr/bl.bin            |   1 +
-  nvidia/gm204/acr/ucode_load.bin    |   1 +
-  nvidia/gm204/acr/ucode_unload.bin  |   1 +
-  nvidia/gm204/gr/fecs_bl.bin        |   1 +
-  nvidia/gm204/gr/fecs_data.bin      | Bin 0 -> 1968 bytes
-  nvidia/gm204/gr/fecs_inst.bin      |   1 +
-  nvidia/gm204/gr/fecs_sig.bin       | Bin 0 -> 76 bytes
-  nvidia/gm204/gr/gpccs_bl.bin       |   1 +
-  nvidia/gm204/gr/gpccs_data.bin     | Bin 0 -> 2056 bytes
-  nvidia/gm204/gr/gpccs_inst.bin     |   1 +
-  nvidia/gm204/gr/gpccs_sig.bin      | Bin 0 -> 76 bytes
-  nvidia/gm204/gr/sw_bundle_init.bin |   1 +
-  nvidia/gm204/gr/sw_ctx.bin         |   1 +
-  nvidia/gm204/gr/sw_method_init.bin |   1 +
-  nvidia/gm204/gr/sw_nonctx.bin      |   1 +
-  nvidia/gm206/acr/bl.bin            |   1 +
-  nvidia/gm206/acr/ucode_load.bin    | Bin 0 -> 10144 bytes
-  nvidia/gm206/acr/ucode_unload.bin  | Bin 0 -> 1440 bytes
-  nvidia/gm206/gr/fecs_bl.bin        |   1 +
-  nvidia/gm206/gr/fecs_data.bin      | Bin 0 -> 1968 bytes
-  nvidia/gm206/gr/fecs_inst.bin      |   1 +
-  nvidia/gm206/gr/fecs_sig.bin       | Bin 0 -> 76 bytes
-  nvidia/gm206/gr/gpccs_bl.bin       |   1 +
-  nvidia/gm206/gr/gpccs_data.bin     | Bin 0 -> 2056 bytes
-  nvidia/gm206/gr/gpccs_inst.bin     |   1 +
-  nvidia/gm206/gr/gpccs_sig.bin      | Bin 0 -> 76 bytes
-  nvidia/gm206/gr/sw_bundle_init.bin |   1 +
-  nvidia/gm206/gr/sw_ctx.bin         |   1 +
-  nvidia/gm206/gr/sw_method_init.bin |   1 +
-  nvidia/gm206/gr/sw_nonctx.bin      |   1 +
-  nvidia/gm20b/acr/bl.bin            | Bin 0 -> 832 bytes
-  nvidia/gm20b/acr/ucode_load.bin    | Bin 0 -> 18592 bytes
-  nvidia/gm20b/gr/fecs_bl.bin        | Bin 0 -> 576 bytes
-  nvidia/gm20b/gr/fecs_data.bin      | Bin 0 -> 1964 bytes
-  nvidia/gm20b/gr/fecs_inst.bin      | Bin 0 -> 17021 bytes
-  nvidia/gm20b/gr/fecs_sig.bin       | Bin 0 -> 76 bytes
-  nvidia/gm20b/gr/gpccs_data.bin     | Bin 0 -> 2068 bytes
-  nvidia/gm20b/gr/gpccs_inst.bin     | Bin 0 -> 9964 bytes
-  nvidia/gm20b/gr/sw_bundle_init.bin | Bin 0 -> 7616 bytes
-  nvidia/gm20b/gr/sw_ctx.bin         | Bin 0 -> 5448 bytes
-  nvidia/gm20b/gr/sw_method_init.bin |   1 +
-  nvidia/gm20b/gr/sw_nonctx.bin      | Bin 0 -> 1432 bytes
-  58 files changed, 81 insertions(+), 1 deletion(-)
-  create mode 100644 nvidia/gm200/acr/bl.bin
-  create mode 100644 nvidia/gm200/acr/ucode_load.bin
-  create mode 100644 nvidia/gm200/acr/ucode_unload.bin
-  create mode 100644 nvidia/gm200/gr/fecs_bl.bin
-  create mode 100644 nvidia/gm200/gr/fecs_data.bin
-  create mode 100644 nvidia/gm200/gr/fecs_inst.bin
-  create mode 100644 nvidia/gm200/gr/fecs_sig.bin
-  create mode 100644 nvidia/gm200/gr/gpccs_bl.bin
-  create mode 100644 nvidia/gm200/gr/gpccs_data.bin
-  create mode 100644 nvidia/gm200/gr/gpccs_inst.bin
-  create mode 100644 nvidia/gm200/gr/gpccs_sig.bin
-  create mode 100644 nvidia/gm200/gr/sw_bundle_init.bin
-  create mode 100644 nvidia/gm200/gr/sw_ctx.bin
-  create mode 100644 nvidia/gm200/gr/sw_method_init.bin
-  create mode 100644 nvidia/gm200/gr/sw_nonctx.bin
-  create mode 120000 nvidia/gm204/acr/bl.bin
-  create mode 120000 nvidia/gm204/acr/ucode_load.bin
-  create mode 120000 nvidia/gm204/acr/ucode_unload.bin
-  create mode 120000 nvidia/gm204/gr/fecs_bl.bin
-  create mode 100644 nvidia/gm204/gr/fecs_data.bin
-  create mode 120000 nvidia/gm204/gr/fecs_inst.bin
-  create mode 100644 nvidia/gm204/gr/fecs_sig.bin
-  create mode 120000 nvidia/gm204/gr/gpccs_bl.bin
-  create mode 100644 nvidia/gm204/gr/gpccs_data.bin
-  create mode 120000 nvidia/gm204/gr/gpccs_inst.bin
-  create mode 100644 nvidia/gm204/gr/gpccs_sig.bin
-  create mode 120000 nvidia/gm204/gr/sw_bundle_init.bin
-  create mode 120000 nvidia/gm204/gr/sw_ctx.bin
-  create mode 120000 nvidia/gm204/gr/sw_method_init.bin
-  create mode 120000 nvidia/gm204/gr/sw_nonctx.bin
-  create mode 120000 nvidia/gm206/acr/bl.bin
-  create mode 100644 nvidia/gm206/acr/ucode_load.bin
-  create mode 100644 nvidia/gm206/acr/ucode_unload.bin
-  create mode 120000 nvidia/gm206/gr/fecs_bl.bin
-  create mode 100644 nvidia/gm206/gr/fecs_data.bin
-  create mode 120000 nvidia/gm206/gr/fecs_inst.bin
-  create mode 100644 nvidia/gm206/gr/fecs_sig.bin
-  create mode 120000 nvidia/gm206/gr/gpccs_bl.bin
-  create mode 100644 nvidia/gm206/gr/gpccs_data.bin
-  create mode 120000 nvidia/gm206/gr/gpccs_inst.bin
-  create mode 100644 nvidia/gm206/gr/gpccs_sig.bin
-  create mode 120000 nvidia/gm206/gr/sw_bundle_init.bin
-  create mode 120000 nvidia/gm206/gr/sw_ctx.bin
-  create mode 120000 nvidia/gm206/gr/sw_method_init.bin
-  create mode 120000 nvidia/gm206/gr/sw_nonctx.bin
-  create mode 100644 nvidia/gm20b/acr/bl.bin
-  create mode 100644 nvidia/gm20b/acr/ucode_load.bin
-  create mode 100644 nvidia/gm20b/gr/fecs_bl.bin
-  create mode 100644 nvidia/gm20b/gr/fecs_data.bin
-  create mode 100644 nvidia/gm20b/gr/fecs_inst.bin
-  create mode 100644 nvidia/gm20b/gr/fecs_sig.bin
-  create mode 100644 nvidia/gm20b/gr/gpccs_data.bin
-  create mode 100644 nvidia/gm20b/gr/gpccs_inst.bin
-  create mode 100644 nvidia/gm20b/gr/sw_bundle_init.bin
-  create mode 100644 nvidia/gm20b/gr/sw_ctx.bin
-  create mode 120000 nvidia/gm20b/gr/sw_method_init.bin
-  create mode 100644 nvidia/gm20b/gr/sw_nonctx.bin
+SGksCgpPbiAyMi0wMi0xNiAxNzo1OSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gTW9uLCBGZWIg
+MjIsIDIwMTYgYXQgMTE6NTAgQU0sIEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+
+IHdyb3RlOgo+PiBIaSwKPj4KPj4KPj4gT24gMjItMDItMTYgMTc6MTMsIElsaWEgTWlya2luIHdy
+b3RlOgo+Pj4KPj4+IE9uIE1vbiwgRmViIDIyLCAyMDE2IGF0IDExOjAwIEFNLCBJbGlhIE1pcmtp
+biA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4+PiB3cm90ZToKPj4+Pgo+Pj4+IE9uIE1vbiwgRmVi
+IDIyLCAyMDE2IGF0IDEwOjUwIEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29t
+Pgo+Pj4+IHdyb3RlOgo+Pj4+Pj4KPj4+Pj4+IEJ1dCBhc3N1bWluZyBJJ20gcmlnaHQsIHdoYXQg
+SSdtIHByb3Bvc2luZyBpcyB0aGF0IGluc3RlYWQgb2YgcGFzc2luZwo+Pj4+Pj4gdGhlIGlucHV0
+IGluIGFzIGEgZ2xvYmFsIGJ1ZmZlciwgdG8gaW5zdGVhZCBwYXNzIGl0IGluIGFzIGEgY29uc3QK
+Pj4+Pj4+IGJ1ZmZlci4gQXMgc3VjaCBpbnN0ZWFkIG9mIHN0aWNraW5nIGl0IGludG8gLT5zZXRf
+Z2xvYmFsX2JpbmRpbmcsCj4+Pj4+PiB5b3UnZCBzdGljayBpdCBpbnRvIC0+c2V0X2NvbnN0YW50
+X2J1ZmZlciwgYW5kIHRoZW4geW91J2xsIGJlIGFibGUgdG8KPj4+Pj4+IHJlZmVyIHRvIGl0IGFz
+IENPTlNUWzBdLCBDT05TVFsxXSwgZXRjLiAoV2hpY2ggYXJlLCBpbXBsaWNpdGx5LAo+Pj4+Pj4g
+Q09OU1RbMF1bMF0sIENPTlNUWzBdWzFdLCBldGMgLS0gaXQgZG9lc24ndCBwcmludCB0aGUgc2Vj
+b25kIGRpbSB3aGVuCj4+Pj4+PiBpdCdzIDAuKSBZb3UgZG9uJ3QgZXZlbiBoYXZlIHRvIGxvYWQg
+dGhlc2UsIHlvdSBjYW4gdXNlIHRoZW0gYXMgYXJncwo+Pj4+Pj4gZGlyZWN0bHkgYW55d2hlcmUg
+eW91IGxpa2UgKGV4Y2VwdCBhcyBpbmRpcmVjdCBhZGRyZXNzZXMpLgo+Pj4+Pj4KPj4+Pj4+IFRo
+ZSBvbGQgY29kZSB3b3VsZCBhY3R1YWxseSB0YWtlIHRoZSBzdXBwbGllZCBpbnB1dHMsIHN0aWNr
+IHRoZW0gaW50bwo+Pj4+Pj4gYSBjb25zdGJ1ZiwgYW5kIHRoZW4gbG93ZXIgUklOUFVUIGFjY2Vz
+c2VzIHRvIGxvYWQgZnJvbSB0aGF0IGNvbnN0YnVmLgo+Pj4+Pj4gSSdtIHN1Z2dlc3Rpbmcgd2Ug
+Y3V0IG91dCB0aGUgbWlkZGxlbWFuLgo+Pj4+Pj4KPj4+Pj4+IEJ5IHRoZSB3YXksIGFub3RoZXIg
+dGVybSBmb3IgImNvbnN0YW50IGJ1ZmZlciIgaXMgInVuaWZvcm0gYnVmZmVyIiwgb24KPj4+Pj4+
+IHRoZSBvZmYgY2hhbmNlIGl0IGhlbHBzLiBCYXNpY2FsbHkgaXQncyBzdXBlci1jYWNoZWQgYnkg
+dGhlIHNoYWRlciBmb3IKPj4+Pj4+IHZhbHVlcyB0aGF0IG5ldmVyIGNoYW5nZSBhY3Jvc3Mgc2hh
+ZGVyIGludm9jYXRpb25zLiBbQW5kIHRoZXJlJ3MKPj4+Pj4+IHNwZWNpYWwgc3R1ZmYgaW4gdGhl
+IGh3IHRvIGFsbG93IHJ1bm5pbmcgbXVsdGlwbGUgc2V0cyBvZiBzaGFkZXIKPj4+Pj4+IGludm9j
+YXRpb25zIHdpdGggZGlmZmVyZW50ICJjb25zdGFudCIgdmFsdWVzLi4uIG9yIHNvIHdlIHRoaW5r
+Ll0KPj4+Pj4KPj4+Pj4KPj4+Pj4KPj4+Pj4gSSdtIGZpbmUgd2l0aCB1c2luZyBjb25zdGFudCBi
+dWZmZXJzIGZvciB0aGUgaW5wdXQsIGl0IGlzIG5vdCB0aGUKPj4+Pj4gbWVjaGFuaXNtIEknbSB3
+b3JyaWVkIGFib3V0IGl0IGlzIHRoZSB0Z3NpIHN5bnRheCB0byBleHByZXNzIHRoaW5ncywKPj4+
+Pj4gSSB0aGluayBpdCB3b3VsZCBiZSBiZW5lZmljaWFsIGZvciB0aGUgdGdzaSBzeW50YXggdG8g
+YmUgYWJzdHJhY3QsIGFuZAo+Pj4+PiBub3Qgd29ycnkgYWJvdXQgdGhlIHVuZGVybHlpbmcgbWVj
+aGFuaXNtLCB0aGlzIHdpbGwgaS5lLiBhbGxvdyB1cwo+Pj4+PiB0byB1c2Ugc2hhcmVkIG1lbW9y
+eSBmb3IgaW5wdXQgb24gdGVzbGEgYW5kIGNvbnN0IGJ1ZnMgb24gbGF0ZXIKPj4+Pj4gZ2VuZXJh
+dGlvbnMKPj4+Pj4gd2l0aG91dCB0aGUgcGFydCBnZW5lcmF0aW5nIHRoZSB0Z3NpIGNvZGUgbmVl
+ZGluZyB0byB3b3JyeSBhYm91dCB0aGlzLgo+Pj4+Cj4+Pj4KPj4+PiBZZWFoLCBJIHRoaW5rIHlv
+dSdyZSByaWdodC4gSSBkaWRuJ3QgcmVhbGl6ZSB0aGF0IHRlc2xhIGhhZCBhIHNwZWNpYWwKPj4+
+PiBmb3JtIG9mIGlucHV0IGZvciB1c2VyIHBhcmFtcywgSSBhc3N1bWVkIGl0IHdhcyBqdXN0IHRo
+ZSB1c3VhbCB0aGluZy4KPj4+PiBTbyBmb3JnZXQgYWJvdXQgY29uc3RidWZzLCBnbyB3aXRoIHRo
+ZSBJTlBVVCB0aGluZy4gV2hpY2ggaXMgZ3JlYXQsCj4+Pj4gc2luY2Ugd2UgaGFkIG9uZSB2YWx1
+ZSBsZWZ0IG92ZXIgaW4gdGhhdCAoZnV0dXJlKSAyLWJpdCBmaWVsZCA6KQo+Pj4+Cj4+Pj4+Cj4+
+Pj4+ICMjIwo+Pj4+Pgo+Pj4+PiBTb21ld2hhdCB1bnJlbGF0ZWQgdG8gdGhlIGlucHV0IHByb2Js
+ZW0sIEknbSBhbHNvIHNvbWV3aGF0IHdvcnJpZWQKPj4+Pj4gYWJvdXQgdGhlIGFkZHJlc3Npbmcg
+bWV0aG9kIGZvciBNRU1PUlkgdHlwZSByZWdpc3RlcnMuCj4+Pj4+Cj4+Pj4+IExvb2tpbmcgYXQg
+dGhlIG9sZCBSRVMgc3R1ZmYgdGhlbiB0aGUgImluZGV4IiBwYXNzZWQgaW50byBzYXkgYSBMT0FE
+Cj4+Pj4+IHdhcyBub3QgYXMgbXVjaCBhbiBpbmRleCBhcyBpdCB3YXMgc2ltcGx5IGEgMzIgYml0
+IEdQVSB2aXJ0dWFsIG1lbW9yeQo+Pj4+PiBhZGRyZXNzLCB3aGljaCBmaXRzIHdlbGwgd2l0aCB0
+aGUgT3BlbkNMIHdheXMgb2YgZG9pbmcgdGhpbmdzICh0aGUKPj4+Pj4gcmVnaXN0ZXIgbnVtYmVy
+IGFzIGluIHRoZSA1NSBpbiBSRVNbNTVdIHdhcyBtb3JlIG9yIGxlc3MgaWdub3JlZCkuCj4+Pj4+
+Cj4+Pj4+IFdoZXJlIGFzLCBlLmcuIHRoZSBuZXcgQlVGRkVSIHN0eWxlICJyZWdpc3RlcnMiIHRo
+ZSBpbmRleCByZWFsbHkKPj4+Pj4gaXMgYW4gaW5kZXgsIGUuZy4gZG9pbmc6Cj4+Pj4+IExPQUQg
+VEVNUFswXS54LCBCVUZGRVJbMF0sIElNTVswXQo+Pj4+PiByZXNwLgo+Pj4+PiBMT0FEIFRFTVBb
+MF0ueCwgQlVGRkVSWzFdLCBJTU1bMF0KPj4+Pj4KPj4+Pj4gV2lsbCByZWFkIGZyb20gYSBkaWZm
+ZXJlbnQgbWVtb3J5IGFkZHJlc3MsIGNvcnJlY3QgPwo+Pj4+Cj4+Pj4KPj4+PiBDb3JyZWN0IC0t
+IEJVRkZFUlswXSByZWZlcnMgdG8gdGhlIGJ1ZmZlciBhdCBiaW5kaW5nIHBvaW50IDAsIGFuZAo+
+Pj4+IEJVRkZFUlsxXSByZWZlcnMgdG8gdGhlIGJ1ZmZlciBhdCBiaW5kaW5nIHBvaW50IDEuIFRo
+ZXkgbWlnaHQsIGluCj4+Pj4gZmFjdCwgb3ZlcmxhcCwgb3IgZXZlbiBiZSB0aGUgc2FtZSBidWZm
+ZXIuIEJ1dCB0aGUgY29kZSBkb2Vzbid0IGtub3cKPj4+PiBhYm91dCB0aGF0Lgo+Pgo+Pgo+PiBB
+Y2suCj4+Cj4+Pj4+IFNvIGhvdyB3aWxsIHRoaXMgd29yayBmb3IgTUVNT1JZIHR5cGUgcmVnaXN0
+ZXJzID8gRm9yIE9wZW5DTCBoYXZpbmcgdGhlCj4+Pj4+IDEtZGltZW5zaW9uYWwgYmVoYXZpb3Ig
+b2YgUkVTIHJlYWxseSBpcyBxdWl0ZSB1c2VmdWwsIGFuZCBoYXZpbmcgdGhlCj4+Pj4+IGFkZHJl
+c3MgYmUgY29tcG9zZWQgb2YgYSBoaWRkZW4gYmFzZSBhZGRyZXNzIHdoaWNoIGdldHMgZGV0ZXJt
+aW5lZCB1bmRlcgo+Pj4+PiB0aGUgaG9vZCBmcm9tIHRoZSByZWdpc3RlciBudW1iZXIsIGFuZCB0
+aGVuIGFkZGluZyBhbiBpbmRleCBvbiB0b3Agb2YKPj4+Pj4gaXQgZG9lcyBub3QgZml0IHNvIHdl
+bGwuCj4+Pj4KPj4+Pgo+Pj4+IE5vdCBzdXJlIHdoYXQgdGhlIHF1ZXN0aW9uIGlzLi4uIHlvdSBo
+YXZlIGNvZGUgbGlrZQo+Pj4+Cj4+Pj4gaW50ICpmb28gPSBbcG9pbnRlciB2YWx1ZSBmcm9tIHVz
+ZXIgaW5wdXRdOwo+Pj4+ICpmb28gPSAqKGZvbyArIDUpOwo+Pj4+Cj4+Pj4gcmlnaHQ/Cj4+Pj4K
+Pj4+PiBTbyB0aGF0J2QganVzdCBiZWNvbWUKPj4+Pgo+Pj4+IE1PViBURU1QWzBdLngsIDx2YWwg
+ZnJvbSB1c2VyIGlucHV0LCB3aGVyZWV2ZXIgaXQgaXM+Cj4+Pj4gQUREIFRFTVBbMF0ueSwgVEVN
+UFswXS54LCA1ICogNAo+Pj4+IExPQUQgVEVNUFsxXS54LCBNRU1PUllbMF0gKHdoaWNoIGlzIGds
+b2JhbCksIFRFTVBbMF0ueQo+Pj4+IFNUT1JFIE1FTU9SWVswXSwgVEVNUFswXS54LCBURU1QWzFd
+LngKPj4+Pgo+Pj4+IG9yIHBlcmhhcHMgSSdtIG1pc3VuZGVyc3RhbmRpbmcgc29tZXRoaW5nPwo+
+Pj4+Cj4+Pj4gTUVNT1JZLCBHTE9CQUwgPT0gdGhlIGdsb2JhbCB2aXJ0dWFsIG1lbW9yeSBhZGRy
+ZXNzIHNwYWNlLCBub3Qgc29tZQo+Pj4+IHNwZWNpZmljIGJ1ZmZlci4gVHJ5aW5nIHRvIGxvYWQg
+YWRkcmVzcyAwIGZyb20gaXQgd2lsbCBsaWtlbHkgbGVhZCB0bwo+Pj4+IHNhZG5lc3MsIHVubGVz
+cyB5b3UgaGFwcGVuIHRvIGhhdmUgc29tZXRoaW5nIG1hcHBlZCB0aGVyZS4gQlVGRkVSIGhhcwo+
+Pj4+IGFuIGltcGxpZWQgYmFzZSBhZGRyZXNzLCBiYXNlZCBvbiB0aGUgYmluZGluZyBwb2ludCwg
+YnV0IE1FTU9SWSBoYXMgbm8KPj4+PiBzdWNoIHRoaW5nLgo+Pgo+Pgo+PiBPSywgdGhhdCBhbnN3
+ZXJzIG15IHF1ZXN0aW9ucyAvIHdvcnJpZXMsIEkgd2FzIHdvcnJpZWQgdGhhdCBNRU1PUlkKPj4g
+dG9vIHdvdWxkIGhhdmUgYW4gaW1wbGllZCBiYXNlIGFkZHJlc3MsIHdoaWNoIHdvdWxkIG1vcmUg
+b3IgbGVzcyBvbmx5Cj4+IGdldCBpbiB0aGUgd2F5IHdpdGggb3BlbmNsLCBidXQgaWYgdGhlIG1l
+bW9yeSByZWdpc3RlciBmaWxlIHRha2VzCj4+IGEgdmlydHVhbCBtZW1vcnkgYWRkcmVzcyBhcyBz
+ZWNvbmQgb3BlcmFuZCB0byBMT0FEIHRoZW4gSSdtIGhhcHB5Lgo+Pgo+PiBTbyBJIGd1ZXNzIHRo
+YXQgaWYgd2UgbWl4IGluIHNheSBUR1NJLXNoYXJlZCAvIE9wZW5DTC1sb2NhbCBtZW1vcnkKPj4g
+dGhlbSBJIHdvdWxkIGRvOgo+Pgo+PiBEQ0wgTUVNT1JZWzBdLCBHTE9CQUwKPj4gRENMIE1FTU9S
+WVsxXSwgU0hBUkVECj4+Cj4+IEFuZCB0aGVuIHRvIGxvYWQgc29tZXRoaW5nIGZyb20gZ2xvYmFs
+IG1lbSBhdCBvZmZzZXQgVEVNUFswXS55Ogo+Pgo+PiBMT0FEIFRFTVBbMF0ueCwgTUVNT1JZWzBd
+LCBURU1QWzBdLnl5eXkKPj4KPj4gQW5kIHRvIGxvYWQgc29tZXRoaW5nIGZyb20gdGhlIHNoYXJl
+ZCBtZW0gYXQgb2Zmc2V0IFRFTVBbMF0ueToKPj4KPj4gTE9BRCBURU1QWzBdLngsIE1FTU9SWVsx
+XSwgVEVNUFswXS55eXl5Cj4+Cj4+IENvcnJlY3QgPyAgQW5kIHRoZSBzaGFyZWQgbWVtIHRvIHdp
+bGwgdGFrZSBzaGFyZWQgdmlydHVhbCBtZW1vcnkKPj4gYWRkcmVzc2VzLCBqdXN0IGxpa2UgZ2xv
+YmFsIHRha2VzIGdsb2JhbCB2aXJ0dWFsIG1lbW9yeQo+PiBhZGRyZXNzZXMgPwo+Cj4gVGhhdCdz
+IGhvdyBJIHNlZSBpdC4KCkdvb2QuCgo+IFlvdSBtYXkgaGF2ZSB0byBhZGQgTE9BRDY0L1NUT1JF
+NjQgZm9yIDY0LWJpdAo+IGFkZHJlc3NlcyB0aG91Z2guIE9yIHdlIGNvdWxkIGRlY3JlZSB0aGF0
+IGFsbCBhZGRyZXNzaW5nIG9uIGdsb2JhbAo+IG1lbW9yeSBzaGFsbCBiZSA2NC1iaXQgKGFuZCB0
+aHVzIHJlYWQgdGhlIC54eSBjb21wb25lbnRzIG9mIHRoZQo+IGFkZHJlc3Mgc291cmNlKS4KCkkg
+d291bGQgcHJlZmVyIHRvIGtlZXAgTE9BRCAvIFNUT1JFIHNlbWFudGljcyB0aGUgc2FtZSBhcyB3
+aXRoCm90aGVyIExPQUQgLyBTVE9SRSAtcyB0byAvIGZyb20gMWQgYnVmZmVycy4KCkkgdGhpbmsg
+dGhhdCBpbiB0aGUgZW5kIHRoZSB0Z3NpIGJhY2tlbmQgZm9yIGxsdm0gd2lsbCBnZXQgYm90aAph
+IDMyIGJpdCBhbmQgYSA2NCBiaXQgbW9kZSwgbGlrZSB0aGUgbnZwdHggYmFja2VuZCBhbHJlYWR5
+IGhhcy4KCkFuZCB0aGVuIHRoZSA2NCBiaXQgYmFja2VuZCB3aWxsIHVzZSBhIG5ldyBMT0FENjQg
+LyBTVE9SRTY0CmFsc28gZG8gbm90IGZvcmdldCB0aGF0IGtlZXBpbmcgNjQgYml0IHBvaW50ZXJz
+IHRha2VzIHR3aWNlIGFzCm11Y2ggcmVnaXN0ZXJzLCBzbyAzMiBiaXQgd2lsbCBsaWtlbHkgYmUg
+b3B0aW1hbCBpbiBhIGxvdCBvZgpjYXNlcy4gSSBndWVzcyBzaW5jZSBPcGVuQ0wgZG9lcyBub3Qg
+Z2l2ZSB0aGUgdXNlciBhIHdheQp0byBzZWxlY3Qgd2hpY2ggbW9kZSB0byB1c2Ugd2Ugd2lsbCBl
+bmQgdXAgd2l0aCBzb21lIHNvcnQKb2YgaGV1cmlzdGljIGJhc2VkIG9uIHRoZSBhbW91bnQgb2Yg
+bWVtb3J5IG9uIHRoZSBjYXJkIG9yCnNvbWUgc3VjaC4KCkFmdGVyIGFsbCB1c2luZyA2NCBiaXQg
+cG9pbnRlcnMgZG9lcyBub3QgbWFrZSBhIGxvdCBvZiBzZW5zZQpvbiBhIGNhcmQgd2l0aCBvbmx5
+IDEgR0Igb2YgUkFNICh5ZXMgSSBrbm93IHdlJ3JlIHRhbGtpbmcgdmlydHVhbAphZGRyZXNzIHNw
+YWNlIGhlcmUpLgoKQW55d2F5cyB0aGlzIGFsbCByZWFsbHkgaXMgdG9vIHNvb24gdG8gdGVsbC4g
+TWF5YmUgdGhlIHBlcmZvcm1hbmNlCmltcGFjdCBvZiB1c2luZyA2NCBiaXQgcG9pbnRlcnMgaXMg
+bmVnbGlnaWJsZS4gQnV0IEkgdGhpbmsgaXQgd291bGQKYmUgZ29vZCAoYW5kIGNvbnNpc3RlbnQp
+IHRvIGtlZXAgTE9BRCAvIFNUT1JFIHRha2luZyAzMiBiaXQgYWRkcmVzc2VzCmV2ZW4gZm9yIE1F
+TU9SWSBhbmQgYWRkIGEgTE9BRDY0IC8gU1RPUkU2NCB3aGVuIEkgZ2V0IGFyb3VuZCB0bwppbXBs
+ZW1lbnRpbmcgYSA2NCBiaXQgbW9kZSBmb3IgdGhlIGxsdm0gdGdzaSBiYWNrZW5kIChvciB3aGVu
+IG90aGVycwpuZWVkIHRoZW0pLgoKPj4+IEFub3RoZXIgd2F5IG9mIGxvb2tpbmcgYXQgaXQgaXMg
+dGhhdCBpbnN0ZWFkIG9mIGhhdmluZyB0aGUgaGFja3kKPj4+IFJFU1sxMjM0NV0gYmVpbmcgaGFy
+ZGNvZGVkIHRvIG1lYW4gc29tZXRoaW5nIHNwZWNpYWwsIHlvdSBub3cgaGF2ZSBhCj4+PiBkZWRp
+Y2F0ZWQgZmlsZSBjYWxsZWQgJ01FTU9SWScsIHdoaWNoIGhhcyBpZGVudGljYWwgc2VtYW50aWNz
+Lgo+Pgo+Pgo+PiBJJ20gYWxsIGZvciBnZXR0aW5nIHJpZCBvZiB0aGUgUkVTWzEyMzQ1XSBoYWNr
+IDopCj4+Cj4+IEkgZ3Vlc3Mgd2hlcmUgeW91IHdyaXRlICJ5b3Ugbm93IGhhdmUgYSBkZWRpY2F0
+ZWQgZmlsZSBjYWxsZWQgJ01FTU9SWSciCj4+IFlvdSBtZWFuIHVwIHRvIFggZGVkaWNhdGVkIE1F
+TU9SWVsjXSBmaWxlcywgb25lIGZvciBlYWNoIG9mIEdMT0JBTCwgU0hBUkVECj4+IGFuZCBMT0NB
+TCBhdCBsZWFzdCwgYW5kIHByb2JhYmx5IGFzIGRpc2N1c3NlZCBvbmUgZm9yIElOUFVUID8KPj4K
+Pj4gVGhpcyBhbGwgc291bmRzIGdvb2QgdG8gbWUsIGFzIHNhaWQgbXkgd29ycnkgd2FzIHRoYXQg
+TUVNT1JZIHdvdWxkIGhhdmUKPj4gYW4gaW1wbGllZCBiYXNlIGFkZHJlc3MgbGlrZSBCVUZGRVIg
+aGFzLCBub3cgdGhhdCB5b3UndmUKPj4gbWFkZSBjbGVhciB0aGF0IE1FTU9SWSBkb2VzIG5vdCBo
+YXZlIHRoaXMgSSdtIGhhcHB5IDopCj4KPiBUaGVyZSdzIGEgYml0IG9mIGEgd3JpbmtsZSBoZXJl
+LCBhbmQgaXQncyBxdWVzdGlvbmFibGUgd2hldGhlciB3ZSB3YW50Cj4gdG8gYWxsb3cgZm9yIHRo
+aXMgc29tZWhvdywgYnV0Li4uIFRlc2xhIGFjdHVhbGx5IGhhcyBubyB3YXkgdG8gYWRkcmVzcwo+
+IGdsb2JhbCBtZW1vcnkuIEl0J3MgYWx3YXlzIGRvbmUgd2l0aCBhIGJhc2Ugb2Zmc2V0ICh3aGlj
+aCBjYW4gYmUgc2V0Cj4gdG8gMCkuIFRoZSB0cmljayBpcyB0aGF0IGl0IGNhbiBvbmx5IGFkZHJl
+c3MgMzIgYml0cyBhdCBhIHRpbWUsCj4gdGhlcmUncyBubyA2NC1iaXQgYWRkcmVzc2luZy4gQnV0
+IGl0IGhhcyAqMTYqIHN1Y2ggImdsb2JhbCIgbWVtb3J5Cj4gc3BhY2VzLCBpLmUuIHdoaWNoIGFy
+ZSBlYWNoIGJhc2UgKyB1cCB0byAzMi1iaXQgb2Zmc2V0IFthbmQgdWx0aW1hdGVseQo+IG9ubHkg
+NDAgYml0cyBvZiBhZGRyZXNzYWJpbGl0eV0uIEkgZG9uJ3Qga25vdyBpZiBPcGVuQ0wgcHJvdmlk
+ZXMKPiBzb21ldGhpbmcgZ29vZCBmb3IgdGhhdCwgaWYgaXQgZG9lcyB3ZSBjYW4gdXNlIHNlbWFu
+dGljIGluZGljZXMgb24gdGhlCj4gR0xPQkFMIHRvIG1ha2UgaXQgbGlrZQo+Cj4gRENMIE1FTU9S
+WVswXSwgR0xPQkFMWzBdCj4gRENMIE1FTU9SWVsxXSwgR0xPQkFMWzFdCj4KPiBldGMuIEJ1dCBh
+Z2FpbiwgdGhpcyBpcyBwcmV0dHkgb3B0aW9uYWwuCgpJIHRoaW5rIHRoYXQgZm9yIFRlc2xhIHdl
+IGNhbiBqdXN0IG9ubHkgc3VwcG9ydCB0aGUgdGdzaTMyIHRhcmdldAphbmQgbm90IHRoZSB0Z3Np
+NjQgdGFyZ2V0LCBhdCBsZWFzdCB0aGF0IGlzIGhvdyBJIGVudmlzaW9uIHRoaW5ncwp0b2RheSwg
+d2hvIGtub3dzIHdoYXQgdG9tb3Jyb3cgd2lsbCBicmluZyA6KQoKUmVnYXJkcywKCkhhbnMKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
