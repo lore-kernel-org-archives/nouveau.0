@@ -1,49 +1,113 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] instmem/gk20a: set DMA mask early
-Date: Wed, 24 Feb 2016 18:53:38 +0900
-Message-ID: <1456307618-1857-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91954] "link training failed": nouveau does not
+ recover from monitor suspend
+Date: Wed, 24 Feb 2016 09:53:21 +0000
+Message-ID: <bug-91954-8800-7RIGfVVQSy@http.bugs.freedesktop.org/>
+References: <bug-91954-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0738077948=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91954-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-DMA mask is typically set in nouveau_ttm_init(), but this function is
-called late during initialization and GK20A's instmem will have called
-DMA functions before this happens.
 
-Having a wrongly set DMA mask can result in the use of unneeded bounce
-buffers. Set it in GK20A's instmem constructor to avoid this.
+--===============0738077948==
+Content-Type: multipart/alternative; boundary="14563076013.e8B912.17003";
+ charset="UTF-8"
 
-Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
----
- drm/nouveau/nvkm/subdev/instmem/gk20a.c | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/drm/nouveau/nvkm/subdev/instmem/gk20a.c b/drm/nouveau/nvkm/subdev/instmem/gk20a.c
-index 6b8f2a19b2d9..4c3c744c5c6b 100644
---- a/drm/nouveau/nvkm/subdev/instmem/gk20a.c
-+++ b/drm/nouveau/nvkm/subdev/instmem/gk20a.c
-@@ -576,6 +576,7 @@ gk20a_instmem_new(struct nvkm_device *device, int index,
- {
- 	struct nvkm_device_tegra *tdev = device->func->tegra(device);
- 	struct gk20a_instmem *imem;
-+	int ret;
- 
- 	if (!(imem = kzalloc(sizeof(*imem), GFP_KERNEL)))
- 		return -ENOMEM;
-@@ -583,6 +584,10 @@ gk20a_instmem_new(struct nvkm_device *device, int index,
- 	spin_lock_init(&imem->lock);
- 	*pimem = &imem->base;
- 
-+	ret = dma_set_mask(device->dev, DMA_BIT_MASK(tdev->func->iommu_bit));
-+	if (ret)
-+		return ret;
-+
- 	/* do not allow more than 1MB of CPU-mapped instmem */
- 	imem->vaddr_use = 0;
- 	imem->vaddr_max = 0x100000;
+--14563076013.e8B912.17003
+Date: Wed, 24 Feb 2016 09:53:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91954
+
+Géza Búza <bghome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Version|unspecified                 |git
+
+--- Comment #6 from Géza Búza <bghome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I just wanted to mention that kernel 4.5-rc5 is also affected by this issue.
+
 -- 
-2.7.1
+You are receiving this mail because:
+You are the assignee for the bug.
+--14563076013.e8B912.17003
+Date: Wed, 24 Feb 2016 09:53:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:bghome&#64;gmail.com" title="Géza Búza &lt;bghome&#64;gmail.com&gt;"> <span class="fn">Géza Búza</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - &quot;link training failed&quot;: nouveau does not recover from monitor suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91954">bug 91954</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Version</td>
+           <td>unspecified
+           </td>
+           <td>git
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - &quot;link training failed&quot;: nouveau does not recover from monitor suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91954#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - &quot;link training failed&quot;: nouveau does not recover from monitor suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91954">bug 91954</a>
+              from <span class="vcard"><a class="email" href="mailto:bghome&#64;gmail.com" title="Géza Búza &lt;bghome&#64;gmail.com&gt;"> <span class="fn">Géza Búza</span></a>
+</span></b>
+        <pre>I just wanted to mention that kernel 4.5-rc5 is also affected by this issue.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14563076013.e8B912.17003--
+
+--===============0738077948==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0738077948==--
