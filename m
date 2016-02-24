@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93932] Xorg/Nouveau crashes with Segmentation fault
- when setting i7-Skylake iGPU as primary grapics device in BIOS
-Date: Wed, 24 Feb 2016 04:36:32 +0000
-Message-ID: <bug-93932-8800-lHp0Thg3WW@http.bugs.freedesktop.org/>
-References: <bug-93932-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93875] Random Xorg Crash when Away from Computer
+Date: Wed, 24 Feb 2016 04:39:19 +0000
+Message-ID: <bug-93875-8800-sptUXGOO7i@http.bugs.freedesktop.org/>
+References: <bug-93875-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0165330165=="
+Content-Type: multipart/mixed; boundary="===============1464205378=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93875-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +20,17 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0165330165==
-Content-Type: multipart/alternative; boundary="14562885921.db3D.16411";
+--===============1464205378==
+Content-Type: multipart/alternative; boundary="14562887592.F36edfDf.16874";
  charset="UTF-8"
 
 
---14562885921.db3D.16411
-Date: Wed, 24 Feb 2016 04:36:32 +0000
+--14562887592.F36edfDf.16874
+Date: Wed, 24 Feb 2016 04:39:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93932
+https://bugs.freedesktop.org/show_bug.cgi?id=93875
 
 Christopher M. Penalver <christopher.m.penalver-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
@@ -40,9 +39,9 @@ Christopher M. Penalver <christopher.m.penalver-Re5JQEeQqe8AvxtiuMwx3w@public.gm
          Resolution|---                         |INVALID
              Status|NEW                         |RESOLVED
 
---- Comment #1 from Christopher M. Penalver <christopher.m.penalver-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Matthias, thank you for reporting this and helping make Ubuntu better. However,
-your crash report is manually attached.
+--- Comment #3 from Christopher M. Penalver <christopher.m.penalver-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+fd_mitch-3KzNJp4Rz8A@public.gmane.org, thank you for reporting this and helping make Ubuntu better.
+However, you are using a downstream version of the xorg stack, and kernel.
 
 Please follow these instructions to have apport report a new bug about your
 crash that can be dealt with by the automatic retracer. First, execute at a
@@ -90,8 +89,8 @@ https://wiki.ubuntu.com/ReportingBugs
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14562885921.db3D.16411
-Date: Wed, 24 Feb 2016 04:36:32 +0000
+--14562887592.F36edfDf.16874
+Date: Wed, 24 Feb 2016 04:39:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -103,8 +102,8 @@ Content-Type: text/html
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Xorg/Nouveau crashes with Segmentation fault when setting i7-Skylake iGPU as primary grapics device in BIOS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93932">bug 93932</a>
+   title="RESOLVED INVALID - Random Xorg Crash when Away from Computer"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93875">bug 93875</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -132,16 +131,16 @@ Content-Type: text/html
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Xorg/Nouveau crashes with Segmentation fault when setting i7-Skylake iGPU as primary grapics device in BIOS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93932#c1">Comment # 1</a>
+   title="RESOLVED INVALID - Random Xorg Crash when Away from Computer"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93875#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Xorg/Nouveau crashes with Segmentation fault when setting i7-Skylake iGPU as primary grapics device in BIOS"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93932">bug 93932</a>
+   title="RESOLVED INVALID - Random Xorg Crash when Away from Computer"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93875">bug 93875</a>
               from <span class="vcard"><a class="email" href="mailto:christopher.m.penalver&#64;gmail.com" title="Christopher M. Penalver &lt;christopher.m.penalver&#64;gmail.com&gt;"> <span class="fn">Christopher M. Penalver</span></a>
 </span></b>
-        <pre>Matthias, thank you for reporting this and helping make Ubuntu better. However,
-your crash report is manually attached.
+        <pre><a href="mailto:fd_mitch&#64;ptaff.ca">fd_mitch&#64;ptaff.ca</a>, thank you for reporting this and helping make Ubuntu better.
+However, you are using a downstream version of the xorg stack, and kernel.
 
 Please follow these instructions to have apport report a new bug about your
 crash that can be dealt with by the automatic retracer. First, execute at a
@@ -195,9 +194,9 @@ Helpful bug reporting tips:
       </ul>
     </body>
 </html>
---14562885921.db3D.16411--
+--14562887592.F36edfDf.16874--
 
---===============0165330165==
+--===============1464205378==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -207,4 +206,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0165330165==--
+--===============1464205378==--
