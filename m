@@ -1,11 +1,11 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH v5 4/6] hwmon: add power consumption
-Date: Wed, 24 Feb 2016 21:07:59 +0100
-Message-ID: <1456344481-934-5-git-send-email-nouveau@karolherbst.de>
+From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH v5 0/6] Suppor for various power sensors on
+	GF100+
+Date: Thu, 25 Feb 2016 08:22:49 +1000
+Message-ID: <56CE2D39.3090509@redhat.com>
 References: <1456344481-934-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1417894135=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <1456344481-934-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -17,75 +17,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+To: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-djU6IGV4cG9zZSBvbmx5IGlmIHRoZSBzZW5zb3IgcmVhZGluZyBpcyB2YWxpZAoKU2lnbmVkLW9m
-Zi1ieTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgpSZXZpZXdlZC1ieTog
-TWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4KLS0tCiBkcm0vbm91dmVhdS9pbmNs
-dWRlL252aWYvZGV2aWNlLmggfCAgMSArCiBkcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMgICAg
-ICAgfCAzNiArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKIDIgZmlsZXMgY2hh
-bmdlZCwgMzcgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2luY2x1ZGUv
-bnZpZi9kZXZpY2UuaCBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZpZi9kZXZpY2UuaAppbmRleCBl
-MGVkMmY0Li5iY2I5ODE3IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9pbmNsdWRlL252aWYvZGV2
-aWNlLmgKKysrIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmlmL2RldmljZS5oCkBAIC02Miw2ICs2
-Miw3IEBAIHU2NCAgbnZpZl9kZXZpY2VfdGltZShzdHJ1Y3QgbnZpZl9kZXZpY2UgKik7CiAjZGVm
-aW5lIG52eHhfZ3BpbyhhKSBudnh4X2RldmljZShhKS0+Z3BpbwogI2RlZmluZSBudnh4X2Nsayhh
-KSBudnh4X2RldmljZShhKS0+Y2xrCiAjZGVmaW5lIG52eHhfaTJjKGEpIG52eHhfZGV2aWNlKGEp
-LT5pMmMKKyNkZWZpbmUgbnZ4eF9pY2NzZW5zZShhKSBudnh4X2RldmljZShhKS0+aWNjc2Vuc2UK
-ICNkZWZpbmUgbnZ4eF90aGVybShhKSBudnh4X2RldmljZShhKS0+dGhlcm0KICNkZWZpbmUgbnZ4
-eF92b2x0KGEpIG52eHhfZGV2aWNlKGEpLT52b2x0CiAKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1
-L25vdXZlYXVfaHdtb24uYyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYwppbmRleCA4ZTEz
-NDY3Li40ZWE5OTRlIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMKKysr
-IGIvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jCkBAIC0zNCw2ICszNCw3IEBACiAjaW5jbHVk
-ZSAibm91dmVhdV9kcm0uaCIKICNpbmNsdWRlICJub3V2ZWF1X2h3bW9uLmgiCiAKKyNpbmNsdWRl
-IDxudmttL3N1YmRldi9pY2NzZW5zZS5oPgogI2luY2x1ZGUgPG52a20vc3ViZGV2L3ZvbHQuaD4K
-IAogI2lmIGRlZmluZWQoQ09ORklHX0hXTU9OKSB8fCAoZGVmaW5lZChNT0RVTEUpICYmIGRlZmlu
-ZWQoQ09ORklHX0hXTU9OX01PRFVMRSkpCkBAIC01NDMsNiArNTQ0LDI0IEBAIG5vdXZlYXVfaHdt
-b25fZ2V0X2luMF9sYWJlbChzdHJ1Y3QgZGV2aWNlICpkLAogc3RhdGljIFNFTlNPUl9ERVZJQ0Vf
-QVRUUihpbjBfbGFiZWwsIFNfSVJVR08sCiAJCQkgIG5vdXZlYXVfaHdtb25fZ2V0X2luMF9sYWJl
-bCwgTlVMTCwgMCk7CiAKK3N0YXRpYyBzc2l6ZV90Citub3V2ZWF1X2h3bW9uX2dldF9wb3dlcjFf
-aW5wdXQoc3RydWN0IGRldmljZSAqZCwgc3RydWN0IGRldmljZV9hdHRyaWJ1dGUgKmEsCisJCQkg
-ICAgICAgY2hhciAqYnVmKQoreworCXN0cnVjdCBkcm1fZGV2aWNlICpkZXYgPSBkZXZfZ2V0X2Ry
-dmRhdGEoZCk7CisJc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2ZWF1X2RybShkZXYpOwor
-CXN0cnVjdCBudmttX2ljY3NlbnNlICppY2NzZW5zZSA9IG52eHhfaWNjc2Vuc2UoJmRybS0+ZGV2
-aWNlKTsKKwlpbnQgcmVzdWx0ID0gbnZrbV9pY2NzZW5zZV9yZWFkX2FsbChpY2NzZW5zZSk7CisK
-KwlpZiAocmVzdWx0IDwgMCkKKwkJcmV0dXJuIHJlc3VsdDsKKworCXJldHVybiBzcHJpbnRmKGJ1
-ZiwgIiVpXG4iLCByZXN1bHQpOworfQorCitzdGF0aWMgU0VOU09SX0RFVklDRV9BVFRSKHBvd2Vy
-MV9pbnB1dCwgU19JUlVHTywKKwkJCSAgbm91dmVhdV9od21vbl9nZXRfcG93ZXIxX2lucHV0LCBO
-VUxMLCAwKTsKKwogc3RhdGljIHN0cnVjdCBhdHRyaWJ1dGUgKmh3bW9uX2RlZmF1bHRfYXR0cmli
-dXRlc1tdID0gewogCSZzZW5zb3JfZGV2X2F0dHJfbmFtZS5kZXZfYXR0ci5hdHRyLAogCSZzZW5z
-b3JfZGV2X2F0dHJfdXBkYXRlX3JhdGUuZGV2X2F0dHIuYXR0ciwKQEAgLTU3OSw2ICs1OTgsMTEg
-QEAgc3RhdGljIHN0cnVjdCBhdHRyaWJ1dGUgKmh3bW9uX2luMF9hdHRyaWJ1dGVzW10gPSB7CiAJ
-TlVMTAogfTsKIAorc3RhdGljIHN0cnVjdCBhdHRyaWJ1dGUgKmh3bW9uX3Bvd2VyX2F0dHJpYnV0
-ZXNbXSA9IHsKKwkmc2Vuc29yX2Rldl9hdHRyX3Bvd2VyMV9pbnB1dC5kZXZfYXR0ci5hdHRyLAor
-CU5VTEwKK307CisKIHN0YXRpYyBjb25zdCBzdHJ1Y3QgYXR0cmlidXRlX2dyb3VwIGh3bW9uX2Rl
-ZmF1bHRfYXR0cmdyb3VwID0gewogCS5hdHRycyA9IGh3bW9uX2RlZmF1bHRfYXR0cmlidXRlcywK
-IH07CkBAIC01OTQsNiArNjE4LDkgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBhdHRyaWJ1dGVfZ3Jv
-dXAgaHdtb25fcHdtX2Zhbl9hdHRyZ3JvdXAgPSB7CiBzdGF0aWMgY29uc3Qgc3RydWN0IGF0dHJp
-YnV0ZV9ncm91cCBod21vbl9pbjBfYXR0cmdyb3VwID0gewogCS5hdHRycyA9IGh3bW9uX2luMF9h
-dHRyaWJ1dGVzLAogfTsKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgYXR0cmlidXRlX2dyb3VwIGh3bW9u
-X3Bvd2VyX2F0dHJncm91cCA9IHsKKwkuYXR0cnMgPSBod21vbl9wb3dlcl9hdHRyaWJ1dGVzLAor
-fTsKICNlbmRpZgogCiBpbnQKQEAgLTYwMyw2ICs2MzAsNyBAQCBub3V2ZWF1X2h3bW9uX2luaXQo
-c3RydWN0IGRybV9kZXZpY2UgKmRldikKIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZl
-YXVfZHJtKGRldik7CiAJc3RydWN0IG52a21fdGhlcm0gKnRoZXJtID0gbnZ4eF90aGVybSgmZHJt
-LT5kZXZpY2UpOwogCXN0cnVjdCBudmttX3ZvbHQgKnZvbHQgPSBudnh4X3ZvbHQoJmRybS0+ZGV2
-aWNlKTsKKwlzdHJ1Y3QgbnZrbV9pY2NzZW5zZSAqaWNjc2Vuc2UgPSBudnh4X2ljY3NlbnNlKCZk
-cm0tPmRldmljZSk7CiAJc3RydWN0IG5vdXZlYXVfaHdtb24gKmh3bW9uOwogCXN0cnVjdCBkZXZp
-Y2UgKmh3bW9uX2RldjsKIAlpbnQgcmV0ID0gMDsKQEAgLTY2Miw2ICs2OTAsMTMgQEAgbm91dmVh
-dV9od21vbl9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJCQlnb3RvIGVycm9yOwogCX0K
-IAorCWlmIChpY2NzZW5zZSAmJiBpY2NzZW5zZS0+ZGF0YV92YWxpZCAmJiBpY2NzZW5zZS0+cmFp
-bF9jb3VudCkgeworCQlyZXQgPSBzeXNmc19jcmVhdGVfZ3JvdXAoJmh3bW9uX2Rldi0+a29iaiwK
-KwkJCQkJICZod21vbl9wb3dlcl9hdHRyZ3JvdXApOworCQlpZiAocmV0KQorCQkJZ290byBlcnJv
-cjsKKwl9CisKIAlod21vbi0+aHdtb24gPSBod21vbl9kZXY7CiAKIAlyZXR1cm4gMDsKQEAgLTY4
-OCw2ICs3MjMsNyBAQCBub3V2ZWF1X2h3bW9uX2Zpbmkoc3RydWN0IGRybV9kZXZpY2UgKmRldikK
-IAkJc3lzZnNfcmVtb3ZlX2dyb3VwKCZod21vbi0+aHdtb24tPmtvYmosICZod21vbl9wd21fZmFu
-X2F0dHJncm91cCk7CiAJCXN5c2ZzX3JlbW92ZV9ncm91cCgmaHdtb24tPmh3bW9uLT5rb2JqLCAm
-aHdtb25fZmFuX3JwbV9hdHRyZ3JvdXApOwogCQlzeXNmc19yZW1vdmVfZ3JvdXAoJmh3bW9uLT5o
-d21vbi0+a29iaiwgJmh3bW9uX2luMF9hdHRyZ3JvdXApOworCQlzeXNmc19yZW1vdmVfZ3JvdXAo
-Jmh3bW9uLT5od21vbi0+a29iaiwgJmh3bW9uX3Bvd2VyX2F0dHJncm91cCk7CiAKIAkJaHdtb25f
-ZGV2aWNlX3VucmVnaXN0ZXIoaHdtb24tPmh3bW9uKTsKIAl9Ci0tIAoyLjcuMgoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1417894135==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="CAR79C5f1tA7qdri73tTCuUUKSQvuMiwS"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--CAR79C5f1tA7qdri73tTCuUUKSQvuMiwS
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+On 02/25/2016 06:07 AM, Karol Herbst wrote:
+> This is a complete rework from the first version I sent out.
+>=20
+> Now the implementation is more centered around the power_rails we find =
+in the
+> SENSE table instead of extdev centered. This makes the implementation a=
+ lot
+> easier and straightforward.
+>=20
+> I've added support for the INA219, INA209 and INA3221 sensors found on =
+multiple
+> Fermi and Kepler cards.
+>=20
+> The power consumption is also exported via hwmon, so "sensors" will be =
+able to
+> print it in userspace.
+>=20
+> This work is based on Martins initial power sensor work and most of the=
+ ground
+> work was just copied from him.
+Looks OK to me, but needs a rebase on top of my tree (will conflict with
+secure boot patches I just merged) before merging.
+
+Thanks,
+Ben.
+
+>=20
+> Happy testing
+>=20
+> changes in v3: fixes ina2x9, rebase on current master
+> changes in v4: some minor ina2x9 fixes and get it to work on maxwell ge=
+n2
+> changes in v5: final polishing
+>=20
+> Tested-by: Stefan H=C3=BChner <stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org> on gm206
+>=20
+> Karol Herbst (4):
+>   iccsense: implement for ina209, ina219 and ina3221
+>   hwmon: add power consumption
+>   hwmon: don't require therm to be valid to get any data
+>   bios/extdev: also parse v4.1 table
+>=20
+> Martin Peres (2):
+>   subdev/iccsense: add new subdev for power sensors
+>   nvbios/iccsense: add parsing of the SENSE table
+>=20
+>  drm/nouveau/include/nvif/device.h               |   1 +
+>  drm/nouveau/include/nvkm/core/device.h          |  83 +++++----
+>  drm/nouveau/include/nvkm/subdev/bios/extdev.h   |   3 +
+>  drm/nouveau/include/nvkm/subdev/bios/iccsense.h |  16 ++
+>  drm/nouveau/include/nvkm/subdev/i2c.h           |  31 ++++
+>  drm/nouveau/include/nvkm/subdev/iccsense.h      |  17 ++
+>  drm/nouveau/nouveau_hwmon.c                     |  75 ++++++--
+>  drm/nouveau/nvkm/core/subdev.c                  |  83 ++++-----
+>  drm/nouveau/nvkm/engine/device/base.c           | 144 ++++++++-------
+>  drm/nouveau/nvkm/engine/device/priv.h           |   1 +
+>  drm/nouveau/nvkm/subdev/Kbuild                  |   1 +
+>  drm/nouveau/nvkm/subdev/bios/Kbuild             |   1 +
+>  drm/nouveau/nvkm/subdev/bios/extdev.c           |   2 +-
+>  drm/nouveau/nvkm/subdev/bios/iccsense.c         | 100 ++++++++++
+>  drm/nouveau/nvkm/subdev/iccsense/Kbuild         |   2 +
+>  drm/nouveau/nvkm/subdev/iccsense/base.c         | 232 ++++++++++++++++=
+++++++++
+>  drm/nouveau/nvkm/subdev/iccsense/gf100.c        |  31 ++++
+>  drm/nouveau/nvkm/subdev/iccsense/priv.h         |  16 ++
+>  18 files changed, 676 insertions(+), 163 deletions(-)
+>  create mode 100644 drm/nouveau/include/nvkm/subdev/bios/iccsense.h
+>  create mode 100644 drm/nouveau/include/nvkm/subdev/iccsense.h
+>  create mode 100644 drm/nouveau/nvkm/subdev/bios/iccsense.c
+>  create mode 100644 drm/nouveau/nvkm/subdev/iccsense/Kbuild
+>  create mode 100644 drm/nouveau/nvkm/subdev/iccsense/base.c
+>  create mode 100644 drm/nouveau/nvkm/subdev/iccsense/gf100.c
+>  create mode 100644 drm/nouveau/nvkm/subdev/iccsense/priv.h
+>=20
+
+
+--CAR79C5f1tA7qdri73tTCuUUKSQvuMiwS
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJWzi05AAoJEHYLnGJQkpH7mR4P/AxdXonntge/X7qhNgqIq7YH
+hXVPGQn3a9uCprOHTGEYYeSKPwH6+EGoD92tSBoghC4LEB4v5nnMhK/qrBneUPus
+gAqNL9o3VY/MUds2i1h2aNGFk7331pu5kp9s5wokpnsN1QHIVVs8hAj9Ep4atazc
+D43WAM+IwGNGsi5YgMdIP1CXoytM+KsCdepnQwxvJqXNQyOGN05lkFq1/mAfHs9t
+NQeZbd2PvGme0MFH66TXhJaxKcXzN4rv7tGBYsoqT7YcjAW4K3Jpe/WmYa05JLPI
+tj3tgWA6K0JvzKocLbXLeCkoz8oZ5Xc6oMXJ0WkOzial+RmrUmd6c8gHyEpHah7f
+/dqCzLv1zUAMPIigWdA1tsd7CfWlSrgZQQIq3c3/JtjftIqAtGa4E+6DgnW6BPcB
+sMUS6i6rY40YZUb336HDgOYN+LrLQmhdyafSAx4Ir6Cd4qkmsLZf4VCo4dKg9l1Q
+eZKZ4VxTesklpGw9nzz2nSevkCsnNyAHM/5VDV3oO3czQgYB4P5eVm+MixGpAZ/R
+WUa7CunudzkuYtD8lDk3Ko02rXzronmwEXRHbwcn5VQnfnF/EXwLSQBELYw3iT0+
+1hlCA8obbLYXGXHYZliHspTjYQR5vUepu7vMYr5BWxtseMJ+hTBuGxjUTqPvoM3R
+GBrsh1dllNF3m9v6DDfO
+=t8fH
+-----END PGP SIGNATURE-----
+
+--CAR79C5f1tA7qdri73tTCuUUKSQvuMiwS--
+
+--===============1417894135==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1417894135==--
