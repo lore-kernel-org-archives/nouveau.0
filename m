@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91954] "link training failed": nouveau does not
- recover from monitor suspend
-Date: Wed, 24 Feb 2016 09:53:21 +0000
-Message-ID: <bug-91954-8800-7RIGfVVQSy@http.bugs.freedesktop.org/>
-References: <bug-91954-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: [PATCH v5 0/6] Suppor for various power sensors on GF100+
+Date: Wed, 24 Feb 2016 21:07:55 +0100
+Message-ID: <1456344481-934-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0738077948=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91954-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,96 +16,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0738077948==
-Content-Type: multipart/alternative; boundary="14563076013.e8B912.17003";
- charset="UTF-8"
-
-
---14563076013.e8B912.17003
-Date: Wed, 24 Feb 2016 09:53:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91954
-
-Géza Búza <bghome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Version|unspecified                 |git
-
---- Comment #6 from Géza Búza <bghome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I just wanted to mention that kernel 4.5-rc5 is also affected by this issue.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14563076013.e8B912.17003
-Date: Wed, 24 Feb 2016 09:53:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:bghome&#64;gmail.com" title="Géza Búza &lt;bghome&#64;gmail.com&gt;"> <span class="fn">Géza Búza</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - &quot;link training failed&quot;: nouveau does not recover from monitor suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91954">bug 91954</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Version</td>
-           <td>unspecified
-           </td>
-           <td>git
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - &quot;link training failed&quot;: nouveau does not recover from monitor suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91954#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - &quot;link training failed&quot;: nouveau does not recover from monitor suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91954">bug 91954</a>
-              from <span class="vcard"><a class="email" href="mailto:bghome&#64;gmail.com" title="Géza Búza &lt;bghome&#64;gmail.com&gt;"> <span class="fn">Géza Búza</span></a>
-</span></b>
-        <pre>I just wanted to mention that kernel 4.5-rc5 is also affected by this issue.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14563076013.e8B912.17003--
-
---===============0738077948==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0738077948==--
+VGhpcyBpcyBhIGNvbXBsZXRlIHJld29yayBmcm9tIHRoZSBmaXJzdCB2ZXJzaW9uIEkgc2VudCBv
+dXQuCgpOb3cgdGhlIGltcGxlbWVudGF0aW9uIGlzIG1vcmUgY2VudGVyZWQgYXJvdW5kIHRoZSBw
+b3dlcl9yYWlscyB3ZSBmaW5kIGluIHRoZQpTRU5TRSB0YWJsZSBpbnN0ZWFkIG9mIGV4dGRldiBj
+ZW50ZXJlZC4gVGhpcyBtYWtlcyB0aGUgaW1wbGVtZW50YXRpb24gYSBsb3QKZWFzaWVyIGFuZCBz
+dHJhaWdodGZvcndhcmQuCgpJJ3ZlIGFkZGVkIHN1cHBvcnQgZm9yIHRoZSBJTkEyMTksIElOQTIw
+OSBhbmQgSU5BMzIyMSBzZW5zb3JzIGZvdW5kIG9uIG11bHRpcGxlCkZlcm1pIGFuZCBLZXBsZXIg
+Y2FyZHMuCgpUaGUgcG93ZXIgY29uc3VtcHRpb24gaXMgYWxzbyBleHBvcnRlZCB2aWEgaHdtb24s
+IHNvICJzZW5zb3JzIiB3aWxsIGJlIGFibGUgdG8KcHJpbnQgaXQgaW4gdXNlcnNwYWNlLgoKVGhp
+cyB3b3JrIGlzIGJhc2VkIG9uIE1hcnRpbnMgaW5pdGlhbCBwb3dlciBzZW5zb3Igd29yayBhbmQg
+bW9zdCBvZiB0aGUgZ3JvdW5kCndvcmsgd2FzIGp1c3QgY29waWVkIGZyb20gaGltLgoKSGFwcHkg
+dGVzdGluZwoKY2hhbmdlcyBpbiB2MzogZml4ZXMgaW5hMng5LCByZWJhc2Ugb24gY3VycmVudCBt
+YXN0ZXIKY2hhbmdlcyBpbiB2NDogc29tZSBtaW5vciBpbmEyeDkgZml4ZXMgYW5kIGdldCBpdCB0
+byB3b3JrIG9uIG1heHdlbGwgZ2VuMgpjaGFuZ2VzIGluIHY1OiBmaW5hbCBwb2xpc2hpbmcKClRl
+c3RlZC1ieTogU3RlZmFuIEjDvGhuZXIgPHN0ZWZhbkBodWVobmVyLm9yZz4gb24gZ20yMDYKCkth
+cm9sIEhlcmJzdCAoNCk6CiAgaWNjc2Vuc2U6IGltcGxlbWVudCBmb3IgaW5hMjA5LCBpbmEyMTkg
+YW5kIGluYTMyMjEKICBod21vbjogYWRkIHBvd2VyIGNvbnN1bXB0aW9uCiAgaHdtb246IGRvbid0
+IHJlcXVpcmUgdGhlcm0gdG8gYmUgdmFsaWQgdG8gZ2V0IGFueSBkYXRhCiAgYmlvcy9leHRkZXY6
+IGFsc28gcGFyc2UgdjQuMSB0YWJsZQoKTWFydGluIFBlcmVzICgyKToKICBzdWJkZXYvaWNjc2Vu
+c2U6IGFkZCBuZXcgc3ViZGV2IGZvciBwb3dlciBzZW5zb3JzCiAgbnZiaW9zL2ljY3NlbnNlOiBh
+ZGQgcGFyc2luZyBvZiB0aGUgU0VOU0UgdGFibGUKCiBkcm0vbm91dmVhdS9pbmNsdWRlL252aWYv
+ZGV2aWNlLmggICAgICAgICAgICAgICB8ICAgMSArCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20v
+Y29yZS9kZXZpY2UuaCAgICAgICAgICB8ICA4MyArKysrKy0tLS0KIGRybS9ub3V2ZWF1L2luY2x1
+ZGUvbnZrbS9zdWJkZXYvYmlvcy9leHRkZXYuaCAgIHwgICAzICsKIGRybS9ub3V2ZWF1L2luY2x1
+ZGUvbnZrbS9zdWJkZXYvYmlvcy9pY2NzZW5zZS5oIHwgIDE2ICsrCiBkcm0vbm91dmVhdS9pbmNs
+dWRlL252a20vc3ViZGV2L2kyYy5oICAgICAgICAgICB8ICAzMSArKysrCiBkcm0vbm91dmVhdS9p
+bmNsdWRlL252a20vc3ViZGV2L2ljY3NlbnNlLmggICAgICB8ICAxNyArKwogZHJtL25vdXZlYXUv
+bm91dmVhdV9od21vbi5jICAgICAgICAgICAgICAgICAgICAgfCAgNzUgKysrKysrLS0KIGRybS9u
+b3V2ZWF1L252a20vY29yZS9zdWJkZXYuYyAgICAgICAgICAgICAgICAgIHwgIDgzICsrKystLS0t
+LQogZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYyAgICAgICAgICAgfCAxNDQg
+KysrKysrKystLS0tLS0tCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcHJpdi5oICAg
+ICAgICAgICB8ICAgMSArCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9LYnVpbGQgICAgICAgICAg
+ICAgICAgICB8ICAgMSArCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL0tidWlsZCAgICAg
+ICAgICAgICB8ICAgMSArCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL2V4dGRldi5jICAg
+ICAgICAgICB8ICAgMiArLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9pY2NzZW5zZS5j
+ICAgICAgICAgfCAxMDAgKysrKysrKysrKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vu
+c2UvS2J1aWxkICAgICAgICAgfCAgIDIgKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vu
+c2UvYmFzZS5jICAgICAgICAgfCAyMzIgKysrKysrKysrKysrKysrKysrKysrKysrCiBkcm0vbm91
+dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9nZjEwMC5jICAgICAgICB8ICAzMSArKysrCiBkcm0v
+bm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9wcml2LmggICAgICAgICB8ICAxNiArKwogMTgg
+ZmlsZXMgY2hhbmdlZCwgNjc2IGluc2VydGlvbnMoKyksIDE2MyBkZWxldGlvbnMoLSkKIGNyZWF0
+ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3MvaWNjc2Vu
+c2UuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYv
+aWNjc2Vuc2UuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jp
+b3MvaWNjc2Vuc2UuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2ljY3NlbnNlL0tidWlsZAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L2ljY3NlbnNlL2Jhc2UuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20v
+c3ViZGV2L2ljY3NlbnNlL2dmMTAwLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9u
+dmttL3N1YmRldi9pY2NzZW5zZS9wcml2LmgKCi0tIAoyLjcuMgoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
+dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
