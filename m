@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94225] Mesa crash with "nouveau" driver and Minetest
-Date: Thu, 25 Feb 2016 15:35:42 +0000
-Message-ID: <bug-94225-8800-93DiURjwph@http.bugs.freedesktop.org/>
-References: <bug-94225-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
+ GT]: HDMI monitor stays black after s2ram
+Date: Thu, 25 Feb 2016 23:24:44 +0000
+Message-ID: <bug-93887-8800-Vr16aaKtsa@http.bugs.freedesktop.org/>
+References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0053909600=="
+Content-Type: multipart/mixed; boundary="===============2104063552=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94225-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,44 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0053909600==
-Content-Type: multipart/alternative; boundary="14564145410.e5165d0b.828";
+--===============2104063552==
+Content-Type: multipart/alternative; boundary="14564426842.968Cff4.18057";
  charset="UTF-8"
 
 
---14564145410.e5165d0b.828
-Date: Thu, 25 Feb 2016 15:35:41 +0000
+--14564426842.968Cff4.18057
+Date: Thu, 25 Feb 2016 23:24:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=94225
+https://bugs.freedesktop.org/show_bug.cgi?id=93887
 
-YuGiOhJCJ <yugiohjcj-D/iA7guW19M@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #2 from YuGiOhJCJ <yugiohjcj-D/iA7guW19M@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #1)
-> Mesa 10.2 was released in mid-2014. A ton of fixes have gone in over the
-> past 2 years. I would highly recommend testing with Mesa 11.1.2, which is
-> the most recent release.
-
-Indeed, after upgrading my configuration to:
-- minetest-0.4.13
-- mesa-11.1.2
-- libdrm-2.4.67
-- xf86-video-nouveau-1.0.11
-the problem seems to be solved because I can't reproduce anymore this bug.
+--- Comment #8 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+latest test result: s2disk behaves in the exactly same way: LVDS comes up well
+while the external monitor connected via HDMI stays black.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
-You are the QA Contact for the bug.
---14564145410.e5165d0b.828
-Date: Thu, 25 Feb 2016 15:35:41 +0000
+--14564426842.968Cff4.18057
+Date: Thu, 25 Feb 2016 23:24:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -65,58 +49,21 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:yugiohjcj&#64;1s.fr" title="YuGiOhJCJ &lt;yugiohjcj&#64;1s.fr&gt;"> <span class="fn">YuGiOhJCJ</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Mesa crash with &quot;nouveau&quot; driver and Minetest"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94225">bug 94225</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Mesa crash with &quot;nouveau&quot; driver and Minetest"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94225#c2">Comment # 2</a>
+          bz_status_NEW "
+   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c8">Comment # 8</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Mesa crash with &quot;nouveau&quot; driver and Minetest"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94225">bug 94225</a>
-              from <span class="vcard"><a class="email" href="mailto:yugiohjcj&#64;1s.fr" title="YuGiOhJCJ &lt;yugiohjcj&#64;1s.fr&gt;"> <span class="fn">YuGiOhJCJ</span></a>
+          bz_status_NEW "
+   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
+              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=94225#c1">comment #1</a>)
-<span class="quote">&gt; Mesa 10.2 was released in mid-2014. A ton of fixes have gone in over the
-&gt; past 2 years. I would highly recommend testing with Mesa 11.1.2, which is
-&gt; the most recent release.</span >
-
-Indeed, after upgrading my configuration to:
-- minetest-0.4.13
-- mesa-11.1.2
-- libdrm-2.4.67
-- xf86-video-nouveau-1.0.11
-the problem seems to be solved because I can't reproduce anymore this bug.</pre>
+        <pre>latest test result: s2disk behaves in the exactly same way: LVDS comes up well
+while the external monitor connected via HDMI stays black.</pre>
         </div>
       </p>
       <hr>
@@ -124,13 +71,12 @@ the problem seems to be solved because I can't reproduce anymore this bug.</pre>
       
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>
---14564145410.e5165d0b.828--
+--14564426842.968Cff4.18057--
 
---===============0053909600==
+--===============2104063552==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -140,4 +86,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0053909600==--
+--===============2104063552==--
