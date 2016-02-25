@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
  GT]: HDMI monitor stays black after s2ram
-Date: Thu, 25 Feb 2016 23:26:50 +0000
-Message-ID: <bug-93887-8800-TXsI6bDIwU@http.bugs.freedesktop.org/>
+Date: Thu, 25 Feb 2016 23:31:54 +0000
+Message-ID: <bug-93887-8800-ak6YQq1MaJ@http.bugs.freedesktop.org/>
 References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1106447368=="
+Content-Type: multipart/mixed; boundary="===============0996791721=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1106447368==
-Content-Type: multipart/alternative; boundary="14564428103.A46Fa.19117";
+--===============0996791721==
+Content-Type: multipart/alternative; boundary="14564431143.ceCbEd.19701";
  charset="UTF-8"
 
 
---14564428103.A46Fa.19117
-Date: Thu, 25 Feb 2016 23:26:50 +0000
+--14564431143.ceCbEd.19701
+Date: Thu, 25 Feb 2016 23:31:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93887
 
-Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
-                   |rg                          |
+           Assignee|imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org        |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14564428103.A46Fa.19117
-Date: Thu, 25 Feb 2016 23:26:50 +0000
+--14564431143.ceCbEd.19701
+Date: Thu, 25 Feb 2016 23:31:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -52,7 +52,7 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
@@ -68,9 +68,9 @@ Content-Type: text/html
 
          <tr>
            <td style="text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
            <td>imirkin&#64;alum.mit.edu
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
            </td>
          </tr></table>
       <p>
@@ -83,9 +83,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14564428103.A46Fa.19117--
+--14564431143.ceCbEd.19701--
 
---===============1106447368==
+--===============0996791721==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1106447368==--
+--===============0996791721==--
