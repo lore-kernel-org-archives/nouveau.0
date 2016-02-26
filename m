@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
- GT]: HDMI monitor stays black after s2ram
-Date: Fri, 26 Feb 2016 11:51:53 +0000
-Message-ID: <bug-93887-8800-1A9D6FA0HQ@http.bugs.freedesktop.org/>
-References: <bug-93887-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94131] G98: DRM: GPU lockup
+Date: Fri, 26 Feb 2016 12:58:50 +0000
+Message-ID: <bug-94131-8800-PfRYFQoHd5@http.bugs.freedesktop.org/>
+References: <bug-94131-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1978441662=="
+Content-Type: multipart/mixed; boundary="===============1830604292=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94131-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1978441662==
-Content-Type: multipart/alternative; boundary="14564875133.FCc6.21708";
+--===============1830604292==
+Content-Type: multipart/alternative; boundary="14564915301.8e289C829.4166";
  charset="UTF-8"
 
 
---14564875133.FCc6.21708
-Date: Fri, 26 Feb 2016 11:51:53 +0000
+--14564915301.8e289C829.4166
+Date: Fri, 26 Feb 2016 12:58:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93887
+https://bugs.freedesktop.org/show_bug.cgi?id=94131
 
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Assignee|freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org  |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
+         Resolution|---                         |WORKSFORME
+             Status|NEW                         |RESOLVED
 
---- Comment #9 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Could you please stop assigning this bug report to anyone? If someone wants to
-have a look at the bug, **he** will assign himself, not you. Now, really few do
-assign themselves to a bug using the "assigned to" field. And it has the
-consequence of removing the mailing list from the loop, so you end up annoying
-one developer and making sure no one else will receive updates about your bug. 
-
-I'm having issue with getting an image on external monitors using a 9400M +
-9600M GT setup, but I need to get access to an external monitor to tackle it.
-Maybe your bug could benefit from potential patches I'll submit.
+--- Comment #3 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+In a nutshell, no longer reproducible, regardless of the version of software
+components related.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14564875133.FCc6.21708
-Date: Fri, 26 Feb 2016 11:51:53 +0000
+--14564915301.8e289C829.4166
+Date: Fri, 26 Feb 2016 12:58:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -63,12 +55,12 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - G98: DRM: GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94131">bug 94131</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -78,33 +70,34 @@ Content-Type: text/html
           </tr>
 
          <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>freedesktop&#64;karolherbst.de
+           <td style="text-align:right;">Resolution</td>
+           <td>---
            </td>
-           <td>nouveau&#64;lists.freedesktop.org
+           <td>WORKSFORME
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c9">Comment # 9</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - G98: DRM: GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94131#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - G98: DRM: GPU lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94131">bug 94131</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
 </span></b>
-        <pre>Could you please stop assigning this bug report to anyone? If someone wants to
-have a look at the bug, **he** will assign himself, not you. Now, really few do
-assign themselves to a bug using the &quot;assigned to&quot; field. And it has the
-consequence of removing the mailing list from the loop, so you end up annoying
-one developer and making sure no one else will receive updates about your bug. 
-
-I'm having issue with getting an image on external monitors using a 9400M +
-9600M GT setup, but I need to get access to an external monitor to tackle it.
-Maybe your bug could benefit from potential patches I'll submit.</pre>
+        <pre>In a nutshell, no longer reproducible, regardless of the version of software
+components related.</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +108,9 @@ Maybe your bug could benefit from potential patches I'll submit.</pre>
       </ul>
     </body>
 </html>
---14564875133.FCc6.21708--
+--14564915301.8e289C829.4166--
 
---===============1978441662==
+--===============1830604292==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1978441662==--
+--===============1830604292==--
