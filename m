@@ -1,61 +1,41 @@
-From: Vignesh S <svignesh0308-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Google Summer of Code 2016
-Date: Sat, 27 Feb 2016 11:54:24 +0530
-Message-ID: <CADbobt=wKaWCXuX_XTaT=1SWEZQy7tGFg=iCJgPDOmOTDa4+KA@mail.gmail.com>
+From: don fisher <hdf3@comcast.net>
+Subject: xrandr configuration questions
+Date: Sat, 27 Feb 2016 15:27:49 -0700
+Message-ID: <56D222E5.7010405@comcast.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1179300239=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Return-path: <opensuse+bounces-182264-suse-linux-e=m.gmane.org@opensuse.org>
+List-Post: <mailto:opensuse@opensuse.org>
+List-Help: <mailto:opensuse+help@opensuse.org>
+List-Subscribe: <mailto:opensuse+subscribe@opensuse.org>
+List-Unsubscribe: <mailto:opensuse+unsubscribe@opensuse.org>
+List-Owner: <mailto:opensuse+owner@opensuse.org>
+List-Archive: <http://lists.opensuse.org/opensuse/>
+To: opensuse@opensuse.org, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1179300239==
-Content-Type: multipart/alternative; boundary=001a114fa47c8ae714052cba7711
+When I execute xrandr I receive, omitting the details of resolution 
+options,
+Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 8192 x 8192 
+LVDS-1 unknown connection (normal left inverted right x axis y axis)
+DP-1 disconnected (normal left inverted right x axis y axis)
+HDMI-1 disconnected (normal left inverted right x axis y axis)
+HDMI-2 connected 1920x1080+0+0 (normal left inverted right x axis y 
+axis) 698mm x 392mm
 
---001a114fa47c8ae714052cba7711
-Content-Type: text/plain; charset=UTF-8
+I am running on a Alienware 18 laptop that as far as I know has an 
+internal 1920 x 1080 screen and only has one HDMI output port. I would 
+like to run a pair of external monitors, dual head. Any ideas on if it 
+possible to access the HDMI-1 port, or what the DP-1 port is would be 
+appreciated. Is there any way they have encoded two monitors in a single 
+cable?
 
-Hello everyone,
+As usual, Dell/Alienware support is of no value unless one is running 
+windows:-(
 
-I am Vignesh S, from India. I am interested in working on Nouveau Codegen
-compiler (On Instruction scheduling polices). Kindly let me and other
-applicants know, where to start contributing and learn more about the
-project.
-
-Awaiting your reply,
-Vignesh S
-
---001a114fa47c8ae714052cba7711
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><span style=3D"font-size:12.8px">Hello everyone,</span><di=
-v style=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px">I am=
- Vignesh S, from India. I am interested in working on Nouveau Codegen compi=
-ler (On Instruction scheduling polices). Kindly let me and other applicants=
- know, where to start contributing and learn more about the project.=C2=A0<=
-/div><div style=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8=
-px">Awaiting your reply,</div><div style=3D"font-size:12.8px">Vignesh S</di=
-v></div>
-
---001a114fa47c8ae714052cba7711--
-
---===============1179300239==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1179300239==--
+Thanks
+Don
+-- 
+To unsubscribe, e-mail: opensuse+unsubscribe@opensuse.org
+To contact the owner, e-mail: opensuse+owner@opensuse.org
