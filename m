@@ -1,41 +1,50 @@
-From: don fisher <hdf3@comcast.net>
-Subject: xrandr configuration questions
-Date: Sat, 27 Feb 2016 15:27:49 -0700
-Message-ID: <56D222E5.7010405@comcast.net>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: xrandr configuration questions
+Date: Sat, 27 Feb 2016 17:39:52 -0500
+Message-ID: <CAKb7Uvj9KS1c7tpPeK6fzUORy_O3qD7tVRYY7H_=goXiuuAMJg@mail.gmail.com>
+References: <56D222E5.7010405@comcast.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <opensuse+bounces-182264-suse-linux-e=m.gmane.org@opensuse.org>
-List-Post: <mailto:opensuse@opensuse.org>
-List-Help: <mailto:opensuse+help@opensuse.org>
-List-Subscribe: <mailto:opensuse+subscribe@opensuse.org>
-List-Unsubscribe: <mailto:opensuse+unsubscribe@opensuse.org>
-List-Owner: <mailto:opensuse+owner@opensuse.org>
-List-Archive: <http://lists.opensuse.org/opensuse/>
-To: opensuse@opensuse.org, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <56D222E5.7010405-Wuw85uim5zDR7s880joybQ@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: don fisher <hdf3-Wuw85uim5zDR7s880joybQ@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, opensuse-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-When I execute xrandr I receive, omitting the details of resolution 
-options,
-Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 8192 x 8192 
-LVDS-1 unknown connection (normal left inverted right x axis y axis)
-DP-1 disconnected (normal left inverted right x axis y axis)
-HDMI-1 disconnected (normal left inverted right x axis y axis)
-HDMI-2 connected 1920x1080+0+0 (normal left inverted right x axis y 
-axis) 698mm x 392mm
-
-I am running on a Alienware 18 laptop that as far as I know has an 
-internal 1920 x 1080 screen and only has one HDMI output port. I would 
-like to run a pair of external monitors, dual head. Any ideas on if it 
-possible to access the HDMI-1 port, or what the DP-1 port is would be 
-appreciated. Is there any way they have encoded two monitors in a single 
-cable?
-
-As usual, Dell/Alienware support is of no value unless one is running 
-windows:-(
-
-Thanks
-Don
--- 
-To unsubscribe, e-mail: opensuse+unsubscribe@opensuse.org
-To contact the owner, e-mail: opensuse+owner@opensuse.org
+T24gU2F0LCBGZWIgMjcsIDIwMTYgYXQgNToyNyBQTSwgZG9uIGZpc2hlciA8aGRmM0Bjb21jYXN0
+Lm5ldD4gd3JvdGU6Cj4gV2hlbiBJIGV4ZWN1dGUgeHJhbmRyIEkgcmVjZWl2ZSwgb21pdHRpbmcg
+dGhlIGRldGFpbHMgb2YgcmVzb2x1dGlvbiBvcHRpb25zLAo+IFNjcmVlbiAwOiBtaW5pbXVtIDMy
+MCB4IDIwMCwgY3VycmVudCAxOTIwIHggMTA4MCwgbWF4aW11bSA4MTkyIHggODE5MiBMVkRTLTEK
+PiB1bmtub3duIGNvbm5lY3Rpb24gKG5vcm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5
+IGF4aXMpCj4gRFAtMSBkaXNjb25uZWN0ZWQgKG5vcm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHgg
+YXhpcyB5IGF4aXMpCj4gSERNSS0xIGRpc2Nvbm5lY3RlZCAobm9ybWFsIGxlZnQgaW52ZXJ0ZWQg
+cmlnaHQgeCBheGlzIHkgYXhpcykKPiBIRE1JLTIgY29ubmVjdGVkIDE5MjB4MTA4MCswKzAgKG5v
+cm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpCj4gNjk4bW0geCAzOTJtbQo+
+Cj4gSSBhbSBydW5uaW5nIG9uIGEgQWxpZW53YXJlIDE4IGxhcHRvcCB0aGF0IGFzIGZhciBhcyBJ
+IGtub3cgaGFzIGFuIGludGVybmFsCj4gMTkyMCB4IDEwODAgc2NyZWVuIGFuZCBvbmx5IGhhcyBv
+bmUgSERNSSBvdXRwdXQgcG9ydC4gSSB3b3VsZCBsaWtlIHRvIHJ1biBhCj4gcGFpciBvZiBleHRl
+cm5hbCBtb25pdG9ycywgZHVhbCBoZWFkLiBBbnkgaWRlYXMgb24gaWYgaXQgcG9zc2libGUgdG8g
+YWNjZXNzCj4gdGhlIEhETUktMSBwb3J0LCBvciB3aGF0IHRoZSBEUC0xIHBvcnQgaXMgd291bGQg
+YmUgYXBwcmVjaWF0ZWQuIElzIHRoZXJlIGFueQo+IHdheSB0aGV5IGhhdmUgZW5jb2RlZCB0d28g
+bW9uaXRvcnMgaW4gYSBzaW5nbGUgY2FibGU/Cj4KPiBBcyB1c3VhbCwgRGVsbC9BbGllbndhcmUg
+c3VwcG9ydCBpcyBvZiBubyB2YWx1ZSB1bmxlc3Mgb25lIGlzIHJ1bm5pbmcKPiB3aW5kb3dzOi0o
+CgpNYW55IHRpbWVzIHN1Y2ggcGhhbnRvbSBwb3J0cyBhcmUgYXZhaWxhYmxlIGluIHRoZSBkb2Nr
+IGNvbm5lY3Rvci4gT3IKdGhleSBjb3VsZCBoYXZlIGp1c3QgYmVlbiBsZWZ0IGluIHRoZSBjb25m
+aWd1cmF0aW9uIGJ1dCBub3QgYWN0dWFsbHkKcGlubmVkIG91dC4gRFAgPSBEaXNwbGF5UG9ydC4g
+SW4gdGhlb3J5IHlvdSBjYW4gZGFpc3ktY2hhaW4gbXVsdGlwbGUKRFAgZGlzcGxheXMgaWYgdGhl
+eSBhbGwgc3VwcG9ydCBEUCAxLjIgW2Fsb25nIHdpdGggdGhlIEdQVV0gdXNpbmcKc29tZXRoaW5n
+IGtub3duIGFzICJNU1QiLCBidXQgdW5mb3J0dW5hdGVseSBub3V2ZWF1IGRvZXMgbm90IHN1cHBv
+cnQKdGhpcyBhdCB0aGlzIHRpbWUuIEhETUkgaGFzIG5vIGVxdWl2YWxlbnQgY29uY2VwdC4KCiAg
+LWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
