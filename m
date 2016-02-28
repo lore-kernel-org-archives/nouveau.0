@@ -1,13 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: xrandr configuration questions
-Date: Sat, 27 Feb 2016 17:39:52 -0500
-Message-ID: <CAKb7Uvj9KS1c7tpPeK6fzUORy_O3qD7tVRYY7H_=goXiuuAMJg@mail.gmail.com>
-References: <56D222E5.7010405@comcast.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94324] New: Nouveau driver breaks thaw (resume form
+ hibernation)
+Date: Sun, 28 Feb 2016 11:28:01 +0000
+Message-ID: <bug-94324-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0984237166=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56D222E5.7010405-Wuw85uim5zDR7s880joybQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,34 +15,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: don fisher <hdf3-Wuw85uim5zDR7s880joybQ@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, opensuse-stAJ6ESoqRxg9hUCZPvPmw@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBGZWIgMjcsIDIwMTYgYXQgNToyNyBQTSwgZG9uIGZpc2hlciA8aGRmM0Bjb21jYXN0
-Lm5ldD4gd3JvdGU6Cj4gV2hlbiBJIGV4ZWN1dGUgeHJhbmRyIEkgcmVjZWl2ZSwgb21pdHRpbmcg
-dGhlIGRldGFpbHMgb2YgcmVzb2x1dGlvbiBvcHRpb25zLAo+IFNjcmVlbiAwOiBtaW5pbXVtIDMy
-MCB4IDIwMCwgY3VycmVudCAxOTIwIHggMTA4MCwgbWF4aW11bSA4MTkyIHggODE5MiBMVkRTLTEK
-PiB1bmtub3duIGNvbm5lY3Rpb24gKG5vcm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5
-IGF4aXMpCj4gRFAtMSBkaXNjb25uZWN0ZWQgKG5vcm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHgg
-YXhpcyB5IGF4aXMpCj4gSERNSS0xIGRpc2Nvbm5lY3RlZCAobm9ybWFsIGxlZnQgaW52ZXJ0ZWQg
-cmlnaHQgeCBheGlzIHkgYXhpcykKPiBIRE1JLTIgY29ubmVjdGVkIDE5MjB4MTA4MCswKzAgKG5v
-cm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpCj4gNjk4bW0geCAzOTJtbQo+
-Cj4gSSBhbSBydW5uaW5nIG9uIGEgQWxpZW53YXJlIDE4IGxhcHRvcCB0aGF0IGFzIGZhciBhcyBJ
-IGtub3cgaGFzIGFuIGludGVybmFsCj4gMTkyMCB4IDEwODAgc2NyZWVuIGFuZCBvbmx5IGhhcyBv
-bmUgSERNSSBvdXRwdXQgcG9ydC4gSSB3b3VsZCBsaWtlIHRvIHJ1biBhCj4gcGFpciBvZiBleHRl
-cm5hbCBtb25pdG9ycywgZHVhbCBoZWFkLiBBbnkgaWRlYXMgb24gaWYgaXQgcG9zc2libGUgdG8g
-YWNjZXNzCj4gdGhlIEhETUktMSBwb3J0LCBvciB3aGF0IHRoZSBEUC0xIHBvcnQgaXMgd291bGQg
-YmUgYXBwcmVjaWF0ZWQuIElzIHRoZXJlIGFueQo+IHdheSB0aGV5IGhhdmUgZW5jb2RlZCB0d28g
-bW9uaXRvcnMgaW4gYSBzaW5nbGUgY2FibGU/Cj4KPiBBcyB1c3VhbCwgRGVsbC9BbGllbndhcmUg
-c3VwcG9ydCBpcyBvZiBubyB2YWx1ZSB1bmxlc3Mgb25lIGlzIHJ1bm5pbmcKPiB3aW5kb3dzOi0o
-CgpNYW55IHRpbWVzIHN1Y2ggcGhhbnRvbSBwb3J0cyBhcmUgYXZhaWxhYmxlIGluIHRoZSBkb2Nr
-IGNvbm5lY3Rvci4gT3IKdGhleSBjb3VsZCBoYXZlIGp1c3QgYmVlbiBsZWZ0IGluIHRoZSBjb25m
-aWd1cmF0aW9uIGJ1dCBub3QgYWN0dWFsbHkKcGlubmVkIG91dC4gRFAgPSBEaXNwbGF5UG9ydC4g
-SW4gdGhlb3J5IHlvdSBjYW4gZGFpc3ktY2hhaW4gbXVsdGlwbGUKRFAgZGlzcGxheXMgaWYgdGhl
-eSBhbGwgc3VwcG9ydCBEUCAxLjIgW2Fsb25nIHdpdGggdGhlIEdQVV0gdXNpbmcKc29tZXRoaW5n
-IGtub3duIGFzICJNU1QiLCBidXQgdW5mb3J0dW5hdGVseSBub3V2ZWF1IGRvZXMgbm90IHN1cHBv
-cnQKdGhpcyBhdCB0aGlzIHRpbWUuIEhETUkgaGFzIG5vIGVxdWl2YWxlbnQgY29uY2VwdC4KCiAg
-LWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0984237166==
+Content-Type: multipart/alternative; boundary="14566588811.8eE7ea6.23458";
+ charset="UTF-8"
+
+
+--14566588811.8eE7ea6.23458
+Date: Sun, 28 Feb 2016 11:28:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=94324
+
+            Bug ID: 94324
+           Summary: Nouveau driver breaks thaw (resume form hibernation)
+           Product: xorg
+           Version: 7.7 (2012.06)
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: yanpaso-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 122014
+  --> https://bugs.freedesktop.org/attachment.cgi?id=122014&action=edit
+log dump
+
+I'm using latest Fedora 23 (tested also with debian 8.3 and manjaro 15.12). I
+can't resume from hibernation. When O load I see black screen. According to
+logs it seems to be nouveau's problem
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14566588811.8eE7ea6.23458
+Date: Sun, 28 Feb 2016 11:28:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau driver breaks thaw (resume form hibernation)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94324">94324</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau driver breaks thaw (resume form hibernation)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>7.7 (2012.06)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>yanpaso&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=122014" name="attach_122014" title="log dump">attachment 122014</a> <a href="attachment.cgi?id=122014&amp;action=edit" title="log dump">[details]</a></span>
+log dump
+
+I'm using latest Fedora 23 (tested also with debian 8.3 and manjaro 15.12). I
+can't resume from hibernation. When O load I see black screen. According to
+logs it seems to be nouveau's problem</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14566588811.8eE7ea6.23458--
+
+--===============0984237166==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0984237166==--
