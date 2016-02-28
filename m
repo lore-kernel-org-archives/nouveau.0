@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94324] New: Nouveau driver breaks thaw (resume form
- hibernation)
-Date: Sun, 28 Feb 2016 11:28:01 +0000
-Message-ID: <bug-94324-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94324] Nouveau driver breaks thaw (resume form
+	hibernation)
+Date: Sun, 28 Feb 2016 11:51:07 +0000
+Message-ID: <bug-94324-8800-JPN0lImVQU@http.bugs.freedesktop.org/>
+References: <bug-94324-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0984237166=="
+Content-Type: multipart/mixed; boundary="===============1317270826=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-94324-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,45 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0984237166==
-Content-Type: multipart/alternative; boundary="14566588811.8eE7ea6.23458";
+--===============1317270826==
+Content-Type: multipart/alternative; boundary="14566602670.ECFAf.29255";
  charset="UTF-8"
 
 
---14566588811.8eE7ea6.23458
-Date: Sun, 28 Feb 2016 11:28:01 +0000
+--14566602670.ECFAf.29255
+Date: Sun, 28 Feb 2016 11:51:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=94324
 
-            Bug ID: 94324
-           Summary: Nouveau driver breaks thaw (resume form hibernation)
-           Product: xorg
-           Version: 7.7 (2012.06)
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: yanpaso-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Yan Pashkovsky <yanpaso-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+My graphics card is Palit GTX 460. Installing nvidia proprietary drivers solves
+the problem.
 
-Created attachment 122014
-  --> https://bugs.freedesktop.org/attachment.cgi?id=122014&action=edit
-log dump
+uname -a
+Linux localhost.localdomain 4.3.5-300.fc23.x86_64 #1 SMP Mon Feb 1 03:18:41 UTC
+2016 x86_64 x86_64 x86_64 GNU/Linux
 
-I'm using latest Fedora 23 (tested also with debian 8.3 and manjaro 15.12). I
-can't resume from hibernation. When O load I see black screen. According to
-logs it seems to be nouveau's problem
+xorg-x11-drv-nouveau version 1.0.12-3
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14566588811.8eE7ea6.23458
-Date: Sun, 28 Feb 2016 11:28:01 +0000
+--14566602670.ECFAf.29255
+Date: Sun, 28 Feb 2016 11:51:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -65,95 +55,27 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver breaks thaw (resume form hibernation)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94324">94324</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Nouveau driver breaks thaw (resume form hibernation)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>7.7 (2012.06)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>yanpaso&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=122014" name="attach_122014" title="log dump">attachment 122014</a> <a href="attachment.cgi?id=122014&amp;action=edit" title="log dump">[details]</a></span>
-log dump
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau driver breaks thaw (resume form hibernation)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94324#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau driver breaks thaw (resume form hibernation)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94324">bug 94324</a>
+              from <span class="vcard"><a class="email" href="mailto:yanpaso&#64;gmail.com" title="Yan Pashkovsky &lt;yanpaso&#64;gmail.com&gt;"> <span class="fn">Yan Pashkovsky</span></a>
+</span></b>
+        <pre>My graphics card is Palit GTX 460. Installing nvidia proprietary drivers solves
+the problem.
 
-I'm using latest Fedora 23 (tested also with debian 8.3 and manjaro 15.12). I
-can't resume from hibernation. When O load I see black screen. According to
-logs it seems to be nouveau's problem</pre>
+uname -a
+Linux localhost.localdomain 4.3.5-300.fc23.x86_64 #1 SMP Mon Feb 1 03:18:41 UTC
+2016 x86_64 x86_64 x86_64 GNU/Linux
+
+xorg-x11-drv-nouveau version 1.0.12-3</pre>
         </div>
       </p>
       <hr>
@@ -164,9 +86,9 @@ logs it seems to be nouveau's problem</pre>
       </ul>
     </body>
 </html>
---14566588811.8eE7ea6.23458--
+--14566602670.ECFAf.29255--
 
---===============0984237166==
+--===============1317270826==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -176,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0984237166==--
+--===============1317270826==--
