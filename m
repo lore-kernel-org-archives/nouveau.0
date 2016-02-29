@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94342] Nvidia G96GLM 3840x2160@30 not functional
 	with nouveau
-Date: Mon, 29 Feb 2016 22:53:22 +0000
-Message-ID: <bug-94342-8800-xlq5LGF4C7@http.bugs.freedesktop.org/>
+Date: Mon, 29 Feb 2016 22:53:53 +0000
+Message-ID: <bug-94342-8800-lT0mKKwpHr@http.bugs.freedesktop.org/>
 References: <bug-94342-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0863714405=="
+Content-Type: multipart/mixed; boundary="===============1021471527=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94342-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0863714405==
-Content-Type: multipart/alternative; boundary="14567864021.C5b43E9a2.20255";
+--===============1021471527==
+Content-Type: multipart/alternative; boundary="14567864331.8C3D7f1.20342";
  charset="UTF-8"
 
 
---14567864021.C5b43E9a2.20255
-Date: Mon, 29 Feb 2016 22:53:22 +0000
+--14567864331.8C3D7f1.20342
+Date: Mon, 29 Feb 2016 22:53:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=94342
 
---- Comment #1 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 122044
-  --> https://bugs.freedesktop.org/attachment.cgi?id=122044&action=edit
-Xorg.0.log
-
-Linux AmiloXi3650 4.5.0-rc4-ARCH #4 SMP PREEMPT Sat Feb 20 22:27:16 CET 2016
-x86_64 GNU/Linux
-X.Org X Server 1.18.1
-Release Date: 2016-02-08
+--- Comment #2 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 122045
+  --> https://bugs.freedesktop.org/attachment.cgi?id=122045&action=edit
+journal
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14567864021.C5b43E9a2.20255
-Date: Mon, 29 Feb 2016 22:53:22 +0000
+--14567864331.8C3D7f1.20342
+Date: Mon, 29 Feb 2016 22:53:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -61,20 +56,15 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nvidia G96GLM 3840x2160&#64;30 not functional with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94342#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94342#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nvidia G96GLM 3840x2160&#64;30 not functional with nouveau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=94342">bug 94342</a>
               from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=122044" name="attach_122044" title="Xorg.0.log">attachment 122044</a> <a href="attachment.cgi?id=122044&amp;action=edit" title="Xorg.0.log">[details]</a></span>
-Xorg.0.log
-
-Linux AmiloXi3650 4.5.0-rc4-ARCH #4 SMP PREEMPT Sat Feb 20 22:27:16 CET 2016
-x86_64 GNU/Linux
-X.Org X Server 1.18.1
-Release Date: 2016-02-08</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=122045" name="attach_122045" title="journal">attachment 122045</a> <a href="attachment.cgi?id=122045&amp;action=edit" title="journal">[details]</a></span>
+journal</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +75,9 @@ Release Date: 2016-02-08</pre>
       </ul>
     </body>
 </html>
---14567864021.C5b43E9a2.20255--
+--14567864331.8C3D7f1.20342--
 
---===============0863714405==
+--===============1021471527==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0863714405==--
+--===============1021471527==--
