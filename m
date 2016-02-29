@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
  GT]: HDMI monitor stays black after s2ram
-Date: Mon, 29 Feb 2016 21:56:19 +0000
-Message-ID: <bug-93887-8800-nuUdGnqxjP@http.bugs.freedesktop.org/>
+Date: Mon, 29 Feb 2016 22:01:20 +0000
+Message-ID: <bug-93887-8800-ihYdi3g6JJ@http.bugs.freedesktop.org/>
 References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2013066721=="
+Content-Type: multipart/mixed; boundary="===============1411450381=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2013066721==
-Content-Type: multipart/alternative; boundary="14567829790.2fb8.8238";
+--===============1411450381==
+Content-Type: multipart/alternative; boundary="14567832800.8eeC.9935";
  charset="UTF-8"
 
 
---14567829790.2fb8.8238
-Date: Mon, 29 Feb 2016 21:56:19 +0000
+--14567832800.8eeC.9935
+Date: Mon, 29 Feb 2016 22:01:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93887
 
---- Comment #14 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 122041
-  --> https://bugs.freedesktop.org/attachment.cgi?id=122041&action=edit
-Celsius H265: journalctl  of the day (many crashes)
+--- Comment #15 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 122042
+  --> https://bugs.freedesktop.org/attachment.cgi?id=122042&action=edit
+Celsius H265: s2ram - journalctl  with KDE (crash)
 
-now; that is the right file.
+It is strange but almost any desktop environment will crash after s2ram on the
+Celsius H265 (be it Xfce or KDE).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14567829790.2fb8.8238
-Date: Mon, 29 Feb 2016 21:56:19 +0000
+--14567832800.8eeC.9935
+Date: Mon, 29 Feb 2016 22:01:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -58,17 +59,18 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c14">Comment # 14</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
               from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=122041" name="attach_122041" title="Celsius H265: journalctl  of the day (many crashes)">attachment 122041</a> <a href="attachment.cgi?id=122041&amp;action=edit" title="Celsius H265: journalctl  of the day (many crashes)">[details]</a></span>
-Celsius H265: journalctl  of the day (many crashes)
+        <pre>Created <span class=""><a href="attachment.cgi?id=122042" name="attach_122042" title="Celsius H265: s2ram - journalctl  with KDE (crash)">attachment 122042</a> <a href="attachment.cgi?id=122042&amp;action=edit" title="Celsius H265: s2ram - journalctl  with KDE (crash)">[details]</a></span>
+Celsius H265: s2ram - journalctl  with KDE (crash)
 
-now; that is the right file.</pre>
+It is strange but almost any desktop environment will crash after s2ram on the
+Celsius H265 (be it Xfce or KDE).</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +81,9 @@ now; that is the right file.</pre>
       </ul>
     </body>
 </html>
---14567829790.2fb8.8238--
+--14567832800.8eeC.9935--
 
---===============2013066721==
+--===============1411450381==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2013066721==--
+--===============1411450381==--
