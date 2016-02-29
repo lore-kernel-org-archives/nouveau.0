@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
  GT]: HDMI monitor stays black after s2ram
-Date: Mon, 29 Feb 2016 21:51:18 +0000
-Message-ID: <bug-93887-8800-0Oq8JsUk4V@http.bugs.freedesktop.org/>
+Date: Mon, 29 Feb 2016 21:54:06 +0000
+Message-ID: <bug-93887-8800-yhdj4kKPn7@http.bugs.freedesktop.org/>
 References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1452056530=="
+Content-Type: multipart/mixed; boundary="===============1278626954=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1452056530==
-Content-Type: multipart/alternative; boundary="14567826780.Edd3.7781";
+--===============1278626954==
+Content-Type: multipart/alternative; boundary="14567828462.D3b8.8351";
  charset="UTF-8"
 
 
---14567826780.Edd3.7781
-Date: Mon, 29 Feb 2016 21:51:18 +0000
+--14567828462.D3b8.8351
+Date: Mon, 29 Feb 2016 21:54:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93887
 
---- Comment #12 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 122039
-  --> https://bugs.freedesktop.org/attachment.cgi?id=122039&action=edit
-Celsius H265: Xorg.0.log of s2ram (crashes)
+--- Comment #13 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 122040
+  --> https://bugs.freedesktop.org/attachment.cgi?id=122040&action=edit
+Celsius H265: journalctl  of the day (many crashes)
 
-  Unfortunately with the Celsius H265 and nouveau there seems to be another
-issue as well: Most often the notebook does not awake any more from s2ram; or
-to tell it more specifically it awakes first the screen content being shown
-again. However then immediately afterwards the screen turns black while num
-lock still works but nothing else.
+Many journals of the day (first journals begin with the Amilo Xi3650, but then
+all s2ram journals are from the Celsius H265 with all but one s2ram leading to
+a crash).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14567826780.Edd3.7781
-Date: Mon, 29 Feb 2016 21:51:18 +0000
+--14567828462.D3b8.8351
+Date: Mon, 29 Feb 2016 21:54:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -62,21 +60,19 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
               from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=122039" name="attach_122039" title="Celsius H265: Xorg.0.log of s2ram (crashes)">attachment 122039</a> <a href="attachment.cgi?id=122039&amp;action=edit" title="Celsius H265: Xorg.0.log of s2ram (crashes)">[details]</a></span>
-Celsius H265: Xorg.0.log of s2ram (crashes)
+        <pre>Created <span class=""><a href="attachment.cgi?id=122040" name="attach_122040" title="Celsius H265: journalctl  of the day (many crashes)">attachment 122040</a> <a href="attachment.cgi?id=122040&amp;action=edit" title="Celsius H265: journalctl  of the day (many crashes)">[details]</a></span>
+Celsius H265: journalctl  of the day (many crashes)
 
-  Unfortunately with the Celsius H265 and nouveau there seems to be another
-issue as well: Most often the notebook does not awake any more from s2ram; or
-to tell it more specifically it awakes first the screen content being shown
-again. However then immediately afterwards the screen turns black while num
-lock still works but nothing else.</pre>
+Many journals of the day (first journals begin with the Amilo Xi3650, but then
+all s2ram journals are from the Celsius H265 with all but one s2ram leading to
+a crash).</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +83,9 @@ lock still works but nothing else.</pre>
       </ul>
     </body>
 </html>
---14567826780.Edd3.7781--
+--14567828462.D3b8.8351--
 
---===============1452056530==
+--===============1278626954==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1452056530==--
+--===============1278626954==--
