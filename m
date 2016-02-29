@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 86539] [NVAC] Trying to register nv_backlight after
 	NV96 did it
-Date: Mon, 29 Feb 2016 00:28:00 +0000
-Message-ID: <bug-86539-8800-eGHzFE36Pj@http.bugs.freedesktop.org/>
+Date: Mon, 29 Feb 2016 07:39:04 +0000
+Message-ID: <bug-86539-8800-1ZupH2UDyB@http.bugs.freedesktop.org/>
 References: <bug-86539-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1765194732=="
+Content-Type: multipart/mixed; boundary="===============1552705064=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-86539-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1765194732==
-Content-Type: multipart/alternative; boundary="14567056800.d8C13eee.9809";
+--===============1552705064==
+Content-Type: multipart/alternative; boundary="14567315450.0daCEaA2.8968";
  charset="UTF-8"
 
 
---14567056800.d8C13eee.9809
-Date: Mon, 29 Feb 2016 00:28:00 +0000
+--14567315450.0daCEaA2.8968
+Date: Mon, 29 Feb 2016 07:39:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=86539
 
---- Comment #10 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Created attachment 122019
-  --> https://bugs.freedesktop.org/attachment.cgi?id=122019&action=edit
-Hack for registering multiple backlight interfaces
+--- Comment #11 from Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
+Hi Pierre,
 
-I hacked a little patch to add a counter to "nv_backlight", so that multiple
-backlight interfaces won't conflict on registering the same file. If the
-counter is 0, no number is added to "nv_backlight" to keep the current
-behaviour.
+Thanks for working on this. I'm not sure what the nbs suffix stands for, maybe
+rename it to
+bl_interface_nr ?
+
+Chances are that nv50_backlight_init() may run twice at the same time if 2
+cards are being probed simultaneously. So I would make bl_interface_nr an
+atomic_t and use:
+
+int nr = atomic_inc_return(&bl_interface_nr) - 1;
+
+to increment it and get the _NEW_ value. Since this gives you the new value,
+you should substract 1 as is done above.
+
+Regards,
+
+Hans
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14567056800.d8C13eee.9809
-Date: Mon, 29 Feb 2016 00:28:00 +0000
+--14567315450.0daCEaA2.8968
+Date: Mon, 29 Feb 2016 07:39:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -61,20 +71,31 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVAC] Trying to register nv_backlight after NV96 did it"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86539#c10">Comment # 10</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86539#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVAC] Trying to register nv_backlight after NV96 did it"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=86539">bug 86539</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+              from <span class="vcard"><a class="email" href="mailto:jwrdegoede&#64;fedoraproject.org" title="Hans de Goede &lt;jwrdegoede&#64;fedoraproject.org&gt;"> <span class="fn">Hans de Goede</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=122019" name="attach_122019" title="Hack for registering multiple backlight interfaces">attachment 122019</a> <a href="attachment.cgi?id=122019&amp;action=edit" title="Hack for registering multiple backlight interfaces">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=86539&amp;attachment=122019'>[review]</a>
-Hack for registering multiple backlight interfaces
+        <pre>Hi Pierre,
 
-I hacked a little patch to add a counter to &quot;nv_backlight&quot;, so that multiple
-backlight interfaces won't conflict on registering the same file. If the
-counter is 0, no number is added to &quot;nv_backlight&quot; to keep the current
-behaviour.</pre>
+Thanks for working on this. I'm not sure what the nbs suffix stands for, maybe
+rename it to
+bl_interface_nr ?
+
+Chances are that nv50_backlight_init() may run twice at the same time if 2
+cards are being probed simultaneously. So I would make bl_interface_nr an
+atomic_t and use:
+
+int nr = atomic_inc_return(&amp;bl_interface_nr) - 1;
+
+to increment it and get the _NEW_ value. Since this gives you the new value,
+you should substract 1 as is done above.
+
+Regards,
+
+Hans</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +106,9 @@ behaviour.</pre>
       </ul>
     </body>
 </html>
---14567056800.d8C13eee.9809--
+--14567315450.0daCEaA2.8968--
 
---===============1765194732==
+--===============1552705064==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1765194732==--
+--===============1552705064==--
