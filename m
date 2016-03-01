@@ -1,15 +1,14 @@
 From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH 4/4] pmu/fuc: movw is somewhat weird on gk208,
- use mov instead
-Date: Tue, 1 Mar 2016 23:36:12 +0200
-Message-ID: <56D60B4C.3010108@free.fr>
+Subject: Re: [PATCH 1/4] pmu/fuc: fix imm32 for gk208+
+Date: Tue, 1 Mar 2016 23:38:25 +0200
+Message-ID: <56D60BD1.8070800@free.fr>
 References: <1456499974-1950-1-git-send-email-nouveau@karolherbst.de>
- <1456499974-1950-5-git-send-email-nouveau@karolherbst.de>
+ <1456499974-1950-2-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1456499974-1950-5-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <1456499974-1950-2-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,26 +21,15 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMjYvMDIvMTYgMTc6MTksIEthcm9sIEhlcmJzdCB3cm90ZToKPiBjdXJyZW50bHkgdGhlcmUg
-aXMgbm8gY2hhbmdlLCBiZWNhdXNlIG5vYm9keSB1c2VzIHRob3NlIG1hY3JvcyB5ZXQsIGJ1dCB0
-aGV5Cj4gc2hvdWxkbid0IHN0YXkgYnJva2VuCj4KPiBTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJi
-c3QgPG5vdXZlYXVAa2Fyb2xoZXJic3QuZGU+Cj4gLS0tCj4gICBkcm0vbm91dmVhdS9udmttL3N1
-YmRldi9wbXUvZnVjL21hY3Jvcy5mdWMgfCA0ICsrLS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAyIGlu
-c2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUv
-bnZrbS9zdWJkZXYvcG11L2Z1Yy9tYWNyb3MuZnVjIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-cG11L2Z1Yy9tYWNyb3MuZnVjCj4gaW5kZXggMGQ1Y2JlYi4uYmI1OWViNCAxMDA2NDQKPiAtLS0g
-YS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZnVjL21hY3Jvcy5mdWMKPiArKysgYi9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9wbXUvZnVjL21hY3Jvcy5mdWMKPiBAQCAtMjUyLDEyICsyNTIs
-MTIgQEAKPiAgICNlbmRpZgo+ICAgCj4gICAjZGVmaW5lIHN0KHNpemUsIGFkZHIsIHJlZykgLyoK
-PiAtKi8JbW92dyAkcjAgYWRkciAvKgo+ICsqLwltb3YgJHIwIGFkZHIgLyoKCkZpcnN0IG9mIGFs
-bCwgSSBrbm93IGl0IGlzIGFubm95aW5nLCBidXQgd2UgKm5lZWQqIHRvIHVuZGVyc3RhbmQgZXhh
-Y3RseSAKd2hhdCBtb3Z3IGlzIG5vdyBkb2luZy4KClNlY29uZGx5LCBJIHNlZW0gdG8gcmVtZW1i
-ZXIgdGhhdCBhIDMyIGJpdCBtb3Ygd2FzIG5vdCBhZGRlZCB1bnRpbCBmdWMzIApvciBzb21ldGhp
-bmcuIEhhdmUgeW91IHRyaWVkIGFzc2VtYmxpbmcgdGhpcyBjb2RlIG9uIG9sZGVyIGZ1YyB2ZXJz
-aW9ucz8gClByZXR0eSBzdXJlIGl0IHdpbGwgZmFpbC4KCj4gICAqLwlzdCBzaXplIERbJHIwXSBy
-ZWcgLyoKPiAgICovCWNsZWFyIGIzMiAkcjAKPiAgIAo+ICAgI2RlZmluZSBsZChzaXplLCByZWcs
-IGFkZHIpIC8qCj4gLSovCW1vdncgJHIwIGFkZHIgLyoKPiArKi8JbW92ICRyMCBhZGRyIC8qCj4g
-ICAqLwlsZCBzaXplIHJlZyBEWyRyMF0gLyoKPiAgICovCWNsZWFyIGIzMiAkcjAKPiAgIAoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+CgpPbiAyNi8wMi8xNiAxNzoxOSwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+IFNpZ25lZC1vZmYtYnk6
+IEthcm9sIEhlcmJzdCA8bm91dmVhdUBrYXJvbGhlcmJzdC5kZT4KPgo+IGRpZmYgLS1naXQgYS9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZnVjL21hY3Jvcy5mdWMgYi9kcm0vbm91dmVhdS9u
+dmttL3N1YmRldi9wbXUvZnVjL21hY3Jvcy5mdWMKPiBpbmRleCA5NmZjOTg0Li4wZDVjYmViIDEw
+MDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9mdWMvbWFjcm9zLmZ1Ywo+
+ICsrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9mdWMvbWFjcm9zLmZ1Ywo+IEBAIC0x
+NjksNyArMTY5LDcgQEAKPiAgICovCS5iMzIgMCAvKgo+ICAgKi8JLnNraXAgNjQKPiAgIAo+IC0j
+aWYgTlZfUFBXUl9DSElQU0VUIDwgR0syMDgKPiArI2lmIE5WS01fUFBXUl9DSElQU0VUIDwgR0sy
+MDgKCk9vcHNpZSEgR29vZCBjYXRjaCEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
+b3V2ZWF1Cg==
