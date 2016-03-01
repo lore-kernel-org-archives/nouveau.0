@@ -1,16 +1,19 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH 3/4] pmu/fuc: call# seems to be broken on gk208
-Date: Wed, 2 Mar 2016 00:27:57 +0200
-Message-ID: <56D6176D.9080808@free.fr>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: Re: [PATCH 4/4] pmu/fuc: movw is somewhat weird on gk208,
+ use mov instead
+Date: Tue, 1 Mar 2016 23:42:29 +0100 (CET)
+Message-ID: <658926588.88940.1456872149933.JavaMail.open-xchange@www.ud-mail.de>
 References: <1456499974-1950-1-git-send-email-nouveau@karolherbst.de>
- <1456499974-1950-4-git-send-email-nouveau@karolherbst.de>
- <56D60D6B.7010808@free.fr>
- <CAKb7UvgKF9deHTrP-PuB6WL=02OjMmUoi4qksDiboSucRVYR8A@mail.gmail.com>
+ <1456499974-1950-5-git-send-email-nouveau@karolherbst.de>
+ <56D60B4C.3010108@free.fr>
+ <CAKb7UvgFX8YzWZi_HHn6U2pzwu7kFU=DQHoBgJowOjj=jgucOA@mail.gmail.com>
+ <56D60DB6.1030209@free.fr>
+Reply-To: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgKF9deHTrP-PuB6WL=02OjMmUoi4qksDiboSucRVYR8A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <56D60DB6.1030209-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +23,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAwMS8wMy8xNiAyMzo1MywgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gVHVlLCBNYXIgMSwg
-MjAxNiBhdCA0OjQ1IFBNLCBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BmcmVlLmZyPiB3cm90
-ZToKPj4gT24gMjYvMDIvMTYgMTc6MTksIEthcm9sIEhlcmJzdCB3cm90ZToKPj4+IGZvciBzb21l
-IHJlYXNvbnMgdGhlc2UgY2FsbHMgZG9uJ3QgcmVhbGx5IGdvIHRoZXJlIHdoZXJlIHRoZXkgc2hv
-dWxkIGdvCj4+PiBsZWFkaW5nIHRvIHZhcmlvdXMgY29ycnVwdGlvbnMgb2YgdGhlIFBNVSBzdGF0
-ZQo+Pgo+PiBJIGFtIGZpbmUgd2l0aCB0aGUgY2hhbmdlcyBidXQgbm90IGZpbmUgYXQgYWxsIHdp
-dGggdGhlIGNvbW1pdCBtZXNzYWdlLiBpdAo+PiB3b3VsZCBiZSBuaWNlIGlmIHlvdSBjb3VsZCB1
-bmRlcnN0YW5kIGEgYml0IG1vcmUgd2hhdCB0aGUgcHJvYmxlbSBpcyBpbnN0ZWFkCj4+IG9mIGp1
-c3Qgc2F5aW5nOiAiaXQgd29ya3Mgd2l0aCB0aGlzIGNoYW5nZSAoVE0pIgo+IFRoZSBwcm9ibGVt
-IGlzIHRoYXQgdGhlIGNhbGwgbWFjcm8gZXhpc3RzIGZvciBhIHJlYXNvbiwgYnV0IGl0IHdhcwo+
-IChhY2NpZGVudGFsbHkpIG5vdCBiZWluZyB1c2VkIGhlcmUuCgpBZ3JlZWQsIEkgY2hlY2tlZCBi
-ZWZvcmUgc2VuZGluZyB0aGlzIGVtYWlsLiBIZW5jZSB3aHkgSSB3YXMgZmluZSB3aXRoIAp0aGUg
-Y2hhbmdlIGJ1dCBub3QgdGhlIGNoYW5nZSBsb2cuCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbm91dmVhdQo=
+QWN0dWFsbHkgaXQgYXNzZW1ibGVzLCBiZWNhdXNlIGFkZHIgaXMgb25seSA8PTB4ZmZmZiBhbmQg
+ZW52eWFzIGlzIGZpbmUgd2l0aAp0aGF0LCBidXQgSSBjb3VsZCBkaWcgaW50byB0aGF0IGEgYml0
+IG1vcmUgYW5kIHNlZSB3aGF0IGlzIGV4YWN0bHkgd3Jvbmcgd2l0aAp0aGF0Cgo+IE1hcnRpbiBQ
+ZXJlcyA8bWFydGluLnBlcmVzQGZyZWUuZnI+IGhhdCBhbSAxLiBNw6RyeiAyMDE2IHVtIDIyOjQ2
+IGdlc2NocmllYmVuOgo+IAo+IAo+IE9uIDAxLzAzLzE2IDIzOjM4LCBJbGlhIE1pcmtpbiB3cm90
+ZToKPiA+IE9uIFR1ZSwgTWFyIDEsIDIwMTYgYXQgNDozNiBQTSwgTWFydGluIFBlcmVzIDxtYXJ0
+aW4ucGVyZXNAZnJlZS5mcj4gd3JvdGU6Cj4gPj4gT24gMjYvMDIvMTYgMTc6MTksIEthcm9sIEhl
+cmJzdCB3cm90ZToKPiA+Pj4gY3VycmVudGx5IHRoZXJlIGlzIG5vIGNoYW5nZSwgYmVjYXVzZSBu
+b2JvZHkgdXNlcyB0aG9zZSBtYWNyb3MgeWV0LCBidXQKPiA+Pj4gdGhleQo+ID4+PiBzaG91bGRu
+J3Qgc3RheSBicm9rZW4KPiA+Pj4KPiA+Pj4gU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxu
+b3V2ZWF1QGthcm9saGVyYnN0LmRlPgo+ID4+PiAtLS0KPiA+Pj4gICAgZHJtL25vdXZlYXUvbnZr
+bS9zdWJkZXYvcG11L2Z1Yy9tYWNyb3MuZnVjIHwgNCArKy0tCj4gPj4+ICAgIDEgZmlsZSBjaGFu
+Z2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4gPj4+Cj4gPj4+IGRpZmYgLS1n
+aXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZnVjL21hY3Jvcy5mdWMKPiA+Pj4gYi9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZnVjL21hY3Jvcy5mdWMKPiA+Pj4gaW5kZXggMGQ1
+Y2JlYi4uYmI1OWViNCAxMDA2NDQKPiA+Pj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
+cG11L2Z1Yy9tYWNyb3MuZnVjCj4gPj4+ICsrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3Bt
+dS9mdWMvbWFjcm9zLmZ1Ywo+ID4+PiBAQCAtMjUyLDEyICsyNTIsMTIgQEAKPiA+Pj4gICAgI2Vu
+ZGlmCj4gPj4+ICAgICAgI2RlZmluZSBzdChzaXplLCBhZGRyLCByZWcpIC8qCj4gPj4+IC0qLyAg
+ICAgbW92dyAkcjAgYWRkciAvKgo+ID4+PiArKi8gICAgIG1vdiAkcjAgYWRkciAvKgo+ID4+Cj4g
+Pj4gRmlyc3Qgb2YgYWxsLCBJIGtub3cgaXQgaXMgYW5ub3lpbmcsIGJ1dCB3ZSAqbmVlZCogdG8g
+dW5kZXJzdGFuZCBleGFjdGx5Cj4gPj4gd2hhdCBtb3Z3IGlzIG5vdyBkb2luZy4KPiA+Pgo+ID4+
+IFNlY29uZGx5LCBJIHNlZW0gdG8gcmVtZW1iZXIgdGhhdCBhIDMyIGJpdCBtb3Ygd2FzIG5vdCBh
+ZGRlZCB1bnRpbCBmdWMzIG9yCj4gPiBmdWM1Cj4gCj4gQWgsIHJpZ2h0LCBmdWMzIHdhcyBvbiB0
+aGUgR1QyeHguIFRoYW5rcyEKPiA+Cj4gPj4gc29tZXRoaW5nLiBIYXZlIHlvdSB0cmllZCBhc3Nl
+bWJsaW5nIHRoaXMgY29kZSBvbiBvbGRlciBmdWMgdmVyc2lvbnM/Cj4gPj4gUHJldHR5Cj4gPj4g
+c3VyZSBpdCB3aWxsIGZhaWwuCj4gPiBUaGF0J3Mgd2hhdCB0aGUgaW1tMzIoKSBtYWNybyBpcyBm
+b3IuCj4gCj4gUmlnaHQsIHdpdGggdGhlIG1vdiByZXBsYWNlIHdpdGggdGhlIGltbTMyIG1hY3Jv
+LCB0aGlzIHBhdGNoIHdpbGwgaGF2ZSAKPiBteSBSLWIhCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
