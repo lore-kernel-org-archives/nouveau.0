@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Dual monitors have same identifier
-Date: Tue, 1 Mar 2016 02:23:40 -0500
-Message-ID: <CAKb7UvjPQ0uwij4EfVXH_85igAEQxSiJP3M8y82pExqjG=vA8A@mail.gmail.com>
-References: <56D4EC77.10505@hewett.co.nz>
+From: Eric Biggers <ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [REGRESSION] nouveau: 30 second boot hang after commit
+	2b700825e
+Date: Tue, 1 Mar 2016 01:45:29 -0600
+Message-ID: <20160301074529.GA1870@zzz>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1313540723=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56D4EC77.10505-Xt07Ec+vcEZIJsTUW+i+0g@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,86 +17,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Peter Hewett <nouveau-Xt07Ec+vcEZIJsTUW+i+0g@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1313540723==
-Content-Type: multipart/alternative; boundary=001a1135ed32055afc052cf7a524
-
---001a1135ed32055afc052cf7a524
-Content-Type: text/plain; charset=UTF-8
-
-Update xorg to 1.18 - this issue should be fixed there, I think.
-Alternatively try plugging things into different ports.
-On Feb 29, 2016 9:32 PM, "Peter Hewett" <nouveau-Xt07Ec+vcEZIJsTUW+i+0g@public.gmane.org> wrote:
-
->
-> Hi
-> My desktop is Kubuntu 15.10 with GeForce GTX 970 and two monitors, using
-> the Nouveau drivers.
->
-> In System Settings > Display and Monitor, the two monitors are shown but
-> with the same identifier, DVI-0. This is giving some problems such as
-> random allocation of primary screen and no right click on one of the
-> monitors.
->
-> How can I get the monitors to have different identifiers?
->
-> Thank you
->
-> Peter
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
->
-
---001a1135ed32055afc052cf7a524
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr">Update xorg to 1.18 - this issue should be fixed there, I th=
-ink. Alternatively try plugging things into different ports.</p>
-<div class=3D"gmail_quote">On Feb 29, 2016 9:32 PM, &quot;Peter Hewett&quot=
-; &lt;<a href=3D"mailto:nouveau-Xt07Ec+vcEZIJsTUW+i+0g@public.gmane.org">nouveau-Xt07Ec+vcEZIJsTUW+i+0g@public.gmane.org</a>&gt; =
-wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
-Hi<br>
-My desktop is Kubuntu 15.10 with GeForce GTX 970 and two monitors, using<br=
->
-the Nouveau drivers.<br>
-<br>
-In System Settings &gt; Display and Monitor, the two monitors are shown but=
-<br>
-with the same identifier, DVI-0. This is giving some problems such as<br>
-random allocation of primary screen and no right click on one of the<br>
-monitors.<br>
-<br>
-How can I get the monitors to have different identifiers?<br>
-<br>
-Thank you<br>
-<br>
-Peter<br>
-_______________________________________________<br>
-Nouveau mailing list<br>
-<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org=
-org</a><br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau" rel=3D"n=
-oreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/listinfo=
-/nouveau</a><br>
-</blockquote></div>
-
---001a1135ed32055afc052cf7a524--
-
---===============1313540723==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1313540723==--
+SGVsbG8sCgpJIGFtIGVuY291bnRlcmluZyBhIDMwIHNlY29uZCBoYW5nIGR1cmluZyBib290LCBp
+biB0aGUgWG9yZyBwcm9jZXNzIGp1c3QgYmVmb3JlCnRoZSBkaXNwbGF5IG1hbmFnZXIgY29tZXMg
+dXAuICBJIGhhdmUgYmlzZWN0ZWQgdGhlIHByb2JsZW0gdG8gdGhlIGZvbGxvd2luZwpjb21taXQ6
+CgoJY29tbWl0IDJiNzAwODI1ZTdhNzcwMmZiODYyZWRiYTEyNjJjOTgwNDBkYzFiZjYKCUF1dGhv
+cjogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgoJRGF0ZTogICBUaHUgQXVnIDIwIDE0
+OjU0OjIyIDIwMTUgKzEwMDAKCgkgICAgZHJtL25vdXZlYXUvbWM6IG1vdmUgZGV2aWNlIGlycSBo
+YW5kbGluZyB0byBwbGF0Zm9ybS1zcGVjaWZpYyBjb2RlCgpUaGUgaGFuZyBvbmx5IG9jY3VycyB3
+aXRoIENPTkZJR19ERUJVR19TSElSUT15LCB3aGljaCBpcyB3aHkgSSBkaWRuJ3Qgbm90aWNlIGl0
+CnNvb25lciAoSSBkb24ndCB1c3VhbGx5IGNvbXBpbGUgbXkga2VybmVscyB3aXRoIHRoYXQgb3B0
+aW9uKS4KCkJhc2VkIG9uIHRoZSBsb2cgb3V0cHV0IHdpdGggZHJtX2RlYnVnPTB4M2YsIHRoZSBo
+YW5nIGlzIG9jY3VycmluZyBpbgpub3V2ZWF1X2dlbV9pb2N0bF9jcHVfcHJlcCgpLCB3aGVyZSB0
+aGVyZSBpcyBhIDMwIHNlY29uZCB0aW1lb3V0LgoKVGhpcyBpcyBvbiBhbiAiT3B0aW11cyIgbGFw
+dG9wIHdoaWNoIGhhcyBib3RoIGFuIEludGVsIGFuZCBhbiBOdmlkaWEgY2FyZC4gIEkKdW5kZXJz
+dGFuZCB0aGF0IHRoZSBOdmlkaWEgY2FyZCBpcyBiZWluZyBkaXNhYmxlZCBhdXRvbWF0aWNhbGx5
+LCBhbmQgb25seSB0aGUKSW50ZWwgb25lIGlzIHVzZWQ7IGJ1dCB0aGUgbm91dmVhdSBkcml2ZXIg
+b2J2aW91c2x5IHN0aWxsIGRvZXMgYSBmZXcgdGhpbmdzCmVpdGhlciB3YXkuICBUaGUgTnZpZGlh
+IGhhcmR3YXJlIGlzOiBOVklESUEgQ29ycG9yYXRpb24gR0sxMDdHTE0gW1F1YWRybyBLMTEwME1d
+CihyZXYgYTEpLgoKSSBkb24ndCBoYXZlIHRoZSBleHBlcnRpc2UgdG8gZnVsbHkgYXNzZXNzIHRo
+ZSBzdXNwZWN0IGNvbW1pdC4gIEFueSB0aG91Z2h0cyBhcwp0byB0aGUgcm9vdCBjYXVzZSBvZiB0
+aGlzIHByb2JsZW0/ICBJcyB0aGVyZSBhbnkgb3RoZXIgaW5mb3JtYXRpb24gSSBjYW4KcHJvdmlk
+ZT8KCkVyaWMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
