@@ -1,11 +1,14 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] hwmon: fix crash on non-PCI platforms
-Date: Wed, 2 Mar 2016 19:13:42 +0900
-Message-ID: <1456913622-29077-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92833] [NV117] nouveau E[ PFIFO][0000:01:00.0] read
+ fault at 0x0000011000 [UNSUPPORTED_KIND] from PBDMA0/HOST on channel
+ 0x007ed78000 [unknown]
+Date: Wed, 02 Mar 2016 11:38:12 +0000
+Message-ID: <bug-92833-8800-eEAHDsmibx@http.bugs.freedesktop.org/>
+References: <bug-92833-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0181894158=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-92833-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,25 +18,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UmVnaXN0cmF0aW9uIG9mIHRoZSBod21vbiBkZXZpY2Ugd2lsbCBmYWlsIG9uIG5vbi1QQ0kgc3lz
-dGVtcyBzaW5jZQpkZXYtPnBkZXYgaXMgTlVMTCBpbiB0aGF0IGNhc2UuIFVzZSB0aGUgbW9yZSBn
-ZW5lcmljIGRybV9kZXZpY2U6OmRldgptZW1iZXIgdGhhdCBwb2ludHMgdG8gdGhlIHNhbWUgYW5k
-IGlzIGFsd2F5cyBzZXQgbm8gbWF0dGVyIHRoZSBwbGF0Zm9ybS4KClNpZ25lZC1vZmYtYnk6IEFs
-ZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgotLS0KIGRybS9ub3V2ZWF1L25v
-dXZlYXVfaHdtb24uYyB8IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBk
-ZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYyBiL2Ry
-bS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYwppbmRleCAzZmExZTc4ZTRlY2UuLjY3ZWRkMmY1Yjcx
-YSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jCisrKyBiL2RybS9ub3V2
-ZWF1L25vdXZlYXVfaHdtb24uYwpAQCAtNjQwLDcgKzY0MCw3IEBAIG5vdXZlYXVfaHdtb25faW5p
-dChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQogCQlyZXR1cm4gLUVOT01FTTsKIAlod21vbi0+ZGV2
-ID0gZGV2OwogCi0JaHdtb25fZGV2ID0gaHdtb25fZGV2aWNlX3JlZ2lzdGVyKCZkZXYtPnBkZXYt
-PmRldik7CisJaHdtb25fZGV2ID0gaHdtb25fZGV2aWNlX3JlZ2lzdGVyKGRldi0+ZGV2KTsKIAlp
-ZiAoSVNfRVJSKGh3bW9uX2RldikpIHsKIAkJcmV0ID0gUFRSX0VSUihod21vbl9kZXYpOwogCQlO
-Vl9FUlJPUihkcm0sICJVbmFibGUgdG8gcmVnaXN0ZXIgaHdtb24gZGV2aWNlOiAlZFxuIiwgcmV0
-KTsKLS0gCjIuNy4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0181894158==
+Content-Type: multipart/alternative; boundary="14569186990.61e2.20326";
+ charset="UTF-8"
+
+
+--14569186990.61e2.20326
+Date: Wed, 2 Mar 2016 11:38:19 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92833
+
+--- Comment #3 from barry-LJgwZTY9oXz8xeUnPfcrCQ@public.gmane.org ---
+I can run with kernel 4.4.2-301.fc23.x86_64 and
+xorg-x11-drv-nouveau-1.0.12-3.fc23.x86_64 and have not seen this problem.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14569186990.61e2.20326
+Date: Wed, 2 Mar 2016 11:38:19 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV117] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x0000011000 [UNSUPPORTED_KIND] from PBDMA0/HOST on channel 0x007ed78000 [unknown]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92833#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV117] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x0000011000 [UNSUPPORTED_KIND] from PBDMA0/HOST on channel 0x007ed78000 [unknown]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92833">bug 92833</a>
+              from <span class="vcard"><a class="email" href="mailto:barry&#64;barrys-emacs.org" title="barry&#64;barrys-emacs.org">barry&#64;barrys-emacs.org</a>
+</span></b>
+        <pre>I can run with kernel 4.4.2-301.fc23.x86_64 and
+xorg-x11-drv-nouveau-1.0.12-3.fc23.x86_64 and have not seen this problem.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14569186990.61e2.20326--
+
+--===============0181894158==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0181894158==--
