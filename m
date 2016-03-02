@@ -1,14 +1,14 @@
-From: Eric Biggers <ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH] fifo/gk104: kick channel upon removal
-Date: Tue, 1 Mar 2016 21:53:35 -0600
-Message-ID: <20160302035335.GB2526@zzz>
+Date: Wed, 2 Mar 2016 18:07:24 +0900
+Message-ID: <CAAVeFuLGtLK9=qsLf1PcRFrpxuxOTfH6xunb83LBbqqdNPuoQw@mail.gmail.com>
 References: <1456819145-3141-1-git-send-email-acourbot@nvidia.com>
+ <20160302035335.GB2526@zzz>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1456819145-3141-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <20160302035335.GB2526@zzz>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,20 +18,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Eric Biggers <ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBNYXIgMDEsIDIwMTYgYXQgMDQ6NTk6MDVQTSArMDkwMCwgQWxleGFuZHJlIENvdXJi
-b3Qgd3JvdGU6Cj4gCj4gRXJpYywgc2luY2UgeW91IHJlcG9ydGVkIHRoZSByZWdyZXNzaW9uIG9u
-IHRoZSBmaXJzdCB2ZXJzaW9uLCB3b3VsZCB5b3UgbWluZCB0cnlpbmcKPiB0aGlzIG9uZSBhbmQg
-Z2l2aW5nIHVzIHlvdXIgVGVzdGVkLWJ5PyBJIGhhdmUgdGVzdGVkIGl0IG9uIGRHUFUgYnV0IHVu
-Zm9ydHVuYXRlbHkKPiBjb3VsZCBub3Qgc2V0IGl0IHVwIGluIGFuIG9wdGltdXMtbGlrZSBtYW5u
-ZXIsIHdpdGggcG93ZXIgbWFuYWdlbWVudCBraWNraW5nIGluLgo+IAoKVGhhbmtzLiAgSSd2ZSB0
-ZXN0ZWQgTGludXggNC41LXJjNiB3aXRoIHlvdXIgcGF0Y2ggYXBwbGllZCwgYW5kIEkndmUgeWV0
-IHRvCmVuY291bnRlciB0aGUgY3Jhc2ggYWZ0ZXIgYWJvdXQgaGFsZiBhIGRvemVuIHJlYm9vdHMu
-ICBTbyBpdCBzZWVtcyBnb29kIHNvIGZhciwKYnV0IEknbGwga2VlcCBydW5uaW5nIGl0IGFuZCB3
-aWxsIGxldCB5b3Uga25vdyBpZiBJIG5vdGljZSBhIHByb2JsZW0uCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+T24gV2VkLCBNYXIgMiwgMjAxNiBhdCAxMjo1MyBQTSwgRXJpYyBCaWdnZXJzIDxlYmlnZ2VyczNA
+Z21haWwuY29tPiB3cm90ZToKPiBPbiBUdWUsIE1hciAwMSwgMjAxNiBhdCAwNDo1OTowNVBNICsw
+OTAwLCBBbGV4YW5kcmUgQ291cmJvdCB3cm90ZToKPj4KPj4gRXJpYywgc2luY2UgeW91IHJlcG9y
+dGVkIHRoZSByZWdyZXNzaW9uIG9uIHRoZSBmaXJzdCB2ZXJzaW9uLCB3b3VsZCB5b3UgbWluZCB0
+cnlpbmcKPj4gdGhpcyBvbmUgYW5kIGdpdmluZyB1cyB5b3VyIFRlc3RlZC1ieT8gSSBoYXZlIHRl
+c3RlZCBpdCBvbiBkR1BVIGJ1dCB1bmZvcnR1bmF0ZWx5Cj4+IGNvdWxkIG5vdCBzZXQgaXQgdXAg
+aW4gYW4gb3B0aW11cy1saWtlIG1hbm5lciwgd2l0aCBwb3dlciBtYW5hZ2VtZW50IGtpY2tpbmcg
+aW4uCj4+Cj4KPiBUaGFua3MuICBJJ3ZlIHRlc3RlZCBMaW51eCA0LjUtcmM2IHdpdGggeW91ciBw
+YXRjaCBhcHBsaWVkLCBhbmQgSSd2ZSB5ZXQgdG8KPiBlbmNvdW50ZXIgdGhlIGNyYXNoIGFmdGVy
+IGFib3V0IGhhbGYgYSBkb3plbiByZWJvb3RzLiAgU28gaXQgc2VlbXMgZ29vZCBzbyBmYXIsCj4g
+YnV0IEknbGwga2VlcCBydW5uaW5nIGl0IGFuZCB3aWxsIGxldCB5b3Uga25vdyBpZiBJIG5vdGlj
+ZSBhIHByb2JsZW0uCgpHcmVhdCBuZXdzLCB0aGlzIG9uZSB3YXMgYm90aGVyaW5nIG1lIGZvciBz
+b21lIHRpbWUuIFdvdWxkIGJlIGdyYXRlZnVsCmlmIHlvdSBjb3VsZCBsZXQgdXMga25vdyB3aGV0
+aGVyIHRoaW5ncyBhcmUgc3RpbGwgZ29pbmcgd2VsbCBhZnRlcgpmdXJ0aGVyIHRlc3RpbmcuCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
+bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
