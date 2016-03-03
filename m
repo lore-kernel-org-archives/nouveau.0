@@ -1,12 +1,14 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] instmem/gk20a: add write barrier when releasing
-	DMA object
-Date: Thu, 3 Mar 2016 16:38:12 +0900
-Message-ID: <1456990692-29983-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92833] [NV117] nouveau E[ PFIFO][0000:01:00.0] read
+ fault at 0x0000011000 [UNSUPPORTED_KIND] from PBDMA0/HOST on channel
+ 0x007ed78000 [unknown]
+Date: Thu, 03 Mar 2016 14:50:58 +0000
+Message-ID: <bug-92833-8800-hhj1CQTujs@http.bugs.freedesktop.org/>
+References: <bug-92833-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1219033010=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-92833-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,25 +18,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2hlbiB1c2luZyB0aGUgRE1BLUFQSSBmb3IgaW5zdG1lbSwgd2UgbWF5IG9idGFpbiBhIHdyaXRl
-LWNvbWJpbmVkCm1hcHBpbmcuIEZvciBzdWNoIGNhc2VzLCBhZGQgYSB3cml0ZSBiYXJyaWVyIGlu
-CmdrMjBhX2luc3RvYmpfcmVsZWFzZV9kbWEoKSB0byBtYWtlIHN1cmUgdGhhdCBhbGwgd3JpdGVz
-IGhhdmUgcmVhY2hlZAptZW1vcnkgYXQgdGhpcyB0aW1lLgoKU2lnbmVkLW9mZi1ieTogQWxleGFu
-ZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Ci0tLQogZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvaW5zdG1lbS9nazIwYS5jIHwgMiArKwogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9u
-cygrKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vZ2syMGEu
-YyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vZ2syMGEuYwppbmRleCA0YzIwZmVj
-NjRkOTYuLjZiOGYyYTE5YjJkOSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-aW5zdG1lbS9nazIwYS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vZ2sy
-MGEuYwpAQCAtMjI4LDYgKzIyOCw4IEBAIGdrMjBhX2luc3RvYmpfcmVsZWFzZV9kbWEoc3RydWN0
-IG52a21fbWVtb3J5ICptZW1vcnkpCiAJc3RydWN0IGdrMjBhX2luc3RtZW0gKmltZW0gPSBub2Rl
-LT5pbWVtOwogCXN0cnVjdCBudmttX2x0YyAqbHRjID0gaW1lbS0+YmFzZS5zdWJkZXYuZGV2aWNl
-LT5sdGM7CiAKKwkvKiBpbiBjYXNlIHdlIGdvdCBhIHdyaXRlLWNvbWJpbmVkIG1hcHBpbmcgKi8K
-Kwl3bWIoKTsKIAludmttX2x0Y19pbnZhbGlkYXRlKGx0Yyk7CiB9CiAKLS0gCjIuNy4yCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
-bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1219033010==
+Content-Type: multipart/alternative; boundary="14570166580.c78fAE03E.13542";
+ charset="UTF-8"
+
+
+--14570166580.c78fAE03E.13542
+Date: Thu, 3 Mar 2016 14:50:58 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92833
+
+--- Comment #4 from Mike <bugs.freedesktop.org-wCE3ViLK591g9hUCZPvPmw@public.gmane.org> ---
+I'm hitting this bug with kernel 4.4.3-amd64 from
+http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/
+
+There were pure X server (no DM) and three apps: two OpenGL and one Flash - all
+of them decoding and displaying video. Video stopped on three screens after
+kernel error.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14570166580.c78fAE03E.13542
+Date: Thu, 3 Mar 2016 14:50:58 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV117] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x0000011000 [UNSUPPORTED_KIND] from PBDMA0/HOST on channel 0x007ed78000 [unknown]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92833#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV117] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x0000011000 [UNSUPPORTED_KIND] from PBDMA0/HOST on channel 0x007ed78000 [unknown]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92833">bug 92833</a>
+              from <span class="vcard"><a class="email" href="mailto:bugs.freedesktop.org&#64;pm.port0.org" title="Mike &lt;bugs.freedesktop.org&#64;pm.port0.org&gt;"> <span class="fn">Mike</span></a>
+</span></b>
+        <pre>I'm hitting this bug with kernel 4.4.3-amd64 from
+<a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/">http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.3-wily/</a>
+
+There were pure X server (no DM) and three apps: two OpenGL and one Flash - all
+of them decoding and displaying video. Video stopped on three screens after
+kernel error.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14570166580.c78fAE03E.13542--
+
+--===============1219033010==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1219033010==--
