@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94373] 2 monitors cause kernel  panic
-Date: Fri, 04 Mar 2016 01:57:26 +0000
-Message-ID: <bug-94373-8800-Lo3M57Sr4x@http.bugs.freedesktop.org/>
+Date: Fri, 04 Mar 2016 01:59:14 +0000
+Message-ID: <bug-94373-8800-zUXod1EovZ@http.bugs.freedesktop.org/>
 References: <bug-94373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0135179608=="
+Content-Type: multipart/mixed; boundary="===============0722083789=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0135179608==
-Content-Type: multipart/alternative; boundary="14570566450.d0eF7Cf64.21201";
+--===============0722083789==
+Content-Type: multipart/alternative; boundary="14570567550.FA44c0.21506";
  charset="UTF-8"
 
 
---14570566450.d0eF7Cf64.21201
-Date: Fri, 4 Mar 2016 01:57:25 +0000
+--14570567550.FA44c0.21506
+Date: Fri, 4 Mar 2016 01:59:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=94373
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This was fixed...
-https://github.com/skeggsb/nouveau/commit/39ca4fc966feb45df76c5a9a5ae2cffd1c348f77
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-I guess it wasn't backported for 4.4?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |DUPLICATE
+             Status|NEW                         |RESOLVED
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+
+
+*** This bug has been marked as a duplicate of bug 93634 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14570566450.d0eF7Cf64.21201
-Date: Fri, 4 Mar 2016 01:57:25 +0000
+--14570567550.FA44c0.21506
+Date: Fri, 4 Mar 2016 01:59:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -50,23 +56,53 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - 2 monitors cause kernel panic"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94373">bug 94373</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - 2 monitors cause kernel panic"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94373#c1">Comment # 1</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - 2 monitors cause kernel panic"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94373#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - 2 monitors cause kernel panic"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - 2 monitors cause kernel panic"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=94373">bug 94373</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>This was fixed...
-<a href="https://github.com/skeggsb/nouveau/commit/39ca4fc966feb45df76c5a9a5ae2cffd1c348f77">https://github.com/skeggsb/nouveau/commit/39ca4fc966feb45df76c5a9a5ae2cffd1c348f77</a>
+        <pre>
 
-I guess it wasn't backported for 4.4?</pre>
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - WARN_ON triggered on DPMS event"
+   href="show_bug.cgi?id=93634">bug 93634</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +113,9 @@ I guess it wasn't backported for 4.4?</pre>
       </ul>
     </body>
 </html>
---14570566450.d0eF7Cf64.21201--
+--14570567550.FA44c0.21506--
 
---===============0135179608==
+--===============0722083789==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +125,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0135179608==--
+--===============0722083789==--
