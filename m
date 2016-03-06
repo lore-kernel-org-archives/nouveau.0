@@ -1,11 +1,11 @@
-From: Nouveau <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
-Subject: Fw: new message
-Date: Sun, 6 Mar 2016 15:48:21 +0300
-Message-ID: <0000bf785dbe$e7c4607b$5353a0db$@derocher.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] core: use vzalloc for allocating ramht
+Date: Sun,  6 Mar 2016 16:06:06 -0500
+Message-ID: <1457298366-4246-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0528015970=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-us
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,103 +15,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nouveau <Nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>, open-gpu-doc <open-gpu-doc-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ortwin Glck <odi-L693kI9kcNY@public.gmane.org>, Pali Rohr <pali.rohar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Pali Rohr <public-pali.rohar-Re5JQEeQqe8AvxtiuMwx3w-wOFGN7rlS/M9smdsby/KFg@public.gmane.org>
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multipart message in MIME format.
-
---===============0528015970==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0001_515C9AA2.43A3112E"
-Content-Language: en-us
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0001_515C9AA2.43A3112E
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-Hey!
-
- 
-
-Open message <http://gombong-tour.com/considered.php?jgz2y>
-
- 
-
-Nouveau
-
-
-------=_NextPart_000_0001_515C9AA2.43A3112E
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas=
--microsoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:off=
-ice:word" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml"=
- xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"C=
-ontent-Type" CONTENT=3D"text/html; charset=3Dus-ascii"><meta name=3DGe=
-nerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-=2EMsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN link=3D"#0563=
-C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
-span lang=3DEN-US>Hey!<o:p></o:p></span></p><p class=3DMsoNormal><span=
- lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span l=
-ang=3DEN-US><b>Open message</b> <a href=3D"http://gombong-tour.com/con=
-sidered.php?jgz2y">http://gombong-tour.com/considered.php</a><o:p></o:=
-p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p>=
-</span></p><p class=3DMsoNormal><span lang=3DEN-US>Nouveau<o:p></o:p><=
-/span></p></div></body></html>
-
-------=_NextPart_000_0001_515C9AA2.43A3112E--
-
---===============0528015970==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0528015970==--
+TW9zdCBjYWxscyB0byBudmttX3JhbWh0X25ldyB1c2UgMHg4MDAwIGFzIHRoZSBzaXplLiBUaGlz
+IHJlc3VsdHMgaW4gYQpmYWlybHkgc2l6ZWFibGUgY2h1bmsgb2YgbWVtb3J5IHRvIGJlIGFsbG9j
+YXRlZCwgd2hpY2ggbWF5IG5vdCBiZQphdmFpbGFibGUgd2l0aCBremFsbG9jLiBTaW5jZSB0aGlz
+IGlzIGRvbmUgZmFpcmx5IHJhcmVseSAob25jZSBwZXIKY2hhbm5lbCksIHVzZSB2emFsbG9jIGlu
+c3RlYWQuCgpTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+
+Ci0tLQogZHJtL25vdXZlYXUvbnZrbS9jb3JlL3JhbWh0LmMgfCA2ICsrKy0tLQogMSBmaWxlIGNo
+YW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0v
+bm91dmVhdS9udmttL2NvcmUvcmFtaHQuYyBiL2RybS9ub3V2ZWF1L252a20vY29yZS9yYW1odC5j
+CmluZGV4IDMyMTZlMTUuLjg5ZGE0NzIgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vY29y
+ZS9yYW1odC5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vY29yZS9yYW1odC5jCkBAIC0xMzEsNyAr
+MTMxLDcgQEAgbnZrbV9yYW1odF9kZWwoc3RydWN0IG52a21fcmFtaHQgKipwcmFtaHQpCiAJc3Ry
+dWN0IG52a21fcmFtaHQgKnJhbWh0ID0gKnByYW1odDsKIAlpZiAocmFtaHQpIHsKIAkJbnZrbV9n
+cHVvYmpfZGVsKCZyYW1odC0+Z3B1b2JqKTsKLQkJa2ZyZWUoKnByYW1odCk7CisJCXZmcmVlKCpw
+cmFtaHQpOwogCQkqcHJhbWh0ID0gTlVMTDsKIAl9CiB9CkBAIC0xNDMsOCArMTQzLDggQEAgbnZr
+bV9yYW1odF9uZXcoc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UsIHUzMiBzaXplLCB1MzIgYWxp
+Z24sCiAJc3RydWN0IG52a21fcmFtaHQgKnJhbWh0OwogCWludCByZXQsIGk7CiAKLQlpZiAoIShy
+YW1odCA9ICpwcmFtaHQgPSBremFsbG9jKHNpemVvZigqcmFtaHQpICsgKHNpemUgPj4gMykgKgot
+CQkJCQlzaXplb2YoKnJhbWh0LT5kYXRhKSwgR0ZQX0tFUk5FTCkpKQorCWlmICghKHJhbWh0ID0g
+KnByYW1odCA9IHZ6YWxsb2Moc2l6ZW9mKCpyYW1odCkgKworCQkJCQkoc2l6ZSA+PiAzKSAqIHNp
+emVvZigqcmFtaHQtPmRhdGEpKSkpCiAJCXJldHVybiAtRU5PTUVNOwogCiAJcmFtaHQtPmRldmlj
+ZSA9IGRldmljZTsKLS0gCjIuNC4xMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
+b3V2ZWF1Cg==
