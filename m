@@ -1,9 +1,9 @@
 From: Nouveau <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
 Subject: Fw: new message
-Date: Sun, 6 Mar 2016 15:48:18 +0300
-Message-ID: <00002b2f0290$e1d43909$1d4d522f$@derocher.org>
+Date: Sun, 6 Mar 2016 15:48:21 +0300
+Message-ID: <0000bf785dbe$e7c4607b$5353a0db$@derocher.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1887710665=="
+Content-Type: multipart/mixed; boundary="===============0528015970=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Language: en-us
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -15,19 +15,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Michel Dnzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org>, Mike Lothian <mike-4+n8WJKc9ve9FHfhHBbuYA@public.gmane.org>, Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Nicolas Gddel <mailinglists-WO/VGsxbqFypxiQzEpw4SQ@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Nouveau <Nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>, open-gpu-doc <open-gpu-doc-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ortwin Glck <odi-L693kI9kcNY@public.gmane.org>, Pali Rohr <pali.rohar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Pali Rohr <public-pali.rohar-Re5JQEeQqe8AvxtiuMwx3w-wOFGN7rlS/M9smdsby/KFg@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 This is a multipart message in MIME format.
 
---===============1887710665==
+--===============0528015970==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0001_17DCC005.7A82D81D"
+	boundary="----=_NextPart_000_0001_515C9AA2.43A3112E"
 Content-Language: en-us
 
 This is a multipart message in MIME format.
 
-------=_NextPart_000_0001_17DCC005.7A82D81D
+------=_NextPart_000_0001_515C9AA2.43A3112E
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
@@ -35,14 +35,14 @@ Hey!
 
  
 
-Open message <http://etidor.es/journey.php?6>
+Open message <http://gombong-tour.com/considered.php?jgz2y>
 
  
 
 Nouveau
 
 
-------=_NextPart_000_0001_17DCC005.7A82D81D
+------=_NextPart_000_0001_515C9AA2.43A3112E
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -96,15 +96,15 @@ div.WordSection1
 C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
 span lang=3DEN-US>Hey!<o:p></o:p></span></p><p class=3DMsoNormal><span=
  lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span l=
-ang=3DEN-US><b>Open message</b> <a href=3D"http://etidor.es/journey.ph=
-p?6">http://etidor.es/journey.php</a><o:p></o:p></span></p><p class=3D=
-MsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMs=
-oNormal><span lang=3DEN-US>Nouveau<o:p></o:p></span></p></div></body><=
-/html>
+ang=3DEN-US><b>Open message</b> <a href=3D"http://gombong-tour.com/con=
+sidered.php?jgz2y">http://gombong-tour.com/considered.php</a><o:p></o:=
+p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p>=
+</span></p><p class=3DMsoNormal><span lang=3DEN-US>Nouveau<o:p></o:p><=
+/span></p></div></body></html>
 
-------=_NextPart_000_0001_17DCC005.7A82D81D--
+------=_NextPart_000_0001_515C9AA2.43A3112E--
 
---===============1887710665==
+--===============0528015970==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1887710665==--
+--===============0528015970==--
