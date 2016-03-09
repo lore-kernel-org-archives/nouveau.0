@@ -1,15 +1,16 @@
-From: Saket Sinha <saket.sinha89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: GSOC 2016 Aspirant for Kepler Accelerated Video
-	Encoding;
-Date: Wed, 9 Mar 2016 08:22:34 +0530
-Message-ID: <CAK25hWNtyQmiWq-veQ-WCSuQ3sUPNtWTiLQhJcq5Yu2vCy+TLg@mail.gmail.com>
-References: <CAK25hWPBCiy5mys9D1FWO_3v+tFGv0RSdOgqmVz+bru=3csHOA@mail.gmail.com>
- <CAKb7UvgHcfyjYELwzC2wZN1Jb+XzSnpBcnjJOnkBbJXogJ_fYQ@mail.gmail.com>
+From: Eric Biggers <ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [REGRESSION] nouveau: 30 second boot hang after
+ commit 2b700825e
+Date: Tue, 8 Mar 2016 22:24:30 -0600
+Message-ID: <20160309042430.GA11363@zzz>
+References: <20160301074529.GA1870@zzz>
+ <CAAVeFuLMwZ4Bq4mx5St3shcCwzN67ZPHdhBB1_WCahFwH1zXCA@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgHcfyjYELwzC2wZN1Jb+XzSnpBcnjJOnkBbJXogJ_fYQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CAAVeFuLMwZ4Bq4mx5St3shcCwzN67ZPHdhBB1_WCahFwH1zXCA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,32 +20,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: Peter Hutterer <peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGkgSUlpYSwKCgo+IEZpcnN0LCBtYWtlIHN1cmUgdGhlcmUncyBhIG1lbnRvciBhdmFpbGFibGUg
-LS0gSSBkb3VidCBJJ2xsIGhhdmUgdGltZSB0byBkbwo+IGl0LCBidXQgcGVyaGFwcyBzb21lb25l
-IGVsc2Ugd2lsbCBiZSBhYmxlIHRvLgo+CgpVbmZvcnR1bmF0ZWx5LCBJIHdvdWxkIG5lZWQgYm90
-aCBhIG1lbnRvciBhbmQgaGFyZHdhcmUgZm9yIHRoaXMgcHJvamVjdC4KCklmIEkgY291bGQgYmUg
-aGVscGVkIHdpdGggdGhhdCwgSSBzaGFsbCByZWFsbHkgYmUgaW50ZXJlc3RlZCBpbiB0YWtpbmcK
-dXAgdGhpcyBwcm9qZWN0LgoKPiBJIHdvdWxkIHJlY29tbWVuZCB3cml0aW5nIGEgbWluaW1hbCBh
-cHBsaWNhdGlvbiB0aGF0IGUuZy4gZW5jb2RlcyBhIGZpeGVkCj4gZ3JvdXAgb2YgZnJhbWVzLiBZ
-b3Ugc2hvdWxkIHRoZW4gdHJhY2UgdGhpcyBhcHAgdW5kZXIgdGhlIGJsb2Igd2l0aCBib3RoCj4g
-bW1pb3RyYWNlIHRvIGZpZ3VyZSBvdXQgaG93IHRvIGNvbmZpZ3VyZSB0aGUgdW5kZXJseWluZyBl
-bmdpbmUgKHByb2JhYmx5Cj4ganVzdCBmaXJtd2FyZSB0byB1cGxvYWQpLCBhcyB3ZWxsIGFzIGdl
-dCBhIG1tdCB0cmFjZSB0byBmaWd1cmUgb3V0IHRoZSBmaWZvCj4gaW50ZXJmYWNlIGVuZCBvZiBp
-dC4KPgo+IFlvdSBjb3VsZCB0aGVuIHdyaXRlIGEgcHJvb2Ygb2YgY29uY2VwdCBhcHAgdGhhdCBy
-YW4gb24gdG9wIG9mIG5vdXZlYXUgYW5kCj4gZW5jb2RlZCB0aG9zZSBzYW1lIGZyYW1lcyAod2l0
-aCBhIGNvb2tlZCBjbWQgc3RyZWFtKS4gT25jZSB0aGF0IHdvcmtzLCBpdCdzCj4ganVzdCBhIHF1
-ZXN0aW9uIG9mIGdlbmVyYWxpemluZyB0aGUgY29tbWFuZHMgdG8gZGVhbCB3aXRoIGRpZmZlcmVu
-dAo+IHBhcmFtZXRlcnMsIGV0Yy4gKEFuZCBzdGlja2luZyB0aGUgd2hvbGUgdGhpbmcgaW50byBN
-ZXNhLikKPgo+IFRoaXMgaXMgd2hhdCBJIGRpZCB3aGVuIHJlJ2luZyBWUDIsIHlvdSBjYW4gc2Vl
-IHNvbWUgb2YgdGhlIHByb2dyYW1zIEkgdXNlZAo+IGF0IGdpdGh1Yi5jb20vaW1pcmtpbi9yZS12
-cDIuIE9idmlvdXNseSB0aGUgb25lcyBuZWVkZWQgaGVyZSB3aWxsIGJlCj4gZGlmZmVyZW50IGJ1
-dCBpdCBzaG91bGQgZ2l2ZSBhbiBpZGVhIG9mIHdoYXQgSSBtZWFuLgo+Cj4gSG9wZSB0aGlzIGhl
-bHBzLAo+CgpUaGFua3MgZm9yIHRoZSBsaW5rLiBJIGd1ZXNzIEkgbmVlZCB0byBkZXZlbG9wIGEg
-c2ltaWxhcgpyZXZlcnNlLWVuZ2luZWVyaW5nIGFwcHJvYWNoIGZvciB0aGUgcHJvamVjdC4KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+SGkgQWxleGFuZHJlIGFuZCBCZW4sCgpBbnkgdGhvdWdodHMgYWJvdXQgd2hhdCBpcyBjYXVzaW5n
+IHRoaXMgcHJvYmxlbT8gIFRoaXMgYnVnIGlzIDEwMCUgcmVwcm9kdWNpYmxlCm9uIG15IGhhcmR3
+YXJlIHdpdGggdGhlIHN0b2NrIEZlZG9yYSAyMyBrZXJuZWwgYXMgd2VsbCBhcyB3aXRoIExpbnV4
+IDQuNS1yYzcKd2hlbiBjb21waWxlZCB3aXRoIENPTkZJR19ERUJVR19TSElSUS4gIE5vdGUgdGhh
+dCB3aXRoIENPTkZJR19ERUJVR19TSElSUSB0aGVyZQppcyBhbiBleHRyYSBjYWxsIHRvIHRoZSBJ
+UlEgaGFuZGxlciBtYWRlIGR1cmluZyBmcmVlX2lycSgpLCBhbmQgSSBzdXNwZWN0IHRoYXQKaXMg
+ZW5hYmxpbmcgdGhlIHByb2JsZW0gc29tZWhvdy4KCkVyaWMKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
