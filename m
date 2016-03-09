@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92274] nouveau black screen and errors with two
- monitors attached
-Date: Tue, 08 Mar 2016 15:25:22 +0000
-Message-ID: <bug-92274-8800-B0LSPr8CiO@http.bugs.freedesktop.org/>
-References: <bug-92274-8800@http.bugs.freedesktop.org/>
+From: Saket Sinha <saket.sinha89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: GSOC 2016 Aspirant for Kepler Accelerated Video
+	Encoding;
+Date: Wed, 9 Mar 2016 08:22:34 +0530
+Message-ID: <CAK25hWNtyQmiWq-veQ-WCSuQ3sUPNtWTiLQhJcq5Yu2vCy+TLg@mail.gmail.com>
+References: <CAK25hWPBCiy5mys9D1FWO_3v+tFGv0RSdOgqmVz+bru=3csHOA@mail.gmail.com>
+ <CAKb7UvgHcfyjYELwzC2wZN1Jb+XzSnpBcnjJOnkBbJXogJ_fYQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0030489390=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvgHcfyjYELwzC2wZN1Jb+XzSnpBcnjJOnkBbJXogJ_fYQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,81 +19,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: Peter Hutterer <peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0030489390==
-Content-Type: multipart/alternative; boundary="14574507220.D07fED5.17518";
- charset="UTF-8"
-
-
---14574507220.D07fED5.17518
-Date: Tue, 8 Mar 2016 15:25:22 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92274
-
---- Comment #25 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-AFAIK, the mirrored behaviour in console mode is expected. What happens if you
-run `xrandr --output ID_OF_YOUR_RIGHT_SCREEN --right-of
-ID_OF_YOUR_LEFT_SCREEN`, with the id being of the form DVI-I-1?
-
-Can you link your Xorg config file here, and tell us where it is placed on your
-system?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14574507220.D07fED5.17518
-Date: Tue, 8 Mar 2016 15:25:22 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c25">Comment # 25</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>AFAIK, the mirrored behaviour in console mode is expected. What happens if you
-run `xrandr --output ID_OF_YOUR_RIGHT_SCREEN --right-of
-ID_OF_YOUR_LEFT_SCREEN`, with the id being of the form DVI-I-1?
-
-Can you link your Xorg config file here, and tell us where it is placed on your
-system?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14574507220.D07fED5.17518--
-
---===============0030489390==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0030489390==--
+SGkgSUlpYSwKCgo+IEZpcnN0LCBtYWtlIHN1cmUgdGhlcmUncyBhIG1lbnRvciBhdmFpbGFibGUg
+LS0gSSBkb3VidCBJJ2xsIGhhdmUgdGltZSB0byBkbwo+IGl0LCBidXQgcGVyaGFwcyBzb21lb25l
+IGVsc2Ugd2lsbCBiZSBhYmxlIHRvLgo+CgpVbmZvcnR1bmF0ZWx5LCBJIHdvdWxkIG5lZWQgYm90
+aCBhIG1lbnRvciBhbmQgaGFyZHdhcmUgZm9yIHRoaXMgcHJvamVjdC4KCklmIEkgY291bGQgYmUg
+aGVscGVkIHdpdGggdGhhdCwgSSBzaGFsbCByZWFsbHkgYmUgaW50ZXJlc3RlZCBpbiB0YWtpbmcK
+dXAgdGhpcyBwcm9qZWN0LgoKPiBJIHdvdWxkIHJlY29tbWVuZCB3cml0aW5nIGEgbWluaW1hbCBh
+cHBsaWNhdGlvbiB0aGF0IGUuZy4gZW5jb2RlcyBhIGZpeGVkCj4gZ3JvdXAgb2YgZnJhbWVzLiBZ
+b3Ugc2hvdWxkIHRoZW4gdHJhY2UgdGhpcyBhcHAgdW5kZXIgdGhlIGJsb2Igd2l0aCBib3RoCj4g
+bW1pb3RyYWNlIHRvIGZpZ3VyZSBvdXQgaG93IHRvIGNvbmZpZ3VyZSB0aGUgdW5kZXJseWluZyBl
+bmdpbmUgKHByb2JhYmx5Cj4ganVzdCBmaXJtd2FyZSB0byB1cGxvYWQpLCBhcyB3ZWxsIGFzIGdl
+dCBhIG1tdCB0cmFjZSB0byBmaWd1cmUgb3V0IHRoZSBmaWZvCj4gaW50ZXJmYWNlIGVuZCBvZiBp
+dC4KPgo+IFlvdSBjb3VsZCB0aGVuIHdyaXRlIGEgcHJvb2Ygb2YgY29uY2VwdCBhcHAgdGhhdCBy
+YW4gb24gdG9wIG9mIG5vdXZlYXUgYW5kCj4gZW5jb2RlZCB0aG9zZSBzYW1lIGZyYW1lcyAod2l0
+aCBhIGNvb2tlZCBjbWQgc3RyZWFtKS4gT25jZSB0aGF0IHdvcmtzLCBpdCdzCj4ganVzdCBhIHF1
+ZXN0aW9uIG9mIGdlbmVyYWxpemluZyB0aGUgY29tbWFuZHMgdG8gZGVhbCB3aXRoIGRpZmZlcmVu
+dAo+IHBhcmFtZXRlcnMsIGV0Yy4gKEFuZCBzdGlja2luZyB0aGUgd2hvbGUgdGhpbmcgaW50byBN
+ZXNhLikKPgo+IFRoaXMgaXMgd2hhdCBJIGRpZCB3aGVuIHJlJ2luZyBWUDIsIHlvdSBjYW4gc2Vl
+IHNvbWUgb2YgdGhlIHByb2dyYW1zIEkgdXNlZAo+IGF0IGdpdGh1Yi5jb20vaW1pcmtpbi9yZS12
+cDIuIE9idmlvdXNseSB0aGUgb25lcyBuZWVkZWQgaGVyZSB3aWxsIGJlCj4gZGlmZmVyZW50IGJ1
+dCBpdCBzaG91bGQgZ2l2ZSBhbiBpZGVhIG9mIHdoYXQgSSBtZWFuLgo+Cj4gSG9wZSB0aGlzIGhl
+bHBzLAo+CgpUaGFua3MgZm9yIHRoZSBsaW5rLiBJIGd1ZXNzIEkgbmVlZCB0byBkZXZlbG9wIGEg
+c2ltaWxhcgpyZXZlcnNlLWVuZ2luZWVyaW5nIGFwcHJvYWNoIGZvciB0aGUgcHJvamVjdC4KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
