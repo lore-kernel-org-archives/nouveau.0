@@ -1,12 +1,13 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 1/2] secboot: don't use hardcoded mask to enable
-	falcon
-Date: Wed, 9 Mar 2016 20:30:21 +0900
-Message-ID: <1457523022-3947-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92274] nouveau black screen and errors with two
+ monitors attached
+Date: Wed, 09 Mar 2016 19:32:26 +0000
+Message-ID: <bug-92274-8800-3iaof97X5n@http.bugs.freedesktop.org/>
+References: <bug-92274-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0819827458=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,25 +17,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIElSUSBtYXNrIG9mIHRoZSBQTVUgZmFsY29uIHdhcyBsZWZ0IC0gcmVwbGFjZSBpdCB3aXRo
-IHRoZSBwcm9wZXIKaXJxX21hc2sgdmFyaWFibGUuCgpTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmUg
-Q291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRl
-di9zZWNib290L2Jhc2UuYyB8IDQgKystLQogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygr
-KSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9z
-ZWNib290L2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvYmFzZS5jCmlu
-ZGV4IGI3MThiYTc5MTc3Yy4uMDVjNjI1NDljMzliIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9zZWNib290L2Jhc2UuYworKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9z
-ZWNib290L2Jhc2UuYwpAQCAtODUsOCArODUsOCBAQCBudmttX3NlY2Jvb3RfZmFsY29uX2VuYWJs
-ZShzdHJ1Y3QgbnZrbV9zZWNib290ICpzYikKIAogCS8qIGVuYWJsZSBJUlFzICovCiAJbnZrbV93
-cjMyKGRldmljZSwgc2ItPmJhc2UgKyAweDAxMCwgMHhmZik7Ci0JbnZrbV9tYXNrKGRldmljZSwg
-MHg2NDAsIHNiLT5pcnFfbWFzaywgMHgxMDAwMDAwKTsKLQludmttX21hc2soZGV2aWNlLCAweDY0
-NCwgc2ItPmlycV9tYXNrLCAweDEwMDAwMDApOworCW52a21fbWFzayhkZXZpY2UsIDB4NjQwLCBz
-Yi0+aXJxX21hc2ssIHNiLT5pcnFfbWFzayk7CisJbnZrbV9tYXNrKGRldmljZSwgMHg2NDQsIHNi
-LT5pcnFfbWFzaywgc2ItPmlycV9tYXNrKTsKIAogCXJldHVybiAwOwogfQotLSAKMi43LjIKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0819827458==
+Content-Type: multipart/alternative; boundary="14575519471.FBcA544.15773";
+ charset="UTF-8"
+
+
+--14575519471.FBcA544.15773
+Date: Wed, 9 Mar 2016 19:32:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92274
+
+--- Comment #26 from Joseph Thommes <joseph-thommes-Mmb7MZpHnFY@public.gmane.org> ---
+Ok the fact that the mirroring was also present in console mode made me not
+even check for the X configuration. Thanks for this tip. I can calibrate and
+configure the monitors now. Sometimes the simplest things can confuse one :D
+But the bug concerning the HDMI and DVI combination was still not fixed before
+I bought the DVI-cable, so I'm leaving this thread open. :)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14575519471.FBcA544.15773
+Date: Wed, 9 Mar 2016 19:32:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau black screen and errors with two monitors attached"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c26">Comment # 26</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau black screen and errors with two monitors attached"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
+              from <span class="vcard"><a class="email" href="mailto:joseph-thommes&#64;gmx.de" title="Joseph Thommes &lt;joseph-thommes&#64;gmx.de&gt;"> <span class="fn">Joseph Thommes</span></a>
+</span></b>
+        <pre>Ok the fact that the mirroring was also present in console mode made me not
+even check for the X configuration. Thanks for this tip. I can calibrate and
+configure the monitors now. Sometimes the simplest things can confuse one :D
+But the bug concerning the HDMI and DVI combination was still not fixed before
+I bought the DVI-cable, so I'm leaving this thread open. :)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14575519471.FBcA544.15773--
+
+--===============0819827458==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0819827458==--
