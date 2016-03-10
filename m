@@ -1,223 +1,708 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH mesa 2/3] tgsi: Add support for global / local
-	/ input MEMORY
-Date: Thu, 10 Mar 2016 10:28:19 -0500
-Message-ID: <CAKb7Uviut4yOxq=LHsi8hX3dEipSwLUdSy5xex4DQx5Adxy63Q@mail.gmail.com>
+From: Aaron Watry <awatry@gmail.com>
+Subject: Re: [PATCH mesa 2/3] tgsi: Add support for global /
+ local / input MEMORY
+Date: Thu, 10 Mar 2016 09:35:11 -0600
+Message-ID: <CAM+GqJYP4Wx2RwwhndYxMJ9wASgq3qr_yfn+8J0zLfjVPrtPMg@mail.gmail.com>
 References: <1457622887-19328-1-git-send-email-hdegoede@redhat.com>
  <1457622887-19328-3-git-send-email-hdegoede@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1457622887-19328-3-git-send-email-hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0104368529=="
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1457622887-19328-3-git-send-email-hdegoede@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Hans de Goede <hdegoede@redhat.com>
+Cc: mesa-dev <mesa-dev@lists.freedesktop.org>, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBNYXIgMTAsIDIwMTYgYXQgMTA6MTQgQU0sIEhhbnMgZGUgR29lZGUgPGhkZWdvZWRl
-QHJlZGhhdC5jb20+IHdyb3RlOgo+IEV4dGVuZCB0aGUgTUVNT1JZIGZpbGUgc3VwcG9ydCB0byBk
-aWZmZXJlbnRpYXRlIGJldHdlZW4gZ2xvYmFsLCBsb2NhbAo+IGFuZCBzaGFyZWQgbWVtb3J5LCBh
-cyB3ZWxsIGFzICJpbnB1dCIgbWVtb3J5Lgo+Cj4gIk1FTU9SWVt4XSwgSU5QVVQiIGlzIGludGVu
-ZGVkIHRvIGFjY2VzcyBPcGVuQ0wga2VybmVsIHBhcmFtZXRlcnMsIGEKPiBzcGVjaWFsIG1lbW9y
-eSB0eXBlIGlzIGFkZGVkIGZvciB0aGlzLCBzaW5jZSB0aGUgYWN0dWFsIHN0b3JhZ2Ugb2YgdGhl
-c2UKPiAoZS5nLiBVQk8tcykgbWF5IGRpZmZlciBwZXIgaW1wbGVtZW50YXRpb24uIFRoZSB1cGxv
-YWRpbmcgb2Yga2VybmVsCj4gcGFyYW1ldGVycyBpcyBoYW5kbGVkIGJ5IGxhdW5jaF9ncmlkLCAi
-TUVNT1JZW3hdLCBJTlBVVCIgYWxsb3dzIGRyaXZlcnMKPiB0byB1c2UgYW4gYWNjZXNzIG1lY2hh
-bmlzbSBmb3IgcGFyYW1ldGVyIHJlYWRzIHdoaWNoIG1hdGNoZXMgd2l0aCB0aGUKPiB1cGxvYWQg
-bWV0aG9kLgo+Cj4gU2lnbmVkLW9mZi1ieTogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0
-LmNvbT4KPiAtLS0KPiAgc3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV9idWlsZC5jICAg
-ICAgICAgICAgfCAgOCArKystLS0tCj4gIHNyYy9nYWxsaXVtL2F1eGlsaWFyeS90Z3NpL3Rnc2lf
-ZHVtcC5jICAgICAgICAgICAgIHwgIDkgKysrKysrLS0KPiAgc3JjL2dhbGxpdW0vYXV4aWxpYXJ5
-L3Rnc2kvdGdzaV90ZXh0LmMgICAgICAgICAgICAgfCAxNCArKysrKysrKysrLS0KPiAgc3JjL2dh
-bGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV91cmVnLmMgICAgICAgICAgICAgfCAyNSArKysrKysr
-KysrKystLS0tLS0tLS0tCj4gIHNyYy9nYWxsaXVtL2F1eGlsaWFyeS90Z3NpL3Rnc2lfdXJlZy5o
-ICAgICAgICAgICAgIHwgIDIgKy0KPiAgLi4uL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBf
-aXJfZnJvbV90Z3NpLmNwcCAgfCAgNyArKystLS0KPiAgc3JjL2dhbGxpdW0vaW5jbHVkZS9waXBl
-L3Bfc2hhZGVyX3Rva2Vucy5oICAgICAgICAgfCAxMCArKysrKysrLS0KPiAgc3JjL21lc2Evc3Rh
-dGVfdHJhY2tlci9zdF9nbHNsX3RvX3Rnc2kuY3BwICAgICAgICAgfCAgMiArLQo+ICA4IGZpbGVz
-IGNoYW5nZWQsIDUxIGluc2VydGlvbnMoKyksIDI2IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdp
-dCBhL3NyYy9nYWxsaXVtL2F1eGlsaWFyeS90Z3NpL3Rnc2lfYnVpbGQuYyBiL3NyYy9nYWxsaXVt
-L2F1eGlsaWFyeS90Z3NpL3Rnc2lfYnVpbGQuYwo+IGluZGV4IGM0MjBhZTEuLmIxMDhhZGUgMTAw
-NjQ0Cj4gLS0tIGEvc3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV9idWlsZC5jCj4gKysr
-IGIvc3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV9idWlsZC5jCj4gQEAgLTExMSw3ICsx
-MTEsNyBAQCB0Z3NpX2RlZmF1bHRfZGVjbGFyYXRpb24oIHZvaWQgKQo+ICAgICBkZWNsYXJhdGlv
-bi5Mb2NhbCA9IDA7Cj4gICAgIGRlY2xhcmF0aW9uLkFycmF5ID0gMDsKPiAgICAgZGVjbGFyYXRp
-b24uQXRvbWljID0gMDsKPiAtICAgZGVjbGFyYXRpb24uU2hhcmVkID0gMDsKPiArICAgZGVjbGFy
-YXRpb24uTWVtVHlwZSA9IFRHU0lfTUVNT1JZX1RZUEVfR0xPQkFMOwo+ICAgICBkZWNsYXJhdGlv
-bi5QYWRkaW5nID0gMDsKPgo+ICAgICByZXR1cm4gZGVjbGFyYXRpb247Cj4gQEAgLTEyOCw3ICsx
-MjgsNyBAQCB0Z3NpX2J1aWxkX2RlY2xhcmF0aW9uKAo+ICAgICB1bnNpZ25lZCBsb2NhbCwKPiAg
-ICAgdW5zaWduZWQgYXJyYXksCj4gICAgIHVuc2lnbmVkIGF0b21pYywKPiAtICAgdW5zaWduZWQg
-c2hhcmVkLAo+ICsgICB1bnNpZ25lZCBtZW1fdHlwZSwKPiAgICAgc3RydWN0IHRnc2lfaGVhZGVy
-ICpoZWFkZXIgKQo+ICB7Cj4gICAgIHN0cnVjdCB0Z3NpX2RlY2xhcmF0aW9uIGRlY2xhcmF0aW9u
-Owo+IEBAIC0xNDYsNyArMTQ2LDcgQEAgdGdzaV9idWlsZF9kZWNsYXJhdGlvbigKPiAgICAgZGVj
-bGFyYXRpb24uTG9jYWwgPSBsb2NhbDsKPiAgICAgZGVjbGFyYXRpb24uQXJyYXkgPSBhcnJheTsK
-PiAgICAgZGVjbGFyYXRpb24uQXRvbWljID0gYXRvbWljOwo+IC0gICBkZWNsYXJhdGlvbi5TaGFy
-ZWQgPSBzaGFyZWQ7Cj4gKyAgIGRlY2xhcmF0aW9uLk1lbVR5cGUgPSBtZW1fdHlwZTsKPiAgICAg
-aGVhZGVyX2JvZHlzaXplX2dyb3coIGhlYWRlciApOwo+Cj4gICAgIHJldHVybiBkZWNsYXJhdGlv
-bjsKPiBAQCAtNDA2LDcgKzQwNiw3IEBAIHRnc2lfYnVpbGRfZnVsbF9kZWNsYXJhdGlvbigKPiAg
-ICAgICAgZnVsbF9kZWNsLT5EZWNsYXJhdGlvbi5Mb2NhbCwKPiAgICAgICAgZnVsbF9kZWNsLT5E
-ZWNsYXJhdGlvbi5BcnJheSwKPiAgICAgICAgZnVsbF9kZWNsLT5EZWNsYXJhdGlvbi5BdG9taWMs
-Cj4gLSAgICAgIGZ1bGxfZGVjbC0+RGVjbGFyYXRpb24uU2hhcmVkLAo+ICsgICAgICBmdWxsX2Rl
-Y2wtPkRlY2xhcmF0aW9uLk1lbVR5cGUsCj4gICAgICAgIGhlYWRlciApOwo+Cj4gICAgIGlmICht
-YXhzaXplIDw9IHNpemUpCj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2F1eGlsaWFyeS90Z3Np
-L3Rnc2lfZHVtcC5jIGIvc3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV9kdW1wLmMKPiBp
-bmRleCBmMjMyZjM4Li4yNzNmMGFlIDEwMDY0NAo+IC0tLSBhL3NyYy9nYWxsaXVtL2F1eGlsaWFy
-eS90Z3NpL3Rnc2lfZHVtcC5jCj4gKysrIGIvc3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdz
-aV9kdW1wLmMKPiBAQCAtMzY1LDggKzM2NSwxMyBAQCBpdGVyX2RlY2xhcmF0aW9uKAo+ICAgICB9
-Cj4KPiAgICAgaWYgKGRlY2wtPkRlY2xhcmF0aW9uLkZpbGUgPT0gVEdTSV9GSUxFX01FTU9SWSkg
-ewo+IC0gICAgICBpZiAoZGVjbC0+RGVjbGFyYXRpb24uU2hhcmVkKQo+IC0gICAgICAgICBUWFQo
-IiwgU0hBUkVEIik7Cj4gKyAgICAgIHN3aXRjaCAoZGVjbC0+RGVjbGFyYXRpb24uTWVtVHlwZSkg
-ewo+ICsgICAgICAvKiBOb3RlOiAsR0xPQkFMIGlzIG9wdGlvbmFsIC8gdGhlIGRlZmF1bHQgKi8K
-PiArICAgICAgY2FzZSBUR1NJX01FTU9SWV9UWVBFX0dMT0JBTDogVFhUKCIsIEdMT0JBTCIpOyBi
-cmVhazsKPiArICAgICAgY2FzZSBUR1NJX01FTU9SWV9UWVBFX0xPQ0FMOiAgVFhUKCIsIExPQ0FM
-Iik7ICBicmVhazsKPiArICAgICAgY2FzZSBUR1NJX01FTU9SWV9UWVBFX1NIQVJFRDogVFhUKCIs
-IFNIQVJFRCIpOyBicmVhazsKPiArICAgICAgY2FzZSBUR1NJX01FTU9SWV9UWVBFX0lOUFVUOiAg
-VFhUKCIsIElOUFVUIik7ICBicmVhazsKPiArICAgICAgfQo+ICAgICB9Cj4KPiAgICAgaWYgKGRl
-Y2wtPkRlY2xhcmF0aW9uLkZpbGUgPT0gVEdTSV9GSUxFX1NBTVBMRVJfVklFVykgewo+IGRpZmYg
-LS1naXQgYS9zcmMvZ2FsbGl1bS9hdXhpbGlhcnkvdGdzaS90Z3NpX3RleHQuYyBiL3NyYy9nYWxs
-aXVtL2F1eGlsaWFyeS90Z3NpL3Rnc2lfdGV4dC5jCj4gaW5kZXggNzc1OThkMi4uOTQzOGUzYiAx
-MDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9hdXhpbGlhcnkvdGdzaS90Z3NpX3RleHQuYwo+ICsr
-KyBiL3NyYy9nYWxsaXVtL2F1eGlsaWFyeS90Z3NpL3Rnc2lfdGV4dC5jCj4gQEAgLTEzOTAsOCAr
-MTM5MCwxOCBAQCBzdGF0aWMgYm9vbGVhbiBwYXJzZV9kZWNsYXJhdGlvbiggc3RydWN0IHRyYW5z
-bGF0ZV9jdHggKmN0eCApCj4gICAgICAgICAgICAgIGN0eC0+Y3VyID0gY3VyOwo+ICAgICAgICAg
-ICB9Cj4gICAgICAgIH0gZWxzZSBpZiAoZmlsZSA9PSBUR1NJX0ZJTEVfTUVNT1JZKSB7Cj4gLSAg
-ICAgICAgIGlmIChzdHJfbWF0Y2hfbm9jYXNlX3dob2xlKCZjdXIsICJTSEFSRUQiKSkgewo+IC0g
-ICAgICAgICAgICBkZWNsLkRlY2xhcmF0aW9uLlNoYXJlZCA9IDE7Cj4gKyAgICAgICAgIGlmIChz
-dHJfbWF0Y2hfbm9jYXNlX3dob2xlKCZjdXIsICJHTE9CQUwiKSkgewo+ICsgICAgICAgICAgICAv
-KiBOb3RlIHRoaXMgaXMgYSBuby1vcCBnbG9iYWwgaXMgdGhlIGRlZmF1bHQgKi8KPiArICAgICAg
-ICAgICAgZGVjbC5EZWNsYXJhdGlvbi5NZW1UeXBlID0gVEdTSV9NRU1PUllfVFlQRV9HTE9CQUw7
-Cj4gKyAgICAgICAgICAgIGN0eC0+Y3VyID0gY3VyOwo+ICsgICAgICAgICB9IGVsc2UgaWYgKHN0
-cl9tYXRjaF9ub2Nhc2Vfd2hvbGUoJmN1ciwgIkxPQ0FMIikpIHsKPiArICAgICAgICAgICAgZGVj
-bC5EZWNsYXJhdGlvbi5NZW1UeXBlID0gVEdTSV9NRU1PUllfVFlQRV9MT0NBTDsKPiArICAgICAg
-ICAgICAgY3R4LT5jdXIgPSBjdXI7Cj4gKyAgICAgICAgIH0gZWxzZSBpZiAoc3RyX21hdGNoX25v
-Y2FzZV93aG9sZSgmY3VyLCAiU0hBUkVEIikpIHsKPiArICAgICAgICAgICAgZGVjbC5EZWNsYXJh
-dGlvbi5NZW1UeXBlID0gVEdTSV9NRU1PUllfVFlQRV9TSEFSRUQ7Cj4gKyAgICAgICAgICAgIGN0
-eC0+Y3VyID0gY3VyOwo+ICsgICAgICAgICB9IGVsc2UgaWYgKHN0cl9tYXRjaF9ub2Nhc2Vfd2hv
-bGUoJmN1ciwgIklOUFVUIikpIHsKPiArICAgICAgICAgICAgZGVjbC5EZWNsYXJhdGlvbi5NZW1U
-eXBlID0gVEdTSV9NRU1PUllfVFlQRV9JTlBVVDsKPiAgICAgICAgICAgICAgY3R4LT5jdXIgPSBj
-dXI7Cj4gICAgICAgICAgIH0KPiAgICAgICAgfSBlbHNlIHsKPiBkaWZmIC0tZ2l0IGEvc3JjL2dh
-bGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV91cmVnLmMgYi9zcmMvZ2FsbGl1bS9hdXhpbGlhcnkv
-dGdzaS90Z3NpX3VyZWcuYwo+IGluZGV4IGUxYTcyNzguLjllMTAwNDQgMTAwNjQ0Cj4gLS0tIGEv
-c3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV91cmVnLmMKPiArKysgYi9zcmMvZ2FsbGl1
-bS9hdXhpbGlhcnkvdGdzaS90Z3NpX3VyZWcuYwo+IEBAIC0xOTAsNyArMTkwLDcgQEAgc3RydWN0
-IHVyZWdfcHJvZ3JhbQo+Cj4gICAgIHN0cnVjdCB1cmVnX3Rva2VucyBkb21haW5bMl07Cj4KPiAt
-ICAgYm9vbCB1c2Vfc2hhcmVkX21lbW9yeTsKPiArICAgYm9vbCB1c2VfbWVtb3J5W1RHU0lfTUVN
-T1JZX1RZUEVfQ09VTlRdOwo+ICB9Owo+Cj4gIHN0YXRpYyB1bmlvbiB0Z3NpX2FueV90b2tlbiBl
-cnJvcl90b2tlbnNbMzJdOwo+IEBAIC03MjksMTMgKzcyOSwxNCBAQCBzdHJ1Y3QgdXJlZ19zcmMg
-dXJlZ19ERUNMX2J1ZmZlcihzdHJ1Y3QgdXJlZ19wcm9ncmFtICp1cmVnLCB1bnNpZ25lZCBuciwK
-PiAgICAgcmV0dXJuIHJlZzsKPiAgfQo+Cj4gLS8qIEFsbG9jYXRlIGEgc2hhcmVkIG1lbW9yeSBh
-cmVhLgo+ICsvKiBBbGxvY2F0ZSBhIG1lbW9yeSBhcmVhLgo+ICAgKi8KPiAtc3RydWN0IHVyZWdf
-c3JjIHVyZWdfREVDTF9zaGFyZWRfbWVtb3J5KHN0cnVjdCB1cmVnX3Byb2dyYW0gKnVyZWcpCj4g
-K3N0cnVjdCB1cmVnX3NyYyB1cmVnX0RFQ0xfbWVtb3J5KHN0cnVjdCB1cmVnX3Byb2dyYW0gKnVy
-ZWcsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVuc2lnbmVkIG1lbW9yeV90
-eXBlKQo+ICB7Cj4gLSAgIHN0cnVjdCB1cmVnX3NyYyByZWcgPSB1cmVnX3NyY19yZWdpc3RlcihU
-R1NJX0ZJTEVfTUVNT1JZLCAwKTsKPiArICAgc3RydWN0IHVyZWdfc3JjIHJlZyA9IHVyZWdfc3Jj
-X3JlZ2lzdGVyKFRHU0lfRklMRV9NRU1PUlksIG1lbW9yeV90eXBlKTsKPgo+IC0gICB1cmVnLT51
-c2Vfc2hhcmVkX21lbW9yeSA9IHRydWU7Cj4gKyAgIHVyZWctPnVzZV9tZW1vcnlbbWVtb3J5X3R5
-cGVdID0gdHJ1ZTsKPiAgICAgcmV0dXJuIHJlZzsKPiAgfQo+Cj4gQEAgLTE2NjYsNyArMTY2Nyw3
-IEBAIGVtaXRfZGVjbF9idWZmZXIoc3RydWN0IHVyZWdfcHJvZ3JhbSAqdXJlZywKPiAgfQo+Cj4g
-IHN0YXRpYyB2b2lkCj4gLWVtaXRfZGVjbF9zaGFyZWRfbWVtb3J5KHN0cnVjdCB1cmVnX3Byb2dy
-YW0gKnVyZWcpCj4gK2VtaXRfZGVjbF9tZW1vcnkoc3RydWN0IHVyZWdfcHJvZ3JhbSAqdXJlZywg
-dW5zaWduZWQgbWVtb3J5X3R5cGUpCj4gIHsKPiAgICAgdW5pb24gdGdzaV9hbnlfdG9rZW4gKm91
-dCA9IGdldF90b2tlbnModXJlZywgRE9NQUlOX0RFQ0wsIDIpOwo+Cj4gQEAgLTE2NzUsMTEgKzE2
-NzYsMTEgQEAgZW1pdF9kZWNsX3NoYXJlZF9tZW1vcnkoc3RydWN0IHVyZWdfcHJvZ3JhbSAqdXJl
-ZykKPiAgICAgb3V0WzBdLmRlY2wuTnJUb2tlbnMgPSAyOwo+ICAgICBvdXRbMF0uZGVjbC5GaWxl
-ID0gVEdTSV9GSUxFX01FTU9SWTsKPiAgICAgb3V0WzBdLmRlY2wuVXNhZ2VNYXNrID0gVEdTSV9X
-UklURU1BU0tfWFlaVzsKPiAtICAgb3V0WzBdLmRlY2wuU2hhcmVkID0gdHJ1ZTsKPiArICAgb3V0
-WzBdLmRlY2wuTWVtVHlwZSA9IG1lbW9yeV90eXBlOwo+Cj4gICAgIG91dFsxXS52YWx1ZSA9IDA7
-Cj4gLSAgIG91dFsxXS5kZWNsX3JhbmdlLkZpcnN0ID0gMDsKPiAtICAgb3V0WzFdLmRlY2xfcmFu
-Z2UuTGFzdCA9IDA7Cj4gKyAgIG91dFsxXS5kZWNsX3JhbmdlLkZpcnN0ID0gbWVtb3J5X3R5cGU7
-Cj4gKyAgIG91dFsxXS5kZWNsX3JhbmdlLkxhc3QgPSBtZW1vcnlfdHlwZTsKPiAgfQo+Cj4gIHN0
-YXRpYyB2b2lkCj4gQEAgLTE4NTQsOCArMTg1NSwxMCBAQCBzdGF0aWMgdm9pZCBlbWl0X2RlY2xz
-KCBzdHJ1Y3QgdXJlZ19wcm9ncmFtICp1cmVnICkKPiAgICAgICAgZW1pdF9kZWNsX2J1ZmZlcih1
-cmVnLCB1cmVnLT5idWZmZXJbaV0uaW5kZXgsIHVyZWctPmJ1ZmZlcltpXS5hdG9taWMpOwo+ICAg
-ICB9Cj4KPiAtICAgaWYgKHVyZWctPnVzZV9zaGFyZWRfbWVtb3J5KQo+IC0gICAgICBlbWl0X2Rl
-Y2xfc2hhcmVkX21lbW9yeSh1cmVnKTsKPiArICAgZm9yIChpID0gMDsgaSA8IFRHU0lfTUVNT1JZ
-X1RZUEVfQ09VTlQ7IGkrKykgewo+ICsgICAgICBpZiAodXJlZy0+dXNlX21lbW9yeVtpXSkKPiAr
-ICAgICAgICAgZW1pdF9kZWNsX21lbW9yeSh1cmVnLCBpKTsKPiArICAgfQo+Cj4gICAgIGlmICh1
-cmVnLT5jb25zdF9kZWNscy5ucl9jb25zdGFudF9yYW5nZXMpIHsKPiAgICAgICAgZm9yIChpID0g
-MDsgaSA8IHVyZWctPmNvbnN0X2RlY2xzLm5yX2NvbnN0YW50X3JhbmdlczsgaSsrKSB7Cj4gZGlm
-ZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2F1eGlsaWFyeS90Z3NpL3Rnc2lfdXJlZy5oIGIvc3JjL2dh
-bGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV91cmVnLmgKPiBpbmRleCA2YTNiNWRkLi43YzdhODll
-IDEwMDY0NAo+IC0tLSBhL3NyYy9nYWxsaXVtL2F1eGlsaWFyeS90Z3NpL3Rnc2lfdXJlZy5oCj4g
-KysrIGIvc3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV91cmVnLmgKPiBAQCAtMzM4LDcg
-KzMzOCw3IEBAIHN0cnVjdCB1cmVnX3NyYwo+ICB1cmVnX0RFQ0xfYnVmZmVyKHN0cnVjdCB1cmVn
-X3Byb2dyYW0gKnVyZWcsIHVuc2lnbmVkIG5yLCBib29sIGF0b21pYyk7Cj4KPiAgc3RydWN0IHVy
-ZWdfc3JjCj4gLXVyZWdfREVDTF9zaGFyZWRfbWVtb3J5KHN0cnVjdCB1cmVnX3Byb2dyYW0gKnVy
-ZWcpOwo+ICt1cmVnX0RFQ0xfbWVtb3J5KHN0cnVjdCB1cmVnX3Byb2dyYW0gKnVyZWcsIHVuc2ln
-bmVkIG1lbW9yeV90eXBlKTsKPgo+ICBzdGF0aWMgaW5saW5lIHN0cnVjdCB1cmVnX3NyYwo+ICB1
-cmVnX2ltbTRmKCBzdHJ1Y3QgdXJlZ19wcm9ncmFtICp1cmVnLAo+IGRpZmYgLS1naXQgYS9zcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAgYi9z
-cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAK
-PiBpbmRleCA4NjgzNzIyLi5hODI1OGFmIDEwMDY0NAo+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZl
-cnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcAo+ICsrKyBiL3NyYy9nYWxs
-aXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcAo+IEBAIC04
-NjAsNyArODYwLDcgQEAgcHVibGljOgo+ICAgICBzdGQ6OnZlY3RvcjxSZXNvdXJjZT4gcmVzb3Vy
-Y2VzOwo+Cj4gICAgIHN0cnVjdCBNZW1vcnlGaWxlIHsKPiAtICAgICAgYm9vbCBzaGFyZWQ7Cj4g
-KyAgICAgIHVpbnQ4X3QgbWVtX3R5cGU7IC8vIFRHU0lfTUVNT1JZX1RZUEVfKgo+ICAgICB9Owo+
-ICAgICBzdGQ6OnZlY3RvcjxNZW1vcnlGaWxlPiBtZW1vcnlGaWxlczsKPgo+IEBAIC0xMjE4LDcg
-KzEyMTgsNyBAQCBib29sIFNvdXJjZTo6c2NhbkRlY2xhcmF0aW9uKGNvbnN0IHN0cnVjdCB0Z3Np
-X2Z1bGxfZGVjbGFyYXRpb24gKmRlY2wpCj4gICAgICAgIGJyZWFrOwo+ICAgICBjYXNlIFRHU0lf
-RklMRV9NRU1PUlk6Cj4gICAgICAgIGZvciAoaSA9IGZpcnN0OyBpIDw9IGxhc3Q7ICsraSkKPiAt
-ICAgICAgICAgbWVtb3J5RmlsZXNbaV0uc2hhcmVkID0gZGVjbC0+RGVjbGFyYXRpb24uU2hhcmVk
-Owo+ICsgICAgICAgICBtZW1vcnlGaWxlc1tpXS5tZW1fdHlwZSA9IGRlY2wtPkRlY2xhcmF0aW9u
-Lk1lbVR5cGU7Cj4gICAgICAgIGJyZWFrOwo+ICAgICBjYXNlIFRHU0lfRklMRV9OVUxMOgo+ICAg
-ICBjYXNlIFRHU0lfRklMRV9URU1QT1JBUlk6Cj4gQEAgLTE1MjMsNyArMTUyMyw4IEBAIENvbnZl
-cnRlcjo6bWFrZVN5bSh1aW50IHRnc2lGaWxlLCBpbnQgZmlsZUlkeCwgaW50IGlkeCwgaW50IGMs
-IHVpbnQzMl90IGFkZHJlc3MpCj4KPiAgICAgc3ltLT5yZWcuZmlsZUluZGV4ID0gZmlsZUlkeDsK
-Pgo+IC0gICBpZiAodGdzaUZpbGUgPT0gVEdTSV9GSUxFX01FTU9SWSAmJiBjb2RlLT5tZW1vcnlG
-aWxlc1tmaWxlSWR4XS5zaGFyZWQpCj4gKyAgIGlmICh0Z3NpRmlsZSA9PSBUR1NJX0ZJTEVfTUVN
-T1JZICYmCj4gKyAgICAgICBjb2RlLT5tZW1vcnlGaWxlc1tmaWxlSWR4XS5tZW1fdHlwZSA9PSBU
-R1NJX01FTU9SWV9UWVBFX1NIQVJFRCkKPiAgICAgICAgc3ltLT5zZXRGaWxlKEZJTEVfTUVNT1JZ
-X1NIQVJFRCk7Cj4KPiAgICAgaWYgKGlkeCA+PSAwKSB7Cj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxs
-aXVtL2luY2x1ZGUvcGlwZS9wX3NoYWRlcl90b2tlbnMuaCBiL3NyYy9nYWxsaXVtL2luY2x1ZGUv
-cGlwZS9wX3NoYWRlcl90b2tlbnMuaAo+IGluZGV4IDlkNGE5NmEuLjBiOGQ3ZmIgMTAwNjQ0Cj4g
-LS0tIGEvc3JjL2dhbGxpdW0vaW5jbHVkZS9waXBlL3Bfc2hhZGVyX3Rva2Vucy5oCj4gKysrIGIv
-c3JjL2dhbGxpdW0vaW5jbHVkZS9waXBlL3Bfc2hhZGVyX3Rva2Vucy5oCj4gQEAgLTExNyw2ICsx
-MTcsMTIgQEAgZW51bSB0Z3NpX2ZpbGVfdHlwZSB7Cj4gICNkZWZpbmUgVEdTSV9DWUxJTkRSSUNB
-TF9XUkFQX1ogKDEgPDwgMikKPiAgI2RlZmluZSBUR1NJX0NZTElORFJJQ0FMX1dSQVBfVyAoMSA8
-PCAzKQo+Cj4gKyNkZWZpbmUgVEdTSV9NRU1PUllfVFlQRV9HTE9CQUwgICAgICAgIDAgLyogR0xT
-TCBnbG9iYWwgLyBPcGVuQ0wgZ2xvYmFsICAgICovCj4gKyNkZWZpbmUgVEdTSV9NRU1PUllfVFlQ
-RV9MT0NBTCAgICAgICAgIDEgLyogR0xTTCBsb2NhbCAgLyBPcGVuQ0wgcHJpdmF0ZSAgICovCj4g
-KyNkZWZpbmUgVEdTSV9NRU1PUllfVFlQRV9TSEFSRUQgICAgICAgIDIgLyogR0xTTCBzaGFyZWQg
-LyBPcGVuQ0wgbG9jYWwgICAgICovCj4gKyNkZWZpbmUgVEdTSV9NRU1PUllfVFlQRV9JTlBVVCAg
-ICAgICAgIDMgLyogRm9yIE9wZW5DTCBrZXJuZWwgaW5wdXQgcGFyYW1zICovCgpJJ20gbW9kZXJh
-dGVseSBzdXJlIHRoYXQgb25seSBHTFNMIHNoYXJlZCBpcyBhIGNvbmNlcHQgaW4gR0xTTC4gVGhl
-CnJlc3QgYXJlIE9wZW5DTC1vbmx5IHRoaW5ncy4gSWYgeW91IHdhbnRlZCB0byBmbGlwICJsb2Nh
-bCIgdG8KInByaXZhdGUiLCBJIHdvdWxkbid0IG9iamVjdC4KCldpdGggdGhlc2UgY29tbWVudHMg
-dG91Y2hlZCB1cCBhIGJpdCwgdGhpcyBwYXRjaCBpcwoKUmV2aWV3ZWQtYnk6IElsaWEgTWlya2lu
-IDxpbWlya2luQGFsdW0ubWl0LmVkdT4KCj4gKyNkZWZpbmUgVEdTSV9NRU1PUllfVFlQRV9DT1VO
-VCAgICAgICAgIDQKPiArCj4gIHN0cnVjdCB0Z3NpX2RlY2xhcmF0aW9uCj4gIHsKPiAgICAgdW5z
-aWduZWQgVHlwZSAgICAgICAgOiA0OyAgLyoqPCBUR1NJX1RPS0VOX1RZUEVfREVDTEFSQVRJT04g
-Ki8KPiBAQCAtMTMwLDggKzEzNiw4IEBAIHN0cnVjdCB0Z3NpX2RlY2xhcmF0aW9uCj4gICAgIHVu
-c2lnbmVkIExvY2FsICAgICAgIDogMTsgIC8qKjwgb3B0aW1pemUgYXMgc3Vicm91dGluZSBsb2Nh
-bCB2YXJpYWJsZT8gKi8KPiAgICAgdW5zaWduZWQgQXJyYXkgICAgICAgOiAxOyAgLyoqPCBleHRy
-YSBhcnJheSBpbmZvPyAqLwo+ICAgICB1bnNpZ25lZCBBdG9taWMgICAgICA6IDE7ICAvKio8IGF0
-b21pYyBvbmx5PyBmb3IgVEdTSV9GSUxFX0JVRkZFUiAqLwo+IC0gICB1bnNpZ25lZCBTaGFyZWQg
-ICAgICA6IDE7ICAvKio8IHNoYXJlZCBzdG9yYWdlIGZvciBUR1NJX0ZJTEVfTUVNT1JZICovCj4g
-LSAgIHVuc2lnbmVkIFBhZGRpbmcgICAgIDogNDsKPiArICAgdW5zaWduZWQgTWVtVHlwZSAgICAg
-OiAyOyAgLyoqPCBUR1NJX01FTU9SWV9UWVBFX3ggZm9yIFRHU0lfRklMRV9NRU1PUlkgKi8KPiAr
-ICAgdW5zaWduZWQgUGFkZGluZyAgICAgOiAzOwo+ICB9Owo+Cj4gIHN0cnVjdCB0Z3NpX2RlY2xh
-cmF0aW9uX3JhbmdlCj4gZGlmZiAtLWdpdCBhL3NyYy9tZXNhL3N0YXRlX3RyYWNrZXIvc3RfZ2xz
-bF90b190Z3NpLmNwcCBiL3NyYy9tZXNhL3N0YXRlX3RyYWNrZXIvc3RfZ2xzbF90b190Z3NpLmNw
-cAo+IGluZGV4IDI2ZTQ2M2UuLjliOGJmOGUgMTAwNjQ0Cj4gLS0tIGEvc3JjL21lc2Evc3RhdGVf
-dHJhY2tlci9zdF9nbHNsX3RvX3Rnc2kuY3BwCj4gKysrIGIvc3JjL21lc2Evc3RhdGVfdHJhY2tl
-ci9zdF9nbHNsX3RvX3Rnc2kuY3BwCj4gQEAgLTYyODEsNyArNjI4MSw3IEBAIHN0X3RyYW5zbGF0
-ZV9wcm9ncmFtKAo+ICAgICB9Cj4KPiAgICAgaWYgKHByb2dyYW0tPnVzZV9zaGFyZWRfbWVtb3J5
-KQo+IC0gICAgICB0LT5zaGFyZWRfbWVtb3J5ID0gdXJlZ19ERUNMX3NoYXJlZF9tZW1vcnkodXJl
-Zyk7Cj4gKyAgICAgIHQtPnNoYXJlZF9tZW1vcnkgPSB1cmVnX0RFQ0xfbWVtb3J5KHVyZWcsIFRH
-U0lfTUVNT1JZX1RZUEVfU0hBUkVEKTsKPgo+ICAgICBmb3IgKGkgPSAwOyBpIDwgcHJvZ3JhbS0+
-c2hhZGVyLT5OdW1JbWFnZXM7IGkrKykgewo+ICAgICAgICBpZiAocHJvZ3JhbS0+aW1hZ2VzX3Vz
-ZWQgJiAoMSA8PCBpKSkgewo+IC0tCj4gMi43LjIKPgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+--===============0104368529==
+Content-Type: multipart/alternative; boundary=001a114202f867a6f4052db38fdb
+
+--001a114202f867a6f4052db38fdb
+Content-Type: text/plain; charset=UTF-8
+
+On Thu, Mar 10, 2016 at 9:14 AM, Hans de Goede <hdegoede@redhat.com> wrote:
+
+> Extend the MEMORY file support to differentiate between global, local
+> and shared memory, as well as "input" memory.
+>
+> "MEMORY[x], INPUT" is intended to access OpenCL kernel parameters, a
+> special memory type is added for this, since the actual storage of these
+> (e.g. UBO-s) may differ per implementation. The uploading of kernel
+> parameters is handled by launch_grid, "MEMORY[x], INPUT" allows drivers
+> to use an access mechanism for parameter reads which matches with the
+> upload method.
+>
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+>  src/gallium/auxiliary/tgsi/tgsi_build.c            |  8 +++----
+>  src/gallium/auxiliary/tgsi/tgsi_dump.c             |  9 ++++++--
+>  src/gallium/auxiliary/tgsi/tgsi_text.c             | 14 ++++++++++--
+>  src/gallium/auxiliary/tgsi/tgsi_ureg.c             | 25
+> ++++++++++++----------
+>  src/gallium/auxiliary/tgsi/tgsi_ureg.h             |  2 +-
+>  .../drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp  |  7 +++---
+>  src/gallium/include/pipe/p_shader_tokens.h         | 10 +++++++--
+>  src/mesa/state_tracker/st_glsl_to_tgsi.cpp         |  2 +-
+>  8 files changed, 51 insertions(+), 26 deletions(-)
+>
+> diff --git a/src/gallium/auxiliary/tgsi/tgsi_build.c
+> b/src/gallium/auxiliary/tgsi/tgsi_build.c
+> index c420ae1..b108ade 100644
+> --- a/src/gallium/auxiliary/tgsi/tgsi_build.c
+> +++ b/src/gallium/auxiliary/tgsi/tgsi_build.c
+> @@ -111,7 +111,7 @@ tgsi_default_declaration( void )
+>     declaration.Local = 0;
+>     declaration.Array = 0;
+>     declaration.Atomic = 0;
+> -   declaration.Shared = 0;
+> +   declaration.MemType = TGSI_MEMORY_TYPE_GLOBAL;
+>     declaration.Padding = 0;
+>
+>     return declaration;
+> @@ -128,7 +128,7 @@ tgsi_build_declaration(
+>     unsigned local,
+>     unsigned array,
+>     unsigned atomic,
+> -   unsigned shared,
+> +   unsigned mem_type,
+>     struct tgsi_header *header )
+>  {
+>     struct tgsi_declaration declaration;
+> @@ -146,7 +146,7 @@ tgsi_build_declaration(
+>     declaration.Local = local;
+>     declaration.Array = array;
+>     declaration.Atomic = atomic;
+> -   declaration.Shared = shared;
+> +   declaration.MemType = mem_type;
+>     header_bodysize_grow( header );
+>
+>     return declaration;
+> @@ -406,7 +406,7 @@ tgsi_build_full_declaration(
+>        full_decl->Declaration.Local,
+>        full_decl->Declaration.Array,
+>        full_decl->Declaration.Atomic,
+> -      full_decl->Declaration.Shared,
+> +      full_decl->Declaration.MemType,
+>        header );
+>
+>     if (maxsize <= size)
+> diff --git a/src/gallium/auxiliary/tgsi/tgsi_dump.c
+> b/src/gallium/auxiliary/tgsi/tgsi_dump.c
+> index f232f38..273f0ae 100644
+> --- a/src/gallium/auxiliary/tgsi/tgsi_dump.c
+> +++ b/src/gallium/auxiliary/tgsi/tgsi_dump.c
+> @@ -365,8 +365,13 @@ iter_declaration(
+>     }
+>
+>     if (decl->Declaration.File == TGSI_FILE_MEMORY) {
+> -      if (decl->Declaration.Shared)
+> -         TXT(", SHARED");
+> +      switch (decl->Declaration.MemType) {
+> +      /* Note: ,GLOBAL is optional / the default */
+> +      case TGSI_MEMORY_TYPE_GLOBAL: TXT(", GLOBAL"); break;
+> +      case TGSI_MEMORY_TYPE_LOCAL:  TXT(", LOCAL");  break;
+> +      case TGSI_MEMORY_TYPE_SHARED: TXT(", SHARED"); break;
+> +      case TGSI_MEMORY_TYPE_INPUT:  TXT(", INPUT");  break;
+> +      }
+>     }
+>
+>     if (decl->Declaration.File == TGSI_FILE_SAMPLER_VIEW) {
+> diff --git a/src/gallium/auxiliary/tgsi/tgsi_text.c
+> b/src/gallium/auxiliary/tgsi/tgsi_text.c
+> index 77598d2..9438e3b 100644
+> --- a/src/gallium/auxiliary/tgsi/tgsi_text.c
+> +++ b/src/gallium/auxiliary/tgsi/tgsi_text.c
+> @@ -1390,8 +1390,18 @@ static boolean parse_declaration( struct
+> translate_ctx *ctx )
+>              ctx->cur = cur;
+>           }
+>        } else if (file == TGSI_FILE_MEMORY) {
+> -         if (str_match_nocase_whole(&cur, "SHARED")) {
+> -            decl.Declaration.Shared = 1;
+> +         if (str_match_nocase_whole(&cur, "GLOBAL")) {
+> +            /* Note this is a no-op global is the default */
+> +            decl.Declaration.MemType = TGSI_MEMORY_TYPE_GLOBAL;
+> +            ctx->cur = cur;
+> +         } else if (str_match_nocase_whole(&cur, "LOCAL")) {
+> +            decl.Declaration.MemType = TGSI_MEMORY_TYPE_LOCAL;
+> +            ctx->cur = cur;
+> +         } else if (str_match_nocase_whole(&cur, "SHARED")) {
+> +            decl.Declaration.MemType = TGSI_MEMORY_TYPE_SHARED;
+> +            ctx->cur = cur;
+> +         } else if (str_match_nocase_whole(&cur, "INPUT")) {
+> +            decl.Declaration.MemType = TGSI_MEMORY_TYPE_INPUT;
+>              ctx->cur = cur;
+>           }
+>        } else {
+> diff --git a/src/gallium/auxiliary/tgsi/tgsi_ureg.c
+> b/src/gallium/auxiliary/tgsi/tgsi_ureg.c
+> index e1a7278..9e10044 100644
+> --- a/src/gallium/auxiliary/tgsi/tgsi_ureg.c
+> +++ b/src/gallium/auxiliary/tgsi/tgsi_ureg.c
+> @@ -190,7 +190,7 @@ struct ureg_program
+>
+>     struct ureg_tokens domain[2];
+>
+> -   bool use_shared_memory;
+> +   bool use_memory[TGSI_MEMORY_TYPE_COUNT];
+>  };
+>
+>  static union tgsi_any_token error_tokens[32];
+> @@ -729,13 +729,14 @@ struct ureg_src ureg_DECL_buffer(struct ureg_program
+> *ureg, unsigned nr,
+>     return reg;
+>  }
+>
+> -/* Allocate a shared memory area.
+> +/* Allocate a memory area.
+>   */
+> -struct ureg_src ureg_DECL_shared_memory(struct ureg_program *ureg)
+> +struct ureg_src ureg_DECL_memory(struct ureg_program *ureg,
+> +                                 unsigned memory_type)
+>  {
+> -   struct ureg_src reg = ureg_src_register(TGSI_FILE_MEMORY, 0);
+> +   struct ureg_src reg = ureg_src_register(TGSI_FILE_MEMORY, memory_type);
+>
+> -   ureg->use_shared_memory = true;
+> +   ureg->use_memory[memory_type] = true;
+>     return reg;
+>  }
+>
+> @@ -1666,7 +1667,7 @@ emit_decl_buffer(struct ureg_program *ureg,
+>  }
+>
+>  static void
+> -emit_decl_shared_memory(struct ureg_program *ureg)
+> +emit_decl_memory(struct ureg_program *ureg, unsigned memory_type)
+>  {
+>     union tgsi_any_token *out = get_tokens(ureg, DOMAIN_DECL, 2);
+>
+> @@ -1675,11 +1676,11 @@ emit_decl_shared_memory(struct ureg_program *ureg)
+>     out[0].decl.NrTokens = 2;
+>     out[0].decl.File = TGSI_FILE_MEMORY;
+>     out[0].decl.UsageMask = TGSI_WRITEMASK_XYZW;
+> -   out[0].decl.Shared = true;
+> +   out[0].decl.MemType = memory_type;
+>
+>     out[1].value = 0;
+> -   out[1].decl_range.First = 0;
+> -   out[1].decl_range.Last = 0;
+> +   out[1].decl_range.First = memory_type;
+> +   out[1].decl_range.Last = memory_type;
+>  }
+>
+>  static void
+> @@ -1854,8 +1855,10 @@ static void emit_decls( struct ureg_program *ureg )
+>        emit_decl_buffer(ureg, ureg->buffer[i].index,
+> ureg->buffer[i].atomic);
+>     }
+>
+> -   if (ureg->use_shared_memory)
+> -      emit_decl_shared_memory(ureg);
+> +   for (i = 0; i < TGSI_MEMORY_TYPE_COUNT; i++) {
+> +      if (ureg->use_memory[i])
+> +         emit_decl_memory(ureg, i);
+> +   }
+>
+>     if (ureg->const_decls.nr_constant_ranges) {
+>        for (i = 0; i < ureg->const_decls.nr_constant_ranges; i++) {
+> diff --git a/src/gallium/auxiliary/tgsi/tgsi_ureg.h
+> b/src/gallium/auxiliary/tgsi/tgsi_ureg.h
+> index 6a3b5dd..7c7a89e 100644
+> --- a/src/gallium/auxiliary/tgsi/tgsi_ureg.h
+> +++ b/src/gallium/auxiliary/tgsi/tgsi_ureg.h
+> @@ -338,7 +338,7 @@ struct ureg_src
+>  ureg_DECL_buffer(struct ureg_program *ureg, unsigned nr, bool atomic);
+>
+>  struct ureg_src
+> -ureg_DECL_shared_memory(struct ureg_program *ureg);
+> +ureg_DECL_memory(struct ureg_program *ureg, unsigned memory_type);
+>
+>  static inline struct ureg_src
+>  ureg_imm4f( struct ureg_program *ureg,
+> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+> b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+> index 8683722..a8258af 100644
+> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+> @@ -860,7 +860,7 @@ public:
+>     std::vector<Resource> resources;
+>
+>     struct MemoryFile {
+> -      bool shared;
+> +      uint8_t mem_type; // TGSI_MEMORY_TYPE_*
+>     };
+>     std::vector<MemoryFile> memoryFiles;
+>
+> @@ -1218,7 +1218,7 @@ bool Source::scanDeclaration(const struct
+> tgsi_full_declaration *decl)
+>        break;
+>     case TGSI_FILE_MEMORY:
+>        for (i = first; i <= last; ++i)
+> -         memoryFiles[i].shared = decl->Declaration.Shared;
+> +         memoryFiles[i].mem_type = decl->Declaration.MemType;
+>        break;
+>     case TGSI_FILE_NULL:
+>     case TGSI_FILE_TEMPORARY:
+> @@ -1523,7 +1523,8 @@ Converter::makeSym(uint tgsiFile, int fileIdx, int
+> idx, int c, uint32_t address)
+>
+>     sym->reg.fileIndex = fileIdx;
+>
+> -   if (tgsiFile == TGSI_FILE_MEMORY && code->memoryFiles[fileIdx].shared)
+> +   if (tgsiFile == TGSI_FILE_MEMORY &&
+> +       code->memoryFiles[fileIdx].mem_type == TGSI_MEMORY_TYPE_SHARED)
+>        sym->setFile(FILE_MEMORY_SHARED);
+>
+>     if (idx >= 0) {
+> diff --git a/src/gallium/include/pipe/p_shader_tokens.h
+> b/src/gallium/include/pipe/p_shader_tokens.h
+> index 9d4a96a..0b8d7fb 100644
+> --- a/src/gallium/include/pipe/p_shader_tokens.h
+> +++ b/src/gallium/include/pipe/p_shader_tokens.h
+> @@ -117,6 +117,12 @@ enum tgsi_file_type {
+>  #define TGSI_CYLINDRICAL_WRAP_Z (1 << 2)
+>  #define TGSI_CYLINDRICAL_WRAP_W (1 << 3)
+>
+> +#define TGSI_MEMORY_TYPE_GLOBAL        0 /* GLSL global / OpenCL global
+>   */
+> +#define TGSI_MEMORY_TYPE_LOCAL         1 /* GLSL local  / OpenCL private
+>  */
+> +#define TGSI_MEMORY_TYPE_SHARED        2 /* GLSL shared / OpenCL local
+>  */
+> +#define TGSI_MEMORY_TYPE_INPUT         3 /* For OpenCL kernel input
+> params */
+>
+
+Note: I know little about how you are approaching the CL implementation for
+Nouveau...
+
+Should I expect to see an entry in here anywhere for the CONSTANT memory
+type?
+
+My GL knowledge is pretty basic. Would that map reasonably to something
+like a GL UBO? Do we need an explicit type for CL constant buffers?
+
+--Aaron
+
+
+
+> +#define TGSI_MEMORY_TYPE_COUNT         4
+> +
+>  struct tgsi_declaration
+>  {
+>     unsigned Type        : 4;  /**< TGSI_TOKEN_TYPE_DECLARATION */
+> @@ -130,8 +136,8 @@ struct tgsi_declaration
+>     unsigned Local       : 1;  /**< optimize as subroutine local variable?
+> */
+>     unsigned Array       : 1;  /**< extra array info? */
+>     unsigned Atomic      : 1;  /**< atomic only? for TGSI_FILE_BUFFER */
+> -   unsigned Shared      : 1;  /**< shared storage for TGSI_FILE_MEMORY */
+> -   unsigned Padding     : 4;
+> +   unsigned MemType     : 2;  /**< TGSI_MEMORY_TYPE_x for
+> TGSI_FILE_MEMORY */
+> +   unsigned Padding     : 3;
+>  };
+>
+>  struct tgsi_declaration_range
+> diff --git a/src/mesa/state_tracker/st_glsl_to_tgsi.cpp
+> b/src/mesa/state_tracker/st_glsl_to_tgsi.cpp
+> index 26e463e..9b8bf8e 100644
+> --- a/src/mesa/state_tracker/st_glsl_to_tgsi.cpp
+> +++ b/src/mesa/state_tracker/st_glsl_to_tgsi.cpp
+> @@ -6281,7 +6281,7 @@ st_translate_program(
+>     }
+>
+>     if (program->use_shared_memory)
+> -      t->shared_memory = ureg_DECL_shared_memory(ureg);
+> +      t->shared_memory = ureg_DECL_memory(ureg, TGSI_MEMORY_TYPE_SHARED);
+>
+>     for (i = 0; i < program->shader->NumImages; i++) {
+>        if (program->images_used & (1 << i)) {
+> --
+> 2.7.2
+>
+> _______________________________________________
+> mesa-dev mailing list
+> mesa-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
+>
+
+--001a114202f867a6f4052db38fdb
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Thu, Mar 10, 2016 at 9:14 AM, Hans de Goede <span dir=3D"ltr">&lt;<a=
+ href=3D"mailto:hdegoede@redhat.com" target=3D"_blank">hdegoede@redhat.com<=
+/a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
+Extend the MEMORY file support to differentiate between global, local<br>
+and shared memory, as well as &quot;input&quot; memory.<br>
+<br>
+&quot;MEMORY[x], INPUT&quot; is intended to access OpenCL kernel parameters=
+, a<br>
+special memory type is added for this, since the actual storage of these<br=
+>
+(e.g. UBO-s) may differ per implementation. The uploading of kernel<br>
+parameters is handled by launch_grid, &quot;MEMORY[x], INPUT&quot; allows d=
+rivers<br>
+to use an access mechanism for parameter reads which matches with the<br>
+upload method.<br>
+<br>
+Signed-off-by: Hans de Goede &lt;<a href=3D"mailto:hdegoede@redhat.com">hde=
+goede@redhat.com</a>&gt;<br>
+---<br>
+=C2=A0src/gallium/auxiliary/tgsi/tgsi_build.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 |=C2=A0 8 +++----<br>
+=C2=A0src/gallium/auxiliary/tgsi/tgsi_dump.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0|=C2=A0 9 ++++++--<br>
+=C2=A0src/gallium/auxiliary/tgsi/tgsi_text.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0| 14 ++++++++++--<br>
+=C2=A0src/gallium/auxiliary/tgsi/tgsi_ureg.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0| 25 ++++++++++++----------<br>
+=C2=A0src/gallium/auxiliary/tgsi/tgsi_ureg.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0|=C2=A0 2 +-<br>
+=C2=A0.../drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp=C2=A0 |=C2=A0 7 +++=
+---<br>
+=C2=A0src/gallium/include/pipe/p_shader_tokens.h=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0| 10 +++++++--<br>
+=C2=A0src/mesa/state_tracker/st_glsl_to_tgsi.cpp=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0|=C2=A0 2 +-<br>
+=C2=A08 files changed, 51 insertions(+), 26 deletions(-)<br>
+<br>
+diff --git a/src/gallium/auxiliary/tgsi/tgsi_build.c b/src/gallium/auxiliar=
+y/tgsi/tgsi_build.c<br>
+index c420ae1..b108ade 100644<br>
+--- a/src/gallium/auxiliary/tgsi/tgsi_build.c<br>
++++ b/src/gallium/auxiliary/tgsi/tgsi_build.c<br>
+@@ -111,7 +111,7 @@ tgsi_default_declaration( void )<br>
+=C2=A0 =C2=A0 declaration.Local =3D 0;<br>
+=C2=A0 =C2=A0 declaration.Array =3D 0;<br>
+=C2=A0 =C2=A0 declaration.Atomic =3D 0;<br>
+-=C2=A0 =C2=A0declaration.Shared =3D 0;<br>
++=C2=A0 =C2=A0declaration.MemType =3D TGSI_MEMORY_TYPE_GLOBAL;<br>
+=C2=A0 =C2=A0 declaration.Padding =3D 0;<br>
+<br>
+=C2=A0 =C2=A0 return declaration;<br>
+@@ -128,7 +128,7 @@ tgsi_build_declaration(<br>
+=C2=A0 =C2=A0 unsigned local,<br>
+=C2=A0 =C2=A0 unsigned array,<br>
+=C2=A0 =C2=A0 unsigned atomic,<br>
+-=C2=A0 =C2=A0unsigned shared,<br>
++=C2=A0 =C2=A0unsigned mem_type,<br>
+=C2=A0 =C2=A0 struct tgsi_header *header )<br>
+=C2=A0{<br>
+=C2=A0 =C2=A0 struct tgsi_declaration declaration;<br>
+@@ -146,7 +146,7 @@ tgsi_build_declaration(<br>
+=C2=A0 =C2=A0 declaration.Local =3D local;<br>
+=C2=A0 =C2=A0 declaration.Array =3D array;<br>
+=C2=A0 =C2=A0 declaration.Atomic =3D atomic;<br>
+-=C2=A0 =C2=A0declaration.Shared =3D shared;<br>
++=C2=A0 =C2=A0declaration.MemType =3D mem_type;<br>
+=C2=A0 =C2=A0 header_bodysize_grow( header );<br>
+<br>
+=C2=A0 =C2=A0 return declaration;<br>
+@@ -406,7 +406,7 @@ tgsi_build_full_declaration(<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0full_decl-&gt;Declaration.Local,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0full_decl-&gt;Declaration.Array,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0full_decl-&gt;Declaration.Atomic,<br>
+-=C2=A0 =C2=A0 =C2=A0 full_decl-&gt;Declaration.Shared,<br>
++=C2=A0 =C2=A0 =C2=A0 full_decl-&gt;Declaration.MemType,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0header );<br>
+<br>
+=C2=A0 =C2=A0 if (maxsize &lt;=3D size)<br>
+diff --git a/src/gallium/auxiliary/tgsi/tgsi_dump.c b/src/gallium/auxiliary=
+/tgsi/tgsi_dump.c<br>
+index f232f38..273f0ae 100644<br>
+--- a/src/gallium/auxiliary/tgsi/tgsi_dump.c<br>
++++ b/src/gallium/auxiliary/tgsi/tgsi_dump.c<br>
+@@ -365,8 +365,13 @@ iter_declaration(<br>
+=C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 if (decl-&gt;Declaration.File =3D=3D TGSI_FILE_MEMORY) {<br>
+-=C2=A0 =C2=A0 =C2=A0 if (decl-&gt;Declaration.Shared)<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0TXT(&quot;, SHARED&quot;);<br>
++=C2=A0 =C2=A0 =C2=A0 switch (decl-&gt;Declaration.MemType) {<br>
++=C2=A0 =C2=A0 =C2=A0 /* Note: ,GLOBAL is optional / the default */<br>
++=C2=A0 =C2=A0 =C2=A0 case TGSI_MEMORY_TYPE_GLOBAL: TXT(&quot;, GLOBAL&quot=
+;); break;<br>
++=C2=A0 =C2=A0 =C2=A0 case TGSI_MEMORY_TYPE_LOCAL:=C2=A0 TXT(&quot;, LOCAL&=
+quot;);=C2=A0 break;<br>
++=C2=A0 =C2=A0 =C2=A0 case TGSI_MEMORY_TYPE_SHARED: TXT(&quot;, SHARED&quot=
+;); break;<br>
++=C2=A0 =C2=A0 =C2=A0 case TGSI_MEMORY_TYPE_INPUT:=C2=A0 TXT(&quot;, INPUT&=
+quot;);=C2=A0 break;<br>
++=C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 if (decl-&gt;Declaration.File =3D=3D TGSI_FILE_SAMPLER_VIEW) =
+{<br>
+diff --git a/src/gallium/auxiliary/tgsi/tgsi_text.c b/src/gallium/auxiliary=
+/tgsi/tgsi_text.c<br>
+index 77598d2..9438e3b 100644<br>
+--- a/src/gallium/auxiliary/tgsi/tgsi_text.c<br>
++++ b/src/gallium/auxiliary/tgsi/tgsi_text.c<br>
+@@ -1390,8 +1390,18 @@ static boolean parse_declaration( struct translate_c=
+tx *ctx )<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ctx-&gt;cur =3D cur;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0} else if (file =3D=3D TGSI_FILE_MEMORY) {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (str_match_nocase_whole(&amp;cur, &qu=
+ot;SHARED&quot;)) {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 decl.Declaration.Shared =3D 1;<b=
+r>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (str_match_nocase_whole(&amp;cur, &qu=
+ot;GLOBAL&quot;)) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 /* Note this is a no-op global i=
+s the default */<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 decl.Declaration.MemType =3D TGS=
+I_MEMORY_TYPE_GLOBAL;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ctx-&gt;cur =3D cur;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} else if (str_match_nocase_whole(&amp;c=
+ur, &quot;LOCAL&quot;)) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 decl.Declaration.MemType =3D TGS=
+I_MEMORY_TYPE_LOCAL;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ctx-&gt;cur =3D cur;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} else if (str_match_nocase_whole(&amp;c=
+ur, &quot;SHARED&quot;)) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 decl.Declaration.MemType =3D TGS=
+I_MEMORY_TYPE_SHARED;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ctx-&gt;cur =3D cur;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} else if (str_match_nocase_whole(&amp;c=
+ur, &quot;INPUT&quot;)) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 decl.Declaration.MemType =3D TGS=
+I_MEMORY_TYPE_INPUT;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ctx-&gt;cur =3D cur;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
+diff --git a/src/gallium/auxiliary/tgsi/tgsi_ureg.c b/src/gallium/auxiliary=
+/tgsi/tgsi_ureg.c<br>
+index e1a7278..9e10044 100644<br>
+--- a/src/gallium/auxiliary/tgsi/tgsi_ureg.c<br>
++++ b/src/gallium/auxiliary/tgsi/tgsi_ureg.c<br>
+@@ -190,7 +190,7 @@ struct ureg_program<br>
+<br>
+=C2=A0 =C2=A0 struct ureg_tokens domain[2];<br>
+<br>
+-=C2=A0 =C2=A0bool use_shared_memory;<br>
++=C2=A0 =C2=A0bool use_memory[TGSI_MEMORY_TYPE_COUNT];<br>
+=C2=A0};<br>
+<br>
+=C2=A0static union tgsi_any_token error_tokens[32];<br>
+@@ -729,13 +729,14 @@ struct ureg_src ureg_DECL_buffer(struct ureg_program =
+*ureg, unsigned nr,<br>
+=C2=A0 =C2=A0 return reg;<br>
+=C2=A0}<br>
+<br>
+-/* Allocate a shared memory area.<br>
++/* Allocate a memory area.<br>
+=C2=A0 */<br>
+-struct ureg_src ureg_DECL_shared_memory(struct ureg_program *ureg)<br>
++struct ureg_src ureg_DECL_memory(struct ureg_program *ureg,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0unsigned memory_type)<br>
+=C2=A0{<br>
+-=C2=A0 =C2=A0struct ureg_src reg =3D ureg_src_register(TGSI_FILE_MEMORY, 0=
+);<br>
++=C2=A0 =C2=A0struct ureg_src reg =3D ureg_src_register(TGSI_FILE_MEMORY, m=
+emory_type);<br>
+<br>
+-=C2=A0 =C2=A0ureg-&gt;use_shared_memory =3D true;<br>
++=C2=A0 =C2=A0ureg-&gt;use_memory[memory_type] =3D true;<br>
+=C2=A0 =C2=A0 return reg;<br>
+=C2=A0}<br>
+<br>
+@@ -1666,7 +1667,7 @@ emit_decl_buffer(struct ureg_program *ureg,<br>
+=C2=A0}<br>
+<br>
+=C2=A0static void<br>
+-emit_decl_shared_memory(struct ureg_program *ureg)<br>
++emit_decl_memory(struct ureg_program *ureg, unsigned memory_type)<br>
+=C2=A0{<br>
+=C2=A0 =C2=A0 union tgsi_any_token *out =3D get_tokens(ureg, DOMAIN_DECL, 2=
+);<br>
+<br>
+@@ -1675,11 +1676,11 @@ emit_decl_shared_memory(struct ureg_program *ureg)<=
+br>
+=C2=A0 =C2=A0 out[0].decl.NrTokens =3D 2;<br>
+=C2=A0 =C2=A0 out[0].decl.File =3D TGSI_FILE_MEMORY;<br>
+=C2=A0 =C2=A0 out[0].decl.UsageMask =3D TGSI_WRITEMASK_XYZW;<br>
+-=C2=A0 =C2=A0out[0].decl.Shared =3D true;<br>
++=C2=A0 =C2=A0out[0].decl.MemType =3D memory_type;<br>
+<br>
+=C2=A0 =C2=A0 out[1].value =3D 0;<br>
+-=C2=A0 =C2=A0out[1].decl_range.First =3D 0;<br>
+-=C2=A0 =C2=A0out[1].decl_range.Last =3D 0;<br>
++=C2=A0 =C2=A0out[1].decl_range.First =3D memory_type;<br>
++=C2=A0 =C2=A0out[1].decl_range.Last =3D memory_type;<br>
+=C2=A0}<br>
+<br>
+=C2=A0static void<br>
+@@ -1854,8 +1855,10 @@ static void emit_decls( struct ureg_program *ureg )<=
+br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0emit_decl_buffer(ureg, ureg-&gt;buffer[i].index,=
+ ureg-&gt;buffer[i].atomic);<br>
+=C2=A0 =C2=A0 }<br>
+<br>
+-=C2=A0 =C2=A0if (ureg-&gt;use_shared_memory)<br>
+-=C2=A0 =C2=A0 =C2=A0 emit_decl_shared_memory(ureg);<br>
++=C2=A0 =C2=A0for (i =3D 0; i &lt; TGSI_MEMORY_TYPE_COUNT; i++) {<br>
++=C2=A0 =C2=A0 =C2=A0 if (ureg-&gt;use_memory[i])<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0emit_decl_memory(ureg, i);<br>
++=C2=A0 =C2=A0}<br>
+<br>
+=C2=A0 =C2=A0 if (ureg-&gt;const_decls.nr_constant_ranges) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0for (i =3D 0; i &lt; ureg-&gt;const_decls.nr_con=
+stant_ranges; i++) {<br>
+diff --git a/src/gallium/auxiliary/tgsi/tgsi_ureg.h b/src/gallium/auxiliary=
+/tgsi/tgsi_ureg.h<br>
+index 6a3b5dd..7c7a89e 100644<br>
+--- a/src/gallium/auxiliary/tgsi/tgsi_ureg.h<br>
++++ b/src/gallium/auxiliary/tgsi/tgsi_ureg.h<br>
+@@ -338,7 +338,7 @@ struct ureg_src<br>
+=C2=A0ureg_DECL_buffer(struct ureg_program *ureg, unsigned nr, bool atomic)=
+;<br>
+<br>
+=C2=A0struct ureg_src<br>
+-ureg_DECL_shared_memory(struct ureg_program *ureg);<br>
++ureg_DECL_memory(struct ureg_program *ureg, unsigned memory_type);<br>
+<br>
+=C2=A0static inline struct ureg_src<br>
+=C2=A0ureg_imm4f( struct ureg_program *ureg,<br>
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/sr=
+c/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp<br>
+index 8683722..a8258af 100644<br>
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp<br>
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp<br>
+@@ -860,7 +860,7 @@ public:<br>
+=C2=A0 =C2=A0 std::vector&lt;Resource&gt; resources;<br>
+<br>
+=C2=A0 =C2=A0 struct MemoryFile {<br>
+-=C2=A0 =C2=A0 =C2=A0 bool shared;<br>
++=C2=A0 =C2=A0 =C2=A0 uint8_t mem_type; // TGSI_MEMORY_TYPE_*<br>
+=C2=A0 =C2=A0 };<br>
+=C2=A0 =C2=A0 std::vector&lt;MemoryFile&gt; memoryFiles;<br>
+<br>
+@@ -1218,7 +1218,7 @@ bool Source::scanDeclaration(const struct tgsi_full_d=
+eclaration *decl)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
+=C2=A0 =C2=A0 case TGSI_FILE_MEMORY:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0for (i =3D first; i &lt;=3D last; ++i)<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0memoryFiles[i].shared =3D decl-&gt;Decla=
+ration.Shared;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0memoryFiles[i].mem_type =3D decl-&gt;Dec=
+laration.MemType;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
+=C2=A0 =C2=A0 case TGSI_FILE_NULL:<br>
+=C2=A0 =C2=A0 case TGSI_FILE_TEMPORARY:<br>
+@@ -1523,7 +1523,8 @@ Converter::makeSym(uint tgsiFile, int fileIdx, int id=
+x, int c, uint32_t address)<br>
+<br>
+=C2=A0 =C2=A0 sym-&gt;reg.fileIndex =3D fileIdx;<br>
+<br>
+-=C2=A0 =C2=A0if (tgsiFile =3D=3D TGSI_FILE_MEMORY &amp;&amp; code-&gt;memo=
+ryFiles[fileIdx].shared)<br>
++=C2=A0 =C2=A0if (tgsiFile =3D=3D TGSI_FILE_MEMORY &amp;&amp;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0code-&gt;memoryFiles[fileIdx].mem_type =3D=3D T=
+GSI_MEMORY_TYPE_SHARED)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0sym-&gt;setFile(FILE_MEMORY_SHARED);<br>
+<br>
+=C2=A0 =C2=A0 if (idx &gt;=3D 0) {<br>
+diff --git a/src/gallium/include/pipe/p_shader_tokens.h b/src/gallium/inclu=
+de/pipe/p_shader_tokens.h<br>
+index 9d4a96a..0b8d7fb 100644<br>
+--- a/src/gallium/include/pipe/p_shader_tokens.h<br>
++++ b/src/gallium/include/pipe/p_shader_tokens.h<br>
+@@ -117,6 +117,12 @@ enum tgsi_file_type {<br>
+=C2=A0#define TGSI_CYLINDRICAL_WRAP_Z (1 &lt;&lt; 2)<br>
+=C2=A0#define TGSI_CYLINDRICAL_WRAP_W (1 &lt;&lt; 3)<br>
+<br>
++#define TGSI_MEMORY_TYPE_GLOBAL=C2=A0 =C2=A0 =C2=A0 =C2=A0 0 /* GLSL globa=
+l / OpenCL global=C2=A0 =C2=A0 */<br>
++#define TGSI_MEMORY_TYPE_LOCAL=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01 /* GLSL =
+local=C2=A0 / OpenCL private=C2=A0 =C2=A0*/<br>
++#define TGSI_MEMORY_TYPE_SHARED=C2=A0 =C2=A0 =C2=A0 =C2=A0 2 /* GLSL share=
+d / OpenCL local=C2=A0 =C2=A0 =C2=A0*/<br>
++#define TGSI_MEMORY_TYPE_INPUT=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A03 /* For O=
+penCL kernel input params */<br></blockquote><div><br></div><div>Note: I kn=
+ow little about how you are approaching the CL implementation for Nouveau..=
+.<br><br></div><div>Should I expect to see an entry in here anywhere for th=
+e CONSTANT memory type?<br><br></div><div>My GL knowledge is pretty basic. =
+Would that map reasonably to something like a GL UBO? Do we need an explici=
+t type for CL constant buffers?<br><br></div><div>--Aaron<br></div><div><br=
+>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
++#define TGSI_MEMORY_TYPE_COUNT=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A04<br>
++<br>
+=C2=A0struct tgsi_declaration<br>
+=C2=A0{<br>
+=C2=A0 =C2=A0 unsigned Type=C2=A0 =C2=A0 =C2=A0 =C2=A0 : 4;=C2=A0 /**&lt; T=
+GSI_TOKEN_TYPE_DECLARATION */<br>
+@@ -130,8 +136,8 @@ struct tgsi_declaration<br>
+=C2=A0 =C2=A0 unsigned Local=C2=A0 =C2=A0 =C2=A0 =C2=A0: 1;=C2=A0 /**&lt; o=
+ptimize as subroutine local variable? */<br>
+=C2=A0 =C2=A0 unsigned Array=C2=A0 =C2=A0 =C2=A0 =C2=A0: 1;=C2=A0 /**&lt; e=
+xtra array info? */<br>
+=C2=A0 =C2=A0 unsigned Atomic=C2=A0 =C2=A0 =C2=A0 : 1;=C2=A0 /**&lt; atomic=
+ only? for TGSI_FILE_BUFFER */<br>
+-=C2=A0 =C2=A0unsigned Shared=C2=A0 =C2=A0 =C2=A0 : 1;=C2=A0 /**&lt; shared=
+ storage for TGSI_FILE_MEMORY */<br>
+-=C2=A0 =C2=A0unsigned Padding=C2=A0 =C2=A0 =C2=A0: 4;<br>
++=C2=A0 =C2=A0unsigned MemType=C2=A0 =C2=A0 =C2=A0: 2;=C2=A0 /**&lt; TGSI_M=
+EMORY_TYPE_x for TGSI_FILE_MEMORY */<br>
++=C2=A0 =C2=A0unsigned Padding=C2=A0 =C2=A0 =C2=A0: 3;<br>
+=C2=A0};<br>
+<br>
+=C2=A0struct tgsi_declaration_range<br>
+diff --git a/src/mesa/state_tracker/st_glsl_to_tgsi.cpp b/src/mesa/state_tr=
+acker/st_glsl_to_tgsi.cpp<br>
+index 26e463e..9b8bf8e 100644<br>
+--- a/src/mesa/state_tracker/st_glsl_to_tgsi.cpp<br>
++++ b/src/mesa/state_tracker/st_glsl_to_tgsi.cpp<br>
+@@ -6281,7 +6281,7 @@ st_translate_program(<br>
+=C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 if (program-&gt;use_shared_memory)<br>
+-=C2=A0 =C2=A0 =C2=A0 t-&gt;shared_memory =3D ureg_DECL_shared_memory(ureg)=
+;<br>
++=C2=A0 =C2=A0 =C2=A0 t-&gt;shared_memory =3D ureg_DECL_memory(ureg, TGSI_M=
+EMORY_TYPE_SHARED);<br>
+<br>
+=C2=A0 =C2=A0 for (i =3D 0; i &lt; program-&gt;shader-&gt;NumImages; i++) {=
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0if (program-&gt;images_used &amp; (1 &lt;&lt; i)=
+) {<br>
+<span class=3D""><font color=3D"#888888">--<br>
+2.7.2<br>
+<br>
+_______________________________________________<br>
+mesa-dev mailing list<br>
+<a href=3D"mailto:mesa-dev@lists.freedesktop.org">mesa-dev@lists.freedeskto=
+p.org</a><br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/mesa-dev" rel=3D"=
+noreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/listinf=
+o/mesa-dev</a><br>
+</font></span></blockquote></div><br></div></div>
+
+--001a114202f867a6f4052db38fdb--
+
+--===============0104368529==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYg
+bWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
+
+--===============0104368529==--
