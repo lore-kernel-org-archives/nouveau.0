@@ -1,95 +1,95 @@
-From: Pierre Moreau <pierre.morrow@free.fr>
-Subject: Re: [Nouveau] [PATCH mesa 3/3] nouveau: Add support for
- clover / OpenCL kernel input parameters
-Date: Thu, 10 Mar 2016 17:13:46 +0100
-Message-ID: <20160310161346.GB1073@pmoreau.org>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH mesa 3/3] nouveau: Add support for clover /
+ OpenCL kernel input parameters
+Date: Thu, 10 Mar 2016 18:54:59 +0100
+Message-ID: <56E1B4F3.1080907@redhat.com>
 References: <1457622887-19328-1-git-send-email-hdegoede@redhat.com>
  <1457622887-19328-4-git-send-email-hdegoede@redhat.com>
  <CAKb7UvhNCiRQ6XXfVNzS3WkE+Bf4x4w-Bv2JfYm5-owUrEKoLw@mail.gmail.com>
- <56E19271.7070704@gmail.com> <20160310160301.GA1073@pmoreau.org>
- <CAKb7UvgqGS4KWTEiR21AiagBLx+zP2R00eZSWAv0004MpW+tfA@mail.gmail.com>
+ <56E19271.7070704@gmail.com>
+ <CAKb7UvhrroOY2ShG_XcoPB+TRF2NpLAmV+QWdw88B3o1Unhe0A@mail.gmail.com>
+ <56E19AEB.3060606@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0047604997=="
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7UvgqGS4KWTEiR21AiagBLx+zP2R00eZSWAv0004MpW+tfA@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <56E19AEB.3060606-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0047604997==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+g7M9IMkV8truYOl"
-Content-Disposition: inline
-
-
---+g7M9IMkV8truYOl
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 11:05 AM - Mar 10 2016, Ilia Mirkin wrote:
-> On Thu, Mar 10, 2016 at 11:03 AM, Pierre Moreau <pierre.morrow@free.fr> w=
-rote:
-> > You might want to increment the address by at least
-> > `info->prop.cp.inputOffset`, and if inputs still end up in shared on Te=
-sla,
->=20
-> There's a cp.sharedOffset just for that :) However it doesn't appear
-> to get set anywhere...
-
-Oh really?! I completely missed that one=E2=80=A6 Well, I have some changes=
- to make on
-my own code then! :-D Thanks for pointing that out!
-
-Pierre
-
-
-> _______________________________________________
-> mesa-dev mailing list
-> mesa-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
-
---+g7M9IMkV8truYOl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAABCgAGBQJW4Z0vAAoJEI7uMhYTPh3w97UP/2gzTdlkHRLYHK1xJT1lF/at
-tOmB/OQ3ZPIHTP0bze0TFTjOU2+Vrg+aJnZw1xopJyCAGXTgF31YPjSeKrj+utRg
-Nd0rs2gao7L///bgRvEtb3uHQVTqPcze65jP3hleIxI2tOi7r0qHJS/8HAsq7bUA
-Twpw5u09CxaONCbNZFRaUKxusQwQWG+0K9L4ofiNpl/fYjSErUKGf5+ygI/+non7
-7ybVFZ2SkigYUrFLykU2mbS8ktZ1IUdAtItIuCuBSuXwPx404aqHru5roaHIrGgD
-lR1avosW61DgnSGgxcncchXH35GOY/8TtBIh2HXzauWkdcF/OtyLKbAPQCVk0L/p
-XELmO8UoZjVewFHuDeI1ozP4pWwsyXKOxYCZLMsMEefNYezYdEFlWb65r8fxSiLx
-/uTFkOuQ5Y/vVh+HE8MyhTUquY89KBSDQcRYAAEPCnAJtCXIJZDL+2XdUUAwtTWA
-B2Q5OZRqe0oA1LVRxbzfHY6gLWLNAk4Sy+XCjx1ffpUjmgVtr2s+16SH+ohBq60W
-KazC7VJP4mYJY2m7ZUqXv//7C/h0TZsQlpuRtOR7X1PFc2HhXMpn51mFOtYxgUXg
-MdCw5p8CQUvFCw3CzdPe71PE36eqi2DBJrCKA+krm/chVB1BIMRSlVJzK9v8/oAB
-XNdrXlW8DfFqwLH+kNUx
-=TI8j
------END PGP SIGNATURE-----
-
---+g7M9IMkV8truYOl--
-
---===============0047604997==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYg
-bWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
-
---===============0047604997==--
+SGksCgpPbiAxMC0wMy0xNiAxNzowMywgU2FtdWVsIFBpdG9pc2V0IHdyb3RlOgo+IExvb2tzIGZp
+bmUsIGV4Y2VwdCB0aGF0IHlvdSB3aWxsIG5lZWQgdG8gbG93ZXIgRklMRV9TSEFERVJfSU5QVVQg
+dG8gRklMRV9NRU1PUllfU0hBUkVEIGZvciBUZXNsYSBiZWNhdXNlIGlucHV0IGtlcm5lbCBwYXJh
+bWV0ZXJzIGFyZSBsb2NhdGVkIGF0IHNbMHgxMF0uCgpPaywgYnV0IHNob3VsZCB0aGlzIGJlIGRv
+bmUgaW4gbnY1MF9pcl9mcm9tX3Rnc2kuY3BwID8gVGhhdCBmZWVscyBsaWtlIHRoZSB3cm9uZyBw
+bGFjZSB0bwpoYW5kbGUgdGhpcyBkZXRhaWwuIE5vdCBzdXJlIHdoZXJlIHRvIGRvIGl0IG90aGVy
+d2lzZSB0aG91Z2gsIGFuZCBkb2luZyB0aGlzIGxhdGVyCm1heSBtYWtlIHRoZSBjb2RlIG1vcmUg
+Y29tcGxpY2F0ZWQuCgogPiBObyBuZWVkIHRvIGRvIHRoaXMgZm9yIEZlcm1pKyBiZWNhdXNlIGl0
+J3MgYWxyZWFkeSBsb3dlcmVkIHRvIGMwW10uIE5vdGUgdGhhdCBpbnB1dCBrZXJuZWwgcGFyYW1l
+dGVycyB3aWxsIGJlIHByb2JhYmx5IHN0aWNrZWQgb24gYzdbXSBhZnRlciBteSBjaGFuZ2VzIGJ1
+dCB0aGF0IGRvZXNuJ3QgY2hhbmdlIGFueXRoaW5nIGZvciB5b3UuCgpBY2suCgo+Cj4gSSBhbHJl
+YWR5IGhhdmUgYSBwYXRjaCBmb3IgdGhlIG52NTAgYml0cyBidHcsIG1heWJlIGl0J3MgdGhlIHJp
+Z2h0IHRpbWUgdG8gc2VuZCBpdD8KPgo+IGh0dHBzOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvfmhh
+a3pzYW0vbWVzYS9jb21taXQvP2g9Y29tcHV0ZSZpZD02NDBkNjgwMDliY2Y5M2MxODE0Y2VlMGIx
+YTEyOTM5Y2I4NWU1ODk1CgpBaCBJIHNlZSB0aGF0IGFuc3dlcnMgbXkgcXVlc3Rpb24uCgpZZXMg
+SSBndWVzcyB0aGlzIGlzIHRoZSByaWdodCB0aW1lIHRvIHNlbmQgaXQsIGFsdGhvdWdoIEkndmUg
+bm90IHJlYWxseSBsb29rZWQKYXQgb3BlbmNsIGZvciBudjUwIHlldC4KClJlZ2FyZHMsCgpIYW5z
+CgoKPgo+IFJldmlld2VkLWJ5OiBTYW11ZWwgUGl0b2lzZXQgPHNhbXVlbC5waXRvaXNldEBnbWFp
+bC5jb20+Cj4KPiBPbiAwMy8xMC8yMDE2IDA0OjQzIFBNLCBJbGlhIE1pcmtpbiB3cm90ZToKPj4g
+T24gVGh1LCBNYXIgMTAsIDIwMTYgYXQgMTA6MjcgQU0sIFNhbXVlbCBQaXRvaXNldAo+PiA8c2Ft
+dWVsLnBpdG9pc2V0QGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pgo+Pj4KPj4+IE9uIDAzLzEwLzIwMTYg
+MDQ6MjMgUE0sIElsaWEgTWlya2luIHdyb3RlOgo+Pj4+Cj4+Pj4gT24gVGh1LCBNYXIgMTAsIDIw
+MTYgYXQgMTA6MTQgQU0sIEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4+Pj4g
+d3JvdGU6Cj4+Pj4+Cj4+Pj4+IEFkZCBzdXBwb3J0IGZvciBjbG92ZXIgLyBPcGVuQ0wga2VybmVs
+IGlucHV0IHBhcmFtZXRlcnMuCj4+Pj4+Cj4+Pj4+IFNpZ25lZC1vZmYtYnk6IEhhbnMgZGUgR29l
+ZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4+Pj4+IC0tLQo+Pj4+PiAgICAuLi4vZHJpdmVycy9u
+b3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwICAgICAgfCAxOAo+Pj4+PiArKysr
+KysrKysrKysrKystLS0KPj4+Pj4gICAgMSBmaWxlIGNoYW5nZWQsIDE1IGluc2VydGlvbnMoKyks
+IDMgZGVsZXRpb25zKC0pCj4+Pj4+Cj4+Pj4+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2
+ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPj4+Pj4gYi9zcmMvZ2Fs
+bGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPj4+Pj4g
+aW5kZXggYTgyNThhZi4uZGUwYzcyYiAxMDA2NDQKPj4+Pj4gLS0tIGEvc3JjL2dhbGxpdW0vZHJp
+dmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4+Pj4+ICsrKyBiL3Ny
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcAo+
+Pj4+PiBAQCAtMTUyMyw5ICsxNTIzLDIxIEBAIENvbnZlcnRlcjo6bWFrZVN5bSh1aW50IHRnc2lG
+aWxlLCBpbnQgZmlsZUlkeCwgaW50Cj4+Pj4+IGlkeCwgaW50IGMsIHVpbnQzMl90IGFkZHJlc3Mp
+Cj4+Pj4+Cj4+Pj4+ICAgICAgIHN5bS0+cmVnLmZpbGVJbmRleCA9IGZpbGVJZHg7Cj4+Pj4+Cj4+
+Pj4+IC0gICBpZiAodGdzaUZpbGUgPT0gVEdTSV9GSUxFX01FTU9SWSAmJgo+Pj4+PiAtICAgICAg
+IGNvZGUtPm1lbW9yeUZpbGVzW2ZpbGVJZHhdLm1lbV90eXBlID09IFRHU0lfTUVNT1JZX1RZUEVf
+U0hBUkVEKQo+Pj4+PiAtICAgICAgc3ltLT5zZXRGaWxlKEZJTEVfTUVNT1JZX1NIQVJFRCk7Cj4+
+Pj4+ICsgICBpZiAodGdzaUZpbGUgPT0gVEdTSV9GSUxFX01FTU9SWSkgewo+Pj4+PiArICAgICAg
+c3dpdGNoIChjb2RlLT5tZW1vcnlGaWxlc1tmaWxlSWR4XS5tZW1fdHlwZSkgewo+Pj4+PiArICAg
+ICAgY2FzZSBUR1NJX01FTU9SWV9UWVBFX1NIQVJFRDoKPj4+Pj4gKyAgICAgICAgIHN5bS0+c2V0
+RmlsZShGSUxFX01FTU9SWV9TSEFSRUQpOwo+Pj4+PiArICAgICAgICAgYnJlYWs7Cj4+Pj4+ICsg
+ICAgICBjYXNlIFRHU0lfTUVNT1JZX1RZUEVfSU5QVVQ6Cj4+Pj4+ICsgICAgICAgICBhc3NlcnQo
+cHJvZy0+Z2V0VHlwZSgpID09IFByb2dyYW06OlRZUEVfQ09NUFVURSk7Cj4+Pj4+ICsgICAgICAg
+ICBhc3NlcnQoaWR4ID09IC0xKTsKPj4+Pj4gKyAgICAgICAgIHN5bS0+c2V0RmlsZShGSUxFX1NI
+QURFUl9JTlBVVCk7Cj4+Pj4+ICsgICAgICAgICBhZGRyZXNzICs9IGluZm8tPnByb3AuY3AuaW5w
+dXRPZmZzZXQ7Cj4+Pj4KPj4+Pgo+Pj4+IFdoYXQncyB0aGUgaWRlYSBoZXJlPyBpLmUuIHdoYXQg
+aXMgdGhlIGlucHV0T2Zmc2V0LCBob3cgaXMgaXQgc2V0LCBhbmQKPj4+PiB3aHk/Cj4+Pgo+Pj4K
+Pj4+IEkgZG9uJ3QgZ2V0IHRoZSBpZGVhIHRvbywgYnR3Lgo+Pj4KPj4+IEJ1dCBwcm9wLmNwLmlu
+cHV0T2Zmc2V0IGlzIG9ubHkgZGVmaW5lZCBmb3IgY29tcHV0ZSBvbiBLZXBsZXIuIEl0J3MgdGhl
+Cj4+PiBvZmZzZXQgb2YgaW5wdXQgcGFyYW1ldGVycyBpbiB0aGUgc2NyZWVuLT5wYXJtIEJPIGJ1
+dCBhcyB5b3UgYWxyZWFkeSBrbm93LAo+Pj4gaXQgaXMgZ29pbmcgdG8gYmUgcmVtb3ZlZCBiZWNh
+dXNlIHRoZSBpZGVhIGlzIHRvIHVzZSBzY3JlZW4tPnVuaWZvcm1fYm8KPj4+IGluc3RlYWQuIEkn
+bGwgZG8gdGhpcyBjaGFuZ2UgKmFmdGVyKiB0aGUgY29tcHV0ZSBzaGFkZXJzIHN1cHBvcnQgb24g
+S2VwbGVyLgo+Pgo+PiBBY3R1YWxseSBsb29rcyBsaWtlIGl0J3Mgb25seSBzZXQgZm9yIG52NTAg
+dGhhdCBJIGNhbiBzZWUsIHNoaWZ0aW5nCj4+IHRoaW5ncyBvdmVyIGJ5IDB4MTAuIEl0IHVzZWQg
+dG8gYmUgcmVmbGVjdGVkIGJ5IGdldFJlc291cmNlQmFzZSwgYnV0Cj4+IHdlIGJyb2tlIHRoYXQg
+YWJzdHJhY3Rpb24uLi4gbWlnaHQgYmUgbmljZSB0byBnZXQgaXQgYmFjayBzb21laG93LAo+PiBw
+ZXJoYXBzIGJ5IHNlbmRpbmcgbW9yZSBhcmd1bWVudHMgZG93biB0byBnZXRSZXNvdXJjZUJhc2U/
+IEVpdGhlciB3YXksCj4+IHRoYXQgY2FuIGJlIGRvbmUgbGF0ZXIuIFRoaXMgcGF0Y2ggaXMKPj4K
+Pj4gUmV2aWV3ZWQtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KPj4KPgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
