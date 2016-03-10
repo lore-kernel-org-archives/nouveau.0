@@ -1,58 +1,54 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH mesa 3/3] nouveau: Add support for clover /
- OpenCL kernel input parameters
-Date: Thu, 10 Mar 2016 10:23:40 -0500
-Message-ID: <CAKb7UvhNCiRQ6XXfVNzS3WkE+Bf4x4w-Bv2JfYm5-owUrEKoLw@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH mesa 1/3] tgsi: Fix decl.Atomic and .Shared
+ not propagating when parsing tgsi text
+Date: Thu, 10 Mar 2016 10:24:11 -0500
+Message-ID: <CAKb7Uvi0r8YnLtdZhi-S-KAfKrjSdVzv9zM46mnc7yo8R2ZYxQ@mail.gmail.com>
 References: <1457622887-19328-1-git-send-email-hdegoede@redhat.com>
- <1457622887-19328-4-git-send-email-hdegoede@redhat.com>
+ <1457622887-19328-2-git-send-email-hdegoede@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1457622887-19328-4-git-send-email-hdegoede@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Hans de Goede <hdegoede@redhat.com>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1457622887-19328-2-git-send-email-hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBNYXIgMTAsIDIwMTYgYXQgMTA6MTQgQU0sIEhhbnMgZGUgR29lZGUgPGhkZWdvZWRl
-QHJlZGhhdC5jb20+IHdyb3RlOgo+IEFkZCBzdXBwb3J0IGZvciBjbG92ZXIgLyBPcGVuQ0wga2Vy
-bmVsIGlucHV0IHBhcmFtZXRlcnMuCj4KPiBTaWduZWQtb2ZmLWJ5OiBIYW5zIGRlIEdvZWRlIDxo
-ZGVnb2VkZUByZWRoYXQuY29tPgo+IC0tLQo+ICAuLi4vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4v
-bnY1MF9pcl9mcm9tX3Rnc2kuY3BwICAgICAgfCAxOCArKysrKysrKysrKysrKystLS0KPiAgMSBm
-aWxlIGNoYW5nZWQsIDE1IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0t
-Z2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rn
-c2kuY3BwIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9t
-X3Rnc2kuY3BwCj4gaW5kZXggYTgyNThhZi4uZGUwYzcyYiAxMDA2NDQKPiAtLS0gYS9zcmMvZ2Fs
-bGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPiArKysg
-Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5j
-cHAKPiBAQCAtMTUyMyw5ICsxNTIzLDIxIEBAIENvbnZlcnRlcjo6bWFrZVN5bSh1aW50IHRnc2lG
-aWxlLCBpbnQgZmlsZUlkeCwgaW50IGlkeCwgaW50IGMsIHVpbnQzMl90IGFkZHJlc3MpCj4KPiAg
-ICAgc3ltLT5yZWcuZmlsZUluZGV4ID0gZmlsZUlkeDsKPgo+IC0gICBpZiAodGdzaUZpbGUgPT0g
-VEdTSV9GSUxFX01FTU9SWSAmJgo+IC0gICAgICAgY29kZS0+bWVtb3J5RmlsZXNbZmlsZUlkeF0u
-bWVtX3R5cGUgPT0gVEdTSV9NRU1PUllfVFlQRV9TSEFSRUQpCj4gLSAgICAgIHN5bS0+c2V0Rmls
-ZShGSUxFX01FTU9SWV9TSEFSRUQpOwo+ICsgICBpZiAodGdzaUZpbGUgPT0gVEdTSV9GSUxFX01F
-TU9SWSkgewo+ICsgICAgICBzd2l0Y2ggKGNvZGUtPm1lbW9yeUZpbGVzW2ZpbGVJZHhdLm1lbV90
-eXBlKSB7Cj4gKyAgICAgIGNhc2UgVEdTSV9NRU1PUllfVFlQRV9TSEFSRUQ6Cj4gKyAgICAgICAg
-IHN5bS0+c2V0RmlsZShGSUxFX01FTU9SWV9TSEFSRUQpOwo+ICsgICAgICAgICBicmVhazsKPiAr
-ICAgICAgY2FzZSBUR1NJX01FTU9SWV9UWVBFX0lOUFVUOgo+ICsgICAgICAgICBhc3NlcnQocHJv
-Zy0+Z2V0VHlwZSgpID09IFByb2dyYW06OlRZUEVfQ09NUFVURSk7Cj4gKyAgICAgICAgIGFzc2Vy
-dChpZHggPT0gLTEpOwo+ICsgICAgICAgICBzeW0tPnNldEZpbGUoRklMRV9TSEFERVJfSU5QVVQp
-Owo+ICsgICAgICAgICBhZGRyZXNzICs9IGluZm8tPnByb3AuY3AuaW5wdXRPZmZzZXQ7CgpXaGF0
-J3MgdGhlIGlkZWEgaGVyZT8gaS5lLiB3aGF0IGlzIHRoZSBpbnB1dE9mZnNldCwgaG93IGlzIGl0
-IHNldCwgYW5kIHdoeT8KCiAgLWlsaWEKCj4gKyAgICAgICAgIGJyZWFrOwo+ICsgICAgICBkZWZh
-dWx0Ogo+ICsgICAgICAgICBhc3NlcnQoMCk7IC8qIFRPRE86IEFkZCBzdXBwb3J0IGZvciBnbG9i
-YWwgYW5kIGxvY2FsIG1lbW9yeSAqLwo+ICsgICAgICB9Cj4gKyAgIH0KPgo+ICAgICBpZiAoaWR4
-ID49IDApIHsKPiAgICAgICAgaWYgKHN5bS0+cmVnLmZpbGUgPT0gRklMRV9TSEFERVJfSU5QVVQp
-Cj4gLS0KPiAyLjcuMgo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRl
-dgo=
+UmV2aWV3ZWQtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KCk9uIFRodSwg
+TWFyIDEwLCAyMDE2IGF0IDEwOjE0IEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQu
+Y29tPiB3cm90ZToKPiBXaGVuIHN1cHBvcnQgZm9yIGRlY2wuQXRvbWljIGFuZCAuU2hhcmVkIHdh
+cyBhZGRlZCwgdGdzaV9idWlsZF9kZWNsYXJhdGlvbgo+IHdhcyBub3QgdXBkYXRlZCB0byBwcm9w
+YWdhdGUgdGhlc2UgcHJvcGVybHkuCj4KPiBTaWduZWQtb2ZmLWJ5OiBIYW5zIGRlIEdvZWRlIDxo
+ZGVnb2VkZUByZWRoYXQuY29tPgo+IC0tLQo+ICBzcmMvZ2FsbGl1bS9hdXhpbGlhcnkvdGdzaS90
+Z3NpX2J1aWxkLmMgfCA2ICsrKysrKwo+ICAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCsp
+Cj4KPiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV9idWlsZC5j
+IGIvc3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV9idWlsZC5jCj4gaW5kZXggY2ZlOWI5
+Mi4uYzQyMGFlMSAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9hdXhpbGlhcnkvdGdzaS90Z3Np
+X2J1aWxkLmMKPiArKysgYi9zcmMvZ2FsbGl1bS9hdXhpbGlhcnkvdGdzaS90Z3NpX2J1aWxkLmMK
+PiBAQCAtMTI3LDYgKzEyNyw4IEBAIHRnc2lfYnVpbGRfZGVjbGFyYXRpb24oCj4gICAgIHVuc2ln
+bmVkIGludmFyaWFudCwKPiAgICAgdW5zaWduZWQgbG9jYWwsCj4gICAgIHVuc2lnbmVkIGFycmF5
+LAo+ICsgICB1bnNpZ25lZCBhdG9taWMsCj4gKyAgIHVuc2lnbmVkIHNoYXJlZCwKPiAgICAgc3Ry
+dWN0IHRnc2lfaGVhZGVyICpoZWFkZXIgKQo+ICB7Cj4gICAgIHN0cnVjdCB0Z3NpX2RlY2xhcmF0
+aW9uIGRlY2xhcmF0aW9uOwo+IEBAIC0xNDMsNiArMTQ1LDggQEAgdGdzaV9idWlsZF9kZWNsYXJh
+dGlvbigKPiAgICAgZGVjbGFyYXRpb24uSW52YXJpYW50ID0gaW52YXJpYW50Owo+ICAgICBkZWNs
+YXJhdGlvbi5Mb2NhbCA9IGxvY2FsOwo+ICAgICBkZWNsYXJhdGlvbi5BcnJheSA9IGFycmF5Owo+
+ICsgICBkZWNsYXJhdGlvbi5BdG9taWMgPSBhdG9taWM7Cj4gKyAgIGRlY2xhcmF0aW9uLlNoYXJl
+ZCA9IHNoYXJlZDsKPiAgICAgaGVhZGVyX2JvZHlzaXplX2dyb3coIGhlYWRlciApOwo+Cj4gICAg
+IHJldHVybiBkZWNsYXJhdGlvbjsKPiBAQCAtNDAxLDYgKzQwNSw4IEBAIHRnc2lfYnVpbGRfZnVs
+bF9kZWNsYXJhdGlvbigKPiAgICAgICAgZnVsbF9kZWNsLT5EZWNsYXJhdGlvbi5JbnZhcmlhbnQs
+Cj4gICAgICAgIGZ1bGxfZGVjbC0+RGVjbGFyYXRpb24uTG9jYWwsCj4gICAgICAgIGZ1bGxfZGVj
+bC0+RGVjbGFyYXRpb24uQXJyYXksCj4gKyAgICAgIGZ1bGxfZGVjbC0+RGVjbGFyYXRpb24uQXRv
+bWljLAo+ICsgICAgICBmdWxsX2RlY2wtPkRlY2xhcmF0aW9uLlNoYXJlZCwKPiAgICAgICAgaGVh
+ZGVyICk7Cj4KPiAgICAgaWYgKG1heHNpemUgPD0gc2l6ZSkKPiAtLQo+IDIuNy4yCj4KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
