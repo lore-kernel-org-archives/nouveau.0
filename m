@@ -1,18 +1,16 @@
-From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
-Subject: Re: [PATCH mesa 3/3] nouveau: Add support for clover /
- OpenCL kernel input parameters
-Date: Thu, 10 Mar 2016 16:46:14 +0100
-Message-ID: <56E196C6.7050206@gmail.com>
+From: Pierre Moreau <pierre.morrow@free.fr>
+Subject: Re: [Nouveau] [PATCH mesa 3/3] nouveau: Add support for
+ clover / OpenCL kernel input parameters
+Date: Thu, 10 Mar 2016 17:03:01 +0100
+Message-ID: <20160310160301.GA1073@pmoreau.org>
 References: <1457622887-19328-1-git-send-email-hdegoede@redhat.com>
  <1457622887-19328-4-git-send-email-hdegoede@redhat.com>
  <CAKb7UvhNCiRQ6XXfVNzS3WkE+Bf4x4w-Bv2JfYm5-owUrEKoLw@mail.gmail.com>
  <56E19271.7070704@gmail.com>
- <CAKb7UvhrroOY2ShG_XcoPB+TRF2NpLAmV+QWdw88B3o1Unhe0A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0397372777=="
 Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7UvhrroOY2ShG_XcoPB+TRF2NpLAmV+QWdw88B3o1Unhe0A@mail.gmail.com>
+In-Reply-To: <56E19271.7070704@gmail.com>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
  <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
@@ -22,55 +20,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
  <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: mesa-dev-bounces@lists.freedesktop.org
 Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
+To: Samuel Pitoiset <samuel.pitoiset@gmail.com>
 Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAwMy8xMC8yMDE2IDA0OjQzIFBNLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBPbiBUaHUsIE1h
-ciAxMCwgMjAxNiBhdCAxMDoyNyBBTSwgU2FtdWVsIFBpdG9pc2V0Cj4gPHNhbXVlbC5waXRvaXNl
-dEBnbWFpbC5jb20+IHdyb3RlOgo+Pgo+Pgo+PiBPbiAwMy8xMC8yMDE2IDA0OjIzIFBNLCBJbGlh
-IE1pcmtpbiB3cm90ZToKPj4+Cj4+PiBPbiBUaHUsIE1hciAxMCwgMjAxNiBhdCAxMDoxNCBBTSwg
-SGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KPj4+IHdyb3RlOgo+Pj4+Cj4+Pj4g
-QWRkIHN1cHBvcnQgZm9yIGNsb3ZlciAvIE9wZW5DTCBrZXJuZWwgaW5wdXQgcGFyYW1ldGVycy4K
-Pj4+Pgo+Pj4+IFNpZ25lZC1vZmYtYnk6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5j
-b20+Cj4+Pj4gLS0tCj4+Pj4gICAgLi4uL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJf
-ZnJvbV90Z3NpLmNwcCAgICAgIHwgMTgKPj4+PiArKysrKysrKysrKysrKystLS0KPj4+PiAgICAx
-IGZpbGUgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKPj4+Pgo+Pj4+
-IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2ly
-X2Zyb21fdGdzaS5jcHAKPj4+PiBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2Vu
-L252NTBfaXJfZnJvbV90Z3NpLmNwcAo+Pj4+IGluZGV4IGE4MjU4YWYuLmRlMGM3MmIgMTAwNjQ0
-Cj4+Pj4gLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9m
-cm9tX3Rnc2kuY3BwCj4+Pj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVn
-ZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4+Pj4gQEAgLTE1MjMsOSArMTUyMywyMSBAQCBDb252
-ZXJ0ZXI6Om1ha2VTeW0odWludCB0Z3NpRmlsZSwgaW50IGZpbGVJZHgsIGludAo+Pj4+IGlkeCwg
-aW50IGMsIHVpbnQzMl90IGFkZHJlc3MpCj4+Pj4KPj4+PiAgICAgICBzeW0tPnJlZy5maWxlSW5k
-ZXggPSBmaWxlSWR4Owo+Pj4+Cj4+Pj4gLSAgIGlmICh0Z3NpRmlsZSA9PSBUR1NJX0ZJTEVfTUVN
-T1JZICYmCj4+Pj4gLSAgICAgICBjb2RlLT5tZW1vcnlGaWxlc1tmaWxlSWR4XS5tZW1fdHlwZSA9
-PSBUR1NJX01FTU9SWV9UWVBFX1NIQVJFRCkKPj4+PiAtICAgICAgc3ltLT5zZXRGaWxlKEZJTEVf
-TUVNT1JZX1NIQVJFRCk7Cj4+Pj4gKyAgIGlmICh0Z3NpRmlsZSA9PSBUR1NJX0ZJTEVfTUVNT1JZ
-KSB7Cj4+Pj4gKyAgICAgIHN3aXRjaCAoY29kZS0+bWVtb3J5RmlsZXNbZmlsZUlkeF0ubWVtX3R5
-cGUpIHsKPj4+PiArICAgICAgY2FzZSBUR1NJX01FTU9SWV9UWVBFX1NIQVJFRDoKPj4+PiArICAg
-ICAgICAgc3ltLT5zZXRGaWxlKEZJTEVfTUVNT1JZX1NIQVJFRCk7Cj4+Pj4gKyAgICAgICAgIGJy
-ZWFrOwo+Pj4+ICsgICAgICBjYXNlIFRHU0lfTUVNT1JZX1RZUEVfSU5QVVQ6Cj4+Pj4gKyAgICAg
-ICAgIGFzc2VydChwcm9nLT5nZXRUeXBlKCkgPT0gUHJvZ3JhbTo6VFlQRV9DT01QVVRFKTsKPj4+
-PiArICAgICAgICAgYXNzZXJ0KGlkeCA9PSAtMSk7Cj4+Pj4gKyAgICAgICAgIHN5bS0+c2V0Rmls
-ZShGSUxFX1NIQURFUl9JTlBVVCk7Cj4+Pj4gKyAgICAgICAgIGFkZHJlc3MgKz0gaW5mby0+cHJv
-cC5jcC5pbnB1dE9mZnNldDsKPj4+Cj4+Pgo+Pj4gV2hhdCdzIHRoZSBpZGVhIGhlcmU/IGkuZS4g
-d2hhdCBpcyB0aGUgaW5wdXRPZmZzZXQsIGhvdyBpcyBpdCBzZXQsIGFuZAo+Pj4gd2h5Pwo+Pgo+
-Pgo+PiBJIGRvbid0IGdldCB0aGUgaWRlYSB0b28sIGJ0dy4KPj4KPj4gQnV0IHByb3AuY3AuaW5w
-dXRPZmZzZXQgaXMgb25seSBkZWZpbmVkIGZvciBjb21wdXRlIG9uIEtlcGxlci4gSXQncyB0aGUK
-Pj4gb2Zmc2V0IG9mIGlucHV0IHBhcmFtZXRlcnMgaW4gdGhlIHNjcmVlbi0+cGFybSBCTyBidXQg
-YXMgeW91IGFscmVhZHkga25vdywKPj4gaXQgaXMgZ29pbmcgdG8gYmUgcmVtb3ZlZCBiZWNhdXNl
-IHRoZSBpZGVhIGlzIHRvIHVzZSBzY3JlZW4tPnVuaWZvcm1fYm8KPj4gaW5zdGVhZC4gSSdsbCBk
-byB0aGlzIGNoYW5nZSAqYWZ0ZXIqIHRoZSBjb21wdXRlIHNoYWRlcnMgc3VwcG9ydCBvbiBLZXBs
-ZXIuCj4KPiBBY3R1YWxseSBsb29rcyBsaWtlIGl0J3Mgb25seSBzZXQgZm9yIG52NTAgdGhhdCBJ
-IGNhbiBzZWUsIHNoaWZ0aW5nCj4gdGhpbmdzIG92ZXIgYnkgMHgxMC4gSXQgdXNlZCB0byBiZSBy
-ZWZsZWN0ZWQgYnkgZ2V0UmVzb3VyY2VCYXNlLCBidXQKPiB3ZSBicm9rZSB0aGF0IGFic3RyYWN0
-aW9uLi4uIG1pZ2h0IGJlIG5pY2UgdG8gZ2V0IGl0IGJhY2sgc29tZWhvdywKPiBwZXJoYXBzIGJ5
-IHNlbmRpbmcgbW9yZSBhcmd1bWVudHMgZG93biB0byBnZXRSZXNvdXJjZUJhc2U/IEVpdGhlciB3
-YXksCj4gdGhhdCBjYW4gYmUgZG9uZSBsYXRlci4gVGhpcyBwYXRjaCBpcwoKT2ggeWVzLCBJIHdh
-cyBjb25mdXNlZCB3aXRoIHByb3AuY3AuZ3JpZEluZm9CYXNlIG9uIEtlcGxlci4uLgoKPgo+IFJl
-dmlld2VkLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4KCi0tIAotU2Ft
-dWVsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCm1lc2Et
-ZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
+
+--===============0397372777==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pf9I7BMVVzbSWLtt"
+Content-Disposition: inline
+
+
+--pf9I7BMVVzbSWLtt
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 04:27 PM - Mar 10 2016, Samuel Pitoiset wrote:
+>=20
+>=20
+> On 03/10/2016 04:23 PM, Ilia Mirkin wrote:
+> >On Thu, Mar 10, 2016 at 10:14 AM, Hans de Goede <hdegoede@redhat.com> wr=
+ote:
+> >>Add support for clover / OpenCL kernel input parameters.
+> >>
+> >>Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> >>---
+> >>  .../drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp      | 18 +++++++++=
+++++++---
+> >>  1 file changed, 15 insertions(+), 3 deletions(-)
+> >>
+> >>diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp =
+b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+> >>index a8258af..de0c72b 100644
+> >>--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+> >>+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+> >>@@ -1523,9 +1523,21 @@ Converter::makeSym(uint tgsiFile, int fileIdx, i=
+nt idx, int c, uint32_t address)
+> >>
+> >>     sym->reg.fileIndex =3D fileIdx;
+> >>
+> >>-   if (tgsiFile =3D=3D TGSI_FILE_MEMORY &&
+> >>-       code->memoryFiles[fileIdx].mem_type =3D=3D TGSI_MEMORY_TYPE_SHA=
+RED)
+> >>-      sym->setFile(FILE_MEMORY_SHARED);
+> >>+   if (tgsiFile =3D=3D TGSI_FILE_MEMORY) {
+> >>+      switch (code->memoryFiles[fileIdx].mem_type) {
+> >>+      case TGSI_MEMORY_TYPE_SHARED:
+> >>+         sym->setFile(FILE_MEMORY_SHARED);
+
+You might want to increment the address by at least
+`info->prop.cp.inputOffset`, and if inputs still end up in shared on Tesla,
+then increment further by the input size. This input offset of 0x10 (or is =
+it
+0x20?) is due to the card sticking the size of a block and of the grid insi=
+de
+`s[0x0..0x10]` (or maybe Nouveau is doing that, but I doubt it.). So even if
+the user inputs end up somewhere else in memory, you most likely still don't
+want to overwrite the grid information. This should be necessary only for T=
+esla
+cards.
+
+> >>+         break;
+> >>+      case TGSI_MEMORY_TYPE_INPUT:
+> >>+         assert(prog->getType() =3D=3D Program::TYPE_COMPUTE);
+> >>+         assert(idx =3D=3D -1);
+> >>+         sym->setFile(FILE_SHADER_INPUT);
+> >>+         address +=3D info->prop.cp.inputOffset;
+> >
+> >What's the idea here? i.e. what is the inputOffset, how is it set, and w=
+hy?
+>=20
+> I don't get the idea too, btw.
+>=20
+> But prop.cp.inputOffset is only defined for compute on Kepler. It's the
+> offset of input parameters in the screen->parm BO but as you already know,
+> it is going to be removed because the idea is to use screen->uniform_bo
+> instead. I'll do this change *after* the compute shaders support on Keple=
+r.
+
+If I understand correctly, the goal is to have user inputs in a
+`screen->uniform_bo`, and so for all generations?
+
+Pierre
+
+
+>=20
+> >
+> >   -ilia
+> >
+> >>+         break;
+> >>+      default:
+> >>+         assert(0); /* TODO: Add support for global and local memory */
+> >>+      }
+> >>+   }
+> >>
+> >>     if (idx >=3D 0) {
+> >>        if (sym->reg.file =3D=3D FILE_SHADER_INPUT)
+> >>--
+> >>2.7.2
+> >>
+>=20
+> --=20
+> -Samuel
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--pf9I7BMVVzbSWLtt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAABCgAGBQJW4ZqjAAoJEI7uMhYTPh3wxjAQAK9xDPH/FxS1U/28YHAEGbYX
+3Bj+ik/ZSAIHq7lfUWG1hZ3108l9Mkw4hx2jH3iPQgBsv7t+OgTJcY5crIw3/HMw
+Al7rPb3Bql22Q34W8hSKsgHtEPZxv1YmkSkFfv041DuhCHCYTy/TbPyCp0UxAbDM
+CTxbXDuLRz8EQIRhJYH7FrKQgmvdYbMzZamv8IYh9rGCNeNtPKUGWANrn/oIOvtB
+nJlkMUN4HnLhfG/OnxXc39G+P2jBBg7JDSoZUkpBvTVDZbNBZadD3naaAaVaiWzA
+kkj+pDpISzCLDO4VZLdFOLvzmAJr788iS2HuE39pOSswQOL0oCAwTvp6opdEfTfW
+T+IEmE9032wyo6ZMIwllv4U2GeEyDTm/Y6yChyQxKRYZbaxv7KRKl/Bu198zBFFK
+TTBIiRuEDmCG/QC7SH/6MKj0Bc4AaPUh8Er89wo+FJUvhpaOgJ+rcmmOBnpi0OVk
+XRFCq+aqHs4h+ntfJ3fS8bLi8jSswlm0eldzu/Z2uflKfDLdlzYrX2x9nq7BNiqp
+PcQrKmV0NzDwIhAlGlukyp6iulU9V1zVLnqGpVvuYV0x4raNOtano+YOSwGMvoOe
+0ITSJKHOkXEOL1vvT725HrUOxgjtmdY0y0MmAUfslHj5i1sxFj1suySQTIoDRA3x
+hy6X+4HIn3UF7CzTMcc0
+=V4nX
+-----END PGP SIGNATURE-----
+
+--pf9I7BMVVzbSWLtt--
+
+--===============0397372777==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYg
+bWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
+
+--===============0397372777==--
