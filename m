@@ -1,291 +1,120 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+From: Hans de Goede <hdegoede@redhat.com>
 Subject: Re: [RFC mesa] nouveau: Add support for OpenCL global
 	memory buffers
-Date: Mon, 14 Mar 2016 11:05:14 -0400
-Message-ID: <CAKb7UvgcDxt0_GHr6W5zNvUwEY8FJSSfPD3wEhqr4t-3i5xPLg@mail.gmail.com>
+Date: Mon, 14 Mar 2016 16:28:49 +0100
+Message-ID: <56E6D8B1.60604@redhat.com>
 References: <1457961752-1461-1-git-send-email-hdegoede@redhat.com>
+ <CAKb7UvgcDxt0_GHr6W5zNvUwEY8FJSSfPD3wEhqr4t-3i5xPLg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1702253420=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1457961752-1461-1-git-send-email-hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7UvgcDxt0_GHr6W5zNvUwEY8FJSSfPD3wEhqr4t-3i5xPLg@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
---===============1702253420==
-Content-Type: multipart/alternative; boundary=047d7b3a9acaaa2c95052e039b57
-
---047d7b3a9acaaa2c95052e039b57
-Content-Type: text/plain; charset=UTF-8
-
-There's a less hacky and more hacky way forward. The more hacky solution is
-to set file index to -1 or something and then not do the lowering when you
-see that.
-
-The less hacky solution is the one you proposed as #1 - introduce a new
-file for "buffer" memory and lower it to the global file by adding a base
-offset.
-
-Right now the meaning of global is overloaded - before lowering it
-implicitly includes the buffer vase address, and after lowering, it
-explicitly includes it. Splitting it out I to another file type seems like
-the cleaner way forward, not sure what issue you were seeing with that
-approach. (I didn't understand your argument about potential future
-issues.) What I really don't want is to somehow differentiate glsl-sourced
-and opencl-sourced compute programs in the backend.
-On Mar 14, 2016 6:22 AM, "Hans de Goede" <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
-
-> This little "hack" fixes the use of OpenCL global memory buffers with
-> nouveau, but clearly the #if 0 is not a solution as it breaks buffers
-> with GLSL.
->
-> The reason I'm posting this as an RFC patch is to discuss how to solve
-> this properly, 2 solutions come to mind:
->
-> 1) Use separate nv50_ir::FILE_MEMORY_xxx values for buffers versus
->    TGSI_FILE_MEMORY with TGSI_MEMORY_TYPE_GLOBAL, looking at
-> translateFile()
->    we currently have:
->
->    case TGSI_FILE_BUFFER:          return nv50_ir::FILE_MEMORY_GLOBAL;
->    case TGSI_FILE_MEMORY:          return nv50_ir::FILE_MEMORY_GLOBAL;
->
->    So doing a s/nv50_ir::FILE_MEMORY_GLOBAL/nv50_ir::FILE_MEMORY_BUFFER/
->    everywhere and then adding a new FILE_MEMORY_GLOBAL seems like an
->    obvious fix.
->
->    But I'm afraid that we will have similar issues with OpenCL using
->    flat addresses where as GLSL will have some implied base-address /
->    offset in other places too, which brings me to solution 2:
->
-> 2) Add a flag to Program to indicate that it is an OpenCL compute kernel;
->    or possible use a different Program::TYPE_* for OpenCL ?
->
->    I've a feeling that this is what we want since the addressing models
->    are just different and we likely will need to implement different
-> behavior
->    in various places based on this.
->
->    This will also allow us to use INPUT and CONST in tgsi code build from
->    OpenCL programs and use that flag to do the right thing, rather then
->    introducing new MEMORY[x], INPUT resp. MEMORY[x], CONST declarations
->    for this.
->
->    I'm esp. worried that once GLSL gets global support it will want
->    different behavior for TGSI_FILE_MEMORY with TGSI_MEMORY_TYPE_GLOBAL
->    then OpenCL, just like things are now with buffers, rendering solution
->    1. a non solution
->
-> So I'm seeking input on how to move forward with this ...  ?
->
-> Signed-off-by: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> ---
->  src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp     | 4 ++++
->  src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp | 2 ++
->  2 files changed, 6 insertions(+)
->
-> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-> b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-> index de0c72b..15012ac 100644
-> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-> @@ -1525,6 +1525,10 @@ Converter::makeSym(uint tgsiFile, int fileIdx, int
-> idx, int c, uint32_t address)
->
->     if (tgsiFile == TGSI_FILE_MEMORY) {
->        switch (code->memoryFiles[fileIdx].mem_type) {
-> +      case TGSI_MEMORY_TYPE_GLOBAL:
-> +         /* No-op this is the default for TGSI_FILE_MEMORY */
-> +         sym->setFile(FILE_MEMORY_GLOBAL);
-> +         break;
->        case TGSI_MEMORY_TYPE_SHARED:
->           sym->setFile(FILE_MEMORY_SHARED);
->           break;
-> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp
-> b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp
-> index 6cb4dd4..bcc96de 100644
-> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp
-> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp
-> @@ -2106,6 +2106,7 @@ NVC0LoweringPass::visit(Instruction *i)
->        } else if (i->src(0).getFile() == FILE_SHADER_OUTPUT) {
->           assert(prog->getType() == Program::TYPE_TESSELLATION_CONTROL);
->           i->op = OP_VFETCH;
-> +#if 0
->        } else if (i->src(0).getFile() == FILE_MEMORY_GLOBAL) {
->           Value *ind = i->getIndirect(0, 1);
->           Value *ptr = loadResInfo64(ind, i->getSrc(0)->reg.fileIndex *
-> 16);
-> @@ -2126,6 +2127,7 @@ NVC0LoweringPass::visit(Instruction *i)
->           if (i->defExists(0)) {
->              bld.mkMov(i->getDef(0), bld.mkImm(0));
->           }
-> +#endif
->        }
->        break;
->     case OP_ATOM:
-> --
-> 2.7.2
->
->
-
---047d7b3a9acaaa2c95052e039b57
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr">There&#39;s a less hacky and more hacky way forward. The mor=
-e hacky solution is to set file index to -1 or something and then not do th=
-e lowering when you see that.</p>
-<p dir=3D"ltr">The less hacky solution is the one you proposed as #1 - intr=
-oduce a new file for &quot;buffer&quot; memory and lower it to the global f=
-ile by adding a base offset.</p>
-<p dir=3D"ltr">Right now the meaning of global is overloaded - before lower=
-ing it implicitly includes the buffer vase address, and after lowering, it =
-explicitly includes it. Splitting it out I to another file type seems like =
-the cleaner way forward, not sure what issue you were seeing with that appr=
-oach. (I didn&#39;t understand your argument about potential future issues.=
-) What I really don&#39;t want is to somehow differentiate glsl-sourced and=
- opencl-sourced compute programs in the backend.</p>
-<div class=3D"gmail_quote">On Mar 14, 2016 6:22 AM, &quot;Hans de Goede&quo=
-t; &lt;<a href=3D"mailto:hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org">hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org</a>&gt; w=
-rote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">This little &q=
-uot;hack&quot; fixes the use of OpenCL global memory buffers with<br>
-nouveau, but clearly the #if 0 is not a solution as it breaks buffers<br>
-with GLSL.<br>
-<br>
-The reason I&#39;m posting this as an RFC patch is to discuss how to solve<=
-br>
-this properly, 2 solutions come to mind:<br>
-<br>
-1) Use separate nv50_ir::FILE_MEMORY_xxx values for buffers versus<br>
-=C2=A0 =C2=A0TGSI_FILE_MEMORY with TGSI_MEMORY_TYPE_GLOBAL, looking at tran=
-slateFile()<br>
-=C2=A0 =C2=A0we currently have:<br>
-<br>
-=C2=A0 =C2=A0case TGSI_FILE_BUFFER:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 retur=
-n nv50_ir::FILE_MEMORY_GLOBAL;<br>
-=C2=A0 =C2=A0case TGSI_FILE_MEMORY:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 retur=
-n nv50_ir::FILE_MEMORY_GLOBAL;<br>
-<br>
-=C2=A0 =C2=A0So doing a s/nv50_ir::FILE_MEMORY_GLOBAL/nv50_ir::FILE_MEMORY_=
-BUFFER/<br>
-=C2=A0 =C2=A0everywhere and then adding a new FILE_MEMORY_GLOBAL seems like=
- an<br>
-=C2=A0 =C2=A0obvious fix.<br>
-<br>
-=C2=A0 =C2=A0But I&#39;m afraid that we will have similar issues with OpenC=
-L using<br>
-=C2=A0 =C2=A0flat addresses where as GLSL will have some implied base-addre=
-ss /<br>
-=C2=A0 =C2=A0offset in other places too, which brings me to solution 2:<br>
-<br>
-2) Add a flag to Program to indicate that it is an OpenCL compute kernel;<b=
-r>
-=C2=A0 =C2=A0or possible use a different Program::TYPE_* for OpenCL ?<br>
-<br>
-=C2=A0 =C2=A0I&#39;ve a feeling that this is what we want since the address=
-ing models<br>
-=C2=A0 =C2=A0are just different and we likely will need to implement differ=
-ent behavior<br>
-=C2=A0 =C2=A0in various places based on this.<br>
-<br>
-=C2=A0 =C2=A0This will also allow us to use INPUT and CONST in tgsi code bu=
-ild from<br>
-=C2=A0 =C2=A0OpenCL programs and use that flag to do the right thing, rathe=
-r then<br>
-=C2=A0 =C2=A0introducing new MEMORY[x], INPUT resp. MEMORY[x], CONST declar=
-ations<br>
-=C2=A0 =C2=A0for this.<br>
-<br>
-=C2=A0 =C2=A0I&#39;m esp. worried that once GLSL gets global support it wil=
-l want<br>
-=C2=A0 =C2=A0different behavior for TGSI_FILE_MEMORY with TGSI_MEMORY_TYPE_=
-GLOBAL<br>
-=C2=A0 =C2=A0then OpenCL, just like things are now with buffers, rendering =
-solution<br>
-=C2=A0 =C2=A01. a non solution<br>
-<br>
-So I&#39;m seeking input on how to move forward with this ...=C2=A0 ?<br>
-<br>
-Signed-off-by: Hans de Goede &lt;<a href=3D"mailto:hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org">hde=
-goede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org</a>&gt;<br>
----<br>
-=C2=A0src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp=C2=A0 =C2=
-=A0 =C2=A0| 4 ++++<br>
-=C2=A0src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp | 2 ++<=
-br>
-=C2=A02 files changed, 6 insertions(+)<br>
-<br>
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/sr=
-c/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp<br>
-index de0c72b..15012ac 100644<br>
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp<br>
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp<br>
-@@ -1525,6 +1525,10 @@ Converter::makeSym(uint tgsiFile, int fileIdx, int i=
-dx, int c, uint32_t address)<br>
-<br>
-=C2=A0 =C2=A0 if (tgsiFile =3D=3D TGSI_FILE_MEMORY) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0switch (code-&gt;memoryFiles[fileIdx].mem_type) =
-{<br>
-+=C2=A0 =C2=A0 =C2=A0 case TGSI_MEMORY_TYPE_GLOBAL:<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/* No-op this is the default for TGSI_FI=
-LE_MEMORY */<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sym-&gt;setFile(FILE_MEMORY_GLOBAL);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0case TGSI_MEMORY_TYPE_SHARED:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sym-&gt;setFile(FILE_MEMORY_SHARED);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 break;<br>
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp =
-b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp<br>
-index 6cb4dd4..bcc96de 100644<br>
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp<br>
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp<br>
-@@ -2106,6 +2106,7 @@ NVC0LoweringPass::visit(Instruction *i)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0} else if (i-&gt;src(0).getFile() =3D=3D FILE_SH=
-ADER_OUTPUT) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 assert(prog-&gt;getType() =3D=3D Program=
-::TYPE_TESSELLATION_CONTROL);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 i-&gt;op =3D OP_VFETCH;<br>
-+#if 0<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0} else if (i-&gt;src(0).getFile() =3D=3D FILE_ME=
-MORY_GLOBAL) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Value *ind =3D i-&gt;getIndirect(0, 1);<=
-br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Value *ptr =3D loadResInfo64(ind, i-&gt;=
-getSrc(0)-&gt;reg.fileIndex * 16);<br>
-@@ -2126,6 +2127,7 @@ NVC0LoweringPass::visit(Instruction *i)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (i-&gt;defExists(0)) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bld.mkMov(i-&gt;getDef(0), =
-bld.mkImm(0));<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
-+#endif<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
-=C2=A0 =C2=A0 case OP_ATOM:<br>
---<br>
-2.7.2<br>
-<br>
-</blockquote></div>
-
---047d7b3a9acaaa2c95052e039b57--
-
---===============1702253420==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1702253420==--
+SGksCgpPbiAxNC0wMy0xNiAxNjowNSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gVGhlcmUncyBhIGxl
+c3MgaGFja3kgYW5kIG1vcmUgaGFja3kgd2F5IGZvcndhcmQuIFRoZSBtb3JlIGhhY2t5IHNvbHV0
+aW9uIGlzCj4gdG8gc2V0IGZpbGUgaW5kZXggdG8gLTEgb3Igc29tZXRoaW5nIGFuZCB0aGVuIG5v
+dCBkbyB0aGUgbG93ZXJpbmcgd2hlbiB5b3UKPiBzZWUgdGhhdC4KPgo+IFRoZSBsZXNzIGhhY2t5
+IHNvbHV0aW9uIGlzIHRoZSBvbmUgeW91IHByb3Bvc2VkIGFzICMxIC0gaW50cm9kdWNlIGEgbmV3
+Cj4gZmlsZSBmb3IgImJ1ZmZlciIgbWVtb3J5IGFuZCBsb3dlciBpdCB0byB0aGUgZ2xvYmFsIGZp
+bGUgYnkgYWRkaW5nIGEgYmFzZQo+IG9mZnNldC4KPgo+IFJpZ2h0IG5vdyB0aGUgbWVhbmluZyBv
+ZiBnbG9iYWwgaXMgb3ZlcmxvYWRlZCAtIGJlZm9yZSBsb3dlcmluZyBpdAo+IGltcGxpY2l0bHkg
+aW5jbHVkZXMgdGhlIGJ1ZmZlciB2YXNlIGFkZHJlc3MsIGFuZCBhZnRlciBsb3dlcmluZywgaXQK
+PiBleHBsaWNpdGx5IGluY2x1ZGVzIGl0LiBTcGxpdHRpbmcgaXQgb3V0IEkgdG8gYW5vdGhlciBm
+aWxlIHR5cGUgc2VlbXMgbGlrZQo+IHRoZSBjbGVhbmVyIHdheSBmb3J3YXJkLCBub3Qgc3VyZSB3
+aGF0IGlzc3VlIHlvdSB3ZXJlIHNlZWluZyB3aXRoIHRoYXQKPiBhcHByb2FjaC4KCk9rLgoKID4g
+KEkgZGlkbid0IHVuZGVyc3RhbmQgeW91ciBhcmd1bWVudCBhYm91dCBwb3RlbnRpYWwgZnV0dXJl
+Cj4gaXNzdWVzLikKClRoZXJlIHdhcyBub3QgbXVjaCB0byB1bmRlcnN0YW5kLCBpdCBpcyBqdXN0
+IHNvbWV0aGluZyBJIHdvcnJpZWQgYWJvdXQsCmJ1dCB3YXMgbm90IHN1cmUgaWYgdGhlcmUgYWN0
+dWFsbHkgd2FzIHNvbWV0aGluZyB0byB3b3JyeSBhYm91dCA6KQoKSWYgeW91IGZlZWwgdGhhdCBz
+b2x1dGlvbiAjMSAod2hpY2ggd2FzIGFsc28gbXkgZmlyc3QgaHVuY2gpIGlzCnRoZSByaWdodCBv
+bmUgdGhlbiBJIHdpbGwgZ28gYW5kIGltcGxlbWVudCB0aGF0LgoKPiBXaGF0IEkgcmVhbGx5IGRv
+bid0IHdhbnQgaXMgdG8gc29tZWhvdyBkaWZmZXJlbnRpYXRlIGdsc2wtc291cmNlZAo+IGFuZCBv
+cGVuY2wtc291cmNlZCBjb21wdXRlIHByb2dyYW1zIGluIHRoZSBiYWNrZW5kLgoKT2ssIHVuZGVy
+c3Rvb2QuCgpSZWdhcmRzLAoKSGFucwoKCj4gT24gTWFyIDE0LCAyMDE2IDY6MjIgQU0sICJIYW5z
+IGRlIEdvZWRlIiA8aGRlZ29lZGVAcmVkaGF0LmNvbT4gd3JvdGU6Cj4KPj4gVGhpcyBsaXR0bGUg
+ImhhY2siIGZpeGVzIHRoZSB1c2Ugb2YgT3BlbkNMIGdsb2JhbCBtZW1vcnkgYnVmZmVycyB3aXRo
+Cj4+IG5vdXZlYXUsIGJ1dCBjbGVhcmx5IHRoZSAjaWYgMCBpcyBub3QgYSBzb2x1dGlvbiBhcyBp
+dCBicmVha3MgYnVmZmVycwo+PiB3aXRoIEdMU0wuCj4+Cj4+IFRoZSByZWFzb24gSSdtIHBvc3Rp
+bmcgdGhpcyBhcyBhbiBSRkMgcGF0Y2ggaXMgdG8gZGlzY3VzcyBob3cgdG8gc29sdmUKPj4gdGhp
+cyBwcm9wZXJseSwgMiBzb2x1dGlvbnMgY29tZSB0byBtaW5kOgo+Pgo+PiAxKSBVc2Ugc2VwYXJh
+dGUgbnY1MF9pcjo6RklMRV9NRU1PUllfeHh4IHZhbHVlcyBmb3IgYnVmZmVycyB2ZXJzdXMKPj4g
+ICAgIFRHU0lfRklMRV9NRU1PUlkgd2l0aCBUR1NJX01FTU9SWV9UWVBFX0dMT0JBTCwgbG9va2lu
+ZyBhdAo+PiB0cmFuc2xhdGVGaWxlKCkKPj4gICAgIHdlIGN1cnJlbnRseSBoYXZlOgo+Pgo+PiAg
+ICAgY2FzZSBUR1NJX0ZJTEVfQlVGRkVSOiAgICAgICAgICByZXR1cm4gbnY1MF9pcjo6RklMRV9N
+RU1PUllfR0xPQkFMOwo+PiAgICAgY2FzZSBUR1NJX0ZJTEVfTUVNT1JZOiAgICAgICAgICByZXR1
+cm4gbnY1MF9pcjo6RklMRV9NRU1PUllfR0xPQkFMOwo+Pgo+PiAgICAgU28gZG9pbmcgYSBzL252
+NTBfaXI6OkZJTEVfTUVNT1JZX0dMT0JBTC9udjUwX2lyOjpGSUxFX01FTU9SWV9CVUZGRVIvCj4+
+ICAgICBldmVyeXdoZXJlIGFuZCB0aGVuIGFkZGluZyBhIG5ldyBGSUxFX01FTU9SWV9HTE9CQUwg
+c2VlbXMgbGlrZSBhbgo+PiAgICAgb2J2aW91cyBmaXguCj4+Cj4+ICAgICBCdXQgSSdtIGFmcmFp
+ZCB0aGF0IHdlIHdpbGwgaGF2ZSBzaW1pbGFyIGlzc3VlcyB3aXRoIE9wZW5DTCB1c2luZwo+PiAg
+ICAgZmxhdCBhZGRyZXNzZXMgd2hlcmUgYXMgR0xTTCB3aWxsIGhhdmUgc29tZSBpbXBsaWVkIGJh
+c2UtYWRkcmVzcyAvCj4+ICAgICBvZmZzZXQgaW4gb3RoZXIgcGxhY2VzIHRvbywgd2hpY2ggYnJp
+bmdzIG1lIHRvIHNvbHV0aW9uIDI6Cj4+Cj4+IDIpIEFkZCBhIGZsYWcgdG8gUHJvZ3JhbSB0byBp
+bmRpY2F0ZSB0aGF0IGl0IGlzIGFuIE9wZW5DTCBjb21wdXRlIGtlcm5lbDsKPj4gICAgIG9yIHBv
+c3NpYmxlIHVzZSBhIGRpZmZlcmVudCBQcm9ncmFtOjpUWVBFXyogZm9yIE9wZW5DTCA/Cj4+Cj4+
+ICAgICBJJ3ZlIGEgZmVlbGluZyB0aGF0IHRoaXMgaXMgd2hhdCB3ZSB3YW50IHNpbmNlIHRoZSBh
+ZGRyZXNzaW5nIG1vZGVscwo+PiAgICAgYXJlIGp1c3QgZGlmZmVyZW50IGFuZCB3ZSBsaWtlbHkg
+d2lsbCBuZWVkIHRvIGltcGxlbWVudCBkaWZmZXJlbnQKPj4gYmVoYXZpb3IKPj4gICAgIGluIHZh
+cmlvdXMgcGxhY2VzIGJhc2VkIG9uIHRoaXMuCj4+Cj4+ICAgICBUaGlzIHdpbGwgYWxzbyBhbGxv
+dyB1cyB0byB1c2UgSU5QVVQgYW5kIENPTlNUIGluIHRnc2kgY29kZSBidWlsZCBmcm9tCj4+ICAg
+ICBPcGVuQ0wgcHJvZ3JhbXMgYW5kIHVzZSB0aGF0IGZsYWcgdG8gZG8gdGhlIHJpZ2h0IHRoaW5n
+LCByYXRoZXIgdGhlbgo+PiAgICAgaW50cm9kdWNpbmcgbmV3IE1FTU9SWVt4XSwgSU5QVVQgcmVz
+cC4gTUVNT1JZW3hdLCBDT05TVCBkZWNsYXJhdGlvbnMKPj4gICAgIGZvciB0aGlzLgo+Pgo+PiAg
+ICAgSSdtIGVzcC4gd29ycmllZCB0aGF0IG9uY2UgR0xTTCBnZXRzIGdsb2JhbCBzdXBwb3J0IGl0
+IHdpbGwgd2FudAo+PiAgICAgZGlmZmVyZW50IGJlaGF2aW9yIGZvciBUR1NJX0ZJTEVfTUVNT1JZ
+IHdpdGggVEdTSV9NRU1PUllfVFlQRV9HTE9CQUwKPj4gICAgIHRoZW4gT3BlbkNMLCBqdXN0IGxp
+a2UgdGhpbmdzIGFyZSBub3cgd2l0aCBidWZmZXJzLCByZW5kZXJpbmcgc29sdXRpb24KPj4gICAg
+IDEuIGEgbm9uIHNvbHV0aW9uCj4+Cj4+IFNvIEknbSBzZWVraW5nIGlucHV0IG9uIGhvdyB0byBt
+b3ZlIGZvcndhcmQgd2l0aCB0aGlzIC4uLiAgPwo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBIYW5zIGRl
+IEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPgo+PiAtLS0KPj4gICBzcmMvZ2FsbGl1bS9kcml2
+ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAgICAgIHwgNCArKysrCj4+
+ICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19u
+dmMwLmNwcCB8IDIgKysKPj4gICAyIGZpbGVzIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKQo+Pgo+
+PiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9p
+cl9mcm9tX3Rnc2kuY3BwCj4+IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4v
+bnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4+IGluZGV4IGRlMGM3MmIuLjE1MDEyYWMgMTAwNjQ0Cj4+
+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90
+Z3NpLmNwcAo+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUw
+X2lyX2Zyb21fdGdzaS5jcHAKPj4gQEAgLTE1MjUsNiArMTUyNSwxMCBAQCBDb252ZXJ0ZXI6Om1h
+a2VTeW0odWludCB0Z3NpRmlsZSwgaW50IGZpbGVJZHgsIGludAo+PiBpZHgsIGludCBjLCB1aW50
+MzJfdCBhZGRyZXNzKQo+Pgo+PiAgICAgIGlmICh0Z3NpRmlsZSA9PSBUR1NJX0ZJTEVfTUVNT1JZ
+KSB7Cj4+ICAgICAgICAgc3dpdGNoIChjb2RlLT5tZW1vcnlGaWxlc1tmaWxlSWR4XS5tZW1fdHlw
+ZSkgewo+PiArICAgICAgY2FzZSBUR1NJX01FTU9SWV9UWVBFX0dMT0JBTDoKPj4gKyAgICAgICAg
+IC8qIE5vLW9wIHRoaXMgaXMgdGhlIGRlZmF1bHQgZm9yIFRHU0lfRklMRV9NRU1PUlkgKi8KPj4g
+KyAgICAgICAgIHN5bS0+c2V0RmlsZShGSUxFX01FTU9SWV9HTE9CQUwpOwo+PiArICAgICAgICAg
+YnJlYWs7Cj4+ICAgICAgICAgY2FzZSBUR1NJX01FTU9SWV9UWVBFX1NIQVJFRDoKPj4gICAgICAg
+ICAgICBzeW0tPnNldEZpbGUoRklMRV9NRU1PUllfU0hBUkVEKTsKPj4gICAgICAgICAgICBicmVh
+azsKPj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252
+NTBfaXJfbG93ZXJpbmdfbnZjMC5jcHAKPj4gYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
+Y29kZWdlbi9udjUwX2lyX2xvd2VyaW5nX252YzAuY3BwCj4+IGluZGV4IDZjYjRkZDQuLmJjYzk2
+ZGUgMTAwNjQ0Cj4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252
+NTBfaXJfbG93ZXJpbmdfbnZjMC5jcHAKPj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
+ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19udmMwLmNwcAo+PiBAQCAtMjEwNiw2ICsyMTA2
+LDcgQEAgTlZDMExvd2VyaW5nUGFzczo6dmlzaXQoSW5zdHJ1Y3Rpb24gKmkpCj4+ICAgICAgICAg
+fSBlbHNlIGlmIChpLT5zcmMoMCkuZ2V0RmlsZSgpID09IEZJTEVfU0hBREVSX09VVFBVVCkgewo+
+PiAgICAgICAgICAgIGFzc2VydChwcm9nLT5nZXRUeXBlKCkgPT0gUHJvZ3JhbTo6VFlQRV9URVNT
+RUxMQVRJT05fQ09OVFJPTCk7Cj4+ICAgICAgICAgICAgaS0+b3AgPSBPUF9WRkVUQ0g7Cj4+ICsj
+aWYgMAo+PiAgICAgICAgIH0gZWxzZSBpZiAoaS0+c3JjKDApLmdldEZpbGUoKSA9PSBGSUxFX01F
+TU9SWV9HTE9CQUwpIHsKPj4gICAgICAgICAgICBWYWx1ZSAqaW5kID0gaS0+Z2V0SW5kaXJlY3Qo
+MCwgMSk7Cj4+ICAgICAgICAgICAgVmFsdWUgKnB0ciA9IGxvYWRSZXNJbmZvNjQoaW5kLCBpLT5n
+ZXRTcmMoMCktPnJlZy5maWxlSW5kZXggKgo+PiAxNik7Cj4+IEBAIC0yMTI2LDYgKzIxMjcsNyBA
+QCBOVkMwTG93ZXJpbmdQYXNzOjp2aXNpdChJbnN0cnVjdGlvbiAqaSkKPj4gICAgICAgICAgICBp
+ZiAoaS0+ZGVmRXhpc3RzKDApKSB7Cj4+ICAgICAgICAgICAgICAgYmxkLm1rTW92KGktPmdldERl
+ZigwKSwgYmxkLm1rSW1tKDApKTsKPj4gICAgICAgICAgICB9Cj4+ICsjZW5kaWYKPj4gICAgICAg
+ICB9Cj4+ICAgICAgICAgYnJlYWs7Cj4+ICAgICAgY2FzZSBPUF9BVE9NOgo+PiAtLQo+PiAyLjcu
+Mgo+Pgo+Pgo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Cm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
