@@ -1,15 +1,17 @@
-From: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Subject: Re: [PATCH mesa] clover: Fix pipe_grid_info.indirect not
-	being initialized
-Date: Mon, 14 Mar 2016 13:49:52 -0700
-Message-ID: <87lh5k4wen.fsf@riseup.net>
-References: <1457959848-23790-1-git-send-email-hdegoede@redhat.com>
- <56E6B629.8080708@gmail.com> <56E6BBFC.2020306@redhat.com>
- <56E6BCD2.5000002@gmail.com> <56E6BD32.5000203@gmail.com>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RFC mesa] nouveau: Add support for OpenCL global
+	memory buffers
+Date: Mon, 14 Mar 2016 21:50:46 +0100
+Message-ID: <56E72426.8070606@gmail.com>
+References: <1457961752-1461-1-git-send-email-hdegoede@redhat.com>
+ <CAKb7UvgcDxt0_GHr6W5zNvUwEY8FJSSfPD3wEhqr4t-3i5xPLg@mail.gmail.com>
+ <56E6D8B1.60604@redhat.com> <56E6DBA2.8060605@gmail.com>
+ <56E71623.7040201@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0701697807=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56E6BD32.5000203-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <56E71623.7040201-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,126 +21,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0701697807==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
-
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
-
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> writes:
-
-> On 03/14/2016 02:29 PM, Samuel Pitoiset wrote:
->>
->>
->> On 03/14/2016 02:26 PM, Hans de Goede wrote:
->>> Hi,
->>>
->>> On 14-03-16 14:01, Samuel Pitoiset wrote:
->>>>
->>>>
->>>> On 03/14/2016 01:50 PM, Hans de Goede wrote:
->>>>> After pipe_grid_info.indirect was introduced, clover was not modified
->>>>> to set it causing it to pass uninitialized memory for it to
->>>>> launch_grid.
->>>>>
->>>>> This commit fixes this by zero-ing the entire pipe_grid_info struct
->>>>> when
->>>>> declaring it, to avoid similar problems popping-up in the future.
->>>>>
->>>>> Signed-off-by: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
->>>>> ---
->>>>>   src/gallium/state_trackers/clover/core/kernel.cpp | 2 +-
->>>>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/src/gallium/state_trackers/clover/core/kernel.cpp
->>>>> b/src/gallium/state_trackers/clover/core/kernel.cpp
->>>>> index 8396be9..dad66aa 100644
->>>>> --- a/src/gallium/state_trackers/clover/core/kernel.cpp
->>>>> +++ b/src/gallium/state_trackers/clover/core/kernel.cpp
->>>>> @@ -55,7 +55,7 @@ kernel::launch(command_queue &q,
->>>>>      const auto reduced_grid_size =3D
->>>>>         map(divides(), grid_size, block_size);
->>>>>      void *st =3D exec.bind(&q, grid_offset);
->>>>> -   struct pipe_grid_info info;
->>>>> +   struct pipe_grid_info info =3D { 0, };
->>>>
->>>> Right, good catch, it's my fault.
->>>>
->>>> =3D { 0 }; is enough btw.
->>>
->>> I prefer to add the "," to make clear that we are initializing the
->>> entire struct,
->>> I read it as  ", ...".
->>
->> Well, usually we use { 0 } in mesa, try to grep and you will see. :-)
->> There is only 3 occurrences of { 0, }, but I think they are quite old.
->
-> Of course, I'm not really against this ",", but I just want consistency=20
-> with the other parts.
->
-
-In C++ '{}' is standard, more concise, and works for a wider range of
-types regardless of their layout ('{ 0 }' is valid or not depending on
-what the first member of the struct is, while '{}' works regardless, in
-C++11 it can even be used to initialize non-POD types with custom
-constructors), so it should be generally preferred instead.
-
-Don't bother to resend just because of my nitpicking, I'll fix it up
-before I push the last revision of your change, which is:
-
-Reviewed-by: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-
->>
->>>
->>>> This should be backported to mesa 11.2 I guess, could you please send
->>>> a v2 with this minor fix and add the cc thing?
->>>
->>> Sure, as soon as we're done bikeshedding on the "," :)
->>>
->>> Regards,
->>>
->>> Hans
->>
->
-> --=20
-> -Samuel
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iF4EAREIAAYFAlbnI/AACgkQg5k4nX1Sv1sMhAD8D5U86L09MzS5yRvlbqSH0EKz
-k7b+RiFNiqqeYYWp93sBAJNaxhE/igUWKwPf/eSNIJMWEM8V5dS8SxHsN7kI96q0
-=XjJd
------END PGP SIGNATURE-----
---==-=-=--
-
---===============0701697807==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0701697807==--
+CgpPbiAwMy8xNC8yMDE2IDA4OjUwIFBNLCBIYW5zIGRlIEdvZWRlIHdyb3RlOgo+IEhpLAo+Cj4g
+T24gMTQtMDMtMTYgMTY6NDEsIFNhbXVlbCBQaXRvaXNldCB3cm90ZToKPj4KPj4KPj4gT24gMDMv
+MTQvMjAxNiAwNDoyOCBQTSwgSGFucyBkZSBHb2VkZSB3cm90ZToKPj4+IEhpLAo+Pj4KPj4+IE9u
+IDE0LTAzLTE2IDE2OjA1LCBJbGlhIE1pcmtpbiB3cm90ZToKPj4+PiBUaGVyZSdzIGEgbGVzcyBo
+YWNreSBhbmQgbW9yZSBoYWNreSB3YXkgZm9yd2FyZC4gVGhlIG1vcmUgaGFja3kKPj4+PiBzb2x1
+dGlvbiBpcwo+Pj4+IHRvIHNldCBmaWxlIGluZGV4IHRvIC0xIG9yIHNvbWV0aGluZyBhbmQgdGhl
+biBub3QgZG8gdGhlIGxvd2VyaW5nIHdoZW4KPj4+PiB5b3UKPj4+PiBzZWUgdGhhdC4KPj4+Pgo+
+Pj4+IFRoZSBsZXNzIGhhY2t5IHNvbHV0aW9uIGlzIHRoZSBvbmUgeW91IHByb3Bvc2VkIGFzICMx
+IC0gaW50cm9kdWNlIGEgbmV3Cj4+Pj4gZmlsZSBmb3IgImJ1ZmZlciIgbWVtb3J5IGFuZCBsb3dl
+ciBpdCB0byB0aGUgZ2xvYmFsIGZpbGUgYnkgYWRkaW5nIGEKPj4+PiBiYXNlCj4+Pj4gb2Zmc2V0
+Lgo+Pj4+Cj4+Pj4gUmlnaHQgbm93IHRoZSBtZWFuaW5nIG9mIGdsb2JhbCBpcyBvdmVybG9hZGVk
+IC0gYmVmb3JlIGxvd2VyaW5nIGl0Cj4+Pj4gaW1wbGljaXRseSBpbmNsdWRlcyB0aGUgYnVmZmVy
+IHZhc2UgYWRkcmVzcywgYW5kIGFmdGVyIGxvd2VyaW5nLCBpdAo+Pj4+IGV4cGxpY2l0bHkgaW5j
+bHVkZXMgaXQuIFNwbGl0dGluZyBpdCBvdXQgSSB0byBhbm90aGVyIGZpbGUgdHlwZSBzZWVtcwo+
+Pj4+IGxpa2UKPj4+PiB0aGUgY2xlYW5lciB3YXkgZm9yd2FyZCwgbm90IHN1cmUgd2hhdCBpc3N1
+ZSB5b3Ugd2VyZSBzZWVpbmcgd2l0aCB0aGF0Cj4+Pj4gYXBwcm9hY2guCj4+Pgo+Pj4gT2suCj4+
+Cj4+IEkgYWdyZWUgd2l0aCB5b3UgZ3V5cywgdGhlIHNvbHV0aW9uICMxIGlzIGZpbmUgYnkgbWUu
+Cj4+Cj4+IEJ0dywgZG8geW91IG5lZWQgc29tZW9uZSB3aXRoIGNvbW1pdCBhY2Nlc3MgdG8gcHVz
+aCB5b3VyIHByZXZpb3VzCj4+IHNlcmllcyAodGhlIHRnc2kgdGhpbmcpPyBJIGNhbiBkbyB0aGlz
+IGZvciB5b3UuCj4KPiBUaGFua3MgZm9yIHRoZSBvZmZlci4gSUlSQyBJbGlhIHdhbnRlZCBzb21l
+IG1pbm9yIGZpeGVzIHRoZXJlLCBzbyBJJ2xsIGRvCj4gYSB2MiB0b21vcnJvdy4gVGFsa2luZyBh
+Ym91dCBjb21taXQgcmlnaHRzLCBJIGd1ZXNzIGl0IHdvdWxkIGJlCj4gY29udmVuaWVudCBmb3Ig
+YWxsIGlmIEkgd291bGQgZ2V0IGNvbW1pdCByaWdodHMgbXlzZWxmPyBJIHByb21pc2UgSSB3b24n
+dAo+IHB1c2ggYW55dGhpbmdzIHdpdGhvdXQgYWNrcy4KClllcyBzdXJlLCBJIHRydXN0IHlvdSwg
+bm8gd29ycmllcy4gOi0pCgo+Cj4gSSBhbHJlYWR5IGhhdmUgYSBmcmVlZGVza3RvcC5vcmcgYWNj
+b3VudCwgbXkgdXNlcm5hbWUgaXMgandyZGVnb2VkZS4KClBsZWFzZSBvcGVuIGEgdGlja2V0IG9u
+IGJ1Z3MuZnJlZWRlc2t0b3AgdG8gYXNrIGZvciBjb21taXQgcmlnaHRzLgoKPgo+IFJlZ2FyZHMs
+Cj4KPiBIYW5zCj4KPgo+Cj4KPgo+Pgo+Pj4KPj4+ICA+IChJIGRpZG4ndCB1bmRlcnN0YW5kIHlv
+dXIgYXJndW1lbnQgYWJvdXQgcG90ZW50aWFsIGZ1dHVyZQo+Pj4+IGlzc3Vlcy4pCj4+Pgo+Pj4g
+VGhlcmUgd2FzIG5vdCBtdWNoIHRvIHVuZGVyc3RhbmQsIGl0IGlzIGp1c3Qgc29tZXRoaW5nIEkg
+d29ycmllZCBhYm91dCwKPj4+IGJ1dCB3YXMgbm90IHN1cmUgaWYgdGhlcmUgYWN0dWFsbHkgd2Fz
+IHNvbWV0aGluZyB0byB3b3JyeSBhYm91dCA6KQo+Pj4KPj4+IElmIHlvdSBmZWVsIHRoYXQgc29s
+dXRpb24gIzEgKHdoaWNoIHdhcyBhbHNvIG15IGZpcnN0IGh1bmNoKSBpcwo+Pj4gdGhlIHJpZ2h0
+IG9uZSB0aGVuIEkgd2lsbCBnbyBhbmQgaW1wbGVtZW50IHRoYXQuCj4+Pgo+Pj4+IFdoYXQgSSBy
+ZWFsbHkgZG9uJ3Qgd2FudCBpcyB0byBzb21laG93IGRpZmZlcmVudGlhdGUgZ2xzbC1zb3VyY2Vk
+Cj4+Pj4gYW5kIG9wZW5jbC1zb3VyY2VkIGNvbXB1dGUgcHJvZ3JhbXMgaW4gdGhlIGJhY2tlbmQu
+Cj4+Pgo+Pj4gT2ssIHVuZGVyc3Rvb2QuCj4+Pgo+Pj4gUmVnYXJkcywKPj4+Cj4+PiBIYW5zCj4+
+Pgo+Pj4KPj4+PiBPbiBNYXIgMTQsIDIwMTYgNjoyMiBBTSwgIkhhbnMgZGUgR29lZGUiIDxoZGVn
+b2VkZUByZWRoYXQuY29tPiB3cm90ZToKPj4+Pgo+Pj4+PiBUaGlzIGxpdHRsZSAiaGFjayIgZml4
+ZXMgdGhlIHVzZSBvZiBPcGVuQ0wgZ2xvYmFsIG1lbW9yeSBidWZmZXJzIHdpdGgKPj4+Pj4gbm91
+dmVhdSwgYnV0IGNsZWFybHkgdGhlICNpZiAwIGlzIG5vdCBhIHNvbHV0aW9uIGFzIGl0IGJyZWFr
+cyBidWZmZXJzCj4+Pj4+IHdpdGggR0xTTC4KPj4+Pj4KPj4+Pj4gVGhlIHJlYXNvbiBJJ20gcG9z
+dGluZyB0aGlzIGFzIGFuIFJGQyBwYXRjaCBpcyB0byBkaXNjdXNzIGhvdyB0byBzb2x2ZQo+Pj4+
+PiB0aGlzIHByb3Blcmx5LCAyIHNvbHV0aW9ucyBjb21lIHRvIG1pbmQ6Cj4+Pj4+Cj4+Pj4+IDEp
+IFVzZSBzZXBhcmF0ZSBudjUwX2lyOjpGSUxFX01FTU9SWV94eHggdmFsdWVzIGZvciBidWZmZXJz
+IHZlcnN1cwo+Pj4+PiAgICAgVEdTSV9GSUxFX01FTU9SWSB3aXRoIFRHU0lfTUVNT1JZX1RZUEVf
+R0xPQkFMLCBsb29raW5nIGF0Cj4+Pj4+IHRyYW5zbGF0ZUZpbGUoKQo+Pj4+PiAgICAgd2UgY3Vy
+cmVudGx5IGhhdmU6Cj4+Pj4+Cj4+Pj4+ICAgICBjYXNlIFRHU0lfRklMRV9CVUZGRVI6ICAgICAg
+ICAgIHJldHVybgo+Pj4+PiBudjUwX2lyOjpGSUxFX01FTU9SWV9HTE9CQUw7Cj4+Pj4+ICAgICBj
+YXNlIFRHU0lfRklMRV9NRU1PUlk6ICAgICAgICAgIHJldHVybgo+Pj4+PiBudjUwX2lyOjpGSUxF
+X01FTU9SWV9HTE9CQUw7Cj4+Pj4+Cj4+Pj4+ICAgICBTbyBkb2luZyBhCj4+Pj4+IHMvbnY1MF9p
+cjo6RklMRV9NRU1PUllfR0xPQkFML252NTBfaXI6OkZJTEVfTUVNT1JZX0JVRkZFUi8KPj4+Pj4g
+ICAgIGV2ZXJ5d2hlcmUgYW5kIHRoZW4gYWRkaW5nIGEgbmV3IEZJTEVfTUVNT1JZX0dMT0JBTCBz
+ZWVtcyBsaWtlIGFuCj4+Pj4+ICAgICBvYnZpb3VzIGZpeC4KPj4+Pj4KPj4+Pj4gICAgIEJ1dCBJ
+J20gYWZyYWlkIHRoYXQgd2Ugd2lsbCBoYXZlIHNpbWlsYXIgaXNzdWVzIHdpdGggT3BlbkNMIHVz
+aW5nCj4+Pj4+ICAgICBmbGF0IGFkZHJlc3NlcyB3aGVyZSBhcyBHTFNMIHdpbGwgaGF2ZSBzb21l
+IGltcGxpZWQgYmFzZS1hZGRyZXNzIC8KPj4+Pj4gICAgIG9mZnNldCBpbiBvdGhlciBwbGFjZXMg
+dG9vLCB3aGljaCBicmluZ3MgbWUgdG8gc29sdXRpb24gMjoKPj4+Pj4KPj4+Pj4gMikgQWRkIGEg
+ZmxhZyB0byBQcm9ncmFtIHRvIGluZGljYXRlIHRoYXQgaXQgaXMgYW4gT3BlbkNMIGNvbXB1dGUK
+Pj4+Pj4ga2VybmVsOwo+Pj4+PiAgICAgb3IgcG9zc2libGUgdXNlIGEgZGlmZmVyZW50IFByb2dy
+YW06OlRZUEVfKiBmb3IgT3BlbkNMID8KPj4+Pj4KPj4+Pj4gICAgIEkndmUgYSBmZWVsaW5nIHRo
+YXQgdGhpcyBpcyB3aGF0IHdlIHdhbnQgc2luY2UgdGhlIGFkZHJlc3NpbmcKPj4+Pj4gbW9kZWxz
+Cj4+Pj4+ICAgICBhcmUganVzdCBkaWZmZXJlbnQgYW5kIHdlIGxpa2VseSB3aWxsIG5lZWQgdG8g
+aW1wbGVtZW50IGRpZmZlcmVudAo+Pj4+PiBiZWhhdmlvcgo+Pj4+PiAgICAgaW4gdmFyaW91cyBw
+bGFjZXMgYmFzZWQgb24gdGhpcy4KPj4+Pj4KPj4+Pj4gICAgIFRoaXMgd2lsbCBhbHNvIGFsbG93
+IHVzIHRvIHVzZSBJTlBVVCBhbmQgQ09OU1QgaW4gdGdzaSBjb2RlIGJ1aWxkCj4+Pj4+IGZyb20K
+Pj4+Pj4gICAgIE9wZW5DTCBwcm9ncmFtcyBhbmQgdXNlIHRoYXQgZmxhZyB0byBkbyB0aGUgcmln
+aHQgdGhpbmcsIHJhdGhlcgo+Pj4+PiB0aGVuCj4+Pj4+ICAgICBpbnRyb2R1Y2luZyBuZXcgTUVN
+T1JZW3hdLCBJTlBVVCByZXNwLiBNRU1PUllbeF0sIENPTlNUCj4+Pj4+IGRlY2xhcmF0aW9ucwo+
+Pj4+PiAgICAgZm9yIHRoaXMuCj4+Pj4+Cj4+Pj4+ICAgICBJJ20gZXNwLiB3b3JyaWVkIHRoYXQg
+b25jZSBHTFNMIGdldHMgZ2xvYmFsIHN1cHBvcnQgaXQgd2lsbCB3YW50Cj4+Pj4+ICAgICBkaWZm
+ZXJlbnQgYmVoYXZpb3IgZm9yIFRHU0lfRklMRV9NRU1PUlkgd2l0aAo+Pj4+PiBUR1NJX01FTU9S
+WV9UWVBFX0dMT0JBTAo+Pj4+PiAgICAgdGhlbiBPcGVuQ0wsIGp1c3QgbGlrZSB0aGluZ3MgYXJl
+IG5vdyB3aXRoIGJ1ZmZlcnMsIHJlbmRlcmluZwo+Pj4+PiBzb2x1dGlvbgo+Pj4+PiAgICAgMS4g
+YSBub24gc29sdXRpb24KPj4+Pj4KPj4+Pj4gU28gSSdtIHNlZWtpbmcgaW5wdXQgb24gaG93IHRv
+IG1vdmUgZm9yd2FyZCB3aXRoIHRoaXMgLi4uICA/Cj4+Pj4+Cj4+Pj4+IFNpZ25lZC1vZmYtYnk6
+IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4+Pj4+IC0tLQo+Pj4+PiAgIHNy
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcCAg
+ICAgfCA0Cj4+Pj4+ICsrKysKPj4+Pj4gICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29k
+ZWdlbi9udjUwX2lyX2xvd2VyaW5nX252YzAuY3BwIHwgMiArKwo+Pj4+PiAgIDIgZmlsZXMgY2hh
+bmdlZCwgNiBpbnNlcnRpb25zKCspCj4+Pj4+Cj4+Pj4+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1
+bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPj4+Pj4gYi9z
+cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAK
+Pj4+Pj4gaW5kZXggZGUwYzcyYi4uMTUwMTJhYyAxMDA2NDQKPj4+Pj4gLS0tIGEvc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4+Pj4+ICsr
+KyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3Np
+LmNwcAo+Pj4+PiBAQCAtMTUyNSw2ICsxNTI1LDEwIEBAIENvbnZlcnRlcjo6bWFrZVN5bSh1aW50
+IHRnc2lGaWxlLCBpbnQgZmlsZUlkeCwKPj4+Pj4gaW50Cj4+Pj4+IGlkeCwgaW50IGMsIHVpbnQz
+Ml90IGFkZHJlc3MpCj4+Pj4+Cj4+Pj4+ICAgICAgaWYgKHRnc2lGaWxlID09IFRHU0lfRklMRV9N
+RU1PUlkpIHsKPj4+Pj4gICAgICAgICBzd2l0Y2ggKGNvZGUtPm1lbW9yeUZpbGVzW2ZpbGVJZHhd
+Lm1lbV90eXBlKSB7Cj4+Pj4+ICsgICAgICBjYXNlIFRHU0lfTUVNT1JZX1RZUEVfR0xPQkFMOgo+
+Pj4+PiArICAgICAgICAgLyogTm8tb3AgdGhpcyBpcyB0aGUgZGVmYXVsdCBmb3IgVEdTSV9GSUxF
+X01FTU9SWSAqLwo+Pj4+PiArICAgICAgICAgc3ltLT5zZXRGaWxlKEZJTEVfTUVNT1JZX0dMT0JB
+TCk7Cj4+Pj4+ICsgICAgICAgICBicmVhazsKPj4+Pj4gICAgICAgICBjYXNlIFRHU0lfTUVNT1JZ
+X1RZUEVfU0hBUkVEOgo+Pj4+PiAgICAgICAgICAgIHN5bS0+c2V0RmlsZShGSUxFX01FTU9SWV9T
+SEFSRUQpOwo+Pj4+PiAgICAgICAgICAgIGJyZWFrOwo+Pj4+PiBkaWZmIC0tZ2l0Cj4+Pj4+IGEv
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19udmMw
+LmNwcAo+Pj4+PiBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJf
+bG93ZXJpbmdfbnZjMC5jcHAKPj4+Pj4gaW5kZXggNmNiNGRkNC4uYmNjOTZkZSAxMDA2NDQKPj4+
+Pj4gLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dl
+cmluZ19udmMwLmNwcAo+Pj4+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29k
+ZWdlbi9udjUwX2lyX2xvd2VyaW5nX252YzAuY3BwCj4+Pj4+IEBAIC0yMTA2LDYgKzIxMDYsNyBA
+QCBOVkMwTG93ZXJpbmdQYXNzOjp2aXNpdChJbnN0cnVjdGlvbiAqaSkKPj4+Pj4gICAgICAgICB9
+IGVsc2UgaWYgKGktPnNyYygwKS5nZXRGaWxlKCkgPT0gRklMRV9TSEFERVJfT1VUUFVUKSB7Cj4+
+Pj4+ICAgICAgICAgICAgYXNzZXJ0KHByb2ctPmdldFR5cGUoKSA9PQo+Pj4+PiBQcm9ncmFtOjpU
+WVBFX1RFU1NFTExBVElPTl9DT05UUk9MKTsKPj4+Pj4gICAgICAgICAgICBpLT5vcCA9IE9QX1ZG
+RVRDSDsKPj4+Pj4gKyNpZiAwCj4+Pj4+ICAgICAgICAgfSBlbHNlIGlmIChpLT5zcmMoMCkuZ2V0
+RmlsZSgpID09IEZJTEVfTUVNT1JZX0dMT0JBTCkgewo+Pj4+PiAgICAgICAgICAgIFZhbHVlICpp
+bmQgPSBpLT5nZXRJbmRpcmVjdCgwLCAxKTsKPj4+Pj4gICAgICAgICAgICBWYWx1ZSAqcHRyID0g
+bG9hZFJlc0luZm82NChpbmQsCj4+Pj4+IGktPmdldFNyYygwKS0+cmVnLmZpbGVJbmRleCAqCj4+
+Pj4+IDE2KTsKPj4+Pj4gQEAgLTIxMjYsNiArMjEyNyw3IEBAIE5WQzBMb3dlcmluZ1Bhc3M6OnZp
+c2l0KEluc3RydWN0aW9uICppKQo+Pj4+PiAgICAgICAgICAgIGlmIChpLT5kZWZFeGlzdHMoMCkp
+IHsKPj4+Pj4gICAgICAgICAgICAgICBibGQubWtNb3YoaS0+Z2V0RGVmKDApLCBibGQubWtJbW0o
+MCkpOwo+Pj4+PiAgICAgICAgICAgIH0KPj4+Pj4gKyNlbmRpZgo+Pj4+PiAgICAgICAgIH0KPj4+
+Pj4gICAgICAgICBicmVhazsKPj4+Pj4gICAgICBjYXNlIE9QX0FUT006Cj4+Pj4+IC0tCj4+Pj4+
+IDIuNy4yCj4+Pj4+Cj4+Pj4+Cj4+Pj4KPj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
