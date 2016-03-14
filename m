@@ -1,47 +1,53 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH mesa v2] clover: Fix pipe_grid_info.indirect not
-	being initialized
-Date: Mon, 14 Mar 2016 15:01:05 +0100
-Message-ID: <1457964065-3137-1-git-send-email-hdegoede@redhat.com>
+From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
+Subject: Re: [PATCH mesa v2] clover: Fix pipe_grid_info.indirect
+ not being initialized
+Date: Mon, 14 Mar 2016 15:01:59 +0100
+Message-ID: <56E6C457.5070802@gmail.com>
+References: <1457964065-3137-1-git-send-email-hdegoede@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "11.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1457964065-3137-1-git-send-email-hdegoede@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Hans de Goede <hdegoede@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: mesa-dev@lists.freedesktop.org, "11.2" <mesa-stable@lists.freedesktop.org>, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-QWZ0ZXIgcGlwZV9ncmlkX2luZm8uaW5kaXJlY3Qgd2FzIGludHJvZHVjZWQsIGNsb3ZlciB3YXMg
-bm90IG1vZGlmaWVkCnRvIHNldCBpdCBjYXVzaW5nIGl0IHRvIHBhc3MgdW5pbml0aWFsaXplZCBt
-ZW1vcnkgZm9yIGl0IHRvIGxhdW5jaF9ncmlkLgoKVGhpcyBjb21taXQgZml4ZXMgdGhpcyBieSB6
-ZXJvLWluZyB0aGUgZW50aXJlIHBpcGVfZ3JpZF9pbmZvIHN0cnVjdCB3aGVuCmRlY2xhcmluZyBp
-dCwgdG8gYXZvaWQgc2ltaWxhciBwcm9ibGVtcyBwb3BwaW5nLXVwIGluIHRoZSBmdXR1cmUuCgpD
-YzogIjExLjIiIDxtZXNhLXN0YWJsZUBsaXN0cy5mcmVlZGVza3RvcC5vcmc+ClNpZ25lZC1vZmYt
-Ynk6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Ci0tLQpDaGFuZ2VzIGluIHYy
-OgotRHJvcCB0cmFpbGluZyAiLCIgZnJvbSBzdHJ1Y3QgaW5pdGlhbGl6ZXIKLUFkZCBDYzogIjEx
-LjIiIDxtZXNhLXN0YWJsZUBsaXN0cy5mcmVlZGVza3RvcC5vcmc+Ci0tLQogc3JjL2dhbGxpdW0v
-c3RhdGVfdHJhY2tlcnMvY2xvdmVyL2NvcmUva2VybmVsLmNwcCB8IDIgKy0KIDEgZmlsZSBjaGFu
-Z2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxs
-aXVtL3N0YXRlX3RyYWNrZXJzL2Nsb3Zlci9jb3JlL2tlcm5lbC5jcHAgYi9zcmMvZ2FsbGl1bS9z
-dGF0ZV90cmFja2Vycy9jbG92ZXIvY29yZS9rZXJuZWwuY3BwCmluZGV4IDgzOTZiZTkuLjFhYjg3
-ZWMgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL3N0YXRlX3RyYWNrZXJzL2Nsb3Zlci9jb3JlL2tl
-cm5lbC5jcHAKKysrIGIvc3JjL2dhbGxpdW0vc3RhdGVfdHJhY2tlcnMvY2xvdmVyL2NvcmUva2Vy
-bmVsLmNwcApAQCAtNTUsNyArNTUsNyBAQCBrZXJuZWw6OmxhdW5jaChjb21tYW5kX3F1ZXVlICZx
-LAogICAgY29uc3QgYXV0byByZWR1Y2VkX2dyaWRfc2l6ZSA9CiAgICAgICBtYXAoZGl2aWRlcygp
-LCBncmlkX3NpemUsIGJsb2NrX3NpemUpOwogICAgdm9pZCAqc3QgPSBleGVjLmJpbmQoJnEsIGdy
-aWRfb2Zmc2V0KTsKLSAgIHN0cnVjdCBwaXBlX2dyaWRfaW5mbyBpbmZvOworICAgc3RydWN0IHBp
-cGVfZ3JpZF9pbmZvIGluZm8gPSB7IDAgfTsKIAogICAgLy8gVGhlIGhhbmRsZXMgYXJlIGNyZWF0
-ZWQgZHVyaW5nIGV4ZWNfY29udGV4dDo6YmluZCgpLCBzbyB3ZSBuZWVkIG1ha2UKICAgIC8vIHN1
-cmUgdG8gY2FsbCBleGVjX2NvbnRleHQ6OmJpbmQoKSBiZWZvcmUgcmV0cmlldmluZyB0aGVtLgot
-LSAKMi43LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+VGhhbmtzIEhhbnMhCgpSZXZpZXdlZC1ieTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lz
+ZXRAZ21haWwuY29tPgoKT24gMDMvMTQvMjAxNiAwMzowMSBQTSwgSGFucyBkZSBHb2VkZSB3cm90
+ZToKPiBBZnRlciBwaXBlX2dyaWRfaW5mby5pbmRpcmVjdCB3YXMgaW50cm9kdWNlZCwgY2xvdmVy
+IHdhcyBub3QgbW9kaWZpZWQKPiB0byBzZXQgaXQgY2F1c2luZyBpdCB0byBwYXNzIHVuaW5pdGlh
+bGl6ZWQgbWVtb3J5IGZvciBpdCB0byBsYXVuY2hfZ3JpZC4KPgo+IFRoaXMgY29tbWl0IGZpeGVz
+IHRoaXMgYnkgemVyby1pbmcgdGhlIGVudGlyZSBwaXBlX2dyaWRfaW5mbyBzdHJ1Y3Qgd2hlbgo+
+IGRlY2xhcmluZyBpdCwgdG8gYXZvaWQgc2ltaWxhciBwcm9ibGVtcyBwb3BwaW5nLXVwIGluIHRo
+ZSBmdXR1cmUuCj4KPiBDYzogIjExLjIiIDxtZXNhLXN0YWJsZUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmc+Cj4gU2lnbmVkLW9mZi1ieTogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4K
+PiAtLS0KPiBDaGFuZ2VzIGluIHYyOgo+IC1Ecm9wIHRyYWlsaW5nICIsIiBmcm9tIHN0cnVjdCBp
+bml0aWFsaXplcgo+IC1BZGQgQ2M6ICIxMS4yIiA8bWVzYS1zdGFibGVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnPgo+IC0tLQo+ICAgc3JjL2dhbGxpdW0vc3RhdGVfdHJhY2tlcnMvY2xvdmVyL2NvcmUv
+a2VybmVsLmNwcCB8IDIgKy0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBk
+ZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL3N0YXRlX3RyYWNrZXJzL2Ns
+b3Zlci9jb3JlL2tlcm5lbC5jcHAgYi9zcmMvZ2FsbGl1bS9zdGF0ZV90cmFja2Vycy9jbG92ZXIv
+Y29yZS9rZXJuZWwuY3BwCj4gaW5kZXggODM5NmJlOS4uMWFiODdlYyAxMDA2NDQKPiAtLS0gYS9z
+cmMvZ2FsbGl1bS9zdGF0ZV90cmFja2Vycy9jbG92ZXIvY29yZS9rZXJuZWwuY3BwCj4gKysrIGIv
+c3JjL2dhbGxpdW0vc3RhdGVfdHJhY2tlcnMvY2xvdmVyL2NvcmUva2VybmVsLmNwcAo+IEBAIC01
+NSw3ICs1NSw3IEBAIGtlcm5lbDo6bGF1bmNoKGNvbW1hbmRfcXVldWUgJnEsCj4gICAgICBjb25z
+dCBhdXRvIHJlZHVjZWRfZ3JpZF9zaXplID0KPiAgICAgICAgIG1hcChkaXZpZGVzKCksIGdyaWRf
+c2l6ZSwgYmxvY2tfc2l6ZSk7Cj4gICAgICB2b2lkICpzdCA9IGV4ZWMuYmluZCgmcSwgZ3JpZF9v
+ZmZzZXQpOwo+IC0gICBzdHJ1Y3QgcGlwZV9ncmlkX2luZm8gaW5mbzsKPiArICAgc3RydWN0IHBp
+cGVfZ3JpZF9pbmZvIGluZm8gPSB7IDAgfTsKPgo+ICAgICAgLy8gVGhlIGhhbmRsZXMgYXJlIGNy
+ZWF0ZWQgZHVyaW5nIGV4ZWNfY29udGV4dDo6YmluZCgpLCBzbyB3ZSBuZWVkIG1ha2UKPiAgICAg
+IC8vIHN1cmUgdG8gY2FsbCBleGVjX2NvbnRleHQ6OmJpbmQoKSBiZWZvcmUgcmV0cmlldmluZyB0
+aGVtLgo+CgotLSAKLVNhbXVlbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbWVz
+YS1kZXYK
