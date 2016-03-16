@@ -1,54 +1,41 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH mesa 4/6] nouveau: codegen:
-	s/FILE_MEMORY_GLOBAL/FILE_MEMORY_BUFFER/
-Date: Wed, 16 Mar 2016 14:24:10 -0400
-Message-ID: <CAKb7Uvj5zCyhNitHzh8UMV3zt1hpSktprHTr18nQMn7EYbUy7Q@mail.gmail.com>
-References: <1458120239-27659-1-git-send-email-hdegoede@redhat.com>
- <1458120239-27659-4-git-send-email-hdegoede@redhat.com>
- <CAKb7Uvg=2MpmfYfeRi8NcYYzGkhZy7mDLFw0dFoeWd68Q6EgFA@mail.gmail.com>
- <56E9A279.9040308@redhat.com>
+From: =?iso-8859-1?Q?Robert_Sch=F6ftner?= <rmu-hikZAF2L1OleoWH0uzbU5w@public.gmane.org>
+Subject: display freezes when mouse pointer hits left edge
+Date: Wed, 16 Mar 2016 23:06:26 +0100
+Message-ID: <9eddd16f-91eb-4240-9a0f-6248a96feeec@unfoo.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <56E9A279.9040308@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Hans de Goede <hdegoede@redhat.com>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBNYXIgMTYsIDIwMTYgYXQgMjoxNCBQTSwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVA
-cmVkaGF0LmNvbT4gd3JvdGU6Cj4gSGksCj4KPiBPbiAxNi0wMy0xNiAxNTo1NSwgSWxpYSBNaXJr
-aW4gd3JvdGU6Cj4+Cj4+IFRoaXMgYXBwcm9hY2ggbGVhZHMgdG8gdGhlIGVtaXR0ZXJzIG5lZWRp
-bmcgdG8ga25vdyBhYm91dCBib3RoIGdsb2JhbCBhbmQKPj4gYnVmZmVyLCBldmVuIHRob3VnaCBh
-dCB0aGF0IHBvaW50LCB0aGV5IGFyZSBpZGVudGljYWwuIEkgd2FzIHRoaW5raW5nIHRoYXQKPj4g
-aW4gdGhlIGxvd2VyaW5nIGxvZ2ljLCBidWZmZXIgd291bGQganVzdCBnZXQgcmV3cml0dGVuIGFz
-IGdsb2JhbCAod2l0aCB0aGUKPj4gb2Zmc2V0IGFkZGVkKSwgdGh1cyBub3QgbmVlZGluZyBhbnkg
-Y2hhbmdlIHRvIHRoZSBlbWl0dGVycy4gV2hhdCBkbyB5b3UKPj4gdGhpbmsgYWJvdXQgc3VjaCBh
-biBhcHByb2FjaD8KPgo+Cj4gSSB3YXMgYWN0dWFsbHkgdGhpbmtpbmcgdGhlIHNhbWUsIGJ1dCBJ
-IHdhcyBhIGJpdCBhZnJhaWQgSSBtaWdodCBicmVhawo+IHNvbWV0aGluZyBieSBkb2luZyB0aGF0
-LiBJJ20gd2lsbGluZyB0byB0cnkgdGhvdWdoLCBidXQgdGhlIHJlc3VsdCBpcwo+IGdvaW5nIHRv
-IG5lZWQgc29tZSBleHRyYSB0ZXN0aW5nIGJ5IG90aGVycyBJIGJlbGlldmUuCj4KPiBRdWVzdGlv
-bnM6Cj4KPiAxKSBBbnkgdGVzdHMgSSBjYW4gcnVuIHRvIHRlc3QgdGhlIGJ1ZmZlciBwYXRocyA/
-CgpiaW4vYXJiX3NoYWRlcl9zdG9yYWdlX2J1ZmZlcl9vYmplY3QtKiAoaW4gcGlnbGl0KQoKQWxz
-byBhIHRvbiBvZiBzdHVmZiBpbiBkRVFQLCBhbHRob3VnaCBzb21lIG9mIGl0IGZhaWxzLiAoLS1k
-ZXFwLWNhc2U9Jypzc2JvKicpCgo+Cj4gMikgU28gdGhlIHJlc3VsdGluZyBwYXRjaCwgd2hpY2gg
-d291bGQgcmVwbGFjZSB0aGlzIG9uZSwgYW5kIG1ha2UgbW9zdAo+ICAgIG9mIHRoZSAibm91dmVh
-dTogY29kZWdlbjogQWRkIHN1cHBvcnQgZm9yIE9wZW5DTCBnbG9iYWwgbWVtb3J5IGJ1ZmZlcnMi
-Cj4gICAgdW5uZWNlc3Nhcnkgd291bGQgbG9vayBzb21ldGhpbmcgbGlrZSB0aGlzOgo+IDJhKSBB
-ZGQgRklMRV9NRU1PUllfQlVGRkVSIGFzIG52NTBfaXI6OkZJTEVfKiB0eXBlCj4gMmIpIFVzZSBp
-dCBpbiBudjUwX2lyX2Zyb21fdGdzaS5jcHAgaW5zdGVhZCBvZiBHTE9CQUwKPiAyYykgVXNlIGl0
-IGluIG52NTBfaXJfbG93ZXJpbmdfIHRvIGNoZWNrIGZvciBidWZmZXIgYWNjZXNzZXMsCj4gICAg
-IGFuZCB3aGVuIGFkZGluZyB0aGUgb2Zmc2V0IGNoYW5nZSB0aGUgZmlsZV90eXBlIHRvIEdMT0JB
-TAo+Cj4gUmlnaHQgPwoKU291bmRzIGdvb2QgdG8gbWUhCgogIC1pbGlhCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdApt
-ZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
+SGkhCgpJIGhhdmUgYSB2ZXJ5IHN0cmFuZ2UgcHJvYmxlbSB3aXRoIGEgcmVjZW50bHkgcHVyY2hh
+c2VkIFZpZXdTb25pYyA0ayAKZGlzcGxheSBjb25uZWN0ZWQgdmlhIGRpc3BsYXkgcG9ydCB0byBh
+IFRoaW5rcGFkIDQxMCB3aXRoIG52aWRpYSBndDIxOG0gCihudnMgMzEwMG0pLgoKRXZlcnkgdGlt
+ZSB0aGUgbW91c2UgcG9pbnRlciB0b3VjaGVzIHRoZSBsZWZ0IGVkZ2Ugb2YgdGhlIHNjcmVlbiwg
+dGhlIApkaXNwbGF5IGJlY29tZXMgYSBibG9jayBvZiBzb2xpZCBjb2xvciBhbmQgZnJlZXplcy4g
+U3VzcGVuZC9yZXN1bWUgb2YgdGhlIApsYXB0b3AgcmVhbmltYXRlcyB0aGUgZGlzcGxheS4gSSBz
+dXNwZWN0ZWQgYSBidWcgaW4gdGhlIGhhbmRsaW5nIG9mIHRoZSAKaGFyZHdhcmUgY3Vyc29yLCBz
+byB0cmllZCBkaXNhYmxpbmcgdGhhdCB2aWEgSFdjdXJzb3IgZmFsc2UgaW4geG9yZy5jb25mLCAK
+dG8gbm8gYXZhaWwuIEhXY3Vyc29yIGZhbHNlIGxlYWRzIHRvIGJsYWNrIHNjcmVlbnMgKGludGVy
+bmFsIGFuZCBleHRlcm5hbCkuCgpUaGVyZSBhcmUgbm8gcmVsYXRlZCBtZXNzYWdlcyBpbiBkbWVz
+ZyBvciBpbiB4c2VydmVyLWxvZy4KCnZlcnNpb25zOiBYIHNlcnZlciAxLjE3LjIsIGxpbnV4IGtl
+cm5lbCA0LjUuMCwgbm91dmVhdSAxLjAuMTIsIGR1YWwgc2NyZWVucyAKYWN0aXZlIChhbHNvIGhh
+cHBlbnMgd2l0aCBleHRlcm5hbCBtb25pdG9yIGFjdGl2ZSBvbmx5LCB0aG91Z2ggdGhhdCAKY29u
+ZmlndXJhdGlvbiBpcyB2ZXJ5IHVuc3RhYmxlKSwgZG9lcyBub3QgbWF0dGVyIGlmIHRoZSBleHRl
+cm5hbCBtb25pdG9yIGlzIApjb25maWd1cmVkIGFzICJsZWZ0IiwgInJpZ2h0IiBvciAidG9wIiB0
+byB0aGUgaW50ZXJuYWw7IGRpZCBub3QgdHJ5IAoiYm90dG9tIi4KCkFueSBJZGVhIGhvdyBJIGNv
+dWxkIGZ1cnRoZXIgaW52ZXN0aWdhdGUgdGhpcyBwcm9ibGVtPwoKQXMgYSB3b3JrYXJvdW5kLCBp
+IGNyZWF0ZSBhIHBvaW50ZXIgYmFycmllciB2aWEgeGZpeGVzLCB0aGF0IHdvcmtzIGZvciBub3cu
+CgpUSUEKUm9iZXJ0Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
