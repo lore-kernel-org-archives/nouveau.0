@@ -1,53 +1,95 @@
-From: =?UTF-8?Q?Nicolai_H=c3=a4hnle?= <nhaehnle@gmail.com>
-Subject: Re: [PATCH mesa 1/6] tgsi_build: Fix return of
- uninitialized memory in tgsi_*_instruction_memory
-Date: Wed, 16 Mar 2016 10:12:35 -0500
-Message-ID: <56E977E3.6090308@gmail.com>
-References: <1458120239-27659-1-git-send-email-hdegoede@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93405] nouveau: Xorg crashes sooner or later in
+	3840x2160 mode
+Date: Wed, 16 Mar 2016 17:20:18 +0000
+Message-ID: <bug-93405-8800-LcfwbmUGi1@http.bugs.freedesktop.org/>
+References: <bug-93405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1458120239-27659-1-git-send-email-hdegoede@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Hans de Goede <hdegoede@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>, Samuel Pitoiset <samuel.pitoiset@gmail.com>
-Cc: mesa-dev@lists.freedesktop.org, =?UTF-8?Q?Nicolai_H=c3=a4hnle?= <nicolai.haehnle@amd.com>, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0779904428=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTYuMDMuMjAxNiAwNDoyMywgSGFucyBkZSBHb2VkZSB3cm90ZToKPiB0Z3NpX2RlZmF1bHRf
-aW5zdHJ1Y3Rpb25fbWVtb3J5IC8gdGdzaV9idWlsZF9pbnN0cnVjdGlvbl9tZW1vcnkgd2VyZQo+
-IHJldHVybmluZyB1bmluaXRpYWxpemVkIG1lbW9yeSBmb3IgdGdzaV9pbnN0cnVjdGlvbl9tZW1v
-cnkuVGV4dHVyZSBhbmQKPiB0Z3NpX2luc3RydWN0aW9uX21lbW9yeS5Gb3JtYXQuIE5vdGUgMCBt
-ZWFucyBub3Qgc2V0LCBhbmQgdGh1cyBpcyBhCj4gY29ycmVjdCBkZWZhdWx0IGluaXRpYWxpemVy
-IGZvciB0aGVzZS4KPgo+IEZpeGVzOiAzMjQzYjZmYzk3ICgidGdzaTogYWRkIFRleHR1cmUgYW5k
-IEZvcm1hdCB0byB0Z3NpX2luc3RydWN0aW9uX21lbW9yeSIpCj4gQ2M6IE5pY29sYWkgSMOkaG5s
-ZSA8bmljb2xhaS5oYWVobmxlQGFtZC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogSGFucyBkZSBHb2Vk
-ZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KClRoYW5rcy4KClJldmlld2VkLWJ5OiBOaWNvbGFpIEjD
-pGhubGUgPG5pY29sYWkuaGFlaG5sZUBhbWQuY29tPgoKPiAtLS0KPiAgIHNyYy9nYWxsaXVtL2F1
-eGlsaWFyeS90Z3NpL3Rnc2lfYnVpbGQuYyB8IDQgKysrKwo+ICAgMSBmaWxlIGNoYW5nZWQsIDQg
-aW5zZXJ0aW9ucygrKQo+Cj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2F1eGlsaWFyeS90Z3Np
-L3Rnc2lfYnVpbGQuYyBiL3NyYy9nYWxsaXVtL2F1eGlsaWFyeS90Z3NpL3Rnc2lfYnVpbGQuYwo+
-IGluZGV4IGEzZTY1OWIuLjdlMzBiYjYgMTAwNjQ0Cj4gLS0tIGEvc3JjL2dhbGxpdW0vYXV4aWxp
-YXJ5L3Rnc2kvdGdzaV9idWlsZC5jCj4gKysrIGIvc3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kv
-dGdzaV9idWlsZC5jCj4gQEAgLTc4MSw2ICs3ODEsOCBAQCB0Z3NpX2RlZmF1bHRfaW5zdHJ1Y3Rp
-b25fbWVtb3J5KCB2b2lkICkKPiAgICAgIHN0cnVjdCB0Z3NpX2luc3RydWN0aW9uX21lbW9yeSBp
-bnN0cnVjdGlvbl9tZW1vcnk7Cj4KPiAgICAgIGluc3RydWN0aW9uX21lbW9yeS5RdWFsaWZpZXIg
-PSAwOwo+ICsgICBpbnN0cnVjdGlvbl9tZW1vcnkuVGV4dHVyZSA9IDA7Cj4gKyAgIGluc3RydWN0
-aW9uX21lbW9yeS5Gb3JtYXQgPSAwOwo+ICAgICAgaW5zdHJ1Y3Rpb25fbWVtb3J5LlBhZGRpbmcg
-PSAwOwo+Cj4gICAgICByZXR1cm4gaW5zdHJ1Y3Rpb25fbWVtb3J5Owo+IEBAIC03OTYsNiArNzk4
-LDggQEAgdGdzaV9idWlsZF9pbnN0cnVjdGlvbl9tZW1vcnkoCj4gICAgICBzdHJ1Y3QgdGdzaV9p
-bnN0cnVjdGlvbl9tZW1vcnkgaW5zdHJ1Y3Rpb25fbWVtb3J5Owo+Cj4gICAgICBpbnN0cnVjdGlv
-bl9tZW1vcnkuUXVhbGlmaWVyID0gcXVhbGlmaWVyOwo+ICsgICBpbnN0cnVjdGlvbl9tZW1vcnku
-VGV4dHVyZSA9IDA7Cj4gKyAgIGluc3RydWN0aW9uX21lbW9yeS5Gb3JtYXQgPSAwOwo+ICAgICAg
-aW5zdHJ1Y3Rpb25fbWVtb3J5LlBhZGRpbmcgPSAwOwo+ICAgICAgaW5zdHJ1Y3Rpb24tPk1lbW9y
-eSA9IDE7Cj4KPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbWVzYS1kZXYK
+
+--===============0779904428==
+Content-Type: multipart/alternative; boundary="14581488181.D41Ddd5.21773";
+ charset="UTF-8"
+
+
+--14581488181.D41Ddd5.21773
+Date: Wed, 16 Mar 2016 17:20:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93405
+
+--- Comment #23 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+By now the article about 4K/UHD/2160p mentioned in Comment #22 has been
+released officially. This is now a fully revised version considered to be much
+better than the original pre-release. You may additionally view the article as
+translated into German. Comments as well as further usage by testers for
+improving the nouveau driver are highly welcome.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14581488181.D41Ddd5.21773
+Date: Wed, 16 Mar 2016 17:20:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c23">Comment # 23</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
+              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>By now the article about 4K/UHD/2160p mentioned in <a href="show_bug.cgi?id=93405#c22">Comment #22</a> has been
+released officially. This is now a fully revised version considered to be much
+better than the original pre-release. You may additionally view the article as
+translated into German. Comments as well as further usage by testers for
+improving the nouveau driver are highly welcome.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14581488181.D41Ddd5.21773--
+
+--===============0779904428==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0779904428==--
