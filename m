@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93405] nouveau: Xorg crashes sooner or later in
-	3840x2160 mode
-Date: Wed, 16 Mar 2016 17:20:18 +0000
-Message-ID: <bug-93405-8800-LcfwbmUGi1@http.bugs.freedesktop.org/>
-References: <bug-93405-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: [PATCH 1/2] bios/volt: handle voltage table version 0x50
+	with 0ed header
+Date: Wed, 16 Mar 2016 18:40:52 +0100
+Message-ID: <1458150053-4461-2-git-send-email-nouveau@karolherbst.de>
+References: <1458150053-4461-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0779904428=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1458150053-4461-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,76 +21,24 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0779904428==
-Content-Type: multipart/alternative; boundary="14581488181.D41Ddd5.21773";
- charset="UTF-8"
-
-
---14581488181.D41Ddd5.21773
-Date: Wed, 16 Mar 2016 17:20:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93405
-
---- Comment #23 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-By now the article about 4K/UHD/2160p mentioned in Comment #22 has been
-released officially. This is now a fully revised version considered to be much
-better than the original pre-release. You may additionally view the article as
-translated into German. Comments as well as further usage by testers for
-improving the nouveau driver are highly welcome.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14581488181.D41Ddd5.21773
-Date: Wed, 16 Mar 2016 17:20:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405#c23">Comment # 23</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau: Xorg crashes sooner or later in 3840x2160 mode"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93405">bug 93405</a>
-              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
-</span></b>
-        <pre>By now the article about 4K/UHD/2160p mentioned in <a href="show_bug.cgi?id=93405#c22">Comment #22</a> has been
-released officially. This is now a fully revised version considered to be much
-better than the original pre-release. You may additionally view the article as
-translated into German. Comments as well as further usage by testers for
-improving the nouveau driver are highly welcome.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14581488181.D41Ddd5.21773--
-
---===============0779904428==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0779904428==--
+U29tZSBLZXBsZXIgY2FyZHMgaGF2ZSBubyB1c2VmdWxsIGhlYWRlciBpbiB0aGUgdm9sdGFnZSB0
+YWJsZSwgd2hpY2ggbWVhbnMKbm91dmVhdSBoYXMgdG8gcmVhZCB0aGUgdm9sdGFnZXMgb3V0IG9m
+IHRoZSBlbnRyaWVzIGRpcmVjdGx5LgoKVGhlIG1hc2sgbWF5IGJlIGJpZ2dlciB0aGFuIDB4MWZm
+ZmZmLCBidXQgdGhpcyB2YWx1ZSBpcyBhbHJlYWR5ID4yViwgc28gaXQgd2lsbApiZSBmaW5lIGZv
+ciBub3cuCgpUaGlzIHBhdGNoIGZpeGVzIHZvbHRpbmcgaXNzdWVzIG9uIHRob3NlIGNhcmRzIGVu
+YWJsaW5nIHRoZW0gdG8gc3dpdGNoIGNzdGF0ZXMKClNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJz
+dCA8bm91dmVhdUBrYXJvbGhlcmJzdC5kZT4KLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9i
+aW9zL3ZvbHQuYyB8IDMgKysrCiAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspCgpkaWZm
+IC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy92b2x0LmMgYi9kcm0vbm91dmVh
+dS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYwppbmRleCA2ZTBhMzM2Li44MWE0N2IyIDEwMDY0NAot
+LS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYworKysgYi9kcm0vbm91dmVh
+dS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYwpAQCAtMTQyLDcgKzE0MiwxMCBAQCBudmJpb3Nfdm9s
+dF9lbnRyeV9wYXJzZShzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zLCBpbnQgaWR4LCB1OCAqdmVyLCB1
+OCAqbGVuLAogCQlpbmZvLT52aWQgICAgID0gbnZiaW9zX3JkMDgoYmlvcywgdm9sdCArIDB4MDEp
+ID4+IDI7CiAJCWJyZWFrOwogCWNhc2UgMHg0MDoKKwkJYnJlYWs7CiAJY2FzZSAweDUwOgorCQlp
+bmZvLT52b2x0YWdlID0gbnZiaW9zX3JkMzIoYmlvcywgdm9sdCkgJiAweDAwMWZmZmZmOworCQlp
+bmZvLT52aWQgICAgID0gKG52Ymlvc19yZDMyKGJpb3MsIHZvbHQpID4+IDIzKSAmIDB4ZmY7CiAJ
+CWJyZWFrOwogCX0KIAlyZXR1cm4gdm9sdDsKLS0gCjIuNy4zCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL25vdXZlYXUK
