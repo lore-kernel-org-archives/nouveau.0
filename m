@@ -1,18 +1,14 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [RFC mesa] nouveau: Add support for OpenCL global
-	memory buffers
-Date: Thu, 17 Mar 2016 17:14:35 +0100
-Message-ID: <56EAD7EB.3030803@gmail.com>
-References: <1457961752-1461-1-git-send-email-hdegoede@redhat.com>
- <CAKb7UvgcDxt0_GHr6W5zNvUwEY8FJSSfPD3wEhqr4t-3i5xPLg@mail.gmail.com>
- <56E6D8B1.60604@redhat.com> <56E6DBA2.8060605@gmail.com>
- <56E71623.7040201@redhat.com> <56E72426.8070606@gmail.com>
- <56EAD653.3000209@redhat.com>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: [PATCH 01/19] bios/volt: handle voltage table version
+	0x50 with 0ed header
+Date: Fri, 18 Mar 2016 00:03:38 +0100
+Message-ID: <1458255836-3878-2-git-send-email-nouveau@karolherbst.de>
+References: <1458255836-3878-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56EAD653.3000209-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <1458255836-3878-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,25 +18,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAwMy8xNy8yMDE2IDA1OjA3IFBNLCBIYW5zIGRlIEdvZWRlIHdyb3RlOgo+IEhpLAo+Cj4g
-T24gMTQtMDMtMTYgMjE6NTAsIFNhbXVlbCBQaXRvaXNldCB3cm90ZToKPgo+IDxzbmlwPgo+Cj4+
-Pj4gQnR3LCBkbyB5b3UgbmVlZCBzb21lb25lIHdpdGggY29tbWl0IGFjY2VzcyB0byBwdXNoIHlv
-dXIgcHJldmlvdXMKPj4+PiBzZXJpZXMgKHRoZSB0Z3NpIHRoaW5nKT8gSSBjYW4gZG8gdGhpcyBm
-b3IgeW91Lgo+Pj4KPj4+IFRoYW5rcyBmb3IgdGhlIG9mZmVyLiBJSVJDIElsaWEgd2FudGVkIHNv
-bWUgbWlub3IgZml4ZXMgdGhlcmUsIHNvCj4+PiBJJ2xsIGRvCj4+PiBhIHYyIHRvbW9ycm93LiBU
-YWxraW5nIGFib3V0IGNvbW1pdCByaWdodHMsIEkgZ3Vlc3MgaXQgd291bGQgYmUKPj4+IGNvbnZl
-bmllbnQgZm9yIGFsbCBpZiBJIHdvdWxkIGdldCBjb21taXQgcmlnaHRzIG15c2VsZj8gSSBwcm9t
-aXNlIEkKPj4+IHdvbid0Cj4+PiBwdXNoIGFueXRoaW5ncyB3aXRob3V0IGFja3MuCj4+Cj4+IFll
-cyBzdXJlLCBJIHRydXN0IHlvdSwgbm8gd29ycmllcy4gOi0pCj4+Cj4+Pgo+Pj4gSSBhbHJlYWR5
-IGhhdmUgYSBmcmVlZGVza3RvcC5vcmcgYWNjb3VudCwgbXkgdXNlcm5hbWUgaXMgandyZGVnb2Vk
-ZS4KPj4KPj4gUGxlYXNlIG9wZW4gYSB0aWNrZXQgb24gYnVncy5mcmVlZGVza3RvcCB0byBhc2sg
-Zm9yIGNvbW1pdCByaWdodHMuCj4KPiBEb25lOgo+Cj4gaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9w
-Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9OTQ1OTQKPgo+IENhbiB5b3Ugb3IgSWxpYSBwbGVhc2UgYWNr
-IHRoaXMgPwo+CgpEb25lLgoKPiBUaGFua3MsCj4KPiBIYW5zCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+U29tZSBGZXJtaSsgZ3B1cyBoYXZlIG5vIHVzZWZ1bGwgaGVhZGVyIGluIHRoZSB2b2x0YWdlIHRh
+YmxlLCB3aGljaCBtZWFucwpub3V2ZWF1IGhhcyB0byByZWFkIHRoZSB2b2x0YWdlcyBvdXQgb2Yg
+dGhlIGVudHJpZXMgZGlyZWN0bHkuCgpUaGUgbWFzayBtYXkgYmUgYmlnZ2VyIHRoYW4gMHgxZmZm
+ZmYsIGJ1dCB0aGlzIHZhbHVlIGlzIGFscmVhZHkgPjJWLCBzbyBpdCB3aWxsCmJlIGZpbmUgZm9y
+IG5vdy4KClRoaXMgcGF0Y2ggZml4ZXMgdm9sdGluZyBpc3N1ZXMgb24gdGhvc2UgY2FyZHMgZW5h
+YmxpbmcgdGhlbSB0byBzd2l0Y2ggY3N0YXRlcwoKU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0
+IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgpSZXZpZXdlZC1ieTogTWFydGluIFBlcmVzIDxtYXJ0
+aW4ucGVyZXNAZnJlZS5mcj4KLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3ZvbHQu
+YyB8IDMgKysrCiAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy92b2x0LmMgYi9kcm0vbm91dmVhdS9udmttL3N1
+YmRldi9iaW9zL3ZvbHQuYwppbmRleCA2ZTBhMzM2Li44MWE0N2IyIDEwMDY0NAotLS0gYS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYworKysgYi9kcm0vbm91dmVhdS9udmttL3N1
+YmRldi9iaW9zL3ZvbHQuYwpAQCAtMTQyLDcgKzE0MiwxMCBAQCBudmJpb3Nfdm9sdF9lbnRyeV9w
+YXJzZShzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zLCBpbnQgaWR4LCB1OCAqdmVyLCB1OCAqbGVuLAog
+CQlpbmZvLT52aWQgICAgID0gbnZiaW9zX3JkMDgoYmlvcywgdm9sdCArIDB4MDEpID4+IDI7CiAJ
+CWJyZWFrOwogCWNhc2UgMHg0MDoKKwkJYnJlYWs7CiAJY2FzZSAweDUwOgorCQlpbmZvLT52b2x0
+YWdlID0gbnZiaW9zX3JkMzIoYmlvcywgdm9sdCkgJiAweDAwMWZmZmZmOworCQlpbmZvLT52aWQg
+ICAgID0gKG52Ymlvc19yZDMyKGJpb3MsIHZvbHQpID4+IDIzKSAmIDB4ZmY7CiAJCWJyZWFrOwog
+CX0KIAlyZXR1cm4gdm9sdDsKLS0gCjIuNy4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
