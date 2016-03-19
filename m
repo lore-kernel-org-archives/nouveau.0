@@ -1,13 +1,12 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH 19/19] volt: add coefficients I found on my gpu
-Date: Fri, 18 Mar 2016 00:03:56 +0100
-Message-ID: <1458255836-3878-20-git-send-email-nouveau@karolherbst.de>
-References: <1458255836-3878-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94627] Game Risen on wine black grass
+Date: Sat, 19 Mar 2016 18:50:34 +0000
+Message-ID: <bug-94627-8800-t0tCQqGXCP@http.bugs.freedesktop.org/>
+References: <bug-94627-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1239760501=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1458255836-3878-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-94627-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,46 +19,116 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SSBhbSBzdXJlIHRoYXQgdGhvc2UgYXJlIGEgYml0IGRpZmZlcmVudCBvbiBvdGhlciBHUFVzLCBi
-dXQgd2hpbGUgdGVzdGluZwp0aGUgZXJyb3IgcmFuZ2UgY29tcGFyZWQgdG8gbnZpZGlhIHdhcyBh
-cm91bmQgMTAwJSstMyUuCgpXaXRob3V0IHRoaXMgY2hhbmdlIHdlIGFyZSBtb3N0IG9mIHRoZSB0
-aW1lIGFyb3VuZCAxMCUgYmVsb3cgbnZpZGlhcyB2b2x0YWdlLApzbyB0aGlzIGNoYW5nZSBjYXVz
-ZXMgbm8gaGFybSBhbmQgaW1wcm92ZXMgdGhlIHNpdHVhdGlvbiBhIGxvdCBhbHJlYWR5LgoKVGhl
-IHJlbWFpbmluZyB0YXNrIGZvciB0aGlzIGlzIHRvIGZpZ3VyZSBvdXQgd2hpY2ggb2YgdGhlc2Ug
-Y29uc3RhbnRzIGFyZQpjaGlwIHNwZWNpZmljIGFuZCBmcm9tIHdoZXJlIHRvIGdldCB0aGUgY2hp
-cCBzcGVjaWZpYyBmYWN0b3JzCgpTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJic3QgPG5vdXZlYXVA
-a2Fyb2xoZXJic3QuZGU+Ci0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9iYXNlLmMg
-fCA1NCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLS0tCiAxIGZpbGUgY2hhbmdl
-ZCwgNDggaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi92b2x0L2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3Zv
-bHQvYmFzZS5jCmluZGV4IDU4NzM4ZTMuLjJiM2Y0NjAgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1
-L252a20vc3ViZGV2L3ZvbHQvYmFzZS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3Zv
-bHQvYmFzZS5jCkBAIC0xMTcsMTMgKzExNyw1NSBAQCBudmttX3ZvbHRfbWFwKHN0cnVjdCBudmtt
-X3ZvbHQgKnZvbHQsIHU4IGlkLCB1OCB0ZW1wKQogCiAJdm1hcCA9IG52Ymlvc192bWFwX2VudHJ5
-X3BhcnNlKGJpb3MsIGlkLCAmdmVyLCAmbGVuLCAmaW5mbyk7CiAJaWYgKHZtYXApIHsKLQkJaWYg
-KGluZm8ubGluayAhPSAweGZmKSB7Ci0JCQlpbnQgcmV0ID0gbnZrbV92b2x0X21hcCh2b2x0LCBp
-bmZvLmxpbmssIHRlbXApOwotCQkJaWYgKHJldCA8IDApCi0JCQkJcmV0dXJuIHJldDsKLQkJCWlu
-Zm8ubWluICs9IHJldDsKKwkJc3dpdGNoICh2ZXIpIHsKKwkJY2FzZSAweDEwOgorCQkJaWYgKGlu
-Zm8ubGluayAhPSAweGZmKSB7CisJCQkJaW50IHJldCA9IG52a21fdm9sdF9tYXAodm9sdCwgaW5m
-by5saW5rLCB0ZW1wKTsKKwkJCQlpZiAocmV0IDwgMCkKKwkJCQkJcmV0dXJuIHJldDsKKwkJCQlp
-bmZvLm1pbiArPSByZXQ7CisJCQl9CisJCQlyZXR1cm4gaW5mby5taW47CisJCWNhc2UgMHgyMDog
-eworCQkJczMyIHJlc3VsdDsKKwkJCXUxNiB0ZW1wID0gNDA7CisJCQlzd2l0Y2ggKGluZm8ubW9k
-ZSkgeworCQkJY2FzZSAweDA6CisJCQkJcmVzdWx0ID0gIGluZm8uYXJnWzBdIC8gMTA7CisJCQkJ
-cmVzdWx0ICs9IGluZm8uYXJnWzFdICogMTY4OworCQkJCXJlc3VsdCArPSBpbmZvLmFyZ1syXSAq
-IDI4OworCQkJCWJyZWFrOworCQkJY2FzZSAweDE6CisJCQkJcmVzdWx0ID0gIChpbmZvLmFyZ1sw
-XSAvIDE2NzUpICogMTAwOworCQkJCXJlc3VsdCArPSBpbmZvLmFyZ1sxXSAgICAgICAgICAqIDEw
-MDsKKwkJCQlyZXN1bHQgKz0gKGluZm8uYXJnWzJdIC8gMTApICAgKiAxNTMgKiB0ZW1wOworCQkJ
-CXJlc3VsdCArPSBpbmZvLmFyZ1szXSAgICAgICAgICAqIDEwMCAqIHRlbXA7CisJCQkJcmVzdWx0
-ICs9IGluZm8uYXJnWzRdICAgICAgICAgICogNDE7CisJCQkJcmVzdWx0ICs9IChpbmZvLmFyZ1s1
-XSAqICh0ZW1wICogdGVtcCkpIC8gMTU7CisJCQkJYnJlYWs7CisJCQljYXNlIDB4MzoKKwkJCQly
-ZXN1bHQgPSAoaW5mby5taW4gKyBpbmZvLm1heCkgLyAyOworCQkJCWJyZWFrOworCQkJY2FzZSAw
-eDI6CisJCQlkZWZhdWx0OgorCQkJCXJlc3VsdCA9IGluZm8ubWluOworCQkJCWJyZWFrOworCQkJ
-fQorCQkJcmVzdWx0ID0gbWluKG1heChyZXN1bHQsIChzMzIpaW5mby5taW4pLAorCQkJCSAgICAg
-KHMzMilpbmZvLm1heCk7CisKKwkJCWlmIChpbmZvLmxpbmsgIT0gMHhmZikgeworCQkJCWludCBy
-ZXQgPSBudmttX3ZvbHRfbWFwKHZvbHQsIGluZm8ubGluaywgdGVtcCk7CisJCQkJaWYgKHJldCA8
-IDApCisJCQkJCXJldHVybiByZXQ7CisJCQkJcmVzdWx0ICs9IHJldDsKKwkJCX0KKworCQkJcmV0
-dXJuIHJlc3VsdDsKKwkJfQorCQlkZWZhdWx0OgorCQkJcmV0dXJuIC1FTk9ERVY7CiAJCX0KLQkJ
-cmV0dXJuIGluZm8ubWluOwogCX0KIAogCXJldHVybiBpZCA/IGlkICogMTAwMDAgOiAtRU5PREVW
-OwotLSAKMi43LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1239760501==
+Content-Type: multipart/alternative; boundary="14584134340.96FB67.8824";
+ charset="UTF-8"
+
+
+--14584134340.96FB67.8824
+Date: Sat, 19 Mar 2016 18:50:34 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=94627
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+          Component|Other                       |Drivers/DRI/nouveau
+           Assignee|mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |org                         |rg
+         QA Contact|mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |org                         |rg
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Reassigning to nouveau for now until we can verify where the issue lies.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.
+--14584134340.96FB67.8824
+Date: Sat, 19 Mar 2016 18:50:34 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Game Risen on wine black grass"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94627">bug 94627</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Other
+           </td>
+           <td>Drivers/DRI/nouveau
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>mesa-dev&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">QA Contact</td>
+           <td>mesa-dev&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Game Risen on wine black grass"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94627#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Game Risen on wine black grass"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94627">bug 94627</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Reassigning to nouveau for now until we can verify where the issue lies.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14584134340.96FB67.8824--
+
+--===============1239760501==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1239760501==--
