@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94637] system crash, no messages, GT215,
  ubuntu 16.04 when running glmark2 for a few minutes.
-Date: Sun, 20 Mar 2016 14:42:21 +0000
-Message-ID: <bug-94637-8800-G1DZ8kw0VG@http.bugs.freedesktop.org/>
+Date: Sun, 20 Mar 2016 14:48:54 +0000
+Message-ID: <bug-94637-8800-LG7N4Ut1Fp@http.bugs.freedesktop.org/>
 References: <bug-94637-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0710194330=="
+Content-Type: multipart/mixed; boundary="===============2126207062=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94637-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0710194330==
-Content-Type: multipart/alternative; boundary="14584849410.84d1E219A.21952";
+--===============2126207062==
+Content-Type: multipart/alternative; boundary="14584853330.caAeAbD1.22357";
  charset="UTF-8"
 
 
---14584849410.84d1E219A.21952
-Date: Sun, 20 Mar 2016 14:42:21 +0000
+--14584853330.caAeAbD1.22357
+Date: Sun, 20 Mar 2016 14:48:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=94637
 
---- Comment #7 from Peter Silva <peter-UmW4lSGjmaZq3vnQzO7mXA@public.gmane.org> ---
-oh, and I have now purged docker...
+--- Comment #8 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Sadly there is nothing wrong in the dmesg… Maybe run `cat /dev/kmsg >
+somefile.txt&` and see if after crashing the computer, somefile.txt contains
+some more information.
 
 -- 
 You are receiving this mail because:
-You are the assignee for the bug.
 You are the QA Contact for the bug.
---14584849410.84d1E219A.21952
-Date: Sun, 20 Mar 2016 14:42:21 +0000
+You are the assignee for the bug.
+--14584853330.caAeAbD1.22357
+Date: Sun, 20 Mar 2016 14:48:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -55,28 +57,30 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - system crash, no messages, GT215, ubuntu 16.04 when running glmark2 for a few minutes."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94637#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94637#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - system crash, no messages, GT215, ubuntu 16.04 when running glmark2 for a few minutes."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=94637">bug 94637</a>
-              from <span class="vcard"><a class="email" href="mailto:peter&#64;bsqt.homeip.net" title="Peter Silva &lt;peter&#64;bsqt.homeip.net&gt;"> <span class="fn">Peter Silva</span></a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>oh, and I have now purged docker...</pre>
+        <pre>Sadly there is nothing wrong in the dmesg… Maybe run `cat /dev/kmsg &gt;
+somefile.txt&amp;` and see if after crashing the computer, somefile.txt contains
+some more information.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
---14584849410.84d1E219A.21952--
+--14584853330.caAeAbD1.22357--
 
---===============0710194330==
+--===============2126207062==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0710194330==--
+--===============2126207062==--
