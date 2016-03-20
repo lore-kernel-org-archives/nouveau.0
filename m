@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94637] system crash, no messages, GT215,
- ubuntu 16.04 when running glmark2 for a few minutes.
-Date: Sun, 20 Mar 2016 15:21:12 +0000
-Message-ID: <bug-94637-8800-ms9NfgKfY5@http.bugs.freedesktop.org/>
-References: <bug-94637-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH 03/19] bios: add parsing of BASE CLOCK table
+Date: Sun, 20 Mar 2016 19:07:47 +0200
+Message-ID: <56EED8E3.50206@free.fr>
+References: <1458255836-3878-1-git-send-email-nouveau@karolherbst.de>
+ <1458255836-3878-4-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1135031008=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94637-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1458255836-3878-4-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,85 +18,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1135031008==
-Content-Type: multipart/alternative; boundary="14584872720.B6aB5F.25248";
- charset="UTF-8"
-
-
---14584872720.B6aB5F.25248
-Date: Sun, 20 Mar 2016 15:21:12 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=94637
-
---- Comment #10 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
-(In reply to Pierre Moreau from comment #8)
-> Sadly there is nothing wrong in the dmesg… Maybe run `cat /dev/kmsg >
-> somefile.txt&` and see if after crashing the computer, somefile.txt contains
-> some more information.
-
-I fear that when the kernel crashes, all the filesystem stuff is gone already.
-Maybe in the end he needs to setup netconsole
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
---14584872720.B6aB5F.25248
-Date: Sun, 20 Mar 2016 15:21:12 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - system crash, no messages, GT215, ubuntu 16.04 when running glmark2 for a few minutes."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94637#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - system crash, no messages, GT215, ubuntu 16.04 when running glmark2 for a few minutes."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94637">bug 94637</a>
-              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
-</span></b>
-        <pre>(In reply to Pierre Moreau from <a href="show_bug.cgi?id=94637#c8">comment #8</a>)
-<span class="quote">&gt; Sadly there is nothing wrong in the dmesg… Maybe run `cat /dev/kmsg &gt;
-&gt; somefile.txt&amp;` and see if after crashing the computer, somefile.txt contains
-&gt; some more information.</span >
-
-I fear that when the kernel crashes, all the filesystem stuff is gone already.
-Maybe in the end he needs to setup netconsole</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14584872720.B6aB5F.25248--
-
---===============1135031008==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1135031008==--
+T24gMTgvMDMvMTYgMDE6MDMsIEthcm9sIEhlcmJzdCB3cm90ZToKPiB0aGlzIHRhYmxlIGNvbnRh
+aW5zIHRocmVlIGltcG9ydGFudCBjbG9ja3M6Cj4KPiBiYXNlICBjbG9jazogdGhpcyBpcyB0aGUg
+bm9uIGJvb3N0ZWQgbWF4IGNsb2NrCj4gdGRwICAgY2xvY2s6IHRoZSBjbG9jayBhdCB3aWNoIHRo
+ZSB2YmlvcyBndWFyZW50ZWVzIHRoZSBURFAgd29uJ3QgZXZlciBiZQo+ICAgICAgICAgICAgICAg
+ZXhjZWVkZWQgYXQgbWF4IGxvYWQgKHNlZW1zIHRvIGJlIGFsd2F5cyB0aGUgc2FtZSBhcyB0aGUg
+YmFzZQo+ICAgICAgICAgICAgICAgY2xvY2ssIGJ1dCBiZWhhdmVzIGRpZmZlcmVudGx5KQo+IGJv
+b3N0IGNsb2NrOiB0aGUgYXZnIGNsb2NrIHRoZSBncHUgd2lsbCBzdGF5IGJvb3N0ZWQgdG8uIEl0
+IGRvZXNuJ3Qgc2VlbSB0bwo+ICAgICAgICAgICAgICAgYWZmZWN0IHRoZSBiZWhhdmlvdXIgb2Yg
+dGhlIG52aWRpYSBkcml2ZXIgYXQgYWxsIHRob3VnaC4KPgo+IFNpZ25lZC1vZmYtYnk6IEthcm9s
+IEhlcmJzdCA8bm91dmVhdUBrYXJvbGhlcmJzdC5kZT4KPiAtLS0KPiAgIGRybS9ub3V2ZWF1L2lu
+Y2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9iYXNlY2xvY2suaCB8IDI0ICsrKysrKysKPiAgIGRybS9u
+b3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvS2J1aWxkICAgICAgICAgICAgICB8ICAxICsKPiAgIGRy
+bS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvYmFzZWNsb2NrLmMgICAgICAgICB8IDgyICsrKysr
+KysrKysrKysrKysrKysrKysrKwo+ICAgMyBmaWxlcyBjaGFuZ2VkLCAxMDcgaW5zZXJ0aW9ucygr
+KQo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYv
+Ymlvcy9iYXNlY2xvY2suaAo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20v
+c3ViZGV2L2Jpb3MvYmFzZWNsb2NrLmMKPgo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9pbmNs
+dWRlL252a20vc3ViZGV2L2Jpb3MvYmFzZWNsb2NrLmggYi9kcm0vbm91dmVhdS9pbmNsdWRlL252
+a20vc3ViZGV2L2Jpb3MvYmFzZWNsb2NrLmgKPiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+IGluZGV4
+IDAwMDAwMDAuLmVjYTdiNGEKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIvZHJtL25vdXZlYXUvaW5j
+bHVkZS9udmttL3N1YmRldi9iaW9zL2Jhc2VjbG9jay5oCj4gQEAgLTAsMCArMSwyNCBAQAo+ICsj
+aWZuZGVmIF9fTlZCSU9TX0JBU0VDTE9DS19IX18KPiArI2RlZmluZSBfX05WQklPU19CQVNFQ0xP
+Q0tfSF9fCj4gK3N0cnVjdCBudmJpb3NfYmFzZWNsa19oZWFkZXIgewo+ICsJdTE2IG9mZnNldDsK
+PiArCj4gKwl1OCB2ZXJzaW9uOwo+ICsJdTggaGxlbjsKPiArCXU4IGVjb3VudDsKPiArCXU4IGVs
+ZW47Cj4gKwl1OCBzY291bnQ7Cj4gKwl1OCBzbGVuOwo+ICsKPiArCXU4IGJhc2U7Cj4gKwl1OCBi
+b29zdDsKPiArCXU4IHRkcDsKCk1heWJlIGl0IHdvdWxkIGJlIGVhc2llciB0byB1bmRlcnN0YW5k
+IGlmIHlvdSBzYWlkIHRoYXQgYmFzZSwgYm9vc3QgYW5kIAp0ZHAgYXJlIGFjdHVhbCBlbnRyeSBp
+ZHMuCgpPdGhlciB0aGFuIHRoaXMsIGxvb2tzIGdvb2QhIENvbmdyYXRzIGZvciBmaWd1cmluZyB0
+aGlzIHRhYmxlIG91dCEKClJldmlld2VkLWJ5OiBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0Bm
+cmVlLmZyPgo+ICt9Owo+ICtzdHJ1Y3QgbnZiaW9zX2Jhc2VjbGtfZW50cnkgewo+ICsJdTggIHBz
+dGF0ZTsKPiArCXUxNiBjbG9ja19taHo7Cj4gK307Cj4gK2ludCBudmJpb3NfYmFzZWNsb2NrX3Bh
+cnNlKHN0cnVjdCBudmttX2Jpb3MgKiwgc3RydWN0IG52Ymlvc19iYXNlY2xrX2hlYWRlciAqKTsK
+PiAraW50IG52Ymlvc19iYXNlY2xvY2tfZW50cnkoc3RydWN0IG52a21fYmlvcyAqLCBzdHJ1Y3Qg
+bnZiaW9zX2Jhc2VjbGtfaGVhZGVyICosCj4gKwkJCSAgIHU4IGlkeCwgc3RydWN0IG52Ymlvc19i
+YXNlY2xrX2VudHJ5ICopOwo+ICsjZW5kaWYKPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZr
+bS9zdWJkZXYvYmlvcy9LYnVpbGQgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL0tidWls
+ZAo+IGluZGV4IGRiY2IwZWYuLjZjYjNiZWIgMTAwNjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUvbnZr
+bS9zdWJkZXYvYmlvcy9LYnVpbGQKPiArKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9z
+L0tidWlsZAo+IEBAIC0xLDQgKzEsNSBAQAo+ICAgbnZrbS15ICs9IG52a20vc3ViZGV2L2Jpb3Mv
+YmFzZS5vCj4gK252a20teSArPSBudmttL3N1YmRldi9iaW9zL2Jhc2VjbG9jay5vCj4gICBudmtt
+LXkgKz0gbnZrbS9zdWJkZXYvYmlvcy9iaXQubwo+ICAgbnZrbS15ICs9IG52a20vc3ViZGV2L2Jp
+b3MvYm9vc3Qubwo+ICAgbnZrbS15ICs9IG52a20vc3ViZGV2L2Jpb3MvY29ubi5vCj4gZGlmZiAt
+LWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvYmFzZWNsb2NrLmMgYi9kcm0vbm91
+dmVhdS9udmttL3N1YmRldi9iaW9zL2Jhc2VjbG9jay5jCj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQK
+PiBpbmRleCAwMDAwMDAwLi4yZjE1YWJiCj4gLS0tIC9kZXYvbnVsbAo+ICsrKyBiL2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2Jpb3MvYmFzZWNsb2NrLmMKPiBAQCAtMCwwICsxLDgyIEBACj4gKy8q
+Cj4gKyAqIENvcHlyaWdodCAyMDE2IEthcm9sIEhlcmJzdAo+ICsgKgo+ICsgKiBQZXJtaXNzaW9u
+IGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5p
+bmcgYQo+ICsgKiBjb3B5IG9mIHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRh
+dGlvbiBmaWxlcyAodGhlICJTb2Z0d2FyZSIpLAo+ICsgKiB0byBkZWFsIGluIHRoZSBTb2Z0d2Fy
+ZSB3aXRob3V0IHJlc3RyaWN0aW9uLCBpbmNsdWRpbmcgd2l0aG91dCBsaW1pdGF0aW9uCj4gKyAq
+IHRoZSByaWdodHMgdG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmli
+dXRlLCBzdWJsaWNlbnNlLAo+ICsgKiBhbmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNvZnR3YXJl
+LCBhbmQgdG8gcGVybWl0IHBlcnNvbnMgdG8gd2hvbSB0aGUKPiArICogU29mdHdhcmUgaXMgZnVy
+bmlzaGVkIHRvIGRvIHNvLCBzdWJqZWN0IHRvIHRoZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKPiAr
+ICoKPiArICogVGhlIGFib3ZlIGNvcHlyaWdodCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBu
+b3RpY2Ugc2hhbGwgYmUgaW5jbHVkZWQgaW4KPiArICogYWxsIGNvcGllcyBvciBzdWJzdGFudGlh
+bCBwb3J0aW9ucyBvZiB0aGUgU29mdHdhcmUuCj4gKyAqCj4gKyAqIFRIRSBTT0ZUV0FSRSBJUyBQ
+Uk9WSURFRCAiQVMgSVMiLCBXSVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBSRVNTIE9S
+Cj4gKyAqIElNUExJRUQsIElOQ0xVRElORyBCVVQgTk9UIExJTUlURUQgVE8gVEhFIFdBUlJBTlRJ
+RVMgT0YgTUVSQ0hBTlRBQklMSVRZLAo+ICsgKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVS
+UE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiAgSU4gTk8gRVZFTlQgU0hBTEwKPiArICogVEhFIENP
+UFlSSUdIVCBIT0xERVIoUykgT1IgQVVUSE9SKFMpIEJFIExJQUJMRSBGT1IgQU5ZIENMQUlNLCBE
+QU1BR0VTIE9SCj4gKyAqIE9USEVSIExJQUJJTElUWSwgV0hFVEhFUiBJTiBBTiBBQ1RJT04gT0Yg
+Q09OVFJBQ1QsIFRPUlQgT1IgT1RIRVJXSVNFLAo+ICsgKiBBUklTSU5HIEZST00sIE9VVCBPRiBP
+UiBJTiBDT05ORUNUSU9OIFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IKPiArICogT1RI
+RVIgREVBTElOR1MgSU4gVEhFIFNPRlRXQVJFLgo+ICsgKgo+ICsgKiBBdXRob3JzOiBLYXJvbCBI
+ZXJic3QKPiArICovCj4gKyNpbmNsdWRlIDxzdWJkZXYvYmlvcy5oPgo+ICsjaW5jbHVkZSA8c3Vi
+ZGV2L2Jpb3MvYml0Lmg+Cj4gKyNpbmNsdWRlIDxzdWJkZXYvYmlvcy9iYXNlY2xvY2suaD4KPiAr
+Cj4gK3N0YXRpYyB1MTYKPiArbnZiaW9zX2Jhc2VjbG9ja19vZmZzZXQoc3RydWN0IG52a21fYmlv
+cyAqYikKPiArewo+ICsJc3RydWN0IGJpdF9lbnRyeSBiaXRfUDsKPiArCj4gKwlpZiAoIWJpdF9l
+bnRyeShiLCAnUCcsICZiaXRfUCkpIHsKPiArCQlpZiAoYml0X1AudmVyc2lvbiA9PSAyKQo+ICsJ
+CQlyZXR1cm4gbnZiaW9zX3JkMTYoYiwgYml0X1Aub2Zmc2V0ICsgMHgzOCk7Cj4gKwl9Cj4gKwo+
+ICsJcmV0dXJuIDB4MDAwMDsKPiArfQo+ICsKPiAraW50Cj4gK252Ymlvc19iYXNlY2xvY2tfcGFy
+c2Uoc3RydWN0IG52a21fYmlvcyAqYiwgc3RydWN0IG52Ymlvc19iYXNlY2xrX2hlYWRlciAqaCkK
+PiArewo+ICsJaWYgKCFoKQo+ICsJCXJldHVybiAtRUlOVkFMOwo+ICsKPiArCWgtPm9mZnNldCA9
+IG52Ymlvc19iYXNlY2xvY2tfb2Zmc2V0KGIpOwo+ICsJaWYgKCFoLT5vZmZzZXQpCj4gKwkJcmV0
+dXJuIC1FTk9ERVY7Cj4gKwo+ICsJaC0+dmVyc2lvbiA9IG52Ymlvc19yZDA4KGIsIGgtPm9mZnNl
+dCk7Cj4gKwlzd2l0Y2ggKGgtPnZlcnNpb24pIHsKPiArCWNhc2UgMHgxMDoKPiArCQloLT5obGVu
+ICAgPSBudmJpb3NfcmQwOChiLCBoLT5vZmZzZXQgKyAweDEpOwo+ICsJCWgtPmVsZW4gICA9IG52
+Ymlvc19yZDA4KGIsIGgtPm9mZnNldCArIDB4Mik7Cj4gKwkJaC0+c2xlbiAgID0gbnZiaW9zX3Jk
+MDgoYiwgaC0+b2Zmc2V0ICsgMHgzKTsKPiArCQloLT5zY291bnQgPSBudmJpb3NfcmQwOChiLCBo
+LT5vZmZzZXQgKyAweDQpOwo+ICsJCWgtPmVjb3VudCA9IG52Ymlvc19yZDA4KGIsIGgtPm9mZnNl
+dCArIDB4NSk7Cj4gKwo+ICsJCWgtPmJhc2UgICA9IG52Ymlvc19yZDA4KGIsIGgtPm9mZnNldCAr
+IDB4MGYpOwo+ICsJCWgtPmJvb3N0ICA9IG52Ymlvc19yZDA4KGIsIGgtPm9mZnNldCArIDB4MTAp
+Owo+ICsJCWgtPnRkcCAgICA9IG52Ymlvc19yZDA4KGIsIGgtPm9mZnNldCArIDB4MTEpOwo+ICsJ
+CXJldHVybiAwOwo+ICsJZGVmYXVsdDoKPiArCQlyZXR1cm4gLUVJTlZBTDsKPiArCX0KPiArfQo+
+ICsKPiAraW50Cj4gK252Ymlvc19iYXNlY2xvY2tfZW50cnkoc3RydWN0IG52a21fYmlvcyAqYiwg
+c3RydWN0IG52Ymlvc19iYXNlY2xrX2hlYWRlciAqaCwKPiArCQkgICAgICAgdTggaWR4LCBzdHJ1
+Y3QgbnZiaW9zX2Jhc2VjbGtfZW50cnkgKmUpCj4gK3sKPiArCXUxNiBvZmZzZXQ7Cj4gKwo+ICsJ
+aWYgKCFlIHx8ICFoIHx8IGlkeCA+IGgtPmVjb3VudCkKPiArCQlyZXR1cm4gLUVJTlZBTDsKPiAr
+Cj4gKwlvZmZzZXQgPSBoLT5vZmZzZXQgKyBoLT5obGVuICsgaWR4ICogKGgtPmVsZW4gKyAoaC0+
+c2xlbiAqIGgtPnNjb3VudCkpOwo+ICsJZS0+cHN0YXRlICAgID0gbnZiaW9zX3JkMDgoYiwgb2Zm
+c2V0KTsKPiArCWUtPmNsb2NrX21oeiA9IG52Ymlvc19yZDE2KGIsIG9mZnNldCArIDB4NSk7Cj4g
+KwlyZXR1cm4gMDsKPiArfQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Cg==
