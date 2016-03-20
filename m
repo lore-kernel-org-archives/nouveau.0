@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94627] Game Risen on wine black grass
-Date: Sat, 19 Mar 2016 20:57:57 +0000
-Message-ID: <bug-94627-8800-qL5vgV7L8T@http.bugs.freedesktop.org/>
-References: <bug-94627-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94637] New: system crash, no messages, GT215,
+ ubuntu 16.04 when running glmark2 for a few minutes.
+Date: Sun, 20 Mar 2016 13:49:14 +0000
+Message-ID: <bug-94637-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0684828236=="
+Content-Type: multipart/mixed; boundary="===============0432847595=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94627-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +19,59 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0684828236==
-Content-Type: multipart/alternative; boundary="14584210761.69FE.25193";
+--===============0432847595==
+Content-Type: multipart/alternative; boundary="14584817540.F9e4c.16775";
  charset="UTF-8"
 
 
---14584210761.69FE.25193
-Date: Sat, 19 Mar 2016 20:57:56 +0000
+--14584817540.F9e4c.16775
+Date: Sun, 20 Mar 2016 13:49:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=94627
+https://bugs.freedesktop.org/show_bug.cgi?id=94637
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+            Bug ID: 94637
+           Summary: system crash, no messages, GT215, ubuntu 16.04 when
+                    running glmark2 for a few minutes.
+           Product: Mesa
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: peter-UmW4lSGjmaZq3vnQzO7mXA@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+Created attachment 122444
+  --> https://bugs.freedesktop.org/attachment.cgi?id=122444&action=edit
+general info about the system... going through the FAQ
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, so looks like it was the sqrt change that fixed it (commit c1e4a6bfbf01) -
-thanks Karol. I'm a bit scared of backporting that to 11.2 at such a late date,
-so I'd rather leave this alone for now. It should be fixed in 11.3 though.
+running fully patched ubuntu xenial, only nouveau drivers.  If I start
+minecraft, and run for a few minutes, the system locks up for about 3 minutes,
+then spontaneously reboots.  There are no messages I can see in any log, only
+bootup messages after the event.
+
+Using distribution packages, no xorg.conf, no trace of proprietary drivers I
+can see.
+
+The same hardware was stable using proprietary drivers on ubuntu 14.04.
+just upgraded to 16.04 and switched to nouveau.
+
+I can browse the web all day. Works fine as long as the GL isn't exercised. 
+Nothing to do with minecraft as, it takes a little longer, say 10 to 15
+minutes, but I can reproduce the problem exactly by just running glmark2
+package from the repository.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
---14584210761.69FE.25193
-Date: Sat, 19 Mar 2016 20:57:56 +0000
+--14584817540.F9e4c.16775
+Date: Sun, 20 Mar 2016 13:49:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -57,50 +79,107 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Game Risen on wine black grass"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94627">bug 94627</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - system crash, no messages, GT215, ubuntu 16.04 when running glmark2 for a few minutes."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94637">94637</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
+        <tr>
+          <th>Summary</th>
+          <td>system crash, no messages, GT215, ubuntu 16.04 when running glmark2 for a few minutes.
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>peter&#64;bsqt.homeip.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Game Risen on wine black grass"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94627#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Game Risen on wine black grass"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94627">bug 94627</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>OK, so looks like it was the sqrt change that fixed it (commit c1e4a6bfbf01) -
-thanks Karol. I'm a bit scared of backporting that to 11.2 at such a late date,
-so I'd rather leave this alone for now. It should be fixed in 11.3 though.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=122444" name="attach_122444" title="general info about the system... going through the FAQ">attachment 122444</a> <a href="attachment.cgi?id=122444&amp;action=edit" title="general info about the system... going through the FAQ">[details]</a></span>
+general info about the system... going through the FAQ
+
+running fully patched ubuntu xenial, only nouveau drivers.  If I start
+minecraft, and run for a few minutes, the system locks up for about 3 minutes,
+then spontaneously reboots.  There are no messages I can see in any log, only
+bootup messages after the event.
+
+Using distribution packages, no xorg.conf, no trace of proprietary drivers I
+can see.
+
+The same hardware was stable using proprietary drivers on ubuntu 14.04.
+just upgraded to 16.04 and switched to nouveau.
+
+I can browse the web all day. Works fine as long as the GL isn't exercised. 
+Nothing to do with minecraft as, it takes a little longer, say 10 to 15
+minutes, but I can reproduce the problem exactly by just running glmark2
+package from the repository.</pre>
         </div>
       </p>
       <hr>
@@ -112,9 +191,9 @@ so I'd rather leave this alone for now. It should be fixed in 11.3 though.</pre>
       </ul>
     </body>
 </html>
---14584210761.69FE.25193--
+--14584817540.F9e4c.16775--
 
---===============0684828236==
+--===============0432847595==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +203,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0684828236==--
+--===============0432847595==--
