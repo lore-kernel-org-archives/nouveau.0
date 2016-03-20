@@ -1,14 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH 04/19] clk: print the base clocks
-Date: Sun, 20 Mar 2016 19:16:01 +0200
-Message-ID: <56EEDAD1.6040208@free.fr>
-References: <1458255836-3878-1-git-send-email-nouveau@karolherbst.de>
- <1458255836-3878-5-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94637] system crash, no messages, GT215,
+ ubuntu 16.04 when running glmark2 for a few minutes.
+Date: Sun, 20 Mar 2016 17:36:41 +0000
+Message-ID: <bug-94637-8800-lKsOfbUGum@http.bugs.freedesktop.org/>
+References: <bug-94637-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0187854266=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1458255836-3878-5-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-94637-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,40 +17,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTgvMDMvMTYgMDE6MDMsIEthcm9sIEhlcmJzdCB3cm90ZToKPiBTaWduZWQtb2ZmLWJ5OiBL
-YXJvbCBIZXJic3QgPG5vdXZlYXVAa2Fyb2xoZXJic3QuZGU+Cj4gLS0tCj4gICBkcm0vbm91dmVh
-dS9udmttL3N1YmRldi9jbGsvYmFzZS5jIHwgMTcgKysrKysrKysrKysrKysrKy0KPiAgIDEgZmls
-ZSBjaGFuZ2VkLCAxNiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4KPiBkaWZmIC0tZ2l0
-IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20v
-c3ViZGV2L2Nsay9iYXNlLmMKPiBpbmRleCA4ODljY2UyLi40OTI4NjY4IDEwMDY0NAo+IC0tLSBh
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMKPiArKysgYi9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9jbGsvYmFzZS5jCj4gQEAgLTI0LDYgKzI0LDcgQEAKPiAgICNpbmNsdWRlICJw
-cml2LmgiCj4gICAKPiAgICNpbmNsdWRlIDxzdWJkZXYvYmlvcy5oPgo+ICsjaW5jbHVkZSA8c3Vi
-ZGV2L2Jpb3MvYmFzZWNsb2NrLmg+Cj4gICAjaW5jbHVkZSA8c3ViZGV2L2Jpb3MvYm9vc3QuaD4K
-PiAgICNpbmNsdWRlIDxzdWJkZXYvYmlvcy9jc3RlcC5oPgo+ICAgI2luY2x1ZGUgPHN1YmRldi9i
-aW9zL3BlcmYuaD4KPiBAQCAtNTYxLDEwICs1NjIsMjQgQEAgaW50Cj4gICBudmttX2Nsa19jdG9y
-KGNvbnN0IHN0cnVjdCBudmttX2Nsa19mdW5jICpmdW5jLCBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRl
-dmljZSwKPiAgIAkgICAgICBpbnQgaW5kZXgsIGJvb2wgYWxsb3dfcmVjbG9jaywgc3RydWN0IG52
-a21fY2xrICpjbGspCj4gICB7Cj4gKwlzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldiA9ICZjbGst
-PnN1YmRldjsKPiArCXN0cnVjdCBudmttX2Jpb3MgKmJpb3MgPSBkZXZpY2UtPmJpb3M7Cj4gICAJ
-aW50IHJldCwgaWR4LCBhcmdsZW47Cj4gICAJY29uc3QgY2hhciAqbW9kZTsKPiArCXN0cnVjdCBu
-dmJpb3NfYmFzZWNsa19oZWFkZXIgaDsKPiArCj4gKwludmttX3N1YmRldl9jdG9yKCZudmttX2Ns
-aywgZGV2aWNlLCBpbmRleCwgMCwgc3ViZGV2KTsKPiArCj4gKwlpZiAoYmlvcyAmJiAhbnZiaW9z
-X2Jhc2VjbG9ja19wYXJzZShiaW9zLCAmaCkpIHsKPiArCQlzdHJ1Y3QgbnZiaW9zX2Jhc2VjbGtf
-ZW50cnkgYmFzZSwgYm9vc3Q7Cj4gKwkJaWYgKCFudmJpb3NfYmFzZWNsb2NrX2VudHJ5KGJpb3Ms
-ICZoLCBoLmJvb3N0LCAmYm9vc3QpKQo+ICsJCQludmttX2luZm8oc3ViZGV2LCAiYm9vc3Q6ICVp
-IE1IelxuIiwKPiArCQkJCSAgYm9vc3QuY2xvY2tfbWh6IC8gMik7Cj4gKwkJaWYgKCFudmJpb3Nf
-YmFzZWNsb2NrX2VudHJ5KGJpb3MsICZoLCBoLmJhc2UsICZiYXNlKSkKPiArCQkJbnZrbV9pbmZv
-KHN1YmRldiwgImJhc2U6ICVpIE1IelxuIiwKPiArCQkJCSAgYmFzZS5jbG9ja19taHogLyAyKTsK
-PiArCX0KPiAgIAo+IC0JbnZrbV9zdWJkZXZfY3RvcigmbnZrbV9jbGssIGRldmljZSwgaW5kZXgs
-IDAsICZjbGstPnN1YmRldik7Cj4gICAJY2xrLT5mdW5jID0gZnVuYzsKPiAgIAlJTklUX0xJU1Rf
-SEVBRCgmY2xrLT5zdGF0ZXMpOwo+ICAgCWNsay0+ZG9tYWlucyA9IGZ1bmMtPmRvbWFpbnM7Cj4K
-Ckkgd291bGQgcmF0aGVyIGhhdmUgeW91IHJlcG9ydCB0aGlzIGluZm9ybWF0aW9uIGluIGRlYnVn
-ZnMsIGlmIHlvdSBkb24ndCAKbWluZC4KClRoaXMgaXMgcmVhbGx5IG91dCBvZiBwbGFjZSwgZXNw
-ZWNpYWxseSBzaW5jZSB3ZSBkbyBub3Qgc2hvdyB0aGUgY2xvY2tzIAphbnltb3JlIGFwcGFyZW50
-bHkuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0187854266==
+Content-Type: multipart/alternative; boundary="14584954000.8fB5.10393";
+ charset="UTF-8"
+
+
+--14584954000.8fB5.10393
+Date: Sun, 20 Mar 2016 17:36:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=94637
+
+--- Comment #11 from Peter Silva <peter-UmW4lSGjmaZq3vnQzO7mXA@public.gmane.org> ---
+
+added the netlog thing.  It emitted this single line when it crashed:
+
+peter@tigaroo:~$ more nc_log
+[ 5612.909828] nouveau 0000:01:00.0: disp: ERROR 0 [] 00 [] chid 1 mthd 0080
+data 00000000
+peter@tigaroo:~$
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.
+--14584954000.8fB5.10393
+Date: Sun, 20 Mar 2016 17:36:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - system crash, no messages, GT215, ubuntu 16.04 when running glmark2 for a few minutes."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94637#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - system crash, no messages, GT215, ubuntu 16.04 when running glmark2 for a few minutes."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94637">bug 94637</a>
+              from <span class="vcard"><a class="email" href="mailto:peter&#64;bsqt.homeip.net" title="Peter Silva &lt;peter&#64;bsqt.homeip.net&gt;"> <span class="fn">Peter Silva</span></a>
+</span></b>
+        <pre>
+added the netlog thing.  It emitted this single line when it crashed:
+
+peter&#64;tigaroo:~$ more nc_log
+[ 5612.909828] nouveau 0000:01:00.0: disp: ERROR 0 [] 00 [] chid 1 mthd 0080
+data 00000000
+peter&#64;tigaroo:~$</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14584954000.8fB5.10393--
+
+--===============0187854266==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0187854266==--
