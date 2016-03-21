@@ -1,15 +1,11 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH 05/19] clk: allow boosting only when NvBoost
- is set
-Date: Sun, 20 Mar 2016 22:15:30 +0200
-Message-ID: <56EF04E2.40703@free.fr>
-References: <1458255836-3878-1-git-send-email-nouveau@karolherbst.de>
- <1458255836-3878-6-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94643] New: 4K Display on Displayport goes black
+ when pointer hits column 0
+Date: Mon, 21 Mar 2016 08:04:29 +0000
+Message-ID: <bug-94643-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0810894088=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1458255836-3878-6-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,94 +15,185 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTgvMDMvMTYgMDE6MDMsIEthcm9sIEhlcmJzdCB3cm90ZToKPiAwOiBiYXNlIGNsb2NrIGZy
-b20gdGhlIHZiaW9zIGlzIG1heCBjbG9jawo+IDE6IGJvb3N0IG9ubHkgdG8gYm9vc3QgY2xvY2sg
-ZnJvbSB0aGUgdmJpb3MgKGRlZmF1bHQpCj4gMjogYm9vc3QgdG8gbWF4IGNsb2NrIGF2YWlsYWJs
-ZQo+IFNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJzdCA8bm91dmVhdUBrYXJvbGhlcmJzdC5kZT4K
-PiAtLS0KPiAgIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvY2xrLmggfCAgOSArKysr
-KysrKy0KPiAgIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgICAgfCAyNiArKysr
-KysrKysrKysrKysrKysrKysrKystLQo+ICAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2dm
-MTAwLmMgICB8ICAyICstCj4gICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2sxMDQuYyAg
-IHwgIDIgKy0KPiAgIDQgZmlsZXMgY2hhbmdlZCwgMzQgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlv
-bnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Ns
-ay5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9jbGsuaAo+IGluZGV4IGZiNTQ0
-MTcuLmEyOTJlNWEgMTAwNjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRl
-di9jbGsuaAo+ICsrKyBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvY2xrLmgKPiBA
-QCAtNjcsNyArNjcsOCBAQCBzdHJ1Y3QgbnZrbV9wc3RhdGUgewo+ICAgc3RydWN0IG52a21fZG9t
-YWluIHsKPiAgIAllbnVtIG52X2Nsa19zcmMgbmFtZTsKPiAgIAl1OCBiaW9zOyAvKiAweGZmIGZv
-ciBub25lICovCj4gLSNkZWZpbmUgTlZLTV9DTEtfRE9NX0ZMQUdfQ09SRSAweDAxCj4gKyNkZWZp
-bmUgTlZLTV9DTEtfRE9NX0ZMQUdfQ09SRSAgICAweDAxCj4gKyNkZWZpbmUgTlZLTV9DTEtfRE9N
-X0ZMQUdfQkFTRUNMSyAweDAyCj4gICAJdTggZmxhZ3M7Cj4gICAJY29uc3QgY2hhciAqbW5hbWU7
-Cj4gICAJaW50IG1kaXY7Cj4gQEAgLTk3LDYgKzk4LDEyIEBAIHN0cnVjdCBudmttX2NsayB7Cj4g
-ICAJaW50IGRzdGF0ZTsgLyogZGlzcGxheSBhZGp1c3RtZW50IChtaW4rKSAqLwo+ICAgCj4gICAJ
-Ym9vbCBhbGxvd19yZWNsb2NrOwo+ICsjZGVmaW5lIE5WS01fQ0xLX0JPT1NUX05PTkUgMHgwCj4g
-KyNkZWZpbmUgTlZLTV9DTEtfQk9PU1RfQVZHICAweDEKPiArI2RlZmluZSBOVktNX0NMS19CT09T
-VF9GVUxMIDB4Mgo+ICsJdTggIGJvb3N0X21vZGU7Cj4gKwl1MzIgYmFzZV9raHo7Cj4gKwl1MzIg
-Ym9vc3Rfa2h6Owo+ICAgCj4gICAJLypYWFg6IGRpZSwgdGhlc2UgYXJlIGhlcmUgKm9ubHkqIHRv
-IHN1cHBvcnQgdGhlIGNvbXBsZXRlbHkKPiAgIAkgKiAgICAgYmF0LXNoaXQgaW5zYW5lIHdoYXQt
-d2FzLW5vdXZlYXVfaHcuYyBjb2RlCj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L2Nsay9iYXNlLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4gaW5k
-ZXggNDkyODY2OC4uZDU3NTQxMiAxMDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9jbGsvYmFzZS5jCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwo+
-IEBAIC0xNjAsNiArMTYwLDE4IEBAIG52a21fY3N0YXRlX25ldyhzdHJ1Y3QgbnZrbV9jbGsgKmNs
-aywgaW50IGlkeCwgc3RydWN0IG52a21fcHN0YXRlICpwc3RhdGUpCj4gICAJCWlmIChkb21haW4t
-PmZsYWdzICYgTlZLTV9DTEtfRE9NX0ZMQUdfQ09SRSkgewo+ICAgCQkJdTMyIGZyZXEgPSBudmtt
-X2Nsa19hZGp1c3QoY2xrLCB0cnVlLCBwc3RhdGUtPnBzdGF0ZSwKPiAgIAkJCQkJCSAgIGRvbWFp
-bi0+YmlvcywgY3N0ZXBYLmZyZXEpOwo+ICsJCQlpZiAoZG9tYWluLT5mbGFncyAmIE5WS01fQ0xL
-X0RPTV9GTEFHX0JBU0VDTEspIHsKPiArCQkJCXN3aXRjaCAoY2xrLT5ib29zdF9tb2RlKSB7Cj4g
-KwkJCQljYXNlIE5WS01fQ0xLX0JPT1NUX05PTkU6Cj4gKwkJCQkJaWYgKGNsay0+YmFzZV9raHoK
-PiArCQkJCQkgICAgJiYgZnJlcSA+IGNsay0+YmFzZV9raHopCj4gKwkJCQkJCWdvdG8gZXJyOwo+
-ICsJCQkJY2FzZSBOVktNX0NMS19CT09TVF9BVkc6Cj4gKwkJCQkJaWYgKGNsay0+Ym9vc3Rfa2h6
-Cj4gKwkJCQkJICAgICYmIGZyZXEgPiBjbGstPmJvb3N0X2toeikKPiArCQkJCQkJZ290byBlcnI7
-Cj4gKwkJCQl9Cj4gKwkJCX0KPiAgIAkJCWNzdGF0ZS0+ZG9tYWluW2RvbWFpbi0+bmFtZV0gPSBm
-cmVxOwo+ICAgCQl9Cj4gICAJCWRvbWFpbisrOwo+IEBAIC0xNjcsNiArMTc5LDkgQEAgbnZrbV9j
-c3RhdGVfbmV3KHN0cnVjdCBudmttX2NsayAqY2xrLCBpbnQgaWR4LCBzdHJ1Y3QgbnZrbV9wc3Rh
-dGUgKnBzdGF0ZSkKPiAgIAo+ICAgCWxpc3RfYWRkKCZjc3RhdGUtPmhlYWQsICZwc3RhdGUtPmxp
-c3QpOwo+ICAgCXJldHVybiAwOwo+ICtlcnI6Cj4gKwlrZnJlZShjc3RhdGUpOwo+ICsJcmV0dXJu
-IC1FSU5WQUw7Cj4gICB9Cj4gICAKPiAgIC8qKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioKPiBAQCAtNTcw
-LDE0ICs1ODUsMjEgQEAgbnZrbV9jbGtfY3Rvcihjb25zdCBzdHJ1Y3QgbnZrbV9jbGtfZnVuYyAq
-ZnVuYywgc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UsCj4gICAKPiAgIAludmttX3N1YmRldl9j
-dG9yKCZudmttX2NsaywgZGV2aWNlLCBpbmRleCwgMCwgc3ViZGV2KTsKPiAgIAo+ICsJY2xrLT5i
-b29zdF9tb2RlID0gbnZrbV9sb25nb3B0KGRldmljZS0+Y2Znb3B0LCAiTnZCb29zdCIsCj4gKwkJ
-CQkgICAgICAgTlZLTV9DTEtfQk9PU1RfQVZHKTsKPiAgIAlpZiAoYmlvcyAmJiAhbnZiaW9zX2Jh
-c2VjbG9ja19wYXJzZShiaW9zLCAmaCkpIHsKPiAgIAkJc3RydWN0IG52Ymlvc19iYXNlY2xrX2Vu
-dHJ5IGJhc2UsIGJvb3N0Owo+IC0JCWlmICghbnZiaW9zX2Jhc2VjbG9ja19lbnRyeShiaW9zLCAm
-aCwgaC5ib29zdCwgJmJvb3N0KSkKPiArCQlpZiAoIW52Ymlvc19iYXNlY2xvY2tfZW50cnkoYmlv
-cywgJmgsIGguYm9vc3QsICZib29zdCkpIHsKPiArCQkJY2xrLT5ib29zdF9raHogPSBib29zdC5j
-bG9ja19taHogKiAxMDAwOwo+ICAgCQkJbnZrbV9pbmZvKHN1YmRldiwgImJvb3N0OiAlaSBNSHpc
-biIsCj4gICAJCQkJICBib29zdC5jbG9ja19taHogLyAyKTsKPiAtCQlpZiAoIW52Ymlvc19iYXNl
-Y2xvY2tfZW50cnkoYmlvcywgJmgsIGguYmFzZSwgJmJhc2UpKQo+ICsJCX0KPiArCj4gKwkJaWYg
-KCFudmJpb3NfYmFzZWNsb2NrX2VudHJ5KGJpb3MsICZoLCBoLmJhc2UsICZiYXNlKSkgewo+ICsJ
-CQljbGstPmJhc2Vfa2h6ID0gYmFzZS5jbG9ja19taHogKiAxMDAwOwo+ICAgCQkJbnZrbV9pbmZv
-KHN1YmRldiwgImJhc2U6ICVpIE1IelxuIiwKPiAgIAkJCQkgIGJhc2UuY2xvY2tfbWh6IC8gMik7
-Cj4gKwkJfQo+ICAgCX0KPiAgIAo+ICAgCWNsay0+ZnVuYyA9IGZ1bmM7Cj4gZGlmZiAtLWdpdCBh
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9nZjEwMC5jIGIvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvY2xrL2dmMTAwLmMKPiBpbmRleCA3OGM0NDliLi43MWI3YzlmIDEwMDY0NAo+IC0tLSBh
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9nZjEwMC5jCj4gKysrIGIvZHJtL25vdXZlYXUv
-bnZrbS9zdWJkZXYvY2xrL2dmMTAwLmMKPiBAQCAtNDQzLDcgKzQ0Myw3IEBAIGdmMTAwX2NsayA9
-IHsKPiAgIAkJeyBudl9jbGtfc3JjX2h1YmswNiAsIDB4MDAgfSwKPiAgIAkJeyBudl9jbGtfc3Jj
-X2h1YmswMSAsIDB4MDEgfSwKPiAgIAkJeyBudl9jbGtfc3JjX2NvcHkgICAsIDB4MDIgfSwKPiAt
-CQl7IG52X2Nsa19zcmNfZ3BjICAgICwgMHgwMywgMCwgImNvcmUiLCAyMDAwIH0sCj4gKwkJeyBu
-dl9jbGtfc3JjX2dwYyAgICAsIDB4MDMsIE5WS01fQ0xLX0RPTV9GTEFHX0JBU0VDTEssICJjb3Jl
-IiwgMjAwMCB9LAo+ICAgCQl7IG52X2Nsa19zcmNfcm9wICAgICwgMHgwNCB9LAo+ICAgCQl7IG52
-X2Nsa19zcmNfbWVtICAgICwgMHgwNSwgMCwgIm1lbW9yeSIsIDEwMDAgfSwKPiAgIAkJeyBudl9j
-bGtfc3JjX3ZkZWMgICAsIDB4MDYgfSwKPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvY2xrL2drMTA0LmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2sxMDQuYwo+
-IGluZGV4IDk3NWM0MDEuLjYzOTIzNGYgMTAwNjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvY2xrL2drMTA0LmMKPiArKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2sx
-MDQuYwo+IEBAIC00ODUsNyArNDg1LDcgQEAgZ2sxMDRfY2xrID0gewo+ICAgCS5kb21haW5zID0g
-ewo+ICAgCQl7IG52X2Nsa19zcmNfY3J5c3RhbCwgMHhmZiB9LAo+ICAgCQl7IG52X2Nsa19zcmNf
-aHJlZiAgICwgMHhmZiB9LAo+IC0JCXsgbnZfY2xrX3NyY19ncGMgICAgLCAweDAwLCBOVktNX0NM
-S19ET01fRkxBR19DT1JFLCAiY29yZSIsIDIwMDAgfSwKPiArCQl7IG52X2Nsa19zcmNfZ3BjICAg
-ICwgMHgwMCwgTlZLTV9DTEtfRE9NX0ZMQUdfQ09SRSB8IE5WS01fQ0xLX0RPTV9GTEFHX0JBU0VD
-TEssICJjb3JlIiwgMjAwMCB9LAo+ICAgCQl7IG52X2Nsa19zcmNfaHViazA3ICwgMHgwMSwgTlZL
-TV9DTEtfRE9NX0ZMQUdfQ09SRSB9LAo+ICAgCQl7IG52X2Nsa19zcmNfcm9wICAgICwgMHgwMiwg
-TlZLTV9DTEtfRE9NX0ZMQUdfQ09SRSB9LAo+ICAgCQl7IG52X2Nsa19zcmNfbWVtICAgICwgMHgw
-MywgMCwgIm1lbW9yeSIsIDUwMCB9LAoKUmV2aWV3ZWQtYnk6IE1hcnRpbiBQZXJlcyA8bWFydGlu
-LnBlcmVzQGZyZWUuZnI+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0810894088==
+Content-Type: multipart/alternative; boundary="14585474691.cAcBB2.23817";
+ charset="UTF-8"
+
+
+--14585474691.cAcBB2.23817
+Date: Mon, 21 Mar 2016 08:04:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=94643
+
+            Bug ID: 94643
+           Summary: 4K Display on Displayport goes black when pointer hits
+                    column 0
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: rmu-hikZAF2L1OleoWH0uzbU5w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+I have a very strange problem with a recently purchased ViewSonic 4k display
+connected via display port to a Thinkpad 410 with nvidia gt218m (nvs 3100m).
+
+Every time the mouse pointer touches the left edge of the screen, the display
+becomes a block of solid color and freezes. Suspend/resume of the laptop
+reanimates the display.
+
+versions: X server 1.17.2, linux kernel 4.5.0, nouveau 1.0.11 and 1.0.12, dual
+screens active (also happens with external monitor active only, though that
+configuration is very unstable), does not matter if the external monitor is
+configured as "left", "right" or "top" to the internal; did not try "bottom".
+System: ubuntu 14.04, linux kernel from mainline ppa, x-server & co is of
+lts-wily variant.
+
+with workaround: xbarrier 1 0 1 2160, so pointer can't go to column 0,
+everything seems stable.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14585474691.cAcBB2.23817
+Date: Mon, 21 Mar 2016 08:04:29 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - 4K Display on Displayport goes black when pointer hits column 0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94643">94643</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>4K Display on Displayport goes black when pointer hits column 0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>rmu&#64;unfoo.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>I have a very strange problem with a recently purchased ViewSonic 4k display
+connected via display port to a Thinkpad 410 with nvidia gt218m (nvs 3100m).
+
+Every time the mouse pointer touches the left edge of the screen, the display
+becomes a block of solid color and freezes. Suspend/resume of the laptop
+reanimates the display.
+
+versions: X server 1.17.2, linux kernel 4.5.0, nouveau 1.0.11 and 1.0.12, dual
+screens active (also happens with external monitor active only, though that
+configuration is very unstable), does not matter if the external monitor is
+configured as &quot;left&quot;, &quot;right&quot; or &quot;top&quot; to the internal; did not try &quot;bottom&quot;.
+System: ubuntu 14.04, linux kernel from mainline ppa, x-server &amp; co is of
+lts-wily variant.
+
+with workaround: xbarrier 1 0 1 2160, so pointer can't go to column 0,
+everything seems stable.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14585474691.cAcBB2.23817--
+
+--===============0810894088==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0810894088==--
