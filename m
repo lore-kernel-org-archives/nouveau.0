@@ -1,13 +1,10 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH v2 08/22] clk: export nvkm_volt_map
-Date: Mon, 21 Mar 2016 17:16:26 +0100
-Message-ID: <1458577000-6615-9-git-send-email-nouveau@karolherbst.de>
-References: <1458577000-6615-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94650] New: Game Oblivion on wine corrupted textures
+Date: Mon, 21 Mar 2016 17:40:23 +0000
+Message-ID: <bug-94650-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0320844107=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1458577000-6615-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +17,161 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-YmVmb3JlIGNsb2NraW5nIHRvIGEgY3N0YXRlLCB3ZSBoYXZlIHRvIGNoZWNrIGlmIHRoZSB2b2x0
-YWdlIGlzIHdpdGhpbiB0aGUKYWxsb3dlZCByYW5nZQoKU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVy
-YnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgotLS0KIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZr
-bS9zdWJkZXYvdm9sdC5oIHwgMSArCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2Jhc2Uu
-YyAgICB8IDIgKy0KIDIgZmlsZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9u
-KC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi92b2x0Lmgg
-Yi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3ZvbHQuaAppbmRleCBlOTY2MjY2Li5l
-ODYzN2I5IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3ZvbHQu
-aAorKysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3ZvbHQuaApAQCAtMTksNiAr
-MTksNyBAQCBzdHJ1Y3QgbnZrbV92b2x0IHsKIAl1OCBtYXgxX3ZpZDsKIH07CiAKK2ludCBudmtt
-X3ZvbHRfbWFwKHN0cnVjdCBudmttX3ZvbHQgKnZvbHQsIHU4IGlkKTsKIGludCBudmttX3ZvbHRf
-bWFwX21pbihzdHJ1Y3QgbnZrbV92b2x0ICp2b2x0LCB1OCBpZCk7CiBpbnQgbnZrbV92b2x0X2dl
-dChzdHJ1Y3QgbnZrbV92b2x0ICopOwogaW50IG52a21fdm9sdF9zZXRfaWQoc3RydWN0IG52a21f
-dm9sdCAqLCB1OCBpZCwgdTggbWluX2lkLCBpbnQgY29uZGl0aW9uKTsKZGlmZiAtLWdpdCBhL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvYmFzZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJk
-ZXYvdm9sdC9iYXNlLmMKaW5kZXggYTdmOGM3Ni4uYzRmZGU4ZiAxMDA2NDQKLS0tIGEvZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9iYXNlLmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJk
-ZXYvdm9sdC9iYXNlLmMKQEAgLTg3LDcgKzg3LDcgQEAgbnZrbV92b2x0X21hcF9taW4oc3RydWN0
-IG52a21fdm9sdCAqdm9sdCwgdTggaWQpCiAJcmV0dXJuIGlkID8gaWQgKiAxMDAwMCA6IC1FTk9E
-RVY7CiB9CiAKLXN0YXRpYyBpbnQKK2ludAogbnZrbV92b2x0X21hcChzdHJ1Y3QgbnZrbV92b2x0
-ICp2b2x0LCB1OCBpZCkKIHsKIAlzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zID0gdm9sdC0+c3ViZGV2
-LmRldmljZS0+YmlvczsKLS0gCjIuNy40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+
+--===============0320844107==
+Content-Type: multipart/alternative; boundary="14585820220.BA52E.28721";
+ charset="UTF-8"
+
+
+--14585820220.BA52E.28721
+Date: Mon, 21 Mar 2016 17:40:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=94650
+
+            Bug ID: 94650
+           Summary: Game Oblivion on wine corrupted textures
+           Product: Mesa
+           Version: git
+          Hardware: x86 (IA32)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+the "eye" texture which shows while sneaking and when reading books some
+textures are broken. It works with Intel and llvmpipe.
+
+trace:
+https://drive.google.com/file/d/0B78S7GSrzebIbVJ6c3U4d25EM1E/view?usp=sharing
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+--14585820220.BA52E.28721
+Date: Mon, 21 Mar 2016 17:40:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Game Oblivion on wine corrupted textures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94650">94650</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Game Oblivion on wine corrupted textures
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>freedesktop&#64;karolherbst.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>the &quot;eye&quot; texture which shows while sneaking and when reading books some
+textures are broken. It works with Intel and llvmpipe.
+
+trace:
+<a href="https://drive.google.com/file/d/0B78S7GSrzebIbVJ6c3U4d25EM1E/view?usp=sharing">https://drive.google.com/file/d/0B78S7GSrzebIbVJ6c3U4d25EM1E/view?usp=sharing</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14585820220.BA52E.28721--
+
+--===============0320844107==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0320844107==--
