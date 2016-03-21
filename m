@@ -1,10 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94650] New: Game Oblivion on wine corrupted textures
-Date: Mon, 21 Mar 2016 17:40:23 +0000
-Message-ID: <bug-94650-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: [PATCH v2 05/22] clk: don't create cstates which voltage
+	is higher than what the gpu can do
+Date: Mon, 21 Mar 2016 17:16:23 +0100
+Message-ID: <1458577000-6615-6-git-send-email-nouveau@karolherbst.de>
+References: <1458577000-6615-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0320844107=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1458577000-6615-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,161 +21,24 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0320844107==
-Content-Type: multipart/alternative; boundary="14585820220.BA52E.28721";
- charset="UTF-8"
-
-
---14585820220.BA52E.28721
-Date: Mon, 21 Mar 2016 17:40:22 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=94650
-
-            Bug ID: 94650
-           Summary: Game Oblivion on wine corrupted textures
-           Product: Mesa
-           Version: git
-          Hardware: x86 (IA32)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-the "eye" texture which shows while sneaking and when reading books some
-textures are broken. It works with Intel and llvmpipe.
-
-trace:
-https://drive.google.com/file/d/0B78S7GSrzebIbVJ6c3U4d25EM1E/view?usp=sharing
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
---14585820220.BA52E.28721
-Date: Mon, 21 Mar 2016 17:40:22 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Game Oblivion on wine corrupted textures"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94650">94650</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Game Oblivion on wine corrupted textures
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86 (IA32)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>freedesktop&#64;karolherbst.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>the &quot;eye&quot; texture which shows while sneaking and when reading books some
-textures are broken. It works with Intel and llvmpipe.
-
-trace:
-<a href="https://drive.google.com/file/d/0B78S7GSrzebIbVJ6c3U4d25EM1E/view?usp=sharing">https://drive.google.com/file/d/0B78S7GSrzebIbVJ6c3U4d25EM1E/view?usp=sharing</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14585820220.BA52E.28721--
-
---===============0320844107==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0320844107==--
+U2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgpUZXN0
+ZWQtYnk6IFBpZXJyZSBNb3JlYXUgPHBpZXJyZS5tb3Jyb3dAZnJlZS5mcj4KLS0tCiBkcm0vbm91
+dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jIHwgNCArKysrCiAxIGZpbGUgY2hhbmdlZCwgNCBp
+bnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jh
+c2UuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMKaW5kZXggODg5Y2NlMi4u
+NzUxMjJhMiAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwor
+KysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCkBAIC0xMzgsNiArMTM4LDcg
+QEAgc3RhdGljIGludAogbnZrbV9jc3RhdGVfbmV3KHN0cnVjdCBudmttX2NsayAqY2xrLCBpbnQg
+aWR4LCBzdHJ1Y3QgbnZrbV9wc3RhdGUgKnBzdGF0ZSkKIHsKIAlzdHJ1Y3QgbnZrbV9iaW9zICpi
+aW9zID0gY2xrLT5zdWJkZXYuZGV2aWNlLT5iaW9zOworCXN0cnVjdCBudmttX3ZvbHQgKnZvbHQg
+PSBjbGstPnN1YmRldi5kZXZpY2UtPnZvbHQ7CiAJY29uc3Qgc3RydWN0IG52a21fZG9tYWluICpk
+b21haW4gPSBjbGstPmRvbWFpbnM7CiAJc3RydWN0IG52a21fY3N0YXRlICpjc3RhdGUgPSBOVUxM
+OwogCXN0cnVjdCBudmJpb3NfY3N0ZXBYIGNzdGVwWDsKQEAgLTE0OCw2ICsxNDksOSBAQCBudmtt
+X2NzdGF0ZV9uZXcoc3RydWN0IG52a21fY2xrICpjbGssIGludCBpZHgsIHN0cnVjdCBudmttX3Bz
+dGF0ZSAqcHN0YXRlKQogCWlmICghZGF0YSkKIAkJcmV0dXJuIC1FTk9FTlQ7CiAKKwlpZiAodm9s
+dCAmJiBudmttX3ZvbHRfbWFwX21pbih2b2x0LCBjc3RlcFgudm9sdGFnZSkgPiB2b2x0LT5tYXhf
+dXYpCisJCXJldHVybiAtRUlOVkFMOworCiAJY3N0YXRlID0ga3phbGxvYyhzaXplb2YoKmNzdGF0
+ZSksIEdGUF9LRVJORUwpOwogCWlmICghY3N0YXRlKQogCQlyZXR1cm4gLUVOT01FTTsKLS0gCjIu
+Ny40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
