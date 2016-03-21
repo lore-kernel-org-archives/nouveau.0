@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94643] 4K Display on Displayport goes black when
- pointer hits column 0
-Date: Mon, 21 Mar 2016 17:10:27 +0000
-Message-ID: <bug-94643-8800-xq1IOs2Hfu@http.bugs.freedesktop.org/>
-References: <bug-94643-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: [PATCH v2 11/22] volt: add temperature parameter to
+	nvkm_volt_map
+Date: Mon, 21 Mar 2016 17:16:29 +0100
+Message-ID: <1458577000-6615-12-git-send-email-nouveau@karolherbst.de>
+References: <1458577000-6615-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0169414342=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94643-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1458577000-6615-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,70 +21,65 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0169414342==
-Content-Type: multipart/alternative; boundary="14585802270.609EC9.25692";
- charset="UTF-8"
-
-
---14585802270.609EC9.25692
-Date: Mon, 21 Mar 2016 17:10:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=94643
-
---- Comment #2 from Robert Schöftner <rmu-hikZAF2L1OleoWH0uzbU5w@public.gmane.org> ---
-Clarifications: only the external monitor goes "solid color", LVDS-1 remains
-working. Does not happen with 2560×1440 screen connected via DisplayPort.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14585802270.609EC9.25692
-Date: Mon, 21 Mar 2016 17:10:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - 4K Display on Displayport goes black when pointer hits column 0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94643#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - 4K Display on Displayport goes black when pointer hits column 0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94643">bug 94643</a>
-              from <span class="vcard"><a class="email" href="mailto:rmu&#64;unfoo.net" title="Robert Schöftner &lt;rmu&#64;unfoo.net&gt;"> <span class="fn">Robert Schöftner</span></a>
-</span></b>
-        <pre>Clarifications: only the external monitor goes &quot;solid color&quot;, LVDS-1 remains
-working. Does not happen with 2560×1440 screen connected via DisplayPort.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14585802270.609EC9.25692--
-
---===============0169414342==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0169414342==--
+dGhlIHZvbHRhZ2UgZW50cmllcyBhY3R1YWxseSBtYXkgbWFwIHRvIGEgZGlmZmVyZW50IHZvbHRh
+Z2UgZGVwZW5kaW5nIG9uIHRoZQpjdXJyZW50IHRlbXBlcmF0dXJlLgoKU2lnbmVkLW9mZi1ieTog
+S2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgotLS0KIGJpbi9udl9jbXBfdm9s
+dC5jICAgICAgICAgICAgICAgICAgICAgIHwgIDIgKy0KIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZr
+bS9zdWJkZXYvdm9sdC5oIHwgIDIgKy0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvYmFz
+ZS5jICAgIHwgMTQgKysrKysrKysrKy0tLS0KIDMgZmlsZXMgY2hhbmdlZCwgMTIgaW5zZXJ0aW9u
+cygrKSwgNiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9iaW4vbnZfY21wX3ZvbHQuYyBiL2Jp
+bi9udl9jbXBfdm9sdC5jCmluZGV4IDYxNDdhN2QuLjE2YWE3ZTYgMTAwNjQ0Ci0tLSBhL2Jpbi9u
+dl9jbXBfdm9sdC5jCisrKyBiL2Jpbi9udl9jbXBfdm9sdC5jCkBAIC0xMDgsNyArMTA4LDcgQEAg
+bWFpbihpbnQgYXJnYywgY2hhciAqKmFyZ3YpCiAKIAkJbmV3X3ZvbHRhZ2UgPSBudmttX3ZvbHRf
+Z2V0KHZvbHQpOwogCQluZXdfdGVtcCA9IG52a21fcmQzMihkZXZpY2UsIDB4MjA0MDApOy8vbnZr
+bV90aGVybV90ZW1wX2dldCh0aGVybSk7Ci0JCW5ld19ub3V2ZWF1X3ZvbHRhZ2UgPSBtYXgobnZr
+bV92b2x0X21hcCh2b2x0LCBiZXN0X2NzdGF0ZS0+dm9sdGFnZSksIG52a21fdm9sdF9tYXAodm9s
+dCwgYmVzdF9wc3RhdGUtPmJhc2Uudm9sdGFnZSkpOworCQluZXdfbm91dmVhdV92b2x0YWdlID0g
+bWF4KG52a21fdm9sdF9tYXAodm9sdCwgYmVzdF9jc3RhdGUtPnZvbHRhZ2UsIG5ld190ZW1wKSwg
+bnZrbV92b2x0X21hcCh2b2x0LCBiZXN0X3BzdGF0ZS0+YmFzZS52b2x0YWdlLCBuZXdfdGVtcCkp
+OwogCQluZXdfcHN0YXRlID0gYmVzdF9wc3RhdGUtPnBzdGF0ZTsKIAkJbmV3X2NzdGF0ZSA9IGJl
+c3RfY3N0YXRlLT5jc3RhdGU7CiAKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZr
+bS9zdWJkZXYvdm9sdC5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi92b2x0LmgK
+aW5kZXggZTg2MzdiOS4uM2I5NGFiMCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS9u
+dmttL3N1YmRldi92b2x0LmgKKysrIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi92
+b2x0LmgKQEAgLTE5LDcgKzE5LDcgQEAgc3RydWN0IG52a21fdm9sdCB7CiAJdTggbWF4MV92aWQ7
+CiB9OwogCi1pbnQgbnZrbV92b2x0X21hcChzdHJ1Y3QgbnZrbV92b2x0ICp2b2x0LCB1OCBpZCk7
+CitpbnQgbnZrbV92b2x0X21hcChzdHJ1Y3QgbnZrbV92b2x0ICp2b2x0LCB1OCBpZCwgdTggdGVt
+cGVyYXR1cmUpOwogaW50IG52a21fdm9sdF9tYXBfbWluKHN0cnVjdCBudmttX3ZvbHQgKnZvbHQs
+IHU4IGlkKTsKIGludCBudmttX3ZvbHRfZ2V0KHN0cnVjdCBudmttX3ZvbHQgKik7CiBpbnQgbnZr
+bV92b2x0X3NldF9pZChzdHJ1Y3QgbnZrbV92b2x0ICosIHU4IGlkLCB1OCBtaW5faWQsIGludCBj
+b25kaXRpb24pOwpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9iYXNl
+LmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2Jhc2UuYwppbmRleCBjNGZkZThmLi5l
+NzQxMzgzIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2Jhc2UuYwor
+KysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2Jhc2UuYwpAQCAtMjYsNiArMjYsNyBA
+QAogI2luY2x1ZGUgPHN1YmRldi9iaW9zLmg+CiAjaW5jbHVkZSA8c3ViZGV2L2Jpb3Mvdm1hcC5o
+PgogI2luY2x1ZGUgPHN1YmRldi9iaW9zL3ZvbHQuaD4KKyNpbmNsdWRlIDxzdWJkZXYvdGhlcm0u
+aD4KIAogaW50CiBudmttX3ZvbHRfZ2V0KHN0cnVjdCBudmttX3ZvbHQgKnZvbHQpCkBAIC04OCw3
+ICs4OSw3IEBAIG52a21fdm9sdF9tYXBfbWluKHN0cnVjdCBudmttX3ZvbHQgKnZvbHQsIHU4IGlk
+KQogfQogCiBpbnQKLW52a21fdm9sdF9tYXAoc3RydWN0IG52a21fdm9sdCAqdm9sdCwgdTggaWQp
+CitudmttX3ZvbHRfbWFwKHN0cnVjdCBudmttX3ZvbHQgKnZvbHQsIHU4IGlkLCB1OCB0ZW1wKQog
+ewogCXN0cnVjdCBudmttX2Jpb3MgKmJpb3MgPSB2b2x0LT5zdWJkZXYuZGV2aWNlLT5iaW9zOwog
+CXN0cnVjdCBudmJpb3Nfdm1hcF9lbnRyeSBpbmZvOwpAQCAtOTgsNyArOTksNyBAQCBudmttX3Zv
+bHRfbWFwKHN0cnVjdCBudmttX3ZvbHQgKnZvbHQsIHU4IGlkKQogCXZtYXAgPSBudmJpb3Nfdm1h
+cF9lbnRyeV9wYXJzZShiaW9zLCBpZCwgJnZlciwgJmxlbiwgJmluZm8pOwogCWlmICh2bWFwKSB7
+CiAJCWlmIChpbmZvLmxpbmsgIT0gMHhmZikgewotCQkJaW50IHJldCA9IG52a21fdm9sdF9tYXAo
+dm9sdCwgaW5mby5saW5rKTsKKwkJCWludCByZXQgPSBudmttX3ZvbHRfbWFwKHZvbHQsIGluZm8u
+bGluaywgdGVtcCk7CiAJCQlpZiAocmV0IDwgMCkKIAkJCQlyZXR1cm4gcmV0OwogCQkJaW5mby5t
+aW4gKz0gcmV0OwpAQCAtMTEyLDE4ICsxMTMsMjMgQEAgbnZrbV92b2x0X21hcChzdHJ1Y3QgbnZr
+bV92b2x0ICp2b2x0LCB1OCBpZCkKIGludAogbnZrbV92b2x0X3NldF9pZChzdHJ1Y3QgbnZrbV92
+b2x0ICp2b2x0LCB1OCBpZCwgdTggbWluX2lkLCBpbnQgY29uZGl0aW9uKQogeworCXN0cnVjdCBu
+dmttX3RoZXJtICp0aGVybSA9IHZvbHQtPnN1YmRldi5kZXZpY2UtPnRoZXJtOwogCWludCByZXQ7
+CisJaW50IHRlbXAgPSAwOworCisJaWYgKHRoZXJtKQorCQl0ZW1wID0gbnZrbV90aGVybV90ZW1w
+X2dldCh0aGVybSk7CiAKIAlpZiAodm9sdC0+ZnVuYy0+c2V0X2lkKQogCQlyZXR1cm4gdm9sdC0+
+ZnVuYy0+c2V0X2lkKHZvbHQsIGlkLCBjb25kaXRpb24pOwogCi0JcmV0ID0gbnZrbV92b2x0X21h
+cCh2b2x0LCBpZCk7CisJcmV0ID0gbnZrbV92b2x0X21hcCh2b2x0LCBpZCwgbWF4KHRlbXAsIDAp
+KTsKIAlpZiAocmV0ID49IDApIHsKIAkJaW50IHByZXYgPSBudmttX3ZvbHRfZ2V0KHZvbHQpOwog
+CQlpZiAoIWNvbmRpdGlvbiB8fCBwcmV2IDwgMCB8fAogCQkgICAgKGNvbmRpdGlvbiA8IDAgJiYg
+cmV0IDwgcHJldikgfHwKIAkJICAgIChjb25kaXRpb24gPiAwICYmIHJldCA+IHByZXYpKSB7Ci0J
+CQlpbnQgbWluID0gbnZrbV92b2x0X21hcCh2b2x0LCBtaW5faWQpOworCQkJaW50IG1pbiA9IG52
+a21fdm9sdF9tYXAodm9sdCwgbWluX2lkLCBtYXgodGVtcCwgMCkpOwogCQkJaWYgKG1pbiA+PSAw
+KQogCQkJCXJldCA9IG1heChtaW4sIHJldCk7CiAJCQlyZXQgPSBudmttX3ZvbHRfc2V0KHZvbHQs
+IHJldCk7Ci0tIAoyLjcuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Cg==
