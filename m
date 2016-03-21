@@ -1,13 +1,13 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH v2 06/22] volt: parse the both max voltage entries
-Date: Mon, 21 Mar 2016 17:16:24 +0100
-Message-ID: <1458577000-6615-7-git-send-email-nouveau@karolherbst.de>
-References: <1458577000-6615-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94643] 4K Display on Displayport goes black when
+ pointer hits column 0
+Date: Mon, 21 Mar 2016 17:10:27 +0000
+Message-ID: <bug-94643-8800-xq1IOs2Hfu@http.bugs.freedesktop.org/>
+References: <bug-94643-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0169414342=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1458577000-6615-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-94643-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,52 +20,70 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-dGhlc2UgZW50cmllcyBzcGVjaWZ5IGEgbWF4aW11bSB2b2x0YWdlIG52aWRpYSBuZXZlciBleGNl
-ZWRzLCB3ZSBzaG91bGRuJ3QgZG8KdGhhdCwgdG9vLgoKU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVy
-YnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgotLS0KIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZr
-bS9zdWJkZXYvYmlvcy92bWFwLmggfCAgMiArKwogZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1
-YmRldi92b2x0LmggICAgICB8ICAyICsrCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3Zt
-YXAuYyAgICAgICAgIHwgIDUgKysrKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvYmFz
-ZS5jICAgICAgICAgfCAxMSArKysrKysrKysrKwogNCBmaWxlcyBjaGFuZ2VkLCAyMCBpbnNlcnRp
-b25zKCspCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9z
-L3ZtYXAuaCBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy92bWFwLmgKaW5k
-ZXggNjYzM2M2ZC4uNDhmZTcxZCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmtt
-L3N1YmRldi9iaW9zL3ZtYXAuaAorKysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2
-L2Jpb3Mvdm1hcC5oCkBAIC0xLDYgKzEsOCBAQAogI2lmbmRlZiBfX05WQklPU19WTUFQX0hfXwog
-I2RlZmluZSBfX05WQklPU19WTUFQX0hfXwogc3RydWN0IG52Ymlvc192bWFwIHsKKwl1OCAgbWF4
-MDsKKwl1OCAgbWF4MTsKIH07CiAKIHUxNiBudmJpb3Nfdm1hcF90YWJsZShzdHJ1Y3QgbnZrbV9i
-aW9zICosIHU4ICp2ZXIsIHU4ICpoZHIsIHU4ICpjbnQsIHU4ICpsZW4pOwpkaWZmIC0tZ2l0IGEv
-ZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi92b2x0LmggYi9kcm0vbm91dmVhdS9pbmNs
-dWRlL252a20vc3ViZGV2L3ZvbHQuaAppbmRleCBmYzY4ODI1Li4zZTBmOGRhIDEwMDY0NAotLS0g
-YS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3ZvbHQuaAorKysgYi9kcm0vbm91dmVh
-dS9pbmNsdWRlL252a20vc3ViZGV2L3ZvbHQuaApAQCAtMTUsNiArMTUsOCBAQCBzdHJ1Y3QgbnZr
-bV92b2x0IHsKIAogCXUzMiBtYXhfdXY7CiAJdTMyIG1pbl91djsKKwl1OCBtYXgwX3ZpZDsKKwl1
-OCBtYXgxX3ZpZDsKIH07CiAKIGludCBudmttX3ZvbHRfbWFwX21pbihzdHJ1Y3QgbnZrbV92b2x0
-ICp2b2x0LCB1OCBpZCk7CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9z
-L3ZtYXAuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvdm1hcC5jCmluZGV4IDJmMTNk
-YjcuLmY1NDYzYjEgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvdm1h
-cC5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvdm1hcC5jCkBAIC02MSw3ICs2
-MSwxMiBAQCBudmJpb3Nfdm1hcF9wYXJzZShzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zLCB1OCAqdmVy
-LCB1OCAqaGRyLCB1OCAqY250LCB1OCAqbGVuLAogCW1lbXNldChpbmZvLCAweDAwLCBzaXplb2Yo
-KmluZm8pKTsKIAlzd2l0Y2ggKCEhdm1hcCAqICp2ZXIpIHsKIAljYXNlIDB4MTA6CisJCWluZm8t
-Pm1heDAgPSAweGZmOworCQlpbmZvLT5tYXgxID0gMHhmZjsKKwkJYnJlYWs7CiAJY2FzZSAweDIw
-OgorCQlpbmZvLT5tYXgwID0gbnZiaW9zX3JkMDgoYmlvcywgdm1hcCArIDB4Nyk7CisJCWluZm8t
-Pm1heDEgPSBudmJpb3NfcmQwOChiaW9zLCB2bWFwICsgMHg4KTsKIAkJYnJlYWs7CiAJfQogCXJl
-dHVybiB2bWFwOwpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9iYXNl
-LmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2Jhc2UuYwppbmRleCA3MTA5NGE5Li4y
-MDVkZmNmIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2Jhc2UuYwor
-KysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2Jhc2UuYwpAQCAtMjE3LDkgKzIxNywy
-MCBAQCBudmttX3ZvbHRfY3Rvcihjb25zdCBzdHJ1Y3QgbnZrbV92b2x0X2Z1bmMgKmZ1bmMsIHN0
-cnVjdCBudmttX2RldmljZSAqZGV2aWNlLAogCiAJLyogQXNzdW1pbmcgdGhlIG5vbi1iaW9zIGRl
-dmljZSBzaG91bGQgYnVpbGQgdGhlIHZvbHRhZ2UgdGFibGUgbGF0ZXIgKi8KIAlpZiAoYmlvcykg
-eworCQl1OCB2ZXIsIGhkciwgY250LCBsZW47CisJCXN0cnVjdCBudmJpb3Nfdm1hcCB2bWFwOwor
-CiAJCW52a21fdm9sdF9wYXJzZV9iaW9zKGJpb3MsIHZvbHQpOwogCQludmttX2RlYnVnKCZ2b2x0
-LT5zdWJkZXYsICJtaW46ICVpdXYgbWF4OiAlaXV2XG4iLAogCQkJICAgdm9sdC0+bWluX3V2LCB2
-b2x0LT5tYXhfdXYpOworCisJCWlmIChudmJpb3Nfdm1hcF9wYXJzZShiaW9zLCAmdmVyLCAmaGRy
-LCAmY250LCAmbGVuLCAmdm1hcCkpIHsKKwkJCXZvbHQtPm1heDBfdmlkID0gdm1hcC5tYXgwOwor
-CQkJdm9sdC0+bWF4MV92aWQgPSB2bWFwLm1heDE7CisJCX0gZWxzZSB7CisJCQl2b2x0LT5tYXgw
-X3ZpZCA9IDB4ZmY7CisJCQl2b2x0LT5tYXgxX3ZpZCA9IDB4ZmY7CisJCX0KIAl9CiAKIAlpZiAo
-dm9sdC0+dmlkX25yKSB7Ci0tIAoyLjcuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1Cg==
+
+--===============0169414342==
+Content-Type: multipart/alternative; boundary="14585802270.609EC9.25692";
+ charset="UTF-8"
+
+
+--14585802270.609EC9.25692
+Date: Mon, 21 Mar 2016 17:10:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=94643
+
+--- Comment #2 from Robert Schöftner <rmu-hikZAF2L1OleoWH0uzbU5w@public.gmane.org> ---
+Clarifications: only the external monitor goes "solid color", LVDS-1 remains
+working. Does not happen with 2560×1440 screen connected via DisplayPort.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14585802270.609EC9.25692
+Date: Mon, 21 Mar 2016 17:10:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - 4K Display on Displayport goes black when pointer hits column 0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94643#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - 4K Display on Displayport goes black when pointer hits column 0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94643">bug 94643</a>
+              from <span class="vcard"><a class="email" href="mailto:rmu&#64;unfoo.net" title="Robert Schöftner &lt;rmu&#64;unfoo.net&gt;"> <span class="fn">Robert Schöftner</span></a>
+</span></b>
+        <pre>Clarifications: only the external monitor goes &quot;solid color&quot;, LVDS-1 remains
+working. Does not happen with 2560×1440 screen connected via DisplayPort.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14585802270.609EC9.25692--
+
+--===============0169414342==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0169414342==--
