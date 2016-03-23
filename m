@@ -1,13 +1,13 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH v2 21/22] nvif: add boost info and set operations
-Date: Mon, 21 Mar 2016 17:16:39 +0100
-Message-ID: <1458577000-6615-22-git-send-email-nouveau@karolherbst.de>
-References: <1458577000-6615-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94637] system crash, no messages, GT215,
+ ubuntu 16.04 when running glmark2 for a few minutes.
+Date: Wed, 23 Mar 2016 01:14:06 +0000
+Message-ID: <bug-94637-8800-tuilUUIgPt@http.bugs.freedesktop.org/>
+References: <bug-94637-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0391884122=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1458577000-6615-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-94637-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,68 +20,74 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgotLS0K
-IGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZpZi9pZjAwMDEuaCAgICAgfCAxNSArKysrKysrKysKIGRy
-bS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9jdHJsLmMgfCA1OSArKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKwogMiBmaWxlcyBjaGFuZ2VkLCA3NCBpbnNlcnRpb25zKCspCgpk
-aWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmlmL2lmMDAwMS5oIGIvZHJtL25vdXZl
-YXUvaW5jbHVkZS9udmlmL2lmMDAwMS5oCmluZGV4IGJkNWI2NDEuLmU0YWNkMTkgMTAwNjQ0Ci0t
-LSBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZpZi9pZjAwMDEuaAorKysgYi9kcm0vbm91dmVhdS9p
-bmNsdWRlL252aWYvaWYwMDAxLmgKQEAgLTQsNiArNCw4IEBACiAjZGVmaW5lIE5WSUZfQ09OVFJP
-TF9QU1RBVEVfSU5GTyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAw
-eDAwCiAjZGVmaW5lIE5WSUZfQ09OVFJPTF9QU1RBVEVfQVRUUiAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAweDAxCiAjZGVmaW5lIE5WSUZfQ09OVFJPTF9QU1RBVEVf
-VVNFUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAyCisjZGVm
-aW5lIE5WSUZfQ09OVFJPTF9CT09TVF9JTkZPICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAweDAzCisjZGVmaW5lIE5WSUZfQ09OVFJPTF9CT09TVF9TRVQgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDA0CiAKIHN0cnVjdCBudmlm
-X2NvbnRyb2xfcHN0YXRlX2luZm9fdjAgewogCV9fdTggIHZlcnNpb247CkBAIC00Myw0ICs0NSwx
-NyBAQCBzdHJ1Y3QgbnZpZl9jb250cm9sX3BzdGF0ZV91c2VyX3YwIHsKIAlfX3M4ICBwd3JzcmM7
-IC8qICBpbjogdGFyZ2V0IHBvd2VyIHNvdXJjZSAqLwogCV9fdTggIHBhZDAzWzVdOwogfTsKKwor
-c3RydWN0IG52aWZfY29udHJvbF9ib29zdF9pbmZvX3YwIHsKKwlfX3U4ICB2ZXJzaW9uOworCV9f
-dTggIG1vZGU7CisJX191MTYgYmFzZV9taHo7CisJX191MTYgYm9vc3RfbWh6OworCV9fdTE2IG1h
-eF9taHo7Cit9OworCitzdHJ1Y3QgbnZpZl9jb250cm9sX2Jvb3N0X3NldF92MCB7CisJX191OCAg
-dmVyc2lvbjsKKwlfX3U4ICBtb2RlOworfTsKICNlbmRpZgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZl
-YXUvbnZrbS9lbmdpbmUvZGV2aWNlL2N0cmwuYyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rl
-dmljZS9jdHJsLmMKaW5kZXggYjBlY2U3MS4uMTQ3ZDVmMSAxMDA2NDQKLS0tIGEvZHJtL25vdXZl
-YXUvbnZrbS9lbmdpbmUvZGV2aWNlL2N0cmwuYworKysgYi9kcm0vbm91dmVhdS9udmttL2VuZ2lu
-ZS9kZXZpY2UvY3RybC5jCkBAIC0xNjcsNiArMTY3LDYxIEBAIG52a21fY29udHJvbF9tdGhkX3Bz
-dGF0ZV91c2VyKHN0cnVjdCBudmttX2NvbnRyb2wgKmN0cmwsIHZvaWQgKmRhdGEsIHUzMiBzaXpl
-KQogfQogCiBzdGF0aWMgaW50CitudmttX2NvbnRyb2xfbXRoZF9ib29zdF9pbmZvKHN0cnVjdCBu
-dmttX2NvbnRyb2wgKmN0cmwsIHZvaWQgKmRhdGEsIHUzMiBzaXplKQoreworCXVuaW9uIHsKKwkJ
-c3RydWN0IG52aWZfY29udHJvbF9ib29zdF9pbmZvX3YwIHYwOworCX0gKmFyZ3MgPSBkYXRhOwor
-CXN0cnVjdCBudmttX2NsayAqY2xrID0gY3RybC0+ZGV2aWNlLT5jbGs7CisJaW50IHJldCA9IC1F
-Tk9TWVM7CisKKwludmlmX2lvY3RsKCZjdHJsLT5vYmplY3QsICJjb250cm9sIGJvb3N0IGluZm8g
-c2l6ZSAlZFxuIiwgc2l6ZSk7CisJaWYgKCEocmV0ID0gbnZpZl91bnBhY2socmV0LCAmZGF0YSwg
-JnNpemUsIGFyZ3MtPnYwLCAwLCAwLCBmYWxzZSkpKSB7CisJCW52aWZfaW9jdGwoJmN0cmwtPm9i
-amVjdCwgImNvbnRyb2wgYm9vc3QgaW5mbyB2ZXJzICVkXG4iLAorCQkJICAgYXJncy0+djAudmVy
-c2lvbik7CisJfSBlbHNlCisJCXJldHVybiByZXQ7CisKKwlpZiAoIWNsaykKKwkJcmV0dXJuIC1F
-Tk9ERVY7CisKKwlhcmdzLT52MC5tb2RlID0gY2xrLT5ib29zdF9tb2RlOworCWFyZ3MtPnYwLmJh
-c2VfbWh6ID0gY2xrLT5iYXNlX2toeiAvIDIwMDA7CisJYXJncy0+djAuYm9vc3RfbWh6ID0gY2xr
-LT5ib29zdF9raHogLyAyMDAwOworCWFyZ3MtPnYwLm1heF9taHogPSBjbGstPm1heF9raHogLyAy
-MDAwOworCXJldHVybiAwOworfQorCitzdGF0aWMgaW50CitudmttX2NvbnRyb2xfbXRoZF9ib29z
-dF9zZXQoc3RydWN0IG52a21fY29udHJvbCAqY3RybCwgdm9pZCAqZGF0YSwgdTMyIHNpemUpCit7
-CisJdW5pb24geworCQlzdHJ1Y3QgbnZpZl9jb250cm9sX2Jvb3N0X3NldF92MCB2MDsKKwl9ICph
-cmdzID0gZGF0YTsKKwlzdHJ1Y3QgbnZrbV9jbGsgKmNsayA9IGN0cmwtPmRldmljZS0+Y2xrOwor
-CWludCByZXQgPSAtRU5PU1lTOworCisJbnZpZl9pb2N0bCgmY3RybC0+b2JqZWN0LCAiY29udHJv
-bCBib29zdCBzZXQgc2l6ZSAlZFxuIiwgc2l6ZSk7CisJaWYgKCEocmV0ID0gbnZpZl91bnBhY2so
-cmV0LCAmZGF0YSwgJnNpemUsIGFyZ3MtPnYwLCAwLCAwLCBmYWxzZSkpKSB7CisJCW52aWZfaW9j
-dGwoJmN0cmwtPm9iamVjdCwgImNvbnRyb2wgYm9vc3Qgc2V0IHZlcnMgJWRcbiIsCisJCQkgICBh
-cmdzLT52MC52ZXJzaW9uKTsKKwl9IGVsc2UKKwkJcmV0dXJuIHJldDsKKworCWlmICghY2xrKQor
-CQlyZXR1cm4gLUVOT0RFVjsKKworCWlmIChhcmdzLT52MC5tb2RlID4gMikKKwkJcmV0dXJuIC1F
-SU5WQUw7CisJY2xrLT5ib29zdF9tb2RlID0gYXJncy0+djAubW9kZTsKKworCWlmIChjbGstPmFs
-bG93X3JlY2xvY2spCisJCW52a21fY2xrX3JlY2xvY2soY2xrKTsKKworCXJldHVybiAwOworfQor
-CitzdGF0aWMgaW50CiBudmttX2NvbnRyb2xfbXRoZChzdHJ1Y3QgbnZrbV9vYmplY3QgKm9iamVj
-dCwgdTMyIG10aGQsIHZvaWQgKmRhdGEsIHUzMiBzaXplKQogewogCXN0cnVjdCBudmttX2NvbnRy
-b2wgKmN0cmwgPSBudmttX2NvbnRyb2wob2JqZWN0KTsKQEAgLTE3Nyw2ICsyMzIsMTAgQEAgbnZr
-bV9jb250cm9sX210aGQoc3RydWN0IG52a21fb2JqZWN0ICpvYmplY3QsIHUzMiBtdGhkLCB2b2lk
-ICpkYXRhLCB1MzIgc2l6ZSkKIAkJcmV0dXJuIG52a21fY29udHJvbF9tdGhkX3BzdGF0ZV9hdHRy
-KGN0cmwsIGRhdGEsIHNpemUpOwogCWNhc2UgTlZJRl9DT05UUk9MX1BTVEFURV9VU0VSOgogCQly
-ZXR1cm4gbnZrbV9jb250cm9sX210aGRfcHN0YXRlX3VzZXIoY3RybCwgZGF0YSwgc2l6ZSk7CisJ
-Y2FzZSBOVklGX0NPTlRST0xfQk9PU1RfSU5GTzoKKwkJcmV0dXJuIG52a21fY29udHJvbF9tdGhk
-X2Jvb3N0X2luZm8oY3RybCwgZGF0YSwgc2l6ZSk7CisJY2FzZSBOVklGX0NPTlRST0xfQk9PU1Rf
-U0VUOgorCQlyZXR1cm4gbnZrbV9jb250cm9sX210aGRfYm9vc3Rfc2V0KGN0cmwsIGRhdGEsIHNp
-emUpOwogCWRlZmF1bHQ6CiAJCWJyZWFrOwogCX0KLS0gCjIuNy40CgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0391884122==
+Content-Type: multipart/alternative; boundary="14586956460.AEa6449.20127";
+ charset="UTF-8"
+
+
+--14586956460.AEa6449.20127
+Date: Wed, 23 Mar 2016 01:14:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=94637
+
+--- Comment #12 from Peter Silva <peter-UmW4lSGjmaZq3vnQzO7mXA@public.gmane.org> ---
+I installed proprietary driver, and all symptoms disappeared.
+
+It looks like it really was nouveau.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.
+--14586956460.AEa6449.20127
+Date: Wed, 23 Mar 2016 01:14:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - system crash, no messages, GT215, ubuntu 16.04 when running glmark2 for a few minutes."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94637#c12">Comment # 12</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - system crash, no messages, GT215, ubuntu 16.04 when running glmark2 for a few minutes."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94637">bug 94637</a>
+              from <span class="vcard"><a class="email" href="mailto:peter&#64;bsqt.homeip.net" title="Peter Silva &lt;peter&#64;bsqt.homeip.net&gt;"> <span class="fn">Peter Silva</span></a>
+</span></b>
+        <pre>I installed proprietary driver, and all symptoms disappeared.
+
+It looks like it really was nouveau.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14586956460.AEa6449.20127--
+
+--===============0391884122==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0391884122==--
