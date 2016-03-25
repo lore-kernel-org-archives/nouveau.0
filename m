@@ -1,13 +1,11 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH 4/4] iccsense: configure sensors like nvidia does
-Date: Fri, 25 Mar 2016 12:19:40 +0100
-Message-ID: <1458904780-1553-5-git-send-email-nouveau@karolherbst.de>
-References: <1458904780-1553-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94694] New: Attempt to use kde/plasma renders the
+ system immediately unresponsive
+Date: Fri, 25 Mar 2016 13:03:40 +0000
+Message-ID: <bug-94694-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1761000753=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1458904780-1553-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,55 +18,239 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgotLS0K
-IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2ljY3NlbnNlL2Jhc2UuYyB8IDY4ICsrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDY4IGluc2VydGlvbnMoKykK
-CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9iYXNlLmMgYi9k
-cm0vbm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9iYXNlLmMKaW5kZXggYjZmNjIyMi4uNmYz
-NzA5ZSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vuc2UvYmFzZS5j
-CisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ljY3NlbnNlL2Jhc2UuYwpAQCAtOTUsNiAr
-OTUsNjMgQEAgbnZrbV9pY2NzZW5zZV9pbmEzMjIxX3JlYWQoc3RydWN0IG52a21faWNjc2Vuc2Ug
-KmljY3NlbnNlLAogCQkJCSAgICAgICA0MCAqIDgpOwogfQogCitzdGF0aWMgdm9pZAorbnZrbV9p
-Y2NzZW5zZV9pbmEyeDlfY29uZmlnKHN0cnVjdCBudmttX2ljY3NlbnNlICppY2NzZW5zZSwKKwkJ
-CSAgICBzdHJ1Y3QgbnZrbV9pY2NzZW5zZV9zZW5zb3IgKnNlbnNvcikKK3sKKwlzdHJ1Y3QgbnZr
-bV9zdWJkZXYgKnN1YmRldiA9ICZpY2NzZW5zZS0+c3ViZGV2OworCS8qIGNvbmZpZ3VyYXRpb246
-CisJICogMHgwMDA3OiAweDAwMDcgc2h1bnQgYW5kIGJ1cyBjb250aW5vdXMKKwkgKiAweDAwNzg6
-IDB4MDA3OCAxMjggc2FtcGxlcyBzaHVudAorCSAqIDB4MDc4MDogMHgwNzgwIDEyOCBzYW1wbGVz
-IGJ1cworCSAqIDB4MTgwMDogMHgwMDAwICstNDAgbVYgc2h1bnQgcmFuZ2UKKwkgKiAweDIwMDA6
-IDB4MDAwMCAxNlYgRlNSCisgICAgICAgICAqLworCXUxNiB2YWx1ZSA9IDB4MDdmZjsKKwludmtt
-X2RlYnVnKHN1YmRldiwgImNvbmZpZyBmb3Igc2Vuc29yIGlkICVpOiAweCV4XG4iLCBzZW5zb3It
-PmlkLCB2YWx1ZSk7CisJbnZfd3IxNmkyY3Ioc2Vuc29yLT5pMmMsIHNlbnNvci0+YWRkciwgMHgw
-MCwgdmFsdWUpOworfQorCitzdGF0aWMgdm9pZAorbnZrbV9pY2NzZW5zZV9pbmEzMjIxX2NvbmZp
-ZyhzdHJ1Y3QgbnZrbV9pY2NzZW5zZSAqaWNjc2Vuc2UsCisJCQkgICAgIHN0cnVjdCBudmttX2lj
-Y3NlbnNlX3NlbnNvciAqc2Vuc29yKQoreworCXN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0g
-JmljY3NlbnNlLT5zdWJkZXY7CisJLyogY29uZmlndXJhdGlvbjoKKwkgKiAweDAwMDc6IDB4MDAw
-NyBzaHVudCBhbmQgYnVzIGNvbnRpbm91cworCSAqIDB4MDAzMTogMHgwMDAwIDE0MCB1cyBjb252
-ZXJzaW9uIHRpbWUgc2h1bnQKKwkgKiAweDAxYzA6IDB4MDAwMCAxNDAgdXMgY29udmVyc2lvbiB0
-aW1lIGJ1cworCSAqIDB4MGYwMDogMHgwZjAwIDEwMjQgc2FtcGxlcworCSAqIDB4NzAwMDogMHg/
-MDAwIGNoYW5uZWxzCisgICAgICAgICAqLworCXUxNiB2YWx1ZSA9IDB4MGUwNzsKKwlpZiAoc2Vu
-c29yLT5yYWlsX21hc2sgJiAweDEpCisJCXZhbHVlIHw9IDB4MSA8PCAxNDsKKwlpZiAoc2Vuc29y
-LT5yYWlsX21hc2sgJiAweDIpCisJCXZhbHVlIHw9IDB4MSA8PCAxMzsKKwlpZiAoc2Vuc29yLT5y
-YWlsX21hc2sgJiAweDQpCisJCXZhbHVlIHw9IDB4MSA8PCAxMjsKKwludmttX2RlYnVnKHN1YmRl
-diwgImNvbmZpZyBmb3Igc2Vuc29yIGlkICVpOiAweCV4XG4iLCBzZW5zb3ItPmlkLCB2YWx1ZSk7
-CisJbnZfd3IxNmkyY3Ioc2Vuc29yLT5pMmMsIHNlbnNvci0+YWRkciwgMHgwMCwgdmFsdWUpOwor
-fQorCitzdGF0aWMgdm9pZAorbnZrbV9pY2NzZW5zZV9zZW5zb3JfY29uZmlnKHN0cnVjdCBudmtt
-X2ljY3NlbnNlICppY2NzZW5zZSwKKwkJICAgICAgICAgICAgc3RydWN0IG52a21faWNjc2Vuc2Vf
-c2Vuc29yICpzZW5zb3IpCit7CisJc3dpdGNoIChzZW5zb3ItPnR5cGUpIHsKKwljYXNlIE5WQklP
-U19FWFRERVZfSU5BMjA5OgorCWNhc2UgTlZCSU9TX0VYVERFVl9JTkEyMTk6CisJCW52a21faWNj
-c2Vuc2VfaW5hMng5X2NvbmZpZyhpY2NzZW5zZSwgc2Vuc29yKTsKKwkJYnJlYWs7CisJY2FzZSBO
-VkJJT1NfRVhUREVWX0lOQTMyMjE6CisJCW52a21faWNjc2Vuc2VfaW5hMzIyMV9jb25maWcoaWNj
-c2Vuc2UsIHNlbnNvcik7CisJCWJyZWFrOworCWRlZmF1bHQ6CisJCWJyZWFrOworCX0KK30KKwog
-aW50CiBudmttX2ljY3NlbnNlX3JlYWRfYWxsKHN0cnVjdCBudmttX2ljY3NlbnNlICppY2NzZW5z
-ZSkKIHsKQEAgLTI1Nyw4ICszMTQsMTkgQEAgbnZrbV9pY2NzZW5zZV9vbmVpbml0KHN0cnVjdCBu
-dmttX3N1YmRldiAqc3ViZGV2KQogCXJldHVybiAwOwogfQogCitzdGF0aWMgaW50CitudmttX2lj
-Y3NlbnNlX2luaXQoc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYpCit7CisJc3RydWN0IG52a21f
-aWNjc2Vuc2UgKmljY3NlbnNlID0gbnZrbV9pY2NzZW5zZShzdWJkZXYpOworCXN0cnVjdCBudmtt
-X2ljY3NlbnNlX3NlbnNvciAqc2Vuc29yOworCWxpc3RfZm9yX2VhY2hfZW50cnkoc2Vuc29yLCAm
-aWNjc2Vuc2UtPnNlbnNvcnMsIGhlYWQpCisJCW52a21faWNjc2Vuc2Vfc2Vuc29yX2NvbmZpZyhp
-Y2NzZW5zZSwgc2Vuc29yKTsKKwlyZXR1cm4gMDsKK30KKwogc3RydWN0IG52a21fc3ViZGV2X2Z1
-bmMgaWNjc2Vuc2VfZnVuYyA9IHsKIAkub25laW5pdCA9IG52a21faWNjc2Vuc2Vfb25laW5pdCwK
-KwkuaW5pdCA9IG52a21faWNjc2Vuc2VfaW5pdCwKIAkuZHRvciA9IG52a21faWNjc2Vuc2VfZHRv
-ciwKIH07CiAKLS0gCjIuNy40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============1761000753==
+Content-Type: multipart/alternative; boundary="14589110200.8DE5.10816";
+ charset="UTF-8"
+
+
+--14589110200.8DE5.10816
+Date: Fri, 25 Mar 2016 13:03:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=94694
+
+            Bug ID: 94694
+           Summary: Attempt to use kde/plasma renders the system
+                    immediately unresponsive
+           Product: Mesa
+           Version: 11.1
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: oakad-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 122538
+  --> https://bugs.freedesktop.org/attachment.cgi?id=122538&action=edit
+Xorg.0.log for the failed session
+
+The crux of the problem: 
+
+Mar 25 23:40:25 mercador kernel: nouveau 0000:01:00.0: plasmashell[6208]:
+failed
+ to idle channel 17 [plasmashell[6208]]
+Mar 25 23:40:27 mercador kernel: nouveau 0000:01:00.0: timeout at
+drivers/gpu/dr
+m/nouveau/nvkm/engine/fifo/gpfifogf100.c:66/gf100_fifo_gpfifo_engine_fini()!
+Mar 25 23:40:27 mercador kernel: nouveau 0000:01:00.0: fifo: channel 17
+[plasmas
+hell[6208]] kick timeout
+Mar 25 23:40:27 mercador kernel: nouveau: plasmashell[6208]:00000000:0000906f:
+d
+etach gr failed, -16
+Mar 25 23:40:27 mercador kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 0d []
+Mar 25 23:40:29 mercador kernel: nouveau 0000:01:00.0: timeout at
+drivers/gpu/dr
+m/nouveau/nvkm/engine/fifo/gpfifogf100.c:66/gf100_fifo_gpfifo_engine_fini()!
+Mar 25 23:40:29 mercador kernel: nouveau 0000:01:00.0: fifo: channel 17
+[plasmas
+hell[6208]] kick timeout
+Mar 25 23:40:29 mercador kernel: nouveau: plasmashell[6208]:00000000:0000906f:
+d
+etach sw failed, -16
+Mar 25 23:40:44 mercador kernel: nouveau 0000:01:00.0: plasmashell[6208]:
+failed
+ to idle channel 17 [plasmashell[6208]]
+
+This will happen immediately upon any interaction with KDE 5 panel.
+
+At this moment system is rendered inoperable, even though it may still possible
+to reboot it over network. The CPU usage becomes high, apparently being
+consumed by an in-kernel thread.
+
+The kernel version is 4.4.6
+Kde/plasma version is 5.19.0, qt is 5.5.1
+X11/nouveau driver version is 1.0.12
+
+Xorg.0.log is attached (with some additional errors signalling that event queue
+is filling up).
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+--14589110200.8DE5.10816
+Date: Fri, 25 Mar 2016 13:03:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Attempt to use kde/plasma renders the system immediately unresponsive"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94694">94694</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Attempt to use kde/plasma renders the system immediately unresponsive
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>11.1
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>oakad&#64;yahoo.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=122538" name="attach_122538" title="Xorg.0.log for the failed session">attachment 122538</a> <a href="attachment.cgi?id=122538&amp;action=edit" title="Xorg.0.log for the failed session">[details]</a></span>
+Xorg.0.log for the failed session
+
+The crux of the problem: 
+
+Mar 25 23:40:25 mercador kernel: nouveau 0000:01:00.0: plasmashell[6208]:
+failed
+ to idle channel 17 [plasmashell[6208]]
+Mar 25 23:40:27 mercador kernel: nouveau 0000:01:00.0: timeout at
+drivers/gpu/dr
+m/nouveau/nvkm/engine/fifo/gpfifogf100.c:66/gf100_fifo_gpfifo_engine_fini()!
+Mar 25 23:40:27 mercador kernel: nouveau 0000:01:00.0: fifo: channel 17
+[plasmas
+hell[6208]] kick timeout
+Mar 25 23:40:27 mercador kernel: nouveau: plasmashell[6208]:00000000:0000906f:
+d
+etach gr failed, -16
+Mar 25 23:40:27 mercador kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 0d []
+Mar 25 23:40:29 mercador kernel: nouveau 0000:01:00.0: timeout at
+drivers/gpu/dr
+m/nouveau/nvkm/engine/fifo/gpfifogf100.c:66/gf100_fifo_gpfifo_engine_fini()!
+Mar 25 23:40:29 mercador kernel: nouveau 0000:01:00.0: fifo: channel 17
+[plasmas
+hell[6208]] kick timeout
+Mar 25 23:40:29 mercador kernel: nouveau: plasmashell[6208]:00000000:0000906f:
+d
+etach sw failed, -16
+Mar 25 23:40:44 mercador kernel: nouveau 0000:01:00.0: plasmashell[6208]:
+failed
+ to idle channel 17 [plasmashell[6208]]
+
+This will happen immediately upon any interaction with KDE 5 panel.
+
+At this moment system is rendered inoperable, even though it may still possible
+to reboot it over network. The CPU usage becomes high, apparently being
+consumed by an in-kernel thread.
+
+The kernel version is 4.4.6
+Kde/plasma version is 5.19.0, qt is 5.5.1
+X11/nouveau driver version is 1.0.12
+
+Xorg.0.log is attached (with some additional errors signalling that event queue
+is filling up).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14589110200.8DE5.10816--
+
+--===============1761000753==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1761000753==--
