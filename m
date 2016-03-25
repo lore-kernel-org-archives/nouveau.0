@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94374] transparent window with DRI_PRIME=1,
- depending on size of used textures
-Date: Fri, 25 Mar 2016 19:55:57 +0000
-Message-ID: <bug-94374-8800-fNDaXUuMHW@http.bugs.freedesktop.org/>
-References: <bug-94374-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91526] World of Warcraft (on Wine) has UI corruption
+ with nouveau
+Date: Fri, 25 Mar 2016 23:36:14 +0000
+Message-ID: <bug-91526-8800-dCC7gxx6RJ@http.bugs.freedesktop.org/>
+References: <bug-91526-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1505029020=="
+Content-Type: multipart/mixed; boundary="===============0134422028=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94374-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91526-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1505029020==
-Content-Type: multipart/alternative; boundary="14589357561.a548CCC4d.12379";
+--===============0134422028==
+Content-Type: multipart/alternative; boundary="14589489741.d998cB0b3.10970";
  charset="UTF-8"
 
 
---14589357561.a548CCC4d.12379
-Date: Fri, 25 Mar 2016 19:55:56 +0000
+--14589489741.d998cB0b3.10970
+Date: Fri, 25 Mar 2016 23:36:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=94374
+https://bugs.freedesktop.org/show_bug.cgi?id=91526
 
---- Comment #8 from Wolfgang Wallner <wolfgang-wallner-RbZlAiThDcE@public.gmane.org> ---
-For reasons not related to this bug I had to replace the HDD, and have
-installed the current nightly image of Kubuntu 16.04 instead of the previously
-used 15.10.
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+FTR, in the trace, things go wrong between call 722316 and 722358. In the
+middle, a SRGB8_ALPHA8 texture is created, and receives an upload from GL_BGRA
++ 4_4_4_4_REV data. According to qapitrace, that data is not properly reflected
+in the texture.
 
-On the newly installed system, I cannot reproduce this bug, neither with steam
-nor with the provided gpu memory test program:
-
-DRI_PRIME=1 ./a.out 4096 runs fine
-
-This system now uses Mesa 11.1.2.
+Running this with llvmpipe, the first glTexSubImage2D clears the data (all 0's)
+while the second glTexSubImage2D uploads the font. Since the font texture
+contains garbage, so does the remaining rendering. Need to figure out why the
+texture upload fails with the data in question.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.
---14589357561.a548CCC4d.12379
-Date: Fri, 25 Mar 2016 19:55:56 +0000
+--14589489741.d998cB0b3.10970
+Date: Fri, 25 Mar 2016 23:36:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -62,25 +61,24 @@ Content-Type: text/html
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - transparent window with DRI_PRIME=1, depending on size of used textures"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94374#c8">Comment # 8</a>
+          bz_status_REOPENED "
+   title="REOPENED - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526#c11">Comment # 11</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - transparent window with DRI_PRIME=1, depending on size of used textures"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94374">bug 94374</a>
-              from <span class="vcard"><a class="email" href="mailto:wolfgang-wallner&#64;gmx.at" title="Wolfgang Wallner &lt;wolfgang-wallner&#64;gmx.at&gt;"> <span class="fn">Wolfgang Wallner</span></a>
+          bz_status_REOPENED "
+   title="REOPENED - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526">bug 91526</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>For reasons not related to this bug I had to replace the HDD, and have
-installed the current nightly image of Kubuntu 16.04 instead of the previously
-used 15.10.
+        <pre>FTR, in the trace, things go wrong between call 722316 and 722358. In the
+middle, a SRGB8_ALPHA8 texture is created, and receives an upload from GL_BGRA
++ 4_4_4_4_REV data. According to qapitrace, that data is not properly reflected
+in the texture.
 
-On the newly installed system, I cannot reproduce this bug, neither with steam
-nor with the provided gpu memory test program:
-
-DRI_PRIME=1 ./a.out 4096 runs fine
-
-This system now uses Mesa 11.1.2.</pre>
+Running this with llvmpipe, the first glTexSubImage2D clears the data (all 0's)
+while the second glTexSubImage2D uploads the font. Since the font texture
+contains garbage, so does the remaining rendering. Need to figure out why the
+texture upload fails with the data in question.</pre>
         </div>
       </p>
       <hr>
@@ -92,9 +90,9 @@ This system now uses Mesa 11.1.2.</pre>
       </ul>
     </body>
 </html>
---14589357561.a548CCC4d.12379--
+--14589489741.d998cB0b3.10970--
 
---===============1505029020==
+--===============0134422028==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1505029020==--
+--===============0134422028==--
