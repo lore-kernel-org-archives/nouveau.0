@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94728] Nouveau doesn't work with Nvidia GTX 960
-Date: Mon, 28 Mar 2016 10:12:08 +0000
-Message-ID: <bug-94728-8800-cIyP9HCJkw@http.bugs.freedesktop.org/>
-References: <bug-94728-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH 2/4] iccsense: convert to linked list
+Date: Mon, 28 Mar 2016 13:18:06 +0300
+Message-ID: <56F904DE.9040503@free.fr>
+References: <1458904780-1553-1-git-send-email-nouveau@karolherbst.de>
+ <1458904780-1553-3-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0153201117=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94728-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1458904780-1553-3-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,114 +18,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0153201117==
-Content-Type: multipart/alternative; boundary="14591599282.91CaD1B.31544";
- charset="UTF-8"
-
-
---14591599282.91CaD1B.31544
-Date: Mon, 28 Mar 2016 10:12:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=94728
-
-Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |NOTABUG
-
---- Comment #2 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
-Yes, you need a more up-to-date kernel and mesa version. That is to say Linux
-4.6 and mesa 11.2 which are not released yet. You will also need to update
-linux-firmware.
-
-Maybe rawhide would work for you?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14591599282.91CaD1B.31544
-Date: Mon, 28 Mar 2016 10:12:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:martin.peres&#64;free.fr" title="Martin Peres &lt;martin.peres&#64;free.fr&gt;"> <span class="fn">Martin Peres</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - Nouveau doesn't work with Nvidia GTX 960"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94728">bug 94728</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTABUG
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - Nouveau doesn't work with Nvidia GTX 960"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94728#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - Nouveau doesn't work with Nvidia GTX 960"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94728">bug 94728</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;free.fr" title="Martin Peres &lt;martin.peres&#64;free.fr&gt;"> <span class="fn">Martin Peres</span></a>
-</span></b>
-        <pre>Yes, you need a more up-to-date kernel and mesa version. That is to say Linux
-4.6 and mesa 11.2 which are not released yet. You will also need to update
-linux-firmware.
-
-Maybe rawhide would work for you?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14591599282.91CaD1B.31544--
-
---===============0153201117==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0153201117==--
+T24gMjUvMDMvMTYgMTM6MTksIEthcm9sIEhlcmJzdCB3cm90ZToKPiBTaWduZWQtb2ZmLWJ5OiBL
+YXJvbCBIZXJic3QgPG5vdXZlYXVAa2Fyb2xoZXJic3QuZGU+Cj4gLS0tCj4gICBkcm0vbm91dmVh
+dS9pbmNsdWRlL252a20vc3ViZGV2L2ljY3NlbnNlLmggfCAgNCArLS0tCj4gICBkcm0vbm91dmVh
+dS9ub3V2ZWF1X2h3bW9uLmMgICAgICAgICAgICAgICAgfCAgMiArLQo+ICAgZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvaWNjc2Vuc2UvYmFzZS5jICAgIHwgMzIgKysrKysrKysrKysrKy0tLS0tLS0t
+LS0tLS0tLS0tCj4gICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9wcml2LmggICAg
+fCAgMSArCj4gICA0IGZpbGVzIGNoYW5nZWQsIDE3IGluc2VydGlvbnMoKyksIDIyIGRlbGV0aW9u
+cygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvaWNj
+c2Vuc2UuaCBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvaWNjc2Vuc2UuaAo+IGlu
+ZGV4IGMzZGVmY2QuLmE0YzBkYTAgMTAwNjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS9u
+dmttL3N1YmRldi9pY2NzZW5zZS5oCj4gKysrIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1
+YmRldi9pY2NzZW5zZS5oCj4gQEAgLTMsMTIgKzMsMTAgQEAKPiAgIAo+ICAgI2luY2x1ZGUgPGNv
+cmUvc3ViZGV2Lmg+Cj4gICAKPiAtc3RydWN0IG5rdm1faWNjc2Vuc2VfcmFpbDsKPiAgIHN0cnVj
+dCBudmttX2ljY3NlbnNlIHsKPiAgIAlzdHJ1Y3QgbnZrbV9zdWJkZXYgc3ViZGV2Owo+IC0JdTgg
+cmFpbF9jb3VudDsKPiAgIAlib29sIGRhdGFfdmFsaWQ7Cj4gLQlzdHJ1Y3QgbnZrbV9pY2NzZW5z
+ZV9yYWlsICpyYWlsczsKPiArCXN0cnVjdCBsaXN0X2hlYWQgcmFpbHM7Cj4gICB9Owo+ICAgCj4g
+ICBpbnQgZ2YxMDBfaWNjc2Vuc2VfbmV3KHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQgaW5kZXgs
+IHN0cnVjdCBudmttX2ljY3NlbnNlICoqKTsKPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbm91
+dmVhdV9od21vbi5jIGIvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jCj4gaW5kZXggNjdlZGQy
+Zi4uNzRmMjM3YiAxMDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMKPiAr
+KysgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMKPiBAQCAtNjg5LDcgKzY4OSw3IEBAIG5v
+dXZlYXVfaHdtb25faW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ICAgCQkJZ290byBlcnJv
+cjsKPiAgIAl9Cj4gICAKPiAtCWlmIChpY2NzZW5zZSAmJiBpY2NzZW5zZS0+ZGF0YV92YWxpZCAm
+JiBpY2NzZW5zZS0+cmFpbF9jb3VudCkgewo+ICsJaWYgKGljY3NlbnNlICYmIGljY3NlbnNlLT5k
+YXRhX3ZhbGlkICYmICFsaXN0X2VtcHR5KCZpY2NzZW5zZS0+cmFpbHMpKSB7Cj4gICAJCXJldCA9
+IHN5c2ZzX2NyZWF0ZV9ncm91cCgmaHdtb25fZGV2LT5rb2JqLAo+ICAgCQkJCQkgJmh3bW9uX3Bv
+d2VyX2F0dHJncm91cCk7Cj4gICAJCWlmIChyZXQpCj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1
+L252a20vc3ViZGV2L2ljY3NlbnNlL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2lj
+Y3NlbnNlL2Jhc2UuYwo+IGluZGV4IGJmMWI5NGUuLjZmZGU2OGQgMTAwNjQ0Cj4gLS0tIGEvZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vuc2UvYmFzZS5jCj4gKysrIGIvZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvaWNjc2Vuc2UvYmFzZS5jCj4gQEAgLTk4LDI1ICs5OCwyMSBAQCBudmttX2lj
+Y3NlbnNlX2luYTMyMjFfcmVhZChzdHJ1Y3QgbnZrbV9pY2NzZW5zZSAqaWNjc2Vuc2UsCj4gICBp
+bnQKPiAgIG52a21faWNjc2Vuc2VfcmVhZF9hbGwoc3RydWN0IG52a21faWNjc2Vuc2UgKmljY3Nl
+bnNlKQo+ICAgewo+IC0JaW50IHJlc3VsdCA9IDAsIGk7Cj4gKwlpbnQgcmVzdWx0ID0gMDsKPiAr
+CXN0cnVjdCBudmttX2ljY3NlbnNlX3JhaWwgKnJhaWw7Cj4gICAKPiAgIAlpZiAoIWljY3NlbnNl
+KQo+ICAgCQlyZXR1cm4gLUVJTlZBTDsKPiAgIAo+IC0JaWYgKGljY3NlbnNlLT5yYWlsX2NvdW50
+ID09IDApCj4gLQkJcmV0dXJuIC1FTk9ERVY7Cj4gLQo+IC0JZm9yIChpID0gMDsgaSA8IGljY3Nl
+bnNlLT5yYWlsX2NvdW50OyArK2kpIHsKPiArCWxpc3RfZm9yX2VhY2hfZW50cnkocmFpbCwgJmlj
+Y3NlbnNlLT5yYWlscywgaGVhZCkgewo+ICAgCQlpbnQgcmVzOwo+IC0JCXN0cnVjdCBudmttX2lj
+Y3NlbnNlX3JhaWwgKnJhaWwgPSAmaWNjc2Vuc2UtPnJhaWxzW2ldOwo+ICAgCQlpZiAoIXJhaWwt
+PnJlYWQpCj4gICAJCQlyZXR1cm4gLUVOT0RFVjsKPiAgIAo+ICAgCQlyZXMgPSByYWlsLT5yZWFk
+KGljY3NlbnNlLCByYWlsKTsKPiAtCQlpZiAocmVzID49IDApCj4gLQkJCXJlc3VsdCArPSByZXM7
+Cj4gLQkJZWxzZQo+ICsJCWlmIChyZXMgPCAwKQo+ICAgCQkJcmV0dXJuIHJlczsKPiArCQlyZXN1
+bHQgKz0gcmVzOwo+ICAgCX0KPiAgIAlyZXR1cm4gcmVzdWx0Owo+ICAgfQo+IEBAIC0xMjUsOSAr
+MTIxLDEwIEBAIHN0YXRpYyB2b2lkICoKPiAgIG52a21faWNjc2Vuc2VfZHRvcihzdHJ1Y3QgbnZr
+bV9zdWJkZXYgKnN1YmRldikKPiAgIHsKPiAgIAlzdHJ1Y3QgbnZrbV9pY2NzZW5zZSAqaWNjc2Vu
+c2UgPSBudmttX2ljY3NlbnNlKHN1YmRldik7Cj4gKwlzdHJ1Y3QgbnZrbV9pY2NzZW5zZV9yYWls
+ICpyYWlsLCAqdG1wOwo+ICAgCj4gLQlpZiAoaWNjc2Vuc2UtPnJhaWxzKQo+IC0JCWtmcmVlKGlj
+Y3NlbnNlLT5yYWlscyk7Cj4gKwlsaXN0X2Zvcl9lYWNoX2VudHJ5X3NhZmUocmFpbCwgdG1wLCAm
+aWNjc2Vuc2UtPnJhaWxzLCBoZWFkKQo+ICsJCWtmcmVlKHJhaWwpOwpUaGUgcmFpbHMgbGlzdCBp
+cyBmaWxsZWQgd2l0aCBpbnZhbGlkIHBvaW50ZXJzIGF0IHRoaXMgcG9pbnQuIFBsZWFzZSBhZGQg
+Cmxpc3RfZGVsKHJhaWwpOyBiZWZvcmUga2ZyZWUocmFpbCk7CgpJdCBoYXMgdGhlIGFkZGVkIGJl
+bmVmaXQgb2YgYWRkaW5nIHBvaXNvbm91cyBwb2ludGVycyB0aGF0IHdpbGwgc2hvdyBhbnkgCmFj
+Y2VzcyBhZnRlciBmcmVlaW5nLgo+ICAgCj4gICAJcmV0dXJuIGljY3NlbnNlOwo+ICAgfQo+IEBA
+IC0xNDUsMTEgKzE0Miw2IEBAIG52a21faWNjc2Vuc2Vfb25laW5pdChzdHJ1Y3QgbnZrbV9zdWJk
+ZXYgKnN1YmRldikKPiAgIAkgICAgfHwgIXN0YmwubnJfZW50cnkpCj4gICAJCXJldHVybiAwOwo+
+ICAgCj4gLQlpY2NzZW5zZS0+cmFpbHMgPSBrbWFsbG9jKHNpemVvZigqaWNjc2Vuc2UtPnJhaWxz
+KSAqIHN0YmwubnJfZW50cnksCj4gLQkgICAgICAgICAgICAgICAgICAgICAgICAgIEdGUF9LRVJO
+RUwpOwo+IC0JaWYgKCFpY2NzZW5zZS0+cmFpbHMpCj4gLQkJcmV0dXJuIC1FTk9NRU07Cj4gLQo+
+ICAgCWljY3NlbnNlLT5kYXRhX3ZhbGlkID0gdHJ1ZTsKPiAgIAlmb3IgKGkgPSAwOyBpIDwgc3Ri
+bC5ucl9lbnRyeTsgKytpKSB7Cj4gICAJCXN0cnVjdCBwd3JfcmFpbF90ICpyID0gJnN0YmwucmFp
+bFtpXTsKPiBAQCAtMTg0LDcgKzE3NiwxMCBAQCBudmttX2ljY3NlbnNlX29uZWluaXQoc3RydWN0
+IG52a21fc3ViZGV2ICpzdWJkZXYpCj4gICAJCQljb250aW51ZTsKPiAgIAkJfQo+ICAgCj4gLQkJ
+cmFpbCA9ICZpY2NzZW5zZS0+cmFpbHNbaWNjc2Vuc2UtPnJhaWxfY291bnRdOwo+ICsJCXJhaWwg
+PSBrbWFsbG9jKHNpemVvZigqcmFpbCksIEdGUF9LRVJORUwpOwo+ICsJCWlmICghcmFpbCkKPiAr
+CQkJcmV0dXJuIC1FTk9NRU07Cj4gKwo+ICAgCQlzd2l0Y2ggKGV4dGRldi50eXBlKSB7Cj4gICAJ
+CWNhc2UgTlZCSU9TX0VYVERFVl9JTkEyMDk6Cj4gICAJCQlyYWlsLT5yZWFkID0gbnZrbV9pY2Nz
+ZW5zZV9pbmEyMDlfcmVhZDsKPiBAQCAtMjAxLDcgKzE5Niw3IEBAIG52a21faWNjc2Vuc2Vfb25l
+aW5pdChzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldikKPiAgIAkJcmFpbC0+cmFpbCA9IHItPnJh
+aWw7Cj4gICAJCXJhaWwtPm1vaG0gPSByLT5yZXNpc3Rvcl9tb2htOwo+ICAgCQlyYWlsLT5pMmMg
+PSAmaTJjX2J1cy0+aTJjOwo+IC0JCSsraWNjc2Vuc2UtPnJhaWxfY291bnQ7Cj4gKwkJbGlzdF9h
+ZGRfdGFpbCgmcmFpbC0+aGVhZCwgJmljY3NlbnNlLT5yYWlscyk7Cj4gICAJfQo+ICAgCXJldHVy
+biAwOwo+ICAgfQo+IEBAIC0yMjQsNiArMjE5LDcgQEAgbnZrbV9pY2NzZW5zZV9uZXdfKHN0cnVj
+dCBudmttX2RldmljZSAqZGV2aWNlLCBpbnQgaW5kZXgsCj4gICB7Cj4gICAJaWYgKCEoKmljY3Nl
+bnNlID0ga3phbGxvYyhzaXplb2YoKippY2NzZW5zZSksIEdGUF9LRVJORUwpKSkKPiAgIAkJcmV0
+dXJuIC1FTk9NRU07Cj4gKwlJTklUX0xJU1RfSEVBRCgmKCppY2NzZW5zZSktPnJhaWxzKTsKPiAg
+IAludmttX2ljY3NlbnNlX2N0b3IoZGV2aWNlLCBpbmRleCwgKmljY3NlbnNlKTsKPiAgIAlyZXR1
+cm4gMDsKPiAgIH0KPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vu
+c2UvcHJpdi5oIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vuc2UvcHJpdi5oCj4gaW5k
+ZXggZWQzOThiOC4uZTQ3OTEyOCAxMDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di9pY2NzZW5zZS9wcml2LmgKPiArKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5z
+ZS9wcml2LmgKPiBAQCAtNCw2ICs0LDcgQEAKPiAgICNpbmNsdWRlIDxzdWJkZXYvaWNjc2Vuc2Uu
+aD4KPiAgIAo+ICAgc3RydWN0IG52a21faWNjc2Vuc2VfcmFpbCB7Cj4gKwlzdHJ1Y3QgbGlzdF9o
+ZWFkIGhlYWQ7Cj4gICAJaW50ICgqcmVhZCkoc3RydWN0IG52a21faWNjc2Vuc2UgKiwgc3RydWN0
+IG52a21faWNjc2Vuc2VfcmFpbCAqKTsKPiAgIAlzdHJ1Y3QgaTJjX2FkYXB0ZXIgKmkyYzsKPiAg
+IAl1OCBhZGRyOwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
