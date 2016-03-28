@@ -1,14 +1,13 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH v2 4/4] iccsense: configure sensors like nvidia
-	does
-Date: Mon, 28 Mar 2016 14:24:32 +0200
-Message-ID: <1459167872-6043-5-git-send-email-nouveau@karolherbst.de>
-References: <1459167872-6043-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91526] World of Warcraft (on Wine) has UI corruption
+ with nouveau
+Date: Mon, 28 Mar 2016 12:28:50 +0000
+Message-ID: <bug-91526-8800-ITNh4TijRl@http.bugs.freedesktop.org/>
+References: <bug-91526-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1454679869=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1459167872-6043-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-91526-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,56 +20,92 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-djI6IHJlbmFtZSBpbmEyMDkvaW5hMjE5IHJlYWQgZnVuY3Rpb24KClNpZ25lZC1vZmYtYnk6IEth
-cm9sIEhlcmJzdCA8bm91dmVhdUBrYXJvbGhlcmJzdC5kZT4KUmV2aWV3ZWQtYnk6IE1hcnRpbiBQ
-ZXJlcyA8bWFydGluLnBlcmVzQGZyZWUuZnI+Ci0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-aWNjc2Vuc2UvYmFzZS5jIHwgNjggKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrCiAx
-IGZpbGUgY2hhbmdlZCwgNjggaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1
-L252a20vc3ViZGV2L2ljY3NlbnNlL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2lj
-Y3NlbnNlL2Jhc2UuYwppbmRleCAwM2VlZjlkLi41NWYzNmY1IDEwMDY0NAotLS0gYS9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9iYXNlLmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvaWNjc2Vuc2UvYmFzZS5jCkBAIC05NSw2ICs5NSw2MyBAQCBudmttX2ljY3NlbnNlX2lu
-YTMyMjFfcmVhZChzdHJ1Y3QgbnZrbV9pY2NzZW5zZSAqaWNjc2Vuc2UsCiAJCQkJICAgICAgIDQw
-ICogOCk7CiB9CiAKK3N0YXRpYyB2b2lkCitudmttX2ljY3NlbnNlX2luYTIwOV9jb25maWcoc3Ry
-dWN0IG52a21faWNjc2Vuc2UgKmljY3NlbnNlLAorCQkJICAgIHN0cnVjdCBudmttX2ljY3NlbnNl
-X3NlbnNvciAqc2Vuc29yKQoreworCXN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gJmljY3Nl
-bnNlLT5zdWJkZXY7CisJLyogY29uZmlndXJhdGlvbjoKKwkgKiAweDAwMDc6IDB4MDAwNyBzaHVu
-dCBhbmQgYnVzIGNvbnRpbm91cworCSAqIDB4MDA3ODogMHgwMDc4IDEyOCBzYW1wbGVzIHNodW50
-CisJICogMHgwNzgwOiAweDA3ODAgMTI4IHNhbXBsZXMgYnVzCisJICogMHgxODAwOiAweDAwMDAg
-Ky00MCBtViBzaHVudCByYW5nZQorCSAqIDB4MjAwMDogMHgwMDAwIDE2ViBGU1IKKyAgICAgICAg
-ICovCisJdTE2IHZhbHVlID0gMHgwN2ZmOworCW52a21fZGVidWcoc3ViZGV2LCAiY29uZmlnIGZv
-ciBzZW5zb3IgaWQgJWk6IDB4JXhcbiIsIHNlbnNvci0+aWQsIHZhbHVlKTsKKwludl93cjE2aTJj
-cihzZW5zb3ItPmkyYywgc2Vuc29yLT5hZGRyLCAweDAwLCB2YWx1ZSk7Cit9CisKK3N0YXRpYyB2
-b2lkCitudmttX2ljY3NlbnNlX2luYTMyMjFfY29uZmlnKHN0cnVjdCBudmttX2ljY3NlbnNlICpp
-Y2NzZW5zZSwKKwkJCSAgICAgc3RydWN0IG52a21faWNjc2Vuc2Vfc2Vuc29yICpzZW5zb3IpCit7
-CisJc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSAmaWNjc2Vuc2UtPnN1YmRldjsKKwkvKiBj
-b25maWd1cmF0aW9uOgorCSAqIDB4MDAwNzogMHgwMDA3IHNodW50IGFuZCBidXMgY29udGlub3Vz
-CisJICogMHgwMDMxOiAweDAwMDAgMTQwIHVzIGNvbnZlcnNpb24gdGltZSBzaHVudAorCSAqIDB4
-MDFjMDogMHgwMDAwIDE0MCB1cyBjb252ZXJzaW9uIHRpbWUgYnVzCisJICogMHgwZjAwOiAweDBm
-MDAgMTAyNCBzYW1wbGVzCisJICogMHg3MDAwOiAweD8wMDAgY2hhbm5lbHMKKyAgICAgICAgICov
-CisJdTE2IHZhbHVlID0gMHgwZTA3OworCWlmIChzZW5zb3ItPnJhaWxfbWFzayAmIDB4MSkKKwkJ
-dmFsdWUgfD0gMHgxIDw8IDE0OworCWlmIChzZW5zb3ItPnJhaWxfbWFzayAmIDB4MikKKwkJdmFs
-dWUgfD0gMHgxIDw8IDEzOworCWlmIChzZW5zb3ItPnJhaWxfbWFzayAmIDB4NCkKKwkJdmFsdWUg
-fD0gMHgxIDw8IDEyOworCW52a21fZGVidWcoc3ViZGV2LCAiY29uZmlnIGZvciBzZW5zb3IgaWQg
-JWk6IDB4JXhcbiIsIHNlbnNvci0+aWQsIHZhbHVlKTsKKwludl93cjE2aTJjcihzZW5zb3ItPmky
-Yywgc2Vuc29yLT5hZGRyLCAweDAwLCB2YWx1ZSk7Cit9CisKK3N0YXRpYyB2b2lkCitudmttX2lj
-Y3NlbnNlX3NlbnNvcl9jb25maWcoc3RydWN0IG52a21faWNjc2Vuc2UgKmljY3NlbnNlLAorCQkg
-ICAgICAgICAgICBzdHJ1Y3QgbnZrbV9pY2NzZW5zZV9zZW5zb3IgKnNlbnNvcikKK3sKKwlzd2l0
-Y2ggKHNlbnNvci0+dHlwZSkgeworCWNhc2UgTlZCSU9TX0VYVERFVl9JTkEyMDk6CisJY2FzZSBO
-VkJJT1NfRVhUREVWX0lOQTIxOToKKwkJbnZrbV9pY2NzZW5zZV9pbmEyMDlfY29uZmlnKGljY3Nl
-bnNlLCBzZW5zb3IpOworCQlicmVhazsKKwljYXNlIE5WQklPU19FWFRERVZfSU5BMzIyMToKKwkJ
-bnZrbV9pY2NzZW5zZV9pbmEzMjIxX2NvbmZpZyhpY2NzZW5zZSwgc2Vuc29yKTsKKwkJYnJlYWs7
-CisJZGVmYXVsdDoKKwkJYnJlYWs7CisJfQorfQorCiBpbnQKIG52a21faWNjc2Vuc2VfcmVhZF9h
-bGwoc3RydWN0IG52a21faWNjc2Vuc2UgKmljY3NlbnNlKQogewpAQCAtMjYwLDggKzMxNywxOSBA
-QCBudmttX2ljY3NlbnNlX29uZWluaXQoc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYpCiAJcmV0
-dXJuIDA7CiB9CiAKK3N0YXRpYyBpbnQKK252a21faWNjc2Vuc2VfaW5pdChzdHJ1Y3QgbnZrbV9z
-dWJkZXYgKnN1YmRldikKK3sKKwlzdHJ1Y3QgbnZrbV9pY2NzZW5zZSAqaWNjc2Vuc2UgPSBudmtt
-X2ljY3NlbnNlKHN1YmRldik7CisJc3RydWN0IG52a21faWNjc2Vuc2Vfc2Vuc29yICpzZW5zb3I7
-CisJbGlzdF9mb3JfZWFjaF9lbnRyeShzZW5zb3IsICZpY2NzZW5zZS0+c2Vuc29ycywgaGVhZCkK
-KwkJbnZrbV9pY2NzZW5zZV9zZW5zb3JfY29uZmlnKGljY3NlbnNlLCBzZW5zb3IpOworCXJldHVy
-biAwOworfQorCiBzdHJ1Y3QgbnZrbV9zdWJkZXZfZnVuYyBpY2NzZW5zZV9mdW5jID0gewogCS5v
-bmVpbml0ID0gbnZrbV9pY2NzZW5zZV9vbmVpbml0LAorCS5pbml0ID0gbnZrbV9pY2NzZW5zZV9p
-bml0LAogCS5kdG9yID0gbnZrbV9pY2NzZW5zZV9kdG9yLAogfTsKIAotLSAKMi43LjQKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1454679869==
+Content-Type: multipart/alternative; boundary="14591681300.3eF26e.1748";
+ charset="UTF-8"
+
+
+--14591681300.3eF26e.1748
+Date: Mon, 28 Mar 2016 12:28:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91526
+
+--- Comment #14 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #13)
+> As I had originally suspected, this has nothing to actually do with BGRA4
+> format. It was just an odd place in the command stream.
+> 
+> The following patch should fix it:
+> https://patchwork.freedesktop.org/patch/78448/
+> 
+> Please test. I think this has been broken since mesa 10.2 or so =/
+
+works great, thanks :)
+
+Tested-by: Karol Herbst <nouveau at karolherbst.de>
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+--14591681300.3eF26e.1748
+Date: Mon, 28 Mar 2016 12:28:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526">bug 91526</a>
+              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91526#c13">comment #13</a>)
+<span class="quote">&gt; As I had originally suspected, this has nothing to actually do with BGRA4
+&gt; format. It was just an odd place in the command stream.
+&gt; 
+&gt; The following patch should fix it:
+&gt; <a href="https://patchwork.freedesktop.org/patch/78448/">https://patchwork.freedesktop.org/patch/78448/</a>
+&gt; 
+&gt; Please test. I think this has been broken since mesa 10.2 or so =/</span >
+
+works great, thanks :)
+
+Tested-by: Karol Herbst &lt;nouveau at karolherbst.de&gt;</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14591681300.3eF26e.1748--
+
+--===============1454679869==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1454679869==--
