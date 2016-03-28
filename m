@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94725] Nouveau driver fails to load on GM204
-Date: Mon, 28 Mar 2016 02:53:31 +0000
-Message-ID: <bug-94725-8800-HNnaB3DD6F@http.bugs.freedesktop.org/>
-References: <bug-94725-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94727] New: nouveau/pushbuf.c:238: pushbuf_krel:
+ Assertion `bkref` failed.
+Date: Mon, 28 Mar 2016 03:01:19 +0000
+Message-ID: <bug-94727-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0070353869=="
+Content-Type: multipart/mixed; boundary="===============0648778639=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +19,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0070353869==
-Content-Type: multipart/alternative; boundary="14591336111.39472B.18477";
+--===============0648778639==
+Content-Type: multipart/alternative; boundary="14591340790.9DEf.21886";
  charset="UTF-8"
 
 
---14591336111.39472B.18477
-Date: Mon, 28 Mar 2016 02:53:31 +0000
+--14591340790.9DEf.21886
+Date: Mon, 28 Mar 2016 03:01:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=94725
+https://bugs.freedesktop.org/show_bug.cgi?id=94727
 
---- Comment #4 from Rashed Abdel-Tawab <rashed-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> ---
-Created attachment 122591
-  --> https://bugs.freedesktop.org/attachment.cgi?id=122591&action=edit
-dmesg while crashing
+            Bug ID: 94727
+           Summary: nouveau/pushbuf.c:238: pushbuf_krel: Assertion `bkref`
+                    failed.
+           Product: Mesa
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: pappadeux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-Here is the dmesg from when it crashes. I ran lshw and it seems that triggered
-the nVidia card to start back up which caused the crash. With runpm=0 the
-nVidia card is never powered off so it doesn't crash.
+Linux, Lubuntu 16.04 beta2, x64 on Intel CPU, NVIDIA Quadro 1500M
+
+Multithreaded OpenGL application (C++, Geant4 toolkit, 3D visualisation)
+
+Failed to start with the message in Subj. Application is working in VMware,
+same Linux version,  on top of Windows 10
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14591336111.39472B.18477
-Date: Mon, 28 Mar 2016 02:53:31 +0000
+You are the QA Contact for the bug.
+--14591340790.9DEf.21886
+Date: Mon, 28 Mar 2016 03:01:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -53,25 +66,95 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau/pushbuf.c:238: pushbuf_krel: Assertion `bkref` failed."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94727">94727</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nouveau/pushbuf.c:238: pushbuf_krel: Assertion `bkref` failed.
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>pappadeux&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver fails to load on GM204"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94725#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver fails to load on GM204"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94725">bug 94725</a>
-              from <span class="vcard"><a class="email" href="mailto:rashed&#64;linux.com" title="Rashed Abdel-Tawab &lt;rashed&#64;linux.com&gt;"> <span class="fn">Rashed Abdel-Tawab</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=122591" name="attach_122591" title="dmesg while crashing">attachment 122591</a> <a href="attachment.cgi?id=122591&amp;action=edit" title="dmesg while crashing">[details]</a></span>
-dmesg while crashing
+        <pre>Linux, Lubuntu 16.04 beta2, x64 on Intel CPU, NVIDIA Quadro 1500M
 
-Here is the dmesg from when it crashes. I ran lshw and it seems that triggered
-the nVidia card to start back up which caused the crash. With runpm=0 the
-nVidia card is never powered off so it doesn't crash.</pre>
+Multithreaded OpenGL application (C++, Geant4 toolkit, 3D visualisation)
+
+Failed to start with the message in Subj. Application is working in VMware,
+same Linux version,  on top of Windows 10</pre>
         </div>
       </p>
       <hr>
@@ -79,12 +162,13 @@ nVidia card is never powered off so it doesn't crash.</pre>
       
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>
---14591336111.39472B.18477--
+--14591340790.9DEf.21886--
 
---===============0070353869==
+--===============0648778639==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -94,4 +178,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0070353869==--
+--===============0648778639==--
