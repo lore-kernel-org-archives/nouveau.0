@@ -1,11 +1,12 @@
-From: =?UTF-8?Q?Sune_M=c3=b8lgaard?= <smo-VZMzO6RJk8wFoxwNN1DV/Q@public.gmane.org>
-Subject: GM108GLM?
-Date: Tue, 29 Mar 2016 14:55:49 +0200
-Message-ID: <56FA7B55.6080208@translucent.dk>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 80901] [NVCF] PWM fan speed too high
+Date: Tue, 29 Mar 2016 21:39:54 +0000
+Message-ID: <bug-80901-8800-1JQeC7ReXO@http.bugs.freedesktop.org/>
+References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1297175184=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,13 +19,82 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGl5YSwKCklzIHRoZXJlIGFueSBjaGFuZ2UgZm9yIFF1YWRybyBLNjIwTSBzdXBwb3J0IGF0IHNv
-bWUgcG9pbnQgaW4gdGltZSwgYW5kCndoYXQgY2FuIEkgZG8gdG8gaGVscCwgYXBhcnQgZnJvbSB0
-aGUgaW5mbyBiZWxvdz8KCkJlc3QgcmVnYXJkcywKClN1bmUgTcO4bGdhYXJkCgpkbWVzZyB8Z3Jl
-cCAtaSBub3V2ZWF1ClsgICAgMS4xNjQ5MTldIG5vdXZlYXUgMDAwMDowODowMC4wOiB1bmtub3du
-IGNoaXBzZXQgKDExODNhMGEyKQpbICAgIDEuMTY0OTQzXSBub3V2ZWF1OiBwcm9iZSBvZiAwMDAw
-OjA4OjAwLjAgZmFpbGVkIHdpdGggZXJyb3IgLTEyCgpsc3BjaXxncmVwIC1pIG52aWRpCjA4OjAw
-LjAgM0QgY29udHJvbGxlcjogTlZJRElBIENvcnBvcmF0aW9uIEdNMTA4R0xNIFtRdWFkcm8gSzYy
-ME1dIChyZXYgYTIpCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1297175184==
+Content-Type: multipart/alternative; boundary="14592875940.A8eadbD24.4445";
+ charset="UTF-8"
+
+
+--14592875940.A8eadbD24.4445
+Date: Tue, 29 Mar 2016 21:39:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=80901
+
+--- Comment #50 from Lars E Pettersson <lars-mDsk/mlFC80@public.gmane.org> ---
+Any news on this issue?
+
+I removed the lines mentioned in comment 39 to see what happens, and up goes
+the fan speed. I.e. the problem seem to still exist... :(
+
+Running kernel at the moment is:
+Linux tux.home.rpz 4.4.6-300.fc23.x86_64 #1 SMP Wed Mar 16 22:10:37 UTC 2016
+x86_64 x86_64 x86_64 GNU/Linux
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14592875940.A8eadbD24.4445
+Date: Tue, 29 Mar 2016 21:39:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c50">Comment # 50</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
+              from <span class="vcard"><a class="email" href="mailto:lars&#64;homer.se" title="Lars E Pettersson &lt;lars&#64;homer.se&gt;"> <span class="fn">Lars E Pettersson</span></a>
+</span></b>
+        <pre>Any news on this issue?
+
+I removed the lines mentioned in <a href="show_bug.cgi?id=80901#c39">comment 39</a> to see what happens, and up goes
+the fan speed. I.e. the problem seem to still exist... :(
+
+Running kernel at the moment is:
+Linux tux.home.rpz 4.4.6-300.fc23.x86_64 #1 SMP Wed Mar 16 22:10:37 UTC 2016
+x86_64 x86_64 x86_64 GNU/Linux</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14592875940.A8eadbD24.4445--
+
+--===============1297175184==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1297175184==--
