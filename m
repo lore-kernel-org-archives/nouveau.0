@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94757] powerpc64 & 64Kb kernel pagesize not working
  with nouveau
-Date: Wed, 30 Mar 2016 09:33:27 +0000
-Message-ID: <bug-94757-8800-DJaNT5pBNT@http.bugs.freedesktop.org/>
+Date: Wed, 30 Mar 2016 14:44:03 +0000
+Message-ID: <bug-94757-8800-ssxRSmG7ca@http.bugs.freedesktop.org/>
 References: <bug-94757-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1476800567=="
+Content-Type: multipart/mixed; boundary="===============1401272215=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1476800567==
-Content-Type: multipart/alternative; boundary="14593304071.d451.12520";
+--===============1401272215==
+Content-Type: multipart/alternative; boundary="14593490432.CAfF60.3784";
  charset="UTF-8"
 
 
---14593304071.d451.12520
-Date: Wed, 30 Mar 2016 09:33:27 +0000
+--14593490432.CAfF60.3784
+Date: Wed, 30 Mar 2016 14:44:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=94757
 
---- Comment #2 from Mathieu Malaterre <mathieu.malaterre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-As explained here:
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Unfortunately it's not just a switch to flip on. A lot of the current code is
+very confused about cpu pages vs gpu pages (which are always 4K). Also one
+would need a bunch of handling code to deal with sub-cpu-page-sized allocations
+on the GPU (or conversely just disallow those entirely).
 
-https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=790694#27
+Nouveau is known to not work properly on non-4K-cpu-page-size, at least with
+some GPUs (maybe even all).
 
-[...]
-I saw that bug report as well.  I'm not sure what to do about it -
-other distributions were also using 64K pages for 64-bit PowerPC the
-last time I looked, and there may be good reasons to do that.
-[...]
+AFAIK the benefits of using 64K-pages are virtually non-existent outside the
+HPC space (each cached 1 byte file takes up 64K of memory, so it goes a lot
+faster). But that's certainly not an argument for not supporting 64K pages in
+nouveau.
 
-So it would make sense to make nouveau capable of handling 64K pages for
-64-bits PowerPC.
+The argument for not supporting 64K pages is -ENOPATCH :) AFAIK benh tried for
+a while and failed. This was ~2y ago.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14593304071.d451.12520
-Date: Wed, 30 Mar 2016 09:33:27 +0000
+--14593490432.CAfF60.3784
+Date: Wed, 30 Mar 2016 14:44:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -65,25 +68,28 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - powerpc64 &amp; 64Kb kernel pagesize not working with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94757#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94757#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - powerpc64 &amp; 64Kb kernel pagesize not working with nouveau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=94757">bug 94757</a>
-              from <span class="vcard"><a class="email" href="mailto:mathieu.malaterre&#64;gmail.com" title="Mathieu Malaterre &lt;mathieu.malaterre&#64;gmail.com&gt;"> <span class="fn">Mathieu Malaterre</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>As explained here:
+        <pre>Unfortunately it's not just a switch to flip on. A lot of the current code is
+very confused about cpu pages vs gpu pages (which are always 4K). Also one
+would need a bunch of handling code to deal with sub-cpu-page-sized allocations
+on the GPU (or conversely just disallow those entirely).
 
-<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=790694#27">https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=790694#27</a>
+Nouveau is known to not work properly on non-4K-cpu-page-size, at least with
+some GPUs (maybe even all).
 
-[...]
-I saw that bug report as well.  I'm not sure what to do about it -
-other distributions were also using 64K pages for 64-bit PowerPC the
-last time I looked, and there may be good reasons to do that.
-[...]
+AFAIK the benefits of using 64K-pages are virtually non-existent outside the
+HPC space (each cached 1 byte file takes up 64K of memory, so it goes a lot
+faster). But that's certainly not an argument for not supporting 64K pages in
+nouveau.
 
-So it would make sense to make nouveau capable of handling 64K pages for
-64-bits PowerPC.</pre>
+The argument for not supporting 64K pages is -ENOPATCH :) AFAIK benh tried for
+a while and failed. This was ~2y ago.</pre>
         </div>
       </p>
       <hr>
@@ -94,9 +100,9 @@ So it would make sense to make nouveau capable of handling 64K pages for
       </ul>
     </body>
 </html>
---14593304071.d451.12520--
+--14593490432.CAfF60.3784--
 
---===============1476800567==
+--===============1401272215==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1476800567==--
+--===============1401272215==--
