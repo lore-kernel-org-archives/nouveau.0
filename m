@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80901] [NVCF] PWM fan speed too high
-Date: Tue, 29 Mar 2016 21:39:54 +0000
-Message-ID: <bug-80901-8800-1JQeC7ReXO@http.bugs.freedesktop.org/>
-References: <bug-80901-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94757] New: powerpc64 & 64Kb kernel pagesize not
+ working with nouveau
+Date: Wed, 30 Mar 2016 09:31:10 +0000
+Message-ID: <bug-94757-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1297175184=="
+Content-Type: multipart/mixed; boundary="===============1356291281=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +19,52 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1297175184==
-Content-Type: multipart/alternative; boundary="14592875940.A8eadbD24.4445";
+--===============1356291281==
+Content-Type: multipart/alternative; boundary="14593302701.Ebf5EA4fF.12195";
  charset="UTF-8"
 
 
---14592875940.A8eadbD24.4445
-Date: Tue, 29 Mar 2016 21:39:54 +0000
+--14593302701.Ebf5EA4fF.12195
+Date: Wed, 30 Mar 2016 09:31:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=80901
+https://bugs.freedesktop.org/show_bug.cgi?id=94757
 
---- Comment #50 from Lars E Pettersson <lars-mDsk/mlFC80@public.gmane.org> ---
-Any news on this issue?
+            Bug ID: 94757
+           Summary: powerpc64 & 64Kb kernel pagesize not working with
+                    nouveau
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: mathieu.malaterre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I removed the lines mentioned in comment 39 to see what happens, and up goes
-the fan speed. I.e. the problem seem to still exist... :(
+The recent Debian kernels for powerpc64 are configured with a 64Kb kernel
+pagesize.
+This works slightly better in terms of performance, however the nouveau display
+driver does not currently work kernel pagesizes other than 4Kb size when
+running XOrg and powerpc64. It works ok if only using the console though.
 
-Running kernel at the moment is:
-Linux tux.home.rpz 4.4.6-300.fc23.x86_64 #1 SMP Wed Mar 16 22:10:37 UTC 2016
-x86_64 x86_64 x86_64 GNU/Linux
+Currently, users must recompile the kernel unfortunately and configure with 4Kb
+kernel pagesize as this is what nouveau will only work with for now.
+This is a hindrance to making people want to adopt debian as their preffered
+linux distro with powerpc64 G5 powermac machines.
+
+Im currently running vanilla 3.18.16 configured with 4Kb and nouveau can be
+made to work without too many dramas.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14592875940.A8eadbD24.4445
-Date: Tue, 29 Mar 2016 21:39:54 +0000
+--14593302701.Ebf5EA4fF.12195
+Date: Wed, 30 Mar 2016 09:31:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -54,27 +72,102 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - powerpc64 &amp; 64Kb kernel pagesize not working with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94757">94757</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>powerpc64 &amp; 64Kb kernel pagesize not working with nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mathieu.malaterre&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVCF] PWM fan speed too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c50">Comment # 50</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVCF] PWM fan speed too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
-              from <span class="vcard"><a class="email" href="mailto:lars&#64;homer.se" title="Lars E Pettersson &lt;lars&#64;homer.se&gt;"> <span class="fn">Lars E Pettersson</span></a>
-</span></b>
-        <pre>Any news on this issue?
+        <pre>The recent Debian kernels for powerpc64 are configured with a 64Kb kernel
+pagesize.
+This works slightly better in terms of performance, however the nouveau display
+driver does not currently work kernel pagesizes other than 4Kb size when
+running XOrg and powerpc64. It works ok if only using the console though.
 
-I removed the lines mentioned in <a href="show_bug.cgi?id=80901#c39">comment 39</a> to see what happens, and up goes
-the fan speed. I.e. the problem seem to still exist... :(
+Currently, users must recompile the kernel unfortunately and configure with 4Kb
+kernel pagesize as this is what nouveau will only work with for now.
+This is a hindrance to making people want to adopt debian as their preffered
+linux distro with powerpc64 G5 powermac machines.
 
-Running kernel at the moment is:
-Linux tux.home.rpz 4.4.6-300.fc23.x86_64 #1 SMP Wed Mar 16 22:10:37 UTC 2016
-x86_64 x86_64 x86_64 GNU/Linux</pre>
+Im currently running vanilla 3.18.16 configured with 4Kb and nouveau can be
+made to work without too many dramas.</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +178,9 @@ x86_64 x86_64 x86_64 GNU/Linux</pre>
       </ul>
     </body>
 </html>
---14592875940.A8eadbD24.4445--
+--14593302701.Ebf5EA4fF.12195--
 
---===============1297175184==
+--===============1356291281==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +190,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1297175184==--
+--===============1356291281==--
