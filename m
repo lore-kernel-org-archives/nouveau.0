@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94757] powerpc64 & 64Kb kernel pagesize not working
- with nouveau
-Date: Thu, 31 Mar 2016 06:01:36 +0000
-Message-ID: <bug-94757-8800-VCCPYFwI2v@http.bugs.freedesktop.org/>
-References: <bug-94757-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] platform: disable probe of GM20B
+Date: Thu, 31 Mar 2016 18:03:03 +0900
+Message-ID: <1459414983-1388-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0451992907=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,77 +15,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0451992907==
-Content-Type: multipart/alternative; boundary="14594040961.7bEcb.10422";
- charset="UTF-8"
-
-
---14594040961.7bEcb.10422
-Date: Thu, 31 Mar 2016 06:01:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=94757
-
---- Comment #5 from Mathieu Malaterre <mathieu.malaterre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-As a side note, would it be possible to have a better error message. Something
-along:
-
-printk( "Sorry nouveau only support 4K pages" );
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14594040961.7bEcb.10422
-Date: Thu, 31 Mar 2016 06:01:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - powerpc64 &amp; 64Kb kernel pagesize not working with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94757#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - powerpc64 &amp; 64Kb kernel pagesize not working with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94757">bug 94757</a>
-              from <span class="vcard"><a class="email" href="mailto:mathieu.malaterre&#64;gmail.com" title="Mathieu Malaterre &lt;mathieu.malaterre&#64;gmail.com&gt;"> <span class="fn">Mathieu Malaterre</span></a>
-</span></b>
-        <pre>As a side note, would it be possible to have a better error message. Something
-along:
-
-printk( &quot;Sorry nouveau only support 4K pages&quot; );</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14594040961.7bEcb.10422--
-
---===============0451992907==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0451992907==--
+T24gNC42LCBwcm9iaW5nIEdNMjBCIHdpbGwgZnJlZXplIHRoZSBzeXN0ZW0gYmVjYXVzZSBvZiBh
+IG1pc3NpbmcgY2xvY2sKdGhhdCBOb3V2ZWF1IG11c3QgYWxzbyBlbmFibGUuIFNpbmNlIHRoZSBE
+VCBiaW5kaW5ncyBmb3IgdGhpcyBjbG9jawpkaWQgbm90IG1ha2UgaXQgaW4gdGltZSBmb3IgNC42
+LCBkaXNhYmxlIGl0IGZvciBub3cuCgpTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8
+YWNvdXJib3RAbnZpZGlhLmNvbT4KLS0tCkJlbiwgc29ycnkgZm9yIHRoYXQsIGJ1dCBjb3VsZCB5
+b3UgdGFrZSB0aGlzIGZvciBvbmUgb2YgdGhlIG5leHQgLXJjPyBJCndpbGwgcmUtZW5hYmxlIEdN
+MjBCIG9uY2UgdGhlIERUIGJpbmRpbmdzIGhhdmUgbGFuZGVkLiBUaGFua3MhCgogZHJtL25vdXZl
+YXUvbm91dmVhdV9wbGF0Zm9ybS5jIHwgNCAtLS0tCiAxIGZpbGUgY2hhbmdlZCwgNCBkZWxldGlv
+bnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9ub3V2ZWF1X3BsYXRmb3JtLmMgYi9kcm0v
+bm91dmVhdS9ub3V2ZWF1X3BsYXRmb3JtLmMKaW5kZXggMmRmZTU4YWYxMmU0Li5hZjllZTJkZTRj
+NGQgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L25vdXZlYXVfcGxhdGZvcm0uYworKysgYi9kcm0v
+bm91dmVhdS9ub3V2ZWF1X3BsYXRmb3JtLmMKQEAgLTYwLDEwICs2MCw2IEBAIHN0YXRpYyBjb25z
+dCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIG5vdXZlYXVfcGxhdGZvcm1fbWF0Y2hbXSA9IHsKIAkJLmNv
+bXBhdGlibGUgPSAibnZpZGlhLGdrMjBhIiwKIAkJLmRhdGEgPSAmZ2syMGFfcGxhdGZvcm1fZGF0
+YSwKIAl9LAotCXsKLQkJLmNvbXBhdGlibGUgPSAibnZpZGlhLGdtMjBiIiwKLQkJLmRhdGEgPSAm
+Z2syMGFfcGxhdGZvcm1fZGF0YSwKLQl9LAogCXsgfQogfTsKIAotLSAKMi43LjMKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
