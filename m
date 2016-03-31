@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
- after dynamic poweroff
-Date: Wed, 30 Mar 2016 22:22:55 +0000
-Message-ID: <bug-94725-8800-PEecD7zFLU@http.bugs.freedesktop.org/>
-References: <bug-94725-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94757] powerpc64 & 64Kb kernel pagesize not working
+ with nouveau
+Date: Thu, 31 Mar 2016 06:01:36 +0000
+Message-ID: <bug-94757-8800-VCCPYFwI2v@http.bugs.freedesktop.org/>
+References: <bug-94757-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1808875492=="
+Content-Type: multipart/mixed; boundary="===============0451992907=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1808875492==
-Content-Type: multipart/alternative; boundary="14593765750.d695A97b.26834";
+--===============0451992907==
+Content-Type: multipart/alternative; boundary="14594040961.7bEcb.10422";
  charset="UTF-8"
 
 
---14593765750.d695A97b.26834
-Date: Wed, 30 Mar 2016 22:22:55 +0000
+--14594040961.7bEcb.10422
+Date: Thu, 31 Mar 2016 06:01:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=94725
+https://bugs.freedesktop.org/show_bug.cgi?id=94757
 
-Efrem McCrimon <efremmc2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #5 from Mathieu Malaterre <mathieu.malaterre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+As a side note, would it be possible to have a better error message. Something
+along:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |efremmc2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #5 from Efrem McCrimon <efremmc2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have the same problem with a GM206, GTX 960. I have to recycle the computer
-twice.
+printk( "Sorry nouveau only support 4K pages" );
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14593765750.d695A97b.26834
-Date: Wed, 30 Mar 2016 22:22:55 +0000
+--14594040961.7bEcb.10422
+Date: Thu, 31 Mar 2016 06:01:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -55,42 +51,23 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:efremmc2&#64;gmail.com" title="Efrem McCrimon &lt;efremmc2&#64;gmail.com&gt;"> <span class="fn">Efrem McCrimon</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver fails to poweron GPU on GM204 after dynamic poweroff"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94725">bug 94725</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>efremmc2&#64;gmail.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Nouveau driver fails to poweron GPU on GM204 after dynamic poweroff"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94725#c5">Comment # 5</a>
+   title="NEW - powerpc64 &amp; 64Kb kernel pagesize not working with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94757#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Nouveau driver fails to poweron GPU on GM204 after dynamic poweroff"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94725">bug 94725</a>
-              from <span class="vcard"><a class="email" href="mailto:efremmc2&#64;gmail.com" title="Efrem McCrimon &lt;efremmc2&#64;gmail.com&gt;"> <span class="fn">Efrem McCrimon</span></a>
+   title="NEW - powerpc64 &amp; 64Kb kernel pagesize not working with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94757">bug 94757</a>
+              from <span class="vcard"><a class="email" href="mailto:mathieu.malaterre&#64;gmail.com" title="Mathieu Malaterre &lt;mathieu.malaterre&#64;gmail.com&gt;"> <span class="fn">Mathieu Malaterre</span></a>
 </span></b>
-        <pre>I have the same problem with a GM206, GTX 960. I have to recycle the computer
-twice.</pre>
+        <pre>As a side note, would it be possible to have a better error message. Something
+along:
+
+printk( &quot;Sorry nouveau only support 4K pages&quot; );</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +78,9 @@ twice.</pre>
       </ul>
     </body>
 </html>
---14593765750.d695A97b.26834--
+--14594040961.7bEcb.10422--
 
---===============1808875492==
+--===============0451992907==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1808875492==--
+--===============0451992907==--
