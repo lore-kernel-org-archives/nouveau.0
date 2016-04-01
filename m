@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
- after dynamic poweroff
-Date: Fri, 01 Apr 2016 03:22:04 +0000
-Message-ID: <bug-94725-8800-a9T8PAqlxM@http.bugs.freedesktop.org/>
-References: <bug-94725-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] devinit/gf100: make devinit on resume safer
+Date: Fri, 1 Apr 2016 15:40:59 +0900
+Message-ID: <1459492859-12194-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1507457339=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,71 +15,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1507457339==
-Content-Type: multipart/alternative; boundary="14594809241.98E7D3ceC.23600";
- charset="UTF-8"
-
-
---14594809241.98E7D3ceC.23600
-Date: Fri, 1 Apr 2016 03:22:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=94725
-
---- Comment #7 from Dave Airlie <airlied-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
-can you try booting with acpi_osi="!Windows 2013" on the kernel command line.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14594809241.98E7D3ceC.23600
-Date: Fri, 1 Apr 2016 03:22:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver fails to poweron GPU on GM204 after dynamic poweroff"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94725#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver fails to poweron GPU on GM204 after dynamic poweroff"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94725">bug 94725</a>
-              from <span class="vcard"><a class="email" href="mailto:airlied&#64;freedesktop.org" title="Dave Airlie &lt;airlied&#64;freedesktop.org&gt;"> <span class="fn">Dave Airlie</span></a>
-</span></b>
-        <pre>can you try booting with acpi_osi=&quot;!Windows 2013&quot; on the kernel command line.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14594809241.98E7D3ceC.23600--
-
---===============1507457339==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1507457339==--
+SW4gY2FzZSBvZiBzdWNjZXNzZnVsIHN1c3BlbmQsIGRldmluaXQgd2lsbCBoYXZlIHRvIGJlIHJ1
+biBhbmQgdGhpcyBpcwp0aGUgYmVoYXZpb3IgY3VycmVudGx5IGhhcmRjb2RlZC4gSG93ZXZlciwg
+YXMgRkQgYnVnIDk0NzI1IHN1Z2dlc3RzLAp0aGVyZSBtaWdodCBiZSBjYXNlcyB3aGVyZSBydW50
+aW1lIHN1c3BlbmQgbGVhdmVzIHRoZSBHUFUgcG93ZXJlZCwgYW5kCmluIHN1Y2ggY2FzZXMgZGV2
+aW5pdCBzaG91bGQgbm90IGJlIHJ1biBvbiByZXN1bWUuCgpPbiBHRjEwMCsgd2UgaGF2ZSBhIHJl
+bGlhYmxlIHdheSB0byBrbm93IHdoZXRoZXIgd2UgbmVlZCB0byBydW4gZGV2aW5pdC4KVXNlIGl0
+IGluc3RlYWQgb2YgYmxpbmRseSB0cnVzdGluZyB0aGUgZmxhZyBzZXQgYnkgbnZrbV9kZXZpbml0
+X2ZpbmkoKS4KClRoZSBjb2RlIGFyb3VuZCB0aGUgTnZGb3JjZVBvc3QgYWxzbyBuZWVkcyB0byBi
+ZSBzbGlnaHRseSByZXdvcmtlZCBpbgpvcmRlciB0byBrZWVwIHdvcmtpbmcuCgpTaWduZWQtb2Zm
+LWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KU3VnZ2VzdGVkLWJ5
+OiBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPgpTdWdnZXN0ZWQtYnk6IEthcm9sIEhl
+cmJzdCA8bm91dmVhdUBrYXJvbGhlcmJzdC5kZT4KLS0tCiBkcm0vbm91dmVhdS9pbmNsdWRlL252
+a20vc3ViZGV2L2RldmluaXQuaCB8IDEgKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZGV2aW5p
+dC9iYXNlLmMgICAgfCA4ICsrKysrKystCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9kZXZpbml0
+L2dmMTAwLmMgICB8IDggKysrKystLS0KIDMgZmlsZXMgY2hhbmdlZCwgMTMgaW5zZXJ0aW9ucygr
+KSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20v
+c3ViZGV2L2RldmluaXQuaCBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvZGV2aW5p
+dC5oCmluZGV4IDE5MzYyNmM2OTUxNy4uNzA5ZDc4NmYxODA4IDEwMDY0NAotLS0gYS9kcm0vbm91
+dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2RldmluaXQuaAorKysgYi9kcm0vbm91dmVhdS9pbmNs
+dWRlL252a20vc3ViZGV2L2RldmluaXQuaApAQCAtNyw2ICs3LDcgQEAgc3RydWN0IG52a21fZGV2
+aW5pdCB7CiAJY29uc3Qgc3RydWN0IG52a21fZGV2aW5pdF9mdW5jICpmdW5jOwogCXN0cnVjdCBu
+dmttX3N1YmRldiBzdWJkZXY7CiAJYm9vbCBwb3N0OworCWJvb2wgZm9yY2VfcG9zdDsKIH07CiAK
+IHUzMiBudmttX2RldmluaXRfbW1pbyhzdHJ1Y3QgbnZrbV9kZXZpbml0ICosIHUzMiBhZGRyKTsK
+ZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2RldmluaXQvYmFzZS5jIGIvZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvZGV2aW5pdC9iYXNlLmMKaW5kZXggNWYyNTQwMmY2YjA5Li45
+ZWRkNTM3NzNhMTkgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2RldmluaXQv
+YmFzZS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2RldmluaXQvYmFzZS5jCkBAIC04
+Myw2ICs4MywxMiBAQCBudmttX2RldmluaXRfcHJlaW5pdChzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1
+YmRldikKIAlpZiAoaW5pdC0+ZnVuYy0+cHJlaW5pdCkKIAkJaW5pdC0+ZnVuYy0+cHJlaW5pdChp
+bml0KTsKIAorCS8qIE92ZXJyaWRlIHRoZSBwb3N0IGZsYWcgZHVyaW5nIHRoZSBmaXJzdCBjYWxs
+IGlmIE52Rm9yY2VQb3N0IGlzIHNldCAqLworCWlmIChpbml0LT5mb3JjZV9wb3N0KSB7CisJCWlu
+aXQtPnBvc3QgPSBpbml0LT5mb3JjZV9wb3N0OworCQlpbml0LT5mb3JjZV9wb3N0ID0gZmFsc2U7
+CisJfQorCiAJLyogdW5sb2NrIHRoZSBleHRlbmRlZCB2Z2EgY3J0YyByZWdzICovCiAJbnZrbV9s
+b2NrdmdhYyhzdWJkZXYtPmRldmljZSwgZmFsc2UpOwogCXJldHVybiAwOwpAQCAtMTI2LDUgKzEz
+Miw1IEBAIG52a21fZGV2aW5pdF9jdG9yKGNvbnN0IHN0cnVjdCBudmttX2RldmluaXRfZnVuYyAq
+ZnVuYywKIHsKIAludmttX3N1YmRldl9jdG9yKCZudmttX2RldmluaXQsIGRldmljZSwgaW5kZXgs
+IDAsICZpbml0LT5zdWJkZXYpOwogCWluaXQtPmZ1bmMgPSBmdW5jOwotCWluaXQtPnBvc3QgPSBu
+dmttX2Jvb2xvcHQoZGV2aWNlLT5jZmdvcHQsICJOdkZvcmNlUG9zdCIsIGZhbHNlKTsKKwlpbml0
+LT5mb3JjZV9wb3N0ID0gbnZrbV9ib29sb3B0KGRldmljZS0+Y2Znb3B0LCAiTnZGb3JjZVBvc3Qi
+LCBmYWxzZSk7CiB9CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9kZXZpbml0
+L2dmMTAwLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9kZXZpbml0L2dmMTAwLmMKaW5kZXgg
+MjkyMzU5OGI1ZmU5Li44YjFiMzRjM2FkMjYgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20v
+c3ViZGV2L2RldmluaXQvZ2YxMDAuYworKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9kZXZp
+bml0L2dmMTAwLmMKQEAgLTk3LDkgKzk3LDExIEBAIGdmMTAwX2RldmluaXRfcHJlaW5pdChzdHJ1
+Y3QgbnZrbV9kZXZpbml0ICpiYXNlKQogCXN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gJmlu
+aXQtPmJhc2Uuc3ViZGV2OwogCXN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlID0gc3ViZGV2LT5k
+ZXZpY2U7CiAKLQkvKiBUaGlzIGJpdCBpcyBzZXQgYnkgZGV2aW5pdCwgYW5kIGZsaXBzIGJhY2sg
+dG8gMCBvbiBzdXNwZW5kICovCi0JaWYgKCFiYXNlLT5wb3N0KQotCQliYXNlLT5wb3N0ID0gKChu
+dmttX3JkMzIoZGV2aWNlLCAweDIyNDBjKSAmIEJJVCgxKSkgPT0gMCk7CisJLyoKKwkgKiBUaGlz
+IGJpdCBpcyBzZXQgYnkgZGV2aW5pdCwgYW5kIGZsaXBzIGJhY2sgdG8gMCBvbiBzdXNwZW5kLiBX
+ZQorCSAqIGNhbiB1c2UgaXQgYXMgYSByZWxpYWJsZSB3YXkgdG8ga25vdyB3aGV0aGVyIHdlIHNo
+b3VsZCBydW4gZGV2aW5pdC4KKwkgKi8KKwliYXNlLT5wb3N0ID0gKChudmttX3JkMzIoZGV2aWNl
+LCAweDIyNDBjKSAmIEJJVCgxKSkgPT0gMCk7CiB9CiAKIHN0YXRpYyBjb25zdCBzdHJ1Y3QgbnZr
+bV9kZXZpbml0X2Z1bmMKLS0gCjIuNy4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
