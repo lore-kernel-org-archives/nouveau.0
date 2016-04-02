@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
- after dynamic poweroff
-Date: Fri, 01 Apr 2016 15:17:34 +0000
-Message-ID: <bug-94725-8800-0111GoOQVN@http.bugs.freedesktop.org/>
-References: <bug-94725-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94803] New: nouveau bug crashes kernel 4.4.6 on warm
+	boot
+Date: Sat, 02 Apr 2016 23:14:46 +0000
+Message-ID: <bug-94803-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1760706419=="
+Content-Type: multipart/mixed; boundary="===============0395969367=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,57 +19,56 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1760706419==
-Content-Type: multipart/alternative; boundary="14595238540.3FbbabDC.27063";
+--===============0395969367==
+Content-Type: multipart/alternative; boundary="14596388861.3Cb4A.17598";
  charset="UTF-8"
 
 
---14595238540.3FbbabDC.27063
-Date: Fri, 1 Apr 2016 15:17:34 +0000
+--14596388861.3Cb4A.17598
+Date: Sat, 2 Apr 2016 23:14:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=94725
+https://bugs.freedesktop.org/show_bug.cgi?id=94803
 
---- Comment #13 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
-(In reply to Rashed Abdel-Tawab from comment #10)
-> Created attachment 122654 [details]
-> dmesg using tentative fix
-> 
-> Alexandre, using the tentative fix you uploaded it switches GPUs properly
-> now. Here is the dmesg from that since there are still some errors related
-> to power state in it. Also, for some reason lshw is returning this for the
-> nVidia GPU now:
-> 
-> *-generic
->                 description: Unassigned class
->                 product: Illegal Vendor ID
->                 vendor: Illegal Vendor ID
->                 physical id: 0
->                 bus info: pci@0000:01:00.0
->                 version: ff
->                 width: 32 bits
->                 clock: 66MHz
->                 capabilities: bus_master vga_palette cap_list rom
->                 configuration: driver=nouveau latency=255 maxlatency=255
-> mingnt=255
->                 resources: irq:129 memory:dc000000-dcffffff
-> memory:b0000000-bfffffff memory:c0000000-c1ffffff ioport:e000(size=128)
-> memory:dd000000-dd07ffff
-> 
-> I don't know if that's related to this at all but before, if I set runpm=0
-> and run lshw, it would return the proper description (running it without
-> runpm would cause the system to hang)
+            Bug ID: 94803
+           Summary: nouveau bug crashes kernel 4.4.6 on warm boot
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: mic.daum-Mmb7MZpHnFY@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I have the same issue with bbswitch (and maybe vgaswitcheroo too). Basically
-this means that in d3cold we can't talke to the gpu and the information isn't
-cached or something like that.
+Created attachment 122684
+  --> https://bugs.freedesktop.org/attachment.cgi?id=122684&action=edit
+picture from stack trace taken with camera
+
+Whenever doing a warm boot (reboot), kernel 4.4.6 crashes showing the stack
+trace in the attached picture. The kernel boots fine when doing a cold start or
+after pressing the reset button.
+
+The GPU in question is a "PNY Quadro FX 580" (Tesla / G96) with two attached
+monitors, both connected on display port.
+
+The crash happens quite early when the kernel sets mode on the framebuffer.
+Resolution is set to 1920x1200 px, 240x75 cols/lines.
+
+attached:
+
+picture of the screen showing the stack trace
+dump of "nv50_disp_intr_supervisor" function from the 4.4.6 vmlinux
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14595238540.3FbbabDC.27063
-Date: Fri, 1 Apr 2016 15:17:34 +0000
+--14596388861.3Cb4A.17598
+Date: Sat, 2 Apr 2016 23:14:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -79,51 +76,106 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau bug crashes kernel 4.4.6 on warm boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94803">94803</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nouveau bug crashes kernel 4.4.6 on warm boot
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mic.daum&#64;gmx.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver fails to poweron GPU on GM204 after dynamic poweroff"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94725#c13">Comment # 13</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver fails to poweron GPU on GM204 after dynamic poweroff"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94725">bug 94725</a>
-              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
-</span></b>
-        <pre>(In reply to Rashed Abdel-Tawab from <a href="show_bug.cgi?id=94725#c10">comment #10</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=122654" name="attach_122654" title="dmesg using tentative fix">attachment 122654</a> <a href="attachment.cgi?id=122654&amp;action=edit" title="dmesg using tentative fix">[details]</a></span>
-&gt; dmesg using tentative fix
-&gt; 
-&gt; Alexandre, using the tentative fix you uploaded it switches GPUs properly
-&gt; now. Here is the dmesg from that since there are still some errors related
-&gt; to power state in it. Also, for some reason lshw is returning this for the
-&gt; nVidia GPU now:
-&gt; 
-&gt; *-generic
-&gt;                 description: Unassigned class
-&gt;                 product: Illegal Vendor ID
-&gt;                 vendor: Illegal Vendor ID
-&gt;                 physical id: 0
-&gt;                 bus info: pci&#64;0000:01:00.0
-&gt;                 version: ff
-&gt;                 width: 32 bits
-&gt;                 clock: 66MHz
-&gt;                 capabilities: bus_master vga_palette cap_list rom
-&gt;                 configuration: driver=nouveau latency=255 maxlatency=255
-&gt; mingnt=255
-&gt;                 resources: irq:129 memory:dc000000-dcffffff
-&gt; memory:b0000000-bfffffff memory:c0000000-c1ffffff ioport:e000(size=128)
-&gt; memory:dd000000-dd07ffff
-&gt; 
-&gt; I don't know if that's related to this at all but before, if I set runpm=0
-&gt; and run lshw, it would return the proper description (running it without
-&gt; runpm would cause the system to hang)</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=122684" name="attach_122684" title="picture from stack trace taken with camera">attachment 122684</a> <a href="attachment.cgi?id=122684&amp;action=edit" title="picture from stack trace taken with camera">[details]</a></span>
+picture from stack trace taken with camera
 
-I have the same issue with bbswitch (and maybe vgaswitcheroo too). Basically
-this means that in d3cold we can't talke to the gpu and the information isn't
-cached or something like that.</pre>
+Whenever doing a warm boot (reboot), kernel 4.4.6 crashes showing the stack
+trace in the attached picture. The kernel boots fine when doing a cold start or
+after pressing the reset button.
+
+The GPU in question is a &quot;PNY Quadro FX 580&quot; (Tesla / G96) with two attached
+monitors, both connected on display port.
+
+The crash happens quite early when the kernel sets mode on the framebuffer.
+Resolution is set to 1920x1200 px, 240x75 cols/lines.
+
+attached:
+
+picture of the screen showing the stack trace
+dump of &quot;nv50_disp_intr_supervisor&quot; function from the 4.4.6 vmlinux</pre>
         </div>
       </p>
       <hr>
@@ -134,9 +186,9 @@ cached or something like that.</pre>
       </ul>
     </body>
 </html>
---14595238540.3FbbabDC.27063--
+--14596388861.3Cb4A.17598--
 
---===============1760706419==
+--===============0395969367==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +198,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1760706419==--
+--===============0395969367==--
