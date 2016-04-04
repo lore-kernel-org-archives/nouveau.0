@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
- GT]: HDMI monitor stays black after s2ram
-Date: Mon, 04 Apr 2016 18:33:40 +0000
-Message-ID: <bug-93887-8800-HxLvUsw59I@http.bugs.freedesktop.org/>
-References: <bug-93887-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69882] [NVE6] GPU lockups
+Date: Mon, 04 Apr 2016 20:39:35 +0000
+Message-ID: <bug-69882-8800-0BFXdEYfHY@http.bugs.freedesktop.org/>
+References: <bug-69882-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0623224118=="
+Content-Type: multipart/mixed; boundary="===============1940649165=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69882-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0623224118==
-Content-Type: multipart/alternative; boundary="14597948202.C29D.23910";
+--===============1940649165==
+Content-Type: multipart/alternative; boundary="14598023751.CDFaFc.18576";
  charset="UTF-8"
 
 
---14597948202.C29D.23910
-Date: Mon, 4 Apr 2016 18:33:40 +0000
+--14598023751.CDFaFc.18576
+Date: Mon, 4 Apr 2016 20:39:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93887
+https://bugs.freedesktop.org/show_bug.cgi?id=69882
 
---- Comment #16 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-confirmed with 4.6.0-rc2-ARCH-00004-g603539d on an Amilo Xi 3650; after resume
-from s2ram it still recognizes the plug and unplug events (screencfg popup
-shown) but the external monitor stays black across plugs and unplugs.
+--- Comment #19 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
+Is always xembedsniproxy involved in the crash? If so, it might be worth to do
+a mmt until it crashes and check what it is actually doing.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14597948202.C29D.23910
-Date: Mon, 4 Apr 2016 18:33:40 +0000
+--14598023751.CDFaFc.18576
+Date: Mon, 4 Apr 2016 20:39:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -54,18 +52,17 @@ Content-Type: text/html
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c16">Comment # 16</a>
+          bz_status_REOPENED "
+   title="REOPENED - [NVE6] GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882#c19">Comment # 19</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
-              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+          bz_status_REOPENED "
+   title="REOPENED - [NVE6] GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882">bug 69882</a>
+              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
 </span></b>
-        <pre>confirmed with 4.6.0-rc2-ARCH-00004-g603539d on an Amilo Xi 3650; after resume
-from s2ram it still recognizes the plug and unplug events (screencfg popup
-shown) but the external monitor stays black across plugs and unplugs.</pre>
+        <pre>Is always xembedsniproxy involved in the crash? If so, it might be worth to do
+a mmt until it crashes and check what it is actually doing.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +73,9 @@ shown) but the external monitor stays black across plugs and unplugs.</pre>
       </ul>
     </body>
 </html>
---14597948202.C29D.23910--
+--14598023751.CDFaFc.18576--
 
---===============0623224118==
+--===============1940649165==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +85,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0623224118==--
+--===============1940649165==--
