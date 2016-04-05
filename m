@@ -1,10 +1,13 @@
-From: Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: a few questions about OpenGL and nouveau
-Date: Tue, 5 Apr 2016 14:38:57 -0400
-Message-ID: <CANbfre7Pb3fCVm21YdiHrw3QUXmyTVd7u9kMtG3VZTb0AeckiA@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: a few questions about OpenGL and nouveau
+Date: Tue, 5 Apr 2016 14:54:50 -0400
+Message-ID: <CAKb7UvjJJxWAnbw7qdofKW7WpdtWKce-OsSLCTZeAe_KZGQAOw@mail.gmail.com>
+References: <CANbfre7Pb3fCVm21YdiHrw3QUXmyTVd7u9kMtG3VZTb0AeckiA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0476532202=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CANbfre7Pb3fCVm21YdiHrw3QUXmyTVd7u9kMtG3VZTb0AeckiA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -14,144 +17,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0476532202==
-Content-Type: multipart/alternative; boundary=001a113a74f67cb5fb052fc1280d
-
---001a113a74f67cb5fb052fc1280d
-Content-Type: text/plain; charset=UTF-8
-
-Hi... I know... glBegin/glEnd is deprecated but I have an old computer
-32bit CPU,
-running fedora 19, mesa-9.2.4, NV63... any help are welcomed.
-
-Please forgive if I misuderstood everything.
-
-So I have a simple OpenGL program that draws a black background and a white
-line... I will write the code of myline() inside of main() so as I can
-learn.
-
-main (..) {
-X and glX stuff...
-
-/* at this moment I think what was sent to the card was the
-nv30_screen_create(...)
-that valgrind--mmt outputs 0x4e000 in the first line of valgrind--mmt hex
-until
-PUSH_DATA (push, NV05_SIFM_COLOR_CONVERSION_TRUNCATE); which happens to be
-line 65
-of valgrind--mmt output */
-
-glViewport(...);
-
-void mydrawline(void)
-{
-    glClearColor(0.0, 0.0, 0.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-/* at this point I guess it ends up calling nv30_clear(...) which calls
-BEGIN_NV04(push, NV30_3D(CLEAR_DEPTH_VALUE), 3); and the valgrind--mmt
-output is
-0xcfd8c in line 281 of the valgrind-mmt's output file.
-As I can see there is 215 lines (from 66 to 280) of valgrind--mmt that I do
-not know
-from where is it coming. I could dig in nv30_state_validate(...) but at
-this moment I
-think nv30->dirty is 0 so validate->func(nv30) is not called. Help,
-please.*/
-
-
-/* This I guess is mesa stuff... */
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0, 300, 0, 300, -1, 1);
-    glMatrixMode(GL_MODELVIEW);
-
-/*Here another question. Does glBegin end up calling a driver code like
-BEGIN_NV04(...) that instructs the card to get the next 3 floats for color
-more 3 for the first vertex and another 3 for the other? Also at this moment
-the video card memory is already mapped (I guess...) so are these floats
-fetched
-by the pusher of the card and draw the line, possibly when glXSwapBuffers
-is called?
-Is the glColor(...) (the three floats) stored in the mmapped twice, one for
-each
-vertex? HELP I'M LOST :( This mine consideration is wrong... I guess...
-st_draw.c
-coments that all "rendering" is done through st_draw_vbo() which would end
-up
-calling nv30_draw_vbo() which would send data to the card... but where is
-the
-missing link?? The floats (for the vertices and color) are already mapped by
-ctx->Driver.MapBufferRange...*/
-
-    glBegin(GL_LINES);
-    glColor3f(1.0, 1.0, 1.0);
-    glVertex3f(0.0f, 0.0f, 0.0f);
-    glVertex3f(50.0f, 50.0f, 1.0f);
-    glEnd();
-}
-
-glXSwapBuffers();
-}
-
-Thanks in advance.
-
---001a113a74f67cb5fb052fc1280d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi... I know... glBegin/glEnd is deprecated but I have an =
-old computer 32bit CPU,<br>running fedora 19, mesa-9.2.4, NV63... any help =
-are welcomed.<br><br>Please forgive if I misuderstood everything.<br><br>So=
- I have a simple OpenGL program that draws a black background and a white<b=
-r>line... I will write the code of myline() inside of main() so as I can le=
-arn.<br><br>main (..) {<br>X and glX stuff...<br><br>/* at this moment I th=
-ink what was sent to the card was the nv30_screen_create(...)<br>that valgr=
-ind--mmt outputs 0x4e000 in the first line of valgrind--mmt hex until<br>PU=
-SH_DATA (push, NV05_SIFM_COLOR_CONVERSION_TRUNCATE); which happens to be li=
-ne 65<br>of valgrind--mmt output */<br><br>glViewport(...);<br><br>void myd=
-rawline(void)<br>{<br>=C2=A0=C2=A0=C2=A0 glClearColor(0.0, 0.0, 0.0, 1.0);<=
-br>=C2=A0=C2=A0=C2=A0 glClear(GL_COLOR_BUFFER_BIT);<br><br>/* at this point=
- I guess it ends up calling nv30_clear(...) which calls<br>BEGIN_NV04(push,=
- NV30_3D(CLEAR_DEPTH_VALUE), 3); and the valgrind--mmt output is<br>0xcfd8c=
- in line 281 of the valgrind-mmt&#39;s output file. <br>As I can see there =
-is 215 lines (from 66 to 280) of valgrind--mmt that I do not know<br>from w=
-here is it coming. I could dig in nv30_state_validate(...) but at this mome=
-nt I<br>think nv30-&gt;dirty is 0 so validate-&gt;func(nv30) is not called.=
- Help, please.*/<br><br><br>/* This I guess is mesa stuff... */<br>=C2=A0=
-=C2=A0=C2=A0 glMatrixMode(GL_PROJECTION);<br>=C2=A0=C2=A0=C2=A0 glLoadIdent=
-ity();<br>=C2=A0=C2=A0=C2=A0 glOrtho(0, 300, 0, 300, -1, 1);<br>=C2=A0=C2=
-=A0=C2=A0 glMatrixMode(GL_MODELVIEW);<br><br>/*Here another question. Does =
-glBegin end up calling a driver code like<br>BEGIN_NV04(...) that instructs=
- the card to get the next 3 floats for color<br>more 3 for the first vertex=
- and another 3 for the other? Also at this moment<br>the video card memory =
-is already mapped (I guess...) so are these floats fetched<br>by the pusher=
- of the card and draw the line, possibly when glXSwapBuffers is called?<br>=
-Is the glColor(...) (the three floats) stored in the mmapped twice, one for=
- each<br>vertex? HELP I&#39;M LOST :( This mine consideration is wrong... I=
- guess... st_draw.c<br>coments that all &quot;rendering&quot; is done throu=
-gh st_draw_vbo() which would end up<br>calling nv30_draw_vbo() which would =
-send data to the card... but where is the<br>missing link?? The floats (for=
- the vertices and color) are already mapped by<br>ctx-&gt;Driver.MapBufferR=
-ange...*/<br><br>=C2=A0=C2=A0=C2=A0 glBegin(GL_LINES);<br>=C2=A0=C2=A0=C2=
-=A0 glColor3f(1.0, 1.0, 1.0);<br>=C2=A0=C2=A0=C2=A0 glVertex3f(0.0f, 0.0f, =
-0.0f);<br>=C2=A0=C2=A0=C2=A0 glVertex3f(50.0f, 50.0f, 1.0f);<br>=C2=A0=C2=
-=A0=C2=A0 glEnd();<br>}<br><br>glXSwapBuffers();<br>}<br><br>Thanks in adva=
-nce.<br></div>
-
---001a113a74f67cb5fb052fc1280d--
-
---===============0476532202==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0476532202==--
+T24gVHVlLCBBcHIgNSwgMjAxNiBhdCAyOjM4IFBNLCBEYW5pZWwgTWVsbyBKb3JnZSBkYSBDdW5o
+YQo8ZG1qY3VuaGFAZ21haWwuY29tPiB3cm90ZToKPiBIaS4uLiBJIGtub3cuLi4gZ2xCZWdpbi9n
+bEVuZCBpcyBkZXByZWNhdGVkIGJ1dCBJIGhhdmUgYW4gb2xkIGNvbXB1dGVyIDMyYml0Cj4gQ1BV
+LAo+IHJ1bm5pbmcgZmVkb3JhIDE5LCBtZXNhLTkuMi40LCBOVjYzLi4uIGFueSBoZWxwIGFyZSB3
+ZWxjb21lZC4KCkkndmUgZml4ZWQgYSAqdG9uKiBvZiBudjN4L252NHggaXNzdWVzIHNpbmNlIHRo
+ZW4sIEknZCByZWNvbW1lbmQKZ2l2aW5nIE1lc2EgMTEuMi4wIGEgd2hpcmwuCgo+Cj4gUGxlYXNl
+IGZvcmdpdmUgaWYgSSBtaXN1ZGVyc3Rvb2QgZXZlcnl0aGluZy4KPgo+IFNvIEkgaGF2ZSBhIHNp
+bXBsZSBPcGVuR0wgcHJvZ3JhbSB0aGF0IGRyYXdzIGEgYmxhY2sgYmFja2dyb3VuZCBhbmQgYSB3
+aGl0ZQo+IGxpbmUuLi4gSSB3aWxsIHdyaXRlIHRoZSBjb2RlIG9mIG15bGluZSgpIGluc2lkZSBv
+ZiBtYWluKCkgc28gYXMgSSBjYW4KPiBsZWFybi4KPgo+IG1haW4gKC4uKSB7Cj4gWCBhbmQgZ2xY
+IHN0dWZmLi4uCj4KPiAvKiBhdCB0aGlzIG1vbWVudCBJIHRoaW5rIHdoYXQgd2FzIHNlbnQgdG8g
+dGhlIGNhcmQgd2FzIHRoZQo+IG52MzBfc2NyZWVuX2NyZWF0ZSguLi4pCj4gdGhhdCB2YWxncmlu
+ZC0tbW10IG91dHB1dHMgMHg0ZTAwMCBpbiB0aGUgZmlyc3QgbGluZSBvZiB2YWxncmluZC0tbW10
+IGhleAo+IHVudGlsCgpZb3UnbGwgd2FudCB0byB1c2UgZGVtbXQsIHBhcnQgb2YgZW52eXRvb2xz
+LiBJdCBzaG91bGQgYXV0by1kZWNvZGUKc3R1ZmYuIElmIGl0IGRvZXNuJ3QsIGxldCBtZSBrbm93
+IChhbmQgc2VuZCBtZSB0aGUgbW10KS4KCj4gUFVTSF9EQVRBIChwdXNoLCBOVjA1X1NJRk1fQ09M
+T1JfQ09OVkVSU0lPTl9UUlVOQ0FURSk7IHdoaWNoIGhhcHBlbnMgdG8gYmUKPiBsaW5lIDY1Cj4g
+b2YgdmFsZ3JpbmQtLW1tdCBvdXRwdXQgKi8KPgo+IGdsVmlld3BvcnQoLi4uKTsKPgo+IHZvaWQg
+bXlkcmF3bGluZSh2b2lkKQo+IHsKPiAgICAgZ2xDbGVhckNvbG9yKDAuMCwgMC4wLCAwLjAsIDEu
+MCk7Cj4gICAgIGdsQ2xlYXIoR0xfQ09MT1JfQlVGRkVSX0JJVCk7Cj4KPiAvKiBhdCB0aGlzIHBv
+aW50IEkgZ3Vlc3MgaXQgZW5kcyB1cCBjYWxsaW5nIG52MzBfY2xlYXIoLi4uKSB3aGljaCBjYWxs
+cwo+IEJFR0lOX05WMDQocHVzaCwgTlYzMF8zRChDTEVBUl9ERVBUSF9WQUxVRSksIDMpOyBhbmQg
+dGhlIHZhbGdyaW5kLS1tbXQKPiBvdXRwdXQgaXMKPiAweGNmZDhjIGluIGxpbmUgMjgxIG9mIHRo
+ZSB2YWxncmluZC1tbXQncyBvdXRwdXQgZmlsZS4KPiBBcyBJIGNhbiBzZWUgdGhlcmUgaXMgMjE1
+IGxpbmVzIChmcm9tIDY2IHRvIDI4MCkgb2YgdmFsZ3JpbmQtLW1tdCB0aGF0IEkgZG8KPiBub3Qg
+a25vdwo+IGZyb20gd2hlcmUgaXMgaXQgY29taW5nLiBJIGNvdWxkIGRpZyBpbiBudjMwX3N0YXRl
+X3ZhbGlkYXRlKC4uLikgYnV0IGF0IHRoaXMKPiBtb21lbnQgSQo+IHRoaW5rIG52MzAtPmRpcnR5
+IGlzIDAgc28gdmFsaWRhdGUtPmZ1bmMobnYzMCkgaXMgbm90IGNhbGxlZC4gSGVscCwKPiBwbGVh
+c2UuKi8KCmRpcnR5IGRlZmluaXRlbHkgc2hvdWxkbid0IGJlIDAuLi4gaXQgaGFzIHRvIGJpbmQg
+YSBmcmFtZWJ1ZmZlciBhdCBsZWFzdC4KCj4KPgo+IC8qIFRoaXMgSSBndWVzcyBpcyBtZXNhIHN0
+dWZmLi4uICovCj4gICAgIGdsTWF0cml4TW9kZShHTF9QUk9KRUNUSU9OKTsKPiAgICAgZ2xMb2Fk
+SWRlbnRpdHkoKTsKPiAgICAgZ2xPcnRobygwLCAzMDAsIDAsIDMwMCwgLTEsIDEpOwo+ICAgICBn
+bE1hdHJpeE1vZGUoR0xfTU9ERUxWSUVXKTsKPgo+IC8qSGVyZSBhbm90aGVyIHF1ZXN0aW9uLiBE
+b2VzIGdsQmVnaW4gZW5kIHVwIGNhbGxpbmcgYSBkcml2ZXIgY29kZSBsaWtlCj4gQkVHSU5fTlYw
+NCguLi4pIHRoYXQgaW5zdHJ1Y3RzIHRoZSBjYXJkIHRvIGdldCB0aGUgbmV4dCAzIGZsb2F0cyBm
+b3IgY29sb3IKPiBtb3JlIDMgZm9yIHRoZSBmaXJzdCB2ZXJ0ZXggYW5kIGFub3RoZXIgMyBmb3Ig
+dGhlIG90aGVyPyBBbHNvIGF0IHRoaXMgbW9tZW50Cj4gdGhlIHZpZGVvIGNhcmQgbWVtb3J5IGlz
+IGFscmVhZHkgbWFwcGVkIChJIGd1ZXNzLi4uKSBzbyBhcmUgdGhlc2UgZmxvYXRzCj4gZmV0Y2hl
+ZAo+IGJ5IHRoZSBwdXNoZXIgb2YgdGhlIGNhcmQgYW5kIGRyYXcgdGhlIGxpbmUsIHBvc3NpYmx5
+IHdoZW4gZ2xYU3dhcEJ1ZmZlcnMgaXMKPiBjYWxsZWQ/Cj4gSXMgdGhlIGdsQ29sb3IoLi4uKSAo
+dGhlIHRocmVlIGZsb2F0cykgc3RvcmVkIGluIHRoZSBtbWFwcGVkIHR3aWNlLCBvbmUgZm9yCj4g
+ZWFjaAo+IHZlcnRleD8KCkkgdGhpbmssIGJ1dCBhbSBub3Qgc3VyZSwgdGhhdCBpdCB3aWxsIGNv
+bWUgaW4gYXMgYSBjb25zdGFudCBhdHRyaWJ1dGUKKGkuZS4gYSBWQk8gYXR0cmlidXRlIHdpdGgg
+c3RyaWRlIDApLgoKPiBIRUxQIEknTSBMT1NUIDooIFRoaXMgbWluZSBjb25zaWRlcmF0aW9uIGlz
+IHdyb25nLi4uIEkgZ3Vlc3MuLi4KPiBzdF9kcmF3LmMKPiBjb21lbnRzIHRoYXQgYWxsICJyZW5k
+ZXJpbmciIGlzIGRvbmUgdGhyb3VnaCBzdF9kcmF3X3ZibygpIHdoaWNoIHdvdWxkIGVuZAo+IHVw
+Cj4gY2FsbGluZyBudjMwX2RyYXdfdmJvKCkgd2hpY2ggd291bGQgc2VuZCBkYXRhIHRvIHRoZSBj
+YXJkLi4uIGJ1dCB3aGVyZSBpcwo+IHRoZQo+IG1pc3NpbmcgbGluaz8/IFRoZSBmbG9hdHMgKGZv
+ciB0aGUgdmVydGljZXMgYW5kIGNvbG9yKSBhcmUgYWxyZWFkeSBtYXBwZWQgYnkKPiBjdHgtPkRy
+aXZlci5NYXBCdWZmZXJSYW5nZS4uLiovCgpUaGUgZ2FsbGl1bSBzdGF0ZSB0cmFja2VyIGRvZXMg
+bm90IHN1cHBvcnQgaW1tZWRpYXRlIHZlcnRleApzdWJtaXNzaW9uLiBUaGVyZSdzIGEgInZibyIg
+bGF5ZXIgaW4gZnJvbnQgb2YgaXQgd2hpY2ggY29udmVydHMKaW1tZWRpYXRlIHZlcnRleCBzdWJt
+aXNzaW9ucyBpbnRvIHdyaXRlcyB0byBhIFZCTywgd2hpY2ggaXMgdGhlbiBib3VuZAphbmQgZHJh
+d24gd2l0aC4KCllvdSBtYXkgYmUgaW50ZXJlc3RlZCBpbiBkb2luZyBHQUxMSVVNX1RSQUNFPWZv
+by54bWwgW29uIGEgZGVidWcgbWVzYQpidWlsZF0gd2hpY2ggd2lsbCBjcmVhdGUgYW4geG1sIGZp
+bGUgb2YgYWxsIHRoZSBzdGF0ZSB0cmFja2VyIGNhbGxzLgpJdCB3aWxsIHNob3cgeW91IHRoZSBW
+Qk8gc2V0dXAsIGV0Yy4KClN0YXRlIGlzIG9ubHkgZW1pdHRlZCBhdCBkcmF3IHRpbWUgKG9yIHNv
+bWV0aGluZyBsaWtlIGJsaXRzLCBjbGVhcnMsCmV0YykuIFNvIGRvaW5nIGdsVmlld3BvcnQoKSBk
+b2VzIG5vdGhpbmcuIEl0IGRpcnRpZXMgaW50ZXJuYWwgc3RhdGUsCndoaWNoIGlzIHRoZW4gZW1p
+dHRlZCBhdCBkcmF3IHRpbWUuCgpUQkggSSdtIG5vdCBzdXJlIHdoYXQgeW91ciBhY3R1YWwgcXVl
+c3Rpb24gaXMuLi4gYnV0IGhvcGUgSSd2ZQphbnN3ZXJlZCBhdCBsZWFzdCBzb21lIG9mIGl0PwoK
+ICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
