@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 79518] nouveau causes lockup and reboot on GT215
-Date: Wed, 06 Apr 2016 18:02:37 +0000
-Message-ID: <bug-79518-8800-uosH9AWFjq@http.bugs.freedesktop.org/>
+Date: Wed, 06 Apr 2016 18:07:25 +0000
+Message-ID: <bug-79518-8800-1iPXXx04la@http.bugs.freedesktop.org/>
 References: <bug-79518-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2103623896=="
+Content-Type: multipart/mixed; boundary="===============0103415735=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-79518-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,32 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2103623896==
-Content-Type: multipart/alternative; boundary="14599657571.c41BAE9.8988";
+--===============0103415735==
+Content-Type: multipart/alternative; boundary="14599660452.21AceC24.10638";
  charset="UTF-8"
 
 
---14599657571.c41BAE9.8988
-Date: Wed, 6 Apr 2016 18:02:37 +0000
+--14599660452.21AceC24.10638
+Date: Wed, 6 Apr 2016 18:07:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=79518
 
---- Comment #3 from Adam Borowski <kilobyte-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org> ---
-Created attachment 122773
-  --> https://bugs.freedesktop.org/attachment.cgi?id=122773&action=edit
-a non-tainted dump (serial console)
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Was there anything before the tlb flush timeout error? Unfortunately I have no
+clue why those timeouts happen... basically it's an indication that the GPU is
+"done". You could disable GL stuff for chromium, either launching it with
+LIBGL_ALWAYS_SOFTWARE=1 or by disabling stuff in about:flags.
 
-Found a way to trigger it: while on 4.6-rc2 nothing during normal work or GL
-stuff causes the crash anymore, something Chromium does always causes a crash
-nearly instantly.  So here's a non-tainted serial console dump.
+Perhaps the memory comes up in a (slightly) funny state? You could try
+reclocking it and see if that improves matters, have a look in
+/sys/kernel/debug/dri/0/pstate for the available perf levels, you can echo
+those values in to change states.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14599657571.c41BAE9.8988
-Date: Wed, 6 Apr 2016 18:02:37 +0000
+--14599660452.21AceC24.10638
+Date: Wed, 6 Apr 2016 18:07:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -59,19 +61,22 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau causes lockup and reboot on GT215"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79518#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79518#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau causes lockup and reboot on GT215"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=79518">bug 79518</a>
-              from <span class="vcard"><a class="email" href="mailto:kilobyte&#64;angband.pl" title="Adam Borowski &lt;kilobyte&#64;angband.pl&gt;"> <span class="fn">Adam Borowski</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=122773" name="attach_122773" title="a non-tainted dump (serial console)">attachment 122773</a> <a href="attachment.cgi?id=122773&amp;action=edit" title="a non-tainted dump (serial console)">[details]</a></span>
-a non-tainted dump (serial console)
+        <pre>Was there anything before the tlb flush timeout error? Unfortunately I have no
+clue why those timeouts happen... basically it's an indication that the GPU is
+&quot;done&quot;. You could disable GL stuff for chromium, either launching it with
+LIBGL_ALWAYS_SOFTWARE=1 or by disabling stuff in about:flags.
 
-Found a way to trigger it: while on 4.6-rc2 nothing during normal work or GL
-stuff causes the crash anymore, something Chromium does always causes a crash
-nearly instantly.  So here's a non-tainted serial console dump.</pre>
+Perhaps the memory comes up in a (slightly) funny state? You could try
+reclocking it and see if that improves matters, have a look in
+/sys/kernel/debug/dri/0/pstate for the available perf levels, you can echo
+those values in to change states.</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +87,9 @@ nearly instantly.  So here's a non-tainted serial console dump.</pre>
       </ul>
     </body>
 </html>
---14599657571.c41BAE9.8988--
+--14599660452.21AceC24.10638--
 
---===============2103623896==
+--===============0103415735==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -94,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2103623896==--
+--===============0103415735==--
