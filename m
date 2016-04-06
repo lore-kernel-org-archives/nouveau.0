@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
- after dynamic poweroff
-Date: Wed, 06 Apr 2016 12:08:28 +0000
-Message-ID: <bug-94725-8800-SCH9uD7zF8@http.bugs.freedesktop.org/>
-References: <bug-94725-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94844] New: Ditching xf86-video-nouveau in favor of
+ xf86-video-modesetting?
+Date: Wed, 06 Apr 2016 12:22:58 +0000
+Message-ID: <bug-94844-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1409217710=="
+Content-Type: multipart/mixed; boundary="===============1592414694=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +19,53 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1409217710==
-Content-Type: multipart/alternative; boundary="14599445081.5BbCDf57A.25409";
+--===============1592414694==
+Content-Type: multipart/alternative; boundary="14599453781.7224a9f.29204";
  charset="UTF-8"
 
 
---14599445081.5BbCDf57A.25409
-Date: Wed, 6 Apr 2016 12:08:28 +0000
+--14599453781.7224a9f.29204
+Date: Wed, 6 Apr 2016 12:22:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=94725
+https://bugs.freedesktop.org/show_bug.cgi?id=94844
 
---- Comment #18 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
-uhh the card seems pretty much messed up after resume, because several things
-just fail.
+            Bug ID: 94844
+           Summary: Ditching xf86-video-nouveau in favor of
+                    xf86-video-modesetting?
+           Product: xorg
+           Version: unspecified
+          Hardware: All
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: nw9165-3201-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Hello,
+
+according to the discussion in the following Phoronix forum thread:
+
+https://www.phoronix.com/forums/forum/phoronix/latest-phoronix-articles/863332-intel-s-unreleased-3-0-x-org-driver-gets-more-fixes-for-dri3-present
+
+the generic xf86-video-modesetting DDX driver included in xorg-server seems to
+be better than most vendor specific xf86-video- drivers.
+
+I am wondering:
+
+Then why not ditch xf86-video-nouveau in favor of xf86-video-modesetting?
+
+Regards
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14599445081.5BbCDf57A.25409
-Date: Wed, 6 Apr 2016 12:08:28 +0000
+--14599453781.7224a9f.29204
+Date: Wed, 6 Apr 2016 12:22:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -49,21 +73,103 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Ditching xf86-video-nouveau in favor of xf86-video-modesetting?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94844">94844</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Ditching xf86-video-nouveau in favor of xf86-video-modesetting?
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>nw9165-3201&#64;yahoo.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver fails to poweron GPU on GM204 after dynamic poweroff"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94725#c18">Comment # 18</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver fails to poweron GPU on GM204 after dynamic poweroff"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94725">bug 94725</a>
-              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
-</span></b>
-        <pre>uhh the card seems pretty much messed up after resume, because several things
-just fail.</pre>
+        <pre>Hello,
+
+according to the discussion in the following Phoronix forum thread:
+
+<a href="https://www.phoronix.com/forums/forum/phoronix/latest-phoronix-articles/863332-intel-s-unreleased-3-0-x-org-driver-gets-more-fixes-for-dri3-present">https://www.phoronix.com/forums/forum/phoronix/latest-phoronix-articles/863332-intel-s-unreleased-3-0-x-org-driver-gets-more-fixes-for-dri3-present</a>
+
+the generic xf86-video-modesetting DDX driver included in xorg-server seems to
+be better than most vendor specific xf86-video- drivers.
+
+I am wondering:
+
+Then why not ditch xf86-video-nouveau in favor of xf86-video-modesetting?
+
+Regards</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +180,9 @@ just fail.</pre>
       </ul>
     </body>
 </html>
---14599445081.5BbCDf57A.25409--
+--14599453781.7224a9f.29204--
 
---===============1409217710==
+--===============1592414694==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +192,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1409217710==--
+--===============1592414694==--
