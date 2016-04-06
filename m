@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94844] Ditching xf86-video-nouveau in favor of
- xf86-video-modesetting?
-Date: Wed, 06 Apr 2016 13:33:16 +0000
-Message-ID: <bug-94844-8800-q9ylzGpLrP@http.bugs.freedesktop.org/>
-References: <bug-94844-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 79518] nouveau causes lockup and reboot on GT215
+Date: Wed, 06 Apr 2016 18:02:37 +0000
+Message-ID: <bug-79518-8800-uosH9AWFjq@http.bugs.freedesktop.org/>
+References: <bug-79518-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1045894170=="
+Content-Type: multipart/mixed; boundary="===============2103623896=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94844-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-79518-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1045894170==
-Content-Type: multipart/alternative; boundary="14599495960.446DC99b.12341";
+--===============2103623896==
+Content-Type: multipart/alternative; boundary="14599657571.c41BAE9.8988";
  charset="UTF-8"
 
 
---14599495960.446DC99b.12341
-Date: Wed, 6 Apr 2016 13:33:16 +0000
+--14599657571.c41BAE9.8988
+Date: Wed, 6 Apr 2016 18:02:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=94844
+https://bugs.freedesktop.org/show_bug.cgi?id=79518
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-https://xkcd.com/386/
+--- Comment #3 from Adam Borowski <kilobyte-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org> ---
+Created attachment 122773
+  --> https://bugs.freedesktop.org/attachment.cgi?id=122773&action=edit
+a non-tainted dump (serial console)
 
-(a) GLAMOR accel would only work on G80+, nouveau supports Riva TNT2 and up.
-(b) xf86-video-nouveau is well tested and simple, the GL driver is complex and
-causes crashes for a lot of people
-(c) Many people choose not to install nouveau's GL driver (for improved
-stability), would now be stuck without acceleration
-(d) GLAMOR happens to trigger some bugs in nouveau's GL impl that I've been
-unable to track down
-
-Look at all the trouble Maxwell has had as a result of not having a dedicated
-EXA impl in xf86-video-nouveau and being stuck with modesetting/glamor.
+Found a way to trigger it: while on 4.6-rc2 nothing during normal work or GL
+stuff causes the crash anymore, something Chromium does always causes a crash
+nearly instantly.  So here's a non-tainted serial console dump.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14599495960.446DC99b.12341
-Date: Wed, 6 Apr 2016 13:33:16 +0000
+--14599657571.c41BAE9.8988
+Date: Wed, 6 Apr 2016 18:02:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -63,27 +57,21 @@ Content-Type: text/html
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - Ditching xf86-video-nouveau in favor of xf86-video-modesetting?"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94844#c2">Comment # 2</a>
+          bz_status_NEW "
+   title="NEW - nouveau causes lockup and reboot on GT215"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79518#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - Ditching xf86-video-nouveau in favor of xf86-video-modesetting?"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94844">bug 94844</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW - nouveau causes lockup and reboot on GT215"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79518">bug 79518</a>
+              from <span class="vcard"><a class="email" href="mailto:kilobyte&#64;angband.pl" title="Adam Borowski &lt;kilobyte&#64;angband.pl&gt;"> <span class="fn">Adam Borowski</span></a>
 </span></b>
-        <pre><a href="https://xkcd.com/386/">https://xkcd.com/386/</a>
+        <pre>Created <span class=""><a href="attachment.cgi?id=122773" name="attach_122773" title="a non-tainted dump (serial console)">attachment 122773</a> <a href="attachment.cgi?id=122773&amp;action=edit" title="a non-tainted dump (serial console)">[details]</a></span>
+a non-tainted dump (serial console)
 
-(a) GLAMOR accel would only work on G80+, nouveau supports Riva TNT2 and up.
-(b) xf86-video-nouveau is well tested and simple, the GL driver is complex and
-causes crashes for a lot of people
-(c) Many people choose not to install nouveau's GL driver (for improved
-stability), would now be stuck without acceleration
-(d) GLAMOR happens to trigger some bugs in nouveau's GL impl that I've been
-unable to track down
-
-Look at all the trouble Maxwell has had as a result of not having a dedicated
-EXA impl in xf86-video-nouveau and being stuck with modesetting/glamor.</pre>
+Found a way to trigger it: while on 4.6-rc2 nothing during normal work or GL
+stuff causes the crash anymore, something Chromium does always causes a crash
+nearly instantly.  So here's a non-tainted serial console dump.</pre>
         </div>
       </p>
       <hr>
@@ -94,9 +82,9 @@ EXA impl in xf86-video-nouveau and being stuck with modesetting/glamor.</pre>
       </ul>
     </body>
 </html>
---14599495960.446DC99b.12341--
+--14599657571.c41BAE9.8988--
 
---===============1045894170==
+--===============2103623896==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1045894170==--
+--===============2103623896==--
