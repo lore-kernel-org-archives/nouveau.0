@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH] nouveau: codegen: Take src swizzle into
-	account on loads
-Date: Thu, 7 Apr 2016 09:58:30 -0400
-Message-ID: <CAKb7Uvhf=6TngukZe976+fX2zibE6U4D05zYOUEj_F5mCVKOBA@mail.gmail.com>
-References: <1460035648-3804-1-git-send-email-hdegoede@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94844] Ditching xf86-video-nouveau in favor of
+ xf86-video-modesetting?
+Date: Thu, 07 Apr 2016 17:16:35 +0000
+Message-ID: <bug-94844-8800-YaTwdqnlgy@http.bugs.freedesktop.org/>
+References: <bug-94844-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1431709565=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1460035648-3804-1-git-send-email-hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-94844-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,43 +17,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhhdCdzIHdyb25nLiBUaGUgc3BlYyBmb3IgdGhlIGluc3RydWN0aW9uIG5lZWRzIHRvIGJlIGNs
-YXJpZmllZC4uLgpUaGUgY3VycmVudCBub3V2ZWF1IGltcGwgaXMgY29ycmVjdCAtIG9ubHkgdGhl
-IC54IG9mIHRoZSBhZGRyZXNzCnNob3VsZCBiZSBsb2FkZWQsIHdpdGggdXAgdG8gMTYgYnl0ZXMg
-cmVhZCBpbnRvIHRoZSBkZXN0aW5hdGlvbi4KCk9uIFRodSwgQXByIDcsIDIwMTYgYXQgOToyNyBB
-TSwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4gd3JvdGU6Cj4gVGhlIGxsdm0g
-VEdTSSBiYWNrZW5kIGRvZXMgdGhpbmdzIGxpa2U6Cj4KPiBMT0FEIFRFTVBbMF0ueSwgTUVNT1JZ
-WzBdLnh4eHgsIFRFTVBbMF0ueAo+Cj4gRXhwZWN0aW5nIHRoZSBkYXRhIGF0IGFkZHJlc3MgVEVN
-UFswXS54IHRvIGdldCBsb2FkZWQgdG8KPiBURU1QWzBdLnkuIEJlZm9yZSB0aGlzIGNvbW1pdCB0
-aGUgZGF0YSBhdCBURU1QWzBdLnggKyA0IHdvdWxkIGJlCj4gbG9hZGVkIGluc3RlYWQuIFRoaXMg
-Y29tbWl0IGZpeGVzIHRoaXMuCj4KPiBTaWduZWQtb2ZmLWJ5OiBIYW5zIGRlIEdvZWRlIDxoZGVn
-b2VkZUByZWRoYXQuY29tPgo+IC0tLQo+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29k
-ZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAgfCA4ICsrKysrKy0tCj4gIDEgZmlsZSBjaGFuZ2Vk
-LCA2IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvc3JjL2dh
-bGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwIGIvc3Jj
-L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4g
-aW5kZXggNTU3NjA4ZS4uY2M1MWY1YSAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJz
-L25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPiArKysgYi9zcmMvZ2FsbGl1
-bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPiBAQCAtMjI3
-OSwxMiArMjI3OSwxNiBAQCBDb252ZXJ0ZXI6OmhhbmRsZUxPQUQoVmFsdWUgKmRzdDBbNF0pCj4K
-PiAgICAgICAgICAgVmFsdWUgKm9mZiA9IGZldGNoU3JjKDEsIGMpOwo+ICAgICAgICAgICBTeW1i
-b2wgKnN5bTsKPiArICAgICAgICAgdWludDMyX3Qgc3JjMF9jb21wb25lbnRfb2Zmc2V0ID0gdGdz
-aS5nZXRTcmMoMCkuZ2V0U3dpenpsZShjKSAqIDQ7Cj4gKwo+ICAgICAgICAgICBpZiAodGdzaS5n
-ZXRTcmMoMSkuZ2V0RmlsZSgpID09IFRHU0lfRklMRV9JTU1FRElBVEUpIHsKPiAgICAgICAgICAg
-ICAgb2ZmID0gTlVMTDsKPiAgICAgICAgICAgICAgc3ltID0gbWFrZVN5bSh0Z3NpLmdldFNyYygw
-KS5nZXRGaWxlKCksIHIsIC0xLCBjLAo+IC0gICAgICAgICAgICAgICAgICAgICAgICAgIHRnc2ku
-Z2V0U3JjKDEpLmdldFZhbHVlVTMyKDAsIGluZm8pICsgNCAqIGMpOwo+ICsgICAgICAgICAgICAg
-ICAgICAgICAgICAgIHRnc2kuZ2V0U3JjKDEpLmdldFZhbHVlVTMyKDAsIGluZm8pICsKPiArICAg
-ICAgICAgICAgICAgICAgICAgICAgICBzcmMwX2NvbXBvbmVudF9vZmZzZXQpOwo+ICAgICAgICAg
-ICB9IGVsc2Ugewo+IC0gICAgICAgICAgICBzeW0gPSBtYWtlU3ltKHRnc2kuZ2V0U3JjKDApLmdl
-dEZpbGUoKSwgciwgLTEsIGMsIDQgKiBjKTsKPiArICAgICAgICAgICAgc3ltID0gbWFrZVN5bSh0
-Z3NpLmdldFNyYygwKS5nZXRGaWxlKCksIHIsIC0xLCBjLAo+ICsgICAgICAgICAgICAgICAgICAg
-ICAgICAgIHNyYzBfY29tcG9uZW50X29mZnNldCk7Cj4gICAgICAgICAgIH0KPgo+ICAgICAgICAg
-ICBJbnN0cnVjdGlvbiAqbGQgPSBta0xvYWQoVFlQRV9VMzIsIGRzdDBbY10sIHN5bSwgb2ZmKTsK
-PiAtLQo+IDIuNy4zCj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1431709565==
+Content-Type: multipart/alternative; boundary="14600493951.fAf1.8776";
+ charset="UTF-8"
+
+
+--14600493951.fAf1.8776
+Date: Thu, 7 Apr 2016 17:16:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=94844
+
+--- Comment #4 from nw9165-3201-/E1597aS9LQAvxtiuMwx3w@public.gmane.org ---
+This has made it to the news, see:
+
+http://www.phoronix.com/scan.php?page=news_item&px=Nouveau-Vs-Modesetting
+
+;D
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14600493951.fAf1.8776
+Date: Thu, 7 Apr 2016 17:16:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - Ditching xf86-video-nouveau in favor of xf86-video-modesetting?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94844#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - Ditching xf86-video-nouveau in favor of xf86-video-modesetting?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94844">bug 94844</a>
+              from <span class="vcard"><a class="email" href="mailto:nw9165-3201&#64;yahoo.com" title="nw9165-3201&#64;yahoo.com">nw9165-3201&#64;yahoo.com</a>
+</span></b>
+        <pre>This has made it to the news, see:
+
+<a href="http://www.phoronix.com/scan.php?page=news_item&amp;px=Nouveau-Vs-Modesetting">http://www.phoronix.com/scan.php?page=news_item&amp;px=Nouveau-Vs-Modesetting</a>
+
+;D</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14600493951.fAf1.8776--
+
+--===============1431709565==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1431709565==--
