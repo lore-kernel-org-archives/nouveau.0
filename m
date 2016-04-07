@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94844] Ditching xf86-video-nouveau in favor of
- xf86-video-modesetting?
-Date: Thu, 07 Apr 2016 17:16:35 +0000
-Message-ID: <bug-94844-8800-YaTwdqnlgy@http.bugs.freedesktop.org/>
-References: <bug-94844-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: glmark2: high CPU usage - DRI3 & modeset
+Date: Thu, 7 Apr 2016 22:04:25 +0200
+Message-ID: <5706BD49.7090308@gmail.com>
+References: <57064ADC.6070703@gmail.com>
+ <2037513278.20001.1460033460821.JavaMail.open-xchange@www.ud-mail.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1431709565=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94844-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <2037513278.20001.1460033460821.JavaMail.open-xchange-KNm3LHm9FEhKTQ5g00o1eQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,79 +18,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <karol-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1431709565==
-Content-Type: multipart/alternative; boundary="14600493951.fAf1.8776";
- charset="UTF-8"
-
-
---14600493951.fAf1.8776
-Date: Thu, 7 Apr 2016 17:16:35 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=94844
-
---- Comment #4 from nw9165-3201-/E1597aS9LQAvxtiuMwx3w@public.gmane.org ---
-This has made it to the news, see:
-
-http://www.phoronix.com/scan.php?page=news_item&px=Nouveau-Vs-Modesetting
-
-;D
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14600493951.fAf1.8776
-Date: Thu, 7 Apr 2016 17:16:35 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - Ditching xf86-video-nouveau in favor of xf86-video-modesetting?"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94844#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - Ditching xf86-video-nouveau in favor of xf86-video-modesetting?"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94844">bug 94844</a>
-              from <span class="vcard"><a class="email" href="mailto:nw9165-3201&#64;yahoo.com" title="nw9165-3201&#64;yahoo.com">nw9165-3201&#64;yahoo.com</a>
-</span></b>
-        <pre>This has made it to the news, see:
-
-<a href="http://www.phoronix.com/scan.php?page=news_item&amp;px=Nouveau-Vs-Modesetting">http://www.phoronix.com/scan.php?page=news_item&amp;px=Nouveau-Vs-Modesetting</a>
-
-;D</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14600493951.fAf1.8776--
-
---===============1431709565==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1431709565==--
+T24gMDcuMDQuMjAxNiAxNDo1MSwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+IGRpZCB0aGUgdGVzdCBy
+ZXN1bHQgY2hhbmdlZCBpbiBhbnkgd2F5PyBNYXliZSB0aGUgRFJJMiBydW4gd2FzIHZzeW5jZWQg
+YW5kIHRoZQo+IERSSTMgbm90Pwo+IE5vdXZlYXUgaGFzIGEgcHJldHR5IGhpZ2ggY3B1IHVzYWdl
+IGluIGdlbmVyYWwsIGJlY2F1c2UgaXQgdXN1YWxseSBidXN5IHdhaXRzIG9uCj4gZmVuY2VzIChJ
+IHRoaW5rPyBub3Qgc3VyZSB3aGVyZSBpdCB3YXMgZXhhY3RseSB0aGF0IG5vdXZlYXUgaXMgYnVz
+eSB3YWl0aW5nKQo+IAo+PiBwb21hIDxwb21pZG9yYWJlbGlzaW1hQGdtYWlsLmNvbT4gaGF0IGFt
+IDcuIEFwcmlsIDIwMTYgdW0gMTM6NTYgZ2VzY2hyaWViZW46Cj4+Cj4+Cj4+Cj4+ICQgZ2xtYXJr
+Mgo+PiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09Cj4+ICAgICBnbG1hcmsyIDIwMTQuMDMKPj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PQo+PiAgICAgT3BlbkdMIEluZm9ybWF0aW9uCj4+
+ICAgICBHTF9WRU5ET1I6ICAgICBub3V2ZWF1Cj4+ICAgICBHTF9SRU5ERVJFUjogICBHYWxsaXVt
+IDAuNCBvbiBOVjk4Cj4+ICAgICBHTF9WRVJTSU9OOiAgICAzLjAgTWVzYSAxMS4yLjAKPj4gPT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQo+Pgo+
+Pgo+PiAvZXRjL1gxMS94b3JnLmNvbmYuZC9ub3V2ZWF1LmNvbmYgCj4+IFNlY3Rpb24gIkRldmlj
+ZSIKPj4gICBJZGVudGlmaWVyICAiZ3B1MCIKPj4gICBEcml2ZXIgICAgICAibm91dmVhdSIKPj4g
+RW5kU2VjdGlvbgo+Pgo+PiAkIHBzIC1DIGdsbWFyazIgLW8gY21kLHBjcHUKPj4gQ01EICAgICAg
+ICAgICAgICAgICAgICAgICAgICVDUFUKPj4gZ2xtYXJrMiAgICAgICAgICAgICAgICAgICAgIDE2
+LjIKPj4KPj4gfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+Cj4+Cj4+IC9ldGMvWDEx
+L3hvcmcuY29uZi5kL25vdXZlYXUuY29uZiAKPj4gU2VjdGlvbiAiRGV2aWNlIgo+PiAgIElkZW50
+aWZpZXIgICJncHUwIgo+PiAgIERyaXZlciAgICAgICJub3V2ZWF1Igo+PiAgIE9wdGlvbiAgICAg
+ICJEUkkiICIzIgo+PiBFbmRTZWN0aW9uCj4+Cj4+ICQgcHMgLUMgZ2xtYXJrMiAtbyBjbWQscGNw
+dQo+PiBDTUQgICAgICAgICAgICAgICAgICAgICAgICAgJUNQVQo+PiBnbG1hcmsyICAgICAgICAg
+ICAgICAgICAgICAgODYuNAo+Pgo+PiB+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn4K
+Pj4KPj4gL2V0Yy9YMTEveG9yZy5jb25mLmQvbW9kZXNldC5jb25mIAo+PiBTZWN0aW9uICJEZXZp
+Y2UiCj4+ICAgSWRlbnRpZmllciAgImdwdTAiCj4+ICAgRHJpdmVyICAgICAgIm1vZGVzZXR0aW5n
+Igo+PiBFbmRTZWN0aW9uCj4+Cj4+ICQgcHMgLUMgZ2xtYXJrMiAtbyBjbWQscGNwdQo+PiBDTUQg
+ICAgICAgICAgICAgICAgICAgICAgICAgJUNQVQo+PiBnbG1hcmsyICAgICAgICAgICAgICAgICAg
+ICAgOTQuNQo+PgoKCid2YmxhbmtfbW9kZT0wIGdsbWFyazInIG1ha2VzIG5vIGRpZmZlcmVuY2Uu
+CgpBIC1mZW5jZS0gYXMgYSBzeW5jIG9iamVjdD8KaHR0cHM6Ly93d3cub3BlbmdsLm9yZy93aWtp
+L1N5bmNfT2JqZWN0I0ZlbmNlCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cg==
