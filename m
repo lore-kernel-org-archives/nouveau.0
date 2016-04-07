@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94757] powerpc64 & 64Kb kernel pagesize not working
  with nouveau
-Date: Wed, 06 Apr 2016 22:05:04 +0000
-Message-ID: <bug-94757-8800-hL1gBXX4Qe@http.bugs.freedesktop.org/>
+Date: Thu, 07 Apr 2016 05:56:49 +0000
+Message-ID: <bug-94757-8800-qrpszzRUcg@http.bugs.freedesktop.org/>
 References: <bug-94757-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0354503393=="
+Content-Type: multipart/mixed; boundary="===============1952107584=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94757-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0354503393==
-Content-Type: multipart/alternative; boundary="14599803030.De5bB96.1530";
+--===============1952107584==
+Content-Type: multipart/alternative; boundary="14600086092.4B5eF33c.11096";
  charset="UTF-8"
 
 
---14599803030.De5bB96.1530
-Date: Wed, 6 Apr 2016 22:05:03 +0000
+--14600086092.4B5eF33c.11096
+Date: Thu, 7 Apr 2016 05:56:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=94757
 
---- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have a WIP chunk of work which will hopefully address this issue as a
-side-effect.  It's not ready for general consumption yet, but I'll update the
-bug once it is.
+Mathieu Malaterre <mathieu.malaterre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                URL|                            |https://bugs.debian.org/790
+                   |                            |690
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14599803030.De5bB96.1530
-Date: Wed, 6 Apr 2016 22:05:03 +0000
+--14600086092.4B5eF33c.11096
+Date: Thu, 7 Apr 2016 05:56:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -50,23 +52,29 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - powerpc64 &amp; 64Kb kernel pagesize not working with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94757#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:mathieu.malaterre&#64;gmail.com" title="Mathieu Malaterre &lt;mathieu.malaterre&#64;gmail.com&gt;"> <span class="fn">Mathieu Malaterre</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - powerpc64 &amp; 64Kb kernel pagesize not working with nouveau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=94757">bug 94757</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>I have a WIP chunk of work which will hopefully address this issue as a
-side-effect.  It's not ready for general consumption yet, but I'll update the
-bug once it is.</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">URL</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugs.debian.org/790690
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +84,9 @@ bug once it is.</pre>
       </ul>
     </body>
 </html>
---14599803030.De5bB96.1530--
+--14600086092.4B5eF33c.11096--
 
---===============0354503393==
+--===============1952107584==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0354503393==--
+--===============1952107584==--
