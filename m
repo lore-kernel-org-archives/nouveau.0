@@ -1,196 +1,272 @@
-From: Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [PATCH mesa v2 1/2] nouveau: codegen: Use
- FILE_MEMORY_BUFFER for buffers
-Date: Fri, 8 Apr 2016 12:17:53 +0200
-Message-ID: <57078551.1080703@redhat.com>
-References: <1458230823-25213-1-git-send-email-hdegoede@redhat.com>
- <56F31455.4010905@gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH] nouveau: codegen: Take src swizzle into
+	account on loads
+Date: Fri, 8 Apr 2016 09:56:17 -0400
+Message-ID: <CAKb7UvjvWrs1bS1S6Q-SEgSoSWLOEZOhTiJbVoAoqpVQR27jWA@mail.gmail.com>
+References: <1460035648-3804-1-git-send-email-hdegoede@redhat.com>
+ <CAKb7Uvhf=6TngukZe976+fX2zibE6U4D05zYOUEj_F5mCVKOBA@mail.gmail.com>
+ <5707797B.4040708@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <56F31455.4010905@gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Samuel Pitoiset <samuel.pitoiset@gmail.com>, Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0357545580=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <5707797B.4040708-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpPbiAyMy0wMy0xNiAyMzoxMCwgU2FtdWVsIFBpdG9pc2V0IHdyb3RlOgo+IEFyZSB5b3Ug
-c3VyZSB0aGlzIHdvbid0IGJyZWFrIGNvbXB1dGUgc2hhZGVycyBvbiBmZXJtaT8KPiBDb3VsZCB5
-b3UgcGxlYXNlIGRvdWJsZS1jaGVjayB0aGF0PwoKSSBqdXN0IGNoZWNrZWQ6Cgpsc3BjaToKMDE6
-MDAuMCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVyOiBOVklESUEgQ29ycG9yYXRpb24gR0YxMTkg
-W0dlRm9yY2UgR1QgNjEwXSAocmV2IGExKQoKQmVmb3JlIHRoaXMgcGF0Y2gtc2V0OgoKW2hhbnNA
-cGxhbmsgcGlnbGl0XSQgLi9waWdsaXQgcnVuIC1vIHNoYWRlciAtdCAnLiphcmJfc2hhZGVyX3N0
-b3JhZ2VfYnVmZmVyX29iamVjdC4qJyByZXN1bHRzL3NoYWRlcgpbOS85XSBwYXNzOiA5IC8KCkFm
-dGVyIHRoaXMgcGF0Y2gtc2V0OgoKW2hhbnNAcGxhbmsgcGlnbGl0XSQgLi9waWdsaXQgcnVuIC1v
-IHNoYWRlciAtdCAnLiphcmJfc2hhZGVyX3N0b3JhZ2VfYnVmZmVyX29iamVjdC4qJyByZXN1bHRz
-L3NoYWRlcgpbOS85XSBwYXNzOiA5IC8KCj4gT25lIG1pbm9yIGNvbW1lbnQgYmVsb3cuCj4KPiBP
-biAwMy8xNy8yMDE2IDA1OjA3IFBNLCBIYW5zIGRlIEdvZWRlIHdyb3RlOgo+PiBTb21lIG9mIHRo
-ZSBsb3dlcmluZyBzdGVwcyB3ZSBjdXJyZW50bHkgZG8gZm9yIEZJTEVfTUVNT1JZX0dMT0JBTCBv
-bmx5Cj4+IGFwcGx5IHRvIGJ1ZmZlcnMsIG1ha2luZyBpdCBpbXBvc3NpYmxlIHRvIHVzZSBGSUxF
-X01FTU9SWV9HTE9CQUwgZm9yCj4+IE9wZW5DTCBnbG9iYWwgYnVmZmVycy4KPj4KPj4gVGhpcyBj
-b21taXRzIGNoYW5nZXMgdGhlIGJ1ZmZlciBjb2RlIHRvIHVzZSBGSUxFX01FTU9SWV9CVUZGRVIg
-YXQgdGhlCj4+IGlyX2Zyb21fdGdzaSBhbmQgbG93ZXJpbmcgc3RlcHMsIGZyZWVpbmcgdXNlIG9m
-IEZJTEVfTUVNT1JZX0dMT0JBTAo+PiBmb3IgdXNlIHdpdGggT3BlbkNMIGdsb2JhbCBidWZmZXJz
-Lgo+Pgo+PiBOb3RlIHRoYXQgYWZ0ZXIgbG93ZXJpbmcgYnVmZmVyIGFjY2Vzc2VzIHVzZSB0aGUg
-RklMRV9NRU1PUllfR0xPQkFMCj4+IHJlZ2lzdGVyIGZpbGUuCj4+Cj4+IFRlc3RlZCB3aXRoIHBp
-Z2xldCBvbiBhIGdrMTA3LCBiZWZvcmUgdGhpcyBwYXRjaDoKPj4gLi9waWdsaXQgcnVuIC1vIHNo
-YWRlciAtdCAnLiphcmJfc2hhZGVyX3N0b3JhZ2VfYnVmZmVyX29iamVjdC4qJyByZXN1bHRzL3No
-YWRlcgo+PiBbOS85XSBwYXNzOiA5IC8KPj4gYWZ0ZXI6Cj4+IC4vcGlnbGl0IHJ1biAtbyBzaGFk
-ZXIgLXQgJy4qYXJiX3NoYWRlcl9zdG9yYWdlX2J1ZmZlcl9vYmplY3QuKicgcmVzdWx0cy9zaGFk
-ZXIKPj4gWzkvOV0gcGFzczogOSAvCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IEhhbnMgZGUgR29lZGUg
-PGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4+IC0tLQo+PiBDaGFuZ2VzIGluIHYyOgo+PiAtTmV3IHBh
-dGNoIGluIHYyIG9mIHBhdGNoLXNldCB0byByZS1lbmFibGUgc3VwcG9ydCBmb3IgZ2xvYmFsIG9w
-ZW5jbCBidWZmZXJzCj4+IC0tLQo+PiAgIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2Rl
-Z2VuL252NTBfaXIuaCAgICAgICAgICAgICAgICAgfCAxICsKPj4gICBzcmMvZ2FsbGl1bS9kcml2
-ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAgICAgIHwgMiArLQo+PiAg
-IHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfbG93ZXJpbmdfbnZj
-MC5jcHAgfCA4ICsrKysrLS0tCj4+ICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVn
-ZW4vbnY1MF9pcl9wcmludC5jcHAgICAgICAgICB8IDEgKwo+PiAgIHNyYy9nYWxsaXVtL2RyaXZl
-cnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252NTAuY3BwICAgfCA1ICsrKystCj4+
-ICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl90YXJnZXRfbnZj
-MC5jcHAgICB8IDEgKwo+PiAgIDYgZmlsZXMgY2hhbmdlZCwgMTMgaW5zZXJ0aW9ucygrKSwgNSBk
-ZWxldGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9jb2RlZ2VuL252NTBfaXIuaCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2Vu
-L252NTBfaXIuaAo+PiBpbmRleCA3YjBlYjJmLi41MTQxZmM2IDEwMDY0NAo+PiAtLS0gYS9zcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyLmgKPj4gKysrIGIvc3JjL2dh
-bGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pci5oCj4+IEBAIC0zMzIsNiArMzMy
-LDcgQEAgZW51bSBEYXRhRmlsZQo+PiAgICAgIEZJTEVfTUVNT1JZX0NPTlNULAo+PiAgICAgIEZJ
-TEVfU0hBREVSX0lOUFVULAo+PiAgICAgIEZJTEVfU0hBREVSX09VVFBVVCwKPj4gKyAgIEZJTEVf
-TUVNT1JZX0JVRkZFUiwKPj4gICAgICBGSUxFX01FTU9SWV9HTE9CQUwsCj4+ICAgICAgRklMRV9N
-RU1PUllfU0hBUkVELAo+PiAgICAgIEZJTEVfTUVNT1JZX0xPQ0FMLAo+PiBkaWZmIC0tZ2l0IGEv
-c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3Bw
-IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2ku
-Y3BwCj4+IGluZGV4IGJhYTJlMzAuLjdhZTBjYjIgMTAwNjQ0Cj4+IC0tLSBhL3NyYy9nYWxsaXVt
-L2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcAo+PiArKysgYi9z
-cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAK
-Pj4gQEAgLTM3Myw3ICszNzMsNyBAQCBzdGF0aWMgbnY1MF9pcjo6RGF0YUZpbGUgdHJhbnNsYXRl
-RmlsZSh1aW50IGZpbGUpCj4+ICAgICAgY2FzZSBUR1NJX0ZJTEVfUFJFRElDQVRFOiAgICAgICBy
-ZXR1cm4gbnY1MF9pcjo6RklMRV9QUkVESUNBVEU7Cj4+ICAgICAgY2FzZSBUR1NJX0ZJTEVfSU1N
-RURJQVRFOiAgICAgICByZXR1cm4gbnY1MF9pcjo6RklMRV9JTU1FRElBVEU7Cj4+ICAgICAgY2Fz
-ZSBUR1NJX0ZJTEVfU1lTVEVNX1ZBTFVFOiAgICByZXR1cm4gbnY1MF9pcjo6RklMRV9TWVNURU1f
-VkFMVUU7Cj4+IC0gICBjYXNlIFRHU0lfRklMRV9CVUZGRVI6ICAgICAgICAgIHJldHVybiBudjUw
-X2lyOjpGSUxFX01FTU9SWV9HTE9CQUw7Cj4+ICsgICBjYXNlIFRHU0lfRklMRV9CVUZGRVI6ICAg
-ICAgICAgIHJldHVybiBudjUwX2lyOjpGSUxFX01FTU9SWV9CVUZGRVI7Cj4+ICAgICAgY2FzZSBU
-R1NJX0ZJTEVfTUVNT1JZOiAgICAgICAgICByZXR1cm4gbnY1MF9pcjo6RklMRV9NRU1PUllfR0xP
-QkFMOwo+PiAgICAgIGNhc2UgVEdTSV9GSUxFX1NBTVBMRVI6Cj4+ICAgICAgY2FzZSBUR1NJX0ZJ
-TEVfTlVMTDoKPj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2Rl
-Z2VuL252NTBfaXJfbG93ZXJpbmdfbnZjMC5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvY29kZWdlbi9udjUwX2lyX2xvd2VyaW5nX252YzAuY3BwCj4+IGluZGV4IGQwOTM2ZDguLjYy
-OGRlYjcgMTAwNjQ0Cj4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2Vu
-L252NTBfaXJfbG93ZXJpbmdfbnZjMC5jcHAKPj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9u
-b3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19udmMwLmNwcAo+PiBAQCAtMTE0MSwxMyAr
-MTE0MSwxNCBAQCBOVkMwTG93ZXJpbmdQYXNzOjpoYW5kbGVBVE9NKEluc3RydWN0aW9uICphdG9t
-KQo+PiAgICAgICAgIGhhbmRsZVNoYXJlZEFUT00oYXRvbSk7Cj4+ICAgICAgICAgcmV0dXJuIHRy
-dWU7Cj4+ICAgICAgZGVmYXVsdDoKPj4gLSAgICAgIGFzc2VydChhdG9tLT5zcmMoMCkuZ2V0Rmls
-ZSgpID09IEZJTEVfTUVNT1JZX0dMT0JBTCk7Cj4+ICsgICAgICBhc3NlcnQoYXRvbS0+c3JjKDAp
-LmdldEZpbGUoKSA9PSBGSUxFX01FTU9SWV9CVUZGRVIpOwo+PiAgICAgICAgIGJhc2UgPSBsb2Fk
-UmVzSW5mbzY0KGluZCwgYXRvbS0+Z2V0U3JjKDApLT5yZWcuZmlsZUluZGV4ICogMTYpOwo+PiAg
-ICAgICAgIGFzc2VydChiYXNlLT5yZWcuc2l6ZSA9PSA4KTsKPj4gICAgICAgICBpZiAocHRyKQo+
-PiAgICAgICAgICAgIGJhc2UgPSBibGQubWtPcDJ2KE9QX0FERCwgVFlQRV9VNjQsIGJhc2UsIGJh
-c2UsIHB0cik7Cj4+ICAgICAgICAgYXNzZXJ0KGJhc2UtPnJlZy5zaXplID09IDgpOwo+PiAgICAg
-ICAgIGF0b20tPnNldEluZGlyZWN0KDAsIDAsIGJhc2UpOwo+PiArICAgICAgYXRvbS0+Z2V0U3Jj
-KDApLT5yZWcuZmlsZSA9IEZJTEVfTUVNT1JZX0dMT0JBTDsKPj4gICAgICAgICByZXR1cm4gdHJ1
-ZTsKPj4gICAgICB9Cj4+ICAgICAgYmFzZSA9Cj4+IEBAIC0xOTYzLDcgKzE5NjQsNyBAQCBOVkMw
-TG93ZXJpbmdQYXNzOjp2aXNpdChJbnN0cnVjdGlvbiAqaSkKPj4gICAgICAgICB9IGVsc2UgaWYg
-KGktPnNyYygwKS5nZXRGaWxlKCkgPT0gRklMRV9TSEFERVJfT1VUUFVUKSB7Cj4+ICAgICAgICAg
-ICAgYXNzZXJ0KHByb2ctPmdldFR5cGUoKSA9PSBQcm9ncmFtOjpUWVBFX1RFU1NFTExBVElPTl9D
-T05UUk9MKTsKPj4gICAgICAgICAgICBpLT5vcCA9IE9QX1ZGRVRDSDsKPj4gLSAgICAgIH0gZWxz
-ZSBpZiAoaS0+c3JjKDApLmdldEZpbGUoKSA9PSBGSUxFX01FTU9SWV9HTE9CQUwpIHsKPj4gKyAg
-ICAgIH0gZWxzZSBpZiAoaS0+c3JjKDApLmdldEZpbGUoKSA9PSBGSUxFX01FTU9SWV9CVUZGRVIp
-IHsKPj4gICAgICAgICAgICBWYWx1ZSAqaW5kID0gaS0+Z2V0SW5kaXJlY3QoMCwgMSk7Cj4+ICAg
-ICAgICAgICAgVmFsdWUgKnB0ciA9IGxvYWRSZXNJbmZvNjQoaW5kLCBpLT5nZXRTcmMoMCktPnJl
-Zy5maWxlSW5kZXggKiAxNik7Cj4+ICAgICAgICAgICAgLy8gWFhYIGNvbWUgdXAgd2l0aCBhIHdh
-eSBub3QgdG8gZG8gdGhpcyBmb3IgRVZFUlkgbGl0dGxlIGFjY2VzcyBidXQKPj4gQEAgLTE5Nzgs
-NiArMTk3OSw3IEBAIE5WQzBMb3dlcmluZ1Bhc3M6OnZpc2l0KEluc3RydWN0aW9uICppKQo+PiAg
-ICAgICAgICAgIH0KPj4gICAgICAgICAgICBpLT5zZXRJbmRpcmVjdCgwLCAxLCBOVUxMKTsKPj4g
-ICAgICAgICAgICBpLT5zZXRJbmRpcmVjdCgwLCAwLCBwdHIpOwo+PiArICAgICAgICAgaS0+Z2V0
-U3JjKDApLT5yZWcuZmlsZSA9IEZJTEVfTUVNT1JZX0dMT0JBTDsKPj4gICAgICAgICAgICBibGQu
-bWtDbXAoT1BfU0VULCBDQ19HVCwgVFlQRV9VMzIsIHByZWQsIFRZUEVfVTMyLCBvZmZzZXQsIGxl
-bmd0aCk7Cj4+ICAgICAgICAgICAgaS0+c2V0UHJlZGljYXRlKENDX05PVF9QLCBwcmVkKTsKPj4g
-ICAgICAgICAgICBpZiAoaS0+ZGVmRXhpc3RzKDApKSB7Cj4+IEBAIC0xOTg3LDcgKzE5ODksNyBA
-QCBOVkMwTG93ZXJpbmdQYXNzOjp2aXNpdChJbnN0cnVjdGlvbiAqaSkKPj4gICAgICAgICBicmVh
-azsKPj4gICAgICBjYXNlIE9QX0FUT006Cj4+ICAgICAgewo+PiAtICAgICAgY29uc3QgYm9vbCBj
-Y3RsID0gaS0+c3JjKDApLmdldEZpbGUoKSA9PSBGSUxFX01FTU9SWV9HTE9CQUw7Cj4+ICsgICAg
-ICBjb25zdCBib29sIGNjdGwgPSBpLT5zcmMoMCkuZ2V0RmlsZSgpID09IEZJTEVfTUVNT1JZX0JV
-RkZFUjsKPj4gICAgICAgICBoYW5kbGVBVE9NKGkpOwo+PiAgICAgICAgIGhhbmRsZUNhc0V4Y2go
-aSwgY2N0bCk7Cj4+ICAgICAgfQo+PiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9u
-b3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wcmludC5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvY29kZWdlbi9udjUwX2lyX3ByaW50LmNwcAo+PiBpbmRleCBjZmE4NWVjLi44NzBiMzZl
-IDEwMDY0NAo+PiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUw
-X2lyX3ByaW50LmNwcAo+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdl
-bi9udjUwX2lyX3ByaW50LmNwcAo+PiBAQCAtNDU1LDYgKzQ1NSw3IEBAIGludCBTeW1ib2w6OnBy
-aW50KGNoYXIgKmJ1Ziwgc2l6ZV90IHNpemUsCj4+ICAgICAgY2FzZSBGSUxFX01FTU9SWV9DT05T
-VDogIGMgPSAnYyc7IGJyZWFrOwo+PiAgICAgIGNhc2UgRklMRV9TSEFERVJfSU5QVVQ6ICBjID0g
-J2EnOyBicmVhazsKPj4gICAgICBjYXNlIEZJTEVfU0hBREVSX09VVFBVVDogYyA9ICdvJzsgYnJl
-YWs7Cj4+ICsgICBjYXNlIEZJTEVfTUVNT1JZX0JVRkZFUjogYyA9ICdiJzsgYnJlYWs7IC8vIE9u
-bHkgdXNlZCBiZWZvcmUgbG93ZXJpbmcKPgo+IENvdWxkIHlvdSBwbGVhc2Ugc2hvdyBtZSB0aGUg
-b3V0cHV0IG9mIE5WNTBfUFJPR19ERUJVRz0yNTUgd2l0aCBhIHRlc3Qgd2hpY2ggdXNlcyB0aGlz
-IGZpbGUgdHlwZT8gSSdtIG5vdCBzdXJlIGlmIHVzaW5nIGJbXSBpcyBiZXR0ZXIgdGhhbiBnW10g
-YWN0dWFsbHkuCgpOVjUwX1BST0dfREVCVUc9MjU1IGJpbi9hcmJfc2hhZGVyX3N0b3JhZ2VfYnVm
-ZmVyX29iamVjdC1yZW5kZXJpbmcKCi4uLgoKTUFJTjotMSAoKQpCQjowICg1MiBpbnN0cnVjdGlv
-bnMpIC0gZGYgPSB7IH0KICAtPiBCQjoxICh0cmVlKQogICAwOiBtb3YgdTMyICVyMSAweDAwMDAw
-MDAwICgwKQogICAxOiBsZCAgdTMyICVyMCBiWzB4MF0gKDApCiAgIDI6IHByZXNpbiBmMzIgJXIz
-ICVyMCAoMCkKICAgMzogY29zIGYzMiAlcjMgJXIzICgwKQogICA0OiBtb3YgdTMyICVyMiAlcjMg
-KDApCiAgIC4uLgoKQW5kIGFmdGVyIHRoZSBmaXJzdCBsb3dlcmluZyBzdGVwOgoKTUFJTjotMSAo
-KQpCQjowICg3NyBpbnN0cnVjdGlvbnMpIC0gZGYgPSB7IH0KICAtPiBCQjoxICh0cmVlKQogICAw
-OiBtb3YgdTMyICVyNTYgMHgwMDAwMDAwMCAoMCkKICAgMTogbGQgIHU2NCAlcjU3ZCBjMTVbMHgz
-MDBdICgwKQogICAyOiBtb3YgdTMyICVyNTggMHgwMDAwMDAwNCAoMCkKICAgMzogbGQgIHUzMiAl
-cjU5IGMxNVsweDMwOF0gKDApCiAgIDQ6IHNldCB1OCAlcDYwIGd0IHUzMiAlcjU4ICVyNTkgKDAp
-CiAgIDU6IG1vdiB1MzIgJXI2MSAweDAwMDAwMDAwICgwKQogICA2OiBub3QgJXA2MCBsZCAgdTMy
-ICVyNjIgZ1slcjU3ZCsweDBdICgwKQogICAuLi4KCk5vdGUgaG93IHRoZSAnYicgcHJpbnRpbmcg
-aXMgb25seSB1c2VkIGJlZm9yZSB0aGUgYnVmZmVyIGFjY2VzcwppcyBsb3dlcmVkIHRvIGEgZ2xv
-YmFsIGFjY2Vzcywgc28gdGhpcyBzZWVtcyB0byBiZSB0aGUgcmlnaHQgdGhpbmcgdG9kby4KClJl
-Z2FyZHMsCgpIYW5zCgoKPgo+PiAgICAgIGNhc2UgRklMRV9NRU1PUllfR0xPQkFMOiBjID0gJ2cn
-OyBicmVhazsKPj4gICAgICBjYXNlIEZJTEVfTUVNT1JZX1NIQVJFRDogYyA9ICdzJzsgYnJlYWs7
-Cj4+ICAgICAgY2FzZSBGSUxFX01FTU9SWV9MT0NBTDogIGMgPSAnbCc7IGJyZWFrOwo+PiBkaWZm
-IC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl90YXJn
-ZXRfbnY1MC5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2ly
-X3RhcmdldF9udjUwLmNwcAo+PiBpbmRleCAyYzRkN2Y1Li4yYWYxNzE1IDEwMDY0NAo+PiAtLS0g
-YS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3RhcmdldF9udjUw
-LmNwcAo+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2ly
-X3RhcmdldF9udjUwLmNwcAo+PiBAQCAtMjA3LDYgKzIwNyw3IEBAIFRhcmdldE5WNTA6OmdldEZp
-bGVTaXplKERhdGFGaWxlIGZpbGUpIGNvbnN0Cj4+ICAgICAgY2FzZSBGSUxFX01FTU9SWV9DT05T
-VDogIHJldHVybiA2NTUzNjsKPj4gICAgICBjYXNlIEZJTEVfU0hBREVSX0lOUFVUOiAgcmV0dXJu
-IDB4MjAwOwo+PiAgICAgIGNhc2UgRklMRV9TSEFERVJfT1VUUFVUOiByZXR1cm4gMHgyMDA7Cj4+
-ICsgICBjYXNlIEZJTEVfTUVNT1JZX0JVRkZFUjogcmV0dXJuIDB4ZmZmZmZmZmY7Cj4+ICAgICAg
-Y2FzZSBGSUxFX01FTU9SWV9HTE9CQUw6IHJldHVybiAweGZmZmZmZmZmOwo+PiAgICAgIGNhc2Ug
-RklMRV9NRU1PUllfU0hBUkVEOiByZXR1cm4gMTYgPDwgMTA7Cj4+ICAgICAgY2FzZSBGSUxFX01F
-TU9SWV9MT0NBTDogIHJldHVybiA0OCA8PCAxMDsKPj4gQEAgLTQwNiw3ICs0MDcsOCBAQCBUYXJn
-ZXROVjUwOjppc0FjY2Vzc1N1cHBvcnRlZChEYXRhRmlsZSBmaWxlLCBEYXRhVHlwZSB0eSkgY29u
-c3QKPj4gICAgICBpZiAodHkgPT0gVFlQRV9COTYgfHwgdHkgPT0gVFlQRV9OT05FKQo+PiAgICAg
-ICAgIHJldHVybiBmYWxzZTsKPj4gICAgICBpZiAodHlwZVNpemVvZih0eSkgPiA0KQo+PiAtICAg
-ICAgcmV0dXJuIChmaWxlID09IEZJTEVfTUVNT1JZX0xPQ0FMKSB8fCAoZmlsZSA9PSBGSUxFX01F
-TU9SWV9HTE9CQUwpOwo+PiArICAgICAgcmV0dXJuIChmaWxlID09IEZJTEVfTUVNT1JZX0xPQ0FM
-KSB8fCAoZmlsZSA9PSBGSUxFX01FTU9SWV9HTE9CQUwpIHx8Cj4+ICsgICAgICAgICAgICAgKGZp
-bGUgPT0gRklMRV9NRU1PUllfQlVGRkVSKTsKPj4gICAgICByZXR1cm4gdHJ1ZTsKPj4gICB9Cj4+
-Cj4+IEBAIC01MDksNiArNTExLDcgQEAgaW50IFRhcmdldE5WNTA6OmdldExhdGVuY3koY29uc3Qg
-SW5zdHJ1Y3Rpb24gKmkpIGNvbnN0Cj4+ICAgICAgICAgc3dpdGNoIChpLT5zcmMoMCkuZ2V0Rmls
-ZSgpKSB7Cj4+ICAgICAgICAgY2FzZSBGSUxFX01FTU9SWV9MT0NBTDoKPj4gICAgICAgICBjYXNl
-IEZJTEVfTUVNT1JZX0dMT0JBTDoKPj4gKyAgICAgIGNhc2UgRklMRV9NRU1PUllfQlVGRkVSOgo+
-PiAgICAgICAgICAgIHJldHVybiAxMDA7IC8vIHJlYWxseSA0MDAgdG8gODAwCj4+ICAgICAgICAg
-ZGVmYXVsdDoKPj4gICAgICAgICAgICByZXR1cm4gMjI7Cj4+IGRpZmYgLS1naXQgYS9zcmMvZ2Fs
-bGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3RhcmdldF9udmMwLmNwcCBiL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252YzAuY3Bw
-Cj4+IGluZGV4IGEwM2FmYTguLjllMWU3YmYgMTAwNjQ0Cj4+IC0tLSBhL3NyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252YzAuY3BwCj4+ICsrKyBiL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252YzAuY3Bw
-Cj4+IEBAIC0yNDgsNiArMjQ4LDcgQEAgVGFyZ2V0TlZDMDo6Z2V0RmlsZVNpemUoRGF0YUZpbGUg
-ZmlsZSkgY29uc3QKPj4gICAgICBjYXNlIEZJTEVfTUVNT1JZX0NPTlNUOiAgcmV0dXJuIDY1NTM2
-Owo+PiAgICAgIGNhc2UgRklMRV9TSEFERVJfSU5QVVQ6ICByZXR1cm4gMHg0MDA7Cj4+ICAgICAg
-Y2FzZSBGSUxFX1NIQURFUl9PVVRQVVQ6IHJldHVybiAweDQwMDsKPj4gKyAgIGNhc2UgRklMRV9N
-RU1PUllfQlVGRkVSOiByZXR1cm4gMHhmZmZmZmZmZjsKPj4gICAgICBjYXNlIEZJTEVfTUVNT1JZ
-X0dMT0JBTDogcmV0dXJuIDB4ZmZmZmZmZmY7Cj4+ICAgICAgY2FzZSBGSUxFX01FTU9SWV9TSEFS
-RUQ6IHJldHVybiAxNiA8PCAxMDsKPj4gICAgICBjYXNlIEZJTEVfTUVNT1JZX0xPQ0FMOiAgcmV0
-dXJuIDQ4IDw8IDEwOwo+PgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbWVzYS1k
-ZXYK
+--===============0357545580==
+Content-Type: multipart/alternative; boundary=001a1141fb12168510052ff98f9c
+
+--001a1141fb12168510052ff98f9c
+Content-Type: text/plain; charset=UTF-8
+
+Ah, I may have read over your commit too hastily. Will have another look.
+On Apr 8, 2016 5:27 AM, "Hans de Goede" <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
+
+> Hi,
+>
+> On 07-04-16 15:58, Ilia Mirkin wrote:
+>
+>> That's wrong.
+>>
+>
+> It used to work with the old RES[] code and if one cannot specify
+> a source swizzle, then how can I do something like
+>
+> LOAD TEMP[0].y, MEMORY[0], address
+>
+> And get the data at absolute global memory address "address" into
+> TEMP[0].y ?
+>
+> This is a must-have for llvm to be able to generate working TGSI code,
+> I do not see any way around this.
+>
+> AFAIK this is exactly what src-swizzling is for. Also note that
+> this commit does not change anything if no src-swizzling is specified,
+> in that case things work exactly as before.
+>
+> > The spec for the instruction needs to be clarified...
+>
+>> The current nouveau impl is correct - only the .x of the address
+>> should be loaded, with up to 16 bytes read into the destination.
+>>
+>
+> Ah note this is not about swizzling on the address, that indeed
+> makes no sense given how the addressing works for BUFFERS / MEMORY,
+> no this is about adding a swizlling postfix to the buffer / memory
+> resource specification, for example:
+>
+> LOAD TEMP[0].y, MEMORY[0].xxxx, TEMP[0]
+>
+> See the swizzling is done on the resource, not on the address, so
+> the swizzling specifies swizzling of the up to 16 bytes read from
+> address, it does not influence the address handling at all.
+>
+> I now see I made an error in my commit msg, it gives the following
+> example:
+>
+> LOAD TEMP[0].y, MEMORY[0].xxxx, TEMP[0].x
+>
+> This clearly is wrong, the last TEMP[0].x is not even valid TGSI,
+> the correct example would be:
+>
+> LOAD TEMP[0].y, MEMORY[0].xxxx, TEMP[0]
+>
+> Regards,
+>
+> Hans
+>
+>
+> On Thu, Apr 7, 2016 at 9:27 AM, Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
+>>
+>>> The llvm TGSI backend does things like:
+>>>
+>>>
+>>>
+>>> Expecting the data at address TEMP[0].x to get loaded to
+>>> TEMP[0].y. Before this commit the data at TEMP[0].x + 4 would be
+>>> loaded instead. This commit fixes this.
+>>>
+>>> Signed-off-by: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+>>> ---
+>>>   src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp | 8 ++++++--
+>>>   1 file changed, 6 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+>>> b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+>>> index 557608e..cc51f5a 100644
+>>> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+>>> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+>>> @@ -2279,12 +2279,16 @@ Converter::handleLOAD(Value *dst0[4])
+>>>
+>>>            Value *off = fetchSrc(1, c);
+>>>            Symbol *sym;
+>>> +         uint32_t src0_component_offset = tgsi.getSrc(0).getSwizzle(c)
+>>> * 4;
+>>> +
+>>>            if (tgsi.getSrc(1).getFile() == TGSI_FILE_IMMEDIATE) {
+>>>               off = NULL;
+>>>               sym = makeSym(tgsi.getSrc(0).getFile(), r, -1, c,
+>>> -                          tgsi.getSrc(1).getValueU32(0, info) + 4 * c);
+>>> +                          tgsi.getSrc(1).getValueU32(0, info) +
+>>> +                          src0_component_offset);
+>>>            } else {
+>>> -            sym = makeSym(tgsi.getSrc(0).getFile(), r, -1, c, 4 * c);
+>>> +            sym = makeSym(tgsi.getSrc(0).getFile(), r, -1, c,
+>>> +                          src0_component_offset);
+>>>            }
+>>>
+>>>            Instruction *ld = mkLoad(TYPE_U32, dst0[c], sym, off);
+>>> --
+>>> 2.7.3
+>>>
+>>>
+
+--001a1141fb12168510052ff98f9c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr">Ah, I may have read over your commit too hastily. Will have =
+another look.</p>
+<div class=3D"gmail_quote">On Apr 8, 2016 5:27 AM, &quot;Hans de Goede&quot=
+; &lt;<a href=3D"mailto:hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org">hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org</a>&gt; wr=
+ote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
+<br>
+On 07-04-16 15:58, Ilia Mirkin wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+That&#39;s wrong.<br>
+</blockquote>
+<br>
+It used to work with the old RES[] code and if one cannot specify<br>
+a source swizzle, then how can I do something like<br>
+<br>
+LOAD TEMP[0].y, MEMORY[0], address<br>
+<br>
+And get the data at absolute global memory address &quot;address&quot; into=
+ TEMP[0].y ?<br>
+<br>
+This is a must-have for llvm to be able to generate working TGSI code,<br>
+I do not see any way around this.<br>
+<br>
+AFAIK this is exactly what src-swizzling is for. Also note that<br>
+this commit does not change anything if no src-swizzling is specified,<br>
+in that case things work exactly as before.<br>
+<br>
+&gt; The spec for the instruction needs to be clarified...<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+The current nouveau impl is correct - only the .x of the address<br>
+should be loaded, with up to 16 bytes read into the destination.<br>
+</blockquote>
+<br>
+Ah note this is not about swizzling on the address, that indeed<br>
+makes no sense given how the addressing works for BUFFERS / MEMORY,<br>
+no this is about adding a swizlling postfix to the buffer / memory<br>
+resource specification, for example:<br>
+<br>
+LOAD TEMP[0].y, MEMORY[0].xxxx, TEMP[0]<br>
+<br>
+See the swizzling is done on the resource, not on the address, so<br>
+the swizzling specifies swizzling of the up to 16 bytes read from<br>
+address, it does not influence the address handling at all.<br>
+<br>
+I now see I made an error in my commit msg, it gives the following<br>
+example:<br>
+<br>
+LOAD TEMP[0].y, MEMORY[0].xxxx, TEMP[0].x<br>
+<br>
+This clearly is wrong, the last TEMP[0].x is not even valid TGSI,<br>
+the correct example would be:<br>
+<br>
+LOAD TEMP[0].y, MEMORY[0].xxxx, TEMP[0]<br>
+<br>
+Regards,<br>
+<br>
+Hans<br>
+<br>
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+On Thu, Apr 7, 2016 at 9:27 AM, Hans de Goede &lt;<a href=3D"mailto:hdegoed=
+e@redhat.com" target=3D"_blank">hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org</a>&gt; wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+The llvm TGSI backend does things like:<br>
+<br>
+<br>
+<br>
+Expecting the data at address TEMP[0].x to get loaded to<br>
+TEMP[0].y. Before this commit the data at TEMP[0].x + 4 would be<br>
+loaded instead. This commit fixes this.<br>
+<br>
+Signed-off-by: Hans de Goede &lt;<a href=3D"mailto:hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org" tar=
+get=3D"_blank">hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org</a>&gt;<br>
+---<br>
+=C2=A0 src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp | 8 ++++++=
+--<br>
+=C2=A0 1 file changed, 6 insertions(+), 2 deletions(-)<br>
+<br>
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/sr=
+c/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp<br>
+index 557608e..cc51f5a 100644<br>
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp<br>
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp<br>
+@@ -2279,12 +2279,16 @@ Converter::handleLOAD(Value *dst0[4])<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Value *off =3D fetchSrc(1, c);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Symbol *sym;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t src0_component_offset =3D tgsi.=
+getSrc(0).getSwizzle(c) * 4;<br>
++<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (tgsi.getSrc(1).getFile() =3D=
+=3D TGSI_FILE_IMMEDIATE) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 off =3D NULL;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sym =3D makeSym(tgsi.getSr=
+c(0).getFile(), r, -1, c,<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 tgsi.getSrc(1).getValueU32(0, info) + 4 * c);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 tgsi.getSrc(1).getValueU32(0, info) +<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 src0_component_offset);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sym =3D makeSym(tgsi.getSrc(0).g=
+etFile(), r, -1, c, 4 * c);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sym =3D makeSym(tgsi.getSrc(0).g=
+etFile(), r, -1, c,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 src0_component_offset);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Instruction *ld =3D mkLoad(TYPE_U3=
+2, dst0[c], sym, off);<br>
+--<br>
+2.7.3<br>
+<br>
+</blockquote></blockquote>
+</blockquote></div>
+
+--001a1141fb12168510052ff98f9c--
+
+--===============0357545580==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0357545580==--
