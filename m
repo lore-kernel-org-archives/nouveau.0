@@ -1,13 +1,14 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Subject: Re: [PATCH] nouveau: codegen: Take src swizzle into
 	account on loads
-Date: Fri, 8 Apr 2016 09:56:17 -0400
-Message-ID: <CAKb7UvjvWrs1bS1S6Q-SEgSoSWLOEZOhTiJbVoAoqpVQR27jWA@mail.gmail.com>
+Date: Fri, 8 Apr 2016 11:02:09 -0400
+Message-ID: <CAKb7UvjhSJGCH2bLJWc+A8hOUepR8=AnjKjLWTW9ipr44N2NnQ@mail.gmail.com>
 References: <1460035648-3804-1-git-send-email-hdegoede@redhat.com>
  <CAKb7Uvhf=6TngukZe976+fX2zibE6U4D05zYOUEj_F5mCVKOBA@mail.gmail.com>
  <5707797B.4040708@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0357545580=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <5707797B.4040708-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,253 +21,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0357545580==
-Content-Type: multipart/alternative; boundary=001a1141fb12168510052ff98f9c
-
---001a1141fb12168510052ff98f9c
-Content-Type: text/plain; charset=UTF-8
-
-Ah, I may have read over your commit too hastily. Will have another look.
-On Apr 8, 2016 5:27 AM, "Hans de Goede" <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
-
-> Hi,
->
-> On 07-04-16 15:58, Ilia Mirkin wrote:
->
->> That's wrong.
->>
->
-> It used to work with the old RES[] code and if one cannot specify
-> a source swizzle, then how can I do something like
->
-> LOAD TEMP[0].y, MEMORY[0], address
->
-> And get the data at absolute global memory address "address" into
-> TEMP[0].y ?
->
-> This is a must-have for llvm to be able to generate working TGSI code,
-> I do not see any way around this.
->
-> AFAIK this is exactly what src-swizzling is for. Also note that
-> this commit does not change anything if no src-swizzling is specified,
-> in that case things work exactly as before.
->
-> > The spec for the instruction needs to be clarified...
->
->> The current nouveau impl is correct - only the .x of the address
->> should be loaded, with up to 16 bytes read into the destination.
->>
->
-> Ah note this is not about swizzling on the address, that indeed
-> makes no sense given how the addressing works for BUFFERS / MEMORY,
-> no this is about adding a swizlling postfix to the buffer / memory
-> resource specification, for example:
->
-> LOAD TEMP[0].y, MEMORY[0].xxxx, TEMP[0]
->
-> See the swizzling is done on the resource, not on the address, so
-> the swizzling specifies swizzling of the up to 16 bytes read from
-> address, it does not influence the address handling at all.
->
-> I now see I made an error in my commit msg, it gives the following
-> example:
->
-> LOAD TEMP[0].y, MEMORY[0].xxxx, TEMP[0].x
->
-> This clearly is wrong, the last TEMP[0].x is not even valid TGSI,
-> the correct example would be:
->
-> LOAD TEMP[0].y, MEMORY[0].xxxx, TEMP[0]
->
-> Regards,
->
-> Hans
->
->
-> On Thu, Apr 7, 2016 at 9:27 AM, Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
->>
->>> The llvm TGSI backend does things like:
->>>
->>>
->>>
->>> Expecting the data at address TEMP[0].x to get loaded to
->>> TEMP[0].y. Before this commit the data at TEMP[0].x + 4 would be
->>> loaded instead. This commit fixes this.
->>>
->>> Signed-off-by: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
->>> ---
->>>   src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp | 8 ++++++--
->>>   1 file changed, 6 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
->>> b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
->>> index 557608e..cc51f5a 100644
->>> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
->>> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
->>> @@ -2279,12 +2279,16 @@ Converter::handleLOAD(Value *dst0[4])
->>>
->>>            Value *off = fetchSrc(1, c);
->>>            Symbol *sym;
->>> +         uint32_t src0_component_offset = tgsi.getSrc(0).getSwizzle(c)
->>> * 4;
->>> +
->>>            if (tgsi.getSrc(1).getFile() == TGSI_FILE_IMMEDIATE) {
->>>               off = NULL;
->>>               sym = makeSym(tgsi.getSrc(0).getFile(), r, -1, c,
->>> -                          tgsi.getSrc(1).getValueU32(0, info) + 4 * c);
->>> +                          tgsi.getSrc(1).getValueU32(0, info) +
->>> +                          src0_component_offset);
->>>            } else {
->>> -            sym = makeSym(tgsi.getSrc(0).getFile(), r, -1, c, 4 * c);
->>> +            sym = makeSym(tgsi.getSrc(0).getFile(), r, -1, c,
->>> +                          src0_component_offset);
->>>            }
->>>
->>>            Instruction *ld = mkLoad(TYPE_U32, dst0[c], sym, off);
->>> --
->>> 2.7.3
->>>
->>>
-
---001a1141fb12168510052ff98f9c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr">Ah, I may have read over your commit too hastily. Will have =
-another look.</p>
-<div class=3D"gmail_quote">On Apr 8, 2016 5:27 AM, &quot;Hans de Goede&quot=
-; &lt;<a href=3D"mailto:hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org">hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org</a>&gt; wr=
-ote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
-<br>
-On 07-04-16 15:58, Ilia Mirkin wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-That&#39;s wrong.<br>
-</blockquote>
-<br>
-It used to work with the old RES[] code and if one cannot specify<br>
-a source swizzle, then how can I do something like<br>
-<br>
-LOAD TEMP[0].y, MEMORY[0], address<br>
-<br>
-And get the data at absolute global memory address &quot;address&quot; into=
- TEMP[0].y ?<br>
-<br>
-This is a must-have for llvm to be able to generate working TGSI code,<br>
-I do not see any way around this.<br>
-<br>
-AFAIK this is exactly what src-swizzling is for. Also note that<br>
-this commit does not change anything if no src-swizzling is specified,<br>
-in that case things work exactly as before.<br>
-<br>
-&gt; The spec for the instruction needs to be clarified...<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-The current nouveau impl is correct - only the .x of the address<br>
-should be loaded, with up to 16 bytes read into the destination.<br>
-</blockquote>
-<br>
-Ah note this is not about swizzling on the address, that indeed<br>
-makes no sense given how the addressing works for BUFFERS / MEMORY,<br>
-no this is about adding a swizlling postfix to the buffer / memory<br>
-resource specification, for example:<br>
-<br>
-LOAD TEMP[0].y, MEMORY[0].xxxx, TEMP[0]<br>
-<br>
-See the swizzling is done on the resource, not on the address, so<br>
-the swizzling specifies swizzling of the up to 16 bytes read from<br>
-address, it does not influence the address handling at all.<br>
-<br>
-I now see I made an error in my commit msg, it gives the following<br>
-example:<br>
-<br>
-LOAD TEMP[0].y, MEMORY[0].xxxx, TEMP[0].x<br>
-<br>
-This clearly is wrong, the last TEMP[0].x is not even valid TGSI,<br>
-the correct example would be:<br>
-<br>
-LOAD TEMP[0].y, MEMORY[0].xxxx, TEMP[0]<br>
-<br>
-Regards,<br>
-<br>
-Hans<br>
-<br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-On Thu, Apr 7, 2016 at 9:27 AM, Hans de Goede &lt;<a href=3D"mailto:hdegoed=
-e@redhat.com" target=3D"_blank">hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org</a>&gt; wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-The llvm TGSI backend does things like:<br>
-<br>
-<br>
-<br>
-Expecting the data at address TEMP[0].x to get loaded to<br>
-TEMP[0].y. Before this commit the data at TEMP[0].x + 4 would be<br>
-loaded instead. This commit fixes this.<br>
-<br>
-Signed-off-by: Hans de Goede &lt;<a href=3D"mailto:hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org" tar=
-get=3D"_blank">hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org</a>&gt;<br>
----<br>
-=C2=A0 src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp | 8 ++++++=
---<br>
-=C2=A0 1 file changed, 6 insertions(+), 2 deletions(-)<br>
-<br>
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/sr=
-c/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp<br>
-index 557608e..cc51f5a 100644<br>
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp<br>
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp<br>
-@@ -2279,12 +2279,16 @@ Converter::handleLOAD(Value *dst0[4])<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Value *off =3D fetchSrc(1, c);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Symbol *sym;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t src0_component_offset =3D tgsi.=
-getSrc(0).getSwizzle(c) * 4;<br>
-+<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (tgsi.getSrc(1).getFile() =3D=
-=3D TGSI_FILE_IMMEDIATE) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 off =3D NULL;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sym =3D makeSym(tgsi.getSr=
-c(0).getFile(), r, -1, c,<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 tgsi.getSrc(1).getValueU32(0, info) + 4 * c);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 tgsi.getSrc(1).getValueU32(0, info) +<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 src0_component_offset);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sym =3D makeSym(tgsi.getSrc(0).g=
-etFile(), r, -1, c, 4 * c);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sym =3D makeSym(tgsi.getSrc(0).g=
-etFile(), r, -1, c,<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 src0_component_offset);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Instruction *ld =3D mkLoad(TYPE_U3=
-2, dst0[c], sym, off);<br>
---<br>
-2.7.3<br>
-<br>
-</blockquote></blockquote>
-</blockquote></div>
-
---001a1141fb12168510052ff98f9c--
-
---===============0357545580==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0357545580==--
+T24gRnJpLCBBcHIgOCwgMjAxNiBhdCA1OjI3IEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUBy
+ZWRoYXQuY29tPiB3cm90ZToKPiBIaSwKPgo+IE9uIDA3LTA0LTE2IDE1OjU4LCBJbGlhIE1pcmtp
+biB3cm90ZToKPj4KPj4gVGhhdCdzIHdyb25nLgo+Cj4KPiBJdCB1c2VkIHRvIHdvcmsgd2l0aCB0
+aGUgb2xkIFJFU1tdIGNvZGUgYW5kIGlmIG9uZSBjYW5ub3Qgc3BlY2lmeQo+IGEgc291cmNlIHN3
+aXp6bGUsIHRoZW4gaG93IGNhbiBJIGRvIHNvbWV0aGluZyBsaWtlCj4KPiBMT0FEIFRFTVBbMF0u
+eSwgTUVNT1JZWzBdLCBhZGRyZXNzCj4KPiBBbmQgZ2V0IHRoZSBkYXRhIGF0IGFic29sdXRlIGds
+b2JhbCBtZW1vcnkgYWRkcmVzcyAiYWRkcmVzcyIgaW50byBURU1QWzBdLnkKPiA/Cj4KPiBUaGlz
+IGlzIGEgbXVzdC1oYXZlIGZvciBsbHZtIHRvIGJlIGFibGUgdG8gZ2VuZXJhdGUgd29ya2luZyBU
+R1NJIGNvZGUsCj4gSSBkbyBub3Qgc2VlIGFueSB3YXkgYXJvdW5kIHRoaXMuCj4KPiBBRkFJSyB0
+aGlzIGlzIGV4YWN0bHkgd2hhdCBzcmMtc3dpenpsaW5nIGlzIGZvci4gQWxzbyBub3RlIHRoYXQK
+PiB0aGlzIGNvbW1pdCBkb2VzIG5vdCBjaGFuZ2UgYW55dGhpbmcgaWYgbm8gc3JjLXN3aXp6bGlu
+ZyBpcyBzcGVjaWZpZWQsCj4gaW4gdGhhdCBjYXNlIHRoaW5ncyB3b3JrIGV4YWN0bHkgYXMgYmVm
+b3JlLgo+Cj4+IFRoZSBzcGVjIGZvciB0aGUgaW5zdHJ1Y3Rpb24gbmVlZHMgdG8gYmUgY2xhcmlm
+aWVkLi4uCj4+Cj4+IFRoZSBjdXJyZW50IG5vdXZlYXUgaW1wbCBpcyBjb3JyZWN0IC0gb25seSB0
+aGUgLnggb2YgdGhlIGFkZHJlc3MKPj4gc2hvdWxkIGJlIGxvYWRlZCwgd2l0aCB1cCB0byAxNiBi
+eXRlcyByZWFkIGludG8gdGhlIGRlc3RpbmF0aW9uLgo+Cj4KPiBBaCBub3RlIHRoaXMgaXMgbm90
+IGFib3V0IHN3aXp6bGluZyBvbiB0aGUgYWRkcmVzcywgdGhhdCBpbmRlZWQKPiBtYWtlcyBubyBz
+ZW5zZSBnaXZlbiBob3cgdGhlIGFkZHJlc3Npbmcgd29ya3MgZm9yIEJVRkZFUlMgLyBNRU1PUlks
+Cj4gbm8gdGhpcyBpcyBhYm91dCBhZGRpbmcgYSBzd2l6bGxpbmcgcG9zdGZpeCB0byB0aGUgYnVm
+ZmVyIC8gbWVtb3J5Cj4gcmVzb3VyY2Ugc3BlY2lmaWNhdGlvbiwgZm9yIGV4YW1wbGU6Cj4KPiBM
+T0FEIFRFTVBbMF0ueSwgTUVNT1JZWzBdLnh4eHgsIFRFTVBbMF0KPgo+IFNlZSB0aGUgc3dpenps
+aW5nIGlzIGRvbmUgb24gdGhlIHJlc291cmNlLCBub3Qgb24gdGhlIGFkZHJlc3MsIHNvCj4gdGhl
+IHN3aXp6bGluZyBzcGVjaWZpZXMgc3dpenpsaW5nIG9mIHRoZSB1cCB0byAxNiBieXRlcyByZWFk
+IGZyb20KPiBhZGRyZXNzLCBpdCBkb2VzIG5vdCBpbmZsdWVuY2UgdGhlIGFkZHJlc3MgaGFuZGxp
+bmcgYXQgYWxsLgo+Cj4gSSBub3cgc2VlIEkgbWFkZSBhbiBlcnJvciBpbiBteSBjb21taXQgbXNn
+LCBpdCBnaXZlcyB0aGUgZm9sbG93aW5nCj4gZXhhbXBsZToKPgo+IExPQUQgVEVNUFswXS55LCBN
+RU1PUllbMF0ueHh4eCwgVEVNUFswXS54Cj4KPiBUaGlzIGNsZWFybHkgaXMgd3JvbmcsIHRoZSBs
+YXN0IFRFTVBbMF0ueCBpcyBub3QgZXZlbiB2YWxpZCBUR1NJLAo+IHRoZSBjb3JyZWN0IGV4YW1w
+bGUgd291bGQgYmU6Cj4KPiBMT0FEIFRFTVBbMF0ueSwgTUVNT1JZWzBdLnh4eHgsIFRFTVBbMF0K
+Ckkgc3RhbmQgYnkgbXkgY29tbWVudCBvZiAid29ya2luZyBhcyBpbnRlbmRlZCIuIEJ1dCB0aGF0
+IGRvZXNuJ3QgbWVhbgp0aGUgaW50ZW50IGNhbid0IGJlIGNoYW5nZWQgOikKCkZvciBtZW1vcnkv
+YnVmZmVycywgTE9BRCB0YWtlcyB0aGUgYWRkcmVzcyBhdCBURU1QWzBdLnggYW5kIGxvYWRzIDE2
+CmJ5dGVzICg0IHdvcmRzKSwgYW5kIHN0aWNrcyB0aGVtIGludG8gdGhlIGRlc3RpbmF0aW9uJ3Mg
+Lnh5encuIElmIHlvdQpoYXBwZW4gdG8gaGF2ZSBhIHdyaXRlbWFzaywgdGhlbiBvbmx5IHNvbWUg
+b2YgdGhvc2UgYXJlIHdyaXR0ZW4gb3V0LgoKSXQgc2VlbXMgdGhhdCB5b3UncmUgdHJ5aW5nIHRv
+IGFkZCBhZGRpdGlvbmFsIG1lYW5pbmcgdG8gdGhlIHN3aXp6bGUKb24gdGhlICJtZW1vcnkiIGFy
+Z3VtZW50LiBIb3dldmVyIEkgZG9uJ3QgYmVsaWV2ZSB0aGF0IHN1Y2ggYSB0aGluZyBpcwpkZWZp
+bmVkLiAoQW5kIGRlZmluaXRlbHkgbm90IHVzZWQgYW55d2hlcmUsIGF0IGxlYXN0IG5vdCBvbiBw
+dXJwb3NlLikKCldoeSBkb2VzIHRoaXMgY2F1c2UgeW91IGlzc3VlcyB3aXRoIExMVk0tZ2VuZXJh
+dGVkIFRHU0k/CgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQo=
