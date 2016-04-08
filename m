@@ -1,13 +1,15 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] tegra: acquire and enable reference clock if
- needed
-Date: Fri, 8 Apr 2016 11:03:43 +0200
-Message-ID: <20160408090343.GA4652@ulmo.ba.sec>
-References: <1459478264-27990-1-git-send-email-acourbot@nvidia.com>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] nouveau: codegen: Take src swizzle into
+	account on loads
+Date: Fri, 8 Apr 2016 11:27:23 +0200
+Message-ID: <5707797B.4040708@redhat.com>
+References: <1460035648-3804-1-git-send-email-hdegoede@redhat.com>
+ <CAKb7Uvhf=6TngukZe976+fX2zibE6U4D05zYOUEj_F5mCVKOBA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0437583646=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1459478264-27990-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <CAKb7Uvhf=6TngukZe976+fX2zibE6U4D05zYOUEj_F5mCVKOBA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,75 +19,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0437583646==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="n8g4imXOkfNTN/H1"
-Content-Disposition: inline
-
-
---n8g4imXOkfNTN/H1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Apr 01, 2016 at 11:37:44AM +0900, Alexandre Courbot wrote:
-> GM20B requires an extra clock compared to GK20A. Add that information
-> into the platform data and acquire and enable this clock if necessary.
->=20
-> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> ---
-> Hi Ben,
->=20
-> The DT bindings for this have been approved but not merged yet. This means
-> that for 4.6 GM20B will fail to probe unless the DT is patched - but this
-> is better than the current situation where it silently freezes. Can you
-> take this for the next -rc? Thanks!
->=20
->  drm/nouveau/include/nvkm/core/tegra.h  |  5 +++++
->  drm/nouveau/nouveau_platform.c         |  7 ++++++-
->  drm/nouveau/nvkm/engine/device/tegra.c | 17 +++++++++++++++++
->  3 files changed, 28 insertions(+), 1 deletion(-)
-
-Yes, this looks like the proper fix for Tegra210:
-
-Reviewed-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-
---n8g4imXOkfNTN/H1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAABCAAGBQJXB3PtAAoJEN0jrNd/PrOhW9AP/jpqTHktkJ58zGdRM40RBawr
-nz6GeAO62Ra6jeGIYo2OsGN+XyGoEm5nBmb3ligFw7OrKOYeXzrHUJbrfkM1IDCP
-zQ3Smp4lC8u9m3M1djCQQvYkokxRm88JNEk0IdBvhr0M9Y2UGChKpFvVV+C6ATMV
-smr4cpAtxskLwePNSC8XCbAafIuemOhGmZO0Rj2Vrl01QEkkON8I4t147gSDIBdF
-Qo0dOICrTVbMIu9zHrMJUywsRk7+WJsIGf8DgknT6DGJoboVDAVCxqJourhVHbfL
-3Y6+yXNMoHE5gOKbuoikYUgkhovi7fuMXv9uRVxG6IR97goiUoH7jc3zjPW8vtah
-25h4KKtcOyL8dk72ukKwrcij8HbRnSFUfAH8m7QY00JsP0SqXmWJZ2/oM6F9NKI0
-VgQDdiMKC+w+ytVXa1upCFsDs8iVAqIlGgvd365FKmHRsxCpO+pV8y0hFaOoy8+k
-JT5R/pRGGAGSdbEsLhfMZaL7PMvY80hXOIqApO9W3cMs8i4bNRgd1gtuT+spC1Gc
-m9ExGDogND3WVwSPb6W3HU8HgUxqq0AQ1v8KG0RMmziB96+UgXAOtzlWzNrkTROf
-bTPZuxjlVzyHbDJct/kfcfoUdRoXoWfuIFQrFxrIroKUONKiCzBsAtVrhLtwtuNk
-EHaGcQq/qlboGR85yO2q
-=nH1/
------END PGP SIGNATURE-----
-
---n8g4imXOkfNTN/H1--
-
---===============0437583646==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0437583646==--
+SGksCgpPbiAwNy0wNC0xNiAxNTo1OCwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gVGhhdCdzIHdyb25n
+LgoKSXQgdXNlZCB0byB3b3JrIHdpdGggdGhlIG9sZCBSRVNbXSBjb2RlIGFuZCBpZiBvbmUgY2Fu
+bm90IHNwZWNpZnkKYSBzb3VyY2Ugc3dpenpsZSwgdGhlbiBob3cgY2FuIEkgZG8gc29tZXRoaW5n
+IGxpa2UKCkxPQUQgVEVNUFswXS55LCBNRU1PUllbMF0sIGFkZHJlc3MKCkFuZCBnZXQgdGhlIGRh
+dGEgYXQgYWJzb2x1dGUgZ2xvYmFsIG1lbW9yeSBhZGRyZXNzICJhZGRyZXNzIiBpbnRvIFRFTVBb
+MF0ueSA/CgpUaGlzIGlzIGEgbXVzdC1oYXZlIGZvciBsbHZtIHRvIGJlIGFibGUgdG8gZ2VuZXJh
+dGUgd29ya2luZyBUR1NJIGNvZGUsCkkgZG8gbm90IHNlZSBhbnkgd2F5IGFyb3VuZCB0aGlzLgoK
+QUZBSUsgdGhpcyBpcyBleGFjdGx5IHdoYXQgc3JjLXN3aXp6bGluZyBpcyBmb3IuIEFsc28gbm90
+ZSB0aGF0CnRoaXMgY29tbWl0IGRvZXMgbm90IGNoYW5nZSBhbnl0aGluZyBpZiBubyBzcmMtc3dp
+enpsaW5nIGlzIHNwZWNpZmllZCwKaW4gdGhhdCBjYXNlIHRoaW5ncyB3b3JrIGV4YWN0bHkgYXMg
+YmVmb3JlLgoKID4gVGhlIHNwZWMgZm9yIHRoZSBpbnN0cnVjdGlvbiBuZWVkcyB0byBiZSBjbGFy
+aWZpZWQuLi4KPiBUaGUgY3VycmVudCBub3V2ZWF1IGltcGwgaXMgY29ycmVjdCAtIG9ubHkgdGhl
+IC54IG9mIHRoZSBhZGRyZXNzCj4gc2hvdWxkIGJlIGxvYWRlZCwgd2l0aCB1cCB0byAxNiBieXRl
+cyByZWFkIGludG8gdGhlIGRlc3RpbmF0aW9uLgoKQWggbm90ZSB0aGlzIGlzIG5vdCBhYm91dCBz
+d2l6emxpbmcgb24gdGhlIGFkZHJlc3MsIHRoYXQgaW5kZWVkCm1ha2VzIG5vIHNlbnNlIGdpdmVu
+IGhvdyB0aGUgYWRkcmVzc2luZyB3b3JrcyBmb3IgQlVGRkVSUyAvIE1FTU9SWSwKbm8gdGhpcyBp
+cyBhYm91dCBhZGRpbmcgYSBzd2l6bGxpbmcgcG9zdGZpeCB0byB0aGUgYnVmZmVyIC8gbWVtb3J5
+CnJlc291cmNlIHNwZWNpZmljYXRpb24sIGZvciBleGFtcGxlOgoKTE9BRCBURU1QWzBdLnksIE1F
+TU9SWVswXS54eHh4LCBURU1QWzBdCgpTZWUgdGhlIHN3aXp6bGluZyBpcyBkb25lIG9uIHRoZSBy
+ZXNvdXJjZSwgbm90IG9uIHRoZSBhZGRyZXNzLCBzbwp0aGUgc3dpenpsaW5nIHNwZWNpZmllcyBz
+d2l6emxpbmcgb2YgdGhlIHVwIHRvIDE2IGJ5dGVzIHJlYWQgZnJvbQphZGRyZXNzLCBpdCBkb2Vz
+IG5vdCBpbmZsdWVuY2UgdGhlIGFkZHJlc3MgaGFuZGxpbmcgYXQgYWxsLgoKSSBub3cgc2VlIEkg
+bWFkZSBhbiBlcnJvciBpbiBteSBjb21taXQgbXNnLCBpdCBnaXZlcyB0aGUgZm9sbG93aW5nCmV4
+YW1wbGU6CgpMT0FEIFRFTVBbMF0ueSwgTUVNT1JZWzBdLnh4eHgsIFRFTVBbMF0ueAoKVGhpcyBj
+bGVhcmx5IGlzIHdyb25nLCB0aGUgbGFzdCBURU1QWzBdLnggaXMgbm90IGV2ZW4gdmFsaWQgVEdT
+SSwKdGhlIGNvcnJlY3QgZXhhbXBsZSB3b3VsZCBiZToKCkxPQUQgVEVNUFswXS55LCBNRU1PUllb
+MF0ueHh4eCwgVEVNUFswXQoKUmVnYXJkcywKCkhhbnMKCgo+IE9uIFRodSwgQXByIDcsIDIwMTYg
+YXQgOToyNyBBTSwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4gd3JvdGU6Cj4+
+IFRoZSBsbHZtIFRHU0kgYmFja2VuZCBkb2VzIHRoaW5ncyBsaWtlOgo+Pgo+Pgo+Pgo+PiBFeHBl
+Y3RpbmcgdGhlIGRhdGEgYXQgYWRkcmVzcyBURU1QWzBdLnggdG8gZ2V0IGxvYWRlZCB0bwo+PiBU
+RU1QWzBdLnkuIEJlZm9yZSB0aGlzIGNvbW1pdCB0aGUgZGF0YSBhdCBURU1QWzBdLnggKyA0IHdv
+dWxkIGJlCj4+IGxvYWRlZCBpbnN0ZWFkLiBUaGlzIGNvbW1pdCBmaXhlcyB0aGlzLgo+Pgo+PiBT
+aWduZWQtb2ZmLWJ5OiBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPgo+PiAtLS0K
+Pj4gICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdz
+aS5jcHAgfCA4ICsrKysrKy0tCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKSwg
+MiBkZWxldGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
+dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMv
+bm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcAo+PiBpbmRleCA1NTc2MDhlLi5j
+YzUxZjVhIDEwMDY0NAo+PiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdl
+bi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
+ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4+IEBAIC0yMjc5LDEyICsyMjc5LDE2
+IEBAIENvbnZlcnRlcjo6aGFuZGxlTE9BRChWYWx1ZSAqZHN0MFs0XSkKPj4KPj4gICAgICAgICAg
+ICBWYWx1ZSAqb2ZmID0gZmV0Y2hTcmMoMSwgYyk7Cj4+ICAgICAgICAgICAgU3ltYm9sICpzeW07
+Cj4+ICsgICAgICAgICB1aW50MzJfdCBzcmMwX2NvbXBvbmVudF9vZmZzZXQgPSB0Z3NpLmdldFNy
+YygwKS5nZXRTd2l6emxlKGMpICogNDsKPj4gKwo+PiAgICAgICAgICAgIGlmICh0Z3NpLmdldFNy
+YygxKS5nZXRGaWxlKCkgPT0gVEdTSV9GSUxFX0lNTUVESUFURSkgewo+PiAgICAgICAgICAgICAg
+IG9mZiA9IE5VTEw7Cj4+ICAgICAgICAgICAgICAgc3ltID0gbWFrZVN5bSh0Z3NpLmdldFNyYygw
+KS5nZXRGaWxlKCksIHIsIC0xLCBjLAo+PiAtICAgICAgICAgICAgICAgICAgICAgICAgICB0Z3Np
+LmdldFNyYygxKS5nZXRWYWx1ZVUzMigwLCBpbmZvKSArIDQgKiBjKTsKPj4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgdGdzaS5nZXRTcmMoMSkuZ2V0VmFsdWVVMzIoMCwgaW5mbykgKwo+PiAr
+ICAgICAgICAgICAgICAgICAgICAgICAgICBzcmMwX2NvbXBvbmVudF9vZmZzZXQpOwo+PiAgICAg
+ICAgICAgIH0gZWxzZSB7Cj4+IC0gICAgICAgICAgICBzeW0gPSBtYWtlU3ltKHRnc2kuZ2V0U3Jj
+KDApLmdldEZpbGUoKSwgciwgLTEsIGMsIDQgKiBjKTsKPj4gKyAgICAgICAgICAgIHN5bSA9IG1h
+a2VTeW0odGdzaS5nZXRTcmMoMCkuZ2V0RmlsZSgpLCByLCAtMSwgYywKPj4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgc3JjMF9jb21wb25lbnRfb2Zmc2V0KTsKPj4gICAgICAgICAgICB9Cj4+
+Cj4+ICAgICAgICAgICAgSW5zdHJ1Y3Rpb24gKmxkID0gbWtMb2FkKFRZUEVfVTMyLCBkc3QwW2Nd
+LCBzeW0sIG9mZik7Cj4+IC0tCj4+IDIuNy4zCj4+Cl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
