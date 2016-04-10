@@ -1,117 +1,95 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [Nouveau] [PATCH] nouveau: codegen: Take src swizzle
- into account on loads
-Date: Fri, 8 Apr 2016 12:34:16 -0400
-Message-ID: <CAKb7UvgVnno462=mXqsHC1Ny+KOhvdunnbgzjpeZyph_vWA5zQ@mail.gmail.com>
-References: <1460035648-3804-1-git-send-email-hdegoede@redhat.com>
- <CAKb7Uvhf=6TngukZe976+fX2zibE6U4D05zYOUEj_F5mCVKOBA@mail.gmail.com>
- <5707797B.4040708@redhat.com>
- <CAKb7UvjhSJGCH2bLJWc+A8hOUepR8=AnjKjLWTW9ipr44N2NnQ@mail.gmail.com>
- <5707CE34.6050904@redhat.com>
- <CAKb7Uvg5c1NorKA3uvnXfToZb+QUwRzZ0T9cUaA5jEuiBma+gA@mail.gmail.com>
- <5707D6E9.2050906@redhat.com> <5707DBA9.8010305@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82835] [NV92] GeForce 8800 GS VDPAU h264 decoding
+	hang
+Date: Sun, 10 Apr 2016 06:51:58 +0000
+Message-ID: <bug-82835-8800-Opf5qEIddM@http.bugs.freedesktop.org/>
+References: <bug-82835-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <5707DBA9.8010305@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Hans de Goede <hdegoede@redhat.com>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1502310383=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-82835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBBcHIgOCwgMjAxNiBhdCAxMjoyNiBQTSwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVA
-cmVkaGF0LmNvbT4gd3JvdGU6Cj4gSGksCj4KPgo+IE9uIDA4LTA0LTE2IDE4OjA2LCBIYW5zIGRl
-IEdvZWRlIHdyb3RlOgo+Pgo+PiBIaSwKPj4KPj4gT24gMDgtMDQtMTYgMTc6NDUsIElsaWEgTWly
-a2luIHdyb3RlOgo+Pj4KPj4+IE9uIEZyaSwgQXByIDgsIDIwMTYgYXQgMTE6MjggQU0sIEhhbnMg
-ZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4+PiB3cm90ZToKPj4+Pgo+Pj4+IFdoZW4g
-ZGVhbGluZyB3aXRoIG5vbiB2ZWN0b3IgdmFyaWFibGVzIHRoZSBsbHZtIHJlZ2lzdGVyIGFsbG9j
-YXRvcgo+Pj4+IHdpbGwgdXNlIFRFTVBbMF0ueCB0aGVuIFRFTVBbMF0ueSwgZXRjLgo+Pj4+Cj4+
-Pj4gV2hlbiBsb2FkaW5nIHNvbWV0aGluZyBmcm9tIGEgZ2xvYmFsIGJ1ZmZlciBpdCB3aWxsIGNh
-bGN1bGF0ZSB0aGUKPj4+PiBhZGRyZXNzIHRvIHVzZSwgYW5kIHN0b3JlIHRoYXQgaW4gc2F5IFRF
-TVBbMF0ueCwgc28gaXQgZW5kcyB1cAo+Pj4+IGdlbmVyYXRpbmc6Cj4+Pj4KPj4+PiBMT0FEIFRF
-TVBbMF0ueSwgTUVNT1JZWzBdLCBURU1QWzBdCj4+Pj4KPj4+PiBFeHBlY3RpbmcgdGhlIGNvbnRl
-bnRzIG9mIFRFTVBbMF0ueSB0byBiZWNvbWUgdGhlIDMyIGJpdHMgb2YgZGF0YQo+Pj4+IHRvIHdo
-aWNoIFRFTVBbMF0ueCBpcyBwb2ludGluZy4gQnV0IGluc3RlYWQgaXQgd2lsbCBnZXQgdGhlIDMy
-IGJpdHMgb2YKPj4+PiBkYXRhIGF0IGFkZHJlc3MgKFRFTVBbMF0ueCArIDQpLgo+Pj4+Cj4+Pj4g
-V2l0aCB0aGUgb2xkIFJFU1szMjc2N10gY29kZSBvbmUgY291bGQgZ2VuZXJhdGUgdGhlIGZvbGxv
-d2luZyBUR1NJOgo+Pj4+Cj4+Pj4gTE9BRCBURU1QWzBdLnksIFJFU1szMjc2N10ueHh4eCwgVEVN
-UFswXQo+Pj4+Cj4+Pj4gQW5kIHRoaW5ncyB3b3VsZCB3b3JrIGZpbmUgc2luY2UgdGhlIC54eHh4
-IHN3aXp6bGluZyBwb3N0Zml4IHdvdWxkCj4+Pj4gYmUgaG9ub3JlZCBhbmQgd2hlbiBzdG9yaW5n
-IHRvIHkgKHRoZSBvbmx5IGNvbXBvbmVudCBzZXQgaW4gdGhlCj4+Pj4gZGVzdC1tYXNrKQo+Pj4+
-IHRoZSB4IGNvbXBvbmVudCBhdCBhZGRyZXNzIChURU1QWzBdLngpIHdvdWxkIGJlIGxvYWRlZCwg
-cmF0aGVyIHRoZW4gdGhlCj4+Pj4geSBjb21wb25lbnQgYXQgKFRFTVBbMF0ueSkKPj4+Pgo+Pj4+
-IE5vdGUgdGhhdCBhbm90aGVyIGFwcHJvYWNoIHdvdWxkIGJlIHRvIG5vdCBpbmNyZW1lbnQgdGhl
-IGFkZHJlc3MgYnkKPj4+PiBhIDMyIGJpdCB3b3JkIGZvciBza2lwcGVkIChub3Qgc2V0IGluIGRl
-c3RtYXNrKSBjb21wb25lbnRzLgo+Pj4+Cj4+Pj4gVGhlIHdheSBJIHNlZSBpdCBlaXRoZXI6Cj4+
-Pj4KPj4+PiAxKSBXZSBzZWUgdGhhdCBMT0FEIGRvZXMgbm90IGRlYWwgd2l0aCB2ZWN0b3JzLCBi
-dXQgd2l0aCBmbGF0IG1lbW9yeSwKPj4+PiBpbiB3aGljaCBjYXNlIHNraXBwaW5nIDQgYnl0ZXMg
-YmVjYXVzZSB4IGlzIG5vdCBzZXQgaW4gdGhlIGRlc3RtYXNrCj4+Pj4gZG9lcyBub3QgbWFrZSBz
-ZW5zZSwgYXMgdGhhdCBpcyBhIHZlY3RvciB0aGluZyB0b2RvLgo+Pj4+Cj4+Pj4gMikgTE9BRCBp
-cyB2ZWN0b3IgbGF5b3V0IGF3YXJlIGluIHdoaWNoIGNhc2Ugc3VwcG9ydGluZyBzd2l6emxpbmcK
-Pj4+PiBtYWtlcyBzZW5zZS4KPj4+Pgo+Pj4+IEN1cnJlbnRseSB3ZSBoYXZlIGEgd2VpcmQgaHli
-cmlkIHdoaWNoIGlzIHJhdGhlciBjdW1iZXJzb21lIHRvCj4+Pj4gd29yayB3aXRoIGZyb20gYSBj
-b21waWxlciBwb3YuCj4+Pgo+Pj4KPj4+IEFuZCBJIGd1ZXNzIExMVk0gbmV2ZXIgZW5kcyB1cCBn
-ZW5lcmF0aW5nIGFueSBvZiB0aGUgb3RoZXIgImZ1bm55Igo+Pj4gaW5zdHJ1Y3Rpb25zIGxpa2Ug
-TElUIGFuZCB0aGUgc3VjaC4gV2VsbCwgSSBoYXZlIG5vIHByb2JsZW0gYWRkaW5nIHRoZQo+Pj4g
-c3dpenpsaW5nIGxvZ2ljLCBpLmUuIHRoZSB3YXkgdGhhdCBMT0FEIHdpbGwgbm93IHdvcmsgKGxv
-Z2ljYWxseSkgaXMKPj4+IHRoYXQgaXQgd2lsbAo+Pj4KPj4+IChhKSBmZXRjaCA0IHZhbHVlcyBm
-cm9tIHRoZSBjb29yZGluYXRlcyBwcm92aWRlZCAoNCBzZXF1ZW50aWFsIGR3b3Jkcwo+Pj4gZnJv
-bSBzcmMxLnggaW4gdGhlIGNhc2Ugb2YgYnVmZmVyL21lbW9yeSwgUkdCQSBjb2xvcnMgZnJvbSBz
-cmMxLnh5eiBpbgo+Pj4gdGhlIGNhc2Ugb2YgaW1hZ2VzKQo+Pj4gKGIpIHN3aXp6bGUgdGhlbSBh
-Y2NvcmRpbmcgdG8gdGhlIHN3aXp6bGUgb24gdGhlIE1FTU9SWS9CVUZGRVIvSU1BR0UKPj4+IGFy
-Z3VtZW50Cj4+PiAoYykgc3RvcmUgdGhhdCBzd2l6emxlZCByZXN1bHQgaW50byB0aGUgZGVzdGlu
-YXRpb24gYmFzZWQgb24gdGhlCj4+PiB3cml0ZW1hc2sKPj4+Cj4+PiBUaGF0IHdvdWxkIHNvdW5k
-IHJlYXNvbmFibGUgdG8gbWUsIGFuZCBpZiBJIHVuZGVyc3RhbmQgY29ycmVjdGx5LCBpcwo+Pj4g
-b3B0aW9uIDIgb2YgeW91ciBwcm9wb3NhbC4KPj4KPj4KPj4gWWVzIHRoYXQgaXMgb3B0aW9uIDIs
-IGFuZCBpcyBiYXNpY2FsbHkgd2hhdCB0aGUgcGF0Y2ggd2hpY2ggc3RhcnRlZCB0aGlzCj4+IHRo
-cmVhZCBkb2VzLiBTbyB0aGF0IHdvdWxkIHdvcmsgZm9yIG1lIDopCj4+Cj4+PiBXZSdkIG5lZWQg
-c29tZSBkb2NzIHVwZGF0ZXMgYW5kIGJ1eS1pbiBmcm9tIHRoZSBvdGhlciBnYWxsaXVtIGRyaXZl
-cgo+Pj4gZGV2ZWxvcGVycy4KPj4KPj4KPj4gV2hhdCBkb2NzIHdvdWxkIG5lZWQgdXBkYXRpbmcg
-PyBUaGUgVEdTSSBkb2NzIEknbSBhd2FyZSBvZiBhcmUgYXQ6Cj4+Cj4+IGh0dHA6Ly9nYWxsaXVt
-LnJlYWR0aGVkb2NzLm9yZy9lbi9sYXRlc3QvdGdzaS5odG1sCj4+Cj4+IEkgYXNzdW1lIHRob3Nl
-IGhhdmUgYSBzb3VyY2UgaW4gdGhlIG1lc2Egc3JjIHNvbWV3aGVyZSAoSSd2ZSBub3QgbG9va2Vk
-KSwKPj4gYnV0IHRob3NlIG1vc3RseSBqdXN0IGxvb2sgcXVpdGUgaW5jb21wbGV0ZSBpbiBnZW5l
-cmFsIHdoZW4gaXQgY29tZXMgdG8KPj4gVEdTSQo+PiAoSSd2ZSBoYWQgdG8gcmV2ZXJ0IHRvIGZp
-Z3VyaW5nIHdoYXQgdGhpbmdzIGRvIGZyb20gdGhlIG1lc2Egc3JjcyBxdWl0ZQo+PiBvZnRlbikK
-Pj4KPj4gSGF2ZSBJIGJlZW4gbG9va2luZyBhdCB0aGUgd3JvbmcgZG9jcyBwZXJoYXBzID8KPj4K
-Pj4gTm90ZSB0aGF0IHRoZW0gYmVpbmcgaW5jb21wbGV0ZSBpcyBub3QgaW50ZW5kZWQgYXMgYW4g
-ZXhjdXNlIHRvIG5vdAo+PiBkb2N1bWVudAo+PiB0aGlzLCBJJ20gYWxsIGZvciBiZXR0ZXIgZG9j
-dW1lbnRhdGlvbi4KPj4KPj4+IFNUT1JFIHJlbWFpbnMgdW5jaGFuZ2VkLCBhcyB0aGUgTUVNT1JZ
-L2V0YyBpcyBpbiB0aGUgZGVzdGluYXRpb24sCj4+PiB3aGVyZSB0aGVyZSBpcyBhIHdyaXRlbWFz
-aywgd2hpY2ggaXMgcHJlc2VudGx5IHVzZWQgYW5kIHdpbGwgcmVtYWluCj4+PiBlZmZlY3RpdmUu
-Cj4+Cj4+Cj4+IFJpZ2h0IGFuZCBub3RlIHRoYXQgdGhlIGZpcnN0IHNyYyBvcGVyYW5kIG9mIFNU
-T1JFIGFscmVhZHkgdGFrZXMgc3dpenpsaW5nCj4+IGludG8gYWNjb3VudCwgc28gdGhlIHByb3Bv
-c2VkIG9wdGlvbiAyIHdpbGwgYWN0dWFsbHkgbWFrZSB0aGUgMiBtb3JlCj4+IGlubGluZS4KPgo+
-Cj4gRXJtLCBJIG1lYW4gdGhlIDJuZCBzcmMgb3BlcmFuZCBvZiB0aGUgc3RvcmUgb2YtY291cnNl
-LCB0aGUgYWN0dWFsIHNyYy4KPgo+IE9uIGEgcmVsYXRlZCBub3RlLCBjb21wYXJpbmcgaGFuZGxl
-TE9BRCBhbmQgaGFuZGxlU1RPUkUsIHRoaXMgYml0IGluCj4gaGFuZGxlTE9BRCBzZWVtcyB3cm9u
-ZzoKPgo+ICAgICAgICAgIFZhbHVlICpvZmYgPSBmZXRjaFNyYygxLCBjKTsKPgo+IEkgYmVsaWV2
-ZSB0aGF0IHNob3VsZCBiZToKPgo+ICAgICAgICAgIFZhbHVlICpvZmYgPSBmZXRjaFNyYygxLCAw
-KTsKClllcCwgdGhhdCdzIHdyb25nLiBJIHRoaW5rIEkgd2FzIHdhZmZsaW5nIGJhY2sgYW5kIGZv
-cnRoIGVhcmx5IG9uIGluCnRoZSBsaWZldGltZSBvZiB0aGUgcGF0Y2hzZXQgYWJvdXQgaG93IGl0
-IHdvdWxkIHdvcmssIGFuZCBvbmUgb2YgdGhlCm9wdGlvbnMgd2FzIHRvIHJlYWQgZWFjaCBkd29y
-ZCBmcm9tIGEgc2VwYXJhdGUgb2Zmc2V0LiAoSSB0aGluayBJCnN0YXJ0ZWQgaW1wbGVtZW50aW5n
-IGF0b21pYyBidWZmZXJzIHdlbGwgb3ZlciBhIHllYXIgYWdvLCBvbmx5IHRvIGJlCnN0eW1pZWQg
-YnkgdGhlIG1lbW9yeSB3aW5kb3cgaXNzdWUgYW5kIGdpdmUgdXAgZm9yIGEgbG9uZyB0aW1lLikg
-SQpldmVudHVhbGx5IGNhbWUgdG8gcmVhbGl6ZSB0aGF0IHdhcyBpbnNhbml0eS4KCj4KPiBKdXN0
-IGxpa2UgaGFuZGxlU1RPUkUgZG9lczoKPgo+ICAgICAgICAgIG9mZiA9IGZldGNoU3JjKDAsIDAp
-Owo+Cj4gQW5kIGFsd2F5cyB1c2luZyBhICdjJyBvZiAwIHNlZW1zIGNvcnJlY3QgaGVyZSBzaW5j
-ZSB3ZSBhcmUgZGVhbGluZwo+IHdpdGggYW4gYWRkcmVzcy4KPgo+IE9uY2UgSSBrbm93IHdoaWNo
-IGRvY3MgdG8gdXBkYXRlIGZvciB0aGlzLCBJJ2xsIGRvIGEgdjIgb2YgdGhpcyBwYXRjaAo+IGFu
-ZCBhZGQgYSBwcmVwYXJhdGlvbiBwYXRjaCBmaXhpbmcgdGhlIGFib3ZlIHRvIHRoZSB2MiBzZXQu
-CgpzcmMvZ2FsbGl1bS9kb2NzL3NvdXJjZS90Z3NpLnJzdAoKVGhlcmUgYXJlIHB1c2ggaG9va3Mg
-d2hpY2ggbWFrZSByZWFkdGhlZG9jcy5vcmcgcmUtcHVsbCBmcm9tIHRoZSBtZXNhCnJlcG8gb24g
-ZXZlcnkgcHVzaCBzbyB0aGF0IHRoaW5ncyBhcmUgdXAgdG8gZGF0ZSAod2VsbCwgaXQgdGFrZXMg
-YSBmZXcKbWludXRlcyB0byByZWdlbmVyYXRlIHRoZSBodG1sKS4KCiAgLWlsaWEKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBs
-aXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
+
+--===============1502310383==
+Content-Type: multipart/alternative; boundary="14602711180.5dAEAf.28253";
+ charset="UTF-8"
+
+
+--14602711180.5dAEAf.28253
+Date: Sun, 10 Apr 2016 06:51:58 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=82835
+
+--- Comment #21 from Weedy <weedy2887-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I have a G92GLM [Quadro FX 3600M].
+I use MPV with vdpau and opengl rendering A LOT.
+
+Is this still broken? I want to move off the binary driver but I need this to
+not be broken. Also I hope freq scaling works.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14602711180.5dAEAf.28253
+Date: Sun, 10 Apr 2016 06:51:58 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NV92] GeForce 8800 GS VDPAU h264 decoding hang"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82835#c21">Comment # 21</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NV92] GeForce 8800 GS VDPAU h264 decoding hang"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82835">bug 82835</a>
+              from <span class="vcard"><a class="email" href="mailto:weedy2887&#64;gmail.com" title="Weedy &lt;weedy2887&#64;gmail.com&gt;"> <span class="fn">Weedy</span></a>
+</span></b>
+        <pre>I have a G92GLM [Quadro FX 3600M].
+I use MPV with vdpau and opengl rendering A LOT.
+
+Is this still broken? I want to move off the binary driver but I need this to
+not be broken. Also I hope freq scaling works.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14602711180.5dAEAf.28253--
+
+--===============1502310383==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1502310383==--
