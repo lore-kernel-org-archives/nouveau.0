@@ -1,12 +1,14 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: "unknown fragment shader param 17" error on NV46 when
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: "unknown fragment shader param 17" error on NV46 when
  running glxgears
-Date: Mon, 11 Apr 2016 12:10:43 +0200
-Message-ID: <570B7823.5060104@redhat.com>
+Date: Mon, 11 Apr 2016 12:36:38 +0200
+Message-ID: <570B7E36.2050704@gmail.com>
+References: <570B7823.5060104@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <570B7823.5060104-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,18 +18,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpXaGlsZSB0cnlpbmcgdG8gcmVwcm9kdWNlOgpodHRwczovL2J1Z3ppbGxhLnJlZGhhdC5j
-b20vc2hvd19idWcuY2dpP2lkPTEzMjU2NjcKCkkgYWxzbyBnYXZlIGdseGdlYXJzIGEgcXVpY2sg
-dGVzdCB3aXRoIG1lc2EgbWFzdGVyLCB0aGlzCnJlc3VsdGVkIGluIHRoZSBmb2xsb3dpbmcgZXJy
-b3JzIGJlaW5nIHByaW50ZWQgdG8gdGhlCnRlcm1pbmFsIGZyb20gd2hpY2ggZ2x4Z2VhcnMgd2Fz
-IHN0YXJ0ZWQgOgoKdW5rbm93biBmcmFnbWVudCBzaGFkZXIgcGFyYW0gMTcKdW5rbm93biBmcmFn
-bWVudCBzaGFkZXIgcGFyYW0gMTcKdW5rbm93biBmcmFnbWVudCBzaGFkZXIgcGFyYW0gMTcKdW5r
-bm93biBmcmFnbWVudCBzaGFkZXIgcGFyYW0gMTcKdW5rbm93biBmcmFnbWVudCBzaGFkZXIgcGFy
-YW0gMTcKCkkgd291bGQgbGlrZSB0byBmaXggdGhlc2UsIGFueSBoaW50cyB3aGVyZSBJIG5lZWQg
-dG8gbG9vayA/CgpSZWdhcmRzLAoKSGFucwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbm91dmVhdQo=
+CgpPbiAwNC8xMS8yMDE2IDEyOjEwIFBNLCBIYW5zIGRlIEdvZWRlIHdyb3RlOgo+IEhpLAoKSGks
+Cgo+Cj4gV2hpbGUgdHJ5aW5nIHRvIHJlcHJvZHVjZToKPiBodHRwczovL2J1Z3ppbGxhLnJlZGhh
+dC5jb20vc2hvd19idWcuY2dpP2lkPTEzMjU2NjcKPgo+IEkgYWxzbyBnYXZlIGdseGdlYXJzIGEg
+cXVpY2sgdGVzdCB3aXRoIG1lc2EgbWFzdGVyLCB0aGlzCj4gcmVzdWx0ZWQgaW4gdGhlIGZvbGxv
+d2luZyBlcnJvcnMgYmVpbmcgcHJpbnRlZCB0byB0aGUKPiB0ZXJtaW5hbCBmcm9tIHdoaWNoIGds
+eGdlYXJzIHdhcyBzdGFydGVkIDoKPgo+IHVua25vd24gZnJhZ21lbnQgc2hhZGVyIHBhcmFtIDE3
+Cj4gdW5rbm93biBmcmFnbWVudCBzaGFkZXIgcGFyYW0gMTcKPiB1bmtub3duIGZyYWdtZW50IHNo
+YWRlciBwYXJhbSAxNwo+IHVua25vd24gZnJhZ21lbnQgc2hhZGVyIHBhcmFtIDE3Cj4gdW5rbm93
+biBmcmFnbWVudCBzaGFkZXIgcGFyYW0gMTcKPgo+IEkgd291bGQgbGlrZSB0byBmaXggdGhlc2Us
+IGFueSBoaW50cyB3aGVyZSBJIG5lZWQgdG8gbG9vayA/Cj4KCkl0IHNlZW1zIGxpa2UgdGhhdCBQ
+SVBFX1NIQURFUl9DQVBfSU5URUdFUlMgZm9yIGZyYWcgc2hhZGVycyBpcyBtaXNzaW5nIAppbiBu
+djMwX3NjcmVlbl9nZXRfc2hhZGVyX3BhcmFtKCkuIFRoaXMgd29uJ3QgZml4IHlvdXIgaXNzdWUg
+YnV0IHRoaXMgCndpbGwgc2lsZW5jZSB0aGlzIGRlYnVnIG1lc3NhZ2UgdGhvdWdoLgoKPiBSZWdh
+cmRzLAo+Cj4gSGFucwo+Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUKCi0tIAotU2FtdWVsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
