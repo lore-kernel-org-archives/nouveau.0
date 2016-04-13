@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
- 5; PGR engine fault
-Date: Wed, 13 Apr 2016 15:17:23 +0000
-Message-ID: <bug-92077-8800-hqbPosDv3Z@http.bugs.freedesktop.org/>
-References: <bug-92077-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: 2nd dvi connector on fx 380 not working,
+ channel configuration problem ?
+Date: Wed, 13 Apr 2016 17:18:14 +0200
+Message-ID: <570E6336.6000207@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1028932979=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,95 +16,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1028932979==
-Content-Type: multipart/alternative; boundary="14605606432.0a20.14136";
- charset="UTF-8"
-
-
---14605606432.0a20.14136
-Date: Wed, 13 Apr 2016 15:17:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92077
-
---- Comment #16 from zoominee <gentoo-5cK0ikVjkE4@public.gmane.org> ---
-For information, the bug is still present. My package versions are now:
-mesa 11.1.2
-xorg-server 1.18.1
-xf86-video-nouveau 1.0.12
-linux kernel 4.4.2
-
-I've noticed that, with the chrome-based browsers (Opera etc.) scrolling up and
-down the page sometimes results in tear: the screen contains wide "columns" of
-100 or so pixels that do not scroll and other columns that scroll up and down
-normally.  Other windows and the desktop itself are unaffected.  When this
-tearing happens, if I don't close the windows, the system freezes soon.  I
-suspect that this is related to the bug I reported here.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.
---14605606432.0a20.14136
-Date: Wed, 13 Apr 2016 15:17:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077#c16">Comment # 16</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077">bug 92077</a>
-              from <span class="vcard"><a class="email" href="mailto:gentoo&#64;moin.fi" title="zoominee &lt;gentoo&#64;moin.fi&gt;"> <span class="fn">zoominee</span></a>
-</span></b>
-        <pre>For information, the bug is still present. My package versions are now:
-mesa 11.1.2
-xorg-server 1.18.1
-xf86-video-nouveau 1.0.12
-linux kernel 4.4.2
-
-I've noticed that, with the chrome-based browsers (Opera etc.) scrolling up and
-down the page sometimes results in tear: the screen contains wide &quot;columns&quot; of
-100 or so pixels that do not scroll and other columns that scroll up and down
-normally.  Other windows and the desktop itself are unaffected.  When this
-tearing happens, if I don't close the windows, the system freezes soon.  I
-suspect that this is related to the bug I reported here.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>
---14605606432.0a20.14136--
-
---===============1028932979==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1028932979==--
+SGksCgpJJ3ZlIGJlZW4gZGVidWdnaW5nIHRoZSBwcm9ibGVtIG9mIHRoZSAybmQgZHZpIGNvbm5l
+Y3RvciBvbiBmeCAzODAKY2FyZHMgbm90IHdvcmtpbmcuCgpJIHdhbnRlZCB0byBkaWZmIGEgZHVt
+cCBvZiB0aGUgcGRpc3BsYXkgYmxvY2sgcmVnaXN0ZXJzIHVuZGVyIG5vdXZlYXUKYW5kIHRoZSBi
+aW5hcnkgbnZpZGlhIGRyaXZlciwgYnV0IHdoZW4gcnVubmluZyBudmFwZWVrIHVuZGVyIG52aWRp
+YQpJIGdldDogYSAiV0FSTjogQ2FuJ3QgcHJvYmUgLi4uIiBlcnJvciBiZWNhdXNlIG9mCnBjaV9k
+ZXZpY2VfbWFwX3JhbmdlKCkgZmFpbGluZywgaXMgdGhlcmUgYSB3YXkgYXJvdW5kIHRoaXMuCgpJ
+IGRpZCBsZWFybiBzb21ldGhpbmcgaW50ZXJlc3RpbmcgdGhvdWdoLiBJZiBJIHJtbW9kIG52aWRp
+YS5rbyBhbmQKdGhlbiBpbnNtb2Qgbm91dmVhdS5rbyBJIGRvIGdldCBvdXRvdXQgb24gdGhlIDJu
+ZCBkdmkuIE5vcm1hbGx5CmV2ZXJ5dGhpbmcgc2VlbXMgdG8gd29yaywgYnV0IHRoaXMgaXMgbm8g
+b3V0cHV0IG9uIHRoZSAybmQgZHZpLApob3dldmVyIGlmIEkgZmlyc3QgbG9hZCBhbmQgcm1tb2Qg
+bnZpZGlhLmtvLCBhbmQgdGhlbiBsb2FkIG5vdXZlYXUua28KSSBnZXQgb3V0cHV0LCBidXQgbm90
+IHRoZSBkZXNpcmVkIG91dHB1dCBpbnN0ZWFkIHRoZSBtb25pdG9yIGNvbnN0YW50bHkKc2hvd3Mg
+dGhlIGxhc3RzIGNvbnRlbnRzIG9mIHRoZSB2Z2EtdGV4dC1jb25zb2xlIHdoaWNoIHdhcyBzaG93
+bgpiZWZvcmUgZG9pbmcgdGhlIGluc21vZCBub3V2ZWF1LmtvLgoKVGhpcyBmZWVscyBsaWtlIHBy
+b2dyZXNzLCBidXQgSSdtIG5vdCBzdXJlIHdoZXJlIHRvIGxvb2sgYXQKZnJvbSBoZXJlIG9uLiBJ
+IGRvIGhhdmUgcGRpc3BsYXkgcmVnIGR1bXBzIG9mIGJvdGggYSByZWd1bGFyCm5vdXZlYXUgbG9h
+ZCwgYW5kIG9uZSBhZnRlciBmaXJzdCBoYXZpbmcgbG9hZGVkIG52aWRpYS5rby4KClNvIGFueSBo
+aW50cyBob3cgdG8gZGVidWcgdGhpcyBmdXJ0aGVyID8KClJlZ2FyZHMsCgpIYW5zCgpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
