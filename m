@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
- 5; PGR engine fault
-Date: Fri, 15 Apr 2016 05:13:46 +0000
-Message-ID: <bug-92077-8800-26HuywIs7y@http.bugs.freedesktop.org/>
-References: <bug-92077-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 82714] [G84] nouveau fails to properly initialize GPU
+Date: Fri, 15 Apr 2016 09:34:23 +0000
+Message-ID: <bug-82714-8800-y1LOh2C1HA@http.bugs.freedesktop.org/>
+References: <bug-82714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1955864629=="
+Content-Type: multipart/mixed; boundary="===============1238516649=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-82714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1955864629==
-Content-Type: multipart/alternative; boundary="14606972261.ca049.32691";
+--===============1238516649==
+Content-Type: multipart/alternative; boundary="14607128632.5aAfeEFC.27719";
  charset="UTF-8"
 
 
---14606972261.ca049.32691
-Date: Fri, 15 Apr 2016 05:13:46 +0000
+--14607128632.5aAfeEFC.27719
+Date: Fri, 15 Apr 2016 09:34:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92077
+https://bugs.freedesktop.org/show_bug.cgi?id=82714
 
---- Comment #18 from zoominee <gentoo-5cK0ikVjkE4@public.gmane.org> ---
-(In reply to Andrey Mazo from comment #17)
-> zoominee, have you tried disabling the system activity applet that you
-> suspected could trigger the issue?
+--- Comment #21 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+I tested with latest Nouveau and latest drm-next as of yesterday (4.6-rcX),
+with the G84 alongside a GM206; the GM206 was the one driving the screen.
+Launching weston or kmscon works, but starting X makes the whole computer
+freeze (no responce on key presses, power button press, capslock not working).
+I’ll try to setup netconsole and SSH later to gather some logs.
 
-If it's caused by an applet, it would be the clock in the top right corner,
-that's the only thing that updates the screen regularly...  But it seems that
-other larger-scale updates to the screen (e.g., processing pictures in the
-image processing program, or the weird scrolling thing I mentioned with the
-Opera and Vivaldi browsers) lead to this bug/freeze more quickly.
+On one of the boots, I got a slow path warning in
+nvkm_pci_intr()/nvkm_mc_intr().
+
+Trying to suspend the computer simply results in the computer not suspending
+and freezing.
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
---14606972261.ca049.32691
-Date: Fri, 15 Apr 2016 05:13:46 +0000
+--14607128632.5aAfeEFC.27719
+Date: Fri, 15 Apr 2016 09:34:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -62,37 +62,38 @@ Content-Type: text/html
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077#c18">Comment # 18</a>
+   title="NEW - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077">bug 92077</a>
-              from <span class="vcard"><a class="email" href="mailto:gentoo&#64;moin.fi" title="zoominee &lt;gentoo&#64;moin.fi&gt;"> <span class="fn">zoominee</span></a>
+   title="NEW - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>(In reply to Andrey Mazo from <a href="show_bug.cgi?id=92077#c17">comment #17</a>)
-<span class="quote">&gt; zoominee, have you tried disabling the system activity applet that you
-&gt; suspected could trigger the issue?</span >
+        <pre>I tested with latest Nouveau and latest drm-next as of yesterday (4.6-rcX),
+with the G84 alongside a GM206; the GM206 was the one driving the screen.
+Launching weston or kmscon works, but starting X makes the whole computer
+freeze (no responce on key presses, power button press, capslock not working).
+I’ll try to setup netconsole and SSH later to gather some logs.
 
-If it's caused by an applet, it would be the clock in the top right corner,
-that's the only thing that updates the screen regularly...  But it seems that
-other larger-scale updates to the screen (e.g., processing pictures in the
-image processing program, or the weird scrolling thing I mentioned with the
-Opera and Vivaldi browsers) lead to this bug/freeze more quickly.</pre>
+On one of the boots, I got a slow path warning in
+nvkm_pci_intr()/nvkm_mc_intr().
+
+Trying to suspend the computer simply results in the computer not suspending
+and freezing.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
---14606972261.ca049.32691--
+--14607128632.5aAfeEFC.27719--
 
---===============1955864629==
+--===============1238516649==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1955864629==--
+--===============1238516649==--
