@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94948] [NV117] Second external monitor not recognized
-Date: Fri, 15 Apr 2016 12:59:24 +0000
-Message-ID: <bug-94948-8800-enBejg9rxd@http.bugs.freedesktop.org/>
-References: <bug-94948-8800@http.bugs.freedesktop.org/>
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: [PATCH 1/2] nouveau/bl: Assign different names to
+	interfaces
+Date: Fri, 15 Apr 2016 16:57:21 +0200
+Message-ID: <1460732242-4161-1-git-send-email-pierre.morrow@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1594927988=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94948-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,74 +16,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1594927988==
-Content-Type: multipart/alternative; boundary="14607251630.bEFe.9273";
- charset="UTF-8"
-
-
---14607251630.bEFe.9273
-Date: Fri, 15 Apr 2016 12:59:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=94948
-
---- Comment #2 from Carsten Pfeiffer <pfeiffer-RoXCvvDuEio@public.gmane.org> ---
-Created attachment 122968
-  --> https://bugs.freedesktop.org/attachment.cgi?id=122968&action=edit
-Video Bios
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14607251630.bEFe.9273
-Date: Fri, 15 Apr 2016 12:59:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV117] Second external monitor not recognized"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94948#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV117] Second external monitor not recognized"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94948">bug 94948</a>
-              from <span class="vcard"><a class="email" href="mailto:pfeiffer&#64;kde.org" title="Carsten Pfeiffer &lt;pfeiffer&#64;kde.org&gt;"> <span class="fn">Carsten Pfeiffer</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=122968" name="attach_122968" title="Video Bios">attachment 122968</a> <a href="attachment.cgi?id=122968&amp;action=edit" title="Video Bios">[details]</a></span>
-Video Bios</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14607251630.bEFe.9273--
-
---===============1594927988==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1594927988==--
+Q3VycmVudGx5LCBldmVyeSBiYWNrbGlnaHQgaW50ZXJmYWNlIGNyZWF0ZWQgYnkgTm91dmVhdSB1
+c2VzIHRoZSBzYW1lIG5hbWUsCm52X2JhY2tsaWdodC4gVGhpcyBsZWFkcyB0byBhIHN5c2ZzIHdh
+cm5pbmcgYXMgaXQgdHJpZXMgdG8gY3JlYXRlIGFuIGFscmVhZHkKZXhpc3RpbmcgZm9sZGVyLiBU
+aGlzIHBhdGNoIGFkZHMgYSBpbmNyZW1lbnRlZCBudW1iZXIgdG8gdGhlIG5hbWUsIGJ1dCBrZWVw
+cwp0aGUgaW5pdGlhbCBuYW1lIGFzIG52X2JhY2tsaWdodCwgdG8gYXZvaWQgcG9zc2libHkgYnJl
+YWtpbmcgdXNlcnNwYWNlOyB0aGUKc2Vjb25kIGludGVyZmFjZSB3aWxsIGJlIG5hbWVkIG52X2Jh
+Y2tsaWdodDEsIGFuZCBzbyBvbi4KCkZpeGVzOiBmZG8jODY1MzkKU2lnbmVkLW9mZi1ieTogUGll
+cnJlIE1vcmVhdSA8cGllcnJlLm1vcnJvd0BmcmVlLmZyPgotLS0KIGRybS9ub3V2ZWF1L25vdXZl
+YXVfYmFja2xpZ2h0LmMgfCAzNSArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLQog
+MSBmaWxlIGNoYW5nZWQsIDMzIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0t
+Z2l0IGEvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYyBiL2RybS9ub3V2ZWF1L25vdXZl
+YXVfYmFja2xpZ2h0LmMKaW5kZXggODllYjQ2MC4uOTE0ZTJjYiAxMDA2NDQKLS0tIGEvZHJtL25v
+dXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYworKysgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2ts
+aWdodC5jCkBAIC0zNiw2ICszNiwxMCBAQAogI2luY2x1ZGUgIm5vdXZlYXVfcmVnLmgiCiAjaW5j
+bHVkZSAibm91dmVhdV9lbmNvZGVyLmgiCiAKK3N0YXRpYyBhdG9taWNfdCBibF9pbnRlcmZhY2Vz
+X25iID0geyAwIH07CisKK3N0YXRpYyBjaGFyKiBub3V2ZWF1X2dldF9iYWNrbGlnaHRfbmFtZSh2
+b2lkKTsKKwogc3RhdGljIGludAogbnY0MF9nZXRfaW50ZW5zaXR5KHN0cnVjdCBiYWNrbGlnaHRf
+ZGV2aWNlICpiZCkKIHsKQEAgLTc0LDYgKzc4LDcgQEAgbnY0MF9iYWNrbGlnaHRfaW5pdChzdHJ1
+Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQogCXN0cnVjdCBudmlmX29iamVjdCAqZGV2aWNl
+ID0gJmRybS0+ZGV2aWNlLm9iamVjdDsKIAlzdHJ1Y3QgYmFja2xpZ2h0X3Byb3BlcnRpZXMgcHJv
+cHM7CiAJc3RydWN0IGJhY2tsaWdodF9kZXZpY2UgKmJkOworCWNoYXIqIGJhY2tsaWdodF9uYW1l
+ID0gTlVMTDsKIAogCWlmICghKG52aWZfcmQzMihkZXZpY2UsIE5WNDBfUE1DX0JBQ0tMSUdIVCkg
+JiBOVjQwX1BNQ19CQUNLTElHSFRfTUFTSykpCiAJCXJldHVybiAwOwpAQCAtODEsOCArODYsMTQg
+QEAgbnY0MF9iYWNrbGlnaHRfaW5pdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQog
+CW1lbXNldCgmcHJvcHMsIDAsIHNpemVvZihzdHJ1Y3QgYmFja2xpZ2h0X3Byb3BlcnRpZXMpKTsK
+IAlwcm9wcy50eXBlID0gQkFDS0xJR0hUX1JBVzsKIAlwcm9wcy5tYXhfYnJpZ2h0bmVzcyA9IDMx
+OwotCWJkID0gYmFja2xpZ2h0X2RldmljZV9yZWdpc3RlcigibnZfYmFja2xpZ2h0IiwgY29ubmVj
+dG9yLT5rZGV2LCBkcm0sCisJYmFja2xpZ2h0X25hbWUgPSBub3V2ZWF1X2dldF9iYWNrbGlnaHRf
+bmFtZSgpOworCWJkID0gYmFja2xpZ2h0X2RldmljZV9yZWdpc3RlcihiYWNrbGlnaHRfbmFtZSAs
+IGNvbm5lY3Rvci0+a2RldiwgZHJtLAogCQkJCSAgICAgICAmbnY0MF9ibF9vcHMsICZwcm9wcyk7
+CisKKwkvLyBiYWNrbGlnaHRfZGV2aWNlX3JlZ2lzdGVyKCkgbWFrZXMgYSBjb3B5CisJa2ZyZWUo
+YmFja2xpZ2h0X25hbWUpOworCWJhY2tsaWdodF9uYW1lID0gTlVMTDsKKwogCWlmIChJU19FUlIo
+YmQpKQogCQlyZXR1cm4gUFRSX0VSUihiZCk7CiAJZHJtLT5iYWNrbGlnaHQgPSBiZDsKQEAgLTE4
+Miw2ICsxOTMsNyBAQCBudjUwX2JhY2tsaWdodF9pbml0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpj
+b25uZWN0b3IpCiAJc3RydWN0IGJhY2tsaWdodF9wcm9wZXJ0aWVzIHByb3BzOwogCXN0cnVjdCBi
+YWNrbGlnaHRfZGV2aWNlICpiZDsKIAljb25zdCBzdHJ1Y3QgYmFja2xpZ2h0X29wcyAqb3BzOwor
+CWNoYXIqIGJhY2tsaWdodF9uYW1lID0gTlVMTDsKIAogCW52X2VuY29kZXIgPSBmaW5kX2VuY29k
+ZXIoY29ubmVjdG9yLCBEQ0JfT1VUUFVUX0xWRFMpOwogCWlmICghbnZfZW5jb2RlcikgewpAQCAt
+MjAzLDggKzIxNSwxNCBAQCBudjUwX2JhY2tsaWdodF9pbml0KHN0cnVjdCBkcm1fY29ubmVjdG9y
+ICpjb25uZWN0b3IpCiAJbWVtc2V0KCZwcm9wcywgMCwgc2l6ZW9mKHN0cnVjdCBiYWNrbGlnaHRf
+cHJvcGVydGllcykpOwogCXByb3BzLnR5cGUgPSBCQUNLTElHSFRfUkFXOwogCXByb3BzLm1heF9i
+cmlnaHRuZXNzID0gMTAwOwotCWJkID0gYmFja2xpZ2h0X2RldmljZV9yZWdpc3RlcigibnZfYmFj
+a2xpZ2h0IiwgY29ubmVjdG9yLT5rZGV2LAorCWJhY2tsaWdodF9uYW1lID0gbm91dmVhdV9nZXRf
+YmFja2xpZ2h0X25hbWUoKTsKKwliZCA9IGJhY2tsaWdodF9kZXZpY2VfcmVnaXN0ZXIoYmFja2xp
+Z2h0X25hbWUsIGNvbm5lY3Rvci0+a2RldiwKIAkJCQkgICAgICAgbnZfZW5jb2Rlciwgb3BzLCAm
+cHJvcHMpOworCisJLy8gYmFja2xpZ2h0X2RldmljZV9yZWdpc3RlcigpIG1ha2VzIGEgY29weQor
+CWtmcmVlKGJhY2tsaWdodF9uYW1lKTsKKwliYWNrbGlnaHRfbmFtZSA9IE5VTEw7CisKIAlpZiAo
+SVNfRVJSKGJkKSkKIAkJcmV0dXJuIFBUUl9FUlIoYmQpOwogCkBAIC0yNTIsMyArMjcwLDE2IEBA
+IG5vdXZlYXVfYmFja2xpZ2h0X2V4aXQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKIAkJZHJtLT5i
+YWNrbGlnaHQgPSBOVUxMOwogCX0KIH0KKworc3RhdGljIGNoYXIqCitub3V2ZWF1X2dldF9iYWNr
+bGlnaHRfbmFtZSh2b2lkKQoreworCS8vIDEyIGNoYXJzIGZvciAibnZfYmFja2xpZ2h0IiArIDIg
+Zm9yIHR3byBkaWdpdHMgbnVtYmVyICsgMSBmb3IgJ1wwJworCWNoYXIqIGJhY2tsaWdodF9uYW1l
+ID0gKGNoYXIqKWttYWxsb2Moc2l6ZW9mKGNoYXJbMTVdKSwgR0ZQX0tFUk5FTCk7CisJY29uc3Qg
+aW50IG5iID0gYXRvbWljX2luY19yZXR1cm4oJmJsX2ludGVyZmFjZXNfbmIpIC0gMTsKKwlpZiAo
+bmIgPiAwICYmIG5iIDwgMTAwKQorCQlzcHJpbnRmKGJhY2tsaWdodF9uYW1lLCAibnZfYmFja2xp
+Z2h0JWQiLCBuYik7CisJZWxzZQorCQlzcHJpbnRmKGJhY2tsaWdodF9uYW1lLCAibnZfYmFja2xp
+Z2h0Iik7CisJcmV0dXJuIGJhY2tsaWdodF9uYW1lOworfQotLSAKMi44LjAKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
