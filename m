@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82152] [NVE7] NULL deref when putting card back to
- sleep after unsuccessful init (HUB_INIT timeout)
-Date: Sat, 16 Apr 2016 12:16:38 +0000
-Message-ID: <bug-82152-8800-GnXDtQlD13@http.bugs.freedesktop.org/>
-References: <bug-82152-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94964] New: Tearing with opengl-hq and not with
+ opengl on Gnome with MPV
+Date: Sat, 16 Apr 2016 13:11:54 +0000
+Message-ID: <bug-94964-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0236224129=="
+Content-Type: multipart/mixed; boundary="===============1760167104=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +19,96 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0236224129==
-Content-Type: multipart/alternative; boundary="14608089980.7CfC2A.15846";
+--===============1760167104==
+Content-Type: multipart/alternative; boundary="14608123141.F3EDdc3C3.27956";
  charset="UTF-8"
 
 
---14608089980.7CfC2A.15846
-Date: Sat, 16 Apr 2016 12:16:38 +0000
+--14608123141.F3EDdc3C3.27956
+Date: Sat, 16 Apr 2016 13:11:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=82152
+https://bugs.freedesktop.org/show_bug.cgi?id=94964
 
---- Comment #11 from Patrick Burroughs <celti-ND9dHWfaFg1BDLzU/O5InQ@public.gmane.org> ---
-Created attachment 122992
-  --> https://bugs.freedesktop.org/attachment.cgi?id=122992&action=edit
-dmesg output with errors from successful load
+            Bug ID: 94964
+           Summary: Tearing with opengl-hq and not with opengl on Gnome
+                    with MPV
+           Product: Mesa
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: jeremy9856-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-With Linux 4.5.0-ARCH, Mesa 11.1.2-3, DRI3, and using modesetting_drv instead
-of intel_drv for the main display (not sure if that's relevant)... everything
-works! (If "everything" consists of glxinfo, glxgears, and a few minutes of
-Darwinia.)
+Tearing with opengl-hq and not with opengl on Gnome with MPV
 
-I do still get errors in dmesg, though, as attached. I'll be happy to follow
-along and do whatever digging is necessary to eradicate them, if someone wants
-to take up that task.
+Hello, I'm on Fedora 23 with Linux 4.4, Gnome Shell 3.18, MPV 0.17 and Nouveau
+driver (Nvidia GT430). In windowed mode I have tearing with opengl-hq and not
+with opengl. In fullscreen mode there is no tearing with both opengl-hq and
+opengl.
+
+Here is the commands to test
+
+mpv --no-config --vo=opengl-hq movie.mkv
+mpv --no-config --vo=opengl movie.mkv
+
+With Netrunner 14.2 (KDE - Kubuntu 14.04 derivative), MPV 0.17 and Nvidia
+proprietary drivers there is no tearing in windowed mode with opengl-hq. I
+tried Gnome Shell and Plasma 5 on Manjaro too. There is no tearing with Nouveau
+and Opengl-hq in windowed mode in Plasma 5 but there is stutter and there is
+tearing with Gnome Shell.
+
+Actually there is dropped frames with Nouveau and Opengl-hq in windowed mode in
+all DE.
+
+I opened an issue on MPV github and Wm4, the main MPV dev, said that my GPU
+(Nvidia GT430) with Nouveau driver is maybe too slow (no reclocking ?).
+
+https://github.com/mpv-player/mpv/issues/2501
+
+For me the logical behavior should be like on Plasma 5 with Nouveau, no tearing
+but if the GPU is not powerful enough the playback have stutter due to the
+dropped frames.
+
+I contacted Rui Matos, a Mutter developper, and he advise me to file a bug
+here. Here is a summary of our talk to give all the infos I have :
+
+Rui : Did you try gnome-shell on this environment (same as Plasma 5)? I
+supposed it'd still tear.
+
+Me : I tried Plasma 5 and Gnome Shell on Manjaro with Nouveau on the same
+installation. The tearing was present in Gnome Shell but not on Plasma 5.
+
+Rui : I'm afraid I can't help with this one, you'll have to file a nouveau bug.
+
+Me: Can you confirm that even if the tearing was present in Gnome Shell but not
+on Plasma 5 on the same install I should file a bug to Nouveau.
+
+Rui: Is kwin using opengl compositing? For the comparison to be meaningful you
+need to compare gnome-shell with kwin with opengl compositing enabled.
+
+Me: I just checked to be sure and the opengl compositing is enabled for kwin
+too.
+
+Rui: Ok. I still might be a driver issue that just happens to be triggered by
+different timings and API usage in mutter vs. kwin. Anyway, I can't really do
+much without the hardware to test, so it's still better to report it to
+nouveau.
+
+Thank you !
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14608089980.7CfC2A.15846
-Date: Sat, 16 Apr 2016 12:16:38 +0000
+You are the QA Contact for the bug.
+--14608123141.F3EDdc3C3.27956
+Date: Sat, 16 Apr 2016 13:11:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -59,30 +116,145 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tearing with opengl-hq and not with opengl on Gnome with MPV"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94964">94964</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Tearing with opengl-hq and not with opengl on Gnome with MPV
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jeremy9856&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] NULL deref when putting card back to sleep after unsuccessful init (HUB_INIT timeout)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] NULL deref when putting card back to sleep after unsuccessful init (HUB_INIT timeout)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152">bug 82152</a>
-              from <span class="vcard"><a class="email" href="mailto:celti&#64;celti.name" title="Patrick Burroughs &lt;celti&#64;celti.name&gt;"> <span class="fn">Patrick Burroughs</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=122992" name="attach_122992" title="dmesg output with errors from successful load">attachment 122992</a> <a href="attachment.cgi?id=122992&amp;action=edit" title="dmesg output with errors from successful load">[details]</a></span>
-dmesg output with errors from successful load
+        <pre>Tearing with opengl-hq and not with opengl on Gnome with MPV
 
-With Linux 4.5.0-ARCH, Mesa 11.1.2-3, DRI3, and using modesetting_drv instead
-of intel_drv for the main display (not sure if that's relevant)... everything
-works! (If &quot;everything&quot; consists of glxinfo, glxgears, and a few minutes of
-Darwinia.)
+Hello, I'm on Fedora 23 with Linux 4.4, Gnome Shell 3.18, MPV 0.17 and Nouveau
+driver (Nvidia GT430). In windowed mode I have tearing with opengl-hq and not
+with opengl. In fullscreen mode there is no tearing with both opengl-hq and
+opengl.
 
-I do still get errors in dmesg, though, as attached. I'll be happy to follow
-along and do whatever digging is necessary to eradicate them, if someone wants
-to take up that task.</pre>
+Here is the commands to test
+
+mpv --no-config --vo=opengl-hq movie.mkv
+mpv --no-config --vo=opengl movie.mkv
+
+With Netrunner 14.2 (KDE - Kubuntu 14.04 derivative), MPV 0.17 and Nvidia
+proprietary drivers there is no tearing in windowed mode with opengl-hq. I
+tried Gnome Shell and Plasma 5 on Manjaro too. There is no tearing with Nouveau
+and Opengl-hq in windowed mode in Plasma 5 but there is stutter and there is
+tearing with Gnome Shell.
+
+Actually there is dropped frames with Nouveau and Opengl-hq in windowed mode in
+all DE.
+
+I opened an issue on MPV github and Wm4, the main MPV dev, said that my GPU
+(Nvidia GT430) with Nouveau driver is maybe too slow (no reclocking ?).
+
+<a href="https://github.com/mpv-player/mpv/issues/2501">https://github.com/mpv-player/mpv/issues/2501</a>
+
+For me the logical behavior should be like on Plasma 5 with Nouveau, no tearing
+but if the GPU is not powerful enough the playback have stutter due to the
+dropped frames.
+
+I contacted Rui Matos, a Mutter developper, and he advise me to file a bug
+here. Here is a summary of our talk to give all the infos I have :
+
+Rui : Did you try gnome-shell on this environment (same as Plasma 5)? I
+supposed it'd still tear.
+
+Me : I tried Plasma 5 and Gnome Shell on Manjaro with Nouveau on the same
+installation. The tearing was present in Gnome Shell but not on Plasma 5.
+
+Rui : I'm afraid I can't help with this one, you'll have to file a nouveau bug.
+
+Me: Can you confirm that even if the tearing was present in Gnome Shell but not
+on Plasma 5 on the same install I should file a bug to Nouveau.
+
+Rui: Is kwin using opengl compositing? For the comparison to be meaningful you
+need to compare gnome-shell with kwin with opengl compositing enabled.
+
+Me: I just checked to be sure and the opengl compositing is enabled for kwin
+too.
+
+Rui: Ok. I still might be a driver issue that just happens to be triggered by
+different timings and API usage in mutter vs. kwin. Anyway, I can't really do
+much without the hardware to test, so it's still better to report it to
+nouveau.
+
+Thank you !</pre>
         </div>
       </p>
       <hr>
@@ -90,12 +262,13 @@ to take up that task.</pre>
       
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>
---14608089980.7CfC2A.15846--
+--14608123141.F3EDdc3C3.27956--
 
---===============0236224129==
+--===============1760167104==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +278,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0236224129==--
+--===============1760167104==--
