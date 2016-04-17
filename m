@@ -1,114 +1,93 @@
-From: Pierre Moreau <pierre.morrow@free.fr>
-Subject: Re: [Nouveau] [PATCH 1/2] nouveau/bl: Assign different names to
- interfaces
-Date: Sun, 17 Apr 2016 10:18:08 +0200
-Message-ID: <20160417081808.GA4595@Normandy.alltele.se>
-References: <1460732242-4161-1-git-send-email-pierre.morrow@free.fr>
- <CAKb7Uvg3OxWuooJ=otSb1N_yRr1VcVgvH4K0DDy1zzDs9js4CA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93458] page allocation failure: order:5,
+	mode:0x240c0c0
+Date: Sun, 17 Apr 2016 09:23:25 +0000
+Message-ID: <bug-93458-8800-UbhaGwvEgI@http.bugs.freedesktop.org/>
+References: <bug-93458-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1178282444=="
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7Uvg3OxWuooJ=otSb1N_yRr1VcVgvH4K0DDy1zzDs9js4CA@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0650801587=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93458-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1178282444==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3V7upXqbjpZ4EhLz"
-Content-Disposition: inline
+--===============0650801587==
+Content-Type: multipart/alternative; boundary="14608850052.4C4cFDfd.28943";
+ charset="UTF-8"
 
 
---3V7upXqbjpZ4EhLz
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+--14608850052.4C4cFDfd.28943
+Date: Sun, 17 Apr 2016 09:23:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
 
-[=E2=80=A6]
+https://bugs.freedesktop.org/show_bug.cgi?id=93458
 
->=20
-> > +       const int nb =3D atomic_inc_return(&bl_interfaces_nb) - 1;
->=20
-> This kinda sucks if you reload nouveau a bunch. How about using an
-> "ida". Have a look in drivers/gpu/drm/drm_crtc.c for how I use that
-> one.
+--- Comment #7 from Matt Whitlock <freedesktop-wf/ZkUcLzLDBWRuVRseHprNAH6kLmebB@public.gmane.org> ---
+FYI: Ilia Mirkin submitted the patch from Comment 4 to the Nouveau listserv on
+6 Mar 2016. I think I'll apply this patch to my 4.4.7 kernel.
 
-I had a quick look at drm_crtc.c. This seems to be exactly what I need, exc=
-ept
-that I do not see how I can enforce to have one of the active ones being na=
-med
-`nv_backlight`, to not break (possibly) existing userspace applications. (I=
-=E2=80=99m
-guessing that I would be doing the same as in drm_crtc.c: looping over all
-connectors and assigning them an ida, regardless of them being active or no=
-t,
-as they might become active later on.)
+http://permalink.gmane.org/gmane.comp.freedesktop.xorg.nouveau/24081
 
-There is another issue that I failed to address with this patch, and just
-realised about it. Each time `nvXX_backlight_init(connector)` is called on a
-connector, a new backlight device is created, and is stored in
-`drm->backlight`, which is unique at a device level, not connector level,
-meaning the old one just gets overriden (and leaked). Having a list
-`drm->backlights` should solve this issue. Would that be fine with you Ben?
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14608850052.4C4cFDfd.28943
+Date: Sun, 17 Apr 2016 09:23:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html
 
-Pierre
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - page allocation failure: order:5, mode:0x240c0c0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93458#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - page allocation failure: order:5, mode:0x240c0c0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93458">bug 93458</a>
+              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;mattwhitlock.name" title="Matt Whitlock &lt;freedesktop&#64;mattwhitlock.name&gt;"> <span class="fn">Matt Whitlock</span></a>
+</span></b>
+        <pre>FYI: Ilia Mirkin submitted the patch from <a href="show_bug.cgi?id=93458#c4">Comment 4</a> to the Nouveau listserv on
+6 Mar 2016. I think I'll apply this patch to my 4.4.7 kernel.
 
->=20
-> > +       if (nb > 0 && nb < 100)
-> > +               sprintf(backlight_name, "nv_backlight%d", nb);
-> > +       else
-> > +               sprintf(backlight_name, "nv_backlight");
-> > +       return backlight_name;
-> > +}
-> > --
-> > 2.8.0
-> >
-> > _______________________________________________
-> > Nouveau mailing list
-> > Nouveau@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/nouveau
+<a href="http://permalink.gmane.org/gmane.comp.freedesktop.xorg.nouveau/24081">http://permalink.gmane.org/gmane.comp.freedesktop.xorg.nouveau/24081</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14608850052.4C4cFDfd.28943--
 
---3V7upXqbjpZ4EhLz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAABCgAGBQJXE0a5AAoJEI7uMhYTPh3ww1UP+wVTHFTQc9hA8AZw4ykdzQZ9
-z6577mpTpdCiXQf+TTuENKJKO//E9V0OBsuE/laQF6SnCrBR1vXiJpyU44BbTLuv
-8WbVzOLAExHjl8LWXIf3zbfFIYZNIZKr6h07DFGOWAlxlQ3ncrSH5ZbrqDijex4p
-ADrwbd0s0xx88r6QCBivVJSWtWD24ScfYP8ggSo6zXwTOG5J3gIvtoZetWuY84La
-9IPG8YBdlyBFfpGOirKh0LF8BvIkSGGOCkiaRPETx1ptagHnP9GRTWgAkQndNc3y
-3/3M2MpX3iiJ8PE72VlgXB+sePFtP1GZjfdTX0eLpM8f+S2heieAZJGK3siBc8E8
-v8hWk0QSoj+8sI3H1KRvbiHUq73P4SY9i8iSZcTSDuk/7UIWV/z9P9wbzBm2zueP
-5UToZnoYi/wMp3UmXimRS5qOLQXk7Ql6eEqhJJ3M4Y3hUt4vlu52CLaiVNGRQ74S
-a7pQry4CNXAaykPw1wwOnfc5NGRn5y9qZfetBPuNAWQJI+oaWDrjJIJ/B3rI4lBz
-PNWy1Qo0eZBQutA/Bd+V2p4T6AtOJysN6LeEQzG8p+Nq6ZstvOp/F1BL1hW4Hb7w
-B+TQPnVoFYj/GyyXGsed/osYqug+zs3J2xxpQd8NjCbAGnvphrNJI9OIJS5UykfV
-RTm18poVF4EsWuSunaxe
-=H8sE
------END PGP SIGNATURE-----
-
---3V7upXqbjpZ4EhLz--
-
---===============1178282444==
+--===============0650801587==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
-IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1178282444==--
+--===============0650801587==--
