@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93458] page allocation failure: order:5,
-	mode:0x240c0c0
-Date: Sun, 17 Apr 2016 14:52:02 +0000
-Message-ID: <bug-93458-8800-8mrZbGhyCw@http.bugs.freedesktop.org/>
-References: <bug-93458-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91523] [NVE7] driver cannot initialize gpu(failed to
+ parse ramcfg data)
+Date: Sun, 17 Apr 2016 17:45:43 +0000
+Message-ID: <bug-91523-8800-OcZSpynNXm@http.bugs.freedesktop.org/>
+References: <bug-91523-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1338068730=="
+Content-Type: multipart/mixed; boundary="===============1602949872=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93458-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91523-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,54 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1338068730==
-Content-Type: multipart/alternative; boundary="14609047223.8cfe3.16080";
+--===============1602949872==
+Content-Type: multipart/alternative; boundary="14609151431.DAdd963e0.31435";
  charset="UTF-8"
 
 
---14609047223.8cfe3.16080
-Date: Sun, 17 Apr 2016 14:52:02 +0000
+--14609151431.DAdd963e0.31435
+Date: Sun, 17 Apr 2016 17:45:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93458
+https://bugs.freedesktop.org/show_bug.cgi?id=91523
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #3 from Ilia Bozhinov <iliyabo-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+It seems that the code that triggers this bug is in
+drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.cpp around line 1583. It seems
+that the assumption in the comment is not true, on my card this condition
+obviously doesn't mean that the card should be ignored completely. This maybe
+has some other meaning, does anybody know how I can help debugging the problem?
+I'm posting the comment in the code:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This should be now upstream with
-
-commit 78a121d82da8aff3aca2a6a1c40f5061081760f0
-Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Date:   Sun Mar 6 16:06:06 2016 -0500
-
-    drm/nouveau/core: use vzalloc for allocating ramht
-
-    Most calls to nvkm_ramht_new use 0x8000 as the size. This results in a
-    fairly sizeable chunk of memory to be allocated, which may not be
-    available with kzalloc. Since this is done fairly rarely (once per
-    channel), use vzalloc instead.
-
-    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-
-Zlatko - I didn't realize (or perhaps totally forgot) you had provided the same
-patch, didn't mean to steal credit or anything like that. Just ran into the
-same issue myself and sent a patch. In the future, feel free to send patches to
-the mailing list.
-
-This issue should be resolved in v4.6-rc1+.
+/* parse bios data for all rammap table entries up-front, and                   
+ * build information on whether certain fields differ between                   
+ * any of the entries.                                                          
+ *                                                                              
+ * the binary driver appears to completely ignore some fields                   
+ * when all entries contain the same value.  at first, it was                   
+ * hoped that these were mere optimisations and the bios init                   
+ * tables had configured as per the values here, but there is                   
+ * evidence now to suggest that this isn't the case and we do                   
+ * need to treat this condition as a "don't touch" indicator.                   
+ */
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14609047223.8cfe3.16080
-Date: Sun, 17 Apr 2016 14:52:02 +0000
+--14609151431.DAdd963e0.31435
+Date: Sun, 17 Apr 2016 17:45:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -76,69 +65,37 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - page allocation failure: order:5, mode:0x240c0c0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93458">bug 93458</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - page allocation failure: order:5, mode:0x240c0c0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93458#c8">Comment # 8</a>
+          bz_status_NEW "
+   title="NEW - [NVE7] driver cannot initialize gpu(failed to parse ramcfg data)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91523#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - page allocation failure: order:5, mode:0x240c0c0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93458">bug 93458</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW - [NVE7] driver cannot initialize gpu(failed to parse ramcfg data)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91523">bug 91523</a>
+              from <span class="vcard"><a class="email" href="mailto:iliyabo&#64;hotmail.com" title="Ilia Bozhinov &lt;iliyabo&#64;hotmail.com&gt;"> <span class="fn">Ilia Bozhinov</span></a>
 </span></b>
-        <pre>This should be now upstream with
+        <pre>It seems that the code that triggers this bug is in
+drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.cpp around line 1583. It seems
+that the assumption in the comment is not true, on my card this condition
+obviously doesn't mean that the card should be ignored completely. This maybe
+has some other meaning, does anybody know how I can help debugging the problem?
+I'm posting the comment in the code:
 
-commit 78a121d82da8aff3aca2a6a1c40f5061081760f0
-Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-Date:   Sun Mar 6 16:06:06 2016 -0500
-
-    drm/nouveau/core: use vzalloc for allocating ramht
-
-    Most calls to nvkm_ramht_new use 0x8000 as the size. This results in a
-    fairly sizeable chunk of memory to be allocated, which may not be
-    available with kzalloc. Since this is done fairly rarely (once per
-    channel), use vzalloc instead.
-
-    Signed-off-by: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-    Signed-off-by: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
-
-Zlatko - I didn't realize (or perhaps totally forgot) you had provided the same
-patch, didn't mean to steal credit or anything like that. Just ran into the
-same issue myself and sent a patch. In the future, feel free to send patches to
-the mailing list.
-
-This issue should be resolved in v4.6-rc1+.</pre>
+/* parse bios data for all rammap table entries up-front, and                   
+ * build information on whether certain fields differ between                   
+ * any of the entries.                                                          
+ *                                                                              
+ * the binary driver appears to completely ignore some fields                   
+ * when all entries contain the same value.  at first, it was                   
+ * hoped that these were mere optimisations and the bios init                   
+ * tables had configured as per the values here, but there is                   
+ * evidence now to suggest that this isn't the case and we do                   
+ * need to treat this condition as a &quot;don't touch&quot; indicator.                   
+ */</pre>
         </div>
       </p>
       <hr>
@@ -149,9 +106,9 @@ This issue should be resolved in v4.6-rc1+.</pre>
       </ul>
     </body>
 </html>
---14609047223.8cfe3.16080--
+--14609151431.DAdd963e0.31435--
 
---===============1338068730==
+--===============1602949872==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -161,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1338068730==--
+--===============1602949872==--
