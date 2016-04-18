@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Mon, 18 Apr 2016 14:17:01 +0000
-Message-ID: <bug-94990-8800-clKIgQLjVV@http.bugs.freedesktop.org/>
+Date: Mon, 18 Apr 2016 15:03:18 +0000
+Message-ID: <bug-94990-8800-iLi2ClEfql@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0126890851=="
+Content-Type: multipart/mixed; boundary="===============1326212883=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0126890851==
-Content-Type: multipart/alternative; boundary="14609890210.5094f.22686";
+--===============1326212883==
+Content-Type: multipart/alternative; boundary="14609917972.a55Ee3ECa.7519";
  charset="UTF-8"
 
 
---14609890210.5094f.22686
-Date: Mon, 18 Apr 2016 14:17:01 +0000
+--14609917972.a55Ee3ECa.7519
+Date: Mon, 18 Apr 2016 15:03:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
@@ -36,15 +36,14 @@ Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-                   |rg                          |
-                 CC|                            |gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+           Assignee|gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org            |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14609890210.5094f.22686
-Date: Mon, 18 Apr 2016 14:17:01 +0000
+--14609917972.a55Ee3ECa.7519
+Date: Mon, 18 Apr 2016 15:03:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -68,18 +67,9 @@ Content-Type: text/html
 
          <tr>
            <td style="text-align:right;">Assignee</td>
+           <td>gnurou&#64;gmail.com
+           </td>
            <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>gnurou&#64;gmail.com
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>gnurou&#64;gmail.com
            </td>
          </tr></table>
       <p>
@@ -92,9 +82,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14609890210.5094f.22686--
+--14609917972.a55Ee3ECa.7519--
 
---===============0126890851==
+--===============1326212883==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0126890851==--
+--===============1326212883==--
