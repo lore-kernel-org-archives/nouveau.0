@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91523] [NVE7] driver cannot initialize gpu(failed to
- parse ramcfg data)
-Date: Mon, 18 Apr 2016 17:17:04 +0000
-Message-ID: <bug-91523-8800-9KW5j9oue8@http.bugs.freedesktop.org/>
-References: <bug-91523-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: [PATCH v4 01/37] bios/volt: handle voltage table version
+	0x50 with 0ed header
+Date: Mon, 18 Apr 2016 21:13:35 +0200
+Message-ID: <1461006851-5007-2-git-send-email-nouveau@karolherbst.de>
+References: <1461006851-5007-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1047157285=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91523-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1461006851-5007-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,76 +21,26 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1047157285==
-Content-Type: multipart/alternative; boundary="14609998230.FBea0b.18887";
- charset="UTF-8"
-
-
---14609998230.FBea0b.18887
-Date: Mon, 18 Apr 2016 17:17:03 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91523
-
---- Comment #4 from Ilia Bozhinov <iliyabo-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-I tested a kernel build with the relevant code commented(right after the
-comment I posted) and indeed the kernel module works! (it loads and DRI_PRIME=1
-allows me to run glxgears/glxinfo). What is more, now I get better power
-savings because when driver is loaded vgaswitcheroo can turn off the nvidia
-card.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14609998230.FBea0b.18887
-Date: Mon, 18 Apr 2016 17:17:03 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] driver cannot initialize gpu(failed to parse ramcfg data)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91523#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] driver cannot initialize gpu(failed to parse ramcfg data)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91523">bug 91523</a>
-              from <span class="vcard"><a class="email" href="mailto:iliyabo&#64;hotmail.com" title="Ilia Bozhinov &lt;iliyabo&#64;hotmail.com&gt;"> <span class="fn">Ilia Bozhinov</span></a>
-</span></b>
-        <pre>I tested a kernel build with the relevant code commented(right after the
-comment I posted) and indeed the kernel module works! (it loads and DRI_PRIME=1
-allows me to run glxgears/glxinfo). What is more, now I get better power
-savings because when driver is loaded vgaswitcheroo can turn off the nvidia
-card.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14609998230.FBea0b.18887--
-
---===============1047157285==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1047157285==--
+U29tZSBGZXJtaSsgZ3B1cyBoYXZlIG5vIHVzZWZ1bGwgaGVhZGVyIGluIHRoZSB2b2x0YWdlIHRh
+YmxlLCB3aGljaCBtZWFucwpub3V2ZWF1IGhhcyB0byByZWFkIHRoZSB2b2x0YWdlcyBvdXQgb2Yg
+dGhlIGVudHJpZXMgZGlyZWN0bHkuCgpUaGUgbWFzayBtYXkgYmUgYmlnZ2VyIHRoYW4gMHgxZmZm
+ZmYsIGJ1dCB0aGlzIHZhbHVlIGlzIGFscmVhZHkgPjJWLCBzbyBpdCB3aWxsCmJlIGZpbmUgZm9y
+IG5vdy4KClRoaXMgcGF0Y2ggZml4ZXMgdm9sdGluZyBpc3N1ZXMgb24gdGhvc2UgY2FyZHMgZW5h
+YmxpbmcgdGhlbSB0byBzd2l0Y2ggY3N0YXRlcy4KClNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJz
+dCA8bm91dmVhdUBrYXJvbGhlcmJzdC5kZT4KUmV2aWV3ZWQtYnk6IE1hcnRpbiBQZXJlcyA8bWFy
+dGluLnBlcmVzQGZyZWUuZnI+ClRlc3RlZC1ieTogUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJv
+d0BmcmVlLmZyPgotLS0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvdm9sdC5jIHwgMyAr
+KysKIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcm0vbm91
+dmVhdS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jp
+b3Mvdm9sdC5jCmluZGV4IDZlMGEzMzYuLjgxYTQ3YjIgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1
+L252a20vc3ViZGV2L2Jpb3Mvdm9sdC5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jp
+b3Mvdm9sdC5jCkBAIC0xNDIsNyArMTQyLDEwIEBAIG52Ymlvc192b2x0X2VudHJ5X3BhcnNlKHN0
+cnVjdCBudmttX2Jpb3MgKmJpb3MsIGludCBpZHgsIHU4ICp2ZXIsIHU4ICpsZW4sCiAJCWluZm8t
+PnZpZCAgICAgPSBudmJpb3NfcmQwOChiaW9zLCB2b2x0ICsgMHgwMSkgPj4gMjsKIAkJYnJlYWs7
+CiAJY2FzZSAweDQwOgorCQlicmVhazsKIAljYXNlIDB4NTA6CisJCWluZm8tPnZvbHRhZ2UgPSBu
+dmJpb3NfcmQzMihiaW9zLCB2b2x0KSAmIDB4MDAxZmZmZmY7CisJCWluZm8tPnZpZCAgICAgPSAo
+bnZiaW9zX3JkMzIoYmlvcywgdm9sdCkgPj4gMjMpICYgMHhmZjsKIAkJYnJlYWs7CiAJfQogCXJl
+dHVybiB2b2x0OwotLSAKMi44LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
