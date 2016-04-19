@@ -1,14 +1,13 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH v4 35/37] clk: set clocks to pre suspend state
-	after suspend
-Date: Mon, 18 Apr 2016 21:14:09 +0200
-Message-ID: <1461006851-5007-36-git-send-email-nouveau@karolherbst.de>
-References: <1461006851-5007-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92126] [NVE4] GTX 760 Auto fan speed stays at 10%
+ until temp hits 90C
+Date: Tue, 19 Apr 2016 04:36:16 +0000
+Message-ID: <bug-92126-8800-Kepu1eFkzK@http.bugs.freedesktop.org/>
+References: <bug-92126-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1409389881=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1461006851-5007-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-92126-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,78 +20,76 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgotLS0K
-IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgIHwgMTkgKysrKysrKysrKystLS0t
-LS0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2dmMTAwLmMgfCAgNCArKy0tCiBkcm0v
-bm91dmVhdS9udmttL3N1YmRldi9jbGsvbnY0MC5jICB8ICAyICstCiBkcm0vbm91dmVhdS9udmtt
-L3N1YmRldi9jbGsvcHJpdi5oICB8ICA2ICsrKy0tLQogNCBmaWxlcyBjaGFuZ2VkLCAxNyBpbnNl
-cnRpb25zKCspLCAxNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmtt
-L3N1YmRldi9jbGsvYmFzZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwpp
-bmRleCAyNzc2ZDc5Li5kNTQ0MGE5IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9jbGsvYmFzZS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMKQEAg
-LTMyNCw3ICszMjQsNyBAQCBudmttX3BzdGF0ZV9wcm9nKHN0cnVjdCBudmttX2NsayAqY2xrLCBp
-bnQgcHN0YXRlaWQpCiB9CiAKIHN0YXRpYyB2b2lkCi1udmttX2Nsa191cGRhdGVfaW1wbChzdHJ1
-Y3QgbnZrbV9jbGsgKmNsaykKK252a21fY2xrX3VwZGF0ZV9pbXBsKHN0cnVjdCBudmttX2NsayAq
-Y2xrLCBib29sIGZvcmNlKQogewogCXN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gJmNsay0+
-c3ViZGV2OwogCWludCBwc3RhdGU7CkBAIC0zNDksNyArMzQ5LDcgQEAgbnZrbV9jbGtfdXBkYXRl
-X2ltcGwoc3RydWN0IG52a21fY2xrICpjbGspCiAJCXBzdGF0ZSA9IC0xOwogCX0KIAotCWNsay0+
-ZnVuYy0+dXBkYXRlKGNsaywgcHN0YXRlKTsKKwljbGstPmZ1bmMtPnVwZGF0ZShjbGssIHBzdGF0
-ZSwgZm9yY2UpOwogfQogCiBzdGF0aWMgdm9pZApAQCAtMzYwLDcgKzM2MCw3IEBAIG52a21fY2xr
-X3VwZGF0ZV93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKIAlpZiAoIWF0b21pY194Y2hn
-KCZjbGstPndhaXRpbmcsIDApKQogCQlyZXR1cm47CiAKLQludmttX2Nsa191cGRhdGVfaW1wbChj
-bGspOworCW52a21fY2xrX3VwZGF0ZV9pbXBsKGNsaywgZmFsc2UpOwogCiAJd2FrZV91cF9hbGwo
-JmNsay0+d2FpdCk7CiAJbnZrbV9ub3RpZnlfZ2V0KCZjbGstPnB3cnNyY19udGZ5KTsKQEAgLTYx
-MywxMSArNjEzLDcgQEAgbnZrbV9jbGtfaW5pdChzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldikK
-IAlpZiAoY2xrLT5mdW5jLT5pbml0KQogCQlyZXR1cm4gY2xrLT5mdW5jLT5pbml0KGNsayk7CiAK
-LQljbGstPmFzdGF0ZSA9IC0xOwotCWNsay0+cHN0YXRlID0gTlVMTDsKLQljbGstPmV4cF9jc3Rh
-dGUgPSBOVktNX0NMS19DU1RBVEVfREVGQVVMVDsKLQljbGstPnNldF9jc3RhdGUgPSBOVUxMOwot
-CW52a21fY2xrX3VwZGF0ZShjbGssIHRydWUpOworCW52a21fY2xrX3VwZGF0ZV9pbXBsKGNsaywg
-dHJ1ZSk7CiAJcmV0dXJuIDA7CiB9CiAKQEAgLTY3Miw4ICs2NjgsMTUgQEAgbnZrbV9jbGtfY3Rv
-cihjb25zdCBzdHJ1Y3QgbnZrbV9jbGtfZnVuYyAqZnVuYywgc3RydWN0IG52a21fZGV2aWNlICpk
-ZXZpY2UsCiAJY2xrLT5mdW5jID0gZnVuYzsKIAlJTklUX0xJU1RfSEVBRCgmY2xrLT5zdGF0ZXMp
-OwogCWNsay0+ZG9tYWlucyA9IGZ1bmMtPmRvbWFpbnM7CisKKwljbGstPnBzdGF0ZSA9IE5VTEw7
-CisJY2xrLT5hc3RhdGUgPSAtMTsKIAljbGstPnVzdGF0ZV9hYyA9IC0xOwogCWNsay0+dXN0YXRl
-X2RjID0gLTE7CisKKwljbGstPmV4cF9jc3RhdGUgPSBOVktNX0NMS19DU1RBVEVfREVGQVVMVDsK
-KwljbGstPnNldF9jc3RhdGUgPSBOVUxMOworCiAJY2xrLT5hbGxvd19yZWNsb2NrID0gYWxsb3df
-cmVjbG9jazsKIAogCUlOSVRfV09SSygmY2xrLT53b3JrLCBudmttX2Nsa191cGRhdGVfd29yayk7
-CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2YxMDAuYyBiL2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2Nsay9nZjEwMC5jCmluZGV4IDUwMjVkY2MuLjU2MjFkYWYgMTAw
-NjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9nZjEwMC5jCisrKyBiL2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2Nsay9nZjEwMC5jCkBAIC00NDcsMTIgKzQ0NywxMiBAQCBnZjEw
-MF9jbGtfdXBkYXRlX3ZvbHQoc3RydWN0IG52a21fY2xrICpjbGspCiB9CiAKIHZvaWQKLWdmMTAw
-X2Nsa191cGRhdGUoc3RydWN0IG52a21fY2xrICpjbGssIGludCBwc3RhdGUpCitnZjEwMF9jbGtf
-dXBkYXRlKHN0cnVjdCBudmttX2NsayAqY2xrLCBpbnQgcHN0YXRlLCBib29sIGZvcmNlKQogewog
-CXN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gJmNsay0+c3ViZGV2OwogCWludCByZXQ7CiAK
-LQlpZiAoIWNsay0+cHN0YXRlIHx8IGNsay0+cHN0YXRlLT5wc3RhdGUgIT0gcHN0YXRlKSB7CisJ
-aWYgKCFjbGstPnBzdGF0ZSB8fCBjbGstPnBzdGF0ZS0+cHN0YXRlICE9IHBzdGF0ZSB8fCBmb3Jj
-ZSkgewogCQludmttX3RyYWNlKHN1YmRldiwgIi0+IFAgJWRcbiIsIHBzdGF0ZSk7CiAJCXJldCA9
-IG52a21fcHN0YXRlX3Byb2coY2xrLCBwc3RhdGUpOwogCQlpZiAocmV0KSB7CmRpZmYgLS1naXQg
-YS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvbnY0MC5jIGIvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvY2xrL252NDAuYwppbmRleCA1YjEwZWUyLi4wNTUwNjNhIDEwMDY0NAotLS0gYS9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9jbGsvbnY0MC5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L2Nsay9udjQwLmMKQEAgLTIwMiw3ICsyMDIsNyBAQCBudjQwX2Nsa190aWR5KHN0cnVjdCBu
-dmttX2NsayAqb2JqKQogfQogCiB2b2lkCi1udjQwX2Nsa191cGRhdGUoc3RydWN0IG52a21fY2xr
-ICpjbGssIGludCBwc3RhdGUpCitudjQwX2Nsa191cGRhdGUoc3RydWN0IG52a21fY2xrICpjbGss
-IGludCBwc3RhdGUsIGJvb2wgZm9yY2UpCiB7CiAJc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYg
-PSAmY2xrLT5zdWJkZXY7CiAJaW50IHJldDsKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20v
-c3ViZGV2L2Nsay9wcml2LmggYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvcHJpdi5oCmlu
-ZGV4IGUyZjE1YzQuLjA2YTc4YTIgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2
-L2Nsay9wcml2LmgKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL3ByaXYuaApAQCAt
-MTAsNyArMTAsNyBAQCBzdHJ1Y3QgbnZrbV9jbGtfZnVuYyB7CiAJaW50ICgqY2FsYykoc3RydWN0
-IG52a21fY2xrICosIHN0cnVjdCBudmttX2NzdGF0ZSAqKTsKIAlpbnQgKCpwcm9nKShzdHJ1Y3Qg
-bnZrbV9jbGsgKik7CiAJdm9pZCAoKnRpZHkpKHN0cnVjdCBudmttX2NsayAqKTsKLQl2b2lkICgq
-dXBkYXRlKShzdHJ1Y3QgbnZrbV9jbGsgKiwgaW50IHBzdGF0ZSk7CisJdm9pZCAoKnVwZGF0ZSko
-c3RydWN0IG52a21fY2xrICosIGludCBwc3RhdGUsIGJvb2wgZm9yY2UpOwogCXN0cnVjdCBudmtt
-X3BzdGF0ZSAqcHN0YXRlczsKIAlpbnQgbnJfcHN0YXRlczsKIAlzdHJ1Y3QgbnZrbV9kb21haW4g
-ZG9tYWluc1tdOwpAQCAtMzAsNiArMzAsNiBAQCBpbnQgbnYwNF9jbGtfcGxsX2NhbGMoc3RydWN0
-IG52a21fY2xrICosIHN0cnVjdCBudmJpb3NfcGxsICosIGludCBjbGssCiAJCSAgICAgIHN0cnVj
-dCBudmttX3BsbF92YWxzICopOwogaW50IG52MDRfY2xrX3BsbF9wcm9nKHN0cnVjdCBudmttX2Ns
-ayAqLCB1MzIgcmVnMSwgc3RydWN0IG52a21fcGxsX3ZhbHMgKik7CiAKLXZvaWQgbnY0MF9jbGtf
-dXBkYXRlKHN0cnVjdCBudmttX2NsayAqLCBpbnQgcHN0YXRlKTsKLXZvaWQgZ2YxMDBfY2xrX3Vw
-ZGF0ZShzdHJ1Y3QgbnZrbV9jbGsgKiwgaW50IHBzdGF0ZSk7Cit2b2lkIG52NDBfY2xrX3VwZGF0
-ZShzdHJ1Y3QgbnZrbV9jbGsgKiwgaW50IHBzdGF0ZSwgYm9vbCBmb3JjZSk7Cit2b2lkIGdmMTAw
-X2Nsa191cGRhdGUoc3RydWN0IG52a21fY2xrICosIGludCBwc3RhdGUsIGJvb2wgZm9yY2UpOwog
-I2VuZGlmCi0tIAoyLjguMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cg==
+
+--===============1409389881==
+Content-Type: multipart/alternative; boundary="14610405750.B14BeEA.8554";
+ charset="UTF-8"
+
+
+--14610405750.B14BeEA.8554
+Date: Tue, 19 Apr 2016 04:36:15 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92126
+
+--- Comment #6 from daemon32 <lnf.purple-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Karol Herbst from comment #5)
+> Is this bug fixed in recent kernels? (4.5 I think?)
+
+Well, sort of, the fan spins up, but it takes off like a jet engine at a mere
+50° C. (I'm using your out-of-tree module currently)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14610405750.B14BeEA.8554
+Date: Tue, 19 Apr 2016 04:36:15 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] GTX 760 Auto fan speed stays at 10% until temp hits 90C"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92126#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] GTX 760 Auto fan speed stays at 10% until temp hits 90C"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92126">bug 92126</a>
+              from <span class="vcard"><a class="email" href="mailto:lnf.purple&#64;gmail.com" title="daemon32 &lt;lnf.purple&#64;gmail.com&gt;"> <span class="fn">daemon32</span></a>
+</span></b>
+        <pre>(In reply to Karol Herbst from <a href="show_bug.cgi?id=92126#c5">comment #5</a>)
+<span class="quote">&gt; Is this bug fixed in recent kernels? (4.5 I think?)</span >
+
+Well, sort of, the fan spins up, but it takes off like a jet engine at a mere
+50° C. (I'm using your out-of-tree module currently)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14610405750.B14BeEA.8554--
+
+--===============1409389881==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1409389881==--
