@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92126] [NVE4] GTX 760 Auto fan speed stays at 10%
- until temp hits 90C
-Date: Tue, 19 Apr 2016 04:36:16 +0000
-Message-ID: <bug-92126-8800-Kepu1eFkzK@http.bugs.freedesktop.org/>
-References: <bug-92126-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
+Date: Tue, 19 Apr 2016 06:50:11 +0000
+Message-ID: <bug-94990-8800-fm1DvtA8mL@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1409389881=="
+Content-Type: multipart/mixed; boundary="===============1366442310=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92126-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1409389881==
-Content-Type: multipart/alternative; boundary="14610405750.B14BeEA.8554";
+--===============1366442310==
+Content-Type: multipart/alternative; boundary="14610486111.400E.16777";
  charset="UTF-8"
 
 
---14610405750.B14BeEA.8554
-Date: Tue, 19 Apr 2016 04:36:15 +0000
+--14610486111.400E.16777
+Date: Tue, 19 Apr 2016 06:50:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92126
+https://bugs.freedesktop.org/show_bug.cgi?id=94990
 
---- Comment #6 from daemon32 <lnf.purple-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Karol Herbst from comment #5)
-> Is this bug fixed in recent kernels? (4.5 I think?)
+--- Comment #8 from Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Ok, md5sums are correct, so your firmware is not corrupted.
 
-Well, sort of, the fan spins up, but it takes off like a jet engine at a mere
-50° C. (I'm using your out-of-tree module currently)
+I will try to reproduce on the same setup as you (GTX970/4.6-rc4) - can you
+confirm that you are using pure 4.6-rc4 without any extra patch? Also, can you
+run
+
+$ cat /proc/config.gz >config.gz
+
+and attach the created config.gz file?
+
+Thanks!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14610405750.B14BeEA.8554
-Date: Tue, 19 Apr 2016 04:36:15 +0000
+--14610486111.400E.16777
+Date: Tue, 19 Apr 2016 06:50:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -57,19 +62,25 @@ Content-Type: text/html
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE4] GTX 760 Auto fan speed stays at 10% until temp hits 90C"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92126#c6">Comment # 6</a>
+   title="NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94990#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE4] GTX 760 Auto fan speed stays at 10% until temp hits 90C"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92126">bug 92126</a>
-              from <span class="vcard"><a class="email" href="mailto:lnf.purple&#64;gmail.com" title="daemon32 &lt;lnf.purple&#64;gmail.com&gt;"> <span class="fn">daemon32</span></a>
+   title="NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94990">bug 94990</a>
+              from <span class="vcard"><a class="email" href="mailto:gnurou&#64;gmail.com" title="Alexandre Courbot &lt;gnurou&#64;gmail.com&gt;"> <span class="fn">Alexandre Courbot</span></a>
 </span></b>
-        <pre>(In reply to Karol Herbst from <a href="show_bug.cgi?id=92126#c5">comment #5</a>)
-<span class="quote">&gt; Is this bug fixed in recent kernels? (4.5 I think?)</span >
+        <pre>Ok, md5sums are correct, so your firmware is not corrupted.
 
-Well, sort of, the fan spins up, but it takes off like a jet engine at a mere
-50° C. (I'm using your out-of-tree module currently)</pre>
+I will try to reproduce on the same setup as you (GTX970/4.6-rc4) - can you
+confirm that you are using pure 4.6-rc4 without any extra patch? Also, can you
+run
+
+$ cat /proc/config.gz &gt;config.gz
+
+and attach the created config.gz file?
+
+Thanks!</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +91,9 @@ Well, sort of, the fan spins up, but it takes off like a jet engine at a mere
       </ul>
     </body>
 </html>
---14610405750.B14BeEA.8554--
+--14610486111.400E.16777--
 
---===============1409389881==
+--===============1366442310==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1409389881==--
+--===============1366442310==--
