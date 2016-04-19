@@ -1,10 +1,13 @@
-From: Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: more one question regarding gl and nouveau
-Date: Tue, 19 Apr 2016 08:52:18 -0400
-Message-ID: <CANbfre6wFU1rfeWuoQpB-KxdgfhWS=TCoKyhVgCAh-Fz6JTNUg@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: more one question regarding gl and nouveau
+Date: Tue, 19 Apr 2016 10:04:44 -0400
+Message-ID: <CAKb7UvjLUJScWX+6x8ov=PP+WVGYueyc30yYLKrGVBNzbEg20w@mail.gmail.com>
+References: <CANbfre6wFU1rfeWuoQpB-KxdgfhWS=TCoKyhVgCAh-Fz6JTNUg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0778946088=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CANbfre6wFU1rfeWuoQpB-KxdgfhWS=TCoKyhVgCAh-Fz6JTNUg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -14,65 +17,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0778946088==
-Content-Type: multipart/alternative; boundary=001a114d7b868513c40530d5f248
-
---001a114d7b868513c40530d5f248
-Content-Type: text/plain; charset=UTF-8
-
-Hi, for example, if I have glVertex3f(0.75, 0.75, 1.0) how the video card
-processes
-these three floats? Does the card work with floats? Does (mesa? gallium?
-driver?)
-process these three input floats before it is sent to the card? Where is
-the code
-for it?
-
-If you say the floats are memory mapped as in
-exec->vtx.buffer_map = (GLfloat *)ctx->Driver.MapBufferRange(...) I would
-say
-from what I learned that it has to pass through gallium and that means:
-st_draw_vbo(...) ending up in nv30_draw_vbo(..) but these functions don't
-make
-any reference to those (memory mapped) input floats. So where is the piece
-of
-code that instructs the card to fetch those three (possibly processed)
-input floats
-and send them to the card?
-
-Thanks in advance.
-
---001a114d7b868513c40530d5f248
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div><div><div><div><div>Hi, for examp=
-le, if I have glVertex3f(0.75, 0.75, 1.0) how the video card processes<br><=
-/div>these three floats? Does the card work with floats? Does (mesa? galliu=
-m? driver?)<br></div>process these three input floats before it is sent to =
-the card? Where is the code<br></div>for it?<br><br></div>If you say the fl=
-oats are memory mapped as in<br>exec-&gt;vtx.buffer_map =3D (GLfloat *)ctx-=
-&gt;Driver.MapBufferRange(...) I would say<br></div>from what I learned tha=
-t it has to pass through gallium and that means:<br></div>st_draw_vbo(...) =
-ending up in nv30_draw_vbo(..) but these functions don&#39;t make<br></div>=
-any reference to those (memory mapped) input floats. So where is the piece =
-of<br></div>code that instructs the card to fetch those three (possibly pro=
-cessed) input floats<br></div><div>and send them to the card?<br></div><div=
-><br></div>Thanks in advance.<br></div>
-
---001a114d7b868513c40530d5f248--
-
---===============0778946088==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0778946088==--
+T24gVHVlLCBBcHIgMTksIDIwMTYgYXQgODo1MiBBTSwgRGFuaWVsIE1lbG8gSm9yZ2UgZGEgQ3Vu
+aGEKPGRtamN1bmhhQGdtYWlsLmNvbT4gd3JvdGU6Cj4gSGksIGZvciBleGFtcGxlLCBpZiBJIGhh
+dmUgZ2xWZXJ0ZXgzZigwLjc1LCAwLjc1LCAxLjApIGhvdyB0aGUgdmlkZW8gY2FyZAo+IHByb2Nl
+c3Nlcwo+IHRoZXNlIHRocmVlIGZsb2F0cz8gRG9lcyB0aGUgY2FyZCB3b3JrIHdpdGggZmxvYXRz
+PyBEb2VzIChtZXNhPyBnYWxsaXVtPwo+IGRyaXZlcj8pCj4gcHJvY2VzcyB0aGVzZSB0aHJlZSBp
+bnB1dCBmbG9hdHMgYmVmb3JlIGl0IGlzIHNlbnQgdG8gdGhlIGNhcmQ/IFdoZXJlIGlzIHRoZQo+
+IGNvZGUKPiBmb3IgaXQ/CgpzcmMvbWVzYS92Ym8gd2lsbCB1cGxvYWQgaXQgdG8gYSB2Ym8uIFRo
+ZSBkcml2ZXIgdGhlbiBwb2ludHMgdGhlCmhhcmR3YXJlIGF0IHRoZSB2Ym8gYW5kIHRlbGxzIGl0
+IHRvIHJlYWQgZnJvbSB0aGVyZS4gKFVuZGVyIHNvbWUKY2lyY3Vtc3RhbmNlcywgdGhlIHZibyBk
+YXRhIG1pZ2h0IGhhdmUgdG8gYmUgdHJhbnNmb3JtZWQgb24gdGhlIGNwdSBhcwp3ZWxsIGlmIHRo
+ZSBkcml2ZXIgY2FuJ3QgaGFuZGxlIHRoZSBmb3JtYXQuKQoKPgo+IElmIHlvdSBzYXkgdGhlIGZs
+b2F0cyBhcmUgbWVtb3J5IG1hcHBlZCBhcyBpbgo+IGV4ZWMtPnZ0eC5idWZmZXJfbWFwID0gKEdM
+ZmxvYXQgKiljdHgtPkRyaXZlci5NYXBCdWZmZXJSYW5nZSguLi4pIEkgd291bGQKPiBzYXkKPiBm
+cm9tIHdoYXQgSSBsZWFybmVkIHRoYXQgaXQgaGFzIHRvIHBhc3MgdGhyb3VnaCBnYWxsaXVtIGFu
+ZCB0aGF0IG1lYW5zOgo+IHN0X2RyYXdfdmJvKC4uLikgZW5kaW5nIHVwIGluIG52MzBfZHJhd192
+Ym8oLi4pIGJ1dCB0aGVzZSBmdW5jdGlvbnMgZG9uJ3QKPiBtYWtlCj4gYW55IHJlZmVyZW5jZSB0
+byB0aG9zZSAobWVtb3J5IG1hcHBlZCkgaW5wdXQgZmxvYXRzLiBTbyB3aGVyZSBpcyB0aGUgcGll
+Y2UKPiBvZgo+IGNvZGUgdGhhdCBpbnN0cnVjdHMgdGhlIGNhcmQgdG8gZmV0Y2ggdGhvc2UgdGhy
+ZWUgKHBvc3NpYmx5IHByb2Nlc3NlZCkgaW5wdXQKPiBmbG9hdHMKPiBhbmQgc2VuZCB0aGVtIHRv
+IHRoZSBjYXJkPwo+Cj4gVGhhbmtzIGluIGFkdmFuY2UuCgpUaGUgdmJvIG1vZHVsZSBjb252ZXJ0
+cyB0aGlzIHRvIHRoZSBlcXVpdmFsZW50IG9mCgpnbEdlbkJ1ZmZlcnMoMSwgJmJ1ZikKZ2xCaW5k
+QnVmZmVyKEdMX0FSUkFZX0JVRkZFUiwgYnVmKQpnbEJ1ZmZlckRhdGEoR0xfQVJSQVlfQlVGRkVS
+LCAuLi4pCmZvbyA9IGdsTWFwQnVmZmVyKGJ1ZikKd3JpdGUgdmVydGV4IHZhbHVlcyB0byBmb28K
+Z2xWZXJ0ZXhBdHRyaWJQb2ludGVyKDAsIDMsIEdMX0ZMT0FULCBHTF9GQUxTRSwgMCwgMCk7CmRy
+YXcKCkhvcGUgdGhhdCBoZWxwcywKCiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
