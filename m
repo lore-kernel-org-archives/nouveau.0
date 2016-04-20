@@ -1,15 +1,12 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH v4 27/37] clk: make pstate a pointer to
- nvkm_pstate
-Date: Wed, 20 Apr 2016 23:53:27 +0300
-Message-ID: <5717EC47.4040605@free.fr>
-References: <1461006851-5007-1-git-send-email-nouveau@karolherbst.de>
- <1461006851-5007-28-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95031] [NVE4] 660 Ti Random GPU lockups
+Date: Wed, 20 Apr 2016 20:54:23 +0000
+Message-ID: <bug-95031-8800-LYfaUNiIoo@http.bugs.freedesktop.org/>
+References: <bug-95031-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0632098393=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1461006851-5007-28-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-95031-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,93 +19,72 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTgvMDQvMTYgMjI6MTQsIEthcm9sIEhlcmJzdCB3cm90ZToKPiB3ZSB3aWxsIGFjY2VzcyB0
-aGUgY3VycmVudCBzZXQgY3N0YXRlIGF0IGxlYXN0IGV2ZXJ5IHNlY29uZCBhbmQgdGhpcyBzYWZl
-cyB1cwpzYXZlcwo+IHNvbWUgQ1BVIGN5Y2xlcyBsb29raW5nIHRoZW0gdXAgZXZlcnkgc2Vjb25k
-Lgo+Cj4gU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRl
-Pgo+IC0tLQo+ICAgZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9jbGsuaCB8ICAyICst
-Cj4gICBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvY3RybC5jIHwgIDUgKysrKy0KPiAg
-IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgICAgfCAxMiArKysrKysrKy0tLS0K
-PiAgIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9nazIwYS5jICAgfCAyMyArKysrKysrLS0t
-LS0tLS0tLS0tLS0tLQo+ICAgNCBmaWxlcyBjaGFuZ2VkLCAyMCBpbnNlcnRpb25zKCspLCAyMiBk
-ZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3Vi
-ZGV2L2Nsay5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9jbGsuaAo+IGluZGV4
-IGRiNTJlNjUuLjRmYjJjMWIgMTAwNjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmtt
-L3N1YmRldi9jbGsuaAo+ICsrKyBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvY2xr
-LmgKPiBAQCAtOTEsNyArOTEsNyBAQCBzdHJ1Y3QgbnZrbV9jbGsgewo+ICAgCj4gICAJc3RydWN0
-IG52a21fbm90aWZ5IHB3cnNyY19udGZ5Owo+ICAgCWludCBwd3JzcmM7Cj4gLQlpbnQgcHN0YXRl
-OyAvKiBjdXJyZW50ICovCj4gKwlzdHJ1Y3QgbnZrbV9wc3RhdGUgKnBzdGF0ZTsgLyogY3VycmVu
-dCAqLwo+ICAgCWludCB1c3RhdGVfYWM7IC8qIHVzZXItcmVxdWVzdGVkICgtMSBkaXNhYmxlZCwg
-LTIgcGVyZm1vbikgKi8KPiAgIAlpbnQgdXN0YXRlX2RjOyAvKiB1c2VyLXJlcXVlc3RlZCAoLTEg
-ZGlzYWJsZWQsIC0yIHBlcmZtb24pICovCj4gICAJaW50IGFzdGF0ZTsgLyogcGVyZm1vbiBhZGp1
-c3RtZW50IChiYXNlKSAqLwo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9k
-ZXZpY2UvY3RybC5jIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2N0cmwuYwo+IGlu
-ZGV4IDAzOWU4YTQuLmNiODUyNjYgMTAwNjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdp
-bmUvZGV2aWNlL2N0cmwuYwo+ICsrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9j
-dHJsLmMKPiBAQCAtNTIsNyArNTIsMTAgQEAgbnZrbV9jb250cm9sX210aGRfcHN0YXRlX2luZm8o
-c3RydWN0IG52a21fY29udHJvbCAqY3RybCwgdm9pZCAqZGF0YSwgdTMyIHNpemUpCj4gICAJCWFy
-Z3MtPnYwLnVzdGF0ZV9hYyA9IGNsay0+dXN0YXRlX2FjOwo+ICAgCQlhcmdzLT52MC51c3RhdGVf
-ZGMgPSBjbGstPnVzdGF0ZV9kYzsKPiAgIAkJYXJncy0+djAucHdyc3JjID0gY2xrLT5wd3JzcmM7
-Cj4gLQkJYXJncy0+djAucHN0YXRlID0gY2xrLT5wc3RhdGU7Cj4gKwkJaWYgKGNsay0+cHN0YXRl
-KQo+ICsJCQlhcmdzLT52MC5wc3RhdGUgPSBjbGstPnBzdGF0ZS0+cHN0YXRlOwo+ICsJCWVsc2UK
-PiArCQkJYXJncy0+djAucHN0YXRlID0gLTE7Cj4gICAJfSBlbHNlIHsKPiAgIAkJYXJncy0+djAu
-Y291bnQgPSAwOwo+ICAgCQlhcmdzLT52MC51c3RhdGVfYWMgPSBOVklGX0NPTlRST0xfUFNUQVRF
-X0lORk9fVjBfVVNUQVRFX0RJU0FCTEU7Cj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20v
-c3ViZGV2L2Nsay9iYXNlLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4g
-aW5kZXggMzg2N2FiNy4uNzYyZGZlMiAxMDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS9udmttL3N1
-YmRldi9jbGsvYmFzZS5jCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2Uu
-Ywo+IEBAIC0yODgsNyArMjg4LDcgQEAgbnZrbV9wc3RhdGVfcHJvZyhzdHJ1Y3QgbnZrbV9jbGsg
-KmNsaywgaW50IHBzdGF0ZWkpCj4gICAJfQo+ICAgCj4gICAJbnZrbV9kZWJ1ZyhzdWJkZXYsICJz
-ZXR0aW5nIHBlcmZvcm1hbmNlIHN0YXRlICVkXG4iLCBwc3RhdGVpKTsKPiAtCWNsay0+cHN0YXRl
-ID0gcHN0YXRlaTsKPiArCWNsay0+cHN0YXRlID0gcHN0YXRlOwo+ICAgCj4gICAJbnZrbV9wY2ll
-X3NldF9saW5rKHBjaSwgcHN0YXRlLT5wY2llX3NwZWVkLCBwc3RhdGUtPnBjaWVfd2lkdGgpOwo+
-ICAgCj4gQEAgLTMxNywxNSArMzE3LDE5IEBAIG52a21fY2xrX3VwZGF0ZV93b3JrKHN0cnVjdCB3
-b3JrX3N0cnVjdCAqd29yaykKPiAgIAkJcmV0dXJuOwo+ICAgCWNsay0+cHdyc3JjID0gcG93ZXJf
-c3VwcGx5X2lzX3N5c3RlbV9zdXBwbGllZCgpOwo+ICAgCj4gKwlpZiAoY2xrLT5wc3RhdGUpCj4g
-KwkJcHN0YXRlID0gY2xrLT5wc3RhdGUtPnBzdGF0ZTsKPiArCWVsc2UKPiArCQlwc3RhdGUgPSAt
-MTsKPiAgIAludmttX3RyYWNlKHN1YmRldiwgIlAgJWQgUFdSICVkIFUoQUMpICVkIFUoREMpICVk
-IEEgJWRcbiIsCj4gLQkJICAgY2xrLT5wc3RhdGUsIGNsay0+cHdyc3JjLCBjbGstPnVzdGF0ZV9h
-YywgY2xrLT51c3RhdGVfZGMsCj4gKwkJICAgcHN0YXRlLCBjbGstPnB3cnNyYywgY2xrLT51c3Rh
-dGVfYWMsIGNsay0+dXN0YXRlX2RjLAo+ICAgCQkgICBjbGstPmFzdGF0ZSk7Cj4gICAKPiAgIAlw
-c3RhdGUgPSBjbGstPnB3cnNyYyA/IGNsay0+dXN0YXRlX2FjIDogY2xrLT51c3RhdGVfZGM7Cj4g
-ICAJaWYgKGNsay0+c3RhdGVfbnIgJiYgcHN0YXRlICE9IC0xKSB7Cj4gICAJCXBzdGF0ZSA9IChw
-c3RhdGUgPCAwKSA/IGNsay0+YXN0YXRlIDogcHN0YXRlOwo+ICAgCX0gZWxzZSB7Cj4gLQkJcHN0
-YXRlID0gY2xrLT5wc3RhdGUgPSAtMTsKPiArCQlwc3RhdGUgPSAtMTsKCklzbid0ICJjbGstPnBz
-dGF0ZSA9IE5VTEw7IiBtaXNzaW5nIGhlcmU/IFdoeSBkaWQgeW91IGNoYW5nZSB0aGlzIGNvZGUg
-b3RoZXJ3aXNlPwoKPiAgIAl9Cj4gICAKPiAgIAludmttX3RyYWNlKHN1YmRldiwgIi0+ICVkXG4i
-LCBwc3RhdGUpOwo+IEBAIC02MDksNyArNjEzLDcgQEAgbnZrbV9jbGtfaW5pdChzdHJ1Y3QgbnZr
-bV9zdWJkZXYgKnN1YmRldikKPiAgIAkJcmV0dXJuIGNsay0+ZnVuYy0+aW5pdChjbGspOwo+ICAg
-Cj4gICAJY2xrLT5hc3RhdGUgPSBjbGstPnN0YXRlX25yIC0gMTsKPiAtCWNsay0+cHN0YXRlID0g
-LTE7Cj4gKwljbGstPnBzdGF0ZSA9IE5VTEw7Cj4gICAJbnZrbV9jbGtfdXBkYXRlKGNsaywgdHJ1
-ZSk7Cj4gICAJcmV0dXJuIDA7Cj4gICB9Cj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20v
-c3ViZGV2L3BtdS9nazIwYS5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2drMjBhLmMK
-PiBpbmRleCBmOTk2ZDkwLi42ZjBkMjkwIDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20v
-c3ViZGV2L3BtdS9nazIwYS5jCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2dr
-MjBhLmMKPiBAQCAtNTcsMjQgKzU3LDIxIEBAIGdrMjBhX3BtdV9kdmZzX3RhcmdldChzdHJ1Y3Qg
-Z2syMGFfcG11ICpwbXUsIGludCAqc3RhdGUpCj4gICB9Cj4gICAKPiAgIHN0YXRpYyBpbnQKPiAt
-Z2syMGFfcG11X2R2ZnNfZ2V0X2N1cl9zdGF0ZShzdHJ1Y3QgZ2syMGFfcG11ICpwbXUsIGludCAq
-c3RhdGUpCj4gLXsKPiAtCXN0cnVjdCBudmttX2NsayAqY2xrID0gcG11LT5iYXNlLnN1YmRldi5k
-ZXZpY2UtPmNsazsKPiAtCj4gLQkqc3RhdGUgPSBjbGstPnBzdGF0ZTsKPiAtCXJldHVybiAwOwo+
-IC19Cj4gLQo+IC1zdGF0aWMgaW50Cj4gICBnazIwYV9wbXVfZHZmc19nZXRfdGFyZ2V0X3N0YXRl
-KHN0cnVjdCBnazIwYV9wbXUgKnBtdSwKPiAgIAkJCQlpbnQgKnN0YXRlLCBpbnQgbG9hZCkKPiAg
-IHsKPiAgIAlzdHJ1Y3QgZ2syMGFfcG11X2R2ZnNfZGF0YSAqZGF0YSA9IHBtdS0+ZGF0YTsKPiAg
-IAlzdHJ1Y3QgbnZrbV9jbGsgKmNsayA9IHBtdS0+YmFzZS5zdWJkZXYuZGV2aWNlLT5jbGs7Cj4g
-KwlzdHJ1Y3QgbnZrbV9wc3RhdGUgKnBzdGF0ZSA9IGNsay0+cHN0YXRlOwo+ICAgCWludCBjdXJf
-bGV2ZWwsIGxldmVsOwo+ICAgCj4gKwlpZiAoIXBzdGF0ZSkgewo+ICsJCSpzdGF0ZSA9IDA7Cj4g
-KwkJcmV0dXJuIDE7Cj4gKwl9Cj4gKwo+ICAgCS8qIEZvciBHSzIwQSwgdGhlIHBlcmZvcm1hbmNl
-IGxldmVsIGlzIGRpcmVjdGx5IG1hcHBlZCB0byBwc3RhdGUgKi8KPiAtCWxldmVsID0gY3VyX2xl
-dmVsID0gY2xrLT5wc3RhdGU7Cj4gKwlsZXZlbCA9IGN1cl9sZXZlbCA9IGNsay0+cHN0YXRlLT5w
-c3RhdGU7Cj4gICAKPiAgIAlpZiAobG9hZCA+IGRhdGEtPnBfbG9hZF9tYXgpIHsKPiAgIAkJbGV2
-ZWwgPSBtaW4oY2xrLT5zdGF0ZV9uciAtIDEsIGxldmVsICsgKGNsay0+c3RhdGVfbnIgLyAzKSk7
-Cj4gQEAgLTE1MCwxMiArMTQ3LDYgQEAgZ2syMGFfcG11X2R2ZnNfd29yayhzdHJ1Y3QgbnZrbV9h
-bGFybSAqYWxhcm0pCj4gICAJbnZrbV90cmFjZShzdWJkZXYsICJ1dGlsaXphdGlvbiA9ICVkICUl
-LCBhdmdfbG9hZCA9ICVkICUlXG4iLAo+ICAgCQkgICB1dGlsaXphdGlvbiwgZGF0YS0+YXZnX2xv
-YWQpOwo+ICAgCj4gLQlyZXQgPSBnazIwYV9wbXVfZHZmc19nZXRfY3VyX3N0YXRlKHBtdSwgJnN0
-YXRlKTsKPiAtCWlmIChyZXQpIHsKPiAtCQludmttX3dhcm4oc3ViZGV2LCAiZmFpbGVkIHRvIGdl
-dCBjdXJyZW50IHN0YXRlXG4iKTsKPiAtCQlnb3RvIHJlc2NoZWQ7Cj4gLQl9Cj4gLQo+ICAgCWlm
-IChnazIwYV9wbXVfZHZmc19nZXRfdGFyZ2V0X3N0YXRlKHBtdSwgJnN0YXRlLCBkYXRhLT5hdmdf
-bG9hZCkpIHsKPiAgIAkJbnZrbV90cmFjZShzdWJkZXYsICJzZXQgbmV3IHN0YXRlIHRvICVkXG4i
-LCBzdGF0ZSk7Cj4gICAJCWdrMjBhX3BtdV9kdmZzX3RhcmdldChwbXUsICZzdGF0ZSk7CgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
-bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0632098393==
+Content-Type: multipart/alternative; boundary="14611856620.791eb5.31036";
+ charset="UTF-8"
+
+
+--14611856620.791eb5.31036
+Date: Wed, 20 Apr 2016 20:54:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=95031
+
+--- Comment #2 from Lucas Ribeiro <lucasout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Different kernel log with some nouveau info.
+
+So far tried pstate 07 with boost 0, 1 and 2.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14611856620.791eb5.31036
+Date: Wed, 20 Apr 2016 20:54:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] 660 Ti Random GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95031#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] 660 Ti Random GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95031">bug 95031</a>
+              from <span class="vcard"><a class="email" href="mailto:lucasout&#64;gmail.com" title="Lucas Ribeiro &lt;lucasout&#64;gmail.com&gt;"> <span class="fn">Lucas Ribeiro</span></a>
+</span></b>
+        <pre>Different kernel log with some nouveau info.
+
+So far tried pstate 07 with boost 0, 1 and 2.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14611856620.791eb5.31036--
+
+--===============0632098393==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0632098393==--
