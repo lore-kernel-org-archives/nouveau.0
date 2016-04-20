@@ -1,17 +1,12 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH mesa v2 1/2] nouveau: codegen: Use
- FILE_MEMORY_BUFFER for buffers
-Date: Wed, 20 Apr 2016 13:48:30 +0200
-Message-ID: <57176C8E.5070107@redhat.com>
-References: <1458230823-25213-1-git-send-email-hdegoede@redhat.com>
- <56F31455.4010905@gmail.com> <57078551.1080703@redhat.com>
- <5707D8D7.8050403@gmail.com> <570CC839.90704@redhat.com>
- <571019E1.2080102@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95031] [NVE4] 660 Ti Random GPU lockups
+Date: Wed, 20 Apr 2016 13:06:09 +0000
+Message-ID: <bug-95031-8800-Z4RygpudjC@http.bugs.freedesktop.org/>
+References: <bug-95031-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0393650982=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <571019E1.2080102-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-95031-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,54 +16,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpPbiAxNS0wNC0xNiAwMDoyOSwgU2FtdWVsIFBpdG9pc2V0IHdyb3RlOgo+Cj4KPiBPbiAw
-NC8xMi8yMDE2IDEyOjA0IFBNLCBIYW5zIGRlIEdvZWRlIHdyb3RlOgo+PiBIaSwKPj4KPj4gT24g
-MDgtMDQtMTYgMTg6MTQsIFNhbXVlbCBQaXRvaXNldCB3cm90ZToKPj4+Cj4+Pgo+Pj4gT24gMDQv
-MDgvMjAxNiAxMjoxNyBQTSwgSGFucyBkZSBHb2VkZSB3cm90ZToKPj4+PiBIaSwKPj4+Pgo+Pj4+
-IE9uIDIzLTAzLTE2IDIzOjEwLCBTYW11ZWwgUGl0b2lzZXQgd3JvdGU6Cj4+Pj4+IEFyZSB5b3Ug
-c3VyZSB0aGlzIHdvbid0IGJyZWFrIGNvbXB1dGUgc2hhZGVycyBvbiBmZXJtaT8KPj4+Pj4gQ291
-bGQgeW91IHBsZWFzZSBkb3VibGUtY2hlY2sgdGhhdD8KPj4+Pgo+Pj4+IEkganVzdCBjaGVja2Vk
-Ogo+Pj4+Cj4+Pj4gbHNwY2k6Cj4+Pj4gMDE6MDAuMCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVy
-OiBOVklESUEgQ29ycG9yYXRpb24gR0YxMTkgW0dlRm9yY2UgR1QKPj4+PiA2MTBdIChyZXYgYTEp
-Cj4+Pj4KPj4+PiBCZWZvcmUgdGhpcyBwYXRjaC1zZXQ6Cj4+Pj4KPj4+PiBbaGFuc0BwbGFuayBw
-aWdsaXRdJCAuL3BpZ2xpdCBydW4gLW8gc2hhZGVyIC10Cj4+Pj4gJy4qYXJiX3NoYWRlcl9zdG9y
-YWdlX2J1ZmZlcl9vYmplY3QuKicgcmVzdWx0cy9zaGFkZXIKPj4+PiBbOS85XSBwYXNzOiA5IC8K
-Pj4+Pgo+Pj4+IEFmdGVyIHRoaXMgcGF0Y2gtc2V0Ogo+Pj4+Cj4+Pj4gW2hhbnNAcGxhbmsgcGln
-bGl0XSQgLi9waWdsaXQgcnVuIC1vIHNoYWRlciAtdAo+Pj4+ICcuKmFyYl9zaGFkZXJfc3RvcmFn
-ZV9idWZmZXJfb2JqZWN0LionIHJlc3VsdHMvc2hhZGVyCj4+Pj4gWzkvOV0gcGFzczogOSAvCj4+
-Pgo+Pj4gQW5kIHdoYXQgYWJvdXQgY29tcHV0ZSBzaGFkZXJzPyAoaWUuIC10IGFyYl9jb21wdXRl
-X3NoYWRlcikKPj4+IFNvcnJ5IHRvIGFzayB5b3UgYWdhaW4gYnV0IEkganVzdCB3YW50IHRvIGJl
-IHN1cmUgaXQncyBmaW5lLiA6LSkKPj4KPj4gVGhvc2UgdGVzdHMgZG9uJ3QgcnVuIHlldCBvbiBt
-ZXNhIG1hc3RlciBvbiB0aGUgR0YxMTkgY2FyZAo+PiBJJ3ZlOgo+Pgo+PiBbaGFuc0BwbGFuayBw
-aWdsaXRdJCAuL3BpZ2xpdCBydW4gLW8gc2hhZGVyIC10ICcuKmFyYl9jb21wdXRlX3NoYWRlci4q
-Jwo+PiByZXN1bHRzL3NoYWRlcgo+PiBbMjAvMjBdIHNraXA6IDIwIHwKPj4KPj4gTXkgcGF0Y2hl
-cyBkb24ndCBjaGFuZ2UgYW55dGhpbmcgYWJvdXQgdGhpcywgYW5kIHRoZXkgb25seSB0b3VjaAo+
-PiB0aGUgYnVmZmVyIGhhbmRsaW5nIHBhdGhzIGFuZCB0aGUgYnVmZmVyIHRlc3RzIChzdGlsbCkg
-cGFzcy4uLgo+Pgo+PiBJJ3ZlIGFsc28gdHJpZWQgb24gYToKPj4gMDE6MDAuMCBWR0EgY29tcGF0
-aWJsZSBjb250cm9sbGVyOiBOVklESUEgQ29ycG9yYXRpb24gR0sxMDcgW0dlRm9yY2UgR1QKPj4g
-NzQwXSAocmV2IGExKQo+Pgo+PiBTYW1lIHJlc3VsdC4KPgo+IFNvcnJ5IGZvciB0aGUgZGVsYXks
-IEkgd2FzIGRlYWxpbmcgd2l0aCBpbWFnZXMuCj4KPiBXZWxsLCB5b3UgbmVlZGVkIHRvIG92ZXJy
-aWRlIEFSQl9jb21wdXRlX3NoYWRlciBiZWNhdXNlIHRoZSBleHRlbnNpb24gaXMgbm90IGN1cnJl
-bnRseSBleHBvc2VkLgo+Cj4gRm9yIGV4YW1wbGU6Cj4gTUVTQV9FWFRFTlNJT05fT1ZFUlJJREU9
-R0xfQVJCX2NvbXB1dGVfc2hhZGVyIE1FU0FfR0xfVkVSU0lPTl9PVkVSUklERT00LjIgLi9waWds
-aXQtcnVuLnB5IGJsYWJsYQo+Cj4gSSB0cmllZCBteXNlbGYgdG8gdGVzdCB5b3VyIHNlcmllcyBi
-dXQgaXQgbm8gbG9uZ2VyIGFwcGxpZXMgb24gdG9wIG9mIG1hc3Rlci4gV2VsbCwgaWYgeW91IG1h
-a2UgYSBxdWljayB0ZXN0IHdpdGg6Cj4KPiBNRVNBX0VYVEVOU0lPTl9PVkVSUklERT1HTF9BUkJf
-Y29tcHV0ZV9zaGFkZXIgTUVTQV9HTF9WRVJTSU9OX09WRVJSSURFPTQuMiAuL3BpZ2xpdC1ydW4u
-cHkgLTEgLS1kbWVzZyAtdCBhcmJfY29tcHV0ZV9zaGFkZXIKPgo+IHRoYXQgbWlnaHQgYmUgbmlj
-ZQoKRG9uZSBvbiBib3RoIGEgZ2YxMTkgYW5kIGdrMTA3LCByZXN1bHQgb24gYm90aDoKCltoYW5z
-QHBsYW5rIHBpZ2xpdF0kIERJU1BMQVk9OjAgTUVTQV9FWFRFTlNJT05fT1ZFUlJJREU9R0xfQVJC
-X2NvbXB1dGVfc2hhZGVyIE1FU0FfR0xfVkVSU0lPTl9PVkVSUklERT00LjIgIC4vcGlnbGl0IHJ1
-biAtbyBzaGFkZXIgLXQgJy4qYXJiX2NvbXB1dGVfc2hhZGVyLionIHJlc3VsdHMvc2hhZGVyClsy
-MC8yMF0gc2tpcDogNCwgcGFzczogMTYgfApUaGFuayB5b3UgZm9yIHJ1bm5pbmcgUGlnbGl0IQoK
-ID4gYnV0IHdoYXRldmVyLCBzZXJpZXMgaXM6Cj4KPiBSZXZpZXdlZC1ieTogU2FtdWVsIFBpdG9p
-c2V0IDxzYW11ZWwucGl0b2lzZXRAZ21haWwuY29tPgoKVGhhbmtzLCBJJ3ZlIHVwZGF0ZWQgdGhl
-IGNvbW1pdCBtc2cgd2l0aCB0aGUgcmVzdWx0cyBvZiB0aGUgZXh0cmEgdGVzdHMKSSd2ZSBkb25l
-IGFuZCBwdXNoZWQgdGhlc2UgMiBwYXRjaGVzIHRvIG1hc3Rlci4KClJlZ2FyZHMsCgpIYW5zCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0393650982==
+Content-Type: multipart/alternative; boundary="14611575691.8BDE.3790";
+ charset="UTF-8"
+
+
+--14611575691.8BDE.3790
+Date: Wed, 20 Apr 2016 13:06:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=95031
+
+Lucas Ribeiro <lucasout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NVE4] Random GPU lockups   |[NVE4] 660 Ti Random GPU
+                   |                            |lockups
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14611575691.8BDE.3790
+Date: Wed, 20 Apr 2016 13:06:09 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:lucasout&#64;gmail.com" title="Lucas Ribeiro &lt;lucasout&#64;gmail.com&gt;"> <span class="fn">Lucas Ribeiro</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] 660 Ti Random GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95031">bug 95031</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NVE4] Random GPU lockups
+           </td>
+           <td>[NVE4] 660 Ti Random GPU lockups
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14611575691.8BDE.3790--
+
+--===============0393650982==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0393650982==--
