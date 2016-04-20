@@ -1,14 +1,13 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 00/24] drm: add extern C guard for the UAPI
-	headers
-Date: Thu, 21 Apr 2016 20:49:29 +0100
-Message-ID: <CACvgo50duAW4N2iWxVUvPZCsvQ3eORnDxeyRicSBdEXFpUkjqg@mail.gmail.com>
-References: <1461267765-10785-1-git-send-email-emil.l.velikov@gmail.com>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 2/2] hwmon: add in_min and in_max
+Date: Wed, 20 Apr 2016 19:14:58 +0200
+Message-ID: <1461172498-5547-3-git-send-email-karolherbst@gmail.com>
+References: <1461172498-5547-1-git-send-email-karolherbst@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1461267765-10785-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <1461172498-5547-1-git-send-email-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,13 +17,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Erik Faye-Lund <kusmabite-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Eric Anholt <eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org>, Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, Sinclair Yeh <syeh-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>, Brian Paul <brianp-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Russell King <rmk+kernel-lFZ/pmaqli7XmaaqVzeoHQ@public.gmane.org>, Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Inki Dae <inki.dae-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Christian Gmeiner <christian.gmeiner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrzej Hajda <a.hajda-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer-5C7GfCeVMHo@public.gmane.org>, Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Lucas Stach <l.stach@pengutron>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T29wcyBzZWVtcyBsaWtlIEkgZ290IG15IHdpcmVzIHNob3J0ZWQgYW5kIHRoaXMgZW5kZWQgdXAg
-b24gdGhlIHdyb25nIGxpc3QuCkl0IHdhcyBhaW1lZCBhdCBkcmktZGV2ZWxAIGJ1dCBsYW5kZWQg
-aW4gbm91dmVhdUAKCkFwb2xvZ2llcyBmb3IgdGhlIG5vaXNlL3NwYW0uCgpFbWlsCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+RnJvbTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgoKU2lnbmVkLW9mZi1i
+eTogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Ci0tLQogZHJtL25vdXZlYXUv
+bm91dmVhdV9od21vbi5jIHwgMzYgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+CiAxIGZpbGUgY2hhbmdlZCwgMzYgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2
+ZWF1L25vdXZlYXVfaHdtb24uYyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYwppbmRleCA3
+NGYyMzdiLi5mMjMxYzc0IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMK
+KysrIGIvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jCkBAIC01MzUsNiArNTM1LDQwIEBAIHN0
+YXRpYyBTRU5TT1JfREVWSUNFX0FUVFIoaW4wX2lucHV0LCBTX0lSVUdPLAogCQkJICBub3V2ZWF1
+X2h3bW9uX2dldF9pbjBfaW5wdXQsIE5VTEwsIDApOwogCiBzdGF0aWMgc3NpemVfdAorbm91dmVh
+dV9od21vbl9nZXRfaW4wX21pbihzdHJ1Y3QgZGV2aWNlICpkLAorCQkJICAgIHN0cnVjdCBkZXZp
+Y2VfYXR0cmlidXRlICphLCBjaGFyICpidWYpCit7CisJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9
+IGRldl9nZXRfZHJ2ZGF0YShkKTsKKwlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVf
+ZHJtKGRldik7CisJc3RydWN0IG52a21fdm9sdCAqdm9sdCA9IG52eHhfdm9sdCgmZHJtLT5kZXZp
+Y2UpOworCisJaWYgKCF2b2x0IHx8ICF2b2x0LT5taW5fdXYpCisJCXJldHVybiAtRU5PREVWOwor
+CisJcmV0dXJuIHNwcmludGYoYnVmLCAiJWlcbiIsIHZvbHQtPm1pbl91diAvIDEwMDApOworfQor
+CitzdGF0aWMgU0VOU09SX0RFVklDRV9BVFRSKGluMF9taW4sIFNfSVJVR08sCisJCQkgIG5vdXZl
+YXVfaHdtb25fZ2V0X2luMF9taW4sIE5VTEwsIDApOworCitzdGF0aWMgc3NpemVfdAorbm91dmVh
+dV9od21vbl9nZXRfaW4wX21heChzdHJ1Y3QgZGV2aWNlICpkLAorCQkJICAgIHN0cnVjdCBkZXZp
+Y2VfYXR0cmlidXRlICphLCBjaGFyICpidWYpCit7CisJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9
+IGRldl9nZXRfZHJ2ZGF0YShkKTsKKwlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVf
+ZHJtKGRldik7CisJc3RydWN0IG52a21fdm9sdCAqdm9sdCA9IG52eHhfdm9sdCgmZHJtLT5kZXZp
+Y2UpOworCisJaWYgKCF2b2x0IHx8ICF2b2x0LT5tYXhfdXYpCisJCXJldHVybiAtRU5PREVWOwor
+CisJcmV0dXJuIHNwcmludGYoYnVmLCAiJWlcbiIsIHZvbHQtPm1heF91diAvIDEwMDApOworfQor
+CitzdGF0aWMgU0VOU09SX0RFVklDRV9BVFRSKGluMF9tYXgsIFNfSVJVR08sCisJCQkgIG5vdXZl
+YXVfaHdtb25fZ2V0X2luMF9tYXgsIE5VTEwsIDApOworCitzdGF0aWMgc3NpemVfdAogbm91dmVh
+dV9od21vbl9nZXRfaW4wX2xhYmVsKHN0cnVjdCBkZXZpY2UgKmQsCiAJCQkgICAgc3RydWN0IGRl
+dmljZV9hdHRyaWJ1dGUgKmEsIGNoYXIgKmJ1ZikKIHsKQEAgLTU5NCw2ICs2MjgsOCBAQCBzdGF0
+aWMgc3RydWN0IGF0dHJpYnV0ZSAqaHdtb25fcHdtX2Zhbl9hdHRyaWJ1dGVzW10gPSB7CiAKIHN0
+YXRpYyBzdHJ1Y3QgYXR0cmlidXRlICpod21vbl9pbjBfYXR0cmlidXRlc1tdID0gewogCSZzZW5z
+b3JfZGV2X2F0dHJfaW4wX2lucHV0LmRldl9hdHRyLmF0dHIsCisJJnNlbnNvcl9kZXZfYXR0cl9p
+bjBfbWluLmRldl9hdHRyLmF0dHIsCisJJnNlbnNvcl9kZXZfYXR0cl9pbjBfbWF4LmRldl9hdHRy
+LmF0dHIsCiAJJnNlbnNvcl9kZXZfYXR0cl9pbjBfbGFiZWwuZGV2X2F0dHIuYXR0ciwKIAlOVUxM
+CiB9OwotLSAKMi44LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
