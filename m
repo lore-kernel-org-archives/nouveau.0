@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Wed, 20 Apr 2016 04:19:39 +0000
-Message-ID: <bug-94990-8800-JejPJA4xM5@http.bugs.freedesktop.org/>
+Date: Wed, 20 Apr 2016 04:32:16 +0000
+Message-ID: <bug-94990-8800-3tRkvnrm2f@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2127182008=="
+Content-Type: multipart/mixed; boundary="===============0169728248=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2127182008==
-Content-Type: multipart/alternative; boundary="14611259781.f2D17F42.26472";
+--===============0169728248==
+Content-Type: multipart/alternative; boundary="14611267362.b2aF.31733";
  charset="UTF-8"
 
 
---14611259781.f2D17F42.26472
-Date: Wed, 20 Apr 2016 04:19:38 +0000
+--14611267362.b2aF.31733
+Date: Wed, 20 Apr 2016 04:32:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=94990
 
---- Comment #11 from Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Successfully booted with your config on 4.6-rc4 and a GM206 (GTX 960). I am
-trying to get my hands on a GTX970 to see if this is specific to the card.
+--- Comment #12 from Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This line in the log looks kinda suspicious to me:
 
-Are you able/willing to compile custom Nouveau modules in order to get more
-debug information?
+[    2.278551] nouveau 0000:01:00.0: enabling device (0000 -> 0003)
+
+I am not seeing it on my end ; could this mean that the Geforce card is a
+secondary display device, and that the integrated Intel graphics is the main
+one?
+
+In this case maybe you need this patch, which is not in -rc4:
+https://lists.freedesktop.org/archives/nouveau/2016-April/024523.html
+
+Also I am surprised by the report that the screen goes blank after this -
+failure to initialize GR should not interfere with the ability to display a
+framebuffer (only acceleration will be disabled).
+
+Let's make another experiment: can you move /lib/firmware/nvidia/gm204
+somewhere else, reboot (you will see a complain about missing firmware files in
+the boot log), and tell us whether the display is active after that?
+
+Thanks!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14611259781.f2D17F42.26472
-Date: Wed, 20 Apr 2016 04:19:38 +0000
+--14611267362.b2aF.31733
+Date: Wed, 20 Apr 2016 04:32:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -57,18 +72,33 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94990#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94990#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Latest 4.6rc4 kernel, no booting on gtx970"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=94990">bug 94990</a>
               from <span class="vcard"><a class="email" href="mailto:gnurou&#64;gmail.com" title="Alexandre Courbot &lt;gnurou&#64;gmail.com&gt;"> <span class="fn">Alexandre Courbot</span></a>
 </span></b>
-        <pre>Successfully booted with your config on 4.6-rc4 and a GM206 (GTX 960). I am
-trying to get my hands on a GTX970 to see if this is specific to the card.
+        <pre>This line in the log looks kinda suspicious to me:
 
-Are you able/willing to compile custom Nouveau modules in order to get more
-debug information?</pre>
+[    2.278551] nouveau 0000:01:00.0: enabling device (0000 -&gt; 0003)
+
+I am not seeing it on my end ; could this mean that the Geforce card is a
+secondary display device, and that the integrated Intel graphics is the main
+one?
+
+In this case maybe you need this patch, which is not in -rc4:
+<a href="https://lists.freedesktop.org/archives/nouveau/2016-April/024523.html">https://lists.freedesktop.org/archives/nouveau/2016-April/024523.html</a>
+
+Also I am surprised by the report that the screen goes blank after this -
+failure to initialize GR should not interfere with the ability to display a
+framebuffer (only acceleration will be disabled).
+
+Let's make another experiment: can you move /lib/firmware/nvidia/gm204
+somewhere else, reboot (you will see a complain about missing firmware files in
+the boot log), and tell us whether the display is active after that?
+
+Thanks!</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +109,9 @@ debug information?</pre>
       </ul>
     </body>
 </html>
---14611259781.f2D17F42.26472--
+--14611267362.b2aF.31733--
 
---===============2127182008==
+--===============0169728248==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +121,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2127182008==--
+--===============0169728248==--
