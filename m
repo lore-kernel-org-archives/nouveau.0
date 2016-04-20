@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Wed, 20 Apr 2016 11:07:31 +0000
-Message-ID: <bug-94990-8800-X1w2l0qvKe@http.bugs.freedesktop.org/>
+Date: Wed, 20 Apr 2016 11:09:14 +0000
+Message-ID: <bug-94990-8800-4IZ4rn3MXf@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0297490244=="
+Content-Type: multipart/mixed; boundary="===============1093602462=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,34 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0297490244==
-Content-Type: multipart/alternative; boundary="14611504510.deB7dD.17837";
+--===============1093602462==
+Content-Type: multipart/alternative; boundary="14611505532.50da7F6FA.18708";
  charset="UTF-8"
 
 
---14611504510.deB7dD.17837
-Date: Wed, 20 Apr 2016 11:07:31 +0000
+--14611505532.50da7F6FA.18708
+Date: Wed, 20 Apr 2016 11:09:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=94990
 
---- Comment #13 from mirkoroller-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org ---
-Yes, iam booting with intel-gpu and nvidia-gtx970 card activated. There is a
-picture on the intel screen. If i disable the intel gpu in the bios, there is
-no output on the nvidia screen.
-
-I try to ssh to the machine, with disabled intel-gpu.
-
-I have a modiefied Bios in the GTX970. Could this be the answer? I disabled the
-Fan on the gtx970 under 50C. But everything works on Windows10 and kernel 4.5.0
-with nouvau driver.
+--- Comment #14 from mirkoroller-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org ---
+I removed the /lib/firmware directory, still black screen.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14611504510.deB7dD.17837
-Date: Wed, 20 Apr 2016 11:07:31 +0000
+--14611505532.50da7F6FA.18708
+Date: Wed, 20 Apr 2016 11:09:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -61,22 +53,14 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94990#c13">Comment # 13</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94990#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Latest 4.6rc4 kernel, no booting on gtx970"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=94990">bug 94990</a>
               from <span class="vcard"><a class="email" href="mailto:mirkoroller&#64;googlemail.com" title="mirkoroller&#64;googlemail.com">mirkoroller&#64;googlemail.com</a>
 </span></b>
-        <pre>Yes, iam booting with intel-gpu and nvidia-gtx970 card activated. There is a
-picture on the intel screen. If i disable the intel gpu in the bios, there is
-no output on the nvidia screen.
-
-I try to ssh to the machine, with disabled intel-gpu.
-
-I have a modiefied Bios in the GTX970. Could this be the answer? I disabled the
-Fan on the gtx970 under 50C. But everything works on Windows10 and kernel 4.5.0
-with nouvau driver.</pre>
+        <pre>I removed the /lib/firmware directory, still black screen.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +71,9 @@ with nouvau driver.</pre>
       </ul>
     </body>
 </html>
---14611504510.deB7dD.17837--
+--14611505532.50da7F6FA.18708--
 
---===============0297490244==
+--===============1093602462==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +83,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0297490244==--
+--===============1093602462==--
