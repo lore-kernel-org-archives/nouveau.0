@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69882] [NVE6] GPU lockups
-Date: Wed, 20 Apr 2016 07:58:20 +0000
-Message-ID: <bug-69882-8800-kttY1HVJKZ@http.bugs.freedesktop.org/>
-References: <bug-69882-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94948] [NV117] Second external monitor not recognized
+Date: Wed, 20 Apr 2016 09:14:41 +0000
+Message-ID: <bug-94948-8800-W5IpWX2k9j@http.bugs.freedesktop.org/>
+References: <bug-94948-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1546886795=="
+Content-Type: multipart/mixed; boundary="===============0996690611=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69882-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94948-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1546886795==
-Content-Type: multipart/alternative; boundary="14611391001.b63e5fEeB.21867";
+--===============0996690611==
+Content-Type: multipart/alternative; boundary="14611436810.D9bbddD.5240";
  charset="UTF-8"
 
 
---14611391001.b63e5fEeB.21867
-Date: Wed, 20 Apr 2016 07:58:20 +0000
+--14611436810.D9bbddD.5240
+Date: Wed, 20 Apr 2016 09:14:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69882
+https://bugs.freedesktop.org/show_bug.cgi?id=94948
 
---- Comment #22 from Lucas Ribeiro <lucasout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Forget what I just said, the hangs still happen. Opened a new bug #95031
+--- Comment #4 from Carsten Pfeiffer <pfeiffer-RoXCvvDuEio@public.gmane.org> ---
+Thank you for your hints, Ilia. This made try one more thing I hadn't checked
+before: use one output on the dock and another directly on the notebook. And
+this does work, so I get eDP-1, DP-1 and DP-2 now.
+
+Out of curiosity, do you know if MST is considered or planned for nouveau?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14611391001.b63e5fEeB.21867
-Date: Wed, 20 Apr 2016 07:58:20 +0000
+--14611436810.D9bbddD.5240
+Date: Wed, 20 Apr 2016 09:14:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -51,19 +55,20 @@ Content-Type: text/html
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NVE6] GPU lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882#c22">Comment # 22</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NVE6] GPU lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882">bug 69882</a>
-              from <span class="vcard"><a class="email" href="mailto:lucasout&#64;gmail.com" title="Lucas Ribeiro &lt;lucasout&#64;gmail.com&gt;"> <span class="fn">Lucas Ribeiro</span></a>
-</span></b>
-        <pre>Forget what I just said, the hangs still happen. Opened a new <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE4] Random GPU lockups"
-   href="show_bug.cgi?id=95031">bug #95031</a></pre>
+   title="NEW - [NV117] Second external monitor not recognized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94948#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV117] Second external monitor not recognized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94948">bug 94948</a>
+              from <span class="vcard"><a class="email" href="mailto:pfeiffer&#64;kde.org" title="Carsten Pfeiffer &lt;pfeiffer&#64;kde.org&gt;"> <span class="fn">Carsten Pfeiffer</span></a>
+</span></b>
+        <pre>Thank you for your hints, Ilia. This made try one more thing I hadn't checked
+before: use one output on the dock and another directly on the notebook. And
+this does work, so I get eDP-1, DP-1 and DP-2 now.
+
+Out of curiosity, do you know if MST is considered or planned for nouveau?</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +79,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14611391001.b63e5fEeB.21867--
+--14611436810.D9bbddD.5240--
 
---===============1546886795==
+--===============0996690611==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1546886795==--
+--===============0996690611==--
