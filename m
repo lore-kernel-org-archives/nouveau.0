@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69882] [NVE6] GPU lockups
-Date: Wed, 20 Apr 2016 03:33:38 +0000
-Message-ID: <bug-69882-8800-LiJKbgNm6J@http.bugs.freedesktop.org/>
-References: <bug-69882-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
+Date: Wed, 20 Apr 2016 03:40:12 +0000
+Message-ID: <bug-89558-8800-ff8PKVjTlg@http.bugs.freedesktop.org/>
+References: <bug-89558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1285326101=="
+Content-Type: multipart/mixed; boundary="===============1079010080=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69882-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1285326101==
-Content-Type: multipart/alternative; boundary="14611232184.4FBdF9AD.13942";
+--===============1079010080==
+Content-Type: multipart/alternative; boundary="14611236120.D5eD4F3e.16011";
  charset="UTF-8"
 
 
---14611232184.4FBdF9AD.13942
-Date: Wed, 20 Apr 2016 03:33:38 +0000
+--14611236120.D5eD4F3e.16011
+Date: Wed, 20 Apr 2016 03:40:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69882
+https://bugs.freedesktop.org/show_bug.cgi?id=89558
 
---- Comment #21 from Lucas Ribeiro <lucasout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Just tried karolherbst nouveau reclocking tree:
-https://github.com/karolherbst/nouveau/tree/stable_reclocking_kepler_v4
+--- Comment #45 from Marco Trevisan (Treviño) <mail-DXHccXIHLaFeoWH0uzbU5w@public.gmane.org> ---
+Nvidia 940MX is affected as well:
 
-Using this module and reclocking to pstate 07 fixed the hangs I was having
-before. Maybe this fixes 660 hangs too.
+02:00.0 3D controller: NVIDIA Corporation Device 134d (rev a2)
+
+[32394.818085] pci 0000:02:00.0: optimus capabilities: enabled, status dynamic
+power, hda bios codec supported
+[32394.818087] VGA switcheroo: detected Optimus DSM method \_SB_.PCI0.PEG2.PEGP
+handle
+[32394.818170] nouveau 0000:02:00.0: unknown chipset (1180d0a2)
+[32394.818199] nouveau: probe of 0000:02:00.0 failed with error -12
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14611232184.4FBdF9AD.13942
-Date: Wed, 20 Apr 2016 03:33:38 +0000
+--14611236120.D5eD4F3e.16011
+Date: Wed, 20 Apr 2016 03:40:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -55,20 +60,25 @@ Content-Type: text/html
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NVE6] GPU lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882#c21">Comment # 21</a>
+          bz_status_NEW "
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c45">Comment # 45</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NVE6] GPU lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882">bug 69882</a>
-              from <span class="vcard"><a class="email" href="mailto:lucasout&#64;gmail.com" title="Lucas Ribeiro &lt;lucasout&#64;gmail.com&gt;"> <span class="fn">Lucas Ribeiro</span></a>
+          bz_status_NEW "
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
+              from <span class="vcard"><a class="email" href="mailto:mail&#64;3v1n0.net" title="Marco Trevisan (Treviño) &lt;mail&#64;3v1n0.net&gt;"> <span class="fn">Marco Trevisan (Treviño)</span></a>
 </span></b>
-        <pre>Just tried karolherbst nouveau reclocking tree:
-<a href="https://github.com/karolherbst/nouveau/tree/stable_reclocking_kepler_v4">https://github.com/karolherbst/nouveau/tree/stable_reclocking_kepler_v4</a>
+        <pre>Nvidia 940MX is affected as well:
 
-Using this module and reclocking to pstate 07 fixed the hangs I was having
-before. Maybe this fixes 660 hangs too.</pre>
+02:00.0 3D controller: NVIDIA Corporation Device 134d (rev a2)
+
+[32394.818085] pci 0000:02:00.0: optimus capabilities: enabled, status dynamic
+power, hda bios codec supported
+[32394.818087] VGA switcheroo: detected Optimus DSM method \_SB_.PCI0.PEG2.PEGP
+handle
+[32394.818170] nouveau 0000:02:00.0: unknown chipset (1180d0a2)
+[32394.818199] nouveau: probe of 0000:02:00.0 failed with error -12</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +89,9 @@ before. Maybe this fixes 660 hangs too.</pre>
       </ul>
     </body>
 </html>
---14611232184.4FBdF9AD.13942--
+--14611236120.D5eD4F3e.16011--
 
---===============1285326101==
+--===============1079010080==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1285326101==--
+--===============1079010080==--
