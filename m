@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95031] [NVE4] Random GPU lockups
-Date: Wed, 20 Apr 2016 07:52:04 +0000
-Message-ID: <bug-95031-8800-Fmz7z5d9Rj@http.bugs.freedesktop.org/>
-References: <bug-95031-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69882] [NVE6] GPU lockups
+Date: Wed, 20 Apr 2016 07:58:20 +0000
+Message-ID: <bug-69882-8800-kttY1HVJKZ@http.bugs.freedesktop.org/>
+References: <bug-69882-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2086879801=="
+Content-Type: multipart/mixed; boundary="===============1546886795=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95031-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69882-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2086879801==
-Content-Type: multipart/alternative; boundary="14611387230.C2dC4B37E.20043";
+--===============1546886795==
+Content-Type: multipart/alternative; boundary="14611391001.b63e5fEeB.21867";
  charset="UTF-8"
 
 
---14611387230.C2dC4B37E.20043
-Date: Wed, 20 Apr 2016 07:52:03 +0000
+--14611391001.b63e5fEeB.21867
+Date: Wed, 20 Apr 2016 07:58:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=95031
+https://bugs.freedesktop.org/show_bug.cgi?id=69882
 
---- Comment #1 from Lucas Ribeiro <lucasout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Forgot to add: did not try earlier kernels, so this behaviour might exist since
-the card was supported. On Windows it works well.
-
-It hangs on normal browsing or opening a video on VLC.
+--- Comment #22 from Lucas Ribeiro <lucasout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Forget what I just said, the hangs still happen. Opened a new bug #95031
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14611387230.C2dC4B37E.20043
-Date: Wed, 20 Apr 2016 07:52:03 +0000
+--14611391001.b63e5fEeB.21867
+Date: Wed, 20 Apr 2016 07:58:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -54,19 +51,19 @@ Content-Type: text/html
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] Random GPU lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95031#c1">Comment # 1</a>
+          bz_status_REOPENED "
+   title="REOPENED - [NVE6] GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882#c22">Comment # 22</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] Random GPU lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95031">bug 95031</a>
+          bz_status_REOPENED "
+   title="REOPENED - [NVE6] GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882">bug 69882</a>
               from <span class="vcard"><a class="email" href="mailto:lucasout&#64;gmail.com" title="Lucas Ribeiro &lt;lucasout&#64;gmail.com&gt;"> <span class="fn">Lucas Ribeiro</span></a>
 </span></b>
-        <pre>Forgot to add: did not try earlier kernels, so this behaviour might exist since
-the card was supported. On Windows it works well.
-
-It hangs on normal browsing or opening a video on VLC.</pre>
+        <pre>Forget what I just said, the hangs still happen. Opened a new <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] Random GPU lockups"
+   href="show_bug.cgi?id=95031">bug #95031</a></pre>
         </div>
       </p>
       <hr>
@@ -77,9 +74,9 @@ It hangs on normal browsing or opening a video on VLC.</pre>
       </ul>
     </body>
 </html>
---14611387230.C2dC4B37E.20043--
+--14611391001.b63e5fEeB.21867--
 
---===============2086879801==
+--===============1546886795==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +86,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2086879801==--
+--===============1546886795==--
