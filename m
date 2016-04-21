@@ -1,14 +1,13 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 23/24] drm/virgl: add extern C guard for the UAPI
-	header
-Date: Thu, 21 Apr 2016 20:42:44 +0100
-Message-ID: <1461267765-10785-24-git-send-email-emil.l.velikov@gmail.com>
-References: <1461267765-10785-1-git-send-email-emil.l.velikov@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95044] [NVA0] [Reclocking] GPU doesn't relax memory
+	clocks
+Date: Thu, 21 Apr 2016 23:12:49 +0000
+Message-ID: <bug-95044-8800-cyO9TC1FFA@http.bugs.freedesktop.org/>
+References: <bug-95044-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1510984074=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1461267765-10785-1-git-send-email-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-95044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,23 +18,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Q2M6IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+CkNjOiBHZXJkIEhvZmZtYW5uIDxr
-cmF4ZWxAcmVkaGF0LmNvbT4KU2lnbmVkLW9mZi1ieTogRW1pbCBWZWxpa292IDxlbWlsLmwudmVs
-aWtvdkBnbWFpbC5jb20+Ci0tLQogaW5jbHVkZS91YXBpL2RybS92aXJ0Z3B1X2RybS5oIHwgOCAr
-KysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2lu
-Y2x1ZGUvdWFwaS9kcm0vdmlydGdwdV9kcm0uaCBiL2luY2x1ZGUvdWFwaS9kcm0vdmlydGdwdV9k
-cm0uaAppbmRleCBjNzRmMWY5Li45MWEzMWZmIDEwMDY0NAotLS0gYS9pbmNsdWRlL3VhcGkvZHJt
-L3ZpcnRncHVfZHJtLmgKKysrIGIvaW5jbHVkZS91YXBpL2RybS92aXJ0Z3B1X2RybS5oCkBAIC0y
-Niw2ICsyNiwxMCBAQAogCiAjaW5jbHVkZSAiZHJtLmgiCiAKKyNpZiBkZWZpbmVkKF9fY3BsdXNw
-bHVzKQorZXh0ZXJuICJDIiB7CisjZW5kaWYKKwogLyogUGxlYXNlIG5vdGUgdGhhdCBtb2RpZmlj
-YXRpb25zIHRvIGFsbCBzdHJ1Y3RzIGRlZmluZWQgaGVyZSBhcmUKICAqIHN1YmplY3QgdG8gYmFj
-a3dhcmRzLWNvbXBhdGliaWxpdHkgY29uc3RyYWludHMuCiAgKgpAQCAtMTYzLDQgKzE2Nyw4IEBA
-IHN0cnVjdCBkcm1fdmlydGdwdV9nZXRfY2FwcyB7CiAJRFJNX0lPV1IoRFJNX0NPTU1BTkRfQkFT
-RSArIERSTV9WSVJUR1BVX0dFVF9DQVBTLCBcCiAJc3RydWN0IGRybV92aXJ0Z3B1X2dldF9jYXBz
-KQogCisjaWYgZGVmaW5lZChfX2NwbHVzcGx1cykKK30KKyNlbmRpZgorCiAjZW5kaWYKLS0gCjIu
-Ni4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1510984074==
+Content-Type: multipart/alternative; boundary="14612803681.24D76.10867";
+ charset="UTF-8"
+
+
+--14612803681.24D76.10867
+Date: Thu, 21 Apr 2016 23:12:48 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=95044
+
+--- Comment #4 from debianlinuxero1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Hello.
+
+This is what I nvapeek'ed :
+
+001002c0: 00000652
+
+001002c4: 001002c8
+
+001002e0: 0020001b
+
+
+
+I tried to do the mmiotrace procediment as explained here :
+https://wiki.ubuntu.com/X/MMIOTracing
+
+The command choosen was "xinit nvidia-settings", with the intention to force
+clocks with the "Prefer Maximum Performance" option, then relaxing with
+"Adaptive Mode".
+
+But all what I got was 40 minutes of black screen.
+The system didn't shutdown neither with magic sysrq.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14612803681.24D76.10867
+Date: Thu, 21 Apr 2016 23:12:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95044#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95044">bug 95044</a>
+              from <span class="vcard"><a class="email" href="mailto:debianlinuxero1&#64;gmail.com" title="debianlinuxero1&#64;gmail.com">debianlinuxero1&#64;gmail.com</a>
+</span></b>
+        <pre>Hello.
+
+This is what I nvapeek'ed :
+
+001002c0: 00000652
+
+001002c4: 001002c8
+
+001002e0: 0020001b
+
+
+
+I tried to do the mmiotrace procediment as explained here :
+<a href="https://wiki.ubuntu.com/X/MMIOTracing">https://wiki.ubuntu.com/X/MMIOTracing</a>
+
+The command choosen was &quot;xinit nvidia-settings&quot;, with the intention to force
+clocks with the &quot;Prefer Maximum Performance&quot; option, then relaxing with
+&quot;Adaptive Mode&quot;.
+
+But all what I got was 40 minutes of black screen.
+The system didn't shutdown neither with magic sysrq.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14612803681.24D76.10867--
+
+--===============1510984074==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1510984074==--
