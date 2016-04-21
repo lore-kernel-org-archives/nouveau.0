@@ -1,17 +1,12 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH v4 27/37] clk: make pstate a pointer to
- nvkm_pstate
-Date: Thu, 21 Apr 2016 01:56:29 +0300
-Message-ID: <5718091D.1090204@free.fr>
-References: <1461006851-5007-1-git-send-email-nouveau@karolherbst.de>
- <1461006851-5007-28-git-send-email-nouveau@karolherbst.de>
- <5717EC47.4040605@free.fr>
- <CAEXux-b+kaXYRt4BiOLbPWHY+jjpac2EXxuhetxR4-NER_DNsA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95031] [NVE4] 660 Ti Random GPU lockups
+Date: Thu, 21 Apr 2016 03:12:30 +0000
+Message-ID: <bug-95031-8800-xqqVIA89Uu@http.bugs.freedesktop.org/>
+References: <bug-95031-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1469008926=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAEXux-b+kaXYRt4BiOLbPWHY+jjpac2EXxuhetxR4-NER_DNsA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-95031-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,121 +16,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: karol herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMjEvMDQvMTYgMDA6NDYsIGthcm9sIGhlcmJzdCB3cm90ZToKPiAyMDE2LTA0LTIwIDIwOjUz
-IEdNVCswMDowMCBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BmcmVlLmZyPjoKPj4gT24gMTgv
-MDQvMTYgMjI6MTQsIEthcm9sIEhlcmJzdCB3cm90ZToKPj4+IHdlIHdpbGwgYWNjZXNzIHRoZSBj
-dXJyZW50IHNldCBjc3RhdGUgYXQgbGVhc3QgZXZlcnkgc2Vjb25kIGFuZCB0aGlzIHNhZmVzCj4+
-PiB1cwo+PiBzYXZlcwo+Pj4gc29tZSBDUFUgY3ljbGVzIGxvb2tpbmcgdGhlbSB1cCBldmVyeSBz
-ZWNvbmQuCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9s
-aGVyYnN0LmRlPgo+Pj4gLS0tCj4+PiAgICBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2
-L2Nsay5oIHwgIDIgKy0KPj4+ICAgIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9jdHJs
-LmMgfCAgNSArKysrLQo+Pj4gICAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYyAg
-ICB8IDEyICsrKysrKysrLS0tLQo+Pj4gICAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2dr
-MjBhLmMgICB8IDIzICsrKysrKystLS0tLS0tLS0tLS0tLS0tCj4+PiAgICA0IGZpbGVzIGNoYW5n
-ZWQsIDIwIGluc2VydGlvbnMoKyksIDIyIGRlbGV0aW9ucygtKQo+Pj4KPj4+IGRpZmYgLS1naXQg
-YS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Nsay5oCj4+PiBiL2RybS9ub3V2ZWF1
-L2luY2x1ZGUvbnZrbS9zdWJkZXYvY2xrLmgKPj4+IGluZGV4IGRiNTJlNjUuLjRmYjJjMWIgMTAw
-NjQ0Cj4+PiAtLS0gYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Nsay5oCj4+PiAr
-KysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Nsay5oCj4+PiBAQCAtOTEsNyAr
-OTEsNyBAQCBzdHJ1Y3QgbnZrbV9jbGsgewo+Pj4gICAgICAgICAgc3RydWN0IG52a21fbm90aWZ5
-IHB3cnNyY19udGZ5Owo+Pj4gICAgICAgICAgaW50IHB3cnNyYzsKPj4+IC0gICAgICAgaW50IHBz
-dGF0ZTsgLyogY3VycmVudCAqLwo+Pj4gKyAgICAgICBzdHJ1Y3QgbnZrbV9wc3RhdGUgKnBzdGF0
-ZTsgLyogY3VycmVudCAqLwo+Pj4gICAgICAgICAgaW50IHVzdGF0ZV9hYzsgLyogdXNlci1yZXF1
-ZXN0ZWQgKC0xIGRpc2FibGVkLCAtMiBwZXJmbW9uKSAqLwo+Pj4gICAgICAgICAgaW50IHVzdGF0
-ZV9kYzsgLyogdXNlci1yZXF1ZXN0ZWQgKC0xIGRpc2FibGVkLCAtMiBwZXJmbW9uKSAqLwo+Pj4g
-ICAgICAgICAgaW50IGFzdGF0ZTsgLyogcGVyZm1vbiBhZGp1c3RtZW50IChiYXNlKSAqLwo+Pj4g
-ZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9jdHJsLmMKPj4+IGIv
-ZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2N0cmwuYwo+Pj4gaW5kZXggMDM5ZThhNC4u
-Y2I4NTI2NiAxMDA2NDQKPj4+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9j
-dHJsLmMKPj4+ICsrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9jdHJsLmMKPj4+
-IEBAIC01Miw3ICs1MiwxMCBAQCBudmttX2NvbnRyb2xfbXRoZF9wc3RhdGVfaW5mbyhzdHJ1Y3Qg
-bnZrbV9jb250cm9sCj4+PiAqY3RybCwgdm9pZCAqZGF0YSwgdTMyIHNpemUpCj4+PiAgICAgICAg
-ICAgICAgICAgIGFyZ3MtPnYwLnVzdGF0ZV9hYyA9IGNsay0+dXN0YXRlX2FjOwo+Pj4gICAgICAg
-ICAgICAgICAgICBhcmdzLT52MC51c3RhdGVfZGMgPSBjbGstPnVzdGF0ZV9kYzsKPj4+ICAgICAg
-ICAgICAgICAgICAgYXJncy0+djAucHdyc3JjID0gY2xrLT5wd3JzcmM7Cj4+PiAtICAgICAgICAg
-ICAgICAgYXJncy0+djAucHN0YXRlID0gY2xrLT5wc3RhdGU7Cj4+PiArICAgICAgICAgICAgICAg
-aWYgKGNsay0+cHN0YXRlKQo+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgYXJncy0+djAucHN0
-YXRlID0gY2xrLT5wc3RhdGUtPnBzdGF0ZTsKPj4+ICsgICAgICAgICAgICAgICBlbHNlCj4+PiAr
-ICAgICAgICAgICAgICAgICAgICAgICBhcmdzLT52MC5wc3RhdGUgPSAtMTsKPj4+ICAgICAgICAg
-IH0gZWxzZSB7Cj4+PiAgICAgICAgICAgICAgICAgIGFyZ3MtPnYwLmNvdW50ID0gMDsKPj4+ICAg
-ICAgICAgICAgICAgICAgYXJncy0+djAudXN0YXRlX2FjID0KPj4+IE5WSUZfQ09OVFJPTF9QU1RB
-VEVfSU5GT19WMF9VU1RBVEVfRElTQUJMRTsKPj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9jbGsvYmFzZS5jCj4+PiBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9i
-YXNlLmMKPj4+IGluZGV4IDM4NjdhYjcuLjc2MmRmZTIgMTAwNjQ0Cj4+PiAtLS0gYS9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4+PiArKysgYi9kcm0vbm91dmVhdS9udmttL3N1
-YmRldi9jbGsvYmFzZS5jCj4+PiBAQCAtMjg4LDcgKzI4OCw3IEBAIG52a21fcHN0YXRlX3Byb2co
-c3RydWN0IG52a21fY2xrICpjbGssIGludCBwc3RhdGVpKQo+Pj4gICAgICAgICAgfQo+Pj4gICAg
-ICAgICAgbnZrbV9kZWJ1ZyhzdWJkZXYsICJzZXR0aW5nIHBlcmZvcm1hbmNlIHN0YXRlICVkXG4i
-LCBwc3RhdGVpKTsKPj4+IC0gICAgICAgY2xrLT5wc3RhdGUgPSBwc3RhdGVpOwo+Pj4gKyAgICAg
-ICBjbGstPnBzdGF0ZSA9IHBzdGF0ZTsKPj4+ICAgICAgICAgIG52a21fcGNpZV9zZXRfbGluayhw
-Y2ksIHBzdGF0ZS0+cGNpZV9zcGVlZCwgcHN0YXRlLT5wY2llX3dpZHRoKTsKPj4+ICAgIEBAIC0z
-MTcsMTUgKzMxNywxOSBAQCBudmttX2Nsa191cGRhdGVfd29yayhzdHJ1Y3Qgd29ya19zdHJ1Y3Qg
-KndvcmspCj4+PiAgICAgICAgICAgICAgICAgIHJldHVybjsKPj4+ICAgICAgICAgIGNsay0+cHdy
-c3JjID0gcG93ZXJfc3VwcGx5X2lzX3N5c3RlbV9zdXBwbGllZCgpOwo+Pj4gICAgKyAgICAgaWYg
-KGNsay0+cHN0YXRlKQo+Pj4gKyAgICAgICAgICAgICAgIHBzdGF0ZSA9IGNsay0+cHN0YXRlLT5w
-c3RhdGU7Cj4+PiArICAgICAgIGVsc2UKPj4+ICsgICAgICAgICAgICAgICBwc3RhdGUgPSAtMTsK
-Pj4+ICAgICAgICAgIG52a21fdHJhY2Uoc3ViZGV2LCAiUCAlZCBQV1IgJWQgVShBQykgJWQgVShE
-QykgJWQgQSAlZFxuIiwKPj4+IC0gICAgICAgICAgICAgICAgICBjbGstPnBzdGF0ZSwgY2xrLT5w
-d3JzcmMsIGNsay0+dXN0YXRlX2FjLAo+Pj4gY2xrLT51c3RhdGVfZGMsCj4+PiArICAgICAgICAg
-ICAgICAgICAgcHN0YXRlLCBjbGstPnB3cnNyYywgY2xrLT51c3RhdGVfYWMsIGNsay0+dXN0YXRl
-X2RjLAo+Pj4gICAgICAgICAgICAgICAgICAgICBjbGstPmFzdGF0ZSk7Cj4+PiAgICAgICAgICBw
-c3RhdGUgPSBjbGstPnB3cnNyYyA/IGNsay0+dXN0YXRlX2FjIDogY2xrLT51c3RhdGVfZGM7Cj4+
-PiAgICAgICAgICBpZiAoY2xrLT5zdGF0ZV9uciAmJiBwc3RhdGUgIT0gLTEpIHsKPj4+ICAgICAg
-ICAgICAgICAgICAgcHN0YXRlID0gKHBzdGF0ZSA8IDApID8gY2xrLT5hc3RhdGUgOiBwc3RhdGU7
-Cj4+PiAgICAgICAgICB9IGVsc2Ugewo+Pj4gLSAgICAgICAgICAgICAgIHBzdGF0ZSA9IGNsay0+
-cHN0YXRlID0gLTE7Cj4+PiArICAgICAgICAgICAgICAgcHN0YXRlID0gLTE7Cj4+Cj4+IElzbid0
-ICJjbGstPnBzdGF0ZSA9IE5VTEw7IiBtaXNzaW5nIGhlcmU/IFdoeSBkaWQgeW91IGNoYW5nZSB0
-aGlzIGNvZGUKPj4gb3RoZXJ3aXNlPwo+Pgo+IGNsay0+cHN0YXRlIHdpbGwgbmV2ZXIgYmUgc2V0
-IGFzIGxvbmcgYXMgdGhleSBhcmUgbm8gc3RhdGVzCgpJIHNlZS4gVGhlbiwgdGhlIHBhdGNoIGlz
-OgpSZXZpZXdlZC1ieTogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4KPgo+Pj4g
-ICAgICAgICAgfQo+Pj4gICAgICAgICAgbnZrbV90cmFjZShzdWJkZXYsICItPiAlZFxuIiwgcHN0
-YXRlKTsKPj4+IEBAIC02MDksNyArNjEzLDcgQEAgbnZrbV9jbGtfaW5pdChzdHJ1Y3QgbnZrbV9z
-dWJkZXYgKnN1YmRldikKPj4+ICAgICAgICAgICAgICAgICAgcmV0dXJuIGNsay0+ZnVuYy0+aW5p
-dChjbGspOwo+Pj4gICAgICAgICAgY2xrLT5hc3RhdGUgPSBjbGstPnN0YXRlX25yIC0gMTsKPj4+
-IC0gICAgICAgY2xrLT5wc3RhdGUgPSAtMTsKPj4+ICsgICAgICAgY2xrLT5wc3RhdGUgPSBOVUxM
-Owo+Pj4gICAgICAgICAgbnZrbV9jbGtfdXBkYXRlKGNsaywgdHJ1ZSk7Cj4+PiAgICAgICAgICBy
-ZXR1cm4gMDsKPj4+ICAgIH0KPj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9wbXUvZ2syMGEuYwo+Pj4gYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZ2syMGEuYwo+
-Pj4gaW5kZXggZjk5NmQ5MC4uNmYwZDI5MCAxMDA2NDQKPj4+IC0tLSBhL2RybS9ub3V2ZWF1L252
-a20vc3ViZGV2L3BtdS9nazIwYS5jCj4+PiArKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9w
-bXUvZ2syMGEuYwo+Pj4gQEAgLTU3LDI0ICs1NywyMSBAQCBnazIwYV9wbXVfZHZmc190YXJnZXQo
-c3RydWN0IGdrMjBhX3BtdSAqcG11LCBpbnQKPj4+ICpzdGF0ZSkKPj4+ICAgIH0KPj4+ICAgICAg
-c3RhdGljIGludAo+Pj4gLWdrMjBhX3BtdV9kdmZzX2dldF9jdXJfc3RhdGUoc3RydWN0IGdrMjBh
-X3BtdSAqcG11LCBpbnQgKnN0YXRlKQo+Pj4gLXsKPj4+IC0gICAgICAgc3RydWN0IG52a21fY2xr
-ICpjbGsgPSBwbXUtPmJhc2Uuc3ViZGV2LmRldmljZS0+Y2xrOwo+Pj4gLQo+Pj4gLSAgICAgICAq
-c3RhdGUgPSBjbGstPnBzdGF0ZTsKPj4+IC0gICAgICAgcmV0dXJuIDA7Cj4+PiAtfQo+Pj4gLQo+
-Pj4gLXN0YXRpYyBpbnQKPj4+ICAgIGdrMjBhX3BtdV9kdmZzX2dldF90YXJnZXRfc3RhdGUoc3Ry
-dWN0IGdrMjBhX3BtdSAqcG11LAo+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-aW50ICpzdGF0ZSwgaW50IGxvYWQpCj4+PiAgICB7Cj4+PiAgICAgICAgICBzdHJ1Y3QgZ2syMGFf
-cG11X2R2ZnNfZGF0YSAqZGF0YSA9IHBtdS0+ZGF0YTsKPj4+ICAgICAgICAgIHN0cnVjdCBudmtt
-X2NsayAqY2xrID0gcG11LT5iYXNlLnN1YmRldi5kZXZpY2UtPmNsazsKPj4+ICsgICAgICAgc3Ry
-dWN0IG52a21fcHN0YXRlICpwc3RhdGUgPSBjbGstPnBzdGF0ZTsKPj4+ICAgICAgICAgIGludCBj
-dXJfbGV2ZWwsIGxldmVsOwo+Pj4gICAgKyAgICAgaWYgKCFwc3RhdGUpIHsKPj4+ICsgICAgICAg
-ICAgICAgICAqc3RhdGUgPSAwOwo+Pj4gKyAgICAgICAgICAgICAgIHJldHVybiAxOwo+Pj4gKyAg
-ICAgICB9Cj4+PiArCj4+PiAgICAgICAgICAvKiBGb3IgR0syMEEsIHRoZSBwZXJmb3JtYW5jZSBs
-ZXZlbCBpcyBkaXJlY3RseSBtYXBwZWQgdG8gcHN0YXRlCj4+PiAqLwo+Pj4gLSAgICAgICBsZXZl
-bCA9IGN1cl9sZXZlbCA9IGNsay0+cHN0YXRlOwo+Pj4gKyAgICAgICBsZXZlbCA9IGN1cl9sZXZl
-bCA9IGNsay0+cHN0YXRlLT5wc3RhdGU7Cj4+PiAgICAgICAgICBpZiAobG9hZCA+IGRhdGEtPnBf
-bG9hZF9tYXgpIHsKPj4+ICAgICAgICAgICAgICAgICAgbGV2ZWwgPSBtaW4oY2xrLT5zdGF0ZV9u
-ciAtIDEsIGxldmVsICsgKGNsay0+c3RhdGVfbnIgLwo+Pj4gMykpOwo+Pj4gQEAgLTE1MCwxMiAr
-MTQ3LDYgQEAgZ2syMGFfcG11X2R2ZnNfd29yayhzdHJ1Y3QgbnZrbV9hbGFybSAqYWxhcm0pCj4+
-PiAgICAgICAgICBudmttX3RyYWNlKHN1YmRldiwgInV0aWxpemF0aW9uID0gJWQgJSUsIGF2Z19s
-b2FkID0gJWQgJSVcbiIsCj4+PiAgICAgICAgICAgICAgICAgICAgIHV0aWxpemF0aW9uLCBkYXRh
-LT5hdmdfbG9hZCk7Cj4+PiAgICAtICAgICByZXQgPSBnazIwYV9wbXVfZHZmc19nZXRfY3VyX3N0
-YXRlKHBtdSwgJnN0YXRlKTsKPj4+IC0gICAgICAgaWYgKHJldCkgewo+Pj4gLSAgICAgICAgICAg
-ICAgIG52a21fd2FybihzdWJkZXYsICJmYWlsZWQgdG8gZ2V0IGN1cnJlbnQgc3RhdGVcbiIpOwo+
-Pj4gLSAgICAgICAgICAgICAgIGdvdG8gcmVzY2hlZDsKPj4+IC0gICAgICAgfQo+Pj4gLQo+Pj4g
-ICAgICAgICAgaWYgKGdrMjBhX3BtdV9kdmZzX2dldF90YXJnZXRfc3RhdGUocG11LCAmc3RhdGUs
-IGRhdGEtPmF2Z19sb2FkKSkKPj4+IHsKPj4+ICAgICAgICAgICAgICAgICAgbnZrbV90cmFjZShz
-dWJkZXYsICJzZXQgbmV3IHN0YXRlIHRvICVkXG4iLCBzdGF0ZSk7Cj4+PiAgICAgICAgICAgICAg
-ICAgIGdrMjBhX3BtdV9kdmZzX3RhcmdldChwbXUsICZzdGF0ZSk7Cj4+Cj4+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBs
-aXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
-dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1469008926==
+Content-Type: multipart/alternative; boundary="14612083500.627F0.31033";
+ charset="UTF-8"
+
+
+--14612083500.627F0.31033
+Date: Thu, 21 Apr 2016 03:12:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=95031
+
+--- Comment #4 from Lucas Ribeiro <lucasout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+OK, some interesting findings.
+
+07 pstate on Linux has:
+core 324 MHz memory 648 MHz AC DC
+GPU core:     +0.99 V
+Increasing GPU core voltage to 1.09V has wielded a stable system so far.
+
+On Windows, the idle state has (checked with gpu-z):
+core 324 MHz memory 162MHz
+GPU core voltage: 0.99V
+It has never managed to hang.
+
+So maybe 07 pstate on Linux has a memory clock too high for its voltage. Also,
+as it is the lowest pstate, maybe memory clock could be reduced further to
+162MHz (as in Windows).
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14612083500.627F0.31033
+Date: Thu, 21 Apr 2016 03:12:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] 660 Ti Random GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95031#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] 660 Ti Random GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95031">bug 95031</a>
+              from <span class="vcard"><a class="email" href="mailto:lucasout&#64;gmail.com" title="Lucas Ribeiro &lt;lucasout&#64;gmail.com&gt;"> <span class="fn">Lucas Ribeiro</span></a>
+</span></b>
+        <pre>OK, some interesting findings.
+
+07 pstate on Linux has:
+core 324 MHz memory 648 MHz AC DC
+GPU core:     +0.99 V
+Increasing GPU core voltage to 1.09V has wielded a stable system so far.
+
+On Windows, the idle state has (checked with gpu-z):
+core 324 MHz memory 162MHz
+GPU core voltage: 0.99V
+It has never managed to hang.
+
+So maybe 07 pstate on Linux has a memory clock too high for its voltage. Also,
+as it is the lowest pstate, maybe memory clock could be reduced further to
+162MHz (as in Windows).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14612083500.627F0.31033--
+
+--===============1469008926==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1469008926==--
