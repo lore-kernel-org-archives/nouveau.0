@@ -1,14 +1,13 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH mesa v2 3/3] nouveau: codegen: LOAD: Take src
-	swizzle into account
-Date: Thu, 21 Apr 2016 14:39:22 +0200
-Message-ID: <1461242362-1281-3-git-send-email-hdegoede@redhat.com>
-References: <1461242362-1281-1-git-send-email-hdegoede@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95044] [NVA0] [Reclocking] GPU doesn't relax memory
+	clocks
+Date: Thu, 21 Apr 2016 13:41:02 +0000
+Message-ID: <bug-95044-8800-pcwoTNy6Wd@http.bugs.freedesktop.org/>
+References: <bug-95044-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1086487737=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1461242362-1281-1-git-send-email-hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-95044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,54 +17,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIGxsdm0gVEdTSSBiYWNrZW5kIHVzZXMgcG9pbnRlcnMgaW4gcmVnaXN0ZXJzIGFuZCBkb2Vz
-IHRoaW5ncwpsaWtlOgoKTE9BRCBURU1QWzBdLnksIE1FTU9SWVswXSwgVEVNUFswXQoKRXhwZWN0
-aW5nIHRoZSBkYXRhIGF0IGFkZHJlc3MgVEVNUFswXS54IHRvIGdldCBsb2FkZWQgdG8KVEVNUFsw
-XS55LiBCdXQgdGhpcyB3aWxsIGNhdXNlIHRoZSBkYXRhIGF0IFRFTVBbMF0ueCArIDQgdG8gYmUK
-bG9hZGVkIGluc3RlYWQuCgpUaGlzIGNvbW1pdCBhZGRzIHN1cHBvcnQgZm9yIGEgc3dpenpsZSBz
-dWZmaXggZm9yIHRoZSAxc3Qgc291cmNlCm9wZXJhbmQsIHdoaWNoIGFsbG93cyB1c2luZzoKCkxP
-QUQgVEVNUFswXS55LCBNRU1PUllbMF0ueHh4eCwgVEVNUFswXQoKQW5kIGFjdHVhbGx5IGdldHRp
-bmcgdGhlIGRlc2lyZWQgYmVoYXZpb3IKClNpZ25lZC1vZmYtYnk6IEhhbnMgZGUgR29lZGUgPGhk
-ZWdvZWRlQHJlZGhhdC5jb20+Ci0tLQpDaGFuZ2VzIGluIHYyOgotVHdlYWtlZCBjb21taXQgbXNn
-IGEgYml0Ci1BZGQgZG9jdW1lbnRhdGlvbiBmb3IgdGhpcyB0byBzcmMvZ2FsbGl1bS9kb2NzL3Nv
-dXJjZS90Z3NpLnJzdAotLS0KIHNyYy9nYWxsaXVtL2RvY3Mvc291cmNlL3Rnc2kucnN0ICAgICAg
-ICAgICAgICAgICAgICAgICAgICB8IDMgKysrCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-Y29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAgfCA4ICsrKysrKy0tCiAyIGZpbGVzIGNoYW5n
-ZWQsIDkgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2Fs
-bGl1bS9kb2NzL3NvdXJjZS90Z3NpLnJzdCBiL3NyYy9nYWxsaXVtL2RvY3Mvc291cmNlL3Rnc2ku
-cnN0CmluZGV4IDg1YzMwMmYuLjQzMTU3MDcgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RvY3Mv
-c291cmNlL3Rnc2kucnN0CisrKyBiL3NyYy9nYWxsaXVtL2RvY3Mvc291cmNlL3Rnc2kucnN0CkBA
-IC0yMjg4LDYgKzIyODgsOSBAQCBSZXNvdXJjZSBBY2Nlc3MgT3Bjb2RlcwogICAgICAgICAgICAg
-ICAgdGV4dHVyZSBhcnJheXMgYW5kIDJEIHRleHR1cmVzLiAgYWRkcmVzcy53IGlzIGFsd2F5cwog
-ICAgICAgICAgICAgICAgaWdub3JlZC4KIAorICAgICAgICAgICAgICAgQSBzd2l6emxlIHN1ZmZp
-eCBtYXkgYmUgYWRkZWQgdG8gdGhlIHJlc291cmNlIGFyZ3VtZW50CisgICAgICAgICAgICAgICB0
-aGlzIHdpbGwgY2F1c2UgdGhlIHJlc291cmNlIGRhdGEgdG8gYmUgc3dpenpsZWQgYWNjb3JkaW5n
-bHkuCisKIC4uIG9wY29kZTo6IFNUT1JFIC0gV3JpdGUgZGF0YSB0byBhIHNoYWRlciByZXNvdXJj
-ZQogCiAgICAgICAgICAgICAgICBTeW50YXg6IGBgU1RPUkUgcmVzb3VyY2UsIGFkZHJlc3MsIHNy
-Y2BgCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUw
-X2lyX2Zyb21fdGdzaS5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9u
-djUwX2lyX2Zyb21fdGdzaS5jcHAKaW5kZXggZTJkYjczMS4uMDFkZjRmMyAxMDA2NDQKLS0tIGEv
-c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3Bw
-CisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90
-Z3NpLmNwcApAQCAtMjI3OSwxMyArMjI3OSwxNyBAQCBDb252ZXJ0ZXI6OmhhbmRsZUxPQUQoVmFs
-dWUgKmRzdDBbNF0pCiAKICAgICAgICAgIFZhbHVlICpvZmY7CiAgICAgICAgICBTeW1ib2wgKnN5
-bTsKKyAgICAgICAgIHVpbnQzMl90IHNyYzBfY29tcG9uZW50X29mZnNldCA9IHRnc2kuZ2V0U3Jj
-KDApLmdldFN3aXp6bGUoYykgKiA0OworCiAgICAgICAgICBpZiAodGdzaS5nZXRTcmMoMSkuZ2V0
-RmlsZSgpID09IFRHU0lfRklMRV9JTU1FRElBVEUpIHsKICAgICAgICAgICAgIG9mZiA9IE5VTEw7
-CiAgICAgICAgICAgICBzeW0gPSBtYWtlU3ltKHRnc2kuZ2V0U3JjKDApLmdldEZpbGUoKSwgciwg
-LTEsIGMsCi0gICAgICAgICAgICAgICAgICAgICAgICAgIHRnc2kuZ2V0U3JjKDEpLmdldFZhbHVl
-VTMyKDAsIGluZm8pICsgNCAqIGMpOworICAgICAgICAgICAgICAgICAgICAgICAgICB0Z3NpLmdl
-dFNyYygxKS5nZXRWYWx1ZVUzMigwLCBpbmZvKSArCisgICAgICAgICAgICAgICAgICAgICAgICAg
-IHNyYzBfY29tcG9uZW50X29mZnNldCk7CiAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICAg
-b2ZmID0gZmV0Y2hTcmMoMSwgMCk7Ci0gICAgICAgICAgICBzeW0gPSBtYWtlU3ltKHRnc2kuZ2V0
-U3JjKDApLmdldEZpbGUoKSwgciwgLTEsIGMsIDQgKiBjKTsKKyAgICAgICAgICAgIHN5bSA9IG1h
-a2VTeW0odGdzaS5nZXRTcmMoMCkuZ2V0RmlsZSgpLCByLCAtMSwgYywKKyAgICAgICAgICAgICAg
-ICAgICAgICAgICAgc3JjMF9jb21wb25lbnRfb2Zmc2V0KTsKICAgICAgICAgIH0KIAogICAgICAg
-ICAgSW5zdHJ1Y3Rpb24gKmxkID0gbWtMb2FkKFRZUEVfVTMyLCBkc3QwW2NdLCBzeW0sIG9mZik7
-Ci0tIAoyLjcuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1086487737==
+Content-Type: multipart/alternative; boundary="14612460620.e0fa7.28087";
+ charset="UTF-8"
+
+
+--14612460620.e0fa7.28087
+Date: Thu, 21 Apr 2016 13:41:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=95044
+
+--- Comment #3 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
+(In reply to debianlinuxero1 from comment #2)
+> Created attachment 123111 [details]
+> VBIOS
+> 
+> The vbios.rom file
+
+Thanks, that's helpful. I'm afraid I also need some info from the official
+driver though. In particular a peek from the 0x1002c0, 0x1002c4 and 0x1002e0
+registers in the lowest performance level. Could you obtain an mmiotrace of the
+official driver going down from the highest to the lowest performance level, xz
+it and attach it to this bug please? Alternatively you can nvapeek these
+registers in the lowest level (as observed in nvidia-settings).
+
+For reference: I suspect the "high CAS" bit (MR[2], bit 0) in the GDDR3 specs
+we used for reference is in fact bogus. Your VBIOS appears to set this bit upon
+boot, but apart from the lowest perf lvl, the values written for CAS would
+always correspond between the low and high lookup-tables. For the lowest
+perflvl, only the low lookup-table contains an entry for the CAS latency. Trace
+should help determine whether the official driver unsets the "high CAS" bit or
+rather ignores it.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14612460620.e0fa7.28087
+Date: Thu, 21 Apr 2016 13:41:02 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95044#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95044">bug 95044</a>
+              from <span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
+</span></b>
+        <pre>(In reply to debianlinuxero1 from <a href="show_bug.cgi?id=95044#c2">comment #2</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=123111" name="attach_123111" title="VBIOS">attachment 123111</a> <a href="attachment.cgi?id=123111&amp;action=edit" title="VBIOS">[details]</a></span>
+&gt; VBIOS
+&gt; 
+&gt; The vbios.rom file</span >
+
+Thanks, that's helpful. I'm afraid I also need some info from the official
+driver though. In particular a peek from the 0x1002c0, 0x1002c4 and 0x1002e0
+registers in the lowest performance level. Could you obtain an mmiotrace of the
+official driver going down from the highest to the lowest performance level, xz
+it and attach it to this bug please? Alternatively you can nvapeek these
+registers in the lowest level (as observed in nvidia-settings).
+
+For reference: I suspect the &quot;high CAS&quot; bit (MR[2], bit 0) in the GDDR3 specs
+we used for reference is in fact bogus. Your VBIOS appears to set this bit upon
+boot, but apart from the lowest perf lvl, the values written for CAS would
+always correspond between the low and high lookup-tables. For the lowest
+perflvl, only the low lookup-table contains an entry for the CAS latency. Trace
+should help determine whether the official driver unsets the &quot;high CAS&quot; bit or
+rather ignores it.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14612460620.e0fa7.28087--
+
+--===============1086487737==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1086487737==--
