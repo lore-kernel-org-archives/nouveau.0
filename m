@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95044] [NVA0] [Reclocking] GPU doesn't relax memory
-	clocks
-Date: Thu, 21 Apr 2016 13:41:02 +0000
-Message-ID: <bug-95044-8800-pcwoTNy6Wd@http.bugs.freedesktop.org/>
-References: <bug-95044-8800@http.bugs.freedesktop.org/>
+From: "Li, Stephen" <Steve.Li-w7aCiyBGonG08yh69ceOPQCym/hCvTLSAL8bYrjMMd8@public.gmane.org>
+Subject: nouveau: kernel rejected pushbuf: Invalid argument
+Date: Thu, 21 Apr 2016 15:17:29 +0000
+Message-ID: <3CD7D8096827214EA72BFDC6B95C7CC931B6DFB5@VEREXCH02.harrisbroadcast.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1086487737=="
+Content-Type: multipart/mixed; boundary="===============0654901079=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,102 +15,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+--===============0654901079==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3CD7D8096827214EA72BFDC6B95C7CC931B6DFB5VEREXCH02harris_"
 
---===============1086487737==
-Content-Type: multipart/alternative; boundary="14612460620.e0fa7.28087";
- charset="UTF-8"
+--_000_3CD7D8096827214EA72BFDC6B95C7CC931B6DFB5VEREXCH02harris_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+I am getting a crash in nouveau in my application. It's basically a java a=
+pplication, and I am loading a bitmap into an opengl texture and showing i=
+t in a panel. Below is a snippet of the console output. Sometimes I will g=
+et a lock up instead of a crash. My whole desktop will lock up, but I can =
+still move the mouse pointer around.
+
+Please let me know if you need more information. Your help is appreciated.=
 
 
---14612460620.e0fa7.28087
-Date: Thu, 21 Apr 2016 13:41:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
+Thanks
+Steve
 
-https://bugs.freedesktop.org/show_bug.cgi?id=95044
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=3D0x00007f38aa5da694, pid=3D26497, tid=3D1398811247=
+30624
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_65-b17) (build 1.8.0_6=
+5-b17)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.65-b01 mixed mode linux-a=
+md64 compressed oops)
+# Problematic frame:
+# C  [libdrm_nouveau.so.2+0x3694]
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core=
+ dumping, try "ulimit -c unlimited" before starting Java again
+#
+# An error report file with more information is saved as:
+# /home/steve/Documents/hs_err_pid26497.log
+nouveau: kernel rejected pushbuf: Invalid argument
+nouveau: ch0: krec 0 pushes 1 bufs 36 relocs 0
+nouveau: ch0: buf 00000000 00000003 00000004 00000004 00000000
+nouveau: ch0: buf 00000001 00000003 00000004 00000004 00000000
+nouveau: ch0: buf 00000002 0000000e 00000002 00000002 00000002
+nouveau: ch0: buf 00000003 00000007 00000002 00000002 00000000
 
---- Comment #3 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
-(In reply to debianlinuxero1 from comment #2)
-> Created attachment 123111 [details]
-> VBIOS
-> 
-> The vbios.rom file
+______________________________________________________________________
+This email has been scanned by the Symantec Email Security.cloud service.
+For more information please visit http://www.symanteccloud.com
+______________________________________________________________________
+--_000_3CD7D8096827214EA72BFDC6B95C7CC931B6DFB5VEREXCH02harris_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks, that's helpful. I'm afraid I also need some info from the official
-driver though. In particular a peek from the 0x1002c0, 0x1002c4 and 0x1002e0
-registers in the lowest performance level. Could you obtain an mmiotrace of the
-official driver going down from the highest to the lowest performance level, xz
-it and attach it to this bug please? Alternatively you can nvapeek these
-registers in the lowest level (as observed in nvidia-settings).
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-mic=
+rosoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word=
+" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"ht=
+tp://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii=
+">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+=09{font-family:Calibri;
+=09panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+=09{margin:0cm;
+=09margin-bottom:.0001pt;
+=09font-size:11.0pt;
+=09font-family:"Calibri","sans-serif";
+=09mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+=09{mso-style-priority:99;
+=09color:blue;
+=09text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+=09{mso-style-priority:99;
+=09color:purple;
+=09text-decoration:underline;}
+span.EmailStyle17
+=09{mso-style-type:personal-compose;
+=09font-family:"Calibri","sans-serif";
+=09color:windowtext;}
+.MsoChpDefault
+=09{mso-style-type:export-only;
+=09font-family:"Calibri","sans-serif";
+=09mso-fareast-language:EN-US;}
+@page WordSection1
+=09{size:612.0pt 792.0pt;
+=09margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+=09{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-CA" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am getting a crash in nouveau in my application. =
+It&#8217;s basically a java application, and I am loading a bitmap into an=
+ opengl texture and showing it in a panel. Below is a snippet of the conso=
+le output. Sometimes I will get a lock up instead
+ of a crash. My whole desktop will lock up, but I can still move the mouse=
+ pointer around.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Please let me know if you need more information. Yo=
+ur help is appreciated.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks<o:p></o:p></p>
+<p class=3D"MsoNormal">Steve<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">#<o:p></o:p></p>
+<p class=3D"MsoNormal"># A fatal error has been detected by the Java Runti=
+me Environment:<o:p></o:p></p>
+<p class=3D"MsoNormal">#<o:p></o:p></p>
+<p class=3D"MsoNormal">#&nbsp; SIGSEGV (0xb) at pc=3D0x00007f38aa5da694, p=
+id=3D26497, tid=3D139881124730624<o:p></o:p></p>
+<p class=3D"MsoNormal">#<o:p></o:p></p>
+<p class=3D"MsoNormal"># JRE version: Java(TM) SE Runtime Environment (8.0=
+_65-b17) (build 1.8.0_65-b17)<o:p></o:p></p>
+<p class=3D"MsoNormal"># Java VM: Java HotSpot(TM) 64-Bit Server VM (25.65=
+-b01 mixed mode linux-amd64 compressed oops)<o:p></o:p></p>
+<p class=3D"MsoNormal"># Problematic frame:<o:p></o:p></p>
+<p class=3D"MsoNormal"># C&nbsp; [libdrm_nouveau.so.2&#43;0x3694]<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">#<o:p></o:p></p>
+<p class=3D"MsoNormal"># Failed to write core dump. Core dumps have been d=
+isabled. To enable core dumping, try &quot;ulimit -c unlimited&quot; befor=
+e starting Java again<o:p></o:p></p>
+<p class=3D"MsoNormal">#<o:p></o:p></p>
+<p class=3D"MsoNormal"># An error report file with more information is sav=
+ed as:<o:p></o:p></p>
+<p class=3D"MsoNormal"># /home/steve/Documents/hs_err_pid26497.log<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">nouveau: kernel rejected pushbuf: Invalid argument<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">nouveau: ch0: krec 0 pushes 1 bufs 36 relocs 0<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">nouveau: ch0: buf 00000000 00000003 00000004 000000=
+04 00000000<o:p></o:p></p>
+<p class=3D"MsoNormal">nouveau: ch0: buf 00000001 00000003 00000004 000000=
+04 00000000<o:p></o:p></p>
+<p class=3D"MsoNormal">nouveau: ch0: buf 00000002 0000000e 00000002 000000=
+02 00000002<o:p></o:p></p>
+<p class=3D"MsoNormal">nouveau: ch0: buf 00000003 00000007 00000002 000000=
+02 00000000<o:p></o:p></p>
+</div>
+<br clear=3D"both">
+______________________________________________________________________<BR>=
 
-For reference: I suspect the "high CAS" bit (MR[2], bit 0) in the GDDR3 specs
-we used for reference is in fact bogus. Your VBIOS appears to set this bit upon
-boot, but apart from the lowest perf lvl, the values written for CAS would
-always correspond between the low and high lookup-tables. For the lowest
-perflvl, only the low lookup-table contains an entry for the CAS latency. Trace
-should help determine whether the official driver unsets the "high CAS" bit or
-rather ignores it.
+This email has been scanned by the Symantec Email Security.cloud service.<=
+BR>
+For more information please visit http://www.symanteccloud.com<BR>
+______________________________________________________________________<BR>=
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14612460620.e0fa7.28087
-Date: Thu, 21 Apr 2016 13:41:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95044#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95044">bug 95044</a>
-              from <span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
-</span></b>
-        <pre>(In reply to debianlinuxero1 from <a href="show_bug.cgi?id=95044#c2">comment #2</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=123111" name="attach_123111" title="VBIOS">attachment 123111</a> <a href="attachment.cgi?id=123111&amp;action=edit" title="VBIOS">[details]</a></span>
-&gt; VBIOS
-&gt; 
-&gt; The vbios.rom file</span >
-
-Thanks, that's helpful. I'm afraid I also need some info from the official
-driver though. In particular a peek from the 0x1002c0, 0x1002c4 and 0x1002e0
-registers in the lowest performance level. Could you obtain an mmiotrace of the
-official driver going down from the highest to the lowest performance level, xz
-it and attach it to this bug please? Alternatively you can nvapeek these
-registers in the lowest level (as observed in nvidia-settings).
-
-For reference: I suspect the &quot;high CAS&quot; bit (MR[2], bit 0) in the GDDR3 specs
-we used for reference is in fact bogus. Your VBIOS appears to set this bit upon
-boot, but apart from the lowest perf lvl, the values written for CAS would
-always correspond between the low and high lookup-tables. For the lowest
-perflvl, only the low lookup-table contains an entry for the CAS latency. Trace
-should help determine whether the official driver unsets the &quot;high CAS&quot; bit or
-rather ignores it.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
+</body>
 </html>
---14612460620.e0fa7.28087--
 
---===============1086487737==
+--_000_3CD7D8096827214EA72BFDC6B95C7CC931B6DFB5VEREXCH02harris_--
+
+--===============0654901079==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -122,4 +198,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1086487737==--
+--===============0654901079==--
