@@ -1,43 +1,50 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH mesa v2 1/3] nouveau: codegen: LOAD: Always use
-	component 0 when getting the address
-Date: Thu, 21 Apr 2016 14:39:20 +0200
-Message-ID: <1461242362-1281-1-git-send-email-hdegoede@redhat.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Subject: [PATCH mesa v2 2/3] nouveau: codegen: LOAD: Do not call
+	fetchSrc(1) if the address is immediate
+Date: Thu, 21 Apr 2016 14:39:21 +0200
+Message-ID: <1461242362-1281-2-git-send-email-hdegoede@redhat.com>
+References: <1461242362-1281-1-git-send-email-hdegoede@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1461242362-1281-1-git-send-email-hdegoede@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>, Samuel Pitoiset <samuel.pitoiset@gmail.com>
+Cc: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-TE9BRCBsb2FkcyB1cHRvIDQgY29tcG9uZW50cyBmcm9tIHRoZSBzcGVjaWZpZWQgcmVzb3VyY2Ug
-c3RhcnRpbmcgYXQKdGhlIHBhc3NlZCBpbiB4IHZhbHVlIG9mIHRoZSAybmQgc291cmNlIG9wZXJh
-bmQsIHRoZSB5LCB6IGFuZCB3CmNvbXBvbmVudHMgb2YgdGhlIGFkZHJlc3Mgc2hvdWxkIG5vdCBi
-ZSB1c2VkLgoKU2lnbmVkLW9mZi1ieTogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNv
-bT4KLS0tCkNoYW5nZXMgaW4gdjI6Ci1OZXcgcGF0Y2ggaW4gdjIgb2YgdGhpcyBwYXRjaC1zZXQK
-LS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdz
-aS5jcHAgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24o
-LSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUw
-X2lyX2Zyb21fdGdzaS5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9u
-djUwX2lyX2Zyb21fdGdzaS5jcHAKaW5kZXggNTU3NjA4ZS4uZDNjMmQ2MSAxMDA2NDQKLS0tIGEv
+Im9mZiIgbGF0ZXIgZ2V0cyBzZXQgdG8gTlVMTCB3aGVuIHRoZSBhZGRyZXNzIGlzIGltbWVkaWF0
+ZSwgc28gbW92ZSB0aGUKZmV0Y2hTcmMoMSkgY2FsbCB0byB0aGUgbm9uLWltbWVkaWF0ZSBicmFu
+Y2ggb2YgdGhlIGlmLWVsc2UuIFRoaXMgYnJpbmdzCmhhbmRsZUxPQUQncyBvZmZzZXQgaGFuZGxp
+bmcgaW5saW5lIHdpdGggaG93IGl0IGlzIGRvbmUgaW4gaGFuZGxlU1RPUkUuCgpTaWduZWQtb2Zm
+LWJ5OiBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPgotLS0KQ2hhbmdlcyBpbiB2
+MjoKLU5ldyBwYXRjaCBpbiB2MiBvZiB0aGlzIHBhdGNoLXNldAotLS0KIHNyYy9nYWxsaXVtL2Ry
+aXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcCB8IDMgKystCiAxIGZp
+bGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEv
 c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3Bw
-CisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90
-Z3NpLmNwcApAQCAtMjI3Nyw3ICsyMjc3LDcgQEAgQ29udmVydGVyOjpoYW5kbGVMT0FEKFZhbHVl
-ICpkc3QwWzRdKQogICAgICAgICAgaWYgKCFkc3QwW2NdKQogICAgICAgICAgICAgY29udGludWU7
-CiAKLSAgICAgICAgIFZhbHVlICpvZmYgPSBmZXRjaFNyYygxLCBjKTsKKyAgICAgICAgIFZhbHVl
-ICpvZmYgPSBmZXRjaFNyYygxLCAwKTsKICAgICAgICAgIFN5bWJvbCAqc3ltOwogICAgICAgICAg
-aWYgKHRnc2kuZ2V0U3JjKDEpLmdldEZpbGUoKSA9PSBUR1NJX0ZJTEVfSU1NRURJQVRFKSB7CiAg
-ICAgICAgICAgICBvZmYgPSBOVUxMOwotLSAKMi43LjMKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2ku
+Y3BwCmluZGV4IGQzYzJkNjEuLmUyZGI3MzEgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZl
+cnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcAorKysgYi9zcmMvZ2FsbGl1
+bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKQEAgLTIyNzcs
+MTMgKzIyNzcsMTQgQEAgQ29udmVydGVyOjpoYW5kbGVMT0FEKFZhbHVlICpkc3QwWzRdKQogICAg
+ICAgICAgaWYgKCFkc3QwW2NdKQogICAgICAgICAgICAgY29udGludWU7CiAKLSAgICAgICAgIFZh
+bHVlICpvZmYgPSBmZXRjaFNyYygxLCAwKTsKKyAgICAgICAgIFZhbHVlICpvZmY7CiAgICAgICAg
+ICBTeW1ib2wgKnN5bTsKICAgICAgICAgIGlmICh0Z3NpLmdldFNyYygxKS5nZXRGaWxlKCkgPT0g
+VEdTSV9GSUxFX0lNTUVESUFURSkgewogICAgICAgICAgICAgb2ZmID0gTlVMTDsKICAgICAgICAg
+ICAgIHN5bSA9IG1ha2VTeW0odGdzaS5nZXRTcmMoMCkuZ2V0RmlsZSgpLCByLCAtMSwgYywKICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgdGdzaS5nZXRTcmMoMSkuZ2V0VmFsdWVVMzIoMCwgaW5m
+bykgKyA0ICogYyk7CiAgICAgICAgICB9IGVsc2UgeworICAgICAgICAgICAgb2ZmID0gZmV0Y2hT
+cmMoMSwgMCk7CiAgICAgICAgICAgICBzeW0gPSBtYWtlU3ltKHRnc2kuZ2V0U3JjKDApLmdldEZp
+bGUoKSwgciwgLTEsIGMsIDQgKiBjKTsKICAgICAgICAgIH0KIAotLSAKMi43LjMKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcg
+bGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
