@@ -1,81 +1,122 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH mesa v2 3/3] nouveau: codegen: LOAD: Take src
-	swizzle into account
-Date: Thu, 21 Apr 2016 13:04:12 -0400
-Message-ID: <CAKb7UviLsGdRWyqATCHRGnOT-CWKh6hsz0TqL1RQGFyY1fbWPw@mail.gmail.com>
-References: <1461242362-1281-1-git-send-email-hdegoede@redhat.com>
- <1461242362-1281-3-git-send-email-hdegoede@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95031] [NVE4] 660 Ti Random GPU lockups
+Date: Thu, 21 Apr 2016 17:15:12 +0000
+Message-ID: <bug-95031-8800-Lo4ZC9Pli3@http.bugs.freedesktop.org/>
+References: <bug-95031-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1461242362-1281-3-git-send-email-hdegoede@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Hans de Goede <hdegoede@redhat.com>, =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>, =?UTF-8?Q?Nicolai_H=C3=A4hnle=2DMontoro?= <nhaehnle@gmail.com>, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1373671461=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-95031-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-WytyYWRlb24gZm9sa10KCk1hcmVrLCBOaWNvbGFpLCBCYXMgLSBwbGVhc2UgaGF2ZSBhIGxvb2sg
-YXQgdGhlIGRvYyBjaGFuZ2UgYW5kIGxldCB1cwprbm93IGlmIHlvdSB0aGluayB0aGlzIHdpbGwg
-Y2F1c2UgYSBwcm9ibGVtIGZvciByYWRlb24uCgpIYW5zIGlzIHNvbHZpbmcgdGhlIGlzc3VlIHRo
-YXQgaGUgd2FudHMgdG8gc3dpenpsZSB0aGUgZGF0YSBsb2FkZWQKZnJvbSB0aGUgaW1hZ2UvYnVm
-ZmVyL3doYXRldmVyIGJlZm9yZSBzdGlja2luZyBpdCBpbnRvIHRoZSBkc3QKcmVnaXN0ZXIuCgog
-IC1pbGlhCgpPbiBUaHUsIEFwciAyMSwgMjAxNiBhdCA4OjM5IEFNLCBIYW5zIGRlIEdvZWRlIDxo
-ZGVnb2VkZUByZWRoYXQuY29tPiB3cm90ZToKPiBUaGUgbGx2bSBUR1NJIGJhY2tlbmQgdXNlcyBw
-b2ludGVycyBpbiByZWdpc3RlcnMgYW5kIGRvZXMgdGhpbmdzCj4gbGlrZToKPgo+IExPQUQgVEVN
-UFswXS55LCBNRU1PUllbMF0sIFRFTVBbMF0KPgo+IEV4cGVjdGluZyB0aGUgZGF0YSBhdCBhZGRy
-ZXNzIFRFTVBbMF0ueCB0byBnZXQgbG9hZGVkIHRvCj4gVEVNUFswXS55LiBCdXQgdGhpcyB3aWxs
-IGNhdXNlIHRoZSBkYXRhIGF0IFRFTVBbMF0ueCArIDQgdG8gYmUKPiBsb2FkZWQgaW5zdGVhZC4K
-Pgo+IFRoaXMgY29tbWl0IGFkZHMgc3VwcG9ydCBmb3IgYSBzd2l6emxlIHN1ZmZpeCBmb3IgdGhl
-IDFzdCBzb3VyY2UKPiBvcGVyYW5kLCB3aGljaCBhbGxvd3MgdXNpbmc6Cj4KPiBMT0FEIFRFTVBb
-MF0ueSwgTUVNT1JZWzBdLnh4eHgsIFRFTVBbMF0KPgo+IEFuZCBhY3R1YWxseSBnZXR0aW5nIHRo
-ZSBkZXNpcmVkIGJlaGF2aW9yCj4KPiBTaWduZWQtb2ZmLWJ5OiBIYW5zIGRlIEdvZWRlIDxoZGVn
-b2VkZUByZWRoYXQuY29tPgo+IC0tLQo+IENoYW5nZXMgaW4gdjI6Cj4gLVR3ZWFrZWQgY29tbWl0
-IG1zZyBhIGJpdAo+IC1BZGQgZG9jdW1lbnRhdGlvbiBmb3IgdGhpcyB0byBzcmMvZ2FsbGl1bS9k
-b2NzL3NvdXJjZS90Z3NpLnJzdAo+IC0tLQo+ICBzcmMvZ2FsbGl1bS9kb2NzL3NvdXJjZS90Z3Np
-LnJzdCAgICAgICAgICAgICAgICAgICAgICAgICAgfCAzICsrKwo+ICBzcmMvZ2FsbGl1bS9kcml2
-ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAgfCA4ICsrKysrKy0tCj4g
-IDIgZmlsZXMgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+Cj4gZGlm
-ZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RvY3Mvc291cmNlL3Rnc2kucnN0IGIvc3JjL2dhbGxpdW0v
-ZG9jcy9zb3VyY2UvdGdzaS5yc3QKPiBpbmRleCA4NWMzMDJmLi40MzE1NzA3IDEwMDY0NAo+IC0t
-LSBhL3NyYy9nYWxsaXVtL2RvY3Mvc291cmNlL3Rnc2kucnN0Cj4gKysrIGIvc3JjL2dhbGxpdW0v
-ZG9jcy9zb3VyY2UvdGdzaS5yc3QKPiBAQCAtMjI4OCw2ICsyMjg4LDkgQEAgUmVzb3VyY2UgQWNj
-ZXNzIE9wY29kZXMKPiAgICAgICAgICAgICAgICAgdGV4dHVyZSBhcnJheXMgYW5kIDJEIHRleHR1
-cmVzLiAgYWRkcmVzcy53IGlzIGFsd2F5cwo+ICAgICAgICAgICAgICAgICBpZ25vcmVkLgo+Cj4g
-KyAgICAgICAgICAgICAgIEEgc3dpenpsZSBzdWZmaXggbWF5IGJlIGFkZGVkIHRvIHRoZSByZXNv
-dXJjZSBhcmd1bWVudAo+ICsgICAgICAgICAgICAgICB0aGlzIHdpbGwgY2F1c2UgdGhlIHJlc291
-cmNlIGRhdGEgdG8gYmUgc3dpenpsZWQgYWNjb3JkaW5nbHkuCj4gKwo+ICAuLiBvcGNvZGU6OiBT
-VE9SRSAtIFdyaXRlIGRhdGEgdG8gYSBzaGFkZXIgcmVzb3VyY2UKPgo+ICAgICAgICAgICAgICAg
-ICBTeW50YXg6IGBgU1RPUkUgcmVzb3VyY2UsIGFkZHJlc3MsIHNyY2BgCj4gZGlmZiAtLWdpdCBh
-L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNw
-cCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3Np
-LmNwcAo+IGluZGV4IGUyZGI3MzEuLjAxZGY0ZjMgMTAwNjQ0Cj4gLS0tIGEvc3JjL2dhbGxpdW0v
-ZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4gKysrIGIvc3Jj
-L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4g
-QEAgLTIyNzksMTMgKzIyNzksMTcgQEAgQ29udmVydGVyOjpoYW5kbGVMT0FEKFZhbHVlICpkc3Qw
-WzRdKQo+Cj4gICAgICAgICAgIFZhbHVlICpvZmY7Cj4gICAgICAgICAgIFN5bWJvbCAqc3ltOwo+
-ICsgICAgICAgICB1aW50MzJfdCBzcmMwX2NvbXBvbmVudF9vZmZzZXQgPSB0Z3NpLmdldFNyYygw
-KS5nZXRTd2l6emxlKGMpICogNDsKPiArCj4gICAgICAgICAgIGlmICh0Z3NpLmdldFNyYygxKS5n
-ZXRGaWxlKCkgPT0gVEdTSV9GSUxFX0lNTUVESUFURSkgewo+ICAgICAgICAgICAgICBvZmYgPSBO
-VUxMOwo+ICAgICAgICAgICAgICBzeW0gPSBtYWtlU3ltKHRnc2kuZ2V0U3JjKDApLmdldEZpbGUo
-KSwgciwgLTEsIGMsCj4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgdGdzaS5nZXRTcmMoMSku
-Z2V0VmFsdWVVMzIoMCwgaW5mbykgKyA0ICogYyk7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAg
-ICAgdGdzaS5nZXRTcmMoMSkuZ2V0VmFsdWVVMzIoMCwgaW5mbykgKwo+ICsgICAgICAgICAgICAg
-ICAgICAgICAgICAgIHNyYzBfY29tcG9uZW50X29mZnNldCk7Cj4gICAgICAgICAgIH0gZWxzZSB7
-Cj4gICAgICAgICAgICAgIG9mZiA9IGZldGNoU3JjKDEsIDApOwo+IC0gICAgICAgICAgICBzeW0g
-PSBtYWtlU3ltKHRnc2kuZ2V0U3JjKDApLmdldEZpbGUoKSwgciwgLTEsIGMsIDQgKiBjKTsKPiAr
-ICAgICAgICAgICAgc3ltID0gbWFrZVN5bSh0Z3NpLmdldFNyYygwKS5nZXRGaWxlKCksIHIsIC0x
-LCBjLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgIHNyYzBfY29tcG9uZW50X29mZnNldCk7
-Cj4gICAgICAgICAgIH0KPgo+ICAgICAgICAgICBJbnN0cnVjdGlvbiAqbGQgPSBta0xvYWQoVFlQ
-RV9VMzIsIGRzdDBbY10sIHN5bSwgb2ZmKTsKPiAtLQo+IDIuNy4zCj4KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1l
-c2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
+
+--===============1373671461==
+Content-Type: multipart/alternative; boundary="14612589111.B4F2.1497";
+ charset="UTF-8"
+
+
+--14612589111.B4F2.1497
+Date: Thu, 21 Apr 2016 17:15:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=95031
+
+--- Comment #8 from Lucas Ribeiro <lucasout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Karol Herbst from comment #7)
+> (In reply to Lucas Ribeiro from comment #4)
+> > 
+> > So maybe 07 pstate on Linux has a memory clock too high for its voltage.
+> > Also, as it is the lowest pstate, maybe memory clock could be reduced
+> > further to 162MHz (as in Windows).
+> 
+> And maybe not. There are other issues which aren't exactly voltage related.
+> If such a high votlage won't help, then it is usually something else, we
+> just have to figure out what it is.
+> 
+> Also regarding the lower clocks: yeah I know that sometimes nvidia clocks
+> further down, but there is no real value in doing so if there is no voltage
+> information for those low clocks and it doesn't make any difference
+> regarding power consumption as far as I know.
+
+Thanks for clearing that up.
+
+I'm out of ideas, should I capture a mmiotrace?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14612589111.B4F2.1497
+Date: Thu, 21 Apr 2016 17:15:11 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] 660 Ti Random GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95031#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] 660 Ti Random GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95031">bug 95031</a>
+              from <span class="vcard"><a class="email" href="mailto:lucasout&#64;gmail.com" title="Lucas Ribeiro &lt;lucasout&#64;gmail.com&gt;"> <span class="fn">Lucas Ribeiro</span></a>
+</span></b>
+        <pre>(In reply to Karol Herbst from <a href="show_bug.cgi?id=95031#c7">comment #7</a>)
+<span class="quote">&gt; (In reply to Lucas Ribeiro from <a href="show_bug.cgi?id=95031#c4">comment #4</a>)
+&gt; &gt; 
+&gt; &gt; So maybe 07 pstate on Linux has a memory clock too high for its voltage.
+&gt; &gt; Also, as it is the lowest pstate, maybe memory clock could be reduced
+&gt; &gt; further to 162MHz (as in Windows).
+&gt; 
+&gt; And maybe not. There are other issues which aren't exactly voltage related.
+&gt; If such a high votlage won't help, then it is usually something else, we
+&gt; just have to figure out what it is.
+&gt; 
+&gt; Also regarding the lower clocks: yeah I know that sometimes nvidia clocks
+&gt; further down, but there is no real value in doing so if there is no voltage
+&gt; information for those low clocks and it doesn't make any difference
+&gt; regarding power consumption as far as I know.</span >
+
+Thanks for clearing that up.
+
+I'm out of ideas, should I capture a mmiotrace?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14612589111.B4F2.1497--
+
+--===============1373671461==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1373671461==--
