@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95044] [NVA0] [Reclocking] GPU doesn't relax memory
-	clocks
-Date: Thu, 21 Apr 2016 11:00:29 +0000
-Message-ID: <bug-95044-8800-SAOCD6jdKZ@http.bugs.freedesktop.org/>
-References: <bug-95044-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH mesa v2 1/3] nouveau: codegen: LOAD: Always use
+	component 0 when getting the address
+Date: Thu, 21 Apr 2016 14:39:20 +0200
+Message-ID: <1461242362-1281-1-git-send-email-hdegoede@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0551728544=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,78 +16,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0551728544==
-Content-Type: multipart/alternative; boundary="14612364290.74A4.24562";
- charset="UTF-8"
-
-
---14612364290.74A4.24562
-Date: Thu, 21 Apr 2016 11:00:29 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=95044
-
---- Comment #2 from debianlinuxero1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 123111
-  --> https://bugs.freedesktop.org/attachment.cgi?id=123111&action=edit
-VBIOS
-
-The vbios.rom file
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14612364290.74A4.24562
-Date: Thu, 21 Apr 2016 11:00:29 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95044#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95044">bug 95044</a>
-              from <span class="vcard"><a class="email" href="mailto:debianlinuxero1&#64;gmail.com" title="debianlinuxero1&#64;gmail.com">debianlinuxero1&#64;gmail.com</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=123111" name="attach_123111" title="VBIOS">attachment 123111</a> <a href="attachment.cgi?id=123111&amp;action=edit" title="VBIOS">[details]</a></span>
-VBIOS
-
-The vbios.rom file</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14612364290.74A4.24562--
-
---===============0551728544==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0551728544==--
+TE9BRCBsb2FkcyB1cHRvIDQgY29tcG9uZW50cyBmcm9tIHRoZSBzcGVjaWZpZWQgcmVzb3VyY2Ug
+c3RhcnRpbmcgYXQKdGhlIHBhc3NlZCBpbiB4IHZhbHVlIG9mIHRoZSAybmQgc291cmNlIG9wZXJh
+bmQsIHRoZSB5LCB6IGFuZCB3CmNvbXBvbmVudHMgb2YgdGhlIGFkZHJlc3Mgc2hvdWxkIG5vdCBi
+ZSB1c2VkLgoKU2lnbmVkLW9mZi1ieTogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNv
+bT4KLS0tCkNoYW5nZXMgaW4gdjI6Ci1OZXcgcGF0Y2ggaW4gdjIgb2YgdGhpcyBwYXRjaC1zZXQK
+LS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdz
+aS5jcHAgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24o
+LSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUw
+X2lyX2Zyb21fdGdzaS5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9u
+djUwX2lyX2Zyb21fdGdzaS5jcHAKaW5kZXggNTU3NjA4ZS4uZDNjMmQ2MSAxMDA2NDQKLS0tIGEv
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3Bw
+CisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90
+Z3NpLmNwcApAQCAtMjI3Nyw3ICsyMjc3LDcgQEAgQ29udmVydGVyOjpoYW5kbGVMT0FEKFZhbHVl
+ICpkc3QwWzRdKQogICAgICAgICAgaWYgKCFkc3QwW2NdKQogICAgICAgICAgICAgY29udGludWU7
+CiAKLSAgICAgICAgIFZhbHVlICpvZmYgPSBmZXRjaFNyYygxLCBjKTsKKyAgICAgICAgIFZhbHVl
+ICpvZmYgPSBmZXRjaFNyYygxLCAwKTsKICAgICAgICAgIFN5bWJvbCAqc3ltOwogICAgICAgICAg
+aWYgKHRnc2kuZ2V0U3JjKDEpLmdldEZpbGUoKSA9PSBUR1NJX0ZJTEVfSU1NRURJQVRFKSB7CiAg
+ICAgICAgICAgICBvZmYgPSBOVUxMOwotLSAKMi43LjMKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
