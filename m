@@ -1,19 +1,13 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH mesa v2 3/3] nouveau: codegen: LOAD: Take src
- swizzle into account
-Date: Fri, 22 Apr 2016 10:44:54 +0200
-Message-ID: <5719E486.2060206@redhat.com>
-References: <1461242362-1281-1-git-send-email-hdegoede@redhat.com>
- <1461242362-1281-3-git-send-email-hdegoede@redhat.com>
- <CAKb7UviLsGdRWyqATCHRGnOT-CWKh6hsz0TqL1RQGFyY1fbWPw@mail.gmail.com>
- <CAAxE2A5V82mQQxC0Gif3SC=CcUv++DDaTNy4EmVgiqCkKP5inw@mail.gmail.com>
- <5719D17F.3050503@redhat.com>
- <CAAxE2A5xGaAagKfFJ4rALa2rHVJ_UV3eNjXLJKwzKEp7A36ATw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95044] [NVA0] [Reclocking] GPU doesn't relax memory
+	clocks
+Date: Fri, 22 Apr 2016 20:08:08 +0000
+Message-ID: <bug-95044-8800-4hLWliWbRn@http.bugs.freedesktop.org/>
+References: <bug-95044-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0312365835=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAxE2A5xGaAagKfFJ4rALa2rHVJ_UV3eNjXLJKwzKEp7A36ATw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-95044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,39 +17,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?Q?Nicolai_H=c3=a4hnle-Montoro?= <nhaehnle-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Bas Nieuwenhuizen <bas-dldO88ZXqoXqqjsSq9zF6IRWq/SkRNHw@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpPbiAyMi0wNC0xNiAxMDozNywgTWFyZWsgT2zFocOhayB3cm90ZToKPiBPbiBGcmksIEFw
-ciAyMiwgMjAxNiBhdCA5OjIzIEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29t
-PiB3cm90ZToKPj4gSGksCj4+Cj4+IE9uIDIyLTA0LTE2IDA5OjA4LCBNYXJlayBPbMWhw6FrIHdy
-b3RlOgo+Pj4KPj4+IE9uIFRodSwgQXByIDIxLCAyMDE2IGF0IDc6MDQgUE0sIElsaWEgTWlya2lu
-IDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+Pj4KPj4+PiBbK3JhZGVvbiBmb2xrXQo+
-Pj4+Cj4+Pj4gTWFyZWssIE5pY29sYWksIEJhcyAtIHBsZWFzZSBoYXZlIGEgbG9vayBhdCB0aGUg
-ZG9jIGNoYW5nZSBhbmQgbGV0IHVzCj4+Pj4ga25vdyBpZiB5b3UgdGhpbmsgdGhpcyB3aWxsIGNh
-dXNlIGEgcHJvYmxlbSBmb3IgcmFkZW9uLgo+Pj4+Cj4+Pj4gSGFucyBpcyBzb2x2aW5nIHRoZSBp
-c3N1ZSB0aGF0IGhlIHdhbnRzIHRvIHN3aXp6bGUgdGhlIGRhdGEgbG9hZGVkCj4+Pj4gZnJvbSB0
-aGUgaW1hZ2UvYnVmZmVyL3doYXRldmVyIGJlZm9yZSBzdGlja2luZyBpdCBpbnRvIHRoZSBkc3QK
-Pj4+PiByZWdpc3Rlci4KPj4+Cj4+Pgo+Pj4gSXMgdGhpcyBzb21ldGhpbmcgc3QvbWVzYSBuZWVk
-cyBvciBqdXN0IG5vdXZlYXU/IElmIGp1c3Qgbm91dmVhdSBuZWVkcwo+Pj4gaXQsIEkgZG9uJ3Qg
-c2VlIGEgcG9pbnQgaW4gdXBkYXRpbmcgdGhlIFRHU0kgc3BlYywgc2luY2Ugbm91dmVhdSBjYW4K
-Pj4+IGp1c3QgYWRkIHRoZSBzd2l6emxlIHdoZW4gdHJhbnNsYXRpbmcgZnJvbSBUR1NJLgo+Pgo+
-Pgo+PiBUaGlzIGlzIHNvbWV0aGluZyB3aGljaCB0aGUgbGx2bSB0Z3NpIGJhY2tlbmQgbmVlZHMs
-IHdoaWNoIHdlIHBsYW4gdG8KPj4gdXNlIHRvIGFkZCBvcGVuY2wgc3VwcG9ydCB0byBub3V2ZWF1
-Lgo+Pgo+PiAgRnJvbSB0aGUgY29tbWl0IG1zZzoKPj4KPj4gIlRoZSBsbHZtIFRHU0kgYmFja2Vu
-ZCB1c2VzIHBvaW50ZXJzIGluIHJlZ2lzdGVycyBhbmQgZG9lcyB0aGluZ3MgbGlrZToKPj4KPj4g
-TE9BRCBURU1QWzBdLnksIE1FTU9SWVswXSwgVEVNUFswXQo+Pgo+PiBFeHBlY3RpbmcgdGhlIGRh
-dGEgYXQgYWRkcmVzcyBURU1QWzBdLnggdG8gZ2V0IGxvYWRlZCB0bwo+PiBURU1QWzBdLnkuIEJ1
-dCB0aGlzIHdpbGwgY2F1c2UgdGhlIGRhdGEgYXQgVEVNUFswXS54ICsgNCB0byBiZQo+PiBsb2Fk
-ZWQgaW5zdGVhZC4KPj4KPj4gVGhpcyBjb21taXQgYWRkcyBzdXBwb3J0IGZvciBhIHN3aXp6bGUg
-c3VmZml4IGZvciB0aGUgMXN0IHNvdXJjZQo+PiBvcGVyYW5kLCB3aGljaCBhbGxvd3MgdXNpbmc6
-Cj4+Cj4+IExPQUQgVEVNUFswXS55LCBNRU1PUllbMF0ueHh4eCwgVEVNUFswXQo+Pgo+PiBBbmQg
-YWN0dWFsbHkgZ2V0dGluZyB0aGUgZGVzaXJlZCBiZWhhdmlvciIKPgo+IElmIHJhZGVvbnNpIG5l
-ZWRzIG5vIGNoYW5nZXMgYW5kIHN0L21lc2EgZG9lc24ndCBjaGFuZ2UgYmVoYXZpb3IsIGl0J3Mg
-T0suCgpTaW5jZSByYWRlb25zaSBkb2VzIG5vdCB1c2UgbGx2bSBnZW5lcmF0ZWQgdGdzaSwgaXQg
-c2hvdWxkIG5vdCBuZWVkIGFueQpjaGFuZ2VzLCBhbmQgdGhlc2UgcGF0Y2hlcyBkbyBub3QgdG91
-Y2ggc3QvbWVzYS4KClJlZ2FyZHMsCgpIYW5zCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbm91dmVhdQo=
+
+--===============0312365835==
+Content-Type: multipart/alternative; boundary="14613556880.Fe6B6d4A.5992";
+ charset="UTF-8"
+
+
+--14613556880.Fe6B6d4A.5992
+Date: Fri, 22 Apr 2016 20:08:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=95044
+
+--- Comment #5 from debianlinuxero1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+As karolherbst pointed on the #nouveau irc channel, I patched my distro kernel
+sources with this patch : 
+
+https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/arch/x86/mm/kmmio.c?id=cfa52c0cfa4d727aa3e457bf29aeff296c528a08
+
+Build with the same options as current kernel.
+
+It did the trick.
+
+I finally was able to do the mmiotrace test.
+
+The test consisted in running the bare X server with only the nvidia-settings
+application.
+
+Forced Maximum Performance level.
+
+At reach then forced adaptive.
+
+At reach then exited both application and X.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14613556880.Fe6B6d4A.5992
+Date: Fri, 22 Apr 2016 20:08:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95044#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95044">bug 95044</a>
+              from <span class="vcard"><a class="email" href="mailto:debianlinuxero1&#64;gmail.com" title="debianlinuxero1&#64;gmail.com">debianlinuxero1&#64;gmail.com</a>
+</span></b>
+        <pre>As karolherbst pointed on the #nouveau irc channel, I patched my distro kernel
+sources with this patch : 
+
+<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/arch/x86/mm/kmmio.c?id=cfa52c0cfa4d727aa3e457bf29aeff296c528a08">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/arch/x86/mm/kmmio.c?id=cfa52c0cfa4d727aa3e457bf29aeff296c528a08</a>
+
+Build with the same options as current kernel.
+
+It did the trick.
+
+I finally was able to do the mmiotrace test.
+
+The test consisted in running the bare X server with only the nvidia-settings
+application.
+
+Forced Maximum Performance level.
+
+At reach then forced adaptive.
+
+At reach then exited both application and X.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14613556880.Fe6B6d4A.5992--
+
+--===============0312365835==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0312365835==--
