@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95044] [NVA0] [Reclocking] GPU doesn't relax memory
-	clocks
-Date: Thu, 21 Apr 2016 23:12:49 +0000
-Message-ID: <bug-95044-8800-cyO9TC1FFA@http.bugs.freedesktop.org/>
-References: <bug-95044-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
+Date: Fri, 22 Apr 2016 06:24:15 +0000
+Message-ID: <bug-94990-8800-3RwmEW5olN@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1510984074=="
+Content-Type: multipart/mixed; boundary="===============0347505306=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,46 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1510984074==
-Content-Type: multipart/alternative; boundary="14612803681.24D76.10867";
+--===============0347505306==
+Content-Type: multipart/alternative; boundary="14613062541.2AA0acd.683";
  charset="UTF-8"
 
 
---14612803681.24D76.10867
-Date: Thu, 21 Apr 2016 23:12:48 +0000
+--14613062541.2AA0acd.683
+Date: Fri, 22 Apr 2016 06:24:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=95044
+https://bugs.freedesktop.org/show_bug.cgi?id=94990
 
---- Comment #4 from debianlinuxero1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Hello.
+--- Comment #16 from Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi,
 
-This is what I nvapeek'ed :
+Your latest comments seem to indicate that the issue is not related to firmware
+- it just happens to manifest itself at this stage as well when firmware is
+loaded.
 
-001002c0: 00000652
+2 things to try:
 
-001002c4: 001002c8
+1) Can you try loading Nouveau with the "config=NvForcePost=1" option? Adding
+"nouveau.config=NvForcePost=1" to your kernel command line should do it.
 
-001002e0: 0020001b
+2) Can I get a full log of you booting with the /lib/firmware directory
+removed, or can you confirm that when you can see Nouveau complaining about the
+firmware when you boot in this configuration?
 
-
-
-I tried to do the mmiotrace procediment as explained here :
-https://wiki.ubuntu.com/X/MMIOTracing
-
-The command choosen was "xinit nvidia-settings", with the intention to force
-clocks with the "Prefer Maximum Performance" option, then relaxing with
-"Adaptive Mode".
-
-But all what I got was 40 minutes of black screen.
-The system didn't shutdown neither with magic sysrq.
+Thanks!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14612803681.24D76.10867
-Date: Thu, 21 Apr 2016 23:12:48 +0000
+--14613062541.2AA0acd.683
+Date: Fri, 22 Apr 2016 06:24:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -73,35 +67,30 @@ Content-Type: text/html
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95044#c4">Comment # 4</a>
+   title="NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94990#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95044">bug 95044</a>
-              from <span class="vcard"><a class="email" href="mailto:debianlinuxero1&#64;gmail.com" title="debianlinuxero1&#64;gmail.com">debianlinuxero1&#64;gmail.com</a>
+   title="NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94990">bug 94990</a>
+              from <span class="vcard"><a class="email" href="mailto:gnurou&#64;gmail.com" title="Alexandre Courbot &lt;gnurou&#64;gmail.com&gt;"> <span class="fn">Alexandre Courbot</span></a>
 </span></b>
-        <pre>Hello.
+        <pre>Hi,
 
-This is what I nvapeek'ed :
+Your latest comments seem to indicate that the issue is not related to firmware
+- it just happens to manifest itself at this stage as well when firmware is
+loaded.
 
-001002c0: 00000652
+2 things to try:
 
-001002c4: 001002c8
+1) Can you try loading Nouveau with the &quot;config=NvForcePost=1&quot; option? Adding
+&quot;nouveau.config=NvForcePost=1&quot; to your kernel command line should do it.
 
-001002e0: 0020001b
+2) Can I get a full log of you booting with the /lib/firmware directory
+removed, or can you confirm that when you can see Nouveau complaining about the
+firmware when you boot in this configuration?
 
-
-
-I tried to do the mmiotrace procediment as explained here :
-<a href="https://wiki.ubuntu.com/X/MMIOTracing">https://wiki.ubuntu.com/X/MMIOTracing</a>
-
-The command choosen was &quot;xinit nvidia-settings&quot;, with the intention to force
-clocks with the &quot;Prefer Maximum Performance&quot; option, then relaxing with
-&quot;Adaptive Mode&quot;.
-
-But all what I got was 40 minutes of black screen.
-The system didn't shutdown neither with magic sysrq.</pre>
+Thanks!</pre>
         </div>
       </p>
       <hr>
@@ -112,9 +101,9 @@ The system didn't shutdown neither with magic sysrq.</pre>
       </ul>
     </body>
 </html>
---14612803681.24D76.10867--
+--14613062541.2AA0acd.683--
 
---===============1510984074==
+--===============0347505306==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1510984074==--
+--===============0347505306==--
