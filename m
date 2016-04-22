@@ -1,14 +1,10 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 1/2] volt: save the voltage range we are able to
-	set
-Date: Wed, 20 Apr 2016 19:14:57 +0200
-Message-ID: <1461172498-5547-2-git-send-email-karolherbst@gmail.com>
-References: <1461172498-5547-1-git-send-email-karolherbst@gmail.com>
+From: =?UTF-8?Q?Marius_Gripsg=C3=A5rd?= <mariogrip-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+Subject: Nouveau on GeForce GTX 980M
+Date: Fri, 22 Apr 2016 14:35:20 +0200
+Message-ID: <CANB0Qd_ZaqiktM2_9oaGVwNpx9EFM5PoV5uTKQvJCgCdhhkCkA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0984739324=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1461172498-5547-1-git-send-email-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,57 +15,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgoKV2Ugc2hvdWxkbid0
-IHNldCB2b2x0YWdlcyBiZWxvdyB0aGUgbWluIG9yIGFib3ZlIHRoZSBtYXggdm9sdGFnZSB0aGUg
-Z3B1IGlzCmFibGUgdG8gc2V0LCBzbyBzYXZlIHRoZSByYW5nZS4KClNpZ25lZC1vZmYtYnk6IEth
-cm9sIEhlcmJzdCA8bm91dmVhdUBrYXJvbGhlcmJzdC5kZT4KUmV2aWV3ZWQtYnk6IE1hcnRpbiBQ
-ZXJlcyA8bWFydGluLnBlcmVzQGZyZWUuZnI+ClRlc3RlZC1ieTogUGllcnJlIE1vcmVhdSA8cGll
-cnJlLm1vcnJvd0BmcmVlLmZyPgpTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJic3QgPGthcm9saGVy
-YnN0QGdtYWlsLmNvbT4KLS0tCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3ZvbHQu
-aCB8ICAzICsrKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9iYXNlLmMgICAgfCAxNCAr
-KysrKysrKysrKysrLQogMiBmaWxlcyBjaGFuZ2VkLCAxNiBpbnNlcnRpb25zKCspLCAxIGRlbGV0
-aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi92b2x0
-LmggYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3ZvbHQuaAppbmRleCBmZWZmNTVj
-Li5iNzY1ZjRmIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3Zv
-bHQuaAorKysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3ZvbHQuaApAQCAtMTIs
-NiArMTIsOSBAQCBzdHJ1Y3QgbnZrbV92b2x0IHsKIAkJdTMyIHV2OwogCQl1OCB2aWQ7CiAJfSB2
-aWRbMjU2XTsKKworCXUzMiBtYXhfdXY7CisJdTMyIG1pbl91djsKIH07CiAKIGludCBudmttX3Zv
-bHRfZ2V0KHN0cnVjdCBudmttX3ZvbHQgKik7CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmtt
-L3N1YmRldi92b2x0L2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvYmFzZS5j
-CmluZGV4IDZiMmQ3NTMuLjFjM2QyM2IgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L3ZvbHQvYmFzZS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvYmFzZS5j
-CkBAIC0xMjAsNiArMTIwLDggQEAgbnZrbV92b2x0X3BhcnNlX2Jpb3Moc3RydWN0IG52a21fYmlv
-cyAqYmlvcywgc3RydWN0IG52a21fdm9sdCAqdm9sdCkKIAogCWRhdGEgPSBudmJpb3Nfdm9sdF9w
-YXJzZShiaW9zLCAmdmVyLCAmaGRyLCAmY250LCAmbGVuLCAmaW5mbyk7CiAJaWYgKGRhdGEgJiYg
-aW5mby52aWRtYXNrICYmIGluZm8uYmFzZSAmJiBpbmZvLnN0ZXApIHsKKwkJdm9sdC0+bWluX3V2
-ID0gaW5mby5taW47CisJCXZvbHQtPm1heF91diA9IGluZm8ubWF4OwogCQlmb3IgKGkgPSAwOyBp
-IDwgaW5mby52aWRtYXNrICsgMTsgaSsrKSB7CiAJCQlpZiAoaW5mby5iYXNlID49IGluZm8ubWlu
-ICYmCiAJCQkJaW5mby5iYXNlIDw9IGluZm8ubWF4KSB7CkBAIC0xMzEsNiArMTMzLDggQEAgbnZr
-bV92b2x0X3BhcnNlX2Jpb3Moc3RydWN0IG52a21fYmlvcyAqYmlvcywgc3RydWN0IG52a21fdm9s
-dCAqdm9sdCkKIAkJfQogCQl2b2x0LT52aWRfbWFzayA9IGluZm8udmlkbWFzazsKIAl9IGVsc2Ug
-aWYgKGRhdGEgJiYgaW5mby52aWRtYXNrKSB7CisJCXZvbHQtPm1pbl91diA9IDB4ZmZmZmZmZmY7
-CisJCXZvbHQtPm1heF91diA9IDA7CiAJCWZvciAoaSA9IDA7IGkgPCBjbnQ7IGkrKykgewogCQkJ
-ZGF0YSA9IG52Ymlvc192b2x0X2VudHJ5X3BhcnNlKGJpb3MsIGksICZ2ZXIsICZoZHIsCiAJCQkJ
-CQkgICAgICAgJml2aWQpOwpAQCAtMTM4LDkgKzE0MiwxNCBAQCBudmttX3ZvbHRfcGFyc2VfYmlv
-cyhzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zLCBzdHJ1Y3QgbnZrbV92b2x0ICp2b2x0KQogCQkJCXZv
-bHQtPnZpZFt2b2x0LT52aWRfbnJdLnV2ID0gaXZpZC52b2x0YWdlOwogCQkJCXZvbHQtPnZpZFt2
-b2x0LT52aWRfbnJdLnZpZCA9IGl2aWQudmlkOwogCQkJCXZvbHQtPnZpZF9ucisrOworCQkJCXZv
-bHQtPm1pbl91diA9IG1pbih2b2x0LT5taW5fdXYsIGl2aWQudm9sdGFnZSk7CisJCQkJdm9sdC0+
-bWF4X3V2ID0gbWF4KHZvbHQtPm1heF91diwgaXZpZC52b2x0YWdlKTsKIAkJCX0KIAkJfQogCQl2
-b2x0LT52aWRfbWFzayA9IGluZm8udmlkbWFzazsKKwl9IGVsc2UgaWYgKGRhdGEgJiYgaW5mby50
-eXBlID09IE5WQklPU19WT0xUX1BXTSkgeworCQl2b2x0LT5taW5fdXYgPSBpbmZvLmJhc2U7CisJ
-CXZvbHQtPm1heF91diA9IGluZm8uYmFzZSArIGluZm8ucHdtX3JhbmdlOwogCX0KIH0KIApAQCAt
-MTgxLDggKzE5MCwxMSBAQCBudmttX3ZvbHRfY3Rvcihjb25zdCBzdHJ1Y3QgbnZrbV92b2x0X2Z1
-bmMgKmZ1bmMsIHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlLAogCXZvbHQtPmZ1bmMgPSBmdW5j
-OwogCiAJLyogQXNzdW1pbmcgdGhlIG5vbi1iaW9zIGRldmljZSBzaG91bGQgYnVpbGQgdGhlIHZv
-bHRhZ2UgdGFibGUgbGF0ZXIgKi8KLQlpZiAoYmlvcykKKwlpZiAoYmlvcykgewogCQludmttX3Zv
-bHRfcGFyc2VfYmlvcyhiaW9zLCB2b2x0KTsKKwkJbnZrbV9kZWJ1Zygmdm9sdC0+c3ViZGV2LCAi
-bWluOiAlaXV2IG1heDogJWl1dlxuIiwKKwkJCSAgIHZvbHQtPm1pbl91diwgdm9sdC0+bWF4X3V2
-KTsKKwl9CiAKIAlpZiAodm9sdC0+dmlkX25yKSB7CiAJCWZvciAoaSA9IDA7IGkgPCB2b2x0LT52
-aWRfbnI7IGkrKykgewotLSAKMi44LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQo=
+--===============0984739324==
+Content-Type: multipart/alternative; boundary=047d7bacb18665e3f60531120f10
+
+--047d7bacb18665e3f60531120f10
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+
+I was wondering is it possible to can get my GeForce GTX 980M work with
+Nouveau. I see that the non "M" version if GTX 980 is supported (
+https://nouveau.freedesktop.org/wiki/CodeNames/) but not the "M" version,
+how different are they?
+
+Now it uses Gallium 0.4 on llvmpipe, from my understanding that's fallback
+using the cpu right?
+
+
+*lshw -C video:*
+
+  *-display UNCLAIMED
+       description: VGA compatible controller
+       product: GM204M [GeForce GTX 980M]
+       vendor: NVIDIA Corporation
+       physical id: 0
+       bus info: pci@0000:01:00.0
+       version: a1
+       width: 64 bits
+       clock: 33MHz
+       capabilities: pm msi pciexpress vga_controller cap_list
+       configuration: latency=0
+       resources: memory:f6000000-f6ffffff memory:e0000000-efffffff
+memory:f0000000-f1ffffff ioport:e000(size=128) memory:f7000000-f707ffff
+
+
+Thanks,
+Marius Gripsgard
+
+--047d7bacb18665e3f60531120f10
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I was wondering is it possible to c=
+an get my=C2=A0GeForce GTX 980M work with Nouveau. I see that the non &quot=
+;M&quot; version if GTX 980 is supported (<a href=3D"https://nouveau.freede=
+sktop.org/wiki/CodeNames/">https://nouveau.freedesktop.org/wiki/CodeNames/<=
+/a>) but not the &quot;M&quot; version, how different are they?</div><div><=
+br></div><div>Now it uses Gallium 0.4 on llvmpipe, from my understanding th=
+at&#39;s fallback using the cpu right?<div><br></div><div><br></div><div><b=
+>lshw -C video:</b><br></div><div><b><br></b></div><div><div>=C2=A0 *-displ=
+ay UNCLAIMED =C2=A0 =C2=A0=C2=A0</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0descr=
+iption: VGA compatible controller</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0prod=
+uct: GM204M [GeForce GTX 980M]</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0vendor:=
+ NVIDIA Corporation</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0physical id: 0</di=
+v><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0bus info: pci@0000:01:00.0</div><div>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0version: a1</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0wi=
+dth: 64 bits</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0clock: 33MHz</div><div>=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0capabilities: pm msi pciexpress vga_controller c=
+ap_list</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0configuration: latency=3D0</di=
+v><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0resources: memory:f6000000-f6ffffff memor=
+y:e0000000-efffffff memory:f0000000-f1ffffff ioport:e000(size=3D128) memory=
+:f7000000-f707ffff</div></div><div><br></div></div><div><br></div><div>Than=
+ks,</div><div>Marius Gripsgard</div></div>
+
+--047d7bacb18665e3f60531120f10--
+
+--===============0984739324==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0984739324==--
