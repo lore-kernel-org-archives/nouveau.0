@@ -1,16 +1,18 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: GM108GLM?
-Date: Fri, 22 Apr 2016 09:33:17 +0200
-Message-ID: <20160422073317.GA5655@Sovereign.cs.lth.se>
-References: <56FA7B55.6080208@translucent.dk>
- <20160331205745.GA1723@pmoreau.org>
- <CAKb7Uvgf_zzk3zaPMXbtj=6DqrT2bjrY_GpgarvV-Dv0jb=8pQ@mail.gmail.com>
- <20160331211231.GB1723@pmoreau.org>
- <5714B399.7020303@translucent.dk>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH mesa v2 3/3] nouveau: codegen: LOAD: Take src
+	swizzle into account
+Date: Fri, 22 Apr 2016 10:37:39 +0200
+Message-ID: <CAAxE2A5xGaAagKfFJ4rALa2rHVJ_UV3eNjXLJKwzKEp7A36ATw@mail.gmail.com>
+References: <1461242362-1281-1-git-send-email-hdegoede@redhat.com>
+ <1461242362-1281-3-git-send-email-hdegoede@redhat.com>
+ <CAKb7UviLsGdRWyqATCHRGnOT-CWKh6hsz0TqL1RQGFyY1fbWPw@mail.gmail.com>
+ <CAAxE2A5V82mQQxC0Gif3SC=CcUv++DDaTNy4EmVgiqCkKP5inw@mail.gmail.com>
+ <5719D17F.3050503@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0729428400=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5714B399.7020303-VZMzO6RJk8wFoxwNN1DV/Q@public.gmane.org>
+In-Reply-To: <5719D17F.3050503-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,141 +22,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Sune =?utf-8?B?TcO4bGdhYXJk?= <smo-VZMzO6RJk8wFoxwNN1DV/Q@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?Q?Nicolai_H=C3=A4hnle=2DMontoro?= <nhaehnle-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Bas Nieuwenhuizen <bas-dldO88ZXqoXqqjsSq9zF6IRWq/SkRNHw@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0729428400==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8t9RHnE3ZwKMSgU+"
-Content-Disposition: inline
-
-
---8t9RHnE3ZwKMSgU+
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-A patch was merged yesterday to recognise GM108 (see
-https://github.com/skeggsb/nouveau/commit/3da1f2a19e5e8dc8d68a4400d9cca01c6=
-4ecd59e).
-I guess it will make it into 4.7.
-
-Pierre
-
-On 12:14 PM - Apr 18 2016, Sune M=C3=B8lgaard wrote:
-> Is there anything I can do in this regard?
->=20
-> /smo
->=20
-> On 2016-03-31 23:12, Pierre Moreau wrote:
-> > Oh, hum, GM108 is NV118 and not NV108 which is Gk208=E2=80=A6 My bad!
-> >=20
-> > SMF from the bug report seemed to have some working setup, and since he=
- didn't
-> > pinged back, I guess it's working nicely. But some more checking might =
-still be
-> > needed?
-> >=20
-> > On 04:59 PM - Mar 31 2016, Ilia Mirkin wrote:
-> >> Actually GM108 is not one of the recognized chips. Someone needs to go
-> >> through and check that its goldens didn't change. Nobody's done that.
-> >>
-> >> See https://bugs.freedesktop.org/show_bug.cgi?id=3D89558
-> >>
-> >> On Thu, Mar 31, 2016 at 4:57 PM, Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>=
- wrote:
-> >>> Hello,
-> >>>
-> >>> Acceleration support for GM107 was merged in kernel 4.1, and modesett=
-ing
-> >>> support was added to 3.15. Which kernel version did you try? The GM10=
-8 chipset
-> >>> seems to be recognised since at least 2015/08/20.
-> >>>
-> >>> Regards,
-> >>>
-> >>> Pierre Moreau
-> >>>
-> >>>
-> >>> On 02:55 PM - Mar 29 2016, Sune M=C3=B8lgaard wrote:
-> >>>> Hiya,
-> >>>>
-> >>>> Is there any change for Quadro K620M support at some point in time, =
-and
-> >>>> what can I do to help, apart from the info below?
-> >>>>
-> >>>> Best regards,
-> >>>>
-> >>>> Sune M=C3=B8lgaard
-> >>>>
-> >>>> dmesg |grep -i nouveau
-> >>>> [    1.164919] nouveau 0000:08:00.0: unknown chipset (1183a0a2)
-> >>>> [    1.164943] nouveau: probe of 0000:08:00.0 failed with error -12
-> >>>>
-> >>>> lspci|grep -i nvidi
-> >>>> 08:00.0 3D controller: NVIDIA Corporation GM108GLM [Quadro K620M] (r=
-ev a2)
-> >>>> _______________________________________________
-> >>>> Nouveau mailing list
-> >>>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> >>>> https://lists.freedesktop.org/mailman/listinfo/nouveau
-> >>>
-> >>> _______________________________________________
-> >>> Nouveau mailing list
-> >>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> >>> https://lists.freedesktop.org/mailman/listinfo/nouveau
-> >>>
-> >> _______________________________________________
-> >> Nouveau mailing list
-> >> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> >> https://lists.freedesktop.org/mailman/listinfo/nouveau
->=20
->=20
-
-
-
-
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
-
-
---8t9RHnE3ZwKMSgU+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAABCgAGBQJXGdOrAAoJEI7uMhYTPh3w4JoQALx1BUVZoixmuJVV6pPvmV42
-ADrDDf98E1h9GU4pPj+n/zgtDcHYb21BP2z1yoLhgE7lyr/1JOiJ+6O3FcoBotkp
-tvhmO2oP5QM+8EKKuG9gWUACPGUL/JdIAkGOh/nvJh5kl1avmjJJBz2B0n4a6rcD
-ysyVBSqhJggi3szChJC2lfS0goYAW/JkpnH/mRSDiqHTbYmifHrAfekZ0aN6/Chm
-IaU9pYe+JpcF9n5/BM42vAgMNj6N7hK0NghtPXeqsM1jLzqw06hfw/bnfhzL4IuY
-h/lZuket7UP7fijq1BIOBvMapGDiApyPyBEmmcoCd9AVQ0JRs8AKsY630KlU3mQe
-tXpZ2ZSPJdgvovZ6JYEcklpCbFowhRps9jveq+M6Npozzj7qDC86LFlH3QwmDnDs
-uW2svCnZ+rKnFm/OaGtVIzqmuvn+a69T9FHtRKKW8OC9SQ/ppCbFzb9dPJPtRnQf
-K+PsbqtBsG1ZV7fJ1g/evZMHlkTOQWgRhM3Fb+ese9l/KZdaSha/UI4iySLEykfS
-m3HYLFHbXpD5J9XDRjUI1hdPvm35GzTK9uI0DeU3NxIGWVw5L+X/bnNdznxh+X0G
-6YNTewpahcNC983elpSTAEoyT3fSPcrIObNiuI9R/H7dCIF3UGeknR6uVyzdZ2yP
-sij9axuerAwdR7BUCBZu
-=UIPU
------END PGP SIGNATURE-----
-
---8t9RHnE3ZwKMSgU+--
-
---===============0729428400==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0729428400==--
+T24gRnJpLCBBcHIgMjIsIDIwMTYgYXQgOToyMyBBTSwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVA
+cmVkaGF0LmNvbT4gd3JvdGU6Cj4gSGksCj4KPiBPbiAyMi0wNC0xNiAwOTowOCwgTWFyZWsgT2zF
+ocOhayB3cm90ZToKPj4KPj4gT24gVGh1LCBBcHIgMjEsIDIwMTYgYXQgNzowNCBQTSwgSWxpYSBN
+aXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPj4+Cj4+PiBbK3JhZGVvbiBmb2xr
+XQo+Pj4KPj4+IE1hcmVrLCBOaWNvbGFpLCBCYXMgLSBwbGVhc2UgaGF2ZSBhIGxvb2sgYXQgdGhl
+IGRvYyBjaGFuZ2UgYW5kIGxldCB1cwo+Pj4ga25vdyBpZiB5b3UgdGhpbmsgdGhpcyB3aWxsIGNh
+dXNlIGEgcHJvYmxlbSBmb3IgcmFkZW9uLgo+Pj4KPj4+IEhhbnMgaXMgc29sdmluZyB0aGUgaXNz
+dWUgdGhhdCBoZSB3YW50cyB0byBzd2l6emxlIHRoZSBkYXRhIGxvYWRlZAo+Pj4gZnJvbSB0aGUg
+aW1hZ2UvYnVmZmVyL3doYXRldmVyIGJlZm9yZSBzdGlja2luZyBpdCBpbnRvIHRoZSBkc3QKPj4+
+IHJlZ2lzdGVyLgo+Pgo+Pgo+PiBJcyB0aGlzIHNvbWV0aGluZyBzdC9tZXNhIG5lZWRzIG9yIGp1
+c3Qgbm91dmVhdT8gSWYganVzdCBub3V2ZWF1IG5lZWRzCj4+IGl0LCBJIGRvbid0IHNlZSBhIHBv
+aW50IGluIHVwZGF0aW5nIHRoZSBUR1NJIHNwZWMsIHNpbmNlIG5vdXZlYXUgY2FuCj4+IGp1c3Qg
+YWRkIHRoZSBzd2l6emxlIHdoZW4gdHJhbnNsYXRpbmcgZnJvbSBUR1NJLgo+Cj4KPiBUaGlzIGlz
+IHNvbWV0aGluZyB3aGljaCB0aGUgbGx2bSB0Z3NpIGJhY2tlbmQgbmVlZHMsIHdoaWNoIHdlIHBs
+YW4gdG8KPiB1c2UgdG8gYWRkIG9wZW5jbCBzdXBwb3J0IHRvIG5vdXZlYXUuCj4KPiBGcm9tIHRo
+ZSBjb21taXQgbXNnOgo+Cj4gIlRoZSBsbHZtIFRHU0kgYmFja2VuZCB1c2VzIHBvaW50ZXJzIGlu
+IHJlZ2lzdGVycyBhbmQgZG9lcyB0aGluZ3MgbGlrZToKPgo+IExPQUQgVEVNUFswXS55LCBNRU1P
+UllbMF0sIFRFTVBbMF0KPgo+IEV4cGVjdGluZyB0aGUgZGF0YSBhdCBhZGRyZXNzIFRFTVBbMF0u
+eCB0byBnZXQgbG9hZGVkIHRvCj4gVEVNUFswXS55LiBCdXQgdGhpcyB3aWxsIGNhdXNlIHRoZSBk
+YXRhIGF0IFRFTVBbMF0ueCArIDQgdG8gYmUKPiBsb2FkZWQgaW5zdGVhZC4KPgo+IFRoaXMgY29t
+bWl0IGFkZHMgc3VwcG9ydCBmb3IgYSBzd2l6emxlIHN1ZmZpeCBmb3IgdGhlIDFzdCBzb3VyY2UK
+PiBvcGVyYW5kLCB3aGljaCBhbGxvd3MgdXNpbmc6Cj4KPiBMT0FEIFRFTVBbMF0ueSwgTUVNT1JZ
+WzBdLnh4eHgsIFRFTVBbMF0KPgo+IEFuZCBhY3R1YWxseSBnZXR0aW5nIHRoZSBkZXNpcmVkIGJl
+aGF2aW9yIgoKSWYgcmFkZW9uc2kgbmVlZHMgbm8gY2hhbmdlcyBhbmQgc3QvbWVzYSBkb2Vzbid0
+IGNoYW5nZSBiZWhhdmlvciwgaXQncyBPSy4KCk1hcmVrCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
