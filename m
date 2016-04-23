@@ -1,15 +1,13 @@
-From: Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
-Subject: Re: [[Bug 94990] Latest 4.6rc4 kernel,
-	no booting on gtx970
-Date: Sat, 23 Apr 2016 23:34:26 +0100
-Message-ID: <571BF872.5030309@blueyonder.co.uk>
-References: <mailman.59.1461412807.30813.nouveau@lists.freedesktop.org>
-Reply-To: sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95095] NV46 (G72) Full screen artifacts in Freespace
+ 2 SW OT mod
+Date: Sat, 23 Apr 2016 22:47:51 +0000
+Message-ID: <bug-95095-8800-xatfjgWrth@http.bugs.freedesktop.org/>
+References: <bug-95095-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0600293259=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <mailman.59.1461412807.30813.nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-95095-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,20 +20,84 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMjMvMDQvMTYgMTM6MDAsIG5vdXZlYXUtcmVxdWVzdEBsaXN0cy5mcmVlZGVza3RvcC5vcmcg
-d3JvdGU6Cj4gW0J1ZyA5NDk5MF0gTGF0ZXN0IDQuNnJjNCBrZXJuZWwsIG5vIGJvb3Rpbmcgb24g
-Z3R4OTcwCkkgaGFkIHNvbWV0aGluZyBzaW1pbGFyIHdpdGggYSBWR0EgY29tcGF0aWJsZSBjb250
-cm9sbGVyOiBOVklESUEgCkNvcnBvcmF0aW9uIEc4NCBbR2VGb3JjZSA4NjAwIEdUXSAocmV2IGEx
-KQoKWWFTVDIvbWtpbml0cmQubG9nOlc6IFBvc3NpYmxlIG1pc3NpbmcgZmlybXdhcmUgCiJudmlk
-aWEvZ20yMDQvYWNyL2JsLmJpbiIgZm9yIGtlcm5lbCBtb2R1bGUgIm5vdXZlYXUua28iClNhbWUg
-bWVzc2FnZSBmb3IgYWxsIC5iaW4gZmlsZXMgb24gb3BlblNVU0UgVHVtYmxld2VlZC4KClRoZSBm
-aWxlcyB3ZXJlIGFsbCB0aGVyZSB1bmRlciAvbGliL2Zpcm13YXJlL252aWRpYS9nbTIwNC4KRm9y
-Y2luZyBhIHJlaW5zdGFsbCBvZiB0aGUga2VybmVsLWZpcm13YXJlIHBhY2thZ2Ugc29sdmVkIGl0
-LgpSZWdhcmRzClNpZC4KCi0tIApTaWQgQm95Y2UgLi4uIEhhbXJhZGlvIExpY2Vuc2UgRzNWQlYs
-IExpY2Vuc2VkIFByaXZhdGUgUGlsb3QKRW1lcml0dXMgSUJNL0FtZGFobCBNYWluZnJhbWVzIGFu
-ZCBTdW4vRnVqaXRzdSBTZXJ2ZXJzIFRlY2ggU3VwcG9ydApTZW5pb3IgU3RhZmYgU3BlY2lhbGlz
-dCwgQ3JpY2tldCBDb2FjaApNaWNyb3NvZnQgV2luZG93cyBGcmVlIFpvbmUgLSBMaW51eCB1c2Vk
-IGZvciBhbGwgQ29tcHV0aW5nIFRhc2tzCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+
+--===============0600293259==
+Content-Type: multipart/alternative; boundary="14614516710.70E995553.1275";
+ charset="UTF-8"
+
+
+--14614516710.70E995553.1275
+Date: Sat, 23 Apr 2016 22:47:51 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=95095
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+By the way, it appears that the game makes use of GLSL 1.20 features but
+doesn't set a #version 120 on its shaders. You can "fix" this by running it
+with
+
+force_glsl_version=120
+
+in the environment. I didn't see any visual changes in the trace replay though.
+(But I didn't necessarily know where to look.)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.
+--14614516710.70E995553.1275
+Date: Sat, 23 Apr 2016 22:47:51 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV46 (G72) Full screen artifacts in Freespace 2 SW OT mod"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95095#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV46 (G72) Full screen artifacts in Freespace 2 SW OT mod"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95095">bug 95095</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>By the way, it appears that the game makes use of GLSL 1.20 features but
+doesn't set a #version 120 on its shaders. You can &quot;fix&quot; this by running it
+with
+
+force_glsl_version=120
+
+in the environment. I didn't see any visual changes in the trace replay though.
+(But I didn't necessarily know where to look.)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14614516710.70E995553.1275--
+
+--===============0600293259==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0600293259==--
