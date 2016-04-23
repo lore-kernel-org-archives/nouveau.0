@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Sat, 23 Apr 2016 10:02:10 +0000
-Message-ID: <bug-94990-8800-GnppTsvXlT@http.bugs.freedesktop.org/>
+Date: Sat, 23 Apr 2016 10:02:34 +0000
+Message-ID: <bug-94990-8800-iZfvn1cI2y@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0223782992=="
+Content-Type: multipart/mixed; boundary="===============0255339472=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0223782992==
-Content-Type: multipart/alternative; boundary="14614057302.dE7A53F.8799";
+--===============0255339472==
+Content-Type: multipart/alternative; boundary="14614057542.1f8c3.9213";
  charset="UTF-8"
 
 
---14614057302.dE7A53F.8799
-Date: Sat, 23 Apr 2016 10:02:10 +0000
+--14614057542.1f8c3.9213
+Date: Sat, 23 Apr 2016 10:02:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=94990
 
---- Comment #20 from mirkoroller-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org ---
-Created attachment 123175
-  --> https://bugs.freedesktop.org/attachment.cgi?id=123175&action=edit
-Logout1
+--- Comment #21 from mirkoroller-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org ---
+Created attachment 123176
+  --> https://bugs.freedesktop.org/attachment.cgi?id=123176&action=edit
+Logout2
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14614057302.dE7A53F.8799
-Date: Sat, 23 Apr 2016 10:02:10 +0000
+--14614057542.1f8c3.9213
+Date: Sat, 23 Apr 2016 10:02:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -55,15 +55,15 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=94990#c20">Comment # 20</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=94990#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Latest 4.6rc4 kernel, no booting on gtx970"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=94990">bug 94990</a>
               from <span class="vcard"><a class="email" href="mailto:mirkoroller&#64;googlemail.com" title="mirkoroller&#64;googlemail.com">mirkoroller&#64;googlemail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=123175" name="attach_123175" title="Logout1">attachment 123175</a> <a href="attachment.cgi?id=123175&amp;action=edit" title="Logout1">[details]</a></span>
-Logout1</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=123176" name="attach_123176" title="Logout2">attachment 123176</a> <a href="attachment.cgi?id=123176&amp;action=edit" title="Logout2">[details]</a></span>
+Logout2</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +74,9 @@ Logout1</pre>
       </ul>
     </body>
 </html>
---14614057302.dE7A53F.8799--
+--14614057542.1f8c3.9213--
 
---===============0223782992==
+--===============0255339472==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +86,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0223782992==--
+--===============0255339472==--
