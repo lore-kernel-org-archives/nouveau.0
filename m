@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95095] NV46 (G72) Full screen artifacts in Freespace
- 2 SW OT mod
-Date: Sat, 23 Apr 2016 22:37:57 +0000
-Message-ID: <bug-95095-8800-PQpMXyWv53@http.bugs.freedesktop.org/>
-References: <bug-95095-8800@http.bugs.freedesktop.org/>
+From: Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
+Subject: Re: [[Bug 94990] Latest 4.6rc4 kernel,
+	no booting on gtx970
+Date: Sat, 23 Apr 2016 23:34:26 +0100
+Message-ID: <571BF872.5030309@blueyonder.co.uk>
+References: <mailman.59.1461412807.30813.nouveau@lists.freedesktop.org>
+Reply-To: sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1763073285=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95095-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <mailman.59.1461412807.30813.nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,90 +22,20 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1763073285==
-Content-Type: multipart/alternative; boundary="14614510771.81DB4E.32620";
- charset="UTF-8"
-
-
---14614510771.81DB4E.32620
-Date: Sat, 23 Apr 2016 22:37:57 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=95095
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-If you are involved with the development of this application, could you verify
-that it never uses a 32-bit color buffer with a 16-bit depth buffer, or a
-16-bit color buffer with a 24-bit depth buffer? (That's RGBA8 + Z16 or RGB565 +
-Z24.) Those combinations, while perfectly legal in GL, are not actually
-supported by the hardware, and the driver "works around it" by just disabling
-depth, which results in broken rendering (but at least no hangs...).
-
-Another random thing to try: set NV30_SWTNL=1 in the environment - that will
-make the tnl go through a software path
-
-Lastly, please ensure you're using a semi-recent mesa...
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.
---14614510771.81DB4E.32620
-Date: Sat, 23 Apr 2016 22:37:57 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV46 (G72) Full screen artifacts in Freespace 2 SW OT mod"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95095#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV46 (G72) Full screen artifacts in Freespace 2 SW OT mod"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95095">bug 95095</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>If you are involved with the development of this application, could you verify
-that it never uses a 32-bit color buffer with a 16-bit depth buffer, or a
-16-bit color buffer with a 24-bit depth buffer? (That's RGBA8 + Z16 or RGB565 +
-Z24.) Those combinations, while perfectly legal in GL, are not actually
-supported by the hardware, and the driver &quot;works around it&quot; by just disabling
-depth, which results in broken rendering (but at least no hangs...).
-
-Another random thing to try: set NV30_SWTNL=1 in the environment - that will
-make the tnl go through a software path
-
-Lastly, please ensure you're using a semi-recent mesa...</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>
---14614510771.81DB4E.32620--
-
---===============1763073285==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1763073285==--
+T24gMjMvMDQvMTYgMTM6MDAsIG5vdXZlYXUtcmVxdWVzdEBsaXN0cy5mcmVlZGVza3RvcC5vcmcg
+d3JvdGU6Cj4gW0J1ZyA5NDk5MF0gTGF0ZXN0IDQuNnJjNCBrZXJuZWwsIG5vIGJvb3Rpbmcgb24g
+Z3R4OTcwCkkgaGFkIHNvbWV0aGluZyBzaW1pbGFyIHdpdGggYSBWR0EgY29tcGF0aWJsZSBjb250
+cm9sbGVyOiBOVklESUEgCkNvcnBvcmF0aW9uIEc4NCBbR2VGb3JjZSA4NjAwIEdUXSAocmV2IGEx
+KQoKWWFTVDIvbWtpbml0cmQubG9nOlc6IFBvc3NpYmxlIG1pc3NpbmcgZmlybXdhcmUgCiJudmlk
+aWEvZ20yMDQvYWNyL2JsLmJpbiIgZm9yIGtlcm5lbCBtb2R1bGUgIm5vdXZlYXUua28iClNhbWUg
+bWVzc2FnZSBmb3IgYWxsIC5iaW4gZmlsZXMgb24gb3BlblNVU0UgVHVtYmxld2VlZC4KClRoZSBm
+aWxlcyB3ZXJlIGFsbCB0aGVyZSB1bmRlciAvbGliL2Zpcm13YXJlL252aWRpYS9nbTIwNC4KRm9y
+Y2luZyBhIHJlaW5zdGFsbCBvZiB0aGUga2VybmVsLWZpcm13YXJlIHBhY2thZ2Ugc29sdmVkIGl0
+LgpSZWdhcmRzClNpZC4KCi0tIApTaWQgQm95Y2UgLi4uIEhhbXJhZGlvIExpY2Vuc2UgRzNWQlYs
+IExpY2Vuc2VkIFByaXZhdGUgUGlsb3QKRW1lcml0dXMgSUJNL0FtZGFobCBNYWluZnJhbWVzIGFu
+ZCBTdW4vRnVqaXRzdSBTZXJ2ZXJzIFRlY2ggU3VwcG9ydApTZW5pb3IgU3RhZmYgU3BlY2lhbGlz
+dCwgQ3JpY2tldCBDb2FjaApNaWNyb3NvZnQgV2luZG93cyBGcmVlIFpvbmUgLSBMaW51eCB1c2Vk
+IGZvciBhbGwgQ29tcHV0aW5nIFRhc2tzCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
