@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95095] NV46 (G72) Full screen artifacts in Freespace
- 2 SW OT mod
-Date: Sun, 24 Apr 2016 18:58:23 +0000
-Message-ID: <bug-95095-8800-0kvqN2LM26@http.bugs.freedesktop.org/>
-References: <bug-95095-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95109] New: multiple instances of buffer 186 on
+	validation list
+Date: Sun, 24 Apr 2016 19:20:52 +0000
+Message-ID: <bug-95109-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0117797807=="
+Content-Type: multipart/mixed; boundary="===============1673623488=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95095-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,59 +19,69 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0117797807==
-Content-Type: multipart/alternative; boundary="14615243030.F8a04C.26598";
+--===============1673623488==
+Content-Type: multipart/alternative; boundary="14615256521.99eEd.32052";
  charset="UTF-8"
 
 
---14615243030.F8a04C.26598
-Date: Sun, 24 Apr 2016 18:58:23 +0000
+--14615256521.99eEd.32052
+Date: Sun, 24 Apr 2016 19:20:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=95095
+https://bugs.freedesktop.org/show_bug.cgi?id=95109
 
---- Comment #4 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+            Bug ID: 95109
+           Summary: multiple instances of buffer 186 on validation list
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: chernoff-ULsX4lnO78sEpyuynnnIqodd74u8MsAO@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-The attachment was related to a freeze-lockup, even if it's most probably a
-different problem.
+OS:
 
-> If you are involved with the development of this application, could you
-> verify that it never uses a 32-bit color buffer with a 16-bit depth buffer,
-> or a 16-bit color buffer with a 24-bit depth buffer? (That's RGBA8 + Z16 or
-> RGB565 + Z24.) Those combinations, while perfectly legal in GL, are not
-> actually supported by the hardware, and the driver "works around it" by just
-> disabling depth, which results in broken rendering (but at least no
-> hangs...).
+Linux localhost.localdomain 4.1.13-100.fc21.x86_64 #1 SMP Tue Nov 10 13:13:20
+UTC 2015 x86_64 x86_64 x86_64 GNU/Linux
 
-I'm not involved in fs2_open project, I'm contributing to Star Wars mod testing
-on Linux,
+Two mirrored screens: ASUS laptop screen and Viewsonic VP2650wb 
 
-but I found something interesting, using the NV30_SWTNL=1 parameter, I could
-cycle all models and get trace to qapitrate retrace all the sequence with hwtnl
-and ...
+Graphics card: NVIDIA Corporation G96M [GeForce 9650M GT] (rev a1)
 
-...  just some specific 3D models produce z-culling artifacts, where parts of
-the 3D model, like the X-Wind hull, are put extremely "in the front" hiding
-everything, while other 3D models are perfectly rendered.
+System locks up with
+kernel: nouveau E[gnome-shell[2035]] multiple instances of buffer 186 on
+validation list
+kernel: nouveau E[gnome-shell[2035]] validate_init
+kernel: nouveau E[gnome-shell[2035]] validate: -22
+gnome-session[1905]: nouveau: kernel rejected pushbuf: Invalid argument
 
-I'm going to check with 3D model owners if there is a way to correct the
-impacted 3D models.
+followed by a dump of ch0: buf data (I can include if useful)
 
-Thanks a lot Ilia!
+and then many messages of the form
 
-I'll report back when I found the exact cause of the problem.
+kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP_PROP - TP 0 - RT_FAULT - Address
+00465f0000
+kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP_PROP - TP 0 - e0c: 00000000,
+e18: 00000000, e1c: 00000000, e20: 00002a00, e24: 00030000
+kernel: nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x003fc2a000 gnome-shell[2035]]
+subc 3 class 0x8297 mthd 0x15e0 data 0x00000000
+kernel: nouveau E[     PFB][0000:01:00.0] trapped write at 0x00465f0000 on
+channel 0x0003fc2a [gnome-shell[2035]] PGRAPH/PROP/RT0 reason: 
 
-> Lastly, please ensure you're using a semi-recent mesa...
-
-I'm testing with mesa git (oibaf ppa)
+Gnome pointer is alive, no window buttons function. After about 2 minutes the
+system returns to normal.
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
---14615243030.F8a04C.26598
-Date: Sun, 24 Apr 2016 18:58:23 +0000
+--14615256521.99eEd.32052
+Date: Sun, 24 Apr 2016 19:20:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -81,66 +89,133 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - multiple instances of buffer 186 on validation list"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95109">95109</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>multiple instances of buffer 186 on validation list
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>chernoff&#64;astro.cornell.edu
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV46 (G72) Full screen artifacts in Freespace 2 SW OT mod"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95095#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV46 (G72) Full screen artifacts in Freespace 2 SW OT mod"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95095">bug 95095</a>
-              from <span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
-</span></b>
-        <pre>
-The attachment was related to a freeze-lockup, even if it's most probably a
-different problem.
+        <pre>OS:
 
-<span class="quote">&gt; If you are involved with the development of this application, could you
-&gt; verify that it never uses a 32-bit color buffer with a 16-bit depth buffer,
-&gt; or a 16-bit color buffer with a 24-bit depth buffer? (That's RGBA8 + Z16 or
-&gt; RGB565 + Z24.) Those combinations, while perfectly legal in GL, are not
-&gt; actually supported by the hardware, and the driver &quot;works around it&quot; by just
-&gt; disabling depth, which results in broken rendering (but at least no
-&gt; hangs...).</span >
+Linux localhost.localdomain 4.1.13-100.fc21.x86_64 #1 SMP Tue Nov 10 13:13:20
+UTC 2015 x86_64 x86_64 x86_64 GNU/Linux
 
-I'm not involved in fs2_open project, I'm contributing to Star Wars mod testing
-on Linux,
+Two mirrored screens: ASUS laptop screen and Viewsonic VP2650wb 
 
-but I found something interesting, using the NV30_SWTNL=1 parameter, I could
-cycle all models and get trace to qapitrate retrace all the sequence with hwtnl
-and ...
+Graphics card: NVIDIA Corporation G96M [GeForce 9650M GT] (rev a1)
 
-...  just some specific 3D models produce z-culling artifacts, where parts of
-the 3D model, like the X-Wind hull, are put extremely &quot;in the front&quot; hiding
-everything, while other 3D models are perfectly rendered.
+System locks up with
+kernel: nouveau E[gnome-shell[2035]] multiple instances of buffer 186 on
+validation list
+kernel: nouveau E[gnome-shell[2035]] validate_init
+kernel: nouveau E[gnome-shell[2035]] validate: -22
+gnome-session[1905]: nouveau: kernel rejected pushbuf: Invalid argument
 
-I'm going to check with 3D model owners if there is a way to correct the
-impacted 3D models.
+followed by a dump of ch0: buf data (I can include if useful)
 
-Thanks a lot Ilia!
+and then many messages of the form
 
-I'll report back when I found the exact cause of the problem.
+kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP_PROP - TP 0 - RT_FAULT - Address
+00465f0000
+kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP_PROP - TP 0 - e0c: 00000000,
+e18: 00000000, e1c: 00000000, e20: 00002a00, e24: 00030000
+kernel: nouveau E[  PGRAPH][0000:01:00.0] ch 4 [0x003fc2a000 gnome-shell[2035]]
+subc 3 class 0x8297 mthd 0x15e0 data 0x00000000
+kernel: nouveau E[     PFB][0000:01:00.0] trapped write at 0x00465f0000 on
+channel 0x0003fc2a [gnome-shell[2035]] PGRAPH/PROP/RT0 reason: 
 
-<span class="quote">&gt; Lastly, please ensure you're using a semi-recent mesa...</span >
-
-I'm testing with mesa git (oibaf ppa)</pre>
+Gnome pointer is alive, no window buttons function. After about 2 minutes the
+system returns to normal.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
---14615243030.F8a04C.26598--
+--14615256521.99eEd.32052--
 
---===============0117797807==
+--===============1673623488==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -150,4 +225,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0117797807==--
+--===============1673623488==--
