@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95109] multiple instances of buffer 186 on
-	validation list
-Date: Sun, 24 Apr 2016 20:27:30 +0000
-Message-ID: <bug-95109-8800-ClDvMUmLra@http.bugs.freedesktop.org/>
-References: <bug-95109-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
+ 5; PGR engine fault
+Date: Mon, 25 Apr 2016 16:14:07 +0000
+Message-ID: <bug-92077-8800-Q6yWH4wKGx@http.bugs.freedesktop.org/>
+References: <bug-92077-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1704475249=="
+Content-Type: multipart/mixed; boundary="===============1595721700=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95109-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1704475249==
-Content-Type: multipart/alternative; boundary="14615296492.DA2fb.13570";
+--===============1595721700==
+Content-Type: multipart/alternative; boundary="14616008474.a7e5b.29787";
  charset="UTF-8"
 
 
---14615296492.DA2fb.13570
-Date: Sun, 24 Apr 2016 20:27:29 +0000
+--14616008474.a7e5b.29787
+Date: Mon, 25 Apr 2016 16:14:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=95109
+https://bugs.freedesktop.org/show_bug.cgi?id=92077
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #20 from Andrey Mazo <ahippo-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
+(In reply to Andrey Mazo from comment #19)
+> Looks like, I don't have the clock applet as you do, so for me, Network
+> Monitor and System Load Viewer applets are the only ones to update the
+> screen every second.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Marking this as fixed (which it was... like a year ago). If you hit this issue
-with a fresher stack, feel free to reopen.
+I tried to disable Network Monitor applet and to close the browser when unused,
+and the system seems to survive longer (it's been almost 6 days of uptime by
+now).
+Not a solution, of course, but, at least, makes the system usable.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14615296492.DA2fb.13570
-Date: Sun, 24 Apr 2016 20:27:29 +0000
+You are the QA Contact for the bug.
+--14616008474.a7e5b.29787
+Date: Mon, 25 Apr 2016 16:14:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -56,49 +57,28 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - multiple instances of buffer 186 on validation list"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95109">bug 95109</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - multiple instances of buffer 186 on validation list"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95109#c5">Comment # 5</a>
+          bz_status_NEW "
+   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077#c20">Comment # 20</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - multiple instances of buffer 186 on validation list"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95109">bug 95109</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077">bug 92077</a>
+              from <span class="vcard"><a class="email" href="mailto:ahippo&#64;yandex.ru" title="Andrey Mazo &lt;ahippo&#64;yandex.ru&gt;"> <span class="fn">Andrey Mazo</span></a>
 </span></b>
-        <pre>Marking this as fixed (which it was... like a year ago). If you hit this issue
-with a fresher stack, feel free to reopen.</pre>
+        <pre>(In reply to Andrey Mazo from <a href="show_bug.cgi?id=92077#c19">comment #19</a>)
+<span class="quote">&gt; Looks like, I don't have the clock applet as you do, so for me, Network
+&gt; Monitor and System Load Viewer applets are the only ones to update the
+&gt; screen every second.</span >
+
+I tried to disable Network Monitor applet and to close the browser when unused,
+and the system seems to survive longer (it's been almost 6 days of uptime by
+now).
+Not a solution, of course, but, at least, makes the system usable.</pre>
         </div>
       </p>
       <hr>
@@ -106,12 +86,13 @@ with a fresher stack, feel free to reopen.</pre>
       
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>
---14615296492.DA2fb.13570--
+--14616008474.a7e5b.29787--
 
---===============1704475249==
+--===============1595721700==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -121,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1704475249==--
+--===============1595721700==--
