@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95189] New: Tomb Raider with TressFX enabled hangs
-	GPU
-Date: Thu, 28 Apr 2016 16:01:13 +0000
-Message-ID: <bug-95189-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95190] New: Tomb Raider with PostProcessing enable
+ and Depth of Field set to Ultra has white stuff in the foreground
+Date: Thu, 28 Apr 2016 16:02:28 +0000
+Message-ID: <bug-95190-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1590797499=="
+Content-Type: multipart/mixed; boundary="===============0813102348=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,24 +19,25 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1590797499==
-Content-Type: multipart/alternative; boundary="14618592730.BDF82B989.30001";
+--===============0813102348==
+Content-Type: multipart/alternative; boundary="14618593480.1EfDc.30132";
  charset="UTF-8"
 
 
---14618592730.BDF82B989.30001
-Date: Thu, 28 Apr 2016 16:01:13 +0000
+--14618593480.1EfDc.30132
+Date: Thu, 28 Apr 2016 16:02:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=95189
+https://bugs.freedesktop.org/show_bug.cgi?id=95190
 
-            Bug ID: 95189
-           Summary: Tomb Raider with TressFX enabled hangs GPU
+            Bug ID: 95190
+           Summary: Tomb Raider with PostProcessing enable and Depth of
+                    Field set to Ultra has white stuff in the foreground
            Product: Mesa
            Version: git
-          Hardware: x86 (IA32)
-                OS: Linux (All)
+          Hardware: Other
+                OS: All
             Status: NEW
           Severity: normal
           Priority: medium
@@ -45,16 +46,17 @@ https://bugs.freedesktop.org/show_bug.cgi?id=95189
           Reporter: freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
         QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-Most likely ssbo and compute shaders involved or something
+ostProcessing + Depth of Field Ultra gives bright white stuff in the foreground
+making the game unplayable
 
-https://drive.google.com/open?id=0B78S7GSrzebIMDRYdWJLUjNoWFk
+Trace: https://drive.google.com/open?id=0B78S7GSrzebIaExsb1FNSUNPTDA
 
 -- 
 You are receiving this mail because:
-You are the assignee for the bug.
 You are the QA Contact for the bug.
---14618592730.BDF82B989.30001
-Date: Thu, 28 Apr 2016 16:01:13 +0000
+You are the assignee for the bug.
+--14618593480.1EfDc.30132
+Date: Thu, 28 Apr 2016 16:02:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -67,14 +69,14 @@ Content-Type: text/html
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Tomb Raider with TressFX enabled hangs GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95189">95189</a>
+   title="NEW - Tomb Raider with PostProcessing enable and Depth of Field set to Ultra has white stuff in the foreground"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95190">95190</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>Tomb Raider with TressFX enabled hangs GPU
+          <td>Tomb Raider with PostProcessing enable and Depth of Field set to Ultra has white stuff in the foreground
           </td>
         </tr>
 
@@ -92,13 +94,13 @@ Content-Type: text/html
 
         <tr>
           <th>Hardware</th>
-          <td>x86 (IA32)
+          <td>Other
           </td>
         </tr>
 
         <tr>
           <th>OS</th>
-          <td>Linux (All)
+          <td>All
           </td>
         </tr>
 
@@ -145,23 +147,24 @@ Content-Type: text/html
         </tr></table>
       <p>
         <div>
-        <pre>Most likely ssbo and compute shaders involved or something
+        <pre>ostProcessing + Depth of Field Ultra gives bright white stuff in the foreground
+making the game unplayable
 
-<a href="https://drive.google.com/open?id=0B78S7GSrzebIMDRYdWJLUjNoWFk">https://drive.google.com/open?id=0B78S7GSrzebIMDRYdWJLUjNoWFk</a></pre>
+Trace: <a href="https://drive.google.com/open?id=0B78S7GSrzebIaExsb1FNSUNPTDA">https://drive.google.com/open?id=0B78S7GSrzebIaExsb1FNSUNPTDA</a></pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
---14618592730.BDF82B989.30001--
+--14618593480.1EfDc.30132--
 
---===============1590797499==
+--===============0813102348==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -171,4 +174,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1590797499==--
+--===============0813102348==--
