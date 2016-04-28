@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95190] New: Tomb Raider with PostProcessing enable
- and Depth of Field set to Ultra has white stuff in the foreground
-Date: Thu, 28 Apr 2016 16:02:28 +0000
-Message-ID: <bug-95190-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95193] New: Nouveau not working with Quadro K2200
+ (NV117) and Debian Wheezy
+Date: Thu, 28 Apr 2016 17:00:51 +0000
+Message-ID: <bug-95193-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0813102348=="
+Content-Type: multipart/mixed; boundary="===============1771738603=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,44 +19,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0813102348==
-Content-Type: multipart/alternative; boundary="14618593480.1EfDc.30132";
+--===============1771738603==
+Content-Type: multipart/alternative; boundary="14618628510.aff3.11155";
  charset="UTF-8"
 
 
---14618593480.1EfDc.30132
-Date: Thu, 28 Apr 2016 16:02:28 +0000
+--14618628510.aff3.11155
+Date: Thu, 28 Apr 2016 17:00:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=95190
+https://bugs.freedesktop.org/show_bug.cgi?id=95193
 
-            Bug ID: 95190
-           Summary: Tomb Raider with PostProcessing enable and Depth of
-                    Field set to Ultra has white stuff in the foreground
-           Product: Mesa
-           Version: git
-          Hardware: Other
-                OS: All
+            Bug ID: 95193
+           Summary: Nouveau not working with Quadro K2200 (NV117) and
+                    Debian Wheezy
+           Product: xorg
+           Version: unspecified
+          Hardware: x86 (IA32)
+                OS: Linux (All)
             Status: NEW
-          Severity: normal
+          Severity: blocker
           Priority: medium
-         Component: Drivers/DRI/nouveau
+         Component: Driver/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: joachim-NDHQTyUf4y2zQB+pC5nmwQ@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-ostProcessing + Depth of Field Ultra gives bright white stuff in the foreground
-making the game unplayable
+LinuxCNC Live CD (Debian Wheezy is the base distribution) hangs with some
+Nouveau messages.
 
-Trace: https://drive.google.com/open?id=0B78S7GSrzebIaExsb1FNSUNPTDA
+Since I'm not allowed to install it on a PC with K2200 in our facility, I can
+just use the LiveCD or USB-Stick with persistence mode. Is it somehow possible
+to get a kernel log in this situation?
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
---14618593480.1EfDc.30132
-Date: Thu, 28 Apr 2016 16:02:28 +0000
+--14618628510.aff3.11155
+Date: Thu, 28 Apr 2016 17:00:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -69,38 +70,38 @@ Content-Type: text/html
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Tomb Raider with PostProcessing enable and Depth of Field set to Ultra has white stuff in the foreground"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95190">95190</a>
+   title="NEW - Nouveau not working with Quadro K2200 (NV117) and Debian Wheezy"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95193">95193</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>Tomb Raider with PostProcessing enable and Depth of Field set to Ultra has white stuff in the foreground
+          <td>Nouveau not working with Quadro K2200 (NV117) and Debian Wheezy
           </td>
         </tr>
 
         <tr>
           <th>Product</th>
-          <td>Mesa
+          <td>xorg
           </td>
         </tr>
 
         <tr>
           <th>Version</th>
-          <td>git
+          <td>unspecified
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>Other
+          <td>x86 (IA32)
           </td>
         </tr>
 
         <tr>
           <th>OS</th>
-          <td>All
+          <td>Linux (All)
           </td>
         </tr>
 
@@ -112,7 +113,7 @@ Content-Type: text/html
 
         <tr>
           <th>Severity</th>
-          <td>normal
+          <td>blocker
           </td>
         </tr>
 
@@ -124,7 +125,7 @@ Content-Type: text/html
 
         <tr>
           <th>Component</th>
-          <td>Drivers/DRI/nouveau
+          <td>Driver/nouveau
           </td>
         </tr>
 
@@ -136,35 +137,36 @@ Content-Type: text/html
 
         <tr>
           <th>Reporter</th>
-          <td>freedesktop&#64;karolherbst.de
+          <td>joachim&#64;falaba.de
           </td>
         </tr>
 
         <tr>
           <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
+          <td>xorg-team&#64;lists.x.org
           </td>
         </tr></table>
       <p>
         <div>
-        <pre>ostProcessing + Depth of Field Ultra gives bright white stuff in the foreground
-making the game unplayable
+        <pre>LinuxCNC Live CD (Debian Wheezy is the base distribution) hangs with some
+Nouveau messages.
 
-Trace: <a href="https://drive.google.com/open?id=0B78S7GSrzebIaExsb1FNSUNPTDA">https://drive.google.com/open?id=0B78S7GSrzebIaExsb1FNSUNPTDA</a></pre>
+Since I'm not allowed to install it on a PC with K2200 in our facility, I can
+just use the LiveCD or USB-Stick with persistence mode. Is it somehow possible
+to get a kernel log in this situation?</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
---14618593480.1EfDc.30132--
+--14618628510.aff3.11155--
 
---===============0813102348==
+--===============1771738603==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -174,4 +176,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0813102348==--
+--===============1771738603==--
