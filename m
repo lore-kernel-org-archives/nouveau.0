@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95188] GeForce 840M (GM108) troubles
-Date: Thu, 28 Apr 2016 15:48:05 +0000
-Message-ID: <bug-95188-8800-kpcrBXaWwV@http.bugs.freedesktop.org/>
-References: <bug-95188-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95189] New: Tomb Raider with TressFX enabled hangs
+	GPU
+Date: Thu, 28 Apr 2016 16:01:13 +0000
+Message-ID: <bug-95189-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0229858984=="
+Content-Type: multipart/mixed; boundary="===============1590797499=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95188-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +19,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0229858984==
-Content-Type: multipart/alternative; boundary="14618584851.c1Dd.27531";
+--===============1590797499==
+Content-Type: multipart/alternative; boundary="14618592730.BDF82B989.30001";
  charset="UTF-8"
 
 
---14618584851.c1Dd.27531
-Date: Thu, 28 Apr 2016 15:48:05 +0000
+--14618592730.BDF82B989.30001
+Date: Thu, 28 Apr 2016 16:01:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=95188
+https://bugs.freedesktop.org/show_bug.cgi?id=95189
 
---- Comment #2 from Asad Mehmood <asad78611-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-The system is an optimus system, currently I am unable to use the Nvidia gpu at
-all.
+            Bug ID: 95189
+           Summary: Tomb Raider with TressFX enabled hangs GPU
+           Product: Mesa
+           Version: git
+          Hardware: x86 (IA32)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-DRI_PRIME=1 hangs for a couple of seconds, followed by a fallback to the intel
-gpu.
+Most likely ssbo and compute shaders involved or something
 
-Currently running fedora rawhide
-
-nouveau git:3da1f2a19e5e8dc8d68a4400d9cca01c64ecd59e skeggsb:master
-libdrm-2.4.67-4.fc25.x86_64
-mesa-libGL-11.3.0-0.3.git171a570.fc25.x86_64
+https://drive.google.com/open?id=0B78S7GSrzebIMDRYdWJLUjNoWFk
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14618584851.c1Dd.27531
-Date: Thu, 28 Apr 2016 15:48:05 +0000
+You are the QA Contact for the bug.
+--14618592730.BDF82B989.30001
+Date: Thu, 28 Apr 2016 16:01:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -57,30 +62,92 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tomb Raider with TressFX enabled hangs GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95189">95189</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Tomb Raider with TressFX enabled hangs GPU
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>freedesktop&#64;karolherbst.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GeForce 840M (GM108) troubles"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95188#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GeForce 840M (GM108) troubles"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95188">bug 95188</a>
-              from <span class="vcard"><a class="email" href="mailto:asad78611&#64;googlemail.com" title="Asad Mehmood &lt;asad78611&#64;googlemail.com&gt;"> <span class="fn">Asad Mehmood</span></a>
-</span></b>
-        <pre>The system is an optimus system, currently I am unable to use the Nvidia gpu at
-all.
+        <pre>Most likely ssbo and compute shaders involved or something
 
-DRI_PRIME=1 hangs for a couple of seconds, followed by a fallback to the intel
-gpu.
-
-Currently running fedora rawhide
-
-nouveau git:3da1f2a19e5e8dc8d68a4400d9cca01c64ecd59e skeggsb:master
-libdrm-2.4.67-4.fc25.x86_64
-mesa-libGL-11.3.0-0.3.git171a570.fc25.x86_64</pre>
+<a href="https://drive.google.com/open?id=0B78S7GSrzebIMDRYdWJLUjNoWFk">https://drive.google.com/open?id=0B78S7GSrzebIMDRYdWJLUjNoWFk</a></pre>
         </div>
       </p>
       <hr>
@@ -88,12 +155,13 @@ mesa-libGL-11.3.0-0.3.git171a570.fc25.x86_64</pre>
       
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>
---14618584851.c1Dd.27531--
+--14618592730.BDF82B989.30001--
 
---===============0229858984==
+--===============1590797499==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +171,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0229858984==--
+--===============1590797499==--
