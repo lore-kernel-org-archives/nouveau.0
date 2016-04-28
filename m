@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95188] GeForce 840M (GM108) troubles
-Date: Thu, 28 Apr 2016 15:31:35 +0000
-Message-ID: <bug-95188-8800-U2rNmajH5C@http.bugs.freedesktop.org/>
+Date: Thu, 28 Apr 2016 15:48:05 +0000
+Message-ID: <bug-95188-8800-kpcrBXaWwV@http.bugs.freedesktop.org/>
 References: <bug-95188-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1136397570=="
+Content-Type: multipart/mixed; boundary="===============0229858984=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95188-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1136397570==
-Content-Type: multipart/alternative; boundary="14618574971.3AbE78.25476";
+--===============0229858984==
+Content-Type: multipart/alternative; boundary="14618584851.c1Dd.27531";
  charset="UTF-8"
 
 
---14618574971.3AbE78.25476
-Date: Thu, 28 Apr 2016 15:31:37 +0000
+--14618584851.c1Dd.27531
+Date: Thu, 28 Apr 2016 15:48:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=95188
 
---- Comment #1 from Asad Mehmood <asad78611-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-Created attachment 123325
-  --> https://bugs.freedesktop.org/attachment.cgi?id=123325&action=edit
-dmesg log
+--- Comment #2 from Asad Mehmood <asad78611-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+The system is an optimus system, currently I am unable to use the Nvidia gpu at
+all.
+
+DRI_PRIME=1 hangs for a couple of seconds, followed by a fallback to the intel
+gpu.
+
+Currently running fedora rawhide
+
+nouveau git:3da1f2a19e5e8dc8d68a4400d9cca01c64ecd59e skeggsb:master
+libdrm-2.4.67-4.fc25.x86_64
+mesa-libGL-11.3.0-0.3.git171a570.fc25.x86_64
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14618574971.3AbE78.25476
-Date: Thu, 28 Apr 2016 15:31:37 +0000
+--14618584851.c1Dd.27531
+Date: Thu, 28 Apr 2016 15:48:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -55,15 +63,24 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - GeForce 840M (GM108) troubles"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95188#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95188#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - GeForce 840M (GM108) troubles"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=95188">bug 95188</a>
               from <span class="vcard"><a class="email" href="mailto:asad78611&#64;googlemail.com" title="Asad Mehmood &lt;asad78611&#64;googlemail.com&gt;"> <span class="fn">Asad Mehmood</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=123325" name="attach_123325" title="dmesg log">attachment 123325</a> <a href="attachment.cgi?id=123325&amp;action=edit" title="dmesg log">[details]</a></span>
-dmesg log</pre>
+        <pre>The system is an optimus system, currently I am unable to use the Nvidia gpu at
+all.
+
+DRI_PRIME=1 hangs for a couple of seconds, followed by a fallback to the intel
+gpu.
+
+Currently running fedora rawhide
+
+nouveau git:3da1f2a19e5e8dc8d68a4400d9cca01c64ecd59e skeggsb:master
+libdrm-2.4.67-4.fc25.x86_64
+mesa-libGL-11.3.0-0.3.git171a570.fc25.x86_64</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +91,9 @@ dmesg log</pre>
       </ul>
     </body>
 </html>
---14618574971.3AbE78.25476--
+--14618584851.c1Dd.27531--
 
---===============1136397570==
+--===============0229858984==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1136397570==--
+--===============0229858984==--
