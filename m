@@ -1,185 +1,151 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95190] Tomb Raider with PostProcessing enable and
- Depth of Field set to Ultra has white stuff in the foreground
-Date: Thu, 28 Apr 2016 22:17:40 +0000
-Message-ID: <bug-95190-8800-lnHPLc662T@http.bugs.freedesktop.org/>
-References: <bug-95190-8800@http.bugs.freedesktop.org/>
+From: Robin Murphy <robin.murphy@arm.com>
+Subject: [PATCH] Revert "drm/nouveau/device/pci: set as non-CPU-coherent on
+ ARM64"
+Date: Fri, 29 Apr 2016 12:18:59 +0100
+Message-ID: <1a1818490fd3ef570c0ef35c0296f1a955a6ff72.1461927227.git.robin.murphy@arm.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1583765778=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95190-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: airlied@linux.ie, bskeggs@redhat.com, acourbot@nvidia.com
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1583765778==
-Content-Type: multipart/alternative; boundary="14618818600.bacF.17284";
- charset="UTF-8"
-
-
---14618818600.bacF.17284
-Date: Thu, 28 Apr 2016 22:17:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=95190
-
-Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|normal                      |major
-          Component|Drivers/DRI/nouveau         |glsl-compiler
-                 CC|                            |kenneth-xkhwgxqQjnbNLxjTenLetw@public.gmane.org,
-                   |                            |samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |idr-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-                   |rg                          |
-         QA Contact|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |intel-3d-bugs-PD4FTy7X32mqWrfYKbYh0A@public.gmane.org
-                   |rg                          |ktop.org
-
---- Comment #4 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-So, the issue is that the count_uniforms_size pass which is used to calculate
-the storage requirements for a set of uniform has a bug for constant arrays.
-
-The problem is that the pass aggregates the size of a constant array each time
-it finds a reference in the shader source.
-
-For example, in the attached shader, the lowering pass returns 95484k of
-uniforms but it should be 1308k (327*4) (+ some other things). The 95484 is
-computed as follow: 327 * 4 * 73 (number of occurences of icb in the shader).
-
-I had a look at the code, and I think that the correct solution should be to do
-this lowering pass only once for constant arrays (this will require to somehow
-remember which one has been lowered though).
-
-Ken, can you look into this?
-Thanks in advance.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.
---14618818600.bacF.17284
-Date: Thu, 28 Apr 2016 22:17:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Tomb Raider with PostProcessing enable and Depth of Field set to Ultra has white stuff in the foreground"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95190">bug 95190</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Severity</td>
-           <td>normal
-           </td>
-           <td>major
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Drivers/DRI/nouveau
-           </td>
-           <td>glsl-compiler
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>kenneth&#64;whitecape.org, samuel.pitoiset&#64;gmail.com
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>idr&#64;freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">QA Contact</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>intel-3d-bugs&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Tomb Raider with PostProcessing enable and Depth of Field set to Ultra has white stuff in the foreground"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95190#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Tomb Raider with PostProcessing enable and Depth of Field set to Ultra has white stuff in the foreground"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95190">bug 95190</a>
-              from <span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
-</span></b>
-        <pre>So, the issue is that the count_uniforms_size pass which is used to calculate
-the storage requirements for a set of uniform has a bug for constant arrays.
-
-The problem is that the pass aggregates the size of a constant array each time
-it finds a reference in the shader source.
-
-For example, in the attached shader, the lowering pass returns 95484k of
-uniforms but it should be 1308k (327*4) (+ some other things). The 95484 is
-computed as follow: 327 * 4 * 73 (number of occurences of icb in the shader).
-
-I had a look at the code, and I think that the correct solution should be to do
-this lowering pass only once for constant arrays (this will require to somehow
-remember which one has been lowered though).
-
-Ken, can you look into this?
-Thanks in advance.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>
---14618818600.bacF.17284--
-
---===============1583765778==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1583765778==--
+VGhpcyByZXZlcnRzIGNvbW1pdCAxNzMzYTJhZDM2NzQxYjE4MTJjZjhiM2YzMDM3YzI4ZDBhZjUz
+ZjUwLgoKVGhlcmUgaXMgYXBwYXJlbnRseSBzb21ldGhpbmcgYW1pc3Mgd2l0aCB0aGUgd2F5IHRo
+ZSBUVE0gY29kZSBoYW5kbGVzCkRNQSBidWZmZXJzLCB3aGljaCB0aGUgYWJvdmUgY29tbWl0IHdh
+cyBhdHRlbXB0aW5nIHRvIHdvcmsgYXJvdW5kIGZvcgphcm02NCBzeXN0ZW1zIHdpdGggbm9uLWNv
+aGVyZW50IFBDSS4gVW5mb3J0dW5hdGVseSwgdGhpcyBjb21wbGV0ZWx5CmJyZWFrcyBzeXN0ZW1z
+ICp3aXRoKiBjb2hlcmVudCBQQ0kgKHdoaWNoIGFwcGVhciB0byBiZSB0aGUgbWFqb3JpdHkpLgoK
+Qm9vdGluZyBhIHBsYWluIGFybTY0IGRlZmNvbmZpZyArIENPTkZJR19EUk0gKyBDT05GSUdfRFJN
+X05PVVZFQVUgb24KYSBtYWNoaW5lIHdpdGggYSBQQ0kgR1BVIGhhdmluZyBjb2hlcmVudCBkbWFf
+bWFwX29wcyAoaW4gdGhpcyBjYXNlIGEKNzYwMEdUIGNhcmQgcGx1Z2dlZCBpbnRvIGFuIEFSTSBK
+dW5vIGJvYXJkKSByZXN1bHRzIGluIGEgZmF0YWwgY3Jhc2g6CgpbICAgIDIuODAzNDM4XSBub3V2
+ZWF1IDAwMDA6MDY6MDAuMDogRFJNOiBhbGxvY2F0ZWQgMTAyNHg3NjggZmI6IDB4OTAwMCwgYm8g
+ZmZmZmZmYzk3NjE0MWMwMApbICAgIDIuODk3NjYyXSBVbmFibGUgdG8gaGFuZGxlIGtlcm5lbCBO
+VUxMIHBvaW50ZXIgZGVyZWZlcmVuY2UgYXQgdmlydHVhbCBhZGRyZXNzIDAwMDAwMWFjClsgICAg
+Mi44OTc2NjZdIHBnZCA9IGZmZmZmZjgwMDhlMDAwMDAKWyAgICAyLjg5NzY3NV0gWzAwMDAwMWFj
+XSAqcGdkPTAwMDAwMDA5ZmZmZmUwMDMsICpwdWQ9MDAwMDAwMDlmZmZmZTAwMywgKnBtZD0wMDAw
+MDAwMDAwMDAwMDAwClsgICAgMi44OTc2ODBdIEludGVybmFsIGVycm9yOiBPb3BzOiA5NjAwMDA0
+NSBbIzFdIFBSRUVNUFQgU01QClsgICAgMi44OTc2ODVdIE1vZHVsZXMgbGlua2VkIGluOgpbICAg
+IDIuODk3NjkyXSBDUFU6IDAgUElEOiAxIENvbW06IHN3YXBwZXIvMCBOb3QgdGFpbnRlZCA0LjYu
+MC1yYzUrICM1NDMKWyAgICAyLjg5NzY5NF0gSGFyZHdhcmUgbmFtZTogQVJNIEp1bm8gZGV2ZWxv
+cG1lbnQgYm9hcmQgKHIxKSAoRFQpClsgICAgMi44OTc2OTldIHRhc2s6IGZmZmZmZmM5NzY4YTAw
+MDAgdGk6IGZmZmZmZmM5NzY4YTgwMDAgdGFzay50aTogZmZmZmZmYzk3NjhhODAwMApbICAgIDIu
+ODk3NzExXSBQQyBpcyBhdCBfX21lbWNweSsweDdjLzB4MTgwClsgICAgMi44OTc3MTldIExSIGlz
+IGF0IE9VVF9SSU5HcCsweDM0LzB4NzAKWyAgICAyLjg5NzcyNF0gcGMgOiBbPGZmZmZmZjgwMDgz
+NDY1ZmM+XSBsciA6IFs8ZmZmZmZmODAwODU0MjQ4Yz5dIHBzdGF0ZTogODAwMDAwNDUKWyAgICAy
+Ljg5NzcyNl0gc3AgOiBmZmZmZmZjOTc2OGFiMzYwClsgICAgMi44OTc3MzJdIHgyOTogZmZmZmZm
+Yzk3NjhhYjM2MCB4Mjg6IDAwMDAwMDAwMDAwMDAwMDEKWyAgICAyLjg5NzczOF0geDI3OiBmZmZm
+ZmZjOTc2MjRjMDAwIHgyNjogMDAwMDAwMDAwMDAwMDAwMApbICAgIDIuODk3NzQ0XSB4MjU6IDAw
+MDAwMDAwMDAwMDAwODAgeDI0OiAwMDAwMDAwMDAwMDA2YzAwClsgICAgMi44OTc3NDldIHgyMzog
+MDAwMDAwMDAwMDAwMDAwNSB4MjI6IGZmZmZmZmM5NzYyNGMwMTAKWyAgICAyLjg5Nzc1NV0geDIx
+OiAwMDAwMDAwMDAwMDAwMDA0IHgyMDogMDAwMDAwMDAwMDAwMDAwNApbICAgIDIuODk3NzYxXSB4
+MTk6IGZmZmZmZmM5NzYzZGEwMDAgeDE4OiBmZmZmZmZjOTc2YjI0OTFjClsgICAgMi44OTc3NjZd
+IHgxNzogMDAwMDAwMDAwMDAwMDAwNyB4MTY6IDAwMDAwMDAwMDAwMDAwMDYKWyAgICAyLjg5Nzc3
+MV0geDE1OiAwMDAwMDAwMDAwMDAwMDAxIHgxNDogMDAwMDAwMDAwMDAwMDAwMQpbICAgIDIuODk3
+Nzc3XSB4MTM6IDAwMDAwMDAwMDBlMzFiNzAgeDEyOiBmZmZmZmZjOTc2OGEwMDgwClsgICAgMi44
+OTc3ODNdIHgxMTogMDAwMDAwMDAwMDAwMDAwMCB4MTA6IGZmZmZmZmZmZmZmZmZiMDAKWyAgICAy
+Ljg5Nzc4OF0geDkgOiAwMDAwMDAwMDAwMDAwMDAwIHg4IDogMDAwMDAwMDAwMDAwMDAwMApbICAg
+IDIuODk3NzkzXSB4NyA6IDAwMDAwMDAwMDAwMDAwMDAgeDYgOiAwMDAwMDAwMDAwMDAwMWFjClsg
+ICAgMi44OTc3OTldIHg1IDogMDAwMDAwMDBmZmZmZmZmZiB4NCA6IDAwMDAwMDAwMDAwMDAwMDAK
+WyAgICAyLjg5NzgwNF0geDMgOiAwMDAwMDAwMDAwMDAwMDEwIHgyIDogMDAwMDAwMDAwMDAwMDAx
+MApbICAgIDIuODk3ODEwXSB4MSA6IGZmZmZmZmM5NzYyNGMwMTAgeDAgOiAwMDAwMDAwMDAwMDAw
+MWFjCi4uLgpbICAgIDIuODk4NDk0XSBDYWxsIHRyYWNlOgpbICAgIDIuODk4NDk5XSBFeGNlcHRp
+b24gc3RhY2soMHhmZmZmZmZjOTc2OGFiMWEwIHRvIDB4ZmZmZmZmYzk3NjhhYjJjMCkKWyAgICAy
+Ljg5ODUwNl0gYjFhMDogZmZmZmZmYzk3NjNkYTAwMCAwMDAwMDAwMDAwMDAwMDA0IGZmZmZmZmM5
+NzY4YWIzNjAgZmZmZmZmODAwODM0NjVmYwpbICAgIDIuODk4NTEzXSBiMWMwOiBmZmZmZmZjOTc2
+ODAxZTAwIGZmZmZmZmM5NzYyYjgwMDAgZmZmZmZmYzk3NjhhYjFmMCBmZmZmZmY4MDA4MGVjMTU4
+ClsgICAgMi44OTg1MjBdIGIxZTA6IGZmZmZmZmM5NzY4YWIyMzAgZmZmZmZmODAwODQ5NmQwNCBm
+ZmZmZmZjOTc1Y2U2ZDgwIGZmZmZmZmM5NzY4YWIzNmUKWyAgICAyLjg5ODUyN10gYjIwMDogZmZm
+ZmZmYzk3NjhhYjM2ZiBmZmZmZmZjOTc2OGFiMjlkIGZmZmZmZmM5NzY4YWIyOWUgZmZmZmZmYzk3
+NjhhMDAwMApbICAgIDIuODk4NTMzXSBiMjIwOiBmZmZmZmZjOTc2OGFiMjUwIGZmZmZmZjgwMDgw
+ZTcwYzAgZmZmZmZmYzk3NjhhYjI3MCBmZmZmZmY4MDA4NDk2ZTQ0ClsgICAgMi44OTg1NDBdIGIy
+NDA6IDAwMDAwMDAwMDAwMDAxYWMgZmZmZmZmYzk3NjI0YzAxMCAwMDAwMDAwMDAwMDAwMDEwIDAw
+MDAwMDAwMDAwMDAwMTAKWyAgICAyLjg5ODU0Nl0gYjI2MDogMDAwMDAwMDAwMDAwMDAwMCAwMDAw
+MDAwMGZmZmZmZmZmIDAwMDAwMDAwMDAwMDAxYWMgMDAwMDAwMDAwMDAwMDAwMApbICAgIDIuODk4
+NTUyXSBiMjgwOiAwMDAwMDAwMDAwMDAwMDAwIDAwMDAwMDAwMDAwMDAwMDAgZmZmZmZmZmZmZmZm
+ZmIwMCAwMDAwMDAwMDAwMDAwMDAwClsgICAgMi44OTg1NThdIGIyYTA6IGZmZmZmZmM5NzY4YTAw
+ODAgMDAwMDAwMDAwMGUzMWI3MCAwMDAwMDAwMDAwMDAwMDAxIDAwMDAwMDAwMDAwMDAwMDEKWyAg
+ICAyLjg5ODU2Nl0gWzxmZmZmZmY4MDA4MzQ2NWZjPl0gX19tZW1jcHkrMHg3Yy8weDE4MApbICAg
+IDIuODk4NTc0XSBbPGZmZmZmZjgwMDg1M2UxNjQ+XSBudjA0X2ZiY29uX2ltYWdlYmxpdCsweDFk
+NC8weDJlOApbICAgIDIuODk4NTgyXSBbPGZmZmZmZjgwMDg1M2Q2ZDA+XSBub3V2ZWF1X2ZiY29u
+X2ltYWdlYmxpdCsweGQ4LzB4ZTAKWyAgICAyLjg5ODU5MV0gWzxmZmZmZmY4MDA4M2M0ZGI0Pl0g
+c29mdF9jdXJzb3IrMHgxNTQvMHgxZDgKWyAgICAyLjg5ODU5OF0gWzxmZmZmZmY4MDA4M2M0N2I0
+Pl0gYml0X2N1cnNvcisweDRmYy8weDUzOApbICAgIDIuODk4NjA1XSBbPGZmZmZmZjgwMDgzYzBj
+ZmM+XSBmYmNvbl9jdXJzb3IrMHgxMzQvMHgxYTgKWyAgICAyLjg5ODYxM10gWzxmZmZmZmY4MDA4
+NDFjMjgwPl0gaGlkZV9jdXJzb3IrMHgzOC8weGEwClsgICAgMi44OTg2MjBdIFs8ZmZmZmZmODAw
+ODQxZDQyMD5dIHJlZHJhd19zY3JlZW4rMHgxMjAvMHgyMjgKWyAgICAyLjg5ODYyOF0gWzxmZmZm
+ZmY4MDA4M2JmMjY4Pl0gZmJjb25fcHJlcGFyZV9sb2dvKzB4MzcwLzB4M2Y4ClsgICAgMi44OTg2
+MzVdIFs8ZmZmZmZmODAwODNiZjY0MD5dIGZiY29uX2luaXQrMHgzNTAvMHg1NjAKWyAgICAyLjg5
+ODY0MV0gWzxmZmZmZmY4MDA4NDFjNjM0Pl0gdmlzdWFsX2luaXQrMHhhYy8weDEwOApbICAgIDIu
+ODk4NjQ4XSBbPGZmZmZmZjgwMDg0MWRmMTQ+XSBkb19iaW5kX2Nvbl9kcml2ZXIrMHgxYzQvMHgz
+YTgKWyAgICAyLjg5ODY1NV0gWzxmZmZmZmY4MDA4NDFlNGY0Pl0gZG9fdGFrZV9vdmVyX2NvbnNv
+bGUrMHgxNzQvMHgxZTgKWyAgICAyLjg5ODY2Ml0gWzxmZmZmZmY4MDA4M2JmOGM0Pl0gZG9fZmJj
+b25fdGFrZW92ZXIrMHg3NC8weDEwMApbICAgIDIuODk4NjY5XSBbPGZmZmZmZjgwMDgzYzNlNDQ+
+XSBmYmNvbl9ldmVudF9ub3RpZnkrMHg4Y2MvMHg5MjAKWyAgICAyLjg5ODY4MF0gWzxmZmZmZmY4
+MDA4MGQ3ZTM4Pl0gbm90aWZpZXJfY2FsbF9jaGFpbisweDUwLzB4OTAKWyAgICAyLjg5ODY4NV0g
+WzxmZmZmZmY4MDA4MGQ4MjE0Pl0gX19ibG9ja2luZ19ub3RpZmllcl9jYWxsX2NoYWluKzB4NGMv
+MHg5MApbICAgIDIuODk4NjkxXSBbPGZmZmZmZjgwMDgwZDgyNmM+XSBibG9ja2luZ19ub3RpZmll
+cl9jYWxsX2NoYWluKzB4MTQvMHgyMApbICAgIDIuODk4Njk2XSBbPGZmZmZmZjgwMDgzYzVlMWM+
+XSBmYl9ub3RpZmllcl9jYWxsX2NoYWluKzB4MWMvMHgyOApbICAgIDIuODk4NzAzXSBbPGZmZmZm
+ZjgwMDgzYzgxYWM+XSByZWdpc3Rlcl9mcmFtZWJ1ZmZlcisweDFjYy8weDJlMApbICAgIDIuODk4
+NzEyXSBbPGZmZmZmZjgwMDg0NWRhODA+XSBkcm1fZmJfaGVscGVyX2luaXRpYWxfY29uZmlnKzB4
+Mjg4LzB4M2U4ClsgICAgMi44OTg3MTldIFs8ZmZmZmZmODAwODUzZGEyMD5dIG5vdXZlYXVfZmJj
+b25faW5pdCsweGUwLzB4MTE4ClsgICAgMi44OTg3MjddIFs8ZmZmZmZmODAwODUyZDJmOD5dIG5v
+dXZlYXVfZHJtX2xvYWQrMHgyNjgvMHg4OTAKWyAgICAyLjg5ODczNF0gWzxmZmZmZmY4MDA4NDY2
+ZTI0Pl0gZHJtX2Rldl9yZWdpc3RlcisweGJjLzB4YzgKWyAgICAyLjg5ODc0MF0gWzxmZmZmZmY4
+MDA4NDY4YTg4Pl0gZHJtX2dldF9wY2lfZGV2KzB4YTAvMHgxODAKWyAgICAyLjg5ODc0N10gWzxm
+ZmZmZmY4MDA4NTJjYjI4Pl0gbm91dmVhdV9kcm1fcHJvYmUrMHgxYTAvMHgxZTAKWyAgICAyLjg5
+ODc1NV0gWzxmZmZmZmY4MDA4M2EzMmUwPl0gcGNpX2RldmljZV9wcm9iZSsweDk4LzB4MTEwClsg
+ICAgMi44OTg3NjNdIFs8ZmZmZmZmODAwODU4ZTQzND5dIGRyaXZlcl9wcm9iZV9kZXZpY2UrMHgy
+MDQvMHgyYjAKWyAgICAyLjg5ODc3MF0gWzxmZmZmZmY4MDA4NThlNThjPl0gX19kcml2ZXJfYXR0
+YWNoKzB4YWMvMHhiMApbICAgIDIuODk4Nzc3XSBbPGZmZmZmZjgwMDg1OGMzZTA+XSBidXNfZm9y
+X2VhY2hfZGV2KzB4NjAvMHhhMApbICAgIDIuODk4NzgzXSBbPGZmZmZmZjgwMDg1OGRiYzA+XSBk
+cml2ZXJfYXR0YWNoKzB4MjAvMHgyOApbICAgIDIuODk4Nzg5XSBbPGZmZmZmZjgwMDg1OGQ3YjA+
+XSBidXNfYWRkX2RyaXZlcisweDFkMC8weDIzOApbICAgIDIuODk4Nzk2XSBbPGZmZmZmZjgwMDg1
+OGVkNTA+XSBkcml2ZXJfcmVnaXN0ZXIrMHg2MC8weGY4ClsgICAgMi44OTg4MDJdIFs8ZmZmZmZm
+ODAwODNhMjBkYz5dIF9fcGNpX3JlZ2lzdGVyX2RyaXZlcisweDNjLzB4NDgKWyAgICAyLjg5ODgw
+OV0gWzxmZmZmZmY4MDA4NDY4ZWI0Pl0gZHJtX3BjaV9pbml0KzB4ZjQvMHgxMjAKWyAgICAyLjg5
+ODgxOF0gWzxmZmZmZmY4MDA4YzU2ZmMwPl0gbm91dmVhdV9kcm1faW5pdCsweDIxYy8weDIzMApb
+ICAgIDIuODk4ODI1XSBbPGZmZmZmZjgwMDgwODI5ZDQ+XSBkb19vbmVfaW5pdGNhbGwrMHg4Yy8w
+eDE5MApbICAgIDIuODk4ODMyXSBbPGZmZmZmZjgwMDhjMzFhZjQ+XSBrZXJuZWxfaW5pdF9mcmVl
+YWJsZSsweDE0Yy8weDFmMApbICAgIDIuODk4ODM5XSBbPGZmZmZmZjgwMDg4YTBjMjA+XSBrZXJu
+ZWxfaW5pdCsweDEwLzB4MTAwClsgICAgMi44OTg4NDVdIFs8ZmZmZmZmODAwODA4NWUxMD5dIHJl
+dF9mcm9tX2ZvcmsrMHgxMC8weDQwClsgICAgMi44OTg4NTNdIENvZGU6IGE4ODEyMGM3IGE4YzEy
+MDI3IGE4ODEyMGM3IGE4YzEyMDI3IChhODgxMjBjNykKWyAgICAyLjg5ODg3MV0gLS0tWyBlbmQg
+dHJhY2UgZDU3MTNkY2FkMDIzZWUwNCBdLS0tClsgICAgMi44OTg4ODhdIEtlcm5lbCBwYW5pYyAt
+IG5vdCBzeW5jaW5nOiBBdHRlbXB0ZWQgdG8ga2lsbCBpbml0ISBleGl0Y29kZT0weDAwMDAwMDBi
+CgpJbiBhIHRvc3MtdXAgYmV0d2VlbiB0aGUgR1BVIHNlZWluZyBzdGFsZSBkYXRhIGFydGVmYWN0
+cyBvbiBzb21lIHN5c3RlbXMKdnMuIGNhdGFzdHJvcGhpYyBrZXJuZWwgY3Jhc2hlcyBvbiBvdGhl
+ciBzeXN0ZW1zLCB0aGUgbGF0dGVyIHdvdWxkIHNlZW0KdG8gdGFrZSBwcmVjZWRlbmNlLCBzbyBy
+ZXZlcnQgdGhpcyBjaGFuZ2UgdW50aWwgdGhlIHJlYWwgdW5kZXJseWluZwpwcm9ibGVtIGNhbiBi
+ZSBmaXhlZC4KClNpZ25lZC1vZmYtYnk6IFJvYmluIE11cnBoeSA8cm9iaW4ubXVycGh5QGFybS5j
+b20+Ci0tLQoKQWxleCwgQmVuLCBEYXZlLAoKSSBrbm93IEFsZXggd2FzIGxvb2tpbmcgaW50byB0
+aGlzLCBidXQgc2luY2Ugd2UncmUgbmVhcmx5IGF0IC1yYzYgYWxyZWFkeQppdCBsb29rcyBsaWtl
+IHRoZSBvbmx5IHRoaW5nIHRvIGRvIGZvciA0LjYgaXMgcGljayB0aGUgbGVzc2VyIG9mIHR3byBl
+dmlscy4uLgoKVGhhbmtzLApSb2Jpbi4KCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2Vu
+Z2luZS9kZXZpY2UvcGNpLmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyks
+IDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
+L2VuZ2luZS9kZXZpY2UvcGNpLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2lu
+ZS9kZXZpY2UvcGNpLmMKaW5kZXggMThmYWIzOTczY2U1Li42MmFkMDMwMGNmYTUgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9wY2kuYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcGNpLmMKQEAgLTE2
+MTQsNyArMTYxNCw3IEBAIG52a21fZGV2aWNlX3BjaV9mdW5jID0gewogCS5maW5pID0gbnZrbV9k
+ZXZpY2VfcGNpX2ZpbmksCiAJLnJlc291cmNlX2FkZHIgPSBudmttX2RldmljZV9wY2lfcmVzb3Vy
+Y2VfYWRkciwKIAkucmVzb3VyY2Vfc2l6ZSA9IG52a21fZGV2aWNlX3BjaV9yZXNvdXJjZV9zaXpl
+LAotCS5jcHVfY29oZXJlbnQgPSAhSVNfRU5BQkxFRChDT05GSUdfQVJNKSAmJiAhSVNfRU5BQkxF
+RChDT05GSUdfQVJNNjQpLAorCS5jcHVfY29oZXJlbnQgPSAhSVNfRU5BQkxFRChDT05GSUdfQVJN
+KSwKIH07CiAKIGludAotLSAKMi44LjEuZGlydHkKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2RyaS1kZXZlbAo=
