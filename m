@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95188] GeForce 840M (GM108) troubles
-Date: Sat, 30 Apr 2016 12:00:24 +0000
-Message-ID: <bug-95188-8800-1l5u2eRTeO@http.bugs.freedesktop.org/>
+Date: Sat, 30 Apr 2016 12:02:07 +0000
+Message-ID: <bug-95188-8800-NOXeEQoQBC@http.bugs.freedesktop.org/>
 References: <bug-95188-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2085398164=="
+Content-Type: multipart/mixed; boundary="===============1630033803=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95188-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,41 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2085398164==
-Content-Type: multipart/alternative; boundary="14620176250.cbFaD8Db6.2254";
+--===============1630033803==
+Content-Type: multipart/alternative; boundary="14620177270.78CbD2.2257";
  charset="UTF-8"
 
 
---14620176250.cbFaD8Db6.2254
-Date: Sat, 30 Apr 2016 12:00:24 +0000
+--14620177270.78CbD2.2257
+Date: Sat, 30 Apr 2016 12:02:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=95188
 
---- Comment #3 from Asad Mehmood <asad78611-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-Created attachment 123366
-  --> https://bugs.freedesktop.org/attachment.cgi?id=123366&action=edit
-mmiotrace
+Asad Mehmood <asad78611-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> changed:
 
-MMIOTRACE ATTACHED
-
-uname: Linux localhost.localdomain 4.4.8-300.fc23.x86_64 #1 SMP Wed Apr 20
-16:59:27 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
-
-NVIDIA ver: NVIDIA-Linux-x86_64-364.19
-
-procedure
-
-insmod nvidia.ko
-nvidia-smi
-rmmod nvidia
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #123366|text/plain                  |application/x-xz
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14620176250.cbFaD8Db6.2254
-Date: Sat, 30 Apr 2016 12:00:24 +0000
+--14620177270.78CbD2.2257
+Date: Sat, 30 Apr 2016 12:02:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -62,35 +51,28 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GeForce 840M (GM108) troubles"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95188#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:asad78611&#64;googlemail.com" title="Asad Mehmood &lt;asad78611&#64;googlemail.com&gt;"> <span class="fn">Asad Mehmood</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - GeForce 840M (GM108) troubles"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=95188">bug 95188</a>
-              from <span class="vcard"><a class="email" href="mailto:asad78611&#64;googlemail.com" title="Asad Mehmood &lt;asad78611&#64;googlemail.com&gt;"> <span class="fn">Asad Mehmood</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=123366" name="attach_123366" title="mmiotrace">attachment 123366</a> <a href="attachment.cgi?id=123366&amp;action=edit" title="mmiotrace">[details]</a></span>
-mmiotrace
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-MMIOTRACE ATTACHED
-
-uname: Linux localhost.localdomain 4.4.8-300.fc23.x86_64 #1 SMP Wed Apr 20
-16:59:27 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
-
-NVIDIA ver: NVIDIA-Linux-x86_64-364.19
-
-procedure
-
-insmod nvidia.ko
-nvidia-smi
-rmmod nvidia</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Attachment #123366 mime type</td>
+           <td>text/plain
+           </td>
+           <td>application/x-xz
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -100,9 +82,9 @@ rmmod nvidia</pre>
       </ul>
     </body>
 </html>
---14620176250.cbFaD8Db6.2254--
+--14620177270.78CbD2.2257--
 
---===============2085398164==
+--===============1630033803==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2085398164==--
+--===============1630033803==--
