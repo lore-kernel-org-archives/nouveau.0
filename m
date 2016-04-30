@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95188] GeForce 840M (GM108) troubles
-Date: Sat, 30 Apr 2016 12:02:07 +0000
-Message-ID: <bug-95188-8800-NOXeEQoQBC@http.bugs.freedesktop.org/>
+Date: Sat, 30 Apr 2016 12:03:41 +0000
+Message-ID: <bug-95188-8800-X9KJ8ZHRQG@http.bugs.freedesktop.org/>
 References: <bug-95188-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1630033803=="
+Content-Type: multipart/mixed; boundary="===============1786000237=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95188-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1630033803==
-Content-Type: multipart/alternative; boundary="14620177270.78CbD2.2257";
+--===============1786000237==
+Content-Type: multipart/alternative; boundary="14620178210.D922.2426";
  charset="UTF-8"
 
 
---14620177270.78CbD2.2257
-Date: Sat, 30 Apr 2016 12:02:06 +0000
+--14620178210.D922.2426
+Date: Sat, 30 Apr 2016 12:03:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
@@ -36,14 +36,14 @@ Asad Mehmood <asad78611-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #123366|text/plain                  |application/x-xz
-          mime type|                            |
+ Attachment #123366|mmiotrace                   |mmiotrace.xz
+        description|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14620177270.78CbD2.2257
-Date: Sat, 30 Apr 2016 12:02:07 +0000
+--14620178210.D922.2426
+Date: Sat, 30 Apr 2016 12:03:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -66,10 +66,10 @@ Content-Type: text/html
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #123366 mime type</td>
-           <td>text/plain
+           <td style="text-align:right;">Attachment #123366 description</td>
+           <td>mmiotrace
            </td>
-           <td>application/x-xz
+           <td>mmiotrace.xz
            </td>
          </tr></table>
       <p>
@@ -82,9 +82,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14620177270.78CbD2.2257--
+--14620178210.D922.2426--
 
---===============1630033803==
+--===============1786000237==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -94,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1630033803==--
+--===============1786000237==--
