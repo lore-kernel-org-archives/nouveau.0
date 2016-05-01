@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95213] no screens found(EE)
-Date: Sun, 01 May 2016 19:24:40 +0000
-Message-ID: <bug-95213-8800-UhO70eKb8T@http.bugs.freedesktop.org/>
-References: <bug-95213-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95188] GeForce 840M (GM108) troubles
+Date: Sun, 01 May 2016 23:26:54 +0000
+Message-ID: <bug-95188-8800-NEFRkQR46q@http.bugs.freedesktop.org/>
+References: <bug-95188-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1765425190=="
+Content-Type: multipart/mixed; boundary="===============0355255501=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-95188-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1765425190==
-Content-Type: multipart/alternative; boundary="14621306800.2bFA6eed.4587";
+--===============0355255501==
+Content-Type: multipart/alternative; boundary="14621452130.a7Ea1DA.31160";
  charset="UTF-8"
 
 
---14621306800.2bFA6eed.4587
-Date: Sun, 1 May 2016 19:24:40 +0000
+--14621452130.a7Ea1DA.31160
+Date: Sun, 1 May 2016 23:26:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=95213
+https://bugs.freedesktop.org/show_bug.cgi?id=95188
 
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-BTW, I might note that vesa is being loaded... perhaps that's upsetting things,
-although I'm not sure if that would do it.
+--- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Can you grab me the following things please:
+
+1) dmesg log of loading nouveau with "modprobe nouveau debug=bios=trace"
+2) mmiotrace of loading nouveau
+
+Thanks,
+Ben.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
-You are the QA Contact for the bug.
---14621306800.2bFA6eed.4587
-Date: Sun, 1 May 2016 19:24:40 +0000
+--14621452130.a7Ea1DA.31160
+Date: Sun, 1 May 2016 23:26:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -53,17 +57,22 @@ Content-Type: text/html
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - no screens found(EE)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95213#c9">Comment # 9</a>
+          bz_status_NEW "
+   title="NEW - GeForce 840M (GM108) troubles"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95188#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - no screens found(EE)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95213">bug 95213</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW - GeForce 840M (GM108) troubles"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95188">bug 95188</a>
+              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
 </span></b>
-        <pre>BTW, I might note that vesa is being loaded... perhaps that's upsetting things,
-although I'm not sure if that would do it.</pre>
+        <pre>Can you grab me the following things please:
+
+1) dmesg log of loading nouveau with &quot;modprobe nouveau debug=bios=trace&quot;
+2) mmiotrace of loading nouveau
+
+Thanks,
+Ben.</pre>
         </div>
       </p>
       <hr>
@@ -71,13 +80,12 @@ although I'm not sure if that would do it.</pre>
       
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>
---14621306800.2bFA6eed.4587--
+--14621452130.a7Ea1DA.31160--
 
---===============1765425190==
+--===============0355255501==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1765425190==--
+--===============0355255501==--
