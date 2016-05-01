@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95213] no screens found(EE)
-Date: Sat, 30 Apr 2016 20:02:59 +0000
-Message-ID: <bug-95213-8800-IpawR56OUX@http.bugs.freedesktop.org/>
-References: <bug-95213-8800@http.bugs.freedesktop.org/>
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: [PATCH v2 2/2] nouveau/bl: Do not register interface if
+	Apple GMUX detected
+Date: Sun,  1 May 2016 14:32:07 +0200
+Message-ID: <1462105927-4328-1-git-send-email-pierre.morrow@free.fr>
+References: <1460923062-10849-2-git-send-email-pierre.morrow@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0582204222=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1460923062-10849-2-git-send-email-pierre.morrow-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,79 +18,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0582204222==
-Content-Type: multipart/alternative; boundary="14620465781.d7faA0.18185";
- charset="UTF-8"
-
-
---14620465781.d7faA0.18185
-Date: Sat, 30 Apr 2016 20:02:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=95213
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-[   686.445] (EE) [drm] KMS not enabled
-
-This implies that you don't have the nouveau kernel module loaded (or you've
-loaded it with modeset=0 which effectively disables it).
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.
---14620465781.d7faA0.18185
-Date: Sat, 30 Apr 2016 20:02:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - no screens found(EE)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95213#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - no screens found(EE)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95213">bug 95213</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>[   686.445] (EE) [drm] KMS not enabled
-
-This implies that you don't have the nouveau kernel module loaded (or you've
-loaded it with modeset=0 which effectively disables it).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>
---14620465781.d7faA0.18185--
-
---===============0582204222==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0582204222==--
+VGhlIEFwcGxlIEdNVVggaXMgdGhlIG9uZSBtYW5hZ2luZyB0aGUgYmFja2xpZ2h0LCBzbyB0aGVy
+ZSBpcyBubyBuZWVkIGZvcgpOb3V2ZWF1IHRvIHJlZ2lzdGVyIGl0cyBvd24gYmFja2xpZ2h0IGlu
+dGVyZmFjZS4KCnYyOiBEbyBub3Qgc3BsaXQgaW5mb3JtYXRpb24gbWVzc2FnZSBvbiB0d28gbGlu
+ZXMgYXMgaXQgcHJldmVudHMgZnJvbSBncmVwcGluZwogICAgaXQsIGFzIHBvaW50ZWQgb3V0IGJ5
+IEhhbnMgZGUgR29lZGUKClNpZ25lZC1vZmYtYnk6IFBpZXJyZSBNb3JlYXUgPHBpZXJyZS5tb3Jy
+b3dAZnJlZS5mcj4KLS0tCiBkcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jIHwgNiArKysr
+KysKIDEgZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jIGIvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQu
+YwppbmRleCA0MTMzMGU0Li44NDI5Y2ViIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2JhY2tsaWdodC5jCisrKyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMKQEAgLTMw
+LDYgKzMwLDcgQEAKICAqIFJlZ2lzdGVyIGxvY2F0aW9ucyBkZXJpdmVkIGZyb20gTlZDbG9jayBi
+eSBSb2RlcmljayBDb2xlbmJyYW5kZXIKICAqLwogCisjaW5jbHVkZSA8bGludXgvYXBwbGUtZ211
+eC5oPgogI2luY2x1ZGUgPGxpbnV4L2JhY2tsaWdodC5oPgogI2luY2x1ZGUgPGxpbnV4L2lkci5o
+PgogCkBAIC0yNTcsNiArMjU4LDExIEBAIG5vdXZlYXVfYmFja2xpZ2h0X2luaXQoc3RydWN0IGRy
+bV9kZXZpY2UgKmRldikKIAlzdHJ1Y3QgbnZpZl9kZXZpY2UgKmRldmljZSA9ICZkcm0tPmRldmlj
+ZTsKIAlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yOwogCisJaWYgKGFwcGxlX2dtdXhf
+cHJlc2VudCgpKSB7CisJCU5WX0lORk8oZHJtLCAiQXBwbGUgR01VWCBkZXRlY3RlZDogbm90IHJl
+Z2lzdGVyaW5nIE5vdXZlYXUgYmFja2xpZ2h0IGludGVyZmFjZSIpOworCQlyZXR1cm4gMDsKKwl9
+CisKIAlJTklUX0xJU1RfSEVBRCgmZHJtLT5ibF9jb25uZWN0b3JzKTsKIAogCWxpc3RfZm9yX2Vh
+Y2hfZW50cnkoY29ubmVjdG9yLCAmZGV2LT5tb2RlX2NvbmZpZy5jb25uZWN0b3JfbGlzdCwgaGVh
+ZCkgewotLSAKMi44LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
