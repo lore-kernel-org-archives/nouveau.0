@@ -1,14 +1,12 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH v2 2/2] nouveau/bl: Do not register interface
- if Apple GMUX detected
-Date: Sun, 1 May 2016 14:35:25 +0200
-Message-ID: <20160501123516.GA1324@Thessia>
-References: <1460923062-10849-2-git-send-email-pierre.morrow@free.fr>
- <1462105927-4328-1-git-send-email-pierre.morrow@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95213] no screens found(EE)
+Date: Sun, 01 May 2016 16:46:10 +0000
+Message-ID: <bug-95213-8800-nqtsUxifLK@http.bugs.freedesktop.org/>
+References: <bug-95213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0668463622=="
+Content-Type: multipart/mixed; boundary="===============0220818034=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1462105927-4328-1-git-send-email-pierre.morrow-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-95213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,99 +16,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0668463622==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="v9Ux+11Zm5mwPlX6"
-Content-Disposition: inline
+--===============0220818034==
+Content-Type: multipart/alternative; boundary="14621211700.9d76.22898";
+ charset="UTF-8"
 
 
---v9Ux+11Zm5mwPlX6
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+--14621211700.9d76.22898
+Date: Sun, 1 May 2016 16:46:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
 
-On 02:32 PM - May 01 2016, Pierre Moreau wrote:
-> The Apple GMUX is the one managing the backlight, so there is no need for
-> Nouveau to register its own backlight interface.
->=20
-> v2: Do not split information message on two lines as it prevents from gre=
-pping
->     it, as pointed out by Hans de Goede
+https://bugs.freedesktop.org/show_bug.cgi?id=95213
 
-It should be "it, as pointed out by Lukas Wunner", sorry for the mistake=E2=
-=80=A6 :-/
+--- Comment #2 from tele <swojskichlopak-5tc4TXWwyLM@public.gmane.org> ---
+Example from Intel graphic card which working:
+    end of dmesh log
+#-------------------------------
+ . . .
+[    0.000000] input: Video Bus as
+/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input18
+[    0.000000] [drm] Initialized i915 1.6.0 20151010 for 0000:00:02.0 on minor
+0
+[    0.000000] fbcon: inteldrmfb (fb0) is primary device
+[    0.000000] Console: switching to colour frame buffer device 240x67
+[    0.000000] i915 0000:00:02.0: fb0: inteldrmfb frame buffer device
+[    0.000000] [drm:intel_set_pch_fifo_underrun_reporting [i915]] *ERROR*
+uncleared pch fifo underrun on pch transcoder A
+[    0.000000] [drm:cpt_irq_handler [i915]] *ERROR* PCH transcoder A FIFO
+underrun
+[    0.000000] ip_set: protocol 6
+[    0.000000] netfilter PSD loaded - (c) astaro AG
+[    0.000000] IFWLOG: register target
+ . . .
+#-------------------------------
 
-Pierre
+#------------------------
+$ lsmod
+. . .
+i915                  890176  3 
+drm_kms_helper         79844  1 i915
+drm                   232046  5 i915,drm_kms_helper
+video                  24297  1 i915
+. . .
+#------------------------
 
->=20
-> Signed-off-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-> ---
->  drm/nouveau/nouveau_backlight.c | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/drm/nouveau/nouveau_backlight.c b/drm/nouveau/nouveau_backli=
-ght.c
-> index 41330e4..8429ceb 100644
-> --- a/drm/nouveau/nouveau_backlight.c
-> +++ b/drm/nouveau/nouveau_backlight.c
-> @@ -30,6 +30,7 @@
->   * Register locations derived from NVClock by Roderick Colenbrander
->   */
-> =20
-> +#include <linux/apple-gmux.h>
->  #include <linux/backlight.h>
->  #include <linux/idr.h>
-> =20
-> @@ -257,6 +258,11 @@ nouveau_backlight_init(struct drm_device *dev)
->  	struct nvif_device *device =3D &drm->device;
->  	struct drm_connector *connector;
-> =20
-> +	if (apple_gmux_present()) {
-> +		NV_INFO(drm, "Apple GMUX detected: not registering Nouveau backlight i=
-nterface");
-> +		return 0;
-> +	}
-> +
->  	INIT_LIST_HEAD(&drm->bl_connectors);
-> =20
->  	list_for_each_entry(connector, &dev->mode_config.connector_list, head) {
-> --=20
-> 2.8.2
->=20
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+checking
+#-----------------------------------------------
+$ modinfo i915
+filename:      
+/lib/modules/4.4.6-pclos1/kernel/drivers/gpu/drm/i915/i915.ko.xz
+. . .
+$ modinfo nouveau
+filename:      
+/lib/modules/4.4.6-pclos1/kernel/drivers/gpu/drm/nouveau/nouveau.ko.xz
+. . .
+#-----------------------------------------------
 
---v9Ux+11Zm5mwPlX6
-Content-Type: application/pgp-signature; name="signature.asc"
+ Configuration:
+#--------------------------------------
+$ modprobe -c  | grep nouveau
+alias pci:v000010DEd*sv*sd*bc03sc*i* nouveau
+alias pci:v000012D2d*sv*sd*bc03sc*i* nouveau
+#--------------------------------------
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+Blacklisted and disabled modules
+#-----------------------------
+$ modprobe --showconfig | egrep "^(blacklist|install)" | grep nouveau
+$ 
+#-----------------------------
 
-iQIcBAABCgAGBQJXJfgNAAoJEI7uMhYTPh3wuDEP/R6hNxuTs67Rkx/Z3UX+xvRd
-z7OkTFyhA6alWJMlrq9C3mTZ8NAbY+Sy2UuHYFkEdCPLjEi7smxQgyhMr8BNw4nd
-2Me+X7pEbrgqdce42Fbt0xGJeuWTm57sn3bzzApyB1044ZAEcXgnntu5vjV6+3mF
-MGWqoJDvA3fRepRLICbPpWinIr0Z8wX4NxGAjv8dAudvJX+seB2tLlHLoz32djPk
-znaxixsWy82PU1kOnkscIV+jNfw2VwSxsfSCHS/L/5X71imicu0QCqYfboWaO14m
-kzrLhIqmv9ZR7GJaj0mSGHt0vmQOjgSzGvyj7dJ32Y/69FtNQpngYpnluH930AyP
-Ki3i0wmAVwExz3tfmQ4gJFWVefPkNAe3xyhf28kppNzQp4S9f4qV/jBJaB1KP7gk
-KjFULiZqCQ7DWa5dzppBJ5b1E1ZKngOmCXyTZzJUrijKhYkaTD+iEXCseQyQVH4u
-rCszQgpxox98d+E0EePyZHlU1OlA/rjR6OgJgmHsepGu+mOINg5ypEVmLRbBVKrt
-kX61wjGJTU6eLNzxikZLzCltlch1MZE20WObE3vfNHGmzX8+3g4TsuX6HSWCys+V
-va+4dWgK6H3ag/7YUpxl4++lhdI3vKTH/ZAs+5ZbSR5kBEcwMKvuZLdlS9YhgLvo
-ExcSahHqko/mNAzo49jW
-=AphS
------END PGP SIGNATURE-----
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+--14621211700.9d76.22898
+Date: Sun, 1 May 2016 16:46:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html
 
---v9Ux+11Zm5mwPlX6--
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - no screens found(EE)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95213#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - no screens found(EE)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95213">bug 95213</a>
+              from <span class="vcard"><a class="email" href="mailto:swojskichlopak&#64;wp.pl" title="tele &lt;swojskichlopak&#64;wp.pl&gt;"> <span class="fn">tele</span></a>
+</span></b>
+        <pre>Example from Intel graphic card which working:
+    end of dmesh log
+#-------------------------------
+ . . .
+[    0.000000] input: Video Bus as
+/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input18
+[    0.000000] [drm] Initialized i915 1.6.0 20151010 for 0000:00:02.0 on minor
+0
+[    0.000000] fbcon: inteldrmfb (fb0) is primary device
+[    0.000000] Console: switching to colour frame buffer device 240x67
+[    0.000000] i915 0000:00:02.0: fb0: inteldrmfb frame buffer device
+[    0.000000] [drm:intel_set_pch_fifo_underrun_reporting [i915]] *ERROR*
+uncleared pch fifo underrun on pch transcoder A
+[    0.000000] [drm:cpt_irq_handler [i915]] *ERROR* PCH transcoder A FIFO
+underrun
+[    0.000000] ip_set: protocol 6
+[    0.000000] netfilter PSD loaded - (c) astaro AG
+[    0.000000] IFWLOG: register target
+ . . .
+#-------------------------------
 
---===============0668463622==
+#------------------------
+$ lsmod
+. . .
+i915                  890176  3 
+drm_kms_helper         79844  1 i915
+drm                   232046  5 i915,drm_kms_helper
+video                  24297  1 i915
+. . .
+#------------------------
+
+checking
+#-----------------------------------------------
+$ modinfo i915
+filename:      
+/lib/modules/4.4.6-pclos1/kernel/drivers/gpu/drm/i915/i915.ko.xz
+. . .
+$ modinfo nouveau
+filename:      
+/lib/modules/4.4.6-pclos1/kernel/drivers/gpu/drm/nouveau/nouveau.ko.xz
+. . .
+#-----------------------------------------------
+
+ Configuration:
+#--------------------------------------
+$ modprobe -c  | grep nouveau
+alias pci:v000010DEd*sv*sd*bc03sc*i* nouveau
+alias pci:v000012D2d*sv*sd*bc03sc*i* nouveau
+#--------------------------------------
+
+Blacklisted and disabled modules
+#-----------------------------
+$ modprobe --showconfig | egrep &quot;^(blacklist|install)&quot; | grep nouveau
+$ 
+#-----------------------------</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14621211700.9d76.22898--
+
+--===============0220818034==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +193,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0668463622==--
+--===============0220818034==--
