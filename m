@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
  GT]: HDMI monitor stays black after s2ram
-Date: Tue, 03 May 2016 17:20:32 +0000
-Message-ID: <bug-93887-8800-pEiBx1eOQ7@http.bugs.freedesktop.org/>
+Date: Tue, 03 May 2016 17:41:40 +0000
+Message-ID: <bug-93887-8800-71prMdwPZN@http.bugs.freedesktop.org/>
 References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0169985769=="
+Content-Type: multipart/mixed; boundary="===============1173597360=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0169985769==
-Content-Type: multipart/alternative; boundary="14622960321.fCDD4e.18218";
+--===============1173597360==
+Content-Type: multipart/alternative; boundary="14622972991.88540.24167";
  charset="UTF-8"
 
 
---14622960321.fCDD4e.18218
-Date: Tue, 3 May 2016 17:20:32 +0000
+--14622972991.88540.24167
+Date: Tue, 3 May 2016 17:41:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93887
 
---- Comment #28 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-  As it seems we now have a kernel issue with the H265:
-https://bugzilla.kernel.org/show_bug.cgi?id=117581
-  Unfortunately I can not remember whether I had initially done tests without
-the nouveau module also for the H265 or just for the Xi3650. Pierre; any
-further help is still highly appreciated!
+--- Comment #29 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 123442
+  --> https://bugs.freedesktop.org/attachment.cgi?id=123442&action=edit
+dmesg with 4.6.0-rc6-ARCH-00006-g7d92f59 and no_console_suspend
+
+  The key point about it is (at least to my mind) that it works with
+no_console_suspend without nouveau. Then it ought to work with nouveau and
+no_console suspend as well.  This time I had a FullHD-external-monitor and no
+hdmimhz and suspend still did not work: BOOT_IMAGE=/boot/vmlinuz-custom
+root=/dev/disk/by-label/arch ro resume=/dev/disk/by-label/swap
+no_console_suspend log_buf_len=1M debug ignore_loglevel
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14622960321.fCDD4e.18218
-Date: Tue, 3 May 2016 17:20:32 +0000
+--14622972991.88540.24167
+Date: Tue, 3 May 2016 17:41:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -58,18 +63,22 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c28">Comment # 28</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c29">Comment # 29</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
               from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>  As it seems we now have a kernel issue with the H265:
-<a href="https://bugzilla.kernel.org/show_bug.cgi?id=117581">https://bugzilla.kernel.org/show_bug.cgi?id=117581</a>
-  Unfortunately I can not remember whether I had initially done tests without
-the nouveau module also for the H265 or just for the Xi3650. Pierre; any
-further help is still highly appreciated!</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=123442" name="attach_123442" title="dmesg with 4.6.0-rc6-ARCH-00006-g7d92f59 and no_console_suspend">attachment 123442</a> <a href="attachment.cgi?id=123442&amp;action=edit" title="dmesg with 4.6.0-rc6-ARCH-00006-g7d92f59 and no_console_suspend">[details]</a></span>
+dmesg with 4.6.0-rc6-ARCH-00006-g7d92f59 and no_console_suspend
+
+  The key point about it is (at least to my mind) that it works with
+no_console_suspend without nouveau. Then it ought to work with nouveau and
+no_console suspend as well.  This time I had a FullHD-external-monitor and no
+hdmimhz and suspend still did not work: BOOT_IMAGE=/boot/vmlinuz-custom
+root=/dev/disk/by-label/arch ro resume=/dev/disk/by-label/swap
+no_console_suspend log_buf_len=1M debug ignore_loglevel</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +89,9 @@ further help is still highly appreciated!</pre>
       </ul>
     </body>
 </html>
---14622960321.fCDD4e.18218--
+--14622972991.88540.24167--
 
---===============0169985769==
+--===============1173597360==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0169985769==--
+--===============1173597360==--
