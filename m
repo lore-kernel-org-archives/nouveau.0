@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
- GT]: HDMI monitor stays black after s2ram
-Date: Tue, 03 May 2016 16:46:52 +0000
-Message-ID: <bug-93887-8800-imBOYCsiaT@http.bugs.freedesktop.org/>
-References: <bug-93887-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
+ 5; PGR engine fault
+Date: Tue, 03 May 2016 17:01:44 +0000
+Message-ID: <bug-92077-8800-6DYu4NHGri@http.bugs.freedesktop.org/>
+References: <bug-92077-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1333053419=="
+Content-Type: multipart/mixed; boundary="===============1080139631=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1333053419==
-Content-Type: multipart/alternative; boundary="14622940121.E761F0.9438";
+--===============1080139631==
+Content-Type: multipart/alternative; boundary="14622949042.aF99a4.12737";
  charset="UTF-8"
 
 
---14622940121.E761F0.9438
-Date: Tue, 3 May 2016 16:46:52 +0000
+--14622949042.aF99a4.12737
+Date: Tue, 3 May 2016 17:01:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93887
+https://bugs.freedesktop.org/show_bug.cgi?id=92077
 
---- Comment #27 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-A few questions:
+--- Comment #22 from Andrey Mazo <ahippo-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
+(In reply to Karol Herbst from comment #21)
+> > I tried to disable Network Monitor applet and to close the browser when
+> > unused, and the system seems to survive longer (it's been almost 6 days of
+> > uptime by now).
+> > Not a solution, of course, but, at least, makes the system usable.
+> 
+> and maybe also tells us a fast way to reproduce.
 
-* What happens if you hot plug the external screen after you logged in your
-session? Do you get an image, does it receive a signal or does it stay black?
-* Do you have a smaller screen to test with, just to rule out that it’s not a
-corner case due to using a 4k screen? (It most likely won’t change, but… just
-to be sure.)
+Yeah, good point.
+I'll try to run the applet under apitrace and reproduce the problem.
 
-I’ll have a try with my G96s, see if I have one with an HDMI output.
+The system feels much better with the Network Monitor applet disabled -- it's
+been 14 days of uptime now.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
---14622940121.E761F0.9438
-Date: Tue, 3 May 2016 16:46:52 +0000
+--14622949042.aF99a4.12737
+Date: Tue, 3 May 2016 17:01:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -61,36 +66,41 @@ Content-Type: text/html
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c27">Comment # 27</a>
+   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077">bug 92077</a>
+              from <span class="vcard"><a class="email" href="mailto:ahippo&#64;yandex.ru" title="Andrey Mazo &lt;ahippo&#64;yandex.ru&gt;"> <span class="fn">Andrey Mazo</span></a>
 </span></b>
-        <pre>A few questions:
+        <pre>(In reply to Karol Herbst from <a href="show_bug.cgi?id=92077#c21">comment #21</a>)
+<span class="quote">&gt; &gt; I tried to disable Network Monitor applet and to close the browser when
+&gt; &gt; unused, and the system seems to survive longer (it's been almost 6 days of
+&gt; &gt; uptime by now).
+&gt; &gt; Not a solution, of course, but, at least, makes the system usable.
+&gt; 
+&gt; and maybe also tells us a fast way to reproduce.</span >
 
-* What happens if you hot plug the external screen after you logged in your
-session? Do you get an image, does it receive a signal or does it stay black?
-* Do you have a smaller screen to test with, just to rule out that it’s not a
-corner case due to using a 4k screen? (It most likely won’t change, but… just
-to be sure.)
+Yeah, good point.
+I'll try to run the applet under apitrace and reproduce the problem.
 
-I’ll have a try with my G96s, see if I have one with an HDMI output.</pre>
+The system feels much better with the Network Monitor applet disabled -- it's
+been 14 days of uptime now.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
---14622940121.E761F0.9438--
+--14622949042.aF99a4.12737--
 
---===============1333053419==
+--===============1080139631==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1333053419==--
+--===============1080139631==--
