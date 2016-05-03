@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
- GT]: HDMI monitor stays black after s2ram
-Date: Tue, 03 May 2016 18:06:49 +0000
-Message-ID: <bug-93887-8800-D7o9cPH9qI@http.bugs.freedesktop.org/>
-References: <bug-93887-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95251] New: vdpau decoder capabilities: not supported
+Date: Tue, 03 May 2016 18:58:09 +0000
+Message-ID: <bug-95251-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0863493723=="
+Content-Type: multipart/mixed; boundary="===============0282689249=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,44 +18,58 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0863493723==
-Content-Type: multipart/alternative; boundary="14622988091.7dFe.30241";
+--===============0282689249==
+Content-Type: multipart/alternative; boundary="14623018880.ab6323Fd.11129";
  charset="UTF-8"
 
 
---14622988091.7dFe.30241
-Date: Tue, 3 May 2016 18:06:49 +0000
+--14623018880.ab6323Fd.11129
+Date: Tue, 3 May 2016 18:58:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93887
+https://bugs.freedesktop.org/show_bug.cgi?id=95251
 
---- Comment #32 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-  In the very beginning VGA monitors and the integrated display came up well at
-least on the Xi3650. In the very beginning there was also another suspend bug
-with the H265 which is already resolved (The H265 had formerly crashed in 95%
-of all cases; however for 5% it behaved like the Xi3650; as far as I can tell;
-i.e. bringing the integrated display up but not the HDMI display).
+            Bug ID: 95251
+           Summary: vdpau decoder capabilities: not supported
+           Product: Mesa
+           Version: 11.2
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: bgz.marko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-  Things have changed now and the integrated display does not come up again any
-more after suspend. However the crashes for the H265 I am currently testing on
-were resolved (i.e. there is only a way forward). As none of the displays
-currently comes up (neither the integrated LVDS nor the external HDMI) I would
-not expect a VGA display to come up.
+Created attachment 123443
+  --> https://bugs.freedesktop.org/attachment.cgi?id=123443&action=edit
+dmesg
 
-  It is the way that from the BIOS only the integrated display becomes enabled
-on boot and no external monitor so the integrated display coming no more up
-after suspend may even be a 'good sign' of the kernel no more relying on the
-BIOS/ACPI for this but taking things in its own hand as the proprietary Nvidia
-driver does which can re-enable HDMI monitors after suspend well.
+I have a Geforce 9300M GS card (NV98) which has VDPAU support according to 
 
-.- testing is never way easy - and so is reading and entending bug reports :/
+https://nouveau.freedesktop.org/wiki/VideoAcceleration/
+
+Also, with nvidia blog, there is working hardware acceleration.
+
+I am on Arch Linux (x86) with all relevant packages including firmware
+installed:
+mesa-vdpau
+libvdpau
+nouveau-fw
+xf86-video-nouveau
+
+Attached are dmesg and vdpauinfo, which shows - not supported - for all decoder
+capabilities.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
---14622988091.7dFe.30241
-Date: Tue, 3 May 2016 18:06:49 +0000
+--14623018880.ab6323Fd.11129
+Date: Tue, 3 May 2016 18:58:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -66,51 +77,121 @@ Content-Type: text/html
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - vdpau decoder capabilities: not supported"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95251">95251</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>vdpau decoder capabilities: not supported
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>11.2
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>bgz.marko&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c32">Comment # 32</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
-              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
-</span></b>
-        <pre>  In the very beginning VGA monitors and the integrated display came up well at
-least on the Xi3650. In the very beginning there was also another suspend bug
-with the H265 which is already resolved (The H265 had formerly crashed in 95%
-of all cases; however for 5% it behaved like the Xi3650; as far as I can tell;
-i.e. bringing the integrated display up but not the HDMI display).
+        <pre>Created <span class=""><a href="attachment.cgi?id=123443" name="attach_123443" title="dmesg">attachment 123443</a> <a href="attachment.cgi?id=123443&amp;action=edit" title="dmesg">[details]</a></span>
+dmesg
 
-  Things have changed now and the integrated display does not come up again any
-more after suspend. However the crashes for the H265 I am currently testing on
-were resolved (i.e. there is only a way forward). As none of the displays
-currently comes up (neither the integrated LVDS nor the external HDMI) I would
-not expect a VGA display to come up.
+I have a Geforce 9300M GS card (NV98) which has VDPAU support according to 
 
-  It is the way that from the BIOS only the integrated display becomes enabled
-on boot and no external monitor so the integrated display coming no more up
-after suspend may even be a 'good sign' of the kernel no more relying on the
-BIOS/ACPI for this but taking things in its own hand as the proprietary Nvidia
-driver does which can re-enable HDMI monitors after suspend well.
+<a href="https://nouveau.freedesktop.org/wiki/VideoAcceleration/">https://nouveau.freedesktop.org/wiki/VideoAcceleration/</a>
 
-.- testing is never way easy - and so is reading and entending bug reports :/</pre>
+Also, with nvidia blog, there is working hardware acceleration.
+
+I am on Arch Linux (x86) with all relevant packages including firmware
+installed:
+mesa-vdpau
+libvdpau
+nouveau-fw
+xf86-video-nouveau
+
+Attached are dmesg and vdpauinfo, which shows - not supported - for all decoder
+capabilities.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
---14622988091.7dFe.30241--
+--14623018880.ab6323Fd.11129--
 
---===============0863493723==
+--===============0282689249==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +201,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0863493723==--
+--===============0282689249==--
