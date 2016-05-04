@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95251] vdpau decoder capabilities: not supported
-Date: Wed, 04 May 2016 09:40:41 +0000
-Message-ID: <bug-95251-8800-yOTjG3nskq@http.bugs.freedesktop.org/>
-References: <bug-95251-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
+ GT]: HDMI monitor stays black after s2ram
+Date: Wed, 04 May 2016 11:42:58 +0000
+Message-ID: <bug-93887-8800-VGz7cyWllK@http.bugs.freedesktop.org/>
+References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0438799005=="
+Content-Type: multipart/mixed; boundary="===============0982833781=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95251-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,52 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0438799005==
-Content-Type: multipart/alternative; boundary="14623548410.6AF2.11870";
+--===============0982833781==
+Content-Type: multipart/alternative; boundary="14623621781.bD03.4823";
  charset="UTF-8"
 
 
---14623548410.6AF2.11870
-Date: Wed, 4 May 2016 09:40:41 +0000
+--14623621781.bD03.4823
+Date: Wed, 4 May 2016 11:42:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=95251
+https://bugs.freedesktop.org/show_bug.cgi?id=93887
 
---- Comment #6 from Marko Srebre <bgz.marko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-That's great. The patch works. vdpauinfo now shows decoding capabilities. Also
-tested with mpv and an x264 video file, hardware acceleration working.
+--- Comment #37 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+To extract the VBIOS, look at
+https://nouveau.freedesktop.org/wiki/DumpingVideoBios/, trying either of both
+last options (nvagetbios or cat vbios.rom).
 
-Thank you very much.
+Regarding the MMIOtrace, I should have been more specific, sorry. I am looking
+for a MMIOtrace of the blob being loaded with no external screen:
+
+1. start the trace
+2. modprobe nvidia
+3. start X
+4. `echo 'Plugging screen' > /sys/kernel/debug/tracing/trace_marker`
+5. plug the screen and set it up to get an image
+6. `echo 'Screen is ready' > /sys/kernel/debug/tracing/trace_marker`
+7. stop the trace
+
+and a similar one where the screen is already plugged in during the boot:
+
+
+1. start the trace
+2. modprobe nvidia
+3. start X
+#if is_needed
+4. `echo 'Setting up screen' > /sys/kernel/debug/tracing/trace_marker`
+5. set it up to get an image
+6. `echo 'Screen is ready' > /sys/kernel/debug/tracing/trace_marker`
+#endif
+7. stop the trace
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
---14623548410.6AF2.11870
-Date: Wed, 4 May 2016 09:40:41 +0000
+--14623621781.bD03.4823
+Date: Wed, 4 May 2016 11:42:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -56,32 +79,54 @@ Content-Type: text/html
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - vdpau decoder capabilities: not supported"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95251#c6">Comment # 6</a>
+   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c37">Comment # 37</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - vdpau decoder capabilities: not supported"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95251">bug 95251</a>
-              from <span class="vcard"><a class="email" href="mailto:bgz.marko&#64;gmail.com" title="Marko Srebre &lt;bgz.marko&#64;gmail.com&gt;"> <span class="fn">Marko Srebre</span></a>
+   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>That's great. The patch works. vdpauinfo now shows decoding capabilities. Also
-tested with mpv and an x264 video file, hardware acceleration working.
+        <pre>To extract the VBIOS, look at
+<a href="https://nouveau.freedesktop.org/wiki/DumpingVideoBios/">https://nouveau.freedesktop.org/wiki/DumpingVideoBios/</a>, trying either of both
+last options (nvagetbios or cat vbios.rom).
 
-Thank you very much.</pre>
+Regarding the MMIOtrace, I should have been more specific, sorry. I am looking
+for a MMIOtrace of the blob being loaded with no external screen:
+
+1. start the trace
+2. modprobe nvidia
+3. start X
+4. `echo 'Plugging screen' &gt; /sys/kernel/debug/tracing/trace_marker`
+5. plug the screen and set it up to get an image
+6. `echo 'Screen is ready' &gt; /sys/kernel/debug/tracing/trace_marker`
+7. stop the trace
+
+and a similar one where the screen is already plugged in during the boot:
+
+
+1. start the trace
+2. modprobe nvidia
+3. start X
+#if is_needed
+4. `echo 'Setting up screen' &gt; /sys/kernel/debug/tracing/trace_marker`
+5. set it up to get an image
+6. `echo 'Screen is ready' &gt; /sys/kernel/debug/tracing/trace_marker`
+#endif
+7. stop the trace</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
---14623548410.6AF2.11870--
+--14623621781.bD03.4823--
 
---===============0438799005==
+--===============0982833781==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +136,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0438799005==--
+--===============0982833781==--
