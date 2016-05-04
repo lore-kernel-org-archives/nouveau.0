@@ -1,15 +1,12 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: add a LED driver for the NVIDIA
- logo
-Date: Wed, 4 May 2016 03:09:57 +0300
-Message-ID: <5c894a50-5eaa-2d10-0511-8641cf4a6e74@free.fr>
-References: <1462319465-29090-1-git-send-email-martin.peres@free.fr>
- <CAKb7UvgJtR=LEDC4cnpnq61E-e4EREpbB8xZ5aZtFpHuTdyCwQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95251] vdpau decoder capabilities: not supported
+Date: Wed, 04 May 2016 05:07:10 +0000
+Message-ID: <bug-95251-8800-ipZ7ei4rY4@http.bugs.freedesktop.org/>
+References: <bug-95251-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0360071358=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgJtR=LEDC4cnpnq61E-e4EREpbB8xZ5aZtFpHuTdyCwQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-95251-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,146 +16,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDQvMDUvMTYgMDI6NTcsIElsaWEgTWlya2luIHdyb3RlOgo+IE9uIFR1ZSwgTWF5IDMsIDIw
-MTYgYXQgNzo1MSBQTSwgTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4gd3JvdGU6
-Cj4+IFdlIHJlY2VpdmVkIGEgZG9uYXRpb24gb2YgYSBUaXRhbiB3aGljaCBoYXMgdGhpcyB1c2Vs
-ZXNzIGZlYXR1cmUKPj4gYWxsb3dpbmcgdXNlcnMgdG8gY29udHJvbCB0aGUgYnJpZ2h0bmVzcyBv
-ZiB0aGUgTEVEIGJlaGluZCB0aGUKPj4gbG9nbyBvZiBOVklESUEuIEluIHRoZSB0cnVlIHNwaXJp
-dCBvZiBvcGVuIHNvdXJjZSwgbGV0J3MgZXhwb3NlCj4+IHRoYXQgdG8gdGhlIHVzZXJzIG9mIHZl
-cnkgZXhwZW5zaXZlIGNhcmRzIQo+Pgo+PiBUaGlzIHBhdGNoIGhvb2tzIHVwIHRoaXMgTEVEL1BX
-TSB0byB0aGUgTEVEIHN1YnN5c3RlbSB3aGljaCBhbGxvd3MKPj4gYmxpbmtpbmcgaXQgaW4gc3lu
-YyB3aXRoIGNwdS9kaXNrL25ldHdvcmsvd2hhdGV2ZXIgYWN0aXZpdHkgKGhlYXJ0YmVhdAo+PiBp
-cyBxdWl0ZSBuaWNlISkuIFVzZXJzIG1heSBhbHNvIGltcGxlbWVudCBzb21lIGJyZWF0aGluZyBl
-ZmZlY3Qgb3IKPj4gbW9yc2UgY29kZSBzdXBwb3J0IGluIHRoZSB1c2Vyc3BhY2UgaWYgdGhleSBm
-ZWVsIGxpa2UgaXQuCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IE1hcnRpbiBQZXJlcyA8bWFydGluLnBl
-cmVzQGZyZWUuZnI+Cj4+IC0tLQo+PiAgIGRybS9ub3V2ZWF1L0tidWlsZCAgICAgICAgICAgICAg
-ICAgICAgICAgICAgfCAgIDEgKwo+PiAgIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYv
-Ymlvcy9ncGlvLmggfCAgIDEgKwo+PiAgIGRybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgICAgICAg
-ICAgICAgICAgICAgfCAgIDcgKysKPj4gICBkcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5oICAgICAg
-ICAgICAgICAgICAgIHwgICAzICsKPj4gICBkcm0vbm91dmVhdS9ub3V2ZWF1X2xlZC5jICAgICAg
-ICAgICAgICAgICAgIHwgMTMxICsrKysrKysrKysrKysrKysrKysrKysrKysrKysKPj4gICBkcm0v
-bm91dmVhdS9ub3V2ZWF1X2xlZC5oICAgICAgICAgICAgICAgICAgIHwgIDQ4ICsrKysrKysrKysK
-Pj4gICA2IGZpbGVzIGNoYW5nZWQsIDE5MSBpbnNlcnRpb25zKCspCj4+ICAgY3JlYXRlIG1vZGUg
-MTAwNjQ0IGRybS9ub3V2ZWF1L25vdXZlYXVfbGVkLmMKPj4gICBjcmVhdGUgbW9kZSAxMDA2NDQg
-ZHJtL25vdXZlYXUvbm91dmVhdV9sZWQuaAo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUv
-S2J1aWxkIGIvZHJtL25vdXZlYXUvS2J1aWxkCj4+IGluZGV4IDI1MjdiZjQuLjMxMmJjYTkgMTAw
-NjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L0tidWlsZAo+PiArKysgYi9kcm0vbm91dmVhdS9LYnVp
-bGQKPj4gQEAgLTIyLDYgKzIyLDcgQEAgbm91dmVhdS0kKENPTkZJR19ERUJVR19GUykgKz0gbm91
-dmVhdV9kZWJ1Z2ZzLm8KPj4gICBub3V2ZWF1LXkgKz0gbm91dmVhdV9kcm0ubwo+PiAgIG5vdXZl
-YXUteSArPSBub3V2ZWF1X2h3bW9uLm8KPj4gICBub3V2ZWF1LSQoQ09ORklHX0NPTVBBVCkgKz0g
-bm91dmVhdV9pb2MzMi5vCj4+ICtub3V2ZWF1LXkgKz0gbm91dmVhdV9sZWQubwo+PiAgIG5vdXZl
-YXUteSArPSBub3V2ZWF1X252aWYubwo+PiAgIG5vdXZlYXUtJChDT05GSUdfTk9VVkVBVV9QTEFU
-Rk9STV9EUklWRVIpICs9IG5vdXZlYXVfcGxhdGZvcm0ubwo+PiAgIG5vdXZlYXUteSArPSBub3V2
-ZWF1X3VzaWYubyAjIHVzZXJzcGFjZSA8LT4gbnZpZgo+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZl
-YXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL2dwaW8uaCBiL2RybS9ub3V2ZWF1L2luY2x1ZGUv
-bnZrbS9zdWJkZXYvYmlvcy9ncGlvLmgKPj4gaW5kZXggYTQ3ZDQ2ZC4uYjdhNTRlNiAxMDA2NDQK
-Pj4gLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL2dwaW8uaAo+PiAr
-KysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3MvZ3Bpby5oCj4+IEBAIC02
-LDYgKzYsNyBAQCBlbnVtIGRjYl9ncGlvX2Z1bmNfbmFtZSB7Cj4+ICAgICAgICAgIERDQl9HUElP
-X1RWREFDMSA9IDB4MmQsCj4+ICAgICAgICAgIERDQl9HUElPX0ZBTiA9IDB4MDksCj4+ICAgICAg
-ICAgIERDQl9HUElPX0ZBTl9TRU5TRSA9IDB4M2QsCj4+ICsgICAgICAgRENCX0dQSU9fTE9HT19M
-RURfUFdNID0gMHg4NCwKPj4gICAgICAgICAgRENCX0dQSU9fVU5VU0VEID0gMHhmZiwKPj4gICAg
-ICAgICAgRENCX0dQSU9fVklEMCA9IDB4MDQsCj4+ICAgICAgICAgIERDQl9HUElPX1ZJRDEgPSAw
-eDA1LAo+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyBiL2RybS9ub3V2
-ZWF1L25vdXZlYXVfZHJtLmMKPj4gaW5kZXggZDA2ODc3ZC4uZGM5NzQwMSAxMDA2NDQKPj4gLS0t
-IGEvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+PiArKysgYi9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2RybS5jCj4+IEBAIC00OSw2ICs0OSw3IEBACj4+ICAgI2luY2x1ZGUgIm5vdXZlYXVfdHRtLmgi
-Cj4+ICAgI2luY2x1ZGUgIm5vdXZlYXVfZ2VtLmgiCj4+ICAgI2luY2x1ZGUgIm5vdXZlYXVfdmdh
-LmgiCj4+ICsjaW5jbHVkZSAibm91dmVhdV9sZWQuaCIKPj4gICAjaW5jbHVkZSAibm91dmVhdV9o
-d21vbi5oIgo+PiAgICNpbmNsdWRlICJub3V2ZWF1X2FjcGkuaCIKPj4gICAjaW5jbHVkZSAibm91
-dmVhdV9iaW9zLmgiCj4+IEBAIC00NjgsNiArNDY5LDcgQEAgbm91dmVhdV9kcm1fbG9hZChzdHJ1
-Y3QgZHJtX2RldmljZSAqZGV2LCB1bnNpZ25lZCBsb25nIGZsYWdzKQo+PiAgICAgICAgICBub3V2
-ZWF1X2h3bW9uX2luaXQoZGV2KTsKPj4gICAgICAgICAgbm91dmVhdV9hY2NlbF9pbml0KGRybSk7
-Cj4+ICAgICAgICAgIG5vdXZlYXVfZmJjb25faW5pdChkZXYpOwo+PiArICAgICAgIG5vdXZlYXVf
-bGVkX2luaXQoZGV2KTsKPj4KPj4gICAgICAgICAgaWYgKG5vdXZlYXVfcnVudGltZV9wbSAhPSAw
-KSB7Cj4+ICAgICAgICAgICAgICAgICAgcG1fcnVudGltZV91c2VfYXV0b3N1c3BlbmQoZGV2LT5k
-ZXYpOwo+PiBAQCAtNDk5LDYgKzUwMSw3IEBAIG5vdXZlYXVfZHJtX3VubG9hZChzdHJ1Y3QgZHJt
-X2RldmljZSAqZGV2KQo+PiAgICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZl
-YXVfZHJtKGRldik7Cj4+Cj4+ICAgICAgICAgIHBtX3J1bnRpbWVfZ2V0X3N5bmMoZGV2LT5kZXYp
-Owo+PiArICAgICAgIG5vdXZlYXVfbGVkX2ZpbmkoZGV2KTsKPj4gICAgICAgICAgbm91dmVhdV9m
-YmNvbl9maW5pKGRldik7Cj4+ICAgICAgICAgIG5vdXZlYXVfYWNjZWxfZmluaShkcm0pOwo+PiAg
-ICAgICAgICBub3V2ZWF1X2h3bW9uX2ZpbmkoZGV2KTsKPj4gQEAgLTU1MCw2ICs1NTMsOCBAQCBu
-b3V2ZWF1X2RvX3N1c3BlbmQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgYm9vbCBydW50aW1lKQo+
-PiAgICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9jbGkgKmNsaTsKPj4gICAgICAgICAgaW50IHJldDsK
-Pj4KPj4gKyAgICAgICBub3V2ZWF1X2xlZF9zdXNwZW5kKGRldik7Cj4+ICsKPj4gICAgICAgICAg
-aWYgKGRldi0+bW9kZV9jb25maWcubnVtX2NydGMpIHsKPj4gICAgICAgICAgICAgICAgICBOVl9J
-TkZPKGRybSwgInN1c3BlbmRpbmcgY29uc29sZS4uLlxuIik7Cj4+ICAgICAgICAgICAgICAgICAg
-bm91dmVhdV9mYmNvbl9zZXRfc3VzcGVuZChkZXYsIDEpOwo+PiBAQCAtNjM4LDYgKzY0Myw4IEBA
-IG5vdXZlYXVfZG9fcmVzdW1lKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGJvb2wgcnVudGltZSkK
-Pj4gICAgICAgICAgICAgICAgICBub3V2ZWF1X2ZiY29uX3NldF9zdXNwZW5kKGRldiwgMCk7Cj4+
-ICAgICAgICAgIH0KPj4KPj4gKyAgICAgICBub3V2ZWF1X2xlZF9yZXN1bWUoZGV2KTsKPj4gKwo+
-PiAgICAgICAgICByZXR1cm4gMDsKPj4gICB9Cj4+Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2RybS5oIGIvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uaAo+PiBpbmRleCA1YzM2
-M2VkLi5iMTQ4ZGNiIDEwMDY0NAo+PiAtLS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5oCj4+
-ICsrKyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmgKPj4gQEAgLTE2Niw2ICsxNjYsOSBAQCBz
-dHJ1Y3Qgbm91dmVhdV9kcm0gewo+PiAgICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9od21vbiAqaHdt
-b247Cj4+ICAgICAgICAgIHN0cnVjdCBub3V2ZWF1X2RlYnVnZnMgKmRlYnVnZnM7Cj4+Cj4+ICsg
-ICAgICAgLyogbGVkIG1hbmFnZW1lbnQgKi8KPj4gKyAgICAgICBzdHJ1Y3Qgbm91dmVhdV9sZWQg
-KmxlZDsKPj4gKwo+PiAgICAgICAgICAvKiBkaXNwbGF5IHBvd2VyIHJlZmVyZW5jZSAqLwo+PiAg
-ICAgICAgICBib29sIGhhdmVfZGlzcF9wb3dlcl9yZWY7Cj4+Cj4+IGRpZmYgLS1naXQgYS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2xlZC5jIGIvZHJtL25vdXZlYXUvbm91dmVhdV9sZWQuYwo+PiBuZXcg
-ZmlsZSBtb2RlIDEwMDY0NAo+PiBpbmRleCAwMDAwMDAwLi4zZjIzZmY2Cj4+IC0tLSAvZGV2L251
-bGwKPj4gKysrIGIvZHJtL25vdXZlYXUvbm91dmVhdV9sZWQuYwo+PiBAQCAtMCwwICsxLDEzMSBA
-QAo+PiArLyoKPj4gKyAqIENvcHlyaWdodCAoQykgMjAxNiBNYXJ0aW4gUGVyZXMKPj4gKyAqCj4+
-ICsgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55
-IHBlcnNvbiBvYnRhaW5pbmcKPj4gKyAqIGEgY29weSBvZiB0aGlzIHNvZnR3YXJlIGFuZCBhc3Nv
-Y2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRoZQo+PiArICogIlNvZnR3YXJlIiksIHRvIGRl
-YWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJpY3Rpb24sIGluY2x1ZGluZwo+PiArICog
-d2l0aG91dCBsaW1pdGF0aW9uIHRoZSByaWdodHMgdG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdl
-LCBwdWJsaXNoLAo+PiArICogZGlzdHJpYnV0ZSwgc3VibGljZW5zZSwgYW5kL29yIHNlbGwgY29w
-aWVzIG9mIHRoZSBTb2Z0d2FyZSwgYW5kIHRvCj4+ICsgKiBwZXJtaXQgcGVyc29ucyB0byB3aG9t
-IHRoZSBTb2Z0d2FyZSBpcyBmdXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3QgdG8KPj4gKyAqIHRo
-ZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKPj4gKyAqCj4+ICsgKiBUaGUgYWJvdmUgY29weXJpZ2h0
-IG5vdGljZSBhbmQgdGhpcyBwZXJtaXNzaW9uIG5vdGljZSAoaW5jbHVkaW5nIHRoZQo+PiArICog
-bmV4dCBwYXJhZ3JhcGgpIHNoYWxsIGJlIGluY2x1ZGVkIGluIGFsbCBjb3BpZXMgb3Igc3Vic3Rh
-bnRpYWwKPj4gKyAqIHBvcnRpb25zIG9mIHRoZSBTb2Z0d2FyZS4KPj4gKyAqCj4+ICsgKiBUSEUg
-U09GVFdBUkUgSVMgUFJPVklERUQgIkFTIElTIiwgV0lUSE9VVCBXQVJSQU5UWSBPRiBBTlkgS0lO
-RCwKPj4gKyAqIEVYUFJFU1MgT1IgSU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1QgTElNSVRFRCBU
-TyBUSEUgV0FSUkFOVElFUyBPRgo+PiArICogTUVSQ0hBTlRBQklMSVRZLCBGSVRORVNTIEZPUiBB
-IFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULgo+PiArICogSU4gTk8gRVZF
-TlQgU0hBTEwgVEhFIENPUFlSSUdIVCBPV05FUihTKSBBTkQvT1IgSVRTIFNVUFBMSUVSUyBCRQo+
-PiArICogTElBQkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMgT1IgT1RIRVIgTElBQklMSVRZLCBX
-SEVUSEVSIElOIEFOIEFDVElPTgo+PiArICogT0YgQ09OVFJBQ1QsIFRPUlQgT1IgT1RIRVJXSVNF
-LCBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJTiBDT05ORUNUSU9OCj4+ICsgKiBXSVRIIFRIRSBT
-T0ZUV0FSRSBPUiBUSEUgVVNFIE9SIE9USEVSIERFQUxJTkdTIElOIFRIRSBTT0ZUV0FSRS4KPj4g
-KyAqCj4+ICsgKi8KPj4gKwo+PiArLyoKPj4gKyAqIEF1dGhvcnM6Cj4+ICsgKiAgTWFydGluIFBl
-cmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4KPj4gKyAqLwo+PiArCj4+ICsjaW5jbHVkZSA8bGlu
-dXgvbGVkcy5oPgo+PiArCj4+ICsjaW5jbHVkZSAibm91dmVhdV9kcm0uaCIKPj4gKyNpbmNsdWRl
-ICJub3V2ZWF1X2xlZC5oIgo+PiArI2luY2x1ZGUgPG52a20vc3ViZGV2L2dwaW8uaD4KPj4gKwo+
-PiArc3RhdGljIGVudW0gbGVkX2JyaWdodG5lc3MKPj4gK25vdXZlYXVfbGVkX2dldF9icmlnaHRu
-ZXNzKHN0cnVjdCBsZWRfY2xhc3NkZXYgKmxlZCkKPj4gK3sKPj4gKyAgICAgICBzdHJ1Y3QgZHJt
-X2RldmljZSAqZHJtX2RldiA9IGNvbnRhaW5lcl9vZihsZWQsIHN0cnVjdCBub3V2ZWF1X2xlZCwg
-bGVkKS0+ZGV2Owo+PiArICAgICAgIHN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9k
-cm0oZHJtX2Rldik7Cj4+ICsgICAgICAgc3RydWN0IG52aWZfb2JqZWN0ICpkZXZpY2UgPSAmZHJt
-LT5kZXZpY2Uub2JqZWN0Owo+PiArICAgICAgIHUzMiBkaXYsIGR1dHk7Cj4+ICsKPj4gKyAgICAg
-ICBkaXYgPSAgbnZpZl9yZDMyKGRldmljZSwgMHg2MWM4ODApICYgMHgwMGZmZmZmZjsKPj4gKyAg
-ICAgICBkdXR5ID0gbnZpZl9yZDMyKGRldmljZSwgMHg2MWM4ODQpICYgMHgwMGZmZmZmZjsKPj4g
-Kwo+PiArICAgICAgIHJldHVybiBkdXR5ICogTEVEX0ZVTEwgLyBkaXY7Cj4+ICt9Cj4+ICsKPj4g
-K3N0YXRpYyB2b2lkCj4+ICtub3V2ZWF1X2xlZF9zZXRfYnJpZ2h0bmVzcyhzdHJ1Y3QgbGVkX2Ns
-YXNzZGV2ICpsZWQsIGVudW0gbGVkX2JyaWdodG5lc3MgdmFsdWUpCj4+ICt7Cj4+ICsgICAgICAg
-c3RydWN0IGRybV9kZXZpY2UgKmRybV9kZXYgPSBjb250YWluZXJfb2YobGVkLCBzdHJ1Y3Qgbm91
-dmVhdV9sZWQsIGxlZCktPmRldjsKPj4gKyAgICAgICBzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9
-IG5vdXZlYXVfZHJtKGRybV9kZXYpOwo+PiArICAgICAgIHN0cnVjdCBudmlmX29iamVjdCAqZGV2
-aWNlID0gJmRybS0+ZGV2aWNlLm9iamVjdDsKPj4gKwo+PiArICAgICAgIHUzMiBpbnB1dF9jbGsg
-PSAyN2U2OyAvKiBQRElTUExBWS5TT1JbMV0uUFdNIGlzIGNvbm5lY3RlZCB0byB0aGUgY3J5c3Rh
-bCAqLwo+PiArICAgICAgIHUzMiBmcmVxID0gMTAwOyAvKiB0aGlzIGlzIHdoYXQgbnZpZGlhIHVz
-ZXMgYW5kIGl0IHNob3VsZCBiZSBnb29kLWVub3VnaCAqLwo+PiArICAgICAgIHUzMiBkaXYsIGR1
-dHk7Cj4+ICsKPj4gKyAgICAgICBkaXYgPSBpbnB1dF9jbGsgLyBmcmVxOwo+PiArICAgICAgIGR1
-dHkgPSB2YWx1ZSAqIGRpdiAvIExFRF9GVUxMOwo+PiArCj4+ICsgICAgICAgLyogZm9yIG5vdywg
-dGhpcyBpcyBzYWZlIHRvIGRpcmVjdGx5IHBva2UgdGhvc2UgcmVnaXN0ZXJzIGJlY2F1c2U6Cj4+
-ICsgICAgICAgICogIC0gQTogbnZpZGlhIG5ldmVyIHB1dHMgdGhlIGxvZ28gbGVkIHRvIGFueSBv
-dGhlciBQV00gY29udHJvbGVyCj4+ICsgICAgICAgICogICAgICAgdGhhbiBQRElTUExBWS5TT1Jb
-MV0uUFdNLgo+PiArICAgICAgICAqICAtIEI6IG5vdXZlYXUgZG9lcyBub3QgdG91Y2ggdGhlc2Ug
-cmVnaXN0ZXJzIGFueXdoZXJlIGVsc2UKPj4gKyAgICAgICAgKi8KPj4gKyAgICAgICBudmlmX3dy
-MzIoZGV2aWNlLCAweDYxYzg4MCwgZGl2KTsKPiBJc24ndCB0aGUgbG9jYXRpb24gb2YgUERJU1Au
-U09SWzFdIGRpZmZlcmVudCBmb3IgZGlmZmVyZW50IGdlbnM/IGUuZy4KPiB0aGUgbnY1MCBkaXNw
-IHZzIHRoZSBudmQwIGRpc3AgdnMgb3RoZXJzIChJIGRvbid0IHJlbWVtYmVyIHRoZSBleGFjdAo+
-IGRldGFpbHMpLgoKSXQgZGlkIG5vdCBjaGFuZ2Ugc2luY2UgRzgwLCBhbmQgdGhpcyBHUElPIGdv
-dCBhZGRlZCBvbmx5IGluIEZlcm1pKy4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+
+--===============0360071358==
+Content-Type: multipart/alternative; boundary="14623384300.Fa628.16745";
+ charset="UTF-8"
+
+
+--14623384300.Fa628.16745
+Date: Wed, 4 May 2016 05:07:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=95251
+
+--- Comment #3 from Marko Srebre <bgz.marko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks for your help. /lib/firmware/nouveau seems fine, attaching output. Any
+other way to check if firmware is being loaded?
+
+I tried kernel parameters
+
+nouveau.config=mspdec=1,msppp=1,msvld=1
+
+but it didn't change the vdpainfo reported capabilities.
+
+nvapeek shows
+00001540: f1010001
+0000154c: 0000007d
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.
+--14623384300.Fa628.16745
+Date: Wed, 4 May 2016 05:07:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - vdpau decoder capabilities: not supported"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95251#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - vdpau decoder capabilities: not supported"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95251">bug 95251</a>
+              from <span class="vcard"><a class="email" href="mailto:bgz.marko&#64;gmail.com" title="Marko Srebre &lt;bgz.marko&#64;gmail.com&gt;"> <span class="fn">Marko Srebre</span></a>
+</span></b>
+        <pre>Thanks for your help. /lib/firmware/nouveau seems fine, attaching output. Any
+other way to check if firmware is being loaded?
+
+I tried kernel parameters
+
+nouveau.config=mspdec=1,msppp=1,msvld=1
+
+but it didn't change the vdpainfo reported capabilities.
+
+nvapeek shows
+00001540: f1010001
+0000154c: 0000007d</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14623384300.Fa628.16745--
+
+--===============0360071358==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0360071358==--
