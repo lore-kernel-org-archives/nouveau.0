@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95193] Nouveau not working with Quadro K2200 (NV117)
- and Debian Wheezy
-Date: Thu, 05 May 2016 02:38:29 +0000
-Message-ID: <bug-95193-8800-ZxxU5q15QK@http.bugs.freedesktop.org/>
-References: <bug-95193-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: VDPAU DEINTERLACE
+Date: Thu, 5 May 2016 07:12:30 +0200
+Message-ID: <572AD63E.5070703@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1464117645=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95193-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,75 +15,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1464117645==
-Content-Type: multipart/alternative; boundary="14624159090.B0F1cbBD9.1371";
- charset="UTF-8"
-
-
---14624159090.B0F1cbBD9.1371
-Date: Thu, 5 May 2016 02:38:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain
-
-https://bugs.freedesktop.org/show_bug.cgi?id=95193
-
---- Comment #7 from Regular Guy <figyshki-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-In kernel 4.1.x's output, there are "link training failed" messages, but in
-4.4.x's, there are EDID checksum error messages instead. Wonder if 4.4.x's
-version simply handles ASUS' EDID brainfart better than 4.1.x?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
---14624159090.B0F1cbBD9.1371
-Date: Thu, 5 May 2016 02:38:29 +0000
-MIME-Version: 1.0
-Content-Type: text/html
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau not working with Quadro K2200 (NV117) and Debian Wheezy"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95193#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau not working with Quadro K2200 (NV117) and Debian Wheezy"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95193">bug 95193</a>
-              from <span class="vcard"><a class="email" href="mailto:figyshki&#64;gmail.com" title="Regular Guy &lt;figyshki&#64;gmail.com&gt;"> <span class="fn">Regular Guy</span></a>
-</span></b>
-        <pre>In kernel 4.1.x's output, there are &quot;link training failed&quot; messages, but in
-4.4.x's, there are EDID checksum error messages instead. Wonder if 4.4.x's
-version simply handles ASUS' EDID brainfart better than 4.1.x?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
---14624159090.B0F1cbBD9.1371--
-
---===============1464117645==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1464117645==--
+Ck5WSURJQSBHOTgKbWVzYS1kcmktZHJpdmVycy0xMS4yLjEtMi4yMDE2MDUwMS5mYzIyLng4Nl82
+NAooaW5jbC4gbWVzYSBjb21taXQgMzhmY2Y3YykKCgp2ZHBhdWluZm8gfCBncmVwIC1pIGRlaW50
+CkRFSU5URVJMQUNFX1RFTVBPUkFMICAgICAgICAgICAgIHkKREVJTlRFUkxBQ0VfVEVNUE9SQUxf
+U1BBVElBTCAgICAgLQoKCmh0dHBzOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvdmRwYXUvbGlidmRw
+YXUvdHJlZS9pbmNsdWRlL3ZkcGF1L3ZkcGF1LmgjbjM0MjAKI2RlZmluZSBWRFBfVklERU9fTUlY
+RVJfRkVBVFVSRV9ERUlOVEVSTEFDRV9URU1QT1JBTCAgICAgICAgICgoVmRwVmlkZW9NaXhlckZl
+YXR1cmUpMCkKLyoqCiAqIFxoaWRlaW5pdGlhbGl6ZXIKICogXGJyaWVmIEEgVmRwVmlkZW9NaXhl
+ckZlYXR1cmUuCiAqCiAqIFdoZW4gcmVxdWVzdGVkIGFuZCBlbmFibGVkLCB0aGlzIGVuYWJsZXMg
+YSBtb3JlIGFkdmFuY2VkCiAqIHZlcnNpb24gb2YgdGVtcG9yYWwgZGUtaW50ZXJsYWNpbmcsIHRo
+YXQgYWRkaXRpb25hbGx5IHVzZXMKICogZWRnZS1ndWlkZWQgc3BhdGlhbCBpbnRlcnBvbGF0aW9u
+LgogKgogKiBXaGVuIG11bHRpcGxlIGRlLWludGVybGFjaW5nIG9wdGlvbnMgYXJlIHJlcXVlc3Rl
+ZCBhbmQKICogZW5hYmxlZCwgdGhlIGJhY2stZW5kIGltcGxlbWVudGF0aW9uIGNob29zZXMgdGhl
+IGJlc3QKICogYWxnb3JpdGhtIHRvIGFwcGx5LgogKi8KI2RlZmluZSBWRFBfVklERU9fTUlYRVJf
+RkVBVFVSRV9ERUlOVEVSTEFDRV9URU1QT1JBTF9TUEFUSUFMICgoVmRwVmlkZW9NaXhlckZlYXR1
+cmUpMSkKLyoqCiAqIFxoaWRlaW5pdGlhbGl6ZXIKICogXGJyaWVmIEEgVmRwVmlkZW9NaXhlckZl
+YXR1cmUuCiAqCiAqIFdoZW4gcmVxdWVzdGVkIGFuZCBlbmFibGVkLCBjYWRlbmNlIGRldGVjdGlv
+biB3aWxsIGJlIGVuYWJsZWQKICogb24gaW50ZXJsYWNlZCBjb250ZW50IGFuZCB0aGUgdmlkZW8g
+bWl4ZXIgd2lsbCB0cnkgdG8gZXh0cmFjdAogKiBwcm9ncmVzc2l2ZSBmcmFtZXMgZnJvbSBwdWxs
+LWRvd24gbWF0ZXJpYWwuCiAqLwoKCmh0dHBzOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvdmRwYXUv
+bGlidmRwYXUvdHJlZS9pbmNsdWRlL3ZkcGF1L3ZkcGF1LmgjbjYwNgogKiBcc3Vic2VjdGlvbiBk
+ZWludF9hZHYgQWR2YW5jZWQgRGUtaW50ZXJsYWNpbmcKICoKICogT3BlcmF0aW9uIG9mIGJvdGgg
+dGVtcG9yYWwgYW5kIHRlbXBvcmFsLXNwYXRpYWwgZGUtaW50ZXJsYWNpbmcgaXMKICogaWRlbnRp
+Y2FsOyB0aGUgb25seSBkaWZmZXJlbmNlIGlzIHRoZSBpbnRlcm5hbCBwcm9jZXNzaW5nIHRoZSBh
+bGdvcml0aG0KICogcGVyZm9ybXMgaW4gZ2VuZXJhdGluZyB0aGUgb3V0cHV0IGZyYW1lLgogKgoK
+Cm1hbiAxIG1wbGF5ZXIKLi4uCnZkcGF1IChYMTEgb25seSkKLi4uCmRlaW50PTwtNC00PgouLi4K
+ICAgICAgIFNlbGVjdCBkZWludGVybGFjaW5nIG1vZGUgKGRlZmF1bHQ6IC0zKS4gUG9zaXRpdmUg
+IHZhbHVlcwogICAgICAgY2hvb3NlIG1vZGUgYW5kIGVuYWJsZSBkZWludGVybGFjaW5nLiBDb3Jy
+ZXNwb25kaW5nIG5lZ2HigJAKICAgICAgIHRpdmUgdmFsdWVzIHNlbGVjdCB0aGUgc2FtZSBkZWlu
+dGVybGFjaW5nICBtb2RlLCAgYnV0ICBkbwogICAgICAgbm90IGVuYWJsZSBkZWludGVybGFjaW5n
+IG9uIHN0YXJ0dXAgKHVzZWZ1bCBpbiBjb25maWd1cmHigJAKICAgICAgIHRpb24gZmlsZXMgdG8g
+c3BlY2lmeSB3aGF0IG1vZGUgd2lsbCBiZSAgZW5hYmxlZCAgYnkgIHRoZQogICAgICAgIkQiIGtl
+eSkuIEFsbCBtb2RlcyByZXNwZWN0IC0tZmllbGQtZG9taW5hbmNlLgoKICAgICAgIDAgICAgICBz
+YW1lIGFzIC0zCgogICAgICAgMSAgICAgIFNob3cgb25seSBmaXJzdCBmaWVsZCwgc2ltaWxhciB0
+byAtLXZmPWZpZWxkLgoKICAgICAgIDIgICAgICBCb2IgZGVpbnRlcmxhY2luZywgc2ltaWxhciB0
+byAtLXZmPXRmaWVsZHM9MS4KCiAgICAgICAzICAgICAgbW90aW9uICBhZGFwdGl2ZSAgdGVtcG9y
+YWwgZGVpbnRlcmxhY2luZy4gTWF5IGxlYWQKICAgICAgICAgICAgICB0byBBL1YgZGVzeW5jIHdp
+dGggc2xvdyB2aWRlbyBoYXJkd2FyZSBhbmQvb3IgaGlnaAogICAgICAgICAgICAgIHJlc29sdXRp
+b24uCgogICAgICAgNCAgICAgIG1vdGlvbiAgIGFkYXB0aXZlICAgdGVtcG9yYWwgICBkZWludGVy
+bGFjaW5nICB3aXRoCiAgICAgICAgICAgICAgZWRnZS1ndWlkZWQgIHNwYXRpYWwgIGludGVycG9s
+YXRpb24uICBOZWVkcyAgIGZhc3QKICAgICAgICAgICAgICB2aWRlbyBoYXJkd2FyZS4KCgpSZWFk
+aW5nIGFsbCB0aGlzLCBhbSBJIGNvcnJlY3RseSBjb25jbHVkZWQsCndoYXQgaXMgc3VwcG9ydGVk
+IHdpdGhpbiBOVklESUEgRzk4IEhXIGlzIERFSU5URVJMQUNFX1RFTVBPUkFMLAp3aGljaCBzaG91
+bGQgYmUgZW5nYWdlZCB3aXRoIE1wbGF5ZXIncyAndmRwYXU6ZGVpbnQ9NCcgb3B0aW9uPwoKVGhl
+biBhZ2Fpbiwgd2hhdCBERUlOVEVSTEFDRV9URU1QT1JBTF9TUEFUSUFMIHJlcHJlc2VudHM/CkFz
+IHJlYWRpbmcgdGhlICd2ZHBhdWluZm8nIG91dHB1dCBpdCBzaG91bGQgbm90IGJlIHN1cHBvcnRl
+ZC4KSXMgaXQgYXNzb2NpYXRlZCB3aXRoIE1wbGF5ZXIncyAndmRwYXU6ZGVpbnQ9Mycgb3B0aW9u
+LAp3aGljaCBpbiB0dXJuIHdvcmtzLCBzbyB0byBzcGVhaz8KCm1wbGF5ZXIgLXZvIHZkcGF1OmRl
+aW50PVszNF0gLXZjIGZmbXBlZzEydmRwYXUgZHZiOi8vMkBEVkJUCgpBbHRob3VnaCB0aGV5IGFj
+aGlldmUgc29saWQgZGVpbnRlcmxhY2luZyByZXN1bHQsCnZkcGF1OmRlaW50PTMgYW5kIHZkcGF1
+OmRlaW50PTQgdGVuZCB0byBwcm9kdWNlOgoKKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqCioqKiogWW91ciBzeXN0ZW0gaXMgdG9vIFNMT1cgdG8gcGxheSB0
+aGlzISAgKioqKgoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioKClJlc3Qgb2YgdGhlIGRlaW50ZXJsYWNpbmcgbW9kZXMgLSAxIGFuZCAyLCBhcmUgbm90IHNv
+IGdyZWF0LgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
