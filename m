@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
- GT]: HDMI monitor stays black after s2ram
-Date: Thu, 05 May 2016 10:39:24 +0000
-Message-ID: <bug-93887-8800-L7nFFjICSF@http.bugs.freedesktop.org/>
-References: <bug-93887-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 82835] [NV92] GeForce 8800 GS VDPAU h264 decoding
+	hang
+Date: Thu, 05 May 2016 19:22:51 +0000
+Message-ID: <bug-82835-8800-84MyGjqxX6@http.bugs.freedesktop.org/>
+References: <bug-82835-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0362905214=="
+Content-Type: multipart/mixed; boundary="===============0870912008=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-82835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0362905214==
-Content-Type: multipart/alternative; boundary="14624447641.93c3.26417";
+--===============0870912008==
+Content-Type: multipart/alternative; boundary="14624761710.7af1.23086";
  charset="UTF-8"
 
 
---14624447641.93c3.26417
-Date: Thu, 5 May 2016 10:39:24 +0000
+--14624761710.7af1.23086
+Date: Thu, 5 May 2016 19:22:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93887
+https://bugs.freedesktop.org/show_bug.cgi?id=82835
 
---- Comment #43 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Thanks! I’ll try to have a look at it today.
+--- Comment #22 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+(In reply to Weedy from comment #21)
+> I have a G92GLM [Quadro FX 3600M].
+> I use MPV with vdpau and opengl rendering A LOT.
+> 
+> Is this still broken? I want to move off the binary driver but I need this
+> to not be broken. Also I hope freq scaling works.
+
+For me it still broken, but you can test and see if it works  for you.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14624447641.93c3.26417
-Date: Thu, 5 May 2016 10:39:24 +0000
+--14624761710.7af1.23086
+Date: Thu, 5 May 2016 19:22:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -52,16 +59,23 @@ Content-Type: text/html
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887#c43">Comment # 43</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NV92] GeForce 8800 GS VDPAU h264 decoding hang"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82835#c22">Comment # 22</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monitor stays black after s2ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93887">bug 93887</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NV92] GeForce 8800 GS VDPAU h264 decoding hang"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82835">bug 82835</a>
+              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>Thanks! I’ll try to have a look at it today.</pre>
+        <pre>(In reply to Weedy from <a href="show_bug.cgi?id=82835#c21">comment #21</a>)
+<span class="quote">&gt; I have a G92GLM [Quadro FX 3600M].
+&gt; I use MPV with vdpau and opengl rendering A LOT.
+&gt; 
+&gt; Is this still broken? I want to move off the binary driver but I need this
+&gt; to not be broken. Also I hope freq scaling works.</span >
+
+For me it still broken, but you can test and see if it works  for you.</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +86,9 @@ Content-Type: text/html
       </ul>
     </body>
 </html>
---14624447641.93c3.26417--
+--14624761710.7af1.23086--
 
---===============0362905214==
+--===============0870912008==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -84,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0362905214==--
+--===============0870912008==--
