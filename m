@@ -1,10 +1,9 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: VDPAU DEINTERLACE
-Date: Thu, 5 May 2016 07:12:30 +0200
-Message-ID: <572AD63E.5070703@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95282] New: system hang on video playback via vdpau
+Date: Thu, 05 May 2016 09:21:24 +0000
+Message-ID: <bug-95282-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0618520938=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,62 +14,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ck5WSURJQSBHOTgKbWVzYS1kcmktZHJpdmVycy0xMS4yLjEtMi4yMDE2MDUwMS5mYzIyLng4Nl82
-NAooaW5jbC4gbWVzYSBjb21taXQgMzhmY2Y3YykKCgp2ZHBhdWluZm8gfCBncmVwIC1pIGRlaW50
-CkRFSU5URVJMQUNFX1RFTVBPUkFMICAgICAgICAgICAgIHkKREVJTlRFUkxBQ0VfVEVNUE9SQUxf
-U1BBVElBTCAgICAgLQoKCmh0dHBzOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvdmRwYXUvbGlidmRw
-YXUvdHJlZS9pbmNsdWRlL3ZkcGF1L3ZkcGF1LmgjbjM0MjAKI2RlZmluZSBWRFBfVklERU9fTUlY
-RVJfRkVBVFVSRV9ERUlOVEVSTEFDRV9URU1QT1JBTCAgICAgICAgICgoVmRwVmlkZW9NaXhlckZl
-YXR1cmUpMCkKLyoqCiAqIFxoaWRlaW5pdGlhbGl6ZXIKICogXGJyaWVmIEEgVmRwVmlkZW9NaXhl
-ckZlYXR1cmUuCiAqCiAqIFdoZW4gcmVxdWVzdGVkIGFuZCBlbmFibGVkLCB0aGlzIGVuYWJsZXMg
-YSBtb3JlIGFkdmFuY2VkCiAqIHZlcnNpb24gb2YgdGVtcG9yYWwgZGUtaW50ZXJsYWNpbmcsIHRo
-YXQgYWRkaXRpb25hbGx5IHVzZXMKICogZWRnZS1ndWlkZWQgc3BhdGlhbCBpbnRlcnBvbGF0aW9u
-LgogKgogKiBXaGVuIG11bHRpcGxlIGRlLWludGVybGFjaW5nIG9wdGlvbnMgYXJlIHJlcXVlc3Rl
-ZCBhbmQKICogZW5hYmxlZCwgdGhlIGJhY2stZW5kIGltcGxlbWVudGF0aW9uIGNob29zZXMgdGhl
-IGJlc3QKICogYWxnb3JpdGhtIHRvIGFwcGx5LgogKi8KI2RlZmluZSBWRFBfVklERU9fTUlYRVJf
-RkVBVFVSRV9ERUlOVEVSTEFDRV9URU1QT1JBTF9TUEFUSUFMICgoVmRwVmlkZW9NaXhlckZlYXR1
-cmUpMSkKLyoqCiAqIFxoaWRlaW5pdGlhbGl6ZXIKICogXGJyaWVmIEEgVmRwVmlkZW9NaXhlckZl
-YXR1cmUuCiAqCiAqIFdoZW4gcmVxdWVzdGVkIGFuZCBlbmFibGVkLCBjYWRlbmNlIGRldGVjdGlv
-biB3aWxsIGJlIGVuYWJsZWQKICogb24gaW50ZXJsYWNlZCBjb250ZW50IGFuZCB0aGUgdmlkZW8g
-bWl4ZXIgd2lsbCB0cnkgdG8gZXh0cmFjdAogKiBwcm9ncmVzc2l2ZSBmcmFtZXMgZnJvbSBwdWxs
-LWRvd24gbWF0ZXJpYWwuCiAqLwoKCmh0dHBzOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvdmRwYXUv
-bGlidmRwYXUvdHJlZS9pbmNsdWRlL3ZkcGF1L3ZkcGF1LmgjbjYwNgogKiBcc3Vic2VjdGlvbiBk
-ZWludF9hZHYgQWR2YW5jZWQgRGUtaW50ZXJsYWNpbmcKICoKICogT3BlcmF0aW9uIG9mIGJvdGgg
-dGVtcG9yYWwgYW5kIHRlbXBvcmFsLXNwYXRpYWwgZGUtaW50ZXJsYWNpbmcgaXMKICogaWRlbnRp
-Y2FsOyB0aGUgb25seSBkaWZmZXJlbmNlIGlzIHRoZSBpbnRlcm5hbCBwcm9jZXNzaW5nIHRoZSBh
-bGdvcml0aG0KICogcGVyZm9ybXMgaW4gZ2VuZXJhdGluZyB0aGUgb3V0cHV0IGZyYW1lLgogKgoK
-Cm1hbiAxIG1wbGF5ZXIKLi4uCnZkcGF1IChYMTEgb25seSkKLi4uCmRlaW50PTwtNC00PgouLi4K
-ICAgICAgIFNlbGVjdCBkZWludGVybGFjaW5nIG1vZGUgKGRlZmF1bHQ6IC0zKS4gUG9zaXRpdmUg
-IHZhbHVlcwogICAgICAgY2hvb3NlIG1vZGUgYW5kIGVuYWJsZSBkZWludGVybGFjaW5nLiBDb3Jy
-ZXNwb25kaW5nIG5lZ2HigJAKICAgICAgIHRpdmUgdmFsdWVzIHNlbGVjdCB0aGUgc2FtZSBkZWlu
-dGVybGFjaW5nICBtb2RlLCAgYnV0ICBkbwogICAgICAgbm90IGVuYWJsZSBkZWludGVybGFjaW5n
-IG9uIHN0YXJ0dXAgKHVzZWZ1bCBpbiBjb25maWd1cmHigJAKICAgICAgIHRpb24gZmlsZXMgdG8g
-c3BlY2lmeSB3aGF0IG1vZGUgd2lsbCBiZSAgZW5hYmxlZCAgYnkgIHRoZQogICAgICAgIkQiIGtl
-eSkuIEFsbCBtb2RlcyByZXNwZWN0IC0tZmllbGQtZG9taW5hbmNlLgoKICAgICAgIDAgICAgICBz
-YW1lIGFzIC0zCgogICAgICAgMSAgICAgIFNob3cgb25seSBmaXJzdCBmaWVsZCwgc2ltaWxhciB0
-byAtLXZmPWZpZWxkLgoKICAgICAgIDIgICAgICBCb2IgZGVpbnRlcmxhY2luZywgc2ltaWxhciB0
-byAtLXZmPXRmaWVsZHM9MS4KCiAgICAgICAzICAgICAgbW90aW9uICBhZGFwdGl2ZSAgdGVtcG9y
-YWwgZGVpbnRlcmxhY2luZy4gTWF5IGxlYWQKICAgICAgICAgICAgICB0byBBL1YgZGVzeW5jIHdp
-dGggc2xvdyB2aWRlbyBoYXJkd2FyZSBhbmQvb3IgaGlnaAogICAgICAgICAgICAgIHJlc29sdXRp
-b24uCgogICAgICAgNCAgICAgIG1vdGlvbiAgIGFkYXB0aXZlICAgdGVtcG9yYWwgICBkZWludGVy
-bGFjaW5nICB3aXRoCiAgICAgICAgICAgICAgZWRnZS1ndWlkZWQgIHNwYXRpYWwgIGludGVycG9s
-YXRpb24uICBOZWVkcyAgIGZhc3QKICAgICAgICAgICAgICB2aWRlbyBoYXJkd2FyZS4KCgpSZWFk
-aW5nIGFsbCB0aGlzLCBhbSBJIGNvcnJlY3RseSBjb25jbHVkZWQsCndoYXQgaXMgc3VwcG9ydGVk
-IHdpdGhpbiBOVklESUEgRzk4IEhXIGlzIERFSU5URVJMQUNFX1RFTVBPUkFMLAp3aGljaCBzaG91
-bGQgYmUgZW5nYWdlZCB3aXRoIE1wbGF5ZXIncyAndmRwYXU6ZGVpbnQ9NCcgb3B0aW9uPwoKVGhl
-biBhZ2Fpbiwgd2hhdCBERUlOVEVSTEFDRV9URU1QT1JBTF9TUEFUSUFMIHJlcHJlc2VudHM/CkFz
-IHJlYWRpbmcgdGhlICd2ZHBhdWluZm8nIG91dHB1dCBpdCBzaG91bGQgbm90IGJlIHN1cHBvcnRl
-ZC4KSXMgaXQgYXNzb2NpYXRlZCB3aXRoIE1wbGF5ZXIncyAndmRwYXU6ZGVpbnQ9Mycgb3B0aW9u
-LAp3aGljaCBpbiB0dXJuIHdvcmtzLCBzbyB0byBzcGVhaz8KCm1wbGF5ZXIgLXZvIHZkcGF1OmRl
-aW50PVszNF0gLXZjIGZmbXBlZzEydmRwYXUgZHZiOi8vMkBEVkJUCgpBbHRob3VnaCB0aGV5IGFj
-aGlldmUgc29saWQgZGVpbnRlcmxhY2luZyByZXN1bHQsCnZkcGF1OmRlaW50PTMgYW5kIHZkcGF1
-OmRlaW50PTQgdGVuZCB0byBwcm9kdWNlOgoKKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqCioqKiogWW91ciBzeXN0ZW0gaXMgdG9vIFNMT1cgdG8gcGxheSB0
-aGlzISAgKioqKgoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioKClJlc3Qgb2YgdGhlIGRlaW50ZXJsYWNpbmcgbW9kZXMgLSAxIGFuZCAyLCBhcmUgbm90IHNv
-IGdyZWF0LgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0618520938==
+Content-Type: multipart/alternative; boundary="14624400841.D9a6263.14457";
+ charset="UTF-8"
+
+
+--14624400841.D9a6263.14457
+Date: Thu, 5 May 2016 09:21:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=95282
+
+            Bug ID: 95282
+           Summary: system hang on video playback via vdpau
+           Product: xorg
+           Version: git
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Yesterday I have installed the proprietary firmware for nouveau as described
+under wiki/VideoAcceleration/#firmware and now my machine hangs reliably on
+start of video playback. If vdpau is not used (i.e. by specifying xine -V XShm
+xy.mkv) then it does not hang. It first starts to hang, then there is a short
+moment where it reacts on pressing num lock and where playback continues and
+then it hangs forever.
+  When switching to vt02 before playback starts you can see several messages;
+it also reacts on Alt-PrnScr-l/m/p printing out that it would now print the
+memory/registers/backtraces but then does not actually print them unless you
+presss Alt-PrnScr-C. There appears to be nothing in the log (switched to vt02
+is the last message in the xorg.0.log).
+
+Current Operating System: Linux AmiloXi3650 4.6.0-rc6-ARCH-00006-g7d92f59 #8
+SMP PREEMPT Tue May 3 14:17:04 CEST 2016 x86_64
+Xorg Build Date: 05 April 2016  05:24:02PM
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14624400841.D9a6263.14457
+Date: Thu, 5 May 2016 09:21:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - system hang on video playback via vdpau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95282">95282</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>system hang on video playback via vdpau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>estellnb&#64;elstel.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Yesterday I have installed the proprietary firmware for nouveau as described
+under wiki/VideoAcceleration/#firmware and now my machine hangs reliably on
+start of video playback. If vdpau is not used (i.e. by specifying xine -V XShm
+xy.mkv) then it does not hang. It first starts to hang, then there is a short
+moment where it reacts on pressing num lock and where playback continues and
+then it hangs forever.
+  When switching to vt02 before playback starts you can see several messages;
+it also reacts on Alt-PrnScr-l/m/p printing out that it would now print the
+memory/registers/backtraces but then does not actually print them unless you
+presss Alt-PrnScr-C. There appears to be nothing in the log (switched to vt02
+is the last message in the xorg.0.log).
+
+Current Operating System: Linux AmiloXi3650 4.6.0-rc6-ARCH-00006-g7d92f59 #8
+SMP PREEMPT Tue May 3 14:17:04 CEST 2016 x86_64
+Xorg Build Date: 05 April 2016  05:24:02PM</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14624400841.D9a6263.14457--
+
+--===============0618520938==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0618520938==--
