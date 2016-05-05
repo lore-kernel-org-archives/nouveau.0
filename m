@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95282] system hang on video playback via vdpau
-Date: Thu, 05 May 2016 09:25:12 +0000
-Message-ID: <bug-95282-8800-0NLGa1NzTT@http.bugs.freedesktop.org/>
+Date: Thu, 05 May 2016 09:25:36 +0000
+Message-ID: <bug-95282-8800-LzVSMf2VTx@http.bugs.freedesktop.org/>
 References: <bug-95282-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1747825951=="
+Content-Type: multipart/mixed; boundary="===============1203815910=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1747825951==
-Content-Type: multipart/alternative; boundary="14624403110.dC7bCBDAd.15453";
+--===============1203815910==
+Content-Type: multipart/alternative; boundary="14624403350.4c2A31.15656";
  charset="UTF-8"
 
 
---14624403110.dC7bCBDAd.15453
-Date: Thu, 5 May 2016 09:25:11 +0000
+--14624403350.4c2A31.15656
+Date: Thu, 5 May 2016 09:25:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=95282
 
---- Comment #3 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 123491
-  --> https://bugs.freedesktop.org/attachment.cgi?id=123491&action=edit
-journal of the day
+--- Comment #4 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 123492
+  --> https://bugs.freedesktop.org/attachment.cgi?id=123492&action=edit
+Xorg.0.log: nothing in here
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14624403110.dC7bCBDAd.15453
-Date: Thu, 5 May 2016 09:25:11 +0000
+--14624403350.4c2A31.15656
+Date: Thu, 5 May 2016 09:25:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -55,15 +55,15 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - system hang on video playback via vdpau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95282#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95282#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - system hang on video playback via vdpau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=95282">bug 95282</a>
               from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=123491" name="attach_123491" title="journal of the day">attachment 123491</a> <a href="attachment.cgi?id=123491&amp;action=edit" title="journal of the day">[details]</a></span>
-journal of the day</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=123492" name="attach_123492" title="Xorg.0.log: nothing in here">attachment 123492</a> <a href="attachment.cgi?id=123492&amp;action=edit" title="Xorg.0.log: nothing in here">[details]</a></span>
+Xorg.0.log: nothing in here</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +74,9 @@ journal of the day</pre>
       </ul>
     </body>
 </html>
---14624403110.dC7bCBDAd.15453--
+--14624403350.4c2A31.15656--
 
---===============1747825951==
+--===============1203815910==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +86,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1747825951==--
+--===============1203815910==--
