@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82835] [NV92] GeForce 8800 GS VDPAU h264 decoding
-	hang
-Date: Thu, 05 May 2016 19:32:47 +0000
-Message-ID: <bug-82835-8800-10rn8tlMhz@http.bugs.freedesktop.org/>
-References: <bug-82835-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95282] system hang on video playback via vdpau
+Date: Fri, 06 May 2016 16:12:06 +0000
+Message-ID: <bug-95282-8800-1JjTM6Vpbt@http.bugs.freedesktop.org/>
+References: <bug-95282-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0924828346=="
+Content-Type: multipart/mixed; boundary="===============2045144577=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0924828346==
-Content-Type: multipart/alternative; boundary="14624767663.4ad7da4e.24376";
+--===============2045144577==
+Content-Type: multipart/alternative; boundary="14625511261.d0B1.24203";
  charset="UTF-8"
 
 
---14624767663.4ad7da4e.24376
-Date: Thu, 5 May 2016 19:32:46 +0000
+--14625511261.d0B1.24203
+Date: Fri, 6 May 2016 16:12:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
-https://bugs.freedesktop.org/show_bug.cgi?id=82835
+https://bugs.freedesktop.org/show_bug.cgi?id=95282
 
---- Comment #23 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Some time ago (~aug, 2015) I did mmiotrace of binary driver to see if it can
-drive my specific card here  for h264 playback. It worked, so I uploaded xz
-compressed trace to google drive and forgot about it. Hopefully everyone still
-can download and decompress it?
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Interesting. Looks like we messed up and somehow the a rendertarget was not
+mapped into vram, and then the bsp/vp engines hung (and I never figured out how
+to reset them).
 
-https://drive.google.com/file/d/0B84cgTVGGfZaVUZoN1hxNzg4Y00/view?usp=sharing
+Does xine use GL + VDPAU in separate threads? If so, that could definitely be
+the cause. I know kodi does that, and I think mpv does as well. mplayer is what
+I developed VP2 support with, and was pretty reliable.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14624767663.4ad7da4e.24376
-Date: Thu, 5 May 2016 19:32:46 +0000
+--14625511261.d0B1.24203
+Date: Fri, 6 May 2016 16:12:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -57,21 +57,22 @@ Content-Type: text/html
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - [NV92] GeForce 8800 GS VDPAU h264 decoding hang"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82835#c23">Comment # 23</a>
+          bz_status_NEW "
+   title="NEW - system hang on video playback via vdpau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95282#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - [NV92] GeForce 8800 GS VDPAU h264 decoding hang"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82835">bug 82835</a>
-              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
+          bz_status_NEW "
+   title="NEW - system hang on video playback via vdpau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95282">bug 95282</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Some time ago (~aug, 2015) I did mmiotrace of binary driver to see if it can
-drive my specific card here  for h264 playback. It worked, so I uploaded xz
-compressed trace to google drive and forgot about it. Hopefully everyone still
-can download and decompress it?
+        <pre>Interesting. Looks like we messed up and somehow the a rendertarget was not
+mapped into vram, and then the bsp/vp engines hung (and I never figured out how
+to reset them).
 
-<a href="https://drive.google.com/file/d/0B84cgTVGGfZaVUZoN1hxNzg4Y00/view?usp=sharing">https://drive.google.com/file/d/0B84cgTVGGfZaVUZoN1hxNzg4Y00/view?usp=sharing</a></pre>
+Does xine use GL + VDPAU in separate threads? If so, that could definitely be
+the cause. I know kodi does that, and I think mpv does as well. mplayer is what
+I developed VP2 support with, and was pretty reliable.</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +83,9 @@ can download and decompress it?
       </ul>
     </body>
 </html>
---14624767663.4ad7da4e.24376--
+--14625511261.d0B1.24203--
 
---===============0924828346==
+--===============2045144577==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -94,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0924828346==--
+--===============2045144577==--
