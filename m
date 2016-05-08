@@ -1,15 +1,12 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: add a LED driver for the NVIDIA
- logo
-Date: Sun, 8 May 2016 00:25:43 +0300
-Message-ID: <efb3c9be-48b2-a8eb-9be6-29cfda9abe81@free.fr>
-References: <1462319465-29090-1-git-send-email-martin.peres@free.fr>
- <CAEXux-aYNK0w=0vBgDv_MAbcrD9LOyf9X-2GVrFh4noESfViyA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
+Date: Sun, 08 May 2016 18:40:08 +0000
+Message-ID: <bug-59069-8800-0PWtTSFmWG@http.bugs.freedesktop.org/>
+References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0724627069=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAEXux-aYNK0w=0vBgDv_MAbcrD9LOyf9X-2GVrFh4noESfViyA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,34 +16,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: karol herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDcvMDUvMTYgMjM6NDQsIGthcm9sIGhlcmJzdCB3cm90ZToKPiBsb29rcyBnb29kLCBqdXN0
-IGEgbWlub3IgdGhpbmc6IFlvdSBuZWVkIHRvIGNoZWNrIGZvcgo+IENPTkZJR19MRURTX0NMQVNT
-LCBvdGhlcndpc2UgdGhlIGNvbXBpbGUgdGhyb3dzIG91dCAid2FybmluZ3MiOgo+Cj4gV0FSTklO
-RzogImxlZF9jbGFzc2Rldl9yZWdpc3RlciIKPiBbL2hvbWUva2Fyb2wvRG9rdW1lbnRlL3JlcG9z
-L25vdXZlYXUvZHJtL25vdXZlYXUvbm91dmVhdS5rb10KPiB1bmRlZmluZWQhCj4gV0FSTklORzog
-ImxlZF9jbGFzc2Rldl9yZXN1bWUiCj4gWy9ob21lL2thcm9sL0Rva3VtZW50ZS9yZXBvcy9ub3V2
-ZWF1L2RybS9ub3V2ZWF1L25vdXZlYXUua29dCj4gdW5kZWZpbmVkIQo+IFdBUk5JTkc6ICJsZWRf
-Y2xhc3NkZXZfdW5yZWdpc3RlciIKPiBbL2hvbWUva2Fyb2wvRG9rdW1lbnRlL3JlcG9zL25vdXZl
-YXUvZHJtL25vdXZlYXUvbm91dmVhdS5rb10KPiB1bmRlZmluZWQhCj4gV0FSTklORzogImxlZF9j
-bGFzc2Rldl9zdXNwZW5kIgo+IFsvaG9tZS9rYXJvbC9Eb2t1bWVudGUvcmVwb3Mvbm91dmVhdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1LmtvXQo+IHVuZGVmaW5lZCEKPgo+IEFuZCB0aGVuIHdlIG1heSB3
-YW50IHRvIHRoaW5nIGFib3V0IGlmIHdlIHdhbnQgdG8gaGF2ZSBhIG5vdXZlYXUKPiBjb25maWcg
-b3B0aW9uIGZvciB0aGlzIHRvIGZvcmNlIGVuYWJsZSBMRURTX0NMQVNTLgo+IE9yIG1heWJlIHRo
-aXMgaXNuJ3QgbmVlZGVkIGF0IGFsbCBhbmQgd2UganVzdCBlbmFibGUgdGhpcyBjb2RlIHdoZW4K
-PiBDT05GSUdfTEVEU19DTEFTUyBpcyBlbmFibGVkIGluIHRoZSBrZXJuZWwuCj4KPiBHb29kIHN0
-dWZmIHRob3VnaAoKT29wcywgSSBoYWQgc2VudCB0aGUgZm9sbG93aW5nIHRvIG15c2VsZiwgbm90
-IGluY2x1ZGluZyB0aGUgTUw6CgoiSXQganVzdCBvY2N1cnJlZCB0byBtZSB0aGF0IEkgaGF2ZSBu
-b3QgY2hlY2tlZCBpZiBJIG5lZWRlZCB0bwpjb25kaXRpb25hbGx5LWNvbXBpbGUgdGhpcyBjb2Rl
-IG9yIG5vdCB3aGV0aGVyIHRoZSBMRUQgY2xhc3MgaXMKYXZhaWxhYmxlIG9yIG5vdC4gSSBkZXNp
-Z25lZCB0aGUgY29kZSBzbyBhcyB0byBiZSBhYmxlIHRvIGRvIGl0LCBidXQKZmFpbGVkIHRvIHJl
-bWVtYmVyLiBJIHdpbGwgY2hlY2sgYW5kIHNlbmQgYSB2MiBpZiBuZWVkZWQuIgoKQW55d2F5cywg
-eWVhaCwgbXkgcGxhbiBpcyBzaW1wbHkgdG8gbm90IGV4cG9zZSB0aGUgTEVEIGlmIHRoZSBjb25m
-aWcgaXMgCm5vdCBzZXQuIE5vIG5lZWQgdG8gZm9yY2UgYSBkZXBlbmRlbmN5IQoKSSB3aWxsIGNv
-b2sgdXAgYW5vdGhlciBwYXRjaCB0b21vcnJvdy4KCk1hcnRpbgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0724627069==
+Content-Type: multipart/alternative; boundary="14627328086.B6eca8d.17632";
+ charset="UTF-8"
+
+
+--14627328086.B6eca8d.17632
+Date: Sun, 8 May 2016 18:40:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=59069
+
+--- Comment #36 from Matt Whitlock <freedesktop-wf/ZkUcLzLDBWRuVRseHprNAH6kLmebB@public.gmane.org> ---
+This is still a problem in Linux 4.5.3.
+
+I might add that I also see kernel log lines like this (not new in 4.5.3):
+
+[Sun May  8 12:23:15 2016] nouveau 0000:01:00.0: fifo: CACHE_ERROR - ch 8
+[chrome[2561]] subc 0 mthd 0060 data beef0201
+
+The "beef0201" seems suspicious. I have seen other values there, but most often
+it's "beef0201". Doesn't this seem like a sentinel value?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14627328086.B6eca8d.17632
+Date: Sun, 8 May 2016 18:40:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c36">Comment # 36</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - nouveau E[ DRM] fail ttm_validate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
+              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;mattwhitlock.name" title="Matt Whitlock &lt;freedesktop&#64;mattwhitlock.name&gt;"> <span class="fn">Matt Whitlock</span></a>
+</span></b>
+        <pre>This is still a problem in Linux 4.5.3.
+
+I might add that I also see kernel log lines like this (not new in 4.5.3):
+
+[Sun May  8 12:23:15 2016] nouveau 0000:01:00.0: fifo: CACHE_ERROR - ch 8
+[chrome[2561]] subc 0 mthd 0060 data beef0201
+
+The &quot;beef0201&quot; seems suspicious. I have seen other values there, but most often
+it's &quot;beef0201&quot;. Doesn't this seem like a sentinel value?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14627328086.B6eca8d.17632--
+
+--===============0724627069==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0724627069==--
