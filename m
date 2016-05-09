@@ -1,148 +1,122 @@
-From: Alexandre Courbot <acourbot@nvidia.com>
-Subject: Re: [PATCH] Revert "drm/nouveau/device/pci: set as non-CPU-coherent
- on ARM64"
-Date: Mon, 9 May 2016 19:28:47 +0900
-Message-ID: <09c90723-a1e7-675b-085e-47d1bee81524@nvidia.com>
-References: <1a1818490fd3ef570c0ef35c0296f1a955a6ff72.1461927227.git.robin.murphy@arm.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95213] no screens found(EE)
+Date: Mon, 09 May 2016 16:45:55 +0000
+Message-ID: <bug-95213-8800-sZoncuQo7Y@http.bugs.freedesktop.org/>
+References: <bug-95213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1a1818490fd3ef570c0ef35c0296f1a955a6ff72.1461927227.git.robin.murphy@arm.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Robin Murphy <robin.murphy@arm.com>, airlied@linux.ie, bskeggs@redhat.com
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1816873475=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-95213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDQvMjkvMjAxNiAwODoxOCBQTSwgUm9iaW4gTXVycGh5IHdyb3RlOgo+IFRoaXMgcmV2ZXJ0
-cyBjb21taXQgMTczM2EyYWQzNjc0MWIxODEyY2Y4YjNmMzAzN2MyOGQwYWY1M2Y1MC4KPgo+IFRo
-ZXJlIGlzIGFwcGFyZW50bHkgc29tZXRoaW5nIGFtaXNzIHdpdGggdGhlIHdheSB0aGUgVFRNIGNv
-ZGUgaGFuZGxlcwo+IERNQSBidWZmZXJzLCB3aGljaCB0aGUgYWJvdmUgY29tbWl0IHdhcyBhdHRl
-bXB0aW5nIHRvIHdvcmsgYXJvdW5kIGZvcgo+IGFybTY0IHN5c3RlbXMgd2l0aCBub24tY29oZXJl
-bnQgUENJLiBVbmZvcnR1bmF0ZWx5LCB0aGlzIGNvbXBsZXRlbHkKPiBicmVha3Mgc3lzdGVtcyAq
-d2l0aCogY29oZXJlbnQgUENJICh3aGljaCBhcHBlYXIgdG8gYmUgdGhlIG1ham9yaXR5KS4KPgo+
-IEJvb3RpbmcgYSBwbGFpbiBhcm02NCBkZWZjb25maWcgKyBDT05GSUdfRFJNICsgQ09ORklHX0RS
-TV9OT1VWRUFVIG9uCj4gYSBtYWNoaW5lIHdpdGggYSBQQ0kgR1BVIGhhdmluZyBjb2hlcmVudCBk
-bWFfbWFwX29wcyAoaW4gdGhpcyBjYXNlIGEKPiA3NjAwR1QgY2FyZCBwbHVnZ2VkIGludG8gYW4g
-QVJNIEp1bm8gYm9hcmQpIHJlc3VsdHMgaW4gYSBmYXRhbCBjcmFzaDoKPgo+IFsgICAgMi44MDM0
-MzhdIG5vdXZlYXUgMDAwMDowNjowMC4wOiBEUk06IGFsbG9jYXRlZCAxMDI0eDc2OCBmYjogMHg5
-MDAwLCBibyBmZmZmZmZjOTc2MTQxYzAwCj4gWyAgICAyLjg5NzY2Ml0gVW5hYmxlIHRvIGhhbmRs
-ZSBrZXJuZWwgTlVMTCBwb2ludGVyIGRlcmVmZXJlbmNlIGF0IHZpcnR1YWwgYWRkcmVzcyAwMDAw
-MDFhYwo+IFsgICAgMi44OTc2NjZdIHBnZCA9IGZmZmZmZjgwMDhlMDAwMDAKPiBbICAgIDIuODk3
-Njc1XSBbMDAwMDAxYWNdICpwZ2Q9MDAwMDAwMDlmZmZmZTAwMywgKnB1ZD0wMDAwMDAwOWZmZmZl
-MDAzLCAqcG1kPTAwMDAwMDAwMDAwMDAwMDAKPiBbICAgIDIuODk3NjgwXSBJbnRlcm5hbCBlcnJv
-cjogT29wczogOTYwMDAwNDUgWyMxXSBQUkVFTVBUIFNNUAo+IFsgICAgMi44OTc2ODVdIE1vZHVs
-ZXMgbGlua2VkIGluOgo+IFsgICAgMi44OTc2OTJdIENQVTogMCBQSUQ6IDEgQ29tbTogc3dhcHBl
-ci8wIE5vdCB0YWludGVkIDQuNi4wLXJjNSsgIzU0Mwo+IFsgICAgMi44OTc2OTRdIEhhcmR3YXJl
-IG5hbWU6IEFSTSBKdW5vIGRldmVsb3BtZW50IGJvYXJkIChyMSkgKERUKQo+IFsgICAgMi44OTc2
-OTldIHRhc2s6IGZmZmZmZmM5NzY4YTAwMDAgdGk6IGZmZmZmZmM5NzY4YTgwMDAgdGFzay50aTog
-ZmZmZmZmYzk3NjhhODAwMAo+IFsgICAgMi44OTc3MTFdIFBDIGlzIGF0IF9fbWVtY3B5KzB4N2Mv
-MHgxODAKPiBbICAgIDIuODk3NzE5XSBMUiBpcyBhdCBPVVRfUklOR3ArMHgzNC8weDcwCj4gWyAg
-ICAyLjg5NzcyNF0gcGMgOiBbPGZmZmZmZjgwMDgzNDY1ZmM+XSBsciA6IFs8ZmZmZmZmODAwODU0
-MjQ4Yz5dIHBzdGF0ZTogODAwMDAwNDUKPiBbICAgIDIuODk3NzI2XSBzcCA6IGZmZmZmZmM5NzY4
-YWIzNjAKPiBbICAgIDIuODk3NzMyXSB4Mjk6IGZmZmZmZmM5NzY4YWIzNjAgeDI4OiAwMDAwMDAw
-MDAwMDAwMDAxCj4gWyAgICAyLjg5NzczOF0geDI3OiBmZmZmZmZjOTc2MjRjMDAwIHgyNjogMDAw
-MDAwMDAwMDAwMDAwMAo+IFsgICAgMi44OTc3NDRdIHgyNTogMDAwMDAwMDAwMDAwMDA4MCB4MjQ6
-IDAwMDAwMDAwMDAwMDZjMDAKPiBbICAgIDIuODk3NzQ5XSB4MjM6IDAwMDAwMDAwMDAwMDAwMDUg
-eDIyOiBmZmZmZmZjOTc2MjRjMDEwCj4gWyAgICAyLjg5Nzc1NV0geDIxOiAwMDAwMDAwMDAwMDAw
-MDA0IHgyMDogMDAwMDAwMDAwMDAwMDAwNAo+IFsgICAgMi44OTc3NjFdIHgxOTogZmZmZmZmYzk3
-NjNkYTAwMCB4MTg6IGZmZmZmZmM5NzZiMjQ5MWMKPiBbICAgIDIuODk3NzY2XSB4MTc6IDAwMDAw
-MDAwMDAwMDAwMDcgeDE2OiAwMDAwMDAwMDAwMDAwMDA2Cj4gWyAgICAyLjg5Nzc3MV0geDE1OiAw
-MDAwMDAwMDAwMDAwMDAxIHgxNDogMDAwMDAwMDAwMDAwMDAwMQo+IFsgICAgMi44OTc3NzddIHgx
-MzogMDAwMDAwMDAwMGUzMWI3MCB4MTI6IGZmZmZmZmM5NzY4YTAwODAKPiBbICAgIDIuODk3Nzgz
-XSB4MTE6IDAwMDAwMDAwMDAwMDAwMDAgeDEwOiBmZmZmZmZmZmZmZmZmYjAwCj4gWyAgICAyLjg5
-Nzc4OF0geDkgOiAwMDAwMDAwMDAwMDAwMDAwIHg4IDogMDAwMDAwMDAwMDAwMDAwMAo+IFsgICAg
-Mi44OTc3OTNdIHg3IDogMDAwMDAwMDAwMDAwMDAwMCB4NiA6IDAwMDAwMDAwMDAwMDAxYWMKPiBb
-ICAgIDIuODk3Nzk5XSB4NSA6IDAwMDAwMDAwZmZmZmZmZmYgeDQgOiAwMDAwMDAwMDAwMDAwMDAw
-Cj4gWyAgICAyLjg5NzgwNF0geDMgOiAwMDAwMDAwMDAwMDAwMDEwIHgyIDogMDAwMDAwMDAwMDAw
-MDAxMAo+IFsgICAgMi44OTc4MTBdIHgxIDogZmZmZmZmYzk3NjI0YzAxMCB4MCA6IDAwMDAwMDAw
-MDAwMDAxYWMKPiAuLi4KPiBbICAgIDIuODk4NDk0XSBDYWxsIHRyYWNlOgo+IFsgICAgMi44OTg0
-OTldIEV4Y2VwdGlvbiBzdGFjaygweGZmZmZmZmM5NzY4YWIxYTAgdG8gMHhmZmZmZmZjOTc2OGFi
-MmMwKQo+IFsgICAgMi44OTg1MDZdIGIxYTA6IGZmZmZmZmM5NzYzZGEwMDAgMDAwMDAwMDAwMDAw
-MDAwNCBmZmZmZmZjOTc2OGFiMzYwIGZmZmZmZjgwMDgzNDY1ZmMKPiBbICAgIDIuODk4NTEzXSBi
-MWMwOiBmZmZmZmZjOTc2ODAxZTAwIGZmZmZmZmM5NzYyYjgwMDAgZmZmZmZmYzk3NjhhYjFmMCBm
-ZmZmZmY4MDA4MGVjMTU4Cj4gWyAgICAyLjg5ODUyMF0gYjFlMDogZmZmZmZmYzk3NjhhYjIzMCBm
-ZmZmZmY4MDA4NDk2ZDA0IGZmZmZmZmM5NzVjZTZkODAgZmZmZmZmYzk3NjhhYjM2ZQo+IFsgICAg
-Mi44OTg1MjddIGIyMDA6IGZmZmZmZmM5NzY4YWIzNmYgZmZmZmZmYzk3NjhhYjI5ZCBmZmZmZmZj
-OTc2OGFiMjllIGZmZmZmZmM5NzY4YTAwMDAKPiBbICAgIDIuODk4NTMzXSBiMjIwOiBmZmZmZmZj
-OTc2OGFiMjUwIGZmZmZmZjgwMDgwZTcwYzAgZmZmZmZmYzk3NjhhYjI3MCBmZmZmZmY4MDA4NDk2
-ZTQ0Cj4gWyAgICAyLjg5ODU0MF0gYjI0MDogMDAwMDAwMDAwMDAwMDFhYyBmZmZmZmZjOTc2MjRj
-MDEwIDAwMDAwMDAwMDAwMDAwMTAgMDAwMDAwMDAwMDAwMDAxMAo+IFsgICAgMi44OTg1NDZdIGIy
-NjA6IDAwMDAwMDAwMDAwMDAwMDAgMDAwMDAwMDBmZmZmZmZmZiAwMDAwMDAwMDAwMDAwMWFjIDAw
-MDAwMDAwMDAwMDAwMDAKPiBbICAgIDIuODk4NTUyXSBiMjgwOiAwMDAwMDAwMDAwMDAwMDAwIDAw
-MDAwMDAwMDAwMDAwMDAgZmZmZmZmZmZmZmZmZmIwMCAwMDAwMDAwMDAwMDAwMDAwCj4gWyAgICAy
-Ljg5ODU1OF0gYjJhMDogZmZmZmZmYzk3NjhhMDA4MCAwMDAwMDAwMDAwZTMxYjcwIDAwMDAwMDAw
-MDAwMDAwMDEgMDAwMDAwMDAwMDAwMDAwMQo+IFsgICAgMi44OTg1NjZdIFs8ZmZmZmZmODAwODM0
-NjVmYz5dIF9fbWVtY3B5KzB4N2MvMHgxODAKPiBbICAgIDIuODk4NTc0XSBbPGZmZmZmZjgwMDg1
-M2UxNjQ+XSBudjA0X2ZiY29uX2ltYWdlYmxpdCsweDFkNC8weDJlOAo+IFsgICAgMi44OTg1ODJd
-IFs8ZmZmZmZmODAwODUzZDZkMD5dIG5vdXZlYXVfZmJjb25faW1hZ2VibGl0KzB4ZDgvMHhlMAo+
-IFsgICAgMi44OTg1OTFdIFs8ZmZmZmZmODAwODNjNGRiND5dIHNvZnRfY3Vyc29yKzB4MTU0LzB4
-MWQ4Cj4gWyAgICAyLjg5ODU5OF0gWzxmZmZmZmY4MDA4M2M0N2I0Pl0gYml0X2N1cnNvcisweDRm
-Yy8weDUzOAo+IFsgICAgMi44OTg2MDVdIFs8ZmZmZmZmODAwODNjMGNmYz5dIGZiY29uX2N1cnNv
-cisweDEzNC8weDFhOAo+IFsgICAgMi44OTg2MTNdIFs8ZmZmZmZmODAwODQxYzI4MD5dIGhpZGVf
-Y3Vyc29yKzB4MzgvMHhhMAo+IFsgICAgMi44OTg2MjBdIFs8ZmZmZmZmODAwODQxZDQyMD5dIHJl
-ZHJhd19zY3JlZW4rMHgxMjAvMHgyMjgKPiBbICAgIDIuODk4NjI4XSBbPGZmZmZmZjgwMDgzYmYy
-Njg+XSBmYmNvbl9wcmVwYXJlX2xvZ28rMHgzNzAvMHgzZjgKPiBbICAgIDIuODk4NjM1XSBbPGZm
-ZmZmZjgwMDgzYmY2NDA+XSBmYmNvbl9pbml0KzB4MzUwLzB4NTYwCj4gWyAgICAyLjg5ODY0MV0g
-WzxmZmZmZmY4MDA4NDFjNjM0Pl0gdmlzdWFsX2luaXQrMHhhYy8weDEwOAo+IFsgICAgMi44OTg2
-NDhdIFs8ZmZmZmZmODAwODQxZGYxND5dIGRvX2JpbmRfY29uX2RyaXZlcisweDFjNC8weDNhOAo+
-IFsgICAgMi44OTg2NTVdIFs8ZmZmZmZmODAwODQxZTRmND5dIGRvX3Rha2Vfb3Zlcl9jb25zb2xl
-KzB4MTc0LzB4MWU4Cj4gWyAgICAyLjg5ODY2Ml0gWzxmZmZmZmY4MDA4M2JmOGM0Pl0gZG9fZmJj
-b25fdGFrZW92ZXIrMHg3NC8weDEwMAo+IFsgICAgMi44OTg2NjldIFs8ZmZmZmZmODAwODNjM2U0
-ND5dIGZiY29uX2V2ZW50X25vdGlmeSsweDhjYy8weDkyMAo+IFsgICAgMi44OTg2ODBdIFs8ZmZm
-ZmZmODAwODBkN2UzOD5dIG5vdGlmaWVyX2NhbGxfY2hhaW4rMHg1MC8weDkwCj4gWyAgICAyLjg5
-ODY4NV0gWzxmZmZmZmY4MDA4MGQ4MjE0Pl0gX19ibG9ja2luZ19ub3RpZmllcl9jYWxsX2NoYWlu
-KzB4NGMvMHg5MAo+IFsgICAgMi44OTg2OTFdIFs8ZmZmZmZmODAwODBkODI2Yz5dIGJsb2NraW5n
-X25vdGlmaWVyX2NhbGxfY2hhaW4rMHgxNC8weDIwCj4gWyAgICAyLjg5ODY5Nl0gWzxmZmZmZmY4
-MDA4M2M1ZTFjPl0gZmJfbm90aWZpZXJfY2FsbF9jaGFpbisweDFjLzB4MjgKPiBbICAgIDIuODk4
-NzAzXSBbPGZmZmZmZjgwMDgzYzgxYWM+XSByZWdpc3Rlcl9mcmFtZWJ1ZmZlcisweDFjYy8weDJl
-MAo+IFsgICAgMi44OTg3MTJdIFs8ZmZmZmZmODAwODQ1ZGE4MD5dIGRybV9mYl9oZWxwZXJfaW5p
-dGlhbF9jb25maWcrMHgyODgvMHgzZTgKPiBbICAgIDIuODk4NzE5XSBbPGZmZmZmZjgwMDg1M2Rh
-MjA+XSBub3V2ZWF1X2ZiY29uX2luaXQrMHhlMC8weDExOAo+IFsgICAgMi44OTg3MjddIFs8ZmZm
-ZmZmODAwODUyZDJmOD5dIG5vdXZlYXVfZHJtX2xvYWQrMHgyNjgvMHg4OTAKPiBbICAgIDIuODk4
-NzM0XSBbPGZmZmZmZjgwMDg0NjZlMjQ+XSBkcm1fZGV2X3JlZ2lzdGVyKzB4YmMvMHhjOAo+IFsg
-ICAgMi44OTg3NDBdIFs8ZmZmZmZmODAwODQ2OGE4OD5dIGRybV9nZXRfcGNpX2RldisweGEwLzB4
-MTgwCj4gWyAgICAyLjg5ODc0N10gWzxmZmZmZmY4MDA4NTJjYjI4Pl0gbm91dmVhdV9kcm1fcHJv
-YmUrMHgxYTAvMHgxZTAKPiBbICAgIDIuODk4NzU1XSBbPGZmZmZmZjgwMDgzYTMyZTA+XSBwY2lf
-ZGV2aWNlX3Byb2JlKzB4OTgvMHgxMTAKPiBbICAgIDIuODk4NzYzXSBbPGZmZmZmZjgwMDg1OGU0
-MzQ+XSBkcml2ZXJfcHJvYmVfZGV2aWNlKzB4MjA0LzB4MmIwCj4gWyAgICAyLjg5ODc3MF0gWzxm
-ZmZmZmY4MDA4NThlNThjPl0gX19kcml2ZXJfYXR0YWNoKzB4YWMvMHhiMAo+IFsgICAgMi44OTg3
-NzddIFs8ZmZmZmZmODAwODU4YzNlMD5dIGJ1c19mb3JfZWFjaF9kZXYrMHg2MC8weGEwCj4gWyAg
-ICAyLjg5ODc4M10gWzxmZmZmZmY4MDA4NThkYmMwPl0gZHJpdmVyX2F0dGFjaCsweDIwLzB4MjgK
-PiBbICAgIDIuODk4Nzg5XSBbPGZmZmZmZjgwMDg1OGQ3YjA+XSBidXNfYWRkX2RyaXZlcisweDFk
-MC8weDIzOAo+IFsgICAgMi44OTg3OTZdIFs8ZmZmZmZmODAwODU4ZWQ1MD5dIGRyaXZlcl9yZWdp
-c3RlcisweDYwLzB4ZjgKPiBbICAgIDIuODk4ODAyXSBbPGZmZmZmZjgwMDgzYTIwZGM+XSBfX3Bj
-aV9yZWdpc3Rlcl9kcml2ZXIrMHgzYy8weDQ4Cj4gWyAgICAyLjg5ODgwOV0gWzxmZmZmZmY4MDA4
-NDY4ZWI0Pl0gZHJtX3BjaV9pbml0KzB4ZjQvMHgxMjAKPiBbICAgIDIuODk4ODE4XSBbPGZmZmZm
-ZjgwMDhjNTZmYzA+XSBub3V2ZWF1X2RybV9pbml0KzB4MjFjLzB4MjMwCj4gWyAgICAyLjg5ODgy
-NV0gWzxmZmZmZmY4MDA4MDgyOWQ0Pl0gZG9fb25lX2luaXRjYWxsKzB4OGMvMHgxOTAKPiBbICAg
-IDIuODk4ODMyXSBbPGZmZmZmZjgwMDhjMzFhZjQ+XSBrZXJuZWxfaW5pdF9mcmVlYWJsZSsweDE0
-Yy8weDFmMAo+IFsgICAgMi44OTg4MzldIFs8ZmZmZmZmODAwODhhMGMyMD5dIGtlcm5lbF9pbml0
-KzB4MTAvMHgxMDAKPiBbICAgIDIuODk4ODQ1XSBbPGZmZmZmZjgwMDgwODVlMTA+XSByZXRfZnJv
-bV9mb3JrKzB4MTAvMHg0MAo+IFsgICAgMi44OTg4NTNdIENvZGU6IGE4ODEyMGM3IGE4YzEyMDI3
-IGE4ODEyMGM3IGE4YzEyMDI3IChhODgxMjBjNykKPiBbICAgIDIuODk4ODcxXSAtLS1bIGVuZCB0
-cmFjZSBkNTcxM2RjYWQwMjNlZTA0IF0tLS0KPiBbICAgIDIuODk4ODg4XSBLZXJuZWwgcGFuaWMg
-LSBub3Qgc3luY2luZzogQXR0ZW1wdGVkIHRvIGtpbGwgaW5pdCEgZXhpdGNvZGU9MHgwMDAwMDAw
-Ygo+Cj4gSW4gYSB0b3NzLXVwIGJldHdlZW4gdGhlIEdQVSBzZWVpbmcgc3RhbGUgZGF0YSBhcnRl
-ZmFjdHMgb24gc29tZSBzeXN0ZW1zCj4gdnMuIGNhdGFzdHJvcGhpYyBrZXJuZWwgY3Jhc2hlcyBv
-biBvdGhlciBzeXN0ZW1zLCB0aGUgbGF0dGVyIHdvdWxkIHNlZW0KPiB0byB0YWtlIHByZWNlZGVu
-Y2UsIHNvIHJldmVydCB0aGlzIGNoYW5nZSB1bnRpbCB0aGUgcmVhbCB1bmRlcmx5aW5nCj4gcHJv
-YmxlbSBjYW4gYmUgZml4ZWQuCj4KPiBTaWduZWQtb2ZmLWJ5OiBSb2JpbiBNdXJwaHkgPHJvYmlu
-Lm11cnBoeUBhcm0uY29tPgo+IC0tLQo+Cj4gQWxleCwgQmVuLCBEYXZlLAo+Cj4gSSBrbm93IEFs
-ZXggd2FzIGxvb2tpbmcgaW50byB0aGlzLCBidXQgc2luY2Ugd2UncmUgbmVhcmx5IGF0IC1yYzYg
-YWxyZWFkeQo+IGl0IGxvb2tzIGxpa2UgdGhlIG9ubHkgdGhpbmcgdG8gZG8gZm9yIDQuNiBpcyBw
-aWNrIHRoZSBsZXNzZXIgb2YgdHdvIGV2aWxzLi4uCgpIaSBSb2JpbiwKClNvcnJ5IGZvciB0aGUg
-ZGVsYXllZCByZXBseSAtIEkgd2FzIG9mZmxpbmUgbGFzdCB3ZWVrLgoKWW91IGFyZSByaWdodCwg
-c28gbGV0J3MgcGljayB0aGlzIHBhdGNoIGZvciBub3cuCgpSZXZpZXdlZC1ieTogQWxleGFuZHJl
-IENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Cl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============1816873475==
+Content-Type: multipart/alternative; boundary="14628123540.FFC3Ec656.28551";
+ charset="UTF-8"
+
+
+--14628123540.FFC3Ec656.28551
+Date: Mon, 9 May 2016 16:45:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=95213
+
+tele <swojskichlopak-5tc4TXWwyLM@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |CLOSED
+
+--- Comment #10 from tele <swojskichlopak-5tc4TXWwyLM@public.gmane.org> ---
+
+I will cast these distribution and look for error.
+I will change linux distribution.
+So you can close the topic.
+  See you later!
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.
+--14628123540.FFC3Ec656.28551
+Date: Mon, 9 May 2016 16:45:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:swojskichlopak&#64;wp.pl" title="tele &lt;swojskichlopak&#64;wp.pl&gt;"> <span class="fn">tele</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED NOTOURBUG - no screens found(EE)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95213">bug 95213</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>CLOSED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED NOTOURBUG - no screens found(EE)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95213#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED NOTOURBUG - no screens found(EE)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95213">bug 95213</a>
+              from <span class="vcard"><a class="email" href="mailto:swojskichlopak&#64;wp.pl" title="tele &lt;swojskichlopak&#64;wp.pl&gt;"> <span class="fn">tele</span></a>
+</span></b>
+        <pre>
+I will cast these distribution and look for error.
+I will change linux distribution.
+So you can close the topic.
+  See you later!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14628123540.FFC3Ec656.28551--
+
+--===============1816873475==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1816873475==--
