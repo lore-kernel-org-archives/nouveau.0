@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95334] GM107 with 2560x1440 display on HDMI selects
  suboptimal resolution 1920x1080
-Date: Tue, 10 May 2016 08:11:18 +0000
-Message-ID: <bug-95334-8800-VAAqi8U4Md@http.bugs.freedesktop.org/>
+Date: Tue, 10 May 2016 08:11:47 +0000
+Message-ID: <bug-95334-8800-4vlBP8Sdg3@http.bugs.freedesktop.org/>
 References: <bug-95334-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0775223566=="
+Content-Type: multipart/mixed; boundary="===============2065343820=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95334-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0775223566==
-Content-Type: multipart/alternative; boundary="14628678781.668C.2270";
+--===============2065343820==
+Content-Type: multipart/alternative; boundary="14628679070.52533.1930";
  charset="UTF-8"
 
 
---14628678781.668C.2270
-Date: Tue, 10 May 2016 08:11:18 +0000
+--14628679070.52533.1930
+Date: Tue, 10 May 2016 08:11:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=95334
 
---- Comment #1 from Henk Poley <bugs.freedesktop.org-owGEuczhWdsicLL2Nvhyww@public.gmane.org> ---
-Created attachment 123594
-  --> https://bugs.freedesktop.org/attachment.cgi?id=123594&action=edit
-Crossover 2720MPD EDID dump
+--- Comment #2 from Henk Poley <bugs.freedesktop.org-owGEuczhWdsicLL2Nvhyww@public.gmane.org> ---
+Created attachment 123595
+  --> https://bugs.freedesktop.org/attachment.cgi?id=123595&action=edit
+Log from EDID dumper get-edid
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14628678781.668C.2270
-Date: Tue, 10 May 2016 08:11:18 +0000
+--14628679070.52533.1930
+Date: Tue, 10 May 2016 08:11:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -56,15 +56,15 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - GM107 with 2560x1440 display on HDMI selects suboptimal resolution 1920x1080"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95334#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95334#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - GM107 with 2560x1440 display on HDMI selects suboptimal resolution 1920x1080"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=95334">bug 95334</a>
               from <span class="vcard"><a class="email" href="mailto:bugs.freedesktop.org&#64;hpoley.dds.nl" title="Henk Poley &lt;bugs.freedesktop.org&#64;hpoley.dds.nl&gt;"> <span class="fn">Henk Poley</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=123594" name="attach_123594" title="Crossover 2720MPD EDID dump">attachment 123594</a> <a href="attachment.cgi?id=123594&amp;action=edit" title="Crossover 2720MPD EDID dump">[details]</a></span>
-Crossover 2720MPD EDID dump</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=123595" name="attach_123595" title="Log from EDID dumper get-edid">attachment 123595</a> <a href="attachment.cgi?id=123595&amp;action=edit" title="Log from EDID dumper get-edid">[details]</a></span>
+Log from EDID dumper get-edid</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ Crossover 2720MPD EDID dump</pre>
       </ul>
     </body>
 </html>
---14628678781.668C.2270--
+--14628679070.52533.1930--
 
---===============0775223566==
+--===============2065343820==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0775223566==--
+--===============2065343820==--
