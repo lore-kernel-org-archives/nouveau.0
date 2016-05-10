@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95334] GM107 with 2560x1440 display on HDMI selects
  suboptimal resolution 1920x1080
-Date: Tue, 10 May 2016 08:13:08 +0000
-Message-ID: <bug-95334-8800-1ArAYC9Rnw@http.bugs.freedesktop.org/>
+Date: Tue, 10 May 2016 08:13:40 +0000
+Message-ID: <bug-95334-8800-IMug9JN9jJ@http.bugs.freedesktop.org/>
 References: <bug-95334-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0656338150=="
+Content-Type: multipart/mixed; boundary="===============0548855420=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95334-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0656338150==
-Content-Type: multipart/alternative; boundary="14628679880.52B92f.3217";
+--===============0548855420==
+Content-Type: multipart/alternative; boundary="14628680201.EfdF.3482";
  charset="UTF-8"
 
 
---14628679880.52B92f.3217
-Date: Tue, 10 May 2016 08:13:07 +0000
+--14628680201.EfdF.3482
+Date: Tue, 10 May 2016 08:13:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=95334
 
---- Comment #4 from Henk Poley <bugs.freedesktop.org-owGEuczhWdsicLL2Nvhyww@public.gmane.org> ---
-Created attachment 123597
-  --> https://bugs.freedesktop.org/attachment.cgi?id=123597&action=edit
-stdout from parse-edid
+--- Comment #5 from Henk Poley <bugs.freedesktop.org-owGEuczhWdsicLL2Nvhyww@public.gmane.org> ---
+Created attachment 123598
+  --> https://bugs.freedesktop.org/attachment.cgi?id=123598&action=edit
+Errors from parse-edid
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14628679880.52B92f.3217
-Date: Tue, 10 May 2016 08:13:08 +0000
+--14628680201.EfdF.3482
+Date: Tue, 10 May 2016 08:13:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -56,15 +56,15 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - GM107 with 2560x1440 display on HDMI selects suboptimal resolution 1920x1080"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95334#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95334#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - GM107 with 2560x1440 display on HDMI selects suboptimal resolution 1920x1080"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=95334">bug 95334</a>
               from <span class="vcard"><a class="email" href="mailto:bugs.freedesktop.org&#64;hpoley.dds.nl" title="Henk Poley &lt;bugs.freedesktop.org&#64;hpoley.dds.nl&gt;"> <span class="fn">Henk Poley</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=123597" name="attach_123597" title="stdout from parse-edid">attachment 123597</a> <a href="attachment.cgi?id=123597&amp;action=edit" title="stdout from parse-edid">[details]</a></span>
-stdout from parse-edid</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=123598" name="attach_123598" title="Errors from parse-edid">attachment 123598</a> <a href="attachment.cgi?id=123598&amp;action=edit" title="Errors from parse-edid">[details]</a></span>
+Errors from parse-edid</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ stdout from parse-edid</pre>
       </ul>
     </body>
 </html>
---14628679880.52B92f.3217--
+--14628680201.EfdF.3482--
 
---===============0656338150==
+--===============0548855420==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0656338150==--
+--===============0548855420==--
