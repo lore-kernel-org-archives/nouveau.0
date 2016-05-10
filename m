@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95334] GM107 with 2560x1440 display on HDMI selects
  suboptimal resolution 1920x1080
-Date: Tue, 10 May 2016 08:14:47 +0000
-Message-ID: <bug-95334-8800-gRcQMNM3vB@http.bugs.freedesktop.org/>
+Date: Tue, 10 May 2016 08:21:42 +0000
+Message-ID: <bug-95334-8800-w67a8dd8hv@http.bugs.freedesktop.org/>
 References: <bug-95334-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1661432995=="
+Content-Type: multipart/mixed; boundary="===============0127827480=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95334-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1661432995==
-Content-Type: multipart/alternative; boundary="14628680861.e42AE5c8.4010";
+--===============0127827480==
+Content-Type: multipart/alternative; boundary="14628685010.Da901.5620";
  charset="UTF-8"
 
 
---14628680861.e42AE5c8.4010
-Date: Tue, 10 May 2016 08:14:46 +0000
+--14628685010.Da901.5620
+Date: Tue, 10 May 2016 08:21:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain
 
 https://bugs.freedesktop.org/show_bug.cgi?id=95334
 
---- Comment #7 from Henk Poley <bugs.freedesktop.org-owGEuczhWdsicLL2Nvhyww@public.gmane.org> ---
-Created attachment 123600
-  --> https://bugs.freedesktop.org/attachment.cgi?id=123600&action=edit
-Xorg.0.log from system running nouveau
+--- Comment #8 from Henk Poley <bugs.freedesktop.org-owGEuczhWdsicLL2Nvhyww@public.gmane.org> ---
+Not too relevant, since it's not in the EDID, but the name of the screen is
+Crossover 2720MDP as originally mentioned (made a typo in the upload
+description).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
---14628680861.e42AE5c8.4010
-Date: Tue, 10 May 2016 08:14:46 +0000
+--14628685010.Da901.5620
+Date: Tue, 10 May 2016 08:21:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -56,15 +56,16 @@ Content-Type: text/html
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - GM107 with 2560x1440 display on HDMI selects suboptimal resolution 1920x1080"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=95334#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95334#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - GM107 with 2560x1440 display on HDMI selects suboptimal resolution 1920x1080"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=95334">bug 95334</a>
               from <span class="vcard"><a class="email" href="mailto:bugs.freedesktop.org&#64;hpoley.dds.nl" title="Henk Poley &lt;bugs.freedesktop.org&#64;hpoley.dds.nl&gt;"> <span class="fn">Henk Poley</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=123600" name="attach_123600" title="Xorg.0.log from system running nouveau">attachment 123600</a> <a href="attachment.cgi?id=123600&amp;action=edit" title="Xorg.0.log from system running nouveau">[details]</a></span>
-Xorg.0.log from system running nouveau</pre>
+        <pre>Not too relevant, since it's not in the EDID, but the name of the screen is
+Crossover 2720MDP as originally mentioned (made a typo in the upload
+description).</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +76,9 @@ Xorg.0.log from system running nouveau</pre>
       </ul>
     </body>
 </html>
---14628680861.e42AE5c8.4010--
+--14628685010.Da901.5620--
 
---===============1661432995==
+--===============0127827480==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1661432995==--
+--===============0127827480==--
