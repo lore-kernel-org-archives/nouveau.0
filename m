@@ -1,16 +1,13 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: VDPAU DEINTERLACE
-Date: Mon, 9 May 2016 20:55:07 +0200
-Message-ID: <5730DD0B.40209@gmail.com>
-References: <572AD63E.5070703@gmail.com>
- <CAKb7UvhaNdY9ebfKyHQ8Q83u3B1ihX9qCWX7CiHfZ=PJb8etOA@mail.gmail.com>
- <5730DA04.3020507@gmail.com>
- <CAKb7Uvgv2keE2wxUAdKQhYjo5eQrZZxW_jxqZCbQwRGy-u4Now@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95330] New: [NV84] Hangs with gr: DATA_ERROR
+ [INVALID_BITFIELD], TRAP_PROP [RT_FAULT],
+ fb: trapped write [PGRAPH] [PROP] [RT0] [PAGE_NOT_PRESENT],
+ bsp: Watchdog interrupt, engine hung
+Date: Tue, 10 May 2016 02:36:01 +0000
+Message-ID: <bug-95330-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1797988098=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvgv2keE2wxUAdKQhYjo5eQrZZxW_jxqZCbQwRGy-u4Now-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,127 +17,306 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDkuMDUuMjAxNiAyMDo0NSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gWW91IGNhbiB0cnkgcGxh
-eWluZyB3aXRoIHBzdGF0ZSBpbiAvc3lzL2tlcm5lbC9kZWJ1Zy9kcmkvMC9wc3RhdGUKPiAKCiMg
-Y2F0IC9zeXMva2VybmVsL2RlYnVnL2RyaS8wL3BzdGF0ZQowZjogY29yZSA1NjcgTUh6IHNoYWRl
-ciAxNDAwIE1IeiBtZW1vcnkgNDAwIE1IegpBQzogY29yZSA1NjYgTUh6IHNoYWRlciAxNDAwIE1I
-eiBtZW1vcnkgMzk5IE1IegoKwrExIE1IeiA6KQoKPiBPbiBNb24sIE1heSA5LCAyMDE2IGF0IDI6
-NDIgUE0sIHBvbWEgPHBvbWlkb3JhYmVsaXNpbWFAZ21haWwuY29tPiB3cm90ZToKPj4gT24gMDku
-MDUuMjAxNiAxOTozNywgSWxpYSBNaXJraW4gd3JvdGU6Cj4+PiBNZXNhIG9ubHkgc3VwcG9ydHMg
-dGhlIG5vbi1zcGF0aWFsIHRlbXBvcmFsIGRlaW50ZXJsYWNlIChkZWludD0zKS4gSSdtCj4+PiBn
-dWVzc2luZyB0aGF0IGR1ZSB0byBzb21lIHVuZm9ydHVuYXRlIGlzc3VlcywgeW91J3JlIG5vIGxv
-bmdlciBnZXR0aW5nCj4+PiBodyBhY2NlbGVyYXRlZCB2aWRlbyBkZWNvZGluZy4gQ2hlY2sgaW4g
-dmRwYXVpbmZvIHRvIG1ha2Ugc3VyZSB0aGF0Cj4+PiBpdCdzIGluZGVlZCBzaG93aW5nIHRoZSBy
-ZWxldmFudCBjb2RlYyBhcyBzdXBwb3J0ZWQuIElmIG5vdCwgeW91IGNhbgo+Pj4gdHVybiB0aGF0
-IGJhY2sgb24gYnkgdXBkYXRpbmcgdG8gbWVzYSAxMS4yLjIsIG9yIGRvd25ncmFkaW5nIHlvdXIK
-Pj4+IGtlcm5lbCB0byA0LjIgb3IgZWFybGllci4gKFRoZSBpc3N1ZSBvbmx5IGFmZmVjdHMgRzk4
-IGFuZCBNQ1A3Ny9NQ1A3OQo+Pj4gSUdQcy4pCj4+Pgo+Pgo+PiBXaXRoIHRoZSAtTXBsYXllci0g
-dmRwYXUgZGVjb2Rpbmcgd29ya3MsIGF0IGxlYXN0IHdpdGggdGhlIC1wcm9ncmVzc2l2ZS0gc2Nh
-biB0eXBlLAo+PiAtaW50ZXJsYWNlZC0gc2NhbiB0eXBlIChEVkJULTU3NmkvMTA4MGkpIGlzIHF1
-ZXN0aW9uYWJsZSwKPj4gZXNwZWNpYWxseSB3aGVuIHJ1bnMgd2l0aGluIHZsYyBvciB4aW5lLCBl
-dmVuIHdpdGhvdXQgdmRwYXUgZGVpbnRlcmxhY2VyLAo+PiBYb3JnIGNyYXNoIGR1bXAsIHNhdGlz
-ZmFjdGlvbiBndWFyYW50ZWUuCj4+Cj4+Cj4+ICQgdmRwYXVpbmZvCj4+IGRpc3BsYXk6IDowLjAg
-ICBzY3JlZW46IDAKPj4gQVBJIHZlcnNpb246IDEKPj4gSW5mb3JtYXRpb24gc3RyaW5nOiBHM0RW
-TCBWRFBBVSBEcml2ZXIgU2hhcmVkIExpYnJhcnkgdmVyc2lvbiAxLjAKPj4gLi4uCj4+Cj4+IERl
-Y29kZXIgY2FwYWJpbGl0aWVzOgo+Pgo+PiBuYW1lICAgICAgICAgICAgICAgICAgICAgICAgbGV2
-ZWwgbWFjYnMgd2lkdGggaGVpZ2h0Cj4+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0KPj4gTVBFRzEgICAgICAgICAgICAgICAgICAgICAgICAgICAw
-IDE2Mzg0ICAyMDQ4ICAyMDQ4Cj4+IE1QRUcyX1NJTVBMRSAgICAgICAgICAgICAgICAgICAgMyAx
-NjM4NCAgMjA0OCAgMjA0OAo+PiBNUEVHMl9NQUlOICAgICAgICAgICAgICAgICAgICAgIDMgMTYz
-ODQgIDIwNDggIDIwNDgKPj4gSDI2NF9CQVNFTElORSAgICAgICAgICAgICAgICAgIDQxIDE2Mzg0
-ICAyMDQ4ICAyMDQ4Cj4+IEgyNjRfTUFJTiAgICAgICAgICAgICAgICAgICAgICA0MSAxNjM4NCAg
-MjA0OCAgMjA0OAo+PiBIMjY0X0hJR0ggICAgICAgICAgICAgICAgICAgICAgNDEgMTYzODQgIDIw
-NDggIDIwNDgKPj4gVkMxX1NJTVBMRSAgICAgICAgICAgICAgICAgICAgICAxIDE2Mzg0ICAyMDQ4
-ICAyMDQ4Cj4+IFZDMV9NQUlOICAgICAgICAgICAgICAgICAgICAgICAgMiAxNjM4NCAgMjA0OCAg
-MjA0OAo+PiBWQzFfQURWQU5DRUQgICAgICAgICAgICAgICAgICAgIDQgMTYzODQgIDIwNDggIDIw
-NDgKPj4gTVBFRzRfUEFSVDJfU1AgICAgICAgICAgICAgICAgIC0tLSBub3Qgc3VwcG9ydGVkIC0t
-LQo+PiAuLi4KPj4KPj4gVmlkZW8gbWl4ZXI6Cj4+Cj4+IGZlYXR1cmUgbmFtZSAgICAgICAgICAg
-ICAgICAgICAgc3VwCj4+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+PiBE
-RUlOVEVSTEFDRV9URU1QT1JBTCAgICAgICAgICAgICB5Cj4+IERFSU5URVJMQUNFX1RFTVBPUkFM
-X1NQQVRJQUwgICAgIC0KPj4gSU5WRVJTRV9URUxFQ0lORSAgICAgICAgICAgICAgICAgLQo+PiBO
-T0lTRV9SRURVQ1RJT04gICAgICAgICAgICAgICAgICB5Cj4+IFNIQVJQTkVTUyAgICAgICAgICAg
-ICAgICAgICAgICAgIHkKPj4gTFVNQV9LRVkgICAgICAgICAgICAgICAgICAgICAgICAgLQo+PiAu
-Li4KPj4KPj4+IElmIHlvdSBhcmUsIGluIGZhY3QsIGdldHRpbmcgaHcgdmlkZW8gZGVjb2Rpbmcg
-YWNjZWxlcmF0aW9uLCB0aGVuIGl0Cj4+PiBjb3VsZCBiZSB0aGF0IHlvdXIgR1BVIGlzIGNsb2Nr
-ZWQgdG9vIGxvdy4gWW91IGNvdWxkIGF0dGVtcHQKPj4+IHJlY2xvY2tpbmcgdG8gYSBoaWdoZXIg
-cHN0YXRlIGFuZCBzZWVpbmcgd2hhdCBoYXBwZW5zLgo+Pj4KPj4KPj4gIyBudmNsb2NrIC0tc3Bl
-ZWRzCj4+IC4uLgo+PiBNZW1vcnkgY2xvY2s6IDM5OS42MDAgTUh6Cj4+IEdQVSBjbG9jazogNjEy
-LjAwMCBNSHoKPj4KPj4gIyBudmNsb2NrIC0taW5mbwo+PiAuLi4KPj4gUGVyZm9ybWFuY2UgbGV2
-ZWwgMDogZ3B1IDU2N01Iei9zaGFkZXIgMTQwME1Iei9tZW1vcnkgNDAwTUh6LzEwMCUKPj4KPj4g
-JCBkbWVzZyAtdCB8IGdyZXAgcHN0YXRlCj4+IC4uLgo+PiBLZXJuZWwgY29tbWFuZCBsaW5lOiAu
-Li4gbm91dmVhdS5wc3RhdGU9MSAuLi4KPj4gbm91dmVhdTogdW5rbm93biBwYXJhbWV0ZXIgJ3Bz
-dGF0ZScgaWdub3JlZAo+PiAtNC41LjItCj4+Cj4+IElzIHRoZXJlIGEgcm9vbSBmb3IgcmVpbmZv
-cmNlbWVudCwgb3IKPj4gTlZJRElBIEc5OCBERUlOVEVSTEFDRVI6IGFiaWxpdHkgd2l0aG91dCBj
-YXBhYmlsaXR5LCBpLmUuIHVuZGVycG93ZXJlZCBHUFU/Cj4+Cj4+Pgo+Pj4gT24gVGh1LCBNYXkg
-NSwgMjAxNiBhdCAxOjEyIEFNLCBwb21hIDxwb21pZG9yYWJlbGlzaW1hQGdtYWlsLmNvbT4gd3Jv
-dGU6Cj4+Pj4KPj4+PiBOVklESUEgRzk4Cj4+Pj4gbWVzYS1kcmktZHJpdmVycy0xMS4yLjEtMi4y
-MDE2MDUwMS5mYzIyLng4Nl82NAo+Pj4+IChpbmNsLiBtZXNhIGNvbW1pdCAzOGZjZjdjKQo+Pj4+
-Cj4+Pj4KPj4+PiB2ZHBhdWluZm8gfCBncmVwIC1pIGRlaW50Cj4+Pj4gREVJTlRFUkxBQ0VfVEVN
-UE9SQUwgICAgICAgICAgICAgeQo+Pj4+IERFSU5URVJMQUNFX1RFTVBPUkFMX1NQQVRJQUwgICAg
-IC0KPj4+Pgo+Pj4+Cj4+Pj4gaHR0cHM6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy92ZHBhdS9saWJ2
-ZHBhdS90cmVlL2luY2x1ZGUvdmRwYXUvdmRwYXUuaCNuMzQyMAo+Pj4+ICNkZWZpbmUgVkRQX1ZJ
-REVPX01JWEVSX0ZFQVRVUkVfREVJTlRFUkxBQ0VfVEVNUE9SQUwgICAgICAgICAoKFZkcFZpZGVv
-TWl4ZXJGZWF0dXJlKTApCj4+Pj4gLyoqCj4+Pj4gICogXGhpZGVpbml0aWFsaXplcgo+Pj4+ICAq
-IFxicmllZiBBIFZkcFZpZGVvTWl4ZXJGZWF0dXJlLgo+Pj4+ICAqCj4+Pj4gICogV2hlbiByZXF1
-ZXN0ZWQgYW5kIGVuYWJsZWQsIHRoaXMgZW5hYmxlcyBhIG1vcmUgYWR2YW5jZWQKPj4+PiAgKiB2
-ZXJzaW9uIG9mIHRlbXBvcmFsIGRlLWludGVybGFjaW5nLCB0aGF0IGFkZGl0aW9uYWxseSB1c2Vz
-Cj4+Pj4gICogZWRnZS1ndWlkZWQgc3BhdGlhbCBpbnRlcnBvbGF0aW9uLgo+Pj4+ICAqCj4+Pj4g
-ICogV2hlbiBtdWx0aXBsZSBkZS1pbnRlcmxhY2luZyBvcHRpb25zIGFyZSByZXF1ZXN0ZWQgYW5k
-Cj4+Pj4gICogZW5hYmxlZCwgdGhlIGJhY2stZW5kIGltcGxlbWVudGF0aW9uIGNob29zZXMgdGhl
-IGJlc3QKPj4+PiAgKiBhbGdvcml0aG0gdG8gYXBwbHkuCj4+Pj4gICovCj4+Pj4gI2RlZmluZSBW
-RFBfVklERU9fTUlYRVJfRkVBVFVSRV9ERUlOVEVSTEFDRV9URU1QT1JBTF9TUEFUSUFMICgoVmRw
-VmlkZW9NaXhlckZlYXR1cmUpMSkKPj4+PiAvKioKPj4+PiAgKiBcaGlkZWluaXRpYWxpemVyCj4+
-Pj4gICogXGJyaWVmIEEgVmRwVmlkZW9NaXhlckZlYXR1cmUuCj4+Pj4gICoKPj4+PiAgKiBXaGVu
-IHJlcXVlc3RlZCBhbmQgZW5hYmxlZCwgY2FkZW5jZSBkZXRlY3Rpb24gd2lsbCBiZSBlbmFibGVk
-Cj4+Pj4gICogb24gaW50ZXJsYWNlZCBjb250ZW50IGFuZCB0aGUgdmlkZW8gbWl4ZXIgd2lsbCB0
-cnkgdG8gZXh0cmFjdAo+Pj4+ICAqIHByb2dyZXNzaXZlIGZyYW1lcyBmcm9tIHB1bGwtZG93biBt
-YXRlcmlhbC4KPj4+PiAgKi8KPj4+Pgo+Pj4+Cj4+Pj4gaHR0cHM6Ly9jZ2l0LmZyZWVkZXNrdG9w
-Lm9yZy92ZHBhdS9saWJ2ZHBhdS90cmVlL2luY2x1ZGUvdmRwYXUvdmRwYXUuaCNuNjA2Cj4+Pj4g
-ICogXHN1YnNlY3Rpb24gZGVpbnRfYWR2IEFkdmFuY2VkIERlLWludGVybGFjaW5nCj4+Pj4gICoK
-Pj4+PiAgKiBPcGVyYXRpb24gb2YgYm90aCB0ZW1wb3JhbCBhbmQgdGVtcG9yYWwtc3BhdGlhbCBk
-ZS1pbnRlcmxhY2luZyBpcwo+Pj4+ICAqIGlkZW50aWNhbDsgdGhlIG9ubHkgZGlmZmVyZW5jZSBp
-cyB0aGUgaW50ZXJuYWwgcHJvY2Vzc2luZyB0aGUgYWxnb3JpdGhtCj4+Pj4gICogcGVyZm9ybXMg
-aW4gZ2VuZXJhdGluZyB0aGUgb3V0cHV0IGZyYW1lLgo+Pj4+ICAqCj4+Pj4KPj4+Pgo+Pj4+IG1h
-biAxIG1wbGF5ZXIKPj4+PiAuLi4KPj4+PiB2ZHBhdSAoWDExIG9ubHkpCj4+Pj4gLi4uCj4+Pj4g
-ZGVpbnQ9PC00LTQ+Cj4+Pj4gLi4uCj4+Pj4gICAgICAgIFNlbGVjdCBkZWludGVybGFjaW5nIG1v
-ZGUgKGRlZmF1bHQ6IC0zKS4gUG9zaXRpdmUgIHZhbHVlcwo+Pj4+ICAgICAgICBjaG9vc2UgbW9k
-ZSBhbmQgZW5hYmxlIGRlaW50ZXJsYWNpbmcuIENvcnJlc3BvbmRpbmcgbmVnYeKAkAo+Pj4+ICAg
-ICAgICB0aXZlIHZhbHVlcyBzZWxlY3QgdGhlIHNhbWUgZGVpbnRlcmxhY2luZyAgbW9kZSwgIGJ1
-dCAgZG8KPj4+PiAgICAgICAgbm90IGVuYWJsZSBkZWludGVybGFjaW5nIG9uIHN0YXJ0dXAgKHVz
-ZWZ1bCBpbiBjb25maWd1cmHigJAKPj4+PiAgICAgICAgdGlvbiBmaWxlcyB0byBzcGVjaWZ5IHdo
-YXQgbW9kZSB3aWxsIGJlICBlbmFibGVkICBieSAgdGhlCj4+Pj4gICAgICAgICJEIiBrZXkpLiBB
-bGwgbW9kZXMgcmVzcGVjdCAtLWZpZWxkLWRvbWluYW5jZS4KPj4+Pgo+Pj4+ICAgICAgICAwICAg
-ICAgc2FtZSBhcyAtMwo+Pj4+Cj4+Pj4gICAgICAgIDEgICAgICBTaG93IG9ubHkgZmlyc3QgZmll
-bGQsIHNpbWlsYXIgdG8gLS12Zj1maWVsZC4KPj4+Pgo+Pj4+ICAgICAgICAyICAgICAgQm9iIGRl
-aW50ZXJsYWNpbmcsIHNpbWlsYXIgdG8gLS12Zj10ZmllbGRzPTEuCj4+Pj4KPj4+PiAgICAgICAg
-MyAgICAgIG1vdGlvbiAgYWRhcHRpdmUgIHRlbXBvcmFsIGRlaW50ZXJsYWNpbmcuIE1heSBsZWFk
-Cj4+Pj4gICAgICAgICAgICAgICB0byBBL1YgZGVzeW5jIHdpdGggc2xvdyB2aWRlbyBoYXJkd2Fy
-ZSBhbmQvb3IgaGlnaAo+Pj4+ICAgICAgICAgICAgICAgcmVzb2x1dGlvbi4KPj4+Pgo+Pj4+ICAg
-ICAgICA0ICAgICAgbW90aW9uICAgYWRhcHRpdmUgICB0ZW1wb3JhbCAgIGRlaW50ZXJsYWNpbmcg
-IHdpdGgKPj4+PiAgICAgICAgICAgICAgIGVkZ2UtZ3VpZGVkICBzcGF0aWFsICBpbnRlcnBvbGF0
-aW9uLiAgTmVlZHMgICBmYXN0Cj4+Pj4gICAgICAgICAgICAgICB2aWRlbyBoYXJkd2FyZS4KPj4+
-Pgo+Pj4+Cj4+Pj4gUmVhZGluZyBhbGwgdGhpcywgYW0gSSBjb3JyZWN0bHkgY29uY2x1ZGVkLAo+
-Pj4+IHdoYXQgaXMgc3VwcG9ydGVkIHdpdGhpbiBOVklESUEgRzk4IEhXIGlzIERFSU5URVJMQUNF
-X1RFTVBPUkFMLAo+Pj4+IHdoaWNoIHNob3VsZCBiZSBlbmdhZ2VkIHdpdGggTXBsYXllcidzICd2
-ZHBhdTpkZWludD00JyBvcHRpb24/Cj4+Pj4KPj4+PiBUaGVuIGFnYWluLCB3aGF0IERFSU5URVJM
-QUNFX1RFTVBPUkFMX1NQQVRJQUwgcmVwcmVzZW50cz8KPj4+PiBBcyByZWFkaW5nIHRoZSAndmRw
-YXVpbmZvJyBvdXRwdXQgaXQgc2hvdWxkIG5vdCBiZSBzdXBwb3J0ZWQuCj4+Pj4gSXMgaXQgYXNz
-b2NpYXRlZCB3aXRoIE1wbGF5ZXIncyAndmRwYXU6ZGVpbnQ9Mycgb3B0aW9uLAo+Pj4+IHdoaWNo
-IGluIHR1cm4gd29ya3MsIHNvIHRvIHNwZWFrPwo+Pj4+Cj4+Pj4gbXBsYXllciAtdm8gdmRwYXU6
-ZGVpbnQ9WzM0XSAtdmMgZmZtcGVnMTJ2ZHBhdSBkdmI6Ly8yQERWQlQKPj4+Pgo+Pj4+IEFsdGhv
-dWdoIHRoZXkgYWNoaWV2ZSBzb2xpZCBkZWludGVybGFjaW5nIHJlc3VsdCwKPj4+PiB2ZHBhdTpk
-ZWludD0zIGFuZCB2ZHBhdTpkZWludD00IHRlbmQgdG8gcHJvZHVjZToKPj4+Pgo+Pj4+ICoqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKgo+Pj4+ICoqKiogWW91
-ciBzeXN0ZW0gaXMgdG9vIFNMT1cgdG8gcGxheSB0aGlzISAgKioqKgo+Pj4+ICoqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKgo+Pj4+Cj4+Pj4gUmVzdCBvZiB0
-aGUgZGVpbnRlcmxhY2luZyBtb2RlcyAtIDEgYW5kIDIsIGFyZSBub3Qgc28gZ3JlYXQuCj4+Pj4K
-Pj4+Pgo+Pj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Cj4+Pj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPj4+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwo+Pj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQo+PgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1797988098==
+Content-Type: multipart/alternative; boundary="14628477611.eC56.777";
+ charset="UTF-8"
+
+
+--14628477611.eC56.777
+Date: Tue, 10 May 2016 02:36:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain
+
+https://bugs.freedesktop.org/show_bug.cgi?id=95330
+
+            Bug ID: 95330
+           Summary: [NV84] Hangs with gr: DATA_ERROR [INVALID_BITFIELD],
+                    TRAP_PROP [RT_FAULT], fb: trapped write [PGRAPH]
+                    [PROP] [RT0] [PAGE_NOT_PRESENT], bsp: Watchdog
+                    interrupt, engine hung
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: freedesktop-wf/ZkUcLzLDBWRuVRseHprNAH6kLmebB@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 123586
+  --> https://bugs.freedesktop.org/attachment.cgi?id=123586&action=edit
+kernel.log
+
+Nouveau has been wildly unstable for me ever since I upgraded from about Linux
+4.1 to 4.4+. The latest manifestation of this bumpy ride was a full X.org
+server hang. I was still able to SSH in to capture some logs.
+
+01:00.0 VGA compatible controller: NVIDIA Corporation G84 [GeForce 8600 GT]
+(rev a1) (prog-if 00 [VGA controller])
+    Subsystem: Gigabyte Technology Co., Ltd G84 [GeForce 8600 GT]
+    Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx+
+    Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort-
+<MAbort- >SERR- <PERR- INTx-
+    Latency: 0, Cache Line Size: 64 bytes
+    Interrupt: pin A routed to IRQ 27
+    Region 0: Memory at e4000000 (32-bit, non-prefetchable) [size=16M]
+    Region 1: Memory at d0000000 (64-bit, prefetchable) [size=256M]
+    Region 3: Memory at e2000000 (64-bit, non-prefetchable) [size=32M]
+    Region 5: I/O ports at 3000 [size=128]
+    Expansion ROM at <ignored> [disabled]
+    Capabilities: [60] Power Management version 2
+        Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA
+PME(D0-,D1-,D2-,D3hot-,D3cold-)
+        Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
+    Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+        Address: 00000000fee0100c  Data: 41e1
+    Capabilities: [78] Express (v1) Endpoint, MSI 00
+        DevCap:    MaxPayload 128 bytes, PhantFunc 0, Latency L0s <512ns, L1
+<4us
+            ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset- SlotPowerLimit
+75.000W
+        DevCtl:    Report errors: Correctable- Non-Fatal- Fatal- Unsupported-
+            RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
+            MaxPayload 128 bytes, MaxReadReq 512 bytes
+        DevSta:    CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr- TransPend-
+        LnkCap:    Port #0, Speed 2.5GT/s, Width x16, ASPM L0s L1, Exit Latency
+L0s <512ns, L1 <4us
+            ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
+        LnkCtl:    ASPM Disabled; RCB 128 bytes Disabled- CommClk+
+            ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+        LnkSta:    Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk+ DLActive-
+BWMgmt- ABWMgmt-
+    Capabilities: [100 v1] Virtual Channel
+        Caps:    LPEVC=0 RefClk=100ns PATEntryBits=1
+        Arb:    Fixed- WRR32- WRR64- WRR128-
+        Ctrl:    ArbSelect=Fixed
+        Status:    InProgress-
+        VC0:    Caps:    PATOffset=00 MaxTimeSlots=1 RejSnoopTrans-
+            Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR256-
+            Ctrl:    Enable+ ID=0 ArbSelect=Fixed TC/VC=01
+            Status:    NegoPending- InProgress-
+    Capabilities: [128 v1] Power Budgeting <?>
+    Capabilities: [600 v1] Vendor Specific Information: ID=0001 Rev=1 Len=024
+<?>
+    Kernel driver in use: nouveau
+
+
+Software versions in use:
+
+  * Linux kernel 4.5.3-gentoo
+  * X.org X11 server 1.18.3
+  * xf86-video-nouveau 1.0.12
+  * libdrm 2.4.68
+  * Mesa 11.2.1
+
+
+Hang occurred shortly after quitting VLC. Kernel logs shows multiple errors
+from nouveau at this time, followed by an eventual segfault of vlc in
+libxcb.so.1.1.0 and segfault of kactivitymanage in libQt5Sql.so.5.6.0.
+
+I logged in via SSH and issued a reboot command, which took a while to process.
+Kernel log shows multiple "failed to idle channel" errors from nouveau,
+apparently one per X client. Also "fifo: channel … unload timeout" and "bsp:
+Watchdog interrupt, engine hung." See attached kernel log for specifics.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+--14628477611.eC56.777
+Date: Tue, 10 May 2016 02:36:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV84] Hangs with gr: DATA_ERROR [INVALID_BITFIELD], TRAP_PROP [RT_FAULT], fb: trapped write [PGRAPH] [PROP] [RT0] [PAGE_NOT_PRESENT], bsp: Watchdog interrupt, engine hung"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=95330">95330</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NV84] Hangs with gr: DATA_ERROR [INVALID_BITFIELD], TRAP_PROP [RT_FAULT], fb: trapped write [PGRAPH] [PROP] [RT0] [PAGE_NOT_PRESENT], bsp: Watchdog interrupt, engine hung
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>freedesktop&#64;mattwhitlock.name
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=123586" name="attach_123586" title="kernel.log">attachment 123586</a> <a href="attachment.cgi?id=123586&amp;action=edit" title="kernel.log">[details]</a></span>
+kernel.log
+
+Nouveau has been wildly unstable for me ever since I upgraded from about Linux
+4.1 to 4.4+. The latest manifestation of this bumpy ride was a full X.org
+server hang. I was still able to SSH in to capture some logs.
+
+01:00.0 VGA compatible controller: NVIDIA Corporation G84 [GeForce 8600 GT]
+(rev a1) (prog-if 00 [VGA controller])
+    Subsystem: Gigabyte Technology Co., Ltd G84 [GeForce 8600 GT]
+    Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx+
+    Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast &gt;TAbort- &lt;TAbort-
+&lt;MAbort- &gt;SERR- &lt;PERR- INTx-
+    Latency: 0, Cache Line Size: 64 bytes
+    Interrupt: pin A routed to IRQ 27
+    Region 0: Memory at e4000000 (32-bit, non-prefetchable) [size=16M]
+    Region 1: Memory at d0000000 (64-bit, prefetchable) [size=256M]
+    Region 3: Memory at e2000000 (64-bit, non-prefetchable) [size=32M]
+    Region 5: I/O ports at 3000 [size=128]
+    Expansion ROM at &lt;ignored&gt; [disabled]
+    Capabilities: [60] Power Management version 2
+        Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA
+PME(D0-,D1-,D2-,D3hot-,D3cold-)
+        Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
+    Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+        Address: 00000000fee0100c  Data: 41e1
+    Capabilities: [78] Express (v1) Endpoint, MSI 00
+        DevCap:    MaxPayload 128 bytes, PhantFunc 0, Latency L0s &lt;512ns, L1
+&lt;4us
+            ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset- SlotPowerLimit
+75.000W
+        DevCtl:    Report errors: Correctable- Non-Fatal- Fatal- Unsupported-
+            RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
+            MaxPayload 128 bytes, MaxReadReq 512 bytes
+        DevSta:    CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr- TransPend-
+        LnkCap:    Port #0, Speed 2.5GT/s, Width x16, ASPM L0s L1, Exit Latency
+L0s &lt;512ns, L1 &lt;4us
+            ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
+        LnkCtl:    ASPM Disabled; RCB 128 bytes Disabled- CommClk+
+            ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+        LnkSta:    Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk+ DLActive-
+BWMgmt- ABWMgmt-
+    Capabilities: [100 v1] Virtual Channel
+        Caps:    LPEVC=0 RefClk=100ns PATEntryBits=1
+        Arb:    Fixed- WRR32- WRR64- WRR128-
+        Ctrl:    ArbSelect=Fixed
+        Status:    InProgress-
+        VC0:    Caps:    PATOffset=00 MaxTimeSlots=1 RejSnoopTrans-
+            Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR256-
+            Ctrl:    Enable+ ID=0 ArbSelect=Fixed TC/VC=01
+            Status:    NegoPending- InProgress-
+    Capabilities: [128 v1] Power Budgeting &lt;?&gt;
+    Capabilities: [600 v1] Vendor Specific Information: ID=0001 Rev=1 Len=024
+&lt;?&gt;
+    Kernel driver in use: nouveau
+
+
+Software versions in use:
+
+  * Linux kernel 4.5.3-gentoo
+  * X.org X11 server 1.18.3
+  * xf86-video-nouveau 1.0.12
+  * libdrm 2.4.68
+  * Mesa 11.2.1
+
+
+Hang occurred shortly after quitting VLC. Kernel logs shows multiple errors
+from nouveau at this time, followed by an eventual segfault of vlc in
+libxcb.so.1.1.0 and segfault of kactivitymanage in libQt5Sql.so.5.6.0.
+
+I logged in via SSH and issued a reboot command, which took a while to process.
+Kernel log shows multiple &quot;failed to idle channel&quot; errors from nouveau,
+apparently one per X client. Also &quot;fifo: channel … unload timeout&quot; and &quot;bsp:
+Watchdog interrupt, engine hung.&quot; See attached kernel log for specifics.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+--14628477611.eC56.777--
+
+--===============1797988098==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1797988098==--
