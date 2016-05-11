@@ -1,148 +1,84 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95351] lockup on kde startup
-Date: Wed, 11 May 2016 14:31:59 +0000
-Message-ID: <bug-95351-8800-dFUORypuHf@http.bugs.freedesktop.org/>
-References: <bug-95351-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v5 00/13] PRIME Synchronization
+Date: Wed, 11 May 2016 16:39:36 +0200
+Message-ID: <57334428.9000708@gmail.com>
+References: <cover.1460508866.git.agoins@nvidia.com>
+ <CAPM=9tz869SqWcOvGseGGD=018ENbuwRD-sB7i1P=W3zKdaqKA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0021911534=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <xorg-devel-bounces-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
+In-Reply-To: <CAPM=9tz869SqWcOvGseGGD=018ENbuwRD-sB7i1P=W3zKdaqKA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.x.org/mailman/options/xorg-devel>,
+ <mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.x.org/archives/xorg-devel>
+List-Post: <mailto:xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
+List-Help: <mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.x.org/mailman/listinfo/xorg-devel>,
+ <mailto:xorg-devel-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=subscribe>
+Errors-To: xorg-devel-bounces-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Sender: "xorg-devel" <xorg-devel-bounces-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
+To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Alex Goins <agoins-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>, "xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org" <xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0021911534==
-Content-Type: multipart/alternative; boundary="14629771190.20Bd.29111";
- charset="UTF-8"
-
-
---14629771190.20Bd.29111
-Date: Wed, 11 May 2016 14:31:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95351
-
-Martin Bednar <serafean-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #123620|0                           |1
-        is obsolete|                            |
-
---- Comment #3 from Martin Bednar <serafean-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 123622
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D123622&action=3Dedit
-dmesg 4.5.2
-
-It's extracted from journalctl, so instead of nouveau I grepped it for kern=
-el.
-I hope it's more complete this way.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14629771190.20Bd.29111
-Date: Wed, 11 May 2016 14:31:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:serafean&=
-#64;gmail.com" title=3D"Martin Bednar &lt;serafean&#64;gmail.com&gt;"> <spa=
-n class=3D"fn">Martin Bednar</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - lockup on kde startup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351">bug 95351<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #123620 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - lockup on kde startup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - lockup on kde startup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351">bug 95351<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-serafean&#64;gmail.com" title=3D"Martin Bednar &lt;serafean&#64;gmail.com&g=
-t;"> <span class=3D"fn">Martin Bednar</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D123622=
-" name=3D"attach_123622" title=3D"dmesg 4.5.2">attachment 123622</a> <a hre=
-f=3D"attachment.cgi?id=3D123622&amp;action=3Dedit" title=3D"dmesg 4.5.2">[d=
-etails]</a></span>
-dmesg 4.5.2
-
-It's extracted from journalctl, so instead of nouveau I grepped it for kern=
-el.
-I hope it's more complete this way.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14629771190.20Bd.29111--
-
---===============0021911534==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0021911534==--
+T24gMjkuMDQuMjAxNiAwNzo0MSwgRGF2ZSBBaXJsaWUgd3JvdGU6Cj4gT24gMTMgQXByaWwgMjAx
+NiBhdCAxNDoxNywgQWxleCBHb2lucyA8YWdvaW5zQG52aWRpYS5jb20+IHdyb3RlOgo+PiBIZWxs
+byBhbGwsCj4+Cj4+IFRoZXNlIHBhdGNoZXMgY2hhbmdlIHRoZSB4c2VydmVyIHRvIHN1cHBvcnQg
+c2V0dGluZyB1cCBQUklNRSB3aXRoIGRvdWJsZQo+PiBidWZmZXJpbmcsIGFuZCBpbXBsZW1lbnQg
+ZG91YmxlIGJ1ZmZlcmVkIFBSSU1FIHNpbmsgYW5kIHNvdXJjZSBzdXBwb3J0IGluCj4+IHRoZSBt
+b2Rlc2V0dGluZyBkcml2ZXIuIEluIGFkZGl0aW9uIHRvIHRoZXNlIGNoYW5nZXMsIEkndmUgdXBz
+dHJlYW1lZCBhCj4+IGNvdXBsZSBvZiBwYXRjaGVzIHRvIHRoZSBpOTE1IERSTSBkcml2ZXIgdGhh
+dCBtZXNoIHdpdGggdGhlc2UsIGFuZCBoYXZlCj4+IGltcGxlbWVudGVkIGRvdWJsZSBidWZmZXJl
+ZCBQUklNRSBzb3VyY2Ugc3VwcG9ydCBpbiB0aGUgTlZJRElBIHByb3ByaWV0YXJ5Cj4+IGRyaXZl
+ciAocGVuZGluZyByZWxlYXNlLikKPj4KPj4gUHJldmlvdXMgY292ZXIgbGV0dGVyczoKPj4gICAg
+IHY0OiBodHRwczovL2xpc3RzLngub3JnL2FyY2hpdmVzL3hvcmctZGV2ZWwvMjAxNi1NYXJjaC8w
+NDg5NDQuaHRtbAo+PiAgICAgdjM6IGh0dHA6Ly9saXN0cy54Lm9yZy9hcmNoaXZlcy94b3JnLWRl
+dmVsLzIwMTYtRmVicnVhcnkvMDQ4Njc3Lmh0bWwKPj4gICAgIHYyOiBodHRwOi8vbGlzdHMueC5v
+cmcvYXJjaGl2ZXMveG9yZy1kZXZlbC8yMDE2LUphbnVhcnkvMDQ4NDM0Lmh0bWwKPj4gICAgIHYx
+OiBodHRwOi8vbGlzdHMueC5vcmcvYXJjaGl2ZXMveG9yZy1kZXZlbC8yMDE1LU5vdmVtYmVyLzA0
+ODAzOS5odG1sCj4+Cj4+IEkgd2Fzbid0IGFibGUgdG8gZ2V0IGFueSBvZiBteSBxdWVzdGlvbnMg
+YW5zd2VyZWQgaW4gdGhlIGxhc3QgdGhyZWFkLCBzbyBJCj4+IGFkZHJlc3NlZCB0aGUgaXNzdWVz
+IGhvdyBJIHNhdyBmaXQuIEFzaWRlIGZyb20gc29tZSBzbWFsbCB0d2Vha3MsIHRoZSBiaWdnZXN0
+Cj4+IGNoYW5nZXMgaW4gdGhpcyBwYXRjaCBzZXQgaW52b2x2ZSByZXNvbHZpbmcgdGhlIGFtYmln
+dWl0eSB3aXRoCj4+IHJyU2V0U2Nhbm91dFBpeG1hcCgpLiBJbnN0ZWFkIG9mIHVzaW5nIG11bHRp
+cGxlIGNhbGxzIHRvIHJyU2V0U2Nhbm91dFBpeG1hcCgpIHRvCj4+IHNldHVwIHNjYW5vdXQgcGl4
+bWFwcyBmb3IgZmxpcHBpbmcsIHRoZSBzY2Fub3V0IHBpeG1hcCBzZXR0aW5nIGlzIGRvbmUKPj4g
+aW1wbGljaXRseSBpbiByckVuYWJsZVNoYXJlZFBpeG1hcEZsaXBwaW5nKCkuCj4+Cj4+IFRoZXJl
+IGFyZSB0d28gbmV3IHBhdGNoZXMgdGhhdCBmaXggb3V0c3RhbmRpbmcgYnVncyB3aXRoCj4+IGRy
+bW1vZGVfc2V0X3NjYW5vdXRfcGl4bWFwKCksIHdpdGggZGV0YWlscyBpbiB0aGVpciByZXNwZWN0
+aXZlIGNvbW1pdCBtZXNzYWdlczoKPj4gICAgIG1vZGVzZXR0aW5nOiBJbnRlcm5hbCBzdG9yYWdl
+IG9mIHNjYW5vdXQgcGl4bWFwcwo+PiAgICAgbW9kZXNldHRpbmc6IEFsd2F5cyB0ZWFyIGRvd24g
+c2Nhbm91dCBwaXhtYXAKPj4KPj4gR2V0dGluZyBSUlJlcGxhY2VTY2Fub3V0UGl4bWFwKCkgd29y
+a2luZyB3aXRoIHN5bmNocm9uaXphdGlvbiB3b3VsZCByZXF1aXJlIGFuCj4+IEFCSSBjaGFuZ2Ug
+dG8gcGFzcyBpbiB0d28gcGl4bWFwcyBpbnN0ZWFkIG9mIG9uZSwgc28gSSBqdXN0IG1hZGUgaXQg
+ZmFpbAo+PiBncmFjZWZ1bGx5IGluIHRoZSBzeW5jaHJvbml6ZWQgY2FzZS4gTm9uZSBvZiB0aGUg
+ZHJpdmVycyB0aGF0IEkgaW1wbGVtZW50ZWQKPj4gUFJJTUUgc3luY2hyb25pemF0aW9uIGZvciBz
+ZWVtIHRvIHVzZSBSUlJlcGxhY2VTY2Fub3V0UGl4bWFwKCkuIEluIGZhY3QsIEkKPj4gYmVsaWV2
+ZSBpdCBpcyBjdXJyZW50bHkgYnJva2VuIHdpdGggdGhlIG1vZGVzZXR0aW5nIGRyaXZlciB3aXRo
+b3V0IHRoZSBhYm92ZSAyCj4+IHBhdGNoZXMuCj4gCj4gT2theSBJJ3ZlIGZpbmFsbHkgZ290dGVu
+IGFyb3VuZCB0byBwbGF5aW5nIHdpdGggdGhlc2UgdG9kYXkuIEknbSB1c2luZwo+IGEgaTkxNSAr
+IG5vdXZlYXUKPiBzeXN0ZW0gd2l0aCBub3V2ZWF1IHJ1bm5pbmcgYXMgdGhlIG1hc3Rlci4gQm90
+aCB1c2luZyBtb2Rlc2V0dGluZyBERFguCj4gCj4gVGhlIGJhc2ljcyBzZWVtIHRvIHdvcmsgb2th
+eSwgYnV0IEkgYW0gc2VlaW5nIHNvbWUgaXNzdWVzIEknbSBub3QgMTAwJSBzdXJlCj4gYXJlIHRo
+ZSBmYXVsdCBvZiB0aGVzZSBwYXRjaGVzLgo+IAo+IFNjZW5hcmlvIDE6Cj4gc3RhcnQgWCwgc3Rh
+cnQgbXV0dGVyIGFnYWluc3QgWCAodXNpbmcgRFJJMyksIHN0YXJ0IGdub21lLXRlcm1pbmFsLAo+
+IGRyYWcgZy10IGFyb3VuZAo+IHNlZW1zIHNtb290aC4KPiBzZXQgcHJvdmlkZXIgb3V0cHV0LCB4
+cmFuZHIgaW4gYSBuZXcgZGlzcGxheSwgZHJhZyBnLXQgYXJvdW5kLCBJIGdldAo+IGNob3BweSBy
+ZW5kZXJpbmcKPiBvbiB0aGUgbWFpbiBkaXNwbGF5LCB0aGUgb2ZmbG9hZGVkIGRpc3BsYXkgaXMg
+c21vb3RoIQo+IAo+IEkgZG9uJ3QgdGhpbmsgdGhpcyBoYXBwZW5zIHdpdGggRFJJMiBtdXR0ZXIs
+IHNvIEknbSBub3QgMTAwJSBzdXJlIHdoYXQKPiBpcyBnb2luZyBvbiB0aGVyZSwKPiBJIGFzc3Vt
+ZSBpdCdzIHNvbWV0aGluZyB0byBkbyB3aXRoIHBhZ2UgZmxpcHBpbmcgbm90IGJlaW5nIGFsbG93
+ZWQgZm9yCj4gcHJlc2VudCBhbnltb3JlLgo+IAo+IFNjZW5hcmlvIDI6Cj4gc3RhcnQgWCwgc2V0
+IHByb3ZpZGVyIG91dHB1dCwgeHJhbmRyIGluIGEgbmV3IGRpc3BsYXksIHN0YXJ0IG11dHRlciBp
+bgo+IERSSTMgbW9kZSwgdGhpbmdzCj4gZ28gaG9ycmlibHkgd3JvbmcuIEFnYWluIGl0IHNlZW1z
+IGZpbmUgaW4gRFJJMiBtb2RlLiBzbyBJIGV4cGVjdCB0aGlzCj4gaXMgc29tZSBpbnRlcmFjdGlv
+bgo+IHdpdGggdGhlIHByZXNlbnQgZXh0ZW5zaW9uIGZpZ2h0aW5nIHRoaXMuCj4gCj4gSSdtIGdv
+aW5nIHRvIHRyeSBhbmQgbG9vayBhdCB0aGUgaW50ZXJmYWNlcyBhIGJpdCBtb3JlIG5vdyB0aGF0
+IEkgaGF2ZQo+IGl0IHJ1bm5pbmcgb24gYSBtYWNoaW5lLgo+IAo+IERhdmUuCj4gCgoKR2VuZXJh
+bGx5IHNwZWFraW5nIG5vdXZlYXUvRFJJMyAtaXMtIGhhbGYtYnJva2VuLAp0YWxrIHRvIFNrZWdn
+cyBhbmQgdHJ5IHRvIHNvbHZlIGl0IG9uY2UgYW5kIGZvciBhbGwuCgoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KeG9yZy1kZXZlbEBsaXN0cy54Lm9yZzog
+WC5PcmcgZGV2ZWxvcG1lbnQKQXJjaGl2ZXM6IGh0dHA6Ly9saXN0cy54Lm9yZy9hcmNoaXZlcy94
+b3JnLWRldmVsCkluZm86IGh0dHBzOi8vbGlzdHMueC5vcmcvbWFpbG1hbi9saXN0aW5mby94b3Jn
+LWRldmVs
