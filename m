@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95351] lockup on kde startup
-Date: Wed, 11 May 2016 12:55:55 +0000
-Message-ID: <bug-95351-8800-zBuZxl2UrM@http.bugs.freedesktop.org/>
+Date: Wed, 11 May 2016 14:11:26 +0000
+Message-ID: <bug-95351-8800-zuo8no1S3S@http.bugs.freedesktop.org/>
 References: <bug-95351-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0432006665=="
+Content-Type: multipart/mixed; boundary="===============1216972730=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0432006665==
-Content-Type: multipart/alternative; boundary="14629713540.01acC.768";
+--===============1216972730==
+Content-Type: multipart/alternative; boundary="14629758860.0EA2.23811";
  charset="UTF-8"
 
 
---14629713540.01acC.768
-Date: Wed, 11 May 2016 12:55:54 +0000
+--14629758860.0EA2.23811
+Date: Wed, 11 May 2016 14:11:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,27 +35,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D95351
 
-Martin Bednar <serafean-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #2 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
+(In reply to Martin Bednar from comment #1)
+> Created attachment 123620 [details]
+> dmesg grepped for nouveau on kernel 4.5.2
+>=20
+> Tried newer kernel (4.5.2), still happens.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #123619|0                           |1
-        is obsolete|                            |
-
---- Comment #1 from Martin Bednar <serafean-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 123620
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D123620&action=3Dedit
-dmesg grepped for nouveau on kernel 4.5.2
-
-Tried newer kernel (4.5.2), still happens.
+Would you mind posting the full log rather than filtering/grepping through?
+Some of the backtrace has gone missing, and it'd be good to see other event=
+s in
+the system just for reference.
+Thanks!
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14629713540.01acC.768
-Date: Wed, 11 May 2016 12:55:54 +0000
+--14629758860.0EA2.23811
+Date: Wed, 11 May 2016 14:11:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,56 +65,39 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:serafean&=
-#64;gmail.com" title=3D"Martin Bednar &lt;serafean&#64;gmail.com&gt;"> <spa=
-n class=3D"fn">Martin Bednar</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - lockup on kde startup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351">bug 95351<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #123619 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - lockup on kde startup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - lockup on kde startup"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351">bug 95351<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-serafean&#64;gmail.com" title=3D"Martin Bednar &lt;serafean&#64;gmail.com&g=
-t;"> <span class=3D"fn">Martin Bednar</span></a>
+rspliet&#64;eclipso.eu" title=3D"Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span=
+ class=3D"fn">Roy</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D123620=
-" name=3D"attach_123620" title=3D"dmesg grepped for nouveau on kernel 4.5.2=
-">attachment 123620</a> <a href=3D"attachment.cgi?id=3D123620&amp;action=3D=
-edit" title=3D"dmesg grepped for nouveau on kernel 4.5.2">[details]</a></sp=
-an>
-dmesg grepped for nouveau on kernel 4.5.2
+        <pre>(In reply to Martin Bednar from <a href=3D"show_bug.cgi?id=3D9=
+5351#c1">comment #1</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D123620" name=3D"attach_123620" title=3D"dmesg grepped for nouveau o=
+n kernel 4.5.2">attachment 123620</a> <a href=3D"attachment.cgi?id=3D123620=
+&amp;action=3Dedit" title=3D"dmesg grepped for nouveau on kernel 4.5.2">[de=
+tails]</a></span>
+&gt; dmesg grepped for nouveau on kernel 4.5.2
+&gt;=20
+&gt; Tried newer kernel (4.5.2), still happens.</span >
 
-Tried newer kernel (4.5.2), still happens.</pre>
+Would you mind posting the full log rather than filtering/grepping through?
+Some of the backtrace has gone missing, and it'd be good to see other event=
+s in
+the system just for reference.
+Thanks!</pre>
         </div>
       </p>
 
@@ -124,15 +106,15 @@ Tried newer kernel (4.5.2), still happens.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14629713540.01acC.768--
+--14629758860.0EA2.23811--
 
---===============0432006665==
+--===============1216972730==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -142,4 +124,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0432006665==--
+--===============1216972730==--
