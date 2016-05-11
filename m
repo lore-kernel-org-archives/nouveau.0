@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95351] lockup on kde startup
-Date: Wed, 11 May 2016 14:11:51 +0000
-Message-ID: <bug-95351-8800-Bi5IiFxVaB@http.bugs.freedesktop.org/>
+Date: Wed, 11 May 2016 14:31:59 +0000
+Message-ID: <bug-95351-8800-dFUORypuHf@http.bugs.freedesktop.org/>
 References: <bug-95351-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1904731125=="
+Content-Type: multipart/mixed; boundary="===============0021911534=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1904731125==
-Content-Type: multipart/alternative; boundary="14629759100.d47A.23959";
+--===============0021911534==
+Content-Type: multipart/alternative; boundary="14629771190.20Bd.29111";
  charset="UTF-8"
 
 
---14629759100.d47A.23959
-Date: Wed, 11 May 2016 14:11:50 +0000
+--14629771190.20Bd.29111
+Date: Wed, 11 May 2016 14:31:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,19 +35,29 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D95351
 
-Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> changed:
+Martin Bednar <serafean-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
+ Attachment #123620|0                           |1
+        is obsolete|                            |
+
+--- Comment #3 from Martin Bednar <serafean-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 123622
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D123622&action=3Dedit
+dmesg 4.5.2
+
+It's extracted from journalctl, so instead of nouveau I grepped it for kern=
+el.
+I hope it's more complete this way.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14629759100.d47A.23959
-Date: Wed, 11 May 2016 14:11:50 +0000
+--14629771190.20Bd.29111
+Date: Wed, 11 May 2016 14:31:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,9 +68,9 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rspliet&#=
-64;eclipso.eu" title=3D"Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class=3D=
-"fn">Roy</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:serafean&=
+#64;gmail.com" title=3D"Martin Bednar &lt;serafean&#64;gmail.com&gt;"> <spa=
+n class=3D"fn">Martin Bednar</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEEDINFO "
@@ -76,13 +86,40 @@ Auto-Submitted: auto-generated
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
+           <td style=3D"text-align:right;">Attachment #123620 is obsolete</=
+td>
+           <td>
+               &nbsp;
            </td>
-           <td>NEEDINFO
+           <td>1
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - lockup on kde startup"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - lockup on kde startup"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351">bug 95351<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+serafean&#64;gmail.com" title=3D"Martin Bednar &lt;serafean&#64;gmail.com&g=
+t;"> <span class=3D"fn">Martin Bednar</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D123622=
+" name=3D"attach_123622" title=3D"dmesg 4.5.2">attachment 123622</a> <a hre=
+f=3D"attachment.cgi?id=3D123622&amp;action=3Dedit" title=3D"dmesg 4.5.2">[d=
+etails]</a></span>
+dmesg 4.5.2
+
+It's extracted from journalctl, so instead of nouveau I grepped it for kern=
+el.
+I hope it's more complete this way.</pre>
+        </div>
       </p>
 
 
@@ -96,9 +133,9 @@ Auto-Submitted: auto-generated
     </body>
 </html>=
 
---14629759100.d47A.23959--
+--14629771190.20Bd.29111--
 
---===============1904731125==
+--===============0021911534==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +145,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1904731125==--
+--===============0021911534==--
