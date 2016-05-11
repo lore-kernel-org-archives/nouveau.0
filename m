@@ -1,10 +1,13 @@
-From: =?UTF-8?Q?Marius_Gripsg=C3=A5rd?= <mariogrip-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
-Subject: Nouveau on GeForce GTX 980M
-Date: Fri, 22 Apr 2016 14:35:20 +0200
-Message-ID: <CANB0Qd_ZaqiktM2_9oaGVwNpx9EFM5PoV5uTKQvJCgCdhhkCkA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95334] GM107 with 2560x1440 display on HDMI selects
+ suboptimal resolution 1920x1080
+Date: Wed, 11 May 2016 12:41:56 +0000
+Message-ID: <bug-95334-8800-wRn3eCHZ84@http.bugs.freedesktop.org/>
+References: <bug-95334-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0984739324=="
+Content-Type: multipart/mixed; boundary="===============1637372208=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-95334-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,72 +20,105 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0984739324==
-Content-Type: multipart/alternative; boundary=047d7bacb18665e3f60531120f10
 
---047d7bacb18665e3f60531120f10
-Content-Type: text/plain; charset=UTF-8
+--===============1637372208==
+Content-Type: multipart/alternative; boundary="14629705161.53eC.30629";
+ charset="UTF-8"
 
+
+--14629705161.53eC.30629
+Date: Wed, 11 May 2016 12:41:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D95334
+
+--- Comment #12 from Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
 Hi,
 
-I was wondering is it possible to can get my GeForce GTX 980M work with
-Nouveau. I see that the non "M" version if GTX 980 is supported (
-https://nouveau.freedesktop.org/wiki/CodeNames/) but not the "M" version,
-how different are they?
+This is likely caused by the hdmi clock restrictions in the nouveau kernel
+driver, which are fixed by this commit:
+https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=
+=3D1a0c96c075bb4517d4ce4fb6750ee0a3cf38714c
 
-Now it uses Gallium 0.4 on llvmpipe, from my understanding that's fallback
-using the cpu right?
+Which is available in the 4.5 (and later) kernels, can you please upgrade y=
+our
+kernel to 4.5 and try again?
 
+Regards,
 
-*lshw -C video:*
+Hans
 
-  *-display UNCLAIMED
-       description: VGA compatible controller
-       product: GM204M [GeForce GTX 980M]
-       vendor: NVIDIA Corporation
-       physical id: 0
-       bus info: pci@0000:01:00.0
-       version: a1
-       width: 64 bits
-       clock: 33MHz
-       capabilities: pm msi pciexpress vga_controller cap_list
-       configuration: latency=0
-       resources: memory:f6000000-f6ffffff memory:e0000000-efffffff
-memory:f0000000-f1ffffff ioport:e000(size=128) memory:f7000000-f707ffff
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
 
-
-Thanks,
-Marius Gripsgard
-
---047d7bacb18665e3f60531120f10
-Content-Type: text/html; charset=UTF-8
+--14629705161.53eC.30629
+Date: Wed, 11 May 2016 12:41:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I was wondering is it possible to c=
-an get my=C2=A0GeForce GTX 980M work with Nouveau. I see that the non &quot=
-;M&quot; version if GTX 980 is supported (<a href=3D"https://nouveau.freede=
-sktop.org/wiki/CodeNames/">https://nouveau.freedesktop.org/wiki/CodeNames/<=
-/a>) but not the &quot;M&quot; version, how different are they?</div><div><=
-br></div><div>Now it uses Gallium 0.4 on llvmpipe, from my understanding th=
-at&#39;s fallback using the cpu right?<div><br></div><div><br></div><div><b=
->lshw -C video:</b><br></div><div><b><br></b></div><div><div>=C2=A0 *-displ=
-ay UNCLAIMED =C2=A0 =C2=A0=C2=A0</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0descr=
-iption: VGA compatible controller</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0prod=
-uct: GM204M [GeForce GTX 980M]</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0vendor:=
- NVIDIA Corporation</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0physical id: 0</di=
-v><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0bus info: pci@0000:01:00.0</div><div>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0version: a1</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0wi=
-dth: 64 bits</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0clock: 33MHz</div><div>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0capabilities: pm msi pciexpress vga_controller c=
-ap_list</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0configuration: latency=3D0</di=
-v><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0resources: memory:f6000000-f6ffffff memor=
-y:e0000000-efffffff memory:f0000000-f1ffffff ioport:e000(size=3D128) memory=
-:f7000000-f707ffff</div></div><div><br></div></div><div><br></div><div>Than=
-ks,</div><div>Marius Gripsgard</div></div>
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GM107 with 2560x1440 display on HDMI selects suboptimal r=
+esolution 1920x1080"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95334#c12">Commen=
+t # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GM107 with 2560x1440 display on HDMI selects suboptimal r=
+esolution 1920x1080"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95334">bug 95334<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jwrdegoede&#64;fedoraproject.org" title=3D"Hans de Goede &lt;jwrdegoede&#64=
+;fedoraproject.org&gt;"> <span class=3D"fn">Hans de Goede</span></a>
+</span></b>
+        <pre>Hi,
 
---047d7bacb18665e3f60531120f10--
+This is likely caused by the hdmi clock restrictions in the nouveau kernel
+driver, which are fixed by this commit:
+<a href=3D"https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/=
+commit/?id=3D1a0c96c075bb4517d4ce4fb6750ee0a3cf38714c">https://git.kernel.o=
+rg/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=3D1a0c96c075bb4517d4=
+ce4fb6750ee0a3cf38714c</a>
 
---===============0984739324==
+Which is available in the 4.5 (and later) kernels, can you please upgrade y=
+our
+kernel to 4.5 and try again?
+
+Regards,
+
+Hans</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14629705161.53eC.30629--
+
+--===============1637372208==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +128,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0984739324==--
+--===============1637372208==--
