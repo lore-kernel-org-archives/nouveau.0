@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95334] GM107 with 2560x1440 display on HDMI selects
  suboptimal resolution 1920x1080
-Date: Wed, 11 May 2016 16:55:00 +0000
-Message-ID: <bug-95334-8800-kVKPvNKhpM@http.bugs.freedesktop.org/>
+Date: Wed, 11 May 2016 16:56:18 +0000
+Message-ID: <bug-95334-8800-evraDBo3U8@http.bugs.freedesktop.org/>
 References: <bug-95334-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1314306247=="
+Content-Type: multipart/mixed; boundary="===============0613505780=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95334-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1314306247==
-Content-Type: multipart/alternative; boundary="14629857001.DBd7FC2A9.26821";
+--===============0613505780==
+Content-Type: multipart/alternative; boundary="14629857781.1d8612bcF.27945";
  charset="UTF-8"
 
 
---14629857001.DBd7FC2A9.26821
-Date: Wed, 11 May 2016 16:55:00 +0000
+--14629857781.1d8612bcF.27945
+Date: Wed, 11 May 2016 16:56:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D95334
 
---- Comment #13 from Henk Poley <bugs.freedesktop.org-owGEuczhWdsicLL2Nvhyww@public.gmane.org> ---
-Nice if your bugs are fixed in advance ;)
+Henk Poley <bugs.freedesktop.org-owGEuczhWdsicLL2Nvhyww@public.gmane.org> changed:
 
-Performance is more sluggish than the proprietary driver. But it picks the
-native resolution using Linux v4.5.1. Much better.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14629857001.DBd7FC2A9.26821
-Date: Wed, 11 May 2016 16:55:00 +0000
+--14629857781.1d8612bcF.27945
+Date: Wed, 11 May 2016 16:56:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,30 +59,40 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM107 with 2560x1440 display on HDMI selects suboptimal r=
-esolution 1920x1080"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95334#c13">Commen=
-t # 13</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM107 with 2560x1440 display on HDMI selects suboptimal r=
-esolution 1920x1080"
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:bugs.free=
+desktop.org&#64;hpoley.dds.nl" title=3D"Henk Poley &lt;bugs.freedesktop.org=
+&#64;hpoley.dds.nl&gt;"> <span class=3D"fn">Henk Poley</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - GM107 with 2560x1440 display on HDMI selects s=
+uboptimal resolution 1920x1080"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95334">bug 95334<=
 /a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bugs.freedesktop.org&#64;hpoley.dds.nl" title=3D"Henk Poley &lt;bugs.freede=
-sktop.org&#64;hpoley.dds.nl&gt;"> <span class=3D"fn">Henk Poley</span></a>
-</span></b>
-        <pre>Nice if your bugs are fixed in advance ;)
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Performance is more sluggish than the proprietary driver. But it picks the
-native resolution using Linux v4.5.1. Much better.</pre>
-        </div>
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -94,9 +105,9 @@ native resolution using Linux v4.5.1. Much better.</pre>
     </body>
 </html>=
 
---14629857001.DBd7FC2A9.26821--
+--14629857781.1d8612bcF.27945--
 
---===============1314306247==
+--===============0613505780==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1314306247==--
+--===============0613505780==--
