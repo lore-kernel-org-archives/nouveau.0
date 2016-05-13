@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93629] [NVE6] complete system freeze,
  PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
-Date: Fri, 13 May 2016 17:41:08 +0000
-Message-ID: <bug-93629-8800-SMswuiZQ4m@http.bugs.freedesktop.org/>
+Date: Fri, 13 May 2016 18:31:24 +0000
+Message-ID: <bug-93629-8800-bDn5fQq5Bw@http.bugs.freedesktop.org/>
 References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1735843534=="
+Content-Type: multipart/mixed; boundary="===============1929651851=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1735843534==
-Content-Type: multipart/alternative; boundary="14631612690.eb4C.18054";
+--===============1929651851==
+Content-Type: multipart/alternative; boundary="14631642844.a654995.30902";
  charset="UTF-8"
 
 
---14631612690.eb4C.18054
-Date: Fri, 13 May 2016 17:41:09 +0000
+--14631642844.a654995.30902
+Date: Fri, 13 May 2016 18:31:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
 
---- Comment #27 from Dan Moulding <dmoulding-BUHhN+a2lJ4@public.gmane.org> ---
-Created attachment 123717
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D123717&action=3Dedit
-dmesg output with alternate fix applied
+--- Comment #28 from Dan Moulding <dmoulding-BUHhN+a2lJ4@public.gmane.org> ---
+Created attachment 123727
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D123727&action=3Dedit
+dmesg output with Roy's patch applied
 
-Ben, the alternate fix did not work for me. I got the CTXSW_TIMEOUT after j=
-ust
-under an hour with that fix applied to 4.6-rc7.
+Well, dang. Roy's patch doesn't work for me either. I got CTXSW_TIMEOUT aft=
+er
+only 22 minutes this time (4.6.0-rc7 + Roy's patch).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14631612690.eb4C.18054
-Date: Fri, 13 May 2016 17:41:09 +0000
+--14631642844.a654995.30902
+Date: Fri, 13 May 2016 18:31:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +68,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
 nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c27">Commen=
-t # 27</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c28">Commen=
+t # 28</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
@@ -80,15 +80,15 @@ nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
 dmoulding&#64;me.com" title=3D"Dan Moulding &lt;dmoulding&#64;me.com&gt;"> =
 <span class=3D"fn">Dan Moulding</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D123717=
-" name=3D"attach_123717" title=3D"dmesg output with alternate fix applied">=
-attachment 123717</a> <a href=3D"attachment.cgi?id=3D123717&amp;action=3Ded=
-it" title=3D"dmesg output with alternate fix applied">[details]</a></span>
-dmesg output with alternate fix applied
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D123727=
+" name=3D"attach_123727" title=3D"dmesg output with Roy's patch applied">at=
+tachment 123727</a> <a href=3D"attachment.cgi?id=3D123727&amp;action=3Dedit=
+" title=3D"dmesg output with Roy's patch applied">[details]</a></span>
+dmesg output with Roy's patch applied
 
-Ben, the alternate fix did not work for me. I got the CTXSW_TIMEOUT after j=
-ust
-under an hour with that fix applied to 4.6-rc7.</pre>
+Well, dang. Roy's patch doesn't work for me either. I got CTXSW_TIMEOUT aft=
+er
+only 22 minutes this time (4.6.0-rc7 + Roy's patch).</pre>
         </div>
       </p>
 
@@ -102,9 +102,9 @@ under an hour with that fix applied to 4.6-rc7.</pre>
     </body>
 </html>=
 
---14631612690.eb4C.18054--
+--14631642844.a654995.30902--
 
---===============1735843534==
+--===============1929651851==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1735843534==--
+--===============1929651851==--
