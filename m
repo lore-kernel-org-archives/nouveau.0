@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93629] [NVE6] complete system freeze,
- PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
-Date: Fri, 13 May 2016 18:31:24 +0000
-Message-ID: <bug-93629-8800-bDn5fQq5Bw@http.bugs.freedesktop.org/>
-References: <bug-93629-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95282] G96: system hang on video playback via vdpau
+Date: Fri, 13 May 2016 19:19:06 +0000
+Message-ID: <bug-95282-8800-UiWTxa1INI@http.bugs.freedesktop.org/>
+References: <bug-95282-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1929651851=="
+Content-Type: multipart/mixed; boundary="===============0735433713=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1929651851==
-Content-Type: multipart/alternative; boundary="14631642844.a654995.30902";
+--===============0735433713==
+Content-Type: multipart/alternative; boundary="14631671460.bDe73.7610";
  charset="UTF-8"
 
 
---14631642844.a654995.30902
-Date: Fri, 13 May 2016 18:31:24 +0000
+--14631671460.bDe73.7610
+Date: Fri, 13 May 2016 19:19:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
+https://bugs.freedesktop.org/show_bug.cgi?id=3D95282
 
---- Comment #28 from Dan Moulding <dmoulding-BUHhN+a2lJ4@public.gmane.org> ---
-Created attachment 123727
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D123727&action=3Dedit
-dmesg output with Roy's patch applied
-
-Well, dang. Roy's patch doesn't work for me either. I got CTXSW_TIMEOUT aft=
-er
-only 22 minutes this time (4.6.0-rc7 + Roy's patch).
+--- Comment #10 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Could perhaps anyone have a look at Bug 95390 and whether it could also be
+related to nouveau?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14631642844.a654995.30902
-Date: Fri, 13 May 2016 18:31:24 +0000
+--14631671460.bDe73.7610
+Date: Fri, 13 May 2016 19:19:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,29 +60,24 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c28">Commen=
-t # 28</a>
+   title=3D"NEW - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
+   title=3D"NEW - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282">bug 95282<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dmoulding&#64;me.com" title=3D"Dan Moulding &lt;dmoulding&#64;me.com&gt;"> =
-<span class=3D"fn">Dan Moulding</span></a>
+estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
+l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D123727=
-" name=3D"attach_123727" title=3D"dmesg output with Roy's patch applied">at=
-tachment 123727</a> <a href=3D"attachment.cgi?id=3D123727&amp;action=3Dedit=
-" title=3D"dmesg output with Roy's patch applied">[details]</a></span>
-dmesg output with Roy's patch applied
-
-Well, dang. Roy's patch doesn't work for me either. I got CTXSW_TIMEOUT aft=
-er
-only 22 minutes this time (4.6.0-rc7 + Roy's patch).</pre>
+        <pre>Could perhaps anyone have a look at <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - sudden hang of the Xorg-server: any input ignored"
+   href=3D"show_bug.cgi?id=3D95390">Bug 95390</a> and whether it could also=
+ be
+related to nouveau?</pre>
         </div>
       </p>
 
@@ -102,9 +91,9 @@ only 22 minutes this time (4.6.0-rc7 + Roy's patch).</pre>
     </body>
 </html>=
 
---14631642844.a654995.30902--
+--14631671460.bDe73.7610--
 
---===============1929651851==
+--===============0735433713==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1929651851==--
+--===============0735433713==--
