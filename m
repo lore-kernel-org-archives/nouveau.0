@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93629] [NVE6] complete system freeze,
  PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
-Date: Fri, 13 May 2016 14:15:27 +0000
-Message-ID: <bug-93629-8800-NkAJtBVU92@http.bugs.freedesktop.org/>
+Date: Fri, 13 May 2016 16:10:27 +0000
+Message-ID: <bug-93629-8800-Z3oruVTrnx@http.bugs.freedesktop.org/>
 References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1070230982=="
+Content-Type: multipart/mixed; boundary="===============0087567889=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1070230982==
-Content-Type: multipart/alternative; boundary="14631489260.26DEaefD.4009";
+--===============0087567889==
+Content-Type: multipart/alternative; boundary="14631558274.EFf1.29906";
  charset="UTF-8"
 
 
---14631489260.26DEaefD.4009
-Date: Fri, 13 May 2016 14:15:26 +0000
+--14631558274.EFf1.29906
+Date: Fri, 13 May 2016 16:10:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,15 +36,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
 
---- Comment #25 from Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Weird, I also started Plasma 5, successfully.
+--- Comment #26 from Dan Moulding <dmoulding-BUHhN+a2lJ4@public.gmane.org> ---
+I've been running a 4.4.8 kernel, so had to build a 4.6-rc7 kernel. And, to=
+ be
+sure, I also wanted to first verify that I can reproduce the problem on
+unpatched 4.6-rc7. It took about 6.5 hours before my system locked up on
+4.6-rc7.
+
+Now I'm going to apply the patch (the alternate one from Ben) and see how t=
+hat
+goes.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14631489260.26DEaefD.4009
-Date: Fri, 13 May 2016 14:15:26 +0000
+--14631558274.EFf1.29906
+Date: Fri, 13 May 2016 16:10:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +70,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
 nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c25">Commen=
-t # 25</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c26">Commen=
+t # 26</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
@@ -71,10 +79,18 @@ nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gnurou&#64;gmail.com" title=3D"Alexandre Courbot &lt;gnurou&#64;gmail.com&g=
-t;"> <span class=3D"fn">Alexandre Courbot</span></a>
+dmoulding&#64;me.com" title=3D"Dan Moulding &lt;dmoulding&#64;me.com&gt;"> =
+<span class=3D"fn">Dan Moulding</span></a>
 </span></b>
-        <pre>Weird, I also started Plasma 5, successfully.</pre>
+        <pre>I've been running a 4.4.8 kernel, so had to build a 4.6-rc7 ke=
+rnel. And, to be
+sure, I also wanted to first verify that I can reproduce the problem on
+unpatched 4.6-rc7. It took about 6.5 hours before my system locked up on
+4.6-rc7.
+
+Now I'm going to apply the patch (the alternate one from Ben) and see how t=
+hat
+goes.</pre>
         </div>
       </p>
 
@@ -88,9 +104,9 @@ t;"> <span class=3D"fn">Alexandre Courbot</span></a>
     </body>
 </html>=
 
---14631489260.26DEaefD.4009--
+--14631558274.EFf1.29906--
 
---===============1070230982==
+--===============0087567889==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1070230982==--
+--===============0087567889==--
