@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93629] [NVE6] complete system freeze,
  PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
-Date: Fri, 13 May 2016 14:13:15 +0000
-Message-ID: <bug-93629-8800-qlO2snCkWl@http.bugs.freedesktop.org/>
+Date: Fri, 13 May 2016 14:15:27 +0000
+Message-ID: <bug-93629-8800-NkAJtBVU92@http.bugs.freedesktop.org/>
 References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1102319993=="
+Content-Type: multipart/mixed; boundary="===============1070230982=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1102319993==
-Content-Type: multipart/alternative; boundary="14631487953.AEc5aA9.3860";
+--===============1070230982==
+Content-Type: multipart/alternative; boundary="14631489260.26DEaefD.4009";
  charset="UTF-8"
 
 
---14631487953.AEc5aA9.3860
-Date: Fri, 13 May 2016 14:13:15 +0000
+--14631489260.26DEaefD.4009
+Date: Fri, 13 May 2016 14:15:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
 
---- Comment #24 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I tried to test both patches on top of 4.6_rc7. I can't tell if this bug is
-repaired, because I immediately ran into bug #95054 and another new bug I
-haven't had so far within seconds after I logged into KDE.
-
-After three attempts for each patch I gave up trying. Sorry, I am of no hel=
-p in
-this case.
+--- Comment #25 from Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Weird, I also started Plasma 5, successfully.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14631487953.AEc5aA9.3860
-Date: Fri, 13 May 2016 14:13:15 +0000
+--14631489260.26DEaefD.4009
+Date: Fri, 13 May 2016 14:15:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +62,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
 nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c24">Commen=
-t # 24</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c25">Commen=
+t # 25</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
@@ -77,21 +71,10 @@ nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-matthias.h.nagel&#64;gmail.com" title=3D"Matthias Nagel &lt;matthias.h.nage=
-l&#64;gmail.com&gt;"> <span class=3D"fn">Matthias Nagel</span></a>
+gnurou&#64;gmail.com" title=3D"Alexandre Courbot &lt;gnurou&#64;gmail.com&g=
+t;"> <span class=3D"fn">Alexandre Courbot</span></a>
 </span></b>
-        <pre>I tried to test both patches on top of 4.6_rc7. I can't tell i=
-f this bug is
-repaired, because I immediately ran into <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - KDE 5 / Plasma crashes with nouveau &quot;fifo: gr engine=
- fault on channel 2, recovering&quot; or &quot;gr: TRAP ch 2&quot;"
-   href=3D"show_bug.cgi?id=3D95054">bug #95054</a> and another new bug I
-haven't had so far within seconds after I logged into KDE.
-
-After three attempts for each patch I gave up trying. Sorry, I am of no hel=
-p in
-this case.</pre>
+        <pre>Weird, I also started Plasma 5, successfully.</pre>
         </div>
       </p>
 
@@ -105,9 +88,9 @@ this case.</pre>
     </body>
 </html>=
 
---14631487953.AEc5aA9.3860--
+--14631489260.26DEaefD.4009--
 
---===============1102319993==
+--===============1070230982==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1102319993==--
+--===============1070230982==--
