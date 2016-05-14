@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
-Date: Sat, 14 May 2016 20:02:06 +0000
-Message-ID: <bug-59069-8800-Af8naAIOuz@http.bugs.freedesktop.org/>
-References: <bug-59069-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95403] New: [GK110] misaligned_gpr spamming dmesg
+ when playing victor vran
+Date: Sat, 14 May 2016 20:53:14 +0000
+Message-ID: <bug-95403-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0947251121=="
+Content-Type: multipart/mixed; boundary="===============0962922584=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,52 +19,69 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0947251121==
-Content-Type: multipart/alternative; boundary="14632561263.EAA4.11987";
+--===============0962922584==
+Content-Type: multipart/alternative; boundary="14632591930.980eF.23655";
  charset="UTF-8"
 
 
---14632561263.EAA4.11987
-Date: Sat, 14 May 2016 20:02:06 +0000
+--14632591930.980eF.23655
+Date: Sat, 14 May 2016 20:53:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D59069
+https://bugs.freedesktop.org/show_bug.cgi?id=3D95403
 
---- Comment #37 from Jeff Hodd <jghodd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This is still an issue with linux 4.5.4 as well.
+            Bug ID: 95403
+           Summary: [GK110] misaligned_gpr spamming dmesg when playing
+                    victor vran
+           Product: Mesa
+           Version: git
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: minor
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: tomenglund26-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-I'm using a GeForce 7150m and am getting the same error:
+kernel: 4.5.2
+mesa: 11.3.0_devel.81287.59156b2
 
-May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]: f=
-ail
-ttm_validate
-May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
-validating bo list
-May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
-validate: -12
-May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]: f=
-ail
-ttm_validate
-May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
-validating bo list
-May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
-validate: -12
+when playing victor vran dmesg gets spammed with MISALIGNED_GPR and
+MULTIPLE_WARP_ERRORS, the game runs and i cant notice any particular side
+effects from it, i have apitraced it and found the bad
+glDrawElementsInstancedBaseVertex call. karolherbst didnt get it when repla=
+ying
+the trace which is why we suspected its a gk110+ issue.
 
-As a side note, I've been seeing these errors since updating from plasma4 to
-plasma5 (a couple of months now), and thus far have been uncertain whether =
-or
-not this is a driver issue or a plasma issue.
+the call happends in frame 228 and call 372955 according to qapitrace.
+
+trace is a bit big, 372mb compressed.
+
+trace:
+https://www.dropbox.com/s/lxrt0oneqaz4mvb/victorvran.tar.xz?dl=3D1
+
+dmesg:
+https://gist.github.com/gulafaran/012338e3c3d07c34e289957cb934f5ed
+
+GL_FRAGMENT_SHADER from qapitrace:
+https://gist.github.com/gulafaran/2dfa0998770e3b35468013df07216e71
+
+GL_VERTEX_SHADER from qapitrace:
+https://gist.github.com/gulafaran/cb51eae8ba9bdb79ed59ca8988266e39
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14632561263.EAA4.11987
-Date: Sat, 14 May 2016 20:02:06 +0000
+--14632591930.980eF.23655
+Date: Sat, 14 May 2016 20:53:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,46 +92,120 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GK110] misaligned_gpr spamming dmesg when playing victor=
+ vran"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95403">95403</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[GK110] misaligned_gpr spamming dmesg when playing victor vran
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>minor
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>tomenglund26&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - nouveau E[ DRM] fail ttm_validate"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59069#c37">Commen=
-t # 37</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - nouveau E[ DRM] fail ttm_validate"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59069">bug 59069<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jghodd&#64;gmail.com" title=3D"Jeff Hodd &lt;jghodd&#64;gmail.com&gt;"> <sp=
-an class=3D"fn">Jeff Hodd</span></a>
-</span></b>
-        <pre>This is still an issue with linux 4.5.4 as well.
+        <pre>kernel: 4.5.2
+mesa: 11.3.0_devel.81287.59156b2
 
-I'm using a GeForce 7150m and am getting the same error:
+when playing victor vran dmesg gets spammed with MISALIGNED_GPR and
+MULTIPLE_WARP_ERRORS, the game runs and i cant notice any particular side
+effects from it, i have apitraced it and found the bad
+glDrawElementsInstancedBaseVertex call. karolherbst didnt get it when repla=
+ying
+the trace which is why we suspected its a gk110+ issue.
 
-May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]: f=
-ail
-ttm_validate
-May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
-validating bo list
-May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
-validate: -12
-May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]: f=
-ail
-ttm_validate
-May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
-validating bo list
-May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
-validate: -12
+the call happends in frame 228 and call 372955 according to qapitrace.
 
-As a side note, I've been seeing these errors since updating from plasma4 to
-plasma5 (a couple of months now), and thus far have been uncertain whether =
-or
-not this is a driver issue or a plasma issue.</pre>
+trace is a bit big, 372mb compressed.
+
+trace:
+<a href=3D"https://www.dropbox.com/s/lxrt0oneqaz4mvb/victorvran.tar.xz?dl=
+=3D1">https://www.dropbox.com/s/lxrt0oneqaz4mvb/victorvran.tar.xz?dl=3D1</a>
+
+dmesg:
+<a href=3D"https://gist.github.com/gulafaran/012338e3c3d07c34e289957cb934f5=
+ed">https://gist.github.com/gulafaran/012338e3c3d07c34e289957cb934f5ed</a>
+
+GL_FRAGMENT_SHADER from qapitrace:
+<a href=3D"https://gist.github.com/gulafaran/2dfa0998770e3b35468013df07216e=
+71">https://gist.github.com/gulafaran/2dfa0998770e3b35468013df07216e71</a>
+
+GL_VERTEX_SHADER from qapitrace:
+<a href=3D"https://gist.github.com/gulafaran/cb51eae8ba9bdb79ed59ca8988266e=
+39">https://gist.github.com/gulafaran/cb51eae8ba9bdb79ed59ca8988266e39</a><=
+/pre>
         </div>
       </p>
 
@@ -124,14 +214,15 @@ not this is a driver issue or a plasma issue.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14632561263.EAA4.11987--
+--14632591930.980eF.23655--
 
---===============0947251121==
+--===============0962922584==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -141,4 +232,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0947251121==--
+--===============0962922584==--
