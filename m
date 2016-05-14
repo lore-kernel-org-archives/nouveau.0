@@ -1,13 +1,12 @@
-From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Subject: [PATCH v2] drm/nouveau: check function before using it
-Date: Sat, 14 May 2016 21:22:05 +0200
-Message-ID: <1463253725-5859-1-git-send-email-peter@lekensteyn.nl>
-References: <1463244575-3515-1-git-send-email-peter@lekensteyn.nl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
+Date: Sat, 14 May 2016 20:02:06 +0000
+Message-ID: <bug-59069-8800-Af8naAIOuz@http.bugs.freedesktop.org/>
+References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0947251121=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1463244575-3515-1-git-send-email-peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,101 +16,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
-Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RG8gbm90IHVuY29uZGl0aW9uYWxseSBpbnZva2UgZnVuY3Rpb24gMHgxQiB3aXRob3V0IGNoZWNr
-aW5nIGZvciBpdHMKYXZhaWxhYmlsaXR5LCBpdCBsZWFkcyB0byBhbiBpbmZpbml0ZSBsb29wIG9u
-IHNvbWUgZmlybXdhcmUuCgpCdWd6aWxsYTogaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3No
-b3dfYnVnLmNnaT9pZD0xMDQ3OTEKRml4ZXM6IDVhZGRjZjBhNWYwZmFkICgibm91dmVhdTogYWRk
-IHJ1bnRpbWUgUE0gc3VwcG9ydCAodjAuOSkiKQpTaWduZWQtb2ZmLWJ5OiBQZXRlciBXdSA8cGV0
-ZXJAbGVrZW5zdGV5bi5ubD4KLS0tCiB2Mjogb25seSB3cml0ZSBvcHRpbXVzX2Z1bmNzIHdoZW4g
-YW4gT3B0aW11cyBEU00gaXMgZm91bmQuCi0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9hY3BpLmMgfCA0MyArKysrKysrKysrKysrKysrKystLS0tLS0tLS0tLS0tLS0tCiAxIGZp
-bGUgY2hhbmdlZCwgMjMgaW5zZXJ0aW9ucygrKSwgMjAgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYwppbmRleCBjZGY1MjI3Li4wMDk3MTJhIDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYwpAQCAtNDUsNiArNDUsNyBAQAogc3RhdGlj
-IHN0cnVjdCBub3V2ZWF1X2RzbV9wcml2IHsKIAlib29sIGRzbV9kZXRlY3RlZDsKIAlib29sIG9w
-dGltdXNfZGV0ZWN0ZWQ7CisJYm9vbCBmbGFnc19mdW5jX2RldGVjdGVkOwogCWFjcGlfaGFuZGxl
-IGRoYW5kbGU7CiAJYWNwaV9oYW5kbGUgcm9tX2hhbmRsZTsKIH0gbm91dmVhdV9kc21fcHJpdjsK
-QEAgLTU4LDcgKzU5LDYgQEAgYm9vbCBub3V2ZWF1X2lzX3YxX2RzbSh2b2lkKSB7CiB9CiAKICNk
-ZWZpbmUgTk9VVkVBVV9EU01fSEFTX01VWCAweDEKLSNkZWZpbmUgTk9VVkVBVV9EU01fSEFTX09Q
-VCAweDIKIAogI2lmZGVmIENPTkZJR19WR0FfU1dJVENIRVJPTwogc3RhdGljIGNvbnN0IGNoYXIg
-bm91dmVhdV9kc21fbXVpZFtdID0gewpAQCAtMTEwLDkgKzExMCw5IEBAIHN0YXRpYyBpbnQgbm91
-dmVhdV9vcHRpbXVzX2RzbShhY3BpX2hhbmRsZSBoYW5kbGUsIGludCBmdW5jLCBpbnQgYXJnLCB1
-aW50MzJfdCAqCiAgKiByZXF1aXJlbWVudHMgb24gdGhlIGZvdXJ0aCBwYXJhbWV0ZXIsIHNvIGEg
-cHJpdmF0ZSBpbXBsZW1lbnRhdGlvbgogICogaW5zdGVhZCBvZiB1c2luZyBhY3BpX2NoZWNrX2Rz
-bSgpLgogICovCi1zdGF0aWMgaW50IG5vdXZlYXVfY2hlY2tfb3B0aW11c19kc20oYWNwaV9oYW5k
-bGUgaGFuZGxlKQorc3RhdGljIHVpbnQzMl90IG5vdXZlYXVfY2hlY2tfb3B0aW11c19kc20oYWNw
-aV9oYW5kbGUgaGFuZGxlKQogewotCWludCByZXN1bHQ7CisJdWludDMyX3QgcmVzdWx0OwogCiAJ
-LyoKIAkgKiBGdW5jdGlvbiAwIHJldHVybnMgYSBCdWZmZXIgY29udGFpbmluZyBhdmFpbGFibGUg
-ZnVuY3Rpb25zLgpAQCAtMTIzLDkgKzEyMywxMyBAQCBzdGF0aWMgaW50IG5vdXZlYXVfY2hlY2tf
-b3B0aW11c19kc20oYWNwaV9oYW5kbGUgaGFuZGxlKQogCiAJLyoKIAkgKiBBQ1BJIFNwZWMgdjQg
-OS4xNC4xOiBpZiBiaXQgMCBpcyB6ZXJvLCBubyBmdW5jdGlvbiBpcyBzdXBwb3J0ZWQuCi0JICog
-SWYgdGhlIG4tdGggYml0IGlzIGVuYWJsZWQsIGZ1bmN0aW9uIG4gaXMgc3VwcG9ydGVkCisJICog
-SWYgdGhlIG4tdGggYml0IGlzIGVuYWJsZWQsIGZ1bmN0aW9uIG4gaXMgc3VwcG9ydGVkLgorCSAq
-IENoZWNrIGZvciBib3RoIGJpdCB6ZXJvIGFuZCB0aGUgTk9VVkVBVV9EU01fT1BUSU1VU19DQVBT
-IHNpbmNlCisJICogc29tZSBpbXBsZW1lbnRhdGlvbnMgcmV0dXJuIDB4ODAwMDAwMDEgb24gaW52
-YWxpZCBwYXJhbWV0ZXJzLgogCSAqLwotCXJldHVybiByZXN1bHQgJiAxICYmIHJlc3VsdCAmICgx
-IDw8IE5PVVZFQVVfRFNNX09QVElNVVNfQ0FQUyk7CisJaWYgKHJlc3VsdCAmIDEgJiYgcmVzdWx0
-ICYgKDEgPDwgTk9VVkVBVV9EU01fT1BUSU1VU19DQVBTKSkKKwkJcmV0dXJuIHJlc3VsdDsKKwly
-ZXR1cm4gMDsKIH0KIAogc3RhdGljIGludCBub3V2ZWF1X2RzbShhY3BpX2hhbmRsZSBoYW5kbGUs
-IGludCBmdW5jLCBpbnQgYXJnKQpAQCAtMjEyLDEwICsyMTYsMTEgQEAgc3RhdGljIGNvbnN0IHN0
-cnVjdCB2Z2Ffc3dpdGNoZXJvb19oYW5kbGVyIG5vdXZlYXVfZHNtX2hhbmRsZXIgPSB7CiAJLmdl
-dF9jbGllbnRfaWQgPSBub3V2ZWF1X2RzbV9nZXRfY2xpZW50X2lkLAogfTsKIAotc3RhdGljIGlu
-dCBub3V2ZWF1X2RzbV9wY2lfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYpCitzdGF0aWMgaW50
-IG5vdXZlYXVfZHNtX3BjaV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwgdWludDMyX3QgKm9w
-dGltdXNfZnVuY3MpCiB7CiAJYWNwaV9oYW5kbGUgZGhhbmRsZTsKIAlpbnQgcmV0dmFsID0gMDsK
-Kwl1aW50MzJfdCBzdXBwb3J0ZWRfZnVuY3M7CiAKIAlkaGFuZGxlID0gQUNQSV9IQU5ETEUoJnBk
-ZXYtPmRldik7CiAJaWYgKCFkaGFuZGxlKQpAQCAtMjI4LDExICsyMzMsMTAgQEAgc3RhdGljIGlu
-dCBub3V2ZWF1X2RzbV9wY2lfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYpCiAJCQkgICAxIDw8
-IE5PVVZFQVVfRFNNX1BPV0VSKSkKIAkJcmV0dmFsIHw9IE5PVVZFQVVfRFNNX0hBU19NVVg7CiAK
-LQlpZiAobm91dmVhdV9jaGVja19vcHRpbXVzX2RzbShkaGFuZGxlKSkKLQkJcmV0dmFsIHw9IE5P
-VVZFQVVfRFNNX0hBU19PUFQ7Ci0KLQlpZiAocmV0dmFsICYgTk9VVkVBVV9EU01fSEFTX09QVCkg
-eworCXN1cHBvcnRlZF9mdW5jcyA9IG5vdXZlYXVfY2hlY2tfb3B0aW11c19kc20oZGhhbmRsZSk7
-CisJaWYgKHN1cHBvcnRlZF9mdW5jcykgewogCQl1aW50MzJfdCByZXN1bHQ7CisJCSpvcHRpbXVz
-X2Z1bmNzID0gc3VwcG9ydGVkX2Z1bmNzOwogCQlub3V2ZWF1X29wdGltdXNfZHNtKGRoYW5kbGUs
-IE5PVVZFQVVfRFNNX09QVElNVVNfQ0FQUywgMCwKIAkJCQkgICAgJnJlc3VsdCk7CiAJCWRldl9p
-bmZvKCZwZGV2LT5kZXYsICJvcHRpbXVzIGNhcGFiaWxpdGllczogJXMsIHN0YXR1cyAlcyVzXG4i
-LApAQCAtMjUyLDcgKzI1Niw3IEBAIHN0YXRpYyBib29sIG5vdXZlYXVfZHNtX2RldGVjdCh2b2lk
-KQogCXN0cnVjdCBhY3BpX2J1ZmZlciBidWZmZXIgPSB7c2l6ZW9mKGFjcGlfbWV0aG9kX25hbWUp
-LCBhY3BpX21ldGhvZF9uYW1lfTsKIAlzdHJ1Y3QgcGNpX2RldiAqcGRldiA9IE5VTEw7CiAJaW50
-IGhhc19kc20gPSAwOwotCWludCBoYXNfb3B0aW11cyA9IDA7CisJdWludDMyX3Qgb3B0aW11c19m
-dW5jcyA9IDA7CiAJaW50IHZnYV9jb3VudCA9IDA7CiAJYm9vbCBndWlkX3ZhbGlkOwogCWludCBy
-ZXR2YWw7CkBAIC0yNjgsMzAgKzI3MiwyOCBAQCBzdGF0aWMgYm9vbCBub3V2ZWF1X2RzbV9kZXRl
-Y3Qodm9pZCkKIAl3aGlsZSAoKHBkZXYgPSBwY2lfZ2V0X2NsYXNzKFBDSV9DTEFTU19ESVNQTEFZ
-X1ZHQSA8PCA4LCBwZGV2KSkgIT0gTlVMTCkgewogCQl2Z2FfY291bnQrKzsKIAotCQlyZXR2YWwg
-PSBub3V2ZWF1X2RzbV9wY2lfcHJvYmUocGRldik7CisJCXJldHZhbCA9IG5vdXZlYXVfZHNtX3Bj
-aV9wcm9iZShwZGV2LCAmb3B0aW11c19mdW5jcyk7CiAJCWlmIChyZXR2YWwgJiBOT1VWRUFVX0RT
-TV9IQVNfTVVYKQogCQkJaGFzX2RzbSB8PSAxOwotCQlpZiAocmV0dmFsICYgTk9VVkVBVV9EU01f
-SEFTX09QVCkKLQkJCWhhc19vcHRpbXVzID0gMTsKIAl9CiAKIAl3aGlsZSAoKHBkZXYgPSBwY2lf
-Z2V0X2NsYXNzKFBDSV9DTEFTU19ESVNQTEFZXzNEIDw8IDgsIHBkZXYpKSAhPSBOVUxMKSB7CiAJ
-CXZnYV9jb3VudCsrOwogCi0JCXJldHZhbCA9IG5vdXZlYXVfZHNtX3BjaV9wcm9iZShwZGV2KTsK
-KwkJcmV0dmFsID0gbm91dmVhdV9kc21fcGNpX3Byb2JlKHBkZXYsICZvcHRpbXVzX2Z1bmNzKTsK
-IAkJaWYgKHJldHZhbCAmIE5PVVZFQVVfRFNNX0hBU19NVVgpCiAJCQloYXNfZHNtIHw9IDE7Ci0J
-CWlmIChyZXR2YWwgJiBOT1VWRUFVX0RTTV9IQVNfT1BUKQotCQkJaGFzX29wdGltdXMgPSAxOwog
-CX0KIAogCS8qIGZpbmQgdGhlIG9wdGltdXMgRFNNIG9yIHRoZSBvbGQgdjEgRFNNICovCi0JaWYg
-KGhhc19vcHRpbXVzID09IDEpIHsKKwlpZiAob3B0aW11c19mdW5jcykgewogCQlhY3BpX2dldF9u
-YW1lKG5vdXZlYXVfZHNtX3ByaXYuZGhhbmRsZSwgQUNQSV9GVUxMX1BBVEhOQU1FLAogCQkJJmJ1
-ZmZlcik7CiAJCXByaW50ayhLRVJOX0lORk8gIlZHQSBzd2l0Y2hlcm9vOiBkZXRlY3RlZCBPcHRp
-bXVzIERTTSBtZXRob2QgJXMgaGFuZGxlXG4iLAogCQkJYWNwaV9tZXRob2RfbmFtZSk7CiAJCW5v
-dXZlYXVfZHNtX3ByaXYub3B0aW11c19kZXRlY3RlZCA9IHRydWU7CisJCW5vdXZlYXVfZHNtX3By
-aXYuZmxhZ3NfZnVuY19kZXRlY3RlZCA9CisJCQlvcHRpbXVzX2Z1bmNzICYgKDEgPDwgTk9VVkVB
-VV9EU01fT1BUSU1VU19GTEFHUyk7CiAJCXJldCA9IHRydWU7CiAJfSBlbHNlIGlmICh2Z2FfY291
-bnQgPT0gMiAmJiBoYXNfZHNtICYmIGd1aWRfdmFsaWQpIHsKIAkJYWNwaV9nZXRfbmFtZShub3V2
-ZWF1X2RzbV9wcml2LmRoYW5kbGUsIEFDUElfRlVMTF9QQVRITkFNRSwKQEAgLTMyNCw4ICszMjYs
-OSBAQCB2b2lkIG5vdXZlYXVfc3dpdGNoZXJvb19vcHRpbXVzX2RzbSh2b2lkKQogCWlmICghbm91
-dmVhdV9kc21fcHJpdi5vcHRpbXVzX2RldGVjdGVkKQogCQlyZXR1cm47CiAKLQlub3V2ZWF1X29w
-dGltdXNfZHNtKG5vdXZlYXVfZHNtX3ByaXYuZGhhbmRsZSwgTk9VVkVBVV9EU01fT1BUSU1VU19G
-TEFHUywKLQkJCSAgICAweDMsICZyZXN1bHQpOworCWlmIChub3V2ZWF1X2RzbV9wcml2LmZsYWdz
-X2Z1bmNfZGV0ZWN0ZWQpCisJCW5vdXZlYXVfb3B0aW11c19kc20obm91dmVhdV9kc21fcHJpdi5k
-aGFuZGxlLAorCQkJCU5PVVZFQVVfRFNNX09QVElNVVNfRkxBR1MsIDB4MywgJnJlc3VsdCk7CiAK
-IAlub3V2ZWF1X29wdGltdXNfZHNtKG5vdXZlYXVfZHNtX3ByaXYuZGhhbmRsZSwgTk9VVkVBVV9E
-U01fT1BUSU1VU19DQVBTLAogCQlOT1VWRUFVX0RTTV9PUFRJTVVTX1NFVF9QT1dFUkRPV04sICZy
-ZXN1bHQpOwotLSAKMi44LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQo=
+
+--===============0947251121==
+Content-Type: multipart/alternative; boundary="14632561263.EAA4.11987";
+ charset="UTF-8"
+
+
+--14632561263.EAA4.11987
+Date: Sat, 14 May 2016 20:02:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D59069
+
+--- Comment #37 from Jeff Hodd <jghodd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This is still an issue with linux 4.5.4 as well.
+
+I'm using a GeForce 7150m and am getting the same error:
+
+May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]: f=
+ail
+ttm_validate
+May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
+validating bo list
+May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
+validate: -12
+May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]: f=
+ail
+ttm_validate
+May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
+validating bo list
+May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
+validate: -12
+
+As a side note, I've been seeing these errors since updating from plasma4 to
+plasma5 (a couple of months now), and thus far have been uncertain whether =
+or
+not this is a driver issue or a plasma issue.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14632561263.EAA4.11987
+Date: Sat, 14 May 2016 20:02:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - nouveau E[ DRM] fail ttm_validate"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59069#c37">Commen=
+t # 37</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - nouveau E[ DRM] fail ttm_validate"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59069">bug 59069<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jghodd&#64;gmail.com" title=3D"Jeff Hodd &lt;jghodd&#64;gmail.com&gt;"> <sp=
+an class=3D"fn">Jeff Hodd</span></a>
+</span></b>
+        <pre>This is still an issue with linux 4.5.4 as well.
+
+I'm using a GeForce 7150m and am getting the same error:
+
+May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]: f=
+ail
+ttm_validate
+May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
+validating bo list
+May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
+validate: -12
+May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]: f=
+ail
+ttm_validate
+May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
+validating bo list
+May 14 14:16:00 bslxhp64 kernel: nouveau 0000:00:12.0: plasmashell[8397]:
+validate: -12
+
+As a side note, I've been seeing these errors since updating from plasma4 to
+plasma5 (a couple of months now), and thus far have been uncertain whether =
+or
+not this is a driver issue or a plasma issue.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14632561263.EAA4.11987--
+
+--===============0947251121==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0947251121==--
