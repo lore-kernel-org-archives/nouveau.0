@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
-Date: Sun, 15 May 2016 13:30:04 +0000
-Message-ID: <bug-59069-8800-xgtqktuj1Y@http.bugs.freedesktop.org/>
+Date: Sun, 15 May 2016 14:46:20 +0000
+Message-ID: <bug-59069-8800-X8iL96E7Nm@http.bugs.freedesktop.org/>
 References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1307029875=="
+Content-Type: multipart/mixed; boundary="===============0012098463=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1307029875==
-Content-Type: multipart/alternative; boundary="14633190047.66C4BFc6c.30420";
+--===============0012098463==
+Content-Type: multipart/alternative; boundary="14633235802.8b5cA.20193";
  charset="UTF-8"
 
 
---14633190047.66C4BFc6c.30420
-Date: Sun, 15 May 2016 13:30:04 +0000
+--14633235802.8b5cA.20193
+Date: Sun, 15 May 2016 14:46:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,24 +35,36 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D59069
 
---- Comment #44 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to poma from comment #43)
-[... ]
-> Looks like GLX is too much for GPU family <=3D NV50, i.e. NV40, NV30, ...=
-=20
-[... ]
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Perhaps this is a better expression in relation to the actual situation,
-Looks like GLX is too much for GPU family =E2=89=88 NV50, i.e. some of NV50=
-, following
-all NV40, NV30, etc.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |INVALID
+             Status|REOPENED                    |RESOLVED
+
+--- Comment #45 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This bug has been corrupted by too many people adding in their own unrelated
+issues on their unrelated hardware with totally different versions of thing=
+s,
+and yet claiming "oh yeah, it must be the same thing!". So I'm closing this=
+. If
+your issues persist, feel free to open a fresh bug detailing your problems =
+(one
+bug per reporter, in case it's not clear).
+
+That said, a ton of people have various issues with plasma5 + nouveau.
+
+Matt, if you're looking for advice on a GPU to buy, try IRC (#nouveau on
+freenode). My quick recommendation is: "not NVIDIA". If you're set on NVIDI=
+A,
+happy to discuss the various trade-offs on IRC.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14633190047.66C4BFc6c.30420
-Date: Sun, 15 May 2016 13:30:04 +0000
+--14633235802.8b5cA.20193
+Date: Sun, 15 May 2016 14:46:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,34 +75,70 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59069">bug 59069<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>REOPENED
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - nouveau E[ DRM] fail ttm_validate"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59069#c44">Commen=
-t # 44</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59069#c45">Commen=
+t # 45</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - nouveau E[ DRM] fail ttm_validate"
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59069">bug 59069<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
-l.com&gt;"> <span class=3D"fn">poma</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to poma from <a href=3D"show_bug.cgi?id=3D59069#c43"=
->comment #43</a>)
-[... ]
-<span class=3D"quote">&gt; Looks like GLX is too much for GPU family &lt;=
-=3D NV50, i.e. NV40, NV30, ... </span >
-[... ]
+        <pre>This bug has been corrupted by too many people adding in their=
+ own unrelated
+issues on their unrelated hardware with totally different versions of thing=
+s,
+and yet claiming &quot;oh yeah, it must be the same thing!&quot;. So I'm cl=
+osing this. If
+your issues persist, feel free to open a fresh bug detailing your problems =
+(one
+bug per reporter, in case it's not clear).
 
-Perhaps this is a better expression in relation to the actual situation,
-Looks like GLX is too much for GPU family =E2=89=88 NV50, i.e. some of NV50=
-, following
-all NV40, NV30, etc.</pre>
+That said, a ton of people have various issues with plasma5 + nouveau.
+
+Matt, if you're looking for advice on a GPU to buy, try IRC (#nouveau on
+freenode). My quick recommendation is: &quot;not NVIDIA&quot;. If you're se=
+t on NVIDIA,
+happy to discuss the various trade-offs on IRC.</pre>
         </div>
       </p>
 
@@ -104,9 +152,9 @@ all NV40, NV30, etc.</pre>
     </body>
 </html>=
 
---14633190047.66C4BFc6c.30420--
+--14633235802.8b5cA.20193--
 
---===============1307029875==
+--===============0012098463==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +164,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1307029875==--
+--===============0012098463==--
