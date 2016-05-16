@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95429] NV46 G72M picture is always distorted on VGA
 	output
-Date: Mon, 16 May 2016 16:19:02 +0000
-Message-ID: <bug-95429-8800-x05WcuJMHt@http.bugs.freedesktop.org/>
+Date: Mon, 16 May 2016 16:21:56 +0000
+Message-ID: <bug-95429-8800-EiLrviuUDW@http.bugs.freedesktop.org/>
 References: <bug-95429-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1329060117=="
+Content-Type: multipart/mixed; boundary="===============0389834160=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95429-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1329060117==
-Content-Type: multipart/alternative; boundary="14634155420.0E1C90c.4272";
+--===============0389834160==
+Content-Type: multipart/alternative; boundary="14634157150.437D.4461";
  charset="UTF-8"
 
 
---14634155420.0E1C90c.4272
-Date: Mon, 16 May 2016 16:19:02 +0000
+--14634157150.437D.4461
+Date: Mon, 16 May 2016 16:21:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D95429
 
---- Comment #4 from russianneuromancer-k+OT61UuxXo@public.gmane.org ---
-Created attachment 123791
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D123791&action=3Dedit
-Xorg log
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Hm, well it seems to correctly detect your DVI-I-1 connector and the modes =
+of
+the display attached to it. Unfortunately I don't know much about pre-NV50
+display details, esp when panels are involved. Hopefully someone else will =
+have
+a look.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14634155420.0E1C90c.4272
-Date: Mon, 16 May 2016 16:19:02 +0000
+--14634157150.437D.4461
+Date: Mon, 16 May 2016 16:21:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,22 +66,23 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV46 G72M picture is always distorted on VGA output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95429#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95429#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV46 G72M picture is always distorted on VGA output"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95429">bug 95429<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-russianneuromancer&#64;ya.ru" title=3D"russianneuromancer&#64;ya.ru">russia=
-nneuromancer&#64;ya.ru</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D123791=
-" name=3D"attach_123791" title=3D"Xorg log">attachment 123791</a> <a href=
-=3D"attachment.cgi?id=3D123791&amp;action=3Dedit" title=3D"Xorg log">[detai=
-ls]</a></span>
-Xorg log</pre>
+        <pre>Hm, well it seems to correctly detect your DVI-I-1 connector a=
+nd the modes of
+the display attached to it. Unfortunately I don't know much about pre-NV50
+display details, esp when panels are involved. Hopefully someone else will =
+have
+a look.</pre>
         </div>
       </p>
 
@@ -92,9 +96,9 @@ Xorg log</pre>
     </body>
 </html>=
 
---14634155420.0E1C90c.4272--
+--14634157150.437D.4461--
 
---===============1329060117==
+--===============0389834160==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1329060117==--
+--===============0389834160==--
