@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95429] NV46 G72M picture is always distorted on VGA
 	output
-Date: Mon, 16 May 2016 14:52:00 +0000
-Message-ID: <bug-95429-8800-BGY45xMOaj@http.bugs.freedesktop.org/>
+Date: Mon, 16 May 2016 16:18:29 +0000
+Message-ID: <bug-95429-8800-InhS4Decpc@http.bugs.freedesktop.org/>
 References: <bug-95429-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1266877803=="
+Content-Type: multipart/mixed; boundary="===============1729303003=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95429-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1266877803==
-Content-Type: multipart/alternative; boundary="14634103202.De4d424f.16957";
+--===============1729303003==
+Content-Type: multipart/alternative; boundary="14634155091.7af7.4664";
  charset="UTF-8"
 
 
---14634103202.De4d424f.16957
-Date: Mon, 16 May 2016 14:52:00 +0000
+--14634155091.7af7.4664
+Date: Mon, 16 May 2016 16:18:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D95429
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to russianneuromancer from comment #0)
-> latest ~three years (with Linux 4.6 too). Other issue is that VGA output =
-is
-> always mirror of internal laptop screen, no matter what settings I set
-> (again, as you can see on attached photo).
-
-This leads me to believe that you're not using nouveau. Please provide dmes=
-g +
-xorg log from an affected machine.
+--- Comment #3 from russianneuromancer-k+OT61UuxXo@public.gmane.org ---
+Created attachment 123790
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D123790&action=3Dedit
+dmesg with Linux 4.4.0-22 from Ubuntu repository without debug
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14634103202.De4d424f.16957
-Date: Mon, 16 May 2016 14:52:00 +0000
+--14634155091.7af7.4664
+Date: Mon, 16 May 2016 16:18:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,27 +63,23 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV46 G72M picture is always distorted on VGA output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95429#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95429#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV46 G72M picture is always distorted on VGA output"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95429">bug 95429<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+russianneuromancer&#64;ya.ru" title=3D"russianneuromancer&#64;ya.ru">russia=
+nneuromancer&#64;ya.ru</a>
 </span></b>
-        <pre>(In reply to russianneuromancer from <a href=3D"show_bug.cgi?i=
-d=3D95429#c0">comment #0</a>)
-<span class=3D"quote">&gt; latest ~three years (with Linux 4.6 too). Other =
-issue is that VGA output is
-&gt; always mirror of internal laptop screen, no matter what settings I set
-&gt; (again, as you can see on attached photo).</span >
-
-This leads me to believe that you're not using nouveau. Please provide dmes=
-g +
-xorg log from an affected machine.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D123790=
+" name=3D"attach_123790" title=3D"dmesg with Linux 4.4.0-22 from Ubuntu rep=
+ository without debug">attachment 123790</a> <a href=3D"attachment.cgi?id=
+=3D123790&amp;action=3Dedit" title=3D"dmesg with Linux 4.4.0-22 from Ubuntu=
+ repository without debug">[details]</a></span>
+dmesg with Linux 4.4.0-22 from Ubuntu repository without debug</pre>
         </div>
       </p>
 
@@ -103,9 +93,9 @@ xorg log from an affected machine.</pre>
     </body>
 </html>=
 
---14634103202.De4d424f.16957--
+--14634155091.7af7.4664--
 
---===============1266877803==
+--===============1729303003==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1266877803==--
+--===============1729303003==--
