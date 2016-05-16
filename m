@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93629] [NVE6] complete system freeze,
- PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
-Date: Mon, 16 May 2016 08:51:54 +0000
-Message-ID: <bug-93629-8800-qgSjD3oQ9O@http.bugs.freedesktop.org/>
-References: <bug-93629-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
+Date: Mon, 16 May 2016 08:59:19 +0000
+Message-ID: <bug-94990-8800-Z3eGOqgdcr@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0581760851=="
+Content-Type: multipart/mixed; boundary="===============1019787522=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0581760851==
-Content-Type: multipart/alternative; boundary="14633887151.8c80.8022";
+--===============1019787522==
+Content-Type: multipart/alternative; boundary="14633891590.fCDC.10215";
  charset="UTF-8"
 
 
---14633887151.8c80.8022
-Date: Mon, 16 May 2016 08:51:55 +0000
+--14633891590.fCDC.10215
+Date: Mon, 16 May 2016 08:59:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #29 from Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Of course, I'm a f****ing idiot. I had "NvGrUseFW=3D1" dangling in
-/etc/modprobe.d, so I was using the external firmware during my trials. :/
-
-Remove it, and similarly to Dan I can reproduce this error with both patchs=
-ets.
-Sorry. :(
+--- Comment #28 from mirkoroller-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org ---
+Bug still not solved on new 4.6 KErnel.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14633887151.8c80.8022
-Date: Mon, 16 May 2016 08:51:55 +0000
+--14633891590.fCDC.10215
+Date: Mon, 16 May 2016 08:59:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,27 +59,19 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c29">Commen=
-t # 29</a>
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c28">Commen=
+t # 28</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gnurou&#64;gmail.com" title=3D"Alexandre Courbot &lt;gnurou&#64;gmail.com&g=
-t;"> <span class=3D"fn">Alexandre Courbot</span></a>
+mirkoroller&#64;googlemail.com" title=3D"mirkoroller&#64;googlemail.com">mi=
+rkoroller&#64;googlemail.com</a>
 </span></b>
-        <pre>Of course, I'm a f****ing idiot. I had &quot;NvGrUseFW=3D1&quo=
-t; dangling in
-/etc/modprobe.d, so I was using the external firmware during my trials. :/
-
-Remove it, and similarly to Dan I can reproduce this error with both patchs=
-ets.
-Sorry. :(</pre>
+        <pre>Bug still not solved on new 4.6 KErnel.</pre>
         </div>
       </p>
 
@@ -99,9 +85,9 @@ Sorry. :(</pre>
     </body>
 </html>=
 
---14633887151.8c80.8022--
+--14633891590.fCDC.10215--
 
---===============0581760851==
+--===============1019787522==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0581760851==--
+--===============1019787522==--
