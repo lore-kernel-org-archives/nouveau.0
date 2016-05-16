@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95429] NV46 G72M picture is always distorted on VGA
 	output
-Date: Mon, 16 May 2016 16:21:56 +0000
-Message-ID: <bug-95429-8800-EiLrviuUDW@http.bugs.freedesktop.org/>
+Date: Mon, 16 May 2016 16:31:25 +0000
+Message-ID: <bug-95429-8800-yi2wObDIUm@http.bugs.freedesktop.org/>
 References: <bug-95429-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0389834160=="
+Content-Type: multipart/mixed; boundary="===============0450523820=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95429-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0389834160==
-Content-Type: multipart/alternative; boundary="14634157150.437D.4461";
+--===============0450523820==
+Content-Type: multipart/alternative; boundary="14634162850.7DdA3.5752";
  charset="UTF-8"
 
 
---14634157150.437D.4461
-Date: Mon, 16 May 2016 16:21:55 +0000
+--14634162850.7DdA3.5752
+Date: Mon, 16 May 2016 16:31:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D95429
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Hm, well it seems to correctly detect your DVI-I-1 connector and the modes =
-of
-the display attached to it. Unfortunately I don't know much about pre-NV50
-display details, esp when panels are involved. Hopefully someone else will =
-have
-a look.
+--- Comment #6 from russianneuromancer-k+OT61UuxXo@public.gmane.org ---
+btw, VGA video output is wavy even before Xorg start - on boot log or splash
+screen. And I also forgot to mention that waves doesn't stay still but
+continuously move from top to the bottom.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14634157150.437D.4461
-Date: Mon, 16 May 2016 16:21:55 +0000
+--14634162850.7DdA3.5752
+Date: Mon, 16 May 2016 16:31:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,23 +63,21 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV46 G72M picture is always distorted on VGA output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95429#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95429#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV46 G72M picture is always distorted on VGA output"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95429">bug 95429<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+russianneuromancer&#64;ya.ru" title=3D"russianneuromancer&#64;ya.ru">russia=
+nneuromancer&#64;ya.ru</a>
 </span></b>
-        <pre>Hm, well it seems to correctly detect your DVI-I-1 connector a=
-nd the modes of
-the display attached to it. Unfortunately I don't know much about pre-NV50
-display details, esp when panels are involved. Hopefully someone else will =
-have
-a look.</pre>
+        <pre>btw, VGA video output is wavy even before Xorg start - on boot=
+ log or splash
+screen. And I also forgot to mention that waves doesn't stay still but
+continuously move from top to the bottom.</pre>
         </div>
       </p>
 
@@ -96,9 +91,9 @@ a look.</pre>
     </body>
 </html>=
 
---14634157150.437D.4461--
+--14634162850.7DdA3.5752--
 
---===============0389834160==
+--===============0450523820==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0389834160==--
+--===============0450523820==--
