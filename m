@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95429] NV46 G72M picture is always distorted on VGA
-	output
-Date: Mon, 16 May 2016 16:31:25 +0000
-Message-ID: <bug-95429-8800-yi2wObDIUm@http.bugs.freedesktop.org/>
-References: <bug-95429-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94627] Game Risen on wine black grass
+Date: Tue, 17 May 2016 13:14:46 +0000
+Message-ID: <bug-94627-8800-7SSrCflDvX@http.bugs.freedesktop.org/>
+References: <bug-94627-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0450523820=="
+Content-Type: multipart/mixed; boundary="===============1971381354=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95429-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94627-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0450523820==
-Content-Type: multipart/alternative; boundary="14634162850.7DdA3.5752";
+--===============1971381354==
+Content-Type: multipart/alternative; boundary="14634908860.84cc0.18807";
  charset="UTF-8"
 
 
---14634162850.7DdA3.5752
-Date: Mon, 16 May 2016 16:31:25 +0000
+--14634908860.84cc0.18807
+Date: Tue, 17 May 2016 13:14:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95429
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94627
 
---- Comment #6 from russianneuromancer-k+OT61UuxXo@public.gmane.org ---
-btw, VGA video output is wavy even before Xorg start - on boot log or splash
-screen. And I also forgot to mention that waves doesn't stay still but
-continuously move from top to the bottom.
+Heiko Ernst <gipfelsturm111-hi6Y0CQ0nG0@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|FIXED                       |---
+             Status|RESOLVED                    |REOPENED
+
+--- Comment #6 from Heiko Ernst <gipfelsturm111-hi6Y0CQ0nG0@public.gmane.org> ---
+Bug is still present in mesa 11.2.2
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14634162850.7DdA3.5752
-Date: Mon, 16 May 2016 16:31:25 +0000
+--14634908860.84cc0.18807
+Date: Tue, 17 May 2016 13:14:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -57,27 +62,55 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gipfelstu=
+rm111&#64;gmx.net" title=3D"Heiko Ernst &lt;gipfelsturm111&#64;gmx.net&gt;"=
+> <span class=3D"fn">Heiko Ernst</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Game Risen on wine black grass"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94627">bug 94627<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>FIXED
+           </td>
+           <td>---
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NV46 G72M picture is always distorted on VGA output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95429#c6">Comment=
+          bz_status_REOPENED "
+   title=3D"REOPENED - Game Risen on wine black grass"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94627#c6">Comment=
  # 6</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NV46 G72M picture is always distorted on VGA output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95429">bug 95429<=
+          bz_status_REOPENED "
+   title=3D"REOPENED - Game Risen on wine black grass"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94627">bug 94627<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-russianneuromancer&#64;ya.ru" title=3D"russianneuromancer&#64;ya.ru">russia=
-nneuromancer&#64;ya.ru</a>
+gipfelsturm111&#64;gmx.net" title=3D"Heiko Ernst &lt;gipfelsturm111&#64;gmx=
+.net&gt;"> <span class=3D"fn">Heiko Ernst</span></a>
 </span></b>
-        <pre>btw, VGA video output is wavy even before Xorg start - on boot=
- log or splash
-screen. And I also forgot to mention that waves doesn't stay still but
-continuously move from top to the bottom.</pre>
+        <pre>Bug is still present in mesa 11.2.2</pre>
         </div>
       </p>
 
@@ -87,13 +120,14 @@ continuously move from top to the bottom.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14634162850.7DdA3.5752--
+--14634908860.84cc0.18807--
 
---===============0450523820==
+--===============1971381354==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +137,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0450523820==--
+--===============1971381354==--
