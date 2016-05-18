@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
- GT]: HDMI monitor stays black after s2ram
-Date: Wed, 18 May 2016 10:48:27 +0000
-Message-ID: <bug-93887-8800-0IPmlo3yAi@http.bugs.freedesktop.org/>
-References: <bug-93887-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94342] Nvidia G96GLM 3840x2160@30 not functional
+	with nouveau
+Date: Wed, 18 May 2016 12:35:41 +0000
+Message-ID: <bug-94342-8800-xN4UhZIhmp@http.bugs.freedesktop.org/>
+References: <bug-94342-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1420752173=="
+Content-Type: multipart/mixed; boundary="===============0383591007=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94342-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +21,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1420752173==
-Content-Type: multipart/alternative; boundary="14635685070.ffFfd8ca.23521";
+--===============0383591007==
+Content-Type: multipart/alternative; boundary="14635749410.Cc93f.24450";
  charset="UTF-8"
 
 
---14635685070.ffFfd8ca.23521
-Date: Wed, 18 May 2016 10:48:27 +0000
+--14635749410.Cc93f.24450
+Date: Wed, 18 May 2016 12:35:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93887
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94342
 
---- Comment #45 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Well, before the fixes get incorporated to mainline, I first have to find o=
-ut
-what the fixes are, and that could take really any amount of time. In any c=
-ase,
-I=E2=80=99ll post patches here for you to test if I find anything.
+Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
 
-I had a quick look last time, and got some MMIOtraces from my laptop=E2=80=
-=99s G96 to
-compare, but that=E2=80=99s about it. I won=E2=80=99t have much free time u=
-ntil July, but I=E2=80=99ll
-give it a try from time to time.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |WORKSFORME
+
+--- Comment #9 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+  As it turned out a refresh rate of 30Hz can be achieved with the OSS-driv=
+er
+and the right modeline:
+
+  Modeline "3840x2160_30.00"  268.06  3840 3992 4080 4112  2160 2161 2164 2=
+173
++hsync -vsync
+
+  It is a trick to set nouveau.hdmimhz=3D296 instead of 297 in order to pre=
+vent
+the automatic mode requiring a higher TMDS frequency to appear automatically
+which blackens the screen. Once a mode with too high frequency has been set=
+ the
+external monitor will stay without signal until I reboot. In a practice the
+TMDS limit may neither be 225 nor 297 but somewhere in between.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14635685070.ffFfd8ca.23521
-Date: Wed, 18 May 2016 10:48:27 +0000
+--14635749410.Cc93f.24450
+Date: Wed, 18 May 2016 12:35:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,36 +76,72 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:estellnb&=
+#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;=
+"> <span class=3D"fn">Elmar Stellnberger</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - Nvidia G96GLM 3840x2160&#64;30 not functi=
+onal with nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94342">bug 94342<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WORKSFORME
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monit=
-or stays black after s2ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887#c45">Commen=
-t # 45</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - Nvidia G96GLM 3840x2160&#64;30 not functi=
+onal with nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94342#c9">Comment=
+ # 9</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monit=
-or stays black after s2ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887">bug 93887<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - Nvidia G96GLM 3840x2160&#64;30 not functi=
+onal with nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94342">bug 94342<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
+estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
+l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Well, before the fixes get incorporated to mainline, I first h=
-ave to find out
-what the fixes are, and that could take really any amount of time. In any c=
-ase,
-I=E2=80=99ll post patches here for you to test if I find anything.
+        <pre>  As it turned out a refresh rate of 30Hz can be achieved with=
+ the OSS-driver
+and the right modeline:
 
-I had a quick look last time, and got some MMIOtraces from my laptop=E2=80=
-=99s G96 to
-compare, but that=E2=80=99s about it. I won=E2=80=99t have much free time u=
-ntil July, but I=E2=80=99ll
-give it a try from time to time.</pre>
+  Modeline &quot;3840x2160_30.00&quot;  268.06  3840 3992 4080 4112  2160 2=
+161 2164 2173
++hsync -vsync
+
+  It is a trick to set nouveau.hdmimhz=3D296 instead of 297 in order to pre=
+vent
+the automatic mode requiring a higher TMDS frequency to appear automatically
+which blackens the screen. Once a mode with too high frequency has been set=
+ the
+external monitor will stay without signal until I reboot. In a practice the
+TMDS limit may neither be 225 nor 297 but somewhere in between.</pre>
         </div>
       </p>
 
@@ -108,9 +155,9 @@ give it a try from time to time.</pre>
     </body>
 </html>=
 
---14635685070.ffFfd8ca.23521--
+--14635749410.Cc93f.24450--
 
---===============1420752173==
+--===============0383591007==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +167,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1420752173==--
+--===============0383591007==--
