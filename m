@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95282] G96: system hang on video playback via vdpau
-Date: Wed, 18 May 2016 09:08:00 +0000
-Message-ID: <bug-95282-8800-Nq1zGOH8yZ@http.bugs.freedesktop.org/>
-References: <bug-95282-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94342] Nvidia G96GLM 3840x2160@30 not functional
+	with nouveau
+Date: Wed, 18 May 2016 09:08:58 +0000
+Message-ID: <bug-94342-8800-lgtkhXpXN5@http.bugs.freedesktop.org/>
+References: <bug-94342-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1566356195=="
+Content-Type: multipart/mixed; boundary="===============0587857787=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94342-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1566356195==
-Content-Type: multipart/alternative; boundary="14635624801.c5Dc5BF.29901";
+--===============0587857787==
+Content-Type: multipart/alternative; boundary="14635625380.5fde381.30033";
  charset="UTF-8"
 
 
---14635624801.c5Dc5BF.29901
-Date: Wed, 18 May 2016 09:08:00 +0000
+--14635625380.5fde381.30033
+Date: Wed, 18 May 2016 09:08:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95282
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94342
 
---- Comment #11 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-much better with 4.6.0-ARCH-00466-ge80ac9b. However sometimes I still get a
-hang; I will have to assert whether the occasional hangs do really stem from
-vidoe playback ...
+--- Comment #8 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+same with 4.6.0-ARCH-00466-ge80ac9b.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14635624801.c5Dc5BF.29901
-Date: Wed, 18 May 2016 09:08:00 +0000
+--14635625380.5fde381.30033
+Date: Wed, 18 May 2016 09:08:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,22 +60,21 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - G96: system hang on video playback via vdpau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c11">Commen=
-t # 11</a>
+   title=3D"NEW - Nvidia G96GLM 3840x2160&#64;30 not functional with nouvea=
+u"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94342#c8">Comment=
+ # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - G96: system hang on video playback via vdpau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282">bug 95282<=
+   title=3D"NEW - Nvidia G96GLM 3840x2160&#64;30 not functional with nouvea=
+u"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94342">bug 94342<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>much better with 4.6.0-ARCH-00466-ge80ac9b. However sometimes =
-I still get a
-hang; I will have to assert whether the occasional hangs do really stem from
-vidoe playback ...</pre>
+        <pre>same with 4.6.0-ARCH-00466-ge80ac9b.</pre>
         </div>
       </p>
 
@@ -90,9 +88,9 @@ vidoe playback ...</pre>
     </body>
 </html>=
 
---14635624801.c5Dc5BF.29901--
+--14635625380.5fde381.30033--
 
---===============1566356195==
+--===============0587857787==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1566356195==--
+--===============0587857787==--
