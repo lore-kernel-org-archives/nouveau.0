@@ -1,170 +1,58 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94342] Nvidia G96GLM 3840x2160@30 not functional
-	with nouveau
-Date: Wed, 18 May 2016 12:35:41 +0000
-Message-ID: <bug-94342-8800-xN4UhZIhmp@http.bugs.freedesktop.org/>
-References: <bug-94342-8800@http.bugs.freedesktop.org/>
+From: Arnd Bergmann <arnd@arndb.de>
+Subject: [PATCH 0/5] drm: fixes for merge-window regressions
+Date: Wed, 18 May 2016 15:45:01 +0200
+Message-ID: <1463579106-400827-1-git-send-email-arnd@arndb.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0383591007=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94342-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: David Airlie <airlied@linux.ie>
+Cc: Krzysztof Kozlowski <k.kozlowski@samsung.com>, linux-samsung-soc@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, nouveau@lists.freedesktop.org, Seung-Woo Kim <sw0312.kim@samsung.com>, Russell King <rmk+kernel@armlinux.org.uk>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>, Kyungmin Park <kyungmin.park@samsung.com>, Kukjin Kim <kgene@kernel.org>, linux-mediatek@lists.infradead.org, Ben Skeggs <bskeggs@redhat.com>, Matthias Brugger <matthias.bgg@gmail.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, linux-arm-kernel@lists.infradead.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0383591007==
-Content-Type: multipart/alternative; boundary="14635749410.Cc93f.24450";
- charset="UTF-8"
-
-
---14635749410.Cc93f.24450
-Date: Wed, 18 May 2016 12:35:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94342
-
-Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |WORKSFORME
-
---- Comment #9 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-  As it turned out a refresh rate of 30Hz can be achieved with the OSS-driv=
-er
-and the right modeline:
-
-  Modeline "3840x2160_30.00"  268.06  3840 3992 4080 4112  2160 2161 2164 2=
-173
-+hsync -vsync
-
-  It is a trick to set nouveau.hdmimhz=3D296 instead of 297 in order to pre=
-vent
-the automatic mode requiring a higher TMDS frequency to appear automatically
-which blackens the screen. Once a mode with too high frequency has been set=
- the
-external monitor will stay without signal until I reboot. In a practice the
-TMDS limit may neither be 225 nor 297 but somewhere in between.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14635749410.Cc93f.24450
-Date: Wed, 18 May 2016 12:35:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:estellnb&=
-#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;=
-"> <span class=3D"fn">Elmar Stellnberger</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WORKSFORME - Nvidia G96GLM 3840x2160&#64;30 not functi=
-onal with nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94342">bug 94342<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>WORKSFORME
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WORKSFORME - Nvidia G96GLM 3840x2160&#64;30 not functi=
-onal with nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94342#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WORKSFORME - Nvidia G96GLM 3840x2160&#64;30 not functi=
-onal with nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94342">bug 94342<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
-l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
-</span></b>
-        <pre>  As it turned out a refresh rate of 30Hz can be achieved with=
- the OSS-driver
-and the right modeline:
-
-  Modeline &quot;3840x2160_30.00&quot;  268.06  3840 3992 4080 4112  2160 2=
-161 2164 2173
-+hsync -vsync
-
-  It is a trick to set nouveau.hdmimhz=3D296 instead of 297 in order to pre=
-vent
-the automatic mode requiring a higher TMDS frequency to appear automatically
-which blackens the screen. Once a mode with too high frequency has been set=
- the
-external monitor will stay without signal until I reboot. In a practice the
-TMDS limit may neither be 225 nor 297 but somewhere in between.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14635749410.Cc93f.24450--
-
---===============0383591007==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0383591007==--
+QSBjb3VwbGUgb2YgbmV3IHdhcm5pbmdzIGFuZCBidWlsZCBlcnJvcnMgYXBwZWFyZWQgdGhyb3Vn
+aCB0aGUgRFJNCnRyZWUgaW4gbGludXgtbmV4dCBhZnRlciB0aGUgbWVyZ2Ugd2luZG93IG9wZW5l
+ZC4gVGhlIGZpcnN0IHBhdGNoCmhlcmUgaXMgZm9yIHNjcmlwdHMvaGVhZGVyc19jaGVjay5wbCwg
+YnV0IGFzIHRoZSBidWcgaXMgb25seQpwcmVzZW50IGluIGRybS1uZXh0IGF0IHRoZSBtb21lbnQs
+IGl0IHdvdWxkIGJlIGdvb2QgdG8gYWRkIGFsbApmaXZlIHBhdGNoZXMgdG8gdGhhdCB0cmVlIGJl
+Zm9yZSB0aGV5IG1ha2UgaXQgaW50byBtYWlubGluZS4KCkl0J3MgbGlrZWx5IHRoYXQgc29tZSBv
+ZiB0aGVzZSBoYXZlIGFscmVhZHkgYmVlbiBmaXhlZCBzaW5jZQp0aGlzIG1vcm5pbmcncyBsaW51
+eC1uZXh0LCBzbyBqdXN0IGlnbm9yZSB0aGUgb25lcyBhcmUgbm8KbG9uZ2VyIG5lZWRlZC4KCkFy
+bmQgQmVyZ21hbm4gKDUpOgogIGhlYWRlcnNfY2hlY2s6IGRvbid0IHdhcm4gYWJvdXQgYysrIGd1
+YXJkcwogIGRybTogbWVkaWF0ZWs6IGFkZCBDT05GSUdfT0YgZGVwZW5kZW5jeQogIGRybTogbWVk
+aWF0ZWs6IGZpeHVwIGRybV9nZW1fb2JqZWN0X2xvb2t1cCBBUEkgY2hhbmdlCiAgZHJtOiBleHlu
+b3M6IG1hcmsgcG0gZnVuY3Rpb25zIGFzIF9fbWF5YmVfdW51c2VkCiAgZHJtOiByZW1vdmUgdW51
+c2VkIGRldiB2YXJpYWJsZXMKCiBkcml2ZXJzL2dwdS9kcm0vYXJtYWRhL2FybWFkYV9jcnRjLmMg
+ICB8IDEgLQogZHJpdmVycy9ncHUvZHJtL2V4eW5vcy9leHlub3NfaGRtaS5jICAgfCA2ICsrLS0t
+LQogZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL0tjb25maWcgICAgICAgfCAxICsKIGRyaXZlcnMv
+Z3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2ZiLmMgIHwgMiArLQogZHJpdmVycy9ncHUvZHJtL21l
+ZGlhdGVrL210a19kcm1fZ2VtLmMgfCAyICstCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
+ZWF1X2dlbS5jICB8IDEgLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMg
+fCAxIC0KIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2NzLmMgICAgIHwgMSAtCiBzY3Jp
+cHRzL2hlYWRlcnNfY2hlY2sucGwgICAgICAgICAgICAgICB8IDQgKysrKwogOSBmaWxlcyBjaGFu
+Z2VkLCA5IGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9ucygtKQoKCkNjOiBSdXNzZWxsIEtpbmcg
+PHJtaytrZXJuZWxAYXJtbGludXgub3JnLnVrPgpDYzogSW5raSBEYWUgPGlua2kuZGFlQHNhbXN1
+bmcuY29tPgpDYzogSm9vbnlvdW5nIFNoaW0gPGp5MDkyMi5zaGltQHNhbXN1bmcuY29tPgpDYzog
+U2V1bmctV29vIEtpbSA8c3cwMzEyLmtpbUBzYW1zdW5nLmNvbT4KQ2M6IEt5dW5nbWluIFBhcmsg
+PGt5dW5nbWluLnBhcmtAc2Ftc3VuZy5jb20+CkNjOiBLdWtqaW4gS2ltIDxrZ2VuZUBrZXJuZWwu
+b3JnPgpDYzogS3J6eXN6dG9mIEtvemxvd3NraSA8ay5rb3psb3dza2lAc2Ftc3VuZy5jb20+CkNj
+OiBNYXR0aGlhcyBCcnVnZ2VyIDxtYXR0aGlhcy5iZ2dAZ21haWwuY29tPgpDYzogQmVuIFNrZWdn
+cyA8YnNrZWdnc0ByZWRoYXQuY29tPgpDYzogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hl
+ckBhbWQuY29tPgpDYzogIkNocmlzdGlhbiBLw7ZuaWciIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5j
+b20+CkNjOiBBcm5kIEJlcmdtYW5uIDxhcm5kQGFybmRiLmRlPgpDYzogZHJpLWRldmVsQGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpDYzogbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZwpDYzogbGlu
+dXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnCkNjOiBsaW51eC1zYW1zdW5nLXNvY0B2
+Z2VyLmtlcm5lbC5vcmcKQ2M6IGxpbnV4LW1lZGlhdGVrQGxpc3RzLmluZnJhZGVhZC5vcmcKQ2M6
+IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCgotLSAKMi43LjAKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QK
+ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
