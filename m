@@ -1,14 +1,11 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v4] vga_switcheroo: Add helper for deferred
-	probing
-Date: Fri, 20 May 2016 00:41:04 +0100
-Message-ID: <CACvgo505G8+Gq_o0FszYi74kJFqFV-=1Y2-Ed9PDRRDX1kaSXw@mail.gmail.com>
-References: <35e4cc1e5c711fa30c3081dc628ce672a0fea276.1463642956.git.lukas@wunner.de>
+From: Nouveau <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
+Subject: OMG it's true
+Date: Fri, 20 May 2016 00:48:09 +0300
+Message-ID: <0000f72a5f6e$46296a69$476d129e$@derocher.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1037513314=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <35e4cc1e5c711fa30c3081dc628ce672a0fea276.1463642956.git.lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Content-Language: en-us
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,20 +15,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Nouveau <Nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, open-gpu-doc <open-gpu-doc-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ortwin Glck <odi-L693kI9kcNY@public.gmane.org>, Pali Rohr <pali.rohar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGkgTHVrYXMsCgpPbiAxOSBNYXkgMjAxNiBhdCAxNTozOSwgTHVrYXMgV3VubmVyIDxsdWthc0B3
-dW5uZXIuZGU+IHdyb3RlOgoKPiArYm9vbCB2Z2Ffc3dpdGNoZXJvb19jbGllbnRfcHJvYmVfZGVm
-ZXIoc3RydWN0IHBjaV9kZXYgKnBkZXYpCj4gK3sKPiArICAgICAgIGlmICgocGRldi0+Y2xhc3Mg
-Pj4gOCkgPT0gUENJX0NMQVNTX0RJU1BMQVlfVkdBKSB7Ck5vdCBzdXJlIGlmIHdlIHdhbnQvbmVl
-ZCB0aGlzLCB5ZXQgYXQgbGVhc3QuIFRoaXMgY2hhbmdlcyBiZWhhdmlvdXIKd2hpY2ggaXMgbm90
-IHdoYXQgcmVmYWN0b3JpbmcgcGF0Y2hlcyBzaG91bGQgYmUgZG9pbmcsIHJpZ2h0ID8gaWYKbmVl
-ZGVkIGl0IG91Z2h0IHRvIGJlIGEgc2VwYXJhdGUgcGF0Y2gsIGltaG8uCgpGdXJ0aGVybW9yZSBv
-biBub3V2ZWF1IGFuZCBBTUQgKGlpcmMpIGZyb250LCBzb21lIGR1YWwtZ3B1L29wdGltdXMKc3lz
-dGVtcyB1c2UgUENJX0NMQVNTX0RJU1BMQVlfM0QuIFNvIGlmIHdlIGFkZCBESVNQTEFZX1ZHQSBw
-ZXJoYXBzIHdlCnNob3VsZCBhbHNvIGNoZWNrIGZvciBESVNQTEFZXzNEID8KClJlZ2FyZHMsCkVt
-aWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
-dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+This is a multipart message in MIME format.
+
+--===============1037513314==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0001_54837BDC.39575F51"
+Content-Language: en-us
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0001_54837BDC.39575F51
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi,
+I've just found something really interesting and OMG ... it's  amazing, just take a look <http://ndikynkiky.vendercamara.com/aexfbue?nxc>
+
+Nouveau
+
+
+------=_NextPart_000_0001_54837BDC.39575F51
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas=
+-microsoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:off=
+ice:word" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml"=
+ xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"C=
+ontent-Type" CONTENT=3D"text/html; charset=3Dus-ascii"><meta name=3DGe=
+nerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+=2EMsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN link=3D"#0563=
+C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
+span lang=3DEN-US>Hi,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>I've just found something really interesting and OMG ... =
+it's  amazing, just take a look <a href=3D"http://ndikynkiky.vendercam=
+ara.com/aexfbue?nxc">http://ndikynkiky.vendercamara.com/aexfbue</a><o:=
+p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;=
+</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Nouveau<o:p><=
+/o:p></span></p></div></body></html>
+
+------=_NextPart_000_0001_54837BDC.39575F51--
+
+--===============1037513314==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1037513314==--
