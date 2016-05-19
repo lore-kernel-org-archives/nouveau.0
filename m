@@ -1,14 +1,12 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/5] headers_check: don't warn about c++ guards
-Date: Wed, 18 May 2016 21:20:29 +0100
-Message-ID: <CACvgo51FkfzzhFjYKyyHfxb-DyZeheQP2oZG-tWf1-EiBakp2w@mail.gmail.com>
-References: <1463587653-3035181-1-git-send-email-arnd@arndb.de>
- <1463587653-3035181-2-git-send-email-arnd@arndb.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93934] DRI_PRIME=1: DeadIsland crash
+Date: Thu, 19 May 2016 04:41:11 +0000
+Message-ID: <bug-93934-8800-5h64AIuy8d@http.bugs.freedesktop.org/>
+References: <bug-93934-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0540603255=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1463587653-3035181-2-git-send-email-arnd-r2nGTMty4D4@public.gmane.org>
+In-Reply-To: <bug-93934-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,40 +16,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Arnd Bergmann <arnd-r2nGTMty4D4@public.gmane.org>
-Cc: Krzysztof Kozlowski <k.kozlowski-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, "moderated list:ARM/S5P EXYNOS AR..." <linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Seung-Woo Kim <sw0312.kim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, "Linux-Kernel@Vger. Kernel. Org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Matthias Brugger <matthias.bgg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Russell King <rmk+kernel-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, Kukjin Kim <kgene-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Kyungmin Park <kyungmin.park-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, LAKML <linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTggTWF5IDIwMTYgYXQgMTc6MDcsIEFybmQgQmVyZ21hbm4gPGFybmRAYXJuZGIuZGU+IHdy
-b3RlOgo+IEEgcmVjZW50IGFkZGl0aW9uIHRvIHRoZSBEUk0gdHJlZSBmb3IgNC43IGFkZGVkICdl
-eHRlcm4gIkMiJyBndWFyZHMKPiBmb3IgYysrIHRvIGFsbCB0aGUgRFJNIGhlYWRlcnMsIGFuZCB0
-aGF0IG5vdyBjYXVzZXMgd2FybmluZ3MKPiBpbiAnbWFrZSBoZWFkZXJzX2NoZWNrJzoKPgo+IHVz
-ci9pbmNsdWRlL2RybS9hbWRncHVfZHJtLmg6Mzg6IHVzZXJzcGFjZSBjYW5ub3QgcmVmZXJlbmNl
-IGZ1bmN0aW9uIG9yIHZhcmlhYmxlIGRlZmluZWQgaW4gdGhlIGtlcm5lbAo+IHVzci9pbmNsdWRl
-L2RybS9kcm0uaDo2MzogdXNlcnNwYWNlIGNhbm5vdCByZWZlcmVuY2UgZnVuY3Rpb24gb3IgdmFy
-aWFibGUgZGVmaW5lZCBpbiB0aGUga2VybmVsCj4gdXNyL2luY2x1ZGUvZHJtL2RybS5oOjY5OTog
-dXNlcnNwYWNlIGNhbm5vdCByZWZlcmVuY2UgZnVuY3Rpb24gb3IgdmFyaWFibGUgZGVmaW5lZCBp
-biB0aGUga2VybmVsCj4gdXNyL2luY2x1ZGUvZHJtL2RybV9mb3VyY2MuaDozMDogdXNlcnNwYWNl
-IGNhbm5vdCByZWZlcmVuY2UgZnVuY3Rpb24gb3IgdmFyaWFibGUgZGVmaW5lZCBpbiB0aGUga2Vy
-bmVsCj4gdXNyL2luY2x1ZGUvZHJtL2RybV9tb2RlLmg6MzM6IHVzZXJzcGFjZSBjYW5ub3QgcmVm
-ZXJlbmNlIGZ1bmN0aW9uIG9yIHZhcmlhYmxlIGRlZmluZWQgaW4gdGhlIGtlcm5lbAo+IHVzci9p
-bmNsdWRlL2RybS9kcm1fc2FyZWEuaDozODogdXNlcnNwYWNlIGNhbm5vdCByZWZlcmVuY2UgZnVu
-Y3Rpb24gb3IgdmFyaWFibGUgZGVmaW5lZCBpbiB0aGUga2VybmVsCj4gdXNyL2luY2x1ZGUvZHJt
-L2V4eW5vc19kcm0uaDoyMTogdXNlcnNwYWNlIGNhbm5vdCByZWZlcmVuY2UgZnVuY3Rpb24gb3Ig
-dmFyaWFibGUgZGVmaW5lZCBpbiB0aGUga2VybmVsCj4gdXNyL2luY2x1ZGUvZHJtL2k4MTBfZHJt
-Lmg6NzogdXNlcnNwYWNlIGNhbm5vdCByZWZlcmVuY2UgZnVuY3Rpb24gb3IgdmFyaWFibGUgZGVm
-aW5lZCBpbiB0aGUga2VybmVsCj4KPiBUaGlzIGNoYW5nZXMgdGhlIGhlYWRlcnNfY2hlY2sucGwg
-c2NyaXB0IHRvIG5vdCB3YXJuIGFib3V0IHRoaXMuCj4gSSdtIGxpc3RpbmcgdGhlIG1lcmdlIGNv
-bW1pdCBhcyBpbnRyb2R1Y2luZyB0aGUgcHJvYmxlbSwgYmVjYXVzZQo+IHRoZXJlIGFyZSBzZXZl
-cmFsIHBhdGNoZXMgaW4gdGhpcyBicmFuY2ggdGhhdCBlYWNoIGRvIHRoaXMgZm9yCj4gb25lIGZp
-bGUuCj4KPiBTaWduZWQtb2ZmLWJ5OiBBcm5kIEJlcmdtYW5uIDxhcm5kQGFybmRiLmRlPgo+IEZp
-eGVzOiA3YzEwZGRmODc0NzIgKCJNZXJnZSBicmFuY2ggJ2RybS11YXBpLWV4dGVybi1jLWZpeGVz
-JyBvZiBodHRwczovL2dpdGh1Yi5jb20vZXZlbGlrb3YvbGludXggaW50byBkcm0tbmV4dCIpClJl
-dmlld2VkLWJ5OiBFbWlsIFZlbGlrb3YgPGVtaWwubC52ZWxpa292QGdtYWlsLmNvbT4KClRoYW5r
-cyBBcm5kICEKCkFzIERhdmUgbWVudGlvbmVkIC0gdGhlIGJlc3Qgc29sdXRpb24gd291bGQgYmUg
-dG8gaGF2ZSB0aGUgaHVua3MKZ2VuZXJhdGVkIG9uIHRoZSBmbHkuIFNhZGx5IFBlcmwgYW5kIG1l
-IGRvbid0IGdvIGhhbmQgaW4gaGFuZCBzbyBpZgp5b3UncmUgaW50ZXJlc3RlZCBJJ2xsIGJlIHJl
-YWxseSBncmF0ZWZ1bC4KCi1FbWlsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQo=
+
+--===============0540603255==
+Content-Type: multipart/alternative; boundary="14636328710.F49fFCADe.22865";
+ charset="UTF-8"
+
+
+--14636328710.F49fFCADe.22865
+Date: Thu, 19 May 2016 04:41:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93934
+
+--- Comment #5 from Marcos Souza <marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+New information, using GDB it shows the crash:
+#0  0xf703fe16 in __strchr_sse2_bsf () from /lib/libc.so.6
+#1  0x09e20afc in ExtractDescriptions(ttl::string_base<char> const&) ()
+#2  0x09e23724 in Renderer::RCreateShaderHwResources(_RSeparateShaderObject=
+*&,
+_RCompiledByteCode*, EShaderProfile::TYPE) ()
+#3  0x09dff13a in CPShader::CPShader(ClassReaderResolve*) ()
+#4  0x09dff8a8 in ConstructMaterial(void*, unsigned int, unsigned int, void=
+*)
+()
+#5  0x09e9862d in ClassReader::Resolve(bool (*)(void*, unsigned int, unsign=
+ed
+int, void*), void*) ()
+#6  0x09a9db47 in
+CRLRPlatformLinux::RegisterMaterialResource(CResourceDataPack*,
+RDPLogicalResourceEntryHeader*) ()
+#7  0x09d0b2de in
+CResourceLoadingRuntimeCommons::RegisterResources(CResourceDataPack*, EResT=
+ype,
+void (CResourceLoadingRuntimeCommons::*)(CResourceDataPack*,
+RDPLogicalResourceEntryHeader*)) ()
+#8  0x09a9dd30 in CRLRPlatformLinux::OnLoadComplete(CResourceDataPack*) ()
+#9  0x09aaf90c in CResourceDataPack::LoadDataTasks(ttl::vectorm<(EMem::TYPE=
+)40,
+CResourceDataPack::LoadTask>&, bool) ()
+#10 0x09aafa88 in CResourceDataPack::LoadData(bool) ()
+#11 0x09a99f51 in CResourceLoadingRuntime::LoadPack(char const*,
+CResourceDataPack**, unsigned int) ()
+#12 0x0985a9db in CLevel::CLevel(ILevel*) ()
+#13 0x097d97b6 in CFactory::CreateObject(CRTTI const*, CGSObject*, bool,
+unsigned char, unsigned long long, bool) ()
+#14 0x09bd0ea1 in CSerializableObject::ChunkLoadGSObject(fs::ifile&, long, =
+int,
+CGSObject*, CRTTI const*) ()
+#15 0x097cda11 in CGame::LoadChunk(fs::ifile&, unsigned short, long) ()
+#16 0x09bd14f7 in CSerializableObject::BaseLoad(fs::ifile&, long) ()
+#17 0x09bd1611 in CSerializableObject::Load(fs::ifile&, long) ()
+#18 0x097d1353 in CGame::SafeLoad(char const*, fs::ifile&, long) ()
+#19 0x097d5140 in CGame::LoadGameModuleInternal(char const*, CGSObject*,
+IProgressIndicator*) ()
+#20 0x097dda1d in IGame::LoadModule(ttl::string_base<char> const&, IGSObjec=
+t*,
+IProgressIndicator*) ()
+#21 0x08ac4014 in SessionDI::LoadLevel() ()
+#22 0x08aa4267 in SessionCooperative::LoadLevel() ()
+#23 0x08ac9b21 in SessionDI::ChangeActiveLevel() ()
+#24 0x097d1d48 in CGame::CallFrameEndHandlers() ()
+#25 0x097d244a in CGame::Frame(bool, bool) ()
+#26 0x097cdeae in CGame::OnPaint() ()
+#27 0x097cd473 in CGame::DoSdlLoop() ()
+#28 0x088f4712 in main ()
+
+The output is the same on Haswell and nouveau, this is isn't related to mes=
+a?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14636328710.F49fFCADe.22865
+Date: Thu, 19 May 2016 04:41:11 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - DRI_PRIME=3D1: DeadIsland crash"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93934#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - DRI_PRIME=3D1: DeadIsland crash"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93934">bug 93934<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+marcos.souza.org&#64;gmail.com" title=3D"Marcos Souza &lt;marcos.souza.org&=
+#64;gmail.com&gt;"> <span class=3D"fn">Marcos Souza</span></a>
+</span></b>
+        <pre>New information, using GDB it shows the crash:
+#0  0xf703fe16 in __strchr_sse2_bsf () from /lib/libc.so.6
+#1  0x09e20afc in ExtractDescriptions(ttl::string_base&lt;char&gt; const&am=
+p;) ()
+#2  0x09e23724 in Renderer::RCreateShaderHwResources(_RSeparateShaderObject=
+*&amp;,
+_RCompiledByteCode*, EShaderProfile::TYPE) ()
+#3  0x09dff13a in CPShader::CPShader(ClassReaderResolve*) ()
+#4  0x09dff8a8 in ConstructMaterial(void*, unsigned int, unsigned int, void=
+*)
+()
+#5  0x09e9862d in ClassReader::Resolve(bool (*)(void*, unsigned int, unsign=
+ed
+int, void*), void*) ()
+#6  0x09a9db47 in
+CRLRPlatformLinux::RegisterMaterialResource(CResourceDataPack*,
+RDPLogicalResourceEntryHeader*) ()
+#7  0x09d0b2de in
+CResourceLoadingRuntimeCommons::RegisterResources(CResourceDataPack*, EResT=
+ype,
+void (CResourceLoadingRuntimeCommons::*)(CResourceDataPack*,
+RDPLogicalResourceEntryHeader*)) ()
+#8  0x09a9dd30 in CRLRPlatformLinux::OnLoadComplete(CResourceDataPack*) ()
+#9  0x09aaf90c in CResourceDataPack::LoadDataTasks(ttl::vectorm&lt;(EMem::T=
+YPE)40,
+CResourceDataPack::LoadTask&gt;&amp;, bool) ()
+#10 0x09aafa88 in CResourceDataPack::LoadData(bool) ()
+#11 0x09a99f51 in CResourceLoadingRuntime::LoadPack(char const*,
+CResourceDataPack**, unsigned int) ()
+#12 0x0985a9db in CLevel::CLevel(ILevel*) ()
+#13 0x097d97b6 in CFactory::CreateObject(CRTTI const*, CGSObject*, bool,
+unsigned char, unsigned long long, bool) ()
+#14 0x09bd0ea1 in CSerializableObject::ChunkLoadGSObject(fs::ifile&amp;, lo=
+ng, int,
+CGSObject*, CRTTI const*) ()
+#15 0x097cda11 in CGame::LoadChunk(fs::ifile&amp;, unsigned short, long) ()
+#16 0x09bd14f7 in CSerializableObject::BaseLoad(fs::ifile&amp;, long) ()
+#17 0x09bd1611 in CSerializableObject::Load(fs::ifile&amp;, long) ()
+#18 0x097d1353 in CGame::SafeLoad(char const*, fs::ifile&amp;, long) ()
+#19 0x097d5140 in CGame::LoadGameModuleInternal(char const*, CGSObject*,
+IProgressIndicator*) ()
+#20 0x097dda1d in IGame::LoadModule(ttl::string_base&lt;char&gt; const&amp;=
+, IGSObject*,
+IProgressIndicator*) ()
+#21 0x08ac4014 in SessionDI::LoadLevel() ()
+#22 0x08aa4267 in SessionCooperative::LoadLevel() ()
+#23 0x08ac9b21 in SessionDI::ChangeActiveLevel() ()
+#24 0x097d1d48 in CGame::CallFrameEndHandlers() ()
+#25 0x097d244a in CGame::Frame(bool, bool) ()
+#26 0x097cdeae in CGame::OnPaint() ()
+#27 0x097cd473 in CGame::DoSdlLoop() ()
+#28 0x088f4712 in main ()
+
+The output is the same on Haswell and nouveau, this is isn't related to mes=
+a?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14636328710.F49fFCADe.22865--
+
+--===============0540603255==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0540603255==--
