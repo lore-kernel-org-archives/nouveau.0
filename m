@@ -1,13 +1,11 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH] gpu/nouveau/nouveau_acpi.c: Fix Type Mismatch
- ACPI warning
-Date: Thu, 19 May 2016 11:49:15 +0200
-Message-ID: <20160519094915.GA1759@Sovereign.localdomain>
-References: <1463618578-5662-1-git-send-email-marcos.souza.org@gmail.com>
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: [PATCH v4] vga_switcheroo: Add helper for deferred probing
+Date: Thu, 19 May 2016 15:39:16 +0100
+Message-ID: <35e4cc1e5c711fa30c3081dc628ce672a0fea276.1463642956.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1870969505=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1463618578-5662-1-git-send-email-marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,201 +15,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Marcos Paulo de Souza <marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: airlied-cv59FeDIM0c@public.gmane.org, dvhart-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, christian.koenig-5C7GfCeVMHo@public.gmane.org
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1870969505==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gBBFr7Ir9EOA20Yy"
-Content-Disposition: inline
-
-
---gBBFr7Ir9EOA20Yy
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Marcos,
-
-I sent a serie a year ago to fix some of the ACPI handling in Nouveau and a=
-dd
-runtime pm support for laptops with an Apple GMUX (see [0], and especially =
-[1]
-and [2]). I was told that a more generic work for the runtime pm was in the
-work, so I let the whole serie slip away. I was thinking of resubmitting the
-serie without the runtime pm additions, to at least fix those warning/error
-messages. I thought I had a patch to fix this issue in my serie, but going
-through it again, it looks like I did not.
-Note that even, though the spec says the 4th argument should be a package, =
-some
-old BIOSes expect a different type, like a buffer (see the comment above [5=
-]; I
-think there was also a comment about it in the spec, but I can=E2=80=99t fi=
-nd it
-anymore).
-
-I added some comments below. I=E2=80=99ll test this patch tonight, to see h=
-ow it works
-on my laptop as I think it expects a buffer as 4th argument.
-
-Thank you!
-
-Regards,
-Pierre
-
-
-[0]: https://lists.freedesktop.org/archives/dri-devel/2015-May/083444.html
-[1]: https://lists.freedesktop.org/archives/dri-devel/2015-May/083448.html
-[2]: https://lists.freedesktop.org/archives/dri-devel/2015-May/083449.html
-
-On 09:42 PM - May 18 2016, Marcos Paulo de Souza wrote:
-> nouveau_optimus_dsm is using ACPI_TYPE_BUFFER, and this triggers warnings=
- on ACPI:
-> [    7.730564] ACPI: \_SB_.PCI0.RP05.PEGP: failed to evaluate _DSM
-> [    7.730570] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type =
-mismatch - Found [Buffer], ACPI requires [Package] (201509    30/nsargument=
-s-95)
->=20
-> To fix it, change ACPI_TYPE_BUFFER to ACPI_TYPE_PACKAGE, as the warning t=
-ells to do.
->=20
-> Signed-off-by: Marcos Paulo de Souza <marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->=20
-> After booting my Asus Laptop, and after a suspend/resume too, dmesg shows=
- warnings:
-> [    1.633361] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type =
-mismatch - Found [Buffer], ACPI requires [Package] (20150930/nsarguments-95)
-> [    1.633434] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type =
-mismatch - Found [Buffer], ACPI requires [Package] (20150930/nsarguments-95)
-> [    7.730176] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type =
-mismatch - Found [Buffer], ACPI requires [Package] (20150930/nsarguments-95)
-> [    7.730564] ACPI: \_SB_.PCI0.RP05.PEGP: failed to evaluate _DSM
-> [    7.730570] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type =
-mismatch - Found [Buffer], ACPI requires [Package] (20150930/nsarguments-95)
-> [   49.732059] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type =
-mismatch - Found [Buffer], ACPI requires [Package] (20150930/nsarguments-95)
-> [   49.732424] ACPI: \_SB_.PCI0.RP05.PEGP: failed to evaluate _DSM
-> [   49.732430] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type =
-mismatch - Found [Buffer], ACPI requires [Package] (20150930/nsarguments-95)
-> [   74.366300] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type =
-mismatch - Found [Buffer], ACPI requires [Package] (20150930/nsarguments-95)
-> [   74.366657] ACPI: \_SB_.PCI0.RP05.PEGP: failed to evaluate _DSM
-> [   74.366663] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type =
-mismatch - Found [Buffer], ACPI requires [Package] (20150930/nsarguments-95)
-> [  140.357789] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type =
-mismatch - Found [Buffer], ACPI requires [Package] (20150930/nsarguments-95)
-> [  140.358532] ACPI: \_SB_.PCI0.RP05.PEGP: failed to evaluate _DSM
-> [  140.358547] ACPI Warning: \_SB_.PCI0.RP05.PEGP._DSM: Argument #4 type =
-mismatch - Found [Buffer], ACPI requires [Package] (20150930/nsarguments-95)
-
-Out of curiosity, which GPU(s) do you have in your laptop? I guess there is=
- at
-least an NVIDIA one, but is it an Optimus configuration? And if so, does the
-unused card go automatically to sleep after a few seconds?
-
->=20
-> I don't know if this is the right thing to do, I just looked at intel_acp=
-i.c to check how to use/check for ACPI Package.
-> The patch below silenced the "type mismatch" warnings, and some of the "e=
-valuated _DSM" ones.
->=20
-> If this is not the right approach, please let me know how to fix it, I do=
-n't have knowledge in ACPI, but I really want to help.
->=20
->  drivers/gpu/drm/nouveau/nouveau_acpi.c | 14 +-------------
->  1 file changed, 1 insertion(+), 13 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nou=
-veau/nouveau_acpi.c
-> index cdf5227..f04aef3 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-> @@ -73,22 +73,10 @@ static const char nouveau_op_dsm_muid[] =3D {
-> =20
->  static int nouveau_optimus_dsm(acpi_handle handle, int func, int arg, ui=
-nt32_t *result)
->  {
-> -	int i;
->  	union acpi_object *obj;
-> -	char args_buff[4];
-> -	union acpi_object argv4 =3D {
-> -		.buffer.type =3D ACPI_TYPE_BUFFER,
-> -		.buffer.length =3D 4,
-> -		.buffer.pointer =3D args_buff
-> -	};
-> -
-> -	/* ACPI is little endian, AABBCCDD becomes {DD,CC,BB,AA} */
-> -	for (i =3D 0; i < 4; i++)
-> -		args_buff[i] =3D (arg >> i * 8) & 0xFF;
-> -
->  	*result =3D 0;
->  	obj =3D acpi_evaluate_dsm_typed(handle, nouveau_op_dsm_muid, 0x00000100,
-> -				      func, &argv4, ACPI_TYPE_BUFFER);
-> +				      func, NULL, ACPI_TYPE_PACKAGE);
-
-The last parameter you give to `acpi_evaluate_dsm_typed()` is the return ty=
-pe
-you expect (see [3]), which will be a buffer if func is 0, and is
-implementation dependent otherwise (see section 9.14.1 _DSM of [4]). So you
-don=E2=80=99t want to change it to ACPI_TYPE_PACKAGE. If you look at the im=
-plementation
-of `acpi_evaluate_dsm()` (which is called by `acpi_evaluate_dsm_typed()`), =
-it
-will automatically create a package for the 4th argument, if you pass it a =
-NULL
-pointer (see [5]).
-
-[3]: https://github.com/torvalds/linux/blob/46c13450624e36302547a2ac3695f23=
-50fe7ffc3/include/acpi/acpi_bus.h#L69
-[4]: http://www.acpi.info/DOWNLOADS/ACPI_5_Errata%20A.pdf
-[5]: https://github.com/torvalds/linux/blob/46c13450624e36302547a2ac3695f23=
-50fe7ffc3/drivers/acpi/utils.c#L628
-
->  	if (!obj) {
->  		acpi_handle_info(handle, "failed to evaluate _DSM\n");
->  		return AE_ERROR;
-> --=20
-> 2.5.5
->=20
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
---gBBFr7Ir9EOA20Yy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAABCgAGBQJXPYwRAAoJEI7uMhYTPh3wIeIP/j2bJ4vpQk3tJc8fx7XMR7o+
-h8Nj3C3D5wfJQcIBq9nyhlJreKQrIhDj/ovz1B2CtVgP54qUnLsa/sr6eeMlyCe7
-BFrR+sW7O2JwPRn5zPnUVPH8PTrLanIzm4JFi9m7fAv4OK9E9uOnm5fewhd33g6V
-fjSjzpm+UGAdYQOnG7tyJkpuEd0J1hey3ARO/dL0rXqP0xga6eM+ZJ1jlgmXgY8M
-Pf5I5IFmYk/gdnjcT+kuyjjlQn5gqIUrAru2Lx6ZOsnAbSTtjJ2/skhO4EJFUcfn
-CR3jiUHycGs4DHbHimhqSvjGqZ+UT+HNtpe65pL2ff3RrB9qlMJBwilPJzRbopCG
-FDjkhqVnsYpYIpdTowYy76bqSPKssYZW91XZUUDZhlJ6dTEZW42pLVVaSs2v02il
-Vy/jcijByb2yYpu4Cmdcgfvm/VPfW/Co3C1PCJjdKURlCN2IdUqFwvE/c7xDXNKo
-gIOdVILvgYRyyOeBkEQd/g03s1Pjwi/wzzM34UXXcwR9hR/1VtGOhaew1KtLQKIW
-65E+u+lGOuIypCWadJh9Y2cef+w2FF3GjDEQ24JYUha5A11j5hkMHeE8fyBIUU+R
-RJEOnj/67MFZKBy5x907flwtIdtN/gunTzut3fVBqPHanUI+46KA4/FU8McLrXj/
-gJYTXXPpLMHXLL0JSFaO
-=53SG
------END PGP SIGNATURE-----
-
---gBBFr7Ir9EOA20Yy--
-
---===============1870969505==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1870969505==--
+U28gZmFyIHdlJ3ZlIGdvdCBvbmUgY29uZGl0aW9uIHdoZW4gRFJNIGRyaXZlcnMgbmVlZCB0byBk
+ZWZlciBwcm9iaW5nCm9uIGEgZHVhbCBHUFUgc3lzdGVtIGFuZCBpdCdzIGNvZGVkIHNlcGFyYXRl
+bHkgaW50byBlYWNoIG9mIHRoZSByZWxldmFudApkcml2ZXJzLiBBcyBzdWdnZXN0ZWQgYnkgRGFu
+aWVsIFZldHRlciwgZGVkdXBsaWNhdGUgdGhhdCBjb2RlIGluIHRoZQpkcml2ZXJzIGFuZCBtb3Zl
+IGl0IHRvIGEgbmV3IHZnYV9zd2l0Y2hlcm9vIGhlbHBlci4gVGhpcyB5aWVsZHMgYmV0dGVyCmVu
+Y2Fwc3VsYXRpb24gb2YgY29uY2VwdHMgYW5kIGxldHMgdXMgYWRkIGZ1cnRoZXIgY2hlY2tzIGlu
+IGEgY2VudHJhbApwbGFjZS4gKFRoZSBleGlzdGluZyBjaGVjayBwZXJ0YWlucyB0byBwcmUtcmV0
+aW5hIE1hY0Jvb2sgUHJvcyBhbmQgYW4KYWRkaXRpb25hbCBjaGVjayBpcyBleHBlY3RlZCB0byBi
+ZSBuZWVkZWQgZm9yIHJldGluYXMuKQoKdjI6IFRoaXMgaGVscGVyIGNvdWxkIGV2ZW50dWFsbHkg
+YmUgdXNlZCBieSBhdWRpbyBjbGllbnRzIGFzIHdlbGwsCiAgICBzbyByZXBocmFzZSBrZXJuZWxk
+b2MgdG8gcmVmZXIgdG8gImNsaWVudCIgaW5zdGVhZCBvZiAiR1BVIgogICAgYW5kIG1vdmUgdGhl
+IHNpbmdsZSBleGlzdGluZyBjaGVjayBpbiBhbiBpZiBibG9jayBzcGVjaWZpYwogICAgdG8gUENJ
+X0NMQVNTX0RJU1BMQVlfVkdBIGRldmljZXMuIE1vdmUgZG9jdW1lbnRhdGlvbiBvbgogICAgdGhh
+dCBjaGVjayBmcm9tIGtlcm5lbGRvYyB0byBhIGNvbW1lbnQuIChEYW5pZWwgVmV0dGVyKQoKdjM6
+IE1hbmRhdGUgaW4ga2VybmVsZG9jIHRoYXQgcmVnaXN0cmF0aW9uIG9mIGNsaWVudCBzaGFsbCBv
+bmx5CiAgICBoYXBwZW4gYWZ0ZXIgY2FsbGluZyB0aGlzIGhlbHBlci4gKERhbmllbCBWZXR0ZXIp
+Cgp2NDogUmViYXNlIG9uIDQxMmM4ZjdkZTAxMSAoImRybS9yYWRlb246IFJldHVybiAtRVBST0JF
+X0RFRkVSIHdoZW4KICAgIGFtZGtmZCBub3QgbG9hZGVkIikKCkNjOiBEYW5pZWwgVmV0dGVyIDxk
+YW5pZWwudmV0dGVyQGZmd2xsLmNoPgpDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29t
+PgpDYzogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgpTaWduZWQtb2Zm
+LWJ5OiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5lci5kZT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X2Rydi5jICAgICAgIHwgMTAgKy0tLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9kcm0uYyB8IDEwICstLS0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9yYWRl
+b24vcmFkZW9uX2Rydi5jICAgfCAxMCArLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS92Z2EvdmdhX3N3
+aXRjaGVyb28uYyAgICAgIHwgMzQgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLQog
+aW5jbHVkZS9saW51eC92Z2Ffc3dpdGNoZXJvby5oICAgICAgICB8ICAyICsrCiA1IGZpbGVzIGNo
+YW5nZWQsIDM3IGluc2VydGlvbnMoKyksIDI5IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X2Rydi5jCmluZGV4IGRiYTAzYzAuLjYxYmY1YTkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfZHJ2LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwpA
+QCAtMzUsMTEgKzM1LDkgQEAKICNpbmNsdWRlICJpOTE1X3RyYWNlLmgiCiAjaW5jbHVkZSAiaW50
+ZWxfZHJ2LmgiCiAKLSNpbmNsdWRlIDxsaW51eC9hcHBsZS1nbXV4Lmg+CiAjaW5jbHVkZSA8bGlu
+dXgvY29uc29sZS5oPgogI2luY2x1ZGUgPGxpbnV4L21vZHVsZS5oPgogI2luY2x1ZGUgPGxpbnV4
+L3BtX3J1bnRpbWUuaD4KLSNpbmNsdWRlIDxsaW51eC92Z2FhcmIuaD4KICNpbmNsdWRlIDxsaW51
+eC92Z2Ffc3dpdGNoZXJvby5oPgogI2luY2x1ZGUgPGRybS9kcm1fY3J0Y19oZWxwZXIuaD4KIApA
+QCAtMTAzMCwxMyArMTAyOCw3IEBAIHN0YXRpYyBpbnQgaTkxNV9wY2lfcHJvYmUoc3RydWN0IHBj
+aV9kZXYgKnBkZXYsIGNvbnN0IHN0cnVjdCBwY2lfZGV2aWNlX2lkICplbnQpCiAJaWYgKFBDSV9G
+VU5DKHBkZXYtPmRldmZuKSkKIAkJcmV0dXJuIC1FTk9ERVY7CiAKLQkvKgotCSAqIGFwcGxlLWdt
+dXggaXMgbmVlZGVkIG9uIGR1YWwgR1BVIE1hY0Jvb2sgUHJvCi0JICogdG8gcHJvYmUgdGhlIHBh
+bmVsIGlmIHdlJ3JlIHRoZSBpbmFjdGl2ZSBHUFUuCi0JICovCi0JaWYgKElTX0VOQUJMRUQoQ09O
+RklHX1ZHQV9BUkIpICYmIElTX0VOQUJMRUQoQ09ORklHX1ZHQV9TV0lUQ0hFUk9PKSAmJgotCSAg
+ICBhcHBsZV9nbXV4X3ByZXNlbnQoKSAmJiBwZGV2ICE9IHZnYV9kZWZhdWx0X2RldmljZSgpICYm
+Ci0JICAgICF2Z2Ffc3dpdGNoZXJvb19oYW5kbGVyX2ZsYWdzKCkpCisJaWYgKHZnYV9zd2l0Y2hl
+cm9vX2NsaWVudF9wcm9iZV9kZWZlcihwZGV2KSkKIAkJcmV0dXJuIC1FUFJPQkVfREVGRVI7CiAK
+IAlyZXR1cm4gZHJtX2dldF9wY2lfZGV2KHBkZXYsIGVudCwgJmRyaXZlcik7CmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIGIvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9kcm0uYwppbmRleCBkYjVjN2QwLi5hMGJiMWQwIDEwMDY0NAotLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCisrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKQEAgLTIyLDEzICsyMiwxMSBAQAogICogQXV0aG9y
+czogQmVuIFNrZWdncwogICovCiAKLSNpbmNsdWRlIDxsaW51eC9hcHBsZS1nbXV4Lmg+CiAjaW5j
+bHVkZSA8bGludXgvY29uc29sZS5oPgogI2luY2x1ZGUgPGxpbnV4L2RlbGF5Lmg+CiAjaW5jbHVk
+ZSA8bGludXgvbW9kdWxlLmg+CiAjaW5jbHVkZSA8bGludXgvcGNpLmg+CiAjaW5jbHVkZSA8bGlu
+dXgvcG1fcnVudGltZS5oPgotI2luY2x1ZGUgPGxpbnV4L3ZnYWFyYi5oPgogI2luY2x1ZGUgPGxp
+bnV4L3ZnYV9zd2l0Y2hlcm9vLmg+CiAKICNpbmNsdWRlICJkcm1QLmgiCkBAIC0zMTUsMTMgKzMx
+Myw3IEBAIHN0YXRpYyBpbnQgbm91dmVhdV9kcm1fcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYs
+CiAJYm9vbCBib290ID0gZmFsc2U7CiAJaW50IHJldDsKIAotCS8qCi0JICogYXBwbGUtZ211eCBp
+cyBuZWVkZWQgb24gZHVhbCBHUFUgTWFjQm9vayBQcm8KLQkgKiB0byBwcm9iZSB0aGUgcGFuZWwg
+aWYgd2UncmUgdGhlIGluYWN0aXZlIEdQVS4KLQkgKi8KLQlpZiAoSVNfRU5BQkxFRChDT05GSUdf
+VkdBX0FSQikgJiYgSVNfRU5BQkxFRChDT05GSUdfVkdBX1NXSVRDSEVST08pICYmCi0JICAgIGFw
+cGxlX2dtdXhfcHJlc2VudCgpICYmIHBkZXYgIT0gdmdhX2RlZmF1bHRfZGV2aWNlKCkgJiYKLQkg
+ICAgIXZnYV9zd2l0Y2hlcm9vX2hhbmRsZXJfZmxhZ3MoKSkKKwlpZiAodmdhX3N3aXRjaGVyb29f
+Y2xpZW50X3Byb2JlX2RlZmVyKHBkZXYpKQogCQlyZXR1cm4gLUVQUk9CRV9ERUZFUjsKIAogCS8q
+IHJlbW92ZSBjb25mbGljdGluZyBkcml2ZXJzICh2ZXNhZmIsIGVmaWZiIGV0YykgKi8KZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Rydi5jIGIvZHJpdmVycy9ncHUv
+ZHJtL3JhZGVvbi9yYWRlb25fZHJ2LmMKaW5kZXggYjU1YWE3NC4uYTQ1NWRjNyAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZHJ2LmMKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL3JhZGVvbi9yYWRlb25fZHJ2LmMKQEAgLTM0LDExICszNCw5IEBACiAjaW5jbHVkZSAicmFk
+ZW9uX2Rydi5oIgogCiAjaW5jbHVkZSA8ZHJtL2RybV9wY2lpZHMuaD4KLSNpbmNsdWRlIDxsaW51
+eC9hcHBsZS1nbXV4Lmg+CiAjaW5jbHVkZSA8bGludXgvY29uc29sZS5oPgogI2luY2x1ZGUgPGxp
+bnV4L21vZHVsZS5oPgogI2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4KLSNpbmNsdWRlIDxs
+aW51eC92Z2FhcmIuaD4KICNpbmNsdWRlIDxsaW51eC92Z2Ffc3dpdGNoZXJvby5oPgogI2luY2x1
+ZGUgPGRybS9kcm1fZ2VtLmg+CiAKQEAgLTM0MCwxMyArMzM4LDcgQEAgc3RhdGljIGludCByYWRl
+b25fcGNpX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LAogCWlmIChyZXQgPT0gLUVQUk9CRV9E
+RUZFUikKIAkJcmV0dXJuIHJldDsKIAotCS8qCi0JICogYXBwbGUtZ211eCBpcyBuZWVkZWQgb24g
+ZHVhbCBHUFUgTWFjQm9vayBQcm8KLQkgKiB0byBwcm9iZSB0aGUgcGFuZWwgaWYgd2UncmUgdGhl
+IGluYWN0aXZlIEdQVS4KLQkgKi8KLQlpZiAoSVNfRU5BQkxFRChDT05GSUdfVkdBX0FSQikgJiYg
+SVNfRU5BQkxFRChDT05GSUdfVkdBX1NXSVRDSEVST08pICYmCi0JICAgIGFwcGxlX2dtdXhfcHJl
+c2VudCgpICYmIHBkZXYgIT0gdmdhX2RlZmF1bHRfZGV2aWNlKCkgJiYKLQkgICAgIXZnYV9zd2l0
+Y2hlcm9vX2hhbmRsZXJfZmxhZ3MoKSkKKwlpZiAodmdhX3N3aXRjaGVyb29fY2xpZW50X3Byb2Jl
+X2RlZmVyKHBkZXYpKQogCQlyZXR1cm4gLUVQUk9CRV9ERUZFUjsKIAogCS8qIEdldCByaWQgb2Yg
+dGhpbmdzIGxpa2Ugb2ZmYiAqLwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvdmdhL3ZnYV9zd2l0
+Y2hlcm9vLmMgYi9kcml2ZXJzL2dwdS92Z2EvdmdhX3N3aXRjaGVyb28uYwppbmRleCBjYmQ3Yzk4
+Li4xMDFlMTRjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS92Z2EvdmdhX3N3aXRjaGVyb28uYwor
+KysgYi9kcml2ZXJzL2dwdS92Z2EvdmdhX3N3aXRjaGVyb28uYwpAQCAtMzAsNiArMzAsNyBAQAog
+CiAjZGVmaW5lIHByX2ZtdChmbXQpICJ2Z2Ffc3dpdGNoZXJvbzogIiBmbXQKIAorI2luY2x1ZGUg
+PGxpbnV4L2FwcGxlLWdtdXguaD4KICNpbmNsdWRlIDxsaW51eC9jb25zb2xlLmg+CiAjaW5jbHVk
+ZSA8bGludXgvZGVidWdmcy5oPgogI2luY2x1ZGUgPGxpbnV4L2ZiLmg+CkBAIC0zMDgsNyArMzA5
+LDggQEAgc3RhdGljIGludCByZWdpc3Rlcl9jbGllbnQoc3RydWN0IHBjaV9kZXYgKnBkZXYsCiAg
+KgogICogUmVnaXN0ZXIgdmdhIGNsaWVudCAoR1BVKS4gRW5hYmxlIHZnYV9zd2l0Y2hlcm9vIGlm
+IGFub3RoZXIgR1BVIGFuZCBhCiAgKiBoYW5kbGVyIGhhdmUgYWxyZWFkeSByZWdpc3RlcmVkLiBU
+aGUgcG93ZXIgc3RhdGUgb2YgdGhlIGNsaWVudCBpcyBhc3N1bWVkCi0gKiB0byBiZSBPTi4KKyAq
+IHRvIGJlIE9OLiBCZWZvcmVoYW5kLCB2Z2Ffc3dpdGNoZXJvb19jbGllbnRfcHJvYmVfZGVmZXIo
+KSBzaGFsbCBiZSBjYWxsZWQKKyAqIHRvIGVuc3VyZSB0aGF0IGFsbCBwcmVyZXF1aXNpdGVzIGFy
+ZSBtZXQuCiAgKgogICogUmV0dXJuOiAwIG9uIHN1Y2Nlc3MsIC1FTk9NRU0gb24gbWVtb3J5IGFs
+bG9jYXRpb24gZXJyb3IuCiAgKi8KQEAgLTMyOSw3ICszMzEsOCBAQCBFWFBPUlRfU1lNQk9MKHZn
+YV9zd2l0Y2hlcm9vX3JlZ2lzdGVyX2NsaWVudCk7CiAgKiBAaWQ6IGNsaWVudCBpZGVudGlmaWVy
+CiAgKgogICogUmVnaXN0ZXIgYXVkaW8gY2xpZW50IChhdWRpbyBkZXZpY2Ugb24gYSBHUFUpLiBU
+aGUgcG93ZXIgc3RhdGUgb2YgdGhlCi0gKiBjbGllbnQgaXMgYXNzdW1lZCB0byBiZSBPTi4KKyAq
+IGNsaWVudCBpcyBhc3N1bWVkIHRvIGJlIE9OLiBCZWZvcmVoYW5kLCB2Z2Ffc3dpdGNoZXJvb19j
+bGllbnRfcHJvYmVfZGVmZXIoKQorICogc2hhbGwgYmUgY2FsbGVkIHRvIGVuc3VyZSB0aGF0IGFs
+bCBwcmVyZXF1aXNpdGVzIGFyZSBtZXQuCiAgKgogICogUmV0dXJuOiAwIG9uIHN1Y2Nlc3MsIC1F
+Tk9NRU0gb24gbWVtb3J5IGFsbG9jYXRpb24gZXJyb3IuCiAgKi8KQEAgLTM3Niw2ICszNzksMzMg
+QEAgZmluZF9hY3RpdmVfY2xpZW50KHN0cnVjdCBsaXN0X2hlYWQgKmhlYWQpCiB9CiAKIC8qKgor
+ICogdmdhX3N3aXRjaGVyb29fY2xpZW50X3Byb2JlX2RlZmVyKCkgLSB3aGV0aGVyIHRvIGRlZmVy
+IHByb2JpbmcgYSBnaXZlbiBjbGllbnQKKyAqIEBwZGV2OiBjbGllbnQgcGNpIGRldmljZQorICoK
+KyAqIERldGVybWluZSB3aGV0aGVyIGFueSBwcmVyZXF1aXNpdGVzIGFyZSBub3QgZnVsZmlsbGVk
+IHRvIHByb2JlIGEgZ2l2ZW4KKyAqIGNsaWVudC4gRHJpdmVycyBzaGFsbCBpbnZva2UgdGhpcyBl
+YXJseSBvbiBpbiB0aGVpciAtPnByb2JlIGNhbGxiYWNrCisgKiBhbmQgcmV0dXJuICUtRVBST0JF
+X0RFRkVSIGlmIGl0IGV2YWx1YXRlcyB0byAldHJ1ZS4gVGhvdSBzaGFsdCBub3QKKyAqIHJlZ2lz
+dGVyIHRoZSBjbGllbnQgZXJlIHRob3UgaGFzdCBjYWxsZWQgdGhpcy4KKyAqCisgKiBSZXR1cm46
+ICV0cnVlIGlmIHByb2Jpbmcgc2hvdWxkIGJlIGRlZmVycmVkLCBvdGhlcndpc2UgJWZhbHNlLgor
+ICovCitib29sIHZnYV9zd2l0Y2hlcm9vX2NsaWVudF9wcm9iZV9kZWZlcihzdHJ1Y3QgcGNpX2Rl
+diAqcGRldikKK3sKKwlpZiAoKHBkZXYtPmNsYXNzID4+IDgpID09IFBDSV9DTEFTU19ESVNQTEFZ
+X1ZHQSkgeworCQkvKgorCQkgKiBhcHBsZS1nbXV4IGlzIG5lZWRlZCBvbiBwcmUtcmV0aW5hIE1h
+Y0Jvb2sgUHJvCisJCSAqIHRvIHByb2JlIHRoZSBwYW5lbCBpZiBwZGV2IGlzIHRoZSBpbmFjdGl2
+ZSBHUFUuCisJCSAqLworCQlpZiAoYXBwbGVfZ211eF9wcmVzZW50KCkgJiYgcGRldiAhPSB2Z2Ff
+ZGVmYXVsdF9kZXZpY2UoKSAmJgorCQkgICAgIXZnYXNyX3ByaXYuaGFuZGxlcl9mbGFncykKKwkJ
+CXJldHVybiB0cnVlOworCX0KKworCXJldHVybiBmYWxzZTsKK30KK0VYUE9SVF9TWU1CT0wodmdh
+X3N3aXRjaGVyb29fY2xpZW50X3Byb2JlX2RlZmVyKTsKKworLyoqCiAgKiB2Z2Ffc3dpdGNoZXJv
+b19nZXRfY2xpZW50X3N0YXRlKCkgLSBvYnRhaW4gcG93ZXIgc3RhdGUgb2YgYSBnaXZlbiBjbGll
+bnQKICAqIEBwZGV2OiBjbGllbnQgcGNpIGRldmljZQogICoKZGlmZiAtLWdpdCBhL2luY2x1ZGUv
+bGludXgvdmdhX3N3aXRjaGVyb28uaCBiL2luY2x1ZGUvbGludXgvdmdhX3N3aXRjaGVyb28uaApp
+bmRleCBiMzlhNWYzLi45NjBiZWRiIDEwMDY0NAotLS0gYS9pbmNsdWRlL2xpbnV4L3ZnYV9zd2l0
+Y2hlcm9vLmgKKysrIGIvaW5jbHVkZS9saW51eC92Z2Ffc3dpdGNoZXJvby5oCkBAIC0xNjUsNiAr
+MTY1LDcgQEAgaW50IHZnYV9zd2l0Y2hlcm9vX3VubG9ja19kZGMoc3RydWN0IHBjaV9kZXYgKnBk
+ZXYpOwogCiBpbnQgdmdhX3N3aXRjaGVyb29fcHJvY2Vzc19kZWxheWVkX3N3aXRjaCh2b2lkKTsK
+IAorYm9vbCB2Z2Ffc3dpdGNoZXJvb19jbGllbnRfcHJvYmVfZGVmZXIoc3RydWN0IHBjaV9kZXYg
+KnBkZXYpOwogZW51bSB2Z2Ffc3dpdGNoZXJvb19zdGF0ZSB2Z2Ffc3dpdGNoZXJvb19nZXRfY2xp
+ZW50X3N0YXRlKHN0cnVjdCBwY2lfZGV2ICpkZXYpOwogCiB2b2lkIHZnYV9zd2l0Y2hlcm9vX3Nl
+dF9keW5hbWljX3N3aXRjaChzdHJ1Y3QgcGNpX2RldiAqcGRldiwgZW51bSB2Z2Ffc3dpdGNoZXJv
+b19zdGF0ZSBkeW5hbWljKTsKQEAgLTE4OCw2ICsxODksNyBAQCBzdGF0aWMgaW5saW5lIGVudW0g
+dmdhX3N3aXRjaGVyb29faGFuZGxlcl9mbGFnc190IHZnYV9zd2l0Y2hlcm9vX2hhbmRsZXJfZmxh
+Z3Modgogc3RhdGljIGlubGluZSBpbnQgdmdhX3N3aXRjaGVyb29fbG9ja19kZGMoc3RydWN0IHBj
+aV9kZXYgKnBkZXYpIHsgcmV0dXJuIC1FTk9ERVY7IH0KIHN0YXRpYyBpbmxpbmUgaW50IHZnYV9z
+d2l0Y2hlcm9vX3VubG9ja19kZGMoc3RydWN0IHBjaV9kZXYgKnBkZXYpIHsgcmV0dXJuIC1FTk9E
+RVY7IH0KIHN0YXRpYyBpbmxpbmUgaW50IHZnYV9zd2l0Y2hlcm9vX3Byb2Nlc3NfZGVsYXllZF9z
+d2l0Y2godm9pZCkgeyByZXR1cm4gMDsgfQorc3RhdGljIGlubGluZSBib29sIHZnYV9zd2l0Y2hl
+cm9vX2NsaWVudF9wcm9iZV9kZWZlcihzdHJ1Y3QgcGNpX2RldiAqcGRldikgeyByZXR1cm4gZmFs
+c2U7IH0KIHN0YXRpYyBpbmxpbmUgZW51bSB2Z2Ffc3dpdGNoZXJvb19zdGF0ZSB2Z2Ffc3dpdGNo
+ZXJvb19nZXRfY2xpZW50X3N0YXRlKHN0cnVjdCBwY2lfZGV2ICpkZXYpIHsgcmV0dXJuIFZHQV9T
+V0lUQ0hFUk9PX09OOyB9CiAKIHN0YXRpYyBpbmxpbmUgdm9pZCB2Z2Ffc3dpdGNoZXJvb19zZXRf
+ZHluYW1pY19zd2l0Y2goc3RydWN0IHBjaV9kZXYgKnBkZXYsIGVudW0gdmdhX3N3aXRjaGVyb29f
+c3RhdGUgZHluYW1pYykge30KLS0gCjIuOC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
