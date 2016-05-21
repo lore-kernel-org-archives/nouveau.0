@@ -1,50 +1,36 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: Re: [Nouveau] [PATCH v4] vga_switcheroo: Add helper for
- deferred probing
-Date: Sat, 21 May 2016 16:08:47 +0200
-Message-ID: <20160521140847.GA4523@wunner.de>
-References: <35e4cc1e5c711fa30c3081dc628ce672a0fea276.1463642956.git.lukas@wunner.de>
- <CACvgo505G8+Gq_o0FszYi74kJFqFV-=1Y2-Ed9PDRRDX1kaSXw@mail.gmail.com>
+From: Faris Alsalama <farisbenbrahem-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: add Maxwell to backlight
+	initialization
+Date: Sat, 21 May 2016 14:41:43 -0400
+Message-ID: <1463856103-4002-1-git-send-email-farisbenbrahem@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <CACvgo505G8+Gq_o0FszYi74kJFqFV-=1Y2-Ed9PDRRDX1kaSXw@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Emil Velikov <emil.l.velikov@gmail.com>
-Cc: ML nouveau <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, ML dri-devel <dri-devel@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgRW1pbCwKCk9uIEZyaSwgTWF5IDIwLCAyMDE2IGF0IDEyOjQxOjA0QU0gKzAxMDAsIEVtaWwg
-VmVsaWtvdiB3cm90ZToKPiBPbiAxOSBNYXkgMjAxNiBhdCAxNTozOSwgTHVrYXMgV3VubmVyIDxs
-dWthc0B3dW5uZXIuZGU+IHdyb3RlOgo+ID4gK2Jvb2wgdmdhX3N3aXRjaGVyb29fY2xpZW50X3By
-b2JlX2RlZmVyKHN0cnVjdCBwY2lfZGV2ICpwZGV2KQo+ID4gK3sKPiA+ICsgICAgICAgaWYgKChw
-ZGV2LT5jbGFzcyA+PiA4KSA9PSBQQ0lfQ0xBU1NfRElTUExBWV9WR0EpIHsKPiBOb3Qgc3VyZSBp
-ZiB3ZSB3YW50L25lZWQgdGhpcywgeWV0IGF0IGxlYXN0LiBUaGlzIGNoYW5nZXMgYmVoYXZpb3Vy
-Cj4gd2hpY2ggaXMgbm90IHdoYXQgcmVmYWN0b3JpbmcgcGF0Y2hlcyBzaG91bGQgYmUgZG9pbmcs
-IHJpZ2h0ID8gaWYKPiBuZWVkZWQgaXQgb3VnaHQgdG8gYmUgYSBzZXBhcmF0ZSBwYXRjaCwgaW1o
-by4KCldlbGwsIHRoZSBjb21taXQgbWVzc2FnZSBkb2Vzbid0IGNsYWltICJubyBmdW5jdGlvbmFs
-IGNoYW5nZSIsIGRvZXMgaXQ/CgpEYW5pZWwgVmV0dGVyIGV4cGxpY2l0bHkgd2FudGVkIHRoZSBh
-YmlsaXR5IHRvIHVzZSB0aGUgaGVscGVyIGluCnZnYV9zd2l0Y2hlcm9vIGF1ZGlvIGNsaWVudHMs
-IGFuZCB0aG9zZSBzaG91bGRuJ3QgcnVuIHRoZSBhcHBsZS1nbXV4CnRlc3QuIEkgdGhpbmsgaXQg
-bWFrZXMgc2Vuc2UgdG8gZW5jbG9zZSBpdCBpbiB0aGUgYWJvdmUtcXVvdGVkIGlmLWJsb2NrCipu
-b3cqIGV2ZW4gdGhvdWdoIGl0J3Mgbm90IG5lZWRlZC4gT25jZSBzb21lb25lIGFkZHMgYSBjaGVj
-ayBmb3IgYW4KYXVkaW8gY2xpZW50LCBjaGFuY2VzIGFyZSB0aGV5J2xsIGZvcmdldCB0byBhZGQg
-dGhpcyBpZi1ibG9jay4KCj4gRnVydGhlcm1vcmUgb24gbm91dmVhdSBhbmQgQU1EIChpaXJjKSBm
-cm9udCwgc29tZSBkdWFsLWdwdS9vcHRpbXVzCj4gc3lzdGVtcyB1c2UgUENJX0NMQVNTX0RJU1BM
-QVlfM0QuIFNvIGlmIHdlIGFkZCBESVNQTEFZX1ZHQSBwZXJoYXBzIHdlCj4gc2hvdWxkIGFsc28g
-Y2hlY2sgZm9yIERJU1BMQVlfM0QgPwoKRmFpciBlbm91Z2gsIEkndmUgY2hhbmdlZCBpdCB0byBt
-YXRjaCBQQ0lfQkFTRV9DTEFTU19ESVNQTEFZCmFuZCBzZW50IGl0IG91dCBhcyB2NSBhIGZldyBt
-aW51dGVzIGFnby4KClRoYW5rcywKCkx1a2FzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeAo=
+U2lnbmVkLW9mZi1ieTogRmFyaXMgQWxzYWxhbWEgPGZhcmlzYmVuYnJhaGVtQGdtYWlsLmNvbT4K
+LS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jIHwgMSArCiAx
+IGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9iYWNrbGlnaHQuYwppbmRleCA4OWViNDYwLi5kZDFjYzliIDEwMDY0NAotLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jCisrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMKQEAgLTIzMiw2ICsyMzIsNyBAQCBu
+b3V2ZWF1X2JhY2tsaWdodF9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJCWNhc2UgTlZf
+REVWSUNFX0lORk9fVjBfVEVTTEE6CiAJCWNhc2UgTlZfREVWSUNFX0lORk9fVjBfRkVSTUk6CiAJ
+CWNhc2UgTlZfREVWSUNFX0lORk9fVjBfS0VQTEVSOgorCQljYXNlIE5WX0RFVklDRV9JTkZPX1Yw
+X01BWFdFTEw6CiAJCQlyZXR1cm4gbnY1MF9iYWNrbGlnaHRfaW5pdChjb25uZWN0b3IpOwogCQlk
+ZWZhdWx0OgogCQkJYnJlYWs7Ci0tIAoyLjEuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
