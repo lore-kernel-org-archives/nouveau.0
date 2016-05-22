@@ -1,17 +1,13 @@
-From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Subject: Re: [PATCH] gpu/nouveau/nouveau_acpi.c: Fix Type Mismatch
- ACPI warning
-Date: Sun, 22 May 2016 12:25:45 +0200
-Message-ID: <20160522102545.GA1970@al>
-References: <1463618578-5662-1-git-send-email-marcos.souza.org@gmail.com>
- <20160519094915.GA1759@Sovereign.localdomain>
- <CAH0vN5+s8CGjTwW_W7Z-AC9ZMsq7GqygYtCbEkL2+9y3DhJWAw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 77106] Blank screen and errors on Thinkpad T440p
+ GeForce 730M/Intel optimus setup
+Date: Sun, 22 May 2016 13:43:06 +0000
+Message-ID: <bug-77106-8800-cyscKl3LbG@http.bugs.freedesktop.org/>
+References: <bug-77106-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0382804425=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAH0vN5+s8CGjTwW_W7Z-AC9ZMsq7GqygYtCbEkL2+9y3DhJWAw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-77106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,81 +17,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Marcos Souza <marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: airlied-cv59FeDIM0c@public.gmane.org, dvhart-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, christian.koenig-5C7GfCeVMHo@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBNYXkgMjAsIDIwMTYgYXQgMDI6MjI6NTdBTSArMDAwMCwgTWFyY29zIFNvdXphIHdy
-b3RlOgpbLi5dCj4gPiA+IEkgZG9uJ3Qga25vdyBpZiB0aGlzIGlzIHRoZSByaWdodCB0aGluZyB0
-byBkbywgSSBqdXN0IGxvb2tlZCBhdAo+ID4gaW50ZWxfYWNwaS5jIHRvIGNoZWNrIGhvdyB0byB1
-c2UvY2hlY2sgZm9yIEFDUEkgUGFja2FnZS4KPiA+ID4gVGhlIHBhdGNoIGJlbG93IHNpbGVuY2Vk
-IHRoZSAidHlwZSBtaXNtYXRjaCIgd2FybmluZ3MsIGFuZCBzb21lIG9mIHRoZQo+ID4gImV2YWx1
-YXRlZCBfRFNNIiBvbmVzLgo+ID4gPgo+ID4gPiBJZiB0aGlzIGlzIG5vdCB0aGUgcmlnaHQgYXBw
-cm9hY2gsIHBsZWFzZSBsZXQgbWUga25vdyBob3cgdG8gZml4IGl0LCBJCj4gPiBkb24ndCBoYXZl
-IGtub3dsZWRnZSBpbiBBQ1BJLCBidXQgSSByZWFsbHkgd2FudCB0byBoZWxwLgo+ID4gPgo+ID4g
-PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMgfCAxNCArLS0tLS0tLS0t
-LS0tLQo+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxMyBkZWxldGlvbnMo
-LSkKPiA+ID4KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfYWNwaS5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4g
-PiA+IGluZGV4IGNkZjUyMjcuLmYwNGFlZjMgMTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4gPiA+IEBAIC03MywyMiArNzMsMTAgQEAgc3RhdGljIGNv
-bnN0IGNoYXIgbm91dmVhdV9vcF9kc21fbXVpZFtdID0gewo+ID4gPgo+ID4gPiAgc3RhdGljIGlu
-dCBub3V2ZWF1X29wdGltdXNfZHNtKGFjcGlfaGFuZGxlIGhhbmRsZSwgaW50IGZ1bmMsIGludCBh
-cmcsCj4gPiB1aW50MzJfdCAqcmVzdWx0KQo+ID4gPiAgewo+ID4gPiAtICAgICBpbnQgaTsKPiA+
-ID4gICAgICAgdW5pb24gYWNwaV9vYmplY3QgKm9iajsKPiA+ID4gLSAgICAgY2hhciBhcmdzX2J1
-ZmZbNF07Cj4gPiA+IC0gICAgIHVuaW9uIGFjcGlfb2JqZWN0IGFyZ3Y0ID0gewo+ID4gPiAtICAg
-ICAgICAgICAgIC5idWZmZXIudHlwZSA9IEFDUElfVFlQRV9CVUZGRVIsCj4gPiA+IC0gICAgICAg
-ICAgICAgLmJ1ZmZlci5sZW5ndGggPSA0LAo+ID4gPiAtICAgICAgICAgICAgIC5idWZmZXIucG9p
-bnRlciA9IGFyZ3NfYnVmZgo+ID4gPiAtICAgICB9Owo+ID4gPiAtCj4gPiA+IC0gICAgIC8qIEFD
-UEkgaXMgbGl0dGxlIGVuZGlhbiwgQUFCQkNDREQgYmVjb21lcyB7REQsQ0MsQkIsQUF9ICovCj4g
-PiA+IC0gICAgIGZvciAoaSA9IDA7IGkgPCA0OyBpKyspCj4gPiA+IC0gICAgICAgICAgICAgYXJn
-c19idWZmW2ldID0gKGFyZyA+PiBpICogOCkgJiAweEZGOwo+ID4gPiAtCj4gPiA+ICAgICAgICpy
-ZXN1bHQgPSAwOwo+ID4gPiAgICAgICBvYmogPSBhY3BpX2V2YWx1YXRlX2RzbV90eXBlZChoYW5k
-bGUsIG5vdXZlYXVfb3BfZHNtX211aWQsCj4gPiAweDAwMDAwMTAwLAo+ID4gPiAtICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICBmdW5jLCAmYXJndjQsIEFDUElfVFlQRV9CVUZGRVIp
-Owo+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmdW5jLCBOVUxMLCBB
-Q1BJX1RZUEVfUEFDS0FHRSk7CgpUaGlzIGVmZmVjdGl2ZWx5IHJlbW92ZXMgdGhlIGZvdXJ0aCBw
-YXJhbWV0ZXIgKGFjdHVhbGx5LCB1c2luZyBhIHplcm8KYXMgZm91cnRoIGFyZ3VtZW50KSwgbWFr
-aW5nIHRoZSBmdW5jdGlvbiB1c2VsZXNzLgoKPiA+IFRoZSBsYXN0IHBhcmFtZXRlciB5b3UgZ2l2
-ZSB0byBgYWNwaV9ldmFsdWF0ZV9kc21fdHlwZWQoKWAgaXMgdGhlIHJldHVybgo+ID4gdHlwZQo+
-ID4geW91IGV4cGVjdCAoc2VlIFszXSksIHdoaWNoIHdpbGwgYmUgYSBidWZmZXIgaWYgZnVuYyBp
-cyAwLCBhbmQgaXMKPiA+IGltcGxlbWVudGF0aW9uIGRlcGVuZGVudCBvdGhlcndpc2UgKHNlZSBz
-ZWN0aW9uIDkuMTQuMSBfRFNNIG9mIFs0XSkuIFNvIHlvdQo+ID4gZG9u4oCZdCB3YW50IHRvIGNo
-YW5nZSBpdCB0byBBQ1BJX1RZUEVfUEFDS0FHRS4gSWYgeW91IGxvb2sgYXQgdGhlCj4gPiBpbXBs
-ZW1lbnRhdGlvbgo+ID4gb2YgYGFjcGlfZXZhbHVhdGVfZHNtKClgICh3aGljaCBpcyBjYWxsZWQg
-YnkgYGFjcGlfZXZhbHVhdGVfZHNtX3R5cGVkKClgKSwKPiA+IGl0Cj4gPiB3aWxsIGF1dG9tYXRp
-Y2FsbHkgY3JlYXRlIGEgcGFja2FnZSBmb3IgdGhlIDR0aCBhcmd1bWVudCwgaWYgeW91IHBhc3Mg
-aXQgYQo+ID4gTlVMTAo+ID4gcG9pbnRlciAoc2VlIFs1XSkuCj4gPgo+ID4gWzNdOgo+ID4gaHR0
-cHM6Ly9naXRodWIuY29tL3RvcnZhbGRzL2xpbnV4L2Jsb2IvNDZjMTM0NTA2MjRlMzYzMDI1NDdh
-MmFjMzY5NWYyMzUwZmU3ZmZjMy9pbmNsdWRlL2FjcGkvYWNwaV9idXMuaCNMNjkKPiA+IFs0XTog
-aHR0cDovL3d3dy5hY3BpLmluZm8vRE9XTkxPQURTL0FDUElfNV9FcnJhdGElMjBBLnBkZgo+ID4g
-WzVdOgo+ID4gaHR0cHM6Ly9naXRodWIuY29tL3RvcnZhbGRzL2xpbnV4L2Jsb2IvNDZjMTM0NTA2
-MjRlMzYzMDI1NDdhMmFjMzY5NWYyMzUwZmU3ZmZjMy9kcml2ZXJzL2FjcGkvdXRpbHMuYyNMNjI4
-Cj4gCj4gCj4gVGhhbmtzIGZvciBhbGwgdGhlIGxpbmtzLiBJJ2xsIHJlYWQgdGhlIGRvY3MgYW5k
-IHNlbmQgYSBuZXcgdmVyc2lvbiBvZiB0aGUKPiBwYXRjaCB3aGVuIGl0IG1ha2VzIG1vcmUgc2Vu
-c2UgaW5zdGVhZCBvZiBqdXN0IHJlcGxhY2luZyByYW5kb20gdGhpbmdzLgoKVGhlIHdhcm5pbmcg
-aXMgdW5hdm9pZGFibGUsIG1vc3QgZmlybXdhcmUgZXhwZWN0IGEgQnVmZmVyIGZvciB0aGUgZm91
-cnRoCmFyZ3VtZW50IChjb3VudGluZyBmcm9tIDAsIHRoaXMgaXMgQXJnMykuIEV4Y2VycHQgZnJv
-bSB0aGUgRFNNIG1ldGhvZCBvbgphIHJlY2VudCBTa3lsYWtlIGxhcHRvcCAoQ2xldm8gUDY1MSwg
-YnV0IHRoaXMgZm9ybWF0IGlzIGZvdW5kIG9uIG1hbnkKb3RoZXIgbW9kZWxzIGZyb20gdmFyaW91
-cyBtYW51ZmFjdHVyZXJzIHRvbyk6CgogICAgSWYgKChBcmcyID09IDB4MUEpKQogICAgewogICAg
-ICAgIENyZWF0ZUZpZWxkIChBcmczLCAweDE4LCAweDAyLCBPTVBSKQogICAgICAgIENyZWF0ZUZp
-ZWxkIChBcmczLCBaZXJvLCBPbmUsIEZMQ0gpCiAgICAgICAgQ3JlYXRlRmllbGQgKEFyZzMsIE9u
-ZSwgT25lLCBEVlNSKQogICAgICAgIENyZWF0ZUZpZWxkIChBcmczLCAweDAyLCBPbmUsIERWU0Mp
-CgooVGhlIHNlY3Rpb25zIGJlbG93IHJlZmVyIHRvIHRoZSBvbmUgaW4gdGhlIEFDUEkgNi4xIGRv
-Y3VtZW50IHRoYXQgY2FuCmJlIGZvdW5kIGF0IGh0dHA6Ly91ZWZpLm9yZy9zcGVjaWZpY2F0aW9u
-cy4pCgpUaGUgZmlyc3QgcGFyYW1ldGVyIGZvciBDcmVhdGVGaWVsZCBpcyBldmFsdWF0ZWQgYXMg
-YnVmZmVyIChzZWMgMTkuNi4yMSkuCkFjY29yZGluZyB0byAxOS4zLjUuNiAoRGF0YSBUeXBlcyBh
-bmQgVHlwZSBDb252ZXJzaW9ucykgYW4gaW1wbGljaXQKY29udmVyc2lvbiB0byBhIEJ1ZmZlciBp
-cyBvbmx5IHBvc3NpYmxlIGZyb20gYW4gSW50ZWdlciBhbmQgU3RyaW5nLCBhClBhY2thZ2UgZG9l
-cyBub3QgYmVsb25nIHRvIHRoZSBwb3NzaWJpbGl0aWVzLgoKTm90ZSB0aGF0IHRoZSByZXR1cm4g
-dmFsdWUgbWF5IGJlIGFuIGludGVnZXIgZm9yIHVuc3VwcG9ydGVkIHJldmlzaW9uCklEcyBvciBV
-VUlEcyAobGlrZSAweDgwMDAwMDAyKS4gVGhlc2Ugc2hvdWxkIGJlIGNvbXBhdGlibGUgd2l0aCBC
-dWZmZXJzCnRob3VnaCBhcyBzdGF0ZWQgYWJvdmUgYW5kIGFjcGlfY2hlY2tfZHNtKCkgY2FuIGhh
-bmRsZSB0aGF0IGNhc2UsIGJ1dAp1bmZvcnR1bmF0ZWx5IHNldHMgYSBQYWNrYWdlIGFzIGZvdXJ0
-aCBhcmd1bWVudCBhbmQgY2FuIHRoZXJlZm9yZSBub3QgYmUKdXNlZCBpbiBub3V2ZWF1LgotLSAK
-S2luZCByZWdhcmRzLApQZXRlciBXdQpodHRwczovL2xla2Vuc3RleW4ubmwKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0382804425==
+Content-Type: multipart/alternative; boundary="14639245860.5Ecb2.22678";
+ charset="UTF-8"
+
+
+--14639245860.5Ecb2.22678
+Date: Sun, 22 May 2016 13:43:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D77106
+
+Martin J=C3=B8rgensen <mkj-1kv+JzgSdXk@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #4 from Martin J=C3=B8rgensen <mkj-1kv+JzgSdXk@public.gmane.org> ---
+the laptop is not in my possession anymore, so i'm closing the bug.
+also, reading up on the subject it seems that some t440p laptops has issues
+after a bios upgrade.
+https://github.com/Bumblebee-Project/bbswitch/issues/78
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14639245860.5Ecb2.22678
+Date: Sun, 22 May 2016 13:43:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:mkj&#64;g=
+otu.dk" title=3D"Martin J=C3=B8rgensen &lt;mkj&#64;gotu.dk&gt;"> <span clas=
+s=3D"fn">Martin J=C3=B8rgensen</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - Blank screen and errors on Thinkpad T440p Ge=
+Force 730M/Intel optimus setup"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77106">bug 77106<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - Blank screen and errors on Thinkpad T440p Ge=
+Force 730M/Intel optimus setup"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77106#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - Blank screen and errors on Thinkpad T440p Ge=
+Force 730M/Intel optimus setup"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77106">bug 77106<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mkj&#64;gotu.dk" title=3D"Martin J=C3=B8rgensen &lt;mkj&#64;gotu.dk&gt;"> <=
+span class=3D"fn">Martin J=C3=B8rgensen</span></a>
+</span></b>
+        <pre>the laptop is not in my possession anymore, so i'm closing the=
+ bug.
+also, reading up on the subject it seems that some t440p laptops has issues
+after a bios upgrade.
+<a href=3D"https://github.com/Bumblebee-Project/bbswitch/issues/78">https:/=
+/github.com/Bumblebee-Project/bbswitch/issues/78</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14639245860.5Ecb2.22678--
+
+--===============0382804425==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0382804425==--
