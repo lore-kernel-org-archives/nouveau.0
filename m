@@ -1,11 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95520] New: Error when recovering from suspend mode:
- fifo: ce0 engine fault on channel 0
-Date: Sun, 22 May 2016 09:59:24 +0000
-Message-ID: <bug-95520-8800@http.bugs.freedesktop.org/>
+From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Subject: Re: [PATCH] gpu/nouveau/nouveau_acpi.c: Fix Type Mismatch
+ ACPI warning
+Date: Sun, 22 May 2016 12:25:45 +0200
+Message-ID: <20160522102545.GA1970@al>
+References: <1463618578-5662-1-git-send-email-marcos.souza.org@gmail.com>
+ <20160519094915.GA1759@Sovereign.localdomain>
+ <CAH0vN5+s8CGjTwW_W7Z-AC9ZMsq7GqygYtCbEkL2+9y3DhJWAw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1471398900=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CAH0vN5+s8CGjTwW_W7Z-AC9ZMsq7GqygYtCbEkL2+9y3DhJWAw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,211 +21,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcos Souza <marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: airlied-cv59FeDIM0c@public.gmane.org, dvhart-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, christian.koenig-5C7GfCeVMHo@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1471398900==
-Content-Type: multipart/alternative; boundary="14639111641.5a308f7D.23393";
- charset="UTF-8"
-
-
---14639111641.5a308f7D.23393
-Date: Sun, 22 May 2016 09:59:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95520
-
-            Bug ID: 95520
-           Summary: Error when recovering from suspend mode: fifo: ce0
-                    engine fault on channel 0
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: bghome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 123963
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D123963&action=3Dedit
-Kernel log
-
-Environment:
- - Linux kernel 4.5.4
- - Desktop environment: Gnome 3.20.2
- - Xorg 1.18.3
- - Graphics card: NVIDIA Corporation GK107GLM [Quadro K1000M] (rev a1)
-
-Nouveau makes Xorg unresponsive after resuming from suspend to RAM. Restart=
-ing
-Xorg did not help, but a reboot.
-
-Error messages look like:
-nouveau 0000:01:00.0: fifo: read fault at 0000dc8000 engine 15 [CE0] client=
- 01
-[CE0] reason 02 [PTE] on channel 0 [007fd56000 DRM]
-nouveau 0000:01:00.0: fifo: ce0 engine fault on channel 0, recovering...
-
-It must be a regression, because the issue did not happen with the same
-hardware on kernel 4.4.x.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14639111641.5a308f7D.23393
-Date: Sun, 22 May 2016 09:59:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Error when recovering from suspend mode: fifo: ce0 engine=
- fault on channel 0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95520">95520</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Error when recovering from suspend mode: fifo: ce0 engine fau=
-lt on channel 0
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>bghome&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D123963=
-" name=3D"attach_123963" title=3D"Kernel log">attachment 123963</a> <a href=
-=3D"attachment.cgi?id=3D123963&amp;action=3Dedit" title=3D"Kernel log">[det=
-ails]</a></span>
-Kernel log
-
-Environment:
- - Linux kernel 4.5.4
- - Desktop environment: Gnome 3.20.2
- - Xorg 1.18.3
- - Graphics card: NVIDIA Corporation GK107GLM [Quadro K1000M] (rev a1)
-
-Nouveau makes Xorg unresponsive after resuming from suspend to RAM. Restart=
-ing
-Xorg did not help, but a reboot.
-
-Error messages look like:
-nouveau 0000:01:00.0: fifo: read fault at 0000dc8000 engine 15 [CE0] client=
- 01
-[CE0] reason 02 [PTE] on channel 0 [007fd56000 DRM]
-nouveau 0000:01:00.0: fifo: ce0 engine fault on channel 0, recovering...
-
-It must be a regression, because the issue did not happen with the same
-hardware on kernel 4.4.x.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14639111641.5a308f7D.23393--
-
---===============1471398900==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1471398900==--
+T24gRnJpLCBNYXkgMjAsIDIwMTYgYXQgMDI6MjI6NTdBTSArMDAwMCwgTWFyY29zIFNvdXphIHdy
+b3RlOgpbLi5dCj4gPiA+IEkgZG9uJ3Qga25vdyBpZiB0aGlzIGlzIHRoZSByaWdodCB0aGluZyB0
+byBkbywgSSBqdXN0IGxvb2tlZCBhdAo+ID4gaW50ZWxfYWNwaS5jIHRvIGNoZWNrIGhvdyB0byB1
+c2UvY2hlY2sgZm9yIEFDUEkgUGFja2FnZS4KPiA+ID4gVGhlIHBhdGNoIGJlbG93IHNpbGVuY2Vk
+IHRoZSAidHlwZSBtaXNtYXRjaCIgd2FybmluZ3MsIGFuZCBzb21lIG9mIHRoZQo+ID4gImV2YWx1
+YXRlZCBfRFNNIiBvbmVzLgo+ID4gPgo+ID4gPiBJZiB0aGlzIGlzIG5vdCB0aGUgcmlnaHQgYXBw
+cm9hY2gsIHBsZWFzZSBsZXQgbWUga25vdyBob3cgdG8gZml4IGl0LCBJCj4gPiBkb24ndCBoYXZl
+IGtub3dsZWRnZSBpbiBBQ1BJLCBidXQgSSByZWFsbHkgd2FudCB0byBoZWxwLgo+ID4gPgo+ID4g
+PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMgfCAxNCArLS0tLS0tLS0t
+LS0tLQo+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxMyBkZWxldGlvbnMo
+LSkKPiA+ID4KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfYWNwaS5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4g
+PiA+IGluZGV4IGNkZjUyMjcuLmYwNGFlZjMgMTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4gPiA+IEBAIC03MywyMiArNzMsMTAgQEAgc3RhdGljIGNv
+bnN0IGNoYXIgbm91dmVhdV9vcF9kc21fbXVpZFtdID0gewo+ID4gPgo+ID4gPiAgc3RhdGljIGlu
+dCBub3V2ZWF1X29wdGltdXNfZHNtKGFjcGlfaGFuZGxlIGhhbmRsZSwgaW50IGZ1bmMsIGludCBh
+cmcsCj4gPiB1aW50MzJfdCAqcmVzdWx0KQo+ID4gPiAgewo+ID4gPiAtICAgICBpbnQgaTsKPiA+
+ID4gICAgICAgdW5pb24gYWNwaV9vYmplY3QgKm9iajsKPiA+ID4gLSAgICAgY2hhciBhcmdzX2J1
+ZmZbNF07Cj4gPiA+IC0gICAgIHVuaW9uIGFjcGlfb2JqZWN0IGFyZ3Y0ID0gewo+ID4gPiAtICAg
+ICAgICAgICAgIC5idWZmZXIudHlwZSA9IEFDUElfVFlQRV9CVUZGRVIsCj4gPiA+IC0gICAgICAg
+ICAgICAgLmJ1ZmZlci5sZW5ndGggPSA0LAo+ID4gPiAtICAgICAgICAgICAgIC5idWZmZXIucG9p
+bnRlciA9IGFyZ3NfYnVmZgo+ID4gPiAtICAgICB9Owo+ID4gPiAtCj4gPiA+IC0gICAgIC8qIEFD
+UEkgaXMgbGl0dGxlIGVuZGlhbiwgQUFCQkNDREQgYmVjb21lcyB7REQsQ0MsQkIsQUF9ICovCj4g
+PiA+IC0gICAgIGZvciAoaSA9IDA7IGkgPCA0OyBpKyspCj4gPiA+IC0gICAgICAgICAgICAgYXJn
+c19idWZmW2ldID0gKGFyZyA+PiBpICogOCkgJiAweEZGOwo+ID4gPiAtCj4gPiA+ICAgICAgICpy
+ZXN1bHQgPSAwOwo+ID4gPiAgICAgICBvYmogPSBhY3BpX2V2YWx1YXRlX2RzbV90eXBlZChoYW5k
+bGUsIG5vdXZlYXVfb3BfZHNtX211aWQsCj4gPiAweDAwMDAwMTAwLAo+ID4gPiAtICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBmdW5jLCAmYXJndjQsIEFDUElfVFlQRV9CVUZGRVIp
+Owo+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmdW5jLCBOVUxMLCBB
+Q1BJX1RZUEVfUEFDS0FHRSk7CgpUaGlzIGVmZmVjdGl2ZWx5IHJlbW92ZXMgdGhlIGZvdXJ0aCBw
+YXJhbWV0ZXIgKGFjdHVhbGx5LCB1c2luZyBhIHplcm8KYXMgZm91cnRoIGFyZ3VtZW50KSwgbWFr
+aW5nIHRoZSBmdW5jdGlvbiB1c2VsZXNzLgoKPiA+IFRoZSBsYXN0IHBhcmFtZXRlciB5b3UgZ2l2
+ZSB0byBgYWNwaV9ldmFsdWF0ZV9kc21fdHlwZWQoKWAgaXMgdGhlIHJldHVybgo+ID4gdHlwZQo+
+ID4geW91IGV4cGVjdCAoc2VlIFszXSksIHdoaWNoIHdpbGwgYmUgYSBidWZmZXIgaWYgZnVuYyBp
+cyAwLCBhbmQgaXMKPiA+IGltcGxlbWVudGF0aW9uIGRlcGVuZGVudCBvdGhlcndpc2UgKHNlZSBz
+ZWN0aW9uIDkuMTQuMSBfRFNNIG9mIFs0XSkuIFNvIHlvdQo+ID4gZG9u4oCZdCB3YW50IHRvIGNo
+YW5nZSBpdCB0byBBQ1BJX1RZUEVfUEFDS0FHRS4gSWYgeW91IGxvb2sgYXQgdGhlCj4gPiBpbXBs
+ZW1lbnRhdGlvbgo+ID4gb2YgYGFjcGlfZXZhbHVhdGVfZHNtKClgICh3aGljaCBpcyBjYWxsZWQg
+YnkgYGFjcGlfZXZhbHVhdGVfZHNtX3R5cGVkKClgKSwKPiA+IGl0Cj4gPiB3aWxsIGF1dG9tYXRp
+Y2FsbHkgY3JlYXRlIGEgcGFja2FnZSBmb3IgdGhlIDR0aCBhcmd1bWVudCwgaWYgeW91IHBhc3Mg
+aXQgYQo+ID4gTlVMTAo+ID4gcG9pbnRlciAoc2VlIFs1XSkuCj4gPgo+ID4gWzNdOgo+ID4gaHR0
+cHM6Ly9naXRodWIuY29tL3RvcnZhbGRzL2xpbnV4L2Jsb2IvNDZjMTM0NTA2MjRlMzYzMDI1NDdh
+MmFjMzY5NWYyMzUwZmU3ZmZjMy9pbmNsdWRlL2FjcGkvYWNwaV9idXMuaCNMNjkKPiA+IFs0XTog
+aHR0cDovL3d3dy5hY3BpLmluZm8vRE9XTkxPQURTL0FDUElfNV9FcnJhdGElMjBBLnBkZgo+ID4g
+WzVdOgo+ID4gaHR0cHM6Ly9naXRodWIuY29tL3RvcnZhbGRzL2xpbnV4L2Jsb2IvNDZjMTM0NTA2
+MjRlMzYzMDI1NDdhMmFjMzY5NWYyMzUwZmU3ZmZjMy9kcml2ZXJzL2FjcGkvdXRpbHMuYyNMNjI4
+Cj4gCj4gCj4gVGhhbmtzIGZvciBhbGwgdGhlIGxpbmtzLiBJJ2xsIHJlYWQgdGhlIGRvY3MgYW5k
+IHNlbmQgYSBuZXcgdmVyc2lvbiBvZiB0aGUKPiBwYXRjaCB3aGVuIGl0IG1ha2VzIG1vcmUgc2Vu
+c2UgaW5zdGVhZCBvZiBqdXN0IHJlcGxhY2luZyByYW5kb20gdGhpbmdzLgoKVGhlIHdhcm5pbmcg
+aXMgdW5hdm9pZGFibGUsIG1vc3QgZmlybXdhcmUgZXhwZWN0IGEgQnVmZmVyIGZvciB0aGUgZm91
+cnRoCmFyZ3VtZW50IChjb3VudGluZyBmcm9tIDAsIHRoaXMgaXMgQXJnMykuIEV4Y2VycHQgZnJv
+bSB0aGUgRFNNIG1ldGhvZCBvbgphIHJlY2VudCBTa3lsYWtlIGxhcHRvcCAoQ2xldm8gUDY1MSwg
+YnV0IHRoaXMgZm9ybWF0IGlzIGZvdW5kIG9uIG1hbnkKb3RoZXIgbW9kZWxzIGZyb20gdmFyaW91
+cyBtYW51ZmFjdHVyZXJzIHRvbyk6CgogICAgSWYgKChBcmcyID09IDB4MUEpKQogICAgewogICAg
+ICAgIENyZWF0ZUZpZWxkIChBcmczLCAweDE4LCAweDAyLCBPTVBSKQogICAgICAgIENyZWF0ZUZp
+ZWxkIChBcmczLCBaZXJvLCBPbmUsIEZMQ0gpCiAgICAgICAgQ3JlYXRlRmllbGQgKEFyZzMsIE9u
+ZSwgT25lLCBEVlNSKQogICAgICAgIENyZWF0ZUZpZWxkIChBcmczLCAweDAyLCBPbmUsIERWU0Mp
+CgooVGhlIHNlY3Rpb25zIGJlbG93IHJlZmVyIHRvIHRoZSBvbmUgaW4gdGhlIEFDUEkgNi4xIGRv
+Y3VtZW50IHRoYXQgY2FuCmJlIGZvdW5kIGF0IGh0dHA6Ly91ZWZpLm9yZy9zcGVjaWZpY2F0aW9u
+cy4pCgpUaGUgZmlyc3QgcGFyYW1ldGVyIGZvciBDcmVhdGVGaWVsZCBpcyBldmFsdWF0ZWQgYXMg
+YnVmZmVyIChzZWMgMTkuNi4yMSkuCkFjY29yZGluZyB0byAxOS4zLjUuNiAoRGF0YSBUeXBlcyBh
+bmQgVHlwZSBDb252ZXJzaW9ucykgYW4gaW1wbGljaXQKY29udmVyc2lvbiB0byBhIEJ1ZmZlciBp
+cyBvbmx5IHBvc3NpYmxlIGZyb20gYW4gSW50ZWdlciBhbmQgU3RyaW5nLCBhClBhY2thZ2UgZG9l
+cyBub3QgYmVsb25nIHRvIHRoZSBwb3NzaWJpbGl0aWVzLgoKTm90ZSB0aGF0IHRoZSByZXR1cm4g
+dmFsdWUgbWF5IGJlIGFuIGludGVnZXIgZm9yIHVuc3VwcG9ydGVkIHJldmlzaW9uCklEcyBvciBV
+VUlEcyAobGlrZSAweDgwMDAwMDAyKS4gVGhlc2Ugc2hvdWxkIGJlIGNvbXBhdGlibGUgd2l0aCBC
+dWZmZXJzCnRob3VnaCBhcyBzdGF0ZWQgYWJvdmUgYW5kIGFjcGlfY2hlY2tfZHNtKCkgY2FuIGhh
+bmRsZSB0aGF0IGNhc2UsIGJ1dAp1bmZvcnR1bmF0ZWx5IHNldHMgYSBQYWNrYWdlIGFzIGZvdXJ0
+aCBhcmd1bWVudCBhbmQgY2FuIHRoZXJlZm9yZSBub3QgYmUKdXNlZCBpbiBub3V2ZWF1LgotLSAK
+S2luZCByZWdhcmRzLApQZXRlciBXdQpodHRwczovL2xla2Vuc3RleW4ubmwKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
