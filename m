@@ -1,150 +1,191 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77106] Blank screen and errors on Thinkpad T440p
- GeForce 730M/Intel optimus setup
-Date: Sun, 22 May 2016 13:43:06 +0000
-Message-ID: <bug-77106-8800-cyscKl3LbG@http.bugs.freedesktop.org/>
-References: <bug-77106-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v5] vga_switcheroo: Add helper for deferred
+ probing
+Date: Mon, 23 May 2016 09:23:14 +0200
+Message-ID: <20160523072314.GV27098@phenom.ffwll.local>
+References: <2a9191ad5a42e797928bebc46cb2ad2ff73e7b95.1463837809.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0382804425=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <2a9191ad5a42e797928bebc46cb2ad2ff73e7b95.1463837809.git.lukas@wunner.de>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Lukas Wunner <lukas@wunner.de>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0382804425==
-Content-Type: multipart/alternative; boundary="14639245860.5Ecb2.22678";
- charset="UTF-8"
-
-
---14639245860.5Ecb2.22678
-Date: Sun, 22 May 2016 13:43:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D77106
-
-Martin J=C3=B8rgensen <mkj-1kv+JzgSdXk@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
-
---- Comment #4 from Martin J=C3=B8rgensen <mkj-1kv+JzgSdXk@public.gmane.org> ---
-the laptop is not in my possession anymore, so i'm closing the bug.
-also, reading up on the subject it seems that some t440p laptops has issues
-after a bios upgrade.
-https://github.com/Bumblebee-Project/bbswitch/issues/78
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14639245860.5Ecb2.22678
-Date: Sun, 22 May 2016 13:43:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:mkj&#64;g=
-otu.dk" title=3D"Martin J=C3=B8rgensen &lt;mkj&#64;gotu.dk&gt;"> <span clas=
-s=3D"fn">Martin J=C3=B8rgensen</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - Blank screen and errors on Thinkpad T440p Ge=
-Force 730M/Intel optimus setup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77106">bug 77106<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - Blank screen and errors on Thinkpad T440p Ge=
-Force 730M/Intel optimus setup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77106#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - Blank screen and errors on Thinkpad T440p Ge=
-Force 730M/Intel optimus setup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77106">bug 77106<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mkj&#64;gotu.dk" title=3D"Martin J=C3=B8rgensen &lt;mkj&#64;gotu.dk&gt;"> <=
-span class=3D"fn">Martin J=C3=B8rgensen</span></a>
-</span></b>
-        <pre>the laptop is not in my possession anymore, so i'm closing the=
- bug.
-also, reading up on the subject it seems that some t440p laptops has issues
-after a bios upgrade.
-<a href=3D"https://github.com/Bumblebee-Project/bbswitch/issues/78">https:/=
-/github.com/Bumblebee-Project/bbswitch/issues/78</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14639245860.5Ecb2.22678--
-
---===============0382804425==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0382804425==--
+T24gU2F0LCBNYXkgMjEsIDIwMTYgYXQgMDM6NTk6MTZQTSArMDEwMCwgTHVrYXMgV3VubmVyIHdy
+b3RlOgo+IFNvIGZhciB3ZSd2ZSBnb3Qgb25lIGNvbmRpdGlvbiB3aGVuIERSTSBkcml2ZXJzIG5l
+ZWQgdG8gZGVmZXIgcHJvYmluZwo+IG9uIGEgZHVhbCBHUFUgc3lzdGVtIGFuZCBpdCdzIGNvZGVk
+IHNlcGFyYXRlbHkgaW50byBlYWNoIG9mIHRoZSByZWxldmFudAo+IGRyaXZlcnMuIEFzIHN1Z2dl
+c3RlZCBieSBEYW5pZWwgVmV0dGVyLCBkZWR1cGxpY2F0ZSB0aGF0IGNvZGUgaW4gdGhlCj4gZHJp
+dmVycyBhbmQgbW92ZSBpdCB0byBhIG5ldyB2Z2Ffc3dpdGNoZXJvbyBoZWxwZXIuIFRoaXMgeWll
+bGRzIGJldHRlcgo+IGVuY2Fwc3VsYXRpb24gb2YgY29uY2VwdHMgYW5kIGxldHMgdXMgYWRkIGZ1
+cnRoZXIgY2hlY2tzIGluIGEgY2VudHJhbAo+IHBsYWNlLiAoVGhlIGV4aXN0aW5nIGNoZWNrIHBl
+cnRhaW5zIHRvIHByZS1yZXRpbmEgTWFjQm9vayBQcm9zIGFuZCBhbgo+IGFkZGl0aW9uYWwgY2hl
+Y2sgaXMgZXhwZWN0ZWQgdG8gYmUgbmVlZGVkIGZvciByZXRpbmFzLikKPiAKPiB2MjogVGhpcyBo
+ZWxwZXIgY291bGQgZXZlbnR1YWxseSBiZSB1c2VkIGJ5IGF1ZGlvIGNsaWVudHMgYXMgd2VsbCwK
+PiAgICAgc28gcmVwaHJhc2Uga2VybmVsZG9jIHRvIHJlZmVyIHRvICJjbGllbnQiIGluc3RlYWQg
+b2YgIkdQVSIKPiAgICAgYW5kIG1vdmUgdGhlIHNpbmdsZSBleGlzdGluZyBjaGVjayBpbiBhbiBp
+ZiBibG9jayBzcGVjaWZpYwo+ICAgICB0byBQQ0lfQ0xBU1NfRElTUExBWV9WR0EgZGV2aWNlcy4g
+TW92ZSBkb2N1bWVudGF0aW9uIG9uCj4gICAgIHRoYXQgY2hlY2sgZnJvbSBrZXJuZWxkb2MgdG8g
+YSBjb21tZW50LiAoRGFuaWVsIFZldHRlcikKPiAKPiB2MzogTWFuZGF0ZSBpbiBrZXJuZWxkb2Mg
+dGhhdCByZWdpc3RyYXRpb24gb2YgY2xpZW50IHNoYWxsIG9ubHkKPiAgICAgaGFwcGVuIGFmdGVy
+IGNhbGxpbmcgdGhpcyBoZWxwZXIuIChEYW5pZWwgVmV0dGVyKQo+IAo+IHY0OiBSZWJhc2Ugb24g
+NDEyYzhmN2RlMDExICgiZHJtL3JhZGVvbjogUmV0dXJuIC1FUFJPQkVfREVGRVIgd2hlbgo+ICAg
+ICBhbWRrZmQgbm90IGxvYWRlZCIpCj4gCj4gdjU6IFNvbWUgT3B0aW11cyBHUFVzIHVzZSBQQ0lf
+Q0xBU1NfRElTUExBWV8zRCwgbWFrZSBzdXJlIHRob3NlIGFyZQo+ICAgICBtYXRjaGVkIGFzIHdl
+bGwuIChFbWlsIFZlbGlrb3YpCj4gCj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJA
+ZmZ3bGwuY2g+Cj4gQ2M6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KPiBDYzogQWxl
+eCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+IFNpZ25lZC1vZmYtYnk6IEx1
+a2FzIFd1bm5lciA8bHVrYXNAd3VubmVyLmRlPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pOTE1X2Rydi5jICAgICAgIHwgMTAgKy0tLS0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2RybS5jIHwgMTAgKy0tLS0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFk
+ZW9uL3JhZGVvbl9kcnYuYyAgIHwgMTAgKy0tLS0tLS0tLQo+ICBkcml2ZXJzL2dwdS92Z2Evdmdh
+X3N3aXRjaGVyb28uYyAgICAgIHwgMzQgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKyst
+LQo+ICBpbmNsdWRlL2xpbnV4L3ZnYV9zd2l0Y2hlcm9vLmggICAgICAgIHwgIDIgKysKPiAgNSBm
+aWxlcyBjaGFuZ2VkLCAzNyBpbnNlcnRpb25zKCspLCAyOSBkZWxldGlvbnMoLSkKPiAKPiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfZHJ2LmMKPiBpbmRleCBkMzdjMGE2Li4yMGQ1ODk4IDEwMDY0NAo+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X2Rydi5jCj4gQEAgLTM1LDExICszNSw5IEBACj4gICNpbmNsdWRlICJpOTE1X3Ry
+YWNlLmgiCj4gICNpbmNsdWRlICJpbnRlbF9kcnYuaCIKPiAgCj4gLSNpbmNsdWRlIDxsaW51eC9h
+cHBsZS1nbXV4Lmg+Cj4gICNpbmNsdWRlIDxsaW51eC9jb25zb2xlLmg+Cj4gICNpbmNsdWRlIDxs
+aW51eC9tb2R1bGUuaD4KPiAgI2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4KPiAtI2luY2x1
+ZGUgPGxpbnV4L3ZnYWFyYi5oPgo+ICAjaW5jbHVkZSA8bGludXgvdmdhX3N3aXRjaGVyb28uaD4K
+PiAgI2luY2x1ZGUgPGRybS9kcm1fY3J0Y19oZWxwZXIuaD4KPiAgCj4gQEAgLTEwMjUsMTMgKzEw
+MjMsNyBAQCBzdGF0aWMgaW50IGk5MTVfcGNpX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBj
+b25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqZW50KQo+ICAJaWYgKFBDSV9GVU5DKHBkZXYtPmRl
+dmZuKSkKPiAgCQlyZXR1cm4gLUVOT0RFVjsKPiAgCj4gLQkvKgo+IC0JICogYXBwbGUtZ211eCBp
+cyBuZWVkZWQgb24gZHVhbCBHUFUgTWFjQm9vayBQcm8KPiAtCSAqIHRvIHByb2JlIHRoZSBwYW5l
+bCBpZiB3ZSdyZSB0aGUgaW5hY3RpdmUgR1BVLgo+IC0JICovCj4gLQlpZiAoSVNfRU5BQkxFRChD
+T05GSUdfVkdBX0FSQikgJiYgSVNfRU5BQkxFRChDT05GSUdfVkdBX1NXSVRDSEVST08pICYmCj4g
+LQkgICAgYXBwbGVfZ211eF9wcmVzZW50KCkgJiYgcGRldiAhPSB2Z2FfZGVmYXVsdF9kZXZpY2Uo
+KSAmJgo+IC0JICAgICF2Z2Ffc3dpdGNoZXJvb19oYW5kbGVyX2ZsYWdzKCkpCj4gKwlpZiAodmdh
+X3N3aXRjaGVyb29fY2xpZW50X3Byb2JlX2RlZmVyKHBkZXYpKQo+ICAJCXJldHVybiAtRVBST0JF
+X0RFRkVSOwo+ICAKPiAgCXJldHVybiBkcm1fZ2V0X3BjaV9kZXYocGRldiwgZW50LCAmZHJpdmVy
+KTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiBpbmRleCAxMWY4ZGQ5Li41
+YzRkNGRmIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJt
+LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4gQEAgLTIy
+LDEzICsyMiwxMSBAQAo+ICAgKiBBdXRob3JzOiBCZW4gU2tlZ2dzCj4gICAqLwo+ICAKPiAtI2lu
+Y2x1ZGUgPGxpbnV4L2FwcGxlLWdtdXguaD4KPiAgI2luY2x1ZGUgPGxpbnV4L2NvbnNvbGUuaD4K
+PiAgI2luY2x1ZGUgPGxpbnV4L2RlbGF5Lmg+Cj4gICNpbmNsdWRlIDxsaW51eC9tb2R1bGUuaD4K
+PiAgI2luY2x1ZGUgPGxpbnV4L3BjaS5oPgo+ICAjaW5jbHVkZSA8bGludXgvcG1fcnVudGltZS5o
+Pgo+IC0jaW5jbHVkZSA8bGludXgvdmdhYXJiLmg+Cj4gICNpbmNsdWRlIDxsaW51eC92Z2Ffc3dp
+dGNoZXJvby5oPgo+ICAKPiAgI2luY2x1ZGUgImRybVAuaCIKPiBAQCAtMzE1LDEzICszMTMsNyBA
+QCBzdGF0aWMgaW50IG5vdXZlYXVfZHJtX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LAo+ICAJ
+Ym9vbCBib290ID0gZmFsc2U7Cj4gIAlpbnQgcmV0Owo+ICAKPiAtCS8qCj4gLQkgKiBhcHBsZS1n
+bXV4IGlzIG5lZWRlZCBvbiBkdWFsIEdQVSBNYWNCb29rIFBybwo+IC0JICogdG8gcHJvYmUgdGhl
+IHBhbmVsIGlmIHdlJ3JlIHRoZSBpbmFjdGl2ZSBHUFUuCj4gLQkgKi8KPiAtCWlmIChJU19FTkFC
+TEVEKENPTkZJR19WR0FfQVJCKSAmJiBJU19FTkFCTEVEKENPTkZJR19WR0FfU1dJVENIRVJPTykg
+JiYKPiAtCSAgICBhcHBsZV9nbXV4X3ByZXNlbnQoKSAmJiBwZGV2ICE9IHZnYV9kZWZhdWx0X2Rl
+dmljZSgpICYmCj4gLQkgICAgIXZnYV9zd2l0Y2hlcm9vX2hhbmRsZXJfZmxhZ3MoKSkKPiArCWlm
+ICh2Z2Ffc3dpdGNoZXJvb19jbGllbnRfcHJvYmVfZGVmZXIocGRldikpCj4gIAkJcmV0dXJuIC1F
+UFJPQkVfREVGRVI7Cj4gIAo+ICAJLyogcmVtb3ZlIGNvbmZsaWN0aW5nIGRyaXZlcnMgKHZlc2Fm
+YiwgZWZpZmIgZXRjKSAqLwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3Jh
+ZGVvbl9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Rydi5jCj4gaW5kZXgg
+YjU1YWE3NC4uYTQ1NWRjNyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3Jh
+ZGVvbl9kcnYuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Rydi5jCj4g
+QEAgLTM0LDExICszNCw5IEBACj4gICNpbmNsdWRlICJyYWRlb25fZHJ2LmgiCj4gIAo+ICAjaW5j
+bHVkZSA8ZHJtL2RybV9wY2lpZHMuaD4KPiAtI2luY2x1ZGUgPGxpbnV4L2FwcGxlLWdtdXguaD4K
+PiAgI2luY2x1ZGUgPGxpbnV4L2NvbnNvbGUuaD4KPiAgI2luY2x1ZGUgPGxpbnV4L21vZHVsZS5o
+Pgo+ICAjaW5jbHVkZSA8bGludXgvcG1fcnVudGltZS5oPgo+IC0jaW5jbHVkZSA8bGludXgvdmdh
+YXJiLmg+Cj4gICNpbmNsdWRlIDxsaW51eC92Z2Ffc3dpdGNoZXJvby5oPgo+ICAjaW5jbHVkZSA8
+ZHJtL2RybV9nZW0uaD4KPiAgCj4gQEAgLTM0MCwxMyArMzM4LDcgQEAgc3RhdGljIGludCByYWRl
+b25fcGNpX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LAo+ICAJaWYgKHJldCA9PSAtRVBST0JF
+X0RFRkVSKQo+ICAJCXJldHVybiByZXQ7Cj4gIAo+IC0JLyoKPiAtCSAqIGFwcGxlLWdtdXggaXMg
+bmVlZGVkIG9uIGR1YWwgR1BVIE1hY0Jvb2sgUHJvCj4gLQkgKiB0byBwcm9iZSB0aGUgcGFuZWwg
+aWYgd2UncmUgdGhlIGluYWN0aXZlIEdQVS4KPiAtCSAqLwo+IC0JaWYgKElTX0VOQUJMRUQoQ09O
+RklHX1ZHQV9BUkIpICYmIElTX0VOQUJMRUQoQ09ORklHX1ZHQV9TV0lUQ0hFUk9PKSAmJgo+IC0J
+ICAgIGFwcGxlX2dtdXhfcHJlc2VudCgpICYmIHBkZXYgIT0gdmdhX2RlZmF1bHRfZGV2aWNlKCkg
+JiYKPiAtCSAgICAhdmdhX3N3aXRjaGVyb29faGFuZGxlcl9mbGFncygpKQo+ICsJaWYgKHZnYV9z
+d2l0Y2hlcm9vX2NsaWVudF9wcm9iZV9kZWZlcihwZGV2KSkKPiAgCQlyZXR1cm4gLUVQUk9CRV9E
+RUZFUjsKPiAgCj4gIAkvKiBHZXQgcmlkIG9mIHRoaW5ncyBsaWtlIG9mZmIgKi8KPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvdmdhL3ZnYV9zd2l0Y2hlcm9vLmMgYi9kcml2ZXJzL2dwdS92Z2Ev
+dmdhX3N3aXRjaGVyb28uYwo+IGluZGV4IGNiZDdjOTguLjJkZjIxNmIzIDEwMDY0NAo+IC0tLSBh
+L2RyaXZlcnMvZ3B1L3ZnYS92Z2Ffc3dpdGNoZXJvby5jCj4gKysrIGIvZHJpdmVycy9ncHUvdmdh
+L3ZnYV9zd2l0Y2hlcm9vLmMKPiBAQCAtMzAsNiArMzAsNyBAQAo+ICAKPiAgI2RlZmluZSBwcl9m
+bXQoZm10KSAidmdhX3N3aXRjaGVyb286ICIgZm10Cj4gIAo+ICsjaW5jbHVkZSA8bGludXgvYXBw
+bGUtZ211eC5oPgo+ICAjaW5jbHVkZSA8bGludXgvY29uc29sZS5oPgo+ICAjaW5jbHVkZSA8bGlu
+dXgvZGVidWdmcy5oPgo+ICAjaW5jbHVkZSA8bGludXgvZmIuaD4KPiBAQCAtMzA4LDcgKzMwOSw4
+IEBAIHN0YXRpYyBpbnQgcmVnaXN0ZXJfY2xpZW50KHN0cnVjdCBwY2lfZGV2ICpwZGV2LAo+ICAg
+Kgo+ICAgKiBSZWdpc3RlciB2Z2EgY2xpZW50IChHUFUpLiBFbmFibGUgdmdhX3N3aXRjaGVyb28g
+aWYgYW5vdGhlciBHUFUgYW5kIGEKPiAgICogaGFuZGxlciBoYXZlIGFscmVhZHkgcmVnaXN0ZXJl
+ZC4gVGhlIHBvd2VyIHN0YXRlIG9mIHRoZSBjbGllbnQgaXMgYXNzdW1lZAo+IC0gKiB0byBiZSBP
+Ti4KPiArICogdG8gYmUgT04uIEJlZm9yZWhhbmQsIHZnYV9zd2l0Y2hlcm9vX2NsaWVudF9wcm9i
+ZV9kZWZlcigpIHNoYWxsIGJlIGNhbGxlZAo+ICsgKiB0byBlbnN1cmUgdGhhdCBhbGwgcHJlcmVx
+dWlzaXRlcyBhcmUgbWV0LgoKInNoYWxsIiBvciAibXVzdCI/IEl0IHRob3VnaHQgaXQncyB0aGUg
+bGF0dGVyIC4uLgotRGFuaWVsCj4gICAqCj4gICAqIFJldHVybjogMCBvbiBzdWNjZXNzLCAtRU5P
+TUVNIG9uIG1lbW9yeSBhbGxvY2F0aW9uIGVycm9yLgo+ICAgKi8KPiBAQCAtMzI5LDcgKzMzMSw4
+IEBAIEVYUE9SVF9TWU1CT0wodmdhX3N3aXRjaGVyb29fcmVnaXN0ZXJfY2xpZW50KTsKPiAgICog
+QGlkOiBjbGllbnQgaWRlbnRpZmllcgo+ICAgKgo+ICAgKiBSZWdpc3RlciBhdWRpbyBjbGllbnQg
+KGF1ZGlvIGRldmljZSBvbiBhIEdQVSkuIFRoZSBwb3dlciBzdGF0ZSBvZiB0aGUKPiAtICogY2xp
+ZW50IGlzIGFzc3VtZWQgdG8gYmUgT04uCj4gKyAqIGNsaWVudCBpcyBhc3N1bWVkIHRvIGJlIE9O
+LiBCZWZvcmVoYW5kLCB2Z2Ffc3dpdGNoZXJvb19jbGllbnRfcHJvYmVfZGVmZXIoKQo+ICsgKiBz
+aGFsbCBiZSBjYWxsZWQgdG8gZW5zdXJlIHRoYXQgYWxsIHByZXJlcXVpc2l0ZXMgYXJlIG1ldC4K
+PiAgICoKPiAgICogUmV0dXJuOiAwIG9uIHN1Y2Nlc3MsIC1FTk9NRU0gb24gbWVtb3J5IGFsbG9j
+YXRpb24gZXJyb3IuCj4gICAqLwo+IEBAIC0zNzYsNiArMzc5LDMzIEBAIGZpbmRfYWN0aXZlX2Ns
+aWVudChzdHJ1Y3QgbGlzdF9oZWFkICpoZWFkKQo+ICB9Cj4gIAo+ICAvKioKPiArICogdmdhX3N3
+aXRjaGVyb29fY2xpZW50X3Byb2JlX2RlZmVyKCkgLSB3aGV0aGVyIHRvIGRlZmVyIHByb2Jpbmcg
+YSBnaXZlbiBjbGllbnQKPiArICogQHBkZXY6IGNsaWVudCBwY2kgZGV2aWNlCj4gKyAqCj4gKyAq
+IERldGVybWluZSB3aGV0aGVyIGFueSBwcmVyZXF1aXNpdGVzIGFyZSBub3QgZnVsZmlsbGVkIHRv
+IHByb2JlIGEgZ2l2ZW4KPiArICogY2xpZW50LiBEcml2ZXJzIHNoYWxsIGludm9rZSB0aGlzIGVh
+cmx5IG9uIGluIHRoZWlyIC0+cHJvYmUgY2FsbGJhY2sKPiArICogYW5kIHJldHVybiAlLUVQUk9C
+RV9ERUZFUiBpZiBpdCBldmFsdWF0ZXMgdG8gJXRydWUuIFRob3Ugc2hhbHQgbm90Cj4gKyAqIHJl
+Z2lzdGVyIHRoZSBjbGllbnQgZXJlIHRob3UgaGFzdCBjYWxsZWQgdGhpcy4KCkkgc3RpbGwgdGhp
+bmsgd2Ugc2hvdWxkIGp1c3Qgc21hc2ggdGhpcyBpbnRvIHRoZSByZWxldmFudCBfcmVnaXN0ZXIK
+ZnVuY3Rpb25zKCksIGZvciBzYWZldHkuIEJ1dCBJIGZvcmdvdCB0aGUgYWN0dWFsIHJlc3VsdCBv
+ZiB0aGUgcHJldmlvdXMKZGlzY3Vzc2lvbiAuLi4KCkltbyBpZiB5b3UgY2FuIHJlcGxhY2UgYSBi
+aXQgb2YgZG9jdW1lbnRhdGlvbiB3aXRoIGNvZGUgdG8gZW5mb3JjZSBhbgppbnZhcmlhbnQsIGFs
+d2F5cyBkbyBpdC4KLURhbmllbAoKPiArICoKPiArICogUmV0dXJuOiAldHJ1ZSBpZiBwcm9iaW5n
+IHNob3VsZCBiZSBkZWZlcnJlZCwgb3RoZXJ3aXNlICVmYWxzZS4KPiArICovCj4gK2Jvb2wgdmdh
+X3N3aXRjaGVyb29fY2xpZW50X3Byb2JlX2RlZmVyKHN0cnVjdCBwY2lfZGV2ICpwZGV2KQo+ICt7
+Cj4gKwlpZiAoKHBkZXYtPmNsYXNzID4+IDE2KSA9PSBQQ0lfQkFTRV9DTEFTU19ESVNQTEFZKSB7
+Cj4gKwkJLyoKPiArCQkgKiBhcHBsZS1nbXV4IGlzIG5lZWRlZCBvbiBwcmUtcmV0aW5hIE1hY0Jv
+b2sgUHJvCj4gKwkJICogdG8gcHJvYmUgdGhlIHBhbmVsIGlmIHBkZXYgaXMgdGhlIGluYWN0aXZl
+IEdQVS4KPiArCQkgKi8KPiArCQlpZiAoYXBwbGVfZ211eF9wcmVzZW50KCkgJiYgcGRldiAhPSB2
+Z2FfZGVmYXVsdF9kZXZpY2UoKSAmJgo+ICsJCSAgICAhdmdhc3JfcHJpdi5oYW5kbGVyX2ZsYWdz
+KQo+ICsJCQlyZXR1cm4gdHJ1ZTsKPiArCX0KPiArCj4gKwlyZXR1cm4gZmFsc2U7Cj4gK30KPiAr
+RVhQT1JUX1NZTUJPTCh2Z2Ffc3dpdGNoZXJvb19jbGllbnRfcHJvYmVfZGVmZXIpOwo+ICsKPiAr
+LyoqCj4gICAqIHZnYV9zd2l0Y2hlcm9vX2dldF9jbGllbnRfc3RhdGUoKSAtIG9idGFpbiBwb3dl
+ciBzdGF0ZSBvZiBhIGdpdmVuIGNsaWVudAo+ICAgKiBAcGRldjogY2xpZW50IHBjaSBkZXZpY2UK
+PiAgICoKPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC92Z2Ffc3dpdGNoZXJvby5oIGIvaW5j
+bHVkZS9saW51eC92Z2Ffc3dpdGNoZXJvby5oCj4gaW5kZXggYjM5YTVmMy4uOTYwYmVkYiAxMDA2
+NDQKPiAtLS0gYS9pbmNsdWRlL2xpbnV4L3ZnYV9zd2l0Y2hlcm9vLmgKPiArKysgYi9pbmNsdWRl
+L2xpbnV4L3ZnYV9zd2l0Y2hlcm9vLmgKPiBAQCAtMTY1LDYgKzE2NSw3IEBAIGludCB2Z2Ffc3dp
+dGNoZXJvb191bmxvY2tfZGRjKHN0cnVjdCBwY2lfZGV2ICpwZGV2KTsKPiAgCj4gIGludCB2Z2Ff
+c3dpdGNoZXJvb19wcm9jZXNzX2RlbGF5ZWRfc3dpdGNoKHZvaWQpOwo+ICAKPiArYm9vbCB2Z2Ff
+c3dpdGNoZXJvb19jbGllbnRfcHJvYmVfZGVmZXIoc3RydWN0IHBjaV9kZXYgKnBkZXYpOwo+ICBl
+bnVtIHZnYV9zd2l0Y2hlcm9vX3N0YXRlIHZnYV9zd2l0Y2hlcm9vX2dldF9jbGllbnRfc3RhdGUo
+c3RydWN0IHBjaV9kZXYgKmRldik7Cj4gIAo+ICB2b2lkIHZnYV9zd2l0Y2hlcm9vX3NldF9keW5h
+bWljX3N3aXRjaChzdHJ1Y3QgcGNpX2RldiAqcGRldiwgZW51bSB2Z2Ffc3dpdGNoZXJvb19zdGF0
+ZSBkeW5hbWljKTsKPiBAQCAtMTg4LDYgKzE4OSw3IEBAIHN0YXRpYyBpbmxpbmUgZW51bSB2Z2Ff
+c3dpdGNoZXJvb19oYW5kbGVyX2ZsYWdzX3QgdmdhX3N3aXRjaGVyb29faGFuZGxlcl9mbGFncyh2
+Cj4gIHN0YXRpYyBpbmxpbmUgaW50IHZnYV9zd2l0Y2hlcm9vX2xvY2tfZGRjKHN0cnVjdCBwY2lf
+ZGV2ICpwZGV2KSB7IHJldHVybiAtRU5PREVWOyB9Cj4gIHN0YXRpYyBpbmxpbmUgaW50IHZnYV9z
+d2l0Y2hlcm9vX3VubG9ja19kZGMoc3RydWN0IHBjaV9kZXYgKnBkZXYpIHsgcmV0dXJuIC1FTk9E
+RVY7IH0KPiAgc3RhdGljIGlubGluZSBpbnQgdmdhX3N3aXRjaGVyb29fcHJvY2Vzc19kZWxheWVk
+X3N3aXRjaCh2b2lkKSB7IHJldHVybiAwOyB9Cj4gK3N0YXRpYyBpbmxpbmUgYm9vbCB2Z2Ffc3dp
+dGNoZXJvb19jbGllbnRfcHJvYmVfZGVmZXIoc3RydWN0IHBjaV9kZXYgKnBkZXYpIHsgcmV0dXJu
+IGZhbHNlOyB9Cj4gIHN0YXRpYyBpbmxpbmUgZW51bSB2Z2Ffc3dpdGNoZXJvb19zdGF0ZSB2Z2Ff
+c3dpdGNoZXJvb19nZXRfY2xpZW50X3N0YXRlKHN0cnVjdCBwY2lfZGV2ICpkZXYpIHsgcmV0dXJu
+IFZHQV9TV0lUQ0hFUk9PX09OOyB9Cj4gIAo+ICBzdGF0aWMgaW5saW5lIHZvaWQgdmdhX3N3aXRj
+aGVyb29fc2V0X2R5bmFtaWNfc3dpdGNoKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBlbnVtIHZnYV9z
+d2l0Y2hlcm9vX3N0YXRlIGR5bmFtaWMpIHt9Cj4gLS0gCj4gMi44LjEKPiAKPiBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IEludGVsLWdmeCBtYWlsaW5n
+IGxpc3QKPiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngKCi0tIApEYW5pZWwgVmV0
+dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZnds
+bC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
+bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
