@@ -1,104 +1,67 @@
-From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Subject: [PATCH 1/4] drm/nouveau/acpi: ensure matching ACPI handle
-	and supported functions
-Date: Wed, 25 May 2016 00:52:58 +0200
-Message-ID: <1464130381-4797-2-git-send-email-peter@lekensteyn.nl>
-References: <1464130381-4797-1-git-send-email-peter@lekensteyn.nl>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1464130381-4797-1-git-send-email-peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Peter Wu <peter@lekensteyn.nl>
+Subject: [PATCH 0/4] nouveau fixes for RPM/Optimus-related hangs
+Date: Wed, 25 May 2016 00:52:57 +0200
+Message-ID: <1464130381-4797-1-git-send-email-peter@lekensteyn.nl>
+Return-path: <linux-pm-owner@vger.kernel.org>
+Sender: linux-pm-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Dave Airlie <airlied@redhat.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, Bjorn Helgaas <helgaas@kernel.org>, linux-pci@vger.kernel.org, linux-pm@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-RW5zdXJlIHRoYXQgdGhlIHJldHVybmVkIHNldCBvZiBzdXBwb3J0ZWQgRFNNIGZ1bmN0aW9ucyAo
-TVVYLCBPcHRpbXVzKQptYXRjaCB0aGUgQUNQSSBoYW5kbGUgdGhhdCBpcyBzZXQgaW4gbm91dmVh
-dV9kc21fcGNpX3Byb2JlLgoKQXMgdGhlcmUgYXJlIG5vIG1hY2hpbmVzIHdpdGggYSBNVVggZnVu
-Y3Rpb24gb24ganVzdCBvbmUgUENJIGRldmljZSBhbmQKYW4gT3B0aW11cyBvbiBhbm90aGVyLCB0
-aGVyZSBzaG91bGQgbm90IGJlIGEgZnVuY3Rpb25hbCBpbXBhY3QuIFRoaXMKY2hhbmdlIGhvd2V2
-ZXIgbWFrZXMgdGhpcyBpbXBsaWNpdCBhc3N1bXB0aW9uIG1vcmUgb2J2aW91cy4KCkNvbnZlcnQg
-aW50IHRvIGJvb2wgYW5kIHJlbmFtZSBoYXNfZHNtIHRvIGhhc19tdXggd2hpbGUgYXQgaXQuCgpT
-aWduZWQtb2ZmLWJ5OiBQZXRlciBXdSA8cGV0ZXJAbGVrZW5zdGV5bi5ubD4KLS0tCiBkcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYyB8IDU1ICsrKysrKysrKysrKysrLS0tLS0t
-LS0tLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAyMyBpbnNlcnRpb25zKCspLCAzMiBkZWxl
-dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Fj
-cGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCmluZGV4IGNkZjUy
-MjcuLjQ1ZmE5YjIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-YWNwaS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCkBAIC01
-Nyw5ICs1Nyw2IEBAIGJvb2wgbm91dmVhdV9pc192MV9kc20odm9pZCkgewogCXJldHVybiBub3V2
-ZWF1X2RzbV9wcml2LmRzbV9kZXRlY3RlZDsKIH0KIAotI2RlZmluZSBOT1VWRUFVX0RTTV9IQVNf
-TVVYIDB4MQotI2RlZmluZSBOT1VWRUFVX0RTTV9IQVNfT1BUIDB4MgotCiAjaWZkZWYgQ09ORklH
-X1ZHQV9TV0lUQ0hFUk9PCiBzdGF0aWMgY29uc3QgY2hhciBub3V2ZWF1X2RzbV9tdWlkW10gPSB7
-CiAJMHhBMCwgMHhBMCwgMHg5NSwgMHg5RCwgMHg2MCwgMHgwMCwgMHg0OCwgMHg0RCwKQEAgLTIx
-MiwyNiArMjA5LDMzIEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgdmdhX3N3aXRjaGVyb29faGFuZGxl
-ciBub3V2ZWF1X2RzbV9oYW5kbGVyID0gewogCS5nZXRfY2xpZW50X2lkID0gbm91dmVhdV9kc21f
-Z2V0X2NsaWVudF9pZCwKIH07CiAKLXN0YXRpYyBpbnQgbm91dmVhdV9kc21fcGNpX3Byb2JlKHN0
-cnVjdCBwY2lfZGV2ICpwZGV2KQorc3RhdGljIHZvaWQgbm91dmVhdV9kc21fcGNpX3Byb2JlKHN0
-cnVjdCBwY2lfZGV2ICpwZGV2LCBib29sICpoYXNfbXV4LAorCQkJCSAgYm9vbCAqaGFzX29wdCkK
-IHsKIAlhY3BpX2hhbmRsZSBkaGFuZGxlOwotCWludCByZXR2YWwgPSAwOworCWJvb2wgc3VwcG9y
-dHNfbXV4OworCWJvb2wgc3VwcG9ydHNfb3B0OwogCiAJZGhhbmRsZSA9IEFDUElfSEFORExFKCZw
-ZGV2LT5kZXYpOwogCWlmICghZGhhbmRsZSkKLQkJcmV0dXJuIGZhbHNlOworCQlyZXR1cm47CiAK
-IAlpZiAoIWFjcGlfaGFzX21ldGhvZChkaGFuZGxlLCAiX0RTTSIpKQotCQlyZXR1cm4gZmFsc2U7
-CisJCXJldHVybjsKKworCXN1cHBvcnRzX211eCA9IGFjcGlfY2hlY2tfZHNtKGRoYW5kbGUsIG5v
-dXZlYXVfZHNtX211aWQsIDB4MDAwMDAxMDIsCisJCQkJICAgICAgMSA8PCBOT1VWRUFVX0RTTV9Q
-T1dFUik7CisJc3VwcG9ydHNfb3B0ID0gbm91dmVhdV9jaGVja19vcHRpbXVzX2RzbShkaGFuZGxl
-KTsKIAotCWlmIChhY3BpX2NoZWNrX2RzbShkaGFuZGxlLCBub3V2ZWF1X2RzbV9tdWlkLCAweDAw
-MDAwMTAyLAotCQkJICAgMSA8PCBOT1VWRUFVX0RTTV9QT1dFUikpCi0JCXJldHZhbCB8PSBOT1VW
-RUFVX0RTTV9IQVNfTVVYOworCS8qIERvZXMgbm90IGxvb2sgbGlrZSBhIE52aWRpYSBkZXZpY2Uu
-ICovCisJaWYgKCFzdXBwb3J0c19tdXggJiYgIXN1cHBvcnRzX29wdCkKKwkJcmV0dXJuOwogCi0J
-aWYgKG5vdXZlYXVfY2hlY2tfb3B0aW11c19kc20oZGhhbmRsZSkpCi0JCXJldHZhbCB8PSBOT1VW
-RUFVX0RTTV9IQVNfT1BUOworCW5vdXZlYXVfZHNtX3ByaXYuZGhhbmRsZSA9IGRoYW5kbGU7CisJ
-Kmhhc19tdXggPSBzdXBwb3J0c19tdXg7CisJKmhhc19vcHQgPSBzdXBwb3J0c19vcHQ7CiAKLQlp
-ZiAocmV0dmFsICYgTk9VVkVBVV9EU01fSEFTX09QVCkgeworCWlmIChzdXBwb3J0c19vcHQpIHsK
-IAkJdWludDMyX3QgcmVzdWx0OwogCQlub3V2ZWF1X29wdGltdXNfZHNtKGRoYW5kbGUsIE5PVVZF
-QVVfRFNNX09QVElNVVNfQ0FQUywgMCwKIAkJCQkgICAgJnJlc3VsdCk7CkBAIC0yNDAsMTAgKzI0
-NCw2IEBAIHN0YXRpYyBpbnQgbm91dmVhdV9kc21fcGNpX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpw
-ZGV2KQogCQkJIChyZXN1bHQgJiBPUFRJTVVTX0RZTkFNSUNfUFdSX0NBUCkgPyAiZHluYW1pYyBw
-b3dlciwgIiA6ICIiLAogCQkJIChyZXN1bHQgJiBPUFRJTVVTX0hEQV9DT0RFQ19NQVNLKSA/ICJo
-ZGEgYmlvcyBjb2RlYyBzdXBwb3J0ZWQiIDogIiIpOwogCX0KLQlpZiAocmV0dmFsKQotCQlub3V2
-ZWF1X2RzbV9wcml2LmRoYW5kbGUgPSBkaGFuZGxlOwotCi0JcmV0dXJuIHJldHZhbDsKIH0KIAog
-c3RhdGljIGJvb2wgbm91dmVhdV9kc21fZGV0ZWN0KHZvaWQpCkBAIC0yNTEsMTEgKzI1MSwxMCBA
-QCBzdGF0aWMgYm9vbCBub3V2ZWF1X2RzbV9kZXRlY3Qodm9pZCkKIAljaGFyIGFjcGlfbWV0aG9k
-X25hbWVbMjU1XSA9IHsgMCB9OwogCXN0cnVjdCBhY3BpX2J1ZmZlciBidWZmZXIgPSB7c2l6ZW9m
-KGFjcGlfbWV0aG9kX25hbWUpLCBhY3BpX21ldGhvZF9uYW1lfTsKIAlzdHJ1Y3QgcGNpX2RldiAq
-cGRldiA9IE5VTEw7Ci0JaW50IGhhc19kc20gPSAwOwotCWludCBoYXNfb3B0aW11cyA9IDA7CisJ
-Ym9vbCBoYXNfbXV4ID0gZmFsc2U7CisJYm9vbCBoYXNfb3B0aW11cyA9IGZhbHNlOwogCWludCB2
-Z2FfY291bnQgPSAwOwogCWJvb2wgZ3VpZF92YWxpZDsKLQlpbnQgcmV0dmFsOwogCWJvb2wgcmV0
-ID0gZmFsc2U7CiAKIAkvKiBsb29rdXAgdGhlIE1YTSBHVUlEICovCkBAIC0yNjgsMzIgKzI2Nywy
-NCBAQCBzdGF0aWMgYm9vbCBub3V2ZWF1X2RzbV9kZXRlY3Qodm9pZCkKIAl3aGlsZSAoKHBkZXYg
-PSBwY2lfZ2V0X2NsYXNzKFBDSV9DTEFTU19ESVNQTEFZX1ZHQSA8PCA4LCBwZGV2KSkgIT0gTlVM
-TCkgewogCQl2Z2FfY291bnQrKzsKIAotCQlyZXR2YWwgPSBub3V2ZWF1X2RzbV9wY2lfcHJvYmUo
-cGRldik7Ci0JCWlmIChyZXR2YWwgJiBOT1VWRUFVX0RTTV9IQVNfTVVYKQotCQkJaGFzX2RzbSB8
-PSAxOwotCQlpZiAocmV0dmFsICYgTk9VVkVBVV9EU01fSEFTX09QVCkKLQkJCWhhc19vcHRpbXVz
-ID0gMTsKKwkJbm91dmVhdV9kc21fcGNpX3Byb2JlKHBkZXYsICZoYXNfbXV4LCAmaGFzX29wdGlt
-dXMpOwogCX0KIAogCXdoaWxlICgocGRldiA9IHBjaV9nZXRfY2xhc3MoUENJX0NMQVNTX0RJU1BM
-QVlfM0QgPDwgOCwgcGRldikpICE9IE5VTEwpIHsKIAkJdmdhX2NvdW50Kys7CiAKLQkJcmV0dmFs
-ID0gbm91dmVhdV9kc21fcGNpX3Byb2JlKHBkZXYpOwotCQlpZiAocmV0dmFsICYgTk9VVkVBVV9E
-U01fSEFTX01VWCkKLQkJCWhhc19kc20gfD0gMTsKLQkJaWYgKHJldHZhbCAmIE5PVVZFQVVfRFNN
-X0hBU19PUFQpCi0JCQloYXNfb3B0aW11cyA9IDE7CisJCW5vdXZlYXVfZHNtX3BjaV9wcm9iZShw
-ZGV2LCAmaGFzX211eCwgJmhhc19vcHRpbXVzKTsKIAl9CiAKIAkvKiBmaW5kIHRoZSBvcHRpbXVz
-IERTTSBvciB0aGUgb2xkIHYxIERTTSAqLwotCWlmIChoYXNfb3B0aW11cyA9PSAxKSB7CisJaWYg
-KGhhc19vcHRpbXVzKSB7CiAJCWFjcGlfZ2V0X25hbWUobm91dmVhdV9kc21fcHJpdi5kaGFuZGxl
-LCBBQ1BJX0ZVTExfUEFUSE5BTUUsCiAJCQkmYnVmZmVyKTsKIAkJcHJpbnRrKEtFUk5fSU5GTyAi
-VkdBIHN3aXRjaGVyb286IGRldGVjdGVkIE9wdGltdXMgRFNNIG1ldGhvZCAlcyBoYW5kbGVcbiIs
-CiAJCQlhY3BpX21ldGhvZF9uYW1lKTsKIAkJbm91dmVhdV9kc21fcHJpdi5vcHRpbXVzX2RldGVj
-dGVkID0gdHJ1ZTsKIAkJcmV0ID0gdHJ1ZTsKLQl9IGVsc2UgaWYgKHZnYV9jb3VudCA9PSAyICYm
-IGhhc19kc20gJiYgZ3VpZF92YWxpZCkgeworCX0gZWxzZSBpZiAodmdhX2NvdW50ID09IDIgJiYg
-aGFzX211eCAmJiBndWlkX3ZhbGlkKSB7CiAJCWFjcGlfZ2V0X25hbWUobm91dmVhdV9kc21fcHJp
-di5kaGFuZGxlLCBBQ1BJX0ZVTExfUEFUSE5BTUUsCiAJCQkmYnVmZmVyKTsKIAkJcHJpbnRrKEtF
-Uk5fSU5GTyAiVkdBIHN3aXRjaGVyb286IGRldGVjdGVkIERTTSBzd2l0Y2hpbmcgbWV0aG9kICVz
-IGhhbmRsZVxuIiwKLS0gCjIuOC4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+Hi,
+
+Here are two patches to fix an issue reported on kernel bugzilla (infinite loop
+due to unchecked function) and a more important fix to fix hanging Optimus
+machines when runtime PM is enabled (with pm/pci patches).
+
+An older (obsolete) patch for the first issue was tested by the reporter:
+https://bugzilla.kernel.org/show_bug.cgi?id=104791#c11
+(it is replaced by "check for function 0x1B before using it").
+
+The second issue will occur when:
+ - A modern Optimus laptop is in use (designed for Windows 8 or newer).
+ - nouveau runtime PM is enabled (1 or the default -1).
+ - The patch "PCI: Add runtime PM support for PCIe ports" from Mika is pulled
+   into v4.7 (or v4.8[1]?) via the pci/pm branch,
+   https://git.kernel.org/cgit/linux/kernel/git/helgaas/pci.git/commit/?h=pci/pm&id=8b71f5652eeac561acf883da01ab4810f763ee42
+(see also the discussion for "[PATCH] PCI: Power on bridges before scanning new
+devices" at http://article.gmane.org/gmane.linux.power-management.general/76411)
+
+The first two patches are just refactoring to reduce code duplication (and
+scratch an itch) and make the following patches possible. The next two patches
+fix the problems reported above.
+
+I intend to get these patches in 4.7 (or the first version where pci/pm gets
+merged) to avoid a lockup when runpm is enabled. Note:
+ - If the fourth patch is merged before/without Mika's PCIe port patch, then
+   those modern Optimus machines above will not be put into D3cold.
+ - If the fourth patch is not merged (or merged after Mika's patch), then under
+   the above conditions the affected machine can lock up.
+ - The three other patches are unrelated to this issue and can safely be merged.
+
+Tested with:
+ - Linux v4.6 + pci/pm + these four patches
+ - Hardware: Clevo P651RA with acpi_osi="!Windows 2015" (the latter is a
+   workaround for another PCIe issue).
+ - Card is asleep, woke up with lspci, waited a bit and retried/suspended:
+   - # lspci -xxxxnnvvvv >/dev/null; sleep 5
+   - # lspci -xxxxnnvvvv >/dev/null; sleep 5; systemctl suspend
+   - # lspci -xxxxnnvvvv >/dev/null; systemctl suspend
+
+Kind regards,
+Peter
+
+ [1]: https://lkml.kernel.org/r/20160524211309.GH1789@lahna.fi.intel.com
+
+Peter Wu (4):
+  drm/nouveau/acpi: ensure matching ACPI handle and supported functions
+  drm/nouveau/acpi: return supported DSM functions
+  drm/nouveau/acpi: check for function 0x1B before using it
+  drm/nouveau/acpi: fix lockup with PCIe runtime PM
+
+ drivers/gpu/drm/nouveau/nouveau_acpi.c | 100 +++++++++++++++++++++------------
+ 1 file changed, 63 insertions(+), 37 deletions(-)
+
+-- 
+2.8.2
+
