@@ -1,67 +1,108 @@
-From: Peter Wu <peter@lekensteyn.nl>
-Subject: [PATCH 0/4] nouveau fixes for RPM/Optimus-related hangs
-Date: Wed, 25 May 2016 00:52:57 +0200
-Message-ID: <1464130381-4797-1-git-send-email-peter@lekensteyn.nl>
-Return-path: <linux-pm-owner@vger.kernel.org>
-Sender: linux-pm-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Dave Airlie <airlied@redhat.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, Bjorn Helgaas <helgaas@kernel.org>, linux-pci@vger.kernel.org, linux-pm@vger.kernel.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94727] nouveau/pushbuf.c:238: pushbuf_krel:
+ Assertion `bkref` failed.
+Date: Wed, 25 May 2016 07:04:48 +0000
+Message-ID: <bug-94727-8800-cHR7TWZpe4@http.bugs.freedesktop.org/>
+References: <bug-94727-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============0038191332=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-94727-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
 
-Here are two patches to fix an issue reported on kernel bugzilla (infinite loop
-due to unchecked function) and a more important fix to fix hanging Optimus
-machines when runtime PM is enabled (with pm/pci patches).
+--===============0038191332==
+Content-Type: multipart/alternative; boundary="14641598881.4AD1c066.29458";
+ charset="UTF-8"
 
-An older (obsolete) patch for the first issue was tested by the reporter:
-https://bugzilla.kernel.org/show_bug.cgi?id=104791#c11
-(it is replaced by "check for function 0x1B before using it").
 
-The second issue will occur when:
- - A modern Optimus laptop is in use (designed for Windows 8 or newer).
- - nouveau runtime PM is enabled (1 or the default -1).
- - The patch "PCI: Add runtime PM support for PCIe ports" from Mika is pulled
-   into v4.7 (or v4.8[1]?) via the pci/pm branch,
-   https://git.kernel.org/cgit/linux/kernel/git/helgaas/pci.git/commit/?h=pci/pm&id=8b71f5652eeac561acf883da01ab4810f763ee42
-(see also the discussion for "[PATCH] PCI: Power on bridges before scanning new
-devices" at http://article.gmane.org/gmane.linux.power-management.general/76411)
+--14641598881.4AD1c066.29458
+Date: Wed, 25 May 2016 07:04:48 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-The first two patches are just refactoring to reduce code duplication (and
-scratch an itch) and make the following patches possible. The next two patches
-fix the problems reported above.
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94727
 
-I intend to get these patches in 4.7 (or the first version where pci/pm gets
-merged) to avoid a lockup when runpm is enabled. Note:
- - If the fourth patch is merged before/without Mika's PCIe port patch, then
-   those modern Optimus machines above will not be put into D3cold.
- - If the fourth patch is not merged (or merged after Mika's patch), then under
-   the above conditions the affected machine can lock up.
- - The three other patches are unrelated to this issue and can safely be merged.
+--- Comment #2 from Mathieu Malaterre <mathieu.malaterre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Apparently it also affects some KDE applications:
+https://bugs.debian.org/822220#55
 
-Tested with:
- - Linux v4.6 + pci/pm + these four patches
- - Hardware: Clevo P651RA with acpi_osi="!Windows 2015" (the latter is a
-   workaround for another PCIe issue).
- - Card is asleep, woke up with lspci, waited a bit and retried/suspended:
-   - # lspci -xxxxnnvvvv >/dev/null; sleep 5
-   - # lspci -xxxxnnvvvv >/dev/null; sleep 5; systemctl suspend
-   - # lspci -xxxxnnvvvv >/dev/null; systemctl suspend
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
-Kind regards,
-Peter
+--14641598881.4AD1c066.29458
+Date: Wed, 25 May 2016 07:04:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
- [1]: https://lkml.kernel.org/r/20160524211309.GH1789@lahna.fi.intel.com
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau/pushbuf.c:238: pushbuf_krel: Assertion `bkref` fa=
+iled."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau/pushbuf.c:238: pushbuf_krel: Assertion `bkref` fa=
+iled."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727">bug 94727<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mathieu.malaterre&#64;gmail.com" title=3D"Mathieu Malaterre &lt;mathieu.mal=
+aterre&#64;gmail.com&gt;"> <span class=3D"fn">Mathieu Malaterre</span></a>
+</span></b>
+        <pre>Apparently it also affects some KDE applications:
+<a href=3D"https://bugs.debian.org/822220#55">https://bugs.debian.org/82222=
+0#55</a></pre>
+        </div>
+      </p>
 
-Peter Wu (4):
-  drm/nouveau/acpi: ensure matching ACPI handle and supported functions
-  drm/nouveau/acpi: return supported DSM functions
-  drm/nouveau/acpi: check for function 0x1B before using it
-  drm/nouveau/acpi: fix lockup with PCIe runtime PM
 
- drivers/gpu/drm/nouveau/nouveau_acpi.c | 100 +++++++++++++++++++++------------
- 1 file changed, 63 insertions(+), 37 deletions(-)
+      <hr>
+      <span>You are receiving this mail because:</span>
 
--- 
-2.8.2
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
 
+--14641598881.4AD1c066.29458--
+
+--===============0038191332==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0038191332==--
