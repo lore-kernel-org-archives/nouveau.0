@@ -1,73 +1,72 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Nouveau] [PATCH 9/9] drm: Turn off crtc before tearing down its
- data structure
-Date: Wed, 25 May 2016 15:43:42 +0200
-Message-ID: <CAKMK7uGFb9ihRtjeK7s0ezPPv-C6S9GKbE4h9MLoPyHyN=9W5Q@mail.gmail.com>
-References: <cover.1464103767.git.lukas@wunner.de>
- <e83cf2e628a8e0299e029e7a1c3d4f183ce1a2af.1464103767.git.lukas@wunner.de>
- <20160524213042.GC27098@phenom.ffwll.local>
- <20160525105136.GA6235@wunner.de>
+From: Mika Westerberg <mika.westerberg@linux.intel.com>
+Subject: Re: [PATCH 4/4] drm/nouveau/acpi: fix lockup with PCIe runtime PM
+Date: Wed, 25 May 2016 16:55:35 +0300
+Message-ID: <20160525135535.GN1789@lahna.fi.intel.com>
+References: <1464130381-4797-1-git-send-email-peter@lekensteyn.nl>
+ <1464130381-4797-5-git-send-email-peter@lekensteyn.nl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20160525105136.GA6235@wunner.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Nouveau Dev <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>, Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-pm-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <1464130381-4797-5-git-send-email-peter@lekensteyn.nl>
+Sender: linux-pm-owner@vger.kernel.org
+To: Peter Wu <peter@lekensteyn.nl>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>, Bjorn Helgaas <helgaas@kernel.org>, linux-pci@vger.kernel.org, linux-pm@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBNYXkgMjUsIDIwMTYgYXQgMTI6NTEgUE0sIEx1a2FzIFd1bm5lciA8bHVrYXNAd3Vu
-bmVyLmRlPiB3cm90ZToKPgo+IE9uIFR1ZSwgTWF5IDI0LCAyMDE2IGF0IDExOjMwOjQyUE0gKzAy
-MDAsIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4+IE9uIFR1ZSwgTWF5IDI0LCAyMDE2IGF0IDA2OjAz
-OjI3UE0gKzAyMDAsIEx1a2FzIFd1bm5lciB3cm90ZToKPj4gPiBXaGVuIGEgZHJtX2NydGMgc3Ry
-dWN0dXJlIGlzIGRlc3Ryb3llZCB3aXRoIGRybV9jcnRjX2NsZWFudXAoKSwgdGhlIERSTQo+PiA+
-IGNvcmUgZG9lcyBub3QgdHVybiBvZmYgdGhlIGNydGMgZmlyc3QgYW5kIG5laXRoZXIgZG8gdGhl
-IGRyaXZlcnMuIFdpdGgKPj4gPiBub3V2ZWF1LCByYWRlb24gYW5kIGFtZGdwdSwgdGhpcyBjYXVz
-ZXMgYSBydW50aW1lIHBtIHJlZiB0byBiZSBsZWFrZWQgb24KPj4gPiBkcml2ZXIgdW5sb2FkIGlm
-IGF0IGxlYXN0IG9uZSBjcnRjIHdhcyBlbmFibGVkLgo+PiA+Cj4+ID4gKFNlZSB1c2FnZSBvZiBo
-YXZlX2Rpc3BfcG93ZXJfcmVmIGluIG5vdXZlYXVfY3J0Y19zZXRfY29uZmlnKCksCj4+ID4gcmFk
-ZW9uX2NydGNfc2V0X2NvbmZpZygpIGFuZCBhbWRncHVfY3J0Y19zZXRfY29uZmlnKCkpLgo+PiA+
-Cj4+ID4gRml4ZXM6IDVhZGRjZjBhNWYwZiAoIm5vdXZlYXU6IGFkZCBydW50aW1lIFBNIHN1cHBv
-cnQgKHYwLjkpIikKPj4gPiBDYzogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4KPj4g
-PiBUZXN0ZWQtYnk6IEthcm9sIEhlcmJzdCA8bm91dmVhdUBrYXJvbGhlcmJzdC5kZT4KPj4gPiBT
-aWduZWQtb2ZmLWJ5OiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5lci5kZT4KPj4KPj4gVGhpcyBp
-cyBhIGNvcmUgcmVncmVzc2lvbiwgd2UgZml4ZWQgaXQgYWdhaW4uIFByZXZpb3VzbHkgd2hlbiB1
-bnJlZmVyZW5jZQo+PiBkcm1fcGxhbmVzIHRoZSBjb3JlIG1hZGUgc3VyZSB0aGF0IGl0J3Mgbm90
-IGxvbmdlciBpbiB1c2UsIHdoaWNoIGhhZCB0aGUKPj4gc2lkZSBlZmZlY3Qgb2Ygc2h1dHRpbmcg
-ZXZlcnl0aGluZyBvZmYgaW4gbW9kdWxlIHVubG9hZC4KPj4KPj4gRm9yIGEgYnVuY2ggb2YgcmVh
-c29ucyB3ZSd2ZSBzdG9wcGVkIGRvaW5nIHRoYXQsIGJ1dCB0aGF0IHR1cm5lZCBvdXQgdG8gYmUK
-Pj4gYSBtaXN0YWtlLiBJdCdzIGZpeGVkIHNpbmNlCj4+Cj4+IGNvbW1pdCBmMmQ1ODBiOWE4MTQ5
-NzM1Y2JjNGI1OWM0YThkZjYwMTczNjU4MTQwCj4+IEF1dGhvcjogTWFhcnRlbiBMYW5raG9yc3Qg
-PG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPj4gRGF0ZTogICBXZWQgTWF5IDQg
-MTQ6Mzg6MjYgMjAxNiArMDIwMAo+Pgo+PiAgICAgZHJtL2NvcmU6IERvIG5vdCBwcmVzZXJ2ZSBm
-cmFtZWJ1ZmZlciBvbiBybWZiLCB2NC4KPj4KPj4gWW91ciBwYXRjaCBzaG91bGRuJ3QgYmUgbmVl
-ZGVkIHdpdGggdGhhdCBhbnkgbW9yZS4gSWYgaXQgc3RpbGwgaXMgaXQncwo+PiBtb3N0IGxpa2Vs
-eSB0aGUgZmJkZXYgY2xlYW51cCBkb25lIHRvbyBsYXRlLCBidXQgeW91IC9zaG91bGQvIGdldCBh
-IGJpZwo+PiBXQVJOSU5HIHNwbGF0IGluIHRoYXQgY2FzZSBmcm9tIGRybV9tb2RlX2NvbmZpZ19j
-bGVhbnVwKCkuCj4KPiBJIHRlc3RlZCBpdCBhbmQgYXQgbGVhc3Qgd2l0aCBub3V2ZWF1LCB0aGUg
-YWJvdmUtbWVudGlvbmVkIGNvbW1pdCBkb2VzICpub3QqCj4gc29sdmUgdGhlIGlzc3VlLCBzbyBw
-YXRjaCBbOS85XSBvZiB0aGlzIHNlcmllcyBpcyBzdGlsbCBuZWVkZWQuIEkgZG8gbm90IGdldAo+
-IGEgV0FSTiBzcGxhdCB3aGVuIHVubG9hZGluZyBub3V2ZWF1LgoKV2l0aCBsZWdhY3kga21zIHRo
-ZSBvbmx5IHdheSB0byBrZWVwIGEgY3J0YyBlbmFibGVkIGlzIHRvIGRpc3BsYXkgYQpkcm1fZnJh
-bWVidWZmZXIgb24gaXQuIEFuZCBkcm1fbW9kZV9jb25maWdfY2xlYW51cCBoYXMgYSBXQVJOX09O
-IGlmCmZyYW1lYnVmZmVycyBhcmUgbGVmdCBiZWhpbmQuIFRoZXJlJ3MgYSBidW5jaCBvZiBvcHRp
-b25zOgotIG5vdXZlYXUgc29tZWhvdyBtYW5hZ2VzIHRvIGtlZXAgdGhlIGNydGMgb24gd2l0aG91
-dCBhIGZyYW1lYnVmZmVyCi0gbm91dmVhdSBzb21laG93IGxlYWtzIGEgZHJtX2ZyYW1lYnVmZmVy
-LCBidXQgcmVtb3ZlcyBpdCBmcm9tIHRoZSBmYl9saXN0Ci0gc29tZXRoaW5nIGVsc2UKClRoZXJl
-J3Mgc3RpbGwgbm8gbmVlZCB0byBmb3JjZWZ1bGx5IHNodXQgZG93biBjcnRjIGF0IGNsZWFudXAg
-dGltZSBpbgp0aGUgY29yZSwgdGhpcyBpcyBzdGlsbCBhIGRyaXZlciBidWcuIFNvIHllcyB5b3Vy
-IHBhdGNoIG1pZ2h0IGJlCm5lZWRlZCwgYnV0IGl0J3Mgbm90IHRoZSByaWdodCBmaXguCi1EYW5p
-ZWwKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9u
-Cis0MSAoMCkgNzkgMzY1IDU3IDQ4IC0gaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlz
-dApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+On Wed, May 25, 2016 at 12:53:01AM +0200, Peter Wu wrote:
+> Since "PCI: Add runtime PM support for PCIe ports", the parent PCIe port
+> can be runtime-suspended which disables power resources via ACPI. This
+> is incompatible with DSM, resulting in a GPU device which is still in D3
+> and locks up the kernel on resume.
+> 
+> Mirror the behavior of Windows 8 and newer[1] (as observed via an AMLi
+> debugger trace) and stop using the DSM functions for D3cold when power
+> resources are available on the parent PCIe port.
+> 
+>  [1]: https://msdn.microsoft.com/windows/hardware/drivers/bringup/firmware-requirements-for-d3cold
+> 
+> Signed-off-by: Peter Wu <peter@lekensteyn.nl>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_acpi.c | 34 ++++++++++++++++++++++++++++++----
+>  1 file changed, 30 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> index df9f73e..e469df7 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+> @@ -46,6 +46,7 @@ static struct nouveau_dsm_priv {
+>  	bool dsm_detected;
+>  	bool optimus_detected;
+>  	bool optimus_flags_detected;
+> +	bool optimus_skip_dsm;
+>  	acpi_handle dhandle;
+>  	acpi_handle rom_handle;
+>  } nouveau_dsm_priv;
+> @@ -212,8 +213,26 @@ static const struct vga_switcheroo_handler nouveau_dsm_handler = {
+>  	.get_client_id = nouveau_dsm_get_client_id,
+>  };
+>  
+> +/* Firmware supporting Windows 8 or later do not use _DSM to put the device into
+> + * D3cold, they instead rely on disabling power resources on the parent. */
+> +static bool nouveau_pr3_present(struct pci_dev *pdev)
+> +{
+> +	struct pci_dev *parent_pdev = pci_upstream_bridge(pdev);
+> +	struct acpi_device *ad;
+
+Nit: please call this adev instead of ad.
+
+> +
+> +	if (!parent_pdev)
+> +		return false;
+> +
+> +	ad = ACPI_COMPANION(&parent_pdev->dev);
+> +	if (!ad)
+> +		return false;
+> +
+> +	return ad->power.flags.power_resources;
+
+Is this sufficient to tell if the parent device has _PR3? I thought it
+returns true if it has power resources in general, not necessarily _PR3.
+
+Otherwise this looks okay to me.
