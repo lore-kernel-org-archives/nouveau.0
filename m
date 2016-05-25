@@ -1,85 +1,85 @@
-From: Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [Nouveau] [PATCH 0/4] nouveau fixes for RPM/Optimus-related hangs
-Date: Wed, 25 May 2016 11:08:15 +0200
-Message-ID: <128b3153-9f27-fdff-084a-a792942e3eaf@redhat.com>
-References: <1464130381-4797-1-git-send-email-peter@lekensteyn.nl>
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: Re: [PATCH 9/9] drm: Turn off crtc before tearing down
+ its data structure
+Date: Wed, 25 May 2016 12:51:36 +0200
+Message-ID: <20160525105136.GA6235@wunner.de>
+References: <cover.1464103767.git.lukas@wunner.de>
+ <e83cf2e628a8e0299e029e7a1c3d4f183ce1a2af.1464103767.git.lukas@wunner.de>
+ <20160524213042.GC27098@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-pm-owner@vger.kernel.org>
-In-Reply-To: <1464130381-4797-1-git-send-email-peter@lekensteyn.nl>
-Sender: linux-pm-owner@vger.kernel.org
-To: Peter Wu <peter@lekensteyn.nl>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Dave Airlie <airlied@redhat.com>, linux-pm@vger.kernel.org, Bjorn Helgaas <helgaas@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, linux-pci@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20160524213042.GC27098-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Cc: Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi,
-
-On 25-05-16 00:52, Peter Wu wrote:
-> Hi,
->
-> Here are two patches to fix an issue reported on kernel bugzilla (infinite loop
-> due to unchecked function) and a more important fix to fix hanging Optimus
-> machines when runtime PM is enabled (with pm/pci patches).
->
-> An older (obsolete) patch for the first issue was tested by the reporter:
-> https://bugzilla.kernel.org/show_bug.cgi?id=104791#c11
-> (it is replaced by "check for function 0x1B before using it").
->
-> The second issue will occur when:
->  - A modern Optimus laptop is in use (designed for Windows 8 or newer).
->  - nouveau runtime PM is enabled (1 or the default -1).
->  - The patch "PCI: Add runtime PM support for PCIe ports" from Mika is pulled
->    into v4.7 (or v4.8[1]?) via the pci/pm branch,
->    https://git.kernel.org/cgit/linux/kernel/git/helgaas/pci.git/commit/?h=pci/pm&id=8b71f5652eeac561acf883da01ab4810f763ee42
-> (see also the discussion for "[PATCH] PCI: Power on bridges before scanning new
-> devices" at http://article.gmane.org/gmane.linux.power-management.general/76411)
->
-> The first two patches are just refactoring to reduce code duplication (and
-> scratch an itch) and make the following patches possible. The next two patches
-> fix the problems reported above.
->
-> I intend to get these patches in 4.7 (or the first version where pci/pm gets
-> merged) to avoid a lockup when runpm is enabled. Note:
->  - If the fourth patch is merged before/without Mika's PCIe port patch, then
->    those modern Optimus machines above will not be put into D3cold.
->  - If the fourth patch is not merged (or merged after Mika's patch), then under
->    the above conditions the affected machine can lock up.
->  - The three other patches are unrelated to this issue and can safely be merged.
->
-> Tested with:
->  - Linux v4.6 + pci/pm + these four patches
->  - Hardware: Clevo P651RA with acpi_osi="!Windows 2015" (the latter is a
->    workaround for another PCIe issue).
->  - Card is asleep, woke up with lspci, waited a bit and retried/suspended:
->    - # lspci -xxxxnnvvvv >/dev/null; sleep 5
->    - # lspci -xxxxnnvvvv >/dev/null; sleep 5; systemctl suspend
->    - # lspci -xxxxnnvvvv >/dev/null; systemctl suspend
-
-Series looks good to me:
-
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
-
-Regards,
-
-Hans
-
-
-
-
-
->
-> Kind regards,
-> Peter
->
->  [1]: https://lkml.kernel.org/r/20160524211309.GH1789@lahna.fi.intel.com
->
-> Peter Wu (4):
->   drm/nouveau/acpi: ensure matching ACPI handle and supported functions
->   drm/nouveau/acpi: return supported DSM functions
->   drm/nouveau/acpi: check for function 0x1B before using it
->   drm/nouveau/acpi: fix lockup with PCIe runtime PM
->
->  drivers/gpu/drm/nouveau/nouveau_acpi.c | 100 +++++++++++++++++++++------------
->  1 file changed, 63 insertions(+), 37 deletions(-)
->
+SGkgRGFuaWVsLAoKT24gVHVlLCBNYXkgMjQsIDIwMTYgYXQgMTE6MzA6NDJQTSArMDIwMCwgRGFu
+aWVsIFZldHRlciB3cm90ZToKPiBPbiBUdWUsIE1heSAyNCwgMjAxNiBhdCAwNjowMzoyN1BNICsw
+MjAwLCBMdWthcyBXdW5uZXIgd3JvdGU6Cj4gPiBXaGVuIGEgZHJtX2NydGMgc3RydWN0dXJlIGlz
+IGRlc3Ryb3llZCB3aXRoIGRybV9jcnRjX2NsZWFudXAoKSwgdGhlIERSTQo+ID4gY29yZSBkb2Vz
+IG5vdCB0dXJuIG9mZiB0aGUgY3J0YyBmaXJzdCBhbmQgbmVpdGhlciBkbyB0aGUgZHJpdmVycy4g
+V2l0aAo+ID4gbm91dmVhdSwgcmFkZW9uIGFuZCBhbWRncHUsIHRoaXMgY2F1c2VzIGEgcnVudGlt
+ZSBwbSByZWYgdG8gYmUgbGVha2VkIG9uCj4gPiBkcml2ZXIgdW5sb2FkIGlmIGF0IGxlYXN0IG9u
+ZSBjcnRjIHdhcyBlbmFibGVkLgo+ID4gCj4gPiAoU2VlIHVzYWdlIG9mIGhhdmVfZGlzcF9wb3dl
+cl9yZWYgaW4gbm91dmVhdV9jcnRjX3NldF9jb25maWcoKSwKPiA+IHJhZGVvbl9jcnRjX3NldF9j
+b25maWcoKSBhbmQgYW1kZ3B1X2NydGNfc2V0X2NvbmZpZygpKS4KPiA+IAo+ID4gRml4ZXM6IDVh
+ZGRjZjBhNWYwZiAoIm5vdXZlYXU6IGFkZCBydW50aW1lIFBNIHN1cHBvcnQgKHYwLjkpIikKPiA+
+IENjOiBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPgo+ID4gVGVzdGVkLWJ5OiBLYXJv
+bCBIZXJic3QgPG5vdXZlYXVAa2Fyb2xoZXJic3QuZGU+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBMdWth
+cyBXdW5uZXIgPGx1a2FzQHd1bm5lci5kZT4KPiAKPiBUaGlzIGlzIGEgY29yZSByZWdyZXNzaW9u
+LCB3ZSBmaXhlZCBpdCBhZ2Fpbi4gUHJldmlvdXNseSB3aGVuIHVucmVmZXJlbmNlCj4gZHJtX3Bs
+YW5lcyB0aGUgY29yZSBtYWRlIHN1cmUgdGhhdCBpdCdzIG5vdCBsb25nZXIgaW4gdXNlLCB3aGlj
+aCBoYWQgdGhlCj4gc2lkZSBlZmZlY3Qgb2Ygc2h1dHRpbmcgZXZlcnl0aGluZyBvZmYgaW4gbW9k
+dWxlIHVubG9hZC4KPiAKPiBGb3IgYSBidW5jaCBvZiByZWFzb25zIHdlJ3ZlIHN0b3BwZWQgZG9p
+bmcgdGhhdCwgYnV0IHRoYXQgdHVybmVkIG91dCB0byBiZQo+IGEgbWlzdGFrZS4gSXQncyBmaXhl
+ZCBzaW5jZQo+IAo+IGNvbW1pdCBmMmQ1ODBiOWE4MTQ5NzM1Y2JjNGI1OWM0YThkZjYwMTczNjU4
+MTQwCj4gQXV0aG9yOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXgu
+aW50ZWwuY29tPgo+IERhdGU6ICAgV2VkIE1heSA0IDE0OjM4OjI2IDIwMTYgKzAyMDAKPiAKPiAg
+ICAgZHJtL2NvcmU6IERvIG5vdCBwcmVzZXJ2ZSBmcmFtZWJ1ZmZlciBvbiBybWZiLCB2NC4KPiAK
+PiBZb3VyIHBhdGNoIHNob3VsZG4ndCBiZSBuZWVkZWQgd2l0aCB0aGF0IGFueSBtb3JlLiBJZiBp
+dCBzdGlsbCBpcyBpdCdzCj4gbW9zdCBsaWtlbHkgdGhlIGZiZGV2IGNsZWFudXAgZG9uZSB0b28g
+bGF0ZSwgYnV0IHlvdSAvc2hvdWxkLyBnZXQgYSBiaWcKPiBXQVJOSU5HIHNwbGF0IGluIHRoYXQg
+Y2FzZSBmcm9tIGRybV9tb2RlX2NvbmZpZ19jbGVhbnVwKCkuCgpJIHRlc3RlZCBpdCBhbmQgYXQg
+bGVhc3Qgd2l0aCBub3V2ZWF1LCB0aGUgYWJvdmUtbWVudGlvbmVkIGNvbW1pdCBkb2VzICpub3Qq
+CnNvbHZlIHRoZSBpc3N1ZSwgc28gcGF0Y2ggWzkvOV0gb2YgdGhpcyBzZXJpZXMgaXMgc3RpbGwg
+bmVlZGVkLiBJIGRvIG5vdCBnZXQKYSBXQVJOIHNwbGF0IHdoZW4gdW5sb2FkaW5nIG5vdXZlYXUu
+CgpCZXN0IHJlZ2FyZHMsCgpMdWthcwoKPiAKPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9k
+cm1fY3J0Yy5jIHwgMTMgKysrKysrKysrKysrLQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxMiBpbnNl
+cnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vZHJtX2NydGMuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fY3J0Yy5jCj4gPiBpbmRleCBk
+MmE2ZDk1Li4wY2Q2ZjAwIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9jcnRj
+LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fY3J0Yy5jCj4gPiBAQCAtNzE2LDEyICs3
+MTYsMjMgQEAgRVhQT1JUX1NZTUJPTChkcm1fY3J0Y19pbml0X3dpdGhfcGxhbmVzKTsKPiA+ICAg
+Kgo+ID4gICAqIFRoaXMgZnVuY3Rpb24gY2xlYW5zIHVwIEBjcnRjIGFuZCByZW1vdmVzIGl0IGZy
+b20gdGhlIERSTSBtb2RlIHNldHRpbmcKPiA+ICAgKiBjb3JlLiBOb3RlIHRoYXQgdGhlIGZ1bmN0
+aW9uIGRvZXMgKm5vdCogZnJlZSB0aGUgY3J0YyBzdHJ1Y3R1cmUgaXRzZWxmLAo+ID4gLSAqIHRo
+aXMgaXMgdGhlIHJlc3BvbnNpYmlsaXR5IG9mIHRoZSBjYWxsZXIuCj4gPiArICogdGhpcyBpcyB0
+aGUgcmVzcG9uc2liaWxpdHkgb2YgdGhlIGNhbGxlci4gSWYgQGNydGMgaXMgY3VycmVudGx5IGVu
+YWJsZWQsCj4gPiArICogaXQgaXMgdHVybmVkIG9mZiBmaXJzdC4KPiA+ICAgKi8KPiA+ICB2b2lk
+IGRybV9jcnRjX2NsZWFudXAoc3RydWN0IGRybV9jcnRjICpjcnRjKQo+ID4gIHsKPiA+ICAJc3Ry
+dWN0IGRybV9kZXZpY2UgKmRldiA9IGNydGMtPmRldjsKPiA+ICAKPiA+ICsJaWYgKGNydGMtPmVu
+YWJsZWQpIHsKPiA+ICsJCXN0cnVjdCBkcm1fbW9kZV9zZXQgbW9kZXNldCA9IHsKPiA+ICsJCQku
+Y3J0YyA9IGNydGMsCj4gPiArCQl9Owo+ID4gKwo+ID4gKwkJZHJtX21vZGVzZXRfbG9ja19hbGwo
+ZGV2KTsKPiA+ICsJCWRybV9tb2RlX3NldF9jb25maWdfaW50ZXJuYWwoJm1vZGVzZXQpOwo+ID4g
+KwkJZHJtX21vZGVzZXRfdW5sb2NrX2FsbChkZXYpOwo+ID4gKwl9Cj4gPiArCj4gPiAgCWtmcmVl
+KGNydGMtPmdhbW1hX3N0b3JlKTsKPiA+ICAJY3J0Yy0+Z2FtbWFfc3RvcmUgPSBOVUxMOwo+ID4g
+IAo+ID4gLS0gCj4gPiAyLjguMQo+ID4gCj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwo+ID4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiA+IE5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPiAKPiAtLSAKPiBEYW5pZWwgVmV0dGVyCj4gU29mdHdh
+cmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCj4gaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
