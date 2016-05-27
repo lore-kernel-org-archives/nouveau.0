@@ -1,12 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95031] [NVE4] 660 Ti Random GPU lockups
-Date: Thu, 26 May 2016 23:43:17 +0000
-Message-ID: <bug-95031-8800-73PL1FbM5y@http.bugs.freedesktop.org/>
-References: <bug-95031-8800@http.bugs.freedesktop.org/>
+From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Subject: Re: [PATCH 1/9] drm/nouveau: Don't leak runtime pm ref on
+ driver unload
+Date: Fri, 27 May 2016 03:07:33 +0200
+Message-ID: <20160527010733.GA1029@al>
+References: <cover.1464103767.git.lukas@wunner.de>
+ <dd120a30cb769c93af8973cae41f61831d17e04b.1464103767.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1749494899=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95031-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <dd120a30cb769c93af8973cae41f61831d17e04b.1464103767.git.lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,134 +20,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1749494899==
-Content-Type: multipart/alternative; boundary="14643061970.340eC02d.6749";
- charset="UTF-8"
-
-
---14643061970.340eC02d.6749
-Date: Thu, 26 May 2016 23:43:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95031
-
-Lucas Ribeiro <lucasout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
-
---- Comment #9 from Lucas Ribeiro <lucasout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Running kernel 4.6 has improved the driver. I don't know what changed, but I
-have yet to see lockups on this card. No out of tree patches applied.
-
-Will post again if I experience a freeze.
-
-Thanks!
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14643061970.340eC02d.6749
-Date: Thu, 26 May 2016 23:43:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:lucasout&=
-#64;gmail.com" title=3D"Lucas Ribeiro &lt;lucasout&#64;gmail.com&gt;"> <spa=
-n class=3D"fn">Lucas Ribeiro</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVE4] 660 Ti Random GPU lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95031">bug 95031<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVE4] 660 Ti Random GPU lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95031#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVE4] 660 Ti Random GPU lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95031">bug 95031<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lucasout&#64;gmail.com" title=3D"Lucas Ribeiro &lt;lucasout&#64;gmail.com&g=
-t;"> <span class=3D"fn">Lucas Ribeiro</span></a>
-</span></b>
-        <pre>Running kernel 4.6 has improved the driver. I don't know what =
-changed, but I
-have yet to see lockups on this card. No out of tree patches applied.
-
-Will post again if I experience a freeze.
-
-Thanks!</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14643061970.340eC02d.6749--
-
---===============1749494899==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1749494899==--
+T24gVHVlLCBNYXkgMjQsIDIwMTYgYXQgMDY6MDM6MjdQTSArMDIwMCwgTHVrYXMgV3VubmVyIHdy
+b3RlOgo+IG5vdXZlYXVfZHJtX2xvYWQoKSBjYWxscyBwbV9ydW50aW1lX3B1dCgpIGlmIG5vdXZl
+YXVfcnVudGltZV9wbSAhPSAwLAo+IGJ1dCBub3V2ZWF1X2RybV91bmxvYWQoKSBjYWxscyBwbV9y
+dW50aW1lX2dldF9zeW5jKCkgdW5jb25kaXRpb25hbGx5Lgo+IFdlIHRoZXJlZm9yZSBsZWFrIGEg
+cnVudGltZSBwbSByZWYgd2hlbmV2ZXIgbm91dmVhdSBpcyBsb2FkZWQgd2l0aAo+IHJ1bnBtPTAg
+YW5kIHRoZW4gdW5sb2FkZWQuIFRoZSBHUFUgd2lsbCBzdWJzZXF1ZW50bHkgbmV2ZXIgcnVudGlt
+ZQo+IHN1c3BlbmQgZXZlbiBpZiBub3V2ZWF1IGlzIGxvYWRlZCBhZ2FpbiB3aXRoIHJ1bnBtPTEu
+Cj4gCj4gRml4IGJ5IHRha2luZyB0aGUgcnVudGltZSBwbSByZWYgdW5kZXIgdGhlIHNhbWUgY29u
+ZGl0aW9uIHRoYXQgaXQgd2FzCj4gcmVsZWFzZWQgb24gZHJpdmVyIGxvYWQuCj4gCj4gRml4ZXM6
+IDVhZGRjZjBhNWYwZiAoIm5vdXZlYXU6IGFkZCBydW50aW1lIFBNIHN1cHBvcnQgKHYwLjkpIikK
+PiBDYzogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4KPiBSZXBvcnRlZC1ieTogS2Fy
+b2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgo+IFRlc3RlZC1ieTogS2Fyb2wgSGVy
+YnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgo+IFNpZ25lZC1vZmYtYnk6IEx1a2FzIFd1bm5l
+ciA8bHVrYXNAd3VubmVyLmRlPgoKTG9va3MgZ29vZCwgSSB0ZXN0ZWQgdGhpcyBzY2VuYXJpbzoK
+CiAgICBydSgpeyBjYXQgL3N5cy9idXMvcGNpL2RldmljZXMvMDAwMFw6MDE6MDAuMC9wb3dlci9y
+dW50aW1lX3VzYWdlO30KICAgIHJ1ICMgcmVwb3J0cyAxCiAgICBtb2Rwcm9iZSBub3V2ZWF1IHJ1
+bnBtPTAKICAgIHJ1ICMgcmVwb3J0cyAyCiAgICBybW1vZCBub3V2ZWF1CiAgICBydSAjIHJlcG9y
+dHMgMQoKV2l0aG91dCBydW5wbT0wIHRoZSBjb3VudCBkcm9wcyB0byAwIGluIHRoZSBzZWNvbmQg
+c3RlcCBhbmQgc3RheXMgMCBpbgp0aGUgdGhpcmQgc3RlcC4gQWZ0ZXIgYXBwbHlpbmcgcGF0Y2gg
+Mi85LCB0aGlzIGNvcnJlY3RseSByZXBvcnRzIDEgYXMKZXhwZWN0ZWQgKHRoaXMgaXMgdGhlIHNh
+bWUgYXMgbWFudWFsbHkgc2V0dGluZyBwb3dlci9jb250cm9sIHRvIG9uKS4KClBldGVyCgo+IC0t
+LQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIHwgNSArKysrLQo+ICAx
+IGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4gaW5kZXggMTFmOGRkOS4uZmFmNzQzOCAxMDA2
+NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4gKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+IEBAIC00OTgsNyArNDk4LDEw
+IEBAIG5vdXZlYXVfZHJtX3VubG9hZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ICB7Cj4gIAlz
+dHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKGRldik7Cj4gIAo+IC0JcG1fcnVu
+dGltZV9nZXRfc3luYyhkZXYtPmRldik7Cj4gKwlpZiAobm91dmVhdV9ydW50aW1lX3BtICE9IDAp
+IHsKPiArCQlwbV9ydW50aW1lX2dldF9zeW5jKGRldi0+ZGV2KTsKPiArCX0KPiArCj4gIAlub3V2
+ZWF1X2ZiY29uX2ZpbmkoZGV2KTsKPiAgCW5vdXZlYXVfYWNjZWxfZmluaShkcm0pOwo+ICAJbm91
+dmVhdV9od21vbl9maW5pKGRldik7Cj4gLS0gCj4gMi44LjEKPiAKPiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4g
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKCi0tIApLaW5kIHJlZ2FyZHMsClBldGVyIFd1
+Cmh0dHBzOi8vbGVrZW5zdGV5bi5ubApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
