@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95095] NV46 (G72) Full screen artifacts in Freespace
- 2 SW OT mod
-Date: Sun, 29 May 2016 13:49:51 +0000
-Message-ID: <bug-95095-8800-GRSOsSO6jM@http.bugs.freedesktop.org/>
-References: <bug-95095-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: Re: [PATCH 1/9] drm/nouveau: Don't leak runtime pm ref on
+ driver unload
+Date: Sun, 29 May 2016 17:50:06 +0200
+Message-ID: <20160529155006.GA12909@wunner.de>
+References: <cover.1464103767.git.lukas@wunner.de>
+ <dd120a30cb769c93af8973cae41f61831d17e04b.1464103767.git.lukas@wunner.de>
+ <20160527010733.GA1029@al>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1978382053=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95095-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20160527010733.GA1029@al>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,93 +21,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1978382053==
-Content-Type: multipart/alternative; boundary="14645297910.CAd6C9.2565";
- charset="UTF-8"
-
-
---14645297910.CAd6C9.2565
-Date: Sun, 29 May 2016 13:49:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95095
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Oh, and on the hwtnl vs swtnl thing - it's most likely a bug in the driver,=
- or
-limitation of the hw (e.g. precision, etc) which is making the hwtnl path f=
-ail.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14645297910.CAd6C9.2565
-Date: Sun, 29 May 2016 13:49:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NV46 (G72) Full screen artifacts in Freespace 2 SW OT mod"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95095#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NV46 (G72) Full screen artifacts in Freespace 2 SW OT mod"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95095">bug 95095<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Oh, and on the hwtnl vs swtnl thing - it's most likely a bug i=
-n the driver, or
-limitation of the hw (e.g. precision, etc) which is making the hwtnl path f=
-ail.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14645297910.CAd6C9.2565--
-
---===============1978382053==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1978382053==--
+SGkgUGV0ZXIsCgpPbiBGcmksIE1heSAyNywgMjAxNiBhdCAwMzowNzozM0FNICswMjAwLCBQZXRl
+ciBXdSB3cm90ZToKPiBPbiBUdWUsIE1heSAyNCwgMjAxNiBhdCAwNjowMzoyN1BNICswMjAwLCBM
+dWthcyBXdW5uZXIgd3JvdGU6Cj4gPiBub3V2ZWF1X2RybV9sb2FkKCkgY2FsbHMgcG1fcnVudGlt
+ZV9wdXQoKSBpZiBub3V2ZWF1X3J1bnRpbWVfcG0gIT0gMCwKPiA+IGJ1dCBub3V2ZWF1X2RybV91
+bmxvYWQoKSBjYWxscyBwbV9ydW50aW1lX2dldF9zeW5jKCkgdW5jb25kaXRpb25hbGx5Lgo+ID4g
+V2UgdGhlcmVmb3JlIGxlYWsgYSBydW50aW1lIHBtIHJlZiB3aGVuZXZlciBub3V2ZWF1IGlzIGxv
+YWRlZCB3aXRoCj4gPiBydW5wbT0wIGFuZCB0aGVuIHVubG9hZGVkLiBUaGUgR1BVIHdpbGwgc3Vi
+c2VxdWVudGx5IG5ldmVyIHJ1bnRpbWUKPiA+IHN1c3BlbmQgZXZlbiBpZiBub3V2ZWF1IGlzIGxv
+YWRlZCBhZ2FpbiB3aXRoIHJ1bnBtPTEuCj4gPiAKPiA+IEZpeCBieSB0YWtpbmcgdGhlIHJ1bnRp
+bWUgcG0gcmVmIHVuZGVyIHRoZSBzYW1lIGNvbmRpdGlvbiB0aGF0IGl0IHdhcwo+ID4gcmVsZWFz
+ZWQgb24gZHJpdmVyIGxvYWQuCj4gPiAKPiA+IEZpeGVzOiA1YWRkY2YwYTVmMGYgKCJub3V2ZWF1
+OiBhZGQgcnVudGltZSBQTSBzdXBwb3J0ICh2MC45KSIpCj4gPiBDYzogRGF2ZSBBaXJsaWUgPGFp
+cmxpZWRAcmVkaGF0LmNvbT4KPiA+IFJlcG9ydGVkLWJ5OiBLYXJvbCBIZXJic3QgPG5vdXZlYXVA
+a2Fyb2xoZXJic3QuZGU+Cj4gPiBUZXN0ZWQtYnk6IEthcm9sIEhlcmJzdCA8bm91dmVhdUBrYXJv
+bGhlcmJzdC5kZT4KPiA+IFNpZ25lZC1vZmYtYnk6IEx1a2FzIFd1bm5lciA8bHVrYXNAd3VubmVy
+LmRlPgo+IAo+IExvb2tzIGdvb2QsIEkgdGVzdGVkIHRoaXMgc2NlbmFyaW86Cj4gCj4gICAgIHJ1
+KCl7IGNhdCAvc3lzL2J1cy9wY2kvZGV2aWNlcy8wMDAwXDowMTowMC4wL3Bvd2VyL3J1bnRpbWVf
+dXNhZ2U7fQo+ICAgICBydSAjIHJlcG9ydHMgMQo+ICAgICBtb2Rwcm9iZSBub3V2ZWF1IHJ1bnBt
+PTAKPiAgICAgcnUgIyByZXBvcnRzIDIKPiAgICAgcm1tb2Qgbm91dmVhdQo+ICAgICBydSAjIHJl
+cG9ydHMgMQo+IAo+IFdpdGhvdXQgcnVucG09MCB0aGUgY291bnQgZHJvcHMgdG8gMCBpbiB0aGUg
+c2Vjb25kIHN0ZXAgYW5kIHN0YXlzIDAgaW4KPiB0aGUgdGhpcmQgc3RlcC4gQWZ0ZXIgYXBwbHlp
+bmcgcGF0Y2ggMi85LCB0aGlzIGNvcnJlY3RseSByZXBvcnRzIDEgYXMKPiBleHBlY3RlZCAodGhp
+cyBpcyB0aGUgc2FtZSBhcyBtYW51YWxseSBzZXR0aW5nIHBvd2VyL2NvbnRyb2wgdG8gb24pLgoK
+SG93IGV4YWN0bHkgZGlkIHlvdSByZWFjaCB0aGUgc2l0dWF0aW9uIHdoZXJlIHRoZSByb290IHBv
+cnQgZGlkbid0IHdha2UKdXAgd2hlbiB5b3UgdHJpZWQgdG8gbG9hZCBub3V2ZWF1IGFnYWluPyAo
+SVJDIGNvbnZlcnNhdGlvbiB0aGlzIHdlZWsuKQoKV2hhdCdzIGhhcHBlbmluZyBpcywgdGhlIFBD
+SSBjb3JlIHdpbGwga2VlcCB1bmJvdW5kIGRldmljZXMgKGkuZS4sCndpdGhvdXQgZHJpdmVyKSBp
+biBEMCBidXQgdGhlIHJ1bnRpbWUgc3RhdHVzIGlzIGFsbG93ZWQgdG8gY2hhbmdlCnRvICJzdXNw
+ZW5kZWQiLiBTbyBpdCdsbCBhcHBlYXIgdG8gdGhlIGtlcm5lbCBhcyBpZiBpdCB3YXMgc3VzcGVu
+ZGVkCmJ1dCBpbiByZWFsaXR5IGl0IHN0YXlzIGluIEQwLgoKT25jZSBydW50aW1lIHBtIGZvciBQ
+Q0llIHBvcnRzIGdldHMgbWVyZ2VkLCB0aGUgcm9vdCBwb3J0IGFib3ZlIHRoZQpHUFUgd2lsbCBp
+bmRlZWQgZ28gdG8gRDMgaW4gc3VjaCBhIHNpdHVhdGlvbiBiZWNhdXNlIHRoZSBjaGVjawpwbV9j
+aGlsZHJlbl9zdXNwZW5kZWQoKSAoY2FsbGVkIGZyb20gcnBtX2NoZWNrX3N1c3BlbmRfYWxsb3dl
+ZCgpKQpyZXR1cm5zIHRydWUuCgpJJ20gbm90IHN1cmUgaWYgdGhpcyBpcyBkZXNpcmFibGUgb3Ig
+bm90LiBJZiB3ZSBrZWVwIHVuYm91bmQgZGV2aWNlcwppbiBEMCwgc2hvdWxkIHdlIGFsbG93IHBv
+cnRzIGFib3ZlIHRoZW0gdG8gZ28gdG8gRDM/CgpJbiBhbnkgY2FzZSwgd2hlbiBub3V2ZWF1IGlz
+IGxvYWRlZCBhZ2FpbiwgbG9jYWxfcGNpX3Byb2JlKCkgd2lsbApjYWxsIHBtX3J1bnRpbWVfZ2V0
+X3N5bmMoKSwgd2hpY2ggd2lsbCBpbXBsaWNpdGx5IHNldCB0aGUgcnVudGltZQpzdGF0dXMgdG8g
+ImFjdGl2ZSIgYW5kIHdoaWNoIHNob3VsZCBhbHNvIHdha2UgcGFyZW50cy4gU28gaG93IGRpZAp5
+b3UgZXZlciByZWFjaCBhIHBvaW50IHdoZXJlIHlvdSBsb2FkZWQgbm91dmVhdSBhbmQgdGhlIHJv
+b3QgcG9ydApzdGF5ZWQgYXNsZWVwPyBDbGVhcmx5IHdlIGhhdmUgYSBidWcgdGhlcmUsIHF1ZXN0
+aW9uIGlzIHdoZXJlLgpUaGlzIHNob3VsZG4ndCB3b3JrIG9ubHkgaWYgcG1fcnVudGltZV9mb3Ji
+aWQoKSB3YXMgY2FsbGVkIG9uCmRyaXZlciB1bmxvYWQuCgpUaGFua3MgZm9yIHRoZSBleHRlbnNp
+dmUgdGVzdGluZyEKCkx1a2FzCgo+IAo+IFBldGVyCj4gCj4gPiAtLS0KPiA+ICBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIHwgNSArKysrLQo+ID4gIDEgZmlsZSBjaGFuZ2Vk
+LCA0IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2RybS5jCj4gPiBpbmRleCAxMWY4ZGQ5Li5mYWY3NDM4IDEwMDY0NAo+ID4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+ID4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+ID4gQEAgLTQ5OCw3ICs0OTgsMTAg
+QEAgbm91dmVhdV9kcm1fdW5sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4gPiAgewo+ID4g
+IAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKGRldik7Cj4gPiAgCj4gPiAt
+CXBtX3J1bnRpbWVfZ2V0X3N5bmMoZGV2LT5kZXYpOwo+ID4gKwlpZiAobm91dmVhdV9ydW50aW1l
+X3BtICE9IDApIHsKPiA+ICsJCXBtX3J1bnRpbWVfZ2V0X3N5bmMoZGV2LT5kZXYpOwo+ID4gKwl9
+Cj4gPiArCj4gPiAgCW5vdXZlYXVfZmJjb25fZmluaShkZXYpOwo+ID4gIAlub3V2ZWF1X2FjY2Vs
+X2ZpbmkoZHJtKTsKPiA+ICAJbm91dmVhdV9od21vbl9maW5pKGRldik7Cj4gPiAtLSAKPiA+IDIu
+OC4xCj4gPiAKPiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCj4gPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+ID4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKPiA+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo+IAo+IC0tIAo+IEtpbmQgcmVnYXJkcywKPiBQZXRlciBXdQo+IGh0dHBzOi8vbGVr
+ZW5zdGV5bi5ubApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
