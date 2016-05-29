@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Should I expect nouveau on 4.6 to work on a GM206?
-Date: Sat, 28 May 2016 20:48:50 -0400
-Message-ID: <CAKb7Uvgygo7DacmoxFMqbB8mnszTeOAgZGrWJDE380qtY6KEqg@mail.gmail.com>
-References: <CALCETrVBuwgM7fjOPRbfAfcCbuV_ym8bUe0VHOGDn-vgAw+Ziw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91413] fan alarm timer/update called from interrupt
+ in an infinite loop
+Date: Sun, 29 May 2016 09:08:47 +0000
+Message-ID: <bug-91413-8800-fQc7UQEiow@http.bugs.freedesktop.org/>
+References: <bug-91413-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0550192581=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CALCETrVBuwgM7fjOPRbfAfcCbuV_ym8bUe0VHOGDn-vgAw+Ziw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-91413-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,71 +17,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andy Lutomirski <luto-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, DRI <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RG8geW91IGhhdmUgbWVzYSAxMS4yIG9yIGxhdGVyPyBHTTIweCBzdXBwb3J0IHdhcyBvbmx5IGFk
-ZGVkIGluIG1lc2EgMTEuMi4KCkNoZWVycywKCiAgLWlsaWEKCk9uIFNhdCwgTWF5IDI4LCAyMDE2
-IGF0IDQ6NTEgUE0sIEFuZHkgTHV0b21pcnNraSA8bHV0b0BrZXJuZWwub3JnPiB3cm90ZToKPiBJ
-IGhhdmUgdGhlIHNpZ25lZCBmaXJtd2FyZSAoSSB0aGluaykgYW5kIEknbSBydW5uaW5nIGEgZnJl
-c2ggNC42Cj4ga2VybmVsLiAgSSBnb3QgYW4gaW1hZ2UgdG8gc2hvdyB1cCBicmllZmx5LCByZW5k
-ZXJpbmcgdGhlIEZlZG9yYQo+IHNpZ24taW4gc2NyZWVuIGF0IHNvbWV0aGluZyBsaWtlIG9uZSBm
-cmFtZSBwZXIgdGVuIHNlY29uZHMuICBCdXQgdGhlbgo+IEkgZ290IGFsbCBraW5kcyBvZiBnYXJi
-YWdlLCBhbmQgSSBzZWU6Cj4KPiBbICA3MTkuMzAwODIwXSBub3V2ZWF1IDAwMDA6MDk6MDAuMDog
-ZGlzcDogb3V0cCAwNDowMDA2OjBmNDQ6IGxpbmsKPiB0cmFpbmluZyBmYWlsZWQKPgo+IGRtZXNn
-IHxncmVwIG5vdXZlYXUgc2F5czoKPgo+IFsgICAxMC4wNTMxNjJdIGZiOiBzd2l0Y2hpbmcgdG8g
-bm91dmVhdWZiIGZyb20gRUZJIFZHQQo+IFsgICAxMC4wNTMzNDldIG5vdXZlYXUgMDAwMDowOTow
-MC4wOiBOVklESUEgR00yMDYgKDEyNjAxMGExKQo+IFsgICAxMC4xNzQwMzNdIG5vdXZlYXUgMDAw
-MDowOTowMC4wOiBiaW9zOiB2ZXJzaW9uIDg0LjA2LjBkLjAwLjAxCj4gWyAgIDEwLjE3NDg1NF0g
-bm91dmVhdSAwMDAwOjA5OjAwLjA6IGRpc3A6IGRjYiAxNSB0eXBlIDggdW5rbm93bgo+IFsgICAx
-MC4xNzgzNzVdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBmYjogMjA0OCBNaUIgR0REUjUKPiBbICAg
-MTAuMjAyMTA4XSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogRFJNOiBWUkFNOiAyMDQ4IE1pQgo+IFsg
-ICAxMC4yMDIxMDldIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IEdBUlQ6IDEwNDg1NzYgTWlC
-Cj4gWyAgIDEwLjIwMjExM10gbm91dmVhdSAwMDAwOjA5OjAwLjA6IERSTTogVE1EUyB0YWJsZSB2
-ZXJzaW9uIDIuMAo+IFsgICAxMC4yMDIxMTRdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IERD
-QiB2ZXJzaW9uIDQuMQo+IFsgICAxMC4yMDIxMTZdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06
-IERDQiBvdXRwIDAwOiAwMTAwMGYwMiAwMDAyMDAzMAo+IFsgICAxMC4yMDIxMTddIG5vdXZlYXUg
-MDAwMDowOTowMC4wOiBEUk06IERDQiBvdXRwIDAxOiAwMjAwMGYwMCAwMDAwMDAwMAo+IFsgICAx
-MC4yMDIxMThdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IERDQiBvdXRwIDAyOiAwMjgxMWY3
-NiAwNDQwMDAyMAo+IFsgICAxMC4yMDIxMjBdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IERD
-QiBvdXRwIDAzOiAwMjAxMWY3MiAwMDAyMDAyMAo+IFsgICAxMC4yMDIxMjFdIG5vdXZlYXUgMDAw
-MDowOTowMC4wOiBEUk06IERDQiBvdXRwIDA0OiAwNDgyMmY4NiAwNDQwMDAxMAo+IFsgICAxMC4y
-MDIxMjJdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IERDQiBvdXRwIDA1OiAwNDAyMmY4MiAw
-MDAyMDAxMAo+IFsgICAxMC4yMDIxMjNdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IERDQiBv
-dXRwIDA2OiAwNDgzM2Y5NiAwNDQwMDAyMAo+IFsgICAxMC4yMDIxMjRdIG5vdXZlYXUgMDAwMDow
-OTowMC4wOiBEUk06IERDQiBvdXRwIDA3OiAwNDAzM2Y5MiAwMDAyMDAyMAo+IFsgICAxMC4yMDIx
-MjVdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IERDQiBvdXRwIDA4OiAwMjA0NGY2MiAwMDAy
-MDAxMAo+IFsgICAxMC4yMDIxMjZdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IERDQiBvdXRw
-IDE1OiAwMWRmNWZmOCAwMDAwMDAwMAo+IFsgICAxMC4yMDIxMjddIG5vdXZlYXUgMDAwMDowOTow
-MC4wOiBEUk06IERDQiBjb25uIDAwOiAwMDAwMTAzMAo+IFsgICAxMC4yMDIxMjhdIG5vdXZlYXUg
-MDAwMDowOTowMC4wOiBEUk06IERDQiBjb25uIDAxOiAwMDAyMDE0Ngo+IFsgICAxMC4yMDIxMjld
-IG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IERDQiBjb25uIDAyOiAwMTAwMDI0Ngo+IFsgICAx
-MC4yMDIxMzBdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IERDQiBjb25uIDAzOiAwMjAwMDM0
-Ngo+IFsgICAxMC4yMDIxMzFdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IERDQiBjb25uIDA0
-OiAwMDAxMDQ2MQo+IFsgICAxMC4yMDIxMzJdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IERD
-QiBjb25uIDA1OiAwMDAwMDU3MAo+IFsgICAxMC4yMDIxMzRdIG5vdXZlYXUgMDAwMDowOTowMC4w
-OiBEUk06IFBvaW50ZXIgdG8gZmxhdCBwYW5lbCB0YWJsZSBpbnZhbGlkCj4gWyAgIDEwLjIxNDY4
-M10gbm91dmVhdSAwMDAwOjA5OjAwLjA6IERSTTogdW5rbm93biBjb25uZWN0b3IgdHlwZSA3MAo+
-IFsgICAxMC4yMTQ3MjhdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IGZhaWxlZCB0byBjcmVh
-dGUgZW5jb2RlciAxLzgvMDogLTE5Cj4gWyAgIDEwLjIxNDczMF0gbm91dmVhdSAwMDAwOjA5OjAw
-LjA6IERSTTogVW5rbm93bi0xIGhhcyBubyBlbmNvZGVycywgcmVtb3ZpbmcKPiBbICAgMTAuMzY5
-NjkxXSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogRFJNOiBNTTogdXNpbmcgQ09QWSBmb3IgYnVmZmVy
-IGNvcGllcwo+IFsgICAxMC40Nzg1NjFdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBwcml2OiBHUEMw
-OiA0MTlkZjQgMDAwMDAwMDAgKDFlNDA4MjBlKQo+IFsgICAxMC40Nzg1NzhdIG5vdXZlYXUgMDAw
-MDowOTowMC4wOiBwcml2OiBHUEMxOiA0MTlkZjQgMDAwMDAwMDAgKDFlNDA4MjBlKQo+IFsgICAx
-MC42MDcxMDBdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IGFsbG9jYXRlZCAzODQweDIxNjAg
-ZmI6Cj4gMHg2MDAwMCwgYm8gZmZmZjg4MDQ0YWFkNzQwMAo+IFsgICAxMC42MDcyNzZdIGZiY29u
-OiBub3V2ZWF1ZmIgKGZiMCkgaXMgcHJpbWFyeSBkZXZpY2UKPiBbICAgMTAuNjA3NTc2XSBub3V2
-ZWF1IDAwMDA6MDk6MDAuMDogZmIwOiBub3V2ZWF1ZmIgZnJhbWUgYnVmZmVyIGRldmljZQo+IFsg
-ICAxMC42MTcwNjRdIFtkcm1dIEluaXRpYWxpemVkIG5vdXZlYXUgMS4zLjEgMjAxMjA4MDEgZm9y
-Cj4gMDAwMDowOTowMC4wIG9uIG1pbm9yIDAKPiBbICA3MTkuMjgyMTg0XSBub3V2ZWF1IDAwMDA6
-MDk6MDAuMDogZGlzcDogb3V0cCAwNDowMDA2OjBmNDQ6IGxpbmsKPiB0cmFpbmluZyBmYWlsZWQK
-PiBbICA3MTkuMzAwODIwXSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogZGlzcDogb3V0cCAwNDowMDA2
-OjBmNDQ6IGxpbmsKPiB0cmFpbmluZyBmYWlsZWQKPgo+Cj4KPiBUaGFua3MsCj4gQW5keQo+IF9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBt
-YWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0550192581==
+Content-Type: multipart/alternative; boundary="14645129273.0EaA.25881";
+ charset="UTF-8"
+
+
+--14645129273.0EaA.25881
+Date: Sun, 29 May 2016 09:08:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91413
+
+--- Comment #13 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #12)
+> (In reply to Jim Paris from comment #11)
+> > FWIW, I've been running with the workaround patch in comment 6 for abou=
+t 9
+> > months now and haven't noticed any problems.  I hit the warning maybe 4
+> > times a day.
+>=20
+> Thanks, patched that in, I now get the warnings too but it survives. Mart=
+in,
+> please have a look at this - we shouldn't be allowing the fan update to be
+> called from interrupt context at all in the first place.
+
+I agree that we should not. The issue here is that core/ is not allowed to
+depend on work items. At least, it was not supported before. Having a look
+right now!
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14645129273.0EaA.25881
+Date: Sun, 29 May 2016 09:08:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - fan alarm timer/update called from interrupt in an infini=
+te loop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91413#c13">Commen=
+t # 13</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - fan alarm timer/update called from interrupt in an infini=
+te loop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91413">bug 91413<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
+r&gt;"> <span class=3D"fn">Martin Peres</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D914=
+13#c12">comment #12</a>)
+<span class=3D"quote">&gt; (In reply to Jim Paris from <a href=3D"show_bug.=
+cgi?id=3D91413#c11">comment #11</a>)
+&gt; &gt; FWIW, I've been running with the workaround patch in <a href=3D"s=
+how_bug.cgi?id=3D91413#c6">comment 6</a> for about 9
+&gt; &gt; months now and haven't noticed any problems.  I hit the warning m=
+aybe 4
+&gt; &gt; times a day.
+&gt;=20
+&gt; Thanks, patched that in, I now get the warnings too but it survives. M=
+artin,
+&gt; please have a look at this - we shouldn't be allowing the fan update t=
+o be
+&gt; called from interrupt context at all in the first place.</span >
+
+I agree that we should not. The issue here is that core/ is not allowed to
+depend on work items. At least, it was not supported before. Having a look
+right now!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14645129273.0EaA.25881--
+
+--===============0550192581==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0550192581==--
