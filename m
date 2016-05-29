@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95095] NV46 (G72) Full screen artifacts in Freespace
  2 SW OT mod
-Date: Sun, 29 May 2016 13:06:40 +0000
-Message-ID: <bug-95095-8800-ZIQfdj6a4k@http.bugs.freedesktop.org/>
+Date: Sun, 29 May 2016 13:49:51 +0000
+Message-ID: <bug-95095-8800-GRSOsSO6jM@http.bugs.freedesktop.org/>
 References: <bug-95095-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1468863025=="
+Content-Type: multipart/mixed; boundary="===============1978382053=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95095-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1468863025==
-Content-Type: multipart/alternative; boundary="14645272000.4ECA7eF6d.27770";
+--===============1978382053==
+Content-Type: multipart/alternative; boundary="14645297910.CAd6C9.2565";
  charset="UTF-8"
 
 
---14645272000.4ECA7eF6d.27770
-Date: Sun, 29 May 2016 13:06:40 +0000
+--14645297910.CAd6C9.2565
+Date: Sun, 29 May 2016 13:49:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,24 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D95095
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I think you went in the wrong direction with it.
-
-The issue is that the shaders in the game are missing a "#version 120" head=
-er,
-yet use GLSL 1.20 features. When there is no #version specified, Mesa assum=
-es
-that it's GLSL 1.10. You need to change the game to stick an appropriate
-#version header whenever it uses features that were introduced in later GLSL
-versions.
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Oh, and on the hwtnl vs swtnl thing - it's most likely a bug in the driver,=
+ or
+limitation of the hw (e.g. precision, etc) which is making the hwtnl path f=
+ail.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14645272000.4ECA7eF6d.27770
-Date: Sun, 29 May 2016 13:06:40 +0000
+--14645297910.CAd6C9.2565
+Date: Sun, 29 May 2016 13:49:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,8 +65,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV46 (G72) Full screen artifacts in Freespace 2 SW OT mod"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95095#c6">Comment=
- # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95095#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV46 (G72) Full screen artifacts in Freespace 2 SW OT mod"
@@ -81,15 +76,10 @@ Auto-Submitted: auto-generated
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I think you went in the wrong direction with it.
-
-The issue is that the shaders in the game are missing a &quot;#version 120&=
-quot; header,
-yet use GLSL 1.20 features. When there is no #version specified, Mesa assum=
-es
-that it's GLSL 1.10. You need to change the game to stick an appropriate
-#version header whenever it uses features that were introduced in later GLSL
-versions.</pre>
+        <pre>Oh, and on the hwtnl vs swtnl thing - it's most likely a bug i=
+n the driver, or
+limitation of the hw (e.g. precision, etc) which is making the hwtnl path f=
+ail.</pre>
         </div>
       </p>
 
@@ -98,15 +88,15 @@ versions.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14645272000.4ECA7eF6d.27770--
+--14645297910.CAd6C9.2565--
 
---===============1468863025==
+--===============1978382053==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1468863025==--
+--===============1978382053==--
