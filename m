@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95095] NV46 (G72) Full screen artifacts in Freespace
- 2 SW OT mod
-Date: Sun, 29 May 2016 15:54:19 +0000
-Message-ID: <bug-95095-8800-Y1rEFSh5OB@http.bugs.freedesktop.org/>
-References: <bug-95095-8800@http.bugs.freedesktop.org/>
+From: Andy Lutomirski <luto-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: Re: Should I expect nouveau on 4.6 to work on a GM206?
+Date: Sun, 29 May 2016 12:07:33 -0700
+Message-ID: <CALCETrUc6w4jH+iQ3W_7tFTRwYVdiJpK=5fyCvjem4CHwxbLVw@mail.gmail.com>
+References: <CALCETrVBuwgM7fjOPRbfAfcCbuV_ym8bUe0VHOGDn-vgAw+Ziw@mail.gmail.com>
+ <CAKb7Uvgygo7DacmoxFMqbB8mnszTeOAgZGrWJDE380qtY6KEqg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0894213752=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95095-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvgygo7DacmoxFMqbB8mnszTeOAgZGrWJDE380qtY6KEqg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,122 +18,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, DRI <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Andy Lutomirski <luto-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0894213752==
-Content-Type: multipart/alternative; boundary="14645372590.0EC9.15289";
- charset="UTF-8"
-
-
---14645372590.0EC9.15289
-Date: Sun, 29 May 2016 15:54:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95095
-
---- Comment #8 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi Ilia,
-
-I've seen there's an Issue on fs2open github about the need to set #version=
- 120
-header,
-
-now I've done that and rebuilt fs2_open and collected a new trace.
-
-All the errors in qapitrace disappeared, however the X-Wing and other affte=
-cted
-models are still causing the shaders  artifacts, so there is something else
-inducing the artifacts.
-
-Here is the apitrace file:
-https://drive.google.com/open?id=3D0B_OFHiIqgpSFUUtnTXdWSEhoRnc
-
-Is there a way I can get further logs to help?
-Mauro
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14645372590.0EC9.15289
-Date: Sun, 29 May 2016 15:54:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NV46 (G72) Full screen artifacts in Freespace 2 SW OT mod"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95095#c8">Comment=
- # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NV46 (G72) Full screen artifacts in Freespace 2 SW OT mod"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95095">bug 95095<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-issor.oruam&#64;gmail.com" title=3D"Mauro Rossi &lt;issor.oruam&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Mauro Rossi</span></a>
-</span></b>
-        <pre>Hi Ilia,
-
-I've seen there's an Issue on fs2open github about the need to set #version=
- 120
-header,
-
-now I've done that and rebuilt fs2_open and collected a new trace.
-
-All the errors in qapitrace disappeared, however the X-Wing and other affte=
-cted
-models are still causing the shaders  artifacts, so there is something else
-inducing the artifacts.
-
-Here is the apitrace file:
-<a href=3D"https://drive.google.com/open?id=3D0B_OFHiIqgpSFUUtnTXdWSEhoRnc"=
->https://drive.google.com/open?id=3D0B_OFHiIqgpSFUUtnTXdWSEhoRnc</a>
-
-Is there a way I can get further logs to help?
-Mauro</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14645372590.0EC9.15289--
-
---===============0894213752==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0894213752==--
+T24gU2F0LCBNYXkgMjgsIDIwMTYgYXQgNTo0OCBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
+bS5taXQuZWR1PiB3cm90ZToKPiBEbyB5b3UgaGF2ZSBtZXNhIDExLjIgb3IgbGF0ZXI/IEdNMjB4
+IHN1cHBvcnQgd2FzIG9ubHkgYWRkZWQgaW4gbWVzYSAxMS4yLgo+CgpJIGp1c3QgdXBncmFkZWQg
+dG8gMTEuMi4gIEknbSBnZXR0aW5nIGVycm9ycyBsaWtlIHRoaXMgaW4gdGhlIGxvZzoKClsgNTM4
+My43MjMyNDBdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBmaWZvOiByZWFkIGZhdWx0IGF0IDAwMDAw
+MTEwMDAKZW5naW5lIDA3IFtQQkRNQTBdIGNsaWVudCAwNiBbSE9TVF0gcmVhc29uIDAwIFtQREVd
+IG9uIGNoYW5uZWwgLTEKWzAwN2Y5ZWQwMDAgdW5rbm93bl0KWyA1Mzk4LjcyMjY3Nl0gbm91dmVh
+dSAwMDAwOjA5OjAwLjA6IHN5c3RlbWQtbG9naW5kWzMwNzc4XTogZmFpbGVkIHRvCmlkbGUgY2hh
+bm5lbCAyIFtzeXN0ZW1kLWxvZ2luZFszMDc3OF1dClsgNTQxMy43MjI4NTNdIG5vdXZlYXUgMDAw
+MDowOTowMC4wOiBzeXN0ZW1kLWxvZ2luZFszMDc3OF06IGZhaWxlZCB0bwppZGxlIGNoYW5uZWwg
+MiBbc3lzdGVtZC1sb2dpbmRbMzA3NzhdXQoKYW5kIHRoZSBkaXNwbGF5IG91dHB1dCBpbiBnZW5l
+cmFsIGlzIHVucmVsaWFibGUgZW5vdWdoIHRoYXQgSSdtIGhhdmluZwp0cm91YmxlIHRlbGxpbmcg
+d2hldGhlciB0aGUgcGVyZm9ybWFuY2UgaXMgcmVtb3RlbHkgcmVhc29uYWJsZS4KCi0tQW5keQoK
+PiBDaGVlcnMsCj4KPiAgIC1pbGlhCj4KPiBPbiBTYXQsIE1heSAyOCwgMjAxNiBhdCA0OjUxIFBN
+LCBBbmR5IEx1dG9taXJza2kgPGx1dG9Aa2VybmVsLm9yZz4gd3JvdGU6Cj4+IEkgaGF2ZSB0aGUg
+c2lnbmVkIGZpcm13YXJlIChJIHRoaW5rKSBhbmQgSSdtIHJ1bm5pbmcgYSBmcmVzaCA0LjYKPj4g
+a2VybmVsLiAgSSBnb3QgYW4gaW1hZ2UgdG8gc2hvdyB1cCBicmllZmx5LCByZW5kZXJpbmcgdGhl
+IEZlZG9yYQo+PiBzaWduLWluIHNjcmVlbiBhdCBzb21ldGhpbmcgbGlrZSBvbmUgZnJhbWUgcGVy
+IHRlbiBzZWNvbmRzLiAgQnV0IHRoZW4KPj4gSSBnb3QgYWxsIGtpbmRzIG9mIGdhcmJhZ2UsIGFu
+ZCBJIHNlZToKPj4KPj4gWyAgNzE5LjMwMDgyMF0gbm91dmVhdSAwMDAwOjA5OjAwLjA6IGRpc3A6
+IG91dHAgMDQ6MDAwNjowZjQ0OiBsaW5rCj4+IHRyYWluaW5nIGZhaWxlZAo+Pgo+PiBkbWVzZyB8
+Z3JlcCBub3V2ZWF1IHNheXM6Cj4+Cj4+IFsgICAxMC4wNTMxNjJdIGZiOiBzd2l0Y2hpbmcgdG8g
+bm91dmVhdWZiIGZyb20gRUZJIFZHQQo+PiBbICAgMTAuMDUzMzQ5XSBub3V2ZWF1IDAwMDA6MDk6
+MDAuMDogTlZJRElBIEdNMjA2ICgxMjYwMTBhMSkKPj4gWyAgIDEwLjE3NDAzM10gbm91dmVhdSAw
+MDAwOjA5OjAwLjA6IGJpb3M6IHZlcnNpb24gODQuMDYuMGQuMDAuMDEKPj4gWyAgIDEwLjE3NDg1
+NF0gbm91dmVhdSAwMDAwOjA5OjAwLjA6IGRpc3A6IGRjYiAxNSB0eXBlIDggdW5rbm93bgo+PiBb
+ICAgMTAuMTc4Mzc1XSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogZmI6IDIwNDggTWlCIEdERFI1Cj4+
+IFsgICAxMC4yMDIxMDhdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IFZSQU06IDIwNDggTWlC
+Cj4+IFsgICAxMC4yMDIxMDldIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IEdBUlQ6IDEwNDg1
+NzYgTWlCCj4+IFsgICAxMC4yMDIxMTNdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IFRNRFMg
+dGFibGUgdmVyc2lvbiAyLjAKPj4gWyAgIDEwLjIwMjExNF0gbm91dmVhdSAwMDAwOjA5OjAwLjA6
+IERSTTogRENCIHZlcnNpb24gNC4xCj4+IFsgICAxMC4yMDIxMTZdIG5vdXZlYXUgMDAwMDowOTow
+MC4wOiBEUk06IERDQiBvdXRwIDAwOiAwMTAwMGYwMiAwMDAyMDAzMAo+PiBbICAgMTAuMjAyMTE3
+XSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMTogMDIwMDBmMDAgMDAwMDAw
+MDAKPj4gWyAgIDEwLjIwMjExOF0gbm91dmVhdSAwMDAwOjA5OjAwLjA6IERSTTogRENCIG91dHAg
+MDI6IDAyODExZjc2IDA0NDAwMDIwCj4+IFsgICAxMC4yMDIxMjBdIG5vdXZlYXUgMDAwMDowOTow
+MC4wOiBEUk06IERDQiBvdXRwIDAzOiAwMjAxMWY3MiAwMDAyMDAyMAo+PiBbICAgMTAuMjAyMTIx
+XSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogRFJNOiBEQ0Igb3V0cCAwNDogMDQ4MjJmODYgMDQ0MDAw
+MTAKPj4gWyAgIDEwLjIwMjEyMl0gbm91dmVhdSAwMDAwOjA5OjAwLjA6IERSTTogRENCIG91dHAg
+MDU6IDA0MDIyZjgyIDAwMDIwMDEwCj4+IFsgICAxMC4yMDIxMjNdIG5vdXZlYXUgMDAwMDowOTow
+MC4wOiBEUk06IERDQiBvdXRwIDA2OiAwNDgzM2Y5NiAwNDQwMDAyMAo+PiBbICAgMTAuMjAyMTI0
+XSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogRFJNOiBEQ0Igb3V0cCAwNzogMDQwMzNmOTIgMDAwMjAw
+MjAKPj4gWyAgIDEwLjIwMjEyNV0gbm91dmVhdSAwMDAwOjA5OjAwLjA6IERSTTogRENCIG91dHAg
+MDg6IDAyMDQ0ZjYyIDAwMDIwMDEwCj4+IFsgICAxMC4yMDIxMjZdIG5vdXZlYXUgMDAwMDowOTow
+MC4wOiBEUk06IERDQiBvdXRwIDE1OiAwMWRmNWZmOCAwMDAwMDAwMAo+PiBbICAgMTAuMjAyMTI3
+XSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogRFJNOiBEQ0IgY29ubiAwMDogMDAwMDEwMzAKPj4gWyAg
+IDEwLjIwMjEyOF0gbm91dmVhdSAwMDAwOjA5OjAwLjA6IERSTTogRENCIGNvbm4gMDE6IDAwMDIw
+MTQ2Cj4+IFsgICAxMC4yMDIxMjldIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IERDQiBjb25u
+IDAyOiAwMTAwMDI0Ngo+PiBbICAgMTAuMjAyMTMwXSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogRFJN
+OiBEQ0IgY29ubiAwMzogMDIwMDAzNDYKPj4gWyAgIDEwLjIwMjEzMV0gbm91dmVhdSAwMDAwOjA5
+OjAwLjA6IERSTTogRENCIGNvbm4gMDQ6IDAwMDEwNDYxCj4+IFsgICAxMC4yMDIxMzJdIG5vdXZl
+YXUgMDAwMDowOTowMC4wOiBEUk06IERDQiBjb25uIDA1OiAwMDAwMDU3MAo+PiBbICAgMTAuMjAy
+MTM0XSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogRFJNOiBQb2ludGVyIHRvIGZsYXQgcGFuZWwgdGFi
+bGUgaW52YWxpZAo+PiBbICAgMTAuMjE0NjgzXSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogRFJNOiB1
+bmtub3duIGNvbm5lY3RvciB0eXBlIDcwCj4+IFsgICAxMC4yMTQ3MjhdIG5vdXZlYXUgMDAwMDow
+OTowMC4wOiBEUk06IGZhaWxlZCB0byBjcmVhdGUgZW5jb2RlciAxLzgvMDogLTE5Cj4+IFsgICAx
+MC4yMTQ3MzBdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBEUk06IFVua25vd24tMSBoYXMgbm8gZW5j
+b2RlcnMsIHJlbW92aW5nCj4+IFsgICAxMC4zNjk2OTFdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBE
+Uk06IE1NOiB1c2luZyBDT1BZIGZvciBidWZmZXIgY29waWVzCj4+IFsgICAxMC40Nzg1NjFdIG5v
+dXZlYXUgMDAwMDowOTowMC4wOiBwcml2OiBHUEMwOiA0MTlkZjQgMDAwMDAwMDAgKDFlNDA4MjBl
+KQo+PiBbICAgMTAuNDc4NTc4XSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogcHJpdjogR1BDMTogNDE5
+ZGY0IDAwMDAwMDAwICgxZTQwODIwZSkKPj4gWyAgIDEwLjYwNzEwMF0gbm91dmVhdSAwMDAwOjA5
+OjAwLjA6IERSTTogYWxsb2NhdGVkIDM4NDB4MjE2MCBmYjoKPj4gMHg2MDAwMCwgYm8gZmZmZjg4
+MDQ0YWFkNzQwMAo+PiBbICAgMTAuNjA3Mjc2XSBmYmNvbjogbm91dmVhdWZiIChmYjApIGlzIHBy
+aW1hcnkgZGV2aWNlCj4+IFsgICAxMC42MDc1NzZdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBmYjA6
+IG5vdXZlYXVmYiBmcmFtZSBidWZmZXIgZGV2aWNlCj4+IFsgICAxMC42MTcwNjRdIFtkcm1dIElu
+aXRpYWxpemVkIG5vdXZlYXUgMS4zLjEgMjAxMjA4MDEgZm9yCj4+IDAwMDA6MDk6MDAuMCBvbiBt
+aW5vciAwCj4+IFsgIDcxOS4yODIxODRdIG5vdXZlYXUgMDAwMDowOTowMC4wOiBkaXNwOiBvdXRw
+IDA0OjAwMDY6MGY0NDogbGluawo+PiB0cmFpbmluZyBmYWlsZWQKPj4gWyAgNzE5LjMwMDgyMF0g
+bm91dmVhdSAwMDAwOjA5OjAwLjA6IGRpc3A6IG91dHAgMDQ6MDAwNjowZjQ0OiBsaW5rCj4+IHRy
+YWluaW5nIGZhaWxlZAo+Pgo+Pgo+Pgo+PiBUaGFua3MsCj4+IEFuZHkKPj4gX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gTm91dmVhdSBtYWlsaW5nIGxp
+c3QKPj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
