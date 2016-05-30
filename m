@@ -1,16 +1,11 @@
-From: Andy Lutomirski <luto-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: Should I expect nouveau on 4.6 to work on a GM206?
-Date: Sun, 29 May 2016 12:27:34 -0700
-Message-ID: <CALCETrWvMAgqaXuSNz+HBzyJaynqQgm1uWChz4xd6Uo40=NM+A@mail.gmail.com>
-References: <CALCETrVBuwgM7fjOPRbfAfcCbuV_ym8bUe0VHOGDn-vgAw+Ziw@mail.gmail.com>
- <CAKb7Uvgygo7DacmoxFMqbB8mnszTeOAgZGrWJDE380qtY6KEqg@mail.gmail.com>
- <CALCETrUc6w4jH+iQ3W_7tFTRwYVdiJpK=5fyCvjem4CHwxbLVw@mail.gmail.com>
- <CAKb7Uvj9vs-Xj-Sw7jrC7rYRcWwcQSHBDwOwiudG9zOw4mtzLQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96274] New: [NVC0] Failure when compiling compute
+ shader: Assertion `bb->getFirst()->serial <= bb->getExit()->serial' failed
+Date: Mon, 30 May 2016 04:06:06 +0000
+Message-ID: <bug-96274-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1630081158=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvj9vs-Xj-Sw7jrC7rYRcWwcQSHBDwOwiudG9zOw4mtzLQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,47 +15,196 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, DRI <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Andy Lutomirski <luto-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBNYXkgMjksIDIwMTYgYXQgMTI6MjIgUE0sIElsaWEgTWlya2luIDxpbWlya2luQGFs
-dW0ubWl0LmVkdT4gd3JvdGU6Cj4gT24gU3VuLCBNYXkgMjksIDIwMTYgYXQgMzowNyBQTSwgQW5k
-eSBMdXRvbWlyc2tpIDxsdXRvQGtlcm5lbC5vcmc+IHdyb3RlOgo+PiBPbiBTYXQsIE1heSAyOCwg
-MjAxNiBhdCA1OjQ4IFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3Rl
-Ogo+Pj4gRG8geW91IGhhdmUgbWVzYSAxMS4yIG9yIGxhdGVyPyBHTTIweCBzdXBwb3J0IHdhcyBv
-bmx5IGFkZGVkIGluIG1lc2EgMTEuMi4KPj4+Cj4+Cj4+IEkganVzdCB1cGdyYWRlZCB0byAxMS4y
-LiAgSSdtIGdldHRpbmcgZXJyb3JzIGxpa2UgdGhpcyBpbiB0aGUgbG9nOgo+Pgo+PiBbIDUzODMu
-NzIzMjQwXSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogZmlmbzogcmVhZCBmYXVsdCBhdCAwMDAwMDEx
-MDAwCj4+IGVuZ2luZSAwNyBbUEJETUEwXSBjbGllbnQgMDYgW0hPU1RdIHJlYXNvbiAwMCBbUERF
-XSBvbiBjaGFubmVsIC0xCj4+IFswMDdmOWVkMDAwIHVua25vd25dCj4+IFsgNTM5OC43MjI2NzZd
-IG5vdXZlYXUgMDAwMDowOTowMC4wOiBzeXN0ZW1kLWxvZ2luZFszMDc3OF06IGZhaWxlZCB0bwo+
-PiBpZGxlIGNoYW5uZWwgMiBbc3lzdGVtZC1sb2dpbmRbMzA3NzhdXQo+PiBbIDU0MTMuNzIyODUz
-XSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogc3lzdGVtZC1sb2dpbmRbMzA3NzhdOiBmYWlsZWQgdG8K
-Pj4gaWRsZSBjaGFubmVsIDIgW3N5c3RlbWQtbG9naW5kWzMwNzc4XV0KPj4KPj4gYW5kIHRoZSBk
-aXNwbGF5IG91dHB1dCBpbiBnZW5lcmFsIGlzIHVucmVsaWFibGUgZW5vdWdoIHRoYXQgSSdtIGhh
-dmluZwo+PiB0cm91YmxlIHRlbGxpbmcgd2hldGhlciB0aGUgcGVyZm9ybWFuY2UgaXMgcmVtb3Rl
-bHkgcmVhc29uYWJsZS4KPgo+IElmIHlvdSdyZSBoYXZpbmcgdHJvdWJsZSB0ZWxsaW5nLCB0aGF0
-IG1lYW5zIGl0J3Mgbm90IDopIFRoZSBlcnJvciB5b3UKPiBwYXN0ZWQgaXMgcXVpdGUgb2RkLiBX
-YXMgdGhlcmUgYW55dGhpbmcgaW4gdGhlIGxvZyBiZWZvcmUgdGhvc2UKPiBtZXNzYWdlcz8gSWYg
-dGhlcmUncyBubyBjaGFubmVsIGFzc29jaWF0ZWQsIHRoYXQgbWVhbnMgdGhhdCBpdCdzIHRoZQo+
-IGJhY2tncm91bmQgY29weWluZyBiZXR3ZWVuIHZyYW0gYW5kIHN5c21lbT8gTm90IHN1cmUuCgpE
-b24ndCBnZXQgdG9vIGV4Y2l0ZWQgeWV0LiAgSW4gdGhlIHByb2Nlc3Mgb2YgdXBncmFkaW5nIG1l
-c2EsIEkKbWFuYWdlZCB0byBib290IDQuNSB3aXRob3V0IG5vdGljaW5nLiAgSSdsbCBwb3N0IGJh
-Y2sgbGF0ZXIgdG9kYXkgd2l0aAphY3R1YWwgdmFsaWQgdGVzdCByZXN1bHRzLgoKPgo+IE5vdGUg
-dGhhdCB3aXRoIG1heHdlbGwgd2UgaGF2ZSB5ZXQgdG8gYWRkIEVYQSBzdXBwb3J0IHRvCj4geGY4
-Ni12aWRlby1ub3V2ZWF1LCBzbyB5b3UncmUgZW5kaW5nIHVwIHdpdGggR0xBTU9SIChhbmQgQmVu
-IGFuZCBJCj4gZGlzYWdyZWUgb24gd2hldGhlciBFWEEgc3VwcG9ydCBzaG91bGQgYmUgYWRkZWQg
-aW4gdGhlIGZpcnN0IHBsYWNlKS4KPiBUaGVyZSB3YXMgYWxzbyBhbiBpc3N1ZSB0aGF0IGdsYW1v
-ciB3YXMgaGl0dGluZyB3aXRoIG5vdXZlYXUgd2hpY2gKPiBhcHBlYXJzIHRvIGhhdmUgZGlzc2lw
-YXRlZCwgZWl0aGVyIGR1ZSB0byBhIGNoYW5nZSBpbiBub3V2ZWF1IG9yIGEKPiBjaGFuZ2UgaW4g
-Z2xhbW9yLiBTbyB5b3UgbWlnaHQgY29uc2lkZXIgdXBncmFkaW5nIHRvIFhvcmcgMS4xOC4zIChh
-cwo+IGdsYW1vciBpcyBwYXJ0IG9mIFgpLgo+Cj4gRldJVyBhIGZldyBvdGhlciBwZW9wbGUgaGF2
-ZSBiZWVuIHVzaW5nIEdNMjB4IHdpdGhvdXQgaW5jaWRlbnQsIGJ1dAo+IHRoaXMgY2FuIGFsbCBi
-ZSB2ZXJ5IHNlbnNpdGl2ZSB0byB5b3VyIGRlc2t0b3AvZXRjLiBMb3RzIG9mIHRoaW5ncwo+IGxp
-a2UgdG8gdXNlIEdMIG5vd2FkYXlzIC0gSSBzdGljayB0byBhIG1vcmUgY2xhc3NpYyBkZXNrdG9w
-IC0gbm8KPiBjb21wb3NpdG9yLCBzaW1wbGUgd2luZG93IG1hbmFnZXIsIGV0Yy4KClRoaXMgaXMg
-R05PTUUgMyBvbiBGZWRvcmEgMjQgQmV0YS4KCi0tQW5keQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1630081158==
+Content-Type: multipart/alternative; boundary="14645811660.4eaef3.26554";
+ charset="UTF-8"
+
+
+--14645811660.4eaef3.26554
+Date: Mon, 30 May 2016 04:06:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96274
+
+            Bug ID: 96274
+           Summary: [NVC0] Failure when compiling compute shader:
+                    Assertion `bb->getFirst()->serial <=3D
+                    bb->getExit()->serial' failed
+           Product: Mesa
+           Version: git
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 124171
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124171&action=3Dedit
+failing tgsi shader
+
+This happens in GRID Autosport, when selecting one of the advanced graphics
+options (global illumination or the one right next to it). The issue appear=
+s to
+be squarely in nouveau's optimizations.
+
+It looks like we end up deciding that the first while loop can be removed? =
+Or
+somehow lose track of those BBs? Unclear. This in turn leads to BB:11 being
+completely lost.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14645811660.4eaef3.26554
+Date: Mon, 30 May 2016 04:06:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC0] Failure when compiling compute shader: Assertion `=
+bb-&gt;getFirst()-&gt;serial &lt;=3D bb-&gt;getExit()-&gt;serial' failed"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96274">96274</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVC0] Failure when compiling compute shader: Assertion `bb-&=
+gt;getFirst()-&gt;serial &lt;=3D bb-&gt;getExit()-&gt;serial' failed
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>imirkin&#64;alum.mit.edu
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124171=
+" name=3D"attach_124171" title=3D"failing tgsi shader">attachment 124171</a=
+> <a href=3D"attachment.cgi?id=3D124171&amp;action=3Dedit" title=3D"failing=
+ tgsi shader">[details]</a></span>
+failing tgsi shader
+
+This happens in GRID Autosport, when selecting one of the advanced graphics
+options (global illumination or the one right next to it). The issue appear=
+s to
+be squarely in nouveau's optimizations.
+
+It looks like we end up deciding that the first while loop can be removed? =
+Or
+somehow lose track of those BBs? Unclear. This in turn leads to BB:11 being
+completely lost.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14645811660.4eaef3.26554--
+
+--===============1630081158==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1630081158==--
