@@ -1,116 +1,170 @@
-From: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: Re: [PATCH 4/4] drm/nouveau/acpi: fix lockup with PCIe
-	runtime PM
-Date: Mon, 30 May 2016 12:57:09 +0300
-Message-ID: <20160530095709.GK1789@lahna.fi.intel.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Subject: Re: [Nouveau] [PATCH 4/4] drm/nouveau/acpi: fix lockup with PCIe
+ runtime PM
+Date: Mon, 30 May 2016 11:48:34 +0100
+Message-ID: <CACvgo50db1KEuH3yZ75K-MtCeKAsQKXJbQQxiXm+82qkjZsvDA@mail.gmail.com>
 References: <1464130381-4797-1-git-send-email-peter@lekensteyn.nl>
- <1464130381-4797-5-git-send-email-peter@lekensteyn.nl>
- <20160525135535.GN1789@lahna.fi.intel.com>
- <20160527111037.GA1436@al>
+	<1464130381-4797-5-git-send-email-peter@lekensteyn.nl>
+	<CACvgo514AB=rkRGWrwmPHTX=hhEF8Jhzdg1hQkX1_C4A_zYkzg@mail.gmail.com>
+	<20160527213123.GB1777@al>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20160527111037.GA1436@al>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Cc: linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "Rafael J. Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-pci-owner@vger.kernel.org>
+In-Reply-To: <20160527213123.GB1777@al>
+Sender: linux-pci-owner@vger.kernel.org
+To: Peter Wu <peter@lekensteyn.nl>
+Cc: ML nouveau <nouveau@lists.freedesktop.org>, ML dri-devel <dri-devel@lists.freedesktop.org>, Dave Airlie <airlied@redhat.com>, linux-pm@vger.kernel.org, Bjorn Helgaas <helgaas@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, linux-pci@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-K1JhZmFlbAoKT24gRnJpLCBNYXkgMjcsIDIwMTYgYXQgMDE6MTA6MzdQTSArMDIwMCwgUGV0ZXIg
-V3Ugd3JvdGU6Cj4gT24gV2VkLCBNYXkgMjUsIDIwMTYgYXQgMDQ6NTU6MzVQTSArMDMwMCwgTWlr
-YSBXZXN0ZXJiZXJnIHdyb3RlOgo+ID4gT24gV2VkLCBNYXkgMjUsIDIwMTYgYXQgMTI6NTM6MDFB
-TSArMDIwMCwgUGV0ZXIgV3Ugd3JvdGU6Cj4gPiA+IFNpbmNlICJQQ0k6IEFkZCBydW50aW1lIFBN
-IHN1cHBvcnQgZm9yIFBDSWUgcG9ydHMiLCB0aGUgcGFyZW50IFBDSWUgcG9ydAo+ID4gPiBjYW4g
-YmUgcnVudGltZS1zdXNwZW5kZWQgd2hpY2ggZGlzYWJsZXMgcG93ZXIgcmVzb3VyY2VzIHZpYSBB
-Q1BJLiBUaGlzCj4gPiA+IGlzIGluY29tcGF0aWJsZSB3aXRoIERTTSwgcmVzdWx0aW5nIGluIGEg
-R1BVIGRldmljZSB3aGljaCBpcyBzdGlsbCBpbiBEMwo+ID4gPiBhbmQgbG9ja3MgdXAgdGhlIGtl
-cm5lbCBvbiByZXN1bWUuCj4gPiA+IAo+ID4gPiBNaXJyb3IgdGhlIGJlaGF2aW9yIG9mIFdpbmRv
-d3MgOCBhbmQgbmV3ZXJbMV0gKGFzIG9ic2VydmVkIHZpYSBhbiBBTUxpCj4gPiA+IGRlYnVnZ2Vy
-IHRyYWNlKSBhbmQgc3RvcCB1c2luZyB0aGUgRFNNIGZ1bmN0aW9ucyBmb3IgRDNjb2xkIHdoZW4g
-cG93ZXIKPiA+ID4gcmVzb3VyY2VzIGFyZSBhdmFpbGFibGUgb24gdGhlIHBhcmVudCBQQ0llIHBv
-cnQuCj4gPiA+IAo+ID4gPiAgWzFdOiBodHRwczovL21zZG4ubWljcm9zb2Z0LmNvbS93aW5kb3dz
-L2hhcmR3YXJlL2RyaXZlcnMvYnJpbmd1cC9maXJtd2FyZS1yZXF1aXJlbWVudHMtZm9yLWQzY29s
-ZAo+ID4gPiAKPiA+ID4gU2lnbmVkLW9mZi1ieTogUGV0ZXIgV3UgPHBldGVyQGxla2Vuc3RleW4u
-bmw+Cj4gPiA+IC0tLQo+ID4gPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3Bp
-LmMgfCAzNCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0tCj4gPiA+ICAxIGZpbGUg
-Y2hhbmdlZCwgMzAgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKPiA+ID4gCj4gPiA+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4gPiA+IGluZGV4IGRmOWY3M2UuLmU0
-NjlkZjcgMTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-YWNwaS5jCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5j
-Cj4gPiA+IEBAIC00Niw2ICs0Niw3IEBAIHN0YXRpYyBzdHJ1Y3Qgbm91dmVhdV9kc21fcHJpdiB7
-Cj4gPiA+ICAJYm9vbCBkc21fZGV0ZWN0ZWQ7Cj4gPiA+ICAJYm9vbCBvcHRpbXVzX2RldGVjdGVk
-Owo+ID4gPiAgCWJvb2wgb3B0aW11c19mbGFnc19kZXRlY3RlZDsKPiA+ID4gKwlib29sIG9wdGlt
-dXNfc2tpcF9kc207Cj4gPiA+ICAJYWNwaV9oYW5kbGUgZGhhbmRsZTsKPiA+ID4gIAlhY3BpX2hh
-bmRsZSByb21faGFuZGxlOwo+ID4gPiAgfSBub3V2ZWF1X2RzbV9wcml2Owo+ID4gPiBAQCAtMjEy
-LDggKzIxMywyNiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHZnYV9zd2l0Y2hlcm9vX2hhbmRsZXIg
-bm91dmVhdV9kc21faGFuZGxlciA9IHsKPiA+ID4gIAkuZ2V0X2NsaWVudF9pZCA9IG5vdXZlYXVf
-ZHNtX2dldF9jbGllbnRfaWQsCj4gPiA+ICB9Owo+ID4gPiAgCj4gPiA+ICsvKiBGaXJtd2FyZSBz
-dXBwb3J0aW5nIFdpbmRvd3MgOCBvciBsYXRlciBkbyBub3QgdXNlIF9EU00gdG8gcHV0IHRoZSBk
-ZXZpY2UgaW50bwo+ID4gPiArICogRDNjb2xkLCB0aGV5IGluc3RlYWQgcmVseSBvbiBkaXNhYmxp
-bmcgcG93ZXIgcmVzb3VyY2VzIG9uIHRoZSBwYXJlbnQuICovCj4gPiA+ICtzdGF0aWMgYm9vbCBu
-b3V2ZWF1X3ByM19wcmVzZW50KHN0cnVjdCBwY2lfZGV2ICpwZGV2KQo+ID4gPiArewo+ID4gPiAr
-CXN0cnVjdCBwY2lfZGV2ICpwYXJlbnRfcGRldiA9IHBjaV91cHN0cmVhbV9icmlkZ2UocGRldik7
-Cj4gPiA+ICsJc3RydWN0IGFjcGlfZGV2aWNlICphZDsKPiA+IAo+ID4gTml0OiBwbGVhc2UgY2Fs
-bCB0aGlzIGFkZXYgaW5zdGVhZCBvZiBhZC4KPiAKPiBXaWxsIGRvLgo+IAo+ID4gPiArCj4gPiA+
-ICsJaWYgKCFwYXJlbnRfcGRldikKPiA+ID4gKwkJcmV0dXJuIGZhbHNlOwo+ID4gPiArCj4gPiA+
-ICsJYWQgPSBBQ1BJX0NPTVBBTklPTigmcGFyZW50X3BkZXYtPmRldik7Cj4gPiA+ICsJaWYgKCFh
-ZCkKPiA+ID4gKwkJcmV0dXJuIGZhbHNlOwo+ID4gPiArCj4gPiA+ICsJcmV0dXJuIGFkLT5wb3dl
-ci5mbGFncy5wb3dlcl9yZXNvdXJjZXM7Cj4gPiAKPiA+IElzIHRoaXMgc3VmZmljaWVudCB0byB0
-ZWxsIGlmIHRoZSBwYXJlbnQgZGV2aWNlIGhhcyBfUFIzPyBJIHRob3VnaHQgaXQKPiA+IHJldHVy
-bnMgdHJ1ZSBpZiBpdCBoYXMgcG93ZXIgcmVzb3VyY2VzIGluIGdlbmVyYWwsIG5vdCBuZWNlc3Nh
-cmlseSBfUFIzLgo+ID4gCj4gPiBPdGhlcndpc2UgdGhpcyBsb29rcyBva2F5IHRvIG1lLgo+IAo+
-IEl0IGlzIGluZGVlZCBzZXQgd2hlbmV2ZXIgdGhlcmUgaXMgYW55IF9QUnggbWV0aG9kLiBJIHdv
-bmRlciBpZiBpdCBpcwo+IGFwcHJvcHJpYXRlIHRvIGFjY2VzcyBmaWVsZHMgZGlyZWN0bHkgbGlr
-ZSB0aGlzLCBwZXJoYXBzIHRoaXMgd291bGQgYmUKPiBtb3JlIGFjY3VyYXRlIChiYXNlZCBvbiBk
-ZXZpY2VfcG0uYyk6Cj4gCj4gICAgIC8qIENoZWNrIHdoZXRoZXIgdGhlIF9QUjMgbWV0aG9kIGlz
-IGF2YWlsYWJsZS4gKi8KPiAgICAgcmV0dXJuIGFkZXYtPnBvd2VyLnN0YXRlc1tBQ1BJX1NUQVRF
-X0QzX0NPTERdLmZsYWdzLnZhbGlkOwo+IAo+IEkgYW0gYWxzbyBjb25zaWRlcmluZyBhZGRpbmcg
-YSBjaGVjayBpbiBjYXNlIHRoZSBwY2llcG9ydCBkcml2ZXIgZG9lcwo+IG5vdCBzdXBwb3J0IEQz
-Y29sZCB2aWEgcnVudGltZSBQTSwgd2hhdCBkbyB5b3UgdGhpbmsgb2YgdGhpcz8KPiAKPiAgICAg
-aWYgKCFwYXJlbnRfcGRldikKPiAgICAgICAgIHJldHVybiBmYWxzZTsKPiAgICAgLyogSWYgdGhl
-IFBDSWUgcG9ydCBkb2VzIG5vdCBzdXBwb3J0IEQzY29sZCB2aWEgcnVudGltZSBQTSwgYWxsb3cg
-YQo+ICAgICAgKiBmYWxsYmFjayB0byB0aGUgT3B0aW11cyBEU00gbWV0aG9kIHRvIHB1dCB0aGUg
-ZGV2aWNlIGluIEQzY29sZC4gKi8KPiAgICAgaWYgKHBhcmVudF9wZGV2LT5ub19kM2NvbGQpCj4g
-ICAgICAgICByZXR1cm4gZmFsc2U7Cj4gCj4gVGhpcyBpcyBuZWVkZWQgdG8gYXZvaWQgdGhlIHJl
-Z3Jlc3Npb24gcmVwb3J0ZWQgaW4gdGhlIGNvdmVyIGxldHRlciwgYnV0Cj4gYWxzbyBhbGxvd3Mg
-cHJlLTIwMTUgc3lzdGVtcyB0byAoc3RpbGwpIGhhdmUgdGhlIEQzY29sZCBwb3NzaWJpbGl0eS4K
-ClRoZSBfRFNNIG1ldGhvZCB3aXRoIDAgYXMgaW5kZXggcGFyYW1ldGVyIHNob3VsZCByZXR1cm4g
-YSBiaXQgZmllbGQKdGVsbGluZyB3aGljaCBmdW5jdGlvbnMgYXJlIHN1cHBvcnRlZC4gU2FuZSBC
-SU9TIGRpc2FibGVzIHRoYXQKcGFydGljdWxhciBmdW5jdGlvbiBpZiBpdCBkZXRlY3RzIFdpbmRv
-d3MgOCBhbmQgbmV3ZXIuIEhhdmUgeW91IGNoZWNrZWQKaWYgdGhhdCdzIHRoZSBjYXNlPwoKVGhl
-biB5b3UgY2FuIGNhbGwgX0RTTSBvbmx5IGlmIGl0IGlzIHN1cHBvcnRlZCBhbmQgb3RoZXJ3aXNl
-IGV4cGVjdCB0aGUKcGFyZW50IGRldmljZSdzIHBvd2VyIHJlc291cmNlcyB0byB0dXJuIG9mZiBw
-b3dlciB3aGVuIHJ1bnRpbWUKc3VzcGVuZGVkLgoKPiBPdXQgb2YgY3VyaW9zaXR5IEkgbG9va2Vk
-IHVwIGFuIHByZS0yMDE1IGxhcHRvcCAoZm91bmQgQWNlciBWNS01NzNHLAo+IGFwcGFyZW50bHkg
-ZnJvbSBOb3ZlbWJlciAyMDEzLCBXaW5kb3dzIDguMSkgYW5kIGV4dHJhY3RlZCB0aGUgQUNQSQo+
-IHRhYmxlcyBmcm9tIHRoZSBCSU9TIGltYWdlcy4gQklPUyAyLjI4ICgyMDE0LzA1LzEzKSBpbnRy
-b2R1Y2VzIHN1cHBvcnQKPiBmb3IgcG93ZXIgcmVzb3VyY2VzIG9uIHRoZSBwYXJlbnQgZGV2aWNl
-YShcX1NCLlBDSTAuUEVHMC5fUFIzIGFuZCBhCj4gcmVsYXRlZCBOVlAzIGRldmljZSkgd2hlbiBf
-T1NJKCJXaW5kb3dzIDIwMTMiKSBpcyB0cnVlLiAoVGhpcyBpcyBhZGRlZAo+IGFzIGFsdGVybmF0
-aXZlIGZvciB0aGUgb2xkIERTTSBpbnRlcmZhY2UuKQo+IAo+IE1heWJlIDIwMTQgaXMgYWxzbyBh
-biBhcHByb3ByaWF0ZSBjdXRvZmYgZGF0ZT8gSSB3b25kZXIgaWYgaXQgaXMKPiBmZWFzaWJsZSB0
-byBkZXRlY3QgZmlybXdhcmUgdXNlIG9mIF9PU0koIldpbmRvd3MgMjAxMyIpIGFuZCB1c2UgdGhh
-dAo+IGluc3RlYWQgb2YgdGhlIEJJT1MgeWVhci4KClVzaW5nIEJJT1MgeWVhciB3b3JrcyBldmVu
-IGlmIHRoZXJlIGlzIG5vIEFDUEkgYXZhaWxhYmxlLgoKV2hhdCBjb21lcyB0byB0aGUgY3V0b2Zm
-IGRhdGUsIEkgZGlzY3Vzc2VkIHdpdGggUmFmYWVsIGFuZCBpdCB3YXMKZGVjaWRlZCB0aGF0IHdl
-IHVzZSB0aGUgc2FtZSB5ZWFyIFdpbmRvd3MgMTAgd2FzIHJlbGVhc2VkIHRvIGJlIG9uIHRoZQpz
-YWZlIHNpZGUuIFJlYWRpbmcgdGhlIGxpbmtzIHlvdSBwcm92aWRlZCBoZXJlOgoKaHR0cHM6Ly9t
-c2RuLm1pY3Jvc29mdC5jb20vZmktZmkvd2luZG93cy9oYXJkd2FyZS9kcml2ZXJzL2JyaW5ndXAv
-ZGV2aWNlLXBvd2VyLW1hbmFnZW1lbnQKaHR0cHM6Ly9tc2RuLm1pY3Jvc29mdC5jb20vZW4tdXMv
-bGlicmFyeS93aW5kb3dzL2hhcmR3YXJlL2hoOTY3NzA5KHY9dnMuODUpLmFzcHgKCml0IHNlZW1z
-IHRoYXQgZnJvbSBXaW5kb3dzIDggdGhleSBzdGFydGVkIHRyYW5zaXRpb25pbmcgZGV2aWNlcyBp
-bnRvCkQzY29sZCBkdXJpbmcgcnVudGltZSBhcyB3ZWxsLgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+On 27 May 2016 at 22:31, Peter Wu <peter@lekensteyn.nl> wrote:
+> On Fri, May 27, 2016 at 02:01:39PM +0100, Emil Velikov wrote:
+>> Hi Peter,
+>>
+>> On 24 May 2016 at 23:53, Peter Wu <peter@lekensteyn.nl> wrote:
+>> > Since "PCI: Add runtime PM support for PCIe ports", the parent PCIe port
+>> > can be runtime-suspended which disables power resources via ACPI. This
+>> > is incompatible with DSM, resulting in a GPU device which is still in D3
+>> > and locks up the kernel on resume.
+>> >
+>> > Mirror the behavior of Windows 8 and newer[1] (as observed via an AMLi
+>> > debugger trace) and stop using the DSM functions for D3cold when power
+>> > resources are available on the parent PCIe port.
+>> >
+>> >  [1]: https://msdn.microsoft.com/windows/hardware/drivers/bringup/firmware-requirements-for-d3cold
+>> >
+>> > Signed-off-by: Peter Wu <peter@lekensteyn.nl>
+>> > ---
+>> >  drivers/gpu/drm/nouveau/nouveau_acpi.c | 34 ++++++++++++++++++++++++++++++----
+>> >  1 file changed, 30 insertions(+), 4 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+>> > index df9f73e..e469df7 100644
+>> > --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
+>> > +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+>> > @@ -46,6 +46,7 @@ static struct nouveau_dsm_priv {
+>> >         bool dsm_detected;
+>> >         bool optimus_detected;
+>> >         bool optimus_flags_detected;
+>> > +       bool optimus_skip_dsm;
+>> >         acpi_handle dhandle;
+>> >         acpi_handle rom_handle;
+>> >  } nouveau_dsm_priv;
+>> > @@ -212,8 +213,26 @@ static const struct vga_switcheroo_handler nouveau_dsm_handler = {
+>> >         .get_client_id = nouveau_dsm_get_client_id,
+>> >  };
+>> >
+>> > +/* Firmware supporting Windows 8 or later do not use _DSM to put the device into
+>> > + * D3cold, they instead rely on disabling power resources on the parent. */
+>> > +static bool nouveau_pr3_present(struct pci_dev *pdev)
+>> > +{
+>> > +       struct pci_dev *parent_pdev = pci_upstream_bridge(pdev);
+>> > +       struct acpi_device *ad;
+>> > +
+>> > +       if (!parent_pdev)
+>> > +               return false;
+>> > +
+>> > +       ad = ACPI_COMPANION(&parent_pdev->dev);
+>> > +       if (!ad)
+>> > +               return false;
+>> > +
+>> > +       return ad->power.flags.power_resources;
+>> > +}
+>> > +
+>> >  static void nouveau_dsm_pci_probe(struct pci_dev *pdev, bool *has_mux,
+>> > -                                 bool *has_opt, bool *has_opt_flags)
+>> > +                                 bool *has_opt, bool *has_opt_flags,
+>> > +                                 bool *has_power_resources)
+>> >  {
+>> >         acpi_handle dhandle;
+>> >         bool supports_mux;
+>> > @@ -238,6 +257,7 @@ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, bool *has_mux,
+>> >         *has_mux = supports_mux;
+>> >         *has_opt = !!optimus_funcs;
+>> >         *has_opt_flags = optimus_funcs & (1 << NOUVEAU_DSM_OPTIMUS_FLAGS);
+>> > +       *has_power_resources = false;
+>> >
+>> >         if (optimus_funcs) {
+>> >                 uint32_t result;
+>> > @@ -247,6 +267,8 @@ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, bool *has_mux,
+>> >                          (result & OPTIMUS_ENABLED) ? "enabled" : "disabled",
+>> >                          (result & OPTIMUS_DYNAMIC_PWR_CAP) ? "dynamic power, " : "",
+>> >                          (result & OPTIMUS_HDA_CODEC_MASK) ? "hda bios codec supported" : "");
+>> > +
+>> > +               *has_power_resources = nouveau_pr3_present(pdev);
+>> >         }
+>> >  }
+>> >
+>> > @@ -258,6 +280,7 @@ static bool nouveau_dsm_detect(void)
+>> >         bool has_mux = false;
+>> >         bool has_optimus = false;
+>> >         bool has_optimus_flags = false;
+>> > +       bool has_power_resources = false;
+>> >         int vga_count = 0;
+>> >         bool guid_valid;
+>> >         bool ret = false;
+>> > @@ -273,14 +296,14 @@ static bool nouveau_dsm_detect(void)
+>> >                 vga_count++;
+>> >
+>> >                 nouveau_dsm_pci_probe(pdev, &has_mux, &has_optimus,
+>> > -                                     &has_optimus_flags);
+>> > +                                     &has_optimus_flags, &has_power_resources);
+>> >         }
+>> >
+>> >         while ((pdev = pci_get_class(PCI_CLASS_DISPLAY_3D << 8, pdev)) != NULL) {
+>> >                 vga_count++;
+>> >
+>> >                 nouveau_dsm_pci_probe(pdev, &has_mux, &has_optimus,
+>> > -                                     &has_optimus_flags);
+>> > +                                     &has_optimus_flags, &has_power_resources);
+>> >         }
+>> >
+>> This and earlier patch break things in a subtle way.
+>>
+>> Namely: upon the second (and any later) call into the
+>> nouveau_dsm_pci_probe() function, the had_foo flags are reset. Thus
+>> only the specifics of the _final_ device are being used (at a later
+>> stage). IMHO one should change that to "_any_ device", which will
+>> match the original code and the actual intent further down in the
+>> file.
+>
+> The flags are only reset if any of the MUX or Optimus handles are found.
+> If both are missing, the flags are not overridden. This is from patch 1:
+>
+> +       /* Does not look like a Nvidia device. */
+> +       if (!supports_mux && !supports_opt)
+> +               return;
+>
+This is precisely what I'm saying, and I think it's wrong/strange. If
+you've detected that device A support_{X,Y}, you'll reset the
+support_{X,Y} flag anyway if device B is present... (continues further
+down)
+
+> The reason why later calls override early ones is because some Optimus
+> laptops have the _DSM method on both the Intel GPU (00:02.0) and the
+> Nvidia one (01:00.0).
+>
+I agree with Lukas idea that one could/should be checking for nvidia
+devices (perhaps in nouveau_dsm_pci_probe() or just before calling it
+?).
+
+> The previous detection method would fail in this scenario:
+>  1. One device reports support for X and Y (has_x = 1, has_y = 1). Write
+>     ACPI handle A to nouveau_dsm_priv.dhandle.
+>  2. Another device reports support for X only (has_x = 1). Write
+>     ACPI handle B to nouveau_dsm_priv.dhandle.
+>  3. End result: has_x = 1, has_y = 1, dhandle = B. But ACPI handle B
+>     does not really support Y!
+
+...  so to avoid the above case and preserve the original ideas ('do
+not discard earlier device caps' and 'Optimus takes precedence over
+DSM v1') one could do the following:
+
+ - decouple the "feature check" and "set the dhandle"
+ - pick the 'ideal' one based on the feature set provided. if multiple
+pick one based on $insert_heuristics
+ - set the dhandle
+
+What do you think ?
+
+Regards,
+Emil
