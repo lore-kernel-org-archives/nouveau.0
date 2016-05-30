@@ -1,11 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96274] New: [NVC0] Failure when compiling compute
- shader: Assertion `bb->getFirst()->serial <= bb->getExit()->serial' failed
-Date: Mon, 30 May 2016 04:06:06 +0000
-Message-ID: <bug-96274-8800@http.bugs.freedesktop.org/>
+From: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Subject: Re: [PATCH 4/4] drm/nouveau/acpi: fix lockup with PCIe
+	runtime PM
+Date: Mon, 30 May 2016 12:57:09 +0300
+Message-ID: <20160530095709.GK1789@lahna.fi.intel.com>
+References: <1464130381-4797-1-git-send-email-peter@lekensteyn.nl>
+ <1464130381-4797-5-git-send-email-peter@lekensteyn.nl>
+ <20160525135535.GN1789@lahna.fi.intel.com>
+ <20160527111037.GA1436@al>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1630081158=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20160527111037.GA1436@al>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,196 +22,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Cc: linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "Rafael J. Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1630081158==
-Content-Type: multipart/alternative; boundary="14645811660.4eaef3.26554";
- charset="UTF-8"
-
-
---14645811660.4eaef3.26554
-Date: Mon, 30 May 2016 04:06:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96274
-
-            Bug ID: 96274
-           Summary: [NVC0] Failure when compiling compute shader:
-                    Assertion `bb->getFirst()->serial <=3D
-                    bb->getExit()->serial' failed
-           Product: Mesa
-           Version: git
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-Created attachment 124171
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124171&action=3Dedit
-failing tgsi shader
-
-This happens in GRID Autosport, when selecting one of the advanced graphics
-options (global illumination or the one right next to it). The issue appear=
-s to
-be squarely in nouveau's optimizations.
-
-It looks like we end up deciding that the first while loop can be removed? =
-Or
-somehow lose track of those BBs? Unclear. This in turn leads to BB:11 being
-completely lost.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14645811660.4eaef3.26554
-Date: Mon, 30 May 2016 04:06:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC0] Failure when compiling compute shader: Assertion `=
-bb-&gt;getFirst()-&gt;serial &lt;=3D bb-&gt;getExit()-&gt;serial' failed"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96274">96274</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVC0] Failure when compiling compute shader: Assertion `bb-&=
-gt;getFirst()-&gt;serial &lt;=3D bb-&gt;getExit()-&gt;serial' failed
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>imirkin&#64;alum.mit.edu
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124171=
-" name=3D"attach_124171" title=3D"failing tgsi shader">attachment 124171</a=
-> <a href=3D"attachment.cgi?id=3D124171&amp;action=3Dedit" title=3D"failing=
- tgsi shader">[details]</a></span>
-failing tgsi shader
-
-This happens in GRID Autosport, when selecting one of the advanced graphics
-options (global illumination or the one right next to it). The issue appear=
-s to
-be squarely in nouveau's optimizations.
-
-It looks like we end up deciding that the first while loop can be removed? =
-Or
-somehow lose track of those BBs? Unclear. This in turn leads to BB:11 being
-completely lost.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14645811660.4eaef3.26554--
-
---===============1630081158==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1630081158==--
+K1JhZmFlbAoKT24gRnJpLCBNYXkgMjcsIDIwMTYgYXQgMDE6MTA6MzdQTSArMDIwMCwgUGV0ZXIg
+V3Ugd3JvdGU6Cj4gT24gV2VkLCBNYXkgMjUsIDIwMTYgYXQgMDQ6NTU6MzVQTSArMDMwMCwgTWlr
+YSBXZXN0ZXJiZXJnIHdyb3RlOgo+ID4gT24gV2VkLCBNYXkgMjUsIDIwMTYgYXQgMTI6NTM6MDFB
+TSArMDIwMCwgUGV0ZXIgV3Ugd3JvdGU6Cj4gPiA+IFNpbmNlICJQQ0k6IEFkZCBydW50aW1lIFBN
+IHN1cHBvcnQgZm9yIFBDSWUgcG9ydHMiLCB0aGUgcGFyZW50IFBDSWUgcG9ydAo+ID4gPiBjYW4g
+YmUgcnVudGltZS1zdXNwZW5kZWQgd2hpY2ggZGlzYWJsZXMgcG93ZXIgcmVzb3VyY2VzIHZpYSBB
+Q1BJLiBUaGlzCj4gPiA+IGlzIGluY29tcGF0aWJsZSB3aXRoIERTTSwgcmVzdWx0aW5nIGluIGEg
+R1BVIGRldmljZSB3aGljaCBpcyBzdGlsbCBpbiBEMwo+ID4gPiBhbmQgbG9ja3MgdXAgdGhlIGtl
+cm5lbCBvbiByZXN1bWUuCj4gPiA+IAo+ID4gPiBNaXJyb3IgdGhlIGJlaGF2aW9yIG9mIFdpbmRv
+d3MgOCBhbmQgbmV3ZXJbMV0gKGFzIG9ic2VydmVkIHZpYSBhbiBBTUxpCj4gPiA+IGRlYnVnZ2Vy
+IHRyYWNlKSBhbmQgc3RvcCB1c2luZyB0aGUgRFNNIGZ1bmN0aW9ucyBmb3IgRDNjb2xkIHdoZW4g
+cG93ZXIKPiA+ID4gcmVzb3VyY2VzIGFyZSBhdmFpbGFibGUgb24gdGhlIHBhcmVudCBQQ0llIHBv
+cnQuCj4gPiA+IAo+ID4gPiAgWzFdOiBodHRwczovL21zZG4ubWljcm9zb2Z0LmNvbS93aW5kb3dz
+L2hhcmR3YXJlL2RyaXZlcnMvYnJpbmd1cC9maXJtd2FyZS1yZXF1aXJlbWVudHMtZm9yLWQzY29s
+ZAo+ID4gPiAKPiA+ID4gU2lnbmVkLW9mZi1ieTogUGV0ZXIgV3UgPHBldGVyQGxla2Vuc3RleW4u
+bmw+Cj4gPiA+IC0tLQo+ID4gPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3Bp
+LmMgfCAzNCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0tCj4gPiA+ICAxIGZpbGUg
+Y2hhbmdlZCwgMzAgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKPiA+ID4gCj4gPiA+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYyBiL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4gPiA+IGluZGV4IGRmOWY3M2UuLmU0
+NjlkZjcgMTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+YWNwaS5jCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5j
+Cj4gPiA+IEBAIC00Niw2ICs0Niw3IEBAIHN0YXRpYyBzdHJ1Y3Qgbm91dmVhdV9kc21fcHJpdiB7
+Cj4gPiA+ICAJYm9vbCBkc21fZGV0ZWN0ZWQ7Cj4gPiA+ICAJYm9vbCBvcHRpbXVzX2RldGVjdGVk
+Owo+ID4gPiAgCWJvb2wgb3B0aW11c19mbGFnc19kZXRlY3RlZDsKPiA+ID4gKwlib29sIG9wdGlt
+dXNfc2tpcF9kc207Cj4gPiA+ICAJYWNwaV9oYW5kbGUgZGhhbmRsZTsKPiA+ID4gIAlhY3BpX2hh
+bmRsZSByb21faGFuZGxlOwo+ID4gPiAgfSBub3V2ZWF1X2RzbV9wcml2Owo+ID4gPiBAQCAtMjEy
+LDggKzIxMywyNiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHZnYV9zd2l0Y2hlcm9vX2hhbmRsZXIg
+bm91dmVhdV9kc21faGFuZGxlciA9IHsKPiA+ID4gIAkuZ2V0X2NsaWVudF9pZCA9IG5vdXZlYXVf
+ZHNtX2dldF9jbGllbnRfaWQsCj4gPiA+ICB9Owo+ID4gPiAgCj4gPiA+ICsvKiBGaXJtd2FyZSBz
+dXBwb3J0aW5nIFdpbmRvd3MgOCBvciBsYXRlciBkbyBub3QgdXNlIF9EU00gdG8gcHV0IHRoZSBk
+ZXZpY2UgaW50bwo+ID4gPiArICogRDNjb2xkLCB0aGV5IGluc3RlYWQgcmVseSBvbiBkaXNhYmxp
+bmcgcG93ZXIgcmVzb3VyY2VzIG9uIHRoZSBwYXJlbnQuICovCj4gPiA+ICtzdGF0aWMgYm9vbCBu
+b3V2ZWF1X3ByM19wcmVzZW50KHN0cnVjdCBwY2lfZGV2ICpwZGV2KQo+ID4gPiArewo+ID4gPiAr
+CXN0cnVjdCBwY2lfZGV2ICpwYXJlbnRfcGRldiA9IHBjaV91cHN0cmVhbV9icmlkZ2UocGRldik7
+Cj4gPiA+ICsJc3RydWN0IGFjcGlfZGV2aWNlICphZDsKPiA+IAo+ID4gTml0OiBwbGVhc2UgY2Fs
+bCB0aGlzIGFkZXYgaW5zdGVhZCBvZiBhZC4KPiAKPiBXaWxsIGRvLgo+IAo+ID4gPiArCj4gPiA+
+ICsJaWYgKCFwYXJlbnRfcGRldikKPiA+ID4gKwkJcmV0dXJuIGZhbHNlOwo+ID4gPiArCj4gPiA+
+ICsJYWQgPSBBQ1BJX0NPTVBBTklPTigmcGFyZW50X3BkZXYtPmRldik7Cj4gPiA+ICsJaWYgKCFh
+ZCkKPiA+ID4gKwkJcmV0dXJuIGZhbHNlOwo+ID4gPiArCj4gPiA+ICsJcmV0dXJuIGFkLT5wb3dl
+ci5mbGFncy5wb3dlcl9yZXNvdXJjZXM7Cj4gPiAKPiA+IElzIHRoaXMgc3VmZmljaWVudCB0byB0
+ZWxsIGlmIHRoZSBwYXJlbnQgZGV2aWNlIGhhcyBfUFIzPyBJIHRob3VnaHQgaXQKPiA+IHJldHVy
+bnMgdHJ1ZSBpZiBpdCBoYXMgcG93ZXIgcmVzb3VyY2VzIGluIGdlbmVyYWwsIG5vdCBuZWNlc3Nh
+cmlseSBfUFIzLgo+ID4gCj4gPiBPdGhlcndpc2UgdGhpcyBsb29rcyBva2F5IHRvIG1lLgo+IAo+
+IEl0IGlzIGluZGVlZCBzZXQgd2hlbmV2ZXIgdGhlcmUgaXMgYW55IF9QUnggbWV0aG9kLiBJIHdv
+bmRlciBpZiBpdCBpcwo+IGFwcHJvcHJpYXRlIHRvIGFjY2VzcyBmaWVsZHMgZGlyZWN0bHkgbGlr
+ZSB0aGlzLCBwZXJoYXBzIHRoaXMgd291bGQgYmUKPiBtb3JlIGFjY3VyYXRlIChiYXNlZCBvbiBk
+ZXZpY2VfcG0uYyk6Cj4gCj4gICAgIC8qIENoZWNrIHdoZXRoZXIgdGhlIF9QUjMgbWV0aG9kIGlz
+IGF2YWlsYWJsZS4gKi8KPiAgICAgcmV0dXJuIGFkZXYtPnBvd2VyLnN0YXRlc1tBQ1BJX1NUQVRF
+X0QzX0NPTERdLmZsYWdzLnZhbGlkOwo+IAo+IEkgYW0gYWxzbyBjb25zaWRlcmluZyBhZGRpbmcg
+YSBjaGVjayBpbiBjYXNlIHRoZSBwY2llcG9ydCBkcml2ZXIgZG9lcwo+IG5vdCBzdXBwb3J0IEQz
+Y29sZCB2aWEgcnVudGltZSBQTSwgd2hhdCBkbyB5b3UgdGhpbmsgb2YgdGhpcz8KPiAKPiAgICAg
+aWYgKCFwYXJlbnRfcGRldikKPiAgICAgICAgIHJldHVybiBmYWxzZTsKPiAgICAgLyogSWYgdGhl
+IFBDSWUgcG9ydCBkb2VzIG5vdCBzdXBwb3J0IEQzY29sZCB2aWEgcnVudGltZSBQTSwgYWxsb3cg
+YQo+ICAgICAgKiBmYWxsYmFjayB0byB0aGUgT3B0aW11cyBEU00gbWV0aG9kIHRvIHB1dCB0aGUg
+ZGV2aWNlIGluIEQzY29sZC4gKi8KPiAgICAgaWYgKHBhcmVudF9wZGV2LT5ub19kM2NvbGQpCj4g
+ICAgICAgICByZXR1cm4gZmFsc2U7Cj4gCj4gVGhpcyBpcyBuZWVkZWQgdG8gYXZvaWQgdGhlIHJl
+Z3Jlc3Npb24gcmVwb3J0ZWQgaW4gdGhlIGNvdmVyIGxldHRlciwgYnV0Cj4gYWxzbyBhbGxvd3Mg
+cHJlLTIwMTUgc3lzdGVtcyB0byAoc3RpbGwpIGhhdmUgdGhlIEQzY29sZCBwb3NzaWJpbGl0eS4K
+ClRoZSBfRFNNIG1ldGhvZCB3aXRoIDAgYXMgaW5kZXggcGFyYW1ldGVyIHNob3VsZCByZXR1cm4g
+YSBiaXQgZmllbGQKdGVsbGluZyB3aGljaCBmdW5jdGlvbnMgYXJlIHN1cHBvcnRlZC4gU2FuZSBC
+SU9TIGRpc2FibGVzIHRoYXQKcGFydGljdWxhciBmdW5jdGlvbiBpZiBpdCBkZXRlY3RzIFdpbmRv
+d3MgOCBhbmQgbmV3ZXIuIEhhdmUgeW91IGNoZWNrZWQKaWYgdGhhdCdzIHRoZSBjYXNlPwoKVGhl
+biB5b3UgY2FuIGNhbGwgX0RTTSBvbmx5IGlmIGl0IGlzIHN1cHBvcnRlZCBhbmQgb3RoZXJ3aXNl
+IGV4cGVjdCB0aGUKcGFyZW50IGRldmljZSdzIHBvd2VyIHJlc291cmNlcyB0byB0dXJuIG9mZiBw
+b3dlciB3aGVuIHJ1bnRpbWUKc3VzcGVuZGVkLgoKPiBPdXQgb2YgY3VyaW9zaXR5IEkgbG9va2Vk
+IHVwIGFuIHByZS0yMDE1IGxhcHRvcCAoZm91bmQgQWNlciBWNS01NzNHLAo+IGFwcGFyZW50bHkg
+ZnJvbSBOb3ZlbWJlciAyMDEzLCBXaW5kb3dzIDguMSkgYW5kIGV4dHJhY3RlZCB0aGUgQUNQSQo+
+IHRhYmxlcyBmcm9tIHRoZSBCSU9TIGltYWdlcy4gQklPUyAyLjI4ICgyMDE0LzA1LzEzKSBpbnRy
+b2R1Y2VzIHN1cHBvcnQKPiBmb3IgcG93ZXIgcmVzb3VyY2VzIG9uIHRoZSBwYXJlbnQgZGV2aWNl
+YShcX1NCLlBDSTAuUEVHMC5fUFIzIGFuZCBhCj4gcmVsYXRlZCBOVlAzIGRldmljZSkgd2hlbiBf
+T1NJKCJXaW5kb3dzIDIwMTMiKSBpcyB0cnVlLiAoVGhpcyBpcyBhZGRlZAo+IGFzIGFsdGVybmF0
+aXZlIGZvciB0aGUgb2xkIERTTSBpbnRlcmZhY2UuKQo+IAo+IE1heWJlIDIwMTQgaXMgYWxzbyBh
+biBhcHByb3ByaWF0ZSBjdXRvZmYgZGF0ZT8gSSB3b25kZXIgaWYgaXQgaXMKPiBmZWFzaWJsZSB0
+byBkZXRlY3QgZmlybXdhcmUgdXNlIG9mIF9PU0koIldpbmRvd3MgMjAxMyIpIGFuZCB1c2UgdGhh
+dAo+IGluc3RlYWQgb2YgdGhlIEJJT1MgeWVhci4KClVzaW5nIEJJT1MgeWVhciB3b3JrcyBldmVu
+IGlmIHRoZXJlIGlzIG5vIEFDUEkgYXZhaWxhYmxlLgoKV2hhdCBjb21lcyB0byB0aGUgY3V0b2Zm
+IGRhdGUsIEkgZGlzY3Vzc2VkIHdpdGggUmFmYWVsIGFuZCBpdCB3YXMKZGVjaWRlZCB0aGF0IHdl
+IHVzZSB0aGUgc2FtZSB5ZWFyIFdpbmRvd3MgMTAgd2FzIHJlbGVhc2VkIHRvIGJlIG9uIHRoZQpz
+YWZlIHNpZGUuIFJlYWRpbmcgdGhlIGxpbmtzIHlvdSBwcm92aWRlZCBoZXJlOgoKaHR0cHM6Ly9t
+c2RuLm1pY3Jvc29mdC5jb20vZmktZmkvd2luZG93cy9oYXJkd2FyZS9kcml2ZXJzL2JyaW5ndXAv
+ZGV2aWNlLXBvd2VyLW1hbmFnZW1lbnQKaHR0cHM6Ly9tc2RuLm1pY3Jvc29mdC5jb20vZW4tdXMv
+bGlicmFyeS93aW5kb3dzL2hhcmR3YXJlL2hoOTY3NzA5KHY9dnMuODUpLmFzcHgKCml0IHNlZW1z
+IHRoYXQgZnJvbSBXaW5kb3dzIDggdGhleSBzdGFydGVkIHRyYW5zaXRpb25pbmcgZGV2aWNlcyBp
+bnRvCkQzY29sZCBkdXJpbmcgcnVudGltZSBhcyB3ZWxsLgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
