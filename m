@@ -1,170 +1,179 @@
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Subject: Re: [Nouveau] [PATCH 4/4] drm/nouveau/acpi: fix lockup with PCIe
+From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Subject: Re: [PATCH 4/4] drm/nouveau/acpi: fix lockup with PCIe
  runtime PM
-Date: Mon, 30 May 2016 11:48:34 +0100
-Message-ID: <CACvgo50db1KEuH3yZ75K-MtCeKAsQKXJbQQxiXm+82qkjZsvDA@mail.gmail.com>
+Date: Mon, 30 May 2016 13:23:57 +0200
+Message-ID: <20160530112357.GA1149@al>
 References: <1464130381-4797-1-git-send-email-peter@lekensteyn.nl>
-	<1464130381-4797-5-git-send-email-peter@lekensteyn.nl>
-	<CACvgo514AB=rkRGWrwmPHTX=hhEF8Jhzdg1hQkX1_C4A_zYkzg@mail.gmail.com>
-	<20160527213123.GB1777@al>
+ <1464130381-4797-5-git-send-email-peter@lekensteyn.nl>
+ <CACvgo514AB=rkRGWrwmPHTX=hhEF8Jhzdg1hQkX1_C4A_zYkzg@mail.gmail.com>
+ <20160527213123.GB1777@al>
+ <CACvgo50db1KEuH3yZ75K-MtCeKAsQKXJbQQxiXm+82qkjZsvDA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-pci-owner@vger.kernel.org>
-In-Reply-To: <20160527213123.GB1777@al>
-Sender: linux-pci-owner@vger.kernel.org
-To: Peter Wu <peter@lekensteyn.nl>
-Cc: ML nouveau <nouveau@lists.freedesktop.org>, ML dri-devel <dri-devel@lists.freedesktop.org>, Dave Airlie <airlied@redhat.com>, linux-pm@vger.kernel.org, Bjorn Helgaas <helgaas@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, linux-pci@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CACvgo50db1KEuH3yZ75K-MtCeKAsQKXJbQQxiXm+82qkjZsvDA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Cc: linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On 27 May 2016 at 22:31, Peter Wu <peter@lekensteyn.nl> wrote:
-> On Fri, May 27, 2016 at 02:01:39PM +0100, Emil Velikov wrote:
->> Hi Peter,
->>
->> On 24 May 2016 at 23:53, Peter Wu <peter@lekensteyn.nl> wrote:
->> > Since "PCI: Add runtime PM support for PCIe ports", the parent PCIe port
->> > can be runtime-suspended which disables power resources via ACPI. This
->> > is incompatible with DSM, resulting in a GPU device which is still in D3
->> > and locks up the kernel on resume.
->> >
->> > Mirror the behavior of Windows 8 and newer[1] (as observed via an AMLi
->> > debugger trace) and stop using the DSM functions for D3cold when power
->> > resources are available on the parent PCIe port.
->> >
->> >  [1]: https://msdn.microsoft.com/windows/hardware/drivers/bringup/firmware-requirements-for-d3cold
->> >
->> > Signed-off-by: Peter Wu <peter@lekensteyn.nl>
->> > ---
->> >  drivers/gpu/drm/nouveau/nouveau_acpi.c | 34 ++++++++++++++++++++++++++++++----
->> >  1 file changed, 30 insertions(+), 4 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
->> > index df9f73e..e469df7 100644
->> > --- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
->> > +++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
->> > @@ -46,6 +46,7 @@ static struct nouveau_dsm_priv {
->> >         bool dsm_detected;
->> >         bool optimus_detected;
->> >         bool optimus_flags_detected;
->> > +       bool optimus_skip_dsm;
->> >         acpi_handle dhandle;
->> >         acpi_handle rom_handle;
->> >  } nouveau_dsm_priv;
->> > @@ -212,8 +213,26 @@ static const struct vga_switcheroo_handler nouveau_dsm_handler = {
->> >         .get_client_id = nouveau_dsm_get_client_id,
->> >  };
->> >
->> > +/* Firmware supporting Windows 8 or later do not use _DSM to put the device into
->> > + * D3cold, they instead rely on disabling power resources on the parent. */
->> > +static bool nouveau_pr3_present(struct pci_dev *pdev)
->> > +{
->> > +       struct pci_dev *parent_pdev = pci_upstream_bridge(pdev);
->> > +       struct acpi_device *ad;
->> > +
->> > +       if (!parent_pdev)
->> > +               return false;
->> > +
->> > +       ad = ACPI_COMPANION(&parent_pdev->dev);
->> > +       if (!ad)
->> > +               return false;
->> > +
->> > +       return ad->power.flags.power_resources;
->> > +}
->> > +
->> >  static void nouveau_dsm_pci_probe(struct pci_dev *pdev, bool *has_mux,
->> > -                                 bool *has_opt, bool *has_opt_flags)
->> > +                                 bool *has_opt, bool *has_opt_flags,
->> > +                                 bool *has_power_resources)
->> >  {
->> >         acpi_handle dhandle;
->> >         bool supports_mux;
->> > @@ -238,6 +257,7 @@ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, bool *has_mux,
->> >         *has_mux = supports_mux;
->> >         *has_opt = !!optimus_funcs;
->> >         *has_opt_flags = optimus_funcs & (1 << NOUVEAU_DSM_OPTIMUS_FLAGS);
->> > +       *has_power_resources = false;
->> >
->> >         if (optimus_funcs) {
->> >                 uint32_t result;
->> > @@ -247,6 +267,8 @@ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, bool *has_mux,
->> >                          (result & OPTIMUS_ENABLED) ? "enabled" : "disabled",
->> >                          (result & OPTIMUS_DYNAMIC_PWR_CAP) ? "dynamic power, " : "",
->> >                          (result & OPTIMUS_HDA_CODEC_MASK) ? "hda bios codec supported" : "");
->> > +
->> > +               *has_power_resources = nouveau_pr3_present(pdev);
->> >         }
->> >  }
->> >
->> > @@ -258,6 +280,7 @@ static bool nouveau_dsm_detect(void)
->> >         bool has_mux = false;
->> >         bool has_optimus = false;
->> >         bool has_optimus_flags = false;
->> > +       bool has_power_resources = false;
->> >         int vga_count = 0;
->> >         bool guid_valid;
->> >         bool ret = false;
->> > @@ -273,14 +296,14 @@ static bool nouveau_dsm_detect(void)
->> >                 vga_count++;
->> >
->> >                 nouveau_dsm_pci_probe(pdev, &has_mux, &has_optimus,
->> > -                                     &has_optimus_flags);
->> > +                                     &has_optimus_flags, &has_power_resources);
->> >         }
->> >
->> >         while ((pdev = pci_get_class(PCI_CLASS_DISPLAY_3D << 8, pdev)) != NULL) {
->> >                 vga_count++;
->> >
->> >                 nouveau_dsm_pci_probe(pdev, &has_mux, &has_optimus,
->> > -                                     &has_optimus_flags);
->> > +                                     &has_optimus_flags, &has_power_resources);
->> >         }
->> >
->> This and earlier patch break things in a subtle way.
->>
->> Namely: upon the second (and any later) call into the
->> nouveau_dsm_pci_probe() function, the had_foo flags are reset. Thus
->> only the specifics of the _final_ device are being used (at a later
->> stage). IMHO one should change that to "_any_ device", which will
->> match the original code and the actual intent further down in the
->> file.
->
-> The flags are only reset if any of the MUX or Optimus handles are found.
-> If both are missing, the flags are not overridden. This is from patch 1:
->
-> +       /* Does not look like a Nvidia device. */
-> +       if (!supports_mux && !supports_opt)
-> +               return;
->
-This is precisely what I'm saying, and I think it's wrong/strange. If
-you've detected that device A support_{X,Y}, you'll reset the
-support_{X,Y} flag anyway if device B is present... (continues further
-down)
-
-> The reason why later calls override early ones is because some Optimus
-> laptops have the _DSM method on both the Intel GPU (00:02.0) and the
-> Nvidia one (01:00.0).
->
-I agree with Lukas idea that one could/should be checking for nvidia
-devices (perhaps in nouveau_dsm_pci_probe() or just before calling it
-?).
-
-> The previous detection method would fail in this scenario:
->  1. One device reports support for X and Y (has_x = 1, has_y = 1). Write
->     ACPI handle A to nouveau_dsm_priv.dhandle.
->  2. Another device reports support for X only (has_x = 1). Write
->     ACPI handle B to nouveau_dsm_priv.dhandle.
->  3. End result: has_x = 1, has_y = 1, dhandle = B. But ACPI handle B
->     does not really support Y!
-
-...  so to avoid the above case and preserve the original ideas ('do
-not discard earlier device caps' and 'Optimus takes precedence over
-DSM v1') one could do the following:
-
- - decouple the "feature check" and "set the dhandle"
- - pick the 'ideal' one based on the feature set provided. if multiple
-pick one based on $insert_heuristics
- - set the dhandle
-
-What do you think ?
-
-Regards,
-Emil
+T24gTW9uLCBNYXkgMzAsIDIwMTYgYXQgMTE6NDg6MzRBTSArMDEwMCwgRW1pbCBWZWxpa292IHdy
+b3RlOgo+IE9uIDI3IE1heSAyMDE2IGF0IDIyOjMxLCBQZXRlciBXdSA8cGV0ZXJAbGVrZW5zdGV5
+bi5ubD4gd3JvdGU6Cj4gPiBPbiBGcmksIE1heSAyNywgMjAxNiBhdCAwMjowMTozOVBNICswMTAw
+LCBFbWlsIFZlbGlrb3Ygd3JvdGU6Cj4gPj4gSGkgUGV0ZXIsCj4gPj4KPiA+PiBPbiAyNCBNYXkg
+MjAxNiBhdCAyMzo1MywgUGV0ZXIgV3UgPHBldGVyQGxla2Vuc3RleW4ubmw+IHdyb3RlOgo+ID4+
+ID4gU2luY2UgIlBDSTogQWRkIHJ1bnRpbWUgUE0gc3VwcG9ydCBmb3IgUENJZSBwb3J0cyIsIHRo
+ZSBwYXJlbnQgUENJZSBwb3J0Cj4gPj4gPiBjYW4gYmUgcnVudGltZS1zdXNwZW5kZWQgd2hpY2gg
+ZGlzYWJsZXMgcG93ZXIgcmVzb3VyY2VzIHZpYSBBQ1BJLiBUaGlzCj4gPj4gPiBpcyBpbmNvbXBh
+dGlibGUgd2l0aCBEU00sIHJlc3VsdGluZyBpbiBhIEdQVSBkZXZpY2Ugd2hpY2ggaXMgc3RpbGwg
+aW4gRDMKPiA+PiA+IGFuZCBsb2NrcyB1cCB0aGUga2VybmVsIG9uIHJlc3VtZS4KPiA+PiA+Cj4g
+Pj4gPiBNaXJyb3IgdGhlIGJlaGF2aW9yIG9mIFdpbmRvd3MgOCBhbmQgbmV3ZXJbMV0gKGFzIG9i
+c2VydmVkIHZpYSBhbiBBTUxpCj4gPj4gPiBkZWJ1Z2dlciB0cmFjZSkgYW5kIHN0b3AgdXNpbmcg
+dGhlIERTTSBmdW5jdGlvbnMgZm9yIEQzY29sZCB3aGVuIHBvd2VyCj4gPj4gPiByZXNvdXJjZXMg
+YXJlIGF2YWlsYWJsZSBvbiB0aGUgcGFyZW50IFBDSWUgcG9ydC4KPiA+PiA+Cj4gPj4gPiAgWzFd
+OiBodHRwczovL21zZG4ubWljcm9zb2Z0LmNvbS93aW5kb3dzL2hhcmR3YXJlL2RyaXZlcnMvYnJp
+bmd1cC9maXJtd2FyZS1yZXF1aXJlbWVudHMtZm9yLWQzY29sZAo+ID4+ID4KPiA+PiA+IFNpZ25l
+ZC1vZmYtYnk6IFBldGVyIFd1IDxwZXRlckBsZWtlbnN0ZXluLm5sPgo+ID4+ID4gLS0tCj4gPj4g
+PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMgfCAzNCArKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKystLS0tCj4gPj4gPiAgMSBmaWxlIGNoYW5nZWQsIDMwIGluc2Vy
+dGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCj4gPj4gPgo+ID4+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbm91dmVhdV9hY3BpLmMKPiA+PiA+IGluZGV4IGRmOWY3M2UuLmU0NjlkZjcgMTAwNjQ0Cj4g
+Pj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYwo+ID4+ID4g
+KysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMKPiA+PiA+IEBAIC00
+Niw2ICs0Niw3IEBAIHN0YXRpYyBzdHJ1Y3Qgbm91dmVhdV9kc21fcHJpdiB7Cj4gPj4gPiAgICAg
+ICAgIGJvb2wgZHNtX2RldGVjdGVkOwo+ID4+ID4gICAgICAgICBib29sIG9wdGltdXNfZGV0ZWN0
+ZWQ7Cj4gPj4gPiAgICAgICAgIGJvb2wgb3B0aW11c19mbGFnc19kZXRlY3RlZDsKPiA+PiA+ICsg
+ICAgICAgYm9vbCBvcHRpbXVzX3NraXBfZHNtOwo+ID4+ID4gICAgICAgICBhY3BpX2hhbmRsZSBk
+aGFuZGxlOwo+ID4+ID4gICAgICAgICBhY3BpX2hhbmRsZSByb21faGFuZGxlOwo+ID4+ID4gIH0g
+bm91dmVhdV9kc21fcHJpdjsKPiA+PiA+IEBAIC0yMTIsOCArMjEzLDI2IEBAIHN0YXRpYyBjb25z
+dCBzdHJ1Y3QgdmdhX3N3aXRjaGVyb29faGFuZGxlciBub3V2ZWF1X2RzbV9oYW5kbGVyID0gewo+
+ID4+ID4gICAgICAgICAuZ2V0X2NsaWVudF9pZCA9IG5vdXZlYXVfZHNtX2dldF9jbGllbnRfaWQs
+Cj4gPj4gPiAgfTsKPiA+PiA+Cj4gPj4gPiArLyogRmlybXdhcmUgc3VwcG9ydGluZyBXaW5kb3dz
+IDggb3IgbGF0ZXIgZG8gbm90IHVzZSBfRFNNIHRvIHB1dCB0aGUgZGV2aWNlIGludG8KPiA+PiA+
+ICsgKiBEM2NvbGQsIHRoZXkgaW5zdGVhZCByZWx5IG9uIGRpc2FibGluZyBwb3dlciByZXNvdXJj
+ZXMgb24gdGhlIHBhcmVudC4gKi8KPiA+PiA+ICtzdGF0aWMgYm9vbCBub3V2ZWF1X3ByM19wcmVz
+ZW50KHN0cnVjdCBwY2lfZGV2ICpwZGV2KQo+ID4+ID4gK3sKPiA+PiA+ICsgICAgICAgc3RydWN0
+IHBjaV9kZXYgKnBhcmVudF9wZGV2ID0gcGNpX3Vwc3RyZWFtX2JyaWRnZShwZGV2KTsKPiA+PiA+
+ICsgICAgICAgc3RydWN0IGFjcGlfZGV2aWNlICphZDsKPiA+PiA+ICsKPiA+PiA+ICsgICAgICAg
+aWYgKCFwYXJlbnRfcGRldikKPiA+PiA+ICsgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7Cj4g
+Pj4gPiArCj4gPj4gPiArICAgICAgIGFkID0gQUNQSV9DT01QQU5JT04oJnBhcmVudF9wZGV2LT5k
+ZXYpOwo+ID4+ID4gKyAgICAgICBpZiAoIWFkKQo+ID4+ID4gKyAgICAgICAgICAgICAgIHJldHVy
+biBmYWxzZTsKPiA+PiA+ICsKPiA+PiA+ICsgICAgICAgcmV0dXJuIGFkLT5wb3dlci5mbGFncy5w
+b3dlcl9yZXNvdXJjZXM7Cj4gPj4gPiArfQo+ID4+ID4gKwo+ID4+ID4gIHN0YXRpYyB2b2lkIG5v
+dXZlYXVfZHNtX3BjaV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwgYm9vbCAqaGFzX211eCwK
+PiA+PiA+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBib29sICpoYXNfb3B0LCBi
+b29sICpoYXNfb3B0X2ZsYWdzKQo+ID4+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIGJvb2wgKmhhc19vcHQsIGJvb2wgKmhhc19vcHRfZmxhZ3MsCj4gPj4gPiArICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgYm9vbCAqaGFzX3Bvd2VyX3Jlc291cmNlcykKPiA+PiA+
+ICB7Cj4gPj4gPiAgICAgICAgIGFjcGlfaGFuZGxlIGRoYW5kbGU7Cj4gPj4gPiAgICAgICAgIGJv
+b2wgc3VwcG9ydHNfbXV4Owo+ID4+ID4gQEAgLTIzOCw2ICsyNTcsNyBAQCBzdGF0aWMgdm9pZCBu
+b3V2ZWF1X2RzbV9wY2lfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsIGJvb2wgKmhhc19tdXgs
+Cj4gPj4gPiAgICAgICAgICpoYXNfbXV4ID0gc3VwcG9ydHNfbXV4Owo+ID4+ID4gICAgICAgICAq
+aGFzX29wdCA9ICEhb3B0aW11c19mdW5jczsKPiA+PiA+ICAgICAgICAgKmhhc19vcHRfZmxhZ3Mg
+PSBvcHRpbXVzX2Z1bmNzICYgKDEgPDwgTk9VVkVBVV9EU01fT1BUSU1VU19GTEFHUyk7Cj4gPj4g
+PiArICAgICAgICpoYXNfcG93ZXJfcmVzb3VyY2VzID0gZmFsc2U7Cj4gPj4gPgo+ID4+ID4gICAg
+ICAgICBpZiAob3B0aW11c19mdW5jcykgewo+ID4+ID4gICAgICAgICAgICAgICAgIHVpbnQzMl90
+IHJlc3VsdDsKPiA+PiA+IEBAIC0yNDcsNiArMjY3LDggQEAgc3RhdGljIHZvaWQgbm91dmVhdV9k
+c21fcGNpX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBib29sICpoYXNfbXV4LAo+ID4+ID4g
+ICAgICAgICAgICAgICAgICAgICAgICAgIChyZXN1bHQgJiBPUFRJTVVTX0VOQUJMRUQpID8gImVu
+YWJsZWQiIDogImRpc2FibGVkIiwKPiA+PiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAocmVz
+dWx0ICYgT1BUSU1VU19EWU5BTUlDX1BXUl9DQVApID8gImR5bmFtaWMgcG93ZXIsICIgOiAiIiwK
+PiA+PiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAocmVzdWx0ICYgT1BUSU1VU19IREFfQ09E
+RUNfTUFTSykgPyAiaGRhIGJpb3MgY29kZWMgc3VwcG9ydGVkIiA6ICIiKTsKPiA+PiA+ICsKPiA+
+PiA+ICsgICAgICAgICAgICAgICAqaGFzX3Bvd2VyX3Jlc291cmNlcyA9IG5vdXZlYXVfcHIzX3By
+ZXNlbnQocGRldik7Cj4gPj4gPiAgICAgICAgIH0KPiA+PiA+ICB9Cj4gPj4gPgo+ID4+ID4gQEAg
+LTI1OCw2ICsyODAsNyBAQCBzdGF0aWMgYm9vbCBub3V2ZWF1X2RzbV9kZXRlY3Qodm9pZCkKPiA+
+PiA+ICAgICAgICAgYm9vbCBoYXNfbXV4ID0gZmFsc2U7Cj4gPj4gPiAgICAgICAgIGJvb2wgaGFz
+X29wdGltdXMgPSBmYWxzZTsKPiA+PiA+ICAgICAgICAgYm9vbCBoYXNfb3B0aW11c19mbGFncyA9
+IGZhbHNlOwo+ID4+ID4gKyAgICAgICBib29sIGhhc19wb3dlcl9yZXNvdXJjZXMgPSBmYWxzZTsK
+PiA+PiA+ICAgICAgICAgaW50IHZnYV9jb3VudCA9IDA7Cj4gPj4gPiAgICAgICAgIGJvb2wgZ3Vp
+ZF92YWxpZDsKPiA+PiA+ICAgICAgICAgYm9vbCByZXQgPSBmYWxzZTsKPiA+PiA+IEBAIC0yNzMs
+MTQgKzI5NiwxNCBAQCBzdGF0aWMgYm9vbCBub3V2ZWF1X2RzbV9kZXRlY3Qodm9pZCkKPiA+PiA+
+ICAgICAgICAgICAgICAgICB2Z2FfY291bnQrKzsKPiA+PiA+Cj4gPj4gPiAgICAgICAgICAgICAg
+ICAgbm91dmVhdV9kc21fcGNpX3Byb2JlKHBkZXYsICZoYXNfbXV4LCAmaGFzX29wdGltdXMsCj4g
+Pj4gPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICZoYXNfb3B0aW11c19m
+bGFncyk7Cj4gPj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICZoYXNf
+b3B0aW11c19mbGFncywgJmhhc19wb3dlcl9yZXNvdXJjZXMpOwo+ID4+ID4gICAgICAgICB9Cj4g
+Pj4gPgo+ID4+ID4gICAgICAgICB3aGlsZSAoKHBkZXYgPSBwY2lfZ2V0X2NsYXNzKFBDSV9DTEFT
+U19ESVNQTEFZXzNEIDw8IDgsIHBkZXYpKSAhPSBOVUxMKSB7Cj4gPj4gPiAgICAgICAgICAgICAg
+ICAgdmdhX2NvdW50Kys7Cj4gPj4gPgo+ID4+ID4gICAgICAgICAgICAgICAgIG5vdXZlYXVfZHNt
+X3BjaV9wcm9iZShwZGV2LCAmaGFzX211eCwgJmhhc19vcHRpbXVzLAo+ID4+ID4gLSAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAmaGFzX29wdGltdXNfZmxhZ3MpOwo+ID4+ID4g
+KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAmaGFzX29wdGltdXNfZmxhZ3Ms
+ICZoYXNfcG93ZXJfcmVzb3VyY2VzKTsKPiA+PiA+ICAgICAgICAgfQo+ID4+ID4KPiA+PiBUaGlz
+IGFuZCBlYXJsaWVyIHBhdGNoIGJyZWFrIHRoaW5ncyBpbiBhIHN1YnRsZSB3YXkuCj4gPj4KPiA+
+PiBOYW1lbHk6IHVwb24gdGhlIHNlY29uZCAoYW5kIGFueSBsYXRlcikgY2FsbCBpbnRvIHRoZQo+
+ID4+IG5vdXZlYXVfZHNtX3BjaV9wcm9iZSgpIGZ1bmN0aW9uLCB0aGUgaGFkX2ZvbyBmbGFncyBh
+cmUgcmVzZXQuIFRodXMKPiA+PiBvbmx5IHRoZSBzcGVjaWZpY3Mgb2YgdGhlIF9maW5hbF8gZGV2
+aWNlIGFyZSBiZWluZyB1c2VkIChhdCBhIGxhdGVyCj4gPj4gc3RhZ2UpLiBJTUhPIG9uZSBzaG91
+bGQgY2hhbmdlIHRoYXQgdG8gIl9hbnlfIGRldmljZSIsIHdoaWNoIHdpbGwKPiA+PiBtYXRjaCB0
+aGUgb3JpZ2luYWwgY29kZSBhbmQgdGhlIGFjdHVhbCBpbnRlbnQgZnVydGhlciBkb3duIGluIHRo
+ZQo+ID4+IGZpbGUuCj4gPgo+ID4gVGhlIGZsYWdzIGFyZSBvbmx5IHJlc2V0IGlmIGFueSBvZiB0
+aGUgTVVYIG9yIE9wdGltdXMgaGFuZGxlcyBhcmUgZm91bmQuCj4gPiBJZiBib3RoIGFyZSBtaXNz
+aW5nLCB0aGUgZmxhZ3MgYXJlIG5vdCBvdmVycmlkZGVuLiBUaGlzIGlzIGZyb20gcGF0Y2ggMToK
+PiA+Cj4gPiArICAgICAgIC8qIERvZXMgbm90IGxvb2sgbGlrZSBhIE52aWRpYSBkZXZpY2UuICov
+Cj4gPiArICAgICAgIGlmICghc3VwcG9ydHNfbXV4ICYmICFzdXBwb3J0c19vcHQpCj4gPiArICAg
+ICAgICAgICAgICAgcmV0dXJuOwo+ID4KPiBUaGlzIGlzIHByZWNpc2VseSB3aGF0IEknbSBzYXlp
+bmcsIGFuZCBJIHRoaW5rIGl0J3Mgd3Jvbmcvc3RyYW5nZS4gSWYKPiB5b3UndmUgZGV0ZWN0ZWQg
+dGhhdCBkZXZpY2UgQSBzdXBwb3J0X3tYLFl9LCB5b3UnbGwgcmVzZXQgdGhlCj4gc3VwcG9ydF97
+WCxZfSBmbGFnIGFueXdheSBpZiBkZXZpY2UgQiBpcyBwcmVzZW50Li4uIChjb250aW51ZXMgZnVy
+dGhlcgo+IGRvd24pCgpUaGUgZmxhZ3Mgd2lsbCBvbmx5IGJlIHJlc2V0IHdoZW4gZGV2aWNlIEIg
+c3VwcG9ydHMgYXQgbGVhc3Qgb25lCmZ1bmN0aW9uLgoKPiA+IFRoZSByZWFzb24gd2h5IGxhdGVy
+IGNhbGxzIG92ZXJyaWRlIGVhcmx5IG9uZXMgaXMgYmVjYXVzZSBzb21lIE9wdGltdXMKPiA+IGxh
+cHRvcHMgaGF2ZSB0aGUgX0RTTSBtZXRob2Qgb24gYm90aCB0aGUgSW50ZWwgR1BVICgwMDowMi4w
+KSBhbmQgdGhlCj4gPiBOdmlkaWEgb25lICgwMTowMC4wKS4KPiA+Cj4gSSBhZ3JlZSB3aXRoIEx1
+a2FzIGlkZWEgdGhhdCBvbmUgY291bGQvc2hvdWxkIGJlIGNoZWNraW5nIGZvciBudmlkaWEKPiBk
+ZXZpY2VzIChwZXJoYXBzIGluIG5vdXZlYXVfZHNtX3BjaV9wcm9iZSgpIG9yIGp1c3QgYmVmb3Jl
+IGNhbGxpbmcgaXQKPiA/KS4KClRoYXQgY291bGQgYnJlYWsgUE0gb24gYXQgbGVhc3QgdHdvIEFj
+ZXIgbGFwdG9wcy4gVGhlIEFjZXIgVHJhdmVsbWF0ZQo4NDcyVEcgZnJvbSAyMDExIChhY3BpZHVt
+cFsxXSkgaGFzIHR3byBEU00gb24gdGhlIE52aWRpYSBhbmQgSW50ZWwgQUNQSQpoYW5kbGVzOgoK
+IC0gTnZpZGlhOiBzdXBwb3J0cyBNWE0gbWV0aG9kcyBvbmx5LgogLSBJbnRlbDogc3VwcG9ydHMg
+dGhlIG9sZGVyIE52aWRpYSBVVUlEIChmb3IgdG9nZ2xpbmcgcG93ZXIgYW5kCiAgIHBvc3NpYmx5
+IG90aGVyIHRoaW5ncykuCgogWzFdOiBodHRwczovL2dpdGh1Yi5jb20vQnVtYmxlYmVlLVByb2pl
+Y3QvYmJzd2l0Y2gvaXNzdWVzLzQjaXNzdWVjb21tZW50LTIxOTk4ODUwMQoKVGhlcmUgaXMgYWxz
+byBhbiBBY2VyIEFzcGlyZSA1NzQyRyB3aGljaCBwb3NzaWJseSBicmVha3MgKGxpbmtlZCBpbiB0
+aGUKYWJvdmUgaXNzdWUpLCBidXQgdGhhdCBjb3VsZCBiZSBhIGNvbmZpZ3VyYXRpb24gaXNzdWUg
+dGhhdCBkaXNhYmxlZApPcHRpbXVzIGluIEJJT1MgKHVuY29uZmlybWVkKS4KCklmIGl0IG1hdHRl
+cnMsIGJvdGggb2YgdGhlc2UgbGFwdG9wcyBoYXZlIGEgTVhNWCBtZXRob2QgKFNlbGVjdCBEaXNw
+bGF5CkRhdGEgQ2hhbm5lbCksIGJ1dCB0aGVpciBNWE1JIChSZXR1cm4gU3BlY2lmaWNhdGlvbiBT
+dXBwb3J0IExldmVsKSBhbmQKTVhNUyAoUmV0dXJuIE1YTSBTdHJ1Y3R1cmUpIGZ1bmN0aW9ucyBh
+cmUgZGlzZnVuY3Rpb25hbC4gVGhlcmUgaXMgYWxzbyBhCk1YRFMgZnVuY3Rpb24gb24gYm90aCBB
+Q1BJIGhhbmRsZXMsIGJ1dCB0aGVzZSBhcmUgbm90IGhvb2tlZCB0byB0aGUgV01JCmludGVyZmFj
+ZSBmb3Igc29tZSByZWFzb24uIE5vIGlkZWEgb2YgQWNlciBoYXMgaGFja2VkIHVwIHNvbWUgZHJp
+dmVycyB0bwp3b3JrIHdpdGggdGhpcywgb3V0c2lkZSB0aGVzZSBtb2RlbHMgSSBkbyBub3Qga25v
+dyBvdGhlcnMgdGhhdCBhcmUgYWxzbwphZmZlY3RlZCBieSB0aGlzIGlzc3VlLgoKPiA+IFRoZSBw
+cmV2aW91cyBkZXRlY3Rpb24gbWV0aG9kIHdvdWxkIGZhaWwgaW4gdGhpcyBzY2VuYXJpbzoKPiA+
+ICAxLiBPbmUgZGV2aWNlIHJlcG9ydHMgc3VwcG9ydCBmb3IgWCBhbmQgWSAoaGFzX3ggPSAxLCBo
+YXNfeSA9IDEpLiBXcml0ZQo+ID4gICAgIEFDUEkgaGFuZGxlIEEgdG8gbm91dmVhdV9kc21fcHJp
+di5kaGFuZGxlLgo+ID4gIDIuIEFub3RoZXIgZGV2aWNlIHJlcG9ydHMgc3VwcG9ydCBmb3IgWCBv
+bmx5IChoYXNfeCA9IDEpLiBXcml0ZQo+ID4gICAgIEFDUEkgaGFuZGxlIEIgdG8gbm91dmVhdV9k
+c21fcHJpdi5kaGFuZGxlLgo+ID4gIDMuIEVuZCByZXN1bHQ6IGhhc194ID0gMSwgaGFzX3kgPSAx
+LCBkaGFuZGxlID0gQi4gQnV0IEFDUEkgaGFuZGxlIEIKPiA+ICAgICBkb2VzIG5vdCByZWFsbHkg
+c3VwcG9ydCBZIQo+IAo+IC4uLiAgc28gdG8gYXZvaWQgdGhlIGFib3ZlIGNhc2UgYW5kIHByZXNl
+cnZlIHRoZSBvcmlnaW5hbCBpZGVhcyAoJ2RvCj4gbm90IGRpc2NhcmQgZWFybGllciBkZXZpY2Ug
+Y2FwcycgYW5kICdPcHRpbXVzIHRha2VzIHByZWNlZGVuY2Ugb3Zlcgo+IERTTSB2MScpIG9uZSBj
+b3VsZCBkbyB0aGUgZm9sbG93aW5nOgo+IAo+ICAtIGRlY291cGxlIHRoZSAiZmVhdHVyZSBjaGVj
+ayIgYW5kICJzZXQgdGhlIGRoYW5kbGUiCj4gCj4gIC0gcGljayB0aGUgJ2lkZWFsJyBvbmUgYmFz
+ZWQgb24gdGhlIGZlYXR1cmUgc2V0IHByb3ZpZGVkLiBpZiBtdWx0aXBsZQo+IHBpY2sgb25lIGJh
+c2VkIG9uICRpbnNlcnRfaGV1cmlzdGljcwo+ICAtIHNldCB0aGUgZGhhbmRsZQo+IAo+IFdoYXQg
+ZG8geW91IHRoaW5rID8KClRoZSBkaGFuZGxlIGlzIG9ubHkgc2V0IHdoZW4gYXQgbGVhc3Qgb25l
+IHZhbGlkIERTTSB3YXMgZm91bmQgb24gdGhlCmRldmljZS4gVGhlIGRoYW5kbGUgYXNzaWdubWVu
+dCBjb3VsZCBpbmRlZWQgYmUgbW92ZWQgdG8gdGhlIGNhbGxlciwKbWFraW5nIGl0IG1vcmUgb2J2
+aW91cyB0aGF0IHRoZSBkaGFuZGxlIGlzIG9ubHkgdmFsaWQgd2hlbiB0aGUKY2FwYWJpbGl0aWVz
+IGFyZSBkZXRlY3RlZCAodGhpcyBkb2VzIG5vdCBoYXZlIGEgZnVuY3Rpb25hbCBjaGFuZ2UKdGhv
+dWdoKS4gSSdsbCBkbyBpdCBpbiB0aGUgbmV4dCB2ZXJzaW9uLgotLSAKS2luZCByZWdhcmRzLApQ
+ZXRlciBXdQpodHRwczovL2xla2Vuc3RleW4ubmwKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
