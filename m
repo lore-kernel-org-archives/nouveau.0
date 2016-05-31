@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94627] Game Risen on wine black grass
-Date: Tue, 31 May 2016 10:16:24 +0000
-Message-ID: <bug-94627-8800-YxsCxDGRZO@http.bugs.freedesktop.org/>
-References: <bug-94627-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: Re: [PATCH v4] vga_switcheroo: Add helper for deferred
+ probing
+Date: Tue, 31 May 2016 12:21:24 +0200
+Message-ID: <20160531102124.GA13865@wunner.de>
+References: <CACvgo50TMOqiz+qNHOVauXcj57ZqcbBFxpc8MsoT-TcEckd24w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0898603624=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94627-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CACvgo50TMOqiz+qNHOVauXcj57ZqcbBFxpc8MsoT-TcEckd24w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,143 +19,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0898603624==
-Content-Type: multipart/alternative; boundary="14646897840.9a27A.7312";
- charset="UTF-8"
-
-
---14646897840.9a27A.7312
-Date: Tue, 31 May 2016 10:16:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94627
-
-Marek Ol=C5=A1=C3=A1k <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|FIXED                       |---
-             Status|RESOLVED                    |REOPENED
-         QA Contact|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org
-                   |rg                          |.org
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org
-                   |rg                          |.org
-            Version|11.1                        |git
-          Component|Drivers/DRI/nouveau         |Drivers/Gallium/radeonsi
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14646897840.9a27A.7312
-Date: Tue, 31 May 2016 10:16:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:maraeo&#6=
-4;gmail.com" title=3D"Marek Ol=C5=A1=C3=A1k &lt;maraeo&#64;gmail.com&gt;"> =
-<span class=3D"fn">Marek Ol=C5=A1=C3=A1k</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Game Risen on wine black grass"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94627">bug 94627<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>FIXED
-           </td>
-           <td>---
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>REOPENED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Version</td>
-           <td>11.1
-           </td>
-           <td>git
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>Drivers/DRI/nouveau
-           </td>
-           <td>Drivers/Gallium/radeonsi
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14646897840.9a27A.7312--
-
---===============0898603624==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0898603624==--
+T24gTW9uLCBNYXkgMjMsIDIwMTYgYXQgMDk6NDA6NTlBTSArMDEwMCwgRW1pbCBWZWxpa292IHdy
+b3RlOgo+IE9uIDIxIE1heSAyMDE2IGF0IDE1OjA4LCBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5l
+ci5kZT4gd3JvdGU6Cj4gPiBEYW5pZWwgVmV0dGVyIGV4cGxpY2l0bHkgd2FudGVkIHRoZSBhYmls
+aXR5IHRvIHVzZSB0aGUgaGVscGVyIGluCj4gPiB2Z2Ffc3dpdGNoZXJvbyBhdWRpbyBjbGllbnRz
+LCBhbmQgdGhvc2Ugc2hvdWxkbid0IHJ1biB0aGUgYXBwbGUtZ211eAo+ID4gdGVzdC4gSSB0aGlu
+ayBpdCBtYWtlcyBzZW5zZSB0byBlbmNsb3NlIGl0IGluIHRoZSBhYm92ZS1xdW90ZWQgaWYtYmxv
+Y2sKPiA+ICpub3cqIGV2ZW4gdGhvdWdoIGl0J3Mgbm90IG5lZWRlZC4gT25jZSBzb21lb25lIGFk
+ZHMgYSBjaGVjayBmb3IgYW4KPiA+IGF1ZGlvIGNsaWVudCwgY2hhbmNlcyBhcmUgdGhleSdsbCBm
+b3JnZXQgdG8gYWRkIHRoaXMgaWYtYmxvY2suCj4gPgo+IEFic29sdXRlbHkgbm8gYXJndW1lbnRz
+IGFnYWluc3QgYW55IG9mIHRoYXQuIEhhdmluZyBhIGhlbHBlciBtYWtlcwo+IHNlbnNlIGV2ZW4g
+d2l0aG91dCBhbnkgb2YgdGhlIGFib3ZlIGFyZ3VtZW50cyAtIGl0J3MgYSAnbmFzdHkgbG9va2lu
+ZycKPiBpZiBzdGF0ZW1lbnQsIGR1cGxpY2F0ZWQgbXVsdGlwbGUgdGltZXMuIFNwZWFraW5nIG9m
+IHdoaWNoIC4uLgo+IHNob3VsZG4ndCB0aGVyZSBiZSBhIHNpbWlsYXIgaHVuayBmb3IgYW1kZ3B1
+ID8KCkN1cnJlbnRseSB2Z2Ffc3dpdGNoZXJvb19jbGllbnRfcHJvYmVfZGVmZXIoKSBpcyBvbmx5
+IG5lZWRlZCBmb3IgdGhlCk1hY0Jvb2sgUHJvIGFuZCB0aGUgQU1EIEdQVXMgdXNlZCBieSBBcHBs
+ZSBhcmUgb25seSBzdXBwb3J0ZWQgYnkgcmFkZW9uLgpJJ3ZlIGFtZW5kZWQgdGhlIGNvbW1pdCBt
+ZXNzYWdlIGluIHY2IHRvIGV4cGxhaW4gdGhhdC4KCgo+IFRoZW4gYWdhaW4gdGhyb3dpbmcgZXZl
+cnl0aGluZyBpbnRvIG9uZSBwYXRjaCBkb2VzIF9ub3RfIG1ha2Ugc2Vuc2UuCj4gRG9uJ3Qga25v
+dyB3aHkgcGVvcGxlIHdvdWxkIGluc2lzdCBvbiBoYXZpbmcgcmUtZmFjdG9yaW5nIGFuZAo+IGZ1
+bmN0aW9uYWxpdHkgY2hhbmdlIGFzIGEgc2luZ2xlIGNvbW1pdC4gRXNwLiBpbiBhIHBsYWNlIHdo
+ZXJlIGh3Cj4gY29tYmluYXRpb25zLCBhbmQgdGh1cyBjaGFuY2VzIG9mIHRoaW5ncyBnb2luZyB3
+cm9uZywgYXJlIHByZXR0eSBoaWdoLgoKTm9vbmUgaW5zaXN0cywgdjEgb2YgdGhpcyBwYXRjaCBk
+aWRuJ3QgY29udGFpbiB0aGUgZnVuY3Rpb25hbCBjaGFuZ2UKeW91J3JlIHRha2luZyBleGNlcHRp
+b24gdG8sIEkgYWRkZWQgaXQgaW4gdjIgb24gRGFuaWVsJ3MgcmVxdWVzdCBhbmQKZGlkbid0IHdh
+bnQgdG8gY29tcGxpY2F0ZSB0aGluZ3MgZnVydGhlciwgc2VlbWVkIGxpa2UgYSB0cml2aWFsIGNo
+YW5nZQp0byBtZS4gTmV2ZXJ0aGVsZXNzIEkndmUgc3B1biB0aGlzIG91dCBpbnRvIGEgc2VwYXJh
+dGUgY29tbWl0IG5vdywKbm8gcHJvYmxlbSBhdCBhbGwuCgpCZXN0IHJlZ2FyZHMsCgpMdWthcwpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
