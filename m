@@ -1,22 +1,13 @@
-From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Subject: Re: [PATCH 4/4] drm/nouveau/acpi: fix lockup with PCIe
- runtime PM
-Date: Tue, 31 May 2016 14:20:26 +0200
-Message-ID: <20160531122026.GA14129@wunner.de>
-References: <1464130381-4797-1-git-send-email-peter@lekensteyn.nl>
- <1464130381-4797-5-git-send-email-peter@lekensteyn.nl>
- <20160525135535.GN1789@lahna.fi.intel.com>
- <20160527111037.GA1436@al>
- <20160530095709.GK1789@lahna.fi.intel.com>
- <20160530122010.GB1149@al>
- <20160530130909.GA1743@lahna.fi.intel.com>
- <20160530161351.GA1355@al>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
+	>= 4.1
+Date: Tue, 31 May 2016 15:19:36 +0000
+Message-ID: <bug-90626-8800-gHf0AWzJDI@http.bugs.freedesktop.org/>
+References: <bug-90626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0529456899=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20160530161351.GA1355@al>
+In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -26,30 +17,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Cc: linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "Rafael J. Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBNYXkgMzAsIDIwMTYgYXQgMDY6MTM6NTFQTSArMDIwMCwgUGV0ZXIgV3Ugd3JvdGU6
-Cj4gRG8geW91IGhhdmUgYW55IHN1Z2dlc3Rpb25zIGZvciB0aGUgY2FzZSB3aGVyZSB0aGUgcGNp
-ZXBvcnQgZHJpdmVyCj4gcmVmdXNlcyB0byBwdXQgdGhlIGJyaWRnZSBpbiBEMyAoYmVjYXVzZSB0
-aGUgQklPUyBpcyB0b28gb2xkKT8gSW4gdGhhdAo+IGNhc2UgdGhlIG5vdXZlYXUgZHJpdmVyIG5l
-ZWRzIHRvIGZhbGxiYWNrIHRvIHRoZSBEU00gbWV0aG9kIChidXQgbm90Cj4gd2hlbiBydW50aW1l
-IFBNIGlzIGRlbGliZXJhdGVseSBkaXNhYmxlZCBieSB3cml0aW5nIGNvbnRyb2w9b24pLgoKVGhl
-IEJJT1MgY3V0LW9mZiBkYXRlIGlzIG1lYW50IHRvIGF2b2lkIGlzc3VlcyB3aGVuIHN1c3BlbmRp
-bmcgcG9ydHMKb24gb2xkZXIgY2hpcHNldHMuIEhvd2V2ZXIgaWYgdGhlIHBvcnQgaXMgdXNlZCBm
-b3IgYW4gT3B0aW11cyBHUFUKYW5kIHdlIGNhbiBjbGVhcmx5IGlkZW50aWZ5IHRoYXQsIGFuZCB0
-aGVyZSdzIGEgX1BSMyBtZXRob2QgcHJvdmlkZWQsCml0J3MgcHJvYmFibHkgc2FmZSB0byBzYXkg
-dGhhdCB0aGUgcG9ydCBpcyAqaW50ZW5kZWQqIHRvIGJlIHN1c3BlbmRlZC4KClNvIHlvdSBtYXkg
-d2FudCB0byBjb25zaWRlciBhbWVuZGluZyBwY2lfYnJpZGdlX2QzX3Bvc3NpYmxlKCkgdG8KYWxs
-b3cgRDMgZm9yIHN1Y2ggcG9ydHMgcmVnYXJkbGVzcyBvZiB0aGUgQklPUyBkYXRlLCBhcyBJJ3Zl
-IGRvbmUKZm9yIFRodW5kZXJib2x0IGluIHRoaXMgY29tbWl0OgpodHRwczovL2dpdGh1Yi5jb20v
-bDFrL2xpbnV4L2NvbW1pdC8zY2I4NTQ5Y2Q0ZTUKCk5vdCBzdXJlIGhvdyB0byB1bmlxdWVseSBp
-ZGVudGlmeSBzdWNoIHBvcnRzIHRob3VnaC4gUGVyaGFwcyBjaGVjawppZiB0aGVyZSdzIGEgZGV2
-aWNlIGluIHNsb3QgMCBiZWxvdyB0aGUgcG9ydCB3aGljaCBoYXMKCShwZGV2LT5jbGFzcyA+PiAx
-NikgPT0gUENJX0JBU0VfQ0xBU1NfRElTUExBWSAmJgoJKHBkZXYtPnZlbmRvciA9PSBQQ0lfVkVO
-RE9SX0lEX05WSURJQSB8fAoJIHBkZXYtPnZlbmRvciA9PSBQQ0lfVkVORE9SX0lEX0FUSSkKCkJl
-c3QgcmVnYXJkcywKCkx1a2FzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQo=
+
+--===============0529456899==
+Content-Type: multipart/alternative; boundary="14647079751.a2C9DE22a.15637";
+ charset="UTF-8"
+
+
+--14647079751.a2C9DE22a.15637
+Date: Tue, 31 May 2016 15:19:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
+
+--- Comment #46 from Ren=C3=A9 Krell <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Will this patches go into the main kernel driver?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14647079751.a2C9DE22a.15637
+Date: Tue, 31 May 2016 15:19:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c46">Commen=
+t # 46</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 Krell &lt;renda.krell&#64;gma=
+il.com&gt;"> <span class=3D"fn">Ren=C3=A9 Krell</span></a>
+</span></b>
+        <pre>Will this patches go into the main kernel driver?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14647079751.a2C9DE22a.15637--
+
+--===============0529456899==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0529456899==--
