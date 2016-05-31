@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
 	>= 4.1
-Date: Tue, 31 May 2016 15:19:36 +0000
-Message-ID: <bug-90626-8800-gHf0AWzJDI@http.bugs.freedesktop.org/>
+Date: Tue, 31 May 2016 15:22:41 +0000
+Message-ID: <bug-90626-8800-BTXqQ3Yrak@http.bugs.freedesktop.org/>
 References: <bug-90626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0529456899=="
+Content-Type: multipart/mixed; boundary="===============1307303147=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0529456899==
-Content-Type: multipart/alternative; boundary="14647079751.a2C9DE22a.15637";
+--===============1307303147==
+Content-Type: multipart/alternative; boundary="14647081610.bDd82.16258";
  charset="UTF-8"
 
 
---14647079751.a2C9DE22a.15637
-Date: Tue, 31 May 2016 15:19:35 +0000
+--14647081610.bDd82.16258
+Date: Tue, 31 May 2016 15:22:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,15 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
 
---- Comment #46 from Ren=C3=A9 Krell <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Will this patches go into the main kernel driver?
+--- Comment #47 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
+(In reply to Ren=C3=A9 Krell from comment #46)
+> Will this patches go into the main kernel driver?
+
+It got merged in kernel 4.4-rc3 [1]. Please test and report when successful.
+
+[1] http://lkml.iu.edu/hypermail/linux/kernel/1511.3/03588.html
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14647079751.a2C9DE22a.15637
-Date: Tue, 31 May 2016 15:19:35 +0000
+--14647081610.bDd82.16258
+Date: Tue, 31 May 2016 15:22:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,18 +66,26 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c46">Commen=
-t # 46</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c47">Commen=
+t # 47</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 Krell &lt;renda.krell&#64;gma=
-il.com&gt;"> <span class=3D"fn">Ren=C3=A9 Krell</span></a>
+rspliet&#64;eclipso.eu" title=3D"Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span=
+ class=3D"fn">Roy</span></a>
 </span></b>
-        <pre>Will this patches go into the main kernel driver?</pre>
+        <pre>(In reply to Ren=C3=A9 Krell from <a href=3D"show_bug.cgi?id=
+=3D90626#c46">comment #46</a>)
+<span class=3D"quote">&gt; Will this patches go into the main kernel driver=
+?</span >
+
+It got merged in kernel 4.4-rc3 [1]. Please test and report when successful.
+
+[1] <a href=3D"http://lkml.iu.edu/hypermail/linux/kernel/1511.3/03588.html"=
+>http://lkml.iu.edu/hypermail/linux/kernel/1511.3/03588.html</a></pre>
         </div>
       </p>
 
@@ -86,9 +99,9 @@ il.com&gt;"> <span class=3D"fn">Ren=C3=A9 Krell</span></a>
     </body>
 </html>=
 
---14647079751.a2C9DE22a.15637--
+--14647081610.bDd82.16258--
 
---===============0529456899==
+--===============1307303147==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0529456899==--
+--===============1307303147==--
