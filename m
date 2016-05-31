@@ -1,66 +1,158 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: [PATCH v6 2/2] vga_switcheroo: Support deferred probing
- of audio clients
-Date: Tue, 31 May 2016 11:13:27 +0200
-Message-ID: <358d58490eb9dda5f270d844b0dce511a2a20828.1464685538.git.lukas@wunner.de>
-References: <575885fd440c2b13c3f19ddf44360cfbbff35f50.1464685538.git.lukas@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94627] Game Risen on wine black grass
+Date: Tue, 31 May 2016 10:16:24 +0000
+Message-ID: <bug-94627-8800-YxsCxDGRZO@http.bugs.freedesktop.org/>
+References: <bug-94627-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <575885fd440c2b13c3f19ddf44360cfbbff35f50.1464685538.git.lukas@wunner.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: multipart/mixed; boundary="===============0898603624=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-94627-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RGFuaWVsIFZldHRlciBwb2ludGVkIG91dCB0aGF0IHZnYV9zd2l0Y2hlcm9vX2NsaWVudF9wcm9i
-ZV9kZWZlcigpIGNvdWxkCmJlIG5lZWRlZCBieSBhdWRpbyBjbGllbnRzIGFzIHdlbGwuIFRvIGF2
-b2lkIG1pc3Rha2VzIHdoZW4gc29tZW9uZSBhZGRzCmNvbmRpdGlvbnMgZm9yIHRoZXNlIGluIHRo
-ZSBmdXR1cmUsIGNvbnN0cmFpbiB0aGUgc2luZ2xlIGV4aXN0aW5nCmNvbmRpdGlvbiB0byBWR0Eg
-Y2xpZW50cyBieSBjaGVja2luZyBmb3IgUENJX0JBU0VfQ0xBU1NfRElTUExBWS4gVGhpcwplbmNv
-bXBhc3NlcyBib3RoIFBDSV9DTEFTU19ESVNQTEFZX1ZHQSBhcyB3ZWxsIGFzIFBDSV9DTEFTU19E
-SVNQTEFZXzNELAp3aGljaCBpcyB1c2VkIGJ5IHNvbWUgTnZpZGlhIE9wdGltdXMgR1BVcy4KCkFu
-eSBmdXR1cmUgY2hlY2tzIGZvciBhdWRpbyBjbGllbnRzIHNob3VsZCB0aGVuIGJlIGNvbnN0cmFp
-bmVkIHRvClBDSV9CQVNFX0NMQVNTX01VTFRJTUVESUEuCgp2NjogU3B1biBvdXQgZnJvbSBjb21t
-aXQgaW50cm9kdWNpbmcgdmdhX3N3aXRjaGVyb29fY2xpZW50X3Byb2JlX2RlZmVyKCkKICAgIHRv
-IGtlZXAgaXQgYSBwdXJlIHJlZmFjdG9yaW5nIGNoYW5nZS4gKEVtaWwgVmVsaWtvdiwgSmFuaSBO
-aWt1bGEpCgpDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KQ2M6IEVt
-aWwgVmVsaWtvdiA8ZW1pbC5sLnZlbGlrb3ZAZ21haWwuY29tPgpDYzogSmFuaSBOaWt1bGEgPGph
-bmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTHVrYXMgV3VubmVyIDxs
-dWthc0B3dW5uZXIuZGU+Ci0tLQogZHJpdmVycy9ncHUvdmdhL3ZnYV9zd2l0Y2hlcm9vLmMgfCAx
-OSArKysrKysrKysrKy0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwg
-OCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS92Z2EvdmdhX3N3aXRjaGVy
-b28uYyBiL2RyaXZlcnMvZ3B1L3ZnYS92Z2Ffc3dpdGNoZXJvby5jCmluZGV4IGQzNDliZjkuLjJk
-ZjIxNmIzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS92Z2EvdmdhX3N3aXRjaGVyb28uYworKysg
-Yi9kcml2ZXJzL2dwdS92Z2EvdmdhX3N3aXRjaGVyb28uYwpAQCAtMzMxLDcgKzMzMSw4IEBAIEVY
-UE9SVF9TWU1CT0wodmdhX3N3aXRjaGVyb29fcmVnaXN0ZXJfY2xpZW50KTsKICAqIEBpZDogY2xp
-ZW50IGlkZW50aWZpZXIKICAqCiAgKiBSZWdpc3RlciBhdWRpbyBjbGllbnQgKGF1ZGlvIGRldmlj
-ZSBvbiBhIEdQVSkuIFRoZSBwb3dlciBzdGF0ZSBvZiB0aGUKLSAqIGNsaWVudCBpcyBhc3N1bWVk
-IHRvIGJlIE9OLgorICogY2xpZW50IGlzIGFzc3VtZWQgdG8gYmUgT04uIEJlZm9yZWhhbmQsIHZn
-YV9zd2l0Y2hlcm9vX2NsaWVudF9wcm9iZV9kZWZlcigpCisgKiBzaGFsbCBiZSBjYWxsZWQgdG8g
-ZW5zdXJlIHRoYXQgYWxsIHByZXJlcXVpc2l0ZXMgYXJlIG1ldC4KICAqCiAgKiBSZXR1cm46IDAg
-b24gc3VjY2VzcywgLUVOT01FTSBvbiBtZW1vcnkgYWxsb2NhdGlvbiBlcnJvci4KICAqLwpAQCAt
-MzkwLDEzICszOTEsMTUgQEAgZmluZF9hY3RpdmVfY2xpZW50KHN0cnVjdCBsaXN0X2hlYWQgKmhl
-YWQpCiAgKi8KIGJvb2wgdmdhX3N3aXRjaGVyb29fY2xpZW50X3Byb2JlX2RlZmVyKHN0cnVjdCBw
-Y2lfZGV2ICpwZGV2KQogewotCS8qCi0JICogYXBwbGUtZ211eCBpcyBuZWVkZWQgb24gcHJlLXJl
-dGluYSBNYWNCb29rIFBybwotCSAqIHRvIHByb2JlIHRoZSBwYW5lbCBpZiBwZGV2IGlzIHRoZSBp
-bmFjdGl2ZSBHUFUuCi0JICovCi0JaWYgKGFwcGxlX2dtdXhfcHJlc2VudCgpICYmIHBkZXYgIT0g
-dmdhX2RlZmF1bHRfZGV2aWNlKCkgJiYKLQkgICAgIXZnYXNyX3ByaXYuaGFuZGxlcl9mbGFncykK
-LQkJcmV0dXJuIHRydWU7CisJaWYgKChwZGV2LT5jbGFzcyA+PiAxNikgPT0gUENJX0JBU0VfQ0xB
-U1NfRElTUExBWSkgeworCQkvKgorCQkgKiBhcHBsZS1nbXV4IGlzIG5lZWRlZCBvbiBwcmUtcmV0
-aW5hIE1hY0Jvb2sgUHJvCisJCSAqIHRvIHByb2JlIHRoZSBwYW5lbCBpZiBwZGV2IGlzIHRoZSBp
-bmFjdGl2ZSBHUFUuCisJCSAqLworCQlpZiAoYXBwbGVfZ211eF9wcmVzZW50KCkgJiYgcGRldiAh
-PSB2Z2FfZGVmYXVsdF9kZXZpY2UoKSAmJgorCQkgICAgIXZnYXNyX3ByaXYuaGFuZGxlcl9mbGFn
-cykKKwkJCXJldHVybiB0cnVlOworCX0KIAogCXJldHVybiBmYWxzZTsKIH0KLS0gCjIuOC4xCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+
+--===============0898603624==
+Content-Type: multipart/alternative; boundary="14646897840.9a27A.7312";
+ charset="UTF-8"
+
+
+--14646897840.9a27A.7312
+Date: Tue, 31 May 2016 10:16:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94627
+
+Marek Ol=C5=A1=C3=A1k <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|FIXED                       |---
+             Status|RESOLVED                    |REOPENED
+         QA Contact|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org
+                   |rg                          |.org
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org
+                   |rg                          |.org
+            Version|11.1                        |git
+          Component|Drivers/DRI/nouveau         |Drivers/Gallium/radeonsi
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14646897840.9a27A.7312
+Date: Tue, 31 May 2016 10:16:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:maraeo&#6=
+4;gmail.com" title=3D"Marek Ol=C5=A1=C3=A1k &lt;maraeo&#64;gmail.com&gt;"> =
+<span class=3D"fn">Marek Ol=C5=A1=C3=A1k</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Game Risen on wine black grass"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94627">bug 94627<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>FIXED
+           </td>
+           <td>---
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">QA Contact</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>dri-devel&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>dri-devel&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Version</td>
+           <td>11.1
+           </td>
+           <td>git
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>Drivers/DRI/nouveau
+           </td>
+           <td>Drivers/Gallium/radeonsi
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14646897840.9a27A.7312--
+
+--===============0898603624==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0898603624==--
