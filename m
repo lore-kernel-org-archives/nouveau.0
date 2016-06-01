@@ -1,10 +1,19 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96307] New: Kernel 4.7-rc1 oops when starting X
-Date: Wed, 01 Jun 2016 12:08:50 +0000
-Message-ID: <bug-96307-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: Re: [PATCH 9/9] drm: Turn off crtc before tearing down
+ its data structure
+Date: Wed, 1 Jun 2016 14:36:41 +0200
+Message-ID: <20160601123641.GA15243@wunner.de>
+References: <cover.1464103767.git.lukas@wunner.de>
+ <e83cf2e628a8e0299e029e7a1c3d4f183ce1a2af.1464103767.git.lukas@wunner.de>
+ <20160524213042.GC27098@phenom.ffwll.local>
+ <20160525105136.GA6235@wunner.de>
+ <CAKMK7uGFb9ihRtjeK7s0ezPPv-C6S9GKbE4h9MLoPyHyN=9W5Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1768983465=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uGFb9ihRtjeK7s0ezPPv-C6S9GKbE4h9MLoPyHyN=9W5Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -14,178 +23,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Cc: Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1768983465==
-Content-Type: multipart/alternative; boundary="14647829291.9C06e1e2A.19431";
- charset="UTF-8"
-
-
---14647829291.9C06e1e2A.19431
-Date: Wed, 1 Jun 2016 12:08:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96307
-
-            Bug ID: 96307
-           Summary: Kernel 4.7-rc1 oops when starting X
-           Product: xorg
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: demfloro-dmrBKrQMA3sox3rIn2DAYQ@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 124232
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124232&action=3Dedit
-dmesg and Xorg.0.log
-
-Problem appeared on 4.7-rc1 vanilla kernel, on 4.6 vanilla kernel X starts
-normally. Screen becomes blank when X starts and I need reboot to fix the
-screen. Video adapter is GeForce GTX 780 Ti.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14647829291.9C06e1e2A.19431
-Date: Wed, 1 Jun 2016 12:08:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel 4.7-rc1 oops when starting X"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96307">96307</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Kernel 4.7-rc1 oops when starting X
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>demfloro&#64;demfloro.ru
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124232=
-" name=3D"attach_124232" title=3D"dmesg and Xorg.0.log">attachment 124232</=
-a> <a href=3D"attachment.cgi?id=3D124232&amp;action=3Dedit" title=3D"dmesg =
-and Xorg.0.log">[details]</a></span>
-dmesg and Xorg.0.log
-
-Problem appeared on 4.7-rc1 vanilla kernel, on 4.6 vanilla kernel X starts
-normally. Screen becomes blank when X starts and I need reboot to fix the
-screen. Video adapter is GeForce GTX 780 Ti.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14647829291.9C06e1e2A.19431--
-
---===============1768983465==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1768983465==--
+T24gV2VkLCBNYXkgMjUsIDIwMTYgYXQgMDM6NDM6NDJQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3
+cm90ZToKPiBPbiBXZWQsIE1heSAyNSwgMjAxNiBhdCAxMjo1MSBQTSwgTHVrYXMgV3VubmVyIDxs
+dWthc0B3dW5uZXIuZGU+IHdyb3RlOgo+ID4gT24gVHVlLCBNYXkgMjQsIDIwMTYgYXQgMTE6MzA6
+NDJQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3cm90ZToKPiA+PiBPbiBUdWUsIE1heSAyNCwgMjAx
+NiBhdCAwNjowMzoyN1BNICswMjAwLCBMdWthcyBXdW5uZXIgd3JvdGU6Cj4gPj4gPiBXaGVuIGEg
+ZHJtX2NydGMgc3RydWN0dXJlIGlzIGRlc3Ryb3llZCB3aXRoIGRybV9jcnRjX2NsZWFudXAoKSwg
+dGhlIERSTQo+ID4+ID4gY29yZSBkb2VzIG5vdCB0dXJuIG9mZiB0aGUgY3J0YyBmaXJzdCBhbmQg
+bmVpdGhlciBkbyB0aGUgZHJpdmVycy4gV2l0aAo+ID4+ID4gbm91dmVhdSwgcmFkZW9uIGFuZCBh
+bWRncHUsIHRoaXMgY2F1c2VzIGEgcnVudGltZSBwbSByZWYgdG8gYmUgbGVha2VkIG9uCj4gPj4g
+PiBkcml2ZXIgdW5sb2FkIGlmIGF0IGxlYXN0IG9uZSBjcnRjIHdhcyBlbmFibGVkLgo+ID4+ID4K
+PiA+PiA+IChTZWUgdXNhZ2Ugb2YgaGF2ZV9kaXNwX3Bvd2VyX3JlZiBpbiBub3V2ZWF1X2NydGNf
+c2V0X2NvbmZpZygpLAo+ID4+ID4gcmFkZW9uX2NydGNfc2V0X2NvbmZpZygpIGFuZCBhbWRncHVf
+Y3J0Y19zZXRfY29uZmlnKCkpLgo+ID4+ID4KPiA+PiA+IEZpeGVzOiA1YWRkY2YwYTVmMGYgKCJu
+b3V2ZWF1OiBhZGQgcnVudGltZSBQTSBzdXBwb3J0ICh2MC45KSIpCj4gPj4gPiBDYzogRGF2ZSBB
+aXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4KPiA+PiA+IFRlc3RlZC1ieTogS2Fyb2wgSGVyYnN0
+IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgo+ID4+ID4gU2lnbmVkLW9mZi1ieTogTHVrYXMgV3Vu
+bmVyIDxsdWthc0B3dW5uZXIuZGU+Cj4gPj4KPiA+PiBUaGlzIGlzIGEgY29yZSByZWdyZXNzaW9u
+LCB3ZSBmaXhlZCBpdCBhZ2Fpbi4gUHJldmlvdXNseSB3aGVuIHVucmVmZXJlbmNlCj4gPj4gZHJt
+X3BsYW5lcyB0aGUgY29yZSBtYWRlIHN1cmUgdGhhdCBpdCdzIG5vdCBsb25nZXIgaW4gdXNlLCB3
+aGljaCBoYWQgdGhlCj4gPj4gc2lkZSBlZmZlY3Qgb2Ygc2h1dHRpbmcgZXZlcnl0aGluZyBvZmYg
+aW4gbW9kdWxlIHVubG9hZC4KPiA+Pgo+ID4+IEZvciBhIGJ1bmNoIG9mIHJlYXNvbnMgd2UndmUg
+c3RvcHBlZCBkb2luZyB0aGF0LCBidXQgdGhhdCB0dXJuZWQgb3V0IHRvIGJlCj4gPj4gYSBtaXN0
+YWtlLiBJdCdzIGZpeGVkIHNpbmNlCj4gPj4KPiA+PiBjb21taXQgZjJkNTgwYjlhODE0OTczNWNi
+YzRiNTljNGE4ZGY2MDE3MzY1ODE0MAo+ID4+IEF1dGhvcjogTWFhcnRlbiBMYW5raG9yc3QgPG1h
+YXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPiA+PiBEYXRlOiAgIFdlZCBNYXkgNCAx
+NDozODoyNiAyMDE2ICswMjAwCj4gPj4KPiA+PiAgICAgZHJtL2NvcmU6IERvIG5vdCBwcmVzZXJ2
+ZSBmcmFtZWJ1ZmZlciBvbiBybWZiLCB2NC4KPiA+Pgo+ID4+IFlvdXIgcGF0Y2ggc2hvdWxkbid0
+IGJlIG5lZWRlZCB3aXRoIHRoYXQgYW55IG1vcmUuIElmIGl0IHN0aWxsIGlzIGl0J3MKPiA+PiBt
+b3N0IGxpa2VseSB0aGUgZmJkZXYgY2xlYW51cCBkb25lIHRvbyBsYXRlLCBidXQgeW91IC9zaG91
+bGQvIGdldCBhIGJpZwo+ID4+IFdBUk5JTkcgc3BsYXQgaW4gdGhhdCBjYXNlIGZyb20gZHJtX21v
+ZGVfY29uZmlnX2NsZWFudXAoKS4KPiA+Cj4gPiBJIHRlc3RlZCBpdCBhbmQgYXQgbGVhc3Qgd2l0
+aCBub3V2ZWF1LCB0aGUgYWJvdmUtbWVudGlvbmVkIGNvbW1pdCBkb2VzCj4gPiAqbm90KiBzb2x2
+ZSB0aGUgaXNzdWUsIHNvIHBhdGNoIFs5LzldIG9mIHRoaXMgc2VyaWVzIGlzIHN0aWxsIG5lZWRl
+ZC4KPiA+IEkgZG8gbm90IGdldCBhIFdBUk4gc3BsYXQgd2hlbiB1bmxvYWRpbmcgbm91dmVhdS4K
+PiAKPiBXaXRoIGxlZ2FjeSBrbXMgdGhlIG9ubHkgd2F5IHRvIGtlZXAgYSBjcnRjIGVuYWJsZWQg
+aXMgdG8gZGlzcGxheSBhCj4gZHJtX2ZyYW1lYnVmZmVyIG9uIGl0LiBBbmQgZHJtX21vZGVfY29u
+ZmlnX2NsZWFudXAgaGFzIGEgV0FSTl9PTiBpZgo+IGZyYW1lYnVmZmVycyBhcmUgbGVmdCBiZWhp
+bmQuIFRoZXJlJ3MgYSBidW5jaCBvZiBvcHRpb25zOgo+IC0gbm91dmVhdSBzb21laG93IG1hbmFn
+ZXMgdG8ga2VlcCB0aGUgY3J0YyBvbiB3aXRob3V0IGEgZnJhbWVidWZmZXIKPiAtIG5vdXZlYXUg
+c29tZWhvdyBsZWFrcyBhIGRybV9mcmFtZWJ1ZmZlciwgYnV0IHJlbW92ZXMgaXQgZnJvbSB0aGUg
+ZmJfbGlzdAo+IC0gc29tZXRoaW5nIGVsc2UKCkZvdW5kIGl0LiBub3V2ZWF1X2ZiY29uX2Rlc3Ry
+b3koKSBkb2Vzbid0IGNhbGwgZHJtX2ZyYW1lYnVmZmVyX3JlbW92ZSgpLgpJZiBJIGFkZCB0aGF0
+LCB0aGUgY3J0YyBnZXRzIHByb3Blcmx5IGRpc2FibGVkIG9uIHVubG9hZC4KCkl0IGRvZXMgY2Fs
+bCBkcm1fZnJhbWVidWZmZXJfY2xlYW51cCgpLiBUaGF0J3Mgd2h5IHRoZXJlIHdhcyBubyBXQVJO
+LApkcm1fbW9kZV9jb25maWdfY2xlYW51cCgpIG9ubHkgV0FSTnMgaWYgYSBmcmFtZWJ1ZmZlciB3
+YXMgbGVmdCBvbiB0aGUKbW9kZV9jb25maWcuZmJfbGlzdC4KCnJhZGVvbiBhbmQgYW1kZ3B1IGhh
+dmUgdGhlIHNhbWUgcHJvYmxlbS4gSW4gZmFjdCB0aGVyZSBhcmUgdmVyeSBmZXcKZHJpdmVycyB0
+aGF0IGNhbGwgZHJtX2ZyYW1lYnVmZmVyX3JlbW92ZSgpOiB0ZWdyYSwgbXNtLCBleHlub3MsIG9t
+YXBkcm0KYW5kIGk5MTUgKHNpbmNlIEltcmUgRGVhaydzIDlkNjYxMjUxNmRhMCkuCgpTaG91bGQg
+d2UgYWRkIGEgV0FSTiB0byBwcmV2ZW50IHRoaXM/IEhvdyBhYm91dCBXQVJOX09OKGNydGMtPmVu
+YWJsZWQpCmluIGRybV9jcnRjX2NsZWFudXAoKT8KCkFsc28sIGk5MTUgY2FsbHMgZHJtX2ZyYW1l
+YnVmZmVyX3VucmVnaXN0ZXJfcHJpdmF0ZSgpIGJlZm9yZSBpdCBjYWxscwpkcm1fZnJhbWVidWZm
+ZXJfcmVtb3ZlKCkuIFRoaXMgb3JkZXJpbmcgaGFzIHRoZSB1bmZvcnR1bmF0ZSBzaWRlIGVmZmVj
+dAp0aGF0IHRoZSBkcm1fZnJhbWVidWZmZXIgaGFzIElEIDAgaW4gbG9nIG1lc3NhZ2VzIGVtaXR0
+ZWQgYnkKZHJtX2ZyYW1lYnVmZmVyX3JlbW92ZSgpOgoKWyAgIDM5LjY4MDg3NF0gW2RybTpkcm1f
+bW9kZV9vYmplY3RfdW5yZWZlcmVuY2VdIE9CSiBJRDogMCAoMykKWyAgIDM5LjY4MDg3OF0gW2Ry
+bTpkcm1fbW9kZV9vYmplY3RfdW5yZWZlcmVuY2VdIE9CSiBJRDogMCAoMikKWyAgIDM5LjY4MDg4
+NF0gW2RybTpkcm1fbW9kZV9vYmplY3RfdW5yZWZlcmVuY2VdIE9CSiBJRDogMCAoMSkKCkJlc3Qg
+cmVnYXJkcywKCkx1a2FzCgo+IAo+IFRoZXJlJ3Mgc3RpbGwgbm8gbmVlZCB0byBmb3JjZWZ1bGx5
+IHNodXQgZG93biBjcnRjIGF0IGNsZWFudXAgdGltZSBpbgo+IHRoZSBjb3JlLCB0aGlzIGlzIHN0
+aWxsIGEgZHJpdmVyIGJ1Zy4gU28geWVzIHlvdXIgcGF0Y2ggbWlnaHQgYmUKPiBuZWVkZWQsIGJ1
+dCBpdCdzIG5vdCB0aGUgcmlnaHQgZml4Lgo+IC1EYW5pZWwKPiAtLSAKPiBEYW5pZWwgVmV0dGVy
+Cj4gU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCj4gKzQxICgwKSA3OSAzNjUg
+NTcgNDggLSBodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
