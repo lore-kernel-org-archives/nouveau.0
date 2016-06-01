@@ -1,107 +1,163 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95054] KDE 5 / Plasma crashes with nouveau "fifo: gr
- engine fault on channel 2, recovering" or "gr: TRAP ch 2"
-Date: Wed, 01 Jun 2016 09:28:53 +0000
-Message-ID: <bug-95054-8800-fOrJYoj6lr@http.bugs.freedesktop.org/>
-References: <bug-95054-8800@http.bugs.freedesktop.org/>
+From: Mika Westerberg <mika.westerberg@linux.intel.com>
+Subject: Re: [PATCH 4/4] drm/nouveau/acpi: fix lockup with PCIe runtime PM
+Date: Wed, 1 Jun 2016 12:28:47 +0300
+Message-ID: <20160601092847.GQ1743@lahna.fi.intel.com>
+References: <1464130381-4797-1-git-send-email-peter@lekensteyn.nl>
+ <1464130381-4797-5-git-send-email-peter@lekensteyn.nl>
+ <20160525135535.GN1789@lahna.fi.intel.com>
+ <20160527111037.GA1436@al>
+ <20160530095709.GK1789@lahna.fi.intel.com>
+ <20160530122010.GB1149@al>
+ <20160530130909.GA1743@lahna.fi.intel.com>
+ <20160530161351.GA1355@al>
+ <20160531084356.GH1743@lahna.fi.intel.com>
+ <20160531110231.GB1308@al>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1647447155=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95054-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Return-path: <linux-pm-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20160531110231.GB1308@al>
+Sender: linux-pm-owner@vger.kernel.org
+To: Peter Wu <peter@lekensteyn.nl>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>, Bjorn Helgaas <helgaas@kernel.org>, linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
 List-Id: nouveau.vger.kernel.org
 
+On Tue, May 31, 2016 at 01:02:31PM +0200, Peter Wu wrote:
+> On Tue, May 31, 2016 at 11:43:56AM +0300, Mika Westerberg wrote:
+> > On Mon, May 30, 2016 at 06:13:51PM +0200, Peter Wu wrote:
+> > > Do you have any suggestions for the case where the pcieport drive=
+r
+> > > refuses to put the bridge in D3 (because the BIOS is too old)? In=
+ that
+> > > case the nouveau driver needs to fallback to the DSM method (but =
+not
+> > > when runtime PM is deliberately disabled by writing control=3Don)=
+=2E
+> >=20
+> > Do you know what Windows does then? I think we should do the same i=
+f
+> > possible.
+>=20
+> If the BIOS is too old, then it probably does not have _PR3 objects n=
+or
+> calls to _OSI("Windows 2013"). See below.
+>=20
+> > If user has disabled runtime PM from the root port deliberately, th=
+ere
+> > might be good reason to do so. Why we want to fallback to something=
+ that
+> > could cause problems? I mean _DSM on such systems is probably not t=
+hat
+> > much tested because everybody runs Windows 8+ and using standard AC=
+PI
+> > power resources.
+>=20
+> I agree that when runtime PM on the root port is disabled (control=3D=
+on),
+> then there should be no fallback to DSM. For devices without _PR3 it =
+is
+> clear that DSM will always be used (if available).
+>=20
+> In other cases (where _PR3 is available) we can distinguish:
+>  - pre-Windows 8 machines. I have never seen this combination. Firmwa=
+re
+>    writers seems to prefer sticking to reference code which did not u=
+se
+>    power resources before.
+>  - Machines targeting Windows 8 or newer. (Note that there exist
+>    machines with Windows 8 support that do not have _PR3, DSM is used=
+ in
+>    that case.)
+>=20
+> If Windows 7 is running on a Windows 8 machine, PR3 will not be used
+> anyway. If the Linux kernel claims support for Windows 8, but does no=
+t
+> use PR3, then we are probably approaching an untested area. So far
+> firmware seems fine with using *only* DSM *or* PR3, but at least my
+> laptop gets confused when you use both at the same time.
+>=20
+> The latter happens on pci/pm (8b71f565) without other patches:
+>=20
+>  1. nouveau invokes _DSM and _PS3, device is put in D3cold.
+>  2. pcieport driver calls PG00._OFF (PG00 is returned by _PR3).
+>  3. Wake up Nvidia device (e.g. by power=3Don).
+>  4. This will trigger PG00._ON (via pcieport) and _PS0 (via nouveau).
+>  5. Nvidia card is not really ready (observed via "restoring config
+>     space at offset ... (was 0xffffffff, writing ...)", a soft lockup
+>     and RCU stall after that requiring a reboot to recover).
+>=20
+> nouveau could be patched not to invoke DSM when PR3 is detected
+> (proposal is ready) but will keep the device powered on in these case=
+s:
+>  - nouveau is patched, but pci/pm patches are not.
+>  - PR3 is supported but due to the cutoff date (2015) it is not used.
+>  - Boot option pcie_port_pm=3Doff.
+>  - runtime PM is disabled for pcieport (should be fine).
 
---===============1647447155==
-Content-Type: multipart/alternative; boundary="14647733330.6CD4A0b.11397";
- charset="UTF-8"
+Since using only _DSM has been the only method to power down the card
+currently in=C5=84Linux (even if the root port has had _PR3), and it ha=
+s been
+working fine, why not stick with that when _DSM is supported?
 
+In other words, something like this:
 
---14647733330.6CD4A0b.11397
-Date: Wed, 1 Jun 2016 09:28:53 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+	nouveau_dsm_pci_probe()
+	{
+		...
+		if (retval & (NOUVEAU_DSM_HAS_OPT | NOUVEAU_DSM_HAS_MUX)) {
+			/*
+			 * We have custom _DSM method to power down the card so
+			 * prevent the PCI core from transitioning the
+			 * card into D3cold.
+			 */
+			pci_d3cold_disable(pdev);
+		}
+	}
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95054
+(Not sure about those flags above, though).
 
---- Comment #7 from Ren=C3=A9 Krell <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Just for the record:
-- Setting Hybrid Graphic to Disabled doesn't work around this problem.
-- The native nvidia driver 364.19 works fine for me.
+Yes, it does not follow Windows 8+ but if it works... ;-)
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+> There is a wealth of acpidumps on Launchpad bug 752542
+> (https://bugs.launchpad.net/bugs/752542). Search for example for
+> comments in early 2015 or before, those will likely be machine from 2=
+014
+> or before.
+>=20
+> Interesting to see is the _PR3 method of a HP Envy TS 15 (11/20/2014)=
+:
+>=20
+>     Method (_PR3, 0, NotSerialized) {
+>         If (\_OSI ("Windows 2013")) {
+>             Return (Package (0x01) {
+>                 \NVP3
+>             })
+>         } Else {
+>             Return (Package (0x00) {})
+>         }
+>     }
+>=20
+> (Note for self: just checking for the _PR3 handle in the nouveau patc=
+h
+> is apparently not sufficient, it must really be evaluated.)
+>=20
+> Other machines with _PR3:
+>  - Dell Inspiron 3543 (11/04/2014), comment 757.
+>  - Dell XPS 15 9530 (03/28/2014), comment 711.
+>  - Novatech 15.6 NSPIRE Laptop (01/20/2014), comment 695.
+>  - Lenovo ThinkPad T440p (10/27/2013), comment 659.
+>=20
+> There were many models from 2013 without _PR3 method but still checki=
+ng
+> for _OSI("Windows 2013"). Maybe some heuristics based on _PR3 would b=
+e
+> more helpful than just a cutoff date?
 
---14647733330.6CD4A0b.11397
-Date: Wed, 1 Jun 2016 09:28:53 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - KDE 5 / Plasma crashes with nouveau &quot;fifo: gr engine=
- fault on channel 2, recovering&quot; or &quot;gr: TRAP ch 2&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95054#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - KDE 5 / Plasma crashes with nouveau &quot;fifo: gr engine=
- fault on channel 2, recovering&quot; or &quot;gr: TRAP ch 2&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95054">bug 95054<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 Krell &lt;renda.krell&#64;gma=
-il.com&gt;"> <span class=3D"fn">Ren=C3=A9 Krell</span></a>
-</span></b>
-        <pre>Just for the record:
-- Setting Hybrid Graphic to Disabled doesn't work around this problem.
-- The native nvidia driver 364.19 works fine for me.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14647733330.6CD4A0b.11397--
-
---===============1647447155==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1647447155==--
+You mean for allowing bridge_d3? I don't think checking _PR3 helps us i=
+n
+any way. We can put PCIe port into D3hot just fine without any help fro=
+m
+ACPI. Only thing that matters here is that we should be able to do that
+safely without causing problems to hardware which does not support it
+properly.
