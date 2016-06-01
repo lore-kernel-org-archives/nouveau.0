@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
-	>= 4.1
-Date: Wed, 01 Jun 2016 07:20:40 +0000
-Message-ID: <bug-90626-8800-zuzUp4kcRd@http.bugs.freedesktop.org/>
-References: <bug-90626-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 01/15] tegra: fetch gpu_speedo_id
+Date: Wed, 1 Jun 2016 17:39:15 +0900
+Message-ID: <20160601083929.8555-2-acourbot@nvidia.com>
+References: <20160601083929.8555-1-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1316003570=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20160601083929.8555-1-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,103 +17,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1316003570==
-Content-Type: multipart/alternative; boundary="14647656403.CfbF75dB.6717";
- charset="UTF-8"
-
-
---14647656403.CfbF75dB.6717
-Date: Wed, 1 Jun 2016 07:20:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
-
---- Comment #51 from Ren=C3=A9 Krell <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I was also able to reactivate nouveau on a HP ZBook 15 G2, OpenSUSE Tumblew=
-eed
-20160530, kernel 4.5.4-1-default and start X and KDE Plasma 5 on it. The pa=
-tch
-seems to work fine.
-
-There are some different issues in several applications, I'll try to address
-them separately.
-
-Thank you all.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14647656403.CfbF75dB.6717
-Date: Wed, 1 Jun 2016 07:20:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c51">Commen=
-t # 51</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 Krell &lt;renda.krell&#64;gma=
-il.com&gt;"> <span class=3D"fn">Ren=C3=A9 Krell</span></a>
-</span></b>
-        <pre>I was also able to reactivate nouveau on a HP ZBook 15 G2, Ope=
-nSUSE Tumbleweed
-20160530, kernel 4.5.4-1-default and start X and KDE Plasma 5 on it. The pa=
-tch
-seems to work fine.
-
-There are some different issues in several applications, I'll try to address
-them separately.
-
-Thank you all.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14647656403.CfbF75dB.6717--
-
---===============1316003570==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1316003570==--
+VGhlIEdQVSBzcGVlZG8gSUQgaXMgcmVxdWlyZWQgdG8gc2VsZWN0IHRoZSByaWdodCBjbGsvdm9s
+dCBwYXJhbWV0ZXJzIG9uCkdNMjBCLgoKU2lnbmVkLW9mZi1ieTogQWxleGFuZHJlIENvdXJib3Qg
+PGFjb3VyYm90QG52aWRpYS5jb20+Ci0tLQogZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUv
+dGVncmEuaCAgfCAxICsKIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS90ZWdyYS5jIHwg
+MSArCiBsaWIvaW5jbHVkZS9udmlmL29zLmggICAgICAgICAgICAgICAgICB8IDEgKwogMyBmaWxl
+cyBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9pbmNs
+dWRlL252a20vY29yZS90ZWdyYS5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUvdGVn
+cmEuaAppbmRleCBiNTM3MGNiNTZlM2MuLmU1YzliNjI2OGRjYyAxMDA2NDQKLS0tIGEvZHJtL25v
+dXZlYXUvaW5jbHVkZS9udmttL2NvcmUvdGVncmEuaAorKysgYi9kcm0vbm91dmVhdS9pbmNsdWRl
+L252a20vY29yZS90ZWdyYS5oCkBAIC0yOCw2ICsyOCw3IEBAIHN0cnVjdCBudmttX2RldmljZV90
+ZWdyYSB7CiAJfSBpb21tdTsKIAogCWludCBncHVfc3BlZWRvOworCWludCBncHVfc3BlZWRvX2lk
+OwogfTsKIAogc3RydWN0IG52a21fZGV2aWNlX3RlZ3JhX2Z1bmMgewpkaWZmIC0tZ2l0IGEvZHJt
+L25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3RlZ3JhLmMgYi9kcm0vbm91dmVhdS9udmttL2Vu
+Z2luZS9kZXZpY2UvdGVncmEuYwppbmRleCA4ZWRjMGE1ODNhZTIuLjliNjM4YmQ5MDVmZiAxMDA2
+NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3RlZ3JhLmMKKysrIGIvZHJt
+L25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3RlZ3JhLmMKQEAgLTMxMSw2ICszMTEsNyBAQCBu
+dmttX2RldmljZV90ZWdyYV9uZXcoY29uc3Qgc3RydWN0IG52a21fZGV2aWNlX3RlZ3JhX2Z1bmMg
+KmZ1bmMsCiAJCWdvdG8gcmVtb3ZlOwogCiAJdGRldi0+Z3B1X3NwZWVkbyA9IHRlZ3JhX3NrdV9p
+bmZvLmdwdV9zcGVlZG9fdmFsdWU7CisJdGRldi0+Z3B1X3NwZWVkb19pZCA9IHRlZ3JhX3NrdV9p
+bmZvLmdwdV9zcGVlZG9faWQ7CiAJcmV0ID0gbnZrbV9kZXZpY2VfY3RvcigmbnZrbV9kZXZpY2Vf
+dGVncmFfZnVuYywgTlVMTCwgJnBkZXYtPmRldiwKIAkJCSAgICAgICBOVktNX0RFVklDRV9URUdS
+QSwgcGRldi0+aWQsIE5VTEwsCiAJCQkgICAgICAgY2ZnLCBkYmcsIGRldGVjdCwgbW1pbywgc3Vi
+ZGV2X21hc2ssCmRpZmYgLS1naXQgYS9saWIvaW5jbHVkZS9udmlmL29zLmggYi9saWIvaW5jbHVk
+ZS9udmlmL29zLmgKaW5kZXggZjA3MTBiMzljMDViLi5iYTI1M2IwZjFkMzcgMTAwNjQ0Ci0tLSBh
+L2xpYi9pbmNsdWRlL252aWYvb3MuaAorKysgYi9saWIvaW5jbHVkZS9udmlmL29zLmgKQEAgLTE1
+NDYsNiArMTU0Niw3IEBAIHJlc2V0X2NvbnRyb2xfZGVhc3NlcnQoc3RydWN0IHJlc2V0X2NvbnRy
+b2wgKnJlc2V0KQogICoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqLwogc3RydWN0IHRlZ3JhX3NrdV9pbmZv
+IHsKIAlpbnQgZ3B1X3NwZWVkb192YWx1ZTsKKwlpbnQgZ3B1X3NwZWVkb19pZDsKIH07CiAKIGV4
+dGVybiBzdHJ1Y3QgdGVncmFfc2t1X2luZm8gdGVncmFfc2t1X2luZm87Ci0tIAoyLjguMwoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
