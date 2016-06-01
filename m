@@ -1,76 +1,106 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: Re: [Nouveau] [PATCH 4/4] drm/nouveau/acpi: fix lockup with PCIe
- runtime PM
-Date: Wed, 1 Jun 2016 19:40:43 +0200
-Message-ID: <20160601174043.GA15433@wunner.de>
-References: <1464130381-4797-1-git-send-email-peter@lekensteyn.nl>
- <1464130381-4797-5-git-send-email-peter@lekensteyn.nl>
- <20160525135535.GN1789@lahna.fi.intel.com>
- <20160527111037.GA1436@al>
- <20160530095709.GK1789@lahna.fi.intel.com>
- <20160530122010.GB1149@al>
- <20160530130909.GA1743@lahna.fi.intel.com>
- <20160530161351.GA1355@al>
- <20160531122026.GA14129@wunner.de>
- <20160601165151.GA1947@al>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: GV98 adapter, experience with nouveau
+Date: Wed, 1 Jun 2016 19:38:43 +0200
+Message-ID: <4bb5abf0-1fb5-943b-b7d4-8de9f0d02571@gmail.com>
+References: <574ECB92.1010801@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-pm-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20160601165151.GA1947@al>
-Sender: linux-pm-owner@vger.kernel.org
-To: Peter Wu <peter@lekensteyn.nl>
-Cc: Mika Westerberg <mika.westerberg@linux.intel.com>, linux-pm@vger.kernel.org, linux-pci@vger.kernel.org, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, dri-devel@lists.freedesktop.org, Bjorn Helgaas <helgaas@kernel.org>, nouveau@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <574ECB92.1010801-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Yury Tarasievich <yury.tarasievich-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jun 01, 2016 at 06:51:51PM +0200, Peter Wu wrote:
-> On Tue, May 31, 2016 at 02:20:26PM +0200, Lukas Wunner wrote:
-> > On Mon, May 30, 2016 at 06:13:51PM +0200, Peter Wu wrote:
-> > > Do you have any suggestions for the case where the pcieport driver
-> > > refuses to put the bridge in D3 (because the BIOS is too old)? In that
-> > > case the nouveau driver needs to fallback to the DSM method (but not
-> > > when runtime PM is deliberately disabled by writing control=on).
-> > 
-> > The BIOS cut-off date is meant to avoid issues when suspending ports
-> > on older chipsets. However if the port is used for an Optimus GPU
-> > and we can clearly identify that, and there's a _PR3 method provided,
-> > it's probably safe to say that the port is *intended* to be suspended.
-> > 
-> > So you may want to consider amending pci_bridge_d3_possible() to
-> > allow D3 for such ports regardless of the BIOS date, as I've done
-> > for Thunderbolt in this commit:
-> > https://github.com/l1k/linux/commit/3cb8549cd4e5
-> 
-> Then we have heuristics based on BIOS year, on whether it is TB or not,
-> and next to it whether it is an Optimus laptop? Maybe the PCI core needs
-> to export a function that allows drivers to override the detection if
-> this becomes more common.
-
-Well I consider the TB and Optimus whitelisting as a stop-gap until
-the BIOS date is lowered. Rafael wrote:
-
-    Some time around when machines with Windows 10 started to ship should be
-    relatively safe.
-    I guess we can just pick a reasonable date in the initial patch and then
-    try to move it back to the past subsequently and see if that breaks things
-    for anyone.
-
-Source: http://permalink.gmane.org/gmane.linux.power-management.general/75133
-
-> 
-> > Not sure how to uniquely identify such ports though. Perhaps check
-> > if there's a device in slot 0 below the port which has
-> > 	(pdev->class >> 16) == PCI_BASE_CLASS_DISPLAY &&
-> > 	(pdev->vendor == PCI_VENDOR_ID_NVIDIA ||
-> > 	 pdev->vendor == PCI_VENDOR_ID_ATI)
-> 
-> Seems fragile, there are desktop setups satisfying this match.
-
-Of course, I didn't mean this to be used as is, you'd have to augment
-this with checks e.g. for presence of _PR3 and (if possible) Optimus,
-but I'm not familiar enough with Optimus to write down working code
-for it, I'm only familiar with apple-gmux switching.
-
-Best regards,
-
-Lukas
+T24gMDEuMDYuMjAxNiAxMzo0OCwgWXVyeSBUYXJhc2lldmljaCB3cm90ZToKPiBJJ20gdHJ5aW5n
+IHRvIHB1dCB0byB3b3JrIHRoZSBub3V2ZWF1IGRyaXZlciBvbiAKPiBzbGFja3dhcmUgNjQgYml0
+cyBjdXJyZW50LCBrZXJuZWwgNC40LiouCj4gCj4gSSd2ZSB0aG91Z2h0IHRoZSBoYXJkd2FyZSB0
+byBiZSBzb21lIG9ic2N1cmUgT0VNIAo+IHZhcmlhbnQgb2YgR1Q2MTAuIEhvd2V2ZXIsIGtpbmQg
+c291bCBvbiBJUkMgCj4gcG9pbnRlZCBvdXQgdGhhdCBpdCdzIGEgRzk4IHJlYWxseSwgJ0dlRm9y
+Y2UgCj4gOTMwMCBHUyBvciA4NDAwIEdTJy4KPiAKPiBQcm9wcmlldGFyeSBOVklESUEgZHJpdmVy
+czoKPiAqIDM0MC45NiBpbnN0YWxscyBva2F5LCBjb25zb2xlIHdvcmtzLCBidXQgWCAKPiBkb2Vz
+bid0IHN0YXJ0LCB3aXRoIHVuc3BlY2lmaWVkIGVycm9yIG9jY3VyaW5nIAo+IHdoZW4gdHJ5aW5n
+IHRvIGluaXRpYWxpc2UgaGFyZHdhcmUgKC0xOSk7Cj4gKiAzMDQuMTMxIHdvcmtzLCB3aXRoIG5v
+IHVuZHVlIHN1cnByaXNlcy4KPiAKPiBJJ3ZlIGV4cGVyaWVuY2VkIGEgbG90IG9mIHByb2JsZW1z
+IHdpdGggbm91dmVhdSAKPiBkcml2ZXIgKGFzIHBhY2thZ2VkIGZvciBTbGFja3dhcmUgb24gRGVj
+IDE2LCAKPiAyMDE1OyBidWlsZCBkYXRlIGluIGxvZ3M6ICcxOSBOb3ZlbWJlciAyMDE1IAo+IDEy
+OjQ2OjAyQU0nKToKPiAKPiAxKSBDb25zb2xlIGRvZXMgbm90IGluaXRpYWxpc2UgdGhlIG91dHB1
+dCAKPiBjb3JyZWN0bHkgaWYgdmlkZW8gbW9kZSBpcyBub3QgcmVzdHJpY3RlZCB0byAKPiA2NDB4
+NDgwIGJ5IGtlcm5lbCBjb21tYW5kIGxpbmUgd2l0aCAnLi4uIAo+IHZpZGVvPTY0MHg0ODAnLiBB
+bnkgb3RoZXIgKGJpZ2dlcikgcmVzb2x1dGlvbiAKPiB0aGVyZSwgb3Igbm8gcmVzdHJpY3Rpb24s
+IGFuZCB0aGUgc2NyZWVuIGJsYW5rczsgCj4gYWxzbywgZm9yIGVpdGhlciA4MDB4NjAwIG9yIDEw
+MjR4NzY4IHVwcGVyIAo+IGxpbWl0cyB0aGUgbW9uaXRvciBvdXRwdXRzIHRoZSB3YXJuaW5nIGFi
+b3V0IAo+IHVudXNhYmxlIG1vZGUsIDI2LjhLSHovNDNIeiBmb3IgODAweDYwMCwgYW5kIAo+IDIx
+LjZLSHovMjdIeiBmb3IgMTAyNHg3NjguCj4gCj4gVGhlIGlucHV0IHdvcmtzLiBJIGNhbiBsb2cg
+aW4gYW5kIHN0YXJ0IFgsIHdoaWNoIAo+IHN0YXJ0cyAoISkgYW5kIHdvcmtzLCBidXQgcHJvZHVj
+ZXMgbm8gb3V0cHV0IGVpdGhlci4KPiAKPiBObyBzdWNoIHByb2JsZW0gd2l0aCBOVklESUEgZHJp
+dmVycy4KPiAKPiAyKSBUaGUgd29ya2luZyBtb2RlIHJlc3RyaWN0aW9uIDY0MHg0ODAgZ2l2ZXMg
+Cj4gdGhlIGNvbnNvbGUgc2V0IHRvIDY4SHogdmVydGljYWwgcmVmcmVzaCAoYXMgCj4gbW9uaXRv
+ciByZXBvcnRzKS4KPiAKPiAzKSBUaGUgWCBzdGFydGVkIGZyb20gY29uc29sZSAoaGF2aW5nIDY0
+MHg0ODAgCj4gcmVzdHJpY3Rpb24pIGFsbG93cyBvbmx5IDY0MHg0ODAgbW9kZSBpbiBjb25maWcu
+IAo+IEFueSBvdGhlciBtb2RlIHByb2R1Y2VzIHdvcmtpbmcgWCB3aXRoIGJsYW5rIAo+IHNjcmVl
+biwgZXhjZXB0aW5nIGNvbnNvbGUgc3RhcnRlZCByZXN0cmljdHJlZCB0byAKPiA4MDB4NjAwIG9y
+IDEwMjR4NzY4LCB3aGljaCByZXRhaW5zIHRoZSBtb25pdG9yJ3MgCj4gZmxvYXRpbmcgbWVzc2Fn
+ZSBhYm91dCAndW51c2FibGUgbW9kZScuIEVpdGhlciAKPiB3YXksIGlucHV0IGluIFggd29ya3Mu
+Cj4gCj4gNCkgVGhlIFggaW4gNjQweDQ4MCBoYXMgYWN0dWFsIHZlcnRpY2FsIHJlZnJlc2ggCj4g
+b2YgNjhIeiwgd2hpY2ggeHJhbmRyIHJlcG9ydHMgYXMgNzVIei4gQXR0ZW1wdCAKPiB0byBjaGFu
+Z2UgdmVydC4gcmVmcmVzaCByYXRlIHRvIDYwSHogcHJvZHVjZXMgCj4gc2NyZWVuICdzdHJvYm9z
+Y29waW5nJy4gQW55IG90aGVyIHJlc29sdXRpb24gc2V0IAo+IHZpYSB4cmFuZHIgcHJvZHVjZXMg
+Ymxhbmsgc2NyZWVuLgo+IAo+IEFueSBhZHZpY2U/IE5WSURJQSBkcml2ZXIgZmlsZXMgcmVtb3Zl
+ZCwgZnVsbCAKPiBkbWVzZyBhbmQgeG9yZyBhdmFpbGFibGUuIEN1dCBvZiBkbWVzZyB3aXRoIAo+
+IG5vdXZlYXUgbGluZXMgaXMgaW4gcG9zdHNjcmlwdHVtLgo+IAo+IC1ZdXJ5Cj4gCj4gUFMgWyAg
+ICA3LjEzNzA1Ml0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IE5WSURJQSAKPiBHOTggKDI5ODUwMGEy
+KQo+IFsgICAgNy4yNTYxNjNdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBiaW9zOiAKPiB2ZXJzaW9u
+IDcwLjE4LjM2LjAwLjAwCj4gWyAgICA3LjI1ODQ0N10gbm91dmVhdSAwMDAwOjAyOjAwLjA6IGRp
+c3A6IGNvbm4gCj4gMDI6MDI2MTogZnVuYyAwOCBsb29rdXAgZmFpbGVkLCAtMgo+IFsgICAgNy4y
+NzkyMDhdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBiaW9zOiAKPiBNMDIwM1Qgbm90IGZvdW5kCj4g
+WyAgICA3LjI3OTMyN10gbm91dmVhdSAwMDAwOjAyOjAwLjA6IGJpb3M6IAo+IE0wMjAzRSBub3Qg
+bWF0Y2hlZCEKPiBbICAgIDcuMjc5NDQyXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogZmI6IDEwMjQg
+Cj4gTWlCIEREUjIKPiBbICAgIDcuMzI4MjE4XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiBW
+UkFNOiAKPiAxMDI0IE1pQgo+IFsgICAgNy4zMjgzMzJdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBE
+Uk06IEdBUlQ6IAo+IDEwNDg1NzYgTWlCCj4gWyAgICA3LjMyODQ0OF0gbm91dmVhdSAwMDAwOjAy
+OjAwLjA6IERSTTogVE1EUyAKPiB0YWJsZSB2ZXJzaW9uIDIuMAo+IFsgICAgNy4zMjg1NjNdIG5v
+dXZlYXUgMDAwMDowMjowMC4wOiBEUk06IERDQiAKPiB2ZXJzaW9uIDQuMAo+IFsgICAgNy4zMjg2
+NzddIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IERDQiAKPiBvdXRwIDAwOiAwMjAwMDMwMCAw
+MDAwMDAyOAo+IFsgICAgNy4zMjg3OTNdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IERDQiAK
+PiBvdXRwIDAxOiAwMTAwMDMwMiAwMDAyMDAzMAo+IFsgICAgNy4zMjg5MDhdIG5vdXZlYXUgMDAw
+MDowMjowMC4wOiBEUk06IERDQiAKPiBvdXRwIDAyOiAwNDAxMTMxMCAwMDAwMDAyOAo+IFsgICAg
+Ny4zMjkwMzVdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IERDQiAKPiBvdXRwIDAzOiAwMjAy
+MjMyMiAwMGMyMDA5MAo+IFsgICAgNy4zMjkxNTBdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06
+IERDQiAKPiBjb25uIDAwOiAwMDAwMTAzMAo+IFsgICAgNy4zMjkyNjRdIG5vdXZlYXUgMDAwMDow
+MjowMC4wOiBEUk06IERDQiAKPiBjb25uIDAxOiAwMDAwMDEwMAo+IFsgICAgNy4zMjkzNzhdIG5v
+dXZlYXUgMDAwMDowMjowMC4wOiBEUk06IERDQiAKPiBjb25uIDAyOiAwMDAwMjI2MQo+IFsgICAg
+Ny4zMzkxOTNdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IE1NOiAKPiB1c2luZyBNMk1GIGZv
+ciBidWZmZXIgY29waWVzCj4gWyAgICA3LjQwODAzNl0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IERS
+TTogCj4gYWxsb2NhdGVkIDY0MHg0ODAgZmI6IDB4NTAwMDAsIGJvIGZmZmY4ODAwYmY3N2MwMDAK
+PiBbICAgIDcuNDA4NDQyXSBmYmNvbjogbm91dmVhdWZiIChmYjApIGlzIHByaW1hcnkgCj4gZGV2
+aWNlCj4gWyAgICA3LjQxMDUzM10gbm91dmVhdSAwMDAwOjAyOjAwLjA6IGRldmluaXQ6IAo+IHVu
+YWJsZSB0byBjb21wdXRlIGFjY2VwdGFibGUgcGxsIHZhbHVlcwo+IFsgICAgNy40MTA1MzVdIG5v
+dXZlYXUgMDAwMDowMjowMC4wOiBkZXZpbml0OiAKPiBmYWlsZWQgcGxsIGNhbGN1bGF0aW9uCj4g
+WyAgICA3LjQ3MDM1MV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IGZiMDogCj4gbm91dmVhdWZiIGZy
+YW1lIGJ1ZmZlciBkZXZpY2UKPiBbICAgIDcuNDc3MDQ3XSBbZHJtXSBJbml0aWFsaXplZCBub3V2
+ZWF1IDEuMy4xIAo+IDIwMTIwODAxIGZvciAwMDAwOjAyOjAwLjAgb24gbWlub3IgMAo+IAoKCllv
+dSBjYW4gZGlzcGxheSBiYXNpYyB2aWRlbyBkZXZpY2UgaW5mbyB2aWE6CiQgbHNwY2kgLWtubiAt
+ZCA6OjAzMDAKCkNvbXBhcmUgb3V0cHV0IHdpdGggdGhlCmh0dHBzOi8vbm91dmVhdS5mcmVlZGVz
+a3RvcC5vcmcvd2lraS9Db2RlTmFtZXMvCgpBbHNvIHlvdSBjYW4gdHJ5IHRvIHRlc3Qgd2l0aCBu
+ZXdlciBzb2Z0d2FyZSwKZS5nLgpodHRwczovL2RsLmZlZG9yYXByb2plY3Qub3JnL3B1Yi9mZWRv
+cmEvbGludXgvZGV2ZWxvcG1lbnQvcmF3aGlkZS9TcGlucy94ODZfNjQvaXNvLwpGZWRvcmEtS0RF
+LUxpdmUteDg2XzY0LVJhd2hpZGUtMjAxNjA2MDEubi4wLmlzbwoKSWYgdGhlIG1hY2hpbmUgcmVh
+Y2hlcyBEZXNrdG9wIGluIHRoZSBmaXJzdCBwbGFjZSwKcHV0IFNFTGludXggaW4gcGVybWlzc2l2
+ZSBtb2RlOgokIHN1IC1jICJzZXRlbmZvcmNlIDAiCgpvdGhlcndpc2UgY29uZmlnIGNoYW5nZXMg
+d2lsbCBub3QgYXBwbHkKCnJlLWxvZyAuLi4KClRlc3QgdmFyaW91cyBDb21wb3NpdG9yIFNldHRp
+bmdzOgokIGtjbXNoZWxsNSBrd2luY29tcG9zaXRpbmcKCk9ic2VydmUgY29uZmlnIGZpbGU6CiQg
+Y2F0IH4vLmNvbmZpZy9rd2lucmMKCkNoZWNrIE9wZW5HTCBpbmZvOgokIGtjbXNoZWxsNSBvcGVu
+Z2wKCkNoZWNrIFgtU2VydmVyIGluZm8KJCBrY21zaGVsbDUgeHNlcnZlcgoKU3RhcnQgVGVybWlu
+YWwgZW11bGF0b3IgdG8gZXhlYyBjb21tYW5kczoKQUxUK0YyOiBrb25zb2xlCgoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
