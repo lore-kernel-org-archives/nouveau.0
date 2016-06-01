@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
-	>= 4.1
-Date: Tue, 31 May 2016 18:51:13 +0000
-Message-ID: <bug-90626-8800-qmk8aaWzqo@http.bugs.freedesktop.org/>
-References: <bug-90626-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 96258] [NVC0] Hang when running compute program
+Date: Wed, 01 Jun 2016 03:32:45 +0000
+Message-ID: <bug-96258-8800-Vo4vFZrATx@http.bugs.freedesktop.org/>
+References: <bug-96258-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0139166694=="
+Content-Type: multipart/mixed; boundary="===============0120101740=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-96258-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,47 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0139166694==
-Content-Type: multipart/alternative; boundary="14647206732.6E39.20376";
+--===============0120101740==
+Content-Type: multipart/alternative; boundary="14647519650.29bEBaa.6788";
  charset="UTF-8"
 
 
---14647206732.6E39.20376
-Date: Tue, 31 May 2016 18:51:13 +0000
+--14647519650.29bEBaa.6788
+Date: Wed, 1 Jun 2016 03:32:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96258
 
---- Comment #50 from vdanjean-GANU6spQydw@public.gmane.org <vdanjean.ml-GANU6spQydw@public.gmane.org> ---
-  Hi,
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-  As requested, I can confirm that upstream kernel works (in my case, these=
- are
-Debian packaged kernels). I cannot tell exactly from which version it works,
-but 4.4-rc3 looks possible to me. The Debian bug report
-(https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D772716) marks it fixed=
- in
-the 4.3.1-1 version (i.e. the patch was probably backported to the stable
-series)
-  Recently (kernel > 4.5.x), the nouveau kernel driver is not automatically
-loaded at startup, so I need to run "modprobe nouveau" manually. But this is
-another bug that I did not investigate (nor report) for now.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
 
-  For me, this bug can be closed.
-
-  Regards,
-    Vincent
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+And the fermi issue is fixed now too by (a) fixing the GPR file size to take
+the thread count and # of SM regs into account and (b) fixing BitSet to work
+with multiple-of-32 numbers of registers (had been all 32n-1 up until now).
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14647206732.6E39.20376
-Date: Tue, 31 May 2016 18:51:13 +0000
+--14647519650.29bEBaa.6788
+Date: Wed, 1 Jun 2016 03:32:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,44 +64,59 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVC0] Hang when running compute program"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96258">bug 96258<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c50">Commen=
-t # 50</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVC0] Hang when running compute program"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96258#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVC0] Hang when running compute program"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96258">bug 96258<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-vdanjean.ml&#64;free.fr" title=3D"vdanjean&#64;free.fr &lt;vdanjean.ml&#64;=
-free.fr&gt;"> <span class=3D"fn">vdanjean&#64;free.fr</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>  Hi,
-
-  As requested, I can confirm that upstream kernel works (in my case, these=
- are
-Debian packaged kernels). I cannot tell exactly from which version it works,
-but 4.4-rc3 looks possible to me. The Debian bug report
-(<a href=3D"https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D772716">htt=
-ps://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D772716</a>) marks it fixed=
- in
-the 4.3.1-1 version (i.e. the patch was probably backported to the stable
-series)
-  Recently (kernel &gt; 4.5.x), the nouveau kernel driver is not automatica=
-lly
-loaded at startup, so I need to run &quot;modprobe nouveau&quot; manually. =
-But this is
-another bug that I did not investigate (nor report) for now.
-
-  For me, this bug can be closed.
-
-  Regards,
-    Vincent</pre>
+        <pre>And the fermi issue is fixed now too by (a) fixing the GPR fil=
+e size to take
+the thread count and # of SM regs into account and (b) fixing BitSet to work
+with multiple-of-32 numbers of registers (had been all 32n-1 up until now).=
+</pre>
         </div>
       </p>
 
@@ -119,13 +126,14 @@ another bug that I did not investigate (nor report) for now.
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14647206732.6E39.20376--
+--14647519650.29bEBaa.6788--
 
---===============0139166694==
+--===============0120101740==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +143,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0139166694==--
+--===============0120101740==--
