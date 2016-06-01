@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
-	>= 4.1
-Date: Wed, 01 Jun 2016 10:54:16 +0000
-Message-ID: <bug-90626-8800-9sX7o8Mxmq@http.bugs.freedesktop.org/>
-References: <bug-90626-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 96306] New: BUG: KASAN: slab-out-of-bounds in
+ OUT_RINGp (via nvc0_fbcon_imageblit)
+Date: Wed, 01 Jun 2016 11:44:07 +0000
+Message-ID: <bug-96306-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1872744347=="
+Content-Type: multipart/mixed; boundary="===============2078764757=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +19,77 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1872744347==
-Content-Type: multipart/alternative; boundary="14647784560.EA83625.1774";
+--===============2078764757==
+Content-Type: multipart/alternative; boundary="14647814471.D5ca4.15812";
  charset="UTF-8"
 
 
---14647784560.EA83625.1774
-Date: Wed, 1 Jun 2016 10:54:16 +0000
+--14647814471.D5ca4.15812
+Date: Wed, 1 Jun 2016 11:44:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96306
 
-Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> changed:
+            Bug ID: 96306
+           Summary: BUG: KASAN: slab-out-of-bounds in OUT_RINGp (via
+                    nvc0_fbcon_imageblit)
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+Created attachment 124231
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124231&action=3Dedit
+dmesg output for v4.7-rc1 containing the KASAN report
 
---- Comment #53 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
-(In reply to Ren=C3=A9 Krell from comment #52)
-> Just for the record: I'm now affected by
-> https://bugs.freedesktop.org/show_bug.cgi?id=3D95054 on the same hardware=
- (HP
-> ZBook 15 G2). nouveau is freezing in accelerating Plasma 5 Desktop after a
-> while.
+Previously reported by others to mailing lists (with no replies):
 
-Thank you for your feedback. We'll discuss the other issues in separate bug
-reports.
+[4.4-rc1] nouveau: BUG: KASAN: slab-out-of-bounds in memcpy+0x1d/0x40
+https://lists.freedesktop.org/archives/dri-devel/2015-November/095100.html
+
+[3.10] BUG: drm, nouveau: slab-out-of-bounds read access in
+nv50_fbcon_imageblit()
+https://lists.freedesktop.org/archives/dri-devel/2016-May/108270.html
+
+
+Hardware:
+Optimus laptop with inteldrmfb being the primary framebuffer, an external
+monitor is connected to DP-1 on the Nvidia card (GTX 965M, 10de:13d9).
+
+Steps to reproduce the out-of-bounds issue in my environment:
+ 0. Avoid continuously triggering the error: dmesg -D
+ 1. modprobe nouveau runpm=3D0 (or be sure to wake the device before using
+con2fbmap, there is a nasty (unrelated) deadlock in there due to recursive
+console_lockup.)
+ 2. con2fbmap 1 2 (bind console 2 to nouveaufb (1)). This invokes
+ioctl(/dev/fb0, FBIOPUT_CON2FBMAP, (u32[2]){2, 1})).
+ 3. If you are not there already, switch to tty2 on the nouveau display.
+ 4. Press Enter until you are at the last line of the console (or past it, I
+forgot).
+ 5. Go to a different tty (e.g. the Intel one) and notice the KASAN report =
+in
+dmesg.
+
+Attached is yet another log (looks similar to the other ones) for v4.7-rc1
+(with two unrelated patchsets applied on top).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14647784560.EA83625.1774
-Date: Wed, 1 Jun 2016 10:54:16 +0000
+--14647814471.D5ca4.15812
+Date: Wed, 1 Jun 2016 11:44:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,72 +100,132 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rspliet&#=
-64;eclipso.eu" title=3D"Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class=3D=
-"fn">Roy</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - HP ZBook 15 nouveau driver hangup for kernel &=
-gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - BUG: KASAN: slab-out-of-bounds in OUT_RINGp (via nvc0_fbc=
+on_imageblit)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96306">96306</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
+        <tr>
+          <th>Summary</th>
+          <td>BUG: KASAN: slab-out-of-bounds in OUT_RINGp (via nvc0_fbcon_i=
+mageblit)
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>peter&#64;lekensteyn.nl
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - HP ZBook 15 nouveau driver hangup for kernel &=
-gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c53">Commen=
-t # 53</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - HP ZBook 15 nouveau driver hangup for kernel &=
-gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rspliet&#64;eclipso.eu" title=3D"Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span=
- class=3D"fn">Roy</span></a>
-</span></b>
-        <pre>(In reply to Ren=C3=A9 Krell from <a href=3D"show_bug.cgi?id=
-=3D90626#c52">comment #52</a>)
-<span class=3D"quote">&gt; Just for the record: I'm now affected by
-&gt; <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - KDE 5 / Plasma crashes with nouveau &quot;fifo: gr engine=
- fault on channel 2, recovering&quot; or &quot;gr: TRAP ch 2&quot;"
-   href=3D"show_bug.cgi?id=3D95054">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D95054</a> on the same hardware (HP
-&gt; ZBook 15 G2). nouveau is freezing in accelerating Plasma 5 Desktop aft=
-er a
-&gt; while.</span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124231=
+" name=3D"attach_124231" title=3D"dmesg output for v4.7-rc1 containing the =
+KASAN report">attachment 124231</a> <a href=3D"attachment.cgi?id=3D124231&a=
+mp;action=3Dedit" title=3D"dmesg output for v4.7-rc1 containing the KASAN r=
+eport">[details]</a></span>
+dmesg output for v4.7-rc1 containing the KASAN report
 
-Thank you for your feedback. We'll discuss the other issues in separate bug
-reports.</pre>
+Previously reported by others to mailing lists (with no replies):
+
+[4.4-rc1] nouveau: BUG: KASAN: slab-out-of-bounds in memcpy+0x1d/0x40
+<a href=3D"https://lists.freedesktop.org/archives/dri-devel/2015-November/0=
+95100.html">https://lists.freedesktop.org/archives/dri-devel/2015-November/=
+095100.html</a>
+
+[3.10] BUG: drm, nouveau: slab-out-of-bounds read access in
+nv50_fbcon_imageblit()
+<a href=3D"https://lists.freedesktop.org/archives/dri-devel/2016-May/108270=
+.html">https://lists.freedesktop.org/archives/dri-devel/2016-May/108270.htm=
+l</a>
+
+
+Hardware:
+Optimus laptop with inteldrmfb being the primary framebuffer, an external
+monitor is connected to DP-1 on the Nvidia card (GTX 965M, 10de:13d9).
+
+Steps to reproduce the out-of-bounds issue in my environment:
+ 0. Avoid continuously triggering the error: dmesg -D
+ 1. modprobe nouveau runpm=3D0 (or be sure to wake the device before using
+con2fbmap, there is a nasty (unrelated) deadlock in there due to recursive
+console_lockup.)
+ 2. con2fbmap 1 2 (bind console 2 to nouveaufb (1)). This invokes
+ioctl(/dev/fb0, FBIOPUT_CON2FBMAP, (u32[2]){2, 1})).
+ 3. If you are not there already, switch to tty2 on the nouveau display.
+ 4. Press Enter until you are at the last line of the console (or past it, I
+forgot).
+ 5. Go to a different tty (e.g. the Intel one) and notice the KASAN report =
+in
+dmesg.
+
+Attached is yet another log (looks similar to the other ones) for v4.7-rc1
+(with two unrelated patchsets applied on top).</pre>
         </div>
       </p>
 
@@ -149,9 +239,9 @@ reports.</pre>
     </body>
 </html>=
 
---14647784560.EA83625.1774--
+--14647814471.D5ca4.15812--
 
---===============1872744347==
+--===============2078764757==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -161,4 +251,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1872744347==--
+--===============2078764757==--
