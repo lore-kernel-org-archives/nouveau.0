@@ -1,10 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96306] New: BUG: KASAN: slab-out-of-bounds in
- OUT_RINGp (via nvc0_fbcon_imageblit)
-Date: Wed, 01 Jun 2016 11:44:07 +0000
-Message-ID: <bug-96306-8800@http.bugs.freedesktop.org/>
+From: Yury Tarasievich <yury.tarasievich-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: GV98 adapter, experience with nouveau
+Date: Wed, 1 Jun 2016 14:48:34 +0300
+Message-ID: <574ECB92.1010801@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2078764757=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,237 +18,70 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2078764757==
-Content-Type: multipart/alternative; boundary="14647814471.D5ca4.15812";
- charset="UTF-8"
-
-
---14647814471.D5ca4.15812
-Date: Wed, 1 Jun 2016 11:44:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96306
-
-            Bug ID: 96306
-           Summary: BUG: KASAN: slab-out-of-bounds in OUT_RINGp (via
-                    nvc0_fbcon_imageblit)
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 124231
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124231&action=3Dedit
-dmesg output for v4.7-rc1 containing the KASAN report
-
-Previously reported by others to mailing lists (with no replies):
-
-[4.4-rc1] nouveau: BUG: KASAN: slab-out-of-bounds in memcpy+0x1d/0x40
-https://lists.freedesktop.org/archives/dri-devel/2015-November/095100.html
-
-[3.10] BUG: drm, nouveau: slab-out-of-bounds read access in
-nv50_fbcon_imageblit()
-https://lists.freedesktop.org/archives/dri-devel/2016-May/108270.html
-
-
-Hardware:
-Optimus laptop with inteldrmfb being the primary framebuffer, an external
-monitor is connected to DP-1 on the Nvidia card (GTX 965M, 10de:13d9).
-
-Steps to reproduce the out-of-bounds issue in my environment:
- 0. Avoid continuously triggering the error: dmesg -D
- 1. modprobe nouveau runpm=3D0 (or be sure to wake the device before using
-con2fbmap, there is a nasty (unrelated) deadlock in there due to recursive
-console_lockup.)
- 2. con2fbmap 1 2 (bind console 2 to nouveaufb (1)). This invokes
-ioctl(/dev/fb0, FBIOPUT_CON2FBMAP, (u32[2]){2, 1})).
- 3. If you are not there already, switch to tty2 on the nouveau display.
- 4. Press Enter until you are at the last line of the console (or past it, I
-forgot).
- 5. Go to a different tty (e.g. the Intel one) and notice the KASAN report =
-in
-dmesg.
-
-Attached is yet another log (looks similar to the other ones) for v4.7-rc1
-(with two unrelated patchsets applied on top).
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14647814471.D5ca4.15812
-Date: Wed, 1 Jun 2016 11:44:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - BUG: KASAN: slab-out-of-bounds in OUT_RINGp (via nvc0_fbc=
-on_imageblit)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96306">96306</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>BUG: KASAN: slab-out-of-bounds in OUT_RINGp (via nvc0_fbcon_i=
-mageblit)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>peter&#64;lekensteyn.nl
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124231=
-" name=3D"attach_124231" title=3D"dmesg output for v4.7-rc1 containing the =
-KASAN report">attachment 124231</a> <a href=3D"attachment.cgi?id=3D124231&a=
-mp;action=3Dedit" title=3D"dmesg output for v4.7-rc1 containing the KASAN r=
-eport">[details]</a></span>
-dmesg output for v4.7-rc1 containing the KASAN report
-
-Previously reported by others to mailing lists (with no replies):
-
-[4.4-rc1] nouveau: BUG: KASAN: slab-out-of-bounds in memcpy+0x1d/0x40
-<a href=3D"https://lists.freedesktop.org/archives/dri-devel/2015-November/0=
-95100.html">https://lists.freedesktop.org/archives/dri-devel/2015-November/=
-095100.html</a>
-
-[3.10] BUG: drm, nouveau: slab-out-of-bounds read access in
-nv50_fbcon_imageblit()
-<a href=3D"https://lists.freedesktop.org/archives/dri-devel/2016-May/108270=
-.html">https://lists.freedesktop.org/archives/dri-devel/2016-May/108270.htm=
-l</a>
-
-
-Hardware:
-Optimus laptop with inteldrmfb being the primary framebuffer, an external
-monitor is connected to DP-1 on the Nvidia card (GTX 965M, 10de:13d9).
-
-Steps to reproduce the out-of-bounds issue in my environment:
- 0. Avoid continuously triggering the error: dmesg -D
- 1. modprobe nouveau runpm=3D0 (or be sure to wake the device before using
-con2fbmap, there is a nasty (unrelated) deadlock in there due to recursive
-console_lockup.)
- 2. con2fbmap 1 2 (bind console 2 to nouveaufb (1)). This invokes
-ioctl(/dev/fb0, FBIOPUT_CON2FBMAP, (u32[2]){2, 1})).
- 3. If you are not there already, switch to tty2 on the nouveau display.
- 4. Press Enter until you are at the last line of the console (or past it, I
-forgot).
- 5. Go to a different tty (e.g. the Intel one) and notice the KASAN report =
-in
-dmesg.
-
-Attached is yet another log (looks similar to the other ones) for v4.7-rc1
-(with two unrelated patchsets applied on top).</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14647814471.D5ca4.15812--
-
---===============2078764757==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2078764757==--
+SSdtIHRyeWluZyB0byBwdXQgdG8gd29yayB0aGUgbm91dmVhdSBkcml2ZXIgb24gCnNsYWNrd2Fy
+ZSA2NCBiaXRzIGN1cnJlbnQsIGtlcm5lbCA0LjQuKi4KCkkndmUgdGhvdWdodCB0aGUgaGFyZHdh
+cmUgdG8gYmUgc29tZSBvYnNjdXJlIE9FTSAKdmFyaWFudCBvZiBHVDYxMC4gSG93ZXZlciwga2lu
+ZCBzb3VsIG9uIElSQyAKcG9pbnRlZCBvdXQgdGhhdCBpdCdzIGEgRzk4IHJlYWxseSwgJ0dlRm9y
+Y2UgCjkzMDAgR1Mgb3IgODQwMCBHUycuCgpQcm9wcmlldGFyeSBOVklESUEgZHJpdmVyczoKKiAz
+NDAuOTYgaW5zdGFsbHMgb2theSwgY29uc29sZSB3b3JrcywgYnV0IFggCmRvZXNuJ3Qgc3RhcnQs
+IHdpdGggdW5zcGVjaWZpZWQgZXJyb3Igb2NjdXJpbmcgCndoZW4gdHJ5aW5nIHRvIGluaXRpYWxp
+c2UgaGFyZHdhcmUgKC0xOSk7CiogMzA0LjEzMSB3b3Jrcywgd2l0aCBubyB1bmR1ZSBzdXJwcmlz
+ZXMuCgpJJ3ZlIGV4cGVyaWVuY2VkIGEgbG90IG9mIHByb2JsZW1zIHdpdGggbm91dmVhdSAKZHJp
+dmVyIChhcyBwYWNrYWdlZCBmb3IgU2xhY2t3YXJlIG9uIERlYyAxNiwgCjIwMTU7IGJ1aWxkIGRh
+dGUgaW4gbG9nczogJzE5IE5vdmVtYmVyIDIwMTUgCjEyOjQ2OjAyQU0nKToKCjEpIENvbnNvbGUg
+ZG9lcyBub3QgaW5pdGlhbGlzZSB0aGUgb3V0cHV0IApjb3JyZWN0bHkgaWYgdmlkZW8gbW9kZSBp
+cyBub3QgcmVzdHJpY3RlZCB0byAKNjQweDQ4MCBieSBrZXJuZWwgY29tbWFuZCBsaW5lIHdpdGgg
+Jy4uLiAKdmlkZW89NjQweDQ4MCcuIEFueSBvdGhlciAoYmlnZ2VyKSByZXNvbHV0aW9uIAp0aGVy
+ZSwgb3Igbm8gcmVzdHJpY3Rpb24sIGFuZCB0aGUgc2NyZWVuIGJsYW5rczsgCmFsc28sIGZvciBl
+aXRoZXIgODAweDYwMCBvciAxMDI0eDc2OCB1cHBlciAKbGltaXRzIHRoZSBtb25pdG9yIG91dHB1
+dHMgdGhlIHdhcm5pbmcgYWJvdXQgCnVudXNhYmxlIG1vZGUsIDI2LjhLSHovNDNIeiBmb3IgODAw
+eDYwMCwgYW5kIAoyMS42S0h6LzI3SHogZm9yIDEwMjR4NzY4LgoKVGhlIGlucHV0IHdvcmtzLiBJ
+IGNhbiBsb2cgaW4gYW5kIHN0YXJ0IFgsIHdoaWNoIApzdGFydHMgKCEpIGFuZCB3b3JrcywgYnV0
+IHByb2R1Y2VzIG5vIG91dHB1dCBlaXRoZXIuCgpObyBzdWNoIHByb2JsZW0gd2l0aCBOVklESUEg
+ZHJpdmVycy4KCjIpIFRoZSB3b3JraW5nIG1vZGUgcmVzdHJpY3Rpb24gNjQweDQ4MCBnaXZlcyAK
+dGhlIGNvbnNvbGUgc2V0IHRvIDY4SHogdmVydGljYWwgcmVmcmVzaCAoYXMgCm1vbml0b3IgcmVw
+b3J0cykuCgozKSBUaGUgWCBzdGFydGVkIGZyb20gY29uc29sZSAoaGF2aW5nIDY0MHg0ODAgCnJl
+c3RyaWN0aW9uKSBhbGxvd3Mgb25seSA2NDB4NDgwIG1vZGUgaW4gY29uZmlnLiAKQW55IG90aGVy
+IG1vZGUgcHJvZHVjZXMgd29ya2luZyBYIHdpdGggYmxhbmsgCnNjcmVlbiwgZXhjZXB0aW5nIGNv
+bnNvbGUgc3RhcnRlZCByZXN0cmljdHJlZCB0byAKODAweDYwMCBvciAxMDI0eDc2OCwgd2hpY2gg
+cmV0YWlucyB0aGUgbW9uaXRvcidzIApmbG9hdGluZyBtZXNzYWdlIGFib3V0ICd1bnVzYWJsZSBt
+b2RlJy4gRWl0aGVyIAp3YXksIGlucHV0IGluIFggd29ya3MuCgo0KSBUaGUgWCBpbiA2NDB4NDgw
+IGhhcyBhY3R1YWwgdmVydGljYWwgcmVmcmVzaCAKb2YgNjhIeiwgd2hpY2ggeHJhbmRyIHJlcG9y
+dHMgYXMgNzVIei4gQXR0ZW1wdCAKdG8gY2hhbmdlIHZlcnQuIHJlZnJlc2ggcmF0ZSB0byA2MEh6
+IHByb2R1Y2VzIApzY3JlZW4gJ3N0cm9ib3Njb3BpbmcnLiBBbnkgb3RoZXIgcmVzb2x1dGlvbiBz
+ZXQgCnZpYSB4cmFuZHIgcHJvZHVjZXMgYmxhbmsgc2NyZWVuLgoKQW55IGFkdmljZT8gTlZJRElB
+IGRyaXZlciBmaWxlcyByZW1vdmVkLCBmdWxsIApkbWVzZyBhbmQgeG9yZyBhdmFpbGFibGUuIEN1
+dCBvZiBkbWVzZyB3aXRoIApub3V2ZWF1IGxpbmVzIGlzIGluIHBvc3RzY3JpcHR1bS4KCi1ZdXJ5
+CgpQUyBbICAgIDcuMTM3MDUyXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogTlZJRElBIApHOTggKDI5
+ODUwMGEyKQpbICAgIDcuMjU2MTYzXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogYmlvczogCnZlcnNp
+b24gNzAuMTguMzYuMDAuMDAKWyAgICA3LjI1ODQ0N10gbm91dmVhdSAwMDAwOjAyOjAwLjA6IGRp
+c3A6IGNvbm4gCjAyOjAyNjE6IGZ1bmMgMDggbG9va3VwIGZhaWxlZCwgLTIKWyAgICA3LjI3OTIw
+OF0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IGJpb3M6IApNMDIwM1Qgbm90IGZvdW5kClsgICAgNy4y
+NzkzMjddIG5vdXZlYXUgMDAwMDowMjowMC4wOiBiaW9zOiAKTTAyMDNFIG5vdCBtYXRjaGVkIQpb
+ICAgIDcuMjc5NDQyXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogZmI6IDEwMjQgCk1pQiBERFIyClsg
+ICAgNy4zMjgyMThdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IFZSQU06IAoxMDI0IE1pQgpb
+ICAgIDcuMzI4MzMyXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiBHQVJUOiAKMTA0ODU3NiBN
+aUIKWyAgICA3LjMyODQ0OF0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IERSTTogVE1EUyAKdGFibGUg
+dmVyc2lvbiAyLjAKWyAgICA3LjMyODU2M10gbm91dmVhdSAwMDAwOjAyOjAwLjA6IERSTTogRENC
+IAp2ZXJzaW9uIDQuMApbICAgIDcuMzI4Njc3XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiBE
+Q0IgCm91dHAgMDA6IDAyMDAwMzAwIDAwMDAwMDI4ClsgICAgNy4zMjg3OTNdIG5vdXZlYXUgMDAw
+MDowMjowMC4wOiBEUk06IERDQiAKb3V0cCAwMTogMDEwMDAzMDIgMDAwMjAwMzAKWyAgICA3LjMy
+ODkwOF0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IERSTTogRENCIApvdXRwIDAyOiAwNDAxMTMxMCAw
+MDAwMDAyOApbICAgIDcuMzI5MDM1XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiBEQ0IgCm91
+dHAgMDM6IDAyMDIyMzIyIDAwYzIwMDkwClsgICAgNy4zMjkxNTBdIG5vdXZlYXUgMDAwMDowMjow
+MC4wOiBEUk06IERDQiAKY29ubiAwMDogMDAwMDEwMzAKWyAgICA3LjMyOTI2NF0gbm91dmVhdSAw
+MDAwOjAyOjAwLjA6IERSTTogRENCIApjb25uIDAxOiAwMDAwMDEwMApbICAgIDcuMzI5Mzc4XSBu
+b3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiBEQ0IgCmNvbm4gMDI6IDAwMDAyMjYxClsgICAgNy4z
+MzkxOTNdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IE1NOiAKdXNpbmcgTTJNRiBmb3IgYnVm
+ZmVyIGNvcGllcwpbICAgIDcuNDA4MDM2XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiAKYWxs
+b2NhdGVkIDY0MHg0ODAgZmI6IDB4NTAwMDAsIGJvIGZmZmY4ODAwYmY3N2MwMDAKWyAgICA3LjQw
+ODQ0Ml0gZmJjb246IG5vdXZlYXVmYiAoZmIwKSBpcyBwcmltYXJ5IApkZXZpY2UKWyAgICA3LjQx
+MDUzM10gbm91dmVhdSAwMDAwOjAyOjAwLjA6IGRldmluaXQ6IAp1bmFibGUgdG8gY29tcHV0ZSBh
+Y2NlcHRhYmxlIHBsbCB2YWx1ZXMKWyAgICA3LjQxMDUzNV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6
+IGRldmluaXQ6IApmYWlsZWQgcGxsIGNhbGN1bGF0aW9uClsgICAgNy40NzAzNTFdIG5vdXZlYXUg
+MDAwMDowMjowMC4wOiBmYjA6IApub3V2ZWF1ZmIgZnJhbWUgYnVmZmVyIGRldmljZQpbICAgIDcu
+NDc3MDQ3XSBbZHJtXSBJbml0aWFsaXplZCBub3V2ZWF1IDEuMy4xIAoyMDEyMDgwMSBmb3IgMDAw
+MDowMjowMC4wIG9uIG1pbm9yIDAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cg==
