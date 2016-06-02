@@ -1,50 +1,34 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: GV98 adapter, experience with nouveau
-Date: Thu, 2 Jun 2016 08:09:38 +0200
-Message-ID: <eb143741-71be-13ce-bc11-d017fa0834a4@gmail.com>
-References: <574ECB92.1010801@gmail.com>
- <4bb5abf0-1fb5-943b-b7d4-8de9f0d02571@gmail.com> <574F277B.30606@gmail.com>
- <62fab762-7c73-f3b3-8999-dc94af4a784b@gmail.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <62fab762-7c73-f3b3-8999-dc94af4a784b-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Yury Tarasievich <yury.tarasievich-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH] drm/nouveau/iccsense: fix memory leak on default sensor->type case
+Date: Thu,  2 Jun 2016 11:28:52 +0100
+Message-ID: <1464863332-9610-1-git-send-email-colin.king@canonical.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Martin Peres <martin.peres@free.fr>, Karol Herbst <nouveau@karolherbst.de>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDEuMDYuMjAxNiAyMDo0NCwgcG9tYSB3cm90ZToKPiBPbiAwMS4wNi4yMDE2IDIwOjIwLCBZ
-dXJ5IFRhcmFzaWV2aWNoIHdyb3RlOgo+PiBUaGFuayB5b3UhCj4+Cj4+IE5vdywgSSdkIGFwcHJl
-Y2lhdGUgc29tZSBoaW50cyBvbiBob3cgdG8gbWFrZSAKPj4gY29uc29sZSB3b3JrLCBhdCBsZWFz
-dC4KPj4gSG93IGFyZSB0aGUgdmlkZW8gbW9kZXMgY29udHJvbGxlZCwgZS5nLiwgY2FuIEkgCj4+
-IGhhdmUgc29tZSBhbmFsb2d1ZSBvZiAvZXRjL2ZiLm1vZGVzIGZvciBub3V2ZWF1Pwo+Pgo+PiAt
-WXVyeQo+Pgo+IAo+IAo+IEFmdGVyIGhhbmQtb3ZlcjoKPiAiZmI6IHN3aXRjaGluZyB0byBub3V2
-ZWF1ZmIgZnJvbSBWRVNBIFZHQSIKPiAKPiB2aWRlbyBkZXZpY2UgImF1dG9tYXRpY2FsbHkiIHN3
-aXRjaGVzIHRvIHRoZSBuYXRpdmUgcmVzb2x1dGlvbiBvZiB0aGUgY29ubmVjdGVkIGRpc3BsYXku
-Cj4gCj4gSWYgaXQgZG9lcyBub3Qgd29yazoKPiBodHRwczovL25vdXZlYXUuZnJlZWRlc2t0b3Au
-b3JnL3dpa2kvQnVncy8KPiAKPiAKCiJJZiB5b3UgYXJlIHVzaW5nIHBhY2thZ2VzIGZyb20geW91
-ciBkaXN0cmlidXRpb24gYW5kIGFyZSB1bmFibGUvdW53aWxsaW5nIHRvIHRlc3QgdGhlIGxhdGVz
-dCB2ZXJzaW9ucyBvZiBhbGwgdGhlIHBpZWNlcyBvZiBub3V2ZWF1LCBzZW5kIHRoZSBidWcgcmVw
-b3J0cyB0byB5b3VyIGRpc3RyaWJ1dGlvbiBhbmQgbm90IGRpcmVjdGx5IHRvIHVzLiBJZiB5b3Un
-cmUgdXNpbmcgYW4gb3V0LW9mLWRhdGUgc29mdHdhcmUgdmVyc2lvbiwgb3VyIGZpcnN0IHF1ZXN0
-aW9uIHdpbGwgcHJvYmFibHkgYmUgImRvZXMgaXQgc3RpbGwgaGFwcGVuIG9uIGxhdGVzdCIuIgpS
-ZWYuCmh0dHBzOi8vbm91dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9CdWdzLwoKVGhpcyBpcyB3
-aHkgSSByZWZlcnJlZCB0byB0aGUgInRyeSB0byB0ZXN0IHdpdGggbmV3ZXIgc29mdHdhcmUiLApl
-LmcuIFJhd2hpZGUgTGl2ZUNEL0RWRHMKaHR0cHM6Ly9kbC5mZWRvcmFwcm9qZWN0Lm9yZy9wdWIv
-ZmVkb3JhL2xpbnV4L2RldmVsb3BtZW50L3Jhd2hpZGUvU3BpbnMveDg2XzY0L2lzby8KCkkgaGF2
-ZSB0ZXN0ZWQgaXQgd2l0aCBOVklESUEgRzk4IGhlcmUsIGFuZCBpdCB3b3JrcyBhcyBleHBlY3Rl
-ZC4KCldpdGggdGhpcyBhcHByb2FjaCAtIHRlc3Qgd2l0aCB0aGUgImxhdGVzdCBhbmQgZ3JlYXRl
-c3QiIC0geW91IGNhbiBjcmVhdGUgYSByZWZlcmVuY2UgcG9pbnQgZm9yIGZ1cnRoZXIgY29tcGFy
-aXNvbiAtIHdpdGggbG93ZXIgdmVyc2lvbnMgb2Ygc29mdHdhcmUgY29tcG9uZW50cy4KCgpHb2Rz
-cGVlZAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+From: Colin Ian King <colin.king@canonical.com>
+
+The default sensor->type case leaks memory allocated to rail. Fix
+this by free'ing rail before we continue with the next loop iteration.
+
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c
+index 323c79a..79b0eb5 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c
+@@ -305,6 +305,7 @@ nvkm_iccsense_oneinit(struct nvkm_subdev *subdev)
+ 			rail->read = nvkm_iccsense_ina3221_read;
+ 			break;
+ 		default:
++			kfree(rail);
+ 			continue;
+ 		}
+ 
+-- 
+2.8.1
