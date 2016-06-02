@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54587] [NV1F] Flickering screen on Geforce 4
-Date: Fri, 03 Jun 2016 04:33:07 +0000
-Message-ID: <bug-54587-8800-Tsmg5I0SYJ@http.bugs.freedesktop.org/>
-References: <bug-54587-8800@http.bugs.freedesktop.org/>
+From: Krzysztof Kozlowski <k.kozlowski-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>
+Subject: [RFC v3 19/45] [media] dma-mapping: Use unsigned long for
+	dma_attrs
+Date: Thu, 02 Jun 2016 17:39:21 +0200
+Message-ID: <1464881987-13203-20-git-send-email-k.kozlowski__18405.0624412068$1464937921$gmane$org@samsung.com>
+References: <1464881987-13203-1-git-send-email-k.kozlowski@samsung.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0857673528=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-reply-to: <1464881987-13203-1-git-send-email-k.kozlowski-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,168 +18,195 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Richard Henderson <rth-hL46jP5Bxq7R7s880joybQ@public.gmane.org>, Ivan Kokshaysky <ink-biIs/Y0ymYJMZLIVYojuPNP0rXTJTi09@public.gmane.org>, Matt Turner <mattst88-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Vineet Gupta <vgupta-HKixBCOQz3hWk0Htik3J/w@public.gmane.org>, Russell King <linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, Stefano Stabellini <sstabellini-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Catalin Marinas <catalin.marinas-5wv7dgnIgG8@public.gmane.org>, Will Deacon <will.deacon-5wv7dgnIgG8@public.gmane.org>, Haavard Skinnemoen <hskinnemoen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Hans-Christian Egtvedt <egtvedt-BrfabpQBY5qlHtIdYg32fQ@public.gmane.org>, Steven Miao <realmz6-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Mark Salter <msalter-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Aurelien Jacquiot <a-jacquiot-l0cyMroinI0@public.gmane.org>, Mikael Starvik <starvik-VrBV9hrLPhE@public.gmane.org>, Jesper Nilsson <jesper.nilsson-VrBV9hrLPhE@public.gmane.org>, Yoshinori Sato <ysato-Rn4VEauK+AKRv+LV9MX5uooqe+aC9MnS@public.gmane.org>, Richard Kuo <rkuo-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>, Tony Luck <tony.luck-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Fenghua Yu <fenghua.yu-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Konrad Rzeszutek Wilk <konrad.wilk-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>, Geert Uytterhoeven <geert-Td1EMuHUCqxL1ZNQvxDV9g@public.gmane.org>, James Hogan <james.hogan-1AXoQHu6uovQT0dZR+AlfA@public.gmane.org>Michal Simek <mo>
+Cc: hch-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org, Krzysztof Kozlowski <k.kozlowski-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Bartlomiej Zolnierkiewicz <b.zolnierkie-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0857673528==
-Content-Type: multipart/alternative; boundary="14649283874.d80888F.7996";
- charset="UTF-8"
-
-
---14649283874.d80888F.7996
-Date: Fri, 3 Jun 2016 04:33:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D54587
-
---- Comment #35 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Patrick McMunn from comment #34)
-> I wonder if this bug may either be related to, or may actually be the same
-> as, bug 61537. I also have this same issue with a PC using an nVidia GeFo=
-rce
-> 4 MX IGP, and I know that the monitor attached to it has a bad EDID. I
-> suspect Vesa may also have a monitor with a bad EDID; that would explain =
-why
-> his monitor's resolution was not correctly detected by Xorg (see comment
-> #12).
->=20
-> I applied the above patch to Linux 4.4.11 sources, recompiled my kernel, =
-and
-> rebooted. The problem is not completely fixed, but it is noticeably
-> improved. Whereas before the whole screen would intermittently jump, now
-> there are simply random flashes of horizontal lines on random places on t=
-he
-> screen. I generally run this box as a light-duty server, so I mainly ssh
-> into it from my desktop, and I didn't boot into a GUI for testing. I just
-> booted it and observed the text console.
->=20
-> I wouldn't consider this patch a fix, but it is perhaps a mitigation. In =
-any
-> case, since I suspect that this may actually be the same as bug 61537, it
-> would probably be wise to discuss with other devs, per Martin Peres'
-> comment, before submitting any changes to the tree.
-
-Thanks for testing. The other bug you reference is on very different hardwa=
-re
-(G80+) which has an *entirely* different display unit. The patch I wrote was
-based on a few observations of the old xf86-video-nv code compared to nouve=
-au.
-There were other differences, but those seemed like the biggest ones.
-
-Sounds like some of the other ones still matter though if you're still seei=
-ng
-flickering.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14649283874.d80888F.7996
-Date: Fri, 3 Jun 2016 04:33:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV1F] Flickering screen on Geforce 4"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D54587#c35">Commen=
-t # 35</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV1F] Flickering screen on Geforce 4"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D54587">bug 54587<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Patrick McMunn from <a href=3D"show_bug.cgi?id=3D=
-54587#c34">comment #34</a>)
-<span class=3D"quote">&gt; I wonder if this bug may either be related to, o=
-r may actually be the same
-&gt; as, <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Screen flicker when using display with incorrect EDID"
-   href=3D"show_bug.cgi?id=3D61537">bug 61537</a>. I also have this same is=
-sue with a PC using an nVidia GeForce
-&gt; 4 MX IGP, and I know that the monitor attached to it has a bad EDID. I
-&gt; suspect Vesa may also have a monitor with a bad EDID; that would expla=
-in why
-&gt; his monitor's resolution was not correctly detected by Xorg (see comme=
-nt
-&gt; #12).
-&gt;=20
-&gt; I applied the above patch to Linux 4.4.11 sources, recompiled my kerne=
-l, and
-&gt; rebooted. The problem is not completely fixed, but it is noticeably
-&gt; improved. Whereas before the whole screen would intermittently jump, n=
-ow
-&gt; there are simply random flashes of horizontal lines on random places o=
-n the
-&gt; screen. I generally run this box as a light-duty server, so I mainly s=
-sh
-&gt; into it from my desktop, and I didn't boot into a GUI for testing. I j=
-ust
-&gt; booted it and observed the text console.
-&gt;=20
-&gt; I wouldn't consider this patch a fix, but it is perhaps a mitigation. =
-In any
-&gt; case, since I suspect that this may actually be the same as <a class=
-=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Screen flicker when using display with incorrect EDID"
-   href=3D"show_bug.cgi?id=3D61537">bug 61537</a>, it
-&gt; would probably be wise to discuss with other devs, per Martin Peres'
-&gt; comment, before submitting any changes to the tree.</span >
-
-Thanks for testing. The other bug you reference is on very different hardwa=
-re
-(G80+) which has an *entirely* different display unit. The patch I wrote was
-based on a few observations of the old xf86-video-nv code compared to nouve=
-au.
-There were other differences, but those seemed like the biggest ones.
-
-Sounds like some of the other ones still matter though if you're still seei=
-ng
-flickering.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14649283874.d80888F.7996--
-
---===============0857673528==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0857673528==--
+U3BsaXQgb3V0IHN1YnN5c3RlbSBzcGVjaWZpYyBjaGFuZ2VzIGZvciBlYXNpZXIgcmV2aWV3cy4g
+VGhpcyB3aWxsIGJlCnNxdWFzaGVkIHdpdGggbWFpbiBjb21taXQuCgpTaWduZWQtb2ZmLWJ5OiBL
+cnp5c3p0b2YgS296bG93c2tpIDxrLmtvemxvd3NraUBzYW1zdW5nLmNvbT4KLS0tCiBkcml2ZXJz
+L21lZGlhL3BsYXRmb3JtL3N0aS9iZGlzcC9iZGlzcC1ody5jICAgIHwgMjYgKysrKysrKy0tLS0t
+LS0tLS0tLS0tLQogZHJpdmVycy9tZWRpYS92NGwyLWNvcmUvdmlkZW9idWYyLWRtYS1jb250aWcu
+YyB8IDMwICsrKysrKysrKysrLS0tLS0tLS0tLS0tLS0tCiBkcml2ZXJzL21lZGlhL3Y0bDItY29y
+ZS92aWRlb2J1ZjItZG1hLXNnLmMgICAgIHwgMTkgKysrKy0tLS0tLS0tLS0tLQogaW5jbHVkZS9t
+ZWRpYS92aWRlb2J1ZjItZG1hLWNvbnRpZy5oICAgICAgICAgICB8ICA3ICsrLS0tLQogNCBmaWxl
+cyBjaGFuZ2VkLCAyNiBpbnNlcnRpb25zKCspLCA1NiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
+YS9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL3N0aS9iZGlzcC9iZGlzcC1ody5jIGIvZHJpdmVycy9t
+ZWRpYS9wbGF0Zm9ybS9zdGkvYmRpc3AvYmRpc3AtaHcuYwppbmRleCAwNTJjOTMyYWM5NDIuLjE2
+MDA5NTg5MzlhNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9zdGkvYmRpc3Av
+YmRpc3AtaHcuYworKysgYi9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL3N0aS9iZGlzcC9iZGlzcC1o
+dy5jCkBAIC0xMjUsMTQgKzEyNSwxMSBAQCBpbnQgYmRpc3BfaHdfZ2V0X2FuZF9jbGVhcl9pcnEo
+c3RydWN0IGJkaXNwX2RldiAqYmRpc3ApCiAgKi8KIHZvaWQgYmRpc3BfaHdfZnJlZV9ub2Rlcyhz
+dHJ1Y3QgYmRpc3BfY3R4ICpjdHgpCiB7Ci0JaWYgKGN0eCAmJiBjdHgtPm5vZGVbMF0pIHsKLQkJ
+REVGSU5FX0RNQV9BVFRSUyhhdHRycyk7Ci0KLQkJZG1hX3NldF9hdHRyKERNQV9BVFRSX1dSSVRF
+X0NPTUJJTkUsICZhdHRycyk7CisJaWYgKGN0eCAmJiBjdHgtPm5vZGVbMF0pCiAJCWRtYV9mcmVl
+X2F0dHJzKGN0eC0+YmRpc3BfZGV2LT5kZXYsCiAJCQkgICAgICAgc2l6ZW9mKHN0cnVjdCBiZGlz
+cF9ub2RlKSAqIE1BWF9OQl9OT0RFLAotCQkJICAgICAgIGN0eC0+bm9kZVswXSwgY3R4LT5ub2Rl
+X3BhZGRyWzBdLCAmYXR0cnMpOwotCX0KKwkJCSAgICAgICBjdHgtPm5vZGVbMF0sIGN0eC0+bm9k
+ZV9wYWRkclswXSwKKwkJCSAgICAgICBETUFfQVRUUl9XUklURV9DT01CSU5FKTsKIH0KIAogLyoq
+CkBAIC0xNTAsMTIgKzE0NywxMCBAQCBpbnQgYmRpc3BfaHdfYWxsb2Nfbm9kZXMoc3RydWN0IGJk
+aXNwX2N0eCAqY3R4KQogCXVuc2lnbmVkIGludCBpLCBub2RlX3NpemUgPSBzaXplb2Yoc3RydWN0
+IGJkaXNwX25vZGUpOwogCXZvaWQgKmJhc2U7CiAJZG1hX2FkZHJfdCBwYWRkcjsKLQlERUZJTkVf
+RE1BX0FUVFJTKGF0dHJzKTsKIAogCS8qIEFsbG9jYXRlIGFsbCB0aGUgbm9kZXMgd2l0aGluIGEg
+c2luZ2xlIG1lbW9yeSBwYWdlICovCi0JZG1hX3NldF9hdHRyKERNQV9BVFRSX1dSSVRFX0NPTUJJ
+TkUsICZhdHRycyk7CiAJYmFzZSA9IGRtYV9hbGxvY19hdHRycyhkZXYsIG5vZGVfc2l6ZSAqIE1B
+WF9OQl9OT0RFLCAmcGFkZHIsCi0JCQkgICAgICAgR0ZQX0tFUk5FTCB8IEdGUF9ETUEsICZhdHRy
+cyk7CisJCQkgICAgICAgR0ZQX0tFUk5FTCB8IEdGUF9ETUEsIERNQV9BVFRSX1dSSVRFX0NPTUJJ
+TkUpOwogCWlmICghYmFzZSkgewogCQlkZXZfZXJyKGRldiwgIiVzIG5vIG1lbVxuIiwgX19mdW5j
+X18pOwogCQlyZXR1cm4gLUVOT01FTTsKQEAgLTE4OCwxMyArMTgzLDkgQEAgdm9pZCBiZGlzcF9o
+d19mcmVlX2ZpbHRlcnMoc3RydWN0IGRldmljZSAqZGV2KQogewogCWludCBzaXplID0gKEJESVNQ
+X0hGX05CICogTkJfSF9GSUxURVIpICsgKEJESVNQX1ZGX05CICogTkJfVl9GSUxURVIpOwogCi0J
+aWYgKGJkaXNwX2hfZmlsdGVyWzBdLnZpcnQpIHsKLQkJREVGSU5FX0RNQV9BVFRSUyhhdHRycyk7
+Ci0KLQkJZG1hX3NldF9hdHRyKERNQV9BVFRSX1dSSVRFX0NPTUJJTkUsICZhdHRycyk7CisJaWYg
+KGJkaXNwX2hfZmlsdGVyWzBdLnZpcnQpCiAJCWRtYV9mcmVlX2F0dHJzKGRldiwgc2l6ZSwgYmRp
+c3BfaF9maWx0ZXJbMF0udmlydCwKLQkJCSAgICAgICBiZGlzcF9oX2ZpbHRlclswXS5wYWRkciwg
+JmF0dHJzKTsKLQl9CisJCQkgICAgICAgYmRpc3BfaF9maWx0ZXJbMF0ucGFkZHIsRE1BX0FUVFJf
+V1JJVEVfQ09NQklORSk7CiB9CiAKIC8qKgpAQCAtMjExLDEyICsyMDIsMTEgQEAgaW50IGJkaXNw
+X2h3X2FsbG9jX2ZpbHRlcnMoc3RydWN0IGRldmljZSAqZGV2KQogCXVuc2lnbmVkIGludCBpLCBz
+aXplOwogCXZvaWQgKmJhc2U7CiAJZG1hX2FkZHJfdCBwYWRkcjsKLQlERUZJTkVfRE1BX0FUVFJT
+KGF0dHJzKTsKIAogCS8qIEFsbG9jYXRlIGFsbCB0aGUgZmlsdGVycyB3aXRoaW4gYSBzaW5nbGUg
+bWVtb3J5IHBhZ2UgKi8KIAlzaXplID0gKEJESVNQX0hGX05CICogTkJfSF9GSUxURVIpICsgKEJE
+SVNQX1ZGX05CICogTkJfVl9GSUxURVIpOwotCWRtYV9zZXRfYXR0cihETUFfQVRUUl9XUklURV9D
+T01CSU5FLCAmYXR0cnMpOwotCWJhc2UgPSBkbWFfYWxsb2NfYXR0cnMoZGV2LCBzaXplLCAmcGFk
+ZHIsIEdGUF9LRVJORUwgfCBHRlBfRE1BLCAmYXR0cnMpOworCWJhc2UgPSBkbWFfYWxsb2NfYXR0
+cnMoZGV2LCBzaXplLCAmcGFkZHIsIEdGUF9LRVJORUwgfCBHRlBfRE1BLAorCQkJICAgICAgIERN
+QV9BVFRSX1dSSVRFX0NPTUJJTkUpOwogCWlmICghYmFzZSkKIAkJcmV0dXJuIC1FTk9NRU07CiAK
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWVkaWEvdjRsMi1jb3JlL3ZpZGVvYnVmMi1kbWEtY29udGln
+LmMgYi9kcml2ZXJzL21lZGlhL3Y0bDItY29yZS92aWRlb2J1ZjItZG1hLWNvbnRpZy5jCmluZGV4
+IDUzNjExOTdmM2U1Ny4uODAwOWE1ODIzMjZiIDEwMDY0NAotLS0gYS9kcml2ZXJzL21lZGlhL3Y0
+bDItY29yZS92aWRlb2J1ZjItZG1hLWNvbnRpZy5jCisrKyBiL2RyaXZlcnMvbWVkaWEvdjRsMi1j
+b3JlL3ZpZGVvYnVmMi1kbWEtY29udGlnLmMKQEAgLTIzLDcgKzIzLDcgQEAKIAogc3RydWN0IHZi
+Ml9kY19jb25mIHsKIAlzdHJ1Y3QgZGV2aWNlCQkqZGV2OwotCXN0cnVjdCBkbWFfYXR0cnMJYXR0
+cnM7CisJdW5zaWduZWQgbG9uZwkJYXR0cnM7CiB9OwogCiBzdHJ1Y3QgdmIyX2RjX2J1ZiB7CkBA
+IC0zMiw3ICszMiw3IEBAIHN0cnVjdCB2YjJfZGNfYnVmIHsKIAl1bnNpZ25lZCBsb25nCQkJc2l6
+ZTsKIAl2b2lkCQkJCSpjb29raWU7CiAJZG1hX2FkZHJfdAkJCWRtYV9hZGRyOwotCXN0cnVjdCBk
+bWFfYXR0cnMJCWF0dHJzOworCXVuc2lnbmVkIGxvbmcJCQlhdHRyczsKIAllbnVtIGRtYV9kYXRh
+X2RpcmVjdGlvbgkJZG1hX2RpcjsKIAlzdHJ1Y3Qgc2dfdGFibGUJCQkqZG1hX3NndDsKIAlzdHJ1
+Y3QgZnJhbWVfdmVjdG9yCQkqdmVjOwpAQCAtMTM1LDcgKzEzNSw3IEBAIHN0YXRpYyB2b2lkIHZi
+Ml9kY19wdXQodm9pZCAqYnVmX3ByaXYpCiAJCWtmcmVlKGJ1Zi0+c2d0X2Jhc2UpOwogCX0KIAlk
+bWFfZnJlZV9hdHRycyhidWYtPmRldiwgYnVmLT5zaXplLCBidWYtPmNvb2tpZSwgYnVmLT5kbWFf
+YWRkciwKLQkJCSZidWYtPmF0dHJzKTsKKwkJICAgICAgIGJ1Zi0+YXR0cnMpOwogCXB1dF9kZXZp
+Y2UoYnVmLT5kZXYpOwogCWtmcmVlKGJ1Zik7CiB9CkBAIC0xNTMsMTQgKzE1MywxNCBAQCBzdGF0
+aWMgdm9pZCAqdmIyX2RjX2FsbG9jKHZvaWQgKmFsbG9jX2N0eCwgdW5zaWduZWQgbG9uZyBzaXpl
+LAogCiAJYnVmLT5hdHRycyA9IGNvbmYtPmF0dHJzOwogCWJ1Zi0+Y29va2llID0gZG1hX2FsbG9j
+X2F0dHJzKGRldiwgc2l6ZSwgJmJ1Zi0+ZG1hX2FkZHIsCi0JCQkJCUdGUF9LRVJORUwgfCBnZnBf
+ZmxhZ3MsICZidWYtPmF0dHJzKTsKKwkJCQkJR0ZQX0tFUk5FTCB8IGdmcF9mbGFncywgYnVmLT5h
+dHRycyk7CiAJaWYgKCFidWYtPmNvb2tpZSkgewogCQlkZXZfZXJyKGRldiwgImRtYV9hbGxvY19j
+b2hlcmVudCBvZiBzaXplICVsZCBmYWlsZWRcbiIsIHNpemUpOwogCQlrZnJlZShidWYpOwogCQly
+ZXR1cm4gRVJSX1BUUigtRU5PTUVNKTsKIAl9CiAKLQlpZiAoIWRtYV9nZXRfYXR0cihETUFfQVRU
+Ul9OT19LRVJORUxfTUFQUElORywgJmJ1Zi0+YXR0cnMpKQorCWlmICghZG1hX2dldF9hdHRyKERN
+QV9BVFRSX05PX0tFUk5FTF9NQVBQSU5HLCBidWYtPmF0dHJzKSkKIAkJYnVmLT52YWRkciA9IGJ1
+Zi0+Y29va2llOwogCiAJLyogUHJldmVudCB0aGUgZGV2aWNlIGZyb20gYmVpbmcgcmVsZWFzZWQg
+d2hpbGUgdGhlIGJ1ZmZlciBpcyB1c2VkICovCkBAIC0xOTQsNyArMTk0LDcgQEAgc3RhdGljIGlu
+dCB2YjJfZGNfbW1hcCh2b2lkICpidWZfcHJpdiwgc3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEp
+CiAJdm1hLT52bV9wZ29mZiA9IDA7CiAKIAlyZXQgPSBkbWFfbW1hcF9hdHRycyhidWYtPmRldiwg
+dm1hLCBidWYtPmNvb2tpZSwKLQkJYnVmLT5kbWFfYWRkciwgYnVmLT5zaXplLCAmYnVmLT5hdHRy
+cyk7CisJCWJ1Zi0+ZG1hX2FkZHIsIGJ1Zi0+c2l6ZSwgYnVmLT5hdHRycyk7CiAKIAlpZiAocmV0
+KSB7CiAJCXByX2VycigiUmVtYXBwaW5nIG1lbW9yeSBmYWlsZWQsIGVycm9yOiAlZFxuIiwgcmV0
+KTsKQEAgLTM3Nyw3ICszNzcsNyBAQCBzdGF0aWMgc3RydWN0IHNnX3RhYmxlICp2YjJfZGNfZ2V0
+X2Jhc2Vfc2d0KHN0cnVjdCB2YjJfZGNfYnVmICpidWYpCiAJfQogCiAJcmV0ID0gZG1hX2dldF9z
+Z3RhYmxlX2F0dHJzKGJ1Zi0+ZGV2LCBzZ3QsIGJ1Zi0+Y29va2llLCBidWYtPmRtYV9hZGRyLAot
+CQlidWYtPnNpemUsICZidWYtPmF0dHJzKTsKKwkJYnVmLT5zaXplLCBidWYtPmF0dHJzKTsKIAlp
+ZiAocmV0IDwgMCkgewogCQlkZXZfZXJyKGJ1Zi0+ZGV2LCAiZmFpbGVkIHRvIGdldCBzY2F0dGVy
+bGlzdCBmcm9tIERNQSBBUElcbiIpOwogCQlrZnJlZShzZ3QpOwpAQCAtNDI2LDE1ICs0MjYsMTIg
+QEAgc3RhdGljIHZvaWQgdmIyX2RjX3B1dF91c2VycHRyKHZvaWQgKmJ1Zl9wcml2KQogCXN0cnVj
+dCBwYWdlICoqcGFnZXM7CiAKIAlpZiAoc2d0KSB7Ci0JCURFRklORV9ETUFfQVRUUlMoYXR0cnMp
+OwotCi0JCWRtYV9zZXRfYXR0cihETUFfQVRUUl9TS0lQX0NQVV9TWU5DLCAmYXR0cnMpOwogCQkv
+KgogCQkgKiBObyBuZWVkIHRvIHN5bmMgdG8gQ1BVLCBpdCdzIGFscmVhZHkgc3luY2VkIHRvIHRo
+ZSBDUFUKIAkJICogc2luY2UgdGhlIGZpbmlzaCgpIG1lbW9wIHdpbGwgaGF2ZSBiZWVuIGNhbGxl
+ZCBiZWZvcmUgdGhpcy4KIAkJICovCiAJCWRtYV91bm1hcF9zZ19hdHRycyhidWYtPmRldiwgc2d0
+LT5zZ2wsIHNndC0+b3JpZ19uZW50cywKLQkJCQkgICBidWYtPmRtYV9kaXIsICZhdHRycyk7CisJ
+CQkJICAgYnVmLT5kbWFfZGlyLCBETUFfQVRUUl9TS0lQX0NQVV9TWU5DKTsKIAkJcGFnZXMgPSBm
+cmFtZV92ZWN0b3JfcGFnZXMoYnVmLT52ZWMpOwogCQkvKiBzZ3Qgc2hvdWxkIGV4aXN0IG9ubHkg
+aWYgdmVjdG9yIGNvbnRhaW5zIHBhZ2VzLi4uICovCiAJCUJVR19PTihJU19FUlIocGFnZXMpKTsK
+QEAgLTQ5MCw5ICs0ODcsNiBAQCBzdGF0aWMgdm9pZCAqdmIyX2RjX2dldF91c2VycHRyKHZvaWQg
+KmFsbG9jX2N0eCwgdW5zaWduZWQgbG9uZyB2YWRkciwKIAlzdHJ1Y3Qgc2dfdGFibGUgKnNndDsK
+IAl1bnNpZ25lZCBsb25nIGNvbnRpZ19zaXplOwogCXVuc2lnbmVkIGxvbmcgZG1hX2FsaWduID0g
+ZG1hX2dldF9jYWNoZV9hbGlnbm1lbnQoKTsKLQlERUZJTkVfRE1BX0FUVFJTKGF0dHJzKTsKLQot
+CWRtYV9zZXRfYXR0cihETUFfQVRUUl9TS0lQX0NQVV9TWU5DLCAmYXR0cnMpOwogCiAJLyogT25s
+eSBjYWNoZSBhbGlnbmVkIERNQSB0cmFuc2ZlcnMgYXJlIHJlbGlhYmxlICovCiAJaWYgKCFJU19B
+TElHTkVEKHZhZGRyIHwgc2l6ZSwgZG1hX2FsaWduKSkgewpAQCAtNTU0LDcgKzU0OCw3IEBAIHN0
+YXRpYyB2b2lkICp2YjJfZGNfZ2V0X3VzZXJwdHIodm9pZCAqYWxsb2NfY3R4LCB1bnNpZ25lZCBs
+b25nIHZhZGRyLAogCSAqIHByZXBhcmUoKSBtZW1vcCBpcyBjYWxsZWQuCiAJICovCiAJc2d0LT5u
+ZW50cyA9IGRtYV9tYXBfc2dfYXR0cnMoYnVmLT5kZXYsIHNndC0+c2dsLCBzZ3QtPm9yaWdfbmVu
+dHMsCi0JCQkJICAgICAgYnVmLT5kbWFfZGlyLCAmYXR0cnMpOworCQkJCSAgICAgIGJ1Zi0+ZG1h
+X2RpciwgRE1BX0FUVFJfU0tJUF9DUFVfU1lOQyk7CiAJaWYgKHNndC0+bmVudHMgPD0gMCkgewog
+CQlwcl9lcnIoImZhaWxlZCB0byBtYXAgc2NhdHRlcmxpc3RcbiIpOwogCQlyZXQgPSAtRUlPOwpA
+QCAtNTc4LDcgKzU3Miw3IEBAIG91dDoKIAogZmFpbF9tYXBfc2c6CiAJZG1hX3VubWFwX3NnX2F0
+dHJzKGJ1Zi0+ZGV2LCBzZ3QtPnNnbCwgc2d0LT5vcmlnX25lbnRzLAotCQkJICAgYnVmLT5kbWFf
+ZGlyLCAmYXR0cnMpOworCQkJICAgYnVmLT5kbWFfZGlyLCBETUFfQVRUUl9TS0lQX0NQVV9TWU5D
+KTsKIAogZmFpbF9zZ3RfaW5pdDoKIAlzZ19mcmVlX3RhYmxlKHNndCk7CkBAIC03MzAsNyArNzI0
+LDcgQEAgY29uc3Qgc3RydWN0IHZiMl9tZW1fb3BzIHZiMl9kbWFfY29udGlnX21lbW9wcyA9IHsK
+IEVYUE9SVF9TWU1CT0xfR1BMKHZiMl9kbWFfY29udGlnX21lbW9wcyk7CiAKIHZvaWQgKnZiMl9k
+bWFfY29udGlnX2luaXRfY3R4X2F0dHJzKHN0cnVjdCBkZXZpY2UgKmRldiwKLQkJCQkgICAgc3Ry
+dWN0IGRtYV9hdHRycyAqYXR0cnMpCisJCQkJICAgIHVuc2lnbmVkIGxvbmcgYXR0cnMpCiB7CiAJ
+c3RydWN0IHZiMl9kY19jb25mICpjb25mOwogCkBAIC03NDAsNyArNzM0LDcgQEAgdm9pZCAqdmIy
+X2RtYV9jb250aWdfaW5pdF9jdHhfYXR0cnMoc3RydWN0IGRldmljZSAqZGV2LAogCiAJY29uZi0+
+ZGV2ID0gZGV2OwogCWlmIChhdHRycykKLQkJY29uZi0+YXR0cnMgPSAqYXR0cnM7CisJCWNvbmYt
+PmF0dHJzID0gYXR0cnM7CiAKIAlyZXR1cm4gY29uZjsKIH0KZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+bWVkaWEvdjRsMi1jb3JlL3ZpZGVvYnVmMi1kbWEtc2cuYyBiL2RyaXZlcnMvbWVkaWEvdjRsMi1j
+b3JlL3ZpZGVvYnVmMi1kbWEtc2cuYwppbmRleCA5OTg1Yzg5ZjA1MTMuLjk0ZjI0ZTYxMGZlNyAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9tZWRpYS92NGwyLWNvcmUvdmlkZW9idWYyLWRtYS1zZy5jCisr
+KyBiL2RyaXZlcnMvbWVkaWEvdjRsMi1jb3JlL3ZpZGVvYnVmMi1kbWEtc2cuYwpAQCAtMTA3LDkg
+KzEwNyw2IEBAIHN0YXRpYyB2b2lkICp2YjJfZG1hX3NnX2FsbG9jKHZvaWQgKmFsbG9jX2N0eCwg
+dW5zaWduZWQgbG9uZyBzaXplLAogCXN0cnVjdCBzZ190YWJsZSAqc2d0OwogCWludCByZXQ7CiAJ
+aW50IG51bV9wYWdlczsKLQlERUZJTkVfRE1BX0FUVFJTKGF0dHJzKTsKLQotCWRtYV9zZXRfYXR0
+cihETUFfQVRUUl9TS0lQX0NQVV9TWU5DLCAmYXR0cnMpOwogCiAJaWYgKFdBUk5fT04oYWxsb2Nf
+Y3R4ID09IE5VTEwpKQogCQlyZXR1cm4gTlVMTDsKQEAgLTE0OCw3ICsxNDUsNyBAQCBzdGF0aWMg
+dm9pZCAqdmIyX2RtYV9zZ19hbGxvYyh2b2lkICphbGxvY19jdHgsIHVuc2lnbmVkIGxvbmcgc2l6
+ZSwKIAkgKiBwcmVwYXJlKCkgbWVtb3AgaXMgY2FsbGVkLgogCSAqLwogCXNndC0+bmVudHMgPSBk
+bWFfbWFwX3NnX2F0dHJzKGJ1Zi0+ZGV2LCBzZ3QtPnNnbCwgc2d0LT5vcmlnX25lbnRzLAotCQkJ
+CSAgICAgIGJ1Zi0+ZG1hX2RpciwgJmF0dHJzKTsKKwkJCQkgICAgICBidWYtPmRtYV9kaXIsIERN
+QV9BVFRSX1NLSVBfQ1BVX1NZTkMpOwogCWlmICghc2d0LT5uZW50cykKIAkJZ290byBmYWlsX21h
+cDsKIApAQCAtMTgzLDEzICsxODAsMTAgQEAgc3RhdGljIHZvaWQgdmIyX2RtYV9zZ19wdXQodm9p
+ZCAqYnVmX3ByaXYpCiAJaW50IGkgPSBidWYtPm51bV9wYWdlczsKIAogCWlmIChhdG9taWNfZGVj
+X2FuZF90ZXN0KCZidWYtPnJlZmNvdW50KSkgewotCQlERUZJTkVfRE1BX0FUVFJTKGF0dHJzKTsK
+LQotCQlkbWFfc2V0X2F0dHIoRE1BX0FUVFJfU0tJUF9DUFVfU1lOQywgJmF0dHJzKTsKIAkJZHBy
+aW50aygxLCAiJXM6IEZyZWVpbmcgYnVmZmVyIG9mICVkIHBhZ2VzXG4iLCBfX2Z1bmNfXywKIAkJ
+CWJ1Zi0+bnVtX3BhZ2VzKTsKIAkJZG1hX3VubWFwX3NnX2F0dHJzKGJ1Zi0+ZGV2LCBzZ3QtPnNn
+bCwgc2d0LT5vcmlnX25lbnRzLAotCQkJCSAgIGJ1Zi0+ZG1hX2RpciwgJmF0dHJzKTsKKwkJCQkg
+ICBidWYtPmRtYV9kaXIsIERNQV9BVFRSX1NLSVBfQ1BVX1NZTkMpOwogCQlpZiAoYnVmLT52YWRk
+cikKIAkJCXZtX3VubWFwX3JhbShidWYtPnZhZGRyLCBidWYtPm51bV9wYWdlcyk7CiAJCXNnX2Zy
+ZWVfdGFibGUoYnVmLT5kbWFfc2d0KTsKQEAgLTIzMywxMCArMjI3LDggQEAgc3RhdGljIHZvaWQg
+KnZiMl9kbWFfc2dfZ2V0X3VzZXJwdHIodm9pZCAqYWxsb2NfY3R4LCB1bnNpZ25lZCBsb25nIHZh
+ZGRyLAogCXN0cnVjdCB2YjJfZG1hX3NnX2NvbmYgKmNvbmYgPSBhbGxvY19jdHg7CiAJc3RydWN0
+IHZiMl9kbWFfc2dfYnVmICpidWY7CiAJc3RydWN0IHNnX3RhYmxlICpzZ3Q7Ci0JREVGSU5FX0RN
+QV9BVFRSUyhhdHRycyk7CiAJc3RydWN0IGZyYW1lX3ZlY3RvciAqdmVjOwogCi0JZG1hX3NldF9h
+dHRyKERNQV9BVFRSX1NLSVBfQ1BVX1NZTkMsICZhdHRycyk7CiAJYnVmID0ga3phbGxvYyhzaXpl
+b2YgKmJ1ZiwgR0ZQX0tFUk5FTCk7CiAJaWYgKCFidWYpCiAJCXJldHVybiBOVUxMOwpAQCAtMjY3
+LDcgKzI1OSw3IEBAIHN0YXRpYyB2b2lkICp2YjJfZG1hX3NnX2dldF91c2VycHRyKHZvaWQgKmFs
+bG9jX2N0eCwgdW5zaWduZWQgbG9uZyB2YWRkciwKIAkgKiBwcmVwYXJlKCkgbWVtb3AgaXMgY2Fs
+bGVkLgogCSAqLwogCXNndC0+bmVudHMgPSBkbWFfbWFwX3NnX2F0dHJzKGJ1Zi0+ZGV2LCBzZ3Qt
+PnNnbCwgc2d0LT5vcmlnX25lbnRzLAotCQkJCSAgICAgIGJ1Zi0+ZG1hX2RpciwgJmF0dHJzKTsK
+KwkJCQkgICAgICBidWYtPmRtYV9kaXIsIERNQV9BVFRSX1NLSVBfQ1BVX1NZTkMpOwogCWlmICgh
+c2d0LT5uZW50cykKIAkJZ290byB1c2VycHRyX2ZhaWxfbWFwOwogCkBAIC0yOTEsMTQgKzI4Mywx
+MSBAQCBzdGF0aWMgdm9pZCB2YjJfZG1hX3NnX3B1dF91c2VycHRyKHZvaWQgKmJ1Zl9wcml2KQog
+CXN0cnVjdCB2YjJfZG1hX3NnX2J1ZiAqYnVmID0gYnVmX3ByaXY7CiAJc3RydWN0IHNnX3RhYmxl
+ICpzZ3QgPSAmYnVmLT5zZ190YWJsZTsKIAlpbnQgaSA9IGJ1Zi0+bnVtX3BhZ2VzOwotCURFRklO
+RV9ETUFfQVRUUlMoYXR0cnMpOwotCi0JZG1hX3NldF9hdHRyKERNQV9BVFRSX1NLSVBfQ1BVX1NZ
+TkMsICZhdHRycyk7CiAKIAlkcHJpbnRrKDEsICIlczogUmVsZWFzaW5nIHVzZXJzcGFjZSBidWZm
+ZXIgb2YgJWQgcGFnZXNcbiIsCiAJICAgICAgIF9fZnVuY19fLCBidWYtPm51bV9wYWdlcyk7CiAJ
+ZG1hX3VubWFwX3NnX2F0dHJzKGJ1Zi0+ZGV2LCBzZ3QtPnNnbCwgc2d0LT5vcmlnX25lbnRzLCBi
+dWYtPmRtYV9kaXIsCi0JCQkgICAmYXR0cnMpOworCQkJICAgRE1BX0FUVFJfU0tJUF9DUFVfU1lO
+Qyk7CiAJaWYgKGJ1Zi0+dmFkZHIpCiAJCXZtX3VubWFwX3JhbShidWYtPnZhZGRyLCBidWYtPm51
+bV9wYWdlcyk7CiAJc2dfZnJlZV90YWJsZShidWYtPmRtYV9zZ3QpOwpkaWZmIC0tZ2l0IGEvaW5j
+bHVkZS9tZWRpYS92aWRlb2J1ZjItZG1hLWNvbnRpZy5oIGIvaW5jbHVkZS9tZWRpYS92aWRlb2J1
+ZjItZG1hLWNvbnRpZy5oCmluZGV4IDIwODdjOWE2OGJlMy4uMDQ4ZGYxMzIwNDUxIDEwMDY0NAot
+LS0gYS9pbmNsdWRlL21lZGlhL3ZpZGVvYnVmMi1kbWEtY29udGlnLmgKKysrIGIvaW5jbHVkZS9t
+ZWRpYS92aWRlb2J1ZjItZG1hLWNvbnRpZy5oCkBAIC0xNiw4ICsxNiw2IEBACiAjaW5jbHVkZSA8
+bWVkaWEvdmlkZW9idWYyLXY0bDIuaD4KICNpbmNsdWRlIDxsaW51eC9kbWEtbWFwcGluZy5oPgog
+Ci1zdHJ1Y3QgZG1hX2F0dHJzOwotCiBzdGF0aWMgaW5saW5lIGRtYV9hZGRyX3QKIHZiMl9kbWFf
+Y29udGlnX3BsYW5lX2RtYV9hZGRyKHN0cnVjdCB2YjJfYnVmZmVyICp2YiwgdW5zaWduZWQgaW50
+IHBsYW5lX25vKQogewpAQCAtMjYsMTIgKzI0LDExIEBAIHZiMl9kbWFfY29udGlnX3BsYW5lX2Rt
+YV9hZGRyKHN0cnVjdCB2YjJfYnVmZmVyICp2YiwgdW5zaWduZWQgaW50IHBsYW5lX25vKQogCXJl
+dHVybiAqYWRkcjsKIH0KIAotdm9pZCAqdmIyX2RtYV9jb250aWdfaW5pdF9jdHhfYXR0cnMoc3Ry
+dWN0IGRldmljZSAqZGV2LAotCQkJCSAgICBzdHJ1Y3QgZG1hX2F0dHJzICphdHRycyk7Cit2b2lk
+ICp2YjJfZG1hX2NvbnRpZ19pbml0X2N0eF9hdHRycyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHVuc2ln
+bmVkIGxvbmcgYXR0cnMpOwogCiBzdGF0aWMgaW5saW5lIHZvaWQgKnZiMl9kbWFfY29udGlnX2lu
+aXRfY3R4KHN0cnVjdCBkZXZpY2UgKmRldikKIHsKLQlyZXR1cm4gdmIyX2RtYV9jb250aWdfaW5p
+dF9jdHhfYXR0cnMoZGV2LCBOVUxMKTsKKwlyZXR1cm4gdmIyX2RtYV9jb250aWdfaW5pdF9jdHhf
+YXR0cnMoZGV2LCAwKTsKIH0KIAogdm9pZCB2YjJfZG1hX2NvbnRpZ19jbGVhbnVwX2N0eCh2b2lk
+ICphbGxvY19jdHgpOwotLSAKMS45LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
