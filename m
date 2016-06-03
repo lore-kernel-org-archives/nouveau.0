@@ -1,11 +1,12 @@
-From: Nouveau <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
-Subject: =?utf-8?q?=E2=98=81_that=27s_so_exciting?=
-Date: Thu, 2 Jun 2016 23:00:00 +0300
-Message-ID: <00007d626b8b$e6179df1$377848b5$@derocher.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 54587] [NV1F] Flickering screen on Geforce 4
+Date: Fri, 03 Jun 2016 04:23:59 +0000
+Message-ID: <bug-54587-8800-Mj7vs0nBhZ@http.bugs.freedesktop.org/>
+References: <bug-54587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0736198492=="
+Content-Type: multipart/mixed; boundary="===============0393950049=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-us
+In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,93 +16,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nouveau <Nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, open-gpu-doc <open-gpu-doc-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ortwin Glck <odi-L693kI9kcNY@public.gmane.org>, Pali Rohr <pali.rohar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multipart message in MIME format.
 
---===============0736198492==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0001_0676834C.3A68027E"
-Content-Language: en-us
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0001_0676834C.3A68027E
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-Hello,
-
-I've got something exciting for you, you'll definitely love it, take a look <http://lyndindaqui.hunterdonacademyofthearts.net/aeeeyazo>
-
-Nouveau
+--===============0393950049==
+Content-Type: multipart/alternative; boundary="14649278381.c16231B9.3424";
+ charset="UTF-8"
 
 
-------=_NextPart_000_0001_0676834C.3A68027E
-Content-Type: text/html; charset="us-ascii"
+--14649278381.c16231B9.3424
+Date: Fri, 3 Jun 2016 04:23:58 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas=
--microsoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:off=
-ice:word" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml"=
- xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"C=
-ontent-Type" CONTENT=3D"text/html; charset=3Dus-ascii"><meta name=3DGe=
-nerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-=2EMsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN link=3D"#0563=
-C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
-span lang=3DEN-US>Hello,<o:p></o:p></span></p><p class=3DMsoNormal><sp=
-an lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span=
- lang=3DEN-US>I've got something exciting for you, you'll definitely l=
-ove it, take a look <a href=3D"http://lyndindaqui.hunterdonacademyofth=
-earts.net/aeeeyazo">http://lyndindaqui.hunterdonacademyofthearts.net/a=
-eeeyazo</a><o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-=
-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US=
->Nouveau<o:p></o:p></span></p></div></body></html>
+https://bugs.freedesktop.org/show_bug.cgi?id=3D54587
 
-------=_NextPart_000_0001_0676834C.3A68027E--
+--- Comment #34 from Patrick McMunn <doctorwhoguy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I wonder if this bug may either be related to, or may actually be the same =
+as,
+bug 61537. I also have this same issue with a PC using an nVidia GeForce 4 =
+MX
+IGP, and I know that the monitor attached to it has a bad EDID. I suspect V=
+esa
+may also have a monitor with a bad EDID; that would explain why his monitor=
+'s
+resolution was not correctly detected by Xorg (see comment #12).
 
---===============0736198492==
+I applied the above patch to Linux 4.4.11 sources, recompiled my kernel, and
+rebooted. The problem is not completely fixed, but it is noticeably improve=
+d.
+Whereas before the whole screen would intermittently jump, now there are si=
+mply
+random flashes of horizontal lines on random places on the screen. I genera=
+lly
+run this box as a light-duty server, so I mainly ssh into it from my deskto=
+p,
+and I didn't boot into a GUI for testing. I just booted it and observed the
+text console.
+
+I wouldn't consider this patch a fix, but it is perhaps a mitigation. In any
+case, since I suspect that this may actually be the same as bug 61537, it w=
+ould
+probably be wise to discuss with other devs, per Martin Peres' comment, bef=
+ore
+submitting any changes to the tree.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14649278381.c16231B9.3424
+Date: Fri, 3 Jun 2016 04:23:58 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV1F] Flickering screen on Geforce 4"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D54587#c34">Commen=
+t # 34</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV1F] Flickering screen on Geforce 4"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D54587">bug 54587<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+doctorwhoguy&#64;gmail.com" title=3D"Patrick McMunn &lt;doctorwhoguy&#64;gm=
+ail.com&gt;"> <span class=3D"fn">Patrick McMunn</span></a>
+</span></b>
+        <pre>I wonder if this bug may either be related to, or may actually=
+ be the same as,
+<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Screen flicker when using display with incorrect EDID"
+   href=3D"show_bug.cgi?id=3D61537">bug 61537</a>. I also have this same is=
+sue with a PC using an nVidia GeForce 4 MX
+IGP, and I know that the monitor attached to it has a bad EDID. I suspect V=
+esa
+may also have a monitor with a bad EDID; that would explain why his monitor=
+'s
+resolution was not correctly detected by Xorg (see <a href=3D"show_bug.cgi?=
+id=3D54587#c12">comment #12</a>).
+
+I applied the above patch to Linux 4.4.11 sources, recompiled my kernel, and
+rebooted. The problem is not completely fixed, but it is noticeably improve=
+d.
+Whereas before the whole screen would intermittently jump, now there are si=
+mply
+random flashes of horizontal lines on random places on the screen. I genera=
+lly
+run this box as a light-duty server, so I mainly ssh into it from my deskto=
+p,
+and I didn't boot into a GUI for testing. I just booted it and observed the
+text console.
+
+I wouldn't consider this patch a fix, but it is perhaps a mitigation. In any
+case, since I suspect that this may actually be the same as <a class=3D"bz_=
+bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Screen flicker when using display with incorrect EDID"
+   href=3D"show_bug.cgi?id=3D61537">bug 61537</a>, it would
+probably be wise to discuss with other devs, per Martin Peres' comment, bef=
+ore
+submitting any changes to the tree.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14649278381.c16231B9.3424--
+
+--===============0393950049==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +158,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0736198492==--
+--===============0393950049==--
