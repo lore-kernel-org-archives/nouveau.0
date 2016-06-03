@@ -1,59 +1,103 @@
-From: Colin Ian King <colin.king@canonical.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/iccsense: fix memory leak on
- default sensor->type case
-Date: Fri, 3 Jun 2016 11:42:12 +0100
-Message-ID: <57515F04.8000408@canonical.com>
-References: <1464863332-9610-1-git-send-email-colin.king@canonical.com>
- <CAEXux-ZWRYq_8L=0Ho9DJ+VCYq_Uk=TpvszT01Ms3Lb-fx1u9g@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95351] lockup on kde startup
+Date: Fri, 03 Jun 2016 11:13:17 +0000
+Message-ID: <bug-95351-8800-pOQxo48YwF@http.bugs.freedesktop.org/>
+References: <bug-95351-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAEXux-ZWRYq_8L=0Ho9DJ+VCYq_Uk=TpvszT01Ms3Lb-fx1u9g@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: karol herbst <karolherbst@gmail.com>
-Cc: Karol Herbst <nouveau@karolherbst.de>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1472720824=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-95351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDMvMDYvMTYgMTA6NTUsIGthcm9sIGhlcmJzdCB3cm90ZToKPiBIaSBDb2xpbiwKPiAKPiB0
-aGFua3MgZm9yIHBvaW50aW5nIHRoaXMgb3V0LCBidXQgSSBhbSBxdWl0ZSBzdXJlIHRoaXMgY29u
-dGludWUKPiBzdGF0ZW1lbnQgd29uJ3QgZXZlciBiZSBoaXQsIGV2ZXIuCj4gCj4gY2hlY2sgdGhl
-IG52a21faWNjc2Vuc2VfY3JlYXRlX3NlbnNvciBmdW5jdGlvbi4gQSBzZW5zb3Igb2JqZWN0IHdp
-bGwKPiBvbmx5IGJlIGNyZWF0ZWQgZm9yIG9uZSBvZiB0aG9zZSB0aHJlZSB0eXBlcyBhbmQgb3Ro
-ZXJzIGRvbid0IGV4aXN0Lgo+IEkndmUganVzdCBhZGRlZCB0aGF0IGRlZmF1bHQgc3RhdGVtZW50
-IHRvIHNodXQgR0NDIEkgdGhpbmsuCj4gCj4gVGhlIHRoaW5nIGlzIEkgcmV3b3JrZWQgdGhhdCBj
-b2RlIGFscmVhZHkgYW5kIHdpbGwgY2hlY2sgaWYgdGhpcwo+IHNpdHVhdGlvbiBzdGlsbCBhcHBs
-aWVzIHRoZXJlLgoKT0ssIHRoYW5rcyBmb3IgbGV0dGluZyBtZSBrbm93LiBBcG9sb2dpZXMgaWYg
-SSBidXJudCB1cCBzb21lIG9mIHlvdXIKdmFsdWFibGUgY3ljbGVzIG9uIHRoaXMuCgpDb2xpbgoK
-PiAKPiAyMDE2LTA2LTAyIDEyOjI4IEdNVCswMjowMCBDb2xpbiBLaW5nIDxjb2xpbi5raW5nQGNh
-bm9uaWNhbC5jb20+Ogo+PiBGcm9tOiBDb2xpbiBJYW4gS2luZyA8Y29saW4ua2luZ0BjYW5vbmlj
-YWwuY29tPgo+Pgo+PiBUaGUgZGVmYXVsdCBzZW5zb3ItPnR5cGUgY2FzZSBsZWFrcyBtZW1vcnkg
-YWxsb2NhdGVkIHRvIHJhaWwuIEZpeAo+PiB0aGlzIGJ5IGZyZWUnaW5nIHJhaWwgYmVmb3JlIHdl
-IGNvbnRpbnVlIHdpdGggdGhlIG5leHQgbG9vcCBpdGVyYXRpb24uCj4+Cj4+IFNpZ25lZC1vZmYt
-Ynk6IENvbGluIElhbiBLaW5nIDxjb2xpbi5raW5nQGNhbm9uaWNhbC5jb20+Cj4+IC0tLQo+PiAg
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vuc2UvYmFzZS5jIHwgMSAr
-Cj4+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykKPj4KPj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ljY3NlbnNlL2Jhc2UuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ljY3NlbnNlL2Jhc2UuYwo+PiBpbmRleCAz
-MjNjNzlhLi43OWIwZWI1IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9pY2NzZW5zZS9iYXNlLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvaWNjc2Vuc2UvYmFzZS5jCj4+IEBAIC0zMDUsNiArMzA1LDcgQEAgbnZr
-bV9pY2NzZW5zZV9vbmVpbml0KHN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2KQo+PiAgICAgICAg
-ICAgICAgICAgICAgICAgICByYWlsLT5yZWFkID0gbnZrbV9pY2NzZW5zZV9pbmEzMjIxX3JlYWQ7
-Cj4+ICAgICAgICAgICAgICAgICAgICAgICAgIGJyZWFrOwo+PiAgICAgICAgICAgICAgICAgZGVm
-YXVsdDoKPj4gKyAgICAgICAgICAgICAgICAgICAgICAga2ZyZWUocmFpbCk7Cj4+ICAgICAgICAg
-ICAgICAgICAgICAgICAgIGNvbnRpbnVlOwo+PiAgICAgICAgICAgICAgICAgfQo+Pgo+PiAtLQo+
-PiAyLjguMQo+Pgo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwo+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRy
-aS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============1472720824==
+Content-Type: multipart/alternative; boundary="14649523960.70Bec56.24606";
+ charset="UTF-8"
+
+
+--14649523960.70Bec56.24606
+Date: Fri, 3 Jun 2016 11:13:16 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D95351
+
+--- Comment #4 from Martin Bednar <serafean-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi, do you still need more info? I'd be happy to provide it.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14649523960.70Bec56.24606
+Date: Fri, 3 Jun 2016 11:13:16 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - lockup on kde startup"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - lockup on kde startup"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351">bug 95351<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+serafean&#64;gmail.com" title=3D"Martin Bednar &lt;serafean&#64;gmail.com&g=
+t;"> <span class=3D"fn">Martin Bednar</span></a>
+</span></b>
+        <pre>Hi, do you still need more info? I'd be happy to provide it.</=
+pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14649523960.70Bec56.24606--
+
+--===============1472720824==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1472720824==--
