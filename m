@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96355] Performance: extra&costly SSBO validation
  even when SSBO aren't used
-Date: Fri, 03 Jun 2016 08:01:45 +0000
-Message-ID: <bug-96355-8800-db7e1WFisQ@http.bugs.freedesktop.org/>
+Date: Fri, 03 Jun 2016 08:17:51 +0000
+Message-ID: <bug-96355-8800-yL7DdwL4Ef@http.bugs.freedesktop.org/>
 References: <bug-96355-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1168913881=="
+Content-Type: multipart/mixed; boundary="===============1390729179=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96355-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1168913881==
-Content-Type: multipart/alternative; boundary="14649409040.3c5bACE.9338";
+--===============1390729179==
+Content-Type: multipart/alternative; boundary="14649418701.7AF001b1.13018";
  charset="UTF-8"
 
 
---14649409040.3c5bACE.9338
-Date: Fri, 3 Jun 2016 08:01:44 +0000
+--14649418701.7AF001b1.13018
+Date: Fri, 3 Jun 2016 08:17:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,37 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96355
 
---- Comment #1 from gregory.hainaut-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-As a side note, I potentially have a similar behavior with shader image
-(st_bind_*_images). I need to double check my engine as I used them sometim=
-es.
+--- Comment #2 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Gregory,
+
+Thanks for profiling Nouveau with perf, that's very nice. :-)
+
+Well, if your application doesn't use SSBO's, nvc0_validate_buffers() should
+not be called yeah. But this might happen when we switch between different
+contexts. Anyway, improving the validation path is on our todolist. :)
+
+Well, according to your backtrace, nvc0_set_shader_buffers() is called and =
+will
+dirty NVC0_NEW_3D_BUFFERS, which will then call nvc0_validate_buffers() at =
+draw
+time.
+
+I wonder why it's called if you are sure that your application doesn't use =
+any
+SSBO's...
+
+Can you extract some shaders from your application to make sure no SSBO's a=
+re
+used? You can use NV50_PROG_DEBUG=3D1 for example (this will dump the TGSI =
+code).
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14649409040.3c5bACE.9338
-Date: Fri, 3 Jun 2016 08:01:44 +0000
+--14649418701.7AF001b1.13018
+Date: Fri, 3 Jun 2016 08:17:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +84,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Performance: extra&amp;costly SSBO validation even when S=
 SBO aren't used"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Performance: extra&amp;costly SSBO validation even when S=
@@ -74,13 +93,31 @@ SBO aren't used"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355">bug 96355<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gregory.hainaut&#64;gmail.com" title=3D"gregory.hainaut&#64;gmail.com">greg=
-ory.hainaut&#64;gmail.com</a>
+samuel.pitoiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset=
+&#64;gmail.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
 </span></b>
-        <pre>As a side note, I potentially have a similar behavior with sha=
-der image
-(st_bind_*_images). I need to double check my engine as I used them sometim=
-es.</pre>
+        <pre>Hi Gregory,
+
+Thanks for profiling Nouveau with perf, that's very nice. :-)
+
+Well, if your application doesn't use SSBO's, nvc0_validate_buffers() should
+not be called yeah. But this might happen when we switch between different
+contexts. Anyway, improving the validation path is on our todolist. :)
+
+Well, according to your backtrace, nvc0_set_shader_buffers() is called and =
+will
+dirty NVC0_NEW_3D_BUFFERS, which will then call nvc0_validate_buffers() at =
+draw
+time.
+
+I wonder why it's called if you are sure that your application doesn't use =
+any
+SSBO's...
+
+Can you extract some shaders from your application to make sure no SSBO's a=
+re
+used? You can use NV50_PROG_DEBUG=3D1 for example (this will dump the TGSI =
+code).</pre>
         </div>
       </p>
 
@@ -95,9 +132,9 @@ es.</pre>
     </body>
 </html>=
 
---14649409040.3c5bACE.9338--
+--14649418701.7AF001b1.13018--
 
---===============1168913881==
+--===============1390729179==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +144,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1168913881==--
+--===============1390729179==--
