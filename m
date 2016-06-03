@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 54587] [NV1F] Flickering screen on Geforce 4
-Date: Fri, 03 Jun 2016 04:23:59 +0000
-Message-ID: <bug-54587-8800-Mj7vs0nBhZ@http.bugs.freedesktop.org/>
+Date: Fri, 03 Jun 2016 04:33:07 +0000
+Message-ID: <bug-54587-8800-Tsmg5I0SYJ@http.bugs.freedesktop.org/>
 References: <bug-54587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0393950049=="
+Content-Type: multipart/mixed; boundary="===============0857673528=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0393950049==
-Content-Type: multipart/alternative; boundary="14649278381.c16231B9.3424";
+--===============0857673528==
+Content-Type: multipart/alternative; boundary="14649283874.d80888F.7996";
  charset="UTF-8"
 
 
---14649278381.c16231B9.3424
-Date: Fri, 3 Jun 2016 04:23:58 +0000
+--14649283874.d80888F.7996
+Date: Fri, 3 Jun 2016 04:33:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,42 +35,50 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D54587
 
---- Comment #34 from Patrick McMunn <doctorwhoguy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I wonder if this bug may either be related to, or may actually be the same =
-as,
-bug 61537. I also have this same issue with a PC using an nVidia GeForce 4 =
-MX
-IGP, and I know that the monitor attached to it has a bad EDID. I suspect V=
-esa
-may also have a monitor with a bad EDID; that would explain why his monitor=
-'s
-resolution was not correctly detected by Xorg (see comment #12).
+--- Comment #35 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Patrick McMunn from comment #34)
+> I wonder if this bug may either be related to, or may actually be the same
+> as, bug 61537. I also have this same issue with a PC using an nVidia GeFo=
+rce
+> 4 MX IGP, and I know that the monitor attached to it has a bad EDID. I
+> suspect Vesa may also have a monitor with a bad EDID; that would explain =
+why
+> his monitor's resolution was not correctly detected by Xorg (see comment
+> #12).
+>=20
+> I applied the above patch to Linux 4.4.11 sources, recompiled my kernel, =
+and
+> rebooted. The problem is not completely fixed, but it is noticeably
+> improved. Whereas before the whole screen would intermittently jump, now
+> there are simply random flashes of horizontal lines on random places on t=
+he
+> screen. I generally run this box as a light-duty server, so I mainly ssh
+> into it from my desktop, and I didn't boot into a GUI for testing. I just
+> booted it and observed the text console.
+>=20
+> I wouldn't consider this patch a fix, but it is perhaps a mitigation. In =
+any
+> case, since I suspect that this may actually be the same as bug 61537, it
+> would probably be wise to discuss with other devs, per Martin Peres'
+> comment, before submitting any changes to the tree.
 
-I applied the above patch to Linux 4.4.11 sources, recompiled my kernel, and
-rebooted. The problem is not completely fixed, but it is noticeably improve=
-d.
-Whereas before the whole screen would intermittently jump, now there are si=
-mply
-random flashes of horizontal lines on random places on the screen. I genera=
-lly
-run this box as a light-duty server, so I mainly ssh into it from my deskto=
-p,
-and I didn't boot into a GUI for testing. I just booted it and observed the
-text console.
+Thanks for testing. The other bug you reference is on very different hardwa=
+re
+(G80+) which has an *entirely* different display unit. The patch I wrote was
+based on a few observations of the old xf86-video-nv code compared to nouve=
+au.
+There were other differences, but those seemed like the biggest ones.
 
-I wouldn't consider this patch a fix, but it is perhaps a mitigation. In any
-case, since I suspect that this may actually be the same as bug 61537, it w=
-ould
-probably be wise to discuss with other devs, per Martin Peres' comment, bef=
-ore
-submitting any changes to the tree.
+Sounds like some of the other ones still matter though if you're still seei=
+ng
+flickering.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14649278381.c16231B9.3424
-Date: Fri, 3 Jun 2016 04:23:58 +0000
+--14649283874.d80888F.7996
+Date: Fri, 3 Jun 2016 04:33:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -87,52 +95,66 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV1F] Flickering screen on Geforce 4"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D54587#c34">Commen=
-t # 34</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D54587#c35">Commen=
+t # 35</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV1F] Flickering screen on Geforce 4"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D54587">bug 54587<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-doctorwhoguy&#64;gmail.com" title=3D"Patrick McMunn &lt;doctorwhoguy&#64;gm=
-ail.com&gt;"> <span class=3D"fn">Patrick McMunn</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I wonder if this bug may either be related to, or may actually=
- be the same as,
-<a class=3D"bz_bug_link=20
+        <pre>(In reply to Patrick McMunn from <a href=3D"show_bug.cgi?id=3D=
+54587#c34">comment #34</a>)
+<span class=3D"quote">&gt; I wonder if this bug may either be related to, o=
+r may actually be the same
+&gt; as, <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Screen flicker when using display with incorrect EDID"
    href=3D"show_bug.cgi?id=3D61537">bug 61537</a>. I also have this same is=
-sue with a PC using an nVidia GeForce 4 MX
-IGP, and I know that the monitor attached to it has a bad EDID. I suspect V=
-esa
-may also have a monitor with a bad EDID; that would explain why his monitor=
-'s
-resolution was not correctly detected by Xorg (see <a href=3D"show_bug.cgi?=
-id=3D54587#c12">comment #12</a>).
-
-I applied the above patch to Linux 4.4.11 sources, recompiled my kernel, and
-rebooted. The problem is not completely fixed, but it is noticeably improve=
-d.
-Whereas before the whole screen would intermittently jump, now there are si=
-mply
-random flashes of horizontal lines on random places on the screen. I genera=
-lly
-run this box as a light-duty server, so I mainly ssh into it from my deskto=
-p,
-and I didn't boot into a GUI for testing. I just booted it and observed the
-text console.
-
-I wouldn't consider this patch a fix, but it is perhaps a mitigation. In any
-case, since I suspect that this may actually be the same as <a class=3D"bz_=
-bug_link=20
+sue with a PC using an nVidia GeForce
+&gt; 4 MX IGP, and I know that the monitor attached to it has a bad EDID. I
+&gt; suspect Vesa may also have a monitor with a bad EDID; that would expla=
+in why
+&gt; his monitor's resolution was not correctly detected by Xorg (see comme=
+nt
+&gt; #12).
+&gt;=20
+&gt; I applied the above patch to Linux 4.4.11 sources, recompiled my kerne=
+l, and
+&gt; rebooted. The problem is not completely fixed, but it is noticeably
+&gt; improved. Whereas before the whole screen would intermittently jump, n=
+ow
+&gt; there are simply random flashes of horizontal lines on random places o=
+n the
+&gt; screen. I generally run this box as a light-duty server, so I mainly s=
+sh
+&gt; into it from my desktop, and I didn't boot into a GUI for testing. I j=
+ust
+&gt; booted it and observed the text console.
+&gt;=20
+&gt; I wouldn't consider this patch a fix, but it is perhaps a mitigation. =
+In any
+&gt; case, since I suspect that this may actually be the same as <a class=
+=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Screen flicker when using display with incorrect EDID"
-   href=3D"show_bug.cgi?id=3D61537">bug 61537</a>, it would
-probably be wise to discuss with other devs, per Martin Peres' comment, bef=
-ore
-submitting any changes to the tree.</pre>
+   href=3D"show_bug.cgi?id=3D61537">bug 61537</a>, it
+&gt; would probably be wise to discuss with other devs, per Martin Peres'
+&gt; comment, before submitting any changes to the tree.</span >
+
+Thanks for testing. The other bug you reference is on very different hardwa=
+re
+(G80+) which has an *entirely* different display unit. The patch I wrote was
+based on a few observations of the old xf86-video-nv code compared to nouve=
+au.
+There were other differences, but those seemed like the biggest ones.
+
+Sounds like some of the other ones still matter though if you're still seei=
+ng
+flickering.</pre>
         </div>
       </p>
 
@@ -146,9 +168,9 @@ submitting any changes to the tree.</pre>
     </body>
 </html>=
 
---14649278381.c16231B9.3424--
+--14649283874.d80888F.7996--
 
---===============0393950049==
+--===============0857673528==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -158,4 +180,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0393950049==--
+--===============0857673528==--
