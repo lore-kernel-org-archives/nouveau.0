@@ -1,12 +1,13 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH xf86-video-nouveau] Properly cleanup fb for
-	reverse-prime-offload
-Date: Fri,  3 Jun 2016 14:46:10 +0200
-Message-ID: <1464957970-19906-1-git-send-email-hdegoede@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96355] Performance: extra&costly SSBO validation
+ even when SSBO aren't used
+Date: Fri, 03 Jun 2016 15:15:23 +0000
+Message-ID: <bug-96355-8800-2Oncl9DPhr@http.bugs.freedesktop.org/>
+References: <bug-96355-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0265190966=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-96355-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,37 +18,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-ZHJtbW9kZV9zZXRfc2Nhbm91dF9waXhtYXAocGl4KSBhZGRzIGRybW1vZC0+ZmJfaWQgdGhyb3Vn
-aCBhIGNhbGwKdG8gZHJtbW9kZV94Zjg2Y3J0Y19yZXNpemUoKSwgYnV0IG9uIGEgc3Vic2VxdWVu
-dApkcm1tb2RlX3NldF9zY2Fub3V0X3BpeG1hcChOVUxMKSBpdCB3b3VsZCBub3QgcmVtb3ZlIHRo
-ZSBmYi4KClRoaXMga2VlcHMgdGhlIGNydGMgbWFya2VkIGFzIGJ1c3ksIHdoaWNoIGNhdXNlcyB0
-aGUgZGdwdSB0byBub3QKYmVpbmcgYWJsZSB0byBydW50aW1lIHN1c3BlbmQsIGFmdGVyIGFuIG91
-dHB1dCBhdHRhY2hlZCB0byB0aGUgZGdwdQpoYXMgYmVlbiB1c2VkIG9uY2UuIFdoaWNoIGNhdXNl
-cyBidXJuaW5nIHRocm91Z2ggYW4gYWRkaXRpb25hbCAxMFcKb2YgcG93ZXIgYW5kIHRoZSBsYXB0
-b3AgdG8gcnVuIHF1aXRlIGhvdC4KClRoaXMgY29tbWl0IGFkZHMgdGhlIG1pc3NpbmcgcmVtb3Zl
-IGZiIGNhbGwsIGFsbG93aW5nIHRoZSBkZ3B1IHRvIHJ1bnRpbWUKc3VzcGVuZCBhZnRlciBhbiBl
-eHRlcm5hbCBtb25pdG9yIGhhcyBiZWVuIHBsdWdnZWQgaW50byB0aGUgbGFwdG9wLgoKU2lnbmVk
-LW9mZi1ieTogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KLS0tCiBzcmMvZHJt
-bW9kZV9kaXNwbGF5LmMgfCA4ICsrKysrKystCiAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRpb25z
-KCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2RybW1vZGVfZGlzcGxheS5jIGIv
-c3JjL2RybW1vZGVfZGlzcGxheS5jCmluZGV4IGI5NTBmNDIuLmYzMjZlNDYgMTAwNjQ0Ci0tLSBh
-L3NyYy9kcm1tb2RlX2Rpc3BsYXkuYworKysgYi9zcmMvZHJtbW9kZV9kaXNwbGF5LmMKQEAgLTY4
-MCwxMCArNjgwLDE2IEBAIGRybW1vZGVfc2V0X3NjYW5vdXRfcGl4bWFwKHhmODZDcnRjUHRyIGNy
-dGMsIFBpeG1hcFB0ciBwcGl4KQogCVBpeG1hcFB0ciBzY3JlZW5waXggPSBzY3JlZW4tPkdldFNj
-cmVlblBpeG1hcChzY3JlZW4pOwogCXhmODZDcnRjQ29uZmlnUHRyIHhmODZfY29uZmlnID0gWEY4
-Nl9DUlRDX0NPTkZJR19QVFIoY3J0Yy0+c2Nybik7CiAJZHJtbW9kZV9jcnRjX3ByaXZhdGVfcHRy
-IGRybW1vZGVfY3J0YyA9IGNydGMtPmRyaXZlcl9wcml2YXRlOworCWRybW1vZGVfcHRyIGRybW1v
-ZGUgPSBkcm1tb2RlX2NydGMtPmRybW1vZGU7CiAJaW50IGMsIHRvdGFsX3dpZHRoID0gMCwgbWF4
-X2hlaWdodCA9IDAsIHRoaXNfeCA9IDA7CiAJaWYgKCFwcGl4KSB7Ci0JCWlmIChjcnRjLT5yYW5k
-cl9jcnRjLT5zY2Fub3V0X3BpeG1hcCkKKwkJaWYgKGNydGMtPnJhbmRyX2NydGMtPnNjYW5vdXRf
-cGl4bWFwKSB7CiAJCQlQaXhtYXBTdG9wRGlydHlUcmFja2luZyhjcnRjLT5yYW5kcl9jcnRjLT5z
-Y2Fub3V0X3BpeG1hcCwgc2NyZWVucGl4KTsKKwkJCWlmIChkcm1tb2RlICYmIGRybW1vZGUtPmZi
-X2lkKSB7CisJCQkJZHJtTW9kZVJtRkIoZHJtbW9kZS0+ZmQsIGRybW1vZGUtPmZiX2lkKTsKKwkJ
-CQlkcm1tb2RlLT5mYl9pZCA9IDA7CisJCQl9CisJCX0KIAkJZHJtbW9kZV9jcnRjLT5zY2Fub3V0
-X3BpeG1hcF94ID0gMDsKIAkJcmV0dXJuIFRSVUU7CiAJfQotLSAKMi43LjQKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0265190966==
+Content-Type: multipart/alternative; boundary="14649669220.C6DA6f.25048";
+ charset="UTF-8"
+
+
+--14649669220.C6DA6f.25048
+Date: Fri, 3 Jun 2016 15:15:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96355
+
+--- Comment #3 from gregory.hainaut-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Hi Samuel,
+
+> Thanks for profiling Nouveau with perf, that's very nice. :-)
+
+Well it is nice that I can do profiling :)
+
+> Well, if your application doesn't use SSBO's, nvc0_validate_buffers()=20
+> should not be called yeah. But this might happen when we switch between
+>  different contexts. Anyway, improving the validation path is on our todo=
+list. :)
+
+Yes, I'm sure. I don't know how to use SSBO.
+
+> I wonder why it's called if you are sure that your application doesn't use
+> any SSBO's...
+
+src/mesa/state_tracker/st_atom_storagebuf.c
+st_bind_*_ssbos struct contains the ST_NEW_*_PROGRAM flags.
+
+So every time, you call glUseProgram (or the 4.1 pipeline equivalent), flags
+will be asserted and a validation will be triggered. It is the same for the
+image in st_bind_*_images struct in st_atom_image.c. It is nice for the
+performance.
+
+> Can you extract some shaders from your application to make sure no SSBO's=
+=20
+> are used? You can use NV50_PROG_DEBUG=3D1 for example (this will dump the=
+ TGSI code).
+
+All my shader could be found in glsl format (bit a mess of ifdef but no SSBO
+;))
+https://github.com/PCSX2/pcsx2/tree/master/plugins/GSdx/res/glsl
+
+Here an example (I'm not sure if it is the TGSI format).
+
+FRAG
+DCL IN[0], GENERIC[0], PERSPECTIVE
+DCL IN[1], GENERIC[3], PERSPECTIVE
+DCL OUT[0], COLOR
+DCL OUT[1], COLOR[1]
+DCL SAMP[0]
+DCL SAMP[1]
+DCL SVIEW[0], 2D, FLOAT
+DCL SVIEW[1], 2D, FLOAT
+DCL CONST[1][0]
+DCL CONST[2][0..1]
+DCL CONST[3][0..1]
+DCL CONST[4][0]
+DCL CONST[5][0..1]
+DCL CONST[6][0..7]
+DCL CONST[7][0]
+DCL TEMP[0..1], LOCAL
+IMM[0] FLT32 {    0.0000,   255.0000,     0.0500,     0.0078}
+IMM[1] FLT32 {    0.0039,     0.0000,     0.0000,     0.0000}
+  0: MOV TEMP[0].xy, IN[1].xyyy
+  1: TEX TEMP[0].w, TEMP[0], SAMP[0], 2D
+  2: MOV TEMP[1].y, IMM[0].xxxx
+  3: MOV TEMP[1].x, TEMP[0].wwww
+  4: TRUNC TEMP[0], IN[0]
+  5: MOV TEMP[1].xy, TEMP[1].xyyy
+  6: TEX TEMP[1], TEMP[1], SAMP[1], 2D
+  7: MAD TEMP[1], TEMP[1], IMM[0].yyyy, IMM[0].zzzz
+  8: TRUNC TEMP[1], TEMP[1]
+  9: MUL TEMP[0], TEMP[0], TEMP[1]
+ 10: MUL TEMP[0], TEMP[0], IMM[0].wwww
+ 11: TRUNC TEMP[0], TEMP[0]
+ 12: MIN TEMP[0], TEMP[0], IMM[0].yyyy
+ 13: MUL TEMP[1], TEMP[0], IMM[1].xxxx
+ 14: MUL TEMP[0].x, TEMP[0].wwww, IMM[0].wwww
+ 15: MOV OUT[0], TEMP[1]
+ 16: MOV OUT[1], TEMP[0].xxxx
+ 17: END
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14649669220.C6DA6f.25048
+Date: Fri, 3 Jun 2016 15:15:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Performance: extra&amp;costly SSBO validation even when S=
+SBO aren't used"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Performance: extra&amp;costly SSBO validation even when S=
+SBO aren't used"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355">bug 96355<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gregory.hainaut&#64;gmail.com" title=3D"gregory.hainaut&#64;gmail.com">greg=
+ory.hainaut&#64;gmail.com</a>
+</span></b>
+        <pre>Hi Samuel,
+
+<span class=3D"quote">&gt; Thanks for profiling Nouveau with perf, that's v=
+ery nice. :-)</span >
+
+Well it is nice that I can do profiling :)
+
+<span class=3D"quote">&gt; Well, if your application doesn't use SSBO's, nv=
+c0_validate_buffers()=20
+&gt; should not be called yeah. But this might happen when we switch between
+&gt;  different contexts. Anyway, improving the validation path is on our t=
+odolist. :)</span >
+
+Yes, I'm sure. I don't know how to use SSBO.
+
+<span class=3D"quote">&gt; I wonder why it's called if you are sure that yo=
+ur application doesn't use
+&gt; any SSBO's...</span >
+
+src/mesa/state_tracker/st_atom_storagebuf.c
+st_bind_*_ssbos struct contains the ST_NEW_*_PROGRAM flags.
+
+So every time, you call glUseProgram (or the 4.1 pipeline equivalent), flags
+will be asserted and a validation will be triggered. It is the same for the
+image in st_bind_*_images struct in st_atom_image.c. It is nice for the
+performance.
+
+<span class=3D"quote">&gt; Can you extract some shaders from your applicati=
+on to make sure no SSBO's=20
+&gt; are used? You can use NV50_PROG_DEBUG=3D1 for example (this will dump =
+the TGSI code).</span >
+
+All my shader could be found in glsl format (bit a mess of ifdef but no SSBO
+;))
+<a href=3D"https://github.com/PCSX2/pcsx2/tree/master/plugins/GSdx/res/glsl=
+">https://github.com/PCSX2/pcsx2/tree/master/plugins/GSdx/res/glsl</a>
+
+Here an example (I'm not sure if it is the TGSI format).
+
+FRAG
+DCL IN[0], GENERIC[0], PERSPECTIVE
+DCL IN[1], GENERIC[3], PERSPECTIVE
+DCL OUT[0], COLOR
+DCL OUT[1], COLOR[1]
+DCL SAMP[0]
+DCL SAMP[1]
+DCL SVIEW[0], 2D, FLOAT
+DCL SVIEW[1], 2D, FLOAT
+DCL CONST[1][0]
+DCL CONST[2][0..1]
+DCL CONST[3][0..1]
+DCL CONST[4][0]
+DCL CONST[5][0..1]
+DCL CONST[6][0..7]
+DCL CONST[7][0]
+DCL TEMP[0..1], LOCAL
+IMM[0] FLT32 {    0.0000,   255.0000,     0.0500,     0.0078}
+IMM[1] FLT32 {    0.0039,     0.0000,     0.0000,     0.0000}
+  0: MOV TEMP[0].xy, IN[1].xyyy
+  1: TEX TEMP[0].w, TEMP[0], SAMP[0], 2D
+  2: MOV TEMP[1].y, IMM[0].xxxx
+  3: MOV TEMP[1].x, TEMP[0].wwww
+  4: TRUNC TEMP[0], IN[0]
+  5: MOV TEMP[1].xy, TEMP[1].xyyy
+  6: TEX TEMP[1], TEMP[1], SAMP[1], 2D
+  7: MAD TEMP[1], TEMP[1], IMM[0].yyyy, IMM[0].zzzz
+  8: TRUNC TEMP[1], TEMP[1]
+  9: MUL TEMP[0], TEMP[0], TEMP[1]
+ 10: MUL TEMP[0], TEMP[0], IMM[0].wwww
+ 11: TRUNC TEMP[0], TEMP[0]
+ 12: MIN TEMP[0], TEMP[0], IMM[0].yyyy
+ 13: MUL TEMP[1], TEMP[0], IMM[1].xxxx
+ 14: MUL TEMP[0].x, TEMP[0].wwww, IMM[0].wwww
+ 15: MOV OUT[0], TEMP[1]
+ 16: MOV OUT[1], TEMP[0].xxxx
+ 17: END</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14649669220.C6DA6f.25048--
+
+--===============0265190966==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0265190966==--
