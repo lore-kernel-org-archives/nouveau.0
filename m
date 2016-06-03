@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95351] lockup on kde startup
-Date: Fri, 03 Jun 2016 11:13:17 +0000
-Message-ID: <bug-95351-8800-pOQxo48YwF@http.bugs.freedesktop.org/>
-References: <bug-95351-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH xf86-video-nouveau] Properly cleanup fb for
+	reverse-prime-offload
+Date: Fri,  3 Jun 2016 14:46:10 +0200
+Message-ID: <1464957970-19906-1-git-send-email-hdegoede@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1472720824=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,87 +17,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1472720824==
-Content-Type: multipart/alternative; boundary="14649523960.70Bec56.24606";
- charset="UTF-8"
-
-
---14649523960.70Bec56.24606
-Date: Fri, 3 Jun 2016 11:13:16 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95351
-
---- Comment #4 from Martin Bednar <serafean-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi, do you still need more info? I'd be happy to provide it.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14649523960.70Bec56.24606
-Date: Fri, 3 Jun 2016 11:13:16 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - lockup on kde startup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - lockup on kde startup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95351">bug 95351<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-serafean&#64;gmail.com" title=3D"Martin Bednar &lt;serafean&#64;gmail.com&g=
-t;"> <span class=3D"fn">Martin Bednar</span></a>
-</span></b>
-        <pre>Hi, do you still need more info? I'd be happy to provide it.</=
-pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14649523960.70Bec56.24606--
-
---===============1472720824==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1472720824==--
+ZHJtbW9kZV9zZXRfc2Nhbm91dF9waXhtYXAocGl4KSBhZGRzIGRybW1vZC0+ZmJfaWQgdGhyb3Vn
+aCBhIGNhbGwKdG8gZHJtbW9kZV94Zjg2Y3J0Y19yZXNpemUoKSwgYnV0IG9uIGEgc3Vic2VxdWVu
+dApkcm1tb2RlX3NldF9zY2Fub3V0X3BpeG1hcChOVUxMKSBpdCB3b3VsZCBub3QgcmVtb3ZlIHRo
+ZSBmYi4KClRoaXMga2VlcHMgdGhlIGNydGMgbWFya2VkIGFzIGJ1c3ksIHdoaWNoIGNhdXNlcyB0
+aGUgZGdwdSB0byBub3QKYmVpbmcgYWJsZSB0byBydW50aW1lIHN1c3BlbmQsIGFmdGVyIGFuIG91
+dHB1dCBhdHRhY2hlZCB0byB0aGUgZGdwdQpoYXMgYmVlbiB1c2VkIG9uY2UuIFdoaWNoIGNhdXNl
+cyBidXJuaW5nIHRocm91Z2ggYW4gYWRkaXRpb25hbCAxMFcKb2YgcG93ZXIgYW5kIHRoZSBsYXB0
+b3AgdG8gcnVuIHF1aXRlIGhvdC4KClRoaXMgY29tbWl0IGFkZHMgdGhlIG1pc3NpbmcgcmVtb3Zl
+IGZiIGNhbGwsIGFsbG93aW5nIHRoZSBkZ3B1IHRvIHJ1bnRpbWUKc3VzcGVuZCBhZnRlciBhbiBl
+eHRlcm5hbCBtb25pdG9yIGhhcyBiZWVuIHBsdWdnZWQgaW50byB0aGUgbGFwdG9wLgoKU2lnbmVk
+LW9mZi1ieTogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KLS0tCiBzcmMvZHJt
+bW9kZV9kaXNwbGF5LmMgfCA4ICsrKysrKystCiAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRpb25z
+KCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2RybW1vZGVfZGlzcGxheS5jIGIv
+c3JjL2RybW1vZGVfZGlzcGxheS5jCmluZGV4IGI5NTBmNDIuLmYzMjZlNDYgMTAwNjQ0Ci0tLSBh
+L3NyYy9kcm1tb2RlX2Rpc3BsYXkuYworKysgYi9zcmMvZHJtbW9kZV9kaXNwbGF5LmMKQEAgLTY4
+MCwxMCArNjgwLDE2IEBAIGRybW1vZGVfc2V0X3NjYW5vdXRfcGl4bWFwKHhmODZDcnRjUHRyIGNy
+dGMsIFBpeG1hcFB0ciBwcGl4KQogCVBpeG1hcFB0ciBzY3JlZW5waXggPSBzY3JlZW4tPkdldFNj
+cmVlblBpeG1hcChzY3JlZW4pOwogCXhmODZDcnRjQ29uZmlnUHRyIHhmODZfY29uZmlnID0gWEY4
+Nl9DUlRDX0NPTkZJR19QVFIoY3J0Yy0+c2Nybik7CiAJZHJtbW9kZV9jcnRjX3ByaXZhdGVfcHRy
+IGRybW1vZGVfY3J0YyA9IGNydGMtPmRyaXZlcl9wcml2YXRlOworCWRybW1vZGVfcHRyIGRybW1v
+ZGUgPSBkcm1tb2RlX2NydGMtPmRybW1vZGU7CiAJaW50IGMsIHRvdGFsX3dpZHRoID0gMCwgbWF4
+X2hlaWdodCA9IDAsIHRoaXNfeCA9IDA7CiAJaWYgKCFwcGl4KSB7Ci0JCWlmIChjcnRjLT5yYW5k
+cl9jcnRjLT5zY2Fub3V0X3BpeG1hcCkKKwkJaWYgKGNydGMtPnJhbmRyX2NydGMtPnNjYW5vdXRf
+cGl4bWFwKSB7CiAJCQlQaXhtYXBTdG9wRGlydHlUcmFja2luZyhjcnRjLT5yYW5kcl9jcnRjLT5z
+Y2Fub3V0X3BpeG1hcCwgc2NyZWVucGl4KTsKKwkJCWlmIChkcm1tb2RlICYmIGRybW1vZGUtPmZi
+X2lkKSB7CisJCQkJZHJtTW9kZVJtRkIoZHJtbW9kZS0+ZmQsIGRybW1vZGUtPmZiX2lkKTsKKwkJ
+CQlkcm1tb2RlLT5mYl9pZCA9IDA7CisJCQl9CisJCX0KIAkJZHJtbW9kZV9jcnRjLT5zY2Fub3V0
+X3BpeG1hcF94ID0gMDsKIAkJcmV0dXJuIFRSVUU7CiAJfQotLSAKMi43LjQKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
