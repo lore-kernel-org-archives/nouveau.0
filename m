@@ -1,15 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95330] [NV84] Hangs with gr: DATA_ERROR
- [INVALID_BITFIELD], TRAP_PROP [RT_FAULT],
- fb: trapped write [PGRAPH] [PROP] [RT0] [PAGE_NOT_PRESENT],
- bsp: Watchdog interrupt, engine hung
-Date: Fri, 03 Jun 2016 23:20:25 +0000
-Message-ID: <bug-95330-8800-AbOYwX0FZw@http.bugs.freedesktop.org/>
-References: <bug-95330-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
+Date: Fri, 03 Jun 2016 23:29:18 +0000
+Message-ID: <bug-59069-8800-JusC0Zqn2Q@http.bugs.freedesktop.org/>
+References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0949233991=="
+Content-Type: multipart/mixed; boundary="===============0505007609=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95330-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,40 +20,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0949233991==
-Content-Type: multipart/alternative; boundary="14649960251.aa90263.31427";
+--===============0505007609==
+Content-Type: multipart/alternative; boundary="14649965586.2B1b52.3674";
  charset="UTF-8"
 
 
---14649960251.aa90263.31427
-Date: Fri, 3 Jun 2016 23:20:25 +0000
+--14649965586.2B1b52.3674
+Date: Fri, 3 Jun 2016 23:29:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95330
+https://bugs.freedesktop.org/show_bug.cgi?id=3D59069
 
-Matt Whitlock <freedesktop-wf/ZkUcLzLDBWRuVRseHprNAH6kLmebB@public.gmane.org> changed:
+--- Comment #46 from Matt Whitlock <freedesktop-wf/ZkUcLzLDBWRuVRseHprNAH6kLmebB@public.gmane.org> ---
+I discovered several failed capacitors on my motherboard. After replacing t=
+hem,
+my system stability issues (including some single-bit I/O errors I was
+observing fairly frequently) have been resolved.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+(In reply to Ilia Mirkin from comment #45)
+> Matt, if you're looking for advice on a GPU to buy, try IRC (#nouveau on
+> freenode). My quick recommendation is: "not NVIDIA". If you're set on
+> NVIDIA, happy to discuss the various trade-offs on IRC.
 
---- Comment #2 from Matt Whitlock <freedesktop-wf/ZkUcLzLDBWRuVRseHprNAH6kLmebB@public.gmane.org> ---
-I think the kernel upgrade was coincidental. I discovered several failed
-capacitors on my motherboard. Replacing them made my problems go away. Clos=
-ing
-this bug report as invalid.
+Thank you for the recommendation. I have switched to a Radeon R7 360 (GCN 1=
+.1
+microarchitecture, Bonaire Pro chipset) and could not be happier with the
+open-source Radeon driver and the resulting desktop graphics performance on=
+ my
+system. Kudos to AMD for releasing enough documentation on their chipsets to
+allow development of a proper (non-reversed-engineered) driver. What a
+difference it makes. I'll never go back to Nvidia.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14649960251.aa90263.31427
-Date: Fri, 3 Jun 2016 23:20:25 +0000
+--14649965586.2B1b52.3674
+Date: Fri, 3 Jun 2016 23:29:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,65 +71,44 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:freedeskt=
-op&#64;mattwhitlock.name" title=3D"Matt Whitlock &lt;freedesktop&#64;mattwh=
-itlock.name&gt;"> <span class=3D"fn">Matt Whitlock</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - [NV84] Hangs with gr: DATA_ERROR [INVALID_BI=
-TFIELD], TRAP_PROP [RT_FAULT], fb: trapped write [PGRAPH] [PROP] [RT0] [PAG=
-E_NOT_PRESENT], bsp: Watchdog interrupt, engine hung"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95330">bug 95330<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - [NV84] Hangs with gr: DATA_ERROR [INVALID_BI=
-TFIELD], TRAP_PROP [RT_FAULT], fb: trapped write [PGRAPH] [PROP] [RT0] [PAG=
-E_NOT_PRESENT], bsp: Watchdog interrupt, engine hung"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95330#c2">Comment=
- # 2</a>
+   title=3D"RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59069#c46">Commen=
+t # 46</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - [NV84] Hangs with gr: DATA_ERROR [INVALID_BI=
-TFIELD], TRAP_PROP [RT_FAULT], fb: trapped write [PGRAPH] [PROP] [RT0] [PAG=
-E_NOT_PRESENT], bsp: Watchdog interrupt, engine hung"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95330">bug 95330<=
+   title=3D"RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59069">bug 59069<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 freedesktop&#64;mattwhitlock.name" title=3D"Matt Whitlock &lt;freedesktop&#=
 64;mattwhitlock.name&gt;"> <span class=3D"fn">Matt Whitlock</span></a>
 </span></b>
-        <pre>I think the kernel upgrade was coincidental. I discovered seve=
-ral failed
-capacitors on my motherboard. Replacing them made my problems go away. Clos=
-ing
-this bug report as invalid.</pre>
+        <pre>I discovered several failed capacitors on my motherboard. Afte=
+r replacing them,
+my system stability issues (including some single-bit I/O errors I was
+observing fairly frequently) have been resolved.
+
+(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D59069#c45">comme=
+nt #45</a>)
+<span class=3D"quote">&gt; Matt, if you're looking for advice on a GPU to b=
+uy, try IRC (#nouveau on
+&gt; freenode). My quick recommendation is: &quot;not NVIDIA&quot;. If you'=
+re set on
+&gt; NVIDIA, happy to discuss the various trade-offs on IRC.</span >
+
+Thank you for the recommendation. I have switched to a Radeon R7 360 (GCN 1=
+.1
+microarchitecture, Bonaire Pro chipset) and could not be happier with the
+open-source Radeon driver and the resulting desktop graphics performance on=
+ my
+system. Kudos to AMD for releasing enough documentation on their chipsets to
+allow development of a proper (non-reversed-engineered) driver. What a
+difference it makes. I'll never go back to Nvidia.</pre>
         </div>
       </p>
 
@@ -139,9 +122,9 @@ this bug report as invalid.</pre>
     </body>
 </html>=
 
---14649960251.aa90263.31427--
+--14649965586.2B1b52.3674--
 
---===============0949233991==
+--===============0505007609==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -151,4 +134,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0949233991==--
+--===============0505007609==--
