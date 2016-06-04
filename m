@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
-Date: Fri, 03 Jun 2016 23:29:18 +0000
-Message-ID: <bug-59069-8800-JusC0Zqn2Q@http.bugs.freedesktop.org/>
-References: <bug-59069-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 96355] Performance: extra&costly SSBO validation
+ even when SSBO aren't used
+Date: Sat, 04 Jun 2016 11:32:44 +0000
+Message-ID: <bug-96355-8800-agWSJKjcoF@http.bugs.freedesktop.org/>
+References: <bug-96355-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0505007609=="
+Content-Type: multipart/mixed; boundary="===============1884323022=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-96355-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,47 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0505007609==
-Content-Type: multipart/alternative; boundary="14649965586.2B1b52.3674";
+--===============1884323022==
+Content-Type: multipart/alternative; boundary="14650399640.e5Cea4f.10016";
  charset="UTF-8"
 
 
---14649965586.2B1b52.3674
-Date: Fri, 3 Jun 2016 23:29:18 +0000
+--14650399640.e5Cea4f.10016
+Date: Sat, 4 Jun 2016 11:32:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D59069
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96355
 
---- Comment #46 from Matt Whitlock <freedesktop-wf/ZkUcLzLDBWRuVRseHprNAH6kLmebB@public.gmane.org> ---
-I discovered several failed capacitors on my motherboard. After replacing t=
-hem,
-my system stability issues (including some single-bit I/O errors I was
-observing fairly frequently) have been resolved.
+--- Comment #6 from gregory.hainaut-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Thanks you.
 
-(In reply to Ilia Mirkin from comment #45)
-> Matt, if you're looking for advice on a GPU to buy, try IRC (#nouveau on
-> freenode). My quick recommendation is: "not NVIDIA". If you're set on
-> NVIDIA, happy to discuss the various trade-offs on IRC.
+I did a quick benchmark of my testcase:
 
-Thank you for the recommendation. I have switched to a Radeon R7 360 (GCN 1=
-.1
-microarchitecture, Bonaire Pro chipset) and could not be happier with the
-open-source Radeon driver and the resulting desktop graphics performance on=
- my
-system. Kudos to AMD for releasing enough documentation on their chipsets to
-allow development of a proper (non-reversed-engineered) driver. What a
-difference it makes. I'll never go back to Nvidia.
+raw GIT=20
+   =3D> Mean by frame: 32.083336ms (31.168831fps)
+
+GIT + hack to remove the new program flags from SSBO and images
+   =3D> Mean by frame: 21.586538ms (46.325169fps)
+
+Note: testcase uses lots of shader bind, so I guess it is kinds of a worst =
+case
+for the perf.
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14649965586.2B1b52.3674
-Date: Fri, 3 Jun 2016 23:29:18 +0000
+--14650399640.e5Cea4f.10016
+Date: Sat, 4 Jun 2016 11:32:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,40 +72,34 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59069#c46">Commen=
-t # 46</a>
+          bz_status_NEW "
+   title=3D"NEW - Performance: extra&amp;costly SSBO validation even when S=
+SBO aren't used"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - nouveau E[ DRM] fail ttm_validate"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D59069">bug 59069<=
+          bz_status_NEW "
+   title=3D"NEW - Performance: extra&amp;costly SSBO validation even when S=
+SBO aren't used"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355">bug 96355<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktop&#64;mattwhitlock.name" title=3D"Matt Whitlock &lt;freedesktop&#=
-64;mattwhitlock.name&gt;"> <span class=3D"fn">Matt Whitlock</span></a>
+gregory.hainaut&#64;gmail.com" title=3D"gregory.hainaut&#64;gmail.com">greg=
+ory.hainaut&#64;gmail.com</a>
 </span></b>
-        <pre>I discovered several failed capacitors on my motherboard. Afte=
-r replacing them,
-my system stability issues (including some single-bit I/O errors I was
-observing fairly frequently) have been resolved.
+        <pre>Thanks you.
 
-(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D59069#c45">comme=
-nt #45</a>)
-<span class=3D"quote">&gt; Matt, if you're looking for advice on a GPU to b=
-uy, try IRC (#nouveau on
-&gt; freenode). My quick recommendation is: &quot;not NVIDIA&quot;. If you'=
-re set on
-&gt; NVIDIA, happy to discuss the various trade-offs on IRC.</span >
+I did a quick benchmark of my testcase:
 
-Thank you for the recommendation. I have switched to a Radeon R7 360 (GCN 1=
-.1
-microarchitecture, Bonaire Pro chipset) and could not be happier with the
-open-source Radeon driver and the resulting desktop graphics performance on=
- my
-system. Kudos to AMD for releasing enough documentation on their chipsets to
-allow development of a proper (non-reversed-engineered) driver. What a
-difference it makes. I'll never go back to Nvidia.</pre>
+raw GIT=20
+   =3D&gt; Mean by frame: 32.083336ms (31.168831fps)
+
+GIT + hack to remove the new program flags from SSBO and images
+   =3D&gt; Mean by frame: 21.586538ms (46.325169fps)
+
+Note: testcase uses lots of shader bind, so I guess it is kinds of a worst =
+case
+for the perf.</pre>
         </div>
       </p>
 
@@ -117,14 +108,15 @@ difference it makes. I'll never go back to Nvidia.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14649965586.2B1b52.3674--
+--14650399640.e5Cea4f.10016--
 
---===============0505007609==
+--===============1884323022==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0505007609==--
+--===============1884323022==--
