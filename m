@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93896] Nvidia GeForce GTX 970M unsupported,
- no backlight control
-Date: Sun, 05 Jun 2016 14:02:00 +0000
-Message-ID: <bug-93896-8800-hTSTHYPKif@http.bugs.freedesktop.org/>
-References: <bug-93896-8800@http.bugs.freedesktop.org/>
+From: James <bjlockie-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
+Subject: hot plug second monitor
+Date: Sun, 5 Jun 2016 10:23:08 -0400
+Message-ID: <nj1ckc$hev$1@ger.gmane.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1672726798=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93896-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,84 +18,14 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1672726798==
-Content-Type: multipart/alternative; boundary="14651353201.CD5FFB52.21561";
- charset="UTF-8"
-
-
---14651353201.CD5FFB52.21561
-Date: Sun, 5 Jun 2016 14:02:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93896
-
---- Comment #3 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
-update to 4.6 and install recent linux-firmware package
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14651353201.CD5FFB52.21561
-Date: Sun, 5 Jun 2016 14:02:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia GeForce GTX 970M unsupported, no backlight control"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93896#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia GeForce GTX 970M unsupported, no backlight control"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93896">bug 93896<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktop&#64;karolherbst.de" title=3D"Karol Herbst &lt;freedesktop&#64;k=
-arolherbst.de&gt;"> <span class=3D"fn">Karol Herbst</span></a>
-</span></b>
-        <pre>update to 4.6 and install recent linux-firmware package</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14651353201.CD5FFB52.21561--
-
---===============1672726798==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1672726798==--
+SSBoYXZlIGEgdmlkZW8gY2FyZCB3aXRoIDIgb3V0cHV0cy4KSSBkb24ndCB1c3VhbGx5IGhhdmUg
+YSBtb25pdG9yIG9uIHRoZSBzZWNvbmQgb3V0cHV0IChIRE1JKS4KSSBoYXZlIHRvIHJlYm9vdCBp
+ZiB3YW50IHRvIHVzZSBhIHNlY29uZCBtb25pdG9yLgpJcyB0aGVyZSBhIHdheSB0byBmb3JjZSBs
+dWJ1bnR1IHRvIHJlc2NhbiBmb3IgdGhlIHNlY29uZCBtb25pdG9yLgoKWyAxLjUwNzA1Nl0gbm91
+dmVhdSBbIERFVklDRV1bMDAwMDowMTowMC4wXSBDaGlwc2V0OiBHSzEwNyAoTlZFNykKWyAxLjUw
+NzA1N10gbm91dmVhdSBbIERFVklDRV1bMDAwMDowMTowMC4wXSBGYW1pbHkgOiBOVkUwCgpBcHBh
+cmVudGx5IHRoZSBudmlkaWEgZHJpdmVyIGFsbG93cyBhIHNlY29uZCBtb25pdG9yIHRvIGJlIHBs
+dWdnZWQgaW4gKEkgCmRvbid0IGtub3cgaG93IHRvIGluc3RhbGwgdGhvc2UgZHJpdmVycyBpbiBs
+dWJ1bnR1KS4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
