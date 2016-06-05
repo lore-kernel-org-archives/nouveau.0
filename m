@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96388] This War of Mine (Wine) has rendering issues
- (screen filled with black rectangles)
-Date: Sun, 05 Jun 2016 15:00:38 +0000
-Message-ID: <bug-96388-8800-0wQNqLvj5q@http.bugs.freedesktop.org/>
-References: <bug-96388-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
+ after dynamic poweroff
+Date: Sun, 05 Jun 2016 15:03:59 +0000
+Message-ID: <bug-94725-8800-5GjAXbMzMX@http.bugs.freedesktop.org/>
+References: <bug-94725-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0296781795=="
+Content-Type: multipart/mixed; boundary="===============0740666107=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-96388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0296781795==
-Content-Type: multipart/alternative; boundary="14651388371.91dec4aD5.5595";
+--===============0740666107==
+Content-Type: multipart/alternative; boundary="14651390381.cc01e6.5595";
  charset="UTF-8"
 
 
---14651388371.91dec4aD5.5595
-Date: Sun, 5 Jun 2016 15:00:37 +0000
+--14651390381.cc01e6.5595
+Date: Sun, 5 Jun 2016 15:03:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96388
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94725
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Reproduced with a GT215, but renders fine (or at least not as obviously wro=
-ng)
-with a GK208.
+--- Comment #21 from Tobias Jakobi <liquid.acid-hi6Y0CQ0nG0@public.gmane.org> ---
+Created attachment 124332
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124332&action=3Dedit
+Schenker XMD A506 acpidump
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14651388371.91dec4aD5.5595
-Date: Sun, 5 Jun 2016 15:00:37 +0000
+--14651390381.cc01e6.5595
+Date: Sun, 5 Jun 2016 15:03:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,23 +62,25 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - This War of Mine (Wine) has rendering issues (screen fill=
-ed with black rectangles)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96388#c1">Comment=
- # 1</a>
+   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
+c poweroff"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725#c21">Commen=
+t # 21</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - This War of Mine (Wine) has rendering issues (screen fill=
-ed with black rectangles)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96388">bug 96388<=
+   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
+c poweroff"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725">bug 94725<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+liquid.acid&#64;gmx.net" title=3D"Tobias Jakobi &lt;liquid.acid&#64;gmx.net=
+&gt;"> <span class=3D"fn">Tobias Jakobi</span></a>
 </span></b>
-        <pre>Reproduced with a GT215, but renders fine (or at least not as =
-obviously wrong)
-with a GK208.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124332=
+" name=3D"attach_124332" title=3D"Schenker XMD A506 acpidump">attachment 12=
+4332</a> <a href=3D"attachment.cgi?id=3D124332&amp;action=3Dedit" title=3D"=
+Schenker XMD A506 acpidump">[details]</a></span>
+Schenker XMD A506 acpidump</pre>
         </div>
       </p>
 
@@ -88,15 +89,14 @@ with a GK208.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14651388371.91dec4aD5.5595--
+--14651390381.cc01e6.5595--
 
---===============0296781795==
+--===============0740666107==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0296781795==--
+--===============0740666107==--
