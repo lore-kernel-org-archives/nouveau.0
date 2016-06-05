@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96355] Performance: extra&costly SSBO validation
  even when SSBO aren't used
-Date: Sun, 05 Jun 2016 03:53:15 +0000
-Message-ID: <bug-96355-8800-hHTgo3xBvi@http.bugs.freedesktop.org/>
+Date: Sun, 05 Jun 2016 10:18:39 +0000
+Message-ID: <bug-96355-8800-CbNlVyuXNL@http.bugs.freedesktop.org/>
 References: <bug-96355-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1952026889=="
+Content-Type: multipart/mixed; boundary="===============1848196305=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96355-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1952026889==
-Content-Type: multipart/alternative; boundary="14650987941.1740B.19899";
+--===============1848196305==
+Content-Type: multipart/alternative; boundary="14651219191.b52D5c9.23842";
  charset="UTF-8"
 
 
---14650987941.1740B.19899
-Date: Sun, 5 Jun 2016 03:53:14 +0000
+--14651219191.b52D5c9.23842
+Date: Sun, 5 Jun 2016 10:18:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,46 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96355
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I've pushed out some changes to nvc0 to reduce overhead of updating
-ssbo/images.
+--- Comment #8 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
+I don't know about the reporter's case, but I have ran some benchmarks and
+tests with f018456901ee291181ecce74c30b19c9f6731f06 (latest revision before
+those four patches) and fd6bbc2ee205ed02f66a8d8ef5b2adf4005d588c (the latest
+revision, with the four patches) on my GTX 770 + FX-8320 @ 4.1GHz, focusing=
+ on
+CPU-bound cases.
 
-There are additional patches I've sent out to validate ssbo/images more oft=
-en
-in the st (right now we miss some cases).
+The results are all to the better - on most games I tested I see 4-10%
+performance boost. Am only going to list a pair of highlights:
 
-Let me know if the profile looks any better now.
+=C2=B7 Age of Wonders III, my own severely CPU limited testcase: 21 fps -> =
+26 fps, a
+jump by a whooping 23.8% (still CPU-bound, though).
+=C2=B7 Payday 2, well, this game has no [reproducable] way to benchmark it,=
+ but the
+gameplay used to be nightmare filled with severe rubber-banding, running ju=
+st
+some 18-22 fps in many situations, all while painfully CPU-bound. Now, most=
+ of
+rubber-banding is either gone or is a lot less noticeable. The framerate in
+these aforementioned situations went up to 25-60; dipping below 30 very rar=
+ely,
+while mostly maintaining over 2x performance boost. Basically, these four
+patches made the game *playable* on nouveau. (The game is still very painfu=
+lly
+CPU-bound, though.)
+
+So, at least here, I can see clear performance benefits.
+Will leave to be marked as RESOLVED by the reporter; don't want to hijack h=
+is
+issue.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14650987941.1740B.19899
-Date: Sun, 5 Jun 2016 03:53:14 +0000
+--14651219191.b52D5c9.23842
+Date: Sun, 5 Jun 2016 10:18:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,8 +93,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Performance: extra&amp;costly SSBO validation even when S=
 SBO aren't used"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355#c7">Comment=
- # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355#c8">Comment=
+ # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Performance: extra&amp;costly SSBO validation even when S=
@@ -79,18 +102,41 @@ SBO aren't used"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355">bug 96355<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+gediminas&#64;varciai.lt" title=3D"Gediminas Jakutis &lt;gediminas&#64;varc=
+iai.lt&gt;"> <span class=3D"fn">Gediminas Jakutis</span></a>
 </span></b>
-        <pre>I've pushed out some changes to nvc0 to reduce overhead of upd=
-ating
-ssbo/images.
+        <pre>I don't know about the reporter's case, but I have ran some be=
+nchmarks and
+tests with f018456901ee291181ecce74c30b19c9f6731f06 (latest revision before
+those four patches) and fd6bbc2ee205ed02f66a8d8ef5b2adf4005d588c (the latest
+revision, with the four patches) on my GTX 770 + FX-8320 &#64; 4.1GHz, focu=
+sing on
+CPU-bound cases.
 
-There are additional patches I've sent out to validate ssbo/images more oft=
-en
-in the st (right now we miss some cases).
+The results are all to the better - on most games I tested I see 4-10%
+performance boost. Am only going to list a pair of highlights:
 
-Let me know if the profile looks any better now.</pre>
+=C2=B7 Age of Wonders III, my own severely CPU limited testcase: 21 fps -&g=
+t; 26 fps, a
+jump by a whooping 23.8% (still CPU-bound, though).
+=C2=B7 Payday 2, well, this game has no [reproducable] way to benchmark it,=
+ but the
+gameplay used to be nightmare filled with severe rubber-banding, running ju=
+st
+some 18-22 fps in many situations, all while painfully CPU-bound. Now, most=
+ of
+rubber-banding is either gone or is a lot less noticeable. The framerate in
+these aforementioned situations went up to 25-60; dipping below 30 very rar=
+ely,
+while mostly maintaining over 2x performance boost. Basically, these four
+patches made the game *playable* on nouveau. (The game is still very painfu=
+lly
+CPU-bound, though.)
+
+So, at least here, I can see clear performance benefits.
+Will leave to be marked as RESOLVED by the reporter; don't want to hijack h=
+is
+issue.</pre>
         </div>
       </p>
 
@@ -105,9 +151,9 @@ Let me know if the profile looks any better now.</pre>
     </body>
 </html>=
 
---14650987941.1740B.19899--
+--14651219191.b52D5c9.23842--
 
---===============1952026889==
+--===============1848196305==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +163,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1952026889==--
+--===============1848196305==--
