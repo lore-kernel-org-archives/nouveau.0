@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
- after dynamic poweroff
-Date: Sun, 05 Jun 2016 15:30:53 +0000
-Message-ID: <bug-94725-8800-Mna46ewVLt@http.bugs.freedesktop.org/>
-References: <bug-94725-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 96355] Performance: extra&costly SSBO validation
+ even when SSBO aren't used
+Date: Sun, 05 Jun 2016 15:41:58 +0000
+Message-ID: <bug-96355-8800-q8NqXUHafK@http.bugs.freedesktop.org/>
+References: <bug-96355-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2096908159=="
+Content-Type: multipart/mixed; boundary="===============0135651917=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-96355-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +21,70 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2096908159==
-Content-Type: multipart/alternative; boundary="14651406531.1CF12B.16698";
+--===============0135651917==
+Content-Type: multipart/alternative; boundary="14651413180.3dcf84DD.20136";
  charset="UTF-8"
 
 
---14651406531.1CF12B.16698
-Date: Sun, 5 Jun 2016 15:30:53 +0000
+--14651413180.3dcf84DD.20136
+Date: Sun, 5 Jun 2016 15:41:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94725
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96355
 
-Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> changed:
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to gregory.hainaut from comment #10)
+> Hi Ilia,
+>=20
+> You told me by IRC that you validate all SSBOs when one is updated. I
+> suspecting a similar patter for UBO. I.e. all UBOs are validated when one=
+ is
+> updated.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org
+Nope. UBOs (and textures) have their individual validation "buckets".
 
---- Comment #22 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
-Tobias, your issue might be different and is caused by an issue with a Wind=
-ows
-10-specific workaround in the firmware for your Clevo-based hardware (notice
-the AML_INFINITE_LOOP in the PGON method). Workaround for you: add
-acpi_osi=3D"!Windows 2015" to your cmdline.
+>=20
+> Potentially validation is even done for all shader stages. Anyway, I move=
+ a
+> bit my UBO declaration to reduce the number of active UBO for a draw call.
+> And I managed to win a couples of fps (67 fps =3D> 70 fps).
+>=20
+> So it might worth to investigate further the single SSBO/UBO bucket
+> validation.
 
-@Rashed, @Efrem Please attach the uncompressed acpidump output.
+There are different stages of validation. It's all extremely confusing. st/=
+mesa
+validates everything, because it has to - which UBO is bound to where is ba=
+sed
+on program uniform settings:
+
+      binding =3D
+&st->ctx->UniformBufferBindings[shader->UniformBlocks[i]->Binding];
+
+So if either of those are updated, we have to revalidate. However there's a=
+ CSO
+cache backing UBOs, which will avoid propagating the set to the backend if
+nothing has changed.
+
+I don't think we can do much better than this without some much larger
+rejiggers.
+
+Perhaps there are still some things we can do to speed up common scenarios =
+like
+"there are no ubos" or "there are no ssbos" or "there are no images". But it
+doesn't seem immediately apparent to me.
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14651406531.1CF12B.16698
-Date: Sun, 5 Jun 2016 15:30:53 +0000
+--14651413180.3dcf84DD.20136
+Date: Sun, 5 Jun 2016 15:41:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,58 +95,70 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:peter&#64=
-;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"> <span c=
-lass=3D"fn">Peter Wu</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
-c poweroff"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725">bug 94725<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>peter&#64;lekensteyn.nl
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
-c poweroff"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725#c22">Commen=
-t # 22</a>
+   title=3D"NEW - Performance: extra&amp;costly SSBO validation even when S=
+SBO aren't used"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355#c11">Commen=
+t # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
-c poweroff"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725">bug 94725<=
+   title=3D"NEW - Performance: extra&amp;costly SSBO validation even when S=
+SBO aren't used"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355">bug 96355<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
-> <span class=3D"fn">Peter Wu</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Tobias, your issue might be different and is caused by an issu=
-e with a Windows
-10-specific workaround in the firmware for your Clevo-based hardware (notice
-the AML_INFINITE_LOOP in the PGON method). Workaround for you: add
-acpi_osi=3D&quot;!Windows 2015&quot; to your cmdline.
+        <pre>(In reply to gregory.hainaut from <a href=3D"show_bug.cgi?id=
+=3D96355#c10">comment #10</a>)
+<span class=3D"quote">&gt; Hi Ilia,
+&gt;=20
+&gt; You told me by IRC that you validate all SSBOs when one is updated. I
+&gt; suspecting a similar patter for UBO. I.e. all UBOs are validated when =
+one is
+&gt; updated.</span >
 
-&#64;Rashed, &#64;Efrem Please attach the uncompressed acpidump output.</pr=
-e>
+Nope. UBOs (and textures) have their individual validation &quot;buckets&qu=
+ot;.
+
+<span class=3D"quote">&gt;=20
+&gt; Potentially validation is even done for all shader stages. Anyway, I m=
+ove a
+&gt; bit my UBO declaration to reduce the number of active UBO for a draw c=
+all.
+&gt; And I managed to win a couples of fps (67 fps =3D&gt; 70 fps).
+&gt;=20
+&gt; So it might worth to investigate further the single SSBO/UBO bucket
+&gt; validation.</span >
+
+There are different stages of validation. It's all extremely confusing. st/=
+mesa
+validates everything, because it has to - which UBO is bound to where is ba=
+sed
+on program uniform settings:
+
+      binding =3D
+&amp;st-&gt;ctx-&gt;UniformBufferBindings[shader-&gt;UniformBlocks[i]-&gt;B=
+inding];
+
+So if either of those are updated, we have to revalidate. However there's a=
+ CSO
+cache backing UBOs, which will avoid propagating the set to the backend if
+nothing has changed.
+
+I don't think we can do much better than this without some much larger
+rejiggers.
+
+Perhaps there are still some things we can do to speed up common scenarios =
+like
+&quot;there are no ubos&quot; or &quot;there are no ssbos&quot; or &quot;th=
+ere are no images&quot;. But it
+doesn't seem immediately apparent to me.</pre>
         </div>
       </p>
 
@@ -127,14 +167,15 @@ e>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14651406531.1CF12B.16698--
+--14651413180.3dcf84DD.20136--
 
---===============2096908159==
+--===============0135651917==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -144,4 +185,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2096908159==--
+--===============0135651917==--
