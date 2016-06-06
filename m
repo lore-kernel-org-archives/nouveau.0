@@ -1,12 +1,13 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2] Revert "drm/nouveau/device/pci: set as
-	non-CPU-coherent on ARM64"
-Date: Mon, 6 Jun 2016 16:11:52 +0900
-Message-ID: <20160606071152.23812-1-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96355] Performance: extra&costly SSBO validation
+ even when SSBO aren't used
+Date: Mon, 06 Jun 2016 08:11:33 +0000
+Message-ID: <bug-96355-8800-sjneMhDq2u@http.bugs.freedesktop.org/>
+References: <bug-96355-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0169538382=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-96355-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,148 +17,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Robin Murphy <robin.murphy-5wv7dgnIgG8@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogUm9iaW4gTXVycGh5IDxyb2Jpbi5tdXJwaHlAYXJtLmNvbT4KClRoaXMgcmV2ZXJ0cyBj
-b21taXQgMTczM2EyYWQzNjc0MWIxODEyY2Y4YjNmMzAzN2MyOGQwYWY1M2Y1MC4KClRoZXJlIGlz
-IGFwcGFyZW50bHkgc29tZXRoaW5nIGFtaXNzIHdpdGggdGhlIHdheSB0aGUgVFRNIGNvZGUgaGFu
-ZGxlcwpETUEgYnVmZmVycywgd2hpY2ggdGhlIGFib3ZlIGNvbW1pdCB3YXMgYXR0ZW1wdGluZyB0
-byB3b3JrIGFyb3VuZCBmb3IKYXJtNjQgc3lzdGVtcyB3aXRoIG5vbi1jb2hlcmVudCBQQ0kuIFVu
-Zm9ydHVuYXRlbHksIHRoaXMgY29tcGxldGVseQpicmVha3Mgc3lzdGVtcyAqd2l0aCogY29oZXJl
-bnQgUENJICh3aGljaCBhcHBlYXIgdG8gYmUgdGhlIG1ham9yaXR5KS4KCkJvb3RpbmcgYSBwbGFp
-biBhcm02NCBkZWZjb25maWcgKyBDT05GSUdfRFJNICsgQ09ORklHX0RSTV9OT1VWRUFVIG9uCmEg
-bWFjaGluZSB3aXRoIGEgUENJIEdQVSBoYXZpbmcgY29oZXJlbnQgZG1hX21hcF9vcHMgKGluIHRo
-aXMgY2FzZSBhCjc2MDBHVCBjYXJkIHBsdWdnZWQgaW50byBhbiBBUk0gSnVubyBib2FyZCkgcmVz
-dWx0cyBpbiBhIGZhdGFsIGNyYXNoOgoKWyAgICAyLjgwMzQzOF0gbm91dmVhdSAwMDAwOjA2OjAw
-LjA6IERSTTogYWxsb2NhdGVkIDEwMjR4NzY4IGZiOiAweDkwMDAsIGJvIGZmZmZmZmM5NzYxNDFj
-MDAKWyAgICAyLjg5NzY2Ml0gVW5hYmxlIHRvIGhhbmRsZSBrZXJuZWwgTlVMTCBwb2ludGVyIGRl
-cmVmZXJlbmNlIGF0IHZpcnR1YWwgYWRkcmVzcyAwMDAwMDFhYwpbICAgIDIuODk3NjY2XSBwZ2Qg
-PSBmZmZmZmY4MDA4ZTAwMDAwClsgICAgMi44OTc2NzVdIFswMDAwMDFhY10gKnBnZD0wMDAwMDAw
-OWZmZmZlMDAzLCAqcHVkPTAwMDAwMDA5ZmZmZmUwMDMsICpwbWQ9MDAwMDAwMDAwMDAwMDAwMApb
-ICAgIDIuODk3NjgwXSBJbnRlcm5hbCBlcnJvcjogT29wczogOTYwMDAwNDUgWyMxXSBQUkVFTVBU
-IFNNUApbICAgIDIuODk3Njg1XSBNb2R1bGVzIGxpbmtlZCBpbjoKWyAgICAyLjg5NzY5Ml0gQ1BV
-OiAwIFBJRDogMSBDb21tOiBzd2FwcGVyLzAgTm90IHRhaW50ZWQgNC42LjAtcmM1KyAjNTQzClsg
-ICAgMi44OTc2OTRdIEhhcmR3YXJlIG5hbWU6IEFSTSBKdW5vIGRldmVsb3BtZW50IGJvYXJkIChy
-MSkgKERUKQpbICAgIDIuODk3Njk5XSB0YXNrOiBmZmZmZmZjOTc2OGEwMDAwIHRpOiBmZmZmZmZj
-OTc2OGE4MDAwIHRhc2sudGk6IGZmZmZmZmM5NzY4YTgwMDAKWyAgICAyLjg5NzcxMV0gUEMgaXMg
-YXQgX19tZW1jcHkrMHg3Yy8weDE4MApbICAgIDIuODk3NzE5XSBMUiBpcyBhdCBPVVRfUklOR3Ar
-MHgzNC8weDcwClsgICAgMi44OTc3MjRdIHBjIDogWzxmZmZmZmY4MDA4MzQ2NWZjPl0gbHIgOiBb
-PGZmZmZmZjgwMDg1NDI0OGM+XSBwc3RhdGU6IDgwMDAwMDQ1ClsgICAgMi44OTc3MjZdIHNwIDog
-ZmZmZmZmYzk3NjhhYjM2MApbICAgIDIuODk3NzMyXSB4Mjk6IGZmZmZmZmM5NzY4YWIzNjAgeDI4
-OiAwMDAwMDAwMDAwMDAwMDAxClsgICAgMi44OTc3MzhdIHgyNzogZmZmZmZmYzk3NjI0YzAwMCB4
-MjY6IDAwMDAwMDAwMDAwMDAwMDAKWyAgICAyLjg5Nzc0NF0geDI1OiAwMDAwMDAwMDAwMDAwMDgw
-IHgyNDogMDAwMDAwMDAwMDAwNmMwMApbICAgIDIuODk3NzQ5XSB4MjM6IDAwMDAwMDAwMDAwMDAw
-MDUgeDIyOiBmZmZmZmZjOTc2MjRjMDEwClsgICAgMi44OTc3NTVdIHgyMTogMDAwMDAwMDAwMDAw
-MDAwNCB4MjA6IDAwMDAwMDAwMDAwMDAwMDQKWyAgICAyLjg5Nzc2MV0geDE5OiBmZmZmZmZjOTc2
-M2RhMDAwIHgxODogZmZmZmZmYzk3NmIyNDkxYwpbICAgIDIuODk3NzY2XSB4MTc6IDAwMDAwMDAw
-MDAwMDAwMDcgeDE2OiAwMDAwMDAwMDAwMDAwMDA2ClsgICAgMi44OTc3NzFdIHgxNTogMDAwMDAw
-MDAwMDAwMDAwMSB4MTQ6IDAwMDAwMDAwMDAwMDAwMDEKWyAgICAyLjg5Nzc3N10geDEzOiAwMDAw
-MDAwMDAwZTMxYjcwIHgxMjogZmZmZmZmYzk3NjhhMDA4MApbICAgIDIuODk3NzgzXSB4MTE6IDAw
-MDAwMDAwMDAwMDAwMDAgeDEwOiBmZmZmZmZmZmZmZmZmYjAwClsgICAgMi44OTc3ODhdIHg5IDog
-MDAwMDAwMDAwMDAwMDAwMCB4OCA6IDAwMDAwMDAwMDAwMDAwMDAKWyAgICAyLjg5Nzc5M10geDcg
-OiAwMDAwMDAwMDAwMDAwMDAwIHg2IDogMDAwMDAwMDAwMDAwMDFhYwpbICAgIDIuODk3Nzk5XSB4
-NSA6IDAwMDAwMDAwZmZmZmZmZmYgeDQgOiAwMDAwMDAwMDAwMDAwMDAwClsgICAgMi44OTc4MDRd
-IHgzIDogMDAwMDAwMDAwMDAwMDAxMCB4MiA6IDAwMDAwMDAwMDAwMDAwMTAKWyAgICAyLjg5Nzgx
-MF0geDEgOiBmZmZmZmZjOTc2MjRjMDEwIHgwIDogMDAwMDAwMDAwMDAwMDFhYwouLi4KWyAgICAy
-Ljg5ODQ5NF0gQ2FsbCB0cmFjZToKWyAgICAyLjg5ODQ5OV0gRXhjZXB0aW9uIHN0YWNrKDB4ZmZm
-ZmZmYzk3NjhhYjFhMCB0byAweGZmZmZmZmM5NzY4YWIyYzApClsgICAgMi44OTg1MDZdIGIxYTA6
-IGZmZmZmZmM5NzYzZGEwMDAgMDAwMDAwMDAwMDAwMDAwNCBmZmZmZmZjOTc2OGFiMzYwIGZmZmZm
-ZjgwMDgzNDY1ZmMKWyAgICAyLjg5ODUxM10gYjFjMDogZmZmZmZmYzk3NjgwMWUwMCBmZmZmZmZj
-OTc2MmI4MDAwIGZmZmZmZmM5NzY4YWIxZjAgZmZmZmZmODAwODBlYzE1OApbICAgIDIuODk4NTIw
-XSBiMWUwOiBmZmZmZmZjOTc2OGFiMjMwIGZmZmZmZjgwMDg0OTZkMDQgZmZmZmZmYzk3NWNlNmQ4
-MCBmZmZmZmZjOTc2OGFiMzZlClsgICAgMi44OTg1MjddIGIyMDA6IGZmZmZmZmM5NzY4YWIzNmYg
-ZmZmZmZmYzk3NjhhYjI5ZCBmZmZmZmZjOTc2OGFiMjllIGZmZmZmZmM5NzY4YTAwMDAKWyAgICAy
-Ljg5ODUzM10gYjIyMDogZmZmZmZmYzk3NjhhYjI1MCBmZmZmZmY4MDA4MGU3MGMwIGZmZmZmZmM5
-NzY4YWIyNzAgZmZmZmZmODAwODQ5NmU0NApbICAgIDIuODk4NTQwXSBiMjQwOiAwMDAwMDAwMDAw
-MDAwMWFjIGZmZmZmZmM5NzYyNGMwMTAgMDAwMDAwMDAwMDAwMDAxMCAwMDAwMDAwMDAwMDAwMDEw
-ClsgICAgMi44OTg1NDZdIGIyNjA6IDAwMDAwMDAwMDAwMDAwMDAgMDAwMDAwMDBmZmZmZmZmZiAw
-MDAwMDAwMDAwMDAwMWFjIDAwMDAwMDAwMDAwMDAwMDAKWyAgICAyLjg5ODU1Ml0gYjI4MDogMDAw
-MDAwMDAwMDAwMDAwMCAwMDAwMDAwMDAwMDAwMDAwIGZmZmZmZmZmZmZmZmZiMDAgMDAwMDAwMDAw
-MDAwMDAwMApbICAgIDIuODk4NTU4XSBiMmEwOiBmZmZmZmZjOTc2OGEwMDgwIDAwMDAwMDAwMDBl
-MzFiNzAgMDAwMDAwMDAwMDAwMDAwMSAwMDAwMDAwMDAwMDAwMDAxClsgICAgMi44OTg1NjZdIFs8
-ZmZmZmZmODAwODM0NjVmYz5dIF9fbWVtY3B5KzB4N2MvMHgxODAKWyAgICAyLjg5ODU3NF0gWzxm
-ZmZmZmY4MDA4NTNlMTY0Pl0gbnYwNF9mYmNvbl9pbWFnZWJsaXQrMHgxZDQvMHgyZTgKWyAgICAy
-Ljg5ODU4Ml0gWzxmZmZmZmY4MDA4NTNkNmQwPl0gbm91dmVhdV9mYmNvbl9pbWFnZWJsaXQrMHhk
-OC8weGUwClsgICAgMi44OTg1OTFdIFs8ZmZmZmZmODAwODNjNGRiND5dIHNvZnRfY3Vyc29yKzB4
-MTU0LzB4MWQ4ClsgICAgMi44OTg1OThdIFs8ZmZmZmZmODAwODNjNDdiND5dIGJpdF9jdXJzb3Ir
-MHg0ZmMvMHg1MzgKWyAgICAyLjg5ODYwNV0gWzxmZmZmZmY4MDA4M2MwY2ZjPl0gZmJjb25fY3Vy
-c29yKzB4MTM0LzB4MWE4ClsgICAgMi44OTg2MTNdIFs8ZmZmZmZmODAwODQxYzI4MD5dIGhpZGVf
-Y3Vyc29yKzB4MzgvMHhhMApbICAgIDIuODk4NjIwXSBbPGZmZmZmZjgwMDg0MWQ0MjA+XSByZWRy
-YXdfc2NyZWVuKzB4MTIwLzB4MjI4ClsgICAgMi44OTg2MjhdIFs8ZmZmZmZmODAwODNiZjI2OD5d
-IGZiY29uX3ByZXBhcmVfbG9nbysweDM3MC8weDNmOApbICAgIDIuODk4NjM1XSBbPGZmZmZmZjgw
-MDgzYmY2NDA+XSBmYmNvbl9pbml0KzB4MzUwLzB4NTYwClsgICAgMi44OTg2NDFdIFs8ZmZmZmZm
-ODAwODQxYzYzND5dIHZpc3VhbF9pbml0KzB4YWMvMHgxMDgKWyAgICAyLjg5ODY0OF0gWzxmZmZm
-ZmY4MDA4NDFkZjE0Pl0gZG9fYmluZF9jb25fZHJpdmVyKzB4MWM0LzB4M2E4ClsgICAgMi44OTg2
-NTVdIFs8ZmZmZmZmODAwODQxZTRmND5dIGRvX3Rha2Vfb3Zlcl9jb25zb2xlKzB4MTc0LzB4MWU4
-ClsgICAgMi44OTg2NjJdIFs8ZmZmZmZmODAwODNiZjhjND5dIGRvX2ZiY29uX3Rha2VvdmVyKzB4
-NzQvMHgxMDAKWyAgICAyLjg5ODY2OV0gWzxmZmZmZmY4MDA4M2MzZTQ0Pl0gZmJjb25fZXZlbnRf
-bm90aWZ5KzB4OGNjLzB4OTIwClsgICAgMi44OTg2ODBdIFs8ZmZmZmZmODAwODBkN2UzOD5dIG5v
-dGlmaWVyX2NhbGxfY2hhaW4rMHg1MC8weDkwClsgICAgMi44OTg2ODVdIFs8ZmZmZmZmODAwODBk
-ODIxND5dIF9fYmxvY2tpbmdfbm90aWZpZXJfY2FsbF9jaGFpbisweDRjLzB4OTAKWyAgICAyLjg5
-ODY5MV0gWzxmZmZmZmY4MDA4MGQ4MjZjPl0gYmxvY2tpbmdfbm90aWZpZXJfY2FsbF9jaGFpbisw
-eDE0LzB4MjAKWyAgICAyLjg5ODY5Nl0gWzxmZmZmZmY4MDA4M2M1ZTFjPl0gZmJfbm90aWZpZXJf
-Y2FsbF9jaGFpbisweDFjLzB4MjgKWyAgICAyLjg5ODcwM10gWzxmZmZmZmY4MDA4M2M4MWFjPl0g
-cmVnaXN0ZXJfZnJhbWVidWZmZXIrMHgxY2MvMHgyZTAKWyAgICAyLjg5ODcxMl0gWzxmZmZmZmY4
-MDA4NDVkYTgwPl0gZHJtX2ZiX2hlbHBlcl9pbml0aWFsX2NvbmZpZysweDI4OC8weDNlOApbICAg
-IDIuODk4NzE5XSBbPGZmZmZmZjgwMDg1M2RhMjA+XSBub3V2ZWF1X2ZiY29uX2luaXQrMHhlMC8w
-eDExOApbICAgIDIuODk4NzI3XSBbPGZmZmZmZjgwMDg1MmQyZjg+XSBub3V2ZWF1X2RybV9sb2Fk
-KzB4MjY4LzB4ODkwClsgICAgMi44OTg3MzRdIFs8ZmZmZmZmODAwODQ2NmUyND5dIGRybV9kZXZf
-cmVnaXN0ZXIrMHhiYy8weGM4ClsgICAgMi44OTg3NDBdIFs8ZmZmZmZmODAwODQ2OGE4OD5dIGRy
-bV9nZXRfcGNpX2RldisweGEwLzB4MTgwClsgICAgMi44OTg3NDddIFs8ZmZmZmZmODAwODUyY2Iy
-OD5dIG5vdXZlYXVfZHJtX3Byb2JlKzB4MWEwLzB4MWUwClsgICAgMi44OTg3NTVdIFs8ZmZmZmZm
-ODAwODNhMzJlMD5dIHBjaV9kZXZpY2VfcHJvYmUrMHg5OC8weDExMApbICAgIDIuODk4NzYzXSBb
-PGZmZmZmZjgwMDg1OGU0MzQ+XSBkcml2ZXJfcHJvYmVfZGV2aWNlKzB4MjA0LzB4MmIwClsgICAg
-Mi44OTg3NzBdIFs8ZmZmZmZmODAwODU4ZTU4Yz5dIF9fZHJpdmVyX2F0dGFjaCsweGFjLzB4YjAK
-WyAgICAyLjg5ODc3N10gWzxmZmZmZmY4MDA4NThjM2UwPl0gYnVzX2Zvcl9lYWNoX2RldisweDYw
-LzB4YTAKWyAgICAyLjg5ODc4M10gWzxmZmZmZmY4MDA4NThkYmMwPl0gZHJpdmVyX2F0dGFjaCsw
-eDIwLzB4MjgKWyAgICAyLjg5ODc4OV0gWzxmZmZmZmY4MDA4NThkN2IwPl0gYnVzX2FkZF9kcml2
-ZXIrMHgxZDAvMHgyMzgKWyAgICAyLjg5ODc5Nl0gWzxmZmZmZmY4MDA4NThlZDUwPl0gZHJpdmVy
-X3JlZ2lzdGVyKzB4NjAvMHhmOApbICAgIDIuODk4ODAyXSBbPGZmZmZmZjgwMDgzYTIwZGM+XSBf
-X3BjaV9yZWdpc3Rlcl9kcml2ZXIrMHgzYy8weDQ4ClsgICAgMi44OTg4MDldIFs8ZmZmZmZmODAw
-ODQ2OGViND5dIGRybV9wY2lfaW5pdCsweGY0LzB4MTIwClsgICAgMi44OTg4MThdIFs8ZmZmZmZm
-ODAwOGM1NmZjMD5dIG5vdXZlYXVfZHJtX2luaXQrMHgyMWMvMHgyMzAKWyAgICAyLjg5ODgyNV0g
-WzxmZmZmZmY4MDA4MDgyOWQ0Pl0gZG9fb25lX2luaXRjYWxsKzB4OGMvMHgxOTAKWyAgICAyLjg5
-ODgzMl0gWzxmZmZmZmY4MDA4YzMxYWY0Pl0ga2VybmVsX2luaXRfZnJlZWFibGUrMHgxNGMvMHgx
-ZjAKWyAgICAyLjg5ODgzOV0gWzxmZmZmZmY4MDA4OGEwYzIwPl0ga2VybmVsX2luaXQrMHgxMC8w
-eDEwMApbICAgIDIuODk4ODQ1XSBbPGZmZmZmZjgwMDgwODVlMTA+XSByZXRfZnJvbV9mb3JrKzB4
-MTAvMHg0MApbICAgIDIuODk4ODUzXSBDb2RlOiBhODgxMjBjNyBhOGMxMjAyNyBhODgxMjBjNyBh
-OGMxMjAyNyAoYTg4MTIwYzcpClsgICAgMi44OTg4NzFdIC0tLVsgZW5kIHRyYWNlIGQ1NzEzZGNh
-ZDAyM2VlMDQgXS0tLQpbICAgIDIuODk4ODg4XSBLZXJuZWwgcGFuaWMgLSBub3Qgc3luY2luZzog
-QXR0ZW1wdGVkIHRvIGtpbGwgaW5pdCEgZXhpdGNvZGU9MHgwMDAwMDAwYgoKSW4gYSB0b3NzLXVw
-IGJldHdlZW4gdGhlIEdQVSBzZWVpbmcgc3RhbGUgZGF0YSBhcnRlZmFjdHMgb24gc29tZSBzeXN0
-ZW1zCnZzLiBjYXRhc3Ryb3BoaWMga2VybmVsIGNyYXNoZXMgb24gb3RoZXIgc3lzdGVtcywgdGhl
-IGxhdHRlciB3b3VsZCBzZWVtCnRvIHRha2UgcHJlY2VkZW5jZSwgc28gcmV2ZXJ0IHRoaXMgY2hh
-bmdlIHVudGlsIHRoZSByZWFsIHVuZGVybHlpbmcKcHJvYmxlbSBjYW4gYmUgZml4ZWQuCgpTaWdu
-ZWQtb2ZmLWJ5OiBSb2JpbiBNdXJwaHkgPHJvYmluLm11cnBoeUBhcm0uY29tPgpBY2tlZC1ieTog
-QWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+ClthY291cmJvdEBudmlkaWEu
-Y29tOiBwb3J0IHRvIE5vdXZlYXUgdHJlZSwgcmVtb3ZlIGJpdHMgaW4gbGliL10KU2lnbmVkLW9m
-Zi1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Ci0tLQpIaSBCZW4s
-CgpJIGhhdmUgcG9ydGVkIHRoaXMgcGF0Y2ggdG8geW91ciB0cmVlIC0gY291bGQgeW91IHRha2Ug
-aXQgZm9yIDQuNz8gV2UgZGVmaW5pdGVseSB3YW50CnRvIGF2b2lkIHRoZXNlIGNyYXNoZXMuIEkg
-YW0gd29ya2luZyBvbiBhIGZpbmFsIHNvbHV0aW9uIGZvciB0aGlzIHRoYXQgd2lsbCBhbGxvdyB1
-cwp0byByZW1vdmUgdGhhdCBjcHVfY29oZXJlbnQgZmxhZyBhbHRvZ2V0aGVyLgoKIGRybS9ub3V2
-ZWF1L252a20vZW5naW5lL2RldmljZS9wY2kuYyB8IDIgKy0KIGxpYi9pbmNsdWRlL252aWYvb3Mu
-aCAgICAgICAgICAgICAgICB8IDYgLS0tLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDEgaW5zZXJ0aW9u
-KCspLCA3IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5l
-L2RldmljZS9wY2kuYyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9wY2kuYwppbmRl
-eCAxOGZhYjM5NzNjZTUuLjYyYWQwMzAwY2ZhNSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZr
-bS9lbmdpbmUvZGV2aWNlL3BjaS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rldmlj
-ZS9wY2kuYwpAQCAtMTYxNCw3ICsxNjE0LDcgQEAgbnZrbV9kZXZpY2VfcGNpX2Z1bmMgPSB7CiAJ
-LmZpbmkgPSBudmttX2RldmljZV9wY2lfZmluaSwKIAkucmVzb3VyY2VfYWRkciA9IG52a21fZGV2
-aWNlX3BjaV9yZXNvdXJjZV9hZGRyLAogCS5yZXNvdXJjZV9zaXplID0gbnZrbV9kZXZpY2VfcGNp
-X3Jlc291cmNlX3NpemUsCi0JLmNwdV9jb2hlcmVudCA9ICFJU19FTkFCTEVEKENPTkZJR19BUk0p
-ICYmICFJU19FTkFCTEVEKENPTkZJR19BUk02NCksCisJLmNwdV9jb2hlcmVudCA9ICFJU19FTkFC
-TEVEKENPTkZJR19BUk0pLAogfTsKIAogaW50CmRpZmYgLS1naXQgYS9saWIvaW5jbHVkZS9udmlm
-L29zLmggYi9saWIvaW5jbHVkZS9udmlmL29zLmgKaW5kZXggODMxMTEwOTA0ZmVlLi4xZWRhNTNh
-YThmNDUgMTAwNjQ0Ci0tLSBhL2xpYi9pbmNsdWRlL252aWYvb3MuaAorKysgYi9saWIvaW5jbHVk
-ZS9udmlmL29zLmgKQEAgLTEzMCwxMiArMTMwLDYgQEAgdHlwZWRlZiBkbWFfYWRkcl90IHJlc291
-cmNlX3NpemVfdDsKICNkZWZpbmUgSVNfRU5BQkxFRF9DT05GSUdfQVJNIDAKICNlbmRpZgogCi0j
-aWYgZGVmaW5lZChDT05GSUdfQVJNNjQpCi0jZGVmaW5lIElTX0VOQUJMRURfQ09ORklHX0FSTTY0
-IDEKLSNlbHNlCi0jZGVmaW5lIElTX0VOQUJMRURfQ09ORklHX0FSTTY0IDAKLSNlbmRpZgotCiAj
-aWYgZGVmaW5lZChDT05GSUdfSU9NTVVfQVBJKQogI2RlZmluZSBJU19FTkFCTEVEX0NPTkZJR19J
-T01NVV9BUEkgMQogI2Vsc2UKLS0gCjIuOC4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+
+--===============0169538382==
+Content-Type: multipart/alternative; boundary="14652006930.EdC360c.8931";
+ charset="UTF-8"
+
+
+--14652006930.EdC360c.8931
+Date: Mon, 6 Jun 2016 08:11:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96355
+
+gregory.hainaut-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #12 from gregory.hainaut-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Actually what I saw is that all UBOs are validated when programs are switch=
+ed.
+But I guess it is normal. I need to dig further. Thanks for the fixes.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14652006930.EdC360c.8931
+Date: Mon, 6 Jun 2016 08:11:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gregory.h=
+ainaut&#64;gmail.com" title=3D"gregory.hainaut&#64;gmail.com">gregory.haina=
+ut&#64;gmail.com</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Performance: extra&amp;costly SSBO validation =
+even when SSBO aren't used"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355">bug 96355<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Performance: extra&amp;costly SSBO validation =
+even when SSBO aren't used"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355#c12">Commen=
+t # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Performance: extra&amp;costly SSBO validation =
+even when SSBO aren't used"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355">bug 96355<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gregory.hainaut&#64;gmail.com" title=3D"gregory.hainaut&#64;gmail.com">greg=
+ory.hainaut&#64;gmail.com</a>
+</span></b>
+        <pre>Actually what I saw is that all UBOs are validated when progra=
+ms are switched.
+But I guess it is normal. I need to dig further. Thanks for the fixes.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14652006930.EdC360c.8931--
+
+--===============0169538382==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0169538382==--
