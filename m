@@ -1,89 +1,194 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH 01/14] drm/nouveau: use drm_crtc_send_vblank_event() v2
-Date: Mon, 6 Jun 2016 18:02:18 +0200
-Message-ID: <20160606160218.GB10110@phenom.ffwll.local>
-References: <1465224105-21485-1-git-send-email-gustavo@padovan.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96411] New: [NVA8] reclocking not working. screen
+	glitches.
+Date: Mon, 06 Jun 2016 17:23:44 +0000
+Message-ID: <bug-96411-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <1465224105-21485-1-git-send-email-gustavo@padovan.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Gustavo Padovan <gustavo@padovan.org>
-Cc: "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, Gustavo Padovan <gustavo.padovan@collabora.co.uk>, open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============0975663001=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdW4gMDYsIDIwMTYgYXQgMTE6NDE6MzJBTSAtMDMwMCwgR3VzdGF2byBQYWRvdmFu
-IHdyb3RlOgo+IEZyb206IEd1c3Rhdm8gUGFkb3ZhbiA8Z3VzdGF2by5wYWRvdmFuQGNvbGxhYm9y
-YS5jby51az4KPiAKPiBSZXBsYWNlIHRoZSBsZWdhY3kgZHJtX3NlbmRfdmJsYW5rX2V2ZW50KCkg
-d2l0aCB0aGUgbmV3IGhlbHBlciBmdW5jdGlvbi4KPiAKPiB2MjogYWRkIGNydGMgdG8gbm91dmVh
-dV9wYWdlX2ZsaXBfc3RhdGUgKGNvbW1lbnQgZnJvbSBNYXJpbyBLbGVpbmVyKQo+IAo+IENjOiBN
-YXJpbyBLbGVpbmVyIDxtYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5
-OiBHdXN0YXZvIFBhZG92YW4gPGd1c3Rhdm8ucGFkb3ZhbkBjb2xsYWJvcmEuY28udWs+CgpGb3Jn
-b3QgdG8gc3F1YXNoIHRoaXMgaW50byB0aGUgbWFpbiBub3V2ZWF1IHBhdGNoIGFzIGZpeHVwPwot
-RGFuaWVsCgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXku
-YyB8IDE5ICsrKysrKysrKystLS0tLS0tLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9kaXNwbGF5LmggfCAgMyArKy0KPiAgMiBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNlcnRpb25z
-KCspLCAxMCBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2Rpc3BsYXkuYwo+IGluZGV4IDdjNzdmOTYuLjlkNzI0NjcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMKPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYwo+IEBAIC03NjAsOCArNzYwLDcgQEAgbm91dmVh
-dV9jcnRjX3BhZ2VfZmxpcChzdHJ1Y3QgZHJtX2NydGMgKmNydGMsIHN0cnVjdCBkcm1fZnJhbWVi
-dWZmZXIgKmZiLAo+ICAKPiAgCS8qIEluaXRpYWxpemUgYSBwYWdlIGZsaXAgc3RydWN0ICovCj4g
-IAkqcyA9IChzdHJ1Y3Qgbm91dmVhdV9wYWdlX2ZsaXBfc3RhdGUpCj4gLQkJeyB7IH0sIGV2ZW50
-LCBub3V2ZWF1X2NydGMoY3J0YyktPmluZGV4LAo+IC0JCSAgZmItPmJpdHNfcGVyX3BpeGVsLCBm
-Yi0+cGl0Y2hlc1swXSwgY3J0Yy0+eCwgY3J0Yy0+eSwKPiArCQl7IHsgfSwgZXZlbnQsIGNydGMs
-IGZiLT5iaXRzX3Blcl9waXhlbCwgZmItPnBpdGNoZXNbMF0sCj4gIAkJICBuZXdfYm8tPmJvLm9m
-ZnNldCB9Owo+ICAKPiAgCS8qIEtlZXAgdmJsYW5rcyBvbiBkdXJpbmcgZmxpcCwgZm9yIHRoZSB0
-YXJnZXQgY3J0YyBvZiB0aGlzIGZsaXAgKi8KPiBAQCAtODQyLDE3ICs4NDEsMTggQEAgbm91dmVh
-dV9maW5pc2hfcGFnZV9mbGlwKHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW4sCj4gIAlzID0g
-bGlzdF9maXJzdF9lbnRyeSgmZmN0eC0+ZmxpcCwgc3RydWN0IG5vdXZlYXVfcGFnZV9mbGlwX3N0
-YXRlLCBoZWFkKTsKPiAgCWlmIChzLT5ldmVudCkgewo+ICAJCWlmIChkcm0tPmRldmljZS5pbmZv
-LmZhbWlseSA8IE5WX0RFVklDRV9JTkZPX1YwX1RFU0xBKSB7Cj4gLQkJCWRybV9hcm1fdmJsYW5r
-X2V2ZW50KGRldiwgcy0+Y3J0Yywgcy0+ZXZlbnQpOwo+ICsJCQlkcm1fYXJtX3ZibGFua19ldmVu
-dChkZXYsIGRybV9jcnRjX2luZGV4KHMtPmNydGMpLAo+ICsJCQkJCSAgICAgcy0+ZXZlbnQpOwo+
-ICAJCX0gZWxzZSB7Cj4gLQkJCWRybV9zZW5kX3ZibGFua19ldmVudChkZXYsIHMtPmNydGMsIHMt
-PmV2ZW50KTsKPiArCQkJZHJtX2NydGNfc2VuZF92YmxhbmtfZXZlbnQocy0+Y3J0Yywgcy0+ZXZl
-bnQpOwo+ICAKPiAgCQkJLyogR2l2ZSB1cCBvd25lcnNoaXAgb2YgdmJsYW5rIGZvciBwYWdlLWZs
-aXBwZWQgY3J0YyAqLwo+IC0JCQlkcm1fdmJsYW5rX3B1dChkZXYsIHMtPmNydGMpOwo+ICsJCQlk
-cm1fdmJsYW5rX3B1dChkZXYsIGRybV9jcnRjX2luZGV4KHMtPmNydGMpKTsKPiAgCQl9Cj4gIAl9
-Cj4gIAllbHNlIHsKPiAgCQkvKiBHaXZlIHVwIG93bmVyc2hpcCBvZiB2YmxhbmsgZm9yIHBhZ2Ut
-ZmxpcHBlZCBjcnRjICovCj4gLQkJZHJtX3ZibGFua19wdXQoZGV2LCBzLT5jcnRjKTsKPiArCQlk
-cm1fdmJsYW5rX3B1dChkZXYsIGRybV9jcnRjX2luZGV4KHN0YXRlLT5jcnRjKSk7Cj4gIAl9Cj4g
-IAo+ICAJbGlzdF9kZWwoJnMtPmhlYWQpOwo+IEBAIC04NzMsOSArODczLDEwIEBAIG5vdXZlYXVf
-ZmxpcF9jb21wbGV0ZShzdHJ1Y3QgbnZpZl9ub3RpZnkgKm5vdGlmeSkKPiAgCj4gIAlpZiAoIW5v
-dXZlYXVfZmluaXNoX3BhZ2VfZmxpcChjaGFuLCAmc3RhdGUpKSB7Cj4gIAkJaWYgKGRybS0+ZGV2
-aWNlLmluZm8uZmFtaWx5IDwgTlZfREVWSUNFX0lORk9fVjBfVEVTTEEpIHsKPiAtCQkJbnZfc2V0
-X2NydGNfYmFzZShkcm0tPmRldiwgc3RhdGUuY3J0Yywgc3RhdGUub2Zmc2V0ICsKPiAtCQkJCQkg
-c3RhdGUueSAqIHN0YXRlLnBpdGNoICsKPiAtCQkJCQkgc3RhdGUueCAqIHN0YXRlLmJwcCAvIDgp
-Owo+ICsJCQludl9zZXRfY3J0Y19iYXNlKGRybS0+ZGV2LCBkcm1fY3J0Y19pbmRleChzdGF0ZS5j
-cnRjKSwKPiArCQkJCQkgc3RhdGUub2Zmc2V0ICsgc3RhdGUuY3J0Yy0+eSAqCj4gKwkJCQkJIHN0
-YXRlLnBpdGNoICsgc3RhdGUuY3J0Yy0+eCAqCj4gKwkJCQkJIHN0YXRlLmJwcCAvIDgpOwo+ICAJ
-CX0KPiAgCX0KPiAgCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfZGlzcGxheS5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmgK
-PiBpbmRleCAyNDI3M2JhLi4wNDIwZWU4IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L25vdXZlYXVfZGlzcGxheS5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bm91dmVhdV9kaXNwbGF5LmgKPiBAQCAtMjgsNyArMjgsOCBAQCBpbnQgbm91dmVhdV9mcmFtZWJ1
-ZmZlcl9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICosIHN0cnVjdCBub3V2ZWF1X2ZyYW1lYnVmZmVy
-ICosCj4gIHN0cnVjdCBub3V2ZWF1X3BhZ2VfZmxpcF9zdGF0ZSB7Cj4gIAlzdHJ1Y3QgbGlzdF9o
-ZWFkIGhlYWQ7Cj4gIAlzdHJ1Y3QgZHJtX3BlbmRpbmdfdmJsYW5rX2V2ZW50ICpldmVudDsKPiAt
-CWludCBjcnRjLCBicHAsIHBpdGNoLCB4LCB5Owo+ICsJc3RydWN0IGRybV9jcnRjICpjcnRjOwo+
-ICsJaW50IGJwcCwgcGl0Y2g7Cj4gIAl1NjQgb2Zmc2V0Owo+ICB9Owo+ICAKPiAtLSAKPiAyLjUu
-NQo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4g
-ZHJpLWRldmVsIG1haWxpbmcgbGlzdAo+IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZl
-bAoKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9u
-Cmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2RyaS1kZXZlbAo=
+
+--===============0975663001==
+Content-Type: multipart/alternative; boundary="14652338241.0fcaa.25023";
+ charset="UTF-8"
+
+
+--14652338241.0fcaa.25023
+Date: Mon, 6 Jun 2016 17:23:44 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96411
+
+            Bug ID: 96411
+           Summary: [NVA8] reclocking not working. screen glitches.
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: josenetodino+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Reclocking isn't working in linux 4.4 and 4.5, 4.3 is ok. I didn't test lin=
+ux
+4.6.=20
+
+Right after echo 03 > pstate the screen glitches, but I'm able to safe rebo=
+ot
+by sysrq method.
+
+There are no errors on the log.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14652338241.0fcaa.25023
+Date: Mon, 6 Jun 2016 17:23:44 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVA8] reclocking not working. screen glitches."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96411">96411</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVA8] reclocking not working. screen glitches.
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>josenetodino+freedesktop&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Reclocking isn't working in linux 4.4 and 4.5, 4.3 is ok. I di=
+dn't test linux
+4.6.=20
+
+Right after echo 03 &gt; pstate the screen glitches, but I'm able to safe r=
+eboot
+by sysrq method.
+
+There are no errors on the log.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14652338241.0fcaa.25023--
+
+--===============0975663001==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0975663001==--
