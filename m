@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96355] Performance: extra&costly SSBO validation
- even when SSBO aren't used
-Date: Mon, 06 Jun 2016 09:17:44 +0000
-Message-ID: <bug-96355-8800-EWMm2eVmWX@http.bugs.freedesktop.org/>
-References: <bug-96355-8800@http.bugs.freedesktop.org/>
+From: Robin Murphy <robin.murphy-5wv7dgnIgG8@public.gmane.org>
+Subject: Re: [PATCH v2] Revert "drm/nouveau/device/pci: set as
+ non-CPU-coherent on ARM64"
+Date: Mon, 6 Jun 2016 10:25:01 +0100
+Message-ID: <5755416D.5010707@arm.com>
+References: <20160606071152.23812-1-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0031609795=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-96355-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20160606071152.23812-1-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,166 +18,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0031609795==
-Content-Type: multipart/alternative; boundary="14652046640.282B0eBa.24069";
- charset="UTF-8"
-
-
---14652046640.282B0eBa.24069
-Date: Mon, 6 Jun 2016 09:17:44 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96355
-
---- Comment #13 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
-(In reply to Gediminas Jakutis from comment #8)
-> I don't know about the reporter's case, but I have ran some benchmarks and
-> tests with f018456901ee291181ecce74c30b19c9f6731f06 (latest revision befo=
-re
-> those four patches) and fd6bbc2ee205ed02f66a8d8ef5b2adf4005d588c (the lat=
-est
-> revision, with the four patches) on my GTX 770 + FX-8320 @ 4.1GHz, focusi=
-ng
-> on CPU-bound cases.
->=20
-> The results are all to the better - on most games I tested I see 4-10%
-> performance boost. Am only going to list a pair of highlights:
->=20
-> =C2=B7 Age of Wonders III, my own severely CPU limited testcase: 21 fps -=
-> 26
-> fps, a jump by a whooping 23.8% (still CPU-bound, though).
-> =C2=B7 Payday 2, well, this game has no [reproducable] way to benchmark i=
-t, but
-> the gameplay used to be nightmare filled with severe rubber-banding, runn=
-ing
-> just some 18-22 fps in many situations, all while painfully CPU-bound. No=
-w,
-> most of rubber-banding is either gone or is a lot less noticeable. The
-> framerate in these aforementioned situations went up to 25-60; dipping be=
-low
-> 30 very rarely, while mostly maintaining over 2x performance boost.
-> Basically, these four patches made the game *playable* on nouveau. (The g=
-ame
-> is still very painfully CPU-bound, though.)
->=20
-> So, at least here, I can see clear performance benefits.
-> Will leave to be marked as RESOLVED by the reporter; don't want to hijack
-> his issue.
-
-I saw the same thing with PAYDAY 2, but I couldn't restore the low perf so I
-guess they just reworked their engine while they added the SMAA and SSAO th=
-ing,
-so I doubt those patches had anything to do with that :/
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14652046640.282B0eBa.24069
-Date: Mon, 6 Jun 2016 09:17:44 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Performance: extra&amp;costly SSBO validation =
-even when SSBO aren't used"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355#c13">Commen=
-t # 13</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Performance: extra&amp;costly SSBO validation =
-even when SSBO aren't used"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355">bug 96355<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktop&#64;karolherbst.de" title=3D"Karol Herbst &lt;freedesktop&#64;k=
-arolherbst.de&gt;"> <span class=3D"fn">Karol Herbst</span></a>
-</span></b>
-        <pre>(In reply to Gediminas Jakutis from <a href=3D"show_bug.cgi?id=
-=3D96355#c8">comment #8</a>)
-<span class=3D"quote">&gt; I don't know about the reporter's case, but I ha=
-ve ran some benchmarks and
-&gt; tests with f018456901ee291181ecce74c30b19c9f6731f06 (latest revision b=
-efore
-&gt; those four patches) and fd6bbc2ee205ed02f66a8d8ef5b2adf4005d588c (the =
-latest
-&gt; revision, with the four patches) on my GTX 770 + FX-8320 &#64; 4.1GHz,=
- focusing
-&gt; on CPU-bound cases.
-&gt;=20
-&gt; The results are all to the better - on most games I tested I see 4-10%
-&gt; performance boost. Am only going to list a pair of highlights:
-&gt;=20
-&gt; =C2=B7 Age of Wonders III, my own severely CPU limited testcase: 21 fp=
-s -&gt; 26
-&gt; fps, a jump by a whooping 23.8% (still CPU-bound, though).
-&gt; =C2=B7 Payday 2, well, this game has no [reproducable] way to benchmar=
-k it, but
-&gt; the gameplay used to be nightmare filled with severe rubber-banding, r=
-unning
-&gt; just some 18-22 fps in many situations, all while painfully CPU-bound.=
- Now,
-&gt; most of rubber-banding is either gone or is a lot less noticeable. The
-&gt; framerate in these aforementioned situations went up to 25-60; dipping=
- below
-&gt; 30 very rarely, while mostly maintaining over 2x performance boost.
-&gt; Basically, these four patches made the game *playable* on nouveau. (Th=
-e game
-&gt; is still very painfully CPU-bound, though.)
-&gt;=20
-&gt; So, at least here, I can see clear performance benefits.
-&gt; Will leave to be marked as RESOLVED by the reporter; don't want to hij=
-ack
-&gt; his issue.</span >
-
-I saw the same thing with PAYDAY 2, but I couldn't restore the low perf so I
-guess they just reworked their engine while they added the SMAA and SSAO th=
-ing,
-so I doubt those patches had anything to do with that :/</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14652046640.282B0eBa.24069--
-
---===============0031609795==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0031609795==--
+T24gMDYvMDYvMTYgMDg6MTEsIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+IEZyb206IFJvYmlu
+IE11cnBoeSA8cm9iaW4ubXVycGh5QGFybS5jb20+Cj4KPiBUaGlzIHJldmVydHMgY29tbWl0IDE3
+MzNhMmFkMzY3NDFiMTgxMmNmOGIzZjMwMzdjMjhkMGFmNTNmNTAuCj4KPiBUaGVyZSBpcyBhcHBh
+cmVudGx5IHNvbWV0aGluZyBhbWlzcyB3aXRoIHRoZSB3YXkgdGhlIFRUTSBjb2RlIGhhbmRsZXMK
+PiBETUEgYnVmZmVycywgd2hpY2ggdGhlIGFib3ZlIGNvbW1pdCB3YXMgYXR0ZW1wdGluZyB0byB3
+b3JrIGFyb3VuZCBmb3IKPiBhcm02NCBzeXN0ZW1zIHdpdGggbm9uLWNvaGVyZW50IFBDSS4gVW5m
+b3J0dW5hdGVseSwgdGhpcyBjb21wbGV0ZWx5Cj4gYnJlYWtzIHN5c3RlbXMgKndpdGgqIGNvaGVy
+ZW50IFBDSSAod2hpY2ggYXBwZWFyIHRvIGJlIHRoZSBtYWpvcml0eSkuCj4KPiBCb290aW5nIGEg
+cGxhaW4gYXJtNjQgZGVmY29uZmlnICsgQ09ORklHX0RSTSArIENPTkZJR19EUk1fTk9VVkVBVSBv
+bgo+IGEgbWFjaGluZSB3aXRoIGEgUENJIEdQVSBoYXZpbmcgY29oZXJlbnQgZG1hX21hcF9vcHMg
+KGluIHRoaXMgY2FzZSBhCj4gNzYwMEdUIGNhcmQgcGx1Z2dlZCBpbnRvIGFuIEFSTSBKdW5vIGJv
+YXJkKSByZXN1bHRzIGluIGEgZmF0YWwgY3Jhc2g6Cj4KPiBbICAgIDIuODAzNDM4XSBub3V2ZWF1
+IDAwMDA6MDY6MDAuMDogRFJNOiBhbGxvY2F0ZWQgMTAyNHg3NjggZmI6IDB4OTAwMCwgYm8gZmZm
+ZmZmYzk3NjE0MWMwMAo+IFsgICAgMi44OTc2NjJdIFVuYWJsZSB0byBoYW5kbGUga2VybmVsIE5V
+TEwgcG9pbnRlciBkZXJlZmVyZW5jZSBhdCB2aXJ0dWFsIGFkZHJlc3MgMDAwMDAxYWMKPiBbICAg
+IDIuODk3NjY2XSBwZ2QgPSBmZmZmZmY4MDA4ZTAwMDAwCj4gWyAgICAyLjg5NzY3NV0gWzAwMDAw
+MWFjXSAqcGdkPTAwMDAwMDA5ZmZmZmUwMDMsICpwdWQ9MDAwMDAwMDlmZmZmZTAwMywgKnBtZD0w
+MDAwMDAwMDAwMDAwMDAwCj4gWyAgICAyLjg5NzY4MF0gSW50ZXJuYWwgZXJyb3I6IE9vcHM6IDk2
+MDAwMDQ1IFsjMV0gUFJFRU1QVCBTTVAKPiBbICAgIDIuODk3Njg1XSBNb2R1bGVzIGxpbmtlZCBp
+bjoKPiBbICAgIDIuODk3NjkyXSBDUFU6IDAgUElEOiAxIENvbW06IHN3YXBwZXIvMCBOb3QgdGFp
+bnRlZCA0LjYuMC1yYzUrICM1NDMKPiBbICAgIDIuODk3Njk0XSBIYXJkd2FyZSBuYW1lOiBBUk0g
+SnVubyBkZXZlbG9wbWVudCBib2FyZCAocjEpIChEVCkKPiBbICAgIDIuODk3Njk5XSB0YXNrOiBm
+ZmZmZmZjOTc2OGEwMDAwIHRpOiBmZmZmZmZjOTc2OGE4MDAwIHRhc2sudGk6IGZmZmZmZmM5NzY4
+YTgwMDAKPiBbICAgIDIuODk3NzExXSBQQyBpcyBhdCBfX21lbWNweSsweDdjLzB4MTgwCj4gWyAg
+ICAyLjg5NzcxOV0gTFIgaXMgYXQgT1VUX1JJTkdwKzB4MzQvMHg3MAo+IFsgICAgMi44OTc3MjRd
+IHBjIDogWzxmZmZmZmY4MDA4MzQ2NWZjPl0gbHIgOiBbPGZmZmZmZjgwMDg1NDI0OGM+XSBwc3Rh
+dGU6IDgwMDAwMDQ1Cj4gWyAgICAyLjg5NzcyNl0gc3AgOiBmZmZmZmZjOTc2OGFiMzYwCj4gWyAg
+ICAyLjg5NzczMl0geDI5OiBmZmZmZmZjOTc2OGFiMzYwIHgyODogMDAwMDAwMDAwMDAwMDAwMQo+
+IFsgICAgMi44OTc3MzhdIHgyNzogZmZmZmZmYzk3NjI0YzAwMCB4MjY6IDAwMDAwMDAwMDAwMDAw
+MDAKPiBbICAgIDIuODk3NzQ0XSB4MjU6IDAwMDAwMDAwMDAwMDAwODAgeDI0OiAwMDAwMDAwMDAw
+MDA2YzAwCj4gWyAgICAyLjg5Nzc0OV0geDIzOiAwMDAwMDAwMDAwMDAwMDA1IHgyMjogZmZmZmZm
+Yzk3NjI0YzAxMAo+IFsgICAgMi44OTc3NTVdIHgyMTogMDAwMDAwMDAwMDAwMDAwNCB4MjA6IDAw
+MDAwMDAwMDAwMDAwMDQKPiBbICAgIDIuODk3NzYxXSB4MTk6IGZmZmZmZmM5NzYzZGEwMDAgeDE4
+OiBmZmZmZmZjOTc2YjI0OTFjCj4gWyAgICAyLjg5Nzc2Nl0geDE3OiAwMDAwMDAwMDAwMDAwMDA3
+IHgxNjogMDAwMDAwMDAwMDAwMDAwNgo+IFsgICAgMi44OTc3NzFdIHgxNTogMDAwMDAwMDAwMDAw
+MDAwMSB4MTQ6IDAwMDAwMDAwMDAwMDAwMDEKPiBbICAgIDIuODk3Nzc3XSB4MTM6IDAwMDAwMDAw
+MDBlMzFiNzAgeDEyOiBmZmZmZmZjOTc2OGEwMDgwCj4gWyAgICAyLjg5Nzc4M10geDExOiAwMDAw
+MDAwMDAwMDAwMDAwIHgxMDogZmZmZmZmZmZmZmZmZmIwMAo+IFsgICAgMi44OTc3ODhdIHg5IDog
+MDAwMDAwMDAwMDAwMDAwMCB4OCA6IDAwMDAwMDAwMDAwMDAwMDAKPiBbICAgIDIuODk3NzkzXSB4
+NyA6IDAwMDAwMDAwMDAwMDAwMDAgeDYgOiAwMDAwMDAwMDAwMDAwMWFjCj4gWyAgICAyLjg5Nzc5
+OV0geDUgOiAwMDAwMDAwMGZmZmZmZmZmIHg0IDogMDAwMDAwMDAwMDAwMDAwMAo+IFsgICAgMi44
+OTc4MDRdIHgzIDogMDAwMDAwMDAwMDAwMDAxMCB4MiA6IDAwMDAwMDAwMDAwMDAwMTAKPiBbICAg
+IDIuODk3ODEwXSB4MSA6IGZmZmZmZmM5NzYyNGMwMTAgeDAgOiAwMDAwMDAwMDAwMDAwMWFjCj4g
+Li4uCj4gWyAgICAyLjg5ODQ5NF0gQ2FsbCB0cmFjZToKPiBbICAgIDIuODk4NDk5XSBFeGNlcHRp
+b24gc3RhY2soMHhmZmZmZmZjOTc2OGFiMWEwIHRvIDB4ZmZmZmZmYzk3NjhhYjJjMCkKPiBbICAg
+IDIuODk4NTA2XSBiMWEwOiBmZmZmZmZjOTc2M2RhMDAwIDAwMDAwMDAwMDAwMDAwMDQgZmZmZmZm
+Yzk3NjhhYjM2MCBmZmZmZmY4MDA4MzQ2NWZjCj4gWyAgICAyLjg5ODUxM10gYjFjMDogZmZmZmZm
+Yzk3NjgwMWUwMCBmZmZmZmZjOTc2MmI4MDAwIGZmZmZmZmM5NzY4YWIxZjAgZmZmZmZmODAwODBl
+YzE1OAo+IFsgICAgMi44OTg1MjBdIGIxZTA6IGZmZmZmZmM5NzY4YWIyMzAgZmZmZmZmODAwODQ5
+NmQwNCBmZmZmZmZjOTc1Y2U2ZDgwIGZmZmZmZmM5NzY4YWIzNmUKPiBbICAgIDIuODk4NTI3XSBi
+MjAwOiBmZmZmZmZjOTc2OGFiMzZmIGZmZmZmZmM5NzY4YWIyOWQgZmZmZmZmYzk3NjhhYjI5ZSBm
+ZmZmZmZjOTc2OGEwMDAwCj4gWyAgICAyLjg5ODUzM10gYjIyMDogZmZmZmZmYzk3NjhhYjI1MCBm
+ZmZmZmY4MDA4MGU3MGMwIGZmZmZmZmM5NzY4YWIyNzAgZmZmZmZmODAwODQ5NmU0NAo+IFsgICAg
+Mi44OTg1NDBdIGIyNDA6IDAwMDAwMDAwMDAwMDAxYWMgZmZmZmZmYzk3NjI0YzAxMCAwMDAwMDAw
+MDAwMDAwMDEwIDAwMDAwMDAwMDAwMDAwMTAKPiBbICAgIDIuODk4NTQ2XSBiMjYwOiAwMDAwMDAw
+MDAwMDAwMDAwIDAwMDAwMDAwZmZmZmZmZmYgMDAwMDAwMDAwMDAwMDFhYyAwMDAwMDAwMDAwMDAw
+MDAwCj4gWyAgICAyLjg5ODU1Ml0gYjI4MDogMDAwMDAwMDAwMDAwMDAwMCAwMDAwMDAwMDAwMDAw
+MDAwIGZmZmZmZmZmZmZmZmZiMDAgMDAwMDAwMDAwMDAwMDAwMAo+IFsgICAgMi44OTg1NThdIGIy
+YTA6IGZmZmZmZmM5NzY4YTAwODAgMDAwMDAwMDAwMGUzMWI3MCAwMDAwMDAwMDAwMDAwMDAxIDAw
+MDAwMDAwMDAwMDAwMDEKPiBbICAgIDIuODk4NTY2XSBbPGZmZmZmZjgwMDgzNDY1ZmM+XSBfX21l
+bWNweSsweDdjLzB4MTgwCj4gWyAgICAyLjg5ODU3NF0gWzxmZmZmZmY4MDA4NTNlMTY0Pl0gbnYw
+NF9mYmNvbl9pbWFnZWJsaXQrMHgxZDQvMHgyZTgKPiBbICAgIDIuODk4NTgyXSBbPGZmZmZmZjgw
+MDg1M2Q2ZDA+XSBub3V2ZWF1X2ZiY29uX2ltYWdlYmxpdCsweGQ4LzB4ZTAKPiBbICAgIDIuODk4
+NTkxXSBbPGZmZmZmZjgwMDgzYzRkYjQ+XSBzb2Z0X2N1cnNvcisweDE1NC8weDFkOAo+IFsgICAg
+Mi44OTg1OThdIFs8ZmZmZmZmODAwODNjNDdiND5dIGJpdF9jdXJzb3IrMHg0ZmMvMHg1MzgKPiBb
+ICAgIDIuODk4NjA1XSBbPGZmZmZmZjgwMDgzYzBjZmM+XSBmYmNvbl9jdXJzb3IrMHgxMzQvMHgx
+YTgKPiBbICAgIDIuODk4NjEzXSBbPGZmZmZmZjgwMDg0MWMyODA+XSBoaWRlX2N1cnNvcisweDM4
+LzB4YTAKPiBbICAgIDIuODk4NjIwXSBbPGZmZmZmZjgwMDg0MWQ0MjA+XSByZWRyYXdfc2NyZWVu
+KzB4MTIwLzB4MjI4Cj4gWyAgICAyLjg5ODYyOF0gWzxmZmZmZmY4MDA4M2JmMjY4Pl0gZmJjb25f
+cHJlcGFyZV9sb2dvKzB4MzcwLzB4M2Y4Cj4gWyAgICAyLjg5ODYzNV0gWzxmZmZmZmY4MDA4M2Jm
+NjQwPl0gZmJjb25faW5pdCsweDM1MC8weDU2MAo+IFsgICAgMi44OTg2NDFdIFs8ZmZmZmZmODAw
+ODQxYzYzND5dIHZpc3VhbF9pbml0KzB4YWMvMHgxMDgKPiBbICAgIDIuODk4NjQ4XSBbPGZmZmZm
+ZjgwMDg0MWRmMTQ+XSBkb19iaW5kX2Nvbl9kcml2ZXIrMHgxYzQvMHgzYTgKPiBbICAgIDIuODk4
+NjU1XSBbPGZmZmZmZjgwMDg0MWU0ZjQ+XSBkb190YWtlX292ZXJfY29uc29sZSsweDE3NC8weDFl
+OAo+IFsgICAgMi44OTg2NjJdIFs8ZmZmZmZmODAwODNiZjhjND5dIGRvX2ZiY29uX3Rha2VvdmVy
+KzB4NzQvMHgxMDAKPiBbICAgIDIuODk4NjY5XSBbPGZmZmZmZjgwMDgzYzNlNDQ+XSBmYmNvbl9l
+dmVudF9ub3RpZnkrMHg4Y2MvMHg5MjAKPiBbICAgIDIuODk4NjgwXSBbPGZmZmZmZjgwMDgwZDdl
+Mzg+XSBub3RpZmllcl9jYWxsX2NoYWluKzB4NTAvMHg5MAo+IFsgICAgMi44OTg2ODVdIFs8ZmZm
+ZmZmODAwODBkODIxND5dIF9fYmxvY2tpbmdfbm90aWZpZXJfY2FsbF9jaGFpbisweDRjLzB4OTAK
+PiBbICAgIDIuODk4NjkxXSBbPGZmZmZmZjgwMDgwZDgyNmM+XSBibG9ja2luZ19ub3RpZmllcl9j
+YWxsX2NoYWluKzB4MTQvMHgyMAo+IFsgICAgMi44OTg2OTZdIFs8ZmZmZmZmODAwODNjNWUxYz5d
+IGZiX25vdGlmaWVyX2NhbGxfY2hhaW4rMHgxYy8weDI4Cj4gWyAgICAyLjg5ODcwM10gWzxmZmZm
+ZmY4MDA4M2M4MWFjPl0gcmVnaXN0ZXJfZnJhbWVidWZmZXIrMHgxY2MvMHgyZTAKPiBbICAgIDIu
+ODk4NzEyXSBbPGZmZmZmZjgwMDg0NWRhODA+XSBkcm1fZmJfaGVscGVyX2luaXRpYWxfY29uZmln
+KzB4Mjg4LzB4M2U4Cj4gWyAgICAyLjg5ODcxOV0gWzxmZmZmZmY4MDA4NTNkYTIwPl0gbm91dmVh
+dV9mYmNvbl9pbml0KzB4ZTAvMHgxMTgKPiBbICAgIDIuODk4NzI3XSBbPGZmZmZmZjgwMDg1MmQy
+Zjg+XSBub3V2ZWF1X2RybV9sb2FkKzB4MjY4LzB4ODkwCj4gWyAgICAyLjg5ODczNF0gWzxmZmZm
+ZmY4MDA4NDY2ZTI0Pl0gZHJtX2Rldl9yZWdpc3RlcisweGJjLzB4YzgKPiBbICAgIDIuODk4NzQw
+XSBbPGZmZmZmZjgwMDg0NjhhODg+XSBkcm1fZ2V0X3BjaV9kZXYrMHhhMC8weDE4MAo+IFsgICAg
+Mi44OTg3NDddIFs8ZmZmZmZmODAwODUyY2IyOD5dIG5vdXZlYXVfZHJtX3Byb2JlKzB4MWEwLzB4
+MWUwCj4gWyAgICAyLjg5ODc1NV0gWzxmZmZmZmY4MDA4M2EzMmUwPl0gcGNpX2RldmljZV9wcm9i
+ZSsweDk4LzB4MTEwCj4gWyAgICAyLjg5ODc2M10gWzxmZmZmZmY4MDA4NThlNDM0Pl0gZHJpdmVy
+X3Byb2JlX2RldmljZSsweDIwNC8weDJiMAo+IFsgICAgMi44OTg3NzBdIFs8ZmZmZmZmODAwODU4
+ZTU4Yz5dIF9fZHJpdmVyX2F0dGFjaCsweGFjLzB4YjAKPiBbICAgIDIuODk4Nzc3XSBbPGZmZmZm
+ZjgwMDg1OGMzZTA+XSBidXNfZm9yX2VhY2hfZGV2KzB4NjAvMHhhMAo+IFsgICAgMi44OTg3ODNd
+IFs8ZmZmZmZmODAwODU4ZGJjMD5dIGRyaXZlcl9hdHRhY2grMHgyMC8weDI4Cj4gWyAgICAyLjg5
+ODc4OV0gWzxmZmZmZmY4MDA4NThkN2IwPl0gYnVzX2FkZF9kcml2ZXIrMHgxZDAvMHgyMzgKPiBb
+ICAgIDIuODk4Nzk2XSBbPGZmZmZmZjgwMDg1OGVkNTA+XSBkcml2ZXJfcmVnaXN0ZXIrMHg2MC8w
+eGY4Cj4gWyAgICAyLjg5ODgwMl0gWzxmZmZmZmY4MDA4M2EyMGRjPl0gX19wY2lfcmVnaXN0ZXJf
+ZHJpdmVyKzB4M2MvMHg0OAo+IFsgICAgMi44OTg4MDldIFs8ZmZmZmZmODAwODQ2OGViND5dIGRy
+bV9wY2lfaW5pdCsweGY0LzB4MTIwCj4gWyAgICAyLjg5ODgxOF0gWzxmZmZmZmY4MDA4YzU2ZmMw
+Pl0gbm91dmVhdV9kcm1faW5pdCsweDIxYy8weDIzMAo+IFsgICAgMi44OTg4MjVdIFs8ZmZmZmZm
+ODAwODA4MjlkND5dIGRvX29uZV9pbml0Y2FsbCsweDhjLzB4MTkwCj4gWyAgICAyLjg5ODgzMl0g
+WzxmZmZmZmY4MDA4YzMxYWY0Pl0ga2VybmVsX2luaXRfZnJlZWFibGUrMHgxNGMvMHgxZjAKPiBb
+ICAgIDIuODk4ODM5XSBbPGZmZmZmZjgwMDg4YTBjMjA+XSBrZXJuZWxfaW5pdCsweDEwLzB4MTAw
+Cj4gWyAgICAyLjg5ODg0NV0gWzxmZmZmZmY4MDA4MDg1ZTEwPl0gcmV0X2Zyb21fZm9yaysweDEw
+LzB4NDAKPiBbICAgIDIuODk4ODUzXSBDb2RlOiBhODgxMjBjNyBhOGMxMjAyNyBhODgxMjBjNyBh
+OGMxMjAyNyAoYTg4MTIwYzcpCj4gWyAgICAyLjg5ODg3MV0gLS0tWyBlbmQgdHJhY2UgZDU3MTNk
+Y2FkMDIzZWUwNCBdLS0tCj4gWyAgICAyLjg5ODg4OF0gS2VybmVsIHBhbmljIC0gbm90IHN5bmNp
+bmc6IEF0dGVtcHRlZCB0byBraWxsIGluaXQhIGV4aXRjb2RlPTB4MDAwMDAwMGIKPgo+IEluIGEg
+dG9zcy11cCBiZXR3ZWVuIHRoZSBHUFUgc2VlaW5nIHN0YWxlIGRhdGEgYXJ0ZWZhY3RzIG9uIHNv
+bWUgc3lzdGVtcwo+IHZzLiBjYXRhc3Ryb3BoaWMga2VybmVsIGNyYXNoZXMgb24gb3RoZXIgc3lz
+dGVtcywgdGhlIGxhdHRlciB3b3VsZCBzZWVtCj4gdG8gdGFrZSBwcmVjZWRlbmNlLCBzbyByZXZl
+cnQgdGhpcyBjaGFuZ2UgdW50aWwgdGhlIHJlYWwgdW5kZXJseWluZwo+IHByb2JsZW0gY2FuIGJl
+IGZpeGVkLgo+Cj4gU2lnbmVkLW9mZi1ieTogUm9iaW4gTXVycGh5IDxyb2Jpbi5tdXJwaHlAYXJt
+LmNvbT4KPiBBY2tlZC1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+
+Cj4gW2Fjb3VyYm90QG52aWRpYS5jb206IHBvcnQgdG8gTm91dmVhdSB0cmVlLCByZW1vdmUgYml0
+cyBpbiBsaWIvXQo+IFNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBu
+dmlkaWEuY29tPgo+IC0tLQo+IEhpIEJlbiwKPgo+IEkgaGF2ZSBwb3J0ZWQgdGhpcyBwYXRjaCB0
+byB5b3VyIHRyZWUgLSBjb3VsZCB5b3UgdGFrZSBpdCBmb3IgNC43PyBXZSBkZWZpbml0ZWx5IHdh
+bnQKPiB0byBhdm9pZCB0aGVzZSBjcmFzaGVzLiBJIGFtIHdvcmtpbmcgb24gYSBmaW5hbCBzb2x1
+dGlvbiBmb3IgdGhpcyB0aGF0IHdpbGwgYWxsb3cgdXMKPiB0byByZW1vdmUgdGhhdCBjcHVfY29o
+ZXJlbnQgZmxhZyBhbHRvZ2V0aGVyLgoKQ2hlZXJzIEFsZXghIFNob3VsZCB0aGlzIGFsc28gZ28g
+dG8gc3RhYmxlIGZvciA0LjY/CgpSb2Jpbi4KCj4gICBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9k
+ZXZpY2UvcGNpLmMgfCAyICstCj4gICBsaWIvaW5jbHVkZS9udmlmL29zLmggICAgICAgICAgICAg
+ICAgfCA2IC0tLS0tLQo+ICAgMiBmaWxlcyBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgNyBkZWxl
+dGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2Uv
+cGNpLmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcGNpLmMKPiBpbmRleCAxOGZh
+YjM5NzNjZTUuLjYyYWQwMzAwY2ZhNSAxMDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS9udmttL2Vu
+Z2luZS9kZXZpY2UvcGNpLmMKPiArKysgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2Uv
+cGNpLmMKPiBAQCAtMTYxNCw3ICsxNjE0LDcgQEAgbnZrbV9kZXZpY2VfcGNpX2Z1bmMgPSB7Cj4g
+ICAJLmZpbmkgPSBudmttX2RldmljZV9wY2lfZmluaSwKPiAgIAkucmVzb3VyY2VfYWRkciA9IG52
+a21fZGV2aWNlX3BjaV9yZXNvdXJjZV9hZGRyLAo+ICAgCS5yZXNvdXJjZV9zaXplID0gbnZrbV9k
+ZXZpY2VfcGNpX3Jlc291cmNlX3NpemUsCj4gLQkuY3B1X2NvaGVyZW50ID0gIUlTX0VOQUJMRUQo
+Q09ORklHX0FSTSkgJiYgIUlTX0VOQUJMRUQoQ09ORklHX0FSTTY0KSwKPiArCS5jcHVfY29oZXJl
+bnQgPSAhSVNfRU5BQkxFRChDT05GSUdfQVJNKSwKPiAgIH07Cj4KPiAgIGludAo+IGRpZmYgLS1n
+aXQgYS9saWIvaW5jbHVkZS9udmlmL29zLmggYi9saWIvaW5jbHVkZS9udmlmL29zLmgKPiBpbmRl
+eCA4MzExMTA5MDRmZWUuLjFlZGE1M2FhOGY0NSAxMDA2NDQKPiAtLS0gYS9saWIvaW5jbHVkZS9u
+dmlmL29zLmgKPiArKysgYi9saWIvaW5jbHVkZS9udmlmL29zLmgKPiBAQCAtMTMwLDEyICsxMzAs
+NiBAQCB0eXBlZGVmIGRtYV9hZGRyX3QgcmVzb3VyY2Vfc2l6ZV90Owo+ICAgI2RlZmluZSBJU19F
+TkFCTEVEX0NPTkZJR19BUk0gMAo+ICAgI2VuZGlmCj4KPiAtI2lmIGRlZmluZWQoQ09ORklHX0FS
+TTY0KQo+IC0jZGVmaW5lIElTX0VOQUJMRURfQ09ORklHX0FSTTY0IDEKPiAtI2Vsc2UKPiAtI2Rl
+ZmluZSBJU19FTkFCTEVEX0NPTkZJR19BUk02NCAwCj4gLSNlbmRpZgo+IC0KPiAgICNpZiBkZWZp
+bmVkKENPTkZJR19JT01NVV9BUEkpCj4gICAjZGVmaW5lIElTX0VOQUJMRURfQ09ORklHX0lPTU1V
+X0FQSSAxCj4gICAjZWxzZQo+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
+YXUK
