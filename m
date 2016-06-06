@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Mon, 06 Jun 2016 08:45:09 +0000
-Message-ID: <bug-94990-8800-BoUnUaaLZJ@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 96355] Performance: extra&costly SSBO validation
+ even when SSBO aren't used
+Date: Mon, 06 Jun 2016 09:17:44 +0000
+Message-ID: <bug-96355-8800-EWMm2eVmWX@http.bugs.freedesktop.org/>
+References: <bug-96355-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1491057055=="
+Content-Type: multipart/mixed; boundary="===============0031609795=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-96355-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,53 +21,68 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1491057055==
-Content-Type: multipart/alternative; boundary="14652027090.e1FC2e4a.16835";
+--===============0031609795==
+Content-Type: multipart/alternative; boundary="14652046640.282B0eBa.24069";
  charset="UTF-8"
 
 
---14652027090.e1FC2e4a.16835
-Date: Mon, 6 Jun 2016 08:45:09 +0000
+--14652046640.282B0eBa.24069
+Date: Mon, 6 Jun 2016 09:17:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96355
 
---- Comment #29 from Andrei Dziahel <develop7-JrxF9BtNKgok+I/owrrOrA@public.gmane.org> ---
-Hi,
+--- Comment #13 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
+(In reply to Gediminas Jakutis from comment #8)
+> I don't know about the reporter's case, but I have ran some benchmarks and
+> tests with f018456901ee291181ecce74c30b19c9f6731f06 (latest revision befo=
+re
+> those four patches) and fd6bbc2ee205ed02f66a8d8ef5b2adf4005d588c (the lat=
+est
+> revision, with the four patches) on my GTX 770 + FX-8320 @ 4.1GHz, focusi=
+ng
+> on CPU-bound cases.
+>=20
+> The results are all to the better - on most games I tested I see 4-10%
+> performance boost. Am only going to list a pair of highlights:
+>=20
+> =C2=B7 Age of Wonders III, my own severely CPU limited testcase: 21 fps -=
+> 26
+> fps, a jump by a whooping 23.8% (still CPU-bound, though).
+> =C2=B7 Payday 2, well, this game has no [reproducable] way to benchmark i=
+t, but
+> the gameplay used to be nightmare filled with severe rubber-banding, runn=
+ing
+> just some 18-22 fps in many situations, all while painfully CPU-bound. No=
+w,
+> most of rubber-banding is either gone or is a lot less noticeable. The
+> framerate in these aforementioned situations went up to 25-60; dipping be=
+low
+> 30 very rarely, while mostly maintaining over 2x performance boost.
+> Basically, these four patches made the game *playable* on nouveau. (The g=
+ame
+> is still very painfully CPU-bound, though.)
+>=20
+> So, at least here, I can see clear performance benefits.
+> Will leave to be marked as RESOLVED by the reporter; don't want to hijack
+> his issue.
 
-Ok, so it seems I'm affected too: my desktop with GTX970 doesn't boot kernel
-4.6 (comes with recent openSUSE Tumbleweed snapshot release). Although it d=
-oes
-boot 4.5.4 kernel, from which I'm writing this comment.
-
-I've found this issue by googling "timeout at
-drivers/gpu/drm/nouveau/nvkm/subdev/secboot/base.c:145" message from my log=
-s.
-
-Relevant log parts are pretty much identical for me, I can post them here, =
-if
-needed.=20
-
-Firmware checksums are identical. Haven't tried NvForcePost=3D1 and pci_msi=
-=3Doff
-yet, will try later if needed.
-
-Anyway, +1 here.
-
-Motherboard: Gigabyte GA-MA770
-Videocard: GTX 970 by MSI
-UEFI and SecureBoot are enabled.
+I saw the same thing with PAYDAY 2, but I couldn't restore the low perf so I
+guess they just reworked their engine while they added the SMAA and SSAO th=
+ing,
+so I doubt those patches had anything to do with that :/
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14652027090.e1FC2e4a.16835
-Date: Mon, 6 Jun 2016 08:45:09 +0000
+--14652046640.282B0eBa.24069
+Date: Mon, 6 Jun 2016 09:17:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -81,43 +97,62 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c29">Commen=
-t # 29</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Performance: extra&amp;costly SSBO validation =
+even when SSBO aren't used"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355#c13">Commen=
+t # 13</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Performance: extra&amp;costly SSBO validation =
+even when SSBO aren't used"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96355">bug 96355<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-develop7&#64;develop7.info" title=3D"Andrei Dziahel &lt;develop7&#64;develo=
-p7.info&gt;"> <span class=3D"fn">Andrei Dziahel</span></a>
+freedesktop&#64;karolherbst.de" title=3D"Karol Herbst &lt;freedesktop&#64;k=
+arolherbst.de&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Hi,
+        <pre>(In reply to Gediminas Jakutis from <a href=3D"show_bug.cgi?id=
+=3D96355#c8">comment #8</a>)
+<span class=3D"quote">&gt; I don't know about the reporter's case, but I ha=
+ve ran some benchmarks and
+&gt; tests with f018456901ee291181ecce74c30b19c9f6731f06 (latest revision b=
+efore
+&gt; those four patches) and fd6bbc2ee205ed02f66a8d8ef5b2adf4005d588c (the =
+latest
+&gt; revision, with the four patches) on my GTX 770 + FX-8320 &#64; 4.1GHz,=
+ focusing
+&gt; on CPU-bound cases.
+&gt;=20
+&gt; The results are all to the better - on most games I tested I see 4-10%
+&gt; performance boost. Am only going to list a pair of highlights:
+&gt;=20
+&gt; =C2=B7 Age of Wonders III, my own severely CPU limited testcase: 21 fp=
+s -&gt; 26
+&gt; fps, a jump by a whooping 23.8% (still CPU-bound, though).
+&gt; =C2=B7 Payday 2, well, this game has no [reproducable] way to benchmar=
+k it, but
+&gt; the gameplay used to be nightmare filled with severe rubber-banding, r=
+unning
+&gt; just some 18-22 fps in many situations, all while painfully CPU-bound.=
+ Now,
+&gt; most of rubber-banding is either gone or is a lot less noticeable. The
+&gt; framerate in these aforementioned situations went up to 25-60; dipping=
+ below
+&gt; 30 very rarely, while mostly maintaining over 2x performance boost.
+&gt; Basically, these four patches made the game *playable* on nouveau. (Th=
+e game
+&gt; is still very painfully CPU-bound, though.)
+&gt;=20
+&gt; So, at least here, I can see clear performance benefits.
+&gt; Will leave to be marked as RESOLVED by the reporter; don't want to hij=
+ack
+&gt; his issue.</span >
 
-Ok, so it seems I'm affected too: my desktop with GTX970 doesn't boot kernel
-4.6 (comes with recent openSUSE Tumbleweed snapshot release). Although it d=
-oes
-boot 4.5.4 kernel, from which I'm writing this comment.
-
-I've found this issue by googling &quot;timeout at
-drivers/gpu/drm/nouveau/nvkm/subdev/secboot/base.c:145&quot; message from m=
-y logs.
-
-Relevant log parts are pretty much identical for me, I can post them here, =
-if
-needed.=20
-
-Firmware checksums are identical. Haven't tried NvForcePost=3D1 and pci_msi=
-=3Doff
-yet, will try later if needed.
-
-Anyway, +1 here.
-
-Motherboard: Gigabyte GA-MA770
-Videocard: GTX 970 by MSI
-UEFI and SecureBoot are enabled.</pre>
+I saw the same thing with PAYDAY 2, but I couldn't restore the low perf so I
+guess they just reworked their engine while they added the SMAA and SSAO th=
+ing,
+so I doubt those patches had anything to do with that :/</pre>
         </div>
       </p>
 
@@ -126,14 +161,15 @@ UEFI and SecureBoot are enabled.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14652027090.e1FC2e4a.16835--
+--14652046640.282B0eBa.24069--
 
---===============1491057055==
+--===============0031609795==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -143,4 +179,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1491057055==--
+--===============0031609795==--
