@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95054] KDE 5 / Plasma crashes with nouveau "fifo: gr
- engine fault on channel 2, recovering" or "gr: TRAP ch 2"
-Date: Mon, 06 Jun 2016 10:37:13 +0000
-Message-ID: <bug-95054-8800-ldq3Ly7Y64@http.bugs.freedesktop.org/>
-References: <bug-95054-8800@http.bugs.freedesktop.org/>
+From: Ed Avis <eda-0aTcAJqSNDHby3iVrkZq2A@public.gmane.org>
+Subject: Donate NVS 510 and 310 cards
+Date: Mon, 6 Jun 2016 12:27:43 +0000 (UTC)
+Message-ID: <loom.20160606T142538-613@post.gmane.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1041943693=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95054-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,88 +18,10 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1041943693==
-Content-Type: multipart/alternative; boundary="14652094321.bcb4fa9c.12260";
- charset="UTF-8"
-
-
---14652094321.bcb4fa9c.12260
-Date: Mon, 6 Jun 2016 10:37:12 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95054
-
---- Comment #8 from Ren=C3=A9 Krell <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The bug discussed here still happens with kernel 4.6.0 but very rarely, whi=
-le
-in 4.5.4 it happened reliably after a few minutes of using Chromium.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14652094321.bcb4fa9c.12260
-Date: Mon, 6 Jun 2016 10:37:12 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - KDE 5 / Plasma crashes with nouveau &quot;fifo: gr engine=
- fault on channel 2, recovering&quot; or &quot;gr: TRAP ch 2&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95054#c8">Comment=
- # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - KDE 5 / Plasma crashes with nouveau &quot;fifo: gr engine=
- fault on channel 2, recovering&quot; or &quot;gr: TRAP ch 2&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95054">bug 95054<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 Krell &lt;renda.krell&#64;gma=
-il.com&gt;"> <span class=3D"fn">Ren=C3=A9 Krell</span></a>
-</span></b>
-        <pre>The bug discussed here still happens with kernel 4.6.0 but ver=
-y rarely, while
-in 4.5.4 it happened reliably after a few minutes of using Chromium.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14652094321.bcb4fa9c.12260--
-
---===============1041943693==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1041943693==--
+SGksIEkgaGF2ZSBzb21lIHNwYXJlIE52aWRpYSBOVlMgMzEwIGNhcmRzICh3aXRoIHR3byBEUDEu
+MiBvdXRwdXRzKSBhbmQgYXQKbGVhc3Qgb25lIE5WUyA1MTAgKGZvdXIgRFAxLjIgb3V0cHV0cyku
+ICBXb3VsZCBhbnkgTm91dmVhdSBkZXZlbG9wZXIgbGlrZSB0bwphY2NlcHQgc29tZSBhcyBhIGRv
+bmF0aW9uPwoKLS0gCkVkIEF2aXMgPGVkYUB3YW5pYXNzZXQuY29tPgoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
