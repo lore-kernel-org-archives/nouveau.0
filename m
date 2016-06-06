@@ -1,76 +1,61 @@
 From: Gustavo Padovan <gustavo@padovan.org>
-Subject: [PATCH 01/14] drm/nouveau: use drm_crtc_send_vblank_event() v2
-Date: Mon,  6 Jun 2016 11:41:32 -0300
-Message-ID: <1465224105-21485-1-git-send-email-gustavo@padovan.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+Subject: [PATCH 11/14] drm/nouveau: use drm_crtc_vblank_{get,put}()
+Date: Mon,  6 Jun 2016 11:41:42 -0300
+Message-ID: <1465224105-21485-11-git-send-email-gustavo@padovan.org>
+References: <1465224105-21485-1-git-send-email-gustavo@padovan.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1465224105-21485-1-git-send-email-gustavo@padovan.org>
+Sender: linux-kernel-owner@vger.kernel.org
 To: dri-devel@lists.freedesktop.org
-Cc: "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>, Gustavo Padovan <gustavo.padovan@collabora.co.uk>
+Cc: Gustavo Padovan <gustavo.padovan@collabora.co.uk>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, "open list:DRM DRIVER FOR NVIDIA
+	GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogR3VzdGF2byBQYWRvdmFuIDxndXN0YXZvLnBhZG92YW5AY29sbGFib3JhLmNvLnVrPgoK
-UmVwbGFjZSB0aGUgbGVnYWN5IGRybV9zZW5kX3ZibGFua19ldmVudCgpIHdpdGggdGhlIG5ldyBo
-ZWxwZXIgZnVuY3Rpb24uCgp2MjogYWRkIGNydGMgdG8gbm91dmVhdV9wYWdlX2ZsaXBfc3RhdGUg
-KGNvbW1lbnQgZnJvbSBNYXJpbyBLbGVpbmVyKQoKQ2M6IE1hcmlvIEtsZWluZXIgPG1hcmlvLmts
-ZWluZXIuZGVAZ21haWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBHdXN0YXZvIFBhZG92YW4gPGd1c3Rh
-dm8ucGFkb3ZhbkBjb2xsYWJvcmEuY28udWs+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bm91dmVhdV9kaXNwbGF5LmMgfCAxOSArKysrKysrKysrLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuaCB8ICAzICsrLQogMiBmaWxlcyBjaGFuZ2VkLCAx
-MiBpbnNlcnRpb25zKCspLCAxMCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfZGlzcGxheS5jCmluZGV4IDdjNzdmOTYuLjlkNzI0NjcgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCkBAIC03NjAsOCArNzYwLDcgQEAgbm91dmVh
-dV9jcnRjX3BhZ2VfZmxpcChzdHJ1Y3QgZHJtX2NydGMgKmNydGMsIHN0cnVjdCBkcm1fZnJhbWVi
-dWZmZXIgKmZiLAogCiAJLyogSW5pdGlhbGl6ZSBhIHBhZ2UgZmxpcCBzdHJ1Y3QgKi8KIAkqcyA9
-IChzdHJ1Y3Qgbm91dmVhdV9wYWdlX2ZsaXBfc3RhdGUpCi0JCXsgeyB9LCBldmVudCwgbm91dmVh
-dV9jcnRjKGNydGMpLT5pbmRleCwKLQkJICBmYi0+Yml0c19wZXJfcGl4ZWwsIGZiLT5waXRjaGVz
-WzBdLCBjcnRjLT54LCBjcnRjLT55LAorCQl7IHsgfSwgZXZlbnQsIGNydGMsIGZiLT5iaXRzX3Bl
-cl9waXhlbCwgZmItPnBpdGNoZXNbMF0sCiAJCSAgbmV3X2JvLT5iby5vZmZzZXQgfTsKIAogCS8q
-IEtlZXAgdmJsYW5rcyBvbiBkdXJpbmcgZmxpcCwgZm9yIHRoZSB0YXJnZXQgY3J0YyBvZiB0aGlz
-IGZsaXAgKi8KQEAgLTg0MiwxNyArODQxLDE4IEBAIG5vdXZlYXVfZmluaXNoX3BhZ2VfZmxpcChz
-dHJ1Y3Qgbm91dmVhdV9jaGFubmVsICpjaGFuLAogCXMgPSBsaXN0X2ZpcnN0X2VudHJ5KCZmY3R4
-LT5mbGlwLCBzdHJ1Y3Qgbm91dmVhdV9wYWdlX2ZsaXBfc3RhdGUsIGhlYWQpOwogCWlmIChzLT5l
-dmVudCkgewogCQlpZiAoZHJtLT5kZXZpY2UuaW5mby5mYW1pbHkgPCBOVl9ERVZJQ0VfSU5GT19W
-MF9URVNMQSkgewotCQkJZHJtX2FybV92YmxhbmtfZXZlbnQoZGV2LCBzLT5jcnRjLCBzLT5ldmVu
-dCk7CisJCQlkcm1fYXJtX3ZibGFua19ldmVudChkZXYsIGRybV9jcnRjX2luZGV4KHMtPmNydGMp
-LAorCQkJCQkgICAgIHMtPmV2ZW50KTsKIAkJfSBlbHNlIHsKLQkJCWRybV9zZW5kX3ZibGFua19l
-dmVudChkZXYsIHMtPmNydGMsIHMtPmV2ZW50KTsKKwkJCWRybV9jcnRjX3NlbmRfdmJsYW5rX2V2
-ZW50KHMtPmNydGMsIHMtPmV2ZW50KTsKIAogCQkJLyogR2l2ZSB1cCBvd25lcnNoaXAgb2YgdmJs
-YW5rIGZvciBwYWdlLWZsaXBwZWQgY3J0YyAqLwotCQkJZHJtX3ZibGFua19wdXQoZGV2LCBzLT5j
-cnRjKTsKKwkJCWRybV92YmxhbmtfcHV0KGRldiwgZHJtX2NydGNfaW5kZXgocy0+Y3J0YykpOwog
-CQl9CiAJfQogCWVsc2UgewogCQkvKiBHaXZlIHVwIG93bmVyc2hpcCBvZiB2YmxhbmsgZm9yIHBh
-Z2UtZmxpcHBlZCBjcnRjICovCi0JCWRybV92YmxhbmtfcHV0KGRldiwgcy0+Y3J0Yyk7CisJCWRy
-bV92YmxhbmtfcHV0KGRldiwgZHJtX2NydGNfaW5kZXgoc3RhdGUtPmNydGMpKTsKIAl9CiAKIAls
-aXN0X2RlbCgmcy0+aGVhZCk7CkBAIC04NzMsOSArODczLDEwIEBAIG5vdXZlYXVfZmxpcF9jb21w
-bGV0ZShzdHJ1Y3QgbnZpZl9ub3RpZnkgKm5vdGlmeSkKIAogCWlmICghbm91dmVhdV9maW5pc2hf
-cGFnZV9mbGlwKGNoYW4sICZzdGF0ZSkpIHsKIAkJaWYgKGRybS0+ZGV2aWNlLmluZm8uZmFtaWx5
-IDwgTlZfREVWSUNFX0lORk9fVjBfVEVTTEEpIHsKLQkJCW52X3NldF9jcnRjX2Jhc2UoZHJtLT5k
-ZXYsIHN0YXRlLmNydGMsIHN0YXRlLm9mZnNldCArCi0JCQkJCSBzdGF0ZS55ICogc3RhdGUucGl0
-Y2ggKwotCQkJCQkgc3RhdGUueCAqIHN0YXRlLmJwcCAvIDgpOworCQkJbnZfc2V0X2NydGNfYmFz
-ZShkcm0tPmRldiwgZHJtX2NydGNfaW5kZXgoc3RhdGUuY3J0YyksCisJCQkJCSBzdGF0ZS5vZmZz
-ZXQgKyBzdGF0ZS5jcnRjLT55ICoKKwkJCQkJIHN0YXRlLnBpdGNoICsgc3RhdGUuY3J0Yy0+eCAq
-CisJCQkJCSBzdGF0ZS5icHAgLyA4KTsKIAkJfQogCX0KIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2Rpc3BsYXkuaAppbmRleCAyNDI3M2JhLi4wNDIwZWU4IDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuaAorKysgYi9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuaApAQCAtMjgsNyArMjgsOCBAQCBpbnQgbm91
-dmVhdV9mcmFtZWJ1ZmZlcl9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICosIHN0cnVjdCBub3V2ZWF1
-X2ZyYW1lYnVmZmVyICosCiBzdHJ1Y3Qgbm91dmVhdV9wYWdlX2ZsaXBfc3RhdGUgewogCXN0cnVj
-dCBsaXN0X2hlYWQgaGVhZDsKIAlzdHJ1Y3QgZHJtX3BlbmRpbmdfdmJsYW5rX2V2ZW50ICpldmVu
-dDsKLQlpbnQgY3J0YywgYnBwLCBwaXRjaCwgeCwgeTsKKwlzdHJ1Y3QgZHJtX2NydGMgKmNydGM7
-CisJaW50IGJwcCwgcGl0Y2g7CiAJdTY0IG9mZnNldDsKIH07CiAKLS0gCjIuNS41CgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGlu
-ZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+From: Gustavo Padovan <gustavo.padovan@collabora.co.uk>
+
+Replace the legacy drm_vblank_{get,put}() with the new helper functions.
+
+Signed-off-by: Gustavo Padovan <gustavo.padovan@collabora.co.uk>
+---
+ drivers/gpu/drm/nouveau/nouveau_display.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 9d72467..7898459f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -764,7 +764,7 @@ nouveau_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
+ 		  new_bo->bo.offset };
+ 
+ 	/* Keep vblanks on during flip, for the target crtc of this flip */
+-	drm_vblank_get(dev, nouveau_crtc(crtc)->index);
++	drm_crtc_vblank_get(crtc);
+ 
+ 	/* Emit a page flip */
+ 	if (drm->device.info.family >= NV_DEVICE_INFO_V0_TESLA) {
+@@ -809,7 +809,7 @@ nouveau_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
+ 	return 0;
+ 
+ fail_unreserve:
+-	drm_vblank_put(dev, nouveau_crtc(crtc)->index);
++	drm_crtc_vblank_put(crtc);
+ 	ttm_bo_unreserve(&old_bo->bo);
+ fail_unpin:
+ 	mutex_unlock(&cli->mutex);
+@@ -847,12 +847,12 @@ nouveau_finish_page_flip(struct nouveau_channel *chan,
+ 			drm_crtc_send_vblank_event(s->crtc, s->event);
+ 
+ 			/* Give up ownership of vblank for page-flipped crtc */
+-			drm_vblank_put(dev, drm_crtc_index(s->crtc));
++			drm_crtc_vblank_put(s->crtc);
+ 		}
+ 	}
+ 	else {
+ 		/* Give up ownership of vblank for page-flipped crtc */
+-		drm_vblank_put(dev, drm_crtc_index(state->crtc));
++		drm_crtc_vblank_put(state->crtc);
+ 	}
+ 
+ 	list_del(&s->head);
+-- 
+2.5.5
