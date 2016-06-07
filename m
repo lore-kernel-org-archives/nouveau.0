@@ -1,40 +1,106 @@
-From: Ed Avis <eda-0aTcAJqSNDHby3iVrkZq2A@public.gmane.org>
-Subject: UP2414Q (was: Donate NVS 510 and 310 cards)
-Date: Tue, 7 Jun 2016 10:33:36 +0000 (UTC)
-Message-ID: <loom.20160607T122924-815@post.gmane.org>
-References: <loom.20160606T142538-613@post.gmane.org>
- <a6651581-353f-384f-4825-598377dc8224@redhat.com>
- <loom.20160607T120807-509@post.gmane.org>
- <52389974-b7ac-e5f3-e255-e46e162cdec0@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Gustavo Padovan <gustavo@padovan.org>
+Subject: [PATCH 01/10] drm/nouveau: replace legacy vblank helpers
+Date: Tue,  7 Jun 2016 11:07:53 -0300
+Message-ID: <1465308482-15104-1-git-send-email-gustavo@padovan.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+Cc: Gustavo Padovan <gustavo.padovan@collabora.co.uk>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, "open list:DRM DRIVER FOR NVIDIA
+	GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-U29ycnkgSSB3YXNuJ3QgY2xlYXIgYWJvdXQgdGhlIERlbGwgVVAyNDE0USBtb25pdG9yLiAgWW91
-IGFyZSByaWdodCB0aGF0CmRyaXZpbmcgaXQgYXQgNGsgcmVxdWlyZXMgTVNUIHN1cHBvcnQgYW5k
-IHRoaXMgaXNuJ3QgY3VycmVudGx5IHN1cHBvcnRlZCBieQpOb3V2ZWF1LiAgU28gaW5zdGVhZCBJ
-IGFtIGRyaXZpbmcgaXQgYXQgb25seSAzMEh6IHdoaWNoIHNob3VsZCBiZSBhIHN0cmFpZ2h0LQpm
-b3J3YXJkIHNldHVwLiAgSG93ZXZlciwgdGhpcyBzdGlsbCBjcmFzaGVzIHJlZ3VsYXJseSwgZm9y
-IGV4YW1wbGUgd2hlbgpvcGVuaW5nIGEgcHVsbC1kb3duIG1lbnUgaW4gTGlicmVvZmZpY2UgYW5k
-IGEgbW9tZW50IGxhdGVyIGNsaWNraW5nIHRvIGNsb3NlCmFuZCByZW9wZW4gdGhlIHNhbWUgbWVu
-dS4gIChUaGUgUEMgaXMgbm90IGluIGZyb250IG9mIG1lIHNvIGl0IGlzIGhhcmQgZm9yIG1lCnRv
-IGludmVzdGlnYXRlIGZ1cnRoZXIgYXQgdGhlIG1vbWVudC4pCgpTbyBpZiBhbnkgZGV2ZWxvcGVy
-KHMpIHdvdWxkIGxpa2UgdG8gYm9ycm93IGEgVVAyNDE0USBtb25pdG9yIHRvIGFjY29tcGFueSBh
-CmRvbmF0aW9uIG9mIHRoZSBOVlMgMzEwIG9yIDUxMCB2aWRlbyBjYXJkcywgSSB3aWxsIGJlIGhh
-cHB5IHRvIHBheSBwb3N0YWdlCmJvdGggd2F5cy4gIElmIHlvdSBjYW4gcmVwcm9kdWNlIGFuZCBm
-aXggdGhlIGJ1ZywgeW91IGNhbiBrZWVwIHRoZSBtb25pdG9yLgoKLS0gCkVkIEF2aXMgPGVkYUB3
-YW5pYXNzZXQuY29tPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+From: Gustavo Padovan <gustavo.padovan@collabora.co.uk>
+
+Replace the legacy drm_send_vblank_event(), drm_arm_vblank_event() and
+drm_vblank_{get,put}() with the new helper functions.
+
+v2: add crtc to nouveau_page_flip_state (comment from Mario Kleiner)
+
+Signed-off-by: Gustavo Padovan <gustavo.padovan@collabora.co.uk>
+
+Signed-off-by: Gustavo Padovan <gustavo.padovan@collabora.co.uk>
+---
+ drivers/gpu/drm/nouveau/nouveau_display.c | 22 +++++++++++-----------
+ drivers/gpu/drm/nouveau/nouveau_display.h |  3 ++-
+ 2 files changed, 13 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 7c77f96..6072fe2 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -760,12 +760,11 @@ nouveau_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
+ 
+ 	/* Initialize a page flip struct */
+ 	*s = (struct nouveau_page_flip_state)
+-		{ { }, event, nouveau_crtc(crtc)->index,
+-		  fb->bits_per_pixel, fb->pitches[0], crtc->x, crtc->y,
++		{ { }, event, crtc, fb->bits_per_pixel, fb->pitches[0],
+ 		  new_bo->bo.offset };
+ 
+ 	/* Keep vblanks on during flip, for the target crtc of this flip */
+-	drm_vblank_get(dev, nouveau_crtc(crtc)->index);
++	drm_crtc_vblank_get(crtc);
+ 
+ 	/* Emit a page flip */
+ 	if (drm->device.info.family >= NV_DEVICE_INFO_V0_TESLA) {
+@@ -810,7 +809,7 @@ nouveau_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
+ 	return 0;
+ 
+ fail_unreserve:
+-	drm_vblank_put(dev, nouveau_crtc(crtc)->index);
++	drm_crtc_vblank_put(crtc);
+ 	ttm_bo_unreserve(&old_bo->bo);
+ fail_unpin:
+ 	mutex_unlock(&cli->mutex);
+@@ -842,17 +841,17 @@ nouveau_finish_page_flip(struct nouveau_channel *chan,
+ 	s = list_first_entry(&fctx->flip, struct nouveau_page_flip_state, head);
+ 	if (s->event) {
+ 		if (drm->device.info.family < NV_DEVICE_INFO_V0_TESLA) {
+-			drm_arm_vblank_event(dev, s->crtc, s->event);
++			drm_crtc_arm_vblank_event(s->crtc, s->event);
+ 		} else {
+-			drm_send_vblank_event(dev, s->crtc, s->event);
++			drm_crtc_send_vblank_event(s->crtc, s->event);
+ 
+ 			/* Give up ownership of vblank for page-flipped crtc */
+-			drm_vblank_put(dev, s->crtc);
++			drm_crtc_vblank_put(s->crtc);
+ 		}
+ 	}
+ 	else {
+ 		/* Give up ownership of vblank for page-flipped crtc */
+-		drm_vblank_put(dev, s->crtc);
++		drm_crtc_vblank_put(s->crtc);
+ 	}
+ 
+ 	list_del(&s->head);
+@@ -873,9 +872,10 @@ nouveau_flip_complete(struct nvif_notify *notify)
+ 
+ 	if (!nouveau_finish_page_flip(chan, &state)) {
+ 		if (drm->device.info.family < NV_DEVICE_INFO_V0_TESLA) {
+-			nv_set_crtc_base(drm->dev, state.crtc, state.offset +
+-					 state.y * state.pitch +
+-					 state.x * state.bpp / 8);
++			nv_set_crtc_base(drm->dev, drm_crtc_index(state.crtc),
++					 state.offset + state.crtc->y *
++					 state.pitch + state.crtc->x *
++					 state.bpp / 8);
+ 		}
+ 	}
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.h b/drivers/gpu/drm/nouveau/nouveau_display.h
+index 24273ba..0420ee8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.h
++++ b/drivers/gpu/drm/nouveau/nouveau_display.h
+@@ -28,7 +28,8 @@ int nouveau_framebuffer_init(struct drm_device *, struct nouveau_framebuffer *,
+ struct nouveau_page_flip_state {
+ 	struct list_head head;
+ 	struct drm_pending_vblank_event *event;
+-	int crtc, bpp, pitch, x, y;
++	struct drm_crtc *crtc;
++	int bpp, pitch;
+ 	u64 offset;
+ };
+ 
+-- 
+2.5.5
