@@ -1,11 +1,13 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] clk/gm20b: fix build on non-tegra platforms
-Date: Tue, 7 Jun 2016 17:39:59 +0900
-Message-ID: <20160607083959.23513-1-acourbot@nvidia.com>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: Donate NVS 510 and 310 cards
+Date: Tue, 7 Jun 2016 12:07:23 +0200
+Message-ID: <a6651581-353f-384f-4825-598377dc8224@redhat.com>
+References: <loom.20160606T142538-613@post.gmane.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <loom.20160606T142538-613-eS7Uydv5nfjZ+VzJOa5vwg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,28 +17,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ed Avis <eda-0aTcAJqSNDHby3iVrkZq2A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-dGVncmFfZnVzZV9yZWFkbCgpIGlzIG9ubHkgZGVmaW5lZCBvbiBUZWdyYSBwbGF0Zm9ybXMgYW5k
-IHdpbGwgYnJlYWsgeDg2CmJ1aWxkcy4KClNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90
-IDxhY291cmJvdEBudmlkaWEuY29tPgotLS0KVGhpcyBzaG91bGQgcHJvYmFibHkgYmUgc3F1YXNo
-ZWQgaW50byB0aGUgR00yMEIgREZTIHBhdGNoIHRvIGF2b2lkCmJyZWFraW5nIGJpc2VjdGluZy4g
-U29ycnkgYWJvdXQgdGhpcy4KCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ20yMGIuYyB8
-IDQgKysrLQogMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoK
-ZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9nbTIwYi5jIGIvZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvY2xrL2dtMjBiLmMKaW5kZXggMzA4OWU0YmM1ZTU0Li40ZWE4OWY3
-MWNkNGYgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9nbTIwYi5jCisr
-KyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9nbTIwYi5jCkBAIC05NDYsMTEgKzk0Niwx
-MyBAQCBnbTIwYl9jbGtfaW5pdF9mdXNlZF9wYXJhbXMoc3RydWN0IGdtMjBiX2NsayAqY2xrKQog
-ewogCXN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gJmNsay0+YmFzZS5iYXNlLnN1YmRldjsK
-IAl1MzIgdmFsOwotCXUzMiByZXY7CisJdTMyIHJldiA9IDA7CiAKKyNpZiBJU19FTkFCTEVEKENP
-TkZJR19BUkNIX1RFR1JBKQogCXRlZ3JhX2Z1c2VfcmVhZGwoRlVTRV9SRVNFUlZFRF9DQUxJQjAs
-ICZ2YWwpOwogCXJldiA9ICh2YWwgPj4gRlVTRV9SRVNFUlZFRF9DQUxJQjBfRlVTRV9SRVZfU0hJ
-RlQpICYKIAkgICAgICBNQVNLKEZVU0VfUkVTRVJWRURfQ0FMSUIwX0ZVU0VfUkVWX1dJRFRIKTsK
-KyNlbmRpZgogCiAJLyogTm8gZnVzZWQgcGFyYW1ldGVycywgd2Ugd2lsbCBjYWxpYnJhdGUgbGF0
-ZXIgKi8KIAlpZiAocmV2ID09IDApCi0tIAoyLjguMwoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1Cg==
+SGksCgpPbiAwNi0wNi0xNiAxNDoyNywgRWQgQXZpcyB3cm90ZToKPiBIaSwgSSBoYXZlIHNvbWUg
+c3BhcmUgTnZpZGlhIE5WUyAzMTAgY2FyZHMgKHdpdGggdHdvIERQMS4yIG91dHB1dHMpIGFuZCBh
+dAo+IGxlYXN0IG9uZSBOVlMgNTEwIChmb3VyIERQMS4yIG91dHB1dHMpLiAgV291bGQgYW55IE5v
+dXZlYXUgZGV2ZWxvcGVyIGxpa2UgdG8KPiBhY2NlcHQgc29tZSBhcyBhIGRvbmF0aW9uPwoKSWYg
+eW91J3JlIHdpbGxpbmcgdG8gc2hpcCB0byBFdXJvcGUgSSB3b3VsZCBjZXJ0YWlubHkgd2VsY29t
+ZQoxIG9mIGVhY2ggY2FyZC4gSSd2ZSByZWNlbnRseSBzdGFydGVkIGRvaW5nIGRpc3BsYXkgcG9y
+dAp0ZXN0aW5nIHdpdGggbm91dmVhdSwgc28geW91ciB0aW1pbmcgaXMgZXhjZWxsZW50IDopCgpS
+ZWdhcmRzLAoKSGFucwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
