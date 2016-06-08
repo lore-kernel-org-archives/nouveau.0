@@ -1,128 +1,190 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: Re: [Nouveau] [PATCH 9/9] drm: Turn off crtc before tearing down its
- data structure
-Date: Wed, 8 Jun 2016 18:55:09 +0200
-Message-ID: <20160608165509.GA18955@wunner.de>
-References: <cover.1464103767.git.lukas@wunner.de>
- <e83cf2e628a8e0299e029e7a1c3d4f183ce1a2af.1464103767.git.lukas@wunner.de>
- <20160524213042.GC27098@phenom.ffwll.local>
- <20160525105136.GA6235@wunner.de>
- <CAKMK7uGFb9ihRtjeK7s0ezPPv-C6S9GKbE4h9MLoPyHyN=9W5Q@mail.gmail.com>
- <20160601123641.GA15243@wunner.de>
- <20160601144012.GW7231@phenom.ffwll.local>
- <20160603073006.GA15903@wunner.de>
- <20160603182150.GY7231@phenom.ffwll.local>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96443] New: Missrendering of Reflections in Talos
+	Principle
+Date: Wed, 08 Jun 2016 18:56:56 +0000
+Message-ID: <bug-96443-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20160603182150.GY7231@phenom.ffwll.local>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Nouveau Dev <nouveau@lists.freedesktop.org>, intel-gfx@lists.freedesktop.org, dri-devel <dri-devel@lists.freedesktop.org>, Dave Airlie <airlied@redhat.com>
+Content-Type: multipart/mixed; boundary="===============0979847421=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdW4gMDMsIDIwMTYgYXQgMDg6MjE6NTBQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3
-cm90ZToKPiBPbiBGcmksIEp1biAwMywgMjAxNiBhdCAwOTozMDowNkFNICswMjAwLCBMdWthcyBX
-dW5uZXIgd3JvdGU6Cj4gPiBPbiBXZWQsIEp1biAwMSwgMjAxNiBhdCAwNDo0MDoxMlBNICswMjAw
-LCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+ID4gPiBPbiBXZWQsIEp1biAwMSwgMjAxNiBhdCAwMjoz
-Njo0MVBNICswMjAwLCBMdWthcyBXdW5uZXIgd3JvdGU6Cj4gPiA+ID4gT24gV2VkLCBNYXkgMjUs
-IDIwMTYgYXQgMDM6NDM6NDJQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3cm90ZToKPiA+ID4gPiA+
-IE9uIFdlZCwgTWF5IDI1LCAyMDE2IGF0IDEyOjUxIFBNLCBMdWthcyBXdW5uZXIgPGx1a2FzQHd1
-bm5lci5kZT4gd3JvdGU6Cj4gPiA+ID4gPiA+IE9uIFR1ZSwgTWF5IDI0LCAyMDE2IGF0IDExOjMw
-OjQyUE0gKzAyMDAsIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4gPiA+ID4gPiA+ID4gT24gVHVlLCBN
-YXkgMjQsIDIwMTYgYXQgMDY6MDM6MjdQTSArMDIwMCwgTHVrYXMgV3VubmVyIHdyb3RlOgo+ID4g
-PiA+ID4gPiA+ID4gV2hlbiBhIGRybV9jcnRjIHN0cnVjdHVyZSBpcyBkZXN0cm95ZWQgd2l0aCBk
-cm1fY3J0Y19jbGVhbnVwKCksIHRoZSBEUk0KPiA+ID4gPiA+ID4gPiA+IGNvcmUgZG9lcyBub3Qg
-dHVybiBvZmYgdGhlIGNydGMgZmlyc3QgYW5kIG5laXRoZXIgZG8gdGhlIGRyaXZlcnMuIFdpdGgK
-PiA+ID4gPiA+ID4gPiA+IG5vdXZlYXUsIHJhZGVvbiBhbmQgYW1kZ3B1LCB0aGlzIGNhdXNlcyBh
-IHJ1bnRpbWUgcG0gcmVmIHRvIGJlIGxlYWtlZCBvbgo+ID4gPiA+ID4gPiA+ID4gZHJpdmVyIHVu
-bG9hZCBpZiBhdCBsZWFzdCBvbmUgY3J0YyB3YXMgZW5hYmxlZC4KPiA+ID4gPiA+ID4gPiA+Cj4g
-PiA+ID4gPiA+ID4gPiAoU2VlIHVzYWdlIG9mIGhhdmVfZGlzcF9wb3dlcl9yZWYgaW4gbm91dmVh
-dV9jcnRjX3NldF9jb25maWcoKSwKPiA+ID4gPiA+ID4gPiA+IHJhZGVvbl9jcnRjX3NldF9jb25m
-aWcoKSBhbmQgYW1kZ3B1X2NydGNfc2V0X2NvbmZpZygpKS4KPiA+ID4gPiA+ID4gPiA+Cj4gPiA+
-ID4gPiA+ID4gPiBGaXhlczogNWFkZGNmMGE1ZjBmICgibm91dmVhdTogYWRkIHJ1bnRpbWUgUE0g
-c3VwcG9ydCAodjAuOSkiKQo+ID4gPiA+ID4gPiA+ID4gQ2M6IERhdmUgQWlybGllIDxhaXJsaWVk
-QHJlZGhhdC5jb20+Cj4gPiA+ID4gPiA+ID4gPiBUZXN0ZWQtYnk6IEthcm9sIEhlcmJzdCA8bm91
-dmVhdUBrYXJvbGhlcmJzdC5kZT4KPiA+ID4gPiA+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IEx1a2Fz
-IFd1bm5lciA8bHVrYXNAd3VubmVyLmRlPgo+ID4gPiA+ID4gCj4gPiA+ID4gPiBXaXRoIGxlZ2Fj
-eSBrbXMgdGhlIG9ubHkgd2F5IHRvIGtlZXAgYSBjcnRjIGVuYWJsZWQgaXMgdG8gZGlzcGxheSBh
-Cj4gPiA+ID4gPiBkcm1fZnJhbWVidWZmZXIgb24gaXQuIEFuZCBkcm1fbW9kZV9jb25maWdfY2xl
-YW51cCBoYXMgYSBXQVJOX09OIGlmCj4gPiA+ID4gPiBmcmFtZWJ1ZmZlcnMgYXJlIGxlZnQgYmVo
-aW5kLiBUaGVyZSdzIGEgYnVuY2ggb2Ygb3B0aW9uczoKPiA+ID4gPiA+IC0gbm91dmVhdSBzb21l
-aG93IG1hbmFnZXMgdG8ga2VlcCB0aGUgY3J0YyBvbiB3aXRob3V0IGEgZnJhbWVidWZmZXIKPiA+
-ID4gPiA+IC0gbm91dmVhdSBzb21laG93IGxlYWtzIGEgZHJtX2ZyYW1lYnVmZmVyLCBidXQgcmVt
-b3ZlcyBpdCBmcm9tIHRoZSBmYl9saXN0Cj4gPiA+ID4gPiAtIHNvbWV0aGluZyBlbHNlCj4gPiA+
-ID4gCj4gPiA+ID4gRm91bmQgaXQuIG5vdXZlYXVfZmJjb25fZGVzdHJveSgpIGRvZXNuJ3QgY2Fs
-bCBkcm1fZnJhbWVidWZmZXJfcmVtb3ZlKCkuCj4gPiA+ID4gSWYgSSBhZGQgdGhhdCwgdGhlIGNy
-dGMgZ2V0cyBwcm9wZXJseSBkaXNhYmxlZCBvbiB1bmxvYWQuCj4gPiA+ID4gCj4gPiA+ID4gSXQg
-ZG9lcyBjYWxsIGRybV9mcmFtZWJ1ZmZlcl9jbGVhbnVwKCkuIFRoYXQncyB3aHkgdGhlcmUgd2Fz
-IG5vIFdBUk4sCj4gPiA+ID4gZHJtX21vZGVfY29uZmlnX2NsZWFudXAoKSBvbmx5IFdBUk5zIGlm
-IGEgZnJhbWVidWZmZXIgd2FzIGxlZnQgb24gdGhlCj4gPiA+ID4gbW9kZV9jb25maWcuZmJfbGlz
-dC4KPiA+ID4gPiAKPiA+ID4gPiByYWRlb24gYW5kIGFtZGdwdSBoYXZlIHRoZSBzYW1lIHByb2Js
-ZW0uIEluIGZhY3QgdGhlcmUgYXJlIHZlcnkgZmV3Cj4gPiA+ID4gZHJpdmVycyB0aGF0IGNhbGwg
-ZHJtX2ZyYW1lYnVmZmVyX3JlbW92ZSgpOiB0ZWdyYSwgbXNtLCBleHlub3MsIG9tYXBkcm0KPiA+
-ID4gPiBhbmQgaTkxNSAoc2luY2UgSW1yZSBEZWFrJ3MgOWQ2NjEyNTE2ZGEwKS4KPiA+ID4gPiAK
-PiA+ID4gPiBTaG91bGQgd2UgYWRkIGEgV0FSTiB0byBwcmV2ZW50IHRoaXM/IEhvdyBhYm91dCBX
-QVJOX09OKGNydGMtPmVuYWJsZWQpCj4gPiA+ID4gaW4gZHJtX2NydGNfY2xlYW51cCgpPwo+ID4g
-PiA+IAo+ID4gPiA+IEFsc28sIGk5MTUgY2FsbHMgZHJtX2ZyYW1lYnVmZmVyX3VucmVnaXN0ZXJf
-cHJpdmF0ZSgpIGJlZm9yZSBpdCBjYWxscwo+ID4gPiA+IGRybV9mcmFtZWJ1ZmZlcl9yZW1vdmUo
-KS4gVGhpcyBvcmRlcmluZyBoYXMgdGhlIHVuZm9ydHVuYXRlIHNpZGUgZWZmZWN0Cj4gPiA+ID4g
-dGhhdCB0aGUgZHJtX2ZyYW1lYnVmZmVyIGhhcyBJRCAwIGluIGxvZyBtZXNzYWdlcyBlbWl0dGVk
-IGJ5Cj4gPiA+ID4gZHJtX2ZyYW1lYnVmZmVyX3JlbW92ZSgpOgo+ID4gPiA+IAo+ID4gPiA+IFsg
-ICAzOS42ODA4NzRdIFtkcm06ZHJtX21vZGVfb2JqZWN0X3VucmVmZXJlbmNlXSBPQkogSUQ6IDAg
-KDMpCj4gPiA+ID4gWyAgIDM5LjY4MDg3OF0gW2RybTpkcm1fbW9kZV9vYmplY3RfdW5yZWZlcmVu
-Y2VdIE9CSiBJRDogMCAoMikKPiA+ID4gPiBbICAgMzkuNjgwODg0XSBbZHJtOmRybV9tb2RlX29i
-amVjdF91bnJlZmVyZW5jZV0gT0JKIElEOiAwICgxKQo+ID4gPiAKPiA+ID4gV2VsbCB3ZSBtdXN0
-IGZpcnN0IHVucmVnaXN0ZXIgaXQgYmVmb3JlIHdlIGNhbiByZW1vdmUgaXQsIHNvIHRoaXMgaXMK
-PiA+ID4gdW5hdm9pZGFibGUuCj4gPiAKPiA+IFllcyBidXQgZHJtX2ZyYW1lYnVmZmVyX2ZyZWUo
-KSBjYWxscyBkcm1fbW9kZV9vYmplY3RfdW5yZWdpc3RlcigpCj4gPiBhbmQgaXMgaW52b2tlZCBi
-eSBkcm1fZnJhbWVidWZmZXJfcmVtb3ZlKCksIHNvIHRoZSBhZGRpdGlvbmFsIGNhbGwgdG8KPiA+
-IGRybV9mcmFtZWJ1ZmZlcl91bnJlZ2lzdGVyX3ByaXZhdGUoKSBpbiBpbnRlbF9mYmRldl9kZXN0
-cm95KCkgc2VlbXMKPiA+IHN1cGVyZmx1b3VzLiBPciBpcyB0aGVyZSBzb21lIHJlYXNvbiBJJ20g
-bWlzc2luZyB0aGF0IHRoaXMgbmVlZHMgdG8KPiA+IGJlIGNhbGxlZCBiZWZvcmUgaW50ZWxfdW5w
-aW5fZmJfb2JqKCk/Cj4gPiAKPiA+IAo+ID4gPiBXcnQgc3dpdGNoaW5nIGZyb20gX2NsZWFudXAg
-dG8gX3JlbW92ZSwgaWlyYyB0aGVyZSB3YXMgdHJvdWJsZXMgd2l0aCB0aGUKPiA+ID4gbGF0ZXIg
-Y2FsbGluZyBpbnRvIHRoZSBmYi0+ZnVuY3MtPmRlc3Ryb3kgaG9vay4gQnV0IG1hbnkgZHJpdmVy
-cyBoYXZlCj4gPiA+IHRoZWlyIGZiZGV2IGZiIGVtYmVkZGVkIGludG8gc29tZSBzdHJ1Y3QgKGlu
-c3RlYWQgb2YgYSBwb2ludGVyIGxpa2UgaTkxNSksCj4gPiA+IGFuZCB0aGVuIHRoaW5ncyBnbyBz
-aWRld2F5cyBiYWRseS4gVGhhdCdzIHdoeSB5b3UgY2FuJ3QganVzdCBibGluZGx5Cj4gPiA+IHJl
-cGxhY2UgdGhlbS4KPiA+IAo+ID4gU28gdGhlIG9wdGlvbnMgc2VlbSB0byBiZToKPiA+IAo+ID4g
-KDEpIFJlZmFjdG9yIG5vdXZlYXUsIHJhZGVvbiBhbmQgYW1kZ3B1IHRvIG5vdCBlbWJlZCB0aGVp
-ciBmcmFtZWJ1ZmZlcgo+ID4gICAgIHN0cnVjdCBpbiB0aGVpciBmYmRldiBzdHJ1Y3QsIHNvIHRo
-YXQgZHJtX2ZyYW1lYnVmZmVyX3JlbW92ZSgpIGNhbgo+ID4gICAgIGJlIHVzZWQuCj4gPiAKPiA+
-ICgyKSBBbWVuZCBlYWNoIG9mIHRoZW0gdG8gdHVybiBvZmYgY3J0Y3Mgd2hpY2ggYXJlIHVzaW5n
-IHRoZSBmYmRldgo+ID4gICAgIGZyYW1lYnVmZmVyLCBkdXBsaWNhdGluZyB0aGUgY29kZSBpbiBk
-cm1fZnJhbWVidWZmZXJfcmVtb3ZlKCkuCj4gPiAKPiA+ICgzKSBTcGxpdCBkcm1fZnJhbWVidWZm
-ZXJfcmVtb3ZlKCksIG1vdmUgdGhlIHBvcnRpb24gdG8gdHVybiBvZmYgY3J0Y3MKPiA+ICAgICBp
-bnRvIGEgc2VwYXJhdGUgaGVscGVyLCBzYXksIGRybV9mcmFtZWJ1ZmZlcl9kZWFjdGl2YXRlKCks
-IGNhbGwgdGhhdAo+ID4gICAgIGZyb20gbm91dmVhdSwgcmFkZW9uIGFuZCBhbWRncHUuCj4gPiAK
-PiA+ICg0KSBHbyBiYWNrIHRvIHNxdWFyZSBvbmUgYW5kIHVzZSBwYXRjaCBbOS85XSBvZiB0aGlz
-IHNlcmllcy4KPiA+IAo+ID4gV2hpY2ggb25lIHdvdWxkIGJlIG1vc3QgcHJlZmVycmVkPyBJcyB0
-aGVyZSBhbm90aGVyIHNvbHV0aW9uIEkndmUgbWlzc2VkPwo+IAo+IEkgdGhpbmsgYSBkZWRpY2F0
-ZWQgdHVybl9vZmZfZXZlcnl0aGluZyBoZWxwZXIgd291bGQgYmUgYmVzdC4gV2UnZCBuZWVkIGFu
-Cj4gYXRvbWljIGFuZCBhIGxlZ2FjeSB2ZXJzaW9uIChiZWNhdXNlIGhvb3JheSksIGJ1dCB0aGF0
-IHdvdWxkIHdvcmsgaW4gYWxsCj4gY2FzZXMuIFJlbHlpbmcgb24gdGhlIGltcGxpY2l0IGJlaGF2
-aW91ciB0byB0dXJuIG9mZiBldmVyeXRoaW5nIChzdHJpY3RseQo+IHNwZWFraW5nIHlvdSBvbmx5
-IG5lZWQgdG8gdHVybiBvZmYgYWxsIHRoZSBwbGFuZXMsIHlvdSBjYW4gbGVhdmUgY3J0Y3Mgb24s
-Cj4gYW5kIHRoYXQncyB3aGF0IG1vc3QgYXRvbWljIGRyaXZlcnMgd2FudCByZWFsbHkgdW5kZXIg
-bm9ybWFsCj4gY2lyY3Vtc3RhbmNlcykgaXMgYSBiaXQgZnJhZ2lsZSwgYW5kIGl0J3MgYWxzbyBw
-b3NzaWJsZSB0byBkaXNhYmxlIGZiZGV2Cj4gZW11bGF0aW9uLiBJZiB5b3UgZHJpdmVyIG5lZWRz
-IGV2ZXJ5dGhpbmcgdG8gYmUgb2ZmIGluIG1vZHVsZSB1bmxvYWQsIHRoZW4KPiBpdCdzIGltbyBi
-ZXN0IHRvIGV4cGxpY2l0bHkgZW5mb3JjZSB0aGF0Lgo+IAo+IFNvICIoNSkgV3JpdGUgZGVkaWNh
-dGVkIGhlbHBlciB0byB0dXJuIG9mZiBldmVyeXRoaW5nIiBpcyBpbW8gdGhlIHJpZ2h0Cj4gZml4
-LgoKT2theSBJIGRpZCB0aGF0IGFuZCBqdXN0IHBvc3RlZCBpdCBhcyB2Mi4gSG9wZSBJJ3ZlIHVu
-ZGVyc3Rvb2QgY29ycmVjdGx5CndoYXQgeW91IHN1Z2dlc3RlZCwgaWYgbm90IHBsZWFzZSBsZXQg
-bWUga25vdyBhbmQgSSdsbCByZWN0aWZ5IGluIGEgdjMuCgpUaGFua3MsCgpMdWthcwpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGlu
-ZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============0979847421==
+Content-Type: multipart/alternative; boundary="14654122150.EAAB4dFC8.6145";
+ charset="UTF-8"
+
+
+--14654122150.EAAB4dFC8.6145
+Date: Wed, 8 Jun 2016 18:56:55 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96443
+
+            Bug ID: 96443
+           Summary: Missrendering of Reflections in Talos Principle
+           Product: Mesa
+           Version: git
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+With the Performance settings "cpu settings > mirror reflections" enabled, =
+the
+sky reflection on the water is broken.
+
+Traces are useless here, because the issue is somehow consistent on other
+drivers as well, but don't show there if the game runs on them.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14654122150.EAAB4dFC8.6145
+Date: Wed, 8 Jun 2016 18:56:55 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Missrendering of Reflections in Talos Principle"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96443">96443</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Missrendering of Reflections in Talos Principle
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>freedesktop&#64;karolherbst.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>With the Performance settings &quot;cpu settings &gt; mirror r=
+eflections&quot; enabled, the
+sky reflection on the water is broken.
+
+Traces are useless here, because the issue is somehow consistent on other
+drivers as well, but don't show there if the game runs on them.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14654122150.EAAB4dFC8.6145--
+
+--===============0979847421==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0979847421==--
