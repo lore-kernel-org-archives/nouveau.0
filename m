@@ -1,15 +1,11 @@
-From: David Vrabel <david.vrabel-Sxgqhf6Nn4DQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [RFC v3 20/45] xen: dma-mapping: Use unsigned long
-	for dma_attrs
-Date: Tue, 7 Jun 2016 10:06:19 +0100
-Message-ID: <57568E8B.4000707__40504.6345470057$1465368667$gmane$org@citrix.com>
-References: <1464881987-13203-1-git-send-email-k.kozlowski@samsung.com>
- <1464881987-13203-21-git-send-email-k.kozlowski@samsung.com>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 0/4] secboot: be more resilient on errors
+Date: Wed, 8 Jun 2016 17:32:37 +0900
+Message-ID: <20160608083241.15949-1-acourbot@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1464881987-13203-21-git-send-email-k.kozlowski-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,14 +15,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Krzysztof Kozlowski <k.kozlowski-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Richard Henderson <rth-hL46jP5Bxq7R7s880joybQ@public.gmane.org>, Ivan Kokshaysky <ink-biIs/Y0ymYJMZLIVYojuPNP0rXTJTi09@public.gmane.org>, Matt Turner <mattst88-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Vineet Gupta <vgupta-HKixBCOQz3hWk0Htik3J/w@public.gmane.org>, Russell King <linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, Stefano Stabellini <sstabellini-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Catalin Marinas <catalin.marinas-5wv7dgnIgG8@public.gmane.org>, Will Deacon <will.deacon-5wv7dgnIgG8@public.gmane.org>, Haavard Skinnemoen <hskinnemoen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Hans-Christian Egtvedt <egtvedt-BrfabpQBY5qlHtIdYg32fQ@public.gmane.org>, Steven Miao <realmz6-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Mark Salter <msalter-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Aurelien Jacquiot <a-jacquiot-l0cyMroinI0@public.gmane.org>, Mikael Starvik <starvik-VrBV9hrLPhE@public.gmane.org>, Jesper Nilsson <jesper.nilsson-VrBV9hrLPhE@public.gmane.org>, Yoshinori Sato <ysato-Rn4VEauK+AKRv+LV9MX5uooqe+aC9MnS@public.gmane.org>, Richard Kuo <rkuo-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>, Tony Luck <tony.luck-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Fenghua Yu <fenghua.yu-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Konrad Rzeszutek Wilk <konrad.wilk-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>, Geert Uytterhoeven <geert-Td1EMuHUCqxL1ZNQvxDV9g@public.gmane.org>, James
-Cc: hch-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org, Bartlomiej Zolnierkiewicz <b.zolnierkie-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDIvMDYvMTYgMTY6MzksIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6Cj4gU3BsaXQgb3V0
-IHN1YnN5c3RlbSBzcGVjaWZpYyBjaGFuZ2VzIGZvciBlYXNpZXIgcmV2aWV3cy4gVGhpcyB3aWxs
-IGJlCj4gc3F1YXNoZWQgd2l0aCBtYWluIGNvbW1pdC4KCkFja2VkLWJ5OiBEYXZpZCBWcmFiZWwg
-PGRhdmlkLnZyYWJlbEBjaXRyaXguY29tPgoKRGF2aWQKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1Cg==
+VGhpcyBzZXJpZXMgZml4ZXMgdHdvIGNhc2VzIHdoZXJlIGJlaGF2aW9yIG9uIHNlY3VyZSBib290
+IGVycm9ycyBjb3VsZCBiZQppbXByb3ZlZDoKCjEpIFBhdGNoIDIgcHJvcGFnZXMgc2VjdXJlLWJv
+b3QgZXJyb3JzIGZyb20gR1IgaW5pdCwgbWFraW5nIHN1cmUgaW5pdGlhbGl6YXRpb24KICAgZmFp
+bHMgYXMgaXQgc2hvdWxkLiBGYWlsdXJlIHRvIGRvIHNvIHJlc3VsdHMgaW4gYSBibGFjayBzY3Jl
+ZW4gZHVyaW5nIGJvb3QsCiAgIGFzIHJlcG9ydGVkIGluIEZEIGJ1ZyA5NDk5MC4KMikgUGF0Y2hl
+cyAzLTQgbWFrZSB0aGUgYWJzZW5jZSBvZiByZXF1aXJlZCBzZWN1cmUgZmlybXdhcmUgZmlsZXMg
+YSBub24tZmF0YWwKICAgZXJyb3IuIFRoZSBwcmV2aW91cyBiZWhhdmlvciB3YXMgdG8gZ2l2ZSB1
+cCB0aGUgd2hvbGUgZHJpdmVyIGluaXQgYWx0b2dldGhlci4KICAgTm93IHVzZXJzIGNhbiBhdCBs
+ZWFzdCBlbmpveSBhIGRpc3BsYXkgZXZlbiBpZiB0aGV5IGFyZSBtaXNzaW5nIHRoZSBmaXJtd2Fy
+ZQogICBmaWxlcy4gT24gdG9wIG9mIHRoYXQsIGZpcm13YXJlIGxvYWRpbmcgaXMgcmUtYXR0ZW1w
+dGVkIHRoZSBuZXh0IHRpbWUgYQogICBzZWN1cmUgYm9vdCBmdW5jdGlvbiBpcyBpbnZva2VkLCBh
+bHNvIGFkZHJlc3NpbmcgdGhlIGNhc2Ugd2hlcmUgZmlybXdhcmUgaXMKICAgbm90IGF2YWlsYWJs
+ZSBhdCB0aGUgdGltZSBvZiBib290ICh0aGUgZmlyc3QgR1IgaW5pdCBhdHRlbXB0IHdpbGwgZmFp
+bCwgYnV0CiAgIHRoZSBuZXh0IG9uZSB3aWxsIHN1Y2NlZWQgcHJvdmlkZWQgdGhlIGZpbGVzIGFy
+ZSBub3cgYXZhaWxhYmxlKS4KCkJlbiwgSSBrbm93IHdlIGRpc2N1c3NlZCBzb2x2aW5nIHByb2Js
+ZW0gMikgYnkgbW92aW5nIGZpcm13YXJlIGxvYWRpbmcgaW50byB0aGUKc2VjYm9vdCBjb25zdHJ1
+Y3RvciwgYnV0IHRoaXMgaXMgaW1wb3NzaWJsZSBkdWUgdG8gdGhlIGZhY3QgZmlybXdhcmUgbG9h
+ZGluZwpyZXF1aXJlcyB0aGUgY3JlYXRpb24gb2YgZ3B1b2JqLCBhIGZlYXR1cmUgdGhhdCBpcyBu
+b3QgYXZhaWxhYmxlIGF0IHRoYXQgdGltZS4KRm9yIHRoaXMgcmVhc29uIEkgaGF2ZSBhZG9wdGVk
+IHRoaXMgbGF6eSBhbmQgYWN0dWFsbHkgbW9yZSByZXNpbGllbnQgc3RyYXRlZ3kuCgpBbGV4YW5k
+cmUgQ291cmJvdCAoNCk6CiAgc2VjYm9vdDogZml4IGtlcm5lbGRvYyBmb3Igc2VjdXJlIGJvb3Qg
+c3RydWN0dXJlcwogIGdyL2dmMTAwOiBoYW5kbGUgc2VjdXJlIGJvb3QgZXJyb3JzCiAgc2VjYm9v
+dC9nbTIwMDogbWFrZSBmaXJtd2FyZSBsb2FkaW5nIHJlLWNhbGxhYmxlCiAgc2VjYm9vdDogbGF6
+eS1sb2FkIGZpcm13YXJlIGFuZCBiZSBtb3JlIHJlc2lsaWVudAoKIGRybS9ub3V2ZWF1L252a20v
+ZW5naW5lL2dyL2dmMTAwLmMgICAgICB8IDEwICsrKystCiBkcm0vbm91dmVhdS9udmttL3N1YmRl
+di9zZWNib290L2Jhc2UuYyAgfCAgOSArLS0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2Vj
+Ym9vdC9nbTIwMC5jIHwgNzIgKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tCiBkcm0v
+bm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2dtMjBiLmMgfCA1NCArKysrKysrKysrKystLS0t
+LS0tLS0tLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L3ByaXYuaCAgfCAxOCAr
+KysrKystLS0KIDUgZmlsZXMgY2hhbmdlZCwgMTAyIGluc2VydGlvbnMoKyksIDYxIGRlbGV0aW9u
+cygtKQoKLS0gCjIuOC4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
