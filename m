@@ -1,14 +1,13 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH v2 00/15] Runtime pm ref leak bonanza
-Date: Thu, 9 Jun 2016 08:50:32 +0200
-Message-ID: <20160609065032.GI3363@phenom.ffwll.local>
+Date: Thu, 9 Jun 2016 17:20:30 +1000
+Message-ID: <b4e3a8a6-cb44-80bf-8834-419afc2d1cb4@gmail.com>
 References: <cover.1465392124.git.lukas@wunner.de>
+ <20160609065032.GI3363@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2123908158=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <cover.1465392124.git.lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+In-Reply-To: <20160609065032.GI3363-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,58 +17,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKdW4gMDgsIDIwMTYgYXQgMDY6NDc6MjdQTSArMDIwMCwgTHVrYXMgV3VubmVyIHdy
-b3RlOgo+IFNlY29uZCBpdGVyYXRpb24gb2YgbXkgZW5kZWF2b3VyIHRvIHJpZCBub3V2ZWF1LCBy
-YWRlb24gYW5kIGFtZGdwdSBvZgo+IHJ1bnRpbWUgcG0gcmVmIGxlYWtzLgo+IAo+IFBhdGNoZXMg
-MSB0byA4IGFyZSBpZGVudGljYWwgdG8gdjEuCj4gCj4gUGF0Y2ggOSBvZiB2MSBtb2RpZmllZCB0
-aGUgRFJNIGNvcmUgdG8gdHVybiBvZmYgYWxsIENSVENzIG9uIGRyaXZlcgo+IHVubG9hZC4gQmFz
-ZWQgb24gZmVlZGJhY2sgYnkgRGFuaWVsIFZldHRlciwgSSd2ZSByZXBsYWNlZCB0aGlzIHdpdGgK
-PiBhIGhlbHBlciB0byB0dXJuIG9mZiBhbGwgQ1JUQ3MsIHdoaWNoIGlzIGNhbGxlZCBieSBub3V2
-ZWF1LCByYWRlb24KPiBhbmQgYW1kZ3B1IG9uIHVubG9hZC4gSW4gb3RoZXIgd29yZHMsIHRoaXMg
-aXMgbm93IG9wdC1pbi4KPiBTbyBwYXRjaCA5IG9mIHYxIGlzIHJlcGxhY2VkIHdpdGggbmV3IHBh
-dGNoZXMgOSB0byAxMi4KPiAKPiBBIGJ5LXByb2R1Y3Qgb2YgcGF0Y2ggOSBpcyBhIGhlbHBlciB3
-aGljaCB0dXJucyBvZmYgYSAqc2luZ2xlKiBDUlRDLgo+IFRoaXMgaXMgb3BlbiBjb2RlZCBpbiB0
-aHJlZSBvdGhlciBwbGFjZXMgaW4gdGhlIERSTSB0cmVlIGFuZCBwYXRjaGVzCj4gMTMgdG8gMTUg
-cmVmYWN0b3IgdGhvc2UgdG8gdXNlIHRoZSBuZXcgaGVscGVyLgoKWWVhaCBJIHRoaW5rIHRoaXMg
-bWFrZXMgbXVjaCBtb3JlIHNlbnNlLiBQbGVhc2UgcG9rZSBhbWQvbm91dmVhdSBmb2xrcyBmb3IK
-cmV2aWV3cy9hY2tzLCB0aGVuIEkgY2FuIG1lcmdlLgotRGFuaWVsCgo+IAo+IFRvIGVhc2UgcmV2
-aWV3aW5nLCBJJ3ZlIHB1c2hlZCB0aGlzIHNlcmllcyB0byBHaXRIdWI6Cj4gaHR0cHM6Ly9naXRo
-dWIuY29tL2wxay9saW51eC9jb21taXRzL2RybV9ydW5wbV9maXhlc192Mgo+IAo+IFRoZSBkaXNj
-dXNzaW9uIG9uIHYxIGlzIGFyY2hpdmVkIGhlcmU6Cj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvYXJjaGl2ZXMvZHJpLWRldmVsLzIwMTYtTWF5L3RocmVhZC5odG1sIzEwODI3OAo+IAo+
-IFRoYW5rcywKPiAKPiBMdWthcwo+IAo+IEx1a2FzIFd1bm5lciAoMTUpOgo+ICAgZHJtL25vdXZl
-YXU6IERvbid0IGxlYWsgcnVudGltZSBwbSByZWYgb24gZHJpdmVyIHVubG9hZAo+ICAgZHJtL25v
-dXZlYXU6IEZvcmJpZCBydW50aW1lIHBtIG9uIGRyaXZlciB1bmxvYWQKPiAgIGRybS9yYWRlb246
-IERvbid0IGxlYWsgcnVudGltZSBwbSByZWYgb24gZHJpdmVyIHVubG9hZAo+ICAgZHJtL3JhZGVv
-bjogRG9uJ3QgbGVhayBydW50aW1lIHBtIHJlZiBvbiBkcml2ZXIgbG9hZAo+ICAgZHJtL3JhZGVv
-bjogRm9yYmlkIHJ1bnRpbWUgcG0gb24gZHJpdmVyIHVubG9hZAo+ICAgZHJtL2FtZGdwdTogRG9u
-J3QgbGVhayBydW50aW1lIHBtIHJlZiBvbiBkcml2ZXIgdW5sb2FkCj4gICBkcm0vYW1kZ3B1OiBE
-b24ndCBsZWFrIHJ1bnRpbWUgcG0gcmVmIG9uIGRyaXZlciBsb2FkCj4gICBkcm0vYW1kZ3B1OiBG
-b3JiaWQgcnVudGltZSBwbSBvbiBkcml2ZXIgdW5sb2FkCj4gICBkcm06IEFkZCBoZWxwZXJzIHRv
-IHR1cm4gb2ZmIENSVENzCj4gICBkcm0vbm91dmVhdTogVHVybiBvZmYgQ1JUQ3Mgb24gZHJpdmVy
-IHVubG9hZAo+ICAgZHJtL3JhZGVvbjogVHVybiBvZmYgQ1JUQ3Mgb24gZHJpdmVyIHVubG9hZAo+
-ICAgZHJtL2FtZGdwdTogVHVybiBvZmYgQ1JUQ3Mgb24gZHJpdmVyIHVubG9hZAo+ICAgZHJtOiBV
-c2UgaGVscGVyIHRvIHR1cm4gb2ZmIENSVEMKPiAgIGRybS9pMmMvY2g3MDA2OiBVc2UgaGVscGVy
-IHRvIHR1cm4gb2ZmIENSVEMKPiAgIGRybS9ub3V2ZWF1L2Rpc3BudjA0OiBVc2UgaGVscGVyIHRv
-IHR1cm4gb2ZmIENSVEMKPiAKPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rl
-dmljZS5jIHwgIDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfa21zLmMg
-ICAgfCAxMiArKysrKy0tCj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fY3J0Yy5jICAgICAgICAgICAg
-ICAgICB8IDUzICsrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLQo+ICBkcml2ZXJzL2dwdS9k
-cm0vaTJjL2NoNzAwNl9kcnYuYyAgICAgICAgICAgfCAgOSArKy0tLQo+ICBkcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9kaXNwbnYwNC9kaXNwLmMgICAgfCAxMCAtLS0tLS0KPiAgZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvZGlzcG52MDQvdHZudjE3LmMgIHwgIDkgKystLS0KPiAgZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgIHwgIDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2RybS5jICAgICAgfCAgNiArKystCj4gIGRyaXZlcnMvZ3B1L2RybS9y
-YWRlb24vcmFkZW9uX2RldmljZS5jICAgICB8ICA0ICsrKwo+ICBkcml2ZXJzL2dwdS9kcm0vcmFk
-ZW9uL3JhZGVvbl9kaXNwbGF5LmMgICAgfCAgMSArCj4gIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24v
-cmFkZW9uX2ttcy5jICAgICAgICB8ICA1ICsrLQo+ICBpbmNsdWRlL2RybS9kcm1fY3J0Yy5oICAg
-ICAgICAgICAgICAgICAgICAgfCAgMiArKwo+ICAxMiBmaWxlcyBjaGFuZ2VkLCA3NyBpbnNlcnRp
-b25zKCspLCAzNiBkZWxldGlvbnMoLSkKPiAKPiAtLSAKPiAyLjguMQo+IAoKLS0gCkRhbmllbCBW
-ZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZm
-d2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
-dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============2123908158==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="KiK1NULpnNnPawblfcchsdpRpxRTadT4g"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--KiK1NULpnNnPawblfcchsdpRpxRTadT4g
+Content-Type: multipart/mixed; boundary="anwTP4w1sDPVwERt4ivLFfM42tomPbXGF"
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Message-ID: <b4e3a8a6-cb44-80bf-8834-419afc2d1cb4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Nouveau] [PATCH v2 00/15] Runtime pm ref leak bonanza
+References: <cover.1465392124.git.lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+ <20160609065032.GI3363-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
+In-Reply-To: <20160609065032.GI3363-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
+
+--anwTP4w1sDPVwERt4ivLFfM42tomPbXGF
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+On 06/09/2016 04:50 PM, Daniel Vetter wrote:
+> On Wed, Jun 08, 2016 at 06:47:27PM +0200, Lukas Wunner wrote:
+>> Second iteration of my endeavour to rid nouveau, radeon and amdgpu of
+>> runtime pm ref leaks.
+>>
+>> Patches 1 to 8 are identical to v1.
+>>
+>> Patch 9 of v1 modified the DRM core to turn off all CRTCs on driver
+>> unload. Based on feedback by Daniel Vetter, I've replaced this with
+>> a helper to turn off all CRTCs, which is called by nouveau, radeon
+>> and amdgpu on unload. In other words, this is now opt-in.
+>> So patch 9 of v1 is replaced with new patches 9 to 12.
+>>
+>> A by-product of patch 9 is a helper which turns off a *single* CRTC.
+>> This is open coded in three other places in the DRM tree and patches
+>> 13 to 15 refactor those to use the new helper.
+>=20
+> Yeah I think this makes much more sense. Please poke amd/nouveau folks =
+for
+> reviews/acks, then I can merge.
+Looks fine to me.
+
+Ben.
+
+> -Daniel
+>=20
+>>
+>> To ease reviewing, I've pushed this series to GitHub:
+>> https://github.com/l1k/linux/commits/drm_runpm_fixes_v2
+>>
+>> The discussion on v1 is archived here:
+>> https://lists.freedesktop.org/archives/dri-devel/2016-May/thread.html#=
+108278
+>>
+>> Thanks,
+>>
+>> Lukas
+>>
+>> Lukas Wunner (15):
+>>   drm/nouveau: Don't leak runtime pm ref on driver unload
+>>   drm/nouveau: Forbid runtime pm on driver unload
+>>   drm/radeon: Don't leak runtime pm ref on driver unload
+>>   drm/radeon: Don't leak runtime pm ref on driver load
+>>   drm/radeon: Forbid runtime pm on driver unload
+>>   drm/amdgpu: Don't leak runtime pm ref on driver unload
+>>   drm/amdgpu: Don't leak runtime pm ref on driver load
+>>   drm/amdgpu: Forbid runtime pm on driver unload
+>>   drm: Add helpers to turn off CRTCs
+>>   drm/nouveau: Turn off CRTCs on driver unload
+>>   drm/radeon: Turn off CRTCs on driver unload
+>>   drm/amdgpu: Turn off CRTCs on driver unload
+>>   drm: Use helper to turn off CRTC
+>>   drm/i2c/ch7006: Use helper to turn off CRTC
+>>   drm/nouveau/dispnv04: Use helper to turn off CRTC
+>>
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  1 +
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    | 12 +++++--
+>>  drivers/gpu/drm/drm_crtc.c                 | 53 +++++++++++++++++++++=
++++++----
+>>  drivers/gpu/drm/i2c/ch7006_drv.c           |  9 ++---
+>>  drivers/gpu/drm/nouveau/dispnv04/disp.c    | 10 ------
+>>  drivers/gpu/drm/nouveau/dispnv04/tvnv17.c  |  9 ++---
+>>  drivers/gpu/drm/nouveau/nouveau_display.c  |  1 +
+>>  drivers/gpu/drm/nouveau/nouveau_drm.c      |  6 +++-
+>>  drivers/gpu/drm/radeon/radeon_device.c     |  4 +++
+>>  drivers/gpu/drm/radeon/radeon_display.c    |  1 +
+>>  drivers/gpu/drm/radeon/radeon_kms.c        |  5 ++-
+>>  include/drm/drm_crtc.h                     |  2 ++
+>>  12 files changed, 77 insertions(+), 36 deletions(-)
+>>
+>> --=20
+>> 2.8.1
+>>
+>=20
+
+
+--anwTP4w1sDPVwERt4ivLFfM42tomPbXGF--
+
+--KiK1NULpnNnPawblfcchsdpRpxRTadT4g
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJXWRjBAAoJEHYLnGJQkpH7ZNAQAL7vj7WldbSN1c1D4QkWC075
+9p7QUINuHfWb4apKO95VcN+iDoW6C/m/U9GlIUdEuKsBA8UoSXMXSrB28AF03bIB
+ou7PtSiLb0DQCPbJ4ZSsBhOzE//Cm3aY6N97DXrKzLpbNH5Dzbxtrj/VDaK1va+G
+y1ZYCUlDWbJdRunXwQgQ/90/YajBH5DLlHtKQEuu4sBlcpuibEzvT+SRrxdkHRRm
+bnRRQteBmZgK8n//OTPGFRAQwm15AW2MXPqAz6ICwbXOQAzUn5ypglJzBqkb3/ux
+d4rB/TiTjXxz+CTp9e0VRiMTFe5uBC4fT7AbUUA5ypNa9IY34pKwTMVnZor4qb9Y
+fx6bOGW+xWvdjEKfeuq1Tx68YBSEGcJTNUsYm9KXgadORJp+l1QzyKcc7Re3i4IY
+1DilSQEJSysNNJc/bwYMYjLnCpt7jqPf7uTkKPRsWaTZnwLKxLczTr9cEMLGts3W
+1EOfaPj0kPavEnqJ1GKHX81qtR2oYNxL3os+VglBnBrTlb5wbeTASz1gk1eP6f3O
+FiaKo8DyJpwbL1SRkmGsKN2/wcWJ1gK9UZSIA+d4geXwrN4ZOQ9sa7ewjLoHobSh
+sckizjXAlS/wjM4b69+5FfRoE72MmxYkTVrsepxc88vr12TMjk1AJBfaCrfpPUCX
+zfbgHpUnC4tOkcA+UHlR
+=9hAF
+-----END PGP SIGNATURE-----
+
+--KiK1NULpnNnPawblfcchsdpRpxRTadT4g--
+
+--===============2123908158==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2123908158==--
