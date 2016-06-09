@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96460] NV43 [GeForce 6600 GT] shows many artifacts
 	on a screen
-Date: Thu, 09 Jun 2016 15:09:15 +0000
-Message-ID: <bug-96460-8800-K3cm5XIvAB@http.bugs.freedesktop.org/>
+Date: Thu, 09 Jun 2016 15:10:56 +0000
+Message-ID: <bug-96460-8800-W75wIW9UNu@http.bugs.freedesktop.org/>
 References: <bug-96460-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2037251229=="
+Content-Type: multipart/mixed; boundary="===============0598331945=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96460-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2037251229==
-Content-Type: multipart/alternative; boundary="14654849550.f4f0dEF.22260";
+--===============0598331945==
+Content-Type: multipart/alternative; boundary="14654850560.1B8b.22745";
  charset="UTF-8"
 
 
---14654849550.f4f0dEF.22260
-Date: Thu, 9 Jun 2016 15:09:15 +0000
+--14654850560.1B8b.22745
+Date: Thu, 9 Jun 2016 15:10:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96460
 
---- Comment #3 from Eugene <ken20001-qsvJrrU2NvU@public.gmane.org> ---
-Created attachment 124418
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124418&action=3Dedit
-xorg log file
+--- Comment #5 from Eugene <ken20001-qsvJrrU2NvU@public.gmane.org> ---
+Created attachment 124420
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124420&action=3Dedit
+whole desktop screen shot with artifacts
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14654849550.f4f0dEF.22260
-Date: Thu, 9 Jun 2016 15:09:15 +0000
+--14654850560.1B8b.22745
+Date: Thu, 9 Jun 2016 15:10:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV43 [GeForce 6600 GT] shows many artifacts on a screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96460#c3">Comment=
- # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96460#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV43 [GeForce 6600 GT] shows many artifacts on a screen"
@@ -75,11 +75,11 @@ Auto-Submitted: auto-generated
 ken20001&#64;ukr.net" title=3D"Eugene &lt;ken20001&#64;ukr.net&gt;"> <span =
 class=3D"fn">Eugene</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124418=
-" name=3D"attach_124418" title=3D"xorg log file">attachment 124418</a> <a h=
-ref=3D"attachment.cgi?id=3D124418&amp;action=3Dedit" title=3D"xorg log file=
-">[details]</a></span>
-xorg log file</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124420=
+" name=3D"attach_124420" title=3D"whole desktop screen shot with artifacts"=
+>attachment 124420</a> <a href=3D"attachment.cgi?id=3D124420&amp;action=3De=
+dit" title=3D"whole desktop screen shot with artifacts">[details]</a></span>
+whole desktop screen shot with artifacts</pre>
         </div>
       </p>
 
@@ -94,9 +94,9 @@ xorg log file</pre>
     </body>
 </html>=
 
---14654849550.f4f0dEF.22260--
+--14654850560.1B8b.22745--
 
---===============2037251229==
+--===============0598331945==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2037251229==--
+--===============0598331945==--
