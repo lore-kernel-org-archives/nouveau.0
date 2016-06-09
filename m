@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96460] NV43 [GeForce 6600 GT] shows many artifacts
 	on a screen
-Date: Thu, 09 Jun 2016 15:11:11 +0000
-Message-ID: <bug-96460-8800-ReoE9XkvTI@http.bugs.freedesktop.org/>
+Date: Thu, 09 Jun 2016 15:14:43 +0000
+Message-ID: <bug-96460-8800-PxmIvAG06R@http.bugs.freedesktop.org/>
 References: <bug-96460-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0531050487=="
+Content-Type: multipart/mixed; boundary="===============0842820233=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96460-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0531050487==
-Content-Type: multipart/alternative; boundary="14654850700.bDf9fAA1f.22820";
+--===============0842820233==
+Content-Type: multipart/alternative; boundary="14654852830.68aEFBE.23415";
  charset="UTF-8"
 
 
---14654850700.bDf9fAA1f.22820
-Date: Thu, 9 Jun 2016 15:11:10 +0000
+--14654852830.68aEFBE.23415
+Date: Thu, 9 Jun 2016 15:14:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96460
 
-Eugene <ken20001-qsvJrrU2NvU@public.gmane.org> changed:
+--- Comment #6 from Eugene <ken20001-qsvJrrU2NvU@public.gmane.org> ---
+Please, see attachments for additional info and screen shots with artifacts.
+Also I've tried the latest git drivers from here:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|medium                      |highest
+https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers?field.series_=
+filter=3Dxenial
+
+with the same results:
+
+libdrm: 2.4.68+git1606070630.70b640
+mesa: 12.1~git1606090730.037ce5
+xserver-xorg-video-nouveau: 1:1.0.12+git1606020733.1da8a9
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14654850700.bDf9fAA1f.22820
-Date: Thu, 9 Jun 2016 15:11:10 +0000
+--14654852830.68aEFBE.23415
+Date: Thu, 9 Jun 2016 15:14:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,31 +66,37 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ken20001&=
-#64;ukr.net" title=3D"Eugene &lt;ken20001&#64;ukr.net&gt;"> <span class=3D"=
-fn">Eugene</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - NV43 [GeForce 6600 GT] shows many artifacts on a screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96460#c6">Comment=
+ # 6</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV43 [GeForce 6600 GT] shows many artifacts on a screen"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96460">bug 96460<=
 /a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ken20001&#64;ukr.net" title=3D"Eugene &lt;ken20001&#64;ukr.net&gt;"> <span =
+class=3D"fn">Eugene</span></a>
+</span></b>
+        <pre>Please, see attachments for additional info and screen shots w=
+ith artifacts.
+Also I've tried the latest git drivers from here:
 
-         <tr>
-           <td style=3D"text-align:right;">Priority</td>
-           <td>medium
-           </td>
-           <td>highest
-           </td>
-         </tr></table>
-      <p>
+<a href=3D"https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers?fi=
+eld.series_filter=3Dxenial">https://launchpad.net/~oibaf/+archive/ubuntu/gr=
+aphics-drivers?field.series_filter=3Dxenial</a>
+
+with the same results:
+
+libdrm: 2.4.68+git1606070630.70b640
+mesa: 12.1~git1606090730.037ce5
+xserver-xorg-video-nouveau: 1:1.0.12+git1606020733.1da8a9</pre>
+        </div>
       </p>
 
 
@@ -91,15 +104,15 @@ fn">Eugene</span></a>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14654850700.bDf9fAA1f.22820--
+--14654852830.68aEFBE.23415--
 
---===============0531050487==
+--===============0842820233==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0531050487==--
+--===============0842820233==--
