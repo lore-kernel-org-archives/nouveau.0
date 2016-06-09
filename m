@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96460] NV43 [GeForce 6600 GT] shows many artifacts
 	on a screen
-Date: Thu, 09 Jun 2016 21:13:53 +0000
-Message-ID: <bug-96460-8800-K1lhaDIJPl@http.bugs.freedesktop.org/>
+Date: Thu, 09 Jun 2016 21:20:48 +0000
+Message-ID: <bug-96460-8800-ubpKUnYjI1@http.bugs.freedesktop.org/>
 References: <bug-96460-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2111172275=="
+Content-Type: multipart/mixed; boundary="===============0849993986=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96460-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2111172275==
-Content-Type: multipart/alternative; boundary="14655068320.ECbA.32434";
+--===============0849993986==
+Content-Type: multipart/alternative; boundary="14655072481.81cba.1444";
  charset="UTF-8"
 
 
---14655068320.ECbA.32434
-Date: Thu, 9 Jun 2016 21:13:52 +0000
+--14655072481.81cba.1444
+Date: Thu, 9 Jun 2016 21:20:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,31 +36,28 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96460
 
---- Comment #9 from Eugene <ken20001-qsvJrrU2NvU@public.gmane.org> ---
->Please try to disable use of GL for composition if you have a compositor e=
-nabled.
-Actually the situation is slightly somewhat different. It is not possible to
-work with compositor enabled because of too many artefacts appears all the
-time. So this is the only way - to disable compositing - to be able to work.
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Eugene from comment #9)
+> >Please try to disable use of GL for composition if you have a compositor=
+ enabled.
+>
+> Actually the situation is slightly somewhat different. It is not possible=
+ to
+> work with compositor enabled because of too many artefacts appears all the
+> time. So this is the only way - to disable compositing - to be able to wo=
+rk.
 
->also, don't mess around with importance settings
-I set it up as I take them for yourself. If it is possible to set is up for
-reported then somebody decided it should be like that. You're not agree - y=
-ou
-changed them - it's OK. No problem. I just don't know in what project what
-setting can or can't mean.
-
-Please, ask for any additional info if needed.
-
-Thanks.
+Can you clarify whether you're seeing the artifacts without any compositor =
+at
+all, or if your compositor is using Xrender, or if it's using GL?
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14655068320.ECbA.32434
-Date: Thu, 9 Jun 2016 21:13:52 +0000
+--14655072481.81cba.1444
+Date: Thu, 9 Jun 2016 21:20:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,34 +74,32 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV43 [GeForce 6600 GT] shows many artifacts on a screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96460#c9">Comment=
- # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96460#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV43 [GeForce 6600 GT] shows many artifacts on a screen"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96460">bug 96460<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ken20001&#64;ukr.net" title=3D"Eugene &lt;ken20001&#64;ukr.net&gt;"> <span =
-class=3D"fn">Eugene</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre><span class=3D"quote">&gt;Please try to disable use of GL for =
-composition if you have a compositor enabled.</span >
-Actually the situation is slightly somewhat different. It is not possible to
-work with compositor enabled because of too many artefacts appears all the
-time. So this is the only way - to disable compositing - to be able to work.
+        <pre>(In reply to Eugene from <a href=3D"show_bug.cgi?id=3D96460#c9=
+">comment #9</a>)
+<span class=3D"quote">&gt; &gt;Please try to disable use of GL for composit=
+ion if you have a compositor enabled.</span >
+&gt;
+<span class=3D"quote">&gt; Actually the situation is slightly somewhat diff=
+erent. It is not possible to
+&gt; work with compositor enabled because of too many artefacts appears all=
+ the
+&gt; time. So this is the only way - to disable compositing - to be able to=
+ work.</span >
 
-<span class=3D"quote">&gt;also, don't mess around with importance settings<=
-/span >
-I set it up as I take them for yourself. If it is possible to set is up for
-reported then somebody decided it should be like that. You're not agree - y=
-ou
-changed them - it's OK. No problem. I just don't know in what project what
-setting can or can't mean.
-
-Please, ask for any additional info if needed.
-
-Thanks.</pre>
+Can you clarify whether you're seeing the artifacts without any compositor =
+at
+all, or if your compositor is using Xrender, or if it's using GL?</pre>
         </div>
       </p>
 
@@ -113,15 +108,15 @@ Thanks.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14655068320.ECbA.32434--
+--14655072481.81cba.1444--
 
---===============2111172275==
+--===============0849993986==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -131,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2111172275==--
+--===============0849993986==--
