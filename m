@@ -1,11 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96443] New: Missrendering of Reflections in Talos
-	Principle
-Date: Wed, 08 Jun 2016 18:56:56 +0000
-Message-ID: <bug-96443-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH v2 00/15] Runtime pm ref leak bonanza
+Date: Thu, 9 Jun 2016 08:50:32 +0200
+Message-ID: <20160609065032.GI3363@phenom.ffwll.local>
+References: <cover.1465392124.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0979847421=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <cover.1465392124.git.lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,176 +18,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0979847421==
-Content-Type: multipart/alternative; boundary="14654122150.EAAB4dFC8.6145";
- charset="UTF-8"
-
-
---14654122150.EAAB4dFC8.6145
-Date: Wed, 8 Jun 2016 18:56:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96443
-
-            Bug ID: 96443
-           Summary: Missrendering of Reflections in Talos Principle
-           Product: Mesa
-           Version: git
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-With the Performance settings "cpu settings > mirror reflections" enabled, =
-the
-sky reflection on the water is broken.
-
-Traces are useless here, because the issue is somehow consistent on other
-drivers as well, but don't show there if the game runs on them.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14654122150.EAAB4dFC8.6145
-Date: Wed, 8 Jun 2016 18:56:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Missrendering of Reflections in Talos Principle"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96443">96443</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Missrendering of Reflections in Talos Principle
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>freedesktop&#64;karolherbst.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>With the Performance settings &quot;cpu settings &gt; mirror r=
-eflections&quot; enabled, the
-sky reflection on the water is broken.
-
-Traces are useless here, because the issue is somehow consistent on other
-drivers as well, but don't show there if the game runs on them.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14654122150.EAAB4dFC8.6145--
-
---===============0979847421==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0979847421==--
+T24gV2VkLCBKdW4gMDgsIDIwMTYgYXQgMDY6NDc6MjdQTSArMDIwMCwgTHVrYXMgV3VubmVyIHdy
+b3RlOgo+IFNlY29uZCBpdGVyYXRpb24gb2YgbXkgZW5kZWF2b3VyIHRvIHJpZCBub3V2ZWF1LCBy
+YWRlb24gYW5kIGFtZGdwdSBvZgo+IHJ1bnRpbWUgcG0gcmVmIGxlYWtzLgo+IAo+IFBhdGNoZXMg
+MSB0byA4IGFyZSBpZGVudGljYWwgdG8gdjEuCj4gCj4gUGF0Y2ggOSBvZiB2MSBtb2RpZmllZCB0
+aGUgRFJNIGNvcmUgdG8gdHVybiBvZmYgYWxsIENSVENzIG9uIGRyaXZlcgo+IHVubG9hZC4gQmFz
+ZWQgb24gZmVlZGJhY2sgYnkgRGFuaWVsIFZldHRlciwgSSd2ZSByZXBsYWNlZCB0aGlzIHdpdGgK
+PiBhIGhlbHBlciB0byB0dXJuIG9mZiBhbGwgQ1JUQ3MsIHdoaWNoIGlzIGNhbGxlZCBieSBub3V2
+ZWF1LCByYWRlb24KPiBhbmQgYW1kZ3B1IG9uIHVubG9hZC4gSW4gb3RoZXIgd29yZHMsIHRoaXMg
+aXMgbm93IG9wdC1pbi4KPiBTbyBwYXRjaCA5IG9mIHYxIGlzIHJlcGxhY2VkIHdpdGggbmV3IHBh
+dGNoZXMgOSB0byAxMi4KPiAKPiBBIGJ5LXByb2R1Y3Qgb2YgcGF0Y2ggOSBpcyBhIGhlbHBlciB3
+aGljaCB0dXJucyBvZmYgYSAqc2luZ2xlKiBDUlRDLgo+IFRoaXMgaXMgb3BlbiBjb2RlZCBpbiB0
+aHJlZSBvdGhlciBwbGFjZXMgaW4gdGhlIERSTSB0cmVlIGFuZCBwYXRjaGVzCj4gMTMgdG8gMTUg
+cmVmYWN0b3IgdGhvc2UgdG8gdXNlIHRoZSBuZXcgaGVscGVyLgoKWWVhaCBJIHRoaW5rIHRoaXMg
+bWFrZXMgbXVjaCBtb3JlIHNlbnNlLiBQbGVhc2UgcG9rZSBhbWQvbm91dmVhdSBmb2xrcyBmb3IK
+cmV2aWV3cy9hY2tzLCB0aGVuIEkgY2FuIG1lcmdlLgotRGFuaWVsCgo+IAo+IFRvIGVhc2UgcmV2
+aWV3aW5nLCBJJ3ZlIHB1c2hlZCB0aGlzIHNlcmllcyB0byBHaXRIdWI6Cj4gaHR0cHM6Ly9naXRo
+dWIuY29tL2wxay9saW51eC9jb21taXRzL2RybV9ydW5wbV9maXhlc192Mgo+IAo+IFRoZSBkaXNj
+dXNzaW9uIG9uIHYxIGlzIGFyY2hpdmVkIGhlcmU6Cj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvYXJjaGl2ZXMvZHJpLWRldmVsLzIwMTYtTWF5L3RocmVhZC5odG1sIzEwODI3OAo+IAo+
+IFRoYW5rcywKPiAKPiBMdWthcwo+IAo+IEx1a2FzIFd1bm5lciAoMTUpOgo+ICAgZHJtL25vdXZl
+YXU6IERvbid0IGxlYWsgcnVudGltZSBwbSByZWYgb24gZHJpdmVyIHVubG9hZAo+ICAgZHJtL25v
+dXZlYXU6IEZvcmJpZCBydW50aW1lIHBtIG9uIGRyaXZlciB1bmxvYWQKPiAgIGRybS9yYWRlb246
+IERvbid0IGxlYWsgcnVudGltZSBwbSByZWYgb24gZHJpdmVyIHVubG9hZAo+ICAgZHJtL3JhZGVv
+bjogRG9uJ3QgbGVhayBydW50aW1lIHBtIHJlZiBvbiBkcml2ZXIgbG9hZAo+ICAgZHJtL3JhZGVv
+bjogRm9yYmlkIHJ1bnRpbWUgcG0gb24gZHJpdmVyIHVubG9hZAo+ICAgZHJtL2FtZGdwdTogRG9u
+J3QgbGVhayBydW50aW1lIHBtIHJlZiBvbiBkcml2ZXIgdW5sb2FkCj4gICBkcm0vYW1kZ3B1OiBE
+b24ndCBsZWFrIHJ1bnRpbWUgcG0gcmVmIG9uIGRyaXZlciBsb2FkCj4gICBkcm0vYW1kZ3B1OiBG
+b3JiaWQgcnVudGltZSBwbSBvbiBkcml2ZXIgdW5sb2FkCj4gICBkcm06IEFkZCBoZWxwZXJzIHRv
+IHR1cm4gb2ZmIENSVENzCj4gICBkcm0vbm91dmVhdTogVHVybiBvZmYgQ1JUQ3Mgb24gZHJpdmVy
+IHVubG9hZAo+ICAgZHJtL3JhZGVvbjogVHVybiBvZmYgQ1JUQ3Mgb24gZHJpdmVyIHVubG9hZAo+
+ICAgZHJtL2FtZGdwdTogVHVybiBvZmYgQ1JUQ3Mgb24gZHJpdmVyIHVubG9hZAo+ICAgZHJtOiBV
+c2UgaGVscGVyIHRvIHR1cm4gb2ZmIENSVEMKPiAgIGRybS9pMmMvY2g3MDA2OiBVc2UgaGVscGVy
+IHRvIHR1cm4gb2ZmIENSVEMKPiAgIGRybS9ub3V2ZWF1L2Rpc3BudjA0OiBVc2UgaGVscGVyIHRv
+IHR1cm4gb2ZmIENSVEMKPiAKPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rl
+dmljZS5jIHwgIDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfa21zLmMg
+ICAgfCAxMiArKysrKy0tCj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fY3J0Yy5jICAgICAgICAgICAg
+ICAgICB8IDUzICsrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLQo+ICBkcml2ZXJzL2dwdS9k
+cm0vaTJjL2NoNzAwNl9kcnYuYyAgICAgICAgICAgfCAgOSArKy0tLQo+ICBkcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9kaXNwbnYwNC9kaXNwLmMgICAgfCAxMCAtLS0tLS0KPiAgZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvZGlzcG52MDQvdHZudjE3LmMgIHwgIDkgKystLS0KPiAgZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgIHwgIDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2RybS5jICAgICAgfCAgNiArKystCj4gIGRyaXZlcnMvZ3B1L2RybS9y
+YWRlb24vcmFkZW9uX2RldmljZS5jICAgICB8ICA0ICsrKwo+ICBkcml2ZXJzL2dwdS9kcm0vcmFk
+ZW9uL3JhZGVvbl9kaXNwbGF5LmMgICAgfCAgMSArCj4gIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24v
+cmFkZW9uX2ttcy5jICAgICAgICB8ICA1ICsrLQo+ICBpbmNsdWRlL2RybS9kcm1fY3J0Yy5oICAg
+ICAgICAgICAgICAgICAgICAgfCAgMiArKwo+ICAxMiBmaWxlcyBjaGFuZ2VkLCA3NyBpbnNlcnRp
+b25zKCspLCAzNiBkZWxldGlvbnMoLSkKPiAKPiAtLSAKPiAyLjguMQo+IAoKLS0gCkRhbmllbCBW
+ZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZm
+d2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
+dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
