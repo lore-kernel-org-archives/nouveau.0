@@ -1,49 +1,114 @@
-From: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
-Subject: [PATCH] drm/nouveau/iccsense: fix memory leak
-Date: Sun, 12 Jun 2016 15:56:34 +0100
-Message-ID: <1465743394-6027-1-git-send-email-sudipm.mukherjee@gmail.com>
+From: Nouveau <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
+Subject: useful information
+Date: Mon, 13 Jun 2016 08:51:23 +0300
+Message-ID: <000084bb21d0$80dd23cb$4533e00d$@derocher.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0518982321=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Language: en-us
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Nicolas Gddel <mailinglists-WO/VGsxbqFypxiQzEpw4SQ@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SW4gdGhlIGZvciBsb29wIHdlIGFyZSBhbGxvY2F0aW5nIHRoZSBtZW1vcnkgZm9yIHJhaWwgZXZl
-cnl0aW1lIGJ1dAppbiBzb21lIGNhc2VzIHdlIHVzZSAiY29udGludWUiIGFuZCBpbiB0aG9zZSBj
-YXNlcyB0aGUgbWVtb3J5IGFscmVhZHkKYWxsb2NhdGVkIGZvciByYWlsIGlzIGxlYWtlZCBhbmQg
-d2UgYWdhaW4gYWxsb2NhdGUgbmV3IG1lbW9yeSBmb3IgaXQuCkxldHMgZnJlZSB0aGUgbWVtb3J5
-IGJlZm9yZSBjb250aW51aW5nIHdpdGggdGhlIGxvb3AuCgpTaWduZWQtb2ZmLWJ5OiBTdWRpcCBN
-dWtoZXJqZWUgPHN1ZGlwLm11a2hlcmplZUBjb2RldGhpbmsuY28udWs+Ci0tLQogZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vuc2UvYmFzZS5jIHwgMTMgKysrKysrKysr
-Ky0tLQogMSBmaWxlIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vuc2Uv
-YmFzZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWNjc2Vuc2UvYmFz
-ZS5jCmluZGV4IDMyM2M3OWEuLjc1NmZmMDcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2ljY3NlbnNlL2Jhc2UuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9iYXNlLmMKQEAgLTI5MCwyMSArMjkwLDI4IEBA
-IG52a21faWNjc2Vuc2Vfb25laW5pdChzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldikKIAogCQlz
-d2l0Y2ggKHNlbnNvci0+dHlwZSkgewogCQljYXNlIE5WQklPU19FWFRERVZfSU5BMjA5OgotCQkJ
-aWYgKHItPnJhaWwgIT0gMCkKKwkJCWlmIChyLT5yYWlsICE9IDApIHsKKwkJCQlrZnJlZShyYWls
-KTsKIAkJCQljb250aW51ZTsKKwkJCX0KIAkJCXJhaWwtPnJlYWQgPSBudmttX2ljY3NlbnNlX2lu
-YTIwOV9yZWFkOwogCQkJYnJlYWs7CiAJCWNhc2UgTlZCSU9TX0VYVERFVl9JTkEyMTk6Ci0JCQlp
-ZiAoci0+cmFpbCAhPSAwKQorCQkJaWYgKHItPnJhaWwgIT0gMCkgeworCQkJCWtmcmVlKHJhaWwp
-OwogCQkJCWNvbnRpbnVlOworCQkJfQogCQkJcmFpbC0+cmVhZCA9IG52a21faWNjc2Vuc2VfaW5h
-MjE5X3JlYWQ7CiAJCQlicmVhazsKIAkJY2FzZSBOVkJJT1NfRVhUREVWX0lOQTMyMjE6Ci0JCQlp
-ZiAoci0+cmFpbCA+PSAzKQorCQkJaWYgKHItPnJhaWwgPj0gMykgeworCQkJCWtmcmVlKHJhaWwp
-OwogCQkJCWNvbnRpbnVlOworCQkJfQogCQkJcmFpbC0+cmVhZCA9IG52a21faWNjc2Vuc2VfaW5h
-MzIyMV9yZWFkOwogCQkJYnJlYWs7CiAJCWRlZmF1bHQ6CisJCQlrZnJlZShyYWlsKTsKIAkJCWNv
-bnRpbnVlOwogCQl9CiAKLS0gCjEuOS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9kcmktZGV2ZWwK
+This is a multipart message in MIME format.
+
+--===============0518982321==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0001_6ECC0854.48EFFDA8"
+Content-Language: en-us
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0001_6ECC0854.48EFFDA8
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hello,
+
+I thought this information regarding my favourite stuff may be usefull for you too, just take a look here <http://cungekanka.nnispa.us/aeplvwd>
+
+Thx, Nouveau
+
+
+------=_NextPart_000_0001_6ECC0854.48EFFDA8
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas=
+-microsoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:off=
+ice:word" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml"=
+ xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"C=
+ontent-Type" CONTENT=3D"text/html; charset=3Dus-ascii"><meta name=3DGe=
+nerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+=2EMsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN link=3D"#0563=
+C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
+span lang=3DEN-US>Hello,<o:p></o:p></span></p><p class=3DMsoNormal><sp=
+an lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span=
+ lang=3DEN-US>I thought this information regarding my favourite stuff =
+may be usefull for you too, just take a look here <a href=3D"http://cu=
+ngekanka.nnispa.us/aeplvwd">http://cungekanka.nnispa.us/aeplvwd</a><o:=
+p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;=
+</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Thx, Nouveau<=
+o:p></o:p></span></p></div></body></html>
+
+------=_NextPart_000_0001_6ECC0854.48EFFDA8--
+
+--===============0518982321==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0518982321==--
