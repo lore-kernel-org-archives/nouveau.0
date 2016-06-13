@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95282] G96: system hang on video playback via vdpau
-Date: Mon, 13 Jun 2016 11:00:15 +0000
-Message-ID: <bug-95282-8800-4VZ2ddwExi@http.bugs.freedesktop.org/>
-References: <bug-95282-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/iccsense: fix memory leak
+Date: Tue, 14 Jun 2016 00:31:08 +0100
+Message-ID: <2d49b5c6-3481-55d7-e998-76277ffe34c9@spliet.org>
+References: <1465743394-6027-1-git-send-email-sudipm.mukherjee@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0195994250=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1465743394-6027-1-git-send-email-sudipm.mukherjee-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,88 +17,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Sudip Mukherjee <sudipm.mukherjee-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0195994250==
-Content-Type: multipart/alternative; boundary="14658156150.DF1eF3CE8.5889";
- charset="UTF-8"
-
-
---14658156150.DF1eF3CE8.5889
-Date: Mon, 13 Jun 2016 11:00:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95282
-
---- Comment #14 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-same with 4.7.0-rc3-ARCH-12588-g39543dd. Any video playback with xine/vdpau
-will hang the whole system when it in deed should start.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14658156150.DF1eF3CE8.5889
-Date: Mon, 13 Jun 2016 11:00:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - G96: system hang on video playback via vdpau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c14">Commen=
-t # 14</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - G96: system hang on video playback via vdpau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282">bug 95282<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
-l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
-</span></b>
-        <pre>same with 4.7.0-rc3-ARCH-12588-g39543dd. Any video playback wi=
-th xine/vdpau
-will hang the whole system when it in deed should start.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14658156150.DF1eF3CE8.5889--
-
---===============0195994250==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0195994250==--
+VGhhbmtzLiBJdCBzZWVtcyB0aG91Z2ggdGhhdCB5b3UgYXJlIG5vdCB0aGUgb25seSBvbmUgd2hv
+IHNwb3R0ZWQgdGhpcyAKYnVnLiBUaGlzIHBhdGNoIGFwcGVhcnMgdG8gYmUgb2Jzb2xldGUgc2lu
+Y2UgNzUwNWZkZiBbMV0uCgpSb3kKClsxXSAKaHR0cHM6Ly9naXRodWIuY29tL3NrZWdnc2Ivbm91
+dmVhdS9jb21taXQvNzUwNWZkZmMyNjg4ZTg2ZjhlMTUwNjliNjExODU4ZjBkYmU3M2E4MAoKT3Ag
+MDYvMTIvMTYgb20gMTU6NTYgc2NocmVlZiBTdWRpcCBNdWtoZXJqZWU6Cj4gSW4gdGhlIGZvciBs
+b29wIHdlIGFyZSBhbGxvY2F0aW5nIHRoZSBtZW1vcnkgZm9yIHJhaWwgZXZlcnl0aW1lIGJ1dAo+
+IGluIHNvbWUgY2FzZXMgd2UgdXNlICJjb250aW51ZSIgYW5kIGluIHRob3NlIGNhc2VzIHRoZSBt
+ZW1vcnkgYWxyZWFkeQo+IGFsbG9jYXRlZCBmb3IgcmFpbCBpcyBsZWFrZWQgYW5kIHdlIGFnYWlu
+IGFsbG9jYXRlIG5ldyBtZW1vcnkgZm9yIGl0Lgo+IExldHMgZnJlZSB0aGUgbWVtb3J5IGJlZm9y
+ZSBjb250aW51aW5nIHdpdGggdGhlIGxvb3AuCj4KPiBTaWduZWQtb2ZmLWJ5OiBTdWRpcCBNdWto
+ZXJqZWUgPHN1ZGlwLm11a2hlcmplZUBjb2RldGhpbmsuY28udWs+Cj4gLS0tCj4gICBkcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pY2NzZW5zZS9iYXNlLmMgfCAxMyArKysrKysr
+KysrLS0tCj4gICAxIGZpbGUgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMo
+LSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9p
+Y2NzZW5zZS9iYXNlLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pY2Nz
+ZW5zZS9iYXNlLmMKPiBpbmRleCAzMjNjNzlhLi43NTZmZjA3IDEwMDY0NAo+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ljY3NlbnNlL2Jhc2UuYwo+ICsrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ljY3NlbnNlL2Jhc2UuYwo+IEBAIC0y
+OTAsMjEgKzI5MCwyOCBAQCBudmttX2ljY3NlbnNlX29uZWluaXQoc3RydWN0IG52a21fc3ViZGV2
+ICpzdWJkZXYpCj4gICAKPiAgIAkJc3dpdGNoIChzZW5zb3ItPnR5cGUpIHsKPiAgIAkJY2FzZSBO
+VkJJT1NfRVhUREVWX0lOQTIwOToKPiAtCQkJaWYgKHItPnJhaWwgIT0gMCkKPiArCQkJaWYgKHIt
+PnJhaWwgIT0gMCkgewo+ICsJCQkJa2ZyZWUocmFpbCk7Cj4gICAJCQkJY29udGludWU7Cj4gKwkJ
+CX0KPiAgIAkJCXJhaWwtPnJlYWQgPSBudmttX2ljY3NlbnNlX2luYTIwOV9yZWFkOwo+ICAgCQkJ
+YnJlYWs7Cj4gICAJCWNhc2UgTlZCSU9TX0VYVERFVl9JTkEyMTk6Cj4gLQkJCWlmIChyLT5yYWls
+ICE9IDApCj4gKwkJCWlmIChyLT5yYWlsICE9IDApIHsKPiArCQkJCWtmcmVlKHJhaWwpOwo+ICAg
+CQkJCWNvbnRpbnVlOwo+ICsJCQl9Cj4gICAJCQlyYWlsLT5yZWFkID0gbnZrbV9pY2NzZW5zZV9p
+bmEyMTlfcmVhZDsKPiAgIAkJCWJyZWFrOwo+ICAgCQljYXNlIE5WQklPU19FWFRERVZfSU5BMzIy
+MToKPiAtCQkJaWYgKHItPnJhaWwgPj0gMykKPiArCQkJaWYgKHItPnJhaWwgPj0gMykgewo+ICsJ
+CQkJa2ZyZWUocmFpbCk7Cj4gICAJCQkJY29udGludWU7Cj4gKwkJCX0KPiAgIAkJCXJhaWwtPnJl
+YWQgPSBudmttX2ljY3NlbnNlX2luYTMyMjFfcmVhZDsKPiAgIAkJCWJyZWFrOwo+ICAgCQlkZWZh
+dWx0Ogo+ICsJCQlrZnJlZShyYWlsKTsKPiAgIAkJCWNvbnRpbnVlOwo+ICAgCQl9Cj4gICAKCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
