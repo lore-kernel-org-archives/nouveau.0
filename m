@@ -1,16 +1,13 @@
-From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Subject: Re: [PATCH v2 00/15] Runtime pm ref leak bonanza
-Date: Wed, 15 Jun 2016 13:37:35 +0200
-Message-ID: <20160615113735.GA562@wunner.de>
-References: <cover.1465392124.git.lukas@wunner.de>
- <20160609065032.GI3363@phenom.ffwll.local>
- <CADnq5_NENZukwJg-CACQ-djWsP4e299gnr4aWrEJkdcVMeaZWA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
+ G1 Gaming GTX970
+Date: Wed, 15 Jun 2016 14:46:01 +0000
+Message-ID: <bug-89664-8800-FjRzDXzUPd@http.bugs.freedesktop.org/>
+References: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0745218364=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CADnq5_NENZukwJg-CACQ-djWsP4e299gnr4aWrEJkdcVMeaZWA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,51 +17,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdW4gMTQsIDIwMTYgYXQgMDQ6MTg6MDBQTSAtMDQwMCwgQWxleCBEZXVjaGVyIHdy
-b3RlOgo+IE9uIFRodSwgSnVuIDksIDIwMTYgYXQgMjo1MCBBTSwgRGFuaWVsIFZldHRlciA8ZGFu
-aWVsQGZmd2xsLmNoPiB3cm90ZToKPiA+IE9uIFdlZCwgSnVuIDA4LCAyMDE2IGF0IDA2OjQ3OjI3
-UE0gKzAyMDAsIEx1a2FzIFd1bm5lciB3cm90ZToKPiA+PiBTZWNvbmQgaXRlcmF0aW9uIG9mIG15
-IGVuZGVhdm91ciB0byByaWQgbm91dmVhdSwgcmFkZW9uIGFuZCBhbWRncHUgb2YKPiA+PiBydW50
-aW1lIHBtIHJlZiBsZWFrcy4KPiA+Pgo+ID4+IFBhdGNoZXMgMSB0byA4IGFyZSBpZGVudGljYWwg
-dG8gdjEuCj4gPj4KPiA+PiBQYXRjaCA5IG9mIHYxIG1vZGlmaWVkIHRoZSBEUk0gY29yZSB0byB0
-dXJuIG9mZiBhbGwgQ1JUQ3Mgb24gZHJpdmVyCj4gPj4gdW5sb2FkLiBCYXNlZCBvbiBmZWVkYmFj
-ayBieSBEYW5pZWwgVmV0dGVyLCBJJ3ZlIHJlcGxhY2VkIHRoaXMgd2l0aAo+ID4+IGEgaGVscGVy
-IHRvIHR1cm4gb2ZmIGFsbCBDUlRDcywgd2hpY2ggaXMgY2FsbGVkIGJ5IG5vdXZlYXUsIHJhZGVv
-bgo+ID4+IGFuZCBhbWRncHUgb24gdW5sb2FkLiBJbiBvdGhlciB3b3JkcywgdGhpcyBpcyBub3cg
-b3B0LWluLgo+ID4+IFNvIHBhdGNoIDkgb2YgdjEgaXMgcmVwbGFjZWQgd2l0aCBuZXcgcGF0Y2hl
-cyA5IHRvIDEyLgo+ID4+Cj4gPj4gQSBieS1wcm9kdWN0IG9mIHBhdGNoIDkgaXMgYSBoZWxwZXIg
-d2hpY2ggdHVybnMgb2ZmIGEgKnNpbmdsZSogQ1JUQy4KPiA+PiBUaGlzIGlzIG9wZW4gY29kZWQg
-aW4gdGhyZWUgb3RoZXIgcGxhY2VzIGluIHRoZSBEUk0gdHJlZSBhbmQgcGF0Y2hlcwo+ID4+IDEz
-IHRvIDE1IHJlZmFjdG9yIHRob3NlIHRvIHVzZSB0aGUgbmV3IGhlbHBlci4KPiA+Cj4gPiBZZWFo
-IEkgdGhpbmsgdGhpcyBtYWtlcyBtdWNoIG1vcmUgc2Vuc2UuIFBsZWFzZSBwb2tlIGFtZC9ub3V2
-ZWF1IGZvbGtzIGZvcgo+ID4gcmV2aWV3cy9hY2tzLCB0aGVuIEkgY2FuIG1lcmdlLgo+IAo+IFRo
-ZSBhbWRncHUsIHJhZGVvbiwgYW5kIGRybSBwYXRjaGVzIGFyZToKPiBBY2tlZC1ieTogQWxleCBE
-ZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgoKR3JlYXQsIHRoYW5rIHlvdS4gVGhh
-dCBtZWFucyBhbGwgcGF0Y2hlcyBhcmUgZWl0aGVyIGFja2VkIG9yIHJldmlld2VkOgoKKiBQYXRj
-aGVzIDEsIDIsIDEwIGFuZCAxNSBhcmUKICBBY2tlZC1ieTogQmVuIFNrZWdncyA8YnNrZWdnc0By
-ZWRoYXQuY29tPgogIE1lc3NhZ2UtSUQ6IDxiNGUzYThhNi1jYjQ0LTgwYmYtODgzNC00MTlhZmMy
-ZDFjYjRAZ21haWwuY29tPgogIExpbms6IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2Fy
-Y2hpdmVzL25vdXZlYXUvMjAxNi1KdW5lLzAyNTM1MC5odG1sCgoqIFBhdGNoZXMgMyAtIDkgYW5k
-IDExIC0gMTMgYXJlCiAgQWNrZWQtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJA
-YW1kLmNvbT4KICBNZXNzYWdlLUlEOiA8Q0FEbnE1X05FTlp1a3dKZy1DQUNRLWRqV3NQNGUyOTln
-bnI0YVdyRUprZGNWTWVhWldBQG1haWwuZ21haWwuY29tPgogIExpbms6IGh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDE2LUp1bmUvMTEwODc2Lmh0bWwK
-CiogUGF0Y2ggMTQgaXMKICBSZXZpZXdlZC1ieTogRnJhbmNpc2NvIEplcmV6IDxjdXJyb2plcmV6
-QHJpc2V1cC5uZXQ+CiAgTWVzc2FnZS1JRDogPDg3emlxcnRtbDUuZnNmQHJpc2V1cC5uZXQ+CiAg
-TGluazogaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZXMvZHJpLWRldmVsLzIw
-MTYtSnVuZS8xMTA1ODguaHRtbAoKCkRhdmUsIERhbmllbCwgY291bGQgb25lIG9mIHlvdSBwaWNr
-IHRoaXMgdXA/CgpJJ3ZlIHB1c2hlZCBhbm90aGVyIGJyYW5jaCB0byBHaXRIdWIgd2hpY2ggaXMg
-YW1lbmRlZCB3aXRoIGFsbCB0aGUKQWNrZWQtYnkgYW5kIFJldmlld2VkLWJ5IHRhZ3MuIEl0J3Mg
-YWxzbyByZWJhc2VkIG9uIGxhdGVzdCBkcm0tbmV4dC4KT3RoZXJ3aXNlIHRoaXMgaXMgaWRlbnRp
-Y2FsIHRvIHdoYXQgSSd2ZSBwb3N0ZWQuIFNvIGluIGNhc2UgeW91IGRvbid0CndhbnQgdG8gYXBw
-bHkgYWxsIHRhZ3MgbWFudWFsbHksIHlvdSBjYW4gY2hlcnJ5LXBpY2sgZnJvbSBvciBtZXJnZQp0
-aGlzIGJyYW5jaCAoYmFycmluZyBhbnkgb2JqZWN0aW9ucyBvZiBjb3Vyc2UpOgpodHRwczovL2dp
-dGh1Yi5jb20vbDFrL2xpbnV4L2NvbW1pdHMvZHJtX3J1bnBtX2ZpeGVzX3YyX2Fja2VkCgpUaGFu
-a3MgZXZlcnlvbmUhCgpMdWthcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============0745218364==
+Content-Type: multipart/alternative; boundary="14660019612.30C7.2202";
+ charset="UTF-8"
+
+
+--14660019612.30C7.2202
+Date: Wed, 15 Jun 2016 14:46:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89664
+
+--- Comment #14 from Ehsan Azar <dashesy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I had the exact same issue with GM107:
+
+```
+ehsan@machine:~$ lspci -nn | grep -i vga
+03:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM107GL [Quadro
+K620] [10de:13bb] (rev a2)
+```
+
+Adding `nouveau.config=3DNvForcePost=3D1` to the kernel command line fixed =
+it for
+me too, thanks Omar. This is `Ubuntu 16.04 LTS` with kernel version
+`4.4.0-24-generic #43-Ubuntu SMP Wed Jun 8 19:27:37 UTC 2016 x86_64 x86_64
+x86_64 GNU/Linux`
+
+Even the colored striped bars look similar, and I hear a noise I think might
+have to do with incorrect frequency setting for the monitor.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14660019612.30C7.2202
+Date: Wed, 15 Jun 2016 14:46:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
+X970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c14">Commen=
+t # 14</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
+X970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664">bug 89664<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dashesy&#64;gmail.com" title=3D"Ehsan Azar &lt;dashesy&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ehsan Azar</span></a>
+</span></b>
+        <pre>I had the exact same issue with GM107:
+
+```
+ehsan&#64;machine:~$ lspci -nn | grep -i vga
+03:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM107GL [Quadro
+K620] [10de:13bb] (rev a2)
+```
+
+Adding `nouveau.config=3DNvForcePost=3D1` to the kernel command line fixed =
+it for
+me too, thanks Omar. This is `Ubuntu 16.04 LTS` with kernel version
+`4.4.0-24-generic #43-Ubuntu SMP Wed Jun 8 19:27:37 UTC 2016 x86_64 x86_64
+x86_64 GNU/Linux`
+
+Even the colored striped bars look similar, and I hear a noise I think might
+have to do with incorrect frequency setting for the monitor.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14660019612.30C7.2202--
+
+--===============0745218364==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0745218364==--
