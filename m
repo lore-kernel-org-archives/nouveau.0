@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
- G1 Gaming GTX970
-Date: Wed, 15 Jun 2016 14:46:01 +0000
-Message-ID: <bug-89664-8800-FjRzDXzUPd@http.bugs.freedesktop.org/>
-References: <bug-89664-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH v2 00/15] Runtime pm ref leak bonanza
+Date: Wed, 15 Jun 2016 17:11:54 +0200
+Message-ID: <20160615151154.GF1338@phenom.ffwll.local>
+References: <cover.1465392124.git.lukas@wunner.de>
+ <20160609065032.GI3363@phenom.ffwll.local>
+ <CADnq5_NENZukwJg-CACQ-djWsP4e299gnr4aWrEJkdcVMeaZWA@mail.gmail.com>
+ <20160615113735.GA562@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0745218364=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20160615113735.GA562-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,117 +21,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0745218364==
-Content-Type: multipart/alternative; boundary="14660019612.30C7.2202";
- charset="UTF-8"
-
-
---14660019612.30C7.2202
-Date: Wed, 15 Jun 2016 14:46:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89664
-
---- Comment #14 from Ehsan Azar <dashesy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I had the exact same issue with GM107:
-
-```
-ehsan@machine:~$ lspci -nn | grep -i vga
-03:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM107GL [Quadro
-K620] [10de:13bb] (rev a2)
-```
-
-Adding `nouveau.config=3DNvForcePost=3D1` to the kernel command line fixed =
-it for
-me too, thanks Omar. This is `Ubuntu 16.04 LTS` with kernel version
-`4.4.0-24-generic #43-Ubuntu SMP Wed Jun 8 19:27:37 UTC 2016 x86_64 x86_64
-x86_64 GNU/Linux`
-
-Even the colored striped bars look similar, and I hear a noise I think might
-have to do with incorrect frequency setting for the monitor.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14660019612.30C7.2202
-Date: Wed, 15 Jun 2016 14:46:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
-X970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c14">Commen=
-t # 14</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
-X970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664">bug 89664<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dashesy&#64;gmail.com" title=3D"Ehsan Azar &lt;dashesy&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ehsan Azar</span></a>
-</span></b>
-        <pre>I had the exact same issue with GM107:
-
-```
-ehsan&#64;machine:~$ lspci -nn | grep -i vga
-03:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM107GL [Quadro
-K620] [10de:13bb] (rev a2)
-```
-
-Adding `nouveau.config=3DNvForcePost=3D1` to the kernel command line fixed =
-it for
-me too, thanks Omar. This is `Ubuntu 16.04 LTS` with kernel version
-`4.4.0-24-generic #43-Ubuntu SMP Wed Jun 8 19:27:37 UTC 2016 x86_64 x86_64
-x86_64 GNU/Linux`
-
-Even the colored striped bars look similar, and I hear a noise I think might
-have to do with incorrect frequency setting for the monitor.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14660019612.30C7.2202--
-
---===============0745218364==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0745218364==--
+T24gV2VkLCBKdW4gMTUsIDIwMTYgYXQgMDE6Mzc6MzVQTSArMDIwMCwgTHVrYXMgV3VubmVyIHdy
+b3RlOgo+IE9uIFR1ZSwgSnVuIDE0LCAyMDE2IGF0IDA0OjE4OjAwUE0gLTA0MDAsIEFsZXggRGV1
+Y2hlciB3cm90ZToKPiA+IE9uIFRodSwgSnVuIDksIDIwMTYgYXQgMjo1MCBBTSwgRGFuaWVsIFZl
+dHRlciA8ZGFuaWVsQGZmd2xsLmNoPiB3cm90ZToKPiA+ID4gT24gV2VkLCBKdW4gMDgsIDIwMTYg
+YXQgMDY6NDc6MjdQTSArMDIwMCwgTHVrYXMgV3VubmVyIHdyb3RlOgo+ID4gPj4gU2Vjb25kIGl0
+ZXJhdGlvbiBvZiBteSBlbmRlYXZvdXIgdG8gcmlkIG5vdXZlYXUsIHJhZGVvbiBhbmQgYW1kZ3B1
+IG9mCj4gPiA+PiBydW50aW1lIHBtIHJlZiBsZWFrcy4KPiA+ID4+Cj4gPiA+PiBQYXRjaGVzIDEg
+dG8gOCBhcmUgaWRlbnRpY2FsIHRvIHYxLgo+ID4gPj4KPiA+ID4+IFBhdGNoIDkgb2YgdjEgbW9k
+aWZpZWQgdGhlIERSTSBjb3JlIHRvIHR1cm4gb2ZmIGFsbCBDUlRDcyBvbiBkcml2ZXIKPiA+ID4+
+IHVubG9hZC4gQmFzZWQgb24gZmVlZGJhY2sgYnkgRGFuaWVsIFZldHRlciwgSSd2ZSByZXBsYWNl
+ZCB0aGlzIHdpdGgKPiA+ID4+IGEgaGVscGVyIHRvIHR1cm4gb2ZmIGFsbCBDUlRDcywgd2hpY2gg
+aXMgY2FsbGVkIGJ5IG5vdXZlYXUsIHJhZGVvbgo+ID4gPj4gYW5kIGFtZGdwdSBvbiB1bmxvYWQu
+IEluIG90aGVyIHdvcmRzLCB0aGlzIGlzIG5vdyBvcHQtaW4uCj4gPiA+PiBTbyBwYXRjaCA5IG9m
+IHYxIGlzIHJlcGxhY2VkIHdpdGggbmV3IHBhdGNoZXMgOSB0byAxMi4KPiA+ID4+Cj4gPiA+PiBB
+IGJ5LXByb2R1Y3Qgb2YgcGF0Y2ggOSBpcyBhIGhlbHBlciB3aGljaCB0dXJucyBvZmYgYSAqc2lu
+Z2xlKiBDUlRDLgo+ID4gPj4gVGhpcyBpcyBvcGVuIGNvZGVkIGluIHRocmVlIG90aGVyIHBsYWNl
+cyBpbiB0aGUgRFJNIHRyZWUgYW5kIHBhdGNoZXMKPiA+ID4+IDEzIHRvIDE1IHJlZmFjdG9yIHRo
+b3NlIHRvIHVzZSB0aGUgbmV3IGhlbHBlci4KPiA+ID4KPiA+ID4gWWVhaCBJIHRoaW5rIHRoaXMg
+bWFrZXMgbXVjaCBtb3JlIHNlbnNlLiBQbGVhc2UgcG9rZSBhbWQvbm91dmVhdSBmb2xrcyBmb3IK
+PiA+ID4gcmV2aWV3cy9hY2tzLCB0aGVuIEkgY2FuIG1lcmdlLgo+ID4gCj4gPiBUaGUgYW1kZ3B1
+LCByYWRlb24sIGFuZCBkcm0gcGF0Y2hlcyBhcmU6Cj4gPiBBY2tlZC1ieTogQWxleCBEZXVjaGVy
+IDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+IAo+IEdyZWF0LCB0aGFuayB5b3UuIFRoYXQg
+bWVhbnMgYWxsIHBhdGNoZXMgYXJlIGVpdGhlciBhY2tlZCBvciByZXZpZXdlZDoKPiAKPiAqIFBh
+dGNoZXMgMSwgMiwgMTAgYW5kIDE1IGFyZQo+ICAgQWNrZWQtYnk6IEJlbiBTa2VnZ3MgPGJza2Vn
+Z3NAcmVkaGF0LmNvbT4KPiAgIE1lc3NhZ2UtSUQ6IDxiNGUzYThhNi1jYjQ0LTgwYmYtODgzNC00
+MTlhZmMyZDFjYjRAZ21haWwuY29tPgo+ICAgTGluazogaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvYXJjaGl2ZXMvbm91dmVhdS8yMDE2LUp1bmUvMDI1MzUwLmh0bWwKPiAKPiAqIFBhdGNo
+ZXMgMyAtIDkgYW5kIDExIC0gMTMgYXJlCj4gICBBY2tlZC1ieTogQWxleCBEZXVjaGVyIDxhbGV4
+YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+ICAgTWVzc2FnZS1JRDogPENBRG5xNV9ORU5adWt3Smct
+Q0FDUS1kaldzUDRlMjk5Z25yNGFXckVKa2RjVk1lYVpXQUBtYWlsLmdtYWlsLmNvbT4KPiAgIExp
+bms6IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDE2
+LUp1bmUvMTEwODc2Lmh0bWwKPiAKPiAqIFBhdGNoIDE0IGlzCj4gICBSZXZpZXdlZC1ieTogRnJh
+bmNpc2NvIEplcmV6IDxjdXJyb2plcmV6QHJpc2V1cC5uZXQ+Cj4gICBNZXNzYWdlLUlEOiA8ODd6
+aXFydG1sNS5mc2ZAcmlzZXVwLm5ldD4KPiAgIExpbms6IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDE2LUp1bmUvMTEwNTg4Lmh0bWwKPiAKPiAKPiBE
+YXZlLCBEYW5pZWwsIGNvdWxkIG9uZSBvZiB5b3UgcGljayB0aGlzIHVwPwo+IAo+IEkndmUgcHVz
+aGVkIGFub3RoZXIgYnJhbmNoIHRvIEdpdEh1YiB3aGljaCBpcyBhbWVuZGVkIHdpdGggYWxsIHRo
+ZQo+IEFja2VkLWJ5IGFuZCBSZXZpZXdlZC1ieSB0YWdzLiBJdCdzIGFsc28gcmViYXNlZCBvbiBs
+YXRlc3QgZHJtLW5leHQuCj4gT3RoZXJ3aXNlIHRoaXMgaXMgaWRlbnRpY2FsIHRvIHdoYXQgSSd2
+ZSBwb3N0ZWQuIFNvIGluIGNhc2UgeW91IGRvbid0Cj4gd2FudCB0byBhcHBseSBhbGwgdGFncyBt
+YW51YWxseSwgeW91IGNhbiBjaGVycnktcGljayBmcm9tIG9yIG1lcmdlCj4gdGhpcyBicmFuY2gg
+KGJhcnJpbmcgYW55IG9iamVjdGlvbnMgb2YgY291cnNlKToKPiBodHRwczovL2dpdGh1Yi5jb20v
+bDFrL2xpbnV4L2NvbW1pdHMvZHJtX3J1bnBtX2ZpeGVzX3YyX2Fja2VkCj4gCj4gVGhhbmtzIGV2
+ZXJ5b25lIQoKWWVhaCB3aWxsIHBpY2sgdXAgbGF0ZXIgdGhpcyB3ZWVrLCByaWdodCBub3cgSSBo
+YXZlIGEgYmlnIGRybS1taXNjIHB1bGwKdGhhdCdzIHBlbmRpbmcuIFdvdWxkIGxpa2UgdG8gZ2V0
+IHRoYXQgbGFuZGVkIGZpcnN0LiBQbGVhc2UgcGluZyBtZSBpZgp5b3VyIHBhdGNoZXMgaGF2ZW4n
+dCBsYW5kZWQgaW4gZHJtLW1pc2MgYnkgbmV4dCB3ZWVrLgoKQ2hlZXJzLCBEYW5pZWwKLS0gCkRh
+bmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9i
+bG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
