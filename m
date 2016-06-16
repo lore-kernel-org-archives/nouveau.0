@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95044] [NVA0] [Reclocking] GPU doesn't relax memory
-	clocks
-Date: Thu, 16 Jun 2016 16:55:47 +0000
-Message-ID: <bug-95044-8800-77WXcSSlV4@http.bugs.freedesktop.org/>
-References: <bug-95044-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93896] Nvidia GeForce GTX 970M unsupported,
+ no backlight control
+Date: Thu, 16 Jun 2016 21:19:46 +0000
+Message-ID: <bug-93896-8800-YVhIytEexf@http.bugs.freedesktop.org/>
+References: <bug-93896-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0342309920=="
+Content-Type: multipart/mixed; boundary="===============0891386011=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93896-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0342309920==
-Content-Type: multipart/alternative; boundary="14660961470.0c7B.17126";
+--===============0891386011==
+Content-Type: multipart/alternative; boundary="14661119850.15cd4cC5.19261";
  charset="UTF-8"
 
 
---14660961470.0c7B.17126
-Date: Thu, 16 Jun 2016 16:55:47 +0000
+--14661119850.15cd4cC5.19261
+Date: Thu, 16 Jun 2016 21:19:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95044
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93896
 
-Roy <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
+--- Comment #4 from Javantea <jvoss-Cpl0xJrrQRvQT0dZR+AlfA@public.gmane.org> ---
+Many thanks, great work on the GL support. Backlight is still not supported=
+ as
+far as I can tell on kernel 4.6.2 and Mesa 11.2.2.
 
 --=20
 You are receiving this mail because:
-You are on the CC list for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14660961470.0c7B.17126
-Date: Thu, 16 Jun 2016 16:55:47 +0000
+--14661119850.15cd4cC5.19261
+Date: Thu, 16 Jun 2016 21:19:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,32 +58,27 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:nouveau&#=
-64;spliet.org" title=3D"Roy &lt;nouveau&#64;spliet.org&gt;"> <span class=3D=
-"fn">Roy</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95044">bug 95044<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia GeForce GTX 970M unsupported, no backlight control"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93896#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia GeForce GTX 970M unsupported, no backlight control"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93896">bug 93896<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jvoss&#64;altsci.com" title=3D"Javantea &lt;jvoss&#64;altsci.com&gt;"> <spa=
+n class=3D"fn">Javantea</span></a>
+</span></b>
+        <pre>Many thanks, great work on the GL support. Backlight is still =
+not supported as
+far as I can tell on kernel 4.6.2 and Mesa 11.2.2.</pre>
+        </div>
       </p>
 
 
@@ -92,14 +86,15 @@ Auto-Submitted: auto-generated
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are on the CC list for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14660961470.0c7B.17126--
+--14661119850.15cd4cC5.19261--
 
---===============0342309920==
+--===============0891386011==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0342309920==--
+--===============0891386011==--
