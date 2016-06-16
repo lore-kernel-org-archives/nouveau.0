@@ -1,17 +1,12 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH v2 00/15] Runtime pm ref leak bonanza
-Date: Wed, 15 Jun 2016 17:11:54 +0200
-Message-ID: <20160615151154.GF1338@phenom.ffwll.local>
-References: <cover.1465392124.git.lukas@wunner.de>
- <20160609065032.GI3363@phenom.ffwll.local>
- <CADnq5_NENZukwJg-CACQ-djWsP4e299gnr4aWrEJkdcVMeaZWA@mail.gmail.com>
- <20160615113735.GA562@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96307] Kernel 4.7-rc1 oops when starting X
+Date: Thu, 16 Jun 2016 16:44:34 +0000
+Message-ID: <bug-96307-8800-YXpJW8PUTc@http.bugs.freedesktop.org/>
+References: <bug-96307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1257024266=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20160615113735.GA562-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+In-Reply-To: <bug-96307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,58 +16,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKdW4gMTUsIDIwMTYgYXQgMDE6Mzc6MzVQTSArMDIwMCwgTHVrYXMgV3VubmVyIHdy
-b3RlOgo+IE9uIFR1ZSwgSnVuIDE0LCAyMDE2IGF0IDA0OjE4OjAwUE0gLTA0MDAsIEFsZXggRGV1
-Y2hlciB3cm90ZToKPiA+IE9uIFRodSwgSnVuIDksIDIwMTYgYXQgMjo1MCBBTSwgRGFuaWVsIFZl
-dHRlciA8ZGFuaWVsQGZmd2xsLmNoPiB3cm90ZToKPiA+ID4gT24gV2VkLCBKdW4gMDgsIDIwMTYg
-YXQgMDY6NDc6MjdQTSArMDIwMCwgTHVrYXMgV3VubmVyIHdyb3RlOgo+ID4gPj4gU2Vjb25kIGl0
-ZXJhdGlvbiBvZiBteSBlbmRlYXZvdXIgdG8gcmlkIG5vdXZlYXUsIHJhZGVvbiBhbmQgYW1kZ3B1
-IG9mCj4gPiA+PiBydW50aW1lIHBtIHJlZiBsZWFrcy4KPiA+ID4+Cj4gPiA+PiBQYXRjaGVzIDEg
-dG8gOCBhcmUgaWRlbnRpY2FsIHRvIHYxLgo+ID4gPj4KPiA+ID4+IFBhdGNoIDkgb2YgdjEgbW9k
-aWZpZWQgdGhlIERSTSBjb3JlIHRvIHR1cm4gb2ZmIGFsbCBDUlRDcyBvbiBkcml2ZXIKPiA+ID4+
-IHVubG9hZC4gQmFzZWQgb24gZmVlZGJhY2sgYnkgRGFuaWVsIFZldHRlciwgSSd2ZSByZXBsYWNl
-ZCB0aGlzIHdpdGgKPiA+ID4+IGEgaGVscGVyIHRvIHR1cm4gb2ZmIGFsbCBDUlRDcywgd2hpY2gg
-aXMgY2FsbGVkIGJ5IG5vdXZlYXUsIHJhZGVvbgo+ID4gPj4gYW5kIGFtZGdwdSBvbiB1bmxvYWQu
-IEluIG90aGVyIHdvcmRzLCB0aGlzIGlzIG5vdyBvcHQtaW4uCj4gPiA+PiBTbyBwYXRjaCA5IG9m
-IHYxIGlzIHJlcGxhY2VkIHdpdGggbmV3IHBhdGNoZXMgOSB0byAxMi4KPiA+ID4+Cj4gPiA+PiBB
-IGJ5LXByb2R1Y3Qgb2YgcGF0Y2ggOSBpcyBhIGhlbHBlciB3aGljaCB0dXJucyBvZmYgYSAqc2lu
-Z2xlKiBDUlRDLgo+ID4gPj4gVGhpcyBpcyBvcGVuIGNvZGVkIGluIHRocmVlIG90aGVyIHBsYWNl
-cyBpbiB0aGUgRFJNIHRyZWUgYW5kIHBhdGNoZXMKPiA+ID4+IDEzIHRvIDE1IHJlZmFjdG9yIHRo
-b3NlIHRvIHVzZSB0aGUgbmV3IGhlbHBlci4KPiA+ID4KPiA+ID4gWWVhaCBJIHRoaW5rIHRoaXMg
-bWFrZXMgbXVjaCBtb3JlIHNlbnNlLiBQbGVhc2UgcG9rZSBhbWQvbm91dmVhdSBmb2xrcyBmb3IK
-PiA+ID4gcmV2aWV3cy9hY2tzLCB0aGVuIEkgY2FuIG1lcmdlLgo+ID4gCj4gPiBUaGUgYW1kZ3B1
-LCByYWRlb24sIGFuZCBkcm0gcGF0Y2hlcyBhcmU6Cj4gPiBBY2tlZC1ieTogQWxleCBEZXVjaGVy
-IDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+IAo+IEdyZWF0LCB0aGFuayB5b3UuIFRoYXQg
-bWVhbnMgYWxsIHBhdGNoZXMgYXJlIGVpdGhlciBhY2tlZCBvciByZXZpZXdlZDoKPiAKPiAqIFBh
-dGNoZXMgMSwgMiwgMTAgYW5kIDE1IGFyZQo+ICAgQWNrZWQtYnk6IEJlbiBTa2VnZ3MgPGJza2Vn
-Z3NAcmVkaGF0LmNvbT4KPiAgIE1lc3NhZ2UtSUQ6IDxiNGUzYThhNi1jYjQ0LTgwYmYtODgzNC00
-MTlhZmMyZDFjYjRAZ21haWwuY29tPgo+ICAgTGluazogaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvYXJjaGl2ZXMvbm91dmVhdS8yMDE2LUp1bmUvMDI1MzUwLmh0bWwKPiAKPiAqIFBhdGNo
-ZXMgMyAtIDkgYW5kIDExIC0gMTMgYXJlCj4gICBBY2tlZC1ieTogQWxleCBEZXVjaGVyIDxhbGV4
-YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+ICAgTWVzc2FnZS1JRDogPENBRG5xNV9ORU5adWt3Smct
-Q0FDUS1kaldzUDRlMjk5Z25yNGFXckVKa2RjVk1lYVpXQUBtYWlsLmdtYWlsLmNvbT4KPiAgIExp
-bms6IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDE2
-LUp1bmUvMTEwODc2Lmh0bWwKPiAKPiAqIFBhdGNoIDE0IGlzCj4gICBSZXZpZXdlZC1ieTogRnJh
-bmNpc2NvIEplcmV6IDxjdXJyb2plcmV6QHJpc2V1cC5uZXQ+Cj4gICBNZXNzYWdlLUlEOiA8ODd6
-aXFydG1sNS5mc2ZAcmlzZXVwLm5ldD4KPiAgIExpbms6IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDE2LUp1bmUvMTEwNTg4Lmh0bWwKPiAKPiAKPiBE
-YXZlLCBEYW5pZWwsIGNvdWxkIG9uZSBvZiB5b3UgcGljayB0aGlzIHVwPwo+IAo+IEkndmUgcHVz
-aGVkIGFub3RoZXIgYnJhbmNoIHRvIEdpdEh1YiB3aGljaCBpcyBhbWVuZGVkIHdpdGggYWxsIHRo
-ZQo+IEFja2VkLWJ5IGFuZCBSZXZpZXdlZC1ieSB0YWdzLiBJdCdzIGFsc28gcmViYXNlZCBvbiBs
-YXRlc3QgZHJtLW5leHQuCj4gT3RoZXJ3aXNlIHRoaXMgaXMgaWRlbnRpY2FsIHRvIHdoYXQgSSd2
-ZSBwb3N0ZWQuIFNvIGluIGNhc2UgeW91IGRvbid0Cj4gd2FudCB0byBhcHBseSBhbGwgdGFncyBt
-YW51YWxseSwgeW91IGNhbiBjaGVycnktcGljayBmcm9tIG9yIG1lcmdlCj4gdGhpcyBicmFuY2gg
-KGJhcnJpbmcgYW55IG9iamVjdGlvbnMgb2YgY291cnNlKToKPiBodHRwczovL2dpdGh1Yi5jb20v
-bDFrL2xpbnV4L2NvbW1pdHMvZHJtX3J1bnBtX2ZpeGVzX3YyX2Fja2VkCj4gCj4gVGhhbmtzIGV2
-ZXJ5b25lIQoKWWVhaCB3aWxsIHBpY2sgdXAgbGF0ZXIgdGhpcyB3ZWVrLCByaWdodCBub3cgSSBo
-YXZlIGEgYmlnIGRybS1taXNjIHB1bGwKdGhhdCdzIHBlbmRpbmcuIFdvdWxkIGxpa2UgdG8gZ2V0
-IHRoYXQgbGFuZGVkIGZpcnN0LiBQbGVhc2UgcGluZyBtZSBpZgp5b3VyIHBhdGNoZXMgaGF2ZW4n
-dCBsYW5kZWQgaW4gZHJtLW1pc2MgYnkgbmV4dCB3ZWVrLgoKQ2hlZXJzLCBEYW5pZWwKLS0gCkRh
-bmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9i
-bG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1257024266==
+Content-Type: multipart/alternative; boundary="14660954730.D8B62F6.13449";
+ charset="UTF-8"
+
+
+--14660954730.D8B62F6.13449
+Date: Thu, 16 Jun 2016 16:44:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96307
+
+--- Comment #1 from Dmitrii Tcvetkov <demfloro-dmrBKrQMA3sox3rIn2DAYQ@public.gmane.org> ---
+In this bugreport:
+https://bugzilla.kernel.org/show_bug.cgi?id=3D119861
+these patches were suggested
+
+https://patchwork.kernel.org/patch/9151037/
+https://patchwork.kernel.org/patch/9151039/
+
+With them 4.7-rc2 kernel do not oops
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14660954730.D8B62F6.13449
+Date: Thu, 16 Jun 2016 16:44:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel 4.7-rc1 oops when starting X"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96307#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel 4.7-rc1 oops when starting X"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96307">bug 96307<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+demfloro&#64;demfloro.ru" title=3D"Dmitrii Tcvetkov &lt;demfloro&#64;demflo=
+ro.ru&gt;"> <span class=3D"fn">Dmitrii Tcvetkov</span></a>
+</span></b>
+        <pre>In this bugreport:
+<a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D119861">https://bu=
+gzilla.kernel.org/show_bug.cgi?id=3D119861</a>
+these patches were suggested
+
+<a href=3D"https://patchwork.kernel.org/patch/9151037/">https://patchwork.k=
+ernel.org/patch/9151037/</a>
+<a href=3D"https://patchwork.kernel.org/patch/9151039/">https://patchwork.k=
+ernel.org/patch/9151039/</a>
+
+With them 4.7-rc2 kernel do not oops</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14660954730.D8B62F6.13449--
+
+--===============1257024266==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1257024266==--
