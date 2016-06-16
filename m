@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95044] [NVA0] [Reclocking] GPU doesn't relax memory
 	clocks
-Date: Thu, 16 Jun 2016 16:54:37 +0000
-Message-ID: <bug-95044-8800-KSMQxIZgNM@http.bugs.freedesktop.org/>
+Date: Thu, 16 Jun 2016 16:55:47 +0000
+Message-ID: <bug-95044-8800-77WXcSSlV4@http.bugs.freedesktop.org/>
 References: <bug-95044-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0979365531=="
+Content-Type: multipart/mixed; boundary="===============0342309920=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0979365531==
-Content-Type: multipart/alternative; boundary="14660960771.3db3.17053";
+--===============0342309920==
+Content-Type: multipart/alternative; boundary="14660961470.0c7B.17126";
  charset="UTF-8"
 
 
---14660960771.3db3.17053
-Date: Thu, 16 Jun 2016 16:54:37 +0000
+--14660961470.0c7B.17126
+Date: Thu, 16 Jun 2016 16:55:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,15 +40,15 @@ Roy <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-                   |rg                          |
+                 CC|                            |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are on the CC list for the bug.=
 
---14660960771.3db3.17053
-Date: Thu, 16 Jun 2016 16:54:37 +0000
+--14660961470.0c7B.17126
+Date: Thu, 16 Jun 2016 16:55:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
 "fn">Roy</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - [NVA0] [Reclocking] GPU doesn't relax memory clocks"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95044">bug 95044<=
 /a>
           <br>
@@ -77,10 +77,11 @@ Auto-Submitted: auto-generated
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>skeggsb&#64;gmail.com
+           <td>nouveau&#64;lists.freedesktop.org
            </td>
          </tr></table>
       <p>
@@ -91,14 +92,14 @@ Auto-Submitted: auto-generated
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
+          <li>You are on the CC list for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14660960771.3db3.17053--
+--14660961470.0c7B.17126--
 
---===============0979365531==
+--===============0342309920==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0979365531==--
+--===============0342309920==--
