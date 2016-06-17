@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96562] New: nouveau crashes with SCHED_ERROR 0a
-	[CTXSW_TIMEOUT]
-Date: Fri, 17 Jun 2016 16:34:23 +0000
-Message-ID: <bug-96562-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 96565] New: Clive Barker's Jericho displays strange,
+ vivid colors when motion blur enabled
+Date: Fri, 17 Jun 2016 17:53:45 +0000
+Message-ID: <bug-96565-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0459654706=="
+Content-Type: multipart/mixed; boundary="===============1222448083=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,49 +19,86 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0459654706==
-Content-Type: multipart/alternative; boundary="14661812630.80e6AD.16840";
+--===============1222448083==
+Content-Type: multipart/alternative; boundary="14661860251.2640898.5773";
  charset="UTF-8"
 
 
---14661812630.80e6AD.16840
-Date: Fri, 17 Jun 2016 16:34:23 +0000
+--14661860251.2640898.5773
+Date: Fri, 17 Jun 2016 17:53:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96562
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96565
 
-            Bug ID: 96562
-           Summary: nouveau crashes with SCHED_ERROR 0a [CTXSW_TIMEOUT]
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
+            Bug ID: 96565
+           Summary: Clive Barker's Jericho displays strange,vivid colors
+                    when motion blur enabled
+           Product: Mesa
+           Version: 11.2
+          Hardware: Other
+                OS: All
             Status: NEW
-          Severity: major
+          Keywords: bisected, regression
+          Severity: normal
           Priority: medium
-         Component: Driver/nouveau
+         Component: Drivers/DRI/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: flat-Qv/G/jAYABd5r9uniWpRnA@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Reporter: gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+                CC: imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
 
-Created attachment 124577
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124577&action=3Dedit
-dmesg log
+Created attachment 124580
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124580&action=3Dedit
+screenshot
 
-GTX 650 Ti Boost - nouveau 1.0.12 crashes randomly but regularly and freezes
-Xorg, no mouse no keyboard. SSH still available. Cannot switch to another
-terminal.
+When motion blur effect is enabled in the game, the screen is filled with r=
+ed,
+yellow and green colors (both the menus and midgame).
+The problem doesn't exist with the software renderer.
+
+Bisecting revealed that the problem is present since
+
+commit 7752bbc44e78e982de3cd4c34862adc38a338234
+Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Date:   Thu Dec 10 18:19:44 2015 -0500
+
+    gk104/ir: simplify and fool-proof texbar algorithm
+
+    With the current algorithm, we only look at tex uses. However there's a
+    write-after-write hazard where we might decide to, on some path, not use
+    a texture's output at all, but instead to write a different value to
+    that register. However without the barrier, the texture might complete
+    later and overwrite that value.
+
+    This fixes Unreal Elemental demo on GK110/GK208, flightgear on GK10x,
+    and likely other random-looking failures.
+
+The game renders properly with the previous commit.
+
+Trace (uncompressed 138M):
+https://drive.google.com/open?id=3D0B-tTbLKBl-tOaVRvNmMwQW8zYlk
+
+OpenGL vendor string: nouveau
+OpenGL renderer string: Gallium 0.4 on NV106
+OpenGL core profile version string: 4.3 (Core Profile) Mesa 12.1.0-devel
+(git-5a64549)
+OpenGL core profile shading language version string: 4.30
+
+Fedora 23
+Libdrm 2.4.68+git
+Linux kernel 4.7.0-rc3
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14661812630.80e6AD.16840
-Date: Fri, 17 Jun 2016 16:34:23 +0000
+--14661860251.2640898.5773
+Date: Fri, 17 Jun 2016 17:53:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,38 +114,40 @@ Auto-Submitted: auto-generated
           <th>Bug ID</th>
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau crashes with SCHED_ERROR 0a [CTXSW_TIMEOUT]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96562">96562</a>
+   title=3D"NEW - Clive Barker's Jericho displays strange,vivid colors when=
+ motion blur enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96565">96565</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>nouveau crashes with SCHED_ERROR 0a [CTXSW_TIMEOUT]
+          <td>Clive Barker's Jericho displays strange,vivid colors when mot=
+ion blur enabled
           </td>
         </tr>
 
         <tr>
           <th>Product</th>
-          <td>xorg
+          <td>Mesa
           </td>
         </tr>
 
         <tr>
           <th>Version</th>
-          <td>unspecified
+          <td>11.2
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>x86-64 (AMD64)
+          <td>Other
           </td>
         </tr>
 
         <tr>
           <th>OS</th>
-          <td>Linux (All)
+          <td>All
           </td>
         </tr>
 
@@ -119,8 +158,14 @@ Auto-Submitted: auto-generated
         </tr>
 
         <tr>
+          <th>Keywords</th>
+          <td>bisected, regression
+          </td>
+        </tr>
+
+        <tr>
           <th>Severity</th>
-          <td>major
+          <td>normal
           </td>
         </tr>
 
@@ -132,7 +177,7 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Component</th>
-          <td>Driver/nouveau
+          <td>Drivers/DRI/nouveau
           </td>
         </tr>
 
@@ -144,26 +189,67 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Reporter</th>
-          <td>flat&#64;imo.uto.moe
+          <td>gyebro69&#64;gmail.com
           </td>
         </tr>
 
         <tr>
           <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>CC</th>
+          <td>imirkin&#64;alum.mit.edu
           </td>
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124577=
-" name=3D"attach_124577" title=3D"dmesg log">attachment 124577</a> <a href=
-=3D"attachment.cgi?id=3D124577&amp;action=3Dedit" title=3D"dmesg log">[deta=
-ils]</a></span>
-dmesg log
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124580=
+" name=3D"attach_124580" title=3D"screenshot">attachment 124580</a> <a href=
+=3D"attachment.cgi?id=3D124580&amp;action=3Dedit" title=3D"screenshot">[det=
+ails]</a></span>
+screenshot
 
-GTX 650 Ti Boost - nouveau 1.0.12 crashes randomly but regularly and freezes
-Xorg, no mouse no keyboard. SSH still available. Cannot switch to another
-terminal.</pre>
+When motion blur effect is enabled in the game, the screen is filled with r=
+ed,
+yellow and green colors (both the menus and midgame).
+The problem doesn't exist with the software renderer.
+
+Bisecting revealed that the problem is present since
+
+commit 7752bbc44e78e982de3cd4c34862adc38a338234
+Author: Ilia Mirkin &lt;<a href=3D"mailto:imirkin&#64;alum.mit.edu">imirkin=
+&#64;alum.mit.edu</a>&gt;
+Date:   Thu Dec 10 18:19:44 2015 -0500
+
+    gk104/ir: simplify and fool-proof texbar algorithm
+
+    With the current algorithm, we only look at tex uses. However there's a
+    write-after-write hazard where we might decide to, on some path, not use
+    a texture's output at all, but instead to write a different value to
+    that register. However without the barrier, the texture might complete
+    later and overwrite that value.
+
+    This fixes Unreal Elemental demo on GK110/GK208, flightgear on GK10x,
+    and likely other random-looking failures.
+
+The game renders properly with the previous commit.
+
+Trace (uncompressed 138M):
+<a href=3D"https://drive.google.com/open?id=3D0B-tTbLKBl-tOaVRvNmMwQW8zYlk"=
+>https://drive.google.com/open?id=3D0B-tTbLKBl-tOaVRvNmMwQW8zYlk</a>
+
+OpenGL vendor string: nouveau
+OpenGL renderer string: Gallium 0.4 on NV106
+OpenGL core profile version string: 4.3 (Core Profile) Mesa 12.1.0-devel
+(git-5a64549)
+OpenGL core profile shading language version string: 4.30
+
+Fedora 23
+Libdrm 2.4.68+git
+Linux kernel 4.7.0-rc3</pre>
         </div>
       </p>
 
@@ -172,14 +258,15 @@ terminal.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14661812630.80e6AD.16840--
+--14661860251.2640898.5773--
 
---===============0459654706==
+--===============1222448083==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -189,4 +276,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0459654706==--
+--===============1222448083==--
