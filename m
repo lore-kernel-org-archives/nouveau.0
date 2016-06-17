@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91247] Tomb Raider: Underworld renders lots of
- artefacts on models and objects
-Date: Fri, 17 Jun 2016 18:36:51 +0000
-Message-ID: <bug-91247-8800-9Wye0UKxl7@http.bugs.freedesktop.org/>
-References: <bug-91247-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93896] Nvidia GeForce GTX 970M unsupported,
+ no backlight control
+Date: Fri, 17 Jun 2016 19:08:32 +0000
+Message-ID: <bug-93896-8800-NHavqbVH1R@http.bugs.freedesktop.org/>
+References: <bug-93896-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1151722803=="
+Content-Type: multipart/mixed; boundary="===============1367298723=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91247-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93896-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,48 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1151722803==
-Content-Type: multipart/alternative; boundary="14661886100.7A380.16467";
+--===============1367298723==
+Content-Type: multipart/alternative; boundary="14661905111.468baBC4.26200";
  charset="UTF-8"
 
 
---14661886100.7A380.16467
-Date: Fri, 17 Jun 2016 18:36:50 +0000
+--14661905111.468baBC4.26200
+Date: Fri, 17 Jun 2016 19:08:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91247
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93896
 
-B=C3=A9la Gyebr=C3=B3szki <gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Javantea <jvoss-Cpl0xJrrQRvQT0dZR+AlfA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
---- Comment #4 from B=C3=A9la Gyebr=C3=B3szki <gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I think this bug affects Deus Ex: Human Revolution as well, where character=
-s,
-weapons, doors have those flashing artifacts on them.
-
-DeusEx HR trace (uncompressed 296M):
-https://drive.google.com/open?id=3D0B-tTbLKBl-tOS0pFV0pVd19vQW8
-
-OpenGL vendor string: nouveau
-OpenGL renderer string: Gallium 0.4 on NV106
-OpenGL core profile version string: 4.3 (Core Profile) Mesa 12.1.0-devel
-(git-5a64549)
-OpenGL core profile shading language version string: 4.30
+--- Comment #6 from Javantea <jvoss-Cpl0xJrrQRvQT0dZR+AlfA@public.gmane.org> ---
+That fixed it. Thank you very much! Home users will want it to be connected=
+ to
+xbacklight so that the fn controls will increase and decrease the backlight
+intensity, but I am quite happy to run a script.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14661886100.7A380.16467
-Date: Fri, 17 Jun 2016 18:36:50 +0000
+--14661905111.468baBC4.26200
+Date: Fri, 17 Jun 2016 19:08:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,15 +66,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gyebro69&=
-#64;gmail.com" title=3D"B=C3=A9la Gyebr=C3=B3szki &lt;gyebro69&#64;gmail.co=
-m&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jvoss&#64=
+;altsci.com" title=3D"Javantea &lt;jvoss&#64;altsci.com&gt;"> <span class=
+=3D"fn">Javantea</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Tomb Raider: Underworld renders lots of artefacts on mode=
-ls and objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91247">bug 91247<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Nvidia GeForce GTX 970M unsupported, no backli=
+ght control"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93896">bug 93896<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -92,44 +85,42 @@ ls and objects"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>gyebro69&#64;gmail.com
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Tomb Raider: Underworld renders lots of artefacts on mode=
-ls and objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91247#c4">Comment=
- # 4</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Nvidia GeForce GTX 970M unsupported, no backli=
+ght control"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93896#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Tomb Raider: Underworld renders lots of artefacts on mode=
-ls and objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91247">bug 91247<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Nvidia GeForce GTX 970M unsupported, no backli=
+ght control"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93896">bug 93896<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gyebro69&#64;gmail.com" title=3D"B=C3=A9la Gyebr=C3=B3szki &lt;gyebro69&#64=
-;gmail.com&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
+jvoss&#64;altsci.com" title=3D"Javantea &lt;jvoss&#64;altsci.com&gt;"> <spa=
+n class=3D"fn">Javantea</span></a>
 </span></b>
-        <pre>I think this bug affects Deus Ex: Human Revolution as well, wh=
-ere characters,
-weapons, doors have those flashing artifacts on them.
-
-DeusEx HR trace (uncompressed 296M):
-<a href=3D"https://drive.google.com/open?id=3D0B-tTbLKBl-tOS0pFV0pVd19vQW8"=
->https://drive.google.com/open?id=3D0B-tTbLKBl-tOS0pFV0pVd19vQW8</a>
-
-OpenGL vendor string: nouveau
-OpenGL renderer string: Gallium 0.4 on NV106
-OpenGL core profile version string: 4.3 (Core Profile) Mesa 12.1.0-devel
-(git-5a64549)
-OpenGL core profile shading language version string: 4.30</pre>
+        <pre>That fixed it. Thank you very much! Home users will want it to=
+ be connected to
+xbacklight so that the fn controls will increase and decrease the backlight
+intensity, but I am quite happy to run a script.</pre>
         </div>
       </p>
 
@@ -144,9 +135,9 @@ OpenGL core profile shading language version string: 4.30</pre>
     </body>
 </html>=
 
---14661886100.7A380.16467--
+--14661905111.468baBC4.26200--
 
---===============1151722803==
+--===============1367298723==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -156,4 +147,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1151722803==--
+--===============1367298723==--
