@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93896] Nvidia GeForce GTX 970M unsupported,
- no backlight control
-Date: Fri, 17 Jun 2016 09:28:11 +0000
-Message-ID: <bug-93896-8800-R89CpjkqBJ@http.bugs.freedesktop.org/>
-References: <bug-93896-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 96562] New: nouveau crashes with SCHED_ERROR 0a
+	[CTXSW_TIMEOUT]
+Date: Fri, 17 Jun 2016 16:34:23 +0000
+Message-ID: <bug-96562-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0779005371=="
+Content-Type: multipart/mixed; boundary="===============0459654706=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93896-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +19,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0779005371==
-Content-Type: multipart/alternative; boundary="14661556911.FfF966F.25503";
+--===============0459654706==
+Content-Type: multipart/alternative; boundary="14661812630.80e6AD.16840";
  charset="UTF-8"
 
 
---14661556911.FfF966F.25503
-Date: Fri, 17 Jun 2016 09:28:11 +0000
+--14661812630.80e6AD.16840
+Date: Fri, 17 Jun 2016 16:34:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93896
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96562
 
---- Comment #5 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Try the following patch:
-https://lists.freedesktop.org/archives/nouveau/2016-May/025081.html. You sh=
-ould
-be able to change the brightness through
-`/sys/class/backlight/nv_backlight/brightness` with it.
+            Bug ID: 96562
+           Summary: nouveau crashes with SCHED_ERROR 0a [CTXSW_TIMEOUT]
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: flat-Qv/G/jAYABd5r9uniWpRnA@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 124577
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124577&action=3Dedit
+dmesg log
+
+GTX 650 Ti Boost - nouveau 1.0.12 crashes randomly but regularly and freezes
+Xorg, no mouse no keyboard. SSH still available. Cannot switch to another
+terminal.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14661556911.FfF966F.25503
-Date: Fri, 17 Jun 2016 09:28:11 +0000
+--14661812630.80e6AD.16840
+Date: Fri, 17 Jun 2016 16:34:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,29 +72,98 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau crashes with SCHED_ERROR 0a [CTXSW_TIMEOUT]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96562">96562</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nouveau crashes with SCHED_ERROR 0a [CTXSW_TIMEOUT]
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>flat&#64;imo.uto.moe
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia GeForce GTX 970M unsupported, no backlight control"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93896#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia GeForce GTX 970M unsupported, no backlight control"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93896">bug 93896<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Try the following patch:
-<a href=3D"https://lists.freedesktop.org/archives/nouveau/2016-May/025081.h=
-tml">https://lists.freedesktop.org/archives/nouveau/2016-May/025081.html</a=
->. You should
-be able to change the brightness through
-`/sys/class/backlight/nv_backlight/brightness` with it.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124577=
+" name=3D"attach_124577" title=3D"dmesg log">attachment 124577</a> <a href=
+=3D"attachment.cgi?id=3D124577&amp;action=3Dedit" title=3D"dmesg log">[deta=
+ils]</a></span>
+dmesg log
+
+GTX 650 Ti Boost - nouveau 1.0.12 crashes randomly but regularly and freezes
+Xorg, no mouse no keyboard. SSH still available. Cannot switch to another
+terminal.</pre>
         </div>
       </p>
 
@@ -92,14 +173,13 @@ be able to change the brightness through
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14661556911.FfF966F.25503--
+--14661812630.80e6AD.16840--
 
---===============0779005371==
+--===============0459654706==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +189,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0779005371==--
+--===============0459654706==--
