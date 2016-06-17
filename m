@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93896] Nvidia GeForce GTX 970M unsupported,
- no backlight control
-Date: Fri, 17 Jun 2016 19:08:32 +0000
-Message-ID: <bug-93896-8800-NHavqbVH1R@http.bugs.freedesktop.org/>
-References: <bug-93896-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
+Subject: [PATCH v2 2/2] nvkm/clk/gf100: Read secondary bypass
+	postdiv when required
+Date: Fri, 17 Jun 2016 22:16:14 +0100
+Message-ID: <1466198174-22089-2-git-send-email-nouveau@spliet.org>
+References: <1466198174-22089-1-git-send-email-nouveau@spliet.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1367298723=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93896-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1466198174-22089-1-git-send-email-nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,134 +18,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1367298723==
-Content-Type: multipart/alternative; boundary="14661905111.468baBC4.26200";
- charset="UTF-8"
-
-
---14661905111.468baBC4.26200
-Date: Fri, 17 Jun 2016 19:08:31 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93896
-
-Javantea <jvoss-Cpl0xJrrQRvQT0dZR+AlfA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #6 from Javantea <jvoss-Cpl0xJrrQRvQT0dZR+AlfA@public.gmane.org> ---
-That fixed it. Thank you very much! Home users will want it to be connected=
- to
-xbacklight so that the fn controls will increase and decrease the backlight
-intensity, but I am quite happy to run a script.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14661905111.468baBC4.26200
-Date: Fri, 17 Jun 2016 19:08:31 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jvoss&#64=
-;altsci.com" title=3D"Javantea &lt;jvoss&#64;altsci.com&gt;"> <span class=
-=3D"fn">Javantea</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Nvidia GeForce GTX 970M unsupported, no backli=
-ght control"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93896">bug 93896<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Nvidia GeForce GTX 970M unsupported, no backli=
-ght control"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93896#c6">Comment=
- # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Nvidia GeForce GTX 970M unsupported, no backli=
-ght control"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93896">bug 93896<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jvoss&#64;altsci.com" title=3D"Javantea &lt;jvoss&#64;altsci.com&gt;"> <spa=
-n class=3D"fn">Javantea</span></a>
-</span></b>
-        <pre>That fixed it. Thank you very much! Home users will want it to=
- be connected to
-xbacklight so that the fn controls will increase and decrease the backlight
-intensity, but I am quite happy to run a script.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14661905111.468baBC4.26200--
-
---===============1367298723==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1367298723==--
+djI6IGZpeCB0eXBvIGl0J3MgLT4gaXRzCgpTaWduZWQtb2ZmLWJ5OiBSb3kgU3BsaWV0IDxub3V2
+ZWF1QHNwbGlldC5vcmc+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
+Y2xrL2dmMTAwLmMgfCAyMCArKysrKysrKysrKysrKy0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDE0
+IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2dmMTAwLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9udmttL3N1YmRldi9jbGsvZ2YxMDAuYwppbmRleCAwMjZiYWZmLi44OWQ1NTQzIDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2YxMDAuYwor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2YxMDAuYwpAQCAt
+OTksNyArOTksNyBAQCByZWFkX2RpdihzdHJ1Y3QgZ2YxMDBfY2xrICpjbGssIGludCBkb2ZmLCB1
+MzIgZHNyYywgdTMyIGRjdGwpCiB7CiAJc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBjbGst
+PmJhc2Uuc3ViZGV2LmRldmljZTsKIAl1MzIgc3NyYyA9IG52a21fcmQzMihkZXZpY2UsIGRzcmMg
+KyAoZG9mZiAqIDQpKTsKLQl1MzIgc2N0bCA9IG52a21fcmQzMihkZXZpY2UsIGRjdGwgKyAoZG9m
+ZiAqIDQpKTsKKwl1MzIgc2Nsaywgc2N0bCwgc2RpdiA9IDI7CiAKIAlzd2l0Y2ggKHNzcmMgJiAw
+eDAwMDAwMDAzKSB7CiAJY2FzZSAwOgpAQCAtMTA5LDEzICsxMDksMjEgQEAgcmVhZF9kaXYoc3Ry
+dWN0IGdmMTAwX2NsayAqY2xrLCBpbnQgZG9mZiwgdTMyIGRzcmMsIHUzMiBkY3RsKQogCWNhc2Ug
+MjoKIAkJcmV0dXJuIDEwMDAwMDsKIAljYXNlIDM6Ci0JCWlmIChzY3RsICYgMHg4MDAwMDAwMCkg
+ewotCQkJdTMyIHNjbGsgPSByZWFkX3ZjbyhjbGssIGRzcmMgKyAoZG9mZiAqIDQpKTsKLQkJCXUz
+MiBzZGl2ID0gKHNjdGwgJiAweDAwMDAwMDNmKSArIDI7Ci0JCQlyZXR1cm4gKHNjbGsgKiAyKSAv
+IHNkaXY7CisJCXNjbGsgPSByZWFkX3ZjbyhjbGssIGRzcmMgKyAoZG9mZiAqIDQpKTsKKworCQkv
+KiBNZW1jbGsgaGFzIGRvZmYgb2YgMCBkZXNwaXRlIGl0cyBhbHQuIGxvY2F0aW9uICovCisJCWlm
+IChkb2ZmIDw9IDIpIHsKKwkJCXNjdGwgPSBudmttX3JkMzIoZGV2aWNlLCBkY3RsICsgKGRvZmYg
+KiA0KSk7CisKKwkJCWlmIChzY3RsICYgMHg4MDAwMDAwMCkgeworCQkJCWlmIChzc3JjICYgMHgx
+MDApCisJCQkJCXNjdGwgPj49IDg7CisKKwkJCQlzZGl2ID0gKHNjdGwgJiAweDNmKSArIDI7CisJ
+CQl9CiAJCX0KIAotCQlyZXR1cm4gcmVhZF92Y28oY2xrLCBkc3JjICsgKGRvZmYgKiA0KSk7CisJ
+CXJldHVybiAoc2NsayAqIDIpIC8gc2RpdjsKIAlkZWZhdWx0OgogCQlyZXR1cm4gMDsKIAl9Ci0t
+IAoyLjUuNQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
