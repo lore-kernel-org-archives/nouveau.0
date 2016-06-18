@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: xf86-video-nouveau and NVIDIA Drivers
-Date: Fri, 17 Jun 2016 20:54:39 -0400
-Message-ID: <CAKb7UvhaQ9T5cPCyOBRMnF=k9eue_vXmDKfs5xb2SuuuMz+wwg@mail.gmail.com>
-References: <91b4e3e4-a840-755f-f8c1-fc2a707887ad@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91247] Tomb Raider: Underworld renders lots of
+ artefacts on models and objects
+Date: Sat, 18 Jun 2016 16:07:30 +0000
+Message-ID: <bug-91247-8800-vCxLLLVqGC@http.bugs.freedesktop.org/>
+References: <bug-91247-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0312665246=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <91b4e3e4-a840-755f-f8c1-fc2a707887ad-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-91247-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,31 +17,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alan Casson <alcasson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdW4gMTcsIDIwMTYgYXQgODozNCBQTSwgQWxhbiBDYXNzb24gPGFsY2Fzc29uQGdt
-YWlsLmNvbT4gd3JvdGU6Cj4gT1M9IEFyY2ggTGludXgKPiBHUFU9IE52aWRpYSBHZWZvcmNlIEdU
-LTYzMAo+IEdyYXBoaWNzIERyaXZlcj0gbnZpZGlhIDM2Ny4yNy0xIChjdXJyZW50KQo+IFBsYXRm
-b3JtPSBEZXNrdG9wIEN1c3RvbSBCdWlsZCAoQU1EIEZYLTYzMDAgYW5kIEdBLTc4TE1ULVVTQjMg
-bW9ibzsgMTYgR0IKPiBSQU0pCj4KPgo+IH4gb25lIHllYXIgYWdvLCBJIHdhcyBoYXZpbmcgcHJv
-YmxlbXMgd2l0aCBteSBkaXNwbGF5LiBUaGUgbnZpZGlhIGdyYXBoaWNzCj4gZHJpdmVyIGFuZCBk
-ZXBlbmRlbmNpZXMgKGxpYnZkcGF1LCBudmlkaWEtbGliZ2wsIG52aWRpYS1zZXR0aW5ncywgYW5k
-Cj4gbnZpZGlhLXV0aWxzKSBoYWQgYmVlbiBpbnN0YWxsZWQgZHVyaW5nIHRoZSBpbml0aWFsIE9T
-IGJ1aWxkLiBPbiB0aGUgcm9hZCB0bwo+IHJlbWVkeSwgSSBmb3VuZCB0aGF0IHVzaW5nIHRoZSB4
-Zjg2LXZpZGVvLW5vdXZlYXUgMkQgYWNjZWwgZHJpdmVyIGluCj4gY29uanVuY3Rpb24gd2l0aCB0
-aGUgbnZpZGlhIGRyaXZlciBwcm92ZWQgdG8gYmUgdGhlIGFuc3dlci4gSSd2ZSB1c2VkIHRoaXMK
-PiBjb21iaW5hdGlvbiBvbiBtb3JlIHRoYW4gb25lIG1hY2hpbmUgc2luY2UgdGhhdCB0aW1lLCB3
-aXRob3V0IHByb2JsZW1zLgo+IChOb3RoaW5nIGlzIGJsYWNrbGlzdGVkLikKPgo+IFJlY2VudGx5
-LCBhIG51bWJlciBvZiBwZW9wbGUgaGF2ZSBhcmlzZW4gcXVlc3Rpb25pbmcgdGhlIHZhbGlkaXR5
-IG9mIHRoZQo+IGNvbWJvLiBIZW5jZSwgSSBhc2ssIGlzIHRoZSBub3V2ZWF1IGRyaXZlciBvZiBh
-bnkgcmVhbCB2YWx1ZSBpbiB0aGlzCj4gc2NlbmFyaW8/IE9yIGFtIEkganVzdCBsdWNreT8KCkkg
-Y2FuJ3QgcXVpdGUgdGVsbCB3aGF0IHlvdSdyZSBzYXlpbmcsIGJ1dCBhIHBhc3RlYmluIG9mIGRt
-ZXNnIGFuZApYb3JnIGxvZyB3aWxsIHN1cmVseSByZXZlYWwgd2hhdCBpcyBnb2luZyBvbi4KCnhm
-ODYtdmlkZW8tbm91dmVhdSBvbmx5IHdvcmtzIHdpdGggdGhlIG5vdXZlYXUga21zIG1vZHVsZSwg
-YW5kIHdpbGwKcmVmdXNlIHRvIGxvYWQgaWYgdGhlIGRldmljZSBpdCdzIGdpdmVuIGRvZXNuJ3Qg
-c3VwcG9ydCB0aGUgdmFyaW91cwpub3V2ZWF1LXNwZWNpZmljIGlvY3Rscy4KCiAgLWlsaWEKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0312665246==
+Content-Type: multipart/alternative; boundary="14662660500.04684fdc.21969";
+ charset="UTF-8"
+
+
+--14662660500.04684fdc.21969
+Date: Sat, 18 Jun 2016 16:07:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91247
+
+--- Comment #5 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Confirmed, I can reproduce the issue on my GF119.
+
+Unfortunately, it still not fixed but I will have a look at some point.
+
+Thanks for reporting.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14662660500.04684fdc.21969
+Date: Sat, 18 Jun 2016 16:07:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Tomb Raider: Underworld renders lots of artefacts on mode=
+ls and objects"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91247#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Tomb Raider: Underworld renders lots of artefacts on mode=
+ls and objects"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91247">bug 91247<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+samuel.pitoiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset=
+&#64;gmail.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
+</span></b>
+        <pre>Confirmed, I can reproduce the issue on my GF119.
+
+Unfortunately, it still not fixed but I will have a look at some point.
+
+Thanks for reporting.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14662660500.04684fdc.21969--
+
+--===============0312665246==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0312665246==--
