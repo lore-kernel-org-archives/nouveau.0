@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96565] Clive Barker's Jericho displays strange,
  vivid colors when motion blur enabled
-Date: Sat, 18 Jun 2016 20:18:15 +0000
-Message-ID: <bug-96565-8800-sg0hb1qrSd@http.bugs.freedesktop.org/>
+Date: Sat, 18 Jun 2016 20:52:18 +0000
+Message-ID: <bug-96565-8800-mgl1JDBX56@http.bugs.freedesktop.org/>
 References: <bug-96565-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0744786527=="
+Content-Type: multipart/mixed; boundary="===============0035932415=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96565-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0744786527==
-Content-Type: multipart/alternative; boundary="14662810940.D4FcC5bE.4341";
+--===============0035932415==
+Content-Type: multipart/alternative; boundary="14662831382.eBb609B.19127";
  charset="UTF-8"
 
 
---14662810940.D4FcC5bE.4341
-Date: Sat, 18 Jun 2016 20:18:14 +0000
+--14662831382.eBb609B.19127
+Date: Sat, 18 Jun 2016 20:52:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,27 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96565
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-v2 here:
+B=C3=A9la Gyebr=C3=B3szki <gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-https://patchwork.freedesktop.org/patch/94106/
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #5 from B=C3=A9la Gyebr=C3=B3szki <gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #4)
+> v2 here:
+>=20
+> https://patchwork.freedesktop.org/patch/94106/
+
+The patch fixes the problem in the game, thank you.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14662810940.D4FcC5bE.4341
-Date: Sat, 18 Jun 2016 20:18:14 +0000
+--14662831382.eBb609B.19127
+Date: Sat, 18 Jun 2016 20:52:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,15 +67,40 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gyebro69&=
+#64;gmail.com" title=3D"B=C3=A9la Gyebr=C3=B3szki &lt;gyebro69&#64;gmail.co=
+m&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Clive Barker's Jericho displays strange,vivid colors when=
+ motion blur enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96565">bug 96565<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>gyebro69&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Clive Barker's Jericho displays strange,vivid colors when=
  motion blur enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96565#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96565#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Clive Barker's Jericho displays strange,vivid colors when=
@@ -74,13 +108,17 @@ Auto-Submitted: auto-generated
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96565">bug 96565<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+gyebro69&#64;gmail.com" title=3D"B=C3=A9la Gyebr=C3=B3szki &lt;gyebro69&#64=
+;gmail.com&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
 </span></b>
-        <pre>v2 here:
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D965=
+65#c4">comment #4</a>)
+<span class=3D"quote">&gt; v2 here:
+&gt;=20
+&gt; <a href=3D"https://patchwork.freedesktop.org/patch/94106/">https://pat=
+chwork.freedesktop.org/patch/94106/</a></span >
 
-<a href=3D"https://patchwork.freedesktop.org/patch/94106/">https://patchwor=
-k.freedesktop.org/patch/94106/</a></pre>
+The patch fixes the problem in the game, thank you.</pre>
         </div>
       </p>
 
@@ -95,9 +133,9 @@ k.freedesktop.org/patch/94106/</a></pre>
     </body>
 </html>=
 
---14662810940.D4FcC5bE.4341--
+--14662831382.eBb609B.19127--
 
---===============0744786527==
+--===============0035932415==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +145,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0744786527==--
+--===============0035932415==--
