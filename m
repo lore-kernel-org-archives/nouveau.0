@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96565] Clive Barker's Jericho displays strange,
  vivid colors when motion blur enabled
-Date: Sat, 18 Jun 2016 19:27:53 +0000
-Message-ID: <bug-96565-8800-u6p2xgD7KK@http.bugs.freedesktop.org/>
+Date: Sat, 18 Jun 2016 20:18:15 +0000
+Message-ID: <bug-96565-8800-sg0hb1qrSd@http.bugs.freedesktop.org/>
 References: <bug-96565-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0442673215=="
+Content-Type: multipart/mixed; boundary="===============0744786527=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96565-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0442673215==
-Content-Type: multipart/alternative; boundary="14662780731.c590.21121";
+--===============0744786527==
+Content-Type: multipart/alternative; boundary="14662810940.D4FcC5bE.4341";
  charset="UTF-8"
 
 
---14662780731.c590.21121
-Date: Sat, 18 Jun 2016 19:27:53 +0000
+--14662810940.D4FcC5bE.4341
+Date: Sat, 18 Jun 2016 20:18:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96565
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-https://patchwork.freedesktop.org/patch/94103/
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+v2 here:
 
-That fixes the trace for me. Technically the issue wasn't *caused* by that
-commit... the bad logic existed already. But the old logic didn't pick up t=
-he
-"uses" at the top of the loop, which in turn meant that it kept the uses af=
-ter
-the tex. Oh well.
+https://patchwork.freedesktop.org/patch/94106/
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14662780731.c590.21121
-Date: Sat, 18 Jun 2016 19:27:53 +0000
+--14662810940.D4FcC5bE.4341
+Date: Sat, 18 Jun 2016 20:18:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,8 +65,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Clive Barker's Jericho displays strange,vivid colors when=
  motion blur enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96565#c3">Comment=
- # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96565#c4">Comment=
+ # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Clive Barker's Jericho displays strange,vivid colors when=
@@ -82,15 +77,10 @@ Auto-Submitted: auto-generated
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre><a href=3D"https://patchwork.freedesktop.org/patch/94103/">htt=
-ps://patchwork.freedesktop.org/patch/94103/</a>
+        <pre>v2 here:
 
-That fixes the trace for me. Technically the issue wasn't *caused* by that
-commit... the bad logic existed already. But the old logic didn't pick up t=
-he
-&quot;uses&quot; at the top of the loop, which in turn meant that it kept t=
-he uses after
-the tex. Oh well.</pre>
+<a href=3D"https://patchwork.freedesktop.org/patch/94106/">https://patchwor=
+k.freedesktop.org/patch/94106/</a></pre>
         </div>
       </p>
 
@@ -99,15 +89,15 @@ the tex. Oh well.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14662780731.c590.21121--
+--14662810940.D4FcC5bE.4341--
 
---===============0442673215==
+--===============0744786527==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0442673215==--
+--===============0744786527==--
