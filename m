@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96565] Clive Barker's Jericho displays strange,
- vivid colors when motion blur enabled
-Date: Sun, 19 Jun 2016 14:18:36 +0000
-Message-ID: <bug-96565-8800-Gc67ICxkaX@http.bugs.freedesktop.org/>
-References: <bug-96565-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90513] Odd gray and red flicker in The Talos
+	Principle on GK104
+Date: Sun, 19 Jun 2016 14:19:57 +0000
+Message-ID: <bug-90513-8800-AB1jk2sfqN@http.bugs.freedesktop.org/>
+References: <bug-90513-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1266397358=="
+Content-Type: multipart/mixed; boundary="===============0270225068=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-96565-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1266397358==
-Content-Type: multipart/alternative; boundary="14663459150.b12dF68.21340";
+--===============0270225068==
+Content-Type: multipart/alternative; boundary="14663459970.5F121d.21780";
  charset="UTF-8"
 
 
---14663459150.b12dF68.21340
-Date: Sun, 19 Jun 2016 14:18:35 +0000
+--14663459970.5F121d.21780
+Date: Sun, 19 Jun 2016 14:19:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96565
+https://bugs.freedesktop.org/show_bug.cgi?id=3D90513
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The shadow/brightness flicker should be helped by
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
+https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D154c0a42a23187c61ea0a13=
+07198fae667398eba
+
+Moving on to the red/green flickering...
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14663459150.b12dF68.21340
-Date: Sun, 19 Jun 2016 14:18:35 +0000
+--14663459970.5F121d.21780
+Date: Sun, 19 Jun 2016 14:19:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,40 +61,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Clive Barker's Jericho displays strange,vivid =
-colors when motion blur enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96565">bug 96565<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90513#c13">Commen=
+t # 13</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90513">bug 90513<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>The shadow/brightness flicker should be helped by
+
+<a href=3D"https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D154c0a42a231=
+87c61ea0a1307198fae667398eba">https://cgit.freedesktop.org/mesa/mesa/commit=
+/?id=3D154c0a42a23187c61ea0a1307198fae667398eba</a>
+
+Moving on to the red/green flickering...</pre>
+        </div>
       </p>
 
 
@@ -107,9 +99,9 @@ colors when motion blur enabled"
     </body>
 </html>=
 
---14663459150.b12dF68.21340--
+--14663459970.5F121d.21780--
 
---===============1266397358==
+--===============0270225068==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1266397358==--
+--===============0270225068==--
