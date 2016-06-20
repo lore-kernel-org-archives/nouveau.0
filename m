@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90513] Odd gray and red flicker in The Talos
 	Principle on GK104
-Date: Sun, 19 Jun 2016 14:19:57 +0000
-Message-ID: <bug-90513-8800-AB1jk2sfqN@http.bugs.freedesktop.org/>
+Date: Mon, 20 Jun 2016 01:10:52 +0000
+Message-ID: <bug-90513-8800-opbvLk9VOB@http.bugs.freedesktop.org/>
 References: <bug-90513-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0270225068=="
+Content-Type: multipart/mixed; boundary="===============2076373668=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0270225068==
-Content-Type: multipart/alternative; boundary="14663459970.5F121d.21780";
+--===============2076373668==
+Content-Type: multipart/alternative; boundary="14663850510.6d7BCEa.1400";
  charset="UTF-8"
 
 
---14663459970.5F121d.21780
-Date: Sun, 19 Jun 2016 14:19:57 +0000
+--14663850510.6d7BCEa.1400
+Date: Mon, 20 Jun 2016 01:10:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D90513
 
---- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The shadow/brightness flicker should be helped by
+--- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 124613
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124613&action=3Dedit
+list of draws with bad results
 
-https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D154c0a42a23187c61ea0a13=
-07198fae667398eba
+I ran a diff (with retracediff.py) against nv50 (after fixing alpha test on
+nv50, otherwise it had too many differences). The attached list of draws has
+diffs when running GK208 vs GT215, most (all?) randomly-green-stuff related.
+[GT215 renders everything fine.]
 
-Moving on to the red/green flickering...
+The trace in question is
+https://people.freedesktop.org/~imirkin/traces/talos-karolherbst.trace.xz
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14663459970.5F121d.21780
-Date: Sun, 19 Jun 2016 14:19:57 +0000
+--14663850510.6d7BCEa.1400
+Date: Mon, 20 Jun 2016 01:10:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,8 +72,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Odd gray and red flicker in The Talos Principle on GK104"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90513#c13">Commen=
-t # 13</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90513#c14">Commen=
+t # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Odd gray and red flicker in The Talos Principle on GK104"
@@ -78,13 +83,21 @@ t # 13</a>
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>The shadow/brightness flicker should be helped by
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124613=
+" name=3D"attach_124613" title=3D"list of draws with bad results">attachmen=
+t 124613</a> <a href=3D"attachment.cgi?id=3D124613&amp;action=3Dedit" title=
+=3D"list of draws with bad results">[details]</a></span>
+list of draws with bad results
 
-<a href=3D"https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D154c0a42a231=
-87c61ea0a1307198fae667398eba">https://cgit.freedesktop.org/mesa/mesa/commit=
-/?id=3D154c0a42a23187c61ea0a1307198fae667398eba</a>
+I ran a diff (with retracediff.py) against nv50 (after fixing alpha test on
+nv50, otherwise it had too many differences). The attached list of draws has
+diffs when running GK208 vs GT215, most (all?) randomly-green-stuff related.
+[GT215 renders everything fine.]
 
-Moving on to the red/green flickering...</pre>
+The trace in question is
+<a href=3D"https://people.freedesktop.org/~imirkin/traces/talos-karolherbst=
+.trace.xz">https://people.freedesktop.org/~imirkin/traces/talos-karolherbst=
+.trace.xz</a></pre>
         </div>
       </p>
 
@@ -93,15 +106,15 @@ Moving on to the red/green flickering...</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14663459970.5F121d.21780--
+--14663850510.6d7BCEa.1400--
 
---===============0270225068==
+--===============2076373668==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +124,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0270225068==--
+--===============2076373668==--
