@@ -1,12 +1,13 @@
-From: Dmitrii Tcvetkov <demfloro-dmrBKrQMA3sox3rIn2DAYQ@public.gmane.org>
-Subject: [PATCH] drm/nouveau/nouveau_fbcon.c: fix for disabled
- fbdev emulation
-Date: Mon, 20 Jun 2016 13:52:14 +0300
-Message-ID: <20160620135214.49c71d7e@note>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91247] Tomb Raider: Underworld renders lots of
+ artefacts on models and objects
+Date: Tue, 21 Jun 2016 04:49:21 +0000
+Message-ID: <bug-91247-8800-8x8JkSyafp@http.bugs.freedesktop.org/>
+References: <bug-91247-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0103486105=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91247-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,29 +17,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8sCgphZnRlciB0aGlzIGNvbW1pdDoKCmNvbW1pdCBmMDQ1ZjQ1OWQ5MjUxMzhmZTdkNjE5
-M2E4Yzg2NDA2YmRhN2U0OWRhCkF1dGhvcjogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29t
-PgpEYXRlOiAgIFRodSBKdW4gMiAxMjoyMzozMSAyMDE2ICsxMDAwCiAgICBkcm0vbm91dmVhdS9m
-YmNvbjogZml4IG91dC1vZi1ib3VuZHMgbWVtb3J5IGFjY2Vzc2VzCgprZXJuZWwgc3RhcnRlZCB0
-byBvb3BzIHdoZW4gbG9hZGluZyBub3V2ZWF1IG1vZHVsZSB3aGVuIHVzaW5nIEdUWCA3ODAgVGkg
-dmlkZW8gYWRhcHRlci4gVGhpcyBwYXRjaCBmaXhlcyB0aGUgcHJvYmxlbS4gCkJ1ZyByZXBvcnQ6
-IGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTIwNTkxCgpTaWdu
-ZWQtb2ZmLWJ5OiBEbWl0cmlpIFRjdmV0a292IDxkZW1mbG9yb0BkZW1mbG9yby5ydT4KU3VnZ2Vz
-dGVkLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+CkZpeGVzOiBmMDQ1ZjQ1
-OWQ5MjUgKCJub3V2ZWF1X2ZiY29uX2luaXQoKSIpCi0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9mYmNvbi5jIHwgMyArKy0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMo
-KyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2ZiY29uLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMK
-aW5kZXggMzAwZWEwMy4uZDFmMjQ4ZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9mYmNvbi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-ZmJjb24uYwpAQCAtNTUyLDcgKzU1Miw4IEBAIG5vdXZlYXVfZmJjb25faW5pdChzdHJ1Y3QgZHJt
-X2RldmljZSAqZGV2KQogCWlmIChyZXQpCiAJCWdvdG8gZmluaTsKIAotCWZiY29uLT5oZWxwZXIu
-ZmJkZXYtPnBpeG1hcC5idWZfYWxpZ24gPSA0OworCWlmIChmYmNvbi0+aGVscGVyLmZiZGV2KQor
-CQlmYmNvbi0+aGVscGVyLmZiZGV2LT5waXhtYXAuYnVmX2FsaWduID0gNDsKIAlyZXR1cm4gMDsK
-IAogZmluaToKLS0gCjIuOS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============0103486105==
+Content-Type: multipart/alternative; boundary="14664845611.2f8C7aF.3356";
+ charset="UTF-8"
+
+
+--14664845611.2f8C7aF.3356
+Date: Tue, 21 Jun 2016 04:49:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91247
+
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+For the deus ex trace, the first bad shader is 3355374. The newly-built/used
+vertex shader (linked into program 5098) does look a LOT like the one from
+TR:U, but not 100% identical.
+
+Should probably double-check whether 3348622 and 3348662 check out - perhaps
+the differences were too small for retracediff.py to care. But those happen
+around another glDepthRange() call.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14664845611.2f8C7aF.3356
+Date: Tue, 21 Jun 2016 04:49:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Tomb Raider: Underworld renders lots of artefacts on mode=
+ls and objects"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91247#c6">Comment=
+ # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Tomb Raider: Underworld renders lots of artefacts on mode=
+ls and objects"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91247">bug 91247<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>For the deus ex trace, the first bad shader is 3355374. The ne=
+wly-built/used
+vertex shader (linked into program 5098) does look a LOT like the one from
+TR:U, but not 100% identical.
+
+Should probably double-check whether 3348622 and 3348662 check out - perhaps
+the differences were too small for retracediff.py to care. But those happen
+around another glDepthRange() call.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14664845611.2f8C7aF.3356--
+
+--===============0103486105==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0103486105==--
