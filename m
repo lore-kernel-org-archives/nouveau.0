@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91247] Tomb Raider: Underworld renders lots of
- artefacts on models and objects
-Date: Tue, 21 Jun 2016 04:49:21 +0000
-Message-ID: <bug-91247-8800-8x8JkSyafp@http.bugs.freedesktop.org/>
-References: <bug-91247-8800@http.bugs.freedesktop.org/>
+From: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Subject: [RFC PATCH v2] drm/nouveau/fb/nv50: set DMA mask before
+	mapping scratch page
+Date: Tue, 21 Jun 2016 14:50:35 +0200
+Message-ID: <1466513435-11599-1-git-send-email-ard.biesheuvel@linaro.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0103486105=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91247-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,102 +16,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: airlied-cv59FeDIM0c@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0103486105==
-Content-Type: multipart/alternative; boundary="14664845611.2f8C7aF.3356";
- charset="UTF-8"
-
-
---14664845611.2f8C7aF.3356
-Date: Tue, 21 Jun 2016 04:49:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91247
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-For the deus ex trace, the first bad shader is 3355374. The newly-built/used
-vertex shader (linked into program 5098) does look a LOT like the one from
-TR:U, but not 100% identical.
-
-Should probably double-check whether 3348622 and 3348662 check out - perhaps
-the differences were too small for retracediff.py to care. But those happen
-around another glDepthRange() call.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14664845611.2f8C7aF.3356
-Date: Tue, 21 Jun 2016 04:49:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Tomb Raider: Underworld renders lots of artefacts on mode=
-ls and objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91247#c6">Comment=
- # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Tomb Raider: Underworld renders lots of artefacts on mode=
-ls and objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91247">bug 91247<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>For the deus ex trace, the first bad shader is 3355374. The ne=
-wly-built/used
-vertex shader (linked into program 5098) does look a LOT like the one from
-TR:U, but not 100% identical.
-
-Should probably double-check whether 3348622 and 3348662 check out - perhaps
-the differences were too small for retracediff.py to care. But those happen
-around another glDepthRange() call.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14664845611.2f8C7aF.3356--
-
---===============0103486105==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0103486105==--
+VGhlIDEwMGMwOCBzY3JhdGNoIHBhZ2UgaXMgbWFwcGVkIHVzaW5nIGRtYV9tYXBfcGFnZSgpIGJl
+Zm9yZSB0aGUgVFRNCmxheWVyIGhhcyBoYWQgYSBjaGFuY2UgdG8gc2V0IHRoZSBETUEgbWFzay4g
+VGhpcyBtZWFucyB3ZSBhcmUgc3RpbGwKcnVubmluZyB3aXRoIHRoZSBkZWZhdWx0IG9mIDMyIHdo
+ZW4gdGhpcyBjb2RlIGV4ZWN1dGVzLCBhbmQgdGhpcyBjYXVzZXMKcHJvYmxlbXMgZm9yIHBsYXRm
+b3JtcyB3aXRoIG5vIG1lbW9yeSBiZWxvdyA0IEdCIChzdWNoIGFzIEFNRCBTZWF0dGxlKQoKU28g
+bW92ZSB0aGUgZG1hX21hcF9wYWdlKCkgdG8gdGhlIC5pbml0IGhvb2ssIGFuZCBzZXQgdGhlIHN0
+cmVhbWluZyBETUEKbWFzayBiYXNlZCBvbiB0aGUgTU1VIHN1YmRldiBwYXJhbWV0ZXJzIGJlZm9y
+ZSBwZXJmb3JtaW5nIHRoZSBjYWxsLgoKU2lnbmVkLW9mZi1ieTogQXJkIEJpZXNoZXV2ZWwgPGFy
+ZC5iaWVzaGV1dmVsQGxpbmFyby5vcmc+Ci0tLQoKSSBhbSBzdXJlIHRoZXJlIGlzIGEgbXVjaCBi
+ZXR0ZXIgd2F5IHRvIGFkZHJlc3MgdGhpcywgYnV0IHRoaXMgZml4ZXMgdGhlCnByb2JsZW0gSSBn
+ZXQgb24gQU1EIFNlYXR0bGUgd2l0aCBhIEdlRm9yY2UgMjEwIFBDSWUgY2FyZDoKCiAgIG5vdXZl
+YXUgMDAwMDowMjowMC4wOiBlbmFibGluZyBkZXZpY2UgKDAwMDAgLT4gMDAwMykKICAgbm91dmVh
+dSAwMDAwOjAyOjAwLjA6IE5WSURJQSBHVDIxOCAoMGE4MjgwYjEpCiAgIG5vdXZlYXUgMDAwMDow
+MjowMC4wOiBiaW9zOiB2ZXJzaW9uIDcwLjE4LmE2LjAwLjAwCiAgIG5vdXZlYXUgMDAwMDowMjow
+MC4wOiBmYiBjdG9yIGZhaWxlZCwgLTE0CiAgIG5vdXZlYXU6IHByb2JlIG9mIDAwMDA6MDI6MDAu
+MCBmYWlsZWQgd2l0aCBlcnJvciAtMTQKCnYyOiByZXBsYWNlIGluY29ycmVjdCBjb21wYXJpc29u
+IG9mIGRtYV9hZGRyX3QgdHlwZSB2YXIgYWdhaW5zdCBOVUxMCgogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvZmIvbnY1MC5jIHwgMzcgKysrKysrKysrKysrKystLS0tLS0KIDEg
+ZmlsZSBjaGFuZ2VkLCAyNiBpbnNlcnRpb25zKCspLCAxMSBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9udjUwLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9udjUwLmMKaW5kZXggMWI1ZmIwMmVh
+YjJhLi4wMzNjYTBlZmZiN2UgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
+a20vc3ViZGV2L2ZiL252NTAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
+YmRldi9mYi9udjUwLmMKQEAgLTIxNiwxMSArMjE2LDMwIEBAIG52NTBfZmJfaW5pdChzdHJ1Y3Qg
+bnZrbV9mYiAqYmFzZSkKIAlzdHJ1Y3QgbnY1MF9mYiAqZmIgPSBudjUwX2ZiKGJhc2UpOwogCXN0
+cnVjdCBudmttX2RldmljZSAqZGV2aWNlID0gZmItPmJhc2Uuc3ViZGV2LmRldmljZTsKIAorCWlm
+ICghZmItPnIxMDBjMDgpIHsKKwkJLyoKKwkJICogV2UgYXJlIGNhbGxpbmcgdGhlIERNQSBhcGkg
+d2F5IGJlZm9yZSB0aGUgVFRNIGxheWVyIHNldHMgdGhlCisJCSAqIERNQSBtYXNrIGJhc2VkIG9u
+IHRoZSBNTVUgc3ViZGV2IHBhcmFtZXRlcnMuIFRoaXMgbWVhbnMgd2UKKwkJICogYXJlIHVzaW5n
+IHRoZSBkZWZhdWx0IERNQSBtYXNrIG9mIDMyLCB3aGljaCBtYXkgY2F1c2UKKwkJICogcHJvYmxl
+bXMgb24gc3lzdGVtcyB3aXRoIG5vIFJBTSBiZWxvdyB0aGUgNCBHQiBtYXJrLiBTbyBzZXQKKwkJ
+ICogdGhlIHN0cmVhbWluZyBETUEgbWFzayBoZXJlIGFzIHdlbGwuCisJCSAqLworCQlkbWFfc2V0
+X21hc2soZGV2aWNlLT5kZXYsIERNQV9CSVRfTUFTSyhkZXZpY2UtPm1tdS0+ZG1hX2JpdHMpKTsK
+KworCQlmYi0+cjEwMGMwOCA9IGRtYV9tYXBfcGFnZShkZXZpY2UtPmRldiwgZmItPnIxMDBjMDhf
+cGFnZSwgMCwKKwkJCQkJICAgUEFHRV9TSVpFLCBETUFfQklESVJFQ1RJT05BTCk7CisJCWlmIChk
+bWFfbWFwcGluZ19lcnJvcihkZXZpY2UtPmRldiwgZmItPnIxMDBjMDgpKSB7CisJCQludmttX3dh
+cm4oJmZiLT5iYXNlLnN1YmRldiwKKwkJCQkgICJkbWFfbWFwX3BhZ2UoKSBmYWlsZWQgb24gMTAw
+YzA4IHBhZ2VcbiIpOworCQl9CisJfQorCiAJLyogTm90IGEgY2x1ZSB3aGF0IHRoaXMgaXMgZXhh
+Y3RseS4gIFdpdGhvdXQgcG9pbnRpbmcgaXQgYXQgYQogCSAqIHNjcmF0Y2ggcGFnZSwgVlJBTS0+
+R0FSVCBibGl0cyB3aXRoIE0yTUYgKGFzIGluIEREWCBERlMpCiAJICogY2F1c2UgSU9NTVUgInJl
+YWQgZnJvbSBhZGRyZXNzIDAiIGVycm9ycyAocmgjNTYxMjY3KQogCSAqLwotCW52a21fd3IzMihk
+ZXZpY2UsIDB4MTAwYzA4LCBmYi0+cjEwMGMwOCA+PiA4KTsKKwlpZiAoZmItPnIxMDBjMDggIT0g
+RE1BX0VSUk9SX0NPREUpCisJCW52a21fd3IzMihkZXZpY2UsIDB4MTAwYzA4LCBmYi0+cjEwMGMw
+OCA+PiA4KTsKIAogCS8qIFRoaXMgaXMgbmVlZGVkIHRvIGdldCBtZWFuaW5nZnVsIGluZm9ybWF0
+aW9uIGZyb20gMTAwYzkwCiAJICogb24gdHJhcHMuIE5vIGlkZWEgd2hhdCB0aGVzZSB2YWx1ZXMg
+bWVhbiBleGFjdGx5LiAqLwpAQCAtMjMzLDExICsyNTIsMTEgQEAgbnY1MF9mYl9kdG9yKHN0cnVj
+dCBudmttX2ZiICpiYXNlKQogCXN0cnVjdCBudjUwX2ZiICpmYiA9IG52NTBfZmIoYmFzZSk7CiAJ
+c3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBmYi0+YmFzZS5zdWJkZXYuZGV2aWNlOwogCi0J
+aWYgKGZiLT5yMTAwYzA4X3BhZ2UpIHsKKwlpZiAoZmItPnIxMDBjMDggJiYgZmItPnIxMDBjMDgg
+IT0gRE1BX0VSUk9SX0NPREUpCiAJCWRtYV91bm1hcF9wYWdlKGRldmljZS0+ZGV2LCBmYi0+cjEw
+MGMwOCwgUEFHRV9TSVpFLAogCQkJICAgICAgIERNQV9CSURJUkVDVElPTkFMKTsKLQkJX19mcmVl
+X3BhZ2UoZmItPnIxMDBjMDhfcGFnZSk7Ci0JfQorCisJX19mcmVlX3BhZ2UoZmItPnIxMDBjMDhf
+cGFnZSk7CiAKIAlyZXR1cm4gZmI7CiB9CkBAIC0yNjQsMTMgKzI4Myw5IEBAIG52NTBfZmJfbmV3
+Xyhjb25zdCBzdHJ1Y3QgbnY1MF9mYl9mdW5jICpmdW5jLCBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRl
+dmljZSwKIAkqcGZiID0gJmZiLT5iYXNlOwogCiAJZmItPnIxMDBjMDhfcGFnZSA9IGFsbG9jX3Bh
+Z2UoR0ZQX0tFUk5FTCB8IF9fR0ZQX1pFUk8pOwotCWlmIChmYi0+cjEwMGMwOF9wYWdlKSB7Ci0J
+CWZiLT5yMTAwYzA4ID0gZG1hX21hcF9wYWdlKGRldmljZS0+ZGV2LCBmYi0+cjEwMGMwOF9wYWdl
+LCAwLAotCQkJCQkgICBQQUdFX1NJWkUsIERNQV9CSURJUkVDVElPTkFMKTsKLQkJaWYgKGRtYV9t
+YXBwaW5nX2Vycm9yKGRldmljZS0+ZGV2LCBmYi0+cjEwMGMwOCkpCi0JCQlyZXR1cm4gLUVGQVVM
+VDsKLQl9IGVsc2UgewotCQludmttX3dhcm4oJmZiLT5iYXNlLnN1YmRldiwgImZhaWxlZCAxMDBj
+MDggcGFnZSBhbGxvY1xuIik7CisJaWYgKCFmYi0+cjEwMGMwOF9wYWdlKSB7CisJCW52a21fZXJy
+b3IoJmZiLT5iYXNlLnN1YmRldiwgImZhaWxlZCAxMDBjMDggcGFnZSBhbGxvY1xuIik7CisJCXJl
+dHVybiAtRU5PTUVNOwogCX0KIAogCXJldHVybiAwOwotLSAKMi43LjQKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
