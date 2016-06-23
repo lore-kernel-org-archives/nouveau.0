@@ -1,38 +1,43 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: nouveau: DRM: failed to create ce channel, -22 on Jetson TK1
-Date: Thu, 23 Jun 2016 14:48:34 +0900
-Message-ID: <CAAVeFuLZVXj+8mYk0W-cHBd8qKjU68+LXKdK2R3CLNE4kRDD9g@mail.gmail.com>
-References: <20160623035913.GA22402@jirafa.cyrius.com>
+From: Punit Agrawal <punit.agrawal@arm.com>
+Subject: Re: [RFC PATCH] drm/nouveau/fb/nv50: set DMA mask before mapping scratch page
+Date: Thu, 23 Jun 2016 10:55:11 +0100
+Message-ID: <87a8ic44cg.fsf@e105922-lin.cambridge.arm.com>
+References: <1466425804-7229-1-git-send-email-ard.biesheuvel@linaro.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <20160623035913.GA22402-IRMp5PtgtdoigzW5ZibpNwC/G2K4zDHf@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Martin Michlmayr <tbm-R+vWnYXSFMfQT0dZR+AlfA@public.gmane.org>
-Cc: "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1466425804-7229-1-git-send-email-ard.biesheuvel@linaro.org> (Ard
+	Biesheuvel's message of "Mon, 20 Jun 2016 14:30:04 +0200")
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ard Biesheuvel <ard.biesheuvel@linaro.org>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com, airlied@linux.ie, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
+Ard Biesheuvel <ard.biesheuvel@linaro.org> writes:
 
-On Thu, Jun 23, 2016 at 12:59 PM, Martin Michlmayr <tbm-R+vWnYXSFMfQT0dZR+AlfA@public.gmane.org> wrote:
-> I see the following on a Jetson TK1:
+> The 100c08 scratch page is mapped using dma_map_page() before the TTM
+> layer has had a chance to set the DMA mask. This means we are still
+> running with the default of 32 when this code executes, and this causes
+> problems for platforms with no memory below 4 GB (such as AMD Seattle)
 >
-> [    9.495425] [TTM] Initializing DMA pool allocator
-> [    9.495513] nouveau 57000000.gpu: DRM: VRAM: 0 MiB
-> [    9.495520] nouveau 57000000.gpu: DRM: GART: 1048576 MiB
-> [    9.508076] nouveau 57000000.gpu: DRM: failed to create ce channel, -22
+> So move the dma_map_page() to the .init hook, and set the streaming DMA
+> mask based on the MMU subdev parameters before performing the call.
 >
-> A Google search suggests that I'm not the only one with this, but I
-> don't see it being discussed anywhere.
->
-> Is this known / expected?
->
-> This is with 4.6 and 4.7-rc4.  The firmware is installed.
+> Signed-off-by: Ard Biesheuvel <ard.biesheuvel@linaro.org>
 
-It is expected - Tegra does not have a CE channel and Nouveau
-complains about it, but then falls back to using GR for copy and
-everything should work. I tried to silence that message in the past
-but the proposed patch was rejected (too complex for too little
-benefit IIRC).
+Hi Ard,
 
-Is the GPU working fine otherwise? Your output suggests it should.
+Thanks for posting this patch.
+
+With the patch, I am able to see console output on a screen attached to
+the NVS 300 PCIe card in an AMD Seattle system. It was failing with
+a message similar to what you've posted below.
+
+For some reason, X refuses to start up but that, I think, is a problem
+with my userspace setup.
+
+Cheers,
+Punit
+
+
+[...]
