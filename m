@@ -1,50 +1,49 @@
-From: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
-Subject: Re: [RFC PATCH] drm/nouveau/fb/nv50: set DMA mask before
- mapping scratch page
-Date: Thu, 23 Jun 2016 12:07:58 +0200
-Message-ID: <CAKv+Gu8uZ38JLKJLey5RD+0g+_zJ9xZU+0UaopeRmriho030ug@mail.gmail.com>
+From: Punit Agrawal <punit.agrawal@arm.com>
+Subject: Re: [RFC PATCH] drm/nouveau/fb/nv50: set DMA mask before mapping scratch page
+Date: Thu, 23 Jun 2016 13:57:42 +0100
+Message-ID: <87ziqc2hbt.fsf@e105922-lin.cambridge.arm.com>
 References: <1466425804-7229-1-git-send-email-ard.biesheuvel@linaro.org>
- <87a8ic44cg.fsf@e105922-lin.cambridge.arm.com>
+	<87a8ic44cg.fsf@e105922-lin.cambridge.arm.com>
+	<CAKv+Gu8uZ38JLKJLey5RD+0g+_zJ9xZU+0UaopeRmriho030ug@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <87a8ic44cg.fsf-Z9gB6HwUD+TZROr8t4l/smS4ubULX0JqMm0uRHvK7Nw@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Punit Agrawal <punit.agrawal-5wv7dgnIgG8@public.gmane.org>
-Cc: airlied-cv59FeDIM0c@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAKv+Gu8uZ38JLKJLey5RD+0g+_zJ9xZU+0UaopeRmriho030ug@mail.gmail.com>
+	(Ard Biesheuvel's message of "Thu, 23 Jun 2016 12:07:58 +0200")
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ard Biesheuvel <ard.biesheuvel@linaro.org>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com, airlied@linux.ie, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gMjMgSnVuZSAyMDE2IGF0IDExOjU1LCBQdW5pdCBBZ3Jhd2FsIDxwdW5pdC5hZ3Jhd2FsQGFy
-bS5jb20+IHdyb3RlOgo+IEFyZCBCaWVzaGV1dmVsIDxhcmQuYmllc2hldXZlbEBsaW5hcm8ub3Jn
-PiB3cml0ZXM6Cj4KPj4gVGhlIDEwMGMwOCBzY3JhdGNoIHBhZ2UgaXMgbWFwcGVkIHVzaW5nIGRt
-YV9tYXBfcGFnZSgpIGJlZm9yZSB0aGUgVFRNCj4+IGxheWVyIGhhcyBoYWQgYSBjaGFuY2UgdG8g
-c2V0IHRoZSBETUEgbWFzay4gVGhpcyBtZWFucyB3ZSBhcmUgc3RpbGwKPj4gcnVubmluZyB3aXRo
-IHRoZSBkZWZhdWx0IG9mIDMyIHdoZW4gdGhpcyBjb2RlIGV4ZWN1dGVzLCBhbmQgdGhpcyBjYXVz
-ZXMKPj4gcHJvYmxlbXMgZm9yIHBsYXRmb3JtcyB3aXRoIG5vIG1lbW9yeSBiZWxvdyA0IEdCIChz
-dWNoIGFzIEFNRCBTZWF0dGxlKQo+Pgo+PiBTbyBtb3ZlIHRoZSBkbWFfbWFwX3BhZ2UoKSB0byB0
-aGUgLmluaXQgaG9vaywgYW5kIHNldCB0aGUgc3RyZWFtaW5nIERNQQo+PiBtYXNrIGJhc2VkIG9u
-IHRoZSBNTVUgc3ViZGV2IHBhcmFtZXRlcnMgYmVmb3JlIHBlcmZvcm1pbmcgdGhlIGNhbGwuCj4+
-Cj4+IFNpZ25lZC1vZmYtYnk6IEFyZCBCaWVzaGV1dmVsIDxhcmQuYmllc2hldXZlbEBsaW5hcm8u
-b3JnPgo+Cj4gSGkgQXJkLAo+Cj4gVGhhbmtzIGZvciBwb3N0aW5nIHRoaXMgcGF0Y2guCj4KPiBX
-aXRoIHRoZSBwYXRjaCwgSSBhbSBhYmxlIHRvIHNlZSBjb25zb2xlIG91dHB1dCBvbiBhIHNjcmVl
-biBhdHRhY2hlZCB0bwo+IHRoZSBOVlMgMzAwIFBDSWUgY2FyZCBpbiBhbiBBTUQgU2VhdHRsZSBz
-eXN0ZW0uIEl0IHdhcyBmYWlsaW5nIHdpdGgKPiBhIG1lc3NhZ2Ugc2ltaWxhciB0byB3aGF0IHlv
-dSd2ZSBwb3N0ZWQgYmVsb3cuCj4KClRoYW5rcyBmb3IgdGhlIHJlcG9ydC4gTWF5IEkgdGFrZSBp
-dCBhcyBhIHRlc3RlZC1ieT8KCj4gRm9yIHNvbWUgcmVhc29uLCBYIHJlZnVzZXMgdG8gc3RhcnQg
-dXAgYnV0IHRoYXQsIEkgdGhpbmssIGlzIGEgcHJvYmxlbQo+IHdpdGggbXkgdXNlcnNwYWNlIHNl
-dHVwLgo+CgpHb29kIHRvIGtub3cgdGhhdCB5b3UgYXJlIGF0dGVtcHRpbmcgdGhlIHNhbWUgdGhp
-bmcuIFdlIHNob3VsZCB0YWtlCnRoaXMgb2ZmbGluZSwgYnV0IEknZCBsaWtlIHRvIGNvbXBhcmUg
-bm90ZXMgcmVnYXJkaW5nIHRoZSBYb3JnCnByb2JsZW1zIHRoYXQgeW91IGFyZSBleHBlcmllbmNp
-bmcuCgpSZWdhcmRzLApBcmQuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQo=
+Ard Biesheuvel <ard.biesheuvel@linaro.org> writes:
+
+> On 23 June 2016 at 11:55, Punit Agrawal <punit.agrawal@arm.com> wrote:
+>> Ard Biesheuvel <ard.biesheuvel@linaro.org> writes:
+>>
+>>> The 100c08 scratch page is mapped using dma_map_page() before the TTM
+>>> layer has had a chance to set the DMA mask. This means we are still
+>>> running with the default of 32 when this code executes, and this causes
+>>> problems for platforms with no memory below 4 GB (such as AMD Seattle)
+>>>
+>>> So move the dma_map_page() to the .init hook, and set the streaming DMA
+>>> mask based on the MMU subdev parameters before performing the call.
+>>>
+>>> Signed-off-by: Ard Biesheuvel <ard.biesheuvel@linaro.org>
+>>
+>> Hi Ard,
+>>
+>> Thanks for posting this patch.
+>>
+>> With the patch, I am able to see console output on a screen attached to
+>> the NVS 300 PCIe card in an AMD Seattle system. It was failing with
+>> a message similar to what you've posted below.
+>>
+>
+> Thanks for the report. May I take it as a tested-by?
+
+Sure.
+
+Punit
+
+
+[...]
