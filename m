@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96656] [regression,
 	bisected] all textureGather piglits fail
-Date: Fri, 24 Jun 2016 01:26:45 +0000
-Message-ID: <bug-96656-8800-ABH2EqKky4@http.bugs.freedesktop.org/>
+Date: Fri, 24 Jun 2016 16:10:54 +0000
+Message-ID: <bug-96656-8800-XbxkGovvEN@http.bugs.freedesktop.org/>
 References: <bug-96656-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1041450835=="
+Content-Type: multipart/mixed; boundary="===============0886051898=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96656-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1041450835==
-Content-Type: multipart/alternative; boundary="14667316050.39EA5Ac9.29018";
+--===============0886051898==
+Content-Type: multipart/alternative; boundary="14667846531.1B67C578.15534";
  charset="UTF-8"
 
 
---14667316050.39EA5Ac9.29018
-Date: Fri, 24 Jun 2016 01:26:45 +0000
+--14667846531.1B67C578.15534
+Date: Fri, 24 Jun 2016 16:10:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,34 +36,34 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96656
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The problem was pre-existing, but a combination of factors made the readpix=
+els
+cache expose it harder.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Assignee|mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |org                         |rg
-         QA Contact|mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |org                         |rg
-          Component|Mesa core                   |Drivers/DRI/nouveau
+Fixed by:
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-It appears that not all textureGather variants fail. Only nonconst and offs=
-et
-ones. (On my GK208 at least.) And the offset ones pass on GT215 (and it doe=
-sn't
-support the nonconst one - that requires ARB_gpu_shader5).
+commit b433cb51e50cab878cbaa023662bacd1f923a183
+Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Date:   Thu Jun 23 22:33:59 2016 -0400
 
-The image that appears on the screen is the same independent of
-ST_DEBUG=3Dnoreadpixcache, but in the latter case, the test passes. Still
-investigating.
+    nvc0: when mapping directly, provide accurate xfer info + start
+
+    We were ignoring the incoming box parameters, and were providing totally
+    bogus stride/layer stride, and other bits, for when a non-full-surface
+    map was requested.
+
+    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+    Tested-by: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+    Cc: <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14667316050.39EA5Ac9.29018
-Date: Fri, 24 Jun 2016 01:26:45 +0000
+--14667846531.1B67C578.15534
+Date: Fri, 24 Jun 2016 16:10:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,53 +74,14 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [regression, bisected] all textureGather piglits fail"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96656">bug 96656<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>mesa-dev&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
-           <td>mesa-dev&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>Mesa core
-           </td>
-           <td>Drivers/DRI/nouveau
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [regression, bisected] all textureGather piglits fail"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96656#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96656#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [regression, bisected] all textureGather piglits fail"
@@ -130,15 +91,29 @@ pan class=3D"fn">Ilia Mirkin</span></a>
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>It appears that not all textureGather variants fail. Only nonc=
-onst and offset
-ones. (On my GK208 at least.) And the offset ones pass on GT215 (and it doe=
-sn't
-support the nonconst one - that requires ARB_gpu_shader5).
+        <pre>The problem was pre-existing, but a combination of factors mad=
+e the readpixels
+cache expose it harder.
 
-The image that appears on the screen is the same independent of
-ST_DEBUG=3Dnoreadpixcache, but in the latter case, the test passes. Still
-investigating.</pre>
+Fixed by:
+
+commit b433cb51e50cab878cbaa023662bacd1f923a183
+Author: Ilia Mirkin &lt;<a href=3D"mailto:imirkin&#64;alum.mit.edu">imirkin=
+&#64;alum.mit.edu</a>&gt;
+Date:   Thu Jun 23 22:33:59 2016 -0400
+
+    nvc0: when mapping directly, provide accurate xfer info + start
+
+    We were ignoring the incoming box parameters, and were providing totally
+    bogus stride/layer stride, and other bits, for when a non-full-surface
+    map was requested.
+
+    Signed-off-by: Ilia Mirkin &lt;<a href=3D"mailto:imirkin&#64;alum.mit.e=
+du">imirkin&#64;alum.mit.edu</a>&gt;
+    Tested-by: Samuel Pitoiset &lt;<a href=3D"mailto:samuel.pitoiset&#64;gm=
+ail.com">samuel.pitoiset&#64;gmail.com</a>&gt;
+    Cc: &lt;<a href=3D"mailto:mesa-stable&#64;lists.freedesktop.org">mesa-s=
+table&#64;lists.freedesktop.org</a>&gt;</pre>
         </div>
       </p>
 
@@ -153,9 +128,9 @@ investigating.</pre>
     </body>
 </html>=
 
---14667316050.39EA5Ac9.29018--
+--14667846531.1B67C578.15534--
 
---===============1041450835==
+--===============0886051898==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -165,4 +140,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1041450835==--
+--===============0886051898==--
