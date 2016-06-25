@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Sat, 25 Jun 2016 13:06:33 +0000
-Message-ID: <bug-94990-8800-fH2U38obnN@http.bugs.freedesktop.org/>
+Date: Sat, 25 Jun 2016 13:09:44 +0000
+Message-ID: <bug-94990-8800-eUKZlR9OdY@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1983894829=="
+Content-Type: multipart/mixed; boundary="===============1315693054=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1983894829==
-Content-Type: multipart/alternative; boundary="14668599931.1F9c.12474";
+--===============1315693054==
+Content-Type: multipart/alternative; boundary="14668601841.2CfBCE3a8.11974";
  charset="UTF-8"
 
 
---14668599931.1F9c.12474
-Date: Sat, 25 Jun 2016 13:06:33 +0000
+--14668601841.2CfBCE3a8.11974
+Date: Sat, 25 Jun 2016 13:09:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,27 +35,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
-h.habighorst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org <h.habighorst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #124715|0                           |1
-        is obsolete|                            |
-
---- Comment #32 from h.habighorst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org <h.habighorst@googlemail.c=
+--- Comment #33 from h.habighorst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org <h.habighorst@googlemail.c=
 om> ---
-Comment on attachment 124715
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124715
-dmesg from kernel with debug and NvForcePost=3D1 pci_msi=3Doff
+Created attachment 124716
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124716&action=3Dedit
+DMESG with pci_msi=3Doff nouveau.config=3DNvForcePost=3D1 nouveau.debug=3Dt=
+race
 
-- obsolete, wrong kernel parameters
+Sorry, first time nouveau debugging and just realized I completely messed up
+the kernel options - this time should be correct.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14668599931.1F9c.12474
-Date: Sat, 25 Jun 2016 13:06:33 +0000
+--14668601841.2CfBCE3a8.11974
+Date: Sat, 25 Jun 2016 13:09:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,40 +61,14 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:h.habigho=
-rst&#64;googlemail.com" title=3D"h.habighorst&#64;googlemail.com &lt;h.habi=
-ghorst&#64;googlemail.com&gt;"> <span class=3D"fn">h.habighorst&#64;googlem=
-ail.com</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #124715 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c32">Commen=
-t # 32</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c33">Commen=
+t # 33</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
@@ -110,14 +79,17 @@ h.habighorst&#64;googlemail.com" title=3D"h.habighorst&#64;googlemail.com &=
 lt;h.habighorst&#64;googlemail.com&gt;"> <span class=3D"fn">h.habighorst&#6=
 4;googlemail.com</span></a>
 </span></b>
-        <pre>Comment on <span class=3D"bz_obsolete"><a href=3D"attachment.c=
-gi?id=3D124715" name=3D"attach_124715" title=3D"dmesg from kernel with debu=
-g and NvForcePost=3D1 pci_msi=3Doff">attachment 124715</a> <a href=3D"attac=
-hment.cgi?id=3D124715&amp;action=3Dedit" title=3D"dmesg from kernel with de=
-bug and NvForcePost=3D1 pci_msi=3Doff">[details]</a></span>
-dmesg from kernel with debug and NvForcePost=3D1 pci_msi=3Doff
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124716=
+" name=3D"attach_124716" title=3D"DMESG with pci_msi=3Doff nouveau.config=
+=3DNvForcePost=3D1 nouveau.debug=3Dtrace">attachment 124716</a> <a href=3D"=
+attachment.cgi?id=3D124716&amp;action=3Dedit" title=3D"DMESG with pci_msi=
+=3Doff nouveau.config=3DNvForcePost=3D1 nouveau.debug=3Dtrace">[details]</a=
+></span>
+DMESG with pci_msi=3Doff nouveau.config=3DNvForcePost=3D1 nouveau.debug=3Dt=
+race
 
-- obsolete, wrong kernel parameters</pre>
+Sorry, first time nouveau debugging and just realized I completely messed up
+the kernel options - this time should be correct.</pre>
         </div>
       </p>
 
@@ -131,9 +103,9 @@ dmesg from kernel with debug and NvForcePost=3D1 pci_msi=3Doff
     </body>
 </html>=
 
---14668599931.1F9c.12474--
+--14668601841.2CfBCE3a8.11974--
 
---===============1983894829==
+--===============1315693054==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -143,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1983894829==--
+--===============1315693054==--
