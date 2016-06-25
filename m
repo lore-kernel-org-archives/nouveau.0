@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Sat, 25 Jun 2016 10:04:14 +0000
-Message-ID: <bug-94990-8800-qma2jJAyOC@http.bugs.freedesktop.org/>
+Date: Sat, 25 Jun 2016 10:10:31 +0000
+Message-ID: <bug-94990-8800-c5m3TjRVSU@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1054363051=="
+Content-Type: multipart/mixed; boundary="===============1248974712=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1054363051==
-Content-Type: multipart/alternative; boundary="14668490550.89B70D0.31154";
+--===============1248974712==
+Content-Type: multipart/alternative; boundary="14668494311.Dc7B1cFd.32019";
  charset="UTF-8"
 
 
---14668490550.89B70D0.31154
-Date: Sat, 25 Jun 2016 10:04:14 +0000
+--14668494311.Dc7B1cFd.32019
+Date: Sat, 25 Jun 2016 10:10:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,26 +35,28 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
-Henning <h.habighorst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> changed:
+--- Comment #31 from h.habighorst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org <h.habighorst@googlemail.c=
+om> ---
+Booted the last kernel from tumbleweed with debug on (4.6.2-1).
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |h.habighorst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
+Firmware MD5's are the same as mentioned.
 
---- Comment #30 from Henning <h.habighorst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-Created attachment 124715
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124715&action=3Dedit
-dmesg from kernel with debug and NvForcePost=3D1 pci_msi=3Doff
+DMESG output posted above, as mentioned I left the beginning intact, but cu=
+tted
+rest off due to file being very large (65 MB, it never stops spamming the f=
+ifo
+message).
 
-I have only removed a lot of repeated messages from the end (FIFO message
-spams), whole beginning was left as is.
+If you'll need more info / something specific, just mention it, will follow=
+ the
+bug.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14668490550.89B70D0.31154
-Date: Sat, 25 Jun 2016 10:04:15 +0000
+--14668494311.Dc7B1cFd.32019
+Date: Sat, 25 Jun 2016 10:10:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,56 +67,37 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:h.habigho=
-rst&#64;googlemail.com" title=3D"Henning &lt;h.habighorst&#64;googlemail.co=
-m&gt;"> <span class=3D"fn">Henning</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>h.habighorst&#64;googlemail.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c30">Commen=
-t # 30</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c31">Commen=
+t # 31</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-h.habighorst&#64;googlemail.com" title=3D"Henning &lt;h.habighorst&#64;goog=
-lemail.com&gt;"> <span class=3D"fn">Henning</span></a>
+h.habighorst&#64;googlemail.com" title=3D"h.habighorst&#64;googlemail.com &=
+lt;h.habighorst&#64;googlemail.com&gt;"> <span class=3D"fn">h.habighorst&#6=
+4;googlemail.com</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124715=
-" name=3D"attach_124715" title=3D"dmesg from kernel with debug and NvForceP=
-ost=3D1 pci_msi=3Doff">attachment 124715</a> <a href=3D"attachment.cgi?id=
-=3D124715&amp;action=3Dedit" title=3D"dmesg from kernel with debug and NvFo=
-rcePost=3D1 pci_msi=3Doff">[details]</a></span>
-dmesg from kernel with debug and NvForcePost=3D1 pci_msi=3Doff
+        <pre>Booted the last kernel from tumbleweed with debug on (4.6.2-1).
 
-I have only removed a lot of repeated messages from the end (FIFO message
-spams), whole beginning was left as is.</pre>
+Firmware MD5's are the same as mentioned.
+
+DMESG output posted above, as mentioned I left the beginning intact, but cu=
+tted
+rest off due to file being very large (65 MB, it never stops spamming the f=
+ifo
+message).
+
+If you'll need more info / something specific, just mention it, will follow=
+ the
+bug.</pre>
         </div>
       </p>
 
@@ -128,9 +111,9 @@ spams), whole beginning was left as is.</pre>
     </body>
 </html>=
 
---14668490550.89B70D0.31154--
+--14668494311.Dc7B1cFd.32019--
 
---===============1054363051==
+--===============1248974712==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -140,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1054363051==--
+--===============1248974712==--
