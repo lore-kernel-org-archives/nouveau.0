@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Sat, 25 Jun 2016 10:10:31 +0000
-Message-ID: <bug-94990-8800-c5m3TjRVSU@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93629] [NVE6] complete system freeze,
+ PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
+Date: Sat, 25 Jun 2016 12:33:10 +0000
+Message-ID: <bug-93629-8800-Uv3aMusYsd@http.bugs.freedesktop.org/>
+References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1248974712=="
+Content-Type: multipart/mixed; boundary="===============1858964372=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,43 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1248974712==
-Content-Type: multipart/alternative; boundary="14668494311.Dc7B1cFd.32019";
+--===============1858964372==
+Content-Type: multipart/alternative; boundary="14668579901.2d27ab.4404";
  charset="UTF-8"
 
 
---14668494311.Dc7B1cFd.32019
-Date: Sat, 25 Jun 2016 10:10:31 +0000
+--14668579901.2d27ab.4404
+Date: Sat, 25 Jun 2016 12:33:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
 
---- Comment #31 from h.habighorst-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org <h.habighorst@googlemail.c=
-om> ---
-Booted the last kernel from tumbleweed with debug on (4.6.2-1).
+--- Comment #31 from Cedric Brandenbourger <cedric-qhlb1eHUncGdZSis0rhKc4dd74u8MsAO@public.gmane.org> ---
+Just installed Kernel 4.6 and now i'm getting the following message:
 
-Firmware MD5's are the same as mentioned.
+kernel: nouveau 0000:01:00.0: Direct firmware load for
+nvidia/gk106/fecs_inst.bin failed with error -2
+kernel: nouveau 0000:01:00.0: gr: failed to load fecs_inst
 
-DMESG output posted above, as mentioned I left the beginning intact, but cu=
-tted
-rest off due to file being very large (65 MB, it never stops spamming the f=
-ifo
-message).
+Does the directories have changed again?
 
-If you'll need more info / something specific, just mention it, will follow=
- the
-bug.
+I also tried the original nouveau firmware with kernel 4.6. I think it's mo=
+re
+stable but when i'm watching a video, totem or vlc are at 100% of CPU
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14668494311.Dc7B1cFd.32019
-Date: Sat, 25 Jun 2016 10:10:31 +0000
+--14668579901.2d27ab.4404
+Date: Sat, 25 Jun 2016 12:33:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,32 +70,32 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c31">Commen=
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c31">Commen=
 t # 31</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-h.habighorst&#64;googlemail.com" title=3D"h.habighorst&#64;googlemail.com &=
-lt;h.habighorst&#64;googlemail.com&gt;"> <span class=3D"fn">h.habighorst&#6=
-4;googlemail.com</span></a>
+cedric&#64;brandenbourger.lu" title=3D"Cedric Brandenbourger &lt;cedric&#64=
+;brandenbourger.lu&gt;"> <span class=3D"fn">Cedric Brandenbourger</span></a>
 </span></b>
-        <pre>Booted the last kernel from tumbleweed with debug on (4.6.2-1).
+        <pre>Just installed Kernel 4.6 and now i'm getting the following me=
+ssage:
 
-Firmware MD5's are the same as mentioned.
+kernel: nouveau 0000:01:00.0: Direct firmware load for
+nvidia/gk106/fecs_inst.bin failed with error -2
+kernel: nouveau 0000:01:00.0: gr: failed to load fecs_inst
 
-DMESG output posted above, as mentioned I left the beginning intact, but cu=
-tted
-rest off due to file being very large (65 MB, it never stops spamming the f=
-ifo
-message).
+Does the directories have changed again?
 
-If you'll need more info / something specific, just mention it, will follow=
- the
-bug.</pre>
+I also tried the original nouveau firmware with kernel 4.6. I think it's mo=
+re
+stable but when i'm watching a video, totem or vlc are at 100% of CPU</pre>
         </div>
       </p>
 
@@ -111,9 +109,9 @@ bug.</pre>
     </body>
 </html>=
 
---14668494311.Dc7B1cFd.32019--
+--14668579901.2d27ab.4404--
 
---===============1248974712==
+--===============1858964372==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +121,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1248974712==--
+--===============1858964372==--
