@@ -1,54 +1,113 @@
-From: Lucas Stach <dev@lynxeye.de>
-Subject: Re: Reported regressions for 4.7 as of Sunday, 2016-06-19
-Date: Sun, 26 Jun 2016 17:36:13 +0200
-Message-ID: <1466955373.3076.1.camel@lynxeye.de>
-References: <20160624141918.4646.qmail@ns.sciencehorizons.net>
- <a2053cba-8044-0239-6091-7f47f278af1f@leemhuis.info>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82527] xset dpms force {off, standby,
+ suspend} returns after ~20 seconds (GeForce 8400 GS)
+Date: Sun, 26 Jun 2016 16:11:17 +0000
+Message-ID: <bug-82527-8800-QugPWlfdfT@http.bugs.freedesktop.org/>
+References: <bug-82527-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <a2053cba-8044-0239-6091-7f47f278af1f@leemhuis.info>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Thorsten Leemhuis <regressions@leemhuis.info>, George Spelvin <linux@sciencehorizons.net>
-Cc: airlied@redhat.com, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0217555409=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-82527-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QW0gU29ubnRhZywgZGVuIDI2LjA2LjIwMTYsIDE0OjUyICswMjAwIHNjaHJpZWIgVGhvcnN0ZW4g
-TGVlbWh1aXM6Cj4gT24gMjQuMDYuMjAxNiAxNjoxOSwgR2VvcmdlIFNwZWx2aW4gd3JvdGU6Cj4g
-PiAKPiA+IEhlcmUncyBhIHJlZ3Jlc3Npb24geW91IG1pZ2h0IGFkZC7CoMKgCj4gVGh4LCBhZGRl
-ZC4KPiAKUHJvYmFibHkgdGhlIHNhbWUgYnVnIGFzwqAKaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwu
-b3JnL3Nob3dfYnVnLmNnaT9pZD0xMTk4NjHCoGFuZCBhbHJlYWR5IGZpeGVkIGluCnRoZSBsYXN0
-IC1yYy4KClJlZ2FyZHMsCkx1Y2FzCgo+ID4gCj4gPiBJIG9ubHkgcmVwb3J0ZWQgaXQgdG8gZHJp
-LWRldmVsLAo+ID4gc2luY2UgaXQncyBEUkktc3BlY2lmaWMsIGJ1dCBzaW5jZSB0aGVyZSdzIGJl
-ZW4gdGh1bmRlcm91cyBzaWxlbmNlCj4gPiBmb3IgYSBmZXcgd2Vla3MsIEknbSB0cnlpbmcgdG8g
-YmUgYSBzcXVlYWtpZXIgd2hlZWwuCj4gQWRkZWQgdGhlIG5vdXZlYXUgZGV2ZWxvcGVycyB0byBD
-QywgbWF5YmUgaXQncyBhIGJ1ZyBpbiB0aGUgZHJtCj4gZHJpdmVyCj4gdGhhdCB0cmlnZ2VycyB0
-aGlzIHByb2JsZW07IGFuZCBhaXJsaWVkIGlzICJJbnRlcm5ldCBjaGFsbGVuZ2VkIgo+IHJpZ2h0
-Cj4gbm93IGFuZCBEYW5pZWwgb24gaG9saWRheXMsIHNvIGl0IG1pZ2h0IGJlIGdvb2QgdG8gZ2V0
-IG1vcmUgcGVvcGxlCj4gaW50bwo+IHRoZSBsb29wIGFueXdheS4KPiAKPiA+IAo+ID4gR2l2ZW4g
-dGhhdCBJIGJpc2VjdGVkIGl0IHRvIGEgc2luZ2xlLCBzbWFsbCwgcmV2ZXJ0YWJsZSBjb21taXQs
-IEknZAo+ID4gaG9wZWQgaXQgd291bGQgYmUgZWFzeSB0byBkZWFsIHdpdGguCj4gPiAKPiA+IFtC
-SVNFQ1RFRDogMDk1NWMxMjUwZV0gNC43LXJjMSBvb3BzIGF0Cj4gPiBkcm1fY29ubmVjdG9yX2Ns
-ZWFudXArMHg1Yy8weDFkMMKgCj4gPiAKPiA+IEUtbWFpbCByZXBvcnQgYXQKPiA+IGh0dHBzOi8v
-bWFyYy5pbmZvLz9sPWRyaS1kZXZlbCZtPTE0NjU3Nzg5ODYxMTg0OQo+ID4gCj4gPiBCdWd6aWxs
-YSByZXBvcnQgYXQKPiA+IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dp
-P2lkPTk2NTMyCj4gRldJVyB0aGUgaW1wb3J0YW50IGRldGFpbDogUmV2ZXJ0aW5nCj4gaHR0cHM6
-Ly9naXQua2VybmVsLm9yZy9saW51cy8wOTU1YzEyNTBlIChkcm0vY3J0YzogdGFrZSByZWZlcmVu
-Y2VzIHRvCj4gY29ubmVjdG9ycyB1c2VkIGluIGEgbW9kZXNldC4gKHYyKSkgZml4ZXMgdGhpcy4K
-PiAKPiBTaW5jZXJlbHksIHlvdXIgcmVncmVzc2lvbiB0cmFja2VyIGZvciBMaW51eCA0LjcgKGh0
-dHA6Ly9iaXQubHkvMjhKUm0KPiBKbykKPiDCoFRob3JzdGVuCj4gX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBkcmktZGV2ZWwgbWFpbGluZyBsaXN0Cj4g
-ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVs
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============0217555409==
+Content-Type: multipart/alternative; boundary="14669574770.2Cc8.1909";
+ charset="UTF-8"
+
+
+--14669574770.2Cc8.1909
+Date: Sun, 26 Jun 2016 16:11:17 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D82527
+
+--- Comment #15 from Martin V=C3=A4th <martin-hvkNLsi7f8w@public.gmane.org> ---
+I don't know why this issue was marked as FIXED.
+The behaviour hasn't changed since my first posting.
+
+I am not using audio from nvidia, so at least in my case this is certainly =
+not
+related.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14669574770.2Cc8.1909
+Date: Sun, 26 Jun 2016 16:11:17 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xset dpms force {off,standby,suspend} returns after ~20 s=
+econds (GeForce 8400 GS)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D82527#c15">Commen=
+t # 15</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xset dpms force {off,standby,suspend} returns after ~20 s=
+econds (GeForce 8400 GS)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D82527">bug 82527<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+martin&#64;mvath.de" title=3D"Martin V=C3=A4th &lt;martin&#64;mvath.de&gt;"=
+> <span class=3D"fn">Martin V=C3=A4th</span></a>
+</span></b>
+        <pre>I don't know why this issue was marked as FIXED.
+The behaviour hasn't changed since my first posting.
+
+I am not using audio from nvidia, so at least in my case this is certainly =
+not
+related.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14669574770.2Cc8.1909--
+
+--===============0217555409==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0217555409==--
