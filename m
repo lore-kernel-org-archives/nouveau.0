@@ -1,46 +1,54 @@
-From: Thorsten Leemhuis <regressions@leemhuis.info>
+From: Lucas Stach <dev@lynxeye.de>
 Subject: Re: Reported regressions for 4.7 as of Sunday, 2016-06-19
-Date: Sun, 26 Jun 2016 14:52:40 +0200
-Message-ID: <a2053cba-8044-0239-6091-7f47f278af1f@leemhuis.info>
+Date: Sun, 26 Jun 2016 17:36:13 +0200
+Message-ID: <1466955373.3076.1.camel@lynxeye.de>
 References: <20160624141918.4646.qmail@ns.sciencehorizons.net>
+ <a2053cba-8044-0239-6091-7f47f278af1f@leemhuis.info>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20160624141918.4646.qmail@ns.sciencehorizons.net>
-Sender: linux-kernel-owner@vger.kernel.org
-To: George Spelvin <linux@sciencehorizons.net>
-Cc: airlied@redhat.com, dri-devel@lists.freedesktop.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <a2053cba-8044-0239-6091-7f47f278af1f@leemhuis.info>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Thorsten Leemhuis <regressions@leemhuis.info>, George Spelvin <linux@sciencehorizons.net>
+Cc: airlied@redhat.com, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-On 24.06.2016 16:19, George Spelvin wrote:
-> Here's a regression you might add.  
-
-Thx, added.
-
-> I only reported it to dri-devel,
-> since it's DRI-specific, but since there's been thunderous silence
-> for a few weeks, I'm trying to be a squeakier wheel.
-
-Added the nouveau developers to CC, maybe it's a bug in the drm driver
-that triggers this problem; and airlied is "Internet challenged" right
-now and Daniel on holidays, so it might be good to get more people into
-the loop anyway.
-
-> Given that I bisected it to a single, small, revertable commit, I'd
-> hoped it would be easy to deal with.
-> 
-> [BISECTED: 0955c1250e] 4.7-rc1 oops at drm_connector_cleanup+0x5c/0x1d0 
-> 
-> E-mail report at
-> https://marc.info/?l=dri-devel&m=146577898611849
-> 
-> Bugzilla report at
-> https://bugs.freedesktop.org/show_bug.cgi?id=96532
-
-FWIW the important detail: Reverting
-https://git.kernel.org/linus/0955c1250e (drm/crtc: take references to
-connectors used in a modeset. (v2)) fixes this.
-
-Sincerely, your regression tracker for Linux 4.7 (http://bit.ly/28JRmJo)
- Thorsten
+QW0gU29ubnRhZywgZGVuIDI2LjA2LjIwMTYsIDE0OjUyICswMjAwIHNjaHJpZWIgVGhvcnN0ZW4g
+TGVlbWh1aXM6Cj4gT24gMjQuMDYuMjAxNiAxNjoxOSwgR2VvcmdlIFNwZWx2aW4gd3JvdGU6Cj4g
+PiAKPiA+IEhlcmUncyBhIHJlZ3Jlc3Npb24geW91IG1pZ2h0IGFkZC7CoMKgCj4gVGh4LCBhZGRl
+ZC4KPiAKUHJvYmFibHkgdGhlIHNhbWUgYnVnIGFzwqAKaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwu
+b3JnL3Nob3dfYnVnLmNnaT9pZD0xMTk4NjHCoGFuZCBhbHJlYWR5IGZpeGVkIGluCnRoZSBsYXN0
+IC1yYy4KClJlZ2FyZHMsCkx1Y2FzCgo+ID4gCj4gPiBJIG9ubHkgcmVwb3J0ZWQgaXQgdG8gZHJp
+LWRldmVsLAo+ID4gc2luY2UgaXQncyBEUkktc3BlY2lmaWMsIGJ1dCBzaW5jZSB0aGVyZSdzIGJl
+ZW4gdGh1bmRlcm91cyBzaWxlbmNlCj4gPiBmb3IgYSBmZXcgd2Vla3MsIEknbSB0cnlpbmcgdG8g
+YmUgYSBzcXVlYWtpZXIgd2hlZWwuCj4gQWRkZWQgdGhlIG5vdXZlYXUgZGV2ZWxvcGVycyB0byBD
+QywgbWF5YmUgaXQncyBhIGJ1ZyBpbiB0aGUgZHJtCj4gZHJpdmVyCj4gdGhhdCB0cmlnZ2VycyB0
+aGlzIHByb2JsZW07IGFuZCBhaXJsaWVkIGlzICJJbnRlcm5ldCBjaGFsbGVuZ2VkIgo+IHJpZ2h0
+Cj4gbm93IGFuZCBEYW5pZWwgb24gaG9saWRheXMsIHNvIGl0IG1pZ2h0IGJlIGdvb2QgdG8gZ2V0
+IG1vcmUgcGVvcGxlCj4gaW50bwo+IHRoZSBsb29wIGFueXdheS4KPiAKPiA+IAo+ID4gR2l2ZW4g
+dGhhdCBJIGJpc2VjdGVkIGl0IHRvIGEgc2luZ2xlLCBzbWFsbCwgcmV2ZXJ0YWJsZSBjb21taXQs
+IEknZAo+ID4gaG9wZWQgaXQgd291bGQgYmUgZWFzeSB0byBkZWFsIHdpdGguCj4gPiAKPiA+IFtC
+SVNFQ1RFRDogMDk1NWMxMjUwZV0gNC43LXJjMSBvb3BzIGF0Cj4gPiBkcm1fY29ubmVjdG9yX2Ns
+ZWFudXArMHg1Yy8weDFkMMKgCj4gPiAKPiA+IEUtbWFpbCByZXBvcnQgYXQKPiA+IGh0dHBzOi8v
+bWFyYy5pbmZvLz9sPWRyaS1kZXZlbCZtPTE0NjU3Nzg5ODYxMTg0OQo+ID4gCj4gPiBCdWd6aWxs
+YSByZXBvcnQgYXQKPiA+IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dp
+P2lkPTk2NTMyCj4gRldJVyB0aGUgaW1wb3J0YW50IGRldGFpbDogUmV2ZXJ0aW5nCj4gaHR0cHM6
+Ly9naXQua2VybmVsLm9yZy9saW51cy8wOTU1YzEyNTBlIChkcm0vY3J0YzogdGFrZSByZWZlcmVu
+Y2VzIHRvCj4gY29ubmVjdG9ycyB1c2VkIGluIGEgbW9kZXNldC4gKHYyKSkgZml4ZXMgdGhpcy4K
+PiAKPiBTaW5jZXJlbHksIHlvdXIgcmVncmVzc2lvbiB0cmFja2VyIGZvciBMaW51eCA0LjcgKGh0
+dHA6Ly9iaXQubHkvMjhKUm0KPiBKbykKPiDCoFRob3JzdGVuCj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBkcmktZGV2ZWwgbWFpbGluZyBsaXN0Cj4g
+ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVs
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
