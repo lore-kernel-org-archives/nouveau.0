@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82527] xset dpms force {off, standby,
- suspend} returns after ~20 seconds (GeForce 8400 GS)
-Date: Sun, 26 Jun 2016 16:11:17 +0000
-Message-ID: <bug-82527-8800-QugPWlfdfT@http.bugs.freedesktop.org/>
-References: <bug-82527-8800@http.bugs.freedesktop.org/>
+From: Andy Lutomirski <luto-kltTT9wpgjJwATOyAt5JVQ@public.gmane.org>
+Subject: Re: Should I expect nouveau on 4.6 to work on a GM206?
+Date: Sun, 26 Jun 2016 10:49:20 -0700
+Message-ID: <CALCETrVH+w0AVneWAFM-LAiyfLV5ryQn1Mg2JbKpDK74QqbhBw@mail.gmail.com>
+References: <CALCETrVBuwgM7fjOPRbfAfcCbuV_ym8bUe0VHOGDn-vgAw+Ziw@mail.gmail.com>
+ <CAKb7Uvgygo7DacmoxFMqbB8mnszTeOAgZGrWJDE380qtY6KEqg@mail.gmail.com>
+ <CALCETrUc6w4jH+iQ3W_7tFTRwYVdiJpK=5fyCvjem4CHwxbLVw@mail.gmail.com>
+ <CAKb7Uvj9vs-Xj-Sw7jrC7rYRcWwcQSHBDwOwiudG9zOw4mtzLQ@mail.gmail.com>
+ <CALCETrWvMAgqaXuSNz+HBzyJaynqQgm1uWChz4xd6Uo40=NM+A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0217555409=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82527-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CALCETrWvMAgqaXuSNz+HBzyJaynqQgm1uWChz4xd6Uo40=NM+A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,97 +21,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Andy Lutomirski <luto-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, DRI <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0217555409==
-Content-Type: multipart/alternative; boundary="14669574770.2Cc8.1909";
- charset="UTF-8"
-
-
---14669574770.2Cc8.1909
-Date: Sun, 26 Jun 2016 16:11:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D82527
-
---- Comment #15 from Martin V=C3=A4th <martin-hvkNLsi7f8w@public.gmane.org> ---
-I don't know why this issue was marked as FIXED.
-The behaviour hasn't changed since my first posting.
-
-I am not using audio from nvidia, so at least in my case this is certainly =
-not
-related.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14669574770.2Cc8.1909
-Date: Sun, 26 Jun 2016 16:11:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xset dpms force {off,standby,suspend} returns after ~20 s=
-econds (GeForce 8400 GS)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D82527#c15">Commen=
-t # 15</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xset dpms force {off,standby,suspend} returns after ~20 s=
-econds (GeForce 8400 GS)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D82527">bug 82527<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-martin&#64;mvath.de" title=3D"Martin V=C3=A4th &lt;martin&#64;mvath.de&gt;"=
-> <span class=3D"fn">Martin V=C3=A4th</span></a>
-</span></b>
-        <pre>I don't know why this issue was marked as FIXED.
-The behaviour hasn't changed since my first posting.
-
-I am not using audio from nvidia, so at least in my case this is certainly =
-not
-related.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14669574770.2Cc8.1909--
-
---===============0217555409==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0217555409==--
+T24gU3VuLCBNYXkgMjksIDIwMTYgYXQgMTI6MjcgUE0sIEFuZHkgTHV0b21pcnNraSA8bHV0b0Br
+ZXJuZWwub3JnPiB3cm90ZToKPiBPbiBTdW4sIE1heSAyOSwgMjAxNiBhdCAxMjoyMiBQTSwgSWxp
+YSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPj4gT24gU3VuLCBNYXkgMjks
+IDIwMTYgYXQgMzowNyBQTSwgQW5keSBMdXRvbWlyc2tpIDxsdXRvQGtlcm5lbC5vcmc+IHdyb3Rl
+Ogo+Pj4gT24gU2F0LCBNYXkgMjgsIDIwMTYgYXQgNTo0OCBQTSwgSWxpYSBNaXJraW4gPGltaXJr
+aW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPj4+PiBEbyB5b3UgaGF2ZSBtZXNhIDExLjIgb3IgbGF0
+ZXI/IEdNMjB4IHN1cHBvcnQgd2FzIG9ubHkgYWRkZWQgaW4gbWVzYSAxMS4yLgo+Pj4+Cj4+Pgo+
+Pj4gSSBqdXN0IHVwZ3JhZGVkIHRvIDExLjIuICBJJ20gZ2V0dGluZyBlcnJvcnMgbGlrZSB0aGlz
+IGluIHRoZSBsb2c6Cj4+Pgo+Pj4gWyA1MzgzLjcyMzI0MF0gbm91dmVhdSAwMDAwOjA5OjAwLjA6
+IGZpZm86IHJlYWQgZmF1bHQgYXQgMDAwMDAxMTAwMAo+Pj4gZW5naW5lIDA3IFtQQkRNQTBdIGNs
+aWVudCAwNiBbSE9TVF0gcmVhc29uIDAwIFtQREVdIG9uIGNoYW5uZWwgLTEKPj4+IFswMDdmOWVk
+MDAwIHVua25vd25dCj4+PiBbIDUzOTguNzIyNjc2XSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogc3lz
+dGVtZC1sb2dpbmRbMzA3NzhdOiBmYWlsZWQgdG8KPj4+IGlkbGUgY2hhbm5lbCAyIFtzeXN0ZW1k
+LWxvZ2luZFszMDc3OF1dCj4+PiBbIDU0MTMuNzIyODUzXSBub3V2ZWF1IDAwMDA6MDk6MDAuMDog
+c3lzdGVtZC1sb2dpbmRbMzA3NzhdOiBmYWlsZWQgdG8KPj4+IGlkbGUgY2hhbm5lbCAyIFtzeXN0
+ZW1kLWxvZ2luZFszMDc3OF1dCj4+Pgo+Pj4gYW5kIHRoZSBkaXNwbGF5IG91dHB1dCBpbiBnZW5l
+cmFsIGlzIHVucmVsaWFibGUgZW5vdWdoIHRoYXQgSSdtIGhhdmluZwo+Pj4gdHJvdWJsZSB0ZWxs
+aW5nIHdoZXRoZXIgdGhlIHBlcmZvcm1hbmNlIGlzIHJlbW90ZWx5IHJlYXNvbmFibGUuCj4+Cj4+
+IElmIHlvdSdyZSBoYXZpbmcgdHJvdWJsZSB0ZWxsaW5nLCB0aGF0IG1lYW5zIGl0J3Mgbm90IDop
+IFRoZSBlcnJvciB5b3UKPj4gcGFzdGVkIGlzIHF1aXRlIG9kZC4gV2FzIHRoZXJlIGFueXRoaW5n
+IGluIHRoZSBsb2cgYmVmb3JlIHRob3NlCj4+IG1lc3NhZ2VzPyBJZiB0aGVyZSdzIG5vIGNoYW5u
+ZWwgYXNzb2NpYXRlZCwgdGhhdCBtZWFucyB0aGF0IGl0J3MgdGhlCj4+IGJhY2tncm91bmQgY29w
+eWluZyBiZXR3ZWVuIHZyYW0gYW5kIHN5c21lbT8gTm90IHN1cmUuCj4KPiBEb24ndCBnZXQgdG9v
+IGV4Y2l0ZWQgeWV0LiAgSW4gdGhlIHByb2Nlc3Mgb2YgdXBncmFkaW5nIG1lc2EsIEkKPiBtYW5h
+Z2VkIHRvIGJvb3QgNC41IHdpdGhvdXQgbm90aWNpbmcuICBJJ2xsIHBvc3QgYmFjayBsYXRlciB0
+b2RheSB3aXRoCj4gYWN0dWFsIHZhbGlkIHRlc3QgcmVzdWx0cy4KPgoKSSByZXBsYWNlZCB0aGUg
+bW9uaXRvciAodHVybnMgb3V0IHRoYXQgbXkgbW9uaXRvciBoYWQgYSBrbm93biBEUApwcm9ibGVt
+KSwgYW5kIG5vdyB0aGUgc2NyZWVuIGxpZ2h0cyB1cCByZWxpYWJseS4gIEkgc3RpbGwgZ2V0Cm9j
+Y2FzaW9uYWwgbG9nIGxpbmVzIGxpa2UgdGhpczoKCltKdW4yNiAwOToyNV0gbm91dmVhdSAwMDAw
+OjA5OjAwLjA6IGZpZm86IEZCX0ZMVVNIX1RJTUVPVVQKW0p1bjI2IDA5OjMwXSBub3V2ZWF1IDAw
+MDA6MDk6MDAuMDogZmlmbzogRkJfRkxVU0hfVElNRU9VVApbSnVuMjYgMDk6MzJdIG5vdXZlYXUg
+MDAwMDowOTowMC4wOiBmaWZvOiBDSFNXX0VSUk9SIDAwMDAwMDA0ClsgICswLjAwMDE2Ml0gbm91
+dmVhdSAwMDAwOjA5OjAwLjA6IGZpZm86IENIU1dfRVJST1IgMDAwMDAwMDUKW0p1bjI2IDA5OjQ2
+XSBub3V2ZWF1IDAwMDA6MDk6MDAuMDogZGlzcDogb3V0cCAwNDowMDA2OjBmNDQ6IGxpbmsKdHJh
+aW5pbmcgZmFpbGVkClsgICswLjEwNzg5NF0gbm91dmVhdSAwMDAwOjA5OjAwLjA6IGRpc3A6IG91
+dHAgMDQ6MDAwNjowZjQ0OiBsaW5rCnRyYWluaW5nIGZhaWxlZAoKYnV0IHRoZXkgYXJlbid0IGNh
+dXNpbmcgYW4gb2J2aW91cyBwcm9ibGVtLgoKPj4KPj4gTm90ZSB0aGF0IHdpdGggbWF4d2VsbCB3
+ZSBoYXZlIHlldCB0byBhZGQgRVhBIHN1cHBvcnQgdG8KPj4geGY4Ni12aWRlby1ub3V2ZWF1LCBz
+byB5b3UncmUgZW5kaW5nIHVwIHdpdGggR0xBTU9SIChhbmQgQmVuIGFuZCBJCj4+IGRpc2FncmVl
+IG9uIHdoZXRoZXIgRVhBIHN1cHBvcnQgc2hvdWxkIGJlIGFkZGVkIGluIHRoZSBmaXJzdCBwbGFj
+ZSkuCj4+IFRoZXJlIHdhcyBhbHNvIGFuIGlzc3VlIHRoYXQgZ2xhbW9yIHdhcyBoaXR0aW5nIHdp
+dGggbm91dmVhdSB3aGljaAo+PiBhcHBlYXJzIHRvIGhhdmUgZGlzc2lwYXRlZCwgZWl0aGVyIGR1
+ZSB0byBhIGNoYW5nZSBpbiBub3V2ZWF1IG9yIGEKPj4gY2hhbmdlIGluIGdsYW1vci4gU28geW91
+IG1pZ2h0IGNvbnNpZGVyIHVwZ3JhZGluZyB0byBYb3JnIDEuMTguMyAoYXMKPj4gZ2xhbW9yIGlz
+IHBhcnQgb2YgWCkuCgpJIGRvIGhhdmUgYSBzZXJpb3VzIHBlcmZvcm1hbmNlIGlzc3VlLCB0aG91
+Z2g6IHdoZW4gSSBzY3JvbGwgaW4KRmlyZWZveCAoZGVmYXVsdCBjb25maWd1cmF0aW9uKSwgdGhl
+IHdob2xlIHN5c3RlbSBkcm9wcyB0byB+MWZwcyBvcgpsZXNzIGFuZCwgaWYgSSBzY3JvbGwgZW5v
+dWdoIChldmVuIHB1dHRpbmcgdGhlIG1vdXNlIG92ZXIgYSBzaW1wbGUKcGFnZSBsaWtlIHN0YXJ0
+LmZlZG9yYXByb2plY3Qub3JnIGFuZCBmbGlja2luZyB0aGUgd2hlZWwgdXAgYW5kIGRvd24gYQpm
+ZXcgdGltZXMpLCB0aGUgZW50aXJlIGRlc2t0b3Agd2lsbCBiZWNvbWUgdW51c2FibGUgZm9yIHNl
+dmVyYWwKc2Vjb25kcy4gIEkgc2VlbSB0byBoYXZlIHRoaXMgcHJvYmxlbSB1bmRlciBYIGFuZCB1
+bmRlciBXYXlsYW5kLgoKRm9yIGJldHRlciBvciBmb3Igd29yc2UsIGZvcmNpbmcgRmlyZWZveCdz
+IGxheWVycyBhY2NlbGVyYXRpb24gb24KZml4ZXMgdGhlIHByb2JsZW0gYW5kIHNjcm9sbGluZyBp
+cyBmYXN0LgoKSSBoYXZlIG5vIGlkZWEgd2hldGhlciB0aGlzIGlzIGFuIFggcHJvYmxlbSwgYSBn
+bm9tZS1zaGVsbCBwcm9ibGVtLCBhCm1lc2EgcHJvYmxlbSwgYSBrZXJuZWwgcHJvYmxlbSwgb3Ig
+c29tZXRoaW5nIGVsc2UuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
