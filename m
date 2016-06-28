@@ -1,11 +1,12 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: nouveau_drv_video.so ?
-Date: Tue, 28 Jun 2016 10:32:07 +0200
-Message-ID: <b98d0434-2044-fc00-fc56-0e55db91b492@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96553] Xorg freezes
+Date: Tue, 28 Jun 2016 12:27:49 +0000
+Message-ID: <bug-96553-8800-bEtrmbFGr3@http.bugs.freedesktop.org/>
+References: <bug-96553-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1138997480=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-96553-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,55 +16,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, libva-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Cm5vdXZlYXVfZHJ2X3ZpZGVvLnNvIC0gd2hhdCBzaG91bGQgaXQgYmU/CgoKaHR0cHM6Ly9rb2pp
-LmZlZG9yYXByb2plY3Qub3JnL2tvamkvYnVpbGRpbmZvP2J1aWxkSUQ9NzIyMzE2Ci4uLiAwLjcu
-NC0xMyAtIFJldmVydCBzeW1saW5rcyAtIHNob3VsZCBiZSBoYW5kbGVkIGJ5IG1lc2EgcmhieiMx
-MjcxODQyCiAgICAgICAgICAgICAgICAgICAgaHR0cHM6Ly9idWd6aWxsYS5yZWRoYXQuY29tL3No
-b3dfYnVnLmNnaT9pZD0xMjcxODQyCi4uLiAwLjcuNC0xMiAtIEFkZCBzeW1saW5rcyBmb3IgcmFk
-ZW9uc2kscjYwMCxub3V2ZWF1IC0gcmhieiMxMjY0NDk5CiAgICAgICAgICAgICAgICAgaHR0cHM6
-Ly9idWd6aWxsYS5yZWRoYXQuY29tL3Nob3dfYnVnLmNnaT9pZD0xMjY0NDk5CgoKJCBycG0gLXEg
-bGlidmEgbGlidmEtdmRwYXUtZHJpdmVyIG1lc2EtZHJpLWRyaXZlcnMKbGlidmEtMS43LjEtMS5m
-YzI0Lng4Nl82NApsaWJ2YS12ZHBhdS1kcml2ZXItMC43LjQtMTQuZmMyNC54ODZfNjQKbWVzYS1k
-cmktZHJpdmVycy0xMS4yLjItMi4yMDE2MDYxNC5mYzI0Lng4Nl82NAoKJCBycG0gLXFsIGxpYnZh
-LXZkcGF1LWRyaXZlciAKL3Vzci9saWI2NC9kcmkvbnZpZGlhX2Rydl92aWRlby5zbwovdXNyL2xp
-YjY0L2RyaS9zM2dfZHJ2X3ZpZGVvLnNvCi91c3IvbGliNjQvZHJpL3ZkcGF1X2Rydl92aWRlby5z
-bwovdXNyL3NoYXJlL2RvYy8uLi4KLi4uCgokIHJwbSAtcWwgbWVzYS1kcmktZHJpdmVycwovZXRj
-L2RyaXJjCi91c3IvbGliNjQvZHJpL2dhbGxpdW1fZHJ2X3ZpZGVvLnNvCi91c3IvbGliNjQvZHJp
-L2k5MTVfZHJpLnNvCi91c3IvbGliNjQvZHJpL2k5NjVfZHJpLnNvCi91c3IvbGliNjQvZHJpL2ls
-b19kcmkuc28KL3Vzci9saWI2NC9kcmkva21zX3N3cmFzdF9kcmkuc28KL3Vzci9saWI2NC9kcmkv
-bm91dmVhdV9kcmkuc28KL3Vzci9saWI2NC9kcmkvbm91dmVhdV92aWV1eF9kcmkuc28KL3Vzci9s
-aWI2NC9kcmkvcjIwMF9kcmkuc28KL3Vzci9saWI2NC9kcmkvcjMwMF9kcmkuc28KL3Vzci9saWI2
-NC9kcmkvcjYwMF9kcmkuc28KL3Vzci9saWI2NC9kcmkvcmFkZW9uX2RyaS5zbwovdXNyL2xpYjY0
-L2RyaS9yYWRlb25zaV9kcmkuc28KL3Vzci9saWI2NC9kcmkvc3dyYXN0X2RyaS5zbwovdXNyL2xp
-YjY0L2RyaS92aXJ0aW9fZ3B1X2RyaS5zbwovdXNyL2xpYjY0L2RyaS92bXdnZnhfZHJpLnNvCi91
-c3IvbGliNjQvZ2FsbGl1bS1waXBlCi91c3IvbGliNjQvZ2FsbGl1bS1waXBlL3BpcGVfaTk2NS5z
-bwovdXNyL2xpYjY0L2dhbGxpdW0tcGlwZS9waXBlX25vdXZlYXUuc28KL3Vzci9saWI2NC9nYWxs
-aXVtLXBpcGUvcGlwZV9yMzAwLnNvCi91c3IvbGliNjQvZ2FsbGl1bS1waXBlL3BpcGVfcjYwMC5z
-bwovdXNyL2xpYjY0L2dhbGxpdW0tcGlwZS9waXBlX3JhZGVvbnNpLnNvCi91c3IvbGliNjQvZ2Fs
-bGl1bS1waXBlL3BpcGVfc3dyYXN0LnNvCi91c3IvbGliNjQvZ2FsbGl1bS1waXBlL3BpcGVfdm13
-Z2Z4LnNvCgokIGxsIC91c3IvbGliNjQvZHJpLwouLi4gZHVtbXlfZHJ2X3ZpZGVvLnNvCi4uLiBn
-YWxsaXVtX2Rydl92aWRlby5zbwouLi4gaTkxNV9kcmkuc28KLi4uIGk5NjVfZHJpLnNvCi4uLiBp
-bG9fZHJpLnNvCi4uLiBrbXNfc3dyYXN0X2RyaS5zbwouLi4gbm91dmVhdV9kcmkuc28KLi4uIG5v
-dXZlYXVfdmlldXhfZHJpLnNvCi4uLiBudmlkaWFfZHJ2X3ZpZGVvLnNvIC0+IHZkcGF1X2Rydl92
-aWRlby5zbwouLi4gcjIwMF9kcmkuc28KLi4uIHIzMDBfZHJpLnNvCi4uLiByNjAwX2RyaS5zbwou
-Li4gcmFkZW9uX2RyaS5zbwouLi4gcmFkZW9uc2lfZHJpLnNvCi4uLiBzM2dfZHJ2X3ZpZGVvLnNv
-IC0+IHZkcGF1X2Rydl92aWRlby5zbwouLi4gc3dyYXN0X2RyaS5zbwouLi4gdmRwYXVfZHJ2X3Zp
-ZGVvLnNvCi4uLiB2aXJ0aW9fZ3B1X2RyaS5zbwouLi4gdm13Z2Z4X2RyaS5zbwoKCiQgaWNlY2F0
-IAouLi4KbGlidmEgaW5mbzogVkEtQVBJIHZlcnNpb24gMC4zOS4yCmxpYnZhIGluZm86IHZhX2dl
-dERyaXZlck5hbWUoKSByZXR1cm5zIDAKbGlidmEgaW5mbzogVHJ5aW5nIHRvIG9wZW4gL3Vzci9s
-aWI2NC9kcmkvbm91dmVhdV9kcnZfdmlkZW8uc28KbGlidmEgaW5mbzogdmFfb3BlbkRyaXZlcigp
-IHJldHVybnMgLTEKbGlidmEgaW5mbzogVkEtQVBJIHZlcnNpb24gMC4zOS4yCmxpYnZhIGluZm86
-IHZhX2dldERyaXZlck5hbWUoKSByZXR1cm5zIDAKbGlidmEgaW5mbzogVHJ5aW5nIHRvIG9wZW4g
-L3Vzci9saWI2NC9kcmkvbm91dmVhdV9kcnZfdmlkZW8uc28KbGlidmEgaW5mbzogdmFfb3BlbkRy
-aXZlcigpIHJldHVybnMgLTEKbGlidmEgaW5mbzogVkEtQVBJIHZlcnNpb24gMC4zOS4yCmxpYnZh
-IGluZm86IHZhX2dldERyaXZlck5hbWUoKSByZXR1cm5zIDAKbGlidmEgaW5mbzogVHJ5aW5nIHRv
-IG9wZW4gL3Vzci9saWI2NC9kcmkvZ2FsbGl1bV9kcnZfdmlkZW8uc28KbGlidmEgaW5mbzogRm91
-bmQgaW5pdCBmdW5jdGlvbiBfX3ZhRHJpdmVySW5pdF8wXzM5CmxpYnZhIGluZm86IHZhX29wZW5E
-cml2ZXIoKSByZXR1cm5zIDAKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============1138997480==
+Content-Type: multipart/alternative; boundary="14671168691.A2D138.1723";
+ charset="UTF-8"
+
+
+--14671168691.A2D138.1723
+Date: Tue, 28 Jun 2016 12:27:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96553
+
+--- Comment #1 from Agostino Sarubbo <ago-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org> ---
+When the problem happens, In dmesg there is the following messages:
+
+[11449.585126] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[11449.585132] nouveau 0000:01:00.0: fifo: sw engine fault on channel 2,
+recovering...
+[11451.584882] nouveau 0000:01:00.0: fifo: runlist 0 update timeout
+[11453.880225] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+
+bug 72180 seems to mention the same message error, but that bug was resolve=
+d as
+INVALID
+I didn't read all comments, but the last comment seems to indicate that the
+problem is fixed in 4.1.
+I'm using 4.4 and it is not fixed here.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14671168691.A2D138.1723
+Date: Tue, 28 Jun 2016 12:27:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg freezes"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96553#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg freezes"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96553">bug 96553<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ago&#64;gentoo.org" title=3D"Agostino Sarubbo &lt;ago&#64;gentoo.org&gt;"> =
+<span class=3D"fn">Agostino Sarubbo</span></a>
+</span></b>
+        <pre>When the problem happens, In dmesg there is the following mess=
+ages:
+
+[11449.585126] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[11449.585132] nouveau 0000:01:00.0: fifo: sw engine fault on channel 2,
+recovering...
+[11451.584882] nouveau 0000:01:00.0: fifo: runlist 0 update timeout
+[11453.880225] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+
+<a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - [NVE6] Random GPU Lockups, works with blob P=
+GRAPH fw"
+   href=3D"show_bug.cgi?id=3D72180">bug 72180</a> seems to mention the same=
+ message error, but that bug was resolved as
+INVALID
+I didn't read all comments, but the last comment seems to indicate that the
+problem is fixed in 4.1.
+I'm using 4.4 and it is not fixed here.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14671168691.A2D138.1723--
+
+--===============1138997480==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1138997480==--
