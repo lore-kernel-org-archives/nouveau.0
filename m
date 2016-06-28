@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96553] Xorg freezes
-Date: Tue, 28 Jun 2016 12:27:49 +0000
-Message-ID: <bug-96553-8800-bEtrmbFGr3@http.bugs.freedesktop.org/>
-References: <bug-96553-8800@http.bugs.freedesktop.org/>
+From: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Subject: Re: [RFC PATCH v2] drm/nouveau/fb/nv50: set DMA mask
+ before mapping scratch page
+Date: Tue, 28 Jun 2016 16:05:39 +0200
+Message-ID: <CAKv+Gu9QsCp5zwxw5QEAPOB4knszGD9oaoAO49cKDJ+dm5DZyA@mail.gmail.com>
+References: <1466513435-11599-1-git-send-email-ard.biesheuvel@linaro.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1138997480=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-96553-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1466513435-11599-1-git-send-email-ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,116 +18,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: airlied-cv59FeDIM0c@public.gmane.org, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1138997480==
-Content-Type: multipart/alternative; boundary="14671168691.A2D138.1723";
- charset="UTF-8"
-
-
---14671168691.A2D138.1723
-Date: Tue, 28 Jun 2016 12:27:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96553
-
---- Comment #1 from Agostino Sarubbo <ago-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org> ---
-When the problem happens, In dmesg there is the following messages:
-
-[11449.585126] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-[11449.585132] nouveau 0000:01:00.0: fifo: sw engine fault on channel 2,
-recovering...
-[11451.584882] nouveau 0000:01:00.0: fifo: runlist 0 update timeout
-[11453.880225] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-
-bug 72180 seems to mention the same message error, but that bug was resolve=
-d as
-INVALID
-I didn't read all comments, but the last comment seems to indicate that the
-problem is fixed in 4.1.
-I'm using 4.4 and it is not fixed here.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14671168691.A2D138.1723
-Date: Tue, 28 Jun 2016 12:27:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96553#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96553">bug 96553<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ago&#64;gentoo.org" title=3D"Agostino Sarubbo &lt;ago&#64;gentoo.org&gt;"> =
-<span class=3D"fn">Agostino Sarubbo</span></a>
-</span></b>
-        <pre>When the problem happens, In dmesg there is the following mess=
-ages:
-
-[11449.585126] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-[11449.585132] nouveau 0000:01:00.0: fifo: sw engine fault on channel 2,
-recovering...
-[11451.584882] nouveau 0000:01:00.0: fifo: runlist 0 update timeout
-[11453.880225] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-
-<a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - [NVE6] Random GPU Lockups, works with blob P=
-GRAPH fw"
-   href=3D"show_bug.cgi?id=3D72180">bug 72180</a> seems to mention the same=
- message error, but that bug was resolved as
-INVALID
-I didn't read all comments, but the last comment seems to indicate that the
-problem is fixed in 4.1.
-I'm using 4.4 and it is not fixed here.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14671168691.A2D138.1723--
-
---===============1138997480==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1138997480==--
+T24gMjEgSnVuZSAyMDE2IGF0IDE0OjUwLCBBcmQgQmllc2hldXZlbCA8YXJkLmJpZXNoZXV2ZWxA
+bGluYXJvLm9yZz4gd3JvdGU6Cj4gVGhlIDEwMGMwOCBzY3JhdGNoIHBhZ2UgaXMgbWFwcGVkIHVz
+aW5nIGRtYV9tYXBfcGFnZSgpIGJlZm9yZSB0aGUgVFRNCj4gbGF5ZXIgaGFzIGhhZCBhIGNoYW5j
+ZSB0byBzZXQgdGhlIERNQSBtYXNrLiBUaGlzIG1lYW5zIHdlIGFyZSBzdGlsbAo+IHJ1bm5pbmcg
+d2l0aCB0aGUgZGVmYXVsdCBvZiAzMiB3aGVuIHRoaXMgY29kZSBleGVjdXRlcywgYW5kIHRoaXMg
+Y2F1c2VzCj4gcHJvYmxlbXMgZm9yIHBsYXRmb3JtcyB3aXRoIG5vIG1lbW9yeSBiZWxvdyA0IEdC
+IChzdWNoIGFzIEFNRCBTZWF0dGxlKQo+Cj4gU28gbW92ZSB0aGUgZG1hX21hcF9wYWdlKCkgdG8g
+dGhlIC5pbml0IGhvb2ssIGFuZCBzZXQgdGhlIHN0cmVhbWluZyBETUEKPiBtYXNrIGJhc2VkIG9u
+IHRoZSBNTVUgc3ViZGV2IHBhcmFtZXRlcnMgYmVmb3JlIHBlcmZvcm1pbmcgdGhlIGNhbGwuCj4K
+PiBTaWduZWQtb2ZmLWJ5OiBBcmQgQmllc2hldXZlbCA8YXJkLmJpZXNoZXV2ZWxAbGluYXJvLm9y
+Zz4KPiAtLS0KPgo+IEkgYW0gc3VyZSB0aGVyZSBpcyBhIG11Y2ggYmV0dGVyIHdheSB0byBhZGRy
+ZXNzIHRoaXMsIGJ1dCB0aGlzIGZpeGVzIHRoZQo+IHByb2JsZW0gSSBnZXQgb24gQU1EIFNlYXR0
+bGUgd2l0aCBhIEdlRm9yY2UgMjEwIFBDSWUgY2FyZDoKPgo+ICAgIG5vdXZlYXUgMDAwMDowMjow
+MC4wOiBlbmFibGluZyBkZXZpY2UgKDAwMDAgLT4gMDAwMykKPiAgICBub3V2ZWF1IDAwMDA6MDI6
+MDAuMDogTlZJRElBIEdUMjE4ICgwYTgyODBiMSkKPiAgICBub3V2ZWF1IDAwMDA6MDI6MDAuMDog
+YmlvczogdmVyc2lvbiA3MC4xOC5hNi4wMC4wMAo+ICAgIG5vdXZlYXUgMDAwMDowMjowMC4wOiBm
+YiBjdG9yIGZhaWxlZCwgLTE0Cj4gICAgbm91dmVhdTogcHJvYmUgb2YgMDAwMDowMjowMC4wIGZh
+aWxlZCB3aXRoIGVycm9yIC0xNAo+Cj4gdjI6IHJlcGxhY2UgaW5jb3JyZWN0IGNvbXBhcmlzb24g
+b2YgZG1hX2FkZHJfdCB0eXBlIHZhciBhZ2FpbnN0IE5VTEwKPgoKUGluZz8KCgo+ICBkcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9udjUwLmMgfCAzNyArKysrKysrKysrKysr
+Ky0tLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgMjYgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25z
+KC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
+ZmIvbnY1MC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvbnY1MC5j
+Cj4gaW5kZXggMWI1ZmIwMmVhYjJhLi4wMzNjYTBlZmZiN2UgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvbnY1MC5jCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvbnY1MC5jCj4gQEAgLTIxNiwxMSArMjE2LDMw
+IEBAIG52NTBfZmJfaW5pdChzdHJ1Y3QgbnZrbV9mYiAqYmFzZSkKPiAgICAgICAgIHN0cnVjdCBu
+djUwX2ZiICpmYiA9IG52NTBfZmIoYmFzZSk7Cj4gICAgICAgICBzdHJ1Y3QgbnZrbV9kZXZpY2Ug
+KmRldmljZSA9IGZiLT5iYXNlLnN1YmRldi5kZXZpY2U7Cj4KPiArICAgICAgIGlmICghZmItPnIx
+MDBjMDgpIHsKPiArICAgICAgICAgICAgICAgLyoKPiArICAgICAgICAgICAgICAgICogV2UgYXJl
+IGNhbGxpbmcgdGhlIERNQSBhcGkgd2F5IGJlZm9yZSB0aGUgVFRNIGxheWVyIHNldHMgdGhlCj4g
+KyAgICAgICAgICAgICAgICAqIERNQSBtYXNrIGJhc2VkIG9uIHRoZSBNTVUgc3ViZGV2IHBhcmFt
+ZXRlcnMuIFRoaXMgbWVhbnMgd2UKPiArICAgICAgICAgICAgICAgICogYXJlIHVzaW5nIHRoZSBk
+ZWZhdWx0IERNQSBtYXNrIG9mIDMyLCB3aGljaCBtYXkgY2F1c2UKPiArICAgICAgICAgICAgICAg
+ICogcHJvYmxlbXMgb24gc3lzdGVtcyB3aXRoIG5vIFJBTSBiZWxvdyB0aGUgNCBHQiBtYXJrLiBT
+byBzZXQKPiArICAgICAgICAgICAgICAgICogdGhlIHN0cmVhbWluZyBETUEgbWFzayBoZXJlIGFz
+IHdlbGwuCj4gKyAgICAgICAgICAgICAgICAqLwo+ICsgICAgICAgICAgICAgICBkbWFfc2V0X21h
+c2soZGV2aWNlLT5kZXYsIERNQV9CSVRfTUFTSyhkZXZpY2UtPm1tdS0+ZG1hX2JpdHMpKTsKPiAr
+Cj4gKyAgICAgICAgICAgICAgIGZiLT5yMTAwYzA4ID0gZG1hX21hcF9wYWdlKGRldmljZS0+ZGV2
+LCBmYi0+cjEwMGMwOF9wYWdlLCAwLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBQQUdFX1NJWkUsIERNQV9CSURJUkVDVElPTkFMKTsKPiArICAgICAgICAgICAg
+ICAgaWYgKGRtYV9tYXBwaW5nX2Vycm9yKGRldmljZS0+ZGV2LCBmYi0+cjEwMGMwOCkpIHsKPiAr
+ICAgICAgICAgICAgICAgICAgICAgICBudmttX3dhcm4oJmZiLT5iYXNlLnN1YmRldiwKPiArICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImRtYV9tYXBfcGFnZSgpIGZhaWxlZCBvbiAx
+MDBjMDggcGFnZVxuIik7Cj4gKyAgICAgICAgICAgICAgIH0KPiArICAgICAgIH0KPiArCj4gICAg
+ICAgICAvKiBOb3QgYSBjbHVlIHdoYXQgdGhpcyBpcyBleGFjdGx5LiAgV2l0aG91dCBwb2ludGlu
+ZyBpdCBhdCBhCj4gICAgICAgICAgKiBzY3JhdGNoIHBhZ2UsIFZSQU0tPkdBUlQgYmxpdHMgd2l0
+aCBNMk1GIChhcyBpbiBERFggREZTKQo+ICAgICAgICAgICogY2F1c2UgSU9NTVUgInJlYWQgZnJv
+bSBhZGRyZXNzIDAiIGVycm9ycyAocmgjNTYxMjY3KQo+ICAgICAgICAgICovCj4gLSAgICAgICBu
+dmttX3dyMzIoZGV2aWNlLCAweDEwMGMwOCwgZmItPnIxMDBjMDggPj4gOCk7Cj4gKyAgICAgICBp
+ZiAoZmItPnIxMDBjMDggIT0gRE1BX0VSUk9SX0NPREUpCj4gKyAgICAgICAgICAgICAgIG52a21f
+d3IzMihkZXZpY2UsIDB4MTAwYzA4LCBmYi0+cjEwMGMwOCA+PiA4KTsKPgo+ICAgICAgICAgLyog
+VGhpcyBpcyBuZWVkZWQgdG8gZ2V0IG1lYW5pbmdmdWwgaW5mb3JtYXRpb24gZnJvbSAxMDBjOTAK
+PiAgICAgICAgICAqIG9uIHRyYXBzLiBObyBpZGVhIHdoYXQgdGhlc2UgdmFsdWVzIG1lYW4gZXhh
+Y3RseS4gKi8KPiBAQCAtMjMzLDExICsyNTIsMTEgQEAgbnY1MF9mYl9kdG9yKHN0cnVjdCBudmtt
+X2ZiICpiYXNlKQo+ICAgICAgICAgc3RydWN0IG52NTBfZmIgKmZiID0gbnY1MF9mYihiYXNlKTsK
+PiAgICAgICAgIHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlID0gZmItPmJhc2Uuc3ViZGV2LmRl
+dmljZTsKPgo+IC0gICAgICAgaWYgKGZiLT5yMTAwYzA4X3BhZ2UpIHsKPiArICAgICAgIGlmIChm
+Yi0+cjEwMGMwOCAmJiBmYi0+cjEwMGMwOCAhPSBETUFfRVJST1JfQ09ERSkKPiAgICAgICAgICAg
+ICAgICAgZG1hX3VubWFwX3BhZ2UoZGV2aWNlLT5kZXYsIGZiLT5yMTAwYzA4LCBQQUdFX1NJWkUs
+Cj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIERNQV9CSURJUkVDVElPTkFMKTsKPiAt
+ICAgICAgICAgICAgICAgX19mcmVlX3BhZ2UoZmItPnIxMDBjMDhfcGFnZSk7Cj4gLSAgICAgICB9
+Cj4gKwo+ICsgICAgICAgX19mcmVlX3BhZ2UoZmItPnIxMDBjMDhfcGFnZSk7Cj4KPiAgICAgICAg
+IHJldHVybiBmYjsKPiAgfQo+IEBAIC0yNjQsMTMgKzI4Myw5IEBAIG52NTBfZmJfbmV3Xyhjb25z
+dCBzdHJ1Y3QgbnY1MF9mYl9mdW5jICpmdW5jLCBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwK
+PiAgICAgICAgICpwZmIgPSAmZmItPmJhc2U7Cj4KPiAgICAgICAgIGZiLT5yMTAwYzA4X3BhZ2Ug
+PSBhbGxvY19wYWdlKEdGUF9LRVJORUwgfCBfX0dGUF9aRVJPKTsKPiAtICAgICAgIGlmIChmYi0+
+cjEwMGMwOF9wYWdlKSB7Cj4gLSAgICAgICAgICAgICAgIGZiLT5yMTAwYzA4ID0gZG1hX21hcF9w
+YWdlKGRldmljZS0+ZGV2LCBmYi0+cjEwMGMwOF9wYWdlLCAwLAo+IC0gICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBQQUdFX1NJWkUsIERNQV9CSURJUkVDVElPTkFMKTsK
+PiAtICAgICAgICAgICAgICAgaWYgKGRtYV9tYXBwaW5nX2Vycm9yKGRldmljZS0+ZGV2LCBmYi0+
+cjEwMGMwOCkpCj4gLSAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIC1FRkFVTFQ7Cj4gLSAg
+ICAgICB9IGVsc2Ugewo+IC0gICAgICAgICAgICAgICBudmttX3dhcm4oJmZiLT5iYXNlLnN1YmRl
+diwgImZhaWxlZCAxMDBjMDggcGFnZSBhbGxvY1xuIik7Cj4gKyAgICAgICBpZiAoIWZiLT5yMTAw
+YzA4X3BhZ2UpIHsKPiArICAgICAgICAgICAgICAgbnZrbV9lcnJvcigmZmItPmJhc2Uuc3ViZGV2
+LCAiZmFpbGVkIDEwMGMwOCBwYWdlIGFsbG9jXG4iKTsKPiArICAgICAgICAgICAgICAgcmV0dXJu
+IC1FTk9NRU07Cj4gICAgICAgICB9Cj4KPiAgICAgICAgIHJldHVybiAwOwo+IC0tCj4gMi43LjQK
+PgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
+IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
