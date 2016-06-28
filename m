@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38074] [NV96] Dual head doesn't work for some
- combination of DVI connected monitors (second screen still off)
-Date: Tue, 28 Jun 2016 14:10:50 +0000
-Message-ID: <bug-38074-8800-7kNEEmjYrt@http.bugs.freedesktop.org/>
-References: <bug-38074-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91632] Assert in nouveau_pushbuf_data
+Date: Tue, 28 Jun 2016 16:03:30 +0000
+Message-ID: <bug-91632-8800-bBiNklEwyb@http.bugs.freedesktop.org/>
+References: <bug-91632-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0942976238=="
+Content-Type: multipart/mixed; boundary="===============1413478910=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +20,69 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0942976238==
-Content-Type: multipart/alternative; boundary="14671230500.3BDAAcA.30009";
+--===============1413478910==
+Content-Type: multipart/alternative; boundary="14671298100.a7dd6.23200";
  charset="UTF-8"
 
 
---14671230500.3BDAAcA.30009
-Date: Tue, 28 Jun 2016 14:10:50 +0000
+--14671298100.a7dd6.23200
+Date: Tue, 28 Jun 2016 16:03:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D38074
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91632
 
---- Comment #32 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There's a patch which may help here:
+--- Comment #4 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi,
 
-https://github.com/skeggsb/nouveau/commit/bd320d9b0ee2f2443f7568e06bdc33a35=
-cfb24ea
+any news on this issue ?
+
+I'm running quite fresh system (OpenMandriva Lx 3.0) with:
+Qt 5.6.1
+Mesa 12.0-rc4
+libdrm 2.4.68
+kernel 4.62
+
+gfx card nv92
+
+and Qupzilla 2.01 crashes for me with this error=20
+
+
+[tpg@lazur ~]$ LC_ALL=3DC qupzilla
+QupZilla: 0 extensions loaded
+Uncaught TypeError: Cannot read property 'restoreData' of null
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch10: krec 0 pushes 0 bufs 1 relocs 0
+nouveau: ch10: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch10: krec 0 pushes 0 bufs 1 relocs 0
+nouveau: ch10: buf 00000000 00000002 00000004 00000004 00000000
+ATTENTION: default value of option force_s3tc_enable overridden by environm=
+ent.
+QupZilla: Starting with profile 'default'
+QupZilla: 0 extensions loaded
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 1 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+qupzilla: pushbuf.c:727: void nouveau_pushbuf_data(struct nouveau_pushbuf *,
+struct nouveau_bo *, uint64_t, uint64_t): Warunek zapewnienia `kref' nie zo=
+sta=C5=82
+spe=C5=82niony.
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14671230500.3BDAAcA.30009
-Date: Tue, 28 Jun 2016 14:10:50 +0000
+--14671298100.a7dd6.23200
+Date: Tue, 28 Jun 2016 16:03:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,26 +97,58 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - [NV96] Dual head doesn't work for some combination o=
-f DVI connected monitors (second screen still off)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D38074#c32">Commen=
-t # 32</a>
+          bz_status_NEW "
+   title=3D"NEW - Assert in nouveau_pushbuf_data"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632#c4">Comment=
+ # 4</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - [NV96] Dual head doesn't work for some combination o=
-f DVI connected monitors (second screen still off)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D38074">bug 38074<=
+          bz_status_NEW "
+   title=3D"NEW - Assert in nouveau_pushbuf_data"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632">bug 91632<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+tpgxyz&#64;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.=
+com&gt;"> <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
 </span></b>
-        <pre>There's a patch which may help here:
+        <pre>Hi,
 
-<a href=3D"https://github.com/skeggsb/nouveau/commit/bd320d9b0ee2f2443f7568=
-e06bdc33a35cfb24ea">https://github.com/skeggsb/nouveau/commit/bd320d9b0ee2f=
-2443f7568e06bdc33a35cfb24ea</a></pre>
+any news on this issue ?
+
+I'm running quite fresh system (OpenMandriva Lx 3.0) with:
+Qt 5.6.1
+Mesa 12.0-rc4
+libdrm 2.4.68
+kernel 4.62
+
+gfx card nv92
+
+and Qupzilla 2.01 crashes for me with this error=20
+
+
+[tpg&#64;lazur ~]$ LC_ALL=3DC qupzilla
+QupZilla: 0 extensions loaded
+Uncaught TypeError: Cannot read property 'restoreData' of null
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch10: krec 0 pushes 0 bufs 1 relocs 0
+nouveau: ch10: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch10: krec 0 pushes 0 bufs 1 relocs 0
+nouveau: ch10: buf 00000000 00000002 00000004 00000004 00000000
+ATTENTION: default value of option force_s3tc_enable overridden by environm=
+ent.
+QupZilla: Starting with profile 'default'
+QupZilla: 0 extensions loaded
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 2 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+nouveau: ch11: buf 00000001 00000006 00000004 00000000 00000004
+nouveau: kernel rejected pushbuf: No such file or directory
+nouveau: ch11: krec 0 pushes 0 bufs 1 relocs 0
+nouveau: ch11: buf 00000000 00000002 00000004 00000004 00000000
+qupzilla: pushbuf.c:727: void nouveau_pushbuf_data(struct nouveau_pushbuf *,
+struct nouveau_bo *, uint64_t, uint64_t): Warunek zapewnienia `kref' nie zo=
+sta=C5=82
+spe=C5=82niony.</pre>
         </div>
       </p>
 
@@ -90,14 +157,15 @@ e06bdc33a35cfb24ea">https://github.com/skeggsb/nouveau/commit/bd320d9b0ee2f=
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14671230500.3BDAAcA.30009--
+--14671298100.a7dd6.23200--
 
---===============0942976238==
+--===============1413478910==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +175,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0942976238==--
+--===============1413478910==--
