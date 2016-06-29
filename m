@@ -1,15 +1,10 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: GF114 [GeForce GTX 560 Ti] (rev a1) slow and
-	flickering display
-Date: Wed, 29 Jun 2016 10:19:24 -0400
-Message-ID: <CAKb7UviYmiipR6qNVJW_0asCXY8geHyFwrq6N-47WgvTtQqEEQ@mail.gmail.com>
-References: <mailman.3582.1467133072.7331.nouveau@lists.freedesktop.org>
- <5f93d9f9-dbe6-6b31-ef0f-ff9b0169a03e@blueyonder.co.uk>
+From: =?UTF-8?B?QyBCZXJnc3Ryw7Zt?= <cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>
+Subject: Pascal PF104 GTX 1080
+Date: Thu, 30 Jun 2016 05:14:41 +0800
+Message-ID: <CAOnawYrk=20dTZEVE3p29FAVQxbCvYhHU13PnQsS26bkhqZo_A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1746025582=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5f93d9f9-dbe6-6b31-ef0f-ff9b0169a03e-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,41 +14,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UGxlYXNlIHByb3ZpZGUgeW91ciBkbWVzZyBhbmQgeG9yZyBsb2dzIGZyb20gdGhlIGFmZmVjdGVk
-IG1hY2hpbmUuCgpUaGFua3MsCgogIC1pbGlhCgpPbiBXZWQsIEp1biAyOSwgMjAxNiBhdCA4OjE3
-IEFNLCBTaWQgQm95Y2UgPHNib3ljZUBibHVleW9uZGVyLmNvLnVrPiB3cm90ZToKPiBJIHJlY2Vu
-dGx5IHJlcGxhY2VkIGEgODYwMCBHVCB3aXRoIHRoZSBhYm92ZSBjYXJkIG9uIG9wZW5TVVNFIFR1
-bWJsZXdlZWQKPiB4ODZfNjQuCj4KPiBUaGUgc2NyZWVuIG5vdyBmbGlja2VycyBhbmQgd2hlbiBJ
-IGNoYW5nZSBkZXNrdG9wcyBpdCB0YWtlcyBhIHNvbWUgMTAgdG8gMTUKPiBzZWNvbmRzIHRvIGRp
-c3BsYXkgdGhlIG5ldyB3aW5kb3dzLgo+IGUuZyBpZiBJIGNoYW5nZSBmcm9tIGRlc2t0b3AgMSAo
-a29uc29sZSkgdG8gZGVza3RvcCA4ICh0aHVuZGVyYmlyZCkgaXQKPiBzd2l0Y2hlcyBidXQga29u
-c29sZSBpcyBkaXNwbGF5ZWQgZm9yIDEwIHRvIDE1IHNlY29uZHMgYmVmb3JlIHRodW5kZXJiaXJk
-Cj4gYXBwZWFycy4KPgo+IE9jY2FzaW9uYWxseSB0aGUgc2NyZWVuIGZsaWNrZXJzIHdpbGRseSBi
-ZWZvcmUgc2V0dGxpbmcgZG93biBhZ2Fpbi4KPgo+IEkgZG9uJ3Qgc2VlIGFueSBlcnJvcnMgaW4g
-ZG1lc2cuCj4gMDE6MDAuMCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVyOiBOVklESUEgQ29ycG9y
-YXRpb24gR0YxMTQgW0dlRm9yY2UgR1RYIDU2MAo+IFRpXSAocmV2IGExKQo+Cj4gIyBycG0gLXFh
-fGdyZXAgbm91dmVhdQo+IGxpYnZkcGF1X25vdXZlYXUtMTEuMi4yLTEzOS4yLng4Nl82NAo+IHhm
-ODYtdmlkZW8tbm91dmVhdS0xLjAuMTItMS4zLng4Nl82NAo+IGxpYmRybV9ub3V2ZWF1Mi0yLjQu
-NjgtMS4yLng4Nl82NAo+IGxpYlh2TUNfbm91dmVhdS0zMmJpdC0xMS4yLjItMTM5LjIueDg2XzY0
-Cj4gbGlidmRwYXVfbm91dmVhdS0zMmJpdC0xMS4yLjItMTM5LjIueDg2XzY0Cj4gbGliWHZNQ19u
-b3V2ZWF1LTExLjIuMi0xMzkuMi54ODZfNjQKPiBsaWJkcm1fbm91dmVhdTItMzJiaXQtMi40LjY4
-LTEuMi54ODZfNjQKPgo+Cj4gMiBvdGhlciBib3hlcyBhcmUgT0sgd2l0aCB0aGUgY2FyZHMgYmVs
-b3csIGFsbCAzIGJveGVzIGFyZSBhdCB0aGUgc2FtZQo+IHNvZnR3YXJlIGxldmVscy4KPgo+IDAx
-OjAwLjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxlcjogTlZJRElBIENvcnBvcmF0aW9uIEdGMTE5
-IFtHZUZvcmNlIEdUIDYxMF0KPiAocmV2IGExKQo+Cj4gMDU6MDAuMCBWR0EgY29tcGF0aWJsZSBj
-b250cm9sbGVyOiBOVklESUEgQ29ycG9yYXRpb24gRzg0IFtHZUZvcmNlIDg2MDAgR1RdCj4gKHJl
-diBhMSkKPgo+IFJlZ2FyZHMKPgo+IFNpZC4KPgo+IC0tCj4gU2lkIEJveWNlIC4uLiBIYW1yYWRp
-byBMaWNlbnNlIEczVkJWLCBMaWNlbnNlZCBQcml2YXRlIFBpbG90Cj4gRW1lcml0dXMgSUJNL0Ft
-ZGFobCBNYWluZnJhbWVzIGFuZCBTdW4vRnVqaXRzdSBTZXJ2ZXJzIFRlY2ggU3VwcG9ydAo+IFNl
-bmlvciBTdGFmZiBTcGVjaWFsaXN0LCBDcmlja2V0IENvYWNoCj4gTWljcm9zb2Z0IFdpbmRvd3Mg
-RnJlZSBab25lIC0gTGludXggdXNlZCBmb3IgYWxsIENvbXB1dGluZyBUYXNrcwo+Cj4gX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxp
-bmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+--===============1746025582==
+Content-Type: multipart/alternative; boundary=001a113d32960f7c710536713f52
+
+--001a113d32960f7c710536713f52
+Content-Type: text/plain; charset=UTF-8
+
+Is anyone working on or interested in Pascal support? Feel free to email me
+off list if it can't be discussed publicly.
+
+Thanks
+
+--001a113d32960f7c710536713f52
+Content-Type: text/html; charset=UTF-8
+
+<div dir="ltr"><div>Is anyone working on or interested in Pascal support? Feel free to email me off list if it can&#39;t be discussed publicly.<br><br></div>Thanks<br></div>
+
+--001a113d32960f7c710536713f52--
+
+--===============1746025582==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1746025582==--
