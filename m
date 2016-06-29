@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96737] [NV98] DISP error with INVALID_STATE
-Date: Wed, 29 Jun 2016 23:44:19 +0000
-Message-ID: <bug-96737-8800-c2AmT7xc5Y@http.bugs.freedesktop.org/>
+Date: Wed, 29 Jun 2016 23:57:56 +0000
+Message-ID: <bug-96737-8800-rxGt9CnXTO@http.bugs.freedesktop.org/>
 References: <bug-96737-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0230193969=="
+Content-Type: multipart/mixed; boundary="===============0334474526=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0230193969==
-Content-Type: multipart/alternative; boundary="14672438591.Afb59.22607";
+--===============0334474526==
+Content-Type: multipart/alternative; boundary="14672446760.35fF.24283";
  charset="UTF-8"
 
 
---14672438591.Afb59.22607
-Date: Wed, 29 Jun 2016 23:44:19 +0000
+--14672446760.35fF.24283
+Date: Wed, 29 Jun 2016 23:57:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,15 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96737
 
---- Comment #1 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-s/Swith User/Switch User/
+--- Comment #2 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+For comparison,
+with qxl.ko (QEMU) and vboxvideo.ko (VirtualBox),
+no problem whatsoever.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14672438591.Afb59.22607
-Date: Wed, 29 Jun 2016 23:44:19 +0000
+--14672446760.35fF.24283
+Date: Wed, 29 Jun 2016 23:57:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV98] DISP error with INVALID_STATE"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV98] DISP error with INVALID_STATE"
@@ -71,7 +73,9 @@ Auto-Submitted: auto-generated
 pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
 l.com&gt;"> <span class=3D"fn">poma</span></a>
 </span></b>
-        <pre>s/Swith User/Switch User/</pre>
+        <pre>For comparison,
+with qxl.ko (QEMU) and vboxvideo.ko (VirtualBox),
+no problem whatsoever.</pre>
         </div>
       </p>
 
@@ -85,9 +89,9 @@ l.com&gt;"> <span class=3D"fn">poma</span></a>
     </body>
 </html>=
 
---14672438591.Afb59.22607--
+--14672446760.35fF.24283--
 
---===============0230193969==
+--===============0334474526==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0230193969==--
+--===============0334474526==--
