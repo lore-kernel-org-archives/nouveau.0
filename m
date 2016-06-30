@@ -1,12 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62848] xorg not start after kexec when use nouveau
-Date: Thu, 30 Jun 2016 16:59:13 +0000
-Message-ID: <bug-62848-8800-j9q0oMEgG9@http.bugs.freedesktop.org/>
-References: <bug-62848-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Mesa-dev] nouveau_drv_video.so ?
+Date: Thu, 30 Jun 2016 19:21:31 +0200
+Message-ID: <bfd8891c-ca28-870c-f619-ad9e4d2d80b0@gmail.com>
+References: <b98d0434-2044-fc00-fc56-0e55db91b492@gmail.com>
+ <1467267934.9490.17.camel@intel.com>
+ <b20fccfb-ed88-acb0-ac86-e4a7a4d61cbe@gmail.com>
+ <CACvgo53gBP9dy295KWpY6bEBa++mkDfVxu+9P2HZ+taYNy6K-Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1231315120=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62848-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CACvgo53gBP9dy295KWpY6bEBa++mkDfVxu+9P2HZ+taYNy6K-Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,88 +20,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, fedora-Zs+6rE3mhwEb1SvskN2V4Q@public.gmane.org, "Xiang, Haihao" <haihao.xiang-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, "libva-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <libva-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1231315120==
-Content-Type: multipart/alternative; boundary="14673059533.D1EBFaAd9.31617";
- charset="UTF-8"
-
-
---14673059533.D1EBFaAd9.31617
-Date: Thu, 30 Jun 2016 16:59:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D62848
-
---- Comment #4 from ridai.govinda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I'm still having these same problem with Kernel 4.6.3. Is there a chance to
-solve this bug any time in the future?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14673059533.D1EBFaAd9.31617
-Date: Thu, 30 Jun 2016 16:59:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xorg not start after kexec when use nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D62848#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xorg not start after kexec when use nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D62848">bug 62848<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ridai.govinda&#64;gmail.com" title=3D"ridai.govinda&#64;gmail.com">ridai.go=
-vinda&#64;gmail.com</a>
-</span></b>
-        <pre>I'm still having these same problem with Kernel 4.6.3. Is ther=
-e a chance to
-solve this bug any time in the future?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14673059533.D1EBFaAd9.31617--
-
---===============1231315120==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1231315120==--
+T24gMzAuMDYuMjAxNiAxMzoxMSwgRW1pbCBWZWxpa292IHdyb3RlOgo+IEhpIHBvbWEsCj4gCj4g
+U2VlbXMgbGlrZSB5b3UncmUgbWlzc2VkIHlvdXIgcXVlc3Rpb24uICJub3V2ZWF1X2Rydl92aWRl
+by5zbyA/IiBkb2VzCj4gbm90IG1lYW4gbXVjaCBJJ20gYWZyYWlkIDotKAo+IAo+IE9uIDMwIEp1
+bmUgMjAxNiBhdCAxMTowMywgcG9tYSA8cG9taWRvcmFiZWxpc2ltYUBnbWFpbC5jb20+IHdyb3Rl
+Ogo+PiBPbiAzMC4wNi4yMDE2IDA4OjI3LCBYaWFuZywgSGFpaGFvIHdyb3RlOgo+Pj4KPj4+Cj4+
+PiBBcmUgeW91IHVzaW5nIFZBLUFQSSBvbiBYMTE/IGxpYnZhIGdldHMgdGhlIGRyaXZlciBuYW1l
+IGZyb20gWHNlcnZlciwKPj4+IGl0IGlzIG5vdXZlYXUgZm9yIHlvdS4gc28gbGlidmEgdHJpZXMg
+dG8gbG9hZCBub3V2ZWF1X2Rydl92aWRlby5zby4KPj4+IFlvdSBjYW4gY3JlYXRlIGEgc3ltbGlu
+ayBmb3Igbm91dmVhdSBwb2ludGluZyB0byBhIGF2YWlsYWJsZSBkcml2ZXIgb3IKPj4+IGp1c3Qg
+aWdub3JlIHRoZSBtZXNzYWdlIGJlY2F1c2UgeW91IGhhdmUgZ2FsbGl1bV9kcnZfdmlkZW8uc28g
+bm93Lgo+Pj4KPiBJbmRlZWQuIFRoZSB0cmlja3kgcGFydCBpcyB0aGF0IGxpYnZhIGhvbm91cnMg
+dGhlIGdhbGxpdW1fZHJ2X3ZpZGVvLnNvCj4gbmFtZSBvbmx5IGluIHNvbWUgY29ybmVyIGNhc2Vz
+IDotKAo+IAo+Pj4gVGhhbmtzCj4+PiBIYWloYW8KPj4+Cj4+Cj4+Cj4+IEluIHByYWN0aWNlLCBy
+ZWdhcmRpbmcgdmlkZW8gYWNjZWxlcmF0aW9uLCBub3V2ZWF1IGhhcyBwcm92ZW4gdG8gYmUgZnJh
+Z2lsZSwKPj4gbm8gbWF0dGVyIHdoYXQgYW5kIGhvdyB0byBjb25maWcKPj4KPj4gJCBmaWxlIC91
+c3IvbGliNjQvZHJpL25vdXZlYXVfZHJ2X3ZpZGVvLnNvCj4+IC91c3IvbGliNjQvZHJpL25vdXZl
+YXVfZHJ2X3ZpZGVvLnNvOiBjYW5ub3Qgb3BlbiBgL3Vzci9saWI2NC9kcmkvbm91dmVhdV9kcnZf
+dmlkZW8uc28nIChObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5KQo+Pgo+PiAkIGxsIC91c3IvbGli
+NjQvZHJpL25vdXZlYXVfZHJ2X3ZpZGVvLnNvCj4+IGxzOiBjYW5ub3QgYWNjZXNzICcvdXNyL2xp
+YjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbyc6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkK
+Pj4KPiBUaGlzIHNob3VsZCBubyBsb25nZXIgYmUgdGhlIGNhc2Ugd2l0aCBtZXNhIDEyLjAsIHdo
+ZXJlIGFwcHJvcHJpYXRlbHkKPiBuYW1lZCBmaWxlcy9saW5rcyBhcmUgY3JlYXRlZC4KPiAKPiAK
+Pj4gIyBsbiAtcyB2ZHBhdV9kcnZfdmlkZW8uc28gbm91dmVhdV9kcnZfdmlkZW8uc28KPj4KPj4g
+JCBsbCAvdXNyL2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbwo+PiAuLi4gL3Vzci9saWI2
+NC9kcmkvbm91dmVhdV9kcnZfdmlkZW8uc28gLT4gdmRwYXVfZHJ2X3ZpZGVvLnNvCj4+Cj4+ICQg
+ZmlsZSAvdXNyL2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbwo+PiAvdXNyL2xpYjY0L2Ry
+aS9ub3V2ZWF1X2Rydl92aWRlby5zbzogc3ltYm9saWMgbGluayB0byB2ZHBhdV9kcnZfdmlkZW8u
+c28KPj4KPiBJZiB5b3UgZG8gdGhpcyB5b3UncmUgdXAtdG8gdGhlIG1lcmN5IG9mIHRoZSB2ZHBh
+dV9kcnZfdmlkZW8gKHdyYXBwZXIpCj4gZHJpdmVyLCB3aGljaCBzZWVtcyBhYmFuZG9uZWQgZm9y
+IHRoZSBwYXN0IDQgeWVhcnMuCj4gCj4gCj4+ICMgbG4gLWZzIGdhbGxpdW1fZHJ2X3ZpZGVvLnNv
+IG5vdXZlYXVfZHJ2X3ZpZGVvLnNvCj4+Cj4+ICQgbGwgL3Vzci9saWI2NC9kcmkvbm91dmVhdV9k
+cnZfdmlkZW8uc28KPj4gLi4uIC91c3IvbGliNjQvZHJpL25vdXZlYXVfZHJ2X3ZpZGVvLnNvIC0+
+IGdhbGxpdW1fZHJ2X3ZpZGVvLnNvCj4+Cj4+ICQgZmlsZSAvdXNyL2xpYjY0L2RyaS9ub3V2ZWF1
+X2Rydl92aWRlby5zbwo+PiAvdXNyL2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbzogc3lt
+Ym9saWMgbGluayB0byBnYWxsaXVtX2Rydl92aWRlby5zbwo+Pgo+IEFzIHNhaWQgYWJvdmUsIHRo
+aXMgc2hvdWxkIG5vIGxvbmdlciBiZSBuZWVkZWQuCj4gCj4gCj4+Cj4+ICQgaWNlY2F0Cj4+IC4u
+Lgo+PiBsaWJ2YSBpbmZvOiBWQS1BUEkgdmVyc2lvbiAwLjM5LjIKPj4gbGlidmEgaW5mbzogdmFf
+Z2V0RHJpdmVyTmFtZSgpIHJldHVybnMgMAo+PiBsaWJ2YSBpbmZvOiBUcnlpbmcgdG8gb3BlbiAv
+dXNyL2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbwo+PiBsaWJ2YSBpbmZvOiBGb3VuZCBp
+bml0IGZ1bmN0aW9uIF9fdmFEcml2ZXJJbml0XzBfMzkKPj4gbGlidmEgaW5mbzogdmFfb3BlbkRy
+aXZlcigpIHJldHVybnMgMAo+PiBpY2VjYXQ6IHB1c2hidWYuYzo3Mjc6IG5vdXZlYXVfcHVzaGJ1
+Zl9kYXRhOiBBc3NlcnRpb24gYGtyZWYnIGZhaWxlZC4KPj4gQWJvcnRlZCAoY29yZSBkdW1wZWQp
+Cj4+Cj4+IGh0dHBzOi8vYnVnemlsbGEucmVkaGF0LmNvbS9hdHRhY2htZW50LmNnaT9pZD0xMTc0
+NDUzCj4+Cj4gRnJvbSBhIHF1aWNrIGd1ZXNzIC0gTVQgYW5kL29yIEdMIFZBQVBJIGludGVyb3Ag
+cmVsYXRlZCA/IElmIHNvLCB0aGVzZQo+IHR3byBbMV0gcGF0Y2hlcyBjb3VsZCBoZWxwLgo+IAo+
+IC1FbWlsCj4gCj4gWzFdCj4gaHR0cHM6Ly9naXRodWIuY29tL2ltaXJraW4vbWVzYS9jb21taXQv
+YmUwODlkZDYzYzYxMDJkZjQ4ZGUwNmJiNzE4NGNhMTIwMmYxZTBmNQo+IGh0dHBzOi8vZ2l0aHVi
+LmNvbS9pbWlya2luL21lc2EvY29tbWl0LzVlOGU1MjM1MTRlNzNhZmE0ODkxNmUwOTQ1ODNmNGNh
+ODNmMDUxNzUKPiAKCgpUaGFua3MgZm9yIHRoZSBleHBsYW5hdGlvbgoKCiQgcnBtIC1xZiAvdXNy
+L2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbwptZXNhLWRyaS1kcml2ZXJzLTEyLjAuMC0w
+LjUucmM0LmZjMjQueDg2XzY0CmluY2wuOgowMDAxLVdJUC1ub3V2ZWF1LWFkZC1sb2NraW5nLnBh
+dGNoCjAwMDItbm91dmVhdS1tb3JlLWxvY2tpbmctbWFrZS1zdXJlLXRoYXQtZmVuY2Utd29yay1p
+cy1hbC5wYXRjaAoKCiQgcnBtIC1xZiAvdXNyL2xpYjY0L2RyaS92ZHBhdV9kcnZfdmlkZW8uc28g
+CmxpYnZhLXZkcGF1LWRyaXZlci0wLjcuNC0xNC5mYzI0Lng4Nl82NAoKIyBycG0gLWV2aCBsaWJ2
+YS12ZHBhdS1kcml2ZXIKUHJlcGFyaW5nLi4uICAgICAgICAgICAgICAgICAgICAgICAgICAjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMgWzEwMCVdCkNsZWFuaW5nIHVwIC8gcmVtb3Zp
+bmcuLi4KICAgMTpsaWJ2YS12ZHBhdS1kcml2ZXItMC43LjQtMTQuZmMyNCAjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMgWzEwMCVdCgoKaWNlY2F0LTM4LjguMCB3aXRoCmh0dHBzOi8v
+Z2l0aHViLmNvbS9sZWplbm9tZS9odG1sNS12aWRlby1ldmVyeXdoZXJlCnByb2R1Y2Uga2VybmVs
+IG9vcHMgLSBpdCBpcyBlbm91Z2ggdG8gYXR0ZW1wdCB0byBjaGFuZ2UgdmlkZW8gc2V0dGluZ3Mg
+b2YgYWRkLW9uCgppY2VjYXQtMzguOC4wIHdpdGhvdXQgaHRtbDUtdmlkZW8tZXZlcnl3aGVyZQpz
+dGlsbCBjYW4gY3J1c2ggLSBydW5uaW5nIG5hdGl2ZSB5dCBwbGF5ZXIsIGJ1dCBzeXN0ZW0gc3Rh
+eXMgT0sKYWx0aG91Z2ggd2l0aApub3V2ZWF1IDAwMDA6MDI6MDAuMDogZmlmbzogQ0FDSEVfRVJS
+T1IgLSBjaCA2IFtzb3VyY2U6c3JjWzI4NTRdXSBzdWJjIDAgbXRoZCAwMDYwIGRhdGEgYmVlZjAy
+MDEKCmZvciBjb21wYXJpc29uLApmaXJlZm94LTQ3LjAgd2l0aCBodG1sNS12aWRlby1ldmVyeXdo
+ZXJlCndpdGggdGhlIGV4Y2VwdGlvbiBvZiBkZWxheXMgYSBmZXcgc2Vjb25kcyBvZiB0aGUgZmly
+c3QgdmlkZW8gZnJhbWUgaW4gZnVsbCBzY3JlZW4gbW9kZSwKYW5kIHNhbWUgZGVsYXkgYXQgZXhp
+dCB0aGUgZnVsbCBzY3JlZW4gbW9kZSwKd29ya3MgT0sgLSBub3QgYnJlYWtpbmcgYW55dGhpbmcu
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
+IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
