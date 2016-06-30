@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95054] KDE 5 / Plasma crashes with nouveau "fifo: gr
- engine fault on channel 2, recovering" or "gr: TRAP ch 2"
-Date: Thu, 30 Jun 2016 09:14:52 +0000
-Message-ID: <bug-95054-8800-X2B76HjFZg@http.bugs.freedesktop.org/>
-References: <bug-95054-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Mesa-dev] nouveau_drv_video.so ?
+Date: Thu, 30 Jun 2016 12:03:03 +0200
+Message-ID: <b20fccfb-ed88-acb0-ac86-e4a7a4d61cbe@gmail.com>
+References: <b98d0434-2044-fc00-fc56-0e55db91b492@gmail.com>
+ <1467267934.9490.17.camel@intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0825924623=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95054-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1467267934.9490.17.camel-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,94 +18,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "Xiang, Haihao" <haihao.xiang-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "libva-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <libva-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0825924623==
-Content-Type: multipart/alternative; boundary="14672780920.B32EC4.12837";
- charset="UTF-8"
-
-
---14672780920.B32EC4.12837
-Date: Thu, 30 Jun 2016 09:14:52 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95054
-
---- Comment #9 from Ren=C3=A9 Krell <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Just an update: The total desktop freeze happens in kernel 4.6.2, but very
-frequently, after a few seconds/minutes of playing in Chromium or System
-Settings / Compositor Settings.
-OpenSUSE Tumbleweed 20160626, the same hardware: HP ZBook G2.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14672780920.B32EC4.12837
-Date: Thu, 30 Jun 2016 09:14:52 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - KDE 5 / Plasma crashes with nouveau &quot;fifo: gr engine=
- fault on channel 2, recovering&quot; or &quot;gr: TRAP ch 2&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95054#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - KDE 5 / Plasma crashes with nouveau &quot;fifo: gr engine=
- fault on channel 2, recovering&quot; or &quot;gr: TRAP ch 2&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95054">bug 95054<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 Krell &lt;renda.krell&#64;gma=
-il.com&gt;"> <span class=3D"fn">Ren=C3=A9 Krell</span></a>
-</span></b>
-        <pre>Just an update: The total desktop freeze happens in kernel 4.6=
-.2, but very
-frequently, after a few seconds/minutes of playing in Chromium or System
-Settings / Compositor Settings.
-OpenSUSE Tumbleweed 20160626, the same hardware: HP ZBook G2.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14672780920.B32EC4.12837--
-
---===============0825924623==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0825924623==--
+T24gMzAuMDYuMjAxNiAwODoyNywgWGlhbmcsIEhhaWhhbyB3cm90ZToKPiAKPiAKPiBBcmUgeW91
+IHVzaW5nIFZBLUFQSSBvbiBYMTE/IGxpYnZhIGdldHMgdGhlIGRyaXZlciBuYW1lIGZyb20gWHNl
+cnZlciwKPiBpdCBpcyBub3V2ZWF1IGZvciB5b3UuIHNvIGxpYnZhIHRyaWVzIHRvIGxvYWQgbm91
+dmVhdV9kcnZfdmlkZW8uc28uIAo+IFlvdSBjYW4gY3JlYXRlIGEgc3ltbGluayBmb3Igbm91dmVh
+dSBwb2ludGluZyB0byBhIGF2YWlsYWJsZSBkcml2ZXIgb3IKPiBqdXN0IGlnbm9yZSB0aGUgbWVz
+c2FnZSBiZWNhdXNlIHlvdSBoYXZlIGdhbGxpdW1fZHJ2X3ZpZGVvLnNvIG5vdy4KPiAKPiBUaGFu
+a3MKPiBIYWloYW8KPiAKCgpJbiBwcmFjdGljZSwgcmVnYXJkaW5nIHZpZGVvIGFjY2VsZXJhdGlv
+biwgbm91dmVhdSBoYXMgcHJvdmVuIHRvIGJlIGZyYWdpbGUsCm5vIG1hdHRlciB3aGF0IGFuZCBo
+b3cgdG8gY29uZmlnCgokIGZpbGUgL3Vzci9saWI2NC9kcmkvbm91dmVhdV9kcnZfdmlkZW8uc28K
+L3Vzci9saWI2NC9kcmkvbm91dmVhdV9kcnZfdmlkZW8uc286IGNhbm5vdCBvcGVuIGAvdXNyL2xp
+YjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbycgKE5vIHN1Y2ggZmlsZSBvciBkaXJlY3Rvcnkp
+CgokIGxsIC91c3IvbGliNjQvZHJpL25vdXZlYXVfZHJ2X3ZpZGVvLnNvCmxzOiBjYW5ub3QgYWNj
+ZXNzICcvdXNyL2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbyc6IE5vIHN1Y2ggZmlsZSBv
+ciBkaXJlY3RvcnkKCiQgdmFpbmZvIApsaWJ2YSBpbmZvOiBWQS1BUEkgdmVyc2lvbiAwLjM5LjIK
+bGlidmEgaW5mbzogdmFfZ2V0RHJpdmVyTmFtZSgpIHJldHVybnMgMApsaWJ2YSBpbmZvOiBUcnlp
+bmcgdG8gb3BlbiAvdXNyL2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbwpsaWJ2YSBpbmZv
+OiB2YV9vcGVuRHJpdmVyKCkgcmV0dXJucyAtMQp2YUluaXRpYWxpemUgZmFpbGVkIHdpdGggZXJy
+b3IgY29kZSAtMSAodW5rbm93biBsaWJ2YSBlcnJvciksZXhpdAoKfn5+fn5+fn5+fn5+fn5+fn5+
+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn4KCiMgbG4gLXMgdmRwYXVfZHJ2X3ZpZGVvLnNv
+IG5vdXZlYXVfZHJ2X3ZpZGVvLnNvCgokIGxsIC91c3IvbGliNjQvZHJpL25vdXZlYXVfZHJ2X3Zp
+ZGVvLnNvCi4uLiAvdXNyL2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbyAtPiB2ZHBhdV9k
+cnZfdmlkZW8uc28KCiQgZmlsZSAvdXNyL2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbwov
+dXNyL2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbzogc3ltYm9saWMgbGluayB0byB2ZHBh
+dV9kcnZfdmlkZW8uc28KCiQgbGwgL3Vzci9saWI2NC9kcmkvCi4uLgouLi4gZ2FsbGl1bV9kcnZf
+dmlkZW8uc28KLi4uIG5vdXZlYXVfZHJ2X3ZpZGVvLnNvIC0+IHZkcGF1X2Rydl92aWRlby5zbwou
+Li4gdmRwYXVfZHJ2X3ZpZGVvLnNvCi4uLgoKJCB2YWluZm8gCmxpYnZhIGluZm86IFZBLUFQSSB2
+ZXJzaW9uIDAuMzkuMgpsaWJ2YSBpbmZvOiB2YV9nZXREcml2ZXJOYW1lKCkgcmV0dXJucyAwCmxp
+YnZhIGluZm86IFRyeWluZyB0byBvcGVuIC91c3IvbGliNjQvZHJpL25vdXZlYXVfZHJ2X3ZpZGVv
+LnNvCmxpYnZhIGluZm86IEZvdW5kIGluaXQgZnVuY3Rpb24gX192YURyaXZlckluaXRfMF8zOAps
+aWJ2YSBpbmZvOiB2YV9vcGVuRHJpdmVyKCkgcmV0dXJucyAwCnZhaW5mbzogVkEtQVBJIHZlcnNp
+b246IDAuMzkgKGxpYnZhIDEuNy4xKQp2YWluZm86IERyaXZlciB2ZXJzaW9uOiBTcGxpdHRlZC1E
+ZXNrdG9wIFN5c3RlbXMgVkRQQVUgYmFja2VuZCBmb3IgVkEtQVBJIC0gMC43LjQKdmFpbmZvOiBT
+dXBwb3J0ZWQgcHJvZmlsZSBhbmQgZW50cnlwb2ludHMKICAgICAgVkFQcm9maWxlTVBFRzJTaW1w
+bGUgICAgICAgICAgICA6CVZBRW50cnlwb2ludFZMRAogICAgICBWQVByb2ZpbGVNUEVHMk1haW4g
+ICAgICAgICAgICAgIDoJVkFFbnRyeXBvaW50VkxECiAgICAgIFZBUHJvZmlsZUgyNjRCYXNlbGlu
+ZSAgICAgICAgICAgOglWQUVudHJ5cG9pbnRWTEQKICAgICAgVkFQcm9maWxlSDI2NE1haW4gICAg
+ICAgICAgICAgICA6CVZBRW50cnlwb2ludFZMRAogICAgICBWQVByb2ZpbGVIMjY0SGlnaCAgICAg
+ICAgICAgICAgIDoJVkFFbnRyeXBvaW50VkxECiAgICAgIFZBUHJvZmlsZVZDMVNpbXBsZSAgICAg
+ICAgICAgICAgOglWQUVudHJ5cG9pbnRWTEQKICAgICAgVkFQcm9maWxlVkMxTWFpbiAgICAgICAg
+ICAgICAgICA6CVZBRW50cnlwb2ludFZMRAogICAgICBWQVByb2ZpbGVWQzFBZHZhbmNlZCAgICAg
+ICAgICAgIDoJVkFFbnRyeXBvaW50VkxECgp+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
+fn5+fn5+fn5+fn5+fn5+fn5+CgojIGxuIC1mcyBnYWxsaXVtX2Rydl92aWRlby5zbyBub3V2ZWF1
+X2Rydl92aWRlby5zbwoKJCBsbCAvdXNyL2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbwou
+Li4gL3Vzci9saWI2NC9kcmkvbm91dmVhdV9kcnZfdmlkZW8uc28gLT4gZ2FsbGl1bV9kcnZfdmlk
+ZW8uc28KCiQgZmlsZSAvdXNyL2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbwovdXNyL2xp
+YjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbzogc3ltYm9saWMgbGluayB0byBnYWxsaXVtX2Ry
+dl92aWRlby5zbwoKJCBsbCAvdXNyL2xpYjY0L2RyaS8KLi4uCi4uLiBnYWxsaXVtX2Rydl92aWRl
+by5zbwouLi4gbm91dmVhdV9kcnZfdmlkZW8uc28gLT4gZ2FsbGl1bV9kcnZfdmlkZW8uc28KLi4u
+IHZkcGF1X2Rydl92aWRlby5zbwouLi4KCiQgdmFpbmZvIApsaWJ2YSBpbmZvOiBWQS1BUEkgdmVy
+c2lvbiAwLjM5LjIKbGlidmEgaW5mbzogdmFfZ2V0RHJpdmVyTmFtZSgpIHJldHVybnMgMApsaWJ2
+YSBpbmZvOiBUcnlpbmcgdG8gb3BlbiAvdXNyL2xpYjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5z
+bwpsaWJ2YSBpbmZvOiBGb3VuZCBpbml0IGZ1bmN0aW9uIF9fdmFEcml2ZXJJbml0XzBfMzkKbGli
+dmEgaW5mbzogdmFfb3BlbkRyaXZlcigpIHJldHVybnMgMAp2YWluZm86IFZBLUFQSSB2ZXJzaW9u
+OiAwLjM5IChsaWJ2YSAxLjcuMSkKdmFpbmZvOiBEcml2ZXIgdmVyc2lvbjogbWVzYSBnYWxsaXVt
+IHZhYXBpCnZhaW5mbzogU3VwcG9ydGVkIHByb2ZpbGUgYW5kIGVudHJ5cG9pbnRzCiAgICAgIFZB
+UHJvZmlsZU1QRUcyU2ltcGxlICAgICAgICAgICAgOglWQUVudHJ5cG9pbnRWTEQKICAgICAgVkFQ
+cm9maWxlTVBFRzJNYWluICAgICAgICAgICAgICA6CVZBRW50cnlwb2ludFZMRAogICAgICBWQVBy
+b2ZpbGVWQzFTaW1wbGUgICAgICAgICAgICAgIDoJVkFFbnRyeXBvaW50VkxECiAgICAgIFZBUHJv
+ZmlsZVZDMU1haW4gICAgICAgICAgICAgICAgOglWQUVudHJ5cG9pbnRWTEQKICAgICAgVkFQcm9m
+aWxlVkMxQWR2YW5jZWQgICAgICAgICAgICA6CVZBRW50cnlwb2ludFZMRAogICAgICBWQVByb2Zp
+bGVIMjY0QmFzZWxpbmUgICAgICAgICAgIDoJVkFFbnRyeXBvaW50VkxECiAgICAgIFZBUHJvZmls
+ZUgyNjRNYWluICAgICAgICAgICAgICAgOglWQUVudHJ5cG9pbnRWTEQKICAgICAgVkFQcm9maWxl
+SDI2NEhpZ2ggICAgICAgICAgICAgICA6CVZBRW50cnlwb2ludFZMRAogICAgICBWQVByb2ZpbGVO
+b25lICAgICAgICAgICAgICAgICAgIDoJVkFFbnRyeXBvaW50VmlkZW9Qcm9jCgoKJCBpY2VjYXQg
+Ci4uLgpsaWJ2YSBpbmZvOiBWQS1BUEkgdmVyc2lvbiAwLjM5LjIKbGlidmEgaW5mbzogdmFfZ2V0
+RHJpdmVyTmFtZSgpIHJldHVybnMgMApsaWJ2YSBpbmZvOiBUcnlpbmcgdG8gb3BlbiAvdXNyL2xp
+YjY0L2RyaS9ub3V2ZWF1X2Rydl92aWRlby5zbwpsaWJ2YSBpbmZvOiBGb3VuZCBpbml0IGZ1bmN0
+aW9uIF9fdmFEcml2ZXJJbml0XzBfMzkKbGlidmEgaW5mbzogdmFfb3BlbkRyaXZlcigpIHJldHVy
+bnMgMAppY2VjYXQ6IHB1c2hidWYuYzo3Mjc6IG5vdXZlYXVfcHVzaGJ1Zl9kYXRhOiBBc3NlcnRp
+b24gYGtyZWYnIGZhaWxlZC4KQWJvcnRlZCAoY29yZSBkdW1wZWQpCgpodHRwczovL2J1Z3ppbGxh
+LnJlZGhhdC5jb20vYXR0YWNobWVudC5jZ2k/aWQ9MTE3NDQ1MwoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
+dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
