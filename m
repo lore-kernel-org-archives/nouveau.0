@@ -1,106 +1,91 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
- after dynamic poweroff
-Date: Fri, 01 Jul 2016 12:33:14 +0000
-Message-ID: <bug-94725-8800-3gm7qke9XW@http.bugs.freedesktop.org/>
-References: <bug-94725-8800@http.bugs.freedesktop.org/>
+From: Markus Mayer <markus.mayer@broadcom.com>
+Subject: Re: [PATCH 1/6] lib: string: add function strtolower()
+Date: Fri, 1 Jul 2016 10:14:12 -0700
+Message-ID: <CAGt4E5teRyMJMfxz3s6PHmTgCApBWWdAiNu1VwQtdJybST3RTw@mail.gmail.com>
+References: <1467330612-26242-1-git-send-email-mmayer@broadcom.com>
+ <1467330612-26242-2-git-send-email-mmayer@broadcom.com> <87poqxpr4d.fsf@intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0652982360=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-scsi-owner@vger.kernel.org>
+In-Reply-To: <87poqxpr4d.fsf@intel.com>
+Sender: linux-scsi-owner@vger.kernel.org
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>, Al Viro <viro@zeniv.linux.org.uk>, Rasmus Villemoes <linux@rasmusvillemoes.dk>, Chris Metcalf <cmetcalf@ezchip.com>, Kees Cook <keescook@chromium.org>, devel@driverdev.osuosl.org, linux-scsi@vger.kernel.org, nouveau@lists.freedesktop.org, speakup@linux-speakup.org, Linux Kernel <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org, target-devel@vger.kernel.org, devel@acpica.org
 List-Id: nouveau.vger.kernel.org
 
+On 1 July 2016 at 03:52, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Fri, 01 Jul 2016, Markus Mayer <mmayer@broadcom.com> wrote:
+>> Add a function called strtolower() to convert strings to lower case
+>> in-place, overwriting the original string.
+>>
+>> This seems to be a recurring requirement in the kernel that is
+>> currently being solved by several duplicated implementations doing the
+>> same thing.
+>>
+>> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
+>> ---
+>>  include/linux/string.h |  1 +
+>>  lib/string.c           | 14 ++++++++++++++
+>>  2 files changed, 15 insertions(+)
+>>
+>> diff --git a/include/linux/string.h b/include/linux/string.h
+>> index 26b6f6a..aad605e 100644
+>> --- a/include/linux/string.h
+>> +++ b/include/linux/string.h
+>> @@ -116,6 +116,7 @@ extern void * memchr(const void *,int,__kernel_size_t);
+>>  #endif
+>>  void *memchr_inv(const void *s, int c, size_t n);
+>>  char *strreplace(char *s, char old, char new);
+>> +char *strtolower(char *s);
+>>
+>>  extern void kfree_const(const void *x);
+>>
+>> diff --git a/lib/string.c b/lib/string.c
+>> index ed83562..6e3b560 100644
+>> --- a/lib/string.c
+>> +++ b/lib/string.c
+>> @@ -952,3 +952,17 @@ char *strreplace(char *s, char old, char new)
+>>       return s;
+>>  }
+>>  EXPORT_SYMBOL(strreplace);
+>> +
+>
+> This needs a kernel-doc comment right here.
 
---===============0652982360==
-Content-Type: multipart/alternative; boundary="14673763940.Cb5fCEcD6.16743";
- charset="UTF-8"
+Will add it.
 
+>> +char *strtolower(char *s)
+>> +{
+>> +     char *p;
+>> +
+>> +        if (unlikely(!s))
+>> +                return NULL;
+>
+> Using spaces for indentation? See scripts/checkpatch.pl.
 
---14673763940.Cb5fCEcD6.16743
-Date: Fri, 1 Jul 2016 12:33:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Not on purpose. Thanks for spotting it.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94725
+>> +
+>> +     for (p = s; *p; p++)
+>> +             *p = tolower(*p);
+>> +
+>> +     return s;
+>
+> Why does it return a value? Could be void?
 
---- Comment #23 from maimu <xiangjihan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-http://forums.fedoraforum.org/showthread.php?t=3D310422
-Is this issue effected mines=EF=BC=9F
+It could be void, but I thought that would make the function's use
+less flexible. As is, the return value is there if anybody wants it,
+but it can be ignored if it is not needed. Also, it seems customary
+for string functions to be returning the string that was passed in.
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+I'll change it to void if there are strong opinions leaning that way.
+Personally, I like that it returns a char * better.
 
---14673763940.Cb5fCEcD6.16743
-Date: Fri, 1 Jul 2016 12:33:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
-c poweroff"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725#c23">Commen=
-t # 23</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
-c poweroff"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725">bug 94725<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-xiangjihan&#64;gmail.com" title=3D"maimu &lt;xiangjihan&#64;gmail.com&gt;">=
- <span class=3D"fn">maimu</span></a>
-</span></b>
-        <pre><a href=3D"http://forums.fedoraforum.org/showthread.php?t=3D31=
-0422">http://forums.fedoraforum.org/showthread.php?t=3D310422</a>
-Is this issue effected mines=EF=BC=9F</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14673763940.Cb5fCEcD6.16743--
-
---===============0652982360==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0652982360==--
+> BR,
+> Jani.
+>
+>> +}
+>> +EXPORT_SYMBOL(strtolower);
+>
+> --
+> Jani Nikula, Intel Open Source Technology Center
