@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96737] [NV98] breaks Login / SwitchToGreeter /
 	SwitchToUser
-Date: Fri, 01 Jul 2016 08:34:26 +0000
-Message-ID: <bug-96737-8800-dFEeCoZXoJ@http.bugs.freedesktop.org/>
+Date: Fri, 01 Jul 2016 08:34:50 +0000
+Message-ID: <bug-96737-8800-R8wm7ERVdM@http.bugs.freedesktop.org/>
 References: <bug-96737-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1744041408=="
+Content-Type: multipart/mixed; boundary="===============2119211306=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1744041408==
-Content-Type: multipart/alternative; boundary="14673620660.d621dA2d1.12706";
+--===============2119211306==
+Content-Type: multipart/alternative; boundary="14673620901.efa64a04.12838";
  charset="UTF-8"
 
 
---14673620660.d621dA2d1.12706
-Date: Fri, 1 Jul 2016 08:34:25 +0000
+--14673620901.efa64a04.12838
+Date: Fri, 1 Jul 2016 08:34:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,24 +40,15 @@ poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|[NV98] DISP error with      |[NV98] breaks Login /
-                   |INVALID_STATE               |SwitchToGreeter /
-                   |                            |SwitchToUser
-
---- Comment #3 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-
-With mesa-12.0.0-rc4 nouveau is more robust - no disp: ERROR
-
-However, the original problem is still there,
-nouveau breaks overall Login/SwitchToGreeter/SwitchToUser stanza,
-shuffles sessions/VTNrs
+ Attachment #124789|0                           |1
+        is obsolete|                            |
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14673620660.d621dA2d1.12706
-Date: Fri, 1 Jul 2016 08:34:26 +0000
+--14673620901.efa64a04.12838
+Date: Fri, 1 Jul 2016 08:34:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -86,35 +77,15 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>[NV98] DISP error with INVALID_STATE
+           <td style=3D"text-align:right;">Attachment #124789 is obsolete</=
+td>
+           <td>
+               &nbsp;
            </td>
-           <td>[NV98] breaks Login / SwitchToGreeter / SwitchToUser
+           <td>1
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV98] breaks Login / SwitchToGreeter / SwitchToUser"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV98] breaks Login / SwitchToGreeter / SwitchToUser"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737">bug 96737<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
-l.com&gt;"> <span class=3D"fn">poma</span></a>
-</span></b>
-        <pre>
-With mesa-12.0.0-rc4 nouveau is more robust - no disp: ERROR
-
-However, the original problem is still there,
-nouveau breaks overall Login/SwitchToGreeter/SwitchToUser stanza,
-shuffles sessions/VTNrs</pre>
-        </div>
       </p>
 
 
@@ -127,9 +98,9 @@ shuffles sessions/VTNrs</pre>
     </body>
 </html>=
 
---14673620660.d621dA2d1.12706--
+--14673620901.efa64a04.12838--
 
---===============1744041408==
+--===============2119211306==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -139,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1744041408==--
+--===============2119211306==--
