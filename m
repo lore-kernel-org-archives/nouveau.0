@@ -1,113 +1,56 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96737] [NV98] breaks Login / SwitchToGreeter /
-	SwitchToUser
-Date: Fri, 01 Jul 2016 08:34:50 +0000
-Message-ID: <bug-96737-8800-R8wm7ERVdM@http.bugs.freedesktop.org/>
-References: <bug-96737-8800@http.bugs.freedesktop.org/>
+From: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH 1/6] lib: string: add function strtolower()
+Date: Fri, 01 Jul 2016 13:52:34 +0300
+Message-ID: <87poqxpr4d.fsf@intel.com>
+References: <1467330612-26242-1-git-send-email-mmayer@broadcom.com>
+ <1467330612-26242-2-git-send-email-mmayer@broadcom.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2119211306=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-96737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1467330612-26242-2-git-send-email-mmayer@broadcom.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Andrew Morton <akpm@linux-foundation.org>, Al Viro <viro@zeniv.linux.org.uk>, Rasmus Villemoes <linux@rasmusvillemoes.dk>, Chris Metcalf <cmetcalf@ezchip.com>, Kees Cook <keescook@chromium.org>
+Cc: devel@driverdev.osuosl.org, linux-scsi@vger.kernel.org, nouveau@lists.freedesktop.org, speakup@linux-speakup.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org, target-devel@vger.kernel.org, Markus Mayer <mmayer@broadcom.com>, devel@acpica.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2119211306==
-Content-Type: multipart/alternative; boundary="14673620901.efa64a04.12838";
- charset="UTF-8"
-
-
---14673620901.efa64a04.12838
-Date: Fri, 1 Jul 2016 08:34:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96737
-
-poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #124789|0                           |1
-        is obsolete|                            |
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14673620901.efa64a04.12838
-Date: Fri, 1 Jul 2016 08:34:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pomidorab=
-elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
-"> <span class=3D"fn">poma</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV98] breaks Login / SwitchToGreeter / SwitchToUser"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737">bug 96737<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #124789 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14673620901.efa64a04.12838--
-
---===============2119211306==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2119211306==--
+T24gRnJpLCAwMSBKdWwgMjAxNiwgTWFya3VzIE1heWVyIDxtbWF5ZXJAYnJvYWRjb20uY29tPiB3
+cm90ZToKPiBBZGQgYSBmdW5jdGlvbiBjYWxsZWQgc3RydG9sb3dlcigpIHRvIGNvbnZlcnQgc3Ry
+aW5ncyB0byBsb3dlciBjYXNlCj4gaW4tcGxhY2UsIG92ZXJ3cml0aW5nIHRoZSBvcmlnaW5hbCBz
+dHJpbmcuCj4KPiBUaGlzIHNlZW1zIHRvIGJlIGEgcmVjdXJyaW5nIHJlcXVpcmVtZW50IGluIHRo
+ZSBrZXJuZWwgdGhhdCBpcwo+IGN1cnJlbnRseSBiZWluZyBzb2x2ZWQgYnkgc2V2ZXJhbCBkdXBs
+aWNhdGVkIGltcGxlbWVudGF0aW9ucyBkb2luZyB0aGUKPiBzYW1lIHRoaW5nLgo+Cj4gU2lnbmVk
+LW9mZi1ieTogTWFya3VzIE1heWVyIDxtbWF5ZXJAYnJvYWRjb20uY29tPgo+IC0tLQo+ICBpbmNs
+dWRlL2xpbnV4L3N0cmluZy5oIHwgIDEgKwo+ICBsaWIvc3RyaW5nLmMgICAgICAgICAgIHwgMTQg
+KysrKysrKysrKysrKysKPiAgMiBmaWxlcyBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspCj4KPiBk
+aWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9zdHJpbmcuaCBiL2luY2x1ZGUvbGludXgvc3RyaW5n
+LmgKPiBpbmRleCAyNmI2ZjZhLi5hYWQ2MDVlIDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUvbGludXgv
+c3RyaW5nLmgKPiArKysgYi9pbmNsdWRlL2xpbnV4L3N0cmluZy5oCj4gQEAgLTExNiw2ICsxMTYs
+NyBAQCBleHRlcm4gdm9pZCAqIG1lbWNocihjb25zdCB2b2lkICosaW50LF9fa2VybmVsX3NpemVf
+dCk7Cj4gICNlbmRpZgo+ICB2b2lkICptZW1jaHJfaW52KGNvbnN0IHZvaWQgKnMsIGludCBjLCBz
+aXplX3Qgbik7Cj4gIGNoYXIgKnN0cnJlcGxhY2UoY2hhciAqcywgY2hhciBvbGQsIGNoYXIgbmV3
+KTsKPiArY2hhciAqc3RydG9sb3dlcihjaGFyICpzKTsKPiAgCj4gIGV4dGVybiB2b2lkIGtmcmVl
+X2NvbnN0KGNvbnN0IHZvaWQgKngpOwo+ICAKPiBkaWZmIC0tZ2l0IGEvbGliL3N0cmluZy5jIGIv
+bGliL3N0cmluZy5jCj4gaW5kZXggZWQ4MzU2Mi4uNmUzYjU2MCAxMDA2NDQKPiAtLS0gYS9saWIv
+c3RyaW5nLmMKPiArKysgYi9saWIvc3RyaW5nLmMKPiBAQCAtOTUyLDMgKzk1MiwxNyBAQCBjaGFy
+ICpzdHJyZXBsYWNlKGNoYXIgKnMsIGNoYXIgb2xkLCBjaGFyIG5ldykKPiAgCXJldHVybiBzOwo+
+ICB9Cj4gIEVYUE9SVF9TWU1CT0woc3RycmVwbGFjZSk7Cj4gKwoKVGhpcyBuZWVkcyBhIGtlcm5l
+bC1kb2MgY29tbWVudCByaWdodCBoZXJlLgoKPiArY2hhciAqc3RydG9sb3dlcihjaGFyICpzKQo+
+ICt7Cj4gKwljaGFyICpwOwo+ICsKPiArICAgICAgICBpZiAodW5saWtlbHkoIXMpKQo+ICsgICAg
+ICAgICAgICAgICAgcmV0dXJuIE5VTEw7CgpVc2luZyBzcGFjZXMgZm9yIGluZGVudGF0aW9uPyBT
+ZWUgc2NyaXB0cy9jaGVja3BhdGNoLnBsLgoKPiArCj4gKwlmb3IgKHAgPSBzOyAqcDsgcCsrKQo+
+ICsJCSpwID0gdG9sb3dlcigqcCk7Cj4gKwo+ICsJcmV0dXJuIHM7CgpXaHkgZG9lcyBpdCByZXR1
+cm4gYSB2YWx1ZT8gQ291bGQgYmUgdm9pZD8KCkJSLApKYW5pLgoKPiArfQo+ICtFWFBPUlRfU1lN
+Qk9MKHN0cnRvbG93ZXIpOwoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBUZWNo
+bm9sb2d5IENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2
+ZWwK
