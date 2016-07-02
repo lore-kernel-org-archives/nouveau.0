@@ -1,48 +1,125 @@
-From: Alexandre Courbot <gnurou@gmail.com>
-Subject: Re: [Nouveau] [PATCH 2/6] drm/nouveau/core: make use of new
- strtolower() function
-Date: Sat, 2 Jul 2016 10:18:11 +0900
-Message-ID: <CAAVeFuKabYS8s42GghnDSNe_AVa5v+1w_OHiR6cEgdU0_Dz7UA@mail.gmail.com>
-References: <1467330612-26242-1-git-send-email-mmayer@broadcom.com>
- <1467330612-26242-3-git-send-email-mmayer@broadcom.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96737] [NV98] breaks Login / SwitchToGreeter /
+	SwitchToUser
+Date: Sat, 02 Jul 2016 14:42:24 +0000
+Message-ID: <bug-96737-8800-2RX5UpmryW@http.bugs.freedesktop.org/>
+References: <bug-96737-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1467330612-26242-3-git-send-email-mmayer@broadcom.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Markus Mayer <mmayer@broadcom.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1394582777=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-96737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdWwgMSwgMjAxNiBhdCA4OjUwIEFNLCBNYXJrdXMgTWF5ZXIgPG1tYXllckBicm9h
-ZGNvbS5jb20+IHdyb3RlOgo+IENhbGwgc3RydG9sb3dlcigpIHJhdGhlciB0aGFuIHdhbGtpbmcg
-dGhlIHN0cmluZyBleHBsaWNpdGx5IHRvIGNvbnZlcnQKPiBpdCB0byBsb3dlcmNhc2UuCj4KPiBT
-aWduZWQtb2ZmLWJ5OiBNYXJrdXMgTWF5ZXIgPG1tYXllckBicm9hZGNvbS5jb20+Cj4gLS0tCj4g
-IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9maXJtd2FyZS5jIHwgNyArLS0tLS0t
-Cj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgNiBkZWxldGlvbnMoLSkKPgo+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2NvcmUvZmlybXdhcmUuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9maXJtd2FyZS5jCj4gaW5kZXggMzRl
-Y2Q0YS4uYzUwNTk0YyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
-L2NvcmUvZmlybXdhcmUuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29y
-ZS9maXJtd2FyZS5jCj4gQEAgLTM2LDE2ICszNiwxMSBAQCBudmttX2Zpcm13YXJlX2dldChzdHJ1
-Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwgY29uc3QgY2hhciAqZnduYW1lLAo+ICB7Cj4gICAgICAg
-ICBjaGFyIGZbNjRdOwo+ICAgICAgICAgY2hhciBjbmFtZVsxNl07Cj4gLSAgICAgICBpbnQgaTsK
-Pgo+ICAgICAgICAgLyogQ29udmVydCBkZXZpY2UgbmFtZSB0byBsb3dlcmNhc2UgKi8KPiAgICAg
-ICAgIHN0cm5jcHkoY25hbWUsIGRldmljZS0+Y2hpcC0+bmFtZSwgc2l6ZW9mKGNuYW1lKSk7Cj4g
-ICAgICAgICBjbmFtZVtzaXplb2YoY25hbWUpIC0gMV0gPSAnXDAnOwo+IC0gICAgICAgaSA9IHN0
-cmxlbihjbmFtZSk7Cj4gLSAgICAgICB3aGlsZSAoaSkgewo+IC0gICAgICAgICAgICAgICAtLWk7
-Cj4gLSAgICAgICAgICAgICAgIGNuYW1lW2ldID0gdG9sb3dlcihjbmFtZVtpXSk7Cj4gLSAgICAg
-ICB9Cj4gKyAgICAgICBzdHJ0b2xvd2VyKGNuYW1lKTsKClRoaXMgZnVuY3Rpb24gZG9lc24ndCBz
-ZWVtIHRvIGV4aXN0IGFzIG9mIG5leHQtMjAxNjA3MDEsIHdoZXJlIGhhdmUKeW91IGZvdW5kIGl0
-PwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2
-ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1394582777==
+Content-Type: multipart/alternative; boundary="14674705430.Eb64D7D.5146";
+ charset="UTF-8"
+
+
+--14674705430.Eb64D7D.5146
+Date: Sat, 2 Jul 2016 14:42:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96737
+
+--- Comment #4 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+
+Test compilation:
+http://goo.gl/Gm4ffO
+iso/
+
+
+How to test:
+0. Boot System
+1. Logi In
+2. Switch User
+3. Unlock
+4. Log Out
+5. Log In ?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14674705430.Eb64D7D.5146
+Date: Sat, 2 Jul 2016 14:42:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV98] breaks Login / SwitchToGreeter / SwitchToUser"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV98] breaks Login / SwitchToGreeter / SwitchToUser"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737">bug 96737<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
+l.com&gt;"> <span class=3D"fn">poma</span></a>
+</span></b>
+        <pre>
+Test compilation:
+<a href=3D"http://goo.gl/Gm4ffO">http://goo.gl/Gm4ffO</a>
+iso/
+
+
+How to test:
+0. Boot System
+1. Logi In
+2. Switch User
+3. Unlock
+4. Log Out
+5. Log In ?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14674705430.Eb64D7D.5146--
+
+--===============1394582777==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1394582777==--
