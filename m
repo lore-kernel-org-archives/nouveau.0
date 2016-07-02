@@ -1,93 +1,48 @@
-From: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Subject: Re: [PATCH 1/6] lib: string: add function strtolower()
-Date: Fri, 01 Jul 2016 23:08:35 +0200
-Message-ID: <8737nt83sc.fsf@rasmusvillemoes.dk>
+From: Alexandre Courbot <gnurou@gmail.com>
+Subject: Re: [Nouveau] [PATCH 2/6] drm/nouveau/core: make use of new
+ strtolower() function
+Date: Sat, 2 Jul 2016 10:18:11 +0900
+Message-ID: <CAAVeFuKabYS8s42GghnDSNe_AVa5v+1w_OHiR6cEgdU0_Dz7UA@mail.gmail.com>
 References: <1467330612-26242-1-git-send-email-mmayer@broadcom.com>
-	<1467330612-26242-2-git-send-email-mmayer@broadcom.com>
+ <1467330612-26242-3-git-send-email-mmayer@broadcom.com>
 Mime-Version: 1.0
-Content-Type: text/plain
-Return-path: <linux-scsi-owner@vger.kernel.org>
-In-Reply-To: <1467330612-26242-2-git-send-email-mmayer@broadcom.com> (Markus
-	Mayer's message of "Thu, 30 Jun 2016 16:50:07 -0700")
-Sender: linux-scsi-owner@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1467330612-26242-3-git-send-email-mmayer@broadcom.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
 To: Markus Mayer <mmayer@broadcom.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>, Al Viro <viro@zeniv.linux.org.uk>, Chris Metcalf <cmetcalf@ezchip.com>, Kees Cook <keescook@chromium.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-acpi@vger.kernel.org, devel@acpica.org, speakup@linux-speakup.org, devel@driverdev.osuosl.org, linux-scsi@vger.kernel.org, target-devel@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Jul 01 2016, Markus Mayer <mmayer@broadcom.com> wrote:
-
-> Add a function called strtolower() to convert strings to lower case
-> in-place, overwriting the original string.
->
-> This seems to be a recurring requirement in the kernel that is
-> currently being solved by several duplicated implementations doing the
-> same thing.
->
-> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
-> ---
->  include/linux/string.h |  1 +
->  lib/string.c           | 14 ++++++++++++++
->  2 files changed, 15 insertions(+)
->
-> diff --git a/include/linux/string.h b/include/linux/string.h
-> index 26b6f6a..aad605e 100644
-> --- a/include/linux/string.h
-> +++ b/include/linux/string.h
-> @@ -116,6 +116,7 @@ extern void * memchr(const void *,int,__kernel_size_t);
->  #endif
->  void *memchr_inv(const void *s, int c, size_t n);
->  char *strreplace(char *s, char old, char new);
-> +char *strtolower(char *s);
->  
->  extern void kfree_const(const void *x);
->  
-> diff --git a/lib/string.c b/lib/string.c
-> index ed83562..6e3b560 100644
-> --- a/lib/string.c
-> +++ b/lib/string.c
-> @@ -952,3 +952,17 @@ char *strreplace(char *s, char old, char new)
->  	return s;
->  }
->  EXPORT_SYMBOL(strreplace);
-> +
-> +char *strtolower(char *s)
-> +{
-> +	char *p;
-> +
-> +        if (unlikely(!s))
-> +                return NULL;
-> +
-> +	for (p = s; *p; p++)
-> +		*p = tolower(*p);
-> +
-> +	return s;
-> +}
-> +EXPORT_SYMBOL(strtolower);
-
-A few suggestions: 
-
-- Make the function take separate src and dst parameters, making it explicitly
-  allowed to pass the same value (but not other kinds of overlap, of
-  course). That way one can avoid "strcpy(dst, src); strtolower(dst);".
-
-- Drop the NULL check. If someone does "foo->bar = something;
-  strtolower(foo->bar); put foo in a global data structure...", the
-  dereference of foo->bar may happen much later. Doing the NULL deref
-  sooner means it's much easier to find and fix the bug. (Also, other
-  str* and mem* functions don't usually check for NULL).
-
-- While it's true that strcpy and memcpy by definition return dst, that's
-  mostly useless. If you want it to return anything, please make it
-  something that might be used - for example, having stpcpy semantics
-  (returning a pointer to dst's terminating \0) means a caller might avoid
-  a strlen call.
-
-- Maybe do strtoupper while you're at it. Quick grepping didn't find any
-  use for the copy-while-lowercasing, but copy-while-uppercasing can at
-  least be used in drivers/acpi/acpica/nsrepair2.c,
-  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c,
-  drivers/power/power_supply_sysfs.c along with a bunch of inplace
-  uppercasing.
-
-
-Rasmus
+T24gRnJpLCBKdWwgMSwgMjAxNiBhdCA4OjUwIEFNLCBNYXJrdXMgTWF5ZXIgPG1tYXllckBicm9h
+ZGNvbS5jb20+IHdyb3RlOgo+IENhbGwgc3RydG9sb3dlcigpIHJhdGhlciB0aGFuIHdhbGtpbmcg
+dGhlIHN0cmluZyBleHBsaWNpdGx5IHRvIGNvbnZlcnQKPiBpdCB0byBsb3dlcmNhc2UuCj4KPiBT
+aWduZWQtb2ZmLWJ5OiBNYXJrdXMgTWF5ZXIgPG1tYXllckBicm9hZGNvbS5jb20+Cj4gLS0tCj4g
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9maXJtd2FyZS5jIHwgNyArLS0tLS0t
+Cj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgNiBkZWxldGlvbnMoLSkKPgo+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2NvcmUvZmlybXdhcmUuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9maXJtd2FyZS5jCj4gaW5kZXggMzRl
+Y2Q0YS4uYzUwNTk0YyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
+L2NvcmUvZmlybXdhcmUuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29y
+ZS9maXJtd2FyZS5jCj4gQEAgLTM2LDE2ICszNiwxMSBAQCBudmttX2Zpcm13YXJlX2dldChzdHJ1
+Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwgY29uc3QgY2hhciAqZnduYW1lLAo+ICB7Cj4gICAgICAg
+ICBjaGFyIGZbNjRdOwo+ICAgICAgICAgY2hhciBjbmFtZVsxNl07Cj4gLSAgICAgICBpbnQgaTsK
+Pgo+ICAgICAgICAgLyogQ29udmVydCBkZXZpY2UgbmFtZSB0byBsb3dlcmNhc2UgKi8KPiAgICAg
+ICAgIHN0cm5jcHkoY25hbWUsIGRldmljZS0+Y2hpcC0+bmFtZSwgc2l6ZW9mKGNuYW1lKSk7Cj4g
+ICAgICAgICBjbmFtZVtzaXplb2YoY25hbWUpIC0gMV0gPSAnXDAnOwo+IC0gICAgICAgaSA9IHN0
+cmxlbihjbmFtZSk7Cj4gLSAgICAgICB3aGlsZSAoaSkgewo+IC0gICAgICAgICAgICAgICAtLWk7
+Cj4gLSAgICAgICAgICAgICAgIGNuYW1lW2ldID0gdG9sb3dlcihjbmFtZVtpXSk7Cj4gLSAgICAg
+ICB9Cj4gKyAgICAgICBzdHJ0b2xvd2VyKGNuYW1lKTsKClRoaXMgZnVuY3Rpb24gZG9lc24ndCBz
+ZWVtIHRvIGV4aXN0IGFzIG9mIG5leHQtMjAxNjA3MDEsIHdoZXJlIGhhdmUKeW91IGZvdW5kIGl0
+PwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2
+ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
