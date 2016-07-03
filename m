@@ -1,14 +1,13 @@
-From: Michel Hermier <michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/6] lib: string: add function strtolower()
-Date: Sun, 3 Jul 2016 10:22:11 +0200
-Message-ID: <93cbe0a3-af3e-3209-b13a-5ccaced4061c@gmail.com>
-References: <1467330612-26242-1-git-send-email-mmayer@broadcom.com>
- <1467330612-26242-2-git-send-email-mmayer@broadcom.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94964] Tearing with opengl-hq and not with opengl on
+ Gnome with MPV
+Date: Sun, 03 Jul 2016 16:11:43 +0000
+Message-ID: <bug-94964-8800-y5PhtNtscZ@http.bugs.freedesktop.org/>
+References: <bug-94964-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0154191901=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1467330612-26242-2-git-send-email-mmayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
+In-Reply-To: <bug-94964-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +20,86 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-TGUgMDEvMDcvMjAxNiDDoCAwMTo1MCwgTWFya3VzIE1heWVyIGEgw6ljcml0IDoKPiBBZGQgYSBm
-dW5jdGlvbiBjYWxsZWQgc3RydG9sb3dlcigpIHRvIGNvbnZlcnQgc3RyaW5ncyB0byBsb3dlciBj
-YXNlCj4gaW4tcGxhY2UsIG92ZXJ3cml0aW5nIHRoZSBvcmlnaW5hbCBzdHJpbmcuCj4KPiBUaGlz
-IHNlZW1zIHRvIGJlIGEgcmVjdXJyaW5nIHJlcXVpcmVtZW50IGluIHRoZSBrZXJuZWwgdGhhdCBp
-cwo+IGN1cnJlbnRseSBiZWluZyBzb2x2ZWQgYnkgc2V2ZXJhbCBkdXBsaWNhdGVkIGltcGxlbWVu
-dGF0aW9ucyBkb2luZyB0aGUKPiBzYW1lIHRoaW5nLgo+Cj4gU2lnbmVkLW9mZi1ieTogTWFya3Vz
-IE1heWVyIDxtbWF5ZXJAYnJvYWRjb20uY29tPgo+IC0tLQo+ICAgaW5jbHVkZS9saW51eC9zdHJp
-bmcuaCB8ICAxICsKPiAgIGxpYi9zdHJpbmcuYyAgICAgICAgICAgfCAxNCArKysrKysrKysrKysr
-Kwo+ICAgMiBmaWxlcyBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspCj4KPiBkaWZmIC0tZ2l0IGEv
-aW5jbHVkZS9saW51eC9zdHJpbmcuaCBiL2luY2x1ZGUvbGludXgvc3RyaW5nLmgKPiBpbmRleCAy
-NmI2ZjZhLi5hYWQ2MDVlIDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUvbGludXgvc3RyaW5nLmgKPiAr
-KysgYi9pbmNsdWRlL2xpbnV4L3N0cmluZy5oCj4gQEAgLTExNiw2ICsxMTYsNyBAQCBleHRlcm4g
-dm9pZCAqIG1lbWNocihjb25zdCB2b2lkICosaW50LF9fa2VybmVsX3NpemVfdCk7Cj4gICAjZW5k
-aWYKPiAgIHZvaWQgKm1lbWNocl9pbnYoY29uc3Qgdm9pZCAqcywgaW50IGMsIHNpemVfdCBuKTsK
-PiAgIGNoYXIgKnN0cnJlcGxhY2UoY2hhciAqcywgY2hhciBvbGQsIGNoYXIgbmV3KTsKPiArY2hh
-ciAqc3RydG9sb3dlcihjaGFyICpzKTsKPiAgIAo+ICAgZXh0ZXJuIHZvaWQga2ZyZWVfY29uc3Qo
-Y29uc3Qgdm9pZCAqeCk7Cj4gICAKPiBkaWZmIC0tZ2l0IGEvbGliL3N0cmluZy5jIGIvbGliL3N0
-cmluZy5jCj4gaW5kZXggZWQ4MzU2Mi4uNmUzYjU2MCAxMDA2NDQKPiAtLS0gYS9saWIvc3RyaW5n
-LmMKPiArKysgYi9saWIvc3RyaW5nLmMKPiBAQCAtOTUyLDMgKzk1MiwxNyBAQCBjaGFyICpzdHJy
-ZXBsYWNlKGNoYXIgKnMsIGNoYXIgb2xkLCBjaGFyIG5ldykKPiAgIAlyZXR1cm4gczsKPiAgIH0K
-PiAgIEVYUE9SVF9TWU1CT0woc3RycmVwbGFjZSk7Cj4gKwo+ICtjaGFyICpzdHJ0b2xvd2VyKGNo
-YXIgKnMpCj4gK3sKPiArCWNoYXIgKnA7Cj4gKwo+ICsgICAgICAgIGlmICh1bmxpa2VseSghcykp
-Cj4gKyAgICAgICAgICAgICAgICByZXR1cm4gTlVMTDsKPiArCj4gKwlmb3IgKHAgPSBzOyAqcDsg
-cCsrKQo+ICsJCSpwID0gdG9sb3dlcigqcCk7Cj4gKwo+ICsJcmV0dXJuIHM7Cj4gK30KPiArRVhQ
-T1JUX1NZTUJPTChzdHJ0b2xvd2VyKTsKCldoeSBub3QgY2hhciAqc3RydG9sb3dlcihjaGFyICpk
-ZXN0LCBjb25zdCBjaGFyICpzcmMpID8gVGhpcyB3b3VsZCBhdm9pZCAKbXVsdGlwbGUgc3RyaW5n
-IGl0ZXJhdGlvbiBpbiB3aGF0IEkgYmVsaWV2ZSBpcyBhIGNvbW1vbiB1c2FnZTogc3RyaW5nIApk
-dXBsaWNhdGlvbiB0aGFuIHN0cnRvbG93ZXIuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+
+--===============0154191901==
+Content-Type: multipart/alternative; boundary="14675623021.cd6B8ED3.495";
+ charset="UTF-8"
+
+
+--14675623021.cd6B8ED3.495
+Date: Sun, 3 Jul 2016 16:11:42 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94964
+
+--- Comment #1 from Paviluf <jeremy9856-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I still have this problem on Fedora 24
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14675623021.cd6B8ED3.495
+Date: Sun, 3 Jul 2016 16:11:42 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Tearing with opengl-hq and not with opengl on Gnome with =
+MPV"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94964#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Tearing with opengl-hq and not with opengl on Gnome with =
+MPV"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94964">bug 94964<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jeremy9856&#64;gmail.com" title=3D"Paviluf &lt;jeremy9856&#64;gmail.com&gt;=
+"> <span class=3D"fn">Paviluf</span></a>
+</span></b>
+        <pre>I still have this problem on Fedora 24</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14675623021.cd6B8ED3.495--
+
+--===============0154191901==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0154191901==--
