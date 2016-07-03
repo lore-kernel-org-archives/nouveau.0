@@ -1,53 +1,54 @@
-From: Markus Mayer <markus.mayer@broadcom.com>
-Subject: Re: [Nouveau] [PATCH 2/6] drm/nouveau/core: make use of new
- strtolower() function
-Date: Sat, 2 Jul 2016 08:21:33 -0700
-Message-ID: <CAGt4E5uusNK3vtBo5N9FyUTuWCpMtQS1KC1mHVCq5iFzFJpJFg@mail.gmail.com>
+From: Michel Hermier <michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/6] lib: string: add function strtolower()
+Date: Sun, 3 Jul 2016 10:22:11 +0200
+Message-ID: <93cbe0a3-af3e-3209-b13a-5ccaced4061c@gmail.com>
 References: <1467330612-26242-1-git-send-email-mmayer@broadcom.com>
- <1467330612-26242-3-git-send-email-mmayer@broadcom.com> <CAAVeFuKabYS8s42GghnDSNe_AVa5v+1w_OHiR6cEgdU0_Dz7UA@mail.gmail.com>
+ <1467330612-26242-2-git-send-email-mmayer@broadcom.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAAVeFuKabYS8s42GghnDSNe_AVa5v+1w_OHiR6cEgdU0_Dz7UA@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Alexandre Courbot <gnurou@gmail.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Alexandre Courbot <acourbot@nvidia.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1467330612-26242-2-git-send-email-mmayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 1 July 2016 at 18:18, Alexandre Courbot <gnurou@gmail.com> wrote:
-> On Fri, Jul 1, 2016 at 8:50 AM, Markus Mayer <mmayer@broadcom.com> wrote:
->> Call strtolower() rather than walking the string explicitly to convert
->> it to lowercase.
->>
->> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
->> ---
->>  drivers/gpu/drm/nouveau/nvkm/core/firmware.c | 7 +------
->>  1 file changed, 1 insertion(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
->> index 34ecd4a..c50594c 100644
->> --- a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
->> +++ b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
->> @@ -36,16 +36,11 @@ nvkm_firmware_get(struct nvkm_device *device, const char *fwname,
->>  {
->>         char f[64];
->>         char cname[16];
->> -       int i;
->>
->>         /* Convert device name to lowercase */
->>         strncpy(cname, device->chip->name, sizeof(cname));
->>         cname[sizeof(cname) - 1] = '\0';
->> -       i = strlen(cname);
->> -       while (i) {
->> -               --i;
->> -               cname[i] = tolower(cname[i]);
->> -       }
->> +       strtolower(cname);
->
-> This function doesn't seem to exist as of next-20160701, where have
-> you found it?
-
-I didn't find it. I wrote it, because it didn't exist and I needed it.
-See: https://lkml.org/lkml/2016/6/30/727 and
-https://lkml.org/lkml/2016/6/30/733 (cover letter and first patch in
-series).
+TGUgMDEvMDcvMjAxNiDDoCAwMTo1MCwgTWFya3VzIE1heWVyIGEgw6ljcml0IDoKPiBBZGQgYSBm
+dW5jdGlvbiBjYWxsZWQgc3RydG9sb3dlcigpIHRvIGNvbnZlcnQgc3RyaW5ncyB0byBsb3dlciBj
+YXNlCj4gaW4tcGxhY2UsIG92ZXJ3cml0aW5nIHRoZSBvcmlnaW5hbCBzdHJpbmcuCj4KPiBUaGlz
+IHNlZW1zIHRvIGJlIGEgcmVjdXJyaW5nIHJlcXVpcmVtZW50IGluIHRoZSBrZXJuZWwgdGhhdCBp
+cwo+IGN1cnJlbnRseSBiZWluZyBzb2x2ZWQgYnkgc2V2ZXJhbCBkdXBsaWNhdGVkIGltcGxlbWVu
+dGF0aW9ucyBkb2luZyB0aGUKPiBzYW1lIHRoaW5nLgo+Cj4gU2lnbmVkLW9mZi1ieTogTWFya3Vz
+IE1heWVyIDxtbWF5ZXJAYnJvYWRjb20uY29tPgo+IC0tLQo+ICAgaW5jbHVkZS9saW51eC9zdHJp
+bmcuaCB8ICAxICsKPiAgIGxpYi9zdHJpbmcuYyAgICAgICAgICAgfCAxNCArKysrKysrKysrKysr
+Kwo+ICAgMiBmaWxlcyBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspCj4KPiBkaWZmIC0tZ2l0IGEv
+aW5jbHVkZS9saW51eC9zdHJpbmcuaCBiL2luY2x1ZGUvbGludXgvc3RyaW5nLmgKPiBpbmRleCAy
+NmI2ZjZhLi5hYWQ2MDVlIDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUvbGludXgvc3RyaW5nLmgKPiAr
+KysgYi9pbmNsdWRlL2xpbnV4L3N0cmluZy5oCj4gQEAgLTExNiw2ICsxMTYsNyBAQCBleHRlcm4g
+dm9pZCAqIG1lbWNocihjb25zdCB2b2lkICosaW50LF9fa2VybmVsX3NpemVfdCk7Cj4gICAjZW5k
+aWYKPiAgIHZvaWQgKm1lbWNocl9pbnYoY29uc3Qgdm9pZCAqcywgaW50IGMsIHNpemVfdCBuKTsK
+PiAgIGNoYXIgKnN0cnJlcGxhY2UoY2hhciAqcywgY2hhciBvbGQsIGNoYXIgbmV3KTsKPiArY2hh
+ciAqc3RydG9sb3dlcihjaGFyICpzKTsKPiAgIAo+ICAgZXh0ZXJuIHZvaWQga2ZyZWVfY29uc3Qo
+Y29uc3Qgdm9pZCAqeCk7Cj4gICAKPiBkaWZmIC0tZ2l0IGEvbGliL3N0cmluZy5jIGIvbGliL3N0
+cmluZy5jCj4gaW5kZXggZWQ4MzU2Mi4uNmUzYjU2MCAxMDA2NDQKPiAtLS0gYS9saWIvc3RyaW5n
+LmMKPiArKysgYi9saWIvc3RyaW5nLmMKPiBAQCAtOTUyLDMgKzk1MiwxNyBAQCBjaGFyICpzdHJy
+ZXBsYWNlKGNoYXIgKnMsIGNoYXIgb2xkLCBjaGFyIG5ldykKPiAgIAlyZXR1cm4gczsKPiAgIH0K
+PiAgIEVYUE9SVF9TWU1CT0woc3RycmVwbGFjZSk7Cj4gKwo+ICtjaGFyICpzdHJ0b2xvd2VyKGNo
+YXIgKnMpCj4gK3sKPiArCWNoYXIgKnA7Cj4gKwo+ICsgICAgICAgIGlmICh1bmxpa2VseSghcykp
+Cj4gKyAgICAgICAgICAgICAgICByZXR1cm4gTlVMTDsKPiArCj4gKwlmb3IgKHAgPSBzOyAqcDsg
+cCsrKQo+ICsJCSpwID0gdG9sb3dlcigqcCk7Cj4gKwo+ICsJcmV0dXJuIHM7Cj4gK30KPiArRVhQ
+T1JUX1NZTUJPTChzdHJ0b2xvd2VyKTsKCldoeSBub3QgY2hhciAqc3RydG9sb3dlcihjaGFyICpk
+ZXN0LCBjb25zdCBjaGFyICpzcmMpID8gVGhpcyB3b3VsZCBhdm9pZCAKbXVsdGlwbGUgc3RyaW5n
+IGl0ZXJhdGlvbiBpbiB3aGF0IEkgYmVsaWV2ZSBpcyBhIGNvbW1vbiB1c2FnZTogc3RyaW5nIApk
+dXBsaWNhdGlvbiB0aGFuIHN0cnRvbG93ZXIuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
