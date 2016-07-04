@@ -1,66 +1,241 @@
-From: Alexandre Courbot <gnurou@gmail.com>
-Subject: Re: [Nouveau] [PATCH 2/6] drm/nouveau/core: make use of new
- strtolower() function
-Date: Mon, 4 Jul 2016 12:39:57 +0900
-Message-ID: <CAAVeFuJGrD=aoPPnTJBicsDmfExqtHpwORtW8XT0Ji=NYjW8bA@mail.gmail.com>
-References: <1467330612-26242-1-git-send-email-mmayer@broadcom.com>
- <1467330612-26242-3-git-send-email-mmayer@broadcom.com>
- <CAAVeFuKabYS8s42GghnDSNe_AVa5v+1w_OHiR6cEgdU0_Dz7UA@mail.gmail.com>
- <CAGt4E5uusNK3vtBo5N9FyUTuWCpMtQS1KC1mHVCq5iFzFJpJFg@mail.gmail.com>
- <CAAVeFu+fwtEXG2sWkCqKDsybykeG_pvUWKCL26mYXpzEGi7vtQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96802] New: Upgrading mesa from 11.0.6 -> 11.2.2
+ causes graphics deadlock
+Date: Mon, 04 Jul 2016 13:19:35 +0000
+Message-ID: <bug-96802-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAAVeFu+fwtEXG2sWkCqKDsybykeG_pvUWKCL26mYXpzEGi7vtQ@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Markus Mayer <markus.mayer@broadcom.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1192462677=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdWwgNCwgMjAxNiBhdCAxMDozNyBBTSwgQWxleGFuZHJlIENvdXJib3QgPGdudXJv
-dUBnbWFpbC5jb20+IHdyb3RlOgo+IE9uIFN1biwgSnVsIDMsIDIwMTYgYXQgMTI6MjEgQU0sIE1h
-cmt1cyBNYXllciA8bWFya3VzLm1heWVyQGJyb2FkY29tLmNvbT4gd3JvdGU6Cj4+IE9uIDEgSnVs
-eSAyMDE2IGF0IDE4OjE4LCBBbGV4YW5kcmUgQ291cmJvdCA8Z251cm91QGdtYWlsLmNvbT4gd3Jv
-dGU6Cj4+PiBPbiBGcmksIEp1bCAxLCAyMDE2IGF0IDg6NTAgQU0sIE1hcmt1cyBNYXllciA8bW1h
-eWVyQGJyb2FkY29tLmNvbT4gd3JvdGU6Cj4+Pj4gQ2FsbCBzdHJ0b2xvd2VyKCkgcmF0aGVyIHRo
-YW4gd2Fsa2luZyB0aGUgc3RyaW5nIGV4cGxpY2l0bHkgdG8gY29udmVydAo+Pj4+IGl0IHRvIGxv
-d2VyY2FzZS4KPj4+Pgo+Pj4+IFNpZ25lZC1vZmYtYnk6IE1hcmt1cyBNYXllciA8bW1heWVyQGJy
-b2FkY29tLmNvbT4KPj4+PiAtLS0KPj4+PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9j
-b3JlL2Zpcm13YXJlLmMgfCA3ICstLS0tLS0KPj4+PiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0
-aW9uKCspLCA2IGRlbGV0aW9ucygtKQo+Pj4+Cj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L252a20vY29yZS9maXJtd2FyZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMKPj4+PiBpbmRleCAzNGVjZDRhLi5jNTA1OTRjIDEwMDY0
-NAo+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9maXJtd2FyZS5j
-Cj4+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMK
-Pj4+PiBAQCAtMzYsMTYgKzM2LDExIEBAIG52a21fZmlybXdhcmVfZ2V0KHN0cnVjdCBudmttX2Rl
-dmljZSAqZGV2aWNlLCBjb25zdCBjaGFyICpmd25hbWUsCj4+Pj4gIHsKPj4+PiAgICAgICAgIGNo
-YXIgZls2NF07Cj4+Pj4gICAgICAgICBjaGFyIGNuYW1lWzE2XTsKPj4+PiAtICAgICAgIGludCBp
-Owo+Pj4+Cj4+Pj4gICAgICAgICAvKiBDb252ZXJ0IGRldmljZSBuYW1lIHRvIGxvd2VyY2FzZSAq
-Lwo+Pj4+ICAgICAgICAgc3RybmNweShjbmFtZSwgZGV2aWNlLT5jaGlwLT5uYW1lLCBzaXplb2Yo
-Y25hbWUpKTsKPj4+PiAgICAgICAgIGNuYW1lW3NpemVvZihjbmFtZSkgLSAxXSA9ICdcMCc7Cj4+
-Pj4gLSAgICAgICBpID0gc3RybGVuKGNuYW1lKTsKPj4+PiAtICAgICAgIHdoaWxlIChpKSB7Cj4+
-Pj4gLSAgICAgICAgICAgICAgIC0taTsKPj4+PiAtICAgICAgICAgICAgICAgY25hbWVbaV0gPSB0
-b2xvd2VyKGNuYW1lW2ldKTsKPj4+PiAtICAgICAgIH0KPj4+PiArICAgICAgIHN0cnRvbG93ZXIo
-Y25hbWUpOwo+Pj4KPj4+IFRoaXMgZnVuY3Rpb24gZG9lc24ndCBzZWVtIHRvIGV4aXN0IGFzIG9m
-IG5leHQtMjAxNjA3MDEsIHdoZXJlIGhhdmUKPj4+IHlvdSBmb3VuZCBpdD8KPj4KPj4gSSBkaWRu
-J3QgZmluZCBpdC4gSSB3cm90ZSBpdCwgYmVjYXVzZSBpdCBkaWRuJ3QgZXhpc3QgYW5kIEkgbmVl
-ZGVkIGl0Lgo+PiBTZWU6IGh0dHBzOi8vbGttbC5vcmcvbGttbC8yMDE2LzYvMzAvNzI3IGFuZAo+
-PiBodHRwczovL2xrbWwub3JnL2xrbWwvMjAxNi82LzMwLzczMyAoY292ZXIgbGV0dGVyIGFuZCBm
-aXJzdCBwYXRjaCBpbgo+PiBzZXJpZXMpLgo+Cj4gQWgsIHJpZ2h0IC0gd291bGQgaGF2ZSBiZWVu
-IGVhc2llciB0byB1bmRlcnN0YW5kIGlmIHlvdSBoYWQgc2VudCB0aGUKPiB3aG9sZSBzZXJpZXMg
-KG9yIGF0IGxlYXN0IHBhdGNoZXMgMCB0byAyKSB0byB1cyBhcyB3ZWxsLiBQbGVhc2UgZG8KPiB0
-aGF0IGZvciB0aGUgbmV4dCB2ZXJzaW9uLgoKLi4uIGZvdW5kIHBhdGNoZXMgMCBhbmQgMSBpbiBt
-eSBzcGFtIGZvbGRlciwgZm9yIHNvbWUgd2VpcmQgcmVhc29uLgpBcG9sb2dpZXMgZm9yIGp1bXBp
-bmcgdG8gY29uY2x1c2lvbnMuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ry
-aS1kZXZlbAo=
+
+--===============1192462677==
+Content-Type: multipart/alternative; boundary="14676383750.304177aC.23130";
+ charset="UTF-8"
+
+
+--14676383750.304177aC.23130
+Date: Mon, 4 Jul 2016 13:19:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96802
+
+            Bug ID: 96802
+           Summary: Upgrading mesa from 11.0.6 -> 11.2.2 causes graphics
+                    deadlock
+           Product: Mesa
+           Version: 11.2
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: ian.kumlien-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 124894
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124894&action=3Dedit
+dmesg output
+
+Hi, I have tested this several times with several different kernels, always
+with the same result. It deadlocks wayland or X within seconds after openin=
+g a
+terminal or chrome.
+
+It starts out like this:
+[  108.167312] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[  108.167328] nouveau 0000:01:00.0: fifo: msppp engine fault on channel 12,
+recovering...
+[  118.871915] nouveau 0000:01:00.0: multiqueue0:src[7039]: failed to idle
+channel 12 [multiqueue0:src[7039]]
+[  133.873009] nouveau 0000:01:00.0: multiqueue0:src[7039]: failed to idle
+channel 12 [multiqueue0:src[7039]]
+[  134.242698] nouveau 0000:01:00.0: mspdec: intr 028c0000
+[  134.242744] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 08=
+4048
+[ IBUS ]
+[  138.538241] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[  138.538259] nouveau 0000:01:00.0: fifo: mspdec engine fault on channel 1=
+2,
+recovering...
+[  140.537498] nouveau 0000:01:00.0: fifo: runlist update timeout
+
+And then it all breaks down and never recovers (the machine is reachable but
+can't reboot properly afterwards)
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14676383750.304177aC.23130
+Date: Mon, 4 Jul 2016 13:19:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Upgrading mesa from 11.0.6 -&gt; 11.2.2 causes graphics d=
+eadlock"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96802">96802</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Upgrading mesa from 11.0.6 -&gt; 11.2.2 causes graphics deadl=
+ock
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>11.2
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ian.kumlien&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124894=
+" name=3D"attach_124894" title=3D"dmesg output">attachment 124894</a> <a hr=
+ef=3D"attachment.cgi?id=3D124894&amp;action=3Dedit" title=3D"dmesg output">=
+[details]</a></span>
+dmesg output
+
+Hi, I have tested this several times with several different kernels, always
+with the same result. It deadlocks wayland or X within seconds after openin=
+g a
+terminal or chrome.
+
+It starts out like this:
+[  108.167312] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[  108.167328] nouveau 0000:01:00.0: fifo: msppp engine fault on channel 12,
+recovering...
+[  118.871915] nouveau 0000:01:00.0: multiqueue0:src[7039]: failed to idle
+channel 12 [multiqueue0:src[7039]]
+[  133.873009] nouveau 0000:01:00.0: multiqueue0:src[7039]: failed to idle
+channel 12 [multiqueue0:src[7039]]
+[  134.242698] nouveau 0000:01:00.0: mspdec: intr 028c0000
+[  134.242744] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 08=
+4048
+[ IBUS ]
+[  138.538241] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[  138.538259] nouveau 0000:01:00.0: fifo: mspdec engine fault on channel 1=
+2,
+recovering...
+[  140.537498] nouveau 0000:01:00.0: fifo: runlist update timeout
+
+And then it all breaks down and never recovers (the machine is reachable but
+can't reboot properly afterwards)</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14676383750.304177aC.23130--
+
+--===============1192462677==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1192462677==--
