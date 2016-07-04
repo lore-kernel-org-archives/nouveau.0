@@ -1,11 +1,17 @@
-From: thierry DeTheGeek <dethegeek-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Displays goes in standby mode on boot when HDMI/DVI used
-	(VM + PCI passthrough)
-Date: Sun, 3 Jul 2016 20:19:24 +0200
-Message-ID: <CANv3NVff18DoQh6UJ096+8Qp1XrniRkm3wAqZWHj6KJUHLQS7Q@mail.gmail.com>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 2/6] drm/nouveau/core: make use of new
+ strtolower() function
+Date: Mon, 4 Jul 2016 10:37:39 +0900
+Message-ID: <CAAVeFu+fwtEXG2sWkCqKDsybykeG_pvUWKCL26mYXpzEGi7vtQ@mail.gmail.com>
+References: <1467330612-26242-1-git-send-email-mmayer@broadcom.com>
+ <1467330612-26242-3-git-send-email-mmayer@broadcom.com>
+ <CAAVeFuKabYS8s42GghnDSNe_AVa5v+1w_OHiR6cEgdU0_Dz7UA@mail.gmail.com>
+ <CAGt4E5uusNK3vtBo5N9FyUTuWCpMtQS1KC1mHVCq5iFzFJpJFg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1182332200=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAGt4E5uusNK3vtBo5N9FyUTuWCpMtQS1KC1mHVCq5iFzFJpJFg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,82 +21,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Markus Mayer <markus.mayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1182332200==
-Content-Type: multipart/alternative; boundary=001a1146f2b4c27ec10536bf44f5
-
---001a1146f2b4c27ec10536bf44f5
-Content-Type: text/plain; charset=UTF-8
-
-Hi
-
-I have an issue with a Nvidia GeForce 710 graphic card since several weeks,
-probably related to a bug in Nouveau.
-
-Here is my setup :
-A Computer based on X58 chipset running Proxmox VE 4.x. The graphic card is
-used by a qemu-kvm virtual machine running Debian 9 testing thanks to PCI
-passthrough.
-
-The issue : the graphic card has 1 VGA, 1 DVI, 1 HDMI outputs. If a DVI or
-HDMI monitor is plugged when the guest OS boots, all connected displays
-switch to standby mode, but the guest VM is alive. I can open a ssh session)
-
-I found several workarounds :
-- disable framebuffer in the guest OS (therefore disabling Nouveau)
-- plug the HDMI or DVI monitor after the guest is ready, and detect the
-monitors in XFCE
-- install nvidia-driver package (and disable Nouveau)
-
-- disabling framebuffer is not an acceptable option for me.
-- unpluging / repluging a monitor est quite annoying, the not an option.
-- the nvidia-driver is a non-free package, the I wish to find a better
-solution is possible.
-
-Is there an other know orkaround ?
-
-If it is a bug, I need help to gather useful data for developers and fill a
-bug report
-
-Thank you very much in advance.
-
---001a1146f2b4c27ec10536bf44f5
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi<div><br></div><div>I have an issue with a Nvidia GeForc=
-e 710 graphic card since several weeks, probably related to a bug in Nouvea=
-u.<br></div><div><br></div><div>Here is my setup :</div><div>A Computer bas=
-ed on X58 chipset running Proxmox VE 4.x. The graphic card is used by a qem=
-u-kvm virtual machine running Debian 9 testing thanks to PCI passthrough.<b=
-r></div><div><br></div><div>The issue : the graphic card has 1 VGA, 1 DVI, =
-1 HDMI outputs. If a DVI or HDMI monitor is plugged when the guest OS boots=
-, all connected displays switch to standby mode, but the guest VM is alive.=
- I can open a ssh session)</div><div><br></div><div>I found several workaro=
-unds :</div><div>- disable framebuffer in the guest OS (therefore disabling=
- Nouveau)</div><div>- plug the HDMI or DVI monitor after the guest is ready=
-, and detect the monitors in XFCE</div><div>- install nvidia-driver package=
- (and disable Nouveau)</div><div><br></div><div>- disabling framebuffer is =
-not an acceptable option for me.</div><div>- unpluging / repluging a monito=
-r est quite annoying, the not an option.</div><div>- the nvidia-driver is a=
- non-free package, the I wish to find a better solution is possible.<br></d=
-iv><div><br></div><div>Is there an other know orkaround ?</div><div><br></d=
-iv><div>If it is a bug, I need help to gather useful data for developers an=
-d fill a bug report</div><div><br></div><div>Thank you very much in advance=
-.</div></div>
-
---001a1146f2b4c27ec10536bf44f5--
-
---===============1182332200==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1182332200==--
+T24gU3VuLCBKdWwgMywgMjAxNiBhdCAxMjoyMSBBTSwgTWFya3VzIE1heWVyIDxtYXJrdXMubWF5
+ZXJAYnJvYWRjb20uY29tPiB3cm90ZToKPiBPbiAxIEp1bHkgMjAxNiBhdCAxODoxOCwgQWxleGFu
+ZHJlIENvdXJib3QgPGdudXJvdUBnbWFpbC5jb20+IHdyb3RlOgo+PiBPbiBGcmksIEp1bCAxLCAy
+MDE2IGF0IDg6NTAgQU0sIE1hcmt1cyBNYXllciA8bW1heWVyQGJyb2FkY29tLmNvbT4gd3JvdGU6
+Cj4+PiBDYWxsIHN0cnRvbG93ZXIoKSByYXRoZXIgdGhhbiB3YWxraW5nIHRoZSBzdHJpbmcgZXhw
+bGljaXRseSB0byBjb252ZXJ0Cj4+PiBpdCB0byBsb3dlcmNhc2UuCj4+Pgo+Pj4gU2lnbmVkLW9m
+Zi1ieTogTWFya3VzIE1heWVyIDxtbWF5ZXJAYnJvYWRjb20uY29tPgo+Pj4gLS0tCj4+PiAgZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMgfCA3ICstLS0tLS0KPj4+
+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDYgZGVsZXRpb25zKC0pCj4+Pgo+Pj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9maXJtd2FyZS5j
+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMKPj4+IGluZGV4
+IDM0ZWNkNGEuLmM1MDU5NGMgMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9udmttL2NvcmUvZmlybXdhcmUuYwo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bnZrbS9jb3JlL2Zpcm13YXJlLmMKPj4+IEBAIC0zNiwxNiArMzYsMTEgQEAgbnZrbV9maXJtd2Fy
+ZV9nZXQoc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UsIGNvbnN0IGNoYXIgKmZ3bmFtZSwKPj4+
+ICB7Cj4+PiAgICAgICAgIGNoYXIgZls2NF07Cj4+PiAgICAgICAgIGNoYXIgY25hbWVbMTZdOwo+
+Pj4gLSAgICAgICBpbnQgaTsKPj4+Cj4+PiAgICAgICAgIC8qIENvbnZlcnQgZGV2aWNlIG5hbWUg
+dG8gbG93ZXJjYXNlICovCj4+PiAgICAgICAgIHN0cm5jcHkoY25hbWUsIGRldmljZS0+Y2hpcC0+
+bmFtZSwgc2l6ZW9mKGNuYW1lKSk7Cj4+PiAgICAgICAgIGNuYW1lW3NpemVvZihjbmFtZSkgLSAx
+XSA9ICdcMCc7Cj4+PiAtICAgICAgIGkgPSBzdHJsZW4oY25hbWUpOwo+Pj4gLSAgICAgICB3aGls
+ZSAoaSkgewo+Pj4gLSAgICAgICAgICAgICAgIC0taTsKPj4+IC0gICAgICAgICAgICAgICBjbmFt
+ZVtpXSA9IHRvbG93ZXIoY25hbWVbaV0pOwo+Pj4gLSAgICAgICB9Cj4+PiArICAgICAgIHN0cnRv
+bG93ZXIoY25hbWUpOwo+Pgo+PiBUaGlzIGZ1bmN0aW9uIGRvZXNuJ3Qgc2VlbSB0byBleGlzdCBh
+cyBvZiBuZXh0LTIwMTYwNzAxLCB3aGVyZSBoYXZlCj4+IHlvdSBmb3VuZCBpdD8KPgo+IEkgZGlk
+bid0IGZpbmQgaXQuIEkgd3JvdGUgaXQsIGJlY2F1c2UgaXQgZGlkbid0IGV4aXN0IGFuZCBJIG5l
+ZWRlZCBpdC4KPiBTZWU6IGh0dHBzOi8vbGttbC5vcmcvbGttbC8yMDE2LzYvMzAvNzI3IGFuZAo+
+IGh0dHBzOi8vbGttbC5vcmcvbGttbC8yMDE2LzYvMzAvNzMzIChjb3ZlciBsZXR0ZXIgYW5kIGZp
+cnN0IHBhdGNoIGluCj4gc2VyaWVzKS4KCkFoLCByaWdodCAtIHdvdWxkIGhhdmUgYmVlbiBlYXNp
+ZXIgdG8gdW5kZXJzdGFuZCBpZiB5b3UgaGFkIHNlbnQgdGhlCndob2xlIHNlcmllcyAob3IgYXQg
+bGVhc3QgcGF0Y2hlcyAwIHRvIDIpIHRvIHVzIGFzIHdlbGwuIFBsZWFzZSBkbwp0aGF0IGZvciB0
+aGUgbmV4dCB2ZXJzaW9uLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
