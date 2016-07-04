@@ -1,106 +1,51 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93629] [NVE6] complete system freeze,
- PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
-Date: Mon, 04 Jul 2016 18:02:36 +0000
-Message-ID: <bug-93629-8800-tVBupROiBE@http.bugs.freedesktop.org/>
-References: <bug-93629-8800@http.bugs.freedesktop.org/>
+From: Markus Mayer <markus.mayer@broadcom.com>
+Subject: Re: [PATCH 1/6] lib: string: add function strtolower()
+Date: Mon, 4 Jul 2016 13:18:18 -0700
+Message-ID: <CAGt4E5sgTbwqb+paF2NaJP_vgQwrvGpTtzLAs28LapGRqMaKFA@mail.gmail.com>
+References: <1467330612-26242-1-git-send-email-mmayer@broadcom.com>
+ <1467330612-26242-2-git-send-email-mmayer@broadcom.com> <8737nt83sc.fsf@rasmusvillemoes.dk>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0216435762=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <target-devel-owner@vger.kernel.org>
+In-Reply-To: <8737nt83sc.fsf@rasmusvillemoes.dk>
+Sender: target-devel-owner@vger.kernel.org
+To: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc: Andrew Morton <akpm@linux-foundation.org>, Al Viro <viro@zeniv.linux.org.uk>, Chris Metcalf <cmetcalf@ezchip.com>, Kees Cook <keescook@chromium.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-acpi@vger.kernel.org, devel@acpica.org, speakup@linux-speakup.org, devel@driverdev.osuosl.org, linux-scsi@vger.kernel.org, target-devel@vger.kernel.org, Linux Kernel <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
+On 1 July 2016 at 14:08, Rasmus Villemoes <linux@rasmusvillemoes.dk> wrote:
 
---===============0216435762==
-Content-Type: multipart/alternative; boundary="14676553564.971F.25313";
- charset="UTF-8"
+> A few suggestions:
+>
+> - Make the function take separate src and dst parameters, making it explicitly
+>   allowed to pass the same value (but not other kinds of overlap, of
+>   course). That way one can avoid "strcpy(dst, src); strtolower(dst);".
+>
+> - Drop the NULL check. If someone does "foo->bar = something;
+>   strtolower(foo->bar); put foo in a global data structure...", the
+>   dereference of foo->bar may happen much later. Doing the NULL deref
+>   sooner means it's much easier to find and fix the bug. (Also, other
+>   str* and mem* functions don't usually check for NULL).
+>
+> - While it's true that strcpy and memcpy by definition return dst, that's
+>   mostly useless. If you want it to return anything, please make it
+>   something that might be used - for example, having stpcpy semantics
+>   (returning a pointer to dst's terminating \0) means a caller might avoid
+>   a strlen call.
+>
+> - Maybe do strtoupper while you're at it. Quick grepping didn't find any
+>   use for the copy-while-lowercasing, but copy-while-uppercasing can at
+>   least be used in drivers/acpi/acpica/nsrepair2.c,
+>   drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.c,
+>   drivers/power/power_supply_sysfs.c along with a bunch of inplace
+>   uppercasing.
+>
+>
+> Rasmus
 
+Thanks for the suggestions to you and Jani. Based on the feedback I
+received, I am reworking the series now and will post v2 probably
+tomorrow.
 
---14676553564.971F.25313
-Date: Mon, 4 Jul 2016 18:02:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
-
---- Comment #33 from Ehsan Azar <dashesy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-If there is a work-in-progress kernel module, I will gladly test it for you,
-thanks
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14676553564.971F.25313
-Date: Mon, 4 Jul 2016 18:02:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c33">Commen=
-t # 33</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dashesy&#64;gmail.com" title=3D"Ehsan Azar &lt;dashesy&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ehsan Azar</span></a>
-</span></b>
-        <pre>If there is a work-in-progress kernel module, I will gladly te=
-st it for you,
-thanks</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14676553564.971F.25313--
-
---===============0216435762==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0216435762==--
+Regards,
+-Markus
