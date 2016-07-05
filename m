@@ -1,44 +1,52 @@
-From: Markus Mayer <mmayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
-Subject: [PATCH v2 6/7] drm/nouveau/fifo/gk104: make use of new
-	strcpytoupper() function
-Date: Tue,  5 Jul 2016 13:47:10 -0700
-Message-ID: <1467751631-22878-7-git-send-email-mmayer@broadcom.com>
+From: Joe Perches <joe@perches.com>
+Subject: Re: [PATCH v2 0/7] lib: string: add functions to case-convert
+ strings
+Date: Tue, 05 Jul 2016 15:14:34 -0700
+Message-ID: <1467756874.16342.11.camel@perches.com>
 References: <1467751631-22878-1-git-send-email-mmayer@broadcom.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1467751631-22878-1-git-send-email-mmayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Return-path: <target-devel-owner@vger.kernel.org>
+In-Reply-To: <1467751631-22878-1-git-send-email-mmayer@broadcom.com>
+Sender: target-devel-owner@vger.kernel.org
+To: Markus Mayer <mmayer@broadcom.com>, Andrew Morton <akpm@linux-foundation.org>, Al Viro <viro@zeniv.linux.org.uk>, Rasmus Villemoes <linux@rasmusvillemoes.dk>, Chris Metcalf <cmetcalf@ezchip.com>, Kees Cook <keescook@chromium.org>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-acpi@vger.kernel.org, speakup@linux-speakup.org, devel@driverdev.osuosl.org, linux-scsi@vger.kernel.org, target-devel@vger.kernel.org, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Q2FsbCBzdHJjcHl0b3VwcGVyKCkgcmF0aGVyIHRoYW4gY29weWluZyB0aGUgc3RyaW5nIGV4cGxp
-Y2l0bHkgYW5kIHRoZW4Kd2Fsa2luZyBpdCB0byBjb252ZXJ0IGl0IHRvIHVwcGVyY2FzZS4KClNp
-Z25lZC1vZmYtYnk6IE1hcmt1cyBNYXllciA8bW1heWVyQGJyb2FkY29tLmNvbT4KLS0tCiBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9maWZvL2drMTA0LmMgfCA1ICstLS0tCiAx
-IGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmlmby9nazEwNC5jIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmlmby9nazEwNC5jCmluZGV4IDc0M2Yz
-YTEuLjhkMDEwMzIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5n
-aW5lL2ZpZm8vZ2sxMDQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2lu
-ZS9maWZvL2drMTA0LmMKQEAgLTMzMiwxMCArMzMyLDcgQEAgZ2sxMDRfZmlmb19pbnRyX2ZhdWx0
-KHN0cnVjdCBnazEwNF9maWZvICpmaWZvLCBpbnQgdW5pdCkKIAkJZW51bSBudmttX2RldmlkeCBl
-bmdpZHggPSBudmttX3RvcF9mYXVsdChkZXZpY2UtPnRvcCwgdW5pdCk7CiAJCWlmIChlbmdpZHgg
-PCBOVktNX1NVQkRFVl9OUikgewogCQkJY29uc3QgY2hhciAqc3JjID0gbnZrbV9zdWJkZXZfbmFt
-ZVtlbmdpZHhdOwotCQkJY2hhciAqZHN0ID0gZW47Ci0JCQlkbyB7Ci0JCQkJKmRzdCsrID0gdG91
-cHBlcigqc3JjKyspOwotCQkJfSB3aGlsZSgqc3JjKTsKKwkJCXN0cmNweXRvdXBwZXIoZW4sIHNy
-Yyk7CiAJCQllbmdpbmUgPSBudmttX2RldmljZV9lbmdpbmUoZGV2aWNlLCBlbmdpZHgpOwogCQl9
-CiAJfSBlbHNlIHsKLS0gCjIuNy40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+On Tue, 2016-07-05 at 13:47 -0700, Markus Mayer wrote:
+> This series introduces a family of generic string case conversion
+> functions. This kind of functionality is needed in several places in
+> the kernel. Right now, everybody seems to be implementing their own
+> copy of this functionality.
+>=20
+> Based on the discussion of the previous version of this series[1] and
+> the use cases found in the kernel, it does look like having several
+> flavours of case conversion functions is beneficial. The use cases fa=
+ll
+> into three categories:
+> =A0=A0=A0=A0- copying a string and converting the case while specifyi=
+ng a
+> =A0=A0=A0=A0=A0=A0maximum length to mimic strncpy()
+> =A0=A0=A0=A0- copying a string and converting the case without specif=
+ying a
+> =A0=A0=A0=A0=A0=A0length to mimic strcpy()
+> =A0=A0=A0=A0- converting the case of a string in-place (i.e. modifyin=
+g the
+> =A0=A0=A0=A0=A0=A0string that was passed in)
+>=20
+> Consequently, I am proposing these new functions:
+> =A0=A0=A0=A0char *strncpytoupper(char *dst, const char *src, size_t l=
+en);
+> =A0=A0=A0=A0char *strncpytolower(char *dst, const char *src, size_t l=
+en);
+> =A0=A0=A0=A0char *strcpytoupper(char *dst, const char *src);
+> =A0=A0=A0=A0char *strcpytolower(char *dst, const char *src);
+> =A0=A0=A0=A0char *strtoupper(char *s);
+> =A0=A0=A0=A0char *strtolower(char *s);
+
+I think there isn't much value in anything other
+than strto<upper|lower>.
+
+Using str[n]cpy followed by strto<upper|lower> is
+pretty obvious and rarely used anyway.
