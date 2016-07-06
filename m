@@ -1,14 +1,11 @@
 From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH -next] drm/nouveau/device: fix return value
-	check in nvkm_device_tegra_probe_iommu()
-Date: Wed, 6 Jul 2016 22:32:54 +0900
-Message-ID: <CAAVeFuLMDU2qn4KACcGagNirB0EKvAex1GJf-Qpp4C-C0qEvJQ@mail.gmail.com>
-References: <1467807785-32126-1-git-send-email-weiyj_lk@163.com>
+Subject: [PATCH] ibus/gk20a: use udelay() in interrupt context
+Date: Wed,  6 Jul 2016 23:04:56 +0900
+Message-ID: <20160706140456.19168-1-acourbot@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1467807785-32126-1-git-send-email-weiyj_lk-9Onoh4P/yGk@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,16 +15,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: weiyj_lk-9Onoh4P/yGk@public.gmane.org
-Cc: Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Wei Yongjun <yongjun_wei-zrsr2BFq86L20UzCJQGyNP8+0UxHXcjY@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKdWwgNiwgMjAxNiBhdCA5OjIzIFBNLCAgPHdlaXlqX2xrQDE2My5jb20+IHdyb3Rl
-Ogo+IEZyb206IFdlaSBZb25nanVuIDx5b25nanVuX3dlaUB0cmVuZG1pY3JvLmNvbS5jbj4KPgo+
-IEluIGNhc2Ugb2YgZXJyb3IsIHRoZSBmdW5jdGlvbiBpb21tdV9kb21haW5fYWxsb2MoKSByZXR1
-cm5zIE5VTEwKPiBwb2ludGVyIG5vdCBFUlJfUFRSKCkuIFRoZSBJU19FUlIoKSB0ZXN0IGluIHRo
-ZSByZXR1cm4gdmFsdWUgY2hlY2sKPiBzaG91bGQgYmUgcmVwbGFjZWQgd2l0aCBOVUxMIHRlc3Qu
-CgpSZXZpZXdlZC1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+CgpU
-aGFua3MhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
-dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+Z2syMGFfaWJ1c19pbml0X2lidXNfcmluZygpIGNhbiBiZSBjYWxsZWQgZnJvbSBnazIwYV9pYnVz
+X2ludHIoKSwgaW4Kbm9uLWludGVycnVwdGlibGUgY29udGV4dC4gUmVwbGFjZSB1c2Ugb2YgdXNs
+ZWVwX3JhbmdlKCkgd2l0aCB1ZGVsYXkoKS4KClJlcG9ydGVkLWJ5OiBUaGllcnJ5IFJlZGluZyA8
+dHJlZGluZ0BudmlkaWEuY29tPgpTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNv
+dXJib3RAbnZpZGlhLmNvbT4KLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVzL2drMjBh
+LmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkK
+CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVzL2drMjBhLmMgYi9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9pYnVzL2drMjBhLmMKaW5kZXggYjcxNTliMy4uMWE0YWI4MiAx
+MDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9nazIwYS5jCisrKyBiL2Ry
+bS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvZ2syMGEuYwpAQCAtMjksNyArMjksNyBAQCBnazIw
+YV9pYnVzX2luaXRfaWJ1c19yaW5nKHN0cnVjdCBudmttX3N1YmRldiAqaWJ1cykKIAludmttX21h
+c2soZGV2aWNlLCAweDEzNzI1MCwgMHgzZiwgMCk7CiAKIAludmttX21hc2soZGV2aWNlLCAweDAw
+MDIwMCwgMHgyMCwgMCk7Ci0JdXNsZWVwX3JhbmdlKDIwLCAzMCk7CisJdWRlbGF5KDIwKTsKIAlu
+dmttX21hc2soZGV2aWNlLCAweDAwMDIwMCwgMHgyMCwgMHgyMCk7CiAKIAludmttX3dyMzIoZGV2
+aWNlLCAweDEyMDA0YywgMHg0KTsKLS0gCjIuOS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
