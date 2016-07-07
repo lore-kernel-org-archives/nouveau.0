@@ -1,56 +1,140 @@
-From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Subject: [PATCH v2 0/4] nouveau RPM fixes for Optimus
-Date: Fri,  8 Jul 2016 01:38:23 +0200
-Message-ID: <20160707233827.2100-1-peter@lekensteyn.nl>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+From: Peter Wu <peter@lekensteyn.nl>
+Subject: [PATCH v2 4/4] drm/nouveau/acpi: fix lockup with PCIe runtime PM
+Date: Fri,  8 Jul 2016 01:38:27 +0200
+Message-ID: <20160707233827.2100-5-peter@lekensteyn.nl>
+References: <20160707233827.2100-1-peter@lekensteyn.nl>
+Return-path: <linux-pci-owner@vger.kernel.org>
+In-Reply-To: <20160707233827.2100-1-peter@lekensteyn.nl>
+Sender: linux-pci-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Dave Airlie <airlied@redhat.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, Bjorn Helgaas <helgaas@kernel.org>, linux-pci@vger.kernel.org, linux-pm@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpIZXJlIGFyZSB0d28gcGF0Y2hlcyB0byBmaXggYW4gaXNzdWUgcmVwb3J0ZWQgb24ga2Vy
-bmVsIGJ1Z3ppbGxhIChpbmZpbml0ZSBsb29wCmR1ZSB0byB1bmNoZWNrZWQgZnVuY3Rpb24pIGFu
-ZCBhIG1vcmUgaW1wb3J0YW50IGZpeCB0byBmaXggaGFuZ2luZyBPcHRpbXVzCm1hY2hpbmVzIHdo
-ZW4gcnVudGltZSBQTSBpcyBlbmFibGVkICh3aXRoIHBtL3BjaSBwYXRjaGVzKS4KClNlZSB0aGUg
-Zmlyc3QgdmVyc2lvblsxXSBmb3IgYSBiYWNrZ3JvdW5kIG9uIHRoZSBmaXhlZCBwcm9ibGVtcy4g
-VGhpcyBpcyB0aGUKc2Vjb25kIHJldmlzaW9uIG9mIGluY29ycG9yYXRpbmcgZmVlZGJhY2sgZnJv
-bSBFbWlsIFZlbGlrb3YgKHBhdGNoIDEpLCBNaWthCldlc3RlcmJlcmcgKHBhdGNoIDQpLiBQYXRj
-aGVzIDIgYW5kIDMgYXJlIHVuY2hhbmdlZC4KVGhlIHByZXZpb3VzIHBhdGNoc2V0IGhhZCBSLWIg
-ZnJvbSBIYW5zIGRlIEdvZWRlLCBJIHRoaW5rIHRoZXkgYXJlIHN0aWxsIHZhbGlkLgoKTm90ZXdv
-cnRoeSBpcyB0aGF0IHRoZSBmb3VydGggcGF0Y2ggbm93IGNoZWNrcyBkaXJlY3RseSBmb3IgX1BS
-My4gVGhlIGNvbW1pdAptZXNzYWdlIGlzIHVwZGF0ZWQgdG8gZW1waGFzaXplIHRoYXQgbWVtb3J5
-L2Rpc2sgY29ycnVwdGlvbiBpcyBmaXhlZCBmb3Igc29tZQptYWNoaW5lcy4KCgpUaGlzIHBhdGNo
-c2V0IGNhbiBiZSBtZXJnZWQgYmVmb3JlIG9yIGFmdGVyIHRoZSBwY2kvcG0gY2hhbmdlc1syXSAo
-ZXhwZWN0ZWQgdG8KYmUgbWVyZ2VkIGZvciA0LjgpLCBzZWUgdGhlIG9yaWdpbmFsIHBvc3Rpbmdb
-MV0gZm9yIGNvbnNlcXVlbmNlcy4gSSBoYXZlIHRlc3RlZAppdCBvbiB0b3Agb2YgdjQuNy1yYzUu
-IFRvIG1ha2UgcGF0Y2ggZm91ciB3b3JrIHByb3Blcmx5LCBMdWthcycgUlBNIHJlZmNvdW50aW5n
-CnBhdGNoZXMgc2hvdWxkIGJlIGluY2x1ZGVkLiBBIHNpbWlsYXIgKG9wZW4vbmV3KSBSUE0gcmVm
-Y291bnRpbmcgaXNzdWUgaW4Kc25kLWhkYS1pbnRlbCBzaG91bGQgYWxzbyBiZSBmaXhlZC4gT3Ro
-ZXJ3aXNlIHRoZSBicmlkZ2Ugd2lsbCBub3QgcmVhbGx5IHNsZWVwLgoKVGhlcmUgaXMgYW5vdGhl
-ciBtaW5vciBwYXRjaCBmb3Igbm91dmVhdV9wcjNfcHJlc2VudCwgYnV0IGl0IGlzIG5vdCBpbmNs
-dWRlZApoZXJlIGJlY2F1c2UgaXQgZGVwZW5kcyBvbiB2aXNpYmlsaXR5IG9mIHBjaV9icmlkZ2Vf
-ZDNfcG9zc2libGUoKS4gSSdsbCBzZW5kIGEKc2VwYXJhdGUgbWFpbCBmb3IgdGhpcyB0byBsaW51
-eC1wY2kuCgpLaW5kIHJlZ2FyZHMsClBldGVyCgogWzFdOiBodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9hcmNoaXZlcy9ub3V2ZWF1LzIwMTYtTWF5LzAyNTExNi5odG1sCiBbMl06IGh0dHBz
-Oi8vZ2l0Lmtlcm5lbC5vcmcvY2dpdC9saW51eC9rZXJuZWwvZ2l0L2hlbGdhYXMvcGNpLmdpdC8/
-aD1wY2kvcG0KClBldGVyIFd1ICg0KToKICBkcm0vbm91dmVhdS9hY3BpOiBlbnN1cmUgbWF0Y2hp
-bmcgQUNQSSBoYW5kbGUgYW5kIHN1cHBvcnRlZCBmdW5jdGlvbnMKICBkcm0vbm91dmVhdS9hY3Bp
-OiByZXR1cm4gc3VwcG9ydGVkIERTTSBmdW5jdGlvbnMKICBkcm0vbm91dmVhdS9hY3BpOiBjaGVj
-ayBmb3IgZnVuY3Rpb24gMHgxQiBiZWZvcmUgdXNpbmcgaXQKICBkcm0vbm91dmVhdS9hY3BpOiBm
-aXggbG9ja3VwIHdpdGggUENJZSBydW50aW1lIFBNCgogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bm91dmVhdV9hY3BpLmMgfCAxMDMgKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tLS0tCiAx
-IGZpbGUgY2hhbmdlZCwgNjYgaW5zZXJ0aW9ucygrKSwgMzcgZGVsZXRpb25zKC0pCgotLSAKMi45
-LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+Since "PCI: Add runtime PM support for PCIe ports", the parent PCIe port
+can be runtime-suspended which disables power resources via ACPI. This
+is incompatible with DSM, resulting in a GPU device which is still in D3
+and locks up the kernel on resume (on a Clevo P651RA, GTX965M).
+
+Mirror the behavior of Windows 8 and newer[1] (as observed via an AMLi
+debugger trace) and stop using the DSM functions for D3cold when power
+resources are available on the parent PCIe port.
+
+pci_d3cold_disable() is not used because on some machines, the old DSM
+method is broken. On a Lenovo T440p (GT 730M) memory and disk corruption
+would occur, but that is fixed with this patch[2].
+
+ [1]: https://msdn.microsoft.com/windows/hardware/drivers/bringup/firmware-requirements-for-d3cold
+ [2]: https://github.com/Bumblebee-Project/bbswitch/issues/78#issuecomment-223549072
+
+ v2: simply check directly for _PR3. Added affected machines.
+
+Signed-off-by: Peter Wu <peter@lekensteyn.nl>
+---
+ drivers/gpu/drm/nouveau/nouveau_acpi.c | 33 +++++++++++++++++++++++++++++----
+ 1 file changed, 29 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+index ad273ad..38a6445 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
++++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+@@ -46,6 +46,7 @@ static struct nouveau_dsm_priv {
+ 	bool dsm_detected;
+ 	bool optimus_detected;
+ 	bool optimus_flags_detected;
++	bool optimus_skip_dsm;
+ 	acpi_handle dhandle;
+ 	acpi_handle rom_handle;
+ } nouveau_dsm_priv;
+@@ -212,9 +213,26 @@ static const struct vga_switcheroo_handler nouveau_dsm_handler = {
+ 	.get_client_id = nouveau_dsm_get_client_id,
+ };
+ 
++/* Firmware supporting Windows 8 or later do not use _DSM to put the device into
++ * D3cold, they instead rely on disabling power resources on the parent. */
++static bool nouveau_pr3_present(struct pci_dev *pdev)
++{
++	struct pci_dev *parent_pdev = pci_upstream_bridge(pdev);
++	struct acpi_device *parent_adev;
++
++	if (!parent_pdev)
++		return false;
++
++	parent_adev = ACPI_COMPANION(&parent_pdev->dev);
++	if (!parent_adev)
++		return false;
++
++	return acpi_has_method(parent_adev->handle, "_PR3");
++}
++
+ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, acpi_handle *dhandle_out,
+ 				  bool *has_mux, bool *has_opt,
+-				  bool *has_opt_flags)
++				  bool *has_opt_flags, bool *has_pr3)
+ {
+ 	acpi_handle dhandle;
+ 	bool supports_mux;
+@@ -239,6 +257,7 @@ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, acpi_handle *dhandle_out
+ 	*has_mux = supports_mux;
+ 	*has_opt = !!optimus_funcs;
+ 	*has_opt_flags = optimus_funcs & (1 << NOUVEAU_DSM_OPTIMUS_FLAGS);
++	*has_pr3 = false;
+ 
+ 	if (optimus_funcs) {
+ 		uint32_t result;
+@@ -248,6 +267,8 @@ static void nouveau_dsm_pci_probe(struct pci_dev *pdev, acpi_handle *dhandle_out
+ 			 (result & OPTIMUS_ENABLED) ? "enabled" : "disabled",
+ 			 (result & OPTIMUS_DYNAMIC_PWR_CAP) ? "dynamic power, " : "",
+ 			 (result & OPTIMUS_HDA_CODEC_MASK) ? "hda bios codec supported" : "");
++
++		*has_pr3 = nouveau_pr3_present(pdev);
+ 	}
+ }
+ 
+@@ -260,6 +281,7 @@ static bool nouveau_dsm_detect(void)
+ 	bool has_mux = false;
+ 	bool has_optimus = false;
+ 	bool has_optimus_flags = false;
++	bool has_power_resources = false;
+ 	int vga_count = 0;
+ 	bool guid_valid;
+ 	bool ret = false;
+@@ -275,14 +297,14 @@ static bool nouveau_dsm_detect(void)
+ 		vga_count++;
+ 
+ 		nouveau_dsm_pci_probe(pdev, &dhandle, &has_mux, &has_optimus,
+-				      &has_optimus_flags);
++				      &has_optimus_flags, &has_power_resources);
+ 	}
+ 
+ 	while ((pdev = pci_get_class(PCI_CLASS_DISPLAY_3D << 8, pdev)) != NULL) {
+ 		vga_count++;
+ 
+ 		nouveau_dsm_pci_probe(pdev, &dhandle, &has_mux, &has_optimus,
+-				      &has_optimus_flags);
++				      &has_optimus_flags, &has_power_resources);
+ 	}
+ 
+ 	/* find the optimus DSM or the old v1 DSM */
+@@ -292,8 +314,11 @@ static bool nouveau_dsm_detect(void)
+ 			&buffer);
+ 		printk(KERN_INFO "VGA switcheroo: detected Optimus DSM method %s handle\n",
+ 			acpi_method_name);
++		if (has_power_resources)
++			pr_info("nouveau: detected PR support, will not use DSM\n");
+ 		nouveau_dsm_priv.optimus_detected = true;
+ 		nouveau_dsm_priv.optimus_flags_detected = has_optimus_flags;
++		nouveau_dsm_priv.optimus_skip_dsm = has_power_resources;
+ 		ret = true;
+ 	} else if (vga_count == 2 && has_mux && guid_valid) {
+ 		nouveau_dsm_priv.dhandle = dhandle;
+@@ -324,7 +349,7 @@ void nouveau_register_dsm_handler(void)
+ void nouveau_switcheroo_optimus_dsm(void)
+ {
+ 	u32 result = 0;
+-	if (!nouveau_dsm_priv.optimus_detected)
++	if (!nouveau_dsm_priv.optimus_detected || nouveau_dsm_priv.optimus_skip_dsm)
+ 		return;
+ 
+ 	if (nouveau_dsm_priv.optimus_flags_detected)
+-- 
+2.9.0
