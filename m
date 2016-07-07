@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96306] BUG: KASAN: slab-out-of-bounds in OUT_RINGp
- (via nvc0_fbcon_imageblit)
-Date: Thu, 07 Jul 2016 21:59:55 +0000
-Message-ID: <bug-96306-8800-EcwhpVYRJk@http.bugs.freedesktop.org/>
-References: <bug-96306-8800@http.bugs.freedesktop.org/>
+From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Subject: [PATCH v2 1/4] drm/nouveau/acpi: ensure matching ACPI
+	handle and supported functions
+Date: Fri,  8 Jul 2016 01:38:24 +0200
+Message-ID: <20160707233827.2100-2-peter@lekensteyn.nl>
+References: <20160707233827.2100-1-peter@lekensteyn.nl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0971490069=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-96306-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20160707233827.2100-1-peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,165 +18,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0971490069==
-Content-Type: multipart/alternative; boundary="14679287951.2eb0CF5CF.7247";
- charset="UTF-8"
-
-
---14679287951.2eb0CF5CF.7247
-Date: Thu, 7 Jul 2016 21:59:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96306
-
-Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-                 CC|                            |peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org
-             Status|NEW                         |RESOLVED
-
---- Comment #1 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
-Fixed since v4.7-rc3 with:
-
-commit f045f459d925138fe7d6193a8c86406bda7e49da
-Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Date:   Thu Jun 2 12:23:31 2016 +1000
-
-    drm/nouveau/fbcon: fix out-of-bounds memory accesses
-
-    Reported by KASAN.
-
-    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-    Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-
-Confirmed that is does no longer occur in v4.7-rc6-74-g076501f.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14679287951.2eb0CF5CF.7247
-Date: Thu, 7 Jul 2016 21:59:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:peter&#64=
-;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"> <span c=
-lass=3D"fn">Peter Wu</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - BUG: KASAN: slab-out-of-bounds in OUT_RINGp (v=
-ia nvc0_fbcon_imageblit)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96306">bug 96306<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>peter&#64;lekensteyn.nl
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - BUG: KASAN: slab-out-of-bounds in OUT_RINGp (v=
-ia nvc0_fbcon_imageblit)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96306#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - BUG: KASAN: slab-out-of-bounds in OUT_RINGp (v=
-ia nvc0_fbcon_imageblit)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96306">bug 96306<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
-> <span class=3D"fn">Peter Wu</span></a>
-</span></b>
-        <pre>Fixed since v4.7-rc3 with:
-
-commit f045f459d925138fe7d6193a8c86406bda7e49da
-Author: Ben Skeggs &lt;<a href=3D"mailto:bskeggs&#64;redhat.com">bskeggs&#6=
-4;redhat.com</a>&gt;
-Date:   Thu Jun 2 12:23:31 2016 +1000
-
-    drm/nouveau/fbcon: fix out-of-bounds memory accesses
-
-    Reported by KASAN.
-
-    Signed-off-by: Ben Skeggs &lt;<a href=3D"mailto:bskeggs&#64;redhat.com"=
->bskeggs&#64;redhat.com</a>&gt;
-    Cc: <a href=3D"mailto:stable&#64;vger.kernel.org">stable&#64;vger.kerne=
-l.org</a>
-
-Confirmed that is does no longer occur in v4.7-rc6-74-g076501f.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14679287951.2eb0CF5CF.7247--
-
---===============0971490069==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0971490069==--
+RW5zdXJlIHRoYXQgdGhlIHJldHVybmVkIHNldCBvZiBzdXBwb3J0ZWQgRFNNIGZ1bmN0aW9ucyAo
+TVVYLCBPcHRpbXVzKQptYXRjaCB0aGUgQUNQSSBoYW5kbGUgdGhhdCBpcyBzZXQgaW4gbm91dmVh
+dV9kc21fcGNpX3Byb2JlLgoKQXMgdGhlcmUgYXJlIG5vIG1hY2hpbmVzIHdpdGggYSBNVVggZnVu
+Y3Rpb24gb24ganVzdCBvbmUgUENJIGRldmljZSBhbmQKYW4gT3B0aW11cyBvbiBhbm90aGVyLCB0
+aGVyZSBzaG91bGQgbm90IGJlIGEgZnVuY3Rpb25hbCBpbXBhY3QuIFRoaXMKY2hhbmdlIGhvd2V2
+ZXIgbWFrZXMgdGhpcyBpbXBsaWNpdCBhc3N1bXB0aW9uIG1vcmUgb2J2aW91cy4KCkNvbnZlcnQg
+aW50IHRvIGJvb2wgYW5kIHJlbmFtZSBoYXNfZHNtIHRvIGhhc19tdXggd2hpbGUgYXQgaXQuIExl
+dCB0aGUKY2FsbGVyIHNldCBub3V2ZWF1X2RzbV9wcml2LmRoYW5kbGUgYXMgbmVlZGVkLgoKIHYy
+OiBwYXNzIGRoYW5kbGUgdG8gdGhlIGNhbGxlci4KClNpZ25lZC1vZmYtYnk6IFBldGVyIFd1IDxw
+ZXRlckBsZWtlbnN0ZXluLm5sPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+YWNwaS5jIHwgNTggKysrKysrKysrKysrKysrLS0tLS0tLS0tLS0tLS0tLS0tLQogMSBmaWxlIGNo
+YW5nZWQsIDI2IGluc2VydGlvbnMoKyksIDMyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jIGIvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9hY3BpLmMKaW5kZXggZGI3NmI5NC4uODg2YTY3YyAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMKQEAgLTU3LDkgKzU3LDYgQEAgYm9vbCBub3V2ZWF1
+X2lzX3YxX2RzbSh2b2lkKSB7CiAJcmV0dXJuIG5vdXZlYXVfZHNtX3ByaXYuZHNtX2RldGVjdGVk
+OwogfQogCi0jZGVmaW5lIE5PVVZFQVVfRFNNX0hBU19NVVggMHgxCi0jZGVmaW5lIE5PVVZFQVVf
+RFNNX0hBU19PUFQgMHgyCi0KICNpZmRlZiBDT05GSUdfVkdBX1NXSVRDSEVST08KIHN0YXRpYyBj
+b25zdCBjaGFyIG5vdXZlYXVfZHNtX211aWRbXSA9IHsKIAkweEEwLCAweEEwLCAweDk1LCAweDlE
+LCAweDYwLCAweDAwLCAweDQ4LCAweDRELApAQCAtMjEyLDI2ICsyMDksMzMgQEAgc3RhdGljIGNv
+bnN0IHN0cnVjdCB2Z2Ffc3dpdGNoZXJvb19oYW5kbGVyIG5vdXZlYXVfZHNtX2hhbmRsZXIgPSB7
+CiAJLmdldF9jbGllbnRfaWQgPSBub3V2ZWF1X2RzbV9nZXRfY2xpZW50X2lkLAogfTsKIAotc3Rh
+dGljIGludCBub3V2ZWF1X2RzbV9wY2lfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYpCitzdGF0
+aWMgdm9pZCBub3V2ZWF1X2RzbV9wY2lfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsIGFjcGlf
+aGFuZGxlICpkaGFuZGxlX291dCwKKwkJCQkgIGJvb2wgKmhhc19tdXgsIGJvb2wgKmhhc19vcHQp
+CiB7CiAJYWNwaV9oYW5kbGUgZGhhbmRsZTsKLQlpbnQgcmV0dmFsID0gMDsKKwlib29sIHN1cHBv
+cnRzX211eDsKKwlib29sIHN1cHBvcnRzX29wdDsKIAogCWRoYW5kbGUgPSBBQ1BJX0hBTkRMRSgm
+cGRldi0+ZGV2KTsKIAlpZiAoIWRoYW5kbGUpCi0JCXJldHVybiBmYWxzZTsKKwkJcmV0dXJuOwog
+CiAJaWYgKCFhY3BpX2hhc19tZXRob2QoZGhhbmRsZSwgIl9EU00iKSkKLQkJcmV0dXJuIGZhbHNl
+OworCQlyZXR1cm47CiAKLQlpZiAoYWNwaV9jaGVja19kc20oZGhhbmRsZSwgbm91dmVhdV9kc21f
+bXVpZCwgMHgwMDAwMDEwMiwKLQkJCSAgIDEgPDwgTk9VVkVBVV9EU01fUE9XRVIpKQotCQlyZXR2
+YWwgfD0gTk9VVkVBVV9EU01fSEFTX01VWDsKKwlzdXBwb3J0c19tdXggPSBhY3BpX2NoZWNrX2Rz
+bShkaGFuZGxlLCBub3V2ZWF1X2RzbV9tdWlkLCAweDAwMDAwMTAyLAorCQkJCSAgICAgIDEgPDwg
+Tk9VVkVBVV9EU01fUE9XRVIpOworCXN1cHBvcnRzX29wdCA9IG5vdXZlYXVfY2hlY2tfb3B0aW11
+c19kc20oZGhhbmRsZSk7CiAKLQlpZiAobm91dmVhdV9jaGVja19vcHRpbXVzX2RzbShkaGFuZGxl
+KSkKLQkJcmV0dmFsIHw9IE5PVVZFQVVfRFNNX0hBU19PUFQ7CisJLyogRG9lcyBub3QgbG9vayBs
+aWtlIGEgTnZpZGlhIGRldmljZS4gKi8KKwlpZiAoIXN1cHBvcnRzX211eCAmJiAhc3VwcG9ydHNf
+b3B0KQorCQlyZXR1cm47CiAKLQlpZiAocmV0dmFsICYgTk9VVkVBVV9EU01fSEFTX09QVCkgewor
+CSpkaGFuZGxlX291dCA9IGRoYW5kbGU7CisJKmhhc19tdXggPSBzdXBwb3J0c19tdXg7CisJKmhh
+c19vcHQgPSBzdXBwb3J0c19vcHQ7CisKKwlpZiAoc3VwcG9ydHNfb3B0KSB7CiAJCXVpbnQzMl90
+IHJlc3VsdDsKIAkJbm91dmVhdV9vcHRpbXVzX2RzbShkaGFuZGxlLCBOT1VWRUFVX0RTTV9PUFRJ
+TVVTX0NBUFMsIDAsCiAJCQkJICAgICZyZXN1bHQpOwpAQCAtMjQwLDEwICsyNDQsNiBAQCBzdGF0
+aWMgaW50IG5vdXZlYXVfZHNtX3BjaV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldikKIAkJCSAo
+cmVzdWx0ICYgT1BUSU1VU19EWU5BTUlDX1BXUl9DQVApID8gImR5bmFtaWMgcG93ZXIsICIgOiAi
+IiwKIAkJCSAocmVzdWx0ICYgT1BUSU1VU19IREFfQ09ERUNfTUFTSykgPyAiaGRhIGJpb3MgY29k
+ZWMgc3VwcG9ydGVkIiA6ICIiKTsKIAl9Ci0JaWYgKHJldHZhbCkKLQkJbm91dmVhdV9kc21fcHJp
+di5kaGFuZGxlID0gZGhhbmRsZTsKLQotCXJldHVybiByZXR2YWw7CiB9CiAKIHN0YXRpYyBib29s
+IG5vdXZlYXVfZHNtX2RldGVjdCh2b2lkKQpAQCAtMjUxLDExICsyNTEsMTEgQEAgc3RhdGljIGJv
+b2wgbm91dmVhdV9kc21fZGV0ZWN0KHZvaWQpCiAJY2hhciBhY3BpX21ldGhvZF9uYW1lWzI1NV0g
+PSB7IDAgfTsKIAlzdHJ1Y3QgYWNwaV9idWZmZXIgYnVmZmVyID0ge3NpemVvZihhY3BpX21ldGhv
+ZF9uYW1lKSwgYWNwaV9tZXRob2RfbmFtZX07CiAJc3RydWN0IHBjaV9kZXYgKnBkZXYgPSBOVUxM
+OwotCWludCBoYXNfZHNtID0gMDsKLQlpbnQgaGFzX29wdGltdXMgPSAwOworCWFjcGlfaGFuZGxl
+IGRoYW5kbGUgPSBOVUxMOworCWJvb2wgaGFzX211eCA9IGZhbHNlOworCWJvb2wgaGFzX29wdGlt
+dXMgPSBmYWxzZTsKIAlpbnQgdmdhX2NvdW50ID0gMDsKIAlib29sIGd1aWRfdmFsaWQ7Ci0JaW50
+IHJldHZhbDsKIAlib29sIHJldCA9IGZhbHNlOwogCiAJLyogbG9va3VwIHRoZSBNWE0gR1VJRCAq
+LwpAQCAtMjY4LDMyICsyNjgsMjYgQEAgc3RhdGljIGJvb2wgbm91dmVhdV9kc21fZGV0ZWN0KHZv
+aWQpCiAJd2hpbGUgKChwZGV2ID0gcGNpX2dldF9jbGFzcyhQQ0lfQ0xBU1NfRElTUExBWV9WR0Eg
+PDwgOCwgcGRldikpICE9IE5VTEwpIHsKIAkJdmdhX2NvdW50Kys7CiAKLQkJcmV0dmFsID0gbm91
+dmVhdV9kc21fcGNpX3Byb2JlKHBkZXYpOwotCQlpZiAocmV0dmFsICYgTk9VVkVBVV9EU01fSEFT
+X01VWCkKLQkJCWhhc19kc20gfD0gMTsKLQkJaWYgKHJldHZhbCAmIE5PVVZFQVVfRFNNX0hBU19P
+UFQpCi0JCQloYXNfb3B0aW11cyA9IDE7CisJCW5vdXZlYXVfZHNtX3BjaV9wcm9iZShwZGV2LCAm
+ZGhhbmRsZSwgJmhhc19tdXgsICZoYXNfb3B0aW11cyk7CiAJfQogCiAJd2hpbGUgKChwZGV2ID0g
+cGNpX2dldF9jbGFzcyhQQ0lfQ0xBU1NfRElTUExBWV8zRCA8PCA4LCBwZGV2KSkgIT0gTlVMTCkg
+ewogCQl2Z2FfY291bnQrKzsKIAotCQlyZXR2YWwgPSBub3V2ZWF1X2RzbV9wY2lfcHJvYmUocGRl
+dik7Ci0JCWlmIChyZXR2YWwgJiBOT1VWRUFVX0RTTV9IQVNfTVVYKQotCQkJaGFzX2RzbSB8PSAx
+OwotCQlpZiAocmV0dmFsICYgTk9VVkVBVV9EU01fSEFTX09QVCkKLQkJCWhhc19vcHRpbXVzID0g
+MTsKKwkJbm91dmVhdV9kc21fcGNpX3Byb2JlKHBkZXYsICZkaGFuZGxlLCAmaGFzX211eCwgJmhh
+c19vcHRpbXVzKTsKIAl9CiAKIAkvKiBmaW5kIHRoZSBvcHRpbXVzIERTTSBvciB0aGUgb2xkIHYx
+IERTTSAqLwotCWlmIChoYXNfb3B0aW11cyA9PSAxKSB7CisJaWYgKGhhc19vcHRpbXVzKSB7CisJ
+CW5vdXZlYXVfZHNtX3ByaXYuZGhhbmRsZSA9IGRoYW5kbGU7CiAJCWFjcGlfZ2V0X25hbWUobm91
+dmVhdV9kc21fcHJpdi5kaGFuZGxlLCBBQ1BJX0ZVTExfUEFUSE5BTUUsCiAJCQkmYnVmZmVyKTsK
+IAkJcHJpbnRrKEtFUk5fSU5GTyAiVkdBIHN3aXRjaGVyb286IGRldGVjdGVkIE9wdGltdXMgRFNN
+IG1ldGhvZCAlcyBoYW5kbGVcbiIsCiAJCQlhY3BpX21ldGhvZF9uYW1lKTsKIAkJbm91dmVhdV9k
+c21fcHJpdi5vcHRpbXVzX2RldGVjdGVkID0gdHJ1ZTsKIAkJcmV0ID0gdHJ1ZTsKLQl9IGVsc2Ug
+aWYgKHZnYV9jb3VudCA9PSAyICYmIGhhc19kc20gJiYgZ3VpZF92YWxpZCkgeworCX0gZWxzZSBp
+ZiAodmdhX2NvdW50ID09IDIgJiYgaGFzX211eCAmJiBndWlkX3ZhbGlkKSB7CisJCW5vdXZlYXVf
+ZHNtX3ByaXYuZGhhbmRsZSA9IGRoYW5kbGU7CiAJCWFjcGlfZ2V0X25hbWUobm91dmVhdV9kc21f
+cHJpdi5kaGFuZGxlLCBBQ1BJX0ZVTExfUEFUSE5BTUUsCiAJCQkmYnVmZmVyKTsKIAkJcHJpbnRr
+KEtFUk5fSU5GTyAiVkdBIHN3aXRjaGVyb286IGRldGVjdGVkIERTTSBzd2l0Y2hpbmcgbWV0aG9k
+ICVzIGhhbmRsZVxuIiwKLS0gCjIuOS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
