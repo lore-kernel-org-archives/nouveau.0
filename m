@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96836] New: Kernel unaligned access at TPC[105d9fb4]
+Subject: [Bug 96836] Kernel unaligned access at TPC[105d9fb4]
  nvkm_instobj_wr32+0x14/0x20 [nouveau]
-Date: Thu, 07 Jul 2016 02:23:25 +0000
-Message-ID: <bug-96836-8800@http.bugs.freedesktop.org/>
+Date: Thu, 07 Jul 2016 02:51:54 +0000
+Message-ID: <bug-96836-8800-BWKX42fqVR@http.bugs.freedesktop.org/>
+References: <bug-96836-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1786328609=="
+Content-Type: multipart/mixed; boundary="===============0427333258=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-96836-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1786328609==
-Content-Type: multipart/alternative; boundary="14678582050.5C94A0B.20434";
+--===============0427333258==
+Content-Type: multipart/alternative; boundary="14678599142.D4D1EFD.23467";
  charset="UTF-8"
 
 
---14678582050.5C94A0B.20434
-Date: Thu, 7 Jul 2016 02:23:25 +0000
+--14678599142.D4D1EFD.23467
+Date: Thu, 7 Jul 2016 02:51:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,44 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96836
 
-            Bug ID: 96836
-           Summary: Kernel unaligned access at TPC[105d9fb4]
-                    nvkm_instobj_wr32+0x14/0x20 [nouveau]
-           Product: xorg
-           Version: unspecified
-          Hardware: SPARC
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: ciaran.gillespie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-When attempting to use Nouveau driver with Xorg on my SunBlade 2500 running=
- the
-latested build from Debian-9.0 Sid SPARC64 CPU 0 runs up to 100% and then
-eventually the Xorg session shuts down. It appears that it's timing out on a
-GPU lock. A bunch of messages appears in the Xorg.0.log indicating fifo:
-CACH_ERROR also with in the messages log there are several repeating errors.
-
-log_unaligned: 598 callbacks suppressed
-Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr32+0x14/0x20 [nouve=
-au]
-
-Eventually the Xorg session gives up and times out.
-
-I'll try and attach some more logs but it appears to have something to do w=
-ith
-the iowrite32_native macro on SPARC V9 systems.
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+What GPU is this? Is Sparc64 a BE system? Are you using 4K pages? (if not, =
+use
+4K pages)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14678582050.5C94A0B.20434
-Date: Thu, 7 Jul 2016 02:23:25 +0000
+--14678599142.D4D1EFD.23467
+Date: Thu, 7 Jul 2016 02:51:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -82,107 +57,28 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
 2+0x14/0x20 [nouveau]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836">96836</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr32+0x=
-14/0x20 [nouveau]
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>SPARC
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>ciaran.gillespie&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>When attempting to use Nouveau driver with Xorg on my SunBlade=
- 2500 running the
-latested build from Debian-9.0 Sid SPARC64 CPU 0 runs up to 100% and then
-eventually the Xorg session shuts down. It appears that it's timing out on a
-GPU lock. A bunch of messages appears in the Xorg.0.log indicating fifo:
-CACH_ERROR also with in the messages log there are several repeating errors.
-
-log_unaligned: 598 callbacks suppressed
-Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr32+0x14/0x20 [nouve=
-au]
-
-Eventually the Xorg session gives up and times out.
-
-I'll try and attach some more logs but it appears to have something to do w=
-ith
-the iowrite32_native macro on SPARC V9 systems.</pre>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
+2+0x14/0x20 [nouveau]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836">bug 96836<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>What GPU is this? Is Sparc64 a BE system? Are you using 4K pag=
+es? (if not, use
+4K pages)</pre>
         </div>
       </p>
 
@@ -196,9 +92,9 @@ the iowrite32_native macro on SPARC V9 systems.</pre>
     </body>
 </html>=
 
---14678582050.5C94A0B.20434--
+--14678599142.D4D1EFD.23467--
 
---===============1786328609==
+--===============0427333258==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -208,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1786328609==--
+--===============0427333258==--
