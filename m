@@ -1,73 +1,62 @@
-From: Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [Nouveau] [PATCH v2 0/4] nouveau RPM fixes for Optimus
-Date: Fri, 8 Jul 2016 19:31:24 +0200
-Message-ID: <05318f07-8ec3-43f2-0a5f-4be87837e744@redhat.com>
-References: <20160707233827.2100-1-peter@lekensteyn.nl>
+From: Markus Mayer <markus.mayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
+Subject: Re: [PATCH v2 1/7] lib: string: add functions to
+	case-convert strings
+Date: Fri, 8 Jul 2016 11:04:49 -0700
+Message-ID: <CAGt4E5uKzs01nL7OJPscQby5bm70Ud18hutdYEhiEsQjU9W8pg@mail.gmail.com>
+References: <1467751631-22878-1-git-send-email-mmayer@broadcom.com>
+ <1467751631-22878-2-git-send-email-mmayer@broadcom.com>
+ <87oa692d8e.fsf@rasmusvillemoes.dk>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-pci-owner@vger.kernel.org>
-In-Reply-To: <20160707233827.2100-1-peter@lekensteyn.nl>
-Sender: linux-pci-owner@vger.kernel.org
-To: Peter Wu <peter@lekensteyn.nl>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Dave Airlie <airlied@redhat.com>, Bjorn Helgaas <helgaas@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, linux-pci@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <87oa692d8e.fsf-qQsb+v5E8BnlAoU/VqSP6n9LOBIZ5rWg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Rasmus Villemoes <linux-qQsb+v5E8BnlAoU/VqSP6n9LOBIZ5rWg@public.gmane.org>
+Cc: devel-gWbeCf7V1WCQmaza687I9mD2FQJk+8+b@public.gmane.org, Kees Cook <keescook-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, speakup-UPO/6gOIxNZglr+F8WMZYdi2O/JbrIOy@public.gmane.org, Linux Kernel <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Chris Metcalf <cmetcalf-d5a29ZRxExrQT0dZR+AlfA@public.gmane.org>, target-devel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Al Viro <viro-RmSDqhL/yNMiFSDQTTA3OLVCufUGDwFn@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi,
-
-On 08-07-16 01:38, Peter Wu wrote:
-> Hi,
->
-> Here are two patches to fix an issue reported on kernel bugzilla (infinite loop
-> due to unchecked function) and a more important fix to fix hanging Optimus
-> machines when runtime PM is enabled (with pm/pci patches).
->
-> See the first version[1] for a background on the fixed problems. This is the
-> second revision of incorporating feedback from Emil Velikov (patch 1), Mika
-> Westerberg (patch 4). Patches 2 and 3 are unchanged.
-> The previous patchset had R-b from Hans de Goede, I think they are still valid.
->
-> Noteworthy is that the fourth patch now checks directly for _PR3. The commit
-> message is updated to emphasize that memory/disk corruption is fixed for some
-> machines.
->
->
-> This patchset can be merged before or after the pci/pm changes[2] (expected to
-> be merged for 4.8), see the original posting[1] for consequences. I have tested
-> it on top of v4.7-rc5. To make patch four work properly, Lukas' RPM refcounting
-> patches should be included. A similar (open/new) RPM refcounting issue in
-> snd-hda-intel should also be fixed. Otherwise the bridge will not really sleep.
->
-> There is another minor patch for nouveau_pr3_present, but it is not included
-> here because it depends on visibility of pci_bridge_d3_possible(). I'll send a
-> separate mail for this to linux-pci.
-
-Patches 1 - 3 are:
-
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
-
-Patch 4 looks good to me too, but I'm not familiar enough with the
-pci-e pm stuff to feel comfortable acking it.
-
-Regards,
-
-Hans
-
-
-
->
-> Kind regards,
-> Peter
->
->  [1]: https://lists.freedesktop.org/archives/nouveau/2016-May/025116.html
->  [2]: https://git.kernel.org/cgit/linux/kernel/git/helgaas/pci.git/?h=pci/pm
->
-> Peter Wu (4):
->   drm/nouveau/acpi: ensure matching ACPI handle and supported functions
->   drm/nouveau/acpi: return supported DSM functions
->   drm/nouveau/acpi: check for function 0x1B before using it
->   drm/nouveau/acpi: fix lockup with PCIe runtime PM
->
->  drivers/gpu/drm/nouveau/nouveau_acpi.c | 103 +++++++++++++++++++++------------
->  1 file changed, 66 insertions(+), 37 deletions(-)
->
+T24gNyBKdWx5IDIwMTYgYXQgMTc6MTksIFJhc211cyBWaWxsZW1vZXMgPGxpbnV4QHJhc211c3Zp
+bGxlbW9lcy5kaz4gd3JvdGU6Cj4gT24gVHVlLCBKdWwgMDUgMjAxNiwgTWFya3VzIE1heWVyIDxt
+bWF5ZXJAYnJvYWRjb20uY29tPiB3cm90ZToKPgo+PiArLyoqCj4+ICsgKiBzdHJuY3B5dG91cHBl
+ciAtIENvcHkgYSBsZW5ndGgtbGltaXRlZCBzdHJpbmcgYW5kIGNvbnZlcnQgdG8gdXBwZXJjYXNl
+Lgo+PiArICogQGRzdDogVGhlIGJ1ZmZlciB0byBzdG9yZSB0aGUgcmVzdWx0Lgo+PiArICogQHNy
+YzogVGhlIHN0cmluZyB0byBjb252ZXJ0IHRvIHVwcGVyY2FzZS4KPj4gKyAqIEBsZW46IE1heGlt
+dW0gc3RyaW5nIGxlbmd0aC4gTWF5IGJlIDAgdG8gc2V0IG5vIGxpbWl0Lgo+PiArICoKPj4gKyAq
+IFJldHVybnMgcG9pbnRlciB0byB0ZXJtaW5hdGluZyAnXDAnIGluIEBkc3QuCj4+ICsgKi8KPj4g
+K2NoYXIgKnN0cm5jcHl0b3VwcGVyKGNoYXIgKmRzdCwgY29uc3QgY2hhciAqc3JjLCBzaXplX3Qg
+bGVuKQo+PiArewo+PiArICAgICBzaXplX3QgaTsKPj4gKwo+PiArICAgICBmb3IgKGkgPSAwOyBz
+cmNbaV0gIT0gJ1wwJyAmJiAoaSA8IGxlbiB8fCAhbGVuKTsgaSsrKQo+PiArICAgICAgICAgICAg
+IGRzdFtpXSA9IHRvdXBwZXIoc3JjW2ldKTsKPj4gKyAgICAgaWYgKGkgPCBsZW4gfHwgIWxlbikK
+Pj4gKyAgICAgICAgICAgICBkc3RbaV0gPSAnXDAnOwo+PiArCj4+ICsgICAgIHJldHVybiBkc3Qg
+KyBpOwo+PiArfQo+Cj4gSG0sIHRoaXMgc2VlbXMgdG8gY29weSB0aGUgaW5zYW5lIHNlbWFudGlj
+cyBmcm9tIHN0cm5jcHkgb2Ygbm90Cj4gZ3VhcmFudGVlaW5nICdcMCctdGVybWluYXRpb24uCgpZ
+ZWFoLiBJJ3ZlIGJlZW4gdG9zc2luZyB0aGF0IG9uZSBhcm91bmQgYSBiaXQuIFRoZSByZWFzb24g
+SSBkaWQgaXQKdGhpcyB3YXkgaW4gdGhlIGVuZCBpcyBkdWUgdG8gdGhlIHVzZSBjYXNlcyBJIGZv
+dW5kLiBzdHJuY3B5KCkgaXMKYmVpbmcgdXNlZCB0aGVyZSBhbmQgSSB3YXMgYSBsaXR0bGUgd2Fy
+eSB0byBtYWtlIHRvbyBtYW55IGNoYW5nZXMgYWxsCmF0IG9uY2UuCgpCdXQgSSB1bmRlcnN0YW5k
+IHlvdXIgcG9pbnQuIEknbGwgbG9vayBhdCBpdCBhZ2FpbiBhbmQgc2VlIHdoYXQKY2hhbmdlcyBt
+aWdodCBiZSByZXF1aXJlZCBpbiB0aGUgY29kZSB0aGF0IHVzZWQgc3RybmNweSgpIGJlZm9yZS4K
+Cj4gV2h5IHVzZSAwIGFzIGEgc2VudGluZWwsIHdoZW4gKHNpemVfdCktMSA9PSBTSVpFX01BWCB3
+b3VsZCB3b3JrIGp1c3QgYXMKPiB3ZWxsIGFuZCByZXF1aXJlIGEgbGl0dGxlIGxlc3MgY29kZSAo
+bm8gfHwgIWxlbik/CgpJJ2xsIGNoYW5nZSB0aGF0LgoKPiBJIHJlZ3JldCBzdWdnZXN0aW5nIHRo
+aXMgcmV0dXJuIHNlbWFudGljcyBhbmQgbm93IGFncmVlIHRoYXQgdm9pZCB3b3VsZAo+IGJlIGJl
+dHRlciwgZXNwZWNpYWxseSBzaW5jZSB0aGVyZSBkb2Vzbid0IHNlZW0gdG8gYmUgYW55b25lIHdo
+byBjYW4KPiB1c2UgdGhpcyAob3IgYW55IG90aGVyKSByZXR1cm4gdmFsdWUuIEhvdyBhYm91dAo+
+Cj4gaWYgKCFsZW4pCj4gICAgcmV0dXJuOwo+Cj4gZm9yIChpID0gMDsgaSA8IGxlbiAmJiBzcmNb
+aV07ICsraSkKPiAgIGRzdFtpXSA9IHRvdXBwZXIoc3JjW2ldKTsKPiBkc3RbaSA8IGxlbiA/IGkg
+OiBpLTFdID0gJ1wwJzsKClRoaXMgbWFrZXMgc2Vuc2UuCgo+IChJIHRoaW5rIHlvdSBtdXN0IGRv
+IGkgPCBsZW4gYmVmb3JlIHRlc3Rpbmcgc3JjW2ldLCBzaW5jZSB0aGUgbGVuCj4gcGFyYW1ldGVy
+IHNob3VsZCBiZSBhbiB1cHBlciBib3VuZCBvbiB0aGUgbnVtYmVyIG9mIGJ5dGVzIHRvIGFjY2Vz
+cyBpbgo+IGJvdGggc3JjIGFuZCBkc3QpLgo+Cj4gUmFzbXVzCgpUaGFua3MsCi1NYXJrdXMKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
