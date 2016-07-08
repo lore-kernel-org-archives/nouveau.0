@@ -1,74 +1,73 @@
-From: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: Re: [PATCH v2 4/4] drm/nouveau/acpi: fix lockup with PCIe
-	runtime PM
-Date: Fri, 8 Jul 2016 11:30:57 +0300
-Message-ID: <20160708083057.GZ23527@lahna.fi.intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Subject: Re: [Nouveau] [PATCH v2 0/4] nouveau RPM fixes for Optimus
+Date: Fri, 8 Jul 2016 19:31:24 +0200
+Message-ID: <05318f07-8ec3-43f2-0a5f-4be87837e744@redhat.com>
 References: <20160707233827.2100-1-peter@lekensteyn.nl>
- <20160707233827.2100-5-peter@lekensteyn.nl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20160707233827.2100-5-peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Cc: linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-pci-owner@vger.kernel.org>
+In-Reply-To: <20160707233827.2100-1-peter@lekensteyn.nl>
+Sender: linux-pci-owner@vger.kernel.org
+To: Peter Wu <peter@lekensteyn.nl>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Dave Airlie <airlied@redhat.com>, Bjorn Helgaas <helgaas@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, linux-pci@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdWwgMDgsIDIwMTYgYXQgMDE6Mzg6MjdBTSArMDIwMCwgUGV0ZXIgV3Ugd3JvdGU6
-Cj4gU2luY2UgIlBDSTogQWRkIHJ1bnRpbWUgUE0gc3VwcG9ydCBmb3IgUENJZSBwb3J0cyIsIHRo
-ZSBwYXJlbnQgUENJZSBwb3J0Cj4gY2FuIGJlIHJ1bnRpbWUtc3VzcGVuZGVkIHdoaWNoIGRpc2Fi
-bGVzIHBvd2VyIHJlc291cmNlcyB2aWEgQUNQSS4gVGhpcwo+IGlzIGluY29tcGF0aWJsZSB3aXRo
-IERTTSwgcmVzdWx0aW5nIGluIGEgR1BVIGRldmljZSB3aGljaCBpcyBzdGlsbCBpbiBEMwo+IGFu
-ZCBsb2NrcyB1cCB0aGUga2VybmVsIG9uIHJlc3VtZSAob24gYSBDbGV2byBQNjUxUkEsIEdUWDk2
-NU0pLgo+IAo+IE1pcnJvciB0aGUgYmVoYXZpb3Igb2YgV2luZG93cyA4IGFuZCBuZXdlclsxXSAo
-YXMgb2JzZXJ2ZWQgdmlhIGFuIEFNTGkKPiBkZWJ1Z2dlciB0cmFjZSkgYW5kIHN0b3AgdXNpbmcg
-dGhlIERTTSBmdW5jdGlvbnMgZm9yIEQzY29sZCB3aGVuIHBvd2VyCj4gcmVzb3VyY2VzIGFyZSBh
-dmFpbGFibGUgb24gdGhlIHBhcmVudCBQQ0llIHBvcnQuCj4gCj4gcGNpX2QzY29sZF9kaXNhYmxl
-KCkgaXMgbm90IHVzZWQgYmVjYXVzZSBvbiBzb21lIG1hY2hpbmVzLCB0aGUgb2xkIERTTQo+IG1l
-dGhvZCBpcyBicm9rZW4uIE9uIGEgTGVub3ZvIFQ0NDBwIChHVCA3MzBNKSBtZW1vcnkgYW5kIGRp
-c2sgY29ycnVwdGlvbgo+IHdvdWxkIG9jY3VyLCBidXQgdGhhdCBpcyBmaXhlZCB3aXRoIHRoaXMg
-cGF0Y2hbMl0uCgpGYWlyIGVub3VnaC4KCj4gIFsxXTogaHR0cHM6Ly9tc2RuLm1pY3Jvc29mdC5j
-b20vd2luZG93cy9oYXJkd2FyZS9kcml2ZXJzL2JyaW5ndXAvZmlybXdhcmUtcmVxdWlyZW1lbnRz
-LWZvci1kM2NvbGQKPiAgWzJdOiBodHRwczovL2dpdGh1Yi5jb20vQnVtYmxlYmVlLVByb2plY3Qv
-YmJzd2l0Y2gvaXNzdWVzLzc4I2lzc3VlY29tbWVudC0yMjM1NDkwNzIKPiAKPiAgdjI6IHNpbXBs
-eSBjaGVjayBkaXJlY3RseSBmb3IgX1BSMy4gQWRkZWQgYWZmZWN0ZWQgbWFjaGluZXMuCj4gCj4g
-U2lnbmVkLW9mZi1ieTogUGV0ZXIgV3UgPHBldGVyQGxla2Vuc3RleW4ubmw+CgpPbmUgbml0cGlj
-ayBiZWxvdyBidXQgb3RoZXJ3aXNlIGxvb2tzIHJlYXNvbmFibGUgdG8gbWUuCgpSZXZpZXdlZC1i
-eTogTWlrYSBXZXN0ZXJiZXJnIDxtaWthLndlc3RlcmJlcmdAbGludXguaW50ZWwuY29tPgoKQlRX
-LCB0aGFua3MgZm9yIGRvaW5nIHRoaXMgOikKCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfYWNwaS5jIHwgMzMgKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0t
-Cj4gIDEgZmlsZSBjaGFuZ2VkLCAyOSBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQo+IAo+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4gaW5kZXggYWQyNzNhZC4uMzhh
-NjQ0NSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGku
-Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4gQEAgLTQ2
-LDYgKzQ2LDcgQEAgc3RhdGljIHN0cnVjdCBub3V2ZWF1X2RzbV9wcml2IHsKPiAgCWJvb2wgZHNt
-X2RldGVjdGVkOwo+ICAJYm9vbCBvcHRpbXVzX2RldGVjdGVkOwo+ICAJYm9vbCBvcHRpbXVzX2Zs
-YWdzX2RldGVjdGVkOwo+ICsJYm9vbCBvcHRpbXVzX3NraXBfZHNtOwo+ICAJYWNwaV9oYW5kbGUg
-ZGhhbmRsZTsKPiAgCWFjcGlfaGFuZGxlIHJvbV9oYW5kbGU7Cj4gIH0gbm91dmVhdV9kc21fcHJp
-djsKPiBAQCAtMjEyLDkgKzIxMywyNiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHZnYV9zd2l0Y2hl
-cm9vX2hhbmRsZXIgbm91dmVhdV9kc21faGFuZGxlciA9IHsKPiAgCS5nZXRfY2xpZW50X2lkID0g
-bm91dmVhdV9kc21fZ2V0X2NsaWVudF9pZCwKPiAgfTsKPiAgCj4gKy8qIEZpcm13YXJlIHN1cHBv
-cnRpbmcgV2luZG93cyA4IG9yIGxhdGVyIGRvIG5vdCB1c2UgX0RTTSB0byBwdXQgdGhlIGRldmlj
-ZSBpbnRvCj4gKyAqIEQzY29sZCwgdGhleSBpbnN0ZWFkIHJlbHkgb24gZGlzYWJsaW5nIHBvd2Vy
-IHJlc291cmNlcyBvbiB0aGUgcGFyZW50LiAqLwoKWW91IHNob3VsZCBmb2xsb3cgc3RhbmRhcmQg
-YmxvY2sgY29tbWVudCBzdHlsZSBoZXJlLgoKPiArc3RhdGljIGJvb2wgbm91dmVhdV9wcjNfcHJl
-c2VudChzdHJ1Y3QgcGNpX2RldiAqcGRldikKPiArewo+ICsJc3RydWN0IHBjaV9kZXYgKnBhcmVu
-dF9wZGV2ID0gcGNpX3Vwc3RyZWFtX2JyaWRnZShwZGV2KTsKPiArCXN0cnVjdCBhY3BpX2Rldmlj
-ZSAqcGFyZW50X2FkZXY7Cj4gKwo+ICsJaWYgKCFwYXJlbnRfcGRldikKPiArCQlyZXR1cm4gZmFs
-c2U7Cj4gKwo+ICsJcGFyZW50X2FkZXYgPSBBQ1BJX0NPTVBBTklPTigmcGFyZW50X3BkZXYtPmRl
-dik7Cj4gKwlpZiAoIXBhcmVudF9hZGV2KQo+ICsJCXJldHVybiBmYWxzZTsKPiArCj4gKwlyZXR1
-cm4gYWNwaV9oYXNfbWV0aG9kKHBhcmVudF9hZGV2LT5oYW5kbGUsICJfUFIzIik7Cj4gK30KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+Hi,
+
+On 08-07-16 01:38, Peter Wu wrote:
+> Hi,
+>
+> Here are two patches to fix an issue reported on kernel bugzilla (infinite loop
+> due to unchecked function) and a more important fix to fix hanging Optimus
+> machines when runtime PM is enabled (with pm/pci patches).
+>
+> See the first version[1] for a background on the fixed problems. This is the
+> second revision of incorporating feedback from Emil Velikov (patch 1), Mika
+> Westerberg (patch 4). Patches 2 and 3 are unchanged.
+> The previous patchset had R-b from Hans de Goede, I think they are still valid.
+>
+> Noteworthy is that the fourth patch now checks directly for _PR3. The commit
+> message is updated to emphasize that memory/disk corruption is fixed for some
+> machines.
+>
+>
+> This patchset can be merged before or after the pci/pm changes[2] (expected to
+> be merged for 4.8), see the original posting[1] for consequences. I have tested
+> it on top of v4.7-rc5. To make patch four work properly, Lukas' RPM refcounting
+> patches should be included. A similar (open/new) RPM refcounting issue in
+> snd-hda-intel should also be fixed. Otherwise the bridge will not really sleep.
+>
+> There is another minor patch for nouveau_pr3_present, but it is not included
+> here because it depends on visibility of pci_bridge_d3_possible(). I'll send a
+> separate mail for this to linux-pci.
+
+Patches 1 - 3 are:
+
+Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+
+Patch 4 looks good to me too, but I'm not familiar enough with the
+pci-e pm stuff to feel comfortable acking it.
+
+Regards,
+
+Hans
+
+
+
+>
+> Kind regards,
+> Peter
+>
+>  [1]: https://lists.freedesktop.org/archives/nouveau/2016-May/025116.html
+>  [2]: https://git.kernel.org/cgit/linux/kernel/git/helgaas/pci.git/?h=pci/pm
+>
+> Peter Wu (4):
+>   drm/nouveau/acpi: ensure matching ACPI handle and supported functions
+>   drm/nouveau/acpi: return supported DSM functions
+>   drm/nouveau/acpi: check for function 0x1B before using it
+>   drm/nouveau/acpi: fix lockup with PCIe runtime PM
+>
+>  drivers/gpu/drm/nouveau/nouveau_acpi.c | 103 +++++++++++++++++++++------------
+>  1 file changed, 66 insertions(+), 37 deletions(-)
+>
