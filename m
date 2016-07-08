@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91954] "link training failed": nouveau does not
- recover from monitor suspend
-Date: Fri, 08 Jul 2016 20:07:30 +0000
-Message-ID: <bug-91954-8800-yeT7feQ1hA@http.bugs.freedesktop.org/>
-References: <bug-91954-8800@http.bugs.freedesktop.org/>
+From: Markus Mayer <mmayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
+Subject: [PATCH v3 0/7] lib: string: add functions to case-convert
+	strings
+Date: Fri,  8 Jul 2016 15:43:07 -0700
+Message-ID: <1468017794-4818-1-git-send-email-mmayer@broadcom.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1864445241=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91954-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,134 +16,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Al Viro <viro-RmSDqhL/yNMiFSDQTTA3OLVCufUGDwFn@public.gmane.org>, Rasmus Villemoes <linux-qQsb+v5E8BnlAoU/VqSP6n9LOBIZ5rWg@public.gmane.org>, Chris Metcalf <cmetcalf-d5a29ZRxExrQT0dZR+AlfA@public.gmane.org>, Kees Cook <keescook-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>
+Cc: devel-gWbeCf7V1WCQmaza687I9mD2FQJk+8+b@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, speakup-UPO/6gOIxNZglr+F8WMZYdi2O/JbrIOy@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, target-devel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1864445241==
-Content-Type: multipart/alternative; boundary="14680084501.3133Ea.15306";
- charset="UTF-8"
-
-
---14680084501.3133Ea.15306
-Date: Fri, 8 Jul 2016 20:07:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91954
-
---- Comment #9 from roflawl2009-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I'm still running into this issue. I posted more detailed information and t=
-he
-output of dmesg and journalctl on Fedoraforum, here:
-http://forums.fedoraforum.org/showthread.php?t=3D310633
-
-When my system is suspended and wakes back up, the primary LCD is stuck on a
-blank white image and sometimes cannot recover when switching TTY's. Dmesg
-fills up with this:
-[ 270.115821] nouveau 0000:01:00.0: disp: outp 00:0006:0344: link training
-failed
-[ 270.122646] nouveau 0000:01:00.0: disp: outp 00:0006:0344: link training
-failed
-[ 270.123698] nouveau 0000:01:00.0: disp: outp 00:0006:0344: link not train=
-ed
-before attach
-
-Hardware:
-HP EliteBook 8440p, Legacy Boot
-Nvidia GT218M (NVS 3100M)
-
-Software:
-Fedora 24, latest updates, Gnome 3.20.2
-Gallium 0.4 on NVA8
-Kernel - 4.6.3-300.fc24.x86_64
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14680084501.3133Ea.15306
-Date: Fri, 8 Jul 2016 20:07:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - &quot;link training failed&quot;: nouveau does not recove=
-r from monitor suspend"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91954#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - &quot;link training failed&quot;: nouveau does not recove=
-r from monitor suspend"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91954">bug 91954<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-roflawl2009&#64;gmail.com" title=3D"roflawl2009&#64;gmail.com">roflawl2009&=
-#64;gmail.com</a>
-</span></b>
-        <pre>I'm still running into this issue. I posted more detailed info=
-rmation and the
-output of dmesg and journalctl on Fedoraforum, here:
-<a href=3D"http://forums.fedoraforum.org/showthread.php?t=3D310633">http://=
-forums.fedoraforum.org/showthread.php?t=3D310633</a>
-
-When my system is suspended and wakes back up, the primary LCD is stuck on a
-blank white image and sometimes cannot recover when switching TTY's. Dmesg
-fills up with this:
-[ 270.115821] nouveau 0000:01:00.0: disp: outp 00:0006:0344: link training
-failed
-[ 270.122646] nouveau 0000:01:00.0: disp: outp 00:0006:0344: link training
-failed
-[ 270.123698] nouveau 0000:01:00.0: disp: outp 00:0006:0344: link not train=
-ed
-before attach
-
-Hardware:
-HP EliteBook 8440p, Legacy Boot
-Nvidia GT218M (NVS 3100M)
-
-Software:
-Fedora 24, latest updates, Gnome 3.20.2
-Gallium 0.4 on NVA8
-Kernel - 4.6.3-300.fc24.x86_64</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14680084501.3133Ea.15306--
-
---===============1864445241==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1864445241==--
+VGhpcyBzZXJpZXMgaW50cm9kdWNlcyBhIGZhbWlseSBvZiBnZW5lcmljIHN0cmluZyBjYXNlIGNv
+bnZlcnNpb24KZnVuY3Rpb25zLiBUaGlzIGtpbmQgb2YgZnVuY3Rpb25hbGl0eSBpcyBuZWVkZWQg
+aW4gc2V2ZXJhbCBwbGFjZXMgaW4KdGhlIGtlcm5lbC4gUmlnaHQgbm93LCBldmVyeWJvZHkgc2Vl
+bXMgdG8gYmUgaW1wbGVtZW50aW5nIHRoZWlyIG93bgpjb3B5IG9mIHRoaXMgZnVuY3Rpb25hbGl0
+eS4KCkJhc2VkIG9uIHRoZSBkaXNjdXNzaW9uIG9mIHRoZSBwcmV2aW91cyB2ZXJzaW9uIG9mIHRo
+aXMgc2VyaWVzWzFdIGFuZAp0aGUgdXNlIGNhc2VzIGZvdW5kIGluIHRoZSBrZXJuZWwsIGl0IGRv
+ZXMgbG9vayBsaWtlIGhhdmluZyBzZXZlcmFsCmZsYXZvdXJzIG9mIGNhc2UgY29udmVyc2lvbiBm
+dW5jdGlvbnMgaXMgYmVuZWZpY2lhbC4gVGhlIHVzZSBjYXNlcyBmYWxsCmludG8gdGhyZWUgY2F0
+ZWdvcmllczoKICAgIC0gY29weWluZyBhIHN0cmluZyBhbmQgY29udmVydGluZyB0aGUgY2FzZSB3
+aGlsZSBzcGVjaWZ5aW5nIGEKICAgICAgbWF4aW11bSBsZW5ndGggdG8gbWltaWMgc3RybGNweSgp
+CiAgICAtIGNvcHlpbmcgYSBzdHJpbmcgYW5kIGNvbnZlcnRpbmcgdGhlIGNhc2Ugd2l0aG91dCBz
+cGVjaWZ5aW5nIGEKICAgICAgbGVuZ3RoIHRvIG1pbWljIHN0cmNweSgpCiAgICAtIGNvbnZlcnRp
+bmcgdGhlIGNhc2Ugb2YgYSBzdHJpbmcgaW4tcGxhY2UgKGkuZS4gbW9kaWZ5aW5nIHRoZQogICAg
+ICBzdHJpbmcgdGhhdCB3YXMgcGFzc2VkIGluKQoKQ29uc2VxdWVudGx5LCBJIGFtIHByb3Bvc2lu
+ZyB0aGVzZSBuZXcgZnVuY3Rpb25zOgogICAgdm9pZCBzdHJsY3B5dG91cHBlcihjaGFyICpkc3Qs
+IGNvbnN0IGNoYXIgKnNyYywgc2l6ZV90IGxlbik7CiAgICB2b2lkIHN0cmxjcHl0b2xvd2VyKGNo
+YXIgKmRzdCwgY29uc3QgY2hhciAqc3JjLCBzaXplX3QgbGVuKTsKICAgIHZvaWQgc3RyY3B5dG91
+cHBlcihjaGFyICpkc3QsIGNvbnN0IGNoYXIgKnNyYyk7CiAgICB2b2lkIHN0cmNweXRvbG93ZXIo
+Y2hhciAqZHN0LCBjb25zdCBjaGFyICpzcmMpOwogICAgdm9pZCBzdHJ0b3VwcGVyKGNoYXIgKnMp
+OwogICAgdm9pZCBzdHJ0b2xvd2VyKGNoYXIgKnMpOwoKU2V2ZXJhbCBkcml2ZXJzIGFyZSBiZWlu
+ZyBtb2RpZmllZCB0byBtYWtlIHVzZSBvZiB0aGUgZnVuY3Rpb25zIGFib3ZlLgpBbm90aGVyIGRy
+aXZlciB0aGF0IGFsc28gbWFrZXMgdXNlIG9mIHRoaXMgZnVuY3Rpb25hbGl0eSB3aWxsIGJlCnN1
+Ym1pdHRlZCB1cHN0cmVhbSBzaG9ydGx5LCB3aGljaCBwcm9tcHRlZCB0aGlzIHdob2xlIGV4ZXJj
+aXNlLgoKVGhlIGNoYW5nZXMgbWFkZSBoZXJlIGhhdmUgYmVlbiBjb21waWxlLXRlc3RlZCwgYnV0
+IG5vdCB0cmllZCBvdXQsIGR1ZQp0byBsYWNrIG9mIHJlcXVpcmVkIGhhcmR3YXJlLgoKQ2hhbmdl
+cyBzaW5jZSB2MjoKICAtIHVzZSBzdHJsY3B5KCkgc2VtYW50aWNzIG5vdCBzdHJuY3B5KCkgc2Vt
+YW50aWNzLCBpLmUuIGd1YXJhbnRlZQogICAgTlVMTCB0ZXJtaW5hdGlvbgogIC0gYXMgYSByZXN1
+bHQgc3RybmNweXRvPHVwcGVyfGxvd2VyPiBhcmUgbm93IGNhbGxlZAogICAgc3RybGNweXRvPHVw
+cGVyfGxvd2VyPgogIC0gbWFrZSBmdW5jdGlvbnMgdm9pZAogIC0gdXNlIGxlbiA9PSAtMSAoU0la
+RV9NQVgpIGFzIG5vLWxpbWl0IGluZGljYXRvciByYXRoZXIgdGhlbiBsZW4gPT0gMAogIC0gY2hh
+bmdlIFBBVENIIDIvNyB0byBtYXRjaCBzdHJsY3B5KCkgc2VtYW50aWNzCiAgLSBjaGFuZ2UgUEFU
+Q0ggNC83IHRvIG1hdGNoIHN0cmxjcHkoKSBzZW1hbnRpY3MKCkNoYW5nZXMgc2luY2UgdjE6CiAg
+LSBleHBhbmRlZCBzdHJ0b2xvd2VyKCkgaW50byBhIGZhbWlseSBvZiBmdW5jdGlvbnMgdGhhdCBj
+b3ZlciB1c2UKICAgIGNhc2VzIHdoZW4gYSBsZW5ndGggYXJndW1lbnQgaXMgb3IgaXNuJ3QgcmVx
+dWlyZWQgYW5kIHRoYXQgc3VwcG9ydAogICAgY29weWluZyB0aGUgc3RyaW5nIGludG8gYSBuZXcg
+YnVmZmVyIG9yIGNoYW5naW5nIGl0IGluLXBsYWNlIAogIC0gY2hhbmdlZCB0aGUgZnVuY3Rpb24g
+c2VtYW50aWNzIHRvIHJldHVybiBhIHBvaW50ZXIgdG8gdGhlCiAgICB0ZXJtaW5hdGluZyAnXDAn
+IGNoYXJhY3RlciBvZiB0aGUgbW9kaWZpZWQgc3RyaW5nCiAgLSBhZGRlZCBzdHJ0b3VwcGVyKCkg
+ZnVuY3Rpb25hbGl0eSBtaXJyb3JpbmcgdGhlIGFib3ZlCiAgLSBkcm9wcGVkIHRoZSBBQ1BJQ0Eg
+cGF0Y2gsIHNpbmNlIHRoYXQgY29kZSBpcyBPUyBpbmRlcGVuZGVudCBhbmQKICAgIGNhbid0IHJl
+bHkgb24gYSBMaW51eCBsaWJyYXJ5IGZ1bmN0aW9uIChzZWUgWzJdKQogIC0gQWRkZWQgdHdvIG5l
+dyBwYXRjaGVzIHJlcGxhY2luZyBzdHJ0b3VwcGVyKCkgaW1wbGVtZW50YXRpb25zCgpbMV0gaHR0
+cHM6Ly9sa21sLm9yZy9sa21sLzIwMTYvNi8zMC83MjcKWzJdIGh0dHBzOi8vbGttbC5vcmcvbGtt
+bC8yMDE2LzcvMS85CgoKCk1hcmt1cyBNYXllciAoNyk6CiAgbGliOiBzdHJpbmc6IGFkZCBmdW5j
+dGlvbnMgdG8gY2FzZS1jb252ZXJ0IHN0cmluZ3MKICBkcm0vbm91dmVhdS9jb3JlOiBtYWtlIHVz
+ZSBvZiBuZXcgc3RybGNweXRvbG93ZXIoKSBmdW5jdGlvbgogIEFDUEkgLyBkZXZpY2Vfc3lzZnM6
+IG1ha2UgdXNlIG9mIG5ldyBzdHJ0b2xvd2VyKCkgZnVuY3Rpb24KICBzdGFnaW5nOiBzcGVha3Vw
+OiByZXBsYWNlIHNwa19zdHJsd3IoKSB3aXRoIHN0cmxjcHl0b2xvd2VyKCkKICBpc2NzaS10YXJn
+ZXQ6IHJlcGxhY2UgaXNjc2lfaW5pdGlhdG9ybmFtZV90b2xvd2VyKCkgd2l0aCBzdHJ0b2xvd2Vy
+KCkKICBkcm0vbm91dmVhdS9maWZvL2drMTA0OiBtYWtlIHVzZSBvZiBuZXcgc3RyY3B5dG91cHBl
+cigpIGZ1bmN0aW9uCiAgcG93ZXJfc3VwcGx5OiBtYWtlIHVzZSBvZiBuZXcgc3RyY3B5dG91cHBl
+cigpIGZ1bmN0aW9uCgogZHJpdmVycy9hY3BpL2RldmljZV9zeXNmcy5jICAgICAgICAgICAgICAg
+ICAgICAgIHwgIDQgKy0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2NvcmUvZmlybXdh
+cmUuYyAgICAgfCAgOSArLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5l
+L2ZpZm8vZ2sxMDQuYyB8ICA1ICstLQogZHJpdmVycy9wb3dlci9wb3dlcl9zdXBwbHlfc3lzZnMu
+YyAgICAgICAgICAgICAgIHwgMTMgKysrLS0tLS0KIGRyaXZlcnMvc3RhZ2luZy9zcGVha3VwL2tv
+YmplY3RzLmMgICAgICAgICAgICAgICB8ICAzICstCiBkcml2ZXJzL3N0YWdpbmcvc3BlYWt1cC9t
+YWluLmMgICAgICAgICAgICAgICAgICAgfCAgMyArLQogZHJpdmVycy9zdGFnaW5nL3NwZWFrdXAv
+c3BlYWt1cC5oICAgICAgICAgICAgICAgIHwgIDEgLQogZHJpdmVycy9zdGFnaW5nL3NwZWFrdXAv
+dmFyaGFuZGxlcnMuYyAgICAgICAgICAgIHwgMTIgLS0tLS0tLQogZHJpdmVycy90YXJnZXQvaXNj
+c2kvaXNjc2lfdGFyZ2V0X25lZ28uYyAgICAgICAgIHwgMTcgKy0tLS0tLS0tLQogaW5jbHVkZS9s
+aW51eC9zdHJpbmcuaCAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgNDAgKysrKysrKysrKysr
+KysrKysrKysrKysrCiBsaWIvc3RyaW5nLmMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgfCAzOCArKysrKysrKysrKysrKysrKysrKysrCiAxMSBmaWxlcyBjaGFuZ2VkLCA5MCBp
+bnNlcnRpb25zKCspLCA1NSBkZWxldGlvbnMoLSkKCi0tIAoyLjcuNAoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
