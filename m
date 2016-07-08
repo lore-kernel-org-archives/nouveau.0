@@ -1,14 +1,13 @@
-From: Markus Mayer <mmayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
-Subject: [PATCH v3 6/7] drm/nouveau/fifo/gk104: make use of new
-	strcpytoupper() function
-Date: Fri,  8 Jul 2016 15:43:13 -0700
-Message-ID: <1468017794-4818-7-git-send-email-mmayer@broadcom.com>
-References: <1468017794-4818-1-git-send-email-mmayer@broadcom.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96836] Kernel unaligned access at TPC[105d9fb4]
+ nvkm_instobj_wr32+0x14/0x20 [nouveau]
+Date: Fri, 08 Jul 2016 23:18:30 +0000
+Message-ID: <bug-96836-8800-FLjG2gZewg@http.bugs.freedesktop.org/>
+References: <bug-96836-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1096882030=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1468017794-4818-1-git-send-email-mmayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
+In-Reply-To: <bug-96836-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,27 +17,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q2FsbCBzdHJjcHl0b3VwcGVyKCkgcmF0aGVyIHRoYW4gY29weWluZyB0aGUgc3RyaW5nIGV4cGxp
-Y2l0bHkgYW5kIHRoZW4Kd2Fsa2luZyBpdCB0byBjb252ZXJ0IGl0IHRvIHVwcGVyY2FzZS4KClNp
-Z25lZC1vZmYtYnk6IE1hcmt1cyBNYXllciA8bW1heWVyQGJyb2FkY29tLmNvbT4KLS0tCiBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9maWZvL2drMTA0LmMgfCA1ICstLS0tCiAx
-IGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmlmby9nazEwNC5jIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmlmby9nazEwNC5jCmluZGV4IDc0M2Yz
-YTEuLjhkMDEwMzIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5n
-aW5lL2ZpZm8vZ2sxMDQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2lu
-ZS9maWZvL2drMTA0LmMKQEAgLTMzMiwxMCArMzMyLDcgQEAgZ2sxMDRfZmlmb19pbnRyX2ZhdWx0
-KHN0cnVjdCBnazEwNF9maWZvICpmaWZvLCBpbnQgdW5pdCkKIAkJZW51bSBudmttX2RldmlkeCBl
-bmdpZHggPSBudmttX3RvcF9mYXVsdChkZXZpY2UtPnRvcCwgdW5pdCk7CiAJCWlmIChlbmdpZHgg
-PCBOVktNX1NVQkRFVl9OUikgewogCQkJY29uc3QgY2hhciAqc3JjID0gbnZrbV9zdWJkZXZfbmFt
-ZVtlbmdpZHhdOwotCQkJY2hhciAqZHN0ID0gZW47Ci0JCQlkbyB7Ci0JCQkJKmRzdCsrID0gdG91
-cHBlcigqc3JjKyspOwotCQkJfSB3aGlsZSgqc3JjKTsKKwkJCXN0cmNweXRvdXBwZXIoZW4sIHNy
-Yyk7CiAJCQllbmdpbmUgPSBudmttX2RldmljZV9lbmdpbmUoZGV2aWNlLCBlbmdpZHgpOwogCQl9
-CiAJfSBlbHNlIHsKLS0gCjIuNy40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+
+--===============1096882030==
+Content-Type: multipart/alternative; boundary="14680199100.1Ffaf.1762";
+ charset="UTF-8"
+
+
+--14680199100.1Ffaf.1762
+Date: Fri, 8 Jul 2016 23:18:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96836
+
+--- Comment #2 from Kieron Gillespie <ciaran.gillespie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+So Sparc64 is a big endian archetecutre. The request to use 4K huge pages is
+not possible on Sarc64 as the smallest it supports is 8K (which is what my
+system is currently using.)
+
+The card is a GeForce FX5200 128MB DDR PCI
+
+The GPU I am currently testing is a bit of a fossil, but I had great succes=
+s on
+this SPARC system in the past managed to get full hardware acceleration
+working, sometime early 2015.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14680199100.1Ffaf.1762
+Date: Fri, 8 Jul 2016 23:18:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
+2+0x14/0x20 [nouveau]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
+2+0x14/0x20 [nouveau]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836">bug 96836<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ciaran.gillespie&#64;gmail.com" title=3D"Kieron Gillespie &lt;ciaran.gilles=
+pie&#64;gmail.com&gt;"> <span class=3D"fn">Kieron Gillespie</span></a>
+</span></b>
+        <pre>So Sparc64 is a big endian archetecutre. The request to use 4K=
+ huge pages is
+not possible on Sarc64 as the smallest it supports is 8K (which is what my
+system is currently using.)
+
+The card is a GeForce FX5200 128MB DDR PCI
+
+The GPU I am currently testing is a bit of a fossil, but I had great succes=
+s on
+this SPARC system in the past managed to get full hardware acceleration
+working, sometime early 2015.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14680199100.1Ffaf.1762--
+
+--===============1096882030==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1096882030==--
