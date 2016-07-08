@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Help with nouveau driver
-Date: Fri, 8 Jul 2016 14:45:32 -0400
-Message-ID: <CAKb7UvgLn4dxupwiMCkVSAjfu39X_hRHVd46yWenXazVc6VbrQ@mail.gmail.com>
-References: <d03601fd-7fa3-e081-1688-cabde5b812d5@web.de>
- <49b8fe46-a683-eb71-7fe1-ac10c9b15926@web.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91954] "link training failed": nouveau does not
+ recover from monitor suspend
+Date: Fri, 08 Jul 2016 20:07:30 +0000
+Message-ID: <bug-91954-8800-yeT7feQ1hA@http.bugs.freedesktop.org/>
+References: <bug-91954-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1864445241=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <49b8fe46-a683-eb71-7fe1-ac10c9b15926-S0/GAf8tV78@public.gmane.org>
+In-Reply-To: <bug-91954-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,27 +17,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: abcd <abcdeluxe-S0/GAf8tV78@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdWwgOCwgMjAxNiBhdCAyOjQyIFBNLCBhYmNkIDxhYmNkZWx1eGVAd2ViLmRlPiB3
-cm90ZToKPiBUaGFua3MgZm9yIHRoZSBoZWxwIHNvIGZhciwgSSBoYXZlIGFscmVhZHkgc29sdmVk
-IHRoZSBtYWluIHByb2JsZW0sCj4KPiBidXQgc2FkbHkgaXQgc2VlbXMgSSBjYW4ndCBmaW5kIG91
-dCB0aGUgbGFzdCBzdGVwLiBJIGhvcGUgeW91IGNhbiBoZWxwIG1lCj4gdGhlcmUuLi4KPgo+IEhl
-cmUgaXN0IHRoZSBpbXBvcnRhbnQgcGFydDogSXQgaXMgdHJ5aW5nIHRvIGxvYWQgc29tZSBudmlk
-aWEgbW9kdWxlLAo+IGFsdGhvdWdoIGkgaGF2ZSBhbHJlYWR5IGRvbmUgYXB0LWdldCBwdXJnZSBu
-dmlkaWEqCj4KPiBbICAgICA0LjYzNl0gKElJKSBMb2FkTW9kdWxlOiAiZ2x4Igo+IFsgICAgIDQu
-NjM4XSAoSUkpIExvYWRpbmcgL3Vzci9saWIveG9yZy9tb2R1bGVzL2V4dGVuc2lvbnMvbGliZ2x4
-LnNvCj4gWyAgICAgNC42MzldIChFRSkgRmFpbGVkIHRvIGxvYWQgL3Vzci9saWIveG9yZy9tb2R1
-bGVzL2V4dGVuc2lvbnMvbGliZ2x4LnNvOgo+IGxpYm52aWRpYS10bHMuc28uMzUyLjc5OiBjYW5u
-b3Qgb3BlbiBzaGFyZWQgb2JqZWN0IGZpbGU6IE5vIHN1Y2ggZmlsZSBvcgo+IGRpcmVjdG9yeQo+
-IFsgICAgIDQuNjM5XSAoSUkpIFVubG9hZE1vZHVsZTogImdseCIKPiBbICAgICA0LjYzOV0gKElJ
-KSBVbmxvYWRpbmcgZ2x4Cj4gWyAgICAgNC42MzldIChFRSkgRmFpbGVkIHRvIGxvYWQgbW9kdWxl
-ICJnbHgiIChsb2FkZXIgZmFpbGVkLCA3KQoKUmlnaHQsIHNvIGFzIHlvdSBpZGVudGlmaWVkLCB0
-aGF0J3MgYmFkLiBZb3Ugc3RpbGwgaGF2ZSB0aGUgbnZpZGlhCmxpYmdseC5zbyBvciAuLi4gc29t
-ZXRoaW5nIGVsc2Ugd2VpcmQgZ29pbmcgb24uIEkgcmVjb21tZW5kIGFza2luZwpzb21lb25lIG1v
-cmUgZmFtaWxpYXIgd2l0aCB5b3VyIGRpc3RybyB0byBoZWxwIHlvdSBvdXQuCgpDaGVlcnMsCgog
-IC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
-dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1864445241==
+Content-Type: multipart/alternative; boundary="14680084501.3133Ea.15306";
+ charset="UTF-8"
+
+
+--14680084501.3133Ea.15306
+Date: Fri, 8 Jul 2016 20:07:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91954
+
+--- Comment #9 from roflawl2009-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I'm still running into this issue. I posted more detailed information and t=
+he
+output of dmesg and journalctl on Fedoraforum, here:
+http://forums.fedoraforum.org/showthread.php?t=3D310633
+
+When my system is suspended and wakes back up, the primary LCD is stuck on a
+blank white image and sometimes cannot recover when switching TTY's. Dmesg
+fills up with this:
+[ 270.115821] nouveau 0000:01:00.0: disp: outp 00:0006:0344: link training
+failed
+[ 270.122646] nouveau 0000:01:00.0: disp: outp 00:0006:0344: link training
+failed
+[ 270.123698] nouveau 0000:01:00.0: disp: outp 00:0006:0344: link not train=
+ed
+before attach
+
+Hardware:
+HP EliteBook 8440p, Legacy Boot
+Nvidia GT218M (NVS 3100M)
+
+Software:
+Fedora 24, latest updates, Gnome 3.20.2
+Gallium 0.4 on NVA8
+Kernel - 4.6.3-300.fc24.x86_64
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14680084501.3133Ea.15306
+Date: Fri, 8 Jul 2016 20:07:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - &quot;link training failed&quot;: nouveau does not recove=
+r from monitor suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91954#c9">Comment=
+ # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - &quot;link training failed&quot;: nouveau does not recove=
+r from monitor suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91954">bug 91954<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+roflawl2009&#64;gmail.com" title=3D"roflawl2009&#64;gmail.com">roflawl2009&=
+#64;gmail.com</a>
+</span></b>
+        <pre>I'm still running into this issue. I posted more detailed info=
+rmation and the
+output of dmesg and journalctl on Fedoraforum, here:
+<a href=3D"http://forums.fedoraforum.org/showthread.php?t=3D310633">http://=
+forums.fedoraforum.org/showthread.php?t=3D310633</a>
+
+When my system is suspended and wakes back up, the primary LCD is stuck on a
+blank white image and sometimes cannot recover when switching TTY's. Dmesg
+fills up with this:
+[ 270.115821] nouveau 0000:01:00.0: disp: outp 00:0006:0344: link training
+failed
+[ 270.122646] nouveau 0000:01:00.0: disp: outp 00:0006:0344: link training
+failed
+[ 270.123698] nouveau 0000:01:00.0: disp: outp 00:0006:0344: link not train=
+ed
+before attach
+
+Hardware:
+HP EliteBook 8440p, Legacy Boot
+Nvidia GT218M (NVS 3100M)
+
+Software:
+Fedora 24, latest updates, Gnome 3.20.2
+Gallium 0.4 on NVA8
+Kernel - 4.6.3-300.fc24.x86_64</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14680084501.3133Ea.15306--
+
+--===============1864445241==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1864445241==--
