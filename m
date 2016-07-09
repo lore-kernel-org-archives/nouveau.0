@@ -1,16 +1,11 @@
-From: Markus Mayer <markus.mayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
-Subject: Re: [PATCH v3 1/7] lib: string: add functions to
-	case-convert strings
-Date: Sat, 9 Jul 2016 08:30:19 -0700
-Message-ID: <CAGt4E5vYzkqgiiQXXjnX7az-KzCVSYthEW5Df03U=Y1qhEJdRQ@mail.gmail.com>
-References: <1468017794-4818-1-git-send-email-mmayer@broadcom.com>
- <1468017794-4818-2-git-send-email-mmayer@broadcom.com>
- <5780E866.8000001@osg.samsung.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96876] New: system freeze "fifo: gr engine fault on
+ channel 6" NVIDIA
+Date: Sat, 09 Jul 2016 23:31:24 +0000
+Message-ID: <bug-96876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0046876038=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5780E866.8000001-JPH+aEBZ4P+UEJcrhfAQsw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,93 +15,314 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Luis de Bethencourt <luisbg-JPH+aEBZ4P+UEJcrhfAQsw@public.gmane.org>
-Cc: devel-gWbeCf7V1WCQmaza687I9mD2FQJk+8+b@public.gmane.org, Kees Cook <keescook-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Rasmus Villemoes <linux-qQsb+v5E8BnlAoU/VqSP6n9LOBIZ5rWg@public.gmane.org>, Linux Kernel <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, speakup-UPO/6gOIxNZglr+F8WMZYdi2O/JbrIOy@public.gmane.org, Chris Metcalf <cmetcalf-d5a29ZRxExrQT0dZR+AlfA@public.gmane.org>, target-devel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Al Viro <viro-RmSDqhL/yNMiFSDQTTA3OLVCufUGDwFn@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gOSBKdWx5IDIwMTYgYXQgMDU6MDQsIEx1aXMgZGUgQmV0aGVuY291cnQgPGx1aXNiZ0Bvc2cu
-c2Ftc3VuZy5jb20+IHdyb3RlOgo+IE9uIDA4LzA3LzE2IDIzOjQzLCBNYXJrdXMgTWF5ZXIgd3Jv
-dGU6Cj4+IEFkZCBhIGNvbGxlY3Rpb24gb2YgZ2VuZXJpYyBmdW5jdGlvbnMgdG8gY29udmVydCBz
-dHJpbmdzIHRvIGxvd2VyY2FzZQo+PiBvciB1cHBlcmNhc2UuCj4+Cj4+IENoYW5naW5nIHRoZSBj
-YXNlIG9mIGEgc3RyaW5nICh3aXRoIG9yIHdpdGhvdXQgY29weWluZyBpdCBmaXJzdCkgc2VlbXMK
-Pj4gdG8gYmUgYSByZWN1cnJpbmcgcmVxdWlyZW1lbnQgaW4gdGhlIGtlcm5lbCB0aGF0IGlzIGN1
-cnJlbnRseSBiZWluZwo+PiBzb2x2ZWQgYnkgc2V2ZXJhbCBkdXBsaWNhdGVkIGltcGxlbWVudGF0
-aW9ucyBkb2luZyB0aGUgc2FtZSB0aGluZy4gVGhpcwo+PiBjaGFuZ2UgYWltcyBhdCByZWR1Y2lu
-ZyB0aGlzIGNvZGUgZHVwbGljYXRpb24uCj4+Cj4+IFRoZSBuZXcgZnVuY3Rpb25zIGFyZQo+PiAg
-ICAgdm9pZCBzdHJsY3B5dG91cHBlcihjaGFyICpkc3QsIGNvbnN0IGNoYXIgKnNyYywgc2l6ZV90
-IGxlbik7Cj4+ICAgICB2b2lkIHN0cmxjcHl0b2xvd2VyKGNoYXIgKmRzdCwgY29uc3QgY2hhciAq
-c3JjLCBzaXplX3QgbGVuKTsKPj4gICAgIHZvaWQgc3RyY3B5dG91cHBlcihjaGFyICpkc3QsIGNv
-bnN0IGNoYXIgKnNyYyk7Cj4+ICAgICB2b2lkIHN0cmNweXRvbG93ZXIoY2hhciAqZHN0LCBjb25z
-dCBjaGFyICpzcmMpOwo+PiAgICAgdm9pZCBzdHJ0b3VwcGVyKGNoYXIgKnMpOwo+PiAgICAgdm9p
-ZCBzdHJ0b2xvd2VyKGNoYXIgKnMpOwo+Pgo+PiBUaGUgInN0cltsXWNweXRvKiIgdmVyc2lvbnMg
-b2YgdGhlIGZ1bmN0aW9uIHRha2UgYSBkZXN0aW5hdGlvbiBzdHJpbmcKPj4gYW5kIGEgc291cmNl
-IHN0cmluZyBhcyBhcmd1bWVudHMuIFRoZSAic3RybGNweXRvKiIgdmVyc2lvbnMgYWRkaXRpb25h
-bGx5Cj4+IHRha2UgYSBsZW5ndGggYXJndW1lbnQgbGlrZSBzdHJsY3B5KCkgaXRzZWxmLiBMYXN0
-bHksIHRoZSBzdHJ0byoKPj4gZnVuY3Rpb25zIHRha2UgYSBzaW5nbGUgc3RyaW5nIGFyZ3VtZW50
-IGFuZCBtb2RpZnkgdGhlIHBhc3NlZC1pbiBzdHJpbmcuCj4+Cj4+IExpa2Ugc3RybGNweSgpLCBh
-bmQgdW5saWtlIHN0cm5jcHkoKSwgdGhlIGZ1bmN0aW9ucyBndWFyYW50ZWUgTlVMTAo+PiB0ZXJt
-aW5hdGlvbiBvZiB0aGUgZGVzdGluYXRpb24gc3RyaW5nLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBN
-YXJrdXMgTWF5ZXIgPG1tYXllckBicm9hZGNvbS5jb20+Cj4+IC0tLQo+PiAgaW5jbHVkZS9saW51
-eC9zdHJpbmcuaCB8IDQwICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysK
-Pj4gIGxpYi9zdHJpbmcuYyAgICAgICAgICAgfCAzOCArKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKwo+PiAgMiBmaWxlcyBjaGFuZ2VkLCA3OCBpbnNlcnRpb25zKCspCj4+Cj4+
-IGRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L3N0cmluZy5oIGIvaW5jbHVkZS9saW51eC9zdHJp
-bmcuaAo+PiBpbmRleCAyNmI2ZjZhLi4zNmM5ZDE0IDEwMDY0NAo+PiAtLS0gYS9pbmNsdWRlL2xp
-bnV4L3N0cmluZy5oCj4+ICsrKyBiL2luY2x1ZGUvbGludXgvc3RyaW5nLmgKPj4gQEAgLTExNiw2
-ICsxMTYsOCBAQCBleHRlcm4gdm9pZCAqIG1lbWNocihjb25zdCB2b2lkICosaW50LF9fa2VybmVs
-X3NpemVfdCk7Cj4+ICAjZW5kaWYKPj4gIHZvaWQgKm1lbWNocl9pbnYoY29uc3Qgdm9pZCAqcywg
-aW50IGMsIHNpemVfdCBuKTsKPj4gIGNoYXIgKnN0cnJlcGxhY2UoY2hhciAqcywgY2hhciBvbGQs
-IGNoYXIgbmV3KTsKPj4gK2V4dGVybiB2b2lkIHN0cmxjcHl0b3VwcGVyKGNoYXIgKmRzdCwgY29u
-c3QgY2hhciAqc3JjLCBzaXplX3QgbGVuKTsKPj4gK2V4dGVybiB2b2lkIHN0cmxjcHl0b2xvd2Vy
-KGNoYXIgKmRzdCwgY29uc3QgY2hhciAqc3JjLCBzaXplX3QgbGVuKTsKPj4KPj4gIGV4dGVybiB2
-b2lkIGtmcmVlX2NvbnN0KGNvbnN0IHZvaWQgKngpOwo+Pgo+PiBAQCAtMTY5LDQgKzE3MSw0MiBA
-QCBzdGF0aWMgaW5saW5lIGNvbnN0IGNoYXIgKmtiYXNlbmFtZShjb25zdCBjaGFyICpwYXRoKQo+
-PiAgICAgICByZXR1cm4gdGFpbCA/IHRhaWwgKyAxIDogcGF0aDsKPj4gIH0KPj4KPj4gKy8qKgo+
-PiArICogc3RyY3B5dG91cHBlciAtIENvcHkgc3RyaW5nIGFuZCBjb252ZXJ0IHRvIHVwcGVyY2Fz
-ZS4KPj4gKyAqIEBkc3Q6IFRoZSBidWZmZXIgdG8gc3RvcmUgdGhlIHJlc3VsdC4KPj4gKyAqIEBz
-cmM6IFRoZSBzdHJpbmcgdG8gY29udmVydCB0byB1cHBlcmNhc2UuCj4+ICsgKi8KPj4gK3N0YXRp
-YyBpbmxpbmUgdm9pZCBzdHJjcHl0b3VwcGVyKGNoYXIgKmRzdCwgY29uc3QgY2hhciAqc3JjKQo+
-PiArewo+PiArICAgICBzdHJsY3B5dG91cHBlcihkc3QsIHNyYywgLTEpOwo+PiArfQo+PiArCj4K
-PiBXaHkgbm90IHVzZSBTSVpFX01BWCBpbnN0ZWFkIG9mIC0xPwoKU3VyZS4gSSdsbCBjaGFuZ2Ug
-YWxsIGZvdXIgb2YgdGhlbS4gVGhhbmtzLgoKPj4gKy8qKgo+PiArICogc3RyY3B5dG9sb3dlciAt
-IENvcHkgc3RyaW5nIGFuZCBjb252ZXJ0IHRvIGxvd2VyY2FzZS4KPj4gKyAqIEBkc3Q6IFRoZSBi
-dWZmZXIgdG8gc3RvcmUgdGhlIHJlc3VsdC4KPj4gKyAqIEBzcmM6IFRoZSBzdHJpbmcgdG8gY29u
-dmVydCB0byBsb3dlcmNhc2UuCj4+ICsgKi8KPj4gK3N0YXRpYyBpbmxpbmUgdm9pZCBzdHJjcHl0
-b2xvd2VyKGNoYXIgKmRzdCwgY29uc3QgY2hhciAqc3JjKQo+PiArewo+PiArICAgICBzdHJsY3B5
-dG9sb3dlcihkc3QsIHNyYywgLTEpOwo+PiArfQo+PiArCj4KPiBTYW1lIGhlcmUsIGFuZCB0aGUg
-MiBiZWxvdyA6KQo+Cj4gVGhhbmtzIE1hcmt1cywKPiBMdWlzCj4KPj4gKy8qKgo+PiArICogc3Ry
-dG91cHBlciAtIENvbnZlcnQgc3RyaW5nIHRvIHVwcGVyY2FzZS4KPj4gKyAqIEBzOiBUaGUgc3Ry
-aW5nIHRvIG9wZXJhdGUgb24uCj4+ICsgKi8KPj4gK3N0YXRpYyBpbmxpbmUgdm9pZCBzdHJ0b3Vw
-cGVyKGNoYXIgKnMpCj4+ICt7Cj4+ICsgICAgIHN0cmxjcHl0b3VwcGVyKHMsIHMsIC0xKTsKPj4g
-K30KPj4gKwo+PiArLyoqCj4+ICsgKiBzdHJ0b2xvd2VyIC0gQ29udmVydCBzdHJpbmcgdG8gbG93
-ZXJjYXNlLgo+PiArICogQHM6IFRoZSBzdHJpbmcgdG8gb3BlcmF0ZSBvbi4KPj4gKyAqLwo+PiAr
-c3RhdGljIGlubGluZSB2b2lkIHN0cnRvbG93ZXIoY2hhciAqcykKPj4gK3sKPj4gKyAgICAgc3Ry
-bGNweXRvbG93ZXIocywgcywgLTEpOwo+PiArfQo+PiArCj4+ICAjZW5kaWYgLyogX0xJTlVYX1NU
-UklOR19IXyAqLwo+PiBkaWZmIC0tZ2l0IGEvbGliL3N0cmluZy5jIGIvbGliL3N0cmluZy5jCj4+
-IGluZGV4IGVkODM1NjIuLmZkOGM0MjcgMTAwNjQ0Cj4+IC0tLSBhL2xpYi9zdHJpbmcuYwo+PiAr
-KysgYi9saWIvc3RyaW5nLmMKPj4gQEAgLTk1MiwzICs5NTIsNDEgQEAgY2hhciAqc3RycmVwbGFj
-ZShjaGFyICpzLCBjaGFyIG9sZCwgY2hhciBuZXcpCj4+ICAgICAgIHJldHVybiBzOwo+PiAgfQo+
-PiAgRVhQT1JUX1NZTUJPTChzdHJyZXBsYWNlKTsKPj4gKwo+PiArLyoqCj4+ICsgKiBzdHJsY3B5
-dG91cHBlciAtIENvcHkgYSBsZW5ndGgtbGltaXRlZCBzdHJpbmcgYW5kIGNvbnZlcnQgdG8gdXBw
-ZXJjYXNlLgo+PiArICogQGRzdDogVGhlIGJ1ZmZlciB0byBzdG9yZSB0aGUgcmVzdWx0Lgo+PiAr
-ICogQHNyYzogVGhlIHN0cmluZyB0byBjb252ZXJ0IHRvIHVwcGVyY2FzZS4KPj4gKyAqIEBsZW46
-IE1heGltdW0gc3RyaW5nIGxlbmd0aC4gTWF5IGJlIFNJWkVfTUFYICgtMSkgdG8gc2V0IG5vIGxp
-bWl0Lgo+PiArICovCj4+ICt2b2lkIHN0cmxjcHl0b3VwcGVyKGNoYXIgKmRzdCwgY29uc3QgY2hh
-ciAqc3JjLCBzaXplX3QgbGVuKQo+PiArewo+PiArICAgICBzaXplX3QgaTsKPj4gKwo+PiArICAg
-ICBpZiAoIWxlbikKPj4gKyAgICAgICAgICAgICByZXR1cm47Cj4+ICsKPj4gKyAgICAgZm9yIChp
-ID0gMDsgaSA8IGxlbiAmJiBzcmNbaV07ICsraSkKPj4gKyAgICAgICAgICAgICBkc3RbaV0gPSB0
-b3VwcGVyKHNyY1tpXSk7Cj4+ICsgICAgIGRzdFtpIDwgbGVuID8gaSA6IGkgLSAxXSA9ICdcMCc7
-Cj4+ICt9Cj4+ICtFWFBPUlRfU1lNQk9MKHN0cmxjcHl0b3VwcGVyKTsKPj4gKwo+PiArLyoqCj4+
-ICsgKiBzdHJsY3B5dG9sb3dlciAtIENvcHkgYSBsZW5ndGgtbGltaXRlZCBzdHJpbmcgYW5kIGNv
-bnZlcnQgdG8gbG93ZXJjYXNlLgo+PiArICogQGRzdDogVGhlIGJ1ZmZlciB0byBzdG9yZSB0aGUg
-cmVzdWx0Lgo+PiArICogQHNyYzogVGhlIHN0cmluZyB0byBjb252ZXJ0IHRvIGxvd2VyY2FzZS4K
-Pj4gKyAqIEBsZW46IE1heGltdW0gc3RyaW5nIGxlbmd0aC4gTWF5IGJlIFNJWkVfTUFYICgtMSkg
-dG8gc2V0IG5vIGxpbWl0Lgo+PiArICovCj4+ICt2b2lkIHN0cmxjcHl0b2xvd2VyKGNoYXIgKmRz
-dCwgY29uc3QgY2hhciAqc3JjLCBzaXplX3QgbGVuKQo+PiArewo+PiArICAgICBzaXplX3QgaTsK
-Pj4gKwo+PiArICAgICBpZiAoIWxlbikKPj4gKyAgICAgICAgICAgICByZXR1cm47Cj4+ICsKPj4g
-KyAgICAgZm9yIChpID0gMDsgaSA8IGxlbiAmJiBzcmNbaV07ICsraSkKPj4gKyAgICAgICAgICAg
-ICBkc3RbaV0gPSB0b2xvd2VyKHNyY1tpXSk7Cj4+ICsgICAgIGRzdFtpIDwgbGVuID8gaSA6IGkg
-LSAxXSA9ICdcMCc7Cj4+ICt9Cj4+ICtFWFBPUlRfU1lNQk9MKHN0cmxjcHl0b2xvd2VyKTsKPj4K
-PgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
-IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0046876038==
+Content-Type: multipart/alternative; boundary="14681070840.817e.27066";
+ charset="UTF-8"
+
+
+--14681070840.817e.27066
+Date: Sat, 9 Jul 2016 23:31:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96876
+
+            Bug ID: 96876
+           Summary: system freeze "fifo: gr engine fault on channel 6"
+                    NVIDIA
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: dashesy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 124976
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124976&action=3Dedit
+acpidump
+
+I saw some similarity with bug #93629, but this is not related to any
+SCHED_ERROR. Also it is very often, usually chrome triggering it.=20
+I had problem with this GC, turning off the monitors on startup, but that
+problem is now fixed in the latest kernel.
+
+$ journalctl --no-pager -b -2 -p err
+-- Logs begin at Thu 2016-05-05 05:39:48 PDT, end at Sat 2016-07-09 16:10:13
+PDT. --
+Jul 04 02:15:01 dashesy.wavelet kernel: nouveau 0000:01:00.0: priv: HUB0:
+086014 ffffffff (1f70820c)
+Jul 04 09:15:32 dashesy.wavelet mcelog[877]: Family 6 Model 5e CPU: only
+decoding architectural errors
+Jul 04 09:15:33 dashesy.wavelet bluetoothd[873]: Failed to obtain handles f=
+or
+"Service Changed" characteristic
+Jul 04 09:16:01 dashesy.wavelet spice-vdagent[1546]: Cannot access vdagent
+virtio channel /dev/virtio-ports/com.redhat.spice.0
+Jul 04 09:17:36 dashesy.wavelet spice-vdagent[2064]: Cannot access vdagent
+virtio channel /dev/virtio-ports/com.redhat.spice.0
+Jul 04 12:24:41 dashesy.wavelet kernel: nouveau 0000:01:00.0: Invalid PCI R=
+OM
+header signature: expecting 0xaa55, got 0xffff
+Jul 09 09:59:48 dashesy.wavelet kernel: nouveau 0000:01:00.0: fifo: read fa=
+ult
+at 0000260000 engine 00 [GR] client 01 [GPC0/T1_0] reason 02 [PTE] on chann=
+el 6
+[007fb61000 systemd-logind[859]]
+Jul 09 09:59:48 dashesy.wavelet kernel: nouveau 0000:01:00.0: fifo: gr engi=
+ne
+fault on channel 6, recovering...
+Jul 09 09:59:48 dashesy.wavelet kernel: nouveau 0000:01:00.0: gr: TRAP ch 6
+[007fb61000 systemd-logind[859]]
+Jul 09 09:59:48 dashesy.wavelet kernel: nouveau 0000:01:00.0: gr:
+GPC0/TPC0/TEX: 80000049
+Jul 09 09:59:48 dashesy.wavelet kernel: nouveau 0000:01:00.0: gr:
+GPC0/TPC1/TEX: 80000049
+
+
+$ lspci -v
+01:00.0 VGA compatible controller: NVIDIA Corporation GK208 [GeForce GT 730]
+(rev a1) (prog-if 00 [VGA controller])
+        Subsystem: Dell Device 1083
+        Flags: bus master, fast devsel, latency 0, IRQ 126
+        Memory at de000000 (32-bit, non-prefetchable) [size=3D16M]
+        Memory at d0000000 (64-bit, prefetchable) [size=3D128M]
+        Memory at d8000000 (64-bit, prefetchable) [size=3D32M]
+        I/O ports at e000 [size=3D128]
+        Expansion ROM at df000000 [disabled] [size=3D512K]
+        Capabilities: [60] Power Management version 3
+        Capabilities: [68] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
+        Capabilities: [78] Express Legacy Endpoint, MSI 00
+        Capabilities: [100] Virtual Channel
+        Capabilities: [128] Power Budgeting <?>
+        Capabilities: [600] Vendor Specific Information: ID=3D0001 Rev=3D1 =
+Len=3D024
+<?>
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau
+
+$ uname -a
+Linux dashesy.wavelet 4.5.7-202.fc23.x86_64 #1 SMP Tue Jun 28 18:22:51 UTC =
+2016
+x86_64 x86_64 x86_64 GNU/Linux
+
+
+This is a complete hang, and seems to happen quite enough, I will gladly run
+any kernel/driver combination to sort this out.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14681070840.817e.27066
+Date: Sat, 9 Jul 2016 23:31:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - system freeze &quot;fifo: gr engine fault on channel 6&qu=
+ot; NVIDIA"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96876">96876</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>system freeze &quot;fifo: gr engine fault on channel 6&quot; =
+NVIDIA
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>dashesy&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124976=
+" name=3D"attach_124976" title=3D"acpidump">attachment 124976</a> <a href=
+=3D"attachment.cgi?id=3D124976&amp;action=3Dedit" title=3D"acpidump">[detai=
+ls]</a></span>
+acpidump
+
+I saw some similarity with <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"show_bug.cgi?id=3D93629">bug #93629</a>, but this is not related=
+ to any
+SCHED_ERROR. Also it is very often, usually chrome triggering it.=20
+I had problem with this GC, turning off the monitors on startup, but that
+problem is now fixed in the latest kernel.
+
+$ journalctl --no-pager -b -2 -p err
+-- Logs begin at Thu 2016-05-05 05:39:48 PDT, end at Sat 2016-07-09 16:10:13
+PDT. --
+Jul 04 02:15:01 dashesy.wavelet kernel: nouveau 0000:01:00.0: priv: HUB0:
+086014 ffffffff (1f70820c)
+Jul 04 09:15:32 dashesy.wavelet mcelog[877]: Family 6 Model 5e CPU: only
+decoding architectural errors
+Jul 04 09:15:33 dashesy.wavelet bluetoothd[873]: Failed to obtain handles f=
+or
+&quot;Service Changed&quot; characteristic
+Jul 04 09:16:01 dashesy.wavelet spice-vdagent[1546]: Cannot access vdagent
+virtio channel /dev/virtio-ports/com.redhat.spice.0
+Jul 04 09:17:36 dashesy.wavelet spice-vdagent[2064]: Cannot access vdagent
+virtio channel /dev/virtio-ports/com.redhat.spice.0
+Jul 04 12:24:41 dashesy.wavelet kernel: nouveau 0000:01:00.0: Invalid PCI R=
+OM
+header signature: expecting 0xaa55, got 0xffff
+Jul 09 09:59:48 dashesy.wavelet kernel: nouveau 0000:01:00.0: fifo: read fa=
+ult
+at 0000260000 engine 00 [GR] client 01 [GPC0/T1_0] reason 02 [PTE] on chann=
+el 6
+[007fb61000 systemd-logind[859]]
+Jul 09 09:59:48 dashesy.wavelet kernel: nouveau 0000:01:00.0: fifo: gr engi=
+ne
+fault on channel 6, recovering...
+Jul 09 09:59:48 dashesy.wavelet kernel: nouveau 0000:01:00.0: gr: TRAP ch 6
+[007fb61000 systemd-logind[859]]
+Jul 09 09:59:48 dashesy.wavelet kernel: nouveau 0000:01:00.0: gr:
+GPC0/TPC0/TEX: 80000049
+Jul 09 09:59:48 dashesy.wavelet kernel: nouveau 0000:01:00.0: gr:
+GPC0/TPC1/TEX: 80000049
+
+
+$ lspci -v
+01:00.0 VGA compatible controller: NVIDIA Corporation GK208 [GeForce GT 730]
+(rev a1) (prog-if 00 [VGA controller])
+        Subsystem: Dell Device 1083
+        Flags: bus master, fast devsel, latency 0, IRQ 126
+        Memory at de000000 (32-bit, non-prefetchable) [size=3D16M]
+        Memory at d0000000 (64-bit, prefetchable) [size=3D128M]
+        Memory at d8000000 (64-bit, prefetchable) [size=3D32M]
+        I/O ports at e000 [size=3D128]
+        Expansion ROM at df000000 [disabled] [size=3D512K]
+        Capabilities: [60] Power Management version 3
+        Capabilities: [68] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
+        Capabilities: [78] Express Legacy Endpoint, MSI 00
+        Capabilities: [100] Virtual Channel
+        Capabilities: [128] Power Budgeting &lt;?&gt;
+        Capabilities: [600] Vendor Specific Information: ID=3D0001 Rev=3D1 =
+Len=3D024
+&lt;?&gt;
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau
+
+$ uname -a
+Linux dashesy.wavelet 4.5.7-202.fc23.x86_64 #1 SMP Tue Jun 28 18:22:51 UTC =
+2016
+x86_64 x86_64 x86_64 GNU/Linux
+
+
+This is a complete hang, and seems to happen quite enough, I will gladly run
+any kernel/driver combination to sort this out.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14681070840.817e.27066--
+
+--===============0046876038==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0046876038==--
