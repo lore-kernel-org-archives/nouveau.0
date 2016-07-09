@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93547] Built failed for "Mesa (master): nouveau:
- remove use of deprecated nouveau_device:: drm_version"
-Date: Sat, 09 Jul 2016 04:36:09 +0000
-Message-ID: <bug-93547-8800-wYKGh0R4mL@http.bugs.freedesktop.org/>
-References: <bug-93547-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [GIT,PULL] Signed firmware for NVIDIA GP100 GPU
+Date: Sat, 9 Jul 2016 17:48:58 +0900
+Message-ID: <07f149a6-3dbb-10b5-4d2a-481d9ed32fef@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0951182349=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93547-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,138 +15,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: linux-firmware-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0951182349==
-Content-Type: multipart/alternative; boundary="14680389681.Bd2e1.1223";
- charset="UTF-8"
-
-
---14680389681.Bd2e1.1223
-Date: Sat, 9 Jul 2016 04:36:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93547
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This issue generally happens when you don't use packages, but rather "make
-install" directly onto your system. What ended up happening is that a file
-moved between versions of libdrm, and you probably have a stale version of =
-one
-of the header files which is getting included.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14680389681.Bd2e1.1223
-Date: Sat, 9 Jul 2016 04:36:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Built failed for &quot;Mesa (master): nouveau:=
- remove use of deprecated nouveau_device:: drm_version&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93547">bug 93547<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Built failed for &quot;Mesa (master): nouveau:=
- remove use of deprecated nouveau_device:: drm_version&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93547#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Built failed for &quot;Mesa (master): nouveau:=
- remove use of deprecated nouveau_device:: drm_version&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93547">bug 93547<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>This issue generally happens when you don't use packages, but =
-rather &quot;make
-install&quot; directly onto your system. What ended up happening is that a =
-file
-moved between versions of libdrm, and you probably have a stale version of =
-one
-of the header files which is getting included.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14680389681.Bd2e1.1223--
-
---===============0951182349==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0951182349==--
+SGVsbG8gbGludXgtZmlybXdhcmUgbWFpbnRhaW5lcnMsCgpUaGUgZm9sbG93aW5nIGNoYW5nZXMg
+c2luY2UgY29tbWl0IGExNDE1MDA2MTM4OGY0YmNiZjNjMzQ5OWYxYjEyZTNmMGQ1YzBlN2I6Cgog
+ICBsaW51eC1maXJtd2FyZTogRml4IHRoZSBmaWxlbmFtZSBmb3IgV3NQIHRvIGFsaWduIHdpdGgg
+ZGV2aWNlIApIV19WQVJJQU5UICgyMDE2LTA3LTA4IDE4OjA3OjAyIC0wNzAwKQoKYXJlIGF2YWls
+YWJsZSBpbiB0aGUgZ2l0IHJlcG9zaXRvcnkgYXQ6CgogICBodHRwczovL2dpdGh1Yi5jb20vR251
+cm91L2xpbnV4LWZpcm13YXJlLmdpdCBncDEwMAoKZm9yIHlvdSB0byBmZXRjaCBjaGFuZ2VzIHVw
+IHRvIDc3NzQ4MGYwNDNmZjBkOTU1MjA5ZTI3NDEyN2JmY2Q2NGY2ZThlZGM6CgogICBudmlkaWE6
+IEFkZCBHUDEwMCBzaWduZWQgZmlybXdhcmUgKDIwMTYtMDctMDkgMTc6NDc6MDIgKzA5MDApCgot
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tCkFsZXhhbmRyZSBDb3VyYm90ICgxKToKICAgICAgIG52aWRpYTogQWRkIEdQMTAwIHNp
+Z25lZCBmaXJtd2FyZQoKICBXSEVOQ0UgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDE1
+ICsrKysrKysrKysrKysrKwogIG52aWRpYS9ncDEwMC9hY3IvYmwuYmluICAgICAgICAgICAgfCBC
+aW4gMCAtPiA4MzIgYnl0ZXMKICBudmlkaWEvZ3AxMDAvYWNyL3Vjb2RlX2xvYWQuYmluICAgIHwg
+QmluIDAgLT4gOTYzMiBieXRlcwogIG52aWRpYS9ncDEwMC9hY3IvdWNvZGVfdW5sb2FkLmJpbiAg
+fCBCaW4gMCAtPiAxNDQwIGJ5dGVzCiAgbnZpZGlhL2dwMTAwL2dyL2ZlY3NfYmwuYmluICAgICAg
+ICB8ICAgMSArCiAgbnZpZGlhL2dwMTAwL2dyL2ZlY3NfZGF0YS5iaW4gICAgICB8IEJpbiAwIC0+
+IDIwMjggYnl0ZXMKICBudmlkaWEvZ3AxMDAvZ3IvZmVjc19pbnN0LmJpbiAgICAgIHwgQmluIDAg
+LT4gMjA5NTUgYnl0ZXMKICBudmlkaWEvZ3AxMDAvZ3IvZmVjc19zaWcuYmluICAgICAgIHwgQmlu
+IDAgLT4gNzYgYnl0ZXMKICBudmlkaWEvZ3AxMDAvZ3IvZ3BjY3NfYmwuYmluICAgICAgIHwgICAx
+ICsKICBudmlkaWEvZ3AxMDAvZ3IvZ3BjY3NfZGF0YS5iaW4gICAgIHwgQmluIDAgLT4gMjA4MCBi
+eXRlcwogIG52aWRpYS9ncDEwMC9nci9ncGNjc19pbnN0LmJpbiAgICAgfCBCaW4gMCAtPiAxMjQ1
+OCBieXRlcwogIG52aWRpYS9ncDEwMC9nci9ncGNjc19zaWcuYmluICAgICAgfCBCaW4gMCAtPiA3
+NiBieXRlcwogIG52aWRpYS9ncDEwMC9nci9zd19idW5kbGVfaW5pdC5iaW4gfCBCaW4gMCAtPiA3
+NjY0IGJ5dGVzCiAgbnZpZGlhL2dwMTAwL2dyL3N3X2N0eC5iaW4gICAgICAgICB8IEJpbiAwIC0+
+IDYyNDAgYnl0ZXMKICBudmlkaWEvZ3AxMDAvZ3Ivc3dfbWV0aG9kX2luaXQuYmluIHwgQmluIDAg
+LT4gMTE5MjggYnl0ZXMKICBudmlkaWEvZ3AxMDAvZ3Ivc3dfbm9uY3R4LmJpbiAgICAgIHwgQmlu
+IDAgLT4gMjI0OCBieXRlcwogIDE2IGZpbGVzIGNoYW5nZWQsIDE3IGluc2VydGlvbnMoKykKICBj
+cmVhdGUgbW9kZSAxMDA2NDQgbnZpZGlhL2dwMTAwL2Fjci9ibC5iaW4KICBjcmVhdGUgbW9kZSAx
+MDA2NDQgbnZpZGlhL2dwMTAwL2Fjci91Y29kZV9sb2FkLmJpbgogIGNyZWF0ZSBtb2RlIDEwMDY0
+NCBudmlkaWEvZ3AxMDAvYWNyL3Vjb2RlX3VubG9hZC5iaW4KICBjcmVhdGUgbW9kZSAxMjAwMDAg
+bnZpZGlhL2dwMTAwL2dyL2ZlY3NfYmwuYmluCiAgY3JlYXRlIG1vZGUgMTAwNjQ0IG52aWRpYS9n
+cDEwMC9nci9mZWNzX2RhdGEuYmluCiAgY3JlYXRlIG1vZGUgMTAwNjQ0IG52aWRpYS9ncDEwMC9n
+ci9mZWNzX2luc3QuYmluCiAgY3JlYXRlIG1vZGUgMTAwNjQ0IG52aWRpYS9ncDEwMC9nci9mZWNz
+X3NpZy5iaW4KICBjcmVhdGUgbW9kZSAxMjAwMDAgbnZpZGlhL2dwMTAwL2dyL2dwY2NzX2JsLmJp
+bgogIGNyZWF0ZSBtb2RlIDEwMDY0NCBudmlkaWEvZ3AxMDAvZ3IvZ3BjY3NfZGF0YS5iaW4KICBj
+cmVhdGUgbW9kZSAxMDA2NDQgbnZpZGlhL2dwMTAwL2dyL2dwY2NzX2luc3QuYmluCiAgY3JlYXRl
+IG1vZGUgMTAwNjQ0IG52aWRpYS9ncDEwMC9nci9ncGNjc19zaWcuYmluCiAgY3JlYXRlIG1vZGUg
+MTAwNjQ0IG52aWRpYS9ncDEwMC9nci9zd19idW5kbGVfaW5pdC5iaW4KICBjcmVhdGUgbW9kZSAx
+MDA2NDQgbnZpZGlhL2dwMTAwL2dyL3N3X2N0eC5iaW4KICBjcmVhdGUgbW9kZSAxMDA2NDQgbnZp
+ZGlhL2dwMTAwL2dyL3N3X21ldGhvZF9pbml0LmJpbgogIGNyZWF0ZSBtb2RlIDEwMDY0NCBudmlk
+aWEvZ3AxMDAvZ3Ivc3dfbm9uY3R4LmJpbgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
