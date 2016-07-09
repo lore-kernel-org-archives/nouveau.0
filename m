@@ -1,65 +1,159 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [GIT,PULL] Signed firmware for NVIDIA GP100 GPU
-Date: Sat, 9 Jul 2016 17:48:58 +0900
-Message-ID: <07f149a6-3dbb-10b5-4d2a-481d9ed32fef@nvidia.com>
+From: Luis de Bethencourt <luisbg@osg.samsung.com>
+Subject: Re: [PATCH v3 1/7] lib: string: add functions to case-convert strings
+Date: Sat, 09 Jul 2016 13:04:54 +0100
+Message-ID: <5780E866.8000001@osg.samsung.com>
+References: <1468017794-4818-1-git-send-email-mmayer@broadcom.com> <1468017794-4818-2-git-send-email-mmayer@broadcom.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-firmware-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-pm-owner@vger.kernel.org>
+In-Reply-To: <1468017794-4818-2-git-send-email-mmayer@broadcom.com>
+Sender: linux-pm-owner@vger.kernel.org
+To: Markus Mayer <mmayer@broadcom.com>, Andrew Morton <akpm@linux-foundation.org>, Al Viro <viro@zeniv.linux.org.uk>, Rasmus Villemoes <linux@rasmusvillemoes.dk>, Chris Metcalf <cmetcalf@ezchip.com>, Kees Cook <keescook@chromium.org>
+Cc: devel@driverdev.osuosl.org, linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org, speakup@linux-speakup.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org, target-devel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8gbGludXgtZmlybXdhcmUgbWFpbnRhaW5lcnMsCgpUaGUgZm9sbG93aW5nIGNoYW5nZXMg
-c2luY2UgY29tbWl0IGExNDE1MDA2MTM4OGY0YmNiZjNjMzQ5OWYxYjEyZTNmMGQ1YzBlN2I6Cgog
-ICBsaW51eC1maXJtd2FyZTogRml4IHRoZSBmaWxlbmFtZSBmb3IgV3NQIHRvIGFsaWduIHdpdGgg
-ZGV2aWNlIApIV19WQVJJQU5UICgyMDE2LTA3LTA4IDE4OjA3OjAyIC0wNzAwKQoKYXJlIGF2YWls
-YWJsZSBpbiB0aGUgZ2l0IHJlcG9zaXRvcnkgYXQ6CgogICBodHRwczovL2dpdGh1Yi5jb20vR251
-cm91L2xpbnV4LWZpcm13YXJlLmdpdCBncDEwMAoKZm9yIHlvdSB0byBmZXRjaCBjaGFuZ2VzIHVw
-IHRvIDc3NzQ4MGYwNDNmZjBkOTU1MjA5ZTI3NDEyN2JmY2Q2NGY2ZThlZGM6CgogICBudmlkaWE6
-IEFkZCBHUDEwMCBzaWduZWQgZmlybXdhcmUgKDIwMTYtMDctMDkgMTc6NDc6MDIgKzA5MDApCgot
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tCkFsZXhhbmRyZSBDb3VyYm90ICgxKToKICAgICAgIG52aWRpYTogQWRkIEdQMTAwIHNp
-Z25lZCBmaXJtd2FyZQoKICBXSEVOQ0UgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDE1
-ICsrKysrKysrKysrKysrKwogIG52aWRpYS9ncDEwMC9hY3IvYmwuYmluICAgICAgICAgICAgfCBC
-aW4gMCAtPiA4MzIgYnl0ZXMKICBudmlkaWEvZ3AxMDAvYWNyL3Vjb2RlX2xvYWQuYmluICAgIHwg
-QmluIDAgLT4gOTYzMiBieXRlcwogIG52aWRpYS9ncDEwMC9hY3IvdWNvZGVfdW5sb2FkLmJpbiAg
-fCBCaW4gMCAtPiAxNDQwIGJ5dGVzCiAgbnZpZGlhL2dwMTAwL2dyL2ZlY3NfYmwuYmluICAgICAg
-ICB8ICAgMSArCiAgbnZpZGlhL2dwMTAwL2dyL2ZlY3NfZGF0YS5iaW4gICAgICB8IEJpbiAwIC0+
-IDIwMjggYnl0ZXMKICBudmlkaWEvZ3AxMDAvZ3IvZmVjc19pbnN0LmJpbiAgICAgIHwgQmluIDAg
-LT4gMjA5NTUgYnl0ZXMKICBudmlkaWEvZ3AxMDAvZ3IvZmVjc19zaWcuYmluICAgICAgIHwgQmlu
-IDAgLT4gNzYgYnl0ZXMKICBudmlkaWEvZ3AxMDAvZ3IvZ3BjY3NfYmwuYmluICAgICAgIHwgICAx
-ICsKICBudmlkaWEvZ3AxMDAvZ3IvZ3BjY3NfZGF0YS5iaW4gICAgIHwgQmluIDAgLT4gMjA4MCBi
-eXRlcwogIG52aWRpYS9ncDEwMC9nci9ncGNjc19pbnN0LmJpbiAgICAgfCBCaW4gMCAtPiAxMjQ1
-OCBieXRlcwogIG52aWRpYS9ncDEwMC9nci9ncGNjc19zaWcuYmluICAgICAgfCBCaW4gMCAtPiA3
-NiBieXRlcwogIG52aWRpYS9ncDEwMC9nci9zd19idW5kbGVfaW5pdC5iaW4gfCBCaW4gMCAtPiA3
-NjY0IGJ5dGVzCiAgbnZpZGlhL2dwMTAwL2dyL3N3X2N0eC5iaW4gICAgICAgICB8IEJpbiAwIC0+
-IDYyNDAgYnl0ZXMKICBudmlkaWEvZ3AxMDAvZ3Ivc3dfbWV0aG9kX2luaXQuYmluIHwgQmluIDAg
-LT4gMTE5MjggYnl0ZXMKICBudmlkaWEvZ3AxMDAvZ3Ivc3dfbm9uY3R4LmJpbiAgICAgIHwgQmlu
-IDAgLT4gMjI0OCBieXRlcwogIDE2IGZpbGVzIGNoYW5nZWQsIDE3IGluc2VydGlvbnMoKykKICBj
-cmVhdGUgbW9kZSAxMDA2NDQgbnZpZGlhL2dwMTAwL2Fjci9ibC5iaW4KICBjcmVhdGUgbW9kZSAx
-MDA2NDQgbnZpZGlhL2dwMTAwL2Fjci91Y29kZV9sb2FkLmJpbgogIGNyZWF0ZSBtb2RlIDEwMDY0
-NCBudmlkaWEvZ3AxMDAvYWNyL3Vjb2RlX3VubG9hZC5iaW4KICBjcmVhdGUgbW9kZSAxMjAwMDAg
-bnZpZGlhL2dwMTAwL2dyL2ZlY3NfYmwuYmluCiAgY3JlYXRlIG1vZGUgMTAwNjQ0IG52aWRpYS9n
-cDEwMC9nci9mZWNzX2RhdGEuYmluCiAgY3JlYXRlIG1vZGUgMTAwNjQ0IG52aWRpYS9ncDEwMC9n
-ci9mZWNzX2luc3QuYmluCiAgY3JlYXRlIG1vZGUgMTAwNjQ0IG52aWRpYS9ncDEwMC9nci9mZWNz
-X3NpZy5iaW4KICBjcmVhdGUgbW9kZSAxMjAwMDAgbnZpZGlhL2dwMTAwL2dyL2dwY2NzX2JsLmJp
-bgogIGNyZWF0ZSBtb2RlIDEwMDY0NCBudmlkaWEvZ3AxMDAvZ3IvZ3BjY3NfZGF0YS5iaW4KICBj
-cmVhdGUgbW9kZSAxMDA2NDQgbnZpZGlhL2dwMTAwL2dyL2dwY2NzX2luc3QuYmluCiAgY3JlYXRl
-IG1vZGUgMTAwNjQ0IG52aWRpYS9ncDEwMC9nci9ncGNjc19zaWcuYmluCiAgY3JlYXRlIG1vZGUg
-MTAwNjQ0IG52aWRpYS9ncDEwMC9nci9zd19idW5kbGVfaW5pdC5iaW4KICBjcmVhdGUgbW9kZSAx
-MDA2NDQgbnZpZGlhL2dwMTAwL2dyL3N3X2N0eC5iaW4KICBjcmVhdGUgbW9kZSAxMDA2NDQgbnZp
-ZGlhL2dwMTAwL2dyL3N3X21ldGhvZF9pbml0LmJpbgogIGNyZWF0ZSBtb2RlIDEwMDY0NCBudmlk
-aWEvZ3AxMDAvZ3Ivc3dfbm9uY3R4LmJpbgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+On 08/07/16 23:43, Markus Mayer wrote:
+> Add a collection of generic functions to convert strings to lowercase
+> or uppercase.
+> 
+> Changing the case of a string (with or without copying it first) seems
+> to be a recurring requirement in the kernel that is currently being
+> solved by several duplicated implementations doing the same thing. This
+> change aims at reducing this code duplication.
+> 
+> The new functions are
+>     void strlcpytoupper(char *dst, const char *src, size_t len);
+>     void strlcpytolower(char *dst, const char *src, size_t len);
+>     void strcpytoupper(char *dst, const char *src);
+>     void strcpytolower(char *dst, const char *src);
+>     void strtoupper(char *s);
+>     void strtolower(char *s);
+> 
+> The "str[l]cpyto*" versions of the function take a destination string
+> and a source string as arguments. The "strlcpyto*" versions additionally
+> take a length argument like strlcpy() itself. Lastly, the strto*
+> functions take a single string argument and modify the passed-in string.
+> 
+> Like strlcpy(), and unlike strncpy(), the functions guarantee NULL
+> termination of the destination string.
+> 
+> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
+> ---
+>  include/linux/string.h | 40 ++++++++++++++++++++++++++++++++++++++++
+>  lib/string.c           | 38 ++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 78 insertions(+)
+> 
+> diff --git a/include/linux/string.h b/include/linux/string.h
+> index 26b6f6a..36c9d14 100644
+> --- a/include/linux/string.h
+> +++ b/include/linux/string.h
+> @@ -116,6 +116,8 @@ extern void * memchr(const void *,int,__kernel_size_t);
+>  #endif
+>  void *memchr_inv(const void *s, int c, size_t n);
+>  char *strreplace(char *s, char old, char new);
+> +extern void strlcpytoupper(char *dst, const char *src, size_t len);
+> +extern void strlcpytolower(char *dst, const char *src, size_t len);
+>  
+>  extern void kfree_const(const void *x);
+>  
+> @@ -169,4 +171,42 @@ static inline const char *kbasename(const char *path)
+>  	return tail ? tail + 1 : path;
+>  }
+>  
+> +/**
+> + * strcpytoupper - Copy string and convert to uppercase.
+> + * @dst: The buffer to store the result.
+> + * @src: The string to convert to uppercase.
+> + */
+> +static inline void strcpytoupper(char *dst, const char *src)
+> +{
+> +	strlcpytoupper(dst, src, -1);
+> +}
+> +
+
+Why not use SIZE_MAX instead of -1?
+
+> +/**
+> + * strcpytolower - Copy string and convert to lowercase.
+> + * @dst: The buffer to store the result.
+> + * @src: The string to convert to lowercase.
+> + */
+> +static inline void strcpytolower(char *dst, const char *src)
+> +{
+> +	strlcpytolower(dst, src, -1);
+> +}
+> +
+
+Same here, and the 2 below :)
+
+Thanks Markus,
+Luis
+
+> +/**
+> + * strtoupper - Convert string to uppercase.
+> + * @s: The string to operate on.
+> + */
+> +static inline void strtoupper(char *s)
+> +{
+> +	strlcpytoupper(s, s, -1);
+> +}
+> +
+> +/**
+> + * strtolower - Convert string to lowercase.
+> + * @s: The string to operate on.
+> + */
+> +static inline void strtolower(char *s)
+> +{
+> +	strlcpytolower(s, s, -1);
+> +}
+> +
+>  #endif /* _LINUX_STRING_H_ */
+> diff --git a/lib/string.c b/lib/string.c
+> index ed83562..fd8c427 100644
+> --- a/lib/string.c
+> +++ b/lib/string.c
+> @@ -952,3 +952,41 @@ char *strreplace(char *s, char old, char new)
+>  	return s;
+>  }
+>  EXPORT_SYMBOL(strreplace);
+> +
+> +/**
+> + * strlcpytoupper - Copy a length-limited string and convert to uppercase.
+> + * @dst: The buffer to store the result.
+> + * @src: The string to convert to uppercase.
+> + * @len: Maximum string length. May be SIZE_MAX (-1) to set no limit.
+> + */
+> +void strlcpytoupper(char *dst, const char *src, size_t len)
+> +{
+> +	size_t i;
+> +
+> +	if (!len)
+> +		return;
+> +
+> +	for (i = 0; i < len && src[i]; ++i)
+> +		dst[i] = toupper(src[i]);
+> +	dst[i < len ? i : i - 1] = '\0';
+> +}
+> +EXPORT_SYMBOL(strlcpytoupper);
+> +
+> +/**
+> + * strlcpytolower - Copy a length-limited string and convert to lowercase.
+> + * @dst: The buffer to store the result.
+> + * @src: The string to convert to lowercase.
+> + * @len: Maximum string length. May be SIZE_MAX (-1) to set no limit.
+> + */
+> +void strlcpytolower(char *dst, const char *src, size_t len)
+> +{
+> +	size_t i;
+> +
+> +	if (!len)
+> +		return;
+> +
+> +	for (i = 0; i < len && src[i]; ++i)
+> +		dst[i] = tolower(src[i]);
+> +	dst[i < len ? i : i - 1] = '\0';
+> +}
+> +EXPORT_SYMBOL(strlcpytolower);
+> 
+
