@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96836] Kernel unaligned access at TPC[105d9fb4]
  nvkm_instobj_wr32+0x14/0x20 [nouveau]
-Date: Sun, 10 Jul 2016 02:26:49 +0000
-Message-ID: <bug-96836-8800-lnVAStjXrN@http.bugs.freedesktop.org/>
+Date: Sun, 10 Jul 2016 02:36:10 +0000
+Message-ID: <bug-96836-8800-755usRJ1tY@http.bugs.freedesktop.org/>
 References: <bug-96836-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0042025101=="
+Content-Type: multipart/mixed; boundary="===============0559305416=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96836-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0042025101==
-Content-Type: multipart/alternative; boundary="14681176091.AEAFBFB4.16506";
+--===============0559305416==
+Content-Type: multipart/alternative; boundary="14681181700.49B5.17690";
  charset="UTF-8"
 
 
---14681176091.AEAFBFB4.16506
-Date: Sun, 10 Jul 2016 02:26:49 +0000
+--14681181700.49B5.17690
+Date: Sun, 10 Jul 2016 02:36:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,27 +36,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96836
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Kieron Gillespie from comment #4)
-> Created attachment 124978 [details]
-> Message log while nouveau.debug=3Dtrace
->=20
-> So I enabled the debug trace and I let it run for sometime, roughly 15
-> minutes, though it looks like it didn't get terribly far. I am going to t=
-ry
-> and collected more information by having it run for several hours, but I
-> figured I'd upload this in case it's at all useful.
+--- Comment #7 from Kieron Gillespie <ciaran.gillespie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+So it is actually connected to a display, and I can get a console with nouv=
+eau,
+I'll try to get a better Xorg output, I think the driver is still having
+trouble auto-detecting the device.
 
-Also, looks like your Xorg is in a restart loop, perhaps logs from that cou=
-ld
-be interesting.
+Also I am going to connect one of my serial cables so I can get a cleaner
+output, I think that messages is missing some of the very early boot messsa=
+ges.
+Not sure but would like to rule it out.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14681176091.AEAFBFB4.16506
-Date: Sun, 10 Jul 2016 02:26:49 +0000
+--14681181700.49B5.17690
+Date: Sun, 10 Jul 2016 02:36:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,8 +70,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
 2+0x14/0x20 [nouveau]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836#c6">Comment=
- # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
@@ -83,28 +79,18 @@ Auto-Submitted: auto-generated
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836">bug 96836<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+ciaran.gillespie&#64;gmail.com" title=3D"Kieron Gillespie &lt;ciaran.gilles=
+pie&#64;gmail.com&gt;"> <span class=3D"fn">Kieron Gillespie</span></a>
 </span></b>
-        <pre>(In reply to Kieron Gillespie from <a href=3D"show_bug.cgi?id=
-=3D96836#c4">comment #4</a>)
-<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
-gi?id=3D124978" name=3D"attach_124978" title=3D"Message log while nouveau.d=
-ebug=3Dtrace">attachment 124978</a> <a href=3D"attachment.cgi?id=3D124978&a=
-mp;action=3Dedit" title=3D"Message log while nouveau.debug=3Dtrace">[detail=
-s]</a></span>
-&gt; Message log while nouveau.debug=3Dtrace
-&gt;=20
-&gt; So I enabled the debug trace and I let it run for sometime, roughly 15
-&gt; minutes, though it looks like it didn't get terribly far. I am going t=
-o try
-&gt; and collected more information by having it run for several hours, but=
- I
-&gt; figured I'd upload this in case it's at all useful.</span >
+        <pre>So it is actually connected to a display, and I can get a cons=
+ole with nouveau,
+I'll try to get a better Xorg output, I think the driver is still having
+trouble auto-detecting the device.
 
-Also, looks like your Xorg is in a restart loop, perhaps logs from that cou=
-ld
-be interesting.</pre>
+Also I am going to connect one of my serial cables so I can get a cleaner
+output, I think that messages is missing some of the very early boot messsa=
+ges.
+Not sure but would like to rule it out.</pre>
         </div>
       </p>
 
@@ -118,9 +104,9 @@ be interesting.</pre>
     </body>
 </html>=
 
---14681176091.AEAFBFB4.16506--
+--14681181700.49B5.17690--
 
---===============0042025101==
+--===============0559305416==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0042025101==--
+--===============0559305416==--
