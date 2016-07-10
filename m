@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96836] Kernel unaligned access at TPC[105d9fb4]
  nvkm_instobj_wr32+0x14/0x20 [nouveau]
-Date: Sun, 10 Jul 2016 02:49:14 +0000
-Message-ID: <bug-96836-8800-7qb1Ty5KMC@http.bugs.freedesktop.org/>
+Date: Sun, 10 Jul 2016 02:49:30 +0000
+Message-ID: <bug-96836-8800-nLlZlUqaMS@http.bugs.freedesktop.org/>
 References: <bug-96836-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0979416824=="
+Content-Type: multipart/mixed; boundary="===============1030383674=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96836-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0979416824==
-Content-Type: multipart/alternative; boundary="14681189540.9D4bc.19216";
+--===============1030383674==
+Content-Type: multipart/alternative; boundary="14681189701.7d0F094f.19216";
  charset="UTF-8"
 
 
---14681189540.9D4bc.19216
-Date: Sun, 10 Jul 2016 02:49:14 +0000
+--14681189701.7d0F094f.19216
+Date: Sun, 10 Jul 2016 02:49:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96836
 
---- Comment #10 from Kieron Gillespie <ciaran.gillespie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 124980
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124980&action=3Dedit
-Xorg.0.log using xorg.conf.broke
+--- Comment #11 from Kieron Gillespie <ciaran.gillespie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 124981
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124981&action=3Dedit
+xorg.conf.broke
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14681189540.9D4bc.19216
-Date: Sun, 10 Jul 2016 02:49:14 +0000
+--14681189701.7d0F094f.19216
+Date: Sun, 10 Jul 2016 02:49:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
 2+0x14/0x20 [nouveau]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836#c10">Commen=
-t # 10</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836#c11">Commen=
+t # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
@@ -76,11 +76,11 @@ t # 10</a>
 ciaran.gillespie&#64;gmail.com" title=3D"Kieron Gillespie &lt;ciaran.gilles=
 pie&#64;gmail.com&gt;"> <span class=3D"fn">Kieron Gillespie</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124980=
-" name=3D"attach_124980" title=3D"Xorg.0.log using xorg.conf.broke">attachm=
-ent 124980</a> <a href=3D"attachment.cgi?id=3D124980&amp;action=3Dedit" tit=
-le=3D"Xorg.0.log using xorg.conf.broke">[details]</a></span>
-Xorg.0.log using xorg.conf.broke</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124981=
+" name=3D"attach_124981" title=3D"xorg.conf.broke">attachment 124981</a> <a=
+ href=3D"attachment.cgi?id=3D124981&amp;action=3Dedit" title=3D"xorg.conf.b=
+roke">[details]</a></span>
+xorg.conf.broke</pre>
         </div>
       </p>
 
@@ -94,9 +94,9 @@ Xorg.0.log using xorg.conf.broke</pre>
     </body>
 </html>=
 
---14681189540.9D4bc.19216--
+--14681189701.7d0F094f.19216--
 
---===============0979416824==
+--===============1030383674==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0979416824==--
+--===============1030383674==--
