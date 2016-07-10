@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96836] Kernel unaligned access at TPC[105d9fb4]
  nvkm_instobj_wr32+0x14/0x20 [nouveau]
-Date: Sun, 10 Jul 2016 02:48:22 +0000
-Message-ID: <bug-96836-8800-9GFYupIPtg@http.bugs.freedesktop.org/>
+Date: Sun, 10 Jul 2016 02:49:14 +0000
+Message-ID: <bug-96836-8800-7qb1Ty5KMC@http.bugs.freedesktop.org/>
 References: <bug-96836-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0402584606=="
+Content-Type: multipart/mixed; boundary="===============0979416824=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96836-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0402584606==
-Content-Type: multipart/alternative; boundary="14681189021.0D025c.19026";
+--===============0979416824==
+Content-Type: multipart/alternative; boundary="14681189540.9D4bc.19216";
  charset="UTF-8"
 
 
---14681189021.0D025c.19026
-Date: Sun, 10 Jul 2016 02:48:22 +0000
+--14681189540.9D4bc.19216
+Date: Sun, 10 Jul 2016 02:49:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,29 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96836
 
---- Comment #9 from Kieron Gillespie <ciaran.gillespie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 124979
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124979&action=3Dedit
-messages forcing BusID in Xorg config
-
-So this time I logged into the box remotely and stop the lightdm service I =
-then
-ran "Xorg -config xorg.conf.broke -verbose 6" I'll also attach the Xorg.0.l=
-og
-and the config file.
-
-The Xorg log almost makes it look like it is working, though all I am left =
-with
-on the screen is a blank screen with a single non-blinking cursor in the top
-left corner of the monitor, alsmost like it switched to the virtual terminal
-but didn't actually clear the screen and didn't start to draw anything.
+--- Comment #10 from Kieron Gillespie <ciaran.gillespie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 124980
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124980&action=3Dedit
+Xorg.0.log using xorg.conf.broke
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14681189021.0D025c.19026
-Date: Sun, 10 Jul 2016 02:48:22 +0000
+--14681189540.9D4bc.19216
+Date: Sun, 10 Jul 2016 02:49:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
 2+0x14/0x20 [nouveau]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836#c9">Comment=
- # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
@@ -88,24 +76,11 @@ Auto-Submitted: auto-generated
 ciaran.gillespie&#64;gmail.com" title=3D"Kieron Gillespie &lt;ciaran.gilles=
 pie&#64;gmail.com&gt;"> <span class=3D"fn">Kieron Gillespie</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124979=
-" name=3D"attach_124979" title=3D"messages forcing BusID in Xorg config">at=
-tachment 124979</a> <a href=3D"attachment.cgi?id=3D124979&amp;action=3Dedit=
-" title=3D"messages forcing BusID in Xorg config">[details]</a></span>
-messages forcing BusID in Xorg config
-
-So this time I logged into the box remotely and stop the lightdm service I =
-then
-ran &quot;Xorg -config xorg.conf.broke -verbose 6&quot; I'll also attach th=
-e Xorg.0.log
-and the config file.
-
-The Xorg log almost makes it look like it is working, though all I am left =
-with
-on the screen is a blank screen with a single non-blinking cursor in the top
-left corner of the monitor, alsmost like it switched to the virtual terminal
-but didn't actually clear the screen and didn't start to draw anything.</pr=
-e>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124980=
+" name=3D"attach_124980" title=3D"Xorg.0.log using xorg.conf.broke">attachm=
+ent 124980</a> <a href=3D"attachment.cgi?id=3D124980&amp;action=3Dedit" tit=
+le=3D"Xorg.0.log using xorg.conf.broke">[details]</a></span>
+Xorg.0.log using xorg.conf.broke</pre>
         </div>
       </p>
 
@@ -119,9 +94,9 @@ e>
     </body>
 </html>=
 
---14681189021.0D025c.19026--
+--14681189540.9D4bc.19216--
 
---===============0402584606==
+--===============0979416824==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -131,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0402584606==--
+--===============0979416824==--
