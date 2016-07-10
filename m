@@ -1,52 +1,89 @@
-From: Chris Metcalf <cmetcalf@mellanox.com>
-Subject: Re: [PATCH v3 0/7] lib: string: add functions to case-convert strings
-Date: Sat, 9 Jul 2016 23:13:33 -0400
-Message-ID: <9b88baed-a067-fcfd-d087-66e36f3060d7@mellanox.com>
-References: <1468017794-4818-1-git-send-email-mmayer@broadcom.com>
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: vga_switcheroo audio runpm
+Date: Sun, 10 Jul 2016 15:20:13 +0200
+Message-ID: <20160710132013.GA4479@wunner.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1468017794-4818-1-git-send-email-mmayer@broadcom.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Markus Mayer <mmayer@broadcom.com>, Andrew Morton <akpm@linux-foundation.org>, Al Viro <viro@zeniv.linux.org.uk>, Rasmus Villemoes <linux@rasmusvillemoes.dk>, Kees Cook <keescook@chromium.org>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-acpi@vger.kernel.org, speakup@linux-speakup.org, devel@driverdev.osuosl.org, linux-scsi@vger.kernel.org, target-devel@vger.kernel.org, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Marek Szyprowski <m.szyprowski-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On 7/8/2016 6:43 PM, Markus Mayer wrote:
-> This series introduces a family of generic string case conversion
-> functions. This kind of functionality is needed in several places in
-> the kernel. Right now, everybody seems to be implementing their own
-> copy of this functionality.
->
-> Based on the discussion of the previous version of this series[1] and
-> the use cases found in the kernel, it does look like having several
-> flavours of case conversion functions is beneficial. The use cases fall
-> into three categories:
->      - copying a string and converting the case while specifying a
->        maximum length to mimic strlcpy()
->      - copying a string and converting the case without specifying a
->        length to mimic strcpy()
->      - converting the case of a string in-place (i.e. modifying the
->        string that was passed in)
->
-> Consequently, I am proposing these new functions:
->      void strlcpytoupper(char *dst, const char *src, size_t len);
->      void strlcpytolower(char *dst, const char *src, size_t len);
->      void strcpytoupper(char *dst, const char *src);
->      void strcpytolower(char *dst, const char *src);
->      void strtoupper(char *s);
->      void strtolower(char *s);
-
-You may want to read the article here:
-
-https://lwn.net/Articles/659214/
-
-and follow up some of the discussion threads on LKML about the best
-semantics to advertise for the strlcpy/strscpy variants.  It might be
-helpful to return some kind of overflow/truncation error from your
-copy functions so people can error-check the result.
-
--- 
-Chris Metcalf, Mellanox Technologies
-http://www.mellanox.com
+SGkgUGV0ZXIsCgo+IFsxMjo0Ml0gTGVrZW5zdGV5bjogU2hvdWxkIHRoZSB2aWRlbyBjYXJkIGFs
+d2F5cyBiZSBwb3dlcmVkIHVwIHdoZW4gYQo+CSAgcmVnaXN0ZXIgaXMgcmVhZCBmcm9tIHRoZSBI
+RE1JIGF1ZGlvIGNvbnRyb2xsZXI/IE9yIHdvdWxkIGl0IGJlCj4JICBiZXR0ZXIgdG8gbGVhdmUg
+dGhlIHZpZGVvIGNhcmQgc3VzcGVuZGVkIGFuZCBqdXN0IGZhaWwgdGhlIEhEQQo+CSAgcmVnaXN0
+ZXIgcmVhZHM/CgpJdCBzaG91bGQgcHJvYmFibHkgYmUgcG93ZXJlZCB1cC4KCgo+IFsxMjo0M10g
+TGVrZW5zdGV5bjogSSdtIHRyeWluZyB0byBmaWd1cmUgb3V0IGhvdyB2Z2Ffc3dpdGNoZXJvbyBz
+aG91bGQKCSAgaGFuZGxlIHRoaXMsIG1heWJlIGwxayBoYXMgYW4gaWRlYT8KPiBbMTI6NDhdIExl
+a2Vuc3RleW46IFRoZSBjdXJyZW50IGltcGxlbWVudGVkIHBvbGljeSBpcyB0aGF0IHRoZSB2aWRl
+byBjYXJkCj4JICBkaWN0YXRlcyB0aGUgcG93ZXIgc3RhdGUgYW5kIHRoYXQgdGhlIEhETUkgYXVk
+aW8gZGV2aWNlIGhhcyB0bwo+CSAgYWRhcHQgKGV2ZW4gaWYgaXQgaXMgc2VlbWluZ2x5IGluIHVz
+ZSkKClRoaXMgY3VycmVudCBhcmNoaXRlY3R1cmUgc2VlbXMgdG8gaGF2ZSBjb21lIGFib3V0IGhp
+c3RvcmljYWxseSAoRGF2ZQpBaXJsaWUgZmlyc3QgaW1wbGVtZW50ZWQgdmdhX3N3aXRjaGVyb28g
+d2l0aCBtYW51YWwgcG93ZXIgY29udHJvbCwKdGhlbiBhZGRlZCBydW50aW1lIHBtIGluIGEgc2Vj
+b25kIHN0ZXApLgoKSXQgbWF5IGFsc28gYmUgbW90aXZhdGVkIGJ5IHRoZSBmYWN0IHRoYXQgdGhl
+IGRyaXZlciBjb3JlIGlzIGN1cnJlbnRseQpub3Qgc3VwcG9ydGluZyBkZXBlbmRlbmNpZXMgYmV0
+d2VlbiBkZXZpY2VzIGJleW9uZCB0aGUgaGllcmFyY2hpY2FsCnBhcmVudC9jaGlsZCByZWxhdGlv
+bnNoaXAuCgpSYWZhZWwgV3lzb2NraSAoY2M6KSBwb3N0ZWQgYSBzZXJpZXMgaW4gSmFudWFyeSBh
+ZGRyZXNzaW5nIHRoZSBsYXR0ZXIKcHJvYmxlbSB3aXRoIHNvLWNhbGxlZCAiZGV2aWNlIGxpbmtz
+Ii4gVGhlIHNlcmllcyB3YXMgcmVwb3N0ZWQgcmVjZW50bHkKYnkgTWFyZWsgU3p5cHJvd3NraToK
+aHR0cHM6Ly93d3cubWFpbC1hcmNoaXZlLmNvbS9saW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3Jn
+L21zZzExNzAwMzEuaHRtbAoKVGhlIHZnYV9zd2l0Y2hlcm9vIGF1ZGlvIGhhbmRsaW5nIHNob3Vs
+ZCBwcm9iYWJseSBiZSByZXdvcmtlZCB0byB1c2Ugc3VjaAoiZGV2aWNlIGxpbmtzIi4gVGhlIHJl
+c3VsdCB3b3VsZCBiZSB0aGF0IHRoZSBHUFUgd29uJ3QgcnVudGltZSBzdXNwZW5kCmFzIGxvbmcg
+YXMgYSByZWYgaXMgaGVsZCBmb3IgdGhlIGF1ZGlvIGNhcmQuIFRoZSBhdWRpbyBjYXJkIG5lZWRz
+IHRvIHRoZW4KbWFrZSBzdXJlIHRoYXQgaXQgcmVsZWFzZXMgYW55IHJlZnMgaWYgaXQgaGFzIG5v
+dGhpbmcgdG8gZG8uCgpUaGUgImRldmljZSBsaW5rcyIgc2VyaWVzIHNlZW1zIHRvIGltcG9zZSBt
+b3JlIHJlc3RyaWN0aW9ucyB0aGFuIHdlCmFjdHVhbGx5IG5lZWQgaGVyZSwgaXQgc2VlbXMgdG8g
+cmVxdWlyZSB0aGF0IHRoZSAic3VwcGxpZXIiIGlzIGJvdW5kCnRvIGEgZHJpdmVyIGJlZm9yZSB0
+aGUgImNvbnN1bWVyIiBtYXkgcHJvYmUuIElPVyBub3V2ZWF1IG5lZWRzIHRvIGJlCmJvdW5kIGJl
+Zm9yZSBzbmRfaGRhX2F1ZGlvIGNhbiBwcm9iZS4gSSdtIG5vdCBzdXJlIGlmIHRoYXQgYWRkaXRp
+b25hbAoodW5uZWNlc3NhcnkpIHJlc3RyaWN0aW9uIGlzIGEgcHJvYmxlbS4KCkkndmUgcmVjZW50
+bHkgdHJpZWQgdG8gYWRkIHJ1bnRpbWUgcG0gZm9yIG11eGVkIGxhcHRvcHMgdG8gdmdhX3N3aXRj
+aGVyb28sCnRoaXMgaXMgc29tZXRoaW5nIHRoYXQgUGllcnJlIE1vcmVhdSAoY2M6KSBoYXMgZXhw
+cmVzc2VkIGFuIGludGVyZXN0IGluCmZvciBoaXMgTWFjQm9vayBQcm8uIEkgY2FtZSBhY3Jvc3Mg
+YSBtYWpvciByb2FkYmxvY2sgaW4gdGhlIGZvcm0gb2YKdmdhX3N3aXRjaGVyb29fc2V0X2R5bmFt
+aWNfc3dpdGNoKCkuIFRoYXQgZnVuY3Rpb24gaXMgY2FsbGVkIGZyb20gdGhlCkRSTSBkcml2ZXIg
+d2hlbiB0aGUgR1BVIHJ1bnRpbWUgc3VzcGVuZHMgYW5kIHJlc3VtZXMuIEl0IHRha2VzIHRoZQp2
+Z2Fzcl9tdXRleC4gVGhlIHByb2JsZW0gaXMsIGlmIHRoZSB1c2VyIGluaXRpYXRlcyBhIHN3aXRj
+aCBvZiB0aGUgbXV4LAp0aGF0IG11dGV4IGlzIGFscmVhZHkgdGFrZW4gaW4gdmdhX3N3aXRjaGVy
+b29fZGVidWdmc193cml0ZSgpLiBJZiB0aGUKR1BVIHdlJ3JlIHN3aXRjaGluZyB0byBpcyBhc2xl
+ZXAsIGl0J2xsIHdha2UgdXAgZm9yIHRoZSBzd2l0Y2ggYW5kCndlJ2xsIGdldCBhIGRlYWRsb2Nr
+IHdoZW4gdGhlIERSTSBkcml2ZXIgc3Vic2VxdWVudGx5IGNhbGxzCnZnYV9zd2l0Y2hlcm9vX3Nl
+dF9keW5hbWljX3N3aXRjaCgpLgoKSSB3b3VsZCBsaWtlIHRvIGdldCByaWQgb2YgdmdhX3N3aXRj
+aGVyb29fc2V0X2R5bmFtaWNfc3dpdGNoKCkgdG8gc29sdmUKdGhpcy4gVGhlIGZ1bmN0aW9uIGhh
+cyB0d28gcHVycG9zZXM6IE51bWJlciBvbmUsIHZnYV9zd2l0Y2hlcm9vIHVwZGF0ZXMKaXRzIGlu
+dGVybmFsIHBvd2VyIHN0YXRlIHJlcHJlc2VudGF0aW9uIGZvciB0aGUgR1BVLiBUaGF0IGlzIGFj
+dHVhbGx5CnBvaW50bGVzcyBmb3IgZHJpdmVyIHBvd2VyIGNvbnRyb2wgYmVjYXVzZSB3ZSBjYW4g
+YWx3YXlzIHF1ZXJ5IHRoZQpkcml2ZXIgY29yZSBmb3IgdGhpcyBpbmZvcm1hdGlvbiAoZS5nLiBw
+bV9ydW50aW1lX3N1c3BlbmRlZCgpKS4KVGhlIHNlY29uZCBwdXJwb3NlIGlzIHRvIHN3aXRjaCB0
+aGUgYXVkaW8gY2xpZW50IG9uIGFuZCBvZmYuIElmIHdlIHdvdWxkCnVzZSBhICJkZXZpY2UgbGlu
+ayIgdG8gZXhwcmVzcyB0aGUgZGVwZW5kZW5jeSBiZXR3ZWVuIHRoZSBhdWRpbyBkZXZpY2UKYW5k
+IHRoZSBHUFUsIHdlIHdvdWxkbid0IG5lZWQgdGhpcy4gU28gbW92aW5nIHRvICJkZXZpY2UgbGlu
+a3MiIGlzCmEgcHJlcmVxdWlzaXRlIHRvIG1ha2UgcnVudGltZSBwbSB3b3JrIGZvciBtdXhlZCBs
+YXB0b3BzLgoKSWYgeW91IHdhbnQgdG8gdGFrZSBhIHN0YWIgYXQgdXNpbmcgImRldmljZSBsaW5r
+cyIgZm9yIHZnYV9zd2l0Y2hlcm9vCnRoZW4gcGxlYXNlIGdvIGFoZWFkIGFzIEknbSBzd2FtcGVk
+IHdpdGggb3RoZXIgd29yay4gKEkndmUgcmV2ZXJzZS0KZW5naW5lZXJlZCByZXRyaWV2YWwgb2Yg
+QXBwbGUgZGV2aWNlIHByb3BlcnRpZXMgZnJvbSBFRkkgdGhpcyB3ZWVrLAp3aGljaCBpcyBuZWVk
+ZWQgZm9yIFRodW5kZXJib2x0LikgTGV0IG1lIGtub3cgaWYgeW91IGhhdmUgYW55IHF1ZXN0aW9u
+cwpvciBuZWVkIHN0dWZmIHJldmlld2VkIG9yIHdoYXRldmVyLiBTaW5jZSB0aGUgImRldmljZSBs
+aW5rcyIgc2VyaWVzCmhhc24ndCBsYW5kZWQgeWV0LCBpdCdzIHN0aWxsIHBvc3NpYmxlIEkgdGhp
+bmsgdG8gYXNrIGZvciBmZWF0dXJlCnJlcXVlc3RzIHNob3VsZCBpdCBub3Qgd29yayBmb3IgdGhp
+cyBwYXJ0aWN1bGFyIHVzZSBjYXNlLiBUaGUKbGludXgtcG1Admdlci5rZXJuZWwub3JnIG1haWxp
+bmcgbGlzdCBpcyB0aGUgcmlnaHQgcGxhY2UgdG8gaW5xdWlyZQphYm91dCB0aGUgc2VyaWVzLgoK
+VGhhbmtzIGZvciByYWlzaW5nIHRoaXMgaW1wb3J0YW50IHF1ZXN0aW9uLgoKTHVrYXMKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
