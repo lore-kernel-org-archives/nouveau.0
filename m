@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96836] Kernel unaligned access at TPC[105d9fb4]
  nvkm_instobj_wr32+0x14/0x20 [nouveau]
-Date: Sun, 10 Jul 2016 02:51:18 +0000
-Message-ID: <bug-96836-8800-kD6h1f7Itd@http.bugs.freedesktop.org/>
+Date: Sun, 10 Jul 2016 02:57:25 +0000
+Message-ID: <bug-96836-8800-EsHOjeQZ3D@http.bugs.freedesktop.org/>
 References: <bug-96836-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0442761661=="
+Content-Type: multipart/mixed; boundary="===============1350530034=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96836-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0442761661==
-Content-Type: multipart/alternative; boundary="14681190780.33b8A.19514";
+--===============1350530034==
+Content-Type: multipart/alternative; boundary="14681194450.F643EF.19760";
  charset="UTF-8"
 
 
---14681190780.33b8A.19514
-Date: Sun, 10 Jul 2016 02:51:18 +0000
+--14681194450.F643EF.19760
+Date: Sun, 10 Jul 2016 02:57:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,39 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96836
 
---- Comment #12 from Kieron Gillespie <ciaran.gillespie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 124982
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D124982&action=3Dedit
-lspci output from the system in question
+--- Comment #13 from Kieron Gillespie <ciaran.gillespie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+So I tried unplugging the monitor just to see what would happen, welp...
+
+Message from syslogd@celestia at Jul  9 22:55:21 ...
+ kernel:[ 2211.347894] Kernel panic - not syncing: Irrecoverable deferred e=
+rror
+trap.
+
+Message from syslogd@celestia at Jul  9 22:55:21 ...
+ kernel:[ 2211.347894]=20
+
+Message from syslogd@celestia at Jul  9 22:55:21 ...
+ kernel:[ 2213.461991] Press Stop-A (L1-A) to return to the boot prom
+
+Message from syslogd@celestia at Jul  9 22:55:21 ...
+ kernel:[ 2213.534081] ---[ end Kernel panic - not syncing: Irrecoverable
+deferred error trap.
+
+Message from syslogd@celestia at Jul  9 22:55:21 ...
+ kernel:[ 2213.534081]=20
+
+Message from syslogd@celestia at Jul  9 22:55:54 ...
+ kernel:[ 2246.560543] NMI watchdog: BUG: soft lockup - CPU#1 stuck for 23s!
+[Xorg:3774]
+
+Well now I know what happens! :P
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14681190780.33b8A.19514
-Date: Sun, 10 Jul 2016 02:51:18 +0000
+--14681194450.F643EF.19760
+Date: Sun, 10 Jul 2016 02:57:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +86,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
 2+0x14/0x20 [nouveau]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836#c12">Commen=
-t # 12</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836#c13">Commen=
+t # 13</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
@@ -76,11 +98,32 @@ t # 12</a>
 ciaran.gillespie&#64;gmail.com" title=3D"Kieron Gillespie &lt;ciaran.gilles=
 pie&#64;gmail.com&gt;"> <span class=3D"fn">Kieron Gillespie</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D124982=
-" name=3D"attach_124982" title=3D"lspci output from the system in question"=
->attachment 124982</a> <a href=3D"attachment.cgi?id=3D124982&amp;action=3De=
-dit" title=3D"lspci output from the system in question">[details]</a></span>
-lspci output from the system in question</pre>
+        <pre>So I tried unplugging the monitor just to see what would happe=
+n, welp...
+
+Message from syslogd&#64;celestia at Jul  9 22:55:21 ...
+ kernel:[ 2211.347894] Kernel panic - not syncing: Irrecoverable deferred e=
+rror
+trap.
+
+Message from syslogd&#64;celestia at Jul  9 22:55:21 ...
+ kernel:[ 2211.347894]=20
+
+Message from syslogd&#64;celestia at Jul  9 22:55:21 ...
+ kernel:[ 2213.461991] Press Stop-A (L1-A) to return to the boot prom
+
+Message from syslogd&#64;celestia at Jul  9 22:55:21 ...
+ kernel:[ 2213.534081] ---[ end Kernel panic - not syncing: Irrecoverable
+deferred error trap.
+
+Message from syslogd&#64;celestia at Jul  9 22:55:21 ...
+ kernel:[ 2213.534081]=20
+
+Message from syslogd&#64;celestia at Jul  9 22:55:54 ...
+ kernel:[ 2246.560543] NMI watchdog: BUG: soft lockup - CPU#1 stuck for 23s!
+[Xorg:3774]
+
+Well now I know what happens! :P</pre>
         </div>
       </p>
 
@@ -94,9 +137,9 @@ lspci output from the system in question</pre>
     </body>
 </html>=
 
---14681190780.33b8A.19514--
+--14681194450.F643EF.19760--
 
---===============0442761661==
+--===============1350530034==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +149,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0442761661==--
+--===============1350530034==--
