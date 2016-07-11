@@ -1,14 +1,13 @@
-From: Kyle McMartin <kyle-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>
-Subject: Re: [GIT,PULL] Signed firmware for NVIDIA GP100 GPU
-Date: Mon, 11 Jul 2016 14:56:40 -0400
-Message-ID: <20160711185640.GG8680@merlin.infradead.org>
-References: <07f149a6-3dbb-10b5-4d2a-481d9ed32fef@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96802] Upgrading mesa from 11.0.6 -> 11.2.2 causes
+ graphics deadlock
+Date: Mon, 11 Jul 2016 22:21:19 +0000
+Message-ID: <bug-96802-8800-HbZTpyT6sY@http.bugs.freedesktop.org/>
+References: <bug-96802-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1317176150=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <07f149a6-3dbb-10b5-4d2a-481d9ed32fef-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-96802-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,54 +17,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, linux-firmware-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBKdWwgMDksIDIwMTYgYXQgMDU6NDg6NThQTSArMDkwMCwgQWxleGFuZHJlIENvdXJi
-b3Qgd3JvdGU6Cj4gSGVsbG8gbGludXgtZmlybXdhcmUgbWFpbnRhaW5lcnMsCj4gCj4gVGhlIGZv
-bGxvd2luZyBjaGFuZ2VzIHNpbmNlIGNvbW1pdCBhMTQxNTAwNjEzODhmNGJjYmYzYzM0OTlmMWIx
-MmUzZjBkNWMwZTdiOgo+IAo+ICAgbGludXgtZmlybXdhcmU6IEZpeCB0aGUgZmlsZW5hbWUgZm9y
-IFdzUCB0byBhbGlnbiB3aXRoIGRldmljZSBIV19WQVJJQU5UCj4gKDIwMTYtMDctMDggMTg6MDc6
-MDIgLTA3MDApCj4gCj4gYXJlIGF2YWlsYWJsZSBpbiB0aGUgZ2l0IHJlcG9zaXRvcnkgYXQ6Cj4g
-Cj4gICBodHRwczovL2dpdGh1Yi5jb20vR251cm91L2xpbnV4LWZpcm13YXJlLmdpdCBncDEwMAoK
-UHVsbGVkLCB0aGFua3MgQWxleGFuZHJlLgoKY2hlZXJzLCAtLUt5bGUKCj4gCj4gZm9yIHlvdSB0
-byBmZXRjaCBjaGFuZ2VzIHVwIHRvIDc3NzQ4MGYwNDNmZjBkOTU1MjA5ZTI3NDEyN2JmY2Q2NGY2
-ZThlZGM6Cj4gCj4gICBudmlkaWE6IEFkZCBHUDEwMCBzaWduZWQgZmlybXdhcmUgKDIwMTYtMDct
-MDkgMTc6NDc6MDIgKzA5MDApCj4gCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+IEFsZXhhbmRyZSBDb3VyYm90ICgxKToK
-PiAgICAgICBudmlkaWE6IEFkZCBHUDEwMCBzaWduZWQgZmlybXdhcmUKPiAKPiAgV0hFTkNFICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAxNSArKysrKysrKysrKysrKysKPiAgbnZpZGlh
-L2dwMTAwL2Fjci9ibC5iaW4gICAgICAgICAgICB8IEJpbiAwIC0+IDgzMiBieXRlcwo+ICBudmlk
-aWEvZ3AxMDAvYWNyL3Vjb2RlX2xvYWQuYmluICAgIHwgQmluIDAgLT4gOTYzMiBieXRlcwo+ICBu
-dmlkaWEvZ3AxMDAvYWNyL3Vjb2RlX3VubG9hZC5iaW4gIHwgQmluIDAgLT4gMTQ0MCBieXRlcwo+
-ICBudmlkaWEvZ3AxMDAvZ3IvZmVjc19ibC5iaW4gICAgICAgIHwgICAxICsKPiAgbnZpZGlhL2dw
-MTAwL2dyL2ZlY3NfZGF0YS5iaW4gICAgICB8IEJpbiAwIC0+IDIwMjggYnl0ZXMKPiAgbnZpZGlh
-L2dwMTAwL2dyL2ZlY3NfaW5zdC5iaW4gICAgICB8IEJpbiAwIC0+IDIwOTU1IGJ5dGVzCj4gIG52
-aWRpYS9ncDEwMC9nci9mZWNzX3NpZy5iaW4gICAgICAgfCBCaW4gMCAtPiA3NiBieXRlcwo+ICBu
-dmlkaWEvZ3AxMDAvZ3IvZ3BjY3NfYmwuYmluICAgICAgIHwgICAxICsKPiAgbnZpZGlhL2dwMTAw
-L2dyL2dwY2NzX2RhdGEuYmluICAgICB8IEJpbiAwIC0+IDIwODAgYnl0ZXMKPiAgbnZpZGlhL2dw
-MTAwL2dyL2dwY2NzX2luc3QuYmluICAgICB8IEJpbiAwIC0+IDEyNDU4IGJ5dGVzCj4gIG52aWRp
-YS9ncDEwMC9nci9ncGNjc19zaWcuYmluICAgICAgfCBCaW4gMCAtPiA3NiBieXRlcwo+ICBudmlk
-aWEvZ3AxMDAvZ3Ivc3dfYnVuZGxlX2luaXQuYmluIHwgQmluIDAgLT4gNzY2NCBieXRlcwo+ICBu
-dmlkaWEvZ3AxMDAvZ3Ivc3dfY3R4LmJpbiAgICAgICAgIHwgQmluIDAgLT4gNjI0MCBieXRlcwo+
-ICBudmlkaWEvZ3AxMDAvZ3Ivc3dfbWV0aG9kX2luaXQuYmluIHwgQmluIDAgLT4gMTE5MjggYnl0
-ZXMKPiAgbnZpZGlhL2dwMTAwL2dyL3N3X25vbmN0eC5iaW4gICAgICB8IEJpbiAwIC0+IDIyNDgg
-Ynl0ZXMKPiAgMTYgZmlsZXMgY2hhbmdlZCwgMTcgaW5zZXJ0aW9ucygrKQo+ICBjcmVhdGUgbW9k
-ZSAxMDA2NDQgbnZpZGlhL2dwMTAwL2Fjci9ibC5iaW4KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IG52
-aWRpYS9ncDEwMC9hY3IvdWNvZGVfbG9hZC5iaW4KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IG52aWRp
-YS9ncDEwMC9hY3IvdWNvZGVfdW5sb2FkLmJpbgo+ICBjcmVhdGUgbW9kZSAxMjAwMDAgbnZpZGlh
-L2dwMTAwL2dyL2ZlY3NfYmwuYmluCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBudmlkaWEvZ3AxMDAv
-Z3IvZmVjc19kYXRhLmJpbgo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgbnZpZGlhL2dwMTAwL2dyL2Zl
-Y3NfaW5zdC5iaW4KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IG52aWRpYS9ncDEwMC9nci9mZWNzX3Np
-Zy5iaW4KPiAgY3JlYXRlIG1vZGUgMTIwMDAwIG52aWRpYS9ncDEwMC9nci9ncGNjc19ibC5iaW4K
-PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IG52aWRpYS9ncDEwMC9nci9ncGNjc19kYXRhLmJpbgo+ICBj
-cmVhdGUgbW9kZSAxMDA2NDQgbnZpZGlhL2dwMTAwL2dyL2dwY2NzX2luc3QuYmluCj4gIGNyZWF0
-ZSBtb2RlIDEwMDY0NCBudmlkaWEvZ3AxMDAvZ3IvZ3BjY3Nfc2lnLmJpbgo+ICBjcmVhdGUgbW9k
-ZSAxMDA2NDQgbnZpZGlhL2dwMTAwL2dyL3N3X2J1bmRsZV9pbml0LmJpbgo+ICBjcmVhdGUgbW9k
-ZSAxMDA2NDQgbnZpZGlhL2dwMTAwL2dyL3N3X2N0eC5iaW4KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0
-IG52aWRpYS9ncDEwMC9nci9zd19tZXRob2RfaW5pdC5iaW4KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0
-IG52aWRpYS9ncDEwMC9nci9zd19ub25jdHguYmluCj4gCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+
+--===============1317176150==
+Content-Type: multipart/alternative; boundary="14682756780.5fC8Fc10A.3927";
+ charset="UTF-8"
+
+
+--14682756780.5fC8Fc10A.3927
+Date: Mon, 11 Jul 2016 22:21:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96802
+
+Ian Kumlien <ian.kumlien-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |WORKSFORME
+             Status|NEW                         |RESOLVED
+
+--- Comment #2 from Ian Kumlien <ian.kumlien-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Just tested with 4.7-rc7 and mesa 12.0.1 - and the issue hasn't happened ye=
+t -
+it usually happened within seconds of logging in.
+
+No errors reported in dmesg - I suspect that the issue is fixed now, sorry =
+for
+the noise.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14682756780.5fC8Fc10A.3927
+Date: Mon, 11 Jul 2016 22:21:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ian.kumli=
+en&#64;gmail.com" title=3D"Ian Kumlien &lt;ian.kumlien&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ian Kumlien</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - Upgrading mesa from 11.0.6 -&gt; 11.2.2 c=
+auses graphics deadlock"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96802">bug 96802<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WORKSFORME
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - Upgrading mesa from 11.0.6 -&gt; 11.2.2 c=
+auses graphics deadlock"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96802#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - Upgrading mesa from 11.0.6 -&gt; 11.2.2 c=
+auses graphics deadlock"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96802">bug 96802<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ian.kumlien&#64;gmail.com" title=3D"Ian Kumlien &lt;ian.kumlien&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Ian Kumlien</span></a>
+</span></b>
+        <pre>Just tested with 4.7-rc7 and mesa 12.0.1 - and the issue hasn'=
+t happened yet -
+it usually happened within seconds of logging in.
+
+No errors reported in dmesg - I suspect that the issue is fixed now, sorry =
+for
+the noise.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14682756780.5fC8Fc10A.3927--
+
+--===============1317176150==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1317176150==--
