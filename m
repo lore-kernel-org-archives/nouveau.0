@@ -1,145 +1,302 @@
-From: Markus Mayer <markus.mayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
-Subject: Re: [PATCH v3 1/7] lib: string: add functions to
-	case-convert strings
-Date: Mon, 11 Jul 2016 15:46:10 -0700
-Message-ID: <CAGt4E5tpw0sa1PQmgJzKbPuzSbFG9_CUWjjO1z93OSc0KkjUXw@mail.gmail.com>
-References: <1468017794-4818-1-git-send-email-mmayer@broadcom.com>
- <1468017794-4818-2-git-send-email-mmayer@broadcom.com>
- <5780E866.8000001@osg.samsung.com>
- <CAGt4E5vYzkqgiiQXXjnX7az-KzCVSYthEW5Df03U=Y1qhEJdRQ@mail.gmail.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAGt4E5vYzkqgiiQXXjnX7az-KzCVSYthEW5Df03U=Y1qhEJdRQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Luis de Bethencourt <luisbg-JPH+aEBZ4P+UEJcrhfAQsw@public.gmane.org>
-Cc: devel-gWbeCf7V1WCQmaza687I9mD2FQJk+8+b@public.gmane.org, Kees Cook <keescook-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Rasmus Villemoes <linux-qQsb+v5E8BnlAoU/VqSP6n9LOBIZ5rWg@public.gmane.org>, Linux Kernel <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, speakup-UPO/6gOIxNZglr+F8WMZYdi2O/JbrIOy@public.gmane.org, Chris Metcalf <cmetcalf-d5a29ZRxExrQT0dZR+AlfA@public.gmane.org>, target-devel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Al Viro <viro-RmSDqhL/yNMiFSDQTTA3OLVCufUGDwFn@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+From: Sasha Levin <sasha.levin@oracle.com>
+Subject: [added to the 4.1 stable tree] x86/mm/kmmio: Fix mmiotrace for hugepages
+Date: Mon, 11 Jul 2016 22:54:38 -0400
+Message-ID: <1468292170-22812-177-git-send-email-sasha.levin@oracle.com>
+References: <1468292170-22812-1-git-send-email-sasha.levin@oracle.com>
+Return-path: <owner-linux-mm@kvack.org>
+In-Reply-To: <1468292170-22812-1-git-send-email-sasha.levin@oracle.com>
+Sender: owner-linux-mm@kvack.org
+To: stable@vger.kernel.org, stable-commits@vger.kernel.org
+Cc: Karol Herbst <nouveau@karolherbst.de>, Andrew Morton <akpm@linux-foundation.org>, Andy Lutomirski <luto@amacapital.net>, Borislav Petkov <bp@alien8.de>, Brian Gerst <brgerst@gmail.com>, Denys Vlasenko <dvlasenk@redhat.com>, "H. Peter Anvin" <hpa@zytor.com>, Linus Torvalds <torvalds@linux-foundation.org>, "Luis R. Rodriguez" <mcgrof@suse.com>, Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>, Toshi Kani <toshi.kani@hp.com>, linux-mm@kvack.org, linux-x86_64@vger.kernel.org, nouveau@lists.freedesktop.org, pq@iki.fi, rostedt@goodmis.org, Ingo Molnar <mingo@kernel.org>, Sasha Levin <sasha.levin@oracle.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gOSBKdWx5IDIwMTYgYXQgMDg6MzAsIE1hcmt1cyBNYXllciA8bWFya3VzLm1heWVyQGJyb2Fk
-Y29tLmNvbT4gd3JvdGU6Cj4gT24gOSBKdWx5IDIwMTYgYXQgMDU6MDQsIEx1aXMgZGUgQmV0aGVu
-Y291cnQgPGx1aXNiZ0Bvc2cuc2Ftc3VuZy5jb20+IHdyb3RlOgo+PiBPbiAwOC8wNy8xNiAyMzo0
-MywgTWFya3VzIE1heWVyIHdyb3RlOgo+Pj4gQWRkIGEgY29sbGVjdGlvbiBvZiBnZW5lcmljIGZ1
-bmN0aW9ucyB0byBjb252ZXJ0IHN0cmluZ3MgdG8gbG93ZXJjYXNlCj4+PiBvciB1cHBlcmNhc2Uu
-Cj4+Pgo+Pj4gQ2hhbmdpbmcgdGhlIGNhc2Ugb2YgYSBzdHJpbmcgKHdpdGggb3Igd2l0aG91dCBj
-b3B5aW5nIGl0IGZpcnN0KSBzZWVtcwo+Pj4gdG8gYmUgYSByZWN1cnJpbmcgcmVxdWlyZW1lbnQg
-aW4gdGhlIGtlcm5lbCB0aGF0IGlzIGN1cnJlbnRseSBiZWluZwo+Pj4gc29sdmVkIGJ5IHNldmVy
-YWwgZHVwbGljYXRlZCBpbXBsZW1lbnRhdGlvbnMgZG9pbmcgdGhlIHNhbWUgdGhpbmcuIFRoaXMK
-Pj4+IGNoYW5nZSBhaW1zIGF0IHJlZHVjaW5nIHRoaXMgY29kZSBkdXBsaWNhdGlvbi4KPj4+Cj4+
-PiBUaGUgbmV3IGZ1bmN0aW9ucyBhcmUKPj4+ICAgICB2b2lkIHN0cmxjcHl0b3VwcGVyKGNoYXIg
-KmRzdCwgY29uc3QgY2hhciAqc3JjLCBzaXplX3QgbGVuKTsKPj4+ICAgICB2b2lkIHN0cmxjcHl0
-b2xvd2VyKGNoYXIgKmRzdCwgY29uc3QgY2hhciAqc3JjLCBzaXplX3QgbGVuKTsKPj4+ICAgICB2
-b2lkIHN0cmNweXRvdXBwZXIoY2hhciAqZHN0LCBjb25zdCBjaGFyICpzcmMpOwo+Pj4gICAgIHZv
-aWQgc3RyY3B5dG9sb3dlcihjaGFyICpkc3QsIGNvbnN0IGNoYXIgKnNyYyk7Cj4+PiAgICAgdm9p
-ZCBzdHJ0b3VwcGVyKGNoYXIgKnMpOwo+Pj4gICAgIHZvaWQgc3RydG9sb3dlcihjaGFyICpzKTsK
-Pj4+Cj4+PiBUaGUgInN0cltsXWNweXRvKiIgdmVyc2lvbnMgb2YgdGhlIGZ1bmN0aW9uIHRha2Ug
-YSBkZXN0aW5hdGlvbiBzdHJpbmcKPj4+IGFuZCBhIHNvdXJjZSBzdHJpbmcgYXMgYXJndW1lbnRz
-LiBUaGUgInN0cmxjcHl0byoiIHZlcnNpb25zIGFkZGl0aW9uYWxseQo+Pj4gdGFrZSBhIGxlbmd0
-aCBhcmd1bWVudCBsaWtlIHN0cmxjcHkoKSBpdHNlbGYuIExhc3RseSwgdGhlIHN0cnRvKgo+Pj4g
-ZnVuY3Rpb25zIHRha2UgYSBzaW5nbGUgc3RyaW5nIGFyZ3VtZW50IGFuZCBtb2RpZnkgdGhlIHBh
-c3NlZC1pbiBzdHJpbmcuCj4+Pgo+Pj4gTGlrZSBzdHJsY3B5KCksIGFuZCB1bmxpa2Ugc3RybmNw
-eSgpLCB0aGUgZnVuY3Rpb25zIGd1YXJhbnRlZSBOVUxMCj4+PiB0ZXJtaW5hdGlvbiBvZiB0aGUg
-ZGVzdGluYXRpb24gc3RyaW5nLgo+Pj4KPj4+IFNpZ25lZC1vZmYtYnk6IE1hcmt1cyBNYXllciA8
-bW1heWVyQGJyb2FkY29tLmNvbT4KPj4+IC0tLQo+Pj4gIGluY2x1ZGUvbGludXgvc3RyaW5nLmgg
-fCA0MCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrCj4+PiAgbGliL3N0
-cmluZy5jICAgICAgICAgICB8IDM4ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrCj4+PiAgMiBmaWxlcyBjaGFuZ2VkLCA3OCBpbnNlcnRpb25zKCspCj4+Pgo+Pj4gZGlmZiAt
-LWdpdCBhL2luY2x1ZGUvbGludXgvc3RyaW5nLmggYi9pbmNsdWRlL2xpbnV4L3N0cmluZy5oCj4+
-PiBpbmRleCAyNmI2ZjZhLi4zNmM5ZDE0IDEwMDY0NAo+Pj4gLS0tIGEvaW5jbHVkZS9saW51eC9z
-dHJpbmcuaAo+Pj4gKysrIGIvaW5jbHVkZS9saW51eC9zdHJpbmcuaAo+Pj4gQEAgLTExNiw2ICsx
-MTYsOCBAQCBleHRlcm4gdm9pZCAqIG1lbWNocihjb25zdCB2b2lkICosaW50LF9fa2VybmVsX3Np
-emVfdCk7Cj4+PiAgI2VuZGlmCj4+PiAgdm9pZCAqbWVtY2hyX2ludihjb25zdCB2b2lkICpzLCBp
-bnQgYywgc2l6ZV90IG4pOwo+Pj4gIGNoYXIgKnN0cnJlcGxhY2UoY2hhciAqcywgY2hhciBvbGQs
-IGNoYXIgbmV3KTsKPj4+ICtleHRlcm4gdm9pZCBzdHJsY3B5dG91cHBlcihjaGFyICpkc3QsIGNv
-bnN0IGNoYXIgKnNyYywgc2l6ZV90IGxlbik7Cj4+PiArZXh0ZXJuIHZvaWQgc3RybGNweXRvbG93
-ZXIoY2hhciAqZHN0LCBjb25zdCBjaGFyICpzcmMsIHNpemVfdCBsZW4pOwo+Pj4KPj4+ICBleHRl
-cm4gdm9pZCBrZnJlZV9jb25zdChjb25zdCB2b2lkICp4KTsKPj4+Cj4+PiBAQCAtMTY5LDQgKzE3
-MSw0MiBAQCBzdGF0aWMgaW5saW5lIGNvbnN0IGNoYXIgKmtiYXNlbmFtZShjb25zdCBjaGFyICpw
-YXRoKQo+Pj4gICAgICAgcmV0dXJuIHRhaWwgPyB0YWlsICsgMSA6IHBhdGg7Cj4+PiAgfQo+Pj4K
-Pj4+ICsvKioKPj4+ICsgKiBzdHJjcHl0b3VwcGVyIC0gQ29weSBzdHJpbmcgYW5kIGNvbnZlcnQg
-dG8gdXBwZXJjYXNlLgo+Pj4gKyAqIEBkc3Q6IFRoZSBidWZmZXIgdG8gc3RvcmUgdGhlIHJlc3Vs
-dC4KPj4+ICsgKiBAc3JjOiBUaGUgc3RyaW5nIHRvIGNvbnZlcnQgdG8gdXBwZXJjYXNlLgo+Pj4g
-KyAqLwo+Pj4gK3N0YXRpYyBpbmxpbmUgdm9pZCBzdHJjcHl0b3VwcGVyKGNoYXIgKmRzdCwgY29u
-c3QgY2hhciAqc3JjKQo+Pj4gK3sKPj4+ICsgICAgIHN0cmxjcHl0b3VwcGVyKGRzdCwgc3JjLCAt
-MSk7Cj4+PiArfQo+Pj4gKwo+Pgo+PiBXaHkgbm90IHVzZSBTSVpFX01BWCBpbnN0ZWFkIG9mIC0x
-Pwo+Cj4gU3VyZS4gSSdsbCBjaGFuZ2UgYWxsIGZvdXIgb2YgdGhlbS4gVGhhbmtzLgoKVHVybnMg
-b3V0IHRoZXJlJ3MgYWN0dWFsbHkgYSBjaXJjdWxhciBkZXBlbmRlbmN5IGhlcmUuIFNJWkVfTUFY
-IGlzCmRlZmluZWQgaW4gbGludXgva2VybmVsLmguIFNvLCBzdHJpbmcuaCB3b3VsZCBuZWVkIHRv
-IGluY2x1ZGUKa2VybmVsLmguIEJ1dCBrZXJuZWwuaCwgYnkgd2F5IG9mIHNldmVyYWwgb3RoZXIg
-aGVhZGVycywgaW5jbHVkZXMKc3RyaW5nLmguCgpBdHRlbXB0aW5nIHRvIGluY2x1ZGUga2VybmVs
-LmggaW4gc3RyaW5nLmggdGhlbiBsZWFkcyB0byBzb21ldGhpbmcgbGlrZSB0aGlzOgoKICBDSEsg
-ICAgIGluY2x1ZGUvY29uZmlnL2tlcm5lbC5yZWxlYXNlCiAgQ0hLICAgICBpbmNsdWRlL2dlbmVy
-YXRlZC91YXBpL2xpbnV4L3ZlcnNpb24uaAogIENISyAgICAgaW5jbHVkZS9nZW5lcmF0ZWQvdXRz
-cmVsZWFzZS5oCiAgQ0MgICAgICBzY3JpcHRzL21vZC9kZXZpY2V0YWJsZS1vZmZzZXRzLnMKICBD
-SEsgICAgIGluY2x1ZGUvZ2VuZXJhdGVkL3RpbWVjb25zdC5oCkluIGZpbGUgaW5jbHVkZWQgZnJv
-bSBpbmNsdWRlL2xpbnV4L3ByaW50ay5oOjI4OTowLAogICAgICAgICAgICAgICAgIGZyb20gaW5j
-bHVkZS9saW51eC9rZXJuZWwuaDoxMywKICAgICAgICAgICAgICAgICBmcm9tIGluY2x1ZGUvbGlu
-dXgvc3RyaW5nLmg6MTEsCiAgICAgICAgICAgICAgICAgZnJvbSBpbmNsdWRlL3VhcGkvbGludXgv
-dXVpZC5oOjIxLAogICAgICAgICAgICAgICAgIGZyb20gaW5jbHVkZS9saW51eC91dWlkLmg6MTks
-CiAgICAgICAgICAgICAgICAgZnJvbSBpbmNsdWRlL2xpbnV4L21vZF9kZXZpY2V0YWJsZS5oOjEy
-LAogICAgICAgICAgICAgICAgIGZyb20gc2NyaXB0cy9tb2QvZGV2aWNldGFibGUtb2Zmc2V0cy5j
-OjI6CmluY2x1ZGUvbGludXgvZHluYW1pY19kZWJ1Zy5oOiBJbiBmdW5jdGlvbiDigJhkZGVidWdf
-ZHluZGJnX21vZHVsZV9wYXJhbV9jYuKAmToKaW5jbHVkZS9saW51eC9keW5hbWljX2RlYnVnLmg6
-MTIyOjI6IGVycm9yOiBpbXBsaWNpdCBkZWNsYXJhdGlvbiBvZgpmdW5jdGlvbiDigJhzdHJzdHLi
-gJkgWy1XZXJyb3I9aW1wbGljaXQtZnVuY3Rpb24tZGVjbGFyYXRpb25dCiAgaWYgKHN0cnN0cihw
-YXJhbSwgImR5bmRiZyIpKSB7CiAgXgppbmNsdWRlL2xpbnV4L2R5bmFtaWNfZGVidWcuaDoxMjI6
-Njogd2FybmluZzogaW5jb21wYXRpYmxlIGltcGxpY2l0CmRlY2xhcmF0aW9uIG9mIGJ1aWx0LWlu
-IGZ1bmN0aW9uIOKAmHN0cnN0cuKAmSBbZW5hYmxlZCBieSBkZWZhdWx0XQogIGlmIChzdHJzdHIo
-cGFyYW0sICJkeW5kYmciKSkgewogICAgICBeClNpbmNlIGtlcm5lbC5oIGlzIHJlZmVyZW5jaW5n
-IHN0cmluZy5oICh3aGljaCBpcyBuZWVkZWQsIGJ1dCBub3QKaW5jbHVkZWQgYSBzZWNvbmQgdGlt
-ZSBkdWUgdG8gdGhlIGluY2x1ZGUgZ3VhcmRzKSwgdGhpcyBsZWFkcyB0bwp1bmRlY2xhcmVkIHN0
-cmluZyBmdW5jdGlvbnMsIGJlY2F1c2Ugd2UgYXJlIHN0aWxsIGluIHRoZSBlYXJseSBzdGFnZXMK
-b2YgaW5jbHVkaW5nIHN0cmluZy5oIGl0c2VsZiBhbmQgaGF2ZW4ndCBnb3R0ZW4gdG8gdGhlIGZ1
-bmN0aW9uCmRlY2xhcmF0aW9ucyB5ZXQuCgo+Pj4gKy8qKgo+Pj4gKyAqIHN0cmNweXRvbG93ZXIg
-LSBDb3B5IHN0cmluZyBhbmQgY29udmVydCB0byBsb3dlcmNhc2UuCj4+PiArICogQGRzdDogVGhl
-IGJ1ZmZlciB0byBzdG9yZSB0aGUgcmVzdWx0Lgo+Pj4gKyAqIEBzcmM6IFRoZSBzdHJpbmcgdG8g
-Y29udmVydCB0byBsb3dlcmNhc2UuCj4+PiArICovCj4+PiArc3RhdGljIGlubGluZSB2b2lkIHN0
-cmNweXRvbG93ZXIoY2hhciAqZHN0LCBjb25zdCBjaGFyICpzcmMpCj4+PiArewo+Pj4gKyAgICAg
-c3RybGNweXRvbG93ZXIoZHN0LCBzcmMsIC0xKTsKPj4+ICt9Cj4+PiArCj4+Cj4+IFNhbWUgaGVy
-ZSwgYW5kIHRoZSAyIGJlbG93IDopCj4+Cj4+IFRoYW5rcyBNYXJrdXMsCj4+IEx1aXMKPj4KPj4+
-ICsvKioKPj4+ICsgKiBzdHJ0b3VwcGVyIC0gQ29udmVydCBzdHJpbmcgdG8gdXBwZXJjYXNlLgo+
-Pj4gKyAqIEBzOiBUaGUgc3RyaW5nIHRvIG9wZXJhdGUgb24uCj4+PiArICovCj4+PiArc3RhdGlj
-IGlubGluZSB2b2lkIHN0cnRvdXBwZXIoY2hhciAqcykKPj4+ICt7Cj4+PiArICAgICBzdHJsY3B5
-dG91cHBlcihzLCBzLCAtMSk7Cj4+PiArfQo+Pj4gKwo+Pj4gKy8qKgo+Pj4gKyAqIHN0cnRvbG93
-ZXIgLSBDb252ZXJ0IHN0cmluZyB0byBsb3dlcmNhc2UuCj4+PiArICogQHM6IFRoZSBzdHJpbmcg
-dG8gb3BlcmF0ZSBvbi4KPj4+ICsgKi8KPj4+ICtzdGF0aWMgaW5saW5lIHZvaWQgc3RydG9sb3dl
-cihjaGFyICpzKQo+Pj4gK3sKPj4+ICsgICAgIHN0cmxjcHl0b2xvd2VyKHMsIHMsIC0xKTsKPj4+
-ICt9Cj4+PiArCj4+PiAgI2VuZGlmIC8qIF9MSU5VWF9TVFJJTkdfSF8gKi8KPj4+IGRpZmYgLS1n
-aXQgYS9saWIvc3RyaW5nLmMgYi9saWIvc3RyaW5nLmMKPj4+IGluZGV4IGVkODM1NjIuLmZkOGM0
-MjcgMTAwNjQ0Cj4+PiAtLS0gYS9saWIvc3RyaW5nLmMKPj4+ICsrKyBiL2xpYi9zdHJpbmcuYwo+
-Pj4gQEAgLTk1MiwzICs5NTIsNDEgQEAgY2hhciAqc3RycmVwbGFjZShjaGFyICpzLCBjaGFyIG9s
-ZCwgY2hhciBuZXcpCj4+PiAgICAgICByZXR1cm4gczsKPj4+ICB9Cj4+PiAgRVhQT1JUX1NZTUJP
-TChzdHJyZXBsYWNlKTsKPj4+ICsKPj4+ICsvKioKPj4+ICsgKiBzdHJsY3B5dG91cHBlciAtIENv
-cHkgYSBsZW5ndGgtbGltaXRlZCBzdHJpbmcgYW5kIGNvbnZlcnQgdG8gdXBwZXJjYXNlLgo+Pj4g
-KyAqIEBkc3Q6IFRoZSBidWZmZXIgdG8gc3RvcmUgdGhlIHJlc3VsdC4KPj4+ICsgKiBAc3JjOiBU
-aGUgc3RyaW5nIHRvIGNvbnZlcnQgdG8gdXBwZXJjYXNlLgo+Pj4gKyAqIEBsZW46IE1heGltdW0g
-c3RyaW5nIGxlbmd0aC4gTWF5IGJlIFNJWkVfTUFYICgtMSkgdG8gc2V0IG5vIGxpbWl0Lgo+Pj4g
-KyAqLwo+Pj4gK3ZvaWQgc3RybGNweXRvdXBwZXIoY2hhciAqZHN0LCBjb25zdCBjaGFyICpzcmMs
-IHNpemVfdCBsZW4pCj4+PiArewo+Pj4gKyAgICAgc2l6ZV90IGk7Cj4+PiArCj4+PiArICAgICBp
-ZiAoIWxlbikKPj4+ICsgICAgICAgICAgICAgcmV0dXJuOwo+Pj4gKwo+Pj4gKyAgICAgZm9yIChp
-ID0gMDsgaSA8IGxlbiAmJiBzcmNbaV07ICsraSkKPj4+ICsgICAgICAgICAgICAgZHN0W2ldID0g
-dG91cHBlcihzcmNbaV0pOwo+Pj4gKyAgICAgZHN0W2kgPCBsZW4gPyBpIDogaSAtIDFdID0gJ1ww
-JzsKPj4+ICt9Cj4+PiArRVhQT1JUX1NZTUJPTChzdHJsY3B5dG91cHBlcik7Cj4+PiArCj4+PiAr
-LyoqCj4+PiArICogc3RybGNweXRvbG93ZXIgLSBDb3B5IGEgbGVuZ3RoLWxpbWl0ZWQgc3RyaW5n
-IGFuZCBjb252ZXJ0IHRvIGxvd2VyY2FzZS4KPj4+ICsgKiBAZHN0OiBUaGUgYnVmZmVyIHRvIHN0
-b3JlIHRoZSByZXN1bHQuCj4+PiArICogQHNyYzogVGhlIHN0cmluZyB0byBjb252ZXJ0IHRvIGxv
-d2VyY2FzZS4KPj4+ICsgKiBAbGVuOiBNYXhpbXVtIHN0cmluZyBsZW5ndGguIE1heSBiZSBTSVpF
-X01BWCAoLTEpIHRvIHNldCBubyBsaW1pdC4KPj4+ICsgKi8KPj4+ICt2b2lkIHN0cmxjcHl0b2xv
-d2VyKGNoYXIgKmRzdCwgY29uc3QgY2hhciAqc3JjLCBzaXplX3QgbGVuKQo+Pj4gK3sKPj4+ICsg
-ICAgIHNpemVfdCBpOwo+Pj4gKwo+Pj4gKyAgICAgaWYgKCFsZW4pCj4+PiArICAgICAgICAgICAg
-IHJldHVybjsKPj4+ICsKPj4+ICsgICAgIGZvciAoaSA9IDA7IGkgPCBsZW4gJiYgc3JjW2ldOyAr
-K2kpCj4+PiArICAgICAgICAgICAgIGRzdFtpXSA9IHRvbG93ZXIoc3JjW2ldKTsKPj4+ICsgICAg
-IGRzdFtpIDwgbGVuID8gaSA6IGkgLSAxXSA9ICdcMCc7Cj4+PiArfQo+Pj4gK0VYUE9SVF9TWU1C
-T0woc3RybGNweXRvbG93ZXIpOwo+Pj4KPj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1Cg==
+From: Karol Herbst <nouveau@karolherbst.de>
+
+This patch has been added to the 4.1 stable tree. If you have any
+objections, please let us know.
+
+===============
+
+[ Upstream commit cfa52c0cfa4d727aa3e457bf29aeff296c528a08 ]
+
+Because Linux might use bigger pages than the 4K pages to handle those mmio
+ioremaps, the kmmio code shouldn't rely on the pade id as it currently does.
+
+Using the memory address instead of the page id lets us look up how big the
+page is and what its base address is, so that we won't get a page fault
+within the same page twice anymore.
+
+Tested-by: Pierre Moreau <pierre.morrow@free.fr>
+Signed-off-by: Karol Herbst <nouveau@karolherbst.de>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Andy Lutomirski <luto@amacapital.net>
+Cc: Borislav Petkov <bp@alien8.de>
+Cc: Brian Gerst <brgerst@gmail.com>
+Cc: Denys Vlasenko <dvlasenk@redhat.com>
+Cc: H. Peter Anvin <hpa@zytor.com>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Luis R. Rodriguez <mcgrof@suse.com>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Toshi Kani <toshi.kani@hp.com>
+Cc: linux-mm@kvack.org
+Cc: linux-x86_64@vger.kernel.org
+Cc: nouveau@lists.freedesktop.org
+Cc: pq@iki.fi
+Cc: rostedt@goodmis.org
+Link: http://lkml.kernel.org/r/1456966991-6861-1-git-send-email-nouveau@karolherbst.de
+Signed-off-by: Ingo Molnar <mingo@kernel.org>
+Signed-off-by: Sasha Levin <sasha.levin@oracle.com>
+---
+ arch/x86/mm/kmmio.c | 88 +++++++++++++++++++++++++++++++++++------------------
+ 1 file changed, 59 insertions(+), 29 deletions(-)
+
+diff --git a/arch/x86/mm/kmmio.c b/arch/x86/mm/kmmio.c
+index 637ab34..ddb2244 100644
+--- a/arch/x86/mm/kmmio.c
++++ b/arch/x86/mm/kmmio.c
+@@ -33,7 +33,7 @@
+ struct kmmio_fault_page {
+ 	struct list_head list;
+ 	struct kmmio_fault_page *release_next;
+-	unsigned long page; /* location of the fault page */
++	unsigned long addr; /* the requested address */
+ 	pteval_t old_presence; /* page presence prior to arming */
+ 	bool armed;
+ 
+@@ -70,9 +70,16 @@ unsigned int kmmio_count;
+ static struct list_head kmmio_page_table[KMMIO_PAGE_TABLE_SIZE];
+ static LIST_HEAD(kmmio_probes);
+ 
+-static struct list_head *kmmio_page_list(unsigned long page)
++static struct list_head *kmmio_page_list(unsigned long addr)
+ {
+-	return &kmmio_page_table[hash_long(page, KMMIO_PAGE_HASH_BITS)];
++	unsigned int l;
++	pte_t *pte = lookup_address(addr, &l);
++
++	if (!pte)
++		return NULL;
++	addr &= page_level_mask(l);
++
++	return &kmmio_page_table[hash_long(addr, KMMIO_PAGE_HASH_BITS)];
+ }
+ 
+ /* Accessed per-cpu */
+@@ -98,15 +105,19 @@ static struct kmmio_probe *get_kmmio_probe(unsigned long addr)
+ }
+ 
+ /* You must be holding RCU read lock. */
+-static struct kmmio_fault_page *get_kmmio_fault_page(unsigned long page)
++static struct kmmio_fault_page *get_kmmio_fault_page(unsigned long addr)
+ {
+ 	struct list_head *head;
+ 	struct kmmio_fault_page *f;
++	unsigned int l;
++	pte_t *pte = lookup_address(addr, &l);
+ 
+-	page &= PAGE_MASK;
+-	head = kmmio_page_list(page);
++	if (!pte)
++		return NULL;
++	addr &= page_level_mask(l);
++	head = kmmio_page_list(addr);
+ 	list_for_each_entry_rcu(f, head, list) {
+-		if (f->page == page)
++		if (f->addr == addr)
+ 			return f;
+ 	}
+ 	return NULL;
+@@ -137,10 +148,10 @@ static void clear_pte_presence(pte_t *pte, bool clear, pteval_t *old)
+ static int clear_page_presence(struct kmmio_fault_page *f, bool clear)
+ {
+ 	unsigned int level;
+-	pte_t *pte = lookup_address(f->page, &level);
++	pte_t *pte = lookup_address(f->addr, &level);
+ 
+ 	if (!pte) {
+-		pr_err("no pte for page 0x%08lx\n", f->page);
++		pr_err("no pte for addr 0x%08lx\n", f->addr);
+ 		return -1;
+ 	}
+ 
+@@ -156,7 +167,7 @@ static int clear_page_presence(struct kmmio_fault_page *f, bool clear)
+ 		return -1;
+ 	}
+ 
+-	__flush_tlb_one(f->page);
++	__flush_tlb_one(f->addr);
+ 	return 0;
+ }
+ 
+@@ -176,12 +187,12 @@ static int arm_kmmio_fault_page(struct kmmio_fault_page *f)
+ 	int ret;
+ 	WARN_ONCE(f->armed, KERN_ERR pr_fmt("kmmio page already armed.\n"));
+ 	if (f->armed) {
+-		pr_warning("double-arm: page 0x%08lx, ref %d, old %d\n",
+-			   f->page, f->count, !!f->old_presence);
++		pr_warning("double-arm: addr 0x%08lx, ref %d, old %d\n",
++			   f->addr, f->count, !!f->old_presence);
+ 	}
+ 	ret = clear_page_presence(f, true);
+-	WARN_ONCE(ret < 0, KERN_ERR pr_fmt("arming 0x%08lx failed.\n"),
+-		  f->page);
++	WARN_ONCE(ret < 0, KERN_ERR pr_fmt("arming at 0x%08lx failed.\n"),
++		  f->addr);
+ 	f->armed = true;
+ 	return ret;
+ }
+@@ -191,7 +202,7 @@ static void disarm_kmmio_fault_page(struct kmmio_fault_page *f)
+ {
+ 	int ret = clear_page_presence(f, false);
+ 	WARN_ONCE(ret < 0,
+-			KERN_ERR "kmmio disarming 0x%08lx failed.\n", f->page);
++			KERN_ERR "kmmio disarming at 0x%08lx failed.\n", f->addr);
+ 	f->armed = false;
+ }
+ 
+@@ -215,6 +226,12 @@ int kmmio_handler(struct pt_regs *regs, unsigned long addr)
+ 	struct kmmio_context *ctx;
+ 	struct kmmio_fault_page *faultpage;
+ 	int ret = 0; /* default to fault not handled */
++	unsigned long page_base = addr;
++	unsigned int l;
++	pte_t *pte = lookup_address(addr, &l);
++	if (!pte)
++		return -EINVAL;
++	page_base &= page_level_mask(l);
+ 
+ 	/*
+ 	 * Preemption is now disabled to prevent process switch during
+@@ -227,7 +244,7 @@ int kmmio_handler(struct pt_regs *regs, unsigned long addr)
+ 	preempt_disable();
+ 	rcu_read_lock();
+ 
+-	faultpage = get_kmmio_fault_page(addr);
++	faultpage = get_kmmio_fault_page(page_base);
+ 	if (!faultpage) {
+ 		/*
+ 		 * Either this page fault is not caused by kmmio, or
+@@ -239,7 +256,7 @@ int kmmio_handler(struct pt_regs *regs, unsigned long addr)
+ 
+ 	ctx = &get_cpu_var(kmmio_ctx);
+ 	if (ctx->active) {
+-		if (addr == ctx->addr) {
++		if (page_base == ctx->addr) {
+ 			/*
+ 			 * A second fault on the same page means some other
+ 			 * condition needs handling by do_page_fault(), the
+@@ -267,9 +284,9 @@ int kmmio_handler(struct pt_regs *regs, unsigned long addr)
+ 	ctx->active++;
+ 
+ 	ctx->fpage = faultpage;
+-	ctx->probe = get_kmmio_probe(addr);
++	ctx->probe = get_kmmio_probe(page_base);
+ 	ctx->saved_flags = (regs->flags & (X86_EFLAGS_TF | X86_EFLAGS_IF));
+-	ctx->addr = addr;
++	ctx->addr = page_base;
+ 
+ 	if (ctx->probe && ctx->probe->pre_handler)
+ 		ctx->probe->pre_handler(ctx->probe, regs, addr);
+@@ -354,12 +371,11 @@ out:
+ }
+ 
+ /* You must be holding kmmio_lock. */
+-static int add_kmmio_fault_page(unsigned long page)
++static int add_kmmio_fault_page(unsigned long addr)
+ {
+ 	struct kmmio_fault_page *f;
+ 
+-	page &= PAGE_MASK;
+-	f = get_kmmio_fault_page(page);
++	f = get_kmmio_fault_page(addr);
+ 	if (f) {
+ 		if (!f->count)
+ 			arm_kmmio_fault_page(f);
+@@ -372,26 +388,25 @@ static int add_kmmio_fault_page(unsigned long page)
+ 		return -1;
+ 
+ 	f->count = 1;
+-	f->page = page;
++	f->addr = addr;
+ 
+ 	if (arm_kmmio_fault_page(f)) {
+ 		kfree(f);
+ 		return -1;
+ 	}
+ 
+-	list_add_rcu(&f->list, kmmio_page_list(f->page));
++	list_add_rcu(&f->list, kmmio_page_list(f->addr));
+ 
+ 	return 0;
+ }
+ 
+ /* You must be holding kmmio_lock. */
+-static void release_kmmio_fault_page(unsigned long page,
++static void release_kmmio_fault_page(unsigned long addr,
+ 				struct kmmio_fault_page **release_list)
+ {
+ 	struct kmmio_fault_page *f;
+ 
+-	page &= PAGE_MASK;
+-	f = get_kmmio_fault_page(page);
++	f = get_kmmio_fault_page(addr);
+ 	if (!f)
+ 		return;
+ 
+@@ -420,18 +435,27 @@ int register_kmmio_probe(struct kmmio_probe *p)
+ 	int ret = 0;
+ 	unsigned long size = 0;
+ 	const unsigned long size_lim = p->len + (p->addr & ~PAGE_MASK);
++	unsigned int l;
++	pte_t *pte;
+ 
+ 	spin_lock_irqsave(&kmmio_lock, flags);
+ 	if (get_kmmio_probe(p->addr)) {
+ 		ret = -EEXIST;
+ 		goto out;
+ 	}
++
++	pte = lookup_address(p->addr, &l);
++	if (!pte) {
++		ret = -EINVAL;
++		goto out;
++	}
++
+ 	kmmio_count++;
+ 	list_add_rcu(&p->list, &kmmio_probes);
+ 	while (size < size_lim) {
+ 		if (add_kmmio_fault_page(p->addr + size))
+ 			pr_err("Unable to set page fault.\n");
+-		size += PAGE_SIZE;
++		size += page_level_size(l);
+ 	}
+ out:
+ 	spin_unlock_irqrestore(&kmmio_lock, flags);
+@@ -506,11 +530,17 @@ void unregister_kmmio_probe(struct kmmio_probe *p)
+ 	const unsigned long size_lim = p->len + (p->addr & ~PAGE_MASK);
+ 	struct kmmio_fault_page *release_list = NULL;
+ 	struct kmmio_delayed_release *drelease;
++	unsigned int l;
++	pte_t *pte;
++
++	pte = lookup_address(p->addr, &l);
++	if (!pte)
++		return;
+ 
+ 	spin_lock_irqsave(&kmmio_lock, flags);
+ 	while (size < size_lim) {
+ 		release_kmmio_fault_page(p->addr + size, &release_list);
+-		size += PAGE_SIZE;
++		size += page_level_size(l);
+ 	}
+ 	list_del_rcu(&p->list);
+ 	kmmio_count--;
+-- 
+2.5.0
+
+--
+To unsubscribe, send a message with 'unsubscribe linux-mm' in
+the body to majordomo@kvack.org.  For more info on Linux MM,
+see: http://www.linux-mm.org/ .
+Don't email: <a href=mailto:"dont@kvack.org"> email@kvack.org </a>
