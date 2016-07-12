@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96737] [NV98] Xsession Login breakage -
- SwitchToGreeter / SwitchToUser related
-Date: Tue, 12 Jul 2016 18:07:15 +0000
-Message-ID: <bug-96737-8800-wZJ4X6etSi@http.bugs.freedesktop.org/>
-References: <bug-96737-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/fbcon: fix deadlock with
+ FBIOPUT_CON2FBMAP
+Date: Tue, 12 Jul 2016 21:16:22 +0200
+Message-ID: <20160712191622.GA5476@wunner.de>
+References: <20160712164934.1390-1-peter@lekensteyn.nl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1295883874=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-96737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20160712164934.1390-1-peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,98 +19,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1295883874==
-Content-Type: multipart/alternative; boundary="14683468340.9da6.5839";
- charset="UTF-8"
-
-
---14683468340.9da6.5839
-Date: Tue, 12 Jul 2016 18:07:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96737
-
-poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NV98] breaks Login /       |[NV98] Xsession Login
-                   |SwitchToGreeter /           |breakage - SwitchToGreeter
-                   |SwitchToUser                |/ SwitchToUser related
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14683468340.9da6.5839
-Date: Tue, 12 Jul 2016 18:07:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pomidorab=
-elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
-"> <span class=3D"fn">poma</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV98] Xsession Login breakage - SwitchToGreeter / Switch=
-ToUser related"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737">bug 96737<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>[NV98] breaks Login / SwitchToGreeter / SwitchToUser
-           </td>
-           <td>[NV98] Xsession Login breakage - SwitchToGreeter / SwitchToU=
-ser related
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14683468340.9da6.5839--
-
---===============1295883874==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1295883874==--
+T24gVHVlLCBKdWwgMTIsIDIwMTYgYXQgMDY6NDk6MzRQTSArMDIwMCwgUGV0ZXIgV3Ugd3JvdGU6
+Cj4gVGhlIEZCSU9QVVRfQ09OMkZCTUFQIGlvY3RsIHRha2VzIGEgY29uc29sZV9sb2NrKCkuIFdo
+ZW4gdGhpcyBpcyBjYWxsZWQKPiB3aGlsZSBub3V2ZWF1IHdhcyBydW50aW1lIHN1c3BlbmRlZCwg
+YSBkZWFkbG9jayB3b3VsZCBvY2N1ciBkdWUgdG8KPiBub3V2ZWF1X2ZiY29uX3NldF9zdXNwZW5k
+IGFsc28gdHJ5aW5nIHRvIG9idGFpbiBjb25zb2xlX2xvY2soKS4KPiAKPiBGaXggdGhpcyBieSBk
+ZWxheWluZyB0aGUgZHJtX2ZiX2hlbHBlcl9zZXRfc3VzcGVuZCBjYWxsLiBCYXNlZCBvbiB0aGUK
+PiBpOTE1IGNvZGUgKHdoaWNoIHdhcyBkb25lIGZvciBwZXJmb3JtYW5jZSByZWFzb25zIHRob3Vn
+aCkuCj4gCj4gQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+IENj
+OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgo+IFNpZ25lZC1vZmYtYnk6
+IFBldGVyIFd1IDxwZXRlckBsZWtlbnN0ZXluLm5sPgo+IC0tLQo+IFRlc3RlZCBvbiB0b3Agb2Yg
+djQuNy1yYzUsIHRoZSBkZWFkbG9jayBpcyBnb25lLgoKSG0sIGhvdyBkaWQgeW91IHRyaWdnZXIg
+dGhpcyBkZWFkbG9jaz8KClRoYW5rcywKCkx1a2FzCgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2RybS5jICAgfCAgNCArLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbm91dmVhdV9kcnYuaCAgIHwgIDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
+ZWF1X2ZiY29uLmMgfCA1NCArKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0KPiAgZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5oIHwgIDIgKy0KPiAgNCBmaWxlcyBj
+aGFuZ2VkLCA1MCBpbnNlcnRpb25zKCspLCAxMSBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiBpbmRleCAxMWY4ZGQ5Li5mOWEyYzEwIDEwMDY0NAo+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiArKysgYi9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4gQEAgLTU1Miw3ICs1NTIsNyBAQCBu
+b3V2ZWF1X2RvX3N1c3BlbmQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgYm9vbCBydW50aW1lKQo+
+ICAKPiAgCWlmIChkZXYtPm1vZGVfY29uZmlnLm51bV9jcnRjKSB7Cj4gIAkJTlZfSU5GTyhkcm0s
+ICJzdXNwZW5kaW5nIGNvbnNvbGUuLi5cbiIpOwo+IC0JCW5vdXZlYXVfZmJjb25fc2V0X3N1c3Bl
+bmQoZGV2LCAxKTsKPiArCQlub3V2ZWF1X2ZiY29uX3NldF9zdXNwZW5kKGRldiwgRkJJTkZPX1NU
+QVRFX1NVU1BFTkRFRCwgdHJ1ZSk7Cj4gIAkJTlZfSU5GTyhkcm0sICJzdXNwZW5kaW5nIGRpc3Bs
+YXkuLi5cbiIpOwo+ICAJCXJldCA9IG5vdXZlYXVfZGlzcGxheV9zdXNwZW5kKGRldiwgcnVudGlt
+ZSk7Cj4gIAkJaWYgKHJldCkKPiBAQCAtNjM1LDcgKzYzNSw3IEBAIG5vdXZlYXVfZG9fcmVzdW1l
+KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGJvb2wgcnVudGltZSkKPiAgCQlOVl9JTkZPKGRybSwg
+InJlc3VtaW5nIGRpc3BsYXkuLi5cbiIpOwo+ICAJCW5vdXZlYXVfZGlzcGxheV9yZXN1bWUoZGV2
+LCBydW50aW1lKTsKPiAgCQlOVl9JTkZPKGRybSwgInJlc3VtaW5nIGNvbnNvbGUuLi5cbiIpOwo+
+IC0JCW5vdXZlYXVfZmJjb25fc2V0X3N1c3BlbmQoZGV2LCAwKTsKPiArCQlub3V2ZWF1X2ZiY29u
+X3NldF9zdXNwZW5kKGRldiwgRkJJTkZPX1NUQVRFX1JVTk5JTkcsIGZhbHNlKTsKPiAgCX0KPiAg
+Cj4gIAlyZXR1cm4gMDsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmgKPiBpbmRl
+eCA4MjJhMDIxLi5hNzQzZDE5IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L25vdXZlYXVfZHJ2LmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Ry
+di5oCj4gQEAgLTE0Nyw2ICsxNDcsNyBAQCBzdHJ1Y3Qgbm91dmVhdV9kcm0gewo+ICAJc3RydWN0
+IG5vdXZlYXVfY2hhbm5lbCAqY2hhbm5lbDsKPiAgCXN0cnVjdCBudmttX2dwdW9iaiAqbm90aWZ5
+Owo+ICAJc3RydWN0IG5vdXZlYXVfZmJkZXYgKmZiY29uOwo+ICsJc3RydWN0IHdvcmtfc3RydWN0
+IGZiZGV2X3N1c3BlbmRfd29yazsKPiAgCXN0cnVjdCBudmlmX29iamVjdCBudnN3Owo+ICAJc3Ry
+dWN0IG52aWZfb2JqZWN0IG50Znk7Cj4gIAlzdHJ1Y3QgbnZpZl9ub3RpZnkgZmxpcDsKPiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jCj4gaW5kZXggZDFmMjQ4Zi4uMDg5MTU2
+YSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMK
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKPiBAQCAtNDky
+LDE5ICs0OTIsNTMgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fZmJfaGVscGVyX2Z1bmNzIG5v
+dXZlYXVfZmJjb25faGVscGVyX2Z1bmNzID0gewo+ICAJLmZiX3Byb2JlID0gbm91dmVhdV9mYmNv
+bl9jcmVhdGUsCj4gIH07Cj4gIAo+ICtzdGF0aWMgdm9pZCBub3V2ZWF1X2ZiY29uX3N1c3BlbmRf
+d29ya2VyKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKPiArewo+ICsJbm91dmVhdV9mYmNvbl9z
+ZXRfc3VzcGVuZChjb250YWluZXJfb2Yod29yaywKPiArCQkJCQkgICAgICAgc3RydWN0IG5vdXZl
+YXVfZHJtLAo+ICsJCQkJCSAgICAgICBmYmRldl9zdXNwZW5kX3dvcmspLT5kZXYsCj4gKwkJCQkg
+IEZCSU5GT19TVEFURV9SVU5OSU5HLAo+ICsJCQkJICB0cnVlKTsKPiArfQo+ICsKPiAgdm9pZAo+
+IC1ub3V2ZWF1X2ZiY29uX3NldF9zdXNwZW5kKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGludCBz
+dGF0ZSkKPiArbm91dmVhdV9mYmNvbl9zZXRfc3VzcGVuZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2
+LCBpbnQgc3RhdGUsIGJvb2wgc3luY2hyb25vdXMpCj4gIHsKPiAgCXN0cnVjdCBub3V2ZWF1X2Ry
+bSAqZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKPiAtCWlmIChkcm0tPmZiY29uKSB7Cj4gLQkJY29u
+c29sZV9sb2NrKCk7Cj4gLQkJaWYgKHN0YXRlID09IEZCSU5GT19TVEFURV9SVU5OSU5HKQo+IC0J
+CQlub3V2ZWF1X2ZiY29uX2FjY2VsX3Jlc3RvcmUoZGV2KTsKPiAtCQlkcm1fZmJfaGVscGVyX3Nl
+dF9zdXNwZW5kKCZkcm0tPmZiY29uLT5oZWxwZXIsIHN0YXRlKTsKPiArCWlmICghZHJtLT5mYmNv
+bikKPiArCQlyZXR1cm47Cj4gKwo+ICsJaWYgKHN5bmNocm9ub3VzKSB7Cj4gKwkJLyogRmx1c2gg
+YW55IHBlbmRpbmcgd29yayB0byB0dXJuIHRoZSBjb25zb2xlIG9uLCBhbmQgdGhlbgo+ICsJCSAq
+IHdhaXQgdG8gdHVybiBpdCBvZmYuIEl0IG11c3QgYmUgc3luY2hyb25vdXMgYXMgd2UgYXJlCj4g
+KwkJICogYWJvdXQgdG8gc3VzcGVuZCBvciB1bmxvYWQgdGhlIGRyaXZlci4KPiArCQkgKgo+ICsJ
+CSAqIE5vdGUgdGhhdCBmcm9tIHdpdGhpbiB0aGUgd29yay1oYW5kbGVyLCB3ZSBjYW5ub3QgZmx1
+c2gKPiArCQkgKiBvdXJzZWx2ZXMsIHNvIG9ubHkgZmx1c2ggb3V0c3RhbmRpbmcgd29yayB1cG9u
+IHN1c3BlbmQhCj4gKwkJICovCj4gIAkJaWYgKHN0YXRlICE9IEZCSU5GT19TVEFURV9SVU5OSU5H
+KQo+IC0JCQlub3V2ZWF1X2ZiY29uX2FjY2VsX3NhdmVfZGlzYWJsZShkZXYpOwo+IC0JCWNvbnNv
+bGVfdW5sb2NrKCk7Cj4gKwkJCWZsdXNoX3dvcmsoJmRybS0+ZmJkZXZfc3VzcGVuZF93b3JrKTsK
+PiArCQljb25zb2xlX2xvY2soKTsKPiArCX0gZWxzZSB7Cj4gKwkJLyoKPiArCQkgKiBUaGUgY29u
+c29sZSBsb2NrIGNhbiBiZSBwcmV0dHkgY29udGVudGVkIG9uIHJlc3VtZSBkdWUKPiArCQkgKiB0
+byBhbGwgdGhlIHByaW50ayBhY3Rpdml0eS4gIFRyeSB0byBrZWVwIGl0IG91dCBvZiB0aGUgaG90
+Cj4gKwkJICogcGF0aCBvZiByZXN1bWUgaWYgcG9zc2libGUuICBUaGlzIGFsc28gcHJldmVudHMg
+YSBkZWFkbG9jawo+ICsJCSAqIHdpdGggRkJJT1BVVF9DT04yRkJNQVAuCj4gKwkJICovCj4gKwkJ
+V0FSTl9PTihzdGF0ZSAhPSBGQklORk9fU1RBVEVfUlVOTklORyk7Cj4gKwkJaWYgKCFjb25zb2xl
+X3RyeWxvY2soKSkgewo+ICsJCQlzY2hlZHVsZV93b3JrKCZkcm0tPmZiZGV2X3N1c3BlbmRfd29y
+ayk7Cj4gKwkJCXJldHVybjsKPiArCQl9Cj4gIAl9Cj4gKwo+ICsJaWYgKHN0YXRlID09IEZCSU5G
+T19TVEFURV9SVU5OSU5HKQo+ICsJCW5vdXZlYXVfZmJjb25fYWNjZWxfcmVzdG9yZShkZXYpOwo+
+ICsJZHJtX2ZiX2hlbHBlcl9zZXRfc3VzcGVuZCgmZHJtLT5mYmNvbi0+aGVscGVyLCBzdGF0ZSk7
+Cj4gKwlpZiAoc3RhdGUgIT0gRkJJTkZPX1NUQVRFX1JVTk5JTkcpCj4gKwkJbm91dmVhdV9mYmNv
+bl9hY2NlbF9zYXZlX2Rpc2FibGUoZGV2KTsKPiArCWNvbnNvbGVfdW5sb2NrKCk7Cj4gIH0KPiAg
+Cj4gIGludAo+IEBAIC01MjYsNiArNTYwLDggQEAgbm91dmVhdV9mYmNvbl9pbml0KHN0cnVjdCBk
+cm1fZGV2aWNlICpkZXYpCj4gIAlmYmNvbi0+ZGV2ID0gZGV2Owo+ICAJZHJtLT5mYmNvbiA9IGZi
+Y29uOwo+ICAKPiArCUlOSVRfV09SSygmZHJtLT5mYmRldl9zdXNwZW5kX3dvcmssIG5vdXZlYXVf
+ZmJjb25fc3VzcGVuZF93b3JrZXIpOwo+ICsKPiAgCWRybV9mYl9oZWxwZXJfcHJlcGFyZShkZXYs
+ICZmYmNvbi0+aGVscGVyLCAmbm91dmVhdV9mYmNvbl9oZWxwZXJfZnVuY3MpOwo+ICAKPiAgCXJl
+dCA9IGRybV9mYl9oZWxwZXJfaW5pdChkZXYsICZmYmNvbi0+aGVscGVyLAo+IEBAIC01NzEsNiAr
+NjA3LDggQEAgbm91dmVhdV9mYmNvbl9maW5pKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4gIAlp
+ZiAoIWRybS0+ZmJjb24pCj4gIAkJcmV0dXJuOwo+ICAKPiArCWZsdXNoX3dvcmsoJmRybS0+ZmJk
+ZXZfc3VzcGVuZF93b3JrKTsKPiArCj4gIAlub3V2ZWF1X2ZiY29uX2FjY2VsX2ZpbmkoZGV2KTsK
+PiAgCW5vdXZlYXVfZmJjb25fZGVzdHJveShkZXYsIGRybS0+ZmJjb24pOwo+ICAJa2ZyZWUoZHJt
+LT5mYmNvbik7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+ZmJjb24uaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uaAo+IGluZGV4
+IGNhNzdhZDAuLjM0YjI1MDQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9mYmNvbi5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9m
+YmNvbi5oCj4gQEAgLTY2LDcgKzY2LDcgQEAgdm9pZCBub3V2ZWF1X2ZiY29uX2dwdV9sb2NrdXAo
+c3RydWN0IGZiX2luZm8gKmluZm8pOwo+ICAKPiAgaW50IG5vdXZlYXVfZmJjb25faW5pdChzdHJ1
+Y3QgZHJtX2RldmljZSAqZGV2KTsKPiAgdm9pZCBub3V2ZWF1X2ZiY29uX2Zpbmkoc3RydWN0IGRy
+bV9kZXZpY2UgKmRldik7Cj4gLXZvaWQgbm91dmVhdV9mYmNvbl9zZXRfc3VzcGVuZChzdHJ1Y3Qg
+ZHJtX2RldmljZSAqZGV2LCBpbnQgc3RhdGUpOwo+ICt2b2lkIG5vdXZlYXVfZmJjb25fc2V0X3N1
+c3BlbmQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgaW50IHN0YXRlLCBib29sIHN5bmNocm9ub3Vz
+KTsKPiAgdm9pZCBub3V2ZWF1X2ZiY29uX2FjY2VsX3NhdmVfZGlzYWJsZShzdHJ1Y3QgZHJtX2Rl
+dmljZSAqZGV2KTsKPiAgdm9pZCBub3V2ZWF1X2ZiY29uX2FjY2VsX3Jlc3RvcmUoc3RydWN0IGRy
+bV9kZXZpY2UgKmRldik7Cj4gIAo+IC0tIAo+IDIuOC4zCj4gCj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQo=
