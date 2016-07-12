@@ -1,10 +1,10 @@
 From: Sasha Levin <sasha.levin@oracle.com>
-Subject: [added to the 4.1 stable tree] x86/mm/kmmio: Fix mmiotrace for hugepages
-Date: Mon, 11 Jul 2016 22:54:38 -0400
-Message-ID: <1468292170-22812-177-git-send-email-sasha.levin@oracle.com>
-References: <1468292170-22812-1-git-send-email-sasha.levin@oracle.com>
+Subject: [added to the 3.18 stable tree] x86/mm/kmmio: Fix mmiotrace for hugepages
+Date: Mon, 11 Jul 2016 23:00:01 -0400
+Message-ID: <1468292479-23684-149-git-send-email-sasha.levin@oracle.com>
+References: <1468292479-23684-1-git-send-email-sasha.levin@oracle.com>
 Return-path: <owner-linux-mm@kvack.org>
-In-Reply-To: <1468292170-22812-1-git-send-email-sasha.levin@oracle.com>
+In-Reply-To: <1468292479-23684-1-git-send-email-sasha.levin@oracle.com>
 Sender: owner-linux-mm@kvack.org
 To: stable@vger.kernel.org, stable-commits@vger.kernel.org
 Cc: Karol Herbst <nouveau@karolherbst.de>, Andrew Morton <akpm@linux-foundation.org>, Andy Lutomirski <luto@amacapital.net>, Borislav Petkov <bp@alien8.de>, Brian Gerst <brgerst@gmail.com>, Denys Vlasenko <dvlasenk@redhat.com>, "H. Peter Anvin" <hpa@zytor.com>, Linus Torvalds <torvalds@linux-foundation.org>, "Luis R. Rodriguez" <mcgrof@suse.com>, Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>, Toshi Kani <toshi.kani@hp.com>, linux-mm@kvack.org, linux-x86_64@vger.kernel.org, nouveau@lists.freedesktop.org, pq@iki.fi, rostedt@goodmis.org, Ingo Molnar <mingo@kernel.org>, Sasha Levin <sasha.levin@oracle.com>
@@ -12,7 +12,7 @@ List-Id: nouveau.vger.kernel.org
 
 From: Karol Herbst <nouveau@karolherbst.de>
 
-This patch has been added to the 4.1 stable tree. If you have any
+This patch has been added to the 3.18 stable tree. If you have any
 objections, please let us know.
 
 ===============
