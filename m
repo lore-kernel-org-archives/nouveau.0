@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96737] [NV98] breaks Login / SwitchToGreeter /
 	SwitchToUser
-Date: Tue, 12 Jul 2016 09:59:17 +0000
-Message-ID: <bug-96737-8800-y8EwhuiW1i@http.bugs.freedesktop.org/>
+Date: Tue, 12 Jul 2016 10:03:33 +0000
+Message-ID: <bug-96737-8800-WN3O0qBruE@http.bugs.freedesktop.org/>
 References: <bug-96737-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1160299552=="
+Content-Type: multipart/mixed; boundary="===============2040693664=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1160299552==
-Content-Type: multipart/alternative; boundary="14683175560.A134Ba24.11367";
+--===============2040693664==
+Content-Type: multipart/alternative; boundary="14683178120.dBEAc1.11693";
  charset="UTF-8"
 
 
---14683175560.A134Ba24.11367
-Date: Tue, 12 Jul 2016 09:59:16 +0000
+--14683178120.dBEAc1.11693
+Date: Tue, 12 Jul 2016 10:03:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,58 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96737
 
---- Comment #5 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+--- Comment #6 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 
-VT switching - with disabled acceleration, works
-
-
-/var/log/Xorg.0.log
-Kernel command line: ... nouveau.noaccel=3D1
-(EE) NOUVEAU(0): Error initialising acceleration.  Falling back to NoAccel
-(**) NOUVEAU(0): [COPY] acceleration disabled
-
-glxinfo:
-OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 3.8, 128 bits)
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-/etc/X11/xorg.conf.d/nouveau.conf
-Section "Device"
-        Identifier "video0"
-        Driver "nouveau"
-        Option "NoAccel" "on"
-EndSection
-
-/var/log/Xorg.0.log
-(**) NOUVEAU(0): Option "NoAccel" "on"
-(**) NOUVEAU(0): Acceleration disabled
-(**) NOUVEAU(0): [COPY] acceleration disabled
-
-glxinfo:
-OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 3.8, 128 bits)
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-/etc/X11/xorg.conf.d/nouveau.conf
-Section "Device"
-        Identifier "video0"
-        Driver "nouveau"
-        Option "AccelMethod" "none"
-EndSection
-
-/var/log/Xorg.0.log
-(**) NOUVEAU(0): Option "AccelMethod" "none"
-(**) NOUVEAU(0): [COPY] acceleration disabled
-
-glxinfo:
-OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 3.8, 128 bits)
+What in acceleration code can (as is) brake proper VT switching?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14683175560.A134Ba24.11367
-Date: Tue, 12 Jul 2016 09:59:16 +0000
+--14683178120.dBEAc1.11693
+Date: Tue, 12 Jul 2016 10:03:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -104,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV98] breaks Login / SwitchToGreeter / SwitchToUser"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV98] breaks Login / SwitchToGreeter / SwitchToUser"
@@ -116,49 +74,7 @@ pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
 l.com&gt;"> <span class=3D"fn">poma</span></a>
 </span></b>
         <pre>
-VT switching - with disabled acceleration, works
-
-
-/var/log/Xorg.0.log
-Kernel command line: ... nouveau.noaccel=3D1
-(EE) NOUVEAU(0): Error initialising acceleration.  Falling back to NoAccel
-(**) NOUVEAU(0): [COPY] acceleration disabled
-
-glxinfo:
-OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 3.8, 128 bits)
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-/etc/X11/xorg.conf.d/nouveau.conf
-Section &quot;Device&quot;
-        Identifier &quot;video0&quot;
-        Driver &quot;nouveau&quot;
-        Option &quot;NoAccel&quot; &quot;on&quot;
-EndSection
-
-/var/log/Xorg.0.log
-(**) NOUVEAU(0): Option &quot;NoAccel&quot; &quot;on&quot;
-(**) NOUVEAU(0): Acceleration disabled
-(**) NOUVEAU(0): [COPY] acceleration disabled
-
-glxinfo:
-OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 3.8, 128 bits)
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-/etc/X11/xorg.conf.d/nouveau.conf
-Section &quot;Device&quot;
-        Identifier &quot;video0&quot;
-        Driver &quot;nouveau&quot;
-        Option &quot;AccelMethod&quot; &quot;none&quot;
-EndSection
-
-/var/log/Xorg.0.log
-(**) NOUVEAU(0): Option &quot;AccelMethod&quot; &quot;none&quot;
-(**) NOUVEAU(0): [COPY] acceleration disabled
-
-glxinfo:
-OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 3.8, 128 bits)</pre>
+What in acceleration code can (as is) brake proper VT switching?</pre>
         </div>
       </p>
 
@@ -172,9 +88,9 @@ OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 3.8, 128 bits)</pre>
     </body>
 </html>=
 
---14683175560.A134Ba24.11367--
+--14683178120.dBEAc1.11693--
 
---===============1160299552==
+--===============2040693664==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -184,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1160299552==--
+--===============2040693664==--
