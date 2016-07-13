@@ -1,82 +1,105 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/2] bus: remove cpu_coherent flag
-Date: Wed, 13 Jul 2016 15:29:36 +0900
-Message-ID: <20160713062936.13978-2-acourbot@nvidia.com>
-References: <20160713062936.13978-1-acourbot@nvidia.com>
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Subject: Error handling in drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
+Date: Wed, 13 Jul 2016 07:08:22 +0200
+Message-ID: <019b9d28-491d-2b6d-eb7a-33c48bd6dc3c@wanadoo.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20160713062936.13978-1-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============0218536493=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBmbGFnJ3Mgb25seSByZW1haW5pbmcgZnVuY3Rpb24gaXMgdG8gaWdub3JlIHRoZSB1bmNh
-Y2hlZCBmbGFnIGZvcgpCT3Mgb24gY29oZXJlbnQgYXJjaGl0ZWN0dXJlcy4KCkhvd2V2ZXIgdGhl
-IHJlYXNvbiBmb3IgYWxsb2NhdGluZyBhbiBvYmplY3QgdW5jYWNoZSBvbiBhIG5vbi1jb2hlcmVu
-dAphcmNoaXRlY3R1cmUgKG5hbWVseSBiZWNhdXNlIHRoZSBjb3N0IG9mIGRvaW5nIGV4cGxpY2l0
-IGZsdXNoZXMvCmludmFsaWRhdGlvbnMgaXMgaGlnaGVyIHRoYW4gdGhlIGJlbmVmaXQgb2YgY2Fj
-aGluZyB0aGUgZGF0YSBiZWNhdXNlCmFjY2Vzc2VzIGFyZSBmZXcgYW5kIGZhciBiZXR3ZWVuKSBz
-aG91bGQgYWxzbyBhcHBseSBvbiBhcmNoaXRlY3R1cmVzIGZvcgp3aGljaCBjb2hlcmVuY3kgaXMg
-bWFpbnRhaW5lZCBpbXBsaWNpdGx5LiBUaHVzIGFsbG9jYXRlIGNvaGVyZW50IG9iamVjdHMKYXMg
-dW5jYWNoZWQgb24gYWxsIGFyY2hpdGVjdHVyZXMuCgpTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmUg
-Q291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KLS0tCiBkcm0vbm91dmVhdS9pbmNsdWRlL252
-a20vY29yZS9kZXZpY2UuaCB8IDEgLQogZHJtL25vdXZlYXUvbm91dmVhdV9iby5jICAgICAgICAg
-ICAgICAgfCAzICstLQogZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3BjaS5jICAgfCAx
-IC0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS90ZWdyYS5jIHwgMSAtCiBsaWIvaW5j
-bHVkZS9udmlmL29zLmggICAgICAgICAgICAgICAgICB8IDYgLS0tLS0tCiA1IGZpbGVzIGNoYW5n
-ZWQsIDEgaW5zZXJ0aW9uKCspLCAxMSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91
-dmVhdS9pbmNsdWRlL252a20vY29yZS9kZXZpY2UuaCBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZr
-bS9jb3JlL2RldmljZS5oCmluZGV4IDZiYzcxMmYuLjdlYThhYTcgMTAwNjQ0Ci0tLSBhL2RybS9u
-b3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2RldmljZS5oCisrKyBiL2RybS9ub3V2ZWF1L2luY2x1
-ZGUvbnZrbS9jb3JlL2RldmljZS5oCkBAIC0xNzUsNyArMTc1LDYgQEAgc3RydWN0IG52a21fZGV2
-aWNlX2Z1bmMgewogCXZvaWQgKCpmaW5pKShzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgYm9vbCBzdXNw
-ZW5kKTsKIAlyZXNvdXJjZV9zaXplX3QgKCpyZXNvdXJjZV9hZGRyKShzdHJ1Y3QgbnZrbV9kZXZp
-Y2UgKiwgdW5zaWduZWQgYmFyKTsKIAlyZXNvdXJjZV9zaXplX3QgKCpyZXNvdXJjZV9zaXplKShz
-dHJ1Y3QgbnZrbV9kZXZpY2UgKiwgdW5zaWduZWQgYmFyKTsKLQlib29sIGNwdV9jb2hlcmVudDsK
-IH07CiAKIHN0cnVjdCBudmttX2RldmljZV9xdWlyayB7CmRpZmYgLS1naXQgYS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2JvLmMgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKaW5kZXggNzExNTkyNy4u
-ZmJiNjAzNiAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jCisrKyBiL2RybS9u
-b3V2ZWF1L25vdXZlYXVfYm8uYwpAQCAtMjA5LDggKzIwOSw3IEBAIG5vdXZlYXVfYm9fbmV3KHN0
-cnVjdCBkcm1fZGV2aWNlICpkZXYsIGludCBzaXplLCBpbnQgYWxpZ24sCiAJbnZiby0+dGlsZV9m
-bGFncyA9IHRpbGVfZmxhZ3M7CiAJbnZiby0+Ym8uYmRldiA9ICZkcm0tPnR0bS5iZGV2OwogCi0J
-aWYgKCFudnh4X2RldmljZSgmZHJtLT5kZXZpY2UpLT5mdW5jLT5jcHVfY29oZXJlbnQpCi0JCW52
-Ym8tPmZvcmNlX2NvaGVyZW50ID0gZmxhZ3MgJiBUVE1fUExfRkxBR19VTkNBQ0hFRDsKKwludmJv
-LT5mb3JjZV9jb2hlcmVudCA9IGZsYWdzICYgVFRNX1BMX0ZMQUdfVU5DQUNIRUQ7CiAKIAludmJv
-LT5wYWdlX3NoaWZ0ID0gMTI7CiAJaWYgKGRybS0+Y2xpZW50LnZtKSB7CmRpZmYgLS1naXQgYS9k
-cm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcGNpLmMgYi9kcm0vbm91dmVhdS9udmttL2Vu
-Z2luZS9kZXZpY2UvcGNpLmMKaW5kZXggNjJhZDAzMC4uYjFiNjkzMiAxMDA2NDQKLS0tIGEvZHJt
-L25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3BjaS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20v
-ZW5naW5lL2RldmljZS9wY2kuYwpAQCAtMTYxNCw3ICsxNjE0LDYgQEAgbnZrbV9kZXZpY2VfcGNp
-X2Z1bmMgPSB7CiAJLmZpbmkgPSBudmttX2RldmljZV9wY2lfZmluaSwKIAkucmVzb3VyY2VfYWRk
-ciA9IG52a21fZGV2aWNlX3BjaV9yZXNvdXJjZV9hZGRyLAogCS5yZXNvdXJjZV9zaXplID0gbnZr
-bV9kZXZpY2VfcGNpX3Jlc291cmNlX3NpemUsCi0JLmNwdV9jb2hlcmVudCA9ICFJU19FTkFCTEVE
-KENPTkZJR19BUk0pLAogfTsKIAogaW50CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2Vu
-Z2luZS9kZXZpY2UvdGVncmEuYyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS90ZWdy
-YS5jCmluZGV4IDliNjM4YmQuLjkzOTY4MmYgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20v
-ZW5naW5lL2RldmljZS90ZWdyYS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rldmlj
-ZS90ZWdyYS5jCkBAIC0yNDUsNyArMjQ1LDYgQEAgbnZrbV9kZXZpY2VfdGVncmFfZnVuYyA9IHsK
-IAkuZmluaSA9IG52a21fZGV2aWNlX3RlZ3JhX2ZpbmksCiAJLnJlc291cmNlX2FkZHIgPSBudmtt
-X2RldmljZV90ZWdyYV9yZXNvdXJjZV9hZGRyLAogCS5yZXNvdXJjZV9zaXplID0gbnZrbV9kZXZp
-Y2VfdGVncmFfcmVzb3VyY2Vfc2l6ZSwKLQkuY3B1X2NvaGVyZW50ID0gZmFsc2UsCiB9OwogCiBp
-bnQKZGlmZiAtLWdpdCBhL2xpYi9pbmNsdWRlL252aWYvb3MuaCBiL2xpYi9pbmNsdWRlL252aWYv
-b3MuaAppbmRleCBjMjY1YWI0Li5jMTNkYjhkIDEwMDY0NAotLS0gYS9saWIvaW5jbHVkZS9udmlm
-L29zLmgKKysrIGIvbGliL2luY2x1ZGUvbnZpZi9vcy5oCkBAIC0xMjQsMTIgKzEyNCw2IEBAIHR5
-cGVkZWYgZG1hX2FkZHJfdCByZXNvdXJjZV9zaXplX3Q7CiAjZGVmaW5lIF9fcHJpbnRmKGEsYikK
-ICNkZWZpbmUgX191c2VyCiAKLSNpZiBkZWZpbmVkKENPTkZJR19BUk0pCi0jZGVmaW5lIElTX0VO
-QUJMRURfQ09ORklHX0FSTSAxCi0jZWxzZQotI2RlZmluZSBJU19FTkFCTEVEX0NPTkZJR19BUk0g
-MAotI2VuZGlmCi0KICNpZiBkZWZpbmVkKENPTkZJR19JT01NVV9BUEkpCiAjZGVmaW5lIElTX0VO
-QUJMRURfQ09ORklHX0lPTU1VX0FQSSAxCiAjZWxzZQotLSAKMi45LjAKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+This is a multi-part message in MIME format.
+--===============0218536493==
+Content-Type: multipart/alternative;
+ boundary="------------FC30F85593598382A8B0B603"
+
+This is a multi-part message in MIME format.
+--------------FC30F85593598382A8B0B603
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+in file 'drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c', error 
+handling in 'gm20b_tegra_read_wpr()' seams to be broken.
+
+The code used is:
+
+     mc = ioremap(TEGRA_MC_BASE, 0xd00);
+     if (!mc) {
+         nvkm_error(&sb->subdev, "...");
+         return PTR_ERR(mc);
+     }
+
+so we always return '0', which means success.
+
+
+Best regards,
+
+CJ
+
+--------------FC30F85593598382A8B0B603
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf=
+-8">
+  </head>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div class=3D"moz-text-flowed" style=3D"font-family: -moz-fixed;
+      font-size: 14px;" lang=3D"x-unicode">Hi,
+      <br>
+      <br>
+      in file 'drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c',
+      error handling in 'gm20b_tegra_read_wpr()' seams to be broken.
+      <br>
+      <br>
+      The code used is:
+      <br>
+      <br>
+      =C2=A0=C2=A0=C2=A0 mc =3D ioremap(TEGRA_MC_BASE, 0xd00);<br>
+      =C2=A0=C2=A0=C2=A0 if (!mc) {<br>
+      =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 nvkm_error(&amp;sb-&gt;subdev=
+, "...");<br>
+      =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 return PTR_ERR(mc);<br>
+      =C2=A0 =C2=A0 }
+      <br>
+      <br>
+      so we always return '0', which means success.
+      <br>
+      <br>
+      <br>
+      Best regards,
+      <br>
+      <br>
+      CJ
+      <br>
+    </div>
+  </body>
+</html>
+
+--------------FC30F85593598382A8B0B603--
+
+--===============0218536493==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============0218536493==--
