@@ -1,108 +1,120 @@
-From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Subject: Re: vga_switcheroo audio runpm
-Date: Thu, 14 Jul 2016 12:44:11 +0200
-Message-ID: <20160714104411.GA311@al>
-References: <20160710132013.GA4479@wunner.de>
+From: Ard Biesheuvel <ard.biesheuvel@linaro.org>
+Subject: Re: [PATCH v3] drm/nouveau/fb/nv50: set DMA mask before mapping
+ scratch page
+Date: Thu, 14 Jul 2016 15:13:13 +0200
+Message-ID: <CAKv+Gu-cUPkYGthnrNqanZNLTsjc4V8Cazvbkr300BSE98_y1g@mail.gmail.com>
+References: <1467910768-2643-1-git-send-email-ard.biesheuvel@linaro.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20160710132013.GA4479-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Marek Szyprowski <m.szyprowski-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1467910768-2643-1-git-send-email-ard.biesheuvel@linaro.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com
+Cc: airlied@linux.ie, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Ard Biesheuvel <ard.biesheuvel@linaro.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBKdWwgMTAsIDIwMTYgYXQgMDM6MjA6MTNQTSArMDIwMCwgTHVrYXMgV3VubmVyIHdy
-b3RlOgo+IEhpIFBldGVyLAo+IAo+ID4gWzEyOjQyXSBMZWtlbnN0ZXluOiBTaG91bGQgdGhlIHZp
-ZGVvIGNhcmQgYWx3YXlzIGJlIHBvd2VyZWQgdXAgd2hlbiBhCj4gPgkgIHJlZ2lzdGVyIGlzIHJl
-YWQgZnJvbSB0aGUgSERNSSBhdWRpbyBjb250cm9sbGVyPyBPciB3b3VsZCBpdCBiZQo+ID4JICBi
-ZXR0ZXIgdG8gbGVhdmUgdGhlIHZpZGVvIGNhcmQgc3VzcGVuZGVkIGFuZCBqdXN0IGZhaWwgdGhl
-IEhEQQo+ID4JICByZWdpc3RlciByZWFkcz8KPiAKPiBJdCBzaG91bGQgcHJvYmFibHkgYmUgcG93
-ZXJlZCB1cC4KClNlZW1zIHNlbnNpYmxlLCBhIHZpZGVvIHNpZ25hbCBpcyBhcHBhcmVudGx5IGFs
-c28gcmVxdWlyZWQgaWYgeW91IHdhbnQKdG8gcGxheSBhdWRpby4KCj4gPiBbMTI6NDNdIExla2Vu
-c3RleW46IEknbSB0cnlpbmcgdG8gZmlndXJlIG91dCBob3cgdmdhX3N3aXRjaGVyb28gc2hvdWxk
-Cj4gCSAgaGFuZGxlIHRoaXMsIG1heWJlIGwxayBoYXMgYW4gaWRlYT8KPiA+IFsxMjo0OF0gTGVr
-ZW5zdGV5bjogVGhlIGN1cnJlbnQgaW1wbGVtZW50ZWQgcG9saWN5IGlzIHRoYXQgdGhlIHZpZGVv
-IGNhcmQKPiA+CSAgZGljdGF0ZXMgdGhlIHBvd2VyIHN0YXRlIGFuZCB0aGF0IHRoZSBIRE1JIGF1
-ZGlvIGRldmljZSBoYXMgdG8KPiA+CSAgYWRhcHQgKGV2ZW4gaWYgaXQgaXMgc2VlbWluZ2x5IGlu
-IHVzZSkKPiAKPiBUaGlzIGN1cnJlbnQgYXJjaGl0ZWN0dXJlIHNlZW1zIHRvIGhhdmUgY29tZSBh
-Ym91dCBoaXN0b3JpY2FsbHkgKERhdmUKPiBBaXJsaWUgZmlyc3QgaW1wbGVtZW50ZWQgdmdhX3N3
-aXRjaGVyb28gd2l0aCBtYW51YWwgcG93ZXIgY29udHJvbCwKPiB0aGVuIGFkZGVkIHJ1bnRpbWUg
-cG0gaW4gYSBzZWNvbmQgc3RlcCkuCj4gCj4gSXQgbWF5IGFsc28gYmUgbW90aXZhdGVkIGJ5IHRo
-ZSBmYWN0IHRoYXQgdGhlIGRyaXZlciBjb3JlIGlzIGN1cnJlbnRseQo+IG5vdCBzdXBwb3J0aW5n
-IGRlcGVuZGVuY2llcyBiZXR3ZWVuIGRldmljZXMgYmV5b25kIHRoZSBoaWVyYXJjaGljYWwKPiBw
-YXJlbnQvY2hpbGQgcmVsYXRpb25zaGlwLgo+IAo+IFJhZmFlbCBXeXNvY2tpIChjYzopIHBvc3Rl
-ZCBhIHNlcmllcyBpbiBKYW51YXJ5IGFkZHJlc3NpbmcgdGhlIGxhdHRlcgo+IHByb2JsZW0gd2l0
-aCBzby1jYWxsZWQgImRldmljZSBsaW5rcyIuIFRoZSBzZXJpZXMgd2FzIHJlcG9zdGVkIHJlY2Vu
-dGx5Cj4gYnkgTWFyZWsgU3p5cHJvd3NraToKPiBodHRwczovL3d3dy5tYWlsLWFyY2hpdmUuY29t
-L2xpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcvbXNnMTE3MDAzMS5odG1sCj4gCj4gVGhlIHZn
-YV9zd2l0Y2hlcm9vIGF1ZGlvIGhhbmRsaW5nIHNob3VsZCBwcm9iYWJseSBiZSByZXdvcmtlZCB0
-byB1c2Ugc3VjaAo+ICJkZXZpY2UgbGlua3MiLiBUaGUgcmVzdWx0IHdvdWxkIGJlIHRoYXQgdGhl
-IEdQVSB3b24ndCBydW50aW1lIHN1c3BlbmQKPiBhcyBsb25nIGFzIGEgcmVmIGlzIGhlbGQgZm9y
-IHRoZSBhdWRpbyBjYXJkLiBUaGUgYXVkaW8gY2FyZCBuZWVkcyB0byB0aGVuCj4gbWFrZSBzdXJl
-IHRoYXQgaXQgcmVsZWFzZXMgYW55IHJlZnMgaWYgaXQgaGFzIG5vdGhpbmcgdG8gZG8uCj4gCj4g
-VGhlICJkZXZpY2UgbGlua3MiIHNlcmllcyBzZWVtcyB0byBpbXBvc2UgbW9yZSByZXN0cmljdGlv
-bnMgdGhhbiB3ZQo+IGFjdHVhbGx5IG5lZWQgaGVyZSwgaXQgc2VlbXMgdG8gcmVxdWlyZSB0aGF0
-IHRoZSAic3VwcGxpZXIiIGlzIGJvdW5kCj4gdG8gYSBkcml2ZXIgYmVmb3JlIHRoZSAiY29uc3Vt
-ZXIiIG1heSBwcm9iZS4gSU9XIG5vdXZlYXUgbmVlZHMgdG8gYmUKPiBib3VuZCBiZWZvcmUgc25k
-X2hkYV9hdWRpbyBjYW4gcHJvYmUuIEknbSBub3Qgc3VyZSBpZiB0aGF0IGFkZGl0aW9uYWwKPiAo
-dW5uZWNlc3NhcnkpIHJlc3RyaWN0aW9uIGlzIGEgcHJvYmxlbS4KClRoZSBkZXZpY2UgbGlua3Mg
-ZmVhdHVyZSBsb29rcyBwcm9taXNpbmcuIE15IGluaXRpYWwgZ3Vlc3MgdGhhdCBpdCBpcyBPSwp0
-byB3YWl0IGZvciBub3V2ZWF1IHRvIGJlY29tZSBhdmFpbGFibGUgKGFzIHN1cHBsaWVyKSwgdGhl
-IGF1ZGlvIHBvcnQKKGFzIGNvbnN1bWVyKSBwcm9iYWJseSBkb2VzIG5vdCB3b3JrIGFueXdheSB3
-aXRob3V0IGEgdmlkZW8gc2lnbmFsLgoKPiBJJ3ZlIHJlY2VudGx5IHRyaWVkIHRvIGFkZCBydW50
-aW1lIHBtIGZvciBtdXhlZCBsYXB0b3BzIHRvIHZnYV9zd2l0Y2hlcm9vLAo+IHRoaXMgaXMgc29t
-ZXRoaW5nIHRoYXQgUGllcnJlIE1vcmVhdSAoY2M6KSBoYXMgZXhwcmVzc2VkIGFuIGludGVyZXN0
-IGluCj4gZm9yIGhpcyBNYWNCb29rIFByby4gSSBjYW1lIGFjcm9zcyBhIG1ham9yIHJvYWRibG9j
-ayBpbiB0aGUgZm9ybSBvZgo+IHZnYV9zd2l0Y2hlcm9vX3NldF9keW5hbWljX3N3aXRjaCgpLiBU
-aGF0IGZ1bmN0aW9uIGlzIGNhbGxlZCBmcm9tIHRoZQo+IERSTSBkcml2ZXIgd2hlbiB0aGUgR1BV
-IHJ1bnRpbWUgc3VzcGVuZHMgYW5kIHJlc3VtZXMuIEl0IHRha2VzIHRoZQo+IHZnYXNyX211dGV4
-LiBUaGUgcHJvYmxlbSBpcywgaWYgdGhlIHVzZXIgaW5pdGlhdGVzIGEgc3dpdGNoIG9mIHRoZSBt
-dXgsCj4gdGhhdCBtdXRleCBpcyBhbHJlYWR5IHRha2VuIGluIHZnYV9zd2l0Y2hlcm9vX2RlYnVn
-ZnNfd3JpdGUoKS4gSWYgdGhlCj4gR1BVIHdlJ3JlIHN3aXRjaGluZyB0byBpcyBhc2xlZXAsIGl0
-J2xsIHdha2UgdXAgZm9yIHRoZSBzd2l0Y2ggYW5kCj4gd2UnbGwgZ2V0IGEgZGVhZGxvY2sgd2hl
-biB0aGUgRFJNIGRyaXZlciBzdWJzZXF1ZW50bHkgY2FsbHMKPiB2Z2Ffc3dpdGNoZXJvb19zZXRf
-ZHluYW1pY19zd2l0Y2goKS4KPiAKPiBJIHdvdWxkIGxpa2UgdG8gZ2V0IHJpZCBvZiB2Z2Ffc3dp
-dGNoZXJvb19zZXRfZHluYW1pY19zd2l0Y2goKSB0byBzb2x2ZQo+IHRoaXMuIFRoZSBmdW5jdGlv
-biBoYXMgdHdvIHB1cnBvc2VzOiBOdW1iZXIgb25lLCB2Z2Ffc3dpdGNoZXJvbyB1cGRhdGVzCj4g
-aXRzIGludGVybmFsIHBvd2VyIHN0YXRlIHJlcHJlc2VudGF0aW9uIGZvciB0aGUgR1BVLiBUaGF0
-IGlzIGFjdHVhbGx5Cj4gcG9pbnRsZXNzIGZvciBkcml2ZXIgcG93ZXIgY29udHJvbCBiZWNhdXNl
-IHdlIGNhbiBhbHdheXMgcXVlcnkgdGhlCj4gZHJpdmVyIGNvcmUgZm9yIHRoaXMgaW5mb3JtYXRp
-b24gKGUuZy4gcG1fcnVudGltZV9zdXNwZW5kZWQoKSkuCj4gVGhlIHNlY29uZCBwdXJwb3NlIGlz
-IHRvIHN3aXRjaCB0aGUgYXVkaW8gY2xpZW50IG9uIGFuZCBvZmYuIElmIHdlIHdvdWxkCj4gdXNl
-IGEgImRldmljZSBsaW5rIiB0byBleHByZXNzIHRoZSBkZXBlbmRlbmN5IGJldHdlZW4gdGhlIGF1
-ZGlvIGRldmljZQo+IGFuZCB0aGUgR1BVLCB3ZSB3b3VsZG4ndCBuZWVkIHRoaXMuIFNvIG1vdmlu
-ZyB0byAiZGV2aWNlIGxpbmtzIiBpcwo+IGEgcHJlcmVxdWlzaXRlIHRvIG1ha2UgcnVudGltZSBw
-bSB3b3JrIGZvciBtdXhlZCBsYXB0b3BzLgoKVGhpcyBpbnRlcm5hbCBzdGF0ZSBpcyBsaWtlbHkg
-YSBoaXN0b3JpY2FsIGFydGlmYWN0IGR1ZSB0byB0aGUgbWFudWFsCmNvbnRyb2wgKE9OIC8gT0ZG
-KSB0aGF0IHdhcyBuZWVkZWQgaW4gdGhlIHBhc3QuIEkgaGF2ZSByZWNlbnRseSB0cmllZCB0bwpk
-cmF3IHRoZSBkZXBlbmRlbmNpZXMgb24gcGFwZXIgYW5kIHRoZSBzdXNwZW5kL3Jlc3VtZSB0byBk
-eW5hbWljIHN3aXRjaApmbG93IGlzIG5vdCB0aGUgcHJldHRpZXN0IDspIFVzaW5nIHJ1bnRpbWUg
-cG0gd291bGQgcHJvYmFibHkgbWFrZSB0aGUKZGVwZW5kZW5jaWVzIGNsZWFyZXIgaW4gYSBsb2dp
-Y2FsIHdheS4KCj4gSWYgeW91IHdhbnQgdG8gdGFrZSBhIHN0YWIgYXQgdXNpbmcgImRldmljZSBs
-aW5rcyIgZm9yIHZnYV9zd2l0Y2hlcm9vCj4gdGhlbiBwbGVhc2UgZ28gYWhlYWQgYXMgSSdtIHN3
-YW1wZWQgd2l0aCBvdGhlciB3b3JrLiAoSSd2ZSByZXZlcnNlLQo+IGVuZ2luZWVyZWQgcmV0cmll
-dmFsIG9mIEFwcGxlIGRldmljZSBwcm9wZXJ0aWVzIGZyb20gRUZJIHRoaXMgd2VlaywKPiB3aGlj
-aCBpcyBuZWVkZWQgZm9yIFRodW5kZXJib2x0LikgTGV0IG1lIGtub3cgaWYgeW91IGhhdmUgYW55
-IHF1ZXN0aW9ucwo+IG9yIG5lZWQgc3R1ZmYgcmV2aWV3ZWQgb3Igd2hhdGV2ZXIuIFNpbmNlIHRo
-ZSAiZGV2aWNlIGxpbmtzIiBzZXJpZXMKPiBoYXNuJ3QgbGFuZGVkIHlldCwgaXQncyBzdGlsbCBw
-b3NzaWJsZSBJIHRoaW5rIHRvIGFzayBmb3IgZmVhdHVyZQo+IHJlcXVlc3RzIHNob3VsZCBpdCBu
-b3Qgd29yayBmb3IgdGhpcyBwYXJ0aWN1bGFyIHVzZSBjYXNlLiBUaGUKPiBsaW51eC1wbUB2Z2Vy
-Lmtlcm5lbC5vcmcgbWFpbGluZyBsaXN0IGlzIHRoZSByaWdodCBwbGFjZSB0byBpbnF1aXJlCj4g
-YWJvdXQgdGhlIHNlcmllcy4KPiAKPiBUaGFua3MgZm9yIHJhaXNpbmcgdGhpcyBpbXBvcnRhbnQg
-cXVlc3Rpb24uCgpJJ2xsIGdpdmUgdGhpcyBhIGdvIGFmdGVyIGZpbmlzaGluZyB0aGUgUFIzIG5v
-dXZlYXUgcGF0Y2hlcyBhbmQgZml4aW5nCnNvbWUgbG9ja2luZyBpc3N1ZXMuCi0tIApLaW5kIHJl
-Z2FyZHMsClBldGVyIFd1Cmh0dHBzOi8vbGVrZW5zdGV5bi5ubApfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+On 7 July 2016 at 18:59, Ard Biesheuvel <ard.biesheuvel@linaro.org> wrote:
+> The 100c08 scratch page is mapped using dma_map_page() before the TTM
+> layer has had a chance to set the DMA mask. This means we are still
+> running with the default of 32 when this code executes, and this causes
+> problems for platforms with no memory below 4 GB (such as AMD Seattle)
+>
+> So move the dma_map_page() to the .init hook, and set the streaming DMA
+> mask based on the MMU subdev parameters before performing the call.
+>
+> Signed-off-by: Ard Biesheuvel <ard.biesheuvel@linaro.org>
+> ---
+> I am sure there is a much better way to address this, but this fixes the
+> problem I get on AMD Seattle with a GeForce 210 PCIe card:
+>
+>    nouveau 0000:02:00.0: enabling device (0000 -> 0003)
+>    nouveau 0000:02:00.0: NVIDIA GT218 (0a8280b1)
+>    nouveau 0000:02:00.0: bios: version 70.18.a6.00.00
+>    nouveau 0000:02:00.0: fb ctor failed, -14
+>    nouveau: probe of 0000:02:00.0 failed with error -14
+>
+> v2: replace incorrect comparison of dma_addr_t type var against NULL
+> v3: rework code to get rid of DMA_ERROR_CODE references, which is not
+>     defined on all architectures
+>
+
+Ping?
+
+
+>  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.c | 40 ++++++++++++++------
+>  1 file changed, 29 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.c
+> index 1b5fb02eab2a..f713cb3fe56c 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.c
+> @@ -216,11 +216,33 @@ nv50_fb_init(struct nvkm_fb *base)
+>         struct nv50_fb *fb = nv50_fb(base);
+>         struct nvkm_device *device = fb->base.subdev.device;
+>
+> +       if (!fb->r100c08) {
+> +               /* We are calling the DMA api way before the TTM layer sets the
+> +                * DMA mask based on the MMU subdev parameters. This means we
+> +                * are using the default DMA mask of 32, which may cause
+> +                * problems on systems with no RAM below the 4 GB mark. So set
+> +                * the streaming DMA mask here as well.
+> +                */
+> +               dma_addr_t addr;
+> +
+> +               dma_set_mask(device->dev, DMA_BIT_MASK(device->mmu->dma_bits));
+> +
+> +               addr = dma_map_page(device->dev, fb->r100c08_page, 0, PAGE_SIZE,
+> +                                   DMA_BIDIRECTIONAL);
+> +               if (!dma_mapping_error(device->dev, addr)) {
+> +                       fb->r100c08 = addr;
+> +               } else {
+> +                       nvkm_warn(&fb->base.subdev,
+> +                                 "dma_map_page() failed on 100c08 page\n");
+> +               }
+> +       }
+> +
+>         /* Not a clue what this is exactly.  Without pointing it at a
+>          * scratch page, VRAM->GART blits with M2MF (as in DDX DFS)
+>          * cause IOMMU "read from address 0" errors (rh#561267)
+>          */
+> -       nvkm_wr32(device, 0x100c08, fb->r100c08 >> 8);
+> +       if (fb->r100c08)
+> +               nvkm_wr32(device, 0x100c08, fb->r100c08 >> 8);
+>
+>         /* This is needed to get meaningful information from 100c90
+>          * on traps. No idea what these values mean exactly. */
+> @@ -233,11 +255,11 @@ nv50_fb_dtor(struct nvkm_fb *base)
+>         struct nv50_fb *fb = nv50_fb(base);
+>         struct nvkm_device *device = fb->base.subdev.device;
+>
+> -       if (fb->r100c08_page) {
+> +       if (fb->r100c08)
+>                 dma_unmap_page(device->dev, fb->r100c08, PAGE_SIZE,
+>                                DMA_BIDIRECTIONAL);
+> -               __free_page(fb->r100c08_page);
+> -       }
+> +
+> +       __free_page(fb->r100c08_page);
+>
+>         return fb;
+>  }
+> @@ -264,13 +286,9 @@ nv50_fb_new_(const struct nv50_fb_func *func, struct nvkm_device *device,
+>         *pfb = &fb->base;
+>
+>         fb->r100c08_page = alloc_page(GFP_KERNEL | __GFP_ZERO);
+> -       if (fb->r100c08_page) {
+> -               fb->r100c08 = dma_map_page(device->dev, fb->r100c08_page, 0,
+> -                                          PAGE_SIZE, DMA_BIDIRECTIONAL);
+> -               if (dma_mapping_error(device->dev, fb->r100c08))
+> -                       return -EFAULT;
+> -       } else {
+> -               nvkm_warn(&fb->base.subdev, "failed 100c08 page alloc\n");
+> +       if (!fb->r100c08_page) {
+> +               nvkm_error(&fb->base.subdev, "failed 100c08 page alloc\n");
+> +               return -ENOMEM;
+>         }
+>
+>         return 0;
+> --
+> 2.7.4
+>
