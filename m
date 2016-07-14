@@ -1,11 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96924] New: NVD7: new warnings on kernel 4.6.3 using
-	nouveau
-Date: Thu, 14 Jul 2016 00:41:02 +0000
-Message-ID: <bug-96924-8800@http.bugs.freedesktop.org/>
+From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Subject: Re: vga_switcheroo audio runpm
+Date: Thu, 14 Jul 2016 12:44:11 +0200
+Message-ID: <20160714104411.GA311@al>
+References: <20160710132013.GA4479@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1136187308=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20160710132013.GA4479-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,198 +18,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Marek Szyprowski <m.szyprowski-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1136187308==
-Content-Type: multipart/alternative; boundary="14684568610.CF682e.28710";
- charset="UTF-8"
-
-
---14684568610.CF682e.28710
-Date: Thu, 14 Jul 2016 00:41:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96924
-
-            Bug ID: 96924
-           Summary: NVD7: new warnings on kernel 4.6.3 using nouveau
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 125062
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125062&action=3Dedit
-dmesg
-
-After upgrading to Fedora 24 (to kernel 4.6.3) nouveau shows new warnings. =
-By
-looking at nouveau driver, these messages happens on nouveau_bios.c file. T=
-hese
-are the new warnings:
-
-[    2.670324] nouveau 0000:04:00.0: DRM: Pointer to TMDS table invalid
-[    2.670326] nouveau 0000:04:00.0: DRM: Pointer to flat panel table inval=
-id
-
-I'm attaching here the full dmesg when the related warnings.
-
-Thanks,
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14684568610.CF682e.28710
-Date: Thu, 14 Jul 2016 00:41:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NVD7: new warnings on kernel 4.6.3 using nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96924">96924</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>NVD7: new warnings on kernel 4.6.3 using nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>marcos.souza.org&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125062=
-" name=3D"attach_125062" title=3D"dmesg">attachment 125062</a> <a href=3D"a=
-ttachment.cgi?id=3D125062&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
-/span>
-dmesg
-
-After upgrading to Fedora 24 (to kernel 4.6.3) nouveau shows new warnings. =
-By
-looking at nouveau driver, these messages happens on nouveau_bios.c file. T=
-hese
-are the new warnings:
-
-[    2.670324] nouveau 0000:04:00.0: DRM: Pointer to TMDS table invalid
-[    2.670326] nouveau 0000:04:00.0: DRM: Pointer to flat panel table inval=
-id
-
-I'm attaching here the full dmesg when the related warnings.
-
-Thanks,</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14684568610.CF682e.28710--
-
---===============1136187308==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1136187308==--
+T24gU3VuLCBKdWwgMTAsIDIwMTYgYXQgMDM6MjA6MTNQTSArMDIwMCwgTHVrYXMgV3VubmVyIHdy
+b3RlOgo+IEhpIFBldGVyLAo+IAo+ID4gWzEyOjQyXSBMZWtlbnN0ZXluOiBTaG91bGQgdGhlIHZp
+ZGVvIGNhcmQgYWx3YXlzIGJlIHBvd2VyZWQgdXAgd2hlbiBhCj4gPgkgIHJlZ2lzdGVyIGlzIHJl
+YWQgZnJvbSB0aGUgSERNSSBhdWRpbyBjb250cm9sbGVyPyBPciB3b3VsZCBpdCBiZQo+ID4JICBi
+ZXR0ZXIgdG8gbGVhdmUgdGhlIHZpZGVvIGNhcmQgc3VzcGVuZGVkIGFuZCBqdXN0IGZhaWwgdGhl
+IEhEQQo+ID4JICByZWdpc3RlciByZWFkcz8KPiAKPiBJdCBzaG91bGQgcHJvYmFibHkgYmUgcG93
+ZXJlZCB1cC4KClNlZW1zIHNlbnNpYmxlLCBhIHZpZGVvIHNpZ25hbCBpcyBhcHBhcmVudGx5IGFs
+c28gcmVxdWlyZWQgaWYgeW91IHdhbnQKdG8gcGxheSBhdWRpby4KCj4gPiBbMTI6NDNdIExla2Vu
+c3RleW46IEknbSB0cnlpbmcgdG8gZmlndXJlIG91dCBob3cgdmdhX3N3aXRjaGVyb28gc2hvdWxk
+Cj4gCSAgaGFuZGxlIHRoaXMsIG1heWJlIGwxayBoYXMgYW4gaWRlYT8KPiA+IFsxMjo0OF0gTGVr
+ZW5zdGV5bjogVGhlIGN1cnJlbnQgaW1wbGVtZW50ZWQgcG9saWN5IGlzIHRoYXQgdGhlIHZpZGVv
+IGNhcmQKPiA+CSAgZGljdGF0ZXMgdGhlIHBvd2VyIHN0YXRlIGFuZCB0aGF0IHRoZSBIRE1JIGF1
+ZGlvIGRldmljZSBoYXMgdG8KPiA+CSAgYWRhcHQgKGV2ZW4gaWYgaXQgaXMgc2VlbWluZ2x5IGlu
+IHVzZSkKPiAKPiBUaGlzIGN1cnJlbnQgYXJjaGl0ZWN0dXJlIHNlZW1zIHRvIGhhdmUgY29tZSBh
+Ym91dCBoaXN0b3JpY2FsbHkgKERhdmUKPiBBaXJsaWUgZmlyc3QgaW1wbGVtZW50ZWQgdmdhX3N3
+aXRjaGVyb28gd2l0aCBtYW51YWwgcG93ZXIgY29udHJvbCwKPiB0aGVuIGFkZGVkIHJ1bnRpbWUg
+cG0gaW4gYSBzZWNvbmQgc3RlcCkuCj4gCj4gSXQgbWF5IGFsc28gYmUgbW90aXZhdGVkIGJ5IHRo
+ZSBmYWN0IHRoYXQgdGhlIGRyaXZlciBjb3JlIGlzIGN1cnJlbnRseQo+IG5vdCBzdXBwb3J0aW5n
+IGRlcGVuZGVuY2llcyBiZXR3ZWVuIGRldmljZXMgYmV5b25kIHRoZSBoaWVyYXJjaGljYWwKPiBw
+YXJlbnQvY2hpbGQgcmVsYXRpb25zaGlwLgo+IAo+IFJhZmFlbCBXeXNvY2tpIChjYzopIHBvc3Rl
+ZCBhIHNlcmllcyBpbiBKYW51YXJ5IGFkZHJlc3NpbmcgdGhlIGxhdHRlcgo+IHByb2JsZW0gd2l0
+aCBzby1jYWxsZWQgImRldmljZSBsaW5rcyIuIFRoZSBzZXJpZXMgd2FzIHJlcG9zdGVkIHJlY2Vu
+dGx5Cj4gYnkgTWFyZWsgU3p5cHJvd3NraToKPiBodHRwczovL3d3dy5tYWlsLWFyY2hpdmUuY29t
+L2xpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcvbXNnMTE3MDAzMS5odG1sCj4gCj4gVGhlIHZn
+YV9zd2l0Y2hlcm9vIGF1ZGlvIGhhbmRsaW5nIHNob3VsZCBwcm9iYWJseSBiZSByZXdvcmtlZCB0
+byB1c2Ugc3VjaAo+ICJkZXZpY2UgbGlua3MiLiBUaGUgcmVzdWx0IHdvdWxkIGJlIHRoYXQgdGhl
+IEdQVSB3b24ndCBydW50aW1lIHN1c3BlbmQKPiBhcyBsb25nIGFzIGEgcmVmIGlzIGhlbGQgZm9y
+IHRoZSBhdWRpbyBjYXJkLiBUaGUgYXVkaW8gY2FyZCBuZWVkcyB0byB0aGVuCj4gbWFrZSBzdXJl
+IHRoYXQgaXQgcmVsZWFzZXMgYW55IHJlZnMgaWYgaXQgaGFzIG5vdGhpbmcgdG8gZG8uCj4gCj4g
+VGhlICJkZXZpY2UgbGlua3MiIHNlcmllcyBzZWVtcyB0byBpbXBvc2UgbW9yZSByZXN0cmljdGlv
+bnMgdGhhbiB3ZQo+IGFjdHVhbGx5IG5lZWQgaGVyZSwgaXQgc2VlbXMgdG8gcmVxdWlyZSB0aGF0
+IHRoZSAic3VwcGxpZXIiIGlzIGJvdW5kCj4gdG8gYSBkcml2ZXIgYmVmb3JlIHRoZSAiY29uc3Vt
+ZXIiIG1heSBwcm9iZS4gSU9XIG5vdXZlYXUgbmVlZHMgdG8gYmUKPiBib3VuZCBiZWZvcmUgc25k
+X2hkYV9hdWRpbyBjYW4gcHJvYmUuIEknbSBub3Qgc3VyZSBpZiB0aGF0IGFkZGl0aW9uYWwKPiAo
+dW5uZWNlc3NhcnkpIHJlc3RyaWN0aW9uIGlzIGEgcHJvYmxlbS4KClRoZSBkZXZpY2UgbGlua3Mg
+ZmVhdHVyZSBsb29rcyBwcm9taXNpbmcuIE15IGluaXRpYWwgZ3Vlc3MgdGhhdCBpdCBpcyBPSwp0
+byB3YWl0IGZvciBub3V2ZWF1IHRvIGJlY29tZSBhdmFpbGFibGUgKGFzIHN1cHBsaWVyKSwgdGhl
+IGF1ZGlvIHBvcnQKKGFzIGNvbnN1bWVyKSBwcm9iYWJseSBkb2VzIG5vdCB3b3JrIGFueXdheSB3
+aXRob3V0IGEgdmlkZW8gc2lnbmFsLgoKPiBJJ3ZlIHJlY2VudGx5IHRyaWVkIHRvIGFkZCBydW50
+aW1lIHBtIGZvciBtdXhlZCBsYXB0b3BzIHRvIHZnYV9zd2l0Y2hlcm9vLAo+IHRoaXMgaXMgc29t
+ZXRoaW5nIHRoYXQgUGllcnJlIE1vcmVhdSAoY2M6KSBoYXMgZXhwcmVzc2VkIGFuIGludGVyZXN0
+IGluCj4gZm9yIGhpcyBNYWNCb29rIFByby4gSSBjYW1lIGFjcm9zcyBhIG1ham9yIHJvYWRibG9j
+ayBpbiB0aGUgZm9ybSBvZgo+IHZnYV9zd2l0Y2hlcm9vX3NldF9keW5hbWljX3N3aXRjaCgpLiBU
+aGF0IGZ1bmN0aW9uIGlzIGNhbGxlZCBmcm9tIHRoZQo+IERSTSBkcml2ZXIgd2hlbiB0aGUgR1BV
+IHJ1bnRpbWUgc3VzcGVuZHMgYW5kIHJlc3VtZXMuIEl0IHRha2VzIHRoZQo+IHZnYXNyX211dGV4
+LiBUaGUgcHJvYmxlbSBpcywgaWYgdGhlIHVzZXIgaW5pdGlhdGVzIGEgc3dpdGNoIG9mIHRoZSBt
+dXgsCj4gdGhhdCBtdXRleCBpcyBhbHJlYWR5IHRha2VuIGluIHZnYV9zd2l0Y2hlcm9vX2RlYnVn
+ZnNfd3JpdGUoKS4gSWYgdGhlCj4gR1BVIHdlJ3JlIHN3aXRjaGluZyB0byBpcyBhc2xlZXAsIGl0
+J2xsIHdha2UgdXAgZm9yIHRoZSBzd2l0Y2ggYW5kCj4gd2UnbGwgZ2V0IGEgZGVhZGxvY2sgd2hl
+biB0aGUgRFJNIGRyaXZlciBzdWJzZXF1ZW50bHkgY2FsbHMKPiB2Z2Ffc3dpdGNoZXJvb19zZXRf
+ZHluYW1pY19zd2l0Y2goKS4KPiAKPiBJIHdvdWxkIGxpa2UgdG8gZ2V0IHJpZCBvZiB2Z2Ffc3dp
+dGNoZXJvb19zZXRfZHluYW1pY19zd2l0Y2goKSB0byBzb2x2ZQo+IHRoaXMuIFRoZSBmdW5jdGlv
+biBoYXMgdHdvIHB1cnBvc2VzOiBOdW1iZXIgb25lLCB2Z2Ffc3dpdGNoZXJvbyB1cGRhdGVzCj4g
+aXRzIGludGVybmFsIHBvd2VyIHN0YXRlIHJlcHJlc2VudGF0aW9uIGZvciB0aGUgR1BVLiBUaGF0
+IGlzIGFjdHVhbGx5Cj4gcG9pbnRsZXNzIGZvciBkcml2ZXIgcG93ZXIgY29udHJvbCBiZWNhdXNl
+IHdlIGNhbiBhbHdheXMgcXVlcnkgdGhlCj4gZHJpdmVyIGNvcmUgZm9yIHRoaXMgaW5mb3JtYXRp
+b24gKGUuZy4gcG1fcnVudGltZV9zdXNwZW5kZWQoKSkuCj4gVGhlIHNlY29uZCBwdXJwb3NlIGlz
+IHRvIHN3aXRjaCB0aGUgYXVkaW8gY2xpZW50IG9uIGFuZCBvZmYuIElmIHdlIHdvdWxkCj4gdXNl
+IGEgImRldmljZSBsaW5rIiB0byBleHByZXNzIHRoZSBkZXBlbmRlbmN5IGJldHdlZW4gdGhlIGF1
+ZGlvIGRldmljZQo+IGFuZCB0aGUgR1BVLCB3ZSB3b3VsZG4ndCBuZWVkIHRoaXMuIFNvIG1vdmlu
+ZyB0byAiZGV2aWNlIGxpbmtzIiBpcwo+IGEgcHJlcmVxdWlzaXRlIHRvIG1ha2UgcnVudGltZSBw
+bSB3b3JrIGZvciBtdXhlZCBsYXB0b3BzLgoKVGhpcyBpbnRlcm5hbCBzdGF0ZSBpcyBsaWtlbHkg
+YSBoaXN0b3JpY2FsIGFydGlmYWN0IGR1ZSB0byB0aGUgbWFudWFsCmNvbnRyb2wgKE9OIC8gT0ZG
+KSB0aGF0IHdhcyBuZWVkZWQgaW4gdGhlIHBhc3QuIEkgaGF2ZSByZWNlbnRseSB0cmllZCB0bwpk
+cmF3IHRoZSBkZXBlbmRlbmNpZXMgb24gcGFwZXIgYW5kIHRoZSBzdXNwZW5kL3Jlc3VtZSB0byBk
+eW5hbWljIHN3aXRjaApmbG93IGlzIG5vdCB0aGUgcHJldHRpZXN0IDspIFVzaW5nIHJ1bnRpbWUg
+cG0gd291bGQgcHJvYmFibHkgbWFrZSB0aGUKZGVwZW5kZW5jaWVzIGNsZWFyZXIgaW4gYSBsb2dp
+Y2FsIHdheS4KCj4gSWYgeW91IHdhbnQgdG8gdGFrZSBhIHN0YWIgYXQgdXNpbmcgImRldmljZSBs
+aW5rcyIgZm9yIHZnYV9zd2l0Y2hlcm9vCj4gdGhlbiBwbGVhc2UgZ28gYWhlYWQgYXMgSSdtIHN3
+YW1wZWQgd2l0aCBvdGhlciB3b3JrLiAoSSd2ZSByZXZlcnNlLQo+IGVuZ2luZWVyZWQgcmV0cmll
+dmFsIG9mIEFwcGxlIGRldmljZSBwcm9wZXJ0aWVzIGZyb20gRUZJIHRoaXMgd2VlaywKPiB3aGlj
+aCBpcyBuZWVkZWQgZm9yIFRodW5kZXJib2x0LikgTGV0IG1lIGtub3cgaWYgeW91IGhhdmUgYW55
+IHF1ZXN0aW9ucwo+IG9yIG5lZWQgc3R1ZmYgcmV2aWV3ZWQgb3Igd2hhdGV2ZXIuIFNpbmNlIHRo
+ZSAiZGV2aWNlIGxpbmtzIiBzZXJpZXMKPiBoYXNuJ3QgbGFuZGVkIHlldCwgaXQncyBzdGlsbCBw
+b3NzaWJsZSBJIHRoaW5rIHRvIGFzayBmb3IgZmVhdHVyZQo+IHJlcXVlc3RzIHNob3VsZCBpdCBu
+b3Qgd29yayBmb3IgdGhpcyBwYXJ0aWN1bGFyIHVzZSBjYXNlLiBUaGUKPiBsaW51eC1wbUB2Z2Vy
+Lmtlcm5lbC5vcmcgbWFpbGluZyBsaXN0IGlzIHRoZSByaWdodCBwbGFjZSB0byBpbnF1aXJlCj4g
+YWJvdXQgdGhlIHNlcmllcy4KPiAKPiBUaGFua3MgZm9yIHJhaXNpbmcgdGhpcyBpbXBvcnRhbnQg
+cXVlc3Rpb24uCgpJJ2xsIGdpdmUgdGhpcyBhIGdvIGFmdGVyIGZpbmlzaGluZyB0aGUgUFIzIG5v
+dXZlYXUgcGF0Y2hlcyBhbmQgZml4aW5nCnNvbWUgbG9ja2luZyBpc3N1ZXMuCi0tIApLaW5kIHJl
+Z2FyZHMsClBldGVyIFd1Cmh0dHBzOi8vbGVrZW5zdGV5bi5ubApfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL25vdXZlYXUK
