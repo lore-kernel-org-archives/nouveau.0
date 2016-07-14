@@ -1,120 +1,194 @@
-From: Ard Biesheuvel <ard.biesheuvel@linaro.org>
-Subject: Re: [PATCH v3] drm/nouveau/fb/nv50: set DMA mask before mapping
- scratch page
-Date: Thu, 14 Jul 2016 15:13:13 +0200
-Message-ID: <CAKv+Gu-cUPkYGthnrNqanZNLTsjc4V8Cazvbkr300BSE98_y1g@mail.gmail.com>
-References: <1467910768-2643-1-git-send-email-ard.biesheuvel@linaro.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96931] New: Request: git.freedesktop.org/nouveau/
+	commit access
+Date: Thu, 14 Jul 2016 13:58:23 +0000
+Message-ID: <bug-96931-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1467910768-2643-1-git-send-email-ard.biesheuvel@linaro.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com
-Cc: airlied@linux.ie, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Ard Biesheuvel <ard.biesheuvel@linaro.org>
+Content-Type: multipart/mixed; boundary="===============1481332591=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 7 July 2016 at 18:59, Ard Biesheuvel <ard.biesheuvel@linaro.org> wrote:
-> The 100c08 scratch page is mapped using dma_map_page() before the TTM
-> layer has had a chance to set the DMA mask. This means we are still
-> running with the default of 32 when this code executes, and this causes
-> problems for platforms with no memory below 4 GB (such as AMD Seattle)
->
-> So move the dma_map_page() to the .init hook, and set the streaming DMA
-> mask based on the MMU subdev parameters before performing the call.
->
-> Signed-off-by: Ard Biesheuvel <ard.biesheuvel@linaro.org>
-> ---
-> I am sure there is a much better way to address this, but this fixes the
-> problem I get on AMD Seattle with a GeForce 210 PCIe card:
->
->    nouveau 0000:02:00.0: enabling device (0000 -> 0003)
->    nouveau 0000:02:00.0: NVIDIA GT218 (0a8280b1)
->    nouveau 0000:02:00.0: bios: version 70.18.a6.00.00
->    nouveau 0000:02:00.0: fb ctor failed, -14
->    nouveau: probe of 0000:02:00.0 failed with error -14
->
-> v2: replace incorrect comparison of dma_addr_t type var against NULL
-> v3: rework code to get rid of DMA_ERROR_CODE references, which is not
->     defined on all architectures
->
 
-Ping?
+--===============1481332591==
+Content-Type: multipart/alternative; boundary="14685047030.d9A142ccA.29455";
+ charset="UTF-8"
 
 
->  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.c | 40 ++++++++++++++------
->  1 file changed, 29 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.c
-> index 1b5fb02eab2a..f713cb3fe56c 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.c
-> @@ -216,11 +216,33 @@ nv50_fb_init(struct nvkm_fb *base)
->         struct nv50_fb *fb = nv50_fb(base);
->         struct nvkm_device *device = fb->base.subdev.device;
->
-> +       if (!fb->r100c08) {
-> +               /* We are calling the DMA api way before the TTM layer sets the
-> +                * DMA mask based on the MMU subdev parameters. This means we
-> +                * are using the default DMA mask of 32, which may cause
-> +                * problems on systems with no RAM below the 4 GB mark. So set
-> +                * the streaming DMA mask here as well.
-> +                */
-> +               dma_addr_t addr;
-> +
-> +               dma_set_mask(device->dev, DMA_BIT_MASK(device->mmu->dma_bits));
-> +
-> +               addr = dma_map_page(device->dev, fb->r100c08_page, 0, PAGE_SIZE,
-> +                                   DMA_BIDIRECTIONAL);
-> +               if (!dma_mapping_error(device->dev, addr)) {
-> +                       fb->r100c08 = addr;
-> +               } else {
-> +                       nvkm_warn(&fb->base.subdev,
-> +                                 "dma_map_page() failed on 100c08 page\n");
-> +               }
-> +       }
-> +
->         /* Not a clue what this is exactly.  Without pointing it at a
->          * scratch page, VRAM->GART blits with M2MF (as in DDX DFS)
->          * cause IOMMU "read from address 0" errors (rh#561267)
->          */
-> -       nvkm_wr32(device, 0x100c08, fb->r100c08 >> 8);
-> +       if (fb->r100c08)
-> +               nvkm_wr32(device, 0x100c08, fb->r100c08 >> 8);
->
->         /* This is needed to get meaningful information from 100c90
->          * on traps. No idea what these values mean exactly. */
-> @@ -233,11 +255,11 @@ nv50_fb_dtor(struct nvkm_fb *base)
->         struct nv50_fb *fb = nv50_fb(base);
->         struct nvkm_device *device = fb->base.subdev.device;
->
-> -       if (fb->r100c08_page) {
-> +       if (fb->r100c08)
->                 dma_unmap_page(device->dev, fb->r100c08, PAGE_SIZE,
->                                DMA_BIDIRECTIONAL);
-> -               __free_page(fb->r100c08_page);
-> -       }
-> +
-> +       __free_page(fb->r100c08_page);
->
->         return fb;
->  }
-> @@ -264,13 +286,9 @@ nv50_fb_new_(const struct nv50_fb_func *func, struct nvkm_device *device,
->         *pfb = &fb->base;
->
->         fb->r100c08_page = alloc_page(GFP_KERNEL | __GFP_ZERO);
-> -       if (fb->r100c08_page) {
-> -               fb->r100c08 = dma_map_page(device->dev, fb->r100c08_page, 0,
-> -                                          PAGE_SIZE, DMA_BIDIRECTIONAL);
-> -               if (dma_mapping_error(device->dev, fb->r100c08))
-> -                       return -EFAULT;
-> -       } else {
-> -               nvkm_warn(&fb->base.subdev, "failed 100c08 page alloc\n");
-> +       if (!fb->r100c08_page) {
-> +               nvkm_error(&fb->base.subdev, "failed 100c08 page alloc\n");
-> +               return -ENOMEM;
->         }
->
->         return 0;
-> --
-> 2.7.4
->
+--14685047030.d9A142ccA.29455
+Date: Thu, 14 Jul 2016 13:58:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96931
+
+            Bug ID: 96931
+           Summary: Request: git.freedesktop.org/nouveau/ commit access
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+I would like commit access for the projects under git.freedesktop.org/nouve=
+au/
+
+So that I can push commits like:
+https://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=3D12f773=
+48e7a9579b167b41228dec9e6f97b74de8
+
+myself in the future.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14685047030.d9A142ccA.29455
+Date: Thu, 14 Jul 2016 13:58:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Request: git.freedesktop.org/nouveau/ commit access"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96931">96931</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Request: git.freedesktop.org/nouveau/ commit access
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jwrdegoede&#64;fedoraproject.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>I would like commit access for the projects under git.freedesk=
+top.org/nouveau/
+
+So that I can push commits like:
+<a href=3D"https://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?=
+id=3D12f77348e7a9579b167b41228dec9e6f97b74de8">https://cgit.freedesktop.org=
+/nouveau/xf86-video-nouveau/commit/?id=3D12f77348e7a9579b167b41228dec9e6f97=
+b74de8</a>
+
+myself in the future.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14685047030.d9A142ccA.29455--
+
+--===============1481332591==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1481332591==--
