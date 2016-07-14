@@ -1,21 +1,11 @@
-From: Markus Mayer <markus.mayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
-Subject: Re: [PATCH v3 1/7] lib: string: add functions to
-	case-convert strings
-Date: Wed, 13 Jul 2016 16:04:10 -0700
-Message-ID: <CAGt4E5uqxTkQHtaczim2BRijte3z5CVMoG172JaofL7Tf9HdbQ@mail.gmail.com>
-References: <1468017794-4818-1-git-send-email-mmayer@broadcom.com>
- <1468017794-4818-2-git-send-email-mmayer@broadcom.com>
- <5780E866.8000001@osg.samsung.com>
- <CAGt4E5vYzkqgiiQXXjnX7az-KzCVSYthEW5Df03U=Y1qhEJdRQ@mail.gmail.com>
- <CAGt4E5tpw0sa1PQmgJzKbPuzSbFG9_CUWjjO1z93OSc0KkjUXw@mail.gmail.com>
- <57867813.8010608@osg.samsung.com>
- <CAGt4E5tRcYQeWdTLvABjpd2WgAPLmdrdEUVK33pS0J3a06wJ5w@mail.gmail.com>
- <5786C665.6020307@osg.samsung.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96924] New: NVD7: new warnings on kernel 4.6.3 using
+	nouveau
+Date: Thu, 14 Jul 2016 00:41:02 +0000
+Message-ID: <bug-96924-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1136187308=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5786C665.6020307-JPH+aEBZ4P+UEJcrhfAQsw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -25,44 +15,198 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Luis de Bethencourt <luisbg-JPH+aEBZ4P+UEJcrhfAQsw@public.gmane.org>
-Cc: devel-gWbeCf7V1WCQmaza687I9mD2FQJk+8+b@public.gmane.org, Kees Cook <keescook-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Rasmus Villemoes <linux-qQsb+v5E8BnlAoU/VqSP6n9LOBIZ5rWg@public.gmane.org>, Linux Kernel <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, speakup-UPO/6gOIxNZglr+F8WMZYdi2O/JbrIOy@public.gmane.org, Chris Metcalf <cmetcalf-d5a29ZRxExrQT0dZR+AlfA@public.gmane.org>, target-devel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Al Viro <viro-RmSDqhL/yNMiFSDQTTA3OLVCufUGDwFn@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTMgSnVseSAyMDE2IGF0IDE1OjUzLCBMdWlzIGRlIEJldGhlbmNvdXJ0IDxsdWlzYmdAb3Nn
-LnNhbXN1bmcuY29tPiB3cm90ZToKPgo+IEhpIE1hcmt1cywKPgo+IFRoYW5rIHlvdSB2ZXJ5IG11
-Y2ggZm9yIHRoZSB0aG9yb3VnaCB0ZXN0aW5nIGFuZCBzb2x1dGlvbiBzZWFyY2hpbmcuCj4KPiBF
-YXJsaWVyIHRvZGF5IEkgc2VudCBhIHBhdGNoIHRoYXQgcmVtb3ZlcyBkeW5hbWljX2RlYnVnLmgg
-ZnJvbQo+IGluY2x1ZGUvbGludXgva2VybmVsLmgsIHNpbmNlIGl0IGlzbid0IHJlYWxseSBuZWVk
-ZWQuIFNvcnJ5IGFib3V0IHRoaXMKPiBzaW5jZSBpdCBjaGFuZ2VzIHdoYXQgeW91IHdlcmUgdGVz
-dGluZyBqdXN0IGEgZmV3IGhvdXJzIGxhdGVyLgoKSSBkaWQgc2VlIGF0IGxlYXN0IHNvbWUgb2Yg
-dGhlIGNoYW5nZXMgeW91IHBvc3RlZC4gSSB3YXMgbW9zdGx5CmN1cmlvdXMgdG8gc2VlIHdoZXJl
-IHRoZSBwcm9ibGVtIHdhcyBjb21pbmcgZnJvbSBpbiB0aGUgZmlyc3QgcGxhY2UuCgo+IEkgYW0g
-c3RhcnRpbmcgdG8gdGhpbmsgdGhhdCBnZXR0aW5nIGFjY2VzcyB0byBTSVpFX01BWCBpc24ndCB3
-b3J0aCB0aGUKPiB0cm91YmxlLCBzcGVjaWFsbHkgY29uc2lkZXJpbmcgdGhhdCBtb3ZpbmcgYW4g
-aW5jbHVkZSBvdXQgb2YgdGhlIHRvcAo+IG9mIHRoZSBmaWxlIG1ha2VzIHRoZSBjb2RlIGxlc3Mg
-cmVhZGFibGUuIFRoZSBMaW51eCBrZXJuZWwgaXMgZ3Jvd2luZwo+IGluIGNvbXBsZXhpdHkgYW5k
-IHRyeWluZyB0byBrZWVwIGl0IHJlYWRhYmxlIGZvciBuZXdjb21lcnMgaXMgdmVyeQo+IGltcG9y
-dGFudCBJTUhPLgoKSSd2ZSBiZWVuIHRoaW5raW5nIHRoZSBzYW1lIHRoaW5nLiBJdCBzZWVtcyB0
-byBiZSB0dXJuaW5nIGludG8gYSBodWdlCmVmZm9ydCB0byBtYWtlIHRoaXMgc2ltcGxlIGNvbnN0
-YW50IGF2YWlsYWJsZS4KCj4gVGhlIG1haW50YWluZXJzIGhhdmUgdGhlIGxhc3Qgd29yZCBvbiB0
-aGlzLCBidXQgZm9yIG5vdyBJIHJlbW92ZSBteQo+IHF1ZXN0aW9uIGFib3V0IHdoeSB1c2UgLTEg
-aW5zdGVhZCBvZiBTSVpFX01BWC4KPgo+IEFwb2xvZ2llcyBmb3IgdGhhdCwgdGhlIHNpbHZlciBs
-aW5pbmcgd2FzIHRoYXQgYXQgbGVhc3QgZm9yIG1lIGl0IHdhcwo+IGludGVyZXN0aW5nIHRvIGV4
-cGxvcmUgdGhpcyBhcmVhIG9mIHRoZSBjb2RlIGFuZCBpdHMgaW5jbHVzaW9ucy4gSSBob3BlCj4g
-aXQgd2FzIGZvciB5b3UgYXMgd2VsbC4KCk5vIG5lZWQgdG8gYXBvbG9naXplLiBJdCBzZWVtZWQg
-bGlrZSBhIG5vLWJyYWluZXIgdG8gdXNlIFNJWkVfTUFYLiA6LSkKQW5kIEkgYW0gc3VyZSBhbGwg
-dGhlIGRpZ2dpbmcgd2lsbCBjb21lIGhhbmR5IGluIHNvbWUgd2F5LgoKPiBQRDoganVzdCBhIHNt
-YWxsIGNvbW1lbnQsIGluIGNhc2UgeW91IGVuZCB1cCBzZW5kaW5nIGEgbmV3IHZlcnNpb24gb2YK
-PiB5b3VyIHBhdGNoZXMuIEluIHRoZSBmb2xsb3dpbmcgZG9jdW1lbnRhdGlvbiBvZiB5b3VyIGZ1
-bmN0aW9ucy4KPiAqIEBsZW46IE1heGltdW0gc3RyaW5nIGxlbmd0aC4gTWF5IGJlIFNJWkVfTUFY
-ICgtMSkgdG8gc2V0IG5vIGxpbWl0Lgo+Cj4gV2hhdCBkbyB5b3UgdGhpbmsgYWJvdXQgIlNJWkVf
-TUFYIG9yIC0xIiBpbnN0ZWFkIG9mICJTSVpFX01BWCAoLTEpIiB0bwo+IGF2b2lkIGNvbmZ1c2lu
-ZyBhbnkgcmVhZGVycyB3aG8gbWlnaHQgdGhpbmsgU0laRV9NQVggaXMgYSBmdW5jdGlvbj8gQXMK
-PiBJIHRoaW5rIHlvdSBpbnRlbmQgdG8gbWVhbiB5b3VyIGNvZGUgYWNjZXB0cyBib3RoIC0xIG9y
-IFNJWkVfTUFYLCB3aGljaAo+IGlzIH4wLgo+Cj4gSnVzdCBhbiBpZGVhLCBmZWVsIGZyZWUgdG8g
-aWdub3JlIGl0IDopCgpJIHRoaW5rIEkgbWlnaHQgdXNlIH4oc2l6ZV90KTAgZGlyZWN0bHkgaW5z
-dGVhZCBvZiAtMSAob3IgU0laRV9NQVgpLgoKVGhhbmtzLAotTWFya3VzCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1136187308==
+Content-Type: multipart/alternative; boundary="14684568610.CF682e.28710";
+ charset="UTF-8"
+
+
+--14684568610.CF682e.28710
+Date: Thu, 14 Jul 2016 00:41:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96924
+
+            Bug ID: 96924
+           Summary: NVD7: new warnings on kernel 4.6.3 using nouveau
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 125062
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125062&action=3Dedit
+dmesg
+
+After upgrading to Fedora 24 (to kernel 4.6.3) nouveau shows new warnings. =
+By
+looking at nouveau driver, these messages happens on nouveau_bios.c file. T=
+hese
+are the new warnings:
+
+[    2.670324] nouveau 0000:04:00.0: DRM: Pointer to TMDS table invalid
+[    2.670326] nouveau 0000:04:00.0: DRM: Pointer to flat panel table inval=
+id
+
+I'm attaching here the full dmesg when the related warnings.
+
+Thanks,
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14684568610.CF682e.28710
+Date: Thu, 14 Jul 2016 00:41:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - NVD7: new warnings on kernel 4.6.3 using nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96924">96924</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>NVD7: new warnings on kernel 4.6.3 using nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>marcos.souza.org&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125062=
+" name=3D"attach_125062" title=3D"dmesg">attachment 125062</a> <a href=3D"a=
+ttachment.cgi?id=3D125062&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
+/span>
+dmesg
+
+After upgrading to Fedora 24 (to kernel 4.6.3) nouveau shows new warnings. =
+By
+looking at nouveau driver, these messages happens on nouveau_bios.c file. T=
+hese
+are the new warnings:
+
+[    2.670324] nouveau 0000:04:00.0: DRM: Pointer to TMDS table invalid
+[    2.670326] nouveau 0000:04:00.0: DRM: Pointer to flat panel table inval=
+id
+
+I'm attaching here the full dmesg when the related warnings.
+
+Thanks,</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14684568610.CF682e.28710--
+
+--===============1136187308==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1136187308==--
