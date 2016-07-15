@@ -1,94 +1,137 @@
-From: Peter Wu <peter@lekensteyn.nl>
-Subject: Re: [Nouveau] [PATCH v3 0/4] nouveau RPM fixes for Optimus (final)
-Date: Fri, 15 Jul 2016 18:54:27 +0200
-Message-ID: <20160715165427.GD2632@al>
-References: <20160715131218.2416-1-peter@lekensteyn.nl>
- <CAKb7UvisjzPs_K1SNdDb7aZjxGQL4AOs05R8CX2xjU4uRpfcfA@mail.gmail.com>
- <20160715163622.GC2632@al>
- <CAKb7Uvg+E_92DF6p_3O0XtzG66qTdDM7Fa=TaesNs2Y6bzTQSA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96737] [NV98] Xsession Login breakage -
+ SwitchToGreeter / SwitchToUser related
+Date: Fri, 15 Jul 2016 17:14:37 +0000
+Message-ID: <bug-96737-8800-SS8pZ8cWrg@http.bugs.freedesktop.org/>
+References: <bug-96737-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <CAKb7Uvg+E_92DF6p_3O0XtzG66qTdDM7Fa=TaesNs2Y6bzTQSA@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: Linux PCI <linux-pci@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Bjorn Helgaas <helgaas@kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@redhat.com>, Mika Westerberg <mika.westerberg@linux.intel.com>
+Content-Type: multipart/mixed; boundary="===============1875473568=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-96737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdWwgMTUsIDIwMTYgYXQgMTI6NDE6NDlQTSAtMDQwMCwgSWxpYSBNaXJraW4gd3Jv
-dGU6Cj4gT24gRnJpLCBKdWwgMTUsIDIwMTYgYXQgMTI6MzYgUE0sIFBldGVyIFd1IDxwZXRlckBs
-ZWtlbnN0ZXluLm5sPiB3cm90ZToKPiA+IE9uIEZyaSwgSnVsIDE1LCAyMDE2IGF0IDEyOjEwOjIz
-UE0gLTA0MDAsIElsaWEgTWlya2luIHdyb3RlOgo+ID4+IE9uIEZyaSwgSnVsIDE1LCAyMDE2IGF0
-IDk6MTIgQU0sIFBldGVyIFd1IDxwZXRlckBsZWtlbnN0ZXluLm5sPiB3cm90ZToKPiA+PiA+IEhp
-LAo+ID4+ID4KPiA+PiA+IEhlcmUgYXJlIHR3byBwYXRjaGVzIHRvIGZpeCBhbiBpc3N1ZSByZXBv
-cnRlZCBvbiBrZXJuZWwgYnVnemlsbGEgKGluZmluaXRlIGxvb3AKPiA+PiA+IGR1ZSB0byB1bmNo
-ZWNrZWQgZnVuY3Rpb24pIGFuZCBhIG1vcmUgaW1wb3J0YW50IGZpeCB0byBmaXggaGFuZ2luZyBP
-cHRpbXVzCj4gPj4gPiBtYWNoaW5lcyB3aGVuIHJ1bnRpbWUgUE0gaXMgZW5hYmxlZCAod2l0aCBw
-bS9wY2kgcGF0Y2hlcykuCj4gPj4gPgo+ID4+ID4gVGhlc2UgYXJlIHRoZSBmaW5hbCBwYXRjaGVz
-IHRhcmdldGluZyB2NC44LiBDaGFuZ2VzIGNvbXBhcmVkIHRvIHYyWzFdOgo+ID4+ID4gY29sbGVj
-dGVkIFItYiBmcm9tIEhhbnMgYW5kIE1pa2EgYW5kIGZpeGVkIGEgbWlub3IgY29tbWVudCBzdHls
-ZSBpc3N1ZS4KPiA+PiA+Cj4gPj4gPiBJIHJlY29tbWVuZCBpdCB0byBiZSBtZXJnZWQgYmVmb3Jl
-IHRoZSBwY2kvcG0gcGF0Y2hlc1syXSwgb3RoZXJ3aXNlIHRoZXJlIGlzIGEKPiA+PiA+IHdpbmRv
-dyB3aGVyZSBuZXdlciBOdmlkaWEgT3B0aW11cyBsYXB0b3BzIG1pZ2h0IGZhaWwgdG8gcnVudGlt
-ZSByZXN1bWUgYW5kL29yCj4gPj4gPiBsb2NrIHVwLiAgT25jZSB0aGUgcGNpL3BtIGJyYW5jaCBp
-cyBtZXJnZWQgSSB3aWxsIHByb3Bvc2UgYW5vdGhlciBwYXRjaCB0bwo+ID4+ID4gaW1wcm92ZSBy
-ZWxpYWJpbGl0eVszXS4KPiA+PiA+Cj4gPj4gPiBLbm93biBpc3N1ZSB3aXRoIHBhdGNoIDQ6IHdo
-ZW4gYSBOdmlkaWEgSERNSSBhdWRpbyBmdW5jdGlvbiBpcyBwcmVzZW50LCB0aGUKPiA+PiA+IGJy
-aWRnZSB3aWxsIG5vdCBzdXNwZW5kIGFuZCBoZW5jZSB0aGUgTnZpZGlhIGNhcmQgd2lsbCBzdGls
-bCBiZSBwb3dlcmVkLiBGaXhpbmcKPiA+Pgo+ID4+IFRoYXQncyBiYXNpY2FsbHkgYWxsIG9wdGlt
-dXMgZ3B1J3MsIHJpZ2h0PyBBbnl0aGluZyBHVDIxeCsgaGFzIGEgSERNSQo+ID4+IGF1ZGlvIHN1
-YmZ1bmN0aW9uLCBhbmQgcHJpb3IgdG8gdGhhdCwgdGhlIG52aWRpYSBncHUgdGVuZGVkIHRvIGJl
-IHRoZQo+ID4+IG9ubHkgZ3B1LCBvciBoYXJkLW11eGVkLgo+ID4+Cj4gPj4gSWYgdGhhdCdzIHRo
-ZSBjYXNlLCB0aGF0J3MgcHJldHR5IG11Y2ggYSBub24tc3RhcnRlciwgSU1PLgo+ID4KPiA+IEZv
-ciBzb21lIHJlYXNvbiB0aGUgYXVkaW8gZnVuY3Rpb24gdGVuZHMgdG8gZGlzYXBwZWFyL2hpZGUs
-IHNvIG1heWJlIGl0Cj4gPiBpcyBub3QgYXMgcHJvYmxlbWF0aWMgYXMgaXQgYXBwZWFycyAoc2Vl
-Cj4gPiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD03NTk4NSku
-IEZvciBteSBsYXB0b3AgSQo+IAo+IEknbSBhd2FyZSBvZiB0aGF0IGJ1Zy4gSSBiZWxpZXZlIHRo
-aXMgaXMgYW4gZXhjZWVkaW5nbHkgcmFyZSBzY2VuYXJpbwo+IG9yIGl0IHdvdWxkIGhhdmUgYmVl
-biByZXBvcnRlZCBhIGxvdCBtb3JlLgo+IAo+ID4gYWxzbyBoYWQgdG8gcnVudGltZSBzdXNwZW5k
-L3Jlc3VtZSBiZWZvcmUgbHNwY2kgLUgxIHNob3dzIHRoZSBkZXZpY2UsCj4gPiBsb2FkaW5nIHdp
-dGggcnVucG09MCBkaWRuJ3QgcmV0dXJuIG15IEhETUkgYXVkaW8gZGV2aWNlLgo+IAo+IEhtIG9r
-LiBEbyB5b3UgaGF2ZSB0aGUgc2FtZSBsYXB0b3AgYXMgdGhlIHJlcG9ydGVyIG9mIHRoYXQgYnVn
-PwoKTm9wZSwgSSBoYXZlIGEgQ2xldm8gUDY1MVJBIChHVFg5NjVNKS4gVGhhdCByZXBvcnRlciBo
-YXMgYSBEZWxsIFhQUyAxNSwKYnV0IGl0IGFsc28gc2VlbXMgcHJlc2VudCBmb3IgdGhlIExlbm92
-byBUaGlua1BhZCBUNDIwcyAoc2VlIGNvbW1lbnQgb24KYnVnKSwgQXN1cyBONTZWWiwgTVNJIEdU
-NjAgMlBFLCBEZWxsIEw1MDJ4IChMYXVuY2hwYWQgMTM3NzY1MyksIEFzdXMKRzQ2dncgKEFzayBV
-YnVudHUgdXNlcikuIFRoZXJlIGlzIGFub3RoZXIgQVUgcmVwb3J0IGZvciBhIEdUIDUyNU0KKGxh
-cHRvcCBicmFuZC9tb2RlbCB1bmtub3duKS4KCk1heWJlIHRoZXJlIGFyZSBtb3JlIGFmZmVjdGVk
-IHVzZXJzLCBidXQgdGhlbiB0aGV5IGRpZCBub3Qgbm90aWNlIGl0CmJlY2F1c2UgdGhleSBkaWQg
-bm90IHVzZSBIRE1JIGF1ZGlvLgoKPiA+Cj4gPiBUaGUgcG93ZXJlZCBvbiBpc3N1ZSB3aWxsIGFs
-c28gb25seSBhcHBlYXIgb24gZGV2aWNlcyBwcm9kdWNlZCBpbiAyMDEzCj4gPiBhbmQgbmV3ZXIg
-dGhhdCBoYXBwZW4gdG8gaGF2ZSB0aGlzIEFDUEkgX1BSMyBBQ1BJIG1ldGhvZCAod2hpY2ggaXMg
-cXVpdGUKPiA+IGNvbW1vbiBmb3IgbmV3IG1hY2hpbmVzIHN1cHBvcnRpbmcgV2luZG93cyA4IHRo
-b3VnaCkuCj4gPgo+ID4gRm9yIHRoZXNlIG5ld2VyIGxhcHRvcHMsIGFmdGVyIHRoZSBwY2kvcG0g
-bWVyZ2UgYW5kIGFmdGVyIGEgcGF0Y2ggbGlrZQo+ID4gaHR0cDovL3d3dy5zcGluaWNzLm5ldC9s
-aXN0cy9saW51eC1wY2kvbXNnNTI2MDEuaHRtbCwgdGhlIHVzZXIgY2FuCj4gPiByZXZlcnQgdG8g
-dGhlIG9sZCBEU00gbWV0aG9kIGJ5IGJvb3Rpbmcgd2l0aCBwY2llX3BvcnRfcG09b2ZmIHdoaWNo
-IHdpbGwKPiA+IHJldGFpbiB0aGUgY3VycmVudCBiZWhhdmlvci4KPiA+Cj4gPiBUaGUgYWR2YW50
-YWdlIG9mIHRoaXMgcGF0Y2ggaXMgdGhhdCBpdCBmaXhlcyBtZW1vcnkgY29ycnVwdGlvbiBvbiBz
-b21lCj4gPiBkZXZpY2VzLiBUaGUgcmlzayBpcyB0aGF0IHRoZSBjYXJkIHN0YXlzIG9uIGJlY2F1
-c2UgdGhlIGF1ZGlvIHN1YnN5c3RlbQo+ID4gbmVlZHMgc29tZSBtb3JlIHdvcmsuICBGV0lXLCBJ
-IHdhcyB3b3JraW5nIG9uIHNvbWUgcGF0Y2hlcyB0aGF0IHByb3Blcmx5Cj4gPiBzdXNwZW5kZWQg
-aW4gcHJlc2VuY2Ugb2YgdGhlIEhEQSBjb250cm9sbGVyLCBidXQgc29tZWhvdyB0aGUgYXVkaW8K
-PiA+IGRldmljZSB3YXMgbm90IHByb3Blcmx5IHJlc3VtZWQgcmVzdWx0aW5nIGluICJubyBBRkcg
-b3IgTUZHIG5vZGUgZm91bmQiCj4gPiBhbmQgInNuZF9oZGFfaW50ZWwgMDAwMDowMTowMC4xOiBu
-byBjb2RlY3MgaW5pdGlhbGl6ZWQiLgo+IAo+IERvZXMgdGhpcyByZXN0cmljdGlvbiAocnVucG0g
-YmVpbmcgYnJva2VuIGluIHByZXNlbmNlIG9mIHRoZSBhdWRpbwo+IHN1YmZ1bmN0aW9uKSBvbmx5
-IGFmZmVjdCBkZXZpY2VzIHdpdGggX1BSMz8gSWYgc28sIHRoYXQncyBhIGxvdCBtb3JlCj4gcGFs
-YXRhYmxlIC0gSSBiZXQgV2luZG93cyA4KyBpcyBpbiBhbiBlcmEgd2hlbiB0aGUgZGlzcGxheS1s
-ZXNzIHRoaW5nCj4gYmVjYW1lIG1vcmUgcG9wdWxhciwgYW5kIHRodXMgbGVzcyBsaWtlbHkgdG8g
-YWZmZWN0IGEgdG9uIG9mIHBlb3BsZS4KClllcyBpdCBvbmx5IGFmZmVjdHMgdGhvc2UgZGV2aWNl
-cyB3aXRoIF9QUjMuCi0tIApLaW5kIHJlZ2FyZHMsClBldGVyIFd1Cmh0dHBzOi8vbGVrZW5zdGV5
-bi5ubApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmkt
-ZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1875473568==
+Content-Type: multipart/alternative; boundary="14686028762.eebE20cBa.1792";
+ charset="UTF-8"
+
+
+--14686028762.eebE20cBa.1792
+Date: Fri, 15 Jul 2016 17:14:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96737
+
+--- Comment #8 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+
+w/ modeset sameo
+
+/etc/X11/xorg.conf.d/modeset.conf
+Section "Device"
+        Identifier "video0"
+        Driver "modesetting"
+        Option "AccelMethod" "none"
+EndSection
+
+/var/log/Xorg.0.log
+(**) modeset(0): Option "AccelMethod" "none"
+
+glxinfo:
+OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 3.8, 128 bits)
+
+
+What in Acceleration brakes VT switching?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14686028762.eebE20cBa.1792
+Date: Fri, 15 Jul 2016 17:14:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV98] Xsession Login breakage - SwitchToGreeter / Switch=
+ToUser related"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737#c8">Comment=
+ # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV98] Xsession Login breakage - SwitchToGreeter / Switch=
+ToUser related"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737">bug 96737<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
+l.com&gt;"> <span class=3D"fn">poma</span></a>
+</span></b>
+        <pre>
+w/ modeset sameo
+
+/etc/X11/xorg.conf.d/modeset.conf
+Section &quot;Device&quot;
+        Identifier &quot;video0&quot;
+        Driver &quot;modesetting&quot;
+        Option &quot;AccelMethod&quot; &quot;none&quot;
+EndSection
+
+/var/log/Xorg.0.log
+(**) modeset(0): Option &quot;AccelMethod&quot; &quot;none&quot;
+
+glxinfo:
+OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 3.8, 128 bits)
+
+
+What in Acceleration brakes VT switching?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14686028762.eebE20cBa.1792--
+
+--===============1875473568==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1875473568==--
