@@ -1,76 +1,72 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [Nouveau] [PATCH v3 0/4] nouveau RPM fixes for Optimus (final)
-Date: Fri, 15 Jul 2016 12:41:49 -0400
-Message-ID: <CAKb7Uvg+E_92DF6p_3O0XtzG66qTdDM7Fa=TaesNs2Y6bzTQSA@mail.gmail.com>
-References: <20160715131218.2416-1-peter@lekensteyn.nl> <CAKb7UvisjzPs_K1SNdDb7aZjxGQL4AOs05R8CX2xjU4uRpfcfA@mail.gmail.com>
- <20160715163622.GC2632@al>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH v3 0/4] nouveau RPM fixes for Optimus (final)
+Date: Fri, 15 Jul 2016 12:42:38 -0400
+Message-ID: <CAKb7UvgbTyconY4k6WkA8O94Qu_fBWv-QNb-auSVwzGK_B9bQw@mail.gmail.com>
+References: <20160715131218.2416-1-peter@lekensteyn.nl>
+ <CAKb7UvisjzPs_K1SNdDb7aZjxGQL4AOs05R8CX2xjU4uRpfcfA@mail.gmail.com>
+ <CADnq5_OBjHXO4sfakK0ZJPbHPrMACqdU7J-j9sHLjod0QcuzcA@mail.gmail.com>
+ <CAKb7Uvh8vGFZXgbt08nODo6QBP==w=LuqZ5c6UQZPFWc8675AA@mail.gmail.com>
+ <CADnq5_Oqo3+e=vK_4NUgzPc7U8aXp1dnw3S-rCEJYno9CGm7BQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-pci-owner@vger.kernel.org>
-In-Reply-To: <20160715163622.GC2632@al>
-Sender: linux-pci-owner@vger.kernel.org
-To: Peter Wu <peter@lekensteyn.nl>
-Cc: Dave Airlie <airlied@redhat.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Bjorn Helgaas <helgaas@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Linux PCI <linux-pci@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CADnq5_Oqo3+e=vK_4NUgzPc7U8aXp1dnw3S-rCEJYno9CGm7BQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Jul 15, 2016 at 12:36 PM, Peter Wu <peter@lekensteyn.nl> wrote:
-> On Fri, Jul 15, 2016 at 12:10:23PM -0400, Ilia Mirkin wrote:
->> On Fri, Jul 15, 2016 at 9:12 AM, Peter Wu <peter@lekensteyn.nl> wrote:
->> > Hi,
->> >
->> > Here are two patches to fix an issue reported on kernel bugzilla (infinite loop
->> > due to unchecked function) and a more important fix to fix hanging Optimus
->> > machines when runtime PM is enabled (with pm/pci patches).
->> >
->> > These are the final patches targeting v4.8. Changes compared to v2[1]:
->> > collected R-b from Hans and Mika and fixed a minor comment style issue.
->> >
->> > I recommend it to be merged before the pci/pm patches[2], otherwise there is a
->> > window where newer Nvidia Optimus laptops might fail to runtime resume and/or
->> > lock up.  Once the pci/pm branch is merged I will propose another patch to
->> > improve reliability[3].
->> >
->> > Known issue with patch 4: when a Nvidia HDMI audio function is present, the
->> > bridge will not suspend and hence the Nvidia card will still be powered. Fixing
->>
->> That's basically all optimus gpu's, right? Anything GT21x+ has a HDMI
->> audio subfunction, and prior to that, the nvidia gpu tended to be the
->> only gpu, or hard-muxed.
->>
->> If that's the case, that's pretty much a non-starter, IMO.
->
-> For some reason the audio function tends to disappear/hide, so maybe it
-> is not as problematic as it appears (see
-> https://bugs.freedesktop.org/show_bug.cgi?id=75985). For my laptop I
-
-I'm aware of that bug. I believe this is an exceedingly rare scenario
-or it would have been reported a lot more.
-
-> also had to runtime suspend/resume before lspci -H1 shows the device,
-> loading with runpm=0 didn't return my HDMI audio device.
-
-Hm ok. Do you have the same laptop as the reporter of that bug?
-
->
-> The powered on issue will also only appear on devices produced in 2013
-> and newer that happen to have this ACPI _PR3 ACPI method (which is quite
-> common for new machines supporting Windows 8 though).
->
-> For these newer laptops, after the pci/pm merge and after a patch like
-> http://www.spinics.net/lists/linux-pci/msg52601.html, the user can
-> revert to the old DSM method by booting with pcie_port_pm=off which will
-> retain the current behavior.
->
-> The advantage of this patch is that it fixes memory corruption on some
-> devices. The risk is that the card stays on because the audio subsystem
-> needs some more work.  FWIW, I was working on some patches that properly
-> suspended in presence of the HDA controller, but somehow the audio
-> device was not properly resumed resulting in "no AFG or MFG node found"
-> and "snd_hda_intel 0000:01:00.1: no codecs initialized".
-
-Does this restriction (runpm being broken in presence of the audio
-subfunction) only affect devices with _PR3? If so, that's a lot more
-palatable - I bet Windows 8+ is in an era when the display-less thing
-became more popular, and thus less likely to affect a ton of people.
-
-  -ilia
+T24gRnJpLCBKdWwgMTUsIDIwMTYgYXQgMTI6NDAgUE0sIEFsZXggRGV1Y2hlciA8YWxleGRldWNo
+ZXJAZ21haWwuY29tPiB3cm90ZToKPiBPbiBGcmksIEp1bCAxNSwgMjAxNiBhdCAxMjozMSBQTSwg
+SWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPj4gT24gRnJpLCBKdWwg
+MTUsIDIwMTYgYXQgMTI6MjcgUE0sIEFsZXggRGV1Y2hlciA8YWxleGRldWNoZXJAZ21haWwuY29t
+PiB3cm90ZToKPj4+IE9uIEZyaSwgSnVsIDE1LCAyMDE2IGF0IDEyOjEwIFBNLCBJbGlhIE1pcmtp
+biA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+Pj4+IE9uIEZyaSwgSnVsIDE1LCAyMDE2
+IGF0IDk6MTIgQU0sIFBldGVyIFd1IDxwZXRlckBsZWtlbnN0ZXluLm5sPiB3cm90ZToKPj4+Pj4g
+SGksCj4+Pj4+Cj4+Pj4+IEhlcmUgYXJlIHR3byBwYXRjaGVzIHRvIGZpeCBhbiBpc3N1ZSByZXBv
+cnRlZCBvbiBrZXJuZWwgYnVnemlsbGEgKGluZmluaXRlIGxvb3AKPj4+Pj4gZHVlIHRvIHVuY2hl
+Y2tlZCBmdW5jdGlvbikgYW5kIGEgbW9yZSBpbXBvcnRhbnQgZml4IHRvIGZpeCBoYW5naW5nIE9w
+dGltdXMKPj4+Pj4gbWFjaGluZXMgd2hlbiBydW50aW1lIFBNIGlzIGVuYWJsZWQgKHdpdGggcG0v
+cGNpIHBhdGNoZXMpLgo+Pj4+Pgo+Pj4+PiBUaGVzZSBhcmUgdGhlIGZpbmFsIHBhdGNoZXMgdGFy
+Z2V0aW5nIHY0LjguIENoYW5nZXMgY29tcGFyZWQgdG8gdjJbMV06Cj4+Pj4+IGNvbGxlY3RlZCBS
+LWIgZnJvbSBIYW5zIGFuZCBNaWthIGFuZCBmaXhlZCBhIG1pbm9yIGNvbW1lbnQgc3R5bGUgaXNz
+dWUuCj4+Pj4+Cj4+Pj4+IEkgcmVjb21tZW5kIGl0IHRvIGJlIG1lcmdlZCBiZWZvcmUgdGhlIHBj
+aS9wbSBwYXRjaGVzWzJdLCBvdGhlcndpc2UgdGhlcmUgaXMgYQo+Pj4+PiB3aW5kb3cgd2hlcmUg
+bmV3ZXIgTnZpZGlhIE9wdGltdXMgbGFwdG9wcyBtaWdodCBmYWlsIHRvIHJ1bnRpbWUgcmVzdW1l
+IGFuZC9vcgo+Pj4+PiBsb2NrIHVwLiAgT25jZSB0aGUgcGNpL3BtIGJyYW5jaCBpcyBtZXJnZWQg
+SSB3aWxsIHByb3Bvc2UgYW5vdGhlciBwYXRjaCB0bwo+Pj4+PiBpbXByb3ZlIHJlbGlhYmlsaXR5
+WzNdLgo+Pj4+Pgo+Pj4+PiBLbm93biBpc3N1ZSB3aXRoIHBhdGNoIDQ6IHdoZW4gYSBOdmlkaWEg
+SERNSSBhdWRpbyBmdW5jdGlvbiBpcyBwcmVzZW50LCB0aGUKPj4+Pj4gYnJpZGdlIHdpbGwgbm90
+IHN1c3BlbmQgYW5kIGhlbmNlIHRoZSBOdmlkaWEgY2FyZCB3aWxsIHN0aWxsIGJlIHBvd2VyZWQu
+IEZpeGluZwo+Pj4+Cj4+Pj4gVGhhdCdzIGJhc2ljYWxseSBhbGwgb3B0aW11cyBncHUncywgcmln
+aHQ/IEFueXRoaW5nIEdUMjF4KyBoYXMgYSBIRE1JCj4+Pj4gYXVkaW8gc3ViZnVuY3Rpb24sIGFu
+ZCBwcmlvciB0byB0aGF0LCB0aGUgbnZpZGlhIGdwdSB0ZW5kZWQgdG8gYmUgdGhlCj4+Pj4gb25s
+eSBncHUsIG9yIGhhcmQtbXV4ZWQuCj4+Pgo+Pj4gSSdkIGltYWdpbmUgdGhlcmUgaXMgYSBzdHJh
+cCBvbiB0aGUgYXNpYyBzbyB0aGUgYXVkaW8gZnVuY3Rpb24gaXMgb25seQo+Pj4gZW5hYmxlZCBp
+ZiB0aGVyZSBpcyBhIGNvbm5lY3RvciBhY3R1YWxseSB3aXJlZCB0byB0aGUgZEdQVS4gIEl0Cj4+
+PiBkb2Vzbid0IG1ha2UgbXVjaCBzZW5zZSB0byBleHBvc2UgYXVkaW8gaWYgdGhlcmUgaXMgbm8g
+d2F5IHRvIHVzZSBpdC4KPj4KPj4gQSBsb3Qgb2YgdGhlIHRpbWUsIHRoZXJlIGFjdHVhbGx5IGlz
+IGEgY29ubmVjdG9yIHdpcmVkIHVwLiBBIGxvdCBvZgo+PiB0aGUgb3RoZXIgdGltZSwgdGhlcmUg
+aXMgbm8gY29ubmVjdG9yLCBidXQgdGhlIGRpc3BsYXkgdW5pdCBpcyBzdGlsbAo+PiB0aGVyZS4g
+VmVyeSByZWNlbnRseSwgTlZJRElBIGdwdSdzIGhhdmUgc3RhcnRlZCBjb21pbmcgb3V0IG1hcmtl
+ZCBhcwo+PiAiM2QgYWNjZWxlcmF0b3IiLCB3aGljaCBzb21ldGltZXMgYnV0IG5vdCBhbHdheXMg
+bWVhbnMgdGhhdCB0aGVyZSdzIG5vCj4+IGRpc3BsYXkgdW5pdCwgYW5kIGZvciB0aG9zZSwgSSB3
+b3VsZCBhc3N1bWUgdGhlcmUgaXMgbm8gYXVkaW8KPj4gc3ViZnVuY3Rpb24uCj4+Cj4KPiBKdXN0
+IGJlY2F1c2UgdGhlcmUgaXMgYSBkaXNwbGF5IGJsb2NrLCBkb2Vzbid0IG1lYW4gdGhlIGF1ZGlv
+IGZ1bmN0aW9uCj4gaXMgYWx3YXlzIGVuYWJsZWQuICBJIHN1c3BlY3QgaXQgaXMgZGlzYWJsZWQg
+YnkgaGFyZHdhcmUgc3RyYXBzIG9uCj4gc3lzdGVtcyB3aXRoIG5vIGRpc3BsYXkgY29ubmVjdG9y
+cyBvciBvdGhlciBzcGVjaWZpYyBPRU0gY29uZmlncy4KClRoYXQncyB3aGF0IEknbSBzYXlpbmcg
+LSBpdCBpcyBub3QuIFRoZXJlIGFyZSBzdHJhcHMsIGFuZCB0aGV5IGNhbiBiZQp1c2VkIHRvIGRp
+c2FibGUgdGhlIGRpc3BsYXkgYmxvY2suIEJ1dCB0aGV5J3JlIG9mdGVuIG5vdCBzZXQgdGhhdCB3
+YXkuCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
