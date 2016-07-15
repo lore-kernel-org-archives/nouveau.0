@@ -1,46 +1,42 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH v3 0/4] nouveau RPM fixes for Optimus (final)
-Date: Fri, 15 Jul 2016 12:10:23 -0400
-Message-ID: <CAKb7UvisjzPs_K1SNdDb7aZjxGQL4AOs05R8CX2xjU4uRpfcfA@mail.gmail.com>
-References: <20160715131218.2416-1-peter@lekensteyn.nl>
+From: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [Nouveau] [PATCH v3 0/4] nouveau RPM fixes for Optimus (final)
+Date: Fri, 15 Jul 2016 12:27:57 -0400
+Message-ID: <CADnq5_OBjHXO4sfakK0ZJPbHPrMACqdU7J-j9sHLjod0QcuzcA@mail.gmail.com>
+References: <20160715131218.2416-1-peter@lekensteyn.nl> <CAKb7UvisjzPs_K1SNdDb7aZjxGQL4AOs05R8CX2xjU4uRpfcfA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20160715131218.2416-1-peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Cc: linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-pci-owner@vger.kernel.org>
+In-Reply-To: <CAKb7UvisjzPs_K1SNdDb7aZjxGQL4AOs05R8CX2xjU4uRpfcfA@mail.gmail.com>
+Sender: linux-pci-owner@vger.kernel.org
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: Peter Wu <peter@lekensteyn.nl>, Linux PCI <linux-pci@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Bjorn Helgaas <helgaas@kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@redhat.com>, Mika Westerberg <mika.westerberg@linux.intel.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdWwgMTUsIDIwMTYgYXQgOToxMiBBTSwgUGV0ZXIgV3UgPHBldGVyQGxla2Vuc3Rl
-eW4ubmw+IHdyb3RlOgo+IEhpLAo+Cj4gSGVyZSBhcmUgdHdvIHBhdGNoZXMgdG8gZml4IGFuIGlz
-c3VlIHJlcG9ydGVkIG9uIGtlcm5lbCBidWd6aWxsYSAoaW5maW5pdGUgbG9vcAo+IGR1ZSB0byB1
-bmNoZWNrZWQgZnVuY3Rpb24pIGFuZCBhIG1vcmUgaW1wb3J0YW50IGZpeCB0byBmaXggaGFuZ2lu
-ZyBPcHRpbXVzCj4gbWFjaGluZXMgd2hlbiBydW50aW1lIFBNIGlzIGVuYWJsZWQgKHdpdGggcG0v
-cGNpIHBhdGNoZXMpLgo+Cj4gVGhlc2UgYXJlIHRoZSBmaW5hbCBwYXRjaGVzIHRhcmdldGluZyB2
-NC44LiBDaGFuZ2VzIGNvbXBhcmVkIHRvIHYyWzFdOgo+IGNvbGxlY3RlZCBSLWIgZnJvbSBIYW5z
-IGFuZCBNaWthIGFuZCBmaXhlZCBhIG1pbm9yIGNvbW1lbnQgc3R5bGUgaXNzdWUuCj4KPiBJIHJl
-Y29tbWVuZCBpdCB0byBiZSBtZXJnZWQgYmVmb3JlIHRoZSBwY2kvcG0gcGF0Y2hlc1syXSwgb3Ro
-ZXJ3aXNlIHRoZXJlIGlzIGEKPiB3aW5kb3cgd2hlcmUgbmV3ZXIgTnZpZGlhIE9wdGltdXMgbGFw
-dG9wcyBtaWdodCBmYWlsIHRvIHJ1bnRpbWUgcmVzdW1lIGFuZC9vcgo+IGxvY2sgdXAuICBPbmNl
-IHRoZSBwY2kvcG0gYnJhbmNoIGlzIG1lcmdlZCBJIHdpbGwgcHJvcG9zZSBhbm90aGVyIHBhdGNo
-IHRvCj4gaW1wcm92ZSByZWxpYWJpbGl0eVszXS4KPgo+IEtub3duIGlzc3VlIHdpdGggcGF0Y2gg
-NDogd2hlbiBhIE52aWRpYSBIRE1JIGF1ZGlvIGZ1bmN0aW9uIGlzIHByZXNlbnQsIHRoZQo+IGJy
-aWRnZSB3aWxsIG5vdCBzdXNwZW5kIGFuZCBoZW5jZSB0aGUgTnZpZGlhIGNhcmQgd2lsbCBzdGls
-bCBiZSBwb3dlcmVkLiBGaXhpbmcKClRoYXQncyBiYXNpY2FsbHkgYWxsIG9wdGltdXMgZ3B1J3Ms
-IHJpZ2h0PyBBbnl0aGluZyBHVDIxeCsgaGFzIGEgSERNSQphdWRpbyBzdWJmdW5jdGlvbiwgYW5k
-IHByaW9yIHRvIHRoYXQsIHRoZSBudmlkaWEgZ3B1IHRlbmRlZCB0byBiZSB0aGUKb25seSBncHUs
-IG9yIGhhcmQtbXV4ZWQuCgpJZiB0aGF0J3MgdGhlIGNhc2UsIHRoYXQncyBwcmV0dHkgbXVjaCBh
-IG5vbi1zdGFydGVyLCBJTU8uCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbm91dmVhdQo=
+On Fri, Jul 15, 2016 at 12:10 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
+> On Fri, Jul 15, 2016 at 9:12 AM, Peter Wu <peter@lekensteyn.nl> wrote:
+>> Hi,
+>>
+>> Here are two patches to fix an issue reported on kernel bugzilla (infinite loop
+>> due to unchecked function) and a more important fix to fix hanging Optimus
+>> machines when runtime PM is enabled (with pm/pci patches).
+>>
+>> These are the final patches targeting v4.8. Changes compared to v2[1]:
+>> collected R-b from Hans and Mika and fixed a minor comment style issue.
+>>
+>> I recommend it to be merged before the pci/pm patches[2], otherwise there is a
+>> window where newer Nvidia Optimus laptops might fail to runtime resume and/or
+>> lock up.  Once the pci/pm branch is merged I will propose another patch to
+>> improve reliability[3].
+>>
+>> Known issue with patch 4: when a Nvidia HDMI audio function is present, the
+>> bridge will not suspend and hence the Nvidia card will still be powered. Fixing
+>
+> That's basically all optimus gpu's, right? Anything GT21x+ has a HDMI
+> audio subfunction, and prior to that, the nvidia gpu tended to be the
+> only gpu, or hard-muxed.
+
+I'd imagine there is a strap on the asic so the audio function is only
+enabled if there is a connector actually wired to the dGPU.  It
+doesn't make much sense to expose audio if there is no way to use it.
+
+Alex
