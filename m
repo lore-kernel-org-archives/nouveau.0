@@ -1,288 +1,79 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96952] New: Noveau driver doesn't working well when
-	in Kdenlive
-Date: Sat, 16 Jul 2016 00:24:55 +0000
-Message-ID: <bug-96952-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou@gmail.com>
+Subject: Re: [Nouveau] [PATCH v3] drm/nouveau/fb/nv50: set DMA mask before
+ mapping scratch page
+Date: Sat, 16 Jul 2016 15:20:10 +0900
+Message-ID: <CAAVeFuLsLB8J_zAFZXxGesQjm5=6ZRjtC-4Si3OkCzx+WMMLrQ@mail.gmail.com>
+References: <1467910768-2643-1-git-send-email-ard.biesheuvel@linaro.org>
+ <CAAVeFuL+NEigyYk2LK3O5PLmeOSEOAKBpoT7TDbsvArWhtaA=g@mail.gmail.com> <CAKv+Gu-67zw0oNAmTfMD=JhgaD4=zPU5+uurUnTDDMrDyGTy_Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1991622488=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAKv+Gu-67zw0oNAmTfMD=JhgaD4=zPU5+uurUnTDDMrDyGTy_Q@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ard Biesheuvel <ard.biesheuvel@linaro.org>, Ben Skeggs <bskeggs@redhat.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
+On Sat, Jul 16, 2016 at 4:45 AM, Ard Biesheuvel
+<ard.biesheuvel@linaro.org> wrote:
+> On 15 July 2016 at 07:52, Alexandre Courbot <gnurou@gmail.com> wrote:
+>> On Fri, Jul 8, 2016 at 1:59 AM, Ard Biesheuvel
+>> <ard.biesheuvel@linaro.org> wrote:
+>>> The 100c08 scratch page is mapped using dma_map_page() before the TTM
+>>> layer has had a chance to set the DMA mask. This means we are still
+>>> running with the default of 32 when this code executes, and this causes
+>>> problems for platforms with no memory below 4 GB (such as AMD Seattle)
+>>>
+>>> So move the dma_map_page() to the .init hook, and set the streaming DMA
+>>> mask based on the MMU subdev parameters before performing the call.
+>>>
+>>> Signed-off-by: Ard Biesheuvel <ard.biesheuvel@linaro.org>
+>>> ---
+>>> I am sure there is a much better way to address this, but this fixes the
+>>> problem I get on AMD Seattle with a GeForce 210 PCIe card:
+>>>
+>>>    nouveau 0000:02:00.0: enabling device (0000 -> 0003)
+>>>    nouveau 0000:02:00.0: NVIDIA GT218 (0a8280b1)
+>>>    nouveau 0000:02:00.0: bios: version 70.18.a6.00.00
+>>>    nouveau 0000:02:00.0: fb ctor failed, -14
+>>>    nouveau: probe of 0000:02:00.0 failed with error -14
+>>>
+>>> v2: replace incorrect comparison of dma_addr_t type var against NULL
+>>> v3: rework code to get rid of DMA_ERROR_CODE references, which is not
+>>>     defined on all architectures
+>>>
+>>>  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.c | 40 ++++++++++++++------
+>>>  1 file changed, 29 insertions(+), 11 deletions(-)
+>>
+>> I think the same problem exists in fb/gf100.c, would be nice to fix it
+>> there as well.
+>>
+>> I have faced similar issues on Tegra before. I wonder whether this
+>> could not be addressed the same way I did, i.e. by setting a
+>> temporary, fail-safe DMA mask in nvkm_device_pci_new()? That would
+>> allow all subdevs to map pages to the device safely in their init.
+>> With your solution, each subdev in that scenario needs to set a DMA
+>> mask to be safe.
+>>
+>> Not sure whether that's practical as I suppose you want to make the
+>> DMA mask larger than 32 bits?
+>>
+>
+> Yes. This particular device supports 40 bits (judging from the MMU
+> driver code) of physical address space, and RAM starts at
+> 0x80_0000_0000 on AMD Seattle, so we need all 40 bits.
+>
+>> If you absolutely need to do this in the device, can we move the DMA
+>> mask setting logic in nouveau_ttm into its own function and call it
+>> from the FB driver to make sure the mask is correctly set? Maybe this
+>> could even be made a MMU function and called during MMU ctor or init
+>> (in the latter case we would also need to reorder MMU init to make it
+>> happen before FB and INSTMEM).
+>
+> Happy to have stab at implementing this, but I'd like some buy in from
+> the maintainer first before I dive into this. Ben is the person to
+> give his blessing, I suppose? He has not responded to any of my
+> postings so far, unfortunately.
 
---===============1991622488==
-Content-Type: multipart/alternative; boundary="14686286950.1dE2.25619";
- charset="UTF-8"
-
-
---14686286950.1dE2.25619
-Date: Sat, 16 Jul 2016 00:24:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96952
-
-            Bug ID: 96952
-           Summary: Noveau driver doesn't working well when in Kdenlive
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: rafaelantoniofavero-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Recently I'm having dificulties with Kdenlive, in the logs os Ubuntu 15.10,
-there was a issue involving the noveau driver. Log in next.
-
-Log:
-
-Jul 10 19:09:06 Rafael-desktop gnome-session[1605]: QXcbConnection: XCB err=
-or:
-8 (BadMatch), sequence: 7899, resource id: 60817680, major code: 130 (Unkno=
-wn),
-minor code: 3
-Jul 10 19:09:06 Rafael-desktop gnome-session[1605]: QXcbConnection: XCB err=
-or:
-8 (BadMatch), sequence: 7947, resource id: 60817680, major code: 130 (Unkno=
-wn),
-minor code: 3
-Jul 10 19:09:10 Rafael-desktop gnome-session[1605]: QXcbConnection: XCB err=
-or:
-8 (BadMatch), sequence: 19520, resource id: 60817680, major code: 130
-(Unknown), minor code: 3
-Jul 10 19:09:10 Rafael-desktop gnome-session[1605]: QXcbConnection: XCB err=
-or:
-8 (BadMatch), sequence: 19548, resource id: 60817680, major code: 130
-(Unknown), minor code: 3
-Jul 10 19:09:10 Rafael-desktop gnome-session[1605]: QXcbConnection: XCB err=
-or:
-8 (BadMatch), sequence: 19639, resource id: 60817680, major code: 130
-(Unknown), minor code: 3
-Jul 10 19:09:11 Rafael-desktop gnome-session[1605]: nouveau: kernel rejected
-pushbuf: Arquivo ou diret=C3=B3rio n=C3=A3o encontrado
-Jul 10 19:09:11 Rafael-desktop gnome-session[1605]: nouveau: ch0: krec 0 pu=
-shes
-0 bufs 2 relocs 0
-Jul 10 19:09:11 Rafael-desktop gnome-session[1605]: nouveau: ch0: buf 00000=
-000
-00000002 00000004 00000004 00000000
-Jul 10 19:09:11 Rafael-desktop gnome-session[1605]: nouveau: ch0: buf 00000=
-001
-00000006 00000004 00000000 00000004
-Jul 10 19:09:11 Rafael-desktop kernel: [ 8475.196277] nouveau E[kdenlive[58=
-04]]
-Unknown handle 0x0000001d
-Jul 10 19:09:11 Rafael-desktop kernel: [ 8475.196286] nouveau E[kdenlive[58=
-04]]
-validate_init
-Jul 10 19:09:11 Rafael-desktop kernel: [ 8475.196287] nouveau E[kdenlive[58=
-04]]
-validate: -2
-Jul 10 19:09:12 Rafael-desktop kernel: [ 8476.033404] show_signal_msg: 45
-callbacks suppressed
-Jul 10 19:09:12 Rafael-desktop kernel: [ 8476.033411] FrameRenderer[5821]:
-segfault at 8 ip 00007f967805f58c sp 00007f96477fd680 error 4 in
-libdrm_nouveau.so.2.0.0[7f967805c000+6000]
-
-I have a NVidia 210 GeForce.
-It's my first time here and if I made a mistake sorry, wasn't my pretention.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14686286950.1dE2.25619
-Date: Sat, 16 Jul 2016 00:24:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Noveau driver doesn't working well when in Kdenlive"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96952">96952</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Noveau driver doesn't working well when in Kdenlive
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>rafaelantoniofavero&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Recently I'm having dificulties with Kdenlive, in the logs os =
-Ubuntu 15.10,
-there was a issue involving the noveau driver. Log in next.
-
-Log:
-
-Jul 10 19:09:06 Rafael-desktop gnome-session[1605]: QXcbConnection: XCB err=
-or:
-8 (BadMatch), sequence: 7899, resource id: 60817680, major code: 130 (Unkno=
-wn),
-minor code: 3
-Jul 10 19:09:06 Rafael-desktop gnome-session[1605]: QXcbConnection: XCB err=
-or:
-8 (BadMatch), sequence: 7947, resource id: 60817680, major code: 130 (Unkno=
-wn),
-minor code: 3
-Jul 10 19:09:10 Rafael-desktop gnome-session[1605]: QXcbConnection: XCB err=
-or:
-8 (BadMatch), sequence: 19520, resource id: 60817680, major code: 130
-(Unknown), minor code: 3
-Jul 10 19:09:10 Rafael-desktop gnome-session[1605]: QXcbConnection: XCB err=
-or:
-8 (BadMatch), sequence: 19548, resource id: 60817680, major code: 130
-(Unknown), minor code: 3
-Jul 10 19:09:10 Rafael-desktop gnome-session[1605]: QXcbConnection: XCB err=
-or:
-8 (BadMatch), sequence: 19639, resource id: 60817680, major code: 130
-(Unknown), minor code: 3
-Jul 10 19:09:11 Rafael-desktop gnome-session[1605]: nouveau: kernel rejected
-pushbuf: Arquivo ou diret=C3=B3rio n=C3=A3o encontrado
-Jul 10 19:09:11 Rafael-desktop gnome-session[1605]: nouveau: ch0: krec 0 pu=
-shes
-0 bufs 2 relocs 0
-Jul 10 19:09:11 Rafael-desktop gnome-session[1605]: nouveau: ch0: buf 00000=
-000
-00000002 00000004 00000004 00000000
-Jul 10 19:09:11 Rafael-desktop gnome-session[1605]: nouveau: ch0: buf 00000=
-001
-00000006 00000004 00000000 00000004
-Jul 10 19:09:11 Rafael-desktop kernel: [ 8475.196277] nouveau E[kdenlive[58=
-04]]
-Unknown handle 0x0000001d
-Jul 10 19:09:11 Rafael-desktop kernel: [ 8475.196286] nouveau E[kdenlive[58=
-04]]
-validate_init
-Jul 10 19:09:11 Rafael-desktop kernel: [ 8475.196287] nouveau E[kdenlive[58=
-04]]
-validate: -2
-Jul 10 19:09:12 Rafael-desktop kernel: [ 8476.033404] show_signal_msg: 45
-callbacks suppressed
-Jul 10 19:09:12 Rafael-desktop kernel: [ 8476.033411] FrameRenderer[5821]:
-segfault at 8 ip 00007f967805f58c sp 00007f96477fd680 error 4 in
-libdrm_nouveau.so.2.0.0[7f967805c000+6000]
-
-I have a NVidia 210 GeForce.
-It's my first time here and if I made a mistake sorry, wasn't my pretention=
-.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14686286950.1dE2.25619--
-
---===============1991622488==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1991622488==--
+A patch would make it easier to judge whether this is the right thing
+to do, but let's hear what Ben thinks about it.
