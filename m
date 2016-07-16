@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96952] Noveau driver doesn't working well when on
 	Kdenlive
-Date: Sat, 16 Jul 2016 00:25:46 +0000
-Message-ID: <bug-96952-8800-ZDTaQcWRjO@http.bugs.freedesktop.org/>
+Date: Sat, 16 Jul 2016 00:26:18 +0000
+Message-ID: <bug-96952-8800-SwyswIp7gG@http.bugs.freedesktop.org/>
 References: <bug-96952-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0870551057=="
+Content-Type: multipart/mixed; boundary="===============2049831185=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0870551057==
-Content-Type: multipart/alternative; boundary="14686287450.BFec62.24719";
+--===============2049831185==
+Content-Type: multipart/alternative; boundary="14686287771.039Fa1.25520";
  charset="UTF-8"
 
 
---14686287450.BFec62.24719
-Date: Sat, 16 Jul 2016 00:25:45 +0000
+--14686287771.039Fa1.25520
+Date: Sat, 16 Jul 2016 00:26:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,16 +40,15 @@ Rafael Favero <rafaelantoniofavero-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> chan
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Noveau driver doesn't       |Noveau driver doesn't
-                   |working well when in        |working well when on
-                   |Kdenlive                    |Kdenlive
+           Hardware|Other                       |x86-64 (AMD64)
+                 OS|All                         |Linux (All)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14686287450.BFec62.24719
-Date: Sat, 16 Jul 2016 00:25:45 +0000
+--14686287771.039Fa1.25520
+Date: Sat, 16 Jul 2016 00:26:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,10 +77,18 @@ oniofavero&#64;gmail.com" title=3D"Rafael Favero &lt;rafaelantoniofavero&#6=
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>Noveau driver doesn't working well when in Kdenlive
+           <td style=3D"text-align:right;">Hardware</td>
+           <td>Other
            </td>
-           <td>Noveau driver doesn't working well when on Kdenlive
+           <td>x86-64 (AMD64)
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">OS</td>
+           <td>All
+           </td>
+           <td>Linux (All)
            </td>
          </tr></table>
       <p>
@@ -97,9 +104,9 @@ oniofavero&#64;gmail.com" title=3D"Rafael Favero &lt;rafaelantoniofavero&#6=
     </body>
 </html>=
 
---14686287450.BFec62.24719--
+--14686287771.039Fa1.25520--
 
---===============0870551057==
+--===============2049831185==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0870551057==--
+--===============2049831185==--
