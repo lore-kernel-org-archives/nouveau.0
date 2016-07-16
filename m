@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96957] [NVE0] Feature request: Support Vulkan on
-	Kepler cards.
-Date: Sat, 16 Jul 2016 16:11:27 +0000
-Message-ID: <bug-96957-8800-FUgBmAYCho@http.bugs.freedesktop.org/>
-References: <bug-96957-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
+ after dynamic poweroff
+Date: Sat, 16 Jul 2016 17:14:38 +0000
+Message-ID: <bug-94725-8800-SvzQ4u3J6i@http.bugs.freedesktop.org/>
+References: <bug-94725-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1818931055=="
+Content-Type: multipart/mixed; boundary="===============1136143133=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-96957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +21,53 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1818931055==
-Content-Type: multipart/alternative; boundary="14686854870.D1a94.7383";
+--===============1136143133==
+Content-Type: multipart/alternative; boundary="14686892782.FCEcAe.15928";
  charset="UTF-8"
 
 
---14686854870.D1a94.7383
-Date: Sat, 16 Jul 2016 16:11:27 +0000
+--14686892782.FCEcAe.15928
+Date: Sat, 16 Jul 2016 17:14:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96957
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94725
 
---- Comment #2 from ovariegata-/E1597aS9LQAvxtiuMwx3w@public.gmane.org ---
-Thanks for the reply, I have already talked to you about this in #nouveau a=
-nd
-made this request again here so that it would be more visible given recent
-developments with RetroArch. I do realize it would be a lot of work and even
-though I would like to help with this I'm just not nearly at that level of
-programming yet.
+--- Comment #24 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
+@Efrem Your issue occurs with completely different (desktop) hardware. Plea=
+se
+file a new bug.
 
-Also, not really relevant, but I have not given any money to nvidia in years
-and don't plan to again. My card is second hand. :)
+(In reply to Rashed Abdel-Tawab from comment #17)
+> Created attachment 122747 [details]
+> new dmesg during hang
+>=20
+> I decided to keep testing this in case we missed something, and running l=
+shw
+> twice in a row causes it to hang. I'm not sure what's up with it so I've
+> attached the dmesg. It looks pretty similar to before, but that doesn't m=
+ake
+> sense since Alexandre patched the original problem.
+
+Chris Wilson reported a similar trace for an Acer Aspire VN7-791G.
+https://lists.freedesktop.org/archives/nouveau/2016-July/025602.html
+
+I found ACPI information in the BIOS firmware for your laptop from
+https://us.msi.com/Laptop/GS60-Ghost-Pro-4K-6th-Gen-GTX-970M.html
+It could be the same PCI problem that I and Tobias are experiencing, except
+that our laptops hang in ACPI while Rashed's firmware does not check the PC=
+Ie
+link status in the ACPI firmware. Still digging...
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14686854870.D1a94.7383
-Date: Sat, 16 Jul 2016 16:11:27 +0000
+--14686892782.FCEcAe.15928
+Date: Sat, 16 Jul 2016 17:14:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,30 +82,53 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTABUG - [NVE0] Feature request: Support Vulkan on Ke=
-pler cards."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96957#c2">Comment=
- # 2</a>
+          bz_status_NEW "
+   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
+c poweroff"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725#c24">Commen=
+t # 24</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTABUG - [NVE0] Feature request: Support Vulkan on Ke=
-pler cards."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96957">bug 96957<=
+          bz_status_NEW "
+   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
+c poweroff"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725">bug 94725<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ovariegata&#64;yahoo.com" title=3D"ovariegata&#64;yahoo.com">ovariegata&#64=
-;yahoo.com</a>
+peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
+> <span class=3D"fn">Peter Wu</span></a>
 </span></b>
-        <pre>Thanks for the reply, I have already talked to you about this =
-in #nouveau and
-made this request again here so that it would be more visible given recent
-developments with RetroArch. I do realize it would be a lot of work and even
-though I would like to help with this I'm just not nearly at that level of
-programming yet.
+        <pre>&#64;Efrem Your issue occurs with completely different (deskto=
+p) hardware. Please
+file a new bug.
 
-Also, not really relevant, but I have not given any money to nvidia in years
-and don't plan to again. My card is second hand. :)</pre>
+(In reply to Rashed Abdel-Tawab from <a href=3D"show_bug.cgi?id=3D94725#c17=
+">comment #17</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D122747" name=3D"attach_122747" title=3D"new dmesg during hang">atta=
+chment 122747</a> <a href=3D"attachment.cgi?id=3D122747&amp;action=3Dedit" =
+title=3D"new dmesg during hang">[details]</a></span>
+&gt; new dmesg during hang
+&gt;=20
+&gt; I decided to keep testing this in case we missed something, and runnin=
+g lshw
+&gt; twice in a row causes it to hang. I'm not sure what's up with it so I'=
+ve
+&gt; attached the dmesg. It looks pretty similar to before, but that doesn'=
+t make
+&gt; sense since Alexandre patched the original problem.</span >
+
+Chris Wilson reported a similar trace for an Acer Aspire VN7-791G.
+<a href=3D"https://lists.freedesktop.org/archives/nouveau/2016-July/025602.=
+html">https://lists.freedesktop.org/archives/nouveau/2016-July/025602.html<=
+/a>
+
+I found ACPI information in the BIOS firmware for your laptop from
+<a href=3D"https://us.msi.com/Laptop/GS60-Ghost-Pro-4K-6th-Gen-GTX-970M.htm=
+l">https://us.msi.com/Laptop/GS60-Ghost-Pro-4K-6th-Gen-GTX-970M.html</a>
+It could be the same PCI problem that I and Tobias are experiencing, except
+that our laptops hang in ACPI while Rashed's firmware does not check the PC=
+Ie
+link status in the ACPI firmware. Still digging...</pre>
         </div>
       </p>
 
@@ -101,14 +138,13 @@ and don't plan to again. My card is second hand. :)</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14686854870.D1a94.7383--
+--14686892782.FCEcAe.15928--
 
---===============1818931055==
+--===============1136143133==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +154,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1818931055==--
+--===============1136143133==--
