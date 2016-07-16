@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96957] [NVE0] Feature request: Support Vulkan on
 	Kepler cards.
-Date: Sat, 16 Jul 2016 15:09:36 +0000
-Message-ID: <bug-96957-8800-Bu6tfIluII@http.bugs.freedesktop.org/>
+Date: Sat, 16 Jul 2016 15:09:59 +0000
+Message-ID: <bug-96957-8800-VIGBRnFK5I@http.bugs.freedesktop.org/>
 References: <bug-96957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0743149444=="
+Content-Type: multipart/mixed; boundary="===============1621591085=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0743149444==
-Content-Type: multipart/alternative; boundary="14686817750.93CE79f.32257";
+--===============1621591085==
+Content-Type: multipart/alternative; boundary="14686817991.ebbd3Dc.32152";
  charset="UTF-8"
 
 
---14686817750.93CE79f.32257
-Date: Sat, 16 Jul 2016 15:09:35 +0000
+--14686817991.ebbd3Dc.32152
+Date: Sat, 16 Jul 2016 15:09:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,30 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96957
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This is not the proper forum for feature requests like this.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-The people behind nouveau are certainly aware of Vulkan, in a perfect world,
-would develop drivers for it. However, it's a lot of work. It took Intel
-developers many months working full-time and with several people to support=
- it.
-Nouveau just doesn't have this sort of manpower.
-
-If you're interested in leading such an effort, join us at #nouveau on
-irc.freenode.net.
-
-If you're interested in open-source support (GL or otherwise), buy an AMD g=
-pu
-next time - giving your money to NVIDIA isn't helping anyone [involved in O=
-SS].
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |NOTABUG
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14686817750.93CE79f.32257
-Date: Sat, 16 Jul 2016 15:09:35 +0000
+--14686817991.ebbd3Dc.32152
+Date: Sat, 16 Jul 2016 15:09:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,39 +60,40 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE0] Feature request: Support Vulkan on Kepler cards."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96957#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE0] Feature request: Support Vulkan on Kepler cards."
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTABUG - [NVE0] Feature request: Support Vulkan on Ke=
+pler cards."
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96957">bug 96957<=
 /a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>This is not the proper forum for feature requests like this.
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-The people behind nouveau are certainly aware of Vulkan, in a perfect world,
-would develop drivers for it. However, it's a lot of work. It took Intel
-developers many months working full-time and with several people to support=
- it.
-Nouveau just doesn't have this sort of manpower.
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
 
-If you're interested in leading such an effort, join us at #nouveau on
-irc.freenode.net.
-
-If you're interested in open-source support (GL or otherwise), buy an AMD g=
-pu
-next time - giving your money to NVIDIA isn't helping anyone [involved in O=
-SS].</pre>
-        </div>
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>NOTABUG
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -110,15 +101,15 @@ SS].</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14686817750.93CE79f.32257--
+--14686817991.ebbd3Dc.32152--
 
---===============0743149444==
+--===============1621591085==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -128,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0743149444==--
+--===============1621591085==--
