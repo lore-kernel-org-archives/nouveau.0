@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96957] [NVE0] Feature request: Support Vulkan on
 	Kepler cards.
-Date: Sat, 16 Jul 2016 15:09:59 +0000
-Message-ID: <bug-96957-8800-VIGBRnFK5I@http.bugs.freedesktop.org/>
+Date: Sat, 16 Jul 2016 16:11:27 +0000
+Message-ID: <bug-96957-8800-FUgBmAYCho@http.bugs.freedesktop.org/>
 References: <bug-96957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1621591085=="
+Content-Type: multipart/mixed; boundary="===============1818931055=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1621591085==
-Content-Type: multipart/alternative; boundary="14686817991.ebbd3Dc.32152";
+--===============1818931055==
+Content-Type: multipart/alternative; boundary="14686854870.D1a94.7383";
  charset="UTF-8"
 
 
---14686817991.ebbd3Dc.32152
-Date: Sat, 16 Jul 2016 15:09:59 +0000
+--14686854870.D1a94.7383
+Date: Sat, 16 Jul 2016 16:11:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96957
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #2 from ovariegata-/E1597aS9LQAvxtiuMwx3w@public.gmane.org ---
+Thanks for the reply, I have already talked to you about this in #nouveau a=
+nd
+made this request again here so that it would be more visible given recent
+developments with RetroArch. I do realize it would be a lot of work and even
+though I would like to help with this I'm just not nearly at that level of
+programming yet.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |NOTABUG
+Also, not really relevant, but I have not given any money to nvidia in years
+and don't plan to again. My card is second hand. :)
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14686817991.ebbd3Dc.32152
-Date: Sat, 16 Jul 2016 15:09:59 +0000
+--14686854870.D1a94.7383
+Date: Sat, 16 Jul 2016 16:11:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,40 +64,35 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTABUG - [NVE0] Feature request: Support Vulkan on Ke=
+pler cards."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96957#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED NOTABUG - [NVE0] Feature request: Support Vulkan on Ke=
 pler cards."
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96957">bug 96957<=
 /a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ovariegata&#64;yahoo.com" title=3D"ovariegata&#64;yahoo.com">ovariegata&#64=
+;yahoo.com</a>
+</span></b>
+        <pre>Thanks for the reply, I have already talked to you about this =
+in #nouveau and
+made this request again here so that it would be more visible given recent
+developments with RetroArch. I do realize it would be a lot of work and even
+though I would like to help with this I'm just not nearly at that level of
+programming yet.
 
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTABUG
-           </td>
-         </tr></table>
-      <p>
+Also, not really relevant, but I have not given any money to nvidia in years
+and don't plan to again. My card is second hand. :)</pre>
+        </div>
       </p>
 
 
@@ -101,15 +100,15 @@ pler cards."
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14686817991.ebbd3Dc.32152--
+--14686854870.D1a94.7383--
 
---===============1621591085==
+--===============1818931055==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1621591085==--
+--===============1818931055==--
