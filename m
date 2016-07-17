@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 96968] [NVC0] disp: ERROR 7 [INVALID_HANDLE] 00 []
  chid 0 mthd 0088 data f000000
-Date: Sun, 17 Jul 2016 23:41:44 +0000
-Message-ID: <bug-96968-8800-VHZ36RtAZr@http.bugs.freedesktop.org/>
+Date: Sun, 17 Jul 2016 23:42:56 +0000
+Message-ID: <bug-96968-8800-qymcbgANgy@http.bugs.freedesktop.org/>
 References: <bug-96968-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1638328864=="
+Content-Type: multipart/mixed; boundary="===============1321789354=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96968-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1638328864==
-Content-Type: multipart/alternative; boundary="14687989040.D326fCbb.25384";
+--===============1321789354==
+Content-Type: multipart/alternative; boundary="14687989750.A9b9BF.25892";
  charset="UTF-8"
 
 
---14687989040.D326fCbb.25384
-Date: Sun, 17 Jul 2016 23:41:44 +0000
+--14687989750.A9b9BF.25892
+Date: Sun, 17 Jul 2016 23:42:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,26 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96968
 
-Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> changed:
+--- Comment #2 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
+Created attachment 125124
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125124&action=3Dedit
+dmesg for "Arch Linux LTS" image from 11 July 2016 (4.6-3-1-ARCH)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org
-
---- Comment #1 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
-Created attachment 125123
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125123&action=3Dedit
-dmesg for "Arch Linux latest" image from 11 July 2016 (4.7.0-rc5-lts+)
-
-This one shows issues similar to the 4.6.3-1-ARCH logs, but with additional
-soft lockups.
+Not exactly the linux-lts kernel from Arch, but it is the current version.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14687989040.D326fCbb.25384
-Date: Sun, 17 Jul 2016 23:41:44 +0000
+--14687989750.A9b9BF.25892
+Date: Sun, 17 Jul 2016 23:42:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,40 +59,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:peter&#64=
-;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"> <span c=
-lass=3D"fn">Peter Wu</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC0] disp: ERROR 7 [INVALID_HANDLE] 00 [] chid 0 mthd 0=
-088 data f000000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96968">bug 96968<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>peter&#64;lekensteyn.nl
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC0] disp: ERROR 7 [INVALID_HANDLE] 00 [] chid 0 mthd 0=
 088 data f000000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96968#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96968#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC0] disp: ERROR 7 [INVALID_HANDLE] 00 [] chid 0 mthd 0=
@@ -110,17 +78,15 @@ lass=3D"fn">Peter Wu</span></a>
 peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
 > <span class=3D"fn">Peter Wu</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125123=
-" name=3D"attach_125123" title=3D"dmesg for &quot;Arch Linux latest&quot; i=
-mage from 11 July 2016 (4.7.0-rc5-lts+)">attachment 125123</a> <a href=3D"a=
-ttachment.cgi?id=3D125123&amp;action=3Dedit" title=3D"dmesg for &quot;Arch =
-Linux latest&quot; image from 11 July 2016 (4.7.0-rc5-lts+)">[details]</a><=
-/span>
-dmesg for &quot;Arch Linux latest&quot; image from 11 July 2016 (4.7.0-rc5-=
-lts+)
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125124=
+" name=3D"attach_125124" title=3D"dmesg for &quot;Arch Linux LTS&quot; imag=
+e from 11 July 2016 (4.6-3-1-ARCH)">attachment 125124</a> <a href=3D"attach=
+ment.cgi?id=3D125124&amp;action=3Dedit" title=3D"dmesg for &quot;Arch Linux=
+ LTS&quot; image from 11 July 2016 (4.6-3-1-ARCH)">[details]</a></span>
+dmesg for &quot;Arch Linux LTS&quot; image from 11 July 2016 (4.6-3-1-ARCH)
 
-This one shows issues similar to the 4.6.3-1-ARCH logs, but with additional
-soft lockups.</pre>
+Not exactly the linux-lts kernel from Arch, but it is the current version.<=
+/pre>
         </div>
       </p>
 
@@ -134,9 +100,9 @@ soft lockups.</pre>
     </body>
 </html>=
 
---14687989040.D326fCbb.25384--
+--14687989750.A9b9BF.25892--
 
---===============1638328864==
+--===============1321789354==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1638328864==--
+--===============1321789354==--
