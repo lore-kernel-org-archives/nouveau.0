@@ -1,19 +1,13 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/fbcon: fix deadlock with
-	FBIOPUT_CON2FBMAP
-Date: Mon, 18 Jul 2016 08:48:59 +0200
-Message-ID: <20160718064859.GS17101@phenom.ffwll.local>
-References: <20160712164934.1390-1-peter@lekensteyn.nl>
- <20160713095449.GZ23520@phenom.ffwll.local>
- <20160713124050.GA5178@al>
- <20160713145718.GP23520@phenom.ffwll.local>
- <20160715111051.GA2632@al>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96952] Nouveau driver doesn't working well when on
+	Kdenlive
+Date: Mon, 18 Jul 2016 13:43:51 +0000
+Message-ID: <bug-96952-8800-KIBI3LzlUB@http.bugs.freedesktop.org/>
+References: <bug-96952-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1980006008=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20160715111051.GA2632@al>
+In-Reply-To: <bug-96952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,170 +17,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdWwgMTUsIDIwMTYgYXQgMDE6MTA6NTFQTSArMDIwMCwgUGV0ZXIgV3Ugd3JvdGU6
-Cj4gT24gV2VkLCBKdWwgMTMsIDIwMTYgYXQgMDQ6NTc6MTlQTSArMDIwMCwgRGFuaWVsIFZldHRl
-ciB3cm90ZToKPiA+IE9uIFdlZCwgSnVsIDEzLCAyMDE2IGF0IDAyOjQwOjUwUE0gKzAyMDAsIFBl
-dGVyIFd1IHdyb3RlOgo+ID4gPiBPbiBXZWQsIEp1bCAxMywgMjAxNiBhdCAxMTo1NDo0OUFNICsw
-MjAwLCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+ID4gPiA+IE9uIFR1ZSwgSnVsIDEyLCAyMDE2IGF0
-IDA2OjQ5OjM0UE0gKzAyMDAsIFBldGVyIFd1IHdyb3RlOgo+ID4gPiA+ID4gVGhlIEZCSU9QVVRf
-Q09OMkZCTUFQIGlvY3RsIHRha2VzIGEgY29uc29sZV9sb2NrKCkuIFdoZW4gdGhpcyBpcyBjYWxs
-ZWQKPiA+ID4gPiA+IHdoaWxlIG5vdXZlYXUgd2FzIHJ1bnRpbWUgc3VzcGVuZGVkLCBhIGRlYWRs
-b2NrIHdvdWxkIG9jY3VyIGR1ZSB0bwo+ID4gPiA+ID4gbm91dmVhdV9mYmNvbl9zZXRfc3VzcGVu
-ZCBhbHNvIHRyeWluZyB0byBvYnRhaW4gY29uc29sZV9sb2NrKCkuCj4gPiA+ID4gPiAKPiA+ID4g
-PiA+IEZpeCB0aGlzIGJ5IGRlbGF5aW5nIHRoZSBkcm1fZmJfaGVscGVyX3NldF9zdXNwZW5kIGNh
-bGwuIEJhc2VkIG9uIHRoZQo+ID4gPiA+ID4gaTkxNSBjb2RlICh3aGljaCB3YXMgZG9uZSBmb3Ig
-cGVyZm9ybWFuY2UgcmVhc29ucyB0aG91Z2gpLgo+ID4gPiA+ID4gCj4gPiA+ID4gPiBDYzogQ2hy
-aXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gPiA+ID4gPiBDYzogRGFuaWVs
-IFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPiA+ID4gPiA+IFNpZ25lZC1vZmYtYnk6
-IFBldGVyIFd1IDxwZXRlckBsZWtlbnN0ZXluLm5sPgo+ID4gPiA+ID4gLS0tCj4gPiA+ID4gPiBU
-ZXN0ZWQgb24gdG9wIG9mIHY0LjctcmM1LCB0aGUgZGVhZGxvY2sgaXMgZ29uZS4KPiA+ID4gPiAK
-PiA+ID4gPiBJZiB3ZSBib3RoZXIgd2l0aCB0aGlzLCBpdCBzaG91bGQgaW1vIGJlIG1vdmVkIGlu
-dG8gdGhlIGRybV9mYl9oZWxwZXIuYwo+ID4gPiA+IGZ1bmN0aW9uIGRybV9mYl9oZWxwZXJfc2V0
-X3N1c3BlbmQoKS4gQnV0IHRoaXMgYWxzbyBzbWVsbHMgbGlrZSBzb21lIGtpbmQKPiA+ID4gPiBv
-ZiBiYWQgZHVjdC10YXBlLiBJIHRoaW5rIEx1a2FzIGlzIHdvcmtpbmcgb24gc29tZSBvdGhlciBy
-cG0gdnMuIGZiZGV2Cj4gPiA+ID4gZGVhZGxvY2tzLCBtYXliZSB3ZSBjb3VsZCBmaXggdGhlbSBh
-bGwgd2l0aCBvbmUgcHJvcGVyIGZpeD8gSSd2ZSBtYWRlIHNvbWUKPiA+ID4gPiBjb21tZW50cyBv
-biBMdWthcycgbGFzdCBwYXRjaCBzZXJpZXMuCj4gPiA+IAo+ID4gPiBUaGlzIHBhdGNoIGlzIG9u
-bHkgbmVlZGVkIGZvciBkcml2ZXJzIHRoYXQgdXNlIGNvbnNvbGVfbG9jayAoZm9yCj4gPiA+IGRy
-bV9mYl9oZWxwZXJfc2V0X3N1c3BlbmQpIGluIHRoZWlyIHJ1bnRpbWUgcmVzdW1lIGZ1bmN0aW9u
-cy4KPiA+ID4gTHVrYXMgcG9zdGVkIGZpeGVzIGZvciBydW50aW1lIFBNIHJlZmVyZW5jZSBsZWFr
-cywgdGhvc2UgYXJlIGRpZmZlcmVudAo+ID4gPiBmcm9tIHRoaXMgZGVhZGxvY2sgKHNlZQo+ID4g
-PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9kcmktZGV2ZWwvMjAxNi1K
-dWx5LzExMzAwNS5odG1sCj4gPiA+IGZvciBhIGJhY2t0cmFjZSBmb3IgdGhpcyBpc3N1ZSkuCj4g
-PiA+IAo+ID4gPiBUaGUgZGVhZGxvY2sgY291bGQgYWxzbyBiZSBhdm9pZGVkIGlmIHRoZSBkZXZp
-Y2UgYmFja2luZyB0aGUgZmJjb24gaXMKPiA+ID4gc29tZWhvdyBydW50aW1lLXJlc3VtZWQgb3V0
-c2lkZSB0aGUgbG9jaywgYnV0IHRoYXQgZmVlbHMgbGlrZSBhIGxhcmdlcgo+ID4gPiBoYWNrIHRo
-YXQgZG9lcyBub3Qgc2VlbSBlYXN5Lgo+ID4gPiAKPiA+ID4gVGhlIGk5MTUgcGF0Y2ggd2FzIGRv
-bmUgdG8gcmVkdWNlIHJlc3VtZSB0aW1lIChkdWUgdG8gY29uc29sZV9sb2NrCj4gPiA+IGNvbnRl
-bnRpb24pLCB0aGF0IGZlYXR1cmUgc2VlbXMgdXNlZnVsIHRvIGFsbCBvdGhlciBkcml2ZXJzIHRv
-byBldmVuIGlmCj4gPiA+IHRoZSBkZWFkbG9jayBpcyBmaXhlZCBpbiBhIGRpZmZlcmVudCB3YXku
-Cj4gPiAKPiA+IEkgbWlnaHQgaGF2ZSBpbWFnaW5lZCBzb21ldGhpbmcsIGJ1dCBJIHRob3VnaHQg
-THVrYXMgaXMgYWxyZWFkeSB3b3JraW5nIG9uCj4gPiBzb21lIHJwbSB2cy4gdmdhX3N3aXRjaGVy
-b28gaW52ZXJzaW9ucy4gQnV0IGxvb2tpbmcgYWdhaW4gdGhpcyB3YXMgb24gdGhlCj4gPiBhdWRp
-byBzaWRlLgo+ID4gCj4gPiBJIHRoaW5rIHRoZSBwcm9wZXIgc29sdXRpb24gZm9yIGZiY29uIHdv
-dWxkIGJlIGZvciB0aGUgZmJkZXYgZW11bGF0aW9uIHRvCj4gPiBhbHNvIGhvbGQgYSBydW50aW1l
-IHBtIHJlZmVyZW5jZXMgd2hlbiB0aGUgY29uc29sZSBpcyBpbiB1c2UuCj4gCj4gbm91dmVhdSBk
-b2VzIHRoaXMgYnkgYWRkaW5nIGEgZmJfb3BlbiBhbmQgZmJfcmVsZWFzZSBmdW5jdGlvbiB0aGF0
-IGNhbGxzCj4gcG1fcnVudGltZV9nZXQgYW5kIHBtX3J1bnRpbWVfcHV0IHJlc3BlY3RpdmVseSAo
-YW5kIGlzIHRoZSBvbmx5IGRyaXZlcgo+IGRvaW5nIHRoaXMpLiBTbyB0aGF0IGlzIHdoeSBpdCBj
-YXVzZXMgdGhlIGNvbnNvbGVfbG9jayBpc3N1ZSBmb3IKPiBub3V2ZWF1LCBidXQgbm90IGZvciBv
-dGhlcnMuCj4gCj4gPiBUaGlzIHNob3VsZCBhbHJlYWR5IGhhcHBlbiBjb3JyZWN0bHkgZm9yIHZi
-bGFuaywgdGhlIG1vcmUgdHJpY2t5IHBhcnQKPiA+IGlzIGZiZGV2IG1tYXAgYW5kIGZiY29uOgo+
-ID4gCj4gPiAtIEkgaGF2ZSBubyBpZGVhLCBidXQgdGhlcmUgc2hvdWxkIGJlIGEgd2F5IHRvIGlu
-dGVyY2VwdCBmYmRldiB1c2Vyc3BhY2UKPiA+ICAgbW1hcHMgYW5kIG1ha2Ugc3VyZSB0aGF0IGFz
-IGxvbmcgYXMgYW4gYXBwIGhhcyB0aGUgZmJkZXYgbW1hcHBlZCB3ZQo+ID4gICBkb24ndCBydW50
-aW1lIHN1c3BlbmQuIE5vIG9uZSByZWFsbHkgc2hvdWxkIGJlIGRvaW5nIHRoYXQgKGF0IGxlYXN0
-IGZvcgo+ID4gICBub3JtYWwgc2V0dXBzKSwgaGVuY2UgdGhpcyBzaG91bGRuJ3QgcmVzdWx0IGlu
-IHVuc2FmZS4KPiAKPiBtbWFwIG5vcm1hbGx5IG5lZWRzIGEgZmQgcmlnaHQ/IFdoZW4gdGhlIGNo
-YXJkZXYgL2Rldi9mYlggaXMgb3BlbmVkLCB0aGUKPiBmYl9vcGVuIGZ1bmN0aW9uIHdpbGwgYmUg
-Y2FsbGVkLiBTbyBub3V2ZWF1IHNob3VsZCBub3QgaGF2ZSB0aGlzIGlzc3VlCj4gd2l0aCBtbWFw
-L3JlYWQvd3JpdGUgdG8gYSBmYiB3aGlsZSB0aGUgZGV2aWNlIGlzIHN1c3BlbmRlZC4KPiAKPiAo
-VGhpcyBSUE0gdGhpbmcgd2FzIGFkZGVkIGluIGYyMzE5NzZjMmU4OSAoImRybS9ub3V2ZWF1L2Zi
-Y29uOiB0YWtlCj4gcnVucG0gcmVmZXJlbmNlIHdoZW4gdXNlcnNwYWNlIGhhcyBhbiBvcGVuIGZk
-IiksIG1heWJlIGl0IGlzIG5vdCBhIGJhZAo+IGlkZWEgZm9yIG90aGVyIGRyaXZlcnMgd2l0aCBS
-UE0gc3VwcG9ydCBlaXRoZXIuKQoKWWVzLCBsb29rcyBsaWtlIG5vdXZlYXUgaW1wbGVtZW50cyB0
-aGlzIGNvcnJlY3RseSBhbHJlYWR5LiBJIGd1ZXNzIHdlCmNvdWxkIHBvbmRlciB3aGV0aGVyIHdl
-IHNob3VsZCBsaWZ0IHRoaXMgaW50byB0aGUgc2hhcmVkIGZiZGV2IGVtdWxhdGlvbiwKdXNpbmcg
-c29tZSBmYmRldl9ycG1fZ2V0L3B1dCBmdW5jdGlvbnMgaW4gZGV2LT5tb2RlX2NvbmZpZy5oZWxw
-ZXJfcHJpdmF0ZS4KV2UgY2FuJ3QganVzdCBkbyB0aGUgcnBtIHN0dWZmIGRpcmVjdGx5IGJlY2F1
-c2U6Ci0gZ3Jvc3MgbWlkbGF5ZXIgdmlvbGF0aW9uCi0gd2l0aCB0aGUgInBpbGUgb2YgZGV2aWNl
-cyIgYXBwcm9hY2ggYXJtIGNoaXBzIGVtcGxveSBpdCdzIHVuY2xlYXIgd2hhdAogIGV4YWN0bHkg
-Y2FuJ3QgYmUgcnVudGltZSBzdXNwZW5kZWQgd2hlbiBmYmRldiBpcyBzdGlsbCBpbiB1c2UuCgpC
-dXQgYXMgbG9uZyBhcyBubyBvbmUgZWxzZSBjYXJlcyBJJ2QgZ28gbWVoLgoKPiA+IC0gRm9yIGZi
-Y29uLCB3ZSBjb3VsZCBzdXNwZW5kIGl0IGluIHRoZSBkcG1zIG9mZiBjYWxsYmFja3MgKG1heWJl
-IHdpdGggYQo+ID4gICB0aW1lciksIGFuZCByZXN1bWUgaXQgb25seSB3aGVuIGVuYWJsaW5nIGZi
-Y29uIGFnYWluIC0gZmJjb24gbmVlZHMgdG8KPiA+ICAgcmVkcmF3IGFueXdheSBvbiBkcG1zIG9u
-Lgo+IAo+IFdvdWxkIHRoaXMgZ3VhcmFudGVlIHRoYXQgdGhlIGZiIGlzIHN1c3BlbmRlZCBiZWZv
-cmUvZHVyaW5nIHN1c3BlbmQgKG9mCj4gdGhlIGdyYXBoaWNzIGRldmljZSkgYW5kIHJlc3VtZWQg
-c29tZXdoZXJlIGR1cmluZy9hZnRlciByZXN1bWU/Cj4gCj4gU3VzcGVuZGluZyB0aGUgZmIgYWxz
-byBoYXMgdGhlIGVmZmVjdCB0aGF0IHJlYWRzL3dyaXRlcyB0byAvZGV2L2ZiTgo+IGZhaWwsIG1h
-eWJlIHRoYXQgaXMgYSBiaXQgdG9vIHJlc3RyaWN0ZWQgc2luY2UgdGhlIGZyYW1lYnVmZmVyIGlz
-IGp1c3QKPiBhY2Nlc3NpYmxlIHVudGlsIHRoZSBkZXZpY2UgaXMgc3VzcGVuZGVkLgo+IAo+IChI
-bW0sIGZiX3JlYWQvZmJfd3JpdGUgZG9lcyBub3Qgc2VlbSB0byBkbyBhbnkgbG9ja2luZy4uLikK
-CkhtLCBhbm5veWluZy4gVGhhdCBwcmV0dHkgbXVjaCBtZWFucyBydW50aW1lIHBtIGJyZWFrcyBm
-YmNvbi4gSSBndWVzcyBpbgpwcmFjdGljZSBubyBvbmUgd2lsbCBub3RpY2UsIHNpbmNlIGl0IGdl
-bmVyYWxseSBzaG91bGQga2VlcCB3b3JraW5nIGZvciBhcwpsb25nIGFzIHRoZSBvdXRwdXQgaXMg
-b24gKGlmIHdlIGlnbm9yZSBzdHVmZiBsaWtlIG1hbnVhbCByZWZyZXNoIHBhbmVscwpmb3IgYSBi
-aXQgaGVyZSAuLi4pLgoKPiA+ICAgQW5vdGhlciBzb2x1dGlvbiBmb3IgZmJjb24gbWlnaHQgYmUg
-dG8gdW50YW5nbGUgdGhlIHN1c3BlbmQvcmVzdW1lIHN0dWZmCj4gPiAgIGFuZCBwcm90ZWN0IGl0
-IGJ5IHNvbWV0aGluZyBlbHNlIHRoYW4gY29uc29sZV9sb2NrLiBCdXQgdGhhdCBtZWFucwo+ID4g
-ICBmaXhpbmcgdXAgZmJjb24gbG9ja2luZyBob3Jyb3Igc2hvd3MuCj4gCj4gY29uc29sZV9sb2Nr
-IHNlZW1zIG5lZWRlZCBmb3Igc29tZSBjb2RlIGRvd24gdGhlIGNhbGwgc3RhY2ssIHJlbW92aW5n
-IGl0Cj4gcmlza3Mgc29tZSBibG93IHVwcy4KPiAKPiBTb21lIGFyY2hhZW9sb2d5OiB0aGlzIGxv
-Y2tpbmcgcHJvYmxlbSB3YXMgaW50cm9kdWNlZCB3aXRoIDA1NDQzMGU3NzNjOQo+ICgiZmJjb246
-IGZpeCBsb2NraW5nIGhhcmRlciIpLiBJbiB0aGUgcGFzdCBmYl9zZXRfc3VzcGVuZCBhbHNvIHRv
-b2sgdGhlCj4gZmJfaW5mbyBsb2NrIGJ1dCB0aGF0IHdhcyByZW1vdmVkIGluIDllNzY5ZmYzZjU4
-NSAoImZiOiBhdm9pZCBwb3NzaWJsZQo+IGRlYWRsb2NrIGNhdXNlZCBieSBmYl9zZXRfc3VzcGVu
-ZCIpLgoKWXVwLCB0aGlzIGlzIHRoZSBob3Jyb3Igc2hvdyBJIG1lYW4gYW5kIHdoaWNoIEkgdGhp
-bmsgd2UnZCBuZWVkIHRvIGZpeApoZXJlIGFzIHRoZSB1bmRlcmx5aW5nIGlzc3VlLiBMZXQgbWUg
-ZWxhYm9yYXRlOgoKZmJkZXYgaGFzIGEgbm90aWZpZXIgY2hhaW4gdG8gZXNzZW50aWFsbHkgaW1w
-bGVtZW50IGR5bmFtaWMgZnVuY3Rpb24KbG9va3VwLiBJdCdzIHVzZWQgZm9yIGEgYnVuY2ggb2Yg
-dGhpbmdzLCBhbmQgdGhvc2UgZnVuY3Rpb25zIGFyZSBpbmRleGVkCndpdGggYSBzZXQgb2YgI2Rl
-ZmluZXM6CgotIGZiY29uIHNldHVwL3NpZ25hbGxpbmcuIFRoaXMgaXMgZXNzZW50aWFsbHkgZmJk
-ZXYtPmZiY29uIGNhbGxzLiBUaGVyZSdzCiAgdmFyaW91cyBkaWZmZXJlbnQgbG9ja2luZyBjb250
-ZXh0cy9ydWxlcyBmb3IgdGhlIGRpZmZlcmVudCBjYWxsYmFja3MuCgotIGlpcmMgaXQgYWxzbyBn
-b2VzIHRoZSBvdGhlciB3YXksIHdoZXJlIGZiY29uIGNhbGxzIGludG8gdGhlIG5vdGlmaWVyIHRv
-CiAgdXBkYXRlIHN0dWZmCgotIGEgZmV3IGF1eCBmdW5jdGlvbnMgbGlrZSBiYWNrbGlnaHQgY29u
-dHJvbCBhbmQgb3RoZXIgcmFuZG9tIGJpdHMuCgpUaGUgcmVhc29uIGZvciB0aGlzIHNlZW1zIHRv
-IGJlIHRoYXQgaXQgYWxsb3dzIHlvdSB0byBsb2FkIGZiY29uIGFuZCBmYmRldgpkcml2ZXJzIGlu
-IGFueSBvcmRlciwgYW5kIHlvdSdsbCBzdGlsbCBlbmQgdXAgd2l0aCBhbiBmYmNvbiBvbiBldmVy
-eSBmYmRldgpkcml2ZXIuIFRoZSBwcm9ibGVtIGlzIHRoYXQgdGhlIG5vdGlmaWVyIGl0c2VsZiBo
-YXMgaXQncyBvd24gbXV0ZXgsIHdoaWNoCm1lYW5zIHRocm91Z2ggdGhhdCBtdXRleCBpdCdsbCBp
-bnRlcmZlciBldmVyeSBjYWxsaW5nIGNvbnRleHQgd2l0aCBldmVyeQpvdGhlciBjYWxsaW5nIGNv
-bnRleHQsIHJlc3VsdGluZyBpbiBhbGwgdGhlc2UgZGVhZGxvY2tzLgoKVGh1cyBmYXIgdGhlIGFw
-cHJvYWNoIHdhcyB0byBzaHVmZmxlIHJhbmRvbSBiaXRzIGFyb3VuZCwgYnV0IEkgdGhpbmsgdGhh
-dApyZWFsbHkgZG9lc24ndCB3b3JrIHdlbGwgYW55IG1vcmUuIFRoZXJlJ3MgMiByZWFsIGZpeGVz
-OgoKLSBOdWtlIHRoZSBmYmRldiBub3RpZmllciwgYXQgbGVhc3QgZm9yIHRoZSBmYmNvbiBpbnRl
-cmFjdGlvbi4gVGhpcyBtZWFucwogIHdlJ2xsIG1ha2UgZmJjb24gYSBjb21waWxlLXRpbWUgc2Vs
-ZWN0aW9uLCBhbmQgeW91IGNhbid0IGRlY2lkZSBhbnkgbW9yZQogIGF0IHJ1bnRpbWUgKGJ5IGxv
-YWRpbmcgb3Igbm90IGxvYWRpbmcgdGhlIG1vZHVsZSkgd2hldGhlciB5b3Ugd2FudAogIGZiY29u
-LiBTaW5jZSBkaXN0cm9zIGFsbCBidWlsdC1pbiBmYmNvbiBhbnl3YXkgSSBkb24ndCB0aGluayBh
-bnl3YXkKICBjYXJlcyBhYm91dCB0aGF0LCBzaW5jZSBlbWJlZGRlZCBmb2xrcyBkaXNhYmxlIGV2
-ZXJ5dGhpbmcgdGhleSBkb24ndAogIG5lZWQgYW55d2F5LiBUaGlzIHdvdWxkIGJlIHRoZSBjbGVh
-bmVzdCBzb2x1dGlvbiBJIHRoaW5rLgoKLSBTcGxpdCB1cCB0aGUgZmIgbm90aWZpZXIgaW50byB0
-aGUgZGlmZmVyZW50IGNhbGxpbmcgY29udGV4dHMuIFRoaXMgd291bGQKICBkZWZpbml0ZWx5IGhl
-bHAgZm9yIGUuZy4gdGhlIGJhY2tsaWdodCBzdHVmZiAoYW5vdGhlciBhcmVhKSwgYnV0IEknbSBu
-b3QKICAxMDAlIHN1cmUgaXQgd291bGQgd29yayBpbiB5b3VyIGNhc2UgaGVyZS4KCk9uY2Ugd2Ug
-aGF2ZSB0aGF0IHdlJ3ZlIGVzc2VudGlhbGx5IHVuZG9uZSB0aGUgZGFtYWdlIGluIDA1NDQzMGU3
-NzNjOSBhbmQKd2UgY291bGQgdHJ5IHRvIGltcGxlbWVudCBzb21lIHByb3BlciBsb2NraW5nIChp
-LmUuIHJlc3RvcmUgdGhlIGZiX2luZm8KbG9jaykgYWdhaW4uCgpJIHdvbid0IGhhdmUgdGltZSBm
-b3IgdGhpcyBteXNlbGYsIGJ1dCBJIGNhbiBkZWZpbml0ZWx5IHByb21pc2UgdG8gcmV2aWV3CnBh
-dGNoZXMgYW5kIGhlbHAgcHVzaCB0aGVtIHRocm91Z2ggLSB0aGlzIGhhcyBiZWVuIGFubm95aW5n
-IG1lIChhbmQgbG90cwpvZiBvdGhlciBwZW9wbGUpIHNpbmNlIGEgbG9uZyB0aW1lLgotRGFuaWVs
-Cgo+IAo+IFBldGVyCj4gCj4gPiA+IE15IGN1cnJlbnQgcGxhbiBpcyB0byBtb3ZlIHN0dWZmIG91
-dCBvZiB0aGUgbG9jayBhbmQgYWxsb3cgKGp1c3QpCj4gPiA+IHJlc3VtaW5nIHRoZSBjb25zb2xl
-IHRvIGJlIGRlbGF5ZWQuICBTb21lIGRyaXZlcnMgKG5vdXZlYXUsCj4gPiA+IHJhZGVvbi9hbWRn
-cHUsIGk5MTUpIGRvIHVubmVjZXNzYXJ5IHN0dWZmIHVuZGVyIHRoZSBjb25zb2xlIGxvY2s6Cj4g
-PiA+IAo+ID4gPiAgLSBub3V2ZWF1OiBJICp0aGluayogdGhhdCBjbGVyYWluZy9zZXR0aW5nIEZC
-SU5GT19IV0FDQ0VMX0RJU0FCTEVECj4gPiA+ICAgIChub3V2ZWF1X2ZiY29uX2FjY2VsX3Jlc3Rv
-cmUpIGlzIHNhZmUgb3V0c2lkZSB0aGUgbG9jayBhcyB0aGUgZmIgaXMKPiA+ID4gICAgYWxyZWFk
-eSBzdXNwZW5kZWQgYmVmb3JlIGNsZWFyaW5nL2FmdGVyIHNldHRpbmcgdGhlIGZsYWcuCj4gPiA+
-ICAtIHJhZGVvbjogc2luY2UgdGhlIGNvbnNvbGUgaXMgc3VzcGVuZGVkLCBJIGRvbid0IHRoaW5r
-IHRoYXQgdGhhdCBhbGwKPiA+ID4gICAgb2YgdGhlIGNvZGUgaXMgcmFkZW9uX3Jlc3VtZV9rbXMg
-aXMgcmVhbGx5IG5lZWRlZC4KPiA+ID4gIC0gYW1kZ3B1OiBzYW1lIGFzIHJhZGVvbi4gQnR3LCBj
-b25zb2xlX2xvY2sgaXMgbGVha2VkIG9uIGFuIGVycm9yIHBhdGguCj4gPiA+ICAtIGk5MTU6IEkg
-dGhpbmsgdGhhdCBjbGVhcmluZyB0aGUgZmIgbWVtb3J5IGNhbiBiZSBkb25lIG91dHNpZGUgdGhl
-Cj4gPiA+ICAgIGxvY2sgdG9vIGFzIHRoZSBjb25zb2xlIGlzIHN1c3BlbmRlZC4KPiA+ID4gCj4g
-PiA+IFBsZWFzZSBjb3JyZWN0IG1lIGlmIG15IGFzc3VtcHRpb25zIGFyZSBmbGF3ZWQuCj4gPiAK
-PiA+IFllYWgsIGZpeGluZyB0aGlzIGluZGVwZW5kZW50IGlzc3VlcyBzaG91bGQgZGVmaW5pdGVs
-eSBoZWxwLCBpcnJlc3BlY3RpdmUKPiA+IG9mIGhvdyB3ZSBmaXggZmJfc2V0X3N1c3BlbmQuCj4g
-PiAKPiA+ID4gPiBCZXNpZGVzIHRoaXMsIHdoZW4gZml4aW5nIGEgZGVhZGxvY2sgcGxzIHByb3Zp
-ZGUgbW9yZSBkZXRhaWxzIGFib3V0IHRoZQo+ID4gPiA+IHByZWNpc2UgY2FsbGNoYWluIGFuZCB0
-aGUgbG9ja3MgaW52b2x2ZWQgaW4gdGhlIGRlYWRsb2NrLiBJZiB5b3UKPiA+ID4gPiBkaXNjb3Zl
-cmVkIHRoaXMgdXNpbmcgbG9ja2RlcCwgdGhlbiBqdXN0IGFkZCB0aGUgZW50aXJlIGxvY2tkZXAg
-c3BsYXQgdG8KPiA+ID4gPiB0aGUgY29tbWl0IG1lc3NhZ2UuIE90aGVyd2lzZSB0aGVyZSdzIGxv
-dHMgb2YgZ3Vlc3N3b3JrIGludm9sdmVkIGhlcmUuCj4gPiA+ID4gLURhbmllbAo+ID4gPiAKPiA+
-ID4gVGhlcmUgd2FzIG5vIGxvY2tkZXAgc3BsYXQsIGl0IHdhcyB0cmlnZ2VyZWQgdmlhIHRoZSBp
-b2N0bCBpbiB0aGUgY29tbWl0Cj4gPiA+IG1lc3NhZ2UuIEknbGwgaW5jbHVkZSB0aGUgdmVyYm9z
-ZSB0cmFjZSBmcm9tIHRoZSBwcmV2aW91cyBtYWlsIGluIHRoZQo+ID4gPiBuZXh0IHByb3Bvc2Vk
-IHBhdGNoIHRvIHJlZHVjZSBodW50aW5nIHRob3VnaC4KPiA+IAo+ID4gU291bmRzIGdvb2QgdG9v
-Lgo+ID4gLURhbmllbAo+ID4gLS0gCj4gPiBEYW5pZWwgVmV0dGVyCj4gPiBTb2Z0d2FyZSBFbmdp
-bmVlciwgSW50ZWwgQ29ycG9yYXRpb24KPiA+IGh0dHA6Ly9ibG9nLmZmd2xsLmNoCgotLSAKRGFu
-aWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Js
-b2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1980006008==
+Content-Type: multipart/alternative; boundary="14688494311.eFeFb5.22642";
+ charset="UTF-8"
+
+
+--14688494311.eFeFb5.22642
+Date: Mon, 18 Jul 2016 13:43:51 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96952
+
+--- Comment #3 from Rafael Favero <rafaelantoniofavero-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I upgraded Ubuntu to 16.04 and Kdenlive to lastest version, but the problem
+continue, I'm a normal user and I don't know how does GL and VDPAU calls fr=
+om
+parallel threads, and the version of libdrm(_nouveau)is
+2.4.67-1ubuntu0.16.04.1.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14688494311.eFeFb5.22642
+Date: Mon, 18 Jul 2016 13:43:51 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau driver doesn't working well when on Kdenlive"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96952#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau driver doesn't working well when on Kdenlive"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96952">bug 96952<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+rafaelantoniofavero&#64;gmail.com" title=3D"Rafael Favero &lt;rafaelantonio=
+favero&#64;gmail.com&gt;"> <span class=3D"fn">Rafael Favero</span></a>
+</span></b>
+        <pre>I upgraded Ubuntu to 16.04 and Kdenlive to lastest version, bu=
+t the problem
+continue, I'm a normal user and I don't know how does GL and VDPAU calls fr=
+om
+parallel threads, and the version of libdrm(_nouveau)is
+2.4.67-1ubuntu0.16.04.1.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14688494311.eFeFb5.22642--
+
+--===============1980006008==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1980006008==--
