@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96952] Nouveau driver doesn't working well when on
-	Kdenlive
-Date: Mon, 18 Jul 2016 13:43:51 +0000
-Message-ID: <bug-96952-8800-KIBI3LzlUB@http.bugs.freedesktop.org/>
-References: <bug-96952-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95188] GeForce 840M (GM108) troubles
+Date: Tue, 19 Jul 2016 10:51:24 +0000
+Message-ID: <bug-95188-8800-eMyIPLGEmM@http.bugs.freedesktop.org/>
+References: <bug-95188-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1980006008=="
+Content-Type: multipart/mixed; boundary="===============0387332325=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-96952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-95188-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1980006008==
-Content-Type: multipart/alternative; boundary="14688494311.eFeFb5.22642";
+--===============0387332325==
+Content-Type: multipart/alternative; boundary="14689254830.5932F2C92.19218";
  charset="UTF-8"
 
 
---14688494311.eFeFb5.22642
-Date: Mon, 18 Jul 2016 13:43:51 +0000
+--14689254830.5932F2C92.19218
+Date: Tue, 19 Jul 2016 10:51:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96952
+https://bugs.freedesktop.org/show_bug.cgi?id=3D95188
 
---- Comment #3 from Rafael Favero <rafaelantoniofavero-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I upgraded Ubuntu to 16.04 and Kdenlive to lastest version, but the problem
-continue, I'm a normal user and I don't know how does GL and VDPAU calls fr=
-om
-parallel threads, and the version of libdrm(_nouveau)is
-2.4.67-1ubuntu0.16.04.1.
+--- Comment #11 from Asad Mehmood <asad78611-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+For future reference, and to help others. I've been able to get the card to
+boot using=20
+
+karolherbst/stable_reclocking_kepler_v5_4.7
+fd1d9d32f8bc3a0e93306bc5044fb67694445e5e
+
+and module config
+runpm=3D0 config=3DNvClkMode=3D7
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14688494311.eFeFb5.22642
-Date: Mon, 18 Jul 2016 13:43:51 +0000
+--14689254830.5932F2C92.19218
+Date: Tue, 19 Jul 2016 10:51:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,24 +66,27 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau driver doesn't working well when on Kdenlive"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96952#c3">Comment=
- # 3</a>
+   title=3D"NEW - GeForce 840M (GM108) troubles"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95188#c11">Commen=
+t # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau driver doesn't working well when on Kdenlive"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96952">bug 96952<=
+   title=3D"NEW - GeForce 840M (GM108) troubles"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95188">bug 95188<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rafaelantoniofavero&#64;gmail.com" title=3D"Rafael Favero &lt;rafaelantonio=
-favero&#64;gmail.com&gt;"> <span class=3D"fn">Rafael Favero</span></a>
+asad78611&#64;googlemail.com" title=3D"Asad Mehmood &lt;asad78611&#64;googl=
+email.com&gt;"> <span class=3D"fn">Asad Mehmood</span></a>
 </span></b>
-        <pre>I upgraded Ubuntu to 16.04 and Kdenlive to lastest version, bu=
-t the problem
-continue, I'm a normal user and I don't know how does GL and VDPAU calls fr=
-om
-parallel threads, and the version of libdrm(_nouveau)is
-2.4.67-1ubuntu0.16.04.1.</pre>
+        <pre>For future reference, and to help others. I've been able to ge=
+t the card to
+boot using=20
+
+karolherbst/stable_reclocking_kepler_v5_4.7
+fd1d9d32f8bc3a0e93306bc5044fb67694445e5e
+
+and module config
+runpm=3D0 config=3DNvClkMode=3D7</pre>
         </div>
       </p>
 
@@ -95,9 +100,9 @@ parallel threads, and the version of libdrm(_nouveau)is
     </body>
 </html>=
 
---14688494311.eFeFb5.22642--
+--14689254830.5932F2C92.19218--
 
---===============1980006008==
+--===============0387332325==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1980006008==--
+--===============0387332325==--
