@@ -1,106 +1,61 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Wed, 20 Jul 2016 13:05:28 +0000
-Message-ID: <bug-94990-8800-O46RoOaNR7@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: SF Markus Elfring <elfring@users.sourceforge.net>
+Subject: [PATCH] GPU-DRM-nouveau: Delete an unnecessary check before the
+ function call "pci_dev_put"
+Date: Wed, 20 Jul 2016 19:50:45 +0200
+Message-ID: <4dcc6c6b-455f-d938-ab45-5597096007f0@users.sourceforge.net>
+References: <5307CAA2.8060406@users.sourceforge.net>
+ <alpine.DEB.2.02.1402212321410.2043@localhost6.localdomain6>
+ <530A086E.8010901@users.sourceforge.net>
+ <alpine.DEB.2.02.1402231635510.1985@localhost6.localdomain6>
+ <530A72AA.3000601@users.sourceforge.net>
+ <alpine.DEB.2.02.1402240658210.2090@localhost6.localdomain6>
+ <530B5FB6.6010207@users.sourceforge.net>
+ <alpine.DEB.2.10.1402241710370.2074@hadrien>
+ <530C5E18.1020800@users.sourceforge.net>
+ <alpine.DEB.2.10.1402251014170.2080@hadrien>
+ <530CD2C4.4050903@users.sourceforge.net>
+ <alpine.DEB.2.10.1402251840450.7035@hadrien>
+ <530CF8FF.8080600@users.sourceforge.net>
+ <alpine.DEB.2.02.1402252117150.2047@localhost6.localdomain6>
+ <530DD06F.4090703@users.sourceforge.net>
+ <alpine.DEB.2.02.1402262129250.2221@localhost6.localdomain6>
+ <5317A59D.4@users.sourceforge.net> <5447BF71.7040200@users.sourceforge.net>
+ <559975EB.500@users.sourceforge.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0262999242=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <559975EB.500@users.sourceforge.net>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>
+Cc: Julia Lawall <julia.lawall@lip6.fr>, kernel-janitors@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0262999242==
-Content-Type: multipart/alternative; boundary="14690199282.71b0F.29840";
- charset="UTF-8"
-
-
---14690199282.71b0F.29840
-Date: Wed, 20 Jul 2016 13:05:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
---- Comment #35 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
-Same symptoms, running either `kernel-4.6.3-300.fc24.x86_64` or
-`kernel-4.6.4-301.fc24.x86_64` on Fedora 24.
-
-Do you need some more information from me?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14690199282.71b0F.29840
-Date: Wed, 20 Jul 2016 13:05:28 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c35">Commen=
-t # 35</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
-un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
-</span></b>
-        <pre>Same symptoms, running either `kernel-4.6.3-300.fc24.x86_64` or
-`kernel-4.6.4-301.fc24.x86_64` on Fedora 24.
-
-Do you need some more information from me?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14690199282.71b0F.29840--
-
---===============0262999242==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0262999242==--
+RnJvbTogTWFya3VzIEVsZnJpbmcgPGVsZnJpbmdAdXNlcnMuc291cmNlZm9yZ2UubmV0PgpEYXRl
+OiBXZWQsIDIwIEp1bCAyMDE2IDE5OjQzOjI3ICswMjAwCgpUaGUgcGNpX2Rldl9wdXQoKSBmdW5j
+dGlvbiB0ZXN0cyB3aGV0aGVyIGl0cyBhcmd1bWVudCBpcyBOVUxMIGFuZCB0aGVuCnJldHVybnMg
+aW1tZWRpYXRlbHkuIFRodXMgdGhlIHRlc3QgYXJvdW5kIHRoZSBjYWxsIGlzIG5vdCBuZWVkZWQu
+CgpUaGlzIGlzc3VlIHdhcyBkZXRlY3RlZCBieSB1c2luZyB0aGUgQ29jY2luZWxsZSBzb2Z0d2Fy
+ZS4KClNpZ25lZC1vZmYtYnk6IE1hcmt1cyBFbGZyaW5nIDxlbGZyaW5nQHVzZXJzLnNvdXJjZWZv
+cmdlLm5ldD4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIHwgMyAr
+LS0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwppbmRleCA2NmMxMjgwLi43YjA5ODQxIDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCisrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKQEAgLTUyNSw4ICs1MjUsNyBAQCBub3V2
+ZWF1X2RybV91bmxvYWQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKIAlub3V2ZWF1X3ZnYV9maW5p
+KGRybSk7CiAKIAludmlmX2RldmljZV9maW5pKCZkcm0tPmRldmljZSk7Ci0JaWYgKGRybS0+aGRt
+aV9kZXZpY2UpCi0JCXBjaV9kZXZfcHV0KGRybS0+aGRtaV9kZXZpY2UpOworCXBjaV9kZXZfcHV0
+KGRybS0+aGRtaV9kZXZpY2UpOwogCW5vdXZlYXVfY2xpX2Rlc3Ryb3koJmRybS0+Y2xpZW50KTsK
+IAlyZXR1cm4gMDsKIH0KLS0gCjIuOS4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9kcmktZGV2ZWwK
