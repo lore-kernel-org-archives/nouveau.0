@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Fri, 22 Jul 2016 23:29:04 +0000
-Message-ID: <bug-94990-8800-OdrlBJEIbP@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: Markus Mayer <mmayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
+Subject: [PATCH v4 0/7] lib: string: add functions to case-convert
+	strings
+Date: Fri, 22 Jul 2016 16:31:02 -0700
+Message-ID: <1469230269-1644-1-git-send-email-mmayer@broadcom.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0402453275=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,140 +16,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Al Viro <viro-RmSDqhL/yNMiFSDQTTA3OLVCufUGDwFn@public.gmane.org>, Rasmus Villemoes <linux-qQsb+v5E8BnlAoU/VqSP6n9LOBIZ5rWg@public.gmane.org>, Chris Metcalf <cmetcalf-d5a29ZRxExrQT0dZR+AlfA@public.gmane.org>, Kees Cook <keescook-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>
+Cc: devel-gWbeCf7V1WCQmaza687I9mD2FQJk+8+b@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, speakup-UPO/6gOIxNZglr+F8WMZYdi2O/JbrIOy@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, target-devel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0402453275==
-Content-Type: multipart/alternative; boundary="14692301450.ceE8.12273";
- charset="UTF-8"
-
-
---14692301450.ceE8.12273
-Date: Fri, 22 Jul 2016 23:29:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
-Ilia Guterman <amfernusus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |amfernusus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #36 from Ilia Guterman <amfernusus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 125265
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125265&action=3Dedit
-DMESG with pci_msi=3Doff nouveau.config=3DNvForcePost=3D1 nouveau.debug=3Dt=
-race
-
-Asus Z77 and GTX970, it seems the first fifo caused by
-https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/nouveau/nvkm/=
-subdev/secboot/base.c#L142
-
-changing the value to 0x0 allowed the machine to boot, still with lots of
-errors.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14692301450.ceE8.12273
-Date: Fri, 22 Jul 2016 23:29:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:amfernusu=
-s&#64;gmail.com" title=3D"Ilia Guterman &lt;amfernusus&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ilia Guterman</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>amfernusus&#64;gmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c36">Commen=
-t # 36</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-amfernusus&#64;gmail.com" title=3D"Ilia Guterman &lt;amfernusus&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Ilia Guterman</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125265=
-" name=3D"attach_125265" title=3D"DMESG with pci_msi=3Doff nouveau.config=
-=3DNvForcePost=3D1 nouveau.debug=3Dtrace">attachment 125265</a> <a href=3D"=
-attachment.cgi?id=3D125265&amp;action=3Dedit" title=3D"DMESG with pci_msi=
-=3Doff nouveau.config=3DNvForcePost=3D1 nouveau.debug=3Dtrace">[details]</a=
-></span>
-DMESG with pci_msi=3Doff nouveau.config=3DNvForcePost=3D1 nouveau.debug=3Dt=
-race
-
-Asus Z77 and GTX970, it seems the first fifo caused by
-<a href=3D"https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/no=
-uveau/nvkm/subdev/secboot/base.c#L142">https://github.com/torvalds/linux/bl=
-ob/master/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/base.c#L142</a>
-
-changing the value to 0x0 allowed the machine to boot, still with lots of
-errors.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14692301450.ceE8.12273--
-
---===============0402453275==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0402453275==--
+VGhpcyBzZXJpZXMgaW50cm9kdWNlcyBhIGZhbWlseSBvZiBnZW5lcmljIHN0cmluZyBjYXNlIGNv
+bnZlcnNpb24KZnVuY3Rpb25zLiBUaGlzIGtpbmQgb2YgZnVuY3Rpb25hbGl0eSBpcyBuZWVkZWQg
+aW4gc2V2ZXJhbCBwbGFjZXMgaW4KdGhlIGtlcm5lbC4gUmlnaHQgbm93LCBldmVyeWJvZHkgc2Vl
+bXMgdG8gYmUgaW1wbGVtZW50aW5nIHRoZWlyIG93bgpjb3B5IG9mIHRoaXMgZnVuY3Rpb25hbGl0
+eS4KCkJhc2VkIG9uIHRoZSBkaXNjdXNzaW9uIG9mIHRoZSBwcmV2aW91cyB2ZXJzaW9uIG9mIHRo
+aXMgc2VyaWVzWzFdIGFuZAp0aGUgdXNlIGNhc2VzIGZvdW5kIGluIHRoZSBrZXJuZWwsIGl0IGRv
+ZXMgbG9vayBsaWtlIGhhdmluZyBzZXZlcmFsCmZsYXZvdXJzIG9mIGNhc2UgY29udmVyc2lvbiBm
+dW5jdGlvbnMgaXMgYmVuZWZpY2lhbC4gVGhlIHVzZSBjYXNlcyBmYWxsCmludG8gdGhyZWUgY2F0
+ZWdvcmllczoKICAgIC0gY29weWluZyBhIHN0cmluZyBhbmQgY29udmVydGluZyB0aGUgY2FzZSB3
+aGlsZSBzcGVjaWZ5aW5nIGEKICAgICAgbWF4aW11bSBsZW5ndGggdG8gbWltaWMgc3RybGNweSgp
+CiAgICAtIGNvcHlpbmcgYSBzdHJpbmcgYW5kIGNvbnZlcnRpbmcgdGhlIGNhc2Ugd2l0aG91dCBz
+cGVjaWZ5aW5nIGEKICAgICAgbGVuZ3RoIHRvIG1pbWljIHN0cmNweSgpCiAgICAtIGNvbnZlcnRp
+bmcgdGhlIGNhc2Ugb2YgYSBzdHJpbmcgaW4tcGxhY2UgKGkuZS4gbW9kaWZ5aW5nIHRoZQogICAg
+ICBzdHJpbmcgdGhhdCB3YXMgcGFzc2VkIGluKQoKQ29uc2VxdWVudGx5LCBJIGFtIHByb3Bvc2lu
+ZyB0aGVzZSBuZXcgZnVuY3Rpb25zOgogICAgaW50IHN0cmxjcHl0b3VwcGVyKGNoYXIgKmRzdCwg
+Y29uc3QgY2hhciAqc3JjLCBzaXplX3QgbGVuKTsKICAgIGludCBzdHJsY3B5dG9sb3dlcihjaGFy
+ICpkc3QsIGNvbnN0IGNoYXIgKnNyYywgc2l6ZV90IGxlbik7CiAgICB2b2lkIHN0cmNweXRvdXBw
+ZXIoY2hhciAqZHN0LCBjb25zdCBjaGFyICpzcmMpOwogICAgdm9pZCBzdHJjcHl0b2xvd2VyKGNo
+YXIgKmRzdCwgY29uc3QgY2hhciAqc3JjKTsKICAgIHZvaWQgc3RydG91cHBlcihjaGFyICpzKTsK
+ICAgIHZvaWQgc3RydG9sb3dlcihjaGFyICpzKTsKClNldmVyYWwgZHJpdmVycyBhcmUgYmVpbmcg
+bW9kaWZpZWQgdG8gbWFrZSB1c2Ugb2YgdGhlIGZ1bmN0aW9ucyBhYm92ZS4KQW5vdGhlciBkcml2
+ZXIgdGhhdCBhbHNvIG1ha2VzIHVzZSBvZiB0aGlzIGZ1bmN0aW9uYWxpdHkgd2lsbCBiZQpzdWJt
+aXR0ZWQgdXBzdHJlYW0gc2hvcnRseSwgd2hpY2ggcHJvbXB0ZWQgdGhpcyB3aG9sZSBleGVyY2lz
+ZS4KClRoZSBjaGFuZ2VzIG1hZGUgaGVyZSBoYXZlIGJlZW4gY29tcGlsZS10ZXN0ZWQsIGJ1dCBu
+b3QgdHJpZWQgb3V0LCBkdWUKdG8gbGFjayBvZiByZXF1aXJlZCBoYXJkd2FyZS4KCkNoYW5nZXMg
+c2luY2UgdjM6CiAgLSBzdHJsY3B5dG91cHBlcigpIGFuZCBzdHJsY3B5dG9sb3dlcigpIHJldHVy
+biBsZW5ndGggb2YgZGVzdGluYXRpb24KICAgIG9yIC1FMkJJRyAoc2VlIFsyXSkKICAtIHdlIHVz
+ZSB+KHNpemVfdCkwIGluc3RlYWQgb2YgLTEgdG8gY29weSBzdHJpbmdzIG9mIGFyYml0cmFyeSBs
+ZW5ndGgKICAgIGluIHN0cmNweXRvKigpIGFuZCBzdHJ0byooKQogIC0gQSBmZXcgQUNLcyBhZGRl
+ZAoKQ2hhbmdlcyBzaW5jZSB2MjoKICAtIHVzZSBzdHJsY3B5KCkgc2VtYW50aWNzIG5vdCBzdHJu
+Y3B5KCkgc2VtYW50aWNzLCBpLmUuIGd1YXJhbnRlZQogICAgTlVMTCB0ZXJtaW5hdGlvbgogIC0g
+YXMgYSByZXN1bHQgc3RybmNweXRvPHVwcGVyfGxvd2VyPiBhcmUgbm93IGNhbGxlZAogICAgc3Ry
+bGNweXRvPHVwcGVyfGxvd2VyPgogIC0gbWFrZSBmdW5jdGlvbnMgdm9pZAogIC0gdXNlIGxlbiA9
+PSAtMSAoU0laRV9NQVgpIGFzIG5vLWxpbWl0IGluZGljYXRvciByYXRoZXIgdGhlbiBsZW4gPT0g
+MAogIC0gY2hhbmdlIFBBVENIIDIvNyB0byBtYXRjaCBzdHJsY3B5KCkgc2VtYW50aWNzCiAgLSBj
+aGFuZ2UgUEFUQ0ggNC83IHRvIG1hdGNoIHN0cmxjcHkoKSBzZW1hbnRpY3MKCkNoYW5nZXMgc2lu
+Y2UgdjE6CiAgLSBleHBhbmRlZCBzdHJ0b2xvd2VyKCkgaW50byBhIGZhbWlseSBvZiBmdW5jdGlv
+bnMgdGhhdCBjb3ZlciB1c2UKICAgIGNhc2VzIHdoZW4gYSBsZW5ndGggYXJndW1lbnQgaXMgb3Ig
+aXNuJ3QgcmVxdWlyZWQgYW5kIHRoYXQgc3VwcG9ydAogICAgY29weWluZyB0aGUgc3RyaW5nIGlu
+dG8gYSBuZXcgYnVmZmVyIG9yIGNoYW5naW5nIGl0IGluLXBsYWNlIAogIC0gY2hhbmdlZCB0aGUg
+ZnVuY3Rpb24gc2VtYW50aWNzIHRvIHJldHVybiBhIHBvaW50ZXIgdG8gdGhlCiAgICB0ZXJtaW5h
+dGluZyAnXDAnIGNoYXJhY3RlciBvZiB0aGUgbW9kaWZpZWQgc3RyaW5nCiAgLSBhZGRlZCBzdHJ0
+b3VwcGVyKCkgZnVuY3Rpb25hbGl0eSBtaXJyb3JpbmcgdGhlIGFib3ZlCiAgLSBkcm9wcGVkIHRo
+ZSBBQ1BJQ0EgcGF0Y2gsIHNpbmNlIHRoYXQgY29kZSBpcyBPUyBpbmRlcGVuZGVudCBhbmQKICAg
+IGNhbid0IHJlbHkgb24gYSBMaW51eCBsaWJyYXJ5IGZ1bmN0aW9uIChzZWUgWzNdKQogIC0gQWRk
+ZWQgdHdvIG5ldyBwYXRjaGVzIHJlcGxhY2luZyBzdHJ0b3VwcGVyKCkgaW1wbGVtZW50YXRpb25z
+CgpbMV0gaHR0cHM6Ly9sa21sLm9yZy9sa21sLzIwMTYvNi8zMC83MjcKWzJdIGh0dHBzOi8vbGtt
+bC5vcmcvbGttbC8yMDE2LzcvMTAvNApbM10gaHR0cHM6Ly9sa21sLm9yZy9sa21sLzIwMTYvNy8x
+LzkKCk1hcmt1cyBNYXllciAoNyk6CiAgbGliOiBzdHJpbmc6IGFkZCBmdW5jdGlvbnMgdG8gY2Fz
+ZS1jb252ZXJ0IHN0cmluZ3MKICBkcm0vbm91dmVhdS9jb3JlOiBtYWtlIHVzZSBvZiBuZXcgc3Ry
+bGNweXRvbG93ZXIoKSBmdW5jdGlvbgogIEFDUEkgLyBkZXZpY2Vfc3lzZnM6IG1ha2UgdXNlIG9m
+IG5ldyBzdHJ0b2xvd2VyKCkgZnVuY3Rpb24KICBzdGFnaW5nOiBzcGVha3VwOiByZXBsYWNlIHNw
+a19zdHJsd3IoKSB3aXRoIHN0cmxjcHl0b2xvd2VyKCkKICBpc2NzaS10YXJnZXQ6IHJlcGxhY2Ug
+aXNjc2lfaW5pdGlhdG9ybmFtZV90b2xvd2VyKCkgd2l0aCBzdHJ0b2xvd2VyKCkKICBkcm0vbm91
+dmVhdS9maWZvL2drMTA0OiBtYWtlIHVzZSBvZiBuZXcgc3RyY3B5dG91cHBlcigpIGZ1bmN0aW9u
+CiAgcG93ZXJfc3VwcGx5OiBtYWtlIHVzZSBvZiBuZXcgc3RyY3B5dG91cHBlcigpIGZ1bmN0aW9u
+CgogZHJpdmVycy9hY3BpL2RldmljZV9zeXNmcy5jICAgICAgICAgICAgICAgICAgICAgIHwgIDQg
+Ky0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2NvcmUvZmlybXdhcmUuYyAgICAgfCAg
+OSArLS0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmlmby9nazEwNC5j
+IHwgIDUgKy0tCiBkcml2ZXJzL3Bvd2VyL3Bvd2VyX3N1cHBseV9zeXNmcy5jICAgICAgICAgICAg
+ICAgfCAxMyArKystLS0tCiBkcml2ZXJzL3N0YWdpbmcvc3BlYWt1cC9rb2JqZWN0cy5jICAgICAg
+ICAgICAgICAgfCAgMyArLQogZHJpdmVycy9zdGFnaW5nL3NwZWFrdXAvbWFpbi5jICAgICAgICAg
+ICAgICAgICAgIHwgIDMgKy0KIGRyaXZlcnMvc3RhZ2luZy9zcGVha3VwL3NwZWFrdXAuaCAgICAg
+ICAgICAgICAgICB8ICAxIC0KIGRyaXZlcnMvc3RhZ2luZy9zcGVha3VwL3ZhcmhhbmRsZXJzLmMg
+ICAgICAgICAgICB8IDEyIC0tLS0tLS0KIGRyaXZlcnMvdGFyZ2V0L2lzY3NpL2lzY3NpX3Rhcmdl
+dF9uZWdvLmMgICAgICAgICB8IDE3ICstLS0tLS0tLQogaW5jbHVkZS9saW51eC9zdHJpbmcuaCAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIHwgNDAgKysrKysrKysrKysrKysrKysrKysrCiBsaWIv
+c3RyaW5nLmMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCA0NiArKysrKysr
+KysrKysrKysrKysrKysrKysKIDExIGZpbGVzIGNoYW5nZWQsIDk4IGluc2VydGlvbnMoKyksIDU1
+IGRlbGV0aW9ucygtKQoKLS0gCjIuNy40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
