@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92922] [NVE6] Xorg random freeze
-Date: Fri, 22 Jul 2016 08:22:00 +0000
-Message-ID: <bug-92922-8800-P42veo9A4O@http.bugs.freedesktop.org/>
-References: <bug-92922-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
+Date: Fri, 22 Jul 2016 23:29:04 +0000
+Message-ID: <bug-94990-8800-OdrlBJEIbP@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0151723665=="
+Content-Type: multipart/mixed; boundary="===============0402453275=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,52 +20,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0151723665==
-Content-Type: multipart/alternative; boundary="14691757190.A2A2E5eAA.1202";
+--===============0402453275==
+Content-Type: multipart/alternative; boundary="14692301450.ceE8.12273";
  charset="UTF-8"
 
 
---14691757190.A2A2E5eAA.1202
-Date: Fri, 22 Jul 2016 08:21:59 +0000
+--14692301450.ceE8.12273
+Date: Fri, 22 Jul 2016 23:29:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92922
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #6 from Victor Zhavoronkov <ishido.uu-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Seems that I am hitting same bug while using Opera browser on my Fedora 24
-Workstation (GNOME) with NVidia GTX 650 Ti. Desktop freezes completely,
-keyboard and mouse are not responding.
+Ilia Guterman <amfernusus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Part of journald log:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |amfernusus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-Jul 22 10:58:15 localhost.localdomain kernel: nouveau 0000:01:00.0: gr: TRA=
-P ch
-9 [003f548000 gnome-shell[1489]]
-Jul 22 10:58:15 localhost.localdomain kernel: nouveau 0000:01:00.0: gr:
-GPC0/PROP trap: 00000080 [ZETA_STORAGE_TYPE_MISMATCH] x =3D 128, y =3D 64, =
-format =3D
-0, storage type =3D fe
-Jul 22 10:58:15 localhost.localdomain kernel: nouveau 0000:01:00.0: gr:
-GPC1/PROP trap: 00000080 [ZETA_STORAGE_TYPE_MISMATCH] x =3D 80, y =3D 64, f=
-ormat =3D
-0, storage type =3D fe
+--- Comment #36 from Ilia Guterman <amfernusus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 125265
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125265&action=3Dedit
+DMESG with pci_msi=3Doff nouveau.config=3DNvForcePost=3D1 nouveau.debug=3Dt=
+race
 
-Package versions:
+Asus Z77 and GTX970, it seems the first fifo caused by
+https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/nouveau/nvkm/=
+subdev/secboot/base.c#L142
 
-kernel - 4.6.3
-mesa - 12.0.1
-xorg-x11-drv-nouveau - 1.0.12
+changing the value to 0x0 allowed the machine to boot, still with lots of
+errors.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14691757190.A2A2E5eAA.1202
-Date: Fri, 22 Jul 2016 08:21:59 +0000
+--14692301450.ceE8.12273
+Date: Fri, 22 Jul 2016 23:29:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,47 +70,63 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:amfernusu=
+s&#64;gmail.com" title=3D"Ilia Guterman &lt;amfernusus&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ilia Guterman</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>amfernusus&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] Xorg random freeze"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92922#c6">Comment=
- # 6</a>
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c36">Commen=
+t # 36</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] Xorg random freeze"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92922">bug 92922<=
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ishido.uu&#64;gmail.com" title=3D"Victor Zhavoronkov &lt;ishido.uu&#64;gmai=
-l.com&gt;"> <span class=3D"fn">Victor Zhavoronkov</span></a>
+amfernusus&#64;gmail.com" title=3D"Ilia Guterman &lt;amfernusus&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Ilia Guterman</span></a>
 </span></b>
-        <pre>Seems that I am hitting same bug while using Opera browser on =
-my Fedora 24
-Workstation (GNOME) with NVidia GTX 650 Ti. Desktop freezes completely,
-keyboard and mouse are not responding.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125265=
+" name=3D"attach_125265" title=3D"DMESG with pci_msi=3Doff nouveau.config=
+=3DNvForcePost=3D1 nouveau.debug=3Dtrace">attachment 125265</a> <a href=3D"=
+attachment.cgi?id=3D125265&amp;action=3Dedit" title=3D"DMESG with pci_msi=
+=3Doff nouveau.config=3DNvForcePost=3D1 nouveau.debug=3Dtrace">[details]</a=
+></span>
+DMESG with pci_msi=3Doff nouveau.config=3DNvForcePost=3D1 nouveau.debug=3Dt=
+race
 
-Part of journald log:
+Asus Z77 and GTX970, it seems the first fifo caused by
+<a href=3D"https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/no=
+uveau/nvkm/subdev/secboot/base.c#L142">https://github.com/torvalds/linux/bl=
+ob/master/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/base.c#L142</a>
 
-Jul 22 10:58:15 localhost.localdomain kernel: nouveau 0000:01:00.0: gr: TRA=
-P ch
-9 [003f548000 gnome-shell[1489]]
-Jul 22 10:58:15 localhost.localdomain kernel: nouveau 0000:01:00.0: gr:
-GPC0/PROP trap: 00000080 [ZETA_STORAGE_TYPE_MISMATCH] x =3D 128, y =3D 64, =
-format =3D
-0, storage type =3D fe
-Jul 22 10:58:15 localhost.localdomain kernel: nouveau 0000:01:00.0: gr:
-GPC1/PROP trap: 00000080 [ZETA_STORAGE_TYPE_MISMATCH] x =3D 80, y =3D 64, f=
-ormat =3D
-0, storage type =3D fe
-
-Package versions:
-
-kernel - 4.6.3
-mesa - 12.0.1
-xorg-x11-drv-nouveau - 1.0.12</pre>
+changing the value to 0x0 allowed the machine to boot, still with lots of
+errors.</pre>
         </div>
       </p>
 
@@ -130,9 +140,9 @@ xorg-x11-drv-nouveau - 1.0.12</pre>
     </body>
 </html>=
 
---14691757190.A2A2E5eAA.1202--
+--14692301450.ceE8.12273--
 
---===============0151723665==
+--===============0402453275==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -142,4 +152,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0151723665==--
+--===============0402453275==--
