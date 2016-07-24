@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97065] memory leak under Xwayland with old sdl1
 	applications
-Date: Sun, 24 Jul 2016 13:00:58 +0000
-Message-ID: <bug-97065-8800-yjrAeBq29Y@http.bugs.freedesktop.org/>
+Date: Sun, 24 Jul 2016 13:01:28 +0000
+Message-ID: <bug-97065-8800-41pupf3rRe@http.bugs.freedesktop.org/>
 References: <bug-97065-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0629701314=="
+Content-Type: multipart/mixed; boundary="===============1932198914=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97065-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0629701314==
-Content-Type: multipart/alternative; boundary="14693652582.c18a4c9C.22844";
+--===============1932198914==
+Content-Type: multipart/alternative; boundary="14693652871.0B8D711.24528";
  charset="UTF-8"
 
 
---14693652582.c18a4c9C.22844
-Date: Sun, 24 Jul 2016 13:00:58 +0000
+--14693652871.0B8D711.24528
+Date: Sun, 24 Jul 2016 13:01:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97065
 
---- Comment #1 from Hussam Al-Tayeb <me-rYJ0iO+mrgIiq3RsQ1AnAw@public.gmane.org> ---
-Created attachment 125287
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125287&action=3Dedit
-second memory map after memory increase
+--- Comment #2 from Hussam Al-Tayeb <me-rYJ0iO+mrgIiq3RsQ1AnAw@public.gmane.org> ---
+Created attachment 125288
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125288&action=3Dedit
+third memory map
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14693652582.c18a4c9C.22844
-Date: Sun, 24 Jul 2016 13:00:58 +0000
+--14693652871.0B8D711.24528
+Date: Sun, 24 Jul 2016 13:01:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - memory leak under Xwayland with old sdl1 applications"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - memory leak under Xwayland with old sdl1 applications"
@@ -74,11 +74,11 @@ Auto-Submitted: auto-generated
 me&#64;hussam.eu.org" title=3D"Hussam Al-Tayeb &lt;me&#64;hussam.eu.org&gt;=
 "> <span class=3D"fn">Hussam Al-Tayeb</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125287=
-" name=3D"attach_125287" title=3D"second memory map after memory increase">=
-attachment 125287</a> <a href=3D"attachment.cgi?id=3D125287&amp;action=3Ded=
-it" title=3D"second memory map after memory increase">[details]</a></span>
-second memory map after memory increase</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125288=
+" name=3D"attach_125288" title=3D"third memory map">attachment 125288</a> <=
+a href=3D"attachment.cgi?id=3D125288&amp;action=3Dedit" title=3D"third memo=
+ry map">[details]</a></span>
+third memory map</pre>
         </div>
       </p>
 
@@ -92,9 +92,9 @@ second memory map after memory increase</pre>
     </body>
 </html>=
 
---14693652582.c18a4c9C.22844--
+--14693652871.0B8D711.24528--
 
---===============0629701314==
+--===============1932198914==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0629701314==--
+--===============1932198914==--
