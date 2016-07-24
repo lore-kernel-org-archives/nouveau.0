@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97065] memory leak under Xwayland with old sdl1
-	applications
-Date: Sun, 24 Jul 2016 14:55:55 +0000
-Message-ID: <bug-97065-8800-2v9spwB4Fl@http.bugs.freedesktop.org/>
-References: <bug-97065-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 96876] system freeze "fifo: gr engine fault on
+ channel 6" NVIDIA
+Date: Sun, 24 Jul 2016 15:28:35 +0000
+Message-ID: <bug-96876-8800-gXO1J6TdnZ@http.bugs.freedesktop.org/>
+References: <bug-96876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1964582400=="
+Content-Type: multipart/mixed; boundary="===============1598438202=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97065-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-96876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1964582400==
-Content-Type: multipart/alternative; boundary="14693721551.3Ba04DE42.11167";
+--===============1598438202==
+Content-Type: multipart/alternative; boundary="14693741150.EbAEbA8cD.16033";
  charset="UTF-8"
 
 
---14693721551.3Ba04DE42.11167
-Date: Sun, 24 Jul 2016 14:55:55 +0000
+--14693741150.EbAEbA8cD.16033
+Date: Sun, 24 Jul 2016 15:28:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97065
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96876
 
---- Comment #5 from Link Mauve <bugs-xNsE4SeuFpL985uAA1p3mw@public.gmane.org> ---
-Hi again Hussam, please also run xrestop and report whether something actua=
-lly
-increases there.
+--- Comment #6 from Ehsan Azar <dashesy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Same lockup happens with 4.6.4, should I try some newer kernel?
+
+
+Jul 23 21:50:16 dashesy.wavelet kernel: nouveau 0000:01:00.0: fifo: write f=
+ault
+at 0000260000 engine 00 [GR] client 0f [GPC0/PROP_0] reason 02 [PTE] on cha=
+nnel
+6 [007fb71000 systemd-logind[867]]
+Jul 23 21:50:16 dashesy.wavelet kernel: nouveau 0000:01:00.0: fifo: gr engi=
+ne
+fault on channel 6, recovering...
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14693721551.3Ba04DE42.11167
-Date: Sun, 24 Jul 2016 14:55:55 +0000
+--14693741150.EbAEbA8cD.16033
+Date: Sun, 24 Jul 2016 15:28:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,21 +70,31 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - memory leak under Xwayland with old sdl1 applications"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065#c5">Comment=
- # 5</a>
+   title=3D"NEW - system freeze &quot;fifo: gr engine fault on channel 6&qu=
+ot; NVIDIA"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96876#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - memory leak under Xwayland with old sdl1 applications"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065">bug 97065<=
+   title=3D"NEW - system freeze &quot;fifo: gr engine fault on channel 6&qu=
+ot; NVIDIA"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96876">bug 96876<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bugs&#64;linkmauve.fr" title=3D"Link Mauve &lt;bugs&#64;linkmauve.fr&gt;"> =
-<span class=3D"fn">Link Mauve</span></a>
+dashesy&#64;gmail.com" title=3D"Ehsan Azar &lt;dashesy&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ehsan Azar</span></a>
 </span></b>
-        <pre>Hi again Hussam, please also run xrestop and report whether so=
-mething actually
-increases there.</pre>
+        <pre>Same lockup happens with 4.6.4, should I try some newer kernel?
+
+
+Jul 23 21:50:16 dashesy.wavelet kernel: nouveau 0000:01:00.0: fifo: write f=
+ault
+at 0000260000 engine 00 [GR] client 0f [GPC0/PROP_0] reason 02 [PTE] on cha=
+nnel
+6 [007fb71000 systemd-logind[867]]
+Jul 23 21:50:16 dashesy.wavelet kernel: nouveau 0000:01:00.0: fifo: gr engi=
+ne
+fault on channel 6, recovering...</pre>
         </div>
       </p>
 
@@ -90,9 +108,9 @@ increases there.</pre>
     </body>
 </html>=
 
---14693721551.3Ba04DE42.11167--
+--14693741150.EbAEbA8cD.16033--
 
---===============1964582400==
+--===============1598438202==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1964582400==--
+--===============1598438202==--
