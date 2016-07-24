@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97066] Blank screen when starting KMS on a GTX970
  for kernel 4.6 series
-Date: Sun, 24 Jul 2016 18:21:12 +0000
-Message-ID: <bug-97066-8800-JeDMndgHgR@http.bugs.freedesktop.org/>
+Date: Sun, 24 Jul 2016 18:24:44 +0000
+Message-ID: <bug-97066-8800-cs0MAoFFSX@http.bugs.freedesktop.org/>
 References: <bug-97066-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1196671972=="
+Content-Type: multipart/mixed; boundary="===============0909371355=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97066-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1196671972==
-Content-Type: multipart/alternative; boundary="14693844721.27ecAadf7.11580";
+--===============0909371355==
+Content-Type: multipart/alternative; boundary="14693846841.FFfA662.12902";
  charset="UTF-8"
 
 
---14693844721.27ecAadf7.11580
-Date: Sun, 24 Jul 2016 18:21:12 +0000
+--14693846841.FFfA662.12902
+Date: Sun, 24 Jul 2016 18:24:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,26 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97066
 
---- Comment #4 from smmilut <pil.smmilut-zJpx2rpV7r/QT0dZR+AlfA@public.gmane.org> ---
-Indeed, and the exact commercial model name is "Msi GTX970 Gaming 4G".
-
-When booting with :
-nouveau.noaccel=3D1 nouveau.nofbaccel=3D1
-i have a normal image on screen when entering KMS, and get my normal high
-resolution tty.
-However, i am unable to start Xorg.
-(attached are the corresponding Xorg.log and dmesg)
-
-When you say "moving the secboot firmware out of the way", does it mean i j=
-ust
-have to temporarily rename the directory "/lib/firmware/nvidia/gm204" ?
+--- Comment #5 from smmilut <pil.smmilut-zJpx2rpV7r/QT0dZR+AlfA@public.gmane.org> ---
+Created attachment 125295
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125295&action=3Dedit
+Xorg.0.log file when trying to start Xorg after selecting nouveau.noaccel=
+=3D1
+nouveau.nofbaccel=3D1
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14693844721.27ecAadf7.11580
-Date: Sun, 24 Jul 2016 18:21:12 +0000
+--14693846841.FFfA662.12902
+Date: Sun, 24 Jul 2016 18:24:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,8 +66,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Blank screen when starting KMS on a GTX970 for kernel 4.6=
  series"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97066#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97066#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Blank screen when starting KMS on a GTX970 for kernel 4.6=
@@ -85,20 +78,15 @@ Auto-Submitted: auto-generated
 pil.smmilut&#64;yandex.com" title=3D"smmilut &lt;pil.smmilut&#64;yandex.com=
 &gt;"> <span class=3D"fn">smmilut</span></a>
 </span></b>
-        <pre>Indeed, and the exact commercial model name is &quot;Msi GTX97=
-0 Gaming 4G&quot;.
-
-When booting with :
-nouveau.noaccel=3D1 nouveau.nofbaccel=3D1
-i have a normal image on screen when entering KMS, and get my normal high
-resolution tty.
-However, i am unable to start Xorg.
-(attached are the corresponding Xorg.log and dmesg)
-
-When you say &quot;moving the secboot firmware out of the way&quot;, does i=
-t mean i just
-have to temporarily rename the directory &quot;/lib/firmware/nvidia/gm204&q=
-uot; ?</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125295=
+" name=3D"attach_125295" title=3D"Xorg.0.log file when trying to start Xorg=
+ after selecting nouveau.noaccel=3D1 nouveau.nofbaccel=3D1">attachment 1252=
+95</a> <a href=3D"attachment.cgi?id=3D125295&amp;action=3Dedit" title=3D"Xo=
+rg.0.log file when trying to start Xorg after selecting nouveau.noaccel=3D1=
+ nouveau.nofbaccel=3D1">[details]</a></span>
+Xorg.0.log file when trying to start Xorg after selecting nouveau.noaccel=
+=3D1
+nouveau.nofbaccel=3D1</pre>
         </div>
       </p>
 
@@ -112,9 +100,9 @@ uot; ?</pre>
     </body>
 </html>=
 
---14693844721.27ecAadf7.11580--
+--14693846841.FFfA662.12902--
 
---===============1196671972==
+--===============0909371355==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1196671972==--
+--===============0909371355==--
