@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97065] memory leak under Xwayland with old sdl1
 	applications
-Date: Sun, 24 Jul 2016 13:03:40 +0000
-Message-ID: <bug-97065-8800-5aney0XkE1@http.bugs.freedesktop.org/>
+Date: Sun, 24 Jul 2016 14:55:55 +0000
+Message-ID: <bug-97065-8800-2v9spwB4Fl@http.bugs.freedesktop.org/>
 References: <bug-97065-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0876529386=="
+Content-Type: multipart/mixed; boundary="===============1964582400=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97065-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0876529386==
-Content-Type: multipart/alternative; boundary="14693654190.fD8b04dE.24502";
+--===============1964582400==
+Content-Type: multipart/alternative; boundary="14693721551.3Ba04DE42.11167";
  charset="UTF-8"
 
 
---14693654190.fD8b04dE.24502
-Date: Sun, 24 Jul 2016 13:03:39 +0000
+--14693721551.3Ba04DE42.11167
+Date: Sun, 24 Jul 2016 14:55:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,16 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97065
 
---- Comment #4 from Hussam Al-Tayeb <me-rYJ0iO+mrgIiq3RsQ1AnAw@public.gmane.org> ---
-Firefox nightly 50a1 also causes this but only around 200Kbytes per minute.
-Still memory is not freed on closing firefox.
+--- Comment #5 from Link Mauve <bugs-xNsE4SeuFpL985uAA1p3mw@public.gmane.org> ---
+Hi again Hussam, please also run xrestop and report whether something actua=
+lly
+increases there.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14693654190.fD8b04dE.24502
-Date: Sun, 24 Jul 2016 13:03:39 +0000
+--14693721551.3Ba04DE42.11167
+Date: Sun, 24 Jul 2016 14:55:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,20 +63,20 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - memory leak under Xwayland with old sdl1 applications"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - memory leak under Xwayland with old sdl1 applications"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065">bug 97065<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-me&#64;hussam.eu.org" title=3D"Hussam Al-Tayeb &lt;me&#64;hussam.eu.org&gt;=
-"> <span class=3D"fn">Hussam Al-Tayeb</span></a>
+bugs&#64;linkmauve.fr" title=3D"Link Mauve &lt;bugs&#64;linkmauve.fr&gt;"> =
+<span class=3D"fn">Link Mauve</span></a>
 </span></b>
-        <pre>Firefox nightly 50a1 also causes this but only around 200Kbyte=
-s per minute.
-Still memory is not freed on closing firefox.</pre>
+        <pre>Hi again Hussam, please also run xrestop and report whether so=
+mething actually
+increases there.</pre>
         </div>
       </p>
 
@@ -89,9 +90,9 @@ Still memory is not freed on closing firefox.</pre>
     </body>
 </html>=
 
---14693654190.fD8b04dE.24502--
+--14693721551.3Ba04DE42.11167--
 
---===============0876529386==
+--===============1964582400==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0876529386==--
+--===============1964582400==--
