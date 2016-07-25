@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97065] memory leak under Xwayland with old sdl1
 	applications
-Date: Mon, 25 Jul 2016 07:32:21 +0000
-Message-ID: <bug-97065-8800-4AnVgWJTcj@http.bugs.freedesktop.org/>
+Date: Mon, 25 Jul 2016 07:38:29 +0000
+Message-ID: <bug-97065-8800-ugfnsChxVp@http.bugs.freedesktop.org/>
 References: <bug-97065-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1487429927=="
+Content-Type: multipart/mixed; boundary="===============1188029801=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97065-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1487429927==
-Content-Type: multipart/alternative; boundary="14694319411.64bc.30435";
+--===============1188029801==
+Content-Type: multipart/alternative; boundary="14694323091.6De585b.31162";
  charset="UTF-8"
 
 
---14694319411.64bc.30435
-Date: Mon, 25 Jul 2016 07:32:21 +0000
+--14694323091.6De585b.31162
+Date: Mon, 25 Jul 2016 07:38:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,26 +36,33 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97065
 
---- Comment #9 from Michel D=C3=A4nzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org> ---
-There are a few possibilities:
+--- Comment #10 from Hussam Al-Tayeb <me-rYJ0iO+mrgIiq3RsQ1AnAw@public.gmane.org> ---
+(In reply to Michel D=C3=A4nzer from comment #9)
+> There are a few possibilities:
+>=20
+> * You can start a second Xwayland instance, e.g. something like
+>=20
+>    valgrind --leak-check=3Dfull Xwayland :99 -noreset
+>=20
+>   and then make clients connect to it by setting the environment variable
+>   DISPLAY=3D:99
+>=20
+> * Find out how to make gnome-shell launch Xwayland in valgrind
+>=20
+> * Do it in weston instead of in GNOME
 
-* You can start a second Xwayland instance, e.g. something like
-
-   valgrind --leak-check=3Dfull Xwayland :99 -noreset
-
-  and then make clients connect to it by setting the environment variable
-  DISPLAY=3D:99
-
-* Find out how to make gnome-shell launch Xwayland in valgrind
-
-* Do it in weston instead of in GNOME
+I asked on irc yesterday if it is possible to start a second Xwayland insta=
+nce
+and I was told no.
+Now I am glad it is possible to do so.
+Thank you. I will try that.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14694319411.64bc.30435
-Date: Mon, 25 Jul 2016 07:32:21 +0000
+--14694323091.6De585b.31162
+Date: Mon, 25 Jul 2016 07:38:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,29 +79,38 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - memory leak under Xwayland with old sdl1 applications"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065#c9">Comment=
- # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - memory leak under Xwayland with old sdl1 applications"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065">bug 97065<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-michel&#64;daenzer.net" title=3D"Michel D=C3=A4nzer &lt;michel&#64;daenzer.=
-net&gt;"> <span class=3D"fn">Michel D=C3=A4nzer</span></a>
+me&#64;hussam.eu.org" title=3D"Hussam Al-Tayeb &lt;me&#64;hussam.eu.org&gt;=
+"> <span class=3D"fn">Hussam Al-Tayeb</span></a>
 </span></b>
-        <pre>There are a few possibilities:
+        <pre>(In reply to Michel D=C3=A4nzer from <a href=3D"show_bug.cgi?i=
+d=3D97065#c9">comment #9</a>)
+<span class=3D"quote">&gt; There are a few possibilities:
+&gt;=20
+&gt; * You can start a second Xwayland instance, e.g. something like
+&gt;=20
+&gt;    valgrind --leak-check=3Dfull Xwayland :99 -noreset
+&gt;=20
+&gt;   and then make clients connect to it by setting the environment varia=
+ble
+&gt;   DISPLAY=3D:99
+&gt;=20
+&gt; * Find out how to make gnome-shell launch Xwayland in valgrind
+&gt;=20
+&gt; * Do it in weston instead of in GNOME</span >
 
-* You can start a second Xwayland instance, e.g. something like
-
-   valgrind --leak-check=3Dfull Xwayland :99 -noreset
-
-  and then make clients connect to it by setting the environment variable
-  DISPLAY=3D:99
-
-* Find out how to make gnome-shell launch Xwayland in valgrind
-
-* Do it in weston instead of in GNOME</pre>
+I asked on irc yesterday if it is possible to start a second Xwayland insta=
+nce
+and I was told no.
+Now I am glad it is possible to do so.
+Thank you. I will try that.</pre>
         </div>
       </p>
 
@@ -108,9 +124,9 @@ net&gt;"> <span class=3D"fn">Michel D=C3=A4nzer</span></a>
     </body>
 </html>=
 
---14694319411.64bc.30435--
+--14694323091.6De585b.31162--
 
---===============1487429927==
+--===============1188029801==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +136,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1487429927==--
+--===============1188029801==--
