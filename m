@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96737] [NV98] Xsession Login breakage -
+Subject: [Bug 96737] [GLX] Xsession Login breakage -
  SwitchToGreeter / SwitchToUser related
-Date: Wed, 27 Jul 2016 20:48:35 +0000
-Message-ID: <bug-96737-8800-pOzAkfBjyz@http.bugs.freedesktop.org/>
+Date: Wed, 27 Jul 2016 20:57:45 +0000
+Message-ID: <bug-96737-8800-yDFWuys9NS@http.bugs.freedesktop.org/>
 References: <bug-96737-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0089303265=="
+Content-Type: multipart/mixed; boundary="===============1807892490=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-96737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0089303265==
-Content-Type: multipart/alternative; boundary="14696525151.AdD2dd.3217";
+--===============1807892490==
+Content-Type: multipart/alternative; boundary="14696530651.110F0772b.4087";
  charset="UTF-8"
 
 
---14696525151.AdD2dd.3217
-Date: Wed, 27 Jul 2016 20:48:35 +0000
+--14696530651.110F0772b.4087
+Date: Wed, 27 Jul 2016 20:57:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,29 +36,27 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D96737
 
---- Comment #9 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Of course, the same with glx disabled
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NV98] Xsession Login       |[GLX] Xsession Login
+                   |breakage - SwitchToGreeter  |breakage - SwitchToGreeter
+                   |/ SwitchToUser related      |/ SwitchToUser related
+          Component|Driver/nouveau              |Server/Ext/GLX
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+                   |rg                          |
 
-/etc/X11/xorg.conf.d/glx.conf
-Section "Module"
-        Disable "glx"
-EndSection
-
-/var/log/Xorg.0.log
-(WW) "glx" will not be loaded unless you've specified it to be loaded
-elsewhere.
-(II) "glx" will be loaded even though the default is to disable it.
-(=3D=3D) NOUVEAU(0): GLX sync to VBlank enabled.
-
-xfwm4-WARNING **: GLX extension missing, GLX support disabled.
+--- Comment #10 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+However, this is not particular to nouveau.ko.
+Also tested with AMD radeon.ko and Intel i915.ko - the result is the same.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14696525151.AdD2dd.3217
-Date: Wed, 27 Jul 2016 20:48:35 +0000
+--14696530651.110F0772b.4087
+Date: Wed, 27 Jul 2016 20:57:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,42 +67,70 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pomidorab=
+elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
+"> <span class=3D"fn">poma</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GLX] Xsession Login breakage - SwitchToGreeter / SwitchT=
+oUser related"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737">bug 96737<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>[NV98] Xsession Login breakage - SwitchToGreeter / SwitchToU=
+ser related
+           </td>
+           <td>[GLX] Xsession Login breakage - SwitchToGreeter / SwitchToUs=
+er related
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>Driver/nouveau
+           </td>
+           <td>Server/Ext/GLX
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV98] Xsession Login breakage - SwitchToGreeter / Switch=
-ToUser related"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737#c9">Comment=
- # 9</a>
+   title=3D"NEW - [GLX] Xsession Login breakage - SwitchToGreeter / SwitchT=
+oUser related"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV98] Xsession Login breakage - SwitchToGreeter / Switch=
-ToUser related"
+   title=3D"NEW - [GLX] Xsession Login breakage - SwitchToGreeter / SwitchT=
+oUser related"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737">bug 96737<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
 l.com&gt;"> <span class=3D"fn">poma</span></a>
 </span></b>
-        <pre>
-Of course, the same with glx disabled
-
-/etc/X11/xorg.conf.d/glx.conf
-Section &quot;Module&quot;
-        Disable &quot;glx&quot;
-EndSection
-
-/var/log/Xorg.0.log
-(WW) &quot;glx&quot; will not be loaded unless you've specified it to be lo=
-aded
-elsewhere.
-(II) &quot;glx&quot; will be loaded even though the default is to disable i=
-t.
-(=3D=3D) NOUVEAU(0): GLX sync to VBlank enabled.
-
-xfwm4-WARNING **: GLX extension missing, GLX support disabled.</pre>
+        <pre>However, this is not particular to nouveau.ko.
+Also tested with AMD radeon.ko and Intel i915.ko - the result is the same.<=
+/pre>
         </div>
       </p>
 
@@ -118,9 +144,9 @@ xfwm4-WARNING **: GLX extension missing, GLX support disabled.</pre>
     </body>
 </html>=
 
---14696525151.AdD2dd.3217--
+--14696530651.110F0772b.4087--
 
---===============0089303265==
+--===============1807892490==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +156,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0089303265==--
+--===============1807892490==--
