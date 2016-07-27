@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH] gr/nv3x: fix instobj write offsets in gr setup
-Date: Wed, 27 Jul 2016 19:18:10 -0400
-Message-ID: <CAKb7UvgrfGPmCFTcUT=309QFo-1YccF5ObY+34Sf7DXc=CbwcA@mail.gmail.com>
-References: <1469661399-29284-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96836] Kernel unaligned access at TPC[105d9fb4]
+ nvkm_instobj_wr32+0x14/0x20 [nouveau]
+Date: Wed, 27 Jul 2016 23:20:43 +0000
+Message-ID: <bug-96836-8800-5l7vgcUriQ@http.bugs.freedesktop.org/>
+References: <bug-96836-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1068750676=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1469661399-29284-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+In-Reply-To: <bug-96836-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,49 +17,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKdWwgMjcsIDIwMTYgYXQgNzoxNiBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
-bS5taXQuZWR1PiB3cm90ZToKPiBUaGlzIHNob3VsZCBmaXggc29tZSB1bmFsaWduZWQgYWNjZXNz
-IHdhcm5pbmdzLiBUaGlzIGlzIGFsc28gbGlrZWx5IHRvCj4gZml4IG5vbi1kZXNjcmlwdCBpc3N1
-ZXMgb24gbnYzMC9udjM0IGFzIGEgcmVzdWx0IG9mIGluY29ycmVjdCBjaGFubmVsCj4gc2V0dXAu
-Cj4KPiBCdWd6aWxsYTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/
-aWQ9OTY4MzYKPiBTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5l
-ZHU+CgpPaCwgdGhpcyBzaG91bGQgcHJvYmFibHkgYWxzbyBoYXZlIGEKCkNjOiBzdGFibGVAdmdl
-ci5rZXJuZWwub3JnCgo+IC0tLQo+ICBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9udjMwLmMg
-fCA0ICsrLS0KPiAgZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvbnYzNC5jIHwgNCArKy0tCj4g
-IDIgZmlsZXMgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQo+Cj4gZGlm
-ZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzAuYyBiL2RybS9ub3V2ZWF1
-L252a20vZW5naW5lL2dyL252MzAuYwo+IGluZGV4IDY5ZGU4YzYuLmYxZTE1YTQgMTAwNjQ0Cj4g
-LS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvbnYzMC5jCj4gKysrIGIvZHJtL25vdXZl
-YXUvbnZrbS9lbmdpbmUvZ3IvbnYzMC5jCj4gQEAgLTc2LDggKzc2LDggQEAgbnYzMF9ncl9jaGFu
-X25ldyhzdHJ1Y3QgbnZrbV9nciAqYmFzZSwgc3RydWN0IG52a21fZmlmb19jaGFuICpmaWZvY2gs
-Cj4gICAgICAgICAgICAgICAgIG52a21fd28zMihjaGFuLT5pbnN0LCBpLCAweDAwMDQwMDA0KTsK
-PiAgICAgICAgIGZvciAoaSA9IDB4MWYxODsgaSA8PSAweDMwODggOyBpICs9IDE2KSB7Cj4gICAg
-ICAgICAgICAgICAgIG52a21fd28zMihjaGFuLT5pbnN0LCBpICsgMCwgMHgxMDcwMGZmOSk7Cj4g
-LSAgICAgICAgICAgICAgIG52a21fd28zMihjaGFuLT5pbnN0LCBpICsgMSwgMHgwNDM2MDg2Yyk7
-Cj4gLSAgICAgICAgICAgICAgIG52a21fd28zMihjaGFuLT5pbnN0LCBpICsgMiwgMHgwMDBjMDAx
-Yik7Cj4gKyAgICAgICAgICAgICAgIG52a21fd28zMihjaGFuLT5pbnN0LCBpICsgNCwgMHgwNDM2
-MDg2Yyk7Cj4gKyAgICAgICAgICAgICAgIG52a21fd28zMihjaGFuLT5pbnN0LCBpICsgOCwgMHgw
-MDBjMDAxYik7Cj4gICAgICAgICB9Cj4gICAgICAgICBmb3IgKGkgPSAweDMwYjg7IGkgPCAweDMw
-Yzg7IGkgKz0gNCkKPiAgICAgICAgICAgICAgICAgbnZrbV93bzMyKGNoYW4tPmluc3QsIGksIDB4
-MDAwMGZmZmYpOwo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9udjM0
-LmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9udjM0LmMKPiBpbmRleCAyMjA3ZGFjLi4z
-MDBmNWVkIDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzQuYwo+
-ICsrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzQuYwo+IEBAIC03NSw4ICs3NSw4
-IEBAIG52MzRfZ3JfY2hhbl9uZXcoc3RydWN0IG52a21fZ3IgKmJhc2UsIHN0cnVjdCBudmttX2Zp
-Zm9fY2hhbiAqZmlmb2NoLAo+ICAgICAgICAgICAgICAgICBudmttX3dvMzIoY2hhbi0+aW5zdCwg
-aSwgMHgwMDA0MDAwNCk7Cj4gICAgICAgICBmb3IgKGkgPSAweDE1YWM7IGkgPD0gMHgyNzFjIDsg
-aSArPSAxNikgewo+ICAgICAgICAgICAgICAgICBudmttX3dvMzIoY2hhbi0+aW5zdCwgaSArIDAs
-IDB4MTA3MDBmZjkpOwo+IC0gICAgICAgICAgICAgICBudmttX3dvMzIoY2hhbi0+aW5zdCwgaSAr
-IDEsIDB4MDQzNjA4NmMpOwo+IC0gICAgICAgICAgICAgICBudmttX3dvMzIoY2hhbi0+aW5zdCwg
-aSArIDIsIDB4MDAwYzAwMWIpOwo+ICsgICAgICAgICAgICAgICBudmttX3dvMzIoY2hhbi0+aW5z
-dCwgaSArIDQsIDB4MDQzNjA4NmMpOwo+ICsgICAgICAgICAgICAgICBudmttX3dvMzIoY2hhbi0+
-aW5zdCwgaSArIDgsIDB4MDAwYzAwMWIpOwo+ICAgICAgICAgfQo+ICAgICAgICAgZm9yIChpID0g
-MHgyNzRjOyBpIDwgMHgyNzVjOyBpICs9IDQpCj4gICAgICAgICAgICAgICAgIG52a21fd28zMihj
-aGFuLT5pbnN0LCBpLCAweDAwMDBmZmZmKTsKPiAtLQo+IDIuNy4zCj4KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1068750676==
+Content-Type: multipart/alternative; boundary="14696616431.212cA0305.17894";
+ charset="UTF-8"
+
+
+--14696616431.212cA0305.17894
+Date: Wed, 27 Jul 2016 23:20:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96836
+
+--- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I believe these two patches should be relevant to your situation:
+
+https://lists.freedesktop.org/archives/nouveau/2016-July/025683.html
+https://lists.freedesktop.org/archives/nouveau/2016-July/025688.html
+
+Whether it resolves anything ... who knows. Should at least get rid of all =
+the
+unaligned access errors.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14696616431.212cA0305.17894
+Date: Wed, 27 Jul 2016 23:20:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
+2+0x14/0x20 [nouveau]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836#c18">Commen=
+t # 18</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel unaligned access at TPC[105d9fb4] nvkm_instobj_wr3=
+2+0x14/0x20 [nouveau]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96836">bug 96836<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>I believe these two patches should be relevant to your situati=
+on:
+
+<a href=3D"https://lists.freedesktop.org/archives/nouveau/2016-July/025683.=
+html">https://lists.freedesktop.org/archives/nouveau/2016-July/025683.html<=
+/a>
+<a href=3D"https://lists.freedesktop.org/archives/nouveau/2016-July/025688.=
+html">https://lists.freedesktop.org/archives/nouveau/2016-July/025688.html<=
+/a>
+
+Whether it resolves anything ... who knows. Should at least get rid of all =
+the
+unaligned access errors.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14696616431.212cA0305.17894--
+
+--===============1068750676==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1068750676==--
