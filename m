@@ -1,12 +1,14 @@
-From: Zachary Wolfe <zwolfe21-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
-Subject: Boot Failure: GTX 970 & Fedora 24 Kernel
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Boot Failure: GTX 970 & Fedora 24 Kernel
 	4.6.4-301.fc24.x86_64
-Date: Thu, 28 Jul 2016 13:32:23 -0400
-Message-ID: <BLU436-SMTP17825A14751EA20C10150F5C1000@phx.gbl>
+Date: Thu, 28 Jul 2016 13:52:00 -0400
+Message-ID: <CAKb7UvhO61y9ZW+0O34aGM2GhT=btdBVj0kZcbbrofYjVD8ddA@mail.gmail.com>
+References: <BLU436-SMTP17825A14751EA20C10150F5C1000@phx.gbl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <BLU436-SMTP17825A14751EA20C10150F5C1000-MsuGFMq8XAE@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,20 +18,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Zachary Wolfe <zwolfe21-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SSBoYXZlIHJlYWQgc2V2ZXJhbCBidWdzIHdpdGggc2ltaWxhciBpc3N1ZXMgb24gQnVnWmlsbGEg
-Y29uY2VybmluZyAKNC42LjQgYW5kIEdUWCA5NzAncy4KCkkgbWFuYWdlZCBhIHdvcmsgYXJvdW5k
-IGJ5IGJvb3RpbmcgdG8gcHJldmlvdXMga2VybmVsIHJlbGVhc2UgYnV0IApub3V2ZWF1IHdvbnQg
-d29yayB3aXRoIHRoaXMgY2FyZC4gSSBydW4gdHdvIEdQVXMsIHNvIEkgbW92ZWQgbXkgNzYwIHRv
-IApwcmltYXJ5IHRvIGF0IGxlYXN0IGdldCBhIGJvb3QsIG9idmlvdXNseSB0aGUgb3RoZXIgc2Ny
-ZWVuIHdpdGggdGhpcyAKY2FyZCB3b250IHdvcmsgKGp1c3Qgc2xlZXBzKS4KCgpJIHdvdWxkIHJl
-cG9ydCB0aGlzIHRvIEJ1Z1ppbGxhIGhvd2V2ZXIgd2l0aCB0aGUgYm9vdCBmYWlsdXJlIG9uIDQu
-Ni40IEkgCmFtIHVuc3VyZSBob3cgdG8gZ2V0IHRoZSBwcm9wZXIgbG9ncy4gQ2FuIGFueW9uZSBo
-ZWxwIG1lIG91dD8KCkJ5IHRoZSB3YXksIHRoZSBjYXJkIGluIGNvbmNlcm4gb24gYnVnemlsbGEg
-c2VlbWVkIHRvIGNvbmNlcm4gYSA0R0IgCmNhcmQsIHdoaWNoIEkgaGF2ZS4KCkVWR0EgTlZpZGlh
-IEdUWCA5NzAgNDA5NkdCIEREUjUKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+T24gVGh1LCBKdWwgMjgsIDIwMTYgYXQgMTozMiBQTSwgWmFjaGFyeSBXb2xmZSA8endvbGZlMjFA
+aG90bWFpbC5jb20+IHdyb3RlOgo+IEkgaGF2ZSByZWFkIHNldmVyYWwgYnVncyB3aXRoIHNpbWls
+YXIgaXNzdWVzIG9uIEJ1Z1ppbGxhIGNvbmNlcm5pbmcgNC42LjQKPiBhbmQgR1RYIDk3MCdzLgo+
+Cj4gSSBtYW5hZ2VkIGEgd29yayBhcm91bmQgYnkgYm9vdGluZyB0byBwcmV2aW91cyBrZXJuZWwg
+cmVsZWFzZSBidXQgbm91dmVhdQo+IHdvbnQgd29yayB3aXRoIHRoaXMgY2FyZC4gSSBydW4gdHdv
+IEdQVXMsIHNvIEkgbW92ZWQgbXkgNzYwIHRvIHByaW1hcnkgdG8gYXQKPiBsZWFzdCBnZXQgYSBi
+b290LCBvYnZpb3VzbHkgdGhlIG90aGVyIHNjcmVlbiB3aXRoIHRoaXMgY2FyZCB3b250IHdvcmsg
+KGp1c3QKPiBzbGVlcHMpLgo+Cj4KPiBJIHdvdWxkIHJlcG9ydCB0aGlzIHRvIEJ1Z1ppbGxhIGhv
+d2V2ZXIgd2l0aCB0aGUgYm9vdCBmYWlsdXJlIG9uIDQuNi40IEkgYW0KPiB1bnN1cmUgaG93IHRv
+IGdldCB0aGUgcHJvcGVyIGxvZ3MuIENhbiBhbnlvbmUgaGVscCBtZSBvdXQ/Cj4KPiBCeSB0aGUg
+d2F5LCB0aGUgY2FyZCBpbiBjb25jZXJuIG9uIGJ1Z3ppbGxhIHNlZW1lZCB0byBjb25jZXJuIGEg
+NEdCIGNhcmQsCj4gd2hpY2ggSSBoYXZlLgo+Cj4gRVZHQSBOVmlkaWEgR1RYIDk3MCA0MDk2R0Ig
+RERSNQoKSW4gYWxsIGxpa2VsaWhvb2QgeW91IGhhdmUgdGhlIHNhbWUgaXNzdWUuIEp1c3Qgc3Vi
+c2NyaWJlIHRvIHRoZQpidWd6aWxsYSByZXBvcnQgYW5kIHlvdSdsbCBiZSBub3RpZmllZCBvZiBh
+bnkgcHJvZ3Jlc3MuCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
