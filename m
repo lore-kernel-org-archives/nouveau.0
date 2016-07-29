@@ -1,78 +1,138 @@
-From: Mikulas Patocka <mpatocka@redhat.com>
-Subject: [PATCH] drm/nouveau/fbcon: fix font width not divisible by 8
-Date: Thu, 28 Jul 2016 18:56:13 -0400 (EDT)
-Message-ID: <alpine.LRH.2.02.1607281849240.21548@file01.intranet.prod.int.rdu2.redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69594] NVA3 - Adobe Flash overlays all Chromium tabs
+Date: Fri, 29 Jul 2016 02:42:15 +0000
+Message-ID: <bug-69594-8800-L4dfo2K1Cf@http.bugs.freedesktop.org/>
+References: <bug-69594-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: TEXT/PLAIN; charset=US-ASCII
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org, Tomi Valkeinen <tomi.valkeinen@ti.com>, Jean-Christophe Plagniol-Villard <plagnioj@jcrosoft.com>
+Content-Type: multipart/mixed; boundary="===============1503653446=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-69594-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The patch f045f459d925 ("drm/nouveau/fbcon: fix out-of-bounds memory accesses")
-tries to fix some out of memory accesses. Unfortunatelly, the patch breaks the
-display when using fonts with width that is not divisiable by 8.
 
-The monochrome bitmap for each character is stored in memory by lines from top
-to bottom. Each line is padded to a full byte.
+--===============1503653446==
+Content-Type: multipart/alternative; boundary="14697601350.d090B.17987";
+ charset="UTF-8"
 
-For example, for 22x11 font, each line is padded to 16 bits, so each 
-character is consuming 44 bytes total, that is 11 32-bit words. The patch 
-f045f459d925 changed the logic to "dsize = ALIGN(image->width * 
-image->height, 32) >> 5", that is just 8 words - this is incorrect and it 
-causes display corruption.
 
-This patch adds the necesary padding of lines to 8 bytes.
+--14697601350.d090B.17987
+Date: Fri, 29 Jul 2016 02:42:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-This patch should be backported to stable kernels where f045f459d925 was 
-backported.
+https://bugs.freedesktop.org/show_bug.cgi?id=3D69594
 
-Signed-off-by: Mikulas Patocka <mpatocka@redhat.com>
-Fixes: f045f459d925 ("drm/nouveau/fbcon: fix out-of-bounds memory accesses")
-Cc: stable@vger.kernel.org
+Tod Jackson <tod.jackson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Index: linux-2.6/drivers/gpu/drm/nouveau/nvc0_fbcon.c
-===================================================================
---- linux-2.6.orig/drivers/gpu/drm/nouveau/nvc0_fbcon.c
-+++ linux-2.6/drivers/gpu/drm/nouveau/nvc0_fbcon.c
-@@ -125,7 +125,7 @@ nvc0_fbcon_imageblit(struct fb_info *inf
- 	OUT_RING  (chan, 0);
- 	OUT_RING  (chan, image->dy);
- 
--	dwords = ALIGN(image->width * image->height, 32) >> 5;
-+	dwords = ALIGN(ALIGN(image->width, 8) * image->height, 32) >> 5;
- 	while (dwords) {
- 		int push = dwords > 2047 ? 2047 : dwords;
- 
-Index: linux-2.6/drivers/gpu/drm/nouveau/nv04_fbcon.c
-===================================================================
---- linux-2.6.orig/drivers/gpu/drm/nouveau/nv04_fbcon.c
-+++ linux-2.6/drivers/gpu/drm/nouveau/nv04_fbcon.c
-@@ -107,11 +107,11 @@ nv04_fbcon_imageblit(struct fb_info *inf
- 			 ((image->dx + image->width) & 0xffff));
- 	OUT_RING(chan, bg);
- 	OUT_RING(chan, fg);
--	OUT_RING(chan, (image->height << 16) | image->width);
-+	OUT_RING(chan, (image->height << 16) | ALIGN(image->width, 8));
- 	OUT_RING(chan, (image->height << 16) | image->width);
- 	OUT_RING(chan, (image->dy << 16) | (image->dx & 0xffff));
- 
--	dsize = ALIGN(image->width * image->height, 32) >> 5;
-+	dsize = ALIGN(ALIGN(image->width, 8) * image->height, 32) >> 5;
- 	while (dsize) {
- 		int iter_len = dsize > 128 ? 128 : dsize;
- 
-Index: linux-2.6/drivers/gpu/drm/nouveau/nv50_fbcon.c
-===================================================================
---- linux-2.6.orig/drivers/gpu/drm/nouveau/nv50_fbcon.c
-+++ linux-2.6/drivers/gpu/drm/nouveau/nv50_fbcon.c
-@@ -125,7 +125,7 @@ nv50_fbcon_imageblit(struct fb_info *inf
- 	OUT_RING(chan, 0);
- 	OUT_RING(chan, image->dy);
- 
--	dwords = ALIGN(image->width * image->height, 32) >> 5;
-+	dwords = ALIGN(ALIGN(image->width, 8) * image->height, 32) >> 5;
- 	while (dwords) {
- 		int push = dwords > 2047 ? 2047 : dwords;
- 
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
+
+--- Comment #4 from Tod Jackson <tod.jackson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This was fixed years ago.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14697601350.d090B.17987
+Date: Fri, 29 Jul 2016 02:42:15 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:tod.jacks=
+on&#64;gmail.com" title=3D"Tod Jackson &lt;tod.jackson&#64;gmail.com&gt;"> =
+<span class=3D"fn">Tod Jackson</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - NVA3 - Adobe Flash overlays all Chromium tabs"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69594">bug 69594<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - NVA3 - Adobe Flash overlays all Chromium tabs"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69594#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - NVA3 - Adobe Flash overlays all Chromium tabs"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69594">bug 69594<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tod.jackson&#64;gmail.com" title=3D"Tod Jackson &lt;tod.jackson&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Tod Jackson</span></a>
+</span></b>
+        <pre>This was fixed years ago.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14697601350.d090B.17987--
+
+--===============1503653446==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1503653446==--
