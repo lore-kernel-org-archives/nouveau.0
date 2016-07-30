@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91632] Assert in nouveau_pushbuf_data
-Date: Sat, 30 Jul 2016 19:07:59 +0000
-Message-ID: <bug-91632-8800-tdZxOvvll4@http.bugs.freedesktop.org/>
+Date: Sat, 30 Jul 2016 19:08:32 +0000
+Message-ID: <bug-91632-8800-yQ7b97548g@http.bugs.freedesktop.org/>
 References: <bug-91632-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0772488577=="
+Content-Type: multipart/mixed; boundary="===============0072593398=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0772488577==
-Content-Type: multipart/alternative; boundary="14699056780.0Ff8.8463";
+--===============0072593398==
+Content-Type: multipart/alternative; boundary="14699057122.fbdD9CF49.7691";
  charset="UTF-8"
 
 
---14699056780.0Ff8.8463
-Date: Sat, 30 Jul 2016 19:07:58 +0000
+--14699057122.fbdD9CF49.7691
+Date: Sat, 30 Jul 2016 19:08:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,21 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D91632
 
---- Comment #5 from Francesco Turco <fturco-97jfqw80gc6171pxa8y+qA@public.gmane.org> ---
-I can't start the Qupzilla web browser because of a crash, and the problem
-seems to be related to nouveau. I can run qupzilla just file if I use the
---disable-gpu commandline option. Please see
-https://github.com/QupZilla/qupzilla/issues/2046 for the original bug I
-submitted. I'm going to attach the qupzilla gdb backtrace. I'm using
-mesa-12.0.1-5 on a Parabola GNU/Linux-libre system.
+--- Comment #6 from Francesco Turco <fturco-97jfqw80gc6171pxa8y+qA@public.gmane.org> ---
+Created attachment 125441
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125441&action=3Dedit
+gdb backtrace for qupzilla
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14699056780.0Ff8.8463
-Date: Sat, 30 Jul 2016 19:07:58 +0000
+--14699057122.fbdD9CF49.7691
+Date: Sat, 30 Jul 2016 19:08:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Assert in nouveau_pushbuf_data"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Assert in nouveau_pushbuf_data"
@@ -77,14 +74,11 @@ Auto-Submitted: auto-generated
 fturco&#64;fastmail.fm" title=3D"Francesco Turco &lt;fturco&#64;fastmail.fm=
 &gt;"> <span class=3D"fn">Francesco Turco</span></a>
 </span></b>
-        <pre>I can't start the Qupzilla web browser because of a crash, and=
- the problem
-seems to be related to nouveau. I can run qupzilla just file if I use the
---disable-gpu commandline option. Please see
-<a href=3D"https://github.com/QupZilla/qupzilla/issues/2046">https://github=
-.com/QupZilla/qupzilla/issues/2046</a> for the original bug I
-submitted. I'm going to attach the qupzilla gdb backtrace. I'm using
-mesa-12.0.1-5 on a Parabola GNU/Linux-libre system.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125441=
+" name=3D"attach_125441" title=3D"gdb backtrace for qupzilla">attachment 12=
+5441</a> <a href=3D"attachment.cgi?id=3D125441&amp;action=3Dedit" title=3D"=
+gdb backtrace for qupzilla">[details]</a></span>
+gdb backtrace for qupzilla</pre>
         </div>
       </p>
 
@@ -99,9 +93,9 @@ mesa-12.0.1-5 on a Parabola GNU/Linux-libre system.</pre>
     </body>
 </html>=
 
---14699056780.0Ff8.8463--
+--14699057122.fbdD9CF49.7691--
 
---===============0772488577==
+--===============0072593398==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0772488577==--
+--===============0072593398==--
