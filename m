@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95282] G96: system hang on video playback via vdpau
-Date: Sat, 30 Jul 2016 10:53:11 +0000
-Message-ID: <bug-95282-8800-1fs24WzCrY@http.bugs.freedesktop.org/>
-References: <bug-95282-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91632] Assert in nouveau_pushbuf_data
+Date: Sat, 30 Jul 2016 19:07:59 +0000
+Message-ID: <bug-91632-8800-tdZxOvvll4@http.bugs.freedesktop.org/>
+References: <bug-91632-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1273172330=="
+Content-Type: multipart/mixed; boundary="===============0772488577=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1273172330==
-Content-Type: multipart/alternative; boundary="14698759901.BccDf2Dd.29386";
+--===============0772488577==
+Content-Type: multipart/alternative; boundary="14699056780.0Ff8.8463";
  charset="UTF-8"
 
 
---14698759901.BccDf2Dd.29386
-Date: Sat, 30 Jul 2016 10:53:10 +0000
+--14699056780.0Ff8.8463
+Date: Sat, 30 Jul 2016 19:07:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95282
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91632
 
---- Comment #15 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-  Same problem with 4.7.0-ARCH-13902-gd491e80. Immediate crash on starting =
-xine
-video playback when started with vdpau; the only escape is via SysRQ-keys.
-Anyone here who would care?
+--- Comment #5 from Francesco Turco <fturco-97jfqw80gc6171pxa8y+qA@public.gmane.org> ---
+I can't start the Qupzilla web browser because of a crash, and the problem
+seems to be related to nouveau. I can run qupzilla just file if I use the
+--disable-gpu commandline option. Please see
+https://github.com/QupZilla/qupzilla/issues/2046 for the original bug I
+submitted. I'm going to attach the qupzilla gdb backtrace. I'm using
+mesa-12.0.1-5 on a Parabola GNU/Linux-libre system.
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14698759901.BccDf2Dd.29386
-Date: Sat, 30 Jul 2016 10:53:10 +0000
+--14699056780.0Ff8.8463
+Date: Sat, 30 Jul 2016 19:07:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,22 +65,26 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - G96: system hang on video playback via vdpau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c15">Commen=
-t # 15</a>
+   title=3D"NEW - Assert in nouveau_pushbuf_data"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - G96: system hang on video playback via vdpau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282">bug 95282<=
+   title=3D"NEW - Assert in nouveau_pushbuf_data"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632">bug 91632<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
-l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
+fturco&#64;fastmail.fm" title=3D"Francesco Turco &lt;fturco&#64;fastmail.fm=
+&gt;"> <span class=3D"fn">Francesco Turco</span></a>
 </span></b>
-        <pre>  Same problem with 4.7.0-ARCH-13902-gd491e80. Immediate crash=
- on starting xine
-video playback when started with vdpau; the only escape is via SysRQ-keys.
-Anyone here who would care?</pre>
+        <pre>I can't start the Qupzilla web browser because of a crash, and=
+ the problem
+seems to be related to nouveau. I can run qupzilla just file if I use the
+--disable-gpu commandline option. Please see
+<a href=3D"https://github.com/QupZilla/qupzilla/issues/2046">https://github=
+.com/QupZilla/qupzilla/issues/2046</a> for the original bug I
+submitted. I'm going to attach the qupzilla gdb backtrace. I'm using
+mesa-12.0.1-5 on a Parabola GNU/Linux-libre system.</pre>
         </div>
       </p>
 
@@ -86,14 +93,15 @@ Anyone here who would care?</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14698759901.BccDf2Dd.29386--
+--14699056780.0Ff8.8463--
 
---===============1273172330==
+--===============0772488577==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1273172330==--
+--===============0772488577==--
