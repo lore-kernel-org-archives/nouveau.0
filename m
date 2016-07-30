@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69594] NVA3 - Adobe Flash overlays all Chromium tabs
-Date: Fri, 29 Jul 2016 02:42:15 +0000
-Message-ID: <bug-69594-8800-L4dfo2K1Cf@http.bugs.freedesktop.org/>
-References: <bug-69594-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95282] G96: system hang on video playback via vdpau
+Date: Sat, 30 Jul 2016 10:53:11 +0000
+Message-ID: <bug-95282-8800-1fs24WzCrY@http.bugs.freedesktop.org/>
+References: <bug-95282-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1503653446=="
+Content-Type: multipart/mixed; boundary="===============1273172330=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69594-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1503653446==
-Content-Type: multipart/alternative; boundary="14697601350.d090B.17987";
+--===============1273172330==
+Content-Type: multipart/alternative; boundary="14698759901.BccDf2Dd.29386";
  charset="UTF-8"
 
 
---14697601350.d090B.17987
-Date: Fri, 29 Jul 2016 02:42:14 +0000
+--14698759901.BccDf2Dd.29386
+Date: Sat, 30 Jul 2016 10:53:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D69594
+https://bugs.freedesktop.org/show_bug.cgi?id=3D95282
 
-Tod Jackson <tod.jackson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
-
---- Comment #4 from Tod Jackson <tod.jackson-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This was fixed years ago.
+--- Comment #15 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+  Same problem with 4.7.0-ARCH-13902-gd491e80. Immediate crash on starting =
+xine
+video playback when started with vdpau; the only escape is via SysRQ-keys.
+Anyone here who would care?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14697601350.d090B.17987
-Date: Fri, 29 Jul 2016 02:42:15 +0000
+--14698759901.BccDf2Dd.29386
+Date: Sat, 30 Jul 2016 10:53:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,55 +57,27 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:tod.jacks=
-on&#64;gmail.com" title=3D"Tod Jackson &lt;tod.jackson&#64;gmail.com&gt;"> =
-<span class=3D"fn">Tod Jackson</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - NVA3 - Adobe Flash overlays all Chromium tabs"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69594">bug 69594<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - NVA3 - Adobe Flash overlays all Chromium tabs"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69594#c4">Comment=
- # 4</a>
+          bz_status_NEW "
+   title=3D"NEW - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c15">Commen=
+t # 15</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - NVA3 - Adobe Flash overlays all Chromium tabs"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69594">bug 69594<=
+          bz_status_NEW "
+   title=3D"NEW - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282">bug 95282<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tod.jackson&#64;gmail.com" title=3D"Tod Jackson &lt;tod.jackson&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Tod Jackson</span></a>
+estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
+l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>This was fixed years ago.</pre>
+        <pre>  Same problem with 4.7.0-ARCH-13902-gd491e80. Immediate crash=
+ on starting xine
+video playback when started with vdpau; the only escape is via SysRQ-keys.
+Anyone here who would care?</pre>
         </div>
       </p>
 
@@ -123,9 +91,9 @@ om&gt;"> <span class=3D"fn">Tod Jackson</span></a>
     </body>
 </html>=
 
---14697601350.d090B.17987--
+--14698759901.BccDf2Dd.29386--
 
---===============1503653446==
+--===============1273172330==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1503653446==--
+--===============1273172330==--
