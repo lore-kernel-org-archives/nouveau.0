@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
- GT]: HDMI monitor stays black after s2ram
-Date: Sun, 31 Jul 2016 11:16:57 +0000
-Message-ID: <bug-93887-8800-ehiXS7ah2C@http.bugs.freedesktop.org/>
-References: <bug-93887-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97065] memory leak under Xwayland with old sdl1
+	applications
+Date: Sun, 31 Jul 2016 13:59:09 +0000
+Message-ID: <bug-97065-8800-Mx5EUYhYwT@http.bugs.freedesktop.org/>
+References: <bug-97065-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1628756986=="
+Content-Type: multipart/mixed; boundary="===============0961519735=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97065-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1628756986==
-Content-Type: multipart/alternative; boundary="14699638162.bfbBC8.10120";
+--===============0961519735==
+Content-Type: multipart/alternative; boundary="14699735492.8F7A2C6F.7575";
  charset="UTF-8"
 
 
---14699638162.bfbBC8.10120
-Date: Sun, 31 Jul 2016 11:16:56 +0000
+--14699735492.8F7A2C6F.7575
+Date: Sun, 31 Jul 2016 13:59:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93887
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97065
 
---- Comment #46 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 125445
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125445&action=3Dedit
-nvapeeks for nouveau and nvidia340
+--- Comment #11 from Hussam Al-Tayeb <me-rYJ0iO+mrgIiq3RsQ1AnAw@public.gmane.org> ---
+Created attachment 125446
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125446&action=3Dedit
+valgrind log
 
-nvapeek 0x610000 0x20000
-* after bootup but before plugging the monitor
-* after plugging and configuring the HDMI-monitor
-* after s2ram (noveau: external HDMI monitor stays black without a signal b=
-ut
-LVDS works; proprietary nvidia340: HDMI-gets restored but not the xinerama
-configuration; before-and-after s2ram: the 3840x2160 is displayed as 1920x2=
-160
-resulting in horizontal distortions)
+Not very useful as I still need to recompile arch linux's packages with deb=
+ug
+symbols but this is the valgrind log.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14699638162.bfbBC8.10120
-Date: Sun, 31 Jul 2016 11:16:56 +0000
+--14699735492.8F7A2C6F.7575
+Date: Sun, 31 Jul 2016 13:59:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,35 +66,27 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monit=
-or stays black after s2ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887#c46">Commen=
-t # 46</a>
+   title=3D"NEW - memory leak under Xwayland with old sdl1 applications"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065#c11">Commen=
+t # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monit=
-or stays black after s2ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887">bug 93887<=
+   title=3D"NEW - memory leak under Xwayland with old sdl1 applications"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065">bug 97065<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
-l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
+me&#64;hussam.eu.org" title=3D"Hussam Al-Tayeb &lt;me&#64;hussam.eu.org&gt;=
+"> <span class=3D"fn">Hussam Al-Tayeb</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125445=
-" name=3D"attach_125445" title=3D"nvapeeks for nouveau and nvidia340">attac=
-hment 125445</a> <a href=3D"attachment.cgi?id=3D125445&amp;action=3Dedit" t=
-itle=3D"nvapeeks for nouveau and nvidia340">[details]</a></span>
-nvapeeks for nouveau and nvidia340
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125446=
+" name=3D"attach_125446" title=3D"valgrind log">attachment 125446</a> <a hr=
+ef=3D"attachment.cgi?id=3D125446&amp;action=3Dedit" title=3D"valgrind log">=
+[details]</a></span>
+valgrind log
 
-nvapeek 0x610000 0x20000
-* after bootup but before plugging the monitor
-* after plugging and configuring the HDMI-monitor
-* after s2ram (noveau: external HDMI monitor stays black without a signal b=
-ut
-LVDS works; proprietary nvidia340: HDMI-gets restored but not the xinerama
-configuration; before-and-after s2ram: the 3840x2160 is displayed as 1920x2=
-160
-resulting in horizontal distortions)</pre>
+Not very useful as I still need to recompile arch linux's packages with deb=
+ug
+symbols but this is the valgrind log.</pre>
         </div>
       </p>
 
@@ -114,9 +100,9 @@ resulting in horizontal distortions)</pre>
     </body>
 </html>=
 
---14699638162.bfbBC8.10120--
+--14699735492.8F7A2C6F.7575--
 
---===============1628756986==
+--===============0961519735==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -126,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1628756986==--
+--===============0961519735==--
