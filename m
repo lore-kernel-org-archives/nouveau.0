@@ -1,11 +1,13 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] subdev/volt/gk104: return error when read fails
-Date: Sun, 31 Jul 2016 12:12:43 +0200
-Message-ID: <20160731101243.6599-1-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
+ GT]: HDMI monitor stays black after s2ram
+Date: Sun, 31 Jul 2016 11:16:57 +0000
+Message-ID: <bug-93887-8800-ehiXS7ah2C@http.bugs.freedesktop.org/>
+References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1628756986=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,23 +20,110 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2hpbGUgbXkgZ3B1IHdhcyBwb3dlcmVkIG9mZiwgaHdtb24gcmV0dXJuZWQgMC42ViBhcyB0aGUg
-Y3VycmVudCB2b2x0YWdlLgpJZiBudmttX3JkMzIgZmFpbHMgZm9yIGFueSByZWFzb24sIHJldHVy
-biB0aGUgZXJyb3IuCgpXaXRoIHRoYXQgc2Vuc29ycyB3aWxsIGRpc3BsYXkgYSAiTi9BIiBpbnN0
-ZWFkIG9mIDAuNlYuCgpTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdt
-YWlsLmNvbT4KLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2drMTA0LmMgfCA3ICsr
-KysrKy0KIDEgZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRp
-ZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2drMTA0LmMgYi9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi92b2x0L2drMTA0LmMKaW5kZXggNDIwYmQ4NC4uMTgyMTYyNiAxMDA2
-NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nazEwNC5jCisrKyBiL2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2sxMDQuYwpAQCAtMzksMTAgKzM5LDE1IEBAIGdrMTA0
-X3ZvbHRfZ2V0KHN0cnVjdCBudmttX3ZvbHQgKmJhc2UpCiB7CiAJc3RydWN0IG52Ymlvc192b2x0
-ICpiaW9zID0gJmdrMTA0X3ZvbHQoYmFzZSktPmJpb3M7CiAJc3RydWN0IG52a21fZGV2aWNlICpk
-ZXZpY2UgPSBiYXNlLT5zdWJkZXYuZGV2aWNlOwotCXUzMiBkaXYsIGR1dHk7CisJaW50IGRpdiwg
-ZHV0eTsKIAogCWRpdiAgPSBudmttX3JkMzIoZGV2aWNlLCAweDIwMzQwKTsKKwlpZiAoZGl2IDwg
-MCkKKwkJcmV0dXJuIGRpdjsKKwogCWR1dHkgPSBudmttX3JkMzIoZGV2aWNlLCAweDIwMzQ0KTsK
-KwlpZiAoZHV0eSA8IDApCisJCXJldHVybiBkdXR5OwogCiAJcmV0dXJuIGJpb3MtPmJhc2UgKyBi
-aW9zLT5wd21fcmFuZ2UgKiBkdXR5IC8gZGl2OwogfQotLSAKMi45LjIKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1628756986==
+Content-Type: multipart/alternative; boundary="14699638162.bfbBC8.10120";
+ charset="UTF-8"
+
+
+--14699638162.bfbBC8.10120
+Date: Sun, 31 Jul 2016 11:16:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93887
+
+--- Comment #46 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 125445
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125445&action=3Dedit
+nvapeeks for nouveau and nvidia340
+
+nvapeek 0x610000 0x20000
+* after bootup but before plugging the monitor
+* after plugging and configuring the HDMI-monitor
+* after s2ram (noveau: external HDMI monitor stays black without a signal b=
+ut
+LVDS works; proprietary nvidia340: HDMI-gets restored but not the xinerama
+configuration; before-and-after s2ram: the 3840x2160 is displayed as 1920x2=
+160
+resulting in horizontal distortions)
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14699638162.bfbBC8.10120
+Date: Sun, 31 Jul 2016 11:16:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monit=
+or stays black after s2ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887#c46">Commen=
+t # 46</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monit=
+or stays black after s2ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887">bug 93887<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
+l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125445=
+" name=3D"attach_125445" title=3D"nvapeeks for nouveau and nvidia340">attac=
+hment 125445</a> <a href=3D"attachment.cgi?id=3D125445&amp;action=3Dedit" t=
+itle=3D"nvapeeks for nouveau and nvidia340">[details]</a></span>
+nvapeeks for nouveau and nvidia340
+
+nvapeek 0x610000 0x20000
+* after bootup but before plugging the monitor
+* after plugging and configuring the HDMI-monitor
+* after s2ram (noveau: external HDMI monitor stays black without a signal b=
+ut
+LVDS works; proprietary nvidia340: HDMI-gets restored but not the xinerama
+configuration; before-and-after s2ram: the 3840x2160 is displayed as 1920x2=
+160
+resulting in horizontal distortions)</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14699638162.bfbBC8.10120--
+
+--===============1628756986==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1628756986==--
