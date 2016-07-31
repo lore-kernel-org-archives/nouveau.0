@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97065] memory leak under Xwayland with old sdl1
-	applications
-Date: Sun, 31 Jul 2016 13:59:09 +0000
-Message-ID: <bug-97065-8800-Mx5EUYhYwT@http.bugs.freedesktop.org/>
-References: <bug-97065-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94374] transparent window with DRI_PRIME=1,
+ depending on size of used textures
+Date: Sun, 31 Jul 2016 14:01:31 +0000
+Message-ID: <bug-94374-8800-9GFBfl3pcQ@http.bugs.freedesktop.org/>
+References: <bug-94374-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0961519735=="
+Content-Type: multipart/mixed; boundary="===============1840913805=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97065-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94374-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0961519735==
-Content-Type: multipart/alternative; boundary="14699735492.8F7A2C6F.7575";
+--===============1840913805==
+Content-Type: multipart/alternative; boundary="14699736900.2C36.8502";
  charset="UTF-8"
 
 
---14699735492.8F7A2C6F.7575
-Date: Sun, 31 Jul 2016 13:59:09 +0000
+--14699736900.2C36.8502
+Date: Sun, 31 Jul 2016 14:01:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97065
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94374
 
---- Comment #11 from Hussam Al-Tayeb <me-rYJ0iO+mrgIiq3RsQ1AnAw@public.gmane.org> ---
-Created attachment 125446
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125446&action=3Dedit
-valgrind log
+peter.fiss-Mmb7MZpHnFY@public.gmane.org changed:
 
-Not very useful as I still need to recompile arch linux's packages with deb=
-ug
-symbols but this is the valgrind log.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |WORKSFORME
+
+--- Comment #10 from peter.fiss-Mmb7MZpHnFY@public.gmane.org ---
+This bug appears to be fixed. I know it was still present about a week ago =
+with
+Mesa 12.0.1, but today xf86-video-intel got upgraded (from
+1:2.99.917+676+g26f8ab5-1 to 1:2.99.917+684+g6988b87-3, whatever these stra=
+nge
+version numbers are). Now I can no longer reproduce the issue. Since the
+upgrade, the driver uses DRI3 by default. But even when I switch back to DR=
+I2
+manually, this is no longer an issue.
+
+I'm closing this issue now, until it happens again.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14699735492.8F7A2C6F.7575
-Date: Sun, 31 Jul 2016 13:59:09 +0000
+--14699736900.2C36.8502
+Date: Sun, 31 Jul 2016 14:01:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,32 +73,67 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:peter.fis=
+s&#64;gmx.de" title=3D"peter.fiss&#64;gmx.de">peter.fiss&#64;gmx.de</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - transparent window with DRI_PRIME=3D1, de=
+pending on size of used textures"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94374">bug 94374<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WORKSFORME
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - memory leak under Xwayland with old sdl1 applications"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065#c11">Commen=
-t # 11</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - transparent window with DRI_PRIME=3D1, de=
+pending on size of used textures"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94374#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - memory leak under Xwayland with old sdl1 applications"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97065">bug 97065<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - transparent window with DRI_PRIME=3D1, de=
+pending on size of used textures"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94374">bug 94374<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-me&#64;hussam.eu.org" title=3D"Hussam Al-Tayeb &lt;me&#64;hussam.eu.org&gt;=
-"> <span class=3D"fn">Hussam Al-Tayeb</span></a>
+peter.fiss&#64;gmx.de" title=3D"peter.fiss&#64;gmx.de">peter.fiss&#64;gmx.d=
+e</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125446=
-" name=3D"attach_125446" title=3D"valgrind log">attachment 125446</a> <a hr=
-ef=3D"attachment.cgi?id=3D125446&amp;action=3Dedit" title=3D"valgrind log">=
-[details]</a></span>
-valgrind log
+        <pre>This bug appears to be fixed. I know it was still present abou=
+t a week ago with
+Mesa 12.0.1, but today xf86-video-intel got upgraded (from
+1:2.99.917+676+g26f8ab5-1 to 1:2.99.917+684+g6988b87-3, whatever these stra=
+nge
+version numbers are). Now I can no longer reproduce the issue. Since the
+upgrade, the driver uses DRI3 by default. But even when I switch back to DR=
+I2
+manually, this is no longer an issue.
 
-Not very useful as I still need to recompile arch linux's packages with deb=
-ug
-symbols but this is the valgrind log.</pre>
+I'm closing this issue now, until it happens again.</pre>
         </div>
       </p>
 
@@ -96,13 +143,14 @@ symbols but this is the valgrind log.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14699735492.8F7A2C6F.7575--
+--14699736900.2C36.8502--
 
---===============0961519735==
+--===============1840913805==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +160,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0961519735==--
+--===============1840913805==--
