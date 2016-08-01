@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Mon, 01 Aug 2016 07:26:59 +0000
-Message-ID: <bug-94990-8800-pYqBwdXDdJ@http.bugs.freedesktop.org/>
+Date: Mon, 01 Aug 2016 07:28:33 +0000
+Message-ID: <bug-94990-8800-Duh5dZVlZC@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1173170137=="
+Content-Type: multipart/mixed; boundary="===============0057717863=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1173170137==
-Content-Type: multipart/alternative; boundary="14700364200.BC5aA.26603";
+--===============0057717863==
+Content-Type: multipart/alternative; boundary="14700365135.1E001Da.26351";
  charset="UTF-8"
 
 
---14700364200.BC5aA.26603
-Date: Mon, 1 Aug 2016 07:27:00 +0000
+--14700365135.1E001Da.26351
+Date: Mon, 1 Aug 2016 07:28:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,15 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #45 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
-Definitely neither rushing nor pestering you but is there an ETA for this?
+--- Comment #46 from Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I think Ben mentioned he was working on a fix for this. Ben, do you need mo=
+re
+data from me?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14700364200.BC5aA.26603
-Date: Mon, 1 Aug 2016 07:27:00 +0000
+--14700365135.1E001Da.26351
+Date: Mon, 1 Aug 2016 07:28:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,19 +62,20 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c45">Commen=
-t # 45</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c46">Commen=
+t # 46</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
-un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
+gnurou&#64;gmail.com" title=3D"Alexandre Courbot &lt;gnurou&#64;gmail.com&g=
+t;"> <span class=3D"fn">Alexandre Courbot</span></a>
 </span></b>
-        <pre>Definitely neither rushing nor pestering you but is there an E=
-TA for this?</pre>
+        <pre>I think Ben mentioned he was working on a fix for this. Ben, d=
+o you need more
+data from me?</pre>
         </div>
       </p>
 
@@ -86,9 +89,9 @@ TA for this?</pre>
     </body>
 </html>=
 
---14700364200.BC5aA.26603--
+--14700365135.1E001Da.26351--
 
---===============1173170137==
+--===============0057717863==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1173170137==--
+--===============0057717863==--
