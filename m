@@ -1,37 +1,126 @@
-From: Baole Ni <baolex.ni@intel.com>
-Subject: [PATCH 0202/1285] Replace numeric parameter like 0444 with macro
-Date: Tue,  2 Aug 2016 18:49:18 +0800
-Message-ID: <20160802104918.27222-1-baolex.ni@intel.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, kyungmin.park@samsung.com, kgene@kernel.org, k.kozlowski@samsung.com, dougthompson@xmission.com, bp@alien8.de
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, daniel.vetter@ffwll.ch, treding@nvidia.com, ville.syrjala@linux.intel.com, chuansheng.liu@intel.com, baolex.ni@intel.com
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91632] Assert in nouveau_pushbuf_data
+Date: Tue, 02 Aug 2016 20:17:56 +0000
+Message-ID: <bug-91632-8800-RMrD608tr9@http.bugs.freedesktop.org/>
+References: <bug-91632-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============1945583126=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-I find that the developers often just specified the numeric value
-when calling a macro which is defined with a parameter for access permission.
-As we know, these numeric value for access permission have had the corresponding macro,
-and that using macro can improve the robustness and readability of the code,
-thus, I suggest replacing the numeric parameter with the macro.
 
-Signed-off-by: Chuansheng Liu <chuansheng.liu@intel.com>
-Signed-off-by: Baole Ni <baolex.ni@intel.com>
----
- drivers/gpu/drm/nouveau/dispnv04/tvnv17.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--===============1945583126==
+Content-Type: multipart/alternative; boundary="14701690763.6c57D4Fe.4035";
+ charset="UTF-8"
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-index a665b78..42ed6f7 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-@@ -40,7 +40,7 @@ MODULE_PARM_DESC(tv_norm, "Default TV norm.\n"
- 		 "\t\tDefault: PAL\n"
- 		 "\t\t*NOTE* Ignored for cards with external TV encoders.");
- static char *nouveau_tv_norm;
--module_param_named(tv_norm, nouveau_tv_norm, charp, 0400);
-+module_param_named(tv_norm, nouveau_tv_norm, charp, S_IRUSR);
- 
- static uint32_t nv42_tv_sample_load(struct drm_encoder *encoder)
- {
--- 
-2.9.2
+
+--14701690763.6c57D4Fe.4035
+Date: Tue, 2 Aug 2016 20:17:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91632
+
+--- Comment #7 from Andr=C3=A9s Becerra Sandoval <andres.becerra-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>=
+ ---
+Created attachment 125493
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125493&action=3Dedit
+backtrace with symbol tables
+
+- Made with gdb with the command: thread apply all bt full
+- Packages versions (on a Gentoo system):
+www-client/qupzilla-2.0.1
+x11-drivers/xf86-video-nouveau-1.0.12
+media-libs/mesa-12.0.1
+x11-libs/libdrm-2.4.70
+dev-qt/qtwebengine-5.6.1
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14701690763.6c57D4Fe.4035
+Date: Tue, 2 Aug 2016 20:17:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Assert in nouveau_pushbuf_data"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Assert in nouveau_pushbuf_data"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632">bug 91632<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+andres.becerra&#64;gmail.com" title=3D"Andr=C3=A9s Becerra Sandoval &lt;and=
+res.becerra&#64;gmail.com&gt;"> <span class=3D"fn">Andr=C3=A9s Becerra Sand=
+oval</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125493=
+" name=3D"attach_125493" title=3D"backtrace with symbol tables">attachment =
+125493</a> <a href=3D"attachment.cgi?id=3D125493&amp;action=3Dedit" title=
+=3D"backtrace with symbol tables">[details]</a></span>
+backtrace with symbol tables
+
+- Made with gdb with the command: thread apply all bt full
+- Packages versions (on a Gentoo system):
+www-client/qupzilla-2.0.1
+x11-drivers/xf86-video-nouveau-1.0.12
+media-libs/mesa-12.0.1
+x11-libs/libdrm-2.4.70
+dev-qt/qtwebengine-5.6.1</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14701690763.6c57D4Fe.4035--
+
+--===============1945583126==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1945583126==--
