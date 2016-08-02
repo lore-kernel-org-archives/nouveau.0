@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91632] Assert in nouveau_pushbuf_data
-Date: Tue, 02 Aug 2016 20:17:56 +0000
-Message-ID: <bug-91632-8800-RMrD608tr9@http.bugs.freedesktop.org/>
+Date: Tue, 02 Aug 2016 23:09:54 +0000
+Message-ID: <bug-91632-8800-OHXsBop22p@http.bugs.freedesktop.org/>
 References: <bug-91632-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1945583126=="
+Content-Type: multipart/mixed; boundary="===============0236992360=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1945583126==
-Content-Type: multipart/alternative; boundary="14701690763.6c57D4Fe.4035";
+--===============0236992360==
+Content-Type: multipart/alternative; boundary="14701793943.a868a9cb1.23788";
  charset="UTF-8"
 
 
---14701690763.6c57D4Fe.4035
-Date: Tue, 2 Aug 2016 20:17:56 +0000
+--14701793943.a868a9cb1.23788
+Date: Tue, 2 Aug 2016 23:09:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,27 +35,30 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D91632
 
---- Comment #7 from Andr=C3=A9s Becerra Sandoval <andres.becerra-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>=
- ---
-Created attachment 125493
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125493&action=3Dedit
-backtrace with symbol tables
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Unfortunately "this" issue is a lot of potential issues. The current leading
+cause of such errors, assuming an up-to-date libdrm/etc, is multithreading =
+in
+the application. Nouveau does not handle this well.
 
-- Made with gdb with the command: thread apply all bt full
-- Packages versions (on a Gentoo system):
-www-client/qupzilla-2.0.1
-x11-drivers/xf86-video-nouveau-1.0.12
-media-libs/mesa-12.0.1
-x11-libs/libdrm-2.4.70
-dev-qt/qtwebengine-5.6.1
+I have a branch which tries to address this:
+
+https://github.com/imirkin/mesa/commits/locking
+
+However it's not quite there yet (although it's a good part of the way ther=
+e),
+and needs a rethink on some of the core mechanisms used. Unfortunately the
+libdrm_nouveau api is really not well-suited to multithreading, kicks can e=
+nd
+up resulting implicitly from all kinds of seemingly innocuous actions.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14701690763.6c57D4Fe.4035
-Date: Tue, 2 Aug 2016 20:17:56 +0000
+--14701793943.a868a9cb1.23788
+Date: Tue, 2 Aug 2016 23:09:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,31 +75,34 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Assert in nouveau_pushbuf_data"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632#c7">Comment=
- # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632#c8">Comment=
+ # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Assert in nouveau_pushbuf_data"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632">bug 91632<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-andres.becerra&#64;gmail.com" title=3D"Andr=C3=A9s Becerra Sandoval &lt;and=
-res.becerra&#64;gmail.com&gt;"> <span class=3D"fn">Andr=C3=A9s Becerra Sand=
-oval</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125493=
-" name=3D"attach_125493" title=3D"backtrace with symbol tables">attachment =
-125493</a> <a href=3D"attachment.cgi?id=3D125493&amp;action=3Dedit" title=
-=3D"backtrace with symbol tables">[details]</a></span>
-backtrace with symbol tables
+        <pre>Unfortunately &quot;this&quot; issue is a lot of potential iss=
+ues. The current leading
+cause of such errors, assuming an up-to-date libdrm/etc, is multithreading =
+in
+the application. Nouveau does not handle this well.
 
-- Made with gdb with the command: thread apply all bt full
-- Packages versions (on a Gentoo system):
-www-client/qupzilla-2.0.1
-x11-drivers/xf86-video-nouveau-1.0.12
-media-libs/mesa-12.0.1
-x11-libs/libdrm-2.4.70
-dev-qt/qtwebengine-5.6.1</pre>
+I have a branch which tries to address this:
+
+<a href=3D"https://github.com/imirkin/mesa/commits/locking">https://github.=
+com/imirkin/mesa/commits/locking</a>
+
+However it's not quite there yet (although it's a good part of the way ther=
+e),
+and needs a rethink on some of the core mechanisms used. Unfortunately the
+libdrm_nouveau api is really not well-suited to multithreading, kicks can e=
+nd
+up resulting implicitly from all kinds of seemingly innocuous actions.</pre>
         </div>
       </p>
 
@@ -111,9 +117,9 @@ dev-qt/qtwebengine-5.6.1</pre>
     </body>
 </html>=
 
---14701690763.6c57D4Fe.4035--
+--14701793943.a868a9cb1.23788--
 
---===============1945583126==
+--===============0236992360==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +129,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1945583126==--
+--===============0236992360==--
