@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
-Date: Tue, 02 Aug 2016 15:52:28 +0000
-Message-ID: <bug-97192-8800-9RASFE5iwz@http.bugs.freedesktop.org/>
+Date: Tue, 02 Aug 2016 16:08:18 +0000
+Message-ID: <bug-97192-8800-j8ty7624Vx@http.bugs.freedesktop.org/>
 References: <bug-97192-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1979212207=="
+Content-Type: multipart/mixed; boundary="===============1846922981=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1979212207==
-Content-Type: multipart/alternative; boundary="14701531480.Cb903E3.3556";
+--===============1846922981==
+Content-Type: multipart/alternative; boundary="14701540981.b163346.5826";
  charset="UTF-8"
 
 
---14701531480.Cb903E3.3556
-Date: Tue, 2 Aug 2016 15:52:28 +0000
+--14701540981.b163346.5826
+Date: Tue, 2 Aug 2016 16:08:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
 
---- Comment #1 from Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> ---
-More info:
-
-OS: GNU Parabola
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+What version of STK and what version of mesa are you running?
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14701531480.Cb903E3.3556
-Date: Tue, 2 Aug 2016 15:52:28 +0000
+--14701540981.b163346.5826
+Date: Tue, 2 Aug 2016 16:08:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,20 +61,19 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">bug 97192<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-alejandrohp&#64;openmailbox.org" title=3D"Alejandro &lt;alejandrohp&#64;ope=
-nmailbox.org&gt;"> <span class=3D"fn">Alejandro</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>More info:
-
-OS: GNU Parabola</pre>
+        <pre>What version of STK and what version of mesa are you running?<=
+/pre>
         </div>
       </p>
 
@@ -85,15 +82,15 @@ OS: GNU Parabola</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14701531480.Cb903E3.3556--
+--14701540981.b163346.5826--
 
---===============1979212207==
+--===============1846922981==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1979212207==--
+--===============1846922981==--
