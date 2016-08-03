@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91632] Assert in nouveau_pushbuf_data
-Date: Wed, 03 Aug 2016 08:25:36 +0000
-Message-ID: <bug-91632-8800-PdOrK3QSZh@http.bugs.freedesktop.org/>
-References: <bug-91632-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
+Date: Wed, 03 Aug 2016 15:00:57 +0000
+Message-ID: <bug-97192-8800-BKsH7x0WsK@http.bugs.freedesktop.org/>
+References: <bug-97192-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0499766830=="
+Content-Type: multipart/mixed; boundary="===============0469699067=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0499766830==
-Content-Type: multipart/alternative; boundary="14702127351.DDDCdA8.15316";
+--===============0469699067==
+Content-Type: multipart/alternative; boundary="14702364560.CFe3fCd1.10854";
  charset="UTF-8"
 
 
---14702127351.DDDCdA8.15316
-Date: Wed, 3 Aug 2016 08:25:35 +0000
+--14702364560.CFe3fCd1.10854
+Date: Wed, 3 Aug 2016 15:00:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91632
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
 
---- Comment #10 from Allan Sandfeld <kde-7WRYCqIwvBxWk0Htik3J/w@public.gmane.org> ---
-As a matter of fact QtWebEngine does use multithreading. Chromium renders in
-one thread, and Qt composites in another.
+--- Comment #3 from Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> ---
+STK =3D SuperTuxkart version: 0.9.2-2
+
+Mesa version: Mesa 12.0.1-5
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14702127351.DDDCdA8.15316
-Date: Wed, 3 Aug 2016 08:25:35 +0000
+--14702364560.CFe3fCd1.10854
+Date: Wed, 3 Aug 2016 15:00:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,21 +62,21 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Assert in nouveau_pushbuf_data"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632#c10">Commen=
-t # 10</a>
+   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Assert in nouveau_pushbuf_data"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632">bug 91632<=
+   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">bug 97192<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-kde&#64;carewolf.com" title=3D"Allan Sandfeld &lt;kde&#64;carewolf.com&gt;"=
-> <span class=3D"fn">Allan Sandfeld</span></a>
+alejandrohp&#64;openmailbox.org" title=3D"Alejandro &lt;alejandrohp&#64;ope=
+nmailbox.org&gt;"> <span class=3D"fn">Alejandro</span></a>
 </span></b>
-        <pre>As a matter of fact QtWebEngine does use multithreading. Chrom=
-ium renders in
-one thread, and Qt composites in another.</pre>
+        <pre>STK =3D SuperTuxkart version: 0.9.2-2
+
+Mesa version: Mesa 12.0.1-5</pre>
         </div>
       </p>
 
@@ -90,9 +91,9 @@ one thread, and Qt composites in another.</pre>
     </body>
 </html>=
 
---14702127351.DDDCdA8.15316--
+--14702364560.CFe3fCd1.10854--
 
---===============0499766830==
+--===============0469699067==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0499766830==--
+--===============0469699067==--
