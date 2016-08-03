@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91632] Assert in nouveau_pushbuf_data
-Date: Tue, 02 Aug 2016 23:09:54 +0000
-Message-ID: <bug-91632-8800-OHXsBop22p@http.bugs.freedesktop.org/>
+Date: Wed, 03 Aug 2016 04:15:45 +0000
+Message-ID: <bug-91632-8800-yErYoEK3Hm@http.bugs.freedesktop.org/>
 References: <bug-91632-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0236992360=="
+Content-Type: multipart/mixed; boundary="===============0023781707=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0236992360==
-Content-Type: multipart/alternative; boundary="14701793943.a868a9cb1.23788";
+--===============0023781707==
+Content-Type: multipart/alternative; boundary="14701977440.b3af3a.21301";
  charset="UTF-8"
 
 
---14701793943.a868a9cb1.23788
-Date: Tue, 2 Aug 2016 23:09:54 +0000
+--14701977440.b3af3a.21301
+Date: Wed, 3 Aug 2016 04:15:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,30 +35,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D91632
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Unfortunately "this" issue is a lot of potential issues. The current leading
-cause of such errors, assuming an up-to-date libdrm/etc, is multithreading =
-in
-the application. Nouveau does not handle this well.
+--- Comment #9 from Reuben <reuben.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #8)
+> Unfortunately "this" issue is a lot of potential issues. The current lead=
+ing
+> cause of such errors, assuming an up-to-date libdrm/etc, is multithreading
+> in the application. Nouveau does not handle this well.
+>=20
 
-I have a branch which tries to address this:
-
-https://github.com/imirkin/mesa/commits/locking
-
-However it's not quite there yet (although it's a good part of the way ther=
-e),
-and needs a rethink on some of the core mechanisms used. Unfortunately the
-libdrm_nouveau api is really not well-suited to multithreading, kicks can e=
-nd
-up resulting implicitly from all kinds of seemingly innocuous actions.
+This may not be "all the way there", but I can confirm a significantly more
+stable experience with qtwebengine.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14701793943.a868a9cb1.23788
-Date: Tue, 2 Aug 2016 23:09:54 +0000
+--14701977440.b3af3a.21301
+Date: Wed, 3 Aug 2016 04:15:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,34 +69,29 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Assert in nouveau_pushbuf_data"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632#c8">Comment=
- # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632#c9">Comment=
+ # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Assert in nouveau_pushbuf_data"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632">bug 91632<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+reuben.m&#64;gmail.com" title=3D"Reuben &lt;reuben.m&#64;gmail.com&gt;"> <s=
+pan class=3D"fn">Reuben</span></a>
 </span></b>
-        <pre>Unfortunately &quot;this&quot; issue is a lot of potential iss=
-ues. The current leading
-cause of such errors, assuming an up-to-date libdrm/etc, is multithreading =
-in
-the application. Nouveau does not handle this well.
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D916=
+32#c8">comment #8</a>)
+<span class=3D"quote">&gt; Unfortunately &quot;this&quot; issue is a lot of=
+ potential issues. The current leading
+&gt; cause of such errors, assuming an up-to-date libdrm/etc, is multithrea=
+ding
+&gt; in the application. Nouveau does not handle this well.
+&gt; </span >
 
-I have a branch which tries to address this:
-
-<a href=3D"https://github.com/imirkin/mesa/commits/locking">https://github.=
-com/imirkin/mesa/commits/locking</a>
-
-However it's not quite there yet (although it's a good part of the way ther=
-e),
-and needs a rethink on some of the core mechanisms used. Unfortunately the
-libdrm_nouveau api is really not well-suited to multithreading, kicks can e=
-nd
-up resulting implicitly from all kinds of seemingly innocuous actions.</pre>
+This may not be &quot;all the way there&quot;, but I can confirm a signific=
+antly more
+stable experience with qtwebengine.</pre>
         </div>
       </p>
 
@@ -111,15 +100,15 @@ up resulting implicitly from all kinds of seemingly innocuous actions.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14701793943.a868a9cb1.23788--
+--14701977440.b3af3a.21301--
 
---===============0236992360==
+--===============0023781707==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0236992360==--
+--===============0023781707==--
