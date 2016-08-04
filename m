@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
-Date: Thu, 04 Aug 2016 14:21:55 +0000
-Message-ID: <bug-97192-8800-jaojZP2x8R@http.bugs.freedesktop.org/>
+Date: Thu, 04 Aug 2016 14:23:29 +0000
+Message-ID: <bug-97192-8800-3uLxkVlOfD@http.bugs.freedesktop.org/>
 References: <bug-97192-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0308170753=="
+Content-Type: multipart/mixed; boundary="===============2013525219=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0308170753==
-Content-Type: multipart/alternative; boundary="14703205150.040dAC33.26438";
+--===============2013525219==
+Content-Type: multipart/alternative; boundary="14703206091.d8EcA0.26742";
  charset="UTF-8"
 
 
---14703205150.040dAC33.26438
-Date: Thu, 4 Aug 2016 14:21:55 +0000
+--14703206091.d8EcA0.26742
+Date: Thu, 4 Aug 2016 14:23:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,23 +35,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
 
---- Comment #17 from Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> ---
-=F0=9F=A4=94 How can I apply the attached workaround patch?=20
-Should do I just to search the 'nvc0_vbo.c' file and add '829      usleep(1=
-0);'
-line?
+--- Comment #18 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+You need to build your own version of mesa by cloning
+git://anongit.freedesktop.org/mesa/mesa .
 
+Then, you can do 'patch -p1 < workaround_stk.patch'.
 
-
-Or is there another better way to do it?
+And build.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14703205150.040dAC33.26438
-Date: Thu, 4 Aug 2016 14:21:55 +0000
+--14703206091.d8EcA0.26742
+Date: Thu, 4 Aug 2016 14:23:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,25 +66,23 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c17">Commen=
-t # 17</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c18">Commen=
+t # 18</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">bug 97192<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-alejandrohp&#64;openmailbox.org" title=3D"Alejandro &lt;alejandrohp&#64;ope=
-nmailbox.org&gt;"> <span class=3D"fn">Alejandro</span></a>
+samuel.pitoiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset=
+&#64;gmail.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
 </span></b>
-        <pre>=F0=9F=A4=94 How can I apply the attached workaround patch?=20
-Should do I just to search the 'nvc0_vbo.c' file and add '829      usleep(1=
-0);'
-line?
+        <pre>You need to build your own version of mesa by cloning
+git://anongit.freedesktop.org/mesa/mesa .
 
+Then, you can do 'patch -p1 &lt; workaround_stk.patch'.
 
-
-Or is there another better way to do it?</pre>
+And build.</pre>
         </div>
       </p>
 
@@ -101,9 +97,9 @@ Or is there another better way to do it?</pre>
     </body>
 </html>=
 
---14703205150.040dAC33.26438--
+--14703206091.d8EcA0.26742--
 
---===============0308170753==
+--===============2013525219==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0308170753==--
+--===============2013525219==--
