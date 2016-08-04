@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
-Date: Thu, 04 Aug 2016 14:45:14 +0000
-Message-ID: <bug-97192-8800-4XOEH5q3dH@http.bugs.freedesktop.org/>
+Date: Thu, 04 Aug 2016 14:59:18 +0000
+Message-ID: <bug-97192-8800-YKf7mT8vev@http.bugs.freedesktop.org/>
 References: <bug-97192-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1697300737=="
+Content-Type: multipart/mixed; boundary="===============0741138807=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1697300737==
-Content-Type: multipart/alternative; boundary="14703219140.fBA25eF.29237";
+--===============0741138807==
+Content-Type: multipart/alternative; boundary="14703227580.8B788Dc.30942";
  charset="UTF-8"
 
 
---14703219140.fBA25eF.29237
-Date: Thu, 4 Aug 2016 14:45:13 +0000
+--14703227580.8B788Dc.30942
+Date: Thu, 4 Aug 2016 14:59:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,24 +35,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
 
---- Comment #21 from Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> ---
-(In reply to Alejandro from comment #20)
-> ok...
->=20
-> 1. I'm downloading 'Mesa-master.zip' from
-> https://github.com/Distrotech/Mesa.git.
->=20
-> ...
+--- Comment #22 from Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> ---
+...
+1b. Uncompressing Mesa-master.zip
+...
 
-'git://anongit.freedesktop.org/mesa/mesa' not found!
+2. 'workaround' attachment 'saved as...', 'workaround_stk.patch'.
+
+....
+3. Installing 'patch' package from GNU Parabola repo.
+
+....
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14703219140.fBA25eF.29237
-Date: Thu, 4 Aug 2016 14:45:14 +0000
+--14703227580.8B788Dc.30942
+Date: Thu, 4 Aug 2016 14:59:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,8 +70,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c21">Commen=
-t # 21</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c22">Commen=
+t # 22</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
@@ -80,17 +81,16 @@ t # 21</a>
 alejandrohp&#64;openmailbox.org" title=3D"Alejandro &lt;alejandrohp&#64;ope=
 nmailbox.org&gt;"> <span class=3D"fn">Alejandro</span></a>
 </span></b>
-        <pre>(In reply to Alejandro from <a href=3D"show_bug.cgi?id=3D97192=
-#c20">comment #20</a>)
-<span class=3D"quote">&gt; ok...
-&gt;=20
-&gt; 1. I'm downloading 'Mesa-master.zip' from
-&gt; <a href=3D"https://github.com/Distrotech/Mesa.git">https://github.com/=
-Distrotech/Mesa.git</a>.
-&gt;=20
-&gt; ...</span >
+        <pre>...
+1b. Uncompressing Mesa-master.zip
+...
 
-'git://anongit.freedesktop.org/mesa/mesa' not found!</pre>
+2. 'workaround' attachment 'saved as...', 'workaround_stk.patch'.
+
+....
+3. Installing 'patch' package from GNU Parabola repo.
+
+....</pre>
         </div>
       </p>
 
@@ -105,9 +105,9 @@ Distrotech/Mesa.git</a>.
     </body>
 </html>=
 
---14703219140.fBA25eF.29237--
+--14703227580.8B788Dc.30942--
 
---===============1697300737==
+--===============0741138807==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1697300737==--
+--===============0741138807==--
