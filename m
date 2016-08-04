@@ -1,77 +1,109 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH] backlight: Avoid double fbcon backlight
- handling
-Date: Thu, 4 Aug 2016 12:28:11 +0200
-Message-ID: <20160804102811.GC6232@phenom.ffwll.local>
-References: <1467286256-8870-1-git-send-email-chris@chris-wilson.co.uk>
- <20160712122119.GR23520@phenom.ffwll.local>
- <87a8gsq540.fsf@intel.com>
- <20160804095027.GB6232@phenom.ffwll.local>
- <20160804095729.GN12611@nuc-i3427.alporthouse.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
+Date: Thu, 04 Aug 2016 12:04:26 +0000
+Message-ID: <bug-97192-8800-4VrIUOgbk9@http.bugs.freedesktop.org/>
+References: <bug-97192-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20160804095729.GN12611@nuc-i3427.alporthouse.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>, Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Milo Kim <milo.kim@ti.com>, Krzysztof Kozlowski <k.kozlowski@samsung.com>, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, Jon Nettleton <jon.nettleton@gmail.com>, Nicolas Ferre <nicolas.ferre@atmel.com>, linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org, Thierry Reding <thierry.reding@gmail.com>, Paul Mackerras <paulus@samba.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Daniel Vetter <daniel.vetter@intel.com>, Lee Jones <lee.jones@linaro.org>, Daniel Drake <dsd@laptop.org>, Jens Frederich <jfrederich@gmail.com>, linux-acpi@vger.kernel.org, Bruno =?iso-8859-1?Q?Pr=E9mont?= <bonbons@linux-vserver.org>, Tomi Valkeinen <tomi.valkeinen@ti.com>, Ben Skeggs <bskeggs@redhat.com>, Zhang Rui <rui.zhang@intel.com>, Jean-Ch
+Content-Type: multipart/mixed; boundary="===============1304715722=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBBdWcgMDQsIDIwMTYgYXQgMTA6NTc6MjlBTSArMDEwMCwgQ2hyaXMgV2lsc29uIHdy
-b3RlOgo+IE9uIFRodSwgQXVnIDA0LCAyMDE2IGF0IDExOjUwOjI3QU0gKzAyMDAsIERhbmllbCBW
-ZXR0ZXIgd3JvdGU6Cj4gPiBPbiBUaHUsIEF1ZyAwNCwgMjAxNiBhdCAxMjowMjoyM1BNICswMzAw
-LCBKYW5pIE5pa3VsYSB3cm90ZToKPiA+ID4gT24gVHVlLCAxMiBKdWwgMjAxNiwgRGFuaWVsIFZl
-dHRlciA8ZGFuaWVsQGZmd2xsLmNoPiB3cm90ZToKPiA+ID4gPiBPbiBUaHUsIEp1biAzMCwgMjAx
-NiBhdCAxMjozMDo1NlBNICswMTAwLCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4gPiA+ID4+IEJhY2ts
-aWdodHMgY29udHJvbGxlZCBieSBpOTE1LmtvIGFuZCBvbmx5IGFzc29jaWF0ZWQgd2l0aCBpdHMg
-Y29ubmVjdG9ycwo+ID4gPiA+PiBhbmQgYWxzbyBvbmx5IGFzc29jaWF0ZWQgd2l0aCB0aGUgaW50
-ZWxfZHJtZmIgZmJjb24sIGNvbnRyb2xsZWQgYnkKPiA+ID4gPj4gaTkxNS5rby4gSW4gdGhpcyBz
-aXR1YXRpb24sIHdlIGFscmVhZHkgaGFuZGxlIGFkanVzdGluZyB0aGUgYmFja2xpZ2h0Cj4gPiA+
-ID4+IHdoZW4gdGhlIGZiY29uIGlzIGJsYW5rZWQvdW5ibGFua2VkIGFuZCBkbyBub3QgcmVxdWly
-ZSBiYWNrbGlnaHQgdHJ5aW5nCj4gPiA+ID4+IHRvIGRvIHRoZSBzYW1lLgo+ID4gPiA+PiAKPiA+
-ID4gPj4gQXR0ZW1wdGluZyB0byByZWdpc3RlciB3aXRoIHRoZSBmYmRldiBhcyBhIGNsaWVudCBj
-YXVzZXMgbG9ja2RlcCB0byB3YXJuCj4gPiA+ID4+IGFib3V0IGEgZGVwZW5kZW5jeSBjeWNsZToK
-PiA+ID4gPgo+ID4gPiA+IFRoZSBmYmRldiBub3RpZmllciBzdHJpa2VzIGFnYWluIQo+ID4gPiA+
-Cj4gPiA+ID4gTGFzdCB0aW1lIEkgbG9va2VkIGludG8gdGhpcyBJIHRoaW5rIHRoZSBwcm9wZXIg
-c29sdXRpb24gd291bGQgYmUgdG8gc3BsaXQKPiA+ID4gPiB0aGUgYmFja2xpZ2h0IHBhcnQgZnJv
-bSB0aGUgb3RoZXIgZmJkZXYgbm90aWZpZXIgKHdoaWNoIGlzIHVzZWQgYnkgZmJjb24KPiA+ID4g
-PiBmb3IgcmVhY3RpbmcgdG8gZmJkZXYgZGV2aWNlIHJlZy91bnJlZyBldmVudHMpLgo+ID4gPiA+
-Cj4gPiA+ID4gSSB0aGluayB0aGF0IHdvdWxkIGZpeCB0aGlzIHRvbywgd2l0aCB0aGUgYWRkZWQg
-Ym9udXMgb2Ygc2xpZ2h0bHkKPiA+ID4gPiB1bnRhbmdsaW5nIHRoZSBmYmNvbiBsb2NraW5nIG1l
-c3MuIEFuZCBpdCdzIGFsc28gdGhlIG9uZSBwYXJ0IG9mCj4gPiA+ID4gdW50YW5nbGluZyB0aGlz
-IG1lc3Mgd2hpY2ggc2hvdWxkIGJlIHBvc3NpYmxlIHdpdGhvdXQgYW55IHRyb3VibGUgLSBJJ3Zl
-Cj4gPiA+ID4gc2ltcGx5IG5ldmVyIGRvbmUgaXQgc2luY2UgZW50aXJlbHkgZ2V0dGluZyByaWQg
-b2YgdGhlIGZiZGV2IG5vdGlmaWVyIGZvcgo+ID4gPiA+IGZiY29uIGlzIGEgbG90IG1vcmUgd29y
-ay4KPiA+ID4gCj4gPiA+IFNvIHdoYXQgZG8gd2UgZG8gd2l0aCB0aGlzPyBJdCBmaXhlcyBhIHBy
-b2JsZW0gdXBzdHJlYW0uIFRoZXJlJ3Mgbm8KPiA+ID4gRml4ZXM6IHRvIGlkZW50aWZ5IHRoZSBi
-YWQgY29tbWl0LiBBbnkgaWRlYSBvbiB0aGF0PyBJdCdzIGVpdGhlciB0aGlzIG9yCj4gPiA+IHdl
-IGRpZyBvdXQgdGhlIGJhZCBjb21taXQgKENocmlzIHByb2JhYmx5IGtub3dzIHdoaWNoIG9uZT8p
-IGFuZCByZXZlcnQuCj4gPiAKPiA+IFRoZSByZWFsIHRyb3VibGUgaXMgdGhlIGRybV9mb3JfZWFj
-aF9jb25uZWN0b3IgaW4KPiA+IGRybV9jb25uZWN0b3JfcmVnaXN0ZXJfYWxsKCkuIFRoaXMgaW50
-cm9kdWNlZCB0aGUgbmV3IGRlcGVuY3kuIFRoZSBwcm9wZXIKPiA+IGZpeCBpbW8gaXMgdG8gZml4
-IHVwIHRoZSBjb25uZWN0b3JfbGlzdCBsb2NraW5nLCBidXQgZm9yIDQuOCB3ZSBjb3VsZCBkbwo+
-ID4gdGhlIHNhbWUgaGFjaytjb21tZW50IGxpa2Ugd2UgZG8gaW4gdW5yZWdpc3Rlcl9hbGwuIEl0
-J3Mgbm90IHRoZSBvbmx5Cj4gPiBwbGFjZSB0aGF0J3MgYnJva2VuIGFueXdheSwgYW5kIG11Y2gg
-bGVzcyBpbnZhc2l2ZSB0aGFuIHRoaXMgaGVyZS4KPiAKPiBZb3Ugc3RpbGwgaGF2ZSB0aGUgdW5k
-ZXJseWluZyBpc3N1ZSBvZiBtdWx0aXBsZSBkcml2ZXJzIHRyeWluZyB0bwo+IGNvbnRyb2wgdGhl
-IHNhbWUgcGllY2Ugb2YgaGFyZHdhcmUsIGNhdXNpbmcgZHVwbGljYXRlIHdvcmsgKGF0IGJlc3Qp
-LgoKWWVzLCBhbmQgdGhlIHVuZGVybHlpbmcgaXNzdWUgb2YgdGhlIGZiIGJhY2tsaWdodCBub3Rp
-ZmllciBiZWluZyB0YW5nbGVkCnVwIGluIGV2ZXJ5dGhpbmcgZWxzZSBpcyBhbHNvIHN0aWxsIHRo
-ZXJlLiBCdXQgSSB0aGluayBib3RoIGFyZSBhIGJpdCB0b28KYmlnIHRvIGJlIHRhY2tsZWQgaW4g
-YW4gLXJjIChldmVuIGlmIC1yYzEgaXNuJ3QgZXZlbiB0aGVyZSB5ZXQpLgoKSSB0aGluayB3ZSBz
-aG91bGQgdHJ5IHRvIGdldCB5b3VyIHBhdGNoIGluIHN0aWxsIGZvciA0LjksIGFuZCBtYXliZSB3
-ZSBjYW4KdHJpY2sgc29tZW9uZSBpbnRvIGF0IGxlYXN0IHVudGFuZ2xpbmcgdGhlIGJhY2tsaWdo
-dCBzdHVmZiBmcm9tIHRoZSBmYgpub3RpZmllciBhdCBsYXJnZS4KLURhbmllbAotLSAKRGFuaWVs
-IFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cu
-ZmZ3bGwuY2gKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+--===============1304715722==
+Content-Type: multipart/alternative; boundary="14703122660.A904e.10511";
+ charset="UTF-8"
+
+
+--14703122660.A904e.10511
+Date: Thu, 4 Aug 2016 12:04:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
+
+--- Comment #6 from Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> ---
+(In reply to Samuel Pitoiset from comment #4)
+> Is this a recent regression?
+
+Nop.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14703122660.A904e.10511
+Date: Thu, 4 Aug 2016 12:04:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c6">Comment=
+ # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">bug 97192<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+alejandrohp&#64;openmailbox.org" title=3D"Alejandro &lt;alejandrohp&#64;ope=
+nmailbox.org&gt;"> <span class=3D"fn">Alejandro</span></a>
+</span></b>
+        <pre>(In reply to Samuel Pitoiset from <a href=3D"show_bug.cgi?id=
+=3D97192#c4">comment #4</a>)
+<span class=3D"quote">&gt; Is this a recent regression?</span >
+
+Nop.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14703122660.A904e.10511--
+
+--===============1304715722==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1304715722==--
