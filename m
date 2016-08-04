@@ -1,68 +1,118 @@
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [PATCH] backlight: Avoid double fbcon backlight
- handling
-Date: Thu, 4 Aug 2016 10:57:29 +0100
-Message-ID: <20160804095729.GN12611@nuc-i3427.alporthouse.com>
-References: <1467286256-8870-1-git-send-email-chris@chris-wilson.co.uk>
- <20160712122119.GR23520@phenom.ffwll.local>
- <87a8gsq540.fsf@intel.com>
- <20160804095027.GB6232@phenom.ffwll.local>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 80901] [NVCF] PWM fan speed too high
+Date: Thu, 04 Aug 2016 10:09:08 +0000
+Message-ID: <bug-80901-8800-uCP9is6he5@http.bugs.freedesktop.org/>
+References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20160804095027.GB6232@phenom.ffwll.local>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: Milo Kim <milo.kim@ti.com>, Krzysztof Kozlowski <k.kozlowski@samsung.com>, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, Jon Nettleton <jon.nettleton@gmail.com>, Nicolas Ferre <nicolas.ferre@atmel.com>, linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org, Thierry Reding <thierry.reding@gmail.com>, Paul Mackerras <paulus@samba.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Daniel Vetter <daniel.vetter@intel.com>, Lee Jones <lee.jones@linaro.org>, Daniel Drake <dsd@laptop.org>, Jens Frederich <jfrederich@gmail.com>, linux-acpi@vger.kernel.org, Bruno =?iso-8859-1?Q?Pr=E9mont?= <bonbons@linux-vserver.org>, Tomi Valkeinen <tomi.valkeinen@ti.com>, Ben Skeggs <bskeggs@redhat.com>, Zhang Rui <rui.zhang@intel.com>, Jean-Christophe Plagniol-Villard <plagnioj@jcrosoft.com>, Michael Hennerich <michael.hennerich@analog.com>, intel-gfx@lists.f
+Content-Type: multipart/mixed; boundary="===============0952054054=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBBdWcgMDQsIDIwMTYgYXQgMTE6NTA6MjdBTSArMDIwMCwgRGFuaWVsIFZldHRlciB3
-cm90ZToKPiBPbiBUaHUsIEF1ZyAwNCwgMjAxNiBhdCAxMjowMjoyM1BNICswMzAwLCBKYW5pIE5p
-a3VsYSB3cm90ZToKPiA+IE9uIFR1ZSwgMTIgSnVsIDIwMTYsIERhbmllbCBWZXR0ZXIgPGRhbmll
-bEBmZndsbC5jaD4gd3JvdGU6Cj4gPiA+IE9uIFRodSwgSnVuIDMwLCAyMDE2IGF0IDEyOjMwOjU2
-UE0gKzAxMDAsIENocmlzIFdpbHNvbiB3cm90ZToKPiA+ID4+IEJhY2tsaWdodHMgY29udHJvbGxl
-ZCBieSBpOTE1LmtvIGFuZCBvbmx5IGFzc29jaWF0ZWQgd2l0aCBpdHMgY29ubmVjdG9ycwo+ID4g
-Pj4gYW5kIGFsc28gb25seSBhc3NvY2lhdGVkIHdpdGggdGhlIGludGVsX2RybWZiIGZiY29uLCBj
-b250cm9sbGVkIGJ5Cj4gPiA+PiBpOTE1LmtvLiBJbiB0aGlzIHNpdHVhdGlvbiwgd2UgYWxyZWFk
-eSBoYW5kbGUgYWRqdXN0aW5nIHRoZSBiYWNrbGlnaHQKPiA+ID4+IHdoZW4gdGhlIGZiY29uIGlz
-IGJsYW5rZWQvdW5ibGFua2VkIGFuZCBkbyBub3QgcmVxdWlyZSBiYWNrbGlnaHQgdHJ5aW5nCj4g
-PiA+PiB0byBkbyB0aGUgc2FtZS4KPiA+ID4+IAo+ID4gPj4gQXR0ZW1wdGluZyB0byByZWdpc3Rl
-ciB3aXRoIHRoZSBmYmRldiBhcyBhIGNsaWVudCBjYXVzZXMgbG9ja2RlcCB0byB3YXJuCj4gPiA+
-PiBhYm91dCBhIGRlcGVuZGVuY3kgY3ljbGU6Cj4gPiA+Cj4gPiA+IFRoZSBmYmRldiBub3RpZmll
-ciBzdHJpa2VzIGFnYWluIQo+ID4gPgo+ID4gPiBMYXN0IHRpbWUgSSBsb29rZWQgaW50byB0aGlz
-IEkgdGhpbmsgdGhlIHByb3BlciBzb2x1dGlvbiB3b3VsZCBiZSB0byBzcGxpdAo+ID4gPiB0aGUg
-YmFja2xpZ2h0IHBhcnQgZnJvbSB0aGUgb3RoZXIgZmJkZXYgbm90aWZpZXIgKHdoaWNoIGlzIHVz
-ZWQgYnkgZmJjb24KPiA+ID4gZm9yIHJlYWN0aW5nIHRvIGZiZGV2IGRldmljZSByZWcvdW5yZWcg
-ZXZlbnRzKS4KPiA+ID4KPiA+ID4gSSB0aGluayB0aGF0IHdvdWxkIGZpeCB0aGlzIHRvbywgd2l0
-aCB0aGUgYWRkZWQgYm9udXMgb2Ygc2xpZ2h0bHkKPiA+ID4gdW50YW5nbGluZyB0aGUgZmJjb24g
-bG9ja2luZyBtZXNzLiBBbmQgaXQncyBhbHNvIHRoZSBvbmUgcGFydCBvZgo+ID4gPiB1bnRhbmds
-aW5nIHRoaXMgbWVzcyB3aGljaCBzaG91bGQgYmUgcG9zc2libGUgd2l0aG91dCBhbnkgdHJvdWJs
-ZSAtIEkndmUKPiA+ID4gc2ltcGx5IG5ldmVyIGRvbmUgaXQgc2luY2UgZW50aXJlbHkgZ2V0dGlu
-ZyByaWQgb2YgdGhlIGZiZGV2IG5vdGlmaWVyIGZvcgo+ID4gPiBmYmNvbiBpcyBhIGxvdCBtb3Jl
-IHdvcmsuCj4gPiAKPiA+IFNvIHdoYXQgZG8gd2UgZG8gd2l0aCB0aGlzPyBJdCBmaXhlcyBhIHBy
-b2JsZW0gdXBzdHJlYW0uIFRoZXJlJ3Mgbm8KPiA+IEZpeGVzOiB0byBpZGVudGlmeSB0aGUgYmFk
-IGNvbW1pdC4gQW55IGlkZWEgb24gdGhhdD8gSXQncyBlaXRoZXIgdGhpcyBvcgo+ID4gd2UgZGln
-IG91dCB0aGUgYmFkIGNvbW1pdCAoQ2hyaXMgcHJvYmFibHkga25vd3Mgd2hpY2ggb25lPykgYW5k
-IHJldmVydC4KPiAKPiBUaGUgcmVhbCB0cm91YmxlIGlzIHRoZSBkcm1fZm9yX2VhY2hfY29ubmVj
-dG9yIGluCj4gZHJtX2Nvbm5lY3Rvcl9yZWdpc3Rlcl9hbGwoKS4gVGhpcyBpbnRyb2R1Y2VkIHRo
-ZSBuZXcgZGVwZW5jeS4gVGhlIHByb3Blcgo+IGZpeCBpbW8gaXMgdG8gZml4IHVwIHRoZSBjb25u
-ZWN0b3JfbGlzdCBsb2NraW5nLCBidXQgZm9yIDQuOCB3ZSBjb3VsZCBkbwo+IHRoZSBzYW1lIGhh
-Y2srY29tbWVudCBsaWtlIHdlIGRvIGluIHVucmVnaXN0ZXJfYWxsLiBJdCdzIG5vdCB0aGUgb25s
-eQo+IHBsYWNlIHRoYXQncyBicm9rZW4gYW55d2F5LCBhbmQgbXVjaCBsZXNzIGludmFzaXZlIHRo
-YW4gdGhpcyBoZXJlLgoKWW91IHN0aWxsIGhhdmUgdGhlIHVuZGVybHlpbmcgaXNzdWUgb2YgbXVs
-dGlwbGUgZHJpdmVycyB0cnlpbmcgdG8KY29udHJvbCB0aGUgc2FtZSBwaWVjZSBvZiBoYXJkd2Fy
-ZSwgY2F1c2luZyBkdXBsaWNhdGUgd29yayAoYXQgYmVzdCkuCi1DaHJpcwoKLS0gCkNocmlzIFdp
-bHNvbiwgSW50ZWwgT3BlbiBTb3VyY2UgVGVjaG5vbG9neSBDZW50cmUKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+--===============0952054054==
+Content-Type: multipart/alternative; boundary="14703053482.1Fab4db4b.29650";
+ charset="UTF-8"
+
+
+--14703053482.1Fab4db4b.29650
+Date: Thu, 4 Aug 2016 10:09:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D80901
+
+--- Comment #51 from Lars E Pettersson <lars-mDsk/mlFC80@public.gmane.org> ---
+The bug is still there.
+
+I am now running Fedora 24 with the following kernel:
+
+Linux tux.home.rpz 4.6.4-301.fc24.x86_64 #1 SMP Tue Jul 12 11:50:00 UTC 2016
+x86_64 x86_64 x86_64 GNU/Linux
+
+The fan noise is annoying...
+
+Any news on this issue?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14703053482.1Fab4db4b.29650
+Date: Thu, 4 Aug 2016 10:09:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVCF] PWM fan speed too high"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D80901#c51">Commen=
+t # 51</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVCF] PWM fan speed too high"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D80901">bug 80901<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+lars&#64;homer.se" title=3D"Lars E Pettersson &lt;lars&#64;homer.se&gt;"> <=
+span class=3D"fn">Lars E Pettersson</span></a>
+</span></b>
+        <pre>The bug is still there.
+
+I am now running Fedora 24 with the following kernel:
+
+Linux tux.home.rpz 4.6.4-301.fc24.x86_64 #1 SMP Tue Jul 12 11:50:00 UTC 2016
+x86_64 x86_64 x86_64 GNU/Linux
+
+The fan noise is annoying...
+
+Any news on this issue?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14703053482.1Fab4db4b.29650--
+
+--===============0952054054==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0952054054==--
