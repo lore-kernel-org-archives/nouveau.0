@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
-Date: Thu, 04 Aug 2016 12:58:41 +0000
-Message-ID: <bug-97192-8800-s8m9bEuQij@http.bugs.freedesktop.org/>
+Date: Thu, 04 Aug 2016 13:36:17 +0000
+Message-ID: <bug-97192-8800-6Ykec4HtPh@http.bugs.freedesktop.org/>
 References: <bug-97192-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1149702601=="
+Content-Type: multipart/mixed; boundary="===============0488739841=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1149702601==
-Content-Type: multipart/alternative; boundary="14703155201.AA804f7a.16029";
+--===============0488739841==
+Content-Type: multipart/alternative; boundary="14703177770.4efBFA12.21514";
  charset="UTF-8"
 
 
---14703155201.AA804f7a.16029
-Date: Thu, 4 Aug 2016 12:58:40 +0000
+--14703177770.4efBFA12.21514
+Date: Thu, 4 Aug 2016 13:36:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
 
---- Comment #13 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Does the issue can be reproduced with the trace? If so, can you upload it
-somehwere?
+--- Comment #14 from Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> ---
+Here, 'SuperTuxkart.trace' can be downloaded:
+
+
+https://cloud.openmailbox.org/index.php/s/mSSzdcIPhIrdqQd
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14703155201.AA804f7a.16029
-Date: Thu, 4 Aug 2016 12:58:40 +0000
+--14703177770.4efBFA12.21514
+Date: Thu, 4 Aug 2016 13:36:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,20 +64,22 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c13">Commen=
-t # 13</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c14">Commen=
+t # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">bug 97192<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-samuel.pitoiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset=
-&#64;gmail.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
+alejandrohp&#64;openmailbox.org" title=3D"Alejandro &lt;alejandrohp&#64;ope=
+nmailbox.org&gt;"> <span class=3D"fn">Alejandro</span></a>
 </span></b>
-        <pre>Does the issue can be reproduced with the trace? If so, can yo=
-u upload it
-somehwere?</pre>
+        <pre>Here, 'SuperTuxkart.trace' can be downloaded:
+
+
+<a href=3D"https://cloud.openmailbox.org/index.php/s/mSSzdcIPhIrdqQd">https=
+://cloud.openmailbox.org/index.php/s/mSSzdcIPhIrdqQd</a></pre>
         </div>
       </p>
 
@@ -90,9 +94,9 @@ somehwere?</pre>
     </body>
 </html>=
 
---14703155201.AA804f7a.16029--
+--14703177770.4efBFA12.21514--
 
---===============1149702601==
+--===============0488739841==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1149702601==--
+--===============0488739841==--
