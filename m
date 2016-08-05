@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
+Subject: [Bug 97217] apitrace error
 Date: Fri, 05 Aug 2016 14:34:40 +0000
-Message-ID: <bug-97192-8800-3CLAEyNEhU@http.bugs.freedesktop.org/>
-References: <bug-97192-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-97217-8800-SGTn4C4aIE@http.bugs.freedesktop.org/>
+References: <bug-97217-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1846704578=="
+Content-Type: multipart/mixed; boundary="===============0736689063=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1846704578==
-Content-Type: multipart/alternative; boundary="14704076801.85BEbCd3.6099";
+--===============0736689063==
+Content-Type: multipart/alternative; boundary="14704076800.1cd114F21.6099";
  charset="UTF-8"
 
 
---14704076801.85BEbCd3.6099
+--14704076800.1cd114F21.6099
 Date: Fri, 5 Aug 2016 14:34:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -33,25 +33,25 @@ Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97217
 
 Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Depends on|                            |97217
+             Blocks|                            |97192
 
 
 Referenced Bugs:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97217
-[Bug 97217] apitrace error
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
+[Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14704076801.85BEbCd3.6099
+--14704076800.1cd114F21.6099
 Date: Fri, 5 Aug 2016 14:34:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -69,8 +69,8 @@ org&gt;"> <span class=3D"fn">Alejandro</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">bug 97192<=
+   title=3D"NEW - apitrace error"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97217">bug 97217<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -81,11 +81,11 @@ org&gt;"> <span class=3D"fn">Alejandro</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Depends on</td>
+           <td style=3D"text-align:right;">Blocks</td>
            <td>
                &nbsp;
            </td>
-           <td>97217
+           <td>97192
            </td>
          </tr></table>
       <p>
@@ -98,9 +98,9 @@ org&gt;"> <span class=3D"fn">Alejandro</span></a>
               <li>
                 [<a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - apitrace error"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97217">Bug 97217<=
-/a>] apitrace error
+   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">Bug 97192<=
+/a>] SuperTuxkart graphic errors [NVE4 - GK104]
               </li>
           </ul>
         </div>
@@ -116,9 +116,9 @@ org&gt;"> <span class=3D"fn">Alejandro</span></a>
     </body>
 </html>=
 
---14704076801.85BEbCd3.6099--
+--14704076800.1cd114F21.6099--
 
---===============1846704578==
+--===============0736689063==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -128,4 +128,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1846704578==--
+--===============0736689063==--
