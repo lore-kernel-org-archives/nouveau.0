@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
-Date: Thu, 04 Aug 2016 15:47:47 +0000
-Message-ID: <bug-97192-8800-NcJlRD8Sag@http.bugs.freedesktop.org/>
-References: <bug-97192-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31122] Cannot control backlight intensity on
+	Powerbook
+Date: Fri, 05 Aug 2016 02:17:20 +0000
+Message-ID: <bug-31122-8800-A6pgIdyUxM@http.bugs.freedesktop.org/>
+References: <bug-31122-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1479068068=="
+Content-Type: multipart/mixed; boundary="===============1475922251=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31122-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,41 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1479068068==
-Content-Type: multipart/alternative; boundary="14703256670.7ee4d4.4133";
+--===============1475922251==
+Content-Type: multipart/alternative; boundary="14703634401.0452A.5595";
  charset="UTF-8"
 
 
---14703256670.7ee4d4.4133
-Date: Thu, 4 Aug 2016 15:47:47 +0000
+--14703634401.0452A.5595
+Date: Fri, 5 Aug 2016 02:17:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
+https://bugs.freedesktop.org/show_bug.cgi?id=3D31122
 
---- Comment #24 from Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> ---
-ok...
-
-4. File 'nvc0_vbo.c' patched (by 'workaround_stk.patch').
-
-Now... I have to build.=20
-
-How do I do that? Do I have to make a backup? Is there an easy way to revert
-changes? =F0=9F=A4=94
-
-
-Sorry. I am a noob.
+--- Comment #7 from A. Chaud <nvbugz-ZdXa/xnzD07wXD0AkxfrAg@public.gmane.org> ---
+Created attachment 125547
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125547&action=3Dedit
+adds backlight control
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14703256670.7ee4d4.4133
-Date: Thu, 4 Aug 2016 15:47:47 +0000
+--14703634401.0452A.5595
+Date: Fri, 5 Aug 2016 02:17:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,30 +61,25 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c24">Commen=
-t # 24</a>
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - Cannot control backlight intensity on Powerbook"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">bug 97192<=
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - Cannot control backlight intensity on Powerbook"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122">bug 31122<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-alejandrohp&#64;openmailbox.org" title=3D"Alejandro &lt;alejandrohp&#64;ope=
-nmailbox.org&gt;"> <span class=3D"fn">Alejandro</span></a>
+nvbugz&#64;sparklabs.me" title=3D"A. Chaud &lt;nvbugz&#64;sparklabs.me&gt;"=
+> <span class=3D"fn">A. Chaud</span></a>
 </span></b>
-        <pre>ok...
-
-4. File 'nvc0_vbo.c' patched (by 'workaround_stk.patch').
-
-Now... I have to build.=20
-
-How do I do that? Do I have to make a backup? Is there an easy way to revert
-changes? =F0=9F=A4=94
-
-
-Sorry. I am a noob.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125547=
+" name=3D"attach_125547" title=3D"adds backlight control">attachment 125547=
+</a> <a href=3D"attachment.cgi?id=3D125547&amp;action=3Dedit" title=3D"adds=
+ backlight control">[details]</a></span> <a href=3D'page.cgi?id=3Dsplinter.=
+html&amp;bug=3D31122&amp;attachment=3D125547'>[review]</a>
+adds backlight control</pre>
         </div>
       </p>
 
@@ -102,14 +89,13 @@ Sorry. I am a noob.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14703256670.7ee4d4.4133--
+--14703634401.0452A.5595--
 
---===============1479068068==
+--===============1475922251==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1479068068==--
+--===============1475922251==--
