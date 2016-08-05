@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
-Date: Fri, 05 Aug 2016 20:14:30 +0000
-Message-ID: <bug-97192-8800-l0V28IDDIE@http.bugs.freedesktop.org/>
-References: <bug-97192-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97217] apitrace error
+Date: Fri, 05 Aug 2016 20:17:55 +0000
+Message-ID: <bug-97217-8800-YpAk7j3BdR@http.bugs.freedesktop.org/>
+References: <bug-97217-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1694933683=="
+Content-Type: multipart/mixed; boundary="===============1951696342=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1694933683==
-Content-Type: multipart/alternative; boundary="14704280691.97EDa.4263";
+--===============1951696342==
+Content-Type: multipart/alternative; boundary="14704282751.8cCcc.4758";
  charset="UTF-8"
 
 
---14704280691.97EDa.4263
-Date: Fri, 5 Aug 2016 20:14:29 +0000
+--14704282751.8cCcc.4758
+Date: Fri, 5 Aug 2016 20:17:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97217
 
---- Comment #25 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Well, don't worry about that. I will try to make a proper fix, but I'm tota=
-lly
-busy currently and partially on holidays. Once the fix is done, it will be
-backported and you won't need to build your own mesa.
+Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #1 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This is unrelated to apitrace.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14704280691.97EDa.4263
-Date: Fri, 5 Aug 2016 20:14:29 +0000
+--14704282751.8cCcc.4758
+Date: Fri, 5 Aug 2016 20:17:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,27 +62,55 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:samuel.pi=
+toiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset&#64;gmai=
+l.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - apitrace error"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97217">bug 97217<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c25">Commen=
-t # 25</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - apitrace error"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97217#c1">Comment=
+ # 1</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">bug 97192<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - apitrace error"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97217">bug 97217<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 samuel.pitoiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset=
 &#64;gmail.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
 </span></b>
-        <pre>Well, don't worry about that. I will try to make a proper fix,=
- but I'm totally
-busy currently and partially on holidays. Once the fix is done, it will be
-backported and you won't need to build your own mesa.</pre>
+        <pre>This is unrelated to apitrace.</pre>
         </div>
       </p>
 
@@ -87,15 +119,15 @@ backported and you won't need to build your own mesa.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14704280691.97EDa.4263--
+--14704282751.8cCcc.4758--
 
---===============1694933683==
+--===============1951696342==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +137,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1694933683==--
+--===============1951696342==--
