@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97217] New: apitrace error
-Date: Fri, 05 Aug 2016 14:33:24 +0000
-Message-ID: <bug-97217-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
+Date: Fri, 05 Aug 2016 14:34:40 +0000
+Message-ID: <bug-97192-8800-3CLAEyNEhU@http.bugs.freedesktop.org/>
+References: <bug-97192-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1061913080=="
+Content-Type: multipart/mixed; boundary="===============1846704578=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,57 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1061913080==
-Content-Type: multipart/alternative; boundary="14704076040.3bF341.6030";
+--===============1846704578==
+Content-Type: multipart/alternative; boundary="14704076801.85BEbCd3.6099";
  charset="UTF-8"
 
 
---14704076040.3bF341.6030
-Date: Fri, 5 Aug 2016 14:33:24 +0000
+--14704076801.85BEbCd3.6099
+Date: Fri, 5 Aug 2016 14:34:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97217
-
-            Bug ID: 97217
-           Summary: apitrace error
-           Product: Mesa
-           Version: unspecified
-          Hardware: Other
-                OS: Linux (All)
-            Status: NEW
-          Severity: blocker
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-I trid to run 'apitrace' to record a problem with superTuxkart, but it shows
-several problem too:
-
-
-nouveau: kernel rejected pushbuf: Device or resource busy
-nouveau: ch6: krec 0 pushes 511 bufs 83 relocs 0
-
-
-Thanks.
-
-
-
-The inicial problem about SuperTuxkart can be found here:
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
 
+Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Depends on|                            |97217
+
+
+Referenced Bugs:
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97217
+[Bug 97217] apitrace error
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14704076040.3bF341.6030
-Date: Fri, 5 Aug 2016 14:33:24 +0000
+--14704076801.85BEbCd3.6099
+Date: Fri, 5 Aug 2016 14:34:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,125 +63,62 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - apitrace error"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97217">97217</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>apitrace error
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>blocker
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>alejandrohp&#64;openmailbox.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>I trid to run 'apitrace' to record a problem with superTuxkart=
-, but it shows
-several problem too:
-
-
-nouveau: kernel rejected pushbuf: Device or resource busy
-nouveau: ch6: krec 0 pushes 511 bufs 83 relocs 0
-
-
-Thanks.
-
-
-
-The inicial problem about SuperTuxkart can be found here:
-<a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:alejandro=
+hp&#64;openmailbox.org" title=3D"Alejandro &lt;alejandrohp&#64;openmailbox.=
+org&gt;"> <span class=3D"fn">Alejandro</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"show_bug.cgi?id=3D97192">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D97192</a></pre>
-        </div>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">bug 97192<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Depends on</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>97217
+           </td>
+         </tr></table>
+      <p>
       </p>
 
+        <div id=3D"referenced">
+          <hr style=3D"border: 1px dashed #969696">
+          <b>Referenced Bugs:</b>
+          <ul>
+              <li>
+                [<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - apitrace error"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97217">Bug 97217<=
+/a>] apitrace error
+              </li>
+          </ul>
+        </div>
+        <br>
 
       <hr>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14704076040.3bF341.6030--
+--14704076801.85BEbCd3.6099--
 
---===============1061913080==
+--===============1846704578==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -207,4 +128,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1061913080==--
+--===============1846704578==--
