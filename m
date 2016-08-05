@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
-Date: Fri, 05 Aug 2016 20:17:56 +0000
-Message-ID: <bug-97192-8800-dDIsTq0FMu@http.bugs.freedesktop.org/>
+Date: Fri, 05 Aug 2016 21:50:47 +0000
+Message-ID: <bug-97192-8800-aGEUrZr5nS@http.bugs.freedesktop.org/>
 References: <bug-97192-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0869522970=="
+Content-Type: multipart/mixed; boundary="===============0191359046=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0869522970==
-Content-Type: multipart/alternative; boundary="14704282753.DcEA690.4758";
+--===============0191359046==
+Content-Type: multipart/alternative; boundary="14704338470.d3c364.13883";
  charset="UTF-8"
 
 
---14704282753.DcEA690.4758
-Date: Fri, 5 Aug 2016 20:17:55 +0000
+--14704338470.d3c364.13883
+Date: Fri, 5 Aug 2016 21:50:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,23 +34,17 @@ X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
-Bug 97192 depends on bug 97217, which changed state.
 
-Bug 97217 Summary: apitrace error
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97217
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+--- Comment #26 from Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> ---
+ok, thanks. =F0=9F=98=AF
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14704282753.DcEA690.4758
-Date: Fri, 5 Aug 2016 20:17:55 +0000
+--14704338470.d3c364.13883
+Date: Fri, 5 Aug 2016 21:50:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,42 +55,25 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">Bug 97192<=
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c26">Commen=
+t # 26</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">bug 97192<=
 /a>
-          depends on
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - apitrace error"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97217">bug 97217<=
-/a>,
-          which changed state.
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
-      <p>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+alejandrohp&#64;openmailbox.org" title=3D"Alejandro &lt;alejandrohp&#64;ope=
+nmailbox.org&gt;"> <span class=3D"fn">Alejandro</span></a>
+</span></b>
+        <pre>ok, thanks. =F0=9F=98=AF</pre>
+        </div>
       </p>
 
 
@@ -104,15 +81,15 @@ Auto-Submitted: auto-generated
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14704282753.DcEA690.4758--
+--14704338470.d3c364.13883--
 
---===============0869522970==
+--===============0191359046==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -122,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0869522970==--
+--===============0191359046==--
