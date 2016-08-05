@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97217] apitrace error
-Date: Fri, 05 Aug 2016 20:17:55 +0000
-Message-ID: <bug-97217-8800-YpAk7j3BdR@http.bugs.freedesktop.org/>
-References: <bug-97217-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
+Date: Fri, 05 Aug 2016 20:17:56 +0000
+Message-ID: <bug-97192-8800-dDIsTq0FMu@http.bugs.freedesktop.org/>
+References: <bug-97192-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1951696342=="
+Content-Type: multipart/mixed; boundary="===============0869522970=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1951696342==
-Content-Type: multipart/alternative; boundary="14704282751.8cCcc.4758";
+--===============0869522970==
+Content-Type: multipart/alternative; boundary="14704282753.DcEA690.4758";
  charset="UTF-8"
 
 
---14704282751.8cCcc.4758
+--14704282753.DcEA690.4758
 Date: Fri, 5 Aug 2016 20:17:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -33,24 +33,23 @@ Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97217
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
+Bug 97192 depends on bug 97217, which changed state.
 
-Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Bug 97217 Summary: apitrace error
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97217
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #1 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This is unrelated to apitrace.
-
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14704282751.8cCcc.4758
+--14704282753.DcEA690.4758
 Date: Fri, 5 Aug 2016 20:17:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -62,15 +61,18 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:samuel.pi=
-toiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset&#64;gmai=
-l.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
-</span> changed
+    <body><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">Bug 97192<=
+/a>
+          depends on
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED INVALID - apitrace error"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97217">bug 97217<=
-/a>
+/a>,
+          which changed state.
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -95,23 +97,6 @@ l.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - apitrace error"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97217#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - apitrace error"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97217">bug 97217<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-samuel.pitoiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset=
-&#64;gmail.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
-</span></b>
-        <pre>This is unrelated to apitrace.</pre>
-        </div>
       </p>
 
 
@@ -119,15 +104,15 @@ samuel.pitoiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset=
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14704282751.8cCcc.4758--
+--14704282753.DcEA690.4758--
 
---===============1951696342==
+--===============0869522970==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -137,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1951696342==--
+--===============0869522970==--
