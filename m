@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97217] apitrace error
-Date: Fri, 05 Aug 2016 14:34:40 +0000
-Message-ID: <bug-97217-8800-SGTn4C4aIE@http.bugs.freedesktop.org/>
-References: <bug-97217-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31122] Cannot control backlight intensity on
+	Powerbook
+Date: Fri, 05 Aug 2016 16:37:34 +0000
+Message-ID: <bug-31122-8800-YNthPCKXEd@http.bugs.freedesktop.org/>
+References: <bug-31122-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0736689063=="
+Content-Type: multipart/mixed; boundary="===============2110972287=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31122-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +21,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0736689063==
-Content-Type: multipart/alternative; boundary="14704076800.1cd114F21.6099";
+--===============2110972287==
+Content-Type: multipart/alternative; boundary="14704150543.Ca3Abaf.17148";
  charset="UTF-8"
 
 
---14704076800.1cd114F21.6099
-Date: Fri, 5 Aug 2016 14:34:40 +0000
+--14704150543.Ca3Abaf.17148
+Date: Fri, 5 Aug 2016 16:37:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97217
+https://bugs.freedesktop.org/show_bug.cgi?id=3D31122
 
-Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> changed:
+--- Comment #11 from A. Chaud <nvbugz-ZdXa/xnzD07wXD0AkxfrAg@public.gmane.org> ---
+nvagetbios wasn't able to extract the bios.  From what I gathered after
+searching, openfirmware handles vbios differently (ie: no checksums, smaller
+vbios, etc).  I found a nv34 openfirmware bios someone else dumped and nvbi=
+os
+is unable to decode the GPIO section.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Blocks|                            |97192
+However, if the aim is ensuring the device has a backlight, I believe it's
+already done.  In nouveau_backlight_init, it first checks to ensure there's=
+ a
+display on either LVDS or eDP.  Can we not reasonably assume that if the gpu
+has a LVDS or eDP panel attached that it also has a backlight?  My init
+function is a slightly altered version of the existing nv40_backlight_init
+function which doesn't have a backlight check either.
 
-
-Referenced Bugs:
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
-[Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14704076800.1cd114F21.6099
-Date: Fri, 5 Aug 2016 14:34:40 +0000
+--14704150543.Ca3Abaf.17148
+Date: Fri, 5 Aug 2016 16:37:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,62 +67,53 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:alejandro=
-hp&#64;openmailbox.org" title=3D"Alejandro &lt;alejandrohp&#64;openmailbox.=
-org&gt;"> <span class=3D"fn">Alejandro</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - apitrace error"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97217">bug 97217<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Blocks</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>97192
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Cannot control backlight intensity on Powerbook"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122#c11">Commen=
+t # 11</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Cannot control backlight intensity on Powerbook"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122">bug 31122<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+nvbugz&#64;sparklabs.me" title=3D"A. Chaud &lt;nvbugz&#64;sparklabs.me&gt;"=
+> <span class=3D"fn">A. Chaud</span></a>
+</span></b>
+        <pre>nvagetbios wasn't able to extract the bios.  From what I gathe=
+red after
+searching, openfirmware handles vbios differently (ie: no checksums, smaller
+vbios, etc).  I found a nv34 openfirmware bios someone else dumped and nvbi=
+os
+is unable to decode the GPIO section.
+
+However, if the aim is ensuring the device has a backlight, I believe it's
+already done.  In nouveau_backlight_init, it first checks to ensure there's=
+ a
+display on either LVDS or eDP.  Can we not reasonably assume that if the gpu
+has a LVDS or eDP panel attached that it also has a backlight?  My init
+function is a slightly altered version of the existing nv40_backlight_init
+function which doesn't have a backlight check either.</pre>
+        </div>
       </p>
 
-        <div id=3D"referenced">
-          <hr style=3D"border: 1px dashed #969696">
-          <b>Referenced Bugs:</b>
-          <ul>
-              <li>
-                [<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">Bug 97192<=
-/a>] SuperTuxkart graphic errors [NVE4 - GK104]
-              </li>
-          </ul>
-        </div>
-        <br>
 
       <hr>
       <span>You are receiving this mail because:</span>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14704076800.1cd114F21.6099--
+--14704150543.Ca3Abaf.17148--
 
---===============0736689063==
+--===============2110972287==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -128,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0736689063==--
+--===============2110972287==--
