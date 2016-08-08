@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97192] SuperTuxkart graphic errors [NVE4 - GK104]
-Date: Fri, 05 Aug 2016 21:50:47 +0000
-Message-ID: <bug-97192-8800-aGEUrZr5nS@http.bugs.freedesktop.org/>
-References: <bug-97192-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
+Date: Mon, 08 Aug 2016 05:38:06 +0000
+Message-ID: <bug-94990-8800-VlzkFh1gAn@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0191359046=="
+Content-Type: multipart/mixed; boundary="===============1014876585=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0191359046==
-Content-Type: multipart/alternative; boundary="14704338470.d3c364.13883";
+--===============1014876585==
+Content-Type: multipart/alternative; boundary="14706346863.FAAD10.6055";
  charset="UTF-8"
 
 
---14704338470.d3c364.13883
-Date: Fri, 5 Aug 2016 21:50:47 +0000
+--14706346863.FAAD10.6055
+Date: Mon, 8 Aug 2016 05:38:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97192
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #26 from Alejandro <alejandrohp-1Ww2luigxekRVMDPamJrIw@public.gmane.org> ---
-ok, thanks. =F0=9F=98=AF
+--- Comment #47 from Ivan <antaiji-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
+Hi. i5-4670, ASUS H87-pro, Nvidia GTX970. I have the same bug on kernel 4.6=
+.*
+and on 4.7.0 too. Just black screen on boot... On kernel 4.5.* everything w=
+orks
+just fine.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14704338470.d3c364.13883
-Date: Fri, 5 Aug 2016 21:50:47 +0000
+--14706346863.FAAD10.6055
+Date: Mon, 8 Aug 2016 05:38:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,19 +63,23 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192#c26">Commen=
-t # 26</a>
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c47">Commen=
+t # 47</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - SuperTuxkart graphic errors [NVE4 - GK104]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97192">bug 97192<=
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-alejandrohp&#64;openmailbox.org" title=3D"Alejandro &lt;alejandrohp&#64;ope=
-nmailbox.org&gt;"> <span class=3D"fn">Alejandro</span></a>
+antaiji&#64;yandex.ru" title=3D"Ivan &lt;antaiji&#64;yandex.ru&gt;"> <span =
+class=3D"fn">Ivan</span></a>
 </span></b>
-        <pre>ok, thanks. =F0=9F=98=AF</pre>
+        <pre>Hi. i5-4670, ASUS H87-pro, Nvidia GTX970. I have the same bug =
+on kernel 4.6.*
+and on 4.7.0 too. Just black screen on boot... On kernel 4.5.* everything w=
+orks
+just fine.</pre>
         </div>
       </p>
 
@@ -81,15 +88,14 @@ nmailbox.org&gt;"> <span class=3D"fn">Alejandro</span></a>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14704338470.d3c364.13883--
+--14706346863.FAAD10.6055--
 
---===============0191359046==
+--===============1014876585==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0191359046==--
+--===============1014876585==--
