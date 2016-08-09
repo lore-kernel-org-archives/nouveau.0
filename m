@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Tue, 09 Aug 2016 18:17:54 +0000
-Message-ID: <bug-94990-8800-aRyNMRVxll@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31122] Cannot control backlight intensity on
+	Powerbook
+Date: Tue, 09 Aug 2016 19:26:48 +0000
+Message-ID: <bug-31122-8800-LPjr4ZFPpC@http.bugs.freedesktop.org/>
+References: <bug-31122-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0796856817=="
+Content-Type: multipart/mixed; boundary="===============0945904018=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31122-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,232 +21,85 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0796856817==
-Content-Type: multipart/alternative; boundary="14707666740.D0F6bC.8952";
+--===============0945904018==
+Content-Type: multipart/alternative; boundary="14707708084.8fF1b6c8e.12517";
  charset="UTF-8"
 
 
---14707666740.D0F6bC.8952
-Date: Tue, 9 Aug 2016 18:17:54 +0000
+--14707708084.8fF1b6c8e.12517
+Date: Tue, 9 Aug 2016 19:26:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D31122
 
---- Comment #54 from Efrem McCrimon <efremmc2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi QA:
+--- Comment #17 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Comment on attachment 125642
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125642
+backlight control w/ gpio check
 
- I had can to create the manual blacklist entry for nouveau.   I did this
-because I wanted to use the non-free driver.  This is also required if you
-want to use the Intel HD internal graphics card with a Nvidia chip set as a
-secondary card.
+Review of attachment 125642:
+-----------------------------------------------------------------
 
-The first edit will disable nouveau and verify by "lsmod | grep -i nouveau"
+This looks much better already. There are still a few things:
 
+the kernel uses tabs 8 character big. Don't use whitespaces. Other remaining
+issues inlined.
 
+With everything taking care off, you get my rb-by karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-Manual edits required to get this working.
+::: nouveau_backlight.c.orig
+@@ +46,5 @@
+> +{
+> +        struct nouveau_drm *drm =3D bl_get_data(bd);
+> +        struct nvif_object *device =3D &drm->device.object;
+> +        int val =3D (nvif_rd32(device, NV30_PMC_BACKLIGHT) &
+> +                                   NV30_PMC_BACKLIGHT_MASK) >> 16;
 
-1. Created blacklist entry, /etc/modprobe.d/blacklist=C2=ADnouveau.conf as =
-shown
-below
+indentation, either try to fit it in one line or break the nvif_rd32 command
+like this:
 
-# cat /etc/modprobe.d/blacklist=C2=ADnouveau.conf
+nvif_rd32(arg1,
+          arg2);
 
-blacklist nouveau
+@@ +64,5 @@
+> +        int level;
+> +
+> +        if (val =3D=3D 0)
+> +                level =3D 0x00;
+> +
 
-options nouveau modeset=3D0
+remove empty line here
 
-2. kernel option used, nomodeset
+@@ +69,5 @@
+> +        else
+> +                level =3D val + NV30_BL_MIN_LEVEL - 1;
+> +
+> +        nvif_wr32(device, NV30_PMC_BACKLIGHT,
+> +                 (level << 16) + 0x80000535);  /* workaround for disable=
+d backlight after waking from suspend */
 
-Below (lines below) if you want to use the Nvidia non-free driver support:
+indentation same as above. Also beware the 80 character limit.
 
-3. Used Nvidia xconfig tool, nvidia=C2=ADxconfig
+@@ +101,5 @@
+> +                return 0;
+> +
+> +        memset(&props, 0, sizeof(struct backlight_properties));
+> +        props.type =3D BACKLIGHT_RAW;
+> +        props.max_brightness =3D NV30_BL_MAX_LEVEL - NV30_BL_MIN_LEVEL; =
+ /* includes an additional 0x00 level (backlight off) */
 
-4. Edit the file manually to see what drivers were being used , it should
-state: Drivers =E2=80=9Cnvidia=E2=80=9D
-
-5. ** Special note, I have two separate video GPU cards and decided to use
-individual heads, device1, device2
-
-
-Now after booting, Nvidia drivers are working because the X server came up.
-I noticed that
-
-'num=C2=ADlock' was off. Verification of X is as follows:
-
-1. Verify what is in proc, lsmod, dmesg messages
-
-# cat /proc/driver/nvidia/version
-
-NVRM version: NVIDIA UNIX x86_64 Kernel Module 352.30 Tue Jul 21 18:53:45
-PDT 2015
-
-GCC version: gcc version 4.8.3 20140106 (OpenMandriva Association) (Linaro
-GCC 4.8=C2=AD2014.01)
-
-This is the driver we wanted, 352.30, installed from 'mcc'; manual edits
-required for the blacklist
-
-file creation. The installation needs to create something. The Nvidia
-installer does create a file for
-
-you using their manual installation method by executing the driver
-installation <Nvidia-
-driver.version>.run.
-
-2. Verify X log in /var/log/Xorg.0.log.
-
-3. Run Nvidia settings and Nvidia System Management Interface tool,
-nvidia=C2=ADsettings, a X tool,
-
-and nvidia=C2=ADsmi, System Management interface tool
-
-Nvidia=C2=ADsmi, reports the driver version match such as in
-proc/driver/nvidia/version and reports the
-
-GPU(s). GPU=C2=AD0, is the 960; GPU=C2=AD1, is the 730 card. I want to run =
-the 960 as
-the primary (a
-
-physical connection to a 24in monitor).
-
-# nvidia=C2=ADsmi
-
-Sat Feb 27 04:26:53 2016
-
-+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD+
-
-| NVIDIA=C2=ADSMI 352.30 Driver Version: 352.30 |
-
-|=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD+
-
-| GPU Name Persistence=C2=ADM| Bus=C2=ADId Disp.A | Volatile Uncorr. ECC |
-
-| Fan Temp Perf Pwr:Usage/Cap| Memory=C2=ADUsage | GPU=C2=ADUtil Compute M.=
- |
-
-|=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D|
-
-| 0 GeForce GTX 960 Off | 0000:01:00.0 On | N/A |
-
-| 0% 28C P8 7W / 128W | 216MiB / 4091MiB | 0% Default |
-
-+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD+
-
-| 1 GeForce GT 730 Off | 0000:02:00.0 N/A | N/A |
-
-| 30% 28C P8 N/A / N/A | 66MiB / 1023MiB | N/A Default |
-
-+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD+
-
-+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD+
-
-| Processes: GPU Memory |
-
-| GPU PID Type Process name Usage |
-
-|=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D|
-
-| 0 4619 G /etc/X11/X 200MiB |
-
-| 0 6121 G /usr/bin/nvidia=C2=ADsettings 2MiB |
-
-| 1 Not Supported |
-
-
-Regards,
-
-Efrem Mc
-
-PS, I have used this in the past.  You can also try using "acpi_osi=3DLinux"
-on the kernel command line.
-This allows be to boot with the Nvidia card as a primary video source with
-the Intel HD graphics card disabled in BIOS.
-
-I have found that the BIOS is disabled and initfs still loads the i915
-driver module
-
-
-On Tue, Aug 9, 2016 at 12:00 PM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
-
-> *Comment # 53 <https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c53> =
-on
-> bug 94990 <https://bugs.freedesktop.org/show_bug.cgi?id=3D94990> from Pie=
-rre
-> Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> *
->
-> (In reply to Ilia Guterman from comment #52 <https://bugs.freedesktop.org=
-/show_bug.cgi?id=3D94990#c52>)> i tested with 'nouveau.modeset=3D0' on kern=
-el 4.5 and 4.6 on debian/sid and got
-> > the same results of screen flickering and seems like nothing inside of =
-the
-> > nouveau driver getting called.
->
-> Right, `nouveau.modeset=3D0` wont=E2=80=99t prevent Nouveau from loading,=
- however the
-> driver is in a "disable" state and won=E2=80=99t do a thing:
-> > modeset
-> > Whether the driver should be enabled. 0 for disabled, 1 for enabled, 2 =
-for headless
->
-> (taken from the Nouveau wiki:https://nouveau.freedesktop.org/wiki/KernelM=
-oduleParameters/#modeset)
->
-> ------------------------------
-> You are receiving this mail because:
->
->    - You are the assignee for the bug.
->
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
->
->
+80 character limit
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14707666740.D0F6bC.8952
-Date: Tue, 9 Aug 2016 18:17:54 +0000
+--14707708084.8fF1b6c8e.12517
+Date: Tue, 9 Aug 2016 19:26:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -261,243 +115,84 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c54">Commen=
-t # 54</a>
+   title=3D"NEW - Cannot control backlight intensity on Powerbook"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122#c17">Commen=
+t # 17</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+   title=3D"NEW - Cannot control backlight intensity on Powerbook"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122">bug 31122<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-efremmc2&#64;gmail.com" title=3D"Efrem McCrimon &lt;efremmc2&#64;gmail.com&=
-gt;"> <span class=3D"fn">Efrem McCrimon</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Hi QA:
+        <pre>Comment on <span class=3D""><a href=3D"attachment.cgi?id=3D125=
+642" name=3D"attach_125642" title=3D"backlight control w/ gpio check">attac=
+hment 125642</a> <a href=3D"attachment.cgi?id=3D125642&amp;action=3Dedit" t=
+itle=3D"backlight control w/ gpio check">[details]</a></span> <a href=3D'pa=
+ge.cgi?id=3Dsplinter.html&amp;bug=3D31122&amp;attachment=3D125642'>[review]=
+</a>
+backlight control w/ gpio check
 
- I had can to create the manual blacklist entry for nouveau.   I did this
-because I wanted to use the non-free driver.  This is also required if you
-want to use the Intel HD internal graphics card with a Nvidia chip set as a
-secondary card.
+Review of <span class=3D""><a href=3D"attachment.cgi?id=3D125642" name=3D"a=
+ttach_125642" title=3D"backlight control w/ gpio check">attachment 125642</=
+a> <a href=3D"attachment.cgi?id=3D125642&amp;action=3Dedit" title=3D"backli=
+ght control w/ gpio check">[details]</a></span> <a href=3D'page.cgi?id=3Dsp=
+linter.html&amp;bug=3D31122&amp;attachment=3D125642'>[review]</a>:
+-----------------------------------------------------------------
 
-The first edit will disable nouveau and verify by &quot;lsmod | grep -i nou=
-veau&quot;
+This looks much better already. There are still a few things:
 
+the kernel uses tabs 8 character big. Don't use whitespaces. Other remaining
+issues inlined.
 
+With everything taking care off, you get my rb-by <a href=3D"mailto:karolhe=
+rbst&#64;gmail.com">karolherbst&#64;gmail.com</a>
 
-Manual edits required to get this working.
+::: nouveau_backlight.c.orig
+&#64;&#64; +46,5 &#64;&#64;
+<span class=3D"quote">&gt; +{
+&gt; +        struct nouveau_drm *drm =3D bl_get_data(bd);
+&gt; +        struct nvif_object *device =3D &amp;drm-&gt;device.object;
+&gt; +        int val =3D (nvif_rd32(device, NV30_PMC_BACKLIGHT) &amp;
+&gt; +                                   NV30_PMC_BACKLIGHT_MASK) &gt;&gt; =
+16;</span >
 
-1. Created blacklist entry, /etc/modprobe.d/blacklist=C2=ADnouveau.conf as =
-shown
-below
+indentation, either try to fit it in one line or break the nvif_rd32 command
+like this:
 
-# cat /etc/modprobe.d/blacklist=C2=ADnouveau.conf
+nvif_rd32(arg1,
+          arg2);
 
-blacklist nouveau
+&#64;&#64; +64,5 &#64;&#64;
+<span class=3D"quote">&gt; +        int level;
+&gt; +
+&gt; +        if (val =3D=3D 0)
+&gt; +                level =3D 0x00;
+&gt; +</span >
 
-options nouveau modeset=3D0
+remove empty line here
 
-2. kernel option used, nomodeset
+&#64;&#64; +69,5 &#64;&#64;
+<span class=3D"quote">&gt; +        else
+&gt; +                level =3D val + NV30_BL_MIN_LEVEL - 1;
+&gt; +
+&gt; +        nvif_wr32(device, NV30_PMC_BACKLIGHT,
+&gt; +                 (level &lt;&lt; 16) + 0x80000535);  /* workaround fo=
+r disabled backlight after waking from suspend */</span >
 
-Below (lines below) if you want to use the Nvidia non-free driver support:
+indentation same as above. Also beware the 80 character limit.
 
-3. Used Nvidia xconfig tool, nvidia=C2=ADxconfig
+&#64;&#64; +101,5 &#64;&#64;
+<span class=3D"quote">&gt; +                return 0;
+&gt; +
+&gt; +        memset(&amp;props, 0, sizeof(struct backlight_properties));
+&gt; +        props.type =3D BACKLIGHT_RAW;
+&gt; +        props.max_brightness =3D NV30_BL_MAX_LEVEL - NV30_BL_MIN_LEVE=
+L;  /* includes an additional 0x00 level (backlight off) */</span >
 
-4. Edit the file manually to see what drivers were being used , it should
-state: Drivers =E2=80=9Cnvidia=E2=80=9D
-
-5. ** Special note, I have two separate video GPU cards and decided to use
-individual heads, device1, device2
-
-
-Now after booting, Nvidia drivers are working because the X server came up.
-I noticed that
-
-'num=C2=ADlock' was off. Verification of X is as follows:
-
-1. Verify what is in proc, lsmod, dmesg messages
-
-# cat /proc/driver/nvidia/version
-
-NVRM version: NVIDIA UNIX x86_64 Kernel Module 352.30 Tue Jul 21 18:53:45
-PDT 2015
-
-GCC version: gcc version 4.8.3 20140106 (OpenMandriva Association) (Linaro
-GCC 4.8=C2=AD2014.01)
-
-This is the driver we wanted, 352.30, installed from 'mcc'; manual edits
-required for the blacklist
-
-file creation. The installation needs to create something. The Nvidia
-installer does create a file for
-
-you using their manual installation method by executing the driver
-installation &lt;Nvidia-
-driver.version&gt;.run.
-
-2. Verify X log in /var/log/Xorg.0.log.
-
-3. Run Nvidia settings and Nvidia System Management Interface tool,
-nvidia=C2=ADsettings, a X tool,
-
-and nvidia=C2=ADsmi, System Management interface tool
-
-Nvidia=C2=ADsmi, reports the driver version match such as in
-proc/driver/nvidia/version and reports the
-
-GPU(s). GPU=C2=AD0, is the 960; GPU=C2=AD1, is the 730 card. I want to run =
-the 960 as
-the primary (a
-
-physical connection to a 24in monitor).
-
-# nvidia=C2=ADsmi
-
-Sat Feb 27 04:26:53 2016
-
-+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD+
-
-| NVIDIA=C2=ADSMI 352.30 Driver Version: 352.30 |
-
-|=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD+
-
-| GPU Name Persistence=C2=ADM| Bus=C2=ADId Disp.A | Volatile Uncorr. ECC |
-
-| Fan Temp Perf Pwr:Usage/Cap| Memory=C2=ADUsage | GPU=C2=ADUtil Compute M.=
- |
-
-|=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D|
-
-| 0 GeForce GTX 960 Off | 0000:01:00.0 On | N/A |
-
-| 0% 28C P8 7W / 128W | 216MiB / 4091MiB | 0% Default |
-
-+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD+
-
-| 1 GeForce GT 730 Off | 0000:02:00.0 N/A | N/A |
-
-| 30% 28C P8 N/A / N/A | 66MiB / 1023MiB | N/A Default |
-
-+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD+
-
-+=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=
-=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=AD=C2=
-=AD=C2=AD=C2=AD+
-
-| Processes: GPU Memory |
-
-| GPU PID Type Process name Usage |
-
-|=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D|
-
-| 0 4619 G /etc/X11/X 200MiB |
-
-| 0 6121 G /usr/bin/nvidia=C2=ADsettings 2MiB |
-
-| 1 Not Supported |
-
-
-Regards,
-
-Efrem Mc
-
-PS, I have used this in the past.  You can also try using &quot;acpi_osi=3D=
-Linux&quot;
-on the kernel command line.
-This allows be to boot with the Nvidia card as a primary video source with
-the Intel HD graphics card disabled in BIOS.
-
-I have found that the BIOS is disabled and initfs still loads the i915
-driver module
-
-
-On Tue, Aug 9, 2016 at 12:00 PM, &lt;<a href=3D"mailto:bugzilla-daemon&#64;=
-freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt; wrote:
-
-<span class=3D"quote">&gt; *<a href=3D"show_bug.cgi?id=3D94990#c53">Comment=
- # 53</a> &lt;<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"show_bug.cgi?id=3D94990#c53">https://bugs.freedesktop.org/show_b=
-ug.cgi?id=3D94990#c53</a>&gt; on
-&gt; <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"show_bug.cgi?id=3D94990">bug 94990</a> &lt;<a class=3D"bz_bug_li=
-nk=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"show_bug.cgi?id=3D94990">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D94990</a>&gt; from Pierre
-&gt; Moreau &lt;<a href=3D"mailto:pierre.morrow&#64;free.fr">pierre.morrow&=
-#64;free.fr</a>&gt; *</span >
-&gt;
-<span class=3D"quote">&gt; (In reply to Ilia Guterman from <a href=3D"show_=
-bug.cgi?id=3D94990#c52">comment #52</a> &lt;<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"show_bug.cgi?id=3D94990#c52">https://bugs.freedesktop.org/show_b=
-ug.cgi?id=3D94990#c52</a>&gt;)&gt; i tested with 'nouveau.modeset=3D0' on k=
-ernel 4.5 and 4.6 on debian/sid and got
-&gt; &gt; the same results of screen flickering and seems like nothing insi=
-de of the
-&gt; &gt; nouveau driver getting called.</span >
-&gt;
-<span class=3D"quote">&gt; Right, `nouveau.modeset=3D0` wont=E2=80=99t prev=
-ent Nouveau from loading, however the
-&gt; driver is in a &quot;disable&quot; state and won=E2=80=99t do a thing:
-&gt; &gt; modeset
-&gt; &gt; Whether the driver should be enabled. 0 for disabled, 1 for enabl=
-ed, 2 for headless</span >
-&gt;
-<span class=3D"quote">&gt; (taken from the Nouveau wiki:<a href=3D"https://=
-nouveau.freedesktop.org/wiki/KernelModuleParameters/#modeset">https://nouve=
-au.freedesktop.org/wiki/KernelModuleParameters/#modeset</a>)</span >
-&gt;
-<span class=3D"quote">&gt; ------------------------------
-&gt; You are receiving this mail because:</span >
-&gt;
-<span class=3D"quote">&gt;    - You are the assignee for the bug.</span >
-&gt;
-&gt;
-<span class=3D"quote">&gt; _______________________________________________
-&gt; Nouveau mailing list
-&gt; <a href=3D"mailto:Nouveau&#64;lists.freedesktop.org">Nouveau&#64;lists=
-.freedesktop.org</a>
-&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau">htt=
-ps://lists.freedesktop.org/mailman/listinfo/nouveau</a></span >
-&gt;
-&gt;</pre>
+80 character limit</pre>
         </div>
       </p>
 
@@ -511,9 +206,9 @@ ps://lists.freedesktop.org/mailman/listinfo/nouveau</a></span >
     </body>
 </html>=
 
---14707666740.D0F6bC.8952--
+--14707708084.8fF1b6c8e.12517--
 
---===============0796856817==
+--===============0945904018==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -523,4 +218,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0796856817==--
+--===============0945904018==--
