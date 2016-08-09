@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Tue, 09 Aug 2016 16:00:55 +0000
-Message-ID: <bug-94990-8800-hbcZphsSyt@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 31122] Cannot control backlight intensity on
+	Powerbook
+Date: Tue, 09 Aug 2016 17:21:31 +0000
+Message-ID: <bug-31122-8800-mYgoFSIA64@http.bugs.freedesktop.org/>
+References: <bug-31122-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0790869248=="
+Content-Type: multipart/mixed; boundary="===============0133036653=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31122-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,45 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0790869248==
-Content-Type: multipart/alternative; boundary="14707584551.C2dB8C.606";
+--===============0133036653==
+Content-Type: multipart/alternative; boundary="14707632904.E6A3caa.6047";
  charset="UTF-8"
 
 
---14707584551.C2dB8C.606
-Date: Tue, 9 Aug 2016 16:00:55 +0000
+--14707632904.E6A3caa.6047
+Date: Tue, 9 Aug 2016 17:21:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D31122
 
---- Comment #53 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(In reply to Ilia Guterman from comment #52)
-> i tested with 'nouveau.modeset=3D0' on kernel 4.5 and 4.6 on debian/sid a=
-nd got
-> the same results of screen flickering and seems like nothing inside of the
-> nouveau driver getting called.
+--- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to A. Chaud from comment #15)
+> Regarding the 0x535.  It's a workaround for bug 31120.  The lower half of
+> the register gets set to 0x7fff upon waking from suspend which disables t=
+he
+> backlight. This changes it back to a working value.
 
-Right, `nouveau.modeset=3D0` wont=E2=80=99t prevent Nouveau from loading, h=
-owever the
-driver is in a "disable" state and won=E2=80=99t do a thing:
+There should be a way to save a value on suspend and restore that saved val=
+ue
+on resume.
 
-> modeset
-> Whether the driver should be enabled. 0 for disabled, 1 for enabled, 2 fo=
-r headless
+BTW, I didn't check whether you're still doing this in the latest patch, bu=
+t a
+few things I remember noticing:
 
-(taken from the Nouveau wiki:
-https://nouveau.freedesktop.org/wiki/KernelModuleParameters/#modeset)
+(a) foo | 0x80000000, not +
+(b) use ARRAY_SIZE, although I think you got rid of that array anyways
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14707584551.C2dB8C.606
-Date: Tue, 9 Aug 2016 16:00:55 +0000
+--14707632904.E6A3caa.6047
+Date: Tue, 9 Aug 2016 17:21:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,38 +75,39 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c53">Commen=
-t # 53</a>
+   title=3D"NEW - Cannot control backlight intensity on Powerbook"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122#c16">Commen=
+t # 16</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+   title=3D"NEW - Cannot control backlight intensity on Powerbook"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122">bug 31122<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Ilia Guterman from <a href=3D"show_bug.cgi?id=3D9=
-4990#c52">comment #52</a>)
-<span class=3D"quote">&gt; i tested with 'nouveau.modeset=3D0' on kernel 4.=
-5 and 4.6 on debian/sid and got
-&gt; the same results of screen flickering and seems like nothing inside of=
- the
-&gt; nouveau driver getting called.</span >
+        <pre>(In reply to A. Chaud from <a href=3D"show_bug.cgi?id=3D31122#=
+c15">comment #15</a>)
+<span class=3D"quote">&gt; Regarding the 0x535.  It's a workaround for <a c=
+lass=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Backlight off after suspend-to-disk on Powerbook"
+   href=3D"show_bug.cgi?id=3D31120">bug 31120</a>.  The lower half of
+&gt; the register gets set to 0x7fff upon waking from suspend which disable=
+s the
+&gt; backlight. This changes it back to a working value.</span >
 
-Right, `nouveau.modeset=3D0` wont=E2=80=99t prevent Nouveau from loading, h=
-owever the
-driver is in a &quot;disable&quot; state and won=E2=80=99t do a thing:
+There should be a way to save a value on suspend and restore that saved val=
+ue
+on resume.
 
-<span class=3D"quote">&gt; modeset
-&gt; Whether the driver should be enabled. 0 for disabled, 1 for enabled, 2=
- for headless</span >
+BTW, I didn't check whether you're still doing this in the latest patch, bu=
+t a
+few things I remember noticing:
 
-(taken from the Nouveau wiki:
-<a href=3D"https://nouveau.freedesktop.org/wiki/KernelModuleParameters/#mod=
-eset">https://nouveau.freedesktop.org/wiki/KernelModuleParameters/#modeset<=
-/a>)</pre>
+(a) foo | 0x80000000, not +
+(b) use ARRAY_SIZE, although I think you got rid of that array anyways</pre>
         </div>
       </p>
 
@@ -119,9 +121,9 @@ eset">https://nouveau.freedesktop.org/wiki/KernelModuleParameters/#modeset<=
     </body>
 </html>=
 
---14707584551.C2dB8C.606--
+--14707632904.E6A3caa.6047--
 
---===============0790869248==
+--===============0133036653==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -131,4 +133,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0790869248==--
+--===============0133036653==--
