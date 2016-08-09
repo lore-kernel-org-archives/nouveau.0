@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Mon, 08 Aug 2016 19:09:51 +0000
-Message-ID: <bug-94990-8800-G0MktwpRJv@http.bugs.freedesktop.org/>
+Date: Tue, 09 Aug 2016 08:23:31 +0000
+Message-ID: <bug-94990-8800-AsKE5zFexA@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1220890374=="
+Content-Type: multipart/mixed; boundary="===============0112590653=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1220890374==
-Content-Type: multipart/alternative; boundary="14706833913.c150Ee.23882";
+--===============0112590653==
+Content-Type: multipart/alternative; boundary="14707310110.AFf0.12329";
  charset="UTF-8"
 
 
---14706833913.c150Ee.23882
-Date: Mon, 8 Aug 2016 19:09:51 +0000
+--14707310110.AFf0.12329
+Date: Tue, 9 Aug 2016 08:23:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,22 +35,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #49 from Zach Wolfe <zwolfe21-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-For the record, I had dealt with this problem too, boots fine on 4.5.* but =
-not
-4.6 (as of today). I have also tried a GTX 960 and a GTX 980 (4GB) (now my
-current). Fedora 24 boots fine with each of those cards on 4.6. The EVGA GTX
-970 (4GB) did not boot (at all) on kernel 4.6. However it will boot under 4=
-.5
-but the monitor(s) connected to the 970 card will not work. (I run two card=
-s).
+--- Comment #50 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
+Could some kind soul write a how to modify grub2 configs to add the
+`nouveau.modeset=3D0` so we could test is that work on our setup?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14706833913.c150Ee.23882
-Date: Mon, 8 Aug 2016 19:09:51 +0000
+--14707310110.AFf0.12329
+Date: Tue, 9 Aug 2016 08:23:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,25 +61,20 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c49">Commen=
-t # 49</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c50">Commen=
+t # 50</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-zwolfe21&#64;hotmail.com" title=3D"Zach Wolfe &lt;zwolfe21&#64;hotmail.com&=
-gt;"> <span class=3D"fn">Zach Wolfe</span></a>
+freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
+un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
 </span></b>
-        <pre>For the record, I had dealt with this problem too, boots fine =
-on 4.5.* but not
-4.6 (as of today). I have also tried a GTX 960 and a GTX 980 (4GB) (now my
-current). Fedora 24 boots fine with each of those cards on 4.6. The EVGA GTX
-970 (4GB) did not boot (at all) on kernel 4.6. However it will boot under 4=
-.5
-but the monitor(s) connected to the 970 card will not work. (I run two card=
-s).</pre>
+        <pre>Could some kind soul write a how to modify grub2 configs to ad=
+d the
+`nouveau.modeset=3D0` so we could test is that work on our setup?</pre>
         </div>
       </p>
 
@@ -99,9 +88,9 @@ s).</pre>
     </body>
 </html>=
 
---14706833913.c150Ee.23882--
+--14707310110.AFf0.12329--
 
---===============1220890374==
+--===============0112590653==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1220890374==--
+--===============0112590653==--
