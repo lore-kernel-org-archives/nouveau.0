@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31122] Cannot control backlight intensity on
-	Powerbook
-Date: Tue, 09 Aug 2016 19:32:58 +0000
-Message-ID: <bug-31122-8800-69Uz4F14p4@http.bugs.freedesktop.org/>
-References: <bug-31122-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
+Date: Tue, 09 Aug 2016 23:07:48 +0000
+Message-ID: <bug-94990-8800-9sdc62Fnhk@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1160248046=="
+Content-Type: multipart/mixed; boundary="===============1370863254=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31122-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1160248046==
-Content-Type: multipart/alternative; boundary="14707711780.b6d513E4.13710";
+--===============1370863254==
+Content-Type: multipart/alternative; boundary="14707840680.4c35b2a.6148";
  charset="UTF-8"
 
 
---14707711780.b6d513E4.13710
-Date: Tue, 9 Aug 2016 19:32:58 +0000
+--14707840680.4c35b2a.6148
+Date: Tue, 9 Aug 2016 23:07:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D31122
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #19 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I meant of course reviewed-by, not rb-by
+--- Comment #55 from Ilia Guterman <amfernusus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 125656
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125656&action=3Dedit
+patch, possible fix
+
+After some messing around i am able to boot.
+
+I noticed it crashes only when initializing certain nvkm_gpuobj, which has =
+it
+'nvkm_gpuobj->size' bigger then 'nv50_instobj(memory)->mem->size <<
+NVKM_RAM_MM_SHIFT'.
+
+catching that specific case made it better.
+
+from your kernel directory do 'git apply
+0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch
+
+and if you can post the boot log.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14707711780.b6d513E4.13710
-Date: Tue, 9 Aug 2016 19:32:58 +0000
+--14707840680.4c35b2a.6148
+Date: Tue, 9 Aug 2016 23:07:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,19 +75,39 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Cannot control backlight intensity on Powerbook"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122#c19">Commen=
-t # 19</a>
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c55">Commen=
+t # 55</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Cannot control backlight intensity on Powerbook"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122">bug 31122<=
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+amfernusus&#64;gmail.com" title=3D"Ilia Guterman &lt;amfernusus&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Ilia Guterman</span></a>
 </span></b>
-        <pre>I meant of course reviewed-by, not rb-by</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125656=
+" name=3D"attach_125656" title=3D"patch, possible fix">attachment 125656</a=
+> <a href=3D"attachment.cgi?id=3D125656&amp;action=3Dedit" title=3D"patch, =
+possible fix">[details]</a></span> <a href=3D'page.cgi?id=3Dsplinter.html&a=
+mp;bug=3D94990&amp;attachment=3D125656'>[review]</a>
+patch, possible fix
+
+After some messing around i am able to boot.
+
+I noticed it crashes only when initializing certain nvkm_gpuobj, which has =
+it
+'nvkm_gpuobj-&gt;size' bigger then 'nv50_instobj(memory)-&gt;mem-&gt;size &=
+lt;&lt;
+NVKM_RAM_MM_SHIFT'.
+
+catching that specific case made it better.
+
+from your kernel directory do 'git apply
+0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch
+
+and if you can post the boot log.</pre>
         </div>
       </p>
 
@@ -86,9 +121,9 @@ com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
     </body>
 </html>=
 
---14707711780.b6d513E4.13710--
+--14707840680.4c35b2a.6148--
 
---===============1160248046==
+--===============1370863254==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +133,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1160248046==--
+--===============1370863254==--
