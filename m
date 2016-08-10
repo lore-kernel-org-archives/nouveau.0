@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Tue, 09 Aug 2016 23:08:36 +0000
-Message-ID: <bug-94990-8800-aw1OWZSqWR@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: Markus Mayer <mmayer-dY08KVG/lbpWk0Htik3J/w@public.gmane.org>
+Subject: [PATCH v5 0/7] lib: string: add functions to case-convert
+	strings
+Date: Wed, 10 Aug 2016 14:04:50 -0700
+Message-ID: <1470863097-21138-1-git-send-email-mmayer@broadcom.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0053961089=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,98 +16,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Al Viro <viro-RmSDqhL/yNMiFSDQTTA3OLVCufUGDwFn@public.gmane.org>, Rasmus Villemoes <linux-qQsb+v5E8BnlAoU/VqSP6n9LOBIZ5rWg@public.gmane.org>, Chris Metcalf <cmetcalf-d5a29ZRxExrQT0dZR+AlfA@public.gmane.org>, Kees Cook <keescook-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>
+Cc: devel-gWbeCf7V1WCQmaza687I9mD2FQJk+8+b@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, speakup-UPO/6gOIxNZglr+F8WMZYdi2O/JbrIOy@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, target-devel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0053961089==
-Content-Type: multipart/alternative; boundary="14707841162.b59ce30c.6263";
- charset="UTF-8"
-
-
---14707841162.b59ce30c.6263
-Date: Tue, 9 Aug 2016 23:08:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
-Ilia Guterman <amfernusus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #125656|patch, possible fix         |0001-nvkm_gpuobj-size-is-sm
-        description|                            |aller-then-nvkm_gpuobj-size
-                   |                            |-ca.patch
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14707841162.b59ce30c.6263
-Date: Tue, 9 Aug 2016 23:08:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:amfernusu=
-s&#64;gmail.com" title=3D"Ilia Guterman &lt;amfernusus&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ilia Guterman</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #125656 description</=
-td>
-           <td>patch, possible fix
-           </td>
-           <td>0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.pa=
-tch
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14707841162.b59ce30c.6263--
-
---===============0053961089==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0053961089==--
+VGhpcyBzZXJpZXMgaW50cm9kdWNlcyBhIGZhbWlseSBvZiBnZW5lcmljIHN0cmluZyBjYXNlIGNv
+bnZlcnNpb24KZnVuY3Rpb25zLiBUaGlzIGtpbmQgb2YgZnVuY3Rpb25hbGl0eSBpcyBuZWVkZWQg
+aW4gc2V2ZXJhbCBwbGFjZXMgaW4KdGhlIGtlcm5lbC4gUmlnaHQgbm93LCBldmVyeWJvZHkgc2Vl
+bXMgdG8gYmUgaW1wbGVtZW50aW5nIHRoZWlyIG93bgpjb3B5IG9mIHRoaXMgZnVuY3Rpb25hbGl0
+eS4KCkJhc2VkIG9uIHRoZSBkaXNjdXNzaW9uIG9mIHRoZSBwcmV2aW91cyB2ZXJzaW9uIG9mIHRo
+aXMgc2VyaWVzWzFdIGFuZAp0aGUgdXNlIGNhc2VzIGZvdW5kIGluIHRoZSBrZXJuZWwsIGl0IGRv
+ZXMgbG9vayBsaWtlIGhhdmluZyBzZXZlcmFsCmZsYXZvdXJzIG9mIGNhc2UgY29udmVyc2lvbiBm
+dW5jdGlvbnMgaXMgYmVuZWZpY2lhbC4gVGhlIHVzZSBjYXNlcyBmYWxsCmludG8gdGhyZWUgY2F0
+ZWdvcmllczoKICAgIC0gY29weWluZyBhIHN0cmluZyBhbmQgY29udmVydGluZyB0aGUgY2FzZSB3
+aGlsZSBzcGVjaWZ5aW5nIGEKICAgICAgbWF4aW11bSBsZW5ndGggdG8gbWltaWMgc3RybGNweSgp
+CiAgICAtIGNvcHlpbmcgYSBzdHJpbmcgYW5kIGNvbnZlcnRpbmcgdGhlIGNhc2Ugd2l0aG91dCBz
+cGVjaWZ5aW5nIGEKICAgICAgbGVuZ3RoIHRvIG1pbWljIHN0cmNweSgpCiAgICAtIGNvbnZlcnRp
+bmcgdGhlIGNhc2Ugb2YgYSBzdHJpbmcgaW4tcGxhY2UgKGkuZS4gbW9kaWZ5aW5nIHRoZQogICAg
+ICBzdHJpbmcgdGhhdCB3YXMgcGFzc2VkIGluKQoKQ29uc2VxdWVudGx5LCBJIGFtIHByb3Bvc2lu
+ZyB0aGVzZSBuZXcgZnVuY3Rpb25zOgogICAgaW50IHN0cmxjcHl0b3VwcGVyKGNoYXIgKmRzdCwg
+Y29uc3QgY2hhciAqc3JjLCBzaXplX3QgbGVuKTsKICAgIGludCBzdHJsY3B5dG9sb3dlcihjaGFy
+ICpkc3QsIGNvbnN0IGNoYXIgKnNyYywgc2l6ZV90IGxlbik7CiAgICB2b2lkIHN0cmNweXRvdXBw
+ZXIoY2hhciAqZHN0LCBjb25zdCBjaGFyICpzcmMpOwogICAgdm9pZCBzdHJjcHl0b2xvd2VyKGNo
+YXIgKmRzdCwgY29uc3QgY2hhciAqc3JjKTsKICAgIHZvaWQgc3RydG91cHBlcihjaGFyICpzKTsK
+ICAgIHZvaWQgc3RydG9sb3dlcihjaGFyICpzKTsKClNldmVyYWwgZHJpdmVycyBhcmUgYmVpbmcg
+bW9kaWZpZWQgdG8gbWFrZSB1c2Ugb2YgdGhlIGZ1bmN0aW9ucyBhYm92ZS4KQW5vdGhlciBkcml2
+ZXIgdGhhdCBhbHNvIG1ha2VzIHVzZSBvZiB0aGlzIGZ1bmN0aW9uYWxpdHkgd2lsbCBiZQpzdWJt
+aXR0ZWQgdXBzdHJlYW0gc2hvcnRseSwgd2hpY2ggcHJvbXB0ZWQgdGhpcyB3aG9sZSBleGVyY2lz
+ZS4KClRoZSBjaGFuZ2VzIG1hZGUgaGVyZSBoYXZlIGJlZW4gY29tcGlsZS10ZXN0ZWQsIGJ1dCBu
+b3QgdHJpZWQgb3V0LCBkdWUKdG8gbGFjayBvZiByZXF1aXJlZCBoYXJkd2FyZS4KCkNoYW5nZXMg
+c2luY2UgdjQ6CiAgLSByZWJhc2VkIG9uIDQuOC1yYzE7IHRoaXMgb25seSBhZmZlY3RzIHBhdGNo
+IDYvNyAoZ2sxMDQpIGFuZCBvbmx5IHRoZQogICAgcGF0Y2ggY29udGV4dCwgbm90IHRoZSBwYXRj
+aCBpdHNlbGYKICAtIGFkZGVkIGFuIEFDSyB0byBwYXRjaCA0LzcgKHNwZWFrdXApCiAgLSBhZGRl
+ZCBhbiBBQ0sgdG8gcGF0Y2ggNy83IChwb3dlcl9zdXBwbHkpCgpDaGFuZ2VzIHNpbmNlIHYzOgog
+IC0gc3RybGNweXRvdXBwZXIoKSBhbmQgc3RybGNweXRvbG93ZXIoKSByZXR1cm4gbGVuZ3RoIG9m
+IGRlc3RpbmF0aW9uCiAgICBvciAtRTJCSUcgKHNlZSBbMl0pCiAgLSB3ZSB1c2UgfihzaXplX3Qp
+MCBpbnN0ZWFkIG9mIC0xIHRvIGNvcHkgc3RyaW5ncyBvZiBhcmJpdHJhcnkgbGVuZ3RoCiAgICBp
+biBzdHJjcHl0byooKSBhbmQgc3RydG8qKCkKICAtIEEgZmV3IEFDS3MgYWRkZWQKCkNoYW5nZXMg
+c2luY2UgdjI6CiAgLSB1c2Ugc3RybGNweSgpIHNlbWFudGljcyBub3Qgc3RybmNweSgpIHNlbWFu
+dGljcywgaS5lLiBndWFyYW50ZWUKICAgIE5VTEwgdGVybWluYXRpb24KICAtIGFzIGEgcmVzdWx0
+IHN0cm5jcHl0bzx1cHBlcnxsb3dlcj4gYXJlIG5vdyBjYWxsZWQKICAgIHN0cmxjcHl0bzx1cHBl
+cnxsb3dlcj4KICAtIG1ha2UgZnVuY3Rpb25zIHZvaWQKICAtIHVzZSBsZW4gPT0gLTEgKFNJWkVf
+TUFYKSBhcyBuby1saW1pdCBpbmRpY2F0b3IgcmF0aGVyIHRoZW4gbGVuID09IDAKICAtIGNoYW5n
+ZSBQQVRDSCAyLzcgdG8gbWF0Y2ggc3RybGNweSgpIHNlbWFudGljcwogIC0gY2hhbmdlIFBBVENI
+IDQvNyB0byBtYXRjaCBzdHJsY3B5KCkgc2VtYW50aWNzCgpDaGFuZ2VzIHNpbmNlIHYxOgogIC0g
+ZXhwYW5kZWQgc3RydG9sb3dlcigpIGludG8gYSBmYW1pbHkgb2YgZnVuY3Rpb25zIHRoYXQgY292
+ZXIgdXNlCiAgICBjYXNlcyB3aGVuIGEgbGVuZ3RoIGFyZ3VtZW50IGlzIG9yIGlzbid0IHJlcXVp
+cmVkIGFuZCB0aGF0IHN1cHBvcnQKICAgIGNvcHlpbmcgdGhlIHN0cmluZyBpbnRvIGEgbmV3IGJ1
+ZmZlciBvciBjaGFuZ2luZyBpdCBpbi1wbGFjZSAKICAtIGNoYW5nZWQgdGhlIGZ1bmN0aW9uIHNl
+bWFudGljcyB0byByZXR1cm4gYSBwb2ludGVyIHRvIHRoZQogICAgdGVybWluYXRpbmcgJ1wwJyBj
+aGFyYWN0ZXIgb2YgdGhlIG1vZGlmaWVkIHN0cmluZwogIC0gYWRkZWQgc3RydG91cHBlcigpIGZ1
+bmN0aW9uYWxpdHkgbWlycm9yaW5nIHRoZSBhYm92ZQogIC0gZHJvcHBlZCB0aGUgQUNQSUNBIHBh
+dGNoLCBzaW5jZSB0aGF0IGNvZGUgaXMgT1MgaW5kZXBlbmRlbnQgYW5kCiAgICBjYW4ndCByZWx5
+IG9uIGEgTGludXggbGlicmFyeSBmdW5jdGlvbiAoc2VlIFszXSkKICAtIEFkZGVkIHR3byBuZXcg
+cGF0Y2hlcyByZXBsYWNpbmcgc3RydG91cHBlcigpIGltcGxlbWVudGF0aW9ucwoKWzFdIGh0dHBz
+Oi8vbGttbC5vcmcvbGttbC8yMDE2LzYvMzAvNzI3ClsyXSBodHRwczovL2xrbWwub3JnL2xrbWwv
+MjAxNi83LzEwLzQKWzNdIGh0dHBzOi8vbGttbC5vcmcvbGttbC8yMDE2LzcvMS85CgpNYXJrdXMg
+TWF5ZXIgKDcpOgogIGxpYjogc3RyaW5nOiBhZGQgZnVuY3Rpb25zIHRvIGNhc2UtY29udmVydCBz
+dHJpbmdzCiAgZHJtL25vdXZlYXUvY29yZTogbWFrZSB1c2Ugb2YgbmV3IHN0cmxjcHl0b2xvd2Vy
+KCkgZnVuY3Rpb24KICBBQ1BJIC8gZGV2aWNlX3N5c2ZzOiBtYWtlIHVzZSBvZiBuZXcgc3RydG9s
+b3dlcigpIGZ1bmN0aW9uCiAgc3RhZ2luZzogc3BlYWt1cDogcmVwbGFjZSBzcGtfc3RybHdyKCkg
+d2l0aCBzdHJsY3B5dG9sb3dlcigpCiAgaXNjc2ktdGFyZ2V0OiByZXBsYWNlIGlzY3NpX2luaXRp
+YXRvcm5hbWVfdG9sb3dlcigpIHdpdGggc3RydG9sb3dlcigpCiAgZHJtL25vdXZlYXUvZmlmby9n
+azEwNDogbWFrZSB1c2Ugb2YgbmV3IHN0cmNweXRvdXBwZXIoKSBmdW5jdGlvbgogIHBvd2VyX3N1
+cHBseTogbWFrZSB1c2Ugb2YgbmV3IHN0cmNweXRvdXBwZXIoKSBmdW5jdGlvbgoKIGRyaXZlcnMv
+YWNwaS9kZXZpY2Vfc3lzZnMuYyAgICAgICAgICAgICAgICAgICAgICB8ICA0ICstLQogZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMgICAgIHwgIDkgKy0tLS0KIGRy
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2ZpZm8vZ2sxMDQuYyB8ICA1ICstLQog
+ZHJpdmVycy9wb3dlci9wb3dlcl9zdXBwbHlfc3lzZnMuYyAgICAgICAgICAgICAgIHwgMTMgKysr
+LS0tLQogZHJpdmVycy9zdGFnaW5nL3NwZWFrdXAva29iamVjdHMuYyAgICAgICAgICAgICAgIHwg
+IDMgKy0KIGRyaXZlcnMvc3RhZ2luZy9zcGVha3VwL21haW4uYyAgICAgICAgICAgICAgICAgICB8
+ICAzICstCiBkcml2ZXJzL3N0YWdpbmcvc3BlYWt1cC9zcGVha3VwLmggICAgICAgICAgICAgICAg
+fCAgMSAtCiBkcml2ZXJzL3N0YWdpbmcvc3BlYWt1cC92YXJoYW5kbGVycy5jICAgICAgICAgICAg
+fCAxMiAtLS0tLS0tCiBkcml2ZXJzL3RhcmdldC9pc2NzaS9pc2NzaV90YXJnZXRfbmVnby5jICAg
+ICAgICAgfCAxNyArLS0tLS0tLS0KIGluY2x1ZGUvbGludXgvc3RyaW5nLmggICAgICAgICAgICAg
+ICAgICAgICAgICAgICB8IDQwICsrKysrKysrKysrKysrKysrKysrKwogbGliL3N0cmluZy5jICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgNDYgKysrKysrKysrKysrKysrKysr
+KysrKysrCiAxMSBmaWxlcyBjaGFuZ2VkLCA5OCBpbnNlcnRpb25zKCspLCA1NSBkZWxldGlvbnMo
+LSkKCi0tIAoyLjcuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
