@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91779] Pure EFI: MacBookPro3,
  1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents
-Date: Sun, 14 Aug 2016 02:00:55 +0000
-Message-ID: <bug-91779-8800-6jPkiAseTY@http.bugs.freedesktop.org/>
+Date: Sun, 14 Aug 2016 02:46:39 +0000
+Message-ID: <bug-91779-8800-GgtjwOsfwT@http.bugs.freedesktop.org/>
 References: <bug-91779-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0086429054=="
+Content-Type: multipart/mixed; boundary="===============1985986808=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91779-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0086429054==
-Content-Type: multipart/alternative; boundary="14711400551.96Ba7FEcE.14762";
+--===============1985986808==
+Content-Type: multipart/alternative; boundary="14711427991.c7d5B.21085";
  charset="UTF-8"
 
 
---14711400551.96Ba7FEcE.14762
-Date: Sun, 14 Aug 2016 02:00:55 +0000
+--14711427991.c7d5B.21085
+Date: Sun, 14 Aug 2016 02:46:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,36 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D91779
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Jeremy Huddleston Sequoia from comment #13)
-> As you can see, the loading of /lib/firmware/vbios.rom fails with ENOENT,
-> but it's certainly there.  I verified that /lib/firmware/vbios.rom is
-> exactly the same as /sys/kernel/debug/dri/0/vbios.rom in BIOS-emulation m=
-ode.
->=20
-> Odd... gonna have to dig into it a bit more later, but if you have any
-> ideas, I'd appreciate them.
+--- Comment #15 from Jeremy Huddleston Sequoia <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> -=
+--
+Yeah, it seems that it's getting loaded from the initial ramdisk now for so=
+me
+reason, where it wasn't in the past.  Shoving it onto the initrd solved the
+issue.
 
-The usual situation is that it's not there, and so ENOENT is returned. Note
-that it has to be there when nouveau loads, not at some later point in time,
-when, say, the real root partition is mounted. To maximize confusion, distro
-kernel builds like to load modules from initrd, and if nouveau is loaded th=
-ere,
-you'll want to ensure that your vbios.rom is available from there as well.
-
-If you build your own kernel and don't plan on soldering in random hardware
-(esp not new disk controllers) into your laptop without first doing a rebui=
-ld,
-you can stick the vbios.rom directly into the kernel and avoid this frustra=
-tion
-via CONFIG_EXTRA_FIRMWARE or something similar.
+Oddly, there is still documentation to the contrary, that the fb isn't
+initialized until after the root filesystem is loaded, but it looks like th=
+at's
+out of date.  Oh well, problem solved.  Thanks.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14711400551.96Ba7FEcE.14762
-Date: Sun, 14 Aug 2016 02:00:55 +0000
+--14711427991.c7d5B.21085
+Date: Sun, 14 Aug 2016 02:46:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -83,8 +71,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on l=
 inux 4.1 -- Invalid ROM contents"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91779#c14">Commen=
-t # 14</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91779#c15">Commen=
+t # 15</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on l=
@@ -92,33 +80,19 @@ inux 4.1 -- Invalid ROM contents"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91779">bug 91779<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+jeremyhu&#64;freedesktop.org" title=3D"Jeremy Huddleston Sequoia &lt;jeremy=
+hu&#64;freedesktop.org&gt;"> <span class=3D"fn">Jeremy Huddleston Sequoia</=
+span></a>
 </span></b>
-        <pre>(In reply to Jeremy Huddleston Sequoia from <a href=3D"show_bu=
-g.cgi?id=3D91779#c13">comment #13</a>)
-<span class=3D"quote">&gt; As you can see, the loading of /lib/firmware/vbi=
-os.rom fails with ENOENT,
-&gt; but it's certainly there.  I verified that /lib/firmware/vbios.rom is
-&gt; exactly the same as /sys/kernel/debug/dri/0/vbios.rom in BIOS-emulatio=
-n mode.
-&gt;=20
-&gt; Odd... gonna have to dig into it a bit more later, but if you have any
-&gt; ideas, I'd appreciate them.</span >
+        <pre>Yeah, it seems that it's getting loaded from the initial ramdi=
+sk now for some
+reason, where it wasn't in the past.  Shoving it onto the initrd solved the
+issue.
 
-The usual situation is that it's not there, and so ENOENT is returned. Note
-that it has to be there when nouveau loads, not at some later point in time,
-when, say, the real root partition is mounted. To maximize confusion, distro
-kernel builds like to load modules from initrd, and if nouveau is loaded th=
-ere,
-you'll want to ensure that your vbios.rom is available from there as well.
-
-If you build your own kernel and don't plan on soldering in random hardware
-(esp not new disk controllers) into your laptop without first doing a rebui=
-ld,
-you can stick the vbios.rom directly into the kernel and avoid this frustra=
-tion
-via CONFIG_EXTRA_FIRMWARE or something similar.</pre>
+Oddly, there is still documentation to the contrary, that the fb isn't
+initialized until after the root filesystem is loaded, but it looks like th=
+at's
+out of date.  Oh well, problem solved.  Thanks.</pre>
         </div>
       </p>
 
@@ -132,9 +106,9 @@ via CONFIG_EXTRA_FIRMWARE or something similar.</pre>
     </body>
 </html>=
 
---14711400551.96Ba7FEcE.14762--
+--14711427991.c7d5B.21085--
 
---===============0086429054==
+--===============1985986808==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -144,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0086429054==--
+--===============1985986808==--
