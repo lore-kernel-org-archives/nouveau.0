@@ -1,121 +1,45 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91779] Pure EFI: MacBookPro3,
- 1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents
-Date: Sun, 14 Aug 2016 02:46:39 +0000
-Message-ID: <bug-91779-8800-GgtjwOsfwT@http.bugs.freedesktop.org/>
-References: <bug-91779-8800@http.bugs.freedesktop.org/>
+From: Amitoj Kaur Chawla <amitoj1606-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau/tegra: Modify error handling
+Date: Mon, 15 Aug 2016 10:24:09 +0530
+Message-ID: <20160815045409.GA12886@amitoj-Inspiron-3542>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1985986808=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91779-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Disposition: inline
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: julia.lawall-L2FTfq7BK8M@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+iommu_domain_alloc returns NULL on error so replace an incorrect
+IS_ERR check with a NULL check.
 
---===============1985986808==
-Content-Type: multipart/alternative; boundary="14711427991.c7d5B.21085";
- charset="UTF-8"
+The Coccinelle semantic patch used to find this issue is as follows:
+@@
+expression e;
+statement S;
+@@
 
+*e = iommu_domain_alloc(...);
+if (IS_ERR(e)) S
 
---14711427991.c7d5B.21085
-Date: Sun, 14 Aug 2016 02:46:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Signed-off-by: Amitoj Kaur Chawla <amitoj1606-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91779
-
---- Comment #15 from Jeremy Huddleston Sequoia <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> -=
---
-Yeah, it seems that it's getting loaded from the initial ramdisk now for so=
-me
-reason, where it wasn't in the past.  Shoving it onto the initrd solved the
-issue.
-
-Oddly, there is still documentation to the contrary, that the fb isn't
-initialized until after the root filesystem is loaded, but it looks like th=
-at's
-out of date.  Oh well, problem solved.  Thanks.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14711427991.c7d5B.21085
-Date: Sun, 14 Aug 2016 02:46:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on l=
-inux 4.1 -- Invalid ROM contents"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91779#c15">Commen=
-t # 15</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on l=
-inux 4.1 -- Invalid ROM contents"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91779">bug 91779<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jeremyhu&#64;freedesktop.org" title=3D"Jeremy Huddleston Sequoia &lt;jeremy=
-hu&#64;freedesktop.org&gt;"> <span class=3D"fn">Jeremy Huddleston Sequoia</=
-span></a>
-</span></b>
-        <pre>Yeah, it seems that it's getting loaded from the initial ramdi=
-sk now for some
-reason, where it wasn't in the past.  Shoving it onto the initrd solved the
-issue.
-
-Oddly, there is still documentation to the contrary, that the fb isn't
-initialized until after the root filesystem is loaded, but it looks like th=
-at's
-out of date.  Oh well, problem solved.  Thanks.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14711427991.c7d5B.21085--
-
---===============1985986808==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1985986808==--
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
+index 939682f..ffd8def 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
+@@ -102,7 +102,7 @@ nvkm_device_tegra_probe_iommu(struct nvkm_device_tegra *tdev)
+ 
+ 	if (iommu_present(&platform_bus_type)) {
+ 		tdev->iommu.domain = iommu_domain_alloc(&platform_bus_type);
+-		if (IS_ERR(tdev->iommu.domain))
++		if (!tdev->iommu.domain)
+ 			goto error;
+ 
+ 		/*
+-- 
+1.9.1
