@@ -1,60 +1,255 @@
-From: karol herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: XDC2016
-Date: Mon, 15 Aug 2016 11:14:12 +0200
-Message-ID: <CAEXux-YUYkMJQxmaqj4K7DuPfwE_cpNW2S6pnsVYiAgELunQMA@mail.gmail.com>
-References: <CAEXux-aHbDcNz2Tvy=QNg+fqWMSor8iwzkcbqEiLo_mL+TUA_A@mail.gmail.com>
- <20160815085325.ebje4du3hqms6ios@Thessia>
- <bf92e998-87ab-0455-6331-26a123e94803@free.fr>
+From: Punit Agrawal <punit.agrawal@arm.com>
+Subject: Re: v4.8-rc2 crashes while probing nvidia graphics card on arm64
+Date: Mon, 15 Aug 2016 16:54:16 +0100
+Message-ID: <87lgzyuixj.fsf@e105922-lin.cambridge.arm.com>
+References: <87popauj3m.fsf@e105922-lin.cambridge.arm.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bf92e998-87ab-0455-6331-26a123e94803-GANU6spQydw@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <87popauj3m.fsf@e105922-lin.cambridge.arm.com> (Punit Agrawal's
+	message of "Mon, 15 Aug 2016 16:50:37 +0100")
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-MjAxNi0wOC0xNSAxMTowOSBHTVQrMDI6MDAgTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJl
-ZS5mcj46Cj4gT24gMTUvMDgvMTYgMTE6NTMsIFBpZXJyZSBNb3JlYXUgd3JvdGU6Cj4+Cj4+IEhl
-bGxvIGV2ZXJ5b25lLAo+Pgo+PiBTYW1lIHBsYWNlIGFzIEZPU0RFTT8gWERDIGlzIGluIEhlbHNp
-bmtpIGFuZCBGT1NERU0gd2FzIGluIEJydXNzZWxz4oCmCj4+IChJSVJDLAo+PiBGT1NERU0gaXMg
-YWx3YXlzIGxvY2F0ZWQgaW4gQnJ1c3NlbHMuKSBJIHdvdWxkIHByZWZlciBwaWNraW5nIGFuIGhv
-dGVsIGluCj4+IEhlbHNpbmtpIHJhdGhlciB0aGFuIHRyYXZlbGluZyBldmVyeSBkYXkgYmV0d2Vl
-biBIZWxzaW5raSBhbmQgQnJ1c3NlbHMuCj4+IDotcCBPcgo+PiB3YXMgdGhhdCB3aGF0IHlvdSBt
-ZWFudCBieSAibW9yZSBvciBsZXNzIj8gOi1ECj4+Cj4+IEnigJl2ZSB0YWtlbiBkYXlzIG9mZiBz
-dGFydGluZyBmcm9tIFR1ZXNkYXksIHNvIEkgY291bGQgZXZlbiBhcnJpdmUgb24KPj4gTW9uZGF5
-Cj4+IGV2ZW5pbmcgaWYgdGhlcmUgYXJlIG90aGVyIHBlcnNvbnMgY29taW5nIHRoYXQgZWFybHku
-IDotKSBBbmQgSSBhbQo+PiBwbGFubmluZyB0bwo+PiBzdGF5IHVudGlsIFN1bmRheSAoY291bGQg
-YmUgU3VuZGF5IGV2ZW5pbmcsIEkgaGF2ZW7igJl0IGJvb2tlZCB0aGUgaG90ZWwgbm9yCj4+IHRo
-ZQo+PiB0cmFuc3BvcnQgeWV0KTsgYXBhcnQgZnJvbSBhIHNob3J0IHRyaXAgYmFjayB0byBTd2Vk
-ZW4gYmV0d2VlbiBGcmlkYXkgYW5kCj4+IFNhdHVyZGF5Lgo+Pgo+PiBDaGVlcnMsCj4+IFBpZXJy
-ZQo+Cj4KPiBXZWxsLCBpZiBhbGwgb2YgeW91IChSb3ksIFBpZXJyZSwgS2Fyb2wgYW5kIFNhbXVl
-bCkgd2FudCwgeW91IGNhbiBkZWZpbml0ZWx5Cj4gY29tZSB0byBteSBwbGFjZS4gUm95IGFuZCBT
-YW11ZWwgd2VyZSBpbnRlcmVzdGVkIGFscmVhZHkgYW5kIEkgYXNzdW1lIEJlbgo+IHdpbGwgc3Rh
-eSB3aXRoIHRoZSBvdGhlciByZWQgaGF0dGVycy4gSSBoYXZlIGVub3VnaCBzcGFjZSBmb3IgZXZl
-cnlvbmUKPiB0aG91Z2guCj4KPiBJdCBpcyBhIHNsaWdodGx5IGxvbmdlciBjb21tdXRlIGFuZCBh
-IGJpdCBsZXNzIGZsZXhpYmxlIGJlY2F1c2Ugb2YgdGhlCj4gbGltaXRlZAo+IG51bWJlciBvZiBr
-ZXlzIHRob3VnaC4uLiBidXQgd2Ugd291bGQgYmUgdG9nZXRoZXIgd2l0aG91dCBuZWVkaW5nIHRv
-IHNwZW5kCj4gbW9uZXkgb24gYW55dGhpbmcgZWxzZSBidXQgZm9vZCwgZHJpbmtzLCB0cmFuc3Bv
-cnRzIGFuZCBzYXVuYXMuCj4KPiBNYXJ0aW4KPj4KPj4KPj4KPj4gT24gMDk6MzUgUE0gLSBBdWcg
-MTMgMjAxNiwga2Fyb2wgaGVyYnN0IHdyb3RlOgo+Pj4KPj4+IEhpIGV2ZXJ5Ym9keSwKPj4+Cj4+
-PiBJIHNhdyB0aGF0IHNvbWUgbW9yZSBhcHBlYXJlZCBvbiB0aGUgbGlzdCBvZiBBdHRlbmRlZXMs
-IHNvIGl0IG1pZ2h0IGJlCj4+PiBhIGdvb2QgdGltZSB0byBhc2sgaG93IHdlIHdhbnQgdG8gb3Jn
-YW5pemUgdGhlIHN0YXkgYW5kIGlmIHdlIHBsYW4gdG8KPj4+IGJvb2sgYXQgdGhlIHNhbWUgcGxh
-Y2UgbGlrZSB3ZSBkaWQgb24gZm9zZGVtICh3ZWxsIG1vcmUgb3IgbGVzcykuCj4+Pgo+Pj4gQWxz
-byBob3cgZG9lcyBldmVyeWJvZHkgcGxhbnMgdG8gc3RheT8gSSB3YXMgdGhpbmtpbmcgYWJvdXQg
-VHVlc2RheSB0bwo+Pj4gU3VuZGF5LCBidXQgaWYgZXZlcnlib2R5IGNvbWVzIGF0IE1vbmRheSBh
-bHJlYWR5LCBJIG1pZ2h0IGNoYW5nZSBteQo+Pj4gcGxhbnMgOykKPgo+Cj4gR3JlYXQgS2Fyb2wh
-IFlvdSBhcmUgd2VsY29tZWQgdG8gc3RheSBhdCBNdVB1RiBJbm4KCnNvdW5kcyBsaWtlIGEgcGxh
-biA6KQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+I made a hash of LKML email in the previous mail. Re-sending with the
+address corrected.
+
+Apologies for the duplicate.
+
+Punit Agrawal <punit.agrawal@arm.com> writes:
+
+> Hi,
+>
+> While trying out v4.8-rc2 on Juno r2 (arm64), I ran into the following
+> crash when probing the nvidia graphics card attached to the PCIe
+> slot. So I tried rc1 and got the same crash. The card probes without any
+> errors on v4.7.
+>
+> Anybody familiear with the recent changes knows what might have led to
+> the below crashlog?
+>
+> Thanks,
+> Punit
+>
+> ------------->8-------------
+>
+> [    2.996678] [drm] Initialized drm 1.1.0 20060810
+> [    3.001495] nouveau 0000:06:00.0: enabling device (0000 -> 0003)
+> [    3.007574] nouveau 0000:06:00.0: NVIDIA GT218 (0a8c00b1)
+> [    3.145407] nouveau 0000:06:00.0: bios: version 70.18.9f.00.09
+> [    3.202137] nouveau 0000:06:00.0: fb: 512 MiB DDR3
+> [    3.260766] [TTM] Zone  kernel: Available graphics memory: 4070004 kiB
+> [    3.267243] [TTM] Zone   dma32: Available graphics memory: 2097152 kiB
+> [    3.273715] [TTM] Initializing pool allocator
+> [    3.278048] [TTM] Initializing DMA pool allocator
+> [    3.282738] nouveau 0000:06:00.0: DRM: VRAM: 512 MiB
+> [    3.287663] nouveau 0000:06:00.0: DRM: GART: 1048576 MiB
+> [    3.292935] nouveau 0000:06:00.0: DRM: TMDS table version 2.0
+> [    3.298634] nouveau 0000:06:00.0: DRM: DCB version 4.0
+> [    3.303731] nouveau 0000:06:00.0: DRM: DCB outp 00: 02000360 00000000
+> [    3.310118] nouveau 0000:06:00.0: DRM: DCB outp 01: 02000362 00020010
+> [    3.316505] nouveau 0000:06:00.0: DRM: DCB outp 02: 028003a6 0f220010
+> [    3.322891] nouveau 0000:06:00.0: DRM: DCB outp 03: 01011380 00000000
+> [    3.329277] nouveau 0000:06:00.0: DRM: DCB outp 04: 08011382 00020010
+> [    3.335663] nouveau 0000:06:00.0: DRM: DCB outp 05: 088113c6 0f220010
+> [    3.342049] nouveau 0000:06:00.0: DRM: DCB conn 00: 00101064
+> [    3.347661] nouveau 0000:06:00.0: DRM: DCB conn 01: 00202165
+> [    3.359132] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+> [    3.365698] [drm] Driver supports precise vblank timestamp query.
+> [    3.412273] nouveau 0000:06:00.0: DRM: MM: using COPY for buffer copies
+> [    3.445319] nouveau 0000:06:00.0: DRM: allocated 1024x768 fb: 0x70000, bo ffff8009764ba400
+> [    3.570962] Unable to handle kernel paging request at virtual address ffff0000091e11d4
+> [    3.570964] pgd = ffff000009051000
+> [    3.570971] [ffff0000091e11d4] *pgd=00000009ffffe003, *pud=00000009ffffd003, *pmd=00000009ffff9003, *pte=00e80009f5cc4703
+> [    3.570975] Internal error: Oops: 96000061 [#1] PREEMPT SMP
+> [    3.570978] Modules linked in:
+> [    3.570982] CPU: 2 PID: 1 Comm: swapper/0 Not tainted 4.8.0-rc2-00001-g5077753 #1
+> [    3.570984] Hardware name: ARM LTD ARM Juno Development Platform/ARM Juno Development Platform, BIOS EDK II Aug  5 2016
+> [    3.570986] task: ffff800976ca8000 task.stack: ffff800976cb0000
+> [    3.570999] PC is at __memcpy+0x7c/0x180
+> [    3.571003] LR is at OUT_RINGp+0x34/0x70
+> [    3.571006] pc : [<ffff00000841077c>] lr : [<ffff000008672f44>] pstate: 80000145
+> [    3.571007] sp : ffff800976cb3350
+> [    3.571011] x29: ffff800976cb3350 x28: 000000000000000e
+> [    3.571014] x27: ffff8009760f2000 x26: 0000000000000001
+> [    3.571018] x25: 00000000000007ff x24: 0000000040006860
+> [    3.571021] x23: 0000000000000005 x22: ffff8009760f2010
+> [    3.571024] x21: 0000000000000004 x20: 0000000000000004
+> [    3.571026] x19: ffff800976f67000 x18: 0000000000000000
+> [    3.571029] x17: 0000000000000008 x16: ffff800976000c00
+> [    3.571032] x15: 0000000000000018 x14: 0000030300000326
+> [    3.571035] x13: ffff8009766b1000 x12: 0000000000000540
+> [    3.571038] x11: 0000000002b68908 x10: 0000000000000870
+> [    3.571042] x9 : 0000000000000005 x8 : 0000000000000000
+> [    3.571045] x7 : 0000000000000000 x6 : ffff0000091e11d4
+> [    3.571048] x5 : 00000000ffffffff x4 : 0000000000000000
+> [    3.571051] x3 : 0000000000000010 x2 : 0000000000000010
+> [    3.571053] x1 : ffff8009760f2010 x0 : ffff0000091e11d4
+> [    3.571054]
+> [    3.571057] Process swapper/0 (pid: 1, stack limit = 0xffff800976cb0020)
+> [    3.571059] Stack: (0xffff800976cb3350 to 0xffff800976cb4000)
+> [    3.571062] 3340:                                   ffff800976cb3370 ffff00000866fcb4
+> [    3.571065] 3360: ffff800976f67000 0000000000000000 ffff800976cb33c0 ffff00000866e2cc
+> [    3.571068] 3380: ffff8009761c1800 ffff800975cee400 ffff8009766b0058 ffff8009766b0000
+> [    3.571071] 33a0: 0000000000000010 0000000000000010 ffff8009761c1800 ffff80097619ac00
+> [    3.571074] 33c0: ffff800976cb33f0 ffff0000084aa794 ffff800975cee400 ffff800976cb34d8
+> [    3.571076] 33e0: 0000000000000001 ffff800975cee450 ffff800976cb3450 ffff0000084aa1c4
+> [    3.571079] 3400: ffff80097619ac00 ffff800976cb34d8 ffff800975cee200 ffff8009761c1800
+> [    3.571082] 3420: 0000000000000720 0000000000000000 ffff000008a6ad08 0000000000000002
+> [    3.571084] 3440: 0000000000000000 ffff000008679bf8 ffff800976cb3540 ffff0000084a64d8
+> [    3.571087] 3460: ffff800976c14000 ffff8009761c1800 ffff0000084a9cd0 0000000000000002
+> [    3.571089] 3480: 0000000000000720 ffff800976c141e0 ffff800976c14200 0000000000000000
+> [    3.571092] 34a0: 0000000000000007 0000000000000100 ffff000008b1c308 ffff00000866b770
+> [    3.571095] 34c0: ffff800900000000 0000000208679c60 ffff8009766b0000 000000010000003b
+> [    3.571098] 34e0: ffff800975cee200 0000000000000000 000001d000000000 0000001000000008
+> [    3.571101] 3500: 0000000000000007 ffff0000084a6401 ffff000008a6ad08 ffff8009761c1800
+> [    3.571103] 3520: ffff0000084a9cd0 0000000000000002 0000000000000720 ffff0000085a5dc4
+> [    3.571106] 3540: ffff800976cb35a0 ffff000008540120 ffff800976c14000 ffff000008f78000
+> [    3.571108] 3560: 0000000000000000 0000000000000030 ffff000009030000 0000000000000720
+> [    3.571111] 3580: 0000000000000080 0000000000000500 0000000000000000 ffff8009764ed000
+> [    3.571113] 35a0: ffff800976cb35c0 ffff000008540e48 ffff800976c14000 ffff800976493000
+> [    3.571116] 35c0: ffff800976cb3610 ffff0000084a4a94 0000000000000000 ffff800976493000
+> [    3.571119] 35e0: ffff800976c14000 0000000000000030 ffff000009030000 0000000000000000
+> [    3.571121] 3600: ffff800976cb3610 ffff0000084a4a88 ffff800976cb3680 ffff0000084a4e40
+> [    3.571124] 3620: ffff800976c14000 ffff000009030000 ffff000009030a70 0000000000000000
+> [    3.571127] 3640: ffff800976c14000 ffff000008f6d000 0000000000000001 0000000000000100
+> [    3.571129] 3660: ffff80097619ac00 ffff8009761c1800 ffff800976cb3680 ffff000000000030
+> [    3.571132] 3680: ffff800976cb3700 ffff00000854053c ffff800976c14000 ffff000009036350
+> [    3.571134] 36a0: 0000000000000000 0000000000000000 0000000000000001 0000000000000000
+> [    3.571137] 36c0: ffff000008aaab70 ffff000009035000 ffff000008d21718 0000000000000001
+> [    3.571140] 36e0: 0000008000000030 0000008000000030 ffff000009035000 ffff000009031000
+> [    3.571142] 3700: ffff800976cb3730 ffff000008541940 ffff800976c14000 0000000000000000
+> [    3.571145] 3720: 000000000000003e 0000000000000000 ffff800976cb37b0 ffff000008541ee8
+> [    3.571147] 3740: 0000000000000000 0000000000000000 0000000000000000 000000000000003e
+> [    3.571150] 3760: 0000000000000001 ffff000008aaab70 ffff0000090354c0 ffff0000090360f0
+> [    3.571153] 3780: 0000000001d00000 0000000000000000 ffff0000090356e0 0000000000000000
+> [    3.571155] 37a0: 0000000000000001 ffff0000090354d0 ffff800976cb3800 ffff0000084a50c4
+> [    3.571158] 37c0: ffff000009031000 ffff000008f6d000 ffff000008f6d7b0 ffff800976cb39b0
+> [    3.571160] 37e0: ffff000009031000 ffff000008f6d7b0 ffff8009761c1800 ffff8009761c1a98
+> [    3.571163] 3800: ffff800976cb3830 ffff0000084a89ac 0000000000000000 0000000000000000
+> [    3.571166] 3820: ffff000008f6d7b0 0000000000000000 ffff800976cb38b0 ffff0000080d8ea8
+> [    3.571168] 3840: 0000000000000000 00000000fffffffe 0000000000000000 ffff800976cb39b0
+> [    3.571171] 3860: 0000000000000005 0000000000000000 ffff8009761c1810 ffff8009761c1a98
+> [    3.571173] 3880: 0000000001d00000 0000000000000000 ffff000008f6db28 ffff800976f65ac8
+> [    3.571176] 38a0: ffff8009761c1800 ffff000008f6d000 ffff800976cb38f0 ffff0000080d9284
+> [    3.571178] 38c0: ffff000008f6d950 0000000000000005 ffff800976cb39b0 00000000ffffffff
+> [    3.571181] 38e0: 0000000000000000 ffff800976cb39c0 ffff800976cb3930 ffff0000080d92dc
+> [    3.571184] 3900: ffff8009761c1800 0000000000000000 ffff000009032bd8 ffff000008f6d000
+> [    3.571186] 3920: ffff000008f28dc8 ffff0000084ad914 ffff800976cb3940 ffff0000084ab5f4
+> [    3.571189] 3940: ffff800976cb3950 ffff0000084ad968 ffff800976cb3a00 ffff000008587640
+> [    3.571191] 3960: ffff8009764ba000 ffff000008f82000 ffff8009761c1800 0000000000000005
+> [    3.571194] 3980: 0000000000002000 0000000000002000 0000000000000020 ffff8009764ed230
+> [    3.571197] 39a0: 000000000000b06f ffff8009767e1180 ffff8009761c1800 0000100008ad2fd0
+> [    3.571199] 39c0: 0000000000000000 0000040000000000 0000000000000300 0000000000000000
+> [    3.571202] 39e0: 0000000000000000 0000000000000000 0000000000000000 ffff800900000020
+> [    3.571205] 3a00: ffff800976cb3a70 ffff00000866e670 ffff8009764ed000 0000000000000020
+> [    3.571207] 3a20: ffff8009764ba000 ffff8009766b0000 ffff8009766b00d8 ffff8009766b0840
+> [    3.571210] 3a40: 000000000000a16f 0000000000000060 ffff800976cb3a70 0000030000000400
+> [    3.571212] 3a60: 0000030000000400 0000001800000020 ffff800976cb3aa0 ffff00000865dad8
+> [    3.571215] 3a80: ffff8009766b0000 ffff8009766b0890 ffff8009764ed000 ffff8009766b00a8
+> [    3.571218] 3aa0: ffff800976cb3b30 ffff000008590bcc ffff8009764ed000 0000000000000000
+> [    3.571220] 3ac0: ffff000008f82000 0000000000000000 ffff00000903b728 ffff000008f9af08
+> [    3.571223] 3ae0: ffff000008e18230 ffff000008e6f608 ffff000008ed7710 0000000000000000
+> [    3.571225] 3b00: 0000000000000000 0000000000000000 ffffffffffffffff 0000000000030100
+> [    3.571228] 3b20: 000000001feed000 000000001feed01f ffff800976cb3b60 ffff000008592038
+> [    3.571231] 3b40: ffff8009764ed000 ffff80097618a000 0000000000000000 ffff80097618a0a0
+> [    3.571233] 3b60: ffff800976cb3ba0 ffff00000865d2bc 0000000000000000 ffff80097618a000
+> [    3.571236] 3b80: ffff000008f9af08 ffff00000903b718 ffff000008f9ae10 ffff000008e20468
+> [    3.571238] 3ba0: ffff800976cb3be0 ffff000008486c48 ffff80097618a0a0 ffff000008f9af08
+> [    3.571241] 3bc0: ffff80097618a000 ffff000008f9ae78 ffff80097618a000 ffff800976000c00
+> [    3.571244] 3be0: ffff800976cb3c20 ffff000008691604 ffff80097618a0a0 ffff00000903b000
+> [    3.571246] 3c00: 0000000000000000 ffff000008f9ae78 0000000000000000 ffff00000903b000
+> [    3.571249] 3c20: ffff800976cb3c60 ffff00000869175c ffff80097618a0a0 ffff000008f9ae78
+> [    3.571251] 3c40: ffff80097618a100 ffff000008f6b8e8 ffff000008f9c000 ffff0000086916d8
+> [    3.571254] 3c60: ffff800976cb3c90 ffff00000868f5f0 0000000000000000 ffff000008f9ae78
+> [    3.571256] 3c80: ffff0000086916b0 ffff800976cb3ce0 ffff800976cb3cd0 ffff000008690d98
+> [    3.571259] 3ca0: ffff000008f9ae78 ffff800976136400 0000000000000000 00000000ffffffe0
+> [    3.571262] 3cc0: ffff800976f70aa8 ffff80097649dc68 ffff800976cb3ce0 ffff0000086908d8
+> [    3.571264] 3ce0: ffff800976cb3d20 ffff000008691f20 ffff000008f9ae78 ffff000009039000
+> [    3.571267] 3d00: ffff00000903b728 ffff000008f9ae10 ffff000008b1ae48 ffff000008e6f608
+> [    3.571269] 3d20: ffff800976cb3d40 ffff000008485a24 ffff000008b1a000 ffff000009039000
+> [    3.571272] 3d40: ffff800976cb3d50 ffff00000859245c ffff800976cb3d90 ffff000008e4cf7c
+> [    3.571275] 3d60: ffff000008b1a000 ffff000009039000 ffff00000903b000 ffff000008f9ae08
+> [    3.571277] 3d80: ffff800976cb3d90 ffff000008e4cf6c ffff800976cb3dd0 ffff0000080832a8
+> [    3.571280] 3da0: ffff000008e4cd70 ffff800976cb0000 0000000000000000 0000000000000006
+> [    3.571282] 3dc0: ffff000009006000 0000000000000006 ffff800976cb3e40 ffff000008e20d08
+> [    3.571285] 3de0: 0000000000000125 ffff000009006000 ffff000008e6f618 0000000000000006
+> [    3.571288] 3e00: ffff000008ed7000 0000000000000000 ffff000009006000 ffff000008ce2b00
+> [    3.571290] 3e20: 0000000600000006 ffff000008e20468 0000000000000000 ffff000008e18230
+> [    3.571293] 3e40: ffff800976cb3ea0 ffff0000089fd6d0 ffff0000089fd6c0 0000000000000000
+> [    3.571295] 3e60: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+> [    3.571298] 3e80: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+> [    3.571300] 3ea0: 0000000000000000 ffff000008082e90 ffff0000089fd6c0 0000000000000000
+> [    3.571302] 3ec0: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+> [    3.571305] 3ee0: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+> [    3.571307] 3f00: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+> [    3.571310] 3f20: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+> [    3.571312] 3f40: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+> [    3.571314] 3f60: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+> [    3.571317] 3f80: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+> [    3.571319] 3fa0: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+> [    3.571322] 3fc0: 0000000000000000 0000000000000005 0000000000000000 0000000000000000
+> [    3.571324] 3fe0: 0000000000000000 0000000000000000 5000008000004000 0400000005004242
+> [    3.571326] Call trace:
+> [    3.571328] Exception stack(0xffff800976cb3180 to 0xffff800976cb32b0)
+> [    3.571331] 3180: ffff800976f67000 0001000000000000 ffff800976cb3350 ffff00000841077c
+> [    3.571334] 31a0: ffff800976cb31d0 ffff0000080e5840 ffff800976ca8000 0000000000004a24
+> [    3.571337] 31c0: ffff800976cb31d0 ffff000008619d0c ffff800976cb3210 ffff0000085bad98
+> [    3.571339] 31e0: 0000000000000010 ffff8009761e1a00 ffff800976cb3318 ffff800976cb3320
+> [    3.571342] 3200: 0000000000000030 00000000000000ff ffff800976cb3220 ffff0000085b948c
+> [    3.571344] 3220: ffff0000091e11d4 ffff8009760f2010 0000000000000010 0000000000000010
+> [    3.571347] 3240: 0000000000000000 00000000ffffffff ffff0000091e11d4 0000000000000000
+> [    3.571349] 3260: 0000000000000000 0000000000000005 0000000000000870 0000000002b68908
+> [    3.571352] 3280: 0000000000000540 ffff8009766b1000 0000030300000326 0000000000000018
+> [    3.571354] 32a0: ffff800976000c00 0000000000000008
+> [    3.571359] [<ffff00000841077c>] __memcpy+0x7c/0x180
+> [    3.571364] [<ffff00000866fcb4>] nv50_fbcon_imageblit+0x204/0x338
+> [    3.571367] [<ffff00000866e2cc>] nouveau_fbcon_imageblit+0x94/0xe0
+> [    3.571372] [<ffff0000084aa794>] soft_cursor+0x15c/0x1e0
+> [    3.571375] [<ffff0000084aa1c4>] bit_cursor+0x4f4/0x538
+> [    3.571379] [<ffff0000084a64d8>] fbcon_cursor+0x128/0x1b0
+> [    3.571383] [<ffff000008540120>] hide_cursor+0x38/0xa0
+> [    3.571385] [<ffff000008540e48>] redraw_screen+0x120/0x228
+> [    3.571389] [<ffff0000084a4a94>] fbcon_prepare_logo+0x394/0x3f8
+> [    3.571392] [<ffff0000084a4e40>] fbcon_init+0x348/0x558
+> [    3.571394] [<ffff00000854053c>] visual_init+0xb4/0x108
+> [    3.571397] [<ffff000008541940>] do_bind_con_driver+0x1b8/0x3a0
+> [    3.571400] [<ffff000008541ee8>] do_take_over_console+0x150/0x1d0
+> [    3.571404] [<ffff0000084a50c4>] do_fbcon_takeover+0x74/0xf8
+> [    3.571407] [<ffff0000084a89ac>] fbcon_event_notify+0x8e4/0x910
+> [    3.571412] [<ffff0000080d8ea8>] notifier_call_chain+0x50/0x90
+> [    3.571415] [<ffff0000080d9284>] __blocking_notifier_call_chain+0x4c/0x90
+> [    3.571418] [<ffff0000080d92dc>] blocking_notifier_call_chain+0x14/0x20
+> [    3.571422] [<ffff0000084ab5f4>] fb_notifier_call_chain+0x1c/0x28
+> [    3.571426] [<ffff0000084ad968>] register_framebuffer+0x1d0/0x2d8
+> [    3.571431] [<ffff000008587640>] drm_fb_helper_initial_config+0x288/0x400
+> [    3.571434] [<ffff00000866e670>] nouveau_fbcon_init+0xf0/0x130
+> [    3.571437] [<ffff00000865dad8>] nouveau_drm_load+0x278/0x8b0
+> [    3.571441] [<ffff000008590bcc>] drm_dev_register+0xbc/0xe0
+> [    3.571444] [<ffff000008592038>] drm_get_pci_dev+0xa0/0x180
+> [    3.571449] [<ffff00000865d2bc>] nouveau_drm_probe+0x17c/0x1d8
+> [    3.571452] [<ffff000008486c48>] pci_device_probe+0xa0/0x118
+> [    3.571457] [<ffff000008691604>] driver_probe_device+0x1fc/0x2a8
+> [    3.571461] [<ffff00000869175c>] __driver_attach+0xac/0xb0
+> [    3.571464] [<ffff00000868f5f0>] bus_for_each_dev+0x60/0xa0
+> [    3.571467] [<ffff000008690d98>] driver_attach+0x20/0x28
+> [    3.571471] [<ffff0000086908d8>] bus_add_driver+0x110/0x230
+> [    3.571474] [<ffff000008691f20>] driver_register+0x60/0xf8
+> [    3.571479] [<ffff000008485a24>] __pci_register_driver+0x3c/0x48
+> [    3.571483] [<ffff00000859245c>] drm_pci_init+0xf4/0x120
+> [    3.571489] [<ffff000008e4cf7c>] nouveau_drm_init+0x20c/0x220
+> [    3.571493] [<ffff0000080832a8>] do_one_initcall+0x38/0x128
+> [    3.571497] [<ffff000008e20d08>] kernel_init_freeable+0x1a4/0x248
+> [    3.571501] [<ffff0000089fd6d0>] kernel_init+0x10/0x100
+> [    3.571504] [<ffff000008082e90>] ret_from_fork+0x10/0x40
+> [    3.571508] Code: a88120c7 a8c12027 a88120c7 a8c12027 (a88120c7)
+> [    3.571522] ---[ end trace f2d2aa5ed205e329 ]---
+> [    3.571531] Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
+> [    3.571531]
+> [    3.571533] SMP: stopping secondary CPUs
+> [    3.571539] Kernel Offset: disabled
+> [    3.571541] Memory Limit: none
+> [  157.470019] ---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
+> [  157.470019]
