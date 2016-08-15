@@ -1,12 +1,14 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+From: karol herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: XDC2016
-Date: Mon, 15 Aug 2016 10:53:25 +0200
-Message-ID: <20160815085325.ebje4du3hqms6ios@Thessia>
+Date: Mon, 15 Aug 2016 11:04:27 +0200
+Message-ID: <CAEXux-Y9C3VWnLcj-JMQwkjCaaFgPMzFZJwV38QoNZxEfn-C5g@mail.gmail.com>
 References: <CAEXux-aHbDcNz2Tvy=QNg+fqWMSor8iwzkcbqEiLo_mL+TUA_A@mail.gmail.com>
+ <20160815085325.ebje4du3hqms6ios@Thessia>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1555358880=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAEXux-aHbDcNz2Tvy=QNg+fqWMSor8iwzkcbqEiLo_mL+TUA_A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <20160815085325.ebje4du3hqms6ios@Thessia>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,93 +18,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: karol herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: karol herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1555358880==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ualaeq2wn445ll4k"
-Content-Disposition: inline
-
-
---ualaeq2wn445ll4k
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello everyone,
-
-Same place as FOSDEM? XDC is in Helsinki and FOSDEM was in Brussels=E2=80=
-=A6 (IIRC,
-FOSDEM is always located in Brussels.) I would prefer picking an hotel in
-Helsinki rather than traveling every day between Helsinki and Brussels. :-p=
- Or
-was that what you meant by "more or less"? :-D
-
-I=E2=80=99ve taken days off starting from Tuesday, so I could even arrive o=
-n Monday
-evening if there are other persons coming that early. :-) And I am planning=
- to
-stay until Sunday (could be Sunday evening, I haven=E2=80=99t booked the ho=
-tel nor the
-transport yet); apart from a short trip back to Sweden between Friday and
-Saturday.
-
-Cheers,
-Pierre
-
-
-On 09:35 PM - Aug 13 2016, karol herbst wrote:
-> Hi everybody,
->=20
-> I saw that some more appeared on the list of Attendees, so it might be
-> a good time to ask how we want to organize the stay and if we plan to
-> book at the same place like we did on fosdem (well more or less).
->=20
-> Also how does everybody plans to stay? I was thinking about Tuesday to
-> Sunday, but if everybody comes at Monday already, I might change my
-> plans ;)
->=20
-> PS: if discussing that in public isn't the best idea, we can switch to
-> off-list mails later, but I wanted to catch everybody here ;)
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---ualaeq2wn445ll4k
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAABCgAGBQJXsYL+AAoJEI7uMhYTPh3wRfIQAMV9HnTQJ5BwfgdEvPFrOO2L
-LzCRYwVfurwVsFr76U6v1gGgPf0KIb1NiOXbr0bRT9Mt3wcEQ+JUiZo1uARw/2aC
-VVfAw0ov/lDBgDw+h6hSYju4hDkBXAvF+E2hKEiTBs7W5idgofVEAqfAmKEa8HMd
-6k+4X5GWMM2pYQ98Qyk9NXzS2Ticx9kD61IQirmRc8i3dh4Mdj6KJP2u9GSIHcW/
-Wb+PfZPY7CYpl7MAANR4xfvsLjSj4LZX1/UwrfRDXPPlGFiXcWXL6EpbxKB2S1OR
-QvsDjIc6AMuNTiUpR46ZdKIgjzW1g+8fiSAGtQnYvqPc5nHDKzJ+pw6sjnwlWfN0
-16jziI89zSptNKvE3+inIb1v7x44f21H0nPM3FVAgjdTDYtjG348Bquh3MeirB4M
-/CkJ+UIg6kkluzLldX8tRgUHL9K9lbo9lqQ1jvk3nINCF7uqJzPlhwdlrp13U1Nb
-T0fCcNnOvaIcj4iqAg+3BKM8ARde+d4jKTf0jjt2lXGIofnujlqKJmu7bipljAb7
-ciVgwaB7gbsSEEUm+NKNg99uRMCESiEkiLbxv5SMB3i7qWGwV2NY+vsepri9rmkU
-f1OzW8sGEbBbSyh5BNoFnrP7phA2RpTjgGEwoKmJq5+CAC1A0NKEDzd7xd7jDvTh
-7lMekuS3XQMdpKQJr79R
-=k2vV
------END PGP SIGNATURE-----
-
---ualaeq2wn445ll4k--
-
---===============1555358880==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1555358880==--
+V2VsbCwgeW91IHNlZSwgSSB0aG91Z2h0IGl0IHdvdWxkIGJlIGEgZ29vZCBpZGVhIHRoYXQgX3dl
+XyBzdGF5IGF0IHRoZSBfc2FtZV8KcGxhY2UgOykKCldlbGwgSSBwbGFuIHRvIGxlYXZlIHJhdGhl
+ciBlYXJseSwgYmVjYXVzZSBJIGFtIHNtYXJ0IGFuZCBkaWRuJ3QgdGFrZQpvZmYgZnJvbSB3b3Jr
+IG9uIE1vbmRheSwgc28gdGhlcmUgaXMgdGhhdC4gSSBjb3VsZCBhc2sgdG8gYWRkIGFub3RoZXIK
+ZGF5IHRob3VnaCwgZGVwZW5kcyBvbiB3aGF0IHdlIHBsYW4uCgoyMDE2LTA4LTE1IDEwOjUzIEdN
+VCswMjowMCBQaWVycmUgTW9yZWF1IDxwaWVycmUubW9ycm93QGZyZWUuZnI+Ogo+IEhlbGxvIGV2
+ZXJ5b25lLAo+Cj4gU2FtZSBwbGFjZSBhcyBGT1NERU0/IFhEQyBpcyBpbiBIZWxzaW5raSBhbmQg
+Rk9TREVNIHdhcyBpbiBCcnVzc2Vsc+KApiAoSUlSQywKPiBGT1NERU0gaXMgYWx3YXlzIGxvY2F0
+ZWQgaW4gQnJ1c3NlbHMuKSBJIHdvdWxkIHByZWZlciBwaWNraW5nIGFuIGhvdGVsIGluCj4gSGVs
+c2lua2kgcmF0aGVyIHRoYW4gdHJhdmVsaW5nIGV2ZXJ5IGRheSBiZXR3ZWVuIEhlbHNpbmtpIGFu
+ZCBCcnVzc2Vscy4gOi1wIE9yCj4gd2FzIHRoYXQgd2hhdCB5b3UgbWVhbnQgYnkgIm1vcmUgb3Ig
+bGVzcyI/IDotRAo+Cj4gSeKAmXZlIHRha2VuIGRheXMgb2ZmIHN0YXJ0aW5nIGZyb20gVHVlc2Rh
+eSwgc28gSSBjb3VsZCBldmVuIGFycml2ZSBvbiBNb25kYXkKPiBldmVuaW5nIGlmIHRoZXJlIGFy
+ZSBvdGhlciBwZXJzb25zIGNvbWluZyB0aGF0IGVhcmx5LiA6LSkgQW5kIEkgYW0gcGxhbm5pbmcg
+dG8KPiBzdGF5IHVudGlsIFN1bmRheSAoY291bGQgYmUgU3VuZGF5IGV2ZW5pbmcsIEkgaGF2ZW7i
+gJl0IGJvb2tlZCB0aGUgaG90ZWwgbm9yIHRoZQo+IHRyYW5zcG9ydCB5ZXQpOyBhcGFydCBmcm9t
+IGEgc2hvcnQgdHJpcCBiYWNrIHRvIFN3ZWRlbiBiZXR3ZWVuIEZyaWRheSBhbmQKPiBTYXR1cmRh
+eS4KPgo+IENoZWVycywKPiBQaWVycmUKPgo+Cj4gT24gMDk6MzUgUE0gLSBBdWcgMTMgMjAxNiwg
+a2Fyb2wgaGVyYnN0IHdyb3RlOgo+PiBIaSBldmVyeWJvZHksCj4+Cj4+IEkgc2F3IHRoYXQgc29t
+ZSBtb3JlIGFwcGVhcmVkIG9uIHRoZSBsaXN0IG9mIEF0dGVuZGVlcywgc28gaXQgbWlnaHQgYmUK
+Pj4gYSBnb29kIHRpbWUgdG8gYXNrIGhvdyB3ZSB3YW50IHRvIG9yZ2FuaXplIHRoZSBzdGF5IGFu
+ZCBpZiB3ZSBwbGFuIHRvCj4+IGJvb2sgYXQgdGhlIHNhbWUgcGxhY2UgbGlrZSB3ZSBkaWQgb24g
+Zm9zZGVtICh3ZWxsIG1vcmUgb3IgbGVzcykuCj4+Cj4+IEFsc28gaG93IGRvZXMgZXZlcnlib2R5
+IHBsYW5zIHRvIHN0YXk/IEkgd2FzIHRoaW5raW5nIGFib3V0IFR1ZXNkYXkgdG8KPj4gU3VuZGF5
+LCBidXQgaWYgZXZlcnlib2R5IGNvbWVzIGF0IE1vbmRheSBhbHJlYWR5LCBJIG1pZ2h0IGNoYW5n
+ZSBteQo+PiBwbGFucyA7KQo+Pgo+PiBQUzogaWYgZGlzY3Vzc2luZyB0aGF0IGluIHB1YmxpYyBp
+c24ndCB0aGUgYmVzdCBpZGVhLCB3ZSBjYW4gc3dpdGNoIHRvCj4+IG9mZi1saXN0IG1haWxzIGxh
+dGVyLCBidXQgSSB3YW50ZWQgdG8gY2F0Y2ggZXZlcnlib2R5IGhlcmUgOykKPj4gX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gTm91dmVhdSBtYWlsaW5n
+IGxpc3QKPj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
