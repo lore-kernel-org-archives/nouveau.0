@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97367] k520 card produce high volume of IRQ
-Date: Tue, 16 Aug 2016 16:31:26 +0000
-Message-ID: <bug-97367-8800-ORz5yJPQZz@http.bugs.freedesktop.org/>
-References: <bug-97367-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH v5 00/20] Engine Reclocking Fixes for
+	Fermi-Maxwell2
+Date: Tue, 16 Aug 2016 22:46:43 +0200
+Message-ID: <20160816204703.6069-1-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0686842390=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97367-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,86 +19,61 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0686842390==
-Content-Type: multipart/alternative; boundary="14713650861.D1802Af7d.3359";
- charset="UTF-8"
-
-
---14713650861.D1802Af7d.3359
-Date: Tue, 16 Aug 2016 16:31:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97367
-
---- Comment #3 from Mathieu Maret <mmaret-LWXiaffTwBPZJqsBc5GL+g@public.gmane.org> ---
-With another try having modeset=3D2 does not produce a normal amount of IRQ.
-Sorry for the error, it should be due to the randomness of the issue :/
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14713650861.D1802Af7d.3359
-Date: Tue, 16 Aug 2016 16:31:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - k520 card produce high volume of IRQ"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - k520 card produce high volume of IRQ"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367">bug 97367<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mmaret&#64;genymobile.com" title=3D"Mathieu Maret &lt;mmaret&#64;genymobile=
-.com&gt;"> <span class=3D"fn">Mathieu Maret</span></a>
-</span></b>
-        <pre>With another try having modeset=3D2 does not produce a normal =
-amount of IRQ.
-Sorry for the error, it should be due to the randomness of the issue :/</pr=
-e>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14713650861.D1802Af7d.3359--
-
---===============0686842390==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0686842390==--
+SSd2ZSBzcGxpdHRlZCBteSBiaWcgc2VyaWVzIGJldHdlZW4gdGhlIHBhcnQgd2hpY2ggYWN0dWFs
+bHkgZml4ZXMgdGhlCmVuZ2luZSByZWNsb2NraW5nIGJpdHMgYW5kIHRoZSBwYXJ0IGhhbmRsaW5n
+IHZvbHRhZ2UvY2xvY2sgdXBkYXRlcyBvbgp0ZW1wZXJhdHVyZSBjaGFuZ2UsIHNvIHRoYXQgdGhl
+IG1vcmUgcmV2aWV3ZWQgcGFydHMgY2FuIGJlIG1lcmdlZCBpbgpmYXN0ZXIuCgpUaGlzIHNlcmll
+cyBmaXhlcyBhIGxvdCBvZiBFbmdpbmUgcmVjbG9ja2luZyBpc3N1ZXMgZm91bmQgb24gRmVybWks
+IEtlcGxlcgphbmQgYWxsIE1heHdlbGwgZ2VuZXJhdGlvbiBHUFVzLiBJdCBkb2VzIF9ub3RfIGZp
+eCBtZW1vcnkgcmVjbG9ja2luZyBvbgpGZXJtaS4KCkl0IG1vc3RseSBjb250YWlucyBvZiBzaW1w
+bGUgZml4ZXMgb3Igc2ltcGxlIHBhdGNoZXMgd2l0aG91dCBhZmZlY3RpbmcKY3VycmVudCBjb2Rl
+LgoKQXMgYSBib251cyBwb2ludCwgaXQgaW5kZWVkIGVuYWJsZXMgbWVtb3J5IGFuZCBlbmdpbmUg
+cmVjbG9ja2luZyBvbiBtYXh3ZWxsMQpHUFVzIChtYXh3ZWxsMiB3b3JrcywgdG9vLCBidXQgaXQg
+aXMgY3VycmVudGx5IGEgYml0IHRvbyBtZXNzeSB0byBhY3R1YWxseQpkbyBpdCwgYnV0IGl0IHdv
+cmtzKS4KCkhhdmUgZnVuLgoKS2Fyb2wgSGVyYnN0ICgyMCk6CiAgY2xrOiBGaXggcG90ZW50aWFs
+IE5VTEwgcG9pbnRlciBhY2Nlc3Mgd2hlbiB0aGVyZSBpcyBubyBmYiBzdWJkZXYKICBmYi9yYW1n
+azEwNDogVG91Y2ggMHg2MmMwMDAgb25seSB3aGVuIHRoZXJlIGlzIGEgZGlzcGxheSBlbmdpbmUK
+ICBiaW9zL3ZvbHQ6IEhhbmRsZSB2b2x0YWdlIHRhYmxlIHZlcnNpb24gMHg1MCB3aXRoIDBlZCBo
+ZWFkZXIKICB2b2x0OiBQcm9wZXJseSBkZXRlY3QgZW50cnkgYmFzZWQgdm9sdGFnZSB0YWJsZXMK
+ICBjbGs6IERvbid0IGNyZWF0ZSBjc3RhdGVzIHdpdGggdm9sdGFnZXMgaGlnaGVyIHRoYW4gd2hh
+dCB0aGUgZ3B1IGNhbgogICAgZG8KICB2b2x0OiBQYXJzZSB0aGUgbWF4IHZvbHRhZ2UgbWFwIGVu
+dHJpZXMKICB2b2x0OiBBZGQgbWluX2lkIHBhcmFtZXRlciB0byBudmttX3ZvbHRfc2V0X2lkCiAg
+Y2xrOiBBZGQgaW5kZXggZmllbGQgdG8gbnZrbV9jc3RhdGUKICBjbGs6IExldCBudmttX2Nsa190
+c3RhdGUgdGFrZSBhIHRlbXBlcmF0dXJlIHZhbHVlCiAgdm9sdDogQWRkIHRlbXBlcmF0dXJlIHBh
+cmFtZXRlciB0byBudmttX3ZvbHRfbWFwCiAgY2xrOiBGaXh1cCBjc3RhdGUgc2VsZWN0aW9uCiAg
+Y2xrOiBSZXNwZWN0IHZvbHRhZ2UgbGltaXRzIGluIG52a21fY3N0YXRlX3Byb2cKICBiaW9zOiBB
+ZGQgcGFyc2luZyBvZiBWUFNUQVRFIHRhYmxlCiAgY2xrOiBBbGxvdyBib29zdGluZyBvbmx5IHdo
+ZW4gTnZCb29zdCBpcyBzZXQKICB2b2x0OiBEb24ndCByZXF1aXJlIHBlcmZlY3QgZml0CiAgYmlv
+cy92bWFwOiB1bmswIGZpZWxkIGlzIHRoZSBtb2RlCiAgdm9sdDogQWRkIGltcGxlbWVudGF0aW9u
+IGZvciBnZjEwMAogIHZvbHQvZ2YxMDAtOiBBZGQgc3BlZWRvCiAgdm9sdDogTWFrZSB1c2Ugb2Yg
+Y3ZiIGNvZWZmaWNpZW50cwogIGZiL3JhbTogVXNlIEtlcGxlciBpbXBsZW1lbnRhdGlvbiBvbiBN
+YXh3ZWxsCgogZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL3ZtYXAuaCAgICB8
+ICAgNSArLQogZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL3ZvbHQuaCAgICB8
+ICAgNSArLQogZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL3Zwc3RhdGUuaCB8
+ICAyNCArKysrKwogZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9jbGsuaCAgICAgICAg
+ICB8ICAxOCArKystCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3ZvbHQuaCAgICAg
+ICAgIHwgIDE4ICsrKy0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgICAg
+ICAgICAgfCAgMTcgKy0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL0tidWlsZCAgICAg
+ICAgICAgIHwgICAxICsKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvdm1hcC5jICAgICAg
+ICAgICAgfCAgMTIgKystCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYyAgICAg
+ICAgICAgIHwgIDE1ICsrLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy92cHN0YXRlLmMg
+ICAgICAgICB8ICA4MiArKysrKysrKysrKysrKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Ns
+ay9iYXNlLmMgICAgICAgICAgICAgfCAxMzkgKysrKysrKysrKysrKysrKysrKysrKy0tLQogZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2dmMTAwLmMgICAgICAgICAgICB8ICAgMiArLQogZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2drMTA0LmMgICAgICAgICAgICB8ICAgMiArLQogZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvcmFtLmggICAgICAgICAgICAgICB8ICAgMSArCiBkcm0v
+bm91dmVhdS9udmttL3N1YmRldi9mYi9yYW1nazEwNC5jICAgICAgICAgIHwgIDI0ICsrKystCiBk
+cm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9yYW1nbTEwNy5jICAgICAgICAgIHwgIDEyICstLQog
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9LYnVpbGQgICAgICAgICAgICB8ICAgMSArCiBk
+cm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2Jhc2UuYyAgICAgICAgICAgIHwgMTM3ICsrKysr
+KysrKysrKysrKysrKysrKy0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nZjEwMC5j
+ICAgICAgICAgICB8ICA3MCArKysrKysrKysrKysrCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi92
+b2x0L2drMTA0LmMgICAgICAgICAgIHwgIDIxICsrKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2
+L3ZvbHQvcHJpdi5oICAgICAgICAgICAgfCAgIDQgKwogMjEgZmlsZXMgY2hhbmdlZCwgNTQ0IGlu
+c2VydGlvbnMoKyksIDY2IGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2
+ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy92cHN0YXRlLmgKIGNyZWF0ZSBtb2RlIDEwMDY0
+NCBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3Zwc3RhdGUuYwogY3JlYXRlIG1vZGUgMTAw
+NjQ0IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2YxMDAuYwoKLS0gCjIuOS4yCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
+bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
