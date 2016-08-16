@@ -1,13 +1,12 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v5 18/20] volt/gf100-: Add speedo
-Date: Tue, 16 Aug 2016 22:47:01 +0200
-Message-ID: <20160816204703.6069-19-karolherbst@gmail.com>
-References: <20160816204703.6069-1-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
+Date: Tue, 16 Aug 2016 22:21:51 +0000
+Message-ID: <bug-94990-8800-bnUu6Ke2iA@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0989545057=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20160816204703.6069-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,97 +19,140 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-djU6IFNxdWFzaGVkIHNwZWVkbyByZWxhdGVkIGNvbW1pdHMuCgpTaWduZWQtb2ZmLWJ5OiBLYXJv
-bCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KUmV2aWV3ZWQtYnk6IE1hcnRpbiBQZXJl
-cyA8bWFydGluLnBlcmVzQGZyZWUuZnI+Ci0tLQogZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1
-YmRldi92b2x0LmggfCAgMiArKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9iYXNlLmMg
-ICAgfCAyNCArKysrKysrKysrKysrKysrKysrKysrKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2
-L3ZvbHQvZ2YxMDAuYyAgIHwgMjYgKysrKysrKysrKysrKysrKysrKysrKysrKysKIGRybS9ub3V2
-ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2sxMDQuYyAgIHwgMjEgKysrKysrKysrKysrKysrKysrKysr
-CiBkcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L3ByaXYuaCAgICB8ICA0ICsrKysKIDUgZmls
-ZXMgY2hhbmdlZCwgNzcgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2lu
-Y2x1ZGUvbnZrbS9zdWJkZXYvdm9sdC5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRl
-di92b2x0LmgKaW5kZXggYmM4ZTljOS4uMDhlZjk5OCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUv
-aW5jbHVkZS9udmttL3N1YmRldi92b2x0LmgKKysrIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmtt
-L3N1YmRldi92b2x0LmgKQEAgLTI1LDYgKzI1LDggQEAgc3RydWN0IG52a21fdm9sdCB7CiAJdTgg
-bWF4MF9pZDsKIAl1OCBtYXgxX2lkOwogCXU4IG1heDJfaWQ7CisKKwlpbnQgc3BlZWRvOwogfTsK
-IAogaW50IG52a21fdm9sdF9tYXAoc3RydWN0IG52a21fdm9sdCAqdm9sdCwgdTggaWQsIHU4IHRl
-bXBlcmF0dXJlKTsKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvYmFz
-ZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9iYXNlLmMKaW5kZXggZWM1OWQ1OC4u
-NzcxNDE5ZiAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9iYXNlLmMK
-KysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9iYXNlLmMKQEAgLTE5Niw2ICsxOTYs
-MTQgQEAgbnZrbV92b2x0X3BhcnNlX2Jpb3Moc3RydWN0IG52a21fYmlvcyAqYmlvcywgc3RydWN0
-IG52a21fdm9sdCAqdm9sdCkKIH0KIAogc3RhdGljIGludAorbnZrbV92b2x0X3NwZWVkb19yZWFk
-KHN0cnVjdCBudmttX3ZvbHQgKnZvbHQpCit7CisJaWYgKHZvbHQtPmZ1bmMtPnNwZWVkb19yZWFk
-KQorCQlyZXR1cm4gdm9sdC0+ZnVuYy0+c3BlZWRvX3JlYWQodm9sdCk7CisJcmV0dXJuIC1FSU5W
-QUw7Cit9CisKK3N0YXRpYyBpbnQKIG52a21fdm9sdF9pbml0KHN0cnVjdCBudmttX3N1YmRldiAq
-c3ViZGV2KQogewogCXN0cnVjdCBudmttX3ZvbHQgKnZvbHQgPSBudmttX3ZvbHQoc3ViZGV2KTsK
-QEAgLTIwOSw2ICsyMTcsMjEgQEAgbnZrbV92b2x0X2luaXQoc3RydWN0IG52a21fc3ViZGV2ICpz
-dWJkZXYpCiAJcmV0dXJuIDA7CiB9CiAKK3N0YXRpYyBpbnQKK252a21fdm9sdF9vbmVpbml0KHN0
-cnVjdCBudmttX3N1YmRldiAqc3ViZGV2KQoreworCXN0cnVjdCBudmttX3ZvbHQgKnZvbHQgPSBu
-dmttX3ZvbHQoc3ViZGV2KTsKKworCXZvbHQtPnNwZWVkbyA9IG52a21fdm9sdF9zcGVlZG9fcmVh
-ZCh2b2x0KTsKKwlpZiAodm9sdC0+c3BlZWRvID4gMCkKKwkJbnZrbV9kZWJ1Zygmdm9sdC0+c3Vi
-ZGV2LCAic3BlZWRvICV4XG4iLCB2b2x0LT5zcGVlZG8pOworCisJaWYgKHZvbHQtPmZ1bmMtPm9u
-ZWluaXQpCisJCXJldHVybiB2b2x0LT5mdW5jLT5vbmVpbml0KHZvbHQpOworCisJcmV0dXJuIDA7
-Cit9CisKIHN0YXRpYyB2b2lkICoKIG52a21fdm9sdF9kdG9yKHN0cnVjdCBudmttX3N1YmRldiAq
-c3ViZGV2KQogewpAQCAtMjE5LDYgKzI0Miw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgbnZrbV9z
-dWJkZXZfZnVuYwogbnZrbV92b2x0ID0gewogCS5kdG9yID0gbnZrbV92b2x0X2R0b3IsCiAJLmlu
-aXQgPSBudmttX3ZvbHRfaW5pdCwKKwkub25laW5pdCA9IG52a21fdm9sdF9vbmVpbml0LAogfTsK
-IAogdm9pZApkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nZjEwMC5j
-IGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nZjEwMC5jCmluZGV4IGMyMTEwMGYuLmQ5
-ZWQ2OTIgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2YxMDAuYwor
-KysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2dmMTAwLmMKQEAgLTIzLDEwICsyMywz
-NiBAQAogICovCiAjaW5jbHVkZSAicHJpdi5oIgogCisjaW5jbHVkZSA8c3ViZGV2L2Z1c2UuaD4K
-Kworc3RhdGljIGludAorZ2YxMDBfdm9sdF9zcGVlZG9fcmVhZChzdHJ1Y3QgbnZrbV92b2x0ICp2
-b2x0KQoreworCXN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlID0gdm9sdC0+c3ViZGV2LmRldmlj
-ZTsKKwlzdHJ1Y3QgbnZrbV9mdXNlICpmdXNlID0gZGV2aWNlLT5mdXNlOworCisJaWYgKCFmdXNl
-KQorCQlyZXR1cm4gLUVJTlZBTDsKKworCXJldHVybiBudmttX2Z1c2VfcmVhZChmdXNlLCAweDFj
-Yyk7Cit9CisKK2ludAorZ2YxMDBfdm9sdF9vbmVpbml0KHN0cnVjdCBudmttX3ZvbHQgKnZvbHQp
-Cit7CisJc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSAmdm9sdC0+c3ViZGV2OworCWlmICh2
-b2x0LT5zcGVlZG8gPD0gMCkKKwkJbnZrbV9lcnJvcihzdWJkZXYsICJjb3VsZG4ndCBmaW5kIHNw
-ZWVkbyB2YWx1ZSwgdm9sdGluZyBub3QgIgorCQkJICAgInBvc3NpYmxlXG4iKTsKKwlyZXR1cm4g
-MDsKK30KKwogc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3ZvbHRfZnVuYwogZ2YxMDBfdm9sdCA9
-IHsKKwkub25laW5pdCA9IGdmMTAwX3ZvbHRfb25laW5pdCwKIAkudmlkX2dldCA9IG52a21fdm9s
-dGdwaW9fZ2V0LAogCS52aWRfc2V0ID0gbnZrbV92b2x0Z3Bpb19zZXQsCisJLnNwZWVkb19yZWFk
-ID0gZ2YxMDBfdm9sdF9zcGVlZG9fcmVhZCwKIH07CiAKIGludApkaWZmIC0tZ2l0IGEvZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nazEwNC5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-dm9sdC9nazEwNC5jCmluZGV4IDQyMGJkODQuLmIyYzVkMTEgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2
-ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2sxMDQuYworKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di92b2x0L2drMTA0LmMKQEAgLTI3LDYgKzI3LDcgQEAKICNpbmNsdWRlIDxzdWJkZXYvZ3Bpby5o
-PgogI2luY2x1ZGUgPHN1YmRldi9iaW9zLmg+CiAjaW5jbHVkZSA8c3ViZGV2L2Jpb3Mvdm9sdC5o
-PgorI2luY2x1ZGUgPHN1YmRldi9mdXNlLmg+CiAKICNkZWZpbmUgZ2sxMDRfdm9sdChwKSBjb250
-YWluZXJfb2YoKHApLCBzdHJ1Y3QgZ2sxMDRfdm9sdCwgYmFzZSkKIHN0cnVjdCBnazEwNF92b2x0
-IHsKQEAgLTY0LDEzICs2NSwzMyBAQCBnazEwNF92b2x0X3NldChzdHJ1Y3QgbnZrbV92b2x0ICpi
-YXNlLCB1MzIgdXYpCiAJcmV0dXJuIDA7CiB9CiAKK3N0YXRpYyBpbnQKK2drMTA0X3ZvbHRfc3Bl
-ZWRvX3JlYWQoc3RydWN0IG52a21fdm9sdCAqdm9sdCkKK3sKKwlzdHJ1Y3QgbnZrbV9kZXZpY2Ug
-KmRldmljZSA9IHZvbHQtPnN1YmRldi5kZXZpY2U7CisJc3RydWN0IG52a21fZnVzZSAqZnVzZSA9
-IGRldmljZS0+ZnVzZTsKKwlpbnQgcmV0OworCisJaWYgKCFmdXNlKQorCQlyZXR1cm4gLUVJTlZB
-TDsKKworCW52a21fd3IzMihkZXZpY2UsIDB4MTIyNjM0LCAweDApOworCXJldCA9IG52a21fZnVz
-ZV9yZWFkKGZ1c2UsIDB4M2E4KTsKKwludmttX3dyMzIoZGV2aWNlLCAweDEyMjYzNCwgMHg0MSk7
-CisJcmV0dXJuIHJldDsKK30KKwogc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3ZvbHRfZnVuYwog
-Z2sxMDRfdm9sdF9wd20gPSB7CisJLm9uZWluaXQgPSBnZjEwMF92b2x0X29uZWluaXQsCiAJLnZv
-bHRfZ2V0ID0gZ2sxMDRfdm9sdF9nZXQsCiAJLnZvbHRfc2V0ID0gZ2sxMDRfdm9sdF9zZXQsCisJ
-LnNwZWVkb19yZWFkID0gZ2sxMDRfdm9sdF9zcGVlZG9fcmVhZCwKIH0sIGdrMTA0X3ZvbHRfZ3Bp
-byA9IHsKKwkub25laW5pdCA9IGdmMTAwX3ZvbHRfb25laW5pdCwKIAkudmlkX2dldCA9IG52a21f
-dm9sdGdwaW9fZ2V0LAogCS52aWRfc2V0ID0gbnZrbV92b2x0Z3Bpb19zZXQsCisJLnNwZWVkb19y
-ZWFkID0gZ2sxMDRfdm9sdF9zcGVlZG9fcmVhZCwKIH07CiAKIGludApkaWZmIC0tZ2l0IGEvZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9wcml2LmggYi9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di92b2x0L3ByaXYuaAppbmRleCBkNTE0MGQ5Li4zNTRiYWZlIDEwMDY0NAotLS0gYS9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi92b2x0L3ByaXYuaAorKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di92b2x0L3ByaXYuaApAQCAtOSwxMSArOSwxMyBAQCBpbnQgbnZrbV92b2x0X25ld18oY29uc3Qg
-c3RydWN0IG52a21fdm9sdF9mdW5jICosIHN0cnVjdCBudmttX2RldmljZSAqLAogCQkgICBpbnQg
-aW5kZXgsIHN0cnVjdCBudmttX3ZvbHQgKiopOwogCiBzdHJ1Y3QgbnZrbV92b2x0X2Z1bmMgewor
-CWludCAoKm9uZWluaXQpKHN0cnVjdCBudmttX3ZvbHQgKik7CiAJaW50ICgqdm9sdF9nZXQpKHN0
-cnVjdCBudmttX3ZvbHQgKik7CiAJaW50ICgqdm9sdF9zZXQpKHN0cnVjdCBudmttX3ZvbHQgKiwg
-dTMyIHV2KTsKIAlpbnQgKCp2aWRfZ2V0KShzdHJ1Y3QgbnZrbV92b2x0ICopOwogCWludCAoKnZp
-ZF9zZXQpKHN0cnVjdCBudmttX3ZvbHQgKiwgdTggdmlkKTsKIAlpbnQgKCpzZXRfaWQpKHN0cnVj
-dCBudmttX3ZvbHQgKiwgdTggaWQsIGludCBjb25kaXRpb24pOworCWludCAoKnNwZWVkb19yZWFk
-KShzdHJ1Y3QgbnZrbV92b2x0ICopOwogfTsKIAogaW50IG52a21fdm9sdGdwaW9faW5pdChzdHJ1
-Y3QgbnZrbV92b2x0ICopOwpAQCAtMjMsNCArMjUsNiBAQCBpbnQgbnZrbV92b2x0Z3Bpb19zZXQo
-c3RydWN0IG52a21fdm9sdCAqLCB1OCk7CiBpbnQgbnZrbV92b2x0cHdtX2luaXQoc3RydWN0IG52
-a21fdm9sdCAqdm9sdCk7CiBpbnQgbnZrbV92b2x0cHdtX2dldChzdHJ1Y3QgbnZrbV92b2x0ICp2
-b2x0KTsKIGludCBudmttX3ZvbHRwd21fc2V0KHN0cnVjdCBudmttX3ZvbHQgKnZvbHQsIHUzMiB1
-dik7CisKK2ludCBnZjEwMF92b2x0X29uZWluaXQoc3RydWN0IG52a21fdm9sdCAqKTsKICNlbmRp
-ZgotLSAKMi45LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0989545057==
+Content-Type: multipart/alternative; boundary="14713861117.50F2.5858";
+ charset="UTF-8"
+
+
+--14713861117.50F2.5858
+Date: Tue, 16 Aug 2016 22:21:51 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #57 from Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> ---
+(In reply to Ilia Guterman from comment #55)
+> Created attachment 125656 [details] [review]
+> 0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch
+>=20
+> After some messing around i am able to boot.
+>=20
+> I noticed it crashes only when initializing certain nvkm_gpuobj, which has
+> it 'nvkm_gpuobj->size' bigger then 'nv50_instobj(memory)->mem->size <<
+> NVKM_RAM_MM_SHIFT'.
+>=20
+> catching that specific case made it better.
+>=20
+> from your kernel directory do 'git apply
+> 0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch
+>=20
+> and if you can post the boot log.
+
+Hi Ilia,
+
+I applied your patch and my system now boots up. I saw an login-screen-image
+from before the boot for a split-second.  apart from that, it seems to run
+fine. (no stress testing done, just firefox and some gnome terminals...)
+
+
+what does your patch do? increase the reported size of some of the objects?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14713861117.50F2.5858
+Date: Tue, 16 Aug 2016 22:21:51 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c57">Commen=
+t # 57</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+florian&#64;mickler.org" title=3D"Florian Mickler &lt;florian&#64;mickler.o=
+rg&gt;"> <span class=3D"fn">Florian Mickler</span></a>
+</span></b>
+        <pre>(In reply to Ilia Guterman from <a href=3D"show_bug.cgi?id=3D9=
+4990#c55">comment #55</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D125656" name=3D"attach_125656" title=3D"0001-nvkm_gpuobj-size-is-sm=
+aller-then-nvkm_gpuobj-size-ca.patch">attachment 125656</a> <a href=3D"atta=
+chment.cgi?id=3D125656&amp;action=3Dedit" title=3D"0001-nvkm_gpuobj-size-is=
+-smaller-then-nvkm_gpuobj-size-ca.patch">[details]</a></span> <a href=3D'pa=
+ge.cgi?id=3Dsplinter.html&amp;bug=3D94990&amp;attachment=3D125656'>[review]=
+</a> [review]
+&gt; 0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch
+&gt;=20
+&gt; After some messing around i am able to boot.
+&gt;=20
+&gt; I noticed it crashes only when initializing certain nvkm_gpuobj, which=
+ has
+&gt; it 'nvkm_gpuobj-&gt;size' bigger then 'nv50_instobj(memory)-&gt;mem-&g=
+t;size &lt;&lt;
+&gt; NVKM_RAM_MM_SHIFT'.
+&gt;=20
+&gt; catching that specific case made it better.
+&gt;=20
+&gt; from your kernel directory do 'git apply
+&gt; 0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch
+&gt;=20
+&gt; and if you can post the boot log.</span >
+
+Hi Ilia,
+
+I applied your patch and my system now boots up. I saw an login-screen-image
+from before the boot for a split-second.  apart from that, it seems to run
+fine. (no stress testing done, just firefox and some gnome terminals...)
+
+
+what does your patch do? increase the reported size of some of the objects?=
+</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14713861117.50F2.5858--
+
+--===============0989545057==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0989545057==--
