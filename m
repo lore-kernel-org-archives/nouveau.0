@@ -1,13 +1,13 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: add Maxwell to backlight
- initialization
-Date: Mon, 15 Aug 2016 22:41:49 +0200
-Message-ID: <20160815204149.siy5uojhsh3aiirb@Thessia>
-References: <1463856103-4002-1-git-send-email-farisbenbrahem@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
+ GT]: HDMI monitor stays black after s2ram
+Date: Tue, 16 Aug 2016 05:38:34 +0000
+Message-ID: <bug-93887-8800-sUDO9ChxY5@http.bugs.freedesktop.org/>
+References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0171907446=="
+Content-Type: multipart/mixed; boundary="===============1929558053=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1463856103-4002-1-git-send-email-farisbenbrahem-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,79 +17,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: Faris Alsalama <farisbenbrahem-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0171907446==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sglmnvror55solly"
-Content-Disposition: inline
+--===============1929558053==
+Content-Type: multipart/alternative; boundary="14713259142.3c1cbf9.24489";
+ charset="UTF-8"
 
 
---sglmnvror55solly
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+--14713259142.3c1cbf9.24489
+Date: Tue, 16 Aug 2016 05:38:34 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-@Ben: ping
-I would guess that the same can be done for Pascal as well.
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93887
 
-Cheers,
-Pierre
+--- Comment #47 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 125809
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125809&action=3Dedit
+vbios+nvapeek-0x101000-Celsius-H270.tar.bz2
 
-On 02:41 PM - May 21 2016, Faris Alsalama wrote:
-> Signed-off-by: Faris Alsalama <farisbenbrahem-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_backlight.c | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/dr=
-m/nouveau/nouveau_backlight.c
-> index 89eb460..dd1cc9b 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-> @@ -232,6 +232,7 @@ nouveau_backlight_init(struct drm_device *dev)
->  		case NV_DEVICE_INFO_V0_TESLA:
->  		case NV_DEVICE_INFO_V0_FERMI:
->  		case NV_DEVICE_INFO_V0_KEPLER:
-> +		case NV_DEVICE_INFO_V0_MAXWELL:
->  			return nv50_backlight_init(connector);
->  		default:
->  			break;
-> --=20
-> 2.1.4
->=20
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+Hmm, while the pramin-method produces a smaller output the prom-method repo=
+rts
+an invalid signature (see for the *.msg in the .tar.bz2). Anyway both VROMs=
+ are
+different from the corrupted image that should have been fetched on my H265
+(both having used the latest envytools-git 1:0.r4326.6e27990-1 from Arch-AU=
+R).
+Having applied nvapeek 0x101000 0x20000 in UHD-Xinerama mode with 2 screens=
+ (as
+usual). Just let me know if you should need something else; I will provide =
+it
+as soon as possible.
 
---sglmnvror55solly
-Content-Type: application/pgp-signature; name="signature.asc"
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+--14713259142.3c1cbf9.24489
+Date: Tue, 16 Aug 2016 05:38:34 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-iQIcBAABCgAGBQJXsikBAAoJEI7uMhYTPh3wDjoQAK4CCvHhaWuXBgycyg/6zWOj
-ro+jqnjG6cwtTfq1Bgu3BvXKIRTqWAtRabEzkCILLGttBYETSXSJRV9kAG/G0466
-8wnMrERH59cm+wanqrrTsJ8CzVNCkxoa294UhVqAyS0zY/n7tAozZjjfjfNND+PR
-hn7ln7Jt2VtSnmUO+WUiS+kC2AWQGwWyliy97B6n+eAZ23SdBsSv4ln7j12QvWrs
-uBJkx/pWIuWv2dsY8vMVobz+lbbJG8nik/9WjyT19ODPXBejz7nl6vg6RDqFshyb
-cwRqTf8nYKRtYd1m7Y7lI8hsmaO4ccK3Fd/aItnvh6sgnaNARTaV+WymhJlscIp5
-/GsEpuS0KVTa8bnHzqGYAcKuuznRdr05yYiuq7WTH1yJF/6LQHeaVlxi6uX5/Eyc
-KTL8/QvSnEoFyXh4/9qEjDZupMeKnVtDjbITkGzuwHWWyzdj5027cH12k7hfZ10g
-8lNbWdMcWFK0a1uQxk5OeUPyOy1DpORcvmFeuGVyauNXVNwGQY04IzDv/3oxe7N7
-bLHqe0+o/TFpRuc/kI89e4DYZWOSaXHOpHbSG0NwZecqnGF8Rve7lIV31g1wz73T
-JNfRovfZcp7wWuf9ah0i8HTWePxcOKBBQxiXF2DgFh3Y21eM8RLTbzZnhp2jOVns
-KjxsAgsPx8VOPY0CSOgA
-=wNSJ
------END PGP SIGNATURE-----
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monit=
+or stays black after s2ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887#c47">Commen=
+t # 47</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monit=
+or stays black after s2ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887">bug 93887<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
+l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125809=
+" name=3D"attach_125809" title=3D"vbios+nvapeek-0x101000-Celsius-H270.tar.b=
+z2">attachment 125809</a> <a href=3D"attachment.cgi?id=3D125809&amp;action=
+=3Dedit" title=3D"vbios+nvapeek-0x101000-Celsius-H270.tar.bz2">[details]</a=
+></span>
+vbios+nvapeek-0x101000-Celsius-H270.tar.bz2
 
---sglmnvror55solly--
+Hmm, while the pramin-method produces a smaller output the prom-method repo=
+rts
+an invalid signature (see for the *.msg in the .tar.bz2). Anyway both VROMs=
+ are
+different from the corrupted image that should have been fetched on my H265
+(both having used the latest envytools-git 1:0.r4326.6e27990-1 from Arch-AU=
+R).
+Having applied nvapeek 0x101000 0x20000 in UHD-Xinerama mode with 2 screens=
+ (as
+usual). Just let me know if you should need something else; I will provide =
+it
+as soon as possible.</pre>
+        </div>
+      </p>
 
---===============0171907446==
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14713259142.3c1cbf9.24489--
+
+--===============1929558053==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +133,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0171907446==--
+--===============1929558053==--
