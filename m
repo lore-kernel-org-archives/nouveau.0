@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31122] Cannot control backlight intensity on
-	Powerbook
-Date: Tue, 16 Aug 2016 14:06:11 +0000
-Message-ID: <bug-31122-8800-9W5ZBYoOII@http.bugs.freedesktop.org/>
-References: <bug-31122-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97367] New: k520 card produce high volume of IRQ
+Date: Tue, 16 Aug 2016 14:53:01 +0000
+Message-ID: <bug-97367-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2000201722=="
+Content-Type: multipart/mixed; boundary="===============0432556311=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31122-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,50 +18,62 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2000201722==
-Content-Type: multipart/alternative; boundary="14713563710.9633FC.20828";
+--===============0432556311==
+Content-Type: multipart/alternative; boundary="14713591810.7B322.26575";
  charset="UTF-8"
 
 
---14713563710.9633FC.20828
-Date: Tue, 16 Aug 2016 14:06:11 +0000
+--14713591810.7B322.26575
+Date: Tue, 16 Aug 2016 14:53:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D31122
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97367
 
-A. Chaud <nvbugz-ZdXa/xnzD07wXD0AkxfrAg@public.gmane.org> changed:
+            Bug ID: 97367
+           Summary: k520 card produce high volume of IRQ
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: mmaret-LWXiaffTwBPZJqsBc5GL+g@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #125547|0                           |1
-        is obsolete|                            |
- Attachment #125561|0                           |1
-        is obsolete|                            |
- Attachment #125642|0                           |1
-        is obsolete|                            |
+Created attachment 125818
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125818&action=3Dedit
+dmesg
 
---- Comment #20 from A. Chaud <nvbugz-ZdXa/xnzD07wXD0AkxfrAg@public.gmane.org> ---
-Created attachment 125817
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125817&action=3Dedit
-backlight control w/ gpio check
+Amazon propose computer with k520(GK104) GPU for virtualisation (Xen).
+You can use Ubuntu LTS on it for example.
+When inserting the nouveau driver, /proc/interrupts report that nvkm is doi=
+ng
+~100000 interrupts/sec.
 
-I've fixed the formatting.  Hopefully this new version is now fully complia=
-nt.
+This have been tested on kernel 4.4.0 and 4.4.13.
 
-However I've one question.  Is that GPIO check necessary considering the ma=
-in
-init function already checks for LVDS and eDP?
+On amazon, you do not control the real hardware where your system will be r=
+un.
+It appear that sometimes, this issue do not happen. May be this could be du=
+e to
+vbios version ?
+
+Forcing nouveau in headless mode (modeset=3D2) produce a normal amount of I=
+RQ.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14713563710.9633FC.20828
-Date: Tue, 16 Aug 2016 14:06:11 +0000
+--14713591810.7B322.26575
+Date: Tue, 16 Aug 2016 14:53:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,81 +84,111 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:nvbugz&#6=
-4;sparklabs.me" title=3D"A. Chaud &lt;nvbugz&#64;sparklabs.me&gt;"> <span c=
-lass=3D"fn">A. Chaud</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Cannot control backlight intensity on Powerbook"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122">bug 31122<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+   title=3D"NEW - k520 card produce high volume of IRQ"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367">97367</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">Attachment #125547 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr>
+        <tr>
+          <th>Summary</th>
+          <td>k520 card produce high volume of IRQ
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">Attachment #125561 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr>
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">Attachment #125642 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mmaret&#64;genymobile.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Cannot control backlight intensity on Powerbook"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122#c20">Commen=
-t # 20</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Cannot control backlight intensity on Powerbook"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D31122">bug 31122<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nvbugz&#64;sparklabs.me" title=3D"A. Chaud &lt;nvbugz&#64;sparklabs.me&gt;"=
-> <span class=3D"fn">A. Chaud</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125817=
-" name=3D"attach_125817" title=3D"backlight control w/ gpio check">attachme=
-nt 125817</a> <a href=3D"attachment.cgi?id=3D125817&amp;action=3Dedit" titl=
-e=3D"backlight control w/ gpio check">[details]</a></span> <a href=3D'page.=
-cgi?id=3Dsplinter.html&amp;bug=3D31122&amp;attachment=3D125817'>[review]</a>
-backlight control w/ gpio check
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125818=
+" name=3D"attach_125818" title=3D"dmesg">attachment 125818</a> <a href=3D"a=
+ttachment.cgi?id=3D125818&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
+/span>
+dmesg
 
-I've fixed the formatting.  Hopefully this new version is now fully complia=
-nt.
+Amazon propose computer with k520(GK104) GPU for virtualisation (Xen).
+You can use Ubuntu LTS on it for example.
+When inserting the nouveau driver, /proc/interrupts report that nvkm is doi=
+ng
+~100000 interrupts/sec.
 
-However I've one question.  Is that GPIO check necessary considering the ma=
-in
-init function already checks for LVDS and eDP?</pre>
+This have been tested on kernel 4.4.0 and 4.4.13.
+
+On amazon, you do not control the real hardware where your system will be r=
+un.
+It appear that sometimes, this issue do not happen. May be this could be du=
+e to
+vbios version ?
+
+Forcing nouveau in headless mode (modeset=3D2) produce a normal amount of I=
+RQ.</pre>
         </div>
       </p>
 
@@ -163,9 +202,9 @@ init function already checks for LVDS and eDP?</pre>
     </body>
 </html>=
 
---14713563710.9633FC.20828--
+--14713591810.7B322.26575--
 
---===============2000201722==
+--===============0432556311==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -175,4 +214,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2000201722==--
+--===============0432556311==--
