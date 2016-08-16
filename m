@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97367] k520 card produce high volume of IRQ
-Date: Tue, 16 Aug 2016 14:53:33 +0000
-Message-ID: <bug-97367-8800-hrAz4imebT@http.bugs.freedesktop.org/>
+Date: Tue, 16 Aug 2016 16:28:30 +0000
+Message-ID: <bug-97367-8800-Uj5mKJtSjk@http.bugs.freedesktop.org/>
 References: <bug-97367-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0326486932=="
+Content-Type: multipart/mixed; boundary="===============0828313581=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97367-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0326486932==
-Content-Type: multipart/alternative; boundary="14713592131.A3609E9.26587";
+--===============0828313581==
+Content-Type: multipart/alternative; boundary="14713649101.A1c4D54F.3186";
  charset="UTF-8"
 
 
---14713592131.A3609E9.26587
-Date: Tue, 16 Aug 2016 14:53:33 +0000
+--14713649101.A1c4D54F.3186
+Date: Tue, 16 Aug 2016 16:28:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97367
 
---- Comment #1 from Mathieu Maret <mmaret-LWXiaffTwBPZJqsBc5GL+g@public.gmane.org> ---
-Created attachment 125819
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125819&action=3Dedit
-vbios ROM
+--- Comment #2 from Mathieu Maret <mmaret-LWXiaffTwBPZJqsBc5GL+g@public.gmane.org> ---
+Created attachment 125821
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125821&action=3Dedit
+dmesg with debug (nouveau.debug=3Ddebug drm.debug=3D0xe)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14713592131.A3609E9.26587
-Date: Tue, 16 Aug 2016 14:53:33 +0000
+--14713649101.A1c4D54F.3186
+Date: Tue, 16 Aug 2016 16:28:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - k520 card produce high volume of IRQ"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - k520 card produce high volume of IRQ"
@@ -73,11 +73,12 @@ Auto-Submitted: auto-generated
 mmaret&#64;genymobile.com" title=3D"Mathieu Maret &lt;mmaret&#64;genymobile=
 .com&gt;"> <span class=3D"fn">Mathieu Maret</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125819=
-" name=3D"attach_125819" title=3D"vbios ROM">attachment 125819</a> <a href=
-=3D"attachment.cgi?id=3D125819&amp;action=3Dedit" title=3D"vbios ROM">[deta=
-ils]</a></span>
-vbios ROM</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125821=
+" name=3D"attach_125821" title=3D"dmesg with debug (nouveau.debug=3Ddebug d=
+rm.debug=3D0xe)">attachment 125821</a> <a href=3D"attachment.cgi?id=3D12582=
+1&amp;action=3Dedit" title=3D"dmesg with debug (nouveau.debug=3Ddebug drm.d=
+ebug=3D0xe)">[details]</a></span>
+dmesg with debug (nouveau.debug=3Ddebug drm.debug=3D0xe)</pre>
         </div>
       </p>
 
@@ -91,9 +92,9 @@ vbios ROM</pre>
     </body>
 </html>=
 
---14713592131.A3609E9.26587--
+--14713649101.A1c4D54F.3186--
 
---===============0326486932==
+--===============0828313581==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0326486932==--
+--===============0828313581==--
