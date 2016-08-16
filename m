@@ -1,14 +1,12 @@
-From: karol herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v5 00/20] Engine Reclocking Fixes for
-	Fermi-Maxwell2
-Date: Wed, 17 Aug 2016 00:22:30 +0200
-Message-ID: <CAEXux-aByORVqr3--KheYDJj=VqeFma_YUNA9YUAR4=DgmTj8Q@mail.gmail.com>
-References: <20160816204703.6069-1-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
+Date: Tue, 16 Aug 2016 22:23:27 +0000
+Message-ID: <bug-94990-8800-N7qjiJM66f@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1189396248=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20160816204703.6069-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,66 +19,89 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-cGF0Y2hlcyBhcmUgb24gbXkgcmVjbG9ja2luZ19wYXJ0XzEgYnJhbmNoIGFuZCBJIGFscmVhZHkg
-Zml4ZWQgdGhlCmNvbW1pdCBtZXNzYWdlIG9mIHBhdGNoIDMgdGhlcmUuCgoyMDE2LTA4LTE2IDIy
-OjQ2IEdNVCswMjowMCBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT46Cj4gSSd2
-ZSBzcGxpdHRlZCBteSBiaWcgc2VyaWVzIGJldHdlZW4gdGhlIHBhcnQgd2hpY2ggYWN0dWFsbHkg
-Zml4ZXMgdGhlCj4gZW5naW5lIHJlY2xvY2tpbmcgYml0cyBhbmQgdGhlIHBhcnQgaGFuZGxpbmcg
-dm9sdGFnZS9jbG9jayB1cGRhdGVzIG9uCj4gdGVtcGVyYXR1cmUgY2hhbmdlLCBzbyB0aGF0IHRo
-ZSBtb3JlIHJldmlld2VkIHBhcnRzIGNhbiBiZSBtZXJnZWQgaW4KPiBmYXN0ZXIuCj4KPiBUaGlz
-IHNlcmllcyBmaXhlcyBhIGxvdCBvZiBFbmdpbmUgcmVjbG9ja2luZyBpc3N1ZXMgZm91bmQgb24g
-RmVybWksIEtlcGxlcgo+IGFuZCBhbGwgTWF4d2VsbCBnZW5lcmF0aW9uIEdQVXMuIEl0IGRvZXMg
-X25vdF8gZml4IG1lbW9yeSByZWNsb2NraW5nIG9uCj4gRmVybWkuCj4KPiBJdCBtb3N0bHkgY29u
-dGFpbnMgb2Ygc2ltcGxlIGZpeGVzIG9yIHNpbXBsZSBwYXRjaGVzIHdpdGhvdXQgYWZmZWN0aW5n
-Cj4gY3VycmVudCBjb2RlLgo+Cj4gQXMgYSBib251cyBwb2ludCwgaXQgaW5kZWVkIGVuYWJsZXMg
-bWVtb3J5IGFuZCBlbmdpbmUgcmVjbG9ja2luZyBvbiBtYXh3ZWxsMQo+IEdQVXMgKG1heHdlbGwy
-IHdvcmtzLCB0b28sIGJ1dCBpdCBpcyBjdXJyZW50bHkgYSBiaXQgdG9vIG1lc3N5IHRvIGFjdHVh
-bGx5Cj4gZG8gaXQsIGJ1dCBpdCB3b3JrcykuCj4KPiBIYXZlIGZ1bi4KPgo+IEthcm9sIEhlcmJz
-dCAoMjApOgo+ICAgY2xrOiBGaXggcG90ZW50aWFsIE5VTEwgcG9pbnRlciBhY2Nlc3Mgd2hlbiB0
-aGVyZSBpcyBubyBmYiBzdWJkZXYKPiAgIGZiL3JhbWdrMTA0OiBUb3VjaCAweDYyYzAwMCBvbmx5
-IHdoZW4gdGhlcmUgaXMgYSBkaXNwbGF5IGVuZ2luZQo+ICAgYmlvcy92b2x0OiBIYW5kbGUgdm9s
-dGFnZSB0YWJsZSB2ZXJzaW9uIDB4NTAgd2l0aCAwZWQgaGVhZGVyCj4gICB2b2x0OiBQcm9wZXJs
-eSBkZXRlY3QgZW50cnkgYmFzZWQgdm9sdGFnZSB0YWJsZXMKPiAgIGNsazogRG9uJ3QgY3JlYXRl
-IGNzdGF0ZXMgd2l0aCB2b2x0YWdlcyBoaWdoZXIgdGhhbiB3aGF0IHRoZSBncHUgY2FuCj4gICAg
-IGRvCj4gICB2b2x0OiBQYXJzZSB0aGUgbWF4IHZvbHRhZ2UgbWFwIGVudHJpZXMKPiAgIHZvbHQ6
-IEFkZCBtaW5faWQgcGFyYW1ldGVyIHRvIG52a21fdm9sdF9zZXRfaWQKPiAgIGNsazogQWRkIGlu
-ZGV4IGZpZWxkIHRvIG52a21fY3N0YXRlCj4gICBjbGs6IExldCBudmttX2Nsa190c3RhdGUgdGFr
-ZSBhIHRlbXBlcmF0dXJlIHZhbHVlCj4gICB2b2x0OiBBZGQgdGVtcGVyYXR1cmUgcGFyYW1ldGVy
-IHRvIG52a21fdm9sdF9tYXAKPiAgIGNsazogRml4dXAgY3N0YXRlIHNlbGVjdGlvbgo+ICAgY2xr
-OiBSZXNwZWN0IHZvbHRhZ2UgbGltaXRzIGluIG52a21fY3N0YXRlX3Byb2cKPiAgIGJpb3M6IEFk
-ZCBwYXJzaW5nIG9mIFZQU1RBVEUgdGFibGUKPiAgIGNsazogQWxsb3cgYm9vc3Rpbmcgb25seSB3
-aGVuIE52Qm9vc3QgaXMgc2V0Cj4gICB2b2x0OiBEb24ndCByZXF1aXJlIHBlcmZlY3QgZml0Cj4g
-ICBiaW9zL3ZtYXA6IHVuazAgZmllbGQgaXMgdGhlIG1vZGUKPiAgIHZvbHQ6IEFkZCBpbXBsZW1l
-bnRhdGlvbiBmb3IgZ2YxMDAKPiAgIHZvbHQvZ2YxMDAtOiBBZGQgc3BlZWRvCj4gICB2b2x0OiBN
-YWtlIHVzZSBvZiBjdmIgY29lZmZpY2llbnRzCj4gICBmYi9yYW06IFVzZSBLZXBsZXIgaW1wbGVt
-ZW50YXRpb24gb24gTWF4d2VsbAo+Cj4gIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYv
-Ymlvcy92bWFwLmggICAgfCAgIDUgKy0KPiAgZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRl
-di9iaW9zL3ZvbHQuaCAgICB8ICAgNSArLQo+ICBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3Vi
-ZGV2L2Jpb3MvdnBzdGF0ZS5oIHwgIDI0ICsrKysrCj4gIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZr
-bS9zdWJkZXYvY2xrLmggICAgICAgICAgfCAgMTggKysrLQo+ICBkcm0vbm91dmVhdS9pbmNsdWRl
-L252a20vc3ViZGV2L3ZvbHQuaCAgICAgICAgIHwgIDE4ICsrKy0KPiAgZHJtL25vdXZlYXUvbnZr
-bS9lbmdpbmUvZGV2aWNlL2Jhc2UuYyAgICAgICAgICB8ICAxNyArLS0KPiAgZHJtL25vdXZlYXUv
-bnZrbS9zdWJkZXYvYmlvcy9LYnVpbGQgICAgICAgICAgICB8ICAgMSArCj4gIGRybS9ub3V2ZWF1
-L252a20vc3ViZGV2L2Jpb3Mvdm1hcC5jICAgICAgICAgICAgfCAgMTIgKystCj4gIGRybS9ub3V2
-ZWF1L252a20vc3ViZGV2L2Jpb3Mvdm9sdC5jICAgICAgICAgICAgfCAgMTUgKystCj4gIGRybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvdnBzdGF0ZS5jICAgICAgICAgfCAgODIgKysrKysrKysr
-KysrKysrCj4gIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgICAgICAgICAgICAg
-fCAxMzkgKysrKysrKysrKysrKysrKysrKysrKy0tLQo+ICBkcm0vbm91dmVhdS9udmttL3N1YmRl
-di9jbGsvZ2YxMDAuYyAgICAgICAgICAgIHwgICAyICstCj4gIGRybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L2Nsay9nazEwNC5jICAgICAgICAgICAgfCAgIDIgKy0KPiAgZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvZmIvcmFtLmggICAgICAgICAgICAgICB8ICAgMSArCj4gIGRybS9ub3V2ZWF1L252a20v
-c3ViZGV2L2ZiL3JhbWdrMTA0LmMgICAgICAgICAgfCAgMjQgKysrKy0KPiAgZHJtL25vdXZlYXUv
-bnZrbS9zdWJkZXYvZmIvcmFtZ20xMDcuYyAgICAgICAgICB8ICAxMiArLS0KPiAgZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvdm9sdC9LYnVpbGQgICAgICAgICAgICB8ICAgMSArCj4gIGRybS9ub3V2
-ZWF1L252a20vc3ViZGV2L3ZvbHQvYmFzZS5jICAgICAgICAgICAgfCAxMzcgKysrKysrKysrKysr
-KysrKysrKysrLS0tCj4gIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2YxMDAuYyAgICAg
-ICAgICAgfCAgNzAgKysrKysrKysrKysrKwo+ICBkcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0
-L2drMTA0LmMgICAgICAgICAgIHwgIDIxICsrKysKPiAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-dm9sdC9wcml2LmggICAgICAgICAgICB8ICAgNCArCj4gIDIxIGZpbGVzIGNoYW5nZWQsIDU0NCBp
-bnNlcnRpb25zKCspLCA2NiBkZWxldGlvbnMoLSkKPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9u
-b3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy92cHN0YXRlLmgKPiAgY3JlYXRlIG1vZGUg
-MTAwNjQ0IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvdnBzdGF0ZS5jCj4gIGNyZWF0ZSBt
-b2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2dmMTAwLmMKPgo+IC0tCj4g
-Mi45LjIKPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1189396248==
+Content-Type: multipart/alternative; boundary="14713862074.29Eba4.6326";
+ charset="UTF-8"
+
+
+--14713862074.29Eba4.6326
+Date: Tue, 16 Aug 2016 22:23:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #58 from Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> ---
+Created attachment 125833
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125833&action=3Dedit
+dmesg with patch 125656 applied. everything else fedora stock...
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14713862074.29Eba4.6326
+Date: Tue, 16 Aug 2016 22:23:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c58">Commen=
+t # 58</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+florian&#64;mickler.org" title=3D"Florian Mickler &lt;florian&#64;mickler.o=
+rg&gt;"> <span class=3D"fn">Florian Mickler</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125833=
+" name=3D"attach_125833" title=3D"dmesg with patch 125656 applied. everythi=
+ng else fedora stock...">attachment 125833</a> <a href=3D"attachment.cgi?id=
+=3D125833&amp;action=3Dedit" title=3D"dmesg with patch 125656 applied. ever=
+ything else fedora stock...">[details]</a></span>
+dmesg with patch 125656 applied. everything else fedora stock...</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14713862074.29Eba4.6326--
+
+--===============1189396248==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1189396248==--
