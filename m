@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Wed, 17 Aug 2016 04:52:25 +0000
-Message-ID: <bug-94990-8800-495pffQfpm@http.bugs.freedesktop.org/>
+Date: Wed, 17 Aug 2016 20:42:25 +0000
+Message-ID: <bug-94990-8800-QPDwM2JwVl@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1961117419=="
+Content-Type: multipart/mixed; boundary="===============0567064842=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1961117419==
-Content-Type: multipart/alternative; boundary="14714095451.46C637.14682";
+--===============0567064842==
+Content-Type: multipart/alternative; boundary="14714665454.bcDDc.6595";
  charset="UTF-8"
 
 
---14714095451.46C637.14682
-Date: Wed, 17 Aug 2016 04:52:25 +0000
+--14714665454.bcDDc.6595
+Date: Wed, 17 Aug 2016 20:42:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,25 +35,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #59 from Ilia Guterman <amfernusus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It increases the size of nv50_instobj objects that report the size of 0x300=
-0.
-
-Struct "nv50_instobj" has size of 0x3000 but it's parent structure
-"nvkm_gpuobj" reports different size, a size of 0x97000.
-
-All the other instances of nvkm_gpuobj and their child nv50_instobj report
-similar size size to each other so they are fine.
-
-It is a mystery to me why the sizes doesn't match, because if I understand
-correctly the sizes are reported by the GPU itself.
+--- Comment #60 from Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> ---
+If I try to start redeclipse, it segfaults. :(
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14714095451.46C637.14682
-Date: Wed, 17 Aug 2016 04:52:25 +0000
+--14714665454.bcDDc.6595
+Date: Wed, 17 Aug 2016 20:42:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,28 +60,18 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c59">Commen=
-t # 59</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c60">Commen=
+t # 60</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-amfernusus&#64;gmail.com" title=3D"Ilia Guterman &lt;amfernusus&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Ilia Guterman</span></a>
+florian&#64;mickler.org" title=3D"Florian Mickler &lt;florian&#64;mickler.o=
+rg&gt;"> <span class=3D"fn">Florian Mickler</span></a>
 </span></b>
-        <pre>It increases the size of nv50_instobj objects that report the =
-size of 0x3000.
-
-Struct &quot;nv50_instobj&quot; has size of 0x3000 but it's parent structure
-&quot;nvkm_gpuobj&quot; reports different size, a size of 0x97000.
-
-All the other instances of nvkm_gpuobj and their child nv50_instobj report
-similar size size to each other so they are fine.
-
-It is a mystery to me why the sizes doesn't match, because if I understand
-correctly the sizes are reported by the GPU itself.</pre>
+        <pre>If I try to start redeclipse, it segfaults. :(</pre>
         </div>
       </p>
 
@@ -105,9 +85,9 @@ correctly the sizes are reported by the GPU itself.</pre>
     </body>
 </html>=
 
---14714095451.46C637.14682--
+--14714665454.bcDDc.6595--
 
---===============1961117419==
+--===============0567064842==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1961117419==--
+--===============0567064842==--
