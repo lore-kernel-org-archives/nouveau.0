@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Wed, 17 Aug 2016 20:42:25 +0000
-Message-ID: <bug-94990-8800-QPDwM2JwVl@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97367] k520 card produce high volume of IRQ
+Date: Thu, 18 Aug 2016 08:16:18 +0000
+Message-ID: <bug-97367-8800-l2nUfgDCBW@http.bugs.freedesktop.org/>
+References: <bug-97367-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0567064842=="
+Content-Type: multipart/mixed; boundary="===============0177992198=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97367-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0567064842==
-Content-Type: multipart/alternative; boundary="14714665454.bcDDc.6595";
+--===============0177992198==
+Content-Type: multipart/alternative; boundary="14715081780.8074.11902";
  charset="UTF-8"
 
 
---14714665454.bcDDc.6595
-Date: Wed, 17 Aug 2016 20:42:25 +0000
+--14715081780.8074.11902
+Date: Thu, 18 Aug 2016 08:16:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97367
 
---- Comment #60 from Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> ---
-If I try to start redeclipse, it segfaults. :(
+--- Comment #4 from Mathieu Maret <mmaret-LWXiaffTwBPZJqsBc5GL+g@public.gmane.org> ---
+Created attachment 125864
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125864&action=3Dedit
+perf report from perf record -ag
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14714665454.bcDDc.6595
-Date: Wed, 17 Aug 2016 20:42:25 +0000
+--14715081780.8074.11902
+Date: Thu, 18 Aug 2016 08:16:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,19 +61,23 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c60">Commen=
-t # 60</a>
+   title=3D"NEW - k520 card produce high volume of IRQ"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367#c4">Comment=
+ # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+   title=3D"NEW - k520 card produce high volume of IRQ"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367">bug 97367<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-florian&#64;mickler.org" title=3D"Florian Mickler &lt;florian&#64;mickler.o=
-rg&gt;"> <span class=3D"fn">Florian Mickler</span></a>
+mmaret&#64;genymobile.com" title=3D"Mathieu Maret &lt;mmaret&#64;genymobile=
+.com&gt;"> <span class=3D"fn">Mathieu Maret</span></a>
 </span></b>
-        <pre>If I try to start redeclipse, it segfaults. :(</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125864=
+" name=3D"attach_125864" title=3D"perf report from perf record -ag">attachm=
+ent 125864</a> <a href=3D"attachment.cgi?id=3D125864&amp;action=3Dedit" tit=
+le=3D"perf report from perf record -ag">[details]</a></span>
+perf report from perf record -ag</pre>
         </div>
       </p>
 
@@ -85,9 +91,9 @@ rg&gt;"> <span class=3D"fn">Florian Mickler</span></a>
     </body>
 </html>=
 
---14714665454.bcDDc.6595--
+--14715081780.8074.11902--
 
---===============0567064842==
+--===============0177992198==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0567064842==--
+--===============0177992198==--
