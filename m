@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97367] k520 card produce high volume of IRQ
-Date: Thu, 18 Aug 2016 08:17:14 +0000
-Message-ID: <bug-97367-8800-rzRDmSzrCo@http.bugs.freedesktop.org/>
+Date: Thu, 18 Aug 2016 08:17:43 +0000
+Message-ID: <bug-97367-8800-qRFekBZmfn@http.bugs.freedesktop.org/>
 References: <bug-97367-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1587609293=="
+Content-Type: multipart/mixed; boundary="===============0136192935=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97367-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1587609293==
-Content-Type: multipart/alternative; boundary="14715082340.E078AD967.12072";
+--===============0136192935==
+Content-Type: multipart/alternative; boundary="14715082631.FF9ED.12239";
  charset="UTF-8"
 
 
---14715082340.E078AD967.12072
-Date: Thu, 18 Aug 2016 08:17:14 +0000
+--14715082631.FF9ED.12239
+Date: Thu, 18 Aug 2016 08:17:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97367
 
---- Comment #5 from Mathieu Maret <mmaret-LWXiaffTwBPZJqsBc5GL+g@public.gmane.org> ---
-Created attachment 125865
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125865&action=3Dedit
-perf report from perf record -g -C 7
+--- Comment #6 from Mathieu Maret <mmaret-LWXiaffTwBPZJqsBc5GL+g@public.gmane.org> ---
+Created attachment 125866
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D125866&action=3Dedit
+result from 'cat /proc/interrupts > irq ; sleep 1; cat /proc/interrupts >>i=
+rq'
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14715082340.E078AD967.12072
-Date: Thu, 18 Aug 2016 08:17:14 +0000
+--14715082631.FF9ED.12239
+Date: Thu, 18 Aug 2016 08:17:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - k520 card produce high volume of IRQ"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - k520 card produce high volume of IRQ"
@@ -73,11 +74,14 @@ Auto-Submitted: auto-generated
 mmaret&#64;genymobile.com" title=3D"Mathieu Maret &lt;mmaret&#64;genymobile=
 .com&gt;"> <span class=3D"fn">Mathieu Maret</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125865=
-" name=3D"attach_125865" title=3D"perf report from perf record -g -C 7">att=
-achment 125865</a> <a href=3D"attachment.cgi?id=3D125865&amp;action=3Dedit"=
- title=3D"perf report from perf record -g -C 7">[details]</a></span>
-perf report from perf record -g -C 7</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D125866=
+" name=3D"attach_125866" title=3D"result from 'cat /proc/interrupts &gt; ir=
+q ; sleep 1; cat /proc/interrupts &gt;&gt;irq'">attachment 125866</a> <a hr=
+ef=3D"attachment.cgi?id=3D125866&amp;action=3Dedit" title=3D"result from 'c=
+at /proc/interrupts &gt; irq ; sleep 1; cat /proc/interrupts &gt;&gt;irq'">=
+[details]</a></span>
+result from 'cat /proc/interrupts &gt; irq ; sleep 1; cat /proc/interrupts =
+&gt;&gt;irq'</pre>
         </div>
       </p>
 
@@ -91,9 +95,9 @@ perf report from perf record -g -C 7</pre>
     </body>
 </html>=
 
---14715082340.E078AD967.12072--
+--14715082631.FF9ED.12239--
 
---===============1587609293==
+--===============0136192935==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1587609293==--
+--===============0136192935==--
