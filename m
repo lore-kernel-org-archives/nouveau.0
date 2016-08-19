@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
  GT]: HDMI monitor stays black after s2ram
-Date: Fri, 19 Aug 2016 04:41:09 +0000
-Message-ID: <bug-93887-8800-1zg8RSaOge@http.bugs.freedesktop.org/>
+Date: Fri, 19 Aug 2016 14:19:02 +0000
+Message-ID: <bug-93887-8800-j7ZkGr9QkN@http.bugs.freedesktop.org/>
 References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1445468605=="
+Content-Type: multipart/mixed; boundary="===============0018740140=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1445468605==
-Content-Type: multipart/alternative; boundary="14715816692.439ae.31653";
+--===============0018740140==
+Content-Type: multipart/alternative; boundary="14716163422.DB0fD1bbd.23496";
  charset="UTF-8"
 
 
---14715816692.439ae.31653
-Date: Fri, 19 Aug 2016 04:41:09 +0000
+--14716163422.DB0fD1bbd.23496
+Date: Fri, 19 Aug 2016 14:19:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,38 +36,29 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D93887
 
---- Comment #54 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
- nvapeek 0x610000 0x20000 - without nouveau module loaded (63.03 KB,
-text/plain)
-2016-08-18 19:01 UTC,: taken directly before s2ram
+--- Comment #55 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+I have just seen the following in my dmesg:
 
- nvapeek 0x610000 0x20000 - after plain blackscreening s2ram - without nouv=
-eau
-module loaded (67.57 KB, text/plain)
-2016-08-18 19:05 UTC,: the same bootup, directly after s2ram; taken blindly
-with systemctl suspend; sleep 1; nvapeek ...
+> dmesg | grep -i -e warn -e error
+[    8.350192] ACPI Warning: SystemIO range
+0x0000000000000428-0x000000000000042F conflicts with OpRegion
+0x0000000000000400-0x000000000000047F (\PMIO) (20160422/utad
+[    8.356598] ACPI Warning: SystemIO range
+0x00000000000011B0-0x00000000000011BF conflicts with OpRegion
+0x0000000000001180-0x00000000000011BB (\GPIO) (20160422/utad
+[    8.363088] ACPI Warning: SystemIO range
+0x0000000000001180-0x00000000000011AF conflicts with OpRegion
+0x0000000000001180-0x00000000000011BB (\GPIO) (20160422/utad
 
- nvapeek 0x610000 0x20000 - with nouveau module loaded, LVDS came up well
-(kernel 4.7.0) (66.11 KB, text/plain)
-2016-08-18 20:04 UTC,: another bootup (all three were tested with the same
-kernel) into Xorg + graphics mode with nouveau; snapshot taken after s2ram,
-integrated LVDS was o.k.; exterenal HDMI stayed black as always
-
-> However, my G96 can now display an image on the external screen (miniDP -=
-> HDMI through an adapter)
-
-  Nice to hear; I hope that will help you forth!; - concerning adapters I o=
-nly
-have one for the other way round: UHD HDMI output -> DP input of one of my
-monitors. The first adapter I ordered had blackscreened but after returning
-that item I got a working one.
+Could it be that some of the s2ram problems are related with this ACPI-GPIO
+conflicts?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14715816692.439ae.31653
-Date: Fri, 19 Aug 2016 04:41:09 +0000
+--14716163422.DB0fD1bbd.23496
+Date: Fri, 19 Aug 2016 14:19:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -85,8 +76,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monit=
 or stays black after s2ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887#c54">Commen=
-t # 54</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887#c55">Commen=
+t # 55</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monit=
@@ -97,32 +88,21 @@ or stays black after s2ram"
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre> nvapeek 0x610000 0x20000 - without nouveau module loaded (63.=
-03 KB,
-text/plain)
-2016-08-18 19:01 UTC,: taken directly before s2ram
+        <pre>I have just seen the following in my dmesg:
 
- nvapeek 0x610000 0x20000 - after plain blackscreening s2ram - without nouv=
-eau
-module loaded (67.57 KB, text/plain)
-2016-08-18 19:05 UTC,: the same bootup, directly after s2ram; taken blindly
-with systemctl suspend; sleep 1; nvapeek ...
+<span class=3D"quote">&gt; dmesg | grep -i -e warn -e error</span >
+[    8.350192] ACPI Warning: SystemIO range
+0x0000000000000428-0x000000000000042F conflicts with OpRegion
+0x0000000000000400-0x000000000000047F (\PMIO) (20160422/utad
+[    8.356598] ACPI Warning: SystemIO range
+0x00000000000011B0-0x00000000000011BF conflicts with OpRegion
+0x0000000000001180-0x00000000000011BB (\GPIO) (20160422/utad
+[    8.363088] ACPI Warning: SystemIO range
+0x0000000000001180-0x00000000000011AF conflicts with OpRegion
+0x0000000000001180-0x00000000000011BB (\GPIO) (20160422/utad
 
- nvapeek 0x610000 0x20000 - with nouveau module loaded, LVDS came up well
-(kernel 4.7.0) (66.11 KB, text/plain)
-2016-08-18 20:04 UTC,: another bootup (all three were tested with the same
-kernel) into Xorg + graphics mode with nouveau; snapshot taken after s2ram,
-integrated LVDS was o.k.; exterenal HDMI stayed black as always
-
-<span class=3D"quote">&gt; However, my G96 can now display an image on the =
-external screen (miniDP -&gt; HDMI through an adapter)</span >
-
-  Nice to hear; I hope that will help you forth!; - concerning adapters I o=
-nly
-have one for the other way round: UHD HDMI output -&gt; DP input of one of =
-my
-monitors. The first adapter I ordered had blackscreened but after returning
-that item I got a working one.</pre>
+Could it be that some of the s2ram problems are related with this ACPI-GPIO
+conflicts?</pre>
         </div>
       </p>
 
@@ -136,9 +116,9 @@ that item I got a working one.</pre>
     </body>
 </html>=
 
---14715816692.439ae.31653--
+--14716163422.DB0fD1bbd.23496--
 
---===============1445468605==
+--===============0018740140==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -148,4 +128,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1445468605==--
+--===============0018740140==--
