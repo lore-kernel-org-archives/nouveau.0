@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93887] [NV96] Amilo Xi 3650: G96M [GeForce 9600M
  GT]: HDMI monitor stays black after s2ram
-Date: Fri, 19 Aug 2016 14:19:02 +0000
-Message-ID: <bug-93887-8800-j7ZkGr9QkN@http.bugs.freedesktop.org/>
+Date: Sat, 20 Aug 2016 18:58:55 +0000
+Message-ID: <bug-93887-8800-3lesBlukK1@http.bugs.freedesktop.org/>
 References: <bug-93887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0018740140=="
+Content-Type: multipart/mixed; boundary="===============0045675100=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0018740140==
-Content-Type: multipart/alternative; boundary="14716163422.DB0fD1bbd.23496";
+--===============0045675100==
+Content-Type: multipart/alternative; boundary="14717195352.C2A076.15443";
  charset="UTF-8"
 
 
---14716163422.DB0fD1bbd.23496
-Date: Fri, 19 Aug 2016 14:19:02 +0000
+--14717195352.C2A076.15443
+Date: Sat, 20 Aug 2016 18:58:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,29 +36,29 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D93887
 
---- Comment #55 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-I have just seen the following in my dmesg:
+Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
 
-> dmesg | grep -i -e warn -e error
-[    8.350192] ACPI Warning: SystemIO range
-0x0000000000000428-0x000000000000042F conflicts with OpRegion
-0x0000000000000400-0x000000000000047F (\PMIO) (20160422/utad
-[    8.356598] ACPI Warning: SystemIO range
-0x00000000000011B0-0x00000000000011BF conflicts with OpRegion
-0x0000000000001180-0x00000000000011BB (\GPIO) (20160422/utad
-[    8.363088] ACPI Warning: SystemIO range
-0x0000000000001180-0x00000000000011AF conflicts with OpRegion
-0x0000000000001180-0x00000000000011BB (\GPIO) (20160422/utad
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
 
-Could it be that some of the s2ram problems are related with this ACPI-GPIO
-conflicts?
+--- Comment #56 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Pierre and everyone else, whoever else has contributed: Today we have reaso=
+n to
+celebrate! This HDMI-s2ram-issue as well as kernel bugs 153371, 153361, 117=
+581
+and numerous other issues - like Mark Asselstine has told me - have been
+resolved with commit 65ea11ec6a82b1d44aba62b59e9eb20247e57c6e (Ville Syrj=
+=C3=A4l=C3=A4 -
+x86/hweight: Don't clobber %rdi).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14716163422.DB0fD1bbd.23496
-Date: Fri, 19 Aug 2016 14:19:02 +0000
+--14717195352.C2A076.15443
+Date: Sat, 20 Aug 2016 18:58:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,40 +69,65 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:estellnb&=
+#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;=
+"> <span class=3D"fn">Elmar Stellnberger</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]:=
+ HDMI monitor stays black after s2ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887">bug 93887<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monit=
-or stays black after s2ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887#c55">Commen=
-t # 55</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]:=
+ HDMI monitor stays black after s2ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887#c56">Commen=
+t # 56</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]: HDMI monit=
-or stays black after s2ram"
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NV96] Amilo Xi 3650: G96M [GeForce 9600M GT]:=
+ HDMI monitor stays black after s2ram"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93887">bug 93887<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>I have just seen the following in my dmesg:
-
-<span class=3D"quote">&gt; dmesg | grep -i -e warn -e error</span >
-[    8.350192] ACPI Warning: SystemIO range
-0x0000000000000428-0x000000000000042F conflicts with OpRegion
-0x0000000000000400-0x000000000000047F (\PMIO) (20160422/utad
-[    8.356598] ACPI Warning: SystemIO range
-0x00000000000011B0-0x00000000000011BF conflicts with OpRegion
-0x0000000000001180-0x00000000000011BB (\GPIO) (20160422/utad
-[    8.363088] ACPI Warning: SystemIO range
-0x0000000000001180-0x00000000000011AF conflicts with OpRegion
-0x0000000000001180-0x00000000000011BB (\GPIO) (20160422/utad
-
-Could it be that some of the s2ram problems are related with this ACPI-GPIO
-conflicts?</pre>
+        <pre>Pierre and everyone else, whoever else has contributed: Today =
+we have reason to
+celebrate! This HDMI-s2ram-issue as well as kernel bugs 153371, 153361, 117=
+581
+and numerous other issues - like Mark Asselstine has told me - have been
+resolved with commit 65ea11ec6a82b1d44aba62b59e9eb20247e57c6e (Ville Syrj=
+=C3=A4l=C3=A4 -
+x86/hweight: Don't clobber %rdi).</pre>
         </div>
       </p>
 
@@ -116,9 +141,9 @@ conflicts?</pre>
     </body>
 </html>=
 
---14716163422.DB0fD1bbd.23496--
+--14717195352.C2A076.15443--
 
---===============0018740140==
+--===============0045675100==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -128,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0018740140==--
+--===============0045675100==--
