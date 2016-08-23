@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Tue, 23 Aug 2016 18:11:37 +0000
-Message-ID: <bug-94990-8800-1RXSgXYoTt@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 96274] [NVC0] Failure when compiling compute shader:
+ Assertion `bb->getFirst()->serial <= bb->getExit()->serial' failed
+Date: Tue, 23 Aug 2016 22:34:14 +0000
+Message-ID: <bug-96274-8800-nBD6YzUAbS@http.bugs.freedesktop.org/>
+References: <bug-96274-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1332281870=="
+Content-Type: multipart/mixed; boundary="===============1439622138=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-96274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,65 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1332281870==
-Content-Type: multipart/alternative; boundary="14719758975.e936B.14215";
+--===============1439622138==
+Content-Type: multipart/alternative; boundary="14719916530.A2A4CE2f7.31190";
  charset="UTF-8"
 
 
---14719758975.e936B.14215
-Date: Tue, 23 Aug 2016 18:11:37 +0000
+--14719916530.A2A4CE2f7.31190
+Date: Tue, 23 Aug 2016 22:34:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96274
 
---- Comment #62 from Efrem McCrimon <efremmc2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-What version of the non-free Nvidia driver are you using? 370.23 or 367.35?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-On Aug 23, 2016 8:29 AM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
 
-> *Comment # 61 <https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c61> =
-on
-> bug 94990 <https://bugs.freedesktop.org/show_bug.cgi?id=3D94990> from Yann
-> Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> *
->
-> (In reply to Ivan from comment #56 <https://bugs.freedesktop.org/show_bug=
-.cgi?id=3D94990#c56>)> So, I just install fresh Fedora 24 with kernel-4.5.5=
-, then remove nouveau
-> > from system completely:
-> >
-> > [=E2=80=A6]
-> >
-> > After this steps reboot, upgrade system to kernel-4.6.5, and install nV=
-idia
-> > proprietary driver. Everything works just fine.
->
-> Which is a nice work around if one wishes to go with the plethora of prob=
-lems
-> nVidia drives give you=E2=80=A6
->
-> ------------------------------
-> You are receiving this mail because:
->
->    - You are the assignee for the bug.
->
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
->
->
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Fixed by
+
+commit 092f994a034b718f6170c631655ccaba8d2aa768
+Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Date:   Fri Aug 19 00:41:59 2016 -0400
+
+    nv50/ir: make sure cfg iterator always hits all blocks
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14719758975.e936B.14215
-Date: Tue, 23 Aug 2016 18:11:37 +0000
+--14719916530.A2A4CE2f7.31190
+Date: Tue, 23 Aug 2016 22:34:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -89,80 +69,68 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVC0] Failure when compiling compute shader: =
+Assertion `bb-&gt;getFirst()-&gt;serial &lt;=3D bb-&gt;getExit()-&gt;serial=
+' failed"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96274">bug 96274<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c62">Commen=
-t # 62</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVC0] Failure when compiling compute shader: =
+Assertion `bb-&gt;getFirst()-&gt;serial &lt;=3D bb-&gt;getExit()-&gt;serial=
+' failed"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96274#c1">Comment=
+ # 1</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVC0] Failure when compiling compute shader: =
+Assertion `bb-&gt;getFirst()-&gt;serial &lt;=3D bb-&gt;getExit()-&gt;serial=
+' failed"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96274">bug 96274<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-efremmc2&#64;gmail.com" title=3D"Efrem McCrimon &lt;efremmc2&#64;gmail.com&=
-gt;"> <span class=3D"fn">Efrem McCrimon</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>What version of the non-free Nvidia driver are you using? 370.=
-23 or 367.35?
+        <pre>Fixed by
 
-On Aug 23, 2016 8:29 AM, &lt;<a href=3D"mailto:bugzilla-daemon&#64;freedesk=
-top.org">bugzilla-daemon&#64;freedesktop.org</a>&gt; wrote:
+commit 092f994a034b718f6170c631655ccaba8d2aa768
+Author: Ilia Mirkin &lt;<a href=3D"mailto:imirkin&#64;alum.mit.edu">imirkin=
+&#64;alum.mit.edu</a>&gt;
+Date:   Fri Aug 19 00:41:59 2016 -0400
 
-<span class=3D"quote">&gt; *<a href=3D"show_bug.cgi?id=3D94990#c61">Comment=
- # 61</a> &lt;<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"show_bug.cgi?id=3D94990#c61">https://bugs.freedesktop.org/show_b=
-ug.cgi?id=3D94990#c61</a>&gt; on
-&gt; <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"show_bug.cgi?id=3D94990">bug 94990</a> &lt;<a class=3D"bz_bug_li=
-nk=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"show_bug.cgi?id=3D94990">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D94990</a>&gt; from Yann
-&gt; Golanski &lt;<a href=3D"mailto:freedesktop&#64;kierun.org">freedesktop=
-&#64;kierun.org</a>&gt; *</span >
-&gt;
-<span class=3D"quote">&gt; (In reply to Ivan from <a href=3D"show_bug.cgi?i=
-d=3D94990#c56">comment #56</a> &lt;<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
-   href=3D"show_bug.cgi?id=3D94990#c56">https://bugs.freedesktop.org/show_b=
-ug.cgi?id=3D94990#c56</a>&gt;)&gt; So, I just install fresh Fedora 24 with =
-kernel-4.5.5, then remove nouveau
-&gt; &gt; from system completely:
-&gt; &gt;
-&gt; &gt; [=E2=80=A6]
-&gt; &gt;
-&gt; &gt; After this steps reboot, upgrade system to kernel-4.6.5, and inst=
-all nVidia
-&gt; &gt; proprietary driver. Everything works just fine.</span >
-&gt;
-<span class=3D"quote">&gt; Which is a nice work around if one wishes to go =
-with the plethora of problems
-&gt; nVidia drives give you=E2=80=A6</span >
-&gt;
-<span class=3D"quote">&gt; ------------------------------
-&gt; You are receiving this mail because:</span >
-&gt;
-<span class=3D"quote">&gt;    - You are the assignee for the bug.</span >
-&gt;
-&gt;
-<span class=3D"quote">&gt; _______________________________________________
-&gt; Nouveau mailing list
-&gt; <a href=3D"mailto:Nouveau&#64;lists.freedesktop.org">Nouveau&#64;lists=
-.freedesktop.org</a>
-&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau">htt=
-ps://lists.freedesktop.org/mailman/listinfo/nouveau</a></span >
-&gt;
-&gt;</pre>
+    nv50/ir: make sure cfg iterator always hits all blocks</pre>
         </div>
       </p>
 
@@ -171,14 +139,15 @@ ps://lists.freedesktop.org/mailman/listinfo/nouveau</a></span >
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14719758975.e936B.14215--
+--14719916530.A2A4CE2f7.31190--
 
---===============1332281870==
+--===============1439622138==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -188,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1332281870==--
+--===============1439622138==--
