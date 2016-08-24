@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97066] Blank screen when starting KMS on a GTX970
- for kernel 4.6 series
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
 Date: Wed, 24 Aug 2016 21:22:01 +0000
-Message-ID: <bug-97066-8800-TgQSK0dwmm@http.bugs.freedesktop.org/>
-References: <bug-97066-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-94990-8800-vSKgMw5AHz@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1846100977=="
+Content-Type: multipart/mixed; boundary="===============0820794688=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97066-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1846100977==
-Content-Type: multipart/alternative; boundary="14720737211.f8504dF.29110";
+--===============0820794688==
+Content-Type: multipart/alternative; boundary="14720737218.7412e7.29110";
  charset="UTF-8"
 
 
---14720737211.f8504dF.29110
+--14720737218.7412e7.29110
 Date: Wed, 24 Aug 2016 21:22:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -34,25 +34,22 @@ Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97066
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
+                 CC|                            |pil.smmilut-zJpx2rpV7r/QT0dZR+AlfA@public.gmane.org
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-
-
-*** This bug has been marked as a duplicate of bug 94990 ***
+--- Comment #68 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+*** Bug 97066 has been marked as a duplicate of this bug. ***
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14720737211.f8504dF.29110
+--14720737218.7412e7.29110
 Date: Wed, 24 Aug 2016 21:22:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -69,10 +66,9 @@ Auto-Submitted: auto-generated
 pan class=3D"fn">Ilia Mirkin</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Blank screen when starting KMS on a GTX970=
- for kernel 4.6 series"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97066">bug 97066<=
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -83,44 +79,35 @@ pan class=3D"fn">Ilia Mirkin</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
+           <td>pil.smmilut&#64;yandex.com
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Blank screen when starting KMS on a GTX970=
- for kernel 4.6 series"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97066#c8">Comment=
- # 8</a>
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c68">Commen=
+t # 68</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Blank screen when starting KMS on a GTX970=
- for kernel 4.6 series"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97066">bug 97066<=
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>
-
-*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"show_bug.cgi?id=3D94990">bug 94990</a> ***</pre>
+        <pre>*** <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Blank screen when starting KMS on a GTX970=
+ for kernel 4.6 series"
+   href=3D"show_bug.cgi?id=3D97066">Bug 97066</a> has been marked as a dupl=
+icate of this bug. ***</pre>
         </div>
       </p>
 
@@ -134,9 +121,9 @@ imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
     </body>
 </html>=
 
---14720737211.f8504dF.29110--
+--14720737218.7412e7.29110--
 
---===============1846100977==
+--===============0820794688==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +133,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1846100977==--
+--===============0820794688==--
