@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Wed, 24 Aug 2016 21:19:23 +0000
-Message-ID: <bug-94990-8800-q1OUgxvt8P@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97066] Blank screen when starting KMS on a GTX970
+ for kernel 4.6 series
+Date: Wed, 24 Aug 2016 21:22:01 +0000
+Message-ID: <bug-97066-8800-TgQSK0dwmm@http.bugs.freedesktop.org/>
+References: <bug-97066-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1217781235=="
+Content-Type: multipart/mixed; boundary="===============1846100977=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97066-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,47 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1217781235==
-Content-Type: multipart/alternative; boundary="14720735638.FD81C.28278";
+--===============1846100977==
+Content-Type: multipart/alternative; boundary="14720737211.f8504dF.29110";
  charset="UTF-8"
 
 
---14720735638.FD81C.28278
-Date: Wed, 24 Aug 2016 21:19:23 +0000
+--14720737211.f8504dF.29110
+Date: Wed, 24 Aug 2016 21:22:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97066
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Latest 4.6rc4 kernel, no    |[GM204] GTX 970 + 4GB VRAM
-                   |booting on gtx970           |fails at secboot (v4.6+)
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
 
---- Comment #67 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I don't see a way to lock this bug down, unfortunately, but Efram, please
-refrain from further comments other than to say "Yes, I have tested the
-provided patch and it works" (or doesn't work), once such a patch has been =
-made
-available. [It has not yet.] This is not a discussion forum.
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 
-There are a few hackpatches available that "work around" this, but they are=
-n't
-real solutions. Wait for something from Ben before reporting test results.
 
-Thanks for everyone's patience!
+*** This bug has been marked as a duplicate of bug 94990 ***
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14720735638.FD81C.28278
-Date: Wed, 24 Aug 2016 21:19:23 +0000
+--14720737211.f8504dF.29110
+Date: Wed, 24 Aug 2016 21:22:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,9 +69,10 @@ Auto-Submitted: auto-generated
 pan class=3D"fn">Ilia Mirkin</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Blank screen when starting KMS on a GTX970=
+ for kernel 4.6 series"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97066">bug 97066<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -90,40 +83,44 @@ pan class=3D"fn">Ilia Mirkin</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>Latest 4.6rc4 kernel, no booting on gtx970
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>[GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c67">Commen=
-t # 67</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Blank screen when starting KMS on a GTX970=
+ for kernel 4.6 series"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97066#c8">Comment=
+ # 8</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Blank screen when starting KMS on a GTX970=
+ for kernel 4.6 series"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97066">bug 97066<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I don't see a way to lock this bug down, unfortunately, but Ef=
-ram, please
-refrain from further comments other than to say &quot;Yes, I have tested the
-provided patch and it works&quot; (or doesn't work), once such a patch has =
-been made
-available. [It has not yet.] This is not a discussion forum.
+        <pre>
 
-There are a few hackpatches available that &quot;work around&quot; this, bu=
-t they aren't
-real solutions. Wait for something from Ben before reporting test results.
-
-Thanks for everyone's patience!</pre>
+*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"show_bug.cgi?id=3D94990">bug 94990</a> ***</pre>
         </div>
       </p>
 
@@ -137,9 +134,9 @@ Thanks for everyone's patience!</pre>
     </body>
 </html>=
 
---14720735638.FD81C.28278--
+--14720737211.f8504dF.29110--
 
---===============1217781235==
+--===============1846100977==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -149,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1217781235==--
+--===============1846100977==--
