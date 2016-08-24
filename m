@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93828] Xorg hangs randomly with nouveau driver
-Date: Wed, 24 Aug 2016 13:03:22 +0000
-Message-ID: <bug-93828-8800-AtGD79YmFn@http.bugs.freedesktop.org/>
-References: <bug-93828-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91408] Lenovo T440s alternate way to turn off
+	discrete GPU
+Date: Wed, 24 Aug 2016 14:03:07 +0000
+Message-ID: <bug-91408-8800-LHqPsx2wXg@http.bugs.freedesktop.org/>
+References: <bug-91408-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1592218542=="
+Content-Type: multipart/mixed; boundary="===============2034519786=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93828-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91408-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1592218542==
-Content-Type: multipart/alternative; boundary="14720438020.A53a7.505";
+--===============2034519786==
+Content-Type: multipart/alternative; boundary="14720473871.FeeB9.9093";
  charset="UTF-8"
 
 
---14720438020.A53a7.505
-Date: Wed, 24 Aug 2016 13:03:22 +0000
+--14720473871.FeeB9.9093
+Date: Wed, 24 Aug 2016 14:03:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93828
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91408
 
---- Comment #6 from joni-rk22IFkJM19Wk0Htik3J/w@public.gmane.org ---
-Created attachment 126001
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126001&action=3Dedit
-Kernel log when crash
+Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+                 CC|                            |peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org
+         Resolution|---                         |FIXED
+
+--- Comment #2 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
+Fixed in Linux v4.8-rc1
+
+commit 692a17dcc2922a91c6bcf11b3321503a3377b1b1
+Author: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Date:   Fri Jul 15 15:12:18 2016 +0200
+
+    drm/nouveau/acpi: fix lockup with PCIe runtime PM
+
+Can you validate this?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14720438020.A53a7.505
-Date: Wed, 24 Aug 2016 13:03:22 +0000
+--14720473871.FeeB9.9093
+Date: Wed, 24 Aug 2016 14:03:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,28 +71,76 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:peter&#64=
+;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"> <span c=
+lass=3D"fn">Peter Wu</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Lenovo T440s alternate way to turn off discret=
+e GPU"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91408">bug 91408<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>peter&#64;lekensteyn.nl
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg hangs randomly with nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828#c6">Comment=
- # 6</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Lenovo T440s alternate way to turn off discret=
+e GPU"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91408#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg hangs randomly with nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828">bug 93828<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Lenovo T440s alternate way to turn off discret=
+e GPU"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91408">bug 91408<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-joni&#64;shade-fx.com" title=3D"joni&#64;shade-fx.com">joni&#64;shade-fx.co=
-m</a>
+peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
+> <span class=3D"fn">Peter Wu</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126001=
-" name=3D"attach_126001" title=3D"Kernel log when crash">attachment 126001<=
-/a> <a href=3D"attachment.cgi?id=3D126001&amp;action=3Dedit" title=3D"Kerne=
-l log when crash">[details]</a></span>
-Kernel log when crash</pre>
+        <pre>Fixed in Linux v4.8-rc1
+
+commit 692a17dcc2922a91c6bcf11b3321503a3377b1b1
+Author: Peter Wu &lt;<a href=3D"mailto:peter&#64;lekensteyn.nl">peter&#64;l=
+ekensteyn.nl</a>&gt;
+Date:   Fri Jul 15 15:12:18 2016 +0200
+
+    drm/nouveau/acpi: fix lockup with PCIe runtime PM
+
+Can you validate this?</pre>
         </div>
       </p>
 
@@ -91,9 +154,9 @@ Kernel log when crash</pre>
     </body>
 </html>=
 
---14720438020.A53a7.505--
+--14720473871.FeeB9.9093--
 
---===============1592218542==
+--===============2034519786==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +166,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1592218542==--
+--===============2034519786==--
