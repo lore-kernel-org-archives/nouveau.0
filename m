@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97462] Graphics deadlock "ILLEGAL_MTHD" in nouveau
- with mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5
-Date: Wed, 24 Aug 2016 15:50:50 +0000
-Message-ID: <bug-97462-8800-hzIOLlJijI@http.bugs.freedesktop.org/>
-References: <bug-97462-8800@http.bugs.freedesktop.org/>
+From: Efrem Mc <efremmc2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
+Date: Wed, 24 Aug 2016 16:01:09 -0400
+Message-ID: <CAEhOZrebt7S=-ayjggdpOcHP3=UUH1ja-9PepU4eYr3dOCf6mQ@mail.gmail.com>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
+ <bug-94990-8800-41sdh6KAPS@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2045901959=="
+Content-Type: multipart/mixed; boundary="===============0112020388=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94990-8800-41sdh6KAPS-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,86 +17,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0112020388==
+Content-Type: multipart/alternative; boundary=001a11488d8c1c570f053ad6be9e
 
---===============2045901959==
-Content-Type: multipart/alternative; boundary="14720538501.d39fE2A.20141";
- charset="UTF-8"
+--001a11488d8c1c570f053ad6be9e
+Content-Type: text/plain; charset=UTF-8
 
+I have to install the Nvidia driver on on development systems because I am
+doing some programming with CUDA.  I use the CUDA Toolkit in C/C++.  I am
+converting some of the software over to OpenACC.  OpenACC has it own
+compilers but CUDA requires the non-free driver because the tools
+communication to the driver with the APIs.
 
---14720538501.d39fE2A.20141
-Date: Wed, 24 Aug 2016 15:50:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Regards,
+
+Efrem Mc
+
+On Wed, Aug 24, 2016 at 4:35 AM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
+
+> *Comment # 63 <https://bugs.freedesktop.org/show_bug.cgi?id=94990#c63> on
+> bug 94990 <https://bugs.freedesktop.org/show_bug.cgi?id=94990> from Yann
+> Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> *
+>
+> (In reply to Efrem McCrimon from comment #62 <https://bugs.freedesktop.org/show_bug.cgi?id=94990#c62>)> What version of the non-free Nvidia driver are you using? 370.23 or 367.35?
+>
+> I do not use the non-free Nvidia driver because it causes many more problems
+> than it solves: every kernel upgrade might break things until a new driver is
+> released. At least with the nouveau, it's more in sync.  Well, this bug none
+> withstanding :)
+>
+> ------------------------------
+> You are receiving this mail because:
+>
+>    - You are the assignee for the bug.
+>
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+>
+>
+
+--001a11488d8c1c570f053ad6be9e
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97462
-
---- Comment #5 from wadev-cl+VPiYnx/0HWmgEVkV9KA@public.gmane.org ---
-Um, wait, what? now this was a straightforward build process.
-I managed to build it in the background in say, 7 minutes.
-
-I have to leave the office now and have to leave something running, but will
-test it tomorrow and get back to you.
-
-Thanks for assistance.
-
-PS. I had no luck with the usual config settings (not that two changes per =
-hang
-is viable even on the medium run).
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14720538501.d39fE2A.20141
-Date: Wed, 24 Aug 2016 15:50:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
+<div dir=3D"ltr">I have to install the Nvidia driver on on development syst=
+ems because I am doing some programming with CUDA.=C2=A0 I use the CUDA Too=
+lkit in C/C++.=C2=A0 I am converting some of the software over to OpenACC.=
+=C2=A0 OpenACC has it own compilers but CUDA requires the non-free driver b=
+ecause the tools communication to the driver with the APIs.<div><br></div><=
+div>Regards,</div><div><br></div><div>Efrem Mc</div></div><div class=3D"gma=
+il_extra"><br><div class=3D"gmail_quote">On Wed, Aug 24, 2016 at 4:35 AM,  =
+<span dir=3D"ltr">&lt;<a href=3D"mailto:bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org" ta=
+rget=3D"_blank">bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org</a>&gt;</span> wrote:<br><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
+#ccc solid;padding-left:1ex">
+   =20
+     =20
+   =20
+    <div>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
-h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
-h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462">bug 97462<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-wadev&#64;mailbox.hu" title=3D"wadev&#64;mailbox.hu">wadev&#64;mailbox.hu</=
-a>
+        </p><div>
+            <b><a title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970=
+" href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c63" target=
+=3D"_blank">Comment # 63</a>
+              on <a title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx9=
+70" href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990" target=3D=
+"_blank">bug 94990</a>
+              from <span><a href=3D"mailto:freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org" title=3D=
+"Yann Golanski &lt;freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org&gt;" target=3D"_blank"> <span>Yan=
+n Golanski</span></a>
 </span></b>
-        <pre>Um, wait, what? now this was a straightforward build process.
-I managed to build it in the background in say, 7 minutes.
+        <pre>(In reply to Efrem McCrimon from <a href=3D"https://bugs.freed=
+esktop.org/show_bug.cgi?id=3D94990#c62" target=3D"_blank">comment #62</a>)
+<span class=3D""><span>&gt; What version of the non-free Nvidia driver are =
+you using? 370.23 or 367.35?</span></span>
 
-I have to leave the office now and have to leave something running, but will
-test it tomorrow and get back to you.
-
-Thanks for assistance.
-
-PS. I had no luck with the usual config settings (not that two changes per =
-hang
-is viable even on the medium run).</pre>
+I do not use the non-free Nvidia driver because it causes many more problem=
+s
+than it solves: every kernel upgrade might break things until a new driver =
+is
+released. At least with the nouveau, it&#39;s more in sync.  Well, this bug=
+ none
+withstanding :)</pre>
         </div>
-      </p>
+      <p></p><span class=3D"">
 
 
       <hr>
@@ -105,12 +116,19 @@ is viable even on the medium run).</pre>
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
-    </body>
-</html>=
+    </span></div>
+<br>______________________________<wbr>_________________<br>
+Nouveau mailing list<br>
+<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org=
+org</a><br>
+<a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau" rel=3D"n=
+oreferrer" target=3D"_blank">https://lists.freedesktop.org/<wbr>mailman/lis=
+tinfo/nouveau</a><br>
+<br></blockquote></div><br></div>
 
---14720538501.d39fE2A.20141--
+--001a11488d8c1c570f053ad6be9e--
 
---===============2045901959==
+--===============0112020388==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +138,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2045901959==--
+--===============0112020388==--
