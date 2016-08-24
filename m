@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97462] Graphics deadlock "ILLEGAL_MTHD" in nouveau
- with mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5
-Date: Wed, 24 Aug 2016 10:51:34 +0000
-Message-ID: <bug-97462-8800-0ycQy3hOs2@http.bugs.freedesktop.org/>
-References: <bug-97462-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH v2] drm/nouveau: add a LED driver for the
+ NVIDIA logo
+Date: Wed, 24 Aug 2016 15:11:12 +0300
+Message-ID: <3ebd3427-7b8c-00bb-acce-6624fe8b8718@free.fr>
+References: <1462319465-29090-1-git-send-email-martin.peres@free.fr>
+ <20160822234257.6523-1-martin.peres@free.fr>
+ <CACvgo53YUjHyE=xqYHFENG7=pOsMSpQ+x-bNszd5ENNz305t5g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1277452430=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CACvgo53YUjHyE=xqYHFENG7=pOsMSpQ+x-bNszd5ENNz305t5g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,93 +20,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1277452430==
-Content-Type: multipart/alternative; boundary="14720358930.7a17aaB0.18903";
- charset="UTF-8"
-
-
---14720358930.7a17aaB0.18903
-Date: Wed, 24 Aug 2016 10:51:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97462
-
---- Comment #1 from wadev-cl+VPiYnx/0HWmgEVkV9KA@public.gmane.org ---
-uname:
-
-Linux terra 4.6.0-1-amd64 #1 SMP Debian 4.6.4-1 (2016-07-18) x86_64 GNU/Lin=
-ux
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14720358930.7a17aaB0.18903
-Date: Wed, 24 Aug 2016 10:51:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
-h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
-h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462">bug 97462<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-wadev&#64;mailbox.hu" title=3D"wadev&#64;mailbox.hu">wadev&#64;mailbox.hu</=
-a>
-</span></b>
-        <pre>uname:
-
-Linux terra 4.6.0-1-amd64 #1 SMP Debian 4.6.4-1 (2016-07-18) x86_64 GNU/Lin=
-ux</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14720358930.7a17aaB0.18903--
-
---===============1277452430==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1277452430==--
+T24gMjMvMDgvMTYgMTc6NDMsIEVtaWwgVmVsaWtvdiB3cm90ZToKPiBPbiAyMyBBdWd1c3QgMjAx
+NiBhdCAwMDo0MiwgTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4gd3JvdGU6Cj4+
+IHYyOgo+PiAgIC0gZ3VhcmQgTEVEIGZyYW1ld29yayBjYWxscyB3aXRoIGlmZGVmIENPTkZJR19M
+RURTX0NMQVNTCj4+Cj4gSUlSQyBrZXJuZWwgaGFzIHRoZSB0ZW5kZW5jeSBvZiB1c2luZyBzdGF0
+aWMgaW5saW5lcyBpbiB0aGUgaGVhZGVycwo+IHdoZW4gQ09ORklHX2ZvbyBpcyBub3Qgc2V0LiBX
+b3J0aCB1c2luZyB0aGF0IGFuZCByZW1vdmluZyB0aGUgaWZkZWYKPiBmcm9tIHRoZSBzb3VyY2Ug
+ZmlsZSA/CgpPaCwgeW91IG1lYW4sIHJlLWRlZmluaW5nIHRoZSBmdW5jdGlvbnMgSSB1c2UgYnV0
+IG1ha2UgdGhlbSBkbyBub3RoaW5nLgoKSG93ZXZlciwgSSBzaG91bGQgZG8gaXQgaW4gdGhlIHNv
+dXJjZSBmaWxlIGFuZCBub3QgaW4gdGhlIGhlYWRlciBzaW5jZSBJIGRvCm5vdCB3YW50IHRvIGV4
+cG9ydCB0aGVzZSBzeW1ib2xzIG91dHNpZGUgb2YgdGhlIG9iamVjdC4KCkRvIHlvdSBoYXZlIGFu
+IGV4YW1wbGUgdG8gc2hhcmU/IEFueXdheSwgdGhpcyBzZWVtcyBsaWtlIGEgZ29vZApjYW5kaWRh
+dGUgdG8gcmVkdWNlIHRoZSBudW1iZXIgb2YgaWZkZWZzLiBUaGFua3MhCgpNYXJ0aW4KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
