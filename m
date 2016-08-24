@@ -1,13 +1,12 @@
-From: Efrem Mc <efremmc2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
-Date: Wed, 24 Aug 2016 16:01:09 -0400
-Message-ID: <CAEhOZrebt7S=-ayjggdpOcHP3=UUH1ja-9PepU4eYr3dOCf6mQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] Latest 4.6rc4 kernel, no booting on gtx970
+Date: Wed, 24 Aug 2016 20:01:13 +0000
+Message-ID: <bug-94990-8800-Si9jVR7WCw@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
- <bug-94990-8800-41sdh6KAPS@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0112020388=="
+Content-Type: multipart/mixed; boundary="===============0196105283=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-41sdh6KAPS-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,16 +16,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0112020388==
-Content-Type: multipart/alternative; boundary=001a11488d8c1c570f053ad6be9e
 
---001a11488d8c1c570f053ad6be9e
-Content-Type: text/plain; charset=UTF-8
+--===============0196105283==
+Content-Type: multipart/alternative; boundary="14720688735.BFfC0ee.18907";
+ charset="UTF-8"
 
+
+--14720688735.BFfC0ee.18907
+Date: Wed, 24 Aug 2016 20:01:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #64 from Efrem McCrimon <efremmc2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 I have to install the Nvidia driver on on development systems because I am
 doing some programming with CUDA.  I use the CUDA Toolkit in C/C++.  I am
 converting some of the software over to OpenACC.  OpenACC has it own
@@ -39,15 +48,21 @@ Efrem Mc
 
 On Wed, Aug 24, 2016 at 4:35 AM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
 
-> *Comment # 63 <https://bugs.freedesktop.org/show_bug.cgi?id=94990#c63> on
-> bug 94990 <https://bugs.freedesktop.org/show_bug.cgi?id=94990> from Yann
+> *Comment # 63 <https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c63> =
+on
+> bug 94990 <https://bugs.freedesktop.org/show_bug.cgi?id=3D94990> from Yann
 > Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> *
 >
-> (In reply to Efrem McCrimon from comment #62 <https://bugs.freedesktop.org/show_bug.cgi?id=94990#c62>)> What version of the non-free Nvidia driver are you using? 370.23 or 367.35?
+> (In reply to Efrem McCrimon from comment #62 <https://bugs.freedesktop.or=
+g/show_bug.cgi?id=3D94990#c62>)> What version of the non-free Nvidia driver=
+ are you using? 370.23 or 367.35?
 >
-> I do not use the non-free Nvidia driver because it causes many more problems
-> than it solves: every kernel upgrade might break things until a new driver is
-> released. At least with the nouveau, it's more in sync.  Well, this bug none
+> I do not use the non-free Nvidia driver because it causes many more probl=
+ems
+> than it solves: every kernel upgrade might break things until a new drive=
+r is
+> released. At least with the nouveau, it's more in sync.  Well, this bug n=
+one
 > withstanding :)
 >
 > ------------------------------
@@ -63,51 +78,103 @@ On Wed, Aug 24, 2016 at 4:35 AM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.
 >
 >
 
---001a11488d8c1c570f053ad6be9e
-Content-Type: text/html; charset=UTF-8
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14720688735.BFfC0ee.18907
+Date: Wed, 24 Aug 2016 20:01:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-<div dir=3D"ltr">I have to install the Nvidia driver on on development syst=
-ems because I am doing some programming with CUDA.=C2=A0 I use the CUDA Too=
-lkit in C/C++.=C2=A0 I am converting some of the software over to OpenACC.=
-=C2=A0 OpenACC has it own compilers but CUDA requires the non-free driver b=
-ecause the tools communication to the driver with the APIs.<div><br></div><=
-div>Regards,</div><div><br></div><div>Efrem Mc</div></div><div class=3D"gma=
-il_extra"><br><div class=3D"gmail_quote">On Wed, Aug 24, 2016 at 4:35 AM,  =
-<span dir=3D"ltr">&lt;<a href=3D"mailto:bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org" ta=
-rget=3D"_blank">bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org</a>&gt;</span> wrote:<br><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
-#ccc solid;padding-left:1ex">
-   =20
-     =20
-   =20
-    <div>
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
       <p>
-        </p><div>
-            <b><a title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970=
-" href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c63" target=
-=3D"_blank">Comment # 63</a>
-              on <a title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx9=
-70" href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990" target=3D=
-"_blank">bug 94990</a>
-              from <span><a href=3D"mailto:freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org" title=3D=
-"Yann Golanski &lt;freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org&gt;" target=3D"_blank"> <span>Yan=
-n Golanski</span></a>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c64">Commen=
+t # 64</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+efremmc2&#64;gmail.com" title=3D"Efrem McCrimon &lt;efremmc2&#64;gmail.com&=
+gt;"> <span class=3D"fn">Efrem McCrimon</span></a>
 </span></b>
-        <pre>(In reply to Efrem McCrimon from <a href=3D"https://bugs.freed=
-esktop.org/show_bug.cgi?id=3D94990#c62" target=3D"_blank">comment #62</a>)
-<span class=3D""><span>&gt; What version of the non-free Nvidia driver are =
-you using? 370.23 or 367.35?</span></span>
+        <pre>I have to install the Nvidia driver on on development systems =
+because I am
+doing some programming with CUDA.  I use the CUDA Toolkit in C/C++.  I am
+converting some of the software over to OpenACC.  OpenACC has it own
+compilers but CUDA requires the non-free driver because the tools
+communication to the driver with the APIs.
 
-I do not use the non-free Nvidia driver because it causes many more problem=
-s
-than it solves: every kernel upgrade might break things until a new driver =
-is
-released. At least with the nouveau, it&#39;s more in sync.  Well, this bug=
- none
-withstanding :)</pre>
+Regards,
+
+Efrem Mc
+
+On Wed, Aug 24, 2016 at 4:35 AM, &lt;<a href=3D"mailto:bugzilla-daemon&#64;=
+freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt; wrote:
+
+<span class=3D"quote">&gt; *<a href=3D"show_bug.cgi?id=3D94990#c63">Comment=
+ # 63</a> &lt;<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"show_bug.cgi?id=3D94990#c63">https://bugs.freedesktop.org/show_b=
+ug.cgi?id=3D94990#c63</a>&gt; on
+&gt; <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"show_bug.cgi?id=3D94990">bug 94990</a> &lt;<a class=3D"bz_bug_li=
+nk=20
+          bz_status_NEW "
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"show_bug.cgi?id=3D94990">https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D94990</a>&gt; from Yann
+&gt; Golanski &lt;<a href=3D"mailto:freedesktop&#64;kierun.org">freedesktop=
+&#64;kierun.org</a>&gt; *</span >
+&gt;
+<span class=3D"quote">&gt; (In reply to Efrem McCrimon from <a href=3D"show=
+_bug.cgi?id=3D94990#c62">comment #62</a> &lt;<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Latest 4.6rc4 kernel, no booting on gtx970"
+   href=3D"show_bug.cgi?id=3D94990#c62">https://bugs.freedesktop.org/show_b=
+ug.cgi?id=3D94990#c62</a>&gt;)&gt; What version of the non-free Nvidia driv=
+er are you using? 370.23 or 367.35?</span >
+&gt;
+<span class=3D"quote">&gt; I do not use the non-free Nvidia driver because =
+it causes many more problems
+&gt; than it solves: every kernel upgrade might break things until a new dr=
+iver is
+&gt; released. At least with the nouveau, it's more in sync.  Well, this bu=
+g none
+&gt; withstanding :)</span >
+&gt;
+<span class=3D"quote">&gt; ------------------------------
+&gt; You are receiving this mail because:</span >
+&gt;
+<span class=3D"quote">&gt;    - You are the assignee for the bug.</span >
+&gt;
+&gt;
+<span class=3D"quote">&gt; _______________________________________________
+&gt; Nouveau mailing list
+&gt; <a href=3D"mailto:Nouveau&#64;lists.freedesktop.org">Nouveau&#64;lists=
+.freedesktop.org</a>
+&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau">htt=
+ps://lists.freedesktop.org/mailman/listinfo/nouveau</a></span >
+&gt;
+&gt;</pre>
         </div>
-      <p></p><span class=3D"">
+      </p>
 
 
       <hr>
@@ -116,19 +183,12 @@ withstanding :)</pre>
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
-    </span></div>
-<br>______________________________<wbr>_________________<br>
-Nouveau mailing list<br>
-<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org=
-org</a><br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau" rel=3D"n=
-oreferrer" target=3D"_blank">https://lists.freedesktop.org/<wbr>mailman/lis=
-tinfo/nouveau</a><br>
-<br></blockquote></div><br></div>
+    </body>
+</html>=
 
---001a11488d8c1c570f053ad6be9e--
+--14720688735.BFfC0ee.18907--
 
---===============0112020388==
+--===============0196105283==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -138,4 +198,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0112020388==--
+--===============0196105283==--
