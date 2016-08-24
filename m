@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97462] Graphics deadlock "ILLEGAL_MTHD" in nouveau
  with mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5
-Date: Wed, 24 Aug 2016 14:59:48 +0000
-Message-ID: <bug-97462-8800-TYT2xldJAt@http.bugs.freedesktop.org/>
+Date: Wed, 24 Aug 2016 15:50:50 +0000
+Message-ID: <bug-97462-8800-hzIOLlJijI@http.bugs.freedesktop.org/>
 References: <bug-97462-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0851145596=="
+Content-Type: multipart/mixed; boundary="===============2045901959=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0851145596==
-Content-Type: multipart/alternative; boundary="14720507872.38CB8.14811";
+--===============2045901959==
+Content-Type: multipart/alternative; boundary="14720538501.d39fE2A.20141";
  charset="UTF-8"
 
 
---14720507872.38CB8.14811
-Date: Wed, 24 Aug 2016 14:59:47 +0000
+--14720538501.d39fE2A.20141
+Date: Wed, 24 Aug 2016 15:50:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,24 +36,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97462
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to wadev from comment #3)
-> WOW. You do quite a work there, aren't you.
->=20
-> Thanks, I will try and build it soon from source but as this is my work
-> machine, it is not quite sure that this will be tomorrow.
+--- Comment #5 from wadev-cl+VPiYnx/0HWmgEVkV9KA@public.gmane.org ---
+Um, wait, what? now this was a straightforward build process.
+I managed to build it in the background in say, 7 minutes.
 
-I'm in no rush. Until then, you can disable all the webgl/acceleration stuf=
-f in
-firefox and it should hopefully not happen again. I believe this can be done
-from about:config.
+I have to leave the office now and have to leave something running, but will
+test it tomorrow and get back to you.
+
+Thanks for assistance.
+
+PS. I had no luck with the usual config settings (not that two changes per =
+hang
+is viable even on the medium run).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14720507872.38CB8.14811
-Date: Wed, 24 Aug 2016 14:59:47 +0000
+--14720538501.d39fE2A.20141
+Date: Wed, 24 Aug 2016 15:50:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,8 +72,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
 h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
@@ -80,20 +81,20 @@ h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462">bug 97462<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+wadev&#64;mailbox.hu" title=3D"wadev&#64;mailbox.hu">wadev&#64;mailbox.hu</=
+a>
 </span></b>
-        <pre>(In reply to wadev from <a href=3D"show_bug.cgi?id=3D97462#c3"=
->comment #3</a>)
-<span class=3D"quote">&gt; WOW. You do quite a work there, aren't you.
-&gt;=20
-&gt; Thanks, I will try and build it soon from source but as this is my work
-&gt; machine, it is not quite sure that this will be tomorrow.</span >
+        <pre>Um, wait, what? now this was a straightforward build process.
+I managed to build it in the background in say, 7 minutes.
 
-I'm in no rush. Until then, you can disable all the webgl/acceleration stuf=
-f in
-firefox and it should hopefully not happen again. I believe this can be done
-from about:config.</pre>
+I have to leave the office now and have to leave something running, but will
+test it tomorrow and get back to you.
+
+Thanks for assistance.
+
+PS. I had no luck with the usual config settings (not that two changes per =
+hang
+is viable even on the medium run).</pre>
         </div>
       </p>
 
@@ -107,9 +108,9 @@ from about:config.</pre>
     </body>
 </html>=
 
---14720507872.38CB8.14811--
+--14720538501.d39fE2A.20141--
 
---===============0851145596==
+--===============2045901959==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0851145596==--
+--===============2045901959==--
