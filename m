@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78530] Memory corruption on Lenovo t440p with runpm
-Date: Wed, 24 Aug 2016 14:05:01 +0000
-Message-ID: <bug-78530-8800-CcLILNAO4l@http.bugs.freedesktop.org/>
-References: <bug-78530-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97462] Graphics deadlock "ILLEGAL_MTHD" in nouveau
+ with mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5
+Date: Wed, 24 Aug 2016 14:30:59 +0000
+Message-ID: <bug-97462-8800-peBpOqm6BZ@http.bugs.freedesktop.org/>
+References: <bug-97462-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2082058346=="
+Content-Type: multipart/mixed; boundary="===============0053112156=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78530-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,47 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2082058346==
-Content-Type: multipart/alternative; boundary="14720475010.1BCCdE.9087";
+--===============0053112156==
+Content-Type: multipart/alternative; boundary="14720490590.B0bd1DbEE.12161";
  charset="UTF-8"
 
 
---14720475010.1BCCdE.9087
-Date: Wed, 24 Aug 2016 14:05:01 +0000
+--14720490590.B0bd1DbEE.12161
+Date: Wed, 24 Aug 2016 14:30:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D78530
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97462
 
-Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> changed:
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This reads like a desync of some sort. The most common cause of this is the
+fact that nouveau + threading =3D fail. I have some preliminary patches whi=
+ch
+kinda-sorta work but not quite done that you can try -
+https://github.com/imirkin/mesa/commits/locking
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-                 CC|                            |peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org
-             Status|REOPENED                    |RESOLVED
-
---- Comment #22 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
-Fixed in v4.8-rc1
-
-commit 692a17dcc2922a91c6bcf11b3321503a3377b1b1
-Author: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Date:   Fri Jul 15 15:12:18 2016 +0200
-
-    drm/nouveau/acpi: fix lockup with PCIe runtime PM
-
-It was confirmed to fix the memory corruption, if it still happens, please
-re-open.
+Chances are you can ssh in from another computer and kill the offending pro=
+cess
+and then things should come back. Not always though.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14720475010.1BCCdE.9087
-Date: Wed, 24 Aug 2016 14:05:01 +0000
+--14720490590.B0bd1DbEE.12161
+Date: Wed, 24 Aug 2016 14:30:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,74 +63,36 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:peter&#64=
-;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"> <span c=
-lass=3D"fn">Peter Wu</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Memory corruption on Lenovo t440p with runpm"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78530">bug 78530<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>peter&#64;lekensteyn.nl
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>REOPENED
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Memory corruption on Lenovo t440p with runpm"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78530#c22">Commen=
-t # 22</a>
+          bz_status_NEW "
+   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
+h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Memory corruption on Lenovo t440p with runpm"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78530">bug 78530<=
+          bz_status_NEW "
+   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
+h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462">bug 97462<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
-> <span class=3D"fn">Peter Wu</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Fixed in v4.8-rc1
+        <pre>This reads like a desync of some sort. The most common cause o=
+f this is the
+fact that nouveau + threading =3D fail. I have some preliminary patches whi=
+ch
+kinda-sorta work but not quite done that you can try -
+<a href=3D"https://github.com/imirkin/mesa/commits/locking">https://github.=
+com/imirkin/mesa/commits/locking</a>
 
-commit 692a17dcc2922a91c6bcf11b3321503a3377b1b1
-Author: Peter Wu &lt;<a href=3D"mailto:peter&#64;lekensteyn.nl">peter&#64;l=
-ekensteyn.nl</a>&gt;
-Date:   Fri Jul 15 15:12:18 2016 +0200
-
-    drm/nouveau/acpi: fix lockup with PCIe runtime PM
-
-It was confirmed to fix the memory corruption, if it still happens, please
-re-open.</pre>
+Chances are you can ssh in from another computer and kill the offending pro=
+cess
+and then things should come back. Not always though.</pre>
         </div>
       </p>
 
@@ -152,9 +106,9 @@ re-open.</pre>
     </body>
 </html>=
 
---14720475010.1BCCdE.9087--
+--14720490590.B0bd1DbEE.12161--
 
---===============2082058346==
+--===============0053112156==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -164,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2082058346==--
+--===============0053112156==--
