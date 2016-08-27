@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97508] Rogue Legacy 4th area with corrupted textures
-Date: Sat, 27 Aug 2016 17:55:35 +0000
-Message-ID: <bug-97508-8800-zdcMvUhMLQ@http.bugs.freedesktop.org/>
-References: <bug-97508-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69882] [NVE6] GPU lockups
+Date: Sat, 27 Aug 2016 18:41:27 +0000
+Message-ID: <bug-69882-8800-gkcKQgFwlm@http.bugs.freedesktop.org/>
+References: <bug-69882-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1793675006=="
+Content-Type: multipart/mixed; boundary="===============0027431082=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97508-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69882-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1793675006==
-Content-Type: multipart/alternative; boundary="14723205350.27f8D2aE.10524";
+--===============0027431082==
+Content-Type: multipart/alternative; boundary="14723232870.A870.17278";
  charset="UTF-8"
 
 
---14723205350.27f8D2aE.10524
-Date: Sat, 27 Aug 2016 17:55:35 +0000
+--14723232870.A870.17278
+Date: Sat, 27 Aug 2016 18:41:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97508
+https://bugs.freedesktop.org/show_bug.cgi?id=3D69882
 
---- Comment #4 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-it doesn't show the issue on 342e68dc60eebb20ac1be9f47800ee9e604354f0
+--- Comment #23 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Still hangs on kernel 4.7.1. This time the journal didn't actually have
+anything in it concerning the hang... Very odd.
+
+Also, when I set the driver to modesetting in xorg.conf.d, it seems to work
+without hanging (but on llvmpipe). So it seems to get triggered by something
+with regards to 3D...
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14723205350.27f8D2aE.10524
-Date: Sat, 27 Aug 2016 17:55:35 +0000
+--14723232870.A870.17278
+Date: Sat, 27 Aug 2016 18:41:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,21 +63,26 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Rogue Legacy 4th area with corrupted textures"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97508#c4">Comment=
- # 4</a>
+          bz_status_REOPENED "
+   title=3D"REOPENED - [NVE6] GPU lockups"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882#c23">Commen=
+t # 23</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Rogue Legacy 4th area with corrupted textures"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97508">bug 97508<=
+          bz_status_REOPENED "
+   title=3D"REOPENED - [NVE6] GPU lockups"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882">bug 69882<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+pastas4&#64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gma=
+il.com&gt;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
 </span></b>
-        <pre>it doesn't show the issue on 342e68dc60eebb20ac1be9f47800ee9e6=
-04354f0</pre>
+        <pre>Still hangs on kernel 4.7.1. This time the journal didn't actu=
+ally have
+anything in it concerning the hang... Very odd.
+
+Also, when I set the driver to modesetting in xorg.conf.d, it seems to work
+without hanging (but on llvmpipe). So it seems to get triggered by something
+with regards to 3D...</pre>
         </div>
       </p>
 
@@ -82,15 +91,14 @@ com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14723205350.27f8D2aE.10524--
+--14723232870.A870.17278--
 
---===============1793675006==
+--===============0027431082==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1793675006==--
+--===============0027431082==--
