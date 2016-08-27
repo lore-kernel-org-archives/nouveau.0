@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97508] New: Rogue Legacy 4th area with corrupted
-	textures
-Date: Sat, 27 Aug 2016 12:34:02 +0000
-Message-ID: <bug-97508-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97508] Rogue Legacy 4th area with corrupted textures
+Date: Sat, 27 Aug 2016 12:34:49 +0000
+Message-ID: <bug-97508-8800-woJw1BMxeC@http.bugs.freedesktop.org/>
+References: <bug-97508-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0172114227=="
+Content-Type: multipart/mixed; boundary="===============0012869718=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-97508-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0172114227==
-Content-Type: multipart/alternative; boundary="14723012420.EbdD.15933";
+--===============0012869718==
+Content-Type: multipart/alternative; boundary="14723012900.eD446fe0.17148";
  charset="UTF-8"
 
 
---14723012420.EbdD.15933
-Date: Sat, 27 Aug 2016 12:34:02 +0000
+--14723012900.eD446fe0.17148
+Date: Sat, 27 Aug 2016 12:34:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,31 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97508
 
-            Bug ID: 97508
-           Summary: Rogue Legacy 4th area with corrupted textures
-           Product: Mesa
-           Version: git
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-attached is an apitrace and a screenshot showing the issue
-
-mesa: git-fb89551
+--- Comment #1 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 126069
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126069&action=3Dedit
+apitrace
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14723012420.EbdD.15933
-Date: Sat, 27 Aug 2016 12:34:02 +0000
+--14723012900.eD446fe0.17148
+Date: Sat, 27 Aug 2016 12:34:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,92 +57,28 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Rogue Legacy 4th area with corrupted textures"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97508">97508</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Rogue Legacy 4th area with corrupted textures
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>karolherbst&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>attached is an apitrace and a screenshot showing the issue
-
-mesa: git-fb89551</pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Rogue Legacy 4th area with corrupted textures"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97508#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Rogue Legacy 4th area with corrupted textures"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97508">bug 97508<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126069=
+" name=3D"attach_126069" title=3D"apitrace">attachment 126069</a> <a href=
+=3D"attachment.cgi?id=3D126069&amp;action=3Dedit" title=3D"apitrace">[detai=
+ls]</a></span>
+apitrace</pre>
         </div>
       </p>
 
@@ -169,9 +93,9 @@ mesa: git-fb89551</pre>
     </body>
 </html>=
 
---14723012420.EbdD.15933--
+--14723012900.eD446fe0.17148--
 
---===============0172114227==
+--===============0012869718==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -181,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0172114227==--
+--===============0012869718==--
