@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97505] X11 does not detect nouveau when using the
- linux kernel EFI Loader (GRUB loader works fine)
-Date: Sat, 27 Aug 2016 00:59:47 +0000
-Message-ID: <bug-97505-8800-usfsO2P0vG@http.bugs.freedesktop.org/>
-References: <bug-97505-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70510] nouveau fails to handle/set resolutions over
+ certain size: Xorg crash on KDE init
+Date: Sat, 27 Aug 2016 05:33:55 +0000
+Message-ID: <bug-70510-8800-DZqXYz3H2p@http.bugs.freedesktop.org/>
+References: <bug-70510-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1479650790=="
+Content-Type: multipart/mixed; boundary="===============0162362034=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97505-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70510-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1479650790==
-Content-Type: multipart/alternative; boundary="14722595871.f60c54f.16529";
+--===============0162362034==
+Content-Type: multipart/alternative; boundary="14722760341.F941180fE.15615";
  charset="UTF-8"
 
 
---14722595871.f60c54f.16529
-Date: Sat, 27 Aug 2016 00:59:47 +0000
+--14722760341.F941180fE.15615
+Date: Sat, 27 Aug 2016 05:33:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97505
+https://bugs.freedesktop.org/show_bug.cgi?id=3D70510
 
---- Comment #4 from Jeremy Huddleston Sequoia <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
-Created attachment 126066
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126066&action=3Dedit
-Xorg.0.log for the boot through the kernel's EFI boot loader
+Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
+
+--- Comment #22 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Resolved with x11-server-xorg-1.18.4-1.mga6(sta1) / 4.7.2.-desktop-1. Nouve=
+au
+now succeeds in xinerama-ing two screens with 1024x768 and another with more
+than FullHD on my NV17M (GeForce4 420 Go).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14722595871.f60c54f.16529
-Date: Sat, 27 Aug 2016 00:59:47 +0000
+--14722760341.F941180fE.15615
+Date: Sat, 27 Aug 2016 05:33:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -57,32 +65,61 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:estellnb&=
+#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;=
+"> <span class=3D"fn">Elmar Stellnberger</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - nouveau fails to handle/set resolutions over c=
+ertain size: Xorg crash on KDE init"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70510">bug 70510<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - X11 does not detect nouveau when using the linux kernel E=
-FI Loader (GRUB loader works fine)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97505#c4">Comment=
- # 4</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - nouveau fails to handle/set resolutions over c=
+ertain size: Xorg crash on KDE init"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70510#c22">Commen=
+t # 22</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - X11 does not detect nouveau when using the linux kernel E=
-FI Loader (GRUB loader works fine)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97505">bug 97505<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - nouveau fails to handle/set resolutions over c=
+ertain size: Xorg crash on KDE init"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70510">bug 70510<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jeremyhu&#64;freedesktop.org" title=3D"Jeremy Huddleston Sequoia &lt;jeremy=
-hu&#64;freedesktop.org&gt;"> <span class=3D"fn">Jeremy Huddleston Sequoia</=
-span></a>
+estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
+l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126066=
-" name=3D"attach_126066" title=3D"Xorg.0.log for the boot through the kerne=
-l's EFI boot loader">attachment 126066</a> <a href=3D"attachment.cgi?id=3D1=
-26066&amp;action=3Dedit" title=3D"Xorg.0.log for the boot through the kerne=
-l's EFI boot loader">[details]</a></span>
-Xorg.0.log for the boot through the kernel's EFI boot loader</pre>
+        <pre>Resolved with x11-server-xorg-1.18.4-1.mga6(sta1) / 4.7.2.-des=
+ktop-1. Nouveau
+now succeeds in xinerama-ing two screens with 1024x768 and another with more
+than FullHD on my NV17M (GeForce4 420 Go).</pre>
         </div>
       </p>
 
@@ -96,9 +133,9 @@ Xorg.0.log for the boot through the kernel's EFI boot loader</pre>
     </body>
 </html>=
 
---14722595871.f60c54f.16529--
+--14722760341.F941180fE.15615--
 
---===============1479650790==
+--===============0162362034==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +145,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1479650790==--
+--===============0162362034==--
