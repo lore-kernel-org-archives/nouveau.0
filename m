@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97508] Rogue Legacy 4th area with corrupted textures
-Date: Sat, 27 Aug 2016 19:35:28 +0000
-Message-ID: <bug-97508-8800-Q28mHbdOsw@http.bugs.freedesktop.org/>
-References: <bug-97508-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97511] New: GM204/modesetting DDX: Using PageFlip
+ causes syncing issue/screen corruption
+Date: Sat, 27 Aug 2016 21:22:11 +0000
+Message-ID: <bug-97511-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0595630136=="
+Content-Type: multipart/mixed; boundary="===============0428337991=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97508-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,54 +19,93 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0595630136==
-Content-Type: multipart/alternative; boundary="14723265270.abBd.28980";
+--===============0428337991==
+Content-Type: multipart/alternative; boundary="14723329310.C1AFef58.10816";
  charset="UTF-8"
 
 
---14723265270.abBd.28980
-Date: Sat, 27 Aug 2016 19:35:27 +0000
+--14723329310.C1AFef58.10816
+Date: Sat, 27 Aug 2016 21:22:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97508
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97511
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+            Bug ID: 97511
+           Summary: GM204/modesetting DDX: Using PageFlip causes syncing
+                    issue/screen corruption
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: freedesktop-bugs-dADiZSo7rdJAfugRpC6u6w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |NOTOURBUG
-             Status|NEW                         |RESOLVED
+Created attachment 126073
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126073&action=3Dedit
+Screenshot showing the issue on Mumble and Audacious
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-After some investigation, this appears to be a game bug. It creates a textu=
-re
-with BGRA4 format, attaches it to a fb, and then tries to render to it. Thi=
-s is
-not always going to work in GL - you first have to check if a fb is complet=
-e. A
-FB might be incomplete for just about any reason, but format support is a b=
-ig
-one.
+After working around bug #94990 so that I can use kernel modesetting, I find
+that when I run a Qt application inside my regular desktop environment,
+Enlightenment E20 (0.20.5) in Xorg server 1.18.4, I get issues with screen
+updates, resulting in artifacts such as shown in the attached screenshot. It
+appears to have issues switching between the current state and a previously
+drawn state.
 
-G80+ hardware supports BGRA4 for texturing but not for rendering. If this
-support is disabled, the state tracker will instead create a BGRA8 texture =
-to
-back the BGRA4 GL texture, and rendering to that will obviously be supporte=
-d.
+The issue does not appear in any non-Qt applications as far as I can tell. =
+Note
+that in the attached screenshot, Mumble is a Qt4 app and Audacious is a Qt5=
+ app
+(here running using the Winamp Classic interface). Only some Qt widgets app=
+ear
+to be affected; so far I've only encountered the issue with menus, graphical
+tab bars (such as the one Audacious uses in its preferences window), toolba=
+rs,
+and however Audacious renders the scrolling text in its Winamp Classic
+interface.
 
-However the issue is in the application.
+After talking with a nouveau dev on IRC (karolherbst), we determined that t=
+he
+issue does not appear when the PageFlip option is set to 0 in an xorg.conf.d
+file. (I will attach the configuration file I use to this bug.) I also mana=
+ged
+to determine that the corruption does not appear when I use another window
+manager without a compositor, such as mwm. Interestingly, the corruption do=
+es
+not reappear if I use mwm together with compton, a standalone compositor.
+
+This bug only started happening after updating to Xorg server version 1.18.4
+from 1.17.4. I have not as yet tested any of the previous 1.18.x releases; =
+if
+this is desired, please let me know.
+
+Summary of system:
+
+* Gentoo Linux, amd64, fully up-to-date, using x11 overlay
+* NVidia GeForce GTX 970 (GM204)
+* Kernel version 4.7.0 (with a modification to bypass bug #94990)
+* Xorg server 1.18.4
+* Mesa 12.0.1
+* Enlightenment 0.20.5
+* Qt versions installed: 4.8.6 and 5.6.1.
+* Examples of Qt applications tested: Mumble (1.2.16), Audacious (3.7.1), V=
+LC
+(2.2.4), Wireshark (2.0.5).
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14723265270.abBd.28980
-Date: Sat, 27 Aug 2016 19:35:27 +0000
+--14723329310.C1AFef58.10816
+Date: Sat, 27 Aug 2016 21:22:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,74 +116,152 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - Rogue Legacy 4th area with corrupted textu=
-res"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97508">bug 97508<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GM204/modesetting DDX: Using PageFlip causes syncing issu=
+e/screen corruption"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97511">97511</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTOURBUG
-           </td>
-         </tr>
+        <tr>
+          <th>Summary</th>
+          <td>GM204/modesetting DDX: Using PageFlip causes syncing issue/sc=
+reen corruption
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>freedesktop-bugs&#64;theblob.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - Rogue Legacy 4th area with corrupted textu=
-res"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97508#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - Rogue Legacy 4th area with corrupted textu=
-res"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97508">bug 97508<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>After some investigation, this appears to be a game bug. It cr=
-eates a texture
-with BGRA4 format, attaches it to a fb, and then tries to render to it. Thi=
-s is
-not always going to work in GL - you first have to check if a fb is complet=
-e. A
-FB might be incomplete for just about any reason, but format support is a b=
-ig
-one.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126073=
+" name=3D"attach_126073" title=3D"Screenshot showing the issue on Mumble an=
+d Audacious">attachment 126073</a> <a href=3D"attachment.cgi?id=3D126073&am=
+p;action=3Dedit" title=3D"Screenshot showing the issue on Mumble and Audaci=
+ous">[details]</a></span>
+Screenshot showing the issue on Mumble and Audacious
 
-G80+ hardware supports BGRA4 for texturing but not for rendering. If this
-support is disabled, the state tracker will instead create a BGRA8 texture =
-to
-back the BGRA4 GL texture, and rendering to that will obviously be supporte=
-d.
+After working around <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"show_bug.cgi?id=3D94990">bug #94990</a> so that I can use kernel=
+ modesetting, I find
+that when I run a Qt application inside my regular desktop environment,
+Enlightenment E20 (0.20.5) in Xorg server 1.18.4, I get issues with screen
+updates, resulting in artifacts such as shown in the attached screenshot. It
+appears to have issues switching between the current state and a previously
+drawn state.
 
-However the issue is in the application.</pre>
+The issue does not appear in any non-Qt applications as far as I can tell. =
+Note
+that in the attached screenshot, Mumble is a Qt4 app and Audacious is a Qt5=
+ app
+(here running using the Winamp Classic interface). Only some Qt widgets app=
+ear
+to be affected; so far I've only encountered the issue with menus, graphical
+tab bars (such as the one Audacious uses in its preferences window), toolba=
+rs,
+and however Audacious renders the scrolling text in its Winamp Classic
+interface.
+
+After talking with a nouveau dev on IRC (karolherbst), we determined that t=
+he
+issue does not appear when the PageFlip option is set to 0 in an xorg.conf.d
+file. (I will attach the configuration file I use to this bug.) I also mana=
+ged
+to determine that the corruption does not appear when I use another window
+manager without a compositor, such as mwm. Interestingly, the corruption do=
+es
+not reappear if I use mwm together with compton, a standalone compositor.
+
+This bug only started happening after updating to Xorg server version 1.18.4
+from 1.17.4. I have not as yet tested any of the previous 1.18.x releases; =
+if
+this is desired, please let me know.
+
+Summary of system:
+
+* Gentoo Linux, amd64, fully up-to-date, using x11 overlay
+* NVidia GeForce GTX 970 (GM204)
+* Kernel version 4.7.0 (with a modification to bypass <a class=3D"bz_bug_li=
+nk=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"show_bug.cgi?id=3D94990">bug #94990</a>)
+* Xorg server 1.18.4
+* Mesa 12.0.1
+* Enlightenment 0.20.5
+* Qt versions installed: 4.8.6 and 5.6.1.
+* Examples of Qt applications tested: Mumble (1.2.16), Audacious (3.7.1), V=
+LC
+(2.2.4), Wireshark (2.0.5).</pre>
         </div>
       </p>
 
@@ -154,15 +270,14 @@ However the issue is in the application.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14723265270.abBd.28980--
+--14723329310.C1AFef58.10816--
 
---===============0595630136==
+--===============0428337991==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -172,4 +287,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0595630136==--
+--===============0428337991==--
