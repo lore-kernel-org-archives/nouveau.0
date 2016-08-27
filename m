@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97505] X11 does not detect nouveau when using the
  linux kernel EFI Loader (GRUB loader works fine)
-Date: Sat, 27 Aug 2016 00:59:28 +0000
-Message-ID: <bug-97505-8800-gl1DmtdRIH@http.bugs.freedesktop.org/>
+Date: Sat, 27 Aug 2016 00:59:47 +0000
+Message-ID: <bug-97505-8800-usfsO2P0vG@http.bugs.freedesktop.org/>
 References: <bug-97505-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0584087431=="
+Content-Type: multipart/mixed; boundary="===============1479650790=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97505-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0584087431==
-Content-Type: multipart/alternative; boundary="14722595680.bD69E9EF.15436";
+--===============1479650790==
+Content-Type: multipart/alternative; boundary="14722595871.f60c54f.16529";
  charset="UTF-8"
 
 
---14722595680.bD69E9EF.15436
-Date: Sat, 27 Aug 2016 00:59:28 +0000
+--14722595871.f60c54f.16529
+Date: Sat, 27 Aug 2016 00:59:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97505
 
---- Comment #3 from Jeremy Huddleston Sequoia <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
-Created attachment 126065
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126065&action=3Dedit
-dmesg for the boot through the kernel's EFI boot loader
+--- Comment #4 from Jeremy Huddleston Sequoia <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
+Created attachment 126066
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126066&action=3Dedit
+Xorg.0.log for the boot through the kernel's EFI boot loader
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14722595680.bD69E9EF.15436
-Date: Sat, 27 Aug 2016 00:59:28 +0000
+--14722595871.f60c54f.16529
+Date: Sat, 27 Aug 2016 00:59:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - X11 does not detect nouveau when using the linux kernel E=
 FI Loader (GRUB loader works fine)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97505#c3">Comment=
- # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97505#c4">Comment=
+ # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - X11 does not detect nouveau when using the linux kernel E=
@@ -77,12 +77,12 @@ jeremyhu&#64;freedesktop.org" title=3D"Jeremy Huddleston Sequoia &lt;jeremy=
 hu&#64;freedesktop.org&gt;"> <span class=3D"fn">Jeremy Huddleston Sequoia</=
 span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126065=
-" name=3D"attach_126065" title=3D"dmesg for the boot through the kernel's E=
-FI boot loader">attachment 126065</a> <a href=3D"attachment.cgi?id=3D126065=
-&amp;action=3Dedit" title=3D"dmesg for the boot through the kernel's EFI bo=
-ot loader">[details]</a></span>
-dmesg for the boot through the kernel's EFI boot loader</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126066=
+" name=3D"attach_126066" title=3D"Xorg.0.log for the boot through the kerne=
+l's EFI boot loader">attachment 126066</a> <a href=3D"attachment.cgi?id=3D1=
+26066&amp;action=3Dedit" title=3D"Xorg.0.log for the boot through the kerne=
+l's EFI boot loader">[details]</a></span>
+Xorg.0.log for the boot through the kernel's EFI boot loader</pre>
         </div>
       </p>
 
@@ -96,9 +96,9 @@ dmesg for the boot through the kernel's EFI boot loader</pre>
     </body>
 </html>=
 
---14722595680.bD69E9EF.15436--
+--14722595871.f60c54f.16529--
 
---===============0584087431==
+--===============1479650790==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0584087431==--
+--===============1479650790==--
