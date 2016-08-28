@@ -1,61 +1,36 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] gr/nv3x: add 0x0597 kelvin 3d class support
-Date: Sat, 27 Aug 2016 21:32:34 -0400
-Message-ID: <1472347954-22920-1-git-send-email-imirkin@alum.mit.edu>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Baoyou Xie <baoyou.xie@linaro.org>
+Subject: [PATCH] fix:overlay: add missing header dependencies
+Date: Sun, 28 Aug 2016 13:02:52 +0800
+Message-ID: <1472360572-28375-1-git-send-email-baoyou.xie@linaro.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@linaro.org, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn
 List-Id: nouveau.vger.kernel.org
 
-VGVzdGVkIG9uIGEgTlYzNC4gVGhlcmUgYXJlIHJlcG9ydHMgb2YgdGhpcyBhbHNvIHdvcmtpbmcg
-b24gdGhlIG90aGVyCm52M3ggY2hpcHMuIExhcmdlbHkgdXNlZnVsIGZvciB0ZXN0aW5nIHNvZnR3
-YXJlIHdyaXR0ZW4gZm9yIE5WMnggd2l0aG91dApoYXZpbmcgdGhlIGFjdHVhbCBoYXJkd2FyZSBh
-dmFpbGFibGUuCgpTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5l
-ZHU+Ci0tLQoKTm90IHN1cmUgd2hldGhlciBudjMwL252MzUgaGF2ZSAweDAwOTcgb3IgMHgwNTk3
-LiBFdmVuIHRob3VnaCB0aGVpciByZXNwZWN0aXZlCmNsYXNzIG51bWJlcnMgYXJlIGxvd2VyLCBp
-dCdzIHN0aWxsIGJlbGlldmFibGUgdGhleSdkIHN1cHBvcnQgMHgwNTk3IHNpbmNlIHRoZQpOVjMw
-IGxpbmUgd2FzIHNvIGxvbmcgdW5kZXIgZGV2ZWxvcG1lbnQuCgpJIGhhdmUgbm90IHZlcmlmaWVk
-IHdoZXRoZXIgbnYzNCBzdXBwb3J0cyAweDAwOTcuIEhvd2V2ZXIgaXQgc2VlbXMgdG8gZG8gMHgw
-NTk3CmxhcmdlbHkgZmluZS4KCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9udjMwLmMgfCAx
-ICsKIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzQuYyB8IDEgKwogZHJtL25vdXZlYXUv
-bnZrbS9lbmdpbmUvZ3IvbnYzNS5jIHwgMSArCiAzIGZpbGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9u
-cygrKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzAuYyBiL2Ry
-bS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzAuYwppbmRleCBmMWUxNWE0Li5iNGUzYzUwIDEw
-MDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9udjMwLmMKKysrIGIvZHJtL25v
-dXZlYXUvbnZrbS9lbmdpbmUvZ3IvbnYzMC5jCkBAIC0xODcsNiArMTg3LDcgQEAgbnYzMF9nciA9
-IHsKIAkJeyAtMSwgLTEsIDB4MDM4YSwgJm52MDRfZ3Jfb2JqZWN0IH0sIC8qIGlmYyAobnYzMCkg
-Ki8KIAkJeyAtMSwgLTEsIDB4MDM5ZSwgJm52MDRfZ3Jfb2JqZWN0IH0sIC8qIHN3enN1cmYgKG52
-MzApICovCiAJCXsgLTEsIC0xLCAweDAzOTcsICZudjA0X2dyX29iamVjdCB9LCAvKiByYW5raW5l
-ICovCisJCXsgLTEsIC0xLCAweDA1OTcsICZudjA0X2dyX29iamVjdCB9LCAvKiBrZWx2aW4gKi8K
-IAkJe30KIAl9CiB9OwpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvbnYz
-NC5jIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvbnYzNC5jCmluZGV4IDMwMGY1ZWQuLmU3
-ZWQwNGIgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzQuYworKysg
-Yi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9udjM0LmMKQEAgLTEyMyw2ICsxMjMsNyBAQCBu
-djM0X2dyID0gewogCQl7IC0xLCAtMSwgMHgwMzg5LCAmbnYwNF9ncl9vYmplY3QgfSwgLyogc2lm
-bSAobnYzMCkgKi8KIAkJeyAtMSwgLTEsIDB4MDM4YSwgJm52MDRfZ3Jfb2JqZWN0IH0sIC8qIGlm
-YyAobnYzMCkgKi8KIAkJeyAtMSwgLTEsIDB4MDM5ZSwgJm52MDRfZ3Jfb2JqZWN0IH0sIC8qIHN3
-enN1cmYgKG52MzApICovCisJCXsgLTEsIC0xLCAweDA1OTcsICZudjA0X2dyX29iamVjdCB9LCAv
-KiBrZWx2aW4gKi8KIAkJeyAtMSwgLTEsIDB4MDY5NywgJm52MDRfZ3Jfb2JqZWN0IH0sIC8qIHJh
-bmtpbmUgKi8KIAkJe30KIAl9CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9n
-ci9udjM1LmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9udjM1LmMKaW5kZXggNzQwZGYw
-Zi4uNWU4YWJhYyAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvbnYzNS5j
-CisrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzUuYwpAQCAtMTI0LDYgKzEyNCw3
-IEBAIG52MzVfZ3IgPSB7CiAJCXsgLTEsIC0xLCAweDAzOGEsICZudjA0X2dyX29iamVjdCB9LCAv
-KiBpZmMgKG52MzApICovCiAJCXsgLTEsIC0xLCAweDAzOWUsICZudjA0X2dyX29iamVjdCB9LCAv
-KiBzd3pzdXJmIChudjMwKSAqLwogCQl7IC0xLCAtMSwgMHgwNDk3LCAmbnYwNF9ncl9vYmplY3Qg
-fSwgLyogcmFua2luZSAqLworCQl7IC0xLCAtMSwgMHgwNTk3LCAmbnYwNF9ncl9vYmplY3QgfSwg
-Lyoga2VsdmluICovCiAJCXt9CiAJfQogfTsKLS0gCjIuNy4zCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+We get 1 warning when build kernel with W=1:
+drivers/gpu/drm/nouveau/dispnv04/overlay.c:496:1: warning: no previous prototype for 'nouveau_overlay_init' [-Wmissing-prototypes]
+
+In fact, this function is declared in disp.h, so this patch
+add missing header dependencies
+
+Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
+---
+ drivers/gpu/drm/nouveau/dispnv04/overlay.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/overlay.c b/drivers/gpu/drm/nouveau/dispnv04/overlay.c
+index ec444ea..a79514d 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/overlay.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/overlay.c
+@@ -33,7 +33,7 @@
+ #include "nouveau_connector.h"
+ #include "nouveau_display.h"
+ #include "nvreg.h"
+-
++#include "disp.h"
+ 
+ struct nouveau_plane {
+ 	struct drm_plane base;
+-- 
+2.7.4
