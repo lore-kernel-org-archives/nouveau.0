@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97511] GM204/modesetting DDX: Using PageFlip causes
- syncing issue/screen corruption
-Date: Sat, 27 Aug 2016 21:23:03 +0000
-Message-ID: <bug-97511-8800-evJb08ojZ4@http.bugs.freedesktop.org/>
-References: <bug-97511-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] gr/nv3x: add 0x0597 kelvin 3d class support
+Date: Sat, 27 Aug 2016 21:32:34 -0400
+Message-ID: <1472347954-22920-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0965820531=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97511-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,93 +15,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0965820531==
-Content-Type: multipart/alternative; boundary="14723329821.1BbbaDBfe.10958";
- charset="UTF-8"
-
-
---14723329821.1BbbaDBfe.10958
-Date: Sat, 27 Aug 2016 21:23:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97511
-
---- Comment #1 from Sophie Hamilton <freedesktop-bugs-dADiZSo7rdJAfugRpC6u6w@public.gmane.org> ---
-Created attachment 126074
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126074&action=3Dedit
-xorg.conf.d file that fixes the issue
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14723329821.1BbbaDBfe.10958
-Date: Sat, 27 Aug 2016 21:23:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM204/modesetting DDX: Using PageFlip causes syncing issu=
-e/screen corruption"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97511#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM204/modesetting DDX: Using PageFlip causes syncing issu=
-e/screen corruption"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97511">bug 97511<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktop-bugs&#64;theblob.org" title=3D"Sophie Hamilton &lt;freedesktop-=
-bugs&#64;theblob.org&gt;"> <span class=3D"fn">Sophie Hamilton</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126074=
-" name=3D"attach_126074" title=3D"xorg.conf.d file that fixes the issue">at=
-tachment 126074</a> <a href=3D"attachment.cgi?id=3D126074&amp;action=3Dedit=
-" title=3D"xorg.conf.d file that fixes the issue">[details]</a></span>
-xorg.conf.d file that fixes the issue</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14723329821.1BbbaDBfe.10958--
-
---===============0965820531==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0965820531==--
+VGVzdGVkIG9uIGEgTlYzNC4gVGhlcmUgYXJlIHJlcG9ydHMgb2YgdGhpcyBhbHNvIHdvcmtpbmcg
+b24gdGhlIG90aGVyCm52M3ggY2hpcHMuIExhcmdlbHkgdXNlZnVsIGZvciB0ZXN0aW5nIHNvZnR3
+YXJlIHdyaXR0ZW4gZm9yIE5WMnggd2l0aG91dApoYXZpbmcgdGhlIGFjdHVhbCBoYXJkd2FyZSBh
+dmFpbGFibGUuCgpTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5l
+ZHU+Ci0tLQoKTm90IHN1cmUgd2hldGhlciBudjMwL252MzUgaGF2ZSAweDAwOTcgb3IgMHgwNTk3
+LiBFdmVuIHRob3VnaCB0aGVpciByZXNwZWN0aXZlCmNsYXNzIG51bWJlcnMgYXJlIGxvd2VyLCBp
+dCdzIHN0aWxsIGJlbGlldmFibGUgdGhleSdkIHN1cHBvcnQgMHgwNTk3IHNpbmNlIHRoZQpOVjMw
+IGxpbmUgd2FzIHNvIGxvbmcgdW5kZXIgZGV2ZWxvcG1lbnQuCgpJIGhhdmUgbm90IHZlcmlmaWVk
+IHdoZXRoZXIgbnYzNCBzdXBwb3J0cyAweDAwOTcuIEhvd2V2ZXIgaXQgc2VlbXMgdG8gZG8gMHgw
+NTk3CmxhcmdlbHkgZmluZS4KCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9udjMwLmMgfCAx
+ICsKIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzQuYyB8IDEgKwogZHJtL25vdXZlYXUv
+bnZrbS9lbmdpbmUvZ3IvbnYzNS5jIHwgMSArCiAzIGZpbGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9u
+cygrKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzAuYyBiL2Ry
+bS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzAuYwppbmRleCBmMWUxNWE0Li5iNGUzYzUwIDEw
+MDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9udjMwLmMKKysrIGIvZHJtL25v
+dXZlYXUvbnZrbS9lbmdpbmUvZ3IvbnYzMC5jCkBAIC0xODcsNiArMTg3LDcgQEAgbnYzMF9nciA9
+IHsKIAkJeyAtMSwgLTEsIDB4MDM4YSwgJm52MDRfZ3Jfb2JqZWN0IH0sIC8qIGlmYyAobnYzMCkg
+Ki8KIAkJeyAtMSwgLTEsIDB4MDM5ZSwgJm52MDRfZ3Jfb2JqZWN0IH0sIC8qIHN3enN1cmYgKG52
+MzApICovCiAJCXsgLTEsIC0xLCAweDAzOTcsICZudjA0X2dyX29iamVjdCB9LCAvKiByYW5raW5l
+ICovCisJCXsgLTEsIC0xLCAweDA1OTcsICZudjA0X2dyX29iamVjdCB9LCAvKiBrZWx2aW4gKi8K
+IAkJe30KIAl9CiB9OwpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvbnYz
+NC5jIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvbnYzNC5jCmluZGV4IDMwMGY1ZWQuLmU3
+ZWQwNGIgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzQuYworKysg
+Yi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9udjM0LmMKQEAgLTEyMyw2ICsxMjMsNyBAQCBu
+djM0X2dyID0gewogCQl7IC0xLCAtMSwgMHgwMzg5LCAmbnYwNF9ncl9vYmplY3QgfSwgLyogc2lm
+bSAobnYzMCkgKi8KIAkJeyAtMSwgLTEsIDB4MDM4YSwgJm52MDRfZ3Jfb2JqZWN0IH0sIC8qIGlm
+YyAobnYzMCkgKi8KIAkJeyAtMSwgLTEsIDB4MDM5ZSwgJm52MDRfZ3Jfb2JqZWN0IH0sIC8qIHN3
+enN1cmYgKG52MzApICovCisJCXsgLTEsIC0xLCAweDA1OTcsICZudjA0X2dyX29iamVjdCB9LCAv
+KiBrZWx2aW4gKi8KIAkJeyAtMSwgLTEsIDB4MDY5NywgJm52MDRfZ3Jfb2JqZWN0IH0sIC8qIHJh
+bmtpbmUgKi8KIAkJe30KIAl9CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9n
+ci9udjM1LmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9udjM1LmMKaW5kZXggNzQwZGYw
+Zi4uNWU4YWJhYyAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvbnYzNS5j
+CisrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MzUuYwpAQCAtMTI0LDYgKzEyNCw3
+IEBAIG52MzVfZ3IgPSB7CiAJCXsgLTEsIC0xLCAweDAzOGEsICZudjA0X2dyX29iamVjdCB9LCAv
+KiBpZmMgKG52MzApICovCiAJCXsgLTEsIC0xLCAweDAzOWUsICZudjA0X2dyX29iamVjdCB9LCAv
+KiBzd3pzdXJmIChudjMwKSAqLwogCQl7IC0xLCAtMSwgMHgwNDk3LCAmbnYwNF9ncl9vYmplY3Qg
+fSwgLyogcmFua2luZSAqLworCQl7IC0xLCAtMSwgMHgwNTk3LCAmbnYwNF9ncl9vYmplY3QgfSwg
+Lyoga2VsdmluICovCiAJCXt9CiAJfQogfTsKLS0gCjIuNy4zCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL25vdXZlYXUK
