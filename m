@@ -1,38 +1,47 @@
 From: Baoyou Xie <baoyou.xie@linaro.org>
-Subject: [PATCH] fix:nouveau_display: mark symbols static where possible
-Date: Sun, 28 Aug 2016 15:28:46 +0800
-Message-ID: <1472369326-19561-1-git-send-email-baoyou.xie@linaro.org>
+Subject: [PATCH] drm/nouveau/pm: mark symbols static where possible
+Date: Mon, 29 Aug 2016 18:33:39 +0800
+Message-ID: <1472466819-15019-1-git-send-email-baoyou.xie@linaro.org>
 Return-path: <linux-kernel-owner@vger.kernel.org>
 Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie
+To: bskeggs@redhat.com, airlied@linux.ie, Julia.Lawall@lip6.fr
 Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@linaro.org, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn
 List-Id: nouveau.vger.kernel.org
 
-We get 1 warning about global functions without a declaration
-in the nouveau nouveau_display driver when building with W=1:
-drivers/gpu/drm/nouveau/nouveau_display.c:96:1: warning: no previous prototype for 'nouveau_display_scanoutpos_head' [-Wmissing-prototypes]
+We get 2 warnings when biuld kernel with W=1:
+drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c:75:1: warning: no previous prototype for 'nvkm_perfsig_find' [-Wmissing-prototypes]
+drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c:703:1: warning: no previous prototype for 'nvkm_perfsrc_new' [-Wmissing-prototypes]
 
-In fact, this function is only used in the file in which it is declared
-and don't need a declaration, but can be made static.
-so this patch marks it 'static'.
+In fact, these functions are only used in the file in which they are
+declared and don't need a declaration, but can be made static.
+so this patch marks these functions with 'static'.
 
 Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_display.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index afbf557..b60ee21 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -92,7 +92,7 @@ calc(int blanks, int blanke, int total, int line)
- 	return line;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c
+index 8616636..dde89a4 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c
+@@ -71,7 +71,7 @@ nvkm_perfdom_find(struct nvkm_pm *pm, int di)
+ 	return NULL;
+ }
+ 
+-struct nvkm_perfsig *
++static struct nvkm_perfsig *
+ nvkm_perfsig_find(struct nvkm_pm *pm, u8 di, u8 si, struct nvkm_perfdom **pdom)
+ {
+ 	struct nvkm_perfdom *dom = *pdom;
+@@ -699,7 +699,7 @@ nvkm_pm_oclass_get(struct nvkm_oclass *oclass, int index,
+ 	return 1;
  }
  
 -int
 +static int
- nouveau_display_scanoutpos_head(struct drm_crtc *crtc, int *vpos, int *hpos,
- 				ktime_t *stime, ktime_t *etime)
+ nvkm_perfsrc_new(struct nvkm_pm *pm, struct nvkm_perfsig *sig,
+ 		 const struct nvkm_specsrc *spec)
  {
 -- 
 2.7.4
