@@ -1,40 +1,37 @@
-From: Arnd Bergmann <arnd@linaro.org>
-Subject: Re: [PATCH] fix:overlay: add missing header dependencies
-Date: Mon, 29 Aug 2016 12:41:18 +0200
-Message-ID: <5154334.AoCXYPCTSK@wuerfel>
-References: <1472360572-28375-1-git-send-email-baoyou.xie@linaro.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7Bit
+From: Baoyou Xie <baoyou.xie@linaro.org>
+Subject: [PATCH] drm/nouveau/gr: mark symbols static where possible
+Date: Mon, 29 Aug 2016 18:55:52 +0800
+Message-ID: <1472468152-18413-1-git-send-email-baoyou.xie@linaro.org>
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1472360572-28375-1-git-send-email-baoyou.xie@linaro.org>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Baoyou Xie <baoyou.xie@linaro.org>
-Cc: bskeggs@redhat.com, airlied@linux.ie, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, xie.baoyou@zte.com.cn
+To: bskeggs@redhat.com, airlied@linux.ie
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@linaro.org, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn
 List-Id: nouveau.vger.kernel.org
 
-On Sunday, August 28, 2016 1:02:52 PM CEST Baoyou Xie wrote:
-> We get 1 warning when build kernel with W=1:
-> drivers/gpu/drm/nouveau/dispnv04/overlay.c:496:1: warning: no previous prototype for 'nouveau_overlay_init' [-Wmissing-prototypes]
-> 
-> In fact, this function is declared in disp.h, so this patch
-> add missing header dependencies
-> 
-> Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
-> 
+We get 1 warning when biuld kernel with W=1:
+drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c:937:1: warning: no previous prototype for 'gm107_grctx_generate_tpcid' [-Wmissing-prototypes]
 
-Acked-by: Arnd Bergmann <arnd@arndb.de>
+In fact, this function is only used in the file in which it is
+declared and don't need a declaration, but can be made static.
+so this patch marks this function with 'static'.
 
-a few general notes:
+Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-- please use my arnd@arndb.de address on patch submissions, not the linaro
-  address.
-
-- for the email subject lines, have a look at what the typical style
-  is for the file. "overlay:" is not a good name here because it's not
-  unique to the driver, so better use "drm/nouveau", which will also
-  get the attention of the right people.
-
-- please drop the "fix:" prefix in the subject.
-
-	Arnd
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c
+index 6d3c501..4c4b5ab 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c
+@@ -933,7 +933,7 @@ gm107_grctx_generate_attrib(struct gf100_grctx *info)
+ 	}
+ }
+ 
+-void
++static void
+ gm107_grctx_generate_tpcid(struct gf100_gr *gr)
+ {
+ 	struct nvkm_device *device = gr->base.engine.subdev.device;
+-- 
+2.7.4
