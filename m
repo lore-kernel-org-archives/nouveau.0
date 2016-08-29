@@ -1,47 +1,37 @@
 From: Baoyou Xie <baoyou.xie@linaro.org>
-Subject: [PATCH v2] drm/nouveau/pm: mark nvkm_perfsig_find() static
-Date: Mon, 29 Aug 2016 20:59:32 +0800
-Message-ID: <1472475572-30231-1-git-send-email-baoyou.xie@linaro.org>
+Subject: [PATCH v2] drm/nouveau/gr: mark gm107_grctx_generate_tpcid() static
+Date: Mon, 29 Aug 2016 21:02:27 +0800
+Message-ID: <1472475747-30296-1-git-send-email-baoyou.xie@linaro.org>
 Return-path: <linux-kernel-owner@vger.kernel.org>
 Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, Julia.Lawall@lip6.fr
+To: bskeggs@redhat.com, airlied@linux.ie
 Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@arndb.de, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn
 List-Id: nouveau.vger.kernel.org
 
-We get 2 warnings when build kernel with W=1:
-drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c:75:1: warning: no previous prototype for 'nvkm_perfsig_find' [-Wmissing-prototypes]
-drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c:703:1: warning: no previous prototype for 'nvkm_perfsrc_new' [-Wmissing-prototypes]
+We get 1 warning when build kernel with W=1:
+drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c:937:1: warning: no previous prototype for 'gm107_grctx_generate_tpcid' [-Wmissing-prototypes]
 
-In fact, these functions are only used in the file in which they are
+In fact, this function is only used in the file in which it is
 declared and don't need a declaration, but can be made static.
-so this patch marks these functions with 'static'.
+so this patch marks this function with 'static'.
 
 Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c
-index 8616636..dde89a4 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c
-@@ -71,7 +71,7 @@ nvkm_perfdom_find(struct nvkm_pm *pm, int di)
- 	return NULL;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c
+index 6d3c501..4c4b5ab 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c
+@@ -933,7 +933,7 @@ gm107_grctx_generate_attrib(struct gf100_grctx *info)
+ 	}
  }
  
--struct nvkm_perfsig *
-+static struct nvkm_perfsig *
- nvkm_perfsig_find(struct nvkm_pm *pm, u8 di, u8 si, struct nvkm_perfdom **pdom)
+-void
++static void
+ gm107_grctx_generate_tpcid(struct gf100_gr *gr)
  {
- 	struct nvkm_perfdom *dom = *pdom;
-@@ -699,7 +699,7 @@ nvkm_pm_oclass_get(struct nvkm_oclass *oclass, int index,
- 	return 1;
- }
- 
--int
-+static int
- nvkm_perfsrc_new(struct nvkm_pm *pm, struct nvkm_perfsig *sig,
- 		 const struct nvkm_specsrc *spec)
- {
+ 	struct nvkm_device *device = gr->base.engine.subdev.device;
 -- 
 2.7.4
