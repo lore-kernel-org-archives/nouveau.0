@@ -1,37 +1,36 @@
 From: Baoyou Xie <baoyou.xie@linaro.org>
-Subject: [PATCH] drm/nouveau/gr/gf117-: mark symbols static where possible
-Date: Mon, 29 Aug 2016 19:09:20 +0800
-Message-ID: <1472468960-13111-1-git-send-email-baoyou.xie@linaro.org>
+Subject: [PATCH v2] drm/nouveau: add missing header dependencies
+Date: Mon, 29 Aug 2016 19:15:37 +0800
+Message-ID: <1472469337-13358-1-git-send-email-baoyou.xie@linaro.org>
 Return-path: <linux-kernel-owner@vger.kernel.org>
 Sender: linux-kernel-owner@vger.kernel.org
 To: bskeggs@redhat.com, airlied@linux.ie
 Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@arndb.de, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn
 List-Id: nouveau.vger.kernel.org
 
-We get 1 warning when biuld kernel with W=1:
-drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf117.c:222:1: warning: no previous prototype for 'gf117_grctx_generate_main' [-Wmissing-prototypes]
+We get 1 warning when build kernel with W=1:
+drivers/gpu/drm/nouveau/dispnv04/overlay.c:496:1: warning: no previous prototype for 'nouveau_overlay_init' [-Wmissing-prototypes]
 
-In fact, this function is only used in the file in which it is
-declared and don't need a declaration, but can be made static.
-so this patch marks this function with 'static'.
+In fact, this function is declared in disp.h, so this patch
+add missing header dependencies
 
 Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf117.c | 2 +-
+ drivers/gpu/drm/nouveau/dispnv04/overlay.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf117.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf117.c
-index c925ade..74a64e3 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf117.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf117.c
-@@ -218,7 +218,7 @@ gf117_grctx_generate_attrib(struct gf100_grctx *info)
- 	}
- }
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/overlay.c b/drivers/gpu/drm/nouveau/dispnv04/overlay.c
+index ec444ea..a79514d 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/overlay.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/overlay.c
+@@ -33,7 +33,7 @@
+ #include "nouveau_connector.h"
+ #include "nouveau_display.h"
+ #include "nvreg.h"
+-
++#include "disp.h"
  
--void
-+static void
- gf117_grctx_generate_main(struct gf100_gr *gr, struct gf100_grctx *info)
- {
- 	struct nvkm_device *device = gr->base.engine.subdev.device;
+ struct nouveau_plane {
+ 	struct drm_plane base;
 -- 
 2.7.4
