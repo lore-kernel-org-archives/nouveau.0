@@ -1,14 +1,16 @@
-From: Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH] drm/nouveau: silence warnings reported during builds with
- W=1
-Date: Tue, 30 Aug 2016 22:04:41 +0200
-Message-ID: <201608302204.41518.arnd@arndb.de>
-References: <1472573836-2759-1-git-send-email-baoyou.xie@linaro.org>
+From: Baoyou Xie <baoyou.xie@linaro.org>
+Subject: Re: [PATCH v2] drm/nouveau/gr: mark gm107_grctx_generate_tpcid()
+ static
+Date: Wed, 31 Aug 2016 00:27:59 +0800
+Message-ID: <CA+DQWkxm=OJxzJfnRuTGRN_PCT4gmQpjd2P8uiOWbqS3BbbsFQ@mail.gmail.com>
+References: <1472475747-30296-1-git-send-email-baoyou.xie@linaro.org>
+ <CAOw6vbL9C1o+-1w1=cuwazhS6CqhofsiBbBZjYvBsDT+_dcQ6A@mail.gmail.com>
+ <CA+DQWkws5sJMnJagECjXdbEKOdFZ8LLbwm9ng6dYt26KUXUQRQ@mail.gmail.com>
+ <201608301440.52481.arnd@arndb.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0610789167=="
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1472573836-2759-1-git-send-email-baoyou.xie@linaro.org>
+In-Reply-To: <201608301440.52481.arnd@arndb.de>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
@@ -18,39 +20,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Baoyou Xie <baoyou.xie@linaro.org>, dri-devel@lists.freedesktop.org
-Cc: rspliet@eclipso.eu, nouveau@lists.freedesktop.org, xie.baoyou@zte.com.cn, linux-kernel@vger.kernel.org, Julia.Lawall@lip6.fr, bskeggs@redhat.com
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Sean Paul <seanpaul@google.com>, nouveau@lists.freedesktop.org, xie.baoyou@zte.com.cn, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, bskeggs@redhat.com
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlc2RheSAzMCBBdWd1c3QgMjAxNiwgQmFveW91IFhpZSB3cm90ZToKPiBXZSBnZXQgc29t
-ZSB3YXJuaW5ncyB3aGVuIGJ1aWxkaW5nIGtlcm5lbCB3aXRoIFc9MToKPiBkcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9jdHhnZjExNy5jOjIyMjoxOiB3YXJuaW5nOiBubyBw
-cmV2aW91cyBwcm90b3R5cGUgZm9yICdnZjExN19ncmN0eF9nZW5lcmF0ZV9tYWluJyBbLVdtaXNz
-aW5nLXByb3RvdHlwZXNdCj4gZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3Iv
-Y3R4bnY1MC5jOjI1NToxOiB3YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9yICdudjUw
-X2dyY3R4X2ZpbGwnIFstV21pc3NpbmctcHJvdG90eXBlc10KPiBkcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9udmttL2VuZ2luZS9nci9jdHhudjUwLmM6MjY1OjE6IHdhcm5pbmc6IG5vIHByZXZpb3Vz
-IHByb3RvdHlwZSBmb3IgJ252NTBfZ3JjdHhfaW5pdCcgWy1XbWlzc2luZy1wcm90b3R5cGVzXQo+
-IC4uLi4KPiAKPiBJbiBmYWN0LCBzb21lIGZ1bmN0aW9ucyBhcmUgb25seSB1c2VkIGluIHRoZSBm
-aWxlIGluIHdoaWNoIHRoZXkKPiBhcmUgZGVjbGFyZWQgYW5kIGRvbid0IG5lZWQgYSBkZWNsYXJh
-dGlvbiwgYnV0IGNhbiBiZSBtYWRlIHN0YXRpYy4KPiBhbmQgb3RoZXJzIGFyZSBkZWNsYXJlZCBp
-biB0aGUgaGVhZGVyIGZpbGVzLCBidXQgbmVlZCB0byBhZGQKPiBtaXNzaW5nIGhlYWRlciBkZXBl
-bmRlbmNpZXMuCj4gCj4gU2lnbmVkLW9mZi1ieTogQmFveW91IFhpZSA8YmFveW91LnhpZUBsaW5h
-cm8ub3JnPgoKVGhlIHBhdGNoIGxvb2tzIHZlcnkgZ29vZCwgYW5kIHRoaXMgaXMgYmV0dGVyIHRo
-YW4gb25lIHBhdGNoIHBlciBmaWxlLiBJIHdvdWxkIHBlcnNvbmFsbHkKZG8gdGhpcyBhcyB0d28g
-cGF0Y2hlcywgYXMgeW91IGFyZSB0b3VjaGluZyBhIG51bWJlciBvZiBmaWxlcyBhbmQgYXJlIGRv
-aW5nIHR3byBzZXBhcmF0ZQp0aGluZ3MgaGVyZS4gQXMgYSBydWxlIG9mIHRodW1iLCB3aGVuIHRo
-ZSBjaGFuZ2Vsb2cgdGV4dCBtZW50aW9ucyB0d28gb3IgbW9yZSB0aGluZ3MKdGhhdCB0aGUgcGF0
-Y2ggZG9lcywgdGhlIHBhdGNoIHNob3VsZCBiZSBzcGxpdCB1cCBzbyB0aGF0IGVhY2ggcGFydCBk
-b2VzIG9uZSB0aGluZy4KQWZ0ZXIgeW91IGRvIHRoYXQsIGl0IGFsc28gYmVjb21lcyBlYXNpZXIg
-dG8gd3JpdGUgYSBnb29kIHN1YmplY3QgbGluZSBsaWtlICJtYXJrCmZ1bmN0aW9uIGFzIHN0YXRp
-YyIgYW5kICJhZGQgbWlzc2luZyBpbmNsdWRlcyIsIHdoaWNoIHRlbGxzIHlvdSBtb3JlIGFib3V0
-IHRoZSBwYXRjaAp0aGFuICJzaWxlbmNlIHdhcm5pbmdzIi4KCkl0J3MgcXVpdGUgbGlrZWx5IHRo
-YXQgdGhlIG5vdXZlYXUgbWFpbnRhaW5lcnMgYXJlIGxlc3MgcGlja3kgdGhhbiBJIGFtIHRob3Vn
-aCwgc28KaWYgdGhleSB3YW50IHRvIGFwcGx5IHRoZSBwYXRjaCBhcy1pcwoKQWNrZWQtYnk6IEFy
-bmQgQmVyZ21hbm4gPGFybmRAYXJuZGIuZGU+CgpPdGhlcndpc2UgcGxlYXNlIHNwbGl0IGFuZCBy
-ZXNlbmQgaW4gYSBmZXcgZGF5cywgaW4gY2FzZSB0aGVyZSBhcmUgb3RoZXIgY29tbWVudHMKdGhh
-dCBuZWVkIHRvIGJlIGFkZHJlc3NlZC4KCglBcm5kCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2RyaS1kZXZlbAo=
+--===============0610789167==
+Content-Type: multipart/alternative; boundary=001a1143e4e4cc90b1053b4c76b4
+
+--001a1143e4e4cc90b1053b4c76b4
+Content-Type: text/plain; charset=UTF-8
+
+dear all:
+    I have resend a patch, which consolidate the 'nouveau' changes into it,
+its subject is "drm/nouveau: silence warnings reported during builds with
+W=1".
+   FYI.
+
+On 30 August 2016 at 20:40, Arnd Bergmann <arnd@arndb.de> wrote:
+
+> On Tuesday 30 August 2016, Baoyou Xie wrote:
+> > On 30 August 2016 at 00:01, Sean Paul <seanpaul@google.com> wrote:
+> >
+> > > On Mon, Aug 29, 2016 at 9:02 AM, Baoyou Xie <baoyou.xie@linaro.org>
+> wrote:
+> > > > We get 1 warning when build kernel with W=1:
+> > > > drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.c:937:1: warning: no
+> > > previous prototype for 'gm107_grctx_generate_tpcid'
+> [-Wmissing-prototypes]
+> > > >
+> > > > In fact, this function is only used in the file in which it is
+> > > > declared and don't need a declaration, but can be made static.
+> > > > so this patch marks this function with 'static'.
+> > > >
+> > >
+> > > It would make things a lot easier if you either consolidated all of
+> > > these static changes into one patch, or released them as a series.
+> > >
+> > >
+> > Do you mean that I need to consolidate all of them into one patch this
+> > time? or next time?
+>
+> I'd suggest consolidating the 'nouveau' changes into a single patch,
+> as this is one (very big) driver and resend that one.
+>
+>         Arnd
+>
+
+--001a1143e4e4cc90b1053b4c76b4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>dear all:<br></div>=C2=A0=C2=A0=C2=A0 I have res=
+end a patch, which consolidate the &#39;nouveau&#39; changes into it, its s=
+ubject is &quot;drm/nouveau: silence warnings reported during builds with W=
+=3D1&quot;.<br></div>=C2=A0=C2=A0 FYI.<br></div><div class=3D"gmail_extra">=
+<br><div class=3D"gmail_quote">On 30 August 2016 at 20:40, Arnd Bergmann <s=
+pan dir=3D"ltr">&lt;<a href=3D"mailto:arnd@arndb.de" target=3D"_blank">arnd=
+@arndb.de</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span cl=
+ass=3D"">On Tuesday 30 August 2016, Baoyou Xie wrote:<br>
+&gt; On 30 August 2016 at 00:01, Sean Paul &lt;<a href=3D"mailto:seanpaul@g=
+oogle.com">seanpaul@google.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; &gt; On Mon, Aug 29, 2016 at 9:02 AM, Baoyou Xie &lt;<a href=3D"mailto=
+:baoyou.xie@linaro.org">baoyou.xie@linaro.org</a>&gt; wrote:<br>
+&gt; &gt; &gt; We get 1 warning when build kernel with W=3D1:<br>
+&gt; &gt; &gt; drivers/gpu/drm/nouveau/nvkm/<wbr>engine/gr/ctxgm107.c:937:1=
+: warning: no<br>
+&gt; &gt; previous prototype for &#39;gm107_grctx_generate_tpcid&#39; [-Wmi=
+ssing-prototypes]<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; In fact, this function is only used in the file in which it =
+is<br>
+&gt; &gt; &gt; declared and don&#39;t need a declaration, but can be made s=
+tatic.<br>
+&gt; &gt; &gt; so this patch marks this function with &#39;static&#39;.<br>
+&gt; &gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt; It would make things a lot easier if you either consolidated all =
+of<br>
+&gt; &gt; these static changes into one patch, or released them as a series=
+.<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; Do you mean that I need to consolidate all of them into one patch this=
+<br>
+&gt; time? or next time?<br>
+<br>
+</span>I&#39;d suggest consolidating the &#39;nouveau&#39; changes into a s=
+ingle patch,<br>
+as this is one (very big) driver and resend that one.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 Arnd<br>
+</font></span></blockquote></div><br></div>
+
+--001a1143e4e4cc90b1053b4c76b4--
+
+--===============0610789167==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============0610789167==--
