@@ -1,41 +1,47 @@
-From: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/acpi: use DSM if bridge does not
- support D3cold
-Date: Tue, 30 Aug 2016 14:01:27 +0300
-Message-ID: <20160830110127.GK1709@lahna.fi.intel.com>
-References: <20160825230054.8649-1-peter@lekensteyn.nl>
+From: Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v2] drm/nouveau/gr: mark gm107_grctx_generate_tpcid()
+ static
+Date: Tue, 30 Aug 2016 14:40:52 +0200
+Message-ID: <201608301440.52481.arnd@arndb.de>
+References: <1472475747-30296-1-git-send-email-baoyou.xie@linaro.org>
+ <CAOw6vbL9C1o+-1w1=cuwazhS6CqhofsiBbBZjYvBsDT+_dcQ6A@mail.gmail.com>
+ <CA+DQWkws5sJMnJagECjXdbEKOdFZ8LLbwm9ng6dYt26KUXUQRQ@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20160825230054.8649-1-peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CA+DQWkws5sJMnJagECjXdbEKOdFZ8LLbwm9ng6dYt26KUXUQRQ@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Baoyou Xie <baoyou.xie@linaro.org>
+Cc: Sean Paul <seanpaul@google.com>, nouveau@lists.freedesktop.org, xie.baoyou@zte.com.cn, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, bskeggs@redhat.com
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBBdWcgMjYsIDIwMTYgYXQgMDE6MDA6NTRBTSArMDIwMCwgUGV0ZXIgV3Ugd3JvdGU6
-Cj4gRXZlbiBpZiBQUjMgc3VwcG9ydCBpcyBhdmFpbGFibGUgb24gdGhlIGJyaWRnZSwgaXQgd2ls
-bCBub3QgYmUgdXNlZCBpZgo+IHRoZSBQQ0kgbGF5ZXIgY29uc2lkZXJzIGl0IHVuYXZhaWxhYmxl
-IChpLmUuIG9uIGFsbCBsYXB0b3BzIGZyb20gMjAxMwo+IGFuZCAyMDE0KS4gRW5zdXJlIHRoYXQg
-dGhpcyBjb25kaXRpb24gaXMgY2hlY2tlZCB0byBhbGxvdyBhIGZhbGxiYWNrIHRvCj4gdGhlIE9w
-dGltdXMgRFNNIGZvciBkZXZpY2UgcG93ZXJvZmYuCj4gCj4gSW5pdGlhbGx5IEkgd2FudGVkIHRv
-IGNhbGwgcGNpX2QzY29sZF9lbmFibGUgYmVmb3JlIGNoZWNraW5nIGJyaWRnZV9kMwo+IChpbiBj
-YXNlIHRoZSB1c2VyIGNoYW5nZWQgZDNjb2xkX2FsbG93ZWQpLCBidXQgdGhhdCBpcyBzdWNoIGFu
-IHVubGlrZWx5Cj4gY2FzZSBhbmQgbGlrZWx5IGZyYWdpbGUgYW55d2F5LiBUaGUgY3VycmVudCBw
-YXRjaCBpcyBzdWdnZXN0ZWQgYnkgTWlrYQo+IGluIGh0dHA6Ly93d3cuc3Bpbmljcy5uZXQvbGlz
-dHMvbGludXgtcGNpL21zZzUyNTk5Lmh0bWwKPiAKPiBDYzogTWlrYSBXZXN0ZXJiZXJnIDxtaWth
-Lndlc3RlcmJlcmdAbGludXguaW50ZWwuY29tPgoKUmV2aWV3ZWQtYnk6IE1pa2EgV2VzdGVyYmVy
-ZyA8bWlrYS53ZXN0ZXJiZXJnQGxpbnV4LmludGVsLmNvbT4KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+T24gVHVlc2RheSAzMCBBdWd1c3QgMjAxNiwgQmFveW91IFhpZSB3cm90ZToKPiBPbiAzMCBBdWd1
+c3QgMjAxNiBhdCAwMDowMSwgU2VhbiBQYXVsIDxzZWFucGF1bEBnb29nbGUuY29tPiB3cm90ZToK
+PiAKPiA+IE9uIE1vbiwgQXVnIDI5LCAyMDE2IGF0IDk6MDIgQU0sIEJhb3lvdSBYaWUgPGJhb3lv
+dS54aWVAbGluYXJvLm9yZz4gd3JvdGU6Cj4gPiA+IFdlIGdldCAxIHdhcm5pbmcgd2hlbiBidWls
+ZCBrZXJuZWwgd2l0aCBXPTE6Cj4gPiA+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5n
+aW5lL2dyL2N0eGdtMTA3LmM6OTM3OjE6IHdhcm5pbmc6IG5vCj4gPiBwcmV2aW91cyBwcm90b3R5
+cGUgZm9yICdnbTEwN19ncmN0eF9nZW5lcmF0ZV90cGNpZCcgWy1XbWlzc2luZy1wcm90b3R5cGVz
+XQo+ID4gPgo+ID4gPiBJbiBmYWN0LCB0aGlzIGZ1bmN0aW9uIGlzIG9ubHkgdXNlZCBpbiB0aGUg
+ZmlsZSBpbiB3aGljaCBpdCBpcwo+ID4gPiBkZWNsYXJlZCBhbmQgZG9uJ3QgbmVlZCBhIGRlY2xh
+cmF0aW9uLCBidXQgY2FuIGJlIG1hZGUgc3RhdGljLgo+ID4gPiBzbyB0aGlzIHBhdGNoIG1hcmtz
+IHRoaXMgZnVuY3Rpb24gd2l0aCAnc3RhdGljJy4KPiA+ID4KPiA+Cj4gPiBJdCB3b3VsZCBtYWtl
+IHRoaW5ncyBhIGxvdCBlYXNpZXIgaWYgeW91IGVpdGhlciBjb25zb2xpZGF0ZWQgYWxsIG9mCj4g
+PiB0aGVzZSBzdGF0aWMgY2hhbmdlcyBpbnRvIG9uZSBwYXRjaCwgb3IgcmVsZWFzZWQgdGhlbSBh
+cyBhIHNlcmllcy4KPiA+Cj4gPgo+IERvIHlvdSBtZWFuIHRoYXQgSSBuZWVkIHRvIGNvbnNvbGlk
+YXRlIGFsbCBvZiB0aGVtIGludG8gb25lIHBhdGNoIHRoaXMKPiB0aW1lPyBvciBuZXh0IHRpbWU/
+CgpJJ2Qgc3VnZ2VzdCBjb25zb2xpZGF0aW5nIHRoZSAnbm91dmVhdScgY2hhbmdlcyBpbnRvIGEg
+c2luZ2xlIHBhdGNoLAphcyB0aGlzIGlzIG9uZSAodmVyeSBiaWcpIGRyaXZlciBhbmQgcmVzZW5k
+IHRoYXQgb25lLgoKCUFybmQKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJp
+LWRldmVsCg==
