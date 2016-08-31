@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97021] Screen locks up randomly while only mouse
- pointer moves, system responsive via ssh
-Date: Wed, 31 Aug 2016 18:19:06 +0000
-Message-ID: <bug-97021-8800-K40M1RtTbT@http.bugs.freedesktop.org/>
-References: <bug-97021-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92306] GL Excess demo renders incorrectly on nv43
+Date: Wed, 31 Aug 2016 20:17:53 +0000
+Message-ID: <bug-92306-8800-rK6V9afpw5@http.bugs.freedesktop.org/>
+References: <bug-92306-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0508234648=="
+Content-Type: multipart/mixed; boundary="===============0812944168=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97021-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92306-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0508234648==
-Content-Type: multipart/alternative; boundary="14726675461.e7dB6.13648";
+--===============0812944168==
+Content-Type: multipart/alternative; boundary="14726746730.eCD0ED.4655";
  charset="UTF-8"
 
 
---14726675461.e7dB6.13648
-Date: Wed, 31 Aug 2016 18:19:06 +0000
+--14726746730.eCD0ED.4655
+Date: Wed, 31 Aug 2016 20:17:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97021
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92306
 
---- Comment #1 from Ali Parsai <ali.parsai-KK0ffGbhmjU@public.gmane.org> ---
-Created attachment 126143
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126143&action=3Dedit
-another complete dmesg I retrieved using ssh on another instance
+Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
+
+--- Comment #18 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Fixed with mesa git, thanks Ilia!
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14726675461.e7dB6.13648
-Date: Wed, 31 Aug 2016 18:19:06 +0000
+--14726746730.eCD0ED.4655
+Date: Wed, 31 Aug 2016 20:17:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -57,31 +62,55 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:randrik&#=
+64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <sp=
+an class=3D"fn">Andrew Randrianasulu</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - GL Excess demo renders incorrectly on nv43"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92306">bug 92306<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Screen locks up randomly while only mouse pointer moves, =
-system responsive via ssh"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97021#c1">Comment=
- # 1</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - GL Excess demo renders incorrectly on nv43"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92306#c18">Commen=
+t # 18</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Screen locks up randomly while only mouse pointer moves, =
-system responsive via ssh"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97021">bug 97021<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - GL Excess demo renders incorrectly on nv43"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92306">bug 92306<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ali.parsai&#64;gmx.com" title=3D"Ali Parsai &lt;ali.parsai&#64;gmx.com&gt;"=
-> <span class=3D"fn">Ali Parsai</span></a>
+randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
+gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126143=
-" name=3D"attach_126143" title=3D"another complete dmesg I retrieved using =
-ssh on another instance">attachment 126143</a> <a href=3D"attachment.cgi?id=
-=3D126143&amp;action=3Dedit" title=3D"another complete dmesg I retrieved us=
-ing ssh on another instance">[details]</a></span>
-another complete dmesg I retrieved using ssh on another instance</pre>
+        <pre>Fixed with mesa git, thanks Ilia!</pre>
         </div>
       </p>
 
@@ -91,13 +120,14 @@ another complete dmesg I retrieved using ssh on another instance</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14726675461.e7dB6.13648--
+--14726746730.eCD0ED.4655--
 
---===============0508234648==
+--===============0812944168==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +137,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0508234648==--
+--===============0812944168==--
