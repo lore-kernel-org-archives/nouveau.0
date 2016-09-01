@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97462] Graphics deadlock "ILLEGAL_MTHD" in nouveau
- with mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5
-Date: Thu, 01 Sep 2016 06:49:09 +0000
-Message-ID: <bug-97462-8800-aRsxik1AHS@http.bugs.freedesktop.org/>
-References: <bug-97462-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97537] nvc0 occasionally crashes in glDrawArrays in
+ a multi-threaded/multi-context app
+Date: Thu, 01 Sep 2016 17:05:00 +0000
+Message-ID: <bug-97537-8800-YQTeNAwqoG@http.bugs.freedesktop.org/>
+References: <bug-97537-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1347145402=="
+Content-Type: multipart/mixed; boundary="===============1092429384=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97537-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1347145402==
-Content-Type: multipart/alternative; boundary="14727125491.0cB5BEa9.24058";
+--===============1092429384==
+Content-Type: multipart/alternative; boundary="14727494990.a7E62fCc1.22775";
  charset="UTF-8"
 
 
---14727125491.0cB5BEa9.24058
-Date: Thu, 1 Sep 2016 06:49:09 +0000
+--14727494990.a7E62fCc1.22775
+Date: Thu, 1 Sep 2016 17:04:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97462
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97537
 
---- Comment #7 from wadev-cl+VPiYnx/0HWmgEVkV9KA@public.gmane.org ---
-Please let me know if it would be better to attach logs next time instead of
-pasting them (for me it'd be more complicated to look inside them, even so =
-that
-no "mime type" for files without extensions).
+--- Comment #3 from shinji.suzuki-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I managed to have glxinfo run with newly built libs through the use of
+LIBGL_DRIVERS_PATH and LD_LIBRARY_PATH env-vars. But once I copy them to the
+system dir (/usr/lib/x86_64_linux_gnu/{|mesa|dri}) and reboot then ibus-ui-=
+gtk3
+fails to load due to segfault. Since the libs also have an issue that glxin=
+fo
+shows incorrect values for "Max core profile version" and "Max compat profi=
+le
+version", "OpenGL shading language version string", I guess I'd give Ubuntu
+16.10 a try.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14727125491.0cB5BEa9.24058
-Date: Thu, 1 Sep 2016 06:49:09 +0000
+--14727494990.a7E62fCc1.22775
+Date: Thu, 1 Sep 2016 17:04:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,25 +70,32 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
-h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462#c7">Comment=
- # 7</a>
+   title=3D"NEW - nvc0 occasionally crashes in glDrawArrays in a multi-thre=
+aded/multi-context app"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97537#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
-h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462">bug 97462<=
+   title=3D"NEW - nvc0 occasionally crashes in glDrawArrays in a multi-thre=
+aded/multi-context app"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97537">bug 97537<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-wadev&#64;mailbox.hu" title=3D"wadev&#64;mailbox.hu">wadev&#64;mailbox.hu</=
-a>
+shinji.suzuki&#64;gmail.com" title=3D"shinji.suzuki&#64;gmail.com">shinji.s=
+uzuki&#64;gmail.com</a>
 </span></b>
-        <pre>Please let me know if it would be better to attach logs next t=
-ime instead of
-pasting them (for me it'd be more complicated to look inside them, even so =
-that
-no &quot;mime type&quot; for files without extensions).</pre>
+        <pre>I managed to have glxinfo run with newly built libs through th=
+e use of
+LIBGL_DRIVERS_PATH and LD_LIBRARY_PATH env-vars. But once I copy them to the
+system dir (/usr/lib/x86_64_linux_gnu/{|mesa|dri}) and reboot then ibus-ui-=
+gtk3
+fails to load due to segfault. Since the libs also have an issue that glxin=
+fo
+shows incorrect values for &quot;Max core profile version&quot; and &quot;M=
+ax compat profile
+version&quot;, &quot;OpenGL shading language version string&quot;, I guess =
+I'd give Ubuntu
+16.10 a try.</pre>
         </div>
       </p>
 
@@ -91,13 +105,14 @@ no &quot;mime type&quot; for files without extensions).</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14727125491.0cB5BEa9.24058--
+--14727494990.a7E62fCc1.22775--
 
---===============1347145402==
+--===============1092429384==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1347145402==--
+--===============1092429384==--
