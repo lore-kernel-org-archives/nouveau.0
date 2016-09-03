@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97588] Disconnecting/Reconnecting monitor results in
  'laggy' graphics and disappearing mouse cursor
-Date: Sat, 03 Sep 2016 22:09:09 +0000
-Message-ID: <bug-97588-8800-0ZrrEV6qcl@http.bugs.freedesktop.org/>
+Date: Sat, 03 Sep 2016 22:15:11 +0000
+Message-ID: <bug-97588-8800-3xUzhxkUBm@http.bugs.freedesktop.org/>
 References: <bug-97588-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0979331198=="
+Content-Type: multipart/mixed; boundary="===============1064882490=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97588-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0979331198==
-Content-Type: multipart/alternative; boundary="14729405481.deB3cC.25251";
+--===============1064882490==
+Content-Type: multipart/alternative; boundary="14729409100.eAef7.25919";
  charset="UTF-8"
 
 
---14729405481.deB3cC.25251
-Date: Sat, 3 Sep 2016 22:09:08 +0000
+--14729409100.eAef7.25919
+Date: Sat, 3 Sep 2016 22:15:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97588
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Hm, 300 interrupts is hardly what I call a storm. Maybe with 3 or 4 more 0'=
-s on
-it...
-
-Try booting with
-
-nouveau.debug=3Ddebug drm.debug=3D14
-
-and see if that reveals anything interesting.
+--- Comment #7 from rik-2ntFt4fPDM4@public.gmane.org ---
+Created attachment 126194
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126194&action=3Dedit
+kernel_log with debugging
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14729405481.deB3cC.25251
-Date: Sat, 3 Sep 2016 22:09:08 +0000
+--14729409100.eAef7.25919
+Date: Sat, 3 Sep 2016 22:15:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
 phics and disappearing mouse cursor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588#c6">Comment=
- # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
@@ -79,18 +73,13 @@ phics and disappearing mouse cursor"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588">bug 97588<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+rik&#64;mief.nl" title=3D"rik&#64;mief.nl">rik&#64;mief.nl</a>
 </span></b>
-        <pre>Hm, 300 interrupts is hardly what I call a storm. Maybe with 3=
- or 4 more 0's on
-it...
-
-Try booting with
-
-nouveau.debug=3Ddebug drm.debug=3D14
-
-and see if that reveals anything interesting.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126194=
+" name=3D"attach_126194" title=3D"kernel_log with debugging">attachment 126=
+194</a> <a href=3D"attachment.cgi?id=3D126194&amp;action=3Dedit" title=3D"k=
+ernel_log with debugging">[details]</a></span>
+kernel_log with debugging</pre>
         </div>
       </p>
 
@@ -104,9 +93,9 @@ and see if that reveals anything interesting.</pre>
     </body>
 </html>=
 
---14729405481.deB3cC.25251--
+--14729409100.eAef7.25919--
 
---===============0979331198==
+--===============1064882490==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0979331198==--
+--===============1064882490==--
