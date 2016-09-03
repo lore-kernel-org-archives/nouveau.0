@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97588] New: Disconnecting/Reconnecting monitor
- results in 'laggy' graphics and disappearing mouse cursor
-Date: Sat, 03 Sep 2016 21:36:52 +0000
-Message-ID: <bug-97588-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97588] Disconnecting/Reconnecting monitor results in
+ 'laggy' graphics and disappearing mouse cursor
+Date: Sat, 03 Sep 2016 21:37:21 +0000
+Message-ID: <bug-97588-8800-oTkCfJb8Vx@http.bugs.freedesktop.org/>
+References: <bug-97588-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2100050879=="
+Content-Type: multipart/mixed; boundary="===============1902824980=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-97588-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2100050879==
-Content-Type: multipart/alternative; boundary="14729386121.0EF29a47D.21536";
+--===============1902824980==
+Content-Type: multipart/alternative; boundary="14729386411.868e2318C.21540";
  charset="UTF-8"
 
 
---14729386121.0EF29a47D.21536
-Date: Sat, 3 Sep 2016 21:36:52 +0000
+--14729386411.868e2318C.21540
+Date: Sat, 3 Sep 2016 21:37:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,81 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97588
 
-            Bug ID: 97588
-           Summary: Disconnecting/Reconnecting monitor results in 'laggy'
-                    graphics and disappearing mouse cursor
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: rik-2ntFt4fPDM4@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 126188
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126188&action=3Dedit
-kernel_log
-
-Overview:
-Whenever I disconnect or reconnect my monitor via HDMI or switch systems wi=
-th
-my HDMI switcher, the screen seems to be laggy and my mouse cursor won't mo=
-ve.
-There seems to be input from the mouse as I can use the 'hidden' cursor to =
-log
-out and log back in which resolves the issue.
-
-I can only describe the effect as being extremely laggy. In chrome I can see
-that tabs change, however content won't show. I can type in the terminal but
-only see some letters appearing (really slowly and random).
-
-Steps to Reproduce:
-
-1) Disconnect HDMI cable
-2) Reconnect
-
-Actual Results:
-Slow and unusable screen
-
-Expected Results:
-Usable screen
-
-Hardware:
-NVIDIA Corporation GM206 [GeForce GTX 960]
-
-Software:
-Fedora 24
-Kernel 4.7.2-201.fc24.x86_64
-
-X.Org X Server 1.18.4
-Release Date: 2016-07-19
-X Protocol Version 11, Revision 0
-Build Operating System:  4.6.4-301.fc24.x86_64=20
-Current Operating System: Linux ElGuapo 4.7.2-201.fc24.x86_64 #1 SMP Fri Au=
-g 26
-15:58:40 UTC 2016 x86_64
-Kernel command line: BOOT_IMAGE=3D/boot/vmlinuz-4.7.2-201.fc24.x86_64
-root=3D/dev/mapper/fedora-root ro rd.lvm.lv=3Dfedora/root rd.lvm.lv=3Dfedor=
-a/swap
-rhgb quiet log_buf_len=3D1M
-Build Date: 25 August 2016  05:27:31PM
-Build ID: xorg-x11-server 1.18.4-4.fc24=20
-Current version of pixman: 0.34.0
-
-xorg-x11-drv-nouveau
-Version     : 1.0.12
-Release     : 4.fc24
+--- Comment #1 from rik-2ntFt4fPDM4@public.gmane.org ---
+Created attachment 126189
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126189&action=3Dedit
+Xorg.0.log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14729386121.0EF29a47D.21536
-Date: Sat, 3 Sep 2016 21:36:52 +0000
+--14729386411.868e2318C.21540
+Date: Sat, 3 Sep 2016 21:37:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -119,146 +57,29 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
 phics and disappearing mouse cursor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588">97588</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Disconnecting/Reconnecting monitor results in 'laggy' graphic=
-s and disappearing mouse cursor
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>rik&#64;mief.nl
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126188=
-" name=3D"attach_126188" title=3D"kernel_log">attachment 126188</a> <a href=
-=3D"attachment.cgi?id=3D126188&amp;action=3Dedit" title=3D"kernel_log">[det=
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
+phics and disappearing mouse cursor"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588">bug 97588<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+rik&#64;mief.nl" title=3D"rik&#64;mief.nl">rik&#64;mief.nl</a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126189=
+" name=3D"attach_126189" title=3D"Xorg.0.log">attachment 126189</a> <a href=
+=3D"attachment.cgi?id=3D126189&amp;action=3Dedit" title=3D"Xorg.0.log">[det=
 ails]</a></span>
-kernel_log
-
-Overview:
-Whenever I disconnect or reconnect my monitor via HDMI or switch systems wi=
-th
-my HDMI switcher, the screen seems to be laggy and my mouse cursor won't mo=
-ve.
-There seems to be input from the mouse as I can use the 'hidden' cursor to =
-log
-out and log back in which resolves the issue.
-
-I can only describe the effect as being extremely laggy. In chrome I can see
-that tabs change, however content won't show. I can type in the terminal but
-only see some letters appearing (really slowly and random).
-
-Steps to Reproduce:
-
-1) Disconnect HDMI cable
-2) Reconnect
-
-Actual Results:
-Slow and unusable screen
-
-Expected Results:
-Usable screen
-
-Hardware:
-NVIDIA Corporation GM206 [GeForce GTX 960]
-
-Software:
-Fedora 24
-Kernel 4.7.2-201.fc24.x86_64
-
-X.Org X Server 1.18.4
-Release Date: 2016-07-19
-X Protocol Version 11, Revision 0
-Build Operating System:  4.6.4-301.fc24.x86_64=20
-Current Operating System: Linux ElGuapo 4.7.2-201.fc24.x86_64 #1 SMP Fri Au=
-g 26
-15:58:40 UTC 2016 x86_64
-Kernel command line: BOOT_IMAGE=3D/boot/vmlinuz-4.7.2-201.fc24.x86_64
-root=3D/dev/mapper/fedora-root ro rd.lvm.lv=3Dfedora/root rd.lvm.lv=3Dfedor=
-a/swap
-rhgb quiet log_buf_len=3D1M
-Build Date: 25 August 2016  05:27:31PM
-Build ID: xorg-x11-server 1.18.4-4.fc24=20
-Current version of pixman: 0.34.0
-
-xorg-x11-drv-nouveau
-Version     : 1.0.12
-Release     : 4.fc24</pre>
+Xorg.0.log</pre>
         </div>
       </p>
 
@@ -272,9 +93,9 @@ Release     : 4.fc24</pre>
     </body>
 </html>=
 
---14729386121.0EF29a47D.21536--
+--14729386411.868e2318C.21540--
 
---===============2100050879==
+--===============1902824980==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -284,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2100050879==--
+--===============1902824980==--
