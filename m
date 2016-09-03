@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97588] Disconnecting/Reconnecting monitor results in
  'laggy' graphics and disappearing mouse cursor
-Date: Sat, 03 Sep 2016 22:28:09 +0000
-Message-ID: <bug-97588-8800-KGTm4LYLQq@http.bugs.freedesktop.org/>
+Date: Sat, 03 Sep 2016 22:36:16 +0000
+Message-ID: <bug-97588-8800-FCDdSY3Qk4@http.bugs.freedesktop.org/>
 References: <bug-97588-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1751215183=="
+Content-Type: multipart/mixed; boundary="===============0546315041=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97588-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1751215183==
-Content-Type: multipart/alternative; boundary="14729416890.E0f4e7E6D.27595";
+--===============0546315041==
+Content-Type: multipart/alternative; boundary="14729421761.cD4D.28231";
  charset="UTF-8"
 
 
---14729416890.E0f4e7E6D.27595
-Date: Sat, 3 Sep 2016 22:28:09 +0000
+--14729421761.cD4D.28231
+Date: Sat, 3 Sep 2016 22:36:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97588
 
---- Comment #11 from rik-2ntFt4fPDM4@public.gmane.org ---
-I am not sure how I can check for messages that are constantly repeating in
-"steady state". I can provide a list of running apps if that helps at all. =
-But
-it is a pretty clean installation (or at least I think so :P ).
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Once you get to a messed up state, ssh in from another machine and run
+
+dmesg -w
+
+And see if new messages keep appearing. If they do, I'd be curious which on=
+es.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14729416890.E0f4e7E6D.27595
-Date: Sat, 3 Sep 2016 22:28:09 +0000
+--14729421761.cD4D.28231
+Date: Sat, 3 Sep 2016 22:36:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
 phics and disappearing mouse cursor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588#c11">Commen=
-t # 11</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588#c12">Commen=
+t # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
@@ -74,13 +76,16 @@ phics and disappearing mouse cursor"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588">bug 97588<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rik&#64;mief.nl" title=3D"rik&#64;mief.nl">rik&#64;mief.nl</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I am not sure how I can check for messages that are constantly=
- repeating in
-&quot;steady state&quot;. I can provide a list of running apps if that help=
-s at all. But
-it is a pretty clean installation (or at least I think so :P ).</pre>
+        <pre>Once you get to a messed up state, ssh in from another machine=
+ and run
+
+dmesg -w
+
+And see if new messages keep appearing. If they do, I'd be curious which on=
+es.</pre>
         </div>
       </p>
 
@@ -94,9 +99,9 @@ it is a pretty clean installation (or at least I think so :P ).</pre>
     </body>
 </html>=
 
---14729416890.E0f4e7E6D.27595--
+--14729421761.cD4D.28231--
 
---===============1751215183==
+--===============0546315041==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1751215183==--
+--===============0546315041==--
