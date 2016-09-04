@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97588] Disconnecting/Reconnecting monitor results in
  'laggy' graphics and disappearing mouse cursor
-Date: Sun, 04 Sep 2016 10:50:22 +0000
-Message-ID: <bug-97588-8800-b8Es1IqcwF@http.bugs.freedesktop.org/>
+Date: Sun, 04 Sep 2016 10:58:51 +0000
+Message-ID: <bug-97588-8800-uczn56LxcA@http.bugs.freedesktop.org/>
 References: <bug-97588-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0420328902=="
+Content-Type: multipart/mixed; boundary="===============0264255217=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97588-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0420328902==
-Content-Type: multipart/alternative; boundary="14729862210.D5c43B.5834";
+--===============0264255217==
+Content-Type: multipart/alternative; boundary="14729867300.9c2c3FC2.7628";
  charset="UTF-8"
 
 
---14729862210.D5c43B.5834
-Date: Sun, 4 Sep 2016 10:50:21 +0000
+--14729867300.9c2c3FC2.7628
+Date: Sun, 4 Sep 2016 10:58:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97588
 
---- Comment #15 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-uhh I remember. At work on a xfce4 machine we also have troubles with a lap=
-top
-+ 2 external monitors on an AMD gpu. After login all screens are black and
-sometimes when reconnecting screens we have really bad artefacts on one of
-them.
-
-Maybe this is a xfce4 issue?
+--- Comment #16 from rik-2ntFt4fPDM4@public.gmane.org ---
+Hmm, it does start to look like this is a XFCE bug instead of nouveau. I'll=
+ try
+and see what happens with another DE. Thanks for all the responses so far, I
+actually learned a lot.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14729862210.D5c43B.5834
-Date: Sun, 4 Sep 2016 10:50:21 +0000
+--14729867300.9c2c3FC2.7628
+Date: Sun, 4 Sep 2016 10:58:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +65,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
 phics and disappearing mouse cursor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588#c15">Commen=
-t # 15</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588#c16">Commen=
+t # 16</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
@@ -77,16 +74,12 @@ phics and disappearing mouse cursor"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588">bug 97588<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+rik&#64;mief.nl" title=3D"rik&#64;mief.nl">rik&#64;mief.nl</a>
 </span></b>
-        <pre>uhh I remember. At work on a xfce4 machine we also have troubl=
-es with a laptop
-+ 2 external monitors on an AMD gpu. After login all screens are black and
-sometimes when reconnecting screens we have really bad artefacts on one of
-them.
-
-Maybe this is a xfce4 issue?</pre>
+        <pre>Hmm, it does start to look like this is a XFCE bug instead of =
+nouveau. I'll try
+and see what happens with another DE. Thanks for all the responses so far, I
+actually learned a lot.</pre>
         </div>
       </p>
 
@@ -100,9 +93,9 @@ Maybe this is a xfce4 issue?</pre>
     </body>
 </html>=
 
---14729862210.D5c43B.5834--
+--14729867300.9c2c3FC2.7628--
 
---===============0420328902==
+--===============0264255217==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0420328902==--
+--===============0264255217==--
