@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97614] occasional screen distortions with nouveau
  under 4.8.0-rc4+
-Date: Tue, 06 Sep 2016 14:47:31 +0000
-Message-ID: <bug-97614-8800-pPpgicso1K@http.bugs.freedesktop.org/>
+Date: Tue, 06 Sep 2016 14:50:25 +0000
+Message-ID: <bug-97614-8800-IpwFArLXeq@http.bugs.freedesktop.org/>
 References: <bug-97614-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2119914795=="
+Content-Type: multipart/mixed; boundary="===============1452609764=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97614-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2119914795==
-Content-Type: multipart/alternative; boundary="14731732511.d8E82e.13018";
+--===============1452609764==
+Content-Type: multipart/alternative; boundary="14731734241.34a1DE7F.13745";
  charset="UTF-8"
 
 
---14731732511.d8E82e.13018
-Date: Tue, 6 Sep 2016 14:47:31 +0000
+--14731734241.34a1DE7F.13745
+Date: Tue, 6 Sep 2016 14:50:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97614
 
---- Comment #3 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 126247
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126247&action=3Dedit
-screenshot2 with xfce4
+--- Comment #4 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+  Note that in the second picture there should be two different images: one=
+ for
+the iiyama X4071UHSU display and another one for the LVDS. What has happene=
+d is
+that parts of the LVDS displayed image have become visible on the HDMI moni=
+tor
+which is wrong (there is only one background image per monitor).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14731732511.d8E82e.13018
-Date: Tue, 6 Sep 2016 14:47:31 +0000
+--14731734241.34a1DE7F.13745
+Date: Tue, 6 Sep 2016 14:50:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +68,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - occasional screen distortions with nouveau under 4.8.0-rc=
 4+"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614#c3">Comment=
- # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614#c4">Comment=
+ # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - occasional screen distortions with nouveau under 4.8.0-rc=
@@ -76,11 +80,13 @@ Auto-Submitted: auto-generated
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126247=
-" name=3D"attach_126247" title=3D"screenshot2 with xfce4">attachment 126247=
-</a> <a href=3D"attachment.cgi?id=3D126247&amp;action=3Dedit" title=3D"scre=
-enshot2 with xfce4">[details]</a></span>
-screenshot2 with xfce4</pre>
+        <pre>  Note that in the second picture there should be two differen=
+t images: one for
+the iiyama X4071UHSU display and another one for the LVDS. What has happene=
+d is
+that parts of the LVDS displayed image have become visible on the HDMI moni=
+tor
+which is wrong (there is only one background image per monitor).</pre>
         </div>
       </p>
 
@@ -94,9 +100,9 @@ screenshot2 with xfce4</pre>
     </body>
 </html>=
 
---14731732511.d8E82e.13018--
+--14731734241.34a1DE7F.13745--
 
---===============2119914795==
+--===============1452609764==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2119914795==--
+--===============1452609764==--
