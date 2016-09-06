@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97614] occasional screen distortions with nouveau
- under 4.8.0-rc4+
-Date: Tue, 06 Sep 2016 14:50:25 +0000
-Message-ID: <bug-97614-8800-IpwFArLXeq@http.bugs.freedesktop.org/>
-References: <bug-97614-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95282] G96: system hang on video playback via vdpau
+Date: Tue, 06 Sep 2016 15:25:00 +0000
+Message-ID: <bug-95282-8800-N4NRZCRCIy@http.bugs.freedesktop.org/>
+References: <bug-95282-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1452609764=="
+Content-Type: multipart/mixed; boundary="===============0593363614=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97614-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1452609764==
-Content-Type: multipart/alternative; boundary="14731734241.34a1DE7F.13745";
+--===============0593363614==
+Content-Type: multipart/alternative; boundary="14731755000.A5eEfDd.20244";
  charset="UTF-8"
 
 
---14731734241.34a1DE7F.13745
-Date: Tue, 6 Sep 2016 14:50:24 +0000
+--14731755000.A5eEfDd.20244
+Date: Tue, 6 Sep 2016 15:25:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97614
+https://bugs.freedesktop.org/show_bug.cgi?id=3D95282
 
---- Comment #4 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-  Note that in the second picture there should be two different images: one=
- for
-the iiyama X4071UHSU display and another one for the LVDS. What has happene=
-d is
-that parts of the LVDS displayed image have become visible on the HDMI moni=
-tor
-which is wrong (there is only one background image per monitor).
+--- Comment #17 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 126248
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126248&action=3Dedit
+dmesg while trying to play with vdpau by xine
+
+ There is not much in the logs except:
+nouveau 0000:01:00.0: bsp: Watchdog interrupt, engine hung.
+
+ tested with kernel 9ca581b50dab6103183396852cc08e440fcda18e and a freshly
+downloaded firmware.
+
+  What may I do in order to get more meaningful debug information? Is vdpau
+playback an issue that is being worked upon?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14731734241.34a1DE7F.13745
-Date: Tue, 6 Sep 2016 14:50:24 +0000
+--14731755000.A5eEfDd.20244
+Date: Tue, 6 Sep 2016 15:25:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,27 +70,33 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - occasional screen distortions with nouveau under 4.8.0-rc=
-4+"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614#c4">Comment=
- # 4</a>
+   title=3D"NEW - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c17">Commen=
+t # 17</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - occasional screen distortions with nouveau under 4.8.0-rc=
-4+"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614">bug 97614<=
+   title=3D"NEW - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282">bug 95282<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>  Note that in the second picture there should be two differen=
-t images: one for
-the iiyama X4071UHSU display and another one for the LVDS. What has happene=
-d is
-that parts of the LVDS displayed image have become visible on the HDMI moni=
-tor
-which is wrong (there is only one background image per monitor).</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126248=
+" name=3D"attach_126248" title=3D"dmesg while trying to play with vdpau by =
+xine">attachment 126248</a> <a href=3D"attachment.cgi?id=3D126248&amp;actio=
+n=3Dedit" title=3D"dmesg while trying to play with vdpau by xine">[details]=
+</a></span>
+dmesg while trying to play with vdpau by xine
+
+ There is not much in the logs except:
+nouveau 0000:01:00.0: bsp: Watchdog interrupt, engine hung.
+
+ tested with kernel 9ca581b50dab6103183396852cc08e440fcda18e and a freshly
+downloaded firmware.
+
+  What may I do in order to get more meaningful debug information? Is vdpau
+playback an issue that is being worked upon?</pre>
         </div>
       </p>
 
@@ -100,9 +110,9 @@ which is wrong (there is only one background image per monitor).</pre>
     </body>
 </html>=
 
---14731734241.34a1DE7F.13745--
+--14731755000.A5eEfDd.20244--
 
---===============1452609764==
+--===============0593363614==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1452609764==--
+--===============0593363614==--
