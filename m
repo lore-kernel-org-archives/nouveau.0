@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97614] occasional screen distortions with nouveau
  under 4.8.0-rc4+
-Date: Tue, 06 Sep 2016 14:44:31 +0000
-Message-ID: <bug-97614-8800-vEbIj4VqGN@http.bugs.freedesktop.org/>
+Date: Tue, 06 Sep 2016 14:45:45 +0000
+Message-ID: <bug-97614-8800-2YtqMbPUt2@http.bugs.freedesktop.org/>
 References: <bug-97614-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0526807849=="
+Content-Type: multipart/mixed; boundary="===============0395720738=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97614-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0526807849==
-Content-Type: multipart/alternative; boundary="14731730711.DD8eDe.12586";
+--===============0395720738==
+Content-Type: multipart/alternative; boundary="14731731440.D220E516.12811";
  charset="UTF-8"
 
 
---14731730711.DD8eDe.12586
-Date: Tue, 6 Sep 2016 14:44:31 +0000
+--14731731440.D220E516.12811
+Date: Tue, 6 Sep 2016 14:45:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97614
 
-Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Hardware|Other                       |x86-64 (AMD64)
-                 OS|All                         |Linux (All)
+--- Comment #1 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 126245
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126245&action=3Dedit
+dmesg excerpt 'grep nouveau'
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14731730711.DD8eDe.12586
-Date: Tue, 6 Sep 2016 14:44:31 +0000
+--14731731440.D220E516.12811
+Date: Tue, 6 Sep 2016 14:45:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,40 +57,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:estellnb&=
-#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;=
-"> <span class=3D"fn">Elmar Stellnberger</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - occasional screen distortions with nouveau under 4.8.0-rc=
+4+"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - occasional screen distortions with nouveau under 4.8.0-rc=
 4+"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614">bug 97614<=
 /a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">OS</td>
-           <td>All
-           </td>
-           <td>Linux (All)
-           </td>
-         </tr></table>
-      <p>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
+l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126245=
+" name=3D"attach_126245" title=3D"dmesg excerpt 'grep nouveau'">attachment =
+126245</a> <a href=3D"attachment.cgi?id=3D126245&amp;action=3Dedit" title=
+=3D"dmesg excerpt 'grep nouveau'">[details]</a></span>
+dmesg excerpt 'grep nouveau'</pre>
+        </div>
       </p>
 
 
@@ -105,9 +94,9 @@ Auto-Submitted: auto-generated
     </body>
 </html>=
 
---14731730711.DD8eDe.12586--
+--14731731440.D220E516.12811--
 
---===============0526807849==
+--===============0395720738==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0526807849==--
+--===============0395720738==--
