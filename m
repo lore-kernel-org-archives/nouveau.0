@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
  upgrade (4.5.1-1 to 4.6.4-1)
-Date: Wed, 07 Sep 2016 04:08:46 +0000
-Message-ID: <bug-97620-8800-TZJ2BkLpV5@http.bugs.freedesktop.org/>
+Date: Wed, 07 Sep 2016 04:09:16 +0000
+Message-ID: <bug-97620-8800-QpnbU6otDm@http.bugs.freedesktop.org/>
 References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0771240186=="
+Content-Type: multipart/mixed; boundary="===============2143062903=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0771240186==
-Content-Type: multipart/alternative; boundary="14732213250.aefC6.29288";
+--===============2143062903==
+Content-Type: multipart/alternative; boundary="14732213561.9F39B5.29329";
  charset="UTF-8"
 
 
---14732213250.aefC6.29288
-Date: Wed, 7 Sep 2016 04:08:45 +0000
+--14732213561.9F39B5.29329
+Date: Wed, 7 Sep 2016 04:09:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,15 +40,15 @@ Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #126259|working kernel version      |4.5.1-1-ARCH video working
-        description|                            |flawlessly
+ Attachment #126259|4.5.1-1-ARCH video working  |dmesg_4.5.1-1-ARCH video
+        description|flawlessly                  |working flawlessly
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14732213250.aefC6.29288
-Date: Wed, 7 Sep 2016 04:08:45 +0000
+--14732213561.9F39B5.29329
+Date: Wed, 7 Sep 2016 04:09:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,9 +80,9 @@ pan class=3D"fn">Luke Tidd</span></a>
          <tr>
            <td style=3D"text-align:right;">Attachment #126259 description</=
 td>
-           <td>working kernel version
-           </td>
            <td>4.5.1-1-ARCH video working flawlessly
+           </td>
+           <td>dmesg_4.5.1-1-ARCH video working flawlessly
            </td>
          </tr></table>
       <p>
@@ -98,9 +98,9 @@ td>
     </body>
 </html>=
 
---14732213250.aefC6.29288--
+--14732213561.9F39B5.29329--
 
---===============0771240186==
+--===============2143062903==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0771240186==--
+--===============2143062903==--
