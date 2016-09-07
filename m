@@ -1,113 +1,47 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
- upgrade (4.5.1-1 to 4.6.4-1)
-Date: Wed, 07 Sep 2016 17:05:05 +0000
-Message-ID: <bug-97620-8800-ZzIOf6RV3Q@http.bugs.freedesktop.org/>
-References: <bug-97620-8800@http.bugs.freedesktop.org/>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: [PATCH] drm/nouveau: Skip fence context seqno check if notifies are
+ enabled
+Date: Wed,  7 Sep 2016 21:21:05 +0100
+Message-ID: <20160907202105.10839-1-chris@chris-wilson.co.uk>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1964021933=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1964021933==
-Content-Type: multipart/alternative; boundary="14732679050.7c320D.24250";
- charset="UTF-8"
-
-
---14732679050.7c320D.24250
-Date: Wed, 7 Sep 2016 17:05:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
-
---- Comment #8 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-FYI a newer kernel (linux-git 4.8rc4.r0.g3eab887-1) didn't help. I also kno=
-cked
-my machine unreachable by trying to `git bisect` without specifying the
-limiting path. I'll test more when I get home from work and can power cycle=
- the
-machine.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14732679050.7c320D.24250
-Date: Wed, 7 Sep 2016 17:05:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
-1-1 to 4.6.4-1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c8">Comment=
- # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
-1-1 to 4.6.4-1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lukeisgreat&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com=
-&gt;"> <span class=3D"fn">Luke Tidd</span></a>
-</span></b>
-        <pre>FYI a newer kernel (linux-git 4.8rc4.r0.g3eab887-1) didn't hel=
-p. I also knocked
-my machine unreachable by trying to `git bisect` without specifying the
-limiting path. I'll test more when I get home from work and can power cycle=
- the
-machine.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14732679050.7c320D.24250--
-
---===============1964021933==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1964021933==--
+SWYgdGhlIGZlbmNlIGNvbnRleHQgaGFzIG5vdGlmaWVzIGVuYWJsZWQsIGVhY2ggb2YgdGhlIGZl
+bmNlcycKRkVOQ0VfRkxBR19TSUdOQUxFRF9CSVQgd2lsbCBiZSB1cGRhdGVkIGZyb20gdGhlIGlu
+dGVycnVwdC4gV2UgY2FuIHJlbHkKb24gdGhpcyBzdGF0dXMgZm9yIHJlcG9ydGluZyB0aGUgY3Vy
+cmVudCBmZW5jZV9pc19zaWduYWxlZCgpIGFuZCBzbwphdm9pZCBhbiBleHBlbnNpdmUgdW5jYWNo
+ZWQgcmVhZC4KClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29u
+LmNvLnVrPgpDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgpDYzogZHJpLWRldmVs
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+LS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZlbmNlLmMgfCAxMCArKysrKysr
+KysrCiAxIGZpbGUgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmVuY2UuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L25vdXZlYXVfZmVuY2UuYwppbmRleCA0YmI5YWI4OTJhZTEuLjdkYWVkNWMzMzA0MyAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mZW5jZS5jCisrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmVuY2UuYwpAQCAtNTEwLDYgKzUxMCwxNiBA
+QCBzdGF0aWMgYm9vbCBub3V2ZWF1X2ZlbmNlX2lzX3NpZ25hbGVkKHN0cnVjdCBmZW5jZSAqZikK
+IAlzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICpjaGFuOwogCWJvb2wgcmV0ID0gZmFsc2U7CiAKKwkv
+KiBJZiB0aGUgbm90aWZ5IGlzIGFscmVhZHkgYWN0aXZlLCB3ZSBjYW4gcmVseSBvbgorCSAqIEZF
+TkNFX0ZMQUdfU0lHTkFMRURfQklUIGJlaW5nIGFjY3VyYXRlIGFuZCBza2lwIGNoZWNraW5nIHRo
+ZQorCSAqIGN1cnJlbnQgc2Vxbm8gYXMgZmN0eC0+cmVhZCgpIHJlcXVpcmVzIGFuIGV4cGVuc2l2
+ZSB1bmNhY2hlZCByZWFkLgorCSAqLworCWlmICh0ZXN0X2JpdChGRU5DRV9GTEFHX1VTRVJfQklU
+UywgJmZlbmNlLT5iYXNlLmZsYWdzKSkKKwkJcmV0dXJuIGZhbHNlOworCisJaWYgKFJFQURfT05D
+RShmY3R4LT5ub3RpZnlfcmVmKSkKKwkJcmV0dXJuIGZhbHNlOworCiAJcmN1X3JlYWRfbG9jaygp
+OwogCWNoYW4gPSByY3VfZGVyZWZlcmVuY2UoZmVuY2UtPmNoYW5uZWwpOwogCWlmIChjaGFuKQot
+LSAKMi45LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
