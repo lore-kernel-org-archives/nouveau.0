@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
  upgrade (4.5.1-1 to 4.6.4-1)
-Date: Wed, 07 Sep 2016 03:41:59 +0000
-Message-ID: <bug-97620-8800-gJQWQ6xy56@http.bugs.freedesktop.org/>
+Date: Wed, 07 Sep 2016 03:56:42 +0000
+Message-ID: <bug-97620-8800-eqI068slwn@http.bugs.freedesktop.org/>
 References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0475879988=="
+Content-Type: multipart/mixed; boundary="===============1729999498=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0475879988==
-Content-Type: multipart/alternative; boundary="14732197181.B2E2E90fc.26382";
+--===============1729999498==
+Content-Type: multipart/alternative; boundary="14732206021.98e41.27930";
  charset="UTF-8"
 
 
---14732197181.B2E2E90fc.26382
-Date: Wed, 7 Sep 2016 03:41:58 +0000
+--14732206021.98e41.27930
+Date: Wed, 7 Sep 2016 03:56:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,16 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Your 4.6 kernel is being booted with 'nomodeset'. That disables the nouveau
-kernel driver entirely.
+--- Comment #3 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 126262
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126262&action=3Dedit
+dmesg_4.6.7-rt11-2-rt (without nomodeset)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14732197181.B2E2E90fc.26382
-Date: Wed, 7 Sep 2016 03:41:58 +0000
+--14732206021.98e41.27930
+Date: Wed, 7 Sep 2016 03:56:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
 1-1 to 4.6.4-1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
@@ -72,12 +73,15 @@ Auto-Submitted: auto-generated
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+lukeisgreat&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com=
+&gt;"> <span class=3D"fn">Luke Tidd</span></a>
 </span></b>
-        <pre>Your 4.6 kernel is being booted with 'nomodeset'. That disable=
-s the nouveau
-kernel driver entirely.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126262=
+" name=3D"attach_126262" title=3D"dmesg_4.6.7-rt11-2-rt (without nomodeset)=
+">attachment 126262</a> <a href=3D"attachment.cgi?id=3D126262&amp;action=3D=
+edit" title=3D"dmesg_4.6.7-rt11-2-rt (without nomodeset)">[details]</a></sp=
+an>
+dmesg_4.6.7-rt11-2-rt (without nomodeset)</pre>
         </div>
       </p>
 
@@ -91,9 +95,9 @@ kernel driver entirely.</pre>
     </body>
 </html>=
 
---14732197181.B2E2E90fc.26382--
+--14732206021.98e41.27930--
 
---===============0475879988==
+--===============1729999498==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0475879988==--
+--===============1729999498==--
