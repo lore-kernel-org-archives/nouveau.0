@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
  upgrade (4.5.1-1 to 4.6.4-1)
-Date: Wed, 07 Sep 2016 04:09:45 +0000
-Message-ID: <bug-97620-8800-iSiliyuuHW@http.bugs.freedesktop.org/>
+Date: Wed, 07 Sep 2016 04:20:41 +0000
+Message-ID: <bug-97620-8800-yjVrQaocj7@http.bugs.freedesktop.org/>
 References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0189282762=="
+Content-Type: multipart/mixed; boundary="===============1664083860=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0189282762==
-Content-Type: multipart/alternative; boundary="14732213850.a7f89.29381";
+--===============1664083860==
+Content-Type: multipart/alternative; boundary="14732220412.4fBB.30114";
  charset="UTF-8"
 
 
---14732213850.a7f89.29381
-Date: Wed, 7 Sep 2016 04:09:45 +0000
+--14732220412.4fBB.30114
+Date: Wed, 7 Sep 2016 04:20:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,37 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
 
---- Comment #6 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 126267
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126267&action=3Dedit
-lspci -v
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Hrmph. Well it looks like your GPU just goes nuts.
+
+[    9.933619] nouveau 0000:01:00.0: bus: MMIO write of 00000002 FAULT at
+13b154 [ IBUS ]
+[    9.936957] nouveau 0000:01:00.0: bus: MMIO write of 00000000 FAULT at
+61019c [ IBUS ]
+
+followed by a ton more 610xxx errors. 610xxx is PDISPLAY stuff, but 13b154 =
+is
+in PXBAR.GPC_*. I also can't find any way that we'd be writing to that
+register, at least nothing too direct. Something we do greatly upsets the c=
+hip
+though.
+
+I looked through the nouveau changes between 4.5 and 4.6, and while there w=
+as a
+ton of stuff, nothing jumps out at me.
+
+Can you do a git bisect on the kernel between v4.5 and v4.6 (you can restri=
+ct
+it to drivers/gpu/drm/nouveau) to figure out which change killed it?
+
+Separately, you could see if it magically got fixed in v4.7 or v4.8-rcN.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14732213850.a7f89.29381
-Date: Wed, 7 Sep 2016 04:09:45 +0000
+--14732220412.4fBB.30114
+Date: Wed, 7 Sep 2016 04:20:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +84,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
 1-1 to 4.6.4-1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c6">Comment=
- # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
@@ -73,14 +93,33 @@ Auto-Submitted: auto-generated
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lukeisgreat&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com=
-&gt;"> <span class=3D"fn">Luke Tidd</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126267=
-" name=3D"attach_126267" title=3D"lspci -v">attachment 126267</a> <a href=
-=3D"attachment.cgi?id=3D126267&amp;action=3Dedit" title=3D"lspci -v">[detai=
-ls]</a></span>
-lspci -v</pre>
+        <pre>Hrmph. Well it looks like your GPU just goes nuts.
+
+[    9.933619] nouveau 0000:01:00.0: bus: MMIO write of 00000002 FAULT at
+13b154 [ IBUS ]
+[    9.936957] nouveau 0000:01:00.0: bus: MMIO write of 00000000 FAULT at
+61019c [ IBUS ]
+
+followed by a ton more 610xxx errors. 610xxx is PDISPLAY stuff, but 13b154 =
+is
+in PXBAR.GPC_*. I also can't find any way that we'd be writing to that
+register, at least nothing too direct. Something we do greatly upsets the c=
+hip
+though.
+
+I looked through the nouveau changes between 4.5 and 4.6, and while there w=
+as a
+ton of stuff, nothing jumps out at me.
+
+Can you do a git bisect on the kernel between v4.5 and v4.6 (you can restri=
+ct
+it to drivers/gpu/drm/nouveau) to figure out which change killed it?
+
+Separately, you could see if it magically got fixed in v4.7 or v4.8-rcN.</p=
+re>
         </div>
       </p>
 
@@ -94,9 +133,9 @@ lspci -v</pre>
     </body>
 </html>=
 
---14732213850.a7f89.29381--
+--14732220412.4fBB.30114--
 
---===============0189282762==
+--===============1664083860==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +145,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0189282762==--
+--===============1664083860==--
