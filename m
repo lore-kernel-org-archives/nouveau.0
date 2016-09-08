@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Thu, 08 Sep 2016 10:49:45 +0000
-Message-ID: <bug-94990-8800-t7p89qvHqO@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 96737] [GLX] Xsession Log In breakage - Switch User
+ / Switch To Greeter / VT Switch related
+Date: Thu, 08 Sep 2016 15:51:28 +0000
+Message-ID: <bug-96737-8800-AH1r3NMKFu@http.bugs.freedesktop.org/>
+References: <bug-96737-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1304992735=="
+Content-Type: multipart/mixed; boundary="===============0787799299=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-96737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1304992735==
-Content-Type: multipart/alternative; boundary="14733317854.Df05eCc8a.16809";
+--===============0787799299==
+Content-Type: multipart/alternative; boundary="14733498881.E8ccef6e.5341";
  charset="UTF-8"
 
 
---14733317854.Df05eCc8a.16809
-Date: Thu, 8 Sep 2016 10:49:45 +0000
+--14733498881.E8ccef6e.5341
+Date: Thu, 8 Sep 2016 15:51:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96737
 
---- Comment #70 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
-@Ben: definitely neither rushing nor pestering you but is there an ETA for
-this?=20=20
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Is there anything I can do to help there?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+          Component|GLX                         |Drivers/DRI/nouveau
+         QA Contact|mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |org                         |rg
+           Assignee|mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |org                         |rg
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14733317854.Df05eCc8a.16809
-Date: Thu, 8 Sep 2016 10:49:45 +0000
+--14733498881.E8ccef6e.5341
+Date: Thu, 8 Sep 2016 15:51:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,29 +63,48 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pomidorab=
+elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
+"> <span class=3D"fn">poma</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c70">Commen=
-t # 70</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+   title=3D"NEW - [GLX] Xsession Log In breakage - Switch User / Switch To =
+Greeter / VT Switch related"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737">bug 96737<=
 /a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
-un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
-</span></b>
-        <pre>&#64;Ben: definitely neither rushing nor pestering you but is =
-there an ETA for
-this?=20=20
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Is there anything I can do to help there?</pre>
-        </div>
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>GLX
+           </td>
+           <td>Drivers/DRI/nouveau
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">QA Contact</td>
+           <td>mesa-dev&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>mesa-dev&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -88,14 +112,15 @@ Is there anything I can do to help there?</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14733317854.Df05eCc8a.16809--
+--14733498881.E8ccef6e.5341--
 
---===============1304992735==
+--===============0787799299==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +130,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1304992735==--
+--===============0787799299==--
