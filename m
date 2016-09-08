@@ -1,57 +1,108 @@
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [PATCH] drm/nouveau: Skip fence context seqno check if notifies
- are enabled
-Date: Wed, 7 Sep 2016 21:40:37 +0100
-Message-ID: <20160907204037.GA28919@nuc-i3427.alporthouse.com>
-References: <20160907202105.10839-1-chris@chris-wilson.co.uk>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Thu, 08 Sep 2016 10:49:45 +0000
+Message-ID: <bug-94990-8800-t7p89qvHqO@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20160907202105.10839-1-chris@chris-wilson.co.uk>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1304992735=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBTZXAgMDcsIDIwMTYgYXQgMDk6MjE6MDVQTSArMDEwMCwgQ2hyaXMgV2lsc29uIHdy
-b3RlOgo+IElmIHRoZSBmZW5jZSBjb250ZXh0IGhhcyBub3RpZmllcyBlbmFibGVkLCBlYWNoIG9m
-IHRoZSBmZW5jZXMnCj4gRkVOQ0VfRkxBR19TSUdOQUxFRF9CSVQgd2lsbCBiZSB1cGRhdGVkIGZy
-b20gdGhlIGludGVycnVwdC4gV2UgY2FuIHJlbHkKPiBvbiB0aGlzIHN0YXR1cyBmb3IgcmVwb3J0
-aW5nIHRoZSBjdXJyZW50IGZlbmNlX2lzX3NpZ25hbGVkKCkgYW5kIHNvCj4gYXZvaWQgYW4gZXhw
-ZW5zaXZlIHVuY2FjaGVkIHJlYWQuCj4gCj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxj
-aHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0
-LmNvbT4KPiBDYzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IENjOiBub3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2ZlbmNlLmMgfCAxMCArKysrKysrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCAxMCBpbnNl
-cnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfZmVuY2UuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmVuY2UuYwo+IGlu
-ZGV4IDRiYjlhYjg5MmFlMS4uN2RhZWQ1YzMzMDQzIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZmVuY2UuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZmVuY2UuYwo+IEBAIC01MTAsNiArNTEwLDE2IEBAIHN0YXRpYyBib29sIG5v
-dXZlYXVfZmVuY2VfaXNfc2lnbmFsZWQoc3RydWN0IGZlbmNlICpmKQo+ICAJc3RydWN0IG5vdXZl
-YXVfY2hhbm5lbCAqY2hhbjsKPiAgCWJvb2wgcmV0ID0gZmFsc2U7Cj4gIAo+ICsJLyogSWYgdGhl
-IG5vdGlmeSBpcyBhbHJlYWR5IGFjdGl2ZSwgd2UgY2FuIHJlbHkgb24KPiArCSAqIEZFTkNFX0ZM
-QUdfU0lHTkFMRURfQklUIGJlaW5nIGFjY3VyYXRlIGFuZCBza2lwIGNoZWNraW5nIHRoZQo+ICsJ
-ICogY3VycmVudCBzZXFubyBhcyBmY3R4LT5yZWFkKCkgcmVxdWlyZXMgYW4gZXhwZW5zaXZlIHVu
-Y2FjaGVkIHJlYWQuCj4gKwkgKi8KPiArCWlmICh0ZXN0X2JpdChGRU5DRV9GTEFHX1VTRVJfQklU
-UywgJmZlbmNlLT5iYXNlLmZsYWdzKSkKPiArCQlyZXR1cm4gZmFsc2U7Cj4gKwo+ICsJaWYgKFJF
-QURfT05DRShmY3R4LT5ub3RpZnlfcmVmKSkKPiArCQlyZXR1cm4gZmFsc2U7CgpNaXNzZWQgdGhh
-dCBub3V2ZWF1X2ZlbmNlX2lzX3NpZ25hbGVkKCkgaXMgY2FsbGVkIGFmdGVyIGZpcnN0IGVuYWJs
-aW5nCnRoZSBpbnRlcnJ1cHQgLSBhbmQgdGhlcmUgdGhlIHVuY2FjaGVkIHJlYWQgaXMgcmVxdWly
-ZWQgaW4gY2FzZSB0aGUKc2Vxbm8gcGFzc2VkIGJlZm9yZSB0aGUgaW50ZXJydXB0cyB3ZXJlIGVu
-YWJsZWQuCgpJbiB0aGF0IGNhc2Ugd2UganVzdCB3YW50IHRoZSB0ZXN0X2JpdCBhbmQgbm90IHRo
-ZSBmY3R4LT5ub3RpZnlfcmVmCmNoZWNrLgotQ2hyaXMKCi0tIApDaHJpcyBXaWxzb24sIEludGVs
-IE9wZW4gU291cmNlIFRlY2hub2xvZ3kgQ2VudHJlCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============1304992735==
+Content-Type: multipart/alternative; boundary="14733317854.Df05eCc8a.16809";
+ charset="UTF-8"
+
+
+--14733317854.Df05eCc8a.16809
+Date: Thu, 8 Sep 2016 10:49:45 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #70 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
+@Ben: definitely neither rushing nor pestering you but is there an ETA for
+this?=20=20
+
+Is there anything I can do to help there?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14733317854.Df05eCc8a.16809
+Date: Thu, 8 Sep 2016 10:49:45 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c70">Commen=
+t # 70</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
+un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
+</span></b>
+        <pre>&#64;Ben: definitely neither rushing nor pestering you but is =
+there an ETA for
+this?=20=20
+
+Is there anything I can do to help there?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14733317854.Df05eCc8a.16809--
+
+--===============1304992735==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1304992735==--
