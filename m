@@ -1,37 +1,42 @@
-From: Thomas Duellmann <thfrdue-Mmb7MZpHnFY@public.gmane.org>
-Subject: New official version to get fixes/improvements into
- distribution packages
-Date: Tue, 13 Sep 2016 10:35:00 +0000
-Message-ID: <ee1452d8-18f6-23ea-3336-3579a3b323fd@gmx.de>
-Reply-To: thfrdue-Mmb7MZpHnFY@public.gmane.org
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Baoyou Xie <baoyou.xie@linaro.org>
+Subject: [PATCH] drm/nouveau/disp: remove unused function in sorg94.c
+Date: Tue, 13 Sep 2016 20:17:32 +0800
+Message-ID: <1473769052-9158-1-git-send-email-baoyou.xie@linaro.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@arndb.de, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8gZXZlcnlib2R5LAoKSSB3b3VsZCBsaWtlIHRvIGFzayB3aGV0aGVyIHRoZXJlIHdpbGwg
-YmUgbmV3IG9mZmljaWFsIHZlcnNpb24gb2YKbm91dmVhdSBiZWNhdXNlIEkgY3VycmVudGx5IGhh
-dmUgdG8gYnVpbGQgbXkgb3duIG5vdXZlYXUgcGFja2FnZSB0byBoYXZlCmEgd29ya2luZyBtdWx0
-aS1zY3JlZW4gZW52aXJvbm1lbnQuIFRoaXMgaXMgZHVlIHRvIHNvbWUgZml4ZXMgdGhhdCB3ZXJl
-CmFwcGxpZWQgYWZ0ZXIgdGhlIDEuMC4xMiByZWxlYXNlLgoKQXMgSSBndWVzcyB0aGF0IEkgYW0g
-bm90IHRoZSBvbmx5IG9uZSB0aGF0IHVzZXMgYSBkaXN0cmlidXRpb24gdGhhdApyZWxpZXMgb24g
-dGhlIChtb3N0IHJlY2VudCkgb2ZmaWNpYWwgcmVsZWFzZXMgcmF0aGVyIHRoYW4gbW9yZSBvciBs
-ZXNzCnJhbmRvbWx5IHNlbGVjdGVkIGdpdCBjb21taXRzIGZvciBjcmVhdGluZyBwYWNrYWdlcy4K
-SSBqdXN0IHdhbnRlZCB0byByYWlzZSB0aGlzIHF1ZXN0aW9uIGFuZCB3b3VsZCBhcHByZWNpYXRl
-IGl0LCBpZiBJIGNvdWxkCmdldCBiYWNrIHRvIG9mZmljaWFsIHBhY2thZ2UgcmVsZWFzZXMgcmF0
-aGVyIHRoYW4gY3VzdG9tLWJ1aWx0IG9uZXMuCgpUaGFuayB5b3UgZm9yIHlvdXIgYXR0ZW50aW9u
-LgoKQmVzdCByZWdhcmRzClRob21hcwoKCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbm91dmVhdQo=
+We get 1 warning when building kernel with W=1:
+drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c:49:1: warning: no previous prototype for 'g94_sor_output_new' [-Wmissing-prototypes]
+
+In fact, this function is called by no one and not exported,
+so this patch removes it.
+
+Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c
+index 1bb9d66..4510cb6 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c
+@@ -45,14 +45,6 @@ static const struct nvkm_output_func
+ g94_sor_output_func = {
+ };
+ 
+-int
+-g94_sor_output_new(struct nvkm_disp *disp, int index,
+-		   struct dcb_output *dcbE, struct nvkm_output **poutp)
+-{
+-	return nvkm_output_new_(&g94_sor_output_func, disp,
+-				index, dcbE, poutp);
+-}
+-
+ /*******************************************************************************
+  * DisplayPort
+  ******************************************************************************/
+-- 
+2.7.4
