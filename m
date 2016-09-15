@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92438] Segfault in pushbuf_kref on nv50 when
  rendering from multiple threads
-Date: Thu, 15 Sep 2016 04:09:03 +0000
-Message-ID: <bug-92438-8800-JbKHIXDV1F@http.bugs.freedesktop.org/>
+Date: Thu, 15 Sep 2016 04:09:32 +0000
+Message-ID: <bug-92438-8800-pkNId52IPG@http.bugs.freedesktop.org/>
 References: <bug-92438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0277240106=="
+Content-Type: multipart/mixed; boundary="===============0790672940=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0277240106==
-Content-Type: multipart/alternative; boundary="14739125431.6cd20Cdf.21333";
+--===============0790672940==
+Content-Type: multipart/alternative; boundary="14739125710.FB62.21092";
  charset="UTF-8"
 
 
---14739125431.6cd20Cdf.21333
-Date: Thu, 15 Sep 2016 04:09:03 +0000
+--14739125710.FB62.21092
+Date: Thu, 15 Sep 2016 04:09:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,17 +40,16 @@ Daniel van Vugt <daniel.van.vugt-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> change
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Segfault in pushbuf_kref    |Segfault in pushbuf_kref on
-                   |when running the android    |nv50 when rendering from
-                   |emulator (qemu) on nv50     |multiple threads
+           See Also|                            |https://launchpad.net/bugs/
+                   |                            |1553328
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14739125431.6cd20Cdf.21333
-Date: Thu, 15 Sep 2016 04:09:03 +0000
+--14739125710.FB62.21092
+Date: Thu, 15 Sep 2016 04:09:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,12 +79,11 @@ iple threads"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>Segfault in pushbuf_kref when running the android emulator (=
-qemu) on nv50
+           <td style=3D"text-align:right;">See Also</td>
+           <td>
+               &nbsp;
            </td>
-           <td>Segfault in pushbuf_kref on nv50 when rendering from multipl=
-e threads
+           <td>https://launchpad.net/bugs/1553328
            </td>
          </tr></table>
       <p>
@@ -102,9 +100,9 @@ e threads
     </body>
 </html>=
 
---14739125431.6cd20Cdf.21333--
+--14739125710.FB62.21092--
 
---===============0277240106==
+--===============0790672940==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0277240106==--
+--===============0790672940==--
