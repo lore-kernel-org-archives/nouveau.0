@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97588] Disconnecting/Reconnecting monitor results in
- 'laggy' graphics and disappearing mouse cursor
-Date: Sun, 18 Sep 2016 15:51:47 +0000
-Message-ID: <bug-97588-8800-9OjpTmShHo@http.bugs.freedesktop.org/>
-References: <bug-97588-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
+ upgrade (4.5.1-1 to 4.6.4-1)
+Date: Sun, 18 Sep 2016 23:19:46 +0000
+Message-ID: <bug-97620-8800-Z7PS3dAJlA@http.bugs.freedesktop.org/>
+References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0701103054=="
+Content-Type: multipart/mixed; boundary="===============0105151710=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97588-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +21,64 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0701103054==
-Content-Type: multipart/alternative; boundary="14742139060.ffEb.8281";
+--===============0105151710==
+Content-Type: multipart/alternative; boundary="14742407861.404Cd6970.980";
  charset="UTF-8"
 
 
---14742139060.ffEb.8281
-Date: Sun, 18 Sep 2016 15:51:46 +0000
+--14742407861.404Cd6970.980
+Date: Sun, 18 Sep 2016 23:19:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97588
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
 
---- Comment #18 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Karol Herbst from comment #15)
-> uhh I remember. At work on a xfce4 machine we also have troubles with a
-> laptop + 2 external monitors on an AMD gpu. After login all screens are
-> black and sometimes when reconnecting screens we have really bad artefacts
-> on one of them.
->=20
-> Maybe this is a xfce4 issue?
+--- Comment #9 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi! Sorry that took so long. My other machine didn't have enough memory to =
+run
+git bisect on the kernel.
 
-Have you considered the possibility to report the issue here:
-https://bugzilla.xfce.org/buglist.cgi?component=3DDisplay%20Settings&produc=
-t=3DXfce4-settings
+
+Here's the goods. Any change marked bad exhibited the exact same symptoms
+(monitor turns off shortly after boot).
+
+git bisect start '--' 'drivers/gpu/drm/nouveau'
+# good: [b562e44f507e863c6792946e4e1b1449fbbac85d] Linux 4.5
+git bisect good b562e44f507e863c6792946e4e1b1449fbbac85d
+# bad: [523d939ef98fd712632d93a5a2b588e477a7565e] Linux 4.7
+git bisect bad 523d939ef98fd712632d93a5a2b588e477a7565e
+# bad: [3a91b9c5efd27729767edfde9df069aa61c4816f] drm/nouveau/clk/gk20a: fix
+VCO bit mask
+git bisect bad 3a91b9c5efd27729767edfde9df069aa61c4816f
+# bad: [a2e435a1b0a3c2bc766d40356151610cc54b8772] drm/nouveau/fifo/gk104: t=
+ake
+runlist target into account
+git bisect bad a2e435a1b0a3c2bc766d40356151610cc54b8772
+# bad: [18cd5bc8ea587dc2fc0c07d2a4bf3cfe9ed2ef53] drm/nouveau/gr/gf100: load
+firmware in outer function
+git bisect bad 18cd5bc8ea587dc2fc0c07d2a4bf3cfe9ed2ef53
+# good: [1b82111faebc24427c76b83738566bda7f315225] drm/nouveau/device/tegra:
+fix uninitialized IRQ number
+git bisect good 1b82111faebc24427c76b83738566bda7f315225
+# bad: [989f57847396d1d042204747985d6aacf5399c8a] drm/nouveau/bios/devinit:
+rename INIT_DP_CONDITION to INIT_GENERIC_CONDITION
+git bisect bad 989f57847396d1d042204747985d6aacf5399c8a
+# good: [8fb1240a7152d450d57402b5b85ba46d8610d443] drm/nouveau/devinit/nv50:
+remove unneeded variable
+git bisect good 8fb1240a7152d450d57402b5b85ba46d8610d443
+# bad: [96aedd0ba9122a13fd0f756e022856ce7f05f086] drm/nouveau/ltc/gm107: fix
+slice intr offset
+git bisect bad 96aedd0ba9122a13fd0f756e022856ce7f05f086
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14742139060.ffEb.8281
-Date: Sun, 18 Sep 2016 15:51:46 +0000
+--14742407861.404Cd6970.980
+Date: Sun, 18 Sep 2016 23:19:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,35 +94,55 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
-phics and disappearing mouse cursor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588#c18">Commen=
-t # 18</a>
+   title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
+1-1 to 4.6.4-1)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c9">Comment=
+ # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
-phics and disappearing mouse cursor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588">bug 97588<=
+   title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
+1-1 to 4.6.4-1)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
-l.com&gt;"> <span class=3D"fn">poma</span></a>
+lukeisgreat&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com=
+&gt;"> <span class=3D"fn">Luke Tidd</span></a>
 </span></b>
-        <pre>(In reply to Karol Herbst from <a href=3D"show_bug.cgi?id=3D97=
-588#c15">comment #15</a>)
-<span class=3D"quote">&gt; uhh I remember. At work on a xfce4 machine we al=
-so have troubles with a
-&gt; laptop + 2 external monitors on an AMD gpu. After login all screens are
-&gt; black and sometimes when reconnecting screens we have really bad artef=
-acts
-&gt; on one of them.
-&gt;=20
-&gt; Maybe this is a xfce4 issue?</span >
+        <pre>Hi! Sorry that took so long. My other machine didn't have enou=
+gh memory to run
+git bisect on the kernel.
 
-Have you considered the possibility to report the issue here:
-<a href=3D"https://bugzilla.xfce.org/buglist.cgi?component=3DDisplay%20Sett=
-ings&amp;product=3DXfce4-settings">https://bugzilla.xfce.org/buglist.cgi?co=
-mponent=3DDisplay%20Settings&amp;product=3DXfce4-settings</a></pre>
+
+Here's the goods. Any change marked bad exhibited the exact same symptoms
+(monitor turns off shortly after boot).
+
+git bisect start '--' 'drivers/gpu/drm/nouveau'
+# good: [b562e44f507e863c6792946e4e1b1449fbbac85d] Linux 4.5
+git bisect good b562e44f507e863c6792946e4e1b1449fbbac85d
+# bad: [523d939ef98fd712632d93a5a2b588e477a7565e] Linux 4.7
+git bisect bad 523d939ef98fd712632d93a5a2b588e477a7565e
+# bad: [3a91b9c5efd27729767edfde9df069aa61c4816f] drm/nouveau/clk/gk20a: fix
+VCO bit mask
+git bisect bad 3a91b9c5efd27729767edfde9df069aa61c4816f
+# bad: [a2e435a1b0a3c2bc766d40356151610cc54b8772] drm/nouveau/fifo/gk104: t=
+ake
+runlist target into account
+git bisect bad a2e435a1b0a3c2bc766d40356151610cc54b8772
+# bad: [18cd5bc8ea587dc2fc0c07d2a4bf3cfe9ed2ef53] drm/nouveau/gr/gf100: load
+firmware in outer function
+git bisect bad 18cd5bc8ea587dc2fc0c07d2a4bf3cfe9ed2ef53
+# good: [1b82111faebc24427c76b83738566bda7f315225] drm/nouveau/device/tegra:
+fix uninitialized IRQ number
+git bisect good 1b82111faebc24427c76b83738566bda7f315225
+# bad: [989f57847396d1d042204747985d6aacf5399c8a] drm/nouveau/bios/devinit:
+rename INIT_DP_CONDITION to INIT_GENERIC_CONDITION
+git bisect bad 989f57847396d1d042204747985d6aacf5399c8a
+# good: [8fb1240a7152d450d57402b5b85ba46d8610d443] drm/nouveau/devinit/nv50:
+remove unneeded variable
+git bisect good 8fb1240a7152d450d57402b5b85ba46d8610d443
+# bad: [96aedd0ba9122a13fd0f756e022856ce7f05f086] drm/nouveau/ltc/gm107: fix
+slice intr offset
+git bisect bad 96aedd0ba9122a13fd0f756e022856ce7f05f086</pre>
         </div>
       </p>
 
@@ -112,9 +156,9 @@ mponent=3DDisplay%20Settings&amp;product=3DXfce4-settings</a></pre>
     </body>
 </html>=
 
---14742139060.ffEb.8281--
+--14742407861.404Cd6970.980--
 
---===============0701103054==
+--===============0105151710==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +168,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0701103054==--
+--===============0105151710==--
