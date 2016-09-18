@@ -1,37 +1,45 @@
-From: Baoyou Xie <baoyou.xie@linaro.org>
-Subject: [PATCH] drm/nouveau/core: add missing header dependencies
-Date: Sun, 18 Sep 2016 20:58:53 +0800
-Message-ID: <1474203533-1248-1-git-send-email-baoyou.xie@linaro.org>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, acourbot@nvidia.com
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@arndb.de, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH 2/2] nouveau: Fix compile error due to bad
+	include
+Date: Sun, 18 Sep 2016 10:18:23 -0400
+Message-ID: <CAKb7Uvg=no4KWS8rLDbNJMk9a6tT_Bt+2oXoy5gzAWYjR5OOCA@mail.gmail.com>
+References: <20160918102157.3921-1-karolherbst@gmail.com>
+ <20160918102157.3921-2-karolherbst@gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20160918102157.3921-2-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-We get 2 warnings when building kernel with W=1:
-drivers/gpu/drm/nouveau/nvkm/core/firmware.c:34:1: warning: no previous prototype for 'nvkm_firmware_get' [-Wmissing-prototypes]
-drivers/gpu/drm/nouveau/nvkm/core/firmware.c:58:1: warning: no previous prototype for 'nvkm_firmware_put' [-Wmissing-prototypes]
-
-In fact, both functions are declared in
-drivers/gpu/drm/nouveau/include/nvkm/core/firmware.h,
-so this patch adds missing header dependencies.
-
-Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
----
- drivers/gpu/drm/nouveau/nvkm/core/firmware.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
-index 34ecd4a..058ff46 100644
---- a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
-@@ -20,6 +20,7 @@
-  * DEALINGS IN THE SOFTWARE.
-  */
- #include <core/device.h>
-+#include <core/firmware.h>
- 
- /**
-  * nvkm_firmware_get - load firmware from the official nvidia/chip/ directory
--- 
-2.7.4
+RXZlcnkgb3RoZXIgKl9kcm0uaCBkb2VzICNpbmNsdWRlICJkcm0uaCIuIFNvbWV0aGluZyBlbHNl
+IGlzIHdyb25nLgoKT24gU3VuLCBTZXAgMTgsIDIwMTYgYXQgNjoyMSBBTSwgS2Fyb2wgSGVyYnN0
+IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+IHdyb3RlOgo+IENvdWdodCB3aGlsZSB3b3JraW5nIG9u
+IHRyYXZpcy1jaSBpbnRlZ3JhdGlvbgo+Cj4gU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxr
+YXJvbGhlcmJzdEBnbWFpbC5jb20+Cj4gLS0tCj4gIGRybS9ub3V2ZWF1L3VhcGkvZHJtL25vdXZl
+YXVfZHJtLmggfCAyICstCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxl
+dGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L3VhcGkvZHJtL25vdXZlYXVfZHJt
+LmggYi9kcm0vbm91dmVhdS91YXBpL2RybS9ub3V2ZWF1X2RybS5oCj4gaW5kZXggMjU5NTg4YS4u
+MGJmYWFlOCAxMDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS91YXBpL2RybS9ub3V2ZWF1X2RybS5o
+Cj4gKysrIGIvZHJtL25vdXZlYXUvdWFwaS9kcm0vbm91dmVhdV9kcm0uaAo+IEBAIC0yNyw3ICsy
+Nyw3IEBACj4KPiAgI2RlZmluZSBEUk1fTk9VVkVBVV9FVkVOVF9OVklGICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgMHg4MDAwMDAwMAo+Cj4gLSNpbmNsdWRlICJkcm0uaCIK
+PiArI2luY2x1ZGUgImRybS9kcm0uaCIKPgo+ICAjaWYgZGVmaW5lZChfX2NwbHVzcGx1cykKPiAg
+ZXh0ZXJuICJDIiB7Cj4gLS0KPiAyLjEwLjAKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
+YXUK
