@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
  upgrade (4.5.1-1 to 4.6.4-1)
-Date: Sun, 18 Sep 2016 23:19:46 +0000
-Message-ID: <bug-97620-8800-Z7PS3dAJlA@http.bugs.freedesktop.org/>
+Date: Sun, 18 Sep 2016 23:21:30 +0000
+Message-ID: <bug-97620-8800-9KCX6LEXS8@http.bugs.freedesktop.org/>
 References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0105151710=="
+Content-Type: multipart/mixed; boundary="===============1698411934=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0105151710==
-Content-Type: multipart/alternative; boundary="14742407861.404Cd6970.980";
+--===============1698411934==
+Content-Type: multipart/alternative; boundary="14742408901.80F3B.1220";
  charset="UTF-8"
 
 
---14742407861.404Cd6970.980
-Date: Sun, 18 Sep 2016 23:19:46 +0000
+--14742408901.80F3B.1220
+Date: Sun, 18 Sep 2016 23:21:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,49 +36,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
 
---- Comment #9 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi! Sorry that took so long. My other machine didn't have enough memory to =
-run
-git bisect on the kernel.
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Luke Tidd from comment #9)
+> Hi! Sorry that took so long. My other machine didn't have enough memory to
+> run git bisect on the kernel.
+>=20
+>=20
+> Here's the goods. Any change marked bad exhibited the exact same symptoms
+> (monitor turns off shortly after boot).
 
-
-Here's the goods. Any change marked bad exhibited the exact same symptoms
-(monitor turns off shortly after boot).
-
-git bisect start '--' 'drivers/gpu/drm/nouveau'
-# good: [b562e44f507e863c6792946e4e1b1449fbbac85d] Linux 4.5
-git bisect good b562e44f507e863c6792946e4e1b1449fbbac85d
-# bad: [523d939ef98fd712632d93a5a2b588e477a7565e] Linux 4.7
-git bisect bad 523d939ef98fd712632d93a5a2b588e477a7565e
-# bad: [3a91b9c5efd27729767edfde9df069aa61c4816f] drm/nouveau/clk/gk20a: fix
-VCO bit mask
-git bisect bad 3a91b9c5efd27729767edfde9df069aa61c4816f
-# bad: [a2e435a1b0a3c2bc766d40356151610cc54b8772] drm/nouveau/fifo/gk104: t=
-ake
-runlist target into account
-git bisect bad a2e435a1b0a3c2bc766d40356151610cc54b8772
-# bad: [18cd5bc8ea587dc2fc0c07d2a4bf3cfe9ed2ef53] drm/nouveau/gr/gf100: load
-firmware in outer function
-git bisect bad 18cd5bc8ea587dc2fc0c07d2a4bf3cfe9ed2ef53
-# good: [1b82111faebc24427c76b83738566bda7f315225] drm/nouveau/device/tegra:
-fix uninitialized IRQ number
-git bisect good 1b82111faebc24427c76b83738566bda7f315225
-# bad: [989f57847396d1d042204747985d6aacf5399c8a] drm/nouveau/bios/devinit:
-rename INIT_DP_CONDITION to INIT_GENERIC_CONDITION
-git bisect bad 989f57847396d1d042204747985d6aacf5399c8a
-# good: [8fb1240a7152d450d57402b5b85ba46d8610d443] drm/nouveau/devinit/nv50:
-remove unneeded variable
-git bisect good 8fb1240a7152d450d57402b5b85ba46d8610d443
-# bad: [96aedd0ba9122a13fd0f756e022856ce7f05f086] drm/nouveau/ltc/gm107: fix
-slice intr offset
-git bisect bad 96aedd0ba9122a13fd0f756e022856ce7f05f086
+Looks like you didn't finish? At the end it should say "commit XYZ is the f=
+irst
+bad commit"
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14742407861.404Cd6970.980
-Date: Sun, 18 Sep 2016 23:19:46 +0000
+--14742408901.80F3B.1220
+Date: Sun, 18 Sep 2016 23:21:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -96,8 +72,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
 1-1 to 4.6.4-1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c9">Comment=
- # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
@@ -105,44 +81,23 @@ Auto-Submitted: auto-generated
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lukeisgreat&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com=
-&gt;"> <span class=3D"fn">Luke Tidd</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hi! Sorry that took so long. My other machine didn't have enou=
-gh memory to run
-git bisect on the kernel.
+        <pre>(In reply to Luke Tidd from <a href=3D"show_bug.cgi?id=3D97620=
+#c9">comment #9</a>)
+<span class=3D"quote">&gt; Hi! Sorry that took so long. My other machine di=
+dn't have enough memory to
+&gt; run git bisect on the kernel.
+&gt;=20
+&gt;=20
+&gt; Here's the goods. Any change marked bad exhibited the exact same sympt=
+oms
+&gt; (monitor turns off shortly after boot).</span >
 
-
-Here's the goods. Any change marked bad exhibited the exact same symptoms
-(monitor turns off shortly after boot).
-
-git bisect start '--' 'drivers/gpu/drm/nouveau'
-# good: [b562e44f507e863c6792946e4e1b1449fbbac85d] Linux 4.5
-git bisect good b562e44f507e863c6792946e4e1b1449fbbac85d
-# bad: [523d939ef98fd712632d93a5a2b588e477a7565e] Linux 4.7
-git bisect bad 523d939ef98fd712632d93a5a2b588e477a7565e
-# bad: [3a91b9c5efd27729767edfde9df069aa61c4816f] drm/nouveau/clk/gk20a: fix
-VCO bit mask
-git bisect bad 3a91b9c5efd27729767edfde9df069aa61c4816f
-# bad: [a2e435a1b0a3c2bc766d40356151610cc54b8772] drm/nouveau/fifo/gk104: t=
-ake
-runlist target into account
-git bisect bad a2e435a1b0a3c2bc766d40356151610cc54b8772
-# bad: [18cd5bc8ea587dc2fc0c07d2a4bf3cfe9ed2ef53] drm/nouveau/gr/gf100: load
-firmware in outer function
-git bisect bad 18cd5bc8ea587dc2fc0c07d2a4bf3cfe9ed2ef53
-# good: [1b82111faebc24427c76b83738566bda7f315225] drm/nouveau/device/tegra:
-fix uninitialized IRQ number
-git bisect good 1b82111faebc24427c76b83738566bda7f315225
-# bad: [989f57847396d1d042204747985d6aacf5399c8a] drm/nouveau/bios/devinit:
-rename INIT_DP_CONDITION to INIT_GENERIC_CONDITION
-git bisect bad 989f57847396d1d042204747985d6aacf5399c8a
-# good: [8fb1240a7152d450d57402b5b85ba46d8610d443] drm/nouveau/devinit/nv50:
-remove unneeded variable
-git bisect good 8fb1240a7152d450d57402b5b85ba46d8610d443
-# bad: [96aedd0ba9122a13fd0f756e022856ce7f05f086] drm/nouveau/ltc/gm107: fix
-slice intr offset
-git bisect bad 96aedd0ba9122a13fd0f756e022856ce7f05f086</pre>
+Looks like you didn't finish? At the end it should say &quot;commit XYZ is =
+the first
+bad commit&quot;</pre>
         </div>
       </p>
 
@@ -156,9 +111,9 @@ git bisect bad 96aedd0ba9122a13fd0f756e022856ce7f05f086</pre>
     </body>
 </html>=
 
---14742407861.404Cd6970.980--
+--14742408901.80F3B.1220--
 
---===============0105151710==
+--===============1698411934==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -168,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0105151710==--
+--===============1698411934==--
