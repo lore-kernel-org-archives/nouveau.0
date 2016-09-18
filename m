@@ -1,16 +1,13 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 2/2] nouveau: Fix compile error due to bad
-	include
-Date: Sun, 18 Sep 2016 17:32:32 +0200
-Message-ID: <CAEXux-anwQoo+vMd+BRp--KAUhz9AJGxu+61ePikMCgB+kW17w@mail.gmail.com>
-References: <20160918102157.3921-1-karolherbst@gmail.com>
- <20160918102157.3921-2-karolherbst@gmail.com>
- <CAKb7Uvg=no4KWS8rLDbNJMk9a6tT_Bt+2oXoy5gzAWYjR5OOCA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 97588] Disconnecting/Reconnecting monitor results in
+ 'laggy' graphics and disappearing mouse cursor
+Date: Sun, 18 Sep 2016 15:51:47 +0000
+Message-ID: <bug-97588-8800-9OjpTmShHo@http.bugs.freedesktop.org/>
+References: <bug-97588-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0701103054=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvg=no4KWS8rLDbNJMk9a6tT_Bt+2oXoy5gzAWYjR5OOCA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-97588-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +17,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-b2RkLCBsZXQgbWUgY2hlY2sgYWdhaW4KCjIwMTYtMDktMTggMTY6MTggR01UKzAyOjAwIElsaWEg
-TWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT46Cj4gRXZlcnkgb3RoZXIgKl9kcm0uaCBkb2Vz
-ICNpbmNsdWRlICJkcm0uaCIuIFNvbWV0aGluZyBlbHNlIGlzIHdyb25nLgo+Cj4gT24gU3VuLCBT
-ZXAgMTgsIDIwMTYgYXQgNjoyMSBBTSwgS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5j
-b20+IHdyb3RlOgo+PiBDb3VnaHQgd2hpbGUgd29ya2luZyBvbiB0cmF2aXMtY2kgaW50ZWdyYXRp
-b24KPj4KPj4gU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5j
-b20+Cj4+IC0tLQo+PiAgZHJtL25vdXZlYXUvdWFwaS9kcm0vbm91dmVhdV9kcm0uaCB8IDIgKy0K
-Pj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Pgo+PiBk
-aWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvdWFwaS9kcm0vbm91dmVhdV9kcm0uaCBiL2RybS9ub3V2
-ZWF1L3VhcGkvZHJtL25vdXZlYXVfZHJtLmgKPj4gaW5kZXggMjU5NTg4YS4uMGJmYWFlOCAxMDA2
-NDQKPj4gLS0tIGEvZHJtL25vdXZlYXUvdWFwaS9kcm0vbm91dmVhdV9kcm0uaAo+PiArKysgYi9k
-cm0vbm91dmVhdS91YXBpL2RybS9ub3V2ZWF1X2RybS5oCj4+IEBAIC0yNyw3ICsyNyw3IEBACj4+
-Cj4+ICAjZGVmaW5lIERSTV9OT1VWRUFVX0VWRU5UX05WSUYgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAweDgwMDAwMDAwCj4+Cj4+IC0jaW5jbHVkZSAiZHJtLmgiCj4+ICsj
-aW5jbHVkZSAiZHJtL2RybS5oIgo+Pgo+PiAgI2lmIGRlZmluZWQoX19jcGx1c3BsdXMpCj4+ICBl
-eHRlcm4gIkMiIHsKPj4gLS0KPj4gMi4xMC4wCj4+Cj4+IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+
+--===============0701103054==
+Content-Type: multipart/alternative; boundary="14742139060.ffEb.8281";
+ charset="UTF-8"
+
+
+--14742139060.ffEb.8281
+Date: Sun, 18 Sep 2016 15:51:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97588
+
+--- Comment #18 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Karol Herbst from comment #15)
+> uhh I remember. At work on a xfce4 machine we also have troubles with a
+> laptop + 2 external monitors on an AMD gpu. After login all screens are
+> black and sometimes when reconnecting screens we have really bad artefacts
+> on one of them.
+>=20
+> Maybe this is a xfce4 issue?
+
+Have you considered the possibility to report the issue here:
+https://bugzilla.xfce.org/buglist.cgi?component=3DDisplay%20Settings&produc=
+t=3DXfce4-settings
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14742139060.ffEb.8281
+Date: Sun, 18 Sep 2016 15:51:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
+phics and disappearing mouse cursor"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588#c18">Commen=
+t # 18</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
+phics and disappearing mouse cursor"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588">bug 97588<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
+l.com&gt;"> <span class=3D"fn">poma</span></a>
+</span></b>
+        <pre>(In reply to Karol Herbst from <a href=3D"show_bug.cgi?id=3D97=
+588#c15">comment #15</a>)
+<span class=3D"quote">&gt; uhh I remember. At work on a xfce4 machine we al=
+so have troubles with a
+&gt; laptop + 2 external monitors on an AMD gpu. After login all screens are
+&gt; black and sometimes when reconnecting screens we have really bad artef=
+acts
+&gt; on one of them.
+&gt;=20
+&gt; Maybe this is a xfce4 issue?</span >
+
+Have you considered the possibility to report the issue here:
+<a href=3D"https://bugzilla.xfce.org/buglist.cgi?component=3DDisplay%20Sett=
+ings&amp;product=3DXfce4-settings">https://bugzilla.xfce.org/buglist.cgi?co=
+mponent=3DDisplay%20Settings&amp;product=3DXfce4-settings</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14742139060.ffEb.8281--
+
+--===============0701103054==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0701103054==--
