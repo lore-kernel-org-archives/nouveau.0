@@ -1,13 +1,13 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/2] nouveau: Fix compile error due to bad include
-Date: Sun, 18 Sep 2016 12:21:57 +0200
-Message-ID: <20160918102157.3921-2-karolherbst@gmail.com>
-References: <20160918102157.3921-1-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 97588] Disconnecting/Reconnecting monitor results in
+ 'laggy' graphics and disappearing mouse cursor
+Date: Sun, 18 Sep 2016 11:50:28 +0000
+Message-ID: <bug-97588-8800-oFue2Tzvmz@http.bugs.freedesktop.org/>
+References: <bug-97588-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1124506084=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20160918102157.3921-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-97588-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +20,96 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q291Z2h0IHdoaWxlIHdvcmtpbmcgb24gdHJhdmlzLWNpIGludGVncmF0aW9uCgpTaWduZWQtb2Zm
-LWJ5OiBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KLS0tCiBkcm0vbm91dmVh
-dS91YXBpL2RybS9ub3V2ZWF1X2RybS5oIHwgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0
-aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvdWFwaS9kcm0v
-bm91dmVhdV9kcm0uaCBiL2RybS9ub3V2ZWF1L3VhcGkvZHJtL25vdXZlYXVfZHJtLmgKaW5kZXgg
-MjU5NTg4YS4uMGJmYWFlOCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvdWFwaS9kcm0vbm91dmVh
-dV9kcm0uaAorKysgYi9kcm0vbm91dmVhdS91YXBpL2RybS9ub3V2ZWF1X2RybS5oCkBAIC0yNyw3
-ICsyNyw3IEBACiAKICNkZWZpbmUgRFJNX05PVVZFQVVfRVZFTlRfTlZJRiAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIDB4ODAwMDAwMDAKIAotI2luY2x1ZGUgImRybS5oIgor
-I2luY2x1ZGUgImRybS9kcm0uaCIKIAogI2lmIGRlZmluZWQoX19jcGx1c3BsdXMpCiBleHRlcm4g
-IkMiIHsKLS0gCjIuMTAuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cg==
+
+--===============1124506084==
+Content-Type: multipart/alternative; boundary="14741994280.ccC5.26974";
+ charset="UTF-8"
+
+
+--14741994280.ccC5.26974
+Date: Sun, 18 Sep 2016 11:50:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97588
+
+--- Comment #17 from rik-2ntFt4fPDM4@public.gmane.org ---
+I think this can be closed as it does seem to be a XFCE bug rather than
+nouveau. I have confirmed that KDE/openbox do work when switching or
+disconnecting the monitor.=20
+
+For future reference, when people have the same issue I would recommend
+creating a keyboard shortcut that loads an Arandr script. (mine is at
+win+alt+pause). Thanks for the responses and help figuring this out.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14741994280.ccC5.26974
+Date: Sun, 18 Sep 2016 11:50:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
+phics and disappearing mouse cursor"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588#c17">Commen=
+t # 17</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Disconnecting/Reconnecting monitor results in 'laggy' gra=
+phics and disappearing mouse cursor"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97588">bug 97588<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+rik&#64;mief.nl" title=3D"rik&#64;mief.nl">rik&#64;mief.nl</a>
+</span></b>
+        <pre>I think this can be closed as it does seem to be a XFCE bug ra=
+ther than
+nouveau. I have confirmed that KDE/openbox do work when switching or
+disconnecting the monitor.=20
+
+For future reference, when people have the same issue I would recommend
+creating a keyboard shortcut that loads an Arandr script. (mine is at
+win+alt+pause). Thanks for the responses and help figuring this out.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14741994280.ccC5.26974--
+
+--===============1124506084==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1124506084==--
