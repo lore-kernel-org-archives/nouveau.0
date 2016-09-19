@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
  upgrade (4.5.1-1 to 4.6.4-1)
-Date: Mon, 19 Sep 2016 04:07:08 +0000
-Message-ID: <bug-97620-8800-2Q4WOIxr0v@http.bugs.freedesktop.org/>
+Date: Mon, 19 Sep 2016 04:50:16 +0000
+Message-ID: <bug-97620-8800-5DhBorG2Uh@http.bugs.freedesktop.org/>
 References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1070861300=="
+Content-Type: multipart/mixed; boundary="===============0676934352=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1070861300==
-Content-Type: multipart/alternative; boundary="14742580281.3d9bc4.16100";
+--===============0676934352==
+Content-Type: multipart/alternative; boundary="14742606160.8DEb9C6.18408";
  charset="UTF-8"
 
 
---14742580281.3d9bc4.16100
-Date: Mon, 19 Sep 2016 04:07:08 +0000
+--14742606160.8DEb9C6.18408
+Date: Mon, 19 Sep 2016 04:50:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,39 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
 
---- Comment #24 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 126612
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126612&action=3Dedit
-vbios.rom
+--- Comment #25 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Luke Tidd from comment #23)
+> Created attachment 126611 [details]
+> (broken) dmesg_4.7.4-1-ARCH nouveau.debug=3Ddebug,bios=3Dtrace
+
+I am very confused by the lack of trace output for the bios execution. That
+should have worked. It's clearly running the tables...
+
+[    1.960340] nouveau 0000:01:00.0: devinit: running init tables
+
+Secondly, one of your bios init scripts contains the command
+
+0x8209: 7a 54 b1 13 00 02 00 00 00                     ZM_REG   R[0x13b154]=
+ =3D
+0x00000002
+
+in init script 3 (starting at 0x8116). This is the cause of
+
+[    4.108908] nouveau 0000:01:00.0: bus: MMIO write of 00000002 FAULT at
+13b154 [ IBUS ]
+
+However that is only reported when GT214_DISP is being initialized. Again, =
+odd,
+but I'm not 100% sure how the init scripts are executed. This might have to=
+ be
+one for Ben...
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14742580281.3d9bc4.16100
-Date: Mon, 19 Sep 2016 04:07:08 +0000
+--14742606160.8DEb9C6.18408
+Date: Mon, 19 Sep 2016 04:50:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +86,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
 1-1 to 4.6.4-1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c24">Commen=
-t # 24</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c25">Commen=
+t # 25</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
@@ -73,14 +95,39 @@ t # 24</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lukeisgreat&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com=
-&gt;"> <span class=3D"fn">Luke Tidd</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126612=
-" name=3D"attach_126612" title=3D"vbios.rom">attachment 126612</a> <a href=
-=3D"attachment.cgi?id=3D126612&amp;action=3Dedit" title=3D"vbios.rom">[deta=
-ils]</a></span>
-vbios.rom</pre>
+        <pre>(In reply to Luke Tidd from <a href=3D"show_bug.cgi?id=3D97620=
+#c23">comment #23</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D126611" name=3D"attach_126611" title=3D"(broken) dmesg_4.7.4-1-ARCH=
+ nouveau.debug=3Ddebug,bios=3Dtrace">attachment 126611</a> <a href=3D"attac=
+hment.cgi?id=3D126611&amp;action=3Dedit" title=3D"(broken) dmesg_4.7.4-1-AR=
+CH nouveau.debug=3Ddebug,bios=3Dtrace">[details]</a></span>
+&gt; (broken) dmesg_4.7.4-1-ARCH nouveau.debug=3Ddebug,bios=3Dtrace</span >
+
+I am very confused by the lack of trace output for the bios execution. That
+should have worked. It's clearly running the tables...
+
+[    1.960340] nouveau 0000:01:00.0: devinit: running init tables
+
+Secondly, one of your bios init scripts contains the command
+
+0x8209: 7a 54 b1 13 00 02 00 00 00                     ZM_REG   R[0x13b154]=
+ =3D
+0x00000002
+
+in init script 3 (starting at 0x8116). This is the cause of
+
+[    4.108908] nouveau 0000:01:00.0: bus: MMIO write of 00000002 FAULT at
+13b154 [ IBUS ]
+
+However that is only reported when GT214_DISP is being initialized. Again, =
+odd,
+but I'm not 100% sure how the init scripts are executed. This might have to=
+ be
+one for Ben...</pre>
         </div>
       </p>
 
@@ -94,9 +141,9 @@ vbios.rom</pre>
     </body>
 </html>=
 
---14742580281.3d9bc4.16100--
+--14742606160.8DEb9C6.18408--
 
---===============1070861300==
+--===============0676934352==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1070861300==--
+--===============0676934352==--
