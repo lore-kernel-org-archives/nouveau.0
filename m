@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
- upgrade (4.5.1-1 to 4.6.4-1)
-Date: Mon, 19 Sep 2016 03:38:55 +0000
-Message-ID: <bug-97620-8800-zHijZXdVmF@http.bugs.freedesktop.org/>
-References: <bug-97620-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 2/2] nouveau: Fix compile error due to bad
+	include
+Date: Mon, 19 Sep 2016 12:38:50 +0900
+Message-ID: <CAAVeFuJNHemGN32Wx7N+ZjM-2iW+vauhNiLPjXwzdsH4vFhU0A@mail.gmail.com>
+References: <20160918102157.3921-1-karolherbst@gmail.com>
+ <20160918102157.3921-2-karolherbst@gmail.com>
+ <CAKb7Uvg=no4KWS8rLDbNJMk9a6tT_Bt+2oXoy5gzAWYjR5OOCA@mail.gmail.com>
+ <CAEXux-anwQoo+vMd+BRp--KAUhz9AJGxu+61ePikMCgB+kW17w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0136749026=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAEXux-anwQoo+vMd+BRp--KAUhz9AJGxu+61ePikMCgB+kW17w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,147 +21,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0136749026==
-Content-Type: multipart/alternative; boundary="14742563351.Cf3A0c.14841";
- charset="UTF-8"
-
-
---14742563351.Cf3A0c.14841
-Date: Mon, 19 Sep 2016 03:38:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
-
---- Comment #16 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #15)
-> (In reply to Luke Tidd from comment #14)
-> > kernel 4.7.4-1-ARCH
-> > nomodeset single
-> >=20
-> > # nvapeek 2240c
-> > ...
-> >=20
-> >=20
-> > testing working kernel now.
->=20
-> Hm, that means that the bit we're checking is 0, which indicates that the
-> VBIOS hasn't run. This is, of course, patently false, since it seems like
-> this is the only video card in the system, and it's working (right? you're
-> at the console, the screen is on, etc?)
-Yes, working, screen is on, this is the only video card.
-
->=20
-> And, I'm guessing, in the new kernel we're now running the vbios whereas =
-we
-> previously didn't use to. And running it a second time destroys the unive=
-rse
-> for some reason.
->=20
-> Separately, I just happened to notice that you have vesafb turned on. I
-> wonder if this somehow upsets matters. Any chance you could flip that off?
-
-Sure, just a sec
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14742563351.Cf3A0c.14841
-Date: Mon, 19 Sep 2016 03:38:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
-1-1 to 4.6.4-1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c16">Commen=
-t # 16</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
-1-1 to 4.6.4-1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lukeisgreat&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com=
-&gt;"> <span class=3D"fn">Luke Tidd</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D976=
-20#c15">comment #15</a>)
-<span class=3D"quote">&gt; (In reply to Luke Tidd from <a href=3D"show_bug.=
-cgi?id=3D97620#c14">comment #14</a>)
-&gt; &gt; kernel 4.7.4-1-ARCH
-&gt; &gt; nomodeset single
-&gt; &gt;=20
-&gt; &gt; # nvapeek 2240c
-&gt; &gt; ...
-&gt; &gt;=20
-&gt; &gt;=20
-&gt; &gt; testing working kernel now.
-&gt;=20
-&gt; Hm, that means that the bit we're checking is 0, which indicates that =
-the
-&gt; VBIOS hasn't run. This is, of course, patently false, since it seems l=
-ike
-&gt; this is the only video card in the system, and it's working (right? yo=
-u're
-&gt; at the console, the screen is on, etc?)</span >
-Yes, working, screen is on, this is the only video card.
-
-<span class=3D"quote">&gt;=20
-&gt; And, I'm guessing, in the new kernel we're now running the vbios where=
-as we
-&gt; previously didn't use to. And running it a second time destroys the un=
-iverse
-&gt; for some reason.
-&gt;=20
-&gt; Separately, I just happened to notice that you have vesafb turned on. I
-&gt; wonder if this somehow upsets matters. Any chance you could flip that =
-off?</span >
-
-Sure, just a sec</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14742563351.Cf3A0c.14841--
-
---===============0136749026==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0136749026==--
+RldJVyBJIGFsc28gaGF2ZSB0byBjYXJyeSBhIGxvY2FsIHBhdGNoIGRvaW5nIHRoaXMsIG90aGVy
+d2lzZSBJIGNhbm5vdApwZXJmb3JtIGFuIG91dC1vZi10cmVlIG1vZHVsZSBidWlsZC4KCk9uIE1v
+biwgU2VwIDE5LCAyMDE2IGF0IDEyOjMyIEFNLCBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdt
+YWlsLmNvbT4gd3JvdGU6Cj4gb2RkLCBsZXQgbWUgY2hlY2sgYWdhaW4KPgo+IDIwMTYtMDktMTgg
+MTY6MTggR01UKzAyOjAwIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT46Cj4+IEV2
+ZXJ5IG90aGVyICpfZHJtLmggZG9lcyAjaW5jbHVkZSAiZHJtLmgiLiBTb21ldGhpbmcgZWxzZSBp
+cyB3cm9uZy4KPj4KPj4gT24gU3VuLCBTZXAgMTgsIDIwMTYgYXQgNjoyMSBBTSwgS2Fyb2wgSGVy
+YnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+IHdyb3RlOgo+Pj4gQ291Z2h0IHdoaWxlIHdvcmtp
+bmcgb24gdHJhdmlzLWNpIGludGVncmF0aW9uCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogS2Fyb2wg
+SGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Cj4+PiAtLS0KPj4+ICBkcm0vbm91dmVhdS91
+YXBpL2RybS9ub3V2ZWF1X2RybS5oIHwgMiArLQo+Pj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2Vy
+dGlvbigrKSwgMSBkZWxldGlvbigtKQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS91
+YXBpL2RybS9ub3V2ZWF1X2RybS5oIGIvZHJtL25vdXZlYXUvdWFwaS9kcm0vbm91dmVhdV9kcm0u
+aAo+Pj4gaW5kZXggMjU5NTg4YS4uMGJmYWFlOCAxMDA2NDQKPj4+IC0tLSBhL2RybS9ub3V2ZWF1
+L3VhcGkvZHJtL25vdXZlYXVfZHJtLmgKPj4+ICsrKyBiL2RybS9ub3V2ZWF1L3VhcGkvZHJtL25v
+dXZlYXVfZHJtLmgKPj4+IEBAIC0yNyw3ICsyNyw3IEBACj4+Pgo+Pj4gICNkZWZpbmUgRFJNX05P
+VVZFQVVfRVZFTlRfTlZJRiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4
+ODAwMDAwMDAKPj4+Cj4+PiAtI2luY2x1ZGUgImRybS5oIgo+Pj4gKyNpbmNsdWRlICJkcm0vZHJt
+LmgiCj4+Pgo+Pj4gICNpZiBkZWZpbmVkKF9fY3BsdXNwbHVzKQo+Pj4gIGV4dGVybiAiQyIgewo+
+Pj4gLS0KPj4+IDIuMTAuMAo+Pj4KPj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCj4+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+Pj4gTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKPj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
