@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 1/2] Revert "bus: remove cpu_coherent flag"
-Date: Sun, 18 Sep 2016 23:43:58 -0400
-Message-ID: <CAKb7UvhEZtnj-wyKzUtg1ASSJj0Ce9p9y+bC_+05ikbo8fcdiA@mail.gmail.com>
-References: <20160918102157.3921-1-karolherbst@gmail.com>
- <CAAVeFuL2mGPzfe1PJJmhOc7wv+XVDXomAUz4n8Fj8RHov-fBMQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
+ upgrade (4.5.1-1 to 4.6.4-1)
+Date: Mon, 19 Sep 2016 03:46:07 +0000
+Message-ID: <bug-97620-8800-BVMVwJpKDq@http.bugs.freedesktop.org/>
+References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0408942941=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFuL2mGPzfe1PJJmhOc7wv+XVDXomAUz4n8Fj8RHov-fBMQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,86 +17,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBTZXAgMTgsIDIwMTYgYXQgMTE6MzkgUE0sIEFsZXhhbmRyZSBDb3VyYm90IDxnbnVy
-b3VAZ21haWwuY29tPiB3cm90ZToKPiBPbiBTdW4sIFNlcCAxOCwgMjAxNiBhdCA3OjIxIFBNLCBL
-YXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4gd3JvdGU6Cj4+IFRoaXMgcmV2ZXJ0
-cyBjb21taXQgMDFiYmNiNjlmODBlMTA1ODM5NWI3MzdhZTM5OWM2ZjRlZjQ4NjkxYi4KCkkgdGhp
-bmsgeW91IG1lYW50IGFmZjUxMTc1Y2RiZjM0NTc0MGVjOTIwM2VmZjg4ZTc3MmFmODgwNTkgLSB0
-aGF0J3MKdGhlIGNvbW1pdCBpZCB0aGF0IG1hdHRlcnMsIG5vdCB0aGUgb25lIGluIEJlbidzIG5v
-bi1saW51eCByZXBvLgoKPj4KPj4gVGhlIGNvbW1pdCBjYXVzZWQgZmVuY2UgdGltZW91dHMgd2l0
-aGluIG52YzBfc2NyZWVuX2Rlc3Ryb3kgYW5kIG1vc3QgbGlrZWx5Cj4+IG90aGVyIHBsYWNlcyBh
-cyB3ZWxsLgo+Pgo+PiBUaGUgbW9zdCBvYnZpb3VzIGVmZmVjdCBpcywgdGhhdCB1c2Vyc3BhY2Ug
-cHJvY2Vzc2VzIHRha2UgbWludXRlcyB0byBhY3R1YWxseQo+PiBxdWl0Lgo+Cj4gQWNrZWQtYnk6
-IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgoKSWYgdGhpcyBkb2Vzbid0
-IG1ha2UgaXQgaW50byB2NC44ICh3aGljaCBpcyBkdWUgdG8gYmUgcmVsZWFzZWQgaW4gYQp3ZWVr
-KSwgaXQgc2hvdWxkIGdldCB0YWdnZWQgZm9yIHN0YWJsZSBhcyB3ZWxsLgoKQnkgdGhlIHdheSwg
-QWxleGFuZHJlLCBJIGJlbGlldmUgTWFydGluIHdhcyByZXBvcnRpbmcgaXNzdWVzIGxpa2UgdGhp
-cwpvbiBoaXMgVEsxIGJlZm9yZSB0aGlzIGNoYW5nZSBhcyB3ZWxsLiBQcm9iYWJseSB3b3J0aCBp
-bnZlc3RpZ2F0aW5nIC0Kc291bmRzIGxpa2UgdGhlcmUncyBhIHdpZGVyIGlzc3VlIHdpdGggVFRN
-X1BMX0ZMQUdfVU5DQUNIRUQgYW5kL29yCmZvcmNlX2NvaGVyZW50LgoKPgo+Pgo+PiBTaWduZWQt
-b2ZmLWJ5OiBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KPj4gLS0tCj4+ICBk
-cm0vbm91dmVhdS9pbmNsdWRlL252a20vY29yZS9kZXZpY2UuaCB8IDEgKwo+PiAgZHJtL25vdXZl
-YXUvbm91dmVhdV9iby5jICAgICAgICAgICAgICAgfCAzICsrLQo+PiAgZHJtL25vdXZlYXUvbnZr
-bS9lbmdpbmUvZGV2aWNlL3BjaS5jICAgfCAxICsKPj4gIGRybS9ub3V2ZWF1L252a20vZW5naW5l
-L2RldmljZS90ZWdyYS5jIHwgMSArCj4+ICBsaWIvaW5jbHVkZS9udmlmL29zLmggICAgICAgICAg
-ICAgICAgICB8IDYgKysrKysrCj4+ICA1IGZpbGVzIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyks
-IDEgZGVsZXRpb24oLSkKPj4KPj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZr
-bS9jb3JlL2RldmljZS5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUvZGV2aWNlLmgK
-Pj4gaW5kZXggN2VhOGFhNy4uNmJjNzEyZiAxMDA2NDQKPj4gLS0tIGEvZHJtL25vdXZlYXUvaW5j
-bHVkZS9udmttL2NvcmUvZGV2aWNlLmgKPj4gKysrIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmtt
-L2NvcmUvZGV2aWNlLmgKPj4gQEAgLTE3NSw2ICsxNzUsNyBAQCBzdHJ1Y3QgbnZrbV9kZXZpY2Vf
-ZnVuYyB7Cj4+ICAgICAgICAgdm9pZCAoKmZpbmkpKHN0cnVjdCBudmttX2RldmljZSAqLCBib29s
-IHN1c3BlbmQpOwo+PiAgICAgICAgIHJlc291cmNlX3NpemVfdCAoKnJlc291cmNlX2FkZHIpKHN0
-cnVjdCBudmttX2RldmljZSAqLCB1bnNpZ25lZCBiYXIpOwo+PiAgICAgICAgIHJlc291cmNlX3Np
-emVfdCAoKnJlc291cmNlX3NpemUpKHN0cnVjdCBudmttX2RldmljZSAqLCB1bnNpZ25lZCBiYXIp
-Owo+PiArICAgICAgIGJvb2wgY3B1X2NvaGVyZW50Owo+PiAgfTsKPj4KPj4gIHN0cnVjdCBudmtt
-X2RldmljZV9xdWlyayB7Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMg
-Yi9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKPj4gaW5kZXggNTI4YmRlZi4uNjg4N2QwYSAxMDA2
-NDQKPj4gLS0tIGEvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jCj4+ICsrKyBiL2RybS9ub3V2ZWF1
-L25vdXZlYXVfYm8uYwo+PiBAQCAtMjA5LDcgKzIwOSw4IEBAIG5vdXZlYXVfYm9fbmV3KHN0cnVj
-dCBkcm1fZGV2aWNlICpkZXYsIGludCBzaXplLCBpbnQgYWxpZ24sCj4+ICAgICAgICAgbnZiby0+
-dGlsZV9mbGFncyA9IHRpbGVfZmxhZ3M7Cj4+ICAgICAgICAgbnZiby0+Ym8uYmRldiA9ICZkcm0t
-PnR0bS5iZGV2Owo+Pgo+PiAtICAgICAgIG52Ym8tPmZvcmNlX2NvaGVyZW50ID0gZmxhZ3MgJiBU
-VE1fUExfRkxBR19VTkNBQ0hFRDsKPj4gKyAgICAgICBpZiAoIW52eHhfZGV2aWNlKCZkcm0tPmRl
-dmljZSktPmZ1bmMtPmNwdV9jb2hlcmVudCkKPj4gKyAgICAgICAgICAgICAgIG52Ym8tPmZvcmNl
-X2NvaGVyZW50ID0gZmxhZ3MgJiBUVE1fUExfRkxBR19VTkNBQ0hFRDsKPj4KPj4gICAgICAgICBu
-dmJvLT5wYWdlX3NoaWZ0ID0gMTI7Cj4+ICAgICAgICAgaWYgKGRybS0+Y2xpZW50LnZtKSB7Cj4+
-IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcGNpLmMgYi9kcm0v
-bm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcGNpLmMKPj4gaW5kZXggYjFiNjkzMi4uNjJhZDAz
-MCAxMDA2NDQKPj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3BjaS5jCj4+
-ICsrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9wY2kuYwo+PiBAQCAtMTYxNCw2
-ICsxNjE0LDcgQEAgbnZrbV9kZXZpY2VfcGNpX2Z1bmMgPSB7Cj4+ICAgICAgICAgLmZpbmkgPSBu
-dmttX2RldmljZV9wY2lfZmluaSwKPj4gICAgICAgICAucmVzb3VyY2VfYWRkciA9IG52a21fZGV2
-aWNlX3BjaV9yZXNvdXJjZV9hZGRyLAo+PiAgICAgICAgIC5yZXNvdXJjZV9zaXplID0gbnZrbV9k
-ZXZpY2VfcGNpX3Jlc291cmNlX3NpemUsCj4+ICsgICAgICAgLmNwdV9jb2hlcmVudCA9ICFJU19F
-TkFCTEVEKENPTkZJR19BUk0pLAo+PiAgfTsKPj4KPj4gIGludAo+PiBkaWZmIC0tZ2l0IGEvZHJt
-L25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3RlZ3JhLmMgYi9kcm0vbm91dmVhdS9udmttL2Vu
-Z2luZS9kZXZpY2UvdGVncmEuYwo+PiBpbmRleCA5Mzk2ODJmLi45YjYzOGJkIDEwMDY0NAo+PiAt
-LS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvdGVncmEuYwo+PiArKysgYi9kcm0v
-bm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvdGVncmEuYwo+PiBAQCAtMjQ1LDYgKzI0NSw3IEBA
-IG52a21fZGV2aWNlX3RlZ3JhX2Z1bmMgPSB7Cj4+ICAgICAgICAgLmZpbmkgPSBudmttX2Rldmlj
-ZV90ZWdyYV9maW5pLAo+PiAgICAgICAgIC5yZXNvdXJjZV9hZGRyID0gbnZrbV9kZXZpY2VfdGVn
-cmFfcmVzb3VyY2VfYWRkciwKPj4gICAgICAgICAucmVzb3VyY2Vfc2l6ZSA9IG52a21fZGV2aWNl
-X3RlZ3JhX3Jlc291cmNlX3NpemUsCj4+ICsgICAgICAgLmNwdV9jb2hlcmVudCA9IGZhbHNlLAo+
-PiAgfTsKPj4KPj4gIGludAo+PiBkaWZmIC0tZ2l0IGEvbGliL2luY2x1ZGUvbnZpZi9vcy5oIGIv
-bGliL2luY2x1ZGUvbnZpZi9vcy5oCj4+IGluZGV4IGI0NWExODYuLjJmMzRjNWEgMTAwNjQ0Cj4+
-IC0tLSBhL2xpYi9pbmNsdWRlL252aWYvb3MuaAo+PiArKysgYi9saWIvaW5jbHVkZS9udmlmL29z
-LmgKPj4gQEAgLTEyNCw2ICsxMjQsMTIgQEAgdHlwZWRlZiBkbWFfYWRkcl90IHJlc291cmNlX3Np
-emVfdDsKPj4gICNkZWZpbmUgX19wcmludGYoYSxiKQo+PiAgI2RlZmluZSBfX3VzZXIKPj4KPj4g
-KyNpZiBkZWZpbmVkKENPTkZJR19BUk0pCj4+ICsjZGVmaW5lIElTX0VOQUJMRURfQ09ORklHX0FS
-TSAxCj4+ICsjZWxzZQo+PiArI2RlZmluZSBJU19FTkFCTEVEX0NPTkZJR19BUk0gMAo+PiArI2Vu
-ZGlmCj4+ICsKPj4gICNpZiBkZWZpbmVkKENPTkZJR19JT01NVV9BUEkpCj4+ICAjZGVmaW5lIElT
-X0VOQUJMRURfQ09ORklHX0lPTU1VX0FQSSAxCj4+ICAjZWxzZQo+PiAtLQo+PiAyLjEwLjAKPj4K
-Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gTm91
-dmVhdSBtYWlsaW5nIGxpc3QKPj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4gX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1h
-aWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0408942941==
+Content-Type: multipart/alternative; boundary="14742567670.39e4EfF.15170";
+ charset="UTF-8"
+
+
+--14742567670.39e4EfF.15170
+Date: Mon, 19 Sep 2016 03:46:07 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
+
+--- Comment #19 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 126610
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126610&action=3Dedit
+4.5.0-rc7 nouveau.debug=3Ddebug video=3Dvesafb:off log_buf_len=3D1M
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14742567670.39e4EfF.15170
+Date: Mon, 19 Sep 2016 03:46:07 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
+1-1 to 4.6.4-1)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c19">Commen=
+t # 19</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
+1-1 to 4.6.4-1)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+lukeisgreat&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com=
+&gt;"> <span class=3D"fn">Luke Tidd</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126610=
+" name=3D"attach_126610" title=3D"4.5.0-rc7 nouveau.debug=3Ddebug video=3Dv=
+esafb:off log_buf_len=3D1M">attachment 126610</a> <a href=3D"attachment.cgi=
+?id=3D126610&amp;action=3Dedit" title=3D"4.5.0-rc7 nouveau.debug=3Ddebug vi=
+deo=3Dvesafb:off log_buf_len=3D1M">[details]</a></span>
+4.5.0-rc7 nouveau.debug=3Ddebug video=3Dvesafb:off log_buf_len=3D1M</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14742567670.39e4EfF.15170--
+
+--===============0408942941==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0408942941==--
