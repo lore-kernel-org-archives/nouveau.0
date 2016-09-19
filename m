@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
  upgrade (4.5.1-1 to 4.6.4-1)
-Date: Mon, 19 Sep 2016 04:02:12 +0000
-Message-ID: <bug-97620-8800-QY8nVcnVsS@http.bugs.freedesktop.org/>
+Date: Mon, 19 Sep 2016 04:02:23 +0000
+Message-ID: <bug-97620-8800-MPqmDODa1T@http.bugs.freedesktop.org/>
 References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0836820571=="
+Content-Type: multipart/mixed; boundary="===============1419305117=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0836820571==
-Content-Type: multipart/alternative; boundary="14742577311.A2Ae67.15908";
+--===============1419305117==
+Content-Type: multipart/alternative; boundary="14742577430.8ae1.15834";
  charset="UTF-8"
 
 
---14742577311.A2Ae67.15908
-Date: Mon, 19 Sep 2016 04:02:11 +0000
+--14742577430.8ae1.15834
+Date: Mon, 19 Sep 2016 04:02:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,30 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
 
---- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Luke Tidd from comment #21)
-> # stat /sys/kernel/debug/dri/0/vbios.rom
->   File: '/sys/kernel/debug/dri/0/vbios.rom'
->   Size: 0         	Blocks: 0          IO Block: 4096   regular empty file
-> Device: 7h/7d	Inode: 13648       Links: 1
-> Access: (0444/-r--r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
-> Access: 2016-09-18 23:52:15.396661809 -0400
-> Modify: 2016-09-18 23:52:15.396661809 -0400
-> Change: 2016-09-18 23:52:15.396661809 -0400
->  Birth: -
->=20
-> dri has /0 /64 and /128 and all vbios.rom in each are empty.
-
-stat can be deceiving. Try cp or cat. (The vbios.rom files in all 3 should =
-be
-identical btw.)
+--- Comment #23 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 126611
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126611&action=3Dedit
+(broken) dmesg_4.7.4-1-ARCH nouveau.debug=3Ddebug,bios=3Dtrace
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14742577311.A2Ae67.15908
-Date: Mon, 19 Sep 2016 04:02:11 +0000
+--14742577430.8ae1.15834
+Date: Mon, 19 Sep 2016 04:02:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
 1-1 to 4.6.4-1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c22">Commen=
-t # 22</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c23">Commen=
+t # 23</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
@@ -86,28 +73,15 @@ t # 22</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+lukeisgreat&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com=
+&gt;"> <span class=3D"fn">Luke Tidd</span></a>
 </span></b>
-        <pre>(In reply to Luke Tidd from <a href=3D"show_bug.cgi?id=3D97620=
-#c21">comment #21</a>)
-<span class=3D"quote">&gt; # stat /sys/kernel/debug/dri/0/vbios.rom
-&gt;   File: '/sys/kernel/debug/dri/0/vbios.rom'
-&gt;   Size: 0         	Blocks: 0          IO Block: 4096   regular empty f=
-ile
-&gt; Device: 7h/7d	Inode: 13648       Links: 1
-&gt; Access: (0444/-r--r--r--)  Uid: (    0/    root)   Gid: (    0/    roo=
-t)
-&gt; Access: 2016-09-18 23:52:15.396661809 -0400
-&gt; Modify: 2016-09-18 23:52:15.396661809 -0400
-&gt; Change: 2016-09-18 23:52:15.396661809 -0400
-&gt;  Birth: -
-&gt;=20
-&gt; dri has /0 /64 and /128 and all vbios.rom in each are empty.</span >
-
-stat can be deceiving. Try cp or cat. (The vbios.rom files in all 3 should =
-be
-identical btw.)</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126611=
+" name=3D"attach_126611" title=3D"(broken) dmesg_4.7.4-1-ARCH nouveau.debug=
+=3Ddebug,bios=3Dtrace">attachment 126611</a> <a href=3D"attachment.cgi?id=
+=3D126611&amp;action=3Dedit" title=3D"(broken) dmesg_4.7.4-1-ARCH nouveau.d=
+ebug=3Ddebug,bios=3Dtrace">[details]</a></span>
+(broken) dmesg_4.7.4-1-ARCH nouveau.debug=3Ddebug,bios=3Dtrace</pre>
         </div>
       </p>
 
@@ -121,9 +95,9 @@ identical btw.)</pre>
     </body>
 </html>=
 
---14742577311.A2Ae67.15908--
+--14742577430.8ae1.15834--
 
---===============0836820571==
+--===============1419305117==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -133,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0836820571==--
+--===============1419305117==--
