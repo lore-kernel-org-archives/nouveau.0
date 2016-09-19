@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
  upgrade (4.5.1-1 to 4.6.4-1)
-Date: Mon, 19 Sep 2016 05:08:00 +0000
-Message-ID: <bug-97620-8800-Q7vZXYkjX1@http.bugs.freedesktop.org/>
+Date: Mon, 19 Sep 2016 05:34:29 +0000
+Message-ID: <bug-97620-8800-79urOrvtCf@http.bugs.freedesktop.org/>
 References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1420843596=="
+Content-Type: multipart/mixed; boundary="===============2110862927=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1420843596==
-Content-Type: multipart/alternative; boundary="14742616801.0CCB7.19320";
+--===============2110862927==
+Content-Type: multipart/alternative; boundary="14742632691.6fB3abE.20579";
  charset="UTF-8"
 
 
---14742616801.0CCB7.19320
-Date: Mon, 19 Sep 2016 05:08:00 +0000
+--14742632691.6fB3abE.20579
+Date: Mon, 19 Sep 2016 05:34:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,22 +36,34 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
 
---- Comment #26 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-0x13b154 =3D PXBAR.GPC_UNK1[0x2]+0x54
+--- Comment #27 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Looking at our VBIOS repo, we have a bunch (but not all) of GF104's that are
+missing the 0x2240c write as well as one GK107. Every other (GF100+) GPU se=
+ts
+0x2240c. I guess it's not as reliable as we'd hoped.
 
-However GF104 only has 2 GPC's. Odd. At least the MMIO write failure makes
-sense. I wonder if we're supposed to filter those out. That'd be pretty
-annoying...
+This is how I checked:
 
-Another curious point is that this VBIOS does not write 0x2240c anywhere. I
-wonder if that only got standardized later on, not starting with GF100.
+for i in nv[cdef]?/*/*.rom nv1??/*/*.rom; do echo $i; nvbios $i |& grep
+0x02240c; done
+
+And looked for files without a 'NV_REG   R[0x02240c] &=3D 0xfffffffd |=3D
+0x00000002' command.
+
+Although that in itself shouldn't be a major issue - rerunning the VBIOS
+shouldn't cause issues...
+
+Looking at a mmiotrace that came with one of those GF104 VBIOSes that are
+missing a 0x2240c write, it doesn't seem like the VBIOS gets executed there=
+, or
+at least not that script. It's late and I could have messed up though.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14742616801.0CCB7.19320
-Date: Mon, 19 Sep 2016 05:08:00 +0000
+--14742632691.6fB3abE.20579
+Date: Mon, 19 Sep 2016 05:34:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,8 +81,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
 1-1 to 4.6.4-1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c26">Commen=
-t # 26</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c27">Commen=
+t # 27</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
@@ -81,15 +93,28 @@ t # 26</a>
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>0x13b154 =3D PXBAR.GPC_UNK1[0x2]+0x54
+        <pre>Looking at our VBIOS repo, we have a bunch (but not all) of GF=
+104's that are
+missing the 0x2240c write as well as one GK107. Every other (GF100+) GPU se=
+ts
+0x2240c. I guess it's not as reliable as we'd hoped.
 
-However GF104 only has 2 GPC's. Odd. At least the MMIO write failure makes
-sense. I wonder if we're supposed to filter those out. That'd be pretty
-annoying...
+This is how I checked:
 
-Another curious point is that this VBIOS does not write 0x2240c anywhere. I
-wonder if that only got standardized later on, not starting with GF100.</pr=
-e>
+for i in nv[cdef]?/*/*.rom nv1??/*/*.rom; do echo $i; nvbios $i |&amp; grep
+0x02240c; done
+
+And looked for files without a 'NV_REG   R[0x02240c] &amp;=3D 0xfffffffd |=
+=3D
+0x00000002' command.
+
+Although that in itself shouldn't be a major issue - rerunning the VBIOS
+shouldn't cause issues...
+
+Looking at a mmiotrace that came with one of those GF104 VBIOSes that are
+missing a 0x2240c write, it doesn't seem like the VBIOS gets executed there=
+, or
+at least not that script. It's late and I could have messed up though.</pre>
         </div>
       </p>
 
@@ -103,9 +128,9 @@ e>
     </body>
 </html>=
 
---14742616801.0CCB7.19320--
+--14742632691.6fB3abE.20579--
 
---===============1420843596==
+--===============2110862927==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +140,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1420843596==--
+--===============2110862927==--
