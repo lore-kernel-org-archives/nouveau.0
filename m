@@ -1,16 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH 1/2] Revert "bus: remove cpu_coherent flag"
-Date: Mon, 19 Sep 2016 09:57:33 +0300
-Message-ID: <67a1cc21-390a-2e02-7ddb-64a96c881d46@free.fr>
-References: <20160918102157.3921-1-karolherbst@gmail.com>
- <CAAVeFuL2mGPzfe1PJJmhOc7wv+XVDXomAUz4n8Fj8RHov-fBMQ@mail.gmail.com>
- <CAKb7UvhEZtnj-wyKzUtg1ASSJj0Ce9p9y+bC_+05ikbo8fcdiA@mail.gmail.com>
- <CAAVeFuL3V3MZNcDSUPvsnjLPABGvccF0GzZ-xL4C8DaKX_-eJA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 97438] Running a lot of Firefox instances causes
+ kernel page fault.
+Date: Mon, 19 Sep 2016 09:58:52 +0000
+Message-ID: <bug-97438-8800-3l1LC6g2Lz@http.bugs.freedesktop.org/>
+References: <bug-97438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1585568329=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFuL3V3MZNcDSUPvsnjLPABGvccF0GzZ-xL4C8DaKX_-eJA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-97438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +17,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTkvMDkvMTYgMDY6NTAsIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+IE9uIE1vbiwgU2Vw
-IDE5LCAyMDE2IGF0IDEyOjQzIFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+
-IHdyb3RlOgo+PiBPbiBTdW4sIFNlcCAxOCwgMjAxNiBhdCAxMTozOSBQTSwgQWxleGFuZHJlIENv
-dXJib3QgPGdudXJvdUBnbWFpbC5jb20+IHdyb3RlOgo+Pj4gT24gU3VuLCBTZXAgMTgsIDIwMTYg
-YXQgNzoyMSBQTSwgS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+IHdyb3RlOgo+
-Pj4+IFRoaXMgcmV2ZXJ0cyBjb21taXQgMDFiYmNiNjlmODBlMTA1ODM5NWI3MzdhZTM5OWM2ZjRl
-ZjQ4NjkxYi4KPj4gSSB0aGluayB5b3UgbWVhbnQgYWZmNTExNzVjZGJmMzQ1NzQwZWM5MjAzZWZm
-ODhlNzcyYWY4ODA1OSAtIHRoYXQncwo+PiB0aGUgY29tbWl0IGlkIHRoYXQgbWF0dGVycywgbm90
-IHRoZSBvbmUgaW4gQmVuJ3Mgbm9uLWxpbnV4IHJlcG8uCj4+Cj4+Pj4gVGhlIGNvbW1pdCBjYXVz
-ZWQgZmVuY2UgdGltZW91dHMgd2l0aGluIG52YzBfc2NyZWVuX2Rlc3Ryb3kgYW5kIG1vc3QgbGlr
-ZWx5Cj4+Pj4gb3RoZXIgcGxhY2VzIGFzIHdlbGwuCj4+Pj4KPj4+PiBUaGUgbW9zdCBvYnZpb3Vz
-IGVmZmVjdCBpcywgdGhhdCB1c2Vyc3BhY2UgcHJvY2Vzc2VzIHRha2UgbWludXRlcyB0byBhY3R1
-YWxseQo+Pj4+IHF1aXQuCj4+PiBBY2tlZC1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90
-QG52aWRpYS5jb20+Cj4+IElmIHRoaXMgZG9lc24ndCBtYWtlIGl0IGludG8gdjQuOCAod2hpY2gg
-aXMgZHVlIHRvIGJlIHJlbGVhc2VkIGluIGEKPj4gd2VlayksIGl0IHNob3VsZCBnZXQgdGFnZ2Vk
-IGZvciBzdGFibGUgYXMgd2VsbC4KPj4KPj4gQnkgdGhlIHdheSwgQWxleGFuZHJlLCBJIGJlbGll
-dmUgTWFydGluIHdhcyByZXBvcnRpbmcgaXNzdWVzIGxpa2UgdGhpcwo+PiBvbiBoaXMgVEsxIGJl
-Zm9yZSB0aGlzIGNoYW5nZSBhcyB3ZWxsLiBQcm9iYWJseSB3b3J0aCBpbnZlc3RpZ2F0aW5nIC0K
-Pj4gc291bmRzIGxpa2UgdGhlcmUncyBhIHdpZGVyIGlzc3VlIHdpdGggVFRNX1BMX0ZMQUdfVU5D
-QUNIRUQgYW5kL29yCj4+IGZvcmNlX2NvaGVyZW50Lgo+IFllcywgaXQgbWF5IGJlIGluZGVlZCBy
-ZWxhdGVkLiBJIG5lZWQgdG8gc3luYyB3aXRoIE1hcnRpbiB0bwo+IHVuZGVyc3RhbmQgaGlzIGV4
-YWN0IHJlcHJvIGNhc2UuCgpSdW5uaW5nIHBpZ2xpdCBvbiB0aGUgdGsxIGlzIGVub3VnaCBmb3Ig
-bWUsIGJ1dCBJIHdpbGwgdHJ5IHRvIHVwZGF0ZSB0aGUgCmtlcm5lbCBhZ2FpbiB0byBzZWUgaWYg
-aXQgaGVscHMuCgpUaGUgaXNzdWUgaXMgdGhhdCBtZXNhIGlzIHdhaXRpbmcgb24gYSBmZW5jZSB0
-aGF0IG5ldmVyIGdldHMgc3luY2VkIG9uIAppbiB0aGUgZ2JtIGRlc3RydWN0b3IuIFRoZSBwcm9i
-YWJseSBvZiBoYXZpbmcgdGhlIHRpbWVvdXQgaXMgYWJvdXQgCjUwLzUwLCBzbyBpdCBpcyBlYXN5
-LWVub3VnaCB0byByZXByb2R1Y2UgaW4gbXkgY2FzZSA6cwoKTWFydGluCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1585568329==
+Content-Type: multipart/alternative; boundary="14742791311.9EdD6A250.4966";
+ charset="UTF-8"
+
+
+--14742791311.9EdD6A250.4966
+Date: Mon, 19 Sep 2016 09:58:51 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97438
+
+freedesktop.loser137-99sIRBiOKkeIIQEfbqrPhw@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|INVALID                     |---
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14742791311.9EdD6A250.4966
+Date: Mon, 19 Sep 2016 09:58:51 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:freedeskt=
+op.loser137&#64;safersignup.com" title=3D"freedesktop.loser137&#64;safersig=
+nup.com">freedesktop.loser137&#64;safersignup.com</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Running a lot of Firefox instances causes kernel pag=
+e fault."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97438">bug 97438<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>INVALID
+           </td>
+           <td>---
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14742791311.9EdD6A250.4966--
+
+--===============1585568329==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1585568329==--
