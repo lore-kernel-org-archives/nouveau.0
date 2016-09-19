@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
  upgrade (4.5.1-1 to 4.6.4-1)
-Date: Mon, 19 Sep 2016 04:02:23 +0000
-Message-ID: <bug-97620-8800-MPqmDODa1T@http.bugs.freedesktop.org/>
+Date: Mon, 19 Sep 2016 04:07:08 +0000
+Message-ID: <bug-97620-8800-2Q4WOIxr0v@http.bugs.freedesktop.org/>
 References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1419305117=="
+Content-Type: multipart/mixed; boundary="===============1070861300=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1419305117==
-Content-Type: multipart/alternative; boundary="14742577430.8ae1.15834";
+--===============1070861300==
+Content-Type: multipart/alternative; boundary="14742580281.3d9bc4.16100";
  charset="UTF-8"
 
 
---14742577430.8ae1.15834
-Date: Mon, 19 Sep 2016 04:02:23 +0000
+--14742580281.3d9bc4.16100
+Date: Mon, 19 Sep 2016 04:07:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
 
---- Comment #23 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 126611
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126611&action=3Dedit
-(broken) dmesg_4.7.4-1-ARCH nouveau.debug=3Ddebug,bios=3Dtrace
+--- Comment #24 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 126612
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126612&action=3Dedit
+vbios.rom
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14742577430.8ae1.15834
-Date: Mon, 19 Sep 2016 04:02:23 +0000
+--14742580281.3d9bc4.16100
+Date: Mon, 19 Sep 2016 04:07:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
 1-1 to 4.6.4-1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c23">Commen=
-t # 23</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c24">Commen=
+t # 24</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
@@ -76,12 +76,11 @@ t # 23</a>
 lukeisgreat&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com=
 &gt;"> <span class=3D"fn">Luke Tidd</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126611=
-" name=3D"attach_126611" title=3D"(broken) dmesg_4.7.4-1-ARCH nouveau.debug=
-=3Ddebug,bios=3Dtrace">attachment 126611</a> <a href=3D"attachment.cgi?id=
-=3D126611&amp;action=3Dedit" title=3D"(broken) dmesg_4.7.4-1-ARCH nouveau.d=
-ebug=3Ddebug,bios=3Dtrace">[details]</a></span>
-(broken) dmesg_4.7.4-1-ARCH nouveau.debug=3Ddebug,bios=3Dtrace</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126612=
+" name=3D"attach_126612" title=3D"vbios.rom">attachment 126612</a> <a href=
+=3D"attachment.cgi?id=3D126612&amp;action=3Dedit" title=3D"vbios.rom">[deta=
+ils]</a></span>
+vbios.rom</pre>
         </div>
       </p>
 
@@ -95,9 +94,9 @@ ebug=3Ddebug,bios=3Dtrace">[details]</a></span>
     </body>
 </html>=
 
---14742577430.8ae1.15834--
+--14742580281.3d9bc4.16100--
 
---===============1419305117==
+--===============1070861300==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1419305117==--
+--===============1070861300==--
