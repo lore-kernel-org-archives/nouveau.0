@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97620] [REGRESSION] KMS having issues after kernel
  upgrade (4.5.1-1 to 4.6.4-1)
-Date: Mon, 19 Sep 2016 03:08:24 +0000
-Message-ID: <bug-97620-8800-hn9QIFNm9a@http.bugs.freedesktop.org/>
+Date: Mon, 19 Sep 2016 03:26:11 +0000
+Message-ID: <bug-97620-8800-5xrOICgN07@http.bugs.freedesktop.org/>
 References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1513108856=="
+Content-Type: multipart/mixed; boundary="===============1785069459=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1513108856==
-Content-Type: multipart/alternative; boundary="14742545041.0466.13028";
+--===============1785069459==
+Content-Type: multipart/alternative; boundary="14742555701.c1D1.13857";
  charset="UTF-8"
 
 
---14742545041.0466.13028
-Date: Mon, 19 Sep 2016 03:08:24 +0000
+--14742555701.c1D1.13857
+Date: Mon, 19 Sep 2016 03:26:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
 
---- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Another thing you could do is boot (any) kernel with nomodeset, and then us=
-ing
-envytools (https://github.com/envytools/envytools/), do
+--- Comment #14 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+kernel 4.7.4-1-ARCH
+nomodeset single
 
-nvapeek 2240c
+# nvapeek 2240c
+...
 
-This should output 1 line, either a number or just "..." [which means "0"],=
- I
-would like to know what it is. Ideally this would be done on a cold boot.
+
+testing working kernel now.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14742545041.0466.13028
-Date: Mon, 19 Sep 2016 03:08:24 +0000
+--14742555701.c1D1.13857
+Date: Mon, 19 Sep 2016 03:26:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,8 +69,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
 1-1 to 4.6.4-1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c13">Commen=
-t # 13</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c14">Commen=
+t # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [REGRESSION] KMS having issues after kernel upgrade (4.5.=
@@ -79,20 +78,17 @@ t # 13</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+lukeisgreat&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com=
+&gt;"> <span class=3D"fn">Luke Tidd</span></a>
 </span></b>
-        <pre>Another thing you could do is boot (any) kernel with nomodeset=
-, and then using
-envytools (<a href=3D"https://github.com/envytools/envytools/">https://gith=
-ub.com/envytools/envytools/</a>), do
+        <pre>kernel 4.7.4-1-ARCH
+nomodeset single
 
-nvapeek 2240c
+# nvapeek 2240c
+...
 
-This should output 1 line, either a number or just &quot;...&quot; [which m=
-eans &quot;0&quot;], I
-would like to know what it is. Ideally this would be done on a cold boot.</=
-pre>
+
+testing working kernel now.</pre>
         </div>
       </p>
 
@@ -106,9 +102,9 @@ pre>
     </body>
 </html>=
 
---14742545041.0466.13028--
+--14742555701.c1D1.13857--
 
---===============1513108856==
+--===============1785069459==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1513108856==--
+--===============1785069459==--
