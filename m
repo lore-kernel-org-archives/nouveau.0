@@ -1,29 +1,59 @@
-From: SF Markus Elfring <elfring@users.sourceforge.net>
-Subject: Re: GPU-DRM-nouveau: Delete unnecessary braces
-Date: Wed, 21 Sep 2016 15:20:52 +0200
-Message-ID: <10ea66e2-e04b-6043-6dfd-a8d13c57b94c@users.sourceforge.net>
-References: <5bcff2ec-f3bd-ab9c-e13d-3a4f5cf7c73b@users.sourceforge.net>
- <74cc2e34-cb5f-e3c9-e6cd-aa24ed3529e3@users.sourceforge.net>
- <20160921084708.GM13620@mwanda>
+From: Roger Price <roger-H+LJbJIQ8q6M4zKIHC2jIg@public.gmane.org>
+Subject: Quadro 4000 with iiyama B2783QSU should be 2560x1440 but
+ detected as 1920x1080.
+Date: Wed, 21 Sep 2016 16:09:05 +0200 (CEST)
+Message-ID: <alpine.LSU.2.11.1609211605150.3710@maria>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
-Return-path: <kernel-janitors-owner@vger.kernel.org>
-In-Reply-To: <20160921084708.GM13620@mwanda>
-Sender: kernel-janitors-owner@vger.kernel.org
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Martin Peres <martin.peres@free.fr>, Roy Spliet <rspliet@eclipso.eu>, LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org, trivial@kernel.org, Julia Lawall <julia.lawall@lip6.fr>, linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau Mailing List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-> The original style was correct, the new style is wrong.
-
-I find your feedback interesting for further clarifications.
-
-
-> Multi-line indents get curly braces for readability.
-
-How do you think about to transform such an information
-into an official specification for the the document "CodingStyle"?
-
-Regards,
-Markus
+SGksIERpc3RyaWJ1dGlvbjogb3BlblNVU0UgNDIuMiBCZXRhLCBLZXJuZWw6IDQuNC4gIFRoZSBi
+b3ggaXMgYSBEZWxsIApQcmVjaXNpb24gVDc1MDAgd2l0aCBhbiBuVmlkaWEgUXVhZHJvIDQwMDAg
+Y2FyZCBhbmQgYSBkaXNwbGF5cG9ydCAKY29ubmVjdGVkIGlpeWFtYSBCMjc4M1FTVSAyNTYweDE0
+NDAgbW9uaXRvciBpZGVudGlmaWVkIGFzIERQLTEuCgpQcm9ibGVtOiBUaGUgbW9uaXRvciBpcyBk
+ZXRlY3RlZCBhcyAxOTIweDEwODAgYW5kIG5vdCAyNTYweDE0NDAuICBTZWUgWG9yZyAKbG9nIGZp
+bGUgYXQgaHR0cDovL3JvZ2VycHJpY2Uub3JnL1hvcmcuMC5sb2cgLiAgVGhlcmUgaXMgbm8gZmls
+ZSAKL2V0Yy9YMTEveG9yZy5jb25mIGFuZCBpbiB0aGUgZGlyZWN0b3J5IC9ldGMvWDExL1hvcmcu
+Y29uZi5kLyB0aGUgZmlsZXMgCjUwLWRldmljZS5jb25mLCA1MC1tb25pdG9yLmNvbmYgYW5kIDUw
+LXNjcmVlbi5jb25mIGNvbnRhaW4gY29tbWVudHMgb25seS4KCk15IGF0dGVtcHRlZCByZXBhaXIg
+ZmFpbGVkOgoKSSB1c2VkIGd0ZiB0byBjYWxjdWxhdGUgYSAyNTYweDE0NDBfNjAgbW9kZSBsaW5l
+CgogICBNb2RlbGluZSAiMjU2MHgxNDQwXzYwLjAwIiAgMzExLjgzICAyNTYwIDI3NDQgMzAyNCAz
+NDg4ICAxNDQwIDE0NDEgMTQ0NCAxNDkwICAtSFN5bmMgK1ZzeW5jCgphbmQgSSB0aGVuIHVzZWQg
+Y29tbWFuZHMKCiAgIHhyYW5kciAtLW5ld21vZGUgMjU2MHgxNDQwICAgMzExLjgzICAyNTYwIDI3
+NDQgMzAyNCAzNDg4ICAxNDQwIDE0NDEgMTQ0NCAxNDkwICAtSFN5bmMgK1ZzeW5jCiAgIHhyYW5k
+ciAtLWFkZG1vZGUgRFAtMSAyNTYweDE0NDAKICAgeHJhbmRyIC0tb3V0cHV0IERQLTEgLS1tb2Rl
+IDI1NjB4MTQ0MAoKVGhlIHJlc3VsdCBpcyB0aGF0IHdpbmRvd3Mgb24gdGhlIHNjcmVlbiBzZWVt
+IHRvIGluY3JlYXNlIGluIHNpemUgc2xpZ2h0bHkgCmFuZCBmbG93IG9mZiB0aGUgc2NyZWVuLiAg
+VGhlIHN5c3RlbSB0cmF5IG5vcm1hbGx5IGF0IHRoZSBib3R0b20gb2YgdGhlIApzY3JlZW4gaGFz
+IGRpc2FwcGVhcmVkLiAgTW9yZSBwcmVjaXNlbHksIGNvbW1hbmQgeHJhbmRyIC1xIHJlcG9ydHM6
+CgogICBTY3JlZW4gMDogbWluaW11bSAzMjAgeCAyMDAsIGN1cnJlbnQgMjU2MCB4IDE0NDAsIG1h
+eGltdW0gMTYzODQgeCAxNjM4NAogICBEVkktSS0xIGRpc2Nvbm5lY3RlZCAobm9ybWFsIGxlZnQg
+aW52ZXJ0ZWQgcmlnaHQgeCBheGlzIHkgYXhpcykKICAgRFAtMSBjb25uZWN0ZWQgMjU2MHgxNDQw
+KzArMCAobm9ybWFsIGxlZnQgaW52ZXJ0ZWQgcmlnaHQgeCBheGlzIHkgYXhpcykgNTk3bW0geCAz
+MzZtbQogICAgIDE5MjB4MTIwMCAgICAgNTkuOTUKICAgICAxOTIweDEwODAgICAgIDYwLjAwCiAg
+ICAgMTYwMHgxMjAwICAgICA2MC4wMAogICAgIDE2ODB4MTA1MCAgICAgNTkuODgKICAgICAxNjAw
+eDEwMDAgICAgIDYwLjAxCiAgICAgMTYwMHg5MDAgICAgICA2MC4wMAogICAgIDEyODB4MTAyNCAg
+ICAgNzUuMDIKICAgICAxNDQweDkwMCAgICAgIDU5LjkwCiAgICAgMTAyNHg3NjggICAgICA3NS4w
+MyAgICA2MC4wMAogICAgIDgwMHg2MDAgICAgICAgNzUuMDAgICAgNjAuMzIKICAgICA2NDB4NDgw
+ICAgICAgIDc1LjAwICAgIDU5Ljk0CiAgICAgMjU2MHgxNDQwICAgICA2MC4wMCoKICAgRFAtMiBk
+aXNjb25uZWN0ZWQgKG5vcm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpCgpi
+dXQgY29tbWFuZCB4dmlkdHVuZSAtc2hvdyByZXBvcnRzOgoKICAgIjE5MjB4MTIwMCIgICAxNTQu
+MDAgICAxOTIwIDE5NjggMjAwMCAyMDgwICAgMTIwMCAxMjAzIDEyMDkgMTIzNSAraHN5bmMgLXZz
+eW5jCgpJJ20gbm90IHN1cmUgaWYgSSdtIGxvb2tpbmcgYXQgYSBidWcgb3IgaWYgdGhpcyBpcyBq
+dXN0IG5vb2IgY29uZnVzaW9uLiAKQW55IGFkdmljZSBvciBzdWdnZXN0aW9uIHdvdWxkIGJlIG11
+Y2ggYXBwcmVjaWF0ZWQuCgpSb2dlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
