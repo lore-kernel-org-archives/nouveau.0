@@ -1,15 +1,13 @@
-From: Roger Price <roger-H+LJbJIQ8q6M4zKIHC2jIg@public.gmane.org>
-Subject: Re: Quadro 4000 with iiyama B2783QSU should be 2560x1440
- but detected as 1920x1080. [SOLVED]
-Date: Wed, 21 Sep 2016 23:16:11 +0200 (CEST)
-Message-ID: <alpine.LSU.2.11.1609212301590.3710@maria>
-References: <alpine.LSU.2.11.1609211605150.3710@maria>
- <CAKb7UvjUr8Tx5iYB+vcP3P4+QuLKk1G9FEQMF9aTSbnUWAa_AA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 97614] occasional screen distortions with nouveau
+ under 4.8.0-rc4+
+Date: Thu, 22 Sep 2016 20:49:51 +0000
+Message-ID: <bug-97614-8800-j5FhQueTqC@http.bugs.freedesktop.org/>
+References: <bug-97614-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1089866059=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvjUr8Tx5iYB+vcP3P4+QuLKk1G9FEQMF9aTSbnUWAa_AA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-97614-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,33 +17,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau Mailing List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCAyMSBTZXAgMjAxNiwgSWxpYSBNaXJraW4gd3JvdGU6Cgo+IEkgdGhpbmsgeW91IHdh
-bnQgdGhlIHJlZHVjZWQgYmxhbmtpbmcgbW9kZWxpbmU6Cj4KPiAkIGN2dCAtciAyNTYwIDE0NDAK
-PiAjIDI1NjB4MTQ0MCA1OS45NSBIeiAoQ1ZUIDMuNjlNOS1SKSBoc3luYzogODguNzkga0h6OyBw
-Y2xrOiAyNDEuNTAgTUh6Cj4gTW9kZWxpbmUgIjI1NjB4MTQ0MFIiICAyNDEuNTAgIDI1NjAgMjYw
-OCAyNjQwIDI3MjAgIDE0NDAgMTQ0MyAxNDQ4Cj4gMTQ4MSAraHN5bmMgLXZzeW5jCj4KPiBUaGlz
-IG1hdGNoZXMgeW91ciBtb25pdG9yJ3MgZGV0YWlsZWQgdGltaW5nczoKPgo+IFsgICAgNTUuMjIw
-XSAoSUkpIE5PVVZFQVUoMCk6IFN1cHBvcnRlZCBkZXRhaWxlZCB0aW1pbmc6Cj4gWyAgICA1NS4y
-MjBdIChJSSkgTk9VVkVBVSgwKTogY2xvY2s6IDI0MS41IE1IeiAgIEltYWdlIFNpemU6ICA1OTcg
-eCAzMzYgbW0KPiBbICAgIDU1LjIyMF0gKElJKSBOT1VWRUFVKDApOiBoX2FjdGl2ZTogMjU2MCAg
-aF9zeW5jOiAyNjA4ICBoX3N5bmNfZW5kCj4gMjY0MCBoX2JsYW5rX2VuZCAyNzIwIGhfYm9yZGVy
-OiAwCj4gWyAgICA1NS4yMjBdIChJSSkgTk9VVkVBVSgwKTogdl9hY3RpdmU6IDE0NDAgIHZfc3lu
-YzogMTQ0MyAgdl9zeW5jX2VuZAo+IDE0NDggdl9ibGFua2luZzogMTQ4MSB2X2JvcmRlcjogMAo+
-Cj4gTm90IHN1cmUgd2h5IGEgMjU2MHgxNDQwIG1vZGVsaW5lIGlzbid0IGJlaW5nIGFkdmVydGlz
-ZWQgaW4gRURJRCAtCj4gcGVyaGFwcyB0aGUgbW9uaXRvciBpcyBpbiBzb21lICJzYWZlIiBzZXR0
-aW5nIHdoZXJlIHRoYXQncyBub3QKPiByZXBvcnRlZD8gTWlnaHQgaGF2ZSB0byBmbGlwIGl0IGlu
-dG8gRFAgMS4yIG1vZGUgb3Igc29tZXRoaW5nLgoKSSB0cmllZCB0aGUgcmVkdWNlZCBibGFua2lu
-ZyBtb2RlbGluZSwgYnV0IHRoZSAxOTIweDEwODAgZm9ybWF0IHBlcnNpc3RlZC4gClNvIEkgdGhl
-biByZXBsYWNlZCB0aGUgZGlzcGxheSBwb3J0IGNhYmxlcyB3aXRoIHRoZSBjYWJsZXMgbGFiZWxs
-ZWQgIkRQIApWMS4yIiBzdXBwbGllZCBieSBpaXlhbWEgd2l0aCB0aGUgbW9uaXRvcnMuICBUaGlz
-IGZpeGVkIHRoZSBwcm9ibGVtLiBJIG5vdyAKaGF2ZSAyNTYweDE0NDBSIG9uIHR3byBpaXlhbWEg
-bW9uaXRvcnMuICBJIHdhcyBtb3N0IGFncmVhYmx5IHN1cnByaXplZCAKdGhhdCB0aGUgbm91dmVh
-dSBkcml2ZXIgYXV0b21hdGljYWxseSBwbGFjZWQgRFAtMiB0byB0aGUgcmlnaHQgb2YgRFAtMSB0
-byAKZm9ybSBhIDUxMjB4MTQ0MCBzdXJmYWNlLiAgVmVyeSBwb2xpc2hlZCBleGVjdXRpb24gYnkg
-bm91dmVhdSEKClRoYW5rcyBmb3IgeW91ciBoZWxwLCBSb2dlcgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1089866059==
+Content-Type: multipart/alternative; boundary="14745773900.DAfAf.16535";
+ charset="UTF-8"
+
+
+--14745773900.DAfAf.16535
+Date: Thu, 22 Sep 2016 20:49:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97614
+
+--- Comment #10 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+  While there are only occasional screen distortions with xfce KDE5 plasma
+seems to fully break by these issues: see also
+https://bugs.kde.org/show_bug.cgi?id=3D368275. Just tell me if you should n=
+eed
+more information; - tested with 4.8.0-rc7+.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14745773900.DAfAf.16535
+Date: Thu, 22 Sep 2016 20:49:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - occasional screen distortions with nouveau under 4.8.0-rc=
+4+"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614#c10">Commen=
+t # 10</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - occasional screen distortions with nouveau under 4.8.0-rc=
+4+"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614">bug 97614<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
+l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>  While there are only occasional screen distortions with xfce=
+ KDE5 plasma
+seems to fully break by these issues: see also
+<a href=3D"https://bugs.kde.org/show_bug.cgi?id=3D368275">https://bugs.kde.=
+org/show_bug.cgi?id=3D368275</a>. Just tell me if you should need
+more information; - tested with 4.8.0-rc7+.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14745773900.DAfAf.16535--
+
+--===============1089866059==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1089866059==--
