@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: =?utf-8?q?=5BBug_97900=5D_=5Bregression=5D_nouveau=5Fsc?=
  =?utf-8?q?reen=2Ec=3A230=3A2=3A_error=3A__implicit_declaration_of_functio?=
  =?utf-8?b?biDigJhub3V2ZWF1X2RybV9kZWzigJk=?=
-Date: Fri, 23 Sep 2016 01:51:27 +0000
-Message-ID: <bug-97900-8800-6adpzpELwD@http.bugs.freedesktop.org/>
+Date: Fri, 23 Sep 2016 03:07:00 +0000
+Message-ID: <bug-97900-8800-819SCEEEa4@http.bugs.freedesktop.org/>
 References: <bug-97900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1979018843=="
+Content-Type: multipart/mixed; boundary="===============1600483900=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,13 +22,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1979018843==
-Content-Type: multipart/alternative; boundary="14745954860.CAB5aC.898";
+--===============1600483900==
+Content-Type: multipart/alternative; boundary="14746000200.e5079.5559";
  charset="UTF-8"
 
 
---14745954860.CAB5aC.898
-Date: Fri, 23 Sep 2016 01:51:26 +0000
+--14746000200.e5079.5559
+Date: Fri, 23 Sep 2016 03:07:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -37,19 +37,27 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97900
 
-David Ronis <David.Ronis-BAnzPxqWUM23NexWsGEg3A@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Hardware|x86 (IA32)                  |x86-64 (AMD64)
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |NOTOURBUG
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You have a local issue with your environment.
+
+[A header moved in libdrm, if you don't have proper package management, you=
+ may
+be pulling in an old version of nouveau.h]
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14745954860.CAB5aC.898
-Date: Fri, 23 Sep 2016 01:51:26 +0000
+--14746000200.e5079.5559
+Date: Fri, 23 Sep 2016 03:07:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,14 +68,14 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:David.Ron=
-is&#64;McGill.CA" title=3D"David Ronis &lt;David.Ronis&#64;McGill.CA&gt;"> =
-<span class=3D"fn">David Ronis</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [regression] nouveau_screen.c:230:2: error: implicit decl=
-aration of function =E2=80=98nouveau_drm_del=E2=80=99"
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - [regression] nouveau_screen.c:230:2: error=
+: implicit declaration of function =E2=80=98nouveau_drm_del=E2=80=99"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97900">bug 97900<=
 /a>
           <br>
@@ -79,13 +87,44 @@ aration of function =E2=80=98nouveau_drm_del=E2=80=99"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Hardware</td>
-           <td>x86 (IA32)
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>x86-64 (AMD64)
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>NOTOURBUG
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - [regression] nouveau_screen.c:230:2: error=
+: implicit declaration of function =E2=80=98nouveau_drm_del=E2=80=99"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97900#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - [regression] nouveau_screen.c:230:2: error=
+: implicit declaration of function =E2=80=98nouveau_drm_del=E2=80=99"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97900">bug 97900<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>You have a local issue with your environment.
+
+[A header moved in libdrm, if you don't have proper package management, you=
+ may
+be pulling in an old version of nouveau.h]</pre>
+        </div>
       </p>
 
 
@@ -93,15 +132,15 @@ aration of function =E2=80=98nouveau_drm_del=E2=80=99"
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14745954860.CAB5aC.898--
+--14746000200.e5079.5559--
 
---===============1979018843==
+--===============1600483900==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +150,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1979018843==--
+--===============1600483900==--
