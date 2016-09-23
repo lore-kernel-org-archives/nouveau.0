@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: =?utf-8?q?=5BBug_97900=5D_=5Bregression=5D_nouveau=5Fsc?=
- =?utf-8?q?reen=2Ec=3A230=3A2=3A_error=3A__implicit_declaration_of_functio?=
- =?utf-8?b?biDigJhub3V2ZWF1X2RybV9kZWzigJk=?=
-Date: Fri, 23 Sep 2016 03:07:00 +0000
-Message-ID: <bug-97900-8800-819SCEEEa4@http.bugs.freedesktop.org/>
-References: <bug-97900-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+Subject: [ANNOUNCE] xf86-video-nouveau 1.0.13
+Date: Fri, 23 Sep 2016 08:35:08 +0200
+Message-ID: <1474612508-18347-1-git-send-email-maarten.lankhorst@ubuntu.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1600483900=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,136 +15,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: xorg-announce-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1600483900==
-Content-Type: multipart/alternative; boundary="14746000200.e5079.5559";
- charset="UTF-8"
-
-
---14746000200.e5079.5559
-Date: Fri, 23 Sep 2016 03:07:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97900
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |NOTOURBUG
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You have a local issue with your environment.
-
-[A header moved in libdrm, if you don't have proper package management, you=
- may
-be pulling in an old version of nouveau.h]
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14746000200.e5079.5559
-Date: Fri, 23 Sep 2016 03:07:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - [regression] nouveau_screen.c:230:2: error=
-: implicit declaration of function =E2=80=98nouveau_drm_del=E2=80=99"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97900">bug 97900<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTOURBUG
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - [regression] nouveau_screen.c:230:2: error=
-: implicit declaration of function =E2=80=98nouveau_drm_del=E2=80=99"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97900#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - [regression] nouveau_screen.c:230:2: error=
-: implicit declaration of function =E2=80=98nouveau_drm_del=E2=80=99"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97900">bug 97900<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>You have a local issue with your environment.
-
-[A header moved in libdrm, if you don't have proper package management, you=
- may
-be pulling in an old version of nouveau.h]</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14746000200.e5079.5559--
-
---===============1600483900==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1600483900==--
+LS0tLS1CRUdJTiBQR1AgU0lHTkVEIE1FU1NBR0UtLS0tLQpIYXNoOiBTSEExCgpBZGFtIEphY2tz
+b24gKDEpOgogICAgICBBZGFwdCBCbG9jay9XYWtldXBIYW5kbGVyIHNpZ25hdHVyZSBmb3IgQUJJ
+IDIzCgpCZW4gU2tlZ2dzICgyKToKICAgICAgZml4IHVzZSBvZiBvdXQtb2Ytc2NvcGUgZGF0YQog
+ICAgICBleGEvbnY1MC06IGZpeCBzb21lIHBvdGVudGlhbCBpbmNvbXBsZXRlIHB1c2hlcwoKSGFu
+cyBkZSBHb2VkZSAoMSk6CiAgICAgIFByb3Blcmx5IGNsZWFudXAgZmIgZm9yIHJldmVyc2UtcHJp
+bWUtb2ZmbG9hZAoKSWxpYSBNaXJraW4gKDIpOgogICAgICBIQVNfRElSVFlUUkFDS0lOR19ST1RB
+VElPTiBhbHNvIHN1cHBvcnRzIG11bHRpcGxlIENSVENzCiAgICAgIEJ1bXAgdmVyc2lvbiB0byAx
+LjAuMTMKCktlaXRoIFBhY2thcmQgKDEpOgogICAgICBVc2UgTm90aWZ5RmQgZm9yIGRybSBhbmQg
+dWRldiBmZHMKCmdpdCB0YWc6IHhmODYtdmlkZW8tbm91dmVhdS0xLjAuMTMKCmh0dHBzOi8veG9y
+Zy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZS9pbmRpdmlkdWFsL2RyaXZlci94Zjg2LXZpZGVvLW5v
+dXZlYXUtMS4wLjEzLnRhci5iejIKTUQ1OiAgMmQ3YjI5MTdlZjE4YzZlOTdhNmYzODE3YzNlOTM4
+N2IgIHhmODYtdmlkZW8tbm91dmVhdS0xLjAuMTMudGFyLmJ6MgpTSEExOiA4MTRiYmRiODQ5YzM1
+ZTc5ZmFjNGFlODgxYWI1ZTQxNTM1MjFmZDg1ICB4Zjg2LXZpZGVvLW5vdXZlYXUtMS4wLjEzLnRh
+ci5iejIKU0hBMjU2OiA2ZDkyNDJiYTEzOWMzZGY3YWZlZmZmYjQ1NTU3M2I1MmY0NDI3OTIwYjk3
+ODE2MWMwMDQ4M2M2NGE2ZGE0N2NiICB4Zjg2LXZpZGVvLW5vdXZlYXUtMS4wLjEzLnRhci5iejIK
+UEdQOiAgaHR0cHM6Ly94b3JnLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlL2luZGl2aWR1YWwvZHJp
+dmVyL3hmODYtdmlkZW8tbm91dmVhdS0xLjAuMTMudGFyLmJ6Mi5zaWcKCmh0dHBzOi8veG9yZy5m
+cmVlZGVza3RvcC5vcmcvYXJjaGl2ZS9pbmRpdmlkdWFsL2RyaXZlci94Zjg2LXZpZGVvLW5vdXZl
+YXUtMS4wLjEzLnRhci5negpNRDU6ICAzNzc4NjlmN2I1Mjc1NjEyMzhhODEzM2Y3NDlhZmE0MSAg
+eGY4Ni12aWRlby1ub3V2ZWF1LTEuMC4xMy50YXIuZ3oKU0hBMTogYzkwNmExODg0NTAwNGI5OTkw
+YzhmZDcyOGQ5MjdhNWYxN2FmMDE2NiAgeGY4Ni12aWRlby1ub3V2ZWF1LTEuMC4xMy50YXIuZ3oK
+U0hBMjU2OiA4NDA1YTAzOGVjNjNlMDMxZmQzODE5YzJkYzJiY2NkMmEyYjFiMjAyZDViMmYwZDIy
+ZjI3ODI1ZTU3M2YyZjk3ICB4Zjg2LXZpZGVvLW5vdXZlYXUtMS4wLjEzLnRhci5negpQR1A6ICBo
+dHRwczovL3hvcmcuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmUvaW5kaXZpZHVhbC9kcml2ZXIveGY4
+Ni12aWRlby1ub3V2ZWF1LTEuMC4xMy50YXIuZ3ouc2lnCgotLS0tLUJFR0lOIFBHUCBTSUdOQVRV
+UkUtLS0tLQpWZXJzaW9uOiBHbnVQRyB2MQoKaVFJY0JBRUJBZ0FHQlFKWDVDWEFBQW9KRVA1VmpI
+S21jQlBEbEFrUC9SUE9TYWpEY3g2ZXcreHViNmkwRVRJbApCSm5oYk5iaHF6S0diRnlhWVVoeGRr
+YnBBS3FJek5KcHYwTUdlem5DUWRRRXdqeGNoZ0RFZjE0ZUJBTGZEa2RzCmNURHJuMnlBbVdIOXJT
+Z1BGRG5pZEE3NkN1V0V2WThUNGovdzVLZFBVQ20yMnlIUVdVR0huY3UxamtEWEwzS3cKeXRGNzl1
+NVRBM0NDSEVXakJDWUFYV1lPWTgyeTZkbVdHaUJUcENEbklib25aeTltc0FLLzl4bEtrc0JsdzZu
+WQplTTM2NWZrNXgzSldTTUljeGpwRDdQL2ZRelc1YWdwZUgzTm1WZDZhV1FCRm5IZ2NDMCtuby9o
+QVB4WUljemNtCmNDVXJxd2xxaWsxTUJLUFYyamc2VStaaEhlQ0o5Wm0rSkJqMXhiLzhsQzVXMEJw
+V2tDaXV6OXFrTFBOaFU3QVgKcTBvMWJHRFNQS0ZleUcwRjZhWUY0ZjFRMjNKY3Q1bmhaZ2RNbGxn
+QjN2RUxFWTUwc3ZHZE1hN1RiV1R1MnVBVQpnZDRSVHNRdWp6bkdpd3RSTGFLK1BaekFzS29ibkNn
+NHFjR1NXVTFvWWpZam8zNWN2NGJCdHE1cWswWDZWSnNyCkRWaklMSExsYURnbC9keENpVGRpTnE1
+Q2M4azdCdjZ4SU5lTlA0RjNMZzg0Qno0T3gwZU1UenlCWXZIQjEzZkIKNVg5K3NjbGR0UG0xTjFo
+aW5BWlJleFdTdnRCZy9lRnplWk5oKyswdlVpbTdhR0tqRE9IYWZMbDAxR28vUEdZeAoyeTMrMnpx
+T1RPZDZLRm9KUW1iZFlCU1BncTVvbEZEcFNyVGFWcFIwS2Zxc1M2TkdLMjFzMHJsVmhDblh1Q1RU
+CmVGc2Zlc0U4WDIrNzJ0RUJGZTRVCj1Pem5GCi0tLS0tRU5EIFBHUCBTSUdOQVRVUkUtLS0tLQpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
