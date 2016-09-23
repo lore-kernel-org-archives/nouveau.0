@@ -1,155 +1,37 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96737] [GLX] Xsession Log In breakage - Switch User
- / Switch To Greeter / VT Switch related
-Date: Fri, 23 Sep 2016 09:11:00 +0000
-Message-ID: <bug-96737-8800-6kEQv3eqRw@http.bugs.freedesktop.org/>
-References: <bug-96737-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0338391691=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-96737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Subject: [PATCH] drm/nouveau/secboot/gm20b: Fix return value in case of error
+Date: Fri, 23 Sep 2016 23:06:26 +0200
+Message-ID: <1474664786-30107-1-git-send-email-christophe.jaillet@wanadoo.fr>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org, Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 List-Id: nouveau.vger.kernel.org
 
+If 'ioremap()' returns 0, 'gm20b_tegra_read_wpr()' will return 0 as well,
+which means success.
+Return -ENOMEM instead
 
---===============0338391691==
-Content-Type: multipart/alternative; boundary="14746218602.87F58c.28168";
- charset="UTF-8"
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+---
+Not sure that -ENOMEM is the best value.
+I've taken it because it is often used in such a case.
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
---14746218602.87F58c.28168
-Date: Fri, 23 Sep 2016 09:11:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96737
-
-poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-          Component|Drivers/DRI/nouveau         |GLX
-         QA Contact|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org
-                   |rg                          |org
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org
-                   |rg                          |org
-
---- Comment #16 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-mesa-12.0.3
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14746218602.87F58c.28168
-Date: Fri, 23 Sep 2016 09:11:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pomidorab=
-elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
-"> <span class=3D"fn">poma</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GLX] Xsession Log In breakage - Switch User / Switch To =
-Greeter / VT Switch related"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737">bug 96737<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>Drivers/DRI/nouveau
-           </td>
-           <td>GLX
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>mesa-dev&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>mesa-dev&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GLX] Xsession Log In breakage - Switch User / Switch To =
-Greeter / VT Switch related"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737#c16">Commen=
-t # 16</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GLX] Xsession Log In breakage - Switch User / Switch To =
-Greeter / VT Switch related"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737">bug 96737<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
-l.com&gt;"> <span class=3D"fn">poma</span></a>
-</span></b>
-        <pre>mesa-12.0.3</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14746218602.87F58c.28168--
-
---===============0338391691==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0338391691==--
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
+index d5395ebfe8d3..d88db933b3fd 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
+@@ -142,7 +142,7 @@ gm20b_tegra_read_wpr(struct gm200_secboot *gsb)
+ 	mc = ioremap(TEGRA_MC_BASE, 0xd00);
+ 	if (!mc) {
+ 		nvkm_error(&sb->subdev, "Cannot map Tegra MC registers\n");
+-		return PTR_ERR(mc);
++		return -ENOMEM;
+ 	}
+ 	gsb->wpr_addr = ioread32_native(mc + MC_SECURITY_CARVEOUT2_BOM_0) |
+ 	      ((u64)ioread32_native(mc + MC_SECURITY_CARVEOUT2_BOM_HI_0) << 32);
+-- 
+2.7.4
