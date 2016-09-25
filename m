@@ -1,49 +1,53 @@
-From: Baoyou Xie <baoyou.xie@linaro.org>
-Subject: [PATCH 3/3] drm/nouveau: remove unused function
-Date: Sun, 25 Sep 2016 15:12:17 +0800
-Message-ID: <1474787537-3779-1-git-send-email-baoyou.xie@linaro.org>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, acourbot@nvidia.com, imirkin@alum.mit.edu, Julia.Lawall@lip6.fr, martin.peres@free.fr, rspliet@eclipso.eu, nouveau@karolherbst.de
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@arndb.de, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn, han.fei@zte.com.cn, tang.qiang007@zte.com.cn
+From: Alexandre Courbot <gnurou@gmail.com>
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/secboot/gm20b: Fix return value in
+ case of error
+Date: Sun, 25 Sep 2016 18:36:21 +0900
+Message-ID: <CAAVeFuJZmrEsQUndwOh3OtG+__dwFtWM=DPpcNQ4PSJy5i0wGQ@mail.gmail.com>
+References: <1474664786-30107-1-git-send-email-christophe.jaillet@wanadoo.fr>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1474664786-30107-1-git-send-email-christophe.jaillet@wanadoo.fr>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, kernel-janitors@vger.kernel.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-We get 1 warning when building kernel with W=1:
-drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c:49:1: warning: no previous prototype for 'g94_sor_output_new' [-Wmissing-prototypes]
-
-In fact, this function is called by no one and not exported,
-so this patch removes it.
-
-Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
----
- drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c | 15 ---------------
- 1 file changed, 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c
-index 1bb9d66..627b9ee1 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/sorg94.c
-@@ -39,21 +39,6 @@ g94_sor_loff(struct nvkm_output_dp *outp)
- }
- 
- /*******************************************************************************
-- * TMDS/LVDS
-- ******************************************************************************/
--static const struct nvkm_output_func
--g94_sor_output_func = {
--};
--
--int
--g94_sor_output_new(struct nvkm_disp *disp, int index,
--		   struct dcb_output *dcbE, struct nvkm_output **poutp)
--{
--	return nvkm_output_new_(&g94_sor_output_func, disp,
--				index, dcbE, poutp);
--}
--
--/*******************************************************************************
-  * DisplayPort
-  ******************************************************************************/
- u32
--- 
-2.7.4
+T24gU2F0LCBTZXAgMjQsIDIwMTYgYXQgNjowNiBBTSwgQ2hyaXN0b3BoZSBKQUlMTEVUCjxjaHJp
+c3RvcGhlLmphaWxsZXRAd2FuYWRvby5mcj4gd3JvdGU6Cj4gSWYgJ2lvcmVtYXAoKScgcmV0dXJu
+cyAwLCAnZ20yMGJfdGVncmFfcmVhZF93cHIoKScgd2lsbCByZXR1cm4gMCBhcyB3ZWxsLAo+IHdo
+aWNoIG1lYW5zIHN1Y2Nlc3MuCj4gUmV0dXJuIC1FTk9NRU0gaW5zdGVhZAoKUmV2aWV3ZWQtYnk6
+IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgoKPgo+IFNpZ25lZC1vZmYt
+Ynk6IENocmlzdG9waGUgSkFJTExFVCA8Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI+Cj4g
+LS0tCj4gTm90IHN1cmUgdGhhdCAtRU5PTUVNIGlzIHRoZSBiZXN0IHZhbHVlLgo+IEkndmUgdGFr
+ZW4gaXQgYmVjYXVzZSBpdCBpcyBvZnRlbiB1c2VkIGluIHN1Y2ggYSBjYXNlLgo+IC0tLQo+ICBk
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2dtMjBiLmMgfCAyICst
+Cj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvZ20y
+MGIuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvZ20yMGIu
+Ywo+IGluZGV4IGQ1Mzk1ZWJmZThkMy4uZDg4ZGI5MzNiM2ZkIDEwMDY0NAo+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvZ20yMGIuYwo+ICsrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvZ20yMGIuYwo+IEBAIC0x
+NDIsNyArMTQyLDcgQEAgZ20yMGJfdGVncmFfcmVhZF93cHIoc3RydWN0IGdtMjAwX3NlY2Jvb3Qg
+KmdzYikKPiAgICAgICAgIG1jID0gaW9yZW1hcChURUdSQV9NQ19CQVNFLCAweGQwMCk7Cj4gICAg
+ICAgICBpZiAoIW1jKSB7Cj4gICAgICAgICAgICAgICAgIG52a21fZXJyb3IoJnNiLT5zdWJkZXYs
+ICJDYW5ub3QgbWFwIFRlZ3JhIE1DIHJlZ2lzdGVyc1xuIik7Cj4gLSAgICAgICAgICAgICAgIHJl
+dHVybiBQVFJfRVJSKG1jKTsKPiArICAgICAgICAgICAgICAgcmV0dXJuIC1FTk9NRU07Cj4gICAg
+ICAgICB9Cj4gICAgICAgICBnc2ItPndwcl9hZGRyID0gaW9yZWFkMzJfbmF0aXZlKG1jICsgTUNf
+U0VDVVJJVFlfQ0FSVkVPVVQyX0JPTV8wKSB8Cj4gICAgICAgICAgICAgICAoKHU2NClpb3JlYWQz
+Ml9uYXRpdmUobWMgKyBNQ19TRUNVUklUWV9DQVJWRU9VVDJfQk9NX0hJXzApIDw8IDMyKTsKPiAt
+LQo+IDIuNy40Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
+YXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRl
+dmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
