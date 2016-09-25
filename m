@@ -1,37 +1,92 @@
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Subject: [PATCH] drm/nouveau/secboot/gm20b: Fix return value in case of error
-Date: Fri, 23 Sep 2016 23:06:26 +0200
-Message-ID: <1474664786-30107-1-git-send-email-christophe.jaillet@wanadoo.fr>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org, Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+From: Baoyou Xie <baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Subject: [PATCH 1/3] drm/nouveau: add missing header dependencies
+Date: Sun, 25 Sep 2016 15:11:14 +0800
+Message-ID: <1474787474-747-1-git-send-email-baoyou.xie@linaro.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org, Julia.Lawall-L2FTfq7BK8M@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org, nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
+Cc: arnd-r2nGTMty4D4@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, tang.qiang007-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, xie.baoyou-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, han.fei-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-If 'ioremap()' returns 0, 'gm20b_tegra_read_wpr()' will return 0 as well,
-which means success.
-Return -ENOMEM instead
-
-Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
----
-Not sure that -ENOMEM is the best value.
-I've taken it because it is often used in such a case.
----
- drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
-index d5395ebfe8d3..d88db933b3fd 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
-@@ -142,7 +142,7 @@ gm20b_tegra_read_wpr(struct gm200_secboot *gsb)
- 	mc = ioremap(TEGRA_MC_BASE, 0xd00);
- 	if (!mc) {
- 		nvkm_error(&sb->subdev, "Cannot map Tegra MC registers\n");
--		return PTR_ERR(mc);
-+		return -ENOMEM;
- 	}
- 	gsb->wpr_addr = ioread32_native(mc + MC_SECURITY_CARVEOUT2_BOM_0) |
- 	      ((u64)ioread32_native(mc + MC_SECURITY_CARVEOUT2_BOM_HI_0) << 32);
--- 
-2.7.4
+V2UgZ2V0IGEgZmV3IHdhcm5pbmdzIHdoZW4gYnVpbGRpbmcga2VybmVsIHdpdGggVz0xOgpkcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9zZGRyMi5jOjYwOjE6IHdhcm5pbmc6
+IG5vIHByZXZpb3VzIHByb3RvdHlwZSBmb3IgJ252a21fc2RkcjJfY2FsYycgWy1XbWlzc2luZy1w
+cm90b3R5cGVzXQpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9zZGRyMy5j
+OjY5OjE6IHdhcm5pbmc6IG5vIHByZXZpb3VzIHByb3RvdHlwZSBmb3IgJ252a21fc2RkcjNfY2Fs
+YycgWy1XbWlzc2luZy1wcm90b3R5cGVzXQpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
+YmRldi92b2x0L2dwaW8uYzozNToxOiB3YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9y
+ICdudmttX3ZvbHRncGlvX2dldCcgWy1XbWlzc2luZy1wcm90b3R5cGVzXQpkcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2dwaW8uYzo1NDoxOiB3YXJuaW5nOiBubyBwcmV2
+aW91cyBwcm90b3R5cGUgZm9yICdudmttX3ZvbHRncGlvX3NldCcgWy1XbWlzc2luZy1wcm90b3R5
+cGVzXQpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2dwaW8uYzo3MTox
+OiB3YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9yICdudmttX3ZvbHRncGlvX2luaXQn
+IFstV21pc3NpbmctcHJvdG90eXBlc10KLi4uLgoKSW4gZmFjdCwgdGhlc2UgZnVuY3Rpb25zIGFy
+ZSBkZWNsYXJlZCBpbgpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9yYW0u
+aCwKZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9wcml2LmgsCmRyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9maXJtd2FyZS5oLApkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udmttL2VuZ2luZS9nci9udjUwLmgsCmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rp
+c3BudjA0L2Rpc3AuaCwKc28gdGhpcyBwYXRjaCBhZGRzIG1pc3NpbmcgaGVhZGVyIGRlcGVuZGVu
+Y2llcy4KClNpZ25lZC1vZmYtYnk6IEJhb3lvdSBYaWUgPGJhb3lvdS54aWVAbGluYXJvLm9yZz4K
+LS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9vdmVybGF5LmMgICAgICAgfCAx
+ICsKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9maXJtd2FyZS5jICAgICB8IDEg
+KwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvY3R4bnY1MC5jIHwgMSAr
+CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9zZGRyMi5jICAgfCAxICsK
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3NkZHIzLmMgICB8IDEgKwog
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9ncGlvLmMgIHwgMSArCiA2
+IGZpbGVzIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L2Rpc3BudjA0L292ZXJsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L2Rpc3BudjA0L292ZXJsYXkuYwppbmRleCBlYzQ0NGVhLi5iNzU2MzgzIDEwMDY0NAotLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9vdmVybGF5LmMKKysrIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvZGlzcG52MDQvb3ZlcmxheS5jCkBAIC0zMyw2ICszMyw3IEBACiAjaW5j
+bHVkZSAibm91dmVhdV9jb25uZWN0b3IuaCIKICNpbmNsdWRlICJub3V2ZWF1X2Rpc3BsYXkuaCIK
+ICNpbmNsdWRlICJudnJlZy5oIgorI2luY2x1ZGUgImRpc3AuaCIKIAogCiBzdHJ1Y3Qgbm91dmVh
+dV9wbGFuZSB7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2NvcmUv
+ZmlybXdhcmUuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9maXJtd2FyZS5j
+CmluZGV4IDM0ZWNkNGEuLjA1OGZmNDYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vY29yZS9maXJtd2FyZS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
+a20vY29yZS9maXJtd2FyZS5jCkBAIC0yMCw2ICsyMCw3IEBACiAgKiBERUFMSU5HUyBJTiBUSEUg
+U09GVFdBUkUuCiAgKi8KICNpbmNsdWRlIDxjb3JlL2RldmljZS5oPgorI2luY2x1ZGUgPGNvcmUv
+ZmlybXdhcmUuaD4KIAogLyoqCiAgKiBudmttX2Zpcm13YXJlX2dldCAtIGxvYWQgZmlybXdhcmUg
+ZnJvbSB0aGUgb2ZmaWNpYWwgbnZpZGlhL2NoaXAvIGRpcmVjdG9yeQpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvY3R4bnY1MC5jIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvY3R4bnY1MC5jCmluZGV4IDFlMTMyNzguLmM4
+YmI5MTkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dy
+L2N0eG52NTAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9j
+dHhudjUwLmMKQEAgLTEwNiw2ICsxMDYsNyBAQAogI2RlZmluZSBDUF9TRUVLXzIgICAgICAweDAw
+YzgwMGZmCiAKICNpbmNsdWRlICJjdHhudjQwLmgiCisjaW5jbHVkZSAibnY1MC5oIgogCiAjaW5j
+bHVkZSA8c3ViZGV2L2ZiLmg+CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L252a20vc3ViZGV2L2ZiL3NkZHIyLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
+YmRldi9mYi9zZGRyMi5jCmluZGV4IGI5ZjFmZmQuLjRkY2Q4NzQgMTAwNjQ0Ci0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3NkZHIyLmMKKysrIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvc2RkcjIuYwpAQCAtMjMsNiArMjMsNyBAQAog
+ICogICAgICAgICAgQmVuIFNrZWdncwogICovCiAjaW5jbHVkZSAicHJpdi5oIgorI2luY2x1ZGUg
+InJhbS5oIgogCiBzdHJ1Y3QgcmFteGxhdCB7CiAJaW50IGlkOwpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvc2RkcjMuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3NkZHIzLmMKaW5kZXggMjY5MDAzMy4uZWNhOGE0NCAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvc2RkcjMu
+YworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9zZGRyMy5jCkBA
+IC0yMyw2ICsyMyw3IEBACiAgKiAJICAgIFJveSBTcGxpZXQgPHJzcGxpZXRAZWNsaXBzby5ldT4K
+ICAqLwogI2luY2x1ZGUgInByaXYuaCIKKyNpbmNsdWRlICJyYW0uaCIKIAogc3RydWN0IHJhbXhs
+YXQgewogCWludCBpZDsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
+c3ViZGV2L3ZvbHQvZ3Bpby5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
+dm9sdC9ncGlvLmMKaW5kZXggZDJiYWMxZC4uNDQzYzAzMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9ncGlvLmMKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9ncGlvLmMKQEAgLTI1LDYgKzI1LDcgQEAKICNp
+bmNsdWRlIDxzdWJkZXYvYmlvcy5oPgogI2luY2x1ZGUgPHN1YmRldi9iaW9zL2dwaW8uaD4KICNp
+bmNsdWRlIDxzdWJkZXYvZ3Bpby5oPgorI2luY2x1ZGUgInByaXYuaCIKIAogc3RhdGljIGNvbnN0
+IHU4IHRhZ3NbXSA9IHsKIAlEQ0JfR1BJT19WSUQwLCBEQ0JfR1BJT19WSUQxLCBEQ0JfR1BJT19W
+SUQyLCBEQ0JfR1BJT19WSUQzLAotLSAKMi43LjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
