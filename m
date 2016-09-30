@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93828] Xorg hangs randomly with nouveau driver
-Date: Fri, 30 Sep 2016 20:55:13 +0000
-Message-ID: <bug-93828-8800-7D0XNbg59O@http.bugs.freedesktop.org/>
-References: <bug-93828-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: [PATCH v2] nv50/ir: constant fold OP_SPLIT
+Date: Fri, 30 Sep 2016 23:50:15 +0200
+Message-ID: <20160930215015.14028-1-tobias.johannes.klausmann@mni.thm.de>
+References: <CAKb7UvjD6To7bsOSJc5kkhPim-wYYmmxaNFi=U3fKGrmKqM3Zg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0769096106=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93828-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvjD6To7bsOSJc5kkhPim-wYYmmxaNFi=U3fKGrmKqM3Zg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,88 +20,32 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0769096106==
-Content-Type: multipart/alternative; boundary="14752689130.Fe3Ee.24577";
- charset="UTF-8"
-
-
---14752689130.Fe3Ee.24577
-Date: Fri, 30 Sep 2016 20:55:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93828
-
---- Comment #9 from steph <ss.c-hi6Y0CQ0nG0@public.gmane.org> ---
-Created attachment 126924
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126924&action=3Dedit
-Xorg.0.log for Debian Jessie + 4.7.2
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14752689130.Fe3Ee.24577
-Date: Fri, 30 Sep 2016 20:55:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg hangs randomly with nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg hangs randomly with nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828">bug 93828<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ss.c&#64;gmx.net" title=3D"steph &lt;ss.c&#64;gmx.net&gt;"> <span class=3D"=
-fn">steph</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126924=
-" name=3D"attach_126924" title=3D"Xorg.0.log for Debian Jessie + 4.7.2">att=
-achment 126924</a> <a href=3D"attachment.cgi?id=3D126924&amp;action=3Dedit"=
- title=3D"Xorg.0.log for Debian Jessie + 4.7.2">[details]</a></span>
-Xorg.0.log for Debian Jessie + 4.7.2</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14752689130.Fe3Ee.24577--
-
---===============0769096106==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0769096106==--
+U3BsaXQgdGhlIHNvdXJjZSBpbW1lZGlhdGUgdmFsdWUgaW50byB0d28gbmV3IHZhbHVlcyBhbmQg
+Y3JlYXRlIE9QX01PVgppbnN0cnVjdGlvbnMgdGhlIHR3byBuZXdseSBjcmVhdGVkIHZhbHVlcy4K
+ClYyOiBnZXQgcmlkIG9mIHNwZWNpYWwgY2FzZXMKClNpZ25lZC1vZmYtYnk6IFRvYmlhcyBLbGF1
+c21hbm4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRobS5kZT4KLS0tCiBzcmMvZ2Fs
+bGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcCB8IDE2ICsr
+KysrKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAxNiBpbnNlcnRpb25zKCspCgpkaWZmIC0t
+Z2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9s
+ZS5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBo
+b2xlLmNwcAppbmRleCA5ODc1NzM4Li5kNTZiMDU3IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9k
+cml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcAorKysgYi9zcmMvZ2Fs
+bGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcApAQCAtOTMy
+LDYgKzkzMiwyMiBAQCBDb25zdGFudEZvbGRpbmc6Om9wbmQoSW5zdHJ1Y3Rpb24gKmksIEltbWVk
+aWF0ZVZhbHVlICZpbW0wLCBpbnQgcykKICAgIEluc3RydWN0aW9uICpuZXdpID0gaTsKIAogICAg
+c3dpdGNoIChpLT5vcCkgeworICAgY2FzZSBPUF9TUExJVDogeworICAgICAgdWludDhfdCBzaXpl
+ID0gdHlwZVNpemVvZihpLT5kVHlwZSk7CisgICAgICBEYXRhVHlwZSB0eXBlID0gdHlwZU9mU2l6
+ZShzaXplIC8gMiwgaXNGbG9hdFR5cGUoaS0+ZFR5cGUpLAorICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgaXNTaWduZWRUeXBlKGktPmRUeXBlKSk7CisgICAgICBpZiAobGlrZWx5KHR5
+cGUgIT0gVFlQRV9OT05FKSkgeworICAgICAgICAgdWludDY0X3QgdmFsID0gaW1tMC5yZWcuZGF0
+YS51NjQ7CisgICAgICAgICB1aW50MTZfdCBzaGlmdCA9IHNpemUgKiA4OworICAgICAgICAgYmxk
+LnNldFBvc2l0aW9uKGksIGZhbHNlKTsKKyAgICAgICAgIGZvciAoaW50OF90IGQgPSAwOyBpLT5k
+ZWZFeGlzdHMoZCk7ICsrZCkgeworICAgICAgICAgICAgYmxkLm1rTW92KGktPmdldERlZihkKSwg
+YmxkLm1rSW1tKHZhbCAmICgoMSA8PCBzaGlmdCkgLSAxKSksIHR5cGUpOworICAgICAgICAgICAg
+dmFsID4+PSBzaGlmdDsKKyAgICAgICAgIH0KKyAgICAgICAgIGRlbGV0ZV9JbnN0cnVjdGlvbihw
+cm9nLCBpKTsKKyAgICAgIH0KKyAgIH0KKyAgIGJyZWFrOwogICAgY2FzZSBPUF9NVUw6CiAgICAg
+ICBpZiAoaS0+ZFR5cGUgPT0gVFlQRV9GMzIpCiAgICAgICAgICB0cnlDb2xsYXBzZUNoYWluZWRN
+VUxzKGksIHMsIGltbTApOwotLSAKMi4xMC4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
