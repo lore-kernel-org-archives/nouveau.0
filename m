@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93828] Xorg hangs randomly with nouveau driver
-Date: Fri, 30 Sep 2016 20:54:28 +0000
-Message-ID: <bug-93828-8800-ToVHm5rnvg@http.bugs.freedesktop.org/>
+Date: Fri, 30 Sep 2016 20:55:13 +0000
+Message-ID: <bug-93828-8800-7D0XNbg59O@http.bugs.freedesktop.org/>
 References: <bug-93828-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1993061209=="
+Content-Type: multipart/mixed; boundary="===============0769096106=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93828-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1993061209==
-Content-Type: multipart/alternative; boundary="14752688682.be6D.24375";
+--===============0769096106==
+Content-Type: multipart/alternative; boundary="14752689130.Fe3Ee.24577";
  charset="UTF-8"
 
 
---14752688682.be6D.24375
-Date: Fri, 30 Sep 2016 20:54:28 +0000
+--14752689130.Fe3Ee.24577
+Date: Fri, 30 Sep 2016 20:55:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D93828
 
---- Comment #8 from steph <ss.c-hi6Y0CQ0nG0@public.gmane.org> ---
-Created attachment 126923
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126923&action=3Dedit
-dmesg output for Debian Jessie + 4.7.2
+--- Comment #9 from steph <ss.c-hi6Y0CQ0nG0@public.gmane.org> ---
+Created attachment 126924
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D126924&action=3Dedit
+Xorg.0.log for Debian Jessie + 4.7.2
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14752688682.be6D.24375
-Date: Fri, 30 Sep 2016 20:54:28 +0000
+--14752689130.Fe3Ee.24577
+Date: Fri, 30 Sep 2016 20:55:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg hangs randomly with nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828#c8">Comment=
- # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828#c9">Comment=
+ # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg hangs randomly with nouveau driver"
@@ -73,11 +73,11 @@ Auto-Submitted: auto-generated
 ss.c&#64;gmx.net" title=3D"steph &lt;ss.c&#64;gmx.net&gt;"> <span class=3D"=
 fn">steph</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126923=
-" name=3D"attach_126923" title=3D"dmesg output for Debian Jessie + 4.7.2">a=
-ttachment 126923</a> <a href=3D"attachment.cgi?id=3D126923&amp;action=3Dedi=
-t" title=3D"dmesg output for Debian Jessie + 4.7.2">[details]</a></span>
-dmesg output for Debian Jessie + 4.7.2</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D126924=
+" name=3D"attach_126924" title=3D"Xorg.0.log for Debian Jessie + 4.7.2">att=
+achment 126924</a> <a href=3D"attachment.cgi?id=3D126924&amp;action=3Dedit"=
+ title=3D"Xorg.0.log for Debian Jessie + 4.7.2">[details]</a></span>
+Xorg.0.log for Debian Jessie + 4.7.2</pre>
         </div>
       </p>
 
@@ -91,9 +91,9 @@ dmesg output for Debian Jessie + 4.7.2</pre>
     </body>
 </html>=
 
---14752688682.be6D.24375--
+--14752689130.Fe3Ee.24577--
 
---===============1993061209==
+--===============0769096106==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1993061209==--
+--===============0769096106==--
