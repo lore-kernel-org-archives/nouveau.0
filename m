@@ -1,15 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH] nv50/ir: constant fold OP_SPLIT
-Date: Fri, 30 Sep 2016 15:26:19 -0400
-Message-ID: <CAKb7UvjD6To7bsOSJc5kkhPim-wYYmmxaNFi=U3fKGrmKqM3Zg@mail.gmail.com>
-References: <20160927232549.12427-1-tobias.johannes.klausmann@mni.thm.de>
- <CAKb7UvgpKE86X7_-X3PRF5bBKkCAgnBC3PnnKA5SXEkqQ-ZWfQ@mail.gmail.com>
- <6bf357fe-0d31-0416-4391-2c89a2881510@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93828] Xorg hangs randomly with nouveau driver
+Date: Fri, 30 Sep 2016 20:53:00 +0000
+Message-ID: <bug-93828-8800-oPcfgHDZrT@http.bugs.freedesktop.org/>
+References: <bug-93828-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1316855900=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6bf357fe-0d31-0416-4391-2c89a2881510-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-93828-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,61 +16,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBTZXAgMzAsIDIwMTYgYXQgMzoyMSBQTSwgVG9iaWFzIEtsYXVzbWFubgo8dG9iaWFz
-LmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPiB3cm90ZToKPgo+Cj4gT24gMjguMDkuMjAx
-NiAwMjowMSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+Cj4+IE9uIFR1ZSwgU2VwIDI3LCAyMDE2IGF0
-IDc6MjUgUE0sIFRvYmlhcyBLbGF1c21hbm4KPj4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5A
-bW5pLnRobS5kZT4gd3JvdGU6Cj4+Pgo+Pj4gU3BsaXQgdGhlIHNvdXJjZSBpbW1lZGlhdGUgdmFs
-dWUgaW50byB0d28gbmV3IHZhbHVlcyBhbmQgY3JlYXRlIE9QX01PVgo+Pj4gaW5zdHJ1Y3Rpb25z
-IHRoZSB0d28gbmV3bHkgY3JlYXRlZCB2YWx1ZXMuCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogVG9i
-aWFzIEtsYXVzbWFubiA8dG9iaWFzLmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPgo+Pj4g
-LS0tCj4+PiAgIC4uLi9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNw
-cCAgIHwgMjMKPj4+ICsrKysrKysrKysrKysrKysrKysrKysKPj4+ICAgMSBmaWxlIGNoYW5nZWQs
-IDIzIGluc2VydGlvbnMoKykKPj4+Cj4+PiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKPj4+IGIvc3JjL2dhbGxpdW0v
-ZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKPj4+IGluZGV4IDc0
-YTVhODUuLmZkZGRkNzEgMTAwNjQ0Cj4+PiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcAo+Pj4gKysrIGIvc3JjL2dhbGxpdW0vZHJp
-dmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKPj4+IEBAIC05MjAsNiAr
-OTIwLDI5IEBAIENvbnN0YW50Rm9sZGluZzo6b3BuZChJbnN0cnVjdGlvbiAqaSwgSW1tZWRpYXRl
-VmFsdWUKPj4+ICZpbW0wLCBpbnQgcykKPj4+ICAgICAgSW5zdHJ1Y3Rpb24gKm5ld2kgPSBpOwo+
-Pj4KPj4+ICAgICAgc3dpdGNoIChpLT5vcCkgewo+Pj4gKyAgIGNhc2UgT1BfU1BMSVQ6IHsKPj4+
-ICsgICAgICB1aW50MTZfdCBzaGlmdCA9IDA7Cj4+PiArICAgICAgRGF0YVR5cGUgdHlwZSA9IFRZ
-UEVfTk9ORTsKPj4+ICsgICAgICBibGQuc2V0UG9zaXRpb24oaSwgZmFsc2UpOwo+Pj4gKyAgICAg
-IGlmIChpLT5zVHlwZSA9PSBUWVBFX1U2NCB8fCBpLT5zVHlwZSA9PSBUWVBFX1M2NCkgewo+Pj4g
-KyAgICAgICAgIHNoaWZ0ID0gMzI7Cj4+PiArICAgICAgICAgdHlwZSA9IChpLT5zVHlwZSA9PSBU
-WVBFX1U2NCkgPyBUWVBFX1UzMiA6IFRZUEVfUzMyOwo+Pj4gKyAgICAgIH0KPj4+ICsgICAgICBp
-ZiAoaS0+c1R5cGUgPT0gVFlQRV9VMzIgfHwgaS0+c1R5cGUgPT0gVFlQRV9TMzIpIHsKPj4+ICsg
-ICAgICAgICBzaGlmdCA9IDE2Owo+Pj4gKyAgICAgICAgIHR5cGUgPSAoaS0+c1R5cGUgPT0gVFlQ
-RV9VMzIpID8gVFlQRV9VMTYgOiBUWVBFX1MxNjsKPj4+ICsgICAgICB9Cj4+PiArICAgICAgaWYg
-KGktPnNUeXBlID09IFRZUEVfVTE2IHx8IGktPnNUeXBlID09IFRZUEVfUzE2KSB7Cj4+PiArICAg
-ICAgICAgc2hpZnQgPSA4Owo+Pj4gKyAgICAgICAgIHR5cGUgPSAoaS0+c1R5cGUgPT0gVFlQRV9V
-MTYpID8gVFlQRV9VOCA6IFRZUEVfUzg7Cj4+PiArICAgICAgfQo+Pgo+PiBzaGlmdCA9IHR5cGVT
-aXplT2YoaS0+ZFR5cGUpOwo+Pgo+Pj4gKyAgICAgIGlmICh0eXBlICE9IFRZUEVfTk9ORSkgewo+
-Pj4gKyAgICAgICAgIGJsZC5ta01vdihpLT5nZXREZWYoMCksIGJsZC5ta0ltbShpbW0wLnJlZy5k
-YXRhLnU2NCA+PiBzaGlmdCksCj4+PiB0eXBlKTsKPj4+ICsgICAgICAgICBibGQubWtNb3YoaS0+
-Z2V0RGVmKDEpLCBibGQubWtJbW0oaW1tMC5yZWcuZGF0YS51NjQpLCB0eXBlKTsKPj4KPj4gdTY0
-IHZhbCA9IC4uLnU2NDsKPj4gZm9yIChkID0gMDsgaS0+ZGVmRXhpc3RzKGQpOyArK2QpIHsKPj4g
-ICAgYmxkLm1rTW92KGktPmdldERlZihkKSwgYmxkLm1rSW1tKHZhbCAmICgoMSA8PCBzaGlmdCkg
-LSAxKSk7Cj4+ICAgIHZhbCA+Pj0gc2hpZnQ7Cj4+IH0KPj4KPj4gSSB0aGluayB0aGlzIHdpbGwg
-YWNjb3VudCBmb3IgZXZlcnkgY2FzZSwgYW5kIHdpdGggYSBsb3QgbGVzcwo+PiBzcGVjaWFsLWNh
-c2luZy4gV2hhdCBkbyB5b3UgdGhpbms/Cj4KPgo+IFdlbGwgd2l0aCB0aGlzIHlvdSdkIG5vdCBz
-ZXQgdGhlIG5ldyB0eXBlIHJpZ2h0OiBibGQubWtNb3YoZGVmLCB2YWwsCj4+PnR5cGU8PCksIHdo
-ZXJlIHlvdSBhbHdheXMgd291bGQgdXNlIFRZUEVfVTMyLiBOb3Qgc3VyZSBpZiB0aGF0IGlzIHdo
-YXQgd2UKPiB3YW50Li4uIG90aGVyIHRoYW4gdGhhdCB0aGF0LCBzaG9ydGVuIGl0IGxpa2UgdGhp
-cyB3b3VsZCBiZSBuaWNlIQoKcGFoLXNoYXcgOigKCnR5cGVPZlNpemUoc2hpZnQgLyAyLCBpc0Zs
-b2F0VHlwZShpLT5kVHlwZSksIGlzU2lnbmVkVHlwZShpLT5kVHlwZSkpCgpIb3cncyB0aGF0IDpw
-Cgo+Cj4KPj4KPj4+ICsgICAgICAgICBkZWxldGVfSW5zdHJ1Y3Rpb24ocHJvZywgaSk7Cj4+PiAr
-ICAgICAgfQo+Pj4gKyAgIH0KPj4+ICsgICBicmVhazsKPj4+ICAgICAgY2FzZSBPUF9NVUw6Cj4+
-PiAgICAgICAgIGlmIChpLT5kVHlwZSA9PSBUWVBFX0YzMikKPj4+ICAgICAgICAgICAgdHJ5Q29s
-bGFwc2VDaGFpbmVkTVVMcyhpLCBzLCBpbW0wKTsKPj4+IC0tCj4+PiAyLjEwLjAKPj4+Cj4+PiBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4gTm91dmVh
-dSBtYWlsaW5nIGxpc3QKPj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+PiBodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPgo+Cl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1316855900==
+Content-Type: multipart/alternative; boundary="14752687802.83760.24380";
+ charset="UTF-8"
+
+
+--14752687802.83760.24380
+Date: Fri, 30 Sep 2016 20:53:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93828
+
+--- Comment #7 from steph <ss.c-hi6Y0CQ0nG0@public.gmane.org> ---
+I got the same problem here with randomly occurring freezes (only mouse poi=
+nter
+can be moved but I can still ssh into it).
+
+Environment:
+- Debian Jessie
+- newest backports kernel (which is 4.7.2 currently, it also happened with
+4.6*)
+- Dual monitor setup with 8800 GTS 320MB
+
+Logs will be attached from dmesg and Xorg.0.log
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14752687802.83760.24380
+Date: Fri, 30 Sep 2016 20:53:00 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg hangs randomly with nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg hangs randomly with nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828">bug 93828<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ss.c&#64;gmx.net" title=3D"steph &lt;ss.c&#64;gmx.net&gt;"> <span class=3D"=
+fn">steph</span></a>
+</span></b>
+        <pre>I got the same problem here with randomly occurring freezes (o=
+nly mouse pointer
+can be moved but I can still ssh into it).
+
+Environment:
+- Debian Jessie
+- newest backports kernel (which is 4.7.2 currently, it also happened with
+4.6*)
+- Dual monitor setup with 8800 GTS 320MB
+
+Logs will be attached from dmesg and Xorg.0.log</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14752687802.83760.24380--
+
+--===============1316855900==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1316855900==--
