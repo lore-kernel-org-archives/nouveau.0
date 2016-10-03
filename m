@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98030] Stuttering video playback in totem after
- update to 1.19-rc1
-Date: Mon, 03 Oct 2016 21:40:15 +0000
-Message-ID: <bug-98030-8800-KHbhJAncVh@http.bugs.freedesktop.org/>
-References: <bug-98030-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH] drm/therm/fan: add a fallback if no fan
+ control is specified in the vbios
+Date: Tue, 4 Oct 2016 02:22:47 +0300
+Message-ID: <ba13d4bf-c1be-68ff-0ec6-2c9af5edd8f2@free.fr>
+References: <20160929004135.21959-1-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1469314406=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98030-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20160929004135.21959-1-martin.peres-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,94 +21,42 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1469314406==
-Content-Type: multipart/alternative; boundary="14755308150.8E8AA.30536";
- charset="UTF-8"
-
-
---14755308150.8E8AA.30536
-Date: Mon, 3 Oct 2016 21:40:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98030
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Apparently the issue also exists with modesetting on top of nouveau - i.e. =
-if
-you run e.g. LIBGL_DRI3_DISABLE=3D1 glxgears, you'll end up with the same l=
-ag.
-Trying to collect more data to see if this is nouveau-specific or if it's an
-issue across drivers.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14755308150.8E8AA.30536
-Date: Mon, 3 Oct 2016 21:40:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Stuttering video playback in totem after update to 1.19-r=
-c1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98030#c2">Comment=
- # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Stuttering video playback in totem after update to 1.19-r=
-c1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98030">bug 98030<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Apparently the issue also exists with modesetting on top of no=
-uveau - i.e. if
-you run e.g. LIBGL_DRI3_DISABLE=3D1 glxgears, you'll end up with the same l=
-ag.
-Trying to collect more data to see if this is nouveau-specific or if it's an
-issue across drivers.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14755308150.8E8AA.30536--
-
---===============1469314406==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1469314406==--
+T24gMjkvMDkvMTYgMDM6NDEsIE1hcnRpbiBQZXJlcyB3cm90ZToKPiBUaGlzIHNlZW1zIHRvIGJl
+IGFic29sdXRlbHkgbmVjZXNzYXJ5IGZvciBhIGxvdCBvZiBOVjQwLgo+Cj4gUmVwb3J0ZWQtYnk6
+IGdzZ2Ygb24gSVJDL2ZyZWVub2RlCj4gU2lnbmVkLW9mZi1ieTogTWFydGluIFBlcmVzIDxtYXJ0
+aW4ucGVyZXNAZnJlZS5mcj4KCkkgb2YgY291cnNlIGZvcmdvdCB0byB0YWcgdGhpcyBwYXRjaCBm
+b3Igc3RhYmxlLiBUaGUgdGhpbmcgaGFzIGJlZW4KYnJva2VuIG9uIHNvbWUgbnY0MCAuLi4gZm9y
+ZXZlcj8KCgo+IC0tLQo+ICAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vYmFzZS5jIHwg
+MjIgKysrKysrKysrKysrKysrKysrKy0tLQo+ICAgMSBmaWxlIGNoYW5nZWQsIDE5IGluc2VydGlv
+bnMoKyksIDMgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvdGhlcm0vYmFzZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vYmFzZS5j
+Cj4gaW5kZXggODg5NGZlZS4uZGY5NDlmYSAxMDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS9udmtt
+L3N1YmRldi90aGVybS9iYXNlLmMKPiArKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVy
+bS9iYXNlLmMKPiBAQCAtNjQsMTAgKzY0LDkgQEAgbnZrbV90aGVybV91cGRhdGVfdHJpcChzdHJ1
+Y3QgbnZrbV90aGVybSAqdGhlcm0pCj4gICB9Cj4gICAKPiAgIHN0YXRpYyBpbnQKPiAtbnZrbV90
+aGVybV91cGRhdGVfbGluZWFyKHN0cnVjdCBudmttX3RoZXJtICp0aGVybSkKPiArbnZrbV90aGVy
+bV9jb21wdXRlX2xpbmVhcl9kdXR5KHN0cnVjdCBudmttX3RoZXJtICp0aGVybSwgdTggbGluZWFy
+X21pbl90ZW1wLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdTggbGluZWFyX21h
+eF90ZW1wKQo+ICAgewo+IC0JdTggIGxpbmVhcl9taW5fdGVtcCA9IHRoZXJtLT5mYW4tPmJpb3Mu
+bGluZWFyX21pbl90ZW1wOwo+IC0JdTggIGxpbmVhcl9tYXhfdGVtcCA9IHRoZXJtLT5mYW4tPmJp
+b3MubGluZWFyX21heF90ZW1wOwo+ICAgCXU4ICB0ZW1wID0gdGhlcm0tPmZ1bmMtPnRlbXBfZ2V0
+KHRoZXJtKTsKPiAgIAl1MTYgZHV0eTsKPiAgIAo+IEBAIC04NSw2ICs4NCwyMSBAQCBudmttX3Ro
+ZXJtX3VwZGF0ZV9saW5lYXIoc3RydWN0IG52a21fdGhlcm0gKnRoZXJtKQo+ICAgCXJldHVybiBk
+dXR5Owo+ICAgfQo+ICAgCj4gK3N0YXRpYyBpbnQKPiArbnZrbV90aGVybV91cGRhdGVfbGluZWFy
+KHN0cnVjdCBudmttX3RoZXJtICp0aGVybSkKPiArewo+ICsJdTggIG1pbiA9IHRoZXJtLT5mYW4t
+PmJpb3MubGluZWFyX21pbl90ZW1wOwo+ICsJdTggIG1heCA9IHRoZXJtLT5mYW4tPmJpb3MubGlu
+ZWFyX21heF90ZW1wOwo+ICsJcmV0dXJuIG52a21fdGhlcm1fY29tcHV0ZV9saW5lYXJfZHV0eSh0
+aGVybSwgbWluLCBtYXgpOwo+ICt9Cj4gKwo+ICtzdGF0aWMgaW50Cj4gK252a21fdGhlcm1fdXBk
+YXRlX2xpbmVhcl9mYWxsYmFjayhzdHJ1Y3QgbnZrbV90aGVybSAqdGhlcm0pCj4gK3sKPiArCXU4
+IG1heCA9IHRoZXJtLT5iaW9zX3NlbnNvci50aHJzX2Zhbl9ib29zdC50ZW1wOwo+ICsJcmV0dXJu
+IG52a21fdGhlcm1fY29tcHV0ZV9saW5lYXJfZHV0eSh0aGVybSwgMzAsIG1heCk7Cj4gK30KPiAr
+Cj4gICBzdGF0aWMgdm9pZAo+ICAgbnZrbV90aGVybV91cGRhdGUoc3RydWN0IG52a21fdGhlcm0g
+KnRoZXJtLCBpbnQgbW9kZSkKPiAgIHsKPiBAQCAtMTE5LDYgKzEzMyw4IEBAIG52a21fdGhlcm1f
+dXBkYXRlKHN0cnVjdCBudmttX3RoZXJtICp0aGVybSwgaW50IG1vZGUpCj4gICAJCWNhc2UgTlZC
+SU9TX1RIRVJNX0ZBTl9PVEhFUjoKPiAgIAkJCWlmICh0aGVybS0+Y3N0YXRlKQo+ICAgCQkJCWR1
+dHkgPSB0aGVybS0+Y3N0YXRlOwo+ICsJCQllbHNlCj4gKwkJCQlkdXR5ID0gbnZrbV90aGVybV91
+cGRhdGVfbGluZWFyX2ZhbGxiYWNrKHRoZXJtKTsKPiAgIAkJCXBvbGwgPSBmYWxzZTsKPiAgIAkJ
+CWJyZWFrOwo+ICAgCQl9CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Cg==
