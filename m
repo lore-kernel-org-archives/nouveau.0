@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98030] Stuttering video playback in totem after
  update to 1.19-rc1
-Date: Mon, 03 Oct 2016 21:30:08 +0000
-Message-ID: <bug-98030-8800-6OuNeJwRXN@http.bugs.freedesktop.org/>
+Date: Mon, 03 Oct 2016 21:40:15 +0000
+Message-ID: <bug-98030-8800-KHbhJAncVh@http.bugs.freedesktop.org/>
 References: <bug-98030-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1021341627=="
+Content-Type: multipart/mixed; boundary="===============1469314406=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98030-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1021341627==
-Content-Type: multipart/alternative; boundary="14755302080.0bD3a.29769";
+--===============1469314406==
+Content-Type: multipart/alternative; boundary="14755308150.8E8AA.30536";
  charset="UTF-8"
 
 
---14755302080.0bD3a.29769
-Date: Mon, 3 Oct 2016 21:30:08 +0000
+--14755308150.8E8AA.30536
+Date: Mon, 3 Oct 2016 21:40:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98030
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Looks like some issue with DRI2. If you enable DRI3 support in your xorg.co=
-nf,
-should work fine (for DRI3 clients). [I realize this is not a fix, but rath=
-er a
-workaround.]
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Apparently the issue also exists with modesetting on top of nouveau - i.e. =
+if
+you run e.g. LIBGL_DRI3_DISABLE=3D1 glxgears, you'll end up with the same l=
+ag.
+Trying to collect more data to see if this is nouveau-specific or if it's an
+issue across drivers.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14755302080.0bD3a.29769
-Date: Mon, 3 Oct 2016 21:30:08 +0000
+--14755308150.8E8AA.30536
+Date: Mon, 3 Oct 2016 21:40:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Stuttering video playback in totem after update to 1.19-r=
 c1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98030#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98030#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Stuttering video playback in totem after update to 1.19-r=
@@ -78,11 +79,12 @@ c1"
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Looks like some issue with DRI2. If you enable DRI3 support in=
- your xorg.conf,
-should work fine (for DRI3 clients). [I realize this is not a fix, but rath=
-er a
-workaround.]</pre>
+        <pre>Apparently the issue also exists with modesetting on top of no=
+uveau - i.e. if
+you run e.g. LIBGL_DRI3_DISABLE=3D1 glxgears, you'll end up with the same l=
+ag.
+Trying to collect more data to see if this is nouveau-specific or if it's an
+issue across drivers.</pre>
         </div>
       </p>
 
@@ -96,9 +98,9 @@ workaround.]</pre>
     </body>
 </html>=
 
---14755302080.0bD3a.29769--
+--14755308150.8E8AA.30536--
 
---===============1021341627==
+--===============1469314406==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1021341627==--
+--===============1469314406==--
