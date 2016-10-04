@@ -1,9 +1,9 @@
 From: brian <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
-Subject: that is not a joke!
-Date: RANDOM_Tue, 4 Oct 2016 08:55:12 +0300
-Message-ID: <000090dabc81$1f3487e7$3f20f9dd$@derocher.org>
+Subject: new movie
+Date: RANDOM_Tue, 4 Oct 2016 08:55:10 +0300
+Message-ID: <00004c9b0226$6ded272e$57e01c0e$@derocher.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0656935279=="
+Content-Type: multipart/mixed; boundary="===============1388760965=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Language: fr
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -15,31 +15,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: novamoms12 <novamoms12-hHKSG33TihhbjbujkaE4pw@public.gmane.org>, nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Nouveau Dev List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Northern Virginia Linux Users Group <novalug-Qrep2KDt+0DYEY55K8J4Zw@public.gmane.org>, NoVAMidwifery <NoVAMidwifery-hHKSG33TihhbjbujkaE4pw@public.gmane.org>
+To: Nova Natural Families <NOVA-FamNatLiv-hHKSG33TihhbjbujkaE4pw@public.gmane.org>, Novamoms <Novamoms-/JYPxA39Uh5TLH3MbocFFw@public.gmane.org>, novahombirth <NoVahomebirth-hHKSG33TihhbjbujkaE4pw@public.gmane.org>, nouveau <nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>, notify-dg-Oldtownmoms <notify-dg-Oldtownmoms-hHKSG33TihhbjbujkaE4pw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 
 
---===============0656935279==
+--===============1388760965==
 Content-Type: multipart/alternative;
-        boundary="----=_NextPart_000_0007_0151A56C.54C224D7"
+        boundary="----=_NextPart_000_003F_0134069B.3F3604DB"
 Content-Language: fr
 
 
 
-------=_NextPart_000_0007_0151A56C.54C224D7
+------=_NextPart_000_003F_0134069B.3F3604DB
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-Dear, 
+Hey! 
 
-I have recently tried this stuff and it helped me, that's no  joke! Read  more here <http://sound.mortgage-advice-online.org/aeiixrg>
+Have you  already  watched  that new movie  about zombies?  You can read  my review here <http://wezyprythi.fostersfrostings.com/aeizh>
 
-My best to you, brian
+Very truly yours, brian
 
 
 
-------=_NextPart_000_0007_0151A56C.54C224D7
+------=_NextPart_000_003F_0134069B.3F3604DB
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -91,18 +91,18 @@ div.WordSection1
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN link=3D"#0563=
 C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
-span lang=3DEN-US>Dear, <o:p></o:p></span></p><p class=3DMsoNormal><sp=
-an lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span=
- lang=3DEN-US>I have recently tried this stuff and it helped me, that'=
-s no  joke! Read  more here <a href=3D"http://sound.mortgage-advice-on=
-line.org/aeiixrg">http://sound.mortgage-advice-online.org/aeiixrg</a><=
-o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbs=
-p;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>My best to =
-you, brian<o:p></o:p></span></p></div></body></html>
+span lang=3DEN-US>Hey! <o:p></o:p></span></p><p class=3DMsoNormal><spa=
+n lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Have you  already  watched  that new movie  about zombies=
+?  You can read  my review here <a href=3D"http://wezyprythi.fostersfr=
+ostings.com/aeizh">http://wezyprythi.fostersfrostings.com/aeizh</a><o:=
+p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;=
+</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Very truly yo=
+urs, brian<o:p></o:p></span></p></div></body></html>
 
-------=_NextPart_000_0007_0151A56C.54C224D7--
+------=_NextPart_000_003F_0134069B.3F3604DB--
 
---===============0656935279==
+--===============1388760965==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0656935279==--
+--===============1388760965==--
