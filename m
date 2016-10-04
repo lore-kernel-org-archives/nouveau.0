@@ -1,10 +1,9 @@
-From: tom sayers <tsayers-kQWmFptTj9xl57MIdRCFDg@public.gmane.org>
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Mon, 3 Oct 2016 15:35:51 -0400
-Message-ID: <3f764d30-7af0-ba5f-c7e7-c7b56bf3d4f7@merlinone.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98039] New: KMail crash on starting (nouveau-related)
+Date: Tue, 04 Oct 2016 07:50:34 +0000
+Message-ID: <bug-98039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1068704019=="
+Content-Type: multipart/mixed; boundary="===============0881848269=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,275 +17,1802 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============1068704019==
-Content-Type: multipart/alternative;
- boundary="------------31C14BA9A2957CFC63D8428D"
 
-This is a multi-part message in MIME format.
---------------31C14BA9A2957CFC63D8428D
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-getting same error message.  can you address this as well?
-
-Here is output from lspci
-
-1:00.0 3D controller [0302]: NVIDIA Corporation GK107M [GeForce GT 745M] 
-[10de:0fe3] (rev a1)
-     Subsystem: Lenovo GK107M [GeForce GT 745M] [17aa:3809]
-     Flags: bus master, fast devsel, latency 0, IRQ 30
-     Memory at d0000000 (32-bit, non-prefetchable) [size=16M]
-     Memory at a0000000 (64-bit, prefetchable) [size=256M]
-     Memory at b0000000 (64-bit, prefetchable) [size=32M]
-     I/O ports at 4000 [size=128]
-     Expansion ROM at b2000000 [disabled] [size=512K]
-     Capabilities: <access denied>
-     Kernel driver in use: nouveau
-     Kernel modules: nvidiafb, nouveau
-
--- 
+--===============0881848269==
+Content-Type: multipart/alternative; boundary="14755674341.4cbfDe.31251";
+ charset="UTF-8"
 
 
-*Thomas Sayers
-Technical Operations Manager
-MerlinOne - Hosted Operations
-781-953-3372
-*www.MerlinOne.com <http://www.MerlinOne.com/>
+--14755674341.4cbfDe.31251
+Date: Tue, 4 Oct 2016 07:50:34 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-<http://www.merlinone.com/>
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98039
 
+            Bug ID: 98039
+           Summary: KMail crash on starting (nouveau-related)
+           Product: Mesa
+           Version: git
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
---------------31C14BA9A2957CFC63D8428D
-Content-Type: multipart/related;
- boundary="------------36BF946E2741948F0EB75D99"
+I was asked to report https://bugs.kde.org/show_bug.cgi?id=3D369514 also he=
+re:
 
---------------36BF946E2741948F0EB75D99
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Application: kmail (5.3.0 (QtWebEngine))
+
+Qt Version: 5.6.1
+Frameworks Version: 5.26.0
+Operating System: Linux 4.7.4-2-default x86_64
+Distribution: "openSUSE Tumbleweed"
+
+-- Information about the crash:
+- What I was doing when the application crashed:
+I started KMail.
+
+Using OpenSUSE Tumbleweed 20160927 and the Nouveau driver (kernel 4.7.4,
+xf86-video-nouveau-1.0.13), KMail crashes everytime I try to start it. The =
+KDE
+Plasma desktop and Chromium run without any flaw.
+
+The crash can be reproduced every time.
+
+-- Backtrace:
+Application: KMail (kmail), signal: Aborted
+Using host libthread_db library "/lib64/libthread_db.so.1".
+[Current thread is 1 (Thread 0x7ff6d0b6a940 (LWP 12021))]
+
+Thread 42 (Thread 0x7ff52effb700 (LWP 12105)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c95d49 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c96460 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c96630 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#6  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 41 (Thread 0x7ff52f7fc700 (LWP 12103)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:81
+#2  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:99
+#3  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 40 (Thread 0x7ff52fffd700 (LWP 12102)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:81
+#2  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:99
+#3  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 39 (Thread 0x7ff5f4fca700 (LWP 12101)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:81
+#2  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:99
+#3  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 38 (Thread 0x7ff5f57cb700 (LWP 12100)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:81
+#2  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:99
+#3  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 37 (Thread 0x7ff5f5fcc700 (LWP 12099)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:81
+#2  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:99
+#3  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 36 (Thread 0x7ff5f67cd700 (LWP 12098)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:81
+#2  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:99
+#3  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 35 (Thread 0x7ff5f6fce700 (LWP 12097)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be710201 in JSC::BlockAllocator::blockFreeingThreadMain() () =
+at
+heap/BlockAllocator.cpp:139
+#2  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#3  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#4  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 34 (Thread 0x7ff5f7be0700 (LWP 12096)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6bea16c4b in WTF::TCMalloc_PageHeap::scavengerThread() () at
+wtf/FastMalloc.cpp:2821
+#2  0x00007ff6bea16c89 in WTF::TCMalloc_PageHeap::runScavengerThread(void*)=
+ ()
+at wtf/FastMalloc.cpp:1989
+#3  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#4  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 33 (Thread 0x7ff600e48700 (LWP 12095)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b47587e4 in QTWTF::TCMalloc_PageHeap::scavengerThread()
+(this=3D0x7ff6b4a41ec0 <QTWTF::pageheap_memory>) at
+../3rdparty/javascriptcore/JavaScriptCore/wtf/FastMalloc.cpp:2359
+#2  0x00007ff6b4758829 in QTWTF::TCMalloc_PageHeap::runScavengerThread(void=
+*)
+(context=3D<optimized out>) at
+../3rdparty/javascriptcore/JavaScriptCore/wtf/FastMalloc.cpp:1464
+#3  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#4  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 32 (Thread 0x7ff6020b4700 (LWP 12083)):
+#0  0x00007ff6cd9166ed in poll () at /lib64/libc.so.6
+#1  0x00007ff6c2f83876 in  () at /usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0x7ff5f00008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#4  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7ff6020b3c80, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#5  0x00007ff6ce2233c3 in QThread::exec() (this=3D<optimized out>) at
+thread/qthread.cpp:500
+#6  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x2e4b2e0) at
+thread/qthread_unix.cpp:341
+#7  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#8  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 31 (Thread 0x7ff60389b700 (LWP 12080)):
+#0  0x00007ff6cd9166ed in poll () at /lib64/libc.so.6
+#1  0x00007ff6c2f83876 in  () at /usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0x7ff5f8000940, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#4  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7ff60389ac80, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#5  0x00007ff6ce2233c3 in QThread::exec() (this=3D<optimized out>) at
+thread/qthread.cpp:500
+#6  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x160f150) at
+thread/qthread_unix.cpp:341
+#7  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#8  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 30 (Thread 0x7ff611d40700 (LWP 12073)):
+#0  0x00007ff6c2fc8e89 in g_mutex_lock () at /usr/lib64/libglib-2.0.so.0
+#1  0x00007ff6c2f82d85 in g_main_context_prepare () at
+/usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8379b in  () at /usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#4  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0x7ff5fc0008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#5  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7ff611d3fc80, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#6  0x00007ff6ce2233c3 in QThread::exec() (this=3D<optimized out>) at
+thread/qthread.cpp:500
+#7  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x11fd060) at
+thread/qthread_unix.cpp:341
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 29 (Thread 0x7ff612541700 (LWP 12066)):
+#0  0x00007ff6cd9166ed in poll () at /lib64/libc.so.6
+#1  0x00007ff6c2f83876 in  () at /usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0x7ff6080008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#4  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7ff612540c80, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#5  0x00007ff6ce2233c3 in QThread::exec() (this=3D<optimized out>) at
+thread/qthread.cpp:500
+#6  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x107bec0) at
+thread/qthread_unix.cpp:341
+#7  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#8  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 28 (Thread 0x7ff629ffb700 (LWP 12059)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9aee850 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9adb10c in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9adb5b7 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9ad7e35 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6bb1db937 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6bb1dbb6e in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6bb1dbca9 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#11 0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#12 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#13 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 27 (Thread 0x7ff62a7fc700 (LWP 12058)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c95d49 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c96460 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c96630 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#6  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 26 (Thread 0x7ff62affd700 (LWP 12057)):
+#0  0x00007ff6aa0b1eee in  () at /usr/lib64/pulseaudio/libpulsecommon-9.0.so
+#1  0x00007ff6aa0b276a in  () at /usr/lib64/pulseaudio/libpulsecommon-9.0.so
+#2  0x00007ff6b12de63c in pa_mainloop_dispatch () at /usr/lib64/libpulse.so=
+.0
+#3  0x00007ff6b12dea3c in pa_mainloop_iterate () at /usr/lib64/libpulse.so.0
+#4  0x00007ff6b12deae0 in pa_mainloop_run () at /usr/lib64/libpulse.so.0
+#5  0x00007ff6b12ecb09 in  () at /usr/lib64/libpulse.so.0
+#6  0x00007ff6aa0c2108 in  () at /usr/lib64/pulseaudio/libpulsecommon-9.0.so
+#7  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#8  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 25 (Thread 0x7ff62b7fe700 (LWP 12056)):
+#0  0x00007ff6cd92bbcb in __lll_lock_wait_private () at /lib64/libc.so.6
+#1  0x00007ff6cd92d684 in __fprintf_chk () at /lib64/libc.so.6
+#2  0x00007ff6adc4f4de in  () at /usr/lib64/libevent-2.0.so.5
+#3  0x00007ff6adc4f6d4 in event_warn () at /usr/lib64/libevent-2.0.so.5
+#4  0x00007ff6adc53e58 in  () at /usr/lib64/libevent-2.0.so.5
+#5  0x00007ff6adc3ddfa in event_base_loop () at /usr/lib64/libevent-2.0.so.5
+#6  0x00007ff6b9c48b6e in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#11 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#12 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 24 (Thread 0x7ff62bfff700 (LWP 12055)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 23 (Thread 0x7ff648ff9700 (LWP 12054)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 22 (Thread 0x7ff6497fa700 (LWP 12053)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b94caf99 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c96630 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 21 (Thread 0x7ff649ffb700 (LWP 12052)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 20 (Thread 0x7ff64a7fc700 (LWP 12051)):
+#0  0x00007ff6cd92bbcb in __lll_lock_wait_private () at /lib64/libc.so.6
+#1  0x00007ff6cd92d684 in __fprintf_chk () at /lib64/libc.so.6
+#2  0x00007ff6adc4f4de in  () at /usr/lib64/libevent-2.0.so.5
+#3  0x00007ff6adc4f6d4 in event_warn () at /usr/lib64/libevent-2.0.so.5
+#4  0x00007ff6adc53e58 in  () at /usr/lib64/libevent-2.0.so.5
+#5  0x00007ff6adc3ddfa in event_base_loop () at /usr/lib64/libevent-2.0.so.5
+#6  0x00007ff6b9c48b6e in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9145ab8 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6b9145c1b in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#11 0x00007ff6b9c96b68 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#12 0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#13 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#14 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 19 (Thread 0x7ff64affd700 (LWP 12050)):
+#0  0x00007ff6cd92bbcb in __lll_lock_wait_private () at /lib64/libc.so.6
+#1  0x00007ff6cd92d684 in __fprintf_chk () at /lib64/libc.so.6
+#2  0x00007ff6adc4f4de in  () at /usr/lib64/libevent-2.0.so.5
+#3  0x00007ff6adc4f6d4 in event_warn () at /usr/lib64/libevent-2.0.so.5
+#4  0x00007ff6adc53e58 in  () at /usr/lib64/libevent-2.0.so.5
+#5  0x00007ff6adc3ddfa in event_base_loop () at /usr/lib64/libevent-2.0.so.5
+#6  0x00007ff6b9c48c02 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9145a08 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6b9145c7b in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#11 0x00007ff6b9c96b68 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#12 0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#13 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#14 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 18 (Thread 0x7ff64b7fe700 (LWP 12049)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b9145958 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9145c6b in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c96b68 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#11 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 17 (Thread 0x7ff64bfff700 (LWP 12048)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b91458a8 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9145c5b in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c96b68 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#11 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 16 (Thread 0x7ff66cff9700 (LWP 12047)):
+#0  0x00007ff6cd92bbcb in __lll_lock_wait_private () at /lib64/libc.so.6
+#1  0x00007ff6cd92d684 in __fprintf_chk () at /lib64/libc.so.6
+#2  0x00007ff6adc4f4de in  () at /usr/lib64/libevent-2.0.so.5
+#3  0x00007ff6adc4f6d4 in event_warn () at /usr/lib64/libevent-2.0.so.5
+#4  0x00007ff6adc53e58 in  () at /usr/lib64/libevent-2.0.so.5
+#5  0x00007ff6adc3ddfa in event_base_loop () at /usr/lib64/libevent-2.0.so.5
+#6  0x00007ff6b9c48c02 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b91457f8 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6b9145c4b in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#11 0x00007ff6b9c96b68 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#12 0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#13 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#14 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 15 (Thread 0x7ff66d7fa700 (LWP 12046)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b9145748 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9145c3b in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c96b68 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#11 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 14 (Thread 0x7ff66dffb700 (LWP 12045)):
+#0  0x00007ff6c37af4b8 in pthread_cond_timedwait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8b2e2 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c997d9 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c99d13 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#6  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 13 (Thread 0x7ff66e7fc700 (LWP 12044)):
+#0  0x00007ff6c37af4b8 in pthread_cond_timedwait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8b2e2 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c997d9 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c99d13 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#6  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 12 (Thread 0x7ff66effd700 (LWP 12043)):
+#0  0x00007ff6c37af10f in pthread_cond_wait@@GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 11 (Thread 0x7ff66f7fe700 (LWP 12042)):
+#0  0x00007ff6cd9127bd in write () at /lib64/libc.so.6
+#1  0x00007ff6cd8a9da7 in _IO_new_file_write () at /lib64/libc.so.6
+#2  0x00007ff6cd8a90f2 in new_do_write () at /lib64/libc.so.6
+#3  0x00007ff6cd8aa4fe in __GI__IO_file_xsputn () at /lib64/libc.so.6
+#4  0x00007ff6cd881255 in buffered_vfprintf () at /lib64/libc.so.6
+#5  0x00007ff6cd87e4d5 in vfprintf () at /lib64/libc.so.6
+#6  0x00007ff6cd92d6d9 in __fprintf_chk () at /lib64/libc.so.6
+#7  0x00007ff6adc4f4de in  () at /usr/lib64/libevent-2.0.so.5
+#8  0x00007ff6adc4f6d4 in event_warn () at /usr/lib64/libevent-2.0.so.5
+#9  0x00007ff6adc53e58 in  () at /usr/lib64/libevent-2.0.so.5
+#10 0x00007ff6adc3ddfa in event_base_loop () at /usr/lib64/libevent-2.0.so.5
+#11 0x00007ff6b9c48b6e in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#12 0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#13 0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#14 0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#15 0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#16 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#17 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 10 (Thread 0x7ff679c13700 (LWP 12035)):
+#0  0x00007ff6c2f808a0 in  () at /usr/lib64/libglib-2.0.so.0
+#1  0x00007ff6c2f831a4 in g_main_context_check () at
+/usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f83814 in  () at /usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#4  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0x7ff6680008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#5  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7ff679c12c80, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#6  0x00007ff6ce2233c3 in QThread::exec() (this=3D<optimized out>) at
+thread/qthread.cpp:500
+#7  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x11eca60) at
+thread/qthread_unix.cpp:341
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 9 (Thread 0x7ff67a414700 (LWP 12033)):
+#0  0x00007ff6c2f83802 in  () at /usr/lib64/libglib-2.0.so.0
+#1  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0x7ff6700008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#3  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7ff67a413c80, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#4  0x00007ff6ce2233c3 in QThread::exec() (this=3D<optimized out>) at
+thread/qthread.cpp:500
+#5  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x10ed210) at
+thread/qthread_unix.cpp:341
+#6  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#7  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 8 (Thread 0x7ff6875e0700 (LWP 12031)):
+#0  0x00007ff6c2fc8ea4 in g_mutex_unlock () at /usr/lib64/libglib-2.0.so.0
+#1  0x00007ff6c2f82d6c in g_main_context_prepare () at
+/usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8379b in  () at /usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#4  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0x7ff6740008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#5  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7ff6875dfc80, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#6  0x00007ff6ce2233c3 in QThread::exec() (this=3D<optimized out>) at
+thread/qthread.cpp:500
+#7  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0xe149b0) at
+thread/qthread_unix.cpp:341
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 7 (Thread 0x7ff687fff700 (LWP 12029)):
+#0  0x00007ff6ce4552a0 in postEventSourceCheck(GSource*) (this=3D<optimized=
+ out>)
+at ../../src/corelib/thread/qmutex.h:159
+#1  0x00007ff6ce4552a0 in postEventSourceCheck(GSource*) (this=3D<optimized=
+ out>)
+at ../../src/corelib/thread/qmutex.h:138
+#2  0x00007ff6ce4552a0 in postEventSourceCheck(GSource*) (this=3D<optimized=
+ out>,
+__in_chrg=3D<optimized out>) at ../../src/corelib/thread/qmutex.h:132
+#3  0x00007ff6ce4552a0 in postEventSourceCheck(GSource*) (this=3D0xe64330) =
+at
+../../src/corelib/thread/qthread_p.h:246
+#4  0x00007ff6ce4552a0 in postEventSourceCheck(GSource*) (timeout=3D<synthe=
+tic
+pointer>, s=3D0x7ff67c0012d0) at kernel/qeventdispatcher_glib.cpp:253
+#5  0x00007ff6ce4552a0 in postEventSourceCheck(GSource*)
+(source=3D0x7ff67c0012d0) at kernel/qeventdispatcher_glib.cpp:263
+#6  0x00007ff6c2f83269 in g_main_context_check () at
+/usr/lib64/libglib-2.0.so.0
+#7  0x00007ff6c2f83814 in  () at /usr/lib64/libglib-2.0.so.0
+#8  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#9  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0x7ff67c0008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#10 0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7ff687ffec80, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#11 0x00007ff6ce2233c3 in QThread::exec() (this=3D<optimized out>) at
+thread/qthread.cpp:500
+#12 0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0xd98c30) at
+thread/qthread_unix.cpp:341
+#13 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#14 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 6 (Thread 0x7ff694952700 (LWP 12027)):
+#0  0x00007ff6c2fc8e89 in g_mutex_lock () at /usr/lib64/libglib-2.0.so.0
+#1  0x00007ff6c2f82d85 in g_main_context_prepare () at
+/usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8379b in  () at /usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#4  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0x7ff6800008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#5  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7ff694951c80, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#6  0x00007ff6ce2233c3 in QThread::exec() (this=3D<optimized out>) at
+thread/qthread.cpp:500
+#7  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0xdfb5e0) at
+thread/qthread_unix.cpp:341
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 5 (Thread 0x7ff695153700 (LWP 12025)):
+#0  0x00007ff6cd91275d in read () at /lib64/libc.so.6
+#1  0x00007ff6c2fc7ae0 in  () at /usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f83325 in g_main_context_check () at
+/usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6c2f83814 in  () at /usr/lib64/libglib-2.0.so.0
+#4  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#5  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0x7ff68c0008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#6  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7ff695152c80, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#7  0x00007ff6ce2233c3 in QThread::exec() (this=3D<optimized out>) at
+thread/qthread.cpp:500
+#8  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0xe672a0) at
+thread/qthread_unix.cpp:341
+#9  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#10 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 4 (Thread 0x7ff695fe5700 (LWP 12024)):
+#0  0x00007ff6ce453d2f in QTimerInfoList::timerWait(timespec&) (t=3D<synthe=
+tic
+pointer>) at ../../src/corelib/kernel/qcore_unix_p.h:85
+#1  0x00007ff6ce453d2f in QTimerInfoList::timerWait(timespec&) (t2=3D<synth=
+etic
+pointer>, t1=3D...) at ../../src/corelib/kernel/qcore_unix_p.h:115
+#2  0x00007ff6ce453d2f in QTimerInfoList::timerWait(timespec&)
+(this=3D0x7ff688002cd0, tm=3D...) at kernel/qtimerinfo_unix.cpp:398
+#3  0x00007ff6ce454f9e in timerSourcePrepare(GSource*, gint*)
+(timeout=3D0x7ff695fe4ab4, src=3D<optimized out>) at
+kernel/qeventdispatcher_glib.cpp:126
+#4  0x00007ff6ce454f9e in timerSourcePrepare(GSource*, gint*)
+(source=3D<optimized out>, timeout=3D0x7ff695fe4ab4) at
+kernel/qeventdispatcher_glib.cpp:159
+#5  0x00007ff6c2f82d79 in g_main_context_prepare () at
+/usr/lib64/libglib-2.0.so.0
+#6  0x00007ff6c2f8379b in  () at /usr/lib64/libglib-2.0.so.0
+#7  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#8  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0x7ff6880008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#9  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7ff695fe4c80, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#10 0x00007ff6ce2233c3 in QThread::exec() (this=3D<optimized out>) at
+thread/qthread.cpp:500
+#11 0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0xdcb090) at
+thread/qthread_unix.cpp:341
+#12 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#13 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 3 (Thread 0x7ff6971f6700 (LWP 12023)):
+#0  0x00007ff6c2fc8e89 in g_mutex_lock () at /usr/lib64/libglib-2.0.so.0
+#1  0x00007ff6c2f82d85 in g_main_context_prepare () at
+/usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8379b in  () at /usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#4  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0x7ff6900008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#5  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7ff6971f5c50, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#6  0x00007ff6ce2233c3 in QThread::exec() (this=3Dthis@entry=3D0x7ff6ccafbd=
+20
+<(anonymous namespace)::Q_QGS__q_manager::innerFunction()::holder>) at
+thread/qthread.cpp:500
+#7  0x00007ff6cc888985 in QDBusConnectionManager::run() (this=3D0x7ff6ccafb=
+d20
+<(anonymous namespace)::Q_QGS__q_manager::innerFunction()::holder>) at
+qdbusconnection.cpp:189
+#8  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x7ff6ccafbd20
+<(anonymous namespace)::Q_QGS__q_manager::innerFunction()::holder>) at
+thread/qthread_unix.cpp:341
+#9  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#10 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 2 (Thread 0x7ff6a4789700 (LWP 12022)):
+#0  0x00007ff6cd9166ed in poll () at /lib64/libc.so.6
+#1  0x00007ff6c0bc03f0 in  () at /usr/lib64/libxcb.so.1
+#2  0x00007ff6c0bc2189 in xcb_wait_for_event () at /usr/lib64/libxcb.so.1
+#3  0x00007ff6a62727a9 in QXcbEventReader::run() (this=3D0xc00b10) at
+qxcbconnection.cpp:1325
+#4  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0xc00b10) at
+thread/qthread_unix.cpp:341
+#5  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#6  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 1 (Thread 0x7ff6d0b6a940 (LWP 12021)):
+[KCrash Handler]
+#6  0x00007ff6cd86a5ef in raise () at /lib64/libc.so.6
+#7  0x00007ff6cd86b9ea in abort () at /lib64/libc.so.6
+#8  0x00007ff6cd8a8190 in __libc_message () at /lib64/libc.so.6
+#9  0x00007ff6cd8ae546 in malloc_printerr () at /lib64/libc.so.6
+#10 0x00007ff6cd8aed3e in _int_free () at /lib64/libc.so.6
+#11 0x00007ff6a2bafe9f in nouveau_fence_trigger_work
+(fence=3Dfence@entry=3D0x2ed01b0) at nouveau_fence.c:58
+#12 0x00007ff6a2bb00de in nouveau_fence_update (screen=3Dscreen@entry=3D0xc=
+c0980,
+flushed=3Dflushed@entry=3Dfalse) at nouveau_fence.c:132
+#13 0x00007ff6a2bb0403 in nouveau_fence_wait (fence=3D0x7ff62415f980, debug=
+=3D0x0)
+at nouveau_fence.c:223
+#14 0x00007ff6a2921d1b in st_finish (st=3Dst@entry=3D0x1586210) at
+state_tracker/st_cb_flush.c:101
+#15 0x00007ff6a2921d60 in st_glFinish (ctx=3D<optimized out>) at
+state_tracker/st_cb_flush.c:136
+#16 0x00007ff6cf1ab4a9 in QOpenGLWidgetPrivate::beginCompose() (this=3D0x11=
+42940)
+at kernel/qopenglwidget.cpp:721
+#17 0x00007ff6cf1794c1 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D<optimized out>, end=3Dend@entry=3Dfalse) at kernel/qwidget.cpp:12180
+#18 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D<optimized out>, end=3Dend@entry=3Dfalse) at kernel/qwidget.cpp:12184
+#19 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D<optimized out>, end=3Dend@entry=3Dfalse) at kernel/qwidget.cpp:12184
+#20 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D<optimized out>, end=3Dend@entry=3Dfalse) at kernel/qwidget.cpp:12184
+#21 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D<optimized out>, end=3Dend@entry=3Dfalse) at kernel/qwidget.cpp:12184
+#22 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D<optimized out>, end=3Dend@entry=3Dfalse) at kernel/qwidget.cpp:12184
+#23 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D<optimized out>, end=3Dend@entry=3Dfalse) at kernel/qwidget.cpp:12184
+#24 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D<optimized out>, end=3Dend@entry=3Dfalse) at kernel/qwidget.cpp:12184
+#25 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D<optimized out>, end=3Dend@entry=3Dfalse) at kernel/qwidget.cpp:12184
+#26 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D<optimized out>, end=3Dend@entry=3Dfalse) at kernel/qwidget.cpp:12184
+#27 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D<optimized out>, end=3Dend@entry=3Dfalse) at kernel/qwidget.cpp:12184
+#28 0x00007ff6cf150782 in QWidgetBackingStore::qt_flush(QWidget*, QRegion
+const&, QBackingStore*, QWidget*, QPoint const&, QPlatformTextureList*,
+QWidgetBackingStore*) (widget=3D0xe924a0, region=3D..., backingStore=3D0x11=
+e2330,
+tlw=3D0xe924a0, tlwOffset=3D..., widgetTextures=3D0xc00af0,
+widgetBackingStore=3D0x12266f0) at kernel/qwidgetbackingstore.cpp:108
+#29 0x00007ff6cf1517e5 in QWidgetBackingStore::flush(QWidget*)
+(this=3Dthis@entry=3D0x12266f0, widget=3Dwidget@entry=3D0x0) at
+kernel/qwidgetbackingstore.cpp:1387
+#30 0x00007ff6cf1534e2 in QWidgetBackingStore::doSync()
+(this=3Dthis@entry=3D0x12266f0) at kernel/qwidgetbackingstore.cpp:1279
+#31 0x00007ff6cf153fe9 in QWidgetBackingStore::sync() (this=3D0x12266f0) at
+kernel/qwidgetbackingstore.cpp:1145
+#32 0x00007ff6cf17395f in QWidgetPrivate::syncBackingStore() (this=3D0xe9a3=
+d0) at
+kernel/qwidget.cpp:1942
+#33 0x00007ff6cf18b678 in QWidget::event(QEvent*) (this=3Dthis@entry=3D0xe9=
+24a0,
+event=3Devent@entry=3D0x239a7f0) at kernel/qwidget.cpp:9053
+#34 0x00007ff6cf2a4b5b in QMainWindow::event(QEvent*)
+(this=3Dthis@entry=3D0xe924a0, event=3Devent@entry=3D0x239a7f0) at
+widgets/qmainwindow.cpp:1543
+#35 0x00007ff6cd3436a7 in KMainWindow::event(QEvent*)
+(this=3Dthis@entry=3D0xe924a0, ev=3Dev@entry=3D0x239a7f0) at
+/usr/src/debug/kxmlgui-5.26.0/src/kmainwindow.cpp:867
+#36 0x00007ff6cd3885b5 in KXmlGuiWindow::event(QEvent*) (this=3D0xe924a0,
+ev=3D0x239a7f0) at /usr/src/debug/kxmlgui-5.26.0/src/kxmlguiwindow.cpp:118
+#37 0x00007ff6cf145acc in QApplicationPrivate::notify_helper(QObject*, QEve=
+nt*)
+(this=3D<optimized out>, receiver=3D0xe924a0, e=3D0x239a7f0) at
+kernel/qapplication.cpp:3804
+#38 0x00007ff6cf14af6f in QApplication::notify(QObject*, QEvent*)
+(this=3D0x7fffcd1f3eb0, receiver=3D0xe924a0, e=3D0x239a7f0) at
+kernel/qapplication.cpp:3561
+#39 0x00007ff6ce3ff9b0 in QCoreApplication::notifyInternal2(QObject*, QEven=
+t*)
+(receiver=3D0xe924a0, event=3Devent@entry=3D0x239a7f0) at
+kernel/qcoreapplication.cpp:1015
+#40 0x00007ff6ce40193c in QCoreApplicationPrivate::sendPostedEvents(QObject=
+*,
+int, QThreadData*) (event=3D0x239a7f0, receiver=3D<optimized out>) at
+kernel/qcoreapplication.h:225
+#41 0x00007ff6ce40193c in QCoreApplicationPrivate::sendPostedEvents(QObject=
+*,
+int, QThreadData*) (receiver=3Dreceiver@entry=3D0x0, event_type=3Devent_typ=
+e@entry=3D0,
+data=3D0xbd8a40) at kernel/qcoreapplication.cpp:1650
+#42 0x00007ff6ce401df8 in QCoreApplication::sendPostedEvents(QObject*, int)
+(receiver=3Dreceiver@entry=3D0x0, event_type=3Devent_type@entry=3D0) at
+kernel/qcoreapplication.cpp:1508
+#43 0x00007ff6ce455683 in postEventSourceDispatch(GSource*, GSourceFunc,
+gpointer) (s=3D0xc51720) at kernel/qeventdispatcher_glib.cpp:270
+#44 0x00007ff6c2f83677 in g_main_context_dispatch () at
+/usr/lib64/libglib-2.0.so.0
+#45 0x00007ff6c2f838e0 in  () at /usr/lib64/libglib-2.0.so.0
+#46 0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#47 0x00007ff6ce455a8f in
+QEventDispatcherGlib::processEvents(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3D0xc3d8a0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:417
+#48 0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags<QEventLoop::ProcessEventsFlag>)
+(this=3Dthis@entry=3D0x7fffcd1f3840, flags=3D..., flags@entry=3D...) at
+kernel/qeventloop.cpp:204
+#49 0x00007ff6ce405f0c in QCoreApplication::exec() () at
+kernel/qcoreapplication.cpp:1285
+#50 0x00007ff6ce94eb5c in QGuiApplication::exec() () at
+kernel/qguiapplication.cpp:1607
+#51 0x00007ff6cf142b05 in QApplication::exec() () at
+kernel/qapplication.cpp:2979
+#52 0x0000000000403cbf in main(int, char**) (argc=3D<optimized out>,
+argv=3D<optimized out>) at /usr/src/debug/kdepim-16.08.1/kmail/src/main.cpp=
+:161
+
+Reported using DrKonqi
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14755674341.4cbfDe.31251
+Date: Tue, 4 Oct 2016 07:50:34 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
 <html>
-  <head>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - KMail crash on starting (nouveau-related)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">98039</a>
+          </td>
+        </tr>
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <p>getting same error message.  can you address this as well?<br>
-    </p>
-    <p>Here is output from lspci <br>
-    </p>
-    <p>
-      <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    </p>
-    1:00.0 3D controller [0302]: NVIDIA Corporation GK107M [GeForce GT
-    745M] [10de:0fe3] (rev a1)<br>
-        Subsystem: Lenovo GK107M [GeForce GT 745M] [17aa:3809]<br>
-        Flags: bus master, fast devsel, latency 0, IRQ 30<br>
-        Memory at d0000000 (32-bit, non-prefetchable) [size=16M]<br>
-        Memory at a0000000 (64-bit, prefetchable) [size=256M]<br>
-        Memory at b0000000 (64-bit, prefetchable) [size=32M]<br>
-        I/O ports at 4000 [size=128]<br>
-        Expansion ROM at b2000000 [disabled] [size=512K]<br>
-        Capabilities: &lt;access denied&gt;<br>
-        Kernel driver in use: nouveau<br>
-        Kernel modules: nvidiafb, nouveau<br>
-    <br>
-    <div class="moz-signature">-- <br>
-      <meta http-equiv="content-type" content="text/html; charset=utf-8">
-      <title></title>
-      <meta name="generator" content="LibreOffice 4.2.8.2 (Linux)">
-      <meta name="created" content="0;0">
-      <meta name="changed" content="20150429;161949050868105">
-      <style type="text/css">
-	<!--
-		@page { margin: 0.79in }
-		p { margin-bottom: 0.1in; color: #000000; line-height: 120% }
-		a:link { so-language: zxx }
-	-->
-	</style>
-      <p><br clear="left">
-        <font color="#1f497d"><font face="Garamond, serif"><b>Thomas
-              Sayers<br>
-              Technical Operations Manager <br>
-              MerlinOne - Hosted
-              Operations<br>
-              781-953-3372<br>
-            </b></font></font><a href="http://www.MerlinOne.com/"><font
-            color="#0563c1">www.MerlinOne.com</font></a></p>
-      <p><a href="http://www.merlinone.com/"><img
-            src="cid:part2.B2FC8D34.81A9723C-kQWmFptTj9xl57MIdRCFDg@public.gmane.org"
-            name="Image1" align="left" border="0" width="146"
-            height="46"></a><br>
-        <br>
+        <tr>
+          <th>Summary</th>
+          <td>KMail crash on starting (nouveau-related)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>renda.krell&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>I was asked to report <a href=3D"https://bugs.kde.org/show_bug=
+.cgi?id=3D369514">https://bugs.kde.org/show_bug.cgi?id=3D369514</a> also he=
+re:
+
+Application: kmail (5.3.0 (QtWebEngine))
+
+Qt Version: 5.6.1
+Frameworks Version: 5.26.0
+Operating System: Linux 4.7.4-2-default x86_64
+Distribution: &quot;openSUSE Tumbleweed&quot;
+
+-- Information about the crash:
+- What I was doing when the application crashed:
+I started KMail.
+
+Using OpenSUSE Tumbleweed 20160927 and the Nouveau driver (kernel 4.7.4,
+xf86-video-nouveau-1.0.13), KMail crashes everytime I try to start it. The =
+KDE
+Plasma desktop and Chromium run without any flaw.
+
+The crash can be reproduced every time.
+
+-- Backtrace:
+Application: KMail (kmail), signal: Aborted
+Using host libthread_db library &quot;/lib64/libthread_db.so.1&quot;.
+[Current thread is 1 (Thread 0x7ff6d0b6a940 (LWP 12021))]
+
+Thread 42 (Thread 0x7ff52effb700 (LWP 12105)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c95d49 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c96460 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c96630 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#6  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 41 (Thread 0x7ff52f7fc700 (LWP 12103)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:81
+#2  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:99
+#3  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 40 (Thread 0x7ff52fffd700 (LWP 12102)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:81
+#2  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:99
+#3  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 39 (Thread 0x7ff5f4fca700 (LWP 12101)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:81
+#2  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:99
+#3  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 38 (Thread 0x7ff5f57cb700 (LWP 12100)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:81
+#2  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:99
+#3  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 37 (Thread 0x7ff5f5fcc700 (LWP 12099)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:81
+#2  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:99
+#3  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 36 (Thread 0x7ff5f67cd700 (LWP 12098)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:81
+#2  0x00007ff6be711353 in JSC::GCThread::gcThreadMain() () at
+heap/GCThread.cpp:99
+#3  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 35 (Thread 0x7ff5f6fce700 (LWP 12097)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6be710201 in JSC::BlockAllocator::blockFreeingThreadMain() () =
+at
+heap/BlockAllocator.cpp:139
+#2  0x00007ff6bea47971 in wtfThreadEntryPoint() () at
+wtf/ThreadingPthreads.cpp:195
+#3  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#4  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 34 (Thread 0x7ff5f7be0700 (LWP 12096)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6bea16c4b in WTF::TCMalloc_PageHeap::scavengerThread() () at
+wtf/FastMalloc.cpp:2821
+#2  0x00007ff6bea16c89 in WTF::TCMalloc_PageHeap::runScavengerThread(void*)=
+ ()
+at wtf/FastMalloc.cpp:1989
+#3  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#4  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 33 (Thread 0x7ff600e48700 (LWP 12095)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b47587e4 in QTWTF::TCMalloc_PageHeap::scavengerThread()
+(this=3D0x7ff6b4a41ec0 &lt;QTWTF::pageheap_memory&gt;) at
+../3rdparty/javascriptcore/JavaScriptCore/wtf/FastMalloc.cpp:2359
+#2  0x00007ff6b4758829 in QTWTF::TCMalloc_PageHeap::runScavengerThread(void=
+*)
+(context=3D&lt;optimized out&gt;) at
+../3rdparty/javascriptcore/JavaScriptCore/wtf/FastMalloc.cpp:1464
+#3  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#4  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 32 (Thread 0x7ff6020b4700 (LWP 12083)):
+#0  0x00007ff6cd9166ed in poll () at /lib64/libc.so.6
+#1  0x00007ff6c2f83876 in  () at /usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0x7ff5f00008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#4  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7ff6020b3c80, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#5  0x00007ff6ce2233c3 in QThread::exec() (this=3D&lt;optimized out&gt;) at
+thread/qthread.cpp:500
+#6  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x2e4b2e0) at
+thread/qthread_unix.cpp:341
+#7  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#8  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 31 (Thread 0x7ff60389b700 (LWP 12080)):
+#0  0x00007ff6cd9166ed in poll () at /lib64/libc.so.6
+#1  0x00007ff6c2f83876 in  () at /usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0x7ff5f8000940, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#4  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7ff60389ac80, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#5  0x00007ff6ce2233c3 in QThread::exec() (this=3D&lt;optimized out&gt;) at
+thread/qthread.cpp:500
+#6  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x160f150) at
+thread/qthread_unix.cpp:341
+#7  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#8  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 30 (Thread 0x7ff611d40700 (LWP 12073)):
+#0  0x00007ff6c2fc8e89 in g_mutex_lock () at /usr/lib64/libglib-2.0.so.0
+#1  0x00007ff6c2f82d85 in g_main_context_prepare () at
+/usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8379b in  () at /usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#4  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0x7ff5fc0008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#5  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7ff611d3fc80, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#6  0x00007ff6ce2233c3 in QThread::exec() (this=3D&lt;optimized out&gt;) at
+thread/qthread.cpp:500
+#7  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x11fd060) at
+thread/qthread_unix.cpp:341
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 29 (Thread 0x7ff612541700 (LWP 12066)):
+#0  0x00007ff6cd9166ed in poll () at /lib64/libc.so.6
+#1  0x00007ff6c2f83876 in  () at /usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0x7ff6080008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#4  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7ff612540c80, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#5  0x00007ff6ce2233c3 in QThread::exec() (this=3D&lt;optimized out&gt;) at
+thread/qthread.cpp:500
+#6  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x107bec0) at
+thread/qthread_unix.cpp:341
+#7  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#8  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 28 (Thread 0x7ff629ffb700 (LWP 12059)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9aee850 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9adb10c in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9adb5b7 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9ad7e35 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6bb1db937 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6bb1dbb6e in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6bb1dbca9 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#11 0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#12 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#13 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 27 (Thread 0x7ff62a7fc700 (LWP 12058)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c95d49 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c96460 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c96630 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#6  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 26 (Thread 0x7ff62affd700 (LWP 12057)):
+#0  0x00007ff6aa0b1eee in  () at /usr/lib64/pulseaudio/libpulsecommon-9.0.so
+#1  0x00007ff6aa0b276a in  () at /usr/lib64/pulseaudio/libpulsecommon-9.0.so
+#2  0x00007ff6b12de63c in pa_mainloop_dispatch () at /usr/lib64/libpulse.so=
+.0
+#3  0x00007ff6b12dea3c in pa_mainloop_iterate () at /usr/lib64/libpulse.so.0
+#4  0x00007ff6b12deae0 in pa_mainloop_run () at /usr/lib64/libpulse.so.0
+#5  0x00007ff6b12ecb09 in  () at /usr/lib64/libpulse.so.0
+#6  0x00007ff6aa0c2108 in  () at /usr/lib64/pulseaudio/libpulsecommon-9.0.so
+#7  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#8  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 25 (Thread 0x7ff62b7fe700 (LWP 12056)):
+#0  0x00007ff6cd92bbcb in __lll_lock_wait_private () at /lib64/libc.so.6
+#1  0x00007ff6cd92d684 in __fprintf_chk () at /lib64/libc.so.6
+#2  0x00007ff6adc4f4de in  () at /usr/lib64/libevent-2.0.so.5
+#3  0x00007ff6adc4f6d4 in event_warn () at /usr/lib64/libevent-2.0.so.5
+#4  0x00007ff6adc53e58 in  () at /usr/lib64/libevent-2.0.so.5
+#5  0x00007ff6adc3ddfa in event_base_loop () at /usr/lib64/libevent-2.0.so.5
+#6  0x00007ff6b9c48b6e in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#11 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#12 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 24 (Thread 0x7ff62bfff700 (LWP 12055)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 23 (Thread 0x7ff648ff9700 (LWP 12054)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 22 (Thread 0x7ff6497fa700 (LWP 12053)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b94caf99 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c96630 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#5  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 21 (Thread 0x7ff649ffb700 (LWP 12052)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 20 (Thread 0x7ff64a7fc700 (LWP 12051)):
+#0  0x00007ff6cd92bbcb in __lll_lock_wait_private () at /lib64/libc.so.6
+#1  0x00007ff6cd92d684 in __fprintf_chk () at /lib64/libc.so.6
+#2  0x00007ff6adc4f4de in  () at /usr/lib64/libevent-2.0.so.5
+#3  0x00007ff6adc4f6d4 in event_warn () at /usr/lib64/libevent-2.0.so.5
+#4  0x00007ff6adc53e58 in  () at /usr/lib64/libevent-2.0.so.5
+#5  0x00007ff6adc3ddfa in event_base_loop () at /usr/lib64/libevent-2.0.so.5
+#6  0x00007ff6b9c48b6e in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9145ab8 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6b9145c1b in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#11 0x00007ff6b9c96b68 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#12 0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#13 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#14 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 19 (Thread 0x7ff64affd700 (LWP 12050)):
+#0  0x00007ff6cd92bbcb in __lll_lock_wait_private () at /lib64/libc.so.6
+#1  0x00007ff6cd92d684 in __fprintf_chk () at /lib64/libc.so.6
+#2  0x00007ff6adc4f4de in  () at /usr/lib64/libevent-2.0.so.5
+#3  0x00007ff6adc4f6d4 in event_warn () at /usr/lib64/libevent-2.0.so.5
+#4  0x00007ff6adc53e58 in  () at /usr/lib64/libevent-2.0.so.5
+#5  0x00007ff6adc3ddfa in event_base_loop () at /usr/lib64/libevent-2.0.so.5
+#6  0x00007ff6b9c48c02 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9145a08 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6b9145c7b in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#11 0x00007ff6b9c96b68 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#12 0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#13 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#14 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 18 (Thread 0x7ff64b7fe700 (LWP 12049)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b9145958 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9145c6b in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c96b68 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#11 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 17 (Thread 0x7ff64bfff700 (LWP 12048)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b91458a8 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9145c5b in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c96b68 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#11 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 16 (Thread 0x7ff66cff9700 (LWP 12047)):
+#0  0x00007ff6cd92bbcb in __lll_lock_wait_private () at /lib64/libc.so.6
+#1  0x00007ff6cd92d684 in __fprintf_chk () at /lib64/libc.so.6
+#2  0x00007ff6adc4f4de in  () at /usr/lib64/libevent-2.0.so.5
+#3  0x00007ff6adc4f6d4 in event_warn () at /usr/lib64/libevent-2.0.so.5
+#4  0x00007ff6adc53e58 in  () at /usr/lib64/libevent-2.0.so.5
+#5  0x00007ff6adc3ddfa in event_base_loop () at /usr/lib64/libevent-2.0.so.5
+#6  0x00007ff6b9c48c02 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b91457f8 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6b9145c4b in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#11 0x00007ff6b9c96b68 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#12 0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#13 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#14 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 15 (Thread 0x7ff66d7fa700 (LWP 12046)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b9145748 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9145c3b in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6b9c96b68 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#9  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#10 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#11 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 14 (Thread 0x7ff66dffb700 (LWP 12045)):
+#0  0x00007ff6c37af4b8 in pthread_cond_timedwait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8b2e2 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c997d9 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c99d13 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#6  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 13 (Thread 0x7ff66e7fc700 (LWP 12044)):
+#0  0x00007ff6c37af4b8 in pthread_cond_timedwait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8b2e2 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c997d9 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c99d13 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#6  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 12 (Thread 0x7ff66effd700 (LWP 12043)):
+#0  0x00007ff6c37af10f in pthread_cond_wait&#64;&#64;GLIBC_2.3.2 () at
+/lib64/libpthread.so.0
+#1  0x00007ff6b9c8baf5 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#2  0x00007ff6b9c8bbc4 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#3  0x00007ff6b9c6e473 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#4  0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#5  0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#6  0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#7  0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 11 (Thread 0x7ff66f7fe700 (LWP 12042)):
+#0  0x00007ff6cd9127bd in write () at /lib64/libc.so.6
+#1  0x00007ff6cd8a9da7 in _IO_new_file_write () at /lib64/libc.so.6
+#2  0x00007ff6cd8a90f2 in new_do_write () at /lib64/libc.so.6
+#3  0x00007ff6cd8aa4fe in __GI__IO_file_xsputn () at /lib64/libc.so.6
+#4  0x00007ff6cd881255 in buffered_vfprintf () at /lib64/libc.so.6
+#5  0x00007ff6cd87e4d5 in vfprintf () at /lib64/libc.so.6
+#6  0x00007ff6cd92d6d9 in __fprintf_chk () at /lib64/libc.so.6
+#7  0x00007ff6adc4f4de in  () at /usr/lib64/libevent-2.0.so.5
+#8  0x00007ff6adc4f6d4 in event_warn () at /usr/lib64/libevent-2.0.so.5
+#9  0x00007ff6adc53e58 in  () at /usr/lib64/libevent-2.0.so.5
+#10 0x00007ff6adc3ddfa in event_base_loop () at /usr/lib64/libevent-2.0.so.5
+#11 0x00007ff6b9c48b6e in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#12 0x00007ff6b9c7f0ba in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#13 0x00007ff6b9c6aa55 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#14 0x00007ff6b9c96ae6 in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#15 0x00007ff6b9c9323d in  () at /usr/lib64/libQt5WebEngineCore.so.5
+#16 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#17 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 10 (Thread 0x7ff679c13700 (LWP 12035)):
+#0  0x00007ff6c2f808a0 in  () at /usr/lib64/libglib-2.0.so.0
+#1  0x00007ff6c2f831a4 in g_main_context_check () at
+/usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f83814 in  () at /usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#4  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0x7ff6680008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#5  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7ff679c12c80, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#6  0x00007ff6ce2233c3 in QThread::exec() (this=3D&lt;optimized out&gt;) at
+thread/qthread.cpp:500
+#7  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x11eca60) at
+thread/qthread_unix.cpp:341
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 9 (Thread 0x7ff67a414700 (LWP 12033)):
+#0  0x00007ff6c2f83802 in  () at /usr/lib64/libglib-2.0.so.0
+#1  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0x7ff6700008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#3  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7ff67a413c80, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#4  0x00007ff6ce2233c3 in QThread::exec() (this=3D&lt;optimized out&gt;) at
+thread/qthread.cpp:500
+#5  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x10ed210) at
+thread/qthread_unix.cpp:341
+#6  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#7  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 8 (Thread 0x7ff6875e0700 (LWP 12031)):
+#0  0x00007ff6c2fc8ea4 in g_mutex_unlock () at /usr/lib64/libglib-2.0.so.0
+#1  0x00007ff6c2f82d6c in g_main_context_prepare () at
+/usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8379b in  () at /usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#4  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0x7ff6740008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#5  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7ff6875dfc80, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#6  0x00007ff6ce2233c3 in QThread::exec() (this=3D&lt;optimized out&gt;) at
+thread/qthread.cpp:500
+#7  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0xe149b0) at
+thread/qthread_unix.cpp:341
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 7 (Thread 0x7ff687fff700 (LWP 12029)):
+#0  0x00007ff6ce4552a0 in postEventSourceCheck(GSource*) (this=3D&lt;optimi=
+zed out&gt;)
+at ../../src/corelib/thread/qmutex.h:159
+#1  0x00007ff6ce4552a0 in postEventSourceCheck(GSource*) (this=3D&lt;optimi=
+zed out&gt;)
+at ../../src/corelib/thread/qmutex.h:138
+#2  0x00007ff6ce4552a0 in postEventSourceCheck(GSource*) (this=3D&lt;optimi=
+zed out&gt;,
+__in_chrg=3D&lt;optimized out&gt;) at ../../src/corelib/thread/qmutex.h:132
+#3  0x00007ff6ce4552a0 in postEventSourceCheck(GSource*) (this=3D0xe64330) =
+at
+../../src/corelib/thread/qthread_p.h:246
+#4  0x00007ff6ce4552a0 in postEventSourceCheck(GSource*) (timeout=3D&lt;syn=
+thetic
+pointer&gt;, s=3D0x7ff67c0012d0) at kernel/qeventdispatcher_glib.cpp:253
+#5  0x00007ff6ce4552a0 in postEventSourceCheck(GSource*)
+(source=3D0x7ff67c0012d0) at kernel/qeventdispatcher_glib.cpp:263
+#6  0x00007ff6c2f83269 in g_main_context_check () at
+/usr/lib64/libglib-2.0.so.0
+#7  0x00007ff6c2f83814 in  () at /usr/lib64/libglib-2.0.so.0
+#8  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#9  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0x7ff67c0008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#10 0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7ff687ffec80, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#11 0x00007ff6ce2233c3 in QThread::exec() (this=3D&lt;optimized out&gt;) at
+thread/qthread.cpp:500
+#12 0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0xd98c30) at
+thread/qthread_unix.cpp:341
+#13 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#14 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 6 (Thread 0x7ff694952700 (LWP 12027)):
+#0  0x00007ff6c2fc8e89 in g_mutex_lock () at /usr/lib64/libglib-2.0.so.0
+#1  0x00007ff6c2f82d85 in g_main_context_prepare () at
+/usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8379b in  () at /usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#4  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0x7ff6800008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#5  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7ff694951c80, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#6  0x00007ff6ce2233c3 in QThread::exec() (this=3D&lt;optimized out&gt;) at
+thread/qthread.cpp:500
+#7  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0xdfb5e0) at
+thread/qthread_unix.cpp:341
+#8  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#9  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 5 (Thread 0x7ff695153700 (LWP 12025)):
+#0  0x00007ff6cd91275d in read () at /lib64/libc.so.6
+#1  0x00007ff6c2fc7ae0 in  () at /usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f83325 in g_main_context_check () at
+/usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6c2f83814 in  () at /usr/lib64/libglib-2.0.so.0
+#4  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#5  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0x7ff68c0008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#6  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7ff695152c80, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#7  0x00007ff6ce2233c3 in QThread::exec() (this=3D&lt;optimized out&gt;) at
+thread/qthread.cpp:500
+#8  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0xe672a0) at
+thread/qthread_unix.cpp:341
+#9  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#10 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 4 (Thread 0x7ff695fe5700 (LWP 12024)):
+#0  0x00007ff6ce453d2f in QTimerInfoList::timerWait(timespec&amp;) (t=3D&lt=
+;synthetic
+pointer&gt;) at ../../src/corelib/kernel/qcore_unix_p.h:85
+#1  0x00007ff6ce453d2f in QTimerInfoList::timerWait(timespec&amp;) (t2=3D&l=
+t;synthetic
+pointer&gt;, t1=3D...) at ../../src/corelib/kernel/qcore_unix_p.h:115
+#2  0x00007ff6ce453d2f in QTimerInfoList::timerWait(timespec&amp;)
+(this=3D0x7ff688002cd0, tm=3D...) at kernel/qtimerinfo_unix.cpp:398
+#3  0x00007ff6ce454f9e in timerSourcePrepare(GSource*, gint*)
+(timeout=3D0x7ff695fe4ab4, src=3D&lt;optimized out&gt;) at
+kernel/qeventdispatcher_glib.cpp:126
+#4  0x00007ff6ce454f9e in timerSourcePrepare(GSource*, gint*)
+(source=3D&lt;optimized out&gt;, timeout=3D0x7ff695fe4ab4) at
+kernel/qeventdispatcher_glib.cpp:159
+#5  0x00007ff6c2f82d79 in g_main_context_prepare () at
+/usr/lib64/libglib-2.0.so.0
+#6  0x00007ff6c2f8379b in  () at /usr/lib64/libglib-2.0.so.0
+#7  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#8  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0x7ff6880008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#9  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7ff695fe4c80, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#10 0x00007ff6ce2233c3 in QThread::exec() (this=3D&lt;optimized out&gt;) at
+thread/qthread.cpp:500
+#11 0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0xdcb090) at
+thread/qthread_unix.cpp:341
+#12 0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#13 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 3 (Thread 0x7ff6971f6700 (LWP 12023)):
+#0  0x00007ff6c2fc8e89 in g_mutex_lock () at /usr/lib64/libglib-2.0.so.0
+#1  0x00007ff6c2f82d85 in g_main_context_prepare () at
+/usr/lib64/libglib-2.0.so.0
+#2  0x00007ff6c2f8379b in  () at /usr/lib64/libglib-2.0.so.0
+#3  0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#4  0x00007ff6ce455aab in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0x7ff6900008c0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:419
+#5  0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7ff6971f5c50, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#6  0x00007ff6ce2233c3 in QThread::exec() (this=3Dthis&#64;entry=3D0x7ff6cc=
+afbd20
+&lt;(anonymous namespace)::Q_QGS__q_manager::innerFunction()::holder&gt;) at
+thread/qthread.cpp:500
+#7  0x00007ff6cc888985 in QDBusConnectionManager::run() (this=3D0x7ff6ccafb=
+d20
+&lt;(anonymous namespace)::Q_QGS__q_manager::innerFunction()::holder&gt;) at
+qdbusconnection.cpp:189
+#8  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0x7ff6ccafbd20
+&lt;(anonymous namespace)::Q_QGS__q_manager::innerFunction()::holder&gt;) at
+thread/qthread_unix.cpp:341
+#9  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#10 0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 2 (Thread 0x7ff6a4789700 (LWP 12022)):
+#0  0x00007ff6cd9166ed in poll () at /lib64/libc.so.6
+#1  0x00007ff6c0bc03f0 in  () at /usr/lib64/libxcb.so.1
+#2  0x00007ff6c0bc2189 in xcb_wait_for_event () at /usr/lib64/libxcb.so.1
+#3  0x00007ff6a62727a9 in QXcbEventReader::run() (this=3D0xc00b10) at
+qxcbconnection.cpp:1325
+#4  0x00007ff6ce2282e8 in QThreadPrivate::start(void*) (arg=3D0xc00b10) at
+thread/qthread_unix.cpp:341
+#5  0x00007ff6c37a9454 in start_thread () at /lib64/libpthread.so.0
+#6  0x00007ff6cd91f3ff in clone () at /lib64/libc.so.6
+
+Thread 1 (Thread 0x7ff6d0b6a940 (LWP 12021)):
+[KCrash Handler]
+#6  0x00007ff6cd86a5ef in raise () at /lib64/libc.so.6
+#7  0x00007ff6cd86b9ea in abort () at /lib64/libc.so.6
+#8  0x00007ff6cd8a8190 in __libc_message () at /lib64/libc.so.6
+#9  0x00007ff6cd8ae546 in malloc_printerr () at /lib64/libc.so.6
+#10 0x00007ff6cd8aed3e in _int_free () at /lib64/libc.so.6
+#11 0x00007ff6a2bafe9f in nouveau_fence_trigger_work
+(fence=3Dfence&#64;entry=3D0x2ed01b0) at nouveau_fence.c:58
+#12 0x00007ff6a2bb00de in nouveau_fence_update (screen=3Dscreen&#64;entry=
+=3D0xcc0980,
+flushed=3Dflushed&#64;entry=3Dfalse) at nouveau_fence.c:132
+#13 0x00007ff6a2bb0403 in nouveau_fence_wait (fence=3D0x7ff62415f980, debug=
+=3D0x0)
+at nouveau_fence.c:223
+#14 0x00007ff6a2921d1b in st_finish (st=3Dst&#64;entry=3D0x1586210) at
+state_tracker/st_cb_flush.c:101
+#15 0x00007ff6a2921d60 in st_glFinish (ctx=3D&lt;optimized out&gt;) at
+state_tracker/st_cb_flush.c:136
+#16 0x00007ff6cf1ab4a9 in QOpenGLWidgetPrivate::beginCompose() (this=3D0x11=
+42940)
+at kernel/qopenglwidget.cpp:721
+#17 0x00007ff6cf1794c1 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D&lt;optimized out&gt;, end=3Dend&#64;entry=3Dfalse) at kernel/qwidget.=
+cpp:12180
+#18 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D&lt;optimized out&gt;, end=3Dend&#64;entry=3Dfalse) at kernel/qwidget.=
+cpp:12184
+#19 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D&lt;optimized out&gt;, end=3Dend&#64;entry=3Dfalse) at kernel/qwidget.=
+cpp:12184
+#20 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D&lt;optimized out&gt;, end=3Dend&#64;entry=3Dfalse) at kernel/qwidget.=
+cpp:12184
+#21 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D&lt;optimized out&gt;, end=3Dend&#64;entry=3Dfalse) at kernel/qwidget.=
+cpp:12184
+#22 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D&lt;optimized out&gt;, end=3Dend&#64;entry=3Dfalse) at kernel/qwidget.=
+cpp:12184
+#23 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D&lt;optimized out&gt;, end=3Dend&#64;entry=3Dfalse) at kernel/qwidget.=
+cpp:12184
+#24 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D&lt;optimized out&gt;, end=3Dend&#64;entry=3Dfalse) at kernel/qwidget.=
+cpp:12184
+#25 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D&lt;optimized out&gt;, end=3Dend&#64;entry=3Dfalse) at kernel/qwidget.=
+cpp:12184
+#26 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D&lt;optimized out&gt;, end=3Dend&#64;entry=3Dfalse) at kernel/qwidget.=
+cpp:12184
+#27 0x00007ff6cf179487 in QWidgetPrivate::sendComposeStatus(QWidget*, bool)
+(w=3D&lt;optimized out&gt;, end=3Dend&#64;entry=3Dfalse) at kernel/qwidget.=
+cpp:12184
+#28 0x00007ff6cf150782 in QWidgetBackingStore::qt_flush(QWidget*, QRegion
+const&amp;, QBackingStore*, QWidget*, QPoint const&amp;, QPlatformTextureLi=
+st*,
+QWidgetBackingStore*) (widget=3D0xe924a0, region=3D..., backingStore=3D0x11=
+e2330,
+tlw=3D0xe924a0, tlwOffset=3D..., widgetTextures=3D0xc00af0,
+widgetBackingStore=3D0x12266f0) at kernel/qwidgetbackingstore.cpp:108
+#29 0x00007ff6cf1517e5 in QWidgetBackingStore::flush(QWidget*)
+(this=3Dthis&#64;entry=3D0x12266f0, widget=3Dwidget&#64;entry=3D0x0) at
+kernel/qwidgetbackingstore.cpp:1387
+#30 0x00007ff6cf1534e2 in QWidgetBackingStore::doSync()
+(this=3Dthis&#64;entry=3D0x12266f0) at kernel/qwidgetbackingstore.cpp:1279
+#31 0x00007ff6cf153fe9 in QWidgetBackingStore::sync() (this=3D0x12266f0) at
+kernel/qwidgetbackingstore.cpp:1145
+#32 0x00007ff6cf17395f in QWidgetPrivate::syncBackingStore() (this=3D0xe9a3=
+d0) at
+kernel/qwidget.cpp:1942
+#33 0x00007ff6cf18b678 in QWidget::event(QEvent*) (this=3Dthis&#64;entry=3D=
+0xe924a0,
+event=3Devent&#64;entry=3D0x239a7f0) at kernel/qwidget.cpp:9053
+#34 0x00007ff6cf2a4b5b in QMainWindow::event(QEvent*)
+(this=3Dthis&#64;entry=3D0xe924a0, event=3Devent&#64;entry=3D0x239a7f0) at
+widgets/qmainwindow.cpp:1543
+#35 0x00007ff6cd3436a7 in KMainWindow::event(QEvent*)
+(this=3Dthis&#64;entry=3D0xe924a0, ev=3Dev&#64;entry=3D0x239a7f0) at
+/usr/src/debug/kxmlgui-5.26.0/src/kmainwindow.cpp:867
+#36 0x00007ff6cd3885b5 in KXmlGuiWindow::event(QEvent*) (this=3D0xe924a0,
+ev=3D0x239a7f0) at /usr/src/debug/kxmlgui-5.26.0/src/kxmlguiwindow.cpp:118
+#37 0x00007ff6cf145acc in QApplicationPrivate::notify_helper(QObject*, QEve=
+nt*)
+(this=3D&lt;optimized out&gt;, receiver=3D0xe924a0, e=3D0x239a7f0) at
+kernel/qapplication.cpp:3804
+#38 0x00007ff6cf14af6f in QApplication::notify(QObject*, QEvent*)
+(this=3D0x7fffcd1f3eb0, receiver=3D0xe924a0, e=3D0x239a7f0) at
+kernel/qapplication.cpp:3561
+#39 0x00007ff6ce3ff9b0 in QCoreApplication::notifyInternal2(QObject*, QEven=
+t*)
+(receiver=3D0xe924a0, event=3Devent&#64;entry=3D0x239a7f0) at
+kernel/qcoreapplication.cpp:1015
+#40 0x00007ff6ce40193c in QCoreApplicationPrivate::sendPostedEvents(QObject=
+*,
+int, QThreadData*) (event=3D0x239a7f0, receiver=3D&lt;optimized out&gt;) at
+kernel/qcoreapplication.h:225
+#41 0x00007ff6ce40193c in QCoreApplicationPrivate::sendPostedEvents(QObject=
+*,
+int, QThreadData*) (receiver=3Dreceiver&#64;entry=3D0x0, event_type=3Devent=
+_type&#64;entry=3D0,
+data=3D0xbd8a40) at kernel/qcoreapplication.cpp:1650
+#42 0x00007ff6ce401df8 in QCoreApplication::sendPostedEvents(QObject*, int)
+(receiver=3Dreceiver&#64;entry=3D0x0, event_type=3Devent_type&#64;entry=3D0=
+) at
+kernel/qcoreapplication.cpp:1508
+#43 0x00007ff6ce455683 in postEventSourceDispatch(GSource*, GSourceFunc,
+gpointer) (s=3D0xc51720) at kernel/qeventdispatcher_glib.cpp:270
+#44 0x00007ff6c2f83677 in g_main_context_dispatch () at
+/usr/lib64/libglib-2.0.so.0
+#45 0x00007ff6c2f838e0 in  () at /usr/lib64/libglib-2.0.so.0
+#46 0x00007ff6c2f8398c in g_main_context_iteration () at
+/usr/lib64/libglib-2.0.so.0
+#47 0x00007ff6ce455a8f in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag=
+&gt;)
+(this=3D0xc3d8a0, flags=3D...) at kernel/qeventdispatcher_glib.cpp:417
+#48 0x00007ff6ce3fd6fa in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+(this=3Dthis&#64;entry=3D0x7fffcd1f3840, flags=3D..., flags&#64;entry=3D...=
+) at
+kernel/qeventloop.cpp:204
+#49 0x00007ff6ce405f0c in QCoreApplication::exec() () at
+kernel/qcoreapplication.cpp:1285
+#50 0x00007ff6ce94eb5c in QGuiApplication::exec() () at
+kernel/qguiapplication.cpp:1607
+#51 0x00007ff6cf142b05 in QApplication::exec() () at
+kernel/qapplication.cpp:2979
+#52 0x0000000000403cbf in main(int, char**) (argc=3D&lt;optimized out&gt;,
+argv=3D&lt;optimized out&gt;) at /usr/src/debug/kdepim-16.08.1/kmail/src/ma=
+in.cpp:161
+
+Reported using DrKonqi</pre>
+        </div>
       </p>
-    </div>
-  </body>
-</html>
-
---------------36BF946E2741948F0EB75D99
-Content-Type: image/png;
- name="Image1"
-Content-Transfer-Encoding: base64
-Content-ID: <part2.B2FC8D34.81A9723C-kQWmFptTj9xl57MIdRCFDg@public.gmane.org>
-Content-Disposition: inline;
- filename="Image1"
-
-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
---------------36BF946E2741948F0EB75D99--
-
---------------31C14BA9A2957CFC63D8428D--
 
 
---===============1068704019==
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14755674341.4cbfDe.31251--
+
+--===============0881848269==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -296,4 +1822,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1068704019==--
+--===============0881848269==--
