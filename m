@@ -1,13 +1,11 @@
-From: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
-Subject: [PATCH v5 1/3] drm/nouveau: set streaming DMA mask early
-Date: Thu,  6 Oct 2016 16:49:28 +0100
-Message-ID: <1475768970-32512-2-git-send-email-ard.biesheuvel@linaro.org>
-References: <1475768970-32512-1-git-send-email-ard.biesheuvel@linaro.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98129] New: X hung with nouveau 'INVALID_CMD' and
+ 'INVALID_ADDRESS_ALIGNMENT' errors on GeForce 9600 GT [10de:0622]
+Date: Thu, 06 Oct 2016 22:32:23 +0000
+Message-ID: <bug-98129-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0088651928=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1475768970-32512-1-git-send-email-ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,57 +15,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: airlied-cv59FeDIM0c@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U29tZSBzdWJkZXZpY2VzIChpLmUuLCBmYi9udjUwLmMgYW5kIGZiL2dmMTAwLmMpIG1hcCBhIHNj
-cmF0Y2ggcGFnZSB1c2luZwpkbWFfbWFwX3BhZ2UoKSB3YXkgYmVmb3JlIHRoZSBUVE0gbGF5ZXIg
-aGFzIGhhZCBhIGNoYW5jZSB0byBzZXQgdGhlIERNQQptYXNrLiBUaGlzIG1heSBwcmV2ZW50IHRo
-ZSBkcml2ZXIgZnJvbSBsb2FkaW5nIGF0IGFsbCBvbiBwbGF0Zm9ybXMgd2hvc2UKc3lzdGVtIG1l
-bW9yeSBpcyBub3QgY292ZXJlZCBieSB0aGUgZGVmYXVsdCBETUEgbWFzayBvZiAzMi1iaXQgKGku
-ZS4sIHdoZW4KYWxsIFJBTSBpcyBhYm92ZSA0IEdCKS4KClNvIHNldCBhIHByZWxpbWluYXJ5IERN
-QSBtYXNrIHJpZ2h0IGFmdGVyIGNvbnN0cnVjdGluZyB0aGUgUENJIGRldmljZSwgYW5kCmJhc2Ug
-aXQgb24gdGhlIC5kbWFfYml0cyBtZW1iZXIgb2YgdGhlIE1NVSBzdWJkZXZpY2UsIHdoaWNoIGlz
-IHdoYXQgdGhlIFRUTQpsYXllciB3aWxsIGJhc2UgdGhlIERNQSBtYXNrIG9uIGFzIHdlbGwuCgpT
-aWduZWQtb2ZmLWJ5OiBBcmQgQmllc2hldXZlbCA8YXJkLmJpZXNoZXV2ZWxAbGluYXJvLm9yZz4K
-LS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcGNpLmMgfCAz
-NyArKysrKysrKysrKysrKy0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDI3IGluc2VydGlvbnMoKyks
-IDEwIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
-a20vZW5naW5lL2RldmljZS9wY2kuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5n
-aW5lL2RldmljZS9wY2kuYwppbmRleCA2MmFkMDMwMGNmYTUuLjAwMzBjZDk1NDNiMiAxMDA2NDQK
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3BjaS5jCisr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9wY2kuYwpAQCAt
-MTY2NSwxNCArMTY2NSwzMSBAQCBudmttX2RldmljZV9wY2lfbmV3KHN0cnVjdCBwY2lfZGV2ICpw
-Y2lfZGV2LCBjb25zdCBjaGFyICpjZmcsIGNvbnN0IGNoYXIgKmRiZywKIAkqcGRldmljZSA9ICZw
-ZGV2LT5kZXZpY2U7CiAJcGRldi0+cGRldiA9IHBjaV9kZXY7CiAKLQlyZXR1cm4gbnZrbV9kZXZp
-Y2VfY3RvcigmbnZrbV9kZXZpY2VfcGNpX2Z1bmMsIHF1aXJrLCAmcGNpX2Rldi0+ZGV2LAotCQkJ
-CXBjaV9pc19wY2llKHBjaV9kZXYpID8gTlZLTV9ERVZJQ0VfUENJRSA6Ci0JCQkJcGNpX2ZpbmRf
-Y2FwYWJpbGl0eShwY2lfZGV2LCBQQ0lfQ0FQX0lEX0FHUCkgPwotCQkJCU5WS01fREVWSUNFX0FH
-UCA6IE5WS01fREVWSUNFX1BDSSwKLQkJCQkodTY0KXBjaV9kb21haW5fbnIocGNpX2Rldi0+YnVz
-KSA8PCAzMiB8Ci0JCQkJICAgICBwY2lfZGV2LT5idXMtPm51bWJlciA8PCAxNiB8Ci0JCQkJICAg
-ICBQQ0lfU0xPVChwY2lfZGV2LT5kZXZmbikgPDwgOCB8Ci0JCQkJICAgICBQQ0lfRlVOQyhwY2lf
-ZGV2LT5kZXZmbiksIG5hbWUsCi0JCQkJY2ZnLCBkYmcsIGRldGVjdCwgbW1pbywgc3ViZGV2X21h
-c2ssCi0JCQkJJnBkZXYtPmRldmljZSk7CisJcmV0ID0gbnZrbV9kZXZpY2VfY3RvcigmbnZrbV9k
-ZXZpY2VfcGNpX2Z1bmMsIHF1aXJrLCAmcGNpX2Rldi0+ZGV2LAorCQkJICAgICAgIHBjaV9pc19w
-Y2llKHBjaV9kZXYpID8gTlZLTV9ERVZJQ0VfUENJRSA6CisJCQkgICAgICAgcGNpX2ZpbmRfY2Fw
-YWJpbGl0eShwY2lfZGV2LCBQQ0lfQ0FQX0lEX0FHUCkgPworCQkJICAgICAgIE5WS01fREVWSUNF
-X0FHUCA6IE5WS01fREVWSUNFX1BDSSwKKwkJCSAgICAgICAodTY0KXBjaV9kb21haW5fbnIocGNp
-X2Rldi0+YnVzKSA8PCAzMiB8CisJCQkJICAgIHBjaV9kZXYtPmJ1cy0+bnVtYmVyIDw8IDE2IHwK
-KwkJCQkgICAgUENJX1NMT1QocGNpX2Rldi0+ZGV2Zm4pIDw8IDggfAorCQkJCSAgICBQQ0lfRlVO
-QyhwY2lfZGV2LT5kZXZmbiksIG5hbWUsCisJCQkgICAgICAgY2ZnLCBkYmcsIGRldGVjdCwgbW1p
-bywgc3ViZGV2X21hc2ssCisJCQkgICAgICAgJnBkZXYtPmRldmljZSk7CisKKwlpZiAocmV0KQor
-CQlyZXR1cm4gcmV0OworCisJLyoKKwkgKiBTZXQgYSBwcmVsaW1pbmFyeSBETUEgbWFzayBiYXNl
-ZCBvbiB0aGUgLmRtYV9iaXRzIG1lbWJlciBvZiB0aGUKKwkgKiBNTVUgc3ViZGV2aWNlLiBUaGlz
-IGFsbG93cyBvdGhlciBzdWJkZXZpY2VzIHRvIGNyZWF0ZSBETUEgbWFwcGluZ3MKKwkgKiBpbiB0
-aGVpciBpbml0KCkgb3Igb25laW5pdCgpIG1ldGhvZHMsIHdoaWNoIG1heSBiZSBjYWxsZWQgYmVm
-b3JlIHRoZQorCSAqIFRUTSBsYXllciBzZXRzIHRoZSBETUEgbWFzayBkZWZpbml0aXZlbHkuCisJ
-ICogVGhpcyBpcyBuZWNlc3NhcnkgZm9yIHBsYXRmb3JtcyB3aGVyZSB0aGUgZGVmYXVsdCBETUEg
-bWFzayBvZiAzMgorCSAqIGRvZXMgbm90IGNvdmVyIGFueSBzeXN0ZW0gbWVtb3J5LCBpLmUuLCB3
-aGVuIGFsbCBSQU0gaXMgPiA0IEdCLgorCSAqLworCWlmIChzdWJkZXZfbWFzayAmIEJJVChOVktN
-X1NVQkRFVl9NTVUpKQorCQlkbWFfc2V0X21hc2tfYW5kX2NvaGVyZW50KCZwY2lfZGV2LT5kZXYs
-CisJCQkJRE1BX0JJVF9NQVNLKHBkZXYtPmRldmljZS5tbXUtPmRtYV9iaXRzKSk7CisKKwlyZXR1
-cm4gMDsKIH0KLS0gCjIuNy40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============0088651928==
+Content-Type: multipart/alternative; boundary="14757931431.Cc6DfD3Bc.18409";
+ charset="UTF-8"
+
+
+--14757931431.Cc6DfD3Bc.18409
+Date: Thu, 6 Oct 2016 22:32:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98129
+
+            Bug ID: 98129
+           Summary: X hung with nouveau 'INVALID_CMD' and
+                    'INVALID_ADDRESS_ALIGNMENT' errors on GeForce 9600 GT
+                    [10de:0622]
+           Product: xorg
+           Version: git
+          Hardware: x86-64 (AMD64)
+                OS: All
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Recently my desktop - running Fedora 25, kernel 4.8.0-0.rc8.git0.1.fc25.x86=
+_64
+, xorg-x11-drv-nouveau-1.0.13-1.fc25.x86_64 - hung in the middle of normal
+operation. X was totally stuck, but I could get in and shut down via ssh. T=
+he
+journal shows these nouveau errors at the time of the hang:
+
+Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: fifo:
+DMA_PUSHER - ch 6 [systemd-logind[1245]] get 00200218e0 put 0020024010 ib_g=
+et
+0000032c ib_put 0000032d state 80004861 (err: INVALID_CMD) push 00504031
+Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: fifo:
+DMA_PUSHER - ch 6 [systemd-logind[1245]] get 0020024010 put 0020024010 ib_g=
+et
+0000032c ib_put 00000348 state 80000000 (err: INVALID_CMD) push 00406040
+Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: gr:
+DATA_ERROR 0000000b [INVALID_ADDRESS_ALIGNMENT]
+Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: gr:
+00100000 [] ch 6 [001fbe5000 systemd-logind[1245]] subc 0 class 5039 mthd 0=
+328
+data 00000000
+
+this is on a GeForce 9600 GT, [10de:0622] , with two displays connected via
+DVI.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14757931431.Cc6DfD3Bc.18409
+Date: Thu, 6 Oct 2016 22:32:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - X hung with nouveau 'INVALID_CMD' and 'INVALID_ADDRESS_AL=
+IGNMENT' errors on GeForce 9600 GT [10de:0622]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98129">98129</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>X hung with nouveau 'INVALID_CMD' and 'INVALID_ADDRESS_ALIGNM=
+ENT' errors on GeForce 9600 GT [10de:0622]
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>adamw&#64;happyassassin.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Recently my desktop - running Fedora 25, kernel 4.8.0-0.rc8.gi=
+t0.1.fc25.x86_64
+, xorg-x11-drv-nouveau-1.0.13-1.fc25.x86_64 - hung in the middle of normal
+operation. X was totally stuck, but I could get in and shut down via ssh. T=
+he
+journal shows these nouveau errors at the time of the hang:
+
+Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: fifo:
+DMA_PUSHER - ch 6 [systemd-logind[1245]] get 00200218e0 put 0020024010 ib_g=
+et
+0000032c ib_put 0000032d state 80004861 (err: INVALID_CMD) push 00504031
+Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: fifo:
+DMA_PUSHER - ch 6 [systemd-logind[1245]] get 0020024010 put 0020024010 ib_g=
+et
+0000032c ib_put 00000348 state 80000000 (err: INVALID_CMD) push 00406040
+Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: gr:
+DATA_ERROR 0000000b [INVALID_ADDRESS_ALIGNMENT]
+Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: gr:
+00100000 [] ch 6 [001fbe5000 systemd-logind[1245]] subc 0 class 5039 mthd 0=
+328
+data 00000000
+
+this is on a GeForce 9600 GT, [10de:0622] , with two displays connected via
+DVI.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14757931431.Cc6DfD3Bc.18409--
+
+--===============0088651928==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0088651928==--
