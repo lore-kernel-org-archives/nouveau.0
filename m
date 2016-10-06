@@ -1,12 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98039] KMail crash on starting (nouveau-related)
-Date: Wed, 05 Oct 2016 02:57:29 +0000
-Message-ID: <bug-98039-8800-hnEjkoKHFu@http.bugs.freedesktop.org/>
-References: <bug-98039-8800@http.bugs.freedesktop.org/>
+From: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH v4 1/3] drm/nouveau: set streaming DMA mask
+	early
+Date: Thu, 6 Oct 2016 13:57:10 +0100
+Message-ID: <CAKv+Gu8w+LN3j3JahvJBgFCTxOb3-HfzXJHigvjTLLUUpaxb+A@mail.gmail.com>
+References: <1474893160-12321-1-git-send-email-ard.biesheuvel@linaro.org>
+ <1474893160-12321-2-git-send-email-ard.biesheuvel@linaro.org>
+ <CAAVeFuL8tsJX2iFMny2ZRmj+WU9rb9K0=rnkJpbMn_-b4Cnscw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1802192934=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAAVeFuL8tsJX2iFMny2ZRmj+WU9rb9K0=rnkJpbMn_-b4Cnscw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,116 +20,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1802192934==
-Content-Type: multipart/alternative; boundary="14756362481.a5aA5f9c.30755";
- charset="UTF-8"
-
-
---14756362481.a5aA5f9c.30755
-Date: Wed, 5 Oct 2016 02:57:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98039
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This is moderately well-known by now. You can try my branch at
-
-https://github.com/imirkin/mesa/commits/locking
-
-which has helped some people. However it's incomplete and I don't plan on
-pushing it in its current state.
-
-You can remove nouveau_dri.so from your installation, or avoid using
-applications that use multi-threaded rendering (this is a *very* recent tre=
-nd,
-up until recently the only applications that used GL were games/CAD tools, =
-and
-only very rarely used multi-threaded rendering). For well-supported open-so=
-urce
-drivers, consider Intel or AMD for your next purchase.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14756362481.a5aA5f9c.30755
-Date: Wed, 5 Oct 2016 02:57:28 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - KMail crash on starting (nouveau-related)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - KMail crash on starting (nouveau-related)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">bug 98039<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>This is moderately well-known by now. You can try my branch at
-
-<a href=3D"https://github.com/imirkin/mesa/commits/locking">https://github.=
-com/imirkin/mesa/commits/locking</a>
-
-which has helped some people. However it's incomplete and I don't plan on
-pushing it in its current state.
-
-You can remove nouveau_dri.so from your installation, or avoid using
-applications that use multi-threaded rendering (this is a *very* recent tre=
-nd,
-up until recently the only applications that used GL were games/CAD tools, =
-and
-only very rarely used multi-threaded rendering). For well-supported open-so=
-urce
-drivers, consider Intel or AMD for your next purchase.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14756362481.a5aA5f9c.30755--
-
---===============1802192934==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1802192934==--
+T24gMyBPY3RvYmVyIDIwMTYgYXQgMDY6MzksIEFsZXhhbmRyZSBDb3VyYm90IDxnbnVyb3VAZ21h
+aWwuY29tPiB3cm90ZToKPiBPbiBNb24sIFNlcCAyNiwgMjAxNiBhdCA5OjMyIFBNLCBBcmQgQmll
+c2hldXZlbAo+IDxhcmQuYmllc2hldXZlbEBsaW5hcm8ub3JnPiB3cm90ZToKPj4gU29tZSBzdWJk
+ZXZpY2VzIChpLmUuLCBmYi9udjUwLmMgYW5kIGZiL2dmMTAwLmMpIG1hcCBhIHNjcmF0Y2ggcGFn
+ZSB1c2luZwo+PiBkbWFfbWFwX3BhZ2UoKSB3YXkgYmVmb3JlIHRoZSBUVE0gbGF5ZXIgaGFzIGhh
+ZCBhIGNoYW5jZSB0byBzZXQgdGhlIERNQQo+PiBtYXNrLiBUaGlzIG1heSBwcmV2ZW50IHRoZSBk
+cml2ZXIgZnJvbSBsb2FkaW5nIGF0IGFsbCBvbiBwbGF0Zm9ybXMgd2hvc2UKPj4gc3lzdGVtIG1l
+bW9yeSBpcyBub3QgY292ZXJlZCBieSB0aGUgZGVmYXVsdCBETUEgbWFzayBvZiAzMi1iaXQgKGku
+ZS4sIHdoZW4KPj4gYWxsIFJBTSBpcyBhYm92ZSA0IEdCKS4KPj4KPj4gU28gc2V0IGEgcHJlbGlt
+aW5hcnkgRE1BIG1hc2sgcmlnaHQgYWZ0ZXIgY29uc3RydWN0aW5nIHRoZSBQQ0kgZGV2aWNlLCBh
+bmQKPj4gYmFzZSBpdCBvbiB0aGUgLmRtYV9iaXRzIG1lbWJlciBvZiB0aGUgTU1VIHN1YmRldmlj
+ZSwgd2hpY2ggaXMgd2hhdCB0aGUgVFRNCj4+IGxheWVyIHdpbGwgYmFzZSB0aGUgRE1BIG1hc2sg
+b24gYXMgd2VsbC4KPj4KPj4gU2lnbmVkLW9mZi1ieTogQXJkIEJpZXNoZXV2ZWwgPGFyZC5iaWVz
+aGV1dmVsQGxpbmFyby5vcmc+Cj4+IC0tLQo+PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9kcm0uYyB8IDExICsrKysrKysrKysrCj4+ICAxIGZpbGUgY2hhbmdlZCwgMTEgaW5zZXJ0
+aW9ucygrKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPj4gaW5kZXgg
+NjUyYWIxMTFkZDc0Li5lNjFlOWEwYWRiNTEgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9kcm0uYwo+PiBAQCAtMzYxLDYgKzM2MSwxNyBAQCBzdGF0aWMgaW50IG5vdXZlYXVf
+ZHJtX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LAo+Pgo+PiAgICAgICAgIHBjaV9zZXRfbWFz
+dGVyKHBkZXYpOwo+Pgo+PiArICAgICAgIC8qCj4+ICsgICAgICAgICogU2V0IGEgcHJlbGltaW5h
+cnkgRE1BIG1hc2sgYmFzZWQgb24gdGhlIC5kbWFfYml0cyBtZW1iZXIgb2YgdGhlCj4+ICsgICAg
+ICAgICogTU1VIHN1YmRldmljZS4gVGhpcyBhbGxvd3Mgb3RoZXIgc3ViZGV2aWNlcyB0byBjcmVh
+dGUgRE1BIG1hcHBpbmdzCj4+ICsgICAgICAgICogaW4gdGhlaXIgaW5pdCgpIGZ1bmN0aW9uLCB3
+aGljaCBhcmUgY2FsbGVkIGJlZm9yZSB0aGUgVFRNIGxheWVyIHNldHMKPj4gKyAgICAgICAgKiB0
+aGUgRE1BIG1hc2sgZGVmaW5pdGl2ZWx5Lgo+PiArICAgICAgICAqIFRoaXMgaXMgbmVjZXNzYXJ5
+IGZvciBwbGF0Zm9ybXMgd2hlcmUgdGhlIGRlZmF1bHQgRE1BIG1hc2sgb2YgMzIKPj4gKyAgICAg
+ICAgKiBkb2VzIG5vdCBjb3ZlciBhbnkgc3lzdGVtIG1lbW9yeSwgaS5lLiwgd2hlbiBhbGwgUkFN
+IGlzID4gNCBHQi4KPj4gKyAgICAgICAgKi8KPj4gKyAgICAgICBkbWFfc2V0X21hc2tfYW5kX2Nv
+aGVyZW50KGRldmljZS0+ZGV2LAo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+RE1BX0JJVF9NQVNLKGRldmljZS0+bW11LT5kbWFfYml0cykpOwo+Cj4gSSB3b3VsZCBqdXN0IG1v
+dmUgdGhpcyB0byBudmttX2RldmljZV9wY2lfbmV3KCkgc28gdGhhdCBpdCBwZXJmZWN0bHkKPiBt
+aXJyb3JzIHRoZSBzYW1lIGNhbGwgZG9uZSBpbiBudmttX2RldmljZV90ZWdyYV9uZXcoKSwgd2hp
+Y2ggd2FzIGRvbmUKPiBmb3IgdGhlIHNhbWUgcHVycG9zZS4gT3RoZXJ3aXNlLCBsb29rcyBnb29k
+IHRvIG1lLgoKT0ssIHdpbGwgZG8gdGhhdC4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
