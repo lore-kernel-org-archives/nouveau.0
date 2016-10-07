@@ -1,14 +1,11 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v5 0/3] drm/nouveau: set DMA mask before
-	mapping scratch page
-Date: Fri, 7 Oct 2016 17:12:28 +0900
-Message-ID: <CAAVeFuKJ-Qmdnz1kmDtqo+P6m+aGW+DzVDkVTn+9ZLP94zO5dw@mail.gmail.com>
-References: <1475768970-32512-1-git-send-email-ard.biesheuvel@linaro.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98149] New: EDID doesn't detect resolution 1440x900
+ correctly NV34 FX5200Go
+Date: Fri, 07 Oct 2016 15:15:30 +0000
+Message-ID: <bug-98149-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2021466830=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1475768970-32512-1-git-send-email-ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,48 +15,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBPY3QgNywgMjAxNiBhdCAxMjo0OSBBTSwgQXJkIEJpZXNoZXV2ZWwKPGFyZC5iaWVz
-aGV1dmVsQGxpbmFyby5vcmc+IHdyb3RlOgo+IFRoaXMgdjQgaXMgbm93IGEgMyBwaWVjZSBzZXJp
-ZXMgKHNpbmNlIHY0KSwgYWZ0ZXIgQWxleGFuZHJlIHBvaW50ZWQgb3V0IHRoYXQKPiBib3RoIEdG
-IDEwMCBhbmQgTlY1MCBhcmUgYWZmZWN0ZWQgYnkgdGhlIHNhbWUgaXNzdWUsIGFuZCB0aGF0IGEg
-cmVsYXRlZCBpc3N1ZQo+IGhhcyBiZWVuIHNvbHZlZCBhbHJlYWR5IGZvciBUZWdyYSBpbiBjb21t
-aXQgOWQwMzk0YzZiZWQ1Cj4gKCJkcm0vbm91dmVhdS9pbnN0bWVtL2drMjBhOiBzZXQgRE1BIG1h
-c2sgZWFybHkiKS4KPgo+IFRoZSBpc3N1ZSB0aGF0IHRoaXMgc2VyaWVzIGFkZHJlc3NlcyBpcyB0
-aGUgZmFjdCB0aGF0IHRoZSBOb3V2ZWF1IGRyaXZlcgo+IGludm9rZXMgdGhlIERNQSBBUEkgYmVm
-b3JlIHNldHRpbmcgdGhlIERNQSBtYXNrLiBJbiBib3RoIGNhc2VzIGFkZHJlc3NlZAo+IGhlcmUs
-IHRoZXNlIGFyZSBzaW1wbHkgc3RhdGljIGJpZGlyZWN0aW9uYWwgbWFwcGluZ3Mgb2Ygc2NyYXRj
-aCBwYWdlcyB3aG9zZQo+IHB1cnBvc2UgaXMgbm90IHdlbGwgdW5kZXJzdG9vZCwgYW5kIGluIG1v
-c3QgY2FzZXMsIGl0IGRvZXMgbm90IG1hdHRlciB0aGF0Cj4gdGhlc2UgcGFnZXMgYXJlIGFsd2F5
-cyBhbGxvY2F0ZWQgYmVsb3cgNCBHQiBldmVuIGlmIHRoZSBoYXJkd2FyZSBjYW4gYWNjZXNzCj4g
-bWVtb3J5IG11Y2ggaGlnaGVyIHVwLgo+Cj4gSG93ZXZlciwgb24gcGxhdGZvcm1zIHdpdGhvdXQg
-YW55IFJBTSBiZWxvdyA0IEdCLCB0aGUgcHJlbGltaW5hcnkgRE1BIG1hc2sKPiBvZiAzMiBpcyBw
-cmV2ZW50aW5nIHRoZSBub3V2ZWF1IGRyaXZlciBmcm9tIGxvYWRpbmcgb24gR0YxMDAgYW5kIE5W
-NTAKPiBoYXJkd2FyZSB3aXRoIGFuIGVycm9yIGxpa2UgdGhlIGZvbGxvd2luZyBvbmU6Cj4KPiAg
-ICBub3V2ZWF1IDAwMDA6MDI6MDAuMDogZW5hYmxpbmcgZGV2aWNlICgwMDAwIC0+IDAwMDMpCj4g
-ICAgbm91dmVhdSAwMDAwOjAyOjAwLjA6IE5WSURJQSBHVDIxOCAoMGE4MjgwYjEpCj4gICAgbm91
-dmVhdSAwMDAwOjAyOjAwLjA6IGJpb3M6IHZlcnNpb24gNzAuMTguYTYuMDAuMDAKPiAgICBub3V2
-ZWF1IDAwMDA6MDI6MDAuMDogZmIgY3RvciBmYWlsZWQsIC0xNAo+ICAgIG5vdXZlYXU6IHByb2Jl
-IG9mIDAwMDA6MDI6MDAuMCBmYWlsZWQgd2l0aCBlcnJvciAtMTQKPgo+IFNvIGZpeCB0aGlzIGJ5
-IHNldHRpbmcgYSBwcmVsaW1pbmFyeSBETUEgbWFzayBiYXNlZCBvbiB0aGUgTU1VIGRldmljZSAn
-ZG1hX2JpdHMnCj4gcHJvcGVydHkgKHBhdGNoICMxKSwgYW5kIHBvc3Rwb25lIG1hcHBpbmcgdGhl
-IHNjcmF0Y2ggcGFnZXMgdG8gdGhlIHJlc3BlY3RpdmUKPiBGQiAuaW5pdCgpIGhvb2tzLiAoIzIg
-YW5kICMzKQo+Cj4gdjU6IG1vdmUgc2V0dGluZyBvZiBwcmVsaW1pbmFyeSBETUEgbWFzayB0byBu
-dmttX2RldmljZV9wY2lfbmV3KCkgKCMxKQo+ICAgICBtb3ZlIGFsbG9jYXRpb24gYW5kIERNQSBt
-YXBwaW5nIG9mIHNjcmF0Y2ggcGFnZXMgdG8gLm9uZWluaXQgaG9va3MgKCMyLCAjMykKPiB2NDog
-c3BsaXQgYW5kIG1vdmUgZG1hX3NldF9tYXNrIHRvIHByb2JlIGhvb2sgKEFsZXhhbmRlcikKPiB2
-MzogcmV3b3JrIGNvZGUgdG8gZ2V0IHJpZCBvZiBETUFfRVJST1JfQ09ERSByZWZlcmVuY2VzLCB3
-aGljaCBpcyBub3QKPiAgICAgZGVmaW5lZCBvbiBhbGwgYXJjaGl0ZWN0dXJlcwo+IHYyOiByZXBs
-YWNlIGluY29ycmVjdCBjb21wYXJpc29uIG9mIGRtYV9hZGRyX3QgdHlwZSB2YXIgYWdhaW5zdCBO
-VUxMCj4KPiBBcmQgQmllc2hldXZlbCAoMyk6Cj4gICBkcm0vbm91dmVhdTogc2V0IHN0cmVhbWlu
-ZyBETUEgbWFzayBlYXJseQo+ICAgZHJtL25vdXZlYXUvZmIvZ2YxMDA6IGRlZmVyIERNQSBtYXBw
-aW5nIG9mIHNjcmF0Y2ggcGFnZSB0byBvbmVpbml0KCkKPiAgICAgaG9vawo+ICAgZHJtL25vdXZl
-YXUvZmIvbnY1MDogZGVmZXIgRE1BIG1hcHBpbmcgb2Ygc2NyYXRjaCBwYWdlIHRvIG9uZWluaXQo
-KQo+ICAgICBob29rCgpUaGUgc2VyaWVzLAoKUmV2aWV3ZWQtYnk6IEFsZXhhbmRyZSBDb3VyYm90
-IDxhY291cmJvdEBudmlkaWEuY29tPgoKVGhhbmtzIQpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+
+--===============2021466830==
+Content-Type: multipart/alternative; boundary="14758533300.0B2D2.12565";
+ charset="UTF-8"
+
+
+--14758533300.0B2D2.12565
+Date: Fri, 7 Oct 2016 15:15:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98149
+
+            Bug ID: 98149
+           Summary: EDID doesn't detect resolution 1440x900 correctly NV34
+                    FX5200Go
+           Product: xorg
+           Version: unspecified
+          Hardware: x86 (IA32)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: dino-fd97jBR+K/4TdH58SC1qeg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 127102
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127102&action=3Dedit
+Dmesg log
+
+I have an older laptop Toshiba P25-S609 which has NV34 based graphics (NVID=
+IA
+FX5200Go). With 4.2 kernel and lower (and possibly 4.3) native resolution
+1440x900 is detected properly. With 4.4 kernel and newer (e.g. Xubuntu 16.0=
+4.1
+and newer) image on screen is displayed really weird. It is split in 4 part=
+s,
+and then it is shown from right to left (inverted). With xrandr --newmode a=
+nd
+cvt 1440 900 I can set the resolution, but then tty is still messed up.
+I have tried to get the bug with options drm.debug=3D0x1e nouveau.debug=3Dd=
+ebug,
+and vbios.rom from /sys/kernel/debug/dri/0/ and it is here:=20
+http://filebin.ca/2xexyy0VGT9L/vbios.rom
+
+Here is the image of what it does look like:=20
+http://imgur.com/a/ZUi0j=20
+
+Dmesg log is attached below.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14758533300.0B2D2.12565
+Date: Fri, 7 Oct 2016 15:15:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - EDID doesn't detect resolution 1440x900 correctly NV34 FX=
+5200Go"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98149">98149</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>EDID doesn't detect resolution 1440x900 correctly NV34 FX5200=
+Go
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>dino&#64;archlinux.info
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127102=
+" name=3D"attach_127102" title=3D"Dmesg log">attachment 127102</a> <a href=
+=3D"attachment.cgi?id=3D127102&amp;action=3Dedit" title=3D"Dmesg log">[deta=
+ils]</a></span>
+Dmesg log
+
+I have an older laptop Toshiba P25-S609 which has NV34 based graphics (NVID=
+IA
+FX5200Go). With 4.2 kernel and lower (and possibly 4.3) native resolution
+1440x900 is detected properly. With 4.4 kernel and newer (e.g. Xubuntu 16.0=
+4.1
+and newer) image on screen is displayed really weird. It is split in 4 part=
+s,
+and then it is shown from right to left (inverted). With xrandr --newmode a=
+nd
+cvt 1440 900 I can set the resolution, but then tty is still messed up.
+I have tried to get the bug with options drm.debug=3D0x1e nouveau.debug=3Dd=
+ebug,
+and vbios.rom from /sys/kernel/debug/dri/0/ and it is here:=20
+<a href=3D"http://filebin.ca/2xexyy0VGT9L/vbios.rom">http://filebin.ca/2xex=
+yy0VGT9L/vbios.rom</a>
+
+Here is the image of what it does look like:=20
+<a href=3D"http://imgur.com/a/ZUi0j">http://imgur.com/a/ZUi0j</a>=20
+
+Dmesg log is attached below.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14758533300.0B2D2.12565--
+
+--===============2021466830==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2021466830==--
