@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98129] New: X hung with nouveau 'INVALID_CMD' and
- 'INVALID_ADDRESS_ALIGNMENT' errors on GeForce 9600 GT [10de:0622]
-Date: Thu, 06 Oct 2016 22:32:23 +0000
-Message-ID: <bug-98129-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98138] New: Random Freeze - nouveau 0000:01:00.0:
+ fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Date: Fri, 07 Oct 2016 05:16:03 +0000
+Message-ID: <bug-98138-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0088651928=="
+Content-Type: multipart/mixed; boundary="===============0130964201=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,68 +19,79 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0088651928==
-Content-Type: multipart/alternative; boundary="14757931431.Cc6DfD3Bc.18409";
+--===============0130964201==
+Content-Type: multipart/alternative; boundary="14758173620.d0B56D4d0.7765";
  charset="UTF-8"
 
 
---14757931431.Cc6DfD3Bc.18409
-Date: Thu, 6 Oct 2016 22:32:23 +0000
+--14758173620.d0B56D4d0.7765
+Date: Fri, 7 Oct 2016 05:16:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98129
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98138
 
-            Bug ID: 98129
-           Summary: X hung with nouveau 'INVALID_CMD' and
-                    'INVALID_ADDRESS_ALIGNMENT' errors on GeForce 9600 GT
-                    [10de:0622]
+            Bug ID: 98138
+           Summary: Random Freeze - nouveau 0000:01:00.0: fifo:
+                    SCHED_ERROR 0a [CTXSW_TIMEOUT]
            Product: xorg
-           Version: git
-          Hardware: x86-64 (AMD64)
+           Version: unspecified
+          Hardware: Other
                 OS: All
             Status: NEW
-          Severity: critical
+          Severity: normal
           Priority: medium
          Component: Driver/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org
+          Reporter: stefan.kelemen-Mmb7MZpHnFY@public.gmane.org
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Recently my desktop - running Fedora 25, kernel 4.8.0-0.rc8.git0.1.fc25.x86=
-_64
-, xorg-x11-drv-nouveau-1.0.13-1.fc25.x86_64 - hung in the middle of normal
-operation. X was totally stuck, but I could get in and shut down via ssh. T=
-he
-journal shows these nouveau errors at the time of the hang:
+Since im Using KDE Plasma, i have the Problem the system is Freezing random=
+ly
+over the when the Desktop is locked
 
-Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: fifo:
-DMA_PUSHER - ch 6 [systemd-logind[1245]] get 00200218e0 put 0020024010 ib_g=
-et
-0000032c ib_put 0000032d state 80004861 (err: INVALID_CMD) push 00504031
-Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: fifo:
-DMA_PUSHER - ch 6 [systemd-logind[1245]] get 0020024010 put 0020024010 ib_g=
-et
-0000032c ib_put 00000348 state 80000000 (err: INVALID_CMD) push 00406040
-Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: gr:
-DATA_ERROR 0000000b [INVALID_ADDRESS_ALIGNMENT]
-Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: gr:
-00100000 [] ch 6 [001fbe5000 systemd-logind[1245]] subc 0 class 5039 mthd 0=
-328
-data 00000000
+kern.log when the problem begins
 
-this is on a GeForce 9600 GT, [10de:0622] , with two displays connected via
-DVI.
+Oct  5 02:28:06 druuhl kernel: [73499.905933] nouveau 0000:01:00.0: fifo:
+SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct  5 02:28:06 druuhl kernel: [73499.905939] nouveau 0000:01:00.0: fifo: sw
+engine fault on channel 5, recovering...
+Oct  5 02:28:08 druuhl kernel: [73501.905656] nouveau 0000:01:00.0: fifo:
+runlist 0 update timeout
+Oct  5 02:28:10 druuhl kernel: [73504.200746] nouveau 0000:01:00.0: fifo:
+SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct  5 02:28:15 druuhl kernel: [73508.495393] nouveau 0000:01:00.0: fifo:
+SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct  5 02:28:19 druuhl kernel: [73512.790100] nouveau 0000:01:00.0: fifo:
+SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct  5 02:28:23 druuhl kernel: [73517.084810] nouveau 0000:01:00.0: fifo:
+SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct  5 02:28:27 druuhl kernel: [73521.379625] nouveau 0000:01:00.0: fifo:
+SCHED_ERROR 0a [CTXSW_TIMEOUT]
+
+when the Desktop is unlocked over night there is no freeze. Some Discussion
+about this describe problems with Fullscreen Application like Libreoffice, =
+this
+would match with my research.
+
+Im Using Neptune Linux - Debian with KDE Plasma and i have the Problem with
+Kernel 4.4.13 to 4.4.20.
+
+Linux druuhl 4.4.20 #8 SMP PREEMPT Thu Sep 8 10:25:38 CEST 2016 x86_64
+GNU/Linux
+kdeplasma 5.6 to 5.8
+xserver-xorg-video-nouveau 1.0.12
+xorg 7.7
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14757931431.Cc6DfD3Bc.18409
-Date: Thu, 6 Oct 2016 22:32:23 +0000
+--14758173620.d0B56D4d0.7765
+Date: Fri, 7 Oct 2016 05:16:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -96,16 +107,16 @@ Auto-Submitted: auto-generated
           <th>Bug ID</th>
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - X hung with nouveau 'INVALID_CMD' and 'INVALID_ADDRESS_AL=
-IGNMENT' errors on GeForce 9600 GT [10de:0622]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98129">98129</a>
+   title=3D"NEW - Random Freeze - nouveau 0000:01:00.0: fifo: SCHED_ERROR 0=
+a [CTXSW_TIMEOUT]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98138">98138</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>X hung with nouveau 'INVALID_CMD' and 'INVALID_ADDRESS_ALIGNM=
-ENT' errors on GeForce 9600 GT [10de:0622]
+          <td>Random Freeze - nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [C=
+TXSW_TIMEOUT]
           </td>
         </tr>
 
@@ -117,13 +128,13 @@ ENT' errors on GeForce 9600 GT [10de:0622]
 
         <tr>
           <th>Version</th>
-          <td>git
+          <td>unspecified
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>x86-64 (AMD64)
+          <td>Other
           </td>
         </tr>
 
@@ -141,7 +152,7 @@ ENT' errors on GeForce 9600 GT [10de:0622]
 
         <tr>
           <th>Severity</th>
-          <td>critical
+          <td>normal
           </td>
         </tr>
 
@@ -165,7 +176,7 @@ ENT' errors on GeForce 9600 GT [10de:0622]
 
         <tr>
           <th>Reporter</th>
-          <td>adamw&#64;happyassassin.net
+          <td>stefan.kelemen&#64;gmx.de
           </td>
         </tr>
 
@@ -176,30 +187,42 @@ ENT' errors on GeForce 9600 GT [10de:0622]
         </tr></table>
       <p>
         <div>
-        <pre>Recently my desktop - running Fedora 25, kernel 4.8.0-0.rc8.gi=
-t0.1.fc25.x86_64
-, xorg-x11-drv-nouveau-1.0.13-1.fc25.x86_64 - hung in the middle of normal
-operation. X was totally stuck, but I could get in and shut down via ssh. T=
-he
-journal shows these nouveau errors at the time of the hang:
+        <pre>Since im Using KDE Plasma, i have the Problem the system is Fr=
+eezing randomly
+over the when the Desktop is locked
 
-Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: fifo:
-DMA_PUSHER - ch 6 [systemd-logind[1245]] get 00200218e0 put 0020024010 ib_g=
-et
-0000032c ib_put 0000032d state 80004861 (err: INVALID_CMD) push 00504031
-Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: fifo:
-DMA_PUSHER - ch 6 [systemd-logind[1245]] get 0020024010 put 0020024010 ib_g=
-et
-0000032c ib_put 00000348 state 80000000 (err: INVALID_CMD) push 00406040
-Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: gr:
-DATA_ERROR 0000000b [INVALID_ADDRESS_ALIGNMENT]
-Oct 03 16:55:33 adam.happyassassin.net kernel: nouveau 0000:01:00.0: gr:
-00100000 [] ch 6 [001fbe5000 systemd-logind[1245]] subc 0 class 5039 mthd 0=
-328
-data 00000000
+kern.log when the problem begins
 
-this is on a GeForce 9600 GT, [10de:0622] , with two displays connected via
-DVI.</pre>
+Oct  5 02:28:06 druuhl kernel: [73499.905933] nouveau 0000:01:00.0: fifo:
+SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct  5 02:28:06 druuhl kernel: [73499.905939] nouveau 0000:01:00.0: fifo: sw
+engine fault on channel 5, recovering...
+Oct  5 02:28:08 druuhl kernel: [73501.905656] nouveau 0000:01:00.0: fifo:
+runlist 0 update timeout
+Oct  5 02:28:10 druuhl kernel: [73504.200746] nouveau 0000:01:00.0: fifo:
+SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct  5 02:28:15 druuhl kernel: [73508.495393] nouveau 0000:01:00.0: fifo:
+SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct  5 02:28:19 druuhl kernel: [73512.790100] nouveau 0000:01:00.0: fifo:
+SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct  5 02:28:23 druuhl kernel: [73517.084810] nouveau 0000:01:00.0: fifo:
+SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct  5 02:28:27 druuhl kernel: [73521.379625] nouveau 0000:01:00.0: fifo:
+SCHED_ERROR 0a [CTXSW_TIMEOUT]
+
+when the Desktop is unlocked over night there is no freeze. Some Discussion
+about this describe problems with Fullscreen Application like Libreoffice, =
+this
+would match with my research.
+
+Im Using Neptune Linux - Debian with KDE Plasma and i have the Problem with
+Kernel 4.4.13 to 4.4.20.
+
+Linux druuhl 4.4.20 #8 SMP PREEMPT Thu Sep 8 10:25:38 CEST 2016 x86_64
+GNU/Linux
+kdeplasma 5.6 to 5.8
+xserver-xorg-video-nouveau 1.0.12
+xorg 7.7</pre>
         </div>
       </p>
 
@@ -213,9 +236,9 @@ DVI.</pre>
     </body>
 </html>=
 
---14757931431.Cc6DfD3Bc.18409--
+--14758173620.d0B56D4d0.7765--
 
---===============0088651928==
+--===============0130964201==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -225,4 +248,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0088651928==--
+--===============0130964201==--
