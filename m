@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98149] EDID doesn't detect resolution 1440x900
  correctly NV34 FX5200Go
-Date: Sat, 08 Oct 2016 05:22:56 +0000
-Message-ID: <bug-98149-8800-NvKQTfVYSG@http.bugs.freedesktop.org/>
+Date: Sat, 08 Oct 2016 06:10:44 +0000
+Message-ID: <bug-98149-8800-diC6wmeC3e@http.bugs.freedesktop.org/>
 References: <bug-98149-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2064710891=="
+Content-Type: multipart/mixed; boundary="===============1755491520=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98149-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2064710891==
-Content-Type: multipart/alternative; boundary="14759041760.2A556aEf.28177";
+--===============1755491520==
+Content-Type: multipart/alternative; boundary="14759070442.FA58bCBFc.30517";
  charset="UTF-8"
 
 
---14759041760.2A556aEf.28177
-Date: Sat, 8 Oct 2016 05:22:56 +0000
+--14759070442.FA58bCBFc.30517
+Date: Sat, 8 Oct 2016 06:10:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98149
 
---- Comment #5 from Dino <dino-fd97jBR+K/4TdH58SC1qeg@public.gmane.org> ---
-Created attachment 127133
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127133&action=3Dedit
-vbios working rom
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Right, so as I expected, the working version has
+
+[    2.538445] nouveau  [     DRM] BIOS FP mode: 1440x900 (96210kHz pixel
+clock)
+
+So we messed something up, since we no longer follow down that path in
+nouveau_bios.c. Perhaps ->is_mobile is no longer getting set to true? Or so=
+me
+other reason...
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14759041760.2A556aEf.28177
-Date: Sat, 8 Oct 2016 05:22:56 +0000
+--14759070442.FA58bCBFc.30517
+Date: Sat, 8 Oct 2016 06:10:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +70,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - EDID doesn't detect resolution 1440x900 correctly NV34 FX=
 5200Go"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98149#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98149#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - EDID doesn't detect resolution 1440x900 correctly NV34 FX=
@@ -73,14 +79,18 @@ Auto-Submitted: auto-generated
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98149">bug 98149<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dino&#64;archlinux.info" title=3D"Dino &lt;dino&#64;archlinux.info&gt;"> <s=
-pan class=3D"fn">Dino</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127133=
-" name=3D"attach_127133" title=3D"vbios working rom">attachment 127133</a> =
-<a href=3D"attachment.cgi?id=3D127133&amp;action=3Dedit" title=3D"vbios wor=
-king rom">[details]</a></span>
-vbios working rom</pre>
+        <pre>Right, so as I expected, the working version has
+
+[    2.538445] nouveau  [     DRM] BIOS FP mode: 1440x900 (96210kHz pixel
+clock)
+
+So we messed something up, since we no longer follow down that path in
+nouveau_bios.c. Perhaps -&gt;is_mobile is no longer getting set to true? Or=
+ some
+other reason...</pre>
         </div>
       </p>
 
@@ -94,9 +104,9 @@ vbios working rom</pre>
     </body>
 </html>=
 
---14759041760.2A556aEf.28177--
+--14759070442.FA58bCBFc.30517--
 
---===============2064710891==
+--===============1755491520==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2064710891==--
+--===============1755491520==--
