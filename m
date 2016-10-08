@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98149] EDID doesn't detect resolution 1440x900
  correctly NV34 FX5200Go
-Date: Sat, 08 Oct 2016 05:22:24 +0000
-Message-ID: <bug-98149-8800-R7gqqwZKqh@http.bugs.freedesktop.org/>
+Date: Sat, 08 Oct 2016 05:22:56 +0000
+Message-ID: <bug-98149-8800-NvKQTfVYSG@http.bugs.freedesktop.org/>
 References: <bug-98149-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0526188872=="
+Content-Type: multipart/mixed; boundary="===============2064710891=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98149-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0526188872==
-Content-Type: multipart/alternative; boundary="14759041440.cC7D4Ef.28092";
+--===============2064710891==
+Content-Type: multipart/alternative; boundary="14759041760.2A556aEf.28177";
  charset="UTF-8"
 
 
---14759041440.cC7D4Ef.28092
-Date: Sat, 8 Oct 2016 05:22:23 +0000
+--14759041760.2A556aEf.28177
+Date: Sat, 8 Oct 2016 05:22:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98149
 
---- Comment #4 from Dino <dino-fd97jBR+K/4TdH58SC1qeg@public.gmane.org> ---
-Created attachment 127132
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127132&action=3Dedit
-dmesg working log
+--- Comment #5 from Dino <dino-fd97jBR+K/4TdH58SC1qeg@public.gmane.org> ---
+Created attachment 127133
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127133&action=3Dedit
+vbios working rom
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14759041440.cC7D4Ef.28092
-Date: Sat, 8 Oct 2016 05:22:24 +0000
+--14759041760.2A556aEf.28177
+Date: Sat, 8 Oct 2016 05:22:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - EDID doesn't detect resolution 1440x900 correctly NV34 FX=
 5200Go"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98149#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98149#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - EDID doesn't detect resolution 1440x900 correctly NV34 FX=
@@ -76,11 +76,11 @@ Auto-Submitted: auto-generated
 dino&#64;archlinux.info" title=3D"Dino &lt;dino&#64;archlinux.info&gt;"> <s=
 pan class=3D"fn">Dino</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127132=
-" name=3D"attach_127132" title=3D"dmesg working log">attachment 127132</a> =
-<a href=3D"attachment.cgi?id=3D127132&amp;action=3Dedit" title=3D"dmesg wor=
-king log">[details]</a></span>
-dmesg working log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127133=
+" name=3D"attach_127133" title=3D"vbios working rom">attachment 127133</a> =
+<a href=3D"attachment.cgi?id=3D127133&amp;action=3Dedit" title=3D"vbios wor=
+king rom">[details]</a></span>
+vbios working rom</pre>
         </div>
       </p>
 
@@ -94,9 +94,9 @@ dmesg working log</pre>
     </body>
 </html>=
 
---14759041440.cC7D4Ef.28092--
+--14759041760.2A556aEf.28177--
 
---===============0526188872==
+--===============2064710891==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0526188872==--
+--===============2064710891==--
