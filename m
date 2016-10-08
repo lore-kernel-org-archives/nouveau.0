@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97462] Graphics deadlock "ILLEGAL_MTHD" in nouveau
- with mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5
-Date: Sat, 08 Oct 2016 14:27:14 +0000
-Message-ID: <bug-97462-8800-2Ktjsvm6Fn@http.bugs.freedesktop.org/>
-References: <bug-97462-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97438] Running a lot of Firefox instances causes
+ kernel page fault.
+Date: Sat, 08 Oct 2016 21:12:49 +0000
+Message-ID: <bug-97438-8800-2otnjv37oj@http.bugs.freedesktop.org/>
+References: <bug-97438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1202486757=="
+Content-Type: multipart/mixed; boundary="===============1686284348=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1202486757==
-Content-Type: multipart/alternative; boundary="14759368332.914f.30574";
+--===============1686284348==
+Content-Type: multipart/alternative; boundary="14759611690.04Ec.21893";
  charset="UTF-8"
 
 
---14759368332.914f.30574
-Date: Sat, 8 Oct 2016 14:27:13 +0000
+--14759611690.04Ec.21893
+Date: Sat, 8 Oct 2016 21:12:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97462
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97438
 
---- Comment #11 from Paviluf <jeremy9856-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Any news on this problem ?
+--- Comment #6 from Reuben <reuben.m-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This seems to be limited to NV50. I have the exact same setup on other syst=
+ems
+with newer GPUs that do not exhibit this problem.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14759368332.914f.30574
-Date: Sat, 8 Oct 2016 14:27:13 +0000
+--14759611690.04Ec.21893
+Date: Sat, 8 Oct 2016 21:12:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,22 +61,24 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
-h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462#c11">Commen=
-t # 11</a>
+          bz_status_REOPENED "
+   title=3D"REOPENED - Running a lot of Firefox instances causes kernel pag=
+e fault."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97438#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
-h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462">bug 97462<=
+          bz_status_REOPENED "
+   title=3D"REOPENED - Running a lot of Firefox instances causes kernel pag=
+e fault."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97438">bug 97438<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jeremy9856&#64;gmail.com" title=3D"Paviluf &lt;jeremy9856&#64;gmail.com&gt;=
-"> <span class=3D"fn">Paviluf</span></a>
+reuben.m&#64;gmail.com" title=3D"Reuben &lt;reuben.m&#64;gmail.com&gt;"> <s=
+pan class=3D"fn">Reuben</span></a>
 </span></b>
-        <pre>Any news on this problem ?</pre>
+        <pre>This seems to be limited to NV50. I have the exact same setup =
+on other systems
+with newer GPUs that do not exhibit this problem.</pre>
         </div>
       </p>
 
@@ -88,9 +92,9 @@ jeremy9856&#64;gmail.com" title=3D"Paviluf &lt;jeremy9856&#64;gmail.com&gt;=
     </body>
 </html>=
 
---14759368332.914f.30574--
+--14759611690.04Ec.21893--
 
---===============1202486757==
+--===============1686284348==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1202486757==--
+--===============1686284348==--
