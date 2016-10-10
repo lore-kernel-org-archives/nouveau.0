@@ -1,15 +1,13 @@
-From: Martin Vorbach <martin-4GzlBmZn+uDa5EbDDlwbIw@public.gmane.org>
-Subject: Re: NVidia Hardware Donation possible
-Date: Mon, 10 Oct 2016 13:44:36 +0200
-Message-ID: <e342c84e-dff3-92f6-49bb-153ef0f896b0@vorbach.name>
-References: <eb6b339b-a46c-727f-4a0a-fdeca8997345@vorbach.name>
- <d72f5cbf-7eeb-021d-e496-8ed38a8e98c0@gmail.com>
- <19df6850-b327-f40d-449f-76695e4140f1@vorbach.name>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 97438] Running a lot of Firefox instances causes
+ kernel page fault.
+Date: Mon, 10 Oct 2016 17:48:38 +0000
+Message-ID: <bug-97438-8800-Dmu6VOnapF@http.bugs.freedesktop.org/>
+References: <bug-97438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1658229711=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <19df6850-b327-f40d-449f-76695e4140f1-4GzlBmZn+uDa5EbDDlwbIw@public.gmane.org>
+In-Reply-To: <bug-97438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,28 +17,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpJIHRhbGtlZCB0byBvdXIgSVQgZ3V5IG92ZXIgbHVuY2guIEhlIHRoaW5rcyB0aGVyZSBp
-cyBhbiBvbGQgR1Q2MzAgd2l0aCAKMzg0IHNoYWRlcnMgc29tZXdoZXJlLiBUaGUgMzg0IHNoYWRl
-ciBHUFUgaXMgdGhlIEdLMjA4LgoKR2l2ZW4gd2UgY2FuIGZpbmQgaXQgYW5kIGl0IGlzIG9ic29s
-ZXRlLCBJIHByb2JhYmx5IGNhbiBkb25hdGUgdGhpcyBvbmUgdG9vLgoKTGV0IG1lIGtub3cgaWYg
-eW91IGFyZSBsb29raW5nIGZvciB0aGlzIG9uZS4KClJlZ2FyZHMsCgpNYXJ0aW4KCgpPbiAyMDE2
-LTEwLTEwIDExOjA5LCBNYXJ0aW4gVm9yYmFjaCB3cm90ZToKPiBIaSwKPgo+IHRoZSBHVDYzMCBp
-cyB0aGlzIG9uZToKPgo+IGh0dHA6Ly93d3c4LmhwLmNvbS9lbWVhX2FmcmljYS9lbi9wcm9kdWN0
-cy9vYXMvcHJvZHVjdC1kZXRhaWwuaHRtbD9vaWQ9NTI3NTI5MSAKPgo+Cj4gUmVnYXJkcywKPgo+
-IE1hcnRpbgo+Cj4KPiBPbiAyMDE2LTEwLTA3IDE4OjE2LCBTYW11ZWwgUGl0b2lzZXQgd3JvdGU6
-Cj4+Cj4+Cj4+IE9uIDEwLzA3LzIwMTYgMTI6MjQgUE0sIE1hcnRpbiBWb3JiYWNoIHdyb3RlOgo+
-Pj4gSGksCj4+Cj4+IEhpLAo+Pgo+PiBJJ20gaW50ZXJlc3RlZC4gOikKPj4KPj4gSXMgdGhlIEdl
-Rm9yY2UgR1QgNjMwIGEgR0syMDg/Cj4+Cj4+IFRoYW5rcyEKPj4KPj4+Cj4+PiBJIHNhdyB0aGUg
-ZG9uYXRpb24gcmVxdWVzdHMgYW5kIGNvdWxkIG9mZmVyIHRoZSBmb2xsb3dpbmcgY2FyZHM6Cj4+
-Pgo+Pj4gICAqIEdlZm9yY2UgTjQ2MEdUWAo+Pj4gICAqIEdlZm9yY2UgR1QgNjMwCj4+PiAgICog
-UXVhZHJvIEs0MjAwCj4+Pgo+Pj4gRmVlbCBmcmVlIHRvIGNvbnRhY3QgbWUgaW4gY2FzZSBvZiBp
-bnRlcmVzdC4KPj4+Cj4+PiBCZXN0IHJlZ2FyZHMsCj4+Pgo+Pj4gTWFydGluCj4+Pgo+Pj4KPj4+
-Cj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4g
-Tm91dmVhdSBtYWlsaW5nIGxpc3QKPj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+
-PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-Pj4+Cj4+Cj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1658229711==
+Content-Type: multipart/alternative; boundary="14761217182.85dcAd.6799";
+ charset="UTF-8"
+
+
+--14761217182.85dcAd.6799
+Date: Mon, 10 Oct 2016 17:48:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97438
+
+--- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Give this[1] patch a try, it might be relevant.
+
+[1]
+https://github.com/skeggsb/nouveau/commit/8135089922f84c4ef7b47aeaa707490a2=
+ee29a1d
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14761217182.85dcAd.6799
+Date: Mon, 10 Oct 2016 17:48:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Running a lot of Firefox instances causes kernel pag=
+e fault."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97438#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Running a lot of Firefox instances causes kernel pag=
+e fault."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97438">bug 97438<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ben Skeggs</span></a>
+</span></b>
+        <pre>Give this[1] patch a try, it might be relevant.
+
+[1]
+<a href=3D"https://github.com/skeggsb/nouveau/commit/8135089922f84c4ef7b47a=
+eaa707490a2ee29a1d">https://github.com/skeggsb/nouveau/commit/8135089922f84=
+c4ef7b47aeaa707490a2ee29a1d</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14761217182.85dcAd.6799--
+
+--===============1658229711==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1658229711==--
