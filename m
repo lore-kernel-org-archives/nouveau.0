@@ -1,15 +1,17 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 0/8] Secure Boot refactoring
-Date: Tue, 11 Oct 2016 09:16:56 +0200
-Message-ID: <CAEXux-beh2eZOYEGx=HsF8mxq2=1x=Q0uzwRx8QZTZycpvSjOQ@mail.gmail.com>
-References: <20161011064553.10616-1-acourbot@nvidia.com>
- <CAEXux-bmd-wKceqgZTP0P=Vj2uva1MqJ=xhPEPrh_BswAOtH5g@mail.gmail.com>
- <0f006b0c-e46d-cac4-d3e2-124bd36e9b15@nvidia.com>
+From: Martin Vorbach <martin-4GzlBmZn+uDa5EbDDlwbIw@public.gmane.org>
+Subject: Re: NVidia Hardware Donation possible
+Date: Tue, 11 Oct 2016 14:18:40 +0200
+Message-ID: <64717ec0-cd37-872f-7877-3d63a049cfa8@vorbach.name>
+References: <eb6b339b-a46c-727f-4a0a-fdeca8997345@vorbach.name>
+ <d72f5cbf-7eeb-021d-e496-8ed38a8e98c0@gmail.com>
+ <19df6850-b327-f40d-449f-76695e4140f1@vorbach.name>
+ <e342c84e-dff3-92f6-49bb-153ef0f896b0@vorbach.name>
+ <7b91bd02-55aa-1d15-6dd7-084f925b9226@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <0f006b0c-e46d-cac4-d3e2-124bd36e9b15-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <7b91bd02-55aa-1d15-6dd7-084f925b9226-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,15 +21,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-eWVhaCwgaXQgaXMgYWxyZWFkeSB0aGVyZSwgdGhhbmtzCgoyMDE2LTEwLTExIDk6MTIgR01UKzAy
-OjAwIEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPjoKPiBPbiAxMC8xMS8y
-MDE2IDAzOjU3IFBNLCBLYXJvbCBIZXJic3Qgd3JvdGU6Cj4+IElzIGl0IGp1c3QgbWUgb3IgaXMg
-dGhlIDV0aCBwYXRjaCBsb3N0Pwo+Cj4gTW9kZXJhdGVkLiBJdCB3YXMgYSBsaXR0bGUgdG9vIGJp
-ZyBmb3IgdGhlIGxpc3QuIEhvcGVmdWxseSBpdCB3aWxsCj4gZm9sbG93IHNvb24uCj4KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+U2FtdWVsLAoKdGhlIEhQIEdUNjMwIGlzIHVuZm9ydHVuYXRlbHkgdGhlIEdLMTA3LiBHaXZlbiB3
+ZSBmaW5kIHRoZSBvdGhlciBHVDYzMCAKbW9kZWwgSSB3aWxsIGNoZWNrIGl0IGFuZCBjb21lIGJh
+Y2sgdG8geW91LgoKQXJlIHlvdSBpbnRlcmVzdGVkIGluIGFueSBvZiB0aGUgb3RoZXIgdHdvIGNh
+cmRzPwoKUmVnYXJkcywKCk1hcnRpbgoKCk9uIDIwMTYtMTAtMTAgMTM6NDUsIFNhbXVlbCBQaXRv
+aXNldCB3cm90ZToKPgo+Cj4gT24gMTAvMTAvMjAxNiAwMTo0NCBQTSwgTWFydGluIFZvcmJhY2gg
+d3JvdGU6Cj4+IEhpLAo+Pgo+PiBJIHRhbGtlZCB0byBvdXIgSVQgZ3V5IG92ZXIgbHVuY2guIEhl
+IHRoaW5rcyB0aGVyZSBpcyBhbiBvbGQgR1Q2MzAgd2l0aAo+PiAzODQgc2hhZGVycyBzb21ld2hl
+cmUuIFRoZSAzODQgc2hhZGVyIEdQVSBpcyB0aGUgR0syMDguCj4KPiBTdXJlLCB0aGUgR0syMDgg
+d291bGQgYmUgbmljZSBmb3IgbWUuIDotKQo+Cj4KPj4KPj4gR2l2ZW4gd2UgY2FuIGZpbmQgaXQg
+YW5kIGl0IGlzIG9ic29sZXRlLCBJIHByb2JhYmx5IGNhbiBkb25hdGUgdGhpcyBvbmUKPj4gdG9v
+Lgo+Pgo+PiBMZXQgbWUga25vdyBpZiB5b3UgYXJlIGxvb2tpbmcgZm9yIHRoaXMgb25lLgo+Pgo+
+PiBSZWdhcmRzLAo+Pgo+PiBNYXJ0aW4KPj4KPj4KPj4gT24gMjAxNi0xMC0xMCAxMTowOSwgTWFy
+dGluIFZvcmJhY2ggd3JvdGU6Cj4+PiBIaSwKPj4+Cj4+PiB0aGUgR1Q2MzAgaXMgdGhpcyBvbmU6
+Cj4+Pgo+Pj4gaHR0cDovL3d3dzguaHAuY29tL2VtZWFfYWZyaWNhL2VuL3Byb2R1Y3RzL29hcy9w
+cm9kdWN0LWRldGFpbC5odG1sP29pZD01Mjc1MjkxIAo+Pj4KPj4+Cj4+Pgo+Pj4gUmVnYXJkcywK
+Pj4+Cj4+PiBNYXJ0aW4KPj4+Cj4+Pgo+Pj4gT24gMjAxNi0xMC0wNyAxODoxNiwgU2FtdWVsIFBp
+dG9pc2V0IHdyb3RlOgo+Pj4+Cj4+Pj4KPj4+PiBPbiAxMC8wNy8yMDE2IDEyOjI0IFBNLCBNYXJ0
+aW4gVm9yYmFjaCB3cm90ZToKPj4+Pj4gSGksCj4+Pj4KPj4+PiBIaSwKPj4+Pgo+Pj4+IEknbSBp
+bnRlcmVzdGVkLiA6KQo+Pj4+Cj4+Pj4gSXMgdGhlIEdlRm9yY2UgR1QgNjMwIGEgR0syMDg/Cj4+
+Pj4KPj4+PiBUaGFua3MhCj4+Pj4KPj4+Pj4KPj4+Pj4gSSBzYXcgdGhlIGRvbmF0aW9uIHJlcXVl
+c3RzIGFuZCBjb3VsZCBvZmZlciB0aGUgZm9sbG93aW5nIGNhcmRzOgo+Pj4+Pgo+Pj4+PiAgICog
+R2Vmb3JjZSBONDYwR1RYCj4+Pj4+ICAgKiBHZWZvcmNlIEdUIDYzMAo+Pj4+PiAgICogUXVhZHJv
+IEs0MjAwCj4+Pj4+Cj4+Pj4+IEZlZWwgZnJlZSB0byBjb250YWN0IG1lIGluIGNhc2Ugb2YgaW50
+ZXJlc3QuCj4+Pj4+Cj4+Pj4+IEJlc3QgcmVnYXJkcywKPj4+Pj4KPj4+Pj4gTWFydGluCj4+Pj4+
+Cj4+Pj4+Cj4+Pj4+Cj4+Pj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCj4+Pj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+Pj4+IE5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCj4+Pj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo+Pj4+Pgo+Pj4+Cj4+Pgo+Pgo+CgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
+ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
