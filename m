@@ -1,7 +1,7 @@
-From: Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: NVidia Hardware Donation possible
-Date: Wed, 12 Oct 2016 18:54:18 +0300
-Message-ID: <30e2c553-0fd4-8a23-d100-89d1d1774cf8@varciai.lt>
+Date: Wed, 12 Oct 2016 17:56:18 +0200
+Message-ID: <6ae7d095-bc1c-0ada-7fce-c6c849ffeb01@gmail.com>
 References: <eb6b339b-a46c-727f-4a0a-fdeca8997345@vorbach.name>
  <d72f5cbf-7eeb-021d-e496-8ed38a8e98c0@gmail.com>
  <19df6850-b327-f40d-449f-76695e4140f1@vorbach.name>
@@ -9,10 +9,12 @@ References: <eb6b339b-a46c-727f-4a0a-fdeca8997345@vorbach.name>
  <7b91bd02-55aa-1d15-6dd7-084f925b9226@gmail.com>
  <64717ec0-cd37-872f-7877-3d63a049cfa8@vorbach.name>
  <529e3586-3bf5-6c22-abfe-090b308738bd@gmail.com>
+ <30e2c553-0fd4-8a23-d100-89d1d1774cf8@varciai.lt>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1317066342=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <529e3586-3bf5-6c22-abfe-090b308738bd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <30e2c553-0fd4-8a23-d100-89d1d1774cf8-1NU85dn7e2ownf/OCUKchA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,194 +24,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1317066342==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="flCoVKEP4fcoI65RHR6sobmf0qvtb3Wo6"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---flCoVKEP4fcoI65RHR6sobmf0qvtb3Wo6
-Content-Type: multipart/mixed; boundary="7xtwEHQ4xhRO0sG6WUNoOtkBCQUp3ICiW";
- protected-headers="v1"
-From: Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Message-ID: <30e2c553-0fd4-8a23-d100-89d1d1774cf8-1NU85dn7e2ownf/OCUKchA@public.gmane.org>
-Subject: Re: [Nouveau] NVidia Hardware Donation possible
-References: <eb6b339b-a46c-727f-4a0a-fdeca8997345-4GzlBmZn+uDa5EbDDlwbIw@public.gmane.org>
- <d72f5cbf-7eeb-021d-e496-8ed38a8e98c0-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
- <19df6850-b327-f40d-449f-76695e4140f1-4GzlBmZn+uDa5EbDDlwbIw@public.gmane.org>
- <e342c84e-dff3-92f6-49bb-153ef0f896b0-4GzlBmZn+uDa5EbDDlwbIw@public.gmane.org>
- <7b91bd02-55aa-1d15-6dd7-084f925b9226-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
- <64717ec0-cd37-872f-7877-3d63a049cfa8-4GzlBmZn+uDa5EbDDlwbIw@public.gmane.org>
- <529e3586-3bf5-6c22-abfe-090b308738bd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-In-Reply-To: <529e3586-3bf5-6c22-abfe-090b308738bd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-
---7xtwEHQ4xhRO0sG6WUNoOtkBCQUp3ICiW
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-On 2016.10.11 17:46, Samuel Pitoiset wrote:
->=20
->=20
-> On 10/11/2016 02:18 PM, Martin Vorbach wrote:
->> Samuel,
->>
->> the HP GT630 is unfortunately the GK107. Given we find the other GT630=
-
->> model I will check it and come back to you.
->>
->> Are you interested in any of the other two cards?
->=20
-> I'm (just) interested by Kepler cards actually. :-)
->=20
-> Because I already have a bunch of Tesla, Fermi and one Maxwell.
->
-
-Hello,
-Isn't a GK107 a Kepler? AFAIK the 'K' in "GK" stands for "Kepler"
-
-Regards,
-Gediminas Jakutis
-=20
->>
->> Regards,
->>
->> Martin
->>
->>
->> On 2016-10-10 13:45, Samuel Pitoiset wrote:
->>>
->>>
->>> On 10/10/2016 01:44 PM, Martin Vorbach wrote:
->>>> Hi,
->>>>
->>>> I talked to our IT guy over lunch. He thinks there is an old GT630 w=
-ith
->>>> 384 shaders somewhere. The 384 shader GPU is the GK208.
->>>
->>> Sure, the GK208 would be nice for me. :-)
->>>
->>>
->>>>
->>>> Given we can find it and it is obsolete, I probably can donate this =
-one
->>>> too.
->>>>
->>>> Let me know if you are looking for this one.
->>>>
->>>> Regards,
->>>>
->>>> Martin
->>>>
->>>>
->>>> On 2016-10-10 11:09, Martin Vorbach wrote:
->>>>> Hi,
->>>>>
->>>>> the GT630 is this one:
->>>>>
->>>>> http://www8.hp.com/emea_africa/en/products/oas/product-detail.html?=
-oid=3D5275291
->>>>>
->>>>>
->>>>>
->>>>> Regards,
->>>>>
->>>>> Martin
->>>>>
->>>>>
->>>>> On 2016-10-07 18:16, Samuel Pitoiset wrote:
->>>>>>
->>>>>>
->>>>>> On 10/07/2016 12:24 PM, Martin Vorbach wrote:
->>>>>>> Hi,
->>>>>>
->>>>>> Hi,
->>>>>>
->>>>>> I'm interested. :)
->>>>>>
->>>>>> Is the GeForce GT 630 a GK208?
->>>>>>
->>>>>> Thanks!
->>>>>>
->>>>>>>
->>>>>>> I saw the donation requests and could offer the following cards:
->>>>>>>
->>>>>>>   * Geforce N460GTX
->>>>>>>   * Geforce GT 630
->>>>>>>   * Quadro K4200
->>>>>>>
->>>>>>> Feel free to contact me in case of interest.
->>>>>>>
->>>>>>> Best regards,
->>>>>>>
->>>>>>> Martin
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>> _______________________________________________
->>>>>>> Nouveau mailing list
->>>>>>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->>>>>>> https://lists.freedesktop.org/mailman/listinfo/nouveau
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
->>
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> https://lists.freedesktop.org/mailman/listinfo/nouveau
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
-
-
---=20
-Gediminas Jakutis
-LDK Var=C4=8Diai www.varciai.lt
-
-
---7xtwEHQ4xhRO0sG6WUNoOtkBCQUp3ICiW--
-
---flCoVKEP4fcoI65RHR6sobmf0qvtb3Wo6
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBCAAGBQJX/ly2AAoJELhjTCLWLhIFnqEP/3SHKMkaFuDUUCtjkK/xMlCj
-b/4k/ME0kEydA+PgojyZHzlweEexfnHGT84IyNmyngnZtvnsozoGj/63omNLbnHv
-OsBmjlOXs5CarNoBtxOWBaKFnb2+lncCmPULkidEb3oPT62tsYKm/GM9QFAn4v1Q
-cSzj0tusxZ/hyGXEyHtdNWfipnrjQ2cdYVXK/gfPMrTaUjzu1+7Qlf/0j12DsLLi
-i3HgvWAo+Y0KDfybF/cQkfWLDUQDDd0BwJwK01p/NyV36ZCrv+EHPYdTdslOhkb8
-PcFI6axZnUKlC7iL/WBR5viOK0/8DUxAN+3wQaqxsJu+hNBXbk0bopjRk2OscNWd
-wJFNjkVYRRCvaYvjDrHzEjnrBqkvytDVfzqDwfOTtW3ugYXbum+ZbvQhWHoLjqnx
-nAZu4w/8mlEjHryNeETeWMWKHFLYwVvzR9Zy2fXKIZLIGCVTHrBK1P3JhxzA/MjR
-RVNjEIeoYob9bkqWWsXkBvzHi+kMBA5G1uw6nHg/BhuikFjWCLukt7sNu85JoH1U
-hEmzGNseh4MwG7/SsbaEhM5FHwYH6jwe2RqS3c0QZXj1jLwhGaDwBmKMU2QvUmQw
-UGyKlnZfYY/W+RVlXP0OaamxwqiEPQxTtHnvU1MxR/rKC0KV0tkMquzWnXnwIcw0
-8eASYvwTYpjD9dokSeil
-=odPW
------END PGP SIGNATURE-----
-
---flCoVKEP4fcoI65RHR6sobmf0qvtb3Wo6--
-
---===============1317066342==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1317066342==--
+CgpPbiAxMC8xMi8yMDE2IDA1OjU0IFBNLCBHZWRpbWluYXMgSmFrdXRpcyB3cm90ZToKPiBPbiAy
+MDE2LjEwLjExIDE3OjQ2LCBTYW11ZWwgUGl0b2lzZXQgd3JvdGU6Cj4+Cj4+Cj4+IE9uIDEwLzEx
+LzIwMTYgMDI6MTggUE0sIE1hcnRpbiBWb3JiYWNoIHdyb3RlOgo+Pj4gU2FtdWVsLAo+Pj4KPj4+
+IHRoZSBIUCBHVDYzMCBpcyB1bmZvcnR1bmF0ZWx5IHRoZSBHSzEwNy4gR2l2ZW4gd2UgZmluZCB0
+aGUgb3RoZXIgR1Q2MzAKPj4+IG1vZGVsIEkgd2lsbCBjaGVjayBpdCBhbmQgY29tZSBiYWNrIHRv
+IHlvdS4KPj4+Cj4+PiBBcmUgeW91IGludGVyZXN0ZWQgaW4gYW55IG9mIHRoZSBvdGhlciB0d28g
+Y2FyZHM/Cj4+Cj4+IEknbSAoanVzdCkgaW50ZXJlc3RlZCBieSBLZXBsZXIgY2FyZHMgYWN0dWFs
+bHkuIDotKQo+Pgo+PiBCZWNhdXNlIEkgYWxyZWFkeSBoYXZlIGEgYnVuY2ggb2YgVGVzbGEsIEZl
+cm1pIGFuZCBvbmUgTWF4d2VsbC4KPj4KPgo+IEhlbGxvLAo+IElzbid0IGEgR0sxMDcgYSBLZXBs
+ZXI/IEFGQUlLIHRoZSAnSycgaW4gIkdLIiBzdGFuZHMgZm9yICJLZXBsZXIiCgpJdCBpcy4KCj4K
+PiBSZWdhcmRzLAo+IEdlZGltaW5hcyBKYWt1dGlzCj4KPj4+Cj4+PiBSZWdhcmRzLAo+Pj4KPj4+
+IE1hcnRpbgo+Pj4KPj4+Cj4+PiBPbiAyMDE2LTEwLTEwIDEzOjQ1LCBTYW11ZWwgUGl0b2lzZXQg
+d3JvdGU6Cj4+Pj4KPj4+Pgo+Pj4+IE9uIDEwLzEwLzIwMTYgMDE6NDQgUE0sIE1hcnRpbiBWb3Ji
+YWNoIHdyb3RlOgo+Pj4+PiBIaSwKPj4+Pj4KPj4+Pj4gSSB0YWxrZWQgdG8gb3VyIElUIGd1eSBv
+dmVyIGx1bmNoLiBIZSB0aGlua3MgdGhlcmUgaXMgYW4gb2xkIEdUNjMwIHdpdGgKPj4+Pj4gMzg0
+IHNoYWRlcnMgc29tZXdoZXJlLiBUaGUgMzg0IHNoYWRlciBHUFUgaXMgdGhlIEdLMjA4Lgo+Pj4+
+Cj4+Pj4gU3VyZSwgdGhlIEdLMjA4IHdvdWxkIGJlIG5pY2UgZm9yIG1lLiA6LSkKPj4+Pgo+Pj4+
+Cj4+Pj4+Cj4+Pj4+IEdpdmVuIHdlIGNhbiBmaW5kIGl0IGFuZCBpdCBpcyBvYnNvbGV0ZSwgSSBw
+cm9iYWJseSBjYW4gZG9uYXRlIHRoaXMgb25lCj4+Pj4+IHRvby4KPj4+Pj4KPj4+Pj4gTGV0IG1l
+IGtub3cgaWYgeW91IGFyZSBsb29raW5nIGZvciB0aGlzIG9uZS4KPj4+Pj4KPj4+Pj4gUmVnYXJk
+cywKPj4+Pj4KPj4+Pj4gTWFydGluCj4+Pj4+Cj4+Pj4+Cj4+Pj4+IE9uIDIwMTYtMTAtMTAgMTE6
+MDksIE1hcnRpbiBWb3JiYWNoIHdyb3RlOgo+Pj4+Pj4gSGksCj4+Pj4+Pgo+Pj4+Pj4gdGhlIEdU
+NjMwIGlzIHRoaXMgb25lOgo+Pj4+Pj4KPj4+Pj4+IGh0dHA6Ly93d3c4LmhwLmNvbS9lbWVhX2Fm
+cmljYS9lbi9wcm9kdWN0cy9vYXMvcHJvZHVjdC1kZXRhaWwuaHRtbD9vaWQ9NTI3NTI5MQo+Pj4+
+Pj4KPj4+Pj4+Cj4+Pj4+Pgo+Pj4+Pj4gUmVnYXJkcywKPj4+Pj4+Cj4+Pj4+PiBNYXJ0aW4KPj4+
+Pj4+Cj4+Pj4+Pgo+Pj4+Pj4gT24gMjAxNi0xMC0wNyAxODoxNiwgU2FtdWVsIFBpdG9pc2V0IHdy
+b3RlOgo+Pj4+Pj4+Cj4+Pj4+Pj4KPj4+Pj4+PiBPbiAxMC8wNy8yMDE2IDEyOjI0IFBNLCBNYXJ0
+aW4gVm9yYmFjaCB3cm90ZToKPj4+Pj4+Pj4gSGksCj4+Pj4+Pj4KPj4+Pj4+PiBIaSwKPj4+Pj4+
+Pgo+Pj4+Pj4+IEknbSBpbnRlcmVzdGVkLiA6KQo+Pj4+Pj4+Cj4+Pj4+Pj4gSXMgdGhlIEdlRm9y
+Y2UgR1QgNjMwIGEgR0syMDg/Cj4+Pj4+Pj4KPj4+Pj4+PiBUaGFua3MhCj4+Pj4+Pj4KPj4+Pj4+
+Pj4KPj4+Pj4+Pj4gSSBzYXcgdGhlIGRvbmF0aW9uIHJlcXVlc3RzIGFuZCBjb3VsZCBvZmZlciB0
+aGUgZm9sbG93aW5nIGNhcmRzOgo+Pj4+Pj4+Pgo+Pj4+Pj4+PiAgICogR2Vmb3JjZSBONDYwR1RY
+Cj4+Pj4+Pj4+ICAgKiBHZWZvcmNlIEdUIDYzMAo+Pj4+Pj4+PiAgICogUXVhZHJvIEs0MjAwCj4+
+Pj4+Pj4+Cj4+Pj4+Pj4+IEZlZWwgZnJlZSB0byBjb250YWN0IG1lIGluIGNhc2Ugb2YgaW50ZXJl
+c3QuCj4+Pj4+Pj4+Cj4+Pj4+Pj4+IEJlc3QgcmVnYXJkcywKPj4+Pj4+Pj4KPj4+Pj4+Pj4gTWFy
+dGluCj4+Pj4+Pj4+Cj4+Pj4+Pj4+Cj4+Pj4+Pj4+Cj4+Pj4+Pj4+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+Pj4+Pj4+IE5vdXZlYXUgbWFpbGluZyBs
+aXN0Cj4+Pj4+Pj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+Pj4+Pj4+IGh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+Pj4+Pj4+
+Pgo+Pj4+Pj4+Cj4+Pj4+Pgo+Pj4+Pgo+Pj4+Cj4+Pgo+Pj4gX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+PiBO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+Pj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4+IF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+Cj4KPgo+Cj4gX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
