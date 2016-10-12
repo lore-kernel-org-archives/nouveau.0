@@ -1,12 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] rnndb: add some definitions from nvreg.h for
-	pramdac
-Date: Wed, 12 Oct 2016 15:48:48 -0400
-Message-ID: <1476301728-20876-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
+Date: Wed, 12 Oct 2016 20:11:43 +0000
+Message-ID: <bug-70972-8800-6LFlMpMDLK@http.bugs.freedesktop.org/>
+References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1711870071=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,72 +19,89 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-LS0tCiBybm5kYi9kaXNwbGF5L252M19wcmFtZGFjLnhtbCB8IDY3ICsrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCA2NyBpbnNlcnRpb25z
-KCspCgpkaWZmIC0tZ2l0IGEvcm5uZGIvZGlzcGxheS9udjNfcHJhbWRhYy54bWwgYi9ybm5kYi9k
-aXNwbGF5L252M19wcmFtZGFjLnhtbAppbmRleCAxM2I2YTdiLi5lMjM2OTIxIDEwMDY0NAotLS0g
-YS9ybm5kYi9kaXNwbGF5L252M19wcmFtZGFjLnhtbAorKysgYi9ybm5kYi9kaXNwbGF5L252M19w
-cmFtZGFjLnhtbApAQCAtNzksMTIgKzc5LDc5IEBACiAJCTxiaXRmaWVsZCBwb3M9IjI4IiBuYW1l
-PSJWQ0xLX0RCMiIvPgogCQk8Yml0ZmllbGQgcG9zPSIyOSIgbmFtZT0iVkNMSzJfREIyIiB2YXJp
-YW50cz0iTlYxMTpOVjIwIE5WMjU6RzgwIi8+CiAJPC9yZWczMj4KKwk8cmVnMzIgb2Zmc2V0PSIw
-eDUxMCIgbmFtZT0iUExMX1NFVFVQX0NPTlRST0wiLz4KIAk8cmVnMzIgb2Zmc2V0PSIweDUyMCIg
-bmFtZT0iVlBMTDIiIHZhcmlhbnRzPSJOVjExOk5WMjAgTlYyNTpOVjMwIE5WMzE6RzgwIiB0eXBl
-PSJudjNfcGxsIi8+CiAJPHJlZzMyIG9mZnNldD0iMHg1MjAiIG5hbWU9IlZQTEwyIiB2YXJpYW50
-cz0iTlYzMDpOVjMxIiB0eXBlPSJudjMwX3BsbCIvPgorCTxyZWczMiBvZmZzZXQ9IjB4NTI0IiBu
-YW1lPSJTRUxfQ0xLIi8+CiAJPHJlZzMyIG9mZnNldD0iMHg1NzAiIG5hbWU9Ik5WUExMX1MyIiB2
-YXJpYW50cz0iTlYzMTpOVjM0IiB0eXBlPSJudjMxX3BsbF9zMiIvPgogCTxyZWczMiBvZmZzZXQ9
-IjB4NTc0IiBuYW1lPSJNUExMX1MyIiB2YXJpYW50cz0iTlYzMTpOVjM0IiB0eXBlPSJudjMxX3Bs
-bF9zMiIvPgogCTxyZWczMiBvZmZzZXQ9IjB4NTc4IiBuYW1lPSJWUExMX1MyIiB2YXJpYW50cz0i
-TlYzMTpOVjM0IiB0eXBlPSJudjMxX3BsbF9zMiIvPgogCTxyZWczMiBvZmZzZXQ9IjB4NTdjIiBu
-YW1lPSJWUExMMl9TMiIgdmFyaWFudHM9Ik5WMzE6TlYzNCIgdHlwZT0ibnYzMV9wbGxfczIiLz4K
-KworCTxyZWczMiBvZmZzZXQ9IjB4NjAwIiBuYW1lPSJHRU5FUkFMX0NPTlRST0wiPgorCQk8Yml0
-ZmllbGQgbG93PSI0IiBoaWdoPSI1IiBuYW1lPSJQSVhNSVgiPgorCQkJPHZhbHVlIHZhbHVlPSIw
-IiBuYW1lPSJPRkYiLz4KKwkJCTx2YWx1ZSB2YWx1ZT0iMyIgbmFtZT0iT04iLz4KKwkJPC9iaXRm
-aWVsZD4KKwkJPGJpdGZpZWxkIHBvcz0iOCIgbmFtZT0iVkdBX1NUQVRFX1NFTCIgdHlwZT0iYm9v
-bGVhbiIvPgorCQk8Yml0ZmllbGQgcG9zPSIxMiIgbmFtZT0iQUxUX01PREVfU0VMIiB0eXBlPSJi
-b29sZWFuIi8+CisJCTxiaXRmaWVsZCBsb3c9IjE2IiBoaWdoPSIxOSIgbmFtZT0iVEVSTUlOQVRJ
-T04iPgorCQkJPHZhbHVlIHZhbHVlPSIyIiBuYW1lPSI3NTBPSE0iLz4KKwkJPC9iaXRmaWVsZD4K
-KwkJPGJpdGZpZWxkIHBvcz0iMjAiIG5hbWU9IkJQQ184QklUUyIgdHlwZT0iYm9vbGVhbiIvPgor
-CQk8Yml0ZmllbGQgcG9zPSIyOSIgbmFtZT0iUElQRV9MT05HIiB0eXBlPSJib29sZWFuIi8+CisJ
-PC9yZWczMj4KKworCTxyZWczMiBvZmZzZXQ9IjB4ODAwIiBuYW1lPSJGUF9WRElTUExBWV9FTkQi
-IHZhcmlhbnRzPSJOVjM6RzgwIi8+CisJPHJlZzMyIG9mZnNldD0iMHg4MDQiIG5hbWU9IkZQX1ZU
-T1RBTCIvPgorCTxyZWczMiBvZmZzZXQ9IjB4ODA4IiBuYW1lPSJGUF9WQ1JUQyIvPgorCTxyZWcz
-MiBvZmZzZXQ9IjB4ODBjIiBuYW1lPSJGUF9WU1lOQ19TVEFSVCIvPgorCTxyZWczMiBvZmZzZXQ9
-IjB4ODEwIiBuYW1lPSJGUF9WU1lOQ19FTkQiLz4KKwk8cmVnMzIgb2Zmc2V0PSIweDgxNCIgbmFt
-ZT0iRlBfVlZBTElEX1NUQVJUIi8+CisJPHJlZzMyIG9mZnNldD0iMHg4MTgiIG5hbWU9IkZQX1ZW
-QUxJRF9FTkQiLz4KKwk8cmVnMzIgb2Zmc2V0PSIweDgyMCIgbmFtZT0iRlBfSERJU1BMQVlfRU5E
-Ii8+CisJPHJlZzMyIG9mZnNldD0iMHg4MjQiIG5hbWU9IkZQX0hUT1RBTCIvPgorCTxyZWczMiBv
-ZmZzZXQ9IjB4ODI4IiBuYW1lPSJGUF9IQ1JUQyIvPgorCTxyZWczMiBvZmZzZXQ9IjB4ODJjIiBu
-YW1lPSJGUF9IU1lOQ19TVEFSVCIvPgorCTxyZWczMiBvZmZzZXQ9IjB4ODMwIiBuYW1lPSJGUF9I
-U1lOQ19FTkQiLz4KKwk8cmVnMzIgb2Zmc2V0PSIweDgzNCIgbmFtZT0iRlBfSFZBTElEX1NUQVJU
-Ii8+CisJPHJlZzMyIG9mZnNldD0iMHg4MzgiIG5hbWU9IkZQX0hWQUxJRF9FTkQiLz4KKwk8cmVn
-MzIgb2Zmc2V0PSIweDgzYyIgbmFtZT0iRlBfRElUSEVSIi8+CisJPHJlZzMyIG9mZnNldD0iMHg4
-NDgiIG5hbWU9IkZQX1RHX0NPTlRST0wiPgorCQk8Yml0ZmllbGQgbG93PSIwIiBoaWdoPSIxIiBu
-YW1lPSJWU1lOQyI+CisJCQk8dmFsdWUgdmFsdWU9IjEiIG5hbWU9IlBPUyIvPgorCQkJPHZhbHVl
-IHZhbHVlPSIyIiBuYW1lPSJESVNBQkxFIi8+CisJCTwvYml0ZmllbGQ+CisJCTxiaXRmaWVsZCBs
-b3c9IjQiIGhpZ2g9IjUiIG5hbWU9IkhTWU5DIj4KKwkJCTx2YWx1ZSB2YWx1ZT0iMSIgbmFtZT0i
-UE9TIi8+CisJCQk8dmFsdWUgdmFsdWU9IjIiIG5hbWU9IkRJU0FCTEUiLz4KKwkJPC9iaXRmaWVs
-ZD4KKwkJPGJpdGZpZWxkIGxvdz0iOCIgaGlnaD0iOSIgbmFtZT0iTU9ERSI+CisJCQk8dmFsdWUg
-dmFsdWU9IjAiIG5hbWU9IlNDQUxFIi8+CisJCQk8dmFsdWUgdmFsdWU9IjEiIG5hbWU9IkNFTlRF
-UiIvPgorCQkJPHZhbHVlIHZhbHVlPSIyIiBuYW1lPSJOQVRJVkUiLz4KKwkJPC9iaXRmaWVsZD4K
-KwkJPGJpdGZpZWxkIHBvcz0iMjAiIG5hbWU9IlJFQURfUFJPRyIgdHlwZT0iYm9vbGVhbiIvPgor
-CQk8Yml0ZmllbGQgcG9zPSIyNCIgbmFtZT0iV0lEVEhfMTIiIHR5cGU9ImJvb2xlYW4iLz4KKwkJ
-PGJpdGZpZWxkIGxvdz0iMjgiIGhpZ2g9IjI5IiBuYW1lPSJESVNQRU4iPgorCQkJPHZhbHVlIHZh
-bHVlPSIxIiBuYW1lPSJQT1MiLz4KKwkJCTx2YWx1ZSB2YWx1ZT0iMiIgbmFtZT0iRElTQUJMRSIv
-PgorCQk8L2JpdGZpZWxkPgorCTwvcmVnMzI+CisJPHJlZzMyIG9mZnNldD0iMHg4ODAiIG5hbWU9
-IkZQX0RFQlVHXzAiPgorCQk8Yml0ZmllbGQgcG9zPSIwIiBuYW1lPSJYU0NBTEUiIHR5cGU9ImJv
-b2xlYW4iLz4KKwkJPGJpdGZpZWxkIHBvcz0iNCIgbmFtZT0iWVNDQUxFIiB0eXBlPSJib29sZWFu
-Ii8+CisJCTxiaXRmaWVsZCBwb3M9IjciIG5hbWU9IlRNRFNfRU5BQkxFRCIgdHlwZT0iYm9vbGVh
-biIvPgorCQk8Yml0ZmllbGQgcG9zPSI4IiBuYW1lPSJYSU5URVJQX0JJTElORUFSIiB0eXBlPSJi
-b29sZWFuIi8+CisJCTxiaXRmaWVsZCBwb3M9IjEyIiBuYW1lPSJZSU5URVJQX0JJTElORUFSIiB0
-eXBlPSJib29sZWFuIi8+CisJCTxiaXRmaWVsZCBwb3M9IjIwIiBuYW1lPSJYV0VJR0hUX1JPVU5E
-IiB0eXBlPSJib29sZWFuIi8+CisJCTxiaXRmaWVsZCBwb3M9IjI0IiBuYW1lPSJZV0VJR0hUX1JP
-VU5EIiB0eXBlPSJib29sZWFuIi8+CisJCTxiaXRmaWVsZCBwb3M9IjI4IiBuYW1lPSJQV1JET1dO
-X0ZQQ0xLIiB0eXBlPSJib29sZWFuIi8+CisJPC9yZWczMj4KKwk8cmVnMzIgb2Zmc2V0PSIweDhi
-MCIgbmFtZT0iRlBfVE1EU19DT05UUk9MIj4KKwkJPGJpdGZpZWxkIHBvcz0iMTYiIG5hbWU9IldS
-SVRFX0RJU0FCTEUiIHR5cGU9ImJvb2xlYW4iLz4KKwk8L3JlZzMyPgorCTxyZWczMiBvZmZzZXQ9
-IjB4OGI0IiBuYW1lPSJGUF9UTURTX0RBVEEiLz4KIDwvZ3JvdXA+CiAKIDxkb21haW4gbmFtZT0i
-TlZfTU1JTyIgYmFyZT0ieWVzIiBwcmVmaXg9ImNoaXBzZXQiPgotLSAKMi43LjMKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1711870071==
+Content-Type: multipart/alternative; boundary="14763031034.74EB0090.7878";
+ charset="UTF-8"
+
+
+--14763031034.74EB0090.7878
+Date: Wed, 12 Oct 2016 20:11:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D70972
+
+--- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+It would be helpful to have a mmiotrace of nouveau attempting to do the
+modeset. The code's not exactly easy to read, and this should make it easy =
+to
+compare 1:1.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14763031034.74EB0090.7878
+Date: Wed, 12 Oct 2016 20:11:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV67] Modesetting failure at 1280x800"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972#c24">Commen=
+t # 24</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV67] Modesetting failure at 1280x800"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972">bug 70972<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>It would be helpful to have a mmiotrace of nouveau attempting =
+to do the
+modeset. The code's not exactly easy to read, and this should make it easy =
+to
+compare 1:1.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14763031034.74EB0090.7878--
+
+--===============1711870071==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1711870071==--
