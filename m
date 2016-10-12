@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
-Date: Wed, 12 Oct 2016 21:19:39 +0000
-Message-ID: <bug-70972-8800-YdPZouMUME@http.bugs.freedesktop.org/>
+Date: Wed, 12 Oct 2016 21:20:44 +0000
+Message-ID: <bug-70972-8800-r8JVcYqr2L@http.bugs.freedesktop.org/>
 References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1627855271=="
+Content-Type: multipart/mixed; boundary="===============0410570304=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1627855271==
-Content-Type: multipart/alternative; boundary="14763071781.3e72B85.12010";
+--===============0410570304==
+Content-Type: multipart/alternative; boundary="14763072440.9F3e45cd.12085";
  charset="UTF-8"
 
 
---14763071781.3e72B85.12010
-Date: Wed, 12 Oct 2016 21:19:38 +0000
+--14763072440.9F3e45cd.12085
+Date: Wed, 12 Oct 2016 21:20:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,23 +35,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D70972
 
---- Comment #28 from Nerijus Bali=C5=ABnas <nerijus-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> =
----
-Booted to console, ran
-echo 64000 > /sys/kernel/debug/tracing/buffer_size_kb
-echo mmiotrace > /sys/kernel/debug/tracing/current_tracer
-cat /sys/kernel/debug/tracing/trace_pipe > mmiotrace.log &
-modprobe nouveau
-init 5
-xrandr -s 1024x768 - screen became OK
-xrandr -s 1280x800 - screen became garbled
+Nerijus Bali=C5=ABnas <nerijus-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #127258|0                           |1
+        is obsolete|                            |
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14763071781.3e72B85.12010
-Date: Wed, 12 Oct 2016 21:19:38 +0000
+--14763072440.9F3e45cd.12085
+Date: Wed, 12 Oct 2016 21:20:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,33 +58,34 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV67] Modesetting failure at 1280x800"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972#c28">Commen=
-t # 28</a>
-              on <a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:nerijus&#=
+64;users.sourceforge.net" title=3D"Nerijus Bali=C5=ABnas &lt;nerijus&#64;us=
+ers.sourceforge.net&gt;"> <span class=3D"fn">Nerijus Bali=C5=ABnas</span></=
+a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV67] Modesetting failure at 1280x800"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972">bug 70972<=
 /a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nerijus&#64;users.sourceforge.net" title=3D"Nerijus Bali=C5=ABnas &lt;nerij=
-us&#64;users.sourceforge.net&gt;"> <span class=3D"fn">Nerijus Bali=C5=ABnas=
-</span></a>
-</span></b>
-        <pre>Booted to console, ran
-echo 64000 &gt; /sys/kernel/debug/tracing/buffer_size_kb
-echo mmiotrace &gt; /sys/kernel/debug/tracing/current_tracer
-cat /sys/kernel/debug/tracing/trace_pipe &gt; mmiotrace.log &amp;
-modprobe nouveau
-init 5
-xrandr -s 1024x768 - screen became OK
-xrandr -s 1280x800 - screen became garbled</pre>
-        </div>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #127258 is obsolete</=
+td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -101,9 +98,9 @@ xrandr -s 1280x800 - screen became garbled</pre>
     </body>
 </html>=
 
---14763071781.3e72B85.12010--
+--14763072440.9F3e45cd.12085--
 
---===============1627855271==
+--===============0410570304==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1627855271==--
+--===============0410570304==--
