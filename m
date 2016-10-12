@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
-Date: Wed, 12 Oct 2016 20:53:42 +0000
-Message-ID: <bug-70972-8800-RMUOUMBz3v@http.bugs.freedesktop.org/>
+Date: Wed, 12 Oct 2016 20:54:37 +0000
+Message-ID: <bug-70972-8800-Wp7vBdXmHl@http.bugs.freedesktop.org/>
 References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1265733669=="
+Content-Type: multipart/mixed; boundary="===============1076124079=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1265733669==
-Content-Type: multipart/alternative; boundary="14763056220.A9dD.10252";
+--===============1076124079==
+Content-Type: multipart/alternative; boundary="14763056770.B6b7F9c.10357";
  charset="UTF-8"
 
 
---14763056220.A9dD.10252
-Date: Wed, 12 Oct 2016 20:53:42 +0000
+--14763056770.B6b7F9c.10357
+Date: Wed, 12 Oct 2016 20:54:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D70972
 
---- Comment #25 from Nerijus Bali=C5=ABnas <nerijus-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> =
+--- Comment #26 from Nerijus Bali=C5=ABnas <nerijus-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> =
 ---
-Created attachment 127258
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127258&action=3Dedit
-mmiotrace when changing resolutions with nouveau
+I ran commands:
+echo mmiotrace > /sys/kernel/debug/tracing/current_tracer
+cat /sys/kernel/debug/tracing/trace_pipe > mydump.txt &
+xrandr -s 1280x800 - screen became garbled
+xrandr -s 1024x768 - screen became OK
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14763056220.A9dD.10252
-Date: Wed, 12 Oct 2016 20:53:42 +0000
+--14763056770.B6b7F9c.10357
+Date: Wed, 12 Oct 2016 20:54:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +65,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV67] Modesetting failure at 1280x800"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972#c25">Commen=
-t # 25</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972#c26">Commen=
+t # 26</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV67] Modesetting failure at 1280x800"
@@ -75,12 +77,11 @@ nerijus&#64;users.sourceforge.net" title=3D"Nerijus Bali=C5=ABnas &lt;nerij=
 us&#64;users.sourceforge.net&gt;"> <span class=3D"fn">Nerijus Bali=C5=ABnas=
 </span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127258=
-" name=3D"attach_127258" title=3D"mmiotrace when changing resolutions with =
-nouveau">attachment 127258</a> <a href=3D"attachment.cgi?id=3D127258&amp;ac=
-tion=3Dedit" title=3D"mmiotrace when changing resolutions with nouveau">[de=
-tails]</a></span>
-mmiotrace when changing resolutions with nouveau</pre>
+        <pre>I ran commands:
+echo mmiotrace &gt; /sys/kernel/debug/tracing/current_tracer
+cat /sys/kernel/debug/tracing/trace_pipe &gt; mydump.txt &amp;
+xrandr -s 1280x800 - screen became garbled
+xrandr -s 1024x768 - screen became OK</pre>
         </div>
       </p>
 
@@ -94,9 +95,9 @@ mmiotrace when changing resolutions with nouveau</pre>
     </body>
 </html>=
 
---14763056220.A9dD.10252--
+--14763056770.B6b7F9c.10357--
 
---===============1265733669==
+--===============1076124079==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1265733669==--
+--===============1076124079==--
