@@ -1,18 +1,12 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: NVidia Hardware Donation possible
-Date: Tue, 11 Oct 2016 16:46:58 +0200
-Message-ID: <529e3586-3bf5-6c22-abfe-090b308738bd@gmail.com>
-References: <eb6b339b-a46c-727f-4a0a-fdeca8997345@vorbach.name>
- <d72f5cbf-7eeb-021d-e496-8ed38a8e98c0@gmail.com>
- <19df6850-b327-f40d-449f-76695e4140f1@vorbach.name>
- <e342c84e-dff3-92f6-49bb-153ef0f896b0@vorbach.name>
- <7b91bd02-55aa-1d15-6dd7-084f925b9226@gmail.com>
- <64717ec0-cd37-872f-7877-3d63a049cfa8@vorbach.name>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
+Date: Wed, 12 Oct 2016 14:11:00 +0000
+Message-ID: <bug-70972-8800-l4lZ9lpPki@http.bugs.freedesktop.org/>
+References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0451052222=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <64717ec0-cd37-872f-7877-3d63a049cfa8-4GzlBmZn+uDa5EbDDlwbIw@public.gmane.org>
+In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,44 +16,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Vorbach <martin-4GzlBmZn+uDa5EbDDlwbIw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAxMC8xMS8yMDE2IDAyOjE4IFBNLCBNYXJ0aW4gVm9yYmFjaCB3cm90ZToKPiBTYW11ZWws
-Cj4KPiB0aGUgSFAgR1Q2MzAgaXMgdW5mb3J0dW5hdGVseSB0aGUgR0sxMDcuIEdpdmVuIHdlIGZp
-bmQgdGhlIG90aGVyIEdUNjMwCj4gbW9kZWwgSSB3aWxsIGNoZWNrIGl0IGFuZCBjb21lIGJhY2sg
-dG8geW91Lgo+Cj4gQXJlIHlvdSBpbnRlcmVzdGVkIGluIGFueSBvZiB0aGUgb3RoZXIgdHdvIGNh
-cmRzPwoKSSdtIChqdXN0KSBpbnRlcmVzdGVkIGJ5IEtlcGxlciBjYXJkcyBhY3R1YWxseS4gOi0p
-CgpCZWNhdXNlIEkgYWxyZWFkeSBoYXZlIGEgYnVuY2ggb2YgVGVzbGEsIEZlcm1pIGFuZCBvbmUg
-TWF4d2VsbC4KCj4KPiBSZWdhcmRzLAo+Cj4gTWFydGluCj4KPgo+IE9uIDIwMTYtMTAtMTAgMTM6
-NDUsIFNhbXVlbCBQaXRvaXNldCB3cm90ZToKPj4KPj4KPj4gT24gMTAvMTAvMjAxNiAwMTo0NCBQ
-TSwgTWFydGluIFZvcmJhY2ggd3JvdGU6Cj4+PiBIaSwKPj4+Cj4+PiBJIHRhbGtlZCB0byBvdXIg
-SVQgZ3V5IG92ZXIgbHVuY2guIEhlIHRoaW5rcyB0aGVyZSBpcyBhbiBvbGQgR1Q2MzAgd2l0aAo+
-Pj4gMzg0IHNoYWRlcnMgc29tZXdoZXJlLiBUaGUgMzg0IHNoYWRlciBHUFUgaXMgdGhlIEdLMjA4
-Lgo+Pgo+PiBTdXJlLCB0aGUgR0syMDggd291bGQgYmUgbmljZSBmb3IgbWUuIDotKQo+Pgo+Pgo+
-Pj4KPj4+IEdpdmVuIHdlIGNhbiBmaW5kIGl0IGFuZCBpdCBpcyBvYnNvbGV0ZSwgSSBwcm9iYWJs
-eSBjYW4gZG9uYXRlIHRoaXMgb25lCj4+PiB0b28uCj4+Pgo+Pj4gTGV0IG1lIGtub3cgaWYgeW91
-IGFyZSBsb29raW5nIGZvciB0aGlzIG9uZS4KPj4+Cj4+PiBSZWdhcmRzLAo+Pj4KPj4+IE1hcnRp
-bgo+Pj4KPj4+Cj4+PiBPbiAyMDE2LTEwLTEwIDExOjA5LCBNYXJ0aW4gVm9yYmFjaCB3cm90ZToK
-Pj4+PiBIaSwKPj4+Pgo+Pj4+IHRoZSBHVDYzMCBpcyB0aGlzIG9uZToKPj4+Pgo+Pj4+IGh0dHA6
-Ly93d3c4LmhwLmNvbS9lbWVhX2FmcmljYS9lbi9wcm9kdWN0cy9vYXMvcHJvZHVjdC1kZXRhaWwu
-aHRtbD9vaWQ9NTI3NTI5MQo+Pj4+Cj4+Pj4KPj4+Pgo+Pj4+IFJlZ2FyZHMsCj4+Pj4KPj4+PiBN
-YXJ0aW4KPj4+Pgo+Pj4+Cj4+Pj4gT24gMjAxNi0xMC0wNyAxODoxNiwgU2FtdWVsIFBpdG9pc2V0
-IHdyb3RlOgo+Pj4+Pgo+Pj4+Pgo+Pj4+PiBPbiAxMC8wNy8yMDE2IDEyOjI0IFBNLCBNYXJ0aW4g
-Vm9yYmFjaCB3cm90ZToKPj4+Pj4+IEhpLAo+Pj4+Pgo+Pj4+PiBIaSwKPj4+Pj4KPj4+Pj4gSSdt
-IGludGVyZXN0ZWQuIDopCj4+Pj4+Cj4+Pj4+IElzIHRoZSBHZUZvcmNlIEdUIDYzMCBhIEdLMjA4
-Pwo+Pj4+Pgo+Pj4+PiBUaGFua3MhCj4+Pj4+Cj4+Pj4+Pgo+Pj4+Pj4gSSBzYXcgdGhlIGRvbmF0
-aW9uIHJlcXVlc3RzIGFuZCBjb3VsZCBvZmZlciB0aGUgZm9sbG93aW5nIGNhcmRzOgo+Pj4+Pj4K
-Pj4+Pj4+ICAgKiBHZWZvcmNlIE40NjBHVFgKPj4+Pj4+ICAgKiBHZWZvcmNlIEdUIDYzMAo+Pj4+
-Pj4gICAqIFF1YWRybyBLNDIwMAo+Pj4+Pj4KPj4+Pj4+IEZlZWwgZnJlZSB0byBjb250YWN0IG1l
-IGluIGNhc2Ugb2YgaW50ZXJlc3QuCj4+Pj4+Pgo+Pj4+Pj4gQmVzdCByZWdhcmRzLAo+Pj4+Pj4K
-Pj4+Pj4+IE1hcnRpbgo+Pj4+Pj4KPj4+Pj4+Cj4+Pj4+Pgo+Pj4+Pj4gX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+Pj4+IE5vdXZlYXUgbWFpbGluZyBs
-aXN0Cj4+Pj4+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+Pj4+Pj4gaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4+Pj4+Pgo+Pj4+
-Pgo+Pj4+Cj4+Pgo+Pgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
-dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0451052222==
+Content-Type: multipart/alternative; boundary="14762814603.Ab255F52.17399";
+ charset="UTF-8"
+
+
+--14762814603.Ab255F52.17399
+Date: Wed, 12 Oct 2016 14:11:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D70972
+
+--- Comment #22 from Nerijus Bali=C5=ABnas <nerijus-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> =
+---
+I have GeForce 7150M / nForce 630M and it shows garbled screen with 1280x800
+resolution. 1024x768 works OK, as well as proprietary nvidia driver.
+I tried a few modelines generated with cvt 1280 800, cvt 1280 800 59, cvt 1=
+280
+800 57, cvt 1280 800 50 - does not help, still the garbled screen. Adding
+nouveau.config=3DNvMSI=3D0 to kernel boot line did not help neither.
+Fedora 25 beta, xorg-x11-drv-nouveau-1.0.13-1.fc25.x86_64.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14762814603.Ab255F52.17399
+Date: Wed, 12 Oct 2016 14:11:00 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV67] Modesetting failure at 1280x800"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972#c22">Commen=
+t # 22</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV67] Modesetting failure at 1280x800"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972">bug 70972<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+nerijus&#64;users.sourceforge.net" title=3D"Nerijus Bali=C5=ABnas &lt;nerij=
+us&#64;users.sourceforge.net&gt;"> <span class=3D"fn">Nerijus Bali=C5=ABnas=
+</span></a>
+</span></b>
+        <pre>I have GeForce 7150M / nForce 630M and it shows garbled screen=
+ with 1280x800
+resolution. 1024x768 works OK, as well as proprietary nvidia driver.
+I tried a few modelines generated with cvt 1280 800, cvt 1280 800 59, cvt 1=
+280
+800 57, cvt 1280 800 50 - does not help, still the garbled screen. Adding
+nouveau.config=3DNvMSI=3D0 to kernel boot line did not help neither.
+Fedora 25 beta, xorg-x11-drv-nouveau-1.0.13-1.fc25.x86_64.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14762814603.Ab255F52.17399--
+
+--===============0451052222==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0451052222==--
