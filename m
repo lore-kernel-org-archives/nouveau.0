@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
-Date: Wed, 12 Oct 2016 21:44:53 +0000
-Message-ID: <bug-70972-8800-hKkXuRRCb0@http.bugs.freedesktop.org/>
+Date: Wed, 12 Oct 2016 21:54:24 +0000
+Message-ID: <bug-70972-8800-4ANw569BVN@http.bugs.freedesktop.org/>
 References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1968599027=="
+Content-Type: multipart/mixed; boundary="===============0215942863=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1968599027==
-Content-Type: multipart/alternative; boundary="14763086932.c064Dc79b.13581";
+--===============0215942863==
+Content-Type: multipart/alternative; boundary="14763092642.a2F0bc2F.14246";
  charset="UTF-8"
 
 
---14763086932.c064Dc79b.13581
-Date: Wed, 12 Oct 2016 21:44:53 +0000
+--14763092642.a2F0bc2F.14246
+Date: Wed, 12 Oct 2016 21:54:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D70972
 
---- Comment #33 from Nerijus Bali=C5=ABnas <nerijus-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> =
+--- Comment #34 from Nerijus Bali=C5=ABnas <nerijus-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> =
 ---
-Created attachment 127260
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127260&action=3Dedit
-garbled X photo
+Created attachment 127261
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127261&action=3Dedit
+garbled console photo
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14763086932.c064Dc79b.13581
-Date: Wed, 12 Oct 2016 21:44:53 +0000
+--14763092642.a2F0bc2F.14246
+Date: Wed, 12 Oct 2016 21:54:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV67] Modesetting failure at 1280x800"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972#c33">Commen=
-t # 33</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972#c34">Commen=
+t # 34</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV67] Modesetting failure at 1280x800"
@@ -75,11 +75,11 @@ nerijus&#64;users.sourceforge.net" title=3D"Nerijus Bali=C5=ABnas &lt;nerij=
 us&#64;users.sourceforge.net&gt;"> <span class=3D"fn">Nerijus Bali=C5=ABnas=
 </span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127260=
-" name=3D"attach_127260" title=3D"garbled X photo">attachment 127260</a> <a=
- href=3D"attachment.cgi?id=3D127260&amp;action=3Dedit" title=3D"garbled X p=
-hoto">[details]</a></span>
-garbled X photo</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127261=
+" name=3D"attach_127261" title=3D"garbled console photo">attachment 127261<=
+/a> <a href=3D"attachment.cgi?id=3D127261&amp;action=3Dedit" title=3D"garbl=
+ed console photo">[details]</a></span>
+garbled console photo</pre>
         </div>
       </p>
 
@@ -93,9 +93,9 @@ garbled X photo</pre>
     </body>
 </html>=
 
---14763086932.c064Dc79b.13581--
+--14763092642.a2F0bc2F.14246--
 
---===============1968599027==
+--===============0215942863==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1968599027==--
+--===============0215942863==--
