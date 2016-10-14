@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98240] Kernel module fails to load on HP Pavilion
  V3A33AV laptop.
-Date: Fri, 14 Oct 2016 02:27:55 +0000
-Message-ID: <bug-98240-8800-czX9ymUFZV@http.bugs.freedesktop.org/>
+Date: Fri, 14 Oct 2016 02:28:45 +0000
+Message-ID: <bug-98240-8800-hK3FriAJz0@http.bugs.freedesktop.org/>
 References: <bug-98240-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1928903005=="
+Content-Type: multipart/mixed; boundary="===============1171107370=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98240-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1928903005==
-Content-Type: multipart/alternative; boundary="14764120751.F43eA.28254";
+--===============1171107370==
+Content-Type: multipart/alternative; boundary="14764121251.Fc9fdB92.28402";
  charset="UTF-8"
 
 
---14764120751.F43eA.28254
-Date: Fri, 14 Oct 2016 02:27:55 +0000
+--14764121251.Fc9fdB92.28402
+Date: Fri, 14 Oct 2016 02:28:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,39 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98240
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I'm looking over the fast logic and it seems like it should have worked. Th=
-is
-debug patch should provide more info on what's going wrong. Mind reinstating
-the line in shadowacpi.c and applying the below?
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Sergey Okhapkin from comment #5)
+> Xorg driver (xf86-video-nouveau-1.0.12) fails:
+> [  1596.907] (EE) Unknown chipset: NV117
 
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c
-b/drivers/gpu/drm/nouveau/nouveau_acpi.c
---- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-@@ -423,7 +423,9 @@ bool nouveau_acpi_rom_supported(struct device *dev)
-
- int nouveau_acpi_get_bios_chunk(uint8_t *bios, int offset, int len)
- {
--       return nouveau_rom_call(nouveau_dsm_priv.rom_handle, bios, offset,
-len);
-+       int ret =3D nouveau_rom_call(nouveau_dsm_priv.rom_handle, bios, off=
-set,
-len);
-+       printk(KERN_INFO "retrieving _ROM off: 0x%x, len: 0x%x, ret: 0x%x",
-offset, len, ret);
-+       return ret;
- }
-
- void *
+That's expected. You can use the modesetting DDX if you have screens hanging
+off the NVIDIA gpu. Otherwise I recommend enabling DRI3 and using that for
+offloading.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14764120751.F43eA.28254
-Date: Fri, 14 Oct 2016 02:27:55 +0000
+--14764121251.Fc9fdB92.28402
+Date: Fri, 14 Oct 2016 02:28:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -86,8 +68,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Kernel module fails to load on HP Pavilion V3A33AV laptop=
 ."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98240#c6">Comment=
- # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98240#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel module fails to load on HP Pavilion V3A33AV laptop=
@@ -98,33 +80,14 @@ Auto-Submitted: auto-generated
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I'm looking over the fast logic and it seems like it should ha=
-ve worked. This
-debug patch should provide more info on what's going wrong. Mind reinstating
-the line in shadowacpi.c and applying the below?
+        <pre>(In reply to Sergey Okhapkin from <a href=3D"show_bug.cgi?id=
+=3D98240#c5">comment #5</a>)
+<span class=3D"quote">&gt; Xorg driver (xf86-video-nouveau-1.0.12) fails:
+&gt; [  1596.907] (EE) Unknown chipset: NV117</span >
 
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c
-b/drivers/gpu/drm/nouveau/nouveau_acpi.c
---- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
-&#64;&#64; -423,7 +423,9 &#64;&#64; bool nouveau_acpi_rom_supported(struct =
-device *dev)
-
- int nouveau_acpi_get_bios_chunk(uint8_t *bios, int offset, int len)
- {
--       return nouveau_rom_call(nouveau_dsm_priv.rom_handle, bios, offset,
-len);
-+       int ret =3D nouveau_rom_call(nouveau_dsm_priv.rom_handle, bios, off=
-set,
-len);
-+       printk(KERN_INFO &quot;retrieving _ROM off: 0x%x, len: 0x%x, ret: 0=
-x%x&quot;,
-offset, len, ret);
-+       return ret;
- }
-
- void *</pre>
+That's expected. You can use the modesetting DDX if you have screens hanging
+off the NVIDIA gpu. Otherwise I recommend enabling DRI3 and using that for
+offloading.</pre>
         </div>
       </p>
 
@@ -138,9 +101,9 @@ offset, len, ret);
     </body>
 </html>=
 
---14764120751.F43eA.28254--
+--14764121251.Fc9fdB92.28402--
 
---===============1928903005==
+--===============1171107370==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -150,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1928903005==--
+--===============1171107370==--
