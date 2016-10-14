@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Fri, 14 Oct 2016 08:29:21 +0000
-Message-ID: <bug-94990-8800-YdCnGJOvO8@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98030] Stuttering video playback in totem after
+ update to 1.19-rc1
+Date: Fri, 14 Oct 2016 08:42:01 +0000
+Message-ID: <bug-98030-8800-Tervv0TcbU@http.bugs.freedesktop.org/>
+References: <bug-98030-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0748026791=="
+Content-Type: multipart/mixed; boundary="===============0328026902=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98030-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +21,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0748026791==
-Content-Type: multipart/alternative; boundary="14764337615.cb8CdD76.20973";
+--===============0328026902==
+Content-Type: multipart/alternative; boundary="14764345210.0c5D7.21870";
  charset="UTF-8"
 
 
---14764337615.cb8CdD76.20973
-Date: Fri, 14 Oct 2016 08:29:21 +0000
+--14764345210.0c5D7.21870
+Date: Fri, 14 Oct 2016 08:42:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98030
 
---- Comment #74 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Yann Golanski from comment #73)
-> (In reply to Karol Herbst from comment #72)
-> > By the way, this affects the kernel module only.
->=20
-> This still stops my machine from booting or X11 from running if I disable
-> the Nouveau driver. Or am I being dense and missing something?=E2=80=A6 =
-=E2=98=BA
+--- Comment #6 from Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> ---
+The change in 8f1edf4bd3a1f050ce9eeb5eac45dd1a8f7a6d5e is that we no longer
+wakeup and flush writers when space in the write queue becomes available -
+instead before we poll() we flush the writers iff NewOutputPending since the
+last poll(), i.e.
 
-most likely, yes. You should check dmesg in this case and check what is
-happening.
+diff --git a/os/WaitFor.c b/os/WaitFor.c
+index 8164c30..5b0c342 100644
+--- a/os/WaitFor.c
++++ b/os/WaitFor.c
+@@ -207,8 +207,7 @@ WaitForSomething(Bool are_ready)
+                 (1000000 / MILLI_PER_SECOND);
+             wt =3D &waittime;
+         }
+-        if (NewOutputPending)
+-            FlushAllOutput();
++       FlushAllOutput();
+         /* keep this check close to select() call to minimize race */
+         if (dispatchException)
+             i =3D -1;
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14764337615.cb8CdD76.20973
-Date: Fri, 14 Oct 2016 08:29:21 +0000
+--14764345210.0c5D7.21870
+Date: Fri, 14 Oct 2016 08:42:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,31 +78,40 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c74">Commen=
-t # 74</a>
+   title=3D"NEW - Stuttering video playback in totem after update to 1.19-r=
+c1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98030#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+   title=3D"NEW - Stuttering video playback in totem after update to 1.19-r=
+c1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98030">bug 98030<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+chris&#64;chris-wilson.co.uk" title=3D"Chris Wilson &lt;chris&#64;chris-wil=
+son.co.uk&gt;"> <span class=3D"fn">Chris Wilson</span></a>
 </span></b>
-        <pre>(In reply to Yann Golanski from <a href=3D"show_bug.cgi?id=3D9=
-4990#c73">comment #73</a>)
-<span class=3D"quote">&gt; (In reply to Karol Herbst from <a href=3D"show_b=
-ug.cgi?id=3D94990#c72">comment #72</a>)
-&gt; &gt; By the way, this affects the kernel module only.
-&gt;=20
-&gt; This still stops my machine from booting or X11 from running if I disa=
-ble
-&gt; the Nouveau driver. Or am I being dense and missing something?=E2=80=
-=A6 =E2=98=BA</span >
+        <pre>The change in 8f1edf4bd3a1f050ce9eeb5eac45dd1a8f7a6d5e is that=
+ we no longer
+wakeup and flush writers when space in the write queue becomes available -
+instead before we poll() we flush the writers iff NewOutputPending since the
+last poll(), i.e.
 
-most likely, yes. You should check dmesg in this case and check what is
-happening.</pre>
+diff --git a/os/WaitFor.c b/os/WaitFor.c
+index 8164c30..5b0c342 100644
+--- a/os/WaitFor.c
++++ b/os/WaitFor.c
+&#64;&#64; -207,8 +207,7 &#64;&#64; WaitForSomething(Bool are_ready)
+                 (1000000 / MILLI_PER_SECOND);
+             wt =3D &amp;waittime;
+         }
+-        if (NewOutputPending)
+-            FlushAllOutput();
++       FlushAllOutput();
+         /* keep this check close to select() call to minimize race */
+         if (dispatchException)
+             i =3D -1;</pre>
         </div>
       </p>
 
@@ -107,9 +125,9 @@ happening.</pre>
     </body>
 </html>=
 
---14764337615.cb8CdD76.20973--
+--14764345210.0c5D7.21870--
 
---===============0748026791==
+--===============0328026902==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +137,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0748026791==--
+--===============0328026902==--
