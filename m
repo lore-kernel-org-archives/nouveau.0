@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
 	(v4.6+)
-Date: Fri, 14 Oct 2016 07:57:36 +0000
-Message-ID: <bug-94990-8800-wnmVxA1dfJ@http.bugs.freedesktop.org/>
+Date: Fri, 14 Oct 2016 08:29:21 +0000
+Message-ID: <bug-94990-8800-YdCnGJOvO8@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2099983051=="
+Content-Type: multipart/mixed; boundary="===============0748026791=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2099983051==
-Content-Type: multipart/alternative; boundary="147643185610.BD04BA6.18226";
+--===============0748026791==
+Content-Type: multipart/alternative; boundary="14764337615.cb8CdD76.20973";
  charset="UTF-8"
 
 
---147643185610.BD04BA6.18226
-Date: Fri, 14 Oct 2016 07:57:36 +0000
+--14764337615.cb8CdD76.20973
+Date: Fri, 14 Oct 2016 08:29:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #73 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
-(In reply to Karol Herbst from comment #72)
-> By the way, this affects the kernel module only.
+--- Comment #74 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Yann Golanski from comment #73)
+> (In reply to Karol Herbst from comment #72)
+> > By the way, this affects the kernel module only.
+>=20
+> This still stops my machine from booting or X11 from running if I disable
+> the Nouveau driver. Or am I being dense and missing something?=E2=80=A6 =
+=E2=98=BA
 
-This still stops my machine from booting or X11 from running if I disable t=
-he
-Nouveau driver. Or am I being dense and missing something?=E2=80=A6 =E2=98=
-=BA
+most likely, yes. You should check dmesg in this case and check what is
+happening.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---147643185610.BD04BA6.18226
-Date: Fri, 14 Oct 2016 07:57:36 +0000
+--14764337615.cb8CdD76.20973
+Date: Fri, 14 Oct 2016 08:29:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,26 +70,30 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c73">Commen=
-t # 73</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c74">Commen=
+t # 74</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
-un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>(In reply to Karol Herbst from <a href=3D"show_bug.cgi?id=3D94=
-990#c72">comment #72</a>)
-<span class=3D"quote">&gt; By the way, this affects the kernel module only.=
-</span >
+        <pre>(In reply to Yann Golanski from <a href=3D"show_bug.cgi?id=3D9=
+4990#c73">comment #73</a>)
+<span class=3D"quote">&gt; (In reply to Karol Herbst from <a href=3D"show_b=
+ug.cgi?id=3D94990#c72">comment #72</a>)
+&gt; &gt; By the way, this affects the kernel module only.
+&gt;=20
+&gt; This still stops my machine from booting or X11 from running if I disa=
+ble
+&gt; the Nouveau driver. Or am I being dense and missing something?=E2=80=
+=A6 =E2=98=BA</span >
 
-This still stops my machine from booting or X11 from running if I disable t=
-he
-Nouveau driver. Or am I being dense and missing something?=E2=80=A6 =E2=98=
-=BA</pre>
+most likely, yes. You should check dmesg in this case and check what is
+happening.</pre>
         </div>
       </p>
 
@@ -100,9 +107,9 @@ Nouveau driver. Or am I being dense and missing something?=E2=80=A6 =E2=98=
     </body>
 </html>=
 
---147643185610.BD04BA6.18226--
+--14764337615.cb8CdD76.20973--
 
---===============2099983051==
+--===============0748026791==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2099983051==--
+--===============0748026791==--
