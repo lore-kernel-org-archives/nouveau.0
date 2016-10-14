@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98030] Stuttering video playback in totem after
  update to 1.19-rc1
-Date: Fri, 14 Oct 2016 08:42:01 +0000
-Message-ID: <bug-98030-8800-Tervv0TcbU@http.bugs.freedesktop.org/>
+Date: Fri, 14 Oct 2016 08:57:43 +0000
+Message-ID: <bug-98030-8800-h98YEQc7hr@http.bugs.freedesktop.org/>
 References: <bug-98030-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0328026902=="
+Content-Type: multipart/mixed; boundary="===============1803478167=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98030-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0328026902==
-Content-Type: multipart/alternative; boundary="14764345210.0c5D7.21870";
+--===============1803478167==
+Content-Type: multipart/alternative; boundary="14764354635.9E7Bd5B89.23075";
  charset="UTF-8"
 
 
---14764345210.0c5D7.21870
-Date: Fri, 14 Oct 2016 08:42:01 +0000
+--14764354635.9E7Bd5B89.23075
+Date: Fri, 14 Oct 2016 08:57:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,33 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98030
 
---- Comment #6 from Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> ---
-The change in 8f1edf4bd3a1f050ce9eeb5eac45dd1a8f7a6d5e is that we no longer
-wakeup and flush writers when space in the write queue becomes available -
-instead before we poll() we flush the writers iff NewOutputPending since the
-last poll(), i.e.
+--- Comment #7 from Michel D=C3=A4nzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org> ---
+(In reply to Chris Wilson from comment #6)
+> -        if (NewOutputPending)
+> -            FlushAllOutput();
+> +       FlushAllOutput();
 
-diff --git a/os/WaitFor.c b/os/WaitFor.c
-index 8164c30..5b0c342 100644
---- a/os/WaitFor.c
-+++ b/os/WaitFor.c
-@@ -207,8 +207,7 @@ WaitForSomething(Bool are_ready)
-                 (1000000 / MILLI_PER_SECOND);
-             wt =3D &waittime;
-         }
--        if (NewOutputPending)
--            FlushAllOutput();
-+       FlushAllOutput();
-         /* keep this check close to select() call to minimize race */
-         if (dispatchException)
-             i =3D -1;
+This doesn't fix the problem for me.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14764345210.0c5D7.21870
-Date: Fri, 14 Oct 2016 08:42:01 +0000
+--14764354635.9E7Bd5B89.23075
+Date: Fri, 14 Oct 2016 08:57:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Stuttering video playback in totem after update to 1.19-r=
 c1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98030#c6">Comment=
- # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98030#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Stuttering video playback in totem after update to 1.19-r=
@@ -89,29 +76,16 @@ c1"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98030">bug 98030<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-chris&#64;chris-wilson.co.uk" title=3D"Chris Wilson &lt;chris&#64;chris-wil=
-son.co.uk&gt;"> <span class=3D"fn">Chris Wilson</span></a>
+michel&#64;daenzer.net" title=3D"Michel D=C3=A4nzer &lt;michel&#64;daenzer.=
+net&gt;"> <span class=3D"fn">Michel D=C3=A4nzer</span></a>
 </span></b>
-        <pre>The change in 8f1edf4bd3a1f050ce9eeb5eac45dd1a8f7a6d5e is that=
- we no longer
-wakeup and flush writers when space in the write queue becomes available -
-instead before we poll() we flush the writers iff NewOutputPending since the
-last poll(), i.e.
+        <pre>(In reply to Chris Wilson from <a href=3D"show_bug.cgi?id=3D98=
+030#c6">comment #6</a>)
+<span class=3D"quote">&gt; -        if (NewOutputPending)
+&gt; -            FlushAllOutput();
+&gt; +       FlushAllOutput();</span >
 
-diff --git a/os/WaitFor.c b/os/WaitFor.c
-index 8164c30..5b0c342 100644
---- a/os/WaitFor.c
-+++ b/os/WaitFor.c
-&#64;&#64; -207,8 +207,7 &#64;&#64; WaitForSomething(Bool are_ready)
-                 (1000000 / MILLI_PER_SECOND);
-             wt =3D &amp;waittime;
-         }
--        if (NewOutputPending)
--            FlushAllOutput();
-+       FlushAllOutput();
-         /* keep this check close to select() call to minimize race */
-         if (dispatchException)
-             i =3D -1;</pre>
+This doesn't fix the problem for me.</pre>
         </div>
       </p>
 
@@ -125,9 +99,9 @@ index 8164c30..5b0c342 100644
     </body>
 </html>=
 
---14764345210.0c5D7.21870--
+--14764354635.9E7Bd5B89.23075--
 
---===============0328026902==
+--===============1803478167==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -137,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0328026902==--
+--===============1803478167==--
