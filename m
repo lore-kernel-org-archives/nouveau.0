@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98240] Kernel module fails to load on HP Pavilion
  V3A33AV laptop.
-Date: Fri, 14 Oct 2016 02:26:16 +0000
-Message-ID: <bug-98240-8800-ga8PcOaxPE@http.bugs.freedesktop.org/>
+Date: Fri, 14 Oct 2016 02:27:55 +0000
+Message-ID: <bug-98240-8800-czX9ymUFZV@http.bugs.freedesktop.org/>
 References: <bug-98240-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0983802082=="
+Content-Type: multipart/mixed; boundary="===============1928903005=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98240-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0983802082==
-Content-Type: multipart/alternative; boundary="14764119760.D188aAd.28133";
+--===============1928903005==
+Content-Type: multipart/alternative; boundary="14764120751.F43eA.28254";
  charset="UTF-8"
 
 
---14764119760.D188aAd.28133
-Date: Fri, 14 Oct 2016 02:26:16 +0000
+--14764120751.F43eA.28254
+Date: Fri, 14 Oct 2016 02:27:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,38 +36,39 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98240
 
---- Comment #5 from Sergey Okhapkin <sos-iE5g+WOE291eeLb3ft/vUmD2FQJk+8+b@public.gmane.org> ---
-Xorg driver (xf86-video-nouveau-1.0.12) fails:
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I'm looking over the fast logic and it seems like it should have worked. Th=
+is
+debug patch should provide more info on what's going wrong. Mind reinstating
+the line in shadowacpi.c and applying the below?
 
-[  1596.906] (II) NOUVEAU driver
-[  1596.906] (II) NOUVEAU driver for NVIDIA chipset families :
-[  1596.906]    RIVA TNT        (NV04)
-[  1596.906]    RIVA TNT2       (NV05)
-[  1596.906]    GeForce 256     (NV10)
-[  1596.906]    GeForce 2       (NV11, NV15)
-[  1596.906]    GeForce 4MX     (NV17, NV18)
-[  1596.906]    GeForce 3       (NV20)
-[  1596.906]    GeForce 4Ti     (NV25, NV28)
-[  1596.906]    GeForce FX      (NV3x)
-[  1596.906]    GeForce 6       (NV4x)
-[  1596.906]    GeForce 7       (G7x)
-[  1596.906]    GeForce 8       (G8x)
-[  1596.906]    GeForce GTX 200 (NVA0)
-[  1596.906]    GeForce GTX 400 (NVC0)
-[  1596.906] (II) modesetting: Driver for Modesetting Kernel Drivers: kms
-[  1596.906] (++) using VT number 7
 
-[  1596.907] (II) intel(0): Using Kernel Mode Setting driver: i915, version
-1.6.0 20160711
-[  1596.907] (II) [drm] nouveau interface version: 1.3.1
-[  1596.907] (EE) Unknown chipset: NV117
+diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c
+b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+--- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
++++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+@@ -423,7 +423,9 @@ bool nouveau_acpi_rom_supported(struct device *dev)
+
+ int nouveau_acpi_get_bios_chunk(uint8_t *bios, int offset, int len)
+ {
+-       return nouveau_rom_call(nouveau_dsm_priv.rom_handle, bios, offset,
+len);
++       int ret =3D nouveau_rom_call(nouveau_dsm_priv.rom_handle, bios, off=
+set,
+len);
++       printk(KERN_INFO "retrieving _ROM off: 0x%x, len: 0x%x, ret: 0x%x",
+offset, len, ret);
++       return ret;
+ }
+
+ void *
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14764119760.D188aAd.28133
-Date: Fri, 14 Oct 2016 02:26:16 +0000
+--14764120751.F43eA.28254
+Date: Fri, 14 Oct 2016 02:27:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -85,8 +86,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Kernel module fails to load on HP Pavilion V3A33AV laptop=
 ."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98240#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98240#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel module fails to load on HP Pavilion V3A33AV laptop=
@@ -94,33 +95,36 @@ Auto-Submitted: auto-generated
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98240">bug 98240<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sos&#64;sokhapkin.dyndns.org" title=3D"Sergey Okhapkin &lt;sos&#64;sokhapki=
-n.dyndns.org&gt;"> <span class=3D"fn">Sergey Okhapkin</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Xorg driver (xf86-video-nouveau-1.0.12) fails:
+        <pre>I'm looking over the fast logic and it seems like it should ha=
+ve worked. This
+debug patch should provide more info on what's going wrong. Mind reinstating
+the line in shadowacpi.c and applying the below?
 
-[  1596.906] (II) NOUVEAU driver
-[  1596.906] (II) NOUVEAU driver for NVIDIA chipset families :
-[  1596.906]    RIVA TNT        (NV04)
-[  1596.906]    RIVA TNT2       (NV05)
-[  1596.906]    GeForce 256     (NV10)
-[  1596.906]    GeForce 2       (NV11, NV15)
-[  1596.906]    GeForce 4MX     (NV17, NV18)
-[  1596.906]    GeForce 3       (NV20)
-[  1596.906]    GeForce 4Ti     (NV25, NV28)
-[  1596.906]    GeForce FX      (NV3x)
-[  1596.906]    GeForce 6       (NV4x)
-[  1596.906]    GeForce 7       (G7x)
-[  1596.906]    GeForce 8       (G8x)
-[  1596.906]    GeForce GTX 200 (NVA0)
-[  1596.906]    GeForce GTX 400 (NVC0)
-[  1596.906] (II) modesetting: Driver for Modesetting Kernel Drivers: kms
-[  1596.906] (++) using VT number 7
 
-[  1596.907] (II) intel(0): Using Kernel Mode Setting driver: i915, version
-1.6.0 20160711
-[  1596.907] (II) [drm] nouveau interface version: 1.3.1
-[  1596.907] (EE) Unknown chipset: NV117</pre>
+diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c
+b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+--- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
++++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+&#64;&#64; -423,7 +423,9 &#64;&#64; bool nouveau_acpi_rom_supported(struct =
+device *dev)
+
+ int nouveau_acpi_get_bios_chunk(uint8_t *bios, int offset, int len)
+ {
+-       return nouveau_rom_call(nouveau_dsm_priv.rom_handle, bios, offset,
+len);
++       int ret =3D nouveau_rom_call(nouveau_dsm_priv.rom_handle, bios, off=
+set,
+len);
++       printk(KERN_INFO &quot;retrieving _ROM off: 0x%x, len: 0x%x, ret: 0=
+x%x&quot;,
+offset, len, ret);
++       return ret;
+ }
+
+ void *</pre>
         </div>
       </p>
 
@@ -134,9 +138,9 @@ n.dyndns.org&gt;"> <span class=3D"fn">Sergey Okhapkin</span></a>
     </body>
 </html>=
 
---14764119760.D188aAd.28133--
+--14764120751.F43eA.28254--
 
---===============0983802082==
+--===============1928903005==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +150,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0983802082==--
+--===============1928903005==--
