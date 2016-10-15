@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98266] Geforce GTX 960: display corruption under KDE
-	Plasma
-Date: Sat, 15 Oct 2016 03:57:43 +0000
-Message-ID: <bug-98266-8800-fN0l4jV7Bm@http.bugs.freedesktop.org/>
-References: <bug-98266-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 96924] NVD7: new warnings on kernel 4.6.3 using
+	nouveau
+Date: Sat, 15 Oct 2016 04:06:32 +0000
+Message-ID: <bug-96924-8800-jj6xDNYgZt@http.bugs.freedesktop.org/>
+References: <bug-96924-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0957206703=="
+Content-Type: multipart/mixed; boundary="===============0323024842=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98266-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-96924-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0957206703==
-Content-Type: multipart/alternative; boundary="14765038620.Cc6e.26729";
+--===============0323024842==
+Content-Type: multipart/alternative; boundary="14765043910.e4C8BA4b.27051";
  charset="UTF-8"
 
 
---14765038620.Cc6e.26729
-Date: Sat, 15 Oct 2016 03:57:42 +0000
+--14765043910.e4C8BA4b.27051
+Date: Sat, 15 Oct 2016 04:06:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98266
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96924
 
---- Comment #2 from peter.eszlari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I'm running on Kubuntu 16.10 with Xorg 1.18.4 and kernel 4.8.0.
+Marcos Souza <marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |WORKSFORME
+
+--- Comment #1 from Marcos Souza <marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+These doesn't appear anymore in later 4.8 versions.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14765038620.Cc6e.26729
-Date: Sat, 15 Oct 2016 03:57:42 +0000
+--14765043910.e4C8BA4b.27051
+Date: Sat, 15 Oct 2016 04:06:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,25 +62,58 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:marcos.so=
+uza.org&#64;gmail.com" title=3D"Marcos Souza &lt;marcos.souza.org&#64;gmail=
+.com&gt;"> <span class=3D"fn">Marcos Souza</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - NVD7: new warnings on kernel 4.6.3 using =
+nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96924">bug 96924<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WORKSFORME
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Geforce GTX 960: display corruption under KDE Plasma"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98266#c2">Comment=
- # 2</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - NVD7: new warnings on kernel 4.6.3 using =
+nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96924#c1">Comment=
+ # 1</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Geforce GTX 960: display corruption under KDE Plasma"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98266">bug 98266<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - NVD7: new warnings on kernel 4.6.3 using =
+nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96924">bug 96924<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-peter.eszlari&#64;gmail.com" title=3D"peter.eszlari&#64;gmail.com">peter.es=
-zlari&#64;gmail.com</a>
+marcos.souza.org&#64;gmail.com" title=3D"Marcos Souza &lt;marcos.souza.org&=
+#64;gmail.com&gt;"> <span class=3D"fn">Marcos Souza</span></a>
 </span></b>
-        <pre>I'm running on Kubuntu 16.10 with Xorg 1.18.4 and kernel 4.8.0=
-.</pre>
+        <pre>These doesn't appear anymore in later 4.8 versions.</pre>
         </div>
       </p>
 
@@ -84,14 +123,13 @@ zlari&#64;gmail.com</a>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14765038620.Cc6e.26729--
+--14765043910.e4C8BA4b.27051--
 
---===============0957206703==
+--===============0323024842==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +139,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0957206703==--
+--===============0323024842==--
