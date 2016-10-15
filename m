@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98266] Geforce GTX 960: display corruption under KDE
 	Plasma
-Date: Fri, 14 Oct 2016 18:52:54 +0000
-Message-ID: <bug-98266-8800-XaYR4cbseB@http.bugs.freedesktop.org/>
+Date: Sat, 15 Oct 2016 03:57:43 +0000
+Message-ID: <bug-98266-8800-fN0l4jV7Bm@http.bugs.freedesktop.org/>
 References: <bug-98266-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1554042906=="
+Content-Type: multipart/mixed; boundary="===============0957206703=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98266-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1554042906==
-Content-Type: multipart/alternative; boundary="14764711740.Cb3671c.28829";
+--===============0957206703==
+Content-Type: multipart/alternative; boundary="14765038620.Cc6e.26729";
  charset="UTF-8"
 
 
---14764711740.Cb3671c.28829
-Date: Fri, 14 Oct 2016 18:52:54 +0000
+--14765038620.Cc6e.26729
+Date: Sat, 15 Oct 2016 03:57:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,16 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98266
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-What Xorg and kernel versions are you using?
+--- Comment #2 from peter.eszlari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I'm running on Kubuntu 16.10 with Xorg 1.18.4 and kernel 4.8.0.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14764711740.Cb3671c.28829
-Date: Fri, 14 Oct 2016 18:52:54 +0000
+--14765038620.Cc6e.26729
+Date: Sat, 15 Oct 2016 03:57:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,18 +62,19 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Geforce GTX 960: display corruption under KDE Plasma"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98266#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98266#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Geforce GTX 960: display corruption under KDE Plasma"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98266">bug 98266<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+peter.eszlari&#64;gmail.com" title=3D"peter.eszlari&#64;gmail.com">peter.es=
+zlari&#64;gmail.com</a>
 </span></b>
-        <pre>What Xorg and kernel versions are you using?</pre>
+        <pre>I'm running on Kubuntu 16.10 with Xorg 1.18.4 and kernel 4.8.0=
+.</pre>
         </div>
       </p>
 
@@ -88,9 +89,9 @@ imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
     </body>
 </html>=
 
---14764711740.Cb3671c.28829--
+--14765038620.Cc6e.26729--
 
---===============1554042906==
+--===============0957206703==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1554042906==--
+--===============0957206703==--
