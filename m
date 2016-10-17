@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98266] Geforce GTX 960: display corruption under KDE
-	Plasma
-Date: Mon, 17 Oct 2016 02:09:14 +0000
-Message-ID: <bug-98266-8800-7XWSzwsAgB@http.bugs.freedesktop.org/>
-References: <bug-98266-8800@http.bugs.freedesktop.org/>
+From: ben <benjaminscott-Og7d35KcFB1bTxZzi51Fyw@public.gmane.org>
+Subject: Nouveau on a Jetson TK1 problems
+Date: Sun, 16 Oct 2016 20:11:17 -0700
+Message-ID: <e880adbd-fe20-cb09-5da8-5a5775908557@centurylink.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0377572504=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98266-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,97 +18,63 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0377572504==
-Content-Type: multipart/alternative; boundary="14766701540.eA797.28690";
- charset="UTF-8"
-
-
---14766701540.eA797.28690
-Date: Mon, 17 Oct 2016 02:09:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98266
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I just published some patches that allow you to use xf86-video-nouveau inst=
-ead
-of modesetting for GM20x GPUs. Can you see if using it improves the situati=
-on
-at all? You can build it from
-
-https://github.com/imirkin/xf86-video-nouveau
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14766701540.eA797.28690
-Date: Mon, 17 Oct 2016 02:09:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Geforce GTX 960: display corruption under KDE Plasma"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98266#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Geforce GTX 960: display corruption under KDE Plasma"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98266">bug 98266<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>I just published some patches that allow you to use xf86-video=
--nouveau instead
-of modesetting for GM20x GPUs. Can you see if using it improves the situati=
-on
-at all? You can build it from
-
-<a href=3D"https://github.com/imirkin/xf86-video-nouveau">https://github.co=
-m/imirkin/xf86-video-nouveau</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14766701540.eA797.28690--
-
---===============0377572504==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0377572504==--
+SSBob3BlIHRoaXMgaXMgYSBnb29kIG1haWxpbmcgbGlzdCBmb3IgdGhpcyBwcm9ibGVtLiBJIGhh
+dmUgYSBKZXRzb24gVEsxIApib2FyZCBhbmQgSSBhbSB0cnlpbmcgdG8gZ2V0IHRoZSBub3V2ZWF1
+IGRyaXZlcnMgcnVubmluZyBvbiBpdCB3aXRob3V0IApzdWNjZXNzLiBJIGFtIHVzaW5nIHRoZSBm
+b2xsb3dpbmc6CgpOb3V2ZWF1IGxpbnV4IGtlcm5lbCA0LjguMC1yYzQrCk5vdXZlYXUgRFJNIGdp
+dCBtYXN0ZXIKeGY4Ni12aWRlby1ub3V2ZWF1IGdpdCBtYXN0ZXIKR251cm91IHhzZXJ2ZXIgIGdp
+dCBicmFuY2ggR0syMEEKCk15IGJhc2Ugc3lzdGVtIGlzIERlYmlhbi4KCldoZW4gSSB0cnkgdG8g
+c3RhcnQgWCBJIGdldDogIFg6IGRybW1vZGVfZGlzcGxheS5jOjc4MzogCmRybW1vZGVfY3J0Y19p
+bml0OiBBc3NlcnRpb24gYHJldCA9PSAwJyBmYWlsZWQuIFRoZXJlIGlzIGFsc28gYSBrZXJuZWwg
+CmxvZyBtZXNzYWdlOiBbZHJtXSBDYW5ub3QgZmluZCBhbnkgY3J0YyBvciBzaXplcyAtIGdvaW5n
+IDEwMjR4NzY4Cgpsc21vZCBzaG93czoKTW9kdWxlICAgICAgICAgICAgICAgICAgU2l6ZSAgVXNl
+ZCBieQpqb3lkZXYgICAgICAgICAgICAgICAgICA4OTYwICAwCmhpZF9nZW5lcmljICAgICAgICAg
+ICAgICA5MzIgIDAKdXNiaGlkICAgICAgICAgICAgICAgICA0Mjk2OSAgMApoaWQgICAgICAgICAg
+ICAgICAgICAgIDkwNzU3ICAyIGhpZF9nZW5lcmljLHVzYmhpZAphcHBsZXRhbGsgICAgICAgICAg
+ICAgIDI3MjAyICAwCnBzbmFwICAgICAgICAgICAgICAgICAgIDE5NzggIDEgYXBwbGV0YWxrCmxs
+YyAgICAgICAgICAgICAgICAgICAgIDM1NjMgIDEgcHNuYXAKYmluZm10X21pc2MgICAgICAgICAg
+ICAgOTE3OCAgMQpzbmRfaGRhX2NvZGVjX2hkbWkgICAgIDM3NzQ2ICAxCnNuZF9zb2NfdGVncmFf
+cnQ1NjQwICAgICA0MjE2ICAwCnNuZF9zb2NfdGVncmFfdXRpbHMgICAgIDI4ODkgIDEgc25kX3Nv
+Y190ZWdyYV9ydDU2NDAKc25kX3NvY19ydDU2NDAgICAgICAgICA2MjExMCAgMApzbmRfc29jX3Js
+NjIzMSAgICAgICAgICAyNTExICAxIHNuZF9zb2NfcnQ1NjQwCmV2ZGV2ICAgICAgICAgICAgICAg
+ICAgMTE3MTYgIDEKc25kX2hkYV90ZWdyYSAgICAgICAgICAgNTkwOCAgMApzbmRfaGRhX2NvZGVj
+ICAgICAgICAgIDk2MDQzICAyIHNuZF9oZGFfdGVncmEsc25kX2hkYV9jb2RlY19oZG1pCnNuZF9z
+b2NfY29yZSAgICAgICAgICAxNDMyNzEgIDIgc25kX3NvY190ZWdyYV9ydDU2NDAsc25kX3NvY19y
+dDU2NDAKc25kX3BjbV9kbWFlbmdpbmUgICAgICAgMzU4MyAgMSBzbmRfc29jX2NvcmUKc25kX2hk
+YV9jb3JlICAgICAgICAgICA1MDUxMiAgMyAKc25kX2hkYV9jb2RlYyxzbmRfaGRhX3RlZ3JhLHNu
+ZF9oZGFfY29kZWNfaGRtaQpzbmRfaHdkZXAgICAgICAgICAgICAgICA1NzkxICAxIHNuZF9oZGFf
+Y29kZWMKc2cgICAgICAgICAgICAgICAgICAgICAyMjE5NSAgMApzbmRfcGNtICAgICAgICAgICAg
+ICAgIDc4NzU4ICA3IApzbmRfaGRhX2NvZGVjLHNuZF9oZGFfdGVncmEsc25kX3BjbV9kbWFlbmdp
+bmUsc25kX2hkYV9jb3JlLHNuZF9zb2NfcnQ1Ngo0MCxzbmRfaGRhX2NvZGVjX2hkbWksc25kX3Nv
+Y19jb3JlCmF0MjQgICAgICAgICAgICAgICAgICAgIDc2NDkgIDAKc25kX3RpbWVyICAgICAgICAg
+ICAgICAxOTQ0NSAgMSBzbmRfcGNtCnNuZCAgICAgICAgICAgICAgICAgICAgNTQyODkgIDcgCnNu
+ZF9od2RlcCxzbmRfaGRhX2NvZGVjLHNuZF9oZGFfdGVncmEsc25kX3RpbWVyLHNuZF9oZGFfY29k
+ZWNfaGRtaSxzbmRfCnNvY19jb3JlLHNuZF9wY20Kbm91dmVhdSAgICAgICAgICAgICAgMTQ4MDk0
+MSAgMApzb3VuZGNvcmUgICAgICAgICAgICAgICA1Mjk2ICAxIHNuZApudm1lbV9jb3JlICAgICAg
+ICAgICAgICA5MDAwICAxIGF0MjQKcjgxNjkgICAgICAgICAgICAgICAgICA3ODgzOSAgMAp0ZWdy
+YV9kcm0gICAgICAgICAgICAgMTQyMzA4ICAxCm1paSAgICAgICAgICAgICAgICAgICAgIDQxMDIg
+IDEgcjgxNjkKdHRtICAgICAgICAgICAgICAgICAgICA3MzY4MyAgMSBub3V2ZWF1CmRybV9rbXNf
+aGVscGVyICAgICAgICAxMTYzNTEgIDIgdGVncmFfZHJtLG5vdXZlYXUKZHJtICAgICAgICAgICAg
+ICAgICAgIDI3MTQ4NSAgNSB0ZWdyYV9kcm0sbm91dmVhdSx0dG0sZHJtX2ttc19oZWxwZXIKaG9z
+dDF4ICAgICAgICAgICAgICAgICA5MzUyOSAgMSB0ZWdyYV9kcm0KdGVncmFfZGV2ZnJlcSAgICAg
+ICAgICAgNTg4NyAgMAppcF90YWJsZXMgICAgICAgICAgICAgIDExODQ5ICAwCnhfdGFibGVzICAg
+ICAgICAgICAgICAgMTQ3MzYgIDEgaXBfdGFibGVzCmF1dG9mczQgICAgICAgICAgICAgICAgMzIz
+NjcgIDIKZXh0NCAgICAgICAgICAgICAgICAgIDUzMDkwMiAgMgpjcmMxNiAgICAgICAgICAgICAg
+ICAgICAxMjc0ICAxIGV4dDQKamJkMiAgICAgICAgICAgICAgICAgICA4OTg3OCAgMSBleHQ0Cm1i
+Y2FjaGUgICAgICAgICAgICAgICAgIDUzMTYgIDMgZXh0NApzZF9tb2QgICAgICAgICAgICAgICAg
+IDMyNjAzICAzCmVoY2lfdGVncmEgICAgICAgICAgICAgIDYxMDIgIDAKYWhjaV90ZWdyYSAgICAg
+ICAgICAgICAgMzcwNyAgMgpsaWJhaGNpX3BsYXRmb3JtICAgICAgICA2NDMwICAxIGFoY2lfdGVn
+cmEKbGliYWhjaSAgICAgICAgICAgICAgICAyMjk5MyAgMiBsaWJhaGNpX3BsYXRmb3JtLGFoY2lf
+dGVncmEKZWhjaV9oY2QgICAgICAgICAgICAgICA2NTM1MSAgMSBlaGNpX3RlZ3JhCmxpYmF0YSAg
+ICAgICAgICAgICAgICAxODk0OTcgIDMgbGliYWhjaV9wbGF0Zm9ybSxsaWJhaGNpLGFoY2lfdGVn
+cmEKdXNiY29yZSAgICAgICAgICAgICAgIDE5NTI5NSAgMyBlaGNpX3RlZ3JhLHVzYmhpZCxlaGNp
+X2hjZApwaHlfdGVncmFfdXNiICAgICAgICAgICA4ODQxICAzIGVoY2lfdGVncmEKdXNiX2NvbW1v
+biAgICAgICAgICAgICAgMzY1OSAgMiBwaHlfdGVncmFfdXNiLHVzYmNvcmUKc2RoY2lfdGVncmEg
+ICAgICAgICAgICAgNTEwMyAgMApzZGhjaV9wbHRmbSAgICAgICAgICAgICAzMzM4ICAxIHNkaGNp
+X3RlZ3JhCnBoeV90ZWdyYV94dXNiICAgICAgICAgMjgwNjIgIDAKc2RoY2kgICAgICAgICAgICAg
+ICAgICAzODQyOCAgMiBzZGhjaV9wbHRmbSxzZGhjaV90ZWdyYQpzY3NpX21vZCAgICAgICAgICAg
+ICAgMTg2MzEzICAzIHNkX21vZCxsaWJhdGEsc2cKCgpBbnkgaGVscCB3b3VsZCBiZSBtb3N0IGFw
+cHJlY2lhdGVkLiBUaGFuayB5b3UuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
