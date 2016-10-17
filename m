@@ -1,69 +1,116 @@
-From: Ard Biesheuvel <ard.biesheuvel@linaro.org>
-Subject: Re: [PATCH v5 0/3] drm/nouveau: set DMA mask before mapping scratch page
-Date: Sun, 16 Oct 2016 21:12:48 +0100
-Message-ID: <CAKv+Gu9UEOCQpU18X-x8z5HeJoxe24uD8R6nHXrAKj9wPyQ7hg@mail.gmail.com>
-References: <1475768970-32512-1-git-send-email-ard.biesheuvel@linaro.org> <CAAVeFuKJ-Qmdnz1kmDtqo+P6m+aGW+DzVDkVTn+9ZLP94zO5dw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98266] Geforce GTX 960: display corruption under KDE
+	Plasma
+Date: Mon, 17 Oct 2016 02:09:14 +0000
+Message-ID: <bug-98266-8800-7XWSzwsAgB@http.bugs.freedesktop.org/>
+References: <bug-98266-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAAVeFuKJ-Qmdnz1kmDtqo+P6m+aGW+DzVDkVTn+9ZLP94zO5dw@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Alexandre Courbot <gnurou@gmail.com>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0377572504=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98266-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 7 October 2016 at 09:12, Alexandre Courbot <gnurou@gmail.com> wrote:
-> On Fri, Oct 7, 2016 at 12:49 AM, Ard Biesheuvel
-> <ard.biesheuvel@linaro.org> wrote:
->> This v4 is now a 3 piece series (since v4), after Alexandre pointed out that
->> both GF 100 and NV50 are affected by the same issue, and that a related issue
->> has been solved already for Tegra in commit 9d0394c6bed5
->> ("drm/nouveau/instmem/gk20a: set DMA mask early").
->>
->> The issue that this series addresses is the fact that the Nouveau driver
->> invokes the DMA API before setting the DMA mask. In both cases addressed
->> here, these are simply static bidirectional mappings of scratch pages whose
->> purpose is not well understood, and in most cases, it does not matter that
->> these pages are always allocated below 4 GB even if the hardware can access
->> memory much higher up.
->>
->> However, on platforms without any RAM below 4 GB, the preliminary DMA mask
->> of 32 is preventing the nouveau driver from loading on GF100 and NV50
->> hardware with an error like the following one:
->>
->>    nouveau 0000:02:00.0: enabling device (0000 -> 0003)
->>    nouveau 0000:02:00.0: NVIDIA GT218 (0a8280b1)
->>    nouveau 0000:02:00.0: bios: version 70.18.a6.00.00
->>    nouveau 0000:02:00.0: fb ctor failed, -14
->>    nouveau: probe of 0000:02:00.0 failed with error -14
->>
->> So fix this by setting a preliminary DMA mask based on the MMU device 'dma_bits'
->> property (patch #1), and postpone mapping the scratch pages to the respective
->> FB .init() hooks. (#2 and #3)
->>
->> v5: move setting of preliminary DMA mask to nvkm_device_pci_new() (#1)
->>     move allocation and DMA mapping of scratch pages to .oneinit hooks (#2, #3)
->> v4: split and move dma_set_mask to probe hook (Alexander)
->> v3: rework code to get rid of DMA_ERROR_CODE references, which is not
->>     defined on all architectures
->> v2: replace incorrect comparison of dma_addr_t type var against NULL
->>
->> Ard Biesheuvel (3):
->>   drm/nouveau: set streaming DMA mask early
->>   drm/nouveau/fb/gf100: defer DMA mapping of scratch page to oneinit()
->>     hook
->>   drm/nouveau/fb/nv50: defer DMA mapping of scratch page to oneinit()
->>     hook
->
-> The series,
->
-> Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
->
 
-Thank you Alexandre.
+--===============0377572504==
+Content-Type: multipart/alternative; boundary="14766701540.eA797.28690";
+ charset="UTF-8"
 
-So is there a nouveau subtree this should go into? Or is it up to Dave
-to pull it into drm?
 
-Regards,
-Ard.
+--14766701540.eA797.28690
+Date: Mon, 17 Oct 2016 02:09:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98266
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I just published some patches that allow you to use xf86-video-nouveau inst=
+ead
+of modesetting for GM20x GPUs. Can you see if using it improves the situati=
+on
+at all? You can build it from
+
+https://github.com/imirkin/xf86-video-nouveau
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14766701540.eA797.28690
+Date: Mon, 17 Oct 2016 02:09:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Geforce GTX 960: display corruption under KDE Plasma"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98266#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Geforce GTX 960: display corruption under KDE Plasma"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98266">bug 98266<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>I just published some patches that allow you to use xf86-video=
+-nouveau instead
+of modesetting for GM20x GPUs. Can you see if using it improves the situati=
+on
+at all? You can build it from
+
+<a href=3D"https://github.com/imirkin/xf86-video-nouveau">https://github.co=
+m/imirkin/xf86-video-nouveau</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14766701540.eA797.28690--
+
+--===============0377572504==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0377572504==--
