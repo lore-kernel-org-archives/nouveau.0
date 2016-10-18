@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92961] Xorg freezes (only mouse and ssh are still
 	working)
-Date: Tue, 18 Oct 2016 16:24:36 +0000
-Message-ID: <bug-92961-8800-m0rKiRD1EF@http.bugs.freedesktop.org/>
+Date: Tue, 18 Oct 2016 16:33:03 +0000
+Message-ID: <bug-92961-8800-OoSjSadvMN@http.bugs.freedesktop.org/>
 References: <bug-92961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0872134109=="
+Content-Type: multipart/mixed; boundary="===============1053855513=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0872134109==
-Content-Type: multipart/alternative; boundary="14768078760.A1537deff.2159";
+--===============1053855513==
+Content-Type: multipart/alternative; boundary="14768083830.0e790.2854";
  charset="UTF-8"
 
 
---14768078760.A1537deff.2159
-Date: Tue, 18 Oct 2016 16:24:36 +0000
+--14768083830.0e790.2854
+Date: Tue, 18 Oct 2016 16:33:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,16 +36,28 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D92961
 
---- Comment #11 from Marcelo Jimenez <marcelo.jimenez-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Previously reported here: https://bugzilla.suse.com/show_bug.cgi?id=3D10043=
-11
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Marcelo Jimenez from comment #7)
+> The freeze happens at random times, there is no particular sequence to
+> produce it. I use KDE on opensuse 42.1.
+
+A number of users have been experiencing issues with KDE across a variety of
+hardware with nouveau. My current advice is to either not use KDE or not use
+nouveau_dri.so. [It's most likely not KDE's fault, but this is the present
+reality.]
+
+Separately, OpenSuSE included some patches of mine in their Mesa builds that
+address some but hardly all of the issues involved. I believe the approach =
+to
+be fundamentally flawed and in need of redoing. (The latest may be that they
+have dropped those.)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14768078760.A1537deff.2159
-Date: Tue, 18 Oct 2016 16:24:36 +0000
+--14768083830.0e790.2854
+Date: Tue, 18 Oct 2016 16:33:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,20 +74,33 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961#c11">Commen=
-t # 11</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961#c12">Commen=
+t # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961">bug 92961<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-marcelo.jimenez&#64;gmail.com" title=3D"Marcelo Jimenez &lt;marcelo.jimenez=
-&#64;gmail.com&gt;"> <span class=3D"fn">Marcelo Jimenez</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Previously reported here: <a href=3D"https://bugzilla.suse.com=
-/show_bug.cgi?id=3D1004311">https://bugzilla.suse.com/show_bug.cgi?id=3D100=
-4311</a></pre>
+        <pre>(In reply to Marcelo Jimenez from <a href=3D"show_bug.cgi?id=
+=3D92961#c7">comment #7</a>)
+<span class=3D"quote">&gt; The freeze happens at random times, there is no =
+particular sequence to
+&gt; produce it. I use KDE on opensuse 42.1.</span >
+
+A number of users have been experiencing issues with KDE across a variety of
+hardware with nouveau. My current advice is to either not use KDE or not use
+nouveau_dri.so. [It's most likely not KDE's fault, but this is the present
+reality.]
+
+Separately, OpenSuSE included some patches of mine in their Mesa builds that
+address some but hardly all of the issues involved. I believe the approach =
+to
+be fundamentally flawed and in need of redoing. (The latest may be that they
+have dropped those.)</pre>
         </div>
       </p>
 
@@ -89,9 +114,9 @@ marcelo.jimenez&#64;gmail.com" title=3D"Marcelo Jimenez &lt;marcelo.jimenez=
     </body>
 </html>=
 
---14768078760.A1537deff.2159--
+--14768083830.0e790.2854--
 
---===============0872134109==
+--===============1053855513==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0872134109==--
+--===============1053855513==--
