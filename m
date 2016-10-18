@@ -1,15 +1,13 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: NVAC "No Signal"
-Date: Tue, 18 Oct 2016 16:02:07 +0200
-Message-ID: <CAEXux-Zr9SaRgSoVGCJKGO59CNYqq1MEwTo1ib23dCD+rxebjw@mail.gmail.com>
-References: <1de93d48-bc1c-bab4-11c4-395bfdfba7bb@gmail.com>
- <CAEXux-ZHdmop1c8F3FGRzAa_otwVjHUsT7OCVg6ObP_dg-Pcdw@mail.gmail.com>
- <90c3d7fc-16c9-bc81-8812-a9a1e86415dc@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92961] Xorg freezes (only mouse and ssh are still
+	working)
+Date: Tue, 18 Oct 2016 16:21:26 +0000
+Message-ID: <bug-92961-8800-n3lFxrUg1T@http.bugs.freedesktop.org/>
+References: <bug-92961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1329061877=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <90c3d7fc-16c9-bc81-8812-a9a1e86415dc-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-92961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,40 +17,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-d2VsbCwgSSBqdXN0IGRvbid0IHdhbnQgdGhhdCB0aGlzIGZpeCBicmVha3MgdGhlIHNhbWUgdGhp
-bmcgZm9yIG90aGVyCnVzZXJzLCB0aGF0J3Mgd2h5IEkgYW0gYXNraW5nLgoKMjAxNi0xMC0xOCAx
-Mzo1NiBHTVQrMDI6MDAgcG9tYSA8cG9taWRvcmFiZWxpc2ltYUBnbWFpbC5jb20+Ogo+IE9uIDE4
-LjEwLjIwMTYgMDk6MzUsIEthcm9sIEhlcmJzdCB3cm90ZToKPj4gaG93IHN1cmUgYXJlIHlvdSwg
-dGhhdCB0aGlzIGlzIG5lZWRlZCBmb3IgX2V2ZXJ5XyBudmFjPwo+Pgo+Cj4gVGhhbmsgeW91IGZv
-ciBhc2tpbmcuCj4KPiBJZiB5b3UgY29uc2lkZXIsIGFzIHJlbGV2YW50LAo+IHJlZmVycmluZyB0
-byB0aGUgb3JpZ2luYWwgY29tbWl0Ogo+ICJkcm0vbm91dmVhdS9kaXNwL2c5NDogaW1wbGVtZW50
-IHdvcmthcm91bmQgZm9yIGR2aSBpc3N1ZSBvbiBmeDM4MCIKPiBodHRwczovL2dpdC5rZXJuZWwu
-b3JnL2NnaXQvbGludXgva2VybmVsL2dpdC90b3J2YWxkcy9saW51eC5naXQvY29tbWl0Lz9pZD0y
-YTRiZDhhCj4gPHF1b3RlPgo+IEZpeGVzIHRoZSBzZWNvbmQgRFZJIG91dHB1dCBvbiBRdWFkcm8g
-RlgzODAuCj4gVGhhbmtzIHRvIE5WSURJQSBmb3IgcHJvdmlkaW5nIHRoZSBkZXRhaWxzIG9uIHRo
-ZSBmdWxsIHdvcmthcm91bmQuCj4KPiBbLi4uXQo+ICsgICAgICAgc3dpdGNoIChkZXZpY2UtPmNo
-aXBzZXQpIHsKPiArICAgICAgIGNhc2UgMHg5NDoKPiArICAgICAgIGNhc2UgMHg5NjoKPiArICAg
-ICAgIGNhc2UgMHg5ODoKPiArICAgICAgIGNhc2UgMHhhYToKPiArICAgICAgIGNhc2UgMHhhYzoK
-PiArICAgICAgICAgICAgICAgcmV0dXJuIHRydWU7Cj4gWy4uLl0KPiA8L3F1b3RlPgo+Cj4gYW5k
-IHRvIFF1YWRybyBGWDM4MCBhcyBkZWZpbmVkOgo+Cj4gMS4gaHR0cHM6Ly9ub3V2ZWF1LmZyZWVk
-ZXNrdG9wLm9yZy93aWtpL0NvZGVOYW1lcy8jTlY1MAo+ICAgIE5WOTYgKEc5NikgLi4uCj4KPiAy
-LiBodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9OdmlkaWFfUXVhZHJvCj4gICAgRzk2IC4u
-LiBHZUZvcmNlIDk0MDAgYmFzZWQKPgo+IDMuIGh0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy93aWtp
-L0xpc3Rfb2ZfTnZpZGlhX2dyYXBoaWNzX3Byb2Nlc3NpbmdfdW5pdHMjUXVhZHJvX0ZYXy4yOHg4
-MDAuMjlfc2VyaWVzCj4gICAgRzk2IC4uLgo+Cj4KPiBUaGUgcmlnaHQgcXVlc3Rpb24gd291bGQg
-YmUsCj4gZm9yIHlvdSBLYXJvbCwgQmVuIGFuZCBwZXJoYXBzIHRoZSBvbmVzIGZyb20gdGhlIE5W
-SURJQSAtIHRob3NlIHRvIHdoaWNoIEJlbiByZWZlcnMsCj4KPiB3aGV0aGVyIGRldmljZS0+Y2hp
-cHNldDoKPiArICAgICAgIGNhc2UgMHg5NDoKPiArICAgICAgIGNhc2UgMHg5ODoKPiArICAgICAg
-IGNhc2UgMHhhYToKPiArICAgICAgIGNhc2UgMHhhYzoKPiBhcmUgcmVkdW5kYW50LCBpbiB0aGUg
-Zmlyc3QgcGxhY2U/Cj4KPiBNb3Jlb3ZlciwgZXZlbiBpZiBjYXNlIDB4OTYgYXBwbGllcyBvbmx5
-LAo+IGhvdyBzdXJlIGFyZSAteW91LSwgdGhhdCB0aGlzIGlzIG5lZWRlZCBmb3IgX2V2ZXJ5XyBu
-djk2Pwo+Cj4gQW5kIGdpdmVuIHRoYXQgSSBhbSBoZXJlIG9ubHkgdGhlIHVzZXIsIHdobyBpcyBv
-bmx5IGNhcmluZyBmb3IgbXkgaGFyZHdhcmUsCj4gSSBjYW4gb25seSBhcHByZWNpYXRlIHlvdXIg
-c2Vuc2Ugb2YgaHVtb3IuIDspCj4KPgo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQo=
+
+--===============1329061877==
+Content-Type: multipart/alternative; boundary="14768076860.7C8A.2213";
+ charset="UTF-8"
+
+
+--14768076860.7C8A.2213
+Date: Tue, 18 Oct 2016 16:21:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92961
+
+--- Comment #7 from Marcelo Jimenez <marcelo.jimenez-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Recently I had to switch to nouveau due to a problem with the official nvid=
+ia
+drivers, and I have been experiencing ramdom gui freezes. The mouse still m=
+oves
+on the screen, but I cannot interact with the gui.
+
+The nvidia modules are NOT installed in the system.
+
+I usually can connect via ssh and reboot the machine.
+
+The freeze happens at random times, there is no particular sequence to prod=
+uce
+it. I use KDE on opensuse 42.1.
+
+lspci is:
+01:00.0 VGA compatible controller: NVIDIA Corporation GF108 [GeForce GT 730]
+(rev a1)
+
+I will attach the pertinent kernel logs.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14768076860.7C8A.2213
+Date: Tue, 18 Oct 2016 16:21:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961">bug 92961<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+marcelo.jimenez&#64;gmail.com" title=3D"Marcelo Jimenez &lt;marcelo.jimenez=
+&#64;gmail.com&gt;"> <span class=3D"fn">Marcelo Jimenez</span></a>
+</span></b>
+        <pre>Recently I had to switch to nouveau due to a problem with the =
+official nvidia
+drivers, and I have been experiencing ramdom gui freezes. The mouse still m=
+oves
+on the screen, but I cannot interact with the gui.
+
+The nvidia modules are NOT installed in the system.
+
+I usually can connect via ssh and reboot the machine.
+
+The freeze happens at random times, there is no particular sequence to prod=
+uce
+it. I use KDE on opensuse 42.1.
+
+lspci is:
+01:00.0 VGA compatible controller: NVIDIA Corporation GF108 [GeForce GT 730]
+(rev a1)
+
+I will attach the pertinent kernel logs.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14768076860.7C8A.2213--
+
+--===============1329061877==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1329061877==--
