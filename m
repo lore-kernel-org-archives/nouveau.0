@@ -1,13 +1,15 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: NVAC "No Signal"
-Date: Tue, 18 Oct 2016 09:35:06 +0200
-Message-ID: <CAEXux-ZHdmop1c8F3FGRzAa_otwVjHUsT7OCVg6ObP_dg-Pcdw@mail.gmail.com>
-References: <1de93d48-bc1c-bab4-11c4-395bfdfba7bb@gmail.com>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 5/5] recognize and accelerate GM20x
+Date: Tue, 18 Oct 2016 18:19:49 +0900
+Message-ID: <CAAVeFuLEwcyJEjShVVp1cqRdrXbk7SHEJf+otqQqu5CkPr3-dg@mail.gmail.com>
+References: <1476645274-9939-1-git-send-email-imirkin@alum.mit.edu>
+ <1476645274-9939-5-git-send-email-imirkin@alum.mit.edu>
+ <ca9bc26d-f9b4-9cd9-17b8-e8f0a087db91@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1de93d48-bc1c-bab4-11c4-395bfdfba7bb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <ca9bc26d-f9b4-9cd9-17b8-e8f0a087db91-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,35 +19,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-aG93IHN1cmUgYXJlIHlvdSwgdGhhdCB0aGlzIGlzIG5lZWRlZCBmb3IgX2V2ZXJ5XyBudmFjPwoK
-MjAxNi0xMC0xOCA1OjU1IEdNVCswMjowMCBwb21hIDxwb21pZG9yYWJlbGlzaW1hQGdtYWlsLmNv
-bT46Cj4gRml4ZXMgIk5vIFNpZ25hbCIgdmlhIEhETUkgZnJvbSBOVklESUEgQ29ycG9yYXRpb24g
-SU9OIFZHQSAocmV2IGIxKQo+Cj4gUmVmLgo+ICJkcm0vbm91dmVhdS9kaXNwL2c5NDogaW1wbGVt
-ZW50IHdvcmthcm91bmQgZm9yIGR2aSBpc3N1ZSBvbiBmeDM4MCIKPiBodHRwczovL2dpdC5rZXJu
-ZWwub3JnL2NnaXQvbGludXgva2VybmVsL2dpdC90b3J2YWxkcy9saW51eC5naXQvY29tbWl0Lz9p
-ZD0yYTRiZDhhCj4KPiBUaGUgbGFzdCB3b3JraW5nIEZlZG9yYSBrZXJuZWwgNC44LjAtMC5yYzAu
-Z2l0My4xLmZjMjUKPgo+IFBhdGNoZWQgYW5kIHRlc3RlZCB3aXRoOgo+ICQgbW9kaW5mbyAtbiBu
-b3V2ZWF1Cj4gL2xpYi9tb2R1bGVzLzQuOC4yLTMwMC5mYzI1Lng4Nl82NC91cGRhdGVzL25vdXZl
-YXUua28KPgo+IFRlc3RlZC1ieTogcG9tYSA8cG9tYUBnbWFpbC5jb20+Cj4gLS0tCj4gIGRyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvbnY1MC5jIHwgMyArKy0KPiAgMSBm
-aWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvbnY1MC5jIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9udjUwLmMKPiBpbmRleCBmYmI4
-YzdkLi5jOWU0MGU3IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
-ZW5naW5lL2Rpc3AvbnY1MC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9l
-bmdpbmUvZGlzcC9udjUwLmMKPiBAQCAtNDM0LDcgKzQzNCw4IEBAIG52NTBfZGlzcF9kcHRtZHNf
-d2FyKHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlKQo+ICAgICAgICAgY2FzZSAweDk2Ogo+ICAg
-ICAgICAgY2FzZSAweDk4Ogo+ICAgICAgICAgY2FzZSAweGFhOgo+IC0gICAgICAgY2FzZSAweGFj
-Ogo+ICsvKiBOVklESUEgTUNQNzkvTUNQN0EgIk5vIFNpZ25hbCIgKi8KPiArLyogICAgIGNhc2Ug
-MHhhYzogICAgICAgICAgICAgICAgKi8KPiAgICAgICAgICAgICAgICAgcmV0dXJuIHRydWU7Cj4g
-ICAgICAgICBkZWZhdWx0Ogo+ICAgICAgICAgICAgICAgICBicmVhazsKPiAtLQo+IDIuNy40Cj4g
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1
-IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+T24gTW9uLCBPY3QgMTcsIDIwMTYgYXQgNjo0NyBQTSwgU2FtdWVsIFBpdG9pc2V0CjxzYW11ZWwu
+cGl0b2lzZXRAZ21haWwuY29tPiB3cm90ZToKPiBUaGlzIHJlcXVpcmVzIGF0IGxlYXN0IGEgcXVp
+Y2sgdGVzdC4gOi0pCj4KPiBBY2tlZC1ieTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lz
+ZXRAZ21haWwuY29tPgo+Cj4KPiBPbiAxMC8xNi8yMDE2IDA5OjE0IFBNLCBJbGlhIE1pcmtpbiB3
+cm90ZToKPj4KPj4gU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
+ZWR1Pgo+PiAtLS0KPj4KPj4gVW50ZXN0ZWQuIEkgZG9uJ3QgaGF2ZSB0aGUgaGFyZHdhcmUuCgpU
+ZXN0ZWQgb24gR00yMDYsIHdvcmtpbmcgZ3JlYXQgc28gZmFyIQoKVGhlIHNlcmllczoKVGVzdGVk
+LWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
