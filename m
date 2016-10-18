@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92961] Xorg freezes (only mouse and ssh are still
 	working)
-Date: Tue, 18 Oct 2016 16:23:09 +0000
-Message-ID: <bug-92961-8800-ogTjn0isxe@http.bugs.freedesktop.org/>
+Date: Tue, 18 Oct 2016 16:23:35 +0000
+Message-ID: <bug-92961-8800-ZyFguLFNaR@http.bugs.freedesktop.org/>
 References: <bug-92961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1431807521=="
+Content-Type: multipart/mixed; boundary="===============1629727688=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1431807521==
-Content-Type: multipart/alternative; boundary="14768077892.eC3Ec.2473";
+--===============1629727688==
+Content-Type: multipart/alternative; boundary="14768078153.eE90.2281";
  charset="UTF-8"
 
 
---14768077892.eC3Ec.2473
-Date: Tue, 18 Oct 2016 16:23:09 +0000
+--14768078153.eE90.2281
+Date: Tue, 18 Oct 2016 16:23:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D92961
 
---- Comment #9 from Marcelo Jimenez <marcelo.jimenez-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 127380
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127380&action=3Dedit
-Kernel log 2
+--- Comment #10 from Marcelo Jimenez <marcelo.jimenez-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 127381
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127381&action=3Dedit
+Kernel log 3
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14768077892.eC3Ec.2473
-Date: Tue, 18 Oct 2016 16:23:09 +0000
+--14768078153.eE90.2281
+Date: Tue, 18 Oct 2016 16:23:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961#c9">Comment=
- # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
@@ -74,11 +74,11 @@ Auto-Submitted: auto-generated
 marcelo.jimenez&#64;gmail.com" title=3D"Marcelo Jimenez &lt;marcelo.jimenez=
 &#64;gmail.com&gt;"> <span class=3D"fn">Marcelo Jimenez</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127380=
-" name=3D"attach_127380" title=3D"Kernel log 2">attachment 127380</a> <a hr=
-ef=3D"attachment.cgi?id=3D127380&amp;action=3Dedit" title=3D"Kernel log 2">=
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127381=
+" name=3D"attach_127381" title=3D"Kernel log 3">attachment 127381</a> <a hr=
+ef=3D"attachment.cgi?id=3D127381&amp;action=3Dedit" title=3D"Kernel log 3">=
 [details]</a></span>
-Kernel log 2</pre>
+Kernel log 3</pre>
         </div>
       </p>
 
@@ -92,9 +92,9 @@ Kernel log 2</pre>
     </body>
 </html>=
 
---14768077892.eC3Ec.2473--
+--14768078153.eE90.2281--
 
---===============1431807521==
+--===============1629727688==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1431807521==--
+--===============1629727688==--
