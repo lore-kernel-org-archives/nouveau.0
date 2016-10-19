@@ -1,16 +1,16 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH 5/5] recognize and accelerate GM20x
-Date: Wed, 19 Oct 2016 15:19:37 +0300
-Message-ID: <7a25ec70-1c89-ac34-2a74-fbd28475be9f@free.fr>
-References: <1476645274-9939-1-git-send-email-imirkin@alum.mit.edu>
- <1476645274-9939-5-git-send-email-imirkin@alum.mit.edu>
- <ca9bc26d-f9b4-9cd9-17b8-e8f0a087db91@gmail.com>
- <CAAVeFuLEwcyJEjShVVp1cqRdrXbk7SHEJf+otqQqu5CkPr3-dg@mail.gmail.com>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: NVAC "No Signal"
+Date: Wed, 19 Oct 2016 16:47:54 +0200
+Message-ID: <1f02c18b-e472-e3bc-9302-646d20e59d46@gmail.com>
+References: <1de93d48-bc1c-bab4-11c4-395bfdfba7bb@gmail.com>
+ <CAEXux-ZHdmop1c8F3FGRzAa_otwVjHUsT7OCVg6ObP_dg-Pcdw@mail.gmail.com>
+ <90c3d7fc-16c9-bc81-8812-a9a1e86415dc@gmail.com>
+ <CAEXux-Zr9SaRgSoVGCJKGO59CNYqq1MEwTo1ib23dCD+rxebjw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFuLEwcyJEjShVVp1cqRdrXbk7SHEJf+otqQqu5CkPr3-dg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAEXux-Zr9SaRgSoVGCJKGO59CNYqq1MEwTo1ib23dCD+rxebjw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +20,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gMTgvMTAvMTYgMTI6MTksIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+IE9uIE1vbiwgT2N0
-IDE3LCAyMDE2IGF0IDY6NDcgUE0sIFNhbXVlbCBQaXRvaXNldAo+IDxzYW11ZWwucGl0b2lzZXRA
-Z21haWwuY29tPiB3cm90ZToKPj4gVGhpcyByZXF1aXJlcyBhdCBsZWFzdCBhIHF1aWNrIHRlc3Qu
-IDotKQo+Pgo+PiBBY2tlZC1ieTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lzZXRAZ21h
-aWwuY29tPgo+Pgo+Pgo+PiBPbiAxMC8xNi8yMDE2IDA5OjE0IFBNLCBJbGlhIE1pcmtpbiB3cm90
-ZToKPj4+IFNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4K
-Pj4+IC0tLQo+Pj4KPj4+IFVudGVzdGVkLiBJIGRvbid0IGhhdmUgdGhlIGhhcmR3YXJlLgo+IFRl
-c3RlZCBvbiBHTTIwNiwgd29ya2luZyBncmVhdCBzbyBmYXIhCj4KPiBUaGUgc2VyaWVzOgo+IFRl
-c3RlZC1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+CldoYXQgYWJv
-dXQgdGhlIGdseXBoIGlzc3VlcyB5b3UgcmVwb3J0ZWQ/IEZpeGVkIGJ5IGEgbmV3IHZlcnNpb24/
-CgpNYXJ0aW4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+T24gMTguMTAuMjAxNiAxNjowMiwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+IHdlbGwsIEkganVzdCBk
+b24ndCB3YW50IHRoYXQgdGhpcyBmaXggYnJlYWtzIHRoZSBzYW1lIHRoaW5nIGZvciBvdGhlcgo+
+IHVzZXJzLCB0aGF0J3Mgd2h5IEkgYW0gYXNraW5nLgo+IAoKQWZmZWN0ZWQgZGV2aWNlIElEOgpo
+dHRwczovL2dpdGh1Yi5jb20vc2tlZ2dzYi9ub3V2ZWF1L2Jsb2IvbWFzdGVyL2RybS9ub3V2ZWF1
+L252a20vZW5naW5lL2RldmljZS9wY2kuYyNMMTIyOQpjYW4gaXQgYmUgZXhjbHVkZWQgZnJvbSBk
+ZXZpY2UtPmNoaXBzZXQgY2FzZSAweGFjID8KCkNhcmUgdG8gY3JlYXRlIGEgcGF0Y2g/CkknbGwg
+dGVzdCBpdC4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
