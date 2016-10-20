@@ -1,21 +1,13 @@
-From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Subject: Re: NVAC "No Signal"
-Date: Thu, 20 Oct 2016 10:08:28 +0200
-Message-ID: <20161020080828.GA3285@wunner.de>
-References: <1de93d48-bc1c-bab4-11c4-395bfdfba7bb@gmail.com>
- <CAEXux-ZHdmop1c8F3FGRzAa_otwVjHUsT7OCVg6ObP_dg-Pcdw@mail.gmail.com>
- <90c3d7fc-16c9-bc81-8812-a9a1e86415dc@gmail.com>
- <CAEXux-Zr9SaRgSoVGCJKGO59CNYqq1MEwTo1ib23dCD+rxebjw@mail.gmail.com>
- <1f02c18b-e472-e3bc-9302-646d20e59d46@gmail.com>
- <CAEXux-a=F+AAr--rf8Dk_Cekcfk7yFF49mK4tW6MH4Xv=-2puA@mail.gmail.com>
- <07fa54e9-1a6f-de75-52ee-cc8aee96a541@gmail.com>
- <20161019175806.uqksdyiyr3dpkzu3@pmoreau.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 97462] Graphics deadlock "ILLEGAL_MTHD" in nouveau
+ with mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5
+Date: Thu, 20 Oct 2016 09:38:19 +0000
+Message-ID: <bug-97462-8800-lpMDssCO7m@http.bugs.freedesktop.org/>
+References: <bug-97462-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0302539588=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20161019175806.uqksdyiyr3dpkzu3-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
+In-Reply-To: <bug-97462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -25,27 +17,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBPY3QgMTksIDIwMTYgYXQgMDc6NTg6MDZQTSArMDIwMCwgUGllcnJlIE1vcmVhdSB3
-cm90ZToKPiBGb3IgZXhhbXBsZSwgbXkgbGFwdG9wICh3aGljaCBhbHNvIGhhcyBhbiBOVkFDKSBo
-YXMgYmVlbiB0cmlnZ2VyaW5nIHRoZQo+IG5vLXNpZ25hbCBtZXNzYWdlIG9uIGV4dGVybmFsIG1v
-bml0b3JzIHdheSBiZWZvcmUgQmVuPz8/cyBwYXRjaCBsYW5kZWQsCj4gYnV0IG9ubHkgZm9yIHNv
-bWUgYWRhcHRlcnMuIEkgaGF2ZW4/Pz90IHRyaWVkIEJlbj8/P3MgcGF0Y2ggeWV0LCBub3IKPiB5
-b3VycywgYnV0IEkgd2lsbCBjZXJ0YWlubHkgZG8gaXQsIGFuZCBzZWUgd2hhdCBlZmZlY3QgZWFj
-aCBvZiB0aGVtIGhhcy4KClRoZSBleHRlcm5hbCBEUCBwb3J0IG9uIHlvdXIgTUJQNSwzIGlzIHN3
-aXRjaGFibGUgYmV0d2VlbiBHUFVzIGFuZAp0aGUgYXBwbGUtZ211eCBkcml2ZXIgc3dpdGNoZXMg
-aXQgaW4gdW5pc29uIHdpdGggdGhlIHBhbmVsLiAgVGh1cwp0aGUgTlZBQyBjYW5ub3QgZHJpdmUg
-ZXh0ZXJuYWwgZGlzcGxheXMgd2hlbiBnbXV4IGlzIHN3aXRjaGVkIHRvCnRoZSBNQ1A3OS4gIChZ
-b3UgcHJvYmFibHkgd2VyZSBhd2FyZSBvZiB0aGlzLCBqdXN0IHdhbnRlZCB0byBtZW50aW9uCml0
-IGluIGNhc2UgeW91IHdlcmVuJ3QuKSAgKEluIHRoZW9yeSB3ZSBjb3VsZCBjaGFuZ2UgdmdhX3N3
-aXRjaGVyb28KYW5kIGFwcGxlLWdtdXggdG8gc3VwcG9ydCBzd2l0Y2hpbmcgdGhlIHBhbmVsIGFu
-ZCB0aGUgZXh0ZXJuYWwgcG9ydApzZXBhcmF0ZWx5IHJhdGhlciB0aGFuIGluIHVuaXNvbiBpZiB0
-aGVyZSBpcyBkZW1hbmQuICBJdCdzIG9ubHkKc3VwcG9ydGVkIG9uIE1CUHMgaW50cm9kdWNlZCBm
-cm9tIDIwMDggdG8gMjAxMCB0aG91Z2gsIHRoZSAyMDExKwptb2RlbHMgY2FuIG9ubHkgZHJpdmUg
-ZXh0ZXJuYWwgcG9ydHMgd2l0aCB0aGUgZGlzY3JldGUgR1BVLikKCkJlc3QgcmVnYXJkcywKCkx1
-a2FzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0302539588==
+Content-Type: multipart/alternative; boundary="14769562990.EFbc953.27607";
+ charset="UTF-8"
+
+
+--14769562990.EFbc953.27607
+Date: Thu, 20 Oct 2016 09:38:19 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97462
+
+--- Comment #12 from Paviluf <jeremy9856-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I activated dri3 on nouveau (with the following user.js) and firefox doesn't
+crash anymore on google maps !
+
+// PERFORMANCE
+user_pref("layers.acceleration.force-enabled", true);
+user_pref("layers.offmainthreadcomposition.enabled", true);
+user_pref("layers.offmainthreadcomposition.async-animations", true);
+user_pref("layout.frame_rate.precise", true);
+user_pref("webgl.force-enabled", true);
+user_pref("webgl.msaa-force", true);
+user_pref("html5.offmainthread", true);
+user_pref("gfx.content.azure.backends", "skia");
+user_pref("browser.tabs.remote.force-enable", true);
+
+// PRIVACY
+user_pref("loop.enabled", false);
+user_pref("extensions.pocket.enabled", false);
+user_pref("privacy.trackingprotection.enabled", true);
+user_pref("geo.enabled", false);
+user_pref("browser.safebrowsing.enabled", false);
+user_pref("browser.safebrowsing.malware.enabled", false);
+user_pref("dom.event.clipboardevents.enabled", false);
+user_pref("browser.send_pings", false);
+user_pref("dom.battery.enabled", false);
+
+// USABILITY
+user_pref("browser.tabs.loadBookmarksInBackground", true);
+user_pref("reader.parse-on-load.enabled", false);
+user_pref("reader.parse-on-load.force-enabled", false);
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14769562990.EFbc953.27607
+Date: Thu, 20 Oct 2016 09:38:19 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
+h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462#c12">Commen=
+t # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
+h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462">bug 97462<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jeremy9856&#64;gmail.com" title=3D"Paviluf &lt;jeremy9856&#64;gmail.com&gt;=
+"> <span class=3D"fn">Paviluf</span></a>
+</span></b>
+        <pre>I activated dri3 on nouveau (with the following user.js) and f=
+irefox doesn't
+crash anymore on google maps !
+
+// PERFORMANCE
+user_pref(&quot;layers.acceleration.force-enabled&quot;, true);
+user_pref(&quot;layers.offmainthreadcomposition.enabled&quot;, true);
+user_pref(&quot;layers.offmainthreadcomposition.async-animations&quot;, tru=
+e);
+user_pref(&quot;layout.frame_rate.precise&quot;, true);
+user_pref(&quot;webgl.force-enabled&quot;, true);
+user_pref(&quot;webgl.msaa-force&quot;, true);
+user_pref(&quot;html5.offmainthread&quot;, true);
+user_pref(&quot;gfx.content.azure.backends&quot;, &quot;skia&quot;);
+user_pref(&quot;browser.tabs.remote.force-enable&quot;, true);
+
+// PRIVACY
+user_pref(&quot;loop.enabled&quot;, false);
+user_pref(&quot;extensions.pocket.enabled&quot;, false);
+user_pref(&quot;privacy.trackingprotection.enabled&quot;, true);
+user_pref(&quot;geo.enabled&quot;, false);
+user_pref(&quot;browser.safebrowsing.enabled&quot;, false);
+user_pref(&quot;browser.safebrowsing.malware.enabled&quot;, false);
+user_pref(&quot;dom.event.clipboardevents.enabled&quot;, false);
+user_pref(&quot;browser.send_pings&quot;, false);
+user_pref(&quot;dom.battery.enabled&quot;, false);
+
+// USABILITY
+user_pref(&quot;browser.tabs.loadBookmarksInBackground&quot;, true);
+user_pref(&quot;reader.parse-on-load.enabled&quot;, false);
+user_pref(&quot;reader.parse-on-load.force-enabled&quot;, false);</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14769562990.EFbc953.27607--
+
+--===============0302539588==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0302539588==--
