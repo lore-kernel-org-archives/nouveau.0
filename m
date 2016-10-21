@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 96737] G98: DRM: GPU lockup ...
-Date: Fri, 21 Oct 2016 19:20:13 +0000
-Message-ID: <bug-96737-8800-L9M5pO3HeY@http.bugs.freedesktop.org/>
-References: <bug-96737-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94964] Tearing with opengl-hq and not with opengl on
+ Gnome with MPV
+Date: Fri, 21 Oct 2016 22:49:13 +0000
+Message-ID: <bug-94964-8800-aDQtmJesqF@http.bugs.freedesktop.org/>
+References: <bug-94964-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1772781464=="
+Content-Type: multipart/mixed; boundary="===============0479450990=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-96737-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94964-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1772781464==
-Content-Type: multipart/alternative; boundary="14770776121.d8e1EaaDD.353";
+--===============0479450990==
+Content-Type: multipart/alternative; boundary="14770901531.8bdBFE20E.13228";
  charset="UTF-8"
 
 
---14770776121.d8e1EaaDD.353
-Date: Fri, 21 Oct 2016 19:20:12 +0000
+--14770901531.8bdBFE20E.13228
+Date: Fri, 21 Oct 2016 22:49:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D96737
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94964
 
-poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Paviluf <jeremy9856-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |WONTFIX
              Status|NEW                         |RESOLVED
-
---- Comment #18 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Since there is no response from developers.
+         Resolution|---                         |WORKSFORME
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14770776121.d8e1EaaDD.353
-Date: Fri, 21 Oct 2016 19:20:12 +0000
+--14770901531.8bdBFE20E.13228
+Date: Fri, 21 Oct 2016 22:49:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,14 +60,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pomidorab=
-elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
-"> <span class=3D"fn">poma</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jeremy985=
+6&#64;gmail.com" title=3D"Paviluf &lt;jeremy9856&#64;gmail.com&gt;"> <span =
+class=3D"fn">Paviluf</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WONTFIX - G98: DRM: GPU lockup ..."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737">bug 96737<=
+   title=3D"RESOLVED WORKSFORME - Tearing with opengl-hq and not with openg=
+l on Gnome with MPV"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94964">bug 94964<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -79,38 +79,21 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>WONTFIX
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
            </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WORKSFORME
+           </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WONTFIX - G98: DRM: GPU lockup ..."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737#c18">Commen=
-t # 18</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WONTFIX - G98: DRM: GPU lockup ..."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96737">bug 96737<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
-l.com&gt;"> <span class=3D"fn">poma</span></a>
-</span></b>
-        <pre>Since there is no response from developers.</pre>
-        </div>
       </p>
 
 
@@ -119,13 +102,14 @@ l.com&gt;"> <span class=3D"fn">poma</span></a>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14770776121.d8e1EaaDD.353--
+--14770901531.8bdBFE20E.13228--
 
---===============1772781464==
+--===============0479450990==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1772781464==--
+--===============0479450990==--
