@@ -1,39 +1,52 @@
-From: Baoyou Xie <baoyou.xie@linaro.org>
-Subject: [PATCH 10/17] drm/nouveau/device: mark symbol static where possible
-Date: Sat, 22 Oct 2016 17:41:51 +0800
-Message-ID: <1477129318-29677-10-git-send-email-baoyou.xie@linaro.org>
+From: Baoyou Xie <baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Subject: [PATCH 12/17] drm/nouveau/fifo: mark symbols static where
+	possible
+Date: Sat, 22 Oct 2016 17:41:53 +0800
+Message-ID: <1477129318-29677-12-git-send-email-baoyou.xie@linaro.org>
 References: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, acourbot@nvidia.com, imirkin@alum.mit.edu, Julia.Lawall@lip6.fr, martin.peres@free.fr, rspliet@eclipso.eu, nouveau@karolherbst.de
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@arndb.de, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn, han.fei@zte.com.cn, tang.qiang007@zte.com.cn
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1477129318-29677-1-git-send-email-baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org, Julia.Lawall-L2FTfq7BK8M@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org, nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
+Cc: arnd-r2nGTMty4D4@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, tang.qiang007-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, xie.baoyou-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, han.fei-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-We get 1 warning when building kernel with W=1:
-drivers/gpu/drm/nouveau/nvkm/engine/device/user.c:330:1: warning: no previous prototype for 'nvkm_udevice_new' [-Wmissing-prototypes]
-
-In fact, this function is only used in the file in which it is
-declared and don't need a declaration, but can be made static.
-So this patch marks this function with 'static'.
-
-Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
----
- drivers/gpu/drm/nouveau/nvkm/engine/device/user.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/user.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/user.c
-index 79a8f71..513ee6b 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/user.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/user.c
-@@ -326,7 +326,7 @@ nvkm_udevice = {
- 	.sclass = nvkm_udevice_child_get,
- };
- 
--int
-+static int
- nvkm_udevice_new(const struct nvkm_oclass *oclass, void *data, u32 size,
- 		 struct nvkm_object **pobject)
- {
--- 
-2.7.4
+V2UgZ2V0IDIgd2FybmluZ3Mgd2hlbiBidWlsZGluZyBrZXJuZWwgd2l0aCBXPTE6CmRyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2ZpZm8vY2hhbmc4NC5jOjEzMzoxOiB3YXJuaW5n
+OiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9yICdnODRfZmlmb19jaGFuX2VuZ2luZV9pbml0JyBb
+LVdtaXNzaW5nLXByb3RvdHlwZXNdCmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5l
+L2ZpZm8vY2hhbmc4NC5jOjE3NDoxOiB3YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9y
+ICdnODRfZmlmb19jaGFuX29iamVjdF9jdG9yJyBbLVdtaXNzaW5nLXByb3RvdHlwZXNdCgpJbiBm
+YWN0LCBib3RoIGZ1bmN0aW9ucyBhcmUgb25seSB1c2VkIGluIHRoZSBmaWxlIGluIHdoaWNoIHRo
+ZXkgYXJlCmRlY2xhcmVkIGFuZCBkb24ndCBuZWVkIGEgZGVjbGFyYXRpb24sIGJ1dCBjYW4gYmUg
+bWFkZSBzdGF0aWMuClNvIHRoaXMgcGF0Y2ggbWFya3MgdGhlc2UgZnVuY3Rpb25zIHdpdGggJ3N0
+YXRpYycuCgpTaWduZWQtb2ZmLWJ5OiBCYW95b3UgWGllIDxiYW95b3UueGllQGxpbmFyby5vcmc+
+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmlmby9jaGFuZzg0LmMg
+fCA0ICsrLS0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0p
+CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmlmby9j
+aGFuZzg0LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9maWZvL2NoYW5n
+ODQuYwppbmRleCBhZWIzMzg3Li4xNWE5OTJiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udmttL2VuZ2luZS9maWZvL2NoYW5nODQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udmttL2VuZ2luZS9maWZvL2NoYW5nODQuYwpAQCAtMTI5LDcgKzEyOSw3IEBAIGc4
+NF9maWZvX2NoYW5fZW5naW5lX2Zpbmkoc3RydWN0IG52a21fZmlmb19jaGFuICpiYXNlLAogfQog
+CiAKLWludAorc3RhdGljIGludAogZzg0X2ZpZm9fY2hhbl9lbmdpbmVfaW5pdChzdHJ1Y3QgbnZr
+bV9maWZvX2NoYW4gKmJhc2UsCiAJCQkgIHN0cnVjdCBudmttX2VuZ2luZSAqZW5naW5lKQogewpA
+QCAtMTcwLDcgKzE3MCw3IEBAIGc4NF9maWZvX2NoYW5fZW5naW5lX2N0b3Ioc3RydWN0IG52a21f
+Zmlmb19jaGFuICpiYXNlLAogCXJldHVybiBudmttX29iamVjdF9iaW5kKG9iamVjdCwgTlVMTCwg
+MCwgJmNoYW4tPmVuZ25bZW5nbl0pOwogfQogCi1pbnQKK3N0YXRpYyBpbnQKIGc4NF9maWZvX2No
+YW5fb2JqZWN0X2N0b3Ioc3RydWN0IG52a21fZmlmb19jaGFuICpiYXNlLAogCQkJICBzdHJ1Y3Qg
+bnZrbV9vYmplY3QgKm9iamVjdCkKIHsKLS0gCjIuNy40CgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
