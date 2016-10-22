@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98386] New: [NVE7] bus: MMIO write of FAULT at [
- IBUS ], Pointer to {TDMS, flat panel) table invalid
-Date: Sat, 22 Oct 2016 16:32:51 +0000
-Message-ID: <bug-98386-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
+ Pointer to {TDMS, flat panel) table invalid
+Date: Sat, 22 Oct 2016 16:42:56 +0000
+Message-ID: <bug-98386-8800-fbjyuE5h4J@http.bugs.freedesktop.org/>
+References: <bug-98386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1614023778=="
+Content-Type: multipart/mixed; boundary="===============0630056740=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1614023778==
-Content-Type: multipart/alternative; boundary="14771539711.08e5.1921";
+--===============0630056740==
+Content-Type: multipart/alternative; boundary="14771545761.4EbeDA.2598";
  charset="UTF-8"
 
 
---14771539711.08e5.1921
-Date: Sat, 22 Oct 2016 16:32:51 +0000
+--14771545761.4EbeDA.2598
+Date: Sat, 22 Oct 2016 16:42:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,102 +36,49 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
 
-            Bug ID: 98386
-           Summary: [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer
-                    to {TDMS,flat panel) table invalid
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: minor
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: bruno.pagani-vYW+cPY1g1pg9hUCZPvPmw@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to bruno.pagani from comment #0)
+> [  454.919271] nouveau 0000:02:00.0: bus: MMIO write of 00000002 FAULT at
+> 4188ac [ IBUS ]
 
-Hi, following https://bugzilla.freedesktop.org/show_bug.cgi?id=3D70354, I=
-=E2=80=99m still
-having some error messages in dmesg.
+That's bad.
 
-This is on first loading:
-[  454.756165] MXM: GUID detected in BIOS
-[  454.756253] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
-[  454.756309] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
-[  454.756430] pci 0000:02:00.0: optimus capabilities: enabled, status dyna=
-mic
-power, hda bios codec supported
-[  454.756432] VGA switcheroo: detected Optimus DSM method \_SB_.PCI0.PEG0.=
-PEGP
-handle
-[  454.756433] nouveau: detected PR support, will not use DSM
-[  454.756510] nouveau 0000:02:00.0: NVIDIA GK107 (0e7240a2)
-[  454.775702] nouveau 0000:02:00.0: bios: version 80.07.b3.00.21
-[  454.919182] nouveau 0000:02:00.0: fb: 2048 MiB GDDR5
-[  454.919271] nouveau 0000:02:00.0: bus: MMIO write of 00000002 FAULT at
-4188ac [ IBUS ]
-[  454.989821] vga_switcheroo: enabled
-[  454.989938] [TTM] Zone  kernel: Available graphics memory: 8169036 kiB
-[  454.989939] [TTM] Zone   dma32: Available graphics memory: 2097152 kiB
-[  454.989940] [TTM] Initializing pool allocator
-[  454.989943] [TTM] Initializing DMA pool allocator
-[  454.989951] nouveau 0000:02:00.0: DRM: VRAM: 2048 MiB
-[  454.989951] nouveau 0000:02:00.0: DRM: GART: 1048576 MiB
-[  454.989954] nouveau 0000:02:00.0: DRM: Pointer to TMDS table invalid
-[  454.989956] nouveau 0000:02:00.0: DRM: DCB version 4.0
-[  454.989957] nouveau 0000:02:00.0: DRM: Pointer to flat panel table inval=
-id
-[  455.191639] nouveau 0000:02:00.0: DRM: MM: using COPY for buffer copies
-[  455.191647] [drm] Initialized nouveau 1.3.1 20120801 for 0000:02:00.0 on
-minor 1
-[  460.192102] nouveau 0000:02:00.0: DRM: evicting buffers...
-[  460.192107] nouveau 0000:02:00.0: DRM: waiting for kernel channels to go
-idle...
-[  460.192139] nouveau 0000:02:00.0: DRM: suspending client object trees...
-[  460.198135] nouveau 0000:02:00.0: DRM: suspending kernel object tree...
+4188ac =3D PGRAPH.GPC_BROADCAST.FFB.PART_CONFIG
 
-Note the following lines (that appear in red in my console):
-[  454.919271] nouveau 0000:02:00.0: bus: MMIO write of 00000002 FAULT at
-4188ac [ IBUS ]
-[  454.989954] nouveau 0000:02:00.0: DRM: Pointer to TMDS table invalid
-[  454.989957] nouveau 0000:02:00.0: DRM: Pointer to flat panel table inval=
-id
+I believe we do this here:
 
-And then, on subsequent uses of the card:
-[  470.170765] nouveau 0000:02:00.0: DRM: resuming kernel object tree...
-[  470.245180] nouveau 0000:02:00.0: bus: MMIO write of ffffff1f FAULT at
-6013d4 [ IBUS ]
-[  470.266559] nouveau 0000:02:00.0: DRM: resuming client object trees...
-[  476.071701] nouveau 0000:02:00.0: DRM: evicting buffers...
-[  476.071703] nouveau 0000:02:00.0: DRM: waiting for kernel channels to go
-idle...
-[  476.071732] nouveau 0000:02:00.0: DRM: suspending client object trees...
-[  476.077132] nouveau 0000:02:00.0: DRM: suspending kernel object tree...
+drm/nouveau/nvkm/engine/gr/gk104.c:     nvkm_wr32(device, GPC_BCAST(0x08ac),
+nvkm_rd32(device, 0x100800));
 
-And again (can provide any amount you want, only the two hex chains change):
-[ 6579.503383] nouveau 0000:02:00.0: DRM: resuming kernel object tree...
-[ 6579.586496] nouveau 0000:02:00.0: bus: MMIO write of 8000001f FAULT at
-6013d4 [ IBUS ]
-[ 6579.607798] nouveau 0000:02:00.0: DRM: resuming client object trees...
-[ 6585.210796] nouveau 0000:02:00.0: DRM: evicting buffers...
-[ 6585.210798] nouveau 0000:02:00.0: DRM: waiting for kernel channels to go
-idle...
-[ 6585.210825] nouveau 0000:02:00.0: DRM: suspending client object trees...
-[ 6585.216211] nouveau 0000:02:00.0: DRM: suspending kernel object tree...
+> [  454.989954] nouveau 0000:02:00.0: DRM: Pointer to TMDS table invalid
+> [  454.989957] nouveau 0000:02:00.0: DRM: Pointer to flat panel table inv=
+alid
 
-Not sure if it has any consequences, but since it appears in red, I suppose=
-d it
-was worth reporting.
+These are (semi-)expected. Should probably just make them no longer errors.
+
+> [  470.245180] nouveau 0000:02:00.0: bus: MMIO write of ffffff1f FAULT at
+> 6013d4 [ IBUS ]
+
+That's bad too. This is related to the legacy 0x3d4 VGA IO port (which still
+has to be used for various display-related things). Unless you've skimped on
+the dmesg, you don't have any DCB entries and it may be reasonable to belie=
+ve
+you don't have a display block at all. (I assume there are no outputs wired=
+ up
+to the NVIDIA GPU?) In that case, we should probably track down where we're
+trying to do this from and skip it. Based on the location in the logs, prob=
+ably
+something VBIOS- or other early-init-related.
+
+Unfortunately I don't have any actual debugging steps for you. Perhaps Ben
+will.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14771539711.08e5.1921
-Date: Sat, 22 Oct 2016 16:32:51 +0000
+--14771545761.4EbeDA.2598
+Date: Sat, 22 Oct 2016 16:42:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -140,166 +89,64 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
 TDMS,flat panel) table invalid"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">98386</a>
-          </td>
-        </tr>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
+TDMS,flat panel) table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to bruno.pagani from <a href=3D"show_bug.cgi?id=3D98=
+386#c0">comment #0</a>)
+<span class=3D"quote">&gt; [  454.919271] nouveau 0000:02:00.0: bus: MMIO w=
+rite of 00000002 FAULT at
+&gt; 4188ac [ IBUS ]</span >
 
-        <tr>
-          <th>Summary</th>
-          <td>[NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {TDMS=
-,flat panel) table invalid
-          </td>
-        </tr>
+That's bad.
 
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
+4188ac =3D PGRAPH.GPC_BROADCAST.FFB.PART_CONFIG
 
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
+I believe we do this here:
 
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
+drm/nouveau/nvkm/engine/gr/gk104.c:     nvkm_wr32(device, GPC_BCAST(0x08ac),
+nvkm_rd32(device, 0x100800));
 
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
+<span class=3D"quote">&gt; [  454.989954] nouveau 0000:02:00.0: DRM: Pointe=
+r to TMDS table invalid
+&gt; [  454.989957] nouveau 0000:02:00.0: DRM: Pointer to flat panel table =
+invalid</span >
 
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
+These are (semi-)expected. Should probably just make them no longer errors.
 
-        <tr>
-          <th>Severity</th>
-          <td>minor
-          </td>
-        </tr>
+<span class=3D"quote">&gt; [  470.245180] nouveau 0000:02:00.0: bus: MMIO w=
+rite of ffffff1f FAULT at
+&gt; 6013d4 [ IBUS ]</span >
 
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
+That's bad too. This is related to the legacy 0x3d4 VGA IO port (which still
+has to be used for various display-related things). Unless you've skimped on
+the dmesg, you don't have any DCB entries and it may be reasonable to belie=
+ve
+you don't have a display block at all. (I assume there are no outputs wired=
+ up
+to the NVIDIA GPU?) In that case, we should probably track down where we're
+trying to do this from and skip it. Based on the location in the logs, prob=
+ably
+something VBIOS- or other early-init-related.
 
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>bruno.pagani&#64;ens-lyon.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Hi, following <a href=3D"https://bugzilla.freedesktop.org/show=
-_bug.cgi?id=3D70354">https://bugzilla.freedesktop.org/show_bug.cgi?id=3D703=
-54</a>, I=E2=80=99m still
-having some error messages in dmesg.
-
-This is on first loading:
-[  454.756165] MXM: GUID detected in BIOS
-[  454.756253] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
-[  454.756309] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
-[  454.756430] pci 0000:02:00.0: optimus capabilities: enabled, status dyna=
-mic
-power, hda bios codec supported
-[  454.756432] VGA switcheroo: detected Optimus DSM method \_SB_.PCI0.PEG0.=
-PEGP
-handle
-[  454.756433] nouveau: detected PR support, will not use DSM
-[  454.756510] nouveau 0000:02:00.0: NVIDIA GK107 (0e7240a2)
-[  454.775702] nouveau 0000:02:00.0: bios: version 80.07.b3.00.21
-[  454.919182] nouveau 0000:02:00.0: fb: 2048 MiB GDDR5
-[  454.919271] nouveau 0000:02:00.0: bus: MMIO write of 00000002 FAULT at
-4188ac [ IBUS ]
-[  454.989821] vga_switcheroo: enabled
-[  454.989938] [TTM] Zone  kernel: Available graphics memory: 8169036 kiB
-[  454.989939] [TTM] Zone   dma32: Available graphics memory: 2097152 kiB
-[  454.989940] [TTM] Initializing pool allocator
-[  454.989943] [TTM] Initializing DMA pool allocator
-[  454.989951] nouveau 0000:02:00.0: DRM: VRAM: 2048 MiB
-[  454.989951] nouveau 0000:02:00.0: DRM: GART: 1048576 MiB
-[  454.989954] nouveau 0000:02:00.0: DRM: Pointer to TMDS table invalid
-[  454.989956] nouveau 0000:02:00.0: DRM: DCB version 4.0
-[  454.989957] nouveau 0000:02:00.0: DRM: Pointer to flat panel table inval=
-id
-[  455.191639] nouveau 0000:02:00.0: DRM: MM: using COPY for buffer copies
-[  455.191647] [drm] Initialized nouveau 1.3.1 20120801 for 0000:02:00.0 on
-minor 1
-[  460.192102] nouveau 0000:02:00.0: DRM: evicting buffers...
-[  460.192107] nouveau 0000:02:00.0: DRM: waiting for kernel channels to go
-idle...
-[  460.192139] nouveau 0000:02:00.0: DRM: suspending client object trees...
-[  460.198135] nouveau 0000:02:00.0: DRM: suspending kernel object tree...
-
-Note the following lines (that appear in red in my console):
-[  454.919271] nouveau 0000:02:00.0: bus: MMIO write of 00000002 FAULT at
-4188ac [ IBUS ]
-[  454.989954] nouveau 0000:02:00.0: DRM: Pointer to TMDS table invalid
-[  454.989957] nouveau 0000:02:00.0: DRM: Pointer to flat panel table inval=
-id
-
-And then, on subsequent uses of the card:
-[  470.170765] nouveau 0000:02:00.0: DRM: resuming kernel object tree...
-[  470.245180] nouveau 0000:02:00.0: bus: MMIO write of ffffff1f FAULT at
-6013d4 [ IBUS ]
-[  470.266559] nouveau 0000:02:00.0: DRM: resuming client object trees...
-[  476.071701] nouveau 0000:02:00.0: DRM: evicting buffers...
-[  476.071703] nouveau 0000:02:00.0: DRM: waiting for kernel channels to go
-idle...
-[  476.071732] nouveau 0000:02:00.0: DRM: suspending client object trees...
-[  476.077132] nouveau 0000:02:00.0: DRM: suspending kernel object tree...
-
-And again (can provide any amount you want, only the two hex chains change):
-[ 6579.503383] nouveau 0000:02:00.0: DRM: resuming kernel object tree...
-[ 6579.586496] nouveau 0000:02:00.0: bus: MMIO write of 8000001f FAULT at
-6013d4 [ IBUS ]
-[ 6579.607798] nouveau 0000:02:00.0: DRM: resuming client object trees...
-[ 6585.210796] nouveau 0000:02:00.0: DRM: evicting buffers...
-[ 6585.210798] nouveau 0000:02:00.0: DRM: waiting for kernel channels to go
-idle...
-[ 6585.210825] nouveau 0000:02:00.0: DRM: suspending client object trees...
-[ 6585.216211] nouveau 0000:02:00.0: DRM: suspending kernel object tree...
-
-Not sure if it has any consequences, but since it appears in red, I suppose=
-d it
-was worth reporting.</pre>
+Unfortunately I don't have any actual debugging steps for you. Perhaps Ben
+will.</pre>
         </div>
       </p>
 
@@ -313,9 +160,9 @@ was worth reporting.</pre>
     </body>
 </html>=
 
---14771539711.08e5.1921--
+--14771545761.4EbeDA.2598--
 
---===============1614023778==
+--===============0630056740==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -325,4 +172,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1614023778==--
+--===============0630056740==--
