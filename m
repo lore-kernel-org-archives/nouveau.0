@@ -1,86 +1,49 @@
-From: Baoyou Xie <baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
-Subject: [PATCH 14/17] drm/nouveau/gr: mark symbols static where
-	possible
-Date: Sat, 22 Oct 2016 17:41:55 +0800
-Message-ID: <1477129318-29677-14-git-send-email-baoyou.xie@linaro.org>
+From: Baoyou Xie <baoyou.xie@linaro.org>
+Subject: [PATCH 15/17] drm/nouveau/pm: mark symbols static where possible
+Date: Sat, 22 Oct 2016 17:41:56 +0800
+Message-ID: <1477129318-29677-15-git-send-email-baoyou.xie@linaro.org>
 References: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1477129318-29677-1-git-send-email-baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org, Julia.Lawall-L2FTfq7BK8M@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org, nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
-Cc: arnd-r2nGTMty4D4@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, tang.qiang007-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, xie.baoyou-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, han.fei-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie, acourbot@nvidia.com, imirkin@alum.mit.edu, Julia.Lawall@lip6.fr, martin.peres@free.fr, rspliet@eclipso.eu, nouveau@karolherbst.de
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@arndb.de, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn, han.fei@zte.com.cn, tang.qiang007@zte.com.cn
 List-Id: nouveau.vger.kernel.org
 
-V2UgZ2V0IDUgd2FybmluZ3Mgd2hlbiBidWlsZGluZyBrZXJuZWwgd2l0aCBXPTE6CmRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmM6MTM4ODoxOiB3YXJuaW5nOiBu
-byBwcmV2aW91cyBwcm90b3R5cGUgZm9yICdnZjEwMF9ncl9pbml0X2Z3JyBbLVdtaXNzaW5nLXBy
-b3RvdHlwZXNdCmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmM6
-MTcwNToxOiB3YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9yICdnZjEwMF9ncl9pbml0
-XycgWy1XbWlzc2luZy1wcm90b3R5cGVzXQpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2Vu
-Z2luZS9nci9nbTEwNy5jOjMxMjoxOiB3YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9y
-ICdnbTEwN19ncl9pbml0JyBbLVdtaXNzaW5nLXByb3RvdHlwZXNdCmRyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252a20vZW5naW5lL2dyL2N0eGdmMTE3LmM6MjIyOjE6IHdhcm5pbmc6IG5vIHByZXZp
-b3VzIHByb3RvdHlwZSBmb3IgJ2dmMTE3X2dyY3R4X2dlbmVyYXRlX21haW4nIFstV21pc3Npbmct
-cHJvdG90eXBlc10KZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvY3R4Z20x
-MDcuYzo5Mzc6MTogd2FybmluZzogbm8gcHJldmlvdXMgcHJvdG90eXBlIGZvciAnZ20xMDdfZ3Jj
-dHhfZ2VuZXJhdGVfdHBjaWQnIFstV21pc3NpbmctcHJvdG90eXBlc10KCkluIGZhY3QsIGJvdGgg
-ZnVuY3Rpb25zIGFyZSBvbmx5IHVzZWQgaW4gdGhlIGZpbGUgaW4gd2hpY2ggdGhleSBhcmUKZGVj
-bGFyZWQgYW5kIGRvbid0IG5lZWQgYSBkZWNsYXJhdGlvbiwgYnV0IGNhbiBiZSBtYWRlIHN0YXRp
-Yy4KU28gdGhpcyBwYXRjaCBtYXJrcyB0aGVzZSBmdW5jdGlvbnMgd2l0aCAnc3RhdGljJy4KClNp
-Z25lZC1vZmYtYnk6IEJhb3lvdSBYaWUgPGJhb3lvdS54aWVAbGluYXJvLm9yZz4KLS0tCiBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9jdHhnZjExNy5jIHwgMiArLQogZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvY3R4Z20xMDcuYyB8IDIgKy0KIGRy
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMgICAgfCA0ICsrLS0K
-IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dtMTA3LmMgICAgfCAyICst
-CiA0IGZpbGVzIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKCmRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9jdHhnZjExNy5j
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvY3R4Z2YxMTcuYwppbmRl
-eCBjOTI1YWRlLi43NGE2NGUzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-dmttL2VuZ2luZS9nci9jdHhnZjExNy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
-a20vZW5naW5lL2dyL2N0eGdmMTE3LmMKQEAgLTIxOCw3ICsyMTgsNyBAQCBnZjExN19ncmN0eF9n
-ZW5lcmF0ZV9hdHRyaWIoc3RydWN0IGdmMTAwX2dyY3R4ICppbmZvKQogCX0KIH0KIAotdm9pZAor
-c3RhdGljIHZvaWQKIGdmMTE3X2dyY3R4X2dlbmVyYXRlX21haW4oc3RydWN0IGdmMTAwX2dyICpn
-ciwgc3RydWN0IGdmMTAwX2dyY3R4ICppbmZvKQogewogCXN0cnVjdCBudmttX2RldmljZSAqZGV2
-aWNlID0gZ3ItPmJhc2UuZW5naW5lLnN1YmRldi5kZXZpY2U7CmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9jdHhnbTEwNy5jIGIvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvY3R4Z20xMDcuYwppbmRleCA2ZDNjNTAxLi40YzRi
-NWFiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9j
-dHhnbTEwNy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2N0
-eGdtMTA3LmMKQEAgLTkzMyw3ICs5MzMsNyBAQCBnbTEwN19ncmN0eF9nZW5lcmF0ZV9hdHRyaWIo
-c3RydWN0IGdmMTAwX2dyY3R4ICppbmZvKQogCX0KIH0KIAotdm9pZAorc3RhdGljIHZvaWQKIGdt
-MTA3X2dyY3R4X2dlbmVyYXRlX3RwY2lkKHN0cnVjdCBnZjEwMF9nciAqZ3IpCiB7CiAJc3RydWN0
-IG52a21fZGV2aWNlICpkZXZpY2UgPSBnci0+YmFzZS5lbmdpbmUuc3ViZGV2LmRldmljZTsKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jCmluZGV4IDE1
-NzkxOWMuLmVjY2RlZTAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
-ZW5naW5lL2dyL2dmMTAwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdp
-bmUvZ3IvZ2YxMDAuYwpAQCAtMTM4NCw3ICsxMzg0LDcgQEAgZ2YxMDBfZ3JfaW50cihzdHJ1Y3Qg
-bnZrbV9nciAqYmFzZSkKIAludmttX2ZpZm9fY2hhbl9wdXQoZGV2aWNlLT5maWZvLCBmbGFncywg
-JmNoYW4pOwogfQogCi12b2lkCitzdGF0aWMgdm9pZAogZ2YxMDBfZ3JfaW5pdF9mdyhzdHJ1Y3Qg
-Z2YxMDBfZ3IgKmdyLCB1MzIgZnVjX2Jhc2UsCiAJCSBzdHJ1Y3QgZ2YxMDBfZ3JfZnVjICpjb2Rl
-LCBzdHJ1Y3QgZ2YxMDBfZ3JfZnVjICpkYXRhKQogewpAQCAtMTcwMSw3ICsxNzAxLDcgQEAgZ2Yx
-MDBfZ3Jfb25laW5pdChzdHJ1Y3QgbnZrbV9nciAqYmFzZSkKIAlyZXR1cm4gMDsKIH0KIAotaW50
-CitzdGF0aWMgaW50CiBnZjEwMF9ncl9pbml0XyhzdHJ1Y3QgbnZrbV9nciAqYmFzZSkKIHsKIAlz
-dHJ1Y3QgZ2YxMDBfZ3IgKmdyID0gZ2YxMDBfZ3IoYmFzZSk7CmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nbTEwNy5jIGIvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ20xMDcuYwppbmRleCA0NWY5NjVmLi4yYzY3ZmFjIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nbTEwNy5j
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dtMTA3LmMKQEAg
-LTMwOCw3ICszMDgsNyBAQCBnbTEwN19ncl9pbml0X2Jpb3Moc3RydWN0IGdmMTAwX2dyICpncikK
-IAl9CiB9CiAKLWludAorc3RhdGljIGludAogZ20xMDdfZ3JfaW5pdChzdHJ1Y3QgZ2YxMDBfZ3Ig
-KmdyKQogewogCXN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlID0gZ3ItPmJhc2UuZW5naW5lLnN1
-YmRldi5kZXZpY2U7Ci0tIAoyLjcuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+We get 2 warnings when building kernel with W=1:
+drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c:75:1: warning: no previous prototype for 'nvkm_perfsig_find' [-Wmissing-prototypes]
+drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c:703:1: warning: no previous prototype for 'nvkm_perfsrc_new' [-Wmissing-prototypes]
+
+In fact, both functions are only used in the file in which they are
+declared and don't need a declaration, but can be made static.
+So this patch marks these functions with 'static'.
+
+Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c
+index 8616636..dde89a4 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c
+@@ -71,7 +71,7 @@ nvkm_perfdom_find(struct nvkm_pm *pm, int di)
+ 	return NULL;
+ }
+ 
+-struct nvkm_perfsig *
++static struct nvkm_perfsig *
+ nvkm_perfsig_find(struct nvkm_pm *pm, u8 di, u8 si, struct nvkm_perfdom **pdom)
+ {
+ 	struct nvkm_perfdom *dom = *pdom;
+@@ -699,7 +699,7 @@ nvkm_pm_oclass_get(struct nvkm_oclass *oclass, int index,
+ 	return 1;
+ }
+ 
+-int
++static int
+ nvkm_perfsrc_new(struct nvkm_pm *pm, struct nvkm_perfsig *sig,
+ 		 const struct nvkm_specsrc *spec)
+ {
+-- 
+2.7.4
