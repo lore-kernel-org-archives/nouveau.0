@@ -1,49 +1,44 @@
-From: Baoyou Xie <baoyou.xie@linaro.org>
-Subject: [PATCH 02/17] drm/nouveau/bios: mark symbols static where possible
-Date: Sat, 22 Oct 2016 17:41:43 +0800
-Message-ID: <1477129318-29677-2-git-send-email-baoyou.xie@linaro.org>
+From: Baoyou Xie <baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Subject: [PATCH 03/17] drm/nouveau/clk: mark symbol static where
+	possible
+Date: Sat, 22 Oct 2016 17:41:44 +0800
+Message-ID: <1477129318-29677-3-git-send-email-baoyou.xie@linaro.org>
 References: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, acourbot@nvidia.com, imirkin@alum.mit.edu, Julia.Lawall@lip6.fr, martin.peres@free.fr, rspliet@eclipso.eu, nouveau@karolherbst.de
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@arndb.de, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn, han.fei@zte.com.cn, tang.qiang007@zte.com.cn
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1477129318-29677-1-git-send-email-baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org, Julia.Lawall-L2FTfq7BK8M@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org, nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
+Cc: arnd-r2nGTMty4D4@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, tang.qiang007-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, xie.baoyou-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, han.fei-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-We get 2 warnings when building kernel with W=1:
-drivers/gpu/drm/nouveau/nvkm/subdev/bios/fan.c:29:1: warning: no previous prototype for 'nvbios_fan_table' [-Wmissing-prototypes]
-drivers/gpu/drm/nouveau/nvkm/subdev/bios/fan.c:56:1: warning: no previous prototype for 'nvbios_fan_entry' [-Wmissing-prototypes]
-
-In fact, both functions are only used in the file in which they are
-declared and don't need a declaration, but can be made static.
-So this patch marks these functions with 'static'.
-
-Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/fan.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/fan.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/fan.c
-index 80fed7e..e290581 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/fan.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/fan.c
-@@ -25,7 +25,7 @@
- #include <subdev/bios/bit.h>
- #include <subdev/bios/fan.h>
- 
--u16
-+static u16
- nvbios_fan_table(struct nvkm_bios *bios, u8 *ver, u8 *hdr, u8 *cnt, u8 *len)
- {
- 	struct bit_entry bit_P;
-@@ -52,7 +52,7 @@ nvbios_fan_table(struct nvkm_bios *bios, u8 *ver, u8 *hdr, u8 *cnt, u8 *len)
- 	return 0x0000;
- }
- 
--u16
-+static u16
- nvbios_fan_entry(struct nvkm_bios *bios, int idx, u8 *ver, u8 *hdr,
- 		 u8 *cnt, u8 *len)
- {
--- 
-2.7.4
+V2UgZ2V0IDEgd2FybmluZyB3aGVuIGJ1aWxkaW5nIGtlcm5lbCB3aXRoIFc9MToKZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2d0MjE1LmM6MTg0OjE6IHdhcm5pbmc6IG5v
+IHByZXZpb3VzIHByb3RvdHlwZSBmb3IgJ2d0MjE1X2Nsa19pbmZvJyBbLVdtaXNzaW5nLXByb3Rv
+dHlwZXNdCgpJbiBmYWN0LCB0aGlzIGZ1bmN0aW9uIGlzIG9ubHkgdXNlZCBpbiB0aGUgZmlsZSBp
+biB3aGljaCBpdCBpcwpkZWNsYXJlZCBhbmQgZG9uJ3QgbmVlZCBhIGRlY2xhcmF0aW9uLCBidXQg
+Y2FuIGJlIG1hZGUgc3RhdGljLgpTbyB0aGlzIHBhdGNoIG1hcmtzIHRoaXMgZnVuY3Rpb24gd2l0
+aCAnc3RhdGljJy4KClNpZ25lZC1vZmYtYnk6IEJhb3lvdSBYaWUgPGJhb3lvdS54aWVAbGluYXJv
+Lm9yZz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ3QyMTUu
+YyB8IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoK
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9ndDIx
+NS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2d0MjE1LmMKaW5k
+ZXggMDU2NzAyZS4uOTZlMDk0MSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvY2xrL2d0MjE1LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
+bS9zdWJkZXYvY2xrL2d0MjE1LmMKQEAgLTE4MCw3ICsxODAsNyBAQCBndDIxNV9jbGtfcmVhZChz
+dHJ1Y3QgbnZrbV9jbGsgKmJhc2UsIGVudW0gbnZfY2xrX3NyYyBzcmMpCiAJcmV0dXJuIDA7CiB9
+CiAKLWludAorc3RhdGljIGludAogZ3QyMTVfY2xrX2luZm8oc3RydWN0IG52a21fY2xrICpiYXNl
+LCBpbnQgaWR4LCB1MzIga2h6LAogCSAgICAgICBzdHJ1Y3QgZ3QyMTVfY2xrX2luZm8gKmluZm8p
+CiB7Ci0tIAoyLjcuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
