@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98398] Vgaswitcharoo fails to turn off GPU properly
-Date: Sat, 22 Oct 2016 23:16:29 +0000
-Message-ID: <bug-98398-8800-r50e6lESlh@http.bugs.freedesktop.org/>
+Date: Sat, 22 Oct 2016 23:24:49 +0000
+Message-ID: <bug-98398-8800-bDiXy0CfZs@http.bugs.freedesktop.org/>
 References: <bug-98398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0308587437=="
+Content-Type: multipart/mixed; boundary="===============0396672738=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0308587437==
-Content-Type: multipart/alternative; boundary="14771781880.985b29.23806";
+--===============0396672738==
+Content-Type: multipart/alternative; boundary="14771786880.cA81e.24291";
  charset="UTF-8"
 
 
---14771781880.985b29.23806
-Date: Sat, 22 Oct 2016 23:16:28 +0000
+--14771786880.cA81e.24291
+Date: Sat, 22 Oct 2016 23:24:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,20 +35,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98398
 
---- Comment #5 from rick.2889-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Adding pcie_port_pm=3Doff to my kernel command line causes the card to turn=
- off
-and powertop to report ~7.5W of power usage. According to Lekensteyn this
-reverts nouveau to the 4.7 and lower behavior of using DSM, so I think this=
- is
-a regression from using the new method.
+--- Comment #6 from rick.2889-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Booting without pcie_port_pm=3Doff, while blacklisting nouveau on boot, then
+executing:
+ echo 0 > /sys/bus/pci/devices/0000:01:00.0/d3cold_allowed && modprobe nouv=
+eau
+
+also causes powertop to report a ~7.5W value.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14771781880.985b29.23806
-Date: Sat, 22 Oct 2016 23:16:28 +0000
+--14771786880.cA81e.24291
+Date: Sat, 22 Oct 2016 23:24:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +65,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [Nouveau] Vgaswitcharoo fails to turn off GPU properly"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [Nouveau] Vgaswitcharoo fails to turn off GPU properly"
@@ -76,12 +76,13 @@ Auto-Submitted: auto-generated
 rick.2889&#64;gmail.com" title=3D"rick.2889&#64;gmail.com">rick.2889&#64;gm=
 ail.com</a>
 </span></b>
-        <pre>Adding pcie_port_pm=3Doff to my kernel command line causes the=
- card to turn off
-and powertop to report ~7.5W of power usage. According to Lekensteyn this
-reverts nouveau to the 4.7 and lower behavior of using DSM, so I think this=
- is
-a regression from using the new method.</pre>
+        <pre>Booting without pcie_port_pm=3Doff, while blacklisting nouveau=
+ on boot, then
+executing:
+ echo 0 &gt; /sys/bus/pci/devices/0000:01:00.0/d3cold_allowed &amp;&amp; mo=
+dprobe nouveau
+
+also causes powertop to report a ~7.5W value.</pre>
         </div>
       </p>
 
@@ -95,9 +96,9 @@ a regression from using the new method.</pre>
     </body>
 </html>=
 
---14771781880.985b29.23806--
+--14771786880.cA81e.24291--
 
---===============0308587437==
+--===============0396672738==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0308587437==--
+--===============0396672738==--
