@@ -1,69 +1,52 @@
-From: Baoyou Xie <baoyou.xie@linaro.org>
-Subject: [PATCH 05/17] drm/nouveau/fb: mark symbols static where possible
-Date: Sat, 22 Oct 2016 17:41:46 +0800
-Message-ID: <1477129318-29677-5-git-send-email-baoyou.xie@linaro.org>
+From: Baoyou Xie <baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Subject: [PATCH 04/17] drm/nouveau/fb: add missing header
+	dependencies
+Date: Sat, 22 Oct 2016 17:41:45 +0800
+Message-ID: <1477129318-29677-4-git-send-email-baoyou.xie@linaro.org>
 References: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, acourbot@nvidia.com, imirkin@alum.mit.edu, Julia.Lawall@lip6.fr, martin.peres@free.fr, rspliet@eclipso.eu, nouveau@karolherbst.de
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@arndb.de, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn, han.fei@zte.com.cn, tang.qiang007@zte.com.cn
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1477129318-29677-1-git-send-email-baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org, Julia.Lawall-L2FTfq7BK8M@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org, nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
+Cc: arnd-r2nGTMty4D4@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, tang.qiang007-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, xie.baoyou-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, han.fei-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-We get 4 warnings when building kernel with W=1:
-drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgt215.c:99:1: warning: no previous prototype for 'gt215_link_train_calc' [-Wmissing-prototypes]
-drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgt215.c:153:1: warning: no previous prototype for 'gt215_link_train' [-Wmissing-prototypes]
-drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgt215.c:271:1: warning: no previous prototype for 'gt215_link_train_init' [-Wmissing-prototypes]
-drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgt215.c:337:1: warning: no previous prototype for 'gt215_link_train_fini' [-Wmissing-prototypes]
-
-In fact, both functions are only used in the file in which they are
-declared and don't need a declaration, but can be made static.
-So this patch marks these functions with 'static'.
-
-Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgt215.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgt215.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgt215.c
-index d15ea88..f106643 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgt215.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgt215.c
-@@ -95,7 +95,7 @@ struct gt215_ram {
- 	struct gt215_ltrain ltrain;
- };
- 
--void
-+static void
- gt215_link_train_calc(u32 *vals, struct gt215_ltrain *train)
- {
- 	int i, lo, hi;
-@@ -149,7 +149,7 @@ gt215_link_train_calc(u32 *vals, struct gt215_ltrain *train)
- /*
-  * Link training for (at least) DDR3
-  */
--int
-+static int
- gt215_link_train(struct gt215_ram *ram)
- {
- 	struct gt215_ltrain *train = &ram->ltrain;
-@@ -267,7 +267,7 @@ gt215_link_train(struct gt215_ram *ram)
- 	return ret;
- }
- 
--int
-+static int
- gt215_link_train_init(struct gt215_ram *ram)
- {
- 	static const u32 pattern[16] = {
-@@ -333,7 +333,7 @@ gt215_link_train_init(struct gt215_ram *ram)
- 	return 0;
- }
- 
--void
-+static void
- gt215_link_train_fini(struct gt215_ram *ram)
- {
- 	if (ram->ltrain.mem)
--- 
-2.7.4
+V2UgZ2V0IDIgd2FybmluZ3Mgd2hlbiBidWlsZGluZyBrZXJuZWwgd2l0aCBXPTE6CmRyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3NkZHIzLmM6Njk6MTogd2FybmluZzogbm8g
+cHJldmlvdXMgcHJvdG90eXBlIGZvciAnbnZrbV9zZGRyM19jYWxjJyBbLVdtaXNzaW5nLXByb3Rv
+dHlwZXNdCmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3NkZHIyLmM6NjA6
+MTogd2FybmluZzogbm8gcHJldmlvdXMgcHJvdG90eXBlIGZvciAnbnZrbV9zZGRyMl9jYWxjJyBb
+LVdtaXNzaW5nLXByb3RvdHlwZXNdCgpJbiBmYWN0LCB0aGVzZSBmdW5jdGlvbnMgYXJlIGRlY2xh
+cmVkIGluCmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbS5oLgpTbyB0
+aGlzIHBhdGNoIGFkZHMgbWlzc2luZyBoZWFkZXIgZGVwZW5kZW5jaWVzLgoKU2lnbmVkLW9mZi1i
+eTogQmFveW91IFhpZSA8YmFveW91LnhpZUBsaW5hcm8ub3JnPgotLS0KIGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3NkZHIyLmMgfCAxICsKIGRyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252a20vc3ViZGV2L2ZiL3NkZHIzLmMgfCAxICsKIDIgZmlsZXMgY2hhbmdlZCwgMiBp
+bnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvZmIvc2RkcjIuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Zi
+L3NkZHIyLmMKaW5kZXggYjlmMWZmZC4uNGRjZDg3NCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvc2RkcjIuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9mYi9zZGRyMi5jCkBAIC0yMyw2ICsyMyw3IEBACiAgKiAgICAg
+ICAgICBCZW4gU2tlZ2dzCiAgKi8KICNpbmNsdWRlICJwcml2LmgiCisjaW5jbHVkZSAicmFtLmgi
+CiAKIHN0cnVjdCByYW14bGF0IHsKIAlpbnQgaWQ7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9zZGRyMy5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbnZrbS9zdWJkZXYvZmIvc2RkcjMuYwppbmRleCAyNjkwMDMzLi5lY2E4YTQ0IDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9zZGRyMy5jCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3NkZHIzLmMKQEAgLTIzLDYg
+KzIzLDcgQEAKICAqIAkgICAgUm95IFNwbGlldCA8cnNwbGlldEBlY2xpcHNvLmV1PgogICovCiAj
+aW5jbHVkZSAicHJpdi5oIgorI2luY2x1ZGUgInJhbS5oIgogCiBzdHJ1Y3QgcmFteGxhdCB7CiAJ
+aW50IGlkOwotLSAKMi43LjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQo=
