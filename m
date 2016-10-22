@@ -1,14 +1,11 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 01/17] drm/nouveau/core: add missing header
-	dependencies
-Date: Sat, 22 Oct 2016 19:32:47 +0200
-Message-ID: <CAEXux-ZYknEnU=D4qA_xv162vXF4UpVG-W9eNk68ahQoPP0ozQ@mail.gmail.com>
-References: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98391] New: [GM107] priv: HUB0: 614900 00800000
+	(1d408200)
+Date: Sat, 22 Oct 2016 18:23:36 +0000
+Message-ID: <bug-98391-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0849374736=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1477129318-29677-1-git-send-email-baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,35 +15,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Baoyou Xie <baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
-Cc: rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org, Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>, arnd-r2nGTMty4D4@public.gmane.org, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, tang.qiang007-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, xie.baoyou-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Julia.Lawall-L2FTfq7BK8M@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, han.fei-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SSB0aGluayBpdCB3b3VsZCBiZSBiZXR0ZXIgdG8gc3F1YXNoIHRob3NlIGNvbW1pdHM6CjEuIGZv
-ciB0aGUgaW5jbHVkZXMKMi4gZm9yIHN0YXRpYyBkZWNsZXJhdGlvbnMKCjIwMTYtMTAtMjIgMTE6
-NDEgR01UKzAyOjAwIEJhb3lvdSBYaWUgPGJhb3lvdS54aWVAbGluYXJvLm9yZz46Cj4gV2UgZ2V0
-IDIgd2FybmluZ3Mgd2hlbiBidWlsZGluZyBrZXJuZWwgd2l0aCBXPTE6Cj4gZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zpcm13YXJlLmM6MzQ6MTogd2FybmluZzogbm8gcHJldmlv
-dXMgcHJvdG90eXBlIGZvciAnbnZrbV9maXJtd2FyZV9nZXQnIFstV21pc3NpbmctcHJvdG90eXBl
-c10KPiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2NvcmUvZmlybXdhcmUuYzo1ODoxOiB3
-YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9yICdudmttX2Zpcm13YXJlX3B1dCcgWy1X
-bWlzc2luZy1wcm90b3R5cGVzXQo+Cj4gSW4gZmFjdCwgdGhlc2UgZnVuY3Rpb25zIGFyZSBkZWNs
-YXJlZCBpbgo+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2Zpcm13
-YXJlLmguCj4gU28gdGhpcyBwYXRjaCBhZGRzIG1pc3NpbmcgaGVhZGVyIGRlcGVuZGVuY2llcy4K
-Pgo+IFNpZ25lZC1vZmYtYnk6IEJhb3lvdSBYaWUgPGJhb3lvdS54aWVAbGluYXJvLm9yZz4KPiAt
-LS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMgfCAxICsK
-PiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9udmttL2NvcmUvZmlybXdhcmUuYwo+IGluZGV4IDM0ZWNkNGEuLjA1OGZmNDYgMTAw
-NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Zpcm13YXJlLmMK
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2NvcmUvZmlybXdhcmUuYwo+IEBA
-IC0yMCw2ICsyMCw3IEBACj4gICAqIERFQUxJTkdTIElOIFRIRSBTT0ZUV0FSRS4KPiAgICovCj4g
-ICNpbmNsdWRlIDxjb3JlL2RldmljZS5oPgo+ICsjaW5jbHVkZSA8Y29yZS9maXJtd2FyZS5oPgo+
-Cj4gIC8qKgo+ICAgKiBudmttX2Zpcm13YXJlX2dldCAtIGxvYWQgZmlybXdhcmUgZnJvbSB0aGUg
-b2ZmaWNpYWwgbnZpZGlhL2NoaXAvIGRpcmVjdG9yeQo+IC0tCj4gMi43LjQKPgo+IF9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5n
-IGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0849374736==
+Content-Type: multipart/alternative; boundary="14771606160.72EcE.8491";
+ charset="UTF-8"
+
+
+--14771606160.72EcE.8491
+Date: Sat, 22 Oct 2016 18:23:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98391
+
+            Bug ID: 98391
+           Summary: [GM107] priv: HUB0: 614900 00800000 (1d408200)
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: bruno.pagani-vYW+cPY1g1pg9hUCZPvPmw@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+See https://bugs.freedesktop.org/show_bug.cgi?id=3D98384 for more informati=
+on
+about my setup (but feel free to ask if you need any information obviously).
+
+Every time nouveau gets loaded on this system, there is this line printed
+(either in red in the middle of all other nouveau related ones in dmesg, or
+alone on the console when modprobing manually):
+nouveau 0000:01:00.0: priv: HUB0: 614900 00800000 (1d408200)
+
+It is exactly the same line each time.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14771606160.72EcE.8491
+Date: Sat, 22 Oct 2016 18:23:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM107] priv: HUB0: 614900 00800000 (1d408200)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98391">98391</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[GM107] priv: HUB0: 614900 00800000 (1d408200)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>bruno.pagani&#64;ens-lyon.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>See <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - X.org core dump when modprobing nouveau on a dual GPU lap=
+top"
+   href=3D"show_bug.cgi?id=3D98384">https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D98384</a> for more information
+about my setup (but feel free to ask if you need any information obviously).
+
+Every time nouveau gets loaded on this system, there is this line printed
+(either in red in the middle of all other nouveau related ones in dmesg, or
+alone on the console when modprobing manually):
+nouveau 0000:01:00.0: priv: HUB0: 614900 00800000 (1d408200)
+
+It is exactly the same line each time.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14771606160.72EcE.8491--
+
+--===============0849374736==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0849374736==--
