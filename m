@@ -1,51 +1,84 @@
-From: Baoyou Xie <baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
-Subject: [PATCH 09/17] drm/nouveau/volt: mark symbols static where
-	possible
-Date: Sat, 22 Oct 2016 17:41:50 +0800
-Message-ID: <1477129318-29677-9-git-send-email-baoyou.xie@linaro.org>
+From: Baoyou Xie <baoyou.xie@linaro.org>
+Subject: [PATCH 11/17] drm/nouveau/disp: mark symbols static where possible
+Date: Sat, 22 Oct 2016 17:41:52 +0800
+Message-ID: <1477129318-29677-11-git-send-email-baoyou.xie@linaro.org>
 References: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1477129318-29677-1-git-send-email-baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org, Julia.Lawall-L2FTfq7BK8M@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org, nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
-Cc: arnd-r2nGTMty4D4@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, tang.qiang007-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, xie.baoyou-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, han.fei-Th6q7B73Y6EnDS1+zs4M5A@public.gmane.org, baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie, acourbot@nvidia.com, imirkin@alum.mit.edu, Julia.Lawall@lip6.fr, martin.peres@free.fr, rspliet@eclipso.eu, nouveau@karolherbst.de
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@arndb.de, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn, han.fei@zte.com.cn, tang.qiang007@zte.com.cn
 List-Id: nouveau.vger.kernel.org
 
-V2UgZ2V0IDIgd2FybmluZ3Mgd2hlbiBidWlsZGluZyBrZXJuZWwgd2l0aCBXPTE6CmRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2sxMDQuYzozODoxOiB3YXJuaW5nOiBu
-byBwcmV2aW91cyBwcm90b3R5cGUgZm9yICdnazEwNF92b2x0X2dldCcgWy1XbWlzc2luZy1wcm90
-b3R5cGVzXQpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2drMTA0LmM6
-NTE6MTogd2FybmluZzogbm8gcHJldmlvdXMgcHJvdG90eXBlIGZvciAnZ2sxMDRfdm9sdF9zZXQn
-IFstV21pc3NpbmctcHJvdG90eXBlc10KCkluIGZhY3QsIGJvdGggZnVuY3Rpb25zIGFyZSBvbmx5
-IHVzZWQgaW4gdGhlIGZpbGUgaW4gd2hpY2ggdGhleSBhcmUKZGVjbGFyZWQgYW5kIGRvbid0IG5l
-ZWQgYSBkZWNsYXJhdGlvbiwgYnV0IGNhbiBiZSBtYWRlIHN0YXRpYy4KU28gdGhpcyBwYXRjaCBt
-YXJrcyB0aGVzZSBmdW5jdGlvbnMgd2l0aCAnc3RhdGljJy4KClNpZ25lZC1vZmYtYnk6IEJhb3lv
-dSBYaWUgPGJhb3lvdS54aWVAbGluYXJvLm9yZz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi92b2x0L2drMTA0LmMgfCA0ICsrLS0KIDEgZmlsZSBjaGFuZ2VkLCAyIGlu
-c2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nazEwNC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvdm9sdC9nazEwNC5jCmluZGV4IDQyMGJkODQuLjE1MjdkMTIgMTAwNjQ0
-Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2sxMDQuYwor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2drMTA0LmMKQEAg
-LTM0LDcgKzM0LDcgQEAgc3RydWN0IGdrMTA0X3ZvbHQgewogCXN0cnVjdCBudmJpb3Nfdm9sdCBi
-aW9zOwogfTsKIAotaW50CitzdGF0aWMgaW50CiBnazEwNF92b2x0X2dldChzdHJ1Y3QgbnZrbV92
-b2x0ICpiYXNlKQogewogCXN0cnVjdCBudmJpb3Nfdm9sdCAqYmlvcyA9ICZnazEwNF92b2x0KGJh
-c2UpLT5iaW9zOwpAQCAtNDcsNyArNDcsNyBAQCBnazEwNF92b2x0X2dldChzdHJ1Y3QgbnZrbV92
-b2x0ICpiYXNlKQogCXJldHVybiBiaW9zLT5iYXNlICsgYmlvcy0+cHdtX3JhbmdlICogZHV0eSAv
-IGRpdjsKIH0KIAotaW50CitzdGF0aWMgaW50CiBnazEwNF92b2x0X3NldChzdHJ1Y3QgbnZrbV92
-b2x0ICpiYXNlLCB1MzIgdXYpCiB7CiAJc3RydWN0IG52Ymlvc192b2x0ICpiaW9zID0gJmdrMTA0
-X3ZvbHQoYmFzZSktPmJpb3M7Ci0tIAoyLjcuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1Cg==
+We get 5 warnings when building kernel with W=1:
+drivers/gpu/drm/nouveau/nvkm/engine/disp/rootnv50.c:70:1: warning: no previous prototype for 'nv50_disp_root_mthd_' [-Wmissing-prototypes]
+drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c:157:1: warning: no previous prototype for 'nv50_disp_chan_rd32' [-Wmissing-prototypes]
+drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c:167:1: warning: no previous prototype for 'nv50_disp_chan_wr32' [-Wmissing-prototypes]
+drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c:177:1: warning: no previous prototype for 'nv50_disp_chan_ntfy' [-Wmissing-prototypes]
+drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c:193:1: warning: no previous prototype for 'nv50_disp_chan_map' [-Wmissing-prototypes]
+
+In fact, both functions are only used in the file in which they are
+declared and don't need a declaration, but can be made static.
+So this patch marks these functions with 'static'.
+
+Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c | 8 ++++----
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/rootnv50.c | 2 +-
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
+index dd2953b..26990d4 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/channv50.c
+@@ -153,7 +153,7 @@ nv50_disp_chan_uevent = {
+ 	.fini = nv50_disp_chan_uevent_fini,
+ };
+ 
+-int
++static int
+ nv50_disp_chan_rd32(struct nvkm_object *object, u64 addr, u32 *data)
+ {
+ 	struct nv50_disp_chan *chan = nv50_disp_chan(object);
+@@ -163,7 +163,7 @@ nv50_disp_chan_rd32(struct nvkm_object *object, u64 addr, u32 *data)
+ 	return 0;
+ }
+ 
+-int
++static int
+ nv50_disp_chan_wr32(struct nvkm_object *object, u64 addr, u32 data)
+ {
+ 	struct nv50_disp_chan *chan = nv50_disp_chan(object);
+@@ -173,7 +173,7 @@ nv50_disp_chan_wr32(struct nvkm_object *object, u64 addr, u32 data)
+ 	return 0;
+ }
+ 
+-int
++static int
+ nv50_disp_chan_ntfy(struct nvkm_object *object, u32 type,
+ 		    struct nvkm_event **pevent)
+ {
+@@ -189,7 +189,7 @@ nv50_disp_chan_ntfy(struct nvkm_object *object, u32 type,
+ 	return -EINVAL;
+ }
+ 
+-int
++static int
+ nv50_disp_chan_map(struct nvkm_object *object, u64 *addr, u32 *size)
+ {
+ 	struct nv50_disp_chan *chan = nv50_disp_chan(object);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/rootnv50.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/rootnv50.c
+index 2f9cecd..6424b39 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/rootnv50.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/rootnv50.c
+@@ -66,7 +66,7 @@ nv50_disp_root_scanoutpos(NV50_DISP_MTHD_V0)
+ 	return 0;
+ }
+ 
+-int
++static int
+ nv50_disp_root_mthd_(struct nvkm_object *object, u32 mthd, void *data, u32 size)
+ {
+ 	union {
+-- 
+2.7.4
