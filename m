@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98398] Vgaswitcharoo fails to turn off GPU properly
-Date: Sat, 22 Oct 2016 21:55:28 +0000
-Message-ID: <bug-98398-8800-MyNtKhzBuR@http.bugs.freedesktop.org/>
+Date: Sat, 22 Oct 2016 22:17:55 +0000
+Message-ID: <bug-98398-8800-aXocp9gMuj@http.bugs.freedesktop.org/>
 References: <bug-98398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0158364958=="
+Content-Type: multipart/mixed; boundary="===============0855706909=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0158364958==
-Content-Type: multipart/alternative; boundary="14771733270.FA76eaB9f.20422";
+--===============0855706909==
+Content-Type: multipart/alternative; boundary="14771746750.Fbd04.21287";
  charset="UTF-8"
 
 
---14771733270.FA76eaB9f.20422
-Date: Sat, 22 Oct 2016 21:55:27 +0000
+--14771746750.Fbd04.21287
+Date: Sat, 22 Oct 2016 22:17:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,23 +35,34 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98398
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #3 from rick.2889-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 127486
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127486&action=3Dedit
+New dmesg output after manually turning on power management
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Component|DRM/other                   |Driver/nouveau
-            Version|XOrg git                    |unspecified
-            Product|DRI                         |xorg
-           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |.org                        |rg
+So Lekensteyn asked me to run a few commands to also shut off the bus the G=
+PU
+is on.
+
+If I do so and then proceed by running powertop on battery, intel_pstate
+complains about turbo not being available, a usb device disconnects, a while
+later Nouveau resumes kernel object trees, Bluetooth reconnects and nouveau
+suspends again.
+
+The commands are:
+# echo auto > /sys/bus/pci/devices/0000\:00\:1c.4/power/control=20
+# grep .
+/sys/bus/pci/devices/0000:0{0:1c.4,1:00.0}/power/{control,runtime_status}
+
+The latter returns auto, suspended, auto, suspended before running powertop,
+and on, active, auto, suspended after running powertop.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14771733270.FA76eaB9f.20422
-Date: Sat, 22 Oct 2016 21:55:27 +0000
+--14771746750.Fbd04.21287
+Date: Sat, 22 Oct 2016 22:17:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,64 +73,47 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [Nouveau] Vgaswitcharoo fails to turn off GPU properly"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [Nouveau] Vgaswitcharoo fails to turn off GPU properly"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398">bug 98398<=
 /a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+rick.2889&#64;gmail.com" title=3D"rick.2889&#64;gmail.com">rick.2889&#64;gm=
+ail.com</a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127486=
+" name=3D"attach_127486" title=3D"New dmesg output after manually turning o=
+n power management">attachment 127486</a> <a href=3D"attachment.cgi?id=3D12=
+7486&amp;action=3Dedit" title=3D"New dmesg output after manually turning on=
+ power management">[details]</a></span>
+New dmesg output after manually turning on power management
 
-         <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-         </tr>
+So Lekensteyn asked me to run a few commands to also shut off the bus the G=
+PU
+is on.
 
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>DRM/other
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
+If I do so and then proceed by running powertop on battery, intel_pstate
+complains about turbo not being available, a usb device disconnects, a while
+later Nouveau resumes kernel object trees, Bluetooth reconnects and nouveau
+suspends again.
 
-         <tr>
-           <td style=3D"text-align:right;">Version</td>
-           <td>XOrg git
-           </td>
-           <td>unspecified
-           </td>
-         </tr>
+The commands are:
+# echo auto &gt; /sys/bus/pci/devices/0000\:00\:1c.4/power/control=20
+# grep .
+/sys/bus/pci/devices/0000:0{0:1c.4,1:00.0}/power/{control,runtime_status}
 
-         <tr>
-           <td style=3D"text-align:right;">Product</td>
-           <td>DRI
-           </td>
-           <td>xorg
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
-      <p>
+The latter returns auto, suspended, auto, suspended before running powertop,
+and on, active, auto, suspended after running powertop.</pre>
+        </div>
       </p>
 
 
@@ -132,9 +126,9 @@ pan class=3D"fn">Ilia Mirkin</span></a>
     </body>
 </html>=
 
---14771733270.FA76eaB9f.20422--
+--14771746750.Fbd04.21287--
 
---===============0158364958==
+--===============0855706909==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -144,4 +138,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0158364958==--
+--===============0855706909==--
