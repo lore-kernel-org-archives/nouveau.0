@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98398] Vgaswitcharoo fails to turn off GPU properly
-Date: Sat, 22 Oct 2016 23:24:49 +0000
-Message-ID: <bug-98398-8800-bDiXy0CfZs@http.bugs.freedesktop.org/>
-References: <bug-98398-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
+ KDE/KDM on Nvidia GeForce 7025 / nForce 630a
+Date: Sun, 23 Oct 2016 13:12:06 +0000
+Message-ID: <bug-93557-8800-wp5I9Fnytf@http.bugs.freedesktop.org/>
+References: <bug-93557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0396672738=="
+Content-Type: multipart/mixed; boundary="===============0291377172=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0396672738==
-Content-Type: multipart/alternative; boundary="14771786880.cA81e.24291";
+--===============0291377172==
+Content-Type: multipart/alternative; boundary="14772283262.BEA97F7.31309";
  charset="UTF-8"
 
 
---14771786880.cA81e.24291
-Date: Sat, 22 Oct 2016 23:24:48 +0000
+--14772283262.BEA97F7.31309
+Date: Sun, 23 Oct 2016 13:12:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98398
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93557
 
---- Comment #6 from rick.2889-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Booting without pcie_port_pm=3Doff, while blacklisting nouveau on boot, then
-executing:
- echo 0 > /sys/bus/pci/devices/0000:01:00.0/d3cold_allowed && modprobe nouv=
-eau
+--- Comment #8 from kisame217-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+System: Arch Linux with linux 4.8.4 and xf86-video-nouveau 1.0.13.
+Same problem as above.Kernel crashes after spamming MMIO write fault errors.
 
-also causes powertop to report a ~7.5W value.
+Interestingly, problem goes away with kernel parameter "nouveau.noaccel=3D1=
+".
+Of course this means no 2D acceleration.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14771786880.cA81e.24291
-Date: Sat, 22 Oct 2016 23:24:48 +0000
+--14772283262.BEA97F7.31309
+Date: Sun, 23 Oct 2016 13:12:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,25 +65,27 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [Nouveau] Vgaswitcharoo fails to turn off GPU properly"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398#c6">Comment=
- # 6</a>
+   title=3D"NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on =
+Nvidia GeForce 7025 / nForce 630a"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93557#c8">Comment=
+ # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [Nouveau] Vgaswitcharoo fails to turn off GPU properly"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398">bug 98398<=
+   title=3D"NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on =
+Nvidia GeForce 7025 / nForce 630a"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93557">bug 93557<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rick.2889&#64;gmail.com" title=3D"rick.2889&#64;gmail.com">rick.2889&#64;gm=
+kisame217&#64;gmail.com" title=3D"kisame217&#64;gmail.com">kisame217&#64;gm=
 ail.com</a>
 </span></b>
-        <pre>Booting without pcie_port_pm=3Doff, while blacklisting nouveau=
- on boot, then
-executing:
- echo 0 &gt; /sys/bus/pci/devices/0000:01:00.0/d3cold_allowed &amp;&amp; mo=
-dprobe nouveau
+        <pre>System: Arch Linux with linux 4.8.4 and xf86-video-nouveau 1.0=
+.13.
+Same problem as above.Kernel crashes after spamming MMIO write fault errors.
 
-also causes powertop to report a ~7.5W value.</pre>
+Interestingly, problem goes away with kernel parameter &quot;nouveau.noacce=
+l=3D1&quot;.
+Of course this means no 2D acceleration.</pre>
         </div>
       </p>
 
@@ -96,9 +99,9 @@ also causes powertop to report a ~7.5W value.</pre>
     </body>
 </html>=
 
---14771786880.cA81e.24291--
+--14772283262.BEA97F7.31309--
 
---===============0396672738==
+--===============0291377172==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0396672738==--
+--===============0291377172==--
