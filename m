@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Sun, 23 Oct 2016 16:04:44 +0000
-Message-ID: <bug-94990-8800-HNo6OdgaMI@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97462] Graphics deadlock "ILLEGAL_MTHD" in nouveau
+ with mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5
+Date: Sun, 23 Oct 2016 21:50:34 +0000
+Message-ID: <bug-97462-8800-q0ZgZjLT6U@http.bugs.freedesktop.org/>
+References: <bug-97462-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2053816832=="
+Content-Type: multipart/mixed; boundary="===============0496060021=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2053816832==
-Content-Type: multipart/alternative; boundary="14772386841.2D6AFcC.8203";
+--===============0496060021==
+Content-Type: multipart/alternative; boundary="14772594340.DEe3D8267.28197";
  charset="UTF-8"
 
 
---14772386841.2D6AFcC.8203
-Date: Sun, 23 Oct 2016 16:04:44 +0000
+--14772594340.DEe3D8267.28197
+Date: Sun, 23 Oct 2016 21:50:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97462
 
---- Comment #76 from Zach Wolfe <zwolfe21-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-Was just curious about this issue myself, on Mint 18 w/ kernel 4.5.4 and my=
- GTX
-980 just gives me a black screen as well. Worked on Fedora with later kernel
-versions however so I take it its not strictly a nouveau issue but its beyo=
-nd
-my capabilities to even find the problem?
+Daniel Barkalow <barkalow-o/mKjEDNO/Bg9hUCZPvPmw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |barkalow-o/mKjEDNO/Bg9hUCZPvPmw@public.gmane.org
+
+--- Comment #14 from Daniel Barkalow <barkalow-o/mKjEDNO/Bg9hUCZPvPmw@public.gmane.org> ---
+I'm having similar problems (google maps in firefox reliably causes a freez=
+e,
+although my mouse and magic-sysrq work); in my case, the logging grinds to a
+halt with a fifo engine fault it doesn't seem to recover from. I've also fo=
+und
+that spherical video on youtube does it reliably, other video does it
+occasionally, and other firefox usage does it rarely. This is my home compu=
+ter,
+so I can mess around with it some more if you want extra debugging output or
+something.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14772386841.2D6AFcC.8203
-Date: Sun, 23 Oct 2016 16:04:44 +0000
+--14772594340.DEe3D8267.28197
+Date: Sun, 23 Oct 2016 21:50:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,29 +70,60 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:barkalow&=
+#64;iabervon.org" title=3D"Daniel Barkalow &lt;barkalow&#64;iabervon.org&gt=
+;"> <span class=3D"fn">Daniel Barkalow</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
+h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462">bug 97462<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>barkalow&#64;iabervon.org
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c76">Commen=
-t # 76</a>
+   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
+h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462#c14">Commen=
+t # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
+h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462">bug 97462<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-zwolfe21&#64;hotmail.com" title=3D"Zach Wolfe &lt;zwolfe21&#64;hotmail.com&=
-gt;"> <span class=3D"fn">Zach Wolfe</span></a>
+barkalow&#64;iabervon.org" title=3D"Daniel Barkalow &lt;barkalow&#64;iaberv=
+on.org&gt;"> <span class=3D"fn">Daniel Barkalow</span></a>
 </span></b>
-        <pre>Was just curious about this issue myself, on Mint 18 w/ kernel=
- 4.5.4 and my GTX
-980 just gives me a black screen as well. Worked on Fedora with later kernel
-versions however so I take it its not strictly a nouveau issue but its beyo=
-nd
-my capabilities to even find the problem?</pre>
+        <pre>I'm having similar problems (google maps in firefox reliably c=
+auses a freeze,
+although my mouse and magic-sysrq work); in my case, the logging grinds to a
+halt with a fifo engine fault it doesn't seem to recover from. I've also fo=
+und
+that spherical video on youtube does it reliably, other video does it
+occasionally, and other firefox usage does it rarely. This is my home compu=
+ter,
+so I can mess around with it some more if you want extra debugging output or
+something.</pre>
         </div>
       </p>
 
@@ -96,9 +137,9 @@ my capabilities to even find the problem?</pre>
     </body>
 </html>=
 
---14772386841.2D6AFcC.8203--
+--14772594340.DEe3D8267.28197--
 
---===============2053816832==
+--===============0496060021==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +149,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2053816832==--
+--===============0496060021==--
