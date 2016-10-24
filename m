@@ -1,47 +1,71 @@
-From: Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH] nouveau: hide gcc-4.9 -Wmaybe-uninitialized
-Date: Mon, 24 Oct 2016 17:30:38 +0200
-Message-ID: <20161024153059.2713363-1-arnd@arndb.de>
+From: Karol Herbst <karolherbst@gmail.com>
+Subject: Re: [Nouveau] [PATCH 01/17] drm/nouveau/core: add missing header dependencies
+Date: Mon, 24 Oct 2016 17:43:20 +0200
+Message-ID: <CAEXux-Y+MXCawYsWm3gNgjA+7y6iVqqJN0n_cLNqR2U33GRWrA@mail.gmail.com>
+References: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
+ <CAEXux-ZYknEnU=D4qA_xv162vXF4UpVG-W9eNk68ahQoPP0ozQ@mail.gmail.com> <CA+DQWkwyKzpU+oPxsz1LAPB34gQRuJGchHqzj-4262dnYdsFFw@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CA+DQWkwyKzpU+oPxsz1LAPB34gQRuJGchHqzj-4262dnYdsFFw@mail.gmail.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, David Airlie <airlied@linux.ie>, Alex Deucher <alexander.deucher@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+To: Baoyou Xie <baoyou.xie@linaro.org>
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Alexandre Courbot <acourbot@nvidia.com>, Ilia Mirkin <imirkin@alum.mit.edu>, Julia Lawall <Julia.Lawall@lip6.fr>, Martin Peres <martin.peres@free.fr>, rspliet@eclipso.eu, Karol Herbst <nouveau@karolherbst.de>, Arnd Bergmann <arnd@arndb.de>, ML nouveau <nouveau@lists.freedesktop.org>, tang.qiang007@zte.com.cn, xie.baoyou@zte.com.cn, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, han.fei@zte.com.cn
 List-Id: nouveau.vger.kernel.org
 
-gcc-4.9 notices that the validate_init() function returns unintialized
-data when called with a zero 'nr_buffers' argument, when called with the
--Wmaybe-uninitialized flag:
+2016-10-24 9:13 GMT+02:00 Baoyou Xie <baoyou.xie@linaro.org>:
+>
+>
+> On 23 October 2016 at 01:32, Karol Herbst <karolherbst@gmail.com> wrote:
+>>
+>> I think it would be better to squash those commits:
+>> 1. for the includes
+>> 2. for static declerations
+>>
+> OK, I have resent new patch that squash those commits.
+>
 
-drivers/gpu/drm/nouveau/nouveau_gem.c: In function ‘validate_init.isra.6’:
-drivers/gpu/drm/nouveau/nouveau_gem.c:457:5: error: ‘ret’ may be used uninitialized in this function [-Werror=maybe-uninitialized]
+thanks, this is much easier to review and keeps the git history clean :)
+Will try to make a test with those patches over the next days, but it
+looks fine as it is already.
 
-However, the only caller of this function always passes a nonzero
-argument, and gcc-6 is clever enough to take this into account and
-not warn about it any more.
-
-Adding an explicit initialization to -EINVAL here is correct even if
-the caller changed, and it avoids the warning on gcc-4.9 as well.
-
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/gpu/drm/nouveau/nouveau_gem.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index 0bd7164bc817..4f3c5f3eaa16 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -369,7 +369,7 @@ validate_init(struct nouveau_channel *chan, struct drm_file *file_priv,
- {
- 	struct nouveau_cli *cli = nouveau_cli(file_priv);
- 	int trycnt = 0;
--	int ret, i;
-+	int ret = -EINVAL, i;
- 	struct nouveau_bo *res_bo = NULL;
- 	LIST_HEAD(gart_list);
- 	LIST_HEAD(vram_list);
--- 
-2.9.0
+>>
+>> 2016-10-22 11:41 GMT+02:00 Baoyou Xie <baoyou.xie@linaro.org>:
+>> > We get 2 warnings when building kernel with W=1:
+>> > drivers/gpu/drm/nouveau/nvkm/core/firmware.c:34:1: warning: no previous
+>> > prototype for 'nvkm_firmware_get' [-Wmissing-prototypes]
+>> > drivers/gpu/drm/nouveau/nvkm/core/firmware.c:58:1: warning: no previous
+>> > prototype for 'nvkm_firmware_put' [-Wmissing-prototypes]
+>> >
+>> > In fact, these functions are declared in
+>> > drivers/gpu/drm/nouveau/include/nvkm/core/firmware.h.
+>> > So this patch adds missing header dependencies.
+>> >
+>> > Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
+>> > ---
+>> >  drivers/gpu/drm/nouveau/nvkm/core/firmware.c | 1 +
+>> >  1 file changed, 1 insertion(+)
+>> >
+>> > diff --git a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
+>> > b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
+>> > index 34ecd4a..058ff46 100644
+>> > --- a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
+>> > +++ b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
+>> > @@ -20,6 +20,7 @@
+>> >   * DEALINGS IN THE SOFTWARE.
+>> >   */
+>> >  #include <core/device.h>
+>> > +#include <core/firmware.h>
+>> >
+>> >  /**
+>> >   * nvkm_firmware_get - load firmware from the official nvidia/chip/
+>> > directory
+>> > --
+>> > 2.7.4
+>> >
+>> > _______________________________________________
+>> > Nouveau mailing list
+>> > Nouveau@lists.freedesktop.org
+>> > https://lists.freedesktop.org/mailman/listinfo/nouveau
+>
+>
