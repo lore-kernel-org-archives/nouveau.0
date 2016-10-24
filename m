@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90482] Xorg take 100% CPU when using multiple
- independent screen configuration
-Date: Mon, 24 Oct 2016 09:41:04 +0000
-Message-ID: <bug-90482-8800-V1vT7L4W3b@http.bugs.freedesktop.org/>
-References: <bug-90482-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98398] Acer Aspire V7-582PG (Haswell,
+ GTX 750M) fails to power off GPU with runtime PM
+Date: Mon, 24 Oct 2016 10:09:46 +0000
+Message-ID: <bug-98398-8800-TPhUXflpbC@http.bugs.freedesktop.org/>
+References: <bug-98398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0457963442=="
+Content-Type: multipart/mixed; boundary="===============1674574179=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90482-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +21,57 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0457963442==
-Content-Type: multipart/alternative; boundary="14773020640.BA3dCeA80.3904";
+--===============1674574179==
+Content-Type: multipart/alternative; boundary="14773037860.132e.6002";
  charset="UTF-8"
 
 
---14773020640.BA3dCeA80.3904
-Date: Mon, 24 Oct 2016 09:41:04 +0000
+--14773037860.132e.6002
+Date: Mon, 24 Oct 2016 10:09:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90482
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98398
 
---- Comment #4 from Mariusz Bia=C5=82o=C5=84czyk <manio-RFXG7K41k5GsTnJN9+BGXg@public.gmane.org> ---
-@dura
-Thank you for your quick and dirty fix!
-I am also suffering the same problem (reported here btw:
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98383).
+Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> changed:
 
-In case when my xinerama is disabled, your patch is working great. No more =
-100%
-cpu usage!
-But when it is disabled and I power up my TV, then I have still have server
-crash, but that could be another story (maybe related?).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[Nouveau] Vgaswitcharoo     |Acer Aspire V7-582PG
+                   |fails to turn off GPU       |(Haswell, GTX 750M) fails
+                   |properly                    |to power off GPU with
+                   |                            |runtime PM
+                 CC|                            |peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org
 
-What is the problem to merge this patch upstream?
+--- Comment #8 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
+Pablo, the issues that bbswitch has is different from the one reported here.
+bbswitch is not updated for 4.8 requiring the pcie_port_pm=3Doff workaround.
+
+There are more details for this bug from the reporter in IRC (search for
+NanoSector):
+https://people.freedesktop.org/~cbrill/dri-log/index.php?channel=3Dnouveau&=
+date=3D2016-10-22
+
+In particular, Rick reported that the issue apparently also appears with ol=
+der
+kernels, including 4.3 to 4.8. This is significant and a surprising result
+because kernel 4.8 plus pcie_port_pm=3Doff (or the d3cold_allowed change) s=
+hould
+have the same result as 4.7 or before. Rick, can you re-test it with 4.7?
+
+It also occurs to me that older kernels might not support your GPU, so be s=
+ure
+to keep a dmesg around.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14773020640.BA3dCeA80.3904
-Date: Mon, 24 Oct 2016 09:41:04 +0000
+--14773037860.132e.6002
+Date: Mon, 24 Oct 2016 10:09:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,42 +82,79 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:peter&#64=
+;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"> <span c=
+lass=3D"fn">Peter Wu</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to power o=
+ff GPU with runtime PM"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398">bug 98398<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>[Nouveau] Vgaswitcharoo fails to turn off GPU properly
+           </td>
+           <td>Acer Aspire V7-582PG (Haswell, GTX 750M) fails to power off =
+GPU with runtime PM
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>peter&#64;lekensteyn.nl
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Xorg take 100% CPU when using multiple independent screen=
- configuration"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90482#c4">Comment=
- # 4</a>
+   title=3D"NEW - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to power o=
+ff GPU with runtime PM"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398#c8">Comment=
+ # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Xorg take 100% CPU when using multiple independent screen=
- configuration"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90482">bug 90482<=
+   title=3D"NEW - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to power o=
+ff GPU with runtime PM"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398">bug 98398<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-manio&#64;skyboo.net" title=3D"Mariusz Bia=C5=82o=C5=84czyk &lt;manio&#64;s=
-kyboo.net&gt;"> <span class=3D"fn">Mariusz Bia=C5=82o=C5=84czyk</span></a>
+peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
+> <span class=3D"fn">Peter Wu</span></a>
 </span></b>
-        <pre>&#64;dura
-Thank you for your quick and dirty fix!
-I am also suffering the same problem (reported here btw:
-<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - X server is crashing/eats 100% cpu when turning on monito=
-r"
-   href=3D"show_bug.cgi?id=3D98383">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D98383</a>).
+        <pre>Pablo, the issues that bbswitch has is different from the one =
+reported here.
+bbswitch is not updated for 4.8 requiring the pcie_port_pm=3Doff workaround.
 
-In case when my xinerama is disabled, your patch is working great. No more =
-100%
-cpu usage!
-But when it is disabled and I power up my TV, then I have still have server
-crash, but that could be another story (maybe related?).
+There are more details for this bug from the reporter in IRC (search for
+NanoSector):
+<a href=3D"https://people.freedesktop.org/~cbrill/dri-log/index.php?channel=
+=3Dnouveau&amp;date=3D2016-10-22">https://people.freedesktop.org/~cbrill/dr=
+i-log/index.php?channel=3Dnouveau&amp;date=3D2016-10-22</a>
 
-What is the problem to merge this patch upstream?</pre>
+In particular, Rick reported that the issue apparently also appears with ol=
+der
+kernels, including 4.3 to 4.8. This is significant and a surprising result
+because kernel 4.8 plus pcie_port_pm=3Doff (or the d3cold_allowed change) s=
+hould
+have the same result as 4.7 or before. Rick, can you re-test it with 4.7?
+
+It also occurs to me that older kernels might not support your GPU, so be s=
+ure
+to keep a dmesg around.</pre>
         </div>
       </p>
 
@@ -115,9 +168,9 @@ What is the problem to merge this patch upstream?</pre>
     </body>
 </html>=
 
---14773020640.BA3dCeA80.3904--
+--14773037860.132e.6002--
 
---===============0457963442==
+--===============1674574179==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +180,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0457963442==--
+--===============1674574179==--
