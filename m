@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
 	(v4.6+)
-Date: Mon, 24 Oct 2016 06:57:10 +0000
-Message-ID: <bug-94990-8800-DkghI9sZIm@http.bugs.freedesktop.org/>
+Date: Mon, 24 Oct 2016 06:58:46 +0000
+Message-ID: <bug-94990-8800-mlovxELOTw@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0108814702=="
+Content-Type: multipart/mixed; boundary="===============1109099171=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0108814702==
-Content-Type: multipart/alternative; boundary="14772922302.2c204.25945";
+--===============1109099171==
+Content-Type: multipart/alternative; boundary="14772923269.Ce3DAcA84.26098";
  charset="UTF-8"
 
 
---14772922302.2c204.25945
-Date: Mon, 24 Oct 2016 06:57:10 +0000
+--14772923269.Ce3DAcA84.26098
+Date: Mon, 24 Oct 2016 06:58:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #78 from Ilia Guterman <amfernusus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Comment on attachment 127508
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127508
-limit ram to 3 bars
-
-Zach Wolfe: one method is to limit the ram usage, but its a bandage not a f=
-ix.
+--- Comment #79 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+yeah, this would be also the workaround _I_ would suggest, not the other on=
+es
+above.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14772922302.2c204.25945
-Date: Mon, 24 Oct 2016 06:57:10 +0000
+--14772923269.Ce3DAcA84.26098
+Date: Mon, 24 Oct 2016 06:58:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,26 +63,20 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c78">Commen=
-t # 78</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c79">Commen=
+t # 79</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-amfernusus&#64;gmail.com" title=3D"Ilia Guterman &lt;amfernusus&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Ilia Guterman</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Comment on <span class=3D""><a href=3D"attachment.cgi?id=3D127=
-508" name=3D"attach_127508" title=3D"limit ram to 3 bars">attachment 127508=
-</a> <a href=3D"attachment.cgi?id=3D127508&amp;action=3Dedit" title=3D"limi=
-t ram to 3 bars">[details]</a></span> <a href=3D'page.cgi?id=3Dsplinter.htm=
-l&amp;bug=3D94990&amp;attachment=3D127508'>[review]</a>
-limit ram to 3 bars
-
-Zach Wolfe: one method is to limit the ram usage, but its a bandage not a f=
-ix.</pre>
+        <pre>yeah, this would be also the workaround _I_ would suggest, not=
+ the other ones
+above.</pre>
         </div>
       </p>
 
@@ -99,9 +90,9 @@ ix.</pre>
     </body>
 </html>=
 
---14772922302.2c204.25945--
+--14772923269.Ce3DAcA84.26098--
 
---===============0108814702==
+--===============1109099171==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0108814702==--
+--===============1109099171==--
