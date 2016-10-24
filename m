@@ -1,103 +1,47 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98398] Acer Aspire V7-582PG (Haswell,
- GTX 750M) fails to power off GPU with runtime PM
-Date: Mon, 24 Oct 2016 13:21:47 +0000
-Message-ID: <bug-98398-8800-35eWZBAOCR@http.bugs.freedesktop.org/>
-References: <bug-98398-8800@http.bugs.freedesktop.org/>
+From: Arnd Bergmann <arnd@arndb.de>
+Subject: [PATCH] nouveau: hide gcc-4.9 -Wmaybe-uninitialized
+Date: Mon, 24 Oct 2016 17:30:38 +0200
+Message-ID: <20161024153059.2713363-1-arnd@arndb.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0044821154=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, David Airlie <airlied@linux.ie>, Alex Deucher <alexander.deucher@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
+gcc-4.9 notices that the validate_init() function returns unintialized
+data when called with a zero 'nr_buffers' argument, when called with the
+-Wmaybe-uninitialized flag:
 
---===============0044821154==
-Content-Type: multipart/alternative; boundary="14773153070.10DBbA1E7.18134";
- charset="UTF-8"
+drivers/gpu/drm/nouveau/nouveau_gem.c: In function ‘validate_init.isra.6’:
+drivers/gpu/drm/nouveau/nouveau_gem.c:457:5: error: ‘ret’ may be used uninitialized in this function [-Werror=maybe-uninitialized]
 
+However, the only caller of this function always passes a nonzero
+argument, and gcc-6 is clever enough to take this into account and
+not warn about it any more.
 
---14773153070.10DBbA1E7.18134
-Date: Mon, 24 Oct 2016 13:21:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Adding an explicit initialization to -EINVAL here is correct even if
+the caller changed, and it avoids the warning on gcc-4.9 as well.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98398
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/nouveau/nouveau_gem.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---- Comment #9 from rick.2889-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Sure, I'll have another test run with 4.7 this week.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14773153070.10DBbA1E7.18134
-Date: Mon, 24 Oct 2016 13:21:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to power o=
-ff GPU with runtime PM"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to power o=
-ff GPU with runtime PM"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398">bug 98398<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rick.2889&#64;gmail.com" title=3D"rick.2889&#64;gmail.com">rick.2889&#64;gm=
-ail.com</a>
-</span></b>
-        <pre>Sure, I'll have another test run with 4.7 this week.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14773153070.10DBbA1E7.18134--
-
---===============0044821154==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0044821154==--
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 0bd7164bc817..4f3c5f3eaa16 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -369,7 +369,7 @@ validate_init(struct nouveau_channel *chan, struct drm_file *file_priv,
+ {
+ 	struct nouveau_cli *cli = nouveau_cli(file_priv);
+ 	int trycnt = 0;
+-	int ret, i;
++	int ret = -EINVAL, i;
+ 	struct nouveau_bo *res_bo = NULL;
+ 	LIST_HEAD(gart_list);
+ 	LIST_HEAD(vram_list);
+-- 
+2.9.0
