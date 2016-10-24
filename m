@@ -1,71 +1,58 @@
-From: Karol Herbst <karolherbst@gmail.com>
-Subject: Re: [Nouveau] [PATCH 01/17] drm/nouveau/core: add missing header dependencies
-Date: Mon, 24 Oct 2016 17:43:20 +0200
-Message-ID: <CAEXux-Y+MXCawYsWm3gNgjA+7y6iVqqJN0n_cLNqR2U33GRWrA@mail.gmail.com>
-References: <1477129318-29677-1-git-send-email-baoyou.xie@linaro.org>
- <CAEXux-ZYknEnU=D4qA_xv162vXF4UpVG-W9eNk68ahQoPP0ozQ@mail.gmail.com> <CA+DQWkwyKzpU+oPxsz1LAPB34gQRuJGchHqzj-4262dnYdsFFw@mail.gmail.com>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] nouveau: hide gcc-4.9 -Wmaybe-uninitialized
+Date: Mon, 24 Oct 2016 17:51:01 +0200
+Message-ID: <CAEXux-b9XBGXzYOJ714ZtMh+gkRXoYku5iM_c5HgEjvWPdch7Q@mail.gmail.com>
+References: <20161024153059.2713363-1-arnd@arndb.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CA+DQWkwyKzpU+oPxsz1LAPB34gQRuJGchHqzj-4262dnYdsFFw@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Baoyou Xie <baoyou.xie@linaro.org>
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Alexandre Courbot <acourbot@nvidia.com>, Ilia Mirkin <imirkin@alum.mit.edu>, Julia Lawall <Julia.Lawall@lip6.fr>, Martin Peres <martin.peres@free.fr>, rspliet@eclipso.eu, Karol Herbst <nouveau@karolherbst.de>, Arnd Bergmann <arnd@arndb.de>, ML nouveau <nouveau@lists.freedesktop.org>, tang.qiang007@zte.com.cn, xie.baoyou@zte.com.cn, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, han.fei@zte.com.cn
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20161024153059.2713363-1-arnd-r2nGTMty4D4@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Arnd Bergmann <arnd-r2nGTMty4D4@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-2016-10-24 9:13 GMT+02:00 Baoyou Xie <baoyou.xie@linaro.org>:
->
->
-> On 23 October 2016 at 01:32, Karol Herbst <karolherbst@gmail.com> wrote:
->>
->> I think it would be better to squash those commits:
->> 1. for the includes
->> 2. for static declerations
->>
-> OK, I have resent new patch that squash those commits.
->
-
-thanks, this is much easier to review and keeps the git history clean :)
-Will try to make a test with those patches over the next days, but it
-looks fine as it is already.
-
->>
->> 2016-10-22 11:41 GMT+02:00 Baoyou Xie <baoyou.xie@linaro.org>:
->> > We get 2 warnings when building kernel with W=1:
->> > drivers/gpu/drm/nouveau/nvkm/core/firmware.c:34:1: warning: no previous
->> > prototype for 'nvkm_firmware_get' [-Wmissing-prototypes]
->> > drivers/gpu/drm/nouveau/nvkm/core/firmware.c:58:1: warning: no previous
->> > prototype for 'nvkm_firmware_put' [-Wmissing-prototypes]
->> >
->> > In fact, these functions are declared in
->> > drivers/gpu/drm/nouveau/include/nvkm/core/firmware.h.
->> > So this patch adds missing header dependencies.
->> >
->> > Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
->> > ---
->> >  drivers/gpu/drm/nouveau/nvkm/core/firmware.c | 1 +
->> >  1 file changed, 1 insertion(+)
->> >
->> > diff --git a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
->> > b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
->> > index 34ecd4a..058ff46 100644
->> > --- a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
->> > +++ b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
->> > @@ -20,6 +20,7 @@
->> >   * DEALINGS IN THE SOFTWARE.
->> >   */
->> >  #include <core/device.h>
->> > +#include <core/firmware.h>
->> >
->> >  /**
->> >   * nvkm_firmware_get - load firmware from the official nvidia/chip/
->> > directory
->> > --
->> > 2.7.4
->> >
->> > _______________________________________________
->> > Nouveau mailing list
->> > Nouveau@lists.freedesktop.org
->> > https://lists.freedesktop.org/mailman/listinfo/nouveau
->
->
+dWhoLCB0aGF0IGZ1bmN0aW9uIGxvb2tzIHNvIG9kZCwgLi4uIHllYWguIENoYW5nZSBsb29rcyBm
+aW5lLgoKUmV2aWV3ZWQtQnk6IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgoK
+MjAxNi0xMC0yNCAxNzozMCBHTVQrMDI6MDAgQXJuZCBCZXJnbWFubiA8YXJuZEBhcm5kYi5kZT46
+Cj4gZ2NjLTQuOSBub3RpY2VzIHRoYXQgdGhlIHZhbGlkYXRlX2luaXQoKSBmdW5jdGlvbiByZXR1
+cm5zIHVuaW50aWFsaXplZAo+IGRhdGEgd2hlbiBjYWxsZWQgd2l0aCBhIHplcm8gJ25yX2J1ZmZl
+cnMnIGFyZ3VtZW50LCB3aGVuIGNhbGxlZCB3aXRoIHRoZQo+IC1XbWF5YmUtdW5pbml0aWFsaXpl
+ZCBmbGFnOgo+Cj4gZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9nZW0uYzogSW4gZnVu
+Y3Rpb24g4oCYdmFsaWRhdGVfaW5pdC5pc3JhLjbigJk6Cj4gZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbm91dmVhdV9nZW0uYzo0NTc6NTogZXJyb3I6IOKAmHJldOKAmSBtYXkgYmUgdXNlZCB1bmlu
+aXRpYWxpemVkIGluIHRoaXMgZnVuY3Rpb24gWy1XZXJyb3I9bWF5YmUtdW5pbml0aWFsaXplZF0K
+Pgo+IEhvd2V2ZXIsIHRoZSBvbmx5IGNhbGxlciBvZiB0aGlzIGZ1bmN0aW9uIGFsd2F5cyBwYXNz
+ZXMgYSBub256ZXJvCj4gYXJndW1lbnQsIGFuZCBnY2MtNiBpcyBjbGV2ZXIgZW5vdWdoIHRvIHRh
+a2UgdGhpcyBpbnRvIGFjY291bnQgYW5kCj4gbm90IHdhcm4gYWJvdXQgaXQgYW55IG1vcmUuCj4K
+PiBBZGRpbmcgYW4gZXhwbGljaXQgaW5pdGlhbGl6YXRpb24gdG8gLUVJTlZBTCBoZXJlIGlzIGNv
+cnJlY3QgZXZlbiBpZgo+IHRoZSBjYWxsZXIgY2hhbmdlZCwgYW5kIGl0IGF2b2lkcyB0aGUgd2Fy
+bmluZyBvbiBnY2MtNC45IGFzIHdlbGwuCj4KPiBTaWduZWQtb2ZmLWJ5OiBBcm5kIEJlcmdtYW5u
+IDxhcm5kQGFybmRiLmRlPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2dlbS5jIHwgMiArLQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRp
+b24oLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dl
+bS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9nZW0uYwo+IGluZGV4IDBiZDcx
+NjRiYzgxNy4uNGYzYzVmM2VhYTE2IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L25vdXZlYXVfZ2VtLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2dlbS5jCj4gQEAgLTM2OSw3ICszNjksNyBAQCB2YWxpZGF0ZV9pbml0KHN0cnVjdCBub3V2ZWF1
+X2NoYW5uZWwgKmNoYW4sIHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LAo+ICB7Cj4gICAgICAg
+ICBzdHJ1Y3Qgbm91dmVhdV9jbGkgKmNsaSA9IG5vdXZlYXVfY2xpKGZpbGVfcHJpdik7Cj4gICAg
+ICAgICBpbnQgdHJ5Y250ID0gMDsKPiAtICAgICAgIGludCByZXQsIGk7Cj4gKyAgICAgICBpbnQg
+cmV0ID0gLUVJTlZBTCwgaTsKPiAgICAgICAgIHN0cnVjdCBub3V2ZWF1X2JvICpyZXNfYm8gPSBO
+VUxMOwo+ICAgICAgICAgTElTVF9IRUFEKGdhcnRfbGlzdCk7Cj4gICAgICAgICBMSVNUX0hFQUQo
+dnJhbV9saXN0KTsKPiAtLQo+IDIuOS4wCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Cg==
