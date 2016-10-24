@@ -1,110 +1,108 @@
-From: Baoyou Xie <baoyou.xie@linaro.org>
-Subject: [PATCH v2 1/2] drm/nouveau: add missing header dependencies
-Date: Mon, 24 Oct 2016 11:09:02 +0800
-Message-ID: <1477278543-16533-1-git-send-email-baoyou.xie@linaro.org>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, acourbot@nvidia.com, imirkin@alum.mit.edu, Julia.Lawall@lip6.fr, martin.peres@free.fr, rspliet@eclipso.eu, nouveau@karolherbst.de
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, arnd@arndb.de, baoyou.xie@linaro.org, xie.baoyou@zte.com.cn, han.fei@zte.com.cn, tang.qiang007@zte.com.cn
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Mon, 24 Oct 2016 06:56:40 +0000
+Message-ID: <bug-94990-8800-4Jo3628gzs@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============1553891567=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-We get a few warnings when building kernel with W=1:
-drivers/gpu/drm/nouveau/nvkm/core/firmware.c:34:1: warning: no previous prototype for 'nvkm_firmware_get' [-Wmissing-prototypes]
-drivers/gpu/drm/nouveau/nvkm/core/firmware.c:58:1: warning: no previous prototype for 'nvkm_firmware_put' [-Wmissing-prototypes]
-drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr3.c:69:1: warning: no previous prototype for 'nvkm_sddr3_calc' [-Wmissing-prototypes]
-drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr2.c:60:1: warning: no previous prototype for 'nvkm_sddr2_calc' [-Wmissing-prototypes]
-....
 
-In fact, these functions are declared in
-drivers/gpu/drm/nouveau/include/nvkm/core/firmware.h
-drivers/gpu/drm/nouveau/nvkm/subdev/fb/ram.h
-drivers/gpu/drm/nouveau/nvkm/subdev/volt/priv.h
-drivers/gpu/drm/nouveau/nvkm/engine/gr/nv50.h
-drivers/gpu/drm/nouveau/dispnv04/disp.h.
-So this patch adds missing header dependencies.
+--===============1553891567==
+Content-Type: multipart/alternative; boundary="14772922002.d73446a.25854";
+ charset="UTF-8"
 
-Signed-off-by: Baoyou Xie <baoyou.xie@linaro.org>
----
- drivers/gpu/drm/nouveau/dispnv04/overlay.c       | 2 +-
- drivers/gpu/drm/nouveau/nvkm/core/firmware.c     | 1 +
- drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxnv50.c | 1 +
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr2.c   | 1 +
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr3.c   | 1 +
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gpio.c  | 1 +
- 6 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/overlay.c b/drivers/gpu/drm/nouveau/dispnv04/overlay.c
-index ec444ea..a79514d 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/overlay.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/overlay.c
-@@ -33,7 +33,7 @@
- #include "nouveau_connector.h"
- #include "nouveau_display.h"
- #include "nvreg.h"
--
-+#include "disp.h"
- 
- struct nouveau_plane {
- 	struct drm_plane base;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
-index 34ecd4a..058ff46 100644
---- a/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/core/firmware.c
-@@ -20,6 +20,7 @@
-  * DEALINGS IN THE SOFTWARE.
-  */
- #include <core/device.h>
-+#include <core/firmware.h>
- 
- /**
-  * nvkm_firmware_get - load firmware from the official nvidia/chip/ directory
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxnv50.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxnv50.c
-index 1e13278..c8bb919 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxnv50.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxnv50.c
-@@ -106,6 +106,7 @@
- #define CP_SEEK_2      0x00c800ff
- 
- #include "ctxnv40.h"
-+#include "nv50.h"
- 
- #include <subdev/fb.h>
- 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr2.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr2.c
-index b9f1ffd..4dcd874 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr2.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr2.c
-@@ -23,6 +23,7 @@
-  *          Ben Skeggs
-  */
- #include "priv.h"
-+#include "ram.h"
- 
- struct ramxlat {
- 	int id;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr3.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr3.c
-index 2690033..eca8a44 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr3.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr3.c
-@@ -23,6 +23,7 @@
-  * 	    Roy Spliet <rspliet@eclipso.eu>
-  */
- #include "priv.h"
-+#include "ram.h"
- 
- struct ramxlat {
- 	int id;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gpio.c b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gpio.c
-index d2bac1d..443c031 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gpio.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gpio.c
-@@ -25,6 +25,7 @@
- #include <subdev/bios.h>
- #include <subdev/bios/gpio.h>
- #include <subdev/gpio.h>
-+#include "priv.h"
- 
- static const u8 tags[] = {
- 	DCB_GPIO_VID0, DCB_GPIO_VID1, DCB_GPIO_VID2, DCB_GPIO_VID3,
--- 
-2.7.4
+--14772922002.d73446a.25854
+Date: Mon, 24 Oct 2016 06:56:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #77 from Ilia Guterman <amfernusus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 127508
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127508&action=3Dedit
+limit ram to 3 bars
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14772922002.d73446a.25854
+Date: Mon, 24 Oct 2016 06:56:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c77">Commen=
+t # 77</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+amfernusus&#64;gmail.com" title=3D"Ilia Guterman &lt;amfernusus&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Ilia Guterman</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127508=
+" name=3D"attach_127508" title=3D"limit ram to 3 bars">attachment 127508</a=
+> <a href=3D"attachment.cgi?id=3D127508&amp;action=3Dedit" title=3D"limit r=
+am to 3 bars">[details]</a></span> <a href=3D'page.cgi?id=3Dsplinter.html&a=
+mp;bug=3D94990&amp;attachment=3D127508'>[review]</a>
+limit ram to 3 bars</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14772922002.d73446a.25854--
+
+--===============1553891567==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1553891567==--
