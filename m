@@ -1,61 +1,130 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: noveau: emergency shutdown handling is overcomplex
-	and broken
-Date: Tue, 25 Oct 2016 13:09:25 +0200
-Message-ID: <CAEXux-YC5CRsEXc0EKxVgEgcQEO6J9cu5WeeAvorTfUHEDcr-Q@mail.gmail.com>
+From: Pavel Machek <pavel@ucw.cz>
+Subject: Re: [Nouveau] noveau: emergency shutdown handling is overcomplex and
+ broken
+Date: Tue, 25 Oct 2016 13:13:00 +0200
+Message-ID: <20161025111300.GB25855@amd>
 References: <20161025105050.GA20923@amd>
+ <CAEXux-YC5CRsEXc0EKxVgEgcQEO6J9cu5WeeAvorTfUHEDcr-Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20161025105050.GA20923@amd>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Pavel Machek <pavel-+ZI9xUNit7I@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1035417428=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CAEXux-YC5CRsEXc0EKxVgEgcQEO6J9cu5WeeAvorTfUHEDcr-Q@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Karol Herbst <karolherbst@gmail.com>
+Cc: ML nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-VGhhbmtzIGZvciB0aGUgcG9pbnRlci4KCkJ1dCBJIGRvbid0IGxpa2UgdGhpcyBwYXRjaC4gSWYg
-eW91IGZpbmQgYSBidWcsIG1ha2UgYSBidWcgcmVwb3J0IG9yCmp1c3QgZml4IGl0IGlmIHlvdSBr
-bm93IHRoZSBmaXggYWxyZWFkeS4gT3Igd3JpdGUgc29tZXRoaW5nIGluIElSQy4gT3IKd3JpdGUg
-b24gdGhlIE1haWxpbmcgbGlzdCBhcyBhIGdlbmVyYWwgcXVlc3Rpb24gb3Igc29tZXRoaW5nIGVs
-c2UKCkJ1dCBJIHJlYWxseSBkb24ndCBhZ3JlZSBvbiBkb2luZyBpdCB0aGlzIHdheS4gWW91IHdv
-dWxkIGhhdmUgbmVlZGVkCmxpa2UgdGhlIHNhbWUgYW1vdW50IG9mIHRpbWUgdG8gYWN0dWFsIGZp
-eCB0aGUgcHJvYmxlbS4KCkFueXdheSwgZm9yIGFkZGluZyBhIHByaW50azoKCnN0cnVjdCBudmtt
-X3N1YmRldiAqc3ViZGV2ID0gJnRoZXJtLT5zdWJkZXY7Cm52a21fZXJyb3Ioc3ViZGV2LCAibWVz
-c2FnZSIpOwoKMjAxNi0xMC0yNSAxMjo1MCBHTVQrMDI6MDAgUGF2ZWwgTWFjaGVrIDxwYXZlbEB1
-Y3cuY3o+Ogo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L3RoZXJtL3RlbXAuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3Ro
-ZXJtL3RlbXAuYwo+IGluZGV4IGI5NzAzYzAuLmFkYjFkZWIgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vdGVtcC5jCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vdGVtcC5jCj4gQEAgLTEyMCw2ICsx
-MjAsMTEgQEAgbnZrbV90aGVybV9zZW5zb3JfZXZlbnQoc3RydWN0IG52a21fdGhlcm0gKnRoZXJt
-LCBlbnVtIG52a21fdGhlcm1fdGhycyB0aHJzLAo+ICAgICAgICAgICAgICAgICAgICAgICAgIHN0
-cnVjdCB3b3JrX3N0cnVjdCAqd29yazsKPgo+ICAgICAgICAgICAgICAgICAgICAgICAgIHdvcmsg
-PSBrbWFsbG9jKHNpemVvZigqd29yayksIEdGUF9BVE9NSUMpOwo+ICsgICAgICAgICAgICAgICAg
-ICAgICAgIC8qIEZJWE1FOgo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgIDEpIHRoaXMgaXMg
-dG90YWwgb3ZlcmtpbGwsIG9yZGVybHlfcG93ZXJvZmYoKSBhbHJlYWR5Cj4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgICAgdXNlcyBzY2hlZHVsZV93b3JrIGludGVybmFsbHkKPiArICAgICAgICAg
-ICAgICAgICAgICAgICAgICAyKSBpdCB3b3VsZCAgYmUgZ29vZCB0byBhdCBsZWFzdCBwcmludGsg
-d2hhdCBpcyBnb2luZyBvbgo+ICsgICAgICAgICAgICAgICAgICAgICAgICovCj4gICAgICAgICAg
-ICAgICAgICAgICAgICAgaWYgKHdvcmspIHsKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIElOSVRfV09SSyh3b3JrLCBudl9wb3dlcm9mZl93b3JrKTsKPiAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIHNjaGVkdWxlX3dvcmsod29yayk7Cj4KPiBHRlBfQVRPTUlDIGlzIG5v
-dCByZWxpYWJsZS4gUGx1cywgc2VlIHRoZSBmaXhtZS4KPgo+IEJlc3QgcmVnYXJkcywKPiAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICBQYXZlbAo+Cj4gLS0KPiAoZW5nbGlzaCkgaHR0cDovL3d3dy5saXZlam91cm5h
-bC5jb20vfnBhdmVsbWFjaGVrCj4gKGNlc2t5LCBwaWN0dXJlcykgaHR0cDovL2F0cmV5Lmthcmxp
-bi5tZmYuY3VuaS5jei9+cGF2ZWwvcGljdHVyZS9ob3JzZXMvYmxvZy5odG1sCj4KPiBfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1035417428==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="tsOsTdHNUZQcU9Ye"
+Content-Disposition: inline
+
+
+--tsOsTdHNUZQcU9Ye
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue 2016-10-25 13:09:25, Karol Herbst wrote:
+> Thanks for the pointer.
+>=20
+> But I don't like this patch. If you find a bug, make a bug report or
+> just fix it if you know the fix already. Or write something in
+> IRC. Or
+
+I found a bug, and this is my bug report. Can you take care and fix
+it?
+
+									Pavel
+
+
+
+> write on the Mailing list as a general question or something else
+>=20
+> But I really don't agree on doing it this way. You would have needed
+> like the same amount of time to actual fix the problem.
+>=20
+> Anyway, for adding a printk:
+>=20
+> struct nvkm_subdev *subdev =3D &therm->subdev;
+> nvkm_error(subdev, "message");
+>=20
+> 2016-10-25 12:50 GMT+02:00 Pavel Machek <pavel@ucw.cz>:
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.c b/drivers=
+/gpu/drm/nouveau/nvkm/subdev/therm/temp.c
+> > index b9703c0..adb1deb 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.c
+> > @@ -120,6 +120,11 @@ nvkm_therm_sensor_event(struct nvkm_therm *therm, =
+enum nvkm_therm_thrs thrs,
+> >                         struct work_struct *work;
+> >
+> >                         work =3D kmalloc(sizeof(*work), GFP_ATOMIC);
+> > +                       /* FIXME:
+> > +                          1) this is total overkill, orderly_poweroff(=
+) already
+> > +                          uses schedule_work internally
+> > +                          2) it would  be good to at least printk what=
+ is going on
+> > +                       */
+> >                         if (work) {
+> >                                 INIT_WORK(work, nv_poweroff_work);
+> >                                 schedule_work(work);
+> >
+> > GFP_ATOMIC is not reliable. Plus, see the fixme.
+> >
+> > Best regards,
+> >                                                                        =
+ Pavel
+> >
+> > --
+> > (english) http://www.livejournal.com/~pavelmachek
+> > (cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses=
+/blog.html
+> >
+> > _______________________________________________
+> > Nouveau mailing list
+> > Nouveau@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/nouveau
+> >
+
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--tsOsTdHNUZQcU9Ye
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAlgPPjwACgkQMOfwapXb+vJc0ACbBl2+Fl2LAL/fcNOrOz5MSRKy
+sH4AoIdisul4OtYZt+jrJ0mras1uhUwB
+=4hgQ
+-----END PGP SIGNATURE-----
+
+--tsOsTdHNUZQcU9Ye--
+
+--===============1035417428==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============1035417428==--
