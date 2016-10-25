@@ -1,113 +1,62 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Tue, 25 Oct 2016 08:50:06 +0000
-Message-ID: <bug-94990-8800-8XcDUMHmuW@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: Pavel Machek <pavel@ucw.cz>
+Subject: noveau: emergency shutdown handling is overcomplex and broken
+Date: Tue, 25 Oct 2016 12:50:50 +0200
+Message-ID: <20161025105050.GA20923@amd>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1417454202=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="OXfL5xGRrasGEqWY"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1417454202==
-Content-Type: multipart/alternative; boundary="147738540611.0CDbA8.2253";
- charset="UTF-8"
-
-
---147738540611.0CDbA8.2253
-Date: Tue, 25 Oct 2016 08:50:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
---- Comment #80 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
-(In reply to Zach Wolfe from comment #76)
-> Worked on Fedora with later
-> kernel versions however so I take it its not strictly a nouveau issue but
-> its beyond my capabilities to even find the problem?
-
-Which Fedora and kernel versions did it work on?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---147738540611.0CDbA8.2253
-Date: Tue, 25 Oct 2016 08:50:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c80">Commen=
-t # 80</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
-un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
-</span></b>
-        <pre>(In reply to Zach Wolfe from <a href=3D"show_bug.cgi?id=3D9499=
-0#c76">comment #76</a>)
-<span class=3D"quote">&gt; Worked on Fedora with later
-&gt; kernel versions however so I take it its not strictly a nouveau issue =
-but
-&gt; its beyond my capabilities to even find the problem?</span >
-
-Which Fedora and kernel versions did it work on?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---147738540611.0CDbA8.2253--
-
---===============1417454202==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
+--OXfL5xGRrasGEqWY
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1417454202==--
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.c b/drivers/gpu=
+/drm/nouveau/nvkm/subdev/therm/temp.c
+index b9703c0..adb1deb 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.c
+@@ -120,6 +120,11 @@ nvkm_therm_sensor_event(struct nvkm_therm *therm, enum=
+ nvkm_therm_thrs thrs,
+ 			struct work_struct *work;
+=20
+ 			work =3D kmalloc(sizeof(*work), GFP_ATOMIC);
++			/* FIXME:
++			   1) this is total overkill, orderly_poweroff() already
++			   uses schedule_work internally
++			   2) it would  be good to at least printk what is going on
++			*/
+ 			if (work) {
+ 				INIT_WORK(work, nv_poweroff_work);
+ 				schedule_work(work);
+
+GFP_ATOMIC is not reliable. Plus, see the fixme.
+
+Best regards,
+									Pavel
+								=09
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--OXfL5xGRrasGEqWY
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAlgPOQoACgkQMOfwapXb+vLThwCgjLo7i3ed4+y7j9NLmS0X+iiP
+pIkAn1ZQ8byD0QiNDZ/6Fiqk60PLI8Wp
+=59WN
+-----END PGP SIGNATURE-----
+
+--OXfL5xGRrasGEqWY--
