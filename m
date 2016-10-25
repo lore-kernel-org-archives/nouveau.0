@@ -1,15 +1,13 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 3/3] hwmon: expose power_max and power_crit
-Date: Tue, 25 Oct 2016 08:22:46 +0200
-Message-ID: <DDDABF9E-4337-4451-B8F7-79E5E3EA8A37@gmail.com>
-References: <20161024211113.5876-1-karolherbst@gmail.com>
- <20161024211113.5876-4-karolherbst@gmail.com>
- <a270c96c-d792-8dd1-eaea-b63fe3a61e3a@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Tue, 25 Oct 2016 08:50:06 +0000
+Message-ID: <bug-94990-8800-8XcDUMHmuW@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1417454202=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <a270c96c-d792-8dd1-eaea-b63fe3a61e3a-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,93 +17,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAyNSBPY3RvYmVyIDIwMTYgNzozMzowOCBhLm0uIEdNVCswMjowMCwgTWFydGluIFBlcmVz
-IDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4gd3JvdGU6Cj5PbiAyNS8xMC8xNiAwMDoxMSwgS2Fyb2wg
-SGVyYnN0IHdyb3RlOgo+PiBTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0
-QGdtYWlsLmNvbT4KPj4gLS0tCj4+ICBkcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMgfCA0NAo+
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKPj4gIDEgZmlsZSBj
-aGFuZ2VkLCA0NCBpbnNlcnRpb25zKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2h3bW9uLmMKPmIvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jCj4+IGluZGV4IDcx
-Zjc2NGIuLjNkNDY3MmEgMTAwNjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24u
-Ywo+PiArKysgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMKPj4gQEAgLTU5Niw2ICs1OTYs
-MzIgQEAgbm91dmVhdV9od21vbl9nZXRfcG93ZXIxX2lucHV0KHN0cnVjdCBkZXZpY2UgKmQsCj5z
-dHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSAqYSwKPj4gIHN0YXRpYyBTRU5TT1JfREVWSUNFX0FUVFIo
-cG93ZXIxX2lucHV0LCBTX0lSVUdPLAo+PiAgCQkJICBub3V2ZWF1X2h3bW9uX2dldF9wb3dlcjFf
-aW5wdXQsIE5VTEwsIDApOwo+Pgo+PiArc3RhdGljIHNzaXplX3QKPj4gK25vdXZlYXVfaHdtb25f
-Z2V0X3Bvd2VyMV9tYXgoc3RydWN0IGRldmljZSAqZCwgc3RydWN0Cj5kZXZpY2VfYXR0cmlidXRl
-ICphLAo+PiArCQkJICAgICBjaGFyICpidWYpCj4+ICt7Cj4+ICsJc3RydWN0IGRybV9kZXZpY2Ug
-KmRldiA9IGRldl9nZXRfZHJ2ZGF0YShkKTsKPj4gKwlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9
-IG5vdXZlYXVfZHJtKGRldik7Cj4+ICsJc3RydWN0IG52a21faWNjc2Vuc2UgKmljY3NlbnNlID0g
-bnZ4eF9pY2NzZW5zZSgmZHJtLT5kZXZpY2UpOwo+PiArCXJldHVybiBzcHJpbnRmKGJ1ZiwgIiVp
-XG4iLCBpY2NzZW5zZS0+cG93ZXJfd19tYXgpOwo+PiArfQo+PiArCj4+ICtzdGF0aWMgU0VOU09S
-X0RFVklDRV9BVFRSKHBvd2VyMV9tYXgsIFNfSVJVR08sCj4+ICsJCQkgIG5vdXZlYXVfaHdtb25f
-Z2V0X3Bvd2VyMV9tYXgsIE5VTEwsIDApOwo+PiArCj4+ICtzdGF0aWMgc3NpemVfdAo+PiArbm91
-dmVhdV9od21vbl9nZXRfcG93ZXIxX2NyaXQoc3RydWN0IGRldmljZSAqZCwgc3RydWN0Cj5kZXZp
-Y2VfYXR0cmlidXRlICphLAo+PiArCQkJICAgICAgY2hhciAqYnVmKQo+PiArewo+PiArCXN0cnVj
-dCBkcm1fZGV2aWNlICpkZXYgPSBkZXZfZ2V0X2RydmRhdGEoZCk7Cj4+ICsJc3RydWN0IG5vdXZl
-YXVfZHJtICpkcm0gPSBub3V2ZWF1X2RybShkZXYpOwo+PiArCXN0cnVjdCBudmttX2ljY3NlbnNl
-ICppY2NzZW5zZSA9IG52eHhfaWNjc2Vuc2UoJmRybS0+ZGV2aWNlKTsKPj4gKwlyZXR1cm4gc3By
-aW50ZihidWYsICIlaVxuIiwgaWNjc2Vuc2UtPnBvd2VyX3dfY3JpdCk7Cj4+ICt9Cj4+ICsKPj4g
-K3N0YXRpYyBTRU5TT1JfREVWSUNFX0FUVFIocG93ZXIxX2NyaXQsIFNfSVJVR08sCj4+ICsJCQkg
-IG5vdXZlYXVfaHdtb25fZ2V0X3Bvd2VyMV9jcml0LCBOVUxMLCAwKTsKPj4gKwo+PiAgc3RhdGlj
-IHN0cnVjdCBhdHRyaWJ1dGUgKmh3bW9uX2RlZmF1bHRfYXR0cmlidXRlc1tdID0gewo+PiAgCSZz
-ZW5zb3JfZGV2X2F0dHJfbmFtZS5kZXZfYXR0ci5hdHRyLAo+PiAgCSZzZW5zb3JfZGV2X2F0dHJf
-dXBkYXRlX3JhdGUuZGV2X2F0dHIuYXR0ciwKPj4gQEAgLTYzOSw2ICs2NjUsMTIgQEAgc3RhdGlj
-IHN0cnVjdCBhdHRyaWJ1dGUKPipod21vbl9wb3dlcl9hdHRyaWJ1dGVzW10gPSB7Cj4+ICAJTlVM
-TAo+PiAgfTsKPj4KPj4gK3N0YXRpYyBzdHJ1Y3QgYXR0cmlidXRlICpod21vbl9wb3dlcl9jYXBz
-X2F0dHJpYnV0ZXNbXSA9IHsKPj4gKwkmc2Vuc29yX2Rldl9hdHRyX3Bvd2VyMV9tYXguZGV2X2F0
-dHIuYXR0ciwKPj4gKwkmc2Vuc29yX2Rldl9hdHRyX3Bvd2VyMV9jcml0LmRldl9hdHRyLmF0dHIs
-Cj4+ICsJTlVMTAo+PiArfTsKPj4gKwo+PiAgc3RhdGljIGNvbnN0IHN0cnVjdCBhdHRyaWJ1dGVf
-Z3JvdXAgaHdtb25fZGVmYXVsdF9hdHRyZ3JvdXAgPSB7Cj4+ICAJLmF0dHJzID0gaHdtb25fZGVm
-YXVsdF9hdHRyaWJ1dGVzLAo+PiAgfTsKPj4gQEAgLTY1Nyw2ICs2ODksOSBAQCBzdGF0aWMgY29u
-c3Qgc3RydWN0IGF0dHJpYnV0ZV9ncm91cAo+aHdtb25faW4wX2F0dHJncm91cCA9IHsKPj4gIHN0
-YXRpYyBjb25zdCBzdHJ1Y3QgYXR0cmlidXRlX2dyb3VwIGh3bW9uX3Bvd2VyX2F0dHJncm91cCA9
-IHsKPj4gIAkuYXR0cnMgPSBod21vbl9wb3dlcl9hdHRyaWJ1dGVzLAo+PiAgfTsKPj4gK3N0YXRp
-YyBjb25zdCBzdHJ1Y3QgYXR0cmlidXRlX2dyb3VwIGh3bW9uX3Bvd2VyX2NhcHNfYXR0cmdyb3Vw
-ID0gewo+PiArCS5hdHRycyA9IGh3bW9uX3Bvd2VyX2NhcHNfYXR0cmlidXRlcywKPj4gK307Cj4+
-ICAjZW5kaWYKPj4KPj4gIGludAo+PiBAQCAtNzI4LDggKzc2MywxNiBAQCBub3V2ZWF1X2h3bW9u
-X2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPj4gIAlpZiAoaWNjc2Vuc2UgJiYgaWNjc2Vu
-c2UtPmRhdGFfdmFsaWQgJiYKPiFsaXN0X2VtcHR5KCZpY2NzZW5zZS0+cmFpbHMpKSB7Cj4+ICAJ
-CXJldCA9IHN5c2ZzX2NyZWF0ZV9ncm91cCgmaHdtb25fZGV2LT5rb2JqLAo+PiAgCQkJCQkgJmh3
-bW9uX3Bvd2VyX2F0dHJncm91cCk7Cj4+ICsKPj4gIAkJaWYgKHJldCkKPj4gIAkJCWdvdG8gZXJy
-b3I7Cj4+ICsKPj4gKwkJaWYgKGljY3NlbnNlLT5wb3dlcl93X21heCAmJiBpY2NzZW5zZS0+cG93
-ZXJfd19jcml0KSB7Cj4+ICsJCQlyZXQgPSBzeXNmc19jcmVhdGVfZ3JvdXAoJmh3bW9uX2Rldi0+
-a29iaiwKPj4gKwkJCQkJCSAmaHdtb25fcG93ZXJfY2Fwc19hdHRyZ3JvdXApOwo+PiArCQkJaWYg
-KHJldCkKPj4gKwkJCQlnb3RvIGVycm9yOwo+PiArCQl9Cj4+ICAJfQo+Pgo+PiAgCWh3bW9uLT5o
-d21vbiA9IGh3bW9uX2RldjsKPj4gQEAgLTc1OSw2ICs4MDIsNyBAQCBub3V2ZWF1X2h3bW9uX2Zp
-bmkoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPj4gIAkJc3lzZnNfcmVtb3ZlX2dyb3VwKCZod21v
-bi0+aHdtb24tPmtvYmosICZod21vbl9mYW5fcnBtX2F0dHJncm91cCk7Cj4+ICAJCXN5c2ZzX3Jl
-bW92ZV9ncm91cCgmaHdtb24tPmh3bW9uLT5rb2JqLCAmaHdtb25faW4wX2F0dHJncm91cCk7Cj4+
-ICAJCXN5c2ZzX3JlbW92ZV9ncm91cCgmaHdtb24tPmh3bW9uLT5rb2JqLCAmaHdtb25fcG93ZXJf
-YXR0cmdyb3VwKTsKPj4gKwkJc3lzZnNfcmVtb3ZlX2dyb3VwKCZod21vbi0+aHdtb24tPmtvYmos
-Cj4maHdtb25fcG93ZXJfY2Fwc19hdHRyZ3JvdXApOwo+Pgo+PiAgCQlod21vbl9kZXZpY2VfdW5y
-ZWdpc3Rlcihod21vbi0+aHdtb24pOwo+PiAgCX0KPj4KPgo+U28sIHlvdSB3YW50ZWQgdG8gbWFr
-ZSBhIGNhY2hlIGJlY2F1c2UgeW91IGZlbHQgeW91IG1heSB3YW50IHRvIGxldCB0aGUKPgo+dXNl
-ciBlZGl0IHRoZSB2YWx1ZXM/Cj4KPk5vdCBzdXJlIHdlIHNob3VsZCBldmVyIGFsbG93IHRoaXMg
-OnMgQXQgbGVhc3QsIGEgUk8gZmlsZSBpcyBhIHZlcnkKPmdvb2QgCj5pZGVhIHRvIGhlbHAgZGVi
-dWdnaW5nIGFuZCBqdXN0IGxldHRpbmcgdGhlIHVzZXIga25vdyBhYm91dCBzdWNoIAo+bGltaXRh
-dGlvbnMuCj4KPlNvLCBpbiBteSBvcGluaW9uLCBJIHRoaW5rIHdlIHNob3VsZCBqdXN0IGtpbGwg
-cGF0Y2ggMiBhbmQgdXNlIGRpcmVjdGx5Cj4KPnRoZSBvdXRwdXQgb2YgdGhlIGJpb3MgdGFibGUg
-aGVyZS4gTWF5YmUgeW91IGNhbiB3cml0ZSBhIGhlbHBlcgo+ZnVuY3Rpb24gCj5pbiBwYXRjaCAx
-IHRvIGdldCB0aGUgbWluLCBhdmcgYW5kIG1heCB2YWx1ZXMgYW5kIHJldHVybiAtMSBpZiBpdCBp
-cwo+bm90IAo+dmFsaWQ/IFRoaXMgd2F5LCB5b3UgY2FuIGFjY2VzcyB0aGlzIGluZm8gdmVyeSBl
-YXNpbHkgaW4gbXVsdGlwbGUKPnBsYWNlcyAKPndpdGhvdXQgZHVwbGljYXRpbmcgdGhpcyAweGZm
-IGNoZWNrLgo+Cj4KCm5vLCBteSBpbnRlbnRpb24gd2FzIHRvIHBhcnNlIHRoZSB2YmlvcyBvbmNl
-IGFuZCBiZSBkb25lIHdpdGggaXQsIG90aGVyd2lzZSB3ZSB3b3VsZCBzcHJlYWQgdGhlIGxvZ2lj
-IGhvdyB0byByZWFkIHRoZSB2YWx1ZXMuIEJ1dCBtYXliZSB0aGUgZW50cmllcyBhcmUgaW5kZWVk
-IGFsd2F5cyBtaW4vbWF4L2NyaXQgYW5kIHRoZXJlIGlzIG5vIGF2ZyB2YWx1ZS4gQnV0IHRoZSBt
-aW4gb2YgdGhlIGNhcCBlbnRyeSBtZWFucyBzb21ldGhpbmcgbGlrZSBtaW4gbWF4IGNvbnN1bXB0
-aW9uLgoKQWRpdGluYWxseSB0aGUgb3RoZXIgZWJ0cmllcyBoYXZlIHJlYWxseSB3ZWlyZCBhZmZl
-Y3RzLCBzbyBJIHdvdWxkIHJhdGhlciBub3Qgd2FudCB0byBwYXJzZSB0aGUgdGFibGUgZXZlcnkg
-dGltZS4KClRoZXJlIGFyZSBzb21lIGZsYWdzIGluIHRoZSBlbnRyaWVzIHdoaWNoIGFmZmVjdCB3
-aGF0IGlzIHRoZSBtYXggYWxsb3dlZCBjb25zdW1wdGlvbiBhbmQgSSBhbHJ3YWR5IHNlZSBpdCB3
-aWxsIGdldCBhIGxpdHRsZSBjb21wbGljYXRlZC4KCj5fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwo+Tm91dmVhdSBtYWlsaW5nIGxpc3QKPk5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCj5odHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQo=
+
+--===============1417454202==
+Content-Type: multipart/alternative; boundary="147738540611.0CDbA8.2253";
+ charset="UTF-8"
+
+
+--147738540611.0CDbA8.2253
+Date: Tue, 25 Oct 2016 08:50:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #80 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
+(In reply to Zach Wolfe from comment #76)
+> Worked on Fedora with later
+> kernel versions however so I take it its not strictly a nouveau issue but
+> its beyond my capabilities to even find the problem?
+
+Which Fedora and kernel versions did it work on?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--147738540611.0CDbA8.2253
+Date: Tue, 25 Oct 2016 08:50:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c80">Commen=
+t # 80</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
+un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
+</span></b>
+        <pre>(In reply to Zach Wolfe from <a href=3D"show_bug.cgi?id=3D9499=
+0#c76">comment #76</a>)
+<span class=3D"quote">&gt; Worked on Fedora with later
+&gt; kernel versions however so I take it its not strictly a nouveau issue =
+but
+&gt; its beyond my capabilities to even find the problem?</span >
+
+Which Fedora and kernel versions did it work on?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--147738540611.0CDbA8.2253--
+
+--===============1417454202==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1417454202==--
