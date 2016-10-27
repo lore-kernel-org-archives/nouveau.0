@@ -1,24 +1,14 @@
-From: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: Re: Acer Aspire V7-582PG (Haswell,
- GTX 750M) fails to power off GPU via Power Resources
-Date: Thu, 27 Oct 2016 13:12:04 +0300
-Message-ID: <20161027101204.GB1476@lahna.fi.intel.com>
-References: <bug-98398-8800@http.bugs.freedesktop.org/>
- <bug-98398-8800-66oU1nuK0R@http.bugs.freedesktop.org/>
- <20161026225641.GA27017@al>
- <20161027081748.GX1476@lahna.fi.intel.com>
- <20161027090604.GB27017@al>
- <CANni8hdMs4pL0m6FrgeyJjE2R2C=6PaHbVbMVoUU+NszJuf9OA@mail.gmail.com>
- <20161027093011.GZ1476@lahna.fi.intel.com>
- <CANni8her35iORgrZOkDzxhfVaOOzObTLG2Ly0kkNZPDTrbyfQQ@mail.gmail.com>
- <20161027095508.GA1476@lahna.fi.intel.com>
- <CANni8hfSnT46pH8EnA1f00SWXUrJ=8PHRjydricGbH4AS4mR7A@mail.gmail.com>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 2/3] fb/gk20a: use regular gf100's functions
+Date: Thu, 27 Oct 2016 13:52:06 +0200
+Message-ID: <CAEXux-atyLLkL9btuWh9A==82XZEh0q36-JMtO+VDuEMngcosA@mail.gmail.com>
+References: <20161027075554.18791-1-acourbot@nvidia.com>
+ <20161027075554.18791-3-acourbot@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CANni8hfSnT46pH8EnA1f00SWXUrJ=8PHRjydricGbH4AS4mR7A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <20161027075554.18791-3-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -28,16 +18,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Rick Kerkhof <rick.2889-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBPY3QgMjcsIDIwMTYgYXQgMTA6MDc6NDVBTSArMDAwMCwgUmljayBLZXJraG9mIHdy
-b3RlOgo+ICAgIFRoYW5rIHlvdSBmb3IgdGhlIHBhdGNoLCBJIGhhdmUgYXBwbGllZCBpdCB0byB0
-aGUga2VybmVsIHNvdXJjZXMgYnV0Cj4gICAgSSdtIG5vdCBzdXJlIGhvdyB0byBwcm9jZWVkIGZy
-b20gbm93IG9uLiBTaG91bGQgSSBjb21waWxlIHRoZSB3aG9sZQo+ICAgIGtlcm5lbCBvciBjYW4g
-SSBqdXN0IGJ1aWxkIGFuIG91dC1vZi10cmVlIGFjcGkgbW9kdWxlPwoKWW91IG5lZWQgdG8gYnVp
-bGQgdGhlIHdob2xlIGtlcm5lbCwgaW5zdGFsbCBhbmQgcmVib290LgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+bG9va3MgZ29vZAoKUmV2aWV3ZWQtQnk6IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwu
+Y29tPgoKMjAxNi0xMC0yNyA5OjU1IEdNVCswMjowMCBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJi
+b3RAbnZpZGlhLmNvbT46Cj4gZ2syMGEncyBGQiBpcyBub3Qgc3BlY2lhbCBjb21wYXJlZCB0byBv
+dGhlciBLZXBsZXIgY2hpcHMsIGJlc2lkZXMgdGhlCj4gZmFjdCBpdCBkb2VzIG5vdCBoYXZlIFZS
+QU0uIFVzZSB0aGUgcmVndWxhciBnZjEwMCBob29rcyBpbnN0ZWFkIG9mIHRoZQo+IGluY29tcGxl
+dGUgdmVyc2lvbnMgd2UgcmV3cm90ZS4KPgo+IFNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3Vy
+Ym90IDxhY291cmJvdEBudmlkaWEuY29tPgo+IC0tLQo+ICBkcm0vbm91dmVhdS9udmttL3N1YmRl
+di9mYi9nazIwYS5jIHwgMTcgKysrKystLS0tLS0tLS0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDUg
+aW5zZXJ0aW9ucygrKSwgMTIgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZl
+YXUvbnZrbS9zdWJkZXYvZmIvZ2syMGEuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL2dr
+MjBhLmMKPiBpbmRleCAzZjUxNmY1YWRjMzAuLjVkMzRkNjEzNjYxNiAxMDA2NDQKPiAtLS0gYS9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9nazIwYS5jCj4gKysrIGIvZHJtL25vdXZlYXUvbnZr
+bS9zdWJkZXYvZmIvZ2syMGEuYwo+IEBAIC0xLDUgKzEsNSBAQAo+ICAvKgo+IC0gKiBDb3B5cmln
+aHQgKGMpIDIwMTQsIE5WSURJQSBDT1JQT1JBVElPTi4gQWxsIHJpZ2h0cyByZXNlcnZlZC4KPiAr
+ICogQ29weXJpZ2h0IChjKSAyMDE0LTIwMTYsIE5WSURJQSBDT1JQT1JBVElPTi4gQWxsIHJpZ2h0
+cyByZXNlcnZlZC4KPiAgICoKPiAgICogUGVybWlzc2lvbiBpcyBoZXJlYnkgZ3JhbnRlZCwgZnJl
+ZSBvZiBjaGFyZ2UsIHRvIGFueSBwZXJzb24gb2J0YWluaW5nIGEKPiAgICogY29weSBvZiB0aGlz
+IHNvZnR3YXJlIGFuZCBhc3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRoZSAiU29mdHdh
+cmUiKSwKPiBAQCAtMjIsMjEgKzIyLDE0IEBACj4gICNpbmNsdWRlICJwcml2LmgiCj4gICNpbmNs
+dWRlICJnZjEwMC5oIgo+Cj4gLSNpbmNsdWRlIDxjb3JlL21lbW9yeS5oPgo+IC0KPiAtc3RhdGlj
+IHZvaWQKPiAtZ2syMGFfZmJfaW5pdChzdHJ1Y3QgbnZrbV9mYiAqZmIpCj4gLXsKPiAtICAgICAg
+IHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlID0gZmItPnN1YmRldi5kZXZpY2U7Cj4gLSAgICAg
+ICBudmttX3dyMzIoZGV2aWNlLCAweDEwMGNjOCwgbnZrbV9tZW1vcnlfYWRkcihmYi0+bW11X3dy
+KSA+PiA4KTsKPiAtICAgICAgIG52a21fd3IzMihkZXZpY2UsIDB4MTAwY2NjLCBudmttX21lbW9y
+eV9hZGRyKGZiLT5tbXVfcmQpID4+IDgpOwo+IC19Cj4gLQo+ICsvKiBHSzIwQSdzIEZCIGlzIHNp
+bWlsYXIgdG8gR0YxMDAncywgYnV0IHdpdGhvdXQgdGhlIGFiaWxpdHkgdG8gYWxsb2NhdGUgVlJB
+TSAqLwo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IG52a21fZmJfZnVuYwo+ICBnazIwYV9mYiA9IHsK
+PiArICAgICAgIC5kdG9yID0gZ2YxMDBfZmJfZHRvciwKPiAgICAgICAgIC5vbmVpbml0ID0gZ2Yx
+MDBfZmJfb25laW5pdCwKPiAtICAgICAgIC5pbml0ID0gZ2syMGFfZmJfaW5pdCwKPiArICAgICAg
+IC5pbml0ID0gZ2YxMDBfZmJfaW5pdCwKPiAgICAgICAgIC5pbml0X3BhZ2UgPSBnZjEwMF9mYl9p
+bml0X3BhZ2UsCj4gKyAgICAgICAuaW50ciA9IGdmMTAwX2ZiX2ludHIsCj4gICAgICAgICAubWVt
+dHlwZV92YWxpZCA9IGdmMTAwX2ZiX21lbXR5cGVfdmFsaWQsCj4gIH07Cj4KPiAtLQo+IDIuMTAu
+MAo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBO
+b3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
