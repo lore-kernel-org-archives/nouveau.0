@@ -1,69 +1,107 @@
-From: Peter Wu <peter@lekensteyn.nl>
-Subject: Re: Acer Aspire V7-582PG (Haswell, GTX 750M) fails to power off GPU
- via Power Resources
-Date: Thu, 27 Oct 2016 18:06:48 +0200
-Message-ID: <20161027160648.GF27017@al>
-References: <bug-98398-8800@http.bugs.freedesktop.org/>
- <bug-98398-8800-66oU1nuK0R@http.bugs.freedesktop.org/>
- <20161026225641.GA27017@al>
- <20161027081748.GX1476@lahna.fi.intel.com>
- <20161027090604.GB27017@al>
- <CANni8hdMs4pL0m6FrgeyJjE2R2C=6PaHbVbMVoUU+NszJuf9OA@mail.gmail.com>
- <20161027093011.GZ1476@lahna.fi.intel.com>
- <CANni8her35iORgrZOkDzxhfVaOOzObTLG2Ly0kkNZPDTrbyfQQ@mail.gmail.com>
- <20161027095508.GA1476@lahna.fi.intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Thu, 27 Oct 2016 16:47:50 +0000
+Message-ID: <bug-94990-8800-4x7UWW8YcE@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-pci-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20161027095508.GA1476@lahna.fi.intel.com>
-Sender: linux-pci-owner@vger.kernel.org
-To: Mika Westerberg <mika.westerberg@linux.intel.com>
-Cc: Rick Kerkhof <rick.2889@gmail.com>, linux-acpi@vger.kernel.org, nouveau@lists.freedesktop.org, linux-pci@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============0916361267=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Oct 27, 2016 at 12:55:08PM +0300, Mika Westerberg wrote:
-> On Thu, Oct 27, 2016 at 09:42:28AM +0000, Rick Kerkhof wrote:
-> >    No, there are not. Here is the recursive directory listing:
-> 
-> Are you able to try the following patch and send me dmesg (or attach it
-> to that bug)? It should show if the ACPI core even tries to add those
-> power resources.
 
-So Rick has tested this patch now on top of 4.8.4 (mainline fails to
-boot due to a kbuild issue which I reported elsewhere), but the output
-is empty. That seems to indicate that flags.power_resources is unset.
+--===============0916361267==
+Content-Type: multipart/alternative; boundary="14775868703.f0eDe2C.15721";
+ charset="UTF-8"
 
-Given that _PS3 exists and is indeed a package with some elements, it
-seems that acpi_extract_power_resources is failing. Note that in the
-SSDT, the power resource NVP3 was referenced before it was defined,
-could that result in this enumeration failure? Relevant SSDT excerpt:
 
-    Scope (\_SB.PCI0.RP05)
-    {
-        Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
-        {
-            NVP3
-        })
-        // ...
-    }
+--14775868703.f0eDe2C.15721
+Date: Thu, 27 Oct 2016 16:47:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-    PowerResource (NVP3, 0x00, 0x0000)
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
-Kind regards,
-Peter
+--- Comment #81 from Wojciech Arabczyk <arabek-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 127563
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127563&action=3Dedit
+boot log kernel 4.8.4-gentoo
 
-> diff --git a/drivers/acpi/power.c b/drivers/acpi/power.c
-> index fcd4ce6f78d5..af9c3e15dd74 100644
-> --- a/drivers/acpi/power.c
-> +++ b/drivers/acpi/power.c
-> @@ -444,6 +444,9 @@ void acpi_power_add_remove_device(struct acpi_device *adev, bool add)
->  	if (!adev->power.flags.power_resources)
->  		return;
->  
-> +	acpi_handle_info(adev->handle, "Adding power resources for %s\n",
-> +			 dev_name(&adev->dev));
-> +
->  	for (state = ACPI_STATE_D0; state <= ACPI_STATE_D3_HOT; state++)
->  		acpi_power_expose_hide(adev,
->  				       &adev->power.states[state].resources,
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14775868703.f0eDe2C.15721
+Date: Thu, 27 Oct 2016 16:47:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c81">Commen=
+t # 81</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+arabek&#64;gmail.com" title=3D"Wojciech Arabczyk &lt;arabek&#64;gmail.com&g=
+t;"> <span class=3D"fn">Wojciech Arabczyk</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127563=
+" name=3D"attach_127563" title=3D"boot log kernel 4.8.4-gentoo">attachment =
+127563</a> <a href=3D"attachment.cgi?id=3D127563&amp;action=3Dedit" title=
+=3D"boot log kernel 4.8.4-gentoo">[details]</a></span>
+boot log kernel 4.8.4-gentoo</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14775868703.f0eDe2C.15721--
+
+--===============0916361267==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0916361267==--
