@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Thu, 27 Oct 2016 16:47:50 +0000
-Message-ID: <bug-94990-8800-4x7UWW8YcE@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2 6/7] copy: add maxwell/pascal copy engine
+ classes
+Date: Thu, 27 Oct 2016 19:10:05 +0200
+Message-ID: <555d9fc2-f543-d29b-ef17-ded5013ae410@gmail.com>
+References: <1477576980-7962-1-git-send-email-imirkin@alum.mit.edu>
+ <1477576980-7962-7-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0916361267=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1477576980-7962-7-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,91 +19,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0916361267==
-Content-Type: multipart/alternative; boundary="14775868703.f0eDe2C.15721";
- charset="UTF-8"
-
-
---14775868703.f0eDe2C.15721
-Date: Thu, 27 Oct 2016 16:47:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
---- Comment #81 from Wojciech Arabczyk <arabek-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 127563
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127563&action=3Dedit
-boot log kernel 4.8.4-gentoo
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14775868703.f0eDe2C.15721
-Date: Thu, 27 Oct 2016 16:47:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c81">Commen=
-t # 81</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-arabek&#64;gmail.com" title=3D"Wojciech Arabczyk &lt;arabek&#64;gmail.com&g=
-t;"> <span class=3D"fn">Wojciech Arabczyk</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127563=
-" name=3D"attach_127563" title=3D"boot log kernel 4.8.4-gentoo">attachment =
-127563</a> <a href=3D"attachment.cgi?id=3D127563&amp;action=3Dedit" title=
-=3D"boot log kernel 4.8.4-gentoo">[details]</a></span>
-boot log kernel 4.8.4-gentoo</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14775868703.f0eDe2C.15721--
-
---===============0916361267==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0916361267==--
+MHhjMGI1IGlzIG5vdCBpbiBybm5kYiwgSSBndWVzcyBpdCBzaG91bGQgYmUgR1AxMDBfQ09QWSwg
+cmlnaHQ/CgpSZXZpZXdlZC1ieTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lzZXRAZ21h
+aWwuY29tPgoKT24gMTAvMjcvMjAxNiAwNDowMiBQTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gU2ln
+bmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1Pgo+IC0tLQo+ICBz
+cmMvbm91dmVhdV9jb3B5LmMgfCAgMiArKwo+ICBzcmMvbnZjMF9hY2NlbC5jICAgfCAxMCArKysr
+KysrKystCj4gIDIgZmlsZXMgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigt
+KQo+Cj4gZGlmZiAtLWdpdCBhL3NyYy9ub3V2ZWF1X2NvcHkuYyBiL3NyYy9ub3V2ZWF1X2NvcHku
+Ywo+IGluZGV4IGMxMzlkZTYuLjcxMThhN2EgMTAwNjQ0Cj4gLS0tIGEvc3JjL25vdXZlYXVfY29w
+eS5jCj4gKysrIGIvc3JjL25vdXZlYXVfY29weS5jCj4gQEAgLTQyLDYgKzQyLDggQEAgbm91dmVh
+dV9jb3B5X2luaXQoU2NyZWVuUHRyIHBTY3JlZW4pCj4gIAkJaW50IGVuZ2luZTsKPiAgCQlCb29s
+ICgqaW5pdCkoTlZQdHIpOwo+ICAJfSBtZXRob2RzW10gPSB7Cj4gKwkJeyAweGMwYjUsIDAsIG5v
+dXZlYXVfY29weWEwYjVfaW5pdCB9LAo+ICsJCXsgMHhiMGI1LCAwLCBub3V2ZWF1X2NvcHlhMGI1
+X2luaXQgfSwKPiAgCQl7IDB4YTBiNSwgMCwgbm91dmVhdV9jb3B5YTBiNV9pbml0IH0sCj4gIAkJ
+eyAweDkwYjgsIDUsIG5vdXZlYXVfY29weTkwYjVfaW5pdCB9LAo+ICAJCXsgMHg5MGI1LCA0LCBu
+b3V2ZWF1X2NvcHk5MGI1X2luaXQgfSwKPiBkaWZmIC0tZ2l0IGEvc3JjL252YzBfYWNjZWwuYyBi
+L3NyYy9udmMwX2FjY2VsLmMKPiBpbmRleCA4ZGE1MDUxLi5kMGE4MzVlIDEwMDY0NAo+IC0tLSBh
+L3NyYy9udmMwX2FjY2VsLmMKPiArKysgYi9zcmMvbnZjMF9hY2NlbC5jCj4gQEAgLTE1Niw5ICsx
+NTYsMTcgQEAgTlZBY2NlbEluaXRDT1BZX05WRTAoU2NybkluZm9QdHIgcFNjcm4pCj4gIHsKPiAg
+CU5WUHRyIHBOdiA9IE5WUFRSKHBTY3JuKTsKPiAgCXN0cnVjdCBub3V2ZWF1X3B1c2hidWYgKnB1
+c2ggPSBwTnYtPnB1c2hidWY7Cj4gKwl1aW50MzJfdCBjbGFzczsKPiAgCWludCByZXQ7Cj4KPiAt
+CXJldCA9IG5vdXZlYXVfb2JqZWN0X25ldyhwTnYtPmNoYW5uZWwsIDB4MDAwMGEwYjUsIDB4YTBi
+NSwKPiArCWlmIChwTnYtPmRldi0+Y2hpcHNldCA8IDB4MTEwKQo+ICsJCWNsYXNzID0gMHhhMGI1
+Owo+ICsJZWxzZSBpZiAocE52LT5kZXYtPmNoaXBzZXQgPCAweDEzMCkKPiArCQljbGFzcyA9IDB4
+YjBiNTsKPiArCWVsc2UKPiArCQljbGFzcyA9IDB4YzBiNTsKPiArCj4gKwlyZXQgPSBub3V2ZWF1
+X29iamVjdF9uZXcocE52LT5jaGFubmVsLCBjbGFzcywgY2xhc3MsCj4gIAkJCQkgTlVMTCwgMCwg
+JnBOdi0+TnZDT1BZKTsKPiAgCWlmIChyZXQpCj4gIAkJcmV0dXJuIEZBTFNFOwo+Cl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
