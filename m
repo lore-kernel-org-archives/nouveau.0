@@ -1,100 +1,49 @@
-From: Peter Wu <peter@lekensteyn.nl>
-Subject: Acer Aspire V7-582PG (Haswell, GTX 750M) fails to power off GPU via
- Power Resources
-Date: Thu, 27 Oct 2016 00:56:41 +0200
-Message-ID: <20161026225641.GA27017@al>
-References: <bug-98398-8800@http.bugs.freedesktop.org/>
- <bug-98398-8800-66oU1nuK0R@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] pmu: remove reset() hook
+Date: Thu, 27 Oct 2016 12:48:51 +0900
+Message-ID: <20161027034851.32090-1-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-pci-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <bug-98398-8800-66oU1nuK0R@http.bugs.freedesktop.org/>
-Sender: linux-pci-owner@vger.kernel.org
-To: linux-acpi@vger.kernel.org
-Cc: nouveau@lists.freedesktop.org, rick.2889@gmail.com, Mika Westerberg <mika.westerberg@linux.intel.com>, linux-pci@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi PCI/ACPI PM experts,
-
-Since Linux 4.8, nouveau switched to rely on the PCIe port driver to
-transition to D3cold. This however does not happen for an Acer Aspire
-V7-582PG (Haswell, NVIDIA GTX 750M) from Rick.
-
-Any idea why? acpidump, lspci, dmesg and other details can be found in
-the linked bug below.
-
-Kind regards,
-Peter
-
-On Wed, Oct 26, 2016 at 10:42:07PM +0000, bugzilla-daemon@freedesktop.org wrote:
-> https://bugs.freedesktop.org/show_bug.cgi?id=98398
-> 
-> --- Comment #11 from Peter Wu <peter@lekensteyn.nl> ---
-> So 4.7 and before used the "DSM" method on runtime-suspend:
-> - \_SB.PCI0.RP05.PEGP._DSM would be invoked to enable Optimus
-> - \_SB.PCI0.RP05.PEGP._PS3 is then invoked which would enter D3cold
-> (note, this method is still used in 4.8 on older laptops or with the
-> pcie_pm_port=off kernel option)
-> 
-> Since 4.8, _DSM is not called anymore by nouveau (when support from the PCI
-> core is detected) and this sequence should instead happen:
-> - \_SB.PCI0.RP05.PEGP._PS3 (does nothing besides updating _STA)
-> - PCIe core removes power for the PCIe port since all its children are in
->   D3 and are willing to transition to D3cold. It does so by invoking
->   \NVP3._OFF (where \NVP3 is the power resource from \_SB.PCI0.RP05._PR3)
-> 
-> That is how I think it should work in theory, but on Ricks laptop running
-> 4.8.4,
-> /sys/bus/devices/0000:1c.4/firmware_node/ does not have power_resources_D0
-> devices (which I do have on my own laptop for 0000:01:0).
-> 
-> The SSDT1 of Rick's Acer laptop shows this structure:
-> 
->     If (\_OSI ("Windows 2013"))
->     {
->         Scope (\_SB.PCI0.RP05)
->         {
->         //...
->             Name (_PR0, Package (0x01)  // _PR0: Power Resources for D0
->             {
->                 NVP3
->             })
->             Name (_PR2, Package (0x01)  // _PR2: Power Resources for D2
->             {
->                 NVP2
->             })
->             Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
->             {
->                 NVP3
->             })
->             // ...
->             Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
->             {
->             }
-> 
->             Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
->             {
->             }
->         }
-> 
->         Name (MSD3, Zero)
->         PowerResource (NVP3, 0x00, 0x0000)
->         {
->             Name (_STA, One)  // _STA: Status
->             // ...
-> 
->             Method (_ON, 0, NotSerialized)  // _ON_: Power On
->             {
->                 // ...
->             }
-> 
->             Method (_OFF, 0, NotSerialized)  // _OFF: Power Off
->             {
->                 // ...
->             }
->         }
-> 
-> The dmesg does show "ACPI: Power Resource [NVP3] (on)", so I guess that the
-> methods are found. It is a mystery to me why the "power_resources_Dx" files are
-> not created, possibly breaking PM.
+VGhlIHJlc2V0IGhvb2sgb2YgcG11X2Z1bmMgaXMgbmV2ZXIgY2FsbGVkLCBhbmQgZ3QyMTUgd2Fz
+IHRoZSBvbmx5IGNoaXAKdG8gaW1wbGVtZW50LiBSZW1vdmUgdGhpcyBkZWFkIGNvZGUuCgpTaWdu
+ZWQtb2ZmLWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KLS0tCiBk
+cm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZ3QyMTUuYyB8IDkgLS0tLS0tLS0tCiBkcm0vbm91
+dmVhdS9udmttL3N1YmRldi9wbXUvcHJpdi5oICB8IDIgLS0KIDIgZmlsZXMgY2hhbmdlZCwgMTEg
+ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2d0
+MjE1LmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZ3QyMTUuYwppbmRleCA4YmE3ZmE0
+Y2E3NWIuLmRjZjllYWYyNzRhYSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
+cG11L2d0MjE1LmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2d0MjE1LmMKQEAg
+LTI0LDE3ICsyNCw4IEBACiAjaW5jbHVkZSAicHJpdi5oIgogI2luY2x1ZGUgImZ1Yy9ndDIxNS5m
+dWMzLmgiCiAKLXN0YXRpYyB2b2lkCi1ndDIxNV9wbXVfcmVzZXQoc3RydWN0IG52a21fcG11ICpw
+bXUpCi17Ci0Jc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBwbXUtPnN1YmRldi5kZXZpY2U7
+Ci0JbnZrbV9tYXNrKGRldmljZSwgMHgwMjIyMTAsIDB4MDAwMDAwMDEsIDB4MDAwMDAwMDApOwot
+CW52a21fbWFzayhkZXZpY2UsIDB4MDIyMjEwLCAweDAwMDAwMDAxLCAweDAwMDAwMDAxKTsKLX0K
+LQogc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3BtdV9mdW5jCiBndDIxNV9wbXUgPSB7Ci0JLnJl
+c2V0ID0gZ3QyMTVfcG11X3Jlc2V0LAogCS5jb2RlLmRhdGEgPSBndDIxNV9wbXVfY29kZSwKIAku
+Y29kZS5zaXplID0gc2l6ZW9mKGd0MjE1X3BtdV9jb2RlKSwKIAkuZGF0YS5kYXRhID0gZ3QyMTVf
+cG11X2RhdGEsCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvcHJpdi5o
+IGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L3ByaXYuaAppbmRleCBmMzhjODhmYWUzZDYu
+LjczYjgxMWNjYzJkNSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L3By
+aXYuaAorKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvcHJpdi5oCkBAIC04LDggKzgs
+NiBAQCBpbnQgbnZrbV9wbXVfbmV3Xyhjb25zdCBzdHJ1Y3QgbnZrbV9wbXVfZnVuYyAqLCBzdHJ1
+Y3QgbnZrbV9kZXZpY2UgKiwKIAkJICBpbnQgaW5kZXgsIHN0cnVjdCBudmttX3BtdSAqKik7CiAK
+IHN0cnVjdCBudmttX3BtdV9mdW5jIHsKLQl2b2lkICgqcmVzZXQpKHN0cnVjdCBudmttX3BtdSAq
+KTsKLQogCXN0cnVjdCB7CiAJCXUzMiAqZGF0YTsKIAkJdTMyICBzaXplOwotLSAKMi4xMC4wCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
