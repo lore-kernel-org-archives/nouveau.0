@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Thu, 27 Oct 2016 17:20:43 +0000
-Message-ID: <bug-94990-8800-HDjM198NJc@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH v2 5/7] nvc0: refactor TIC uploads to allow
+ different specifics per generation
+Date: Thu, 27 Oct 2016 13:28:16 -0400
+Message-ID: <CAKb7Uvg7=njU-JUSnE2CvM8LfGuGBwwi1ttC7LEbpmsnLQdV0Q@mail.gmail.com>
+References: <1477576980-7962-1-git-send-email-imirkin@alum.mit.edu>
+ <1477576980-7962-6-git-send-email-imirkin@alum.mit.edu>
+ <0e027351-d919-6f0c-5d81-0b7328e8e98e@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1116591657=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <0e027351-d919-6f0c-5d81-0b7328e8e98e-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,100 +20,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1116591657==
-Content-Type: multipart/alternative; boundary="14775888439.A0fB.18373";
- charset="UTF-8"
-
-
---14775888439.A0fB.18373
-Date: Thu, 27 Oct 2016 17:20:43 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
---- Comment #82 from Wojciech Arabczyk <arabek-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 127564
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127564&action=3Dedit
-dmesg after applying patch to limit bar to 3GB
-
-After applying the patch to limit ram to 3 bars, boots without problems. Bl=
-ank
-screen is gone.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14775888439.A0fB.18373
-Date: Thu, 27 Oct 2016 17:20:43 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c82">Commen=
-t # 82</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-arabek&#64;gmail.com" title=3D"Wojciech Arabczyk &lt;arabek&#64;gmail.com&g=
-t;"> <span class=3D"fn">Wojciech Arabczyk</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127564=
-" name=3D"attach_127564" title=3D"dmesg after applying patch to limit bar t=
-o 3GB">attachment 127564</a> <a href=3D"attachment.cgi?id=3D127564&amp;acti=
-on=3Dedit" title=3D"dmesg after applying patch to limit bar to 3GB">[detail=
-s]</a></span>
-dmesg after applying patch to limit bar to 3GB
-
-After applying the patch to limit ram to 3 bars, boots without problems. Bl=
-ank
-screen is gone.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14775888439.A0fB.18373--
-
---===============1116591657==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1116591657==--
+T24gVGh1LCBPY3QgMjcsIDIwMTYgYXQgMToxOSBQTSwgU2FtdWVsIFBpdG9pc2V0CjxzYW11ZWwu
+cGl0b2lzZXRAZ21haWwuY29tPiB3cm90ZToKPiBBcmUgeW91IHN1cmUgdGhpcyByZWZhY3Rvcmlu
+ZyBkb2Vzbid0IGJyZWFrIGFueXRoaW5nPwo+Cj4gRmV3IGNvbW1lbnRzIGlubGluZS4KPgo+Cj4g
+T24gMTAvMjcvMjAxNiAwNDowMiBQTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+Cj4+IFRoaXMgZmxp
+cHMgR00xMHggdG8gdXNpbmcgdGhlIHVwZGF0ZWQgZm9ybWF0LCB3aGljaCBpcyB3aGF0IEkgdGVz
+dGVkCj4+IHdpdGguIEhvd2V2ZXIgR00yMHggYW5kIEdQMTB4IGFsc28gdXNlIHRoaXMgVElDIGZv
+cm1hdC4KPj4KPj4gU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
+ZWR1Pgo+PiAtLS0KPj4gIHNyYy9udmMwX2FjY2VsLmMgfCAxMSArKysrKysrKysrCj4+ICBzcmMv
+bnZjMF9hY2NlbC5oIHwgNTYgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKwo+PiAgc3JjL252YzBfZXhhLmMgICB8IDIzICsrKystLS0tLS0tLS0tLS0tLS0KPj4g
+IHNyYy9udmMwX3h2LmMgICAgfCA2Nwo+PiArKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+PiAgNCBmaWxlcyBjaGFuZ2VkLCA5MyBpbnNlcnRp
+b25zKCspLCA2NCBkZWxldGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL3NyYy9udmMwX2FjY2Vs
+LmMgYi9zcmMvbnZjMF9hY2NlbC5jCj4+IGluZGV4IDA2ODI4MDYuLjhkYTUwNTEgMTAwNjQ0Cj4+
+IC0tLSBhL3NyYy9udmMwX2FjY2VsLmMKPj4gKysrIGIvc3JjL252YzBfYWNjZWwuYwo+PiBAQCAt
+MzIyLDYgKzMyMiwxNyBAQCBOVkFjY2VsSW5pdDNEX05WQzAoU2NybkluZm9QdHIgcFNjcm4pCj4+
+ICAgICAgICAgICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIChiby0+b2Zmc2V0ICsgTUlTQ19PRkZT
+RVQpID4+IDMyKTsKPj4gICAgICAgICAgICAgICAgIFBVU0hfREFUQSAocHVzaCwgKGJvLT5vZmZz
+ZXQgKyBNSVNDX09GRlNFVCkpOwo+PiAgICAgICAgICAgICAgICAgUFVTSF9EQVRBIChwdXNoLCAx
+KTsKPj4gKyAgICAgICB9IGVsc2Ugewo+PiArICAgICAgICAgICAgICAgLyogVXNlIG5ldyBUSUMg
+Zm9ybWF0LiBOb3Qgc3RyaWN0bHkgbmVjZXNzYXJ5IGZvciBHTTIweCsKPj4gKi8KPj4gKyAgICAg
+ICAgICAgICAgIElNTUVEX05WQzAocHVzaCwgU1VCQ18zRCgweDBmMTApLCAxKTsKPj4gKyAgICAg
+ICAgICAgICAgIGlmIChwTnYtPmRldi0+Y2hpcHNldCA+PSAweDEyMCkgewo+PiArICAgICAgICAg
+ICAgICAgICAgICAgICAvKiBVc2UgY2VudGVyIHNhbXBsZSBsb2NhdGlvbnMuICovCj4+ICsgICAg
+ICAgICAgICAgICAgICAgICAgIEJFR0lOX05WQzAocHVzaCwgU1VCQ18zRCgweDExZTApLCA0KTsK
+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgUFVTSF9EQVRBIChwdXNoLCAweDg4ODg4ODg4KTsK
+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgUFVTSF9EQVRBIChwdXNoLCAweDg4ODg4ODg4KTsK
+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgUFVTSF9EQVRBIChwdXNoLCAweDg4ODg4ODg4KTsK
+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgUFVTSF9EQVRBIChwdXNoLCAweDg4ODg4ODg4KTsK
+Pj4gKyAgICAgICAgICAgICAgIH0KPj4gICAgICAgICB9Cj4+Cj4+ICAgICAgICAgQkVHSU5fTlZD
+MChwdXNoLCBOVkMwXzNEKENPREVfQUREUkVTU19ISUdIKSwgMik7Cj4+IGRpZmYgLS1naXQgYS9z
+cmMvbnZjMF9hY2NlbC5oIGIvc3JjL252YzBfYWNjZWwuaAo+PiBpbmRleCA2MDdlOTdiLi45NTlm
+NjdmIDEwMDY0NAo+PiAtLS0gYS9zcmMvbnZjMF9hY2NlbC5oCj4+ICsrKyBiL3NyYy9udmMwX2Fj
+Y2VsLmgKPj4gQEAgLTcsNiArNyw3IEBACj4+ICAjaW5jbHVkZSAiaHdkZWZzL252YzBfbTJtZi54
+bWwuaCIKPj4gICNpbmNsdWRlICJod2RlZnMvbnY1MF9kZWZzLnhtbC5oIgo+PiAgI2luY2x1ZGUg
+Imh3ZGVmcy9udjUwX3RleHR1cmUuaCIKPj4gKyNpbmNsdWRlICJod2RlZnMvZ20xMDdfdGV4dHVy
+ZS54bWwuaCIKPj4gICNpbmNsdWRlICJod2RlZnMvbnZfM2RkZWZzLnhtbC5oIgo+Pgo+PiAgLyog
+c3ViY2hhbm5lbCBhc3NpZ25tZW50cywgY29tcGF0aWJsZSB3aXRoIGtlcGxlcidzIGZpeGVkIGxh
+eW91dCAgKi8KPj4gQEAgLTEwOCw0ICsxMDksNTkgQEAgUFVTSF9EQVRBdShzdHJ1Y3Qgbm91dmVh
+dV9wdXNoYnVmICpwdXNoLCBzdHJ1Y3QKPj4gbm91dmVhdV9ibyAqYm8sCj4+ICAgICAgICAgfQo+
+PiAgfQo+Pgo+PiArc3RhdGljIF9faW5saW5lX18gdm9pZAo+PiArUFVTSF9USUMoc3RydWN0IG5v
+dXZlYXVfcHVzaGJ1ZiAqcHVzaCwgc3RydWN0IG5vdXZlYXVfYm8gKmJvLCB1bnNpZ25lZAo+PiBv
+ZmZzZXQsCj4+ICsgICAgICAgIHVuc2lnbmVkIHdpZHRoLCB1bnNpZ25lZCBoZWlnaHQsIHVuc2ln
+bmVkIHBpdGNoLCB1bnNpZ25lZCBmb3JtYXQpCj4+ICt7Cj4+ICsgICAgICAgaWYgKHB1c2gtPmNs
+aWVudC0+ZGV2aWNlLT5jaGlwc2V0IDwgMHgxMTApIHsKPj4gKyAgICAgICAgICAgICAgIHVuc2ln
+bmVkIHRpYzIgPSAweGQwMDAxMDAwOwo+PiArICAgICAgICAgICAgICAgaWYgKHBpdGNoID09IDAp
+Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgIHRpYzIgfD0gMHgwMDAwNDAwMDsKPj4gKyAgICAg
+ICAgICAgICAgIGVsc2UKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgdGljMiB8PSAweDAwMDVj
+MDAwOwo+PiArICAgICAgICAgICAgICAgUFVTSF9EQVRBKHB1c2gsIGZvcm1hdCk7Cj4+ICsgICAg
+ICAgICAgICAgICBQVVNIX0RBVEEocHVzaCwgYm8tPm9mZnNldCArIG9mZnNldCk7Cj4+ICsgICAg
+ICAgICAgICAgICBQVVNIX0RBVEEocHVzaCwgKChiby0+b2Zmc2V0ICsgb2Zmc2V0KSA+PiAzMikg
+fAo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIChiby0+Y29uZmlnLm52YzAudGls
+ZV9tb2RlIDw8IDE4KSB8Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGljMik7
+Cj4+ICsgICAgICAgICAgICAgICBQVVNIX0RBVEEocHVzaCwgMHgwMDMwMDAwMCk7Cj4+ICsgICAg
+ICAgICAgICAgICBQVVNIX0RBVEEocHVzaCwgMHg4MDAwMDAwMCB8IHdpZHRoKTsKPj4gKyAgICAg
+ICAgICAgICAgIFBVU0hfREFUQShwdXNoLCAweDAwMDEwMDAwIHwgaGVpZ2h0KTsKPj4gKyAgICAg
+ICAgICAgICAgIFBVU0hfREFUQShwdXNoLCAweDAzMDAwMDAwKTsKPj4gKyAgICAgICAgICAgICAg
+IFBVU0hfREFUQShwdXNoLCAweDAwMDAwMDAwKTsKPj4gKyAgICAgICB9IGVsc2Ugewo+PiArICAg
+ICAgICAgICAgICAgdW5zaWduZWQgdGlsZV9tb2RlID0gYm8tPmNvbmZpZy5udmMwLnRpbGVfbW9k
+ZTsKPj4gKyAgICAgICAgICAgICAgIFBVU0hfREFUQShwdXNoLCAoZm9ybWF0ICYgMHgzZikgfCAo
+KGZvcm1hdCAmIH4weDNmKSA8PAo+PiAxKSk7Cj4+ICsgICAgICAgICAgICAgICBQVVNIX0RBVEEo
+cHVzaCwgYm8tPm9mZnNldCArIG9mZnNldCk7Cj4+ICsgICAgICAgICAgICAgICBpZiAocGl0Y2gg
+PT0gMCkgewo+PiArICAgICAgICAgICAgICAgICAgICAgICBQVVNIX0RBVEEocHVzaCwgKChiby0+
+b2Zmc2V0ICsgb2Zmc2V0KSA+PiAzMikgfAo+PiArCj4+IEdNMTA3X1RJQzJfMl9IRUFERVJfVkVS
+U0lPTl9CTE9DS0xJTkVBUik7Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgIFBVU0hfREFUQShw
+dXNoLCBHTTEwN19USUMyXzNfTE9EX0FOSVNPX1FVQUxJVFlfMiB8Cj4+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAoKHRpbGVfbW9kZSAmIDB4MDA3KSkgfAo+PiArICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgKCh0aWxlX21vZGUgJiAweDA3MCkgPj4gKDQgLSAzKSkg
+fAo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKCh0aWxlX21vZGUgJiAweDcw
+MCkgPj4gKDggLSA2KSkpOwo+PiArICAgICAgICAgICAgICAgICAgICAgICBQVVNIX0RBVEEocHVz
+aCwKPj4gR00xMDdfVElDMl80X1NFQ1RPUl9QUk9NT1RJT05fUFJPTU9URV9UT18yX1YgfAo+PiAr
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgR00xMDdfVElDMl80X0JPUkRFUl9TSVpF
+X1NBTVBMRVJfQ09MT1IgfAo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgR00x
+MDdfVElDMl80X1RFWFRVUkVfVFlQRV9UV09fRCB8Cj4+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAod2lkdGggLSAxKSk7Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgIFBVU0hf
+REFUQShwdXNoLCBHTTEwN19USUMyXzVfTk9STUFMSVpFRF9DT09SRFMgfAo+PiArICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKChoZWlnaHQgLSAxKSAmIDB4ZmZmZikpOwo+
+PiArICAgICAgICAgICAgICAgICAgICAgICBQVVNIX0RBVEEocHVzaCwKPj4gR00xMDdfVElDMl82
+X0FOSVNPX0ZJTkVfU1BSRUFEX0ZVTkNfVFdPIHwKPj4gKwo+PiBHTTEwN19USUMyXzZfQU5JU09f
+Q09BUlNFX1NQUkVBRF9GVU5DX09ORSk7Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgIFBVU0hf
+REFUQShwdXNoLCAweDAwMDAwMDAwKTsKPj4gKyAgICAgICAgICAgICAgIH0gZWxzZSB7Cj4+ICsg
+ICAgICAgICAgICAgICAgICAgICAgIFBVU0hfREFUQShwdXNoLCAoKGJvLT5vZmZzZXQgKyBvZmZz
+ZXQpID4+IDMyKSB8Cj4+ICsKPj4gR00xMDdfVElDMl8yX0hFQURFUl9WRVJTSU9OX1BJVENIKTsK
+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgUFVTSF9EQVRBKHB1c2gsIEdNMTA3X1RJQzJfM19M
+T0RfQU5JU09fUVVBTElUWV8yIHwKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIChwaXRjaCA+PiA1KSk7Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgIFBVU0hfREFU
+QShwdXNoLAo+PiBHTTEwN19USUMyXzRfQk9SREVSX1NJWkVfU0FNUExFUl9DT0xPUiB8Cj4+ICsK
+Pj4gR00xMDdfVElDMl80X1RFWFRVUkVfVFlQRV9UV09fRF9OT19NSVBNQVAgfAo+PiArICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgKHdpZHRoIC0gMSkpOwo+PiArICAgICAgICAgICAg
+ICAgICAgICAgICBQVVNIX0RBVEEocHVzaCwgR00xMDdfVElDMl81X05PUk1BTElaRURfQ09PUkRT
+IHwKPj4gKGhlaWdodCAtIDEpKTsKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgUFVTSF9EQVRB
+KHB1c2gsIDB4MDAwMDAwMDAwKTsKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgUFVTSF9EQVRB
+KHB1c2gsIDB4MDAwMDAwMDAwKTsKPj4gKyAgICAgICAgICAgICAgIH0KPj4gKyAgICAgICB9Cj4+
+ICt9Cj4+ICsKPj4gICNlbmRpZgo+PiBkaWZmIC0tZ2l0IGEvc3JjL252YzBfZXhhLmMgYi9zcmMv
+bnZjMF9leGEuYwo+PiBpbmRleCBhNTNkZmU2Li4wMTdhN2RhIDEwMDY0NAo+PiAtLS0gYS9zcmMv
+bnZjMF9leGEuYwo+PiArKysgYi9zcmMvbnZjMF9leGEuYwo+PiBAQCAtNTMyLDIwICs1MzIsMTMg
+QEAgTlZDMEVYQUNoZWNrVGV4dHVyZShQaWN0dXJlUHRyIHBwaWN0LCBQaWN0dXJlUHRyCj4+IHBk
+cGljdCwgaW50IG9wKQo+PiAgc3RhdGljIEJvb2wKPj4gIE5WQzBFWEFQaWN0U29saWQoTlZQdHIg
+cE52LCBQaWN0dXJlUHRyIHBwaWN0LCB1bnNpZ25lZCB1bml0KQo+PiAgewo+PiAtICAgICAgIHVp
+bnQ2NF90IG9mZnNldCA9IHBOdi0+c2NyYXRjaC0+b2Zmc2V0ICsgU09MSUQodW5pdCk7Cj4+ICAg
+ICAgICAgc3RydWN0IG5vdXZlYXVfcHVzaGJ1ZiAqcHVzaCA9IHBOdi0+cHVzaGJ1ZjsKPj4KPj4g
+ICAgICAgICBQVVNIX0RBVEF1KHB1c2gsIHBOdi0+c2NyYXRjaCwgU09MSUQodW5pdCksIDEpOwo+
+PiAgICAgICAgIFBVU0hfREFUQSAocHVzaCwgcHBpY3QtPnBTb3VyY2VQaWN0LT5zb2xpZEZpbGwu
+Y29sb3IpOwo+PiAgICAgICAgIFBVU0hfREFUQXUocHVzaCwgcE52LT5zY3JhdGNoLCBUSUNfT0ZG
+U0VUICsgKHVuaXQgKiAzMiksIDgpOwo+PiAtICAgICAgIFBVU0hfREFUQSAocHVzaCwgXyhCX0Mw
+LCBHX0MxLCBSX0MyLCBBX0MzLCA4XzhfOF84KSk7Cj4+IC0gICAgICAgUFVTSF9EQVRBIChwdXNo
+LCAgb2Zmc2V0KTsKPj4gLSAgICAgICBQVVNIX0RBVEEgKHB1c2gsIChvZmZzZXQgPj4gMzIpIHwg
+MHhkMDA1ZDAwMCk7Cj4+IC0gICAgICAgUFVTSF9EQVRBIChwdXNoLCAweDAwMzAwMDAwKTsKPj4g
+LSAgICAgICBQVVNIX0RBVEEgKHB1c2gsIDB4MDAwMDAwMDEpOwo+Cj4KPiBZb3UgYWx3YXlzIHNl
+dCBiaXQtMzEgaW4gUFVTSF9USUMsIGJ1dCBpdCdzIG5vdCBzZXQgaGVyZSwgaXMgdGhhdCBpbnRl
+bmRlZD8KClllcCwgdGhhdCdzIGZpbmUuIFRoYXQgYml0IDMxIGNvbnRyb2xzIHRoZSBtZWFuaW5n
+IG9mIHRoZSBsYXN0IFRJQwp3b3JkLiAoV2hpY2ggaXMgdGVjaG5pY2FsbHkgb25seSBzdXBwb3J0
+ZWQgb24gRzg0KykuIEhvd2V2ZXIgaW4KcHJhY3RpY2UsIHdlIGRvbid0IHVzZSBhbnkgb2YgdGhv
+c2UgZmVhdHVyZXMsIGFuZCBzZXR0aW5nIHRoYXQgYml0IG9uCkc4MCBkb2Vzbid0IGh1cnQgYW55
+dGhpbmcgKEknbSBwcmV0dHkgc3VyZSkuIE9uIEc4MCAoYW5kIHdpdGhvdXQgdGhhdAp3b3JkIHNl
+dCksIHRoYXQgbGFzdCB3b3JkIGlzIHNvbWUgY29sb3JrZXktcmVsYXRlZCB0aGluZy4gSSBkb24n
+dCBrbm93CmV4YWN0bHkuLi4gdGhhdCBtb2RlIGlzIG5ldmVyIHVzZWQgZm9yIGFueXRoaW5nIHVz
+ZWZ1bC4KCiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
