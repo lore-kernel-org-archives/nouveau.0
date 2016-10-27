@@ -1,11 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98457] New: [NVD9] GPU lockup after resume from
- hibernation with Nouveau driver and firmware-nonfree
-Date: Thu, 27 Oct 2016 08:29:51 +0000
-Message-ID: <bug-98457-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v2 05/14] secboot: remove fixup_hs_desc hook
+Date: Thu, 27 Oct 2016 13:36:59 +0900
+Message-ID: <20161027043708.22538-6-acourbot@nvidia.com>
+References: <20161027043708.22538-1-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0944662595=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20161027043708.22538-1-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,455 +17,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0944662595==
-Content-Type: multipart/alternative; boundary="14775569911.D94Bf.12596";
- charset="UTF-8"
-
-
---14775569911.D94Bf.12596
-Date: Thu, 27 Oct 2016 08:29:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98457
-
-            Bug ID: 98457
-           Summary: [NVD9] GPU lockup after resume from hibernation with
-                    Nouveau driver and firmware-nonfree
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: wadev-cl+VPiYnx/0HWmgEVkV9KA@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-With 4.7.0-1-amd64 debian kernel and 4.8.4 upstream kernel, the following
-symptom happens after resume from hibernation:
-
-Oct 27 09:59:37 terra kernel: [    4.615904] nouveau 0000:01:00.0: NVIDIA G=
-F119
-(0d90a0a1)
-Oct 27 09:59:37 terra kernel: [    4.763654] nouveau 0000:01:00.0: bios:
-version 75.19.56.00.00
-Oct 27 09:59:37 terra kernel: [    4.764202] nouveau 0000:01:00.0: fb: 2048=
- MiB
-DDR3
-Oct 27 09:59:37 terra kernel: [    4.822165] nouveau 0000:01:00.0: DRM: VRA=
-M:
-2048 MiB
-Oct 27 09:59:37 terra kernel: [    4.822166] nouveau 0000:01:00.0: DRM: GAR=
-T:
-1048576 MiB
-Oct 27 09:59:37 terra kernel: [    4.822168] nouveau 0000:01:00.0: DRM: TMDS
-table version 2.0
-Oct 27 09:59:37 terra kernel: [    4.822168] nouveau 0000:01:00.0: DRM: DCB
-version 4.0
-Oct 27 09:59:37 terra kernel: [    4.822169] nouveau 0000:01:00.0: DRM: DCB
-outp 00: 02000300 00000000
-Oct 27 09:59:37 terra kernel: [    4.822170] nouveau 0000:01:00.0: DRM: DCB
-outp 01: 01000302 00020030
-Oct 27 09:59:37 terra kernel: [    4.822171] nouveau 0000:01:00.0: DRM: DCB
-outp 02: 02011362 00020010
-Oct 27 09:59:37 terra kernel: [    4.822172] nouveau 0000:01:00.0: DRM: DCB
-outp 03: 04022310 00000000
-Oct 27 09:59:37 terra kernel: [    4.822172] nouveau 0000:01:00.0: DRM: DCB
-conn 00: 00001030
-Oct 27 09:59:37 terra kernel: [    4.822173] nouveau 0000:01:00.0: DRM: DCB
-conn 01: 00002161
-Oct 27 09:59:37 terra kernel: [    4.822174] nouveau 0000:01:00.0: DRM: DCB
-conn 02: 00000200
-Oct 27 09:59:37 terra kernel: [    4.894804] nouveau 0000:01:00.0: DRM: MM:
-using COPY0 for buffer copies
-Oct 27 09:59:37 terra kernel: [    5.082142] nouveau 0000:01:00.0: DRM:
-allocated 1920x1080 fb: 0x60000, bo ffff8c2694bae000
-Oct 27 09:59:37 terra kernel: [    5.082217] fbcon: nouveaufb (fb0) is prim=
-ary
-device
-Oct 27 09:59:37 terra kernel: [    5.162211] nouveau 0000:01:00.0: fb0:
-nouveaufb frame buffer device
-Oct 27 09:59:37 terra kernel: [    5.176376] [drm] Initialized nouveau 1.3.1
-20120801 for 0000:01:00.0 on minor 0
-Oct 27 10:11:27 terra kernel: [  682.165720] nouveau 0000:01:00.0: DRM:
-suspending console...
-Oct 27 10:11:27 terra kernel: [  682.165725] nouveau 0000:01:00.0: DRM:
-suspending display...
-Oct 27 10:11:27 terra kernel: [  682.165747] nouveau 0000:01:00.0: DRM:
-evicting buffers...
-Oct 27 10:11:27 terra kernel: [  682.264493] nouveau 0000:01:00.0: DRM: wai=
-ting
-for kernel channels to go idle...
-Oct 27 10:11:27 terra kernel: [  682.264531] nouveau 0000:01:00.0: DRM:
-suspending client object trees...
-Oct 27 10:11:27 terra kernel: [  682.264877] nouveau 0000:01:00.0: DRM:
-suspending kernel object tree...
-Oct 27 10:11:27 terra kernel: [  683.204263] nouveau 0000:01:00.0: DRM:
-resuming kernel object tree...
-Oct 27 10:11:27 terra kernel: [  683.261389] nouveau 0000:01:00.0: DRM:
-resuming client object trees...
-Oct 27 10:11:27 terra kernel: [  683.261572] nouveau 0000:01:00.0: DRM:
-resuming display...
-Oct 27 10:11:27 terra kernel: [  683.312957] nouveau 0000:01:00.0: DRM:
-resuming console...
-Oct 27 10:11:27 terra kernel: [  683.313003] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313019] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313039] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313052] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313065] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313079] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313092] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313106] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313119] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313133] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313146] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313160] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313174] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313187] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313201] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313214] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313228] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313244] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313257] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.480999] nouveau 0000:01:00.0: DRM: GPU
-lockup - switching to software fbcon
-Oct 27 10:11:33 terra kernel: [  690.449768] nouveau 0000:01:00.0: fifo: wr=
-ite
-fault at 00011b6000 engine 00 [PGRAPH] client 0f [GPC0/PROP] reason 02
-[PAGE_NOT_PRESENT] on channel 2 [007fbb$
-Oct 27 10:11:33 terra kernel: [  690.449896] nouveau 0000:01:00.0: fifo: gr
-engine fault on channel 2, recovering...
-
-This happens when I suspend from tty0 (console) with "echo disk >
-/sys/power/state".
-After that, no symptoms of the previous lockup (with the Firefox Google Maps
-rendering issue), that is, freezing, general unresponsiveness or similar; I=
- get
-the console back and can restart the display manager, then all works OK (ex=
-cept
-that I have to kill instances of singleton-like processes probably clinging=
- to
-the defunct display).
-
-If I do the same from an X terminal, then at the end of the resume process,=
- the
-system does a cold boot.
-
-No probably related messages during the shutdown though.
-
-Version info:
-
-OpenGL vendor string: nouveau
-OpenGL renderer string: Gallium 0.4 on NVD9
-OpenGL core profile version string: 3.3 (Core Profile) Mesa 10.3.2
-OpenGL core profile shading language version string: 3.30
-OpenGL core profile context flags: (none)
-OpenGL core profile profile mask: core profile
-
-(I used gcc 4.9.2 to compile the kernel and modules, if that means anything=
-.)
-
-I'm going to try the "trunk" build or whatever when I will have some time.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14775569911.D94Bf.12596
-Date: Thu, 27 Oct 2016 08:29:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVD9] GPU lockup after resume from hibernation with Nouv=
-eau driver and firmware-nonfree"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457">98457</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVD9] GPU lockup after resume from hibernation with Nouveau =
-driver and firmware-nonfree
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>wadev&#64;mailbox.hu
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>With 4.7.0-1-amd64 debian kernel and 4.8.4 upstream kernel, th=
-e following
-symptom happens after resume from hibernation:
-
-Oct 27 09:59:37 terra kernel: [    4.615904] nouveau 0000:01:00.0: NVIDIA G=
-F119
-(0d90a0a1)
-Oct 27 09:59:37 terra kernel: [    4.763654] nouveau 0000:01:00.0: bios:
-version 75.19.56.00.00
-Oct 27 09:59:37 terra kernel: [    4.764202] nouveau 0000:01:00.0: fb: 2048=
- MiB
-DDR3
-Oct 27 09:59:37 terra kernel: [    4.822165] nouveau 0000:01:00.0: DRM: VRA=
-M:
-2048 MiB
-Oct 27 09:59:37 terra kernel: [    4.822166] nouveau 0000:01:00.0: DRM: GAR=
-T:
-1048576 MiB
-Oct 27 09:59:37 terra kernel: [    4.822168] nouveau 0000:01:00.0: DRM: TMDS
-table version 2.0
-Oct 27 09:59:37 terra kernel: [    4.822168] nouveau 0000:01:00.0: DRM: DCB
-version 4.0
-Oct 27 09:59:37 terra kernel: [    4.822169] nouveau 0000:01:00.0: DRM: DCB
-outp 00: 02000300 00000000
-Oct 27 09:59:37 terra kernel: [    4.822170] nouveau 0000:01:00.0: DRM: DCB
-outp 01: 01000302 00020030
-Oct 27 09:59:37 terra kernel: [    4.822171] nouveau 0000:01:00.0: DRM: DCB
-outp 02: 02011362 00020010
-Oct 27 09:59:37 terra kernel: [    4.822172] nouveau 0000:01:00.0: DRM: DCB
-outp 03: 04022310 00000000
-Oct 27 09:59:37 terra kernel: [    4.822172] nouveau 0000:01:00.0: DRM: DCB
-conn 00: 00001030
-Oct 27 09:59:37 terra kernel: [    4.822173] nouveau 0000:01:00.0: DRM: DCB
-conn 01: 00002161
-Oct 27 09:59:37 terra kernel: [    4.822174] nouveau 0000:01:00.0: DRM: DCB
-conn 02: 00000200
-Oct 27 09:59:37 terra kernel: [    4.894804] nouveau 0000:01:00.0: DRM: MM:
-using COPY0 for buffer copies
-Oct 27 09:59:37 terra kernel: [    5.082142] nouveau 0000:01:00.0: DRM:
-allocated 1920x1080 fb: 0x60000, bo ffff8c2694bae000
-Oct 27 09:59:37 terra kernel: [    5.082217] fbcon: nouveaufb (fb0) is prim=
-ary
-device
-Oct 27 09:59:37 terra kernel: [    5.162211] nouveau 0000:01:00.0: fb0:
-nouveaufb frame buffer device
-Oct 27 09:59:37 terra kernel: [    5.176376] [drm] Initialized nouveau 1.3.1
-20120801 for 0000:01:00.0 on minor 0
-Oct 27 10:11:27 terra kernel: [  682.165720] nouveau 0000:01:00.0: DRM:
-suspending console...
-Oct 27 10:11:27 terra kernel: [  682.165725] nouveau 0000:01:00.0: DRM:
-suspending display...
-Oct 27 10:11:27 terra kernel: [  682.165747] nouveau 0000:01:00.0: DRM:
-evicting buffers...
-Oct 27 10:11:27 terra kernel: [  682.264493] nouveau 0000:01:00.0: DRM: wai=
-ting
-for kernel channels to go idle...
-Oct 27 10:11:27 terra kernel: [  682.264531] nouveau 0000:01:00.0: DRM:
-suspending client object trees...
-Oct 27 10:11:27 terra kernel: [  682.264877] nouveau 0000:01:00.0: DRM:
-suspending kernel object tree...
-Oct 27 10:11:27 terra kernel: [  683.204263] nouveau 0000:01:00.0: DRM:
-resuming kernel object tree...
-Oct 27 10:11:27 terra kernel: [  683.261389] nouveau 0000:01:00.0: DRM:
-resuming client object trees...
-Oct 27 10:11:27 terra kernel: [  683.261572] nouveau 0000:01:00.0: DRM:
-resuming display...
-Oct 27 10:11:27 terra kernel: [  683.312957] nouveau 0000:01:00.0: DRM:
-resuming console...
-Oct 27 10:11:27 terra kernel: [  683.313003] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313019] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313039] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313052] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313065] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313079] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313092] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313106] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313119] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313133] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313146] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313160] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313174] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313187] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313201] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313214] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313228] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313244] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.313257] nouveau 0000:01:00.0: fifo:
-PBDMA0: 00010000 [] ch 1 [007fd51000 DRM] subc 0 mthd 0000 data 00000000
-Oct 27 10:11:27 terra kernel: [  683.480999] nouveau 0000:01:00.0: DRM: GPU
-lockup - switching to software fbcon
-Oct 27 10:11:33 terra kernel: [  690.449768] nouveau 0000:01:00.0: fifo: wr=
-ite
-fault at 00011b6000 engine 00 [PGRAPH] client 0f [GPC0/PROP] reason 02
-[PAGE_NOT_PRESENT] on channel 2 [007fbb$
-Oct 27 10:11:33 terra kernel: [  690.449896] nouveau 0000:01:00.0: fifo: gr
-engine fault on channel 2, recovering...
-
-This happens when I suspend from tty0 (console) with &quot;echo disk &gt;
-/sys/power/state&quot;.
-After that, no symptoms of the previous lockup (with the Firefox Google Maps
-rendering issue), that is, freezing, general unresponsiveness or similar; I=
- get
-the console back and can restart the display manager, then all works OK (ex=
-cept
-that I have to kill instances of singleton-like processes probably clinging=
- to
-the defunct display).
-
-If I do the same from an X terminal, then at the end of the resume process,=
- the
-system does a cold boot.
-
-No probably related messages during the shutdown though.
-
-Version info:
-
-OpenGL vendor string: nouveau
-OpenGL renderer string: Gallium 0.4 on NVD9
-OpenGL core profile version string: 3.3 (Core Profile) Mesa 10.3.2
-OpenGL core profile shading language version string: 3.30
-OpenGL core profile context flags: (none)
-OpenGL core profile profile mask: core profile
-
-(I used gcc 4.9.2 to compile the kernel and modules, if that means anything=
-.)
-
-I'm going to try the &quot;trunk&quot; build or whatever when I will have s=
-ome time.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14775569911.D94Bf.12596--
-
---===============0944662595==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0944662595==--
+VGhpcyBob29rIGNhbiBiZSByZW1vdmVkIGlmIHRoZSBmdW5jdGlvbiB3cml0aW5nIHRoZSBIUwpk
+ZXNjcmlwdG9yIGlzIGF3YXJlIG9mIFdQUiBzZXR0aW5ncy4gTGV0J3MgZG8gdGhhdCBhcyBpdCBh
+bGxvd3MgdXMgdG8KbWFrZSB0aGUgQUNSIGRlc2NyaXB0b3Igc3RydWN0dXJlIHByaXZhdGUgYW5k
+IHNhdmUgc29tZSBjb2RlLgoKU2lnbmVkLW9mZi1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3Vy
+Ym90QG52aWRpYS5jb20+Ci0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9nbTIw
+MC5jIHwgOTUgKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tCiBkcm0vbm91dmVhdS9u
+dmttL3N1YmRldi9zZWNib290L2dtMjBiLmMgfCAxMSAtLS0tCiBkcm0vbm91dmVhdS9udmttL3N1
+YmRldi9zZWNib290L3ByaXYuaCAgfCA2MCArKystLS0tLS0tLS0tLS0tLS0tLS0KIDMgZmlsZXMg
+Y2hhbmdlZCwgNzkgaW5zZXJ0aW9ucygrKSwgODcgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9nbTIwMC5jIGIvZHJtL25vdXZlYXUvbnZr
+bS9zdWJkZXYvc2VjYm9vdC9nbTIwMC5jCmluZGV4IGIwMjBlNDFkMjM5MS4uZTFjNTFmODI5M2M4
+IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2dtMjAwLmMKKysr
+IGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9nbTIwMC5jCkBAIC03NzEsNyArNzcx
+LDcgQEAgbHNfdWNvZGVfbWdyX3dyaXRlX3dwcihzdHJ1Y3QgZ20yMDBfc2VjYm9vdCAqZ3NiLCBz
+dHJ1Y3QgbHNfdWNvZGVfbWdyICptZ3IsCiAJCQl1OCBkZXNjW2dzYi0+ZnVuYy0+YmxfZGVzY19z
+aXplXTsKIAkJCXN0cnVjdCBnbTIwMF9mbGNuX2JsX2Rlc2MgZ2Rlc2M7CiAKLQkJCWxzX3Vjb2Rl
+X2ltZ19wb3B1bGF0ZV9ibF9kZXNjKGltZywgZ3NiLT53cHJfYWRkciwKKwkJCWxzX3Vjb2RlX2lt
+Z19wb3B1bGF0ZV9ibF9kZXNjKGltZywgZ3NiLT5hY3Jfd3ByX2FkZHIsCiAJCQkJCQkgICAgICAm
+Z2Rlc2MpOwogCQkJZ3NiLT5mdW5jLT5maXh1cF9ibF9kZXNjKCZnZGVzYywgJmRlc2MpOwogCQkJ
+bnZrbV9ncHVvYmpfbWVtY3B5X3RvKHdwcl9ibG9iLApAQCAtODQ2LDggKzg0NiwxMSBAQCBnbTIw
+MF9zZWNib290X3ByZXBhcmVfbHNfYmxvYihzdHJ1Y3QgZ20yMDBfc2VjYm9vdCAqZ3NiKQogCiAJ
+LyogSWYgV1BSIGFkZHJlc3MgYW5kIHNpemUgYXJlIG5vdCBmaXhlZCwgc2V0IHRoZW0gdG8gZml0
+IHRoZSBMUyBibG9iICovCiAJaWYgKCFnc2ItPndwcl9zaXplKSB7Ci0JCWdzYi0+d3ByX2FkZHIg
+PSBnc2ItPmxzX2Jsb2ItPmFkZHI7Ci0JCWdzYi0+d3ByX3NpemUgPSBnc2ItPmxzX2Jsb2ItPnNp
+emU7CisJCWdzYi0+YWNyX3dwcl9hZGRyID0gZ3NiLT5sc19ibG9iLT5hZGRyOworCQlnc2ItPmFj
+cl93cHJfc2l6ZSA9IGdzYi0+bHNfYmxvYi0+c2l6ZTsKKwl9IGVsc2UgeworCQlnc2ItPmFjcl93
+cHJfYWRkciA9IGdzYi0+d3ByX2FkZHI7CisJCWdzYi0+YWNyX3dwcl9zaXplID0gZ3NiLT53cHJf
+c2l6ZTsKIAl9CiAKIAkvKiBXcml0ZSBMUyBibG9iICovCkBAIC05MjUsNiArOTI4LDY5IEBAIGdt
+MjAwX3NlY2Jvb3RfcG9wdWxhdGVfaHNmX2JsX2Rlc2Modm9pZCAqYWNyX2ltYWdlLAogfQogCiAv
+KioKKyAqIHN0cnVjdCBoc2ZsY25fYWNyX2Rlc2MgLSBkYXRhIHNlY3Rpb24gb2YgdGhlIEhTIGZp
+cm13YXJlCisgKgorICogVGhpcyBoZWFkZXIgaXMgdG8gYmUgY29waWVkIGF0IHRoZSBiZWdpbm5p
+bmcgb2YgRE1FTSBieSB0aGUgSFMgYm9vdGxvYWRlci4KKyAqCisgKiBAc2lnbmF0dXJlOgkJc2ln
+bmF0dXJlIG9mIEFDUiB1Y29kZQorICogQHdwcl9yZWdpb25faWQ6CXJlZ2lvbiBJRCBob2xkaW5n
+IHRoZSBXUFIgaGVhZGVyIGFuZCBpdHMgZGV0YWlscworICogQHdwcl9vZmZzZXQ6CQlvZmZzZXQg
+ZnJvbSB0aGUgV1BSIHJlZ2lvbiBob2xkaW5nIHRoZSB3cHIgaGVhZGVyCisgKiBAcmVnaW9uczoJ
+CXJlZ2lvbiBkZXNjcmlwdG9ycworICogQG5vbndwcl91Y29kZV9ibG9iX3NpemU6CXNpemUgb2Yg
+TFMgYmxvYgorICogQG5vbndwcl91Y29kZV9ibG9iX3N0YXJ0OglGQiBsb2NhdGlvbiBvZiBMUyBi
+bG9iIGlzCisgKi8KK3N0cnVjdCBoc2ZsY25fYWNyX2Rlc2MgeworCXVuaW9uIHsKKwkJdTggcmVz
+ZXJ2ZWRfZG1lbVsweDIwMF07CisJCXUzMiBzaWduYXR1cmVzWzRdOworCX0gdWNvZGVfcmVzZXJ2
+ZWRfc3BhY2U7CisJdTMyIHdwcl9yZWdpb25faWQ7CisJdTMyIHdwcl9vZmZzZXQ7CisJdTMyIG1t
+dV9tZW1fcmFuZ2U7CisjZGVmaW5lIEZMQ05fQUNSX01BWF9SRUdJT05TIDIKKwlzdHJ1Y3Qgewor
+CQl1MzIgbm9fcmVnaW9uczsKKwkJc3RydWN0IHsKKwkJCXUzMiBzdGFydF9hZGRyOworCQkJdTMy
+IGVuZF9hZGRyOworCQkJdTMyIHJlZ2lvbl9pZDsKKwkJCXUzMiByZWFkX21hc2s7CisJCQl1MzIg
+d3JpdGVfbWFzazsKKwkJCXUzMiBjbGllbnRfbWFzazsKKwkJfSByZWdpb25fcHJvcHNbRkxDTl9B
+Q1JfTUFYX1JFR0lPTlNdOworCX0gcmVnaW9uczsKKwl1MzIgdWNvZGVfYmxvYl9zaXplOworCXU2
+NCB1Y29kZV9ibG9iX2Jhc2UgX19hbGlnbmVkKDgpOworCXN0cnVjdCB7CisJCXUzMiB2cHJfZW5h
+YmxlZDsKKwkJdTMyIHZwcl9zdGFydDsKKwkJdTMyIHZwcl9lbmQ7CisJCXUzMiBoZGNwX3BvbGlj
+aWVzOworCX0gdnByX2Rlc2M7Cit9OworCitzdGF0aWMgdm9pZAorZ20yMDBfc2VjYm9vdF9maXh1
+cF9oc19kZXNjKHN0cnVjdCBnbTIwMF9zZWNib290ICpnc2IsCisJCQkgICAgc3RydWN0IGhzZmxj
+bl9hY3JfZGVzYyAqZGVzYykKK3sKKwlkZXNjLT51Y29kZV9ibG9iX2Jhc2UgPSBnc2ItPmxzX2Js
+b2ItPmFkZHI7CisJZGVzYy0+dWNvZGVfYmxvYl9zaXplID0gZ3NiLT5sc19ibG9iLT5zaXplOwor
+CisJZGVzYy0+d3ByX29mZnNldCA9IDA7CisKKwkvKiBXUFIgcmVnaW9uIGluZm9ybWF0aW9uIGlm
+IFdQUiBpcyBub3QgZml4ZWQgKi8KKwlpZiAoZ3NiLT53cHJfc2l6ZSA9PSAwKSB7CisJCWRlc2Mt
+Pndwcl9yZWdpb25faWQgPSAxOworCQlkZXNjLT5yZWdpb25zLm5vX3JlZ2lvbnMgPSAxOworCQlk
+ZXNjLT5yZWdpb25zLnJlZ2lvbl9wcm9wc1swXS5yZWdpb25faWQgPSAxOworCQlkZXNjLT5yZWdp
+b25zLnJlZ2lvbl9wcm9wc1swXS5zdGFydF9hZGRyID0KKwkJCQkJCQkgZ3NiLT5hY3Jfd3ByX2Fk
+ZHIgPj4gODsKKwkJZGVzYy0+cmVnaW9ucy5yZWdpb25fcHJvcHNbMF0uZW5kX2FkZHIgPQorCQkJ
+CSAgIChnc2ItPmFjcl93cHJfYWRkciArIGdzYi0+YWNyX3dwcl9zaXplKSA+PiA4OworCX0KK30K
+KworLyoqCiAgKiBnbTIwMF9zZWNib290X3ByZXBhcmVfaHNfYmxvYiAtIGxvYWQgYW5kIHByZXBh
+cmUgYSBIUyBibG9iIGFuZCBCTCBkZXNjcmlwdG9yCiAgKgogICogQGdzYiBzZWN1cmUgYm9vdCBp
+bnN0YW5jZSB0byBwcmVwYXJlIGZvcgpAQCAtOTU3LDEyICsxMDIzLDEyIEBAIGdtMjAwX3NlY2Jv
+b3RfcHJlcGFyZV9oc19ibG9iKHN0cnVjdCBnbTIwMF9zZWNib290ICpnc2IsIGNvbnN0IGNoYXIg
+KmZ3LAogCiAJYWNyX2RhdGEgPSBhY3JfaW1hZ2UgKyBoc2Jpbl9oZHItPmRhdGFfb2Zmc2V0Owog
+Ci0JLyogUGF0Y2ggZGVzY3JpcHRvcj8gKi8KKwkvKiBQYXRjaCBkZXNjcmlwdG9yIHdpdGggV1BS
+IGluZm9ybWF0aW9uPyAqLwogCWlmIChwYXRjaCkgewogCQlmd19oZHIgPSBhY3JfaW1hZ2UgKyBo
+c2Jpbl9oZHItPmhlYWRlcl9vZmZzZXQ7CiAJCWxvYWRfaGRyID0gYWNyX2ltYWdlICsgZndfaGRy
+LT5oZHJfb2Zmc2V0OwogCQlkZXNjID0gYWNyX2RhdGEgKyBsb2FkX2hkci0+ZGF0YV9kbWFfYmFz
+ZTsKLQkJZ3NiLT5mdW5jLT5maXh1cF9oc19kZXNjKGdzYiwgZGVzYyk7CisJCWdtMjAwX3NlY2Jv
+b3RfZml4dXBfaHNfZGVzYyhnc2IsIGRlc2MpOwogCX0KIAogCS8qIEdlbmVyYXRlIEhTIEJMIGRl
+c2NyaXB0b3IgKi8KQEAgLTE0MDQsMjkgKzE0NzAsMTAgQEAgZ20yMDBfc2VjYm9vdF9maXh1cF9i
+bF9kZXNjKGNvbnN0IHN0cnVjdCBnbTIwMF9mbGNuX2JsX2Rlc2MgKmRlc2MsIHZvaWQgKnJldCkK
+IAltZW1jcHkocmV0LCBkZXNjLCBzaXplb2YoKmRlc2MpKTsKIH0KIAotc3RhdGljIHZvaWQKLWdt
+MjAwX3NlY2Jvb3RfZml4dXBfaHNfZGVzYyhzdHJ1Y3QgZ20yMDBfc2VjYm9vdCAqZ3NiLAotCQkJ
+ICAgIHN0cnVjdCBoc2ZsY25fYWNyX2Rlc2MgKmRlc2MpCi17Ci0JZGVzYy0+dWNvZGVfYmxvYl9i
+YXNlID0gZ3NiLT5sc19ibG9iLT5hZGRyOwotCWRlc2MtPnVjb2RlX2Jsb2Jfc2l6ZSA9IGdzYi0+
+bHNfYmxvYi0+c2l6ZTsKLQotCWRlc2MtPndwcl9vZmZzZXQgPSAwOwotCi0JLyogV1BSIHJlZ2lv
+biBpbmZvcm1hdGlvbiBmb3IgdGhlIEhTIGJpbmFyeSB0byBzZXQgdXAgKi8KLQlkZXNjLT53cHJf
+cmVnaW9uX2lkID0gMTsKLQlkZXNjLT5yZWdpb25zLm5vX3JlZ2lvbnMgPSAxOwotCWRlc2MtPnJl
+Z2lvbnMucmVnaW9uX3Byb3BzWzBdLnJlZ2lvbl9pZCA9IDE7Ci0JZGVzYy0+cmVnaW9ucy5yZWdp
+b25fcHJvcHNbMF0uc3RhcnRfYWRkciA9IGdzYi0+d3ByX2FkZHIgPj4gODsKLQlkZXNjLT5yZWdp
+b25zLnJlZ2lvbl9wcm9wc1swXS5lbmRfYWRkciA9Ci0JCShnc2ItPndwcl9hZGRyICsgZ3NiLT53
+cHJfc2l6ZSkgPj4gODsKLX0KLQogc3RhdGljIGNvbnN0IHN0cnVjdCBnbTIwMF9zZWNib290X2Z1
+bmMKIGdtMjAwX3NlY2Jvb3RfZnVuYyA9IHsKIAkuYmxfZGVzY19zaXplID0gc2l6ZW9mKHN0cnVj
+dCBnbTIwMF9mbGNuX2JsX2Rlc2MpLAogCS5maXh1cF9ibF9kZXNjID0gZ20yMDBfc2VjYm9vdF9m
+aXh1cF9ibF9kZXNjLAotCS5maXh1cF9oc19kZXNjID0gZ20yMDBfc2VjYm9vdF9maXh1cF9oc19k
+ZXNjLAogCS5wcmVwYXJlX2Jsb2JzID0gZ20yMDBfc2VjYm9vdF9wcmVwYXJlX2Jsb2JzLAogfTsK
+IApkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9nbTIwYi5jIGIv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9nbTIwYi5jCmluZGV4IDFjYjY2M2MzMWUx
+Ny4uM2Q5ZjM3NDg4NjRmIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNi
+b290L2dtMjBiLmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9nbTIwYi5j
+CkBAIC05OSwyMSArOTksMTAgQEAgZ20yMGJfc2VjYm9vdF9maXh1cF9ibF9kZXNjKGNvbnN0IHN0
+cnVjdCBnbTIwMF9mbGNuX2JsX2Rlc2MgKmRlc2MsIHZvaWQgKnJldCkKIAlnZGVzYy0+ZGF0YV9z
+aXplID0gZGVzYy0+ZGF0YV9zaXplOwogfQogCi1zdGF0aWMgdm9pZAotZ20yMGJfc2VjYm9vdF9m
+aXh1cF9oc19kZXNjKHN0cnVjdCBnbTIwMF9zZWNib290ICpnc2IsCi0JCQkgICAgc3RydWN0IGhz
+Zmxjbl9hY3JfZGVzYyAqZGVzYykKLXsKLQlkZXNjLT51Y29kZV9ibG9iX2Jhc2UgPSBnc2ItPmxz
+X2Jsb2ItPmFkZHI7Ci0JZGVzYy0+dWNvZGVfYmxvYl9zaXplID0gZ3NiLT5sc19ibG9iLT5zaXpl
+OwotCi0JZGVzYy0+d3ByX29mZnNldCA9IDA7Ci19Ci0KIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZ20y
+MDBfc2VjYm9vdF9mdW5jCiBnbTIwYl9zZWNib290X2Z1bmMgPSB7CiAJLmJsX2Rlc2Nfc2l6ZSA9
+IHNpemVvZihzdHJ1Y3QgZ20yMGJfZmxjbl9ibF9kZXNjKSwKIAkuZml4dXBfYmxfZGVzYyA9IGdt
+MjBiX3NlY2Jvb3RfZml4dXBfYmxfZGVzYywKLQkuZml4dXBfaHNfZGVzYyA9IGdtMjBiX3NlY2Jv
+b3RfZml4dXBfaHNfZGVzYywKIAkucHJlcGFyZV9ibG9icyA9IGdtMjBiX3NlY2Jvb3RfcHJlcGFy
+ZV9ibG9icywKIH07CiAKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jv
+b3QvcHJpdi5oIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9wcml2LmgKaW5kZXgg
+YmFhODAyYjFlOWQyLi5jZTBmM2M4NzIxMmIgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20v
+c3ViZGV2L3NlY2Jvb3QvcHJpdi5oCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jv
+b3QvcHJpdi5oCkBAIC05MSw0OCArOTEsNiBAQCBzdHJ1Y3QgZ20yMDBfZmxjbl9ibF9kZXNjIHsK
+IH07CiAKIC8qKgotICogc3RydWN0IGhzZmxjbl9hY3JfZGVzYyAtIGRhdGEgc2VjdGlvbiBvZiB0
+aGUgSFMgZmlybXdhcmUKLSAqCi0gKiBUaGlzIGhlYWRlciBpcyB0byBiZSBjb3BpZWQgYXQgdGhl
+IGJlZ2lubmluZyBvZiBETUVNIGJ5IHRoZSBIUyBib290bG9hZGVyLgotICoKLSAqIEBzaWduYXR1
+cmU6CQlzaWduYXR1cmUgb2YgQUNSIHVjb2RlCi0gKiBAd3ByX3JlZ2lvbl9pZDoJcmVnaW9uIElE
+IGhvbGRpbmcgdGhlIFdQUiBoZWFkZXIgYW5kIGl0cyBkZXRhaWxzCi0gKiBAd3ByX29mZnNldDoJ
+CW9mZnNldCBmcm9tIHRoZSBXUFIgcmVnaW9uIGhvbGRpbmcgdGhlIHdwciBoZWFkZXIKLSAqIEBy
+ZWdpb25zOgkJcmVnaW9uIGRlc2NyaXB0b3JzCi0gKiBAbm9ud3ByX3Vjb2RlX2Jsb2Jfc2l6ZToJ
+c2l6ZSBvZiBMUyBibG9iCi0gKiBAbm9ud3ByX3Vjb2RlX2Jsb2Jfc3RhcnQ6CUZCIGxvY2F0aW9u
+IG9mIExTIGJsb2IgaXMKLSAqLwotc3RydWN0IGhzZmxjbl9hY3JfZGVzYyB7Ci0JdW5pb24gewot
+CQl1OCByZXNlcnZlZF9kbWVtWzB4MjAwXTsKLQkJdTMyIHNpZ25hdHVyZXNbNF07Ci0JfSB1Y29k
+ZV9yZXNlcnZlZF9zcGFjZTsKLQl1MzIgd3ByX3JlZ2lvbl9pZDsKLQl1MzIgd3ByX29mZnNldDsK
+LQl1MzIgbW11X21lbV9yYW5nZTsKLSNkZWZpbmUgRkxDTl9BQ1JfTUFYX1JFR0lPTlMgMgotCXN0
+cnVjdCB7Ci0JCXUzMiBub19yZWdpb25zOwotCQlzdHJ1Y3QgewotCQkJdTMyIHN0YXJ0X2FkZHI7
+Ci0JCQl1MzIgZW5kX2FkZHI7Ci0JCQl1MzIgcmVnaW9uX2lkOwotCQkJdTMyIHJlYWRfbWFzazsK
+LQkJCXUzMiB3cml0ZV9tYXNrOwotCQkJdTMyIGNsaWVudF9tYXNrOwotCQl9IHJlZ2lvbl9wcm9w
+c1tGTENOX0FDUl9NQVhfUkVHSU9OU107Ci0JfSByZWdpb25zOwotCXUzMiB1Y29kZV9ibG9iX3Np
+emU7Ci0JdTY0IHVjb2RlX2Jsb2JfYmFzZSBfX2FsaWduZWQoOCk7Ci0Jc3RydWN0IHsKLQkJdTMy
+IHZwcl9lbmFibGVkOwotCQl1MzIgdnByX3N0YXJ0OwotCQl1MzIgdnByX2VuZDsKLQkJdTMyIGhk
+Y3BfcG9saWNpZXM7Ci0JfSB2cHJfZGVzYzsKLX07Ci0KLS8qKgogICogQ29udGFpbnMgdGhlIHdo
+b2xlIHNlY3VyZSBib290IHN0YXRlLCBhbGxvd2luZyBpdCB0byBiZSBwZXJmb3JtZWQgYXMgbmVl
+ZGVkCiAgKiBAd3ByX2FkZHI6CQlwaHlzaWNhbCBhZGRyZXNzIG9mIHRoZSBXUFIgcmVnaW9uCiAg
+KiBAd3ByX3NpemU6CQlzaXplIGluIGJ5dGVzIG9mIHRoZSBXUFIgcmVnaW9uCkBAIC0xNTQsMTQg
+KzExMiwxOSBAQCBzdHJ1Y3QgZ20yMDBfc2VjYm9vdCB7CiAJY29uc3Qgc3RydWN0IGdtMjAwX3Nl
+Y2Jvb3RfZnVuYyAqZnVuYzsKIAogCS8qCi0JICogQWRkcmVzcyBhbmQgc2l6ZSBvZiB0aGUgV1BS
+IHJlZ2lvbi4gT24gZEdQVSB0aGlzIHdpbGwgYmUgdGhlCi0JICogYWRkcmVzcyBvZiB0aGUgTFMg
+YmxvYi4gT24gVGVncmEgdGhpcyBpcyBhIGZpeGVkIHJlZ2lvbiBzZXQgYnkgdGhlCi0JICogYm9v
+dGxvYWRlcgorCSAqIEFkZHJlc3MgYW5kIHNpemUgb2YgdGhlIGZpeGVkIFdQUiByZWdpb24sIGlm
+IGFueS4gT24gVGVncmEgdGhpcworCSAqIHJlZ2lvbiBpcyBzZXQgYnkgdGhlIGJvb3Rsb2FkZXIK
+IAkgKi8KIAl1NjQgd3ByX2FkZHI7CiAJdTMyIHdwcl9zaXplOwogCiAJLyoKKwkgKiBBZGRyZXNz
+IGFuZCBzaXplIG9mIHRoZSBhY3R1YWwgV1BSIHJlZ2lvbi4KKwkgKi8KKwl1NjQgYWNyX3dwcl9h
+ZGRyOworCXUzMiBhY3Jfd3ByX3NpemU7CisKKwkvKgogCSAqIEhTIEZXIC0gbG9jayBXUFIgcmVn
+aW9uIChkR1BVIG9ubHkpIGFuZCBsb2FkIExTIEZXcwogCSAqIG9uIFRlZ3JhIHRoZSBIUyBGVyBj
+b3BpZXMgdGhlIExTIGJsb2IgaW50byB0aGUgZml4ZWQgV1BSIGluc3RlYWQKIAkgKi8KQEAgLTIw
+Myw3ICsxNjYsNiBAQCBzdHJ1Y3QgZ20yMDBfc2VjYm9vdCB7CiAgKiBAZml4dXBfYmxfZGVzYzoJ
+aG9vayB0aGF0IGdlbmVyYXRlcyB0aGUgcHJvcGVyIEJMIGRlc2NyaXB0b3IgZm9ybWF0IGZyb20K
+ICAqCQkJdGhlIGdlbmVyaWMgR00yMDAgZm9ybWF0IGludG8gYSBkYXRhIGFycmF5IG9mIHNpemUK
+ICAqCQkJYmxfZGVzY19zaXplCi0gKiBAZml4dXBfaHNfZGVzYzoJaG9vayB0aGF0IHR3aWRkbGVz
+IHRoZSBIUyBkZXNjcmlwdG9yIGJlZm9yZSBpdCBpcyB1c2VkCiAgKiBAcHJlcGFyZV9ibG9iczoJ
+cHJlcGFyZXMgdGhlIHZhcmlvdXMgYmxvYnMgbmVlZGVkIGZvciBzZWN1cmUgYm9vdGluZwogICov
+CiBzdHJ1Y3QgZ20yMDBfc2VjYm9vdF9mdW5jIHsKQEAgLTIxNSwxMiArMTc3LDYgQEAgc3RydWN0
+IGdtMjAwX3NlY2Jvb3RfZnVuYyB7CiAJdTMyIGJsX2Rlc2Nfc2l6ZTsKIAl2b2lkICgqZml4dXBf
+YmxfZGVzYykoY29uc3Qgc3RydWN0IGdtMjAwX2ZsY25fYmxfZGVzYyAqLCB2b2lkICopOwogCi0J
+LyoKLQkgKiBDaGlwLXNwZWNpZmljIG1vZGlmaWNhdGlvbnMgb2YgdGhlIEhTIGRlc2NyaXB0b3Ig
+Y2FuIGJlIGRvbmUgaGVyZS4KLQkgKiBPbiBkR1BVIHRoaXMgaXMgdXNlZCB0byBmaWxsIHRoZSBp
+bmZvcm1hdGlvbiBhYm91dCB0aGUgV1BSIHJlZ2lvbgotCSAqIHdlIHdhbnQgdGhlIEhTIEZXIHRv
+IHNldCB1cC4KLQkgKi8KLQl2b2lkICgqZml4dXBfaHNfZGVzYykoc3RydWN0IGdtMjAwX3NlY2Jv
+b3QgKiwgc3RydWN0IGhzZmxjbl9hY3JfZGVzYyAqKTsKIAlpbnQgKCpwcmVwYXJlX2Jsb2JzKShz
+dHJ1Y3QgZ20yMDBfc2VjYm9vdCAqKTsKIH07CiAKLS0gCjIuMTAuMAoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
