@@ -1,24 +1,12 @@
-From: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: Re: Acer Aspire V7-582PG (Haswell,
- GTX 750M) fails to power off GPU via Power Resources
-Date: Fri, 28 Oct 2016 17:10:00 +0300
-Message-ID: <20161028141000.GE23812@lahna.fi.intel.com>
-References: <20161027090604.GB27017@al>
- <CANni8hdMs4pL0m6FrgeyJjE2R2C=6PaHbVbMVoUU+NszJuf9OA@mail.gmail.com>
- <20161027093011.GZ1476@lahna.fi.intel.com>
- <CANni8her35iORgrZOkDzxhfVaOOzObTLG2Ly0kkNZPDTrbyfQQ@mail.gmail.com>
- <20161027095508.GA1476@lahna.fi.intel.com>
- <20161027160648.GF27017@al>
- <20161028085630.GD1476@lahna.fi.intel.com>
- <20161028110930.GA1521@al>
- <20161028111907.GD23812@lahna.fi.intel.com>
- <20161028123041.GB1521@al>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 96553] Xorg freezes
+Date: Fri, 28 Oct 2016 14:35:24 +0000
+Message-ID: <bug-96553-8800-OEQCMRilEj@http.bugs.freedesktop.org/>
+References: <bug-96553-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0720603706=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20161028123041.GB1521@al>
+In-Reply-To: <bug-96553-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -28,18 +16,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Cc: Rick Kerkhof <rick.2889-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Robert Moore <Robert.Moore-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Lv Zheng <lv.zheng-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBPY3QgMjgsIDIwMTYgYXQgMDI6MzA6NDFQTSArMDIwMCwgUGV0ZXIgV3Ugd3JvdGU6
-Cj4gSXQgd2FzIGNvcnJlY3RseSBhcHBsaWVkLiBJIGRpZCBzb21lIHRlc3Rpbmcgd2l0aCBRRU1V
-LCBpdCBzZWVtcyB0aGF0Cj4gdGhlIFxfT1NJIGNoZWNrIGlzIHByb2JsZW1hdGljLiBSZW1vdmlu
-ZyBpdCBtYWtlcyB0aGluZ3Mgd29yayBhZ2Fpbi4KCkkgaG9wZSBCb2IgYW5kIEx2IGNhbiBhbnN3
-ZXIgd2h5IF9PU0kgZmFpbHMuCgpJbiB0aGUgbWVhbnRpbWUgSSB0aGluayB3ZSBzaG91bGQgY2hl
-Y2sgZmxhZ3MucG93ZXJfcmVzb3VyY2VzIGluIG5vdXZlYXUKZHJpdmVyIChpbiBhZGRpdGlvbiB0
-byBfUFIzKSBzbyB0aGF0IGl0IGZhbGxzIGJhY2sgdG8gX0RTTSBpZiB0aGVyZSBhcmUKbm8gcG93
-ZXIgcmVzb3VyY2VzIChvciBpZiB3ZSBmYWlsZWQgdG8gZXZhbHVhdGUgdGhlbSBmb3Igc29tZSBy
-ZWFzb24pLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0720603706==
+Content-Type: multipart/alternative; boundary="14776653241.BdF2F0F.3947";
+ charset="UTF-8"
+
+
+--14776653241.BdF2F0F.3947
+Date: Fri, 28 Oct 2016 14:35:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D96553
+
+--- Comment #2 from simonF <simonfalicon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I have same trouble my computer freeze, I can mouve mouse but nothing else.=
+ in
+my log:
+
+Oct 28 16:07:12 simon-Precision-T1700 kernel: [ 2191.290651] nouveau
+0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct 28 16:07:12 simon-Precision-T1700 kernel: [ 2191.290656] nouveau
+0000:01:00.0: fifo: sw engine fault on channel 7,
+recovering...
+Oct 28 16:07:14 simon-Precision-T1700 kernel: [ 2193.290170] nouveau
+0000:01:00.0: fifo: runlist 0 update timeout
+Oct 28 16:07:16 simon-Precision-T1700 kernel: [ 2195.585187] nouveau
+0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct 28 16:07:21 simon-Precision-T1700 kernel: [ 2199.879719] nouveau
+0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct 28 16:07:25 simon-Precision-T1700 kernel: [ 2204.174252] nouveau
+0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+
+I use a Nvidia Qudro K600:
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GK107GL [Quadro K600]
+(rev a1)
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14776653241.BdF2F0F.3947
+Date: Fri, 28 Oct 2016 14:35:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg freezes"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96553#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg freezes"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D96553">bug 96553<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+simonfalicon&#64;gmail.com" title=3D"simonF &lt;simonfalicon&#64;gmail.com&=
+gt;"> <span class=3D"fn">simonF</span></a>
+</span></b>
+        <pre>I have same trouble my computer freeze, I can mouve mouse but =
+nothing else. in
+my log:
+
+Oct 28 16:07:12 simon-Precision-T1700 kernel: [ 2191.290651] nouveau
+0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct 28 16:07:12 simon-Precision-T1700 kernel: [ 2191.290656] nouveau
+0000:01:00.0: fifo: sw engine fault on channel 7,
+recovering...
+Oct 28 16:07:14 simon-Precision-T1700 kernel: [ 2193.290170] nouveau
+0000:01:00.0: fifo: runlist 0 update timeout
+Oct 28 16:07:16 simon-Precision-T1700 kernel: [ 2195.585187] nouveau
+0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct 28 16:07:21 simon-Precision-T1700 kernel: [ 2199.879719] nouveau
+0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Oct 28 16:07:25 simon-Precision-T1700 kernel: [ 2204.174252] nouveau
+0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+
+I use a Nvidia Qudro K600:
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GK107GL [Quadro K600]
+(rev a1)</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14776653241.BdF2F0F.3947--
+
+--===============0720603706==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0720603706==--
