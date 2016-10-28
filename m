@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98398] Acer Aspire V7-582PG (Haswell,
- GTX 750M) fails to power off GPU with runtime PM
-Date: Fri, 28 Oct 2016 23:23:18 +0000
-Message-ID: <bug-98398-8800-gDnjnc88AV@http.bugs.freedesktop.org/>
-References: <bug-98398-8800@http.bugs.freedesktop.org/>
+From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Subject: [PATCH] drm/nouveau/acpi: fix check for power resources
+	support
+Date: Sat, 29 Oct 2016 01:40:03 +0200
+Message-ID: <20161028234003.21152-1-peter@lekensteyn.nl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0232934760=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,126 +16,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Rick Kerkhof <rick.2889-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0232934760==
-Content-Type: multipart/alternative; boundary="14776969972.7Ef122.6594";
- charset="UTF-8"
-
-
---14776969972.7Ef122.6594
-Date: Fri, 28 Oct 2016 23:23:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98398
-
-Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |ASSIGNED
-
---- Comment #12 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
-At the moment it looks like an ACPI core bug which manifested in nouveau. S=
-ee
-https://lists.freedesktop.org/archives/nouveau/2016-October/026395.html and=
- the
-replies. I'll post a workaround patch soon.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14776969972.7Ef122.6594
-Date: Fri, 28 Oct 2016 23:23:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:peter&#64=
-;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"> <span c=
-lass=3D"fn">Peter Wu</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to po=
-wer off GPU with runtime PM"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398">bug 98398<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>ASSIGNED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to po=
-wer off GPU with runtime PM"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398#c12">Commen=
-t # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to po=
-wer off GPU with runtime PM"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398">bug 98398<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
-> <span class=3D"fn">Peter Wu</span></a>
-</span></b>
-        <pre>At the moment it looks like an ACPI core bug which manifested =
-in nouveau. See
-<a href=3D"https://lists.freedesktop.org/archives/nouveau/2016-October/0263=
-95.html">https://lists.freedesktop.org/archives/nouveau/2016-October/026395=
-.html</a> and the
-replies. I'll post a workaround patch soon.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14776969972.7Ef122.6594--
-
---===============0232934760==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0232934760==--
+Q2hlY2sgd2hldGhlciB0aGUga2VybmVsIHJlYWxseSBzdXBwb3J0cyBwb3dlciByZXNvdXJjZXMg
+Zm9yIGEgZGV2aWNlLApvdGhlcndpc2UgdGhlIHBvd2VyIG1pZ2h0IG5vdCBiZSByZW1vdmVkIHdo
+ZW4gdGhlIGRldmljZSBpcyBydW50aW1lCnN1c3BlbmRlZCAoRFNNIHNob3VsZCBzdGlsbCB3b3Jr
+IGluIHRoZXNlIGNhc2VzIHdoZXJlIFBSIGRvZXMgbm90KS4KCkxpbms6IGh0dHBzOi8vYnVncy5m
+cmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTk4Mzk4CkZpeGVzOiA2OTJhMTdkY2MyOTIg
+KCJkcm0vbm91dmVhdS9hY3BpOiBmaXggbG9ja3VwIHdpdGggUENJZSBydW50aW1lIFBNIikKU2ln
+bmVkLW9mZi1ieTogUGV0ZXIgV3UgPHBldGVyQGxla2Vuc3RleW4ubmw+Ci0tLQpIaSwKCk1heWJl
+IENjOiBzdGFibGUgKDQuOCspPwoKQ29tcGlsZS10ZXN0ZWQgb25seS4gUmljaywgY2FuIHlvdSB0
+ZXN0IGlmIHRoaXMgcGF0Y2ggZml4ZXMgdGhlIHByb2JsZW0gZm9yIHlvdT8KClRoaXMgY2hlY2sg
+d2FzIGFjdHVhbGx5IGluIHRoZSBvcmlnaW5hbCBwYXRjaCwgYnV0IGl0IHdhcyBjaGFuZ2VkOgpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9ub3V2ZWF1LzIwMTYtTWF5LzAy
+NTEyNS5odG1sClJlLWFkZGluZyB0aGUgY2hlY2sgYXMgc3VnZ2VzdGVkIGJ5IE1pa2EuCgpLaW5k
+IHJlZ2FyZHMsClBldGVyCi0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3Bp
+LmMgfCAzICsrLQogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigt
+KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jIGIv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMKaW5kZXggZGM1N2I2Mi4uMTkz
+NTczZCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMK
+KysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMKQEAgLTI0MCw3ICsy
+NDAsOCBAQCBzdGF0aWMgYm9vbCBub3V2ZWF1X3ByM19wcmVzZW50KHN0cnVjdCBwY2lfZGV2ICpw
+ZGV2KQogCWlmICghcGFyZW50X2FkZXYpCiAJCXJldHVybiBmYWxzZTsKIAotCXJldHVybiBhY3Bp
+X2hhc19tZXRob2QocGFyZW50X2FkZXYtPmhhbmRsZSwgIl9QUjMiKTsKKwlyZXR1cm4gcGFyZW50
+X2FkZXYtPnBvd2VyLmZsYWdzLnBvd2VyX3Jlc291cmNlcyAmJgorCQlhY3BpX2hhc19tZXRob2Qo
+cGFyZW50X2FkZXYtPmhhbmRsZSwgIl9QUjMiKTsKIH0KIAogc3RhdGljIHZvaWQgbm91dmVhdV9k
+c21fcGNpX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBhY3BpX2hhbmRsZSAqZGhhbmRsZV9v
+dXQsCi0tIAoyLjEwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
