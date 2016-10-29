@@ -1,54 +1,113 @@
-From: "Zheng, Lv" <lv.zheng@intel.com>
-Subject: RE: Acer Aspire V7-582PG (Haswell, GTX 750M) fails to power off GPU
- via Power Resources
-Date: Sat, 29 Oct 2016 00:49:22 +0000
-Message-ID: <1AE640813FDE7649BE1B193DEA596E886A25E770@SHSMSX101.ccr.corp.intel.com>
-References: <20161027090604.GB27017@al>
- <CANni8hdMs4pL0m6FrgeyJjE2R2C=6PaHbVbMVoUU+NszJuf9OA@mail.gmail.com>
- <20161027093011.GZ1476@lahna.fi.intel.com>
- <CANni8her35iORgrZOkDzxhfVaOOzObTLG2Ly0kkNZPDTrbyfQQ@mail.gmail.com>
- <20161027095508.GA1476@lahna.fi.intel.com> <20161027160648.GF27017@al>
- <20161028085630.GD1476@lahna.fi.intel.com> <20161028110930.GA1521@al>
- <20161028111907.GD23812@lahna.fi.intel.com> <20161028123041.GB1521@al>
- <20161028141000.GE23812@lahna.fi.intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93629] [NVE6] complete system freeze,
+ PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
+Date: Sat, 29 Oct 2016 10:01:59 +0000
+Message-ID: <bug-93629-8800-SChgo6aPvJ@http.bugs.freedesktop.org/>
+References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
-Return-path: <linux-acpi-owner@vger.kernel.org>
-In-Reply-To: <20161028141000.GE23812@lahna.fi.intel.com>
-Content-Language: en-US
-Sender: linux-acpi-owner@vger.kernel.org
-To: Mika Westerberg <mika.westerberg@linux.intel.com>, Peter Wu <peter@lekensteyn.nl>
-Cc: Rick Kerkhof <rick.2889@gmail.com>, "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "Moore, Robert" <robert.moore@intel.com>
+Content-Type: multipart/mixed; boundary="===============0284947462=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
 
-> From: linux-acpi-owner@vger.kernel.org [mailto:linux-acpi-owner@vger.kernel.org] On Behalf Of Mika
-> Westerberg
-> Subject: Re: Acer Aspire V7-582PG (Haswell, GTX 750M) fails to power off GPU via Power Resources
-> 
-> On Fri, Oct 28, 2016 at 02:30:41PM +0200, Peter Wu wrote:
-> > It was correctly applied. I did some testing with QEMU, it seems that
-> > the \_OSI check is problematic. Removing it makes things work again.
-> 
-> I hope Bob and Lv can answer why _OSI fails.
-> 
-> In the meantime I think we should check flags.power_resources in nouveau
-> driver (in addition to _PR3) so that it falls back to _DSM if there are
-> no power resources (or if we failed to evaluate them for some reason).
+--===============0284947462==
+Content-Type: multipart/alternative; boundary="14777353193.1AbFEeE3.6483";
+ charset="UTF-8"
 
-IMO, the problem wasn't _OSI, the problem was "If".
-"If" is module level here.
-So execution order of it in current Linux upstream may be different from Windows.
 
-You can try to modify acpi_gbl_parse_table_as_term_list to TRUE.
-To see if this can be solved.
+--14777353193.1AbFEeE3.6483
+Date: Sat, 29 Oct 2016 10:01:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-Thanks and best regards
-Lv
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
 
-> --
-> To unsubscribe from this list: send the line "unsubscribe linux-acpi" in
-> the body of a message to majordomo@vger.kernel.org
-> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+Tuxik <tuxenergy-JGs/UdohzUI@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=3D98489
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14777353193.1AbFEeE3.6483
+Date: Sat, 29 Oct 2016 10:01:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:tuxenergy=
+&#64;mail.ru" title=3D"Tuxik &lt;tuxenergy&#64;mail.ru&gt;"> <span class=3D=
+"fn">Tuxik</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">See Also</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D98489
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14777353193.1AbFEeE3.6483--
+
+--===============0284947462==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0284947462==--
