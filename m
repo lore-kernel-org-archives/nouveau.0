@@ -1,101 +1,149 @@
-From: Peter Wu <peter@lekensteyn.nl>
-Subject: Re: Acer Aspire V7-582PG (Haswell, GTX 750M) fails to power off GPU
- via Power Resources
-Date: Sun, 30 Oct 2016 12:08:59 +0100
-Message-ID: <20161030110859.GB23970@al>
-References: <20161026225641.GA27017@al>
- <20161027081748.GX1476@lahna.fi.intel.com>
- <20161027090604.GB27017@al>
- <CANni8hdMs4pL0m6FrgeyJjE2R2C=6PaHbVbMVoUU+NszJuf9OA@mail.gmail.com>
- <20161027093011.GZ1476@lahna.fi.intel.com>
- <CANni8her35iORgrZOkDzxhfVaOOzObTLG2Ly0kkNZPDTrbyfQQ@mail.gmail.com>
- <20161027095508.GA1476@lahna.fi.intel.com>
- <20161027160648.GF27017@al>
- <20161028085630.GD1476@lahna.fi.intel.com>
- <1AE640813FDE7649BE1B193DEA596E886A25E758@SHSMSX101.ccr.corp.intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98489] Nouveau not loading PGRAPH firmware blob for
+ gk106 in kernel 4.7.10
+Date: Sun, 30 Oct 2016 15:41:50 +0000
+Message-ID: <bug-98489-8800-RxQcCBmeZz@http.bugs.freedesktop.org/>
+References: <bug-98489-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-acpi-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <1AE640813FDE7649BE1B193DEA596E886A25E758@SHSMSX101.ccr.corp.intel.com>
-Sender: linux-acpi-owner@vger.kernel.org
-To: "Zheng, Lv" <lv.zheng@intel.com>
-Cc: Mika Westerberg <mika.westerberg@linux.intel.com>, Rick Kerkhof <rick.2889@gmail.com>, "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "Moore, Robert" <robert.moore@intel.com>
+Content-Type: multipart/mixed; boundary="===============0437394462=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98489-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Oct 29, 2016 at 12:42:34AM +0000, Zheng, Lv wrote:
-> Hi, Mika
-> 
-> > From: Mika Westerberg [mailto:mika.westerberg@linux.intel.com]
-> > Subject: Re: Acer Aspire V7-582PG (Haswell, GTX 750M) fails to power off GPU via Power Resources
-> > 
-> > On Thu, Oct 27, 2016 at 06:06:48PM +0200, Peter Wu wrote:
-> > > On Thu, Oct 27, 2016 at 12:55:08PM +0300, Mika Westerberg wrote:
-> > > > On Thu, Oct 27, 2016 at 09:42:28AM +0000, Rick Kerkhof wrote:
-> > > > >    No, there are not. Here is the recursive directory listing:
-> > > >
-> > > > Are you able to try the following patch and send me dmesg (or attach it
-> > > > to that bug)? It should show if the ACPI core even tries to add those
-> > > > power resources.
-> > >
-> > > So Rick has tested this patch now on top of 4.8.4 (mainline fails to
-> > > boot due to a kbuild issue which I reported elsewhere), but the output
-> > > is empty. That seems to indicate that flags.power_resources is unset.
-> > 
-> > Is it completely empty or is it empty just for RP05? It should print out
-> > all devices with power resources.
-> > 
-> > > Given that _PS3 exists and is indeed a package with some elements, it
-> > > seems that acpi_extract_power_resources is failing. Note that in the
-> > > SSDT, the power resource NVP3 was referenced before it was defined,
-> > > could that result in this enumeration failure? Relevant SSDT excerpt:
-> > >
-> > >     Scope (\_SB.PCI0.RP05)
-> > >     {
-> > >         Name (_PR3, Package (0x01)  // _PR3: Power Resources for D3hot
-> > >         {
-> > >             NVP3
-> > >         })
-> > >         // ...
-> > >     }
-> > >
-> > >     PowerResource (NVP3, 0x00, 0x0000)
-> 
-> Looks wrong order to me.
-> 
-> However, _PR3 is a package, for AML opcode that contains PkgLength grammar primitive, forward reference may be OK (for example Method).
-> DefPackage := PackageOp PkgLength NumElements PackageElementList
-> DefMethod := MethodOp PkgLength NameString MethodFlags TermList
-> As when it is encountered, AML interpreter may only saves entire packaged object.
-> 
-> I need to test behaviors around Package with qemu but I don't have environment now.
-> Can you help to give it a try?
-> By adding customize an ssdt with the above code putting under root scope,
-> DefinitionBlock ("ssdt-package.aml", "SSDT", 2, "INTEL ", "PACKAGE ", 0x00003000)
-> {
->     Scope (\)
->     {
->         Name (_PR3, Package (0x01) { NVP3 })
->     }
->     PowerResource (NVP3, 0x00, 0x0000) {}
-> }
-> Running Windows images on qemu with this ssdt appended "-acpitable file=ssdt-package.aml".
-> To see if blue screen can be resulted.
-> 
-> Thanks
-> Lv
 
-Testing this code with Windows 10 gives a BSOD, changing the order of
-the PowerResource and Scope does not make a difference. If I take my
-previous SSDT and change the ordering of NVP3 definition vs _PR3 use,
-there is no change.
+--===============0437394462==
+Content-Type: multipart/alternative; boundary="14778421101.7e638.22777";
+ charset="UTF-8"
 
-Kind regards,
-Peter
 
-> > 
-> > That and the fact that they come from an SSDT instead of DSDT may cause
-> > this. However, I'm not expert in ACPICA so adding Bob and Lv if they
-> > have ideas.
-> > 
-> > Bob, Lv, the bug in question is: https://bugs.freedesktop.org/show_bug.cgi?id=98398
+--14778421101.7e638.22777
+Date: Sun, 30 Oct 2016 15:41:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98489
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |NOTABUG
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+That message was removed in "gr/gf100: load firmware in outer function" (in
+v4.6). The load should error out if you're forcing firmware load and you do=
+n't
+have firmware available.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14778421101.7e638.22777
+Date: Sun, 30 Oct 2016 15:41:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTABUG - Nouveau not loading PGRAPH firmware blob for=
+ gk106 in kernel 4.7.10"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98489">bug 98489<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>NOTABUG
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTABUG - Nouveau not loading PGRAPH firmware blob for=
+ gk106 in kernel 4.7.10"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98489#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTABUG - Nouveau not loading PGRAPH firmware blob for=
+ gk106 in kernel 4.7.10"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98489">bug 98489<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>That message was removed in &quot;gr/gf100: load firmware in o=
+uter function&quot; (in
+v4.6). The load should error out if you're forcing firmware load and you do=
+n't
+have firmware available.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14778421101.7e638.22777--
+
+--===============0437394462==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0437394462==--
