@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98506] Pagefault in gf100_vm_flush
-Date: Sun, 30 Oct 2016 18:06:08 +0000
-Message-ID: <bug-98506-8800-xI9QNPNQq8@http.bugs.freedesktop.org/>
-References: <bug-98506-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98482] gtx 1060 Monitor out of range live install
+Date: Sun, 30 Oct 2016 23:59:50 +0000
+Message-ID: <bug-98482-8800-Xa2X8DvaFA@http.bugs.freedesktop.org/>
+References: <bug-98482-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1169918237=="
+Content-Type: multipart/mixed; boundary="===============0027697071=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98506-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98482-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,47 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1169918237==
-Content-Type: multipart/alternative; boundary="14778507681.237aa4FF.1116";
+--===============0027697071==
+Content-Type: multipart/alternative; boundary="14778719901.3baBA2a9A.24457";
  charset="UTF-8"
 
 
---14778507681.237aa4FF.1116
-Date: Sun, 30 Oct 2016 18:06:08 +0000
+--14778719901.3baBA2a9A.24457
+Date: Sun, 30 Oct 2016 23:59:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98506
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98482
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, so it's very clearly this line:
-
-nvkm_wr32(device, 0x100cb8, vpgd->obj->addr >> 8);
-
-(note the shift by 8 that comes right after in the decoded code sequence), =
-and
-the issue is that vpgd->obj is bad:
-
-RAX: 000000041ad09000
-CR2: 000000041ad09090
-
-where the faulting instruction is "mov    0x90(%rax),%rdi". It seems like o=
-bj
-is a nvkm_gpuobj, which in turn is just a regular object that should come o=
-ut
-of kernel memory. However the RAX value doesn't seem like a usual kernel me=
-mory
-address, which means it's uninitialized.
+--- Comment #5 from Logan <loganboyles-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Pierre, it did not help.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14778507681.237aa4FF.1116
-Date: Sun, 30 Oct 2016 18:06:08 +0000
+--14778719901.3baBA2a9A.24457
+Date: Sun, 30 Oct 2016 23:59:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,36 +59,19 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Pagefault in gf100_vm_flush"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98506#c3">Comment=
- # 3</a>
+   title=3D"NEW - gtx 1060 Monitor out of range live install"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98482#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Pagefault in gf100_vm_flush"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98506">bug 98506<=
+   title=3D"NEW - gtx 1060 Monitor out of range live install"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98482">bug 98482<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+loganboyles&#64;gmail.com" title=3D"Logan &lt;loganboyles&#64;gmail.com&gt;=
+"> <span class=3D"fn">Logan</span></a>
 </span></b>
-        <pre>OK, so it's very clearly this line:
-
-nvkm_wr32(device, 0x100cb8, vpgd-&gt;obj-&gt;addr &gt;&gt; 8);
-
-(note the shift by 8 that comes right after in the decoded code sequence), =
-and
-the issue is that vpgd-&gt;obj is bad:
-
-RAX: 000000041ad09000
-CR2: 000000041ad09090
-
-where the faulting instruction is &quot;mov    0x90(%rax),%rdi&quot;. It se=
-ems like obj
-is a nvkm_gpuobj, which in turn is just a regular object that should come o=
-ut
-of kernel memory. However the RAX value doesn't seem like a usual kernel me=
-mory
-address, which means it's uninitialized.</pre>
+        <pre>Pierre, it did not help.</pre>
         </div>
       </p>
 
@@ -119,9 +85,9 @@ address, which means it's uninitialized.</pre>
     </body>
 </html>=
 
---14778507681.237aa4FF.1116--
+--14778719901.3baBA2a9A.24457--
 
---===============1169918237==
+--===============0027697071==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -131,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1169918237==--
+--===============0027697071==--
