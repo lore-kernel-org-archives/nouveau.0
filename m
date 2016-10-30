@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98489] Nouveau not loading PGRAPH firmware blob for
- gk106 in kernel 4.7.10
-Date: Sun, 30 Oct 2016 15:41:50 +0000
-Message-ID: <bug-98489-8800-RxQcCBmeZz@http.bugs.freedesktop.org/>
-References: <bug-98489-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Nouveau regression since kernel 4.3: loading NVIDIA's
+	firwmare files
+Date: Sun, 30 Oct 2016 12:34:35 -0400
+Message-ID: <CAKb7UvhRxKVwtAzemTVVAsCykdikZ6f7s48P=LqmXyig_wtV=A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0437394462=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98489-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,133 +16,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0437394462==
-Content-Type: multipart/alternative; boundary="14778421101.7e638.22777";
- charset="UTF-8"
-
-
---14778421101.7e638.22777
-Date: Sun, 30 Oct 2016 15:41:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98489
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |NOTABUG
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-That message was removed in "gr/gf100: load firmware in outer function" (in
-v4.6). The load should error out if you're forcing firmware load and you do=
-n't
-have firmware available.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14778421101.7e638.22777
-Date: Sun, 30 Oct 2016 15:41:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTABUG - Nouveau not loading PGRAPH firmware blob for=
- gk106 in kernel 4.7.10"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98489">bug 98489<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTABUG
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTABUG - Nouveau not loading PGRAPH firmware blob for=
- gk106 in kernel 4.7.10"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98489#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTABUG - Nouveau not loading PGRAPH firmware blob for=
- gk106 in kernel 4.7.10"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98489">bug 98489<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>That message was removed in &quot;gr/gf100: load firmware in o=
-uter function&quot; (in
-v4.6). The load should error out if you're forcing firmware load and you do=
-n't
-have firmware available.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14778421101.7e638.22777--
-
---===============0437394462==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0437394462==--
+SGkgQWxleCwKCkFzIHlvdSdyZSB3ZWxsLWF3YXJlLCB5b3VyIGNvbW1pdAo4NTM5YjM3YWNlZjcz
+OTQ5ODYxYTE2ODA4YjYwY2I4YjViOWIzYmFiIChkcm0vbm91dmVhdS9ncjogdXNlCk5WSURJQS1w
+cm92aWRlZCBleHRlcm5hbCBmaXJtd2FyZXMpIGJyb2tlIHRvbnMgb2YgZXhpc3Rpbmcgc2V0dXBz
+IGZvcgpwZW9wbGUgd2hvIHdlcmUgdXNpbmcgZXh0cmFjdGVkIGZpcm13YXJlIGZpbGVzIChzdG9y
+ZWQgaW4gdGhlCiJub3V2ZWF1IiBmaXJtd2FyZSBkaXJlY3RvcnkpIGFzIGEgcmVzdWx0IG9mIG5v
+dXZlYXUncyBjdHhzdyBmdyBiZWluZwouLi4gbGFja2luZy4gVGhpcyBpcyBlc3BlY2lhbGx5IGNv
+bW1vbiBvbiBHSzEwNidzIGZvciBzb21lIHJlYXNvbi4KClRoZSBhcmd1bWVudHMgZm9yIGRvaW5n
+IHRoaXMgYXQgdGhlIHRpbWUgd2FzIHRoYXQgKGEpIGFsbCB0aGUgYnVncyBpbgpub3V2ZWF1J3Mg
+ZncgaGF2ZSBiZWVuIGZpeGVkIGFuZCB0aHVzIHRob3NlIHBlb3BsZSBkb24ndCBuZWVkIHRvIGJl
+CnVzaW5nIHRob3NlIGV4dHJhY3RlZCBmaXJtd2FyZSBmaWxlcyBhbmQgKGIpIE5WSURJQSB3YXMg
+Z29pbmcgdG8KcmVsZWFzZSBmaXJtd2FyZSBhbmQgc28gdGhpbmdzIHdvdWxkIEp1c3QgV29yayAo
+dG0pIHNpbmNlIHRoZSBuZXcKZmlsZXMgd291bGQgYmUgYXQgdGhlIG5ldyBsb2NhdGlvbnMuCgpO
+ZWl0aGVyIG9mIHRoZXNlIGhhdmUgY29tZSB0byBmcnVpdGlvbi4gUGxlbnR5IG9mIHBlb3BsZSBz
+dGlsbCBoYXZlCkdLMTA2J3MgdGhhdCBkb24ndCB3b3JrIHdlbGwgd2l0aCBub3V2ZWF1J3MgZncu
+IE5WSURJQSBoYXMgc2hvd24gbm8KaW50ZXJlc3QgaW4gcmVsZWFzaW5nIGZpcm13YXJlIGluIGEg
+cmVkaXN0cmlidXRhYmxlIGZhc2hpb24uCgpDYW4geW91IHBsZWFzZSBjcmVhdGUgYSBwYXRjaCB0
+byBmaXggdGhpcyB1cCBzbyB0aGF0IGl0IHN0aWxsIHRyaWVzIHRvCmxvYWQgZmlsZXMgZnJvbSB0
+aGUgcHJldmlvdXMgbG9jYXRpb24gd2l0aCB0aGUgcHJldmlvdXMgbmFtZXMgc28gdGhhdApwZW9w
+bGUncyBwcmV2aW91c2x5LXdvcmtpbmcgc2V0dXBzIGNhbiBrZWVwIG9uIHdvcmtpbmc/CgpUaGFu
+a3MsCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
