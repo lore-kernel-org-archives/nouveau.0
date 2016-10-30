@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98506] New: Pagefault in gf100_vm_flush
-Date: Sun, 30 Oct 2016 17:34:12 +0000
-Message-ID: <bug-98506-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98506] Pagefault in gf100_vm_flush
+Date: Sun, 30 Oct 2016 17:37:40 +0000
+Message-ID: <bug-98506-8800-TVtMsUHIhg@http.bugs.freedesktop.org/>
+References: <bug-98506-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0849577833=="
+Content-Type: multipart/mixed; boundary="===============0213594731=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98506-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0849577833==
-Content-Type: multipart/alternative; boundary="14778488521.8f6fb84.31354";
+--===============0213594731==
+Content-Type: multipart/alternative; boundary="14778490602.c9dFf.31867";
  charset="UTF-8"
 
 
---14778488521.8f6fb84.31354
-Date: Sun, 30 Oct 2016 17:34:12 +0000
+--14778490602.c9dFf.31867
+Date: Sun, 30 Oct 2016 17:37:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -33,40 +35,46 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98506
 
-            Bug ID: 98506
-           Summary: Pagefault in gf100_vm_flush
-           Product: xorg
-           Version: git
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Karol, can you load up nouveau.ko and run "disassemble gf100_vm_flush" (to
+completion) and include that?
 
-Created attachment 127629
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127629&action=3Dedit
-kernel oops
+All code
+=3D=3D=3D=3D=3D=3D=3D=3D
+   0:   38 e1                   cmp    %ah,%cl
+   2:   a9 00 00 ff 00          test   $0xff0000,%eax
+   7:   74 cb                   je     0xffffffffffffffd4
+   9:   48 81 fb ff 93 35 77    cmp    $0x773593ff,%rbx
+  10:   0f 87 ae 00 00 00       ja     0xc4
+  16:   49 8b 84 24 80 00 00    mov    0x80(%r12),%rax
+  1d:   00=20
+  1e:   31 db                   xor    %ebx,%ebx
+  20:   48 8d b0 b8 0c 10 00    lea    0x100cb8(%rax),%rsi
+  27:   49 8b 46 10             mov    0x10(%r14),%rax
+  2b:*  48 8b b8 90 00 00 00    mov    0x90(%rax),%rdi          <-- trapping
+instruction
+  32:   48 c1 ef 08             shr    $0x8,%rdi
+  36:   e8 68 6f 38 e1          callq  0xffffffffe1386fa3
+  3b:   49                      rex.WB
+  3c:   8b                      .byte 0x8b
+  3d:   84 24 80                test   %ah,(%rax,%rax,4)
 
-got a pagefault today, attached below
-
-gf100_vm_flush+0xc8 is
-https://github.com/karolherbst/nouveau/blob/caab1df6e3b32d2eca7e82819a7dd4c=
-b99911d71/drm/nouveau/nvkm/subdev/mmu/gf100.c#L183
--+ gdb mistake
-
-was running chromium prime offloaded and civilisation 5 with mareks gl
-threading branch
+Code starting with the faulting instruction
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+   0:   48 8b b8 90 00 00 00    mov    0x90(%rax),%rdi
+   7:   48 c1 ef 08             shr    $0x8,%rdi
+   b:   e8 68 6f 38 e1          callq  0xffffffffe1386f78
+  10:   49                      rex.WB
+  11:   8b                      .byte 0x8b
+  12:   84 24 80                test   %ah,(%rax,%rax,4)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14778488521.8f6fb84.31354
-Date: Sun, 30 Oct 2016 17:34:12 +0000
+--14778490602.c9dFf.31867
+Date: Sun, 30 Oct 2016 17:37:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,106 +85,57 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Pagefault in gf100_vm_flush"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98506">98506</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Pagefault in gf100_vm_flush
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>karolherbst&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127629=
-" name=3D"attach_127629" title=3D"kernel oops">attachment 127629</a> <a hre=
-f=3D"attachment.cgi?id=3D127629&amp;action=3Dedit" title=3D"kernel oops">[d=
-etails]</a></span>
-kernel oops
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Pagefault in gf100_vm_flush"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98506#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Pagefault in gf100_vm_flush"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98506">bug 98506<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Karol, can you load up nouveau.ko and run &quot;disassemble gf=
+100_vm_flush&quot; (to
+completion) and include that?
 
-got a pagefault today, attached below
+All code
+=3D=3D=3D=3D=3D=3D=3D=3D
+   0:   38 e1                   cmp    %ah,%cl
+   2:   a9 00 00 ff 00          test   $0xff0000,%eax
+   7:   74 cb                   je     0xffffffffffffffd4
+   9:   48 81 fb ff 93 35 77    cmp    $0x773593ff,%rbx
+  10:   0f 87 ae 00 00 00       ja     0xc4
+  16:   49 8b 84 24 80 00 00    mov    0x80(%r12),%rax
+  1d:   00=20
+  1e:   31 db                   xor    %ebx,%ebx
+  20:   48 8d b0 b8 0c 10 00    lea    0x100cb8(%rax),%rsi
+  27:   49 8b 46 10             mov    0x10(%r14),%rax
+  2b:*  48 8b b8 90 00 00 00    mov    0x90(%rax),%rdi          &lt;-- trap=
+ping
+instruction
+  32:   48 c1 ef 08             shr    $0x8,%rdi
+  36:   e8 68 6f 38 e1          callq  0xffffffffe1386fa3
+  3b:   49                      rex.WB
+  3c:   8b                      .byte 0x8b
+  3d:   84 24 80                test   %ah,(%rax,%rax,4)
 
-gf100_vm_flush+0xc8 is
-<a href=3D"https://github.com/karolherbst/nouveau/blob/caab1df6e3b32d2eca7e=
-82819a7dd4cb99911d71/drm/nouveau/nvkm/subdev/mmu/gf100.c#L183">https://gith=
-ub.com/karolherbst/nouveau/blob/caab1df6e3b32d2eca7e82819a7dd4cb99911d71/dr=
-m/nouveau/nvkm/subdev/mmu/gf100.c#L183</a>
--+ gdb mistake
-
-was running chromium prime offloaded and civilisation 5 with mareks gl
-threading branch</pre>
+Code starting with the faulting instruction
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+   0:   48 8b b8 90 00 00 00    mov    0x90(%rax),%rdi
+   7:   48 c1 ef 08             shr    $0x8,%rdi
+   b:   e8 68 6f 38 e1          callq  0xffffffffe1386f78
+  10:   49                      rex.WB
+  11:   8b                      .byte 0x8b
+  12:   84 24 80                test   %ah,(%rax,%rax,4)</pre>
         </div>
       </p>
 
@@ -190,9 +149,9 @@ threading branch</pre>
     </body>
 </html>=
 
---14778488521.8f6fb84.31354--
+--14778490602.c9dFf.31867--
 
---===============0849577833==
+--===============0213594731==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -202,4 +161,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0849577833==--
+--===============0213594731==--
