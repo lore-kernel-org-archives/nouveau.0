@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97620] [REGRESSION,
- bisected] KMS can't initialize GeForce GTX 460 after commit
- a6a0f67ca7aae2e6bec7ebf55d1e4853dc220816
-Date: Mon, 31 Oct 2016 03:57:13 +0000
-Message-ID: <bug-97620-8800-lv6Db9ptZK@http.bugs.freedesktop.org/>
-References: <bug-97620-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Nouveau regression since kernel 4.3: loading NVIDIA's
+ firwmare files
+Date: Mon, 31 Oct 2016 15:31:12 +0900
+Message-ID: <CAAVeFu+xLxrswOzu1Lc4gev1eeWPz9F-Yhaj2st+G5g3erH7KQ@mail.gmail.com>
+References: <CAKb7UvhRxKVwtAzemTVVAsCykdikZ6f7s48P=LqmXyig_wtV=A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0558760610=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvhRxKVwtAzemTVVAsCykdikZ6f7s48P=LqmXyig_wtV=A@mail.gmail.com>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,101 +18,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0558760610==
-Content-Type: multipart/alternative; boundary="14778862332.DBCdcf.5643";
- charset="UTF-8"
-
-
---14778862332.DBCdcf.5643
-Date: Mon, 31 Oct 2016 03:57:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
-
-Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[REGRESSION] KMS having     |[REGRESSION, bisected] KMS
-                   |issues after kernel upgrade |can't initialize GeForce
-                   |(4.5.1-1 to 4.6.4-1)        |GTX 460 after commit
-                   |                            |a6a0f67ca7aae2e6bec7ebf55d1
-                   |                            |e4853dc220816
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14778862332.DBCdcf.5643
-Date: Mon, 31 Oct 2016 03:57:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:lukeisgre=
-at&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com&gt;"> <s=
-pan class=3D"fn">Luke Tidd</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [REGRESSION, bisected] KMS can't initialize GeForce GTX 4=
-60 after commit a6a0f67ca7aae2e6bec7ebf55d1e4853dc220816"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>[REGRESSION] KMS having issues after kernel upgrade (4.5.1-1=
- to 4.6.4-1)
-           </td>
-           <td>[REGRESSION, bisected] KMS can't initialize GeForce GTX 460 =
-after commit a6a0f67ca7aae2e6bec7ebf55d1e4853dc220816
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14778862332.DBCdcf.5643--
-
---===============0558760610==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0558760610==--
+T24gTW9uLCBPY3QgMzEsIDIwMTYgYXQgMTozNCBBTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
+bS5taXQuZWR1PiB3cm90ZToKPiBIaSBBbGV4LAo+Cj4gQXMgeW91J3JlIHdlbGwtYXdhcmUsIHlv
+dXIgY29tbWl0Cj4gODUzOWIzN2FjZWY3Mzk0OTg2MWExNjgwOGI2MGNiOGI1YjliM2JhYiAoZHJt
+L25vdXZlYXUvZ3I6IHVzZQo+IE5WSURJQS1wcm92aWRlZCBleHRlcm5hbCBmaXJtd2FyZXMpIGJy
+b2tlIHRvbnMgb2YgZXhpc3Rpbmcgc2V0dXBzIGZvcgo+IHBlb3BsZSB3aG8gd2VyZSB1c2luZyBl
+eHRyYWN0ZWQgZmlybXdhcmUgZmlsZXMgKHN0b3JlZCBpbiB0aGUKPiAibm91dmVhdSIgZmlybXdh
+cmUgZGlyZWN0b3J5KSBhcyBhIHJlc3VsdCBvZiBub3V2ZWF1J3MgY3R4c3cgZncgYmVpbmcKPiAu
+Li4gbGFja2luZy4gVGhpcyBpcyBlc3BlY2lhbGx5IGNvbW1vbiBvbiBHSzEwNidzIGZvciBzb21l
+IHJlYXNvbi4KPgo+IFRoZSBhcmd1bWVudHMgZm9yIGRvaW5nIHRoaXMgYXQgdGhlIHRpbWUgd2Fz
+IHRoYXQgKGEpIGFsbCB0aGUgYnVncyBpbgo+IG5vdXZlYXUncyBmdyBoYXZlIGJlZW4gZml4ZWQg
+YW5kIHRodXMgdGhvc2UgcGVvcGxlIGRvbid0IG5lZWQgdG8gYmUKPiB1c2luZyB0aG9zZSBleHRy
+YWN0ZWQgZmlybXdhcmUgZmlsZXMgYW5kIChiKSBOVklESUEgd2FzIGdvaW5nIHRvCj4gcmVsZWFz
+ZSBmaXJtd2FyZSBhbmQgc28gdGhpbmdzIHdvdWxkIEp1c3QgV29yayAodG0pIHNpbmNlIHRoZSBu
+ZXcKPiBmaWxlcyB3b3VsZCBiZSBhdCB0aGUgbmV3IGxvY2F0aW9ucy4KPgo+IE5laXRoZXIgb2Yg
+dGhlc2UgaGF2ZSBjb21lIHRvIGZydWl0aW9uLiBQbGVudHkgb2YgcGVvcGxlIHN0aWxsIGhhdmUK
+PiBHSzEwNidzIHRoYXQgZG9uJ3Qgd29yayB3ZWxsIHdpdGggbm91dmVhdSdzIGZ3LiBOVklESUEg
+aGFzIHNob3duIG5vCj4gaW50ZXJlc3QgaW4gcmVsZWFzaW5nIGZpcm13YXJlIGluIGEgcmVkaXN0
+cmlidXRhYmxlIGZhc2hpb24uCj4KPiBDYW4geW91IHBsZWFzZSBjcmVhdGUgYSBwYXRjaCB0byBm
+aXggdGhpcyB1cCBzbyB0aGF0IGl0IHN0aWxsIHRyaWVzIHRvCj4gbG9hZCBmaWxlcyBmcm9tIHRo
+ZSBwcmV2aW91cyBsb2NhdGlvbiB3aXRoIHRoZSBwcmV2aW91cyBuYW1lcyBzbyB0aGF0Cj4gcGVv
+cGxlJ3MgcHJldmlvdXNseS13b3JraW5nIHNldHVwcyBjYW4ga2VlcCBvbiB3b3JraW5nPwoKQ2Vy
+dGFpbmx5LiBBY3R1YWxseSBteSBmaXJzdCB2ZXJzaW9uIG9mIDg1MzliMzdhY2VmNyBkaWQgZmFs
+bCBiYWNrIHRvCnRoZSBvcmlnaW5hbCBwYXRocyBmb3IgbG9hZGluZyBmaXJtd2FyZSwgYnV0IEJl
+biBzdWdnZXN0ZWQgdGhhdCB3ZQpqdXN0IHJlcGxhY2UgdGhlIHBhdGhzIGVudGlyZWx5LCBoZW5j
+ZSB0aGUgdmVyc2lvbiBjdXJyZW50bHkgbWVyZ2VkOgoKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvYXJjaGl2ZXMvZHJpLWRldmVsLzIwMTUtSnVuZS8wODQ5MTQuaHRtbAoKQmVuLCBkbyB5
+b3UgYWdyZWUgd2l0aCBmYWxsaW5nIGJhY2sgdG8gdGhlIG9sZCAibm91dmVhdS9udnh4X2Z1Y3h4
+eHgiCmZpcm13YXJlIG5hbWVzIHNvIHBlb3BsZSBkb24ndCBuZWVkIHRvIG1vdmUgdGhlaXIgZmly
+bXdhcmUgZmlsZXMKYXJvdW5kPwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
+YXUK
