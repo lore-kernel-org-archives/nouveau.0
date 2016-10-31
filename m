@@ -1,33 +1,61 @@
-From: Christophe JAILLET <christophe.jaillet-39ZsbGIQGT5GWvitb5QawA@public.gmane.org>
-Subject: [PATCH] drm/nouveau/tegra: Fix error handling
-Date: Mon, 31 Oct 2016 07:35:50 +0100
-Message-ID: <20161031063550.2567-1-christophe.jaillet@wanadoo.fr>
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Christophe JAILLET <christophe.jaillet-39ZsbGIQGT5GWvitb5QawA@public.gmane.org>
+From: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/acpi: fix check for power
+	resources support
+Date: Mon, 31 Oct 2016 11:05:13 +0200
+Message-ID: <20161031090513.GJ23812@lahna.fi.intel.com>
+References: <20161028234003.21152-1-peter@lekensteyn.nl>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20161028234003.21152-1-peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Rick Kerkhof <rick.2889-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-'iommu_domain_alloc()' returns NULL in case of error, not an error pointer.
-So test it accordingly.
-
-Signed-off-by: Christophe JAILLET <christophe.jaillet-39ZsbGIQGT5GWvitb5QawA@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-index 9b638bd905ff..f2bc0b7d9b93 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-@@ -102,7 +102,7 @@ nvkm_device_tegra_probe_iommu(struct nvkm_device_tegra *tdev)
- 
- 	if (iommu_present(&platform_bus_type)) {
- 		tdev->iommu.domain = iommu_domain_alloc(&platform_bus_type);
--		if (IS_ERR(tdev->iommu.domain))
-+		if (!tdev->iommu.domain)
- 			goto error;
- 
- 		/*
--- 
-2.9.3
+T24gU2F0LCBPY3QgMjksIDIwMTYgYXQgMDE6NDA6MDNBTSArMDIwMCwgUGV0ZXIgV3Ugd3JvdGU6
+Cj4gQ2hlY2sgd2hldGhlciB0aGUga2VybmVsIHJlYWxseSBzdXBwb3J0cyBwb3dlciByZXNvdXJj
+ZXMgZm9yIGEgZGV2aWNlLAo+IG90aGVyd2lzZSB0aGUgcG93ZXIgbWlnaHQgbm90IGJlIHJlbW92
+ZWQgd2hlbiB0aGUgZGV2aWNlIGlzIHJ1bnRpbWUKPiBzdXNwZW5kZWQgKERTTSBzaG91bGQgc3Rp
+bGwgd29yayBpbiB0aGVzZSBjYXNlcyB3aGVyZSBQUiBkb2VzIG5vdCkuCj4gCj4gTGluazogaHR0
+cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9OTgzOTgKPiBGaXhlczog
+NjkyYTE3ZGNjMjkyICgiZHJtL25vdXZlYXUvYWNwaTogZml4IGxvY2t1cCB3aXRoIFBDSWUgcnVu
+dGltZSBQTSIpCj4gU2lnbmVkLW9mZi1ieTogUGV0ZXIgV3UgPHBldGVyQGxla2Vuc3RleW4ubmw+
+Cj4gLS0tCj4gSGksCj4gCj4gTWF5YmUgQ2M6IHN0YWJsZSAoNC44Kyk/Cj4gCj4gQ29tcGlsZS10
+ZXN0ZWQgb25seS4gUmljaywgY2FuIHlvdSB0ZXN0IGlmIHRoaXMgcGF0Y2ggZml4ZXMgdGhlIHBy
+b2JsZW0gZm9yIHlvdT8KPiAKPiBUaGlzIGNoZWNrIHdhcyBhY3R1YWxseSBpbiB0aGUgb3JpZ2lu
+YWwgcGF0Y2gsIGJ1dCBpdCB3YXMgY2hhbmdlZDoKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9hcmNoaXZlcy9ub3V2ZWF1LzIwMTYtTWF5LzAyNTEyNS5odG1sCj4gUmUtYWRkaW5nIHRo
+ZSBjaGVjayBhcyBzdWdnZXN0ZWQgYnkgTWlrYS4KPiAKPiBLaW5kIHJlZ2FyZHMsCj4gUGV0ZXIK
+PiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMgfCAzICsrLQo+
+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMKPiBpbmRleCBkYzU3YjYyLi4xOTM1NzNk
+IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4g
+KysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMKPiBAQCAtMjQwLDcg
+KzI0MCw4IEBAIHN0YXRpYyBib29sIG5vdXZlYXVfcHIzX3ByZXNlbnQoc3RydWN0IHBjaV9kZXYg
+KnBkZXYpCj4gIAlpZiAoIXBhcmVudF9hZGV2KQo+ICAJCXJldHVybiBmYWxzZTsKPiAgCj4gLQly
+ZXR1cm4gYWNwaV9oYXNfbWV0aG9kKHBhcmVudF9hZGV2LT5oYW5kbGUsICJfUFIzIik7CgpZb3Ug
+bWF5IHdhbnQgdG8gYWRkIGNvbW1lbnQgaGVyZSB0ZWxsaW5nIHdoeSB3ZSBuZWVkIHRvIGNoZWNr
+CmZsYWdzLnBvd2VyX3Jlc291cmNlcy4gT3IgYWx0ZXJuYXRpdmVseSBleHBsYWluIHRoaXMgaW4g
+dGhlIGNoYW5nZWxvZwooYWxvbmcgdGhlIGxpbmVzIHRoYXQgd2UgZmFpbCB0byBmaW5kIFBvd2Vy
+UmVzb3VyY2VzIGJlY2F1c2UgQUNQSUNBIGRvZXMKbm90IGhhbmRsZSBjZXJ0YWluIGNvbmRpdGlv
+bmFsIHRoaW5ncyBpbiB0aGUgc2FtZSB3YXkgdGhhbiBXaW5kb3dzIDEwKS4KCk90aGVyIHRoYW4g
+dGhhdCwgbG9va3MgZ29vZAoKUmV2aWV3ZWQtYnk6IE1pa2EgV2VzdGVyYmVyZyA8bWlrYS53ZXN0
+ZXJiZXJnQGxpbnV4LmludGVsLmNvbT4KCj4gKwlyZXR1cm4gcGFyZW50X2FkZXYtPnBvd2VyLmZs
+YWdzLnBvd2VyX3Jlc291cmNlcyAmJgo+ICsJCWFjcGlfaGFzX21ldGhvZChwYXJlbnRfYWRldi0+
+aGFuZGxlLCAiX1BSMyIpOwo+ICB9Cj4gIAo+ICBzdGF0aWMgdm9pZCBub3V2ZWF1X2RzbV9wY2lf
+cHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsIGFjcGlfaGFuZGxlICpkaGFuZGxlX291dCwKPiAt
+LSAKPiAyLjEwLjEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
