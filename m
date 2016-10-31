@@ -1,56 +1,33 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Nouveau regression since kernel 4.3: loading NVIDIA's
- firwmare files
-Date: Mon, 31 Oct 2016 15:31:12 +0900
-Message-ID: <CAAVeFu+xLxrswOzu1Lc4gev1eeWPz9F-Yhaj2st+G5g3erH7KQ@mail.gmail.com>
-References: <CAKb7UvhRxKVwtAzemTVVAsCykdikZ6f7s48P=LqmXyig_wtV=A@mail.gmail.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhRxKVwtAzemTVVAsCykdikZ6f7s48P=LqmXyig_wtV=A@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Christophe JAILLET <christophe.jaillet-39ZsbGIQGT5GWvitb5QawA@public.gmane.org>
+Subject: [PATCH] drm/nouveau/tegra: Fix error handling
+Date: Mon, 31 Oct 2016 07:35:50 +0100
+Message-ID: <20161031063550.2567-1-christophe.jaillet@wanadoo.fr>
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Christophe JAILLET <christophe.jaillet-39ZsbGIQGT5GWvitb5QawA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBPY3QgMzEsIDIwMTYgYXQgMTozNCBBTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
-bS5taXQuZWR1PiB3cm90ZToKPiBIaSBBbGV4LAo+Cj4gQXMgeW91J3JlIHdlbGwtYXdhcmUsIHlv
-dXIgY29tbWl0Cj4gODUzOWIzN2FjZWY3Mzk0OTg2MWExNjgwOGI2MGNiOGI1YjliM2JhYiAoZHJt
-L25vdXZlYXUvZ3I6IHVzZQo+IE5WSURJQS1wcm92aWRlZCBleHRlcm5hbCBmaXJtd2FyZXMpIGJy
-b2tlIHRvbnMgb2YgZXhpc3Rpbmcgc2V0dXBzIGZvcgo+IHBlb3BsZSB3aG8gd2VyZSB1c2luZyBl
-eHRyYWN0ZWQgZmlybXdhcmUgZmlsZXMgKHN0b3JlZCBpbiB0aGUKPiAibm91dmVhdSIgZmlybXdh
-cmUgZGlyZWN0b3J5KSBhcyBhIHJlc3VsdCBvZiBub3V2ZWF1J3MgY3R4c3cgZncgYmVpbmcKPiAu
-Li4gbGFja2luZy4gVGhpcyBpcyBlc3BlY2lhbGx5IGNvbW1vbiBvbiBHSzEwNidzIGZvciBzb21l
-IHJlYXNvbi4KPgo+IFRoZSBhcmd1bWVudHMgZm9yIGRvaW5nIHRoaXMgYXQgdGhlIHRpbWUgd2Fz
-IHRoYXQgKGEpIGFsbCB0aGUgYnVncyBpbgo+IG5vdXZlYXUncyBmdyBoYXZlIGJlZW4gZml4ZWQg
-YW5kIHRodXMgdGhvc2UgcGVvcGxlIGRvbid0IG5lZWQgdG8gYmUKPiB1c2luZyB0aG9zZSBleHRy
-YWN0ZWQgZmlybXdhcmUgZmlsZXMgYW5kIChiKSBOVklESUEgd2FzIGdvaW5nIHRvCj4gcmVsZWFz
-ZSBmaXJtd2FyZSBhbmQgc28gdGhpbmdzIHdvdWxkIEp1c3QgV29yayAodG0pIHNpbmNlIHRoZSBu
-ZXcKPiBmaWxlcyB3b3VsZCBiZSBhdCB0aGUgbmV3IGxvY2F0aW9ucy4KPgo+IE5laXRoZXIgb2Yg
-dGhlc2UgaGF2ZSBjb21lIHRvIGZydWl0aW9uLiBQbGVudHkgb2YgcGVvcGxlIHN0aWxsIGhhdmUK
-PiBHSzEwNidzIHRoYXQgZG9uJ3Qgd29yayB3ZWxsIHdpdGggbm91dmVhdSdzIGZ3LiBOVklESUEg
-aGFzIHNob3duIG5vCj4gaW50ZXJlc3QgaW4gcmVsZWFzaW5nIGZpcm13YXJlIGluIGEgcmVkaXN0
-cmlidXRhYmxlIGZhc2hpb24uCj4KPiBDYW4geW91IHBsZWFzZSBjcmVhdGUgYSBwYXRjaCB0byBm
-aXggdGhpcyB1cCBzbyB0aGF0IGl0IHN0aWxsIHRyaWVzIHRvCj4gbG9hZCBmaWxlcyBmcm9tIHRo
-ZSBwcmV2aW91cyBsb2NhdGlvbiB3aXRoIHRoZSBwcmV2aW91cyBuYW1lcyBzbyB0aGF0Cj4gcGVv
-cGxlJ3MgcHJldmlvdXNseS13b3JraW5nIHNldHVwcyBjYW4ga2VlcCBvbiB3b3JraW5nPwoKQ2Vy
-dGFpbmx5LiBBY3R1YWxseSBteSBmaXJzdCB2ZXJzaW9uIG9mIDg1MzliMzdhY2VmNyBkaWQgZmFs
-bCBiYWNrIHRvCnRoZSBvcmlnaW5hbCBwYXRocyBmb3IgbG9hZGluZyBmaXJtd2FyZSwgYnV0IEJl
-biBzdWdnZXN0ZWQgdGhhdCB3ZQpqdXN0IHJlcGxhY2UgdGhlIHBhdGhzIGVudGlyZWx5LCBoZW5j
-ZSB0aGUgdmVyc2lvbiBjdXJyZW50bHkgbWVyZ2VkOgoKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvYXJjaGl2ZXMvZHJpLWRldmVsLzIwMTUtSnVuZS8wODQ5MTQuaHRtbAoKQmVuLCBkbyB5
-b3UgYWdyZWUgd2l0aCBmYWxsaW5nIGJhY2sgdG8gdGhlIG9sZCAibm91dmVhdS9udnh4X2Z1Y3h4
-eHgiCmZpcm13YXJlIG5hbWVzIHNvIHBlb3BsZSBkb24ndCBuZWVkIHRvIG1vdmUgdGhlaXIgZmly
-bXdhcmUgZmlsZXMKYXJvdW5kPwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+'iommu_domain_alloc()' returns NULL in case of error, not an error pointer.
+So test it accordingly.
+
+Signed-off-by: Christophe JAILLET <christophe.jaillet-39ZsbGIQGT5GWvitb5QawA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
+index 9b638bd905ff..f2bc0b7d9b93 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
+@@ -102,7 +102,7 @@ nvkm_device_tegra_probe_iommu(struct nvkm_device_tegra *tdev)
+ 
+ 	if (iommu_present(&platform_bus_type)) {
+ 		tdev->iommu.domain = iommu_domain_alloc(&platform_bus_type);
+-		if (IS_ERR(tdev->iommu.domain))
++		if (!tdev->iommu.domain)
+ 			goto error;
+ 
+ 		/*
+-- 
+2.9.3
