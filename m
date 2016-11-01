@@ -1,257 +1,51 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98525] New: nouveau graphics freeze when using KDE
- Plasma 5 with "fifo: PBDMA0: 00200000 subc 0 mthd 000c data 00000000"
-Date: Tue, 01 Nov 2016 08:24:43 +0000
-Message-ID: <bug-98525-8800@http.bugs.freedesktop.org/>
+From: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH v2] drm/nouveau/acpi: fix check for power resources support
+Date: Tue, 1 Nov 2016 09:24:23 -0400
+Message-ID: <CADnq5_NkbbkxSmrYq=iVWnEmt7vMecUkJV4nxkeBnfYd2jhrwg@mail.gmail.com>
+References: <20161031224822.11069-1-peter@lekensteyn.nl>
+ <CAPM=9tx_2bzyTT_BiBh5Nj5UzknpCgW_dTyeLC5swkg97B=i3Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1674221372=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CAPM=9tx_2bzyTT_BiBh5Nj5UzknpCgW_dTyeLC5swkg97B=i3Q@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Dave Airlie <airlied@gmail.com>
+Cc: Rick Kerkhof <rick.2889@gmail.com>, nouveau <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>, Peter Wu <peter@lekensteyn.nl>, Mika Westerberg <mika.westerberg@linux.intel.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1674221372==
-Content-Type: multipart/alternative; boundary="14779886831.5eFDC399.25333";
- charset="UTF-8"
-
-
---14779886831.5eFDC399.25333
-Date: Tue, 1 Nov 2016 08:24:43 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98525
-
-            Bug ID: 98525
-           Summary: nouveau graphics freeze when using KDE Plasma 5 with
-                    "fifo: PBDMA0: 00200000 subc 0 mthd 000c data
-                    00000000"
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Kernel version: 4.4.26
-
-Graphic card: "ASUS GeForce GTX 660 PCI 3.0 2GB DDR5"
-
-uname: "Linux 4.4.26-gentoo #1 SMP Mon Oct 31 17:05:30 CET 2016 x86_64 Inte=
-l(R)
-Xeon(R) CPU E3-1230 v3 @ 3.30GHz GenuineIntel GNU/Linux
-
-SW versions:
-x11-base/xorg-drivers-1.18-r1
-x11-base/xorg-server-1.18.4
-x11-base/xorg-x11-7.4-r2
-kde-plasma/kwin-5.7.5
-
-The system freezes, the X screen gets locked, mouse can still be moved,
-switching VT console is not possible, three-finger-salute does not work, no
-keyboard login possible Login via SSH and reboot still possible.
-
-The bug is usually triggered if huge parts of the display needs rapid updat=
-es,
-e.g. compiling a piece of software in a X terminal in full screen mode.
-
-I use the proprietary PGRAPH firmware due to bugs #69882, #93629, #93630 and
-#95054.
-
-Kernel message:
-
-nouveau 0000:01:00.0: fifo: PBDMA0: 00200000 [METHOD] ch 12 [023f28f000
-Compositor[2492]] subc 0 mthd 000c data 00000000
-
-This message floods the logs until they are overwritten from the beginning.=
- The
-other message is "Missed NN kernel messages".
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14779886831.5eFDC399.25333
-Date: Tue, 1 Nov 2016 08:24:43 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau graphics freeze when using KDE Plasma 5 with &quo=
-t;fifo: PBDMA0: 00200000 subc 0 mthd 000c data 00000000&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98525">98525</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>nouveau graphics freeze when using KDE Plasma 5 with &quot;fi=
-fo: PBDMA0: 00200000 subc 0 mthd 000c data 00000000&quot;
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>matthias.h.nagel&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Kernel version: 4.4.26
-
-Graphic card: &quot;ASUS GeForce GTX 660 PCI 3.0 2GB DDR5&quot;
-
-uname: &quot;Linux 4.4.26-gentoo #1 SMP Mon Oct 31 17:05:30 CET 2016 x86_64=
- Intel(R)
-Xeon(R) CPU E3-1230 v3 &#64; 3.30GHz GenuineIntel GNU/Linux
-
-SW versions:
-x11-base/xorg-drivers-1.18-r1
-x11-base/xorg-server-1.18.4
-x11-base/xorg-x11-7.4-r2
-kde-plasma/kwin-5.7.5
-
-The system freezes, the X screen gets locked, mouse can still be moved,
-switching VT console is not possible, three-finger-salute does not work, no
-keyboard login possible Login via SSH and reboot still possible.
-
-The bug is usually triggered if huge parts of the display needs rapid updat=
-es,
-e.g. compiling a piece of software in a X terminal in full screen mode.
-
-I use the proprietary PGRAPH firmware due to bugs <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - [NVE6] GPU lockups"
-   href=3D"show_bug.cgi?id=3D69882">#69882</a>, <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"show_bug.cgi?id=3D93629">#93629</a>, <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] disrupted display, cannot switch VT, everything el=
-se still works, E[ PDISP] link training failed"
-   href=3D"show_bug.cgi?id=3D93630">#93630</a> and
-#95054.
-
-Kernel message:
-
-nouveau 0000:01:00.0: fifo: PBDMA0: 00200000 [METHOD] ch 12 [023f28f000
-Compositor[2492]] subc 0 mthd 000c data 00000000
-
-This message floods the logs until they are overwritten from the beginning.=
- The
-other message is &quot;Missed NN kernel messages&quot;.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14779886831.5eFDC399.25333--
-
---===============1674221372==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1674221372==--
+T24gVHVlLCBOb3YgMSwgMjAxNiBhdCAxMjo1NSBBTSwgRGF2ZSBBaXJsaWUgPGFpcmxpZWRAZ21h
+aWwuY29tPiB3cm90ZToKPiBPbiAxIE5vdmVtYmVyIDIwMTYgYXQgMDg6NDgsIFBldGVyIFd1IDxw
+ZXRlckBsZWtlbnN0ZXluLm5sPiB3cm90ZToKPj4gQ2hlY2sgd2hldGhlciB0aGUga2VybmVsIHJl
+YWxseSBzdXBwb3J0cyBwb3dlciByZXNvdXJjZXMgZm9yIGEgZGV2aWNlLAo+PiBvdGhlcndpc2Ug
+dGhlIHBvd2VyIG1pZ2h0IG5vdCBiZSByZW1vdmVkIHdoZW4gdGhlIGRldmljZSBpcyBydW50aW1l
+Cj4+IHN1c3BlbmRlZCAoRFNNIHNob3VsZCBzdGlsbCB3b3JrIGluIHRoZXNlIGNhc2VzIHdoZXJl
+IFBSIGRvZXMgbm90KS4KPj4KPj4gVGhpcyBpcyBhIHdvcmthcm91bmQgZm9yIGEgcHJvYmxlbSB3
+aGVyZSBBQ1BJQ0EgYW5kIFdpbmRvd3MgMTAgZGlmZmVyIGluCj4+IGJlaGF2aW9yLiBBQ1BJQ0Eg
+ZG9lcyBub3QgY29ycmVjdGx5IGVudW1lcmF0ZSBwb3dlciByZXNvdXJjZXMgd2l0aGluIGEKPj4g
+Y29uZGl0aW9uYWwgYmxvY2sgKGR1ZSB0byBkZWxheWVkIGV4ZWN1dGlvbiBvZiBzdWNoIGJsb2Nr
+cykgYW5kIGFzIGEKPj4gcmVzdWx0IHBvd2VyX3Jlc291cmNlcyBpcyBzZXQgdG8gZmFsc2UgZXZl
+biBpZiBfUFIzIGV4aXN0cy4KPj4KPj4gRml4ZXM6IDY5MmExN2RjYzI5MiAoImRybS9ub3V2ZWF1
+L2FjcGk6IGZpeCBsb2NrdXAgd2l0aCBQQ0llIHJ1bnRpbWUgUE0iKQo+PiBMaW5rOiBodHRwczov
+L2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD05ODM5OAo+PiBSZXBvcnRlZC1h
+bmQtdGVzdGVkLWJ5OiBSaWNrIEtlcmtob2YgPHJpY2suMjg4OUBnbWFpbC5jb20+Cj4+IFJldmll
+d2VkLWJ5OiBNaWthIFdlc3RlcmJlcmcgPG1pa2Eud2VzdGVyYmVyZ0BsaW51eC5pbnRlbC5jb20+
+Cj4+IFNpZ25lZC1vZmYtYnk6IFBldGVyIFd1IDxwZXRlckBsZWtlbnN0ZXluLm5sPgo+Cj4gSSd2
+ZSBhcHBsZWQgaXQgdGhpcyBhbmQgY2MnZWQgc3RhYmxlIHRvIGRybS1maXhlcy4KPgo+IEFyZSB3
+ZSBnb2luZyB0byBnZXQgQUNQSUNBIGZpeGVkPwoKTG9va3MgbGlrZSB3ZSBtYXkgaGF2ZSBoaXQg
+dGhpcyBvbiByYWRlb24vYW1kZ3B1IGFzIHdlbGw6Cmh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5v
+cmcvc2hvd19idWcuY2dpP2lkPTk4NTA1CgpBbGV4Cgo+Cj4gRGF2ZS4KPiBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGRyaS1kZXZlbCBtYWlsaW5nIGxp
+c3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmkt
+ZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
