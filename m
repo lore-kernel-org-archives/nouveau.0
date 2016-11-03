@@ -1,13 +1,10 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: MediaWriter & Nouveau
-Date: Thu, 3 Nov 2016 08:17:51 +0100
-Message-ID: <4c90177c-6f1f-93a9-deb5-8a3829db3014@gmail.com>
-References: <faba8f39-e4d9-bd34-c2a1-8e91917de41c@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98577] New: Graphical issues with the game SOMA
+Date: Thu, 03 Nov 2016 17:13:48 +0000
+Message-ID: <bug-98577-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1465486661=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <faba8f39-e4d9-bd34-c2a1-8e91917de41c-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,79 +14,208 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?B?TWFydGluIELFmcOtemE=?= <mbriza-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Wy4uLl0KCj0gImJhc2ljIiByZW5kZXIKCiQgUVNHX0lORk89MSBtZWRpYXdyaXRlciAKRGVidWc6
-IFFTRzogYmFzaWMgcmVuZGVyIGxvb3AgKChudWxsKTowLCAobnVsbCkpCkRlYnVnOiB0ZXh0dXJl
-IGF0bGFzIGRpbWVuc2lvbnM6IDEwMjR4NTEyICgobnVsbCk6MCwgKG51bGwpKQpEZWJ1ZzogUi9H
-L0IvQSBCdWZmZXJzOiAgICA4IDggOCAwICgobnVsbCk6MCwgKG51bGwpKQpEZWJ1ZzogRGVwdGgg
-QnVmZmVyOiAgICAgICAyNCAoKG51bGwpOjAsIChudWxsKSkKRGVidWc6IFN0ZW5jaWwgQnVmZmVy
-OiAgICAgOCAoKG51bGwpOjAsIChudWxsKSkKRGVidWc6IFNhbXBsZXM6ICAgICAgICAgICAgLTEg
-KChudWxsKTowLCAobnVsbCkpCkRlYnVnOiBHTF9WRU5ET1I6ICAgICAgICAgIG5vdXZlYXUgKChu
-dWxsKTowLCAobnVsbCkpCkRlYnVnOiBHTF9SRU5ERVJFUjogICAgICAgIEdhbGxpdW0gMC40IG9u
-IE5WOTggKChudWxsKTowLCAobnVsbCkpCkRlYnVnOiBHTF9WRVJTSU9OOiAgICAgICAgIDMuMCBN
-ZXNhIDEzLjAuMC1yYzIgKChudWxsKTowLCAobnVsbCkpCkRlYnVnOiBHTF9FWFRFTlNJT05TOiAg
-ICAgIC4uLgpEZWJ1ZzogTWF4IFRleHR1cmUgU2l6ZTogIDgxOTIgKChudWxsKTowLCAobnVsbCkp
-CkRlYnVnOiBEZWJ1ZyBjb250ZXh0OiAgICAgZmFsc2UgKChudWxsKTowLCAobnVsbCkpCi4uLgoK
-JCBwcyAtQyBtZWRpYXdyaXRlciAtbyBjbWQsJWNwdQpDTUQgICAgICAgICAgICAgICAgICAgICAg
-ICAgJUNQVQptZWRpYXdyaXRlciAgICAgICAgICAgICAgICAgMzAuMQoKfn5+fn5+fn5+fn5+fn5+
-fn5+fn5+fn5+fn5+fn5+fn4KCj0gIndpbmRvd3MiIHJlbmRlcgoKJCBRU0dfSU5GTz0xIFFTR19S
-RU5ERVJfTE9PUD13aW5kb3dzIG1lZGlhd3JpdGVyCkRlYnVnOiB3aW5kb3dzIHJlbmRlciBsb29w
-ICgobnVsbCk6MCwgKG51bGwpKQpEZWJ1ZzogVXNpbmcgc2cgYW5pbWF0aW9uIGRyaXZlciAoKG51
-bGwpOjAsIChudWxsKSkKRGVidWc6IEFuaW1hdGlvbiBEcml2ZXI6IHVzaW5nIHZzeW5jOiAxNi42
-NyBtcyAoKG51bGwpOjAsIChudWxsKSkKRGVidWc6IHRleHR1cmUgYXRsYXMgZGltZW5zaW9uczog
-MTAyNHg1MTIgKChudWxsKTowLCAobnVsbCkpCkRlYnVnOiBSL0cvQi9BIEJ1ZmZlcnM6ICAgIDgg
-OCA4IDAgKChudWxsKTowLCAobnVsbCkpCkRlYnVnOiBEZXB0aCBCdWZmZXI6ICAgICAgIDI0ICgo
-bnVsbCk6MCwgKG51bGwpKQpEZWJ1ZzogU3RlbmNpbCBCdWZmZXI6ICAgICA4ICgobnVsbCk6MCwg
-KG51bGwpKQpEZWJ1ZzogU2FtcGxlczogICAgICAgICAgICAtMSAoKG51bGwpOjAsIChudWxsKSkK
-RGVidWc6IEdMX1ZFTkRPUjogICAgICAgICAgbm91dmVhdSAoKG51bGwpOjAsIChudWxsKSkKRGVi
-dWc6IEdMX1JFTkRFUkVSOiAgICAgICAgR2FsbGl1bSAwLjQgb24gTlY5OCAoKG51bGwpOjAsIChu
-dWxsKSkKRGVidWc6IEdMX1ZFUlNJT046ICAgICAgICAgMy4wIE1lc2EgMTMuMC4wLXJjMiAoKG51
-bGwpOjAsIChudWxsKSkKRGVidWc6IEdMX0VYVEVOU0lPTlM6ICAgICAgLi4uCkRlYnVnOiBNYXgg
-VGV4dHVyZSBTaXplOiAgODE5MiAoKG51bGwpOjAsIChudWxsKSkKRGVidWc6IERlYnVnIGNvbnRl
-eHQ6ICAgICBmYWxzZSAoKG51bGwpOjAsIChudWxsKSkKLi4uCgokIHBzIC1DIG1lZGlhd3JpdGVy
-IC1vIGNtZCwlY3B1CkNNRCAgICAgICAgICAgICAgICAgICAgICAgICAlQ1BVCm1lZGlhd3JpdGVy
-ICAgICAgICAgICAgICAgICA0MS4yCgp+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fgoK
-PSAidGhyZWFkZWQiIHJlbmRlcgoKJCBRU0dfSU5GTz0xIFFTR19SRU5ERVJfTE9PUD10aHJlYWRl
-ZCBtZWRpYXdyaXRlcgpEZWJ1ZzogdGhyZWFkZWQgcmVuZGVyIGxvb3AgKChudWxsKTowLCAobnVs
-bCkpCkRlYnVnOiBVc2luZyBzZyBhbmltYXRpb24gZHJpdmVyICgobnVsbCk6MCwgKG51bGwpKQpE
-ZWJ1ZzogQW5pbWF0aW9uIERyaXZlcjogdXNpbmcgdnN5bmM6IDE2LjY3IG1zICgobnVsbCk6MCwg
-KG51bGwpKQpEZWJ1ZzogQW5pbWF0aW9uIERyaXZlcjogdXNpbmcgdnN5bmM6IDE2LjY3IG1zICgo
-bnVsbCk6MCwgKG51bGwpKQpEZWJ1ZzogdGV4dHVyZSBhdGxhcyBkaW1lbnNpb25zOiAxMDI0eDUx
-MiAoKG51bGwpOjAsIChudWxsKSkKRGVidWc6IFIvRy9CL0EgQnVmZmVyczogICAgOCA4IDggMCAo
-KG51bGwpOjAsIChudWxsKSkKRGVidWc6IERlcHRoIEJ1ZmZlcjogICAgICAgMjQgKChudWxsKTow
-LCAobnVsbCkpCkRlYnVnOiBTdGVuY2lsIEJ1ZmZlcjogICAgIDggKChudWxsKTowLCAobnVsbCkp
-CkRlYnVnOiBTYW1wbGVzOiAgICAgICAgICAgIC0xICgobnVsbCk6MCwgKG51bGwpKQpEZWJ1Zzog
-R0xfVkVORE9SOiAgICAgICAgICBub3V2ZWF1ICgobnVsbCk6MCwgKG51bGwpKQpEZWJ1ZzogR0xf
-UkVOREVSRVI6ICAgICAgICBHYWxsaXVtIDAuNCBvbiBOVjk4ICgobnVsbCk6MCwgKG51bGwpKQpE
-ZWJ1ZzogR0xfVkVSU0lPTjogICAgICAgICAzLjAgTWVzYSAxMy4wLjAtcmMyICgobnVsbCk6MCwg
-KG51bGwpKQpEZWJ1ZzogR0xfRVhURU5TSU9OUzogICAgICAuLi4KRGVidWc6IE1heCBUZXh0dXJl
-IFNpemU6ICA4MTkyICgobnVsbCk6MCwgKG51bGwpKQpEZWJ1ZzogRGVidWcgY29udGV4dDogICAg
-IGZhbHNlICgobnVsbCk6MCwgKG51bGwpKQouLi4KCiQgcHMgLUMgbWVkaWF3cml0ZXIgLW8gY21k
-LCVjcHUKQ01EICAgICAgICAgICAgICAgICAgICAgICAgICVDUFUKbWVkaWF3cml0ZXIgICAgICAg
-ICAgICAgICAgIDE4LjMKCi4uLgpEZWJ1ZzogYW5pbWF0aW9uIGRyaXZlciBzd2l0Y2hlZCB0byB0
-aW1lciBtb2RlICgobnVsbCk6MCwgKG51bGwpKQpEZWJ1ZzogYW5pbWF0aW9uIGRyaXZlciBzd2l0
-Y2hlZCB0byB2c3luYyBtb2RlICgobnVsbCk6MCwgKG51bGwpKQpEZWJ1ZzogQW5pbWF0aW9uIERy
-aXZlcjogdXNpbmcgdnN5bmM6IDE2LjY3IG1zICgobnVsbCk6MCwgKG51bGwpKQpEZWJ1ZzogdGV4
-dHVyZSBhdGxhcyBkaW1lbnNpb25zOiAxMDI0eDUxMiAoKG51bGwpOjAsIChudWxsKSkKU2VnbWVu
-dGF0aW9uIGZhdWx0IChjb3JlIGR1bXBlZCkKClFTR1JlbmRlclRocmVhZFs4NjM2XTogc2VnZmF1
-bHQgYXQgOCBpcCAwMDAwN2Y5MTM4YTQzMjBmIHNwIDAwMDA3ZjkxMWNkOTA4ZjAgZXJyb3IgNCBp
-biBsaWJkcm1fbm91dmVhdS5zby4yLjAuMFs3ZjkxMzhhM2YwMDArNzAwMF0KCn5+fn5+fn5+fn5+
-fn5+fn5+fn5+fn5+fn5+fn5+fn5+Cgo9IEFib3V0CgokIHJwbSAtcSBtZWRpYXdyaXRlciAKbWVk
-aWF3cml0ZXItNC4wLjMtMi5mYzI2Lng4Nl82NAoKYnVpbHQgd2l0aG91dCAidGhyZWFkZWQiIHJl
-bmRlcjoKJCBncmVwIHNlZCBtZWRpYXdyaXRlci5zcGVjIC1BMgpzZWQgLWkgL3RocmVhZGVkL3Mv
-Xi9cXC9cXC8vIGFwcC9tYWluLmNwcAoKJWJ1aWxkCgokIHJwbSAtcSBxdDUtcXRiYXNlLWRldmVs
-IHF0NS1xdGRlY2xhcmF0aXZlLWRldmVsCnF0NS1xdGJhc2UtZGV2ZWwtNS43LjAtOS5mYzI2Lng4
-Nl82NApxdDUtcXRkZWNsYXJhdGl2ZS1kZXZlbC01LjcuMC0yLmZjMjUueDg2XzY0Cgp+fn5+fn5+
-fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fgoKPSBDb25jbHVzaW9uCkZyb20gdGhlIG5vdXZlYXUg
-cGVyc3BlY3RpdmUsICJ0aHJlYWRlZCIgcmVuZGVyIGlzICJvdXQgb2Ygc2NvcGUiLgoKClJlZi4K
-Rm9yY2UgdGhyZWFkZWQgcnVuIGxvb3AgZm9yIFFNTCAtIEZpeGVzIGhpZ2ggQ1BVIGxvYWQKaHR0
-cHM6Ly9naXRodWIuY29tL01hcnRpbkJyaXphL01lZGlhV3JpdGVyL2NvbW1pdC82MzQ5MmY0CgpR
-dCBRdWljayBTY2VuZSBHcmFwaCAtIFNjZW5lIEdyYXBoIGFuZCBSZW5kZXJpbmcKaHR0cHM6Ly9k
-b2MucXQuaW8vcXQtNS9xdHF1aWNrLXZpc3VhbGNhbnZhcy1zY2VuZWdyYXBoLmh0bWwjc2NlbmUt
-Z3JhcGgtYW5kLXJlbmRlcmluZwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQo=
+
+--===============1465486661==
+Content-Type: multipart/alternative; boundary="14781932280.804c.17829";
+ charset="UTF-8"
+
+
+--14781932280.804c.17829
+Date: Thu, 3 Nov 2016 17:13:48 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98577
+
+            Bug ID: 98577
+           Summary: Graphical issues with the game SOMA
+           Product: Mesa
+           Version: git
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: ovariegata-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 127730
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127730&action=3Dedit
+Incorrectly rendered steam with GK110B
+
+In the proprietary game SOMA (GOG version) the steam (Hot air) will render
+incorrectly. Otherwise the game will run correctly with nouveau. Unfortunat=
+ely
+llvmpipe will blackscreen when trying to replay the trace and it will occur
+with both DRI3 and DRI2. So I sent the trace to a friend using amd (R9 290)=
+ and
+he was not able to reproduce it.
+
+Here is the trace -
+http://ks392457.kimsufi.com/orbea/stuff/trace/Soma.bin.x86_64.trace.xz
+(Size: 652M)
+
+I am testing this with a GTX 780 Ti (GK110B).
+
+libdrm-2016.10.21_2d8c01f_master-x86_64-1_git
+mesa-2016.11.02_d2861d6_master-x86_64-1_git
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14781932280.804c.17829
+Date: Thu, 3 Nov 2016 17:13:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Graphical issues with the game SOMA"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98577">98577</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Graphical issues with the game SOMA
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ovariegata&#64;yahoo.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127730=
+" name=3D"attach_127730" title=3D"Incorrectly rendered steam with GK110B">a=
+ttachment 127730</a> <a href=3D"attachment.cgi?id=3D127730&amp;action=3Dedi=
+t" title=3D"Incorrectly rendered steam with GK110B">[details]</a></span>
+Incorrectly rendered steam with GK110B
+
+In the proprietary game SOMA (GOG version) the steam (Hot air) will render
+incorrectly. Otherwise the game will run correctly with nouveau. Unfortunat=
+ely
+llvmpipe will blackscreen when trying to replay the trace and it will occur
+with both DRI3 and DRI2. So I sent the trace to a friend using amd (R9 290)=
+ and
+he was not able to reproduce it.
+
+Here is the trace -
+<a href=3D"http://ks392457.kimsufi.com/orbea/stuff/trace/Soma.bin.x86_64.tr=
+ace.xz">http://ks392457.kimsufi.com/orbea/stuff/trace/Soma.bin.x86_64.trace=
+.xz</a>
+(Size: 652M)
+
+I am testing this with a GTX 780 Ti (GK110B).
+
+libdrm-2016.10.21_2d8c01f_master-x86_64-1_git
+mesa-2016.11.02_d2861d6_master-x86_64-1_git</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14781932280.804c.17829--
+
+--===============1465486661==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1465486661==--
