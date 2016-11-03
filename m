@@ -1,15 +1,17 @@
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 Subject: Re: [PATCH] gr: fallback to legacy paths during firmware
  lookup
-Date: Fri, 4 Nov 2016 08:29:23 +1000
-Message-ID: <cc55514d-56aa-6fdf-3f39-92884d4064b9@redhat.com>
+Date: Fri, 4 Nov 2016 08:18:19 +0900
+Message-ID: <7b91d6a3-9220-c884-de0e-0813661de11c@nvidia.com>
 References: <20161102045417.5886-1-acourbot@nvidia.com>
  <CAKb7UvhfHs=FJ+3FzkwMgmQfi+uMBvg0kSQ10FpTurRmfDX-cQ@mail.gmail.com>
  <a54062b0-afad-51e8-4d18-9fc84b8e48d8@nvidia.com>
+ <cc55514d-56aa-6fdf-3f39-92884d4064b9@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2119396594=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <a54062b0-afad-51e8-4d18-9fc84b8e48d8-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <cc55514d-56aa-6fdf-3f39-92884d4064b9-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,186 +21,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============2119396594==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="bHEIbktXk9QK9ntNKKngE3mEQVU3ect45"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---bHEIbktXk9QK9ntNKKngE3mEQVU3ect45
-Content-Type: multipart/mixed; boundary="5omLVs40hsutT4Bo7IrTHftDSs4p9brgr"
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>,
- Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Message-ID: <cc55514d-56aa-6fdf-3f39-92884d4064b9-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH] gr: fallback to legacy paths during firmware
- lookup
-References: <20161102045417.5886-1-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
- <CAKb7UvhfHs=FJ+3FzkwMgmQfi+uMBvg0kSQ10FpTurRmfDX-cQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
- <a54062b0-afad-51e8-4d18-9fc84b8e48d8-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-In-Reply-To: <a54062b0-afad-51e8-4d18-9fc84b8e48d8-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-
---5omLVs40hsutT4Bo7IrTHftDSs4p9brgr
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-On 11/02/2016 03:52 PM, Alexandre Courbot wrote:
-> On 11/02/2016 02:07 PM, Ilia Mirkin wrote:
->> On Wed, Nov 2, 2016 at 12:54 AM, Alexandre Courbot <acourbot-DDmLM1+adcphl2p70BpVqQ@public.gmane.org=
-m> wrote:
->>> Look for firmware files using the legacy ("nouveau/nvxx_fucxxxx") pat=
-h
->>> if they cannot be found in the new, "official" path. User setups were=
-
->>> broken by the switch, which is bad.
->>>
->>> There are only 4 firmware files we may want to look up that way, so
->>> hardcode them into the lookup function. All new firmware files should=
-
->>> use the standard "nvidia/<chip>/gr/" path.
->>>
->>> Fixes: 8539b37acef7 ("drm/nouveau/gr: use NVIDIA-provided external fi=
-rmwares")
->>> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
->>> ---
->>>  drm/nouveau/nvkm/engine/gr/gf100.c | 56 ++++++++++++++++++++++++++++=
-++++++----
->>>  1 file changed, 51 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/drm/nouveau/nvkm/engine/gr/gf100.c b/drm/nouveau/nvkm/en=
-gine/gr/gf100.c
->>> index 157919c788e6..9e65adbab21c 100644
->>> --- a/drm/nouveau/nvkm/engine/gr/gf100.c
->>> +++ b/drm/nouveau/nvkm/engine/gr/gf100.c
->>> @@ -1756,24 +1756,70 @@ gf100_gr_ =3D {
->>>  };
->>>
->>>  int
->>> +gf100_gr_ctor_fw_legacy(struct gf100_gr *gr, const char *fwname,
->>> +                       struct gf100_gr_fuc *fuc)
->>> +{
->>> +       struct nvkm_subdev *subdev =3D &gr->base.engine.subdev;
->>> +       struct nvkm_device *device =3D subdev->device;
->>> +       const struct firmware *fw;
->>> +       char f[32];
->>> +       int ret;
->>> +
->>> +       snprintf(f, sizeof(f), "nouveau/nv%02x_%s", device->chipset, =
-fwname);
->>> +       ret =3D request_firmware(&fw, f, device->dev);
->>> +       if (ret) {
->>> +               snprintf(f, sizeof(f), "nouveau/%s", fwname);
->>> +               ret =3D request_firmware(&fw, f, device->dev);
->>> +               if (ret) {
->>> +                       nvkm_error(subdev, "failed to load %s\n", fwn=
-ame);
->>> +                       return ret;
->>> +               }
->>> +       }
->>> +
->>> +       fuc->size =3D fw->size;
->>> +       fuc->data =3D kmemdup(fw->data, fuc->size, GFP_KERNEL);
->>> +       release_firmware(fw);
->>> +       return (fuc->data !=3D NULL) ? 0 : -ENOMEM;
->>> +}
->>> +
->>> +int
->>>  gf100_gr_ctor_fw(struct gf100_gr *gr, const char *fwname,
->>>                  struct gf100_gr_fuc *fuc)
->>>  {
->>>         struct nvkm_subdev *subdev =3D &gr->base.engine.subdev;
->>>         struct nvkm_device *device =3D subdev->device;
->>> +       const char *legacy_fwname =3D NULL;
->>>         const struct firmware *fw;
->>>         int ret;
->>>
->>>         ret =3D nvkm_firmware_get(device, fwname, &fw);
->>> -       if (ret) {
->>> +       /* firmware found, success! */
->>> +       if (!ret) {
->>> +               fuc->size =3D fw->size;
->>> +               fuc->data =3D kmemdup(fw->data, fuc->size, GFP_KERNEL=
-);
->>> +               nvkm_firmware_put(fw);
->>> +               return (fuc->data !=3D NULL) ? 0 : -ENOMEM;
->>> +       }
->>> +
->>> +       /* see if this firmware has a legacy path */
->>> +       if (!strcmp(fwname, "fecs_inst"))
->>> +               legacy_fwname =3D "fuc409c";
->>> +       else if (!strcmp(fwname, "fecs_data"))
->>> +               legacy_fwname =3D "fuc409d";
->>> +       else if (!strcmp(fwname, "gpccs_inst"))
->>> +               legacy_fwname =3D "fuc41ac";
->>> +       else if (!strcmp(fwname, "gpccs_data"))
->>> +               legacy_fwname =3D "fuc41ad";
->>
->> As I mentioned on IRC, I find this strcmp thing a little jarring. It
->> should be pretty easy to just pass the legacy fwname into
->> gf100_gr_ctor_fw directly - there are only a handful of callers, and
->> most would just pass NULL in as the legacy fwname - only the ones in
->> gf100.c would pass the "old" names in.
->=20
-> Yeah, that was the original approach actually. I switched to this for
-> the following reasons:
->=20
-> - We don't want to encourage using this legacy path, hence hiding it
-> from callers
-> - There are only 4 possible legacy files - it's ugly but still
-> manageable and contained in a single function
-I agree.
-
->=20
-> Of course, if the general consensus is that this is too ugly, it would
-> be trivial to turn it the way you suggested, so I don't feel too
-> strongly for one approach over the other.
-As it is a legacy path, I'm more for hiding it away in ctor_legacy() as
-Emil suggests.
-
-Ben.
-
-
-
---5omLVs40hsutT4Bo7IrTHftDSs4p9brgr--
-
---bHEIbktXk9QK9ntNKKngE3mEQVU3ect45
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIcBAEBCAAGBQJYG7pDAAoJEHYLnGJQkpH7hakP/iiLqMWCEodGeovi61YzWDgO
-oKDE6Rj8s1YJSNzpDhP9aLf56ho6pIrs53J+6pCkRDeKzgJc40cbJhmPnc64+Ih+
-T9z037IScoHh9ZQE1BSepAhFL9oWxY7DUHPEQQI1FHDSRcvfXmF3JlVOdFdVB+oQ
-ItboEotUHY5QI33n8TJatfKO3jGnpHZ9oEvlfUJM6tKDRzqfKRK0O65nUReu6kQ8
-Zlk60KZqgiNjfCC0Eg+RevGAgp7johanJRyKQxLgWeJT4zH/NKDS2xWTtFdpOjGZ
-/ToCTduTacCu43D5Hw5kG74s9in6lLARufytrW4YvHpjBtOYn9nlUVQmtpRMwHU6
-347kdxSAr3J+gFIW/QSRW2lNAeEs+EstMib6wTN1LU60NeaPomXoeCHj2vP1kYfo
-MfOLHktNinvtatkxcJI8hp+6DOmHPgnBRD1MmSYqj0qHIh+kteOVjdEqs5EHdoMQ
-Owq3mxcBgKjiEvpd4nAIHFoydSjKFfZ8/fvYIPIFcYI4SOfTmJLN25SdcA9mAC/9
-TBEAxtZ1cMAphnOE49idh6oqEPtyxlpFWduzyrNDUOoM5aBvYNT5bjFKlNqZBrE9
-D1siTDBFH237fj11owoOolrpiwBNihEPiaUykckCmeWiOB4OCldpO5ylPZ06kW2O
-v77jVPVOzI1R5x2Rcsai
-=XrIx
------END PGP SIGNATURE-----
-
---bHEIbktXk9QK9ntNKKngE3mEQVU3ect45--
-
---===============2119396594==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2119396594==--
+CgpPbiAxMS8wNC8yMDE2IDA3OjI5IEFNLCBCZW4gU2tlZ2dzIHdyb3RlOgo+ICogUEdQIFNpZ25l
+ZCBieSBhbiB1bmtub3duIGtleQo+IAo+IE9uIDExLzAyLzIwMTYgMDM6NTIgUE0sIEFsZXhhbmRy
+ZSBDb3VyYm90IHdyb3RlOgo+PiBPbiAxMS8wMi8yMDE2IDAyOjA3IFBNLCBJbGlhIE1pcmtpbiB3
+cm90ZToKPj4+IE9uIFdlZCwgTm92IDIsIDIwMTYgYXQgMTI6NTQgQU0sIEFsZXhhbmRyZSBDb3Vy
+Ym90IDxhY291cmJvdEBudmlkaWEuY29tPiB3cm90ZToKPj4+PiBMb29rIGZvciBmaXJtd2FyZSBm
+aWxlcyB1c2luZyB0aGUgbGVnYWN5ICgibm91dmVhdS9udnh4X2Z1Y3h4eHgiKSBwYXRoCj4+Pj4g
+aWYgdGhleSBjYW5ub3QgYmUgZm91bmQgaW4gdGhlIG5ldywgIm9mZmljaWFsIiBwYXRoLiBVc2Vy
+IHNldHVwcyB3ZXJlCj4+Pj4gYnJva2VuIGJ5IHRoZSBzd2l0Y2gsIHdoaWNoIGlzIGJhZC4KPj4+
+Pgo+Pj4+IFRoZXJlIGFyZSBvbmx5IDQgZmlybXdhcmUgZmlsZXMgd2UgbWF5IHdhbnQgdG8gbG9v
+ayB1cCB0aGF0IHdheSwgc28KPj4+PiBoYXJkY29kZSB0aGVtIGludG8gdGhlIGxvb2t1cCBmdW5j
+dGlvbi4gQWxsIG5ldyBmaXJtd2FyZSBmaWxlcyBzaG91bGQKPj4+PiB1c2UgdGhlIHN0YW5kYXJk
+ICJudmlkaWEvPGNoaXA+L2dyLyIgcGF0aC4KPj4+Pgo+Pj4+IEZpeGVzOiA4NTM5YjM3YWNlZjcg
+KCJkcm0vbm91dmVhdS9ncjogdXNlIE5WSURJQS1wcm92aWRlZCBleHRlcm5hbCBmaXJtd2FyZXMi
+KQo+Pj4+IFNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEu
+Y29tPgo+Pj4+IC0tLQo+Pj4+ICBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jIHwg
+NTYgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLS0KPj4+PiAgMSBmaWxlIGNo
+YW5nZWQsIDUxIGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCj4+Pj4KPj4+PiBkaWZmIC0t
+Z2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYyBiL2RybS9ub3V2ZWF1L252
+a20vZW5naW5lL2dyL2dmMTAwLmMKPj4+PiBpbmRleCAxNTc5MTljNzg4ZTYuLjllNjVhZGJhYjIx
+YyAxMDA2NDQKPj4+PiAtLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jCj4+
+Pj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwo+Pj4+IEBAIC0xNzU2
+LDI0ICsxNzU2LDcwIEBAIGdmMTAwX2dyXyA9IHsKPj4+PiAgfTsKPj4+Pgo+Pj4+ICBpbnQKPj4+
+PiArZ2YxMDBfZ3JfY3Rvcl9md19sZWdhY3koc3RydWN0IGdmMTAwX2dyICpnciwgY29uc3QgY2hh
+ciAqZnduYW1lLAo+Pj4+ICsgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBnZjEwMF9ncl9m
+dWMgKmZ1YykKPj4+PiArewo+Pj4+ICsgICAgICAgc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYg
+PSAmZ3ItPmJhc2UuZW5naW5lLnN1YmRldjsKPj4+PiArICAgICAgIHN0cnVjdCBudmttX2Rldmlj
+ZSAqZGV2aWNlID0gc3ViZGV2LT5kZXZpY2U7Cj4+Pj4gKyAgICAgICBjb25zdCBzdHJ1Y3QgZmly
+bXdhcmUgKmZ3Owo+Pj4+ICsgICAgICAgY2hhciBmWzMyXTsKPj4+PiArICAgICAgIGludCByZXQ7
+Cj4+Pj4gKwo+Pj4+ICsgICAgICAgc25wcmludGYoZiwgc2l6ZW9mKGYpLCAibm91dmVhdS9udiUw
+MnhfJXMiLCBkZXZpY2UtPmNoaXBzZXQsIGZ3bmFtZSk7Cj4+Pj4gKyAgICAgICByZXQgPSByZXF1
+ZXN0X2Zpcm13YXJlKCZmdywgZiwgZGV2aWNlLT5kZXYpOwo+Pj4+ICsgICAgICAgaWYgKHJldCkg
+ewo+Pj4+ICsgICAgICAgICAgICAgICBzbnByaW50ZihmLCBzaXplb2YoZiksICJub3V2ZWF1LyVz
+IiwgZnduYW1lKTsKPj4+PiArICAgICAgICAgICAgICAgcmV0ID0gcmVxdWVzdF9maXJtd2FyZSgm
+ZncsIGYsIGRldmljZS0+ZGV2KTsKPj4+PiArICAgICAgICAgICAgICAgaWYgKHJldCkgewo+Pj4+
+ICsgICAgICAgICAgICAgICAgICAgICAgIG52a21fZXJyb3Ioc3ViZGV2LCAiZmFpbGVkIHRvIGxv
+YWQgJXNcbiIsIGZ3bmFtZSk7Cj4+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIHJl
+dDsKPj4+PiArICAgICAgICAgICAgICAgfQo+Pj4+ICsgICAgICAgfQo+Pj4+ICsKPj4+PiArICAg
+ICAgIGZ1Yy0+c2l6ZSA9IGZ3LT5zaXplOwo+Pj4+ICsgICAgICAgZnVjLT5kYXRhID0ga21lbWR1
+cChmdy0+ZGF0YSwgZnVjLT5zaXplLCBHRlBfS0VSTkVMKTsKPj4+PiArICAgICAgIHJlbGVhc2Vf
+ZmlybXdhcmUoZncpOwo+Pj4+ICsgICAgICAgcmV0dXJuIChmdWMtPmRhdGEgIT0gTlVMTCkgPyAw
+IDogLUVOT01FTTsKPj4+PiArfQo+Pj4+ICsKPj4+PiAraW50Cj4+Pj4gIGdmMTAwX2dyX2N0b3Jf
+Zncoc3RydWN0IGdmMTAwX2dyICpnciwgY29uc3QgY2hhciAqZnduYW1lLAo+Pj4+ICAgICAgICAg
+ICAgICAgICAgc3RydWN0IGdmMTAwX2dyX2Z1YyAqZnVjKQo+Pj4+ICB7Cj4+Pj4gICAgICAgICBz
+dHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldiA9ICZnci0+YmFzZS5lbmdpbmUuc3ViZGV2Owo+Pj4+
+ICAgICAgICAgc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBzdWJkZXYtPmRldmljZTsKPj4+
+PiArICAgICAgIGNvbnN0IGNoYXIgKmxlZ2FjeV9md25hbWUgPSBOVUxMOwo+Pj4+ICAgICAgICAg
+Y29uc3Qgc3RydWN0IGZpcm13YXJlICpmdzsKPj4+PiAgICAgICAgIGludCByZXQ7Cj4+Pj4KPj4+
+PiAgICAgICAgIHJldCA9IG52a21fZmlybXdhcmVfZ2V0KGRldmljZSwgZnduYW1lLCAmZncpOwo+
+Pj4+IC0gICAgICAgaWYgKHJldCkgewo+Pj4+ICsgICAgICAgLyogZmlybXdhcmUgZm91bmQsIHN1
+Y2Nlc3MhICovCj4+Pj4gKyAgICAgICBpZiAoIXJldCkgewo+Pj4+ICsgICAgICAgICAgICAgICBm
+dWMtPnNpemUgPSBmdy0+c2l6ZTsKPj4+PiArICAgICAgICAgICAgICAgZnVjLT5kYXRhID0ga21l
+bWR1cChmdy0+ZGF0YSwgZnVjLT5zaXplLCBHRlBfS0VSTkVMKTsKPj4+PiArICAgICAgICAgICAg
+ICAgbnZrbV9maXJtd2FyZV9wdXQoZncpOwo+Pj4+ICsgICAgICAgICAgICAgICByZXR1cm4gKGZ1
+Yy0+ZGF0YSAhPSBOVUxMKSA/IDAgOiAtRU5PTUVNOwo+Pj4+ICsgICAgICAgfQo+Pj4+ICsKPj4+
+PiArICAgICAgIC8qIHNlZSBpZiB0aGlzIGZpcm13YXJlIGhhcyBhIGxlZ2FjeSBwYXRoICovCj4+
+Pj4gKyAgICAgICBpZiAoIXN0cmNtcChmd25hbWUsICJmZWNzX2luc3QiKSkKPj4+PiArICAgICAg
+ICAgICAgICAgbGVnYWN5X2Z3bmFtZSA9ICJmdWM0MDljIjsKPj4+PiArICAgICAgIGVsc2UgaWYg
+KCFzdHJjbXAoZnduYW1lLCAiZmVjc19kYXRhIikpCj4+Pj4gKyAgICAgICAgICAgICAgIGxlZ2Fj
+eV9md25hbWUgPSAiZnVjNDA5ZCI7Cj4+Pj4gKyAgICAgICBlbHNlIGlmICghc3RyY21wKGZ3bmFt
+ZSwgImdwY2NzX2luc3QiKSkKPj4+PiArICAgICAgICAgICAgICAgbGVnYWN5X2Z3bmFtZSA9ICJm
+dWM0MWFjIjsKPj4+PiArICAgICAgIGVsc2UgaWYgKCFzdHJjbXAoZnduYW1lLCAiZ3BjY3NfZGF0
+YSIpKQo+Pj4+ICsgICAgICAgICAgICAgICBsZWdhY3lfZnduYW1lID0gImZ1YzQxYWQiOwo+Pj4K
+Pj4+IEFzIEkgbWVudGlvbmVkIG9uIElSQywgSSBmaW5kIHRoaXMgc3RyY21wIHRoaW5nIGEgbGl0
+dGxlIGphcnJpbmcuIEl0Cj4+PiBzaG91bGQgYmUgcHJldHR5IGVhc3kgdG8ganVzdCBwYXNzIHRo
+ZSBsZWdhY3kgZnduYW1lIGludG8KPj4+IGdmMTAwX2dyX2N0b3JfZncgZGlyZWN0bHkgLSB0aGVy
+ZSBhcmUgb25seSBhIGhhbmRmdWwgb2YgY2FsbGVycywgYW5kCj4+PiBtb3N0IHdvdWxkIGp1c3Qg
+cGFzcyBOVUxMIGluIGFzIHRoZSBsZWdhY3kgZnduYW1lIC0gb25seSB0aGUgb25lcyBpbgo+Pj4g
+Z2YxMDAuYyB3b3VsZCBwYXNzIHRoZSAib2xkIiBuYW1lcyBpbi4KPj4KPj4gWWVhaCwgdGhhdCB3
+YXMgdGhlIG9yaWdpbmFsIGFwcHJvYWNoIGFjdHVhbGx5LiBJIHN3aXRjaGVkIHRvIHRoaXMgZm9y
+Cj4+IHRoZSBmb2xsb3dpbmcgcmVhc29uczoKPj4KPj4gLSBXZSBkb24ndCB3YW50IHRvIGVuY291
+cmFnZSB1c2luZyB0aGlzIGxlZ2FjeSBwYXRoLCBoZW5jZSBoaWRpbmcgaXQKPj4gZnJvbSBjYWxs
+ZXJzCj4+IC0gVGhlcmUgYXJlIG9ubHkgNCBwb3NzaWJsZSBsZWdhY3kgZmlsZXMgLSBpdCdzIHVn
+bHkgYnV0IHN0aWxsCj4+IG1hbmFnZWFibGUgYW5kIGNvbnRhaW5lZCBpbiBhIHNpbmdsZSBmdW5j
+dGlvbgo+IEkgYWdyZWUuCj4gCj4+Cj4+IE9mIGNvdXJzZSwgaWYgdGhlIGdlbmVyYWwgY29uc2Vu
+c3VzIGlzIHRoYXQgdGhpcyBpcyB0b28gdWdseSwgaXQgd291bGQKPj4gYmUgdHJpdmlhbCB0byB0
+dXJuIGl0IHRoZSB3YXkgeW91IHN1Z2dlc3RlZCwgc28gSSBkb24ndCBmZWVsIHRvbwo+PiBzdHJv
+bmdseSBmb3Igb25lIGFwcHJvYWNoIG92ZXIgdGhlIG90aGVyLgo+IEFzIGl0IGlzIGEgbGVnYWN5
+IHBhdGgsIEknbSBtb3JlIGZvciBoaWRpbmcgaXQgYXdheSBpbiBjdG9yX2xlZ2FjeSgpIGFzCj4g
+RW1pbCBzdWdnZXN0cy4KCk1ha2VzIHNlbnNlIC0gd2lsbCByZXNwaW4gbGF0ZXIgdG9kYXkuCgpU
+aGFua3MhCkFsZXguCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
