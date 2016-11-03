@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98582] New: A regression with nouveau under
- wayland+xorg: laptop doesn't resume properly from suspension
-Date: Thu, 03 Nov 2016 22:24:22 +0000
-Message-ID: <bug-98582-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98582] A regression with nouveau under wayland+xorg:
+ laptop doesn't resume properly from suspension
+Date: Thu, 03 Nov 2016 22:24:42 +0000
+Message-ID: <bug-98582-8800-5AkKDMbD5w@http.bugs.freedesktop.org/>
+References: <bug-98582-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0346301927=="
+Content-Type: multipart/mixed; boundary="===============0636342657=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98582-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0346301927==
-Content-Type: multipart/alternative; boundary="14782118610.baBCb5.22646";
+--===============0636342657==
+Content-Type: multipart/alternative; boundary="14782118821.05eCdb2.22805";
  charset="UTF-8"
 
 
---14782118610.baBCb5.22646
-Date: Thu, 3 Nov 2016 22:24:21 +0000
+--14782118821.05eCdb2.22805
+Date: Thu, 3 Nov 2016 22:24:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,39 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98582
 
-            Bug ID: 98582
-           Summary: A regression with nouveau under wayland+xorg: laptop
-                    doesn't resume properly from suspension
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: hoboprimate-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 127737
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127737&action=3Dedit
-dmesg
-
-I have a dual-graphics laptop, intel+nvidia. With the 'nouveau' module load=
-ed,
-the laptop doesn't resume fully, with the screen staying blank.
-'rmmod'-ing the nouveau driver, resuming works fine.
-
-This used to work in the past few years, the problem appeared with Fedora 2=
-5.
+--- Comment #1 from hoboprimate-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 127738
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127738&action=3Dedit
+lspci
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14782118610.baBCb5.22646
-Date: Thu, 3 Nov 2016 22:24:21 +0000
+--14782118821.05eCdb2.22805
+Date: Thu, 3 Nov 2016 22:24:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,104 +57,30 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - A regression with nouveau under wayland+xorg: laptop does=
 n't resume properly from suspension"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">98582</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>A regression with nouveau under wayland+xorg: laptop doesn't =
-resume properly from suspension
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>hoboprimate&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127737=
-" name=3D"attach_127737" title=3D"dmesg">attachment 127737</a> <a href=3D"a=
-ttachment.cgi?id=3D127737&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - A regression with nouveau under wayland+xorg: laptop does=
+n't resume properly from suspension"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+hoboprimate&#64;gmail.com" title=3D"hoboprimate&#64;gmail.com">hoboprimate&=
+#64;gmail.com</a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127738=
+" name=3D"attach_127738" title=3D"lspci">attachment 127738</a> <a href=3D"a=
+ttachment.cgi?id=3D127738&amp;action=3Dedit" title=3D"lspci">[details]</a><=
 /span>
-dmesg
-
-I have a dual-graphics laptop, intel+nvidia. With the 'nouveau' module load=
-ed,
-the laptop doesn't resume fully, with the screen staying blank.
-'rmmod'-ing the nouveau driver, resuming works fine.
-
-This used to work in the past few years, the problem appeared with Fedora 2=
-5.</pre>
+lspci</pre>
         </div>
       </p>
 
@@ -188,9 +94,9 @@ This used to work in the past few years, the problem appeared with Fedora 2=
     </body>
 </html>=
 
---14782118610.baBCb5.22646--
+--14782118821.05eCdb2.22805--
 
---===============0346301927==
+--===============0636342657==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -200,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0346301927==--
+--===============0636342657==--
