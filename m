@@ -1,9 +1,11 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Atomic modesetting + DisplayPort MST
-Date: Fri, 4 Nov 2016 19:41:21 +1000
-Message-ID: <41c72634-4886-0028-93e5-317e3b437092@gmail.com>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v2] gr: fallback to legacy paths during firmware
+	lookup
+Date: Fri, 4 Nov 2016 18:36:17 +0900
+Message-ID: <20161104093617.11370-1-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1475361529=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -14,86 +16,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1475361529==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="NtNOBax7GDEs2xJd7vIhF9s3vCcTwqRmS"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---NtNOBax7GDEs2xJd7vIhF9s3vCcTwqRmS
-Content-Type: multipart/mixed; boundary="6k5ap7pdabfmUEXu2L767eLEiw8e4lWoT"
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Message-ID: <41c72634-4886-0028-93e5-317e3b437092-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Atomic modesetting + DisplayPort MST
-
---6k5ap7pdabfmUEXu2L767eLEiw8e4lWoT
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-Hey all,
-
-I've just pushed out the initial Nouveau support for $subject \o/
-
-As the atomic modesetting transition is basically a rewrite of the KMS
-portion of the driver, I would be very grateful for any additional
-testing that people could provide (even as simple as just booting and
-making sure you get a display is valuable).
-
-There's a Linux tree at
-https://github.com/skeggsb/linux/tree/linux-4.10, and the code also
-exists in my usual development tree[1] on the master branch (which is
-currently based on Dave's drm-next tree for Linux 4.10).
-
-There's another branch (devel-kms) in the same repository, which is the
-same code on top of what's currently Linux 4.9.  If you have problems
-with the 4.10 code, I'd definitely be interested in seeing if they exist
-on the 4.9 branch too.
-
-Thanks in advance!
-Ben.
-
-[1] https://github.com/skeggsb/nouveau
-
-
---6k5ap7pdabfmUEXu2L767eLEiw8e4lWoT--
-
---NtNOBax7GDEs2xJd7vIhF9s3vCcTwqRmS
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIcBAEBCAAGBQJYHFfDAAoJEHYLnGJQkpH7HlMQAKvfKlEK90TO/fI/7BjDXYLL
-Rj0va21zqYCffS0IIID9RRg/h45xd2o9zCv4yckyqNsqc6Wnb5UV4dSBU5YPSm8S
-pywbWzwrthByqH0N8RFFEPpDZxER9fhWf5Qe2rR/fKrOfJez4kj5FC86uQtLdfBq
-GtXcY3AH7fIk7P3sVx3XHQAKqy5kGPCiHH5tsuCcB2ND55H7nGL4ozhoanDzrF9O
-BA9qKdY2VsNVYAhu5BWAxY0D2rHr/ms0kzEvD3Uk3TgbrgSVnXL9XWgdQUl2KG/P
-9I+4g7SuF3l02m5W/+nHn880iiLmOMZ7JHuRmBFTtR3lxVm5OdCuojm39IHDIKn8
-u4hNdSJL+nKLYViaToDgJaas46Ybn17TskLn0f3jqCtIn/kg1aSblo3vHFcOr2fz
-L0q+Szzw7o2XkxZkh2DbN2HuhOo7P1Is1EZcQniMD+acsqMIJI2vohbAc6GWSqWi
-DTfk2j5tg6U6y7oqfg5xpBPN/qCnKnoygalD9pUqifmtD96arWxFaQUpgNq1J7CG
-gTDwpwLWk2VCaLVpdDTlRytomc/3gZdvbKUtTeA/jHmNL0LYjW0TvScWNzsqFi3D
-vhjDwiMj1ku1ScTnGM0JsKYSueFXTn7hU/bpl8/U0m2P7w7/GmYeLVYwcFj/ElkI
-zbtLlwewqU04+c2mAXag
-=iL9w
------END PGP SIGNATURE-----
-
---NtNOBax7GDEs2xJd7vIhF9s3vCcTwqRmS--
-
---===============1475361529==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1475361529==--
+TG9vayBmb3IgZmlybXdhcmUgZmlsZXMgdXNpbmcgdGhlIGxlZ2FjeSAoIm5vdXZlYXUvbnZ4eF9m
+dWN4eHh4IikgcGF0aAppZiB0aGV5IGNhbm5vdCBiZSBmb3VuZCBpbiB0aGUgbmV3LCAib2ZmaWNp
+YWwiIHBhdGguIFVzZXIgc2V0dXBzIHdlcmUKYnJva2VuIGJ5IHRoZSBzd2l0Y2gsIHdoaWNoIGlz
+IGJhZC4KClRoZXJlIGFyZSBvbmx5IDQgZmlybXdhcmUgZmlsZXMgd2UgbWF5IHdhbnQgdG8gbG9v
+ayB1cCB0aGF0IHdheSwgc28KaGFyZGNvZGUgdGhlbSBpbnRvIHRoZSBsb29rdXAgZnVuY3Rpb24u
+IEFsbCBuZXcgZmlybXdhcmUgZmlsZXMgc2hvdWxkCnVzZSB0aGUgc3RhbmRhcmQgIm52aWRpYS88
+Y2hpcD4vZ3IvIiBwYXRoLgoKRml4ZXM6IDg1MzliMzdhY2VmNyAoImRybS9ub3V2ZWF1L2dyOiB1
+c2UgTlZJRElBLXByb3ZpZGVkIGV4dGVybmFsIGZpcm13YXJlcyIpClNpZ25lZC1vZmYtYnk6IEFs
+ZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgotLS0KQ2hhbmdlcyBzaW5jZSB2
+MToKKiBNb3ZlZCBmaWxlIG5hbWUgdHJhbnNsYXRpb24gaW50byB0aGUgbGVnYWN5IGZ1bmN0aW9u
+CgogZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYyB8IDUzICsrKysrKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrLS0tCiAxIGZpbGUgY2hhbmdlZCwgNDkgaW5zZXJ0aW9ucygr
+KSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9n
+ci9nZjEwMC5jIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwppbmRleCBlY2Nk
+ZWUwNDEwN2QuLmVkNDVmOTIzNDQyZiAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdp
+bmUvZ3IvZ2YxMDAuYworKysgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jCkBA
+IC0xNzU2LDYgKzE3NTYsNTMgQEAgZ2YxMDBfZ3JfID0gewogfTsKIAogaW50CitnZjEwMF9ncl9j
+dG9yX2Z3X2xlZ2FjeShzdHJ1Y3QgZ2YxMDBfZ3IgKmdyLCBjb25zdCBjaGFyICpmd25hbWUsCisJ
+CQlzdHJ1Y3QgZ2YxMDBfZ3JfZnVjICpmdWMsIGludCByZXQpCit7CisJc3RydWN0IG52a21fc3Vi
+ZGV2ICpzdWJkZXYgPSAmZ3ItPmJhc2UuZW5naW5lLnN1YmRldjsKKwlzdHJ1Y3QgbnZrbV9kZXZp
+Y2UgKmRldmljZSA9IHN1YmRldi0+ZGV2aWNlOworCWNvbnN0IHN0cnVjdCBmaXJtd2FyZSAqZnc7
+CisJY2hhciBmWzMyXTsKKworCS8qIHNlZSBpZiB0aGlzIGZpcm13YXJlIGhhcyBhIGxlZ2FjeSBw
+YXRoICovCisJaWYgKCFzdHJjbXAoZnduYW1lLCAiZmVjc19pbnN0IikpCisJCWZ3bmFtZSA9ICJm
+dWM0MDljIjsKKwllbHNlIGlmICghc3RyY21wKGZ3bmFtZSwgImZlY3NfZGF0YSIpKQorCQlmd25h
+bWUgPSAiZnVjNDA5ZCI7CisJZWxzZSBpZiAoIXN0cmNtcChmd25hbWUsICJncGNjc19pbnN0Iikp
+CisJCWZ3bmFtZSA9ICJmdWM0MWFjIjsKKwllbHNlIGlmICghc3RyY21wKGZ3bmFtZSwgImdwY2Nz
+X2RhdGEiKSkKKwkJZnduYW1lID0gImZ1YzQxYWQiOworCWVsc2UKKwkJZnduYW1lID0gTlVMTDsK
+KworCS8qIG5vcGUsIGxldCdzIGp1c3QgcmV0dXJuIHRoZSBlcnJvciB3ZSBnb3QgKi8KKwlpZiAo
+IWZ3bmFtZSkgeworCQludmttX2Vycm9yKHN1YmRldiwgImZhaWxlZCB0byBsb2FkICVzXG4iLCBm
+d25hbWUpOworCQlyZXR1cm4gcmV0OworCX0KKworCS8qIHllcywgdHJ5IHRvIGxvYWQgZnJvbSB0
+aGUgbGVnYWN5IHBhdGggKi8KKwludmttX2RlYnVnKHN1YmRldiwgIiVzOiBmYWxsaW5nIGJhY2sg
+dG8gbGVnYWN5IHBhdGhcbiIsIGZ3bmFtZSk7CisKKwlzbnByaW50ZihmLCBzaXplb2YoZiksICJu
+b3V2ZWF1L252JTAyeF8lcyIsIGRldmljZS0+Y2hpcHNldCwgZnduYW1lKTsKKwlyZXQgPSByZXF1
+ZXN0X2Zpcm13YXJlKCZmdywgZiwgZGV2aWNlLT5kZXYpOworCWlmIChyZXQpIHsKKwkJc25wcmlu
+dGYoZiwgc2l6ZW9mKGYpLCAibm91dmVhdS8lcyIsIGZ3bmFtZSk7CisJCXJldCA9IHJlcXVlc3Rf
+ZmlybXdhcmUoJmZ3LCBmLCBkZXZpY2UtPmRldik7CisJCWlmIChyZXQpIHsKKwkJCW52a21fZXJy
+b3Ioc3ViZGV2LCAiZmFpbGVkIHRvIGxvYWQgJXNcbiIsIGZ3bmFtZSk7CisJCQlyZXR1cm4gcmV0
+OworCQl9CisJfQorCisJZnVjLT5zaXplID0gZnctPnNpemU7CisJZnVjLT5kYXRhID0ga21lbWR1
+cChmdy0+ZGF0YSwgZnVjLT5zaXplLCBHRlBfS0VSTkVMKTsKKwlyZWxlYXNlX2Zpcm13YXJlKGZ3
+KTsKKwlyZXR1cm4gKGZ1Yy0+ZGF0YSAhPSBOVUxMKSA/IDAgOiAtRU5PTUVNOworfQorCitpbnQK
+IGdmMTAwX2dyX2N0b3JfZncoc3RydWN0IGdmMTAwX2dyICpnciwgY29uc3QgY2hhciAqZnduYW1l
+LAogCQkgc3RydWN0IGdmMTAwX2dyX2Z1YyAqZnVjKQogewpAQCAtMTc2NSwxMCArMTgxMiw4IEBA
+IGdmMTAwX2dyX2N0b3JfZncoc3RydWN0IGdmMTAwX2dyICpnciwgY29uc3QgY2hhciAqZnduYW1l
+LAogCWludCByZXQ7CiAKIAlyZXQgPSBudmttX2Zpcm13YXJlX2dldChkZXZpY2UsIGZ3bmFtZSwg
+JmZ3KTsKLQlpZiAocmV0KSB7Ci0JCW52a21fZXJyb3Ioc3ViZGV2LCAiZmFpbGVkIHRvIGxvYWQg
+JXNcbiIsIGZ3bmFtZSk7Ci0JCXJldHVybiByZXQ7Ci0JfQorCWlmIChyZXQpCisJCXJldHVybiBn
+ZjEwMF9ncl9jdG9yX2Z3X2xlZ2FjeShnciwgZnduYW1lLCBmdWMsIHJldCk7CiAKIAlmdWMtPnNp
+emUgPSBmdy0+c2l6ZTsKIAlmdWMtPmRhdGEgPSBrbWVtZHVwKGZ3LT5kYXRhLCBmdWMtPnNpemUs
+IEdGUF9LRVJORUwpOwotLSAKMi4xMC4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
