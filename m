@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98457] [NVD9] GPU lockup after resume from
- hibernation with Nouveau driver and firmware-nonfree
-Date: Fri, 04 Nov 2016 09:07:08 +0000
-Message-ID: <bug-98457-8800-JcDRdzfX1e@http.bugs.freedesktop.org/>
-References: <bug-98457-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Atomic modesetting + DisplayPort MST
+Date: Fri, 4 Nov 2016 19:41:21 +1000
+Message-ID: <41c72634-4886-0028-93e5-317e3b437092@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0627997583=="
+Content-Type: multipart/mixed; boundary="===============1475361529=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98457-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,127 +14,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1475361529==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="NtNOBax7GDEs2xJd7vIhF9s3vCcTwqRmS"
 
---===============0627997583==
-Content-Type: multipart/alternative; boundary="14782504281.0a16cb56.31541";
- charset="UTF-8"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--NtNOBax7GDEs2xJd7vIhF9s3vCcTwqRmS
+Content-Type: multipart/mixed; boundary="6k5ap7pdabfmUEXu2L767eLEiw8e4lWoT"
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Message-ID: <41c72634-4886-0028-93e5-317e3b437092-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Atomic modesetting + DisplayPort MST
 
-
---14782504281.0a16cb56.31541
-Date: Fri, 4 Nov 2016 09:07:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--6k5ap7pdabfmUEXu2L767eLEiw8e4lWoT
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98457
+Hey all,
 
---- Comment #3 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(In reply to wadev from comment #1)
-> I tried the trunk (of 2016-10-27) of mesa, libdrm and xf86-video-nouveau,=
- no
-> dice.
-> I could not, however, try the kernel driver (which I presume is mainly for
-> text mode and probably comprises the framebuffer backend of the libdrm), =
-as
-> I am at 4.8.4 now and the nouveau kernel driver repository is fit for some
-> such arcane kernel version that it has been removed even from OpenVZ and
-> such. :P
->=20
-> If anyone has some ideas on how to find an "edger" repository of the nouv=
-eau
-> kernel driver object that is ahead of the kernel.org state (if any), plea=
-se
-> let me know.
+I've just pushed out the initial Nouveau support for $subject \o/
 
-You could try https://github.com/skeggsb/linux/tree/linux-4.10 which has the
-latest patches, but is not an out-of-tree version. Or the latest image from
-https://nouveau.pmoreau.org/ (though it is not as recent as the previous li=
-nk,
-as the image was generated on Monday).
+As the atomic modesetting transition is basically a rewrite of the KMS
+portion of the driver, I would be very grateful for any additional
+testing that people could provide (even as simple as just booting and
+making sure you get a display is valuable).
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+There's a Linux tree at
+https://github.com/skeggsb/linux/tree/linux-4.10, and the code also
+exists in my usual development tree[1] on the master branch (which is
+currently based on Dave's drm-next tree for Linux 4.10).
 
---14782504281.0a16cb56.31541
-Date: Fri, 4 Nov 2016 09:07:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+There's another branch (devel-kms) in the same repository, which is the
+same code on top of what's currently Linux 4.9.  If you have problems
+with the 4.10 code, I'd definitely be interested in seeing if they exist
+on the 4.9 branch too.
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVD9] GPU lockup after resume from hibernation with Nouv=
-eau driver and firmware-nonfree"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVD9] GPU lockup after resume from hibernation with Nouv=
-eau driver and firmware-nonfree"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457">bug 98457<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>(In reply to wadev from <a href=3D"show_bug.cgi?id=3D98457#c1"=
->comment #1</a>)
-<span class=3D"quote">&gt; I tried the trunk (of 2016-10-27) of mesa, libdr=
-m and xf86-video-nouveau, no
-&gt; dice.
-&gt; I could not, however, try the kernel driver (which I presume is mainly=
- for
-&gt; text mode and probably comprises the framebuffer backend of the libdrm=
-), as
-&gt; I am at 4.8.4 now and the nouveau kernel driver repository is fit for =
-some
-&gt; such arcane kernel version that it has been removed even from OpenVZ a=
-nd
-&gt; such. :P
-&gt;=20
-&gt; If anyone has some ideas on how to find an &quot;edger&quot; repositor=
-y of the nouveau
-&gt; kernel driver object that is ahead of the kernel.org state (if any), p=
-lease
-&gt; let me know.</span >
+Thanks in advance!
+Ben.
 
-You could try <a href=3D"https://github.com/skeggsb/linux/tree/linux-4.10">=
-https://github.com/skeggsb/linux/tree/linux-4.10</a> which has the
-latest patches, but is not an out-of-tree version. Or the latest image from
-<a href=3D"https://nouveau.pmoreau.org/">https://nouveau.pmoreau.org/</a> (=
-though it is not as recent as the previous link,
-as the image was generated on Monday).</pre>
-        </div>
-      </p>
+[1] https://github.com/skeggsb/nouveau
 
 
-      <hr>
-      <span>You are receiving this mail because:</span>
+--6k5ap7pdabfmUEXu2L767eLEiw8e4lWoT--
 
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
+--NtNOBax7GDEs2xJd7vIhF9s3vCcTwqRmS
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
---14782504281.0a16cb56.31541--
+-----BEGIN PGP SIGNATURE-----
 
---===============0627997583==
+iQIcBAEBCAAGBQJYHFfDAAoJEHYLnGJQkpH7HlMQAKvfKlEK90TO/fI/7BjDXYLL
+Rj0va21zqYCffS0IIID9RRg/h45xd2o9zCv4yckyqNsqc6Wnb5UV4dSBU5YPSm8S
+pywbWzwrthByqH0N8RFFEPpDZxER9fhWf5Qe2rR/fKrOfJez4kj5FC86uQtLdfBq
+GtXcY3AH7fIk7P3sVx3XHQAKqy5kGPCiHH5tsuCcB2ND55H7nGL4ozhoanDzrF9O
+BA9qKdY2VsNVYAhu5BWAxY0D2rHr/ms0kzEvD3Uk3TgbrgSVnXL9XWgdQUl2KG/P
+9I+4g7SuF3l02m5W/+nHn880iiLmOMZ7JHuRmBFTtR3lxVm5OdCuojm39IHDIKn8
+u4hNdSJL+nKLYViaToDgJaas46Ybn17TskLn0f3jqCtIn/kg1aSblo3vHFcOr2fz
+L0q+Szzw7o2XkxZkh2DbN2HuhOo7P1Is1EZcQniMD+acsqMIJI2vohbAc6GWSqWi
+DTfk2j5tg6U6y7oqfg5xpBPN/qCnKnoygalD9pUqifmtD96arWxFaQUpgNq1J7CG
+gTDwpwLWk2VCaLVpdDTlRytomc/3gZdvbKUtTeA/jHmNL0LYjW0TvScWNzsqFi3D
+vhjDwiMj1ku1ScTnGM0JsKYSueFXTn7hU/bpl8/U0m2P7w7/GmYeLVYwcFj/ElkI
+zbtLlwewqU04+c2mAXag
+=iL9w
+-----END PGP SIGNATURE-----
+
+--NtNOBax7GDEs2xJd7vIhF9s3vCcTwqRmS--
+
+--===============1475361529==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -147,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0627997583==--
+--===============1475361529==--
