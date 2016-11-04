@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98457] [NVD9] GPU lockup after resume from
  hibernation with Nouveau driver and firmware-nonfree
-Date: Fri, 04 Nov 2016 08:37:31 +0000
-Message-ID: <bug-98457-8800-cDFvIuEX47@http.bugs.freedesktop.org/>
+Date: Fri, 04 Nov 2016 09:07:08 +0000
+Message-ID: <bug-98457-8800-JcDRdzfX1e@http.bugs.freedesktop.org/>
 References: <bug-98457-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0820615859=="
+Content-Type: multipart/mixed; boundary="===============0627997583=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98457-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0820615859==
-Content-Type: multipart/alternative; boundary="14782486510.E4e65eC67.27703";
+--===============0627997583==
+Content-Type: multipart/alternative; boundary="14782504281.0a16cb56.31541";
  charset="UTF-8"
 
 
---14782486510.E4e65eC67.27703
-Date: Fri, 4 Nov 2016 08:37:31 +0000
+--14782504281.0a16cb56.31541
+Date: Fri, 4 Nov 2016 09:07:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,36 +36,36 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98457
 
---- Comment #2 from wadev-cl+VPiYnx/0HWmgEVkV9KA@public.gmane.org ---
-I've added #97462 as "related", since the symptom seems exactly the same.
+--- Comment #3 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+(In reply to wadev from comment #1)
+> I tried the trunk (of 2016-10-27) of mesa, libdrm and xf86-video-nouveau,=
+ no
+> dice.
+> I could not, however, try the kernel driver (which I presume is mainly for
+> text mode and probably comprises the framebuffer backend of the libdrm), =
+as
+> I am at 4.8.4 now and the nouveau kernel driver repository is fit for some
+> such arcane kernel version that it has been removed even from OpenVZ and
+> such. :P
+>=20
+> If anyone has some ideas on how to find an "edger" repository of the nouv=
+eau
+> kernel driver object that is ahead of the kernel.org state (if any), plea=
+se
+> let me know.
 
-The only difference is that while that one could have been reproduced - by =
-me -
-only with Firefox Beta && ESR and Google Maps, presumably with all
-"force-enabled" settings, while suspend-to-disk and resume was unaffected,
-this one is not reproduced by Firefox settings and websites, but instead
-happens on each and every resume from hibernation.
-
-For the inexperienced eye, it might just appear that the computer is almost
-completely hung, with the desktop environment showing the time of the
-hibernation, and the mouse cursor is the only symptom of actual functionali=
-ty,
-and even that is only for a while.
-
-If, however, someone hibernates with "echo disk >/sys/power/state" from a r=
-eal
-console (not an X terminal), one gets the messages below.
-
-This explanation above is mainly added for search engine indexing reasons, =
-may
-someone find their problem accordingly.
+You could try https://github.com/skeggsb/linux/tree/linux-4.10 which has the
+latest patches, but is not an out-of-tree version. Or the latest image from
+https://nouveau.pmoreau.org/ (though it is not as recent as the previous li=
+nk,
+as the image was generated on Monday).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14782486510.E4e65eC67.27703
-Date: Fri, 4 Nov 2016 08:37:31 +0000
+--14782504281.0a16cb56.31541
+Date: Fri, 4 Nov 2016 09:07:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -83,8 +83,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NVD9] GPU lockup after resume from hibernation with Nouv=
 eau driver and firmware-nonfree"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVD9] GPU lockup after resume from hibernation with Nouv=
@@ -92,33 +92,36 @@ eau driver and firmware-nonfree"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457">bug 98457<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-wadev&#64;mailbox.hu" title=3D"wadev&#64;mailbox.hu">wadev&#64;mailbox.hu</=
-a>
+pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
+e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>I've added #97462 as &quot;related&quot;, since the symptom se=
-ems exactly the same.
+        <pre>(In reply to wadev from <a href=3D"show_bug.cgi?id=3D98457#c1"=
+>comment #1</a>)
+<span class=3D"quote">&gt; I tried the trunk (of 2016-10-27) of mesa, libdr=
+m and xf86-video-nouveau, no
+&gt; dice.
+&gt; I could not, however, try the kernel driver (which I presume is mainly=
+ for
+&gt; text mode and probably comprises the framebuffer backend of the libdrm=
+), as
+&gt; I am at 4.8.4 now and the nouveau kernel driver repository is fit for =
+some
+&gt; such arcane kernel version that it has been removed even from OpenVZ a=
+nd
+&gt; such. :P
+&gt;=20
+&gt; If anyone has some ideas on how to find an &quot;edger&quot; repositor=
+y of the nouveau
+&gt; kernel driver object that is ahead of the kernel.org state (if any), p=
+lease
+&gt; let me know.</span >
 
-The only difference is that while that one could have been reproduced - by =
-me -
-only with Firefox Beta &amp;&amp; ESR and Google Maps, presumably with all
-&quot;force-enabled&quot; settings, while suspend-to-disk and resume was un=
-affected,
-this one is not reproduced by Firefox settings and websites, but instead
-happens on each and every resume from hibernation.
-
-For the inexperienced eye, it might just appear that the computer is almost
-completely hung, with the desktop environment showing the time of the
-hibernation, and the mouse cursor is the only symptom of actual functionali=
-ty,
-and even that is only for a while.
-
-If, however, someone hibernates with &quot;echo disk &gt;/sys/power/state&q=
-uot; from a real
-console (not an X terminal), one gets the messages below.
-
-This explanation above is mainly added for search engine indexing reasons, =
-may
-someone find their problem accordingly.</pre>
+You could try <a href=3D"https://github.com/skeggsb/linux/tree/linux-4.10">=
+https://github.com/skeggsb/linux/tree/linux-4.10</a> which has the
+latest patches, but is not an out-of-tree version. Or the latest image from
+<a href=3D"https://nouveau.pmoreau.org/">https://nouveau.pmoreau.org/</a> (=
+though it is not as recent as the previous link,
+as the image was generated on Monday).</pre>
         </div>
       </p>
 
@@ -132,9 +135,9 @@ someone find their problem accordingly.</pre>
     </body>
 </html>=
 
---14782486510.E4e65eC67.27703--
+--14782504281.0a16cb56.31541--
 
---===============0820615859==
+--===============0627997583==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -144,4 +147,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0820615859==--
+--===============0627997583==--
