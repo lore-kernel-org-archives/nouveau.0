@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97462] Graphics deadlock "ILLEGAL_MTHD" in nouveau
- with mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5
-Date: Fri, 04 Nov 2016 08:29:29 +0000
-Message-ID: <bug-97462-8800-rl2UGvqYce@http.bugs.freedesktop.org/>
-References: <bug-97462-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98457] [NVD9] GPU lockup after resume from
+ hibernation with Nouveau driver and firmware-nonfree
+Date: Fri, 04 Nov 2016 08:37:31 +0000
+Message-ID: <bug-98457-8800-cDFvIuEX47@http.bugs.freedesktop.org/>
+References: <bug-98457-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1353831892=="
+Content-Type: multipart/mixed; boundary="===============0820615859=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98457-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1353831892==
-Content-Type: multipart/alternative; boundary="14782481692.71A171.26820";
+--===============0820615859==
+Content-Type: multipart/alternative; boundary="14782486510.E4e65eC67.27703";
  charset="UTF-8"
 
 
---14782481692.71A171.26820
-Date: Fri, 4 Nov 2016 08:29:29 +0000
+--14782486510.E4e65eC67.27703
+Date: Fri, 4 Nov 2016 08:37:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97462
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98457
 
-wadev-cl+VPiYnx/0HWmgEVkV9KA@public.gmane.org changed:
+--- Comment #2 from wadev-cl+VPiYnx/0HWmgEVkV9KA@public.gmane.org ---
+I've added #97462 as "related", since the symptom seems exactly the same.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=3D98457
+The only difference is that while that one could have been reproduced - by =
+me -
+only with Firefox Beta && ESR and Google Maps, presumably with all
+"force-enabled" settings, while suspend-to-disk and resume was unaffected,
+this one is not reproduced by Firefox settings and websites, but instead
+happens on each and every resume from hibernation.
+
+For the inexperienced eye, it might just appear that the computer is almost
+completely hung, with the desktop environment showing the time of the
+hibernation, and the mouse cursor is the only symptom of actual functionali=
+ty,
+and even that is only for a while.
+
+If, however, someone hibernates with "echo disk >/sys/power/state" from a r=
+eal
+console (not an X terminal), one gets the messages below.
+
+This explanation above is mainly added for search engine indexing reasons, =
+may
+someone find their problem accordingly.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14782481692.71A171.26820
-Date: Fri, 4 Nov 2016 08:29:29 +0000
+--14782486510.E4e65eC67.27703
+Date: Fri, 4 Nov 2016 08:37:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,32 +76,50 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:wadev&#64=
-;mailbox.hu" title=3D"wadev&#64;mailbox.hu">wadev&#64;mailbox.hu</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
-h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462">bug 97462<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D98457
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVD9] GPU lockup after resume from hibernation with Nouv=
+eau driver and firmware-nonfree"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVD9] GPU lockup after resume from hibernation with Nouv=
+eau driver and firmware-nonfree"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457">bug 98457<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+wadev&#64;mailbox.hu" title=3D"wadev&#64;mailbox.hu">wadev&#64;mailbox.hu</=
+a>
+</span></b>
+        <pre>I've added #97462 as &quot;related&quot;, since the symptom se=
+ems exactly the same.
+
+The only difference is that while that one could have been reproduced - by =
+me -
+only with Firefox Beta &amp;&amp; ESR and Google Maps, presumably with all
+&quot;force-enabled&quot; settings, while suspend-to-disk and resume was un=
+affected,
+this one is not reproduced by Firefox settings and websites, but instead
+happens on each and every resume from hibernation.
+
+For the inexperienced eye, it might just appear that the computer is almost
+completely hung, with the desktop environment showing the time of the
+hibernation, and the mouse cursor is the only symptom of actual functionali=
+ty,
+and even that is only for a while.
+
+If, however, someone hibernates with &quot;echo disk &gt;/sys/power/state&q=
+uot; from a real
+console (not an X terminal), one gets the messages below.
+
+This explanation above is mainly added for search engine indexing reasons, =
+may
+someone find their problem accordingly.</pre>
+        </div>
       </p>
 
 
@@ -97,9 +132,9 @@ h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
     </body>
 </html>=
 
---14782481692.71A171.26820--
+--14782486510.E4e65eC67.27703--
 
---===============1353831892==
+--===============0820615859==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +144,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1353831892==--
+--===============0820615859==--
