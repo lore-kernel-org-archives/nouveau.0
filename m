@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98582] A regression with nouveau under wayland+xorg:
  laptop doesn't resume properly from suspension
-Date: Fri, 04 Nov 2016 23:38:47 +0000
-Message-ID: <bug-98582-8800-es4tP0V1GN@http.bugs.freedesktop.org/>
+Date: Fri, 04 Nov 2016 23:39:17 +0000
+Message-ID: <bug-98582-8800-4eH0mRi0rP@http.bugs.freedesktop.org/>
 References: <bug-98582-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1852721883=="
+Content-Type: multipart/mixed; boundary="===============1045563951=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98582-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1852721883==
-Content-Type: multipart/alternative; boundary="14783027270.1a52d3.4303";
+--===============1045563951==
+Content-Type: multipart/alternative; boundary="14783027570.fe09652.4272";
  charset="UTF-8"
 
 
---14783027270.1a52d3.4303
-Date: Fri, 4 Nov 2016 23:38:47 +0000
+--14783027570.fe09652.4272
+Date: Fri, 4 Nov 2016 23:39:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98582
 
---- Comment #5 from hoboprimate-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 127777
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127777&action=3Dedit
-'journalctl -b' output when running kernel 4.7
+--- Comment #6 from hoboprimate-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 127778
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127778&action=3Dedit
+acpidump output
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14783027270.1a52d3.4303
-Date: Fri, 4 Nov 2016 23:38:47 +0000
+--14783027570.fe09652.4272
+Date: Fri, 4 Nov 2016 23:39:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - A regression with nouveau under wayland+xorg: laptop does=
 n't resume properly from suspension"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - A regression with nouveau under wayland+xorg: laptop does=
@@ -76,12 +76,11 @@ n't resume properly from suspension"
 hoboprimate&#64;gmail.com" title=3D"hoboprimate&#64;gmail.com">hoboprimate&=
 #64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127777=
-" name=3D"attach_127777" title=3D"'journalctl -b' output when running kerne=
-l 4.7">attachment 127777</a> <a href=3D"attachment.cgi?id=3D127777&amp;acti=
-on=3Dedit" title=3D"'journalctl -b' output when running kernel 4.7">[detail=
-s]</a></span>
-'journalctl -b' output when running kernel 4.7</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127778=
+" name=3D"attach_127778" title=3D"acpidump output">attachment 127778</a> <a=
+ href=3D"attachment.cgi?id=3D127778&amp;action=3Dedit" title=3D"acpidump ou=
+tput">[details]</a></span>
+acpidump output</pre>
         </div>
       </p>
 
@@ -95,9 +94,9 @@ s]</a></span>
     </body>
 </html>=
 
---14783027270.1a52d3.4303--
+--14783027570.fe09652.4272--
 
---===============1852721883==
+--===============1045563951==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1852721883==--
+--===============1045563951==--
