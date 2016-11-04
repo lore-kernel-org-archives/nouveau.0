@@ -1,17 +1,13 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] gr: fallback to legacy paths during firmware
- lookup
-Date: Fri, 4 Nov 2016 08:18:19 +0900
-Message-ID: <7b91d6a3-9220-c884-de0e-0813661de11c@nvidia.com>
-References: <20161102045417.5886-1-acourbot@nvidia.com>
- <CAKb7UvhfHs=FJ+3FzkwMgmQfi+uMBvg0kSQ10FpTurRmfDX-cQ@mail.gmail.com>
- <a54062b0-afad-51e8-4d18-9fc84b8e48d8@nvidia.com>
- <cc55514d-56aa-6fdf-3f39-92884d4064b9@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98582] A regression with nouveau under wayland+xorg:
+ laptop doesn't resume properly from suspension
+Date: Fri, 04 Nov 2016 07:48:05 +0000
+Message-ID: <bug-98582-8800-EOxOZ2uxU4@http.bugs.freedesktop.org/>
+References: <bug-98582-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0293615525=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <cc55514d-56aa-6fdf-3f39-92884d4064b9-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-98582-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,89 +17,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAxMS8wNC8yMDE2IDA3OjI5IEFNLCBCZW4gU2tlZ2dzIHdyb3RlOgo+ICogUEdQIFNpZ25l
-ZCBieSBhbiB1bmtub3duIGtleQo+IAo+IE9uIDExLzAyLzIwMTYgMDM6NTIgUE0sIEFsZXhhbmRy
-ZSBDb3VyYm90IHdyb3RlOgo+PiBPbiAxMS8wMi8yMDE2IDAyOjA3IFBNLCBJbGlhIE1pcmtpbiB3
-cm90ZToKPj4+IE9uIFdlZCwgTm92IDIsIDIwMTYgYXQgMTI6NTQgQU0sIEFsZXhhbmRyZSBDb3Vy
-Ym90IDxhY291cmJvdEBudmlkaWEuY29tPiB3cm90ZToKPj4+PiBMb29rIGZvciBmaXJtd2FyZSBm
-aWxlcyB1c2luZyB0aGUgbGVnYWN5ICgibm91dmVhdS9udnh4X2Z1Y3h4eHgiKSBwYXRoCj4+Pj4g
-aWYgdGhleSBjYW5ub3QgYmUgZm91bmQgaW4gdGhlIG5ldywgIm9mZmljaWFsIiBwYXRoLiBVc2Vy
-IHNldHVwcyB3ZXJlCj4+Pj4gYnJva2VuIGJ5IHRoZSBzd2l0Y2gsIHdoaWNoIGlzIGJhZC4KPj4+
-Pgo+Pj4+IFRoZXJlIGFyZSBvbmx5IDQgZmlybXdhcmUgZmlsZXMgd2UgbWF5IHdhbnQgdG8gbG9v
-ayB1cCB0aGF0IHdheSwgc28KPj4+PiBoYXJkY29kZSB0aGVtIGludG8gdGhlIGxvb2t1cCBmdW5j
-dGlvbi4gQWxsIG5ldyBmaXJtd2FyZSBmaWxlcyBzaG91bGQKPj4+PiB1c2UgdGhlIHN0YW5kYXJk
-ICJudmlkaWEvPGNoaXA+L2dyLyIgcGF0aC4KPj4+Pgo+Pj4+IEZpeGVzOiA4NTM5YjM3YWNlZjcg
-KCJkcm0vbm91dmVhdS9ncjogdXNlIE5WSURJQS1wcm92aWRlZCBleHRlcm5hbCBmaXJtd2FyZXMi
-KQo+Pj4+IFNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEu
-Y29tPgo+Pj4+IC0tLQo+Pj4+ICBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jIHwg
-NTYgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLS0KPj4+PiAgMSBmaWxlIGNo
-YW5nZWQsIDUxIGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCj4+Pj4KPj4+PiBkaWZmIC0t
-Z2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYyBiL2RybS9ub3V2ZWF1L252
-a20vZW5naW5lL2dyL2dmMTAwLmMKPj4+PiBpbmRleCAxNTc5MTljNzg4ZTYuLjllNjVhZGJhYjIx
-YyAxMDA2NDQKPj4+PiAtLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jCj4+
-Pj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwo+Pj4+IEBAIC0xNzU2
-LDI0ICsxNzU2LDcwIEBAIGdmMTAwX2dyXyA9IHsKPj4+PiAgfTsKPj4+Pgo+Pj4+ICBpbnQKPj4+
-PiArZ2YxMDBfZ3JfY3Rvcl9md19sZWdhY3koc3RydWN0IGdmMTAwX2dyICpnciwgY29uc3QgY2hh
-ciAqZnduYW1lLAo+Pj4+ICsgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBnZjEwMF9ncl9m
-dWMgKmZ1YykKPj4+PiArewo+Pj4+ICsgICAgICAgc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYg
-PSAmZ3ItPmJhc2UuZW5naW5lLnN1YmRldjsKPj4+PiArICAgICAgIHN0cnVjdCBudmttX2Rldmlj
-ZSAqZGV2aWNlID0gc3ViZGV2LT5kZXZpY2U7Cj4+Pj4gKyAgICAgICBjb25zdCBzdHJ1Y3QgZmly
-bXdhcmUgKmZ3Owo+Pj4+ICsgICAgICAgY2hhciBmWzMyXTsKPj4+PiArICAgICAgIGludCByZXQ7
-Cj4+Pj4gKwo+Pj4+ICsgICAgICAgc25wcmludGYoZiwgc2l6ZW9mKGYpLCAibm91dmVhdS9udiUw
-MnhfJXMiLCBkZXZpY2UtPmNoaXBzZXQsIGZ3bmFtZSk7Cj4+Pj4gKyAgICAgICByZXQgPSByZXF1
-ZXN0X2Zpcm13YXJlKCZmdywgZiwgZGV2aWNlLT5kZXYpOwo+Pj4+ICsgICAgICAgaWYgKHJldCkg
-ewo+Pj4+ICsgICAgICAgICAgICAgICBzbnByaW50ZihmLCBzaXplb2YoZiksICJub3V2ZWF1LyVz
-IiwgZnduYW1lKTsKPj4+PiArICAgICAgICAgICAgICAgcmV0ID0gcmVxdWVzdF9maXJtd2FyZSgm
-ZncsIGYsIGRldmljZS0+ZGV2KTsKPj4+PiArICAgICAgICAgICAgICAgaWYgKHJldCkgewo+Pj4+
-ICsgICAgICAgICAgICAgICAgICAgICAgIG52a21fZXJyb3Ioc3ViZGV2LCAiZmFpbGVkIHRvIGxv
-YWQgJXNcbiIsIGZ3bmFtZSk7Cj4+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIHJl
-dDsKPj4+PiArICAgICAgICAgICAgICAgfQo+Pj4+ICsgICAgICAgfQo+Pj4+ICsKPj4+PiArICAg
-ICAgIGZ1Yy0+c2l6ZSA9IGZ3LT5zaXplOwo+Pj4+ICsgICAgICAgZnVjLT5kYXRhID0ga21lbWR1
-cChmdy0+ZGF0YSwgZnVjLT5zaXplLCBHRlBfS0VSTkVMKTsKPj4+PiArICAgICAgIHJlbGVhc2Vf
-ZmlybXdhcmUoZncpOwo+Pj4+ICsgICAgICAgcmV0dXJuIChmdWMtPmRhdGEgIT0gTlVMTCkgPyAw
-IDogLUVOT01FTTsKPj4+PiArfQo+Pj4+ICsKPj4+PiAraW50Cj4+Pj4gIGdmMTAwX2dyX2N0b3Jf
-Zncoc3RydWN0IGdmMTAwX2dyICpnciwgY29uc3QgY2hhciAqZnduYW1lLAo+Pj4+ICAgICAgICAg
-ICAgICAgICAgc3RydWN0IGdmMTAwX2dyX2Z1YyAqZnVjKQo+Pj4+ICB7Cj4+Pj4gICAgICAgICBz
-dHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldiA9ICZnci0+YmFzZS5lbmdpbmUuc3ViZGV2Owo+Pj4+
-ICAgICAgICAgc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBzdWJkZXYtPmRldmljZTsKPj4+
-PiArICAgICAgIGNvbnN0IGNoYXIgKmxlZ2FjeV9md25hbWUgPSBOVUxMOwo+Pj4+ICAgICAgICAg
-Y29uc3Qgc3RydWN0IGZpcm13YXJlICpmdzsKPj4+PiAgICAgICAgIGludCByZXQ7Cj4+Pj4KPj4+
-PiAgICAgICAgIHJldCA9IG52a21fZmlybXdhcmVfZ2V0KGRldmljZSwgZnduYW1lLCAmZncpOwo+
-Pj4+IC0gICAgICAgaWYgKHJldCkgewo+Pj4+ICsgICAgICAgLyogZmlybXdhcmUgZm91bmQsIHN1
-Y2Nlc3MhICovCj4+Pj4gKyAgICAgICBpZiAoIXJldCkgewo+Pj4+ICsgICAgICAgICAgICAgICBm
-dWMtPnNpemUgPSBmdy0+c2l6ZTsKPj4+PiArICAgICAgICAgICAgICAgZnVjLT5kYXRhID0ga21l
-bWR1cChmdy0+ZGF0YSwgZnVjLT5zaXplLCBHRlBfS0VSTkVMKTsKPj4+PiArICAgICAgICAgICAg
-ICAgbnZrbV9maXJtd2FyZV9wdXQoZncpOwo+Pj4+ICsgICAgICAgICAgICAgICByZXR1cm4gKGZ1
-Yy0+ZGF0YSAhPSBOVUxMKSA/IDAgOiAtRU5PTUVNOwo+Pj4+ICsgICAgICAgfQo+Pj4+ICsKPj4+
-PiArICAgICAgIC8qIHNlZSBpZiB0aGlzIGZpcm13YXJlIGhhcyBhIGxlZ2FjeSBwYXRoICovCj4+
-Pj4gKyAgICAgICBpZiAoIXN0cmNtcChmd25hbWUsICJmZWNzX2luc3QiKSkKPj4+PiArICAgICAg
-ICAgICAgICAgbGVnYWN5X2Z3bmFtZSA9ICJmdWM0MDljIjsKPj4+PiArICAgICAgIGVsc2UgaWYg
-KCFzdHJjbXAoZnduYW1lLCAiZmVjc19kYXRhIikpCj4+Pj4gKyAgICAgICAgICAgICAgIGxlZ2Fj
-eV9md25hbWUgPSAiZnVjNDA5ZCI7Cj4+Pj4gKyAgICAgICBlbHNlIGlmICghc3RyY21wKGZ3bmFt
-ZSwgImdwY2NzX2luc3QiKSkKPj4+PiArICAgICAgICAgICAgICAgbGVnYWN5X2Z3bmFtZSA9ICJm
-dWM0MWFjIjsKPj4+PiArICAgICAgIGVsc2UgaWYgKCFzdHJjbXAoZnduYW1lLCAiZ3BjY3NfZGF0
-YSIpKQo+Pj4+ICsgICAgICAgICAgICAgICBsZWdhY3lfZnduYW1lID0gImZ1YzQxYWQiOwo+Pj4K
-Pj4+IEFzIEkgbWVudGlvbmVkIG9uIElSQywgSSBmaW5kIHRoaXMgc3RyY21wIHRoaW5nIGEgbGl0
-dGxlIGphcnJpbmcuIEl0Cj4+PiBzaG91bGQgYmUgcHJldHR5IGVhc3kgdG8ganVzdCBwYXNzIHRo
-ZSBsZWdhY3kgZnduYW1lIGludG8KPj4+IGdmMTAwX2dyX2N0b3JfZncgZGlyZWN0bHkgLSB0aGVy
-ZSBhcmUgb25seSBhIGhhbmRmdWwgb2YgY2FsbGVycywgYW5kCj4+PiBtb3N0IHdvdWxkIGp1c3Qg
-cGFzcyBOVUxMIGluIGFzIHRoZSBsZWdhY3kgZnduYW1lIC0gb25seSB0aGUgb25lcyBpbgo+Pj4g
-Z2YxMDAuYyB3b3VsZCBwYXNzIHRoZSAib2xkIiBuYW1lcyBpbi4KPj4KPj4gWWVhaCwgdGhhdCB3
-YXMgdGhlIG9yaWdpbmFsIGFwcHJvYWNoIGFjdHVhbGx5LiBJIHN3aXRjaGVkIHRvIHRoaXMgZm9y
-Cj4+IHRoZSBmb2xsb3dpbmcgcmVhc29uczoKPj4KPj4gLSBXZSBkb24ndCB3YW50IHRvIGVuY291
-cmFnZSB1c2luZyB0aGlzIGxlZ2FjeSBwYXRoLCBoZW5jZSBoaWRpbmcgaXQKPj4gZnJvbSBjYWxs
-ZXJzCj4+IC0gVGhlcmUgYXJlIG9ubHkgNCBwb3NzaWJsZSBsZWdhY3kgZmlsZXMgLSBpdCdzIHVn
-bHkgYnV0IHN0aWxsCj4+IG1hbmFnZWFibGUgYW5kIGNvbnRhaW5lZCBpbiBhIHNpbmdsZSBmdW5j
-dGlvbgo+IEkgYWdyZWUuCj4gCj4+Cj4+IE9mIGNvdXJzZSwgaWYgdGhlIGdlbmVyYWwgY29uc2Vu
-c3VzIGlzIHRoYXQgdGhpcyBpcyB0b28gdWdseSwgaXQgd291bGQKPj4gYmUgdHJpdmlhbCB0byB0
-dXJuIGl0IHRoZSB3YXkgeW91IHN1Z2dlc3RlZCwgc28gSSBkb24ndCBmZWVsIHRvbwo+PiBzdHJv
-bmdseSBmb3Igb25lIGFwcHJvYWNoIG92ZXIgdGhlIG90aGVyLgo+IEFzIGl0IGlzIGEgbGVnYWN5
-IHBhdGgsIEknbSBtb3JlIGZvciBoaWRpbmcgaXQgYXdheSBpbiBjdG9yX2xlZ2FjeSgpIGFzCj4g
-RW1pbCBzdWdnZXN0cy4KCk1ha2VzIHNlbnNlIC0gd2lsbCByZXNwaW4gbGF0ZXIgdG9kYXkuCgpU
-aGFua3MhCkFsZXguCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0293615525==
+Content-Type: multipart/alternative; boundary="14782456841.D2Ac7Ecf4.21522";
+ charset="UTF-8"
+
+
+--14782456841.D2Ac7Ecf4.21522
+Date: Fri, 4 Nov 2016 07:48:04 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98582
+
+--- Comment #4 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Support for GM108 chipsets was merged in Linux 4.7, which was released end =
+of
+July 2016, so I assume that it worked before as Nouveau failed to recognise=
+ the
+chipset, and therefore did nothing.
+
+Trying Linux 4.7 and making sure that the chipset is recognised would be ni=
+ce,
+to rule out a possible regression. Could you also please add the output of
+acpidump to the bug report?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14782456841.D2Ac7Ecf4.21522
+Date: Fri, 4 Nov 2016 07:48:04 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - A regression with nouveau under wayland+xorg: laptop does=
+n't resume properly from suspension"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - A regression with nouveau under wayland+xorg: laptop does=
+n't resume properly from suspension"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
+e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>Support for GM108 chipsets was merged in Linux 4.7, which was =
+released end of
+July 2016, so I assume that it worked before as Nouveau failed to recognise=
+ the
+chipset, and therefore did nothing.
+
+Trying Linux 4.7 and making sure that the chipset is recognised would be ni=
+ce,
+to rule out a possible regression. Could you also please add the output of
+acpidump to the bug report?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14782456841.D2Ac7Ecf4.21522--
+
+--===============0293615525==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0293615525==--
