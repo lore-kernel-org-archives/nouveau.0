@@ -1,11 +1,13 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] nouveau: remove unused variables
-Date: Fri,  4 Nov 2016 20:51:37 +0100
-Message-ID: <20161104195137.3924-1-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98582] A regression with nouveau under wayland+xorg:
+ laptop doesn't resume properly from suspension
+Date: Fri, 04 Nov 2016 23:38:47 +0000
+Message-ID: <bug-98582-8800-es4tP0V1GN@http.bugs.freedesktop.org/>
+References: <bug-98582-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1852721883=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98582-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,56 +20,91 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SSBhbSBhIGxpdHRsZSB1bnN1cmUgYWJvdXQgdGhlIGNoYW5nZSBpbiBub3V2ZWF1X2ZlbmNlLCBt
-YXliZSBzb21lYm9keQp3aXRoIG1vcmUga25vd2xlZGdlIGFib3V0IHRoZSBjb2RlIGNhbiBsb29r
-IGludG8gaXQ/CgpTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWls
-LmNvbT4KLS0tCiBkcm0vbm91dmVhdS9kaXNwbnYwNC9hcmIuYyAgICAgICAgICAgIHwgNiArKy0t
-LS0KIGRybS9ub3V2ZWF1L25vdXZlYXVfZmVuY2UuYyAgICAgICAgICAgfCAyIC0tCiBkcm0vbm91
-dmVhdS9udmttL3N1YmRldi9mYi9yYW1nazEwNC5jIHwgNCArLS0tCiAzIGZpbGVzIGNoYW5nZWQs
-IDMgaW5zZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVh
-dS9kaXNwbnYwNC9hcmIuYyBiL2RybS9ub3V2ZWF1L2Rpc3BudjA0L2FyYi5jCmluZGV4IGE1NTU2
-ODEuLjRiYmQ4M2EgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L2Rpc3BudjA0L2FyYi5jCisrKyBi
-L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2FyYi5jCkBAIC01NSw4ICs1NSw4IEBAIHN0cnVjdCBudl9z
-aW1fc3RhdGUgewogc3RhdGljIHZvaWQKIG52MDRfY2FsY19hcmIoc3RydWN0IG52X2ZpZm9faW5m
-byAqZmlmbywgc3RydWN0IG52X3NpbV9zdGF0ZSAqYXJiKQogewotCWludCBwYWdlbWlzcywgY2Fz
-LCB3aWR0aCwgYnBwOwotCWludCBudmNsa3MsIG1jbGtzLCBwY2xrcywgY3J0cGFnZW1pc3M7CisJ
-aW50IHBhZ2VtaXNzLCBjYXMsIGJwcDsKKwlpbnQgbnZjbGtzLCBtY2xrcywgY3J0cGFnZW1pc3M7
-CiAJaW50IGZvdW5kLCBtY2xrX2V4dHJhLCBtY2xrX2xvb3AsIGNicywgbTEsIHAxOwogCWludCBt
-Y2xrX2ZyZXEsIHBjbGtfZnJlcSwgbnZjbGtfZnJlcTsKIAlpbnQgdXNfbSwgdXNfbiwgdXNfcCwg
-Y3J0Y19kcmFpbl9yYXRlOwpAQCAtNjcsMTEgKzY3LDkgQEAgbnYwNF9jYWxjX2FyYihzdHJ1Y3Qg
-bnZfZmlmb19pbmZvICpmaWZvLCBzdHJ1Y3QgbnZfc2ltX3N0YXRlICphcmIpCiAJbnZjbGtfZnJl
-cSA9IGFyYi0+bnZjbGtfa2h6OwogCXBhZ2VtaXNzID0gYXJiLT5tZW1fcGFnZV9taXNzOwogCWNh
-cyA9IGFyYi0+bWVtX2xhdGVuY3k7Ci0Jd2lkdGggPSBhcmItPm1lbW9yeV93aWR0aCA+PiA2Owog
-CWJwcCA9IGFyYi0+YnBwOwogCWNicyA9IDEyODsKIAotCXBjbGtzID0gMjsKIAludmNsa3MgPSAx
-MDsKIAltY2xrcyA9IDEzICsgY2FzOwogCW1jbGtfZXh0cmEgPSAzOwpkaWZmIC0tZ2l0IGEvZHJt
-L25vdXZlYXUvbm91dmVhdV9mZW5jZS5jIGIvZHJtL25vdXZlYXUvbm91dmVhdV9mZW5jZS5jCmlu
-ZGV4IDA5ODA0NGMuLmUxZWFkNmYgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L25vdXZlYXVfZmVu
-Y2UuYworKysgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZlbmNlLmMKQEAgLTE1NCwxMCArMTU0LDgg
-QEAgbm91dmVhdV9mZW5jZV93YWl0X3VldmVudF9oYW5kbGVyKHN0cnVjdCBudmlmX25vdGlmeSAq
-bm90aWZ5KQogCXNwaW5fbG9ja19pcnFzYXZlKCZmY3R4LT5sb2NrLCBmbGFncyk7CiAJaWYgKCFs
-aXN0X2VtcHR5KCZmY3R4LT5wZW5kaW5nKSkgewogCQlzdHJ1Y3Qgbm91dmVhdV9mZW5jZSAqZmVu
-Y2U7Ci0JCXN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW47CiAKIAkJZmVuY2UgPSBsaXN0X2Vu
-dHJ5KGZjdHgtPnBlbmRpbmcubmV4dCwgdHlwZW9mKCpmZW5jZSksIGhlYWQpOwotCQljaGFuID0g
-cmN1X2RlcmVmZXJlbmNlX3Byb3RlY3RlZChmZW5jZS0+Y2hhbm5lbCwgbG9ja2RlcF9pc19oZWxk
-KCZmY3R4LT5sb2NrKSk7CiAJCWlmIChub3V2ZWF1X2ZlbmNlX3VwZGF0ZShmZW5jZS0+Y2hhbm5l
-bCwgZmN0eCkpCiAJCQlyZXQgPSBOVklGX05PVElGWV9EUk9QOwogCX0KZGlmZiAtLWdpdCBhL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbWdrMTA0LmMgYi9kcm0vbm91dmVhdS9udmttL3N1
-YmRldi9mYi9yYW1nazEwNC5jCmluZGV4IDc5MDRmYTQuLmZiOGExMjMgMTAwNjQ0Ci0tLSBhL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbWdrMTA0LmMKKysrIGIvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvZmIvcmFtZ2sxMDQuYwpAQCAtOTg5LDcgKzk4OSw3IEBAIGdrMTA0X3BsbF9jYWxj
-X2hpY2xrKGludCB0YXJnZXRfa2h6LCBpbnQgY3J5c3RhbCwKIAkJaW50ICpOMSwgaW50ICpmTjEs
-IGludCAqTTEsIGludCAqUDEsCiAJCWludCAqTjIsIGludCAqTTIsIGludCAqUDIpCiB7Ci0JaW50
-IGJlc3RfY2xrID0gMCwgYmVzdF9lcnIgPSB0YXJnZXRfa2h6LCBwX3JlZiwgbl9yZWY7CisJaW50
-IGJlc3RfZXJyID0gdGFyZ2V0X2toeiwgcF9yZWYsIG5fcmVmOwogCWJvb2wgdXBwZXIgPSBmYWxz
-ZTsKIAogCSpNMSA9IDE7CkBAIC0xMDEwLDcgKzEwMTAsNiBAQCBnazEwNF9wbGxfY2FsY19oaWNs
-ayhpbnQgdGFyZ2V0X2toeiwgaW50IGNyeXN0YWwsCiAJCQkvKiB3ZSBmb3VuZCBhIGJldHRlciBj
-b21iaW5hdGlvbiAqLwogCQkJaWYgKGN1cl9lcnIgPCBiZXN0X2VycikgewogCQkJCWJlc3RfZXJy
-ID0gY3VyX2VycjsKLQkJCQliZXN0X2NsayA9IGN1cl9jbGs7CiAJCQkJKk4yID0gY3VyX047CiAJ
-CQkJKk4xID0gbl9yZWY7CiAJCQkJKlAxID0gcF9yZWY7CkBAIC0xMDIyLDcgKzEwMjEsNiBAQCBn
-azEwNF9wbGxfY2FsY19oaWNsayhpbnQgdGFyZ2V0X2toeiwgaW50IGNyeXN0YWwsCiAJCQkJLSB0
-YXJnZXRfa2h6OwogCQkJaWYgKGN1cl9lcnIgPCBiZXN0X2VycikgewogCQkJCWJlc3RfZXJyID0g
-Y3VyX2VycjsKLQkJCQliZXN0X2NsayA9IGN1cl9jbGs7CiAJCQkJKk4yID0gY3VyX047CiAJCQkJ
-Kk4xID0gbl9yZWY7CiAJCQkJKlAxID0gcF9yZWY7Ci0tIAoyLjEwLjEKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1852721883==
+Content-Type: multipart/alternative; boundary="14783027270.1a52d3.4303";
+ charset="UTF-8"
+
+
+--14783027270.1a52d3.4303
+Date: Fri, 4 Nov 2016 23:38:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98582
+
+--- Comment #5 from hoboprimate-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 127777
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127777&action=3Dedit
+'journalctl -b' output when running kernel 4.7
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14783027270.1a52d3.4303
+Date: Fri, 4 Nov 2016 23:38:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - A regression with nouveau under wayland+xorg: laptop does=
+n't resume properly from suspension"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - A regression with nouveau under wayland+xorg: laptop does=
+n't resume properly from suspension"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+hoboprimate&#64;gmail.com" title=3D"hoboprimate&#64;gmail.com">hoboprimate&=
+#64;gmail.com</a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127777=
+" name=3D"attach_127777" title=3D"'journalctl -b' output when running kerne=
+l 4.7">attachment 127777</a> <a href=3D"attachment.cgi?id=3D127777&amp;acti=
+on=3Dedit" title=3D"'journalctl -b' output when running kernel 4.7">[detail=
+s]</a></span>
+'journalctl -b' output when running kernel 4.7</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14783027270.1a52d3.4303--
+
+--===============1852721883==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1852721883==--
