@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98582] A regression with nouveau under wayland+xorg:
- laptop doesn't resume properly from suspension
-Date: Fri, 04 Nov 2016 23:55:09 +0000
-Message-ID: <bug-98582-8800-xcfj1jbsFC@http.bugs.freedesktop.org/>
-References: <bug-98582-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Atomic modesetting + DisplayPort MST
+Date: Sat, 5 Nov 2016 13:50:52 +0100
+Message-ID: <27ad0b13-a965-eab6-9dd0-cb9b54a6544e@gmail.com>
+References: <41c72634-4886-0028-93e5-317e3b437092@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0381391695=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98582-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <41c72634-4886-0028-93e5-317e3b437092-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,126 +17,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0381391695==
-Content-Type: multipart/alternative; boundary="14783037091.928Bba.5370";
- charset="UTF-8"
-
-
---14783037091.928Bba.5370
-Date: Fri, 4 Nov 2016 23:55:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98582
-
-hoboprimate-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #127737|0                           |1
-        is obsolete|                            |
-
---- Comment #8 from hoboprimate-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 127779
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127779&action=3Dedit
-*full* log of failed resuming on 4.8.4
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14783037091.928Bba.5370
-Date: Fri, 4 Nov 2016 23:55:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:hoboprima=
-te&#64;gmail.com" title=3D"hoboprimate&#64;gmail.com">hoboprimate&#64;gmail=
-.com</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - A regression with nouveau under wayland+xorg: laptop does=
-n't resume properly from suspension"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #127737 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - A regression with nouveau under wayland+xorg: laptop does=
-n't resume properly from suspension"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582#c8">Comment=
- # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - A regression with nouveau under wayland+xorg: laptop does=
-n't resume properly from suspension"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-hoboprimate&#64;gmail.com" title=3D"hoboprimate&#64;gmail.com">hoboprimate&=
-#64;gmail.com</a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127779=
-" name=3D"attach_127779" title=3D"*full* log of failed resuming on 4.8.4">a=
-ttachment 127779</a> <a href=3D"attachment.cgi?id=3D127779&amp;action=3Dedi=
-t" title=3D"*full* log of failed resuming on 4.8.4">[details]</a></span>
-*full* log of failed resuming on 4.8.4</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14783037091.928Bba.5370--
-
---===============0381391695==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0381391695==--
+T24gMDQuMTEuMjAxNiAxMDo0MSwgQmVuIFNrZWdncyB3cm90ZToKPiBIZXkgYWxsLAo+IAo+IEkn
+dmUganVzdCBwdXNoZWQgb3V0IHRoZSBpbml0aWFsIE5vdXZlYXUgc3VwcG9ydCBmb3IgJHN1Ympl
+Y3QgXG8vCj4gCj4gQXMgdGhlIGF0b21pYyBtb2Rlc2V0dGluZyB0cmFuc2l0aW9uIGlzIGJhc2lj
+YWxseSBhIHJld3JpdGUgb2YgdGhlIEtNUwo+IHBvcnRpb24gb2YgdGhlIGRyaXZlciwgSSB3b3Vs
+ZCBiZSB2ZXJ5IGdyYXRlZnVsIGZvciBhbnkgYWRkaXRpb25hbAo+IHRlc3RpbmcgdGhhdCBwZW9w
+bGUgY291bGQgcHJvdmlkZSAoZXZlbiBhcyBzaW1wbGUgYXMganVzdCBib290aW5nIGFuZAo+IG1h
+a2luZyBzdXJlIHlvdSBnZXQgYSBkaXNwbGF5IGlzIHZhbHVhYmxlKS4KWy4uLl0KPiBUaGVyZSdz
+IGFub3RoZXIgYnJhbmNoIChkZXZlbC1rbXMpIGluIHRoZSBzYW1lIHJlcG9zaXRvcnksIHdoaWNo
+IGlzIHRoZQo+IHNhbWUgY29kZSBvbiB0b3Agb2Ygd2hhdCdzIGN1cnJlbnRseSBMaW51eCA0Ljku
+ICBJZiB5b3UgaGF2ZSBwcm9ibGVtcwo+IHdpdGggdGhlIDQuMTAgY29kZSwgSSdkIGRlZmluaXRl
+bHkgYmUgaW50ZXJlc3RlZCBpbiBzZWVpbmcgaWYgdGhleSBleGlzdAo+IG9uIHRoZSA0LjkgYnJh
+bmNoIHRvby4KPiAKCkhleSBKb2UsCgokIGdyZXAgbm91dmVhdSAvZXRjL2RyYWN1dC5jb25mLmQv
+Y3VzdG9tLmNvbmYgCm9taXRfZHJpdmVycys9IiBub3V2ZWF1ICIKIyBsc2luaXRyZCAtLWt2ZXIg
+NC45LjAtMC5yYzMuZ2l0Mi4xLmZjMjYueDg2XzY0IHwgZ3JlcCBub3V2ZWF1IDsgZWNobyAkPwox
+CgokIGdpdCBjbG9uZSBodHRwczovL2dpdGh1Yi5jb20vc2tlZ2dzYi9ub3V2ZWF1LmdpdCAtYiBk
+ZXZlbC1rbXMKJCBjZCBub3V2ZWF1L2RybS8KJCBnaXQgbG9nIC0xIHwgaGVhZCAtMQpjb21taXQg
+NWE0ZDE3OTFlODJkZDFlYWExZTRhZDVhMjIwZTgyY2JjYzJmNjUzNQokIHNlZCAtaSAvMHhhYy9z
+L14vXFwvXFwvLyBub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvbnY1MC5jICAgICMgIk5vIFNpZ25h
+bCIgSU9OIFZHQQokIG1ha2UKJCBzdQojIGNwIG5vdXZlYXUvbm91dmVhdS5rbyAvdXNyL2xpYi9t
+b2R1bGVzLzQuOS4wLTAucmMzLmdpdDIuMS5mYzI2Lng4Nl82NC91cGRhdGVzLwojIGRlcG1vZAoj
+IHJlYm9vdAoKJCBtb2RpbmZvIC1uIG5vdXZlYXUKL2xpYi9tb2R1bGVzLzQuOS4wLTAucmMzLmdp
+dDIuMS5mYzI2Lng4Nl82NC91cGRhdGVzL25vdXZlYXUua28KCj0gRzk4CiQgZG1lc2cgfCBncmVw
+IG5vdXZlYXUKWyAgIDIyLjExMTIxNl0gbm91dmVhdTogbG9hZGluZyBvdXQtb2YtdHJlZSBtb2R1
+bGUgdGFpbnRzIGtlcm5lbC4KWyAgIDIyLjExNTAyOV0gbm91dmVhdTogbW9kdWxlIHZlcmlmaWNh
+dGlvbiBmYWlsZWQ6IHNpZ25hdHVyZSBhbmQvb3IgcmVxdWlyZWQga2V5IG1pc3NpbmcgLSB0YWlu
+dGluZyBrZXJuZWwKWyAgIDIyLjE2NzU3Nl0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IE5WSURJQSBH
+OTggLi4uClsgICAyMi4yODMxNDZdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBiaW9zOiB2ZXJzaW9u
+IC4uLgpbICAgMjIuMzE0NzA1XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogYmlvczogTTAyMDNUIG5v
+dCBmb3VuZApbICAgMjIuMzE0ODM1XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogYmlvczogTTAyMDNF
+IG5vdCBtYXRjaGVkIQpbICAgMjIuMzE0OTYxXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogZmI6IDUx
+MiBNaUIgRERSMgpbICAgMjQuNzY3MDkyXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiBWUkFN
+OiA1MTIgTWlCClsgICAyNC43NjcyNjddIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IEdBUlQ6
+IDEwNDg1NzYgTWlCClsgICAyNC43Njc0MjNdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IFRN
+RFMgdGFibGUgdmVyc2lvbiAyLjAKWyAgIDI0Ljc2NzU3MF0gbm91dmVhdSAwMDAwOjAyOjAwLjA6
+IERSTTogRENCIHZlcnNpb24gNC4wClsgICAyNC43Njc3MTldIG5vdXZlYXUgMDAwMDowMjowMC4w
+OiBEUk06IERDQiBvdXRwIDAwOiAwMjAwMDMwMCAwMDAwMDAyOApbICAgMjQuNzY3ODY5XSBub3V2
+ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMTogMDEwMDAzMDIgMDAwMjAwMzAKWyAg
+IDI0Ljc2ODAxOV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IERSTTogRENCIG91dHAgMDI6IDA0MDEx
+MzEwIDAwMDAwMDI4ClsgICAyNC43NjgxNjddIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IERD
+QiBvdXRwIDAzOiAwMTAyMjNmMSAwMGMwYzA4MApbICAgMjQuNzY4MzM5XSBub3V2ZWF1IDAwMDA6
+MDI6MDAuMDogRFJNOiBEQ0IgY29ubiAwMDogMDAwMDEwMzAKWyAgIDI0Ljc2ODQ4N10gbm91dmVh
+dSAwMDAwOjAyOjAwLjA6IERSTTogRENCIGNvbm4gMDE6IDAwMDAwMTAwClsgICAyNC43Njg2Mzhd
+IG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IERDQiBjb25uIDAyOiAwMDAwMDIxMApbICAgMjQu
+NzY4Nzg0XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiBEQ0IgY29ubiAwMzogMDAwMDAyMTEK
+WyAgIDI0Ljc2ODkzMl0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IERSTTogRENCIGNvbm4gMDQ6IDAw
+MDAwMjEzClsgICAyNC43NzY2MjldIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IGZhaWxlZCB0
+byBjcmVhdGUgZW5jb2RlciAwLzEvMDogLTE5ClsgICAyNC43NzY3NjBdIG5vdXZlYXUgMDAwMDow
+MjowMC4wOiBEUk06IFRWLTEgaGFzIG5vIGVuY29kZXJzLCByZW1vdmluZwpbICAgMjQuNzkxNzUy
+XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiBNTTogdXNpbmcgTTJNRiBmb3IgYnVmZmVyIGNv
+cGllcwpbICAgMjQuODU4NTk0XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiBhbGxvY2F0ZWQg
+MTkyMHgxMDgwIGZiOiAweDUwMDAwLCBibyBmZmZmOTAxM2UzMTYyMDAwClsgICAyNC44NTk5NDld
+IGZiY29uOiBub3V2ZWF1ZmIgKGZiMCkgaXMgcHJpbWFyeSBkZXZpY2UKWyAgIDI0LjkwODg5OF0g
+bm91dmVhdSAwMDAwOjAyOjAwLjA6IGZiMDogbm91dmVhdWZiIGZyYW1lIGJ1ZmZlciBkZXZpY2UK
+WyAgIDI0LjkyMTQzMl0gW2RybV0gSW5pdGlhbGl6ZWQgbm91dmVhdSAxLjMuMSAyMDEyMDgwMSBm
+b3IgMDAwMDowMjowMC4wIG9uIG1pbm9yIDAKWyAgIDYxLjE5ODM3NF0gbm91dmVhdSAwMDAwOjAy
+OjAwLjA6IERpcmVjdCBmaXJtd2FyZSBsb2FkIGZvciBub3V2ZWF1L252OThfZnVjMDg0IGZhaWxl
+ZCB3aXRoIGVycm9yIC0yClsgICA2MS4xOTg1NjNdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEaXJl
+Y3QgZmlybXdhcmUgbG9hZCBmb3Igbm91dmVhdS9udjk4X2Z1YzA4NGQgZmFpbGVkIHdpdGggZXJy
+b3IgLTIKWyAgIDYxLjE5ODU4MF0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IG1zdmxkOiB1bmFibGUg
+dG8gbG9hZCBmaXJtd2FyZSBkYXRhClsgICA2MS4xOTg1ODhdIG5vdXZlYXUgMDAwMDowMjowMC4w
+OiBtc3ZsZDogaW5pdCBmYWlsZWQsIC0xOQpbICAgNzYuMTk3NDMzXSBub3V2ZWF1IDAwMDA6MDI6
+MDAuMDogRGlyZWN0IGZpcm13YXJlIGxvYWQgZm9yIG5vdXZlYXUvbnY5OF9mdWMwODQgZmFpbGVk
+IHdpdGggZXJyb3IgLTIKWyAgIDc2LjE5NzQ2OF0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IERpcmVj
+dCBmaXJtd2FyZSBsb2FkIGZvciBub3V2ZWF1L252OThfZnVjMDg0ZCBmYWlsZWQgd2l0aCBlcnJv
+ciAtMgpbICAgNzYuMTk3NDczXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogbXN2bGQ6IHVuYWJsZSB0
+byBsb2FkIGZpcm13YXJlIGRhdGEKWyAgIDc2LjE5NzQ3NV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6
+IG1zdmxkOiBpbml0IGZhaWxlZCwgLTE5CiAgICAgICAgICAgICAgIFMzIC8gUzQgLyBSRVNVTUUK
+WyAgMTk0LjUzMjQwMV0gbm91dmVhdSAwMDAwOjAyOjAwLjA6IERSTTogc3VzcGVuZGluZyBjb25z
+b2xlLi4uClsgIDE5NC41MzI2MzhdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IHN1c3BlbmRp
+bmcgZGlzcGxheS4uLgpbICAxOTQuNTU5MTY2XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiBl
+dmljdGluZyBidWZmZXJzLi4uClsgIDE5NS43MTYyMDVdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBE
+Uk06IHdhaXRpbmcgZm9yIGtlcm5lbCBjaGFubmVscyB0byBnbyBpZGxlLi4uClsgIDE5NS43MTYz
+MjhdIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IHN1c3BlbmRpbmcgY2xpZW50IG9iamVjdCB0
+cmVlcy4uLgpbICAxOTUuNzE3MDg5XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiBzdXNwZW5k
+aW5nIGtlcm5lbCBvYmplY3QgdHJlZS4uLgpbICAxOTcuNDY0MjI1XSBub3V2ZWF1IDAwMDA6MDI6
+MDAuMDogRFJNOiByZXN1bWluZyBrZXJuZWwgb2JqZWN0IHRyZWUuLi4KWyAgMTk3LjU3OTA5OV0g
+bm91dmVhdSAwMDAwOjAyOjAwLjA6IERSTTogcmVzdW1pbmcgY2xpZW50IG9iamVjdCB0cmVlcy4u
+LgpbICAxOTcuNTc5NDI5XSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogRFJNOiByZXN1bWluZyBkaXNw
+bGF5Li4uClsgIDE5Ny42MDUwNjldIG5vdXZlYXUgMDAwMDowMjowMC4wOiBEUk06IHJlc3VtaW5n
+IGNvbnNvbGUuLi4KCgo9IElPTiBWR0EKJCBkbWVzZyB8IGdyZXAgbm91dmVhdQpbICAgMzkuMjM5
+NjcyXSBub3V2ZWF1OiBsb2FkaW5nIG91dC1vZi10cmVlIG1vZHVsZSB0YWludHMga2VybmVsLgpb
+ICAgMzkuMjQ5ODMyXSBub3V2ZWF1OiBtb2R1bGUgdmVyaWZpY2F0aW9uIGZhaWxlZDogc2lnbmF0
+dXJlIGFuZC9vciByZXF1aXJlZCBrZXkgbWlzc2luZyAtIHRhaW50aW5nIGtlcm5lbApbICAgMzku
+MzkyODU5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogTlZJRElBIE1DUDc5L01DUDdBIC4uLgpbICAg
+MzkuNDE3NDk5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogYmlvczogdmVyc2lvbiAuLi4KWyAgIDM5
+LjQ0ODUzNV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZiOiAyNTYgTWlCIHN0b2xlbiBzeXN0ZW0g
+bWVtb3J5ClsgICAzOS41MDk2NDhdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IFZSQU06IDI1
+NiBNaUIKWyAgIDM5LjUxNDIwOF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogR0FSVDogMTA0
+ODU3NiBNaUIKWyAgIDM5LjUxODg4NF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogVE1EUyB0
+YWJsZSB2ZXJzaW9uIDIuMApbICAgMzkuNTE4ODkxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJN
+OiBEQ0IgdmVyc2lvbiA0LjAKWyAgIDM5LjUxODg5OV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERS
+TTogRENCIG91dHAgMDA6IDAyMDAwMzAwIDAwMDAwMDFlClsgICAzOS41MTg5MDZdIG5vdXZlYXUg
+MDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAxOiAwMTAxMTMyMiAwMDAwMDAzMApbICAgMzku
+NTE4OTEyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMjogMDIwMjIzMzIg
+MDAwMjAwMTAKWyAgIDM5LjUxODkyMl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIGNv
+bm4gMDA6IDAwMDAwMDAwClsgICAzOS41MTg5MzVdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06
+IERDQiBjb25uIDAxOiAwMDAwMTEzMQpbICAgMzkuNTE4OTQxXSBub3V2ZWF1IDAwMDA6MDE6MDAu
+MDogRFJNOiBEQ0IgY29ubiAwMjogMDAwMDIyNjEKWyAgIDM5LjU1NzA2OV0gbm91dmVhdSAwMDAw
+OjAxOjAwLjA6IERSTTogTU06IHVzaW5nIE0yTUYgZm9yIGJ1ZmZlciBjb3BpZXMKWyAgIDM5LjYz
+NDA4MF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogYWxsb2NhdGVkIDE5MjB4MTA4MCBmYjog
+MHg1MDAwMCwgYm8gZmZmZjhhYjJhZmUxYjAwMApbICAgMzkuNjQxMzA2XSBmYmNvbjogbm91dmVh
+dWZiIChmYjEpIGlzIHByaW1hcnkgZGV2aWNlClsgICAzOS44ODE0MjZdIG5vdXZlYXUgMDAwMDow
+MTowMC4wOiBmYjE6IG5vdXZlYXVmYiBmcmFtZSBidWZmZXIgZGV2aWNlClsgICAzOS44ODE0NzVd
+IFtkcm1dIEluaXRpYWxpemVkIG5vdXZlYXUgMS4zLjEgMjAxMjA4MDEgZm9yIDAwMDA6MDE6MDAu
+MCBvbiBtaW5vciAxCgoKQXQgbGVhc3Qgd2hhdCBpcyBvYnZpb3VzIHZpc2libGUgYWluJ3QgYnJv
+a2VuLCB0b3dhcmRzIGF0b21pYyBtb2Rlc2V0LgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
