@@ -1,15 +1,12 @@
-From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Subject: Re: [PATCH v2] gr: fallback to legacy paths during
- firmware lookup
-Date: Sat, 5 Nov 2016 16:12:49 +0100
-Message-ID: <20161105151249.GA19457@al>
-References: <20161104093617.11370-1-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93828] Xorg hangs randomly with nouveau driver
+Date: Sat, 05 Nov 2016 15:52:31 +0000
+Message-ID: <bug-93828-8800-eh4AaWztlq@http.bugs.freedesktop.org/>
+References: <bug-93828-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2131016949=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20161104093617.11370-1-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-93828-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,66 +16,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBOb3YgMDQsIDIwMTYgYXQgMDY6MzY6MTdQTSArMDkwMCwgQWxleGFuZHJlIENvdXJi
-b3Qgd3JvdGU6Cj4gTG9vayBmb3IgZmlybXdhcmUgZmlsZXMgdXNpbmcgdGhlIGxlZ2FjeSAoIm5v
-dXZlYXUvbnZ4eF9mdWN4eHh4IikgcGF0aAo+IGlmIHRoZXkgY2Fubm90IGJlIGZvdW5kIGluIHRo
-ZSBuZXcsICJvZmZpY2lhbCIgcGF0aC4gVXNlciBzZXR1cHMgd2VyZQo+IGJyb2tlbiBieSB0aGUg
-c3dpdGNoLCB3aGljaCBpcyBiYWQuCj4gCj4gVGhlcmUgYXJlIG9ubHkgNCBmaXJtd2FyZSBmaWxl
-cyB3ZSBtYXkgd2FudCB0byBsb29rIHVwIHRoYXQgd2F5LCBzbwo+IGhhcmRjb2RlIHRoZW0gaW50
-byB0aGUgbG9va3VwIGZ1bmN0aW9uLiBBbGwgbmV3IGZpcm13YXJlIGZpbGVzIHNob3VsZAo+IHVz
-ZSB0aGUgc3RhbmRhcmQgIm52aWRpYS88Y2hpcD4vZ3IvIiBwYXRoLgo+IAo+IEZpeGVzOiA4NTM5
-YjM3YWNlZjcgKCJkcm0vbm91dmVhdS9ncjogdXNlIE5WSURJQS1wcm92aWRlZCBleHRlcm5hbCBm
-aXJtd2FyZXMiKQo+IFNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBu
-dmlkaWEuY29tPgo+IC0tLQo+IENoYW5nZXMgc2luY2UgdjE6Cj4gKiBNb3ZlZCBmaWxlIG5hbWUg
-dHJhbnNsYXRpb24gaW50byB0aGUgbGVnYWN5IGZ1bmN0aW9uCj4gCj4gIGRybS9ub3V2ZWF1L252
-a20vZW5naW5lL2dyL2dmMTAwLmMgfCA1MyArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKy0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgNDkgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMo
-LSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYyBi
-L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMKPiBpbmRleCBlY2NkZWUwNDEwN2Qu
-LmVkNDVmOTIzNDQyZiAxMDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9n
-ZjEwMC5jCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwo+IEBAIC0x
-NzU2LDYgKzE3NTYsNTMgQEAgZ2YxMDBfZ3JfID0gewo+ICB9Owo+ICAKPiAgaW50Cj4gK2dmMTAw
-X2dyX2N0b3JfZndfbGVnYWN5KHN0cnVjdCBnZjEwMF9nciAqZ3IsIGNvbnN0IGNoYXIgKmZ3bmFt
-ZSwKPiArCQkJc3RydWN0IGdmMTAwX2dyX2Z1YyAqZnVjLCBpbnQgcmV0KQo+ICt7Cj4gKwlzdHJ1
-Y3QgbnZrbV9zdWJkZXYgKnN1YmRldiA9ICZnci0+YmFzZS5lbmdpbmUuc3ViZGV2Owo+ICsJc3Ry
-dWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBzdWJkZXYtPmRldmljZTsKPiArCWNvbnN0IHN0cnVj
-dCBmaXJtd2FyZSAqZnc7Cj4gKwljaGFyIGZbMzJdOwo+ICsKPiArCS8qIHNlZSBpZiB0aGlzIGZp
-cm13YXJlIGhhcyBhIGxlZ2FjeSBwYXRoICovCj4gKwlpZiAoIXN0cmNtcChmd25hbWUsICJmZWNz
-X2luc3QiKSkKPiArCQlmd25hbWUgPSAiZnVjNDA5YyI7Cj4gKwllbHNlIGlmICghc3RyY21wKGZ3
-bmFtZSwgImZlY3NfZGF0YSIpKQo+ICsJCWZ3bmFtZSA9ICJmdWM0MDlkIjsKPiArCWVsc2UgaWYg
-KCFzdHJjbXAoZnduYW1lLCAiZ3BjY3NfaW5zdCIpKQo+ICsJCWZ3bmFtZSA9ICJmdWM0MWFjIjsK
-PiArCWVsc2UgaWYgKCFzdHJjbXAoZnduYW1lLCAiZ3BjY3NfZGF0YSIpKQo+ICsJCWZ3bmFtZSA9
-ICJmdWM0MWFkIjsKPiArCWVsc2UKPiArCQlmd25hbWUgPSBOVUxMOwo+ICsKPiArCS8qIG5vcGUs
-IGxldCdzIGp1c3QgcmV0dXJuIHRoZSBlcnJvciB3ZSBnb3QgKi8KPiArCWlmICghZnduYW1lKSB7
-Cj4gKwkJbnZrbV9lcnJvcihzdWJkZXYsICJmYWlsZWQgdG8gbG9hZCAlc1xuIiwgZnduYW1lKTsK
-CkR1ZSB0byB0aGUgcmVuYW1lIGZyb20gbGVnYWN5X2Z3bmFtZSAtPiBmd25hbWUsIHRoaXMgY2Fu
-IGJlIE5VTEwuCldoYXQgYWJvdXQgcmVwbGFjaW5nIHRoZSBlbHNlIGJyYW5jaCBhYm92ZSBieSB0
-aGlzIGJsb2NrPwoKS2luZCByZWdhcmRzLApQZXRlcgoKPiArCQlyZXR1cm4gcmV0Owo+ICsJfQo+
-ICsKPiArCS8qIHllcywgdHJ5IHRvIGxvYWQgZnJvbSB0aGUgbGVnYWN5IHBhdGggKi8KPiArCW52
-a21fZGVidWcoc3ViZGV2LCAiJXM6IGZhbGxpbmcgYmFjayB0byBsZWdhY3kgcGF0aFxuIiwgZndu
-YW1lKTsKPiArCj4gKwlzbnByaW50ZihmLCBzaXplb2YoZiksICJub3V2ZWF1L252JTAyeF8lcyIs
-IGRldmljZS0+Y2hpcHNldCwgZnduYW1lKTsKPiArCXJldCA9IHJlcXVlc3RfZmlybXdhcmUoJmZ3
-LCBmLCBkZXZpY2UtPmRldik7Cj4gKwlpZiAocmV0KSB7Cj4gKwkJc25wcmludGYoZiwgc2l6ZW9m
-KGYpLCAibm91dmVhdS8lcyIsIGZ3bmFtZSk7Cj4gKwkJcmV0ID0gcmVxdWVzdF9maXJtd2FyZSgm
-ZncsIGYsIGRldmljZS0+ZGV2KTsKPiArCQlpZiAocmV0KSB7Cj4gKwkJCW52a21fZXJyb3Ioc3Vi
-ZGV2LCAiZmFpbGVkIHRvIGxvYWQgJXNcbiIsIGZ3bmFtZSk7Cj4gKwkJCXJldHVybiByZXQ7Cj4g
-KwkJfQo+ICsJfQo+ICsKPiArCWZ1Yy0+c2l6ZSA9IGZ3LT5zaXplOwo+ICsJZnVjLT5kYXRhID0g
-a21lbWR1cChmdy0+ZGF0YSwgZnVjLT5zaXplLCBHRlBfS0VSTkVMKTsKPiArCXJlbGVhc2VfZmly
-bXdhcmUoZncpOwo+ICsJcmV0dXJuIChmdWMtPmRhdGEgIT0gTlVMTCkgPyAwIDogLUVOT01FTTsK
-PiArfQo+ICsKPiAraW50Cj4gIGdmMTAwX2dyX2N0b3JfZncoc3RydWN0IGdmMTAwX2dyICpnciwg
-Y29uc3QgY2hhciAqZnduYW1lLAo+ICAJCSBzdHJ1Y3QgZ2YxMDBfZ3JfZnVjICpmdWMpCj4gIHsK
-PiBAQCAtMTc2NSwxMCArMTgxMiw4IEBAIGdmMTAwX2dyX2N0b3JfZncoc3RydWN0IGdmMTAwX2dy
-ICpnciwgY29uc3QgY2hhciAqZnduYW1lLAo+ICAJaW50IHJldDsKPiAgCj4gIAlyZXQgPSBudmtt
-X2Zpcm13YXJlX2dldChkZXZpY2UsIGZ3bmFtZSwgJmZ3KTsKPiAtCWlmIChyZXQpIHsKPiAtCQlu
-dmttX2Vycm9yKHN1YmRldiwgImZhaWxlZCB0byBsb2FkICVzXG4iLCBmd25hbWUpOwo+IC0JCXJl
-dHVybiByZXQ7Cj4gLQl9Cj4gKwlpZiAocmV0KQo+ICsJCXJldHVybiBnZjEwMF9ncl9jdG9yX2Z3
-X2xlZ2FjeShnciwgZnduYW1lLCBmdWMsIHJldCk7Cj4gIAo+ICAJZnVjLT5zaXplID0gZnctPnNp
-emU7Cj4gIAlmdWMtPmRhdGEgPSBrbWVtZHVwKGZ3LT5kYXRhLCBmdWMtPnNpemUsIEdGUF9LRVJO
-RUwpOwo+IC0tIAo+IDIuMTAuMApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============2131016949==
+Content-Type: multipart/alternative; boundary="14783611510.DD881.2969";
+ charset="UTF-8"
+
+
+--14783611510.DD881.2969
+Date: Sat, 5 Nov 2016 15:52:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93828
+
+--- Comment #10 from derrierdo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Hi,
+
+I've got the same issue with 4.4 (kernel) not with 4.1.15 when screensaver =
+fire
+up.
+How can I help, with trace/logfile ?
+
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GT218 [GeForce 210] (=
+rev
+a2)
+
+
+Nov  5 08:27:01 wizz kernel: nouveau 0000:01:00.0: fifo: CACHE_ERROR - ch 11
+[flux[21781]] subc 6 mthd 01c8 data beef0201
+Nov  5 08:27:01 wizz kernel: nouveau 0000:01:00.0: fifo: CACHE_ERROR - ch 11
+[flux[21781]] subc 6 mthd 01c4 data beef0201
+Nov  5 08:27:01 wizz kernel: nouveau 0000:01:00.0: fifo: CACHE_ERROR - ch 11
+[flux[21781]] subc 6 mthd 01c0 data beef0201
+Nov  5 08:27:01 wizz kernel: nouveau 0000:01:00.0: fifo: CACHE_ERROR - ch 11
+[flux[21781]] subc 6 mthd 01b8 data beef0201
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14783611510.DD881.2969
+Date: Sat, 5 Nov 2016 15:52:31 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg hangs randomly with nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828#c10">Commen=
+t # 10</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg hangs randomly with nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828">bug 93828<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+derrierdo&#64;gmail.com" title=3D"derrierdo&#64;gmail.com">derrierdo&#64;gm=
+ail.com</a>
+</span></b>
+        <pre>Hi,
+
+I've got the same issue with 4.4 (kernel) not with 4.1.15 when screensaver =
+fire
+up.
+How can I help, with trace/logfile ?
+
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GT218 [GeForce 210] (=
+rev
+a2)
+
+
+Nov  5 08:27:01 wizz kernel: nouveau 0000:01:00.0: fifo: CACHE_ERROR - ch 11
+[flux[21781]] subc 6 mthd 01c8 data beef0201
+Nov  5 08:27:01 wizz kernel: nouveau 0000:01:00.0: fifo: CACHE_ERROR - ch 11
+[flux[21781]] subc 6 mthd 01c4 data beef0201
+Nov  5 08:27:01 wizz kernel: nouveau 0000:01:00.0: fifo: CACHE_ERROR - ch 11
+[flux[21781]] subc 6 mthd 01c0 data beef0201
+Nov  5 08:27:01 wizz kernel: nouveau 0000:01:00.0: fifo: CACHE_ERROR - ch 11
+[flux[21781]] subc 6 mthd 01b8 data beef0201</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14783611510.DD881.2969--
+
+--===============2131016949==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2131016949==--
