@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
-	rescan
-Date: Sat, 05 Nov 2016 22:30:27 +0000
-Message-ID: <bug-75985-8800-0IwX9ylJ8M@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2] gr: fallback to legacy paths during
+	firmware lookup
+Date: Sun, 6 Nov 2016 18:02:58 +0900
+Message-ID: <CAAVeFuKJWGFFWBEm8RWkKathk1sAopbg65Wzi03b59c8ngZzLw@mail.gmail.com>
+References: <20161104093617.11370-1-acourbot@nvidia.com>
+ <20161105151249.GA19457@al>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1625008000=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20161105151249.GA19457@al>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,129 +19,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1625008000==
-Content-Type: multipart/alternative; boundary="14783850273.a38c4a962.24430";
- charset="UTF-8"
-
-
---14783850273.a38c4a962.24430
-Date: Sat, 5 Nov 2016 22:30:27 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
-
---- Comment #8 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
-Following these steps I always see an audio function (01:00.1):
-
-1. Power off laptop
-2. Insert miniDP cable (HDMI probably works as well, did not test)
-3. Power on laptop
-4. Check lspci -s1:
-
-When booting the laptop without cable there is some other weird behavior:
-1. Power on laptop
-2. Run "lspci -s1: ; lspci -H1 -s:"
-   (first command also resumes the dGPU as side-effect)
-   Expected: 2x 01:00:0
-3. Wait 5 seconds for the card to runtime suspend (important, verify that t=
-his
-is actually the case, e.g. by watching "dmesg -w").
-4. Insert cable
-5. Run the above two lspci commands again. Now I also see the audio function
-(01:00.1).
-6. Repeat step 3, remove audio cable, repeat step 5 (now the audio function=
- is
-gone again!)
-
-This was tested on a Clevo P651RA (GTX 965M). Weird!
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14783850273.a38c4a962.24430
-Date: Sat, 5 Nov 2016 22:30:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c8">Comment=
- # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
-> <span class=3D"fn">Peter Wu</span></a>
-</span></b>
-        <pre>Following these steps I always see an audio function (01:00.1):
-
-1. Power off laptop
-2. Insert miniDP cable (HDMI probably works as well, did not test)
-3. Power on laptop
-4. Check lspci -s1:
-
-When booting the laptop without cable there is some other weird behavior:
-1. Power on laptop
-2. Run &quot;lspci -s1: ; lspci -H1 -s:&quot;
-   (first command also resumes the dGPU as side-effect)
-   Expected: 2x 01:00:0
-3. Wait 5 seconds for the card to runtime suspend (important, verify that t=
-his
-is actually the case, e.g. by watching &quot;dmesg -w&quot;).
-4. Insert cable
-5. Run the above two lspci commands again. Now I also see the audio function
-(01:00.1).
-6. Repeat step 3, remove audio cable, repeat step 5 (now the audio function=
- is
-gone again!)
-
-This was tested on a Clevo P651RA (GTX 965M). Weird!</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14783850273.a38c4a962.24430--
-
---===============1625008000==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1625008000==--
+T24gU3VuLCBOb3YgNiwgMjAxNiBhdCAxMjoxMiBBTSwgUGV0ZXIgV3UgPHBldGVyQGxla2Vuc3Rl
+eW4ubmw+IHdyb3RlOgo+IE9uIEZyaSwgTm92IDA0LCAyMDE2IGF0IDA2OjM2OjE3UE0gKzA5MDAs
+IEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+PiBMb29rIGZvciBmaXJtd2FyZSBmaWxlcyB1c2lu
+ZyB0aGUgbGVnYWN5ICgibm91dmVhdS9udnh4X2Z1Y3h4eHgiKSBwYXRoCj4+IGlmIHRoZXkgY2Fu
+bm90IGJlIGZvdW5kIGluIHRoZSBuZXcsICJvZmZpY2lhbCIgcGF0aC4gVXNlciBzZXR1cHMgd2Vy
+ZQo+PiBicm9rZW4gYnkgdGhlIHN3aXRjaCwgd2hpY2ggaXMgYmFkLgo+Pgo+PiBUaGVyZSBhcmUg
+b25seSA0IGZpcm13YXJlIGZpbGVzIHdlIG1heSB3YW50IHRvIGxvb2sgdXAgdGhhdCB3YXksIHNv
+Cj4+IGhhcmRjb2RlIHRoZW0gaW50byB0aGUgbG9va3VwIGZ1bmN0aW9uLiBBbGwgbmV3IGZpcm13
+YXJlIGZpbGVzIHNob3VsZAo+PiB1c2UgdGhlIHN0YW5kYXJkICJudmlkaWEvPGNoaXA+L2dyLyIg
+cGF0aC4KPj4KPj4gRml4ZXM6IDg1MzliMzdhY2VmNyAoImRybS9ub3V2ZWF1L2dyOiB1c2UgTlZJ
+RElBLXByb3ZpZGVkIGV4dGVybmFsIGZpcm13YXJlcyIpCj4+IFNpZ25lZC1vZmYtYnk6IEFsZXhh
+bmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgo+PiAtLS0KPj4gQ2hhbmdlcyBzaW5j
+ZSB2MToKPj4gKiBNb3ZlZCBmaWxlIG5hbWUgdHJhbnNsYXRpb24gaW50byB0aGUgbGVnYWN5IGZ1
+bmN0aW9uCj4+Cj4+ICBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jIHwgNTMgKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0KPj4gIDEgZmlsZSBjaGFuZ2VkLCA0
+OSBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJtL25v
+dXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dy
+L2dmMTAwLmMKPj4gaW5kZXggZWNjZGVlMDQxMDdkLi5lZDQ1ZjkyMzQ0MmYgMTAwNjQ0Cj4+IC0t
+LSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMKPj4gKysrIGIvZHJtL25vdXZl
+YXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwo+PiBAQCAtMTc1Niw2ICsxNzU2LDUzIEBAIGdmMTAw
+X2dyXyA9IHsKPj4gIH07Cj4+Cj4+ICBpbnQKPj4gK2dmMTAwX2dyX2N0b3JfZndfbGVnYWN5KHN0
+cnVjdCBnZjEwMF9nciAqZ3IsIGNvbnN0IGNoYXIgKmZ3bmFtZSwKPj4gKyAgICAgICAgICAgICAg
+ICAgICAgIHN0cnVjdCBnZjEwMF9ncl9mdWMgKmZ1YywgaW50IHJldCkKPj4gK3sKPj4gKyAgICAg
+c3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSAmZ3ItPmJhc2UuZW5naW5lLnN1YmRldjsKPj4g
+KyAgICAgc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBzdWJkZXYtPmRldmljZTsKPj4gKyAg
+ICAgY29uc3Qgc3RydWN0IGZpcm13YXJlICpmdzsKPj4gKyAgICAgY2hhciBmWzMyXTsKPj4gKwo+
+PiArICAgICAvKiBzZWUgaWYgdGhpcyBmaXJtd2FyZSBoYXMgYSBsZWdhY3kgcGF0aCAqLwo+PiAr
+ICAgICBpZiAoIXN0cmNtcChmd25hbWUsICJmZWNzX2luc3QiKSkKPj4gKyAgICAgICAgICAgICBm
+d25hbWUgPSAiZnVjNDA5YyI7Cj4+ICsgICAgIGVsc2UgaWYgKCFzdHJjbXAoZnduYW1lLCAiZmVj
+c19kYXRhIikpCj4+ICsgICAgICAgICAgICAgZnduYW1lID0gImZ1YzQwOWQiOwo+PiArICAgICBl
+bHNlIGlmICghc3RyY21wKGZ3bmFtZSwgImdwY2NzX2luc3QiKSkKPj4gKyAgICAgICAgICAgICBm
+d25hbWUgPSAiZnVjNDFhYyI7Cj4+ICsgICAgIGVsc2UgaWYgKCFzdHJjbXAoZnduYW1lLCAiZ3Bj
+Y3NfZGF0YSIpKQo+PiArICAgICAgICAgICAgIGZ3bmFtZSA9ICJmdWM0MWFkIjsKPj4gKyAgICAg
+ZWxzZQo+PiArICAgICAgICAgICAgIGZ3bmFtZSA9IE5VTEw7Cj4+ICsKPj4gKyAgICAgLyogbm9w
+ZSwgbGV0J3MganVzdCByZXR1cm4gdGhlIGVycm9yIHdlIGdvdCAqLwo+PiArICAgICBpZiAoIWZ3
+bmFtZSkgewo+PiArICAgICAgICAgICAgIG52a21fZXJyb3Ioc3ViZGV2LCAiZmFpbGVkIHRvIGxv
+YWQgJXNcbiIsIGZ3bmFtZSk7Cj4KPiBEdWUgdG8gdGhlIHJlbmFtZSBmcm9tIGxlZ2FjeV9md25h
+bWUgLT4gZnduYW1lLCB0aGlzIGNhbiBiZSBOVUxMLgo+IFdoYXQgYWJvdXQgcmVwbGFjaW5nIHRo
+ZSBlbHNlIGJyYW5jaCBhYm92ZSBieSB0aGlzIGJsb2NrPwoKQWgsIHN0dXBpZCBtZSAtIEkgd2Fu
+dGVkIHRvIHNhdmUgYSB2YXJpYWJsZSBhbmQgaGVyZSBpcyB0aGUgcmVzdWx0LgpUaGFua3MgZm9y
+IGNhdGNoaW5nIHRoaXMsIEkgd2lsbCBzZW5kIGEgZml4dXAgcGF0Y2ggdG8gQmVuLgpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
