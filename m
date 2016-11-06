@@ -1,10 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98609] New: Firefox right click corrupted with DRI3
-Date: Sun, 06 Nov 2016 11:53:32 +0000
-Message-ID: <bug-98609-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92057] nouveau hard crash seems to poke arbitrary
+	mmio address
+Date: Sun, 06 Nov 2016 14:04:44 +0000
+Message-ID: <bug-92057-8800-ksT1kpm9k6@http.bugs.freedesktop.org/>
+References: <bug-92057-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1380864353=="
+Content-Type: multipart/mixed; boundary="===============1149858834=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-92057-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,53 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1380864353==
-Content-Type: multipart/alternative; boundary="14784332120.CF10f0e.26258";
+--===============1149858834==
+Content-Type: multipart/alternative; boundary="14784410841.dC0F52.836";
  charset="UTF-8"
 
 
---14784332120.CF10f0e.26258
-Date: Sun, 6 Nov 2016 11:53:32 +0000
+--14784410841.dC0F52.836
+Date: Sun, 6 Nov 2016 14:04:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98609
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92057
 
-            Bug ID: 98609
-           Summary: Firefox right click corrupted with DRI3
-           Product: Mesa
-           Version: unspecified
-          Hardware: All
-                OS: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: jeremy9856-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-Hello,
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
 
-Firefox right click is corrupted with DRI3 enabled. It works with DRI2.
-
-Fedora 24/25
-
-I don't know if you need more info. If it's the case just ask me what you n=
-eed.
-
-Thanks !
+--- Comment #2 from roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Fixed in 4.2
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14784332120.CF10f0e.26258
-Date: Sun, 6 Nov 2016 11:53:32 +0000
+--14784410841.dC0F52.836
+Date: Sun, 6 Nov 2016 14:04:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,99 +62,58 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Firefox right click corrupted with DRI3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98609">98609</a>
-          </td>
-        </tr>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:roucaries=
+.bastien+bugs&#64;gmail.com" title=3D"roucaries.bastien+bugs&#64;gmail.com"=
+>roucaries.bastien+bugs&#64;gmail.com</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - nouveau hard crash seems to poke arbitrary mmi=
+o address"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92057">bug 92057<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>Firefox right click corrupted with DRI3
-          </td>
-        </tr>
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
 
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>jeremy9856&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Hello,
-
-Firefox right click is corrupted with DRI3 enabled. It works with DRI2.
-
-Fedora 24/25
-
-I don't know if you need more info. If it's the case just ask me what you n=
-eed.
-
-Thanks !</pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - nouveau hard crash seems to poke arbitrary mmi=
+o address"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92057#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - nouveau hard crash seems to poke arbitrary mmi=
+o address"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92057">bug 92057<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+roucaries.bastien+bugs&#64;gmail.com" title=3D"roucaries.bastien+bugs&#64;g=
+mail.com">roucaries.bastien+bugs&#64;gmail.com</a>
+</span></b>
+        <pre>Fixed in 4.2</pre>
         </div>
       </p>
 
@@ -177,14 +123,13 @@ Thanks !</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14784332120.CF10f0e.26258--
+--14784410841.dC0F52.836--
 
---===============1380864353==
+--===============1149858834==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -194,4 +139,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1380864353==--
+--===============1149858834==--
