@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98609] Firefox right click corrupted with DRI3
-Date: Sun, 06 Nov 2016 16:44:49 +0000
-Message-ID: <bug-98609-8800-tN2vIj3oiW@http.bugs.freedesktop.org/>
+Date: Sun, 06 Nov 2016 16:44:30 +0000
+Message-ID: <bug-98609-8800-JKGI4GF6N8@http.bugs.freedesktop.org/>
 References: <bug-98609-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1414435615=="
+Content-Type: multipart/mixed; boundary="===============0061518315=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98609-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1414435615==
-Content-Type: multipart/alternative; boundary="14784506891.208fC9.10580";
+--===============0061518315==
+Content-Type: multipart/alternative; boundary="14784506700.61bcd4f8c.10099";
  charset="UTF-8"
 
 
---14784506891.208fC9.10580
-Date: Sun, 6 Nov 2016 16:44:49 +0000
+--14784506700.61bcd4f8c.10099
+Date: Sun, 6 Nov 2016 16:44:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,10 +35,10 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98609
 
---- Comment #3 from Paviluf <jeremy9856-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 127802
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127802&action=3Dedit
-screenshot 2
+--- Comment #2 from Paviluf <jeremy9856-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 127801
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127801&action=3Dedit
+screenshot 1
 
 Firefox right click corrupted
 
@@ -47,8 +47,8 @@ You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14784506891.208fC9.10580
-Date: Sun, 6 Nov 2016 16:44:49 +0000
+--14784506700.61bcd4f8c.10099
+Date: Sun, 6 Nov 2016 16:44:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +65,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Firefox right click corrupted with DRI3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98609#c3">Comment=
- # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98609#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Firefox right click corrupted with DRI3"
@@ -76,11 +76,11 @@ Auto-Submitted: auto-generated
 jeremy9856&#64;gmail.com" title=3D"Paviluf &lt;jeremy9856&#64;gmail.com&gt;=
 "> <span class=3D"fn">Paviluf</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127802=
-" name=3D"attach_127802" title=3D"screenshot 2">attachment 127802</a> <a hr=
-ef=3D"attachment.cgi?id=3D127802&amp;action=3Dedit" title=3D"screenshot 2">=
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127801=
+" name=3D"attach_127801" title=3D"screenshot 1">attachment 127801</a> <a hr=
+ef=3D"attachment.cgi?id=3D127801&amp;action=3Dedit" title=3D"screenshot 1">=
 [details]</a></span>
-screenshot 2
+screenshot 1
 
 Firefox right click corrupted</pre>
         </div>
@@ -97,9 +97,9 @@ Firefox right click corrupted</pre>
     </body>
 </html>=
 
---14784506891.208fC9.10580--
+--14784506700.61bcd4f8c.10099--
 
---===============1414435615==
+--===============0061518315==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1414435615==--
+--===============0061518315==--
