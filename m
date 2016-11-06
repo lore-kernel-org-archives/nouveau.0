@@ -1,15 +1,13 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v2] gr: fallback to legacy paths during
-	firmware lookup
-Date: Sun, 6 Nov 2016 18:02:58 +0900
-Message-ID: <CAAVeFuKJWGFFWBEm8RWkKathk1sAopbg65Wzi03b59c8ngZzLw@mail.gmail.com>
-References: <20161104093617.11370-1-acourbot@nvidia.com>
- <20161105151249.GA19457@al>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 97462] Graphics deadlock "ILLEGAL_MTHD" in nouveau
+ with mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5
+Date: Sun, 06 Nov 2016 11:17:55 +0000
+Message-ID: <bug-97462-8800-B5kDj7slVk@http.bugs.freedesktop.org/>
+References: <bug-97462-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1911040592=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20161105151249.GA19457@al>
+In-Reply-To: <bug-97462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,51 +17,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBOb3YgNiwgMjAxNiBhdCAxMjoxMiBBTSwgUGV0ZXIgV3UgPHBldGVyQGxla2Vuc3Rl
-eW4ubmw+IHdyb3RlOgo+IE9uIEZyaSwgTm92IDA0LCAyMDE2IGF0IDA2OjM2OjE3UE0gKzA5MDAs
-IEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+PiBMb29rIGZvciBmaXJtd2FyZSBmaWxlcyB1c2lu
-ZyB0aGUgbGVnYWN5ICgibm91dmVhdS9udnh4X2Z1Y3h4eHgiKSBwYXRoCj4+IGlmIHRoZXkgY2Fu
-bm90IGJlIGZvdW5kIGluIHRoZSBuZXcsICJvZmZpY2lhbCIgcGF0aC4gVXNlciBzZXR1cHMgd2Vy
-ZQo+PiBicm9rZW4gYnkgdGhlIHN3aXRjaCwgd2hpY2ggaXMgYmFkLgo+Pgo+PiBUaGVyZSBhcmUg
-b25seSA0IGZpcm13YXJlIGZpbGVzIHdlIG1heSB3YW50IHRvIGxvb2sgdXAgdGhhdCB3YXksIHNv
-Cj4+IGhhcmRjb2RlIHRoZW0gaW50byB0aGUgbG9va3VwIGZ1bmN0aW9uLiBBbGwgbmV3IGZpcm13
-YXJlIGZpbGVzIHNob3VsZAo+PiB1c2UgdGhlIHN0YW5kYXJkICJudmlkaWEvPGNoaXA+L2dyLyIg
-cGF0aC4KPj4KPj4gRml4ZXM6IDg1MzliMzdhY2VmNyAoImRybS9ub3V2ZWF1L2dyOiB1c2UgTlZJ
-RElBLXByb3ZpZGVkIGV4dGVybmFsIGZpcm13YXJlcyIpCj4+IFNpZ25lZC1vZmYtYnk6IEFsZXhh
-bmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgo+PiAtLS0KPj4gQ2hhbmdlcyBzaW5j
-ZSB2MToKPj4gKiBNb3ZlZCBmaWxlIG5hbWUgdHJhbnNsYXRpb24gaW50byB0aGUgbGVnYWN5IGZ1
-bmN0aW9uCj4+Cj4+ICBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jIHwgNTMgKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0KPj4gIDEgZmlsZSBjaGFuZ2VkLCA0
-OSBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJtL25v
-dXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dy
-L2dmMTAwLmMKPj4gaW5kZXggZWNjZGVlMDQxMDdkLi5lZDQ1ZjkyMzQ0MmYgMTAwNjQ0Cj4+IC0t
-LSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMKPj4gKysrIGIvZHJtL25vdXZl
-YXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwo+PiBAQCAtMTc1Niw2ICsxNzU2LDUzIEBAIGdmMTAw
-X2dyXyA9IHsKPj4gIH07Cj4+Cj4+ICBpbnQKPj4gK2dmMTAwX2dyX2N0b3JfZndfbGVnYWN5KHN0
-cnVjdCBnZjEwMF9nciAqZ3IsIGNvbnN0IGNoYXIgKmZ3bmFtZSwKPj4gKyAgICAgICAgICAgICAg
-ICAgICAgIHN0cnVjdCBnZjEwMF9ncl9mdWMgKmZ1YywgaW50IHJldCkKPj4gK3sKPj4gKyAgICAg
-c3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSAmZ3ItPmJhc2UuZW5naW5lLnN1YmRldjsKPj4g
-KyAgICAgc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBzdWJkZXYtPmRldmljZTsKPj4gKyAg
-ICAgY29uc3Qgc3RydWN0IGZpcm13YXJlICpmdzsKPj4gKyAgICAgY2hhciBmWzMyXTsKPj4gKwo+
-PiArICAgICAvKiBzZWUgaWYgdGhpcyBmaXJtd2FyZSBoYXMgYSBsZWdhY3kgcGF0aCAqLwo+PiAr
-ICAgICBpZiAoIXN0cmNtcChmd25hbWUsICJmZWNzX2luc3QiKSkKPj4gKyAgICAgICAgICAgICBm
-d25hbWUgPSAiZnVjNDA5YyI7Cj4+ICsgICAgIGVsc2UgaWYgKCFzdHJjbXAoZnduYW1lLCAiZmVj
-c19kYXRhIikpCj4+ICsgICAgICAgICAgICAgZnduYW1lID0gImZ1YzQwOWQiOwo+PiArICAgICBl
-bHNlIGlmICghc3RyY21wKGZ3bmFtZSwgImdwY2NzX2luc3QiKSkKPj4gKyAgICAgICAgICAgICBm
-d25hbWUgPSAiZnVjNDFhYyI7Cj4+ICsgICAgIGVsc2UgaWYgKCFzdHJjbXAoZnduYW1lLCAiZ3Bj
-Y3NfZGF0YSIpKQo+PiArICAgICAgICAgICAgIGZ3bmFtZSA9ICJmdWM0MWFkIjsKPj4gKyAgICAg
-ZWxzZQo+PiArICAgICAgICAgICAgIGZ3bmFtZSA9IE5VTEw7Cj4+ICsKPj4gKyAgICAgLyogbm9w
-ZSwgbGV0J3MganVzdCByZXR1cm4gdGhlIGVycm9yIHdlIGdvdCAqLwo+PiArICAgICBpZiAoIWZ3
-bmFtZSkgewo+PiArICAgICAgICAgICAgIG52a21fZXJyb3Ioc3ViZGV2LCAiZmFpbGVkIHRvIGxv
-YWQgJXNcbiIsIGZ3bmFtZSk7Cj4KPiBEdWUgdG8gdGhlIHJlbmFtZSBmcm9tIGxlZ2FjeV9md25h
-bWUgLT4gZnduYW1lLCB0aGlzIGNhbiBiZSBOVUxMLgo+IFdoYXQgYWJvdXQgcmVwbGFjaW5nIHRo
-ZSBlbHNlIGJyYW5jaCBhYm92ZSBieSB0aGlzIGJsb2NrPwoKQWgsIHN0dXBpZCBtZSAtIEkgd2Fu
-dGVkIHRvIHNhdmUgYSB2YXJpYWJsZSBhbmQgaGVyZSBpcyB0aGUgcmVzdWx0LgpUaGFua3MgZm9y
-IGNhdGNoaW5nIHRoaXMsIEkgd2lsbCBzZW5kIGEgZml4dXAgcGF0Y2ggdG8gQmVuLgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1911040592==
+Content-Type: multipart/alternative; boundary="14784310742.2aCc16.24585";
+ charset="UTF-8"
+
+
+--14784310742.2aCc16.24585
+Date: Sun, 6 Nov 2016 11:17:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97462
+
+--- Comment #15 from Paviluf <jeremy9856-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to wadev from comment #13)
+> Paviluf, could you please mention your firefox version and the output of
+> your glxinfo - at least the core profile one pertaining to mesa version?
+
+I can't since I'm on Nvidia proprietary drivers for now. If I switch back to
+nouveau I will do it, if I remember :D
+
+I recently tried Fedora 25 and it seem to work with nouveau dri2 and dri3 n=
+ow.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14784310742.2aCc16.24585
+Date: Sun, 6 Nov 2016 11:17:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
+h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462#c15">Commen=
+t # 15</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Graphics deadlock &quot;ILLEGAL_MTHD&quot; in nouveau wit=
+h mesa version 11.2.2 when visiting Google Maps with firefox 49.0b5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97462">bug 97462<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jeremy9856&#64;gmail.com" title=3D"Paviluf &lt;jeremy9856&#64;gmail.com&gt;=
+"> <span class=3D"fn">Paviluf</span></a>
+</span></b>
+        <pre>(In reply to wadev from <a href=3D"show_bug.cgi?id=3D97462#c13=
+">comment #13</a>)
+<span class=3D"quote">&gt; Paviluf, could you please mention your firefox v=
+ersion and the output of
+&gt; your glxinfo - at least the core profile one pertaining to mesa versio=
+n?</span >
+
+I can't since I'm on Nvidia proprietary drivers for now. If I switch back to
+nouveau I will do it, if I remember :D
+
+I recently tried Fedora 25 and it seem to work with nouveau dri2 and dri3 n=
+ow.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14784310742.2aCc16.24585--
+
+--===============1911040592==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1911040592==--
