@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
+Subject: [Bug 98611] nouveau not working on gtx 970
 Date: Sun, 06 Nov 2016 20:23:38 +0000
-Message-ID: <bug-94990-8800-3Lt1337QxR@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-98611-8800-380nn2tzKM@http.bugs.freedesktop.org/>
+References: <bug-98611-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0170086177=="
+Content-Type: multipart/mixed; boundary="===============0576720338=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98611-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0170086177==
-Content-Type: multipart/alternative; boundary="147846381910.7ea99Fa.25190";
+--===============0576720338==
+Content-Type: multipart/alternative; boundary="14784638182.fdf93.25190";
  charset="UTF-8"
 
 
---147846381910.7ea99Fa.25190
-Date: Sun, 6 Nov 2016 20:23:39 +0000
+--14784638182.fdf93.25190
+Date: Sun, 6 Nov 2016 20:23:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98611
 
 Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |docmax-Mmb7MZpHnFY@public.gmane.org
+         Resolution|INVALID                     |DUPLICATE
 
---- Comment #84 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-*** Bug 98611 has been marked as a duplicate of this bug. ***
+--- Comment #2 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I am 99% sure this is a duplicate of #94990
+
+*** This bug has been marked as a duplicate of bug 94990 ***
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---147846381910.7ea99Fa.25190
-Date: Sun, 6 Nov 2016 20:23:39 +0000
+--14784638182.fdf93.25190
+Date: Sun, 6 Nov 2016 20:23:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,9 +67,9 @@ st&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.com&gt;">=
  <span class=3D"fn">Karol Herbst</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - nouveau not working on gtx 970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98611">bug 98611<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -79,34 +80,34 @@ st&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.com&gt;">=
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>INVALID
            </td>
-           <td>docmax&#64;gmx.de
+           <td>DUPLICATE
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c84">Commen=
-t # 84</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - nouveau not working on gtx 970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98611#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - nouveau not working on gtx 970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98611">bug 98611<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
 com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>*** <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - nouveau not working on gtx 970"
-   href=3D"show_bug.cgi?id=3D98611">Bug 98611</a> has been marked as a dupl=
-icate of this bug. ***</pre>
+        <pre>I am 99% sure this is a duplicate of #94990
+
+*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"show_bug.cgi?id=3D94990">bug 94990</a> ***</pre>
         </div>
       </p>
 
@@ -120,9 +121,9 @@ icate of this bug. ***</pre>
     </body>
 </html>=
 
---147846381910.7ea99Fa.25190--
+--14784638182.fdf93.25190--
 
---===============0170086177==
+--===============0576720338==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -132,4 +133,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0170086177==--
+--===============0576720338==--
