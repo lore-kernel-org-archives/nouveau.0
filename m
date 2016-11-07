@@ -1,14 +1,11 @@
-From: Vishwas Rao <vishwas.nitte-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Disable L2 cache on nvidia gpu
-Date: Mon, 7 Nov 2016 11:37:02 +0530
-Message-ID: <CAO8kjZd7E_h_a1ZShjohmtViKphoBQc+5UvVPpC8TL-PzbATzg@mail.gmail.com>
-References: <CAO8kjZdrSj8GeU_3MFQX7ZFcCj-an9iGELPY7+AUrVSFN3+0sw@mail.gmail.com>
- <CAO8kjZfanN+cb6vb8MzQKC+Fzk+sEe=Ssbkf2aySQ2_zYTk7=w@mail.gmail.com>
- <CAO8kjZcg0OPREm1_aQhDO16g=hn87OOU+-Z8j7vm6dytpKajgw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98629] New: OpenGL applications warns "MESA-LOADER:
+ failed to retrieve device information"
+Date: Mon, 07 Nov 2016 19:36:07 +0000
+Message-ID: <bug-98629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1405482358=="
+Content-Type: multipart/mixed; boundary="===============1581051589=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAO8kjZcg0OPREm1_aQhDO16g=hn87OOU+-Z8j7vm6dytpKajgw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +18,182 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1405482358==
-Content-Type: multipart/alternative; boundary=001a1143f2bc2a83620540afd5ca
 
---001a1143f2bc2a83620540afd5ca
-Content-Type: text/plain; charset=UTF-8
+--===============1581051589==
+Content-Type: multipart/alternative; boundary="14785473670.aECD8.10799";
+ charset="UTF-8"
 
-Dear all,
-Is there a command or low level instruction to disable the L2 cache in
-GPUs. Can a certain section of memory be defined as uncachable.
-Can you please point me the approach to do it.
-Thank you
-Vishwas
 
---001a1143f2bc2a83620540afd5ca
-Content-Type: text/html; charset=UTF-8
+--14785473670.aECD8.10799
+Date: Mon, 7 Nov 2016 19:36:07 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-<p dir="ltr">Dear all,<br>
-Is there a command or low level instruction to disable the L2 cache in GPUs. Can a certain section of memory be defined as uncachable. <br>
-Can you please point me the approach to do it.<br>
-Thank you<br>
-Vishwas</p>
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98629
 
---001a1143f2bc2a83620540afd5ca--
+            Bug ID: 98629
+           Summary: OpenGL applications warns "MESA-LOADER: failed to
+                    retrieve device information"
+           Product: Mesa
+           Version: 13.0
+          Hardware: Other
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: jeffbai-ymACFijhrKM@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
---===============1405482358==
+After updating to Mesa 13.0.0 on my PowerMac G5 with NVIDIA GeForce 6600LE,
+OpenGL applications outputs errors like:
+
+MESA-LOADER: failed to retrieve device information
+MESA-LOADER: failed to retrieve device information
+MESA-LOADER: failed to retrieve device information
+
+... upon launch. The program worked without issue despite the warning.
+
+However, I did not get such warning from Mesa 12.0.3, is this something wor=
+th
+looking into?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14785473670.aECD8.10799
+Date: Mon, 7 Nov 2016 19:36:07 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - OpenGL applications warns &quot;MESA-LOADER: failed to re=
+trieve device information&quot;"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98629">98629</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>OpenGL applications warns &quot;MESA-LOADER: failed to retrie=
+ve device information&quot;
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>13.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jeffbai&#64;aosc.xyz
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>After updating to Mesa 13.0.0 on my PowerMac G5 with NVIDIA Ge=
+Force 6600LE,
+OpenGL applications outputs errors like:
+
+MESA-LOADER: failed to retrieve device information
+MESA-LOADER: failed to retrieve device information
+MESA-LOADER: failed to retrieve device information
+
+... upon launch. The program worked without issue despite the warning.
+
+However, I did not get such warning from Mesa 12.0.3, is this something wor=
+th
+looking into?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14785473670.aECD8.10799--
+
+--===============1581051589==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -55,4 +203,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1405482358==--
+--===============1581051589==--
