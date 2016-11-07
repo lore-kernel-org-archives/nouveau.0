@@ -1,10 +1,9 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98629] New: OpenGL applications warns "MESA-LOADER:
- failed to retrieve device information"
-Date: Mon, 07 Nov 2016 19:36:07 +0000
-Message-ID: <bug-98629-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98630] New: Bad color and glitches on PPC64
+Date: Mon, 07 Nov 2016 19:41:33 +0000
+Message-ID: <bug-98630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1581051589=="
+Content-Type: multipart/mixed; boundary="===============1542280751=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,28 +18,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1581051589==
-Content-Type: multipart/alternative; boundary="14785473670.aECD8.10799";
+--===============1542280751==
+Content-Type: multipart/alternative; boundary="14785476930.EF5e52B.11093";
  charset="UTF-8"
 
 
---14785473670.aECD8.10799
-Date: Mon, 7 Nov 2016 19:36:07 +0000
+--14785476930.EF5e52B.11093
+Date: Mon, 7 Nov 2016 19:41:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98629
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98630
 
-            Bug ID: 98629
-           Summary: OpenGL applications warns "MESA-LOADER: failed to
-                    retrieve device information"
+            Bug ID: 98630
+           Summary: Bad color and glitches on PPC64
            Product: Mesa
            Version: 13.0
           Hardware: Other
-                OS: Linux (All)
+                OS: All
             Status: NEW
           Severity: normal
           Priority: medium
@@ -49,26 +47,32 @@ https://bugs.freedesktop.org/show_bug.cgi?id=3D98629
           Reporter: jeffbai-ymACFijhrKM@public.gmane.org
         QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-After updating to Mesa 13.0.0 on my PowerMac G5 with NVIDIA GeForce 6600LE,
-OpenGL applications outputs errors like:
+Created attachment 127816
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127816&action=3Dedit
+WebGL coloring glitch.
 
-MESA-LOADER: failed to retrieve device information
-MESA-LOADER: failed to retrieve device information
-MESA-LOADER: failed to retrieve device information
+Running some OpenGL programs on PowerMac G5 with NVIDIA GeForce 6600LE shows
+problematic rendering:
 
-... upon launch. The program worked without issue despite the warning.
+- Wrong coloring, simply looks like inverts or blue/purple hue (WebGL demo,
+Plasma Discover, Compiz, Linthesia, etc.)
+- Text disappears (in the case of Plasma Discover).
+- Flickering and glitchy flashing texture in general (in the case of
+Linthesia).
 
-However, I did not get such warning from Mesa 12.0.3, is this something wor=
-th
-looking into?
+This problem could be reproduced with Mesa 12.0.3 and 13.0.0 (which relates
+with another issue I have just reported in this section
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98629).
+
+Any how, some screenshots are provided below to demonstrate my issue.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14785473670.aECD8.10799
-Date: Mon, 7 Nov 2016 19:36:07 +0000
+--14785476930.EF5e52B.11093
+Date: Mon, 7 Nov 2016 19:41:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -84,16 +88,14 @@ Auto-Submitted: auto-generated
           <th>Bug ID</th>
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - OpenGL applications warns &quot;MESA-LOADER: failed to re=
-trieve device information&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98629">98629</a>
+   title=3D"NEW - Bad color and glitches on PPC64"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630">98630</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>OpenGL applications warns &quot;MESA-LOADER: failed to retrie=
-ve device information&quot;
+          <td>Bad color and glitches on PPC64
           </td>
         </tr>
 
@@ -117,7 +119,7 @@ ve device information&quot;
 
         <tr>
           <th>OS</th>
-          <td>Linux (All)
+          <td>All
           </td>
         </tr>
 
@@ -164,19 +166,31 @@ ve device information&quot;
         </tr></table>
       <p>
         <div>
-        <pre>After updating to Mesa 13.0.0 on my PowerMac G5 with NVIDIA Ge=
-Force 6600LE,
-OpenGL applications outputs errors like:
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127816=
+" name=3D"attach_127816" title=3D"WebGL coloring glitch.">attachment 127816=
+</a> <a href=3D"attachment.cgi?id=3D127816&amp;action=3Dedit" title=3D"WebG=
+L coloring glitch.">[details]</a></span>
+WebGL coloring glitch.
 
-MESA-LOADER: failed to retrieve device information
-MESA-LOADER: failed to retrieve device information
-MESA-LOADER: failed to retrieve device information
+Running some OpenGL programs on PowerMac G5 with NVIDIA GeForce 6600LE shows
+problematic rendering:
 
-... upon launch. The program worked without issue despite the warning.
+- Wrong coloring, simply looks like inverts or blue/purple hue (WebGL demo,
+Plasma Discover, Compiz, Linthesia, etc.)
+- Text disappears (in the case of Plasma Discover).
+- Flickering and glitchy flashing texture in general (in the case of
+Linthesia).
 
-However, I did not get such warning from Mesa 12.0.3, is this something wor=
-th
-looking into?</pre>
+This problem could be reproduced with Mesa 12.0.3 and 13.0.0 (which relates
+with another issue I have just reported in this section
+<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - OpenGL applications warns &quot;MESA-LOADER: failed to re=
+trieve device information&quot;"
+   href=3D"show_bug.cgi?id=3D98629">https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D98629</a>).
+
+Any how, some screenshots are provided below to demonstrate my issue.</pre>
         </div>
       </p>
 
@@ -185,15 +199,15 @@ looking into?</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14785473670.aECD8.10799--
+--14785476930.EF5e52B.11093--
 
---===============1581051589==
+--===============1542280751==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -203,4 +217,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1581051589==--
+--===============1542280751==--
