@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98630] Bad color and glitches on PPC64
-Date: Mon, 07 Nov 2016 19:42:21 +0000
-Message-ID: <bug-98630-8800-OEPpIzd2FJ@http.bugs.freedesktop.org/>
+Date: Mon, 07 Nov 2016 19:42:53 +0000
+Message-ID: <bug-98630-8800-UOQZTwa5cd@http.bugs.freedesktop.org/>
 References: <bug-98630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0844251941=="
+Content-Type: multipart/mixed; boundary="===============0916042783=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0844251941==
-Content-Type: multipart/alternative; boundary="14785477400.b4C9.11221";
+--===============0916042783==
+Content-Type: multipart/alternative; boundary="14785477730.C6DB8C.11184";
  charset="UTF-8"
 
 
---14785477400.b4C9.11221
-Date: Mon, 7 Nov 2016 19:42:20 +0000
+--14785477730.C6DB8C.11184
+Date: Mon, 7 Nov 2016 19:42:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98630
 
---- Comment #2 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
-Created attachment 127818
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127818&action=3Dedit
-Linthesia (playback view), showing wrong color and glitches.
+--- Comment #3 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
+Created attachment 127819
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127819&action=3Dedit
+Plasma Discover, showing bad coloring and disappearing text.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14785477400.b4C9.11221
-Date: Mon, 7 Nov 2016 19:42:20 +0000
+--14785477730.C6DB8C.11184
+Date: Mon, 7 Nov 2016 19:42:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Bad color and glitches on PPC64"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Bad color and glitches on PPC64"
@@ -74,12 +74,12 @@ Auto-Submitted: auto-generated
 jeffbai&#64;aosc.xyz" title=3D"Mingcong Bai &lt;jeffbai&#64;aosc.xyz&gt;"> =
 <span class=3D"fn">Mingcong Bai</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127818=
-" name=3D"attach_127818" title=3D"Linthesia (playback view), showing wrong =
-color and glitches.">attachment 127818</a> <a href=3D"attachment.cgi?id=3D1=
-27818&amp;action=3Dedit" title=3D"Linthesia (playback view), showing wrong =
-color and glitches.">[details]</a></span>
-Linthesia (playback view), showing wrong color and glitches.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127819=
+" name=3D"attach_127819" title=3D"Plasma Discover, showing bad coloring and=
+ disappearing text.">attachment 127819</a> <a href=3D"attachment.cgi?id=3D1=
+27819&amp;action=3Dedit" title=3D"Plasma Discover, showing bad coloring and=
+ disappearing text.">[details]</a></span>
+Plasma Discover, showing bad coloring and disappearing text.</pre>
         </div>
       </p>
 
@@ -88,15 +88,15 @@ Linthesia (playback view), showing wrong color and glitches.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14785477400.b4C9.11221--
+--14785477730.C6DB8C.11184--
 
---===============0844251941==
+--===============0916042783==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0844251941==--
+--===============0916042783==--
