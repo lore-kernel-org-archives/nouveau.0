@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98630] Bad color and glitches on PPC64
-Date: Mon, 07 Nov 2016 20:35:56 +0000
-Message-ID: <bug-98630-8800-IYxyo3PXZq@http.bugs.freedesktop.org/>
+Date: Mon, 07 Nov 2016 20:42:14 +0000
+Message-ID: <bug-98630-8800-dMBQt7U0UK@http.bugs.freedesktop.org/>
 References: <bug-98630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0961165729=="
+Content-Type: multipart/mixed; boundary="===============0474846095=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0961165729==
-Content-Type: multipart/alternative; boundary="14785509561.eaB13EE.14850";
+--===============0474846095==
+Content-Type: multipart/alternative; boundary="14785513340.bFc7F.15254";
  charset="UTF-8"
 
 
---14785509561.eaB13EE.14850
-Date: Mon, 7 Nov 2016 20:35:56 +0000
+--14785513340.bFc7F.15254
+Date: Mon, 7 Nov 2016 20:42:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,52 +35,45 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98630
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Mingcong Bai from comment #5)
-> (In reply to Ilia Mirkin from comment #4)
-> > Probably RGB vs BGR confusion. Can you create an apitrace of the proble=
-m?
-> > I'll need to give this a whirl on my G5 ...
->=20
-> Is it an application related issue then?
+--- Comment #9 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
+> Oh interesting. That means the confusion is in the DDX. (Or disagreement
+> between mesa and the DDX.) Please confirm that you're running a semi-rece=
+nt
+> version of xf86-video-nouveau (e.g. 1.0.12), and actually verify that it
+> says NOUVEAU(0) in your xorg log.
 
-Nope. Just the trickiness of dealing with a BE cpu and a
-LE-but-kinda-BE-sometimes GPU. Unfortunately I don't have a clear model in =
-my
-head of precisely what all the "BE" flag flips on these GPUs, which makes
-things much trickier.
+Definitely...
 
-> > ... (hm, if I can - I have a GeForce FX 5200 in mine). I should try to =
-track
-> > down a PCI nv4x that I can plug in.
->=20
-> Is it a Quad? I believe they are pretty cheap these days...
+[ 18082.072] (II) AIGLX: Suspending AIGLX clients for VT switch
+[ 18082.072] (II) NOUVEAU(0): NVLeaveVT is called.
+[ 18609.555] (II) AIGLX: Resuming AIGLX clients after VT switch
+[ 18609.555] (II) NOUVEAU(0): NVEnterVT is called.
+[ 18609.588] (II) NOUVEAU(0): EDID vendor "DEL", prod id 41112
+[ 18609.588] (II) NOUVEAU(0): Using hsync ranges from config file
+[ 18609.588] (II) NOUVEAU(0): Using vrefresh ranges from config file
+[ 18609.588] (II) NOUVEAU(0): Printing DDC gathered Modelines:
 
-It's a PowerMac7,2 IIRC. It has an AGP slot (with the FX 5200) and some num=
-ber
-of PCI slots. I glanced at nv4x boards, but they're above my tolerance of
-things I buy for the purpose of developing free drivers in my own time.
+And yes, it should be the newest version available:
 
-(In reply to Mingcong Bai from comment #6)
-> Indeed, after removing nouveau_dri.so, the Plasma Discover at least rende=
-rs
-> the full interface now.
->=20
-> However, it still shows bad coloring.
-
-Oh interesting. That means the confusion is in the DDX. (Or disagreement
-between mesa and the DDX.) Please confirm that you're running a semi-recent
-version of xf86-video-nouveau (e.g. 1.0.12), and actually verify that it sa=
-ys
-NOUVEAU(0) in your xorg log.
+jeffbai@G5-AOSC [ ~ ] $ dpkg -s xf86-video-nouveau=20
+Package: xf86-video-nouveau
+Status: install ok installed
+Section: x11
+Installed-Size: 364
+Maintainer: Everette Rong <l.e.r-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+Architecture: ppc64
+Version: 1.0.12
+Depends: xorg-server (>=3D 1.18.4), libdrm (>=3D 2.4.70), systemd (>=3D 1:2=
+31-2)
+Description: XF86 driver for NVIDIA graphics cards
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14785509561.eaB13EE.14850
-Date: Mon, 7 Nov 2016 20:35:56 +0000
+--14785513340.bFc7F.15254
+Date: Mon, 7 Nov 2016 20:42:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -97,58 +90,50 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Bad color and glitches on PPC64"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c8">Comment=
- # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c9">Comment=
+ # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Bad color and glitches on PPC64"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630">bug 98630<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+jeffbai&#64;aosc.xyz" title=3D"Mingcong Bai &lt;jeffbai&#64;aosc.xyz&gt;"> =
+<span class=3D"fn">Mingcong Bai</span></a>
 </span></b>
-        <pre>(In reply to Mingcong Bai from <a href=3D"show_bug.cgi?id=3D98=
-630#c5">comment #5</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D98630#c4">comment #4</a>)
-&gt; &gt; Probably RGB vs BGR confusion. Can you create an apitrace of the =
-problem?
-&gt; &gt; I'll need to give this a whirl on my G5 ...
-&gt;=20
-&gt; Is it an application related issue then?</span >
+        <pre><span class=3D"quote">&gt; Oh interesting. That means the conf=
+usion is in the DDX. (Or disagreement
+&gt; between mesa and the DDX.) Please confirm that you're running a semi-r=
+ecent
+&gt; version of xf86-video-nouveau (e.g. 1.0.12), and actually verify that =
+it
+&gt; says NOUVEAU(0) in your xorg log.</span >
 
-Nope. Just the trickiness of dealing with a BE cpu and a
-LE-but-kinda-BE-sometimes GPU. Unfortunately I don't have a clear model in =
-my
-head of precisely what all the &quot;BE&quot; flag flips on these GPUs, whi=
-ch makes
-things much trickier.
+Definitely...
 
-<span class=3D"quote">&gt; &gt; ... (hm, if I can - I have a GeForce FX 520=
-0 in mine). I should try to track
-&gt; &gt; down a PCI nv4x that I can plug in.
-&gt;=20
-&gt; Is it a Quad? I believe they are pretty cheap these days...</span >
+[ 18082.072] (II) AIGLX: Suspending AIGLX clients for VT switch
+[ 18082.072] (II) NOUVEAU(0): NVLeaveVT is called.
+[ 18609.555] (II) AIGLX: Resuming AIGLX clients after VT switch
+[ 18609.555] (II) NOUVEAU(0): NVEnterVT is called.
+[ 18609.588] (II) NOUVEAU(0): EDID vendor &quot;DEL&quot;, prod id 41112
+[ 18609.588] (II) NOUVEAU(0): Using hsync ranges from config file
+[ 18609.588] (II) NOUVEAU(0): Using vrefresh ranges from config file
+[ 18609.588] (II) NOUVEAU(0): Printing DDC gathered Modelines:
 
-It's a PowerMac7,2 IIRC. It has an AGP slot (with the FX 5200) and some num=
-ber
-of PCI slots. I glanced at nv4x boards, but they're above my tolerance of
-things I buy for the purpose of developing free drivers in my own time.
+And yes, it should be the newest version available:
 
-(In reply to Mingcong Bai from <a href=3D"show_bug.cgi?id=3D98630#c6">comme=
-nt #6</a>)
-<span class=3D"quote">&gt; Indeed, after removing nouveau_dri.so, the Plasm=
-a Discover at least renders
-&gt; the full interface now.
-&gt;=20
-&gt; However, it still shows bad coloring.</span >
-
-Oh interesting. That means the confusion is in the DDX. (Or disagreement
-between mesa and the DDX.) Please confirm that you're running a semi-recent
-version of xf86-video-nouveau (e.g. 1.0.12), and actually verify that it sa=
-ys
-NOUVEAU(0) in your xorg log.</pre>
+jeffbai&#64;G5-AOSC [ ~ ] $ dpkg -s xf86-video-nouveau=20
+Package: xf86-video-nouveau
+Status: install ok installed
+Section: x11
+Installed-Size: 364
+Maintainer: Everette Rong &lt;<a href=3D"mailto:l.e.r&#64;riseup.net">l.e.r=
+&#64;riseup.net</a>&gt;
+Architecture: ppc64
+Version: 1.0.12
+Depends: xorg-server (&gt;=3D 1.18.4), libdrm (&gt;=3D 2.4.70), systemd (&g=
+t;=3D 1:231-2)
+Description: XF86 driver for NVIDIA graphics cards</pre>
         </div>
       </p>
 
@@ -157,15 +142,15 @@ NOUVEAU(0) in your xorg log.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14785509561.eaB13EE.14850--
+--14785513340.bFc7F.15254--
 
---===============0961165729==
+--===============0474846095==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -175,4 +160,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0961165729==--
+--===============0474846095==--
