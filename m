@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98629] OpenGL applications warns "MESA-LOADER:
- failed to retrieve device information"
-Date: Tue, 08 Nov 2016 15:44:23 +0000
-Message-ID: <bug-98629-8800-PqM7Y4GC9u@http.bugs.freedesktop.org/>
-References: <bug-98629-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: fix LEDS_CLASS=m configuration
+Date: Tue, 8 Nov 2016 10:46:07 -0500
+Message-ID: <CAKb7UviRQ5_7nAeQ1zfacsiM1f13gohHRHeDZaD+ZOXM8srFKw@mail.gmail.com>
+References: <20161108135721.2142330-1-arnd@arndb.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0307781223=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20161108135721.2142330-1-arnd-r2nGTMty4D4@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,155 +17,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Arnd Bergmann <arnd-r2nGTMty4D4@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0307781223==
-Content-Type: multipart/alternative; boundary="14786198620.f7686d.14197";
- charset="UTF-8"
-
-
---14786198620.f7686d.14197
-Date: Tue, 8 Nov 2016 15:44:22 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98629
-
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org
-                   |rg                          |org
-          Component|Drivers/DRI/nouveau         |Mesa core
-         QA Contact|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org
-                   |rg                          |org
-
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-[Moving to 'core' since it's not really nouveau specific]
-
-Does this happen with glxinfo/glxgears as well ? If so can you attach the
-output of $strace glxinfo
-
-If glxinfo works fine, while $program does not, attach the output of
-$DL_DEBUG=3Dlibs $program
-
-Thanks
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14786198620.f7686d.14197
-Date: Tue, 8 Nov 2016 15:44:22 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:emil.l.ve=
-likov&#64;gmail.com" title=3D"Emil Velikov &lt;emil.l.velikov&#64;gmail.com=
-&gt;"> <span class=3D"fn">Emil Velikov</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - OpenGL applications warns &quot;MESA-LOADER: failed to re=
-trieve device information&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98629">bug 98629<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>mesa-dev&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>Drivers/DRI/nouveau
-           </td>
-           <td>Mesa core
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>mesa-dev&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - OpenGL applications warns &quot;MESA-LOADER: failed to re=
-trieve device information&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98629#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - OpenGL applications warns &quot;MESA-LOADER: failed to re=
-trieve device information&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98629">bug 98629<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-emil.l.velikov&#64;gmail.com" title=3D"Emil Velikov &lt;emil.l.velikov&#64;=
-gmail.com&gt;"> <span class=3D"fn">Emil Velikov</span></a>
-</span></b>
-        <pre>[Moving to 'core' since it's not really nouveau specific]
-
-Does this happen with glxinfo/glxgears as well ? If so can you attach the
-output of $strace glxinfo
-
-If glxinfo works fine, while $program does not, attach the output of
-$DL_DEBUG=3Dlibs $program
-
-Thanks</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14786198620.f7686d.14197--
-
---===============0307781223==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0307781223==--
+T24gVHVlLCBOb3YgOCwgMjAxNiBhdCA4OjU2IEFNLCBBcm5kIEJlcmdtYW5uIDxhcm5kQGFybmRi
+LmRlPiB3cm90ZToKPiBUaGUgbmV3bHkgaW50cm9kdWNlZCBMRUQgaGFuZGxpbmcgZm9yIG5vdXZl
+YXUgZmFpbHMgdG8gbGluayB3aGVuIHRoZQo+IGRyaXZlciBpcyBidWlsdC1pbiBidXQgdGhlIExF
+RCBzdWJzeXN0ZW0gaXMgYSBsb2FkYWJsZSBtb2R1bGU6Cj4KPiBkcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1Lm86IEluIGZ1bmN0aW9uIGBub3V2ZWF1X2RvX3N1c3BlbmQnOgo+IHR2bnYx
+Ny5jOigudGV4dC5ub3V2ZWF1X2RvX3N1c3BlbmQrMHgxMCk6IHVuZGVmaW5lZCByZWZlcmVuY2Ug
+dG8gYG5vdXZlYXVfbGVkX3N1c3BlbmQnCj4gZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dS5vOiBJbiBmdW5jdGlvbiBgbm91dmVhdV9kb19yZXN1bWUnOgo+IHR2bnYxNy5jOigudGV4dC5u
+b3V2ZWF1X2RvX3Jlc3VtZSsweGYwKTogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgbm91dmVhdV9s
+ZWRfcmVzdW1lJwo+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXUubzogSW4gZnVuY3Rp
+b24gYG5vdXZlYXVfZHJtX3VubG9hZCc6Cj4gdHZudjE3LmM6KC50ZXh0Lm5vdXZlYXVfZHJtX3Vu
+bG9hZCsweDM0KTogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgbm91dmVhdV9sZWRfZmluaScKPiBk
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1Lm86IEluIGZ1bmN0aW9uIGBub3V2ZWF1X2Ry
+bV9sb2FkJzoKPiB0dm52MTcuYzooLnRleHQubm91dmVhdV9kcm1fbG9hZCsweDdkMCk6IHVuZGVm
+aW5lZCByZWZlcmVuY2UgdG8gYG5vdXZlYXVfbGVkX2luaXQnCj4KPiBUaGlzIGFkZHMgYSBzZXBh
+cmF0ZSBLY29uZmlnIHN5bWJvbCBmb3IgdGhlIExFRCBzdXBwb3J0IHRoYXQKPiBjb3JyZWN0bHkg
+dHJhY2tzIHRoZSBkZXBlbmRlbmNpZXMuCj4KPiBGaXhlczogOGQwMjFkNzFiMzI0ICgiZHJtL25v
+dXZlYXUvZHJtL25vdXZlYXU6IGFkZCBhIExFRCBkcml2ZXIgZm9yIHRoZSBOVklESUEgbG9nbyIp
+Cj4gU2lnbmVkLW9mZi1ieTogQXJuZCBCZXJnbWFubiA8YXJuZEBhcm5kYi5kZT4KPiAtLS0KPiAg
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2J1aWxkICAgICAgICB8IDIgKy0KPiAgZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvS2NvbmZpZyAgICAgICB8IDggKysrKysrKysKPiAgZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9sZWQuaCB8IDIgKy0KPiAgMyBmaWxlcyBjaGFuZ2VkLCAxMCBp
+bnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L0tidWlsZCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tidWlsZAo+IGlu
+ZGV4IGZkZTZlMzY1NjYzNi4uNWUwMGU5MTFkYWE2IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L0tidWlsZAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tidWls
+ZAo+IEBAIC0yMiw3ICsyMiw3IEBAIG5vdXZlYXUtJChDT05GSUdfREVCVUdfRlMpICs9IG5vdXZl
+YXVfZGVidWdmcy5vCj4gIG5vdXZlYXUteSArPSBub3V2ZWF1X2RybS5vCj4gIG5vdXZlYXUteSAr
+PSBub3V2ZWF1X2h3bW9uLm8KPiAgbm91dmVhdS0kKENPTkZJR19DT01QQVQpICs9IG5vdXZlYXVf
+aW9jMzIubwo+IC1ub3V2ZWF1LSQoQ09ORklHX0xFRFNfQ0xBU1MpICs9IG5vdXZlYXVfbGVkLm8K
+PiArbm91dmVhdS0kKENPTkZJR19EUk1fTk9VVkVBVV9MRUQpICs9IG5vdXZlYXVfbGVkLm8KPiAg
+bm91dmVhdS15ICs9IG5vdXZlYXVfbnZpZi5vCj4gIG5vdXZlYXUtJChDT05GSUdfTk9VVkVBVV9Q
+TEFURk9STV9EUklWRVIpICs9IG5vdXZlYXVfcGxhdGZvcm0ubwo+ICBub3V2ZWF1LXkgKz0gbm91
+dmVhdV91c2lmLm8gIyB1c2Vyc3BhY2UgPC0+IG52aWYKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvS2NvbmZpZyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tjb25maWcK
+PiBpbmRleCA3ODYzMWZiNjFhZGYuLjcxNWNkNmY0ZGMzMSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9LY29uZmlnCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+S2NvbmZpZwo+IEBAIC00Niw2ICs0NiwxNCBAQCBjb25maWcgTk9VVkVBVV9ERUJVRwo+ICAgICAg
+ICAgICBUaGUgcGFyYW5vaWEgYW5kIHNwYW0gbGV2ZWxzIHdpbGwgYWRkIGEgbG90IG9mIGV4dHJh
+IGNoZWNrcyB3aGljaAo+ICAgICAgICAgICBtYXkgcG90ZW50aWFsbHkgc2xvdyBkb3duIGRyaXZl
+ciBvcGVyYXRpb24uCj4KPiArY29uZmlnIERSTV9OT1VWRUFVX0xFRAo+ICsgICAgICAgYm9vbCAi
+U3VwcG9ydCBmb3IgbG9nbyBMRUQiCj4gKyAgICAgICBkZXBlbmRzIG9uIERSTV9OT1VWRUFVICYm
+IExFRFNfQ0xBU1MKPiArICAgICAgIGRlcGVuZHMgb24gIShEUk1fTk9VVkVBVT15ICYmIExFRFNf
+Q0xBU1M9bSkKPiArICAgICAgIGhlbHAKPiArICAgICAgICAgU2F5IFkgaGVyZSB0byBlbmFibGlu
+ZyBjb250cm9sbGluZyB0aGUgYnJpZ2h0bmVzcyBvZiB0aGUKPiArICAgICAgICAgTEVEIGJlaGlu
+ZCBOVklESUEgbG9nbyBvbiBjZXJ0YWluIFRpdGFuIGNhcmRzLgoKVGhpcyBpcyBhIHZlcnkgb2Rk
+IHJlc3RyaWN0aW9uLi4uIGNvdWxkIHRoaXMgYmUgd3JpdHRlbiBhcwoKZGVwZW5kcyBvbiBEUk1f
+Tk9VVkVBVQpzZWxlY3QgTEVEU19DTEFTUwoKT3Igd2lsbCB0aGF0IG5vdCBmbGlwIHRoZSBMRURT
+X0NMQVNTIGZyb20gbSB0byB5IGluIGNhc2UKRFJNX05PVVZFQVU9eT8gSWYgbm90LCBpcyB0aGVy
+ZSBhIHdheSB0byBjYXVzZSB0aGF0IHRvIGhhcHBlbj8KClNlcGFyYXRlbHksIHBlcmhhcHMgd2Ug
+c2hvdWxkIGp1c3QgZHJvcCB0aGlzIExFRFNfQ0xBU1Mgc2VsZWN0IGludG8KRFJNX05PVVZFQVU/
+IFdlJ3ZlIHRlbmRlZCB0byBhdm9pZCBhZGRpbmcgdG9ucyBvZiBvcHRpb25zLgoKQ2hlZXJzLAoK
+ICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
