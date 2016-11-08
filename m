@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98630] Bad color and glitches on PPC64
-Date: Tue, 08 Nov 2016 00:58:58 +0000
-Message-ID: <bug-98630-8800-SpYs17ZSwD@http.bugs.freedesktop.org/>
+Date: Tue, 08 Nov 2016 00:59:35 +0000
+Message-ID: <bug-98630-8800-8pT3uWnxK6@http.bugs.freedesktop.org/>
 References: <bug-98630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0043791946=="
+Content-Type: multipart/mixed; boundary="===============0510881426=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0043791946==
-Content-Type: multipart/alternative; boundary="14785667370.Db3DB.30360";
+--===============0510881426==
+Content-Type: multipart/alternative; boundary="14785667750.15c09e.30443";
  charset="UTF-8"
 
 
---14785667370.Db3DB.30360
-Date: Tue, 8 Nov 2016 00:58:57 +0000
+--14785667750.15c09e.30443
+Date: Tue, 8 Nov 2016 00:59:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,29 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98630
 
---- Comment #15 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
-Created attachment 127826
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127826&action=3Dedit
-KDE wrong color 2
+--- Comment #16 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
+(In reply to Mingcong Bai from comment #13)
+> (In reply to Ilia Mirkin from comment #12)
+> > Could you try booting with nouveau.config=3DNvPCIE=3D0 and seeing if th=
+is has
+> > any effect on any of your issues?
+>=20
+> Nope, the situation is identical. I have attached some screenshots for yo=
+u.
+
+Also I have tried to use "fbdev" driver for Xorg, which results in the same=
+ bad
+color display.
+
+Maybe this issue is not here at nouveau? Either down in Mesa or up at Qt?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14785667370.Db3DB.30360
-Date: Tue, 8 Nov 2016 00:58:57 +0000
+--14785667750.15c09e.30443
+Date: Tue, 8 Nov 2016 00:59:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +74,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Bad color and glitches on PPC64"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c15">Commen=
-t # 15</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c16">Commen=
+t # 16</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Bad color and glitches on PPC64"
@@ -74,11 +85,23 @@ t # 15</a>
 jeffbai&#64;aosc.xyz" title=3D"Mingcong Bai &lt;jeffbai&#64;aosc.xyz&gt;"> =
 <span class=3D"fn">Mingcong Bai</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127826=
-" name=3D"attach_127826" title=3D"KDE wrong color 2">attachment 127826</a> =
-<a href=3D"attachment.cgi?id=3D127826&amp;action=3Dedit" title=3D"KDE wrong=
- color 2">[details]</a></span>
-KDE wrong color 2</pre>
+        <pre>(In reply to Mingcong Bai from <a href=3D"show_bug.cgi?id=3D98=
+630#c13">comment #13</a>)
+<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
+g.cgi?id=3D98630#c12">comment #12</a>)
+&gt; &gt; Could you try booting with nouveau.config=3DNvPCIE=3D0 and seeing=
+ if this has
+&gt; &gt; any effect on any of your issues?
+&gt;=20
+&gt; Nope, the situation is identical. I have attached some screenshots for=
+ you.</span >
+
+Also I have tried to use &quot;fbdev&quot; driver for Xorg, which results i=
+n the same bad
+color display.
+
+Maybe this issue is not here at nouveau? Either down in Mesa or up at Qt?</=
+pre>
         </div>
       </p>
 
@@ -93,9 +116,9 @@ KDE wrong color 2</pre>
     </body>
 </html>=
 
---14785667370.Db3DB.30360--
+--14785667750.15c09e.30443--
 
---===============0043791946==
+--===============0510881426==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +128,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0043791946==--
+--===============0510881426==--
