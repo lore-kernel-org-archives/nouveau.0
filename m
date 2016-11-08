@@ -1,12 +1,13 @@
-From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Drop superfluous
- DRM_SWITCH_POWER_DYNAMIC_OFF checks
-Date: Tue, 8 Nov 2016 12:57:00 +0100
-Message-ID: <0136d21975f52582f9cfe3ea313c3173c657c286.1478605864.git.lukas@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Tue, 08 Nov 2016 13:29:54 +0000
+Message-ID: <bug-94990-8800-4IdsduPpJh@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0466909502=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,48 +17,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-bm91dmVhdSdzIC0+c3VzcGVuZCBhbmQgLT5yZXN1bWUgY2FsbGJhY2tzIGFyZSBjdXJyZW50bHkg
-c2tpcHBlZCBpZiB0aGUKZGV2aWNlJ3Mgc3RhdHVzIGlzIGVpdGhlciBEUk1fU1dJVENIX1BPV0VS
-X09GRiAocG93ZXJlZCBvZmYgYnkKdmdhX3N3aXRjaGVyb28gbWFudWFsIHBvd2VyIGNvbnRyb2wp
-IG9yIERSTV9TV0lUQ0hfUE9XRVJfRFlOQU1JQ19PRkYKKHJ1bnRpbWUgc3VzcGVuZGVkKS4KCklu
-IHRoZSBmb3JtZXIgY2FzZSB0aGlzIG1ha2VzIHNlbnNlIHNpbmNlIHRoZSBkZXZpY2UgaXMgcG93
-ZXJlZCBvZmYKYmVoaW5kIHRoZSBQTSBjb3JlJ3MgYmFjazogIEl0IHdpbGwgdHJ5IHRvIGV4ZWN1
-dGUgdGhlIC0+c3VzcGVuZCBhbmQKLT5yZXN1bWUgY2FsbGJhY2tzIHVwb24gc3lzdGVtIHNsZWVw
-LCBub3Qga25vd2luZyB0aGF0IHRoZSBkZXZpY2UgaXMKaW5hY2Nlc3NpYmxlLiAgVGhlcmVmb3Jl
-IHRoZSBjYWxsYmFja3MgaGF2ZSB0byBiZWNvbWUgbm8tb3BzLgoKSG93ZXZlciB0aGUgbGF0dGVy
-IGNhc2UgZG9lc24ndCBtYWtlIGFueSBzZW5zZSBiZWNhdXNlIHRoZSBQTSBjb3JlCm5ldmVyIGNh
-bGxzIHRoZSAtPnN1c3BlbmQgYW5kIC0+cmVzdW1lIGNhbGxiYWNrcyBvZiBydW50aW1lIHN1c3Bl
-bmRlZApkZXZpY2VzOiAgU3VjaCBkZXZpY2VzIGFyZSBlaXRoZXIgcnVudGltZSByZXN1bWVkIGJl
-Zm9yZSBnb2luZyB0byBzeXN0ZW0Kc2xlZXAgKHNlZSBjYWxsIHRvIHBtX3J1bnRpbWVfcmVzdW1l
-KCkgaW4gZHJpdmVycy9wY2kvcGNpLWRyaXZlcjoKcGNpX3BtX3N1c3BlbmQoKSkgb3IgdGhleSBh
-cmUgbGVmdCBydW50aW1lIHN1c3BlbmRlZCBvdmVyIHRoZSBlbnRpcmUKc3lzdGVtIHN1c3BlbmQv
-cmVzdW1lIHByb2Nlc3MgKHNlYXJjaCBmb3IgImRpcmVjdF9jb21wbGV0ZSIgaW4KZHJpdmVycy9i
-YXNlL3Bvd2VyL21haW4uYykuCgpDb25zZXF1ZW50bHkgdGhlIERSTV9TV0lUQ0hfUE9XRVJfRFlO
-QU1JQ19PRkYgY2hlY2tzIGFyZSBzdXBlcmZsdW91cy4KRHJvcCB0aGVtLgoKU2lnbmVkLW9mZi1i
-eTogTHVrYXMgV3VubmVyIDxsdWthc0B3dW5uZXIuZGU+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9kcm0uYyB8IDYgKystLS0tCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRp
-b25zKCspLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZHJtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5j
-CmluZGV4IDk4NzZlNmYuLmQ5MWQwOTIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZHJtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
-cm0uYwpAQCAtNjY2LDggKzY2Niw3IEBAIHN0YXRpYyBpbnQgbm91dmVhdV9kcm1fcHJvYmUoc3Ry
-dWN0IHBjaV9kZXYgKnBkZXYsCiAJc3RydWN0IGRybV9kZXZpY2UgKmRybV9kZXYgPSBwY2lfZ2V0
-X2RydmRhdGEocGRldik7CiAJaW50IHJldDsKIAotCWlmIChkcm1fZGV2LT5zd2l0Y2hfcG93ZXJf
-c3RhdGUgPT0gRFJNX1NXSVRDSF9QT1dFUl9PRkYgfHwKLQkgICAgZHJtX2Rldi0+c3dpdGNoX3Bv
-d2VyX3N0YXRlID09IERSTV9TV0lUQ0hfUE9XRVJfRFlOQU1JQ19PRkYpCisJaWYgKGRybV9kZXYt
-PnN3aXRjaF9wb3dlcl9zdGF0ZSA9PSBEUk1fU1dJVENIX1BPV0VSX09GRikKIAkJcmV0dXJuIDA7
-CiAKIAlyZXQgPSBub3V2ZWF1X2RvX3N1c3BlbmQoZHJtX2RldiwgZmFsc2UpOwpAQCAtNjg4LDgg
-KzY4Nyw3IEBAIHN0YXRpYyBpbnQgbm91dmVhdV9kcm1fcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBk
-ZXYsCiAJc3RydWN0IGRybV9kZXZpY2UgKmRybV9kZXYgPSBwY2lfZ2V0X2RydmRhdGEocGRldik7
-CiAJaW50IHJldDsKIAotCWlmIChkcm1fZGV2LT5zd2l0Y2hfcG93ZXJfc3RhdGUgPT0gRFJNX1NX
-SVRDSF9QT1dFUl9PRkYgfHwKLQkgICAgZHJtX2Rldi0+c3dpdGNoX3Bvd2VyX3N0YXRlID09IERS
-TV9TV0lUQ0hfUE9XRVJfRFlOQU1JQ19PRkYpCisJaWYgKGRybV9kZXYtPnN3aXRjaF9wb3dlcl9z
-dGF0ZSA9PSBEUk1fU1dJVENIX1BPV0VSX09GRikKIAkJcmV0dXJuIDA7CiAKIAlwY2lfc2V0X3Bv
-d2VyX3N0YXRlKHBkZXYsIFBDSV9EMCk7Ci0tIAoyLjEwLjEKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0466909502==
+Content-Type: multipart/alternative; boundary="14786117940.5B02f94f.6904";
+ charset="UTF-8"
+
+
+--14786117940.5B02f94f.6904
+Date: Tue, 8 Nov 2016 13:29:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #87 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
+(In reply to Karol Herbst from comment #86)
+> (In reply to Yann Golanski from comment #85)
+> > Could we at least have this as a patch for now until a better one comes
+> > along. Otherwise us poor folks owning GT970 cannot update to Fedora 25=
+=E2=80=A6 =E2=98=B9
+>=20
+> we can't. there would be a less generic patch needed, because it would
+> affect a lot of different GPUs as well and mess with the amount of VRAM
+> reported.
+
+My bad. I did not understand that. Thank you for the clarification.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14786117940.5B02f94f.6904
+Date: Tue, 8 Nov 2016 13:29:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c87">Commen=
+t # 87</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
+un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
+</span></b>
+        <pre>(In reply to Karol Herbst from <a href=3D"show_bug.cgi?id=3D94=
+990#c86">comment #86</a>)
+<span class=3D"quote">&gt; (In reply to Yann Golanski from <a href=3D"show_=
+bug.cgi?id=3D94990#c85">comment #85</a>)
+&gt; &gt; Could we at least have this as a patch for now until a better one=
+ comes
+&gt; &gt; along. Otherwise us poor folks owning GT970 cannot update to Fedo=
+ra 25=E2=80=A6 =E2=98=B9
+&gt;=20
+&gt; we can't. there would be a less generic patch needed, because it would
+&gt; affect a lot of different GPUs as well and mess with the amount of VRAM
+&gt; reported.</span >
+
+My bad. I did not understand that. Thank you for the clarification.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14786117940.5B02f94f.6904--
+
+--===============0466909502==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0466909502==--
