@@ -1,91 +1,85 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: fix LEDS_CLASS=m configuration
-Date: Tue, 8 Nov 2016 17:16:12 +0100
-Message-ID: <CAEXux-b=DFByxBG2ozcrDeK--PGMyQcXVLaWGOsfic5ZcUS0Jw@mail.gmail.com>
-References: <20161108135721.2142330-1-arnd@arndb.de>
- <CAKb7UviRQ5_7nAeQ1zfacsiM1f13gohHRHeDZaD+ZOXM8srFKw@mail.gmail.com>
+From: Karol Herbst <karolherbst@gmail.com>
+Subject: Re: [Nouveau] [PATCH] drm/nouveau: fix LEDS_CLASS=m configuration
+Date: Tue, 8 Nov 2016 17:21:39 +0100
+Message-ID: <CAEXux-YC7ox=u1bOn3vLE5X1G1Ood=ekgUcBVEAhCu4MfhM9PQ@mail.gmail.com>
+References: <20161108135721.2142330-1-arnd@arndb.de> <12373137.2mgsQIhOfV@wuerfel>
+ <20161108160701.GC6983@wunner.de> <7299445.oinG8ujhC7@wuerfel>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UviRQ5_7nAeQ1zfacsiM1f13gohHRHeDZaD+ZOXM8srFKw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: Arnd Bergmann <arnd-r2nGTMty4D4@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <7299445.oinG8ujhC7@wuerfel>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Lukas Wunner <lukas@wunner.de>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-MjAxNi0xMS0wOCAxNjo0NiBHTVQrMDE6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
-ZWR1PjoKPiBPbiBUdWUsIE5vdiA4LCAyMDE2IGF0IDg6NTYgQU0sIEFybmQgQmVyZ21hbm4gPGFy
-bmRAYXJuZGIuZGU+IHdyb3RlOgo+PiBUaGUgbmV3bHkgaW50cm9kdWNlZCBMRUQgaGFuZGxpbmcg
-Zm9yIG5vdXZlYXUgZmFpbHMgdG8gbGluayB3aGVuIHRoZQo+PiBkcml2ZXIgaXMgYnVpbHQtaW4g
-YnV0IHRoZSBMRUQgc3Vic3lzdGVtIGlzIGEgbG9hZGFibGUgbW9kdWxlOgo+Pgo+PiBkcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1Lm86IEluIGZ1bmN0aW9uIGBub3V2ZWF1X2RvX3N1c3Bl
-bmQnOgo+PiB0dm52MTcuYzooLnRleHQubm91dmVhdV9kb19zdXNwZW5kKzB4MTApOiB1bmRlZmlu
-ZWQgcmVmZXJlbmNlIHRvIGBub3V2ZWF1X2xlZF9zdXNwZW5kJwo+PiBkcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1Lm86IEluIGZ1bmN0aW9uIGBub3V2ZWF1X2RvX3Jlc3VtZSc6Cj4+IHR2
-bnYxNy5jOigudGV4dC5ub3V2ZWF1X2RvX3Jlc3VtZSsweGYwKTogdW5kZWZpbmVkIHJlZmVyZW5j
-ZSB0byBgbm91dmVhdV9sZWRfcmVzdW1lJwo+PiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
-ZWF1Lm86IEluIGZ1bmN0aW9uIGBub3V2ZWF1X2RybV91bmxvYWQnOgo+PiB0dm52MTcuYzooLnRl
-eHQubm91dmVhdV9kcm1fdW5sb2FkKzB4MzQpOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBub3V2
-ZWF1X2xlZF9maW5pJwo+PiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1Lm86IEluIGZ1
-bmN0aW9uIGBub3V2ZWF1X2RybV9sb2FkJzoKPj4gdHZudjE3LmM6KC50ZXh0Lm5vdXZlYXVfZHJt
-X2xvYWQrMHg3ZDApOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBub3V2ZWF1X2xlZF9pbml0Jwo+
-Pgo+PiBUaGlzIGFkZHMgYSBzZXBhcmF0ZSBLY29uZmlnIHN5bWJvbCBmb3IgdGhlIExFRCBzdXBw
-b3J0IHRoYXQKPj4gY29ycmVjdGx5IHRyYWNrcyB0aGUgZGVwZW5kZW5jaWVzLgo+Pgo+PiBGaXhl
-czogOGQwMjFkNzFiMzI0ICgiZHJtL25vdXZlYXUvZHJtL25vdXZlYXU6IGFkZCBhIExFRCBkcml2
-ZXIgZm9yIHRoZSBOVklESUEgbG9nbyIpCj4+IFNpZ25lZC1vZmYtYnk6IEFybmQgQmVyZ21hbm4g
-PGFybmRAYXJuZGIuZGU+Cj4+IC0tLQo+PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2J1aWxk
-ICAgICAgICB8IDIgKy0KPj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tjb25maWcgICAgICAg
-fCA4ICsrKysrKysrCj4+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2xlZC5oIHwg
-MiArLQo+PiAgMyBmaWxlcyBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygt
-KQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2J1aWxkIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvS2J1aWxkCj4+IGluZGV4IGZkZTZlMzY1NjYzNi4uNWUwMGU5
-MTFkYWE2IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LYnVpbGQKPj4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2J1aWxkCj4+IEBAIC0yMiw3ICsyMiw3IEBA
-IG5vdXZlYXUtJChDT05GSUdfREVCVUdfRlMpICs9IG5vdXZlYXVfZGVidWdmcy5vCj4+ICBub3V2
-ZWF1LXkgKz0gbm91dmVhdV9kcm0ubwo+PiAgbm91dmVhdS15ICs9IG5vdXZlYXVfaHdtb24ubwo+
-PiAgbm91dmVhdS0kKENPTkZJR19DT01QQVQpICs9IG5vdXZlYXVfaW9jMzIubwo+PiAtbm91dmVh
-dS0kKENPTkZJR19MRURTX0NMQVNTKSArPSBub3V2ZWF1X2xlZC5vCj4+ICtub3V2ZWF1LSQoQ09O
-RklHX0RSTV9OT1VWRUFVX0xFRCkgKz0gbm91dmVhdV9sZWQubwo+PiAgbm91dmVhdS15ICs9IG5v
-dXZlYXVfbnZpZi5vCj4+ICBub3V2ZWF1LSQoQ09ORklHX05PVVZFQVVfUExBVEZPUk1fRFJJVkVS
-KSArPSBub3V2ZWF1X3BsYXRmb3JtLm8KPj4gIG5vdXZlYXUteSArPSBub3V2ZWF1X3VzaWYubyAj
-IHVzZXJzcGFjZSA8LT4gbnZpZgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvS2NvbmZpZyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tjb25maWcKPj4gaW5kZXggNzg2
-MzFmYjYxYWRmLi43MTVjZDZmNGRjMzEgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L0tjb25maWcKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2NvbmZpZwo+
-PiBAQCAtNDYsNiArNDYsMTQgQEAgY29uZmlnIE5PVVZFQVVfREVCVUcKPj4gICAgICAgICAgIFRo
-ZSBwYXJhbm9pYSBhbmQgc3BhbSBsZXZlbHMgd2lsbCBhZGQgYSBsb3Qgb2YgZXh0cmEgY2hlY2tz
-IHdoaWNoCj4+ICAgICAgICAgICBtYXkgcG90ZW50aWFsbHkgc2xvdyBkb3duIGRyaXZlciBvcGVy
-YXRpb24uCj4+Cj4+ICtjb25maWcgRFJNX05PVVZFQVVfTEVECj4+ICsgICAgICAgYm9vbCAiU3Vw
-cG9ydCBmb3IgbG9nbyBMRUQiCj4+ICsgICAgICAgZGVwZW5kcyBvbiBEUk1fTk9VVkVBVSAmJiBM
-RURTX0NMQVNTCj4+ICsgICAgICAgZGVwZW5kcyBvbiAhKERSTV9OT1VWRUFVPXkgJiYgTEVEU19D
-TEFTUz1tKQo+PiArICAgICAgIGhlbHAKPj4gKyAgICAgICAgIFNheSBZIGhlcmUgdG8gZW5hYmxp
-bmcgY29udHJvbGxpbmcgdGhlIGJyaWdodG5lc3Mgb2YgdGhlCj4+ICsgICAgICAgICBMRUQgYmVo
-aW5kIE5WSURJQSBsb2dvIG9uIGNlcnRhaW4gVGl0YW4gY2FyZHMuCj4KPiBUaGlzIGlzIGEgdmVy
-eSBvZGQgcmVzdHJpY3Rpb24uLi4gY291bGQgdGhpcyBiZSB3cml0dGVuIGFzCj4KPiBkZXBlbmRz
-IG9uIERSTV9OT1VWRUFVCj4gc2VsZWN0IExFRFNfQ0xBU1MKPgo+IE9yIHdpbGwgdGhhdCBub3Qg
-ZmxpcCB0aGUgTEVEU19DTEFTUyBmcm9tIG0gdG8geSBpbiBjYXNlCj4gRFJNX05PVVZFQVU9eT8g
-SWYgbm90LCBpcyB0aGVyZSBhIHdheSB0byBjYXVzZSB0aGF0IHRvIGhhcHBlbj8KPgo+IFNlcGFy
-YXRlbHksIHBlcmhhcHMgd2Ugc2hvdWxkIGp1c3QgZHJvcCB0aGlzIExFRFNfQ0xBU1Mgc2VsZWN0
-IGludG8KPiBEUk1fTk9VVkVBVT8gV2UndmUgdGVuZGVkIHRvIGF2b2lkIGFkZGluZyB0b25zIG9m
-IG9wdGlvbnMuCj4KCndlbGwsIHRoYXQgd291bGQgbWVhbiB0aGF0IHlvdSBhbHdheXMgbmVlZCB0
-aGUgTEVEU19DTEFTUyBhbmQgbWF5YmUgb24KYSB0ZWdyYSBzeXN0ZW0geW91IGRvbid0IHdhbnQg
-dG8sIHNvIHRoZSBsZWQgc3R1ZmYgc2hvdWxkIHN0YXkKY29tcGxldGVseSBvcHRpb25hbC4gRG9u
-J3Qga25vdyB0aG91Z2guCgpBbGV4LCBtYXliZSB5b3Ugd2FudCB0byBjbGFyaWZ5IHdoaWNoIGRl
-cGVuZGVuY2llcyBzaG91bGQgc3RheQpvcHRpb25hbD8gSWYgbm9ib2R5IG9uIHlvdXIgc2lkZSBj
-YXJlLCB0aGVuIHdlIHdvbid0IGNhcmUgYXMgd2VsbCBhbmQKb25seSBhZGQgc3dpdGNoZXMgaWYg
-dXNlcnMgYWN0dWFsbHkgcmVxdWVzdCBpdC4KCj4gQ2hlZXJzLAo+Cj4gICAtaWxpYQo+IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWls
-aW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+2016-11-08 17:12 GMT+01:00 Arnd Bergmann <arnd@arndb.de>:
+> On Tuesday, November 8, 2016 5:07:01 PM CET Lukas Wunner wrote:
+>> On Tue, Nov 08, 2016 at 04:52:49PM +0100, Arnd Bergmann wrote:
+>> > The underlying problem is that we already have a number of other
+>> > symbols that either have "depends on LEDS_CLASS" or
+>> > "select LEDS_CLASS". To clean that up properly, we should either
+>> > make the symbol itself hidden and only select it from other drivers,
+>> > or use "depends on LEDS_CLASS" everywhere.
+>> >
+>> > Another option is to use the IS_REACHABLE() macro instead of IS_ENABLED()
+>> > in the header file, to stub out the calls into the new file, but
+>> > that can be a bit confusing.
+>>
+>> Why don't you just add empty inline stubs for nouveau_led_init / _fini /
+>> _suspend / _resume?
+>>
+>
+> That's what I was suggesting:
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_led.h b/drivers/gpu/drm/nouveau/nouveau_led.h
+> index 9c9bb6ac938e..bc5f47cb516b 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_led.h
+> +++ b/drivers/gpu/drm/nouveau/nouveau_led.h
+> @@ -35,21 +35,21 @@ struct nouveau_led {
+>         struct led_classdev led;
+>  };
+>
+>  static inline struct nouveau_led *
+>  nouveau_led(struct drm_device *dev)
+>  {
+>         return nouveau_drm(dev)->led;
+>  }
+>
+>  /* nouveau_led.c */
+> -#if IS_ENABLED(CONFIG_LEDS_CLASS)
+> +#if IS_REACHABLE(CONFIG_LEDS_CLASS)
+>  int  nouveau_led_init(struct drm_device *dev);
+>  void nouveau_led_suspend(struct drm_device *dev);
+>  void nouveau_led_resume(struct drm_device *dev);
+>  void nouveau_led_fini(struct drm_device *dev);
+>  #else
+>  static inline int  nouveau_led_init(struct drm_device *dev) { return 0; };
+>  static inline void nouveau_led_suspend(struct drm_device *dev) { };
+>  static inline void nouveau_led_resume(struct drm_device *dev) { };
+>  static inline void nouveau_led_fini(struct drm_device *dev) { };
+>  #endif
+>
+> The downside is that now the nouveau_led_init() just won't be called
+> if CONFIG_LEDS_CLASS=m and CONFIG_DRM_NOUVEAU=y, which can be
+> surprising to users.
+
+yeah, it will. I guess it is fine to force LEDS to y if nouveau is set
+to y. The thinks I absolutely dislike is:
+1. auto hiding of features I _want_ to have, because I would have to
+enable the dependencies first, which is like super annoying if there
+are somewhere else
+2. preventing me from enabling something, cause the dependency is missing.
+
+We should clarify first if we actually want to enable those features
+optionally, because there isn't much of a reason not to enable the
+dependencies, except embedded systems. We have a lot more stuff where
+we could add things like that: hwmon, debugfs, acpi, compat and maybe
+there are even more things
+
+>
+>         Arnd
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
