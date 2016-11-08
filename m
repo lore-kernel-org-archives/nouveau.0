@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98630] Bad color and glitches on PPC64
-Date: Tue, 08 Nov 2016 01:32:23 +0000
-Message-ID: <bug-98630-8800-5Q09gyaecF@http.bugs.freedesktop.org/>
-References: <bug-98630-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: NVAC "No Signal"
+Date: Tue, 8 Nov 2016 06:04:53 +0100
+Message-ID: <b80faec6-1076-24a9-bb33-c396b7991937@gmail.com>
+References: <1de93d48-bc1c-bab4-11c4-395bfdfba7bb@gmail.com>
+ <a29ccb42-c280-98de-2387-51d591a894e3@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0065327982=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <a29ccb42-c280-98de-2387-51d591a894e3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,102 +18,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0065327982==
-Content-Type: multipart/alternative; boundary="14785687430.6ddBaA.32562";
- charset="UTF-8"
-
-
---14785687430.6ddBaA.32562
-Date: Tue, 8 Nov 2016 01:32:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98630
-
---- Comment #17 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
-Suspecting that this could still be an application-based issue, I have filed
-some issues to GNOME and KDE developers, as their desktop environment have =
-the
-same coloring issue while XFCE and MATE worked just fine:
-
-- https://bugs.kde.org/show_bug.cgi?id=3D372202
-- https://bugzilla.gnome.org/show_bug.cgi?id=3D774085
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14785687430.6ddBaA.32562
-Date: Tue, 8 Nov 2016 01:32:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Bad color and glitches on PPC64"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c17">Commen=
-t # 17</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Bad color and glitches on PPC64"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630">bug 98630<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jeffbai&#64;aosc.xyz" title=3D"Mingcong Bai &lt;jeffbai&#64;aosc.xyz&gt;"> =
-<span class=3D"fn">Mingcong Bai</span></a>
-</span></b>
-        <pre>Suspecting that this could still be an application-based issue=
-, I have filed
-some issues to GNOME and KDE developers, as their desktop environment have =
-the
-same coloring issue while XFCE and MATE worked just fine:
-
-- <a href=3D"https://bugs.kde.org/show_bug.cgi?id=3D372202">https://bugs.kd=
-e.org/show_bug.cgi?id=3D372202</a>
-- <a href=3D"https://bugzilla.gnome.org/show_bug.cgi?id=3D774085">https://b=
-ugzilla.gnome.org/show_bug.cgi?id=3D774085</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14785687430.6ddBaA.32562--
-
---===============0065327982==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0065327982==--
+T24gMDYuMTEuMjAxNiAxODowMiwgcG9tYSB3cm90ZToKPiAKPiBodHRwOi8vZ29vLmdsL0dtNGZm
+Two+IG1taW90cmFjZS1ub3V2ZWF1Lwo+IAoKJCB1bmFtZSAtcgo0LjkuMC0wLnJjNC5naXQwLjEu
+ZmMyNi54ODZfNjQrZGVidWcKCiQgZG1lc2cgLXQgfCBncmVwIC1QICcoPz0uKm5vdXZlYXUpKD89
+LipNTUlPKScKbm91dmVhdSAwMDAwOjAxOjAwLjA6IGJ1czogTU1JTyB3cml0ZSBvZiA4MDE1MDAw
+MCBGQVVMVCBhdCA2MWE4MDQKbm91dmVhdSAwMDAwOjAxOjAwLjA6IGJ1czogTU1JTyByZWFkIG9m
+IDAwMDAwMDEwIEZBVUxUIGF0IDY0MDAwMApub3V2ZWF1IDAwMDA6MDE6MDAuMDogYnVzOiBNTUlP
+IHJlYWQgb2YgMDAwMDAwMDcgRkFVTFQgYXQgNjFhODA0Cm5vdXZlYXUgMDAwMDowMTowMC4wOiBi
+dXM6IE1NSU8gd3JpdGUgb2YgODAxNTAwMDAgRkFVTFQgYXQgNjFhODA0Cm5vdXZlYXUgMDAwMDow
+MTowMC4wOiBidXM6IE1NSU8gcmVhZCBvZiAwMDAwMDdmZiBGQVVMVCBhdCA2MWE4MDQKbm91dmVh
+dSAwMDAwOjAxOjAwLjA6IGJ1czogTU1JTyB3cml0ZSBvZiAwMDEwMDE4MCBGQVVMVCBhdCA2MWE4
+MGMKbm91dmVhdSAwMDAwOjAxOjAwLjA6IGJ1czogTU1JTyByZWFkIG9mIDgwNTUwMDAwIEZBVUxU
+IGF0IDYxYTgwNApub3V2ZWF1IDAwMDA6MDE6MDAuMDogYnVzOiBNTUlPIHJlYWQgb2YgMDAwMDAw
+MDcgRkFVTFQgYXQgNjFhODA0Cm5vdXZlYXUgMDAwMDowMTowMC4wOiBidXM6IE1NSU8gd3JpdGUg
+b2YgODAxNTAwMDAgRkFVTFQgYXQgNjFhODA0Cm5vdXZlYXUgMDAwMDowMTowMC4wOiBidXM6IE1N
+SU8gcmVhZCBvZiAwMDAwMDAwMSBGQVVMVCBhdCA2MWE4MDQKbm91dmVhdSAwMDAwOjAxOjAwLjA6
+IGJ1czogTU1JTyB3cml0ZSBvZiAwMDEwMDE4MCBGQVVMVCBhdCA2MWE4MGMKbm91dmVhdSAwMDAw
+OjAxOjAwLjA6IGJ1czogTU1JTyByZWFkIG9mIDAwMDAwMDAwIEZBVUxUIGF0IDYxYTgwNApub3V2
+ZWF1IDAwMDA6MDE6MDAuMDogYnVzOiBNTUlPIHdyaXRlIG9mIGZiMDhkMWZmIEZBVUxUIGF0IDYx
+YTgwNApub3V2ZWF1IDAwMDA6MDE6MDAuMDogYnVzOiBNTUlPIHJlYWQgb2YgMDAwMDAwMDEgRkFV
+TFQgYXQgNjQxMDAwCm5vdXZlYXUgMDAwMDowMTowMC4wOiBidXM6IE1NSU8gd3JpdGUgb2YgMDAw
+MDAwMjAgRkFVTFQgYXQgNjQxMDAwCm5vdXZlYXUgMDAwMDowMTowMC4wOiBidXM6IE1NSU8gcmVh
+ZCBvZiAwMDAwMDAwMSBGQVVMVCBhdCA2NDAwMDAKbm91dmVhdSAwMDAwOjAxOjAwLjA6IGJ1czog
+TU1JTyByZWFkIG9mIDAwMDAwMDMwIEZBVUxUIGF0IDY0MDAwMApub3V2ZWF1IDAwMDA6MDE6MDAu
+MDogYnVzOiBNTUlPIHdyaXRlIG9mIDAwMDAwMDE0IEZBVUxUIGF0IDY0MDAwMApub3V2ZWF1IDAw
+MDA6MDE6MDAuMDogYnVzOiBNTUlPIHdyaXRlIG9mIDAwMDAwMDZjIEZBVUxUIGF0IDY0MTAwMApu
+b3V2ZWF1IDAwMDA6MDE6MDAuMDogYnVzOiBNTUlPIHJlYWQgb2YgMDAwMDAwMDcgRkFVTFQgYXQg
+NjQwMDAwCm5vdXZlYXUgMDAwMDowMTowMC4wOiBidXM6IE1NSU8gd3JpdGUgb2YgMDAwMDAwMTAg
+RkFVTFQgYXQgNjQwMDAwCm5vdXZlYXUgMDAwMDowMTowMC4wOiBidXM6IE1NSU8gd3JpdGUgb2Yg
+MDAwMDAwMDAgRkFVTFQgYXQgNjQ3MDgwCm5vdXZlYXUgMDAwMDowMTowMC4wOiBidXM6IE1NSU8g
+d3JpdGUgb2YgMDAwMDAwMDggRkFVTFQgYXQgNjQwMDAwCm5vdXZlYXUgMDAwMDowMTowMC4wOiBi
+dXM6IE1NSU8gcmVhZCBvZiAwMDAwMDAwMCBGQVVMVCBhdCA2NDAwMDAKbm91dmVhdSAwMDAwOjAx
+OjAwLjA6IGJ1czogTU1JTyByZWFkIG9mIDAwMDAwMDE0IEZBVUxUIGF0IDY0MDAwMApub3V2ZWF1
+IDAwMDA6MDE6MDAuMDogYnVzOiBNTUlPIHdyaXRlIG9mIDAwMDAwMDAwIEZBVUxUIGF0IDY0NzA4
+MApub3V2ZWF1IDAwMDA6MDE6MDAuMDogYnVzOiBNTUlPIHJlYWQgb2YgMDAwMDAwMDAgRkFVTFQg
+YXQgNjQwMDAwCm5vdXZlYXUgMDAwMDowMTowMC4wOiBidXM6IE1NSU8gd3JpdGUgb2YgMDAwMDAw
+MDAgRkFVTFQgYXQgNjQ3MDgwCm5vdXZlYXUgMDAwMDowMTowMC4wOiBidXM6IE1NSU8gcmVhZCBv
+ZiAwMDAwMDAwMCBGQVVMVCBhdCA2NDAwMDAKbm91dmVhdSAwMDAwOjAxOjAwLjA6IGJ1czogTU1J
+TyByZWFkIG9mIDAwMDAwMDA3IEZBVUxUIGF0IDY0MDAwMApub3V2ZWF1IDAwMDA6MDE6MDAuMDog
+YnVzOiBNTUlPIHdyaXRlIG9mIDAwMDAwMDAwIEZBVUxUIGF0IDY0NzA4MApub3V2ZWF1IDAwMDA6
+MDE6MDAuMDogYnVzOiBNTUlPIHJlYWQgb2YgMDAwMDAwMDAgRkFVTFQgYXQgNjQwMDAwCm5vdXZl
+YXUgMDAwMDowMTowMC4wOiBidXM6IE1NSU8gd3JpdGUgb2YgMDAwMDAwMDAgRkFVTFQgYXQgNjQ3
+MDgwCm5vdXZlYXUgMDAwMDowMTowMC4wOiBidXM6IE1NSU8gcmVhZCBvZiAwMDAwMDAwMCBGQVVM
+VCBhdCA2NDAwMDAKbm91dmVhdSAwMDAwOjAxOjAwLjA6IGJ1czogTU1JTyByZWFkIG9mIDAwMDAw
+MDE0IEZBVUxUIGF0IDY0MDAwMApub3V2ZWF1IDAwMDA6MDE6MDAuMDogYnVzOiBNTUlPIHdyaXRl
+IG9mIDAwMDAwMDAwIEZBVUxUIGF0IDY0NzA4MAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
