@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98630] Bad color and glitches on PPC64
-Date: Tue, 08 Nov 2016 00:57:47 +0000
-Message-ID: <bug-98630-8800-MrgADgzNmT@http.bugs.freedesktop.org/>
+Date: Tue, 08 Nov 2016 00:58:40 +0000
+Message-ID: <bug-98630-8800-ove21QJsHn@http.bugs.freedesktop.org/>
 References: <bug-98630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0031454368=="
+Content-Type: multipart/mixed; boundary="===============0635213330=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0031454368==
-Content-Type: multipart/alternative; boundary="14785666670.BC5bAa.30124";
+--===============0635213330==
+Content-Type: multipart/alternative; boundary="14785667200.59FBeB3.30518";
  charset="UTF-8"
 
 
---14785666670.BC5bAa.30124
-Date: Tue, 8 Nov 2016 00:57:47 +0000
+--14785667200.59FBeB3.30518
+Date: Tue, 8 Nov 2016 00:58:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,21 +35,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98630
 
---- Comment #13 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #12)
-> Could you try booting with nouveau.config=3DNvPCIE=3D0 and seeing if this=
- has
-> any effect on any of your issues?
+--- Comment #14 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
+Created attachment 127825
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127825&action=3Dedit
+KDE, wrong color 1
 
-Nope, the situation is identical. I have attached some screenshots for you.
+Note that systemsettings shows the right color in this case.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14785666670.BC5bAa.30124
-Date: Tue, 8 Nov 2016 00:57:47 +0000
+--14785667200.59FBeB3.30518
+Date: Tue, 8 Nov 2016 00:58:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +65,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Bad color and glitches on PPC64"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c13">Commen=
-t # 13</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c14">Commen=
+t # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Bad color and glitches on PPC64"
@@ -77,14 +76,13 @@ t # 13</a>
 jeffbai&#64;aosc.xyz" title=3D"Mingcong Bai &lt;jeffbai&#64;aosc.xyz&gt;"> =
 <span class=3D"fn">Mingcong Bai</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D986=
-30#c12">comment #12</a>)
-<span class=3D"quote">&gt; Could you try booting with nouveau.config=3DNvPC=
-IE=3D0 and seeing if this has
-&gt; any effect on any of your issues?</span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127825=
+" name=3D"attach_127825" title=3D"KDE, wrong color 1">attachment 127825</a>=
+ <a href=3D"attachment.cgi?id=3D127825&amp;action=3Dedit" title=3D"KDE, wro=
+ng color 1">[details]</a></span>
+KDE, wrong color 1
 
-Nope, the situation is identical. I have attached some screenshots for you.=
-</pre>
+Note that systemsettings shows the right color in this case.</pre>
         </div>
       </p>
 
@@ -99,9 +97,9 @@ Nope, the situation is identical. I have attached some screenshots for you.=
     </body>
 </html>=
 
---14785666670.BC5bAa.30124--
+--14785667200.59FBeB3.30518--
 
---===============0031454368==
+--===============0635213330==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0031454368==--
+--===============0635213330==--
