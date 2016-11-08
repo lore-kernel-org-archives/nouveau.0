@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98630] Bad color and glitches on PPC64
-Date: Mon, 07 Nov 2016 23:28:19 +0000
-Message-ID: <bug-98630-8800-IUVTKaOLHK@http.bugs.freedesktop.org/>
+Date: Tue, 08 Nov 2016 00:57:47 +0000
+Message-ID: <bug-98630-8800-MrgADgzNmT@http.bugs.freedesktop.org/>
 References: <bug-98630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0096220747=="
+Content-Type: multipart/mixed; boundary="===============0031454368=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0096220747==
-Content-Type: multipart/alternative; boundary="14785612991.Ea7A.25681";
+--===============0031454368==
+Content-Type: multipart/alternative; boundary="14785666670.BC5bAa.30124";
  charset="UTF-8"
 
 
---14785612991.Ea7A.25681
-Date: Mon, 7 Nov 2016 23:28:19 +0000
+--14785666670.BC5bAa.30124
+Date: Tue, 8 Nov 2016 00:57:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98630
 
---- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you try booting with nouveau.config=3DNvPCIE=3D0 and seeing if this h=
-as any
-effect on any of your issues?
+--- Comment #13 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #12)
+> Could you try booting with nouveau.config=3DNvPCIE=3D0 and seeing if this=
+ has
+> any effect on any of your issues?
+
+Nope, the situation is identical. I have attached some screenshots for you.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14785612991.Ea7A.25681
-Date: Mon, 7 Nov 2016 23:28:19 +0000
+--14785666670.BC5bAa.30124
+Date: Tue, 8 Nov 2016 00:57:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,20 +66,25 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Bad color and glitches on PPC64"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c12">Commen=
-t # 12</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c13">Commen=
+t # 13</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Bad color and glitches on PPC64"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630">bug 98630<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+jeffbai&#64;aosc.xyz" title=3D"Mingcong Bai &lt;jeffbai&#64;aosc.xyz&gt;"> =
+<span class=3D"fn">Mingcong Bai</span></a>
 </span></b>
-        <pre>Could you try booting with nouveau.config=3DNvPCIE=3D0 and see=
-ing if this has any
-effect on any of your issues?</pre>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D986=
+30#c12">comment #12</a>)
+<span class=3D"quote">&gt; Could you try booting with nouveau.config=3DNvPC=
+IE=3D0 and seeing if this has
+&gt; any effect on any of your issues?</span >
+
+Nope, the situation is identical. I have attached some screenshots for you.=
+</pre>
         </div>
       </p>
 
@@ -91,9 +99,9 @@ effect on any of your issues?</pre>
     </body>
 </html>=
 
---14785612991.Ea7A.25681--
+--14785666670.BC5bAa.30124--
 
---===============0096220747==
+--===============0031454368==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0096220747==--
+--===============0031454368==--
