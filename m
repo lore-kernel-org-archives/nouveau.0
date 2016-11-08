@@ -1,90 +1,112 @@
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: fix LEDS_CLASS=m configuration
-Date: Tue, 8 Nov 2016 16:35:36 +0000
-Message-ID: <CACvgo53jeezHQT6QJqfvV1KMW2v4r6z+n5Fg30kneEzBcFs7Fg@mail.gmail.com>
-References: <20161108135721.2142330-1-arnd@arndb.de>
- <12373137.2mgsQIhOfV@wuerfel>
- <20161108160701.GC6983@wunner.de> <7299445.oinG8ujhC7@wuerfel>
- <CAEXux-YC7ox=u1bOn3vLE5X1G1Ood=ekgUcBVEAhCu4MfhM9PQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98630] Bad color and glitches on PPC64
+Date: Tue, 08 Nov 2016 17:08:21 +0000
+Message-ID: <bug-98630-8800-juk6DRFn2j@http.bugs.freedesktop.org/>
+References: <bug-98630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAEXux-YC7ox=u1bOn3vLE5X1G1Ood=ekgUcBVEAhCu4MfhM9PQ@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Karol Herbst <karolherbst@gmail.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Arnd Bergmann <arnd@arndb.de>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0784097597=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gOCBOb3ZlbWJlciAyMDE2IGF0IDE2OjIxLCBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdt
-YWlsLmNvbT4gd3JvdGU6Cj4gMjAxNi0xMS0wOCAxNzoxMiBHTVQrMDE6MDAgQXJuZCBCZXJnbWFu
-biA8YXJuZEBhcm5kYi5kZT46Cj4+IE9uIFR1ZXNkYXksIE5vdmVtYmVyIDgsIDIwMTYgNTowNzow
-MSBQTSBDRVQgTHVrYXMgV3VubmVyIHdyb3RlOgo+Pj4gT24gVHVlLCBOb3YgMDgsIDIwMTYgYXQg
-MDQ6NTI6NDlQTSArMDEwMCwgQXJuZCBCZXJnbWFubiB3cm90ZToKPj4+ID4gVGhlIHVuZGVybHlp
-bmcgcHJvYmxlbSBpcyB0aGF0IHdlIGFscmVhZHkgaGF2ZSBhIG51bWJlciBvZiBvdGhlcgo+Pj4g
-PiBzeW1ib2xzIHRoYXQgZWl0aGVyIGhhdmUgImRlcGVuZHMgb24gTEVEU19DTEFTUyIgb3IKPj4+
-ID4gInNlbGVjdCBMRURTX0NMQVNTIi4gVG8gY2xlYW4gdGhhdCB1cCBwcm9wZXJseSwgd2Ugc2hv
-dWxkIGVpdGhlcgo+Pj4gPiBtYWtlIHRoZSBzeW1ib2wgaXRzZWxmIGhpZGRlbiBhbmQgb25seSBz
-ZWxlY3QgaXQgZnJvbSBvdGhlciBkcml2ZXJzLAo+Pj4gPiBvciB1c2UgImRlcGVuZHMgb24gTEVE
-U19DTEFTUyIgZXZlcnl3aGVyZS4KPj4+ID4KPj4+ID4gQW5vdGhlciBvcHRpb24gaXMgdG8gdXNl
-IHRoZSBJU19SRUFDSEFCTEUoKSBtYWNybyBpbnN0ZWFkIG9mIElTX0VOQUJMRUQoKQo+Pj4gPiBp
-biB0aGUgaGVhZGVyIGZpbGUsIHRvIHN0dWIgb3V0IHRoZSBjYWxscyBpbnRvIHRoZSBuZXcgZmls
-ZSwgYnV0Cj4+PiA+IHRoYXQgY2FuIGJlIGEgYml0IGNvbmZ1c2luZy4KPj4+Cj4+PiBXaHkgZG9u
-J3QgeW91IGp1c3QgYWRkIGVtcHR5IGlubGluZSBzdHVicyBmb3Igbm91dmVhdV9sZWRfaW5pdCAv
-IF9maW5pIC8KPj4+IF9zdXNwZW5kIC8gX3Jlc3VtZT8KPj4+Cj4+Cj4+IFRoYXQncyB3aGF0IEkg
-d2FzIHN1Z2dlc3Rpbmc6Cj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2xlZC5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9sZWQuaAo+
-PiBpbmRleCA5YzliYjZhYzkzOGUuLmJjNWY0N2NiNTE2YiAxMDA2NDQKPj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9sZWQuaAo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2xlZC5oCj4+IEBAIC0zNSwyMSArMzUsMjEgQEAgc3RydWN0IG5vdXZl
-YXVfbGVkIHsKPj4gICAgICAgICBzdHJ1Y3QgbGVkX2NsYXNzZGV2IGxlZDsKPj4gIH07Cj4+Cj4+
-ICBzdGF0aWMgaW5saW5lIHN0cnVjdCBub3V2ZWF1X2xlZCAqCj4+ICBub3V2ZWF1X2xlZChzdHJ1
-Y3QgZHJtX2RldmljZSAqZGV2KQo+PiAgewo+PiAgICAgICAgIHJldHVybiBub3V2ZWF1X2RybShk
-ZXYpLT5sZWQ7Cj4+ICB9Cj4+Cj4+ICAvKiBub3V2ZWF1X2xlZC5jICovCj4+IC0jaWYgSVNfRU5B
-QkxFRChDT05GSUdfTEVEU19DTEFTUykKPj4gKyNpZiBJU19SRUFDSEFCTEUoQ09ORklHX0xFRFNf
-Q0xBU1MpCj4+ICBpbnQgIG5vdXZlYXVfbGVkX2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldik7
-Cj4+ICB2b2lkIG5vdXZlYXVfbGVkX3N1c3BlbmQoc3RydWN0IGRybV9kZXZpY2UgKmRldik7Cj4+
-ICB2b2lkIG5vdXZlYXVfbGVkX3Jlc3VtZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KTsKPj4gIHZv
-aWQgbm91dmVhdV9sZWRfZmluaShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KTsKPj4gICNlbHNlCj4+
-ICBzdGF0aWMgaW5saW5lIGludCAgbm91dmVhdV9sZWRfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAq
-ZGV2KSB7IHJldHVybiAwOyB9Owo+PiAgc3RhdGljIGlubGluZSB2b2lkIG5vdXZlYXVfbGVkX3N1
-c3BlbmQoc3RydWN0IGRybV9kZXZpY2UgKmRldikgeyB9Owo+PiAgc3RhdGljIGlubGluZSB2b2lk
-IG5vdXZlYXVfbGVkX3Jlc3VtZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KSB7IH07Cj4+ICBzdGF0
-aWMgaW5saW5lIHZvaWQgbm91dmVhdV9sZWRfZmluaShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KSB7
-IH07Cj4+ICAjZW5kaWYKPj4KPj4gVGhlIGRvd25zaWRlIGlzIHRoYXQgbm93IHRoZSBub3V2ZWF1
-X2xlZF9pbml0KCkganVzdCB3b24ndCBiZSBjYWxsZWQKPj4gaWYgQ09ORklHX0xFRFNfQ0xBU1M9
-bSBhbmQgQ09ORklHX0RSTV9OT1VWRUFVPXksIHdoaWNoIGNhbiBiZQo+PiBzdXJwcmlzaW5nIHRv
-IHVzZXJzLgo+Cj4geWVhaCwgaXQgd2lsbC4gSSBndWVzcyBpdCBpcyBmaW5lIHRvIGZvcmNlIExF
-RFMgdG8geSBpZiBub3V2ZWF1IGlzIHNldAo+IHRvIHkuIFRoZSB0aGlua3MgSSBhYnNvbHV0ZWx5
-IGRpc2xpa2UgaXM6Cj4gMS4gYXV0byBoaWRpbmcgb2YgZmVhdHVyZXMgSSBfd2FudF8gdG8gaGF2
-ZSwgYmVjYXVzZSBJIHdvdWxkIGhhdmUgdG8KPiBlbmFibGUgdGhlIGRlcGVuZGVuY2llcyBmaXJz
-dCwgd2hpY2ggaXMgbGlrZSBzdXBlciBhbm5veWluZyBpZiB0aGVyZQo+IGFyZSBzb21ld2hlcmUg
-ZWxzZQo+IDIuIHByZXZlbnRpbmcgbWUgZnJvbSBlbmFibGluZyBzb21ldGhpbmcsIGNhdXNlIHRo
-ZSBkZXBlbmRlbmN5IGlzIG1pc3NpbmcuCj4KPiBXZSBzaG91bGQgY2xhcmlmeSBmaXJzdCBpZiB3
-ZSBhY3R1YWxseSB3YW50IHRvIGVuYWJsZSB0aG9zZSBmZWF0dXJlcwo+IG9wdGlvbmFsbHksIGJl
-Y2F1c2UgdGhlcmUgaXNuJ3QgbXVjaCBvZiBhIHJlYXNvbiBub3QgdG8gZW5hYmxlIHRoZQo+IGRl
-cGVuZGVuY2llcywgZXhjZXB0IGVtYmVkZGVkIHN5c3RlbXMuIFdlIGhhdmUgYSBsb3QgbW9yZSBz
-dHVmZiB3aGVyZQo+IHdlIGNvdWxkIGFkZCB0aGluZ3MgbGlrZSB0aGF0OiBod21vbiwgZGVidWdm
-cywgYWNwaSwgY29tcGF0IGFuZCBtYXliZQo+IHRoZXJlIGFyZSBldmVuIG1vcmUgdGhpbmdzCj4K
-U291bmRzIGxpa2UgcGVvcGxlIG1heSBoYXZlIG1pc3NlZCB0aGUgY29yZSBwYXJ0OgoKVGhpcy9l
-YXJsaWVyIHBhdGNoIGFyZSByZXF1aXJlZCBkdWUgdG8gc2VsZWN0ICJhYnVzZSIgZWxzZXdoZXJl
-IGluIHRoZQprZXJuZWwuIFRoZSBJU19SRUFDSEFCTEUvRFJNX05PVVZFQVVfTEVEIGlzIHBhdGNo
-IHRvIHdvcmthcm91bmQgdGhpbmdzCm9uIG5vdXZlYXUgc2lkZSwgd2l0aCBhIHByb3BlciBvbmUg
-dG8gcmVtb3ZlL3VudGFuZ2xlIHRoZSAic2VsZWN0CkxFRFNfQ0xBU1MiLiBUaGUgbGF0dGVyIHdp
-bGwgbGlrZWx5IGJlIHNsb3cvcGFpbiwgc2luY2UgZGV2cyBsb3ZlIHRvCnVzZSBzZWxlY3QgYmVj
-YXVzZSBpdCdzIGNvbnZlbmllbnQgKGFuZCBpbmRlZWQgaXQgaXMpLgpUaHVzIFt0ZW1wb3Jhcnld
-IHdvcmthcm91bmQgb24gbm91dmVhdSBzaWRlIHdpbGwgYmUgZ29vZCBpbiB0aGUgc2hvcnQgdGVy
-bS4KCkFmYWljdCwgImZvcmNpbmcgTEVEUyB0byB5IGlmIG5vdXZlYXUgaXMgc2V0IHRvIHkiIGlz
-IGdvaW5nIHRoZQpvcHBvc2l0ZSBkaXJlY3Rpb24gb2Ygd2hhdCBvbmUgc2hvdWxkIGJlIGdvaW5n
-IDstKQoKUmVnYXJkcywKRW1pbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9k
-cmktZGV2ZWwK
+
+--===============0784097597==
+Content-Type: multipart/alternative; boundary="14786249010.65c99b.19335";
+ charset="UTF-8"
+
+
+--14786249010.65c99b.19335
+Date: Tue, 8 Nov 2016 17:08:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98630
+
+--- Comment #20 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
+Created attachment 127847
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127847&action=3Dedit
+Fbdev and nomodeset
+
+And... This happened (my eyes).
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14786249010.65c99b.19335
+Date: Tue, 8 Nov 2016 17:08:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Bad color and glitches on PPC64"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c20">Commen=
+t # 20</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Bad color and glitches on PPC64"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630">bug 98630<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jeffbai&#64;aosc.xyz" title=3D"Mingcong Bai &lt;jeffbai&#64;aosc.xyz&gt;"> =
+<span class=3D"fn">Mingcong Bai</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127847=
+" name=3D"attach_127847" title=3D"Fbdev and nomodeset">attachment 127847</a=
+> <a href=3D"attachment.cgi?id=3D127847&amp;action=3Dedit" title=3D"Fbdev a=
+nd nomodeset">[details]</a></span>
+Fbdev and nomodeset
+
+And... This happened (my eyes).</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14786249010.65c99b.19335--
+
+--===============0784097597==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0784097597==--
