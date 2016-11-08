@@ -1,85 +1,90 @@
-From: Karol Herbst <karolherbst@gmail.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
 Subject: Re: [Nouveau] [PATCH] drm/nouveau: fix LEDS_CLASS=m configuration
-Date: Tue, 8 Nov 2016 17:21:39 +0100
-Message-ID: <CAEXux-YC7ox=u1bOn3vLE5X1G1Ood=ekgUcBVEAhCu4MfhM9PQ@mail.gmail.com>
-References: <20161108135721.2142330-1-arnd@arndb.de> <12373137.2mgsQIhOfV@wuerfel>
+Date: Tue, 8 Nov 2016 16:35:36 +0000
+Message-ID: <CACvgo53jeezHQT6QJqfvV1KMW2v4r6z+n5Fg30kneEzBcFs7Fg@mail.gmail.com>
+References: <20161108135721.2142330-1-arnd@arndb.de>
+ <12373137.2mgsQIhOfV@wuerfel>
  <20161108160701.GC6983@wunner.de> <7299445.oinG8ujhC7@wuerfel>
+ <CAEXux-YC7ox=u1bOn3vLE5X1G1Ood=ekgUcBVEAhCu4MfhM9PQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <7299445.oinG8ujhC7@wuerfel>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Lukas Wunner <lukas@wunner.de>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CAEXux-YC7ox=u1bOn3vLE5X1G1Ood=ekgUcBVEAhCu4MfhM9PQ@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Karol Herbst <karolherbst@gmail.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Arnd Bergmann <arnd@arndb.de>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-2016-11-08 17:12 GMT+01:00 Arnd Bergmann <arnd@arndb.de>:
-> On Tuesday, November 8, 2016 5:07:01 PM CET Lukas Wunner wrote:
->> On Tue, Nov 08, 2016 at 04:52:49PM +0100, Arnd Bergmann wrote:
->> > The underlying problem is that we already have a number of other
->> > symbols that either have "depends on LEDS_CLASS" or
->> > "select LEDS_CLASS". To clean that up properly, we should either
->> > make the symbol itself hidden and only select it from other drivers,
->> > or use "depends on LEDS_CLASS" everywhere.
->> >
->> > Another option is to use the IS_REACHABLE() macro instead of IS_ENABLED()
->> > in the header file, to stub out the calls into the new file, but
->> > that can be a bit confusing.
->>
->> Why don't you just add empty inline stubs for nouveau_led_init / _fini /
->> _suspend / _resume?
->>
->
-> That's what I was suggesting:
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_led.h b/drivers/gpu/drm/nouveau/nouveau_led.h
-> index 9c9bb6ac938e..bc5f47cb516b 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_led.h
-> +++ b/drivers/gpu/drm/nouveau/nouveau_led.h
-> @@ -35,21 +35,21 @@ struct nouveau_led {
->         struct led_classdev led;
->  };
->
->  static inline struct nouveau_led *
->  nouveau_led(struct drm_device *dev)
->  {
->         return nouveau_drm(dev)->led;
->  }
->
->  /* nouveau_led.c */
-> -#if IS_ENABLED(CONFIG_LEDS_CLASS)
-> +#if IS_REACHABLE(CONFIG_LEDS_CLASS)
->  int  nouveau_led_init(struct drm_device *dev);
->  void nouveau_led_suspend(struct drm_device *dev);
->  void nouveau_led_resume(struct drm_device *dev);
->  void nouveau_led_fini(struct drm_device *dev);
->  #else
->  static inline int  nouveau_led_init(struct drm_device *dev) { return 0; };
->  static inline void nouveau_led_suspend(struct drm_device *dev) { };
->  static inline void nouveau_led_resume(struct drm_device *dev) { };
->  static inline void nouveau_led_fini(struct drm_device *dev) { };
->  #endif
->
-> The downside is that now the nouveau_led_init() just won't be called
-> if CONFIG_LEDS_CLASS=m and CONFIG_DRM_NOUVEAU=y, which can be
-> surprising to users.
-
-yeah, it will. I guess it is fine to force LEDS to y if nouveau is set
-to y. The thinks I absolutely dislike is:
-1. auto hiding of features I _want_ to have, because I would have to
-enable the dependencies first, which is like super annoying if there
-are somewhere else
-2. preventing me from enabling something, cause the dependency is missing.
-
-We should clarify first if we actually want to enable those features
-optionally, because there isn't much of a reason not to enable the
-dependencies, except embedded systems. We have a lot more stuff where
-we could add things like that: hwmon, debugfs, acpi, compat and maybe
-there are even more things
-
->
->         Arnd
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+T24gOCBOb3ZlbWJlciAyMDE2IGF0IDE2OjIxLCBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdt
+YWlsLmNvbT4gd3JvdGU6Cj4gMjAxNi0xMS0wOCAxNzoxMiBHTVQrMDE6MDAgQXJuZCBCZXJnbWFu
+biA8YXJuZEBhcm5kYi5kZT46Cj4+IE9uIFR1ZXNkYXksIE5vdmVtYmVyIDgsIDIwMTYgNTowNzow
+MSBQTSBDRVQgTHVrYXMgV3VubmVyIHdyb3RlOgo+Pj4gT24gVHVlLCBOb3YgMDgsIDIwMTYgYXQg
+MDQ6NTI6NDlQTSArMDEwMCwgQXJuZCBCZXJnbWFubiB3cm90ZToKPj4+ID4gVGhlIHVuZGVybHlp
+bmcgcHJvYmxlbSBpcyB0aGF0IHdlIGFscmVhZHkgaGF2ZSBhIG51bWJlciBvZiBvdGhlcgo+Pj4g
+PiBzeW1ib2xzIHRoYXQgZWl0aGVyIGhhdmUgImRlcGVuZHMgb24gTEVEU19DTEFTUyIgb3IKPj4+
+ID4gInNlbGVjdCBMRURTX0NMQVNTIi4gVG8gY2xlYW4gdGhhdCB1cCBwcm9wZXJseSwgd2Ugc2hv
+dWxkIGVpdGhlcgo+Pj4gPiBtYWtlIHRoZSBzeW1ib2wgaXRzZWxmIGhpZGRlbiBhbmQgb25seSBz
+ZWxlY3QgaXQgZnJvbSBvdGhlciBkcml2ZXJzLAo+Pj4gPiBvciB1c2UgImRlcGVuZHMgb24gTEVE
+U19DTEFTUyIgZXZlcnl3aGVyZS4KPj4+ID4KPj4+ID4gQW5vdGhlciBvcHRpb24gaXMgdG8gdXNl
+IHRoZSBJU19SRUFDSEFCTEUoKSBtYWNybyBpbnN0ZWFkIG9mIElTX0VOQUJMRUQoKQo+Pj4gPiBp
+biB0aGUgaGVhZGVyIGZpbGUsIHRvIHN0dWIgb3V0IHRoZSBjYWxscyBpbnRvIHRoZSBuZXcgZmls
+ZSwgYnV0Cj4+PiA+IHRoYXQgY2FuIGJlIGEgYml0IGNvbmZ1c2luZy4KPj4+Cj4+PiBXaHkgZG9u
+J3QgeW91IGp1c3QgYWRkIGVtcHR5IGlubGluZSBzdHVicyBmb3Igbm91dmVhdV9sZWRfaW5pdCAv
+IF9maW5pIC8KPj4+IF9zdXNwZW5kIC8gX3Jlc3VtZT8KPj4+Cj4+Cj4+IFRoYXQncyB3aGF0IEkg
+d2FzIHN1Z2dlc3Rpbmc6Cj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2xlZC5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9sZWQuaAo+
+PiBpbmRleCA5YzliYjZhYzkzOGUuLmJjNWY0N2NiNTE2YiAxMDA2NDQKPj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9sZWQuaAo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2xlZC5oCj4+IEBAIC0zNSwyMSArMzUsMjEgQEAgc3RydWN0IG5vdXZl
+YXVfbGVkIHsKPj4gICAgICAgICBzdHJ1Y3QgbGVkX2NsYXNzZGV2IGxlZDsKPj4gIH07Cj4+Cj4+
+ICBzdGF0aWMgaW5saW5lIHN0cnVjdCBub3V2ZWF1X2xlZCAqCj4+ICBub3V2ZWF1X2xlZChzdHJ1
+Y3QgZHJtX2RldmljZSAqZGV2KQo+PiAgewo+PiAgICAgICAgIHJldHVybiBub3V2ZWF1X2RybShk
+ZXYpLT5sZWQ7Cj4+ICB9Cj4+Cj4+ICAvKiBub3V2ZWF1X2xlZC5jICovCj4+IC0jaWYgSVNfRU5B
+QkxFRChDT05GSUdfTEVEU19DTEFTUykKPj4gKyNpZiBJU19SRUFDSEFCTEUoQ09ORklHX0xFRFNf
+Q0xBU1MpCj4+ICBpbnQgIG5vdXZlYXVfbGVkX2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldik7
+Cj4+ICB2b2lkIG5vdXZlYXVfbGVkX3N1c3BlbmQoc3RydWN0IGRybV9kZXZpY2UgKmRldik7Cj4+
+ICB2b2lkIG5vdXZlYXVfbGVkX3Jlc3VtZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KTsKPj4gIHZv
+aWQgbm91dmVhdV9sZWRfZmluaShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KTsKPj4gICNlbHNlCj4+
+ICBzdGF0aWMgaW5saW5lIGludCAgbm91dmVhdV9sZWRfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAq
+ZGV2KSB7IHJldHVybiAwOyB9Owo+PiAgc3RhdGljIGlubGluZSB2b2lkIG5vdXZlYXVfbGVkX3N1
+c3BlbmQoc3RydWN0IGRybV9kZXZpY2UgKmRldikgeyB9Owo+PiAgc3RhdGljIGlubGluZSB2b2lk
+IG5vdXZlYXVfbGVkX3Jlc3VtZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KSB7IH07Cj4+ICBzdGF0
+aWMgaW5saW5lIHZvaWQgbm91dmVhdV9sZWRfZmluaShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KSB7
+IH07Cj4+ICAjZW5kaWYKPj4KPj4gVGhlIGRvd25zaWRlIGlzIHRoYXQgbm93IHRoZSBub3V2ZWF1
+X2xlZF9pbml0KCkganVzdCB3b24ndCBiZSBjYWxsZWQKPj4gaWYgQ09ORklHX0xFRFNfQ0xBU1M9
+bSBhbmQgQ09ORklHX0RSTV9OT1VWRUFVPXksIHdoaWNoIGNhbiBiZQo+PiBzdXJwcmlzaW5nIHRv
+IHVzZXJzLgo+Cj4geWVhaCwgaXQgd2lsbC4gSSBndWVzcyBpdCBpcyBmaW5lIHRvIGZvcmNlIExF
+RFMgdG8geSBpZiBub3V2ZWF1IGlzIHNldAo+IHRvIHkuIFRoZSB0aGlua3MgSSBhYnNvbHV0ZWx5
+IGRpc2xpa2UgaXM6Cj4gMS4gYXV0byBoaWRpbmcgb2YgZmVhdHVyZXMgSSBfd2FudF8gdG8gaGF2
+ZSwgYmVjYXVzZSBJIHdvdWxkIGhhdmUgdG8KPiBlbmFibGUgdGhlIGRlcGVuZGVuY2llcyBmaXJz
+dCwgd2hpY2ggaXMgbGlrZSBzdXBlciBhbm5veWluZyBpZiB0aGVyZQo+IGFyZSBzb21ld2hlcmUg
+ZWxzZQo+IDIuIHByZXZlbnRpbmcgbWUgZnJvbSBlbmFibGluZyBzb21ldGhpbmcsIGNhdXNlIHRo
+ZSBkZXBlbmRlbmN5IGlzIG1pc3NpbmcuCj4KPiBXZSBzaG91bGQgY2xhcmlmeSBmaXJzdCBpZiB3
+ZSBhY3R1YWxseSB3YW50IHRvIGVuYWJsZSB0aG9zZSBmZWF0dXJlcwo+IG9wdGlvbmFsbHksIGJl
+Y2F1c2UgdGhlcmUgaXNuJ3QgbXVjaCBvZiBhIHJlYXNvbiBub3QgdG8gZW5hYmxlIHRoZQo+IGRl
+cGVuZGVuY2llcywgZXhjZXB0IGVtYmVkZGVkIHN5c3RlbXMuIFdlIGhhdmUgYSBsb3QgbW9yZSBz
+dHVmZiB3aGVyZQo+IHdlIGNvdWxkIGFkZCB0aGluZ3MgbGlrZSB0aGF0OiBod21vbiwgZGVidWdm
+cywgYWNwaSwgY29tcGF0IGFuZCBtYXliZQo+IHRoZXJlIGFyZSBldmVuIG1vcmUgdGhpbmdzCj4K
+U291bmRzIGxpa2UgcGVvcGxlIG1heSBoYXZlIG1pc3NlZCB0aGUgY29yZSBwYXJ0OgoKVGhpcy9l
+YXJsaWVyIHBhdGNoIGFyZSByZXF1aXJlZCBkdWUgdG8gc2VsZWN0ICJhYnVzZSIgZWxzZXdoZXJl
+IGluIHRoZQprZXJuZWwuIFRoZSBJU19SRUFDSEFCTEUvRFJNX05PVVZFQVVfTEVEIGlzIHBhdGNo
+IHRvIHdvcmthcm91bmQgdGhpbmdzCm9uIG5vdXZlYXUgc2lkZSwgd2l0aCBhIHByb3BlciBvbmUg
+dG8gcmVtb3ZlL3VudGFuZ2xlIHRoZSAic2VsZWN0CkxFRFNfQ0xBU1MiLiBUaGUgbGF0dGVyIHdp
+bGwgbGlrZWx5IGJlIHNsb3cvcGFpbiwgc2luY2UgZGV2cyBsb3ZlIHRvCnVzZSBzZWxlY3QgYmVj
+YXVzZSBpdCdzIGNvbnZlbmllbnQgKGFuZCBpbmRlZWQgaXQgaXMpLgpUaHVzIFt0ZW1wb3Jhcnld
+IHdvcmthcm91bmQgb24gbm91dmVhdSBzaWRlIHdpbGwgYmUgZ29vZCBpbiB0aGUgc2hvcnQgdGVy
+bS4KCkFmYWljdCwgImZvcmNpbmcgTEVEUyB0byB5IGlmIG5vdXZlYXUgaXMgc2V0IHRvIHkiIGlz
+IGdvaW5nIHRoZQpvcHBvc2l0ZSBkaXJlY3Rpb24gb2Ygd2hhdCBvbmUgc2hvdWxkIGJlIGdvaW5n
+IDstKQoKUmVnYXJkcywKRW1pbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9k
+cmktZGV2ZWwK
