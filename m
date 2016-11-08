@@ -1,77 +1,130 @@
-From: Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH] drm/nouveau: fix LEDS_CLASS=m configuration
-Date: Tue,  8 Nov 2016 14:56:52 +0100
-Message-ID: <20161108135721.2142330-1-arnd@arndb.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98630] Bad color and glitches on PPC64
+Date: Tue, 08 Nov 2016 15:08:59 +0000
+Message-ID: <bug-98630-8800-GJm4bQ5IM3@http.bugs.freedesktop.org/>
+References: <bug-98630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2042024112=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIG5ld2x5IGludHJvZHVjZWQgTEVEIGhhbmRsaW5nIGZvciBub3V2ZWF1IGZhaWxzIHRvIGxp
-bmsgd2hlbiB0aGUKZHJpdmVyIGlzIGJ1aWx0LWluIGJ1dCB0aGUgTEVEIHN1YnN5c3RlbSBpcyBh
-IGxvYWRhYmxlIG1vZHVsZToKCmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXUubzogSW4g
-ZnVuY3Rpb24gYG5vdXZlYXVfZG9fc3VzcGVuZCc6CnR2bnYxNy5jOigudGV4dC5ub3V2ZWF1X2Rv
-X3N1c3BlbmQrMHgxMCk6IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYG5vdXZlYXVfbGVkX3N1c3Bl
-bmQnCmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXUubzogSW4gZnVuY3Rpb24gYG5vdXZl
-YXVfZG9fcmVzdW1lJzoKdHZudjE3LmM6KC50ZXh0Lm5vdXZlYXVfZG9fcmVzdW1lKzB4ZjApOiB1
-bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBub3V2ZWF1X2xlZF9yZXN1bWUnCmRyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L25vdXZlYXUubzogSW4gZnVuY3Rpb24gYG5vdXZlYXVfZHJtX3VubG9hZCc6CnR2
-bnYxNy5jOigudGV4dC5ub3V2ZWF1X2RybV91bmxvYWQrMHgzNCk6IHVuZGVmaW5lZCByZWZlcmVu
-Y2UgdG8gYG5vdXZlYXVfbGVkX2ZpbmknCmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXUu
-bzogSW4gZnVuY3Rpb24gYG5vdXZlYXVfZHJtX2xvYWQnOgp0dm52MTcuYzooLnRleHQubm91dmVh
-dV9kcm1fbG9hZCsweDdkMCk6IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYG5vdXZlYXVfbGVkX2lu
-aXQnCgpUaGlzIGFkZHMgYSBzZXBhcmF0ZSBLY29uZmlnIHN5bWJvbCBmb3IgdGhlIExFRCBzdXBw
-b3J0IHRoYXQKY29ycmVjdGx5IHRyYWNrcyB0aGUgZGVwZW5kZW5jaWVzLgoKRml4ZXM6IDhkMDIx
-ZDcxYjMyNCAoImRybS9ub3V2ZWF1L2RybS9ub3V2ZWF1OiBhZGQgYSBMRUQgZHJpdmVyIGZvciB0
-aGUgTlZJRElBIGxvZ28iKQpTaWduZWQtb2ZmLWJ5OiBBcm5kIEJlcmdtYW5uIDxhcm5kQGFybmRi
-LmRlPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tidWlsZCAgICAgICAgfCAyICstCiBk
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29uZmlnICAgICAgIHwgOCArKysrKysrKwogZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9sZWQuaCB8IDIgKy0KIDMgZmlsZXMgY2hhbmdlZCwg
-MTAgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9LYnVpbGQgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LYnVpbGQKaW5k
-ZXggZmRlNmUzNjU2NjM2Li41ZTAwZTkxMWRhYTYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L0tidWlsZAorKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LYnVpbGQKQEAg
-LTIyLDcgKzIyLDcgQEAgbm91dmVhdS0kKENPTkZJR19ERUJVR19GUykgKz0gbm91dmVhdV9kZWJ1
-Z2ZzLm8KIG5vdXZlYXUteSArPSBub3V2ZWF1X2RybS5vCiBub3V2ZWF1LXkgKz0gbm91dmVhdV9o
-d21vbi5vCiBub3V2ZWF1LSQoQ09ORklHX0NPTVBBVCkgKz0gbm91dmVhdV9pb2MzMi5vCi1ub3V2
-ZWF1LSQoQ09ORklHX0xFRFNfQ0xBU1MpICs9IG5vdXZlYXVfbGVkLm8KK25vdXZlYXUtJChDT05G
-SUdfRFJNX05PVVZFQVVfTEVEKSArPSBub3V2ZWF1X2xlZC5vCiBub3V2ZWF1LXkgKz0gbm91dmVh
-dV9udmlmLm8KIG5vdXZlYXUtJChDT05GSUdfTk9VVkVBVV9QTEFURk9STV9EUklWRVIpICs9IG5v
-dXZlYXVfcGxhdGZvcm0ubwogbm91dmVhdS15ICs9IG5vdXZlYXVfdXNpZi5vICMgdXNlcnNwYWNl
-IDwtPiBudmlmCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29uZmlnIGIv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2NvbmZpZwppbmRleCA3ODYzMWZiNjFhZGYuLjcxNWNk
-NmY0ZGMzMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2NvbmZpZworKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29uZmlnCkBAIC00Niw2ICs0NiwxNCBAQCBjb25m
-aWcgTk9VVkVBVV9ERUJVRwogCSAgVGhlIHBhcmFub2lhIGFuZCBzcGFtIGxldmVscyB3aWxsIGFk
-ZCBhIGxvdCBvZiBleHRyYSBjaGVja3Mgd2hpY2gKIAkgIG1heSBwb3RlbnRpYWxseSBzbG93IGRv
-d24gZHJpdmVyIG9wZXJhdGlvbi4KIAorY29uZmlnIERSTV9OT1VWRUFVX0xFRAorCWJvb2wgIlN1
-cHBvcnQgZm9yIGxvZ28gTEVEIgorCWRlcGVuZHMgb24gRFJNX05PVVZFQVUgJiYgTEVEU19DTEFT
-UworCWRlcGVuZHMgb24gIShEUk1fTk9VVkVBVT15ICYmIExFRFNfQ0xBU1M9bSkKKwloZWxwCisJ
-ICBTYXkgWSBoZXJlIHRvIGVuYWJsaW5nIGNvbnRyb2xsaW5nIHRoZSBicmlnaHRuZXNzIG9mIHRo
-ZQorCSAgTEVEIGJlaGluZCBOVklESUEgbG9nbyBvbiBjZXJ0YWluIFRpdGFuIGNhcmRzLgorCiBj
-b25maWcgTk9VVkVBVV9ERUJVR19ERUZBVUxUCiAJaW50ICJEZWZhdWx0IGRlYnVnIGxldmVsIgog
-CWRlcGVuZHMgb24gRFJNX05PVVZFQVUKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfbGVkLmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2xlZC5o
-CmluZGV4IDE4N2VjZGI4MjAwMi4uOWM5YmI2YWM5MzhlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2xlZC5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfbGVkLmgKQEAgLTQyLDcgKzQyLDcgQEAgbm91dmVhdV9sZWQoc3RydWN0IGRybV9k
-ZXZpY2UgKmRldikKIH0KIAogLyogbm91dmVhdV9sZWQuYyAqLwotI2lmIElTX0VOQUJMRUQoQ09O
-RklHX0xFRFNfQ0xBU1MpCisjaWYgSVNfRU5BQkxFRChDT05GSUdfRFJNX05PVVZFQVVfTEVEKQog
-aW50ICBub3V2ZWF1X2xlZF9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpOwogdm9pZCBub3V2
-ZWF1X2xlZF9zdXNwZW5kKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpOwogdm9pZCBub3V2ZWF1X2xl
-ZF9yZXN1bWUoc3RydWN0IGRybV9kZXZpY2UgKmRldik7Ci0tIAoyLjkuMAoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlz
-dApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============2042024112==
+Content-Type: multipart/alternative; boundary="14786177390.Ae8B1.11902";
+ charset="UTF-8"
+
+
+--14786177390.Ae8B1.11902
+Date: Tue, 8 Nov 2016 15:08:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98630
+
+--- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Mingcong Bai from comment #17)
+> Suspecting that this could still be an application-based issue, I have fi=
+led
+> some issues to GNOME and KDE developers, as their desktop environment have
+> the same coloring issue while XFCE and MATE worked just fine:
+>=20
+> - https://bugs.kde.org/show_bug.cgi?id=3D372202
+> - https://bugzilla.gnome.org/show_bug.cgi?id=3D774085
+
+Could you confirm that nouveau.nomodeset=3D1 (+ fbdev) produces these bad e=
+ffects
+as well? Should be able to use offb assuming that OF knows how to deal with
+your GPU.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14786177390.Ae8B1.11902
+Date: Tue, 8 Nov 2016 15:08:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Bad color and glitches on PPC64"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c18">Commen=
+t # 18</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Bad color and glitches on PPC64"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630">bug 98630<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Mingcong Bai from <a href=3D"show_bug.cgi?id=3D98=
+630#c17">comment #17</a>)
+<span class=3D"quote">&gt; Suspecting that this could still be an applicati=
+on-based issue, I have filed
+&gt; some issues to GNOME and KDE developers, as their desktop environment =
+have
+&gt; the same coloring issue while XFCE and MATE worked just fine:
+&gt;=20
+&gt; - <a href=3D"https://bugs.kde.org/show_bug.cgi?id=3D372202">https://bu=
+gs.kde.org/show_bug.cgi?id=3D372202</a>
+&gt; - <a href=3D"https://bugzilla.gnome.org/show_bug.cgi?id=3D774085">http=
+s://bugzilla.gnome.org/show_bug.cgi?id=3D774085</a></span >
+
+Could you confirm that nouveau.nomodeset=3D1 (+ fbdev) produces these bad e=
+ffects
+as well? Should be able to use offb assuming that OF knows how to deal with
+your GPU.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14786177390.Ae8B1.11902--
+
+--===============2042024112==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2042024112==--
