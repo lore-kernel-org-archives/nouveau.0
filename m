@@ -1,15 +1,13 @@
-From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Drop superfluous
- DRM_SWITCH_POWER_DYNAMIC_OFF checks
-Date: Tue, 8 Nov 2016 21:29:38 +0100
-Message-ID: <20161108202938.GA15269@al>
-References: <0136d21975f52582f9cfe3ea313c3173c657c286.1478605864.git.lukas@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70390] [NV84] Repeated system crashes under graphics
+ load, E[PFIFO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]
+Date: Wed, 09 Nov 2016 07:56:35 +0000
+Message-ID: <bug-70390-8800-rSE6Xmxbmd@http.bugs.freedesktop.org/>
+References: <bug-70390-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1479006729=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <0136d21975f52582f9cfe3ea313c3173c657c286.1478605864.git.lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+In-Reply-To: <bug-70390-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,65 +17,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBOb3YgMDgsIDIwMTYgYXQgMTI6NTc6MDBQTSArMDEwMCwgTHVrYXMgV3VubmVyIHdy
-b3RlOgo+IG5vdXZlYXUncyAtPnN1c3BlbmQgYW5kIC0+cmVzdW1lIGNhbGxiYWNrcyBhcmUgY3Vy
-cmVudGx5IHNraXBwZWQgaWYgdGhlCj4gZGV2aWNlJ3Mgc3RhdHVzIGlzIGVpdGhlciBEUk1fU1dJ
-VENIX1BPV0VSX09GRiAocG93ZXJlZCBvZmYgYnkKPiB2Z2Ffc3dpdGNoZXJvbyBtYW51YWwgcG93
-ZXIgY29udHJvbCkgb3IgRFJNX1NXSVRDSF9QT1dFUl9EWU5BTUlDX09GRgo+IChydW50aW1lIHN1
-c3BlbmRlZCkuCj4gCj4gSW4gdGhlIGZvcm1lciBjYXNlIHRoaXMgbWFrZXMgc2Vuc2Ugc2luY2Ug
-dGhlIGRldmljZSBpcyBwb3dlcmVkIG9mZgo+IGJlaGluZCB0aGUgUE0gY29yZSdzIGJhY2s6ICBJ
-dCB3aWxsIHRyeSB0byBleGVjdXRlIHRoZSAtPnN1c3BlbmQgYW5kCj4gLT5yZXN1bWUgY2FsbGJh
-Y2tzIHVwb24gc3lzdGVtIHNsZWVwLCBub3Qga25vd2luZyB0aGF0IHRoZSBkZXZpY2UgaXMKPiBp
-bmFjY2Vzc2libGUuICBUaGVyZWZvcmUgdGhlIGNhbGxiYWNrcyBoYXZlIHRvIGJlY29tZSBuby1v
-cHMuCj4gCj4gSG93ZXZlciB0aGUgbGF0dGVyIGNhc2UgZG9lc24ndCBtYWtlIGFueSBzZW5zZSBi
-ZWNhdXNlIHRoZSBQTSBjb3JlCj4gbmV2ZXIgY2FsbHMgdGhlIC0+c3VzcGVuZCBhbmQgLT5yZXN1
-bWUgY2FsbGJhY2tzIG9mIHJ1bnRpbWUgc3VzcGVuZGVkCj4gZGV2aWNlczogIFN1Y2ggZGV2aWNl
-cyBhcmUgZWl0aGVyIHJ1bnRpbWUgcmVzdW1lZCBiZWZvcmUgZ29pbmcgdG8gc3lzdGVtCj4gc2xl
-ZXAgKHNlZSBjYWxsIHRvIHBtX3J1bnRpbWVfcmVzdW1lKCkgaW4gZHJpdmVycy9wY2kvcGNpLWRy
-aXZlcjoKPiBwY2lfcG1fc3VzcGVuZCgpKSBvciB0aGV5IGFyZSBsZWZ0IHJ1bnRpbWUgc3VzcGVu
-ZGVkIG92ZXIgdGhlIGVudGlyZQo+IHN5c3RlbSBzdXNwZW5kL3Jlc3VtZSBwcm9jZXNzIChzZWFy
-Y2ggZm9yICJkaXJlY3RfY29tcGxldGUiIGluCj4gZHJpdmVycy9iYXNlL3Bvd2VyL21haW4uYyku
-Cj4gCj4gQ29uc2VxdWVudGx5IHRoZSBEUk1fU1dJVENIX1BPV0VSX0RZTkFNSUNfT0ZGIGNoZWNr
-cyBhcmUgc3VwZXJmbHVvdXMuCj4gRHJvcCB0aGVtLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEx1a2Fz
-IFd1bm5lciA8bHVrYXNAd3VubmVyLmRlPgoKSXQgaXMgYmV0dGVyIHRvIHJlbHkgb24gdGhlIG9m
-ZmljaWFsIGRvY3VtZW50YXRpb24gcmF0aGVyIHRoYW4gdGhlCmltcGxlbWVudGF0aW9uLiBMdWNr
-aWx5LCBEb2N1bWVudGF0aW9uL3Bvd2VyL3BjaS50eHQgc3VwcG9ydHMgdGhlIGNsYWltOgoKICAg
-IDIuNC4xLiBTeXN0ZW0gU3VzcGVuZAoKICAgIFdoZW4gdGhlIHN5c3RlbSBpcyBnb2luZyBpbnRv
-IGEgc2xlZXAgc3RhdGUgaW4gd2hpY2ggdGhlIGNvbnRlbnRzIG9mIG1lbW9yeSB3aWxsCiAgICBi
-ZSBwcmVzZXJ2ZWQsIHN1Y2ggYXMgb25lIG9mIHRoZSBBQ1BJIHNsZWVwIHN0YXRlcyBTMS1TMywg
-dGhlIHBoYXNlcyBhcmU6CgogICAgICAgIHByZXBhcmUsIHN1c3BlbmQsIHN1c3BlbmRfbm9pcnEu
-CiAgICBbLi5dCiAgICBUaGUgcGNpX3BtX3ByZXBhcmUoKSByb3V0aW5lIGZpcnN0IHB1dHMgdGhl
-IGRldmljZSBpbnRvIHRoZSAiZnVsbHkgZnVuY3Rpb25hbCIKICAgIHN0YXRlIHdpdGggdGhlIGhl
-bHAgb2YgcG1fcnVudGltZV9yZXN1bWUoKS4gWy4uXQoKU28gaW5kZWVkIHdlIGNhbiBiZSBzdXJl
-IHRoYXQgdGhlIGRldmljZSBpcyBydW50aW1lLXJlc3VtZWQgYmVmb3JlCnN1c3BlbmQuIFN5c3Rl
-bSByZXN1bWUgaXMgbm90IGRvY3VtZW50ZWQgZXhwbGljaXRseSwgYnV0IGl0IHNlZW1zCnJlYXNv
-bmFibGUgdGhhdCB0aGUgZGV2aWNlIGlzIG5vdCBydW50aW1lLXN1c3BlbmRlZCBiZXR3ZWVuIHN5
-c3RlbQpzdXNwZW5kIGFuZCByZXN1bWUuCgpSZXZpZXdlZC1ieTogUGV0ZXIgV3UgPHBldGVyQGxl
-a2Vuc3RleW4ubmw+Cgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Ry
-bS5jIHwgNiArKy0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgNCBkZWxl
-dGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiBpbmRleCA5
-ODc2ZTZmLi5kOTFkMDkyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
-dXZlYXVfZHJtLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5j
-Cj4gQEAgLTY2Niw4ICs2NjYsNyBAQCBzdGF0aWMgaW50IG5vdXZlYXVfZHJtX3Byb2JlKHN0cnVj
-dCBwY2lfZGV2ICpwZGV2LAo+ICAJc3RydWN0IGRybV9kZXZpY2UgKmRybV9kZXYgPSBwY2lfZ2V0
-X2RydmRhdGEocGRldik7Cj4gIAlpbnQgcmV0Owo+ICAKPiAtCWlmIChkcm1fZGV2LT5zd2l0Y2hf
-cG93ZXJfc3RhdGUgPT0gRFJNX1NXSVRDSF9QT1dFUl9PRkYgfHwKPiAtCSAgICBkcm1fZGV2LT5z
-d2l0Y2hfcG93ZXJfc3RhdGUgPT0gRFJNX1NXSVRDSF9QT1dFUl9EWU5BTUlDX09GRikKPiArCWlm
-IChkcm1fZGV2LT5zd2l0Y2hfcG93ZXJfc3RhdGUgPT0gRFJNX1NXSVRDSF9QT1dFUl9PRkYpCj4g
-IAkJcmV0dXJuIDA7Cj4gIAo+ICAJcmV0ID0gbm91dmVhdV9kb19zdXNwZW5kKGRybV9kZXYsIGZh
-bHNlKTsKPiBAQCAtNjg4LDggKzY4Nyw3IEBAIHN0YXRpYyBpbnQgbm91dmVhdV9kcm1fcHJvYmUo
-c3RydWN0IHBjaV9kZXYgKnBkZXYsCj4gIAlzdHJ1Y3QgZHJtX2RldmljZSAqZHJtX2RldiA9IHBj
-aV9nZXRfZHJ2ZGF0YShwZGV2KTsKPiAgCWludCByZXQ7Cj4gIAo+IC0JaWYgKGRybV9kZXYtPnN3
-aXRjaF9wb3dlcl9zdGF0ZSA9PSBEUk1fU1dJVENIX1BPV0VSX09GRiB8fAo+IC0JICAgIGRybV9k
-ZXYtPnN3aXRjaF9wb3dlcl9zdGF0ZSA9PSBEUk1fU1dJVENIX1BPV0VSX0RZTkFNSUNfT0ZGKQo+
-ICsJaWYgKGRybV9kZXYtPnN3aXRjaF9wb3dlcl9zdGF0ZSA9PSBEUk1fU1dJVENIX1BPV0VSX09G
-RikKPiAgCQlyZXR1cm4gMDsKPiAgCj4gIAlwY2lfc2V0X3Bvd2VyX3N0YXRlKHBkZXYsIFBDSV9E
-MCk7Cj4gLS0gCj4gMi4xMC4xCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQo=
+
+--===============1479006729==
+Content-Type: multipart/alternative; boundary="14786781957.Af05A2CdD.3519";
+ charset="UTF-8"
+
+
+--14786781957.Af05A2CdD.3519
+Date: Wed, 9 Nov 2016 07:56:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D70390
+
+--- Comment #23 from Mathieu Malaterre <mathieu.malaterre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This can reproduce on PPC32 machines easily:
+
+https://bugzilla.kernel.org/show_bug.cgi?id=3D187111
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14786781957.Af05A2CdD.3519
+Date: Wed, 9 Nov 2016 07:56:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV84] Repeated system crashes under graphics load, E[PFI=
+FO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70390#c23">Commen=
+t # 23</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV84] Repeated system crashes under graphics load, E[PFI=
+FO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70390">bug 70390<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mathieu.malaterre&#64;gmail.com" title=3D"Mathieu Malaterre &lt;mathieu.mal=
+aterre&#64;gmail.com&gt;"> <span class=3D"fn">Mathieu Malaterre</span></a>
+</span></b>
+        <pre>This can reproduce on PPC32 machines easily:
+
+<a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D187111">https://bu=
+gzilla.kernel.org/show_bug.cgi?id=3D187111</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14786781957.Af05A2CdD.3519--
+
+--===============1479006729==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1479006729==--
