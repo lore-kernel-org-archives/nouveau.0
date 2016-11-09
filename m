@@ -1,20 +1,12 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: NVAC "No Signal"
-Date: Wed, 9 Nov 2016 13:48:01 +0100
-Message-ID: <20161109124801.kkbpoaynnt4jjcdm@Sovereign.localdomain>
-References: <90c3d7fc-16c9-bc81-8812-a9a1e86415dc@gmail.com>
- <CAEXux-Zr9SaRgSoVGCJKGO59CNYqq1MEwTo1ib23dCD+rxebjw@mail.gmail.com>
- <1f02c18b-e472-e3bc-9302-646d20e59d46@gmail.com>
- <CAEXux-a=F+AAr--rf8Dk_Cekcfk7yFF49mK4tW6MH4Xv=-2puA@mail.gmail.com>
- <07fa54e9-1a6f-de75-52ee-cc8aee96a541@gmail.com>
- <20161019175806.uqksdyiyr3dpkzu3@pmoreau.org>
- <20161020080828.GA3285@wunner.de> <20161020231507.GA3857@wunner.de>
- <20161021085626.uoo33n6dvbkygwrg@pmoreau.org>
- <43b17bb3-7b12-b1be-c608-702ebdfd8522@gmail.com>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] acpi: video: Move ACPI_VIDEO_NOTIFY_* defines to
+	acpi/video.h
+Date: Wed,  9 Nov 2016 18:15:56 +0100
+Message-ID: <20161109171556.4003-1-hdegoede@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2103872960=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <43b17bb3-7b12-b1be-c608-702ebdfd8522-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -24,106 +16,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, Zhang Rui <rui.zhang-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Len Brown <lenb-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2103872960==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7jtq5izokc33j5hh"
-Content-Disposition: inline
-
-
---7jtq5izokc33j5hh
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-I retested with both 4.8.4, Ben=E2=80=99s linux-4.9 and linux-4.10 branches=
- (so only
-the linux-4.10 branch had the atomic+MST patches).
-For all branches, if I bootplug the external screen, I get nothing on the
-external screen, and the laptop screen is frozen with some mix of images (b=
-ut
-the laptop itself is not locked up), nothing in dmesg. If I hotplug the scr=
-een,
-the laptop screen is not frozen, but starting with linux-4.10, I get an EVO
-timeout when turning off the external monitor. Adding your patch did not ch=
-ange
-anything for me.
-Looks like I=E2=80=99ll need to spend some more time testing and bisecting =
-those
-issues=E2=80=A6
-
-Pierre
-
-On 06:12 am - Nov 08 2016, poma wrote:
-> On 21.10.2016 10:56, Pierre Moreau wrote:
-> > On 01:15 am - Oct 21 2016, Lukas Wunner wrote:
-> >> On Thu, Oct 20, 2016 at 10:08:28AM +0200, Lukas Wunner wrote:
-> >>> On Wed, Oct 19, 2016 at 07:58:06PM +0200, Pierre Moreau wrote:
-> >>>> For example, my laptop (which also has an NVAC) has been triggering =
-the
-> >>>> no-signal message on external monitors way before Ben???s patch land=
-ed,
-> >>>> but only for some adapters. I haven???t tried Ben???s patch yet, nor
-> >>>> yours, but I will certainly do it, and see what effect each of them =
-has.
-> >>>
-> >>> The external DP port on your MBP5,3 is switchable between GPUs and
-> >>> the apple-gmux driver switches it in unison with the panel.  Thus
-> >>> the NVAC cannot drive external displays when gmux is switched to
-> >>> the MCP79.  (You probably were aware of this, just wanted to mention
-> >>       ^^^^^
-> >> I meant G96, sorry I mixed it up.
-> >>
-> >> Lukas
-> >=20
-> > Yes, that bit had stayed in my memory, that switching between the two G=
-PUs
-> > would not only switch them for the laptop screen, but for the external =
-ones as
-> > well. IIRC, I am getting the no signal in both cases, but I need to ret=
-est.
-> >=20
-> > Pierre
->=20
-> Any news related on your side?
->=20
->=20
->=20
-
---7jtq5izokc33j5hh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIcBAABCgAGBQJYIxr6AAoJEI7uMhYTPh3wSBAQAI3x5UP5K+sRwWhrK1j8SNqL
-SI/KpH9r8OmqlYw2emyqgllf4F2MJGCLN1uCPNadBGTU6Ywt6NtKqeYyITyrov/D
-mpCnidDcFUdoiwDupzJrU+w5cbg5tAgM03QeVbAgYDSJ9we6asWqE3jDeiCd50hq
-4CSeNIhld0zvFiDi8cqQ0c1c/WWVCOxQTNrJQc45suCbdVzFvXCd2SqAGileVOyb
-DfBdBZiTpqNDWZmSbe7n8505sCX4CCJY5Nvc2bmwBnlcYXl92Wywl36vowcNf9dI
-rmzZG2MYIao3nI146IhyZd5tXwPJo+Vo8x0b8J/dH9E08YpRjQhhGboiIXO7IDIz
-YMLENOIEmbgYdr93imcSp7Rbpp4SdQxUYAVfmcsbouFEzOVjpW8+vhRN8G9qQe90
-5iGxtcP4DzRykBTEVrRQNgt22QMYYpqt6Mqc6XJLSwzqD3eWpGx7EFpiD0ubwSm8
-FFnJ7/gQXwfjTMRBAjlXyeo8ABz26bNblAcR9YlpIxCNrv9f0T07QvM+FUBTqEZQ
-hDaINbTRVM6zYez392nAu61EoIIUfwe17yb+p3Jn2hulGsqP3OdKAPMEspwsmDrZ
-LUkj6HYss1iC+Vc5oJBdOQgwh8CqtmpfwivUWao2ywQ6DC5x8aAbtxokWObv8uNE
-fSjsFZV58/6AqqTlLnG4
-=oQXy
------END PGP SIGNATURE-----
-
---7jtq5izokc33j5hh--
-
---===============2103872960==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2103872960==--
+YWNwaV92aWRlby5jIHBhc3NlZCB0aGUgQUNQSV9WSURFT19OT1RJRllfKiBkZWZpbmVzIGFzIHR5
+cGUgY29kZSB0bwphY3BpX25vdGlmaWVyX2NhbGxfY2hhaW4oKS4gTW92ZSB0aGVzZSBkZWZpbmVz
+IHRvIGFjcGkvdmlkZW8uaCBzbwp0aGF0IGFjcGlfbm90aWZpZXIgbGlzdGVuZXJzIGNhbiBjaGVj
+ayB0aGUgdHlwZSBjb2RlIHVzaW5nIHRoZXNlCmRlZmluZXMuCgpTaWduZWQtb2ZmLWJ5OiBIYW5z
+IGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPgotLS0KIGRyaXZlcnMvYWNwaS9hY3BpX3Zp
+ZGVvLmMgfCAxMSAtLS0tLS0tLS0tLQogaW5jbHVkZS9hY3BpL3ZpZGVvLmggICAgICB8IDExICsr
+KysrKysrKysrCiAyIGZpbGVzIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9u
+cygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvYWNwaS9hY3BpX3ZpZGVvLmMgYi9kcml2ZXJzL2Fj
+cGkvYWNwaV92aWRlby5jCmluZGV4IGM1NTU3ZDAuLjIwMTI5MmUgMTAwNjQ0Ci0tLSBhL2RyaXZl
+cnMvYWNwaS9hY3BpX3ZpZGVvLmMKKysrIGIvZHJpdmVycy9hY3BpL2FjcGlfdmlkZW8uYwpAQCAt
+NDMsMTcgKzQzLDYgQEAKIAogI2RlZmluZSBBQ1BJX1ZJREVPX0JVU19OQU1FCQkiVmlkZW8gQnVz
+IgogI2RlZmluZSBBQ1BJX1ZJREVPX0RFVklDRV9OQU1FCQkiVmlkZW8gRGV2aWNlIgotI2RlZmlu
+ZSBBQ1BJX1ZJREVPX05PVElGWV9TV0lUQ0gJMHg4MAotI2RlZmluZSBBQ1BJX1ZJREVPX05PVElG
+WV9QUk9CRQkJMHg4MQotI2RlZmluZSBBQ1BJX1ZJREVPX05PVElGWV9DWUNMRQkJMHg4MgotI2Rl
+ZmluZSBBQ1BJX1ZJREVPX05PVElGWV9ORVhUX09VVFBVVAkweDgzCi0jZGVmaW5lIEFDUElfVklE
+RU9fTk9USUZZX1BSRVZfT1VUUFVUCTB4ODQKLQotI2RlZmluZSBBQ1BJX1ZJREVPX05PVElGWV9D
+WUNMRV9CUklHSFRORVNTCTB4ODUKLSNkZWZpbmUJQUNQSV9WSURFT19OT1RJRllfSU5DX0JSSUdI
+VE5FU1MJMHg4NgotI2RlZmluZSBBQ1BJX1ZJREVPX05PVElGWV9ERUNfQlJJR0hUTkVTUwkweDg3
+Ci0jZGVmaW5lIEFDUElfVklERU9fTk9USUZZX1pFUk9fQlJJR0hUTkVTUwkweDg4Ci0jZGVmaW5l
+IEFDUElfVklERU9fTk9USUZZX0RJU1BMQVlfT0ZGCQkweDg5CiAKICNkZWZpbmUgTUFYX05BTUVf
+TEVOCTIwCiAKZGlmZiAtLWdpdCBhL2luY2x1ZGUvYWNwaS92aWRlby5oIGIvaW5jbHVkZS9hY3Bp
+L3ZpZGVvLmgKaW5kZXggNDUzNmJkMy4uYmZlNDg0ZCAxMDA2NDQKLS0tIGEvaW5jbHVkZS9hY3Bp
+L3ZpZGVvLmgKKysrIGIvaW5jbHVkZS9hY3BpL3ZpZGVvLmgKQEAgLTMwLDYgKzMwLDE3IEBAIHN0
+cnVjdCBhY3BpX2RldmljZTsKICNkZWZpbmUgQUNQSV9WSURFT19ESVNQTEFZX0xFR0FDWV9QQU5F
+TCAgIDB4MDExMAogI2RlZmluZSBBQ1BJX1ZJREVPX0RJU1BMQVlfTEVHQUNZX1RWICAgICAgMHgw
+MjAwCiAKKyNkZWZpbmUgQUNQSV9WSURFT19OT1RJRllfU1dJVENICQkweDgwCisjZGVmaW5lIEFD
+UElfVklERU9fTk9USUZZX1BST0JFCQkJMHg4MQorI2RlZmluZSBBQ1BJX1ZJREVPX05PVElGWV9D
+WUNMRQkJCTB4ODIKKyNkZWZpbmUgQUNQSV9WSURFT19OT1RJRllfTkVYVF9PVVRQVVQJCTB4ODMK
+KyNkZWZpbmUgQUNQSV9WSURFT19OT1RJRllfUFJFVl9PVVRQVVQJCTB4ODQKKyNkZWZpbmUgQUNQ
+SV9WSURFT19OT1RJRllfQ1lDTEVfQlJJR0hUTkVTUwkweDg1CisjZGVmaW5lIEFDUElfVklERU9f
+Tk9USUZZX0lOQ19CUklHSFRORVNTCTB4ODYKKyNkZWZpbmUgQUNQSV9WSURFT19OT1RJRllfREVD
+X0JSSUdIVE5FU1MJMHg4NworI2RlZmluZSBBQ1BJX1ZJREVPX05PVElGWV9aRVJPX0JSSUdIVE5F
+U1MJMHg4OAorI2RlZmluZSBBQ1BJX1ZJREVPX05PVElGWV9ESVNQTEFZX09GRgkJMHg4OQorCiBl
+bnVtIGFjcGlfYmFja2xpZ2h0X3R5cGUgewogCWFjcGlfYmFja2xpZ2h0X3VuZGVmID0gLTEsCiAJ
+YWNwaV9iYWNrbGlnaHRfbm9uZSA9IDAsCi0tIAoyLjkuMwoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
