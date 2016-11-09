@@ -1,11 +1,20 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98657] New: Reproducible freeze when changing volume
- amplification in kodi
-Date: Wed, 09 Nov 2016 12:42:58 +0000
-Message-ID: <bug-98657-8800@http.bugs.freedesktop.org/>
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: Re: NVAC "No Signal"
+Date: Wed, 9 Nov 2016 13:48:01 +0100
+Message-ID: <20161109124801.kkbpoaynnt4jjcdm@Sovereign.localdomain>
+References: <90c3d7fc-16c9-bc81-8812-a9a1e86415dc@gmail.com>
+ <CAEXux-Zr9SaRgSoVGCJKGO59CNYqq1MEwTo1ib23dCD+rxebjw@mail.gmail.com>
+ <1f02c18b-e472-e3bc-9302-646d20e59d46@gmail.com>
+ <CAEXux-a=F+AAr--rf8Dk_Cekcfk7yFF49mK4tW6MH4Xv=-2puA@mail.gmail.com>
+ <07fa54e9-1a6f-de75-52ee-cc8aee96a541@gmail.com>
+ <20161019175806.uqksdyiyr3dpkzu3@pmoreau.org>
+ <20161020080828.GA3285@wunner.de> <20161020231507.GA3857@wunner.de>
+ <20161021085626.uoo33n6dvbkygwrg@pmoreau.org>
+ <43b17bb3-7b12-b1be-c608-702ebdfd8522@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1690828687=="
+Content-Type: multipart/mixed; boundary="===============2103872960=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <43b17bb3-7b12-b1be-c608-702ebdfd8522-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,248 +24,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 
---===============1690828687==
-Content-Type: multipart/alternative; boundary="14786953781.3EB8.20484";
- charset="UTF-8"
+--===============2103872960==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7jtq5izokc33j5hh"
+Content-Disposition: inline
 
 
---14786953781.3EB8.20484
-Date: Wed, 9 Nov 2016 12:42:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--7jtq5izokc33j5hh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98657
+I retested with both 4.8.4, Ben=E2=80=99s linux-4.9 and linux-4.10 branches=
+ (so only
+the linux-4.10 branch had the atomic+MST patches).
+For all branches, if I bootplug the external screen, I get nothing on the
+external screen, and the laptop screen is frozen with some mix of images (b=
+ut
+the laptop itself is not locked up), nothing in dmesg. If I hotplug the scr=
+een,
+the laptop screen is not frozen, but starting with linux-4.10, I get an EVO
+timeout when turning off the external monitor. Adding your patch did not ch=
+ange
+anything for me.
+Looks like I=E2=80=99ll need to spend some more time testing and bisecting =
+those
+issues=E2=80=A6
 
-            Bug ID: 98657
-           Summary: Reproducible freeze when changing volume amplification
-                    in kodi
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: wolfgang.kde-zdKOYOBJ9IsPyMaTEpOvjQ@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Pierre
 
-Sound goes out as Surround 5.1 over the HDMI cable on an Nvidia GT 630.
+On 06:12 am - Nov 08 2016, poma wrote:
+> On 21.10.2016 10:56, Pierre Moreau wrote:
+> > On 01:15 am - Oct 21 2016, Lukas Wunner wrote:
+> >> On Thu, Oct 20, 2016 at 10:08:28AM +0200, Lukas Wunner wrote:
+> >>> On Wed, Oct 19, 2016 at 07:58:06PM +0200, Pierre Moreau wrote:
+> >>>> For example, my laptop (which also has an NVAC) has been triggering =
+the
+> >>>> no-signal message on external monitors way before Ben???s patch land=
+ed,
+> >>>> but only for some adapters. I haven???t tried Ben???s patch yet, nor
+> >>>> yours, but I will certainly do it, and see what effect each of them =
+has.
+> >>>
+> >>> The external DP port on your MBP5,3 is switchable between GPUs and
+> >>> the apple-gmux driver switches it in unison with the panel.  Thus
+> >>> the NVAC cannot drive external displays when gmux is switched to
+> >>> the MCP79.  (You probably were aware of this, just wanted to mention
+> >>       ^^^^^
+> >> I meant G96, sorry I mixed it up.
+> >>
+> >> Lukas
+> >=20
+> > Yes, that bit had stayed in my memory, that switching between the two G=
+PUs
+> > would not only switch them for the laptop screen, but for the external =
+ones as
+> > well. IIRC, I am getting the no signal in both cases, but I need to ret=
+est.
+> >=20
+> > Pierre
+>=20
+> Any news related on your side?
+>=20
+>=20
+>=20
 
-Volume amplification is at minimum 0dB - if I increase it, the screen freez=
-es.
+--7jtq5izokc33j5hh
+Content-Type: application/pgp-signature; name="signature.asc"
 
-lspci:
-01:00.0 VGA compatible controller: NVIDIA Corporation GK208 [GeForce GT 630
-Rev. 2] (rev a1)
-01:00.1 Audio device: NVIDIA Corporation GK208 HDMI/DP Audio Controller (rev
-a1)
+-----BEGIN PGP SIGNATURE-----
 
-Kubuntu 16.04.1 with self compiled standard kernel 4.8.6
-kodi version 15.2
+iQIcBAABCgAGBQJYIxr6AAoJEI7uMhYTPh3wSBAQAI3x5UP5K+sRwWhrK1j8SNqL
+SI/KpH9r8OmqlYw2emyqgllf4F2MJGCLN1uCPNadBGTU6Ywt6NtKqeYyITyrov/D
+mpCnidDcFUdoiwDupzJrU+w5cbg5tAgM03QeVbAgYDSJ9we6asWqE3jDeiCd50hq
+4CSeNIhld0zvFiDi8cqQ0c1c/WWVCOxQTNrJQc45suCbdVzFvXCd2SqAGileVOyb
+DfBdBZiTpqNDWZmSbe7n8505sCX4CCJY5Nvc2bmwBnlcYXl92Wywl36vowcNf9dI
+rmzZG2MYIao3nI146IhyZd5tXwPJo+Vo8x0b8J/dH9E08YpRjQhhGboiIXO7IDIz
+YMLENOIEmbgYdr93imcSp7Rbpp4SdQxUYAVfmcsbouFEzOVjpW8+vhRN8G9qQe90
+5iGxtcP4DzRykBTEVrRQNgt22QMYYpqt6Mqc6XJLSwzqD3eWpGx7EFpiD0ubwSm8
+FFnJ7/gQXwfjTMRBAjlXyeo8ABz26bNblAcR9YlpIxCNrv9f0T07QvM+FUBTqEZQ
+hDaINbTRVM6zYez392nAu61EoIIUfwe17yb+p3Jn2hulGsqP3OdKAPMEspwsmDrZ
+LUkj6HYss1iC+Vc5oJBdOQgwh8CqtmpfwivUWao2ywQ6DC5x8aAbtxokWObv8uNE
+fSjsFZV58/6AqqTlLnG4
+=oQXy
+-----END PGP SIGNATURE-----
 
-Xorg.0.log says:=20
-[     4.645] (II) Module nouveau: vendor=3D"X.Org Foundation"
-[     4.645]    compiled for 1.18.1, module version =3D 1.0.12
+--7jtq5izokc33j5hh--
 
-kern.log:
-Nov  9 13:18:51 s5 kernel: [  599.178480] nouveau 0000:01:00.0: fifo: PBDMA=
-0:
-00040000 [PBENTRY] ch 8 [003f902000 kodi.bin[2449]] subc 0 mthd 0000 data
-00000000
-Nov  9 13:18:51 s5 kernel: [  599.178502] nouveau 0000:01:00.0: fifo: PBDMA=
-0:
-00040000 [PBENTRY] ch 8 [003f902000 kodi.bin[2449]] subc 0 mthd 0000 data
-00000000
-Nov  9 13:18:51 s5 kernel: [  599.178515] nouveau 0000:01:00.0: gr: DATA_ER=
-ROR
-0000000c [INVALID_BITFIELD] ch 8 [003f902000 kodi.bin[2449]] subc 0 class a=
-197
-mthd 114c data 05000000
-Nov  9 13:18:51 s5 kernel: [  599.178522] nouveau 0000:01:00.0: fifo: PBDMA=
-0:
-00040000 [PBENTRY] ch 8 [003f902000 kodi.bin[2449]] subc 0 mthd 0000 data
-00000000
-Nov  9 13:18:51 s5 kernel: [  599.178533] nouveau 0000:01:00.0: gr: DATA_ER=
-ROR
-00000003 [INVALID_OPERATION] ch 8 [003f902000 kodi.bin[2449]] subc 0 class =
-a197
-mthd 1158 data 3f800000
-Nov  9 13:18:51 s5 kernel: [  599.178540] nouveau 0000:01:00.0: fifo: PBDMA=
-0:
-00040000 [PBENTRY] ch 8 [003f902000 kodi.bin[2449]] subc 0 mthd 0000 data
-00000000
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14786953781.3EB8.20484
-Date: Wed, 9 Nov 2016 12:42:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Reproducible freeze when changing volume amplification in=
- kodi"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98657">98657</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Reproducible freeze when changing volume amplification in kodi
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>wolfgang.kde&#64;rohdewald.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Sound goes out as Surround 5.1 over the HDMI cable on an Nvidi=
-a GT 630.
-
-Volume amplification is at minimum 0dB - if I increase it, the screen freez=
-es.
-
-lspci:
-01:00.0 VGA compatible controller: NVIDIA Corporation GK208 [GeForce GT 630
-Rev. 2] (rev a1)
-01:00.1 Audio device: NVIDIA Corporation GK208 HDMI/DP Audio Controller (rev
-a1)
-
-Kubuntu 16.04.1 with self compiled standard kernel 4.8.6
-kodi version 15.2
-
-Xorg.0.log says:=20
-[     4.645] (II) Module nouveau: vendor=3D&quot;X.Org Foundation&quot;
-[     4.645]    compiled for 1.18.1, module version =3D 1.0.12
-
-kern.log:
-Nov  9 13:18:51 s5 kernel: [  599.178480] nouveau 0000:01:00.0: fifo: PBDMA=
-0:
-00040000 [PBENTRY] ch 8 [003f902000 kodi.bin[2449]] subc 0 mthd 0000 data
-00000000
-Nov  9 13:18:51 s5 kernel: [  599.178502] nouveau 0000:01:00.0: fifo: PBDMA=
-0:
-00040000 [PBENTRY] ch 8 [003f902000 kodi.bin[2449]] subc 0 mthd 0000 data
-00000000
-Nov  9 13:18:51 s5 kernel: [  599.178515] nouveau 0000:01:00.0: gr: DATA_ER=
-ROR
-0000000c [INVALID_BITFIELD] ch 8 [003f902000 kodi.bin[2449]] subc 0 class a=
-197
-mthd 114c data 05000000
-Nov  9 13:18:51 s5 kernel: [  599.178522] nouveau 0000:01:00.0: fifo: PBDMA=
-0:
-00040000 [PBENTRY] ch 8 [003f902000 kodi.bin[2449]] subc 0 mthd 0000 data
-00000000
-Nov  9 13:18:51 s5 kernel: [  599.178533] nouveau 0000:01:00.0: gr: DATA_ER=
-ROR
-00000003 [INVALID_OPERATION] ch 8 [003f902000 kodi.bin[2449]] subc 0 class =
-a197
-mthd 1158 data 3f800000
-Nov  9 13:18:51 s5 kernel: [  599.178540] nouveau 0000:01:00.0: fifo: PBDMA=
-0:
-00040000 [PBENTRY] ch 8 [003f902000 kodi.bin[2449]] subc 0 mthd 0000 data
-00000000</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14786953781.3EB8.20484--
-
---===============1690828687==
+--===============2103872960==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -266,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1690828687==--
+--===============2103872960==--
