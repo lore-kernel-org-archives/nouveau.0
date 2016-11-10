@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
 	(v4.6+)
-Date: Thu, 10 Nov 2016 12:53:13 +0000
-Message-ID: <bug-94990-8800-fH73JVxnOa@http.bugs.freedesktop.org/>
+Date: Thu, 10 Nov 2016 13:47:16 +0000
+Message-ID: <bug-94990-8800-7KqFHqqd3W@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0137362621=="
+Content-Type: multipart/mixed; boundary="===============1761347713=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0137362621==
-Content-Type: multipart/alternative; boundary="147878239311.9D3c8.22472";
+--===============1761347713==
+Content-Type: multipart/alternative; boundary="14787856353.fE6e2993A.25490";
  charset="UTF-8"
 
 
---147878239311.9D3c8.22472
-Date: Thu, 10 Nov 2016 12:53:13 +0000
+--14787856353.fE6e2993A.25490
+Date: Thu, 10 Nov 2016 13:47:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #88 from Gabriel Amadej <madej-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> ---
-Hi. I've noticed that the liquorix kernel [ https://liquorix.net ] works wi=
-th
-my GTX970. It worked with version 4.6, 4.7, and now 4.8. I don't know what =
-it
-does differently to make it work, but maybe a solution to the problem can be
-found there.
+--- Comment #89 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Gabriel Amadej from comment #88)
+> Hi. I've noticed that the liquorix kernel [ https://liquorix.net ] works
+> with my GTX970. It worked with version 4.6, 4.7, and now 4.8. I don't know
+> what it does differently to make it work, but maybe a solution to the
+> problem can be found there.
+
+does your GTX 970 have 4GB or 2GB? The 2GB version should work.
+Otherwise, maybe the firmware files are missing so that not all GPU features
+are available. Anyway, check with glxinfo if nouveau is actually used
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---147878239311.9D3c8.22472
-Date: Thu, 10 Nov 2016 12:53:13 +0000
+--14787856353.fE6e2993A.25490
+Date: Thu, 10 Nov 2016 13:47:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,23 +69,29 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c88">Commen=
-t # 88</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c89">Commen=
+t # 89</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-madej&#64;riseup.net" title=3D"Gabriel Amadej &lt;madej&#64;riseup.net&gt;"=
-> <span class=3D"fn">Gabriel Amadej</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Hi. I've noticed that the liquorix kernel [ <a href=3D"https:/=
-/liquorix.net">https://liquorix.net</a> ] works with
-my GTX970. It worked with version 4.6, 4.7, and now 4.8. I don't know what =
-it
-does differently to make it work, but maybe a solution to the problem can be
-found there.</pre>
+        <pre>(In reply to Gabriel Amadej from <a href=3D"show_bug.cgi?id=3D=
+94990#c88">comment #88</a>)
+<span class=3D"quote">&gt; Hi. I've noticed that the liquorix kernel [ <a h=
+ref=3D"https://liquorix.net">https://liquorix.net</a> ] works
+&gt; with my GTX970. It worked with version 4.6, 4.7, and now 4.8. I don't =
+know
+&gt; what it does differently to make it work, but maybe a solution to the
+&gt; problem can be found there.</span >
+
+does your GTX 970 have 4GB or 2GB? The 2GB version should work.
+Otherwise, maybe the firmware files are missing so that not all GPU features
+are available. Anyway, check with glxinfo if nouveau is actually used</pre>
         </div>
       </p>
 
@@ -96,9 +105,9 @@ found there.</pre>
     </body>
 </html>=
 
---147878239311.9D3c8.22472--
+--14787856353.fE6e2993A.25490--
 
---===============0137362621==
+--===============1761347713==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0137362621==--
+--===============1761347713==--
