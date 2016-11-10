@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Thu, 10 Nov 2016 13:47:16 +0000
-Message-ID: <bug-94990-8800-7KqFHqqd3W@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
+ after dynamic poweroff
+Date: Thu, 10 Nov 2016 14:49:45 +0000
+Message-ID: <bug-94725-8800-LTdaEP15th@http.bugs.freedesktop.org/>
+References: <bug-94725-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1761347713=="
+Content-Type: multipart/mixed; boundary="===============1407441261=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1761347713==
-Content-Type: multipart/alternative; boundary="14787856353.fE6e2993A.25490";
+--===============1407441261==
+Content-Type: multipart/alternative; boundary="14787893855.EFE8f.29882";
  charset="UTF-8"
 
 
---14787856353.fE6e2993A.25490
-Date: Thu, 10 Nov 2016 13:47:15 +0000
+--14787893855.EFE8f.29882
+Date: Thu, 10 Nov 2016 14:49:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94725
 
---- Comment #89 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Gabriel Amadej from comment #88)
-> Hi. I've noticed that the liquorix kernel [ https://liquorix.net ] works
-> with my GTX970. It worked with version 4.6, 4.7, and now 4.8. I don't know
-> what it does differently to make it work, but maybe a solution to the
-> problem can be found there.
+Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> changed:
 
-does your GTX 970 have 4GB or 2GB? The 2GB version should work.
-Otherwise, maybe the firmware files are missing so that not all GPU features
-are available. Anyway, check with glxinfo if nouveau is actually used
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |https://bugzilla.kernel.org
+                   |                            |/show_bug.cgi?id=3D156341
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14787856353.fE6e2993A.25490
-Date: Thu, 10 Nov 2016 13:47:15 +0000
+--14787893855.EFE8f.29882
+Date: Thu, 10 Nov 2016 14:49:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,36 +59,33 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:peter&#64=
+;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"> <span c=
+lass=3D"fn">Peter Wu</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c89">Commen=
-t # 89</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
+c poweroff"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725">bug 94725<=
 /a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
-</span></b>
-        <pre>(In reply to Gabriel Amadej from <a href=3D"show_bug.cgi?id=3D=
-94990#c88">comment #88</a>)
-<span class=3D"quote">&gt; Hi. I've noticed that the liquorix kernel [ <a h=
-ref=3D"https://liquorix.net">https://liquorix.net</a> ] works
-&gt; with my GTX970. It worked with version 4.6, 4.7, and now 4.8. I don't =
-know
-&gt; what it does differently to make it work, but maybe a solution to the
-&gt; problem can be found there.</span >
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-does your GTX 970 have 4GB or 2GB? The 2GB version should work.
-Otherwise, maybe the firmware files are missing so that not all GPU features
-are available. Anyway, check with glxinfo if nouveau is actually used</pre>
-        </div>
+         <tr>
+           <td style=3D"text-align:right;">See Also</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugzilla.kernel.org/show_bug.cgi?id=3D156341
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -105,9 +98,9 @@ are available. Anyway, check with glxinfo if nouveau is actually used</pre>
     </body>
 </html>=
 
---14787856353.fE6e2993A.25490--
+--14787893855.EFE8f.29882--
 
---===============1761347713==
+--===============1407441261==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1761347713==--
+--===============1407441261==--
