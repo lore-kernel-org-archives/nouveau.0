@@ -1,119 +1,78 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98457] [NVD9] GPU lockup after resume from
- hibernation with Nouveau driver and firmware-nonfree
-Date: Thu, 10 Nov 2016 08:59:16 +0000
-Message-ID: <bug-98457-8800-DjNYtSrm3Z@http.bugs.freedesktop.org/>
-References: <bug-98457-8800@http.bugs.freedesktop.org/>
+From: Peter Wu <peter@lekensteyn.nl>
+Subject: Re: [Nouveau] [PATCH] acpi: video: Move ACPI_VIDEO_NOTIFY_* defines
+ to acpi/video.h
+Date: Thu, 10 Nov 2016 11:11:25 +0100
+Message-ID: <20161110101125.GA13197@al>
+References: <20161109171556.4003-1-hdegoede@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1260616265=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98457-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-acpi-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20161109171556.4003-1-hdegoede@redhat.com>
+Sender: linux-acpi-owner@vger.kernel.org
+To: Hans de Goede <hdegoede@redhat.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Zhang Rui <rui.zhang@intel.com>, Len Brown <lenb@kernel.org>, Dave Airlie <airlied@redhat.com>, linux-acpi@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+On Wed, Nov 09, 2016 at 06:15:56PM +0100, Hans de Goede wrote:
+> acpi_video.c passed the ACPI_VIDEO_NOTIFY_* defines as type code to
+> acpi_notifier_call_chain(). Move these defines to acpi/video.h so
+> that acpi_notifier listeners can check the type code using these
+> defines.
+> 
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 
---===============1260616265==
-Content-Type: multipart/alternative; boundary="14787683560.Ab3a418B.9853";
- charset="UTF-8"
+Reviewed-by: Peter Wu <peter@lekensteyn.nl>
 
-
---14787683560.Ab3a418B.9853
-Date: Thu, 10 Nov 2016 08:59:16 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98457
-
---- Comment #5 from wadev-cl+VPiYnx/0HWmgEVkV9KA@public.gmane.org ---
-(In reply to Pierre Moreau from comment #3)
-> latest patches, but is not an out-of-tree version. Or the latest image fr=
-om
-> https://nouveau.pmoreau.org/ (though it is not as recent as the previous
-> link, as the image was generated on Monday).
-
-Thanks, I'm trying that now, and will report back.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14787683560.Ab3a418B.9853
-Date: Thu, 10 Nov 2016 08:59:16 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVD9] GPU lockup after resume from hibernation with Nouv=
-eau driver and firmware-nonfree"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVD9] GPU lockup after resume from hibernation with Nouv=
-eau driver and firmware-nonfree"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457">bug 98457<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-wadev&#64;mailbox.hu" title=3D"wadev&#64;mailbox.hu">wadev&#64;mailbox.hu</=
-a>
-</span></b>
-        <pre>(In reply to Pierre Moreau from <a href=3D"show_bug.cgi?id=3D9=
-8457#c3">comment #3</a>)
-<span class=3D"quote">&gt; latest patches, but is not an out-of-tree versio=
-n. Or the latest image from
-&gt; <a href=3D"https://nouveau.pmoreau.org/">https://nouveau.pmoreau.org/<=
-/a> (though it is not as recent as the previous
-&gt; link, as the image was generated on Monday).</span >
-
-Thanks, I'm trying that now, and will report back.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14787683560.Ab3a418B.9853--
-
---===============1260616265==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1260616265==--
+> ---
+>  drivers/acpi/acpi_video.c | 11 -----------
+>  include/acpi/video.h      | 11 +++++++++++
+>  2 files changed, 11 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
+> index c5557d0..201292e 100644
+> --- a/drivers/acpi/acpi_video.c
+> +++ b/drivers/acpi/acpi_video.c
+> @@ -43,17 +43,6 @@
+>  
+>  #define ACPI_VIDEO_BUS_NAME		"Video Bus"
+>  #define ACPI_VIDEO_DEVICE_NAME		"Video Device"
+> -#define ACPI_VIDEO_NOTIFY_SWITCH	0x80
+> -#define ACPI_VIDEO_NOTIFY_PROBE		0x81
+> -#define ACPI_VIDEO_NOTIFY_CYCLE		0x82
+> -#define ACPI_VIDEO_NOTIFY_NEXT_OUTPUT	0x83
+> -#define ACPI_VIDEO_NOTIFY_PREV_OUTPUT	0x84
+> -
+> -#define ACPI_VIDEO_NOTIFY_CYCLE_BRIGHTNESS	0x85
+> -#define	ACPI_VIDEO_NOTIFY_INC_BRIGHTNESS	0x86
+> -#define ACPI_VIDEO_NOTIFY_DEC_BRIGHTNESS	0x87
+> -#define ACPI_VIDEO_NOTIFY_ZERO_BRIGHTNESS	0x88
+> -#define ACPI_VIDEO_NOTIFY_DISPLAY_OFF		0x89
+>  
+>  #define MAX_NAME_LEN	20
+>  
+> diff --git a/include/acpi/video.h b/include/acpi/video.h
+> index 4536bd3..bfe484d 100644
+> --- a/include/acpi/video.h
+> +++ b/include/acpi/video.h
+> @@ -30,6 +30,17 @@ struct acpi_device;
+>  #define ACPI_VIDEO_DISPLAY_LEGACY_PANEL   0x0110
+>  #define ACPI_VIDEO_DISPLAY_LEGACY_TV      0x0200
+>  
+> +#define ACPI_VIDEO_NOTIFY_SWITCH		0x80
+> +#define ACPI_VIDEO_NOTIFY_PROBE			0x81
+> +#define ACPI_VIDEO_NOTIFY_CYCLE			0x82
+> +#define ACPI_VIDEO_NOTIFY_NEXT_OUTPUT		0x83
+> +#define ACPI_VIDEO_NOTIFY_PREV_OUTPUT		0x84
+> +#define ACPI_VIDEO_NOTIFY_CYCLE_BRIGHTNESS	0x85
+> +#define ACPI_VIDEO_NOTIFY_INC_BRIGHTNESS	0x86
+> +#define ACPI_VIDEO_NOTIFY_DEC_BRIGHTNESS	0x87
+> +#define ACPI_VIDEO_NOTIFY_ZERO_BRIGHTNESS	0x88
+> +#define ACPI_VIDEO_NOTIFY_DISPLAY_OFF		0x89
+> +
+>  enum acpi_backlight_type {
+>  	acpi_backlight_undef = -1,
+>  	acpi_backlight_none = 0,
+> -- 
+> 2.9.3
+> 
