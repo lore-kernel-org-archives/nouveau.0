@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98677] [NVAC] iMac9,
  1 effective backlight brightness range changes after S3
-Date: Thu, 10 Nov 2016 17:42:07 +0000
-Message-ID: <bug-98677-8800-Zy3TNSdiBc@http.bugs.freedesktop.org/>
+Date: Thu, 10 Nov 2016 17:55:02 +0000
+Message-ID: <bug-98677-8800-45mTiJY4dG@http.bugs.freedesktop.org/>
 References: <bug-98677-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1120296961=="
+Content-Type: multipart/mixed; boundary="===============0186621602=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98677-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1120296961==
-Content-Type: multipart/alternative; boundary="14787997272.0216.8001";
+--===============0186621602==
+Content-Type: multipart/alternative; boundary="14788005020.fCEd.8528";
  charset="UTF-8"
 
 
---14787997272.0216.8001
-Date: Thu, 10 Nov 2016 17:42:07 +0000
+--14788005020.fCEd.8528
+Date: Thu, 10 Nov 2016 17:55:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98677
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-An observation is that the nouveau code in nva3_get/set_intensity takes the
-existing divider into account. However we only use that for nva3/5/8/f, not
-nvaa/nvac.
+--- Comment #6 from Jeffery Miller <jefferym-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 127905
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127905&action=3Dedit
+mmiotrace of nvidia driver performing brightness changes
 
-Could you try changing nouveau_backlight.c:nv50_backlight_init to use
-nva3_bl_ops for your chipset and seeing whether that fixes everything?
+mmio trace of the nvidia driver 340.96
+I set the brightness with the nvidia-settings command following the steps:
 
-(Let me know if you're not sure how to do that, and I can put a patch
-together.)
+   modprobe nvidia-uvm
+   Xorg &
+   DISPLAY=3D:0 nvidia-settings -n -a BacklightBrightness=3D50
+   DISPLAY=3D:0 nvidia-settings -n -a BacklightBrightness=3D70
+   DISPLAY=3D:0 nvidia-settings -n -a BacklightBrightness=3D100
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14787997272.0216.8001
-Date: Thu, 10 Nov 2016 17:42:07 +0000
+--14788005020.fCEd.8528
+Date: Thu, 10 Nov 2016 17:55:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,8 +73,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NVAC] iMac9,1 effective backlight brightness range chang=
 es after S3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98677#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98677#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVAC] iMac9,1 effective backlight brightness range chang=
@@ -79,19 +82,24 @@ es after S3"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98677">bug 98677<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+jefferym&#64;gmail.com" title=3D"Jeffery Miller &lt;jefferym&#64;gmail.com&=
+gt;"> <span class=3D"fn">Jeffery Miller</span></a>
 </span></b>
-        <pre>An observation is that the nouveau code in nva3_get/set_intens=
-ity takes the
-existing divider into account. However we only use that for nva3/5/8/f, not
-nvaa/nvac.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127905=
+" name=3D"attach_127905" title=3D"mmiotrace of nvidia driver performing bri=
+ghtness changes">attachment 127905</a> <a href=3D"attachment.cgi?id=3D12790=
+5&amp;action=3Dedit" title=3D"mmiotrace of nvidia driver performing brightn=
+ess changes">[details]</a></span>
+mmiotrace of nvidia driver performing brightness changes
 
-Could you try changing nouveau_backlight.c:nv50_backlight_init to use
-nva3_bl_ops for your chipset and seeing whether that fixes everything?
+mmio trace of the nvidia driver 340.96
+I set the brightness with the nvidia-settings command following the steps:
 
-(Let me know if you're not sure how to do that, and I can put a patch
-together.)</pre>
+   modprobe nvidia-uvm
+   Xorg &amp;
+   DISPLAY=3D:0 nvidia-settings -n -a BacklightBrightness=3D50
+   DISPLAY=3D:0 nvidia-settings -n -a BacklightBrightness=3D70
+   DISPLAY=3D:0 nvidia-settings -n -a BacklightBrightness=3D100</pre>
         </div>
       </p>
 
@@ -105,9 +113,9 @@ together.)</pre>
     </body>
 </html>=
 
---14787997272.0216.8001--
+--14788005020.fCEd.8528--
 
---===============1120296961==
+--===============0186621602==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +125,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1120296961==--
+--===============0186621602==--
