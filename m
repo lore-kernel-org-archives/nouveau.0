@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98677] [NVAC] iMac9,
  1 effective backlight brightness range changes after S3
-Date: Thu, 10 Nov 2016 17:35:27 +0000
-Message-ID: <bug-98677-8800-01YU6aDm3i@http.bugs.freedesktop.org/>
+Date: Thu, 10 Nov 2016 17:35:48 +0000
+Message-ID: <bug-98677-8800-MOIGRl1a5R@http.bugs.freedesktop.org/>
 References: <bug-98677-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1893129962=="
+Content-Type: multipart/mixed; boundary="===============1311665406=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98677-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1893129962==
-Content-Type: multipart/alternative; boundary="14787993270.aaEDb.7541";
+--===============1311665406==
+Content-Type: multipart/alternative; boundary="14787993480.8e2c2B.7374";
  charset="UTF-8"
 
 
---14787993270.aaEDb.7541
-Date: Thu, 10 Nov 2016 17:35:27 +0000
+--14787993480.8e2c2B.7374
+Date: Thu, 10 Nov 2016 17:35:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98677
 
---- Comment #1 from Jeffery Miller <jefferym-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 127901
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127901&action=3Dedit
-ACPI dump of the system
-
-acpidump of the system
+--- Comment #2 from Jeffery Miller <jefferym-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 127902
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127902&action=3Dedit
+dmidecode binary output
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14787993270.aaEDb.7541
-Date: Thu, 10 Nov 2016 17:35:27 +0000
+--14787993480.8e2c2B.7374
+Date: Thu, 10 Nov 2016 17:35:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NVAC] iMac9,1 effective backlight brightness range chang=
 es after S3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98677#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98677#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVAC] iMac9,1 effective backlight brightness range chang=
@@ -78,13 +76,11 @@ es after S3"
 jefferym&#64;gmail.com" title=3D"Jeffery Miller &lt;jefferym&#64;gmail.com&=
 gt;"> <span class=3D"fn">Jeffery Miller</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127901=
-" name=3D"attach_127901" title=3D"ACPI dump of the system">attachment 12790=
-1</a> <a href=3D"attachment.cgi?id=3D127901&amp;action=3Dedit" title=3D"ACP=
-I dump of the system">[details]</a></span>
-ACPI dump of the system
-
-acpidump of the system</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127902=
+" name=3D"attach_127902" title=3D"dmidecode binary output">attachment 12790=
+2</a> <a href=3D"attachment.cgi?id=3D127902&amp;action=3Dedit" title=3D"dmi=
+decode binary output">[details]</a></span>
+dmidecode binary output</pre>
         </div>
       </p>
 
@@ -98,9 +94,9 @@ acpidump of the system</pre>
     </body>
 </html>=
 
---14787993270.aaEDb.7541--
+--14787993480.8e2c2B.7374--
 
---===============1893129962==
+--===============1311665406==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1893129962==--
+--===============1311665406==--
