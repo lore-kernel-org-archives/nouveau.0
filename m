@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98677] [NVAC] iMac9,
  1 effective backlight brightness range changes after S3
-Date: Thu, 10 Nov 2016 21:23:30 +0000
-Message-ID: <bug-98677-8800-JEh5IyXMoO@http.bugs.freedesktop.org/>
+Date: Fri, 11 Nov 2016 22:40:01 +0000
+Message-ID: <bug-98677-8800-dNxBR1Bngi@http.bugs.freedesktop.org/>
 References: <bug-98677-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0177373658=="
+Content-Type: multipart/mixed; boundary="===============1021796160=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98677-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0177373658==
-Content-Type: multipart/alternative; boundary="14788130090.3dB86b8F.20424";
+--===============1021796160==
+Content-Type: multipart/alternative; boundary="14789040010.417e.23570";
  charset="UTF-8"
 
 
---14788130090.3dB86b8F.20424
-Date: Thu, 10 Nov 2016 21:23:29 +0000
+--14789040010.417e.23570
+Date: Fri, 11 Nov 2016 22:40:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,31 +36,61 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98677
 
---- Comment #8 from Jeffery Miller <jefferym-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I patched as suggested having it use the nva3_bl_ops. The backlight remained
-dark in this case. I was able to get the backlight to turn on by setting va=
-lues
-with nvapoke to match values I had seen earlier:
+--- Comment #9 from Jeffery Miller <jefferym-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I tried a few more brightness tests with the nvidia binary blob. There's a
+similar mmiotrace already attached.
 
-nvapoke 0x0061c080 0x1
-nvapoke 0x0061c084 0x80000401
+I've observed that the nvidia driver sets the values of=20
+I observed that the nvidia driver sets both 0x0061c080 and 0x0061c084 on ea=
+ch
+brightness change.
+It always sets 0x0061c080 to 0x17 and 61c084 with the following
+percent values:
 
-I noticed from the mmiotrace of the binary driver that it seems to set these
-two registers when the brightness changes.
-I'm away from the machine at the moment to post the details that seemed
-relevant to me.=20
+% setting    |  0x0061c084 poke
+---
+21              0x800000d8
+22              0x800000e2
+30              0x80000134
+50              0x80000201
+70              0x800002ce
+78              0x80000320
+100             0x80000401
 
-I am not sure which registers might be important to check before and after.=
-=20
+I noticed that if I change value to 21% (d8) or below the screen is dark/bl=
+ack.
+It then stays dark at levels such as 30%, 50%, and such that worked previou=
+sly.
+If I set it to 78% or 100% the screen will appear again. Once it reappears =
+the
+50%, 30% values work as they did previously.
 
-I'll look at the trace again and pop into it for some questions
+I patched the nouveau backlight code to always set the PWM_DIV to 0x17. The
+nouveau driver then behaved the same for the various percent values mention=
+ed
+above. It also had the off at low requiring a high % to have it show again.
+
+I reverted to my original patch which would always set the DIV to 0x1 on ea=
+ch
+change. This makes it consistent with the fresh boot value. This has the si=
+de
+effect that after a post (and a resume from suspend) the value is always the
+same.
+The visible range is wider for the 0x1 case. The screen doesn't turn fully =
+dark
+until around 14%. Additionally it would return to the previous value without
+having to jump all the way up to a high value. It could go from the 14% off
+case back to 50% and the screen had the same brightness. I am observing the
+brightness with my eye.
+The percent to DUTY value being set to 0x61c084 is similar in each driver.
+Nouveau sets 0x401 for 100%, 0x200 for 50%.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14788130090.3dB86b8F.20424
-Date: Thu, 10 Nov 2016 21:23:29 +0000
+--14789040010.417e.23570
+Date: Fri, 11 Nov 2016 22:40:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,8 +108,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NVAC] iMac9,1 effective backlight brightness range chang=
 es after S3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98677#c8">Comment=
- # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98677#c9">Comment=
+ # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVAC] iMac9,1 effective backlight brightness range chang=
@@ -90,24 +120,54 @@ es after S3"
 jefferym&#64;gmail.com" title=3D"Jeffery Miller &lt;jefferym&#64;gmail.com&=
 gt;"> <span class=3D"fn">Jeffery Miller</span></a>
 </span></b>
-        <pre>I patched as suggested having it use the nva3_bl_ops. The back=
-light remained
-dark in this case. I was able to get the backlight to turn on by setting va=
-lues
-with nvapoke to match values I had seen earlier:
+        <pre>I tried a few more brightness tests with the nvidia binary blo=
+b. There's a
+similar mmiotrace already attached.
 
-nvapoke 0x0061c080 0x1
-nvapoke 0x0061c084 0x80000401
+I've observed that the nvidia driver sets the values of=20
+I observed that the nvidia driver sets both 0x0061c080 and 0x0061c084 on ea=
+ch
+brightness change.
+It always sets 0x0061c080 to 0x17 and 61c084 with the following
+percent values:
 
-I noticed from the mmiotrace of the binary driver that it seems to set these
-two registers when the brightness changes.
-I'm away from the machine at the moment to post the details that seemed
-relevant to me.=20
+% setting    |  0x0061c084 poke
+---
+21              0x800000d8
+22              0x800000e2
+30              0x80000134
+50              0x80000201
+70              0x800002ce
+78              0x80000320
+100             0x80000401
 
-I am not sure which registers might be important to check before and after.=
-=20
+I noticed that if I change value to 21% (d8) or below the screen is dark/bl=
+ack.
+It then stays dark at levels such as 30%, 50%, and such that worked previou=
+sly.
+If I set it to 78% or 100% the screen will appear again. Once it reappears =
+the
+50%, 30% values work as they did previously.
 
-I'll look at the trace again and pop into it for some questions</pre>
+I patched the nouveau backlight code to always set the PWM_DIV to 0x17. The
+nouveau driver then behaved the same for the various percent values mention=
+ed
+above. It also had the off at low requiring a high % to have it show again.
+
+I reverted to my original patch which would always set the DIV to 0x1 on ea=
+ch
+change. This makes it consistent with the fresh boot value. This has the si=
+de
+effect that after a post (and a resume from suspend) the value is always the
+same.
+The visible range is wider for the 0x1 case. The screen doesn't turn fully =
+dark
+until around 14%. Additionally it would return to the previous value without
+having to jump all the way up to a high value. It could go from the 14% off
+case back to 50% and the screen had the same brightness. I am observing the
+brightness with my eye.
+The percent to DUTY value being set to 0x61c084 is similar in each driver.
+Nouveau sets 0x401 for 100%, 0x200 for 50%.</pre>
         </div>
       </p>
 
@@ -121,9 +181,9 @@ I'll look at the trace again and pop into it for some questions</pre>
     </body>
 </html>=
 
---14788130090.3dB86b8F.20424--
+--14789040010.417e.23570--
 
---===============0177373658==
+--===============1021796160==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -133,4 +193,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0177373658==--
+--===============1021796160==--
