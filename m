@@ -1,14 +1,12 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 1/3] nvbios/power_budget: Add basic power budget
-	parsing
-Date: Sat, 12 Nov 2016 11:55:30 +0100
-Message-ID: <20161112105532.5030-2-karolherbst@gmail.com>
-References: <20161112105532.5030-1-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93828] Xorg hangs randomly with nouveau driver
+Date: Sat, 12 Nov 2016 11:49:41 +0000
+Message-ID: <bug-93828-8800-xocoNP0m8U@http.bugs.freedesktop.org/>
+References: <bug-93828-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1664716095=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20161112105532.5030-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-93828-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,106 +19,88 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-djI6IFNldCBlbnRyeSB0byAweGZmIGlmIG5vdCBmb3VuZAogICAgQWRkIGNhcCBlbnRyeSBmb3Ig
-dmVyIDB4MzAgdGFibGVzCiAgICBSZXdvcmsgdG8gZml4IG1lbW9yeSBsZWFrCgpTaWduZWQtb2Zm
-LWJ5OiBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KLS0tCiAuLi4vaW5jbHVk
-ZS9udmttL3N1YmRldi9iaW9zL3Bvd2VyX2J1ZGdldC5oICAgICAgICB8ICAyNCArKysrCiBkcm0v
-bm91dmVhdS9udmttL3N1YmRldi9iaW9zL0tidWlsZCAgICAgICAgICAgICAgICB8ICAgMSArCiBk
-cm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3Bvd2VyX2J1ZGdldC5jICAgICAgICB8IDEyMiAr
-KysrKysrKysrKysrKysrKysrKysKIDMgZmlsZXMgY2hhbmdlZCwgMTQ3IGluc2VydGlvbnMoKykK
-IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3Mv
-cG93ZXJfYnVkZ2V0LmgKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRl
-di9iaW9zL3Bvd2VyX2J1ZGdldC5jCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvaW5jbHVkZS9u
-dmttL3N1YmRldi9iaW9zL3Bvd2VyX2J1ZGdldC5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmtt
-L3N1YmRldi9iaW9zL3Bvd2VyX2J1ZGdldC5oCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAw
-MDAwMDAuLmYyOTVjYzcKLS0tIC9kZXYvbnVsbAorKysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252
-a20vc3ViZGV2L2Jpb3MvcG93ZXJfYnVkZ2V0LmgKQEAgLTAsMCArMSwyNCBAQAorI2lmbmRlZiBf
-X05WQklPU19QT1dFUl9CVURHRVRfSF9fCisjZGVmaW5lIF9fTlZCSU9TX1BPV0VSX0JVREdFVF9I
-X18KKworI2luY2x1ZGUgPG52a20vc3ViZGV2L2Jpb3MuaD4KKworc3RydWN0IG52Ymlvc19wb3dl
-cl9idWRnZXRfZW50cnkgeworCXUzMiBtaW5fdzsKKwl1MzIgYXZnX3c7CisJdTMyIG1heF93Owor
-fTsKKworc3RydWN0IG52Ymlvc19wb3dlcl9idWRnZXQgeworCXUzMiBvZmZzZXQ7CisJdTggIGhl
-YWRlcl9sZW47CisJdTggIGVudHJ5X2xlbjsKKwl1OCAgZW50cnlfY291bnQ7CisJdTggIGNhcF9l
-bnRyeTsKK307CisKK2ludCBudmJpb3NfcG93ZXJfYnVkZ2V0X2hlYWRlcihzdHJ1Y3QgbnZrbV9i
-aW9zICosIHN0cnVjdCBudmJpb3NfcG93ZXJfYnVkZ2V0ICopOworaW50IG52Ymlvc19wb3dlcl9i
-dWRnZXRfZW50cnkoc3RydWN0IG52a21fYmlvcyAqLCBzdHJ1Y3QgbnZiaW9zX3Bvd2VyX2J1ZGdl
-dCAqLAorICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdTggaWR4LCBzdHJ1Y3QgbnZiaW9z
-X3Bvd2VyX2J1ZGdldF9lbnRyeSAqKTsKKworI2VuZGlmCmRpZmYgLS1naXQgYS9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9iaW9zL0tidWlsZCBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mv
-S2J1aWxkCmluZGV4IGJlNTcyMjAuLjZiNGYxZTAgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252
-a20vc3ViZGV2L2Jpb3MvS2J1aWxkCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mv
-S2J1aWxkCkBAIC0xOSw2ICsxOSw3IEBAIG52a20teSArPSBudmttL3N1YmRldi9iaW9zL3BjaXIu
-bwogbnZrbS15ICs9IG52a20vc3ViZGV2L2Jpb3MvcGVyZi5vCiBudmttLXkgKz0gbnZrbS9zdWJk
-ZXYvYmlvcy9wbGwubwogbnZrbS15ICs9IG52a20vc3ViZGV2L2Jpb3MvcG11Lm8KK252a20teSAr
-PSBudmttL3N1YmRldi9iaW9zL3Bvd2VyX2J1ZGdldC5vCiBudmttLXkgKz0gbnZrbS9zdWJkZXYv
-Ymlvcy9yYW1jZmcubwogbnZrbS15ICs9IG52a20vc3ViZGV2L2Jpb3MvcmFtbWFwLm8KIG52a20t
-eSArPSBudmttL3N1YmRldi9iaW9zL3NoYWRvdy5vCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9iaW9zL3Bvd2VyX2J1ZGdldC5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-Ymlvcy9wb3dlcl9idWRnZXQuYwpuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwLi5l
-ZDk3NjBlCi0tLSAvZGV2L251bGwKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9w
-b3dlcl9idWRnZXQuYwpAQCAtMCwwICsxLDEyMiBAQAorLyoKKyAqIENvcHlyaWdodCAyMDE2IEth
-cm9sIEhlcmJzdAorICoKKyAqIFBlcm1pc3Npb24gaXMgaGVyZWJ5IGdyYW50ZWQsIGZyZWUgb2Yg
-Y2hhcmdlLCB0byBhbnkgcGVyc29uIG9idGFpbmluZyBhCisgKiBjb3B5IG9mIHRoaXMgc29mdHdh
-cmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAodGhlICJTb2Z0d2FyZSIpLAor
-ICogdG8gZGVhbCBpbiB0aGUgU29mdHdhcmUgd2l0aG91dCByZXN0cmljdGlvbiwgaW5jbHVkaW5n
-IHdpdGhvdXQgbGltaXRhdGlvbgorICogdGhlIHJpZ2h0cyB0byB1c2UsIGNvcHksIG1vZGlmeSwg
-bWVyZ2UsIHB1Ymxpc2gsIGRpc3RyaWJ1dGUsIHN1YmxpY2Vuc2UsCisgKiBhbmQvb3Igc2VsbCBj
-b3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBhbmQgdG8gcGVybWl0IHBlcnNvbnMgdG8gd2hvbSB0aGUK
-KyAqIFNvZnR3YXJlIGlzIGZ1cm5pc2hlZCB0byBkbyBzbywgc3ViamVjdCB0byB0aGUgZm9sbG93
-aW5nIGNvbmRpdGlvbnM6CisgKgorICogVGhlIGFib3ZlIGNvcHlyaWdodCBub3RpY2UgYW5kIHRo
-aXMgcGVybWlzc2lvbiBub3RpY2Ugc2hhbGwgYmUgaW5jbHVkZWQgaW4KKyAqIGFsbCBjb3BpZXMg
-b3Igc3Vic3RhbnRpYWwgcG9ydGlvbnMgb2YgdGhlIFNvZnR3YXJlLgorICoKKyAqIFRIRSBTT0ZU
-V0FSRSBJUyBQUk9WSURFRCAiQVMgSVMiLCBXSVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBF
-WFBSRVNTIE9SCisgKiBJTVBMSUVELCBJTkNMVURJTkcgQlVUIE5PVCBMSU1JVEVEIFRPIFRIRSBX
-QVJSQU5USUVTIE9GIE1FUkNIQU5UQUJJTElUWSwKKyAqIEZJVE5FU1MgRk9SIEEgUEFSVElDVUxB
-UiBQVVJQT1NFIEFORCBOT05JTkZSSU5HRU1FTlQuICBJTiBOTyBFVkVOVCBTSEFMTAorICogVEhF
-IENPUFlSSUdIVCBIT0xERVIoUykgT1IgQVVUSE9SKFMpIEJFIExJQUJMRSBGT1IgQU5ZIENMQUlN
-LCBEQU1BR0VTIE9SCisgKiBPVEhFUiBMSUFCSUxJVFksIFdIRVRIRVIgSU4gQU4gQUNUSU9OIE9G
-IENPTlRSQUNULCBUT1JUIE9SIE9USEVSV0lTRSwKKyAqIEFSSVNJTkcgRlJPTSwgT1VUIE9GIE9S
-IElOIENPTk5FQ1RJT04gV0lUSCBUSEUgU09GVFdBUkUgT1IgVEhFIFVTRSBPUgorICogT1RIRVIg
-REVBTElOR1MgSU4gVEhFIFNPRlRXQVJFLgorICoKKyAqIEF1dGhvcnM6IEthcm9sIEhlcmJzdAor
-ICovCisjaW5jbHVkZSA8c3ViZGV2L2Jpb3MuaD4KKyNpbmNsdWRlIDxzdWJkZXYvYmlvcy9iaXQu
-aD4KKyNpbmNsdWRlIDxzdWJkZXYvYmlvcy9wb3dlcl9idWRnZXQuaD4KKworc3RhdGljIHUzMgor
-bnZiaW9zX3Bvd2VyX2J1ZGdldF90YWJsZShzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zLCB1OCAqdmVy
-LCB1OCAqaGRyLCB1OCAqY250LAorCQkJICB1OCAqbGVuKQoreworCXN0cnVjdCBiaXRfZW50cnkg
-Yml0X1A7CisJdTMyIHBvd2VyX2J1ZGdldDsKKworCWlmIChiaXRfZW50cnkoYmlvcywgJ1AnLCAm
-Yml0X1ApIHx8IGJpdF9QLnZlcnNpb24gIT0gMiB8fAorCSAgICBiaXRfUC5sZW5ndGggPCAweDJj
-KQorCQlyZXR1cm4gMDsKKworCXBvd2VyX2J1ZGdldCA9IG52Ymlvc19yZDMyKGJpb3MsIGJpdF9Q
-Lm9mZnNldCArIDB4MmMpOworCWlmICghcG93ZXJfYnVkZ2V0KQorCQlyZXR1cm4gMDsKKworCSp2
-ZXIgPSBudmJpb3NfcmQwOChiaW9zLCBwb3dlcl9idWRnZXQpOworCXN3aXRjaCAoKnZlcikgewor
-CWNhc2UgMHgxMDoKKwljYXNlIDB4MjA6CisJY2FzZSAweDMwOgorCQkqaGRyID0gbnZiaW9zX3Jk
-MDgoYmlvcywgcG93ZXJfYnVkZ2V0ICsgMHgxKTsKKwkJKmxlbiA9IG52Ymlvc19yZDA4KGJpb3Ms
-IHBvd2VyX2J1ZGdldCArIDB4Mik7CisJCSpjbnQgPSBudmJpb3NfcmQwOChiaW9zLCBwb3dlcl9i
-dWRnZXQgKyAweDMpOworCQlyZXR1cm4gcG93ZXJfYnVkZ2V0OworCWRlZmF1bHQ6CisJCWJyZWFr
-OworCX0KKworCXJldHVybiAwOworfQorCitpbnQKK252Ymlvc19wb3dlcl9idWRnZXRfaGVhZGVy
-KHN0cnVjdCBudmttX2Jpb3MgKmJpb3MsCisgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1
-Y3QgbnZiaW9zX3Bvd2VyX2J1ZGdldCAqYnVkZ2V0KQoreworCXN0cnVjdCBudmttX3N1YmRldiAq
-c3ViZGV2ID0gJmJpb3MtPnN1YmRldjsKKwl1OCB2ZXIsIGhkciwgY250LCBsZW4sIGNhcF9lbnRy
-eTsKKwl1MzIgaGVhZGVyOworCisJaGVhZGVyID0gbnZiaW9zX3Bvd2VyX2J1ZGdldF90YWJsZShi
-aW9zLCAmdmVyLCAmaGRyLCAmY250LCAmbGVuKTsKKwlpZiAoIWhlYWRlciB8fCAhY250KQorCQly
-ZXR1cm4gLUVOT0RFVjsKKworCWJ1ZGdldC0+b2Zmc2V0ID0gaGVhZGVyOworCWJ1ZGdldC0+aGVh
-ZGVyX2xlbiA9IGhkcjsKKwlidWRnZXQtPmVudHJ5X2xlbiA9IGxlbjsKKwlidWRnZXQtPmVudHJ5
-X2NvdW50ID0gY250OworCisJc3dpdGNoICh2ZXIpIHsKKwljYXNlIDB4MjA6CisJCWNhcF9lbnRy
-eSA9IG52Ymlvc19yZDA4KGJpb3MsIGhlYWRlciArIDB4OSk7CisJCWJyZWFrOworCWNhc2UgMHgz
-MDoKKwkJY2FwX2VudHJ5ID0gbnZiaW9zX3JkMDgoYmlvcywgaGVhZGVyICsgMHhhKTsKKwkJYnJl
-YWs7CisJZGVmYXVsdDoKKwkJY2FwX2VudHJ5ID0gMHhmZjsKKwl9CisKKwlpZiAoY2FwX2VudHJ5
-IDwgY250KQorCQlidWRnZXQtPmNhcF9lbnRyeSA9IGNhcF9lbnRyeTsKKwllbHNlIHsKKwkJaWYg
-KGNhcF9lbnRyeSAhPSAweGZmKQorCQkJbnZrbV93YXJuKHN1YmRldiwKKwkJCSAgICAgICAgICAi
-aW52YWxpZCBjYXBfZW50cnkgaW4gcG93ZXIgYnVkZ2V0IHRhYmxlICIKKwkJCSAgICAgICAgICAi
-Zm91bmRcbiIpOworCQlidWRnZXQtPmNhcF9lbnRyeSA9IDB4ZmY7CisJfQorCXJldHVybiAwOwor
-fQorCitpbnQKK252Ymlvc19wb3dlcl9idWRnZXRfZW50cnkoc3RydWN0IG52a21fYmlvcyAqYmlv
-cywKKyAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IG52Ymlvc19wb3dlcl9idWRnZXQg
-KmJ1ZGdldCwKKyAgICAgICAgICAgICAgICAgICAgICAgICAgdTggaWR4LCBzdHJ1Y3QgbnZiaW9z
-X3Bvd2VyX2J1ZGdldF9lbnRyeSAqZW50cnkpCit7CisJdTMyIGVudHJ5X29mZnNldDsKKworCWlm
-ICghYnVkZ2V0IHx8ICFidWRnZXQtPm9mZnNldCB8fCBpZHggPj0gYnVkZ2V0LT5lbnRyeV9jb3Vu
-dCB8fCAhZW50cnkpCisJCXJldHVybiAtRUlOVkFMOworCisJZW50cnlfb2Zmc2V0ID0gYnVkZ2V0
-LT5vZmZzZXQgKyBidWRnZXQtPmhlYWRlcl9sZW4gKyBpZHggKiBidWRnZXQtPmVudHJ5X2xlbjsK
-KworCWlmIChidWRnZXQtPmVudHJ5X2xlbiA+PSAweGUpIHsKKwkJZW50cnktPm1pbl93ID0gbnZi
-aW9zX3JkMzIoYmlvcywgZW50cnlfb2Zmc2V0ICsgMHgyKTsKKwkJZW50cnktPmF2Z193ID0gbnZi
-aW9zX3JkMzIoYmlvcywgZW50cnlfb2Zmc2V0ICsgMHg2KTsKKwkJZW50cnktPm1heF93ID0gbnZi
-aW9zX3JkMzIoYmlvcywgZW50cnlfb2Zmc2V0ICsgMHhhKTsKKwl9IGVsc2UgeworCQllbnRyeS0+
-bWluX3cgPSAwOworCQllbnRyeS0+bWF4X3cgPSBudmJpb3NfcmQzMihiaW9zLCBlbnRyeV9vZmZz
-ZXQgKyAweDIpOworCQllbnRyeS0+YXZnX3cgPSBlbnRyeS0+bWF4X3c7CisJfQorCisJcmV0dXJu
-IDA7Cit9Ci0tIAoyLjEwLjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQo=
+
+--===============1664716095==
+Content-Type: multipart/alternative; boundary="14789513812.F5b31cEa.23120";
+ charset="UTF-8"
+
+
+--14789513812.F5b31cEa.23120
+Date: Sat, 12 Nov 2016 11:49:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93828
+
+--- Comment #12 from Marek Gre=C5=A1ko <mgresko8-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 127928
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127928&action=3Dedit
+Kernel trace
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14789513812.F5b31cEa.23120
+Date: Sat, 12 Nov 2016 11:49:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg hangs randomly with nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828#c12">Commen=
+t # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg hangs randomly with nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828">bug 93828<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mgresko8&#64;gmail.com" title=3D"Marek Gre=C5=A1ko &lt;mgresko8&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Marek Gre=C5=A1ko</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127928=
+" name=3D"attach_127928" title=3D"Kernel trace">attachment 127928</a> <a hr=
+ef=3D"attachment.cgi?id=3D127928&amp;action=3Dedit" title=3D"Kernel trace">=
+[details]</a></span>
+Kernel trace</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14789513812.F5b31cEa.23120--
+
+--===============1664716095==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1664716095==--
