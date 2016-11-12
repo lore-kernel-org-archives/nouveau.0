@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98582] nouveau on a GM108 fails to resume properly
- from suspension
-Date: Sat, 12 Nov 2016 12:28:06 +0000
-Message-ID: <bug-98582-8800-5aMynUx7eQ@http.bugs.freedesktop.org/>
-References: <bug-98582-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/3] nvbios/power_budget: Add basic power
+	budget parsing
+Date: Sat, 12 Nov 2016 13:34:25 +0100
+Message-ID: <CAEXux-bgLnj5PUGUG6Xsa3c5As46e1qeQr9NfdtQ5oHTOCQWiw@mail.gmail.com>
+References: <20161112105532.5030-1-karolherbst@gmail.com>
+ <20161112105532.5030-2-karolherbst@gmail.com>
+ <20161112115805.jzhmo23bexc723ca@pmoreau.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1267431328=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98582-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20161112115805.jzhmo23bexc723ca-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,99 +20,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1267431328==
-Content-Type: multipart/alternative; boundary="14789536860.0A0DE.25382";
- charset="UTF-8"
-
-
---14789536860.0A0DE.25382
-Date: Sat, 12 Nov 2016 12:28:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98582
-
-hoboprimate-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|nouveau on aunder           |nouveau on a GM108 fails to
-                   |wayland+xorg: laptop        |resume properly from
-                   |doesn't resume properly     |suspension
-                   |from suspension             |
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14789536860.0A0DE.25382
-Date: Sat, 12 Nov 2016 12:28:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:hoboprima=
-te&#64;gmail.com" title=3D"hoboprimate&#64;gmail.com">hoboprimate&#64;gmail=
-.com</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau on a GM108 fails to resume properly from suspensi=
-on"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>nouveau on aunder wayland+xorg: laptop doesn't resume proper=
-ly from suspension
-           </td>
-           <td>nouveau on a GM108 fails to resume properly from suspension
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14789536860.0A0DE.25382--
-
---===============1267431328==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1267431328==--
+MjAxNi0xMS0xMiAxMjo1OCBHTVQrMDE6MDAgUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJvd0Bm
+cmVlLmZyPjoKPiBPbiAxMTo1NSBhbSAtIE5vdiAxMiAyMDE2LCBLYXJvbCBIZXJic3Qgd3JvdGU6
+Cj4+IHYyOiBTZXQgZW50cnkgdG8gMHhmZiBpZiBub3QgZm91bmQKPj4gICAgIEFkZCBjYXAgZW50
+cnkgZm9yIHZlciAweDMwIHRhYmxlcwo+PiAgICAgUmV3b3JrIHRvIGZpeCBtZW1vcnkgbGVhawo+
+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4K
+Pj4gLS0tCj4+ICAuLi4vaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL3Bvd2VyX2J1ZGdldC5oICAg
+ICAgICB8ICAyNCArKysrCj4+ICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL0tidWlsZCAg
+ICAgICAgICAgICAgICB8ICAgMSArCj4+ICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3Bv
+d2VyX2J1ZGdldC5jICAgICAgICB8IDEyMiArKysrKysrKysrKysrKysrKysrKysKPj4gIDMgZmls
+ZXMgY2hhbmdlZCwgMTQ3IGluc2VydGlvbnMoKykKPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0v
+bm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3MvcG93ZXJfYnVkZ2V0LmgKPj4gIGNyZWF0
+ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3Bvd2VyX2J1ZGdldC5j
+Cj4+Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3Mv
+cG93ZXJfYnVkZ2V0LmggYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3MvcG93
+ZXJfYnVkZ2V0LmgKPj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQKPj4gaW5kZXggMDAwMDAwMC4uZjI5
+NWNjNwo+PiAtLS0gL2Rldi9udWxsCj4+ICsrKyBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9z
+dWJkZXYvYmlvcy9wb3dlcl9idWRnZXQuaAo+PiBAQCAtMCwwICsxLDI0IEBACj4+ICsjaWZuZGVm
+IF9fTlZCSU9TX1BPV0VSX0JVREdFVF9IX18KPj4gKyNkZWZpbmUgX19OVkJJT1NfUE9XRVJfQlVE
+R0VUX0hfXwo+PiArCj4+ICsjaW5jbHVkZSA8bnZrbS9zdWJkZXYvYmlvcy5oPgo+PiArCj4+ICtz
+dHJ1Y3QgbnZiaW9zX3Bvd2VyX2J1ZGdldF9lbnRyeSB7Cj4+ICsgICAgIHUzMiBtaW5fdzsKPj4g
+KyAgICAgdTMyIGF2Z193Owo+PiArICAgICB1MzIgbWF4X3c7Cj4+ICt9Owo+PiArCj4+ICtzdHJ1
+Y3QgbnZiaW9zX3Bvd2VyX2J1ZGdldCB7Cj4+ICsgICAgIHUzMiBvZmZzZXQ7Cj4+ICsgICAgIHU4
+ICBoZWFkZXJfbGVuOwo+PiArICAgICB1OCAgZW50cnlfbGVuOwo+PiArICAgICB1OCAgZW50cnlf
+Y291bnQ7Cj4+ICsgICAgIHU4ICBjYXBfZW50cnk7Cj4+ICt9Owo+PiArCj4+ICtpbnQgbnZiaW9z
+X3Bvd2VyX2J1ZGdldF9oZWFkZXIoc3RydWN0IG52a21fYmlvcyAqLCBzdHJ1Y3QgbnZiaW9zX3Bv
+d2VyX2J1ZGdldCAqKTsKPj4gK2ludCBudmJpb3NfcG93ZXJfYnVkZ2V0X2VudHJ5KHN0cnVjdCBu
+dmttX2Jpb3MgKiwgc3RydWN0IG52Ymlvc19wb3dlcl9idWRnZXQgKiwKPj4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIHU4IGlkeCwgc3RydWN0IG52Ymlvc19wb3dlcl9idWRnZXRfZW50
+cnkgKik7Cj4+ICsKPj4gKyNlbmRpZgo+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvYmlvcy9LYnVpbGQgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL0tidWlsZAo+
+PiBpbmRleCBiZTU3MjIwLi42YjRmMWUwIDEwMDY0NAo+PiAtLS0gYS9kcm0vbm91dmVhdS9udmtt
+L3N1YmRldi9iaW9zL0tidWlsZAo+PiArKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9z
+L0tidWlsZAo+PiBAQCAtMTksNiArMTksNyBAQCBudmttLXkgKz0gbnZrbS9zdWJkZXYvYmlvcy9w
+Y2lyLm8KPj4gIG52a20teSArPSBudmttL3N1YmRldi9iaW9zL3BlcmYubwo+PiAgbnZrbS15ICs9
+IG52a20vc3ViZGV2L2Jpb3MvcGxsLm8KPj4gIG52a20teSArPSBudmttL3N1YmRldi9iaW9zL3Bt
+dS5vCj4+ICtudmttLXkgKz0gbnZrbS9zdWJkZXYvYmlvcy9wb3dlcl9idWRnZXQubwo+PiAgbnZr
+bS15ICs9IG52a20vc3ViZGV2L2Jpb3MvcmFtY2ZnLm8KPj4gIG52a20teSArPSBudmttL3N1YmRl
+di9iaW9zL3JhbW1hcC5vCj4+ICBudmttLXkgKz0gbnZrbS9zdWJkZXYvYmlvcy9zaGFkb3cubwo+
+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9wb3dlcl9idWRnZXQu
+YyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvcG93ZXJfYnVkZ2V0LmMKPj4gbmV3IGZp
+bGUgbW9kZSAxMDA2NDQKPj4gaW5kZXggMDAwMDAwMC4uZWQ5NzYwZQo+PiAtLS0gL2Rldi9udWxs
+Cj4+ICsrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvcG93ZXJfYnVkZ2V0LmMKPj4g
+QEAgLTAsMCArMSwxMjIgQEAKPj4gKy8qCj4+ICsgKiBDb3B5cmlnaHQgMjAxNiBLYXJvbCBIZXJi
+c3QKPj4gKyAqCj4+ICsgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNo
+YXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQo+PiArICogY29weSBvZiB0aGlzIHNvZnR3
+YXJlIGFuZCBhc3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRoZSAiU29mdHdhcmUiKSwK
+Pj4gKyAqIHRvIGRlYWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJpY3Rpb24sIGluY2x1
+ZGluZyB3aXRob3V0IGxpbWl0YXRpb24KPj4gKyAqIHRoZSByaWdodHMgdG8gdXNlLCBjb3B5LCBt
+b2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNlbnNlLAo+PiArICogYW5k
+L29yIHNlbGwgY29waWVzIG9mIHRoZSBTb2Z0d2FyZSwgYW5kIHRvIHBlcm1pdCBwZXJzb25zIHRv
+IHdob20gdGhlCj4+ICsgKiBTb2Z0d2FyZSBpcyBmdXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3Qg
+dG8gdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOgo+PiArICoKPj4gKyAqIFRoZSBhYm92ZSBjb3B5
+cmlnaHQgbm90aWNlIGFuZCB0aGlzIHBlcm1pc3Npb24gbm90aWNlIHNoYWxsIGJlIGluY2x1ZGVk
+IGluCj4+ICsgKiBhbGwgY29waWVzIG9yIHN1YnN0YW50aWFsIHBvcnRpb25zIG9mIHRoZSBTb2Z0
+d2FyZS4KPj4gKyAqCj4+ICsgKiBUSEUgU09GVFdBUkUgSVMgUFJPVklERUQgIkFTIElTIiwgV0lU
+SE9VVCBXQVJSQU5UWSBPRiBBTlkgS0lORCwgRVhQUkVTUyBPUgo+PiArICogSU1QTElFRCwgSU5D
+TFVESU5HIEJVVCBOT1QgTElNSVRFRCBUTyBUSEUgV0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJ
+VFksCj4+ICsgKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5GUklO
+R0VNRU5ULiAgSU4gTk8gRVZFTlQgU0hBTEwKPj4gKyAqIFRIRSBDT1BZUklHSFQgSE9MREVSKFMp
+IE9SIEFVVEhPUihTKSBCRSBMSUFCTEUgRk9SIEFOWSBDTEFJTSwgREFNQUdFUyBPUgo+PiArICog
+T1RIRVIgTElBQklMSVRZLCBXSEVUSEVSIElOIEFOIEFDVElPTiBPRiBDT05UUkFDVCwgVE9SVCBP
+UiBPVEhFUldJU0UsCj4+ICsgKiBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJTiBDT05ORUNUSU9O
+IFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IKPj4gKyAqIE9USEVSIERFQUxJTkdTIElO
+IFRIRSBTT0ZUV0FSRS4KPj4gKyAqCj4+ICsgKiBBdXRob3JzOiBLYXJvbCBIZXJic3QKPj4gKyAq
+Lwo+PiArI2luY2x1ZGUgPHN1YmRldi9iaW9zLmg+Cj4+ICsjaW5jbHVkZSA8c3ViZGV2L2Jpb3Mv
+Yml0Lmg+Cj4+ICsjaW5jbHVkZSA8c3ViZGV2L2Jpb3MvcG93ZXJfYnVkZ2V0Lmg+Cj4+ICsKPj4g
+K3N0YXRpYyB1MzIKPj4gK252Ymlvc19wb3dlcl9idWRnZXRfdGFibGUoc3RydWN0IG52a21fYmlv
+cyAqYmlvcywgdTggKnZlciwgdTggKmhkciwgdTggKmNudCwKPj4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgdTggKmxlbikKPj4gK3sKPj4gKyAgICAgc3RydWN0IGJpdF9lbnRyeSBiaXRfUDsKPj4g
+KyAgICAgdTMyIHBvd2VyX2J1ZGdldDsKPj4gKwo+PiArICAgICBpZiAoYml0X2VudHJ5KGJpb3Ms
+ICdQJywgJmJpdF9QKSB8fCBiaXRfUC52ZXJzaW9uICE9IDIgfHwKPj4gKyAgICAgICAgIGJpdF9Q
+Lmxlbmd0aCA8IDB4MmMpCj4+ICsgICAgICAgICAgICAgcmV0dXJuIDA7Cj4+ICsKPj4gKyAgICAg
+cG93ZXJfYnVkZ2V0ID0gbnZiaW9zX3JkMzIoYmlvcywgYml0X1Aub2Zmc2V0ICsgMHgyYyk7Cj4+
+ICsgICAgIGlmICghcG93ZXJfYnVkZ2V0KQo+PiArICAgICAgICAgICAgIHJldHVybiAwOwo+PiAr
+Cj4+ICsgICAgICp2ZXIgPSBudmJpb3NfcmQwOChiaW9zLCBwb3dlcl9idWRnZXQpOwo+PiArICAg
+ICBzd2l0Y2ggKCp2ZXIpIHsKPj4gKyAgICAgY2FzZSAweDEwOgo+PiArICAgICBjYXNlIDB4MjA6
+Cj4+ICsgICAgIGNhc2UgMHgzMDoKPj4gKyAgICAgICAgICAgICAqaGRyID0gbnZiaW9zX3JkMDgo
+YmlvcywgcG93ZXJfYnVkZ2V0ICsgMHgxKTsKPj4gKyAgICAgICAgICAgICAqbGVuID0gbnZiaW9z
+X3JkMDgoYmlvcywgcG93ZXJfYnVkZ2V0ICsgMHgyKTsKPj4gKyAgICAgICAgICAgICAqY250ID0g
+bnZiaW9zX3JkMDgoYmlvcywgcG93ZXJfYnVkZ2V0ICsgMHgzKTsKPj4gKyAgICAgICAgICAgICBy
+ZXR1cm4gcG93ZXJfYnVkZ2V0Owo+PiArICAgICBkZWZhdWx0Ogo+PiArICAgICAgICAgICAgIGJy
+ZWFrOwo+PiArICAgICB9Cj4+ICsKPj4gKyAgICAgcmV0dXJuIDA7Cj4+ICt9Cj4+ICsKPj4gK2lu
+dAo+PiArbnZiaW9zX3Bvd2VyX2J1ZGdldF9oZWFkZXIoc3RydWN0IG52a21fYmlvcyAqYmlvcywK
+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBudmJpb3NfcG93ZXJfYnVkZ2V0
+ICpidWRnZXQpCj4+ICt7Cj4+ICsgICAgIHN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gJmJp
+b3MtPnN1YmRldjsKPj4gKyAgICAgdTggdmVyLCBoZHIsIGNudCwgbGVuLCBjYXBfZW50cnk7Cj4+
+ICsgICAgIHUzMiBoZWFkZXI7Cj4+ICsKPj4gKyAgICAgaGVhZGVyID0gbnZiaW9zX3Bvd2VyX2J1
+ZGdldF90YWJsZShiaW9zLCAmdmVyLCAmaGRyLCAmY250LCAmbGVuKTsKPj4gKyAgICAgaWYgKCFo
+ZWFkZXIgfHwgIWNudCkKPgo+IFNob3VsZCB0aGVyZSBiZSBhIGNoZWNrIGZvciBgYnVkZ2V0YCBi
+ZWluZyBgTlVMTGAgaGVyZSwgc2ltaWxhcmx5IHRvCj4gYG52Ymlvc19wb3dlcl9idWRnZXJfZW50
+cnkoKWA/IChJIGhhdmVu4oCZdCBsb29rZWQgYXQgdGhlIG90aGVyIHBhdGNoZXMgeWV0LikKPgoK
+cmlnaHQsIHdlIHNob3VsZCBlcnJvciBjaGVjayBtb3JlIG9mdGVuIGFuZCAicGVyZm9ybWFuY2Ui
+IGlzIGEgc2lsbHkKcmVhc29uIG5vdCB0byBkbyBpdCBoZXJlLgoKPj4gKyAgICAgICAgICAgICBy
+ZXR1cm4gLUVOT0RFVjsKPj4gKwo+PiArICAgICBidWRnZXQtPm9mZnNldCA9IGhlYWRlcjsKPj4g
+KyAgICAgYnVkZ2V0LT5oZWFkZXJfbGVuID0gaGRyOwo+PiArICAgICBidWRnZXQtPmVudHJ5X2xl
+biA9IGxlbjsKPj4gKyAgICAgYnVkZ2V0LT5lbnRyeV9jb3VudCA9IGNudDsKPj4gKwo+PiArICAg
+ICBzd2l0Y2ggKHZlcikgewo+PiArICAgICBjYXNlIDB4MjA6Cj4+ICsgICAgICAgICAgICAgY2Fw
+X2VudHJ5ID0gbnZiaW9zX3JkMDgoYmlvcywgaGVhZGVyICsgMHg5KTsKPj4gKyAgICAgICAgICAg
+ICBicmVhazsKPj4gKyAgICAgY2FzZSAweDMwOgo+PiArICAgICAgICAgICAgIGNhcF9lbnRyeSA9
+IG52Ymlvc19yZDA4KGJpb3MsIGhlYWRlciArIDB4YSk7Cj4+ICsgICAgICAgICAgICAgYnJlYWs7
+Cj4+ICsgICAgIGRlZmF1bHQ6Cj4+ICsgICAgICAgICAgICAgY2FwX2VudHJ5ID0gMHhmZjsKPj4g
+KyAgICAgfQo+PiArCj4+ICsgICAgIGlmIChjYXBfZW50cnkgPCBjbnQpCj4+ICsgICAgICAgICAg
+ICAgYnVkZ2V0LT5jYXBfZW50cnkgPSBjYXBfZW50cnk7Cj4+ICsgICAgIGVsc2Ugewo+PiArICAg
+ICAgICAgICAgIGlmIChjYXBfZW50cnkgIT0gMHhmZikKPj4gKyAgICAgICAgICAgICAgICAgICAg
+IG52a21fd2FybihzdWJkZXYsCj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImlu
+dmFsaWQgY2FwX2VudHJ5IGluIHBvd2VyIGJ1ZGdldCB0YWJsZSAiCj4+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgImZvdW5kXG4iKTsKPgo+IFByaW50ZWQgbWVzc2FnZXMgc2hvdWxk
+IG5vdCBiZSBzcGxpdHRlZCwgYXMgaXQgbWFrZXMgaXQgaGFyZGVyIHRvIGdyZXAgZm9yCj4gdGhl
+bS4KPgoKcmlnaHQuLiBzaWxseSA4MCBjaGFyIGxpbmUgbGVuZ3RoLgoKPiBQaWVycmUKPgo+Cj4+
+ICsgICAgICAgICAgICAgYnVkZ2V0LT5jYXBfZW50cnkgPSAweGZmOwo+PiArICAgICB9Cj4+ICsg
+ICAgIHJldHVybiAwOwo+PiArfQo+PiArCj4+ICtpbnQKPj4gK252Ymlvc19wb3dlcl9idWRnZXRf
+ZW50cnkoc3RydWN0IG52a21fYmlvcyAqYmlvcywKPj4gKyAgICAgICAgICAgICAgICAgICAgICAg
+ICAgc3RydWN0IG52Ymlvc19wb3dlcl9idWRnZXQgKmJ1ZGdldCwKPj4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgdTggaWR4LCBzdHJ1Y3QgbnZiaW9zX3Bvd2VyX2J1ZGdldF9lbnRyeSAqZW50
+cnkpCj4+ICt7Cj4+ICsgICAgIHUzMiBlbnRyeV9vZmZzZXQ7Cj4+ICsKPj4gKyAgICAgaWYgKCFi
+dWRnZXQgfHwgIWJ1ZGdldC0+b2Zmc2V0IHx8IGlkeCA+PSBidWRnZXQtPmVudHJ5X2NvdW50IHx8
+ICFlbnRyeSkKPj4gKyAgICAgICAgICAgICByZXR1cm4gLUVJTlZBTDsKPj4gKwo+PiArICAgICBl
+bnRyeV9vZmZzZXQgPSBidWRnZXQtPm9mZnNldCArIGJ1ZGdldC0+aGVhZGVyX2xlbiArIGlkeCAq
+IGJ1ZGdldC0+ZW50cnlfbGVuOwo+PiArCj4+ICsgICAgIGlmIChidWRnZXQtPmVudHJ5X2xlbiA+
+PSAweGUpIHsKPj4gKyAgICAgICAgICAgICBlbnRyeS0+bWluX3cgPSBudmJpb3NfcmQzMihiaW9z
+LCBlbnRyeV9vZmZzZXQgKyAweDIpOwo+PiArICAgICAgICAgICAgIGVudHJ5LT5hdmdfdyA9IG52
+Ymlvc19yZDMyKGJpb3MsIGVudHJ5X29mZnNldCArIDB4Nik7Cj4+ICsgICAgICAgICAgICAgZW50
+cnktPm1heF93ID0gbnZiaW9zX3JkMzIoYmlvcywgZW50cnlfb2Zmc2V0ICsgMHhhKTsKPj4gKyAg
+ICAgfSBlbHNlIHsKPj4gKyAgICAgICAgICAgICBlbnRyeS0+bWluX3cgPSAwOwo+PiArICAgICAg
+ICAgICAgIGVudHJ5LT5tYXhfdyA9IG52Ymlvc19yZDMyKGJpb3MsIGVudHJ5X29mZnNldCArIDB4
+Mik7Cj4+ICsgICAgICAgICAgICAgZW50cnktPmF2Z193ID0gZW50cnktPm1heF93Owo+PiArICAg
+ICB9Cj4+ICsKPj4gKyAgICAgcmV0dXJuIDA7Cj4+ICt9Cj4+IC0tCj4+IDIuMTAuMgo+Pgo+PiBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1
+IG1haWxpbmcgbGlzdAo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
