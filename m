@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98677] [NVAC] iMac9,
- 1 effective backlight brightness range changes after S3
-Date: Sat, 12 Nov 2016 01:22:48 +0000
-Message-ID: <bug-98677-8800-xzVUuziNbj@http.bugs.freedesktop.org/>
-References: <bug-98677-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 3/3] hwmon: expose power_max and power_crit
+Date: Sat, 12 Nov 2016 11:55:32 +0100
+Message-ID: <20161112105532.5030-4-karolherbst@gmail.com>
+References: <20161112105532.5030-1-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0211554079=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98677-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20161112105532.5030-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,93 +20,60 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0211554079==
-Content-Type: multipart/alternative; boundary="14789137680.0Df3CB.29114";
- charset="UTF-8"
-
-
---14789137680.0Df3CB.29114
-Date: Sat, 12 Nov 2016 01:22:48 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98677
-
---- Comment #11 from Jeffery Miller <jefferym-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I was prepared to implement some additions to adjust the values to make the
-percentage values representative of the output.
-I realized there is an apple_bl acpi backlight driver that may be applicabl=
-e to
-this problem.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14789137680.0Df3CB.29114
-Date: Sat, 12 Nov 2016 01:22:48 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVAC] iMac9,1 effective backlight brightness range chang=
-es after S3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98677#c11">Commen=
-t # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVAC] iMac9,1 effective backlight brightness range chang=
-es after S3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98677">bug 98677<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jefferym&#64;gmail.com" title=3D"Jeffery Miller &lt;jefferym&#64;gmail.com&=
-gt;"> <span class=3D"fn">Jeffery Miller</span></a>
-</span></b>
-        <pre>I was prepared to implement some additions to adjust the value=
-s to make the
-percentage values representative of the output.
-I realized there is an apple_bl acpi backlight driver that may be applicabl=
-e to
-this problem.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14789137680.0Df3CB.29114--
-
---===============0211554079==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0211554079==--
+U2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Ci0tLQog
+ZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jIHwgNDQgKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCA0NCBpbnNlcnRpb25zKCspCgpk
+aWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jIGIvZHJtL25vdXZlYXUvbm91
+dmVhdV9od21vbi5jCmluZGV4IDcxZjc2NGIuLjNkNDY3MmEgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2
+ZWF1L25vdXZlYXVfaHdtb24uYworKysgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMKQEAg
+LTU5Niw2ICs1OTYsMzIgQEAgbm91dmVhdV9od21vbl9nZXRfcG93ZXIxX2lucHV0KHN0cnVjdCBk
+ZXZpY2UgKmQsIHN0cnVjdCBkZXZpY2VfYXR0cmlidXRlICphLAogc3RhdGljIFNFTlNPUl9ERVZJ
+Q0VfQVRUUihwb3dlcjFfaW5wdXQsIFNfSVJVR08sCiAJCQkgIG5vdXZlYXVfaHdtb25fZ2V0X3Bv
+d2VyMV9pbnB1dCwgTlVMTCwgMCk7CiAKK3N0YXRpYyBzc2l6ZV90Citub3V2ZWF1X2h3bW9uX2dl
+dF9wb3dlcjFfbWF4KHN0cnVjdCBkZXZpY2UgKmQsIHN0cnVjdCBkZXZpY2VfYXR0cmlidXRlICph
+LAorCQkJICAgICBjaGFyICpidWYpCit7CisJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGRldl9n
+ZXRfZHJ2ZGF0YShkKTsKKwlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKGRl
+dik7CisJc3RydWN0IG52a21faWNjc2Vuc2UgKmljY3NlbnNlID0gbnZ4eF9pY2NzZW5zZSgmZHJt
+LT5kZXZpY2UpOworCXJldHVybiBzcHJpbnRmKGJ1ZiwgIiVpXG4iLCBpY2NzZW5zZS0+cG93ZXJf
+d19tYXgpOworfQorCitzdGF0aWMgU0VOU09SX0RFVklDRV9BVFRSKHBvd2VyMV9tYXgsIFNfSVJV
+R08sCisJCQkgIG5vdXZlYXVfaHdtb25fZ2V0X3Bvd2VyMV9tYXgsIE5VTEwsIDApOworCitzdGF0
+aWMgc3NpemVfdAorbm91dmVhdV9od21vbl9nZXRfcG93ZXIxX2NyaXQoc3RydWN0IGRldmljZSAq
+ZCwgc3RydWN0IGRldmljZV9hdHRyaWJ1dGUgKmEsCisJCQkgICAgICBjaGFyICpidWYpCit7CisJ
+c3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGRldl9nZXRfZHJ2ZGF0YShkKTsKKwlzdHJ1Y3Qgbm91
+dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKGRldik7CisJc3RydWN0IG52a21faWNjc2Vuc2Ug
+KmljY3NlbnNlID0gbnZ4eF9pY2NzZW5zZSgmZHJtLT5kZXZpY2UpOworCXJldHVybiBzcHJpbnRm
+KGJ1ZiwgIiVpXG4iLCBpY2NzZW5zZS0+cG93ZXJfd19jcml0KTsKK30KKworc3RhdGljIFNFTlNP
+Ul9ERVZJQ0VfQVRUUihwb3dlcjFfY3JpdCwgU19JUlVHTywKKwkJCSAgbm91dmVhdV9od21vbl9n
+ZXRfcG93ZXIxX2NyaXQsIE5VTEwsIDApOworCiBzdGF0aWMgc3RydWN0IGF0dHJpYnV0ZSAqaHdt
+b25fZGVmYXVsdF9hdHRyaWJ1dGVzW10gPSB7CiAJJnNlbnNvcl9kZXZfYXR0cl9uYW1lLmRldl9h
+dHRyLmF0dHIsCiAJJnNlbnNvcl9kZXZfYXR0cl91cGRhdGVfcmF0ZS5kZXZfYXR0ci5hdHRyLApA
+QCAtNjM5LDYgKzY2NSwxMiBAQCBzdGF0aWMgc3RydWN0IGF0dHJpYnV0ZSAqaHdtb25fcG93ZXJf
+YXR0cmlidXRlc1tdID0gewogCU5VTEwKIH07CiAKK3N0YXRpYyBzdHJ1Y3QgYXR0cmlidXRlICpo
+d21vbl9wb3dlcl9jYXBzX2F0dHJpYnV0ZXNbXSA9IHsKKwkmc2Vuc29yX2Rldl9hdHRyX3Bvd2Vy
+MV9tYXguZGV2X2F0dHIuYXR0ciwKKwkmc2Vuc29yX2Rldl9hdHRyX3Bvd2VyMV9jcml0LmRldl9h
+dHRyLmF0dHIsCisJTlVMTAorfTsKKwogc3RhdGljIGNvbnN0IHN0cnVjdCBhdHRyaWJ1dGVfZ3Jv
+dXAgaHdtb25fZGVmYXVsdF9hdHRyZ3JvdXAgPSB7CiAJLmF0dHJzID0gaHdtb25fZGVmYXVsdF9h
+dHRyaWJ1dGVzLAogfTsKQEAgLTY1Nyw2ICs2ODksOSBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGF0
+dHJpYnV0ZV9ncm91cCBod21vbl9pbjBfYXR0cmdyb3VwID0gewogc3RhdGljIGNvbnN0IHN0cnVj
+dCBhdHRyaWJ1dGVfZ3JvdXAgaHdtb25fcG93ZXJfYXR0cmdyb3VwID0gewogCS5hdHRycyA9IGh3
+bW9uX3Bvd2VyX2F0dHJpYnV0ZXMsCiB9Oworc3RhdGljIGNvbnN0IHN0cnVjdCBhdHRyaWJ1dGVf
+Z3JvdXAgaHdtb25fcG93ZXJfY2Fwc19hdHRyZ3JvdXAgPSB7CisJLmF0dHJzID0gaHdtb25fcG93
+ZXJfY2Fwc19hdHRyaWJ1dGVzLAorfTsKICNlbmRpZgogCiBpbnQKQEAgLTcyOCw4ICs3NjMsMTYg
+QEAgbm91dmVhdV9od21vbl9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJaWYgKGljY3Nl
+bnNlICYmIGljY3NlbnNlLT5kYXRhX3ZhbGlkICYmICFsaXN0X2VtcHR5KCZpY2NzZW5zZS0+cmFp
+bHMpKSB7CiAJCXJldCA9IHN5c2ZzX2NyZWF0ZV9ncm91cCgmaHdtb25fZGV2LT5rb2JqLAogCQkJ
+CQkgJmh3bW9uX3Bvd2VyX2F0dHJncm91cCk7CisKIAkJaWYgKHJldCkKIAkJCWdvdG8gZXJyb3I7
+CisKKwkJaWYgKGljY3NlbnNlLT5wb3dlcl93X21heCAmJiBpY2NzZW5zZS0+cG93ZXJfd19jcml0
+KSB7CisJCQlyZXQgPSBzeXNmc19jcmVhdGVfZ3JvdXAoJmh3bW9uX2Rldi0+a29iaiwKKwkJCQkJ
+CSAmaHdtb25fcG93ZXJfY2Fwc19hdHRyZ3JvdXApOworCQkJaWYgKHJldCkKKwkJCQlnb3RvIGVy
+cm9yOworCQl9CiAJfQogCiAJaHdtb24tPmh3bW9uID0gaHdtb25fZGV2OwpAQCAtNzU5LDYgKzgw
+Miw3IEBAIG5vdXZlYXVfaHdtb25fZmluaShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQogCQlzeXNm
+c19yZW1vdmVfZ3JvdXAoJmh3bW9uLT5od21vbi0+a29iaiwgJmh3bW9uX2Zhbl9ycG1fYXR0cmdy
+b3VwKTsKIAkJc3lzZnNfcmVtb3ZlX2dyb3VwKCZod21vbi0+aHdtb24tPmtvYmosICZod21vbl9p
+bjBfYXR0cmdyb3VwKTsKIAkJc3lzZnNfcmVtb3ZlX2dyb3VwKCZod21vbi0+aHdtb24tPmtvYmos
+ICZod21vbl9wb3dlcl9hdHRyZ3JvdXApOworCQlzeXNmc19yZW1vdmVfZ3JvdXAoJmh3bW9uLT5o
+d21vbi0+a29iaiwgJmh3bW9uX3Bvd2VyX2NhcHNfYXR0cmdyb3VwKTsKIAogCQlod21vbl9kZXZp
+Y2VfdW5yZWdpc3Rlcihod21vbi0+aHdtb24pOwogCX0KLS0gCjIuMTAuMgoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
