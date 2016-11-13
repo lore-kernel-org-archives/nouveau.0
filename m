@@ -1,109 +1,49 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98712] [PPC64] GPU Lock Up when Nouveau 2D
- acceleration is enabled + X failures
-Date: Sun, 13 Nov 2016 23:17:50 +0000
-Message-ID: <bug-98712-8800-D8jH9q9V0I@http.bugs.freedesktop.org/>
-References: <bug-98712-8800@http.bugs.freedesktop.org/>
+From: Pierre Moreau <dev@pmoreau.org>
+Subject: [PATCH REBASED 2/2] Do not register interface if Apple GMUX detected
+Date: Sun, 13 Nov 2016 20:57:07 +0100
+Message-ID: <20161113195707.4113-2-dev@pmoreau.org>
+References: <1460732242-4161-1-git-send-email-pierre.morrow@free.fr>
+ <20161113195707.4113-1-dev@pmoreau.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1022490621=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98712-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20161113195707.4113-1-dev@pmoreau.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: nouveau@lists.freedesktop.org, Ben Skeggs <skeggsb@gmail.com>
+Cc: dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1022490621==
-Content-Type: multipart/alternative; boundary="14790790700.6c8DC6eC.6302";
- charset="UTF-8"
-
-
---14790790700.6c8DC6eC.6302
-Date: Sun, 13 Nov 2016 23:17:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98712
-
---- Comment #5 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
-A similar report is filed to the Kernel bugzilla:
-https://bugzilla.kernel.org/show_bug.cgi?id=3D187581 as I am not sure where=
- the
-issue really is.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14790790700.6c8DC6eC.6302
-Date: Sun, 13 Nov 2016 23:17:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [PPC64] GPU Lock Up when Nouveau 2D acceleration is enabl=
-ed + X failures"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98712#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [PPC64] GPU Lock Up when Nouveau 2D acceleration is enabl=
-ed + X failures"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98712">bug 98712<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jeffbai&#64;aosc.xyz" title=3D"Mingcong Bai &lt;jeffbai&#64;aosc.xyz&gt;"> =
-<span class=3D"fn">Mingcong Bai</span></a>
-</span></b>
-        <pre>A similar report is filed to the Kernel bugzilla:
-<a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D187581">https://bu=
-gzilla.kernel.org/show_bug.cgi?id=3D187581</a> as I am not sure where the
-issue really is.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14790790700.6c8DC6eC.6302--
-
---===============1022490621==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1022490621==--
+RnJvbTogUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJvd0BmcmVlLmZyPgoKVGhlIEFwcGxlIEdN
+VVggaXMgdGhlIG9uZSBtYW5hZ2luZyB0aGUgYmFja2xpZ2h0LCBzbyB0aGVyZSBpcyBubyBuZWVk
+IGZvcgpOb3V2ZWF1IHRvIHJlZ2lzdGVyIGl0cyBvd24gYmFja2xpZ2h0IGludGVyZmFjZS4KCnYy
+OiBEbyBub3Qgc3BsaXQgaW5mb3JtYXRpb24gbWVzc2FnZSBvbiB0d28gbGluZXMgYXMgaXQgcHJl
+dmVudHMgZnJvbSBncmVwcGluZwogICAgaXQsIGFzIHBvaW50ZWQgb3V0IGJ5IEx1a2FzIFd1bm5l
+cgoKU2lnbmVkLW9mZi1ieTogUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJvd0BmcmVlLmZyPgot
+LS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMgfCA2ICsrKysr
+KwogMSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jCmluZGV4IDBlNjk2MTIuLjNjOTFjMjQgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMKKysrIGIvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYwpAQCAtMzAsNiArMzAsNyBA
+QAogICogUmVnaXN0ZXIgbG9jYXRpb25zIGRlcml2ZWQgZnJvbSBOVkNsb2NrIGJ5IFJvZGVyaWNr
+IENvbGVuYnJhbmRlcgogICovCiAKKyNpbmNsdWRlIDxsaW51eC9hcHBsZS1nbXV4Lmg+CiAjaW5j
+bHVkZSA8bGludXgvYmFja2xpZ2h0Lmg+CiAjaW5jbHVkZSA8bGludXgvaWRyLmg+CiAKQEAgLTI1
+OCw2ICsyNTksMTEgQEAgbm91dmVhdV9iYWNrbGlnaHRfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAq
+ZGV2KQogCXN0cnVjdCBudmlmX2RldmljZSAqZGV2aWNlID0gJmRybS0+ZGV2aWNlOwogCXN0cnVj
+dCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3I7CiAKKwlpZiAoYXBwbGVfZ211eF9wcmVzZW50KCkp
+IHsKKwkJTlZfSU5GTyhkcm0sICJBcHBsZSBHTVVYIGRldGVjdGVkOiBub3QgcmVnaXN0ZXJpbmcg
+Tm91dmVhdSBiYWNrbGlnaHQgaW50ZXJmYWNlIik7CisJCXJldHVybiAwOworCX0KKwogCUlOSVRf
+TElTVF9IRUFEKCZkcm0tPmJsX2Nvbm5lY3RvcnMpOwogCiAJbGlzdF9mb3JfZWFjaF9lbnRyeShj
+b25uZWN0b3IsICZkZXYtPm1vZGVfY29uZmlnLmNvbm5lY3Rvcl9saXN0LCBoZWFkKSB7Ci0tIAoy
+LjEwLjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRy
+aS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
