@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98709] [NV84] fifo intr 00c00000,
 	subchan mapping messed up
-Date: Sun, 13 Nov 2016 17:17:30 +0000
-Message-ID: <bug-98709-8800-YNejkRNlUX@http.bugs.freedesktop.org/>
+Date: Sun, 13 Nov 2016 19:03:51 +0000
+Message-ID: <bug-98709-8800-dMVtFu1hPZ@http.bugs.freedesktop.org/>
 References: <bug-98709-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1079528802=="
+Content-Type: multipart/mixed; boundary="===============2106800113=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98709-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1079528802==
-Content-Type: multipart/alternative; boundary="14790574500.48AEf.16671";
+--===============2106800113==
+Content-Type: multipart/alternative; boundary="14790638310.AbAA0B5c.23764";
  charset="UTF-8"
 
 
---14790574500.48AEf.16671
-Date: Sun, 13 Nov 2016 17:17:30 +0000
+--14790638310.AbAA0B5c.23764
+Date: Sun, 13 Nov 2016 19:03:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,31 +36,35 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98709
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #2 from Thibaud CANALE <thican+freedesktop-RcM+vJdHk5GsTnJN9+BGXg@public.gmane.org> ---
+Hello again,
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NV50] clocksource:         |[NV84] fifo intr 00c00000,
-                   |timekeeping watchdog on     |subchan mapping messed up
-                   |CPU2: Marking clocksource   |
-                   |'tsc' as unstable because   |
-                   |the skew is too large       |
+I managed to get through apitrace a replay which provokes the crash while
+replaying it.
+But because the files are way too big for the bugtracker (respectively 25MiB
+and 859kiB for the trace and its dump both compressed with XZ), I am hosting
+those files:
+(Note: if you don't have CAcert's root certificate in your store, you will
+encounter a error with HTTPS, accept the warning or remove the S in HTTPS)
+https://thican.net/~thican/Hacknet_2016-11-13%2019%3A13%3A47%2B01%3A00.dump=
+.xz
+https://thican.net/~thican/Hacknet_2016-11-13%2019%3A13%3A47%2B01%3A00.xz
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Observation:
-
-subc 3 class 502d
-
-should be impossible. The 2d class is always on subchan 2, for both mesa and
-the ddx. Not sure what can cause that sort of thing to happen.
+Hash SHA512:
+cb0982861cdbd998e9f42baacf0f5b6cf26766fa2a102edcc12c3411041f7b03545b3df23dd=
+8398ab776fd0c5bf9d150f8afe2f6fdb43fee474cf05e92e68a93
+ Hacknet_2016-11-13 19:13:47+01:00.dump.xz
+5a76c30adf031680f72c458935807ba83a5ff835e7bcc126a90ba92371e829850f267c37719=
+e7b450a77359cdcda58bad4c900c8e1c0fa8a74a0ae1be3b5a102
+ Hacknet_2016-11-13 19:13:47+01:00.xz
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14790574500.48AEf.16671
-Date: Sun, 13 Nov 2016 17:17:30 +0000
+--14790638310.AbAA0B5c.23764
+Date: Sun, 13 Nov 2016 19:03:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,53 +75,46 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV84] fifo intr 00c00000, subchan mapping messed up"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98709">bug 98709<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>[NV50] clocksource: timekeeping watchdog on CPU2: Marking cl=
-ocksource 'tsc' as unstable because the skew is too large
-           </td>
-           <td>[NV84] fifo intr 00c00000, subchan mapping messed up
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV84] fifo intr 00c00000, subchan mapping messed up"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98709#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98709#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV84] fifo intr 00c00000, subchan mapping messed up"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98709">bug 98709<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+thican+freedesktop&#64;thican.net" title=3D"Thibaud CANALE &lt;thican+freed=
+esktop&#64;thican.net&gt;"> <span class=3D"fn">Thibaud CANALE</span></a>
 </span></b>
-        <pre>Observation:
+        <pre>Hello again,
 
-subc 3 class 502d
+I managed to get through apitrace a replay which provokes the crash while
+replaying it.
+But because the files are way too big for the bugtracker (respectively 25MiB
+and 859kiB for the trace and its dump both compressed with XZ), I am hosting
+those files:
+(Note: if you don't have CAcert's root certificate in your store, you will
+encounter a error with HTTPS, accept the warning or remove the S in HTTPS)
+<a href=3D"https://thican.net/~thican/Hacknet_2016-11-13%2019%3A13%3A47%2B0=
+1%3A00.dump.xz">https://thican.net/~thican/Hacknet_2016-11-13%2019%3A13%3A4=
+7%2B01%3A00.dump.xz</a>
+<a href=3D"https://thican.net/~thican/Hacknet_2016-11-13%2019%3A13%3A47%2B0=
+1%3A00.xz">https://thican.net/~thican/Hacknet_2016-11-13%2019%3A13%3A47%2B0=
+1%3A00.xz</a>
 
-should be impossible. The 2d class is always on subchan 2, for both mesa and
-the ddx. Not sure what can cause that sort of thing to happen.</pre>
+Hash SHA512:
+cb0982861cdbd998e9f42baacf0f5b6cf26766fa2a102edcc12c3411041f7b03545b3df23dd=
+8398ab776fd0c5bf9d150f8afe2f6fdb43fee474cf05e92e68a93
+ Hacknet_2016-11-13 19:13:47+01:00.dump.xz
+5a76c30adf031680f72c458935807ba83a5ff835e7bcc126a90ba92371e829850f267c37719=
+e7b450a77359cdcda58bad4c900c8e1c0fa8a74a0ae1be3b5a102
+ Hacknet_2016-11-13 19:13:47+01:00.xz</pre>
         </div>
       </p>
 
@@ -132,9 +129,9 @@ the ddx. Not sure what can cause that sort of thing to happen.</pre>
     </body>
 </html>=
 
---14790574500.48AEf.16671--
+--14790638310.AbAA0B5c.23764--
 
---===============1079528802==
+--===============2106800113==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -144,4 +141,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1079528802==--
+--===============2106800113==--
