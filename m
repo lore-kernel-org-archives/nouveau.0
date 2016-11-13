@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98712] [PPC64] GPU Lock Up when Nouveau 2D
  acceleration is enabled + X failures
-Date: Sun, 13 Nov 2016 22:51:06 +0000
-Message-ID: <bug-98712-8800-LA8iUH7idx@http.bugs.freedesktop.org/>
+Date: Sun, 13 Nov 2016 23:17:50 +0000
+Message-ID: <bug-98712-8800-D8jH9q9V0I@http.bugs.freedesktop.org/>
 References: <bug-98712-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0443881653=="
+Content-Type: multipart/mixed; boundary="===============1022490621=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98712-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0443881653==
-Content-Type: multipart/alternative; boundary="14790774651.a28Fb.4556";
+--===============1022490621==
+Content-Type: multipart/alternative; boundary="14790790700.6c8DC6eC.6302";
  charset="UTF-8"
 
 
---14790774651.a28Fb.4556
-Date: Sun, 13 Nov 2016 22:51:05 +0000
+--14790790700.6c8DC6eC.6302
+Date: Sun, 13 Nov 2016 23:17:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98712
 
---- Comment #4 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
-Created attachment 127960
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D127960&action=3Dedit
-Xorg log - nouveau.noaccel=3D1 disabled (without this parameter), using nou=
-veau
+--- Comment #5 from Mingcong Bai <jeffbai-ymACFijhrKM@public.gmane.org> ---
+A similar report is filed to the Kernel bugzilla:
+https://bugzilla.kernel.org/show_bug.cgi?id=3D187581 as I am not sure where=
+ the
+issue really is.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14790774651.a28Fb.4556
-Date: Sun, 13 Nov 2016 22:51:05 +0000
+--14790790700.6c8DC6eC.6302
+Date: Sun, 13 Nov 2016 23:17:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +65,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [PPC64] GPU Lock Up when Nouveau 2D acceleration is enabl=
 ed + X failures"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98712#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98712#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [PPC64] GPU Lock Up when Nouveau 2D acceleration is enabl=
@@ -77,14 +77,10 @@ ed + X failures"
 jeffbai&#64;aosc.xyz" title=3D"Mingcong Bai &lt;jeffbai&#64;aosc.xyz&gt;"> =
 <span class=3D"fn">Mingcong Bai</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D127960=
-" name=3D"attach_127960" title=3D"Xorg log - nouveau.noaccel=3D1 disabled (=
-without this parameter), using nouveau">attachment 127960</a> <a href=3D"at=
-tachment.cgi?id=3D127960&amp;action=3Dedit" title=3D"Xorg log - nouveau.noa=
-ccel=3D1 disabled (without this parameter), using nouveau">[details]</a></s=
-pan>
-Xorg log - nouveau.noaccel=3D1 disabled (without this parameter), using nou=
-veau</pre>
+        <pre>A similar report is filed to the Kernel bugzilla:
+<a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D187581">https://bu=
+gzilla.kernel.org/show_bug.cgi?id=3D187581</a> as I am not sure where the
+issue really is.</pre>
         </div>
       </p>
 
@@ -98,9 +94,9 @@ veau</pre>
     </body>
 </html>=
 
---14790774651.a28Fb.4556--
+--14790790700.6c8DC6eC.6302--
 
---===============0443881653==
+--===============1022490621==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0443881653==--
+--===============1022490621==--
