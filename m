@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
 	(v4.6+)
-Date: Sat, 19 Nov 2016 06:13:38 +0000
-Message-ID: <bug-94990-8800-X44VaByMzS@http.bugs.freedesktop.org/>
+Date: Sat, 19 Nov 2016 09:01:20 +0000
+Message-ID: <bug-94990-8800-980yCd3NUa@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0485644409=="
+Content-Type: multipart/mixed; boundary="===============0389891598=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0485644409==
-Content-Type: multipart/alternative; boundary="14795360190.1B9FC89.2985";
+--===============0389891598==
+Content-Type: multipart/alternative; boundary="14795460805.f99eee.20671";
  charset="UTF-8"
 
 
---14795360190.1B9FC89.2985
-Date: Sat, 19 Nov 2016 06:13:39 +0000
+--14795460805.f99eee.20671
+Date: Sat, 19 Nov 2016 09:01:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,15 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #90 from DocMAX <docmax-Mmb7MZpHnFY@public.gmane.org> ---
-Is anybody working on this?
+--- Comment #91 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to DocMAX from comment #90)
+> Is anybody working on this?
+
+yes
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14795360190.1B9FC89.2985
-Date: Sat, 19 Nov 2016 06:13:39 +0000
+--14795460805.f99eee.20671
+Date: Sat, 19 Nov 2016 09:01:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,18 +64,22 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c90">Commen=
-t # 90</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c91">Commen=
+t # 91</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-docmax&#64;gmx.de" title=3D"DocMAX &lt;docmax&#64;gmx.de&gt;"> <span class=
-=3D"fn">DocMAX</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Is anybody working on this?</pre>
+        <pre>(In reply to DocMAX from <a href=3D"show_bug.cgi?id=3D94990#c9=
+0">comment #90</a>)
+<span class=3D"quote">&gt; Is anybody working on this?</span >
+
+yes</pre>
         </div>
       </p>
 
@@ -86,9 +93,9 @@ docmax&#64;gmx.de" title=3D"DocMAX &lt;docmax&#64;gmx.de&gt;"> <span class=
     </body>
 </html>=
 
---14795360190.1B9FC89.2985--
+--14795460805.f99eee.20671--
 
---===============0485644409==
+--===============0389891598==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0485644409==--
+--===============0389891598==--
