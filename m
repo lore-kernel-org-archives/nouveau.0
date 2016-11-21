@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Mon, 21 Nov 2016 06:50:57 +0000
-Message-ID: <bug-94990-8800-Bg4fhGktQw@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v4 0/33] Secure Boot refactoring / signed PMU
+	firmware support for GM20B
+Date: Mon, 21 Nov 2016 17:28:57 +0900
+Message-ID: <cover.1cf6db61f999a8b34b304a073e1487c209d129bd.1479716212.git-series.acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1412860800=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,113 +16,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1412860800==
-Content-Type: multipart/alternative; boundary="14797110571.A303Aaa1f.28701";
- charset="UTF-8"
-
-
---14797110571.A303Aaa1f.28701
-Date: Mon, 21 Nov 2016 06:50:57 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
---- Comment #95 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Alexandre Courbot from comment #94)
-> Created attachment 128093 [details]
-> Log with patch 128091
->=20
-> Hi Ben,
->=20
-> Patch did not do the trick for me (log attached). Confirmed that
-> 0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch still
-> succeeded, so apparently the method is not perfectly correct. Rather
-> strangely the printk'd value of 0x100ce0 is 0x00000000...
-
-Yeah, everyone, don't bother trying this.  This register is written by the
-secure boot ucode, so the problem remains unsolved.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14797110571.A303Aaa1f.28701
-Date: Mon, 21 Nov 2016 06:50:57 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c95">Commen=
-t # 95</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>(In reply to Alexandre Courbot from <a href=3D"show_bug.cgi?id=
-=3D94990#c94">comment #94</a>)
-<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
-gi?id=3D128093" name=3D"attach_128093" title=3D"Log with patch 128091">atta=
-chment 128093</a> <a href=3D"attachment.cgi?id=3D128093&amp;action=3Dedit" =
-title=3D"Log with patch 128091">[details]</a></span>
-&gt; Log with patch 128091
-&gt;=20
-&gt; Hi Ben,
-&gt;=20
-&gt; Patch did not do the trick for me (log attached). Confirmed that
-&gt; 0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch still
-&gt; succeeded, so apparently the method is not perfectly correct. Rather
-&gt; strangely the printk'd value of 0x100ce0 is 0x00000000...</span >
-
-Yeah, everyone, don't bother trying this.  This register is written by the
-secure boot ucode, so the problem remains unsolved.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14797110571.A303Aaa1f.28701--
-
---===============1412860800==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1412860800==--
+VGhpcyByZXZpc2lvbiBpbmNsdWRlcyBpbml0aWFsIHNpZ25lZCBQTVUgZmlybXdhcmUgc3VwcG9y
+dCBmb3IgR00yMEIKKFRlZ3JhIFgxKS4gVGhpcyBQTVUgY29kZSB3aWxsIGFsc28gYmUgdXNlZCBh
+cyBhIGJhc2lzIGZvciBkR1BVIHNpZ25lZApQTVUgZmlybXdhcmUgc3VwcG9ydC4KCldpdGggdGhl
+IFBNVSBjb2RlLCB0aGUgcmVmYWN0b3Jpbmcgb2Ygc2VjdXJlIGJvb3Qgc2hvdWxkIGFsc28gbWFr
+ZQptb3JlIHNlbnNlLgoKQUNSIChzZWN1cmUgYm9vdCkgc3VwcG9ydCBpcyBub3cgc2VwYXJhdGVk
+IGJ5IHRoZSBkcml2ZXIgdmVyc2lvbiBpdApvcmlnaW5hdGVzIGZyb20uIFRoaXMgc2VwYXJhdGlv
+biBhbGxvd3MgdG8gcnVuIGFueSB2ZXJzaW9uIG9mIHRoZSBBQ1IKb24gYW55IGNoaXAsIGFsdGhv
+dWdoIGluIHByYWN0aWNlIG9ubHkgb25lIHZlcnNpb24gc2hvdWxkIGV2ZXIgYmUKcmVsZWFzZWQg
+Zm9yIGFueSBnaXZlbiBjaGlwLiBCdXQgc2luY2UgQUNSIG9ubHkgY2hhbmdlcyBzbGlnaHRseSBm
+cm9tCnZlcnNpb24gdG8gdmVyc2lvbiwgd2UganVzdCBoYXZlIHRvIHByb2dyYW0gdGhlIGRpZmZl
+cmVuY2UgYWdhaW5zdAp0aGUgcHJldmlvdXMgdmVyc2lvbiBpbiBvcmRlciB0byBzdXBwb3J0IGEg
+bmV3IG9uZS4KClRoZSBzYW1lIGFwcGxpZXMgdG8gdGhlIFBNVSBmaXJtd2FyZSwgYWx0aG91Z2gg
+d2l0aCBhIGRpZmZlcmVudAp2ZXJzaW9uaW5nIHNjaGVtZS4gVGhlIGZpcm13YXJlIHZlcnNpb24g
+bnVtYmVyIGlzIGVuY29kZWQgaW4gYSBmaWVsZApvZiB0aGUgZGVzY3JpcHRvciBmaWxlLiBUaGlz
+IHZlcnNpb24gaXMgYXJiaXRyYXJ5LCBidXQgY2FuIGJlIG1hdGNoZWQKdG8gYSBnaXZlbiBzZXQg
+b2YgbWVzc2FnZSBmb3JtYXRzLiBBZ2FpbiwgbXVjaCBjb2RlIGNhbiBiZSByZXVzZWQgYmV0d2Vl
+bgp2ZXJzaW9ucy4KClRoZSBQTVUgY29kZSBmb3IgR00yMEIgaXMgYXZhaWxhYmxlIGZyb20gYnJh
+bmNoICdnbTIwYicgb2YKaHR0cHM6Ly9naXRodWIuY29tL0dudXJvdS9saW51eC1maXJtd2FyZSwg
+d2hpY2ggd2lsbCBiZSBwdXNoZWQgdG8KdXBzdHJlYW0gdW5sZXNzIGlzc3VlcyBhYm91dCB0aGUg
+UE1VIGZpbGVzIG5hbWluZyBzY2hlbWUgYXJlIHJhaXNlZC4KCk5vdGUgdGhhdCB0aGUgcHJlc2Vu
+dCBjb2RlIHdpbGwgc3RpbGwgd29yayBpZiB0aGUgUE1VIGZpcm13YXJlIGlzIG5vdApwcmVzZW50
+LCBtZWFuaW5nIGNvbXBhdGliaWxpdHkgd2l0aCBub24tdXBkYXRlZCB1c2VyIHNwYWNlIGlzIG1h
+aW50YWluZWQuCgpDaGFuZ2VzIHNpbmNlIHYxOgotIFVzZSBOVklESUEgZHJpdmVyIHZlcnNpb25z
+IHRvIGRpZmZlcmVuY2lhdGUgdGhlIEFDUiBzdHJ1Y3R1cmVzIGluc3RlYWQgb2YKICBhcmJpdHJh
+cnkgbnVtYmVycwotIEFkZCBhYnN0cmFjdGlvbnMgdG8gZmlybXdhcmUgbG9hZGluZyBmdW5jdGlv
+bnMKLSBPcHRpbWl6ZWQgc2V0IG9mIGFic3RyYWN0aW9ucwotIFJlbW92ZWQgc29tZSBtb3JlIGNv
+ZGUKCkNoYW5nZXMgc2luY2UgdjI6Ci0gRml4IG5hbWluZyBvZiBuZXcgc3RydWN0dXJlcy9mdW5j
+dGlvbnMKCkNoYW5nZXMgc2luY2UgdjM6Ci0gQWRkIFBNVSBzdXBwb3J0IGNvZGUgZm9yIEdNMjBC
+LgoKQWxleGFuZHJlIENvdXJib3QgKDMxKToKICBjb3JlOiBjb25zdGlmeSBudipfcHJpbnRrIG1h
+Y3JvcwogIGNvcmU6IGFkZCBmYWxjb24gbGlicmFyeQogIHNlY2Jvb3Q6IHVzZSBmYWxjb24gbGli
+cmFyeSdzIElNRU0vRE1FTSBsb2FkaW5nIGZ1bmN0aW9ucwogIHNlY2Jvb3Q6IHJlbmFtZSBpbml0
+KCkgaG9vayB0byBvbmVpbml0KCkKICBzZWNib290OiByZW1vdmUgZml4dXBfaHNfZGVzYyBob29r
+CiAgc2VjYm9vdDogYWRkIGxvdy1zZWN1cmUgZmlybXdhcmUgaG9va3MKICBzZWNib290OiBnZW5l
+cmF0ZSBIUyBCTCBkZXNjcmlwdG9yIGluIGhvb2sKICBzZWNib290OiByZW9yZ2FuaXplIGludG8g
+bW9yZSBmaWxlcwogIHNlY2Jvb3Q6IGFkZCBMUyBmbGFncyB0byBMUyBmdW5jIHN0cnVjdHVyZQog
+IHNlY2Jvb3Q6IHNwbGl0IHJlc2V0IGZ1bmN0aW9uCiAgc2VjYm9vdDogZGlzYWJsZSBmYWxjb24g
+aW50ZXJydXB0cyBiZWZvcmUgcnVubmluZwogIHNlY2Jvb3Q6IHJlbW92ZSB1bm5lZWRlZCBsc191
+Y29kZV9pbWcgbWVtYmVyCiAgc2VjYm9vdDogcmVtb3ZlIGxzX3Vjb2RlX21ncgogIHNlY2Jvb3Q6
+IGFic3RyYWN0IExTIGZpcm13YXJlIGxvYWRpbmcgZnVuY3Rpb25zCiAgc2VjYm9vdDogc2FmZXIg
+emVyb2luZyBvZiBCTCBkZXNjcmlwdG9ycwogIHNlY2Jvb3Q6IGFkZCBtaXNzaW5nIGZpZWxkcyB0
+byBCTCBzdHJ1Y3R1cmUKICBzZWNib290OiBzZXQgZGVmYXVsdCBlcnJvciB2YWx1ZSBpbiBlcnJv
+ciByZWdpc3RlcgogIHNlY2Jvb3Q6IGZpeCBXUFIgZGVzY3JpcHRvciBnZW5lcmF0aW9uCiAgc2Vj
+Ym9vdDogYWRkIGxhenktYm9vdHN0cmFwIGZsYWcKICBzZWNib290OiBzdG9yZSBmYWxjb24ncyBE
+TUVNIHNpemUgaW4gc2VjYm9vdCBzdHJ1Y3R1cmUKICBzZWNib290OiBjbGVhciBoYWx0IGludGVy
+cnVwdCBhZnRlciBBQ1IgaXMgcnVuCiAgY29yZTogYWRkIGZhbGNvbiBETUVNIHJlYWQgZnVuY3Rp
+b24KICBwbXU6IGFkZCBudmttX3BtdV9jdG9yIGZ1bmN0aW9uCiAgcG11OiBtYWtlIHN1cmUgdGhl
+IHJlc2V0IGhvb2sgZXhpc3RzIGJlZm9yZSBydW5uaW5nIGl0CiAgc2VjYm9vdDogYWRkIExTIGZp
+cm13YXJlIHBvc3QtcnVuIGhvb2tzCiAgc2VjYm9vdDogc3VwcG9ydCBmb3IgbG9hZGluZyBMUyBQ
+TVUgZmlybXdhcmUKICBzZWNib290OiBiYXNlIHN1cHBvcnQgZm9yIFBNVSBmYWxjb24KICBzZWNi
+b290OiB3cml0ZSBQTVUgZmlybXdhcmUgdmVyc2lvbiBpbnRvIHJlZ2lzdGVyCiAgc2VjYm9vdDog
+ZW5hYmxlIFBNVSBpbiByMzUyIEFDUgogIHNlY2Jvb3Q6IHN1cHBvcnQgb3B0aW9uYWwgZmFsY29u
+cwogIGdtMjBiOiBlbmFibGUgUE1VCgpEZWVwYWsgR295YWwgKDIpOgogIHBtdTogc3VwcG9ydCBm
+b3IgR00yMFgKICBwbXU6IHN1cHBvcnQgZm9yIEdNMjBCIHNpZ25lZCBmaXJtd2FyZQoKIGRybS9u
+b3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2NsaWVudC5oICAgICAgICAgfCAgICA0ICstCiBkcm0v
+bm91dmVhdS9pbmNsdWRlL252a20vY29yZS9kZXZpY2UuaCAgICAgICAgIHwgICAgMiArLQogZHJt
+L25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUvZmFsY29uLmggICAgICAgICB8ICAgNTEgKy0KIGRy
+bS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL3N1YmRldi5oICAgICAgICAgfCAgICAyICstCiBk
+cm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3BtdS5oICAgICAgICAgIHwgICAxMiArLQog
+ZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9zZWNib290LmggICAgICB8ICAgMzAgKy0K
+IGRybS9ub3V2ZWF1L252a20vY29yZS9LYnVpbGQgICAgICAgICAgICAgICAgICAgfCAgICAxICst
+CiBkcm0vbm91dmVhdS9udmttL2NvcmUvZmFsY29uLmMgICAgICAgICAgICAgICAgIHwgICA3MiAr
+LQogZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYyAgICAgICAgICB8ICAgIDEg
+Ky0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMgICAgICAgICAgICAgfCAgIDE2
+ICstCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nbTIwMC5jICAgICAgICAgICAgIHwgICAg
+NiArLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L0tidWlsZCAgICAgICAgICAgICB8ICAg
+IDMgKy0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9iYXNlLmMgICAgICAgICAgICAgfCAg
+IDY4ICstCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZ20yMDAuYyAgICAgICAgICAgIHwg
+IDcxMyArKysrKysrKystCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZ20yMDAuaCAgICAg
+ICAgICAgIHwgIDEwNCArLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L252XzAxMzdjNjNk
+LmMgICAgICB8ICAyNTUgKysrLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L252X3BtdS5o
+ICAgICAgICAgICB8ICAgNTMgKy0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9wcml2Lmgg
+ICAgICAgICAgICAgfCAgIDIyICstCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L0ti
+dWlsZCAgICAgICAgIHwgICAgNSArLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9h
+Y3IuYyAgICAgICAgICB8ICAgNTQgKy0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3Qv
+YWNyLmggICAgICAgICAgfCAgIDczICstCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290
+L2Fjcl9yMzUyLmMgICAgIHwgMTExMSArKysrKysrKysrKysrKy0KIGRybS9ub3V2ZWF1L252a20v
+c3ViZGV2L3NlY2Jvb3QvYWNyX3IzNTIuaCAgICAgfCAgMjUyICsrKy0KIGRybS9ub3V2ZWF1L252
+a20vc3ViZGV2L3NlY2Jvb3QvYWNyX3IzNjEuYyAgICAgfCAgMTM1ICsrLQogZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvc2VjYm9vdC9iYXNlLmMgICAgICAgICB8ICAxNTEgKy0KIGRybS9ub3V2ZWF1
+L252a20vc3ViZGV2L3NlY2Jvb3QvZ20yMDAuYyAgICAgICAgfCAxMzM3ICstLS0tLS0tLS0tLS0t
+LS0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9nbTIwMC5oICAgICAgICB8ICAg
+NDMgKy0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvZ20yMGIuYyAgICAgICAgfCAg
+MTI4ICstLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9sc191Y29kZS5oICAgICB8
+ICAxNTMgKystCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2xzX3Vjb2RlX2dyLmMg
+IHwgIDE1OCArKy0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvbHNfdWNvZGVfcG11
+LmMgfCAgIDg5ICstCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L3ByaXYuaCAgICAg
+ICAgIHwgIDE5OSArLS0tCiAzMiBmaWxlcyBjaGFuZ2VkLCAzNjM2IGluc2VydGlvbnMoKyksIDE2
+NjcgZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJtL25vdXZlYXUvaW5jbHVkZS9u
+dmttL2NvcmUvZmFsY29uLmgKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL2Nv
+cmUvZmFsY29uLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRldi9w
+bXUvZ20yMDAuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3Bt
+dS9nbTIwMC5oCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11
+L252XzAxMzdjNjNkLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRl
+di9wbXUvbnZfcG11LmgKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRl
+di9zZWNib290L2Fjci5jCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJtL25vdXZlYXUvbnZrbS9zdWJk
+ZXYvc2VjYm9vdC9hY3IuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L3NlY2Jvb3QvYWNyX3IzNTIuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252
+a20vc3ViZGV2L3NlY2Jvb3QvYWNyX3IzNTIuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2
+ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvYWNyX3IzNjEuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRy
+bS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvZ20yMDAuaAogY3JlYXRlIG1vZGUgMTAwNjQ0
+IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvbHNfdWNvZGUuaAogY3JlYXRlIG1vZGUg
+MTAwNjQ0IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvbHNfdWNvZGVfZ3IuYwogY3Jl
+YXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvbHNfdWNvZGVf
+cG11LmMKCi0tIApnaXQtc2VyaWVzIDAuOC4xMApfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
