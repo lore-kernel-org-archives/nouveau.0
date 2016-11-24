@@ -1,84 +1,142 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH] acpi: video: Move ACPI_VIDEO_NOTIFY_* defines to
- acpi/video.h
-Date: Thu, 24 Nov 2016 11:30:36 +1000
-Message-ID: <e7e4b056-d375-49cc-fcc3-21917b024f9d@gmail.com>
-References: <20161109171556.4003-1-hdegoede@redhat.com>
- <4010260.RhimP6FkGx@vostro.rjw.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98582] nouveau on a GM108 fails to resume properly
+ from suspension
+Date: Thu, 24 Nov 2016 09:59:24 +0000
+Message-ID: <bug-98582-8800-pI3R0I4UG6@http.bugs.freedesktop.org/>
+References: <bug-98582-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="cNaheDAiX5HIFQUquodQpivsnKve8rqf3"
-Return-path: <linux-acpi-owner@vger.kernel.org>
-In-Reply-To: <4010260.RhimP6FkGx@vostro.rjw.lan>
-Sender: linux-acpi-owner@vger.kernel.org
-To: "Rafael J. Wysocki" <rjw@rjwysocki.net>, Hans de Goede <hdegoede@redhat.com>
-Cc: Zhang Rui <rui.zhang@intel.com>, Len Brown <lenb@kernel.org>, Dave Airlie <airlied@redhat.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============0170891338=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98582-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---cNaheDAiX5HIFQUquodQpivsnKve8rqf3
-Content-Type: multipart/mixed; boundary="RqC9ctgKXQCjegg9pL4oRkMvN8hqFEg6t"
-From: Ben Skeggs <skeggsb@gmail.com>
-To: "Rafael J. Wysocki" <rjw@rjwysocki.net>,
- Hans de Goede <hdegoede@redhat.com>
-Cc: Zhang Rui <rui.zhang@intel.com>, Len Brown <lenb@kernel.org>,
- Dave Airlie <airlied@redhat.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org
-Message-ID: <e7e4b056-d375-49cc-fcc3-21917b024f9d@gmail.com>
-Subject: Re: [PATCH] acpi: video: Move ACPI_VIDEO_NOTIFY_* defines to
- acpi/video.h
-References: <20161109171556.4003-1-hdegoede@redhat.com>
- <4010260.RhimP6FkGx@vostro.rjw.lan>
-In-Reply-To: <4010260.RhimP6FkGx@vostro.rjw.lan>
 
---RqC9ctgKXQCjegg9pL4oRkMvN8hqFEg6t
-Content-Type: text/plain; charset=utf-8
+--===============0170891338==
+Content-Type: multipart/alternative; boundary="14799815642.297afc0F.20090";
+ charset="UTF-8"
+
+
+--14799815642.297afc0F.20090
+Date: Thu, 24 Nov 2016 09:59:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-On 11/24/2016 11:27 AM, Rafael J. Wysocki wrote:
-> On Wednesday, November 09, 2016 06:15:56 PM Hans de Goede wrote:
->> acpi_video.c passed the ACPI_VIDEO_NOTIFY_* defines as type code to
->> acpi_notifier_call_chain(). Move these defines to acpi/video.h so
->> that acpi_notifier listeners can check the type code using these
->> defines.
->>
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->=20
-> I've applied this one, but I'd like to get an ACK from the DRM folks on=
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98582
 
-> the second one.
-I've already taken the Nouveau patch through my tree.
+Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> changed:
 
-Ben.
->=20
-> Thanks,
-> Rafael
->=20
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org
+
+--- Comment #9 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
+Possibly a duplicate of bug 98398, can you try the ACPICA patches at
+https://bugs.acpica.org/show_bug.cgi?id=3D1333#c45
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14799815642.297afc0F.20090
+Date: Thu, 24 Nov 2016 09:59:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:peter&#64=
+;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"> <span c=
+lass=3D"fn">Peter Wu</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau on a GM108 fails to resume properly from suspensi=
+on"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>peter&#64;lekensteyn.nl
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau on a GM108 fails to resume properly from suspensi=
+on"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582#c9">Comment=
+ # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau on a GM108 fails to resume properly from suspensi=
+on"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
+> <span class=3D"fn">Peter Wu</span></a>
+</span></b>
+        <pre>Possibly a duplicate of <a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to po=
+wer off GPU with runtime PM"
+   href=3D"show_bug.cgi?id=3D98398">bug 98398</a>, can you try the ACPICA p=
+atches at
+<a href=3D"https://bugs.acpica.org/show_bug.cgi?id=3D1333#c45">https://bugs=
+.acpica.org/show_bug.cgi?id=3D1333#c45</a></pre>
+        </div>
+      </p>
 
 
---RqC9ctgKXQCjegg9pL4oRkMvN8hqFEg6t--
+      <hr>
+      <span>You are receiving this mail because:</span>
 
---cNaheDAiX5HIFQUquodQpivsnKve8rqf3
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
 
------BEGIN PGP SIGNATURE-----
+--14799815642.297afc0F.20090--
 
-iQIcBAEBCAAGBQJYNkK8AAoJEHYLnGJQkpH7UpUP/RUqdr7r/tv5RkkX4BTLDBv2
-Z6sWWaeKpoNhW1zHFlTnu4XsHWnaIHrwHr+eehH3H6MZbnwc3YFP0WPnXpbJ3N9H
-OPgw0qMxmSupRxHPsqZCaCABgvgBin/VNjvZhSx98jh2kylkZF/ukaCioGd1u5Iv
-PYBLab0e9LCblmDtvIbeMJu5CWRN/PRA9Ttvl0Imm/EjT9lXJbMBqa7i4XZWBbmH
-Y+YhjdK0aeAif6L20lYeBSl6fOZy3eo62vVw0YDHtVclHa2bjBxCAZPSaUm69d3n
-tfKDOx06MmwYZCJ6IN0WD42atsq4dInNvX5QDCejnRDuKQvVaZfTZTMBYDYDYliz
-VlKLdiChzQHanTuFycUFG/52pWOLgXpIEo3+i0/SMcvE3MoRTtVmqOF9jQlexvJU
-oADBw6X3oHzA0w5nKN1qHkG/AHu7gDDP1GesiorYR8ZMyuJafxCaF/D6g2HuMWrO
-+AJ0pAXHERedxU4cZ4vvH8g3V4jo5fPYi+boIjQiJl/yNRKLAoaC0G8rDLiAmKyG
-SW/ZFhBtBkxZLMMqvlPYDQ/NDp4be2x2awvfMP97762/2YU6cTCEV7Yu1LhBq5s6
-S84AkIjrOzMgCnHVHg+3KVtK1TQ+fFS1022OXt2rFVx+lKyZC1el++LiwXjQjk0W
-Wafb4llvEkAxEgLGl9cd
-=udwz
------END PGP SIGNATURE-----
+--===============0170891338==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
 
---cNaheDAiX5HIFQUquodQpivsnKve8rqf3--
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0170891338==--
