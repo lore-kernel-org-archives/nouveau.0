@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98398] Acer Aspire V7-582PG (Haswell,
- GTX 750M) fails to power off GPU with runtime PM
-Date: Thu, 24 Nov 2016 00:24:28 +0000
-Message-ID: <bug-98398-8800-ui6PQnyemf@http.bugs.freedesktop.org/>
-References: <bug-98398-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Thu, 24 Nov 2016 01:09:36 +0000
+Message-ID: <bug-94990-8800-kU3CmUBM0K@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0383637075=="
+Content-Type: multipart/mixed; boundary="===============1616552646=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0383637075==
-Content-Type: multipart/alternative; boundary="14799470681.cd5EBb.14237";
+--===============1616552646==
+Content-Type: multipart/alternative; boundary="14799497768.67d0d57Bc.17438";
  charset="UTF-8"
 
 
---14799470681.cd5EBb.14237
-Date: Thu, 24 Nov 2016 00:24:28 +0000
+--14799497768.67d0d57Bc.17438
+Date: Thu, 24 Nov 2016 01:09:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98398
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #16 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
-Rick reported that system suspend did not work before the patch either, so
-there is no regression in that sense.
-
-ACPICA developers are faster than expected, can you test these three patche=
-s:
-https://bugs.acpica.org/show_bug.cgi?id=3D1333#c45
+--- Comment #96 from Zach Wolfe <zwolfe21-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+Could someone point me to how exactly to apply
+"0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch"?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14799470681.cd5EBb.14237
-Date: Thu, 24 Nov 2016 00:24:28 +0000
+--14799497768.67d0d57Bc.17438
+Date: Thu, 24 Nov 2016 01:09:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,29 +60,22 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to po=
-wer off GPU with runtime PM"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398#c16">Commen=
-t # 16</a>
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c96">Commen=
+t # 96</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to po=
-wer off GPU with runtime PM"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398">bug 98398<=
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
-> <span class=3D"fn">Peter Wu</span></a>
+zwolfe21&#64;hotmail.com" title=3D"Zach Wolfe &lt;zwolfe21&#64;hotmail.com&=
+gt;"> <span class=3D"fn">Zach Wolfe</span></a>
 </span></b>
-        <pre>Rick reported that system suspend did not work before the patc=
-h either, so
-there is no regression in that sense.
-
-ACPICA developers are faster than expected, can you test these three patche=
-s:
-<a href=3D"https://bugs.acpica.org/show_bug.cgi?id=3D1333#c45">https://bugs=
-.acpica.org/show_bug.cgi?id=3D1333#c45</a></pre>
+        <pre>Could someone point me to how exactly to apply
+&quot;0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch&quot;=
+?</pre>
         </div>
       </p>
 
@@ -100,9 +89,9 @@ s:
     </body>
 </html>=
 
---14799470681.cd5EBb.14237--
+--14799497768.67d0d57Bc.17438--
 
---===============0383637075==
+--===============1616552646==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0383637075==--
+--===============1616552646==--
