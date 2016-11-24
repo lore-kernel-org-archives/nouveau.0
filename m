@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
 	(v4.6+)
-Date: Thu, 24 Nov 2016 21:33:51 +0000
-Message-ID: <bug-94990-8800-T5aB5fjlqy@http.bugs.freedesktop.org/>
+Date: Thu, 24 Nov 2016 21:40:58 +0000
+Message-ID: <bug-94990-8800-xhPNzokr4Q@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0487926995=="
+Content-Type: multipart/mixed; boundary="===============1422794033=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0487926995==
-Content-Type: multipart/alternative; boundary="14800232315.9E6D2.14321";
+--===============1422794033==
+Content-Type: multipart/alternative; boundary="148002365810.DfE2A8.14491";
  charset="UTF-8"
 
 
---14800232315.9E6D2.14321
-Date: Thu, 24 Nov 2016 21:33:51 +0000
+--148002365810.DfE2A8.14491
+Date: Thu, 24 Nov 2016 21:40:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,45 +36,37 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #97 from Efrem McCrimon <efremmc2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi all:
+--- Comment #98 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Efrem McCrimon from comment #97)
+> Created attachment 128179 [details]
+> attachment-14321-0.html
+>=20
+> Hi all:
+>=20
+> Please help me understand the ram issue on the video card, is too many
+> buffers created?  I did not have this problem on a 4.6 kernel, now the
+> kernel has been upgraded twice, 4.8.5, and now 4.8.6.  No problems using a
+> 960 GTX w/4GB DDR5 memory, plus I have a secondary 730 GTw/1GB RAM.
 
-Please help me understand the ram issue on the video card, is too many
-buffers created?  I did not have this problem on a 4.6 kernel, now the
-kernel has been upgraded twice, 4.8.5, and now 4.8.6.  No problems using a
-960 GTX w/4GB DDR5 memory, plus I have a secondary 730 GTw/1GB RAM.
+The issue is that the 4GB are laid out "funny" on a GTX 970 (but not other
+models), and nouveau doesn't properly handle that.
 
-Please advice
-
-On Wed, Nov 23, 2016 at 8:09 PM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
-
-> *Comment # 96 <https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c96> =
-on
-> bug 94990 <https://bugs.freedesktop.org/show_bug.cgi?id=3D94990> from Zach
-> Wolfe <zwolfe21-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> *
->
-> Could someone point me to how exactly to apply
-> "0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch"?
->
-> ------------------------------
-> You are receiving this mail because:
->
->    - You are the assignee for the bug.
->
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
->
->
+You had this problem on a 4.6 kernel, as it was the first to provide the
+secboot firmware loading functionality (assuming you had the firmware in
+place). To get back to the previous behavior, remove the firmware, or boot =
+with
+nouveau.noaccel=3D1 nouveau.nofbaccel=3D1 which should avoid initializing t=
+he
+graphics accel engine. (And hopefully avoid secboot as well, but I'm not 10=
+0%
+sure.)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14800232315.9E6D2.14321
-Date: Thu, 24 Nov 2016 21:33:51 +0000
+--148002365810.DfE2A8.14491
+Date: Thu, 24 Nov 2016 21:40:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -91,65 +83,47 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c97">Commen=
-t # 97</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c98">Commen=
+t # 98</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-efremmc2&#64;gmail.com" title=3D"Efrem McCrimon &lt;efremmc2&#64;gmail.com&=
-gt;"> <span class=3D"fn">Efrem McCrimon</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hi all:
+        <pre>(In reply to Efrem McCrimon from <a href=3D"show_bug.cgi?id=3D=
+94990#c97">comment #97</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D128179" name=3D"attach_128179" title=3D"attachment-14321-0.html">at=
+tachment 128179</a> <a href=3D"attachment.cgi?id=3D128179&amp;action=3Dedit=
+" title=3D"attachment-14321-0.html">[details]</a></span>
+&gt; attachment-14321-0.html
+&gt;=20
+&gt; Hi all:
+&gt;=20
+&gt; Please help me understand the ram issue on the video card, is too many
+&gt; buffers created?  I did not have this problem on a 4.6 kernel, now the
+&gt; kernel has been upgraded twice, 4.8.5, and now 4.8.6.  No problems usi=
+ng a
+&gt; 960 GTX w/4GB DDR5 memory, plus I have a secondary 730 GTw/1GB RAM.</s=
+pan >
 
-Please help me understand the ram issue on the video card, is too many
-buffers created?  I did not have this problem on a 4.6 kernel, now the
-kernel has been upgraded twice, 4.8.5, and now 4.8.6.  No problems using a
-960 GTX w/4GB DDR5 memory, plus I have a secondary 730 GTw/1GB RAM.
+The issue is that the 4GB are laid out &quot;funny&quot; on a GTX 970 (but =
+not other
+models), and nouveau doesn't properly handle that.
 
-Please advice
-
-On Wed, Nov 23, 2016 at 8:09 PM, &lt;<a href=3D"mailto:bugzilla-daemon&#64;=
-freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt; wrote:
-
-<span class=3D"quote">&gt; *<a href=3D"show_bug.cgi?id=3D94990#c96">Comment=
- # 96</a> &lt;<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"show_bug.cgi?id=3D94990#c96">https://bugs.freedesktop.org/show_b=
-ug.cgi?id=3D94990#c96</a>&gt; on
-&gt; <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"show_bug.cgi?id=3D94990">bug 94990</a> &lt;<a class=3D"bz_bug_li=
-nk=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"show_bug.cgi?id=3D94990">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D94990</a>&gt; from Zach
-&gt; Wolfe &lt;<a href=3D"mailto:zwolfe21&#64;hotmail.com">zwolfe21&#64;hot=
-mail.com</a>&gt; *</span >
-&gt;
-<span class=3D"quote">&gt; Could someone point me to how exactly to apply
-&gt; &quot;0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch&=
-quot;?</span >
-&gt;
-<span class=3D"quote">&gt; ------------------------------
-&gt; You are receiving this mail because:</span >
-&gt;
-<span class=3D"quote">&gt;    - You are the assignee for the bug.</span >
-&gt;
-&gt;
-<span class=3D"quote">&gt; _______________________________________________
-&gt; Nouveau mailing list
-&gt; <a href=3D"mailto:Nouveau&#64;lists.freedesktop.org">Nouveau&#64;lists=
-.freedesktop.org</a>
-&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau">htt=
-ps://lists.freedesktop.org/mailman/listinfo/nouveau</a></span >
-&gt;
-&gt;</pre>
+You had this problem on a 4.6 kernel, as it was the first to provide the
+secboot firmware loading functionality (assuming you had the firmware in
+place). To get back to the previous behavior, remove the firmware, or boot =
+with
+nouveau.noaccel=3D1 nouveau.nofbaccel=3D1 which should avoid initializing t=
+he
+graphics accel engine. (And hopefully avoid secboot as well, but I'm not 10=
+0%
+sure.)</pre>
         </div>
       </p>
 
@@ -163,9 +137,9 @@ ps://lists.freedesktop.org/mailman/listinfo/nouveau</a></span >
     </body>
 </html>=
 
---14800232315.9E6D2.14321--
+--148002365810.DfE2A8.14491--
 
---===============0487926995==
+--===============1422794033==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -175,4 +149,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0487926995==--
+--===============1422794033==--
