@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
 	(v4.6+)
-Date: Thu, 24 Nov 2016 21:42:20 +0000
-Message-ID: <bug-94990-8800-csWJMZWhfD@http.bugs.freedesktop.org/>
+Date: Thu, 24 Nov 2016 21:43:23 +0000
+Message-ID: <bug-94990-8800-kqiHYYinZn@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2011022251=="
+Content-Type: multipart/mixed; boundary="===============0491006773=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2011022251==
-Content-Type: multipart/alternative; boundary="14800237401.Cb06e.14491";
+--===============0491006773==
+Content-Type: multipart/alternative; boundary="14800238036.cD8bCC4c2.14876";
  charset="UTF-8"
 
 
---14800237401.Cb06e.14491
-Date: Thu, 24 Nov 2016 21:42:20 +0000
+--14800238036.cD8bCC4c2.14876
+Date: Thu, 24 Nov 2016 21:43:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #99 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Also, before I go insane, *please* stop replying to these via email. Use
-bugzilla directly. Your (Efrem's) email client insists on creating html
-attachments which are entered into bugzilla. And you also reply-to-all, so I
-get the thing 2x, once via bugzilla, once directly.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #125646|0                           |1
+        is obsolete|                            |
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14800237401.Cb06e.14491
-Date: Thu, 24 Nov 2016 21:42:20 +0000
+--14800238036.cD8bCC4c2.14876
+Date: Thu, 24 Nov 2016 21:43:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,29 +59,33 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c99">Commen=
-t # 99</a>
-              on <a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Also, before I go insane, *please* stop replying to these via =
-email. Use
-bugzilla directly. Your (Efrem's) email client insists on creating html
-attachments which are entered into bugzilla. And you also reply-to-all, so I
-get the thing 2x, once via bugzilla, once directly.</pre>
-        </div>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #125646 is obsolete</=
+td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -93,9 +98,9 @@ get the thing 2x, once via bugzilla, once directly.</pre>
     </body>
 </html>=
 
---14800237401.Cb06e.14491--
+--14800238036.cD8bCC4c2.14876--
 
---===============2011022251==
+--===============0491006773==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2011022251==--
+--===============0491006773==--
