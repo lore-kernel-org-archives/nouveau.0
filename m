@@ -1,11 +1,13 @@
-From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau/kms/nv50: Fix atomic pageflip events.
-Date: Wed, 23 Nov 2016 07:58:54 +0100
-Message-ID: <1479884334-9995-1-git-send-email-mario.kleiner.de@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98398] Acer Aspire V7-582PG (Haswell,
+ GTX 750M) fails to power off GPU with runtime PM
+Date: Thu, 24 Nov 2016 00:24:28 +0000
+Message-ID: <bug-98398-8800-ui6PQnyemf@http.bugs.freedesktop.org/>
+References: <bug-98398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0383637075=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,46 +17,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIG5ldyBhdG9taWMgbW9kZXNldHRpbmcvcGFnZWZsaXAgY29kZSBmb3IgbnY1MCsgZm9yCkxp
-bnV4IDQuMTArIG5vIGxvbmdlciB1c2VzIHBhZ2VmbGlwIGlycSdzIHRvIHNpZ25hbApmbGlwIGNv
-bXBsZXRpb24uIEluc3RlYWQgaXQgcG9sbHMgZm9yIGZsaXAgY29tcGxldGlvbgpmcm9tIHdpdGhp
-biBhIGt0aHJlYWQvd29yayBxdWV1ZS4KClRoaXMgY3JlYXRlcyBhIHJhY2UgYmV0d2VlbiB0aGUg
-dmJsYW5rIGlycSBoYW5kbGVyCnVwZGF0aW5nIHRoZSB2YmxhbmsgY291bnQgYW5kIHRpbWVzdGFt
-cCBmb3IgdGhlCnZibGFuayBvZiBmbGlwIGNvbXBsZXRpb24sIGFuZCB0aGUga3RocmVhZCdzCnBv
-bGxpbmcgY29kZSBkZXRlY3RpbmcgZmxpcCBjb21wbGV0aW9uIGFuZCBzZW5kaW5nCm91dCB0aGUg
-ZmxpcCBjb21wbGV0aW9uIGV2ZW50LgoKRGVwZW5kaW5nIG9uIHdobyBleGVjdXRlcyBhIGZldyBt
-aWNyb3NlY29uZHMgZWFybGllciwKdGhlIGZsaXAgY29tcGxldGlvbiBldmVudCB3aWxsIGVpdGhl
-ciBjb250YWluIGNvcnJlY3QKY291bnQvdGltZXN0YW1wIG9yIGEgc3RhbGUgY291bnQvdGltZXN0
-YW1wIGZyb20gdGhlCnByZXZpb3VzIHZibGFuay4gVGhpcyBlcnJvciB3YXMgb2JzZXJ2ZWQgZm9y
-IGFib3V0CjUwJSBvZiBhbGwgZXhlY3V0ZWQgZmxpcHMsIGUuZy4sIG9ic2VydmFibGUgdW5kZXIg
-RFJJMgpieSB0aGUgWG9yZy5sb2cgZmlsbGluZyB3aXRoIGZsaXAgaGFuZGxlciB3YXJuaW5nCm1l
-c3NhZ2VzLgoKQ2FsbCBkcm1fYWNjdXJhdGVfdmJsYW5rX2NvdW50KCkgYmVmb3JlIHNlbmRpbmcK
-b3V0IGZsaXAgY29tcGxldGlvbiBldmVudHMgdG8gZW5mb3JjZSBhIHZibGFuawpjb3VudC90cyB1
-cGRhdGUgZm9yIHRoZSB2Ymxhbmsgb2YgZmxpcCBjb21wbGV0aW9uCmFuZCBhdm9pZCBzdGFsZSBj
-b3VudHMvdGltZXN0YW1wcy4KClRoaXMgZml4IGxlYWRzIHRvIG9uZSByZWR1bmRhbnQgY2FsbCB0
-byBkcm1fdXBkYXRlX3ZibGFua19jb3VudApmb3IgZWFjaCBjb21wbGV0ZWQgZmxpcCwgYnV0IG5v
-IG90aGVyIHNpZGUgZWZmZWN0cy4gT24KYSB+NiB5ZWFyIG9sZCBDb3JlIGk3IE02MjBAIDIuNjdH
-SHogdGhlIHJlZHVuZGFudCBjYWxsCmNvc3RzIGFib3V0IDEwIHVzZWNzIHBlciBmbGlwCgpTdWNj
-ZXNzZnVsbHkgdGVzdGVkIG9uIEdlRm9yY2UgOTUwMC85NjAwLzMzME0gc28gZmFyLgoKU2lnbmVk
-LW9mZi1ieTogTWFyaW8gS2xlaW5lciA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5jb20+CkNjOiBC
-ZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbnY1MF9kaXNwbGF5LmMgfCAyICsrCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCsp
-CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwppbmRleCBhOTg1NWE0Li5hZDlh
-ZWRiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwpAQCAtNDA4Nyw2ICs0
-MDg3LDggQEAgbnY1MF9kaXNwX2F0b21pY19jb21taXRfdGFpbChzdHJ1Y3QgZHJtX2F0b21pY19z
-dGF0ZSAqc3RhdGUpCiAJZm9yX2VhY2hfY3J0Y19pbl9zdGF0ZShzdGF0ZSwgY3J0YywgY3J0Y19z
-dGF0ZSwgaSkgewogCQlpZiAoY3J0Yy0+c3RhdGUtPmV2ZW50KSB7CiAJCQl1bnNpZ25lZCBsb25n
-IGZsYWdzOworCQkJLyogR2V0IGNvcnJlY3QgY291bnQvdHMgaWYgcmFjaW5nIHdpdGggdmJsYW5r
-IGlycSAqLworCQkJZHJtX2FjY3VyYXRlX3ZibGFua19jb3VudChjcnRjKTsKIAkJCXNwaW5fbG9j
-a19pcnFzYXZlKCZjcnRjLT5kZXYtPmV2ZW50X2xvY2ssIGZsYWdzKTsKIAkJCWRybV9jcnRjX3Nl
-bmRfdmJsYW5rX2V2ZW50KGNydGMsIGNydGMtPnN0YXRlLT5ldmVudCk7CiAJCQlzcGluX3VubG9j
-a19pcnFyZXN0b3JlKCZjcnRjLT5kZXYtPmV2ZW50X2xvY2ssIGZsYWdzKTsKLS0gCjIuNy4wCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
-aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0383637075==
+Content-Type: multipart/alternative; boundary="14799470681.cd5EBb.14237";
+ charset="UTF-8"
+
+
+--14799470681.cd5EBb.14237
+Date: Thu, 24 Nov 2016 00:24:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98398
+
+--- Comment #16 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
+Rick reported that system suspend did not work before the patch either, so
+there is no regression in that sense.
+
+ACPICA developers are faster than expected, can you test these three patche=
+s:
+https://bugs.acpica.org/show_bug.cgi?id=3D1333#c45
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14799470681.cd5EBb.14237
+Date: Thu, 24 Nov 2016 00:24:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to po=
+wer off GPU with runtime PM"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398#c16">Commen=
+t # 16</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to po=
+wer off GPU with runtime PM"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98398">bug 98398<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
+> <span class=3D"fn">Peter Wu</span></a>
+</span></b>
+        <pre>Rick reported that system suspend did not work before the patc=
+h either, so
+there is no regression in that sense.
+
+ACPICA developers are faster than expected, can you test these three patche=
+s:
+<a href=3D"https://bugs.acpica.org/show_bug.cgi?id=3D1333#c45">https://bugs=
+.acpica.org/show_bug.cgi?id=3D1333#c45</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14799470681.cd5EBb.14237--
+
+--===============0383637075==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0383637075==--
