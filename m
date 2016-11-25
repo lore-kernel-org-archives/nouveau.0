@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98852] New: Nvidia graphics card fan not running or
- to slow, danger of overheating
-Date: Fri, 25 Nov 2016 09:10:02 +0000
-Message-ID: <bug-98852-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98852] Nvidia graphics card fan not running or to
+ slow, danger of overheating
+Date: Fri, 25 Nov 2016 09:12:53 +0000
+Message-ID: <bug-98852-8800-rqZdhdpCTo@http.bugs.freedesktop.org/>
+References: <bug-98852-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0731037944=="
+Content-Type: multipart/mixed; boundary="===============1837660952=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98852-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0731037944==
-Content-Type: multipart/alternative; boundary="14800650020.bBcaED.31961";
+--===============1837660952==
+Content-Type: multipart/alternative; boundary="14800651731.612fc5Cd9.31958";
  charset="UTF-8"
 
 
---14800650020.bBcaED.31961
-Date: Fri, 25 Nov 2016 09:10:02 +0000
+--14800651731.612fc5Cd9.31958
+Date: Fri, 25 Nov 2016 09:12:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,40 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98852
 
-            Bug ID: 98852
-           Summary: Nvidia graphics card fan not running or to slow,
-                    danger of overheating
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: susebugzilla-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-I upgraded from Opensuse 42.1 to 42.2.
-
-I have a nvidia geforce GT240 grapics card in my system.
-When i start opensuse Leap 42.2, the fan of the graphics card=20
-stops, it starts running very slowly, after the cooler of the card
-has become very hot.
-
-During the installation of opensuse 42.2 the nouveau driver is used.
-
-(When in the dual boot system windows 10 is booted,
-or a reboot is done and the system goes into the bios,
-the fan spins up immediately.)
+--- Comment #1 from Egon Niessner <susebugzilla-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
+Created attachment 128183
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128183&action=3Dedit
+Output of the dmesg command
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14800650020.bBcaED.31961
-Date: Fri, 25 Nov 2016 09:10:02 +0000
+--14800651731.612fc5Cd9.31958
+Date: Fri, 25 Nov 2016 09:12:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,103 +57,30 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
 f overheating"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852">98852</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Nvidia graphics card fan not running or to slow, danger of ov=
-erheating
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>susebugzilla&#64;online.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>I upgraded from Opensuse 42.1 to 42.2.
-
-I have a nvidia geforce GT240 grapics card in my system.
-When i start opensuse Leap 42.2, the fan of the graphics card=20
-stops, it starts running very slowly, after the cooler of the card
-has become very hot.
-
-During the installation of opensuse 42.2 the nouveau driver is used.
-
-(When in the dual boot system windows 10 is booted,
-or a reboot is done and the system goes into the bios,
-the fan spins up immediately.)</pre>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
+f overheating"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852">bug 98852<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+susebugzilla&#64;online.de" title=3D"Egon Niessner &lt;susebugzilla&#64;onl=
+ine.de&gt;"> <span class=3D"fn">Egon Niessner</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128183=
+" name=3D"attach_128183" title=3D"Output of the dmesg command">attachment 1=
+28183</a> <a href=3D"attachment.cgi?id=3D128183&amp;action=3Dedit" title=3D=
+"Output of the dmesg command">[details]</a></span>
+Output of the dmesg command</pre>
         </div>
       </p>
 
@@ -188,9 +94,9 @@ the fan spins up immediately.)</pre>
     </body>
 </html>=
 
---14800650020.bBcaED.31961--
+--14800651731.612fc5Cd9.31958--
 
---===============0731037944==
+--===============1837660952==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -200,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0731037944==--
+--===============1837660952==--
