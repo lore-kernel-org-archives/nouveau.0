@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98852] Nvidia graphics card fan not running or to
  slow, danger of overheating
-Date: Fri, 25 Nov 2016 09:18:35 +0000
-Message-ID: <bug-98852-8800-4cbQWUQZI4@http.bugs.freedesktop.org/>
+Date: Fri, 25 Nov 2016 09:25:27 +0000
+Message-ID: <bug-98852-8800-csGOmBTdVy@http.bugs.freedesktop.org/>
 References: <bug-98852-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2022542721=="
+Content-Type: multipart/mixed; boundary="===============0012922807=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98852-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2022542721==
-Content-Type: multipart/alternative; boundary="14800655151.eFe9F3D.32549";
+--===============0012922807==
+Content-Type: multipart/alternative; boundary="14800659261.606e6B89b.524";
  charset="UTF-8"
 
 
---14800655151.eFe9F3D.32549
-Date: Fri, 25 Nov 2016 09:18:35 +0000
+--14800659261.606e6B89b.524
+Date: Fri, 25 Nov 2016 09:25:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98852
 
---- Comment #4 from Egon Niessner <susebugzilla-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
-Created attachment 128186
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128186&action=3Dedit
-content of the yast-hwscreen tool
+--- Comment #5 from Egon Niessner <susebugzilla-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
+How can I set the speed of the graphic card fan to full speed or
+an certain value greater 0 rpms ?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14800655151.eFe9F3D.32549
-Date: Fri, 25 Nov 2016 09:18:35 +0000
+--14800659261.606e6B89b.524
+Date: Fri, 25 Nov 2016 09:25:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +63,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
 f overheating"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
@@ -76,11 +75,9 @@ f overheating"
 susebugzilla&#64;online.de" title=3D"Egon Niessner &lt;susebugzilla&#64;onl=
 ine.de&gt;"> <span class=3D"fn">Egon Niessner</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128186=
-" name=3D"attach_128186" title=3D"content of the yast-hwscreen tool">attach=
-ment 128186</a> <a href=3D"attachment.cgi?id=3D128186&amp;action=3Dedit" ti=
-tle=3D"content of the yast-hwscreen tool">[details]</a></span>
-content of the yast-hwscreen tool</pre>
+        <pre>How can I set the speed of the graphic card fan to full speed =
+or
+an certain value greater 0 rpms ?</pre>
         </div>
       </p>
 
@@ -94,9 +91,9 @@ content of the yast-hwscreen tool</pre>
     </body>
 </html>=
 
---14800655151.eFe9F3D.32549--
+--14800659261.606e6B89b.524--
 
---===============2022542721==
+--===============0012922807==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2022542721==--
+--===============0012922807==--
