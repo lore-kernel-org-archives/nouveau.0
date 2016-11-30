@@ -1,14 +1,15 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH v3 1/3] nvbios/power_budget: Add basic power
  budget parsing
-Date: Thu, 1 Dec 2016 09:15:16 +1000
-Message-ID: <5d4dfaca-c614-7760-5fe5-70552ccb55c8@gmail.com>
+Date: Thu, 1 Dec 2016 00:26:57 +0100
+Message-ID: <CAEXux-bbvPwJeXTVR7M6MtXD=vCsSptcJ8BrT8DmeuQRWqjLBg@mail.gmail.com>
 References: <20161130194839.2480-1-karolherbst@gmail.com>
  <20161130194839.2480-2-karolherbst@gmail.com>
  <43304ed7-beb7-a4a4-8a05-112b33a196aa@gmail.com>
  <CAEXux-ZrJPcD_DDtJoyi5LSp50xVOXrX8D3-VPTFJm1FKGukuQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1922558343=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <CAEXux-ZrJPcD_DDtJoyi5LSp50xVOXrX8D3-VPTFJm1FKGukuQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,324 +21,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1922558343==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="0Ahp3QN8ep5eVE28tdCBxq9oA9TaiNtgv"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---0Ahp3QN8ep5eVE28tdCBxq9oA9TaiNtgv
-Content-Type: multipart/mixed; boundary="4tr4UjcH8U4OqeJNKUSlgMdvfPRA7ockb"
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Message-ID: <5d4dfaca-c614-7760-5fe5-70552ccb55c8-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH v3 1/3] nvbios/power_budget: Add basic power
- budget parsing
-References: <20161130194839.2480-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
- <20161130194839.2480-2-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
- <43304ed7-beb7-a4a4-8a05-112b33a196aa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
- <CAEXux-ZrJPcD_DDtJoyi5LSp50xVOXrX8D3-VPTFJm1FKGukuQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-In-Reply-To: <CAEXux-ZrJPcD_DDtJoyi5LSp50xVOXrX8D3-VPTFJm1FKGukuQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-
---4tr4UjcH8U4OqeJNKUSlgMdvfPRA7ockb
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-On 12/01/2016 08:56 AM, Karol Herbst wrote:
-> 2016-11-30 23:48 GMT+01:00 Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>:
->> On 12/01/2016 05:48 AM, Karol Herbst wrote:
->>> v2: Set entry to 0xff if not found
->>>     Add cap entry for ver 0x30 tables
->>>     Rework to fix memory leak
->>> v3: More error checks
->>>     Simplify check for invalid entries
->>>
->>> Signed-off-by: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->>> ---
->>>  .../include/nvkm/subdev/bios/power_budget.h        |  25 +++++
->>>  drm/nouveau/nvkm/subdev/bios/Kbuild                |   1 +
->>>  drm/nouveau/nvkm/subdev/bios/power_budget.c        | 125 +++++++++++=
-++++++++++
->>>  3 files changed, 151 insertions(+)
->>>  create mode 100644 drm/nouveau/include/nvkm/subdev/bios/power_budget=
-=2Eh
->>>  create mode 100644 drm/nouveau/nvkm/subdev/bios/power_budget.c
->>>
->>> diff --git a/drm/nouveau/include/nvkm/subdev/bios/power_budget.h b/dr=
-m/nouveau/include/nvkm/subdev/bios/power_budget.h
->>> new file mode 100644
->>> index 00000000..89fd4a7a
->>> --- /dev/null
->>> +++ b/drm/nouveau/include/nvkm/subdev/bios/power_budget.h
->>> @@ -0,0 +1,25 @@
->>> +#ifndef __NVBIOS_POWER_BUDGET_H__
->>> +#define __NVBIOS_POWER_BUDGET_H__
->>> +
->>> +#include <nvkm/subdev/bios.h>
->>> +
->>> +struct nvbios_power_budget_entry {
->>> +     u32 min_w;
->>> +     u32 avg_w;
->>> +     u32 max_w;
->>> +};
->>> +
->>> +struct nvbios_power_budget {
->>> +     u32 offset;
->>> +     u8  hlen;
->>> +     u8  elen;
->>> +     u8  ecount;
->>> +     u8  cap_entry;
->>> +};
->>> +
->>> +int nvbios_power_budget_header(struct nvkm_bios *,
->>> +                               struct nvbios_power_budget *);
->>> +int nvbios_power_budget_entry(struct nvkm_bios *, struct nvbios_powe=
-r_budget *,
->>> +                              u8 idx, struct nvbios_power_budget_ent=
-ry *);
->>> +
->>> +#endif
->>> diff --git a/drm/nouveau/nvkm/subdev/bios/Kbuild b/drm/nouveau/nvkm/s=
-ubdev/bios/Kbuild
->>> index be57220a..6b4f1e06 100644
->>> --- a/drm/nouveau/nvkm/subdev/bios/Kbuild
->>> +++ b/drm/nouveau/nvkm/subdev/bios/Kbuild
->>> @@ -19,6 +19,7 @@ nvkm-y +=3D nvkm/subdev/bios/pcir.o
->>>  nvkm-y +=3D nvkm/subdev/bios/perf.o
->>>  nvkm-y +=3D nvkm/subdev/bios/pll.o
->>>  nvkm-y +=3D nvkm/subdev/bios/pmu.o
->>> +nvkm-y +=3D nvkm/subdev/bios/power_budget.o
->>>  nvkm-y +=3D nvkm/subdev/bios/ramcfg.o
->>>  nvkm-y +=3D nvkm/subdev/bios/rammap.o
->>>  nvkm-y +=3D nvkm/subdev/bios/shadow.o
->>> diff --git a/drm/nouveau/nvkm/subdev/bios/power_budget.c b/drm/nouvea=
-u/nvkm/subdev/bios/power_budget.c
->>> new file mode 100644
->>> index 00000000..04c69095
->>> --- /dev/null
->>> +++ b/drm/nouveau/nvkm/subdev/bios/power_budget.c
->>> @@ -0,0 +1,125 @@
->>> +/*
->>> + * Copyright 2016 Karol Herbst
->>> + *
->>> + * Permission is hereby granted, free of charge, to any person obtai=
-ning a
->>> + * copy of this software and associated documentation files (the "So=
-ftware"),
->>> + * to deal in the Software without restriction, including without li=
-mitation
->>> + * the rights to use, copy, modify, merge, publish, distribute, subl=
-icense,
->>> + * and/or sell copies of the Software, and to permit persons to whom=
- the
->>> + * Software is furnished to do so, subject to the following conditio=
-ns:
->>> + *
->>> + * The above copyright notice and this permission notice shall be in=
-cluded in
->>> + * all copies or substantial portions of the Software.
->>> + *
->>> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, E=
-XPRESS OR
->>> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTA=
-BILITY,
->>> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVEN=
-T SHALL
->>> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAM=
-AGES OR
->>> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERW=
-ISE,
->>> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE US=
-E OR
->>> + * OTHER DEALINGS IN THE SOFTWARE.
->>> + *
->>> + * Authors: Karol Herbst
->>> + */
->>> +#include <subdev/bios.h>
->>> +#include <subdev/bios/bit.h>
->>> +#include <subdev/bios/power_budget.h>
->>> +
->>> +static u32
->>> +nvbios_power_budget_table(struct nvkm_bios *bios, u8 *ver, u8 *hdr, =
-u8 *cnt,
->>> +                       u8 *len)
->>> +{
->>> +     struct bit_entry bit_P;
->>> +     u32 power_budget;
->>> +
->>> +     if (bit_entry(bios, 'P', &bit_P) || bit_P.version !=3D 2 ||
->>> +         bit_P.length < 0x2c)
->>> +             return 0;
->>> +
->>> +     power_budget =3D nvbios_rd32(bios, bit_P.offset + 0x2c);
->>> +     if (!power_budget)
->>> +             return 0;
->>> +
->>> +     *ver =3D nvbios_rd08(bios, power_budget);
->>> +     switch (*ver) {
->>> +     case 0x10:
->>> +     case 0x20:
->>> +     case 0x30:
->>> +             *hdr =3D nvbios_rd08(bios, power_budget + 0x1);
->>> +             *len =3D nvbios_rd08(bios, power_budget + 0x2);
->>> +             *cnt =3D nvbios_rd08(bios, power_budget + 0x3);
->>> +             return power_budget;
->>> +     default:
->>> +             break;
->>> +     }
->>> +
->>> +     return 0;
->>> +}
->>> +
->>> +int
->>> +nvbios_power_budget_header(struct nvkm_bios *bios,
->>> +                           struct nvbios_power_budget *budget)
->>> +{
->>> +     struct nvkm_subdev *subdev =3D &bios->subdev;
->>> +     u8 ver, hdr, cnt, len, cap_entry;
->>> +     u32 header;
->>> +
->>> +     if (!bios || !budget)
->>> +             return -EINVAL;
->>> +
->>> +     header =3D nvbios_power_budget_table(bios, &ver, &hdr, &cnt, &l=
-en);
->>> +     if (!header || !cnt)
->>> +             return -ENODEV;
->>> +
->>> +     budget->offset =3D header;
->>> +     budget->hlen =3D hdr;
->>> +     budget->elen =3D len;
->>> +     budget->ecount =3D cnt;
->>> +
->>> +     switch (ver) {
->>> +     case 0x20:
->>> +             cap_entry =3D nvbios_rd08(bios, header + 0x9);
->>> +             break;
->>> +     case 0x30:
->>> +             cap_entry =3D nvbios_rd08(bios, header + 0xa);
->>> +             break;
->>> +     default:
->>> +             cap_entry =3D 0xff;
->>> +     }
->>> +
->>> +     if (cap_entry >=3D cnt && cap_entry !=3D 0xff) {
->>> +             nvkm_warn(subdev,
->>> +                       "invalid cap_entry in power budget table foun=
-d\n");
->>> +             budget->cap_entry =3D 0xff;
->>> +             return -EINVAL;
->>> +     }
->>> +
->>> +     budget->cap_entry =3D cap_entry;
->>> +     return 0;
->>> +}
->>> +
->>> +int
->>> +nvbios_power_budget_entry(struct nvkm_bios *bios,
->>> +                          struct nvbios_power_budget *budget,
->>> +                          u8 idx, struct nvbios_power_budget_entry *=
-entry)
->>> +{
->>> +     u32 entry_offset;
->>> +
->>> +     if (!bios || !budget || !budget->offset || idx >=3D budget->eco=
-unt
->>> +             || !entry)
->>> +             return -EINVAL;
->>> +
->>> +     entry_offset =3D budget->offset + budget->hlen + idx * budget->=
-elen;
->>> +
->>> +     if (budget->elen >=3D 0xe) {
->> I question this check.  Generally, when the layout of existing fields
->> changes, there's a version bump to check against.  The length is
->> increased when new fields are added without disturbing the previous on=
-es.
->>
->=20
-> and I say this doesn't hold up with this table, because this one is stu=
-pid :p
->=20
-> found lengths:
->=20
-> version 10:
-> 0x0c, 0x1d
->=20
-> version 20:
-> 0x0d, 0x1f
->=20
-> version 30:
-> 0x1f, 0x22
-I'm not questioning there's different lengths, I'm questioning whether
-all <3.0 versions should have the max_w @ +0x2 layout.
-
->=20
->>> +             entry->min_w =3D nvbios_rd32(bios, entry_offset + 0x2);=
-
->>> +             entry->avg_w =3D nvbios_rd32(bios, entry_offset + 0x6);=
-
->>> +             entry->max_w =3D nvbios_rd32(bios, entry_offset + 0xa);=
-
->>> +     } else {
->>> +             entry->min_w =3D 0;
->>> +             entry->max_w =3D nvbios_rd32(bios, entry_offset + 0x2);=
-
->>> +             entry->avg_w =3D entry->max_w;
->>> +     }
->>> +
->>> +     return 0;
->>> +}
->>>
->>
->>
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> https://lists.freedesktop.org/mailman/listinfo/nouveau
->>
-
-
---4tr4UjcH8U4OqeJNKUSlgMdvfPRA7ockb--
-
---0Ahp3QN8ep5eVE28tdCBxq9oA9TaiNtgv
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEETp/uv2nr9kIVth0/dgucYlCSkfsFAlg/XYUACgkQdgucYlCS
-kfuvew/8CWfq4s6jDitcSWqIVJ8ChIMWiZoTxJf9qODPU6FyILES0YqPaxjrwwEj
-OJDPLiLSGs82L6eTw3FDRQhPpboKCZcq7EbVc0YOMvsgDu/yNS7SjVPsabPC0kw9
-KGvnngW+aFdPbgc/OwW1LfdzKSZsfFs1LnrG6PBrFYPJJWmokt+fPR7zQSTv0Jlg
-a+BMZJTc8ErOFgY2s4flBLzfwayh0ueAxpZCtQB50UZswkxYIHAO0CcrMYnhl9uh
-vIhadEAouNbxEa55Qe8wiBRAkvH8BKnOZ9XRgYGffwfBiPC2ooAniNggZKyI40WM
-QYsZBRf00woxxxatJIAUqhs7eBFq374iYaCKIuybIUrh3oU7WR1RBICEDMccamco
-TsPEOQGBJzDbpkOjY74jjiQpoodR4/7qh4PzD9VDbefExveo/kp8NMP2RbZTrJQX
-+LvTkOtlcohOHZXtwI17D+YGKjG+kWx61k3GhziK/w8ghiC2WPfRP0WAQsryzOYl
-r4uux1994EgXRaGfAju4AQjIxWxBMiH0EqE8sOUuEpWDEUMpZEMjpQse4FvY3PK2
-G9JM4qzp0bP93WvklAEQAW1E6UPr7uqFHead3OMwRpGDfMkcFuSVwimZZkcPW2sH
-jc4o34UlD8AzhmLDGIaMDTpGX+jNnD7ouagaP8229IpL861/UsM=
-=0AZZ
------END PGP SIGNATURE-----
-
---0Ahp3QN8ep5eVE28tdCBxq9oA9TaiNtgv--
-
---===============1922558343==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1922558343==--
+MjAxNi0xMS0zMCAyMzo1NiBHTVQrMDE6MDAgS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFp
+bC5jb20+Ogo+IDIwMTYtMTEtMzAgMjM6NDggR01UKzAxOjAwIEJlbiBTa2VnZ3MgPHNrZWdnc2JA
+Z21haWwuY29tPjoKPj4gT24gMTIvMDEvMjAxNiAwNTo0OCBBTSwgS2Fyb2wgSGVyYnN0IHdyb3Rl
+Ogo+Pj4gdjI6IFNldCBlbnRyeSB0byAweGZmIGlmIG5vdCBmb3VuZAo+Pj4gICAgIEFkZCBjYXAg
+ZW50cnkgZm9yIHZlciAweDMwIHRhYmxlcwo+Pj4gICAgIFJld29yayB0byBmaXggbWVtb3J5IGxl
+YWsKPj4+IHYzOiBNb3JlIGVycm9yIGNoZWNrcwo+Pj4gICAgIFNpbXBsaWZ5IGNoZWNrIGZvciBp
+bnZhbGlkIGVudHJpZXMKPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJic3QgPGthcm9s
+aGVyYnN0QGdtYWlsLmNvbT4KPj4+IC0tLQo+Pj4gIC4uLi9pbmNsdWRlL252a20vc3ViZGV2L2Jp
+b3MvcG93ZXJfYnVkZ2V0LmggICAgICAgIHwgIDI1ICsrKysrCj4+PiAgZHJtL25vdXZlYXUvbnZr
+bS9zdWJkZXYvYmlvcy9LYnVpbGQgICAgICAgICAgICAgICAgfCAgIDEgKwo+Pj4gIGRybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2Jpb3MvcG93ZXJfYnVkZ2V0LmMgICAgICAgIHwgMTI1ICsrKysrKysr
+KysrKysrKysrKysrKwo+Pj4gIDMgZmlsZXMgY2hhbmdlZCwgMTUxIGluc2VydGlvbnMoKykKPj4+
+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9z
+L3Bvd2VyX2J1ZGdldC5oCj4+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20v
+c3ViZGV2L2Jpb3MvcG93ZXJfYnVkZ2V0LmMKPj4+Cj4+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZl
+YXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL3Bvd2VyX2J1ZGdldC5oIGIvZHJtL25vdXZlYXUv
+aW5jbHVkZS9udmttL3N1YmRldi9iaW9zL3Bvd2VyX2J1ZGdldC5oCj4+PiBuZXcgZmlsZSBtb2Rl
+IDEwMDY0NAo+Pj4gaW5kZXggMDAwMDAwMDAuLjg5ZmQ0YTdhCj4+PiAtLS0gL2Rldi9udWxsCj4+
+PiArKysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3MvcG93ZXJfYnVkZ2V0
+LmgKPj4+IEBAIC0wLDAgKzEsMjUgQEAKPj4+ICsjaWZuZGVmIF9fTlZCSU9TX1BPV0VSX0JVREdF
+VF9IX18KPj4+ICsjZGVmaW5lIF9fTlZCSU9TX1BPV0VSX0JVREdFVF9IX18KPj4+ICsKPj4+ICsj
+aW5jbHVkZSA8bnZrbS9zdWJkZXYvYmlvcy5oPgo+Pj4gKwo+Pj4gK3N0cnVjdCBudmJpb3NfcG93
+ZXJfYnVkZ2V0X2VudHJ5IHsKPj4+ICsgICAgIHUzMiBtaW5fdzsKPj4+ICsgICAgIHUzMiBhdmdf
+dzsKPj4+ICsgICAgIHUzMiBtYXhfdzsKPj4+ICt9Owo+Pj4gKwo+Pj4gK3N0cnVjdCBudmJpb3Nf
+cG93ZXJfYnVkZ2V0IHsKPj4+ICsgICAgIHUzMiBvZmZzZXQ7Cj4+PiArICAgICB1OCAgaGxlbjsK
+Pj4+ICsgICAgIHU4ICBlbGVuOwo+Pj4gKyAgICAgdTggIGVjb3VudDsKPj4+ICsgICAgIHU4ICBj
+YXBfZW50cnk7Cj4+PiArfTsKPj4+ICsKPj4+ICtpbnQgbnZiaW9zX3Bvd2VyX2J1ZGdldF9oZWFk
+ZXIoc3RydWN0IG52a21fYmlvcyAqLAo+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBzdHJ1Y3QgbnZiaW9zX3Bvd2VyX2J1ZGdldCAqKTsKPj4+ICtpbnQgbnZiaW9zX3Bvd2VyX2J1
+ZGdldF9lbnRyeShzdHJ1Y3QgbnZrbV9iaW9zICosIHN0cnVjdCBudmJpb3NfcG93ZXJfYnVkZ2V0
+ICosCj4+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdTggaWR4LCBzdHJ1Y3QgbnZi
+aW9zX3Bvd2VyX2J1ZGdldF9lbnRyeSAqKTsKPj4+ICsKPj4+ICsjZW5kaWYKPj4+IGRpZmYgLS1n
+aXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL0tidWlsZCBiL2RybS9ub3V2ZWF1L252
+a20vc3ViZGV2L2Jpb3MvS2J1aWxkCj4+PiBpbmRleCBiZTU3MjIwYS4uNmI0ZjFlMDYgMTAwNjQ0
+Cj4+PiAtLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL0tidWlsZAo+Pj4gKysrIGIv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9LYnVpbGQKPj4+IEBAIC0xOSw2ICsxOSw3IEBA
+IG52a20teSArPSBudmttL3N1YmRldi9iaW9zL3BjaXIubwo+Pj4gIG52a20teSArPSBudmttL3N1
+YmRldi9iaW9zL3BlcmYubwo+Pj4gIG52a20teSArPSBudmttL3N1YmRldi9iaW9zL3BsbC5vCj4+
+PiAgbnZrbS15ICs9IG52a20vc3ViZGV2L2Jpb3MvcG11Lm8KPj4+ICtudmttLXkgKz0gbnZrbS9z
+dWJkZXYvYmlvcy9wb3dlcl9idWRnZXQubwo+Pj4gIG52a20teSArPSBudmttL3N1YmRldi9iaW9z
+L3JhbWNmZy5vCj4+PiAgbnZrbS15ICs9IG52a20vc3ViZGV2L2Jpb3MvcmFtbWFwLm8KPj4+ICBu
+dmttLXkgKz0gbnZrbS9zdWJkZXYvYmlvcy9zaGFkb3cubwo+Pj4gZGlmZiAtLWdpdCBhL2RybS9u
+b3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvcG93ZXJfYnVkZ2V0LmMgYi9kcm0vbm91dmVhdS9udmtt
+L3N1YmRldi9iaW9zL3Bvd2VyX2J1ZGdldC5jCj4+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+Pj4g
+aW5kZXggMDAwMDAwMDAuLjA0YzY5MDk1Cj4+PiAtLS0gL2Rldi9udWxsCj4+PiArKysgYi9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9iaW9zL3Bvd2VyX2J1ZGdldC5jCj4+PiBAQCAtMCwwICsxLDEy
+NSBAQAo+Pj4gKy8qCj4+PiArICogQ29weXJpZ2h0IDIwMTYgS2Fyb2wgSGVyYnN0Cj4+PiArICoK
+Pj4+ICsgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8g
+YW55IHBlcnNvbiBvYnRhaW5pbmcgYQo+Pj4gKyAqIGNvcHkgb2YgdGhpcyBzb2Z0d2FyZSBhbmQg
+YXNzb2NpYXRlZCBkb2N1bWVudGF0aW9uIGZpbGVzICh0aGUgIlNvZnR3YXJlIiksCj4+PiArICog
+dG8gZGVhbCBpbiB0aGUgU29mdHdhcmUgd2l0aG91dCByZXN0cmljdGlvbiwgaW5jbHVkaW5nIHdp
+dGhvdXQgbGltaXRhdGlvbgo+Pj4gKyAqIHRoZSByaWdodHMgdG8gdXNlLCBjb3B5LCBtb2RpZnks
+IG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNlbnNlLAo+Pj4gKyAqIGFuZC9vciBz
+ZWxsIGNvcGllcyBvZiB0aGUgU29mdHdhcmUsIGFuZCB0byBwZXJtaXQgcGVyc29ucyB0byB3aG9t
+IHRoZQo+Pj4gKyAqIFNvZnR3YXJlIGlzIGZ1cm5pc2hlZCB0byBkbyBzbywgc3ViamVjdCB0byB0
+aGUgZm9sbG93aW5nIGNvbmRpdGlvbnM6Cj4+PiArICoKPj4+ICsgKiBUaGUgYWJvdmUgY29weXJp
+Z2h0IG5vdGljZSBhbmQgdGhpcyBwZXJtaXNzaW9uIG5vdGljZSBzaGFsbCBiZSBpbmNsdWRlZCBp
+bgo+Pj4gKyAqIGFsbCBjb3BpZXMgb3Igc3Vic3RhbnRpYWwgcG9ydGlvbnMgb2YgdGhlIFNvZnR3
+YXJlLgo+Pj4gKyAqCj4+PiArICogVEhFIFNPRlRXQVJFIElTIFBST1ZJREVEICJBUyBJUyIsIFdJ
+VEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJTkQsIEVYUFJFU1MgT1IKPj4+ICsgKiBJTVBMSUVELCBJ
+TkNMVURJTkcgQlVUIE5PVCBMSU1JVEVEIFRPIFRIRSBXQVJSQU5USUVTIE9GIE1FUkNIQU5UQUJJ
+TElUWSwKPj4+ICsgKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5G
+UklOR0VNRU5ULiAgSU4gTk8gRVZFTlQgU0hBTEwKPj4+ICsgKiBUSEUgQ09QWVJJR0hUIEhPTERF
+UihTKSBPUiBBVVRIT1IoUykgQkUgTElBQkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMgT1IKPj4+
+ICsgKiBPVEhFUiBMSUFCSUxJVFksIFdIRVRIRVIgSU4gQU4gQUNUSU9OIE9GIENPTlRSQUNULCBU
+T1JUIE9SIE9USEVSV0lTRSwKPj4+ICsgKiBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJTiBDT05O
+RUNUSU9OIFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IKPj4+ICsgKiBPVEhFUiBERUFM
+SU5HUyBJTiBUSEUgU09GVFdBUkUuCj4+PiArICoKPj4+ICsgKiBBdXRob3JzOiBLYXJvbCBIZXJi
+c3QKPj4+ICsgKi8KPj4+ICsjaW5jbHVkZSA8c3ViZGV2L2Jpb3MuaD4KPj4+ICsjaW5jbHVkZSA8
+c3ViZGV2L2Jpb3MvYml0Lmg+Cj4+PiArI2luY2x1ZGUgPHN1YmRldi9iaW9zL3Bvd2VyX2J1ZGdl
+dC5oPgo+Pj4gKwo+Pj4gK3N0YXRpYyB1MzIKPj4+ICtudmJpb3NfcG93ZXJfYnVkZ2V0X3RhYmxl
+KHN0cnVjdCBudmttX2Jpb3MgKmJpb3MsIHU4ICp2ZXIsIHU4ICpoZHIsIHU4ICpjbnQsCj4+PiAr
+ICAgICAgICAgICAgICAgICAgICAgICB1OCAqbGVuKQo+Pj4gK3sKPj4+ICsgICAgIHN0cnVjdCBi
+aXRfZW50cnkgYml0X1A7Cj4+PiArICAgICB1MzIgcG93ZXJfYnVkZ2V0Owo+Pj4gKwo+Pj4gKyAg
+ICAgaWYgKGJpdF9lbnRyeShiaW9zLCAnUCcsICZiaXRfUCkgfHwgYml0X1AudmVyc2lvbiAhPSAy
+IHx8Cj4+PiArICAgICAgICAgYml0X1AubGVuZ3RoIDwgMHgyYykKPj4+ICsgICAgICAgICAgICAg
+cmV0dXJuIDA7Cj4+PiArCj4+PiArICAgICBwb3dlcl9idWRnZXQgPSBudmJpb3NfcmQzMihiaW9z
+LCBiaXRfUC5vZmZzZXQgKyAweDJjKTsKPj4+ICsgICAgIGlmICghcG93ZXJfYnVkZ2V0KQo+Pj4g
+KyAgICAgICAgICAgICByZXR1cm4gMDsKPj4+ICsKPj4+ICsgICAgICp2ZXIgPSBudmJpb3NfcmQw
+OChiaW9zLCBwb3dlcl9idWRnZXQpOwo+Pj4gKyAgICAgc3dpdGNoICgqdmVyKSB7Cj4+PiArICAg
+ICBjYXNlIDB4MTA6Cj4+PiArICAgICBjYXNlIDB4MjA6Cj4+PiArICAgICBjYXNlIDB4MzA6Cj4+
+PiArICAgICAgICAgICAgICpoZHIgPSBudmJpb3NfcmQwOChiaW9zLCBwb3dlcl9idWRnZXQgKyAw
+eDEpOwo+Pj4gKyAgICAgICAgICAgICAqbGVuID0gbnZiaW9zX3JkMDgoYmlvcywgcG93ZXJfYnVk
+Z2V0ICsgMHgyKTsKPj4+ICsgICAgICAgICAgICAgKmNudCA9IG52Ymlvc19yZDA4KGJpb3MsIHBv
+d2VyX2J1ZGdldCArIDB4Myk7Cj4+PiArICAgICAgICAgICAgIHJldHVybiBwb3dlcl9idWRnZXQ7
+Cj4+PiArICAgICBkZWZhdWx0Ogo+Pj4gKyAgICAgICAgICAgICBicmVhazsKPj4+ICsgICAgIH0K
+Pj4+ICsKPj4+ICsgICAgIHJldHVybiAwOwo+Pj4gK30KPj4+ICsKPj4+ICtpbnQKPj4+ICtudmJp
+b3NfcG93ZXJfYnVkZ2V0X2hlYWRlcihzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zLAo+Pj4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBudmJpb3NfcG93ZXJfYnVkZ2V0ICpidWRnZXQp
+Cj4+PiArewo+Pj4gKyAgICAgc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSAmYmlvcy0+c3Vi
+ZGV2Owo+Pj4gKyAgICAgdTggdmVyLCBoZHIsIGNudCwgbGVuLCBjYXBfZW50cnk7Cj4+PiArICAg
+ICB1MzIgaGVhZGVyOwo+Pj4gKwo+Pj4gKyAgICAgaWYgKCFiaW9zIHx8ICFidWRnZXQpCj4+PiAr
+ICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOwo+Pj4gKwo+Pj4gKyAgICAgaGVhZGVyID0gbnZi
+aW9zX3Bvd2VyX2J1ZGdldF90YWJsZShiaW9zLCAmdmVyLCAmaGRyLCAmY250LCAmbGVuKTsKPj4+
+ICsgICAgIGlmICghaGVhZGVyIHx8ICFjbnQpCj4+PiArICAgICAgICAgICAgIHJldHVybiAtRU5P
+REVWOwo+Pj4gKwo+Pj4gKyAgICAgYnVkZ2V0LT5vZmZzZXQgPSBoZWFkZXI7Cj4+PiArICAgICBi
+dWRnZXQtPmhsZW4gPSBoZHI7Cj4+PiArICAgICBidWRnZXQtPmVsZW4gPSBsZW47Cj4+PiArICAg
+ICBidWRnZXQtPmVjb3VudCA9IGNudDsKPj4+ICsKPj4+ICsgICAgIHN3aXRjaCAodmVyKSB7Cj4+
+PiArICAgICBjYXNlIDB4MjA6Cj4+PiArICAgICAgICAgICAgIGNhcF9lbnRyeSA9IG52Ymlvc19y
+ZDA4KGJpb3MsIGhlYWRlciArIDB4OSk7Cj4+PiArICAgICAgICAgICAgIGJyZWFrOwo+Pj4gKyAg
+ICAgY2FzZSAweDMwOgo+Pj4gKyAgICAgICAgICAgICBjYXBfZW50cnkgPSBudmJpb3NfcmQwOChi
+aW9zLCBoZWFkZXIgKyAweGEpOwo+Pj4gKyAgICAgICAgICAgICBicmVhazsKPj4+ICsgICAgIGRl
+ZmF1bHQ6Cj4+PiArICAgICAgICAgICAgIGNhcF9lbnRyeSA9IDB4ZmY7Cj4+PiArICAgICB9Cj4+
+PiArCj4+PiArICAgICBpZiAoY2FwX2VudHJ5ID49IGNudCAmJiBjYXBfZW50cnkgIT0gMHhmZikg
+ewo+Pj4gKyAgICAgICAgICAgICBudmttX3dhcm4oc3ViZGV2LAo+Pj4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgImludmFsaWQgY2FwX2VudHJ5IGluIHBvd2VyIGJ1ZGdldCB0YWJsZSBmb3VuZFxu
+Iik7Cj4+PiArICAgICAgICAgICAgIGJ1ZGdldC0+Y2FwX2VudHJ5ID0gMHhmZjsKPj4+ICsgICAg
+ICAgICAgICAgcmV0dXJuIC1FSU5WQUw7Cj4+PiArICAgICB9Cj4+PiArCj4+PiArICAgICBidWRn
+ZXQtPmNhcF9lbnRyeSA9IGNhcF9lbnRyeTsKPj4+ICsgICAgIHJldHVybiAwOwo+Pj4gK30KPj4+
+ICsKPj4+ICtpbnQKPj4+ICtudmJpb3NfcG93ZXJfYnVkZ2V0X2VudHJ5KHN0cnVjdCBudmttX2Jp
+b3MgKmJpb3MsCj4+PiArICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgbnZiaW9zX3Bv
+d2VyX2J1ZGdldCAqYnVkZ2V0LAo+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgdTggaWR4
+LCBzdHJ1Y3QgbnZiaW9zX3Bvd2VyX2J1ZGdldF9lbnRyeSAqZW50cnkpCj4+PiArewo+Pj4gKyAg
+ICAgdTMyIGVudHJ5X29mZnNldDsKPj4+ICsKPj4+ICsgICAgIGlmICghYmlvcyB8fCAhYnVkZ2V0
+IHx8ICFidWRnZXQtPm9mZnNldCB8fCBpZHggPj0gYnVkZ2V0LT5lY291bnQKPj4+ICsgICAgICAg
+ICAgICAgfHwgIWVudHJ5KQo+Pj4gKyAgICAgICAgICAgICByZXR1cm4gLUVJTlZBTDsKPj4+ICsK
+Pj4+ICsgICAgIGVudHJ5X29mZnNldCA9IGJ1ZGdldC0+b2Zmc2V0ICsgYnVkZ2V0LT5obGVuICsg
+aWR4ICogYnVkZ2V0LT5lbGVuOwo+Pj4gKwo+Pj4gKyAgICAgaWYgKGJ1ZGdldC0+ZWxlbiA+PSAw
+eGUpIHsKPj4gSSBxdWVzdGlvbiB0aGlzIGNoZWNrLiAgR2VuZXJhbGx5LCB3aGVuIHRoZSBsYXlv
+dXQgb2YgZXhpc3RpbmcgZmllbGRzCj4+IGNoYW5nZXMsIHRoZXJlJ3MgYSB2ZXJzaW9uIGJ1bXAg
+dG8gY2hlY2sgYWdhaW5zdC4gIFRoZSBsZW5ndGggaXMKPj4gaW5jcmVhc2VkIHdoZW4gbmV3IGZp
+ZWxkcyBhcmUgYWRkZWQgd2l0aG91dCBkaXN0dXJiaW5nIHRoZSBwcmV2aW91cyBvbmVzLgo+Pgo+
+Cj4gYW5kIEkgc2F5IHRoaXMgZG9lc24ndCBob2xkIHVwIHdpdGggdGhpcyB0YWJsZSwgYmVjYXVz
+ZSB0aGlzIG9uZSBpcyBzdHVwaWQgOnAKPgo+IGZvdW5kIGxlbmd0aHM6Cj4KPiB2ZXJzaW9uIDEw
+Ogo+IDB4MGMsIDB4MWQKPgo+IHZlcnNpb24gMjA6Cj4gMHgwZCwgMHgxZgo+Cj4gdmVyc2lvbiAz
+MDoKPiAweDFmLCAweDIyCj4KCnVoaCBteSBtaXN0YWtlLCB5b3UgbWVhbnQgdGhlIGVudHJ5IHNp
+emUsIGFueXdheSBpbiB0aGUgdmJpb3MKcmVwb3NpdG9yeSBhcmUgZW5vdWdoIGV4YW1wbGVzIHdo
+aWNoIHNob3cgdGhhdCB0aGUgbGVuZ3RoIGluZGVlZAp2YXJyaWVzIGFuZCB0aGF0IHdlIGNhbid0
+IHNpbXBseSBkZXBlbmQgb24gdGhlIHZlcnNpb24gaGVyZS4gQWxzbyB0aGlzCndhcyB0YWtlbiBm
+cm9tIG52YmlvcyBtYWlubHkuCgo+Pj4gKyAgICAgICAgICAgICBlbnRyeS0+bWluX3cgPSBudmJp
+b3NfcmQzMihiaW9zLCBlbnRyeV9vZmZzZXQgKyAweDIpOwo+Pj4gKyAgICAgICAgICAgICBlbnRy
+eS0+YXZnX3cgPSBudmJpb3NfcmQzMihiaW9zLCBlbnRyeV9vZmZzZXQgKyAweDYpOwo+Pj4gKyAg
+ICAgICAgICAgICBlbnRyeS0+bWF4X3cgPSBudmJpb3NfcmQzMihiaW9zLCBlbnRyeV9vZmZzZXQg
+KyAweGEpOwo+Pj4gKyAgICAgfSBlbHNlIHsKPj4+ICsgICAgICAgICAgICAgZW50cnktPm1pbl93
+ID0gMDsKPj4+ICsgICAgICAgICAgICAgZW50cnktPm1heF93ID0gbnZiaW9zX3JkMzIoYmlvcywg
+ZW50cnlfb2Zmc2V0ICsgMHgyKTsKPj4+ICsgICAgICAgICAgICAgZW50cnktPmF2Z193ID0gZW50
+cnktPm1heF93Owo+Pj4gKyAgICAgfQo+Pj4gKwo+Pj4gKyAgICAgcmV0dXJuIDA7Cj4+PiArfQo+
+Pj4KPj4KPj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KPj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKPj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cj4+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
+dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
