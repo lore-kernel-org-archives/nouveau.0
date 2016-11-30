@@ -1,16 +1,13 @@
-From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Subject: Re: Bug Report on A1286 (Macbook Pro Mid 2012)
-Date: Wed, 30 Nov 2016 00:31:03 +0100
-Message-ID: <20161129233103.GA5180@wunner.de>
-References: <CAM2RGhQaV+p5qiG+jf+2ZYBFfG8yww6vr+g3uzkGpotxokhaGQ@mail.gmail.com>
- <20161127091347.GA3475@wunner.de>
- <CAM2RGhThevuK4s-NuCjkyS7rFeL1bWPmDN1sSP41Ujuf2yh+wA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90513] Odd gray and red flicker in The Talos
+	Principle on GK104
+Date: Wed, 30 Nov 2016 17:55:33 +0000
+Message-ID: <bug-90513-8800-xw6igmWAPM@http.bugs.freedesktop.org/>
+References: <bug-90513-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1656023118=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAM2RGhThevuK4s-NuCjkyS7rFeL1bWPmDN1sSP41Ujuf2yh+wA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,62 +17,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Evan Foss <evanfoss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBOb3YgMjksIDIwMTYgYXQgMDU6NDI6NTFQTSAtMDUwMCwgRXZhbiBGb3NzIHdyb3Rl
-Ogo+IE9uIFN1biwgTm92IDI3LCAyMDE2IGF0IDQ6MTMgQU0sIEx1a2FzIFd1bm5lciA8bHVrYXNA
-d3VubmVyLmRlPiB3cm90ZToKPiA+IE9uIFNhdCwgTm92IDI2LCAyMDE2IGF0IDA2OjA5OjM0QU0g
-KzAwMDAsIEV2YW4gRm9zcyB3cm90ZToKPiA+PiBJIGRpZCBzb21lIG90aGVyIGJ1ZyByZXBvcnRz
-IGhlcmUgYSB3aGlsZSBiYWNrLiBJIGFtIGJhY2sgYWdhaW4KPiA+PiBiZWNhdXNlIEkgdXBkYXRl
-ZCBteSBrZXJuZWwgZnJvbSAzLjE5LjEgdG8gbGludXgtNC44LjEwLWdlbnRvbyAoaWYgeW91Cj4g
-Pj4gd2FudCBJIGNhbiB0ZXN0IHRoZSBtYWlubGluZSB0b28pLiBPbiBib290IGFsbCBteSBHUFUn
-cyB0dXJuIG9uLiBJZiBJCj4gPj4gdHVybiB0aGVtIG9mZiB2aWEKPiA+PiBlY2hvICJPRkYiPiAv
-c3lzL2tlcm5lbC9kZWJ1Zy92Z2Fzd2l0Y2hlcm9vL3N3aXRjaAo+ID4+IEkgY2FuJ3QgdHVybiB0
-aGVtIGJhY2sgb24uIFRoZXkgYWxzbyBkbyBub3QgdHVybiBvbiBpZiBJIHRyeSB0byBjaGFuZ2UK
-PiA+PiBHUFUncy4gVHJ5aW5nIHRvIHN0b3AgeGRtIGxvY2tzIHRoZSBtYWNoaW5lIHNvIEkgY2Fu
-J3QgZXZlbiB0dXJuIGl0Cj4gPj4gb2ZmLiBTdXNwZW5kL3Jlc3VtZSBzdGlsbCB3b3Jrcy4gTm9u
-ZSBvZiB0aGVzZSBwcm9ibGVtcyBleGlzdGVkIGluCj4gPj4gMy4xOS4xLiBJIGtub3cgeW91IHdp
-bGwgbmVlZCBtb3JlIGluZm8gdG8gdHJhY2sgZG93biB0aGUgcHJvYmxlbSBidXQgSQo+ID4+IHdh
-bnRlZCB0byBvcGVuIHdpdGggdGhpcy4KPiA+Cj4gPiBJIGhhdmUgdGhlIHNhbWUgbWFjaGluZSBh
-bmQgaXQgd29ya3MgZm9yIG1lLiAgU3lzdGVtIHNsZWVwIGlzIG9ubHkKPiA+IHN1cHBvc2VkIHRv
-IHdvcmsgaWYgYm90aCBHUFVzIG9yIE9OIHVwb24gc3VzcGVuZC4gIEFyZSB5b3UgaXNzdWluZwo+
-ID4gT0ZGIHdoaWxlIFgxMSBpcyBydW5uaW5nPyAgRG9lcyBpdCB3b3JrIGlmIFgxMSBpcyBzdG9w
-cGVkPwo+IAo+IDEuIEJvb3Qgd2l0aCB0aGUgaW50ZWwgR1BVIGRyaXZpbmcgdGhlIHNjcmVlbi4K
-PiAyLiBJbiBtYXRlIGRlc2t0b3AgdHVybiBvZmYgdGhlIG52aWRpYSBncHUgdmlhIGVjaG8gIk9G
-RiIgPgo+IC9zeXMva2VybmVsLy4uLi9zd2l0Y2gKPiAzLiBUcnkgdG8gZG8gYW55IG9mIHRoZSBm
-b2xsb3dpbmcgYW5kIHRoZSBtYWNoaW5lIGxvY2tzIHVwIHR1cm4gb24gdGhlCj4gbnZpZGlhIEdQ
-VSwgc3VzcGVuZCB0aGUgbWFjaGluZSwgdHJ5IHRvIGNoYW5nZSBncHVzLCBzdG9wIFggKHZpYQo+
-IC9ldGMvaW5pdC5kL3hkbSBzdG9wKQo+IAo+IFllcyBJIGlzc3VlIE9GRiB3aGlsZSBpdCBpcyBy
-dW5uaW5nIGFuZCBpdCB3b3JrcyBwZXJmZWN0bHkgdG8gdHVybiBvZmYKPiB0aGUgR1BVJ3MuIEkg
-Y2FuIHRlbGwgYmVjYXVzZSB0aGUgbWFjaGluZSBnZXRzIGEgbG90IGNvb2xlci4KCk9uIG15IG1h
-Y2hpbmUgaXNzdWluZyBPTiBvciBPRkYgb3Igc3dpdGNoaW5nIGFsd2F5cyB3b3JrcyBidXQgSSBv
-bmx5Cmlzc3VlIHRoZSBjb21tYW5kcyBvbiB0aGUgY29uc29sZSwgd2l0aG91dCBYMTEgcnVubmlu
-Zy4gIERvZXMgdGhhdAp3b3JrIGZvciB5b3UgYXMgd2VsbD8KCk1hbnVhbCBwb3dlciBjb250cm9s
-IHZpYSBPTiBhbmQgT0ZGIGlzIGEgaGFjaywgaXQgcG93ZXJzIHRoZSBHUFUKdXAgYW5kIGRvd24g
-YmVoaW5kIHRoZSBQTSBjb3JlJ3MgYmFjay4gIEl0J3MgYSBzdG9wZ2FwIHVudGlsCnJ1bnRpbWUg
-UE0gd29ya3MgZm9yIG11eGVkIG1hY2hpbmVzLiAgVGhhdCdzIHRoZSByZWFzb24gYXQgbGVhc3QK
-Zm9yIHRoZSBsb2NrdXAgb24gcmVzdW1lLCBJIGtub3cgd2hhdCBjYXVzZXMgdGhpcy4gIChUaGUg
-UENJIGNvcmUKaW52YWxpZGF0ZXMgdGhlIHNhdmVkX3N0YXRlIG9mIHRoZSBkZXZpY2UuKSAgSSBk
-b24ndCBrbm93IHdoeQp0dXJuaW5nIG9uIHRoZSBHUFUgb3Igc3RvcHBpbmcgWCBjYXVzZXMgYSBs
-b2NrdXAsIHByZXN1bWFibHkgb24Kc3RvcHBpbmcgWCB0aGUgY2FyZCBpcyBhY2Nlc3NlZCBldmVu
-IHRob3VnaCBpdCdzIHBvd2VyZWQgZG93bi4KClRoZXJlIGFyZSBzb21lIGhhbGYtYmFrZWQgcGF0
-Y2hlcyBmb3IgcnVudGltZSBQTSBvbiB0aGlzIGJyYW5jaDoKaHR0cHM6Ly9naXRodWIuY29tL2wx
-ay9saW51eC9jb21taXRzL21icF9zd2l0Y2hlcm9vX3J1bnBtX3dpcAoKQWxhcywgYSByZXdvcmsg
-b2YgdmdhX3N3aXRjaGVyb28gYXVkaW8gaGFuZGxpbmcgaXMgbmVjZXNzYXJ5IHRvCmJyaW5nIHVw
-IHJ1bnRpbWUgUE0gZm9yIG11eGVkIG1hY2hpbmVzIHByb3Blcmx5OgpodHRwczovL3d3dy5tYWls
-LWFyY2hpdmUuY29tL25vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21zZzI0OTk3Lmh0bWwK
-ClJhZmFlbCBXeXNvY2tpJ3MgZnVuY3Rpb25hbCBkZXBlbmRlbmNpZXMgcGF0Y2hlcywgd2hpY2gg
-YXJlIGEKcHJlcmVxdWlzaXRlIGZvciB0aGlzIHJld29yaywgYXJlIG5vdyBxdWV1ZWQgZm9yIDQu
-MTAuICBJJ2xsCnByb2JhYmx5IGxvb2sgaW50byB0aGlzIGluIERlY2VtYmVyL0phbnVhcnkuCgpT
-d2l0Y2hpbmcgd2hpbGUgWCBpcyBydW5uaW5nIHdvbid0IHdvcmsgYW55dGltZSBzb29uLCBJJ20g
-bm90Cndvcmtpbmcgb24gaXQgYW5kIERhdmUgQWlybGllIGhhcyBiYXNpY2FsbHkgc2FpZCB0aGF0
-IGl0IGhhcyBubwpwcmlvcml0eSBmb3IgaGltOgpodHRwczovL3d3dy5tYWlsLWFyY2hpdmUuY29t
-L2ludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcvbXNnODE5ODEuaHRtbAoKT24gdGhlIGJy
-aWdodCBzaWRlLCB5b3UgZ290IFRodW5kZXJib2x0IHdoZW4geW91IHVwZGF0ZWQgdG8gNC44IGFu
-ZAppbiA0LjExIGl0J2xsIGV2ZW4gcG93ZXIgaXRzZWxmIGRvd24gd2hlbiBub3RoaW5nIGlzIHBs
-dWdnZWQgaW4gYW5kCnNhdmUgeW91IDEuNyBXYXR0cy4gOy0pCgpCZXN0IHJlZ2FyZHMsCgpMdWth
-cwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
-IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1656023118==
+Content-Type: multipart/alternative; boundary="14805285320.adeFa523b.13545";
+ charset="UTF-8"
+
+
+--14805285320.adeFa523b.13545
+Date: Wed, 30 Nov 2016 17:55:32 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D90513
+
+--- Comment #17 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
+I just ran it on [current HEAD at the time of writing] and I do not notice =
+any
+of the problems anymore.
+Was it "accidentally" fixed? Can someone else test, too, and see if it's re=
+ally
+fine && can be closed?
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14805285320.adeFa523b.13545
+Date: Wed, 30 Nov 2016 17:55:32 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90513#c17">Commen=
+t # 17</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90513">bug 90513<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gediminas&#64;varciai.lt" title=3D"Gediminas Jakutis &lt;gediminas&#64;varc=
+iai.lt&gt;"> <span class=3D"fn">Gediminas Jakutis</span></a>
+</span></b>
+        <pre>I just ran it on [current HEAD at the time of writing] and I d=
+o not notice any
+of the problems anymore.
+Was it &quot;accidentally&quot; fixed? Can someone else test, too, and see =
+if it's really
+fine &amp;&amp; can be closed?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14805285320.adeFa523b.13545--
+
+--===============1656023118==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1656023118==--
