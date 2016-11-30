@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90513] Odd gray and red flicker in The Talos
-	Principle on GK104
-Date: Wed, 30 Nov 2016 17:55:33 +0000
-Message-ID: <bug-90513-8800-xw6igmWAPM@http.bugs.freedesktop.org/>
-References: <bug-90513-8800@http.bugs.freedesktop.org/>
+From: Evan Foss <evanfoss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Bug Report on A1286 (Macbook Pro Mid 2012)
+Date: Wed, 30 Nov 2016 12:58:46 -0500
+Message-ID: <CAM2RGhSJg47J4KO3xX_nJ1NwbeVG6qtRvtL8zzn37uJyhYBuug@mail.gmail.com>
+References: <CAM2RGhQaV+p5qiG+jf+2ZYBFfG8yww6vr+g3uzkGpotxokhaGQ@mail.gmail.com>
+ <20161127091347.GA3475@wunner.de>
+ <CAM2RGhThevuK4s-NuCjkyS7rFeL1bWPmDN1sSP41Ujuf2yh+wA@mail.gmail.com>
+ <20161129233103.GA5180@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1656023118=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20161129233103.GA5180-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,97 +20,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1656023118==
-Content-Type: multipart/alternative; boundary="14805285320.adeFa523b.13545";
- charset="UTF-8"
-
-
---14805285320.adeFa523b.13545
-Date: Wed, 30 Nov 2016 17:55:32 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90513
-
---- Comment #17 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
-I just ran it on [current HEAD at the time of writing] and I do not notice =
-any
-of the problems anymore.
-Was it "accidentally" fixed? Can someone else test, too, and see if it's re=
-ally
-fine && can be closed?
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14805285320.adeFa523b.13545
-Date: Wed, 30 Nov 2016 17:55:32 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Odd gray and red flicker in The Talos Principle on GK104"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90513#c17">Commen=
-t # 17</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Odd gray and red flicker in The Talos Principle on GK104"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90513">bug 90513<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gediminas&#64;varciai.lt" title=3D"Gediminas Jakutis &lt;gediminas&#64;varc=
-iai.lt&gt;"> <span class=3D"fn">Gediminas Jakutis</span></a>
-</span></b>
-        <pre>I just ran it on [current HEAD at the time of writing] and I d=
-o not notice any
-of the problems anymore.
-Was it &quot;accidentally&quot; fixed? Can someone else test, too, and see =
-if it's really
-fine &amp;&amp; can be closed?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14805285320.adeFa523b.13545--
-
---===============1656023118==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1656023118==--
+T24gVHVlLCBOb3YgMjksIDIwMTYgYXQgMTE6MzEgUE0sIEx1a2FzIFd1bm5lciA8bHVrYXNAd3Vu
+bmVyLmRlPiB3cm90ZToKPiBPbiBUdWUsIE5vdiAyOSwgMjAxNiBhdCAwNTo0Mjo1MVBNIC0wNTAw
+LCBFdmFuIEZvc3Mgd3JvdGU6Cj4+IE9uIFN1biwgTm92IDI3LCAyMDE2IGF0IDQ6MTMgQU0sIEx1
+a2FzIFd1bm5lciA8bHVrYXNAd3VubmVyLmRlPiB3cm90ZToKPj4gPiBPbiBTYXQsIE5vdiAyNiwg
+MjAxNiBhdCAwNjowOTozNEFNICswMDAwLCBFdmFuIEZvc3Mgd3JvdGU6Cj4+ID4+IEkgZGlkIHNv
+bWUgb3RoZXIgYnVnIHJlcG9ydHMgaGVyZSBhIHdoaWxlIGJhY2suIEkgYW0gYmFjayBhZ2Fpbgo+
+PiA+PiBiZWNhdXNlIEkgdXBkYXRlZCBteSBrZXJuZWwgZnJvbSAzLjE5LjEgdG8gbGludXgtNC44
+LjEwLWdlbnRvbyAoaWYgeW91Cj4+ID4+IHdhbnQgSSBjYW4gdGVzdCB0aGUgbWFpbmxpbmUgdG9v
+KS4gT24gYm9vdCBhbGwgbXkgR1BVJ3MgdHVybiBvbi4gSWYgSQo+PiA+PiB0dXJuIHRoZW0gb2Zm
+IHZpYQo+PiA+PiBlY2hvICJPRkYiPiAvc3lzL2tlcm5lbC9kZWJ1Zy92Z2Fzd2l0Y2hlcm9vL3N3
+aXRjaAo+PiA+PiBJIGNhbid0IHR1cm4gdGhlbSBiYWNrIG9uLiBUaGV5IGFsc28gZG8gbm90IHR1
+cm4gb24gaWYgSSB0cnkgdG8gY2hhbmdlCj4+ID4+IEdQVSdzLiBUcnlpbmcgdG8gc3RvcCB4ZG0g
+bG9ja3MgdGhlIG1hY2hpbmUgc28gSSBjYW4ndCBldmVuIHR1cm4gaXQKPj4gPj4gb2ZmLiBTdXNw
+ZW5kL3Jlc3VtZSBzdGlsbCB3b3Jrcy4gTm9uZSBvZiB0aGVzZSBwcm9ibGVtcyBleGlzdGVkIGlu
+Cj4+ID4+IDMuMTkuMS4gSSBrbm93IHlvdSB3aWxsIG5lZWQgbW9yZSBpbmZvIHRvIHRyYWNrIGRv
+d24gdGhlIHByb2JsZW0gYnV0IEkKPj4gPj4gd2FudGVkIHRvIG9wZW4gd2l0aCB0aGlzLgo+PiA+
+Cj4+ID4gSSBoYXZlIHRoZSBzYW1lIG1hY2hpbmUgYW5kIGl0IHdvcmtzIGZvciBtZS4gIFN5c3Rl
+bSBzbGVlcCBpcyBvbmx5Cj4+ID4gc3VwcG9zZWQgdG8gd29yayBpZiBib3RoIEdQVXMgb3IgT04g
+dXBvbiBzdXNwZW5kLiAgQXJlIHlvdSBpc3N1aW5nCj4+ID4gT0ZGIHdoaWxlIFgxMSBpcyBydW5u
+aW5nPyAgRG9lcyBpdCB3b3JrIGlmIFgxMSBpcyBzdG9wcGVkPwo+Pgo+PiAxLiBCb290IHdpdGgg
+dGhlIGludGVsIEdQVSBkcml2aW5nIHRoZSBzY3JlZW4uCj4+IDIuIEluIG1hdGUgZGVza3RvcCB0
+dXJuIG9mZiB0aGUgbnZpZGlhIGdwdSB2aWEgZWNobyAiT0ZGIiA+Cj4+IC9zeXMva2VybmVsLy4u
+Li9zd2l0Y2gKPj4gMy4gVHJ5IHRvIGRvIGFueSBvZiB0aGUgZm9sbG93aW5nIGFuZCB0aGUgbWFj
+aGluZSBsb2NrcyB1cCB0dXJuIG9uIHRoZQo+PiBudmlkaWEgR1BVLCBzdXNwZW5kIHRoZSBtYWNo
+aW5lLCB0cnkgdG8gY2hhbmdlIGdwdXMsIHN0b3AgWCAodmlhCj4+IC9ldGMvaW5pdC5kL3hkbSBz
+dG9wKQoKQ29ycmVjdGlvbiBzdXNwZW5kIHdvcmtzIGJ1dCBoaWJlcm5hdGUgZG9lcyBub3QuCgo+
+PiBZZXMgSSBpc3N1ZSBPRkYgd2hpbGUgaXQgaXMgcnVubmluZyBhbmQgaXQgd29ya3MgcGVyZmVj
+dGx5IHRvIHR1cm4gb2ZmCj4+IHRoZSBHUFUncy4gSSBjYW4gdGVsbCBiZWNhdXNlIHRoZSBtYWNo
+aW5lIGdldHMgYSBsb3QgY29vbGVyLgo+Cj4gT24gbXkgbWFjaGluZSBpc3N1aW5nIE9OIG9yIE9G
+RiBvciBzd2l0Y2hpbmcgYWx3YXlzIHdvcmtzIGJ1dCBJIG9ubHkKPiBpc3N1ZSB0aGUgY29tbWFu
+ZHMgb24gdGhlIGNvbnNvbGUsIHdpdGhvdXQgWDExIHJ1bm5pbmcuICBEb2VzIHRoYXQKPiB3b3Jr
+IGZvciB5b3UgYXMgd2VsbD8KCkkgYW0gdXNpbmcgYSBjb25zb2xlIGluc2lkZSBtYXRlLiB4ZG0g
+cnVucyBhdCBzdGFydHVwLiBJIHRyaWVkCgoxLiBzdG9wcGluZyB4ZG0KMi4gdHVybmluZyBvZmYg
+dGhlIG52aWRpYSBncHUgYXQgdGhlIGNvbnNvbGUKMy4gc3RhcnRpbmcgeGRtCmFuZCB0aGVuIGVh
+Y2ggb2YgdGhlIGZvbGxvd2luZwpzdG9waW5nIHhkbSwgdHVybmluZyBvZmYgdGhlIGNvbXB1dGVy
+LCBib3RoIHdvcmsuCgpJIGRvbid0IGNhcmUgYWJvdXQgY2hhbmdpbmcgR1BVJ3Mgd2l0aCBYIHJ1
+bm5pbmcuIFRoYXQgbmV2ZXIgd29ya2VkCmJ1dCBJIHVzZWQgdG8gYmUgYWJsZSB0byB0dXJuIHRo
+ZW0gb24gYW5kIG9mZiB3aXRoIG91dCBoYXZpbmcgdG8gbGVhdmUKWC4gSSBkb24ndCB1bmRlcnN0
+YW5kIHdoeSB0dXJuaW5nIG9mZiBhIEdQVSB0aGF0IGlzbid0IGdlbmVyYXRpbmcgYW55CnZpZGVv
+IGlzIGEgZmVhdHVyZSB0aGF0IGdvdCByZW1vdmVkPyBJcyB0aGVyZSBzb21ldGhpbmcgYXMgYQp1
+c2VyL3Rlc3RlciB0aGF0IEkgY2FuIGRvIHRvIGhlbHAgYnJpbmcgdGhpcyBiYWNrPwoKSSBkb24n
+dCBleHBlY3QgR1BVIHN3aXRjaGluZyB3aXRoIFggcnVubmluZyB0byB3b3JrIGFueSB0aW1lIHNv
+b24uCgo+IE1hbnVhbCBwb3dlciBjb250cm9sIHZpYSBPTiBhbmQgT0ZGIGlzIGEgaGFjaywgaXQg
+cG93ZXJzIHRoZSBHUFUKPiB1cCBhbmQgZG93biBiZWhpbmQgdGhlIFBNIGNvcmUncyBiYWNrLiAg
+SXQncyBhIHN0b3BnYXAgdW50aWwKPiBydW50aW1lIFBNIHdvcmtzIGZvciBtdXhlZCBtYWNoaW5l
+cy4gIFRoYXQncyB0aGUgcmVhc29uIGF0IGxlYXN0Cj4gZm9yIHRoZSBsb2NrdXAgb24gcmVzdW1l
+LCBJIGtub3cgd2hhdCBjYXVzZXMgdGhpcy4gIChUaGUgUENJIGNvcmUKPiBpbnZhbGlkYXRlcyB0
+aGUgc2F2ZWRfc3RhdGUgb2YgdGhlIGRldmljZS4pICBJIGRvbid0IGtub3cgd2h5Cj4gdHVybmlu
+ZyBvbiB0aGUgR1BVIG9yIHN0b3BwaW5nIFggY2F1c2VzIGEgbG9ja3VwLCBwcmVzdW1hYmx5IG9u
+Cj4gc3RvcHBpbmcgWCB0aGUgY2FyZCBpcyBhY2Nlc3NlZCBldmVuIHRob3VnaCBpdCdzIHBvd2Vy
+ZWQgZG93bi4KPgo+IFRoZXJlIGFyZSBzb21lIGhhbGYtYmFrZWQgcGF0Y2hlcyBmb3IgcnVudGlt
+ZSBQTSBvbiB0aGlzIGJyYW5jaDoKPiBodHRwczovL2dpdGh1Yi5jb20vbDFrL2xpbnV4L2NvbW1p
+dHMvbWJwX3N3aXRjaGVyb29fcnVucG1fd2lwCj4KPiBBbGFzLCBhIHJld29yayBvZiB2Z2Ffc3dp
+dGNoZXJvbyBhdWRpbyBoYW5kbGluZyBpcyBuZWNlc3NhcnkgdG8KPiBicmluZyB1cCBydW50aW1l
+IFBNIGZvciBtdXhlZCBtYWNoaW5lcyBwcm9wZXJseToKPiBodHRwczovL3d3dy5tYWlsLWFyY2hp
+dmUuY29tL25vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21zZzI0OTk3Lmh0bWwKCkkgaGF2
+ZSBvbmx5IGhhZCB0cm91YmxlIHdpdGggdGhlIG1pY3JvcGhvbmUgaW5wdXQuCgo+IFJhZmFlbCBX
+eXNvY2tpJ3MgZnVuY3Rpb25hbCBkZXBlbmRlbmNpZXMgcGF0Y2hlcywgd2hpY2ggYXJlIGEKPiBw
+cmVyZXF1aXNpdGUgZm9yIHRoaXMgcmV3b3JrLCBhcmUgbm93IHF1ZXVlZCBmb3IgNC4xMC4gIEkn
+bGwKPiBwcm9iYWJseSBsb29rIGludG8gdGhpcyBpbiBEZWNlbWJlci9KYW51YXJ5Lgo+Cj4gU3dp
+dGNoaW5nIHdoaWxlIFggaXMgcnVubmluZyB3b24ndCB3b3JrIGFueXRpbWUgc29vbiwgSSdtIG5v
+dAo+IHdvcmtpbmcgb24gaXQgYW5kIERhdmUgQWlybGllIGhhcyBiYXNpY2FsbHkgc2FpZCB0aGF0
+IGl0IGhhcyBubwo+IHByaW9yaXR5IGZvciBoaW06Cj4gaHR0cHM6Ly93d3cubWFpbC1hcmNoaXZl
+LmNvbS9pbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21zZzgxOTgxLmh0bWwKPgo+IE9u
+IHRoZSBicmlnaHQgc2lkZSwgeW91IGdvdCBUaHVuZGVyYm9sdCB3aGVuIHlvdSB1cGRhdGVkIHRv
+IDQuOCBhbmQKPiBpbiA0LjExIGl0J2xsIGV2ZW4gcG93ZXIgaXRzZWxmIGRvd24gd2hlbiBub3Ro
+aW5nIGlzIHBsdWdnZWQgaW4gYW5kCj4gc2F2ZSB5b3UgMS43IFdhdHRzLiA7LSkKClRoYW5rcyBJ
+IGRpZG4ndCBrbm93IHRoYXQuCgo+IEJlc3QgcmVnYXJkcywKPgo+IEx1a2FzCgpUaGFuayB5b3Us
+CkV2YW4KCi0tIApIb21lCmh0dHA6Ly9ldmFuZm9zcy5nb29nbGVwYWdlcy5jb20vCldvcmsKaHR0
+cDovL2ZvcmdlLmFiY2QuaGFydmFyZC5lZHUvZ2YvcHJvamVjdC9lcGxfZW5naW5lZXJpbmcvd2lr
+aS8KCi0tLS0tQkVHSU4gUEdQIFBVQkxJQyBLRVkgQkxPQ0stLS0tLQpWZXJzaW9uOiBHbnVQRyB2
+MgoKbVFFTkJGWXk0UllCQ0FDMTgzSm9tTHRiZEFsY0tpYVBEb1ZIcTUyTERtVm1INzVhaUVjNjlt
+N1l4RHQ1NC9haQpWdFlDQW9iYkdWSXluM0hsejN1aEY2TG5QbC82TG0xVmRuQ2Zwd3UzS1FoQ082
+ZHMxMG93MkMzMFg0b2hDcU9kCmhDVmc1QytJTG1Ra0VmZkZyRk9EeTNqaStQWVRGNHBBRHZIQ1dz
+VE12MGhmMGxsd0ZPSnNCQ0s2Y2wwMklmZkUKSlBxeTRQak0xblo5SHB6VDg0SkJhRy80T0d2VFo4
+U1EyeUZVbDI2NWphZ3Z5Z1BUZjg4SDF4cFpISDFyOGRCMQpzdGpVSExtUEg4QU95RGdLeEZjaGdH
+ZURjM3Avdkp0Z0RESVhBRmZEWEcwTlNSb3ZMbXRhUWRHeGU0N1pmL2dvCmJYaUVNN1lMMldxUWU1
+emZFQTkxOUp4a0V3bERLWW5pT1NWekFCRUJBQUcwTjBWMllXNGdSbTl6Y3lBb1ZHaHAKY3lCcGN5
+QnRlU0J3ZFdKc2FXTWdhMlY1TGlrZ1BHVjJZVzVtYjNOelFHZHRZV2xzTG1OdmJUNkpBVGtFRXdF
+QwpBQ01GQWxZeTRSWUNHd01IQ3drSUJ3TUNBUVlWQ0FJSkNnc0VGZ0lEQVFJZUFRSVhnQUFLQ1JD
+SXBRVGNFOG5OCmJiQmFDQUNBbThwVTVsRzFldjJGc3c2OEF4dGNsNTdTSnJZaWVxWDk2YzNZdVlI
+OUpwcU1xSlJuZDluREt3OVgKdFF1dnVIN3RVazBWYk9hRHFSZU9ZSlZJLzRjNXdiOUFhT0ZwNksy
+RFVjdXBxNlhoZ1hwdnozSHpvUHdqQWRJagpYdVF6ZFJVeDUraW5uVEpyU2tHdUJZVy9DWjJ6cUV4
+NHhmTGxxNHJPMGhvVFVNUjhRVnAyY0Nya3c2QlQwbTg2CkFQSXcvWm5qb3hNOElFenI3TXhmUkln
+M3FwenJaazI4cm1oeCtrNzhKeWs2MVVod2NDUEdJbS9walVvcFR3WUoKM1lCZFJCMmNZRDJhTjdB
+MUpWZjVjUm1TUVlvb0hCR3BIMGtZdm9tR2s5N1BLcXlwVnVKN09wRzl4TTU4d1VjQwpxVVZ0OWhL
+bGVQTHpQOGNzWWp0OG9ucUk3cUlJdVFFTkJGWXk0UllCQ0FEbEg4c3BHM1drQ3g2MnZCNW1yNVow
+ClNDRGQvUmN5QTRBNXk1RU9qNUt1clFrclNXcGdpOUhvMXlLcnVNSjZibFFSMnFrYzY2S3FIOXBu
+WERtL1pJMU0KSy93ZFczbmdFVHhCbVhvb3p6Rk1UODlhRVdJVlI1L1BGb2RXSzFlbGVrRTlpSnhB
+Q3VSOThaZzJRdHRURDN4OApBOXc4VkV5TUxPWGNEVHJQRnBIZWdNS3N3RkJnNWl1TXVsQWRYQW9H
+ZWpXVEkzbitxS0ZwYWJIbTJMZnM2d2prCjVyanVjcFRkZUZLNlVlV0YxeEF2TnhYaWJ1dTVCbEd3
+djUzOTMwcUlYUndPL0duMlJoNURYV3hLVTJmRUltZS8KeGdRUW1Jc0RlVW9XYmZ5YmRqdy94N1Ew
+TFc0bUlOaUxEUWNHSEhSUUtGSXhiQUpDVDNVU1BMR2g1eHdFOS9FcgpBQkVCQUFHSkFSOEVHQUVD
+QUFrRkFsWXk0UllDR3d3QUNna1FpS1VFM0JQSnpXMHVZQWY5SGYzMG44dE0zbVIyClpvNkVTRTBp
+dmdkZ2phSnRBV3JCVXg3SnpBelBqQm5CT2xObnU1WTlsVkVxZXR2VVBINmUzUHZhSFlVdWFVVTgK
+MEh3eHVLQlc5blVwcmdWNnVJdTFEWm1sY3ArU3hwYnVDeTdSRHBOb2NSTE5XV0ZNYVlZenpubVRn
+Zm5UZ0Q0RApnQ3E4TWYxbWNmcmx1VGtPQW8rUU5xYk1mbDFHSVNDbG9wUnF4VnVBbzU5ZXdnTW5G
+dWp3Z2Q4dzEyQndXbDI0CkN6cU9zNUhxY1VzbGVQaitMemNqU05nVkNrbFl3S2wrMGRzYi9mY3RN
+T0N0SG9kd3FtMkNCSit6eWR2Tm1Za0QKZnhkYS9KOTFaMXhyYWg1ZWMrK0ZMMEw0dnMrakNpSVdK
+ZXVwSkZLbHIxaENNWmlpR0g3VzU1NGxvSzVsNGp2MwpFWTM0N0VpZEF3PT0KPVRhNHAKLS0tLS1F
+TkQgUEdQIFBVQkxJQyBLRVkgQkxPQ0stLS0tLQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
