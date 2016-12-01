@@ -1,63 +1,71 @@
-From: David Howells <dhowells@redhat.com>
-Subject: [PATCH 02/39] Annotate hardware config module parameters in
- arch/x86/mm/
-Date: Thu, 01 Dec 2016 12:29:54 +0000
-Message-ID: <148059539475.31612.10627688627153687405.stgit@warthog.procyon.org.uk>
-References: <148059537897.31612.9461043954611464597.stgit@warthog.procyon.org.uk>
+From: Jeremy Linton <jeremy.linton@arm.com>
+Subject: 4.9-rc7 nouveau fails on arm64 64k page kernel but works with 4k
+Date: Thu, 1 Dec 2016 10:46:11 -0600
+Message-ID: <042c54f3-e52b-6658-18c7-9c19492485a4@arm.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <148059537897.31612.9461043954611464597.stgit@warthog.procyon.org.uk>
-Sender: linux-kernel-owner@vger.kernel.org
-To: linux-kernel@vger.kernel.org
-Cc: gnomes@lxorguk.ukuu.org.uk, minyard@acm.org, nouveau@lists.freedesktop.org, x86@kernel.org, Steven Rostedt <rostedt@goodmis.org>, dhowells@redhat.com, linux-security-module@vger.kernel.org, keyrings@vger.kernel.org, "H. Peter Anvin" <hpa@zytor.com>, Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@kernel.org>
+Return-path: <linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org>
+List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-arm-kernel>,
+ <mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
+List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
+List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
+List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
+List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
+ <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+Errors-To: linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, Steve Capper <Steve.Capper@arm.com>
 List-Id: nouveau.vger.kernel.org
 
-When the kernel is running in secure boot mode, we lock down the kernel to
-prevent userspace from modifying the running kernel image.  Whilst this
-includes prohibiting access to things like /dev/mem, it must also prevent
-access by means of configuring driver modules in such a way as to cause a
-device to access or modify the kernel image.
+Hi,
 
-To this end, annotate module_param* statements that refer to hardware
-configuration and indicate for future reference what type of parameter they
-specify.  The parameter parser in the core sees this information and can
-skip such parameters with an error message if the kernel is locked down.
-The module initialisation then runs as normal, but just sees whatever the
-default values for those parameters is.
+I placed a 9600GT in a softiron 3k running fedora 25, and the nouveau 
+driver failed to claim the device with :
 
-Note that we do still need to do the module initialisation because some
-drivers have viable defaults set in case parameters aren't specified and
-some drivers support automatic configuration (e.g. PNP or PCI) in addition
-to manually coded parameters.
+[drm] Initialized
+nouveau 0000:01:00.0: NVIDIA G94 (094100a1)
+nouveau 0000:01:00.0: bios: version 62.94.0d.00.04
+nouveau: probe of 0000:01:00.0 failed with error -22
 
-This patch annotates drivers in arch/x86/mm/.
+Which with a little bit of debugging seems to be a failure in:
 
-Suggested-by: One Thousand Gnomes <gnomes@lxorguk.ukuu.org.uk>
-Signed-off-by: David Howells <dhowells@redhat.com>
-cc: Steven Rostedt <rostedt@goodmis.org>
-cc: Ingo Molnar <mingo@kernel.org>
-cc: Thomas Gleixner <tglx@linutronix.de>
-cc: "H. Peter Anvin" <hpa@zytor.com>
-cc: x86@kernel.org
-cc: linux-kernel@vger.kernel.org
-cc: nouveau@lists.freedesktop.org
----
+[77216.692605] [<ffff000001404120>] ttm_bo_validate+0xb0/0x1e8 [ttm]
+[77216.698697] [<ffff0000014045ac>] ttm_bo_init+0x354/0x410 [ttm]
+[77216.704706] [<ffff0000019d7bd0>] nouveau_bo_new+0x1f4/0x314 [nouveau]
+[77216.711308] [<ffff0000019e4620>] nv50_display_create+0x10c/0xa1c 
+[nouveau]
+[77216.718340] [<ffff0000019df898>] nouveau_display_create+0x50c/0x59c 
+[nouveau]
+[77216.725632] [<ffff0000019d3e24>] nouveau_drm_load+0x22c/0x8c0 [nouveau]
+[77216.732286] [<ffff00000137a1a0>] drm_dev_register+0xc0/0xf0 [drm]
+[77216.738409] [<ffff00000137b8a4>] drm_get_pci_dev+0xbc/0x188 [drm]
+[77216.744663] [<ffff0000019d35e8>] nouveau_drm_probe+0x180/0x208 [nouveau]
+[77216.751354] [<ffff0000084c30dc>] local_pci_probe+0x50/0xb4
+[77216.756827] [<ffff0000084c3e40>] pci_device_probe+0xf8/0x148
+[77216.762474] [<ffff0000085b6a10>] driver_probe_device+0x284/0x420
+[77216.768467] [<ffff0000085b6ccc>] __driver_attach+0x120/0x124
+[77216.774115] [<ffff0000085b446c>] bus_for_each_dev+0x6c/0xac
+[77216.779673] [<ffff0000085b6204>] driver_attach+0x2c/0x34
+[77216.784972] [<ffff0000085b5cb4>] bus_add_driver+0x244/0x2b0
+[77216.790531] [<ffff0000085b78e4>] driver_register+0x68/0xfc
+[77216.796004] [<ffff0000084c29a8>] __pci_register_driver+0x60/0x6c
+[77216.802047] [<ffff00000137bcb8>] drm_pci_init+0x108/0x138 [drm]
+[77216.808146] [<ffff000001530158>] nouveau_drm_init+0x158/0x10000 [nouveau]
+[77216.814922] [<ffff0000080831a8>] do_one_initcall+0x44/0x128
+[77216.820483] [<ffff0000081cad6c>] do_init_module+0x68/0x1e0
+[77216.825957] [<ffff000008150d84>] load_module+0xfac/0x12bc
+[77216.831343] [<ffff00000815132c>] SyS_finit_module+0xe4/0xf0
+[77216.836902] [<ffff000008082b70>] el0_svc_naked+0x24/0x28
 
- arch/x86/mm/testmmiotrace.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+By default fedora is using a 64k page kernel, switching to a mainline 
+4.9-rc7 kernel using the same configuration the same problem exists 
+(there are a couple others, mentioned briefly in the defect). Changing 
+the mainline kernel from 64k to 4k pages corrects the problem and a 
+terminal display can be seen.
 
-diff --git a/arch/x86/mm/testmmiotrace.c b/arch/x86/mm/testmmiotrace.c
-index 38868adf07ea..f6ae6830b341 100644
---- a/arch/x86/mm/testmmiotrace.c
-+++ b/arch/x86/mm/testmmiotrace.c
-@@ -9,7 +9,7 @@
- #include <linux/mmiotrace.h>
- 
- static unsigned long mmio_address;
--module_param(mmio_address, ulong, 0);
-+module_param_hw(mmio_address, ulong, iomem, 0);
- MODULE_PARM_DESC(mmio_address, " Start address of the mapping of 16 kB "
- 				"(or 8 MB if read_far is non-zero).");
- 
+The fedora defect is:
+https://bugzilla.redhat.com/show_bug.cgi?id=1400623
+
+
+Thanks,
