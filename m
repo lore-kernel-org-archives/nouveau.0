@@ -1,71 +1,107 @@
-From: Jeremy Linton <jeremy.linton@arm.com>
-Subject: 4.9-rc7 nouveau fails on arm64 64k page kernel but works with 4k
-Date: Thu, 1 Dec 2016 10:46:11 -0600
-Message-ID: <042c54f3-e52b-6658-18c7-9c19492485a4@arm.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93828] Xorg hangs randomly with nouveau driver
+Date: Thu, 01 Dec 2016 20:12:35 +0000
+Message-ID: <bug-93828-8800-Hs2idys35h@http.bugs.freedesktop.org/>
+References: <bug-93828-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org>
-List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-arm-kernel>,
- <mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
-List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
-List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
-List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
-List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
- <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-Errors-To: linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, Steve Capper <Steve.Capper@arm.com>
+Content-Type: multipart/mixed; boundary="===============1801726779=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93828-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
 
-I placed a 9600GT in a softiron 3k running fedora 25, and the nouveau 
-driver failed to claim the device with :
-
-[drm] Initialized
-nouveau 0000:01:00.0: NVIDIA G94 (094100a1)
-nouveau 0000:01:00.0: bios: version 62.94.0d.00.04
-nouveau: probe of 0000:01:00.0 failed with error -22
-
-Which with a little bit of debugging seems to be a failure in:
-
-[77216.692605] [<ffff000001404120>] ttm_bo_validate+0xb0/0x1e8 [ttm]
-[77216.698697] [<ffff0000014045ac>] ttm_bo_init+0x354/0x410 [ttm]
-[77216.704706] [<ffff0000019d7bd0>] nouveau_bo_new+0x1f4/0x314 [nouveau]
-[77216.711308] [<ffff0000019e4620>] nv50_display_create+0x10c/0xa1c 
-[nouveau]
-[77216.718340] [<ffff0000019df898>] nouveau_display_create+0x50c/0x59c 
-[nouveau]
-[77216.725632] [<ffff0000019d3e24>] nouveau_drm_load+0x22c/0x8c0 [nouveau]
-[77216.732286] [<ffff00000137a1a0>] drm_dev_register+0xc0/0xf0 [drm]
-[77216.738409] [<ffff00000137b8a4>] drm_get_pci_dev+0xbc/0x188 [drm]
-[77216.744663] [<ffff0000019d35e8>] nouveau_drm_probe+0x180/0x208 [nouveau]
-[77216.751354] [<ffff0000084c30dc>] local_pci_probe+0x50/0xb4
-[77216.756827] [<ffff0000084c3e40>] pci_device_probe+0xf8/0x148
-[77216.762474] [<ffff0000085b6a10>] driver_probe_device+0x284/0x420
-[77216.768467] [<ffff0000085b6ccc>] __driver_attach+0x120/0x124
-[77216.774115] [<ffff0000085b446c>] bus_for_each_dev+0x6c/0xac
-[77216.779673] [<ffff0000085b6204>] driver_attach+0x2c/0x34
-[77216.784972] [<ffff0000085b5cb4>] bus_add_driver+0x244/0x2b0
-[77216.790531] [<ffff0000085b78e4>] driver_register+0x68/0xfc
-[77216.796004] [<ffff0000084c29a8>] __pci_register_driver+0x60/0x6c
-[77216.802047] [<ffff00000137bcb8>] drm_pci_init+0x108/0x138 [drm]
-[77216.808146] [<ffff000001530158>] nouveau_drm_init+0x158/0x10000 [nouveau]
-[77216.814922] [<ffff0000080831a8>] do_one_initcall+0x44/0x128
-[77216.820483] [<ffff0000081cad6c>] do_init_module+0x68/0x1e0
-[77216.825957] [<ffff000008150d84>] load_module+0xfac/0x12bc
-[77216.831343] [<ffff00000815132c>] SyS_finit_module+0xe4/0xf0
-[77216.836902] [<ffff000008082b70>] el0_svc_naked+0x24/0x28
-
-By default fedora is using a 64k page kernel, switching to a mainline 
-4.9-rc7 kernel using the same configuration the same problem exists 
-(there are a couple others, mentioned briefly in the defect). Changing 
-the mainline kernel from 64k to 4k pages corrects the problem and a 
-terminal display can be seen.
-
-The fedora defect is:
-https://bugzilla.redhat.com/show_bug.cgi?id=1400623
+--===============1801726779==
+Content-Type: multipart/alternative; boundary="14806231552.632Bd8C.25284";
+ charset="UTF-8"
 
 
-Thanks,
+--14806231552.632Bd8C.25284
+Date: Thu, 1 Dec 2016 20:12:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93828
+
+--- Comment #14 from Marek Gre=C5=A1ko <mgresko8-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 128304
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128304&action=3Dedit
+Extraction of crash info when using modesetting driver
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14806231552.632Bd8C.25284
+Date: Thu, 1 Dec 2016 20:12:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg hangs randomly with nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828#c14">Commen=
+t # 14</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg hangs randomly with nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828">bug 93828<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mgresko8&#64;gmail.com" title=3D"Marek Gre=C5=A1ko &lt;mgresko8&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Marek Gre=C5=A1ko</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128304=
+" name=3D"attach_128304" title=3D"Extraction of crash info when using modes=
+etting driver">attachment 128304</a> <a href=3D"attachment.cgi?id=3D128304&=
+amp;action=3Dedit" title=3D"Extraction of crash info when using modesetting=
+ driver">[details]</a></span>
+Extraction of crash info when using modesetting driver</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14806231552.632Bd8C.25284--
+
+--===============1801726779==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1801726779==--
