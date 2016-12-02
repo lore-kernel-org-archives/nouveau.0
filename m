@@ -1,186 +1,230 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: 4.9-rc7 nouveau fails on arm64 64k page kernel but works with 4k
-Date: Thu, 1 Dec 2016 22:23:46 -0500
-Message-ID: <CAKb7UvgW331K53x3wub5o+6LOqeLN5PqgiiJG6WXi+WJDVDzDg@mail.gmail.com>
-References: <042c54f3-e52b-6658-18c7-9c19492485a4@arm.com>
- <CAKb7Uvhewyhnrnd=fw9QrdEDLecG_VMZ8Wfuh-LyCgeW6X_wCw@mail.gmail.com>
- <CAKb7UvgZLafVmC3N0R-dfm4FDtCxUO3fC-4zLwsKauAj=hx=tw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
+ after dynamic poweroff
+Date: Fri, 02 Dec 2016 09:52:40 +0000
+Message-ID: <bug-94725-8800-V0FUsTaXtC@http.bugs.freedesktop.org/>
+References: <bug-94725-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0576128843=="
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7UvgZLafVmC3N0R-dfm4FDtCxUO3fC-4zLwsKauAj=hx=tw@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Jeremy Linton <jeremy.linton@arm.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, Steve Capper <Steve.Capper@arm.com>
+Content-Type: multipart/mixed; boundary="===============1348890216=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0576128843==
-Content-Type: multipart/alternative; boundary=94eb2c1b7b0e5356e00542a4772f
 
---94eb2c1b7b0e5356e00542a4772f
-Content-Type: text/plain; charset=UTF-8
-
-That's right -- nouveau currently requires 4k page sizes to work. This is a
-software limitation, not a hardware one though.
-
-On Dec 1, 2016 5:13 PM, "Jeremy Linton" <jeremy.linton@arm.com> wrote:
-
-Hi,
-
-I placed a 9600GT in a softiron 3k running fedora 25, and the nouveau
-driver failed to claim the device with :
-
-[drm] Initialized
-nouveau 0000:01:00.0: NVIDIA G94 (094100a1)
-nouveau 0000:01:00.0: bios: version 62.94.0d.00.04
-nouveau: probe of 0000:01:00.0 failed with error -22
-
-Which with a little bit of debugging seems to be a failure in:
-
-[77216.692605] [<ffff000001404120>] ttm_bo_validate+0xb0/0x1e8 [ttm]
-[77216.698697] [<ffff0000014045ac>] ttm_bo_init+0x354/0x410 [ttm]
-[77216.704706] [<ffff0000019d7bd0>] nouveau_bo_new+0x1f4/0x314 [nouveau]
-[77216.711308] [<ffff0000019e4620>] nv50_display_create+0x10c/0xa1c
-[nouveau]
-[77216.718340] [<ffff0000019df898>] nouveau_display_create+0x50c/0x59c
-[nouveau]
-[77216.725632] [<ffff0000019d3e24>] nouveau_drm_load+0x22c/0x8c0 [nouveau]
-[77216.732286] [<ffff00000137a1a0>] drm_dev_register+0xc0/0xf0 [drm]
-[77216.738409] [<ffff00000137b8a4>] drm_get_pci_dev+0xbc/0x188 [drm]
-[77216.744663] [<ffff0000019d35e8>] nouveau_drm_probe+0x180/0x208 [nouveau]
-[77216.751354] [<ffff0000084c30dc>] local_pci_probe+0x50/0xb4
-[77216.756827] [<ffff0000084c3e40>] pci_device_probe+0xf8/0x148
-[77216.762474] [<ffff0000085b6a10>] driver_probe_device+0x284/0x420
-[77216.768467] [<ffff0000085b6ccc>] __driver_attach+0x120/0x124
-[77216.774115] [<ffff0000085b446c>] bus_for_each_dev+0x6c/0xac
-[77216.779673] [<ffff0000085b6204>] driver_attach+0x2c/0x34
-[77216.784972] [<ffff0000085b5cb4>] bus_add_driver+0x244/0x2b0
-[77216.790531] [<ffff0000085b78e4>] driver_register+0x68/0xfc
-[77216.796004] [<ffff0000084c29a8>] __pci_register_driver+0x60/0x6c
-[77216.802047] [<ffff00000137bcb8>] drm_pci_init+0x108/0x138 [drm]
-[77216.808146] [<ffff000001530158>] nouveau_drm_init+0x158/0x10000 [nouveau]
-[77216.814922] [<ffff0000080831a8>] do_one_initcall+0x44/0x128
-[77216.820483] [<ffff0000081cad6c>] do_init_module+0x68/0x1e0
-[77216.825957] [<ffff000008150d84>] load_module+0xfac/0x12bc
-[77216.831343] [<ffff00000815132c>] SyS_finit_module+0xe4/0xf0
-[77216.836902] [<ffff000008082b70>] el0_svc_naked+0x24/0x28
-
-By default fedora is using a 64k page kernel, switching to a mainline
-4.9-rc7 kernel using the same configuration the same problem exists (there
-are a couple others, mentioned briefly in the defect). Changing the
-mainline kernel from 64k to 4k pages corrects the problem and a terminal
-display can be seen.
-
-The fedora defect is:
-https://bugzilla.redhat.com/show_bug.cgi?id=1400623
+--===============1348890216==
+Content-Type: multipart/alternative; boundary="14806723602.dF674.2284";
+ charset="UTF-8"
 
 
-Thanks,
-_______________________________________________
-dri-devel mailing list
-dri-devel@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
---94eb2c1b7b0e5356e00542a4772f
-Content-Type: text/html; charset=UTF-8
+--14806723602.dF674.2284
+Date: Fri, 2 Dec 2016 09:52:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-<p dir=3D"ltr">That&#39;s right -- nouveau currently requires 4k page sizes=
- to work. This is a software limitation, not a hardware one though.</p>
-<div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Dec 1, 2016 5:=
-13 PM, &quot;Jeremy Linton&quot; &lt;<a href=3D"mailto:jeremy.linton@arm.co=
-m">jeremy.linton@arm.com</a>&gt; wrote:<br type=3D"attribution"><blockquote=
- class=3D"quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex">Hi,<br>
-<br>
-I placed a 9600GT in a softiron 3k running fedora 25, and the nouveau drive=
-r failed to claim the device with :<br>
-<br>
-[drm] Initialized<br>
-nouveau 0000:01:00.0: NVIDIA G94 (094100a1)<br>
-nouveau 0000:01:00.0: bios: version 62.94.0d.00.04<br>
-nouveau: probe of 0000:01:00.0 failed with error -22<br>
-<br>
-Which with a little bit of debugging seems to be a failure in:<br>
-<br>
-[77216.692605] [&lt;ffff000001404120&gt;] ttm_bo_validate+0xb0/0x1e8 [ttm]<=
-br>
-[77216.698697] [&lt;ffff0000014045ac&gt;] ttm_bo_init+0x354/0x410 [ttm]<br>
-[77216.704706] [&lt;ffff0000019d7bd0&gt;] nouveau_bo_new+0x1f4/0x314 [nouve=
-au]<br>
-[77216.711308] [&lt;ffff0000019e4620&gt;] nv50_display_create+0x10c/0xa1<wb=
-r>c [nouveau]<br>
-[77216.718340] [&lt;ffff0000019df898&gt;] nouveau_display_create+0x50c/0<wb=
-r>x59c [nouveau]<br>
-[77216.725632] [&lt;ffff0000019d3e24&gt;] nouveau_drm_load+0x22c/0x8c0 [nou=
-veau]<br>
-[77216.732286] [&lt;ffff00000137a1a0&gt;] drm_dev_register+0xc0/0xf0 [drm]<=
-br>
-[77216.738409] [&lt;ffff00000137b8a4&gt;] drm_get_pci_dev+0xbc/0x188 [drm]<=
-br>
-[77216.744663] [&lt;ffff0000019d35e8&gt;] nouveau_drm_probe+0x180/0x208 [no=
-uveau]<br>
-[77216.751354] [&lt;ffff0000084c30dc&gt;] local_pci_probe+0x50/0xb4<br>
-[77216.756827] [&lt;ffff0000084c3e40&gt;] pci_device_probe+0xf8/0x148<br>
-[77216.762474] [&lt;ffff0000085b6a10&gt;] driver_probe_device+0x284/0x42<wb=
-r>0<br>
-[77216.768467] [&lt;ffff0000085b6ccc&gt;] __driver_attach+0x120/0x124<br>
-[77216.774115] [&lt;ffff0000085b446c&gt;] bus_for_each_dev+0x6c/0xac<br>
-[77216.779673] [&lt;ffff0000085b6204&gt;] driver_attach+0x2c/0x34<br>
-[77216.784972] [&lt;ffff0000085b5cb4&gt;] bus_add_driver+0x244/0x2b0<br>
-[77216.790531] [&lt;ffff0000085b78e4&gt;] driver_register+0x68/0xfc<br>
-[77216.796004] [&lt;ffff0000084c29a8&gt;] __pci_register_driver+0x60/0x6<wb=
-r>c<br>
-[77216.802047] [&lt;ffff00000137bcb8&gt;] drm_pci_init+0x108/0x138 [drm]<br=
->
-[77216.808146] [&lt;ffff000001530158&gt;] nouveau_drm_init+0x158/0x10000 [n=
-ouveau]<br>
-[77216.814922] [&lt;ffff0000080831a8&gt;] do_one_initcall+0x44/0x128<br>
-[77216.820483] [&lt;ffff0000081cad6c&gt;] do_init_module+0x68/0x1e0<br>
-[77216.825957] [&lt;ffff000008150d84&gt;] load_module+0xfac/0x12bc<br>
-[77216.831343] [&lt;ffff00000815132c&gt;] SyS_finit_module+0xe4/0xf0<br>
-[77216.836902] [&lt;ffff000008082b70&gt;] el0_svc_naked+0x24/0x28<br>
-<br>
-By default fedora is using a 64k page kernel, switching to a mainline 4.9-r=
-c7 kernel using the same configuration the same problem exists (there are a=
- couple others, mentioned briefly in the defect). Changing the mainline ker=
-nel from 64k to 4k pages corrects the problem and a terminal display can be=
- seen.<br>
-<br>
-The fedora defect is:<br>
-<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1400623" rel=3D"no=
-referrer" target=3D"_blank">https://bugzilla.redhat.com/sh<wbr>ow_bug.cgi?i=
-d=3D1400623</a><br>
-<br>
-<br>
-Thanks,<br>
-______________________________<wbr>_________________<br>
-dri-devel mailing list<br>
-<a href=3D"mailto:dri-devel@lists.freedesktop.org" target=3D"_blank">dri-de=
-vel@lists.freedesktop.or<wbr>g</a><br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/dri-devel" rel=3D=
-"noreferrer" target=3D"_blank">https://lists.freedesktop.org/<wbr>mailman/l=
-istinfo/dri-devel</a><br>
-</blockquote></div><br></div>
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94725
 
---94eb2c1b7b0e5356e00542a4772f--
+--- Comment #26 from Orsiris de Jong <info-3cfOhUhRyghWj0EZb7rXcA@public.gmane.org> ---
+I too have a optimus laptop with GM107 / intel graphics card, and I have not
+been able to use nouveau driver since I bought the laptop (using kernels 4.=
+3.5
+up to 4.8.10 on Fedora 23-25 x64).
 
---===============0576128843==
+I have searched for multiple solutions so far, and always finished by
+blacklisting nouveau in order to be able to use that laptop.
+I could not even able to launch lspci without rendering my system unrespons=
+ive
+(process then takes 100% cpu and I get cpu softlocks)
+
+I've tried nouveau.runpm=3D0 and well, I can at least boot without having n=
+ouveau
+totally disabled :)
+
+When not using runpm=3D0, I get the following when launching lspci / or
+DRI_PRIME=3D1 glxgears
+
+[ 1470.121123] nouveau 0000:01:00.0: Refused to change power state, current=
+ly
+in D3
+[ 1470.193738] nouveau 0000:01:00.0: Refused to change power state, current=
+ly
+in D3
+[ 1470.205762] nouveau 0000:01:00.0: Refused to change power state, current=
+ly
+in D3
+[ 1470.205766] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
+[ 1470.205792] nouveau 0000:01:00.0: pci: failed to adjust cap speed
+[ 1470.205793] nouveau 0000:01:00.0: pci: failed to adjust lnkctl speed
+
+So I guess the nouveau driver cannot send to sleep / wake my nvidia card for
+whatever reason.
+
+I am actually trying rely on the discrete graphics in order to reduce power
+consumption by default.
+
+I noticed that I can't use vgaswitcheroo in order to chose my primary graph=
+ic
+card. Also noticed the following error messages on boot.
+[    1.795356] [drm] Initialized drm 1.1.0 20060810
+[    1.881362] ACPI Warning: \_SB.PCI0.GFX0._DSM: Argument #4 type mismatch=
+ -
+Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
+[    1.881428] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
+[    1.881552] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
+[    1.881753] VGA switcheroo: detected Optimus DSM method \_SB_.PCI0.PEG0.=
+PEGP
+handle
+[    1.881753] nouveau: detected PR support, will not use DSM
+
+So far, when I switch graphic cards, I get the following in dmesg:
+
+[ 1174.921195] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
+[ 1174.921209] nouveau 0000:01:00.0: DRM: resuming client object trees...
+[ 1174.921226] nouveau 0000:01:00.0: fifo: BIND_ERROR 01 [BIND_NOT_UNBOUND]
+[ 1317.637168] vga_switcheroo: client 0 refused switch
+
+I guess that nouveau driver does not allow to disable the nvidia card when
+runpm=3D0 is passed as argument ?
+
+Anything I could try please ?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14806723602.dF674.2284
+Date: Fri, 2 Dec 2016 09:52:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
+c poweroff"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725#c26">Commen=
+t # 26</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
+c poweroff"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725">bug 94725<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+info&#64;netpower.fr" title=3D"Orsiris de Jong &lt;info&#64;netpower.fr&gt;=
+"> <span class=3D"fn">Orsiris de Jong</span></a>
+</span></b>
+        <pre>I too have a optimus laptop with GM107 / intel graphics card, =
+and I have not
+been able to use nouveau driver since I bought the laptop (using kernels 4.=
+3.5
+up to 4.8.10 on Fedora 23-25 x64).
+
+I have searched for multiple solutions so far, and always finished by
+blacklisting nouveau in order to be able to use that laptop.
+I could not even able to launch lspci without rendering my system unrespons=
+ive
+(process then takes 100% cpu and I get cpu softlocks)
+
+I've tried nouveau.runpm=3D0 and well, I can at least boot without having n=
+ouveau
+totally disabled :)
+
+When not using runpm=3D0, I get the following when launching lspci / or
+DRI_PRIME=3D1 glxgears
+
+[ 1470.121123] nouveau 0000:01:00.0: Refused to change power state, current=
+ly
+in D3
+[ 1470.193738] nouveau 0000:01:00.0: Refused to change power state, current=
+ly
+in D3
+[ 1470.205762] nouveau 0000:01:00.0: Refused to change power state, current=
+ly
+in D3
+[ 1470.205766] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
+[ 1470.205792] nouveau 0000:01:00.0: pci: failed to adjust cap speed
+[ 1470.205793] nouveau 0000:01:00.0: pci: failed to adjust lnkctl speed
+
+So I guess the nouveau driver cannot send to sleep / wake my nvidia card for
+whatever reason.
+
+I am actually trying rely on the discrete graphics in order to reduce power
+consumption by default.
+
+I noticed that I can't use vgaswitcheroo in order to chose my primary graph=
+ic
+card. Also noticed the following error messages on boot.
+[    1.795356] [drm] Initialized drm 1.1.0 20060810
+[    1.881362] ACPI Warning: \_SB.PCI0.GFX0._DSM: Argument #4 type mismatch=
+ -
+Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
+[    1.881428] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
+[    1.881552] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
+[    1.881753] VGA switcheroo: detected Optimus DSM method \_SB_.PCI0.PEG0.=
+PEGP
+handle
+[    1.881753] nouveau: detected PR support, will not use DSM
+
+So far, when I switch graphic cards, I get the following in dmesg:
+
+[ 1174.921195] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
+[ 1174.921209] nouveau 0000:01:00.0: DRM: resuming client object trees...
+[ 1174.921226] nouveau 0000:01:00.0: fifo: BIND_ERROR 01 [BIND_NOT_UNBOUND]
+[ 1317.637168] vga_switcheroo: client 0 refused switch
+
+I guess that nouveau driver does not allow to disable the nvidia card when
+runpm=3D0 is passed as argument ?
+
+Anything I could try please ?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14806723602.dF674.2284--
+
+--===============1348890216==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
-IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0576128843==--
+--===============1348890216==--
