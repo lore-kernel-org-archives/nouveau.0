@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
- after dynamic poweroff
-Date: Fri, 02 Dec 2016 09:52:40 +0000
-Message-ID: <bug-94725-8800-V0FUsTaXtC@http.bugs.freedesktop.org/>
-References: <bug-94725-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94727] nouveau/pushbuf.c:238: pushbuf_krel:
+ Assertion `bkref` failed.
+Date: Fri, 02 Dec 2016 10:30:30 +0000
+Message-ID: <bug-94727-8800-adXPp0nkZh@http.bugs.freedesktop.org/>
+References: <bug-94727-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1348890216=="
+Content-Type: multipart/mixed; boundary="===============0428953092=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94727-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,93 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1348890216==
-Content-Type: multipart/alternative; boundary="14806723602.dF674.2284";
+--===============0428953092==
+Content-Type: multipart/alternative; boundary="14806746301.A1eeDa2.4005";
  charset="UTF-8"
 
 
---14806723602.dF674.2284
-Date: Fri, 2 Dec 2016 09:52:40 +0000
+--14806746301.A1eeDa2.4005
+Date: Fri, 2 Dec 2016 10:30:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94725
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94727
 
---- Comment #26 from Orsiris de Jong <info-3cfOhUhRyghWj0EZb7rXcA@public.gmane.org> ---
-I too have a optimus laptop with GM107 / intel graphics card, and I have not
-been able to use nouveau driver since I bought the laptop (using kernels 4.=
-3.5
-up to 4.8.10 on Fedora 23-25 x64).
+--- Comment #5 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+This is affecting Xwayland as well, as reported downstream in Fedora 25:
 
-I have searched for multiple solutions so far, and always finished by
-blacklisting nouveau in order to be able to use that laptop.
-I could not even able to launch lspci without rendering my system unrespons=
-ive
-(process then takes 100% cpu and I get cpu softlocks)
+    https://bugzilla.redhat.com/show_bug.cgi?id=3D1372878
 
-I've tried nouveau.runpm=3D0 and well, I can at least boot without having n=
-ouveau
-totally disabled :)
-
-When not using runpm=3D0, I get the following when launching lspci / or
-DRI_PRIME=3D1 glxgears
-
-[ 1470.121123] nouveau 0000:01:00.0: Refused to change power state, current=
-ly
-in D3
-[ 1470.193738] nouveau 0000:01:00.0: Refused to change power state, current=
-ly
-in D3
-[ 1470.205762] nouveau 0000:01:00.0: Refused to change power state, current=
-ly
-in D3
-[ 1470.205766] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
-[ 1470.205792] nouveau 0000:01:00.0: pci: failed to adjust cap speed
-[ 1470.205793] nouveau 0000:01:00.0: pci: failed to adjust lnkctl speed
-
-So I guess the nouveau driver cannot send to sleep / wake my nvidia card for
-whatever reason.
-
-I am actually trying rely on the discrete graphics in order to reduce power
-consumption by default.
-
-I noticed that I can't use vgaswitcheroo in order to chose my primary graph=
-ic
-card. Also noticed the following error messages on boot.
-[    1.795356] [drm] Initialized drm 1.1.0 20060810
-[    1.881362] ACPI Warning: \_SB.PCI0.GFX0._DSM: Argument #4 type mismatch=
- -
-Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
-[    1.881428] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
-[    1.881552] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
-[    1.881753] VGA switcheroo: detected Optimus DSM method \_SB_.PCI0.PEG0.=
-PEGP
-handle
-[    1.881753] nouveau: detected PR support, will not use DSM
-
-So far, when I switch graphic cards, I get the following in dmesg:
-
-[ 1174.921195] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
-[ 1174.921209] nouveau 0000:01:00.0: DRM: resuming client object trees...
-[ 1174.921226] nouveau 0000:01:00.0: fifo: BIND_ERROR 01 [BIND_NOT_UNBOUND]
-[ 1317.637168] vga_switcheroo: client 0 refused switch
-
-I guess that nouveau driver does not allow to disable the nvidia card when
-runpm=3D0 is passed as argument ?
-
-Anything I could try please ?
+wrt comment 1, Xwayland is not using multithreaded GL, even through glamor,=
+ is
+it?
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14806723602.dF674.2284
-Date: Fri, 2 Dec 2016 09:52:40 +0000
+--14806746301.A1eeDa2.4005
+Date: Fri, 2 Dec 2016 10:30:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -123,85 +67,29 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
-c poweroff"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725#c26">Commen=
-t # 26</a>
+   title=3D"NEW - nouveau/pushbuf.c:238: pushbuf_krel: Assertion `bkref` fa=
+iled."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
-c poweroff"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725">bug 94725<=
+   title=3D"NEW - nouveau/pushbuf.c:238: pushbuf_krel: Assertion `bkref` fa=
+iled."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727">bug 94727<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-info&#64;netpower.fr" title=3D"Orsiris de Jong &lt;info&#64;netpower.fr&gt;=
-"> <span class=3D"fn">Orsiris de Jong</span></a>
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
 </span></b>
-        <pre>I too have a optimus laptop with GM107 / intel graphics card, =
-and I have not
-been able to use nouveau driver since I bought the laptop (using kernels 4.=
-3.5
-up to 4.8.10 on Fedora 23-25 x64).
+        <pre>This is affecting Xwayland as well, as reported downstream in =
+Fedora 25:
 
-I have searched for multiple solutions so far, and always finished by
-blacklisting nouveau in order to be able to use that laptop.
-I could not even able to launch lspci without rendering my system unrespons=
-ive
-(process then takes 100% cpu and I get cpu softlocks)
+    <a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1372878">https=
+://bugzilla.redhat.com/show_bug.cgi?id=3D1372878</a>
 
-I've tried nouveau.runpm=3D0 and well, I can at least boot without having n=
-ouveau
-totally disabled :)
-
-When not using runpm=3D0, I get the following when launching lspci / or
-DRI_PRIME=3D1 glxgears
-
-[ 1470.121123] nouveau 0000:01:00.0: Refused to change power state, current=
-ly
-in D3
-[ 1470.193738] nouveau 0000:01:00.0: Refused to change power state, current=
-ly
-in D3
-[ 1470.205762] nouveau 0000:01:00.0: Refused to change power state, current=
-ly
-in D3
-[ 1470.205766] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
-[ 1470.205792] nouveau 0000:01:00.0: pci: failed to adjust cap speed
-[ 1470.205793] nouveau 0000:01:00.0: pci: failed to adjust lnkctl speed
-
-So I guess the nouveau driver cannot send to sleep / wake my nvidia card for
-whatever reason.
-
-I am actually trying rely on the discrete graphics in order to reduce power
-consumption by default.
-
-I noticed that I can't use vgaswitcheroo in order to chose my primary graph=
-ic
-card. Also noticed the following error messages on boot.
-[    1.795356] [drm] Initialized drm 1.1.0 20060810
-[    1.881362] ACPI Warning: \_SB.PCI0.GFX0._DSM: Argument #4 type mismatch=
- -
-Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
-[    1.881428] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
-[    1.881552] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20160422/nsarguments-95)
-[    1.881753] VGA switcheroo: detected Optimus DSM method \_SB_.PCI0.PEG0.=
-PEGP
-handle
-[    1.881753] nouveau: detected PR support, will not use DSM
-
-So far, when I switch graphic cards, I get the following in dmesg:
-
-[ 1174.921195] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
-[ 1174.921209] nouveau 0000:01:00.0: DRM: resuming client object trees...
-[ 1174.921226] nouveau 0000:01:00.0: fifo: BIND_ERROR 01 [BIND_NOT_UNBOUND]
-[ 1317.637168] vga_switcheroo: client 0 refused switch
-
-I guess that nouveau driver does not allow to disable the nvidia card when
-runpm=3D0 is passed as argument ?
-
-Anything I could try please ?</pre>
+wrt <a href=3D"show_bug.cgi?id=3D94727#c1">comment 1</a>, Xwayland is not u=
+sing multithreaded GL, even through glamor, is
+it?</pre>
         </div>
       </p>
 
@@ -211,13 +99,14 @@ Anything I could try please ?</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14806723602.dF674.2284--
+--14806746301.A1eeDa2.4005--
 
---===============1348890216==
+--===============0428953092==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -227,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1348890216==--
+--===============0428953092==--
