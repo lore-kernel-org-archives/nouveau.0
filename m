@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
  after dynamic poweroff
-Date: Fri, 02 Dec 2016 10:54:00 +0000
-Message-ID: <bug-94725-8800-eILZfRhIYd@http.bugs.freedesktop.org/>
+Date: Fri, 02 Dec 2016 15:07:04 +0000
+Message-ID: <bug-94725-8800-HmvW8NTdxv@http.bugs.freedesktop.org/>
 References: <bug-94725-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0238651642=="
+Content-Type: multipart/mixed; boundary="===============0083102554=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0238651642==
-Content-Type: multipart/alternative; boundary="14806760394.5CD3d22CF.5482";
+--===============0083102554==
+Content-Type: multipart/alternative; boundary="14806912243.a826F6.19119";
  charset="UTF-8"
 
 
---14806760394.5CD3d22CF.5482
-Date: Fri, 2 Dec 2016 10:53:59 +0000
+--14806912243.a826F6.19119
+Date: Fri, 2 Dec 2016 15:07:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94725
 
---- Comment #27 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
-Orsiris What laptop model do you have? It sounds like you are affected by
-https://bugzilla.kernel.org/show_bug.cgi?id=3D156341
-
-See also
-https://github.com/Bumblebee-Project/Bumblebee/issues/764#issuecomment-2344=
-94238
+--- Comment #28 from Pablo Cholaky <waltercool-t2+aMKSqnzM@public.gmane.org> ---
+Can you try using pcie_port_pm=3Doff into your boot flags?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14806760394.5CD3d22CF.5482
-Date: Fri, 2 Dec 2016 10:53:59 +0000
+--14806912243.a826F6.19119
+Date: Fri, 2 Dec 2016 15:07:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,8 +62,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
 c poweroff"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725#c27">Commen=
-t # 27</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725#c28">Commen=
+t # 28</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
@@ -76,18 +71,11 @@ c poweroff"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725">bug 94725<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
-> <span class=3D"fn">Peter Wu</span></a>
+waltercool&#64;slash.cl" title=3D"Pablo Cholaky &lt;waltercool&#64;slash.cl=
+&gt;"> <span class=3D"fn">Pablo Cholaky</span></a>
 </span></b>
-        <pre>Orsiris What laptop model do you have? It sounds like you are =
-affected by
-<a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D156341">https://bu=
-gzilla.kernel.org/show_bug.cgi?id=3D156341</a>
-
-See also
-<a href=3D"https://github.com/Bumblebee-Project/Bumblebee/issues/764#issuec=
-omment-234494238">https://github.com/Bumblebee-Project/Bumblebee/issues/764=
-#issuecomment-234494238</a></pre>
+        <pre>Can you try using pcie_port_pm=3Doff into your boot flags?</pr=
+e>
         </div>
       </p>
 
@@ -101,9 +89,9 @@ omment-234494238">https://github.com/Bumblebee-Project/Bumblebee/issues/764=
     </body>
 </html>=
 
---14806760394.5CD3d22CF.5482--
+--14806912243.a826F6.19119--
 
---===============0238651642==
+--===============0083102554==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0238651642==--
+--===============0083102554==--
