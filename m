@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98980] GTX 980 (GM204)
-Date: Sat, 03 Dec 2016 02:30:14 +0000
-Message-ID: <bug-98980-8800-IWmISvhrJQ@http.bugs.freedesktop.org/>
+Subject: [Bug 98980] GTX 980 (GM204) displays only a black screen.
+Date: Sat, 03 Dec 2016 02:30:43 +0000
+Message-ID: <bug-98980-8800-vWbe9rNkeZ@http.bugs.freedesktop.org/>
 References: <bug-98980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1080764556=="
+Content-Type: multipart/mixed; boundary="===============1534700590=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1080764556==
-Content-Type: multipart/alternative; boundary="14807322130.2EBac62.20147";
+--===============1534700590==
+Content-Type: multipart/alternative; boundary="14807322421.beDABe.20556";
  charset="UTF-8"
 
 
---14807322130.2EBac62.20147
-Date: Sat, 3 Dec 2016 02:30:13 +0000
+--14807322421.beDABe.20556
+Date: Sat, 3 Dec 2016 02:30:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98980
 
---- Comment #1 from Zach Wolfe <zwolfe21-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-Created attachment 128315
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128315&action=3Dedit
-xorg.0.log
+Zach Wolfe <zwolfe21-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|GTX 980 (GM204)             |GTX 980 (GM204) displays
+                   |                            |only a black screen.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14807322130.2EBac62.20147
-Date: Sat, 3 Dec 2016 02:30:13 +0000
+--14807322421.beDABe.20556
+Date: Sat, 3 Dec 2016 02:30:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,29 +58,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:zwolfe21&=
+#64;hotmail.com" title=3D"Zach Wolfe &lt;zwolfe21&#64;hotmail.com&gt;"> <sp=
+an class=3D"fn">Zach Wolfe</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GTX 980 (GM204)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98980#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GTX 980 (GM204)"
+   title=3D"NEW - GTX 980 (GM204) displays only a black screen."
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98980">bug 98980<=
 /a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-zwolfe21&#64;hotmail.com" title=3D"Zach Wolfe &lt;zwolfe21&#64;hotmail.com&=
-gt;"> <span class=3D"fn">Zach Wolfe</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128315=
-" name=3D"attach_128315" title=3D"xorg.0.log">attachment 128315</a> <a href=
-=3D"attachment.cgi?id=3D128315&amp;action=3Dedit" title=3D"xorg.0.log">[det=
-ails]</a></span>
-xorg.0.log</pre>
-        </div>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>GTX 980 (GM204)
+           </td>
+           <td>GTX 980 (GM204) displays only a black screen.
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -91,9 +95,9 @@ xorg.0.log</pre>
     </body>
 </html>=
 
---14807322130.2EBac62.20147--
+--14807322421.beDABe.20556--
 
---===============1080764556==
+--===============1534700590==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1080764556==--
+--===============1534700590==--
