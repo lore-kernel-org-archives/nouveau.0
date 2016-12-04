@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
 	(v4.6+)
-Date: Sun, 04 Dec 2016 19:49:51 +0000
-Message-ID: <bug-94990-8800-bc7HHld738@http.bugs.freedesktop.org/>
+Date: Sun, 04 Dec 2016 20:25:27 +0000
+Message-ID: <bug-94990-8800-nCT0M4nhoL@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1742922965=="
+Content-Type: multipart/mixed; boundary="===============0885887860=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1742922965==
-Content-Type: multipart/alternative; boundary="14808809900.eAAa46b62.21790";
+--===============0885887860==
+Content-Type: multipart/alternative; boundary="14808831273.f4D5C.23573";
  charset="UTF-8"
 
 
---14808809900.eAAa46b62.21790
-Date: Sun, 4 Dec 2016 19:49:50 +0000
+--14808831273.f4D5C.23573
+Date: Sun, 4 Dec 2016 20:25:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,32 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #101 from Bernie Innocenti <bernie-+SBua99wBSpAfugRpC6u6w@public.gmane.org> ---
-I tested 0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch wi=
-th
-4.9.0-rc7 and it correctly initializes the console at 3840x2160 @ 30Hz (for
-some reason, the 60Hz mode is not detected).
-
-I also tried the patch on top of drm-next (which as of today is still based=
- on
-4.9.0-rc5), but all I got a blank screen. This branch has other stability
-issues, so it's not necessarily a nouveau regression.
-
-With 4.9.0-rc7, I can start Xorg, but xf86-video-nouveau fails to initializ=
-e:
-
- [   336.771] (II) [drm] nouveau interface version: 1.3.1
- [   336.771] (EE) Unknown chipset: NV124
-
-This is expected, since GM20x acceleration landed after
-xf86-video-nouveau-1.0.13. I'll try rebuilding from head and report back.
+--- Comment #102 from Bernie Innocenti <bernie-+SBua99wBSpAfugRpC6u6w@public.gmane.org> ---
+Created attachment 128333
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128333&action=3Dedit
+Xorg log on GTX970 4GB with 4.9.0-rc7 and xf86-video-nouveau from HEAD
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14808809900.eAAa46b62.21790
-Date: Sun, 4 Dec 2016 19:49:50 +0000
+--14808831273.f4D5C.23573
+Date: Sun, 4 Dec 2016 20:25:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c101">Comme=
-nt # 101</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c102">Comme=
+nt # 102</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
@@ -89,26 +74,12 @@ nt # 101</a>
 bernie&#64;codewiz.org" title=3D"Bernie Innocenti &lt;bernie&#64;codewiz.or=
 g&gt;"> <span class=3D"fn">Bernie Innocenti</span></a>
 </span></b>
-        <pre>I tested 0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-siz=
-e-ca.patch with
-4.9.0-rc7 and it correctly initializes the console at 3840x2160 &#64; 30Hz =
-(for
-some reason, the 60Hz mode is not detected).
-
-I also tried the patch on top of drm-next (which as of today is still based=
- on
-4.9.0-rc5), but all I got a blank screen. This branch has other stability
-issues, so it's not necessarily a nouveau regression.
-
-With 4.9.0-rc7, I can start Xorg, but xf86-video-nouveau fails to initializ=
-e:
-
- [   336.771] (II) [drm] nouveau interface version: 1.3.1
- [   336.771] (EE) Unknown chipset: NV124
-
-This is expected, since GM20x acceleration landed after
-xf86-video-nouveau-1.0.13. I'll try rebuilding from head and report back.</=
-pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128333=
+" name=3D"attach_128333" title=3D"Xorg log on GTX970 4GB with 4.9.0-rc7 and=
+ xf86-video-nouveau from HEAD">attachment 128333</a> <a href=3D"attachment.=
+cgi?id=3D128333&amp;action=3Dedit" title=3D"Xorg log on GTX970 4GB with 4.9=
+.0-rc7 and xf86-video-nouveau from HEAD">[details]</a></span>
+Xorg log on GTX970 4GB with 4.9.0-rc7 and xf86-video-nouveau from HEAD</pre>
         </div>
       </p>
 
@@ -122,9 +93,9 @@ pre>
     </body>
 </html>=
 
---14808809900.eAAa46b62.21790--
+--14808831273.f4D5C.23573--
 
---===============1742922965==
+--===============0885887860==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1742922965==--
+--===============0885887860==--
