@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
- after dynamic poweroff
-Date: Sun, 04 Dec 2016 09:09:19 +0000
-Message-ID: <bug-94725-8800-NalnIgZlYV@http.bugs.freedesktop.org/>
-References: <bug-94725-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Sun, 04 Dec 2016 19:49:51 +0000
+Message-ID: <bug-94990-8800-bc7HHld738@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0515112865=="
+Content-Type: multipart/mixed; boundary="===============1742922965=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,52 +21,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0515112865==
-Content-Type: multipart/alternative; boundary="14808425594.5c5c.19109";
+--===============1742922965==
+Content-Type: multipart/alternative; boundary="14808809900.eAAa46b62.21790";
  charset="UTF-8"
 
 
---14808425594.5c5c.19109
-Date: Sun, 4 Dec 2016 09:09:19 +0000
+--14808809900.eAAa46b62.21790
+Date: Sun, 4 Dec 2016 19:49:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94725
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #29 from Orsiris de Jong <info-3cfOhUhRyghWj0EZb7rXcA@public.gmane.org> ---
-@Peter I have a MSI GE62 6QD (skylake i67-700HQ) which is on the list of bo=
+--- Comment #101 from Bernie Innocenti <bernie-+SBua99wBSpAfugRpC6u6w@public.gmane.org> ---
+I tested 0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch wi=
 th
-links you gave me.
-Using acpi_osi=3D! acpi_osi=3D"Windows 2009", I can launch lspci, but the s=
-ystem
-freezes a minute or so later with=20
+4.9.0-rc7 and it correctly initializes the console at 3840x2160 @ 30Hz (for
+some reason, the 60Hz mode is not detected).
 
-[   92.249957] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
-[   92.337917] nouveau 0000:01:00.0: DRM: resuming client object trees...
-[   98.017700] nouveau 0000:01:00.0: DRM: evicting buffers...
-[   98.017704] nouveau 0000:01:00.0: DRM: waiting for kernel channels to go
-idle...
-[   98.017726] nouveau 0000:01:00.0: DRM: suspending client object trees...
-[   98.020446] nouveau 0000:01:00.0: DRM: suspending kernel object tree...
-[   98.617684] nouveau 0000:01:00.0: priv: HUB0: 10ecc0 ffffffff (1e40822c)
+I also tried the patch on top of drm-next (which as of today is still based=
+ on
+4.9.0-rc5), but all I got a blank screen. This branch has other stability
+issues, so it's not necessarily a nouveau regression.
 
-followed by a cpu lock.
+With 4.9.0-rc7, I can start Xorg, but xf86-video-nouveau fails to initializ=
+e:
 
-Is there any debug info I can provide ?
+ [   336.771] (II) [drm] nouveau interface version: 1.3.1
+ [   336.771] (EE) Unknown chipset: NV124
 
-@Pablo I have tried pcie_port_pm=3Doff alone or together with the acpi_osi =
-boot
-flags, but it doesn't seem to make any difference.
+This is expected, since GM20x acceleration landed after
+xf86-video-nouveau-1.0.13. I'll try rebuilding from head and report back.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14808425594.5c5c.19109
-Date: Sun, 4 Dec 2016 09:09:19 +0000
+--14808809900.eAAa46b62.21790
+Date: Sun, 4 Dec 2016 19:49:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -82,43 +77,38 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
-c poweroff"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725#c29">Commen=
-t # 29</a>
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c101">Comme=
+nt # 101</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
-c poweroff"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725">bug 94725<=
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-info&#64;netpower.fr" title=3D"Orsiris de Jong &lt;info&#64;netpower.fr&gt;=
-"> <span class=3D"fn">Orsiris de Jong</span></a>
+bernie&#64;codewiz.org" title=3D"Bernie Innocenti &lt;bernie&#64;codewiz.or=
+g&gt;"> <span class=3D"fn">Bernie Innocenti</span></a>
 </span></b>
-        <pre>&#64;Peter I have a MSI GE62 6QD (skylake i67-700HQ) which is =
-on the list of both
-links you gave me.
-Using acpi_osi=3D! acpi_osi=3D&quot;Windows 2009&quot;, I can launch lspci,=
- but the system
-freezes a minute or so later with=20
+        <pre>I tested 0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-siz=
+e-ca.patch with
+4.9.0-rc7 and it correctly initializes the console at 3840x2160 &#64; 30Hz =
+(for
+some reason, the 60Hz mode is not detected).
 
-[   92.249957] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
-[   92.337917] nouveau 0000:01:00.0: DRM: resuming client object trees...
-[   98.017700] nouveau 0000:01:00.0: DRM: evicting buffers...
-[   98.017704] nouveau 0000:01:00.0: DRM: waiting for kernel channels to go
-idle...
-[   98.017726] nouveau 0000:01:00.0: DRM: suspending client object trees...
-[   98.020446] nouveau 0000:01:00.0: DRM: suspending kernel object tree...
-[   98.617684] nouveau 0000:01:00.0: priv: HUB0: 10ecc0 ffffffff (1e40822c)
+I also tried the patch on top of drm-next (which as of today is still based=
+ on
+4.9.0-rc5), but all I got a blank screen. This branch has other stability
+issues, so it's not necessarily a nouveau regression.
 
-followed by a cpu lock.
+With 4.9.0-rc7, I can start Xorg, but xf86-video-nouveau fails to initializ=
+e:
 
-Is there any debug info I can provide ?
+ [   336.771] (II) [drm] nouveau interface version: 1.3.1
+ [   336.771] (EE) Unknown chipset: NV124
 
-&#64;Pablo I have tried pcie_port_pm=3Doff alone or together with the acpi_=
-osi boot
-flags, but it doesn't seem to make any difference.</pre>
+This is expected, since GM20x acceleration landed after
+xf86-video-nouveau-1.0.13. I'll try rebuilding from head and report back.</=
+pre>
         </div>
       </p>
 
@@ -132,9 +122,9 @@ flags, but it doesn't seem to make any difference.</pre>
     </body>
 </html>=
 
---14808425594.5c5c.19109--
+--14808809900.eAAa46b62.21790--
 
---===============0515112865==
+--===============1742922965==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -144,4 +134,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0515112865==--
+--===============1742922965==--
