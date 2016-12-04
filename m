@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98980] GTX 980 (GM204) displays only a black screen.
-Date: Sat, 03 Dec 2016 02:30:43 +0000
-Message-ID: <bug-98980-8800-vWbe9rNkeZ@http.bugs.freedesktop.org/>
-References: <bug-98980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
+ after dynamic poweroff
+Date: Sun, 04 Dec 2016 09:09:19 +0000
+Message-ID: <bug-94725-8800-NalnIgZlYV@http.bugs.freedesktop.org/>
+References: <bug-94725-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1534700590=="
+Content-Type: multipart/mixed; boundary="===============0515112865=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,52 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1534700590==
-Content-Type: multipart/alternative; boundary="14807322421.beDABe.20556";
+--===============0515112865==
+Content-Type: multipart/alternative; boundary="14808425594.5c5c.19109";
  charset="UTF-8"
 
 
---14807322421.beDABe.20556
-Date: Sat, 3 Dec 2016 02:30:42 +0000
+--14808425594.5c5c.19109
+Date: Sun, 4 Dec 2016 09:09:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98980
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94725
 
-Zach Wolfe <zwolfe21-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> changed:
+--- Comment #29 from Orsiris de Jong <info-3cfOhUhRyghWj0EZb7rXcA@public.gmane.org> ---
+@Peter I have a MSI GE62 6QD (skylake i67-700HQ) which is on the list of bo=
+th
+links you gave me.
+Using acpi_osi=3D! acpi_osi=3D"Windows 2009", I can launch lspci, but the s=
+ystem
+freezes a minute or so later with=20
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|GTX 980 (GM204)             |GTX 980 (GM204) displays
-                   |                            |only a black screen.
+[   92.249957] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
+[   92.337917] nouveau 0000:01:00.0: DRM: resuming client object trees...
+[   98.017700] nouveau 0000:01:00.0: DRM: evicting buffers...
+[   98.017704] nouveau 0000:01:00.0: DRM: waiting for kernel channels to go
+idle...
+[   98.017726] nouveau 0000:01:00.0: DRM: suspending client object trees...
+[   98.020446] nouveau 0000:01:00.0: DRM: suspending kernel object tree...
+[   98.617684] nouveau 0000:01:00.0: priv: HUB0: 10ecc0 ffffffff (1e40822c)
+
+followed by a cpu lock.
+
+Is there any debug info I can provide ?
+
+@Pablo I have tried pcie_port_pm=3Doff alone or together with the acpi_osi =
+boot
+flags, but it doesn't seem to make any difference.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14807322421.beDABe.20556
-Date: Sat, 3 Dec 2016 02:30:42 +0000
+--14808425594.5c5c.19109
+Date: Sun, 4 Dec 2016 09:09:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,31 +77,49 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:zwolfe21&=
-#64;hotmail.com" title=3D"Zach Wolfe &lt;zwolfe21&#64;hotmail.com&gt;"> <sp=
-an class=3D"fn">Zach Wolfe</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GTX 980 (GM204) displays only a black screen."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98980">bug 98980<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>GTX 980 (GM204)
-           </td>
-           <td>GTX 980 (GM204) displays only a black screen.
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
+c poweroff"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725#c29">Commen=
+t # 29</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
+c poweroff"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725">bug 94725<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+info&#64;netpower.fr" title=3D"Orsiris de Jong &lt;info&#64;netpower.fr&gt;=
+"> <span class=3D"fn">Orsiris de Jong</span></a>
+</span></b>
+        <pre>&#64;Peter I have a MSI GE62 6QD (skylake i67-700HQ) which is =
+on the list of both
+links you gave me.
+Using acpi_osi=3D! acpi_osi=3D&quot;Windows 2009&quot;, I can launch lspci,=
+ but the system
+freezes a minute or so later with=20
+
+[   92.249957] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
+[   92.337917] nouveau 0000:01:00.0: DRM: resuming client object trees...
+[   98.017700] nouveau 0000:01:00.0: DRM: evicting buffers...
+[   98.017704] nouveau 0000:01:00.0: DRM: waiting for kernel channels to go
+idle...
+[   98.017726] nouveau 0000:01:00.0: DRM: suspending client object trees...
+[   98.020446] nouveau 0000:01:00.0: DRM: suspending kernel object tree...
+[   98.617684] nouveau 0000:01:00.0: priv: HUB0: 10ecc0 ffffffff (1e40822c)
+
+followed by a cpu lock.
+
+Is there any debug info I can provide ?
+
+&#64;Pablo I have tried pcie_port_pm=3Doff alone or together with the acpi_=
+osi boot
+flags, but it doesn't seem to make any difference.</pre>
+        </div>
       </p>
 
 
@@ -95,9 +132,9 @@ an class=3D"fn">Zach Wolfe</span></a>
     </body>
 </html>=
 
---14807322421.beDABe.20556--
+--14808425594.5c5c.19109--
 
---===============1534700590==
+--===============0515112865==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +144,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1534700590==--
+--===============0515112865==--
