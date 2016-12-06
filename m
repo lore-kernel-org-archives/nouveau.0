@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94727] [NV30/NV40] nouveau/pushbuf.c:238:
  pushbuf_krel: Assertion `bkref` failed.
-Date: Tue, 06 Dec 2016 19:22:53 +0000
-Message-ID: <bug-94727-8800-5xm6OkCazn@http.bugs.freedesktop.org/>
+Date: Tue, 06 Dec 2016 19:42:15 +0000
+Message-ID: <bug-94727-8800-YLTgMETFEI@http.bugs.freedesktop.org/>
 References: <bug-94727-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0111829666=="
+Content-Type: multipart/mixed; boundary="===============0742680489=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94727-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0111829666==
-Content-Type: multipart/alternative; boundary="14810521731.A68B.18475";
+--===============0742680489==
+Content-Type: multipart/alternative; boundary="14810533350.1473DCfD.19662";
  charset="UTF-8"
 
 
---14810521731.A68B.18475
-Date: Tue, 6 Dec 2016 19:22:53 +0000
+--14810533350.1473DCfD.19662
+Date: Tue, 6 Dec 2016 19:42:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,22 +36,29 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94727
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OK, well staring at the code didn't do me much good.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|nouveau/pushbuf.c:238:      |[NV30/NV40]
-                   |pushbuf_krel: Assertion     |nouveau/pushbuf.c:238:
-                   |`bkref` failed.             |pushbuf_krel: Assertion
-                   |                            |`bkref` failed.
+bkref =3D=3D NULL means that the pushbuf thing doesn't know about the bo we=
+'re
+trying to reloc. However just a few lines above in nv30_transfer_rect_m2mf =
+we
+do
+
+nouveau_pushbuf_refn (push, refs, 2)
+
+which should tell it about the src/dst bo's. So either there's concurrency
+going on, or something's not working as advertised. In the no-concurrency c=
+ase,
+I'd need repro steps (that can't start with "install tons of software").
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14810521731.A68B.18475
-Date: Tue, 6 Dec 2016 19:22:53 +0000
+--14810533350.1473DCfD.19662
+Date: Tue, 6 Dec 2016 19:42:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,34 +69,41 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
+n `bkref` failed."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727#c8">Comment=
+ # 8</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
 n `bkref` failed."
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727">bug 94727<=
 /a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>OK, well staring at the code didn't do me much good.
 
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>nouveau/pushbuf.c:238: pushbuf_krel: Assertion `bkref` faile=
-d.
-           </td>
-           <td>[NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertion `=
-bkref` failed.
-           </td>
-         </tr></table>
-      <p>
+bkref =3D=3D NULL means that the pushbuf thing doesn't know about the bo we=
+'re
+trying to reloc. However just a few lines above in nv30_transfer_rect_m2mf =
+we
+do
+
+nouveau_pushbuf_refn (push, refs, 2)
+
+which should tell it about the src/dst bo's. So either there's concurrency
+going on, or something's not working as advertised. In the no-concurrency c=
+ase,
+I'd need repro steps (that can't start with &quot;install tons of software&=
+quot;).</pre>
+        </div>
       </p>
 
 
@@ -103,9 +117,9 @@ bkref` failed.
     </body>
 </html>=
 
---14810521731.A68B.18475--
+--14810533350.1473DCfD.19662--
 
---===============0111829666==
+--===============0742680489==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +129,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0111829666==--
+--===============0742680489==--
