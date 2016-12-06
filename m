@@ -1,14 +1,13 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 3/8] core: add falcon library functions
-Date: Tue, 6 Dec 2016 15:09:10 +0900
-Message-ID: <281a1592-4ff3-b16b-31f8-81f342e0d583@nvidia.com>
-References: <cover.d0407ffec0fa8bbe14086a57d7950511a9644333.1480998636.git-series.acourbot@nvidia.com>
- <51a1ce4d20a1511ec870a50169b3688bff7d1de7.1480998636.git-series.acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91954] "link training failed": nouveau does not
+ recover from monitor suspend
+Date: Tue, 06 Dec 2016 12:50:30 +0000
+Message-ID: <bug-91954-8800-i5Wn5FCJNn@http.bugs.freedesktop.org/>
+References: <bug-91954-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0268715229=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <51a1ce4d20a1511ec870a50169b3688bff7d1de7.1480998636.git-series.acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-91954-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,51 +17,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T29wcywgcmVhbGl6ZWQgSSBtYWRlIGEgbGFzdCBtaW51dGUgbWlzdGFrZSAtIHRoZSBmb2xsb3dp
-bmcgc2hvdWxkIGJlCnNxdWFzaGVkIGludG8gdGhpcyBwYXRjaCBmb3IgcHJvcGVyIGJlaGF2aW9y
-IHdoZW4gc2VjdXJlIGJvb3QgaXMgdXNlZC4KU29ycnkgZm9yIHRoZSBpbmNvbnZlbmllbmNlLgoK
-ZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZmFsY29uL2Jhc2UuYyBiL2RybS9ub3V2ZWF1
-L252a20vZmFsY29uL2Jhc2UuYwppbmRleCBlZmVmOWZjNjM0MDcuLjc1NjYzYmQxZjY1MCAxMDA2
-NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9mYWxjb24vYmFzZS5jCisrKyBiL2RybS9ub3V2ZWF1
-L252a20vZmFsY29uL2Jhc2UuYwpAQCAtMTAzLDEwICsxMDMsNyBAQCBudmttX2ZhbGNvbl9nZXQo
-Y29uc3Qgc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYsCmVudW0gbnZrbV9mYWxjb25pZHggaWQp
-CiAJCXJlZyA9IG52a21fcmQzMihkZXZpY2UsIGZhbGNvbi0+YWRkciArIDB4YzA4KTsKIAkJZmFs
-Y29uLT5kZWJ1ZyA9IChyZWcgPj4gMjApICYgMHgxOwoKLQkJaWYgKGZhbGNvbi0+c2VjcmV0ID09
-IDApCi0JCQlmYWxjb24tPmZ1bmMgPSAmbnZrbV9mYWxjb25fdjFfZnVuYzsKLQkJZWxzZQotCQkJ
-ZmFsY29uLT5mdW5jID0gJm52a21fZmFsY29uX3YxX3NlY3VyZV9mdW5jOworCQlmYWxjb24tPmZ1
-bmMgPSAmbnZrbV9mYWxjb25fdjFfZnVuYzsKCiAJCWxpc3RfYWRkKCZmYWxjb24tPmhlYWQsICZk
-ZXZpY2UtPmZhbGNvbnMpOwogCX0gZWxzZSBpZiAoZmFsY29uLT5zdWJkZXYpIHsKZGlmZiAtLWdp
-dCBhL2RybS9ub3V2ZWF1L252a20vZmFsY29uL2ZhbGNvbl92MS5jCmIvZHJtL25vdXZlYXUvbnZr
-bS9mYWxjb24vZmFsY29uX3YxLmMKaW5kZXggMjVhNzkxZjBmYjlhLi5hZTZhNjA5OGUwOTggMTAw
-NjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vZmFsY29uL2ZhbGNvbl92MS5jCisrKyBiL2RybS9u
-b3V2ZWF1L252a20vZmFsY29uL2ZhbGNvbl92MS5jCkBAIC0xMTUsMTIgKzExNSw2IEBAIG52a21f
-ZmFsY29uX3YxX3NldF9zdGFydF9hZGRyKHN0cnVjdCBudmttX2ZhbGNvbgoqZmFsY29uLCB1MzIg
-c3RhcnRfYWRkcikKIHN0YXRpYyB2b2lkCiBudmttX2ZhbGNvbl92MV9zdGFydChzdHJ1Y3QgbnZr
-bV9mYWxjb24gKmZhbGNvbikKIHsKLQludmttX2ZhbGNvbl93cjMyKGZhbGNvbiwgMHgxMDAsIDB4
-Mik7Ci19Ci0KLXN0YXRpYyB2b2lkCi1udmttX2ZhbGNvbl92MV9zZWN1cmVfc3RhcnQoc3RydWN0
-IG52a21fZmFsY29uICpmYWxjb24pCi17CiAJdTMyIHJlZyA9IG52a21fZmFsY29uX3JkMzIoZmFs
-Y29uLCAweDEwMCk7CgogCWlmIChyZWcgJiBCSVQoNikpCkBAIC0xOTcsMTYgKzE5MSwzIEBAIG52
-a21fZmFsY29uX3YxX2Z1bmMgPSB7CiAJLmRpc2FibGUgPSBudmttX2ZhbGNvbl92MV9kaXNhYmxl
-LAogCS5zZXRfc3RhcnRfYWRkciA9IG52a21fZmFsY29uX3YxX3NldF9zdGFydF9hZGRyLAogfTsK
-LQotY29uc3Qgc3RydWN0IG52a21fZmFsY29uX2Z1bmMKLW52a21fZmFsY29uX3YxX3NlY3VyZV9m
-dW5jID0gewotCS5sb2FkX2ltZW0gPSBudmttX2ZhbGNvbl92MV9sb2FkX2ltZW0sCi0JLmxvYWRf
-ZG1lbSA9IG52a21fZmFsY29uX3YxX2xvYWRfZG1lbSwKLQkucmVhZF9kbWVtID0gbnZrbV9mYWxj
-b25fdjFfcmVhZF9kbWVtLAotCS5iaW5kX2NvbnRleHQgPSBudmttX2ZhbGNvbl92MV9iaW5kX2Nv
-bnRleHQsCi0JLnN0YXJ0ID0gbnZrbV9mYWxjb25fdjFfc2VjdXJlX3N0YXJ0LAotCS53YWl0X2Zv
-cl9oYWx0ID0gbnZrbV9mYWxjb25fdjFfd2FpdF9mb3JfaGFsdCwKLQkuZW5hYmxlID0gbnZrbV9m
-YWxjb25fdjFfZW5hYmxlLAotCS5kaXNhYmxlID0gbnZrbV9mYWxjb25fdjFfZGlzYWJsZSwKLQku
-c2V0X3N0YXJ0X2FkZHIgPSBudmttX2ZhbGNvbl92MV9zZXRfc3RhcnRfYWRkciwKLX07CmRpZmYg
-LS1naXQgYS9kcm0vbm91dmVhdS9udmttL2ZhbGNvbi9wcml2LmggYi9kcm0vbm91dmVhdS9udmtt
-L2ZhbGNvbi9wcml2LmgKaW5kZXggZjMwNzI5ZjE0YWQzLi4zNDdkYzYxYThhNDEgMTAwNjQ0Ci0t
-LSBhL2RybS9ub3V2ZWF1L252a20vZmFsY29uL3ByaXYuaAorKysgYi9kcm0vbm91dmVhdS9udmtt
-L2ZhbGNvbi9wcml2LmgKQEAgLTI2LDYgKzI2LDUgQEAKICNpbmNsdWRlIDxlbmdpbmUvZmFsY29u
-Lmg+CgogZXh0ZXJuIGNvbnN0IHN0cnVjdCBudmttX2ZhbGNvbl9mdW5jIG52a21fZmFsY29uX3Yx
-X2Z1bmM7Ci1leHRlcm4gY29uc3Qgc3RydWN0IG52a21fZmFsY29uX2Z1bmMgbnZrbV9mYWxjb25f
-djFfc2VjdXJlX2Z1bmM7CgogI2VuZGlmCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQo=
+
+--===============0268715229==
+Content-Type: multipart/alternative; boundary="14810286303.BcE0.27850";
+ charset="UTF-8"
+
+
+--14810286303.BcE0.27850
+Date: Tue, 6 Dec 2016 12:50:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91954
+
+--- Comment #11 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+We are trying to push in DRM link-status that will allow the userspace to r=
+eact
+to errors like this.
+
+I may be convinced to add support for this in Nouveau-drm and -nouveau, sin=
+ce I
+studied it and have patches for -modesetting already.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14810286303.BcE0.27850
+Date: Tue, 6 Dec 2016 12:50:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - &quot;link training failed&quot;: nouveau does not recove=
+r from monitor suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91954#c11">Commen=
+t # 11</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - &quot;link training failed&quot;: nouveau does not recove=
+r from monitor suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91954">bug 91954<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
+r&gt;"> <span class=3D"fn">Martin Peres</span></a>
+</span></b>
+        <pre>We are trying to push in DRM link-status that will allow the u=
+serspace to react
+to errors like this.
+
+I may be convinced to add support for this in Nouveau-drm and -nouveau, sin=
+ce I
+studied it and have patches for -modesetting already.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14810286303.BcE0.27850--
+
+--===============0268715229==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0268715229==--
