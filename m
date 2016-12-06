@@ -1,9 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98997] New: Invalid ioctl during Xorg startup
-Date: Mon, 05 Dec 2016 12:20:46 +0000
-Message-ID: <bug-98997-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 0/8] Falcon library
+Date: Tue, 6 Dec 2016 14:35:37 +0900
+Message-ID: <cover.d0407ffec0fa8bbe14086a57d7950511a9644333.1480998636.git-series.acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0270658088=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -14,304 +15,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0270658088==
-Content-Type: multipart/alternative; boundary="14809404460.e99B1d.10937";
- charset="UTF-8"
-
-
---14809404460.e99B1d.10937
-Date: Mon, 5 Dec 2016 12:20:46 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98997
-
-            Bug ID: 98997
-           Summary: Invalid ioctl during Xorg startup
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: reptm-O5WfVfzUwx8@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-OS:    Ubuntu 16.10
-Kernel: 4.8.0-28-generic
-xorg-server: 1.18.4
-cpu: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
-
-
-After connecting UDL device and restarting Xorg, Xorg tries to send invalid
-ioctl to that device.
-
-Looks like Xorg enumerates existing drm devices and performs driver's
-platformprobe function on them regardless of their type.
-
-syslog:
-Dec  5 11:31:55 kernel: [ 1026.543315] [drm:drm_stub_open]
-Dec  5 11:31:55 kernel: [ 1026.543317] [drm:drm_open_helper] pid =3D 4642, =
-minor
-=3D 0
-Dec  5 11:31:55 kernel: [ 1026.543341] [drm:drm_setup]
-Dec  5 11:31:55 kernel: [ 1026.543349] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, DRM_IOCTL_VERSION
-Dec  5 11:31:55 kernel: [ 1026.543351] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, DRM_IOCTL_VERSION
-Dec  5 11:31:55 kernel: [ 1026.543355] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, NOUVEAU_GETPARAM
-Dec  5 11:31:55 kernel: [ 1026.543357] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, NOUVEAU_GETPARAM
-Dec  5 11:31:55 kernel: [ 1026.543358] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, NOUVEAU_GETPARAM
-Dec  5 11:31:55 kernel: [ 1026.543359] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, NOUVEAU_GETPARAM
-Dec  5 11:31:55 kernel: [ 1026.543362] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, DRM_IOCTL_VERSION
-Dec  5 11:31:55 kernel: [ 1026.543364] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, DRM_IOCTL_VERSION
-Dec  5 11:31:55 kernel: [ 1026.543393] [drm:drm_release] open_count =3D 1
-Dec  5 11:31:55 kernel: [ 1026.543394] [drm:drm_release] pid =3D 4642, devi=
-ce =3D
-0xe200, open_count =3D 1
-Dec  5 11:31:55 kernel: [ 1026.543401] [drm:drm_lastclose]
-Dec  5 11:31:55 kernel: [ 1026.543401] [drm:drm_lastclose] driver lastclose
-completed
-Dec  5 11:31:55 kernel: [ 1026.543414] [drm:drm_stub_open]
-Dec  5 11:31:55 kernel: [ 1026.543415] [drm:drm_open_helper] pid =3D 4642, =
-minor
-=3D 2
-Dec  5 11:31:55 kernel: [ 1026.543416] [drm:drm_setup]
-Dec  5 11:31:55 kernel: [ 1026.543418] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e202,
-auth=3D1, DRM_IOCTL_VERSION
-Dec  5 11:31:55 kernel: [ 1026.543419] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e202,
-auth=3D1, DRM_IOCTL_VERSION
-Dec  5 11:31:55 kernel: [ 1026.543421] [drm:drm_ioctl] invalid ioctl: pid=
-=3D4642,
-dev=3D0xe202, auth=3D1, cmd=3D0xc0106440, nr=3D0x40
-Dec  5 11:31:55 kernel: [ 1026.543422] [drm:drm_ioctl] ret =3D -22
-Dec  5 11:31:55 kernel: [ 1026.543425] [drm:drm_release] open_count =3D 1
-Dec  5 11:31:55 kernel: [ 1026.543426] [drm:drm_release] pid =3D 4642, devi=
-ce =3D
-0xe202, open_count =3D 1
-Dec  5 11:31:55 kernel: [ 1026.543427] [drm:drm_lastclose]
-Dec  5 11:31:55 kernel: [ 1026.543427] [drm:drm_lastclose] driver lastclose
-completed
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14809404460.e99B1d.10937
-Date: Mon, 5 Dec 2016 12:20:46 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Invalid ioctl during Xorg startup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98997">98997</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Invalid ioctl during Xorg startup
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>reptm&#64;mail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>OS:    Ubuntu 16.10
-Kernel: 4.8.0-28-generic
-xorg-server: 1.18.4
-cpu: Intel(R) Core(TM) i7-3720QM CPU &#64; 2.60GHz
-
-
-After connecting UDL device and restarting Xorg, Xorg tries to send invalid
-ioctl to that device.
-
-Looks like Xorg enumerates existing drm devices and performs driver's
-platformprobe function on them regardless of their type.
-
-syslog:
-Dec  5 11:31:55 kernel: [ 1026.543315] [drm:drm_stub_open]
-Dec  5 11:31:55 kernel: [ 1026.543317] [drm:drm_open_helper] pid =3D 4642, =
-minor
-=3D 0
-Dec  5 11:31:55 kernel: [ 1026.543341] [drm:drm_setup]
-Dec  5 11:31:55 kernel: [ 1026.543349] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, DRM_IOCTL_VERSION
-Dec  5 11:31:55 kernel: [ 1026.543351] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, DRM_IOCTL_VERSION
-Dec  5 11:31:55 kernel: [ 1026.543355] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, NOUVEAU_GETPARAM
-Dec  5 11:31:55 kernel: [ 1026.543357] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, NOUVEAU_GETPARAM
-Dec  5 11:31:55 kernel: [ 1026.543358] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, NOUVEAU_GETPARAM
-Dec  5 11:31:55 kernel: [ 1026.543359] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, NOUVEAU_GETPARAM
-Dec  5 11:31:55 kernel: [ 1026.543362] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, DRM_IOCTL_VERSION
-Dec  5 11:31:55 kernel: [ 1026.543364] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e200,
-auth=3D1, DRM_IOCTL_VERSION
-Dec  5 11:31:55 kernel: [ 1026.543393] [drm:drm_release] open_count =3D 1
-Dec  5 11:31:55 kernel: [ 1026.543394] [drm:drm_release] pid =3D 4642, devi=
-ce =3D
-0xe200, open_count =3D 1
-Dec  5 11:31:55 kernel: [ 1026.543401] [drm:drm_lastclose]
-Dec  5 11:31:55 kernel: [ 1026.543401] [drm:drm_lastclose] driver lastclose
-completed
-Dec  5 11:31:55 kernel: [ 1026.543414] [drm:drm_stub_open]
-Dec  5 11:31:55 kernel: [ 1026.543415] [drm:drm_open_helper] pid =3D 4642, =
-minor
-=3D 2
-Dec  5 11:31:55 kernel: [ 1026.543416] [drm:drm_setup]
-Dec  5 11:31:55 kernel: [ 1026.543418] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e202,
-auth=3D1, DRM_IOCTL_VERSION
-Dec  5 11:31:55 kernel: [ 1026.543419] [drm:drm_ioctl] pid=3D4642, dev=3D0x=
-e202,
-auth=3D1, DRM_IOCTL_VERSION
-Dec  5 11:31:55 kernel: [ 1026.543421] [drm:drm_ioctl] invalid ioctl: pid=
-=3D4642,
-dev=3D0xe202, auth=3D1, cmd=3D0xc0106440, nr=3D0x40
-Dec  5 11:31:55 kernel: [ 1026.543422] [drm:drm_ioctl] ret =3D -22
-Dec  5 11:31:55 kernel: [ 1026.543425] [drm:drm_release] open_count =3D 1
-Dec  5 11:31:55 kernel: [ 1026.543426] [drm:drm_release] pid =3D 4642, devi=
-ce =3D
-0xe202, open_count =3D 1
-Dec  5 11:31:55 kernel: [ 1026.543427] [drm:drm_lastclose]
-Dec  5 11:31:55 kernel: [ 1026.543427] [drm:drm_lastclose] driver lastclose
-completed</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14809404460.e99B1d.10937--
-
---===============0270658088==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0270658088==--
+VGhpcyB3YXMgdGhlIGZpcnN0IHN0ZXAgb2YgdGhlIHNlY3VyZSBib290IHJlZmFjdG9yaW5nIC0g
+YXMgQmVuIGFza2VkIGZvciBzb21lCmZpeGVzLCBJIG5vdyBzdWJtaXQgaXQgYXMgaXRzIG93biBz
+ZXJpZXMgdG8gbWFrZSBpdCBlYXNpZXIgdG8gcmV2aWV3IChhbmQgYWxzbwpiZWNhdXNlIHJlYmFz
+aW5nIHNlY3VyZSBib290IG9uIHRvcCBvZiB0aGlzIHRha2VzIHRpbWUgYW5kIEkgZG9uJ3Qgd2Fu
+dCB0byBkbwppdCB1bnRpbCB0aGlzIGlzIHZhbGlkYXRlZCEpLgoKVGhpcyBzZXJpZXMgYXR0ZW1w
+dHMgdG8gZmFjdG9yaXplIHRoZSBkdXBsaWNhdGUgZmFsY29uLXJlbGF0ZWQgY29kZSBpbnRvIGEK
+c2luZ2xlIGxpYnJhcnksIHVzaW5nIHRoZSBleGlzdGluZyBudmttX2ZhbGNvbiBzdHJ1Y3R1cmUg
+YXMgYSBiYXNpcy4gTm90ZSB0aGF0CnRoaXMgY3VycmVudGx5IG1ha2VzIHN0cnVjdCBudmttX2Zh
+bGNvbiB1c2VkIGZvciB0d28gZGlmZmVyZW50IHB1cnBvc2VzOiB0aGlzCmZhY3QgaXMgYWNrbm93
+bGVkZ2VkLCBhbmQgdGVtcG9yYXJ5LiBJdCBqdXN0IG1ha2VzIGl0IGVhc2llciB0byByZXZpZXcg
+dGhpcwpmaXJzdCBzdGVwLgoKVXNpbmcgdGhlIGxpYnJhcnksIGZhbGNvbnMgYXJlIG5vdyBhY3F1
+aXJlZCBieSBhIGdpdmVuIHN1YmRldiB1c2luZwpudmttX2ZhbGNvbl9nZXQoKSwgYW5kIHJlbGVh
+c2VkIHdpdGggbnZrbV9mYWxjb25fcHV0KCkuIFRoaXMgYWxsb3dzIGRpZmZlcmVudAplbmdpbmVz
+IHRvIHNoYXJlIGEgZmFsY29uIChhcyBkZXZpbml0LCBzZWNib290IGFuZCBwbXUgd2lsbCBuZWVk
+IHRvIGRvKSwgYnV0CmZvcmNlcyB1cyB0byB0aGluayBhYm91dCBmYWxjb24gb3duZXJzaGlwIGFu
+ZCBoYW5kbGluZyB0aGVtIHRvIHRoZSBuZXh0IGVuZ2luZQpwcm9wZXJseS4KCkEgZmFsY29uJ3Mg
+ZmVhdHVyZXMgYXJlIGRldGVjdGVkIHVzaW5nIGl0cyB2ZXJzaW9uIGFuZCBzZWN1cmUgcmVnaXN0
+ZXJzLCBhbmQKYSBzZXQgb2Ygb3BzIGFyZSBhc3NpZ25lZCB0byBpdC4gVGhlbiB0aGUgY2FsbGVy
+IGNhbiB3b3JrIHdpdGggaGlnaGVyLWxldmVsCmZ1bmN0aW9ucyB0byBsb2FkIGFuZCBleGVjdXJl
+IGNvZGUsIGFuZCBub3QgY2FyZSBhYm91dCBpbXBsZW1lbnRhdGlvbiBkZXRhaWxzLgoKVGhpcyBz
+ZXJpZXMgYWxzbyB1cGRhdGVzIGdyIGFuZCBzZWNib290IHVzZSB0aGUgZmFsY29uIGxpYnJhcnkg
+YXMgYW4gZXhhbXBsZS4KQ29udmVydGluZyBvdGhlciBlbmdpbmVzIGlzIHRyaXZpYWwgYW5kIHNo
+b3VsZCBtYWtlIG91ciB1c2Ugb2YgZmFsY29ucyBnZW5lcmFsbHkKc2FmZXIuCgpBbGV4YW5kcmUg
+Q291cmJvdCAoOCk6CiAgY29yZTogY29uc3RpZnkgbnYqX3ByaW50ayBtYWNyb3MKICBtYzogYWRk
+IG52a21fbWNfZW5hYmxlZCgpIGZ1bmN0aW9uCiAgY29yZTogYWRkIGZhbGNvbiBsaWJyYXJ5IGZ1
+bmN0aW9ucwogIHNlY2Jvb3Q6IHVzZSBmYWxjb24gbGlicmFyeSBkZWZpbml0aW9ucwogIHNlY2Jv
+b3Q6IHVzZSBmYWxjb24gbGlicmFyeQogIGdyL2dmMTAwOiBzcGxpdCBnZjEwMF9ncl9pbml0X2N0
+eGN0bCgpCiAgZ3IvZ2YxMDA6IHVzZSBmYWxjb24gbGlicmFyeQogIHNlY2Jvb3Q6IHJlbW92ZSBu
+dmttX3NlY2Jvb3Rfc3RhcnQoKQoKIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2NsaWVu
+dC5oICAgIHwgICA0ICstCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vY29yZS9kZXZpY2UuaCAg
+ICB8ICAgNSArLQogZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUvc3ViZGV2LmggICAgfCAg
+IDIgKy0KIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9lbmdpbmUvZmFsY29uLmggIHwgIDc3ICsr
+KysrKystCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L21jLmggICAgICB8ICAgMSAr
+LQogZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9zZWNib290LmggfCAgMTYgKy0KIGRy
+bS9ub3V2ZWF1L252a20vS2J1aWxkICAgICAgICAgICAgICAgICAgIHwgICAxICstCiBkcm0vbm91
+dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jICAgICB8ICAgNSArLQogZHJtL25vdXZlYXUv
+bnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYyAgICAgICAgfCAyNjIgKysrKysrKysrKystLS0tLS0tLS0t
+LS0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmggICAgICAgIHwgICAyICstCiBk
+cm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nbTIwMC5jICAgICAgICB8ICAgNiArLQogZHJtL25v
+dXZlYXUvbnZrbS9mYWxjb24vS2J1aWxkICAgICAgICAgICAgfCAgIDIgKy0KIGRybS9ub3V2ZWF1
+L252a20vZmFsY29uL2Jhc2UuYyAgICAgICAgICAgIHwgMjU5ICsrKysrKysrKysrKysrKysrKysr
+KysrLQogZHJtL25vdXZlYXUvbnZrbS9mYWxjb24vZmFsY29uX3YxLmMgICAgICAgfCAyMTIgKysr
+KysrKysrKysrKysrKysrKy0KIGRybS9ub3V2ZWF1L252a20vZmFsY29uL3ByaXYuaCAgICAgICAg
+ICAgIHwgIDMxICsrKy0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L21jL2Jhc2UuYyAgICAgICAg
+IHwgIDEwICstCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2Jhc2UuYyAgICB8IDE3
+MyArLS0tLS0tLS0tLS0tLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2dtMjAw
+LmMgICB8IDE4MiArKysrLS0tLS0tLS0tLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNi
+b290L2dtMjBiLmMgICB8ICAgNSArLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9w
+cml2LmggICAgfCAgMTAgKy0KIDIwIGZpbGVzIGNoYW5nZWQsIDgwOCBpbnNlcnRpb25zKCspLCA0
+NTcgZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJtL25vdXZlYXUvbnZrbS9mYWxj
+b24vS2J1aWxkCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJtL25vdXZlYXUvbnZrbS9mYWxjb24vYmFz
+ZS5jCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJtL25vdXZlYXUvbnZrbS9mYWxjb24vZmFsY29uX3Yx
+LmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL2ZhbGNvbi9wcml2LmgKCi0t
+IApnaXQtc2VyaWVzIDAuOC4xMApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
+YXUK
