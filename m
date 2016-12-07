@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98852] Nvidia graphics card fan not running or to
  slow, danger of overheating
-Date: Wed, 07 Dec 2016 11:16:59 +0000
-Message-ID: <bug-98852-8800-3xEI5VRe0z@http.bugs.freedesktop.org/>
+Date: Wed, 07 Dec 2016 12:14:37 +0000
+Message-ID: <bug-98852-8800-v4jOEznUrS@http.bugs.freedesktop.org/>
 References: <bug-98852-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1321550524=="
+Content-Type: multipart/mixed; boundary="===============1018071719=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98852-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1321550524==
-Content-Type: multipart/alternative; boundary="14811094180.eFf4Dcc.5862";
+--===============1018071719==
+Content-Type: multipart/alternative; boundary="14811128770.3A819f08.9210";
  charset="UTF-8"
 
 
---14811094180.eFf4Dcc.5862
-Date: Wed, 7 Dec 2016 11:16:58 +0000
+--14811128770.3A819f08.9210
+Date: Wed, 7 Dec 2016 12:14:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,45 +36,44 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98852
 
---- Comment #14 from Egon Niessner <susebugzilla-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
-I downloaded the envytools Software from your link and tried an installatio=
-n.
-I got following error messages:
+--- Comment #15 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Egon Niessner from comment #14)
+> I downloaded the envytools Software from your link and tried an installat=
+ion.
+> I got following error messages:
+>=20
+> inux-234d:/home/nie1/envytools/envytools-master # cmake . -G Ninja
+> CMake Error: CMake was unable to find a build program corresponding to
+> "Ninja".  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a
+> different build tool.
+> CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+> CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
+> -- Configuring incomplete, errors occurred!
+>=20
+>=20
+>=20
+>=20
+> linux-234d:/home/nie1/envytools/envytools-master # cmake .
+> CMake Error: CMake was unable to find a build program corresponding to
+> "Ninja".  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a
+> different build tool.
+> CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+> CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
+> -- Configuring incomplete, errors occurred!
+>=20
+>=20
+> On the system the whole linux kernel development environment is installed
+> and all packages mentioned in the envytools description.
+> What have I to do, that the compilation is possible ?
 
-inux-234d:/home/nie1/envytools/envytools-master # cmake . -G Ninja
-CMake Error: CMake was unable to find a build program corresponding to "Nin=
-ja".
- CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different bu=
-ild
-tool.
-CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
-CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
--- Configuring incomplete, errors occurred!
-
-
-
-
-linux-234d:/home/nie1/envytools/envytools-master # cmake .
-CMake Error: CMake was unable to find a build program corresponding to "Nin=
-ja".
- CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different bu=
-ild
-tool.
-CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
-CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
--- Configuring incomplete, errors occurred!
-
-
-On the system the whole linux kernel development environment is installed
-and all packages mentioned in the envytools description.
-What have I to do, that the compilation is possible ?
+drop the "-G Ninja"
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14811094180.eFf4Dcc.5862
-Date: Wed, 7 Dec 2016 11:16:58 +0000
+--14811128770.3A819f08.9210
+Date: Wed, 7 Dec 2016 12:14:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -92,8 +91,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
 f overheating"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852#c14">Commen=
-t # 14</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852#c15">Commen=
+t # 15</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
@@ -101,40 +100,43 @@ f overheating"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852">bug 98852<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-susebugzilla&#64;online.de" title=3D"Egon Niessner &lt;susebugzilla&#64;onl=
-ine.de&gt;"> <span class=3D"fn">Egon Niessner</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>I downloaded the envytools Software from your link and tried a=
-n installation.
-I got following error messages:
+        <pre>(In reply to Egon Niessner from <a href=3D"show_bug.cgi?id=3D9=
+8852#c14">comment #14</a>)
+<span class=3D"quote">&gt; I downloaded the envytools Software from your li=
+nk and tried an installation.
+&gt; I got following error messages:
+&gt;=20
+&gt; inux-234d:/home/nie1/envytools/envytools-master # cmake . -G Ninja
+&gt; CMake Error: CMake was unable to find a build program corresponding to
+&gt; &quot;Ninja&quot;.  CMAKE_MAKE_PROGRAM is not set.  You probably need =
+to select a
+&gt; different build tool.
+&gt; CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+&gt; CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
+&gt; -- Configuring incomplete, errors occurred!
+&gt;=20
+&gt;=20
+&gt;=20
+&gt;=20
+&gt; linux-234d:/home/nie1/envytools/envytools-master # cmake .
+&gt; CMake Error: CMake was unable to find a build program corresponding to
+&gt; &quot;Ninja&quot;.  CMAKE_MAKE_PROGRAM is not set.  You probably need =
+to select a
+&gt; different build tool.
+&gt; CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+&gt; CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
+&gt; -- Configuring incomplete, errors occurred!
+&gt;=20
+&gt;=20
+&gt; On the system the whole linux kernel development environment is instal=
+led
+&gt; and all packages mentioned in the envytools description.
+&gt; What have I to do, that the compilation is possible ?</span >
 
-inux-234d:/home/nie1/envytools/envytools-master # cmake . -G Ninja
-CMake Error: CMake was unable to find a build program corresponding to &quo=
-t;Ninja&quot;.
- CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different bu=
-ild
-tool.
-CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
-CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
--- Configuring incomplete, errors occurred!
-
-
-
-
-linux-234d:/home/nie1/envytools/envytools-master # cmake .
-CMake Error: CMake was unable to find a build program corresponding to &quo=
-t;Ninja&quot;.
- CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different bu=
-ild
-tool.
-CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
-CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
--- Configuring incomplete, errors occurred!
-
-
-On the system the whole linux kernel development environment is installed
-and all packages mentioned in the envytools description.
-What have I to do, that the compilation is possible ?</pre>
+drop the &quot;-G Ninja&quot;</pre>
         </div>
       </p>
 
@@ -148,9 +150,9 @@ What have I to do, that the compilation is possible ?</pre>
     </body>
 </html>=
 
---14811094180.eFf4Dcc.5862--
+--14811128770.3A819f08.9210--
 
---===============1321550524==
+--===============1018071719==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -160,4 +162,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1321550524==--
+--===============1018071719==--
