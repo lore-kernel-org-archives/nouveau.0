@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98852] Nvidia graphics card fan not running or to
  slow, danger of overheating
-Date: Wed, 07 Dec 2016 12:14:37 +0000
-Message-ID: <bug-98852-8800-v4jOEznUrS@http.bugs.freedesktop.org/>
+Date: Wed, 07 Dec 2016 12:19:54 +0000
+Message-ID: <bug-98852-8800-C5QPd3qJU6@http.bugs.freedesktop.org/>
 References: <bug-98852-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1018071719=="
+Content-Type: multipart/mixed; boundary="===============0416867662=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98852-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1018071719==
-Content-Type: multipart/alternative; boundary="14811128770.3A819f08.9210";
+--===============0416867662==
+Content-Type: multipart/alternative; boundary="14811131941.fA6edfaa0.9643";
  charset="UTF-8"
 
 
---14811128770.3A819f08.9210
-Date: Wed, 7 Dec 2016 12:14:37 +0000
+--14811131941.fA6edfaa0.9643
+Date: Wed, 7 Dec 2016 12:19:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,44 +36,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98852
 
---- Comment #15 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Egon Niessner from comment #14)
-> I downloaded the envytools Software from your link and tried an installat=
-ion.
-> I got following error messages:
->=20
-> inux-234d:/home/nie1/envytools/envytools-master # cmake . -G Ninja
-> CMake Error: CMake was unable to find a build program corresponding to
-> "Ninja".  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a
-> different build tool.
-> CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
-> CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
-> -- Configuring incomplete, errors occurred!
->=20
->=20
->=20
->=20
-> linux-234d:/home/nie1/envytools/envytools-master # cmake .
-> CMake Error: CMake was unable to find a build program corresponding to
-> "Ninja".  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a
-> different build tool.
-> CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
-> CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
-> -- Configuring incomplete, errors occurred!
->=20
->=20
-> On the system the whole linux kernel development environment is installed
-> and all packages mentioned in the envytools description.
-> What have I to do, that the compilation is possible ?
+--- Comment #16 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+There is a ninja package on Arch Linux, I would guess that something similar
+exists on openSUSE.
 
-drop the "-G Ninja"
+Try with `cmake -G"Unix Makefile" .` instead, or clear the CMake cache (del=
+ete
+CMakeCache.txt and CMakeFiles should be enough I think), and try again to r=
+un
+`cmake .`.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14811128770.3A819f08.9210
-Date: Wed, 7 Dec 2016 12:14:37 +0000
+--14811131941.fA6edfaa0.9643
+Date: Wed, 7 Dec 2016 12:19:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -91,8 +69,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
 f overheating"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852#c15">Commen=
-t # 15</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852#c16">Commen=
+t # 16</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
@@ -100,43 +78,18 @@ f overheating"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852">bug 98852<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
+e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>(In reply to Egon Niessner from <a href=3D"show_bug.cgi?id=3D9=
-8852#c14">comment #14</a>)
-<span class=3D"quote">&gt; I downloaded the envytools Software from your li=
-nk and tried an installation.
-&gt; I got following error messages:
-&gt;=20
-&gt; inux-234d:/home/nie1/envytools/envytools-master # cmake . -G Ninja
-&gt; CMake Error: CMake was unable to find a build program corresponding to
-&gt; &quot;Ninja&quot;.  CMAKE_MAKE_PROGRAM is not set.  You probably need =
-to select a
-&gt; different build tool.
-&gt; CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
-&gt; CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
-&gt; -- Configuring incomplete, errors occurred!
-&gt;=20
-&gt;=20
-&gt;=20
-&gt;=20
-&gt; linux-234d:/home/nie1/envytools/envytools-master # cmake .
-&gt; CMake Error: CMake was unable to find a build program corresponding to
-&gt; &quot;Ninja&quot;.  CMAKE_MAKE_PROGRAM is not set.  You probably need =
-to select a
-&gt; different build tool.
-&gt; CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
-&gt; CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
-&gt; -- Configuring incomplete, errors occurred!
-&gt;=20
-&gt;=20
-&gt; On the system the whole linux kernel development environment is instal=
-led
-&gt; and all packages mentioned in the envytools description.
-&gt; What have I to do, that the compilation is possible ?</span >
+        <pre>There is a ninja package on Arch Linux, I would guess that som=
+ething similar
+exists on openSUSE.
 
-drop the &quot;-G Ninja&quot;</pre>
+Try with `cmake -G&quot;Unix Makefile&quot; .` instead, or clear the CMake =
+cache (delete
+CMakeCache.txt and CMakeFiles should be enough I think), and try again to r=
+un
+`cmake .`.</pre>
         </div>
       </p>
 
@@ -150,9 +103,9 @@ drop the &quot;-G Ninja&quot;</pre>
     </body>
 </html>=
 
---14811128770.3A819f08.9210--
+--14811131941.fA6edfaa0.9643--
 
---===============1018071719==
+--===============0416867662==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -162,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1018071719==--
+--===============0416867662==--
