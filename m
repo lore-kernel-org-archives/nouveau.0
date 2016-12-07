@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98852] Nvidia graphics card fan not running or to
  slow, danger of overheating
-Date: Wed, 07 Dec 2016 12:19:54 +0000
-Message-ID: <bug-98852-8800-C5QPd3qJU6@http.bugs.freedesktop.org/>
+Date: Wed, 07 Dec 2016 14:30:58 +0000
+Message-ID: <bug-98852-8800-nJbNatClyn@http.bugs.freedesktop.org/>
 References: <bug-98852-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0416867662=="
+Content-Type: multipart/mixed; boundary="===============0487303459=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98852-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0416867662==
-Content-Type: multipart/alternative; boundary="14811131941.fA6edfaa0.9643";
+--===============0487303459==
+Content-Type: multipart/alternative; boundary="14811210581.ffA4.18384";
  charset="UTF-8"
 
 
---14811131941.fA6edfaa0.9643
-Date: Wed, 7 Dec 2016 12:19:54 +0000
+--14811210581.ffA4.18384
+Date: Wed, 7 Dec 2016 14:30:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,22 +36,44 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98852
 
---- Comment #16 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-There is a ninja package on Arch Linux, I would guess that something similar
-exists on openSUSE.
+--- Comment #17 from Egon Niessner <susebugzilla-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
+Thanks for your help!
+With `cmake -G"Unix Makefiles" .
+I could translate the envytools Package.
 
-Try with `cmake -G"Unix Makefile" .` instead, or clear the CMake cache (del=
-ete
-CMakeCache.txt and CMakeFiles should be enough I think), and try again to r=
-un
-`cmake .`.
+Here the Output with the nouveau driver and not runnung fan:
+nvapeek e114 10
+0000e114: 00000001 00000000 00000000 80000000
+
+
+Here the Output with the original nvidia driver
+(Installed is the original NVIDIA Package
+NVIDIA-Linux-x86_64-340.96.run)
+
+nvapeek e114 120
+0000e114: 00000001 00000000 00000020 00000003
+0000e124: 10000000 00000000 0001010e 00000000
+0000e134: 000f4240 00000007 10000000 00000000
+0000e144: 0001010e 00000000 000f4240 00000007
+0000e154: 10000000 00000000 0001010e 00000000
+0000e164: 000f4240 00000007 10000000 00000000
+0000e174: 0001010e 00000000 000f4240 00000007
+0000e184: 00000012 00000000 00010000 00000000
+0000e194: 00000000 00000000 00000000 0000000d
+0000e1a4: 00000001 0000000c 0022ffff 00000000
+0000e1b4: 00000001 fe7fffff 00003047 00000002
+...
+0000e1d4: 00000000 0000001f 00000001 00000000
+0000e1e4: 00000000 00000001 00000003 00000003
+0000e1f4: 0000000c 00000002 00000002 0003103c
+0000e204: 00000002 00000000 00000000 00000000
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14811131941.fA6edfaa0.9643
-Date: Wed, 7 Dec 2016 12:19:54 +0000
+--14811210581.ffA4.18384
+Date: Wed, 7 Dec 2016 14:30:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,8 +91,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
 f overheating"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852#c16">Commen=
-t # 16</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852#c17">Commen=
+t # 17</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
@@ -78,18 +100,39 @@ f overheating"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852">bug 98852<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
+susebugzilla&#64;online.de" title=3D"Egon Niessner &lt;susebugzilla&#64;onl=
+ine.de&gt;"> <span class=3D"fn">Egon Niessner</span></a>
 </span></b>
-        <pre>There is a ninja package on Arch Linux, I would guess that som=
-ething similar
-exists on openSUSE.
+        <pre>Thanks for your help!
+With `cmake -G&quot;Unix Makefiles&quot; .
+I could translate the envytools Package.
 
-Try with `cmake -G&quot;Unix Makefile&quot; .` instead, or clear the CMake =
-cache (delete
-CMakeCache.txt and CMakeFiles should be enough I think), and try again to r=
-un
-`cmake .`.</pre>
+Here the Output with the nouveau driver and not runnung fan:
+nvapeek e114 10
+0000e114: 00000001 00000000 00000000 80000000
+
+
+Here the Output with the original nvidia driver
+(Installed is the original NVIDIA Package
+NVIDIA-Linux-x86_64-340.96.run)
+
+nvapeek e114 120
+0000e114: 00000001 00000000 00000020 00000003
+0000e124: 10000000 00000000 0001010e 00000000
+0000e134: 000f4240 00000007 10000000 00000000
+0000e144: 0001010e 00000000 000f4240 00000007
+0000e154: 10000000 00000000 0001010e 00000000
+0000e164: 000f4240 00000007 10000000 00000000
+0000e174: 0001010e 00000000 000f4240 00000007
+0000e184: 00000012 00000000 00010000 00000000
+0000e194: 00000000 00000000 00000000 0000000d
+0000e1a4: 00000001 0000000c 0022ffff 00000000
+0000e1b4: 00000001 fe7fffff 00003047 00000002
+...
+0000e1d4: 00000000 0000001f 00000001 00000000
+0000e1e4: 00000000 00000001 00000003 00000003
+0000e1f4: 0000000c 00000002 00000002 0003103c
+0000e204: 00000002 00000000 00000000 00000000</pre>
         </div>
       </p>
 
@@ -103,9 +146,9 @@ un
     </body>
 </html>=
 
---14811131941.fA6edfaa0.9643--
+--14811210581.ffA4.18384--
 
---===============0416867662==
+--===============0487303459==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +158,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0416867662==--
+--===============0487303459==--
