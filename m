@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98852] Nvidia graphics card fan not running or to
- slow, danger of overheating
-Date: Wed, 07 Dec 2016 14:30:58 +0000
-Message-ID: <bug-98852-8800-nJbNatClyn@http.bugs.freedesktop.org/>
-References: <bug-98852-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94727] [NV30/NV40] nouveau/pushbuf.c:238:
+ pushbuf_krel: Assertion `bkref` failed.
+Date: Wed, 07 Dec 2016 15:26:35 +0000
+Message-ID: <bug-94727-8800-Wdqg8l77Eu@http.bugs.freedesktop.org/>
+References: <bug-94727-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0487303459=="
+Content-Type: multipart/mixed; boundary="===============0907528344=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98852-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94727-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,59 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0487303459==
-Content-Type: multipart/alternative; boundary="14811210581.ffA4.18384";
+--===============0907528344==
+Content-Type: multipart/alternative; boundary="14811243951.AF6142d1.21749";
  charset="UTF-8"
 
 
---14811210581.ffA4.18384
-Date: Wed, 7 Dec 2016 14:30:58 +0000
+--14811243951.AF6142d1.21749
+Date: Wed, 7 Dec 2016 15:26:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98852
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94727
 
---- Comment #17 from Egon Niessner <susebugzilla-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
-Thanks for your help!
-With `cmake -G"Unix Makefiles" .
-I could translate the envytools Package.
+--- Comment #9 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+Created attachment 128368
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128368&action=3Dedit
+Backtrace of Xwayland on a G71
 
-Here the Output with the nouveau driver and not runnung fan:
-nvapeek e114 10
-0000e114: 00000001 00000000 00000000 80000000
+Thanks for pointing out that it was on a G71, I have been able to reproduce
+using my own old G71 (Dell m1710) with Fedora 25!
 
-
-Here the Output with the original nvidia driver
-(Installed is the original NVIDIA Package
-NVIDIA-Linux-x86_64-340.96.run)
-
-nvapeek e114 120
-0000e114: 00000001 00000000 00000020 00000003
-0000e124: 10000000 00000000 0001010e 00000000
-0000e134: 000f4240 00000007 10000000 00000000
-0000e144: 0001010e 00000000 000f4240 00000007
-0000e154: 10000000 00000000 0001010e 00000000
-0000e164: 000f4240 00000007 10000000 00000000
-0000e174: 0001010e 00000000 000f4240 00000007
-0000e184: 00000012 00000000 00010000 00000000
-0000e194: 00000000 00000000 00000000 0000000d
-0000e1a4: 00000001 0000000c 0022ffff 00000000
-0000e1b4: 00000001 fe7fffff 00003047 00000002
-...
-0000e1d4: 00000000 0000001f 00000001 00000000
-0000e1e4: 00000000 00000001 00000003 00000003
-0000e1f4: 0000000c 00000002 00000002 0003103c
-0000e204: 00000002 00000000 00000000 00000000
+Didn't have much luck trying to run Xwayland through apitrace, but I have a
+corefile of Xwayland, backtrace attached, if that's of any help...
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14811210581.ffA4.18384
-Date: Wed, 7 Dec 2016 14:30:58 +0000
+--14811243951.AF6142d1.21749
+Date: Wed, 7 Dec 2016 15:26:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -89,50 +69,31 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
-f overheating"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852#c17">Commen=
-t # 17</a>
+   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
+n `bkref` failed."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727#c9">Comment=
+ # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
-f overheating"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852">bug 98852<=
+   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
+n `bkref` failed."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727">bug 94727<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-susebugzilla&#64;online.de" title=3D"Egon Niessner &lt;susebugzilla&#64;onl=
-ine.de&gt;"> <span class=3D"fn">Egon Niessner</span></a>
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
 </span></b>
-        <pre>Thanks for your help!
-With `cmake -G&quot;Unix Makefiles&quot; .
-I could translate the envytools Package.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128368=
+" name=3D"attach_128368" title=3D"Backtrace of Xwayland on a G71">attachmen=
+t 128368</a> <a href=3D"attachment.cgi?id=3D128368&amp;action=3Dedit" title=
+=3D"Backtrace of Xwayland on a G71">[details]</a></span>
+Backtrace of Xwayland on a G71
 
-Here the Output with the nouveau driver and not runnung fan:
-nvapeek e114 10
-0000e114: 00000001 00000000 00000000 80000000
+Thanks for pointing out that it was on a G71, I have been able to reproduce
+using my own old G71 (Dell m1710) with Fedora 25!
 
-
-Here the Output with the original nvidia driver
-(Installed is the original NVIDIA Package
-NVIDIA-Linux-x86_64-340.96.run)
-
-nvapeek e114 120
-0000e114: 00000001 00000000 00000020 00000003
-0000e124: 10000000 00000000 0001010e 00000000
-0000e134: 000f4240 00000007 10000000 00000000
-0000e144: 0001010e 00000000 000f4240 00000007
-0000e154: 10000000 00000000 0001010e 00000000
-0000e164: 000f4240 00000007 10000000 00000000
-0000e174: 0001010e 00000000 000f4240 00000007
-0000e184: 00000012 00000000 00010000 00000000
-0000e194: 00000000 00000000 00000000 0000000d
-0000e1a4: 00000001 0000000c 0022ffff 00000000
-0000e1b4: 00000001 fe7fffff 00003047 00000002
-...
-0000e1d4: 00000000 0000001f 00000001 00000000
-0000e1e4: 00000000 00000001 00000003 00000003
-0000e1f4: 0000000c 00000002 00000002 0003103c
-0000e204: 00000002 00000000 00000000 00000000</pre>
+Didn't have much luck trying to run Xwayland through apitrace, but I have a
+corefile of Xwayland, backtrace attached, if that's of any help...</pre>
         </div>
       </p>
 
@@ -141,14 +102,15 @@ nvapeek e114 120
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14811210581.ffA4.18384--
+--14811243951.AF6142d1.21749--
 
---===============0487303459==
+--===============0907528344==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -158,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0487303459==--
+--===============0907528344==--
