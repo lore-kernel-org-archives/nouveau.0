@@ -1,13 +1,20 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94727] [NV30/NV40] nouveau/pushbuf.c:238:
- pushbuf_krel: Assertion `bkref` failed.
-Date: Wed, 07 Dec 2016 15:26:35 +0000
-Message-ID: <bug-94727-8800-Wdqg8l77Eu@http.bugs.freedesktop.org/>
-References: <bug-94727-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: 4.9-rc7 nouveau fails on arm64 64k page kernel but
+ works with 4k
+Date: Wed, 7 Dec 2016 15:08:06 -0500
+Message-ID: <CAKb7Uvif+WseKjXKPL_-HCk5MgjKMCUjAk_XYMfoSxrOzqm3Rw@mail.gmail.com>
+References: <042c54f3-e52b-6658-18c7-9c19492485a4@arm.com>
+ <CAKb7Uvhewyhnrnd=fw9QrdEDLecG_VMZ8Wfuh-LyCgeW6X_wCw@mail.gmail.com>
+ <CAKb7UvgZLafVmC3N0R-dfm4FDtCxUO3fC-4zLwsKauAj=hx=tw@mail.gmail.com>
+ <CAKb7UvgW331K53x3wub5o+6LOqeLN5PqgiiJG6WXi+WJDVDzDg@mail.gmail.com>
+ <CAAVeFuJc5y8M4Koj-Ge0XpK3PXVS-fnjrpUyD13skeBM1y_K1w@mail.gmail.com>
+ <d196c0c8-f429-4275-6246-a4e817b4bdf9@daenzer.net>
+ <CAAVeFuKfo3sZL84wTiR6ur=PVsPhcaU62ggTwy9r1aQEOq2HZw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0907528344=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94727-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAAVeFuKfo3sZL84wTiR6ur=PVsPhcaU62ggTwy9r1aQEOq2HZw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,107 +24,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Steve Capper <Steve.Capper-5wv7dgnIgG8@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Jeremy Linton <jeremy.linton-5wv7dgnIgG8@public.gmane.org>, "linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org" <linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0907528344==
-Content-Type: multipart/alternative; boundary="14811243951.AF6142d1.21749";
- charset="UTF-8"
-
-
---14811243951.AF6142d1.21749
-Date: Wed, 7 Dec 2016 15:26:35 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94727
-
---- Comment #9 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
-Created attachment 128368
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128368&action=3Dedit
-Backtrace of Xwayland on a G71
-
-Thanks for pointing out that it was on a G71, I have been able to reproduce
-using my own old G71 (Dell m1710) with Fedora 25!
-
-Didn't have much luck trying to run Xwayland through apitrace, but I have a
-corefile of Xwayland, backtrace attached, if that's of any help...
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14811243951.AF6142d1.21749
-Date: Wed, 7 Dec 2016 15:26:35 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
-n `bkref` failed."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
-n `bkref` failed."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727">bug 94727<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
-"> <span class=3D"fn">Olivier Fourdan</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128368=
-" name=3D"attach_128368" title=3D"Backtrace of Xwayland on a G71">attachmen=
-t 128368</a> <a href=3D"attachment.cgi?id=3D128368&amp;action=3Dedit" title=
-=3D"Backtrace of Xwayland on a G71">[details]</a></span>
-Backtrace of Xwayland on a G71
-
-Thanks for pointing out that it was on a G71, I have been able to reproduce
-using my own old G71 (Dell m1710) with Fedora 25!
-
-Didn't have much luck trying to run Xwayland through apitrace, but I have a
-corefile of Xwayland, backtrace attached, if that's of any help...</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14811243951.AF6142d1.21749--
-
---===============0907528344==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0907528344==--
+T24gV2VkLCBEZWMgNywgMjAxNiBhdCA0OjU3IEFNLCBBbGV4YW5kcmUgQ291cmJvdCA8Z251cm91
+QGdtYWlsLmNvbT4gd3JvdGU6Cj4gT24gV2VkLCBEZWMgNywgMjAxNiBhdCA2OjUzIFBNLCBNaWNo
+ZWwgRMOkbnplciA8bWljaGVsQGRhZW56ZXIubmV0PiB3cm90ZToKPj4gT24gMDcvMTIvMTYgMDY6
+MzkgUE0sIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+Pj4gT24gRnJpLCBEZWMgMiwgMjAxNiBh
+dCAxMjoyMyBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPj4+
+PiBUaGF0J3MgcmlnaHQgLS0gbm91dmVhdSBjdXJyZW50bHkgcmVxdWlyZXMgNGsgcGFnZSBzaXpl
+cyB0byB3b3JrLiBUaGlzIGlzIGEKPj4+PiBzb2Z0d2FyZSBsaW1pdGF0aW9uLCBub3QgYSBoYXJk
+d2FyZSBvbmUgdGhvdWdoLgo+Pj4KPj4+IExvb2tpbmcgYXQgdGhlIHRyYWNlIEkgd29uZGVyIC0g
+aXMgdGhlIGxpbWl0YXRpb24gaW4gTm91dmVhdSBvciBpbiBUVE0/Cj4+Cj4+IE5vdXZlYXUuIE5v
+bi00SyBwYWdlIHNpemVzIHdvcmsgZmluZSB3aXRoIHJhZGVvbiAoYW5kIHByZXN1bWFibHkgYW1k
+Z3B1KS4KPgo+IFRoYW5rcyBmb3IgdGhlIHByZWNpc2lvbi4gSSB3aWxsIGNoZWNrIGlmIFRlZ3Jh
+IGlHUFVzIGFyZSBhbHNvCj4gYWZmZWN0ZWQgYnkgdGhpcyAtIGlmIHRoZXkgYXJlIHRoZW4gaXQg
+Z2l2ZXMgbWUgYSBnb29kIGV4Y3VzZSB0byB0YWtlCj4gY2FyZSBvZiB0aGlzIGJ1Zy4KCkZvciB0
+aGUgbW9zdCBwYXJ0IGl0J3MgY29uZnVzaW9uIGluIHRoZSAobm91dmVhdSkgY29kZSBhcyB0byB3
+aGF0J3MgYQpncHUgcGFnZSBhbmQgd2hhdCdzIGEgY3B1IHBhZ2UgKGFuZCB0aGUgc2hpZnRzIGlu
+dm9sdmVkKS4gVGhlcmUgYXJlCnNvbWUgZnJpbmdlIGlzc3VlcyB0aGF0IHdpbGwgbmVlZCB0byBi
+ZSBhZGRyZXNzZWQsIGxpa2UgdGhlIGZhY3QgdGhhdAppdCdzIG5vIGxvbmdlciBhIDE6MSBtYXBw
+aW5nLCB3aGljaCBtaWdodCBiZSBhc3N1bWVkIGluIHNvbWUgcGxhY2VzLgoKSG93ZXZlciBJIHRo
+b3VnaHQgdGhhdCA2NEstcGFnZXMgd2VyZSBmcm93bmVkIHVwb24gbm93YWRheXMgZm9yIHRoZQpr
+ZXJuZWwgLSBvdXRzaWRlIG9mIEhQQyBsb2FkcywgbW9zdCBvZiB0aGUga2VybmVsIG1lbW9yeSBi
+ZWNvbWVzCnBhZ2VjYWNoZSwgYW5kIGZpbGVzIGRvbid0IHRlbmQgdG8gYmUgNjRLLXNpemVkLCBz
+byB5b3UgaGF2ZSB0b25zIG9mCndhc3RlZCBtZW1vcnkgKHNpbmNlIHlvdSBuZXZlciBjYWNoZSBt
+dWx0aXBsZSBmaWxlcyBpbiB0aGUgc2FtZSBwYWdlKS4KCkJ1dCBkb24ndCB0YWtlIHRoYXQgYXMg
+bWUgZGlzYXBwcm92aW5nIG9mIHN1Y2ggYSBwcm9qZWN0LiBJdCdkIGVzcCBiZQpuaWNlIHRvIGRv
+IHNvbWV0aGluZyBsaWtlIHRoaXMgb3V0c2lkZSBvZiB0aGUgUFBDNjQgZW52aXJvbm1lbnQsIHdo
+ZXJlCkJFIGNvbmNlcm5zIG1peCBpbiB3aXRoIHRoZSA2NEsgcGFnZSBjb25jZXJucywgYW5kIG5v
+dGhpbmcgd29ya3MgYXMgYQpyZXN1bHQuCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
