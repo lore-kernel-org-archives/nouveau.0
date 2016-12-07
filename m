@@ -1,56 +1,73 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH] nouveau/led: introduce CONFIG_DRM_NOUVEAU_LEDS
-Date: Wed,  7 Dec 2016 05:32:26 +0200
-Message-ID: <20161207033226.10802-1-martin.peres@free.fr>
+From: Martin Peres <martin.peres@free.fr>
+Subject: Re: [PATCH] nouveau/led: introduce CONFIG_DRM_NOUVEAU_LEDS
+Date: Wed, 7 Dec 2016 05:53:50 +0200
+Message-ID: <1ab276eb-ec98-0f79-7770-e50aa8561410@free.fr>
+References: <20161207033226.10802-1-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: "# 4 . 9 . x-" <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20161207033226.10802-1-martin.peres@free.fr>
+Sender: stable-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: "# 4 . 9 . x-" <stable@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBmaXhlcyB0aGUgYXV0by1tYWdpYyBkZXRlY3Rpb24gb2YgTEVEU19DTEFTUyBieSBmaXhp
-bmcgdGhlIGNhc2UKd2hlcmUgbm91dmVhdSB3b3VsZCBiZSBidWlsdC1pbiBhbmQgdGhlIExFRFNf
-Q0xBU1Mgd291bGQgYmUgYnVpbHQgYXMKYXMgbW9kdWxlLgoKQ2M6IDxzdGFibGVAdmdlci5rZXJu
-ZWwub3JnPiAjIDQuOS54LQpSZXBvcnRlZC1ieTogSW50ZWwncyAwLURBWQpTaWduZWQtb2ZmLWJ5
-OiBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BmcmVlLmZyPgotLS0KIGRyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L0tidWlsZCAgfCAyICstCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29uZmln
-IHwgOSArKysrKysrKysKIDIgZmlsZXMgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygrKSwgMSBkZWxl
-dGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tidWlsZCBiL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tidWlsZAppbmRleCBmZGU2ZTM2Li4wOTM1Mzk2IDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LYnVpbGQKKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvS2J1aWxkCkBAIC0yMiw3ICsyMiw3IEBAIG5vdXZlYXUtJChDT05GSUdfREVC
-VUdfRlMpICs9IG5vdXZlYXVfZGVidWdmcy5vCiBub3V2ZWF1LXkgKz0gbm91dmVhdV9kcm0ubwog
-bm91dmVhdS15ICs9IG5vdXZlYXVfaHdtb24ubwogbm91dmVhdS0kKENPTkZJR19DT01QQVQpICs9
-IG5vdXZlYXVfaW9jMzIubwotbm91dmVhdS0kKENPTkZJR19MRURTX0NMQVNTKSArPSBub3V2ZWF1
-X2xlZC5vCitub3V2ZWF1LSQoQ09ORklHX0RSTV9OT1VWRUFVX0xFRFMpICs9IG5vdXZlYXVfbGVk
-Lm8KIG5vdXZlYXUteSArPSBub3V2ZWF1X252aWYubwogbm91dmVhdS0kKENPTkZJR19OT1VWRUFV
-X1BMQVRGT1JNX0RSSVZFUikgKz0gbm91dmVhdV9wbGF0Zm9ybS5vCiBub3V2ZWF1LXkgKz0gbm91
-dmVhdV91c2lmLm8gIyB1c2Vyc3BhY2UgPC0+IG52aWYKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L0tjb25maWcgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29uZmlnCmlu
-ZGV4IDI5MjJhODIuLjlkYmI4MTYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L0tjb25maWcKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2NvbmZpZwpAQCAtMTYsNiAr
-MTYsNyBAQCBjb25maWcgRFJNX05PVVZFQVUKIAlzZWxlY3QgSU5QVVQgaWYgQUNQSSAmJiBYODYK
-IAlzZWxlY3QgVEhFUk1BTCBpZiBBQ1BJICYmIFg4NgogCXNlbGVjdCBBQ1BJX1ZJREVPIGlmIEFD
-UEkgJiYgWDg2CisJc2VsZWN0IExFRFNfQ0xBU1MgaWYgRFJNX05PVVZFQVVfTEVEUwogCWhlbHAK
-IAkgIENob29zZSB0aGlzIG9wdGlvbiBmb3Igb3Blbi1zb3VyY2UgTlZJRElBIHN1cHBvcnQuCiAK
-QEAgLTYyLDMgKzYzLDExIEBAIGNvbmZpZyBEUk1fTk9VVkVBVV9CQUNLTElHSFQKIAloZWxwCiAJ
-ICBTYXkgWSBoZXJlIGlmIHlvdSB3YW50IHRvIGNvbnRyb2wgdGhlIGJhY2tsaWdodCBvZiB5b3Vy
-IGRpc3BsYXkKIAkgIChlLmcuIGEgbGFwdG9wIHBhbmVsKS4KKworY29uZmlnIERSTV9OT1VWRUFV
-X0xFRFMKKwlib29sICJTdXBwb3J0IGZvciBoaWdoLWVuZCBHUFVzJyBOVklESUEtbG9nbyBMRUQg
-Y29udHJvbCIKKwlkZXBlbmRzIG9uIERSTV9OT1VWRUFVCisJZGVmYXVsdCB5CisJaGVscAorCSAg
-U2F5IFkgaGVyZSBpZiB5b3Ugd2FudCB0byBjb250cm9sIHRoZSBMRUQgYmVoaW5kIHRoZSBOVklE
-SUEgbG9nbyBvbgorCSAgaGlnaC1lbmQgR1BVcy4KLS0gCjIuMTAuMgoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On 07/12/16 05:32, Martin Peres wrote:
+> This fixes the auto-magic detection of LEDS_CLASS by fixing the case
+> where nouveau would be built-in and the LEDS_CLASS would be built as
+> as module.
+>
+> Cc: <stable@vger.kernel.org> # 4.9.x-
+> Reported-by: Intel's 0-DAY
+> Signed-off-by: Martin Peres <martin.peres@free.fr>
+> ---
+>   drivers/gpu/drm/nouveau/Kbuild  | 2 +-
+>   drivers/gpu/drm/nouveau/Kconfig | 9 +++++++++
+>   2 files changed, 10 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/Kbuild b/drivers/gpu/drm/nouveau/Kbuild
+> index fde6e36..0935396 100644
+> --- a/drivers/gpu/drm/nouveau/Kbuild
+> +++ b/drivers/gpu/drm/nouveau/Kbuild
+> @@ -22,7 +22,7 @@ nouveau-$(CONFIG_DEBUG_FS) += nouveau_debugfs.o
+>   nouveau-y += nouveau_drm.o
+>   nouveau-y += nouveau_hwmon.o
+>   nouveau-$(CONFIG_COMPAT) += nouveau_ioc32.o
+> -nouveau-$(CONFIG_LEDS_CLASS) += nouveau_led.o
+> +nouveau-$(CONFIG_DRM_NOUVEAU_LEDS) += nouveau_led.o
+>   nouveau-y += nouveau_nvif.o
+>   nouveau-$(CONFIG_NOUVEAU_PLATFORM_DRIVER) += nouveau_platform.o
+>   nouveau-y += nouveau_usif.o # userspace <-> nvif
+> diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
+> index 2922a82..9dbb816 100644
+> --- a/drivers/gpu/drm/nouveau/Kconfig
+> +++ b/drivers/gpu/drm/nouveau/Kconfig
+> @@ -16,6 +16,7 @@ config DRM_NOUVEAU
+>   	select INPUT if ACPI && X86
+>   	select THERMAL if ACPI && X86
+>   	select ACPI_VIDEO if ACPI && X86
+> +	select LEDS_CLASS if DRM_NOUVEAU_LEDS
+>   	help
+>   	  Choose this option for open-source NVIDIA support.
+>   
+> @@ -62,3 +63,11 @@ config DRM_NOUVEAU_BACKLIGHT
+>   	help
+>   	  Say Y here if you want to control the backlight of your display
+>   	  (e.g. a laptop panel).
+> +
+> +config DRM_NOUVEAU_LEDS
+> +	bool "Support for high-end GPUs' NVIDIA-logo LED control"
+> +	depends on DRM_NOUVEAU
+> +	default y
+> +	help
+> +	  Say Y here if you want to control the LED behind the NVIDIA logo on
+> +	  high-end GPUs.
+
+Cancel this,the thread "[PATCH] drm/nouveau: fix LEDS_CLASS=m 
+configuration" on
+DRI-devel explained why it was a bad idea (circular dependencies).
+
+Will implement his proposal of using IS_REACHABLE instead of IS_DEFINED.
+
+Martin
