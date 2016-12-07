@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94727] [NV30/NV40] nouveau/pushbuf.c:238:
- pushbuf_krel: Assertion `bkref` failed.
-Date: Tue, 06 Dec 2016 19:42:15 +0000
-Message-ID: <bug-94727-8800-YLTgMETFEI@http.bugs.freedesktop.org/>
-References: <bug-94727-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: [PATCH] nouveau/led: introduce CONFIG_DRM_NOUVEAU_LEDS
+Date: Wed,  7 Dec 2016 05:32:26 +0200
+Message-ID: <20161207033226.10802-1-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0742680489=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94727-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,115 +16,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "# 4 . 9 . x-" <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0742680489==
-Content-Type: multipart/alternative; boundary="14810533350.1473DCfD.19662";
- charset="UTF-8"
-
-
---14810533350.1473DCfD.19662
-Date: Tue, 6 Dec 2016 19:42:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94727
-
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, well staring at the code didn't do me much good.
-
-bkref =3D=3D NULL means that the pushbuf thing doesn't know about the bo we=
-'re
-trying to reloc. However just a few lines above in nv30_transfer_rect_m2mf =
-we
-do
-
-nouveau_pushbuf_refn (push, refs, 2)
-
-which should tell it about the src/dst bo's. So either there's concurrency
-going on, or something's not working as advertised. In the no-concurrency c=
-ase,
-I'd need repro steps (that can't start with "install tons of software").
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14810533350.1473DCfD.19662
-Date: Tue, 6 Dec 2016 19:42:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
-n `bkref` failed."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727#c8">Comment=
- # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
-n `bkref` failed."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727">bug 94727<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>OK, well staring at the code didn't do me much good.
-
-bkref =3D=3D NULL means that the pushbuf thing doesn't know about the bo we=
-'re
-trying to reloc. However just a few lines above in nv30_transfer_rect_m2mf =
-we
-do
-
-nouveau_pushbuf_refn (push, refs, 2)
-
-which should tell it about the src/dst bo's. So either there's concurrency
-going on, or something's not working as advertised. In the no-concurrency c=
-ase,
-I'd need repro steps (that can't start with &quot;install tons of software&=
-quot;).</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14810533350.1473DCfD.19662--
-
---===============0742680489==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0742680489==--
+VGhpcyBmaXhlcyB0aGUgYXV0by1tYWdpYyBkZXRlY3Rpb24gb2YgTEVEU19DTEFTUyBieSBmaXhp
+bmcgdGhlIGNhc2UKd2hlcmUgbm91dmVhdSB3b3VsZCBiZSBidWlsdC1pbiBhbmQgdGhlIExFRFNf
+Q0xBU1Mgd291bGQgYmUgYnVpbHQgYXMKYXMgbW9kdWxlLgoKQ2M6IDxzdGFibGVAdmdlci5rZXJu
+ZWwub3JnPiAjIDQuOS54LQpSZXBvcnRlZC1ieTogSW50ZWwncyAwLURBWQpTaWduZWQtb2ZmLWJ5
+OiBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BmcmVlLmZyPgotLS0KIGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L0tidWlsZCAgfCAyICstCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29uZmln
+IHwgOSArKysrKysrKysKIDIgZmlsZXMgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygrKSwgMSBkZWxl
+dGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tidWlsZCBiL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tidWlsZAppbmRleCBmZGU2ZTM2Li4wOTM1Mzk2IDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LYnVpbGQKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvS2J1aWxkCkBAIC0yMiw3ICsyMiw3IEBAIG5vdXZlYXUtJChDT05GSUdfREVC
+VUdfRlMpICs9IG5vdXZlYXVfZGVidWdmcy5vCiBub3V2ZWF1LXkgKz0gbm91dmVhdV9kcm0ubwog
+bm91dmVhdS15ICs9IG5vdXZlYXVfaHdtb24ubwogbm91dmVhdS0kKENPTkZJR19DT01QQVQpICs9
+IG5vdXZlYXVfaW9jMzIubwotbm91dmVhdS0kKENPTkZJR19MRURTX0NMQVNTKSArPSBub3V2ZWF1
+X2xlZC5vCitub3V2ZWF1LSQoQ09ORklHX0RSTV9OT1VWRUFVX0xFRFMpICs9IG5vdXZlYXVfbGVk
+Lm8KIG5vdXZlYXUteSArPSBub3V2ZWF1X252aWYubwogbm91dmVhdS0kKENPTkZJR19OT1VWRUFV
+X1BMQVRGT1JNX0RSSVZFUikgKz0gbm91dmVhdV9wbGF0Zm9ybS5vCiBub3V2ZWF1LXkgKz0gbm91
+dmVhdV91c2lmLm8gIyB1c2Vyc3BhY2UgPC0+IG52aWYKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L0tjb25maWcgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29uZmlnCmlu
+ZGV4IDI5MjJhODIuLjlkYmI4MTYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L0tjb25maWcKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2NvbmZpZwpAQCAtMTYsNiAr
+MTYsNyBAQCBjb25maWcgRFJNX05PVVZFQVUKIAlzZWxlY3QgSU5QVVQgaWYgQUNQSSAmJiBYODYK
+IAlzZWxlY3QgVEhFUk1BTCBpZiBBQ1BJICYmIFg4NgogCXNlbGVjdCBBQ1BJX1ZJREVPIGlmIEFD
+UEkgJiYgWDg2CisJc2VsZWN0IExFRFNfQ0xBU1MgaWYgRFJNX05PVVZFQVVfTEVEUwogCWhlbHAK
+IAkgIENob29zZSB0aGlzIG9wdGlvbiBmb3Igb3Blbi1zb3VyY2UgTlZJRElBIHN1cHBvcnQuCiAK
+QEAgLTYyLDMgKzYzLDExIEBAIGNvbmZpZyBEUk1fTk9VVkVBVV9CQUNLTElHSFQKIAloZWxwCiAJ
+ICBTYXkgWSBoZXJlIGlmIHlvdSB3YW50IHRvIGNvbnRyb2wgdGhlIGJhY2tsaWdodCBvZiB5b3Vy
+IGRpc3BsYXkKIAkgIChlLmcuIGEgbGFwdG9wIHBhbmVsKS4KKworY29uZmlnIERSTV9OT1VWRUFV
+X0xFRFMKKwlib29sICJTdXBwb3J0IGZvciBoaWdoLWVuZCBHUFVzJyBOVklESUEtbG9nbyBMRUQg
+Y29udHJvbCIKKwlkZXBlbmRzIG9uIERSTV9OT1VWRUFVCisJZGVmYXVsdCB5CisJaGVscAorCSAg
+U2F5IFkgaGVyZSBpZiB5b3Ugd2FudCB0byBjb250cm9sIHRoZSBMRUQgYmVoaW5kIHRoZSBOVklE
+SUEgbG9nbyBvbgorCSAgaGlnaC1lbmQgR1BVcy4KLS0gCjIuMTAuMgoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
