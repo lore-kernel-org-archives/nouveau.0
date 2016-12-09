@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
  G1 Gaming GTX970
-Date: Fri, 09 Dec 2016 20:26:52 +0000
-Message-ID: <bug-89664-8800-EbECDRIq4a@http.bugs.freedesktop.org/>
+Date: Fri, 09 Dec 2016 20:27:37 +0000
+Message-ID: <bug-89664-8800-GRudNGN5k1@http.bugs.freedesktop.org/>
 References: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0128001275=="
+Content-Type: multipart/mixed; boundary="===============1777820472=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0128001275==
-Content-Type: multipart/alternative; boundary="14813152120.fE6f.28666";
+--===============1777820472==
+Content-Type: multipart/alternative; boundary="14813152570.bE8269c0f.28779";
  charset="UTF-8"
 
 
---14813152120.fE6f.28666
-Date: Fri, 9 Dec 2016 20:26:52 +0000
+--14813152570.bE8269c0f.28779
+Date: Fri, 9 Dec 2016 20:27:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,36 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D89664
 
---- Comment #15 from Omar <omarpakker+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I thought I'd give this another shot to see if things have changed since the
-last few kernel releases.
-
-Tested on:
-Linux Omar-PC 4.8.12-3-ARCH #1 SMP PREEMPT Thu Dec 8 16:10:23 CET 2016 x86_=
-64
-GNU/Linux
-
-Nouveau default behaviour:
-- Main GPU shortly blinks with boot information on the first screen followe=
-d by
-the second screen, then both power down.
-- The monitor attached to the second GPU shows the coloured stripes.
-- Turning the monitor on the second GPU off and back on again made it rende=
-r a
-bright blue opaque screen.
-
-Nouveau with config=3DNvForcePost=3D1 behaviour:
-- All monitors power down, nothing is shown at all on either GPU.
-
-I'll attach the output of `journalctl -b --no-pager | grep nouveau` for both
-runs shortly.
+--- Comment #16 from Omar <omarpakker+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 128399
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128399&action=3Dedit
+Kernel 4.8.12, nouveau defaults
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14813152120.fE6f.28666
-Date: Fri, 9 Dec 2016 20:26:52 +0000
+--14813152570.bE8269c0f.28779
+Date: Fri, 9 Dec 2016 20:27:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -83,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
 X970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c15">Commen=
-t # 15</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c16">Commen=
+t # 16</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
@@ -95,29 +76,11 @@ X970"
 omarpakker+freedesktop&#64;gmail.com" title=3D"Omar &lt;omarpakker+freedesk=
 top&#64;gmail.com&gt;"> <span class=3D"fn">Omar</span></a>
 </span></b>
-        <pre>I thought I'd give this another shot to see if things have cha=
-nged since the
-last few kernel releases.
-
-Tested on:
-Linux Omar-PC 4.8.12-3-ARCH #1 SMP PREEMPT Thu Dec 8 16:10:23 CET 2016 x86_=
-64
-GNU/Linux
-
-Nouveau default behaviour:
-- Main GPU shortly blinks with boot information on the first screen followe=
-d by
-the second screen, then both power down.
-- The monitor attached to the second GPU shows the coloured stripes.
-- Turning the monitor on the second GPU off and back on again made it rende=
-r a
-bright blue opaque screen.
-
-Nouveau with config=3DNvForcePost=3D1 behaviour:
-- All monitors power down, nothing is shown at all on either GPU.
-
-I'll attach the output of `journalctl -b --no-pager | grep nouveau` for both
-runs shortly.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128399=
+" name=3D"attach_128399" title=3D"Kernel 4.8.12, nouveau defaults">attachme=
+nt 128399</a> <a href=3D"attachment.cgi?id=3D128399&amp;action=3Dedit" titl=
+e=3D"Kernel 4.8.12, nouveau defaults">[details]</a></span>
+Kernel 4.8.12, nouveau defaults</pre>
         </div>
       </p>
 
@@ -131,9 +94,9 @@ runs shortly.</pre>
     </body>
 </html>=
 
---14813152120.fE6f.28666--
+--14813152570.bE8269c0f.28779--
 
---===============0128001275==
+--===============1777820472==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -143,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0128001275==--
+--===============1777820472==--
