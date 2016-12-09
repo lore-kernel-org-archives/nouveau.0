@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99033] [NV67] Incomplete implementation of OpenGL 2.1
-Date: Fri, 09 Dec 2016 11:10:30 +0000
-Message-ID: <bug-99033-8800-d5tJWah3FT@http.bugs.freedesktop.org/>
+Date: Fri, 09 Dec 2016 12:39:53 +0000
+Message-ID: <bug-99033-8800-6fGn5tjCTB@http.bugs.freedesktop.org/>
 References: <bug-99033-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0312580381=="
+Content-Type: multipart/mixed; boundary="===============1272050712=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99033-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0312580381==
-Content-Type: multipart/alternative; boundary="14812818300.344D.18486";
+--===============1272050712==
+Content-Type: multipart/alternative; boundary="14812871930.80E8.25924";
  charset="UTF-8"
 
 
---14812818300.344D.18486
-Date: Fri, 9 Dec 2016 11:10:30 +0000
+--14812871930.80E8.25924
+Date: Fri, 9 Dec 2016 12:39:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99033
 
---- Comment #1 from Ilya Indigo <13ilya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 128389
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128389&action=3Dedit
-nvidia
+--- Comment #2 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+could you tell us which extensions are actually needed? I am sure you can
+understand, that we can't simply implement all of the missing ones in a win=
+k of
+an eye, so we have to prefer the important ones
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14812818300.344D.18486
-Date: Fri, 9 Dec 2016 11:10:30 +0000
+--14812871930.80E8.25924
+Date: Fri, 9 Dec 2016 12:39:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,22 +64,22 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV67] Incomplete implementation of OpenGL 2.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99033#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99033#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV67] Incomplete implementation of OpenGL 2.1"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99033">bug 99033<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-13ilya&#64;gmail.com" title=3D"Ilya Indigo &lt;13ilya&#64;gmail.com&gt;"> <=
-span class=3D"fn">Ilya Indigo</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128389=
-" name=3D"attach_128389" title=3D"nvidia">attachment 128389</a> <a href=3D"=
-attachment.cgi?id=3D128389&amp;action=3Dedit" title=3D"nvidia">[details]</a=
-></span>
-nvidia</pre>
+        <pre>could you tell us which extensions are actually needed? I am s=
+ure you can
+understand, that we can't simply implement all of the missing ones in a win=
+k of
+an eye, so we have to prefer the important ones</pre>
         </div>
       </p>
 
@@ -93,9 +94,9 @@ nvidia</pre>
     </body>
 </html>=
 
---14812818300.344D.18486--
+--14812871930.80E8.25924--
 
---===============0312580381==
+--===============1272050712==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0312580381==--
+--===============1272050712==--
