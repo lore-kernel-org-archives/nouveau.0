@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99037] Graphics Freeze on Fedora 25 GNOME 3
-Date: Fri, 09 Dec 2016 19:36:58 +0000
-Message-ID: <bug-99037-8800-fdAgiN2ark@http.bugs.freedesktop.org/>
-References: <bug-99037-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
+ G1 Gaming GTX970
+Date: Fri, 09 Dec 2016 20:26:52 +0000
+Message-ID: <bug-89664-8800-EbECDRIq4a@http.bugs.freedesktop.org/>
+References: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0949714879=="
+Content-Type: multipart/mixed; boundary="===============0128001275=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99037-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0949714879==
-Content-Type: multipart/alternative; boundary="14813122181.2D453D8FF.24304";
+--===============0128001275==
+Content-Type: multipart/alternative; boundary="14813152120.fE6f.28666";
  charset="UTF-8"
 
 
---14813122181.2D453D8FF.24304
-Date: Fri, 9 Dec 2016 19:36:58 +0000
+--14813152120.fE6f.28666
+Date: Fri, 9 Dec 2016 20:26:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99037
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89664
 
---- Comment #3 from Andrew <ajcole-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org> ---
-Created attachment 128397
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128397&action=3Dedit
-Kernel log taken after crash, before reboot.
+--- Comment #15 from Omar <omarpakker+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I thought I'd give this another shot to see if things have changed since the
+last few kernel releases.
 
-SSH worked like a charm. Here's the resulting kernel log from my latest cra=
-sh.
+Tested on:
+Linux Omar-PC 4.8.12-3-ARCH #1 SMP PREEMPT Thu Dec 8 16:10:23 CET 2016 x86_=
+64
+GNU/Linux
+
+Nouveau default behaviour:
+- Main GPU shortly blinks with boot information on the first screen followe=
+d by
+the second screen, then both power down.
+- The monitor attached to the second GPU shows the coloured stripes.
+- Turning the monitor on the second GPU off and back on again made it rende=
+r a
+bright blue opaque screen.
+
+Nouveau with config=3DNvForcePost=3D1 behaviour:
+- All monitors power down, nothing is shown at all on either GPU.
+
+I'll attach the output of `journalctl -b --no-pager | grep nouveau` for both
+runs shortly.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14813122181.2D453D8FF.24304
-Date: Fri, 9 Dec 2016 19:36:58 +0000
+--14813152120.fE6f.28666
+Date: Fri, 9 Dec 2016 20:26:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,27 +81,43 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Graphics Freeze on Fedora 25 GNOME 3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99037#c3">Comment=
- # 3</a>
+   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
+X970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c15">Commen=
+t # 15</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Graphics Freeze on Fedora 25 GNOME 3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99037">bug 99037<=
+   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
+X970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664">bug 89664<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ajcole&#64;protonmail.com" title=3D"Andrew &lt;ajcole&#64;protonmail.com&gt=
-;"> <span class=3D"fn">Andrew</span></a>
+omarpakker+freedesktop&#64;gmail.com" title=3D"Omar &lt;omarpakker+freedesk=
+top&#64;gmail.com&gt;"> <span class=3D"fn">Omar</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128397=
-" name=3D"attach_128397" title=3D"Kernel log taken after crash, before rebo=
-ot.">attachment 128397</a> <a href=3D"attachment.cgi?id=3D128397&amp;action=
-=3Dedit" title=3D"Kernel log taken after crash, before reboot.">[details]</=
-a></span>
-Kernel log taken after crash, before reboot.
+        <pre>I thought I'd give this another shot to see if things have cha=
+nged since the
+last few kernel releases.
 
-SSH worked like a charm. Here's the resulting kernel log from my latest cra=
-sh.</pre>
+Tested on:
+Linux Omar-PC 4.8.12-3-ARCH #1 SMP PREEMPT Thu Dec 8 16:10:23 CET 2016 x86_=
+64
+GNU/Linux
+
+Nouveau default behaviour:
+- Main GPU shortly blinks with boot information on the first screen followe=
+d by
+the second screen, then both power down.
+- The monitor attached to the second GPU shows the coloured stripes.
+- Turning the monitor on the second GPU off and back on again made it rende=
+r a
+bright blue opaque screen.
+
+Nouveau with config=3DNvForcePost=3D1 behaviour:
+- All monitors power down, nothing is shown at all on either GPU.
+
+I'll attach the output of `journalctl -b --no-pager | grep nouveau` for both
+runs shortly.</pre>
         </div>
       </p>
 
@@ -98,9 +131,9 @@ sh.</pre>
     </body>
 </html>=
 
---14813122181.2D453D8FF.24304--
+--14813152120.fE6f.28666--
 
---===============0949714879==
+--===============0128001275==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +143,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0949714879==--
+--===============0128001275==--
