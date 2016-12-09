@@ -1,12 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99033] [NV67] Incomplete implementation of OpenGL 2.1
-Date: Fri, 09 Dec 2016 13:42:36 +0000
-Message-ID: <bug-99033-8800-DH00yp9rv7@http.bugs.freedesktop.org/>
-References: <bug-99033-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99037] New: Graphics Freeze on Fedora 25 GNOME 3
+Date: Fri, 09 Dec 2016 19:08:41 +0000
+Message-ID: <bug-99037-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0250508847=="
+Content-Type: multipart/mixed; boundary="===============1160167745=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99033-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,56 +18,60 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0250508847==
-Content-Type: multipart/alternative; boundary="14812909560.BdcEBE4.30389";
+--===============1160167745==
+Content-Type: multipart/alternative; boundary="14813105211.64f1cDa9.22122";
  charset="UTF-8"
 
 
---14812909560.BdcEBE4.30389
-Date: Fri, 9 Dec 2016 13:42:35 +0000
+--14813105211.64f1cDa9.22122
+Date: Fri, 9 Dec 2016 19:08:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99033
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99037
 
---- Comment #3 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Looking at the OpenGL 2.1 specification, I haven=E2=80=99t been able to fin=
-d any
-extension, that was promoted to a core feature in OpenGL <=3D 2.1, that is =
-not
-implemented by Nouveau.
+            Bug ID: 99037
+           Summary: Graphics Freeze on Fedora 25 GNOME 3
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: ajcole-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Some of the extensions exposed by NVIDIA are clearly not part of the OpenGL=
- 2.1
-specification, such as GL_ARB_shading_language_420pack [0], which was appro=
-ved
-in 2011, whereas the OpenGL 2.1 specification is from Dec. 2006.
-I had a quick look at about 10 extensions exposed by NVIDIA but not by Nouv=
-eau,
-and they were mostly approved >2008. One extension,
-GL_EXT_framebuffer_multisample [1], was approved in 2005, but it became a c=
-ore
-feature only in OpenGL 3.0.
+Created attachment 128396
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128396&action=3Dedit
+Kernel log as described on website
 
-From what I understand (correct me if I am wrong), OpenGL extensions, as lo=
-ng
-as they haven=E2=80=99t been made into a core feature, are completely optio=
-nal in order
-to support a given OpenGL version.
+After a time or when I use my second monitor I encounter problems with my
+graphics. I've had 1 of 3 things happen:
 
-[0]: https://www.opengl.org/registry/specs/ARB/shading_language_420pack.txt
-[1]: https://www.opengl.org/registry/specs/EXT/framebuffer_multisample.txt
+1. Everything freezes. Must reboot manually.
+2. Everything except my mouse freezes. Must reboot manually.
+3. One of the previous two as well as black squares
+
+Fedora 25
+i5-3470 x64
+8GB RAM
+Nvidia GTX 550 ti
+
+Warning: I'm new to linux, nouveau and bug reporting. I apologize if I'm a
+little lost.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14812909560.BdcEBE4.30389
-Date: Fri, 9 Dec 2016 13:42:36 +0000
+--14813105211.64f1cDa9.22122
+Date: Fri, 9 Dec 2016 19:08:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,53 +82,109 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Graphics Freeze on Fedora 25 GNOME 3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99037">99037</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Graphics Freeze on Fedora 25 GNOME 3
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ajcole&#64;protonmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV67] Incomplete implementation of OpenGL 2.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99033#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV67] Incomplete implementation of OpenGL 2.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99033">bug 99033<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Looking at the OpenGL 2.1 specification, I haven=E2=80=99t bee=
-n able to find any
-extension, that was promoted to a core feature in OpenGL &lt;=3D 2.1, that =
-is not
-implemented by Nouveau.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128396=
+" name=3D"attach_128396" title=3D"Kernel log as described on website">attac=
+hment 128396</a> <a href=3D"attachment.cgi?id=3D128396&amp;action=3Dedit" t=
+itle=3D"Kernel log as described on website">[details]</a></span>
+Kernel log as described on website
 
-Some of the extensions exposed by NVIDIA are clearly not part of the OpenGL=
- 2.1
-specification, such as GL_ARB_shading_language_420pack [0], which was appro=
-ved
-in 2011, whereas the OpenGL 2.1 specification is from Dec. 2006.
-I had a quick look at about 10 extensions exposed by NVIDIA but not by Nouv=
-eau,
-and they were mostly approved &gt;2008. One extension,
-GL_EXT_framebuffer_multisample [1], was approved in 2005, but it became a c=
-ore
-feature only in OpenGL 3.0.
+After a time or when I use my second monitor I encounter problems with my
+graphics. I've had 1 of 3 things happen:
 
-From what I understand (correct me if I am wrong), OpenGL extensions, as lo=
-ng
-as they haven=E2=80=99t been made into a core feature, are completely optio=
-nal in order
-to support a given OpenGL version.
+1. Everything freezes. Must reboot manually.
+2. Everything except my mouse freezes. Must reboot manually.
+3. One of the previous two as well as black squares
 
-[0]: <a href=3D"https://www.opengl.org/registry/specs/ARB/shading_language_=
-420pack.txt">https://www.opengl.org/registry/specs/ARB/shading_language_420=
-pack.txt</a>
-[1]: <a href=3D"https://www.opengl.org/registry/specs/EXT/framebuffer_multi=
-sample.txt">https://www.opengl.org/registry/specs/EXT/framebuffer_multisamp=
-le.txt</a></pre>
+Fedora 25
+i5-3470 x64
+8GB RAM
+Nvidia GTX 550 ti
+
+Warning: I'm new to linux, nouveau and bug reporting. I apologize if I'm a
+little lost.</pre>
         </div>
       </p>
 
@@ -136,14 +194,13 @@ le.txt</a></pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14812909560.BdcEBE4.30389--
+--14813105211.64f1cDa9.22122--
 
---===============0250508847==
+--===============1160167745==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -153,4 +210,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0250508847==--
+--===============1160167745==--
