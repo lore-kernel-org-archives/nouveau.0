@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99033] [NV67] Incomplete implementation of OpenGL 2.1
-Date: Fri, 09 Dec 2016 12:39:53 +0000
-Message-ID: <bug-99033-8800-6fGn5tjCTB@http.bugs.freedesktop.org/>
-References: <bug-99033-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98852] Nvidia graphics card fan not running or to
+ slow, danger of overheating
+Date: Fri, 09 Dec 2016 12:56:45 +0000
+Message-ID: <bug-98852-8800-B0MqaPIjkh@http.bugs.freedesktop.org/>
+References: <bug-98852-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1272050712=="
+Content-Type: multipart/mixed; boundary="===============0699051539=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99033-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98852-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1272050712==
-Content-Type: multipart/alternative; boundary="14812871930.80E8.25924";
+--===============0699051539==
+Content-Type: multipart/alternative; boundary="14812882050.EAA6fe69.27094";
  charset="UTF-8"
 
 
---14812871930.80E8.25924
-Date: Fri, 9 Dec 2016 12:39:53 +0000
+--14812882050.EAA6fe69.27094
+Date: Fri, 9 Dec 2016 12:56:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99033
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98852
 
---- Comment #2 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-could you tell us which extensions are actually needed? I am sure you can
-understand, that we can't simply implement all of the missing ones in a win=
-k of
-an eye, so we have to prefer the important ones
+--- Comment #25 from Egon Niessner <susebugzilla-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
+Hello,
+what have I to do, to produce a bisect?
+
+Have I to install a special version of a kernel?
+
+I can make an installation on a other harddisk.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14812871930.80E8.25924
-Date: Fri, 9 Dec 2016 12:39:53 +0000
+--14812882050.EAA6fe69.27094
+Date: Fri, 9 Dec 2016 12:56:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,23 +65,26 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV67] Incomplete implementation of OpenGL 2.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99033#c2">Comment=
- # 2</a>
+   title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
+f overheating"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852#c25">Commen=
+t # 25</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV67] Incomplete implementation of OpenGL 2.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99033">bug 99033<=
+   title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
+f overheating"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852">bug 98852<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+susebugzilla&#64;online.de" title=3D"Egon Niessner &lt;susebugzilla&#64;onl=
+ine.de&gt;"> <span class=3D"fn">Egon Niessner</span></a>
 </span></b>
-        <pre>could you tell us which extensions are actually needed? I am s=
-ure you can
-understand, that we can't simply implement all of the missing ones in a win=
-k of
-an eye, so we have to prefer the important ones</pre>
+        <pre>Hello,
+what have I to do, to produce a bisect?
+
+Have I to install a special version of a kernel?
+
+I can make an installation on a other harddisk.</pre>
         </div>
       </p>
 
@@ -88,15 +93,14 @@ an eye, so we have to prefer the important ones</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14812871930.80E8.25924--
+--14812882050.EAA6fe69.27094--
 
---===============1272050712==
+--===============0699051539==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1272050712==--
+--===============0699051539==--
