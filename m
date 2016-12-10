@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98039] KMail crash on starting (nouveau-related)
-Date: Sat, 10 Dec 2016 14:39:00 +0000
-Message-ID: <bug-98039-8800-pFGKI5spn5@http.bugs.freedesktop.org/>
+Date: Sat, 10 Dec 2016 14:43:15 +0000
+Message-ID: <bug-98039-8800-Jf7XIFlXsz@http.bugs.freedesktop.org/>
 References: <bug-98039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1231804790=="
+Content-Type: multipart/mixed; boundary="===============1723021232=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1231804790==
-Content-Type: multipart/alternative; boundary="14813807400.9C0AF785.27592";
+--===============1723021232==
+Content-Type: multipart/alternative; boundary="14813809940.C5311441D.28192";
  charset="UTF-8"
 
 
---14813807400.9C0AF785.27592
-Date: Sat, 10 Dec 2016 14:39:00 +0000
+--14813809940.C5311441D.28192
+Date: Sat, 10 Dec 2016 14:43:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,23 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98039
 
-Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |ASSIGNED
-
---- Comment #4 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Ilia any chance you can merge these locking patches into main mesa tree ?
-
-Things are getting worse...
+--- Comment #5 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+KDE Plasma is using more and more QtWebEngine and this means such crashes w=
+ith
+nouveau will occur more frequently.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.=
 
---14813807400.9C0AF785.27592
-Date: Sat, 10 Dec 2016 14:39:00 +0000
+--14813809940.C5311441D.28192
+Date: Sat, 10 Dec 2016 14:43:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,37 +56,14 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:tpgxyz&#6=
-4;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.com&gt;">=
- <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - KMail crash on starting (nouveau-related)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">bug 98039<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>ASSIGNED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_ASSIGNED "
    title=3D"ASSIGNED - KMail crash on starting (nouveau-related)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_ASSIGNED "
    title=3D"ASSIGNED - KMail crash on starting (nouveau-related)"
@@ -102,10 +73,9 @@ Auto-Submitted: auto-generated
 tpgxyz&#64;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.=
 com&gt;"> <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
 </span></b>
-        <pre>Ilia any chance you can merge these locking patches into main =
-mesa tree ?
-
-Things are getting worse...</pre>
+        <pre>KDE Plasma is using more and more QtWebEngine and this means s=
+uch crashes with
+nouveau will occur more frequently.</pre>
         </div>
       </p>
 
@@ -119,9 +89,9 @@ Things are getting worse...</pre>
     </body>
 </html>=
 
---14813807400.9C0AF785.27592--
+--14813809940.C5311441D.28192--
 
---===============1231804790==
+--===============1723021232==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -131,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1231804790==--
+--===============1723021232==--
