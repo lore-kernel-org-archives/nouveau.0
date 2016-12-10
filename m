@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98039] KMail crash on starting (nouveau-related)
+Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
+ Chromium web browser
 Date: Sat, 10 Dec 2016 14:37:34 +0000
-Message-ID: <bug-98039-8800-73oAFSb8z0@http.bugs.freedesktop.org/>
-References: <bug-98039-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-73373-8800-uGCJXdOglq@http.bugs.freedesktop.org/>
+References: <bug-73373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0580451337=="
+Content-Type: multipart/mixed; boundary="===============0423249539=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,40 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0580451337==
-Content-Type: multipart/alternative; boundary="14813806546.3BeF2e.27647";
+--===============0423249539==
+Content-Type: multipart/alternative; boundary="14813806531.4aE5F0C.27647";
  charset="UTF-8"
 
 
---14813806546.3BeF2e.27647
-Date: Sat, 10 Dec 2016 14:37:34 +0000
+--14813806531.4aE5F0C.27647
+Date: Sat, 10 Dec 2016 14:37:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98039
+https://bugs.freedesktop.org/show_bug.cgi?id=3D73373
 
 Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Blocks|                            |73373
+         Depends on|                            |92077, 98039
+
+--- Comment #22 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Looks like this is related to broken multi-threading in nouveau, see linked
+bugs.
 
 
 Referenced Bugs:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D73373
-[Bug 73373] [NVE4] GPU lockup after opening many tabs in Chromium web brows=
-er
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92077
+[Bug 92077] nouveau graphics freeze when using KDE Plasma 5; PGR engine fau=
+lt
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98039
+[Bug 98039] KMail crash on starting (nouveau-related)
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14813806546.3BeF2e.27647
-Date: Sat, 10 Dec 2016 14:37:34 +0000
+--14813806531.4aE5F0C.27647
+Date: Sat, 10 Dec 2016 14:37:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,8 +76,9 @@ Auto-Submitted: auto-generated
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - KMail crash on starting (nouveau-related)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">bug 98039<=
+   title=3D"NEW - [NVE4] GPU lockup after opening many tabs in Chromium web=
+ browser"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D73373">bug 73373<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -82,14 +89,35 @@ Auto-Submitted: auto-generated
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Blocks</td>
+           <td style=3D"text-align:right;">Depends on</td>
            <td>
                &nbsp;
            </td>
-           <td>73373
+           <td>92077, 98039
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] GPU lockup after opening many tabs in Chromium web=
+ browser"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D73373#c22">Commen=
+t # 22</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] GPU lockup after opening many tabs in Chromium web=
+ browser"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D73373">bug 73373<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tpgxyz&#64;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.=
+com&gt;"> <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
+</span></b>
+        <pre>Looks like this is related to broken multi-threading in nouvea=
+u, see linked
+bugs.</pre>
+        </div>
       </p>
 
         <div id=3D"referenced">
@@ -99,10 +127,17 @@ Auto-Submitted: auto-generated
               <li>
                 [<a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE4] GPU lockup after opening many tabs in Chromium web=
- browser"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D73373">Bug 73373<=
-/a>] [NVE4] GPU lockup after opening many tabs in Chromium web browser
+   title=3D"NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engi=
+ne fault"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92077">Bug 92077<=
+/a>] nouveau graphics freeze when using KDE Plasma 5; PGR engine fault
+              </li>
+              <li>
+                [<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - KMail crash on starting (nouveau-related)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">Bug 98039<=
+/a>] KMail crash on starting (nouveau-related)
               </li>
           </ul>
         </div>
@@ -112,15 +147,14 @@ Auto-Submitted: auto-generated
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14813806546.3BeF2e.27647--
+--14813806531.4aE5F0C.27647--
 
---===============0580451337==
+--===============0423249539==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +164,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0580451337==--
+--===============0423249539==--
