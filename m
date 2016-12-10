@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
- 5; PGR engine fault
+Subject: [Bug 98039] KMail crash on starting (nouveau-related)
 Date: Sat, 10 Dec 2016 14:36:42 +0000
-Message-ID: <bug-92077-8800-ymyEfmpO8g@http.bugs.freedesktop.org/>
-References: <bug-92077-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-98039-8800-9v8iISrYuB@http.bugs.freedesktop.org/>
+References: <bug-98039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0627395619=="
+Content-Type: multipart/mixed; boundary="===============2052611768=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0627395619==
-Content-Type: multipart/alternative; boundary="14813806024.D2d68ABC4.27574";
+--===============2052611768==
+Content-Type: multipart/alternative; boundary="14813806029.AaeCBC.27574";
  charset="UTF-8"
 
 
---14813806024.D2d68ABC4.27574
+--14813806029.AaeCBC.27574
 Date: Sat, 10 Dec 2016 14:36:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -34,7 +33,7 @@ Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92077
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98039
 
 Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
@@ -51,10 +50,10 @@ ns
 crashes
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14813806024.D2d68ABC4.27574
+--14813806029.AaeCBC.27574
 Date: Sat, 10 Dec 2016 14:36:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -72,9 +71,8 @@ Auto-Submitted: auto-generated
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engi=
-ne fault"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92077">bug 92077<=
+   title=3D"NEW - KMail crash on starting (nouveau-related)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">bug 98039<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -116,15 +114,15 @@ hes
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14813806024.D2d68ABC4.27574--
+--14813806029.AaeCBC.27574--
 
---===============0627395619==
+--===============2052611768==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +132,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0627395619==--
+--===============2052611768==--
