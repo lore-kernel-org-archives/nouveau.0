@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98039] KMail crash on starting (nouveau-related)
-Date: Sat, 10 Dec 2016 14:44:58 +0000
-Message-ID: <bug-98039-8800-Und0skHTLc@http.bugs.freedesktop.org/>
+Date: Sat, 10 Dec 2016 14:47:32 +0000
+Message-ID: <bug-98039-8800-M4Embsa71u@http.bugs.freedesktop.org/>
 References: <bug-98039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1507023326=="
+Content-Type: multipart/mixed; boundary="===============0863248363=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1507023326==
-Content-Type: multipart/alternative; boundary="14813810992.6e88e4.28192";
+--===============0863248363==
+Content-Type: multipart/alternative; boundary="14813812525.5F9351A2.28391";
  charset="UTF-8"
 
 
---14813810992.6e88e4.28192
-Date: Sat, 10 Dec 2016 14:44:59 +0000
+--14813812525.5F9351A2.28391
+Date: Sat, 10 Dec 2016 14:47:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -39,19 +39,21 @@ Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Blocks|                            |91632
+             Blocks|                            |94727
 
 
 Referenced Bugs:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91632
-[Bug 91632] Assert in nouveau_pushbuf_data
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94727
+[Bug 94727] [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertion `bkr=
+ef`
+failed.
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.=
 
---14813810992.6e88e4.28192
-Date: Sat, 10 Dec 2016 14:44:59 +0000
+--14813812525.5F9351A2.28391
+Date: Sat, 10 Dec 2016 14:47:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -84,7 +86,7 @@ Auto-Submitted: auto-generated
            <td>
                &nbsp;
            </td>
-           <td>91632
+           <td>94727
            </td>
          </tr></table>
       <p>
@@ -97,9 +99,11 @@ Auto-Submitted: auto-generated
               <li>
                 [<a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Assert in nouveau_pushbuf_data"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632">Bug 91632<=
-/a>] Assert in nouveau_pushbuf_data
+   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
+n `bkref` failed."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727">Bug 94727<=
+/a>] [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertion `bkref` fai=
+led.
               </li>
           </ul>
         </div>
@@ -114,9 +118,9 @@ Auto-Submitted: auto-generated
     </body>
 </html>=
 
---14813810992.6e88e4.28192--
+--14813812525.5F9351A2.28391--
 
---===============1507023326==
+--===============0863248363==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -126,4 +130,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1507023326==--
+--===============0863248363==--
