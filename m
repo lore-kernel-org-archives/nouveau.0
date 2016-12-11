@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98631] GPU lock ups when starting GDM, SDDM,
-	and Plasma Desktop
-Date: Sun, 11 Dec 2016 22:29:31 +0000
-Message-ID: <bug-98631-8800-hFIobBN7xd@http.bugs.freedesktop.org/>
-References: <bug-98631-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98039] KMail crash on starting (nouveau-related)
+Date: Sun, 11 Dec 2016 22:36:55 +0000
+Message-ID: <bug-98039-8800-B6yEF6zp65@http.bugs.freedesktop.org/>
+References: <bug-98039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0307140152=="
+Content-Type: multipart/mixed; boundary="===============1349045447=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98631-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +20,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0307140152==
-Content-Type: multipart/alternative; boundary="14814953742.f63C.10181";
+--===============1349045447==
+Content-Type: multipart/alternative; boundary="14814958152.818e.10742";
  charset="UTF-8"
 
 
---14814953742.f63C.10181
-Date: Sun, 11 Dec 2016 22:29:34 +0000
+--14814958152.818e.10742
+Date: Sun, 11 Dec 2016 22:36:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98631
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Depends on|98039                       |
-
-
-Referenced Bugs:
-
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98039
-[Bug 98039] KMail crash on starting (nouveau-related)
+
+--- Comment #12 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #11)
+> Tomasz - please don't go around messing about with the bugtracker.
+
+Thanks Ilia, for cleaning all the related bugs (yes i did my job carefully,=
+ and
+read all the attached logs etc), so next reporters will create new bugs,
+instead of get clear information like,
+Mulit-Threading OpenGL is broken in nouveau DRI drivers,=20
+Propsed solutions are:
+* use LLVMpipe DRI driver
+* buy AMD/intel gfx card
+* uninstall Plasma and live in TTY cave
+
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14814953742.f63C.10181
-Date: Sun, 11 Dec 2016 22:29:34 +0000
+--14814958152.818e.10742
+Date: Sun, 11 Dec 2016 22:36:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,61 +66,54 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GPU lock ups when starting GDM, SDDM, and Plasma Desktop"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98631">bug 98631<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Depends on</td>
-           <td>98039
-           </td>
-           <td>
-               &nbsp;
-           </td>
-         </tr></table>
+    <body>
       <p>
-      </p>
-
-        <div id=3D"referenced">
-          <hr style=3D"border: 1px dashed #969696">
-          <b>Referenced Bugs:</b>
-          <ul>
-              <li>
-                [<a class=3D"bz_bug_link=20
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - KMail crash on starting (nouveau-related)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">Bug 98039<=
-/a>] KMail crash on starting (nouveau-related)
-              </li>
-          </ul>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039#c12">Commen=
+t # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - KMail crash on starting (nouveau-related)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">bug 98039<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tpgxyz&#64;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.=
+com&gt;"> <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D980=
+39#c11">comment #11</a>)
+<span class=3D"quote">&gt; Tomasz - please don't go around messing about wi=
+th the bugtracker.</span >
+
+Thanks Ilia, for cleaning all the related bugs (yes i did my job carefully,=
+ and
+read all the attached logs etc), so next reporters will create new bugs,
+instead of get clear information like,
+Mulit-Threading OpenGL is broken in nouveau DRI drivers,=20
+Propsed solutions are:
+* use LLVMpipe DRI driver
+* buy AMD/intel gfx card
+* uninstall Plasma and live in TTY cave</pre>
         </div>
-        <br>
+      </p>
+
 
       <hr>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14814953742.f63C.10181--
+--14814958152.818e.10742--
 
---===============0307140152==
+--===============1349045447==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0307140152==--
+--===============1349045447==--
