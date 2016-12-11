@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
- 5; PGR engine fault
+Subject: [Bug 98631] GPU lock ups when starting GDM, SDDM,
+	and Plasma Desktop
 Date: Sun, 11 Dec 2016 22:29:31 +0000
-Message-ID: <bug-92077-8800-eQTWpFmzPm@http.bugs.freedesktop.org/>
-References: <bug-92077-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-98631-8800-hFIobBN7xd@http.bugs.freedesktop.org/>
+References: <bug-98631-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0519235700=="
+Content-Type: multipart/mixed; boundary="===============0307140152=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98631-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0519235700==
-Content-Type: multipart/alternative; boundary="14814953729.f45Ad.10181";
+--===============0307140152==
+Content-Type: multipart/alternative; boundary="14814953742.f63C.10181";
  charset="UTF-8"
 
 
---14814953729.f45Ad.10181
-Date: Sun, 11 Dec 2016 22:29:32 +0000
+--14814953742.f63C.10181
+Date: Sun, 11 Dec 2016 22:29:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92077
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98631
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -49,11 +49,10 @@ https://bugs.freedesktop.org/show_bug.cgi?id=3D98039
 [Bug 98039] KMail crash on starting (nouveau-related)
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14814953729.f45Ad.10181
-Date: Sun, 11 Dec 2016 22:29:32 +0000
+--14814953742.f63C.10181
+Date: Sun, 11 Dec 2016 22:29:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,9 +69,8 @@ pan class=3D"fn">Ilia Mirkin</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engi=
-ne fault"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92077">bug 92077<=
+   title=3D"NEW - GPU lock ups when starting GDM, SDDM, and Plasma Desktop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98631">bug 98631<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -113,14 +111,13 @@ ne fault"
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14814953729.f45Ad.10181--
+--14814953742.f63C.10181--
 
---===============0519235700==
+--===============0307140152==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0519235700==--
+--===============0307140152==--
