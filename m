@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98039] KMail crash on starting (nouveau-related)
-Date: Sun, 11 Dec 2016 22:19:39 +0000
-Message-ID: <bug-98039-8800-peaBJiZ9gg@http.bugs.freedesktop.org/>
-References: <bug-98039-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98631] GPU lock ups when starting GDM, SDDM,
+	and Plasma Desktop
+Date: Sun, 11 Dec 2016 22:22:37 +0000
+Message-ID: <bug-98631-8800-SEroD81KXA@http.bugs.freedesktop.org/>
+References: <bug-98631-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0587023502=="
+Content-Type: multipart/mixed; boundary="===============0411040619=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98631-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0587023502==
-Content-Type: multipart/alternative; boundary="14814947782.FCA8545e.9515";
+--===============0411040619==
+Content-Type: multipart/alternative; boundary="14814949561.bFde36B.9770";
  charset="UTF-8"
 
 
---14814947782.FCA8545e.9515
-Date: Sun, 11 Dec 2016 22:19:38 +0000
+--14814949561.bFde36B.9770
+Date: Sun, 11 Dec 2016 22:22:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98631
+
+Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Depends on|                            |98039
+
+--- Comment #5 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+For me this sounds like #98039 related
+
+
+Referenced Bugs:
+
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98039
-
---- Comment #10 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #9)
-
-> Thanks for letting me know. I'll be sure to tell people to try an upstream
-> version of mesa should they mention that they're using OpenMandriva. (Note
-> that OpenSuSE attempted something along those lines too, but ended up just
-> not shipping nouveau_dri.so, I believe.)
-
-I've checked SuSE, Fedora and Arch sources for Mesa, and these distros DOES
-ship nouveau_dri.so
-
+[Bug 98039] KMail crash on starting (nouveau-related)
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14814947782.FCA8545e.9515
-Date: Sun, 11 Dec 2016 22:19:38 +0000
+--14814949561.bFde36B.9770
+Date: Sun, 11 Dec 2016 22:22:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,53 +66,78 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:tpgxyz&#6=
+4;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.com&gt;">=
+ <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GPU lock ups when starting GDM, SDDM, and Plasma Desktop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98631">bug 98631<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Depends on</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>98039
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - KMail crash on starting (nouveau-related)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039#c10">Commen=
-t # 10</a>
+   title=3D"NEW - GPU lock ups when starting GDM, SDDM, and Plasma Desktop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98631#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - KMail crash on starting (nouveau-related)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">bug 98039<=
+   title=3D"NEW - GPU lock ups when starting GDM, SDDM, and Plasma Desktop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98631">bug 98631<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 tpgxyz&#64;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.=
 com&gt;"> <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D980=
-39#c9">comment #9</a>)
-
-<span class=3D"quote">&gt; Thanks for letting me know. I'll be sure to tell=
- people to try an upstream
-&gt; version of mesa should they mention that they're using OpenMandriva. (=
-Note
-&gt; that OpenSuSE attempted something along those lines too, but ended up =
-just
-&gt; not shipping nouveau_dri.so, I believe.)</span >
-
-I've checked SuSE, Fedora and Arch sources for Mesa, and these distros DOES
-ship nouveau_dri.so</pre>
+        <pre>For me this sounds like #98039 related</pre>
         </div>
       </p>
 
+        <div id=3D"referenced">
+          <hr style=3D"border: 1px dashed #969696">
+          <b>Referenced Bugs:</b>
+          <ul>
+              <li>
+                [<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - KMail crash on starting (nouveau-related)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">Bug 98039<=
+/a>] KMail crash on starting (nouveau-related)
+              </li>
+          </ul>
+        </div>
+        <br>
 
       <hr>
       <span>You are receiving this mail because:</span>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14814947782.FCA8545e.9515--
+--14814949561.bFde36B.9770--
 
---===============0587023502==
+--===============0411040619==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +147,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0587023502==--
+--===============0411040619==--
