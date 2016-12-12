@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98039] KMail crash on starting (nouveau-related)
-Date: Mon, 12 Dec 2016 09:22:18 +0000
-Message-ID: <bug-98039-8800-SKYS3iuu68@http.bugs.freedesktop.org/>
-References: <bug-98039-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94727] [NV30/NV40] nouveau/pushbuf.c:238:
+ pushbuf_krel: Assertion `bkref` failed.
+Date: Mon, 12 Dec 2016 09:48:27 +0000
+Message-ID: <bug-94727-8800-s2SJkj2DwY@http.bugs.freedesktop.org/>
+References: <bug-94727-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0743638709=="
+Content-Type: multipart/mixed; boundary="===============1615121866=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94727-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,53 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0743638709==
-Content-Type: multipart/alternative; boundary="14815345383.10adccA.6972";
+--===============1615121866==
+Content-Type: multipart/alternative; boundary="14815361061.0cB7f.8782";
  charset="UTF-8"
 
 
---14815345383.10adccA.6972
-Date: Mon, 12 Dec 2016 09:22:18 +0000
+--14815361061.0cB7f.8782
+Date: Mon, 12 Dec 2016 09:48:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98039
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94727
 
---- Comment #14 from Ren=C3=A9 Krell <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-> Sorry, Ren=C3=A9, for all this spam that has been thrust upon you.
+--- Comment #12 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+(In reply to Tomasz Pawe=C5=82 Gajc from comment #11)
+> Looks like this is very similiar to #98039
 
-This doesn't matter at all, I'm glad when things are moving on and if there=
- is
-new information appearing from discussions.
-I'm still open to help here, making valgrind reports of components, whatever
-help I can provide. Unfortunately, I don't know internals neither of nouveau
-nor of QtWebEngine and plasmashell, I'm just using (and testing) them. So I
-need a clear announcement what to do.
-
-I'm using OpenSUSE Tumbleweed and I have currently uninstalled the package
-Mesa-dri-nouveau you already mentioned to be split off by the OpenSUSE
-maintainers. But at the end their patches seemed already no longer to hang =
-up
-my "cutting edge" plasmashell with KMail system. I have still problems with
-plasmashell running into a loop eating the full CPU power unless killed and
-restarted. And the (QtWebEngine-based) KMail getting very slow from time to
-time when navigating through messages, but both issues happen already with
-uninstalled Mesa-dri-nouveau, so this might be a different problem.
-
-Regarding buying a graphics hardware from a different vendor - I just canno=
-t do
-this, it's built-in to my work notebook I received from my employer :-)
+Eventually, the assertion hit is the same, but it doesn't mean it's the same
+problem/root cause.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14815345383.10adccA.6972
-Date: Mon, 12 Dec 2016 09:22:18 +0000
+--14815361061.0cB7f.8782
+Date: Mon, 12 Dec 2016 09:48:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -82,44 +65,27 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - KMail crash on starting (nouveau-related)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039#c14">Commen=
-t # 14</a>
+   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
+n `bkref` failed."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727#c12">Commen=
+t # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - KMail crash on starting (nouveau-related)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">bug 98039<=
+   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
+n `bkref` failed."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727">bug 94727<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 Krell &lt;renda.krell&#64;gma=
-il.com&gt;"> <span class=3D"fn">Ren=C3=A9 Krell</span></a>
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
 </span></b>
-        <pre><span class=3D"quote">&gt; Sorry, Ren=C3=A9, for all this spam=
- that has been thrust upon you.</span >
+        <pre>(In reply to Tomasz Pawe=C5=82 Gajc from <a href=3D"show_bug.c=
+gi?id=3D94727#c11">comment #11</a>)
+<span class=3D"quote">&gt; Looks like this is very similiar to #98039</span=
+ >
 
-This doesn't matter at all, I'm glad when things are moving on and if there=
- is
-new information appearing from discussions.
-I'm still open to help here, making valgrind reports of components, whatever
-help I can provide. Unfortunately, I don't know internals neither of nouveau
-nor of QtWebEngine and plasmashell, I'm just using (and testing) them. So I
-need a clear announcement what to do.
-
-I'm using OpenSUSE Tumbleweed and I have currently uninstalled the package
-Mesa-dri-nouveau you already mentioned to be split off by the OpenSUSE
-maintainers. But at the end their patches seemed already no longer to hang =
-up
-my &quot;cutting edge&quot; plasmashell with KMail system. I have still pro=
-blems with
-plasmashell running into a loop eating the full CPU power unless killed and
-restarted. And the (QtWebEngine-based) KMail getting very slow from time to
-time when navigating through messages, but both issues happen already with
-uninstalled Mesa-dri-nouveau, so this might be a different problem.
-
-Regarding buying a graphics hardware from a different vendor - I just canno=
-t do
-this, it's built-in to my work notebook I received from my employer :-)</pr=
-e>
+Eventually, the assertion hit is the same, but it doesn't mean it's the same
+problem/root cause.</pre>
         </div>
       </p>
 
@@ -134,9 +100,9 @@ e>
     </body>
 </html>=
 
---14815345383.10adccA.6972--
+--14815361061.0cB7f.8782--
 
---===============0743638709==
+--===============1615121866==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0743638709==--
+--===============1615121866==--
