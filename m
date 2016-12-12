@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98039] KMail crash on starting (nouveau-related)
-Date: Sun, 11 Dec 2016 22:48:43 +0000
-Message-ID: <bug-98039-8800-XhRnbfrIQu@http.bugs.freedesktop.org/>
+Date: Mon, 12 Dec 2016 09:22:18 +0000
+Message-ID: <bug-98039-8800-SKYS3iuu68@http.bugs.freedesktop.org/>
 References: <bug-98039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1496375761=="
+Content-Type: multipart/mixed; boundary="===============0743638709=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1496375761==
-Content-Type: multipart/alternative; boundary="14814965231.2Fe8.11351";
+--===============0743638709==
+Content-Type: multipart/alternative; boundary="14815345383.10adccA.6972";
  charset="UTF-8"
 
 
---14814965231.2Fe8.11351
-Date: Sun, 11 Dec 2016 22:48:43 +0000
+--14815345383.10adccA.6972
+Date: Mon, 12 Dec 2016 09:22:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,60 +35,38 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98039
 
---- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Tomasz Pawe=C5=82 Gajc from comment #12)
-> (In reply to Ilia Mirkin from comment #11)
-> > Tomasz - please don't go around messing about with the bugtracker.
->=20
-> Thanks Ilia, for cleaning all the related bugs (yes i did my job carefull=
-y,
-> and read all the attached logs etc),
+--- Comment #14 from Ren=C3=A9 Krell <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+> Sorry, Ren=C3=A9, for all this spam that has been thrust upon you.
 
-At least a bunch were unrelated. It may be hard to tell because you're not
-intimately familiar with how nouveau works, as well as the various differen=
-ces
-across generations.
+This doesn't matter at all, I'm glad when things are moving on and if there=
+ is
+new information appearing from discussions.
+I'm still open to help here, making valgrind reports of components, whatever
+help I can provide. Unfortunately, I don't know internals neither of nouveau
+nor of QtWebEngine and plasmashell, I'm just using (and testing) them. So I
+need a clear announcement what to do.
 
-> so next reporters will create new bugs,
-> instead of get clear information like,
+I'm using OpenSUSE Tumbleweed and I have currently uninstalled the package
+Mesa-dri-nouveau you already mentioned to be split off by the OpenSUSE
+maintainers. But at the end their patches seemed already no longer to hang =
+up
+my "cutting edge" plasmashell with KMail system. I have still problems with
+plasmashell running into a loop eating the full CPU power unless killed and
+restarted. And the (QtWebEngine-based) KMail getting very slow from time to
+time when navigating through messages, but both issues happen already with
+uninstalled Mesa-dri-nouveau, so this might be a different problem.
 
-Oftentimes bugs look identical, but they turn out to be quite different. I =
-want
-every bug reporter to open a fresh bug. If it's identical, I'll mark it as a
-dup. Integers are cheap, I don't think the fd.o bugtracker is going to run =
-out
-of id's too soon.
-
-(Sorry, Ren=C3=A9, for all this spam that has been thrust upon you.)
-
-> Mulit-Threading OpenGL is broken in nouveau DRI drivers,=20
-> Propsed solutions are:
-> * use LLVMpipe DRI driver
-> * buy AMD/intel gfx card
-> * uninstall Plasma and live in TTY cave
-
-To be clear - access from multiple threads (or multiple GL contexts) isn't =
-the
-issue - it's simultaneously calling into the driver from multiple threads w=
-hich
-doesn't work. (The distinction may be subtle, esp to the layman, I'm just b=
-eing
-pedantic because GL is complicated and has lots of different usage models.)
-
-I'd be happy to put up a statement on nouveau.freedesktop.org about the
-situation if you can send me a private email (or one to the ML if you prefe=
-r)
-with some specifics about what is problematic. Being unfamiliar with the Qt=
-/KDE
-world, it's not immediately apparent to me.
+Regarding buying a graphics hardware from a different vendor - I just canno=
+t do
+this, it's built-in to my work notebook I received from my employer :-)
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14814965231.2Fe8.11351
-Date: Sun, 11 Dec 2016 22:48:43 +0000
+--14815345383.10adccA.6972
+Date: Mon, 12 Dec 2016 09:22:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -105,65 +83,43 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - KMail crash on starting (nouveau-related)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039#c13">Commen=
-t # 13</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039#c14">Commen=
+t # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - KMail crash on starting (nouveau-related)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">bug 98039<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 Krell &lt;renda.krell&#64;gma=
+il.com&gt;"> <span class=3D"fn">Ren=C3=A9 Krell</span></a>
 </span></b>
-        <pre>(In reply to Tomasz Pawe=C5=82 Gajc from <a href=3D"show_bug.c=
-gi?id=3D98039#c12">comment #12</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D98039#c11">comment #11</a>)
-&gt; &gt; Tomasz - please don't go around messing about with the bugtracker.
-&gt;=20
-&gt; Thanks Ilia, for cleaning all the related bugs (yes i did my job caref=
-ully,
-&gt; and read all the attached logs etc),</span >
+        <pre><span class=3D"quote">&gt; Sorry, Ren=C3=A9, for all this spam=
+ that has been thrust upon you.</span >
 
-At least a bunch were unrelated. It may be hard to tell because you're not
-intimately familiar with how nouveau works, as well as the various differen=
-ces
-across generations.
+This doesn't matter at all, I'm glad when things are moving on and if there=
+ is
+new information appearing from discussions.
+I'm still open to help here, making valgrind reports of components, whatever
+help I can provide. Unfortunately, I don't know internals neither of nouveau
+nor of QtWebEngine and plasmashell, I'm just using (and testing) them. So I
+need a clear announcement what to do.
 
-<span class=3D"quote">&gt; so next reporters will create new bugs,
-&gt; instead of get clear information like,</span >
+I'm using OpenSUSE Tumbleweed and I have currently uninstalled the package
+Mesa-dri-nouveau you already mentioned to be split off by the OpenSUSE
+maintainers. But at the end their patches seemed already no longer to hang =
+up
+my &quot;cutting edge&quot; plasmashell with KMail system. I have still pro=
+blems with
+plasmashell running into a loop eating the full CPU power unless killed and
+restarted. And the (QtWebEngine-based) KMail getting very slow from time to
+time when navigating through messages, but both issues happen already with
+uninstalled Mesa-dri-nouveau, so this might be a different problem.
 
-Oftentimes bugs look identical, but they turn out to be quite different. I =
-want
-every bug reporter to open a fresh bug. If it's identical, I'll mark it as a
-dup. Integers are cheap, I don't think the fd.o bugtracker is going to run =
-out
-of id's too soon.
-
-(Sorry, Ren=C3=A9, for all this spam that has been thrust upon you.)
-
-<span class=3D"quote">&gt; Mulit-Threading OpenGL is broken in nouveau DRI =
-drivers,=20
-&gt; Propsed solutions are:
-&gt; * use LLVMpipe DRI driver
-&gt; * buy AMD/intel gfx card
-&gt; * uninstall Plasma and live in TTY cave</span >
-
-To be clear - access from multiple threads (or multiple GL contexts) isn't =
-the
-issue - it's simultaneously calling into the driver from multiple threads w=
-hich
-doesn't work. (The distinction may be subtle, esp to the layman, I'm just b=
-eing
-pedantic because GL is complicated and has lots of different usage models.)
-
-I'd be happy to put up a statement on nouveau.freedesktop.org about the
-situation if you can send me a private email (or one to the ML if you prefe=
-r)
-with some specifics about what is problematic. Being unfamiliar with the Qt=
-/KDE
-world, it's not immediately apparent to me.</pre>
+Regarding buying a graphics hardware from a different vendor - I just canno=
+t do
+this, it's built-in to my work notebook I received from my employer :-)</pr=
+e>
         </div>
       </p>
 
@@ -172,15 +128,15 @@ world, it's not immediately apparent to me.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14814965231.2Fe8.11351--
+--14815345383.10adccA.6972--
 
---===============1496375761==
+--===============0743638709==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -190,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1496375761==--
+--===============0743638709==--
