@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99033] [NV67] Incomplete implementation of OpenGL 2.1
-Date: Mon, 12 Dec 2016 21:06:37 +0000
-Message-ID: <bug-99033-8800-CnNVjSEmlh@http.bugs.freedesktop.org/>
+Date: Mon, 12 Dec 2016 21:19:04 +0000
+Message-ID: <bug-99033-8800-RANAzd9QBr@http.bugs.freedesktop.org/>
 References: <bug-99033-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0745850565=="
+Content-Type: multipart/mixed; boundary="===============1594563740=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99033-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0745850565==
-Content-Type: multipart/alternative; boundary="14815767970.2d5fd979b.16795";
+--===============1594563740==
+Content-Type: multipart/alternative; boundary="14815775440.EdF5.17398";
  charset="UTF-8"
 
 
---14815767970.2d5fd979b.16795
-Date: Mon, 12 Dec 2016 21:06:37 +0000
+--14815775440.EdF5.17398
+Date: Mon, 12 Dec 2016 21:19:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,37 +35,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99033
 
---- Comment #7 from Ilya Indigo <13ilya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-> Looking at the OpenGL 2.1 specification, I haven=E2=80=99t been able to f=
-ind any extension, that was promoted to a core feature in OpenGL <=3D 2.1, =
-that is not implemented by Nouveau.
-
-If this card is able to support later expansion, which should be implemente=
-d to
-the later video card, which shows a list of nvidia, why not add them to this
-card?
-
-> could you tell us which extensions are actually needed? I am sure you can=
- understand, that we can't simply implement all of the missing ones in a wi=
-nk of an eye, so we have to prefer the important ones.
-
-I thought, if in Mesa for nouveau declared support for OpenGL 4.1 at least,=
- the
-increasingly younger expansion should be implemented already, just dependin=
-g on
-the graphics card will connect them to a different set?
-
-Or something I do not understand, and for each GPU you write from scratch e=
-very
-extension?
+--- Comment #8 from Ilya Indigo <13ilya-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+> Is there a link to the code I could glance at to see if that's likely the=
+ issue?
+You mean the source code kwin?
+I have it attached.
+https://bugs.freedesktop.org/attachment.cgi?id=3D128441
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14815767970.2d5fd979b.16795
-Date: Mon, 12 Dec 2016 21:06:37 +0000
+--14815775440.EdF5.17398
+Date: Mon, 12 Dec 2016 21:19:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -82,8 +65,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV67] Incomplete implementation of OpenGL 2.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99033#c7">Comment=
- # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99033#c8">Comment=
+ # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV67] Incomplete implementation of OpenGL 2.1"
@@ -93,30 +76,12 @@ Auto-Submitted: auto-generated
 13ilya&#64;gmail.com" title=3D"Ilya Indigo &lt;13ilya&#64;gmail.com&gt;"> <=
 span class=3D"fn">Ilya Indigo</span></a>
 </span></b>
-        <pre><span class=3D"quote">&gt; Looking at the OpenGL 2.1 specifica=
-tion, I haven=E2=80=99t been able to find any extension, that was promoted =
-to a core feature in OpenGL &lt;=3D 2.1, that is not implemented by Nouveau=
-.</span >
-
-If this card is able to support later expansion, which should be implemente=
-d to
-the later video card, which shows a list of nvidia, why not add them to this
-card?
-
-<span class=3D"quote">&gt; could you tell us which extensions are actually =
-needed? I am sure you can understand, that we can't simply implement all of=
- the missing ones in a wink of an eye, so we have to prefer the important o=
-nes.</span >
-
-I thought, if in Mesa for nouveau declared support for OpenGL 4.1 at least,=
- the
-increasingly younger expansion should be implemented already, just dependin=
-g on
-the graphics card will connect them to a different set?
-
-Or something I do not understand, and for each GPU you write from scratch e=
-very
-extension?</pre>
+        <pre><span class=3D"quote">&gt; Is there a link to the code I could=
+ glance at to see if that's likely the issue?</span >
+You mean the source code kwin?
+I have it attached.
+<a href=3D"https://bugs.freedesktop.org/attachment.cgi?id=3D128441">https:/=
+/bugs.freedesktop.org/attachment.cgi?id=3D128441</a></pre>
         </div>
       </p>
 
@@ -125,15 +90,15 @@ extension?</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14815767970.2d5fd979b.16795--
+--14815775440.EdF5.17398--
 
---===============0745850565==
+--===============1594563740==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -143,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0745850565==--
+--===============1594563740==--
