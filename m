@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99071] [G94][Quadro FX1800]Trigger rally
-Date: Tue, 13 Dec 2016 15:21:03 +0000
-Message-ID: <bug-99071-8800-1zmJhuYbJg@http.bugs.freedesktop.org/>
-References: <bug-99071-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
+ Chromium web browser
+Date: Tue, 13 Dec 2016 15:56:04 +0000
+Message-ID: <bug-73373-8800-Jt5R4MBufs@http.bugs.freedesktop.org/>
+References: <bug-73373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0755875973=="
+Content-Type: multipart/mixed; boundary="===============1133963686=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99071-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,59 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0755875973==
-Content-Type: multipart/alternative; boundary="14816424630.0459a25e.20229";
+--===============1133963686==
+Content-Type: multipart/alternative; boundary="14816445642.AB7d9.23721";
  charset="UTF-8"
 
 
---14816424630.0459a25e.20229
-Date: Tue, 13 Dec 2016 15:21:03 +0000
+--14816445642.AB7d9.23721
+Date: Tue, 13 Dec 2016 15:56:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99071
+https://bugs.freedesktop.org/show_bug.cgi?id=3D73373
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Per IRC, this appears to be "fixed" by switching to DRI2. Also, worth notin=
-g,
-Trigger Rally is an open-source game. Which apparently manages to hit our
-(mesa's) max modelview stack depth of 32.
+--- Comment #23 from Ali Akcaagac <aliakc-S0/GAf8tV78@public.gmane.org> ---
+I would like to add, that I am experiencing the same issues as the reporter.
+
+But!
+
+I am using the *radeon* drivers!
+
+Lockup of google-chrome after a few tabs or simple random browsing for just=
+ a
+little while.
+
+This has shown up after I switched from Fedora 24 to Fedora 25 a couple of
+weeks ago. It's really frustrating to use google-chrome, knowing that It wi=
+ll
+crash any moment.
+
+After some digging, I found out that there are a few other similar bugs pos=
+ted
+on freedesktop (and even on redhat bugzilla).
+
+https://bugzilla.redhat.com/show_bug.cgi?id=3D1376107
+
+After uninstalling the entire mesa-dri package:
+
+mesa-dri-drivers-13.0.2-1.fc25.x86_64
+
+All crashes and random lockups are gone. I've been running this one
+google-chrome instance the entire day without one single lockup (in software
+mode I think).
+
+So it may be, that the bug is also related to other parts of mesa.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14816424630.0459a25e.20229
-Date: Tue, 13 Dec 2016 15:21:03 +0000
+--14816445642.AB7d9.23721
+Date: Tue, 13 Dec 2016 15:56:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,22 +89,52 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [G94][Quadro FX1800]Trigger rally"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99071#c2">Comment=
- # 2</a>
+   title=3D"NEW - [NVE4] GPU lockup after opening many tabs in Chromium web=
+ browser"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D73373#c23">Commen=
+t # 23</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [G94][Quadro FX1800]Trigger rally"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99071">bug 99071<=
+   title=3D"NEW - [NVE4] GPU lockup after opening many tabs in Chromium web=
+ browser"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D73373">bug 73373<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+aliakc&#64;web.de" title=3D"Ali Akcaagac &lt;aliakc&#64;web.de&gt;"> <span =
+class=3D"fn">Ali Akcaagac</span></a>
 </span></b>
-        <pre>Per IRC, this appears to be &quot;fixed&quot; by switching to =
-DRI2. Also, worth noting,
-Trigger Rally is an open-source game. Which apparently manages to hit our
-(mesa's) max modelview stack depth of 32.</pre>
+        <pre>I would like to add, that I am experiencing the same issues as=
+ the reporter.
+
+But!
+
+I am using the *radeon* drivers!
+
+Lockup of google-chrome after a few tabs or simple random browsing for just=
+ a
+little while.
+
+This has shown up after I switched from Fedora 24 to Fedora 25 a couple of
+weeks ago. It's really frustrating to use google-chrome, knowing that It wi=
+ll
+crash any moment.
+
+After some digging, I found out that there are a few other similar bugs pos=
+ted
+on freedesktop (and even on redhat bugzilla).
+
+<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1376107">https://b=
+ugzilla.redhat.com/show_bug.cgi?id=3D1376107</a>
+
+After uninstalling the entire mesa-dri package:
+
+mesa-dri-drivers-13.0.2-1.fc25.x86_64
+
+All crashes and random lockups are gone. I've been running this one
+google-chrome instance the entire day without one single lockup (in software
+mode I think).
+
+So it may be, that the bug is also related to other parts of mesa.</pre>
         </div>
       </p>
 
@@ -88,14 +144,13 @@ Trigger Rally is an open-source game. Which apparently manages to hit our
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14816424630.0459a25e.20229--
+--14816445642.AB7d9.23721--
 
---===============0755875973==
+--===============1133963686==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +160,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0755875973==--
+--===============1133963686==--
