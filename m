@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99071] [G94][Quadro FX1800]Trigger rally
-Date: Tue, 13 Dec 2016 15:15:12 +0000
-Message-ID: <bug-99071-8800-CMHtxoIC9t@http.bugs.freedesktop.org/>
+Date: Tue, 13 Dec 2016 15:21:03 +0000
+Message-ID: <bug-99071-8800-1zmJhuYbJg@http.bugs.freedesktop.org/>
 References: <bug-99071-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0086344720=="
+Content-Type: multipart/mixed; boundary="===============0755875973=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99071-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0086344720==
-Content-Type: multipart/alternative; boundary="14816421120.2683.19782";
+--===============0755875973==
+Content-Type: multipart/alternative; boundary="14816424630.0459a25e.20229";
  charset="UTF-8"
 
 
---14816421120.2683.19782
-Date: Tue, 13 Dec 2016 15:15:12 +0000
+--14816424630.0459a25e.20229
+Date: Tue, 13 Dec 2016 15:21:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99071
 
---- Comment #1 from thunderstormpolska-h7QdYz1kt/Q@public.gmane.org ---
-http://192.166.218.58/trig.xz
-Compressed APITrace
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Per IRC, this appears to be "fixed" by switching to DRI2. Also, worth notin=
+g,
+Trigger Rally is an open-source game. Which apparently manages to hit our
+(mesa's) max modelview stack depth of 32.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14816421120.2683.19782
-Date: Tue, 13 Dec 2016 15:15:12 +0000
+--14816424630.0459a25e.20229
+Date: Tue, 13 Dec 2016 15:21:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,20 +64,21 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [G94][Quadro FX1800]Trigger rally"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99071#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99071#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [G94][Quadro FX1800]Trigger rally"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99071">bug 99071<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-thunderstormpolska&#64;o2.pl" title=3D"thunderstormpolska&#64;o2.pl">thunde=
-rstormpolska&#64;o2.pl</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre><a href=3D"http://192.166.218.58/trig.xz">http://192.166.218.5=
-8/trig.xz</a>
-Compressed APITrace</pre>
+        <pre>Per IRC, this appears to be &quot;fixed&quot; by switching to =
+DRI2. Also, worth noting,
+Trigger Rally is an open-source game. Which apparently manages to hit our
+(mesa's) max modelview stack depth of 32.</pre>
         </div>
       </p>
 
@@ -84,15 +87,15 @@ Compressed APITrace</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14816421120.2683.19782--
+--14816424630.0459a25e.20229--
 
---===============0086344720==
+--===============0755875973==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0086344720==--
+--===============0755875973==--
