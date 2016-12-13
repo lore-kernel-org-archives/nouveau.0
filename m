@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
- Chromium web browser
-Date: Tue, 13 Dec 2016 15:56:04 +0000
-Message-ID: <bug-73373-8800-Jt5R4MBufs@http.bugs.freedesktop.org/>
-References: <bug-73373-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99068] Screen hangs when running a 3D app. GTX 660
+Date: Tue, 13 Dec 2016 22:31:55 +0000
+Message-ID: <bug-99068-8800-Hy9gbc2CS9@http.bugs.freedesktop.org/>
+References: <bug-99068-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1133963686=="
+Content-Type: multipart/mixed; boundary="===============1123104190=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99068-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,59 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1133963686==
-Content-Type: multipart/alternative; boundary="14816445642.AB7d9.23721";
+--===============1123104190==
+Content-Type: multipart/alternative; boundary="14816683140.Cb5F.23257";
  charset="UTF-8"
 
 
---14816445642.AB7d9.23721
-Date: Tue, 13 Dec 2016 15:56:04 +0000
+--14816683140.Cb5F.23257
+Date: Tue, 13 Dec 2016 22:31:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D73373
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99068
 
---- Comment #23 from Ali Akcaagac <aliakc-S0/GAf8tV78@public.gmane.org> ---
-I would like to add, that I am experiencing the same issues as the reporter.
+--- Comment #3 from Nicol=C3=A1s Luciano B=C3=A9rtolo <nicolasbertolo@gmail=
+.com> ---
+I seems similar to https://bugs.freedesktop.org/show_bug.cgi?id=3D99037 too.
 
-But!
+Is there anything I can help you with?
+I can run any tests you may want.
 
-I am using the *radeon* drivers!
-
-Lockup of google-chrome after a few tabs or simple random browsing for just=
- a
-little while.
-
-This has shown up after I switched from Fedora 24 to Fedora 25 a couple of
-weeks ago. It's really frustrating to use google-chrome, knowing that It wi=
-ll
-crash any moment.
-
-After some digging, I found out that there are a few other similar bugs pos=
-ted
-on freedesktop (and even on redhat bugzilla).
-
-https://bugzilla.redhat.com/show_bug.cgi?id=3D1376107
-
-After uninstalling the entire mesa-dri package:
-
-mesa-dri-drivers-13.0.2-1.fc25.x86_64
-
-All crashes and random lockups are gone. I've been running this one
-google-chrome instance the entire day without one single lockup (in software
-mode I think).
-
-So it may be, that the bug is also related to other parts of mesa.
+Thanks for your hard work.
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14816445642.AB7d9.23721
-Date: Tue, 13 Dec 2016 15:56:04 +0000
+--14816683140.Cb5F.23257
+Date: Tue, 13 Dec 2016 22:31:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -89,52 +66,29 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE4] GPU lockup after opening many tabs in Chromium web=
- browser"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D73373#c23">Commen=
-t # 23</a>
+   title=3D"NEW - Screen hangs when running a 3D app. GTX 660"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99068#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE4] GPU lockup after opening many tabs in Chromium web=
- browser"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D73373">bug 73373<=
+   title=3D"NEW - Screen hangs when running a 3D app. GTX 660"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99068">bug 99068<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-aliakc&#64;web.de" title=3D"Ali Akcaagac &lt;aliakc&#64;web.de&gt;"> <span =
-class=3D"fn">Ali Akcaagac</span></a>
+nicolasbertolo&#64;gmail.com" title=3D"Nicol=C3=A1s Luciano B=C3=A9rtolo &l=
+t;nicolasbertolo&#64;gmail.com&gt;"> <span class=3D"fn">Nicol=C3=A1s Lucian=
+o B=C3=A9rtolo</span></a>
 </span></b>
-        <pre>I would like to add, that I am experiencing the same issues as=
- the reporter.
+        <pre>I seems similar to <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Graphics Freeze on Fedora 25 GNOME 3"
+   href=3D"show_bug.cgi?id=3D99037">https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D99037</a> too.
 
-But!
+Is there anything I can help you with?
+I can run any tests you may want.
 
-I am using the *radeon* drivers!
-
-Lockup of google-chrome after a few tabs or simple random browsing for just=
- a
-little while.
-
-This has shown up after I switched from Fedora 24 to Fedora 25 a couple of
-weeks ago. It's really frustrating to use google-chrome, knowing that It wi=
-ll
-crash any moment.
-
-After some digging, I found out that there are a few other similar bugs pos=
-ted
-on freedesktop (and even on redhat bugzilla).
-
-<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1376107">https://b=
-ugzilla.redhat.com/show_bug.cgi?id=3D1376107</a>
-
-After uninstalling the entire mesa-dri package:
-
-mesa-dri-drivers-13.0.2-1.fc25.x86_64
-
-All crashes and random lockups are gone. I've been running this one
-google-chrome instance the entire day without one single lockup (in software
-mode I think).
-
-So it may be, that the bug is also related to other parts of mesa.</pre>
+Thanks for your hard work.</pre>
         </div>
       </p>
 
@@ -143,14 +97,15 @@ So it may be, that the bug is also related to other parts of mesa.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14816445642.AB7d9.23721--
+--14816683140.Cb5F.23257--
 
---===============1133963686==
+--===============1123104190==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -160,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1133963686==--
+--===============1123104190==--
