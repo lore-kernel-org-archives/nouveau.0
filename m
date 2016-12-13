@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99068] Screen hangs when running a 3D app. GTX 660
-Date: Tue, 13 Dec 2016 03:21:53 +0000
-Message-ID: <bug-99068-8800-VkQGJFgNYj@http.bugs.freedesktop.org/>
-References: <bug-99068-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v2 1/15] core: constify nv*_printk macros
+Date: Tue, 13 Dec 2016 17:11:17 +0900
+Message-ID: <42dce6c7df3b8c36082fa86c4496cf5db2b64b17.1481616662.git-series.acourbot@nvidia.com>
+References: <cover.770c69f4575e22923366a126a5e2e9af16a4b366.1481616662.git-series.acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1972934157=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99068-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <cover.770c69f4575e22923366a126a5e2e9af16a4b366.1481616662.git-series.acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,96 +17,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1972934157==
-Content-Type: multipart/alternative; boundary="14815993131.092a.4768";
- charset="UTF-8"
-
-
---14815993131.092a.4768
-Date: Tue, 13 Dec 2016 03:21:53 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99068
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I wonder if this is the same issue as
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93629 (and several others).
-There's something problematic about GTX 660's.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14815993131.092a.4768
-Date: Tue, 13 Dec 2016 03:21:53 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Screen hangs when running a 3D app. GTX 660"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99068#c2">Comment=
- # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Screen hangs when running a 3D app. GTX 660"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99068">bug 99068<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>I wonder if this is the same issue as
-<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"show_bug.cgi?id=3D93629">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D93629</a> (and several others).
-There's something problematic about GTX 660's.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14815993131.092a.4768--
-
---===============1972934157==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1972934157==--
+Q29uc3RpZnkgdGhlIGxvY2FsIHZhcmlhYmxlcyBkZWNsYXJlZCBpbiB0aGVzZSBtYWNyb3Mgc28g
+d2UgY2FuIHBhc3MKY29uc3QgcG9pbnRlcnMgdG8gdGhlbS4KClNpZ25lZC1vZmYtYnk6IEFsZXhh
+bmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgotLS0KIGRybS9ub3V2ZWF1L2luY2x1
+ZGUvbnZrbS9jb3JlL2NsaWVudC5oIHwgNCArKy0tCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20v
+Y29yZS9kZXZpY2UuaCB8IDIgKy0KIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL3N1YmRl
+di5oIHwgMiArLQogMyBmaWxlcyBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25z
+KC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUvY2xpZW50Lmgg
+Yi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vY29yZS9jbGllbnQuaAppbmRleCBlYWY1OTA1YTg3
+YTMuLjk5MDgzMzQ5YzNkNCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2Nv
+cmUvY2xpZW50LmgKKysrIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUvY2xpZW50LmgK
+QEAgLTM3LDggKzM3LDggQEAgaW50IG52a21fY2xpZW50X25vdGlmeV9wdXQoc3RydWN0IG52a21f
+Y2xpZW50ICosIGludCBpbmRleCk7CiAKIC8qIGxvZ2dpbmcgZm9yIGNsaWVudC1mYWNpbmcgb2Jq
+ZWN0cyAqLwogI2RlZmluZSBudmlmX3ByaW50ayhvLGwscCxmLGEuLi4pIGRvIHsgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKLQlzdHJ1Y3QgbnZrbV9vYmplY3QgKl9v
+YmplY3QgPSAobyk7ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKLQlzdHJ1
+Y3QgbnZrbV9jbGllbnQgKl9jbGllbnQgPSBfb2JqZWN0LT5jbGllbnQ7ICAgICAgICAgICAgICAg
+ICAgICAgICAgIFwKKwljb25zdCBzdHJ1Y3QgbnZrbV9vYmplY3QgKl9vYmplY3QgPSAobyk7ICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKKwljb25zdCBzdHJ1Y3QgbnZrbV9jbGllbnQg
+Kl9jbGllbnQgPSBfb2JqZWN0LT5jbGllbnQ7ICAgICAgICAgICAgICAgICAgIFwKIAlpZiAoX2Ns
+aWVudC0+ZGVidWcgPj0gTlZfREJHXyMjbCkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIFwKIAkJcHJpbnRrKEtFUk5fIyNwICJub3V2ZWF1OiAlczolMDh4OiUwOHg6ICJmLCBf
+Y2xpZW50LT5uYW1lLCAgICAgXAogCQkgICAgICAgX29iamVjdC0+aGFuZGxlLCBfb2JqZWN0LT5v
+Y2xhc3MsICMjYSk7ICAgICAgICAgICAgICAgICBcCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9p
+bmNsdWRlL252a20vY29yZS9kZXZpY2UuaCBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3Jl
+L2RldmljZS5oCmluZGV4IDZiYzcxMmYzMmM4Yi4uZDQyNmI4NmUyNzEyIDEwMDY0NAotLS0gYS9k
+cm0vbm91dmVhdS9pbmNsdWRlL252a20vY29yZS9kZXZpY2UuaAorKysgYi9kcm0vbm91dmVhdS9p
+bmNsdWRlL252a20vY29yZS9kZXZpY2UuaApAQCAtMjYyLDcgKzI2Miw3IEBAIGV4dGVybiBjb25z
+dCBzdHJ1Y3QgbnZrbV9zY2xhc3MgbnZrbV91ZGV2aWNlX3NjbGFzczsKIAogLyogZGV2aWNlIGxv
+Z2dpbmcgKi8KICNkZWZpbmUgbnZkZXZfcHJpbnRrXyhkLGwscCxmLGEuLi4pIGRvIHsgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcCi0Jc3RydWN0IG52a21fZGV2aWNlICpf
+ZGV2aWNlID0gKGQpOyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcCisJY29u
+c3Qgc3RydWN0IG52a21fZGV2aWNlICpfZGV2aWNlID0gKGQpOyAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBcCiAJaWYgKF9kZXZpY2UtPmRlYnVnID49IChsKSkgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcCiAJCWRldl8jI3AoX2RldmljZS0+ZGV2LCBm
+LCAjI2EpOyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKIH0gd2hpbGUoMCkKZGlm
+ZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL3N1YmRldi5oIGIvZHJtL25v
+dXZlYXUvaW5jbHVkZS9udmttL2NvcmUvc3ViZGV2LmgKaW5kZXggNTdhZGVmYThiMDhlLi5jYTll
+ZDNkNjhmNDQgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL3N1YmRl
+di5oCisrKyBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL3N1YmRldi5oCkBAIC0zMiw3
+ICszMiw3IEBAIHZvaWQgbnZrbV9zdWJkZXZfaW50cihzdHJ1Y3QgbnZrbV9zdWJkZXYgKik7CiAK
+IC8qIHN1YmRldiBsb2dnaW5nICovCiAjZGVmaW5lIG52a21fcHJpbnRrXyhzLGwscCxmLGEuLi4p
+IGRvIHsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXAotCXN0cnVjdCBu
+dmttX3N1YmRldiAqX3N1YmRldiA9IChzKTsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgXAorCWNvbnN0IHN0cnVjdCBudmttX3N1YmRldiAqX3N1YmRldiA9IChzKTsgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgXAogCWlmIChfc3ViZGV2LT5kZWJ1ZyA+PSAobCkpIHsg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXAogCQlkZXZfIyNwKF9z
+dWJkZXYtPmRldmljZS0+ZGV2LCAiJXM6ICJmLCAgICAgICAgICAgICAgICAgICAgICAgICBcCiAJ
+CQludmttX3N1YmRldl9uYW1lW19zdWJkZXYtPmluZGV4XSwgIyNhKTsgICAgICAgICAgICAgICAg
+XAotLSAKZ2l0LXNlcmllcyAwLjguMTAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
+b3V2ZWF1Cg==
