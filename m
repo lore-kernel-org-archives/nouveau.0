@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98852] Nvidia graphics card fan not running or to
- slow, danger of overheating
-Date: Fri, 16 Dec 2016 19:18:46 +0000
-Message-ID: <bug-98852-8800-3Y3z6ZharZ@http.bugs.freedesktop.org/>
-References: <bug-98852-8800@http.bugs.freedesktop.org/>
+From: "Joseph D. Wagner" <joe-d25e1lPyJDacX41WfeyM6aHonnlKzd3f@public.gmane.org>
+Subject: Re: NvClkMode and NvMemExec Options
+Date: Fri, 16 Dec 2016 16:09:19 -0500
+Message-ID: <be8c052881bb252d013cdaccd7f80bbc@josephdwagner.info>
+References: <1392a80d-907a-900d-dcb5-abc185186ec7@josephdwagner.info>
+ <CAKb7UvgK2grnw6LoiWpfisNGUfzfUVCS-Xvd9zBKKWSTJngX0Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0742742253=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98852-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvgK2grnw6LoiWpfisNGUfzfUVCS-Xvd9zBKKWSTJngX0Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,100 +18,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, ibmirkin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0742742253==
-Content-Type: multipart/alternative; boundary="14819159260.74E6f5678.9236";
- charset="UTF-8"
-
-
---14819159260.74E6f5678.9236
-Date: Fri, 16 Dec 2016 19:18:46 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98852
-
---- Comment #26 from Egon Niessner <susebugzilla-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
-I have got a second Geforce GT240 card, which shows the same Fan-symptoms.
-Would it help you, if I send the pcie-card to you for tests in your own
-test-equipment ?
-
-If you will do own tests, you have not to send the card back to me.
-Regards
-Egon
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14819159260.74E6f5678.9236
-Date: Fri, 16 Dec 2016 19:18:46 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
-f overheating"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852#c26">Commen=
-t # 26</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia graphics card fan not running or to slow, danger o=
-f overheating"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98852">bug 98852<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-susebugzilla&#64;online.de" title=3D"Egon Niessner &lt;susebugzilla&#64;onl=
-ine.de&gt;"> <span class=3D"fn">Egon Niessner</span></a>
-</span></b>
-        <pre>I have got a second Geforce GT240 card, which shows the same F=
-an-symptoms.
-Would it help you, if I send the pcie-card to you for tests in your own
-test-equipment ?
-
-If you will do own tests, you have not to send the card back to me.
-Regards
-Egon</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14819159260.74E6f5678.9236--
-
---===============0742742253==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0742742253==--
+T24gMjAxNi0xMi0xNiAxMjo1MiwgSWxpYSBNaXJraW4gd3JvdGU6Cgo+IE9uIEZyaSwgRGVjIDE2
+LCAyMDE2IGF0IDEyOjEwIFBNLCBKb3NlcGggRC4gV2FnbmVyCj4gPGpvZUBqb3NlcGhkd2FnbmVy
+LmluZm8+IHdyb3RlOgo+IAo+PiBXaGVuIHVzaW5nIHRoZSBub3V2ZWF1IGRyaXZlciwgbXkgc2Ny
+ZWVuIGZyZWV6ZXMgKGFuZCBzdGF5cyBmcm96ZW4pIAo+PiB3aGVuIGl0Cj4+IHN0YXJ0cyB0byBt
+b3JlIHRoYW4gYSBtaW5pbXVtIGFtb3VudCBvZiB3b3JrLiAgVG8gZml4IHRoaXMsIEkndmUgYmVl
+biAKPj4gdXNpbmcKPj4gdGhlIG52aWRpYSBkcml2ZXIgd2l0aCB0aGUgUHJlZmVycmVkIE1vZGUg
+c2V0IHRvIFByZWZlciBNYXhpbXVtIAo+PiBQZXJmb3JtYW5jZS4KPj4gCj4+IEl0IGxvb2tzIGxp
+a2UgZXF1aXZhbGVudCBzZXR0aW5ncyBpbiBub3V2ZWF1IGFyZSBOdkNsa01vZGUgYW5kIAo+PiBO
+dk1lbUV4ZWMuCj4+IEhvd2V2ZXIsIEkgZGlkbid0IHNlZSBhbnkgZG9jdW1lbnRhdGlvbiBzcGVj
+aWZ5aW5nIHRoZSB2YWxpZCBvcHRpb25zIAo+PiBmb3IKPj4gdGhlc2Ugc2V0dGluZ3M/Cj4+IAo+
+PiBXaGF0IGFyZSB0aGUgdmFsaWQgb3B0aW9ucyBmb3IgTnZDbGtNb2RlPwo+IAo+IFRoaXMgdGFr
+ZXMgdGhlIGRlY2ltYWwgKCEpIHZhbHVlIG9mIHRoZSBwc3RhdGUgeW91IHdhbnQgdG8gY2xvY2sg
+dG8gb24KPiBib290LiBUaGUgdmFsaWQgcHN0YXRlcyBhcmUgZGVmaW5lZCBieSB5b3VyIFZCSU9T
+LCBhbmQgYXJlIHZpc2libGUgaW4KPiAvc3lzL2tlcm5lbC9kZWJ1Zy9kcmkvMC9wc3RhdGUgKGlu
+IGhleCkuCgpUaGVzZSBhcmUgbXkgb3B0aW9ucy4gIEkndmUgdHJpZWQgYm90aCAxNCAoMGUpIGFu
+ZCAxNSAoMGYpLiAgQm90aCBhcHBlYXIgCnRvIHdvcmsuICBJcyB0aGVyZSBhIGRpZmZlcmVuY2U/
+CjA3OiBjb3JlIDQwNSBNSHogbWVtb3J5IDY0OCBNSHoKMGE6IGNvcmUgNDA1LTk2NyBNSHogbWVt
+b3J5IDE2MjAgTUh6CjBlOiBjb3JlIDQwNS0xMjQxIE1IeiBtZW1vcnkgNjAwOCBNSHoKMGY6IGNv
+cmUgNDA1LTEyNDEgTUh6IG1lbW9yeSA2MDA4IE1IeiBBQyBEQyAqCkFDOiBjb3JlIDQwNSBNSHog
+bWVtb3J5IDYwMDcgTUh6CgowZiBpcyBjdXJyZW50bHkgc2VsZWN0ZWQgaW4gdGhlIGFib3ZlLgoK
+PiBCYXNlZCBvbiB0aGUgbGl0dGxlIGluZm9ybWF0aW9uIHlvdSBwcm92aWRlZCwgSSBkb3VidCB5
+b3VyIGhhbmdzIGhhdmUKPiBtdWNoIHRvIGRvIHdpdGggdGhlIHBlcmZvcm1hbmNlIGxldmVsLiAo
+VW5sZXNzIHlvdSBtZWFudCB0byBzYXkgIldoZW4KPiB1c2luZyB0aGUgbnZpZGlhIGRyaXZlciAu
+Li4gIi4pCgpJZiBJIHJ1biBpdCB3aXRob3V0IE52Q2xrTW9kZSBhdCBib290IHRpbWUsIGl0IHdp
+bGwgZnJlZXplIG9uIG1lIGFmdGVyIAptb2RlcmF0ZSB1c2Ugd2hpbGUgdXNpbmcgdGhlIG5vdXZl
+YXUgZHJpdmVyLgoKSWYgSSBydW4gaXQgd2l0aCBOdkNsa01vZGU9MTQgb3IgTnZDbGtNb2RlPTE1
+LCBpdCBhcHBlYXJzIHRvIHdvcmsgZmluZSAKKGZyb20gdGhlIHNtYWxsIGFtb3VudCBvZiB0ZXN0
+aW5nIEkndmUgZG9uZSkuCgpKb3NlcGggRC4gV2FnbmVyCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
