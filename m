@@ -1,9 +1,9 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Fosdem 2017
-Date: Fri, 16 Dec 2016 17:45:33 +0100
-Message-ID: <CAEXux-YuzyWr02GPS3fERyZpQAXo3MdXwNT0YnV=Ky-EcPtkog@mail.gmail.com>
+From: "Joseph D. Wagner" <joe-d25e1lPyJDacX41WfeyM6aHonnlKzd3f@public.gmane.org>
+Subject: NvClkMode and NvMemExec Options
+Date: Fri, 16 Dec 2016 09:10:32 -0800
+Message-ID: <1392a80d-907a-900d-dcb5-abc185186ec7@josephdwagner.info>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -15,11 +15,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgZXZlcnlib2R5LAoKSSB0cnkgdG8gZ2V0IG9mZiBmcm9tIDJuZCB0byA3dGggRmVicnVhcnkg
-dG8gYXR0ZW5kIEZvc2RlbS4gQW55Ym9keQpwbGFubmluZyB0byBjb21lIGFzIHdlbGw/CgpHcmVl
-dGluZ3MKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+V2hlbiB1c2luZyB0aGUgbm91dmVhdSBkcml2ZXIsIG15IHNjcmVlbiBmcmVlemVzIChhbmQgc3Rh
+eXMgZnJvemVuKSB3aGVuIAppdCBzdGFydHMgdG8gbW9yZSB0aGFuIGEgbWluaW11bSBhbW91bnQg
+b2Ygd29yay4gIFRvIGZpeCB0aGlzLCBJJ3ZlIGJlZW4gCnVzaW5nIHRoZSBudmlkaWEgZHJpdmVy
+IHdpdGggdGhlIFByZWZlcnJlZCBNb2RlIHNldCB0byBQcmVmZXIgTWF4aW11bSAKUGVyZm9ybWFu
+Y2UuCgpJdCBsb29rcyBsaWtlIGVxdWl2YWxlbnQgc2V0dGluZ3MgaW4gbm91dmVhdSBhcmUgTnZD
+bGtNb2RlIGFuZCAKTnZNZW1FeGVjLiAgSG93ZXZlciwgSSBkaWRuJ3Qgc2VlIGFueSBkb2N1bWVu
+dGF0aW9uIHNwZWNpZnlpbmcgdGhlIHZhbGlkIApvcHRpb25zIGZvciB0aGVzZSBzZXR0aW5ncz8K
+CldoYXQgYXJlIHRoZSB2YWxpZCBvcHRpb25zIGZvciBOdkNsa01vZGU/CgpXaGF0IGFyZSB0aGUg
+dmFsaWQgb3B0aW9ucyBmb3IgTnZNZW1FeGVjPwoKVGhhbmtzLgoKSm9zZXBoIEQuIFdhZ25lcgoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
