@@ -1,70 +1,83 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: NvClkMode and NvMemExec Options
-Date: Fri, 16 Dec 2016 16:14:31 -0500
-Message-ID: <CAKb7UvjdoOx5wzkF3ZxaSzsgHsX3oE8H3sS1ThoccMA+UyuR6A@mail.gmail.com>
-References: <1392a80d-907a-900d-dcb5-abc185186ec7@josephdwagner.info>
- <CAKb7UvgK2grnw6LoiWpfisNGUfzfUVCS-Xvd9zBKKWSTJngX0Q@mail.gmail.com>
- <be8c052881bb252d013cdaccd7f80bbc@josephdwagner.info>
+From: Kees Cook <keescook@chromium.org>
+Subject: [PATCH] drm/nouveau: use designated initializers
+Date: Fri, 16 Dec 2016 17:04:42 -0800
+Message-ID: <20161217010442.GA140619@beast>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <be8c052881bb252d013cdaccd7f80bbc-d25e1lPyJDacX41WfeyM6aHonnlKzd3f@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "Joseph D. Wagner" <joe-d25e1lPyJDacX41WfeyM6aHonnlKzd3f@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+Sender: linux-kernel-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBEZWMgMTYsIDIwMTYgYXQgNDowOSBQTSwgSm9zZXBoIEQuIFdhZ25lcgo8am9lQGpv
-c2VwaGR3YWduZXIuaW5mbz4gd3JvdGU6Cj4gT24gMjAxNi0xMi0xNiAxMjo1MiwgSWxpYSBNaXJr
-aW4gd3JvdGU6Cj4KPj4gT24gRnJpLCBEZWMgMTYsIDIwMTYgYXQgMTI6MTAgUE0sIEpvc2VwaCBE
-LiBXYWduZXIKPj4gPGpvZUBqb3NlcGhkd2FnbmVyLmluZm8+IHdyb3RlOgo+Pgo+Pj4gV2hlbiB1
-c2luZyB0aGUgbm91dmVhdSBkcml2ZXIsIG15IHNjcmVlbiBmcmVlemVzIChhbmQgc3RheXMgZnJv
-emVuKSB3aGVuCj4+PiBpdAo+Pj4gc3RhcnRzIHRvIG1vcmUgdGhhbiBhIG1pbmltdW0gYW1vdW50
-IG9mIHdvcmsuICBUbyBmaXggdGhpcywgSSd2ZSBiZWVuCj4+PiB1c2luZwo+Pj4gdGhlIG52aWRp
-YSBkcml2ZXIgd2l0aCB0aGUgUHJlZmVycmVkIE1vZGUgc2V0IHRvIFByZWZlciBNYXhpbXVtCj4+
-PiBQZXJmb3JtYW5jZS4KPj4+Cj4+PiBJdCBsb29rcyBsaWtlIGVxdWl2YWxlbnQgc2V0dGluZ3Mg
-aW4gbm91dmVhdSBhcmUgTnZDbGtNb2RlIGFuZCBOdk1lbUV4ZWMuCj4+PiBIb3dldmVyLCBJIGRp
-ZG4ndCBzZWUgYW55IGRvY3VtZW50YXRpb24gc3BlY2lmeWluZyB0aGUgdmFsaWQgb3B0aW9ucyBm
-b3IKPj4+IHRoZXNlIHNldHRpbmdzPwo+Pj4KPj4+IFdoYXQgYXJlIHRoZSB2YWxpZCBvcHRpb25z
-IGZvciBOdkNsa01vZGU/Cj4+Cj4+Cj4+IFRoaXMgdGFrZXMgdGhlIGRlY2ltYWwgKCEpIHZhbHVl
-IG9mIHRoZSBwc3RhdGUgeW91IHdhbnQgdG8gY2xvY2sgdG8gb24KPj4gYm9vdC4gVGhlIHZhbGlk
-IHBzdGF0ZXMgYXJlIGRlZmluZWQgYnkgeW91ciBWQklPUywgYW5kIGFyZSB2aXNpYmxlIGluCj4+
-IC9zeXMva2VybmVsL2RlYnVnL2RyaS8wL3BzdGF0ZSAoaW4gaGV4KS4KPgo+Cj4gVGhlc2UgYXJl
-IG15IG9wdGlvbnMuICBJJ3ZlIHRyaWVkIGJvdGggMTQgKDBlKSBhbmQgMTUgKDBmKS4gIEJvdGgg
-YXBwZWFyIHRvCj4gd29yay4gIElzIHRoZXJlIGEgZGlmZmVyZW5jZT8KClByb2JhYmx5LCBidXQg
-eW91J2xsIG5ldmVyIGtub3cgd2hhdCBpdCBpcy4gSXQncyBhIGJ1bmNoIG9mIHRhYmxlcyBpbgp0
-aGUgdmJpb3Mgd2hpY2ggc3BlY2lmeSBzdHVmZi4gQ291bGQgYmUgdGhlIHZpZGVvIGRvbWFpbiBp
-cyBjbG9ja2VkCmxvd2VyLCBvciBzb21ldGhpbmcgZWxzZSB0cml2aWFsLgoKPiAwNzogY29yZSA0
-MDUgTUh6IG1lbW9yeSA2NDggTUh6Cj4gMGE6IGNvcmUgNDA1LTk2NyBNSHogbWVtb3J5IDE2MjAg
-TUh6Cj4gMGU6IGNvcmUgNDA1LTEyNDEgTUh6IG1lbW9yeSA2MDA4IE1Iego+IDBmOiBjb3JlIDQw
-NS0xMjQxIE1IeiBtZW1vcnkgNjAwOCBNSHogQUMgREMgKgo+IEFDOiBjb3JlIDQwNSBNSHogbWVt
-b3J5IDYwMDcgTUh6Cj4KPiAwZiBpcyBjdXJyZW50bHkgc2VsZWN0ZWQgaW4gdGhlIGFib3ZlLgo+
-Cj4+IEJhc2VkIG9uIHRoZSBsaXR0bGUgaW5mb3JtYXRpb24geW91IHByb3ZpZGVkLCBJIGRvdWJ0
-IHlvdXIgaGFuZ3MgaGF2ZQo+PiBtdWNoIHRvIGRvIHdpdGggdGhlIHBlcmZvcm1hbmNlIGxldmVs
-LiAoVW5sZXNzIHlvdSBtZWFudCB0byBzYXkgIldoZW4KPj4gdXNpbmcgdGhlIG52aWRpYSBkcml2
-ZXIgLi4uICIuKQo+Cj4KPiBJZiBJIHJ1biBpdCB3aXRob3V0IE52Q2xrTW9kZSBhdCBib290IHRp
-bWUsIGl0IHdpbGwgZnJlZXplIG9uIG1lIGFmdGVyCj4gbW9kZXJhdGUgdXNlIHdoaWxlIHVzaW5n
-IHRoZSBub3V2ZWF1IGRyaXZlci4KPgo+IElmIEkgcnVuIGl0IHdpdGggTnZDbGtNb2RlPTE0IG9y
-IE52Q2xrTW9kZT0xNSwgaXQgYXBwZWFycyB0byB3b3JrIGZpbmUgKGZyb20KPiB0aGUgc21hbGwg
-YW1vdW50IG9mIHRlc3RpbmcgSSd2ZSBkb25lKS4KClN1cnByaXNpbmcuIE5vdCBzdXJlIHdoeSB0
-aGF0IHdvdWxkIGhhcHBlbi4gUGVyaGFwcyB0aGUgbWVtb3J5IGNvbWVzCnVwIGEgbGl0dGxlIHdl
-aXJkLCBhbmQgKmFueSogcmVjbG9jayB3b3VsZCAiZml4IiBpdCwgbm90IG5lY2Vzc2FyaWx5CnRv
-IHRoZSBoaWdoZXN0IHBlcmYgbGV2ZWwuCgpOb3RlIHRoYXQga2VybmVsIDQuMTAgKG9yIHRoZSBj
-dXJyZW50IGRybS1uZXh0IHRyZWUsIG9yIGxpbnVzJ3MgSEVBRCkKc2hvdWxkIGFsbG93IHlvdSB0
-byBwcm9wZXJseSByZWNsb2NrIHRoZSBjb3JlIG9mIHRoYXQgR1BVICh5b3VyCmN1cnJlbnQgc2V0
-dGluZyBpcyBhdCA0MDUgaW5zdGVhZCBvZiB0aGUgbWF4IHdoaWNoIGlzIHByb2JhYmx5CjExMDAt
-MTIwMCwgZGVwZW5kaW5nIG9uIHNvbWUgdm9sdGFnZSBzZXR0aW5nIGRldGFpbHMpLiAiQUMiIGRp
-c3BsYXlzCnRoZSBjdXJyZW50IGNvbmZpZ3VyYXRpb24uIFRoZSAqJ3MgYXJlIG1vc3RseSB0aGVy
-ZSB0byBtaXNsZWFkIHlvdSA6KQoKQ2hlZXJzLAoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+Prepare to mark sensitive kernel structures for randomization by making
+sure they're using designated initializers. These were identified during
+allyesconfig builds of x86, arm, and arm64, with most initializer fixes
+extracted from grsecurity.
+
+Signed-off-by: Kees Cook <keescook@chromium.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_ttm.c | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+index a6dbe8258040..ec4668a41e01 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+@@ -107,10 +107,10 @@ nouveau_vram_manager_new(struct ttm_mem_type_manager *man,
+ }
+ 
+ const struct ttm_mem_type_manager_func nouveau_vram_manager = {
+-	nouveau_vram_manager_init,
+-	nouveau_vram_manager_fini,
+-	nouveau_vram_manager_new,
+-	nouveau_vram_manager_del,
++	.init = nouveau_vram_manager_init,
++	.takedown = nouveau_vram_manager_fini,
++	.get_node = nouveau_vram_manager_new,
++	.put_node = nouveau_vram_manager_del,
+ };
+ 
+ static int
+@@ -184,11 +184,11 @@ nouveau_gart_manager_debug(struct ttm_mem_type_manager *man, const char *prefix)
+ }
+ 
+ const struct ttm_mem_type_manager_func nouveau_gart_manager = {
+-	nouveau_gart_manager_init,
+-	nouveau_gart_manager_fini,
+-	nouveau_gart_manager_new,
+-	nouveau_gart_manager_del,
+-	nouveau_gart_manager_debug
++	.init = nouveau_gart_manager_init,
++	.takedown = nouveau_gart_manager_fini,
++	.get_node = nouveau_gart_manager_new,
++	.put_node = nouveau_gart_manager_del,
++	.debug = nouveau_gart_manager_debug
+ };
+ 
+ /*XXX*/
+@@ -257,11 +257,11 @@ nv04_gart_manager_debug(struct ttm_mem_type_manager *man, const char *prefix)
+ }
+ 
+ const struct ttm_mem_type_manager_func nv04_gart_manager = {
+-	nv04_gart_manager_init,
+-	nv04_gart_manager_fini,
+-	nv04_gart_manager_new,
+-	nv04_gart_manager_del,
+-	nv04_gart_manager_debug
++	.init = nv04_gart_manager_init,
++	.takedown = nv04_gart_manager_fini,
++	.get_node = nv04_gart_manager_new,
++	.put_node = nv04_gart_manager_del,
++	.debug = nv04_gart_manager_debug
+ };
+ 
+ int
+-- 
+2.7.4
+
+
+-- 
+Kees Cook
+Nexus Security
