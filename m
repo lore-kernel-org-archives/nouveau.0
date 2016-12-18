@@ -1,16 +1,13 @@
-From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Drop superfluous
- DRM_SWITCH_POWER_DYNAMIC_OFF checks
-Date: Sun, 18 Dec 2016 18:01:19 +0100
-Message-ID: <20161218170119.GA13289@wunner.de>
-References: <0136d21975f52582f9cfe3ea313c3173c657c286.1478605864.git.lukas@wunner.de>
- <20161108202938.GA15269@al> <20161214190016.GA11391@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Sun, 18 Dec 2016 21:57:27 +0000
+Message-ID: <bug-94990-8800-U18TYUbFx1@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0460013023=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20161214190016.GA11391-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,85 +17,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgQmVuLAoKT24gV2VkLCBEZWMgMTQsIDIwMTYgYXQgMDg6MDA6MTZQTSArMDEwMCwgTHVrYXMg
-V3VubmVyIHdyb3RlOgo+IE9uIFR1ZSwgTm92IDA4LCAyMDE2IGF0IDA5OjI5OjM4UE0gKzAxMDAs
-IFBldGVyIFd1IHdyb3RlOgo+ID4gT24gVHVlLCBOb3YgMDgsIDIwMTYgYXQgMTI6NTc6MDBQTSAr
-MDEwMCwgTHVrYXMgV3VubmVyIHdyb3RlOgo+ID4gPiBub3V2ZWF1J3MgLT5zdXNwZW5kIGFuZCAt
-PnJlc3VtZSBjYWxsYmFja3MgYXJlIGN1cnJlbnRseSBza2lwcGVkIGlmIHRoZQo+ID4gPiBkZXZp
-Y2UncyBzdGF0dXMgaXMgZWl0aGVyIERSTV9TV0lUQ0hfUE9XRVJfT0ZGIChwb3dlcmVkIG9mZiBi
-eQo+ID4gPiB2Z2Ffc3dpdGNoZXJvbyBtYW51YWwgcG93ZXIgY29udHJvbCkgb3IgRFJNX1NXSVRD
-SF9QT1dFUl9EWU5BTUlDX09GRgo+ID4gPiAocnVudGltZSBzdXNwZW5kZWQpLgo+ID4gPiAKPiA+
-ID4gSW4gdGhlIGZvcm1lciBjYXNlIHRoaXMgbWFrZXMgc2Vuc2Ugc2luY2UgdGhlIGRldmljZSBp
-cyBwb3dlcmVkIG9mZgo+ID4gPiBiZWhpbmQgdGhlIFBNIGNvcmUncyBiYWNrOiAgSXQgd2lsbCB0
-cnkgdG8gZXhlY3V0ZSB0aGUgLT5zdXNwZW5kIGFuZAo+ID4gPiAtPnJlc3VtZSBjYWxsYmFja3Mg
-dXBvbiBzeXN0ZW0gc2xlZXAsIG5vdCBrbm93aW5nIHRoYXQgdGhlIGRldmljZSBpcwo+ID4gPiBp
-bmFjY2Vzc2libGUuICBUaGVyZWZvcmUgdGhlIGNhbGxiYWNrcyBoYXZlIHRvIGJlY29tZSBuby1v
-cHMuCj4gPiA+IAo+ID4gPiBIb3dldmVyIHRoZSBsYXR0ZXIgY2FzZSBkb2Vzbid0IG1ha2UgYW55
-IHNlbnNlIGJlY2F1c2UgdGhlIFBNIGNvcmUKPiA+ID4gbmV2ZXIgY2FsbHMgdGhlIC0+c3VzcGVu
-ZCBhbmQgLT5yZXN1bWUgY2FsbGJhY2tzIG9mIHJ1bnRpbWUgc3VzcGVuZGVkCj4gPiA+IGRldmlj
-ZXM6ICBTdWNoIGRldmljZXMgYXJlIGVpdGhlciBydW50aW1lIHJlc3VtZWQgYmVmb3JlIGdvaW5n
-IHRvIHN5c3RlbQo+ID4gPiBzbGVlcCAoc2VlIGNhbGwgdG8gcG1fcnVudGltZV9yZXN1bWUoKSBp
-biBkcml2ZXJzL3BjaS9wY2ktZHJpdmVyOgo+ID4gPiBwY2lfcG1fc3VzcGVuZCgpKSBvciB0aGV5
-IGFyZSBsZWZ0IHJ1bnRpbWUgc3VzcGVuZGVkIG92ZXIgdGhlIGVudGlyZQo+ID4gPiBzeXN0ZW0g
-c3VzcGVuZC9yZXN1bWUgcHJvY2VzcyAoc2VhcmNoIGZvciAiZGlyZWN0X2NvbXBsZXRlIiBpbgo+
-ID4gPiBkcml2ZXJzL2Jhc2UvcG93ZXIvbWFpbi5jKS4KPiA+ID4gCj4gPiA+IENvbnNlcXVlbnRs
-eSB0aGUgRFJNX1NXSVRDSF9QT1dFUl9EWU5BTUlDX09GRiBjaGVja3MgYXJlIHN1cGVyZmx1b3Vz
-Lgo+ID4gPiBEcm9wIHRoZW0uCj4gPiA+IAo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBMdWthcyBXdW5u
-ZXIgPGx1a2FzQHd1bm5lci5kZT4KPiAKPiBKdXN0IGEgZ2VudGxlIHBpbmc6ICBUaGlzIHBhdGNo
-IHdhcyBwb3N0ZWQgYSBtb250aCBhZ28gYW5kIEknbSBub3QKPiBzZWVpbmcgaXQgaW4geW91ciB0
-cmVlLiAgRG8geW91IGhhdmUgb2JqZWN0aW9ucz8gIFNob3VsZCBJIHJlcG9zdAo+IHdpdGggUGV0
-ZXIncyBSZXZpZXdlZC1ieT8KCkZvcmdvdCB0byBtZW50aW9uOiAgVGhlIHJhdGlvbmFsZSBvZiB0
-aGlzIGNvbW1pdCBpcyB0aGF0IEFsZXggRGV1Y2hlcgphZGRlZCB0aGUgc2FtZSBzdXBlcmZsdW91
-cyBjb2RlIHRvIHJhZGVvbiBhbmQgYW1kZ3B1IHdpdGggY29tbWl0cwo1ZTBiMTYxN2ZjMzggYW5k
-IGY0NmNmMzczNWY0Yy4gIFdoZW4gYXNrZWQgaGUgc3BlY2lmaWNhbGx5IHBvaW50ZWQgdG8Kbm91
-dmVhdSBkb2luZyB0aGUgc2FtZS4gIFRoZSBjb2RlIHdhcyBzdWJzZXF1ZW50bHkgcmVtb3ZlZCBh
-Z2FpbiBmcm9tCnJhZGVvbiBhbmQgYW1kZ3B1IHdpdGggY29tbWl0cyBmMmFiYTM1MmE5NTQgYW5k
-IGUzMTNkZTdlODk5Ny4KCkJ5IHJlbW92aW5nIHRoZSBzdXBlcmZsdW91cyBjb2RlIGZyb20gbm91
-dmVhdSBJIHdvdWxkIGxpa2UgdG8gcHJldmVudAppdCBmcm9tIGJlaW5nIGNhcmdvLWN1bHRlZCB0
-byBmdXJ0aGVyIGRyaXZlcnMuCgpJZiB5b3UnZCBsaWtlIG1lIHRvIHJlc2VuZCB3aXRoIHRoaXMg
-YWRkaXRpb25hbCBleHBsYW5hdGlvbiBwbGVhc2Ugc2hvdXQuCgpUaGFua3MsCgpMdWthcwoKPiA+
-IAo+ID4gSXQgaXMgYmV0dGVyIHRvIHJlbHkgb24gdGhlIG9mZmljaWFsIGRvY3VtZW50YXRpb24g
-cmF0aGVyIHRoYW4gdGhlCj4gPiBpbXBsZW1lbnRhdGlvbi4gTHVja2lseSwgRG9jdW1lbnRhdGlv
-bi9wb3dlci9wY2kudHh0IHN1cHBvcnRzIHRoZSBjbGFpbToKPiA+IAo+ID4gICAgIDIuNC4xLiBT
-eXN0ZW0gU3VzcGVuZAo+ID4gCj4gPiAgICAgV2hlbiB0aGUgc3lzdGVtIGlzIGdvaW5nIGludG8g
-YSBzbGVlcCBzdGF0ZSBpbiB3aGljaCB0aGUgY29udGVudHMgb2YgbWVtb3J5IHdpbGwKPiA+ICAg
-ICBiZSBwcmVzZXJ2ZWQsIHN1Y2ggYXMgb25lIG9mIHRoZSBBQ1BJIHNsZWVwIHN0YXRlcyBTMS1T
-MywgdGhlIHBoYXNlcyBhcmU6Cj4gPiAKPiA+ICAgICAgICAgcHJlcGFyZSwgc3VzcGVuZCwgc3Vz
-cGVuZF9ub2lycS4KPiA+ICAgICBbLi5dCj4gPiAgICAgVGhlIHBjaV9wbV9wcmVwYXJlKCkgcm91
-dGluZSBmaXJzdCBwdXRzIHRoZSBkZXZpY2UgaW50byB0aGUgImZ1bGx5IGZ1bmN0aW9uYWwiCj4g
-PiAgICAgc3RhdGUgd2l0aCB0aGUgaGVscCBvZiBwbV9ydW50aW1lX3Jlc3VtZSgpLiBbLi5dCj4g
-PiAKPiA+IFNvIGluZGVlZCB3ZSBjYW4gYmUgc3VyZSB0aGF0IHRoZSBkZXZpY2UgaXMgcnVudGlt
-ZS1yZXN1bWVkIGJlZm9yZQo+ID4gc3VzcGVuZC4gU3lzdGVtIHJlc3VtZSBpcyBub3QgZG9jdW1l
-bnRlZCBleHBsaWNpdGx5LCBidXQgaXQgc2VlbXMKPiA+IHJlYXNvbmFibGUgdGhhdCB0aGUgZGV2
-aWNlIGlzIG5vdCBydW50aW1lLXN1c3BlbmRlZCBiZXR3ZWVuIHN5c3RlbQo+ID4gc3VzcGVuZCBh
-bmQgcmVzdW1lLgo+ID4gCj4gPiBSZXZpZXdlZC1ieTogUGV0ZXIgV3UgPHBldGVyQGxla2Vuc3Rl
-eW4ubmw+Cj4gPiAKPiA+ID4gLS0tCj4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2RybS5jIHwgNiArKy0tLS0KPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMo
-KyksIDQgZGVsZXRpb25zKC0pCj4gPiA+IAo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfZHJtLmMKPiA+ID4gaW5kZXggOTg3NmU2Zi4uZDkxZDA5MiAxMDA2NDQKPiA+ID4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+ID4gPiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4gPiA+IEBAIC02NjYsOCArNjY2LDcgQEAg
-c3RhdGljIGludCBub3V2ZWF1X2RybV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwKPiA+ID4g
-IAlzdHJ1Y3QgZHJtX2RldmljZSAqZHJtX2RldiA9IHBjaV9nZXRfZHJ2ZGF0YShwZGV2KTsKPiA+
-ID4gIAlpbnQgcmV0Owo+ID4gPiAgCj4gPiA+IC0JaWYgKGRybV9kZXYtPnN3aXRjaF9wb3dlcl9z
-dGF0ZSA9PSBEUk1fU1dJVENIX1BPV0VSX09GRiB8fAo+ID4gPiAtCSAgICBkcm1fZGV2LT5zd2l0
-Y2hfcG93ZXJfc3RhdGUgPT0gRFJNX1NXSVRDSF9QT1dFUl9EWU5BTUlDX09GRikKPiA+ID4gKwlp
-ZiAoZHJtX2Rldi0+c3dpdGNoX3Bvd2VyX3N0YXRlID09IERSTV9TV0lUQ0hfUE9XRVJfT0ZGKQo+
-ID4gPiAgCQlyZXR1cm4gMDsKPiA+ID4gIAo+ID4gPiAgCXJldCA9IG5vdXZlYXVfZG9fc3VzcGVu
-ZChkcm1fZGV2LCBmYWxzZSk7Cj4gPiA+IEBAIC02ODgsOCArNjg3LDcgQEAgc3RhdGljIGludCBu
-b3V2ZWF1X2RybV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwKPiA+ID4gIAlzdHJ1Y3QgZHJt
-X2RldmljZSAqZHJtX2RldiA9IHBjaV9nZXRfZHJ2ZGF0YShwZGV2KTsKPiA+ID4gIAlpbnQgcmV0
-Owo+ID4gPiAgCj4gPiA+IC0JaWYgKGRybV9kZXYtPnN3aXRjaF9wb3dlcl9zdGF0ZSA9PSBEUk1f
-U1dJVENIX1BPV0VSX09GRiB8fAo+ID4gPiAtCSAgICBkcm1fZGV2LT5zd2l0Y2hfcG93ZXJfc3Rh
-dGUgPT0gRFJNX1NXSVRDSF9QT1dFUl9EWU5BTUlDX09GRikKPiA+ID4gKwlpZiAoZHJtX2Rldi0+
-c3dpdGNoX3Bvd2VyX3N0YXRlID09IERSTV9TV0lUQ0hfUE9XRVJfT0ZGKQo+ID4gPiAgCQlyZXR1
-cm4gMDsKPiA+ID4gIAo+ID4gPiAgCXBjaV9zZXRfcG93ZXJfc3RhdGUocGRldiwgUENJX0QwKTsK
-PiA+ID4gLS0gCj4gPiA+IDIuMTAuMQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+
+--===============0460013023==
+Content-Type: multipart/alternative; boundary="14820982473.3BCC.22468";
+ charset="UTF-8"
+
+
+--14820982473.3BCC.22468
+Date: Sun, 18 Dec 2016 21:57:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #105 from fariouche-Qt13gs6zZMY@public.gmane.org ---
+Hi,
+
+I'm joining the group of gtx970 4GB owners who have issues with nouveau :)
+
+I've applied 0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch
+and now I have at least a console.
+However, no x11 with acceleration.
+
+I've check the kernel messages, and besides the tons of traces ("disp:") I =
+see
+this line:
+: #### nvkm_gpuobj_heap_acquire gpuobj->addr 4286832640, gpuobj->size 4096
+: #### nv50_instobj_size 32768
+: nouveau 0000:03:00.0: priv: GPC0: 419df4 00000000 (1840820e)
+: nouveau 0000:03:00.0: priv: GPC1: 419df4 c0000000 (1a40820d)
+: nouveau 0000:03:00.0: priv: GPC2: 514884 c0000000 (1c40820e)
+: nouveau 0000:03:00.0: priv: GPC3: 51d084 c0000000 (1f40820e)
+: nouveau 0000:03:00.0: gr: init failed, -28
+
+
+Seems like secboot failed somewhere. Looking at the code, GR failed most li=
+kely
+when secboot tried to initiate the reset command.
+
+Forgot to say that I'm using kernel 4.9.
+
+If you need me to do some tests, let me know
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14820982473.3BCC.22468
+Date: Sun, 18 Dec 2016 21:57:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c105">Comme=
+nt # 105</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+fariouche&#64;yahoo.fr" title=3D"fariouche&#64;yahoo.fr">fariouche&#64;yaho=
+o.fr</a>
+</span></b>
+        <pre>Hi,
+
+I'm joining the group of gtx970 4GB owners who have issues with nouveau :)
+
+I've applied 0001-nvkm_gpuobj-size-is-smaller-then-nvkm_gpuobj-size-ca.patch
+and now I have at least a console.
+However, no x11 with acceleration.
+
+I've check the kernel messages, and besides the tons of traces (&quot;disp:=
+&quot;) I see
+this line:
+: #### nvkm_gpuobj_heap_acquire gpuobj-&gt;addr 4286832640, gpuobj-&gt;size=
+ 4096
+: #### nv50_instobj_size 32768
+: nouveau 0000:03:00.0: priv: GPC0: 419df4 00000000 (1840820e)
+: nouveau 0000:03:00.0: priv: GPC1: 419df4 c0000000 (1a40820d)
+: nouveau 0000:03:00.0: priv: GPC2: 514884 c0000000 (1c40820e)
+: nouveau 0000:03:00.0: priv: GPC3: 51d084 c0000000 (1f40820e)
+: nouveau 0000:03:00.0: gr: init failed, -28
+
+
+Seems like secboot failed somewhere. Looking at the code, GR failed most li=
+kely
+when secboot tried to initiate the reset command.
+
+Forgot to say that I'm using kernel 4.9.
+
+If you need me to do some tests, let me know</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14820982473.3BCC.22468--
+
+--===============0460013023==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0460013023==--
