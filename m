@@ -1,195 +1,75 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99118] New: nouveau [ DRM] 0xD576: Parsing digital
- output script table
-Date: Sat, 17 Dec 2016 05:36:51 +0000
-Message-ID: <bug-99118-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH] drm/nouveau: use designated initializers
+Date: Sun, 18 Dec 2016 14:47:53 +0100
+Message-ID: <20161218134753.c2vp54ipmrteucr5@phenom.ffwll.local>
+References: <20161217010442.GA140619@beast>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2112323080=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20161217010442.GA140619@beast>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Kees Cook <keescook@chromium.org>
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2112323080==
-Content-Type: multipart/alternative; boundary="14819530111.4Dd3eC6.19089";
- charset="UTF-8"
-
-
---14819530111.4Dd3eC6.19089
-Date: Sat, 17 Dec 2016 05:36:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99118
-
-            Bug ID: 99118
-           Summary: nouveau  [     DRM] 0xD576: Parsing digital output
-                    script table
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: morteryler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 128507
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128507&action=3Dedit
-dmesg
-
-The system constantly crashes. Departing pops eighth tty console and on it =
-is
-written the error. Attached is the log.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14819530111.4Dd3eC6.19089
-Date: Sat, 17 Dec 2016 05:36:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau [ DRM] 0xD576: Parsing digital output script tabl=
-e"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99118">99118</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>nouveau  [     DRM] 0xD576: Parsing digital output script tab=
-le
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>morteryler&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128507=
-" name=3D"attach_128507" title=3D"dmesg">attachment 128507</a> <a href=3D"a=
-ttachment.cgi?id=3D128507&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
-/span>
-dmesg
-
-The system constantly crashes. Departing pops eighth tty console and on it =
-is
-written the error. Attached is the log.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14819530111.4Dd3eC6.19089--
-
---===============2112323080==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2112323080==--
+T24gRnJpLCBEZWMgMTYsIDIwMTYgYXQgMDU6MDQ6NDJQTSAtMDgwMCwgS2VlcyBDb29rIHdyb3Rl
+Ogo+IFByZXBhcmUgdG8gbWFyayBzZW5zaXRpdmUga2VybmVsIHN0cnVjdHVyZXMgZm9yIHJhbmRv
+bWl6YXRpb24gYnkgbWFraW5nCj4gc3VyZSB0aGV5J3JlIHVzaW5nIGRlc2lnbmF0ZWQgaW5pdGlh
+bGl6ZXJzLiBUaGVzZSB3ZXJlIGlkZW50aWZpZWQgZHVyaW5nCj4gYWxseWVzY29uZmlnIGJ1aWxk
+cyBvZiB4ODYsIGFybSwgYW5kIGFybTY0LCB3aXRoIG1vc3QgaW5pdGlhbGl6ZXIgZml4ZXMKPiBl
+eHRyYWN0ZWQgZnJvbSBncnNlY3VyaXR5Lgo+IAo+IFNpZ25lZC1vZmYtYnk6IEtlZXMgQ29vayA8
+a2Vlc2Nvb2tAY2hyb21pdW0ub3JnPgoKTWVyZ2VkIGFsbCBkcm0gb25lcyBleGNlcHQgdGhlIGFt
+ZGdwdSBvbmUgKEknbGwgbGVhdmUgdGhhdCBvbmUgdG8gQWxleCkgdG8KZHJtLW1pc2MgZm9yIDQu
+MTEgKHNvIHdpbGwgc2hvdyB1cCBpbiBsaW51eC1uZXh0IGFmdGVyIHhtYXMgb3Igc28pLgotRGFu
+aWVsCgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3R0bS5jIHwgMjgg
+KysrKysrKysrKysrKystLS0tLS0tLS0tLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgMTQgaW5zZXJ0
+aW9ucygrKSwgMTQgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfdHRtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X3R0bS5jCj4gaW5kZXggYTZkYmU4MjU4MDQwLi5lYzQ2NjhhNDFlMDEgMTAwNjQ0Cj4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV90dG0uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfdHRtLmMKPiBAQCAtMTA3LDEwICsxMDcsMTAgQEAgbm91dmVh
+dV92cmFtX21hbmFnZXJfbmV3KHN0cnVjdCB0dG1fbWVtX3R5cGVfbWFuYWdlciAqbWFuLAo+ICB9
+Cj4gIAo+ICBjb25zdCBzdHJ1Y3QgdHRtX21lbV90eXBlX21hbmFnZXJfZnVuYyBub3V2ZWF1X3Zy
+YW1fbWFuYWdlciA9IHsKPiAtCW5vdXZlYXVfdnJhbV9tYW5hZ2VyX2luaXQsCj4gLQlub3V2ZWF1
+X3ZyYW1fbWFuYWdlcl9maW5pLAo+IC0Jbm91dmVhdV92cmFtX21hbmFnZXJfbmV3LAo+IC0Jbm91
+dmVhdV92cmFtX21hbmFnZXJfZGVsLAo+ICsJLmluaXQgPSBub3V2ZWF1X3ZyYW1fbWFuYWdlcl9p
+bml0LAo+ICsJLnRha2Vkb3duID0gbm91dmVhdV92cmFtX21hbmFnZXJfZmluaSwKPiArCS5nZXRf
+bm9kZSA9IG5vdXZlYXVfdnJhbV9tYW5hZ2VyX25ldywKPiArCS5wdXRfbm9kZSA9IG5vdXZlYXVf
+dnJhbV9tYW5hZ2VyX2RlbCwKPiAgfTsKPiAgCj4gIHN0YXRpYyBpbnQKPiBAQCAtMTg0LDExICsx
+ODQsMTEgQEAgbm91dmVhdV9nYXJ0X21hbmFnZXJfZGVidWcoc3RydWN0IHR0bV9tZW1fdHlwZV9t
+YW5hZ2VyICptYW4sIGNvbnN0IGNoYXIgKnByZWZpeCkKPiAgfQo+ICAKPiAgY29uc3Qgc3RydWN0
+IHR0bV9tZW1fdHlwZV9tYW5hZ2VyX2Z1bmMgbm91dmVhdV9nYXJ0X21hbmFnZXIgPSB7Cj4gLQlu
+b3V2ZWF1X2dhcnRfbWFuYWdlcl9pbml0LAo+IC0Jbm91dmVhdV9nYXJ0X21hbmFnZXJfZmluaSwK
+PiAtCW5vdXZlYXVfZ2FydF9tYW5hZ2VyX25ldywKPiAtCW5vdXZlYXVfZ2FydF9tYW5hZ2VyX2Rl
+bCwKPiAtCW5vdXZlYXVfZ2FydF9tYW5hZ2VyX2RlYnVnCj4gKwkuaW5pdCA9IG5vdXZlYXVfZ2Fy
+dF9tYW5hZ2VyX2luaXQsCj4gKwkudGFrZWRvd24gPSBub3V2ZWF1X2dhcnRfbWFuYWdlcl9maW5p
+LAo+ICsJLmdldF9ub2RlID0gbm91dmVhdV9nYXJ0X21hbmFnZXJfbmV3LAo+ICsJLnB1dF9ub2Rl
+ID0gbm91dmVhdV9nYXJ0X21hbmFnZXJfZGVsLAo+ICsJLmRlYnVnID0gbm91dmVhdV9nYXJ0X21h
+bmFnZXJfZGVidWcKPiAgfTsKPiAgCj4gIC8qWFhYKi8KPiBAQCAtMjU3LDExICsyNTcsMTEgQEAg
+bnYwNF9nYXJ0X21hbmFnZXJfZGVidWcoc3RydWN0IHR0bV9tZW1fdHlwZV9tYW5hZ2VyICptYW4s
+IGNvbnN0IGNoYXIgKnByZWZpeCkKPiAgfQo+ICAKPiAgY29uc3Qgc3RydWN0IHR0bV9tZW1fdHlw
+ZV9tYW5hZ2VyX2Z1bmMgbnYwNF9nYXJ0X21hbmFnZXIgPSB7Cj4gLQludjA0X2dhcnRfbWFuYWdl
+cl9pbml0LAo+IC0JbnYwNF9nYXJ0X21hbmFnZXJfZmluaSwKPiAtCW52MDRfZ2FydF9tYW5hZ2Vy
+X25ldywKPiAtCW52MDRfZ2FydF9tYW5hZ2VyX2RlbCwKPiAtCW52MDRfZ2FydF9tYW5hZ2VyX2Rl
+YnVnCj4gKwkuaW5pdCA9IG52MDRfZ2FydF9tYW5hZ2VyX2luaXQsCj4gKwkudGFrZWRvd24gPSBu
+djA0X2dhcnRfbWFuYWdlcl9maW5pLAo+ICsJLmdldF9ub2RlID0gbnYwNF9nYXJ0X21hbmFnZXJf
+bmV3LAo+ICsJLnB1dF9ub2RlID0gbnYwNF9nYXJ0X21hbmFnZXJfZGVsLAo+ICsJLmRlYnVnID0g
+bnYwNF9nYXJ0X21hbmFnZXJfZGVidWcKPiAgfTsKPiAgCj4gIGludAo+IC0tIAo+IDIuNy40Cj4g
+Cj4gCj4gLS0gCj4gS2VlcyBDb29rCj4gTmV4dXMgU2VjdXJpdHkKPiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QK
+PiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwKCi0tIApEYW5pZWwgVmV0dGVyClNv
+ZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5jaApf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwg
+bWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
