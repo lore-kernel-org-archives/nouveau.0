@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99147] xorg hangs at initial startup on linux-4.9.0
-Date: Mon, 19 Dec 2016 21:58:16 +0000
-Message-ID: <bug-99147-8800-5GqgY09imz@http.bugs.freedesktop.org/>
+Date: Mon, 19 Dec 2016 22:02:56 +0000
+Message-ID: <bug-99147-8800-EM4BQcG3z2@http.bugs.freedesktop.org/>
 References: <bug-99147-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0392913402=="
+Content-Type: multipart/mixed; boundary="===============0177079140=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99147-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0392913402==
-Content-Type: multipart/alternative; boundary="14821846961.FdF36C51.8531";
+--===============0177079140==
+Content-Type: multipart/alternative; boundary="14821849761.bc5e1a.9186";
  charset="UTF-8"
 
 
---14821846961.FdF36C51.8531
-Date: Mon, 19 Dec 2016 21:58:16 +0000
+--14821849761.bc5e1a.9186
+Date: Mon, 19 Dec 2016 22:02:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99147
 
---- Comment #5 from Gleb <gleb-97jfqw80gc5Wk0Htik3J/w@public.gmane.org> ---
-Well, I may need some guide or a at least some sort of explanation (probably
-short) what to do as this is completely new for me. Will this guide work for
-this task?
-https://wiki.gentoo.org/wiki/Kernel_git-bisect
+--- Comment #6 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
+Nothing unusual in logs. Can you reproduce the lockup issue if you boot to a
+console (disable sddm), then invoke "lspci", wait for at least 5 seconds, t=
+hen
+repeat "lspci" again? (Have a look at dmesg for unusual messages.)
+
+If lspci hangs, then there is a problem (and hopefully dmesg is more helpfu=
+l).
+Can you also confirm that downgrading just the kernel (while keeping the re=
+st
+of userspace the same) makes the problem disappear?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14821846961.FdF36C51.8531
-Date: Mon, 19 Dec 2016 21:58:16 +0000
+--14821849761.bc5e1a.9186
+Date: Mon, 19 Dec 2016 22:02:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,23 +69,28 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147">bug 99147<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gleb&#64;fastmail.com" title=3D"Gleb &lt;gleb&#64;fastmail.com&gt;"> <span =
-class=3D"fn">Gleb</span></a>
+peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
+> <span class=3D"fn">Peter Wu</span></a>
 </span></b>
-        <pre>Well, I may need some guide or a at least some sort of explana=
-tion (probably
-short) what to do as this is completely new for me. Will this guide work for
-this task?
-<a href=3D"https://wiki.gentoo.org/wiki/Kernel_git-bisect">https://wiki.gen=
-too.org/wiki/Kernel_git-bisect</a></pre>
+        <pre>Nothing unusual in logs. Can you reproduce the lockup issue if=
+ you boot to a
+console (disable sddm), then invoke &quot;lspci&quot;, wait for at least 5 =
+seconds, then
+repeat &quot;lspci&quot; again? (Have a look at dmesg for unusual messages.)
+
+If lspci hangs, then there is a problem (and hopefully dmesg is more helpfu=
+l).
+Can you also confirm that downgrading just the kernel (while keeping the re=
+st
+of userspace the same) makes the problem disappear?</pre>
         </div>
       </p>
 
@@ -93,9 +104,9 @@ too.org/wiki/Kernel_git-bisect</a></pre>
     </body>
 </html>=
 
---14821846961.FdF36C51.8531--
+--14821849761.bc5e1a.9186--
 
---===============0392913402==
+--===============0177079140==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0392913402==--
+--===============0177079140==--
