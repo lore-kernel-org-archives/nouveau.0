@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99147] xorg hangs at initial startup on linux-4.9.0
-Date: Mon, 19 Dec 2016 21:34:40 +0000
-Message-ID: <bug-99147-8800-C6oPt1HV8l@http.bugs.freedesktop.org/>
+Date: Mon, 19 Dec 2016 21:58:16 +0000
+Message-ID: <bug-99147-8800-5GqgY09imz@http.bugs.freedesktop.org/>
 References: <bug-99147-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1546895797=="
+Content-Type: multipart/mixed; boundary="===============0392913402=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99147-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1546895797==
-Content-Type: multipart/alternative; boundary="14821832801.40941228f.7204";
+--===============0392913402==
+Content-Type: multipart/alternative; boundary="14821846961.FdF36C51.8531";
  charset="UTF-8"
 
 
---14821832801.40941228f.7204
-Date: Mon, 19 Dec 2016 21:34:40 +0000
+--14821846961.FdF36C51.8531
+Date: Mon, 19 Dec 2016 21:58:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,22 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99147
 
---- Comment #4 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Gleb from comment #3)
-> Yes, kernel boots with this option. The only disadvantage is that in this
-> case nvidia GPU will always stay powered on, probably could be solved with
-> bbswitch.
-
-bbswitch won't help if nouveau is loaded.
-
-If this is indeed a regression in 4.9, could you try and bisect this?
+--- Comment #5 from Gleb <gleb-97jfqw80gc5Wk0Htik3J/w@public.gmane.org> ---
+Well, I may need some guide or a at least some sort of explanation (probably
+short) what to do as this is completely new for me. Will this guide work for
+this task?
+https://wiki.gentoo.org/wiki/Kernel_git-bisect
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14821832801.40941228f.7204
-Date: Mon, 19 Dec 2016 21:34:40 +0000
+--14821846961.FdF36C51.8531
+Date: Mon, 19 Dec 2016 21:58:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,28 +63,23 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147">bug 99147<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+gleb&#64;fastmail.com" title=3D"Gleb &lt;gleb&#64;fastmail.com&gt;"> <span =
+class=3D"fn">Gleb</span></a>
 </span></b>
-        <pre>(In reply to Gleb from <a href=3D"show_bug.cgi?id=3D99147#c3">=
-comment #3</a>)
-<span class=3D"quote">&gt; Yes, kernel boots with this option. The only dis=
-advantage is that in this
-&gt; case nvidia GPU will always stay powered on, probably could be solved =
-with
-&gt; bbswitch.</span >
-
-bbswitch won't help if nouveau is loaded.
-
-If this is indeed a regression in 4.9, could you try and bisect this?</pre>
+        <pre>Well, I may need some guide or a at least some sort of explana=
+tion (probably
+short) what to do as this is completely new for me. Will this guide work for
+this task?
+<a href=3D"https://wiki.gentoo.org/wiki/Kernel_git-bisect">https://wiki.gen=
+too.org/wiki/Kernel_git-bisect</a></pre>
         </div>
       </p>
 
@@ -102,9 +93,9 @@ If this is indeed a regression in 4.9, could you try and bisect this?</pre>
     </body>
 </html>=
 
---14821832801.40941228f.7204--
+--14821846961.FdF36C51.8531--
 
---===============1546895797==
+--===============0392913402==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1546895797==--
+--===============0392913402==--
