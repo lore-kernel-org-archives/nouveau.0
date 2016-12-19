@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99147] xorg hangs at initial startup on linux-4.9.0
-Date: Mon, 19 Dec 2016 20:01:58 +0000
-Message-ID: <bug-99147-8800-4Z0sStKZOz@http.bugs.freedesktop.org/>
+Date: Mon, 19 Dec 2016 20:12:54 +0000
+Message-ID: <bug-99147-8800-KW7pg8E8Jv@http.bugs.freedesktop.org/>
 References: <bug-99147-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1517887905=="
+Content-Type: multipart/mixed; boundary="===============1077143912=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99147-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1517887905==
-Content-Type: multipart/alternative; boundary="14821777181.caed.32500";
+--===============1077143912==
+Content-Type: multipart/alternative; boundary="14821783741.FffEE.842";
  charset="UTF-8"
 
 
---14821777181.caed.32500
-Date: Mon, 19 Dec 2016 20:01:58 +0000
+--14821783741.FffEE.842
+Date: Mon, 19 Dec 2016 20:12:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,15 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99147
 
---- Comment #2 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-does booting with nouveau not blacklisted and with "nouveau.runpm=3D0" help?
+--- Comment #3 from Gleb <gleb-97jfqw80gc5Wk0Htik3J/w@public.gmane.org> ---
+Yes, kernel boots with this option. The only disadvantage is that in this c=
+ase
+nvidia GPU will always stay powered on, probably could be solved with bbswi=
+tch.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14821777181.caed.32500
-Date: Mon, 19 Dec 2016 20:01:58 +0000
+--14821783741.FffEE.842
+Date: Mon, 19 Dec 2016 20:12:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,19 +63,21 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147">bug 99147<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+gleb&#64;fastmail.com" title=3D"Gleb &lt;gleb&#64;fastmail.com&gt;"> <span =
+class=3D"fn">Gleb</span></a>
 </span></b>
-        <pre>does booting with nouveau not blacklisted and with &quot;nouve=
-au.runpm=3D0&quot; help?</pre>
+        <pre>Yes, kernel boots with this option. The only disadvantage is t=
+hat in this case
+nvidia GPU will always stay powered on, probably could be solved with bbswi=
+tch.</pre>
         </div>
       </p>
 
@@ -86,9 +91,9 @@ au.runpm=3D0&quot; help?</pre>
     </body>
 </html>=
 
---14821777181.caed.32500--
+--14821783741.FffEE.842--
 
---===============1517887905==
+--===============1077143912==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1517887905==--
+--===============1077143912==--
