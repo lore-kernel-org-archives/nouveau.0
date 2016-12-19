@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99147] xorg hangs at initial startup on linux-4.9.0
-Date: Mon, 19 Dec 2016 19:49:42 +0000
-Message-ID: <bug-99147-8800-jI2ySbcE28@http.bugs.freedesktop.org/>
+Date: Mon, 19 Dec 2016 20:01:58 +0000
+Message-ID: <bug-99147-8800-4Z0sStKZOz@http.bugs.freedesktop.org/>
 References: <bug-99147-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1621888488=="
+Content-Type: multipart/mixed; boundary="===============1517887905=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99147-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1621888488==
-Content-Type: multipart/alternative; boundary="14821769821.dF052E6.31958";
+--===============1517887905==
+Content-Type: multipart/alternative; boundary="14821777181.caed.32500";
  charset="UTF-8"
 
 
---14821769821.dF052E6.31958
-Date: Mon, 19 Dec 2016 19:49:42 +0000
+--14821777181.caed.32500
+Date: Mon, 19 Dec 2016 20:01:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99147
 
---- Comment #1 from Gleb <gleb-97jfqw80gc5Wk0Htik3J/w@public.gmane.org> ---
-Created attachment 128564
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128564&action=3Dedit
-kernel syslog
+--- Comment #2 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+does booting with nouveau not blacklisted and with "nouveau.runpm=3D0" help?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14821769821.dF052E6.31958
-Date: Mon, 19 Dec 2016 19:49:42 +0000
+--14821777181.caed.32500
+Date: Mon, 19 Dec 2016 20:01:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,22 +60,19 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147">bug 99147<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gleb&#64;fastmail.com" title=3D"Gleb &lt;gleb&#64;fastmail.com&gt;"> <span =
-class=3D"fn">Gleb</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128564=
-" name=3D"attach_128564" title=3D"kernel syslog">attachment 128564</a> <a h=
-ref=3D"attachment.cgi?id=3D128564&amp;action=3Dedit" title=3D"kernel syslog=
-">[details]</a></span>
-kernel syslog</pre>
+        <pre>does booting with nouveau not blacklisted and with &quot;nouve=
+au.runpm=3D0&quot; help?</pre>
         </div>
       </p>
 
@@ -91,9 +86,9 @@ kernel syslog</pre>
     </body>
 </html>=
 
---14821769821.dF052E6.31958--
+--14821777181.caed.32500--
 
---===============1621888488==
+--===============1517887905==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1621888488==--
+--===============1517887905==--
