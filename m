@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99147] xorg hangs at initial startup on linux-4.9.0
-Date: Mon, 19 Dec 2016 22:02:56 +0000
-Message-ID: <bug-99147-8800-EM4BQcG3z2@http.bugs.freedesktop.org/>
+Date: Mon, 19 Dec 2016 22:33:00 +0000
+Message-ID: <bug-99147-8800-zA0wcrA2U9@http.bugs.freedesktop.org/>
 References: <bug-99147-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0177079140=="
+Content-Type: multipart/mixed; boundary="===============1402776270=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99147-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0177079140==
-Content-Type: multipart/alternative; boundary="14821849761.bc5e1a.9186";
+--===============1402776270==
+Content-Type: multipart/alternative; boundary="14821867790.2F8eC6d0f.10800";
  charset="UTF-8"
 
 
---14821849761.bc5e1a.9186
-Date: Mon, 19 Dec 2016 22:02:56 +0000
+--14821867790.2F8eC6d0f.10800
+Date: Mon, 19 Dec 2016 22:32:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,24 +35,38 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99147
 
---- Comment #6 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
-Nothing unusual in logs. Can you reproduce the lockup issue if you boot to a
-console (disable sddm), then invoke "lspci", wait for at least 5 seconds, t=
-hen
-repeat "lspci" again? (Have a look at dmesg for unusual messages.)
+--- Comment #7 from Gleb <gleb-97jfqw80gc5Wk0Htik3J/w@public.gmane.org> ---
+lspci doesn't hang when I invoke it from console. I also tried startx and
+startxfce4 from console and it worked, so it probably some other thing?
 
-If lspci hangs, then there is a problem (and hopefully dmesg is more helpfu=
-l).
-Can you also confirm that downgrading just the kernel (while keeping the re=
-st
-of userspace the same) makes the problem disappear?
+
+I can confirm that the issue occured on 4.9.0 and did not occur on 4.8.14 on
+the same userspace stuff. I only started upgrading it after multiple
+unseccessfull reboots into 4.9.0. So I had stable stuff, tested 4.8.14 (no
+problem) and 4.9.0 (problem persist). Then upgraded stuff, tested on 4.8.14=
+ (no
+problem) and 4.9.0 (problem persist).
+
+
+I also recompiled 4.9.0 at some point before testing lspci (but not
+specifically for that, I will try to revert the changes) so that it includes
+nouveau into kernel and not as a module, though it still have the same issu=
+e.
+Does it matter in what form nouveau is presented?
+
+
+I want to clarify that the only process that hangs is Xorg (and probably
+another which I noticed right now -- libvirtd, it also has red D symbol). T=
+he
+system continue to work, I have access to console and can run stuff from th=
+ere.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14821849761.bc5e1a.9186
-Date: Mon, 19 Dec 2016 22:02:56 +0000
+--14821867790.2F8eC6d0f.10800
+Date: Mon, 19 Dec 2016 22:32:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,28 +83,42 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c6">Comment=
- # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147">bug 99147<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
-> <span class=3D"fn">Peter Wu</span></a>
+gleb&#64;fastmail.com" title=3D"Gleb &lt;gleb&#64;fastmail.com&gt;"> <span =
+class=3D"fn">Gleb</span></a>
 </span></b>
-        <pre>Nothing unusual in logs. Can you reproduce the lockup issue if=
- you boot to a
-console (disable sddm), then invoke &quot;lspci&quot;, wait for at least 5 =
-seconds, then
-repeat &quot;lspci&quot; again? (Have a look at dmesg for unusual messages.)
+        <pre>lspci doesn't hang when I invoke it from console. I also tried=
+ startx and
+startxfce4 from console and it worked, so it probably some other thing?
 
-If lspci hangs, then there is a problem (and hopefully dmesg is more helpfu=
-l).
-Can you also confirm that downgrading just the kernel (while keeping the re=
-st
-of userspace the same) makes the problem disappear?</pre>
+
+I can confirm that the issue occured on 4.9.0 and did not occur on 4.8.14 on
+the same userspace stuff. I only started upgrading it after multiple
+unseccessfull reboots into 4.9.0. So I had stable stuff, tested 4.8.14 (no
+problem) and 4.9.0 (problem persist). Then upgraded stuff, tested on 4.8.14=
+ (no
+problem) and 4.9.0 (problem persist).
+
+
+I also recompiled 4.9.0 at some point before testing lspci (but not
+specifically for that, I will try to revert the changes) so that it includes
+nouveau into kernel and not as a module, though it still have the same issu=
+e.
+Does it matter in what form nouveau is presented?
+
+
+I want to clarify that the only process that hangs is Xorg (and probably
+another which I noticed right now -- libvirtd, it also has red D symbol). T=
+he
+system continue to work, I have access to console and can run stuff from th=
+ere.</pre>
         </div>
       </p>
 
@@ -104,9 +132,9 @@ of userspace the same) makes the problem disappear?</pre>
     </body>
 </html>=
 
---14821849761.bc5e1a.9186--
+--14821867790.2F8eC6d0f.10800--
 
---===============0177079140==
+--===============1402776270==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +144,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0177079140==--
+--===============1402776270==--
