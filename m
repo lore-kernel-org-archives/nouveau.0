@@ -1,52 +1,81 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Hard-to-find bug brings down whole kernel
-Date: Mon, 19 Dec 2016 20:01:55 -0500
-Message-ID: <CAKb7UvgvKRX5yRUC9xPQW59NwGQAbqZKr_NkfV6XhGF=91TRpg@mail.gmail.com>
-References: <9e606307-7c6c-20b5-66c2-a852243e289f@gmail.com>
+From: Karol Herbst <karolherbst@gmail.com>
+Subject: Re: [Nouveau] [PATCH] drm/nouveau: fix unknown chipset for GTX 1060
+Date: Tue, 20 Dec 2016 09:33:42 +0100
+Message-ID: <CAEXux-YyktuNjA9z7rc7_xqb6KOU7vVvaxnRZRjJ+VcX=ooidQ@mail.gmail.com>
+References: <1481541993-40287-1-git-send-email-chiu@endlessm.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <9e606307-7c6c-20b5-66c2-a852243e289f-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Ognjen_Gali=C4=87?= <smclt30p-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1481541993-40287-1-git-send-email-chiu@endlessm.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Chris Chiu <chiu@endlessm.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Alexandre Courbot <acourbot@nvidia.com>, Karol Herbst <nouveau@karolherbst.de>, Martin Peres <martin.peres@free.fr>, dri-devel <dri-devel@lists.freedesktop.org>, ML nouveau <nouveau@lists.freedesktop.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, linux@endlessm.com
 List-Id: nouveau.vger.kernel.org
 
-ImZhaWwgdHRtX3ZhbGlkYXRlIiBiYXNpY2FsbHkgbWVhbnMgInlvdSByYW4gb3V0IG9mIHZyYW0i
-LgpVbmZvcnR1bmF0ZWx5IHRoZSBHTCBkcml2ZXIgZG9lc24ndCBoYW5kbGUgdGhpcyBncmFjZWZ1
-bGx5LCBjYXVzaW5nCmNvbW1hbmRzIHRvIGdldCBzdWJtaXR0ZWQgd2hpY2ggZXZlbnR1YWxseSBo
-YW5nIHRoZSBHUFUuIFlvdSBjYW4KZGlzYWJsZSBodyBhY2NlbCBpbiBjaHJvbWUgd2hpY2ggc2hv
-dWxkIGlkZWFsbHkgImZpeCIgdGhpcyBmb3IgeW91LgoKQ2hlZXJzLAoKICAtaWxpYQoKT24gRnJp
-LCBEZWMgOSwgMjAxNiBhdCA1OjMwIEFNLCBPZ25qZW4gR2FsacSHIDxzbWNsdDMwcEBnbWFpbC5j
-b20+IHdyb3RlOgo+IEkgaGF2ZSBhbiBvbGRlciBMZW5vdm8gbWFjaGluZSwgYSBUNjEsIHdpdGgg
-dGhlIE52aWRpYSBRdWFkcm8gTlZTIDE0ME0uCj4gVGhlcmUgaXMgdGhpcyByYW5kb20gYnVnIHRo
-YXQgd291bGQgaGFuZyB0aGUgd2hvbGUgbWFjaGluZSwgYW5kIHRoZW4gY2F1c2UgYQo+IHBhbmlj
-IGFuZCByZWJvb3QgaXQgKHRoZSBjYXBzIGxvY2sgbGlnaHQgaXMgZmxhc2hpbmcpLgo+Cj4gSSBj
-YW4ndCBnZXQgYW55IGtlcm5lbCBtZXNzYWdlcyBvZiB0aGlzIGlzc3VlIGV4Y2VwdCB0aGUgb25l
-IGluIHRoaXMgWW91VHViZQo+IHZpZGVvIEkgaGFkIGx1Y2sgdG8KPiBmaWxtIGFuZCBjYXRjaCB0
-aGUgZXJyb3I6Cj4KPiBodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PVkxWDZzN19sYUd3
-Cj4KPiBUaGUgYnVnIGNhbiBiZSB0cmlnZ2VyZWQgYWx3YXlzIGJ5IHZpc2l0aW5nIGh0dHBzOi8v
-d3d3Lmdvb2dsZS5jb20vY2hyb21lCj4gd2hlbgo+IHRoZSBhbmltYXRpb24gcGxheXMgb2YgdGhl
-IENocm9tZSB3aW5kb3cgcm90YXRpbmcuCj4KPiBUaGlzIGhhcyBiZWVuIGEgcGVyc2lzdGVudCBi
-dWcgZm9yIG1lIGZyb20gMy4xWCBhbGwgdGhlIHdheSB0byA0LjguMTIsIGFuZAo+IEkndmUgc29s
-dmVkCj4gaXQgYmVmb3JlIGJ5IGp1c3QgdXNpbmcgdGhlIHByb3ByaWV0YXJ5IGRyaXZlciwgYnV0
-IEkgbm93IGhhdmUgdHJvdWJsZQo+IHJlc3VtaW5nIExpbnV4IHdpdGggdGhhdC4KPgo+IEkndmUg
-dHJpZWQgbG9nZ2luZyB0aGUga2VybmVsIG1lc3NhZ2VzIG92ZXIgU1NIIGFuZCB0aGF0IGRpZCBu
-b3Qgd29yawo+IGVpdGhlciwgaXQganVzdCBsb2NrcyB1cC4KPgo+IEFueW9uZSBoYXMgYW55IGlk
-ZWFzIGhvdyB0byBjYXRjaCB0aGUgaXNzdWUgd2l0aG91dCBnb2luZyB0aHJvdWdoIHRoZSB3aG9s
-ZQo+IGtkdW1wIHByb2NlZHVyZT8KPgo+IFJlZ2FyZHMsCj4KPiAgICAgR2FsYQo+Cj4KPiBfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFp
-bGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+we already have that included in 4.10
+
+2016-12-12 12:26 GMT+01:00 Chris Chiu <chiu@endlessm.com>:
+> Nouveau driver shows unknown chipset (136000a1) for GTX 1060, so it
+> only gives VGA resolution on screen. Use the same chipset as nv134
+> then it shows FullHD. This commit copies fields from nv134_chipset
+> to nv136_chipset for GTX 1060.
+>
+> Signed-off-by: Chris Chiu <chiu@endlessm.com>
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/engine/device/base.c | 29 +++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+> index 7218a06..7c6eece 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+> @@ -2209,6 +2209,34 @@ nv134_chipset = {
+>         .fifo = gp100_fifo_new,
+>  };
+>
+> +static const struct nvkm_device_chip
+> +nv136_chipset = {
+> +       .name = "GP104",
+> +       .bar = gf100_bar_new,
+> +       .bios = nvkm_bios_new,
+> +       .bus = gf100_bus_new,
+> +       .devinit = gm200_devinit_new,
+> +       .fb = gp104_fb_new,
+> +       .fuse = gm107_fuse_new,
+> +       .gpio = gk104_gpio_new,
+> +       .i2c = gm200_i2c_new,
+> +       .ibus = gm200_ibus_new,
+> +       .imem = nv50_instmem_new,
+> +       .ltc = gp100_ltc_new,
+> +       .mc = gp100_mc_new,
+> +       .mmu = gf100_mmu_new,
+> +       .pci = gp100_pci_new,
+> +       .timer = gk20a_timer_new,
+> +       .top = gk104_top_new,
+> +       .ce[0] = gp104_ce_new,
+> +       .ce[1] = gp104_ce_new,
+> +       .ce[2] = gp104_ce_new,
+> +       .ce[3] = gp104_ce_new,
+> +       .disp = gp104_disp_new,
+> +       .dma = gf119_dma_new,
+> +       .fifo = gp100_fifo_new,
+> +};
+> +
+>  static int
+>  nvkm_device_event_ctor(struct nvkm_object *object, void *data, u32 size,
+>                        struct nvkm_notify *notify)
+> @@ -2644,6 +2672,7 @@ nvkm_device_ctor(const struct nvkm_device_func *func,
+>                 case 0x12b: device->chip = &nv12b_chipset; break;
+>                 case 0x130: device->chip = &nv130_chipset; break;
+>                 case 0x134: device->chip = &nv134_chipset; break;
+> +               case 0x136: device->chip = &nv136_chipset; break;
+>                 default:
+>                         nvdev_error(device, "unknown chipset (%08x)\n", boot0);
+>                         goto done;
+> --
+> 2.1.4
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
