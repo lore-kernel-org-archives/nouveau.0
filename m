@@ -1,155 +1,132 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99147] xorg hangs at initial startup on linux-4.9.0
-Date: Wed, 21 Dec 2016 14:57:20 +0000
-Message-ID: <bug-99147-8800-T2S6GnvleY@http.bugs.freedesktop.org/>
-References: <bug-99147-8800@http.bugs.freedesktop.org/>
+From: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+Subject: [PATCH v2 1/2] drm: Wrap the check for atomic_commit
+	implementation
+Date: Wed, 21 Dec 2016 12:12:08 -0800
+Message-ID: <1482351129-10398-1-git-send-email-dhinakaran.pandiyan@intel.com>
+References: <20161221085104.flienvnr3xofbtto@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0538283604=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99147-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20161221085104.flienvnr3xofbtto@phenom.ffwll.local>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0538283604==
-Content-Type: multipart/alternative; boundary="14823322401.9B2FB3.11613";
- charset="UTF-8"
-
-
---14823322401.9B2FB3.11613
-Date: Wed, 21 Dec 2016 14:57:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99147
-
-Gleb <gleb-97jfqw80gc5Wk0Htik3J/w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |gleb-97jfqw80gc5Wk0Htik3J/w@public.gmane.org
-
---- Comment #10 from Gleb <gleb-97jfqw80gc5Wk0Htik3J/w@public.gmane.org> ---
-Created attachment 128607
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128607&action=3Dedit
-bisect.log
-
-So I bisected a kernel and come to the same conclusin as in this bug
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98690
-
-bisect.log attached. I assume that this bug probably can be closed as dupli=
-cate
-and I can move to the previous one?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14823322401.9B2FB3.11613
-Date: Wed, 21 Dec 2016 14:57:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gleb&#64;=
-fastmail.com" title=3D"Gleb &lt;gleb&#64;fastmail.com&gt;"> <span class=3D"=
-fn">Gleb</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147">bug 99147<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>gleb&#64;fastmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c10">Commen=
-t # 10</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147">bug 99147<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gleb&#64;fastmail.com" title=3D"Gleb &lt;gleb&#64;fastmail.com&gt;"> <span =
-class=3D"fn">Gleb</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128607=
-" name=3D"attach_128607" title=3D"bisect.log">attachment 128607</a> <a href=
-=3D"attachment.cgi?id=3D128607&amp;action=3Dedit" title=3D"bisect.log">[det=
-ails]</a></span>
-bisect.log
-
-So I bisected a kernel and come to the same conclusin as in this bug
-<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [SKL bisected] System freeze when starting X using kernel=
- 4.9-rc1 or later"
-   href=3D"show_bug.cgi?id=3D98690">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D98690</a>
-
-bisect.log attached. I assume that this bug probably can be closed as dupli=
-cate
-and I can move to the previous one?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14823322401.9B2FB3.11613--
-
---===============0538283604==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0538283604==--
+VGhpcyBjaGVjayBpcyB1c2VmdWwgZm9yIGRyaXZlcnMgdGhhdCBkbyBub3QgaGF2ZSBEUklWRVJf
+QVRPTUlDIHNldCBidXQKaGF2ZSBhdG9taWMgbW9kZXNldHRpbmcgaW50ZXJuYWxseSBpbXBsZW1l
+bnRlZC4gV3JhcCB0aGUgY2hlY2sgaW50byBhCmZ1bmN0aW9uIHNpbmNlIHRoaXMgaXMgdXNlZCBp
+biBtYW55IHBsYWNlcyBhbmQgYXMgYSBib251cywgdGhlIGZ1bmN0aW9uCm5hbWUgaGVscHMgdG8g
+ZG9jdW1lbnQgd2hhdCB0aGUgY2hlY2sgaXMgZm9yLgoKdjI6CkNoYW5nZSByZXR1cm4gdHlwZSB0
+byBib29sIChWaWxsZSkKTW92ZSB0aGUgZnVuY3Rpb24gZHJtX2F0b21pYy5oIChEYW5pZWwpCgpT
+dWdnZXN0ZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+CkNjOiBE
+YW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgpDYzogQmVuIFNrZWdncyA8YnNr
+ZWdnc0ByZWRoYXQuY29tPgpTaWduZWQtb2ZmLWJ5OiBEaGluYWthcmFuIFBhbmRpeWFuIDxkaGlu
+YWthcmFuLnBhbmRpeWFuQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2ZiX2hl
+bHBlci5jICAgICAgICAgICAgIHwgIDYgKysrLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2Nvbm5lY3Rvci5jIHwgIDUgKysrLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfZGlzcGxheS5jICAgfCAgNiArKystLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfZmJjb24uYyAgICAgfCAgMyArKy0KIGluY2x1ZGUvZHJtL2RybV9hdG9taWMuaCAgICAg
+ICAgICAgICAgICAgICAgfCAxMSArKysrKysrKysrKwogNSBmaWxlcyBjaGFuZ2VkLCAyMiBpbnNl
+cnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9k
+cm1fZmJfaGVscGVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2ZiX2hlbHBlci5jCmluZGV4IDE0
+NWQ1NWYuLjczMDM0MmMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZmJfaGVscGVy
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9mYl9oZWxwZXIuYwpAQCAtNDA1LDcgKzQwNSw3
+IEBAIHN0YXRpYyBpbnQgcmVzdG9yZV9mYmRldl9tb2RlKHN0cnVjdCBkcm1fZmJfaGVscGVyICpm
+Yl9oZWxwZXIpCiAKIAlkcm1fd2Fybl9vbl9tb2Rlc2V0X25vdF9hbGxfbG9ja2VkKGRldik7CiAK
+LQlpZiAoZGV2LT5tb2RlX2NvbmZpZy5mdW5jcy0+YXRvbWljX2NvbW1pdCkKKwlpZiAoZHJtX2Ry
+dl91c2VzX2F0b21pY19tb2Rlc2V0KGRldikpCiAJCXJldHVybiByZXN0b3JlX2ZiZGV2X21vZGVf
+YXRvbWljKGZiX2hlbHBlcik7CiAKIAlkcm1fZm9yX2VhY2hfcGxhbmUocGxhbmUsIGRldikgewpA
+QCAtMTQ0NCw3ICsxNDQ0LDcgQEAgaW50IGRybV9mYl9oZWxwZXJfcGFuX2Rpc3BsYXkoc3RydWN0
+IGZiX3Zhcl9zY3JlZW5pbmZvICp2YXIsCiAJCXJldHVybiAtRUJVU1k7CiAJfQogCi0JaWYgKGRl
+di0+bW9kZV9jb25maWcuZnVuY3MtPmF0b21pY19jb21taXQpIHsKKwlpZiAoZHJtX2Rydl91c2Vz
+X2F0b21pY19tb2Rlc2V0KGRldikpIHsKIAkJcmV0ID0gcGFuX2Rpc3BsYXlfYXRvbWljKHZhciwg
+aW5mbyk7CiAJCWdvdG8gdW5sb2NrOwogCX0KQEAgLTIwNjAsNyArMjA2MCw3IEBAIHN0YXRpYyBp
+bnQgZHJtX3BpY2tfY3J0Y3Moc3RydWN0IGRybV9mYl9oZWxwZXIgKmZiX2hlbHBlciwKIAkgKiBO
+VUxMIHdlIGZhbGxiYWNrIHRvIHRoZSBkZWZhdWx0IGRybV9hdG9taWNfaGVscGVyX2Jlc3RfZW5j
+b2RlcigpCiAJICogaGVscGVyLgogCSAqLwotCWlmIChmYl9oZWxwZXItPmRldi0+bW9kZV9jb25m
+aWcuZnVuY3MtPmF0b21pY19jb21taXQgJiYKKwlpZiAoZHJtX2Rydl91c2VzX2F0b21pY19tb2Rl
+c2V0KGZiX2hlbHBlci0+ZGV2KSAmJgogCSAgICAhY29ubmVjdG9yX2Z1bmNzLT5iZXN0X2VuY29k
+ZXIpCiAJCWVuY29kZXIgPSBkcm1fYXRvbWljX2hlbHBlcl9iZXN0X2VuY29kZXIoY29ubmVjdG9y
+KTsKIAllbHNlCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nv
+bm5lY3Rvci5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwpp
+bmRleCA5NDdjMjAwLi45NjZkMjBhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfY29ubmVjdG9yLmMKQEAgLTMzLDYgKzMzLDcgQEAKICNpbmNsdWRlIDxkcm0vZHJtX2F0b21p
+Y19oZWxwZXIuaD4KICNpbmNsdWRlIDxkcm0vZHJtX2VkaWQuaD4KICNpbmNsdWRlIDxkcm0vZHJt
+X2NydGNfaGVscGVyLmg+CisjaW5jbHVkZSA8ZHJtL2RybV9hdG9taWMuaD4KIAogI2luY2x1ZGUg
+Im5vdXZlYXVfcmVnLmgiCiAjaW5jbHVkZSAibm91dmVhdV9kcnYuaCIKQEAgLTc2OSw3ICs3NzAs
+NyBAQCBub3V2ZWF1X2Nvbm5lY3Rvcl9zZXRfcHJvcGVydHkoc3RydWN0IGRybV9jb25uZWN0b3Ig
+KmNvbm5lY3RvciwKIAlzdHJ1Y3QgZHJtX2VuY29kZXIgKmVuY29kZXIgPSB0b19kcm1fZW5jb2Rl
+cihudl9lbmNvZGVyKTsKIAlpbnQgcmV0OwogCi0JaWYgKGNvbm5lY3Rvci0+ZGV2LT5tb2RlX2Nv
+bmZpZy5mdW5jcy0+YXRvbWljX2NvbW1pdCkKKwlpZiAoZHJtX2Rydl91c2VzX2F0b21pY19tb2Rl
+c2V0KGNvbm5lY3Rvci0+ZGV2KSkKIAkJcmV0dXJuIGRybV9hdG9taWNfaGVscGVyX2Nvbm5lY3Rv
+cl9zZXRfcHJvcGVydHkoY29ubmVjdG9yLCBwcm9wZXJ0eSwgdmFsdWUpOwogCiAJcmV0ID0gY29u
+bmVjdG9yLT5mdW5jcy0+YXRvbWljX3NldF9wcm9wZXJ0eSgmbnZfY29ubmVjdG9yLT5iYXNlLApA
+QCAtMTA3NCw3ICsxMDc1LDcgQEAgbm91dmVhdV9jb25uZWN0b3JfaGVscGVyX2Z1bmNzID0gewog
+c3RhdGljIGludAogbm91dmVhdV9jb25uZWN0b3JfZHBtcyhzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAq
+Y29ubmVjdG9yLCBpbnQgbW9kZSkKIHsKLQlpZiAoY29ubmVjdG9yLT5kZXYtPm1vZGVfY29uZmln
+LmZ1bmNzLT5hdG9taWNfY29tbWl0KQorCWlmIChkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVzZXQo
+Y29ubmVjdG9yLT5kZXYpKQogCQlyZXR1cm4gZHJtX2F0b21pY19oZWxwZXJfY29ubmVjdG9yX2Rw
+bXMoY29ubmVjdG9yLCBtb2RlKTsKIAlyZXR1cm4gZHJtX2hlbHBlcl9jb25uZWN0b3JfZHBtcyhj
+b25uZWN0b3IsIG1vZGUpOwogfQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3Bs
+YXkuYwppbmRleCBjNWNmODg4Li5hZGQzNTNlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2Rpc3BsYXkuYwpAQCAtMTYyLDcgKzE2Miw3IEBAIG5vdXZlYXVfZGlzcGxheV92Ymxz
+dGFtcChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB1bnNpZ25lZCBpbnQgcGlwZSwKIAlsaXN0X2Zv
+cl9lYWNoX2VudHJ5KGNydGMsICZkZXYtPm1vZGVfY29uZmlnLmNydGNfbGlzdCwgaGVhZCkgewog
+CQlpZiAobm91dmVhdV9jcnRjKGNydGMpLT5pbmRleCA9PSBwaXBlKSB7CiAJCQlzdHJ1Y3QgZHJt
+X2Rpc3BsYXlfbW9kZSAqbW9kZTsKLQkJCWlmIChkZXYtPm1vZGVfY29uZmlnLmZ1bmNzLT5hdG9t
+aWNfY29tbWl0KQorCQkJaWYgKGRybV9kcnZfdXNlc19hdG9taWNfbW9kZXNldChkZXYpKQogCQkJ
+CW1vZGUgPSAmY3J0Yy0+c3RhdGUtPmFkanVzdGVkX21vZGU7CiAJCQllbHNlCiAJCQkJbW9kZSA9
+ICZjcnRjLT5od21vZGU7CkBAIC03MzgsNyArNzM4LDcgQEAgbm91dmVhdV9kaXNwbGF5X3N1c3Bl
+bmQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgYm9vbCBydW50aW1lKQogCXN0cnVjdCBub3V2ZWF1
+X2Rpc3BsYXkgKmRpc3AgPSBub3V2ZWF1X2Rpc3BsYXkoZGV2KTsKIAlzdHJ1Y3QgZHJtX2NydGMg
+KmNydGM7CiAKLQlpZiAoZGV2LT5tb2RlX2NvbmZpZy5mdW5jcy0+YXRvbWljX2NvbW1pdCkgewor
+CWlmIChkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVzZXQoZGV2KSkgewogCQlpZiAoIXJ1bnRpbWUp
+IHsKIAkJCWRpc3AtPnN1c3BlbmQgPSBub3V2ZWF1X2F0b21pY19zdXNwZW5kKGRldik7CiAJCQlp
+ZiAoSVNfRVJSKGRpc3AtPnN1c3BlbmQpKSB7CkBAIC03ODQsNyArNzg0LDcgQEAgbm91dmVhdV9k
+aXNwbGF5X3Jlc3VtZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBib29sIHJ1bnRpbWUpCiAJc3Ry
+dWN0IGRybV9jcnRjICpjcnRjOwogCWludCByZXQ7CiAKLQlpZiAoZGV2LT5tb2RlX2NvbmZpZy5m
+dW5jcy0+YXRvbWljX2NvbW1pdCkgeworCWlmIChkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVzZXQo
+ZGV2KSkgewogCQlub3V2ZWF1X2Rpc3BsYXlfaW5pdChkZXYpOwogCQlpZiAoZGlzcC0+c3VzcGVu
+ZCkgewogCQkJZHJtX2F0b21pY19oZWxwZXJfcmVzdW1lKGRldiwgZGlzcC0+c3VzcGVuZCk7CmRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKaW5kZXggNTYwMGY2Yy4uOWRlNmFi
+YiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYwpAQCAtNDEsNiArNDEs
+NyBAQAogI2luY2x1ZGUgPGRybS9kcm1fY3J0Yy5oPgogI2luY2x1ZGUgPGRybS9kcm1fY3J0Y19o
+ZWxwZXIuaD4KICNpbmNsdWRlIDxkcm0vZHJtX2ZiX2hlbHBlci5oPgorI2luY2x1ZGUgPGRybS9k
+cm1fYXRvbWljLmg+CiAKICNpbmNsdWRlICJub3V2ZWF1X2Rydi5oIgogI2luY2x1ZGUgIm5vdXZl
+YXVfZ2VtLmgiCkBAIC01MjQsNyArNTI1LDcgQEAgbm91dmVhdV9mYmNvbl9pbml0KHN0cnVjdCBk
+cm1fZGV2aWNlICpkZXYpCiAJCXByZWZlcnJlZF9icHAgPSAzMjsKIAogCS8qIGRpc2FibGUgYWxs
+IHRoZSBwb3NzaWJsZSBvdXRwdXRzL2NydGNzIGJlZm9yZSBlbnRlcmluZyBLTVMgbW9kZSAqLwot
+CWlmICghZGV2LT5tb2RlX2NvbmZpZy5mdW5jcy0+YXRvbWljX2NvbW1pdCkKKwlpZiAoIWRybV9k
+cnZfdXNlc19hdG9taWNfbW9kZXNldChkZXYpKQogCQlkcm1faGVscGVyX2Rpc2FibGVfdW51c2Vk
+X2Z1bmN0aW9ucyhkZXYpOwogCiAJcmV0ID0gZHJtX2ZiX2hlbHBlcl9pbml0aWFsX2NvbmZpZygm
+ZmJjb24tPmhlbHBlciwgcHJlZmVycmVkX2JwcCk7CmRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9k
+cm1fYXRvbWljLmggYi9pbmNsdWRlL2RybS9kcm1fYXRvbWljLmgKaW5kZXggOGNjN2NhMi4uNDNk
+YjE2MiAxMDA2NDQKLS0tIGEvaW5jbHVkZS9kcm0vZHJtX2F0b21pYy5oCisrKyBiL2luY2x1ZGUv
+ZHJtL2RybV9hdG9taWMuaApAQCAtNDE5LDUgKzQxOSwxNiBAQCBkcm1fYXRvbWljX2NydGNfbmVl
+ZHNfbW9kZXNldChjb25zdCBzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKnN0YXRlKQogCSAgICAgICBz
+dGF0ZS0+Y29ubmVjdG9yc19jaGFuZ2VkOwogfQogCisvKiBkcm1fZHJ2X3VzZXNfYXRvbWljX21v
+ZGVzZXQgLSBjaGVjayBpZiB0aGUgZHJpdmVyIGltcGxlbWVudHMKKyAqIGF0b21pY19jb21taXQo
+KQorICogQGRldjogRFJNIGRldmljZQorICoKKyAqIFRoaXMgY2hlY2sgaXMgdXNlZnVsIGlmIGRy
+aXZlcnMgZG8gbm90IGhhdmUgRFJJVkVSX0FUT01JQyBzZXQgYnV0CisgKiBoYXZlIGF0b21pYyBt
+b2Rlc2V0dGluZyBpbnRlcm5hbGx5IGltcGxlbWVudGVkLgorICovCitzdGF0aWMgaW5saW5lIGJv
+b2wgZHJtX2Rydl91c2VzX2F0b21pY19tb2Rlc2V0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCit7
+CisJcmV0dXJuIGRldi0+bW9kZV9jb25maWcuZnVuY3MtPmF0b21pY19jb21taXQgPyB0cnVlIDog
+ZmFsc2U7Cit9CiAKICNlbmRpZiAvKiBEUk1fQVRPTUlDX0hfICovCi0tIAoyLjcuNAoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
