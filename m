@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99147] xorg hangs at initial startup on linux-4.9.0
-Date: Tue, 20 Dec 2016 14:18:52 +0000
-Message-ID: <bug-99147-8800-vOegmIbFLT@http.bugs.freedesktop.org/>
+Date: Wed, 21 Dec 2016 14:57:20 +0000
+Message-ID: <bug-99147-8800-T2S6GnvleY@http.bugs.freedesktop.org/>
 References: <bug-99147-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0877604559=="
+Content-Type: multipart/mixed; boundary="===============0538283604=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99147-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0877604559==
-Content-Type: multipart/alternative; boundary="14822435321.Bce6.3785";
+--===============0538283604==
+Content-Type: multipart/alternative; boundary="14823322401.9B2FB3.11613";
  charset="UTF-8"
 
 
---14822435321.Bce6.3785
-Date: Tue, 20 Dec 2016 14:18:52 +0000
+--14823322401.9B2FB3.11613
+Date: Wed, 21 Dec 2016 14:57:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,21 +35,30 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99147
 
---- Comment #9 from Gleb <gleb-97jfqw80gc5Wk0Htik3J/w@public.gmane.org> ---
-Created attachment 128591
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128591&action=3Dedit
-1st attempt: after lscpi
+Gleb <gleb-97jfqw80gc5Wk0Htik3J/w@public.gmane.org> changed:
 
-I think those logs will be enough. If necessary I can attach more, but I th=
-ink
-that 2nd attempt looks the same.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |gleb-97jfqw80gc5Wk0Htik3J/w@public.gmane.org
+
+--- Comment #10 from Gleb <gleb-97jfqw80gc5Wk0Htik3J/w@public.gmane.org> ---
+Created attachment 128607
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128607&action=3Dedit
+bisect.log
+
+So I bisected a kernel and come to the same conclusin as in this bug
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98690
+
+bisect.log attached. I assume that this bug probably can be closed as dupli=
+cate
+and I can move to the previous one?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14822435321.Bce6.3785
-Date: Tue, 20 Dec 2016 14:18:52 +0000
+--14823322401.9B2FB3.11613
+Date: Wed, 21 Dec 2016 14:57:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,14 +69,38 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gleb&#64;=
+fastmail.com" title=3D"Gleb &lt;gleb&#64;fastmail.com&gt;"> <span class=3D"=
+fn">Gleb</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147">bug 99147<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>gleb&#64;fastmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c9">Comment=
- # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg hangs at initial startup on linux-4.9.0"
@@ -77,15 +110,23 @@ Auto-Submitted: auto-generated
 gleb&#64;fastmail.com" title=3D"Gleb &lt;gleb&#64;fastmail.com&gt;"> <span =
 class=3D"fn">Gleb</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128591=
-" name=3D"attach_128591" title=3D"1st attempt: after lscpi">attachment 1285=
-91</a> <a href=3D"attachment.cgi?id=3D128591&amp;action=3Dedit" title=3D"1s=
-t attempt: after lscpi">[details]</a></span>
-1st attempt: after lscpi
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128607=
+" name=3D"attach_128607" title=3D"bisect.log">attachment 128607</a> <a href=
+=3D"attachment.cgi?id=3D128607&amp;action=3Dedit" title=3D"bisect.log">[det=
+ails]</a></span>
+bisect.log
 
-I think those logs will be enough. If necessary I can attach more, but I th=
-ink
-that 2nd attempt looks the same.</pre>
+So I bisected a kernel and come to the same conclusin as in this bug
+<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [SKL bisected] System freeze when starting X using kernel=
+ 4.9-rc1 or later"
+   href=3D"show_bug.cgi?id=3D98690">https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D98690</a>
+
+bisect.log attached. I assume that this bug probably can be closed as dupli=
+cate
+and I can move to the previous one?</pre>
         </div>
       </p>
 
@@ -99,9 +140,9 @@ that 2nd attempt looks the same.</pre>
     </body>
 </html>=
 
---14822435321.Bce6.3785--
+--14823322401.9B2FB3.11613--
 
---===============0877604559==
+--===============0538283604==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +152,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0877604559==--
+--===============0538283604==--
