@@ -1,121 +1,62 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94374] transparent window with DRI_PRIME=1,
- depending on size of used textures
-Date: Thu, 22 Dec 2016 08:08:26 +0000
-Message-ID: <bug-94374-8800-jhLJIgPgyG@http.bugs.freedesktop.org/>
-References: <bug-94374-8800@http.bugs.freedesktop.org/>
+From: Ander Conselvan De Oliveira <conselvan2@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm: Wrap the check for
+ atomic_commit implementation
+Date: Thu, 22 Dec 2016 10:36:01 +0200
+Message-ID: <1482395761.4759.32.camel@gmail.com>
+References: <20161221085104.flienvnr3xofbtto@phenom.ffwll.local>
+ <1482351129-10398-1-git-send-email-dhinakaran.pandiyan@intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1301434261=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94374-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1482351129-10398-1-git-send-email-dhinakaran.pandiyan@intel.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1301434261==
-Content-Type: multipart/alternative; boundary="14823941060.C2f3ffA3e.30451";
- charset="UTF-8"
-
-
---14823941060.C2f3ffA3e.30451
-Date: Thu, 22 Dec 2016 08:08:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94374
-
---- Comment #11 from Dongmin Kim <kim135797531g-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-* For note - Get the same issue at Ubuntu 16.04 LTS 64-bit.
-
-- Intel Ivy-bridge & AMD HD 7650M Hybrid graphics
-- DRI2 for default
-- Kernel 4.4.0-53
-- Mesa 11.2.0
-
-It happened with texture sizes over than 256, but when I use DRI3, it never
-happens anymore.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14823941060.C2f3ffA3e.30451
-Date: Thu, 22 Dec 2016 08:08:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WORKSFORME - transparent window with DRI_PRIME=3D1, de=
-pending on size of used textures"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94374#c11">Commen=
-t # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WORKSFORME - transparent window with DRI_PRIME=3D1, de=
-pending on size of used textures"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94374">bug 94374<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-kim135797531g&#64;gmail.com" title=3D"Dongmin Kim &lt;kim135797531g&#64;gma=
-il.com&gt;"> <span class=3D"fn">Dongmin Kim</span></a>
-</span></b>
-        <pre>* For note - Get the same issue at Ubuntu 16.04 LTS 64-bit.
-
-- Intel Ivy-bridge &amp; AMD HD 7650M Hybrid graphics
-- DRI2 for default
-- Kernel 4.4.0-53
-- Mesa 11.2.0
-
-It happened with texture sizes over than 256, but when I use DRI3, it never
-happens anymore.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14823941060.C2f3ffA3e.30451--
-
---===============1301434261==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1301434261==--
+T24gV2VkLCAyMDE2LTEyLTIxIGF0IDEyOjEyIC0wODAwLCBEaGluYWthcmFuIFBhbmRpeWFuIHdy
+b3RlOgo+IFRoaXMgY2hlY2sgaXMgdXNlZnVsIGZvciBkcml2ZXJzIHRoYXQgZG8gbm90IGhhdmUg
+RFJJVkVSX0FUT01JQyBzZXQgYnV0Cj4gaGF2ZSBhdG9taWMgbW9kZXNldHRpbmcgaW50ZXJuYWxs
+eSBpbXBsZW1lbnRlZC4gV3JhcCB0aGUgY2hlY2sgaW50byBhCj4gZnVuY3Rpb24gc2luY2UgdGhp
+cyBpcyB1c2VkIGluIG1hbnkgcGxhY2VzIGFuZCBhcyBhIGJvbnVzLCB0aGUgZnVuY3Rpb24KPiBu
+YW1lIGhlbHBzIHRvIGRvY3VtZW50IHdoYXQgdGhlIGNoZWNrIGlzIGZvci4KPiAKPiB2MjoKPiBD
+aGFuZ2UgcmV0dXJuIHR5cGUgdG8gYm9vbCAoVmlsbGUpCj4gTW92ZSB0aGUgZnVuY3Rpb24gZHJt
+X2F0b21pYy5oIChEYW5pZWwpCj4gCj4gU3VnZ2VzdGVkLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5p
+ZWwudmV0dGVyQGZmd2xsLmNoPgo+IENjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZm
+d2xsLmNoPgo+IENjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cj4gU2lnbmVkLW9m
+Zi1ieTogRGhpbmFrYXJhbiBQYW5kaXlhbiA8ZGhpbmFrYXJhbi5wYW5kaXlhbkBpbnRlbC5jb20+
+Cj4gLS0tCj4gwqBkcml2ZXJzL2dwdS9kcm0vZHJtX2ZiX2hlbHBlci5jwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqB8wqDCoDYgKysrLS0tCj4gwqBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
+ZWF1X2Nvbm5lY3Rvci5jIHzCoMKgNSArKystLQo+IMKgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9kaXNwbGF5LmPCoMKgwqB8wqDCoDYgKysrLS0tCj4gwqBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2ZiY29uLmPCoMKgwqDCoMKgfMKgwqAzICsrLQo+IMKgaW5jbHVkZS9k
+cm0vZHJtX2F0b21pYy5owqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHwg
+MTEgKysrKysrKysrKysKPiDCoDUgZmlsZXMgY2hhbmdlZCwgMjIgaW5zZXJ0aW9ucygrKSwgOSBk
+ZWxldGlvbnMoLSkKPiAKCi4uLgoKPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJtX2F0b21p
+Yy5oIGIvaW5jbHVkZS9kcm0vZHJtX2F0b21pYy5oCj4gaW5kZXggOGNjN2NhMi4uNDNkYjE2MiAx
+MDA2NDQKPiAtLS0gYS9pbmNsdWRlL2RybS9kcm1fYXRvbWljLmgKPiArKysgYi9pbmNsdWRlL2Ry
+bS9kcm1fYXRvbWljLmgKPiBAQCAtNDE5LDUgKzQxOSwxNiBAQCBkcm1fYXRvbWljX2NydGNfbmVl
+ZHNfbW9kZXNldChjb25zdCBzdHJ1Y3QgZHJtX2NydGNfc3RhdGUKPiAqc3RhdGUpCj4gwqAJwqDC
+oMKgwqDCoMKgwqBzdGF0ZS0+Y29ubmVjdG9yc19jaGFuZ2VkOwo+IMKgfQo+IMKgCj4gKy8qIGRy
+bV9kcnZfdXNlc19hdG9taWNfbW9kZXNldCAtIGNoZWNrIGlmIHRoZSBkcml2ZXIgaW1wbGVtZW50
+cwoKU2hvdWxkbid0IHRoaXMgYmUKCi8qKgrCoCrCoGRybV9kcnZfdXNlc19hdG9taWNfbW9kZXNl
+dCAtIC4uLgoKc28gaXQgaXMgaW5jbHVkZWQgaW4gdGhlIGdlbmVyYXRlZCBkb2N1bWVudGF0aW9u
+PwoKQW5kZXIKCgo+ICsgKiBhdG9taWNfY29tbWl0KCkKPiArICogQGRldjogRFJNIGRldmljZQo+
+ICsgKgo+ICsgKiBUaGlzIGNoZWNrIGlzIHVzZWZ1bCBpZiBkcml2ZXJzIGRvIG5vdCBoYXZlIERS
+SVZFUl9BVE9NSUMgc2V0IGJ1dAo+ICsgKiBoYXZlIGF0b21pYyBtb2Rlc2V0dGluZyBpbnRlcm5h
+bGx5IGltcGxlbWVudGVkLgo+ICsgKi8KPiArc3RhdGljIGlubGluZSBib29sIGRybV9kcnZfdXNl
+c19hdG9taWNfbW9kZXNldChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ICt7Cj4gKwlyZXR1cm4g
+ZGV2LT5tb2RlX2NvbmZpZy5mdW5jcy0+YXRvbWljX2NvbW1pdCA/IHRydWUgOiBmYWxzZTsKPiAr
+fQo+IMKgCj4gwqAjZW5kaWYgLyogRFJNX0FUT01JQ19IXyAqLwpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1k
+ZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
