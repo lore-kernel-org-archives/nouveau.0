@@ -1,245 +1,135 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
-	rescan
-Date: Thu, 22 Dec 2016 23:05:03 +0000
-Message-ID: <bug-75985-8800-LLmS6BS5y2@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+From: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+Subject: [PATCH v4 1/2] drm: Wrap the check for atomic_commit
+	implementation
+Date: Fri, 23 Dec 2016 14:14:00 -0800
+Message-ID: <1482531241-19025-1-git-send-email-dhinakaran.pandiyan@intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1284725344=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: intel-gfx@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>, dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1284725344==
-Content-Type: multipart/alternative; boundary="14824479031.AFFcDfF.30357";
- charset="UTF-8"
-
-
---14824479031.AFFcDfF.30357
-Date: Thu, 22 Dec 2016 23:05:03 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
-
---- Comment #10 from zigarrre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Any updates?
-
-I can confirm this bug on my Lenovo Thinkpad T520 (4242-PT2). For testing I
-used a FHD TV connected via a DP to HDMI connector. The hardware setup was
-tested and confirmed to work as expected with Windows 7 so a hardware cause=
- can
-be ruled out.
-
-uname -a
-Linux t520 4.8.13-1-ARCH #1 SMP PREEMPT Fri Dec 9 07:24:34 CET 2016 x86_64
-GNU/Linux
-
-I am using the optimus implementation provided by nouveau together with the
-intel graphics driver.
-
-xrandr --listproviders
-Providers: number : 2
-Provider 0: id: 0x8c cap: 0xb, Source Output, Sink Output, Sink Offload crt=
-cs:
-3 outputs: 3 associated providers: 0 name:Intel
-Provider 1: id: 0x66 cap: 0x7, Source Output, Sink Output, Source Offload
-crtcs: 2 outputs: 5 associated providers: 0 name:nouveau
-
-'lspci' doesn't show the audio device but 'lspci -H1' does:
-01:00.0 VGA compatible controller: NVIDIA Corporation GF119M [Quadro NVS 42=
-00M]
-(rev a1)
-01:00.1 Audio device: NVIDIA Corporation GF119 HDMI Audio Controller (rev a=
-1)
-
-Even 'lspci -H1' shows the audio device only when the discrete GPU is power=
-ed
-up (e.g. by doing 'lspci; lspci -H1').
-
-I am not using a DM or a DE but bspwm launched via startx from the tty.
-
-The procedure I used:
-1) boot and login (x not yet started)
-2) modprobe nouveau
-3) echo 1 > /sys/bus/pci/devices/0000:01:00.0/remove
-4) echo 1 > /sys/bus/pci/rescan
-5) lspci now shows the audio device
-6) startx
-7) open pavucontrol (to trigger launch of pulseaudio via rtkit)
-
-It made no difference when, or even if a device is connected to the DP Port.
-The output wasn't usable even with this workaround as pulseaudio showed it
-always as unplugged. On one single attempt it did show as connected and wor=
-ked
-ok but even though following procedure exactly and trying many times I was =
-not
-able to reproduce this.
-
-After starting pulseaudio multiple errors of the form 'kernel:
-snd_hda_codec_hdmi hdaudioC2D0: out of range cmd 0:5:707:ffffffff' showed u=
-p.
-
-The usage of this workaround also lead to a very unstable system till the n=
-ext
-boot. I experienced cpu soft locks multiple times (though found no way to
-reliably reproduce them) from which no recovery except hard resetting the
-computer was possible.
-
-Attached is a dmesg log where I follow the above procedure (connecting the
-display between steps 3 and 4) and activating/deactivating the display with
-xrandr once in the end.
-I could also provide a syslog from boot till shutdown recorded with journal=
-d if
-required.
-
-If I can help fixing this by providing more information or testing things l=
-et
-me know.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14824479031.AFFcDfF.30357
-Date: Thu, 22 Dec 2016 23:05:03 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c10">Commen=
-t # 10</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-zigarrre&#64;gmail.com" title=3D"zigarrre&#64;gmail.com">zigarrre&#64;gmail=
-.com</a>
-</span></b>
-        <pre>Any updates?
-
-I can confirm this bug on my Lenovo Thinkpad T520 (4242-PT2). For testing I
-used a FHD TV connected via a DP to HDMI connector. The hardware setup was
-tested and confirmed to work as expected with Windows 7 so a hardware cause=
- can
-be ruled out.
-
-uname -a
-Linux t520 4.8.13-1-ARCH #1 SMP PREEMPT Fri Dec 9 07:24:34 CET 2016 x86_64
-GNU/Linux
-
-I am using the optimus implementation provided by nouveau together with the
-intel graphics driver.
-
-xrandr --listproviders
-Providers: number : 2
-Provider 0: id: 0x8c cap: 0xb, Source Output, Sink Output, Sink Offload crt=
-cs:
-3 outputs: 3 associated providers: 0 name:Intel
-Provider 1: id: 0x66 cap: 0x7, Source Output, Sink Output, Source Offload
-crtcs: 2 outputs: 5 associated providers: 0 name:nouveau
-
-'lspci' doesn't show the audio device but 'lspci -H1' does:
-01:00.0 VGA compatible controller: NVIDIA Corporation GF119M [Quadro NVS 42=
-00M]
-(rev a1)
-01:00.1 Audio device: NVIDIA Corporation GF119 HDMI Audio Controller (rev a=
-1)
-
-Even 'lspci -H1' shows the audio device only when the discrete GPU is power=
-ed
-up (e.g. by doing 'lspci; lspci -H1').
-
-I am not using a DM or a DE but bspwm launched via startx from the tty.
-
-The procedure I used:
-1) boot and login (x not yet started)
-2) modprobe nouveau
-3) echo 1 &gt; /sys/bus/pci/devices/0000:01:00.0/remove
-4) echo 1 &gt; /sys/bus/pci/rescan
-5) lspci now shows the audio device
-6) startx
-7) open pavucontrol (to trigger launch of pulseaudio via rtkit)
-
-It made no difference when, or even if a device is connected to the DP Port.
-The output wasn't usable even with this workaround as pulseaudio showed it
-always as unplugged. On one single attempt it did show as connected and wor=
-ked
-ok but even though following procedure exactly and trying many times I was =
-not
-able to reproduce this.
-
-After starting pulseaudio multiple errors of the form 'kernel:
-snd_hda_codec_hdmi hdaudioC2D0: out of range cmd 0:5:707:ffffffff' showed u=
-p.
-
-The usage of this workaround also lead to a very unstable system till the n=
-ext
-boot. I experienced cpu soft locks multiple times (though found no way to
-reliably reproduce them) from which no recovery except hard resetting the
-computer was possible.
-
-Attached is a dmesg log where I follow the above procedure (connecting the
-display between steps 3 and 4) and activating/deactivating the display with
-xrandr once in the end.
-I could also provide a syslog from boot till shutdown recorded with journal=
-d if
-required.
-
-If I can help fixing this by providing more information or testing things l=
-et
-me know.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14824479031.AFFcDfF.30357--
-
---===============1284725344==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1284725344==--
+VGhpcyBjaGVjayBpcyB1c2VmdWwgZm9yIGRyaXZlcnMgdGhhdCBkbyBub3QgaGF2ZSBEUklWRVJf
+QVRPTUlDIHNldCBidXQKaGF2ZSBhdG9taWMgbW9kZXNldHRpbmcgaW50ZXJuYWxseSBpbXBsZW1l
+bnRlZC4gV3JhcCB0aGUgY2hlY2sgaW50byBhCmZ1bmN0aW9uIHNpbmNlIHRoaXMgaXMgdXNlZCBp
+biBtYW55IHBsYWNlcyBhbmQgYXMgYSBib251cywgdGhlIGZ1bmN0aW9uCm5hbWUgaGVscHMgdG8g
+ZG9jdW1lbnQgd2hhdCB0aGUgY2hlY2sgaXMgZm9yLgoKdjI6CkNoYW5nZSByZXR1cm4gdHlwZSB0
+byBib29sIChWaWxsZSkKTW92ZSB0aGUgZnVuY3Rpb24gZHJtX2F0b21pYy5oIChEYW5pZWwpCkZp
+eGVkIGNvbW1lbnQgbWFya2VyIGZvciBkb2N1bWVudGF0aW9uCgp2MzoKSW5jbHVkZWQgZHJtUC5o
+IHRvIGRlcmVmZXJlbmNlIHN0cnVjdCBkcm1fZGV2aWNlCgpTdWdnZXN0ZWQtYnk6IERhbmllbCBW
+ZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwu
+dmV0dGVyQGZmd2xsLmNoPgpDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgpTaWdu
+ZWQtb2ZmLWJ5OiBEaGluYWthcmFuIFBhbmRpeWFuIDxkaGluYWthcmFuLnBhbmRpeWFuQGludGVs
+LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2ZiX2hlbHBlci5jICAgICAgICAgICAgIHwg
+IDYgKysrLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jIHwg
+IDUgKysrLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jICAgfCAg
+NiArKystLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYyAgICAgfCAg
+MyArKy0KIGluY2x1ZGUvZHJtL2RybV9hdG9taWMuaCAgICAgICAgICAgICAgICAgICAgfCAxMyAr
+KysrKysrKysrKysrCiA1IGZpbGVzIGNoYW5nZWQsIDI0IGluc2VydGlvbnMoKyksIDkgZGVsZXRp
+b25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9mYl9oZWxwZXIuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9kcm1fZmJfaGVscGVyLmMKaW5kZXggMTQ1ZDU1Zi4uNzMwMzQyYyAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9mYl9oZWxwZXIuYworKysgYi9kcml2ZXJzL2dw
+dS9kcm0vZHJtX2ZiX2hlbHBlci5jCkBAIC00MDUsNyArNDA1LDcgQEAgc3RhdGljIGludCByZXN0
+b3JlX2ZiZGV2X21vZGUoc3RydWN0IGRybV9mYl9oZWxwZXIgKmZiX2hlbHBlcikKIAogCWRybV93
+YXJuX29uX21vZGVzZXRfbm90X2FsbF9sb2NrZWQoZGV2KTsKIAotCWlmIChkZXYtPm1vZGVfY29u
+ZmlnLmZ1bmNzLT5hdG9taWNfY29tbWl0KQorCWlmIChkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVz
+ZXQoZGV2KSkKIAkJcmV0dXJuIHJlc3RvcmVfZmJkZXZfbW9kZV9hdG9taWMoZmJfaGVscGVyKTsK
+IAogCWRybV9mb3JfZWFjaF9wbGFuZShwbGFuZSwgZGV2KSB7CkBAIC0xNDQ0LDcgKzE0NDQsNyBA
+QCBpbnQgZHJtX2ZiX2hlbHBlcl9wYW5fZGlzcGxheShzdHJ1Y3QgZmJfdmFyX3NjcmVlbmluZm8g
+KnZhciwKIAkJcmV0dXJuIC1FQlVTWTsKIAl9CiAKLQlpZiAoZGV2LT5tb2RlX2NvbmZpZy5mdW5j
+cy0+YXRvbWljX2NvbW1pdCkgeworCWlmIChkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVzZXQoZGV2
+KSkgewogCQlyZXQgPSBwYW5fZGlzcGxheV9hdG9taWModmFyLCBpbmZvKTsKIAkJZ290byB1bmxv
+Y2s7CiAJfQpAQCAtMjA2MCw3ICsyMDYwLDcgQEAgc3RhdGljIGludCBkcm1fcGlja19jcnRjcyhz
+dHJ1Y3QgZHJtX2ZiX2hlbHBlciAqZmJfaGVscGVyLAogCSAqIE5VTEwgd2UgZmFsbGJhY2sgdG8g
+dGhlIGRlZmF1bHQgZHJtX2F0b21pY19oZWxwZXJfYmVzdF9lbmNvZGVyKCkKIAkgKiBoZWxwZXIu
+CiAJICovCi0JaWYgKGZiX2hlbHBlci0+ZGV2LT5tb2RlX2NvbmZpZy5mdW5jcy0+YXRvbWljX2Nv
+bW1pdCAmJgorCWlmIChkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVzZXQoZmJfaGVscGVyLT5kZXYp
+ICYmCiAJICAgICFjb25uZWN0b3JfZnVuY3MtPmJlc3RfZW5jb2RlcikKIAkJZW5jb2RlciA9IGRy
+bV9hdG9taWNfaGVscGVyX2Jlc3RfZW5jb2Rlcihjb25uZWN0b3IpOwogCWVsc2UKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMgYi9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCmluZGV4IDk0N2MyMDAuLjk2NmQy
+MGEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9y
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwpAQCAt
+MzMsNiArMzMsNyBAQAogI2luY2x1ZGUgPGRybS9kcm1fYXRvbWljX2hlbHBlci5oPgogI2luY2x1
+ZGUgPGRybS9kcm1fZWRpZC5oPgogI2luY2x1ZGUgPGRybS9kcm1fY3J0Y19oZWxwZXIuaD4KKyNp
+bmNsdWRlIDxkcm0vZHJtX2F0b21pYy5oPgogCiAjaW5jbHVkZSAibm91dmVhdV9yZWcuaCIKICNp
+bmNsdWRlICJub3V2ZWF1X2Rydi5oIgpAQCAtNzY5LDcgKzc3MCw3IEBAIG5vdXZlYXVfY29ubmVj
+dG9yX3NldF9wcm9wZXJ0eShzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAogCXN0cnVj
+dCBkcm1fZW5jb2RlciAqZW5jb2RlciA9IHRvX2RybV9lbmNvZGVyKG52X2VuY29kZXIpOwogCWlu
+dCByZXQ7CiAKLQlpZiAoY29ubmVjdG9yLT5kZXYtPm1vZGVfY29uZmlnLmZ1bmNzLT5hdG9taWNf
+Y29tbWl0KQorCWlmIChkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVzZXQoY29ubmVjdG9yLT5kZXYp
+KQogCQlyZXR1cm4gZHJtX2F0b21pY19oZWxwZXJfY29ubmVjdG9yX3NldF9wcm9wZXJ0eShjb25u
+ZWN0b3IsIHByb3BlcnR5LCB2YWx1ZSk7CiAKIAlyZXQgPSBjb25uZWN0b3ItPmZ1bmNzLT5hdG9t
+aWNfc2V0X3Byb3BlcnR5KCZudl9jb25uZWN0b3ItPmJhc2UsCkBAIC0xMDc0LDcgKzEwNzUsNyBA
+QCBub3V2ZWF1X2Nvbm5lY3Rvcl9oZWxwZXJfZnVuY3MgPSB7CiBzdGF0aWMgaW50CiBub3V2ZWF1
+X2Nvbm5lY3Rvcl9kcG1zKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsIGludCBtb2Rl
+KQogewotCWlmIChjb25uZWN0b3ItPmRldi0+bW9kZV9jb25maWcuZnVuY3MtPmF0b21pY19jb21t
+aXQpCisJaWYgKGRybV9kcnZfdXNlc19hdG9taWNfbW9kZXNldChjb25uZWN0b3ItPmRldikpCiAJ
+CXJldHVybiBkcm1fYXRvbWljX2hlbHBlcl9jb25uZWN0b3JfZHBtcyhjb25uZWN0b3IsIG1vZGUp
+OwogCXJldHVybiBkcm1faGVscGVyX2Nvbm5lY3Rvcl9kcG1zKGNvbm5lY3RvciwgbW9kZSk7CiB9
+CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCmluZGV4IGM1Y2Y4ODgu
+LmFkZDM1M2UgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlz
+cGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCkBA
+IC0xNjIsNyArMTYyLDcgQEAgbm91dmVhdV9kaXNwbGF5X3ZibHN0YW1wKHN0cnVjdCBkcm1fZGV2
+aWNlICpkZXYsIHVuc2lnbmVkIGludCBwaXBlLAogCWxpc3RfZm9yX2VhY2hfZW50cnkoY3J0Yywg
+JmRldi0+bW9kZV9jb25maWcuY3J0Y19saXN0LCBoZWFkKSB7CiAJCWlmIChub3V2ZWF1X2NydGMo
+Y3J0YyktPmluZGV4ID09IHBpcGUpIHsKIAkJCXN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICptb2Rl
+OwotCQkJaWYgKGRldi0+bW9kZV9jb25maWcuZnVuY3MtPmF0b21pY19jb21taXQpCisJCQlpZiAo
+ZHJtX2Rydl91c2VzX2F0b21pY19tb2Rlc2V0KGRldikpCiAJCQkJbW9kZSA9ICZjcnRjLT5zdGF0
+ZS0+YWRqdXN0ZWRfbW9kZTsKIAkJCWVsc2UKIAkJCQltb2RlID0gJmNydGMtPmh3bW9kZTsKQEAg
+LTczOCw3ICs3MzgsNyBAQCBub3V2ZWF1X2Rpc3BsYXlfc3VzcGVuZChzdHJ1Y3QgZHJtX2Rldmlj
+ZSAqZGV2LCBib29sIHJ1bnRpbWUpCiAJc3RydWN0IG5vdXZlYXVfZGlzcGxheSAqZGlzcCA9IG5v
+dXZlYXVfZGlzcGxheShkZXYpOwogCXN0cnVjdCBkcm1fY3J0YyAqY3J0YzsKIAotCWlmIChkZXYt
+Pm1vZGVfY29uZmlnLmZ1bmNzLT5hdG9taWNfY29tbWl0KSB7CisJaWYgKGRybV9kcnZfdXNlc19h
+dG9taWNfbW9kZXNldChkZXYpKSB7CiAJCWlmICghcnVudGltZSkgewogCQkJZGlzcC0+c3VzcGVu
+ZCA9IG5vdXZlYXVfYXRvbWljX3N1c3BlbmQoZGV2KTsKIAkJCWlmIChJU19FUlIoZGlzcC0+c3Vz
+cGVuZCkpIHsKQEAgLTc4NCw3ICs3ODQsNyBAQCBub3V2ZWF1X2Rpc3BsYXlfcmVzdW1lKHN0cnVj
+dCBkcm1fZGV2aWNlICpkZXYsIGJvb2wgcnVudGltZSkKIAlzdHJ1Y3QgZHJtX2NydGMgKmNydGM7
+CiAJaW50IHJldDsKIAotCWlmIChkZXYtPm1vZGVfY29uZmlnLmZ1bmNzLT5hdG9taWNfY29tbWl0
+KSB7CisJaWYgKGRybV9kcnZfdXNlc19hdG9taWNfbW9kZXNldChkZXYpKSB7CiAJCW5vdXZlYXVf
+ZGlzcGxheV9pbml0KGRldik7CiAJCWlmIChkaXNwLT5zdXNwZW5kKSB7CiAJCQlkcm1fYXRvbWlj
+X2hlbHBlcl9yZXN1bWUoZGV2LCBkaXNwLT5zdXNwZW5kKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L25vdXZlYXVfZmJjb24uYwppbmRleCA1NjAwZjZjLi45ZGU2YWJiIDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9mYmNvbi5jCkBAIC00MSw2ICs0MSw3IEBACiAjaW5jbHVkZSA8ZHJt
+L2RybV9jcnRjLmg+CiAjaW5jbHVkZSA8ZHJtL2RybV9jcnRjX2hlbHBlci5oPgogI2luY2x1ZGUg
+PGRybS9kcm1fZmJfaGVscGVyLmg+CisjaW5jbHVkZSA8ZHJtL2RybV9hdG9taWMuaD4KIAogI2lu
+Y2x1ZGUgIm5vdXZlYXVfZHJ2LmgiCiAjaW5jbHVkZSAibm91dmVhdV9nZW0uaCIKQEAgLTUyNCw3
+ICs1MjUsNyBAQCBub3V2ZWF1X2ZiY29uX2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKIAkJ
+cHJlZmVycmVkX2JwcCA9IDMyOwogCiAJLyogZGlzYWJsZSBhbGwgdGhlIHBvc3NpYmxlIG91dHB1
+dHMvY3J0Y3MgYmVmb3JlIGVudGVyaW5nIEtNUyBtb2RlICovCi0JaWYgKCFkZXYtPm1vZGVfY29u
+ZmlnLmZ1bmNzLT5hdG9taWNfY29tbWl0KQorCWlmICghZHJtX2Rydl91c2VzX2F0b21pY19tb2Rl
+c2V0KGRldikpCiAJCWRybV9oZWxwZXJfZGlzYWJsZV91bnVzZWRfZnVuY3Rpb25zKGRldik7CiAK
+IAlyZXQgPSBkcm1fZmJfaGVscGVyX2luaXRpYWxfY29uZmlnKCZmYmNvbi0+aGVscGVyLCBwcmVm
+ZXJyZWRfYnBwKTsKZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9hdG9taWMuaCBiL2luY2x1
+ZGUvZHJtL2RybV9hdG9taWMuaAppbmRleCA4Y2M3Y2EyLi5jODk0ZGRlIDEwMDY0NAotLS0gYS9p
+bmNsdWRlL2RybS9kcm1fYXRvbWljLmgKKysrIGIvaW5jbHVkZS9kcm0vZHJtX2F0b21pYy5oCkBA
+IC0yOSw2ICsyOSw3IEBACiAjZGVmaW5lIERSTV9BVE9NSUNfSF8KIAogI2luY2x1ZGUgPGRybS9k
+cm1fY3J0Yy5oPgorI2luY2x1ZGUgPGRybS9kcm1QLmg+CiAKIC8qKgogICogc3RydWN0IGRybV9j
+cnRjX2NvbW1pdCAtIHRyYWNrIG1vZGVzZXQgY29tbWl0cyBvbiBhIENSVEMKQEAgLTQxOSw1ICs0
+MjAsMTcgQEAgZHJtX2F0b21pY19jcnRjX25lZWRzX21vZGVzZXQoY29uc3Qgc3RydWN0IGRybV9j
+cnRjX3N0YXRlICpzdGF0ZSkKIAkgICAgICAgc3RhdGUtPmNvbm5lY3RvcnNfY2hhbmdlZDsKIH0K
+IAorLyoqCisgKiBkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVzZXQgLSBjaGVjayBpZiB0aGUgZHJp
+dmVyIGltcGxlbWVudHMKKyAqIGF0b21pY19jb21taXQoKQorICogQGRldjogRFJNIGRldmljZQor
+ICoKKyAqIFRoaXMgY2hlY2sgaXMgdXNlZnVsIGlmIGRyaXZlcnMgZG8gbm90IGhhdmUgRFJJVkVS
+X0FUT01JQyBzZXQgYnV0CisgKiBoYXZlIGF0b21pYyBtb2Rlc2V0dGluZyBpbnRlcm5hbGx5IGlt
+cGxlbWVudGVkLgorICovCitzdGF0aWMgaW5saW5lIGJvb2wgZHJtX2Rydl91c2VzX2F0b21pY19t
+b2Rlc2V0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCit7CisJcmV0dXJuIGRldi0+bW9kZV9jb25m
+aWcuZnVuY3MtPmF0b21pY19jb21taXQgIT0gTlVMTDsKK30KIAogI2VuZGlmIC8qIERSTV9BVE9N
+SUNfSF8gKi8KLS0gCjIuNy40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
+bnRlbC1nZngK
