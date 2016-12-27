@@ -1,12 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93828] Xorg hangs randomly with nouveau driver
-Date: Tue, 27 Dec 2016 02:29:50 +0000
-Message-ID: <bug-93828-8800-i5BHctsEmU@http.bugs.freedesktop.org/>
-References: <bug-93828-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [Intel-gfx] [PATCH v3 1/2] drm: Wrap the check for
+ atomic_commit implementation
+Date: Tue, 27 Dec 2016 10:41:33 +0100
+Message-ID: <20161227094133.GB19172@dvetter-linux.ger.corp.intel.com>
+References: <1482396643-32456-1-git-send-email-dhinakaran.pandiyan@intel.com>
+ <201612230025.3bU9Deye%fengguang.wu@intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1101910501=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93828-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <201612230025.3bU9Deye%fengguang.wu-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,121 +20,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: kbuild test robot <lkp-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Cc: intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dhinakaran Pandiyan <dhinakaran.pandiyan-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, kbuild-all-JC7UmRfGjtg@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1101910501==
-Content-Type: multipart/alternative; boundary="14828057901.51CDEA.24800";
- charset="UTF-8"
-
-
---14828057901.51CDEA.24800
-Date: Tue, 27 Dec 2016 02:29:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93828
-
---- Comment #16 from derrierdo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Hi Guys,
-
-I've got the same  kind of issue.
-
-Hang when starting up some software.
-01:00.0 VGA compatible controller: NVIDIA Corporation GT218 [GeForce 210] (=
-rev
-a2)  (an prety old card).
-nouveau 0000:01:00.0: fifo: CACHE_ERROR - ch 12 [gwenview[13360]] subc 3 mt=
-hd
-01a8 data beef0201
-...
-(only X/keyboard hang... ssh still working).
-
-
-Cannot go to console... console didn't work with nouveau without fb.
-(I had no more issue after recompile xscreensaver/flux).
-
-Dominique
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14828057901.51CDEA.24800
-Date: Tue, 27 Dec 2016 02:29:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg hangs randomly with nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828#c16">Commen=
-t # 16</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg hangs randomly with nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93828">bug 93828<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-derrierdo&#64;gmail.com" title=3D"derrierdo&#64;gmail.com">derrierdo&#64;gm=
-ail.com</a>
-</span></b>
-        <pre>Hi Guys,
-
-I've got the same  kind of issue.
-
-Hang when starting up some software.
-01:00.0 VGA compatible controller: NVIDIA Corporation GT218 [GeForce 210] (=
-rev
-a2)  (an prety old card).
-nouveau 0000:01:00.0: fifo: CACHE_ERROR - ch 12 [gwenview[13360]] subc 3 mt=
-hd
-01a8 data beef0201
-...
-(only X/keyboard hang... ssh still working).
-
-
-Cannot go to console... console didn't work with nouveau without fb.
-(I had no more issue after recompile xscreensaver/flux).
-
-Dominique</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14828057901.51CDEA.24800--
-
---===============1101910501==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1101910501==--
+T24gRnJpLCBEZWMgMjMsIDIwMTYgYXQgMTI6Mjk6MTFBTSArMDgwMCwga2J1aWxkIHRlc3Qgcm9i
+b3Qgd3JvdGU6Cj4gSGkgRGhpbmFrYXJhbiwKPiAKPiBbYXV0byBidWlsZCB0ZXN0IEVSUk9SIG9u
+IGRybS9kcm0tbmV4dF0KPiBbYWxzbyBidWlsZCB0ZXN0IEVSUk9SIG9uIG5leHQtMjAxNjEyMjJd
+Cj4gW2Nhbm5vdCBhcHBseSB0byB2NC45XQo+IFtpZiB5b3VyIHBhdGNoIGlzIGFwcGxpZWQgdG8g
+dGhlIHdyb25nIGdpdCB0cmVlLCBwbGVhc2UgZHJvcCB1cyBhIG5vdGUgdG8gaGVscCBpbXByb3Zl
+IHRoZSBzeXN0ZW1dCj4gCj4gdXJsOiAgICBodHRwczovL2dpdGh1Yi5jb20vMGRheS1jaS9saW51
+eC9jb21taXRzL0RoaW5ha2FyYW4tUGFuZGl5YW4vZHJtLVdyYXAtdGhlLWNoZWNrLWZvci1hdG9t
+aWNfY29tbWl0LWltcGxlbWVudGF0aW9uLzIwMTYxMjIyLTE3NDUzNgo+IGJhc2U6ICAgZ2l0Oi8v
+cGVvcGxlLmZyZWVkZXNrdG9wLm9yZy9+YWlybGllZC9saW51eC5naXQgZHJtLW5leHQKPiBjb25m
+aWc6IG9wZW5yaXNjLWFsbG1vZGNvbmZpZyAoYXR0YWNoZWQgYXMgLmNvbmZpZykKPiBjb21waWxl
+cjogb3IzMi1saW51eC1nY2MgKEdDQykgNC41LjEtb3IzMi0xLjByYzEKPiByZXByb2R1Y2U6Cj4g
+ICAgICAgICB3Z2V0IGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvY2dpdC9saW51eC9rZXJuZWwvZ2l0
+L3dmZy9sa3AtdGVzdHMuZ2l0L3BsYWluL3NiaW4vbWFrZS5jcm9zcyAtTyB+L2Jpbi9tYWtlLmNy
+b3NzCj4gICAgICAgICBjaG1vZCAreCB+L2Jpbi9tYWtlLmNyb3NzCj4gICAgICAgICAjIHNhdmUg
+dGhlIGF0dGFjaGVkIC5jb25maWcgdG8gbGludXggYnVpbGQgdHJlZQo+ICAgICAgICAgbWFrZS5j
+cm9zcyBBUkNIPW9wZW5yaXNjIAo+IAo+IEFsbCBlcnJvcnMgKG5ldyBvbmVzIHByZWZpeGVkIGJ5
+ID4+KToKPiAKPiAgICBJbiBmaWxlIGluY2x1ZGVkIGZyb20gZHJpdmVycy9ncHUvZHJtL3ZjNC92
+YzRfY3J0Yy5jOjM0OjA6Cj4gICAgaW5jbHVkZS9kcm0vZHJtX2F0b21pYy5oOiBJbiBmdW5jdGlv
+biAnZHJtX2Rydl91c2VzX2F0b21pY19tb2Rlc2V0JzoKPiA+PiBpbmNsdWRlL2RybS9kcm1fYXRv
+bWljLmg6NDM3OjEyOiBlcnJvcjogZGVyZWZlcmVuY2luZyBwb2ludGVyIHRvIGluY29tcGxldGUg
+dHlwZQoKU29ycnkgZm9yIHRoZSBzaWxsaW5lc3MsIGJ1dCBzb3VuZHMgbGlrZSB3ZSBuZWVkIHRv
+IG1vdmUgdGhpcyBsaXR0bGUKaGVscGVyIGJhY2sgdG8gZHJtUC5oIHVuZm9ydHVuYXRlbHkuIEkn
+bGwgZG8gdGhhdCB3aGlsZSBhcHBseWluZy4KLURhbmllbAoKPiAKPiB2aW0gKzQzNyBpbmNsdWRl
+L2RybS9kcm1fYXRvbWljLmgKPiAKPiAgICA0MzEJICoKPiAgICA0MzIJICogVGhpcyBjaGVjayBp
+cyB1c2VmdWwgaWYgZHJpdmVycyBkbyBub3QgaGF2ZSBEUklWRVJfQVRPTUlDIHNldCBidXQKPiAg
+ICA0MzMJICogaGF2ZSBhdG9taWMgbW9kZXNldHRpbmcgaW50ZXJuYWxseSBpbXBsZW1lbnRlZC4K
+PiAgICA0MzQJICovCj4gICAgNDM1CXN0YXRpYyBpbmxpbmUgYm9vbCBkcm1fZHJ2X3VzZXNfYXRv
+bWljX21vZGVzZXQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPiAgICA0MzYJewo+ICA+IDQzNwkJ
+cmV0dXJuIGRldi0+bW9kZV9jb25maWcuZnVuY3MtPmF0b21pY19jb21taXQgIT0gTlVMTDsKPiAg
+ICA0MzgJfQo+ICAgIDQzOQkKPiAgICA0NDAJI2VuZGlmIC8qIERSTV9BVE9NSUNfSF8gKi8KPiAK
+PiAtLS0KPiAwLURBWSBrZXJuZWwgdGVzdCBpbmZyYXN0cnVjdHVyZSAgICAgICAgICAgICAgICBP
+cGVuIFNvdXJjZSBUZWNobm9sb2d5IENlbnRlcgo+IGh0dHBzOi8vbGlzdHMuMDEub3JnL3BpcGVy
+bWFpbC9rYnVpbGQtYWxsICAgICAgICAgICAgICAgICAgIEludGVsIENvcnBvcmF0aW9uCgoKCi0t
+IApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRw
+Oi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
