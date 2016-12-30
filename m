@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+From: Terra Frost <terrafrost-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: nouveau doesn't recognize my hdmi monitor
-Date: Thu, 29 Dec 2016 21:02:48 -0500
-Message-ID: <CAKb7UvjtdEAaeRoQYLG+oSofeW3PG4m-keNkSGYVXt=Rj_4Utg@mail.gmail.com>
+Date: Thu, 29 Dec 2016 20:49:22 -0600
+Message-ID: <CAKY7Jh70eBxymsh6aYaXksbANN__-pr7VB_bY068xGQ9P8P6Zg@mail.gmail.com>
 References: <CAKY7Jh5qHyLe1tphGOYu37QzZyzkbxp8LpAkDP1Tjig8W19Hiw@mail.gmail.com>
+ <CAKb7UvjtdEAaeRoQYLG+oSofeW3PG4m-keNkSGYVXt=Rj_4Utg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0202017100=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKY7Jh5qHyLe1tphGOYu37QzZyzkbxp8LpAkDP1Tjig8W19Hiw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAKb7UvjtdEAaeRoQYLG+oSofeW3PG4m-keNkSGYVXt=Rj_4Utg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,37 +17,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Terra Frost <terrafrost-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyB4cmFuZHIgb3V0cHV0IG9ubHkgcmVwcmVzZW50cyBvdXRwdXRzIG9uIHlvdXIgSW50ZWwg
-aUdQVSwgbm90CnlvdXIgTlZJRElBIEc5OCBkR1BVLiBZb3UgbWF5IGZpbmQgcmVhZGluZwpodHRw
-Oi8vbm91dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9PcHRpbXVzIGluc3RydWN0aW9uYWwuCgpD
-aGVlcnMsCgogIC1pbGlhCgpPbiBUaHUsIERlYyAyOSwgMjAxNiBhdCA4OjQ4IFBNLCBUZXJyYSBG
-cm9zdCA8dGVycmFmcm9zdEBnbWFpbC5jb20+IHdyb3RlOgo+IEkgaGF2ZSBhbiBBU1VTIFVYNTBW
-IGxhcHRvcCB3aXRoIGEgIk5WSURJQSBDb3Jwb3JhdGlvbjogRzk4TSBbR2VGb3JjZSBHCj4gMTA1
-TV0iIHZpZGVvIGNhcmQuIExpbnV4IE1pbnQgMTguMSA2NC1iaXQgaXMgaW5zdGFsbGVkIHdpdGgK
-PiB4c2VydmVyLXhvcmctdmlkZW8tbm91dmVhdSAxOjEuMC4xMi0xYnVpbGQyLiBUaGUgTm91dmVh
-dSBkcml2ZXIgZG9lcyBub3QKPiBzZWVtIHRvIGJlIHJlY29nbml6aW5nIG15IEhETUkgbW9uaXRv
-ciB0aGF0J3MgcGx1Z2dlZCBpbi4gSGVyZSdzIHRoZSBvdXRwdXQKPiBvZiB4cmFuZHI6Cj4KPiBT
-Y3JlZW4gMDogbWluaW11bSA4IHggOCwgY3VycmVudCAxMzY2IHggNzY4LCBtYXhpbXVtIDMyNzY3
-IHggMzI3NjcKPiBMVkRTMSBjb25uZWN0ZWQgcHJpbWFyeSAxMzY2eDc2OCswKzAgKG5vcm1hbCBs
-ZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5Cj4gYXhpcykgMzQ0bW0geCAxOTNtbQo+ICAgIDEz
-NjZ4NzY4ICAgICAgNjAuMDEqKwo+ICAgIDEzNjB4NzY4ICAgICAgNTkuODAgICAgNTkuOTYKPiAg
-ICAxMjgweDcyMCAgICAgIDYwLjAwCj4gICAgMTAyNHg3NjggICAgICA2MC4wMAo+ICAgIDEwMjR4
-NTc2ICAgICAgNjAuMDAKPiAgICA5NjB4NTQwICAgICAgIDYwLjAwCj4gICAgODAweDYwMCAgICAg
-ICA2MC4zMiAgICA1Ni4yNQo+ICAgIDg2NHg0ODYgICAgICAgNjAuMDAKPiAgICA2NDB4NDgwICAg
-ICAgIDU5Ljk0Cj4gICAgNzIweDQwNSAgICAgICA2MC4wMAo+ICAgIDY4MHgzODQgICAgICAgNjAu
-MDAKPiAgICA2NDB4MzYwICAgICAgIDYwLjAwCj4gVkdBMSBkaXNjb25uZWN0ZWQgKG5vcm1hbCBs
-ZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpCj4gVklSVFVBTDEgZGlzY29ubmVjdGVk
-IChub3JtYWwgbGVmdCBpbnZlcnRlZCByaWdodCB4IGF4aXMgeSBheGlzKQo+Cj4gaHR0cHM6Ly9p
-LnN0YWNrLmltZ3VyLmNvbS9HSnVwTS5wbmcKPgo+IEFueSBpZGVhcyBhcyB0byB3aGF0IEkgbmVl
-ZCB0byBkbyB0byBnZXQgdGhpcyBIRE1JIG1vbml0b3Igd29ya2luZz8gSXQKPiB3b3JrZWQgZmlu
-ZSB3aGVuIEkgaGFkIFdpbmRvd3MgVmlzdGEgb24gdGhlIGxhcHRvcC4uCj4KPiBUaGFua3MhCj4K
-PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZl
-YXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+--===============0202017100==
+Content-Type: multipart/alternative; boundary=001a114dd4ccd58b850544d73fd2
+
+--001a114dd4ccd58b850544d73fd2
+Content-Type: text/plain; charset=UTF-8
+
+According to geforce.com the GeForce G 105M doesn't support that technology:
+
+http://www.geforce.com/hardware/notebook-gpus/geforce-g105m
+
+The only thing that page mentions is CUDA.
+
+For contrast, here's a video card that mentions both CUDA and Optimus in
+the GeForce Technologies section:
+
+http://www.geforce.com/hardware/notebook-gpus/geforce-gtx-980m
+
+--001a114dd4ccd58b850544d73fd2
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_extra">Acco=
+rding to <a href=3D"http://geforce.com">geforce.com</a> the GeForce G 105M =
+doesn&#39;t support that technology:</div><div class=3D"gmail_extra"><br></=
+div><div class=3D"gmail_extra"><a href=3D"http://www.geforce.com/hardware/n=
+otebook-gpus/geforce-g105m">http://www.geforce.com/hardware/notebook-gpus/g=
+eforce-g105m</a><br></div><div class=3D"gmail_extra"><br></div><div class=
+=3D"gmail_extra">The only thing that page mentions is CUDA.</div><div class=
+=3D"gmail_extra"><br></div><div class=3D"gmail_extra">For contrast, here&#3=
+9;s a video card that mentions both CUDA and Optimus in the GeForce Technol=
+ogies section:</div><div class=3D"gmail_extra"><br></div><div class=3D"gmai=
+l_extra"><a href=3D"http://www.geforce.com/hardware/notebook-gpus/geforce-g=
+tx-980m">http://www.geforce.com/hardware/notebook-gpus/geforce-gtx-980m</a>=
+<br></div></div></div>
+
+--001a114dd4ccd58b850544d73fd2--
+
+--===============0202017100==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0202017100==--
