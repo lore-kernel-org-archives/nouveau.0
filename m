@@ -1,157 +1,63 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94725] Nouveau driver fails to poweron GPU on GM204
- after dynamic poweroff
-Date: Mon, 02 Jan 2017 10:50:58 +0000
-Message-ID: <bug-94725-8800-h0JaPmqmYf@http.bugs.freedesktop.org/>
-References: <bug-94725-8800@http.bugs.freedesktop.org/>
+From: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH v2 2/2] drm: Get atomic property value even
+ if DRIVER_ATOMIC is not set
+Date: Tue, 3 Jan 2017 11:06:43 -0500
+Message-ID: <CADnq5_M6Z+T7xopQLfuNxn0RF4d3VcdCatY6devgwTM-PBLHiQ@mail.gmail.com>
+References: <20161221085104.flienvnr3xofbtto@phenom.ffwll.local>
+ <1482351129-10398-1-git-send-email-dhinakaran.pandiyan@intel.com>
+ <1482351129-10398-2-git-send-email-dhinakaran.pandiyan@intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1128919484=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94725-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <1482351129-10398-2-git-send-email-dhinakaran.pandiyan@intel.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>, Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>, "Wentland,
+ Harry" <Harry.Wentland@amd.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1128919484==
-Content-Type: multipart/alternative; boundary="14833542581.dEA9588E.1343";
- charset="UTF-8"
-
-
---14833542581.dEA9588E.1343
-Date: Mon, 2 Jan 2017 10:50:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94725
-
---- Comment #30 from rmokkink <rob-RP4/FvDI4dbkQYj/0HfcvtBPR1lH4CV8@public.gmane.org> ---
-Hi,
-
-I have the same problems with my new MSI GP62 6QF laptop.
-It has a geforce gtx960m videocard. I installed fedora 25 on it. The only w=
-ay
-to login into the system (gnome) was to disable the nouveau powermanagement
-with grub option nouveau.runpm=3D0.
-
-I did manage to login into the system with option:
-acpi_osi=3D! "acpi_os=3DWindows 2013"
-
-In /sys/kernel/debug/vgaswitcheroo/switch is see the following:
-0:IGD:+:Pwr:0000:00:02.0
-1:DIS: :DynOff:0000:01:00.0
-
-But it looks like it is not working properly, i see the red light on the po=
-wer
-button, meaning the other card is active as well.
-
-I also tried the option:
-
-i915.modeset=3D-1 nouveau.runpm=3D-1, occasionally i can login, but the the=
- system
-freezes completely.
-
-It this a kernel bug or nouveau bug?
-
-Thanks.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14833542581.dEA9588E.1343
-Date: Mon, 2 Jan 2017 10:50:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
-c poweroff"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725#c30">Commen=
-t # 30</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau driver fails to poweron GPU on GM204 after dynami=
-c poweroff"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94725">bug 94725<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rob&#64;mokkinksystems.com" title=3D"rmokkink &lt;rob&#64;mokkinksystems.co=
-m&gt;"> <span class=3D"fn">rmokkink</span></a>
-</span></b>
-        <pre>Hi,
-
-I have the same problems with my new MSI GP62 6QF laptop.
-It has a geforce gtx960m videocard. I installed fedora 25 on it. The only w=
-ay
-to login into the system (gnome) was to disable the nouveau powermanagement
-with grub option nouveau.runpm=3D0.
-
-I did manage to login into the system with option:
-acpi_osi=3D! &quot;acpi_os=3DWindows 2013&quot;
-
-In /sys/kernel/debug/vgaswitcheroo/switch is see the following:
-0:IGD:+:Pwr:0000:00:02.0
-1:DIS: :DynOff:0000:01:00.0
-
-But it looks like it is not working properly, i see the red light on the po=
-wer
-button, meaning the other card is active as well.
-
-I also tried the option:
-
-i915.modeset=3D-1 nouveau.runpm=3D-1, occasionally i can login, but the the=
- system
-freezes completely.
-
-It this a kernel bug or nouveau bug?
-
-Thanks.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14833542581.dEA9588E.1343--
-
---===============1128919484==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1128919484==--
+T24gV2VkLCBEZWMgMjEsIDIwMTYgYXQgMzoxMiBQTSwgRGhpbmFrYXJhbiBQYW5kaXlhbgo8ZGhp
+bmFrYXJhbi5wYW5kaXlhbkBpbnRlbC5jb20+IHdyb3RlOgo+IGk5MTUgZG9lcyBub3Qgc2V0IERS
+SVZFUl9BVE9NSUMgYnkgZGVmYXVsdCB5ZXQgYnV0IHVzZXMgYXRvbWljX2NoZWNrIGFuZAo+IGF0
+b21pY19jb21taXQuIGRybV9vYmplY3RfcHJvcGVydHlfZ2V0X3ZhbHVlKCkgZG9lcyBub3QgcmVh
+ZCB0aGUgY29ycmVjdAo+IHZhbHVlIG9mIGF0b21pYyBwcm9wZXJ0aWVzIGlmIERSSVZFUl9BVE9N
+SUMgaXMgbm90IHNldC4gQ2hlY2tpbmcgd2hldGhlcgo+IHRoZSBkcml2ZXIgdXNlcyBhdG9taWMg
+bW9kZXNldCBpcyBhIGJldHRlciBjaGVjayBpbnN0ZWFkIGFzIHRoZSBwcm9wZXJ0eQo+IHZhbHVl
+cyBhcmUgdHJhY2tlZCBpbiB0aGUgc3RhdGUgc3RydWN0dXJlcy4KPgoKSSB0aGluayB3ZSBhcmUg
+aW4gdGhlIHNhbWUgYm9hdC4gIEFkZGluZyBBbmRyZXkgYW5kIEhhcnJ5LgoKQWxleAoKPiB2Mjog
+SW5jbHVkZWQgaGVhZGVyCj4KPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZnds
+bC5jaD4KPiBSZXZpZXdlZC1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5j
+aD4KPiBTaWduZWQtb2ZmLWJ5OiBEaGluYWthcmFuIFBhbmRpeWFuIDxkaGluYWthcmFuLnBhbmRp
+eWFuQGludGVsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2RybV9tb2RlX29iamVjdC5j
+IHwgMyArKy0KPiAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigt
+KQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fbW9kZV9vYmplY3QuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9kcm1fbW9kZV9vYmplY3QuYwo+IGluZGV4IDlmMTcwODUuLjE0NTQzZmYg
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9tb2RlX29iamVjdC5jCj4gKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL2RybV9tb2RlX29iamVjdC5jCj4gQEAgLTIzLDYgKzIzLDcgQEAKPiAg
+I2luY2x1ZGUgPGxpbnV4L2V4cG9ydC5oPgo+ICAjaW5jbHVkZSA8ZHJtL2RybVAuaD4KPiAgI2lu
+Y2x1ZGUgPGRybS9kcm1fbW9kZV9vYmplY3QuaD4KPiArI2luY2x1ZGUgPGRybS9kcm1fYXRvbWlj
+Lmg+Cj4KPiAgI2luY2x1ZGUgImRybV9jcnRjX2ludGVybmFsLmgiCj4KPiBAQCAtMjczLDcgKzI3
+NCw3IEBAIGludCBkcm1fb2JqZWN0X3Byb3BlcnR5X2dldF92YWx1ZShzdHJ1Y3QgZHJtX21vZGVf
+b2JqZWN0ICpvYmosCj4gICAgICAgICAgKiB0aGVpciB2YWx1ZSBpbiBvYmotPnByb3BlcnRpZXMt
+PnZhbHVlc1tdLi4gbW9zdGx5IHRvIGF2b2lkCj4gICAgICAgICAgKiBoYXZpbmcgdG8gZGVhbCB3
+LyBFRElEIGFuZCBzaW1pbGFyIHByb3BzIGluIGF0b21pYyBwYXRoczoKPiAgICAgICAgICAqLwo+
+IC0gICAgICAgaWYgKGRybV9jb3JlX2NoZWNrX2ZlYXR1cmUocHJvcGVydHktPmRldiwgRFJJVkVS
+X0FUT01JQykgJiYKPiArICAgICAgIGlmIChkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVzZXQocHJv
+cGVydHktPmRldikgJiYKPiAgICAgICAgICAgICAgICAgICAgICAgICAhKHByb3BlcnR5LT5mbGFn
+cyAmIERSTV9NT0RFX1BST1BfSU1NVVRBQkxFKSkKPiAgICAgICAgICAgICAgICAgcmV0dXJuIGRy
+bV9hdG9taWNfZ2V0X3Byb3BlcnR5KG9iaiwgcHJvcGVydHksIHZhbCk7Cj4KPiAtLQo+IDIuNy40
+Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGRy
+aS1kZXZlbCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4g
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
