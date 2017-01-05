@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99289] New: Display freezes after "gr: TRAP ch 6"
-Date: Thu, 05 Jan 2017 19:48:02 +0000
-Message-ID: <bug-99289-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99289] Display freezes after "gr: TRAP ch 6"
+Date: Thu, 05 Jan 2017 20:00:45 +0000
+Message-ID: <bug-99289-8800-ewdm0nmubn@http.bugs.freedesktop.org/>
+References: <bug-99289-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0248465440=="
+Content-Type: multipart/mixed; boundary="===============0665729095=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99289-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0248465440==
-Content-Type: multipart/alternative; boundary="14836456820.030DD40d6.32035";
+--===============0665729095==
+Content-Type: multipart/alternative; boundary="14836464450.FbB5a07f6.1540";
  charset="UTF-8"
 
 
---14836456820.030DD40d6.32035
-Date: Thu, 5 Jan 2017 19:48:02 +0000
+--14836464450.FbB5a07f6.1540
+Date: Thu, 5 Jan 2017 20:00:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -33,73 +35,49 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99289
 
-            Bug ID: 99289
-           Summary: Display freezes after "gr: TRAP ch 6"
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: afn2-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+To answer your immediate question about firmware, you can get blob firmware=
+ by
+following the insturctions at
 
-Created attachment 128783
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128783&action=3Dedit
-dmesg showing error
+https://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware
 
-Intermittently (a few times a day), my display will completely freeze and
-doesn't recover. Although the kernel doesn't hang and I can ssh in, I can't
-chvt to a non-graphical VT.
+to the letter. Unfortunately I think that linux 4.9 wants some of these to =
+be
+renamed, but there's a patch to fix it to look for the "old" names as well:
 
-Whenever this occurs, I see a message like this in dmesg:
+https://github.com/skeggsb/linux/commit/e137040e0d0376b404fc5155eba44ea0712=
+6e3bd.patch
 
-[12535.260195] nouveau 0000:01:00.0: gr: TRAP ch 6 [007f778000 Xwayland[854=
-]]
-[12535.260211] nouveau 0000:01:00.0: gr: GPC0/TPC1/MP trap: global 00000000=
- []
-warp 3d0001 [STACK_ERROR]
-[12539.595312] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-[12539.595318] nouveau 0000:01:00.0: fifo: gr engine fault on channel 5,
-recovering...
+Should be included in a later 4.9.x release.
 
-Despite the "recovering..." message it never actually recovers and only a
-reboot solves the problem.
+However I'm only aware of the blob firmware fixing issues for some GTX 660
+owners.
 
-I'm using GNOME on Wayland, and I'm typically running gnome-terminal, Firef=
-ox,
-and/or Chromium. So far I haven't identified any specific action that trigg=
-ers
-this failure.
+nofbaccel=3D1 is unlikely to be of much help - that disables acceleration o=
+f the
+fbdev device for your terminals.
 
-My computer is a mid-2014 Macbook Pro with a GeForce 750M (GK107). I'm runn=
-ing
-nouveau with "nouveau.nofbaccel=3D1". I've tried adding
-"nouveau.config=3DNvGrUseFW=3D1" but it complains about not finding
-/lib/firmware/nvidia/gk107/fecs_inst.bin. Is there an external firmware blob
-available for this card?
+Note that there are additional patches in Linux 4.10-rc1+ which are likely =
+to
+improve stability, such as
 
-I recently updated my kernel and several relevant packages, and have seen no
-difference in behavior. I'm running linux 4.9.0, and the latest version of =
-mesa
-from git (36b5f1d200).
+https://github.com/skeggsb/linux/commit/b27add13f500469127afdf011dbcc9c649e=
+16e54.patch
 
-See my attached dmesg output. Is there any debug flag I can enable to shed =
-more
-light on the situation?
+and you might also want this one, although it'll be a little annoying to ap=
+ply
+to upstream tree:
 
-Thanks!
-Tony
+https://github.com/skeggsb/nouveau/commit/b3816f34944ad4824d345b98c323a3071=
+0f492d4.patch
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14836456820.030DD40d6.32035
-Date: Thu, 5 Jan 2017 19:48:02 +0000
+--14836464450.FbB5a07f6.1540
+Date: Thu, 5 Jan 2017 20:00:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -110,139 +88,63 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Display freezes after &quot;gr: TRAP ch 6&quot;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99289">99289</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Display freezes after &quot;gr: TRAP ch 6&quot;
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>afn2&#64;cornell.edu
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128783=
-" name=3D"attach_128783" title=3D"dmesg showing error">attachment 128783</a=
-> <a href=3D"attachment.cgi?id=3D128783&amp;action=3Dedit" title=3D"dmesg s=
-howing error">[details]</a></span>
-dmesg showing error
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Display freezes after &quot;gr: TRAP ch 6&quot;"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99289#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Display freezes after &quot;gr: TRAP ch 6&quot;"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99289">bug 99289<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>To answer your immediate question about firmware, you can get =
+blob firmware by
+following the insturctions at
 
-Intermittently (a few times a day), my display will completely freeze and
-doesn't recover. Although the kernel doesn't hang and I can ssh in, I can't
-chvt to a non-graphical VT.
+<a href=3D"https://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware=
+">https://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware</a>
 
-Whenever this occurs, I see a message like this in dmesg:
+to the letter. Unfortunately I think that linux 4.9 wants some of these to =
+be
+renamed, but there's a patch to fix it to look for the &quot;old&quot; name=
+s as well:
 
-[12535.260195] nouveau 0000:01:00.0: gr: TRAP ch 6 [007f778000 Xwayland[854=
-]]
-[12535.260211] nouveau 0000:01:00.0: gr: GPC0/TPC1/MP trap: global 00000000=
- []
-warp 3d0001 [STACK_ERROR]
-[12539.595312] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-[12539.595318] nouveau 0000:01:00.0: fifo: gr engine fault on channel 5,
-recovering...
+<a href=3D"https://github.com/skeggsb/linux/commit/e137040e0d0376b404fc5155=
+eba44ea07126e3bd.patch">https://github.com/skeggsb/linux/commit/e137040e0d0=
+376b404fc5155eba44ea07126e3bd.patch</a>
 
-Despite the &quot;recovering...&quot; message it never actually recovers an=
-d only a
-reboot solves the problem.
+Should be included in a later 4.9.x release.
 
-I'm using GNOME on Wayland, and I'm typically running gnome-terminal, Firef=
-ox,
-and/or Chromium. So far I haven't identified any specific action that trigg=
-ers
-this failure.
+However I'm only aware of the blob firmware fixing issues for some GTX 660
+owners.
 
-My computer is a mid-2014 Macbook Pro with a GeForce 750M (GK107). I'm runn=
-ing
-nouveau with &quot;nouveau.nofbaccel=3D1&quot;. I've tried adding
-&quot;nouveau.config=3DNvGrUseFW=3D1&quot; but it complains about not findi=
-ng
-/lib/firmware/nvidia/gk107/fecs_inst.bin. Is there an external firmware blob
-available for this card?
+nofbaccel=3D1 is unlikely to be of much help - that disables acceleration o=
+f the
+fbdev device for your terminals.
 
-I recently updated my kernel and several relevant packages, and have seen no
-difference in behavior. I'm running linux 4.9.0, and the latest version of =
-mesa
-from git (36b5f1d200).
+Note that there are additional patches in Linux 4.10-rc1+ which are likely =
+to
+improve stability, such as
 
-See my attached dmesg output. Is there any debug flag I can enable to shed =
-more
-light on the situation?
+<a href=3D"https://github.com/skeggsb/linux/commit/b27add13f500469127afdf01=
+1dbcc9c649e16e54.patch">https://github.com/skeggsb/linux/commit/b27add13f50=
+0469127afdf011dbcc9c649e16e54.patch</a>
 
-Thanks!
-Tony</pre>
+and you might also want this one, although it'll be a little annoying to ap=
+ply
+to upstream tree:
+
+<a href=3D"https://github.com/skeggsb/nouveau/commit/b3816f34944ad4824d345b=
+98c323a30710f492d4.patch">https://github.com/skeggsb/nouveau/commit/b3816f3=
+4944ad4824d345b98c323a30710f492d4.patch</a></pre>
         </div>
       </p>
 
@@ -256,9 +158,9 @@ Tony</pre>
     </body>
 </html>=
 
---14836456820.030DD40d6.32035--
+--14836464450.FbB5a07f6.1540--
 
---===============0248465440==
+--===============0665729095==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -268,4 +170,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0248465440==--
+--===============0665729095==--
