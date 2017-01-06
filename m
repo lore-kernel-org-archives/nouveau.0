@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98980] GTX 980 (GM204) displays only a black screen.
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
 Date: Fri, 06 Jan 2017 14:07:58 +0000
-Message-ID: <bug-98980-8800-ziciHZLPMw@http.bugs.freedesktop.org/>
-References: <bug-98980-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-94990-8800-05sQBWtyIn@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0363297550=="
+Content-Type: multipart/mixed; boundary="===============0449247045=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0363297550==
-Content-Type: multipart/alternative; boundary="14837116781.11fCa3.8362";
+--===============0449247045==
+Content-Type: multipart/alternative; boundary="14837116787.D30FF3.8362";
  charset="UTF-8"
 
 
---14837116781.11fCa3.8362
+--14837116787.D30FF3.8362
 Date: Fri, 6 Jan 2017 14:07:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -33,20 +34,20 @@ Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98980
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
 Zach Wolfe <zwolfe21-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=3D94990
+                   |                            |g/show_bug.cgi?id=3D98980
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14837116781.11fCa3.8362
+--14837116787.D30FF3.8362
 Date: Fri, 6 Jan 2017 14:07:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -64,8 +65,8 @@ an class=3D"fn">Zach Wolfe</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GTX 980 (GM204) displays only a black screen."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98980">bug 98980<=
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -80,7 +81,7 @@ an class=3D"fn">Zach Wolfe</span></a>
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D98980
            </td>
          </tr></table>
       <p>
@@ -96,9 +97,9 @@ an class=3D"fn">Zach Wolfe</span></a>
     </body>
 </html>=
 
---14837116781.11fCa3.8362--
+--14837116787.D30FF3.8362--
 
---===============0363297550==
+--===============0449247045==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0363297550==--
+--===============0449247045==--
