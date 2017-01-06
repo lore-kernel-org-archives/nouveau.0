@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
- 5; PGR engine fault
-Date: Fri, 06 Jan 2017 10:49:32 +0000
-Message-ID: <bug-92077-8800-ZGhfyViWiT@http.bugs.freedesktop.org/>
-References: <bug-92077-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98980] GTX 980 (GM204) displays only a black screen.
+Date: Fri, 06 Jan 2017 14:07:58 +0000
+Message-ID: <bug-98980-8800-ziciHZLPMw@http.bugs.freedesktop.org/>
+References: <bug-98980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1277723952=="
+Content-Type: multipart/mixed; boundary="===============0363297550=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,51 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1277723952==
-Content-Type: multipart/alternative; boundary="14836997726.328e4.23997";
+--===============0363297550==
+Content-Type: multipart/alternative; boundary="14837116781.11fCa3.8362";
  charset="UTF-8"
 
 
---14836997726.328e4.23997
-Date: Fri, 6 Jan 2017 10:49:32 +0000
+--14837116781.11fCa3.8362
+Date: Fri, 6 Jan 2017 14:07:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92077
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98980
 
---- Comment #28 from sacarde <sacarde-IWqWACnzNjyonA0d6jMUrA@public.gmane.org> ---
-hi,
-   this is my experience in archlinux64 + kde + nouveau(1.0.13)
+Zach Wolfe <zwolfe21-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> changed:
 
-with:
- libdrm 2.4.73
- mesa 13.0.1
- qt5.* 5.7.0
- livxpm 3.5.11
- kdelibs 4.14.26
-driver nouveau works OK
-
-if I upgrade to:
- libdrm 2.4.74
- mesa 13.0.2
- qt5.* 5.7.1
- livxpm 3.5.12
- kdelibs 4.14.27
-driver nouveau freeze
-
-
-thank you
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=3D94990
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14836997726.328e4.23997
-Date: Fri, 6 Jan 2017 10:49:32 +0000
+--14837116781.11fCa3.8362
+Date: Fri, 6 Jan 2017 14:07:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,47 +58,32 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:zwolfe21&=
+#64;hotmail.com" title=3D"Zach Wolfe &lt;zwolfe21&#64;hotmail.com&gt;"> <sp=
+an class=3D"fn">Zach Wolfe</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engi=
-ne fault"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92077#c28">Commen=
-t # 28</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engi=
-ne fault"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92077">bug 92077<=
+   title=3D"NEW - GTX 980 (GM204) displays only a black screen."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98980">bug 98980<=
 /a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sacarde&#64;tiscali.it" title=3D"sacarde &lt;sacarde&#64;tiscali.it&gt;"> <=
-span class=3D"fn">sacarde</span></a>
-</span></b>
-        <pre>hi,
-   this is my experience in archlinux64 + kde + nouveau(1.0.13)
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-with:
- libdrm 2.4.73
- mesa 13.0.1
- qt5.* 5.7.0
- livxpm 3.5.11
- kdelibs 4.14.26
-driver nouveau works OK
-
-if I upgrade to:
- libdrm 2.4.74
- mesa 13.0.2
- qt5.* 5.7.1
- livxpm 3.5.12
- kdelibs 4.14.27
-driver nouveau freeze
-
-
-thank you</pre>
-        </div>
+         <tr>
+           <td style=3D"text-align:right;">See Also</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -125,14 +92,13 @@ thank you</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14836997726.328e4.23997--
+--14837116781.11fCa3.8362--
 
---===============1277723952==
+--===============0363297550==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -142,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1277723952==--
+--===============0363297550==--
