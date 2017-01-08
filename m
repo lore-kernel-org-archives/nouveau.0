@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Sat, 07 Jan 2017 23:33:18 +0000
-Message-ID: <bug-94990-8800-5549vxkDu9@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: Alexey Dobriyan <adobriyan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: 4.10-rc2: mouse cursor works with geforce gtx 1070,
+	at last
+Date: Sun, 8 Jan 2017 04:39:34 +0300
+Message-ID: <20170108013934.GA1426@avx2>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1363232242=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,94 +17,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1363232242==
-Content-Type: multipart/alternative; boundary="14838319985.e45e193B.5371";
- charset="UTF-8"
-
-
---14838319985.e45e193B.5371
-Date: Sat, 7 Jan 2017 23:33:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
---- Comment #107 from fariouche-Qt13gs6zZMY@public.gmane.org ---
-Unfortunately I already tried that patch alone, and I was unable to have a
-console, only black screen.
-
-And I do not have a serial for the traces, so I didn't investigate furtherm=
-ore.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14838319985.e45e193B.5371
-Date: Sat, 7 Jan 2017 23:33:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c107">Comme=
-nt # 107</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-fariouche&#64;yahoo.fr" title=3D"fariouche&#64;yahoo.fr">fariouche&#64;yaho=
-o.fr</a>
-</span></b>
-        <pre>Unfortunately I already tried that patch alone, and I was unab=
-le to have a
-console, only black screen.
-
-And I do not have a serial for the traces, so I didn't investigate furtherm=
-ore.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14838319985.e45e193B.5371--
-
---===============1363232242==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1363232242==--
+SGV5IQoKVGhpcyBpcyBxdWljayBlbWFpbCB0byBub3RpZnkgeW91IHRoYXQgd2l0aCA0LjEwLXJj
+MiBJIGNhbiBhY3R1YWxseSBzZWUKZ3JhcGhpYyBjdXJzb3IgaW4gWCBtYWtpbmcgZ3JhcGhpYyBl
+bnZpcm9ubWVudCB1c2FibGUuCgoKZmI6IHN3aXRjaGluZyB0byBub3V2ZWF1ZmIgZnJvbSBFRkkg
+VkdBCm5vdXZlYXUgMDAwMDowMTowMC4wOiBOVklESUEgR1AxMDQgKDEzNDAwMGExKQpub3V2ZWF1
+IDAwMDA6MDE6MDAuMDogYmlvczogdmVyc2lvbiA4Ni4wNC4xZS4wMC4wMQpub3V2ZWF1IDAwMDA6
+MDE6MDAuMDogZmI6IDgxOTIgTWlCIEdERFI1Cm5vdXZlYXUgMDAwMDowMTowMC4wOiBwcml2OiBI
+VUIwOiAwMGQwNTQgMDAwMDAwMDcgKDFlNDA4MjE2KQpub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJN
+OiBWUkFNOiA4MTkyIE1pQgpub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBHQVJUOiAxMDQ4NTc2
+IE1pQgpub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBCSVQgdGFibGUgJ0EnIG5vdCBmb3VuZApu
+b3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBCSVQgdGFibGUgJ0wnIG5vdCBmb3VuZApub3V2ZWF1
+IDAwMDA6MDE6MDAuMDogRFJNOiBUTURTIHRhYmxlIHZlcnNpb24gMi4wCm5vdXZlYXUgMDAwMDow
+MTowMC4wOiBEUk06IERDQiB2ZXJzaW9uIDQuMQpub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBE
+Q0Igb3V0cCAwMDogMDEwMDBmNDIgMDAwMjAwMzAKbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTog
+RENCIG91dHAgMDE6IDA0ODExZjk2IDA0NjAwMDIwCm5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06
+IERDQiBvdXRwIDAyOiAwNDAxMWY5MiAwMDAyMDAyMApub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJN
+OiBEQ0Igb3V0cCAwMzogMDQ4MjJmODYgMDQ2MDAwMTAKbm91dmVhdSAwMDAwOjAxOjAwLjA6IERS
+TTogRENCIG91dHAgMDQ6IDA0MDIyZjgyIDAwMDIwMDEwCm5vdXZlYXUgMDAwMDowMTowMC4wOiBE
+Uk06IERDQiBvdXRwIDA2OiAwMjAzM2Y2MiAwMDAyMDAxMApub3V2ZWF1IDAwMDA6MDE6MDAuMDog
+RFJNOiBEQ0Igb3V0cCAwNzogMDI4NDRmNzYgMDQ2MDAwMjAKbm91dmVhdSAwMDAwOjAxOjAwLjA6
+IERSTTogRENCIG91dHAgMDg6IDAyMDQ0ZjcyIDAwMDIwMDIwCm5vdXZlYXUgMDAwMDowMTowMC4w
+OiBEUk06IERDQiBjb25uIDAwOiAwMDAwMTAzMQpub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBE
+Q0IgY29ubiAwMTogMDIwMDAxNDYKbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIGNvbm4g
+MDI6IDAxMDAwMjQ2Cm5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAzOiAwMDAx
+MDM2MQpub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwNDogMDAwMjA0NDYKbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogUG9pbnRlciB0byBmbGF0IHBhbmVsIHRhYmxlIGludmFs
+aWQKbm91dmVhdSAwMDAwOjAxOjAwLjA6IGh3bW9uX2RldmljZV9yZWdpc3RlcigpIGlzIGRlcHJl
+Y2F0ZWQuIFBsZWFzZSBjb252ZXJ0IHRoZSBkcml2ZXIgdG8gdXNlIGh3bW9uX2RldmljZV9yZWdp
+c3Rlcl93aXRoX2luZm8oKS4Kbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogZmFpbGVkIHRvIGNy
+ZWF0ZSBrZXJuZWwgY2hhbm5lbCwgLTIyCm5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IGFsbG9j
+YXRlZCAxOTIweDEyMDAgZmI6IDB4NjAwMDAsIGJvIGZmZmY4ODEwNTc0MTk0MDAKZmJjb246IG5v
+dXZlYXVmYiAoZmIwKSBpcyBwcmltYXJ5IGRldmljZQpub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmIw
+OiBub3V2ZWF1ZmIgZnJhbWUgYnVmZmVyIGRldmljZQpbZHJtXSBJbml0aWFsaXplZCBub3V2ZWF1
+IDEuMy4xIDIwMTIwODAxIGZvciAwMDAwOjAxOjAwLjAgb24gbWlub3IgMApfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
