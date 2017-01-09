@@ -1,24 +1,11 @@
-From: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
-Subject: Re: NVAC "No Signal"
-Date: Mon, 9 Jan 2017 18:20:23 +0000
-Message-ID: <d32d1fa0-1f65-3c3b-6b2c-b9f252663783@spliet.org>
-References: <1de93d48-bc1c-bab4-11c4-395bfdfba7bb@gmail.com>
- <CAEXux-ZHdmop1c8F3FGRzAa_otwVjHUsT7OCVg6ObP_dg-Pcdw@mail.gmail.com>
- <90c3d7fc-16c9-bc81-8812-a9a1e86415dc@gmail.com>
- <CAEXux-Zr9SaRgSoVGCJKGO59CNYqq1MEwTo1ib23dCD+rxebjw@mail.gmail.com>
- <1f02c18b-e472-e3bc-9302-646d20e59d46@gmail.com>
- <CAEXux-a=F+AAr--rf8Dk_Cekcfk7yFF49mK4tW6MH4Xv=-2puA@mail.gmail.com>
- <07fa54e9-1a6f-de75-52ee-cc8aee96a541@gmail.com>
- <20161019175806.uqksdyiyr3dpkzu3@pmoreau.org>
- <f1d2a80f-5911-9ec7-f61f-4c10fe2ad87f@gmail.com>
- <f372e6ef-a030-ef79-c72f-0b00fdc48ffe@gmail.com>
- <4940241f-aadc-0277-a8c8-62879a41fc77@spliet.org>
- <be304bb1-621d-0e3a-3435-0430aa98a507@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99335] New: nouveau graphics often freezes when
+ using KDE Plasma 5
+Date: Mon, 09 Jan 2017 20:04:34 +0000
+Message-ID: <bug-99335-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0478186547=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <be304bb1-621d-0e3a-3435-0430aa98a507-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -28,48 +15,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T3AgMDktMDEtMTcgb20gMDA6MjQgc2NocmVlZiBCZW4gU2tlZ2dzOgo+IE9uIDEyLzI0LzIwMTYg
-MDc6NDggUE0sIFJveSBTcGxpZXQgd3JvdGU6Cj4+IEkndmUgb2JzZXJ2ZWQgdGhpcyByZWdyZXNz
-aW9uIG9uIG15IE5WQUMgYm9hcmQ7IGEgMTkyMHgxMDgwIFRWIG9uIEhETUkKPj4gKHNpbmdsZSBt
-b25pdG9yIHNldC11cCkgZ2V0cyBubyBzaWduYWwgd2l0aCBGZWRvcmEga2VybmVscyBmcm9tIDQu
-OC4KPj4gVHJhY2Ugc2VudCB0byB0aGUgbW1pbyBkdW1wcyBtYWlsYm94LiBBIGJyaWVmIHNjYW4g
-YWxyZWFkeSByZXZlYWxlZCB0aGF0Cj4+IHJlZ2lzdGVyIDB4ZTg0MCBpcyBuZXZlciB0b3VjaGVk
-LCBzbyBpdCBhcHBlYXJzIHRoYXQgTlZJRElBIGRvZXMKPj4gc29tZXRoaW5nIGRpZmZlcmVudC4K
-Pj4gVkJJT1MgZm9yIHRoaXMgYm9hcmQgaXMgaW4gdGhlIHVzdWFsIHBsYWNlLiBDb21tZW50aW5n
-IG91dCAweGFjIGZyb20gdGhlCj4+IHdvcmthcm91bmQgc2VlbXMgdG8gc29sdmUgdGhlIHByb2Js
-ZW0sIGFzIHRlc3RlZCBvbiBhIEZlZG9yYSA0Ljkga2VybmVsLgo+PiBJIGhvcGUgdGhhdCBoZWxw
-cyB5b3UgZ2V0IGEgbGl0dGxlIGZ1cnRoZXIgd2l0aCB0aGlzIGlzc3VlLiBDaGVlcnMsIGFuZAo+
-PiBoYXBweSBob2xpZGF5cyEKPiBUaGFua3MgUm95LAo+Cj4gTlZJRElBIHRvbGQgbWUgdGhhdCBp
-dCBhcHBsaWVkIHRvIHRoZXNlIGJvYXJkcywgYnV0LCBJIGNhbid0IHNlZSBOVklESUEKPiBhdHRl
-bXB0aW5nIHRoZSB3b3JrYXJvdW5kIGluIHlvdXIgdHJhY2UsIHNvIHVudGlsIHRoZXJlJ3MgZXZp
-ZGVuY2UgdG8KPiB0aGUgY29udHJhcnksIEkndmUgZGlzYWJsZWQgaXQgZm9yIE1DUDd4IGZvciBu
-b3cuCj4KPiBCZW4uClRoYW5rcy4gU2luY2UgeW91ciBwYXRjaCBpcyB0aGUgZXhhY3QgbW9kaWZp
-Y2F0aW9uIEkgbWFkZSB0byB2ZXJpZnkgdGhlIAp3b3JrYXJvdW5kIHdhcyBidWdnaW5nIG1lLCBj
-b25zaWRlciBpdDoKClRlc3RlZC1ieTogUm95IFNwbGlldCA8bm91dmVhdUBzcGxpZXQub3JnPgoK
-R2l2ZW4gIm5vIGRpc3BsYXkgb24gSERNSSBzaW5jZSA0LjgiIGlzIHF1aXRlIGEgc2VyaW91cyBy
-ZWdyZXNzaW9uIAooYWxiZWl0IGZvciBhIHNtYWxsIHVzZXJiYXNlKSwgcGxlYXNlIGNvbnNpZGVy
-IHN1Ym1pdHRpbmcgdGhpcyB0byA0LjEwIAphcyB3ZWxsIGFzIGEgImJhY2stcG9ydCIgdG8gdGhl
-IHVwc3RyZWFtIDQuOCBhbmQgNC45IHRyZWVzLgpUaGFua3MgYWdhaW4hIENoZWVycywKClJveQoK
-Pgo+PiBSb3kuCj4+Cj4+IE9wIDIyLTExLTE2IG9tIDE1OjA0IHNjaHJlZWYgcG9tYToKPj4+IE9u
-IDIwLjEwLjIwMTYgMDA6NDYsIEJlbiBTa2VnZ3Mgd3JvdGU6Cj4+PiBbLi4uXQo+Pj4+IEknZCBs
-aWtlIHRvIHNlZSBhIG1taW90cmFjZSBvZiB0aGUgTlZJRElBIGJpbmFyeSBkcml2ZXIgb24gYSBz
-eXN0ZW0KPj4+PiB3aGVyZSB0aGlzIFdBUiBicmVha3MgdGhpbmdzLiAgSSBhcHBsaWVkIGl0IHRv
-IGFsbCB0aGUgR1BVcyB0aGF0IE5WSURJQQo+Pj4+IHRvbGQgbWUgcmVxdWlyZWQgaXQuCj4+Pj4K
-Pj4+PiBCZW4uCj4+Pj4KPj4+IFN0aWxsIGJyb2tlbiwgbW9yZSB0aGFuIGZvdXIgbW9udGhzLAo+
-Pj4gdGVzdGVkIHdpdGggbWFpbmxpbmUgNC45LXJjNi4KPj4+Cj4+PiBBY2NvcmRpbmcgdG8gQmVu
-IFNrZWdncywKPj4+IHNpbmNlIHRoaXMgaXMgInRvbGQiIGJ5IE5WSURJQSBpLmUuIGJ5IHlvdSwg
-b3IgcGVyaGFwcyBzb21lIG90aGVyIG9mIHlvdXIgY29sbGVhZ3VlcywKPj4+IHdoYXQncyBtb3Jl
-IHRoYXQgSSBkb24ndCBzZWUgcHJvZ3Jlc3MgaW4gdGhpcyByZWdhcmQsCj4+PiB3b3VsZCB5b3Ug
-Z3V5cyBmcm9tIE5WSURJQSBSJkQgbWluZCBoZWxwIGhpbSB0byBmaW5hbGx5IHNvbHZlIHRoaXM/
-Cj4+Pgo+Pj4gVGhhbmtzLgo+Pj4KPj4+Cj4+PiBSZWYuCj4+PiBodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9hcmNoaXZlcy9ub3V2ZWF1LzIwMTYtT2N0b2Jlci8wMjYyNDIuaHRtbAo+Pj4g
-aHR0cDovL2dvby5nbC9HbTRmZk8KPj4+IG1taW90cmFjZS1ub3V2ZWF1Lwo+Pj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+IE5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Cj4+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+Pj4gaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1CgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0478186547==
+Content-Type: multipart/alternative; boundary="14839922730.0af5E94dD.25035";
+ charset="UTF-8"
+
+
+--14839922730.0af5E94dD.25035
+Date: Mon, 9 Jan 2017 20:04:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99335
+
+            Bug ID: 99335
+           Summary: nouveau graphics often freezes when using KDE Plasma 5
+           Product: Mesa
+           Version: 12.0
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: alexander.persh-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 128839
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128839&action=3Dedit
+dmesg
+
+Nouveau graphics on my system (Gentoo) often freezes with errors in dmesg.=
+=20
+
+The system works fine for some time, but starts freezing at random intervals
+(after 3 mins or 10 mins or 2 hours of work, etc) in random windows (chromi=
+um,
+krusader, smplayer, login screen after auto-lock, etc) and a lot of artifac=
+ts
+appear on the screen. After about 30 secs it freezes completely. My keyboard
+does not react to any key combinations, mouse pointer moves with lags and m=
+ouse
+buttons do not work so only hard reset helps.
+
+For example, here are two photos of my frozen screen with artifacts:
+http://i.imgur.com/vTbrNay.jpg
+http://i.imgur.com/YIvEBGn.jpg
+
+I wrote a script that saves dmesg to a file each 5 secs to get error logs.
+Please find two examples with different errors attached.
+
+I use the following versions of packages:
+media-libs/mesa-12.0.1
+x11-base/xorg-drivers-1.18-r1
+x11-base/xorg-server-1.18.4
+x11-drivers/xf86-video-nouveau-1.0.11
+x11-libs/libdrm-2.4.70
+sys-kernel/hardened-sources-4.7.10
+
+My graphics card is Nvidia GeForce GTS 250 (G92 chip).
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14839922730.0af5E94dD.25035
+Date: Mon, 9 Jan 2017 20:04:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau graphics often freezes when using KDE Plasma 5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335">99335</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nouveau graphics often freezes when using KDE Plasma 5
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>12.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>alexander.persh&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128839=
+" name=3D"attach_128839" title=3D"dmesg">attachment 128839</a> <a href=3D"a=
+ttachment.cgi?id=3D128839&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
+/span>
+dmesg
+
+Nouveau graphics on my system (Gentoo) often freezes with errors in dmesg.=
+=20
+
+The system works fine for some time, but starts freezing at random intervals
+(after 3 mins or 10 mins or 2 hours of work, etc) in random windows (chromi=
+um,
+krusader, smplayer, login screen after auto-lock, etc) and a lot of artifac=
+ts
+appear on the screen. After about 30 secs it freezes completely. My keyboard
+does not react to any key combinations, mouse pointer moves with lags and m=
+ouse
+buttons do not work so only hard reset helps.
+
+For example, here are two photos of my frozen screen with artifacts:
+<a href=3D"http://i.imgur.com/vTbrNay.jpg">http://i.imgur.com/vTbrNay.jpg</=
+a>
+<a href=3D"http://i.imgur.com/YIvEBGn.jpg">http://i.imgur.com/YIvEBGn.jpg</=
+a>
+
+I wrote a script that saves dmesg to a file each 5 secs to get error logs.
+Please find two examples with different errors attached.
+
+I use the following versions of packages:
+media-libs/mesa-12.0.1
+x11-base/xorg-drivers-1.18-r1
+x11-base/xorg-server-1.18.4
+x11-drivers/xf86-video-nouveau-1.0.11
+x11-libs/libdrm-2.4.70
+sys-kernel/hardened-sources-4.7.10
+
+My graphics card is Nvidia GeForce GTS 250 (G92 chip).</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14839922730.0af5E94dD.25035--
+
+--===============0478186547==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0478186547==--
