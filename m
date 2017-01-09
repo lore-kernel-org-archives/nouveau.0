@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99335] nouveau graphics often freezes when using KDE
-	Plasma 5
-Date: Mon, 09 Jan 2017 20:10:25 +0000
-Message-ID: <bug-99335-8800-bHxGQ8E4uX@http.bugs.freedesktop.org/>
-References: <bug-99335-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91413] fan alarm timer/update called from interrupt
+ in an infinite loop
+Date: Mon, 09 Jan 2017 22:36:31 +0000
+Message-ID: <bug-91413-8800-rx8Cb2PTC7@http.bugs.freedesktop.org/>
+References: <bug-91413-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0542294107=="
+Content-Type: multipart/mixed; boundary="===============1488127371=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99335-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91413-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0542294107==
-Content-Type: multipart/alternative; boundary="14839926251.7DD40EcD1.25001";
+--===============1488127371==
+Content-Type: multipart/alternative; boundary="14840013911.752c.3493";
  charset="UTF-8"
 
 
---14839926251.7DD40EcD1.25001
-Date: Mon, 9 Jan 2017 20:10:25 +0000
+--14840013911.752c.3493
+Date: Mon, 9 Jan 2017 22:36:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99335
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91413
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-If you're interested in continuing to use KDE, I'd recommend adding
-LIBGL_ALWAYS_SOFTWARE=3D1 to your environment, and unsetting it only for
-applications that you want to actually use 3d accel. KDE + nouveau =3D fail=
- for
-now. I'm told that some newer versions of ... Qt? KDE? something? detect
-nouveau and auto-disable the GL backends now. Not sure on the precise
-specifics.
+--- Comment #14 from David Hampton <bugzilla-1SViGS9jIagqcZcGjlUOXw@public.gmane.org> ---
+Created attachment 128843
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128843&action=3Dedit
+Prevent recursion while processing timers
+
+I was having similar problem with daily crashes showing recursive calls to
+nvkm_timer_alarm_trigger. I've been stable for the last three weeks with the
+attached patch. It prevents the recursion by only processing the list when =
+the
+timer expires, and not also processing it each time an item is updated.
+
+This patch is based off the Fedora 25 kernel 4.8.14 sources but should apply
+elsewhere.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14839926251.7DD40EcD1.25001
-Date: Mon, 9 Jan 2017 20:10:25 +0000
+--14840013911.752c.3493
+Date: Mon, 9 Jan 2017 22:36:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,26 +71,36 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau graphics often freezes when using KDE Plasma 5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335#c1">Comment=
- # 1</a>
+   title=3D"NEW - fan alarm timer/update called from interrupt in an infini=
+te loop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91413#c14">Commen=
+t # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau graphics often freezes when using KDE Plasma 5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335">bug 99335<=
+   title=3D"NEW - fan alarm timer/update called from interrupt in an infini=
+te loop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91413">bug 91413<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+bugzilla&#64;love2code.net" title=3D"David Hampton &lt;bugzilla&#64;love2co=
+de.net&gt;"> <span class=3D"fn">David Hampton</span></a>
 </span></b>
-        <pre>If you're interested in continuing to use KDE, I'd recommend a=
-dding
-LIBGL_ALWAYS_SOFTWARE=3D1 to your environment, and unsetting it only for
-applications that you want to actually use 3d accel. KDE + nouveau =3D fail=
- for
-now. I'm told that some newer versions of ... Qt? KDE? something? detect
-nouveau and auto-disable the GL backends now. Not sure on the precise
-specifics.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128843=
+" name=3D"attach_128843" title=3D"Prevent recursion while processing timers=
+">attachment 128843</a> <a href=3D"attachment.cgi?id=3D128843&amp;action=3D=
+edit" title=3D"Prevent recursion while processing timers">[details]</a></sp=
+an> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D91413&amp;attachment=
+=3D128843'>[review]</a>
+Prevent recursion while processing timers
+
+I was having similar problem with daily crashes showing recursive calls to
+nvkm_timer_alarm_trigger. I've been stable for the last three weeks with the
+attached patch. It prevents the recursion by only processing the list when =
+the
+timer expires, and not also processing it each time an item is updated.
+
+This patch is based off the Fedora 25 kernel 4.8.14 sources but should apply
+elsewhere.</pre>
         </div>
       </p>
 
@@ -96,14 +110,13 @@ specifics.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14839926251.7DD40EcD1.25001--
+--14840013911.752c.3493--
 
---===============0542294107==
+--===============1488127371==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0542294107==--
+--===============1488127371==--
