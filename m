@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98138] Random Freeze - nouveau 0000:01:00.0: fifo:
- SCHED_ERROR 0a [CTXSW_TIMEOUT]
-Date: Tue, 10 Jan 2017 07:41:55 +0000
-Message-ID: <bug-98138-8800-GTkA791WX8@http.bugs.freedesktop.org/>
-References: <bug-98138-8800@http.bugs.freedesktop.org/>
+From: Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
+Subject: [bug report] drm/nouveau/devinit: move simple pll setting
+ routines to devinit
+Date: Tue, 10 Jan 2017 23:22:28 +0300
+Message-ID: <20170110202227.GA12656@elgon.mountain>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2021828103=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98138-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,126 +17,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2021828103==
-Content-Type: multipart/alternative; boundary="14840341150.d2b2f1aA.3780";
- charset="UTF-8"
-
-
---14840341150.d2b2f1aA.3780
-Date: Tue, 10 Jan 2017 07:41:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98138
-
-Stefan Kelemen <stefan.kelemen-Mmb7MZpHnFY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
-
---- Comment #1 from Stefan Kelemen <stefan.kelemen-Mmb7MZpHnFY@public.gmane.org> ---
-Resolved by NeptuneOS with new build grafikstack
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14840341150.d2b2f1aA.3780
-Date: Tue, 10 Jan 2017 07:41:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:stefan.ke=
-lemen&#64;gmx.de" title=3D"Stefan Kelemen &lt;stefan.kelemen&#64;gmx.de&gt;=
-"> <span class=3D"fn">Stefan Kelemen</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Random Freeze - nouveau 0000:01:00.0: fifo: SC=
-HED_ERROR 0a [CTXSW_TIMEOUT]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98138">bug 98138<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Random Freeze - nouveau 0000:01:00.0: fifo: SC=
-HED_ERROR 0a [CTXSW_TIMEOUT]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98138#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Random Freeze - nouveau 0000:01:00.0: fifo: SC=
-HED_ERROR 0a [CTXSW_TIMEOUT]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98138">bug 98138<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stefan.kelemen&#64;gmx.de" title=3D"Stefan Kelemen &lt;stefan.kelemen&#64;g=
-mx.de&gt;"> <span class=3D"fn">Stefan Kelemen</span></a>
-</span></b>
-        <pre>Resolved by NeptuneOS with new build grafikstack</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14840341150.d2b2f1aA.3780--
-
---===============2021828103==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2021828103==--
+SGVsbG8gQmVuIFNrZWdncywKClRoZSBwYXRjaCA4ODUyNGJjMDY5MjY6ICJkcm0vbm91dmVhdS9k
+ZXZpbml0OiBtb3ZlIHNpbXBsZSBwbGwgc2V0dGluZwpyb3V0aW5lcyB0byBkZXZpbml0IiBmcm9t
+IE1hciA1LCAyMDEzLCBsZWFkcyB0byB0aGUgZm9sbG93aW5nIHN0YXRpYwpjaGVja2VyIHdhcm5p
+bmc6CgoJZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZGV2aW5pdC9udjUwLmM6
+NTMgbnY1MF9kZXZpbml0X3BsbF9zZXQoKQoJaW5mbzogcmV0dXJuIGEgbGl0ZXJhbCBpbnN0ZWFk
+IG9mICdyZXQnCgpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9kZXZpbml0L252
+NTAuYwogICAgMzQgIGludAogICAgMzUgIG52NTBfZGV2aW5pdF9wbGxfc2V0KHN0cnVjdCBudmtt
+X2RldmluaXQgKmluaXQsIHUzMiB0eXBlLCB1MzIgZnJlcSkKICAgIDM2ICB7CiAgICAzNyAgICAg
+ICAgICBzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldiA9ICZpbml0LT5zdWJkZXY7CiAgICAzOCAg
+ICAgICAgICBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSA9IHN1YmRldi0+ZGV2aWNlOwogICAg
+MzkgICAgICAgICAgc3RydWN0IG52a21fYmlvcyAqYmlvcyA9IGRldmljZS0+YmlvczsKICAgIDQw
+ICAgICAgICAgIHN0cnVjdCBudmJpb3NfcGxsIGluZm87CiAgICA0MSAgICAgICAgICBpbnQgTjEs
+IE0xLCBOMiwgTTIsIFA7CiAgICA0MiAgICAgICAgICBpbnQgcmV0OwogICAgNDMgIAogICAgNDQg
+ICAgICAgICAgcmV0ID0gbnZiaW9zX3BsbF9wYXJzZShiaW9zLCB0eXBlLCAmaW5mbyk7CiAgICA0
+NSAgICAgICAgICBpZiAocmV0KSB7CiAgICA0NiAgICAgICAgICAgICAgICAgIG52a21fZXJyb3Io
+c3ViZGV2LCAiZmFpbGVkIHRvIHJldHJpZXZlIHBsbCBkYXRhLCAlZFxuIiwgcmV0KTsKICAgIDQ3
+ICAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsKICAgIDQ4ICAgICAgICAgIH0KICAgIDQ5ICAK
+ICAgIDUwICAgICAgICAgIHJldCA9IG52MDRfcGxsX2NhbGMoc3ViZGV2LCAmaW5mbywgZnJlcSwg
+Jk4xLCAmTTEsICZOMiwgJk0yLCAmUCk7CiAgICA1MSAgICAgICAgICBpZiAoIXJldCkgewogICAg
+NTIgICAgICAgICAgICAgICAgICBudmttX2Vycm9yKHN1YmRldiwgImZhaWxlZCBwbGwgY2FsY3Vs
+YXRpb25cbiIpOwogICAgNTMgICAgICAgICAgICAgICAgICByZXR1cm4gcmV0OwoKVGhpcyBzaG91
+bGQgcHJvYmFibHkgYmUgYSBuZWdhdGl2ZSBlcnJvciBjb2RlIGluc3RlYWQgb2YgInJldCI/Cgog
+ICAgNTQgICAgICAgICAgfQogICAgNTUgIAogICAgNTYgICAgICAgICAgc3dpdGNoIChpbmZvLnR5
+cGUpIHsKICAgIDU3ICAgICAgICAgIGNhc2UgUExMX1ZQTEwwOgogICAgNTggICAgICAgICAgY2Fz
+ZSBQTExfVlBMTDE6CiAgICA1OSAgICAgICAgICAgICAgICAgIG52a21fd3IzMihkZXZpY2UsIGlu
+Zm8ucmVnICsgMCwgMHgxMDAwMDYxMSk7CiAgICA2MCAgICAgICAgICAgICAgICAgIG52a21fbWFz
+ayhkZXZpY2UsIGluZm8ucmVnICsgNCwgMHgwMGZmMDBmZiwgKE0xIDw8IDE2KSB8IE4xKTsKICAg
+IDYxICAgICAgICAgICAgICAgICAgbnZrbV9tYXNrKGRldmljZSwgaW5mby5yZWcgKyA4LCAweDdm
+ZmYwMGZmLCAoUCAgPDwgMjgpIHwKICAgIDYyICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAoTTIgPDwgMTYpIHwgTjIpOwogICAgNjMg
+ICAgICAgICAgICAgICAgICBicmVhazsKICAgIDY0ICAgICAgICAgIGNhc2UgUExMX01FTU9SWToK
+ICAgIDY1ICAgICAgICAgICAgICAgICAgbnZrbV9tYXNrKGRldmljZSwgaW5mby5yZWcgKyAwLCAw
+eDAxZmYwMDAwLAogICAgNjYgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIChQIDw8IDIyKSB8CiAgICA2NyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgKGluZm8uYmlhc19wIDw8IDE5KSB8CiAgICA2OCAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKFAgPDwgMTYpKTsKICAg
+IDY5ICAgICAgICAgICAgICAgICAgbnZrbV93cjMyKGRldmljZSwgaW5mby5yZWcgKyA0LCAoTjEg
+PDwgOCkgfCBNMSk7CiAgICA3MCAgICAgICAgICAgICAgICAgIGJyZWFrOwogICAgNzEgICAgICAg
+ICAgZGVmYXVsdDoKICAgIDcyICAgICAgICAgICAgICAgICAgbnZrbV9tYXNrKGRldmljZSwgaW5m
+by5yZWcgKyAwLCAweDAwMDcwMDAwLCAoUCA8PCAxNikpOwogICAgNzMgICAgICAgICAgICAgICAg
+ICBudmttX3dyMzIoZGV2aWNlLCBpbmZvLnJlZyArIDQsIChOMSA8PCA4KSB8IE0xKTsKICAgIDc0
+ICAgICAgICAgICAgICAgICAgYnJlYWs7CiAgICA3NSAgICAgICAgICB9CiAgICA3NiAgCiAgICA3
+NyAgICAgICAgICByZXR1cm4gMDsKICAgIDc4ICB9CgpyZWdhcmRzLApkYW4gY2FycGVudGVyCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
+bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
