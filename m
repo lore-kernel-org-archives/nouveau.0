@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91413] fan alarm timer/update called from interrupt
- in an infinite loop
-Date: Mon, 09 Jan 2017 22:36:31 +0000
-Message-ID: <bug-91413-8800-rx8Cb2PTC7@http.bugs.freedesktop.org/>
-References: <bug-91413-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH] nouveau/led: prevent compiling the led-code
+ if nouveau=y and leds=m
+Date: Mon, 9 Jan 2017 19:29:10 -0500
+Message-ID: <CAKb7UvgfEsdSpautmJ_g4YdsRJChY2YiE2Hv3OtDeBkwkvpE-Q@mail.gmail.com>
+References: <20161207033226.10802-1-martin.peres@free.fr>
+ <20161207043016.24805-1-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1488127371=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91413-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20161207043016.24805-1-martin.peres-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,113 +19,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1488127371==
-Content-Type: multipart/alternative; boundary="14840013911.752c.3493";
- charset="UTF-8"
-
-
---14840013911.752c.3493
-Date: Mon, 9 Jan 2017 22:36:31 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91413
-
---- Comment #14 from David Hampton <bugzilla-1SViGS9jIagqcZcGjlUOXw@public.gmane.org> ---
-Created attachment 128843
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128843&action=3Dedit
-Prevent recursion while processing timers
-
-I was having similar problem with daily crashes showing recursive calls to
-nvkm_timer_alarm_trigger. I've been stable for the last three weeks with the
-attached patch. It prevents the recursion by only processing the list when =
-the
-timer expires, and not also processing it each time an item is updated.
-
-This patch is based off the Fedora 25 kernel 4.8.14 sources but should apply
-elsewhere.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14840013911.752c.3493
-Date: Mon, 9 Jan 2017 22:36:31 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - fan alarm timer/update called from interrupt in an infini=
-te loop"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91413#c14">Commen=
-t # 14</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - fan alarm timer/update called from interrupt in an infini=
-te loop"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91413">bug 91413<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bugzilla&#64;love2code.net" title=3D"David Hampton &lt;bugzilla&#64;love2co=
-de.net&gt;"> <span class=3D"fn">David Hampton</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128843=
-" name=3D"attach_128843" title=3D"Prevent recursion while processing timers=
-">attachment 128843</a> <a href=3D"attachment.cgi?id=3D128843&amp;action=3D=
-edit" title=3D"Prevent recursion while processing timers">[details]</a></sp=
-an> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D91413&amp;attachment=
-=3D128843'>[review]</a>
-Prevent recursion while processing timers
-
-I was having similar problem with daily crashes showing recursive calls to
-nvkm_timer_alarm_trigger. I've been stable for the last three weeks with the
-attached patch. It prevents the recursion by only processing the list when =
-the
-timer expires, and not also processing it each time an item is updated.
-
-This patch is based off the Fedora 25 kernel 4.8.14 sources but should apply
-elsewhere.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14840013911.752c.3493--
-
---===============1488127371==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1488127371==--
+QmVuIC0gcGluZyBvbiB0aGlzIC0gc2hvdWxkIGRlZmluaXRlbHkgYmUgcHVzaGVkIGZvciA0LjEw
+LiBQZW9wbGUga2VlcApydW5uaW5nIGludG8gaXQgYW5kIHNlbmRpbmcgdmFyaW91c2x5IGJyb2tl
+biBwYXRjaGVzIGF0dGVtcHRpbmcgdG8gZml4Cml0LgoKT24gVHVlLCBEZWMgNiwgMjAxNiBhdCAx
+MTozMCBQTSwgTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4gd3JvdGU6Cj4gVGhl
+IHByb3BlciBmaXggd291bGQgaGF2ZSBiZWVuIHRvIHNlbGVjdCBMRURTX0NMQVNTIGJ1dCB0aGlz
+IGNhbiBsZWFkCj4gdG8gYSBjaXJjdWxhciBkZXBlbmRlbmN5LCBhcyBmb3VuZCBvdXQgYnkgQXJu
+ZC4KPgo+IFRoaXMgcGF0Y2ggaW1wbGVtZW50cyBBcm5kJ3Mgc3VnZ2VzdGlvbiBpbnN0ZWFkLCBh
+dCB0aGUgY29zdCBvZiBzb21lCj4gYXV0by1tYWdpYyBmb3IgYSBmcmluZ2UgZmVhdHVyZS4KPgo+
+IENjOiA8c3RhYmxlQHZnZXIua2VybmVsLm9yZz4gIyA0LjkueC0KPiBSZXBvcnRlZC1ieTogQXJu
+ZCBCZXJnbWFubiA8YXJuZEBhcm5kYi5kZT4KPiBSZXBvcnRlZC1ieTogSW50ZWwncyAwLURBWQo+
+IEZpeGVzOiA4ZDAyMWQ3MWIzMjQgKCJkcm0vbm91dmVhdS9kcm0vbm91dmVhdTogYWRkIGEgTEVE
+IGRyaXZlciBmb3IgdGhlIE5WSURJQSBsb2dvIikKPiBTaWduZWQtb2ZmLWJ5OiBNYXJ0aW4gUGVy
+ZXMgPG1hcnRpbi5wZXJlc0BmcmVlLmZyPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2xlZC5oIHwgMiArLQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyks
+IDEgZGVsZXRpb24oLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2xlZC5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9sZWQuaAo+IGlu
+ZGV4IDE4N2VjZGIuLjIxYTU3NzUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbm91dmVhdV9sZWQuaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+bGVkLmgKPiBAQCAtNDIsNyArNDIsNyBAQCBub3V2ZWF1X2xlZChzdHJ1Y3QgZHJtX2RldmljZSAq
+ZGV2KQo+ICB9Cj4KPiAgLyogbm91dmVhdV9sZWQuYyAqLwo+IC0jaWYgSVNfRU5BQkxFRChDT05G
+SUdfTEVEU19DTEFTUykKPiArI2lmIElTX1JFQUNIQUJMRShDT05GSUdfTEVEU19DTEFTUykKPiAg
+aW50ICBub3V2ZWF1X2xlZF9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpOwo+ICB2b2lkIG5v
+dXZlYXVfbGVkX3N1c3BlbmQoc3RydWN0IGRybV9kZXZpY2UgKmRldik7Cj4gIHZvaWQgbm91dmVh
+dV9sZWRfcmVzdW1lKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpOwo+IC0tCj4gMi4xMC4yCj4KPiBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUg
+bWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
