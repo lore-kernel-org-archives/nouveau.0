@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93778] [NVE7] Noveau GeForce GT 640M vbios error
-Date: Wed, 11 Jan 2017 23:08:16 +0000
-Message-ID: <bug-93778-8800-V4eAwVFAHj@http.bugs.freedesktop.org/>
+Date: Wed, 11 Jan 2017 23:17:39 +0000
+Message-ID: <bug-93778-8800-hSUC2zo1RG@http.bugs.freedesktop.org/>
 References: <bug-93778-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2073198169=="
+Content-Type: multipart/mixed; boundary="===============1463529083=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93778-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2073198169==
-Content-Type: multipart/alternative; boundary="14841760960.eFB80D81F.28719";
+--===============1463529083==
+Content-Type: multipart/alternative; boundary="14841766582.9bdAF.29174";
  charset="UTF-8"
 
 
---14841760960.eFB80D81F.28719
-Date: Wed, 11 Jan 2017 23:08:16 +0000
+--14841766582.9bdAF.29174
+Date: Wed, 11 Jan 2017 23:17:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,20 +35,29 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D93778
 
---- Comment #3 from Marcel S. <me-V++FmNMs79yAgvX28Wk5yQ@public.gmane.org> ---
-Created attachment 128903
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128903&action=3Dedit
-Extracted using kernel 3.16
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Nouveau works successfully on kernel 3.16.
-I copied the bios from /sys/kernel/debug/dri/1/vbios.rom.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This bug was fixed by 5dc7f4aa9d84ea94b54a9bfcef095f0289f1ebda, part of ker=
+nel
+4.10-rc1 (and potentially some earlier commits also addressed this). Should
+backport pretty cleanly.
+
+Pawel, if you still have issues, please reopen. If ANYONE OTHER THAN Pawel =
+has
+issues that look like this, open a fresh issue.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14841760960.eFB80D81F.28719
-Date: Wed, 11 Jan 2017 23:08:16 +0000
+--14841766582.9bdAF.29174
+Date: Wed, 11 Jan 2017 23:17:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,31 +68,62 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVE7] Noveau GeForce GT 640M vbios error"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93778">bug 93778<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE7] Noveau GeForce GT 640M vbios error"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93778#c3">Comment=
- # 3</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVE7] Noveau GeForce GT 640M vbios error"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93778#c4">Comment=
+ # 4</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE7] Noveau GeForce GT 640M vbios error"
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVE7] Noveau GeForce GT 640M vbios error"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93778">bug 93778<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-me&#64;marcel-sander.eu" title=3D"Marcel S. &lt;me&#64;marcel-sander.eu&gt;=
-"> <span class=3D"fn">Marcel S.</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128903=
-" name=3D"attach_128903" title=3D"Extracted using kernel 3.16">attachment 1=
-28903</a> <a href=3D"attachment.cgi?id=3D128903&amp;action=3Dedit" title=3D=
-"Extracted using kernel 3.16">[details]</a></span>
-Extracted using kernel 3.16
+        <pre>This bug was fixed by 5dc7f4aa9d84ea94b54a9bfcef095f0289f1ebda=
+, part of kernel
+4.10-rc1 (and potentially some earlier commits also addressed this). Should
+backport pretty cleanly.
 
-Nouveau works successfully on kernel 3.16.
-I copied the bios from /sys/kernel/debug/dri/1/vbios.rom.</pre>
+Pawel, if you still have issues, please reopen. If ANYONE OTHER THAN Pawel =
+has
+issues that look like this, open a fresh issue.</pre>
         </div>
       </p>
 
@@ -97,9 +137,9 @@ I copied the bios from /sys/kernel/debug/dri/1/vbios.rom.</pre>
     </body>
 </html>=
 
---14841760960.eFB80D81F.28719--
+--14841766582.9bdAF.29174--
 
---===============2073198169==
+--===============1463529083==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +149,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2073198169==--
+--===============1463529083==--
