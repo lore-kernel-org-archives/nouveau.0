@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99335] nouveau graphics often freezes when using KDE
-	Plasma 5
-Date: Wed, 11 Jan 2017 19:04:00 +0000
-Message-ID: <bug-99335-8800-SG0Fuj4HYi@http.bugs.freedesktop.org/>
-References: <bug-99335-8800@http.bugs.freedesktop.org/>
+From: Alastair Bridgewater <alastair.bridgewater-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Fix HDA ELD handling (thus,
+	HDMI audio) on gt215
+Date: Wed, 11 Jan 2017 15:47:18 -0500
+Message-ID: <20170111204718.6138-1-alastair.bridgewater@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0897233375=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99335-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,84 +19,22 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0897233375==
-Content-Type: multipart/alternative; boundary="14841614390.6AB9ECBe5.14072";
- charset="UTF-8"
-
-
---14841614390.6AB9ECBe5.14072
-Date: Wed, 11 Jan 2017 19:03:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99335
-
---- Comment #12 from Alexander <alexander.persh-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-No, it froze again.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14841614390.6AB9ECBe5.14072
-Date: Wed, 11 Jan 2017 19:03:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau graphics often freezes when using KDE Plasma 5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335#c12">Commen=
-t # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau graphics often freezes when using KDE Plasma 5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335">bug 99335<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-alexander.persh&#64;gmail.com" title=3D"Alexander &lt;alexander.persh&#64;g=
-mail.com&gt;"> <span class=3D"fn">Alexander</span></a>
-</span></b>
-        <pre>No, it froze again.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14841614390.6AB9ECBe5.14072--
-
---===============0897233375==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0897233375==--
+U3RvcmUgdGhlIEVMRCBjb3JyZWN0bHksIG5vdCBqdXN0IGVub3VnaCBjb3BpZXMgb2YgdGhlIGZp
+cnN0IGJ5dGUKdG8gcGFkIG91dCB0aGUgZ2l2ZW4gRUxEIHNpemUuCgpTaWduZWQtb2ZmLWJ5OiBB
+bGFzdGFpciBCcmlkZ2V3YXRlciA8YWxhc3RhaXIuYnJpZGdld2F0ZXJAZ21haWwuY29tPgotLS0K
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvaGRhZ3QyMTUuYyB8IDIg
+Ky0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvaGRhZ3QyMTUu
+YyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvaGRhZ3QyMTUuYwpp
+bmRleCA2ZjA0MzZkLi5mOGYyZjE2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9udmttL2VuZ2luZS9kaXNwL2hkYWd0MjE1LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbnZrbS9lbmdpbmUvZGlzcC9oZGFndDIxNS5jCkBAIC01OSw3ICs1OSw3IEBAIGd0MjE1X2hk
+YV9lbGQoTlY1MF9ESVNQX01USERfVjEpCiAJCQkpOwogCQl9CiAJCWZvciAoaSA9IDA7IGkgPCBz
+aXplOyBpKyspCi0JCQludmttX3dyMzIoZGV2aWNlLCAweDYxYzQ0MCArIHNvZmYsIChpIDw8IDgp
+IHwgYXJncy0+djAuZGF0YVswXSk7CisJCQludmttX3dyMzIoZGV2aWNlLCAweDYxYzQ0MCArIHNv
+ZmYsIChpIDw8IDgpIHwgYXJncy0+djAuZGF0YVtpXSk7CiAJCWZvciAoOyBpIDwgMHg2MDsgaSsr
+KQogCQkJbnZrbV93cjMyKGRldmljZSwgMHg2MWM0NDAgKyBzb2ZmLCAoaSA8PCA4KSk7CiAJCW52
+a21fbWFzayhkZXZpY2UsIDB4NjFjNDQ4ICsgc29mZiwgMHg4MDAwMDAwMywgMHg4MDAwMDAwMyk7
+Ci0tIAoyLjEwLjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
