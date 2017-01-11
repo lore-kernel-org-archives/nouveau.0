@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99372] Nvidia 640M devinit fails
-Date: Wed, 11 Jan 2017 23:45:29 +0000
-Message-ID: <bug-99372-8800-QhNrgd3BXB@http.bugs.freedesktop.org/>
+Date: Wed, 11 Jan 2017 23:46:04 +0000
+Message-ID: <bug-99372-8800-rCIJ94KKls@http.bugs.freedesktop.org/>
 References: <bug-99372-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1800220159=="
+Content-Type: multipart/mixed; boundary="===============1926867529=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99372-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1800220159==
-Content-Type: multipart/alternative; boundary="14841783280.Fb17BE0.30536";
+--===============1926867529==
+Content-Type: multipart/alternative; boundary="14841783641.8e9C9D.30788";
  charset="UTF-8"
 
 
---14841783280.Fb17BE0.30536
-Date: Wed, 11 Jan 2017 23:45:28 +0000
+--14841783641.8e9C9D.30788
+Date: Wed, 11 Jan 2017 23:46:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,19 +35,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99372
 
---- Comment #1 from ralala <me-V++FmNMs79yAgvX28Wk5yQ@public.gmane.org> ---
-Created attachment 128905
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128905&action=3Dedit
-dmesg.log
-
-4.10rc3
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please include an acpidump of your system.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14841783280.Fb17BE0.30536
-Date: Wed, 11 Jan 2017 23:45:28 +0000
+--14841783641.8e9C9D.30788
+Date: Wed, 11 Jan 2017 23:46:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,24 +60,18 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia 640M devinit fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99372#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99372#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia 640M devinit fails"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99372">bug 99372<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-me&#64;marcel-sander.eu" title=3D"ralala &lt;me&#64;marcel-sander.eu&gt;"> =
-<span class=3D"fn">ralala</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128905=
-" name=3D"attach_128905" title=3D"dmesg.log">attachment 128905</a> <a href=
-=3D"attachment.cgi?id=3D128905&amp;action=3Dedit" title=3D"dmesg.log">[deta=
-ils]</a></span>
-dmesg.log
-
-4.10rc3</pre>
+        <pre>Please include an acpidump of your system.</pre>
         </div>
       </p>
 
@@ -95,9 +85,9 @@ dmesg.log
     </body>
 </html>=
 
---14841783280.Fb17BE0.30536--
+--14841783641.8e9C9D.30788--
 
---===============1800220159==
+--===============1926867529==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1800220159==--
+--===============1926867529==--
