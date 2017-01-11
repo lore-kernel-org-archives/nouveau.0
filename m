@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99372] Nvidia 640M devinit fails
-Date: Wed, 11 Jan 2017 23:46:04 +0000
-Message-ID: <bug-99372-8800-rCIJ94KKls@http.bugs.freedesktop.org/>
+Date: Wed, 11 Jan 2017 23:48:01 +0000
+Message-ID: <bug-99372-8800-yhCnw4Upq0@http.bugs.freedesktop.org/>
 References: <bug-99372-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1926867529=="
+Content-Type: multipart/mixed; boundary="===============1269934185=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99372-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1926867529==
-Content-Type: multipart/alternative; boundary="14841783641.8e9C9D.30788";
+--===============1269934185==
+Content-Type: multipart/alternative; boundary="14841784812.40fd.30707";
  charset="UTF-8"
 
 
---14841783641.8e9C9D.30788
-Date: Wed, 11 Jan 2017 23:46:04 +0000
+--14841784812.40fd.30707
+Date: Wed, 11 Jan 2017 23:48:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,15 +35,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99372
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please include an acpidump of your system.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Oh, and separately, please include the dmesg of a boot of 4.10-rcN with
+nouveau.debug=3Ddebug when not specifying the "fixed" vbios.rom explicitly.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14841783641.8e9C9D.30788
-Date: Wed, 11 Jan 2017 23:46:04 +0000
+--14841784812.40fd.30707
+Date: Wed, 11 Jan 2017 23:48:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,8 +61,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia 640M devinit fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99372#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99372#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia 640M devinit fails"
@@ -71,7 +72,10 @@ Auto-Submitted: auto-generated
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Please include an acpidump of your system.</pre>
+        <pre>Oh, and separately, please include the dmesg of a boot of 4.10=
+-rcN with
+nouveau.debug=3Ddebug when not specifying the &quot;fixed&quot; vbios.rom e=
+xplicitly.</pre>
         </div>
       </p>
 
@@ -85,9 +89,9 @@ imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
     </body>
 </html>=
 
---14841783641.8e9C9D.30788--
+--14841784812.40fd.30707--
 
---===============1926867529==
+--===============1269934185==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1926867529==--
+--===============1269934185==--
