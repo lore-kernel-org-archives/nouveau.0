@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: GP106M+Intel Skylake,
- Kernel 4.10-rc3 : No display on HDMI or DP
-Date: Wed, 11 Jan 2017 10:46:30 -0500
-Message-ID: <CAKb7UvhzeqJ9sNEbUEULS2oMMJxXyqRE_2yS0uLj6io=5Ch-mA@mail.gmail.com>
-References: <14847143.mIQnB4xdEE@talabheim>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99335] nouveau graphics often freezes when using KDE
+	Plasma 5
+Date: Wed, 11 Jan 2017 15:47:29 +0000
+Message-ID: <bug-99335-8800-vGmbdKthb0@http.bugs.freedesktop.org/>
+References: <bug-99335-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1315141152=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <14847143.mIQnB4xdEE@talabheim>
+In-Reply-To: <bug-99335-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,69 +17,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Sylvain Fabre <sylvain-BlW8JBT9i25Wk0Htik3J/w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKYW4gMTEsIDIwMTcgYXQgNDo0OCBBTSwgU3lsdmFpbiBGYWJyZSA8c3lsdmFpbkBs
-YWhpZXR0ZS5jb20+IHdyb3RlOgo+IEhpIGFsbCwKPgo+Cj4KPiBPbiBteSByZWNlbnQgTVNJIEFw
-YWNoZSBQcm8gbGFwdG9wIHdpdGggSW50ZWwgU2t5bGFrZSArIEdQMTA2TSBOdmlkaWEgY2hpcCwK
-PiBpIGFtIHVuYWJsZSB0byB1c2UgdGhlIGV4dGVybmFsIEhETUkgYW5kIERQIG91dHB1dHMuIFRo
-ZSBvdXRwdXRzIGFyZQo+IGF2YWlsYWJsZSB0aHJ1IHhyYW5kciBhbmQgY2FuIGJlIGFjdGl2YXRl
-ZCwgYnV0IHRoZSBjb25uZWN0ZWQgbW9uaXRvcnMKPiBhbHdheXMgc2hvdyBhIGJsYWNrIHNjcmVl
-bi4KPgo+Cj4KPiBOb3RlIHRoYXQgdGhlIGludGVncmF0ZWQgTENEIGlzIGNvbm5lY3RlZCB0byB0
-aGUgU2t5bGFnZSBHUFUsIHdoaWxlIHRoZSBIRE1JCj4gYW5kIERQIG91dHB1dHMgYXJlIGNvbm5l
-Y3RlZCB0byB0aGUgTlZJRElBIEdQMTA2TSBHUFUuCj4KPgo+Cj4gVGhlIG5vdXZlYXUgZHJpdmUg
-b3V0cHV0cyB0aGUgZm9sbG93aW5nIGRhdGEgaW4gdGhlIGRtZXNnIGxvZywKPiBrZXJuZWwtNC4x
-MC1yYzMgb24gT3BlbnN1c2UgVHVtYmxld2VlZCA6Cj4KPiBbICAgIDUuOTM5NzYzXSBub3V2ZWF1
-OiBkZXRlY3RlZCBQUiBzdXBwb3J0LCB3aWxsIG5vdCB1c2UgRFNNCj4gWyAgICA1LjkzOTc4Ml0g
-bm91dmVhdSAwMDAwOjAxOjAwLjA6IGVuYWJsaW5nIGRldmljZSAoMDAwNiAtPiAwMDA3KQo+IFsg
-ICAgNS45Mzk5NzhdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBOVklESUEgR1AxMDYgKDEzNjAwMGEx
-KQo+IFsgICAgNi41MzI1ODhdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBiaW9zOiB2ZXJzaW9uIDg2
-LjA2LjI5LjAwLjA0Cj4gWyAgICA2LjU3NDg1OV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZiOiAz
-MDcyIE1pQiBHRERSNQo+IFsgICAgNi41NzQ4NjhdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBwcml2
-OiBIVUIwOiAwMGQwNTQgMDAwMDAwMDcgKDFkNDA4MjE2KQo+IFsgICAgNi41NzY1MDJdIG5vdXZl
-YXUgMDAwMDowMTowMC4wOiBEUk06IFZSQU06IDMwNzIgTWlCCj4gWyAgICA2LjU3NjUwM10gbm91
-dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogR0FSVDogMTA0ODU3NiBNaUIKPiBbICAgIDYuNTc2NTIy
-XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBCSVQgdGFibGUgJ0EnIG5vdCBmb3VuZAo+IFsg
-ICAgNi41NzY1MjNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEJJVCB0YWJsZSAnTCcgbm90
-IGZvdW5kCj4gWyAgICA2LjU3NjUyM10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogVE1EUyB0
-YWJsZSB2ZXJzaW9uIDIuMAo+IFsgICAgNi41NzY1MjRdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBE
-Uk06IERDQiB2ZXJzaW9uIDQuMQo+IFsgICAgNi41NzY1MjVdIG5vdXZlYXUgMDAwMDowMTowMC4w
-OiBEUk06IERDQiBvdXRwIDAwOiAwMjAwMWY2MiAwMDAyMDAxMAo+IFsgICAgNi41NzY1MjZdIG5v
-dXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAxOiAwNDAxM2Y4NiAwNDYwMDAxMAo+
-IFsgICAgNi41NzY1MjddIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAyOiAw
-NDAxM2Y4MiAwMDAyMDAxMAo+IFsgICAgNi41NzY1MjddIG5vdXZlYXUgMDAwMDowMTowMC4wOiBE
-Uk06IERDQiBjb25uIDAxOiAwMDAxMDE2MQo+IFsgICAgNi41NzY1MjhdIG5vdXZlYXUgMDAwMDow
-MTowMC4wOiBEUk06IERDQiBjb25uIDAzOiAwMTAwMDM0Ngo+IFsgICAgNi41NzY1MjldIG5vdXZl
-YXUgMDAwMDowMTowMC4wOiBEUk06IFBvaW50ZXIgdG8gZmxhdCBwYW5lbCB0YWJsZQo+IGludmFs
-aWQKPiBbICAgIDYuNzg3MDgyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogaHdtb25fZGV2aWNlX3Jl
-Z2lzdGVyKCkgaXMgZGVwcmVjYXRlZC4KPiBQbGVhc2UgY29udmVydCB0aGUgZHJpdmVyIHRvIHVz
-ZSBod21vbl9kZXZpY2VfcmVnaXN0ZXJfd2l0aF9pbmZvKCkuCj4gWyAgICA2LjgyNzQzNF0gbm91
-dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogZmFpbGVkIHRvIGNyZWF0ZSBrZXJuZWwgY2hhbm5lbCwK
-PiAtMjIKPiBbICAgIDcuMDY5ODYzXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBhbGxvY2F0
-ZWQgMTAyNHg3NjggZmI6IDB4NjAwMDAsIGJvCj4gZmZmZjkyZDY2OWRkNzAwMAo+IFsgICAgOS40
-MzI2MThdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmYjA6IG5vdXZlYXVmYiBmcmFtZSBidWZmZXIg
-ZGV2aWNlCj4gWyAgICA5LjQ1MjM1Nl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IHZnYWFyYjogY2hh
-bmdlZCBWR0EgZGVjb2RlczoKPiBvbGRkZWNvZGVzPWlvK21lbSxkZWNvZGVzPW5vbmU6b3ducz1u
-b25lCj4gWyAgICA5LjQ1NjIxNV0gW2RybV0gSW5pdGlhbGl6ZWQgbm91dmVhdSAxLjMuMSAyMDEy
-MDgwMSBmb3IgMDAwMDowMTowMC4wIG9uCj4gbWlub3IgMQo+IFsgICAzNC4wMTI3MDldIG5vdXZl
-YXUgMDAwMDowMTowMC4wOiBEUk06IHN1c3BlbmRpbmcgY29uc29sZS4uLgo+IFsgICAzNC4wMTI3
-MTNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IHN1c3BlbmRpbmcgZGlzcGxheS4uLgo+IFsg
-ICAzNC4wMTI3MjldIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IGV2aWN0aW5nIGJ1ZmZlcnMu
-Li4KPiBbICAgMzQuMjc5OTIxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiB3YWl0aW5nIGZv
-ciBrZXJuZWwgY2hhbm5lbHMgdG8gZ28KPiBpZGxlLi4uCj4gWyAgIDM0LjI3OTkyNl0gbm91dmVh
-dSAwMDAwOjAxOjAwLjA6IERSTTogc3VzcGVuZGluZyBjbGllbnQgb2JqZWN0IHRyZWVzLi4uCj4g
-WyAgIDM0LjI3OTkzMF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogc3VzcGVuZGluZyBrZXJu
-ZWwgb2JqZWN0IHRyZWUuLi4KPiBbICAgNDMuNzI1MTQxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDog
-RFJNOiByZXN1bWluZyBrZXJuZWwgb2JqZWN0IHRyZWUuLi4KPgo+IEkgc3VzcGVjdCB0aGUgaXNz
-dWUgaXMgZHVlIHRvIHRoaXMgbGluZSA6Cj4KPiBbICAgIDYuODI3NDM0XSBub3V2ZWF1IDAwMDA6
-MDE6MDAuMDogRFJNOiBmYWlsZWQgdG8gY3JlYXRlIGtlcm5lbCBjaGFubmVsLAo+IC0yMgo+CgpO
-bywgdGhhdCBsaW5lIGlzIGFjdHVhbGx5IGV4cGVjdGVkIChqdXN0IG1lYW5zIGFjY2VsIHdvbid0
-IHdvcmssIHNpbmNlCk5WSURJQSBodyBub3cgcmVxdWlyZXMgc2lnbmVkIGZpcm13YXJlLCBidXQg
-dGhleSB3b24ndCByZWxlYXNlIHRoZQpjdHhzdyBmdykuIEFyZSB5b3UgYWJzb2x1dGVseSBzdXJl
-IHRoYXQgeW91J3JlIHNlZWluZyB0aGUgb3V0cHV0cyBpbgp4cmFuZHI/IENvdWxkIHlvdSBwcm92
-aWRlIHRoZSBvdXRwdXQgb2YgeHJhbmRyIGFzIHdlbGwgYXMgYW4gWG9yZyBsb2c/CgpUaGFua3Ms
-CgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1315141152==
+Content-Type: multipart/alternative; boundary="14841496481.F1a5Fbef4.1947";
+ charset="UTF-8"
+
+
+--14841496481.F1a5Fbef4.1947
+Date: Wed, 11 Jan 2017 15:47:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99335
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Try it with just
+
+QSG_RENDER_LOOP=3Dbasic
+
+in your /etc/environment. Note you need to log out/in in order for changes =
+to
+take effect.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14841496481.F1a5Fbef4.1947
+Date: Wed, 11 Jan 2017 15:47:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau graphics often freezes when using KDE Plasma 5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau graphics often freezes when using KDE Plasma 5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335">bug 99335<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Try it with just
+
+QSG_RENDER_LOOP=3Dbasic
+
+in your /etc/environment. Note you need to log out/in in order for changes =
+to
+take effect.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14841496481.F1a5Fbef4.1947--
+
+--===============1315141152==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1315141152==--
