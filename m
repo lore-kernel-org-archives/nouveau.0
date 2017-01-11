@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99335] nouveau graphics often freezes when using KDE
 	Plasma 5
-Date: Wed, 11 Jan 2017 16:08:00 +0000
-Message-ID: <bug-99335-8800-rM7h2TiKPY@http.bugs.freedesktop.org/>
+Date: Wed, 11 Jan 2017 16:31:24 +0000
+Message-ID: <bug-99335-8800-pWJ99hrj4j@http.bugs.freedesktop.org/>
 References: <bug-99335-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1998391975=="
+Content-Type: multipart/mixed; boundary="===============1282815321=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99335-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1998391975==
-Content-Type: multipart/alternative; boundary="14841508800.d4Ac4.3182";
+--===============1282815321==
+Content-Type: multipart/alternative; boundary="14841522840.7fBcf3089.4559";
  charset="UTF-8"
 
 
---14841508800.d4Ac4.3182
-Date: Wed, 11 Jan 2017 16:08:00 +0000
+--14841522840.7fBcf3089.4559
+Date: Wed, 11 Jan 2017 16:31:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,16 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99335
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does running "glxinfo" show that you're using nouveau or llvmpipe?
+--- Comment #7 from Alexander <alexander.persh-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+# glxinfo | grep -E "nouveau | llvmpipe"
+    Device: llvmpipe (LLVM 3.7, 128 bits) (0xffffffff)
+OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 3.7, 128 bits)
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14841508800.d4Ac4.3182
-Date: Wed, 11 Jan 2017 16:08:00 +0000
+--14841522840.7fBcf3089.4559
+Date: Wed, 11 Jan 2017 16:31:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,19 +64,20 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau graphics often freezes when using KDE Plasma 5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335#c6">Comment=
- # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau graphics often freezes when using KDE Plasma 5"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335">bug 99335<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+alexander.persh&#64;gmail.com" title=3D"Alexander &lt;alexander.persh&#64;g=
+mail.com&gt;"> <span class=3D"fn">Alexander</span></a>
 </span></b>
-        <pre>Does running &quot;glxinfo&quot; show that you're using nouvea=
-u or llvmpipe?</pre>
+        <pre># glxinfo | grep -E &quot;nouveau | llvmpipe&quot;
+    Device: llvmpipe (LLVM 3.7, 128 bits) (0xffffffff)
+OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 3.7, 128 bits)</pre>
         </div>
       </p>
 
@@ -89,9 +92,9 @@ u or llvmpipe?</pre>
     </body>
 </html>=
 
---14841508800.d4Ac4.3182--
+--14841522840.7fBcf3089.4559--
 
---===============1998391975==
+--===============1282815321==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1998391975==--
+--===============1282815321==--
