@@ -1,55 +1,112 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: Fix HDA ELD handling (thus, HDMI
- audio) on gt215
-Date: Wed, 11 Jan 2017 15:56:50 -0500
-Message-ID: <CAKb7UvgQWNHjMGiuazBiWbAqzOJHMr68Ru0pfCZuh6Gz=7r5pw@mail.gmail.com>
-References: <20170111204718.6138-1-alastair.bridgewater@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93778] [NVE7] Noveau GeForce GT 640M vbios error
+Date: Wed, 11 Jan 2017 23:08:16 +0000
+Message-ID: <bug-93778-8800-V4eAwVFAHj@http.bugs.freedesktop.org/>
+References: <bug-93778-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20170111204718.6138-1-alastair.bridgewater@gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Alastair Bridgewater <alastair.bridgewater@gmail.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============2073198169=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93778-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKYW4gMTEsIDIwMTcgYXQgMzo0NyBQTSwgQWxhc3RhaXIgQnJpZGdld2F0ZXIKPGFs
-YXN0YWlyLmJyaWRnZXdhdGVyQGdtYWlsLmNvbT4gd3JvdGU6Cj4gU3RvcmUgdGhlIEVMRCBjb3Jy
-ZWN0bHksIG5vdCBqdXN0IGVub3VnaCBjb3BpZXMgb2YgdGhlIGZpcnN0IGJ5dGUKPiB0byBwYWQg
-b3V0IHRoZSBnaXZlbiBFTEQgc2l6ZS4KPgo+IFNpZ25lZC1vZmYtYnk6IEFsYXN0YWlyIEJyaWRn
-ZXdhdGVyIDxhbGFzdGFpci5icmlkZ2V3YXRlckBnbWFpbC5jb20+CgpHcmVhdCBmaW5kISBIZXJl
-IGFyZSBzb21lIG1vcmUgdGFnczoKCkZpeGVzOiAxMjBiMGMzOWM3NTYgKCJkcm0vbnY1MC0vZGlz
-cDogYXVkaXQgYW5kIHZlcnNpb24gU09SX0hEQV9FTEQgbWV0aG9kIikKQ2M6IHN0YWJsZUB2Z2Vy
-Lmtlcm5lbC5vcmcgIyB2My4xNysKUmV2aWV3ZWQtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFs
-dW0ubWl0LmVkdT4KCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5l
-L2Rpc3AvaGRhZ3QyMTUuYyB8IDIgKy0KPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCsp
-LCAxIGRlbGV0aW9uKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bnZrbS9lbmdpbmUvZGlzcC9oZGFndDIxNS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
-bS9lbmdpbmUvZGlzcC9oZGFndDIxNS5jCj4gaW5kZXggNmYwNDM2ZC4uZjhmMmYxNiAxMDA2NDQK
-PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL2hkYWd0MjE1
-LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL2hkYWd0
-MjE1LmMKPiBAQCAtNTksNyArNTksNyBAQCBndDIxNV9oZGFfZWxkKE5WNTBfRElTUF9NVEhEX1Yx
-KQo+ICAgICAgICAgICAgICAgICAgICAgICAgICk7Cj4gICAgICAgICAgICAgICAgIH0KPiAgICAg
-ICAgICAgICAgICAgZm9yIChpID0gMDsgaSA8IHNpemU7IGkrKykKPiAtICAgICAgICAgICAgICAg
-ICAgICAgICBudmttX3dyMzIoZGV2aWNlLCAweDYxYzQ0MCArIHNvZmYsIChpIDw8IDgpIHwgYXJn
-cy0+djAuZGF0YVswXSk7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgbnZrbV93cjMyKGRldmlj
-ZSwgMHg2MWM0NDAgKyBzb2ZmLCAoaSA8PCA4KSB8IGFyZ3MtPnYwLmRhdGFbaV0pOwo+ICAgICAg
-ICAgICAgICAgICBmb3IgKDsgaSA8IDB4NjA7IGkrKykKPiAgICAgICAgICAgICAgICAgICAgICAg
-ICBudmttX3dyMzIoZGV2aWNlLCAweDYxYzQ0MCArIHNvZmYsIChpIDw8IDgpKTsKPiAgICAgICAg
-ICAgICAgICAgbnZrbV9tYXNrKGRldmljZSwgMHg2MWM0NDggKyBzb2ZmLCAweDgwMDAwMDAzLCAw
-eDgwMDAwMDAzKTsKPiAtLQo+IDIuMTAuMgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ry
-aS1kZXZlbAo=
+
+--===============2073198169==
+Content-Type: multipart/alternative; boundary="14841760960.eFB80D81F.28719";
+ charset="UTF-8"
+
+
+--14841760960.eFB80D81F.28719
+Date: Wed, 11 Jan 2017 23:08:16 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93778
+
+--- Comment #3 from Marcel S. <me-V++FmNMs79yAgvX28Wk5yQ@public.gmane.org> ---
+Created attachment 128903
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128903&action=3Dedit
+Extracted using kernel 3.16
+
+Nouveau works successfully on kernel 3.16.
+I copied the bios from /sys/kernel/debug/dri/1/vbios.rom.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14841760960.eFB80D81F.28719
+Date: Wed, 11 Jan 2017 23:08:16 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE7] Noveau GeForce GT 640M vbios error"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93778#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE7] Noveau GeForce GT 640M vbios error"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93778">bug 93778<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+me&#64;marcel-sander.eu" title=3D"Marcel S. &lt;me&#64;marcel-sander.eu&gt;=
+"> <span class=3D"fn">Marcel S.</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128903=
+" name=3D"attach_128903" title=3D"Extracted using kernel 3.16">attachment 1=
+28903</a> <a href=3D"attachment.cgi?id=3D128903&amp;action=3Dedit" title=3D=
+"Extracted using kernel 3.16">[details]</a></span>
+Extracted using kernel 3.16
+
+Nouveau works successfully on kernel 3.16.
+I copied the bios from /sys/kernel/debug/dri/1/vbios.rom.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14841760960.eFB80D81F.28719--
+
+--===============2073198169==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2073198169==--
