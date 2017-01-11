@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99354] [G71] "Assertion `bkref' failed" reproducible
- with glmark2
-Date: Wed, 11 Jan 2017 03:12:00 +0000
-Message-ID: <bug-99354-8800-d34BUl4IE1@http.bugs.freedesktop.org/>
-References: <bug-99354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 94727] [NV30/NV40] nouveau/pushbuf.c:238:
+ pushbuf_krel: Assertion `bkref` failed.
+Date: Wed, 11 Jan 2017 03:24:16 +0000
+Message-ID: <bug-94727-8800-KWExmUDYQq@http.bugs.freedesktop.org/>
+References: <bug-94727-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1355865480=="
+Content-Type: multipart/mixed; boundary="===============0823750581=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-94727-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1355865480==
-Content-Type: multipart/alternative; boundary="14841043200.A8aFA.17555";
+--===============0823750581==
+Content-Type: multipart/alternative; boundary="14841050560.fDc9ACffB.17709";
  charset="UTF-8"
 
 
---14841043200.A8aFA.17555
-Date: Wed, 11 Jan 2017 03:12:00 +0000
+--14841050560.fDc9ACffB.17709
+Date: Wed, 11 Jan 2017 03:24:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99354
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94727
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I have been unable to trigger the issue locally with the following mesa pat=
-ch:
+--- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Olivier, can you see if this patch with mesa helps?
 
 https://patchwork.freedesktop.org/patch/132414/
 
-Please try to see if this also resolves your problems.
+It helped in the repro of bug #99354.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14841043200.A8aFA.17555
-Date: Wed, 11 Jan 2017 03:12:00 +0000
+--14841050560.fDc9ACffB.17709
+Date: Wed, 11 Jan 2017 03:24:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,27 +65,30 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [G71] &quot;Assertion `bkref' failed&quot; reproducible w=
-ith glmark2"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99354#c6">Comment=
- # 6</a>
+   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
+n `bkref` failed."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727#c13">Commen=
+t # 13</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [G71] &quot;Assertion `bkref' failed&quot; reproducible w=
-ith glmark2"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99354">bug 99354<=
+   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
+n `bkref` failed."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727">bug 94727<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I have been unable to trigger the issue locally with the follo=
-wing mesa patch:
+        <pre>Olivier, can you see if this patch with mesa helps?
 
 <a href=3D"https://patchwork.freedesktop.org/patch/132414/">https://patchwo=
 rk.freedesktop.org/patch/132414/</a>
 
-Please try to see if this also resolves your problems.</pre>
+It helped in the repro of <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [G71] &quot;Assertion `bkref' failed&quot; reproducible w=
+ith glmark2"
+   href=3D"show_bug.cgi?id=3D99354">bug #99354</a>.</pre>
         </div>
       </p>
 
@@ -95,15 +97,15 @@ Please try to see if this also resolves your problems.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14841043200.A8aFA.17555--
+--14841050560.fDc9ACffB.17709--
 
---===============1355865480==
+--===============0823750581==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1355865480==--
+--===============0823750581==--
