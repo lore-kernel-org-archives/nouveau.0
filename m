@@ -1,11 +1,13 @@
-From: Sylvain Fabre <sylvain-BlW8JBT9i25Wk0Htik3J/w@public.gmane.org>
-Subject: GP106M+Intel Skylake,
-	Kernel 4.10-rc3 : No display on HDMI or DP
-Date: Wed, 11 Jan 2017 10:48:29 +0100
-Message-ID: <14847143.mIQnB4xdEE@talabheim>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99354] [G71] "Assertion `bkref' failed" reproducible
+ with glmark2
+Date: Wed, 11 Jan 2017 14:35:33 +0000
+Message-ID: <bug-99354-8800-qCHmlwsjxS@http.bugs.freedesktop.org/>
+References: <bug-99354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0384438085=="
+Content-Type: multipart/mixed; boundary="===============0929965055=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,329 +20,143 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
 
---===============0384438085==
-Content-Type: multipart/alternative; boundary="nextPart3282082.B2VrGf74M3"
-Content-Transfer-Encoding: 7Bit
-
-This is a multi-part message in MIME format.
-
---nextPart3282082.B2VrGf74M3
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="iso-8859-1"
-
-Hi all, 
-
-On my recent MSI Apache Pro laptop with Intel Skylake + GP106M Nvidia chip, i am unable 
-to use the external HDMI and DP outputs. The outputs are available thru xrandr and can 
-be activated, but the connected monitors always show a black screen. 
-
-Note that the integrated LCD is connected to the Skylage GPU, while the HDMI and DP 
-outputs are connected to the NVIDIA GP106M GPU.
-
-The nouveau drive outputs the following data in the dmesg log, kernel-4.10-rc3 on 
-Opensuse Tumbleweed : 
-[    5.939763] *nouveau*: detected PR support, will not use DSM 
-*nouveau* 0000:01:00.0: enabling device (0006 -> 0007) 
-*nouveau* 0000:01:00.0: NVIDIA GP106 (136000a1) 
-*nouveau* 0000:01:00.0: bios: version 86.06.29.00.04 
-*nouveau* 0000:01:00.0: fb: 3072 MiB GDDR5 
-*nouveau* 0000:01:00.0: priv: HUB0: 00d054 00000007 (1d408216) 
-*nouveau* 0000:01:00.0: DRM: VRAM: 3072 MiB 
-*nouveau* 0000:01:00.0: DRM: GART: 1048576 MiB 
-*nouveau* 0000:01:00.0: DRM: BIT table 'A' not found 
-*nouveau* 0000:01:00.0: DRM: BIT table 'L' not found 
-*nouveau* 0000:01:00.0: DRM: TMDS table version 2.0 
-*nouveau* 0000:01:00.0: DRM: DCB version 4.1 
-*nouveau* 0000:01:00.0: DRM: DCB outp 00: 02001f62 00020010 
-*nouveau* 0000:01:00.0: DRM: DCB outp 01: 04013f86 04600010 
-*nouveau* 0000:01:00.0: DRM: DCB outp 02: 04013f82 00020010 
-*nouveau* 0000:01:00.0: DRM: DCB conn 01: 00010161 
-*nouveau* 0000:01:00.0: DRM: DCB conn 03: 01000346 
-*nouveau* 0000:01:00.0: DRM: Pointer to flat panel table invalid 
-*nouveau* 0000:01:00.0: hwmon_device_register() is deprecated. Please convert the 
-driver to use hwmon_device_register_with_info(). 
-*nouveau* 0000:01:00.0: DRM: failed to create kernel channel, -22 
-*nouveau* 0000:01:00.0: DRM: allocated 1024x768 fb: 0x60000, bo ffff92d669dd7000 
-*nouveau* 0000:01:00.0: fb0: *nouveau*fb frame buffer device 
-*nouveau* 0000:01:00.0: vgaarb: changed VGA decodes: olddecodes=io
-+mem,decodes=none:owns=none 
-*nouveau* 1.3.1 20120801 for 0000:01:00.0 on minor 1 
-*nouveau* 0000:01:00.0: DRM: suspending console... 
-*nouveau* 0000:01:00.0: DRM: suspending display... 
-*nouveau* 0000:01:00.0: DRM: evicting buffers... 
-*nouveau* 0000:01:00.0: DRM: waiting for kernel channels to go idle... 
-*nouveau* 0000:01:00.0: DRM: suspending client object trees... 
-*nouveau* 0000:01:00.0: DRM: suspending kernel object tree... 
-*nouveau* 0000:01:00.0: DRM: resuming kernel object tree...
-
-I suspect the issue is due to this line : 
-[    6.827434] *nouveau* 0000:01:00.0: DRM: failed to create kernel channel, -22 
-
-Any help or advice are welcome, 
-
-Thanks
-
-LeRatier
+--===============0929965055==
+Content-Type: multipart/alternative; boundary="14841453330.Df10E.29699";
+ charset="UTF-8"
 
 
+--14841453330.Df10E.29699
+Date: Wed, 11 Jan 2017 14:35:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
---nextPart3282082.B2VrGf74M3
-Content-Transfer-Encoding: base64
-Content-Type: text/html; charset="iso-8859-1"
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99354
 
-PCFET0NUWVBFIEhUTUwgUFVCTElDICItLy9XM0MvL0RURCBIVE1MIDQuMC8vRU4iICJodHRwOi8v
-d3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwL3N0cmljdC5kdGQiPgo8aHRtbD48aGVhZD48bWV0YSBu
-YW1lPSJxcmljaHRleHQiIGNvbnRlbnQ9IjEiIC8+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4KcCwg
-bGkgeyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7IH0KPC9zdHlsZT48L2hlYWQ+PGJvZHkgc3R5bGU9
-IiBmb250LWZhbWlseTonTm90byBTYW5zJzsgZm9udC1zaXplOjEwcHQ7IGZvbnQtd2VpZ2h0OjQw
-MDsgZm9udC1zdHlsZTpub3JtYWw7Ij4KPHAgc3R5bGU9IiBtYXJnaW4tdG9wOjBweDsgbWFyZ2lu
-LWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2Nr
-LWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7IC1xdC11c2VyLXN0YXRlOjA7Ij5IaSBhbGwsIDwv
-cD4KPHAgc3R5bGU9Ii1xdC1wYXJhZ3JhcGgtdHlwZTplbXB0eTsgbWFyZ2luLXRvcDowcHg7IG1h
-cmdpbi1ib3R0b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7IC1xdC1i
-bG9jay1pbmRlbnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAiPiZuYnNwOzwvcD4KPHAgc3R5bGU9IiBt
-YXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2lu
-LXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7IC1xdC11c2Vy
-LXN0YXRlOjA7Ij5PbiBteSByZWNlbnQgTVNJIEFwYWNoZSBQcm8gbGFwdG9wIHdpdGggSW50ZWwg
-U2t5bGFrZSArIEdQMTA2TSBOdmlkaWEgY2hpcCwgaSBhbSB1bmFibGUgdG8gdXNlIHRoZSBleHRl
-cm5hbCBIRE1JIGFuZCBEUCBvdXRwdXRzLiBUaGUgb3V0cHV0cyBhcmUgYXZhaWxhYmxlIHRocnUg
-eHJhbmRyIGFuZCBjYW4gYmUgYWN0aXZhdGVkLCBidXQgdGhlIGNvbm5lY3RlZCBtb25pdG9ycyBh
-bHdheXMgc2hvdyBhIGJsYWNrIHNjcmVlbi4gPC9wPgo8cCBzdHlsZT0iLXF0LXBhcmFncmFwaC10
-eXBlOmVtcHR5OyBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0
-OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVudDow
-cHg7ICI+Jm5ic3A7PC9wPgo8cCBzdHlsZT0iIG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9t
-OjBweDsgbWFyZ2luLWxlZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQtYmxvY2staW5kZW50
-OjA7IHRleHQtaW5kZW50OjBweDsgLXF0LXVzZXItc3RhdGU6MDsiPk5vdGUgdGhhdCB0aGUgaW50
-ZWdyYXRlZCBMQ0QgaXMgY29ubmVjdGVkIHRvIHRoZSBTa3lsYWdlIEdQVSwgd2hpbGUgdGhlIEhE
-TUkgYW5kIERQIG91dHB1dHMgYXJlIGNvbm5lY3RlZCB0byB0aGUgTlZJRElBIEdQMTA2TSBHUFUu
-PC9wPgo8cCBzdHlsZT0iLXF0LXBhcmFncmFwaC10eXBlOmVtcHR5OyBtYXJnaW4tdG9wOjBweDsg
-bWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0
-LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7ICI+Jm5ic3A7PC9wPgo8cCBzdHlsZT0i
-IG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6MHB4OyBtYXJn
-aW4tcmlnaHQ6MHB4OyAtcXQtYmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50OjBweDsgLXF0LXVz
-ZXItc3RhdGU6MDsiPlRoZSBub3V2ZWF1IGRyaXZlIG91dHB1dHMgdGhlIGZvbGxvd2luZyBkYXRh
-IGluIHRoZSBkbWVzZyBsb2csIGtlcm5lbC00LjEwLXJjMyBvbiBPcGVuc3VzZSBUdW1ibGV3ZWVk
-IDogPC9wPgo8cCBzdHlsZT0iIG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgbWFy
-Z2luLWxlZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQtYmxvY2staW5kZW50OjA7IHRleHQt
-aW5kZW50OjBweDsgLXF0LXVzZXItc3RhdGU6MDsiPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6
-J21vbm9zcGFjZSc7IGNvbG9yOiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPlsg
-oKCgNS45Mzk3NjNdIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2Un
-OyBmb250LXdlaWdodDo2MDA7IGNvbG9yOiNmZjU0NTQ7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZm
-ZjsiPm5vdXZlYXU8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsg
-Y29sb3I6IzAwMDAwMDsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+OiBkZXRlY3RlZCBQUiBz
-dXBwb3J0LCB3aWxsIG5vdCB1c2UgRFNNIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5
-Oidtb25vc3BhY2UnOyI+PGJyIC8+WyCgoKA1LjkzOTc4Ml0gPC9zcGFuPjxzcGFuIHN0eWxlPSIg
-Zm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGZvbnQtd2VpZ2h0OjYwMDsgY29sb3I6I2ZmNTQ1NDsg
-YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+bm91dmVhdTwvc3Bhbj48c3BhbiBzdHlsZT0iIGZv
-bnQtZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xvcjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNm
-ZmZmZmY7Ij4gMDAwMDowMTowMC4wOiBlbmFibGluZyBkZXZpY2UgKDAwMDYgLSZndDsgMDAwNykg
-PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7Ij48YnIgLz5bIKCg
-oDUuOTM5OTc4XSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsg
-Zm9udC13ZWlnaHQ6NjAwOyBjb2xvcjojZmY1NDU0OyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7
-Ij5ub3V2ZWF1PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGNv
-bG9yOiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPiAwMDAwOjAxOjAwLjA6IE5W
-SURJQSBHUDEwNiAoMTM2MDAwYTEpIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidt
-b25vc3BhY2UnOyI+PGJyIC8+WyCgoKA2LjUzMjU4OF0gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9u
-dC1mYW1pbHk6J21vbm9zcGFjZSc7IGZvbnQtd2VpZ2h0OjYwMDsgY29sb3I6I2ZmNTQ1NDsgYmFj
-a2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+bm91dmVhdTwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQt
-ZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xvcjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZm
-ZmY7Ij4gMDAwMDowMTowMC4wOiBiaW9zOiB2ZXJzaW9uIDg2LjA2LjI5LjAwLjA0IDwvc3Bhbj48
-c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyI+PGJyIC8+WyCgoKA2LjU3NDg1
-OV0gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGZvbnQtd2Vp
-Z2h0OjYwMDsgY29sb3I6I2ZmNTQ1NDsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+bm91dmVh
-dTwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xvcjojMDAw
-MDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4gMDAwMDowMTowMC4wOiBmYjogMzA3MiBN
-aUIgR0REUjUgPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7Ij48
-YnIgLz5bIKCgoDYuNTc0ODY4XSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9u
-b3NwYWNlJzsgZm9udC13ZWlnaHQ6NjAwOyBjb2xvcjojZmY1NDU0OyBiYWNrZ3JvdW5kLWNvbG9y
-OiNmZmZmZmY7Ij5ub3V2ZWF1PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9z
-cGFjZSc7IGNvbG9yOiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPiAwMDAwOjAx
-OjAwLjA6IHByaXY6IEhVQjA6IDAwZDA1NCAwMDAwMDAwNyAoMWQ0MDgyMTYpIDwvc3Bhbj48c3Bh
-biBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyI+PGJyIC8+WyCgoKA2LjU3NjUwMl0g
-PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGZvbnQtd2VpZ2h0
-OjYwMDsgY29sb3I6I2ZmNTQ1NDsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+bm91dmVhdTwv
-c3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xvcjojMDAwMDAw
-OyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4gMDAwMDowMTowMC4wOiBEUk06IFZSQU06IDMw
-NzIgTWlCIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyI+PGJy
-IC8+WyCgoKA2LjU3NjUwM10gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9z
-cGFjZSc7IGZvbnQtd2VpZ2h0OjYwMDsgY29sb3I6I2ZmNTQ1NDsgYmFja2dyb3VuZC1jb2xvcjoj
-ZmZmZmZmOyI+bm91dmVhdTwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3Bh
-Y2UnOyBjb2xvcjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4gMDAwMDowMTow
-MC4wOiBEUk06IEdBUlQ6IDEwNDg1NzYgTWlCIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFt
-aWx5Oidtb25vc3BhY2UnOyI+PGJyIC8+WyCgoKA2LjU3NjUyMl0gPC9zcGFuPjxzcGFuIHN0eWxl
-PSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGZvbnQtd2VpZ2h0OjYwMDsgY29sb3I6I2ZmNTQ1
-NDsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+bm91dmVhdTwvc3Bhbj48c3BhbiBzdHlsZT0i
-IGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xvcjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9y
-OiNmZmZmZmY7Ij4gMDAwMDowMTowMC4wOiBEUk06IEJJVCB0YWJsZSAnQScgbm90IGZvdW5kIDwv
-c3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyI+PGJyIC8+WyCgoKA2
-LjU3NjUyM10gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGZv
-bnQtd2VpZ2h0OjYwMDsgY29sb3I6I2ZmNTQ1NDsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+
-bm91dmVhdTwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xv
-cjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4gMDAwMDowMTowMC4wOiBEUk06
-IEJJVCB0YWJsZSAnTCcgbm90IGZvdW5kIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5
-Oidtb25vc3BhY2UnOyI+PGJyIC8+WyCgoKA2LjU3NjUyM10gPC9zcGFuPjxzcGFuIHN0eWxlPSIg
-Zm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGZvbnQtd2VpZ2h0OjYwMDsgY29sb3I6I2ZmNTQ1NDsg
-YmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+bm91dmVhdTwvc3Bhbj48c3BhbiBzdHlsZT0iIGZv
-bnQtZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xvcjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNm
-ZmZmZmY7Ij4gMDAwMDowMTowMC4wOiBEUk06IFRNRFMgdGFibGUgdmVyc2lvbiAyLjAgPC9zcGFu
-PjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7Ij48YnIgLz5bIKCgoDYuNTc2
-NTI0XSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsgZm9udC13
-ZWlnaHQ6NjAwOyBjb2xvcjojZmY1NDU0OyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5ub3V2
-ZWF1PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGNvbG9yOiMw
-MDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPiAwMDAwOjAxOjAwLjA6IERSTTogRENC
-IHZlcnNpb24gNC4xIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2Un
-OyI+PGJyIC8+WyCgoKA2LjU3NjUyNV0gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6
-J21vbm9zcGFjZSc7IGZvbnQtd2VpZ2h0OjYwMDsgY29sb3I6I2ZmNTQ1NDsgYmFja2dyb3VuZC1j
-b2xvcjojZmZmZmZmOyI+bm91dmVhdTwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidt
-b25vc3BhY2UnOyBjb2xvcjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4gMDAw
-MDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAwOiAwMjAwMWY2MiAwMDAyMDAxMCA8L3NwYW4+PHNw
-YW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsiPjxiciAvPlsgoKCgNi41NzY1MjZd
-IDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBmb250LXdlaWdo
-dDo2MDA7IGNvbG9yOiNmZjU0NTQ7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPm5vdXZlYXU8
-L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsgY29sb3I6IzAwMDAw
-MDsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0
-cCAwMTogMDQwMTNmODYgMDQ2MDAwMTAgPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6
-J21vbm9zcGFjZSc7Ij48YnIgLz5bIKCgoDYuNTc2NTI3XSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBm
-b250LWZhbWlseTonbW9ub3NwYWNlJzsgZm9udC13ZWlnaHQ6NjAwOyBjb2xvcjojZmY1NDU0OyBi
-YWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5ub3V2ZWF1PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9u
-dC1mYW1pbHk6J21vbm9zcGFjZSc7IGNvbG9yOiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2Zm
-ZmZmZjsiPiAwMDAwOjAxOjAwLjA6IERSTTogRENCIG91dHAgMDI6IDA0MDEzZjgyIDAwMDIwMDEw
-IDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyI+PGJyIC8+WyCg
-oKA2LjU3NjUyN10gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7
-IGZvbnQtd2VpZ2h0OjYwMDsgY29sb3I6I2ZmNTQ1NDsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZm
-OyI+bm91dmVhdTwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBj
-b2xvcjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4gMDAwMDowMTowMC4wOiBE
-Uk06IERDQiBjb25uIDAxOiAwMDAxMDE2MSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWls
-eTonbW9ub3NwYWNlJzsiPjxiciAvPlsgoKCgNi41NzY1MjhdIDwvc3Bhbj48c3BhbiBzdHlsZT0i
-IGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBmb250LXdlaWdodDo2MDA7IGNvbG9yOiNmZjU0NTQ7
-IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPm5vdXZlYXU8L3NwYW4+PHNwYW4gc3R5bGU9IiBm
-b250LWZhbWlseTonbW9ub3NwYWNlJzsgY29sb3I6IzAwMDAwMDsgYmFja2dyb3VuZC1jb2xvcjoj
-ZmZmZmZmOyI+IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwMzogMDEwMDAzNDYgPC9zcGFu
-PjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7Ij48YnIgLz5bIKCgoDYuNTc2
-NTI5XSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsgZm9udC13
-ZWlnaHQ6NjAwOyBjb2xvcjojZmY1NDU0OyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5ub3V2
-ZWF1PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGNvbG9yOiMw
-MDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPiAwMDAwOjAxOjAwLjA6IERSTTogUG9p
-bnRlciB0byBmbGF0IHBhbmVsIHRhYmxlIGludmFsaWQgPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9u
-dC1mYW1pbHk6J21vbm9zcGFjZSc7Ij48YnIgLz5bIKCgoDYuNzg3MDgyXSA8L3NwYW4+PHNwYW4g
-c3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsgZm9udC13ZWlnaHQ6NjAwOyBjb2xvcjoj
-ZmY1NDU0OyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5ub3V2ZWF1PC9zcGFuPjxzcGFuIHN0
-eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGNvbG9yOiMwMDAwMDA7IGJhY2tncm91bmQt
-Y29sb3I6I2ZmZmZmZjsiPiAwMDAwOjAxOjAwLjA6IGh3bW9uX2RldmljZV9yZWdpc3RlcigpIGlz
-IGRlcHJlY2F0ZWQuIFBsZWFzZSBjb252ZXJ0IHRoZSBkcml2ZXIgdG8gdXNlIGh3bW9uX2Rldmlj
-ZV9yZWdpc3Rlcl93aXRoX2luZm8oKS4gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6
-J21vbm9zcGFjZSc7Ij48YnIgLz5bIKCgoDYuODI3NDM0XSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBm
-b250LWZhbWlseTonbW9ub3NwYWNlJzsgZm9udC13ZWlnaHQ6NjAwOyBjb2xvcjojZmY1NDU0OyBi
-YWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5ub3V2ZWF1PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9u
-dC1mYW1pbHk6J21vbm9zcGFjZSc7IGNvbG9yOiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2Zm
-ZmZmZjsiPiAwMDAwOjAxOjAwLjA6IERSTTogZmFpbGVkIHRvIGNyZWF0ZSBrZXJuZWwgY2hhbm5l
-bCwgLTIyIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyI+PGJy
-IC8+WyCgoKA3LjA2OTg2M10gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9z
-cGFjZSc7IGZvbnQtd2VpZ2h0OjYwMDsgY29sb3I6I2ZmNTQ1NDsgYmFja2dyb3VuZC1jb2xvcjoj
-ZmZmZmZmOyI+bm91dmVhdTwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3Bh
-Y2UnOyBjb2xvcjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4gMDAwMDowMTow
-MC4wOiBEUk06IGFsbG9jYXRlZCAxMDI0eDc2OCBmYjogMHg2MDAwMCwgYm8gZmZmZjkyZDY2OWRk
-NzAwMCA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsiPjxiciAv
-PlsgoKCgOS40MzI2MThdIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3Bh
-Y2UnOyBmb250LXdlaWdodDo2MDA7IGNvbG9yOiNmZjU0NTQ7IGJhY2tncm91bmQtY29sb3I6I2Zm
-ZmZmZjsiPm5vdXZlYXU8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNl
-JzsgY29sb3I6IzAwMDAwMDsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+IDAwMDA6MDE6MDAu
-MDogZmIwOiA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsgZm9u
-dC13ZWlnaHQ6NjAwOyBjb2xvcjojZmY1NDU0OyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5u
-b3V2ZWF1PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGNvbG9y
-OiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPmZiIGZyYW1lIGJ1ZmZlciBkZXZp
-Y2UgPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7Ij48YnIgLz5b
-IKCgoDkuNDUyMzU2XSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNl
-JzsgZm9udC13ZWlnaHQ6NjAwOyBjb2xvcjojZmY1NDU0OyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZm
-ZmY7Ij5ub3V2ZWF1PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7
-IGNvbG9yOiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPiAwMDAwOjAxOjAwLjA6
-IHZnYWFyYjogY2hhbmdlZCBWR0EgZGVjb2Rlczogb2xkZGVjb2Rlcz1pbyttZW0sZGVjb2Rlcz1u
-b25lOm93bnM9bm9uZSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNl
-JzsiPjxiciAvPlsgoKCgOS40NTYyMTVdIFtkcm1dIEluaXRpYWxpemVkIDwvc3Bhbj48c3BhbiBz
-dHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBmb250LXdlaWdodDo2MDA7IGNvbG9yOiNm
-ZjU0NTQ7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPm5vdXZlYXU8L3NwYW4+PHNwYW4gc3R5
-bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsgY29sb3I6IzAwMDAwMDsgYmFja2dyb3VuZC1j
-b2xvcjojZmZmZmZmOyI+IDEuMy4xIDIwMTIwODAxIGZvciAwMDAwOjAxOjAwLjAgb24gbWlub3Ig
-MSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsiPjxiciAvPlsg
-oKAzNC4wMTI3MDldIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2Un
-OyBmb250LXdlaWdodDo2MDA7IGNvbG9yOiNmZjU0NTQ7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZm
-ZjsiPm5vdXZlYXU8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsg
-Y29sb3I6IzAwMDAwMDsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+IDAwMDA6MDE6MDAuMDog
-RFJNOiBzdXNwZW5kaW5nIGNvbnNvbGUuLi4gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1p
-bHk6J21vbm9zcGFjZSc7Ij48YnIgLz5bIKCgMzQuMDEyNzEzXSA8L3NwYW4+PHNwYW4gc3R5bGU9
-IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsgZm9udC13ZWlnaHQ6NjAwOyBjb2xvcjojZmY1NDU0
-OyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5ub3V2ZWF1PC9zcGFuPjxzcGFuIHN0eWxlPSIg
-Zm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGNvbG9yOiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6
-I2ZmZmZmZjsiPiAwMDAwOjAxOjAwLjA6IERSTTogc3VzcGVuZGluZyBkaXNwbGF5Li4uIDwvc3Bh
-bj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyI+PGJyIC8+WyCgoDM0LjAx
-MjcyOV0gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGZvbnQt
-d2VpZ2h0OjYwMDsgY29sb3I6I2ZmNTQ1NDsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+bm91
-dmVhdTwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xvcjoj
-MDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4gMDAwMDowMTowMC4wOiBEUk06IGV2
-aWN0aW5nIGJ1ZmZlcnMuLi4gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9z
-cGFjZSc7Ij48YnIgLz5bIKCgMzQuMjc5OTIxXSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZh
-bWlseTonbW9ub3NwYWNlJzsgZm9udC13ZWlnaHQ6NjAwOyBjb2xvcjojZmY1NDU0OyBiYWNrZ3Jv
-dW5kLWNvbG9yOiNmZmZmZmY7Ij5ub3V2ZWF1PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1p
-bHk6J21vbm9zcGFjZSc7IGNvbG9yOiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsi
-PiAwMDAwOjAxOjAwLjA6IERSTTogd2FpdGluZyBmb3Iga2VybmVsIGNoYW5uZWxzIHRvIGdvIGlk
-bGUuLi4gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7Ij48YnIg
-Lz5bIKCgMzQuMjc5OTI2XSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3Nw
-YWNlJzsgZm9udC13ZWlnaHQ6NjAwOyBjb2xvcjojZmY1NDU0OyBiYWNrZ3JvdW5kLWNvbG9yOiNm
-ZmZmZmY7Ij5ub3V2ZWF1PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFj
-ZSc7IGNvbG9yOiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPiAwMDAwOjAxOjAw
-LjA6IERSTTogc3VzcGVuZGluZyBjbGllbnQgb2JqZWN0IHRyZWVzLi4uIDwvc3Bhbj48c3BhbiBz
-dHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyI+PGJyIC8+WyCgoDM0LjI3OTkzMF0gPC9z
-cGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGZvbnQtd2VpZ2h0OjYw
-MDsgY29sb3I6I2ZmNTQ1NDsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+bm91dmVhdTwvc3Bh
-bj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xvcjojMDAwMDAwOyBi
-YWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij4gMDAwMDowMTowMC4wOiBEUk06IHN1c3BlbmRpbmcg
-a2VybmVsIG9iamVjdCB0cmVlLi4uIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidt
-b25vc3BhY2UnOyI+PGJyIC8+WyCgoDQzLjcyNTE0MV0gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9u
-dC1mYW1pbHk6J21vbm9zcGFjZSc7IGZvbnQtd2VpZ2h0OjYwMDsgY29sb3I6I2ZmNTQ1NDsgYmFj
-a2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+bm91dmVhdTwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQt
-ZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xvcjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZm
-ZmY7Ij4gMDAwMDowMTowMC4wOiBEUk06IHJlc3VtaW5nIGtlcm5lbCBvYmplY3QgdHJlZS4uLjwv
-c3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyI+PGJyIC8+PC9zcGFu
-PjwvcD4KPHAgc3R5bGU9IiBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdp
-bi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWlu
-ZGVudDowcHg7IC1xdC11c2VyLXN0YXRlOjA7Ij48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidt
-b25vc3BhY2UnOyI+SSBzdXNwZWN0IHRoZSBpc3N1ZSBpcyBkdWUgdG8gdGhpcyBsaW5lIDogPC9z
-cGFuPjwvcD4KPHAgc3R5bGU9IiBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1h
-cmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0
-LWluZGVudDowcHg7IC1xdC11c2VyLXN0YXRlOjA7Ij48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5
-Oidtb25vc3BhY2UnOyI+WyCgoKA2LjgyNzQzNF0gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1m
-YW1pbHk6J21vbm9zcGFjZSc7IGZvbnQtd2VpZ2h0OjYwMDsgY29sb3I6I2ZmNTQ1NDsgYmFja2dy
-b3VuZC1jb2xvcjojZmZmZmZmOyI+bm91dmVhdTwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFt
-aWx5Oidtb25vc3BhY2UnOyBjb2xvcjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7
-Ij4gMDAwMDowMTowMC4wOiBEUk06IGZhaWxlZCB0byBjcmVhdGUga2VybmVsIGNoYW5uZWwsIC0y
-MiA8L3NwYW4+PC9wPgo8cCBzdHlsZT0iLXF0LXBhcmFncmFwaC10eXBlOmVtcHR5OyBtYXJnaW4t
-dG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0
-OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7ICI+Jm5ic3A7PC9wPgo8
-cCBzdHlsZT0iIG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6
-MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQtYmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50OjBw
-eDsgLXF0LXVzZXItc3RhdGU6MDsiPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFj
-ZSc7Ij5BbnkgaGVscCBvciBhZHZpY2UgYXJlIHdlbGNvbWUsIDwvc3Bhbj48L3A+CjxwIHN0eWxl
-PSItcXQtcGFyYWdyYXBoLXR5cGU6ZW1wdHk7IG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9t
-OjBweDsgbWFyZ2luLWxlZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQtYmxvY2staW5kZW50
-OjA7IHRleHQtaW5kZW50OjBweDsgIj4mbmJzcDs8L3A+CjxwIHN0eWxlPSIgbWFyZ2luLXRvcDow
-cHg7IG1hcmdpbi1ib3R0b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7
-IC1xdC1ibG9jay1pbmRlbnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAtcXQtdXNlci1zdGF0ZTowOyI+
-PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsiPlRoYW5rczwvc3Bhbj48L3A+
-CjxwIHN0eWxlPSItcXQtcGFyYWdyYXBoLXR5cGU6ZW1wdHk7IG1hcmdpbi10b3A6MHB4OyBtYXJn
-aW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQtYmxv
-Y2staW5kZW50OjA7IHRleHQtaW5kZW50OjBweDsgIj4mbmJzcDs8L3A+CjxwIHN0eWxlPSIgbWFy
-Z2luLXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1hcmdpbi1y
-aWdodDowcHg7IC1xdC1ibG9jay1pbmRlbnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAtcXQtdXNlci1z
-dGF0ZTowOyI+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsiPkxlUmF0aWVy
-PGJyIC8+PC9zcGFuPjwvcD48L2JvZHk+PC9odG1sPg==
+Michele Ballabio <barra_cuda-KK0ffGbhmjU@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
+
+--- Comment #7 from Michele Ballabio <barra_cuda-KK0ffGbhmjU@public.gmane.org> ---
+I've applied your patch on top of mesa 13.0.3 (there was a conflict in
+nvc0_query_hw.c, but it doesn't matter with my hardware).
+
+I've been running
+gdb --args ./glmark2 -b
+buffer:columns=3D200:interleave=3Dfalse:update-dispersion=3D0.99:update-fra=
+ction=3D0.5:update-method=3Dsubdata:buffer-usage=3Dstatic
+--run-forever
+for 30 minutes now, so I guess this issue is fixed.
+
+Thank you, Ilia.
+
+Changing status to resolved-fixed.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14841453330.Df10E.29699
+Date: Wed, 11 Jan 2017 14:35:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:barra_cud=
+a&#64;gmx.com" title=3D"Michele Ballabio &lt;barra_cuda&#64;gmx.com&gt;"> <=
+span class=3D"fn">Michele Ballabio</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [G71] &quot;Assertion `bkref' failed&quot; rep=
+roducible with glmark2"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99354">bug 99354<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [G71] &quot;Assertion `bkref' failed&quot; rep=
+roducible with glmark2"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99354#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [G71] &quot;Assertion `bkref' failed&quot; rep=
+roducible with glmark2"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99354">bug 99354<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+barra_cuda&#64;gmx.com" title=3D"Michele Ballabio &lt;barra_cuda&#64;gmx.co=
+m&gt;"> <span class=3D"fn">Michele Ballabio</span></a>
+</span></b>
+        <pre>I've applied your patch on top of mesa 13.0.3 (there was a con=
+flict in
+nvc0_query_hw.c, but it doesn't matter with my hardware).
+
+I've been running
+gdb --args ./glmark2 -b
+buffer:columns=3D200:interleave=3Dfalse:update-dispersion=3D0.99:update-fra=
+ction=3D0.5:update-method=3Dsubdata:buffer-usage=3Dstatic
+--run-forever
+for 30 minutes now, so I guess this issue is fixed.
+
+Thank you, Ilia.
+
+Changing status to resolved-fixed.</pre>
+        </div>
+      </p>
 
 
---nextPart3282082.B2VrGf74M3--
+      <hr>
+      <span>You are receiving this mail because:</span>
 
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
 
---===============0384438085==
+--14841453330.Df10E.29699--
+
+--===============0929965055==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -350,4 +166,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0384438085==--
+--===============0929965055==--
