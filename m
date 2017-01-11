@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99335] nouveau graphics often freezes when using KDE
 	Plasma 5
-Date: Wed, 11 Jan 2017 18:25:07 +0000
-Message-ID: <bug-99335-8800-yF4L9yBMj6@http.bugs.freedesktop.org/>
+Date: Wed, 11 Jan 2017 18:35:55 +0000
+Message-ID: <bug-99335-8800-MDrbWfpSrD@http.bugs.freedesktop.org/>
 References: <bug-99335-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0079948785=="
+Content-Type: multipart/mixed; boundary="===============0475649202=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99335-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0079948785==
-Content-Type: multipart/alternative; boundary="14841591060.9EEbd8.11840";
+--===============0475649202==
+Content-Type: multipart/alternative; boundary="14841597550.dF9AC1C.12521";
  charset="UTF-8"
 
 
---14841591060.9EEbd8.11840
-Date: Wed, 11 Jan 2017 18:25:06 +0000
+--14841597550.dF9AC1C.12521
+Date: Wed, 11 Jan 2017 18:35:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,30 +36,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99335
 
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Alexander from comment #9)
-> Thanks. I have added the following to ~/.bashrc:
-> export "LIBGL_ALWAYS_SOFTWARE=3D1"
->=20
-> Then I checked 'env' as advised:
->=20
-> # env | grep QSG
-> QSG_RENDER_LOOP=3Dbasic
+--- Comment #11 from Alexander <alexander.persh-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Oh, I see. I thought you meant I should add this by saying "You must have a
+LIBGL_ALWAYS_SOFTWARE=3D1 left somewhere." My apologies.
 
-That's good.
+I have removed it and now I have=20
+# glxinfo | grep -E "nouveau | llvmpipe"
+    Vendor: nouveau (0x10de)
 
-> # env | grep LIBGL
-> LIBGL_ALWAYS_SOFTWARE=3D1
-
-That's bad. You don't want this.
+Will test it for some time. Thank you.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14841591060.9EEbd8.11840
-Date: Wed, 11 Jan 2017 18:25:06 +0000
+--14841597550.dF9AC1C.12521
+Date: Wed, 11 Jan 2017 18:35:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,33 +69,26 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau graphics often freezes when using KDE Plasma 5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335#c10">Commen=
-t # 10</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335#c11">Commen=
+t # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau graphics often freezes when using KDE Plasma 5"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99335">bug 99335<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+alexander.persh&#64;gmail.com" title=3D"Alexander &lt;alexander.persh&#64;g=
+mail.com&gt;"> <span class=3D"fn">Alexander</span></a>
 </span></b>
-        <pre>(In reply to Alexander from <a href=3D"show_bug.cgi?id=3D99335=
-#c9">comment #9</a>)
-<span class=3D"quote">&gt; Thanks. I have added the following to ~/.bashrc:
-&gt; export &quot;LIBGL_ALWAYS_SOFTWARE=3D1&quot;
-&gt;=20
-&gt; Then I checked 'env' as advised:
-&gt;=20
-&gt; # env | grep QSG
-&gt; QSG_RENDER_LOOP=3Dbasic</span >
+        <pre>Oh, I see. I thought you meant I should add this by saying &qu=
+ot;You must have a
+LIBGL_ALWAYS_SOFTWARE=3D1 left somewhere.&quot; My apologies.
 
-That's good.
+I have removed it and now I have=20
+# glxinfo | grep -E &quot;nouveau | llvmpipe&quot;
+    Vendor: nouveau (0x10de)
 
-<span class=3D"quote">&gt; # env | grep LIBGL
-&gt; LIBGL_ALWAYS_SOFTWARE=3D1</span >
-
-That's bad. You don't want this.</pre>
+Will test it for some time. Thank you.</pre>
         </div>
       </p>
 
@@ -117,9 +103,9 @@ That's bad. You don't want this.</pre>
     </body>
 </html>=
 
---14841591060.9EEbd8.11840--
+--14841597550.dF9AC1C.12521--
 
---===============0079948785==
+--===============0475649202==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0079948785==--
+--===============0475649202==--
