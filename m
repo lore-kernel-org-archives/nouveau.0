@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99354] [G71] "Assertion `bkref' failed" reproducible
  with glmark2
-Date: Wed, 11 Jan 2017 01:58:15 +0000
-Message-ID: <bug-99354-8800-TuYYSi1Qne@http.bugs.freedesktop.org/>
+Date: Wed, 11 Jan 2017 03:12:00 +0000
+Message-ID: <bug-99354-8800-d34BUl4IE1@http.bugs.freedesktop.org/>
 References: <bug-99354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0231316980=="
+Content-Type: multipart/mixed; boundary="===============1355865480=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0231316980==
-Content-Type: multipart/alternative; boundary="14840998941.B2BfA1A74.14565";
+--===============1355865480==
+Content-Type: multipart/alternative; boundary="14841043200.A8aFA.17555";
  charset="UTF-8"
 
 
---14840998941.B2BfA1A74.14565
-Date: Wed, 11 Jan 2017 01:58:14 +0000
+--14841043200.A8aFA.17555
+Date: Wed, 11 Jan 2017 03:12:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,24 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99354
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-While I was not able to hit the issue by replaying your trace, I grabbed
-glmark2, and with
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I have been unable to trigger the issue locally with the following mesa pat=
+ch:
 
-MESA_GL_VERSION_OVERRIDE=3D2.0 ./build/src/glmark2 -b
-buffer:columns=3D200:interleave=3Dfalse:update-dispersion=3D0.99:update-fra=
-ction=3D0.5:update-method=3Dsubdata:buffer-usage=3Dstatic
+https://patchwork.freedesktop.org/patch/132414/
 
-(built with the x11-gl target) it indeed fails on my NV34. Will start diggi=
-ng.
+Please try to see if this also resolves your problems.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14840998941.B2BfA1A74.14565
-Date: Wed, 11 Jan 2017 01:58:14 +0000
+--14841043200.A8aFA.17555
+Date: Wed, 11 Jan 2017 03:12:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,8 +68,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [G71] &quot;Assertion `bkref' failed&quot; reproducible w=
 ith glmark2"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99354#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99354#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [G71] &quot;Assertion `bkref' failed&quot; reproducible w=
@@ -83,16 +80,13 @@ ith glmark2"
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>While I was not able to hit the issue by replaying your trace,=
- I grabbed
-glmark2, and with
+        <pre>I have been unable to trigger the issue locally with the follo=
+wing mesa patch:
 
-MESA_GL_VERSION_OVERRIDE=3D2.0 ./build/src/glmark2 -b
-buffer:columns=3D200:interleave=3Dfalse:update-dispersion=3D0.99:update-fra=
-ction=3D0.5:update-method=3Dsubdata:buffer-usage=3Dstatic
+<a href=3D"https://patchwork.freedesktop.org/patch/132414/">https://patchwo=
+rk.freedesktop.org/patch/132414/</a>
 
-(built with the x11-gl target) it indeed fails on my NV34. Will start diggi=
-ng.</pre>
+Please try to see if this also resolves your problems.</pre>
         </div>
       </p>
 
@@ -107,9 +101,9 @@ ng.</pre>
     </body>
 </html>=
 
---14840998941.B2BfA1A74.14565--
+--14841043200.A8aFA.17555--
 
---===============0231316980==
+--===============1355865480==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0231316980==--
+--===============1355865480==--
