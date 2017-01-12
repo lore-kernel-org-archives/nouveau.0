@@ -1,88 +1,67 @@
-From: Lyude <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 2/2] drm/nouveau: Handle fbcon suspend/resume in
-	seperate worker
-Date: Wed, 11 Jan 2017 21:25:24 -0500
-Message-ID: <20170112022525.29217-2-lyude@redhat.com>
-References: <20170112022525.29217-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170112022525.29217-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Kilian Singer <kilian.singer-/lLeJlVvz8yS7RsuTa25K1cQS0uKqLhA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Lyude <lyude@redhat.com>
+Subject: [PATCH v2 1/2] drm/nouveau: Don't enabling polling twice on runtime resume
+Date: Wed, 11 Jan 2017 21:25:23 -0500
+Message-ID: <20170112022525.29217-1-lyude@redhat.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: Lyude <lyude@redhat.com>, Hans de Goede <hdegoede@redhat.com>, Kilian Singer <kilian.singer@quantumtechnology.info>, Lukas Wunner <lukas@wunner.de>, David Airlie <airlied@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-UmVzdW1pbmcgZnJvbSBSUE0gY2FuIGhhcHBlbiB3aGlsZSBhbHJlYWR5IGhvbGRpbmcKZGV2LT5t
-b2RlX2NvbmZpZy5tdXRleC4gVGhpcyBtZWFucyB3ZSBjYW4ndCBhY3R1YWxseSBoYW5kbGUgZmJj
-b24gaW4KYW55IFJQTSByZXN1bWUgd29ya2Vycywgc2luY2UgcmVzdG9yaW5nIGZiY29uIHJlcXVp
-cmVzIGdyYWJiaW5nCmRldi0+bW9kZV9jb25maWcubXV0ZXggYWdhaW4uIFNvIG1vdmUgdGhlIGZi
-Y29uIHN1c3BlbmQvcmVzdW1lIGNvZGUgaW50bwppdCdzIG93biB3b3JrZXIsIGFuZCByZWx5IG9u
-IHRoYXQgaW5zdGVhZCB0byBhdm9pZCBkZWFkbG9ja2luZy4KClRoaXMgZml4ZXMgbW9yZSBkZWFk
-bG9ja3MgZm9yIHJ1bnRpbWUgc3VzcGVuZGluZyB0aGUgR1BVIG9uIHRoZSBUaGlua1BhZApXNTQx
-LiBSZXByb2R1Y3Rpb24gcmVjaXBlOgoKIC0gR2V0IGEgbWFjaGluZSB3aXRoIGJvdGggb3B0aW11
-cyBhbmQgYSBudmlkaWEgY2FyZCB3aXRoIGNvbm5lY3RvcnMKICAgYXR0YWNoZWQgdG8gaXQKIC0g
-V2FpdCBmb3IgdGhlIG52aWRpYSBHUFUgdG8gc3VzcGVuZAogLSBBdHRlbXB0IHRvIG1hbnVhbGx5
-IHJlcHJvYmUgYW55IG9mIHRoZSBjb25uZWN0b3JzIG9uIHRoZSBudmlkaWEgR1BVCiAgIHVzaW5n
-IHN5c2ZzCiAtICpkZWFkbG9jayoKClNpZ25lZC1vZmYtYnk6IEx5dWRlIDxseXVkZUByZWRoYXQu
-Y29tPgpDYzogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KQ2M6IEtpbGlhbiBT
-aW5nZXIgPGtpbGlhbi5zaW5nZXJAcXVhbnR1bXRlY2hub2xvZ3kuaW5mbz4KQ2M6IEx1a2FzIFd1
-bm5lciA8bHVrYXNAd3VubmVyLmRlPgpDYzogRGF2aWQgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5j
-b20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaCAgIHwgIDIgKysK
-IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYyB8IDQzICsrKysrKysrKysr
-KysrKysrKysrKysrKysrLS0tLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCAzNiBpbnNlcnRpb25zKCsp
-LCA5IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
-dXZlYXVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCmluZGV4
-IDhkNWVkNWIuLjQyYzFmYTUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
-dXZlYXVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaApA
-QCAtMTY1LDYgKzE2NSw4IEBAIHN0cnVjdCBub3V2ZWF1X2RybSB7CiAJc3RydWN0IGJhY2tsaWdo
-dF9kZXZpY2UgKmJhY2tsaWdodDsKIAlzdHJ1Y3QgbGlzdF9oZWFkIGJsX2Nvbm5lY3RvcnM7CiAJ
-c3RydWN0IHdvcmtfc3RydWN0IGhwZF93b3JrOworCXN0cnVjdCB3b3JrX3N0cnVjdCBmYmNvbl93
-b3JrOworCWludCBmYmNvbl9uZXdfc3RhdGU7CiAjaWZkZWYgQ09ORklHX0FDUEkKIAlzdHJ1Y3Qg
-bm90aWZpZXJfYmxvY2sgYWNwaV9uYjsKICNlbmRpZgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9mYmNvbi5jCmluZGV4IDJmMmEzZGMuLjg3Y2QzMGIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9ub3V2ZWF1X2ZiY29uLmMKQEAgLTQ3MCwxOSArNDcwLDQzIEBAIHN0YXRpYyBjb25zdCBz
-dHJ1Y3QgZHJtX2ZiX2hlbHBlcl9mdW5jcyBub3V2ZWF1X2ZiY29uX2hlbHBlcl9mdW5jcyA9IHsK
-IAkuZmJfcHJvYmUgPSBub3V2ZWF1X2ZiY29uX2NyZWF0ZSwKIH07CiAKK3N0YXRpYyB2b2lkCitu
-b3V2ZWF1X2ZiY29uX3NldF9zdXNwZW5kX3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQor
-eworCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gY29udGFpbmVyX29mKHdvcmssIHR5cGVvZigq
-ZHJtKSwgZmJjb25fd29yayk7CisJaW50IHN0YXRlID0gZHJtLT5mYmNvbl9uZXdfc3RhdGU7CisK
-KwlpZiAoc3RhdGUgPT0gRkJJTkZPX1NUQVRFX1JVTk5JTkcpCisJCXBtX3J1bnRpbWVfZ2V0X3N5
-bmMoZHJtLT5kZXYtPmRldik7CisKKwljb25zb2xlX2xvY2soKTsKKwlpZiAoc3RhdGUgPT0gRkJJ
-TkZPX1NUQVRFX1JVTk5JTkcpCisJCW5vdXZlYXVfZmJjb25fYWNjZWxfcmVzdG9yZShkcm0tPmRl
-dik7CisJZHJtX2ZiX2hlbHBlcl9zZXRfc3VzcGVuZCgmZHJtLT5mYmNvbi0+aGVscGVyLCBzdGF0
-ZSk7CisJaWYgKHN0YXRlICE9IEZCSU5GT19TVEFURV9SVU5OSU5HKQorCQlub3V2ZWF1X2ZiY29u
-X2FjY2VsX3NhdmVfZGlzYWJsZShkcm0tPmRldik7CisJY29uc29sZV91bmxvY2soKTsKKworCWlm
-IChzdGF0ZSA9PSBGQklORk9fU1RBVEVfUlVOTklORykgeworCQlwbV9ydW50aW1lX21hcmtfbGFz
-dF9idXN5KGRybS0+ZGV2LT5kZXYpOworCQlwbV9ydW50aW1lX3B1dF9zeW5jKGRybS0+ZGV2LT5k
-ZXYpOworCX0KK30KKwogdm9pZAogbm91dmVhdV9mYmNvbl9zZXRfc3VzcGVuZChzdHJ1Y3QgZHJt
-X2RldmljZSAqZGV2LCBpbnQgc3RhdGUpCiB7CiAJc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBu
-b3V2ZWF1X2RybShkZXYpOwotCWlmIChkcm0tPmZiY29uKSB7Ci0JCWNvbnNvbGVfbG9jaygpOwot
-CQlpZiAoc3RhdGUgPT0gRkJJTkZPX1NUQVRFX1JVTk5JTkcpCi0JCQlub3V2ZWF1X2ZiY29uX2Fj
-Y2VsX3Jlc3RvcmUoZGV2KTsKLQkJZHJtX2ZiX2hlbHBlcl9zZXRfc3VzcGVuZCgmZHJtLT5mYmNv
-bi0+aGVscGVyLCBzdGF0ZSk7Ci0JCWlmIChzdGF0ZSAhPSBGQklORk9fU1RBVEVfUlVOTklORykK
-LQkJCW5vdXZlYXVfZmJjb25fYWNjZWxfc2F2ZV9kaXNhYmxlKGRldik7Ci0JCWNvbnNvbGVfdW5s
-b2NrKCk7Ci0JfQorCisJaWYgKCFkcm0tPmZiY29uKQorCQlyZXR1cm47CisKKwlkcm0tPmZiY29u
-X25ld19zdGF0ZSA9IHN0YXRlOworCS8qIFNpbmNlIHJ1bnRpbWUgcmVzdW1lIGNhbiBoYXBwZW4g
-YXMgYSByZXN1bHQgb2YgYSBzeXNmcyBvcGVyYXRpb24sCisJICogaXQncyBwb3NzaWJsZSB3ZSBh
-bHJlYWR5IGhhdmUgdGhlIGNvbnNvbGUgbG9ja2VkLiBTbyBoYW5kbGUgZmJjb24KKwkgKiBpbml0
-L2RlaW5pdCBmcm9tIGEgc2VwZXJhdGUgd29yayB0aHJlYWQKKwkgKi8KKwlzY2hlZHVsZV93b3Jr
-KCZkcm0tPmZiY29uX3dvcmspOwogfQogCiBpbnQKQEAgLTUwMiw2ICs1MjYsNyBAQCBub3V2ZWF1
-X2ZiY29uX2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKIAkJcmV0dXJuIC1FTk9NRU07CiAK
-IAlkcm0tPmZiY29uID0gZmJjb247CisJSU5JVF9XT1JLKCZkcm0tPmZiY29uX3dvcmssIG5vdXZl
-YXVfZmJjb25fc2V0X3N1c3BlbmRfd29yayk7CiAKIAlkcm1fZmJfaGVscGVyX3ByZXBhcmUoZGV2
-LCAmZmJjb24tPmhlbHBlciwgJm5vdXZlYXVfZmJjb25faGVscGVyX2Z1bmNzKTsKIAotLSAKMi45
-LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+As it turns out, on cards that actually have CRTCs on them we're already
+calling drm_kms_helper_poll_enable(drm_dev) from
+nouveau_display_resume() before we call it in
+nouveau_pmops_runtime_resume(). This leads us to accidentally trying to
+enable polling twice, which results in a potential deadlock between the
+RPM locks and drm_dev->mode_config.mutex if we end up trying to enable
+polling the second time while output_poll_execute is running and holding
+the mode_config lock. As such, make sure we only enable polling in
+nouveau_pmops_runtime_resume() if we need to.
+
+This fixes hangs observed on the ThinkPad W541
+
+Signed-off-by: Lyude <lyude@redhat.com>
+Cc: Hans de Goede <hdegoede@redhat.com>
+Cc: Kilian Singer <kilian.singer@quantumtechnology.info>
+Cc: Lukas Wunner <lukas@wunner.de>
+Cc: David Airlie <airlied@redhat.com>
+---
+Changes since v1:
+ - Rebase to work with master
+
+ drivers/gpu/drm/nouveau/nouveau_display.c | 3 ++-
+ drivers/gpu/drm/nouveau/nouveau_drm.c     | 5 ++++-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index cef08da..6a15776 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -411,7 +411,8 @@ nouveau_display_init(struct drm_device *dev)
+ 		return ret;
+ 
+ 	/* enable polling for external displays */
+-	drm_kms_helper_poll_enable(dev);
++	if (!dev->mode_config.poll_enabled)
++		drm_kms_helper_poll_enable(dev);
+ 
+ 	/* enable hotplug interrupts */
+ 	list_for_each_entry(connector, &dev->mode_config.connector_list, head) {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 59348fc..bc85a45 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -773,7 +773,10 @@ nouveau_pmops_runtime_resume(struct device *dev)
+ 	pci_set_master(pdev);
+ 
+ 	ret = nouveau_do_resume(drm_dev, true);
+-	drm_kms_helper_poll_enable(drm_dev);
++
++	if (!drm_dev->mode_config.poll_enabled)
++		drm_kms_helper_poll_enable(drm_dev);
++
+ 	/* do magic */
+ 	nvif_mask(&device->object, 0x088488, (1 << 25), (1 << 25));
+ 	vga_switcheroo_set_dynamic_switch(pdev, VGA_SWITCHEROO_ON);
+-- 
+2.9.3
