@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92136] WebGL Conformance
- conformance/textures/texture-size-limit.html -> system freeze
-Date: Thu, 12 Jan 2017 22:47:23 +0000
-Message-ID: <bug-92136-8800-IHIhoNfhVj@http.bugs.freedesktop.org/>
-References: <bug-92136-8800@http.bugs.freedesktop.org/>
+From: "George Spelvin" <linux-+7tBnqSOmQ59SlIZoIAWRdHuzzzSOjJt@public.gmane.org>
+Subject: nouveau_drm.c: undefined reference to `nouveau_led_init'
+Date: 12 Jan 2017 02:55:46 -0500
+Message-ID: <20170112075546.29927.qmail@ns.sciencehorizons.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0801410241=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92136-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,108 +15,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: linux-+7tBnqSOmQ59SlIZoIAWRdHuzzzSOjJt@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0801410241==
-Content-Type: multipart/alternative; boundary="14842612430.198799.23449";
- charset="UTF-8"
-
-
---14842612430.198799.23449
-Date: Thu, 12 Jan 2017 22:47:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92136
-
---- Comment #1 from Luke <lukebenes-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-Still hard locking system(no Magic SysRq reboot) on 13.0 with Arch
-
-$ uname -a
-Linux arch 4.8.13-1-ARCH #1 SMP PREEMPT Fri Dec 9 07:24:34 CET 2016 x86_64
-GNU/Linux
-
-$ glxinfo |grep -i opengl
-OpenGL vendor string: nouveau
-OpenGL renderer string: Gallium 0.4 on NVE7
-OpenGL core profile version string: 4.3 (Core Profile) Mesa 13.0.3
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14842612430.198799.23449
-Date: Thu, 12 Jan 2017 22:47:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - WebGL Conformance conformance/textures/texture-size-limit=
-.html -&gt; system freeze"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92136#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - WebGL Conformance conformance/textures/texture-size-limit=
-.html -&gt; system freeze"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92136">bug 92136<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lukebenes&#64;hotmail.com" title=3D"Luke &lt;lukebenes&#64;hotmail.com&gt;"=
-> <span class=3D"fn">Luke</span></a>
-</span></b>
-        <pre>Still hard locking system(no Magic SysRq reboot) on 13.0 with =
-Arch
-
-$ uname -a
-Linux arch 4.8.13-1-ARCH #1 SMP PREEMPT Fri Dec 9 07:24:34 CET 2016 x86_64
-GNU/Linux
-
-$ glxinfo |grep -i opengl
-OpenGL vendor string: nouveau
-OpenGL renderer string: Gallium 0.4 on NVE7
-OpenGL core profile version string: 4.3 (Core Profile) Mesa 13.0.3</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14842612430.198799.23449--
-
---===============0801410241==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0801410241==--
+SWYgQ09ORklHX0RSTV9OT1VWRUFVPXkgYW5kIENPTkZJR19MRURTX0NMQVNTPW0sIHRoZW4gbm91
+dmVhdV9sZWQubyBpcwpuZWl0aGVyIHN0dWJiZWQgb3V0IG5vciBjb21waWxlZCBpbiBhbmQgdGhl
+IGNvbXBpbGUgZmFpbHMgd2l0aCB1bmRlZmluZWQKc3ltYm9scyBpbiBub3V2ZWF1X2RybS5jLgoK
+SSdtIGd1ZXNzaW5nIGl0J3MgY29tbWl0IDhkMDIxZDcxYjMyNC4gIChUaGFua3MgZm9yIHRoZSBj
+b29sIGhhY2ssIEJUVywKZXZlbiBpZiBJIGRvbid0IGhhdmUgc3VjaCBhIGNhcmQgYW5kIGFtIGNv
+bXBsYWluaW5nIGFib3V0IHRoZSBwYXRjaC4pCgpXb3JrZWQgYXJvdW5kIGJ5IHNldHRpbmcgQ09O
+RklHX05FV19MRURTPW4gKGl0IGhhZCBiZWVuIGZvcmNlZCBvbiBieQpDT05GSUdfSElEX1dBQ09N
+PW0sIGJ1dCBJIGRvbid0IGhhdmUgYSBXYWNvbSB0YWJsZXQpIGFuZCByZWNvbXBpbGluZy4KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
