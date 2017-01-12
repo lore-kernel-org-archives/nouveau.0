@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99373] New: Kernel crash when visiting website with
+Subject: [Bug 99373] Kernel crash when visiting website with
 	Epiphany
-Date: Thu, 12 Jan 2017 01:11:31 +0000
-Message-ID: <bug-99373-8800@http.bugs.freedesktop.org/>
+Date: Thu, 12 Jan 2017 01:57:47 +0000
+Message-ID: <bug-99373-8800-KOo2h3WUVK@http.bugs.freedesktop.org/>
+References: <bug-99373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1316525267=="
+Content-Type: multipart/mixed; boundary="===============1283127959=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1316525267==
-Content-Type: multipart/alternative; boundary="14841834910.ACd9A.2308";
+--===============1283127959==
+Content-Type: multipart/alternative; boundary="14841862671.ACdD5e0.4628";
  charset="UTF-8"
 
 
---14841834910.ACd9A.2308
-Date: Thu, 12 Jan 2017 01:11:31 +0000
+--14841862671.ACdD5e0.4628
+Date: Thu, 12 Jan 2017 01:57:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,47 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99373
 
-            Bug ID: 99373
-           Summary: Kernel crash when visiting website with Epiphany
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: rosenp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 128908
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128908&action=3Dedit
-log
-
-Hardware - CLEVO P870M - GTX 980 (not the M but the regular one).
-
-OS - Fedora 25.
-
-Need to get Epiphany and go to https://www.google.com/chrome . There's some
-weird interaction between WebKit, Mesa, and the kernel driver that causes t=
-he
-crash.
-
-Cannot reproduce with Chrome or Firefox. Wayland or Xorg does not matter.
-
-Kernel is 4.8.15. Epiphany is 3.22.4-1. Small log from the journal is attac=
-hed.
-The neighboring stuff shows nothing useful.
-
-Oh also after the crash, system is completely unresponsive.
+--- Comment #1 from rosenp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 128909
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128909&action=3Dedit
+second log. more verbose
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14841834910.ACd9A.2308
-Date: Thu, 12 Jan 2017 01:11:31 +0000
+--14841862671.ACdD5e0.4628
+Date: Thu, 12 Jan 2017 01:57:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -85,112 +57,28 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel crash when visiting website with Epiphany"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99373">99373</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Kernel crash when visiting website with Epiphany
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>rosenp&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128908=
-" name=3D"attach_128908" title=3D"log">attachment 128908</a> <a href=3D"att=
-achment.cgi?id=3D128908&amp;action=3Dedit" title=3D"log">[details]</a></spa=
-n>
-log
-
-Hardware - CLEVO P870M - GTX 980 (not the M but the regular one).
-
-OS - Fedora 25.
-
-Need to get Epiphany and go to <a href=3D"https://www.google.com/chrome">ht=
-tps://www.google.com/chrome</a> . There's some
-weird interaction between WebKit, Mesa, and the kernel driver that causes t=
-he
-crash.
-
-Cannot reproduce with Chrome or Firefox. Wayland or Xorg does not matter.
-
-Kernel is 4.8.15. Epiphany is 3.22.4-1. Small log from the journal is attac=
-hed.
-The neighboring stuff shows nothing useful.
-
-Oh also after the crash, system is completely unresponsive.</pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel crash when visiting website with Epiphany"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99373#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel crash when visiting website with Epiphany"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99373">bug 99373<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+rosenp&#64;gmail.com" title=3D"rosenp&#64;gmail.com">rosenp&#64;gmail.com</=
+a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128909=
+" name=3D"attach_128909" title=3D"second log. more verbose">attachment 1289=
+09</a> <a href=3D"attachment.cgi?id=3D128909&amp;action=3Dedit" title=3D"se=
+cond log. more verbose">[details]</a></span>
+second log. more verbose</pre>
         </div>
       </p>
 
@@ -204,9 +92,9 @@ Oh also after the crash, system is completely unresponsive.</pre>
     </body>
 </html>=
 
---14841834910.ACd9A.2308--
+--14841862671.ACdD5e0.4628--
 
---===============1316525267==
+--===============1283127959==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -216,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1316525267==--
+--===============1283127959==--
