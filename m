@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99372] Nvidia 640M devinit fails
-Date: Thu, 12 Jan 2017 00:42:59 +0000
-Message-ID: <bug-99372-8800-aJZBnngKmW@http.bugs.freedesktop.org/>
-References: <bug-99372-8800@http.bugs.freedesktop.org/>
+From: Marcos Paulo de Souza <marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Erros and warning using kernel 4.10-rc2
+Date: Wed, 11 Jan 2017 22:57:32 -0200
+Message-ID: <20170112005731.GB2816@xfiles>
+References: <20170108182252.GA5422@xfiles>
+ <CAEXux-ZCRnE1gfBhBgVk_YLuLWxPL46nzR13G4Nj2Cwz9-eB0A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2038418833=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99372-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAEXux-ZCRnE1gfBhBgVk_YLuLWxPL46nzR13G4Nj2Cwz9-eB0A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,100 +19,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2038418833==
-Content-Type: multipart/alternative; boundary="14841817782.B98C.1369";
- charset="UTF-8"
-
-
---14841817782.B98C.1369
-Date: Thu, 12 Jan 2017 00:42:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99372
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Looking through the code, the checksum must be passing. This is surprising.
-
-(a) The returned data is not all 0's, e.g. the bios version is there, etc. =
-[All
-0's *would* pass the checksum test.]
-(b) The checksum fails for the first 0x1000 bytes being returned.
-
-Something even more nefarious must be going on...
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14841817782.B98C.1369
-Date: Thu, 12 Jan 2017 00:42:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia 640M devinit fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99372#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia 640M devinit fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99372">bug 99372<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Looking through the code, the checksum must be passing. This i=
-s surprising.
-
-(a) The returned data is not all 0's, e.g. the bios version is there, etc. =
-[All
-0's *would* pass the checksum test.]
-(b) The checksum fails for the first 0x1000 bytes being returned.
-
-Something even more nefarious must be going on...</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14841817782.B98C.1369--
-
---===============2038418833==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2038418833==--
+SGkgS2Fyb2wsCgpzb3JyeSBmb3IgdGhlIGRlbGF5LgoKT24gTW9uLCBKYW4gMDksIDIwMTcgYXQg
+MDk6NDk6MDBBTSArMDEwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+IGNvdWxkIHlvdSBncmFiIHRo
+ZSB2YmlvcyBmcm9tIC9zeXMva2VybmVsL2RlYnVnL2RyaS8xL3ZiaW9zLnJvbSBhbmQKPiBtYXli
+ZSBhbHNvIGRvIGEgbW1pb3RyYWNlIHdpdGggdGhlIG52aWRpYSBkcml2ZXIgKHVzaW5nIGJ1bWJs
+ZWJlZSBvcgo+IHNlY29uZCBYIHNlcnZlciBieSBoYW5kIG9yIHNvKT8KCmhlcmUgaXMgbXkgdmJp
+b3MgZmlsZToKaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MEJfLWpDTUpTeFVxQk1Y
+Wm9ibGRpWTJ4SVYwMAoKYWJvdXQgdGhlIGxhdGVyLCBJIG5lZWQgdG8gY2hlY2sgaG93IHRvIGRv
+IGl0LCBzaW5jZSBJIGRvbid0IGhhdmUgYW55IGV4cGVyaWVuY2UgdXNpbmcgYnVtYmxlYmVlIGFu
+ZC9vciBkaWZmZXJlbnQgWCBjb25maWdzLi4KCkJ1dCBJIGNhbiBjaGVjayBob3cgdG8gZG8gaXQg
+aW4gdGhlIG5leHQgZmV3IGRheXMuIEhvcGUgdGhpcyBjYW4gaGVscCB0byBzb2x2ZSB0aGVzZSBp
+c3N1ZXMhCgpUaGFua3MsCgo+IAo+IHRoYW5rcwo+IAo+IDIwMTctMDEtMDggMTk6MjIgR01UKzAx
+OjAwIE1hcmNvcyBQYXVsbyBkZSBTb3V6YSA8bWFyY29zLnNvdXphLm9yZ0BnbWFpbC5jb20+Ogo+
+ID4gSGkgZ3V5cywKPiA+Cj4gPiBJIGRvbid0IGtub3cgaWYgaXQgaXMgdXNlZnVsIHRvIGp1c3Qg
+cG9zdCBzb21lIHJhbmRvbSBrZXJuZWwgd2FybmluZ3MvZXJyb3JzLCBidXQgaGVyZSB0aGV5IGFy
+ZToKPiA+Cj4gPiBbbWFyY29zQHhmaWxlcyB+XSQgam91cm5hbGN0bCAtYiAtcCAzIHwgZ3JlcCBu
+b3V2ZWF1Cj4gPiBKYW4gMDggMTU6Mzc6MDUgeGZpbGVzIGtlcm5lbDogbm91dmVhdSAwMDAwOjA0
+OjAwLjA6IHZvbHQ6IGNvdWxkbid0IGZpbmQgc3BlZWRvIHZhbHVlLCB2b2x0aW5nIG5vdCBwb3Nz
+aWJsZQo+ID4gSmFuIDA4IDE1OjM3OjA1IHhmaWxlcyBrZXJuZWw6IG5vdXZlYXUgMDAwMDowNDow
+MC4wOiBidXM6IE1NSU8gd3JpdGUgb2YgZmZmZjk4MWYgRkFVTFQgYXQgNjAxM2Q0IFsgSUJVUyBd
+Cj4gPiBKYW4gMDggMTU6Mzc6MDUgeGZpbGVzIGtlcm5lbDogbm91dmVhdSAwMDAwOjA0OjAwLjA6
+IERSTTogUG9pbnRlciB0byBUTURTIHRhYmxlIGludmFsaWQKPiA+IEphbiAwOCAxNTozNzowNSB4
+ZmlsZXMga2VybmVsOiBub3V2ZWF1IDAwMDA6MDQ6MDAuMDogRFJNOiBQb2ludGVyIHRvIGZsYXQg
+cGFuZWwgdGFibGUgaW52YWxpZAo+ID4KPiA+IEluIHRoaXMgZmlyc3QgY2FzZSwgdGhpcyBtZXNz
+YWdlIGNvbWVzIGZyb20gbnZrbS9zdWJkZXYvdm9sdC9nZjEwMC5jLCBhbmQgSSBoYXZlbid0IHNl
+ZW4gdGhpcyBtZXNzYWdlIGluIDQuOCBmb3IgZXhhbXBsZSAodXNpbmcgZmVkb3JhIDI1IGtlcm5l
+bCBhdCBsZWFzdCkKPiA+Cj4gPiBUaGUgc2Vjb25kIG9uZSBhbHJlYWR5IGFwcGVhcnMgb24gNC44
+IGFzIHdlbGwsIGFuZCBJIHRoaW5rIGl0IGFwcGVhcnMgaW4gZnVuY3Rpb24gZ2YxMDBfYnVzX2lu
+dHIgb2YgbnZrbS9zdWJkZXYvYnVzL2dmMTAwLmMKPiA+Cj4gPiBBbmQgb3RoZXIgdHdvIG9uZXMg
+YXJlIGFscmVhZHkgYXBwZWFyaW5nIGluIGluIG15IGxhcHRvcCBmb3IgcXVpdGUgc29tZSB0aW1l
+IGFsc28sIGFuZCB0aGV5IGNhbWUgZnJvbSBub3V2ZWF1X2Jpb3MuYy4KPiA+Cj4gPiBUaGlzIGlz
+IG15IG52aWRpYSBib2FyZDoKPiA+IDA0OjAwLjAgM0QgY29udHJvbGxlcjogTlZJRElBIENvcnBv
+cmF0aW9uIEdGMTE3TSBbR2VGb3JjZSA2MTBNLzcxME0vODEwTS84MjBNIC8gR1QgNjIwTS82MjVN
+LzYzME0vNzIwTV0gKHJldiBhMSkKPiA+ICAgICAgICAgU3Vic3lzdGVtOiBBU1VTVGVLIENvbXB1
+dGVyIEluYy4gR2VGb3JjZSBHVCA3MjBNCj4gPiAgICAgICAgIENvbnRyb2w6IEkvTysgTWVtKyBC
+dXNNYXN0ZXIrIFNwZWNDeWNsZS0gTWVtV0lOVi0gVkdBU25vb3AtIFBhckVyci0gU3RlcHBpbmct
+IFNFUlItIEZhc3RCMkItIERpc0lOVHgrCj4gPiAgICAgICAgIFN0YXR1czogQ2FwKyA2Nk1Iei0g
+VURGLSBGYXN0QjJCLSBQYXJFcnItIERFVlNFTD1mYXN0ID5UQWJvcnQtIDxUQWJvcnQtIDxNQWJv
+cnQtID5TRVJSLSA8UEVSUi0gSU5UeC0KPiA+ICAgICAgICAgTGF0ZW5jeTogMCwgQ2FjaGUgTGlu
+ZSBTaXplOiA2NCBieXRlcwo+ID4gICAgICAgICBJbnRlcnJ1cHQ6IHBpbiBBIHJvdXRlZCB0byBJ
+UlEgNDMKPiA+ICAgICAgICAgUmVnaW9uIDA6IE1lbW9yeSBhdCBmNjAwMDAwMCAoMzItYml0LCBu
+b24tcHJlZmV0Y2hhYmxlKSBbc2l6ZT0xNk1dCj4gPiAgICAgICAgIFJlZ2lvbiAxOiBNZW1vcnkg
+YXQgZTAwMDAwMDAgKDY0LWJpdCwgcHJlZmV0Y2hhYmxlKSBbc2l6ZT0yNTZNXQo+ID4gICAgICAg
+ICBSZWdpb24gMzogTWVtb3J5IGF0IGYwMDAwMDAwICg2NC1iaXQsIHByZWZldGNoYWJsZSkgW3Np
+emU9MzJNXQo+ID4gICAgICAgICBSZWdpb24gNTogSS9PIHBvcnRzIGF0IGQwMDAgW3NpemU9MTI4
+XQo+ID4gICAgICAgICBFeHBhbnNpb24gUk9NIGF0IGY3MDAwMDAwIFtkaXNhYmxlZF0gW3NpemU9
+NTEyS10KPiA+ICAgICAgICAgQ2FwYWJpbGl0aWVzOiBbNjBdIFBvd2VyIE1hbmFnZW1lbnQgdmVy
+c2lvbiAzCj4gPiAgICAgICAgICAgICAgICAgRmxhZ3M6IFBNRUNsay0gRFNJLSBEMS0gRDItIEF1
+eEN1cnJlbnQ9MG1BIFBNRShEMC0sRDEtLEQyLSxEM2hvdC0sRDNjb2xkLSkKPiA+ICAgICAgICAg
+ICAgICAgICBTdGF0dXM6IEQwIE5vU29mdFJzdCsgUE1FLUVuYWJsZS0gRFNlbD0wIERTY2FsZT0w
+IFBNRS0KPiA+ICAgICAgICAgQ2FwYWJpbGl0aWVzOiBbNjhdIE1TSTogRW5hYmxlKyBDb3VudD0x
+LzEgTWFza2FibGUtIDY0Yml0Kwo+ID4gICAgICAgICAgICAgICAgIEFkZHJlc3M6IDAwMDAwMDAw
+ZmVlMGYwMGMgIERhdGE6IDQxZDEKPiA+ICAgICAgICAgQ2FwYWJpbGl0aWVzOiBbNzhdIEV4cHJl
+c3MgKHYyKSBFbmRwb2ludCwgTVNJIDAwCj4gPiAgICAgICAgICAgICAgICAgRGV2Q2FwOiBNYXhQ
+YXlsb2FkIDI1NiBieXRlcywgUGhhbnRGdW5jIDAsIExhdGVuY3kgTDBzIHVubGltaXRlZCwgTDEg
+PDY0dXMKPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIEV4dFRhZysgQXR0bkJ0bi0gQXR0bklu
+ZC0gUHdySW5kLSBSQkUrIEZMUmVzZXQtIFNsb3RQb3dlckxpbWl0IDI1LjAwMFcKPiA+ICAgICAg
+ICAgICAgICAgICBEZXZDdGw6IFJlcG9ydCBlcnJvcnM6IENvcnJlY3RhYmxlLSBOb24tRmF0YWwt
+IEZhdGFsLSBVbnN1cHBvcnRlZC0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIFJseGRPcmQt
+IEV4dFRhZysgUGhhbnRGdW5jLSBBdXhQd3ItIE5vU25vb3ArCj4gPiAgICAgICAgICAgICAgICAg
+ICAgICAgICBNYXhQYXlsb2FkIDEyOCBieXRlcywgTWF4UmVhZFJlcSA1MTIgYnl0ZXMKPiA+ICAg
+ICAgICAgICAgICAgICBEZXZTdGE6IENvcnJFcnItIFVuY29yckVyci0gRmF0YWxFcnItIFVuc3Vw
+cFJlcS0gQXV4UHdyLSBUcmFuc1BlbmQtCj4gPiAgICAgICAgICAgICAgICAgTG5rQ2FwOiBQb3J0
+ICMwLCBTcGVlZCAyLjVHVC9zLCBXaWR0aCB4OCwgQVNQTSBMMHMgTDEsIEV4aXQgTGF0ZW5jeSBM
+MHMgPDUxMm5zLCBMMSA8NHVzCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICBDbG9ja1BNKyBT
+dXJwcmlzZS0gTExBY3RSZXAtIEJ3Tm90LSBBU1BNT3B0Q29tcCsKPiA+ICAgICAgICAgICAgICAg
+ICBMbmtDdGw6IEFTUE0gTDBzIEVuYWJsZWQ7IFJDQiA2NCBieXRlcyBEaXNhYmxlZC0gQ29tbUNs
+aysKPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIEV4dFN5bmNoLSBDbG9ja1BNKyBBdXRXaWRE
+aXMtIEJXSW50LSBBdXRCV0ludC0KPiA+ICAgICAgICAgICAgICAgICBMbmtTdGE6IFNwZWVkIDIu
+NUdUL3MsIFdpZHRoIHg0LCBUckVyci0gVHJhaW4tIFNsb3RDbGsrIERMQWN0aXZlLSBCV01nbXQt
+IEFCV01nbXQtCj4gPiAgICAgICAgICAgICAgICAgRGV2Q2FwMjogQ29tcGxldGlvbiBUaW1lb3V0
+OiBSYW5nZSBBQiwgVGltZW91dERpcyssIExUUi0sIE9CRkYgTm90IFN1cHBvcnRlZAo+ID4gICAg
+ICAgICAgICAgICAgIERldkN0bDI6IENvbXBsZXRpb24gVGltZW91dDogNTB1cyB0byA1MG1zLCBU
+aW1lb3V0RGlzLSwgTFRSLSwgT0JGRiBEaXNhYmxlZAo+ID4gICAgICAgICAgICAgICAgIExua0N0
+bDI6IFRhcmdldCBMaW5rIFNwZWVkOiAyLjVHVC9zLCBFbnRlckNvbXBsaWFuY2UtIFNwZWVkRGlz
+LQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgIFRyYW5zbWl0IE1hcmdpbjogTm9ybWFsIE9w
+ZXJhdGluZyBSYW5nZSwgRW50ZXJNb2RpZmllZENvbXBsaWFuY2UtIENvbXBsaWFuY2VTT1MtCj4g
+PiAgICAgICAgICAgICAgICAgICAgICAgICAgQ29tcGxpYW5jZSBEZS1lbXBoYXNpczogLTZkQgo+
+ID4gICAgICAgICAgICAgICAgIExua1N0YTI6IEN1cnJlbnQgRGUtZW1waGFzaXMgTGV2ZWw6IC02
+ZEIsIEVxdWFsaXphdGlvbkNvbXBsZXRlLSwgRXF1YWxpemF0aW9uUGhhc2UxLQo+ID4gICAgICAg
+ICAgICAgICAgICAgICAgICAgIEVxdWFsaXphdGlvblBoYXNlMi0sIEVxdWFsaXphdGlvblBoYXNl
+My0sIExpbmtFcXVhbGl6YXRpb25SZXF1ZXN0LQo+ID4gICAgICAgICBDYXBhYmlsaXRpZXM6IFti
+NF0gVmVuZG9yIFNwZWNpZmljIEluZm9ybWF0aW9uOiBMZW49MTQgPD8+Cj4gPiAgICAgICAgIEtl
+cm5lbCBkcml2ZXIgaW4gdXNlOiBub3V2ZWF1Cj4gPiAgICAgICAgIEtlcm5lbCBtb2R1bGVzOiBu
+b3V2ZWF1Cj4gPgo+ID4gUGxlYXNlLCBsZXQgbWUga25vdyBpZiB0aGlzIGluZm9ybWF0aW9uIGlz
+IHVzZWZ1bCBhbmQvb3IgeW91IG5lZWQgbW9yZSB0ZXN0cyBvciBkaWZmZXJlbnQgY29uZmlnIHRv
+IHNvbHZlIHRoZXNlIG9uZXMuCj4gPgo+ID4gVGhhbmtzIQo+ID4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4g
+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
