@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99373] Kernel crash when visiting website with
-	Epiphany
-Date: Thu, 12 Jan 2017 01:57:47 +0000
-Message-ID: <bug-99373-8800-KOo2h3WUVK@http.bugs.freedesktop.org/>
-References: <bug-99373-8800@http.bugs.freedesktop.org/>
+From: Lyude <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 2/2] drm/nouveau: Handle fbcon suspend/resume in
+	seperate worker
+Date: Wed, 11 Jan 2017 21:25:24 -0500
+Message-ID: <20170112022525.29217-2-lyude@redhat.com>
+References: <20170112022525.29217-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1283127959=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20170112022525.29217-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,90 +19,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Kilian Singer <kilian.singer-/lLeJlVvz8yS7RsuTa25K1cQS0uKqLhA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1283127959==
-Content-Type: multipart/alternative; boundary="14841862671.ACdD5e0.4628";
- charset="UTF-8"
-
-
---14841862671.ACdD5e0.4628
-Date: Thu, 12 Jan 2017 01:57:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99373
-
---- Comment #1 from rosenp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 128909
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128909&action=3Dedit
-second log. more verbose
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14841862671.ACdD5e0.4628
-Date: Thu, 12 Jan 2017 01:57:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel crash when visiting website with Epiphany"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99373#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel crash when visiting website with Epiphany"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99373">bug 99373<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rosenp&#64;gmail.com" title=3D"rosenp&#64;gmail.com">rosenp&#64;gmail.com</=
-a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128909=
-" name=3D"attach_128909" title=3D"second log. more verbose">attachment 1289=
-09</a> <a href=3D"attachment.cgi?id=3D128909&amp;action=3Dedit" title=3D"se=
-cond log. more verbose">[details]</a></span>
-second log. more verbose</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14841862671.ACdD5e0.4628--
-
---===============1283127959==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1283127959==--
+UmVzdW1pbmcgZnJvbSBSUE0gY2FuIGhhcHBlbiB3aGlsZSBhbHJlYWR5IGhvbGRpbmcKZGV2LT5t
+b2RlX2NvbmZpZy5tdXRleC4gVGhpcyBtZWFucyB3ZSBjYW4ndCBhY3R1YWxseSBoYW5kbGUgZmJj
+b24gaW4KYW55IFJQTSByZXN1bWUgd29ya2Vycywgc2luY2UgcmVzdG9yaW5nIGZiY29uIHJlcXVp
+cmVzIGdyYWJiaW5nCmRldi0+bW9kZV9jb25maWcubXV0ZXggYWdhaW4uIFNvIG1vdmUgdGhlIGZi
+Y29uIHN1c3BlbmQvcmVzdW1lIGNvZGUgaW50bwppdCdzIG93biB3b3JrZXIsIGFuZCByZWx5IG9u
+IHRoYXQgaW5zdGVhZCB0byBhdm9pZCBkZWFkbG9ja2luZy4KClRoaXMgZml4ZXMgbW9yZSBkZWFk
+bG9ja3MgZm9yIHJ1bnRpbWUgc3VzcGVuZGluZyB0aGUgR1BVIG9uIHRoZSBUaGlua1BhZApXNTQx
+LiBSZXByb2R1Y3Rpb24gcmVjaXBlOgoKIC0gR2V0IGEgbWFjaGluZSB3aXRoIGJvdGggb3B0aW11
+cyBhbmQgYSBudmlkaWEgY2FyZCB3aXRoIGNvbm5lY3RvcnMKICAgYXR0YWNoZWQgdG8gaXQKIC0g
+V2FpdCBmb3IgdGhlIG52aWRpYSBHUFUgdG8gc3VzcGVuZAogLSBBdHRlbXB0IHRvIG1hbnVhbGx5
+IHJlcHJvYmUgYW55IG9mIHRoZSBjb25uZWN0b3JzIG9uIHRoZSBudmlkaWEgR1BVCiAgIHVzaW5n
+IHN5c2ZzCiAtICpkZWFkbG9jayoKClNpZ25lZC1vZmYtYnk6IEx5dWRlIDxseXVkZUByZWRoYXQu
+Y29tPgpDYzogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KQ2M6IEtpbGlhbiBT
+aW5nZXIgPGtpbGlhbi5zaW5nZXJAcXVhbnR1bXRlY2hub2xvZ3kuaW5mbz4KQ2M6IEx1a2FzIFd1
+bm5lciA8bHVrYXNAd3VubmVyLmRlPgpDYzogRGF2aWQgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5j
+b20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaCAgIHwgIDIgKysK
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYyB8IDQzICsrKysrKysrKysr
+KysrKysrKysrKysrKysrLS0tLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCAzNiBpbnNlcnRpb25zKCsp
+LCA5IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCmluZGV4
+IDhkNWVkNWIuLjQyYzFmYTUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaApA
+QCAtMTY1LDYgKzE2NSw4IEBAIHN0cnVjdCBub3V2ZWF1X2RybSB7CiAJc3RydWN0IGJhY2tsaWdo
+dF9kZXZpY2UgKmJhY2tsaWdodDsKIAlzdHJ1Y3QgbGlzdF9oZWFkIGJsX2Nvbm5lY3RvcnM7CiAJ
+c3RydWN0IHdvcmtfc3RydWN0IGhwZF93b3JrOworCXN0cnVjdCB3b3JrX3N0cnVjdCBmYmNvbl93
+b3JrOworCWludCBmYmNvbl9uZXdfc3RhdGU7CiAjaWZkZWYgQ09ORklHX0FDUEkKIAlzdHJ1Y3Qg
+bm90aWZpZXJfYmxvY2sgYWNwaV9uYjsKICNlbmRpZgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9mYmNvbi5jCmluZGV4IDJmMmEzZGMuLjg3Y2QzMGIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2ZiY29uLmMKQEAgLTQ3MCwxOSArNDcwLDQzIEBAIHN0YXRpYyBjb25zdCBz
+dHJ1Y3QgZHJtX2ZiX2hlbHBlcl9mdW5jcyBub3V2ZWF1X2ZiY29uX2hlbHBlcl9mdW5jcyA9IHsK
+IAkuZmJfcHJvYmUgPSBub3V2ZWF1X2ZiY29uX2NyZWF0ZSwKIH07CiAKK3N0YXRpYyB2b2lkCitu
+b3V2ZWF1X2ZiY29uX3NldF9zdXNwZW5kX3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQor
+eworCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gY29udGFpbmVyX29mKHdvcmssIHR5cGVvZigq
+ZHJtKSwgZmJjb25fd29yayk7CisJaW50IHN0YXRlID0gZHJtLT5mYmNvbl9uZXdfc3RhdGU7CisK
+KwlpZiAoc3RhdGUgPT0gRkJJTkZPX1NUQVRFX1JVTk5JTkcpCisJCXBtX3J1bnRpbWVfZ2V0X3N5
+bmMoZHJtLT5kZXYtPmRldik7CisKKwljb25zb2xlX2xvY2soKTsKKwlpZiAoc3RhdGUgPT0gRkJJ
+TkZPX1NUQVRFX1JVTk5JTkcpCisJCW5vdXZlYXVfZmJjb25fYWNjZWxfcmVzdG9yZShkcm0tPmRl
+dik7CisJZHJtX2ZiX2hlbHBlcl9zZXRfc3VzcGVuZCgmZHJtLT5mYmNvbi0+aGVscGVyLCBzdGF0
+ZSk7CisJaWYgKHN0YXRlICE9IEZCSU5GT19TVEFURV9SVU5OSU5HKQorCQlub3V2ZWF1X2ZiY29u
+X2FjY2VsX3NhdmVfZGlzYWJsZShkcm0tPmRldik7CisJY29uc29sZV91bmxvY2soKTsKKworCWlm
+IChzdGF0ZSA9PSBGQklORk9fU1RBVEVfUlVOTklORykgeworCQlwbV9ydW50aW1lX21hcmtfbGFz
+dF9idXN5KGRybS0+ZGV2LT5kZXYpOworCQlwbV9ydW50aW1lX3B1dF9zeW5jKGRybS0+ZGV2LT5k
+ZXYpOworCX0KK30KKwogdm9pZAogbm91dmVhdV9mYmNvbl9zZXRfc3VzcGVuZChzdHJ1Y3QgZHJt
+X2RldmljZSAqZGV2LCBpbnQgc3RhdGUpCiB7CiAJc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBu
+b3V2ZWF1X2RybShkZXYpOwotCWlmIChkcm0tPmZiY29uKSB7Ci0JCWNvbnNvbGVfbG9jaygpOwot
+CQlpZiAoc3RhdGUgPT0gRkJJTkZPX1NUQVRFX1JVTk5JTkcpCi0JCQlub3V2ZWF1X2ZiY29uX2Fj
+Y2VsX3Jlc3RvcmUoZGV2KTsKLQkJZHJtX2ZiX2hlbHBlcl9zZXRfc3VzcGVuZCgmZHJtLT5mYmNv
+bi0+aGVscGVyLCBzdGF0ZSk7Ci0JCWlmIChzdGF0ZSAhPSBGQklORk9fU1RBVEVfUlVOTklORykK
+LQkJCW5vdXZlYXVfZmJjb25fYWNjZWxfc2F2ZV9kaXNhYmxlKGRldik7Ci0JCWNvbnNvbGVfdW5s
+b2NrKCk7Ci0JfQorCisJaWYgKCFkcm0tPmZiY29uKQorCQlyZXR1cm47CisKKwlkcm0tPmZiY29u
+X25ld19zdGF0ZSA9IHN0YXRlOworCS8qIFNpbmNlIHJ1bnRpbWUgcmVzdW1lIGNhbiBoYXBwZW4g
+YXMgYSByZXN1bHQgb2YgYSBzeXNmcyBvcGVyYXRpb24sCisJICogaXQncyBwb3NzaWJsZSB3ZSBh
+bHJlYWR5IGhhdmUgdGhlIGNvbnNvbGUgbG9ja2VkLiBTbyBoYW5kbGUgZmJjb24KKwkgKiBpbml0
+L2RlaW5pdCBmcm9tIGEgc2VwZXJhdGUgd29yayB0aHJlYWQKKwkgKi8KKwlzY2hlZHVsZV93b3Jr
+KCZkcm0tPmZiY29uX3dvcmspOwogfQogCiBpbnQKQEAgLTUwMiw2ICs1MjYsNyBAQCBub3V2ZWF1
+X2ZiY29uX2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKIAkJcmV0dXJuIC1FTk9NRU07CiAK
+IAlkcm0tPmZiY29uID0gZmJjb247CisJSU5JVF9XT1JLKCZkcm0tPmZiY29uX3dvcmssIG5vdXZl
+YXVfZmJjb25fc2V0X3N1c3BlbmRfd29yayk7CiAKIAlkcm1fZmJfaGVscGVyX3ByZXBhcmUoZGV2
+LCAmZmJjb24tPmhlbHBlciwgJm5vdXZlYXVfZmJjb25faGVscGVyX2Z1bmNzKTsKIAotLSAKMi45
+LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
+YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
