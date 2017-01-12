@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99372] Nvidia 640M devinit fails
-Date: Wed, 11 Jan 2017 23:59:52 +0000
-Message-ID: <bug-99372-8800-WXun62LXgZ@http.bugs.freedesktop.org/>
+Date: Thu, 12 Jan 2017 00:00:57 +0000
+Message-ID: <bug-99372-8800-5dJ6F4mFiK@http.bugs.freedesktop.org/>
 References: <bug-99372-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1013531031=="
+Content-Type: multipart/mixed; boundary="===============1961539457=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99372-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1013531031==
-Content-Type: multipart/alternative; boundary="14841791921.A2A82.31613";
+--===============1961539457==
+Content-Type: multipart/alternative; boundary="14841792570.6Dc221fb.31614";
  charset="UTF-8"
 
 
---14841791921.A2A82.31613
-Date: Wed, 11 Jan 2017 23:59:52 +0000
+--14841792570.6Dc221fb.31614
+Date: Thu, 12 Jan 2017 00:00:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99372
 
---- Comment #4 from ralala <me-V++FmNMs79yAgvX28Wk5yQ@public.gmane.org> ---
-Created attachment 128906
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128906&action=3Dedit
-acpidump
+ralala <me-V++FmNMs79yAgvX28Wk5yQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #128905|0                           |1
+        is obsolete|                            |
+
+--- Comment #5 from ralala <me-V++FmNMs79yAgvX28Wk5yQ@public.gmane.org> ---
+Created attachment 128907
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128907&action=3Dedit
+dmesg.log
+
+4.10rc3
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14841791921.A2A82.31613
-Date: Wed, 11 Jan 2017 23:59:52 +0000
+--14841792570.6Dc221fb.31614
+Date: Thu, 12 Jan 2017 00:00:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,14 +65,39 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:me&#64;ma=
+rcel-sander.eu" title=3D"ralala &lt;me&#64;marcel-sander.eu&gt;"> <span cla=
+ss=3D"fn">ralala</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia 640M devinit fails"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99372">bug 99372<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #128905 is obsolete</=
+td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia 640M devinit fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99372#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99372#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia 640M devinit fails"
@@ -73,11 +107,13 @@ Auto-Submitted: auto-generated
 me&#64;marcel-sander.eu" title=3D"ralala &lt;me&#64;marcel-sander.eu&gt;"> =
 <span class=3D"fn">ralala</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128906=
-" name=3D"attach_128906" title=3D"acpidump">attachment 128906</a> <a href=
-=3D"attachment.cgi?id=3D128906&amp;action=3Dedit" title=3D"acpidump">[detai=
-ls]</a></span>
-acpidump</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128907=
+" name=3D"attach_128907" title=3D"dmesg.log">attachment 128907</a> <a href=
+=3D"attachment.cgi?id=3D128907&amp;action=3Dedit" title=3D"dmesg.log">[deta=
+ils]</a></span>
+dmesg.log
+
+4.10rc3</pre>
         </div>
       </p>
 
@@ -91,9 +127,9 @@ acpidump</pre>
     </body>
 </html>=
 
---14841791921.A2A82.31613--
+--14841792570.6Dc221fb.31614--
 
---===============1013531031==
+--===============1961539457==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +139,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1013531031==--
+--===============1961539457==--
