@@ -1,15 +1,12 @@
-From: Sylvain Fabre <sylvain-BlW8JBT9i25Wk0Htik3J/w@public.gmane.org>
-Subject: Re: GP106M+Intel Skylake,
-	Kernel 4.10-rc3 : No display on HDMI or DP
-Date: Fri, 13 Jan 2017 16:22:51 +0100
-Message-ID: <1641436.7mZAb6Mm85@talabheim>
-References: <14847143.mIQnB4xdEE@talabheim>
- <CAKb7UvhjNMwU9OkS7ORMKpMeyxsocBXNd8ne7SB-KzjxOqxnHw@mail.gmail.com>
- <4778435.xbuI4sO6bb@talabheim>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
+Date: Fri, 13 Jan 2017 18:47:36 +0000
+Message-ID: <bug-99400-8800-o83qcusQd4@http.bugs.freedesktop.org/>
+References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0284192137=="
+Content-Type: multipart/mixed; boundary="===============0327917786=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4778435.xbuI4sO6bb@talabheim>
+In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,125 +19,92 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
 
---===============0284192137==
-Content-Type: multipart/alternative; boundary="nextPart1572013.dShn1Rp65v"
-Content-Transfer-Encoding: 7Bit
+--===============0327917786==
+Content-Type: multipart/alternative; boundary="14843332550.AEEb3.26621";
+ charset="UTF-8"
 
-This is a multi-part message in MIME format.
 
---nextPart1572013.dShn1Rp65v
+--14843332550.AEEb3.26621
+Date: Fri, 13 Jan 2017 18:47:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-Le vendredi 13 janvier 2017 16:11:59 CET, vous avez =E9crit :
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
 
-In addition, i noticed the following  :=20
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Olivier Fourdan from comment #1)
+> apitrace of Xwayland available here:
+>=20
+> https://people.freedesktop.org/~ofourdan/xwayland-apitrace-bug-99400.bz2
 
-xrand --output HDMI-1 --auto
+How did you get this trace? I can't seem to replay it - none of the context
+setup stuff is there. (And it seems to like doing glFlush *a lot*...)
 
-show the following messages in the dmesg :=20
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
-24957.310638] nouveau 0000:01:00.0: DRM: resuming kernel object tree...=20
-[24957.310873] nouveau 0000:01:00.0: priv: HUB0: 00d054 00000007 (18408216)=
-=20
-[24957.369494] nouveau 0000:01:00.0: DRM: resuming client object trees...  =
-                                                                           =
-                                                                           =
-                   =20
-[24957.369497] nouveau 0000:01:00.0: DRM: resuming display...=20
-[24957.369558] nouveau 0000:01:00.0: DRM: resuming console...
+--14843332550.AEEb3.26621
+Date: Fri, 13 Jan 2017 18:47:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c6">Comment=
+ # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Olivier Fourdan from <a href=3D"show_bug.cgi?id=
+=3D99400#c1">comment #1</a>)
+<span class=3D"quote">&gt; apitrace of Xwayland available here:
+&gt;=20
+&gt; <a href=3D"https://people.freedesktop.org/~ofourdan/xwayland-apitrace-=
+bug-99400.bz2">https://people.freedesktop.org/~ofourdan/xwayland-apitrace-b=
+ug-99400.bz2</a></span >
 
-
---nextPart1572013.dShn1Rp65v
-Content-Transfer-Encoding: base64
-Content-Type: text/html; charset="iso-8859-1"
-
-PCFET0NUWVBFIEhUTUwgUFVCTElDICItLy9XM0MvL0RURCBIVE1MIDQuMC8vRU4iICJodHRwOi8v
-d3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwL3N0cmljdC5kdGQiPgo8aHRtbD48aGVhZD48bWV0YSBu
-YW1lPSJxcmljaHRleHQiIGNvbnRlbnQ9IjEiIC8+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4KcCwg
-bGkgeyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7IH0KPC9zdHlsZT48L2hlYWQ+PGJvZHkgc3R5bGU9
-IiBmb250LWZhbWlseTonTm90byBTYW5zJzsgZm9udC1zaXplOjEwcHQ7IGZvbnQtd2VpZ2h0OjQw
-MDsgZm9udC1zdHlsZTpub3JtYWw7Ij4KPHAgc3R5bGU9IiBtYXJnaW4tdG9wOjBweDsgbWFyZ2lu
-LWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2Nr
-LWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7IC1xdC11c2VyLXN0YXRlOjA7Ij5MZSB2ZW5kcmVk
-aSAxMyBqYW52aWVyIDIwMTcgMTY6MTE6NTkgQ0VULCB2b3VzIGF2ZXog6WNyaXQgOjwvcD4KPHAg
-c3R5bGU9Ii1xdC1wYXJhZ3JhcGgtdHlwZTplbXB0eTsgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1i
-b3R0b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7IC1xdC1ibG9jay1p
-bmRlbnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAiPiZuYnNwOzwvcD4KPHAgc3R5bGU9IiBtYXJnaW4t
-dG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0
-OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7IC1xdC11c2VyLXN0YXRl
-OjA7Ij5JbiBhZGRpdGlvbiwgaSBub3RpY2VkIHRoZSBmb2xsb3dpbmcgIDogPC9wPgo8cCBzdHls
-ZT0iLXF0LXBhcmFncmFwaC10eXBlOmVtcHR5OyBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRv
-bTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVu
-dDowOyB0ZXh0LWluZGVudDowcHg7ICI+Jm5ic3A7PC9wPgo8cCBzdHlsZT0iIG1hcmdpbi10b3A6
-MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4
-OyAtcXQtYmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50OjBweDsgLXF0LXVzZXItc3RhdGU6MDsi
-PnhyYW5kIC0tb3V0cHV0IEhETUktMSAtLWF1dG88L3A+CjxwIHN0eWxlPSItcXQtcGFyYWdyYXBo
-LXR5cGU6ZW1wdHk7IG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxl
-ZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQtYmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50
-OjBweDsgIj4mbmJzcDs8L3A+CjxwIHN0eWxlPSIgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0
-b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7IC1xdC1ibG9jay1pbmRl
-bnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAtcXQtdXNlci1zdGF0ZTowOyI+c2hvdyB0aGUgZm9sbG93
-aW5nIG1lc3NhZ2VzIGluIHRoZSBkbWVzZyA6IDwvcD4KPHAgc3R5bGU9Ii1xdC1wYXJhZ3JhcGgt
-dHlwZTplbXB0eTsgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4OyBtYXJnaW4tbGVm
-dDowcHg7IG1hcmdpbi1yaWdodDowcHg7IC1xdC1ibG9jay1pbmRlbnQ6MDsgdGV4dC1pbmRlbnQ6
-MHB4OyAiPiZuYnNwOzwvcD4KPHAgc3R5bGU9IiBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRv
-bTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVu
-dDowOyB0ZXh0LWluZGVudDowcHg7IC1xdC11c2VyLXN0YXRlOjA7Ij48c3BhbiBzdHlsZT0iIGZv
-bnQtZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xvcjojMThiMjE4OyBiYWNrZ3JvdW5kLWNvbG9yOiNm
-ZmZmZmY7Ij4yNDk1Ny4zMTA2MzhdIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidt
-b25vc3BhY2UnOyBjb2xvcjojYjI2ODE4OyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5ub3V2
-ZWF1IDAwMDA6MDE6MDAuMDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3Bh
-Y2UnOyBjb2xvcjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij46IERSTTogcmVz
-dW1pbmcga2VybmVsIG9iamVjdCB0cmVlLi4uIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFt
-aWx5Oidtb25vc3BhY2UnOyI+PGJyIC8+PC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6
-J21vbm9zcGFjZSc7IGNvbG9yOiMxOGIyMTg7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPlsy
-NDk1Ny4zMTA4NzNdIDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2Un
-OyBjb2xvcjojYjI2ODE4OyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5ub3V2ZWF1IDAwMDA6
-MDE6MDAuMDwvc3Bhbj48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xv
-cjojYjIxODE4OyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij46IHByaXY6IEhVQjA6IDAwZDA1
-NCAwMDAwMDAwNyAoMTg0MDgyMTYpPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21v
-bm9zcGFjZSc7IGNvbG9yOiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPiA8L3Nw
-YW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsiPjxiciAvPjwvc3Bhbj48
-c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xvcjojMThiMjE4OyBiYWNr
-Z3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5bMjQ5NTcuMzY5NDk0XSA8L3NwYW4+PHNwYW4gc3R5bGU9
-IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsgY29sb3I6I2IyNjgxODsgYmFja2dyb3VuZC1jb2xv
-cjojZmZmZmZmOyI+bm91dmVhdSAwMDAwOjAxOjAwLjA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250
-LWZhbWlseTonbW9ub3NwYWNlJzsgY29sb3I6IzAwMDAwMDsgYmFja2dyb3VuZC1jb2xvcjojZmZm
-ZmZmOyI+OiBEUk06IHJlc3VtaW5nIGNsaWVudCBvYmplY3QgdHJlZXMuLi48L3NwYW4+PHNwYW4g
-c3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsgY29sb3I6I2IyMTgxODsgYmFja2dyb3Vu
-ZC1jb2xvcjojZmZmZmZmOyI+IKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9z
-cGFjZSc7IGNvbG9yOiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPqA8L3NwYW4+
-PHNwYW4gc3R5bGU9IiBmb250LWZhbWlseTonbW9ub3NwYWNlJzsiPjxiciAvPjwvc3Bhbj48c3Bh
-biBzdHlsZT0iIGZvbnQtZmFtaWx5Oidtb25vc3BhY2UnOyBjb2xvcjojMThiMjE4OyBiYWNrZ3Jv
-dW5kLWNvbG9yOiNmZmZmZmY7Ij5bMjQ5NTcuMzY5NDk3XSA8L3NwYW4+PHNwYW4gc3R5bGU9IiBm
-b250LWZhbWlseTonbW9ub3NwYWNlJzsgY29sb3I6I2IyNjgxODsgYmFja2dyb3VuZC1jb2xvcjoj
-ZmZmZmZmOyI+bm91dmVhdSAwMDAwOjAxOjAwLjA8L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZh
-bWlseTonbW9ub3NwYWNlJzsgY29sb3I6IzAwMDAwMDsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZm
-OyI+OiBEUk06IHJlc3VtaW5nIGRpc3BsYXkuLi4gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1m
-YW1pbHk6J21vbm9zcGFjZSc7Ij48YnIgLz48L3NwYW4+PHNwYW4gc3R5bGU9IiBmb250LWZhbWls
-eTonbW9ub3NwYWNlJzsgY29sb3I6IzE4YjIxODsgYmFja2dyb3VuZC1jb2xvcjojZmZmZmZmOyI+
-WzI0OTU3LjM2OTU1OF0gPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFj
-ZSc7IGNvbG9yOiNiMjY4MTg7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPm5vdXZlYXUgMDAw
-MDowMTowMC4wPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7IGNv
-bG9yOiMwMDAwMDA7IGJhY2tncm91bmQtY29sb3I6I2ZmZmZmZjsiPjogRFJNOiByZXN1bWluZyBj
-b25zb2xlLi4uPC9zcGFuPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7Ij48
-YnIgLz48YnIgLz48L3NwYW4+PC9wPgo8cCBzdHlsZT0iLXF0LXBhcmFncmFwaC10eXBlOmVtcHR5
-OyBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFy
-Z2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7ICI+Jm5i
-c3A7PC9wPjwvYm9keT48L2h0bWw+
+How did you get this trace? I can't seem to replay it - none of the context
+setup stuff is there. (And it seems to like doing glFlush *a lot*...)</pre>
+        </div>
+      </p>
 
 
---nextPart1572013.dShn1Rp65v--
+      <hr>
+      <span>You are receiving this mail because:</span>
 
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
 
---===============0284192137==
+--14843332550.AEEb3.26621--
+
+--===============0327917786==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -150,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0284192137==--
+--===============0327917786==--
