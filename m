@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
-Date: Fri, 13 Jan 2017 18:47:36 +0000
-Message-ID: <bug-99400-8800-o83qcusQd4@http.bugs.freedesktop.org/>
+Date: Fri, 13 Jan 2017 19:22:40 +0000
+Message-ID: <bug-99400-8800-3bILM0gl0U@http.bugs.freedesktop.org/>
 References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0327917786=="
+Content-Type: multipart/mixed; boundary="===============0812983015=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0327917786==
-Content-Type: multipart/alternative; boundary="14843332550.AEEb3.26621";
+--===============0812983015==
+Content-Type: multipart/alternative; boundary="14843353590.C6fE78.30116";
  charset="UTF-8"
 
 
---14843332550.AEEb3.26621
-Date: Fri, 13 Jan 2017 18:47:35 +0000
+--14843353590.C6fE78.30116
+Date: Fri, 13 Jan 2017 19:22:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,22 +35,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Olivier Fourdan from comment #1)
-> apitrace of Xwayland available here:
->=20
-> https://people.freedesktop.org/~ofourdan/xwayland-apitrace-bug-99400.bz2
+--- Comment #7 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #6)
+> How did you get this trace? I can't seem to replay it - none of the conte=
+xt
+> setup stuff is there. (And it seems to like doing glFlush *a lot*...)
 
-How did you get this trace? I can't seem to replay it - none of the context
-setup stuff is there. (And it seems to like doing glFlush *a lot*...)
+Directly on Xwayland.
+
+  apitrace trace /usr/bin/Xwayland "$@"
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14843332550.AEEb3.26621
-Date: Fri, 13 Jan 2017 18:47:35 +0000
+--14843353590.C6fE78.30116
+Date: Fri, 13 Jan 2017 19:22:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,27 +68,27 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c6">Comment=
- # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
 </span></b>
-        <pre>(In reply to Olivier Fourdan from <a href=3D"show_bug.cgi?id=
-=3D99400#c1">comment #1</a>)
-<span class=3D"quote">&gt; apitrace of Xwayland available here:
-&gt;=20
-&gt; <a href=3D"https://people.freedesktop.org/~ofourdan/xwayland-apitrace-=
-bug-99400.bz2">https://people.freedesktop.org/~ofourdan/xwayland-apitrace-b=
-ug-99400.bz2</a></span >
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D994=
+00#c6">comment #6</a>)
+<span class=3D"quote">&gt; How did you get this trace? I can't seem to repl=
+ay it - none of the context
+&gt; setup stuff is there. (And it seems to like doing glFlush *a lot*...)<=
+/span >
 
-How did you get this trace? I can't seem to replay it - none of the context
-setup stuff is there. (And it seems to like doing glFlush *a lot*...)</pre>
+Directly on Xwayland.
+
+  apitrace trace /usr/bin/Xwayland &quot;$&#64;&quot;</pre>
         </div>
       </p>
 
@@ -96,15 +97,15 @@ setup stuff is there. (And it seems to like doing glFlush *a lot*...)</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14843332550.AEEb3.26621--
+--14843353590.C6fE78.30116--
 
---===============0327917786==
+--===============0812983015==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0327917786==--
+--===============0812983015==--
