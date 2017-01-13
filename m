@@ -1,14 +1,12 @@
-From: Sylvain Fabre <sylvain-BlW8JBT9i25Wk0Htik3J/w@public.gmane.org>
-Subject: Re: GP106M+Intel Skylake,
-	Kernel 4.10-rc3 : No display on HDMI or DP
-Date: Fri, 13 Jan 2017 16:41:16 +0100
-Message-ID: <11265863.tUluppI3eT@talabheim>
-References: <14847143.mIQnB4xdEE@talabheim> <4778435.xbuI4sO6bb@talabheim>
- <CAKb7UvivQO1rRKyXRJ0ZF7Q7QXZt6Fu7_Ffc1RAGsvbo+LqNkg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
+Date: Fri, 13 Jan 2017 15:50:08 +0000
+Message-ID: <bug-99400-8800-2QCzneyZGm@http.bugs.freedesktop.org/>
+References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0829326752=="
+Content-Type: multipart/mixed; boundary="===============1866754139=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvivQO1rRKyXRJ0ZF7Q7QXZt6Fu7_Ffc1RAGsvbo+LqNkg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,275 +16,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
 
---===============0829326752==
-Content-Type: multipart/alternative; boundary="nextPart9916479.6xqNUL1edl"
-Content-Transfer-Encoding: 7Bit
+--===============1866754139==
+Content-Type: multipart/alternative; boundary="14843226081.7e8fAccB.7315";
+ charset="UTF-8"
 
-This is a multi-part message in MIME format.
 
---nextPart9916479.6xqNUL1edl
+--14843226081.7e8fAccB.7315
+Date: Fri, 13 Jan 2017 15:50:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-Le vendredi 13 janvier 2017, 10:35:49 CET Ilia Mirkin a =E9crit :
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Olivier Fourdan from comment #3)
+> (In reply to Ilia Mirkin from comment #2)
+> > Not that it's of much consolation, but the nv30 GL driver sucks. There =
+are a
+> > number of unhandled situations, and I wouldn't be overly surprised if g=
+lamor
+> > were to hit one or several of them.
 >=20
-> OK. So it sees the monitor, and detects its modes. Can you confirm
-> that these are *not* listed in xrandr? In your original xrandr paste,
-> the DP-1/HDMI-1 connectors were listed as disconnected. Perhaps you
-> ran that xrandr command when the second monitor was not connected?
+> Could be a regression, I don't remember seeing those /before/ and the
+> downstream bugs about black icons are recent as well.
 >=20
-> Thanks,
->=20
->   -ilia
->=20
-Sorry for the misunderstanding on my side : when a monitor is connected, xr=
-andr shaow also the modes availables (example below). Note that from time t=
-o time, after connecting a monitor to DP-1 or HDMI-1, the "xrand" command i=
-s completely freezing my computer and i am obliged to perform a bruteforce =
-ON/OFF with the power button.
+> And there've been some glamor changes in the xserver as well, so it oculd=
+ be
+> /something/ in glamor has changed and doesn't play well with the driver.
 
-Example of xrandr with a a monitor connected to HDMI- 1:=20
+This may come as some surprise, but nv30 is not a hotbed of development
+activity. If you can figure out a change in mesa that broke it, that'd be v=
+ery
+helpful.
 
-sigmar@TALABHEIM:/media/encfs/PIXKIT> xrandr =20
+Separately, check dmesg - NVIDIA cards tend to yell loudly when we do somet=
+hing
+wrong.
 
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
+--14843226081.7e8fAccB.7315
+Date: Fri, 13 Jan 2017 15:50:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
---nextPart9916479.6xqNUL1edl
-Content-Transfer-Encoding: base64
-Content-Type: text/html; charset="iso-8859-1"
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Olivier Fourdan from <a href=3D"show_bug.cgi?id=
+=3D99400#c3">comment #3</a>)
+<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
+g.cgi?id=3D99400#c2">comment #2</a>)
+&gt; &gt; Not that it's of much consolation, but the nv30 GL driver sucks. =
+There are a
+&gt; &gt; number of unhandled situations, and I wouldn't be overly surprise=
+d if glamor
+&gt; &gt; were to hit one or several of them.
+&gt;=20
+&gt; Could be a regression, I don't remember seeing those /before/ and the
+&gt; downstream bugs about black icons are recent as well.
+&gt;=20
+&gt; And there've been some glamor changes in the xserver as well, so it oc=
+uld be
+&gt; /something/ in glamor has changed and doesn't play well with the drive=
+r.</span >
 
-PCFET0NUWVBFIEhUTUwgUFVCTElDICItLy9XM0MvL0RURCBIVE1MIDQuMC8vRU4iICJodHRwOi8v
-d3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwL3N0cmljdC5kdGQiPgo8aHRtbD48aGVhZD48bWV0YSBu
-YW1lPSJxcmljaHRleHQiIGNvbnRlbnQ9IjEiIC8+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4KcCwg
-bGkgeyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7IH0KPC9zdHlsZT48L2hlYWQ+PGJvZHkgc3R5bGU9
-IiBmb250LWZhbWlseTonTm90byBTYW5zJzsgZm9udC1zaXplOjEwcHQ7IGZvbnQtd2VpZ2h0OjQw
-MDsgZm9udC1zdHlsZTpub3JtYWw7Ij4KPHAgc3R5bGU9IiBtYXJnaW4tdG9wOjBweDsgbWFyZ2lu
-LWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2Nr
-LWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7IC1xdC11c2VyLXN0YXRlOjA7Ij5MZSB2ZW5kcmVk
-aSAxMyBqYW52aWVyIDIwMTcsIDEwOjM1OjQ5IENFVCBJbGlhIE1pcmtpbiBhIOljcml0IDo8L3A+
-CjxwIHN0eWxlPSIgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4OyBtYXJnaW4tbGVm
-dDowcHg7IG1hcmdpbi1yaWdodDowcHg7IC1xdC1ibG9jay1pbmRlbnQ6MDsgdGV4dC1pbmRlbnQ6
-MHB4OyAtcXQtdXNlci1zdGF0ZTowOyI+Jmd0OyA8L3A+CjxwIHN0eWxlPSIgbWFyZ2luLXRvcDow
-cHg7IG1hcmdpbi1ib3R0b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7
-IC1xdC1ibG9jay1pbmRlbnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAtcXQtdXNlci1zdGF0ZTowOyI+
-Jmd0OyBPSy4gU28gaXQgc2VlcyB0aGUgbW9uaXRvciwgYW5kIGRldGVjdHMgaXRzIG1vZGVzLiBD
-YW4geW91IGNvbmZpcm08L3A+CjxwIHN0eWxlPSIgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0
-b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7IC1xdC1ibG9jay1pbmRl
-bnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAtcXQtdXNlci1zdGF0ZTowOyI+Jmd0OyB0aGF0IHRoZXNl
-IGFyZSAqbm90KiBsaXN0ZWQgaW4geHJhbmRyPyBJbiB5b3VyIG9yaWdpbmFsIHhyYW5kciBwYXN0
-ZSw8L3A+CjxwIHN0eWxlPSIgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4OyBtYXJn
-aW4tbGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7IC1xdC1ibG9jay1pbmRlbnQ6MDsgdGV4dC1p
-bmRlbnQ6MHB4OyAtcXQtdXNlci1zdGF0ZTowOyI+Jmd0OyB0aGUgRFAtMS9IRE1JLTEgY29ubmVj
-dG9ycyB3ZXJlIGxpc3RlZCBhcyBkaXNjb25uZWN0ZWQuIFBlcmhhcHMgeW91PC9wPgo8cCBzdHls
-ZT0iIG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6MHB4OyBt
-YXJnaW4tcmlnaHQ6MHB4OyAtcXQtYmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50OjBweDsgLXF0
-LXVzZXItc3RhdGU6MDsiPiZndDsgcmFuIHRoYXQgeHJhbmRyIGNvbW1hbmQgd2hlbiB0aGUgc2Vj
-b25kIG1vbml0b3Igd2FzIG5vdCBjb25uZWN0ZWQ/PC9wPgo8cCBzdHlsZT0iIG1hcmdpbi10b3A6
-MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4
-OyAtcXQtYmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50OjBweDsgLXF0LXVzZXItc3RhdGU6MDsi
-PiZndDsgPC9wPgo8cCBzdHlsZT0iIG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9tOjBweDsg
-bWFyZ2luLWxlZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQtYmxvY2staW5kZW50OjA7IHRl
-eHQtaW5kZW50OjBweDsgLXF0LXVzZXItc3RhdGU6MDsiPiZndDsgVGhhbmtzLDwvcD4KPHAgc3R5
-bGU9IiBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsg
-bWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7IC1x
-dC11c2VyLXN0YXRlOjA7Ij4mZ3Q7IDwvcD4KPHAgc3R5bGU9IiBtYXJnaW4tdG9wOjBweDsgbWFy
-Z2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJs
-b2NrLWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7IC1xdC11c2VyLXN0YXRlOjA7Ij4mZ3Q7ICAg
-LWlsaWE8L3A+CjxwIHN0eWxlPSIgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4OyBt
-YXJnaW4tbGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7IC1xdC1ibG9jay1pbmRlbnQ6MDsgdGV4
-dC1pbmRlbnQ6MHB4OyAtcXQtdXNlci1zdGF0ZTowOyI+Jmd0OyA8L3A+CjxwIHN0eWxlPSIgbWFy
-Z2luLXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1hcmdpbi1y
-aWdodDowcHg7IC1xdC1ibG9jay1pbmRlbnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAtcXQtdXNlci1z
-dGF0ZTowOyI+U29ycnkgZm9yIHRoZSBtaXN1bmRlcnN0YW5kaW5nIG9uIG15IHNpZGUgOiB3aGVu
-IGEgbW9uaXRvciBpcyBjb25uZWN0ZWQsIHhyYW5kciBzaGFvdyBhbHNvIHRoZSBtb2RlcyBhdmFp
-bGFibGVzIChleGFtcGxlIGJlbG93KS4gTm90ZSB0aGF0IGZyb20gdGltZSB0byB0aW1lLCBhZnRl
-ciBjb25uZWN0aW5nIGEgbW9uaXRvciB0byBEUC0xIG9yIEhETUktMSwgdGhlICZxdW90O3hyYW5k
-JnF1b3Q7IGNvbW1hbmQgaXMgY29tcGxldGVseSBmcmVlemluZyBteSBjb21wdXRlciBhbmQgaSBh
-bSBvYmxpZ2VkIHRvIHBlcmZvcm0gYSBicnV0ZWZvcmNlIE9OL09GRiB3aXRoIHRoZSBwb3dlciBi
-dXR0b24uPC9wPgo8cCBzdHlsZT0iLXF0LXBhcmFncmFwaC10eXBlOmVtcHR5OyBtYXJnaW4tdG9w
-OjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBw
-eDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7ICI+Jm5ic3A7PC9wPgo8cCBz
-dHlsZT0iIG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6MHB4
-OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQtYmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50OjBweDsg
-LXF0LXVzZXItc3RhdGU6MDsiPkV4YW1wbGUgb2YgeHJhbmRyIHdpdGggYSBhIG1vbml0b3IgY29u
-bmVjdGVkIHRvIEhETUktIDE6IDwvcD4KPHAgc3R5bGU9Ii1xdC1wYXJhZ3JhcGgtdHlwZTplbXB0
-eTsgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1h
-cmdpbi1yaWdodDowcHg7IC1xdC1ibG9jay1pbmRlbnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAiPiZu
-YnNwOzwvcD4KPHAgc3R5bGU9IiBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1h
-cmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0
-LWluZGVudDowcHg7IC1xdC11c2VyLXN0YXRlOjA7Ij48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5
-Oidtb25vc3BhY2UnOyBjb2xvcjojMDAwMDAwOyBiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmY7Ij5z
-aWdtYXJAVEFMQUJIRUlNOi9tZWRpYS9lbmNmcy9QSVhLSVQmZ3Q7IHhyYW5kciCgPC9zcGFuPjxz
-cGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J21vbm9zcGFjZSc7Ij48YnIgLz5TY3JlZW4gMDogbWlu
-aW11bSAzMjAgeCAyMDAsIGN1cnJlbnQgMTkyMCB4IDEwODAsIG1heGltdW0gODE5MiB4IDgxOTIg
-PGJyIC8+ZURQLTEgY29ubmVjdGVkIHByaW1hcnkgMTkyMHgxMDgwKzArMCAobm9ybWFsIGxlZnQg
-aW52ZXJ0ZWQgcmlnaHQgeCBheGlzIHkgYXhpcykgMzQ0bW0geCAxOTRtbSA8YnIgLz6goDE5MjB4
-MTA4MCCgoKCgNjAuMDIqKyCgNDcuOTkgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgPGJyIC8+oKAxNDAweDEwNTAgoKCgoDU5Ljk4IKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoDxiciAvPqCgMTI4MHgxMDI0IKCg
-oKA2MC4wMiCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKA8YnIgLz6goDEyODB4OTYwIKCgoKCgNjAuMDAgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgPGJyIC8+oKAxMDI0eDc2OCCgoKCgoDYwLjA0
-IKCgoDYwLjAwIKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoDxi
-ciAvPqCgOTYweDcyMCCgoKCgoKA2MC4wMCCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKA8YnIgLz6goDkyOHg2OTYgoKCgoKCgNjAuMDUgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgPGJyIC8+oKA4
-OTZ4NjcyIKCgoKCgoDYwLjAxIKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoDxiciAvPqCgODAweDYwMCCgoKCgoKA2MC4wMCCgoKA2MC4zMiCgoKA1
-Ni4yNSCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKA8YnIgLz6goDcwMHg1MjUg
-oKCgoKCgNTkuOTggoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgPGJyIC8+oKA2NDB4NTEyIKCgoKCgoDYwLjAyIKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoDxiciAvPqCgNjQweDQ4MCCgoKCgoKA2
-MC4wMCCgoKA1OS45NCCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKA8YnIgLz6goDUxMngzODQgoKCgoKCgNjAuMDAgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgPGJyIC8+oKA0MDB4MzAwIKCgoKCgoDYwLjMyIKCg
-oDU2LjM0IKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoDxiciAv
-PqCgMzIweDI0MCCgoKCgoKA2MC4wNSCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKA8YnIgLz5IRE1JLTEgY29ubmVjdGVkIDE5MjB4MTA4MCswKzAg
-KG5vcm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpIDUzMW1tIHggMjk5bW0g
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCg
-oKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoDxiciAvPqCgMTky
-MHgxMDgwIKCgoKA2MC4wMCorIKA1MC4wMCCgoKA1OS45NCCgoKA1OS45OSCgoDxiciAvPqCgMTky
-MHgxMDgwaSCgoKA2MC4wMCCgoKA1MC4wMCCgoKA1OS45NCCgoDxiciAvPqCgMTYwMHgxMjAwIKCg
-oKA2NS4wMCCgoKA2MC4wMCCgoDxiciAvPqCgMTY4MHgxMDUwIKCgoKA1OS44OCCgoDxiciAvPqCg
-MTQwMHgxMDUwIKCgoKA3NC43NiCgoKA1OS45OCCgoDxiciAvPqCgMTI4MHgxMDI0IKCgoKA3NS4w
-MiCgoKA2MC4wMiCgoDxiciAvPqCgMTQ0MHg5MDAgoKCgoKA1OS45MCCgoDxiciAvPqCgMTI4MHg5
-NjAgoKCgoKA2MC4wMCCgoDxiciAvPqCgMTM2Nng3NjggoKCgoKA1OS43OSCgoDxiciAvPqCgMTE1
-Mng4NjQgoKCgoKA3NS4wMCCgoDxiciAvPqCgMTI4MHg3MjAgoKCgoKA2MC4wMCCgoKA1MC4wMCCg
-oKA1OS45NCCgoDxiciAvPqCgMTAyNHg3NjggoKCgoKA3NS4wNSCgoKA2MC4wNCCgoKA3NS4wMyCg
-oKA3MC4wNyCgoKA2MC4wMCCgoDxiciAvPqCgOTYweDcyMCCgoKCgoKA3NS4wMCCgoKA2MC4wMCCg
-oDxiciAvPqCgOTI4eDY5NiCgoKCgoKA3NS4wMCCgoKA2MC4wNSCgoDxiciAvPqCgODk2eDY3MiCg
-oKCgoKA3NS4wNSCgoKA2MC4wMSCgoDxiciAvPqCgODMyeDYyNCCgoKCgoKA3NC41NSCgoDxiciAv
-PqCgODAweDYwMCCgoKCgoKA3NS4wMCCgoKA3MC4wMCCgoKA2NS4wMCCgoKA2MC4wMCCgoKA3Mi4x
-OSCgoKA3NS4wMCCgoKA2MC4zMiCgoKA1Ni4yNSCgoDxiciAvPqCgNzIweDU3NiCgoKCgoKA1MC4w
-MCCgoDxiciAvPqCgNzAweDUyNSCgoKCgoKA3NC43NiCgoKA1OS45OCCgoDxiciAvPqCgNzIweDQ4
-MCCgoKCgoKA2MC4wMCCgoKA1OS45NCCgoDxiciAvPqCgNjQweDUxMiCgoKCgoKA3NS4wMiCgoKA2
-MC4wMiCgoDxiciAvPqCgNjQweDQ4MCCgoKCgoKA2MC4wMCCgoKA3NS4wMCCgoKA3Mi44MSCgoKA3
-NS4wMCCgoKA2Ni42NyCgoKA2MC4wMCCgoKA1OS45NCCgoDxiciAvPqCgNzIweDQwMCCgoKCgoKA3
-MC4wOCCgoDxiciAvPqCgNTc2eDQzMiCgoKCgoKA3NS4wMCCgoDxiciAvPqCgNTEyeDM4NCCgoKCg
-oKA3NS4wMyCgoKA3MC4wNyCgoKA2MC4wMCCgoDxiciAvPqCgNDE2eDMxMiCgoKCgoKA3NC42NiCg
-oDxiciAvPqCgNDAweDMwMCCgoKCgoKA3Mi4xOSCgoKA3NS4xMiCgoKA2MC4zMiCgoKA1Ni4zNCCg
-oDxiciAvPqCgMzIweDI0MCCgoKCgoKA3Mi44MSCgoKA3NS4wMCCgoKA2MC4wNSCgoDxiciAvPkRQ
-LTEgZGlzY29ubmVjdGVkIChub3JtYWwgbGVmdCBpbnZlcnRlZCByaWdodCB4IGF4aXMgeSBheGlz
-KSA8YnIgLz6gMTQwMHgxMDUwICgweDUxKSAxMjIuMDAwTUh6ICtIU3luYyArVlN5bmMgPGJyIC8+
-oKCgoKCgoGg6IHdpZHRoIKAxNDAwIHN0YXJ0IDE0ODggZW5kIDE2NDAgdG90YWwgMTg4MCBza2V3
-IKCgoDAgY2xvY2sgoDY0Ljg5S0h6IDxiciAvPqCgoKCgoKB2OiBoZWlnaHQgMTA1MCBzdGFydCAx
-MDUyIGVuZCAxMDY0IHRvdGFsIDEwODIgoKCgoKCgoKCgoGNsb2NrIKA1OS45OEh6IDxiciAvPqAx
-MjgweDEwMjQgKDB4NTMpIDEwOC4wMDBNSHogK0hTeW5jICtWU3luYyA8YnIgLz6goKCgoKCgaDog
-d2lkdGggoDEyODAgc3RhcnQgMTMyOCBlbmQgMTQ0MCB0b3RhbCAxNjg4IHNrZXcgoKCgMCBjbG9j
-ayCgNjMuOThLSHogPGJyIC8+oKCgoKCgoHY6IGhlaWdodCAxMDI0IHN0YXJ0IDEwMjUgZW5kIDEw
-MjggdG90YWwgMTA2NiCgoKCgoKCgoKCgY2xvY2sgoDYwLjAySHogPGJyIC8+oDEyODB4OTYwICgw
-eDU1KSAxMDguMDAwTUh6ICtIU3luYyArVlN5bmMgPGJyIC8+oKCgoKCgoGg6IHdpZHRoIKAxMjgw
-IHN0YXJ0IDEzNzYgZW5kIDE0ODggdG90YWwgMTgwMCBza2V3IKCgoDAgY2xvY2sgoDYwLjAwS0h6
-IDxiciAvPqCgoKCgoKB2OiBoZWlnaHQgoDk2MCBzdGFydCCgOTYxIGVuZCCgOTY0IHRvdGFsIDEw
-MDAgoKCgoKCgoKCgoGNsb2NrIKA2MC4wMEh6IDxiciAvPqAxMDI0eDc2OCAoMHg1YykgMTMzLjQ3
-NU1IeiAtSFN5bmMgK1ZTeW5jIERvdWJsZVNjYW4gPGJyIC8+oKCgoKCgoGg6IHdpZHRoIKAxMDI0
-IHN0YXJ0IDExMDAgZW5kIDEyMTIgdG90YWwgMTQwMCBza2V3IKCgoDAgY2xvY2sgoDk1LjM0S0h6
-IDxiciAvPqCgoKCgoKB2OiBoZWlnaHQgoDc2OCBzdGFydCCgNzY4IGVuZCCgNzcwIHRvdGFsIKA3
-OTQgoKCgoKCgoKCgoGNsb2NrIKA2MC4wNEh6IDxiciAvPqAxMDI0eDc2OCAoMHg1ZikgNjUuMDAw
-TUh6IC1IU3luYyAtVlN5bmMgPGJyIC8+oKCgoKCgoGg6IHdpZHRoIKAxMDI0IHN0YXJ0IDEwNDgg
-ZW5kIDExODQgdG90YWwgMTM0NCBza2V3IKCgoDAgY2xvY2sgoDQ4LjM2S0h6IDxiciAvPqCgoKCg
-oKB2OiBoZWlnaHQgoDc2OCBzdGFydCCgNzcxIGVuZCCgNzc3IHRvdGFsIKA4MDYgoKCgoKCgoKCg
-oGNsb2NrIKA2MC4wMEh6IDxiciAvPqA5NjB4NzIwICgweDYxKSAxMTcuMDAwTUh6IC1IU3luYyAr
-VlN5bmMgRG91YmxlU2NhbiA8YnIgLz6goKCgoKCgaDogd2lkdGggoKA5NjAgc3RhcnQgMTAyNCBl
-bmQgMTEyOCB0b3RhbCAxMzAwIHNrZXcgoKCgMCBjbG9jayCgOTAuMDBLSHogPGJyIC8+oKCgoKCg
-oHY6IGhlaWdodCCgNzIwIHN0YXJ0IKA3MjAgZW5kIKA3MjIgdG90YWwgoDc1MCCgoKCgoKCgoKCg
-Y2xvY2sgoDYwLjAwSHogPGJyIC8+oDkyOHg2OTYgKDB4NjMpIDEwOS4xNTBNSHogLUhTeW5jICtW
-U3luYyBEb3VibGVTY2FuIDxiciAvPqCgoKCgoKBoOiB3aWR0aCCgoDkyOCBzdGFydCCgOTc2IGVu
-ZCAxMDg4IHRvdGFsIDEyNjQgc2tldyCgoKAwIGNsb2NrIKA4Ni4zNUtIeiA8YnIgLz6goKCgoKCg
-djogaGVpZ2h0IKA2OTYgc3RhcnQgoDY5NiBlbmQgoDY5OCB0b3RhbCCgNzE5IKCgoKCgoKCgoKBj
-bG9jayCgNjAuMDVIeiA8YnIgLz6gODk2eDY3MiAoMHg2NSkgMTAyLjQwME1IeiAtSFN5bmMgK1ZT
-eW5jIERvdWJsZVNjYW4gPGJyIC8+oKCgoKCgoGg6IHdpZHRoIKCgODk2IHN0YXJ0IKA5NjAgZW5k
-IDEwNjAgdG90YWwgMTIyNCBza2V3IKCgoDAgY2xvY2sgoDgzLjY2S0h6IDxiciAvPqCgoKCgoKB2
-OiBoZWlnaHQgoDY3MiBzdGFydCCgNjcyIGVuZCCgNjc0IHRvdGFsIKA2OTcgoKCgoKCgoKCgoGNs
-b2NrIKA2MC4wMUh6IDxiciAvPqA4MDB4NjAwICgweDZhKSA4MS4wMDBNSHogK0hTeW5jICtWU3lu
-YyBEb3VibGVTY2FuIDxiciAvPqCgoKCgoKBoOiB3aWR0aCCgoDgwMCBzdGFydCCgODMyIGVuZCCg
-OTI4IHRvdGFsIDEwODAgc2tldyCgoKAwIGNsb2NrIKA3NS4wMEtIeiA8YnIgLz6goKCgoKCgdjog
-aGVpZ2h0IKA2MDAgc3RhcnQgoDYwMCBlbmQgoDYwMiB0b3RhbCCgNjI1IKCgoKCgoKCgoKBjbG9j
-ayCgNjAuMDBIeiA8YnIgLz6gODAweDYwMCAoMHg2ZCkgNDAuMDAwTUh6ICtIU3luYyArVlN5bmMg
-PGJyIC8+oKCgoKCgoGg6IHdpZHRoIKCgODAwIHN0YXJ0IKA4NDAgZW5kIKA5NjggdG90YWwgMTA1
-NiBza2V3IKCgoDAgY2xvY2sgoDM3Ljg4S0h6IDxiciAvPqCgoKCgoKB2OiBoZWlnaHQgoDYwMCBz
-dGFydCCgNjAxIGVuZCCgNjA1IHRvdGFsIKA2MjggoKCgoKCgoKCgoGNsb2NrIKA2MC4zMkh6IDxi
-ciAvPqA4MDB4NjAwICgweDZlKSAzNi4wMDBNSHogK0hTeW5jICtWU3luYyA8YnIgLz6goKCgoKCg
-aDogd2lkdGggoKA4MDAgc3RhcnQgoDgyNCBlbmQgoDg5NiB0b3RhbCAxMDI0IHNrZXcgoKCgMCBj
-bG9jayCgMzUuMTZLSHogPGJyIC8+oKCgoKCgoHY6IGhlaWdodCCgNjAwIHN0YXJ0IKA2MDEgZW5k
-IKA2MDMgdG90YWwgoDYyNSCgoKCgoKCgoKCgY2xvY2sgoDU2LjI1SHogPGJyIC8+oDcwMHg1MjUg
-KDB4NzEpIDYxLjAwME1IeiArSFN5bmMgK1ZTeW5jIERvdWJsZVNjYW4gPGJyIC8+oKCgoKCgoGg6
-IHdpZHRoIKCgNzAwIHN0YXJ0IKA3NDQgZW5kIKA4MjAgdG90YWwgoDk0MCBza2V3IKCgoDAgY2xv
-Y2sgoDY0Ljg5S0h6IDxiciAvPqCgoKCgoKB2OiBoZWlnaHQgoDUyNSBzdGFydCCgNTI2IGVuZCCg
-NTMyIHRvdGFsIKA1NDEgoKCgoKCgoKCgoGNsb2NrIKA1OS45OEh6IDxiciAvPqA2NDB4NTEyICgw
-eDc1KSA1NC4wMDBNSHogK0hTeW5jICtWU3luYyBEb3VibGVTY2FuIDxiciAvPqCgoKCgoKBoOiB3
-aWR0aCCgoDY0MCBzdGFydCCgNjY0IGVuZCCgNzIwIHRvdGFsIKA4NDQgc2tldyCgoKAwIGNsb2Nr
-IKA2My45OEtIeiA8YnIgLz6goKCgoKCgdjogaGVpZ2h0IKA1MTIgc3RhcnQgoDUxMiBlbmQgoDUx
-NCB0b3RhbCCgNTMzIKCgoKCgoKCgoKBjbG9jayCgNjAuMDJIeiA8YnIgLz6gNjQweDQ4MCAoMHg3
-NikgNTQuMDAwTUh6ICtIU3luYyArVlN5bmMgRG91YmxlU2NhbiA8YnIgLz6goKCgoKCgaDogd2lk
-dGggoKA2NDAgc3RhcnQgoDY4OCBlbmQgoDc0NCB0b3RhbCCgOTAwIHNrZXcgoKCgMCBjbG9jayCg
-NjAuMDBLSHogPGJyIC8+oKCgoKCgoHY6IGhlaWdodCCgNDgwIHN0YXJ0IKA0ODAgZW5kIKA0ODIg
-dG90YWwgoDUwMCCgoKCgoKCgoKCgY2xvY2sgoDYwLjAwSHogPGJyIC8+oDY0MHg0ODAgKDB4N2Ip
-IDI1LjE3NU1IeiAtSFN5bmMgLVZTeW5jIDxiciAvPqCgoKCgoKBoOiB3aWR0aCCgoDY0MCBzdGFy
-dCCgNjU2IGVuZCCgNzUyIHRvdGFsIKA4MDAgc2tldyCgoKAwIGNsb2NrIKAzMS40N0tIeiA8YnIg
-Lz6goKCgoKCgdjogaGVpZ2h0IKA0ODAgc3RhcnQgoDQ5MCBlbmQgoDQ5MiB0b3RhbCCgNTI1IKCg
-oKCgoKCgoKBjbG9jayCgNTkuOTRIeiA8YnIgLz6gNTEyeDM4NCAoMHg4MCkgMzIuNTAwTUh6IC1I
-U3luYyAtVlN5bmMgRG91YmxlU2NhbiA8YnIgLz6goKCgoKCgaDogd2lkdGggoKA1MTIgc3RhcnQg
-oDUyNCBlbmQgoDU5MiB0b3RhbCCgNjcyIHNrZXcgoKCgMCBjbG9jayCgNDguMzZLSHogPGJyIC8+
-oKCgoKCgoHY6IGhlaWdodCCgMzg0IHN0YXJ0IKAzODUgZW5kIKAzODggdG90YWwgoDQwMyCgoKCg
-oKCgoKCgY2xvY2sgoDYwLjAwSHogPGJyIC8+oDQwMHgzMDAgKDB4ODQpIDIwLjAwME1IeiArSFN5
-bmMgK1ZTeW5jIERvdWJsZVNjYW4gPGJyIC8+oKCgoKCgoGg6IHdpZHRoIKCgNDAwIHN0YXJ0IKA0
-MjAgZW5kIKA0ODQgdG90YWwgoDUyOCBza2V3IKCgoDAgY2xvY2sgoDM3Ljg4S0h6IDxiciAvPqCg
-oKCgoKB2OiBoZWlnaHQgoDMwMCBzdGFydCCgMzAwIGVuZCCgMzAyIHRvdGFsIKAzMTQgoKCgoKCg
-oKCgoGNsb2NrIKA2MC4zMkh6IDxiciAvPqA0MDB4MzAwICgweDg1KSAxOC4wMDBNSHogK0hTeW5j
-ICtWU3luYyBEb3VibGVTY2FuIDxiciAvPqCgoKCgoKBoOiB3aWR0aCCgoDQwMCBzdGFydCCgNDEy
-IGVuZCCgNDQ4IHRvdGFsIKA1MTIgc2tldyCgoKAwIGNsb2NrIKAzNS4xNktIeiA8YnIgLz6goKCg
-oKCgdjogaGVpZ2h0IKAzMDAgc3RhcnQgoDMwMCBlbmQgoDMwMSB0b3RhbCCgMzEyIKCgoKCgoKCg
-oKBjbG9jayCgNTYuMzRIeiA8YnIgLz6gMzIweDI0MCAoMHg4OCkgMTIuNTg3TUh6IC1IU3luYyAt
-VlN5bmMgRG91YmxlU2NhbiA8YnIgLz6goKCgoKCgaDogd2lkdGggoKAzMjAgc3RhcnQgoDMyOCBl
-bmQgoDM3NiB0b3RhbCCgNDAwIHNrZXcgoKCgMCBjbG9jayCgMzEuNDdLSHogPGJyIC8+oKCgoKCg
-oHY6IGhlaWdodCCgMjQwIHN0YXJ0IKAyNDUgZW5kIKAyNDYgdG90YWwgoDI2MiCgoKCgoKCgoKCg
-Y2xvY2sgoDYwLjA1SHo8YnIgLz48YnIgLz5UaGFua3M8L3NwYW4+PC9wPgo8cCBzdHlsZT0iLXF0
-LXBhcmFncmFwaC10eXBlOmVtcHR5OyBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7
-IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0
-ZXh0LWluZGVudDowcHg7ICI+Jm5ic3A7PC9wPjwvYm9keT48L2h0bWw+
+This may come as some surprise, but nv30 is not a hotbed of development
+activity. If you can figure out a change in mesa that broke it, that'd be v=
+ery
+helpful.
+
+Separately, check dmesg - NVIDIA cards tend to yell loudly when we do somet=
+hing
+wrong.</pre>
+        </div>
+      </p>
 
 
---nextPart9916479.6xqNUL1edl--
+      <hr>
+      <span>You are receiving this mail because:</span>
 
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
 
---===============0829326752==
+--14843226081.7e8fAccB.7315--
+
+--===============1866754139==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -296,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0829326752==--
+--===============1866754139==--
