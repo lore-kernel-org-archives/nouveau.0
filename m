@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99400] [nouveau] garbled rending with glamor on G71
-Date: Fri, 13 Jan 2017 15:26:24 +0000
-Message-ID: <bug-99400-8800-cSIzj2lTRf@http.bugs.freedesktop.org/>
+Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
+Date: Fri, 13 Jan 2017 15:26:40 +0000
+Message-ID: <bug-99400-8800-Ox49PvceOD@http.bugs.freedesktop.org/>
 References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0999667333=="
+Content-Type: multipart/mixed; boundary="===============0004164610=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0999667333==
-Content-Type: multipart/alternative; boundary="14843211830.f309Cc1B4.5017";
+--===============0004164610==
+Content-Type: multipart/alternative; boundary="14843212000.4c9FB63.5012";
  charset="UTF-8"
 
 
---14843211830.f309Cc1B4.5017
-Date: Fri, 13 Jan 2017 15:26:23 +0000
+--14843212000.4c9FB63.5012
+Date: Fri, 13 Jan 2017 15:26:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
 
---- Comment #1 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
-apitrace of Xwayland available here:
+Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> changed:
 
-https://people.freedesktop.org/~ofourdan/xwayland-apitrace-bug-99400.bz2
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[nouveau] garbled rending   |[nouveau] garbled rendering
+                   |with glamor on G71          |with glamor on G71
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14843211830.f309Cc1B4.5017
-Date: Fri, 13 Jan 2017 15:26:23 +0000
+--14843212000.4c9FB63.5012
+Date: Fri, 13 Jan 2017 15:26:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -57,29 +59,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:fourdan&#=
+64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;"> <span =
+class=3D"fn">Olivier Fourdan</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rending with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rending with glamor on G71"
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
 /a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
-"> <span class=3D"fn">Olivier Fourdan</span></a>
-</span></b>
-        <pre>apitrace of Xwayland available here:
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-<a href=3D"https://people.freedesktop.org/~ofourdan/xwayland-apitrace-bug-9=
-9400.bz2">https://people.freedesktop.org/~ofourdan/xwayland-apitrace-bug-99=
-400.bz2</a></pre>
-        </div>
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>[nouveau] garbled rending with glamor on G71
+           </td>
+           <td>[nouveau] garbled rendering with glamor on G71
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -93,9 +97,9 @@ fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
     </body>
 </html>=
 
---14843211830.f309Cc1B4.5017--
+--14843212000.4c9FB63.5012--
 
---===============0999667333==
+--===============0004164610==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0999667333==--
+--===============0004164610==--
