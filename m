@@ -1,16 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: GP106M+Intel Skylake,
- Kernel 4.10-rc3 : No display on HDMI or DP
-Date: Fri, 13 Jan 2017 10:35:49 -0500
-Message-ID: <CAKb7UvivQO1rRKyXRJ0ZF7Q7QXZt6Fu7_Ffc1RAGsvbo+LqNkg@mail.gmail.com>
-References: <14847143.mIQnB4xdEE@talabheim> <4329520.iZb9cpLgF0@talabheim>
- <CAKb7UvhjNMwU9OkS7ORMKpMeyxsocBXNd8ne7SB-KzjxOqxnHw@mail.gmail.com>
- <4778435.xbuI4sO6bb@talabheim>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
+Date: Fri, 13 Jan 2017 15:42:36 +0000
+Message-ID: <bug-99400-8800-QxmKsGRkQN@http.bugs.freedesktop.org/>
+References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1026022885=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4778435.xbuI4sO6bb@talabheim>
+In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +16,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Sylvain Fabre <sylvain-BlW8JBT9i25Wk0Htik3J/w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKYW4gMTMsIDIwMTcgYXQgMTA6MTEgQU0sIFN5bHZhaW4gRmFicmUgPHN5bHZhaW5A
-bGFoaWV0dGUuY29tPiB3cm90ZToKPiB4cmFuZHIgLS1zZXRwcm92aWRlcm91dHB1dHNvdXJjZSAx
-IDAgc2VlbXMgdG8gZG8gbm90aGluZywgZWl0aGVyIHdpdGggYQo+IG1vbml0b3IgY29ubmVjdGVk
-IHRvIEhETUktMSBvciBub3QuIFRoZSBzZWNvbmQgbW9uaXRvciBpcyBkZXRlY3RlZCBhbmQKPiBh
-dmFpbGFibGUgaW4gdGhlIHNjcmVlbiBjb25maWd1cmF0aW9uIHRvb2wgb2YgS0RFLCBidXQgaXQg
-cmVtYWlucyBibGFjaywgbm8KPiB3aW5kb3csIG5vdGhpbmcuCj4KPiBXaXRoIGEgbW9uaXRvciBj
-b25lY3RlZCBpbiBIRE1JLTEsIGhlcmUgYXJlIHRoZSByZXN1bHRzIG9mIHRoZSBjb21tYW5kcyA6
-Cj4KPiBzaWdtYXJAVEFMQUJIRUlNOn4+IGdyZXAgLiAvc3lzL2NsYXNzL2RybS9jYXJkKi0qL3N0
-YXR1cwo+IC9zeXMvY2xhc3MvZHJtL2NhcmQwLWVEUC0xL3N0YXR1czpjb25uZWN0ZWQKPiAvc3lz
-L2NsYXNzL2RybS9jYXJkMS1EUC0xL3N0YXR1czpkaXNjb25uZWN0ZWQKPiAvc3lzL2NsYXNzL2Ry
-bS9jYXJkMS1IRE1JLUEtMS9zdGF0dXM6Y29ubmVjdGVkCgpPSy4gU28gaXQgc2VlcyB0aGUgbW9u
-aXRvciwgYW5kIGRldGVjdHMgaXRzIG1vZGVzLiBDYW4geW91IGNvbmZpcm0KdGhhdCB0aGVzZSBh
-cmUgKm5vdCogbGlzdGVkIGluIHhyYW5kcj8gSW4geW91ciBvcmlnaW5hbCB4cmFuZHIgcGFzdGUs
-CnRoZSBEUC0xL0hETUktMSBjb25uZWN0b3JzIHdlcmUgbGlzdGVkIGFzIGRpc2Nvbm5lY3RlZC4g
-UGVyaGFwcyB5b3UKcmFuIHRoYXQgeHJhbmRyIGNvbW1hbmQgd2hlbiB0aGUgc2Vjb25kIG1vbml0
-b3Igd2FzIG5vdCBjb25uZWN0ZWQ/CgpUaGFua3MsCgogIC1pbGlhCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1026022885==
+Content-Type: multipart/alternative; boundary="14843221550.ec9D457.6628";
+ charset="UTF-8"
+
+
+--14843221550.ec9D457.6628
+Date: Fri, 13 Jan 2017 15:42:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
+
+--- Comment #3 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #2)
+> Not that it's of much consolation, but the nv30 GL driver sucks. There ar=
+e a
+> number of unhandled situations, and I wouldn't be overly surprised if gla=
+mor
+> were to hit one or several of them.
+
+Could be a regression, I don't remember seeing those /before/ and the
+downstream bugs about black icons are recent as well.
+
+And there've been some glamor changes in the xserver as well, so it oculd be
+/something/ in glamor has changed and doesn't play well with the driver.
+
+> A "big hammer" approach to fixing some of the issues is running with
+> NV30_SWTNL=3D1, although there's plenty more issues that this won't have =
+an
+> effect on. That usually fixes "bad geometry" issues, however the screensh=
+ot
+> seems to suggest that perhaps incompatible color and depth buffers are be=
+ing
+> mixed
+
+Yes, that makes me think of that as well, could explain the black icons bei=
+ng
+reported downstream.
+
+> - we print a warning about those in debug builds.
+
+Good, so I'll rebuild with "--enable-debug" and see what I get.
+
+> I'll have a look at the apitrace later to see if can try reproducing on my
+> NV34, although it's possible that won't work this time.
+
+Thanks a bunch!
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14843221550.ec9D457.6628
+Date: Fri, 13 Jan 2017 15:42:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D994=
+00#c2">comment #2</a>)
+<span class=3D"quote">&gt; Not that it's of much consolation, but the nv30 =
+GL driver sucks. There are a
+&gt; number of unhandled situations, and I wouldn't be overly surprised if =
+glamor
+&gt; were to hit one or several of them.</span >
+
+Could be a regression, I don't remember seeing those /before/ and the
+downstream bugs about black icons are recent as well.
+
+And there've been some glamor changes in the xserver as well, so it oculd be
+/something/ in glamor has changed and doesn't play well with the driver.
+
+<span class=3D"quote">&gt; A &quot;big hammer&quot; approach to fixing some=
+ of the issues is running with
+&gt; NV30_SWTNL=3D1, although there's plenty more issues that this won't ha=
+ve an
+&gt; effect on. That usually fixes &quot;bad geometry&quot; issues, however=
+ the screenshot
+&gt; seems to suggest that perhaps incompatible color and depth buffers are=
+ being
+&gt; mixed</span >
+
+Yes, that makes me think of that as well, could explain the black icons bei=
+ng
+reported downstream.
+
+<span class=3D"quote">&gt; - we print a warning about those in debug builds=
+.</span >
+
+Good, so I'll rebuild with &quot;--enable-debug&quot; and see what I get.
+
+<span class=3D"quote">&gt; I'll have a look at the apitrace later to see if=
+ can try reproducing on my
+&gt; NV34, although it's possible that won't work this time.</span >
+
+Thanks a bunch!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14843221550.ec9D457.6628--
+
+--===============1026022885==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1026022885==--
