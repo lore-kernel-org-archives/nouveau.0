@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99396] Crash in nouveau_dri.so when switching apps
- with alt-tab in Gnome
-Date: Fri, 13 Jan 2017 14:05:47 +0000
-Message-ID: <bug-99396-8800-PZ0dDFCN6j@http.bugs.freedesktop.org/>
-References: <bug-99396-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: GP106M+Intel Skylake,
+ Kernel 4.10-rc3 : No display on HDMI or DP
+Date: Fri, 13 Jan 2017 09:50:48 -0500
+Message-ID: <CAKb7UvhjNMwU9OkS7ORMKpMeyxsocBXNd8ne7SB-KzjxOqxnHw@mail.gmail.com>
+References: <14847143.mIQnB4xdEE@talabheim>
+ <CAKb7UvhzeqJ9sNEbUEULS2oMMJxXyqRE_2yS0uLj6io=5Ch-mA@mail.gmail.com>
+ <4329520.iZb9cpLgF0@talabheim>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0267094825=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99396-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <4329520.iZb9cpLgF0@talabheim>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,99 +20,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Sylvain Fabre <sylvain-BlW8JBT9i25Wk0Htik3J/w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0267094825==
-Content-Type: multipart/alternative; boundary="14843163470.bB8f44Bf.30583";
- charset="UTF-8"
-
-
---14843163470.bB8f44Bf.30583
-Date: Fri, 13 Jan 2017 14:05:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99396
-
---- Comment #1 from afn2-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org ---
-I've managed to reproduce the crash fairly consistently by doing the follow=
-ing:
-
-1. Open two Firefox windows on one virtual desktop
-2. Open a gnome-terminal window on another desktop
-3. Repeatedly alt-tab between Firefox and gnome-terminal.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14843163470.bB8f44Bf.30583
-Date: Fri, 13 Jan 2017 14:05:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Crash in nouveau_dri.so when switching apps with alt-tab =
-in Gnome"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Crash in nouveau_dri.so when switching apps with alt-tab =
-in Gnome"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396">bug 99396<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-afn2&#64;cornell.edu" title=3D"afn2&#64;cornell.edu">afn2&#64;cornell.edu</=
-a>
-</span></b>
-        <pre>I've managed to reproduce the crash fairly consistently by doi=
-ng the following:
-
-1. Open two Firefox windows on one virtual desktop
-2. Open a gnome-terminal window on another desktop
-3. Repeatedly alt-tab between Firefox and gnome-terminal.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14843163470.bB8f44Bf.30583--
-
---===============0267094825==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0267094825==--
+T24gVGh1LCBKYW4gMTIsIDIwMTcgYXQgMzo1MSBBTSwgU3lsdmFpbiBGYWJyZSA8c3lsdmFpbkBs
+YWhpZXR0ZS5jb20+IHdyb3RlOgo+IHhyYW5kCj4KPiBTY3JlZW4gMDogbWluaW11bSAzMjAgeCAy
+MDAsIGN1cnJlbnQgMTkyMCB4IDEwODAsIG1heGltdW0gODE5MiB4IDgxOTIKPiBlRFAtMSBjb25u
+ZWN0ZWQgcHJpbWFyeSAxOTIweDEwODArMCswIChub3JtYWwgbGVmdCBpbnZlcnRlZCByaWdodCB4
+IGF4aXMgeQo+IGF4aXMpIDM0NG1tIHggMTk0bW0KPiAgIDE5MjB4MTA4MCAgICAgNjAuMDIqKyAg
+NDcuOTkKPiAgIDE0MDB4MTA1MCAgICAgNTkuOTgKPiAgIDEyODB4MTAyNCAgICAgNjAuMDIKPiAg
+IDEyODB4OTYwICAgICAgNjAuMDAKPiAgIDEwMjR4NzY4ICAgICAgNjAuMDQgICAgNjAuMDAKPiAg
+IDk2MHg3MjAgICAgICAgNjAuMDAKPiAgIDkyOHg2OTYgICAgICAgNjAuMDUKPiAgIDg5Nng2NzIg
+ICAgICAgNjAuMDEKPiAgIDgwMHg2MDAgICAgICAgNjAuMDAgICAgNjAuMzIgICAgNTYuMjUKPiAg
+IDcwMHg1MjUgICAgICAgNTkuOTgKPiAgIDY0MHg1MTIgICAgICAgNjAuMDIKPiAgIDY0MHg0ODAg
+ICAgICAgNjAuMDAgICAgNTkuOTQKPiAgIDUxMngzODQgICAgICAgNjAuMDAKPiAgIDQwMHgzMDAg
+ICAgICAgNjAuMzIgICAgNTYuMzQKPiAgIDMyMHgyNDAgICAgICAgNjAuMDUKPiBIRE1JLTEgZGlz
+Y29ubmVjdGVkIChub3JtYWwgbGVmdCBpbnZlcnRlZCByaWdodCB4IGF4aXMgeSBheGlzKQo+IERQ
+LTEgZGlzY29ubmVjdGVkIChub3JtYWwgbGVmdCBpbnZlcnRlZCByaWdodCB4IGF4aXMgeSBheGlz
+KQoKT0ssIHNvIEkgdGhpbmsgdGhhdCB0aGVzZSBhcmUgbm90IHRoZSBIRE1JL0RQIG91dHB1dHMg
+Y29ubmVjdGVkIHRvCnlvdXIgc2Vjb25kYXJ5IGRldmljZS4gVGhleSBhcmUgdGhlIG9uZXMgY29u
+bmVjdGVkIHRvIHlvdXIgcHJpbWFyeQpkZXZpY2UgKG1pZ2h0IG5vdCBiZSBwaW5uZWQgb3V0LCBv
+ciBtaWdodCBvbmx5IGJlIGF2YWlsYWJsZSB2aWEgYW4Kb3B0aW9uYWwgZG9jaykuIE5vcm1hbGx5
+IHRoZXJlJ2QgYmUgYW4gZXh0cmEgLTEtIGluIHRoZSBuYW1lIG9mIHN1Y2gKb3V0cHV0cy4gQnV0
+IHdobyBrbm93cyB3aXRoIG1vZGVzZXR0aW5nIC0gcGVyaGFwcyBpdCBkb2Vzbid0IHN0aWNrCnRo
+YXQgaW4gYW5kIHN0aWNrcyAxMDAlIHRvIHRoZSBrZXJuZWwgbmFtZXMuCgpIYXZlIGEgbG9vayBh
+dCBodHRwczovL25vdXZlYXUuZnJlZWRlc2t0b3Aub3JnL3dpa2kvT3B0aW11cy8gZm9yIHNvbWUK
+ZGV0YWlscyBvbiBob3cgdG8gc2V0IHVwIG91dHB1dCBvZmZsb2FkaW5nLiBUaGUgc2hvcnQgdmVy
+c2lvbiBpcyB0aGF0CnlvdSB3YW50IHRvIGRvIHNvbWV0aGluZyBsaWtlCgp4cmFuZHIgLS1zZXRw
+cm92aWRlcm91dHB1dHNvdXJjZSAxIDAKCklmIHRoYXQgZG9lc24ndCBoZWxwLCBncmFiIHRoZSBv
+dXRwdXQgb2YKCmdyZXAgLiAvc3lzL2NsYXNzL2RybS9jYXJkKi0qL3N0YXR1cwpncmVwIC4gL3N5
+cy9jbGFzcy9kcm0vY2FyZCotKi9tb2RlcwoKcHJlZmVyYWJseSB3aGlsZSBzb21ldGhpbmcgaXMg
+cGx1Z2dlZCBpbnRvIG9uZSBvZiB5b3VyIE5WSURJQS1hdHRhY2hlZApjb25uZWN0b3JzLiBXaGVu
+IFggZmlyc3Qgc3RhcnRzLCBpdCBhcHBlYXJzIHRvIGdldCBhbiBFRElEIGp1c3QgZmluZQpmb3Ig
+eW91ciBzZWNvbmRhcnkgR1BVJ3MgRFAtMSBvdXRwdXQuLi4KCkNoZWVycywKCiAgLWlsaWEKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
