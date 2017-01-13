@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
-Date: Fri, 13 Jan 2017 15:50:08 +0000
-Message-ID: <bug-99400-8800-2QCzneyZGm@http.bugs.freedesktop.org/>
+Date: Fri, 13 Jan 2017 16:53:08 +0000
+Message-ID: <bug-99400-8800-rWA3FXLX5v@http.bugs.freedesktop.org/>
 References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1866754139=="
+Content-Type: multipart/mixed; boundary="===============1460756447=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1866754139==
-Content-Type: multipart/alternative; boundary="14843226081.7e8fAccB.7315";
+--===============1460756447==
+Content-Type: multipart/alternative; boundary="14843263880.e7dc.14188";
  charset="UTF-8"
 
 
---14843226081.7e8fAccB.7315
-Date: Fri, 13 Jan 2017 15:50:08 +0000
+--14843263880.e7dc.14188
+Date: Fri, 13 Jan 2017 16:53:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,38 +35,31 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Olivier Fourdan from comment #3)
-> (In reply to Ilia Mirkin from comment #2)
-> > Not that it's of much consolation, but the nv30 GL driver sucks. There =
-are a
-> > number of unhandled situations, and I wouldn't be overly surprised if g=
-lamor
-> > were to hit one or several of them.
->=20
-> Could be a regression, I don't remember seeing those /before/ and the
-> downstream bugs about black icons are recent as well.
->=20
-> And there've been some glamor changes in the xserver as well, so it oculd=
- be
-> /something/ in glamor has changed and doesn't play well with the driver.
+--- Comment #5 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #4)
+> This may come as some surprise, but nv30 is not a hotbed of development
 
-This may come as some surprise, but nv30 is not a hotbed of development
-activity. If you can figure out a change in mesa that broke it, that'd be v=
-ery
-helpful.
+Understandable :)
 
-Separately, check dmesg - NVIDIA cards tend to yell loudly when we do somet=
-hing
-wrong.
+> activity. If you can figure out a change in mesa that broke it, that'd be
+> very helpful.
+
+Actually, I was thinking more about glamor here.
+
+> Separately, check dmesg - NVIDIA cards tend to yell loudly when we do
+> something wrong.
+
+I have tried a build with --enable-debug, but I see nothing wrong at all be=
+ing
+reported neither in dmesg nor in journalctl.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14843226081.7e8fAccB.7315
-Date: Fri, 13 Jan 2017 15:50:08 +0000
+--14843263880.e7dc.14188
+Date: Fri, 13 Jan 2017 16:53:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -83,43 +76,37 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
 </span></b>
-        <pre>(In reply to Olivier Fourdan from <a href=3D"show_bug.cgi?id=
-=3D99400#c3">comment #3</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D99400#c2">comment #2</a>)
-&gt; &gt; Not that it's of much consolation, but the nv30 GL driver sucks. =
-There are a
-&gt; &gt; number of unhandled situations, and I wouldn't be overly surprise=
-d if glamor
-&gt; &gt; were to hit one or several of them.
-&gt;=20
-&gt; Could be a regression, I don't remember seeing those /before/ and the
-&gt; downstream bugs about black icons are recent as well.
-&gt;=20
-&gt; And there've been some glamor changes in the xserver as well, so it oc=
-uld be
-&gt; /something/ in glamor has changed and doesn't play well with the drive=
-r.</span >
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D994=
+00#c4">comment #4</a>)
+<span class=3D"quote">&gt; This may come as some surprise, but nv30 is not =
+a hotbed of development</span >
 
-This may come as some surprise, but nv30 is not a hotbed of development
-activity. If you can figure out a change in mesa that broke it, that'd be v=
-ery
-helpful.
+Understandable :)
 
-Separately, check dmesg - NVIDIA cards tend to yell loudly when we do somet=
-hing
-wrong.</pre>
+<span class=3D"quote">&gt; activity. If you can figure out a change in mesa=
+ that broke it, that'd be
+&gt; very helpful.</span >
+
+Actually, I was thinking more about glamor here.
+
+<span class=3D"quote">&gt; Separately, check dmesg - NVIDIA cards tend to y=
+ell loudly when we do
+&gt; something wrong.</span >
+
+I have tried a build with --enable-debug, but I see nothing wrong at all be=
+ing
+reported neither in dmesg nor in journalctl.</pre>
         </div>
       </p>
 
@@ -128,15 +115,15 @@ wrong.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14843226081.7e8fAccB.7315--
+--14843263880.e7dc.14188--
 
---===============1866754139==
+--===============1460756447==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +133,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1866754139==--
+--===============1460756447==--
