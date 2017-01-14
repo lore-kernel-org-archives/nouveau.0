@@ -1,12 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
-Date: Sat, 14 Jan 2017 00:33:00 +0000
-Message-ID: <bug-99400-8800-Zzl0EA5ijF@http.bugs.freedesktop.org/>
-References: <bug-99400-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99408] New: Adjusting RGB output range with nouveau?
+Date: Sat, 14 Jan 2017 14:21:12 +0000
+Message-ID: <bug-99408-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0880988874=="
+Content-Type: multipart/mixed; boundary="===============1230756843=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,46 +18,63 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0880988874==
-Content-Type: multipart/alternative; boundary="14843539801.9bDa8c.23626";
+--===============1230756843==
+Content-Type: multipart/alternative; boundary="14844036720.A6dca3.3565";
  charset="UTF-8"
 
 
---14843539801.9bDa8c.23626
-Date: Sat, 14 Jan 2017 00:33:00 +0000
+--14844036720.A6dca3.3565
+Date: Sat, 14 Jan 2017 14:21:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99408
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Olivier Fourdan from comment #7)
-> (In reply to Ilia Mirkin from comment #6)
-> > How did you get this trace? I can't seem to replay it - none of the con=
-text
-> > setup stuff is there. (And it seems to like doing glFlush *a lot*...)
->=20
-> Directly on Xwayland.
->=20
->   apitrace trace /usr/bin/Xwayland "$@"
+            Bug ID: 99408
+           Summary: Adjusting RGB output range with nouveau?
+           Product: xorg
+           Version: unspecified
+          Hardware: All
+                OS: All
+            Status: NEW
+          Severity: enhancement
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: nw9165-3201-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-OK, well, if I can't replay the trace then it's not of much use. I don't kn=
-ow
-anything about Wayland or XWayland or how they work, unfortunately.
+Hi,
 
-Perhaps you might have success in tracing Xvfb + glamor or Xnest + glamor or
-something?
+is it possible to adjust the RGB output range with nouveau? If yes: How?
+
+For intel it's already possible:
+
+https://bugzilla.kernel.org/show_bug.cgi?id=3D94921
+
+And for amdgpu / radeon, it's already planned:
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D83226
+
+How about nouveau?
+
+And, by the way, why is there no DRM/nouveau over there:
+
+https://bugs.freedesktop.org/describecomponents.cgi?product=3DDRI
+
+?
+
+Regards
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14843539801.9bDa8c.23626
-Date: Sat, 14 Jan 2017 00:33:00 +0000
+--14844036720.A6dca3.3565
+Date: Sat, 14 Jan 2017 14:21:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,42 +85,117 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Adjusting RGB output range with nouveau?"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99408">99408</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Adjusting RGB output range with nouveau?
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>enhancement
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>nw9165-3201&#64;yahoo.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c8">Comment=
- # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Olivier Fourdan from <a href=3D"show_bug.cgi?id=
-=3D99400#c7">comment #7</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D99400#c6">comment #6</a>)
-&gt; &gt; How did you get this trace? I can't seem to replay it - none of t=
-he context
-&gt; &gt; setup stuff is there. (And it seems to like doing glFlush *a lot*=
-...)
-&gt;=20
-&gt; Directly on Xwayland.
-&gt;=20
-&gt;   apitrace trace /usr/bin/Xwayland &quot;$&#64;&quot;</span >
+        <pre>Hi,
 
-OK, well, if I can't replay the trace then it's not of much use. I don't kn=
-ow
-anything about Wayland or XWayland or how they work, unfortunately.
+is it possible to adjust the RGB output range with nouveau? If yes: How?
 
-Perhaps you might have success in tracing Xvfb + glamor or Xnest + glamor or
-something?</pre>
+For intel it's already possible:
+
+<a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D94921">https://bug=
+zilla.kernel.org/show_bug.cgi?id=3D94921</a>
+
+And for amdgpu / radeon, it's already planned:
+
+<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Allow use of ColorRange and ColorSpace in xorg.conf.d fil=
+es"
+   href=3D"show_bug.cgi?id=3D83226">https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D83226</a>
+
+How about nouveau?
+
+And, by the way, why is there no DRM/nouveau over there:
+
+<a href=3D"https://bugs.freedesktop.org/describecomponents.cgi?product=3DDR=
+I">https://bugs.freedesktop.org/describecomponents.cgi?product=3DDRI</a>
+
+?
+
+Regards</pre>
         </div>
       </p>
 
@@ -115,14 +205,13 @@ something?</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14843539801.9bDa8c.23626--
+--14844036720.A6dca3.3565--
 
---===============0880988874==
+--===============1230756843==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -132,4 +221,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0880988874==--
+--===============1230756843==--
