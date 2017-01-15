@@ -1,9 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99408] New: Adjusting RGB output range with nouveau?
-Date: Sat, 14 Jan 2017 14:21:12 +0000
-Message-ID: <bug-99408-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99420] New: After few days,
+ nouveau crashes - Xorg and kernel crashing next.
+Date: Sun, 15 Jan 2017 16:35:11 +0000
+Message-ID: <bug-99420-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1230756843=="
+Content-Type: multipart/mixed; boundary="===============0916002328=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,63 +19,96 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1230756843==
-Content-Type: multipart/alternative; boundary="14844036720.A6dca3.3565";
+--===============0916002328==
+Content-Type: multipart/alternative; boundary="14844981111.CCc6A12.2479";
  charset="UTF-8"
 
 
---14844036720.A6dca3.3565
-Date: Sat, 14 Jan 2017 14:21:12 +0000
+--14844981111.CCc6A12.2479
+Date: Sun, 15 Jan 2017 16:35:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99408
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99420
 
-            Bug ID: 99408
-           Summary: Adjusting RGB output range with nouveau?
+            Bug ID: 99420
+           Summary: After few days, nouveau crashes - Xorg and kernel
+                    crashing next.
            Product: xorg
            Version: unspecified
-          Hardware: All
-                OS: All
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
             Status: NEW
-          Severity: enhancement
+          Severity: normal
           Priority: medium
          Component: Driver/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: nw9165-3201-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
+          Reporter: quelque_ri1-Qt13gs6zZMY@public.gmane.org
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Hi,
+Created attachment 128967
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128967&action=3Dedit
+Journal when bug crashes
 
-is it possible to adjust the RGB output range with nouveau? If yes: How?
+After a few days of normal usage, without reboot, nouveau crashes. It happe=
+ned
+more than once, but no clear pattern emerge to know how to reproduce it. To=
+ my
+knowledge, it could be as much as a video memory overflow than anything els=
+e.
 
-For intel it's already possible:
+I attached the journal. (No dmesg, because it was a complete crash - no
+possible switch to tty). What seems to be interesting is the line 660 and
+below. I joined a bit more detail before (it is not the complete log) becau=
+se
+some error from nouveau may be interesting before, even though it didn't re=
+sult
+in any crashes before.
 
-https://bugzilla.kernel.org/show_bug.cgi?id=3D94921
+I think it is the right place to commit this message. Please tell me if I am
+wrong.
 
-And for amdgpu / radeon, it's already planned:
+More details on my setup
+I am running archlinux - 4.8.13-1-ARCH #1
+xf86-video-nouveau Version : 1.0.13-1
+mesa : 13.0.3-1
+xorg-server : 1.18.4-1
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D83226
+lspci -vv:
+01:00.0 VGA compatible controller: NVIDIA Corporation GT216M [GeForce GT 32=
+0M]
+(rev a2) (prog-if 00 [VGA controller])
+        Subsystem: Acer Incorporated [ALI] Device 036d
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx+
+        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast >TAbort- <T=
+Abort-
+<MAbort- >SERR- <PERR- INTx-
+        Latency: 0, Cache Line Size: 64 bytes
+        Interrupt: pin A routed to IRQ 28
+        Region 0: Memory at b2000000 (32-bit, non-prefetchable) [size=3D16M]
+        Region 1: Memory at a0000000 (64-bit, prefetchable) [size=3D256M]
+        Region 3: Memory at b0000000 (64-bit, prefetchable) [size=3D32M]
+        Region 5: I/O ports at 3000 [size=3D128]
+        Expansion ROM at 000c0000 [disabled] [size=3D128K]
+        Capabilities: <access denied>
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau
 
-How about nouveau?
 
-And, by the way, why is there no DRM/nouveau over there:
+You can ask for any missing information!
 
-https://bugs.freedesktop.org/describecomponents.cgi?product=3DDRI
-
-?
-
-Regards
+Cheers! :o)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14844036720.A6dca3.3565
-Date: Sat, 14 Jan 2017 14:21:12 +0000
+--14844981111.CCc6A12.2479
+Date: Sun, 15 Jan 2017 16:35:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -90,14 +124,16 @@ Auto-Submitted: auto-generated
           <th>Bug ID</th>
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Adjusting RGB output range with nouveau?"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99408">99408</a>
+   title=3D"NEW - After few days, nouveau crashes - Xorg and kernel crashin=
+g next."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99420">99420</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>Adjusting RGB output range with nouveau?
+          <td>After few days, nouveau crashes - Xorg and kernel crashing ne=
+xt.
           </td>
         </tr>
 
@@ -115,13 +151,13 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Hardware</th>
-          <td>All
+          <td>x86-64 (AMD64)
           </td>
         </tr>
 
         <tr>
           <th>OS</th>
-          <td>All
+          <td>Linux (All)
           </td>
         </tr>
 
@@ -133,7 +169,7 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Severity</th>
-          <td>enhancement
+          <td>normal
           </td>
         </tr>
 
@@ -157,7 +193,7 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Reporter</th>
-          <td>nw9165-3201&#64;yahoo.com
+          <td>quelque_ri1&#64;yahoo.fr
           </td>
         </tr>
 
@@ -168,34 +204,61 @@ Auto-Submitted: auto-generated
         </tr></table>
       <p>
         <div>
-        <pre>Hi,
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128967=
+" name=3D"attach_128967" title=3D"Journal when bug crashes">attachment 1289=
+67</a> <a href=3D"attachment.cgi?id=3D128967&amp;action=3Dedit" title=3D"Jo=
+urnal when bug crashes">[details]</a></span>
+Journal when bug crashes
 
-is it possible to adjust the RGB output range with nouveau? If yes: How?
+After a few days of normal usage, without reboot, nouveau crashes. It happe=
+ned
+more than once, but no clear pattern emerge to know how to reproduce it. To=
+ my
+knowledge, it could be as much as a video memory overflow than anything els=
+e.
 
-For intel it's already possible:
+I attached the journal. (No dmesg, because it was a complete crash - no
+possible switch to tty). What seems to be interesting is the line 660 and
+below. I joined a bit more detail before (it is not the complete log) becau=
+se
+some error from nouveau may be interesting before, even though it didn't re=
+sult
+in any crashes before.
 
-<a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D94921">https://bug=
-zilla.kernel.org/show_bug.cgi?id=3D94921</a>
+I think it is the right place to commit this message. Please tell me if I am
+wrong.
 
-And for amdgpu / radeon, it's already planned:
+More details on my setup
+I am running archlinux - 4.8.13-1-ARCH #1
+xf86-video-nouveau Version : 1.0.13-1
+mesa : 13.0.3-1
+xorg-server : 1.18.4-1
 
-<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Allow use of ColorRange and ColorSpace in xorg.conf.d fil=
-es"
-   href=3D"show_bug.cgi?id=3D83226">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D83226</a>
+lspci -vv:
+01:00.0 VGA compatible controller: NVIDIA Corporation GT216M [GeForce GT 32=
+0M]
+(rev a2) (prog-if 00 [VGA controller])
+        Subsystem: Acer Incorporated [ALI] Device 036d
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx+
+        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast &gt;TAbort-=
+ &lt;TAbort-
+&lt;MAbort- &gt;SERR- &lt;PERR- INTx-
+        Latency: 0, Cache Line Size: 64 bytes
+        Interrupt: pin A routed to IRQ 28
+        Region 0: Memory at b2000000 (32-bit, non-prefetchable) [size=3D16M]
+        Region 1: Memory at a0000000 (64-bit, prefetchable) [size=3D256M]
+        Region 3: Memory at b0000000 (64-bit, prefetchable) [size=3D32M]
+        Region 5: I/O ports at 3000 [size=3D128]
+        Expansion ROM at 000c0000 [disabled] [size=3D128K]
+        Capabilities: &lt;access denied&gt;
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau
 
-How about nouveau?
 
-And, by the way, why is there no DRM/nouveau over there:
+You can ask for any missing information!
 
-<a href=3D"https://bugs.freedesktop.org/describecomponents.cgi?product=3DDR=
-I">https://bugs.freedesktop.org/describecomponents.cgi?product=3DDRI</a>
-
-?
-
-Regards</pre>
+Cheers! :o)</pre>
         </div>
       </p>
 
@@ -209,9 +272,9 @@ Regards</pre>
     </body>
 </html>=
 
---14844036720.A6dca3.3565--
+--14844981111.CCc6A12.2479--
 
---===============1230756843==
+--===============0916002328==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -221,4 +284,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1230756843==--
+--===============0916002328==--
