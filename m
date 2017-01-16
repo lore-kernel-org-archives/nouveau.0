@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
-Date: Mon, 16 Jan 2017 16:17:17 +0000
-Message-ID: <bug-99400-8800-6aIhFPzrCU@http.bugs.freedesktop.org/>
+Date: Mon, 16 Jan 2017 16:36:47 +0000
+Message-ID: <bug-99400-8800-qmQANPmmut@http.bugs.freedesktop.org/>
 References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0289279634=="
+Content-Type: multipart/mixed; boundary="===============1396039918=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0289279634==
-Content-Type: multipart/alternative; boundary="14845834360.bd61efdD.1941";
+--===============1396039918==
+Content-Type: multipart/alternative; boundary="14845846070.0d4a5.3094";
  charset="UTF-8"
 
 
---14845834360.bd61efdD.1941
-Date: Mon, 16 Jan 2017 16:17:16 +0000
+--14845846070.0d4a5.3094
+Date: Mon, 16 Jan 2017 16:36:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,28 +35,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
 
---- Comment #9 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
-Created attachment 128984
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128984&action=3Dedit
-GLAMOR_DEBUG=3D1 weston
+--- Comment #10 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+(In reply to Olivier Fourdan from comment #9)
+>   glamor_composite_choose_shader:       Unsupported source picture format.
+>     glamor_composite_with_shader:       glamor_composite_choose_shader fa=
+iled
 
-Humm, using GLAMOR_DEBUG, I see this error:
-
-  glamor_composite_choose_shader:       Unsupported source picture format.
-    glamor_composite_with_shader:       glamor_composite_choose_shader fail=
-ed
-
-When the issue occurs, so it's possibly that glamor is not checking all of =
-its
-own requirement in glamor_init()
+I see the same with intel and yet rendering is correct there, so it's not t=
+hat.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14845834360.bd61efdD.1941
-Date: Mon, 16 Jan 2017 16:17:16 +0000
+--14845846070.0d4a5.3094
+Date: Mon, 16 Jan 2017 16:36:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,8 +67,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c9">Comment=
- # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
@@ -84,21 +78,15 @@ Auto-Submitted: auto-generated
 fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
 "> <span class=3D"fn">Olivier Fourdan</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128984=
-" name=3D"attach_128984" title=3D"GLAMOR_DEBUG=3D1 weston">attachment 12898=
-4</a> <a href=3D"attachment.cgi?id=3D128984&amp;action=3Dedit" title=3D"GLA=
-MOR_DEBUG=3D1 weston">[details]</a></span>
-GLAMOR_DEBUG=3D1 weston
+        <pre>(In reply to Olivier Fourdan from <a href=3D"show_bug.cgi?id=
+=3D99400#c9">comment #9</a>)
+<span class=3D"quote">&gt;   glamor_composite_choose_shader:       Unsuppor=
+ted source picture format.
+&gt;     glamor_composite_with_shader:       glamor_composite_choose_shader=
+ failed</span >
 
-Humm, using GLAMOR_DEBUG, I see this error:
-
-  glamor_composite_choose_shader:       Unsupported source picture format.
-    glamor_composite_with_shader:       glamor_composite_choose_shader fail=
-ed
-
-When the issue occurs, so it's possibly that glamor is not checking all of =
-its
-own requirement in glamor_init()</pre>
+I see the same with intel and yet rendering is correct there, so it's not t=
+hat.</pre>
         </div>
       </p>
 
@@ -113,9 +101,9 @@ own requirement in glamor_init()</pre>
     </body>
 </html>=
 
---14845834360.bd61efdD.1941--
+--14845846070.0d4a5.3094--
 
---===============0289279634==
+--===============1396039918==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -125,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0289279634==--
+--===============1396039918==--
