@@ -1,83 +1,128 @@
-From: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
-Subject: [PATCH 4/4] drm/nouveau/kms/nv50: Switch to using atomic helper for
- flip.
-Date: Mon, 16 Jan 2017 10:44:58 -0500
-Message-ID: <1484581498-32309-5-git-send-email-Andrey.Grodzovsky@amd.com>
-References: <1484581498-32309-1-git-send-email-Andrey.Grodzovsky@amd.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
+Date: Mon, 16 Jan 2017 16:17:17 +0000
+Message-ID: <bug-99400-8800-6aIhFPzrCU@http.bugs.freedesktop.org/>
+References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1484581498-32309-1-git-send-email-Andrey.Grodzovsky@amd.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, daniel.vetter@intel.com
+Content-Type: multipart/mixed; boundary="===============0289279634=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogQW5kcmV5IEdyb2R6b3Zza3kgPEFuZHJleS5Hcm9kem92c2t5QGFtZC5j
-b20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgfCA3NyArKyst
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRp
-b25zKCspLCA3MiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9udjUwX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxh
-eS5jCmluZGV4IDJjMmM2NDUuLjQxOWUwMGMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252NTBfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBf
-ZGlzcGxheS5jCkBAIC04NDYsNiArODQ2LDEwIEBAIHN0cnVjdCBudjUwX3duZHdfZnVuYyB7CiAJ
-YXN5dy0+aW1hZ2UudyA9IGZiLT5iYXNlLndpZHRoOwogCWFzeXctPmltYWdlLmggPSBmYi0+YmFz
-ZS5oZWlnaHQ7CiAJYXN5dy0+aW1hZ2Uua2luZCA9IChmYi0+bnZiby0+dGlsZV9mbGFncyAmIDB4
-MDAwMGZmMDApID4+IDg7CisKKwlhc3l3LT5pbnRlcnZhbCA9CisJCQlhc3l3LT5zdGF0ZS5wZmxp
-cF9mbGFncyAmIERSTV9NT0RFX1BBR0VfRkxJUF9BU1lOQyA/IDAgOiAxOworCiAJaWYgKGFzeXct
-PmltYWdlLmtpbmQpIHsKIAkJYXN5dy0+aW1hZ2UubGF5b3V0ID0gMDsKIAkJaWYgKGRybS0+ZGV2
-aWNlLmluZm8uY2hpcHNldCA+PSAweGMwKQpAQCAtMjIyMSw3NyArMjIyNSw2IEBAIHN0cnVjdCBu
-djUwX2Jhc2UgewogCS5hdG9taWNfY2hlY2sgPSBudjUwX2hlYWRfYXRvbWljX2NoZWNrLAogfTsK
-IAotLyogVGhpcyBpcyBpZGVudGljYWwgdG8gdGhlIHZlcnNpb24gaW4gdGhlIGF0b21pYyBoZWxw
-ZXJzLCBleGNlcHQgdGhhdAotICogaXQgc3VwcG9ydHMgbm9uLXZibGFua2VkICgiYXN5bmMiKSBw
-YWdlIGZsaXBzLgotICovCi1zdGF0aWMgaW50Ci1udjUwX2hlYWRfcGFnZV9mbGlwKHN0cnVjdCBk
-cm1fY3J0YyAqY3J0Yywgc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAqZmIsCi0JCSAgICBzdHJ1Y3Qg
-ZHJtX3BlbmRpbmdfdmJsYW5rX2V2ZW50ICpldmVudCwgdTMyIGZsYWdzKQotewotCXN0cnVjdCBk
-cm1fcGxhbmUgKnBsYW5lID0gY3J0Yy0+cHJpbWFyeTsKLQlzdHJ1Y3QgZHJtX2F0b21pY19zdGF0
-ZSAqc3RhdGU7Ci0Jc3RydWN0IGRybV9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGU7Ci0Jc3RydWN0
-IGRybV9jcnRjX3N0YXRlICpjcnRjX3N0YXRlOwotCWludCByZXQgPSAwOwotCi0Jc3RhdGUgPSBk
-cm1fYXRvbWljX3N0YXRlX2FsbG9jKHBsYW5lLT5kZXYpOwotCWlmICghc3RhdGUpCi0JCXJldHVy
-biAtRU5PTUVNOwotCi0Jc3RhdGUtPmFjcXVpcmVfY3R4ID0gZHJtX21vZGVzZXRfbGVnYWN5X2Fj
-cXVpcmVfY3R4KGNydGMpOwotcmV0cnk6Ci0JY3J0Y19zdGF0ZSA9IGRybV9hdG9taWNfZ2V0X2Ny
-dGNfc3RhdGUoc3RhdGUsIGNydGMpOwotCWlmIChJU19FUlIoY3J0Y19zdGF0ZSkpIHsKLQkJcmV0
-ID0gUFRSX0VSUihjcnRjX3N0YXRlKTsKLQkJZ290byBmYWlsOwotCX0KLQljcnRjX3N0YXRlLT5l
-dmVudCA9IGV2ZW50OwotCi0JcGxhbmVfc3RhdGUgPSBkcm1fYXRvbWljX2dldF9wbGFuZV9zdGF0
-ZShzdGF0ZSwgcGxhbmUpOwotCWlmIChJU19FUlIocGxhbmVfc3RhdGUpKSB7Ci0JCXJldCA9IFBU
-Ul9FUlIocGxhbmVfc3RhdGUpOwotCQlnb3RvIGZhaWw7Ci0JfQotCi0JcmV0ID0gZHJtX2F0b21p
-Y19zZXRfY3J0Y19mb3JfcGxhbmUocGxhbmVfc3RhdGUsIGNydGMpOwotCWlmIChyZXQgIT0gMCkK
-LQkJZ290byBmYWlsOwotCWRybV9hdG9taWNfc2V0X2ZiX2Zvcl9wbGFuZShwbGFuZV9zdGF0ZSwg
-ZmIpOwotCi0JLyogTWFrZSBzdXJlIHdlIGRvbid0IGFjY2lkZW50YWxseSBkbyBhIGZ1bGwgbW9k
-ZXNldC4gKi8KLQlzdGF0ZS0+YWxsb3dfbW9kZXNldCA9IGZhbHNlOwotCWlmICghY3J0Y19zdGF0
-ZS0+YWN0aXZlKSB7Ci0JCURSTV9ERUJVR19BVE9NSUMoIltDUlRDOiVkXSBkaXNhYmxlZCwgcmVq
-ZWN0aW5nIGxlZ2FjeSBmbGlwXG4iLAotCQkJCSBjcnRjLT5iYXNlLmlkKTsKLQkJcmV0ID0gLUVJ
-TlZBTDsKLQkJZ290byBmYWlsOwotCX0KLQotCWlmIChmbGFncyAmIERSTV9NT0RFX1BBR0VfRkxJ
-UF9BU1lOQykKLQkJbnY1MF93bmR3X2F0b20ocGxhbmVfc3RhdGUpLT5pbnRlcnZhbCA9IDA7Ci0K
-LQlyZXQgPSBkcm1fYXRvbWljX25vbmJsb2NraW5nX2NvbW1pdChzdGF0ZSk7Ci1mYWlsOgotCWlm
-IChyZXQgPT0gLUVERUFETEspCi0JCWdvdG8gYmFja29mZjsKLQotCWRybV9hdG9taWNfc3RhdGVf
-cHV0KHN0YXRlKTsKLQlyZXR1cm4gcmV0OwotCi1iYWNrb2ZmOgotCWRybV9hdG9taWNfc3RhdGVf
-Y2xlYXIoc3RhdGUpOwotCWRybV9hdG9taWNfbGVnYWN5X2JhY2tvZmYoc3RhdGUpOwotCi0JLyoK
-LQkgKiBTb21lb25lIG1pZ2h0IGhhdmUgZXhjaGFuZ2VkIHRoZSBmcmFtZWJ1ZmZlciB3aGlsZSB3
-ZSBkcm9wcGVkIGxvY2tzCi0JICogaW4gdGhlIGJhY2tvZmYgY29kZS4gV2UgbmVlZCB0byBmaXgg
-dXAgdGhlIGZiIHJlZmNvdW50IHRyYWNraW5nIHRoZQotCSAqIGNvcmUgZG9lcyBmb3IgdXMuCi0J
-ICovCi0JcGxhbmUtPm9sZF9mYiA9IHBsYW5lLT5mYjsKLQotCWdvdG8gcmV0cnk7Ci19Ci0KIHN0
-YXRpYyBpbnQKIG52NTBfaGVhZF9nYW1tYV9zZXQoc3RydWN0IGRybV9jcnRjICpjcnRjLCB1MTYg
-KnIsIHUxNiAqZywgdTE2ICpiLAogCQkgICAgdWludDMyX3Qgc2l6ZSkKQEAgLTIzODYsNyArMjMx
-OSw3IEBAIHN0cnVjdCBudjUwX2Jhc2UgewogCS5nYW1tYV9zZXQgPSBudjUwX2hlYWRfZ2FtbWFf
-c2V0LAogCS5kZXN0cm95ID0gbnY1MF9oZWFkX2Rlc3Ryb3ksCiAJLnNldF9jb25maWcgPSBkcm1f
-YXRvbWljX2hlbHBlcl9zZXRfY29uZmlnLAotCS5wYWdlX2ZsaXAgPSBudjUwX2hlYWRfcGFnZV9m
-bGlwLAorCS5wYWdlX2ZsaXAgPSBkcm1fYXRvbWljX2hlbHBlcl9wYWdlX2ZsaXAsCiAJLnNldF9w
-cm9wZXJ0eSA9IGRybV9hdG9taWNfaGVscGVyX2NydGNfc2V0X3Byb3BlcnR5LAogCS5hdG9taWNf
-ZHVwbGljYXRlX3N0YXRlID0gbnY1MF9oZWFkX2F0b21pY19kdXBsaWNhdGVfc3RhdGUsCiAJLmF0
-b21pY19kZXN0cm95X3N0YXRlID0gbnY1MF9oZWFkX2F0b21pY19kZXN0cm95X3N0YXRlLAotLSAK
-MS45LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRy
-aS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============0289279634==
+Content-Type: multipart/alternative; boundary="14845834360.bd61efdD.1941";
+ charset="UTF-8"
+
+
+--14845834360.bd61efdD.1941
+Date: Mon, 16 Jan 2017 16:17:16 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
+
+--- Comment #9 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+Created attachment 128984
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D128984&action=3Dedit
+GLAMOR_DEBUG=3D1 weston
+
+Humm, using GLAMOR_DEBUG, I see this error:
+
+  glamor_composite_choose_shader:       Unsupported source picture format.
+    glamor_composite_with_shader:       glamor_composite_choose_shader fail=
+ed
+
+When the issue occurs, so it's possibly that glamor is not checking all of =
+its
+own requirement in glamor_init()
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14845834360.bd61efdD.1941
+Date: Mon, 16 Jan 2017 16:17:16 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c9">Comment=
+ # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D128984=
+" name=3D"attach_128984" title=3D"GLAMOR_DEBUG=3D1 weston">attachment 12898=
+4</a> <a href=3D"attachment.cgi?id=3D128984&amp;action=3Dedit" title=3D"GLA=
+MOR_DEBUG=3D1 weston">[details]</a></span>
+GLAMOR_DEBUG=3D1 weston
+
+Humm, using GLAMOR_DEBUG, I see this error:
+
+  glamor_composite_choose_shader:       Unsupported source picture format.
+    glamor_composite_with_shader:       glamor_composite_choose_shader fail=
+ed
+
+When the issue occurs, so it's possibly that glamor is not checking all of =
+its
+own requirement in glamor_init()</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14845834360.bd61efdD.1941--
+
+--===============0289279634==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0289279634==--
