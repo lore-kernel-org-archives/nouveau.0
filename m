@@ -1,77 +1,145 @@
-From: Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>
-Subject: Re: [PATCH 1/4] drm/atomic: Save flip flags in drm_plane_state
-Date: Tue, 17 Jan 2017 11:03:59 +0200
-Message-ID: <4607418.ZFnDrv1sq5@avalon>
-References: <1484581498-32309-1-git-send-email-Andrey.Grodzovsky@amd.com>
- <2228745.8gUO3azVRk@avalon>
- <DM5PR12MB1147FF9E484370F1572CB9C3EA7C0@DM5PR12MB1147.namprd12.prod.outlook.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
+Date: Tue, 17 Jan 2017 11:03:27 +0000
+Message-ID: <bug-99400-8800-gBq5uQctWz@http.bugs.freedesktop.org/>
+References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <DM5PR12MB1147FF9E484370F1572CB9C3EA7C0-2J9CzHegvk9IwjGPM8RDJwdYzm3356FpvxpqHgZTriW3zl9H0oFU5g@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "Grodzovsky, Andrey" <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
-Cc: "Deucher, Alexander" <Alexander.Deucher-5C7GfCeVMHo@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org" <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0743073867=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgQW5kcmV5LAoKT24gVHVlc2RheSAxNyBKYW4gMjAxNyAwNDowMzoxMSBHcm9kem92c2t5LCBB
-bmRyZXkgd3JvdGU6Cj4gT24gTW9uZGF5LCBKYW51YXJ5IDE2LCAyMDE3IDU6MTggUE0gTGF1cmVu
-dCBQaW5jaGFydCB3cm90ZToKPiA+IE9uIE1vbmRheSAxNiBKYW4gMjAxNyAxMDo0NDo1NSBBbmRy
-ZXkgR3JvZHpvdnNreSB3cm90ZToKPiA+ID4gQWxsb3dzIHVzaW5nIGF0b21pYyBmbGlwIGhlbHBl
-cnMgZm9yIGRyaXZlcnMgdXNpbmcgQVNZTkMgZmxpcC4KPiA+ID4gUmVtb3ZlIEFTWU5DX0ZMSVAg
-cmVzdHJpY3Rpb24gaW4gaGVscGVycyBhbmQgY2FjaGVzIHRoZSBwYWdlIGZsaXAKPiA+ID4gZmxh
-Z3MgaW4gZHJtX3BsYW5lX3N0YXRlIHRvIGJlIHVzZWQgaW4gdGhlIGxvdyBsZXZlbCBkcml2ZXJz
-Lgo+ID4gPiAKPiA+PiBTaWduZWQtb2ZmLWJ5OiBBbmRyZXkgR3JvZHpvdnNreSA8QW5kcmV5Lkdy
-b2R6b3Zza3lAYW1kLmNvbT4KPiA+PiAtLS0KPiA+PiAKPiA+PiAgZHJpdmVycy9ncHUvZHJtL2Ry
-bV9hdG9taWNfaGVscGVyLmMgfCAxMCArKystLS0tLS0tCj4gPj4gIGluY2x1ZGUvZHJtL2RybV9w
-bGFuZS5oICAgICAgICAgICAgIHwgIDggKysrKysrKysKPiA+PiAgMiBmaWxlcyBjaGFuZ2VkLCAx
-MSBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQo+ID4+IAo+ID4+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYwo+ID4+IGIvZHJpdmVycy9ncHUvZHJt
-L2RybV9hdG9taWNfaGVscGVyLmMgaW5kZXggYTRlNTQ3Ny4uZjgzZGM0MyAxMDA2NDQKPiA+PiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYwo+ID4+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jCj4gPj4gQEAgLTI3MzcsNyArMjczNyw4IEBA
-IHN0YXRpYyBpbnQgcGFnZV9mbGlwX2NvbW1vbigKPiA+PiAgCQkJCXN0cnVjdCBkcm1fYXRvbWlj
-X3N0YXRlICpzdGF0ZSwKPiA+PiAgCQkJCXN0cnVjdCBkcm1fY3J0YyAqY3J0YywKPiA+PiAgCQkJ
-CXN0cnVjdCBkcm1fZnJhbWVidWZmZXIgKmZiLAo+ID4+IC0JCQkJc3RydWN0IGRybV9wZW5kaW5n
-X3ZibGFua19ldmVudCAqZXZlbnQpCj4gPj4gKwkJCQlzdHJ1Y3QgZHJtX3BlbmRpbmdfdmJsYW5r
-X2V2ZW50ICpldmVudCwKPiA+PiArCQkJCXVpbnQzMl90IGZsYWdzKQo+ID4+ICB7Cj4gPj4gIAlz
-dHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSA9IGNydGMtPnByaW1hcnk7Cj4gPj4gIAlzdHJ1Y3QgZHJt
-X3BsYW5lX3N0YXRlICpwbGFuZV9zdGF0ZTsKPiA+PiBAQCAtMjc1NCw2ICsyNzU1LDcgQEAgc3Rh
-dGljIGludCBwYWdlX2ZsaXBfY29tbW9uKAo+ID4+ICAJaWYgKElTX0VSUihwbGFuZV9zdGF0ZSkp
-Cj4gPj4gIAkJcmV0dXJuIFBUUl9FUlIocGxhbmVfc3RhdGUpOwo+ID4+IAo+ID4+ICsJcGxhbmVf
-c3RhdGUtPnBmbGlwX2ZsYWdzID0gZmxhZ3M7Cj4gPj4gCj4gPj4gIAlyZXQgPSBkcm1fYXRvbWlj
-X3NldF9jcnRjX2Zvcl9wbGFuZShwbGFuZV9zdGF0ZSwgY3J0Yyk7Cj4gPj4gIAlpZiAocmV0ICE9
-IDApCj4gPj4gQEAgLTI4MDAsOSArMjgwMiw2IEBAIGludCBkcm1fYXRvbWljX2hlbHBlcl9wYWdl
-X2ZsaXAoc3RydWN0IGRybV9jcnRjCj4gPj4gKmNydGMsCj4gPj4gCXN0cnVjdCBkcm1fYXRvbWlj
-X3N0YXRlICpzdGF0ZTsKPiA+PiAgCWludCByZXQgPSAwOwo+ID4+IAo+ID4+IC0JaWYgKGZsYWdz
-ICYgRFJNX01PREVfUEFHRV9GTElQX0FTWU5DKQo+ID4+IC0JCXJldHVybiAtRUlOVkFMOwo+ID4+
-IC0KPiA+IAo+ID4gV2l0aCB0aGlzIGNoYW5nZSBhbGwgZHJpdmVycyB1c2luZyB0aGUgaGVscGVy
-IHdpbGwgbm90IHJlamVjdCB0aGF0IGFzeW5jCj4gPiBmbGFnLCBldmVuIGlmIHRoZXkgZG9uJ3Qg
-aW1wbGVtZW50IHN1cHBvcnQgZm9yIGFzeW5jIHBhZ2UgZmxpcC4gWW91IG5lZWQKPiA+IHRvIGVp
-dGhlciBwYXRjaCB0aGVtIGFsbCB0byByZWplY3QgdGhlIGZsYWcsIG9yIGltcGxlbWVudCBhc3lu
-YyBwYWdlIGZsaXAKPiA+IHN1cHBvcnQgZm9yIGFsbCBvZiB0aGVtIChwcmVmZXJhYmxlIGluIHRo
-ZSBoZWxwZXJzLCBhbmQgdGhlbiByZW1vdmUgdGhlCj4gCj4gUGxlYXNlIGNoZWNrIGRybV9tb2Rl
-X3BhZ2VfZmxpcF9pb2N0bCwgb25lIG9mIHRoZSBjaGVja3MgaW4gdGhlIGJlZ2lubmluZyBpcwo+
-IAo+IGlmICgocGFnZV9mbGlwLT5mbGFncyAmIERSTV9NT0RFX1BBR0VfRkxJUF9BU1lOQykgJiYK
-PiAhZGV2LT5tb2RlX2NvbmZpZy5hc3luY19wYWdlX2ZsaXApIHJldHVybiAtRUlOVkFMOwoKSSB0
-aGluayB5b3UncmUgcmlnaHQuIFNvcnJ5IGZvciB0aGUgbm9pc2UuCgo+IFdlIGluIERDIGV4cGxp
-Y2l0bHkgc2V0IGRldi0+bW9kZV9jb25maWcuYXN5bmNfcGFnZV9mbGlwID0gdHJ1ZSwgYW55IGRy
-aXZlcgo+IHdoaWNoIGlzIE5vdCBzdXBwb3J0aW5nIEFTWU5DIGZsaXAgd2lsbCBmYWlsIHRoZSBJ
-T0NUTCBhdCB0aGlzIHBvaW50Lgo+IFNhbWUgaW4gZHJtX21vZGVfYXRvbWljX2lvY3RsCj4gCj4g
-PiAgKiBOb3RlIHRoYXQgZm9yIG5vdyBzbyBjYWxsZWQgYXN5bmMgcGFnZSBmbGlwcyAoaS5lLiB1
-cGRhdGVzIHdoaWNoIGFyZQo+ID4gIG5vdAo+ID4gICogc3luY2hyb25pemVkIHRvIHZibGFuaykg
-YXJlIG5vdCBzdXBwb3J0ZWQsIHNpbmNlIHRoZSBhdG9taWMgaW50ZXJmYWNlcwo+ID4gaGF2ZQo+
-ID4gICogbm8gcHJvdmlzaW9ucyBmb3IgdGhpcyB5ZXQuCj4gPiAKPiA+IGNvbW1lbnQpLgo+IAo+
-IFRoYW5rcywgdGhhdCBhIGdvb2QgY2F0Y2gsIHdpbGwgcmVtb3ZlLgoKLS0gClJlZ2FyZHMsCgpM
-YXVyZW50IFBpbmNoYXJ0CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+
+--===============0743073867==
+Content-Type: multipart/alternative; boundary="14846510070.06DcCeb.6755";
+ charset="UTF-8"
+
+
+--14846510070.06DcCeb.6755
+Date: Tue, 17 Jan 2017 11:03:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
+
+--- Comment #11 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+(In reply to Olivier Fourdan from comment #10)
+> (In reply to Olivier Fourdan from comment #9)
+> >   glamor_composite_choose_shader:       Unsupported source picture form=
+at.
+> >     glamor_composite_with_shader:       glamor_composite_choose_shader =
+failed
+>=20
+> I see the same with intel and yet rendering is correct there, so it's not
+> that.
+
+Unless the issue is with the fallback code in glamor, i.e.:
+
+https://cgit.freedesktop.org/xorg/xserver/tree/glamor/glamor_render.c#n1699
+
+Calling the fallback code unconditionally (i.e. "goto fail;" at the beginni=
+ng
+of glamor_composite() ) still exhibits the issue on nvidia/nouveau and not =
+on
+intel, but then it doesn't seem to be specific to nouveau... I am confused =
+now.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14846510070.06DcCeb.6755
+Date: Tue, 17 Jan 2017 11:03:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c11">Commen=
+t # 11</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
+</span></b>
+        <pre>(In reply to Olivier Fourdan from <a href=3D"show_bug.cgi?id=
+=3D99400#c10">comment #10</a>)
+<span class=3D"quote">&gt; (In reply to Olivier Fourdan from <a href=3D"sho=
+w_bug.cgi?id=3D99400#c9">comment #9</a>)
+&gt; &gt;   glamor_composite_choose_shader:       Unsupported source pictur=
+e format.
+&gt; &gt;     glamor_composite_with_shader:       glamor_composite_choose_s=
+hader failed
+&gt;=20
+&gt; I see the same with intel and yet rendering is correct there, so it's =
+not
+&gt; that.</span >
+
+Unless the issue is with the fallback code in glamor, i.e.:
+
+<a href=3D"https://cgit.freedesktop.org/xorg/xserver/tree/glamor/glamor_ren=
+der.c#n1699">https://cgit.freedesktop.org/xorg/xserver/tree/glamor/glamor_r=
+ender.c#n1699</a>
+
+Calling the fallback code unconditionally (i.e. &quot;goto fail;&quot; at t=
+he beginning
+of glamor_composite() ) still exhibits the issue on nvidia/nouveau and not =
+on
+intel, but then it doesn't seem to be specific to nouveau... I am confused =
+now.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14846510070.06DcCeb.6755--
+
+--===============0743073867==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0743073867==--
