@@ -1,117 +1,82 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91247] Tomb Raider: Underworld renders lots of
- artefacts on models and objects
-Date: Tue, 17 Jan 2017 06:14:25 +0000
-Message-ID: <bug-91247-8800-46oShqJ9m5@http.bugs.freedesktop.org/>
-References: <bug-91247-8800@http.bugs.freedesktop.org/>
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 1/4] drm/atomic: Save flip flags in drm_plane_state
+Date: Tue, 17 Jan 2017 10:14:05 +0200
+Message-ID: <20170117081405.GO31595@intel.com>
+References: <1484581498-32309-1-git-send-email-Andrey.Grodzovsky@amd.com>
+ <1484581498-32309-2-git-send-email-Andrey.Grodzovsky@amd.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0893023891=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91247-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <1484581498-32309-2-git-send-email-Andrey.Grodzovsky@amd.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
+Cc: Alexander.Deucher@amd.com, nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, daniel.vetter@intel.com
 List-Id: nouveau.vger.kernel.org
 
-
---===============0893023891==
-Content-Type: multipart/alternative; boundary="14846336650.97e3b.18577";
- charset="UTF-8"
-
-
---14846336650.97e3b.18577
-Date: Tue, 17 Jan 2017 06:14:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91247
-
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-FWIW I did determine that it was the previously attached vertex shader that=
- was
-at fault. However comparing the two versions (before and after the patch th=
-at
-"fixed" it), I didn't see any apparent differences. There was some minor co=
-de
-reordering, but nothing serious. I'm going to stop looking now.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14846336650.97e3b.18577
-Date: Tue, 17 Jan 2017 06:14:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Tomb Raider: Underworld renders lots of artefa=
-cts on models and objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91247#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Tomb Raider: Underworld renders lots of artefa=
-cts on models and objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91247">bug 91247<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>FWIW I did determine that it was the previously attached verte=
-x shader that was
-at fault. However comparing the two versions (before and after the patch th=
-at
-&quot;fixed&quot; it), I didn't see any apparent differences. There was som=
-e minor code
-reordering, but nothing serious. I'm going to stop looking now.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14846336650.97e3b.18577--
-
---===============0893023891==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0893023891==--
+T24gTW9uLCBKYW4gMTYsIDIwMTcgYXQgMTA6NDQ6NTVBTSAtMDUwMCwgQW5kcmV5IEdyb2R6b3Zz
+a3kgd3JvdGU6Cj4gQWxsb3dzIHVzaW5nIGF0b21pYyBmbGlwIGhlbHBlcnMgZm9yIGRyaXZlcnMK
+PiB1c2luZyBBU1lOQyBmbGlwLgo+IFJlbW92ZSBBU1lOQ19GTElQIHJlc3RyaWN0aW9uIGluIGhl
+bHBlcnMgYW5kCj4gY2FjaGVzIHRoZSBwYWdlIGZsaXAgZmxhZ3MgaW4gZHJtX3BsYW5lX3N0YXRl
+Cj4gdG8gYmUgdXNlZCBpbiB0aGUgbG93IGxldmVsIGRyaXZlcnMuCj4gCj4gU2lnbmVkLW9mZi1i
+eTogQW5kcmV5IEdyb2R6b3Zza3kgPEFuZHJleS5Hcm9kem92c2t5QGFtZC5jb20+Cj4gLS0tCj4g
+IGRyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jIHwgMTAgKysrLS0tLS0tLQo+ICBp
+bmNsdWRlL2RybS9kcm1fcGxhbmUuaCAgICAgICAgICAgICB8ICA4ICsrKysrKysrCj4gIDIgZmls
+ZXMgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfaGVscGVyLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vZHJtX2F0b21pY19oZWxwZXIuYwo+IGluZGV4IGE0ZTU0NzcuLmY4M2RjNDMgMTAwNjQ0Cj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfaGVscGVyLmMKPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYwo+IEBAIC0yNzM3LDcgKzI3MzcsOCBAQCBzdGF0
+aWMgaW50IHBhZ2VfZmxpcF9jb21tb24oCj4gIAkJCQlzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAq
+c3RhdGUsCj4gIAkJCQlzdHJ1Y3QgZHJtX2NydGMgKmNydGMsCj4gIAkJCQlzdHJ1Y3QgZHJtX2Zy
+YW1lYnVmZmVyICpmYiwKPiAtCQkJCXN0cnVjdCBkcm1fcGVuZGluZ192YmxhbmtfZXZlbnQgKmV2
+ZW50KQo+ICsJCQkJc3RydWN0IGRybV9wZW5kaW5nX3ZibGFua19ldmVudCAqZXZlbnQsCj4gKwkJ
+CQl1aW50MzJfdCBmbGFncykKPiAgewo+ICAJc3RydWN0IGRybV9wbGFuZSAqcGxhbmUgPSBjcnRj
+LT5wcmltYXJ5Owo+ICAJc3RydWN0IGRybV9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGU7Cj4gQEAg
+LTI3NTQsNiArMjc1NSw3IEBAIHN0YXRpYyBpbnQgcGFnZV9mbGlwX2NvbW1vbigKPiAgCWlmIChJ
+U19FUlIocGxhbmVfc3RhdGUpKQo+ICAJCXJldHVybiBQVFJfRVJSKHBsYW5lX3N0YXRlKTsKPiAg
+Cj4gKwlwbGFuZV9zdGF0ZS0+cGZsaXBfZmxhZ3MgPSBmbGFnczsKCiJwZmxpcCIgbG9va3Mgb2Zm
+LiBCZXR0ZXIganVzdCBzcGVsbCBpdCBvdXQuCgpUaGVzZSBmbGFncyBuZWVkIHRvIGJlIHJlc2V0
+IGluIGR1cGxpY2F0ZV9zdGF0ZSBvdGhlcndpc2UgdGhleSBsZWFrIGludG8Kc3Vic2VxdWVudCBv
+cGVyYXRpb25zLiBUaGlzIGlzIHdoeSBJIGRvbid0IHJlYWxseSBsaWtlIHRoZSBjb25jZXB0IG9m
+CiJzdGF0ZSIgY29udGFpbmluZyBmbGFncyBhbmQgc3R1ZmYgdGhhdCBhcmUgbm90IHJlYWxseSBw
+YXJ0IG9mIHRoZQpzdGF0ZSBidXQgcmF0aGVyIHBhcnQgb2YgdGhlIG9wZXJhdGlvbiBvZiBtb3Zp
+bmcgZnJvbSB0aGUgb2xkIHN0YXRlIHRvCnRoZSBuZXcgc3RhdGUuIEJ1dCBtYXliZSB3ZSBkb24n
+dCBoYXZlIGEgYmV0dGVyIHBsYWNlIGZvciB0aGlzIHNvcnQgb2YKc3R1ZmY/IEkgaGF2ZSBzdWdn
+ZXN0ZWQgYXQgc29tZSBwb2ludCB0aGF0IHdlIG1pZ2h0IHJlbmFtZSBkcm1fYXRvbWljX3N0YXRl
+CnRvIGRybV9hdG9taWNfdHJhbnNhY3Rpb24gb3Igc29tZXRoaW5nLiBTdHVmZmluZyB0aGUgZmxh
+Z3MgKG9yIGp1c3QgYSBib29sCnBlcmhhcHM/KSBpbiB0aGVyZSBtaWdodCBiZSBsZXNzIGNvbmZ1
+c2luZy4KCj4gIAo+ICAJcmV0ID0gZHJtX2F0b21pY19zZXRfY3J0Y19mb3JfcGxhbmUocGxhbmVf
+c3RhdGUsIGNydGMpOwo+ICAJaWYgKHJldCAhPSAwKQo+IEBAIC0yODAwLDkgKzI4MDIsNiBAQCBp
+bnQgZHJtX2F0b21pY19oZWxwZXJfcGFnZV9mbGlwKHN0cnVjdCBkcm1fY3J0YyAqY3J0YywKPiAg
+CXN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZTsKPiAgCWludCByZXQgPSAwOwo+ICAKPiAt
+CWlmIChmbGFncyAmIERSTV9NT0RFX1BBR0VfRkxJUF9BU1lOQykKPiAtCQlyZXR1cm4gLUVJTlZB
+TDsKPiAtCj4gIAlzdGF0ZSA9IGRybV9hdG9taWNfc3RhdGVfYWxsb2MocGxhbmUtPmRldik7Cj4g
+IAlpZiAoIXN0YXRlKQo+ICAJCXJldHVybiAtRU5PTUVNOwo+IEBAIC0yODY1LDkgKzI4NjQsNiBA
+QCBpbnQgZHJtX2F0b21pY19oZWxwZXJfcGFnZV9mbGlwX3RhcmdldCgKPiAgCXN0cnVjdCBkcm1f
+Y3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZTsKPiAgCWludCByZXQgPSAwOwo+ICAKPiAtCWlmIChmbGFn
+cyAmIERSTV9NT0RFX1BBR0VfRkxJUF9BU1lOQykKPiAtCQlyZXR1cm4gLUVJTlZBTDsKPiAtCj4g
+IAlzdGF0ZSA9IGRybV9hdG9taWNfc3RhdGVfYWxsb2MocGxhbmUtPmRldik7Cj4gIAlpZiAoIXN0
+YXRlKQo+ICAJCXJldHVybiAtRU5PTUVNOwo+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9kcm1f
+cGxhbmUuaCBiL2luY2x1ZGUvZHJtL2RybV9wbGFuZS5oCj4gaW5kZXggZGIzYmJkZS4uODZkOGZm
+YyAxMDA2NDQKPiAtLS0gYS9pbmNsdWRlL2RybS9kcm1fcGxhbmUuaAo+ICsrKyBiL2luY2x1ZGUv
+ZHJtL2RybV9wbGFuZS5oCj4gQEAgLTEyMiw2ICsxMjIsMTQgQEAgc3RydWN0IGRybV9wbGFuZV9z
+dGF0ZSB7Cj4gIAkgKi8KPiAgCWJvb2wgdmlzaWJsZTsKPiAgCj4gKwo+ICsJLyoqCj4gKwkgKiBA
+cGZsaXBfZmxhZ3M6Cj4gKwkgKgo+ICsJICogRmxpcCByZWxhdGVkIGNvbmZpZyBvcHRpb25zCj4g
+KwkgKi8KPiArCXUzMiBwZmxpcF9mbGFnczsKPiArCj4gIAlzdHJ1Y3QgZHJtX2F0b21pY19zdGF0
+ZSAqc3RhdGU7Cj4gIH07Cj4gIAo+IC0tIAo+IDEuOS4xCj4gCj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBkcmktZGV2ZWwgbWFpbGluZyBsaXN0Cj4g
+ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCgotLSAKVmlsbGUgU3lyasOkbMOkCklu
+dGVsIE9UQwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpk
+cmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
