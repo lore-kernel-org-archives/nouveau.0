@@ -1,12 +1,23 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92922] [NVE6] Xorg random freeze
-Date: Wed, 18 Jan 2017 19:24:00 +0000
-Message-ID: <bug-92922-8800-3zumihxEm0@http.bugs.freedesktop.org/>
-References: <bug-92922-8800@http.bugs.freedesktop.org/>
+From: Damien Lespiau <damien.lespiau-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 5/6] drm: Delete "mandatory" stereographic
+	modes
+Date: Wed, 18 Jan 2017 19:01:19 +0000
+Message-ID: <20170118190119.GF6460@strange.localdomain>
+References: <20170117224204.27516-1-alastair.bridgewater@gmail.com>
+ <20170117224204.27516-6-alastair.bridgewater@gmail.com>
+ <CAKb7UvigMUdD93eqa=3bM9VHSGztV3DWgv-8hx8ho7EmHrhtqA@mail.gmail.com>
+ <20170118114554.GA6460@strange.localdomain>
+ <CAKb7Uvg0wgmZG+S39XNP-r0Qny6ikDhwvyy9TAspOZQ_dEp1RQ@mail.gmail.com>
+ <20170118163343.GD6460@strange.localdomain>
+ <20170118164125.GE6460@strange.localdomain>
+ <CAKb7UvgCpbBZ_qyUwNAFA4VnypENHEzRzT_n9+o+F6cxhFBMzA@mail.gmail.com>
+ <CAKb7UviODH0YPH-EMUmO9Ssu5BrBb3GVa82SGawbQbiO5NKXAw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1590214212=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UviODH0YPH-EMUmO9Ssu5BrBb3GVa82SGawbQbiO5NKXAw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,211 +27,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1590214212==
-Content-Type: multipart/alternative; boundary="14847674403.ad1Fa.21004";
- charset="UTF-8"
-
-
---14847674403.ad1Fa.21004
-Date: Wed, 18 Jan 2017 19:24:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92922
-
-David Kredba <nheghathivhistha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |nheghathivhistha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #7 from David Kredba <nheghathivhistha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Is this related please?
-
-[44058.076846] nouveau 0000:01:00.0: fb: trapped write at 0041c27000 on cha=
-nnel
-9 [0f1d4000 vlc[14761]] engine 00 [PGRAPH] client 0b [PROP] subclient 00 [R=
-T0]
-reason 00000002 [PAGE_NOT_PRESENT]=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20
-[44058.096561] nouveau 0000:01:00.0: gr: TRAP_PROP - TP 0 - 00000040 [RT_FA=
-ULT]
-- Address 0041c27000=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-[44058.096564] nouveau 0000:01:00.0: gr: TRAP_PROP - TP 0 - e0c: 00000000, =
-e18:
-00000000, e1c: 00000000, e20: 00002e00, e24: 00030000=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-[44058.096574] nouveau 0000:01:00.0: gr: TRAP_PROP - TP 1 - 00000040 [RT_FA=
-ULT]
-- Address 0041c27000=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-[44058.096576] nouveau 0000:01:00.0: gr: TRAP_PROP - TP 1 - e0c: 00000000, =
-e18:
-00000000, e1c: 00000010, e20: 00002e00, e24: 00030000=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-[44058.096584] nouveau 0000:01:00.0: gr: 00200000 [] ch 9 [000f1d4000
-vlc[14761]] subc 3 class 8297 mthd 1224 data 00000001=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-[44058.096600] nouveau 0000:01:00.0: fb: trapped write at 0041c27000 on cha=
-nnel
-9 [0f1d4000 vlc[14761]] engine 00 [PGRAPH] client 0b [PROP] subclient 00 [R=
-T0]
-reason 00000002 [PAGE_NOT_PRESENT]
-
-I am getting random freezes in different web browsers. During the freeze is
-killing different kde plasma processes possible but killing xorg-server aft=
-er
-from ssh is not possible. I try will the assertin patch.
-
-After switched vlc to use a non-accelerated video output I got bunch of abo=
-ve
-messages.
-
-media-libs/mesa-13.0.3
-xf86-video-nouveau-1.0.13
-
-mpv never caused the same type of crash, profile chosen is opengl-hq.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14847674403.ad1Fa.21004
-Date: Wed, 18 Jan 2017 19:24:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:nheghathi=
-vhistha&#64;gmail.com" title=3D"David Kredba &lt;nheghathivhistha&#64;gmail=
-.com&gt;"> <span class=3D"fn">David Kredba</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] Xorg random freeze"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92922">bug 92922<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>nheghathivhistha&#64;gmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] Xorg random freeze"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92922#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] Xorg random freeze"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92922">bug 92922<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nheghathivhistha&#64;gmail.com" title=3D"David Kredba &lt;nheghathivhistha&=
-#64;gmail.com&gt;"> <span class=3D"fn">David Kredba</span></a>
-</span></b>
-        <pre>Is this related please?
-
-[44058.076846] nouveau 0000:01:00.0: fb: trapped write at 0041c27000 on cha=
-nnel
-9 [0f1d4000 vlc[14761]] engine 00 [PGRAPH] client 0b [PROP] subclient 00 [R=
-T0]
-reason 00000002 [PAGE_NOT_PRESENT]=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20
-[44058.096561] nouveau 0000:01:00.0: gr: TRAP_PROP - TP 0 - 00000040 [RT_FA=
-ULT]
-- Address 0041c27000=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-[44058.096564] nouveau 0000:01:00.0: gr: TRAP_PROP - TP 0 - e0c: 00000000, =
-e18:
-00000000, e1c: 00000000, e20: 00002e00, e24: 00030000=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-[44058.096574] nouveau 0000:01:00.0: gr: TRAP_PROP - TP 1 - 00000040 [RT_FA=
-ULT]
-- Address 0041c27000=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-[44058.096576] nouveau 0000:01:00.0: gr: TRAP_PROP - TP 1 - e0c: 00000000, =
-e18:
-00000000, e1c: 00000010, e20: 00002e00, e24: 00030000=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-[44058.096584] nouveau 0000:01:00.0: gr: 00200000 [] ch 9 [000f1d4000
-vlc[14761]] subc 3 class 8297 mthd 1224 data 00000001=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-[44058.096600] nouveau 0000:01:00.0: fb: trapped write at 0041c27000 on cha=
-nnel
-9 [0f1d4000 vlc[14761]] engine 00 [PGRAPH] client 0b [PROP] subclient 00 [R=
-T0]
-reason 00000002 [PAGE_NOT_PRESENT]
-
-I am getting random freezes in different web browsers. During the freeze is
-killing different kde plasma processes possible but killing xorg-server aft=
-er
-from ssh is not possible. I try will the assertin patch.
-
-After switched vlc to use a non-accelerated video output I got bunch of abo=
-ve
-messages.
-
-media-libs/mesa-13.0.3
-xf86-video-nouveau-1.0.13
-
-mpv never caused the same type of crash, profile chosen is opengl-hq.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14847674403.ad1Fa.21004--
-
---===============1590214212==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1590214212==--
+T24gV2VkLCBKYW4gMTgsIDIwMTcgYXQgMDE6NDg6MDRQTSAtMDUwMCwgSWxpYSBNaXJraW4gd3Jv
+dGU6Cj4gQWZ0ZXIgc29tZSBtb3JlIGNvbnZlcnNhdGlvbnMgd2l0aCBBbGFzdGFpciwgaXQgc291
+bmRzIGxpa2Ugd2hhdCdzCj4gYWN0dWFsbHkgZ29pbmcgb24gaXMgdGhhdCBpdCdzIGp1c3QgdGhl
+IGZyYW1lLXBhY2tpbmcgbW9kZXMgdGhhdAo+IGFyZW4ndCB3b3JraW5nLCBidXQgYWxsIHRoZSBz
+aWRlLWJ5LXNpZGUgYW5kIHRvcC1hbmQtYm90dG9tIG1vZGVzIGZyb20KPiB0aGUgIm1hbmRhdG9y
+eSIgbGlzdCB3b3JrLiBBdCB0aGlzIHBvaW50LCBJJ20gbW9yZSBpbmNsaW5lZCB0byBiZWxpZXZl
+Cj4gdGhhdCB0aGVyZSdzIGFuIGlzc3VlIGluIHRoZSBub3V2ZWF1IGltcGxlbWVudGF0aW9uIGZv
+ciBmcmFtZS1wYWNrZWQKPiBtb2Rlcy4gQnV0IGl0IGNvdWxkIHN0aWxsIGJlIHRoZSBUVnMgdGhl
+bXNlbHZlcyB0aGF0IGRvbid0IHN1cHBvcnQKPiB0aGF0IGF0IGFsbC4KCklmIEFsYXN0YWlyIGhh
+cyBhbiBpbnRlbCBHUFUgYXMgd2VsbCwgYW4gImVhc3kiIHdheSB0byBjaGVjayBpZiB0aGUKZnJh
+bWUgcGFja2luZyBtb2RlcyBvZiB0aG9zZSBUVnMgd29yayB3b3VsZCBiZSB0byB1c2UgdGhlIHRl
+c3RkaXNwbGF5WzFdCnRvb2wgb2YgaW50ZWwtZ3B1LXRvb2xzLgoKU2hhbWVsZXNzIHBsdWc6IGh0
+dHA6Ly9kYW1pZW4ubGVzcGlhdS5uYW1lLzIwMTMvMTAvaGRtaS1zdGVyZW8tM2Qta21zLmh0bWwK
+ClRvd2FyZHMgdGhlIGVuZCBvZiB0aGUgcG9zdCwgdGhlcmUgYXJlIHRlc3QgZGlzcGxheSB1c2Fn
+ZSBleGFtcGxlcyB0byBnbwphbmQgdGVzdCBGUCBtb2Rlcy4gTWluZCB5b3UsIHBlb3BsZSBoYXZl
+IGJlZW4gdHJ5aW5nIHRvIG1ha2UKaW50ZWwtZ3B1LXRvb2xzIHJ1biBvbiBhbnkgRFJNIGRyaXZl
+ciB3aGVuIHBvc3NpYmxlLCBub3Qgc3VyZSBob3cgZmFyIHdlCmFyZSB3aXRoIHRoYXQgdGhvdWdo
+LgoKLS0gCkRhbWllbgoKWzFdIGh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy94b3JnL2FwcC9p
+bnRlbC1ncHUtdG9vbHMvdHJlZS90ZXN0cy90ZXN0ZGlzcGxheS5jCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
