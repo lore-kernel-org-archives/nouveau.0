@@ -1,18 +1,13 @@
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>
-Subject: Re: [PATCH 3/4] drm/amd/display: Switch to using
- atomic_helper for flip.
-Date: Thu, 19 Jan 2017 11:14:12 +0900
-Message-ID: <0ea84f93-df8a-906b-94e5-dc2dff9364e2@daenzer.net>
-References: <1484581498-32309-1-git-send-email-Andrey.Grodzovsky@amd.com>
- <1484581498-32309-4-git-send-email-Andrey.Grodzovsky@amd.com>
- <2158092.LKM1DbUVy7@avalon>
- <79d1c845-3586-4641-ad06-73af32ab66e5@daenzer.net>
- <DM5PR12MB1147CFCD90203061E0F2EB95EA7F0@DM5PR12MB1147.namprd12.prod.outlook.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99396] Crash in nouveau_dri.so when switching apps
+ with alt-tab in Gnome
+Date: Thu, 19 Jan 2017 03:10:01 +0000
+Message-ID: <bug-99396-8800-48NFU6wSED@http.bugs.freedesktop.org/>
+References: <bug-99396-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1220445887=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <DM5PR12MB1147CFCD90203061E0F2EB95EA7F0-2J9CzHegvk9IwjGPM8RDJwdYzm3356FpvxpqHgZTriW3zl9H0oFU5g@public.gmane.org>
+In-Reply-To: <bug-99396-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,79 +17,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "Grodzovsky, Andrey" <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>, Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dc_upstream <dc_upstream-5C7GfCeVMHo@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org" <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTkvMDEvMTcgMDc6MTggQU0sIEdyb2R6b3Zza3ksIEFuZHJleSB3cm90ZToKPj4gRnJvbTog
-TWljaGVsIETDpG56ZXIgW21haWx0bzptaWNoZWxAZGFlbnplci5uZXRdCj4+IE9uIDE3LzAxLzE3
-IDA3OjE2IEFNLCBMYXVyZW50IFBpbmNoYXJ0IHdyb3RlOgo+Pj4gT24gTW9uZGF5IDE2IEphbiAy
-MDE3IDEwOjQ0OjU3IEFuZHJleSBHcm9kem92c2t5IHdyb3RlOgo+Pj4+IENoYW5nZS1JZDogSWFk
-M2UwYjliMzU0NmU0ZTRkYzc5YmU5MjMzZGFmNGZlNGRiYTgzZTAKPj4+PiBTaWduZWQtb2ZmLWJ5
-OiBBbmRyZXkgR3JvZHpvdnNreSA8QW5kcmV5Lkdyb2R6b3Zza3lAYW1kLmNvbT4KPj4+PiAtLS0K
-Pj4+PiAgLi4uL2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtX3R5cGVzLmMgICAg
-fCA5MiArKy0tLS0tLS0tLQo+PiAtLS0tLS0tCj4+Pj4gIDEgZmlsZSBjaGFuZ2VkLCA2IGluc2Vy
-dGlvbnMoKyksIDg2IGRlbGV0aW9ucygtKQo+Pj4+Cj4+Pj4gZGlmZiAtLWdpdAo+PiBhL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtX3R5cGVzLmMKPj4+PiBi
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtX3R5cGVzLmMK
-Pj4gaW5kZXgKPj4+PiBhNDQzYjcwLi5kNDY2NGJmIDEwMDY0NAo+Pj4+IC0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtX3R5cGVzLmMKPj4+PiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV90eXBlcy5j
-Cj4+Pj4gQEAgLTEwNjAsODMgKzEwNjAsNiBAQCBzdGF0aWMgaW50IGRtX2NydGNfZnVuY3NfYXRv
-bWljX3NldF9wcm9wZXJ0eSgKPj4+PiAgCXJldHVybiAwOwo+Pj4+ICB9Cj4+Pj4KPj4+PiAtCj4+
-Pj4gLXN0YXRpYyBpbnQgYW1kZ3B1X2F0b21pY19oZWxwZXJfcGFnZV9mbGlwKHN0cnVjdCBkcm1f
-Y3J0YyAqY3J0YywKPj4+PiAtCQkJCXN0cnVjdCBkcm1fZnJhbWVidWZmZXIgKmZiLAo+Pj4+IC0J
-CQkJc3RydWN0IGRybV9wZW5kaW5nX3ZibGFua19ldmVudCAqZXZlbnQsCj4+Pj4gLQkJCQl1aW50
-MzJfdCBmbGFncykKPj4+PiAtewo+Pj4+IC0Jc3RydWN0IGRybV9wbGFuZSAqcGxhbmUgPSBjcnRj
-LT5wcmltYXJ5Owo+Pj4+IC0Jc3RydWN0IGFtZGdwdV9jcnRjICphY3J0YyA9IHRvX2FtZGdwdV9j
-cnRjKGNydGMpOwo+Pj4+IC0Jc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlOwo+Pj4+IC0J
-c3RydWN0IGRybV9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGU7Cj4+Pj4gLQlzdHJ1Y3QgZHJtX2Ny
-dGNfc3RhdGUgKmNydGNfc3RhdGU7Cj4+Pj4gLQlpbnQgcmV0ID0gMDsKPj4+PiAtCj4+Pj4gLQlz
-dGF0ZSA9IGRybV9hdG9taWNfc3RhdGVfYWxsb2MocGxhbmUtPmRldik7Cj4+Pj4gLQlpZiAoIXN0
-YXRlKQo+Pj4+IC0JCXJldHVybiAtRU5PTUVNOwo+Pj4+IC0KPj4+PiAtCXJldCA9IGRybV9jcnRj
-X3ZibGFua19nZXQoY3J0Yyk7Cj4+Pgo+Pj4gVGhlIERSTSBjb3JlJ3MgYXRvbWljIHBhZ2UgZmxp
-cCBoZWxwZXIgZG9lc24ndCBnZXQvcHV0IHZibGFuay4gSGF2ZQo+Pj4geW91IGRvdWJsZS1jaGVj
-a2VkIHRoYXQgcmVtb3ZpbmcgdGhlbSBpc24ndCBhIHByb2JsZW0gPwo+Pgo+PiBUaGlzIHBhdGNo
-IG1ha2VzIHRoZSBhbWRncHUgRE0gY29kZSB1c2UgdGhlIHBhZ2VfZmxpcF90YXJnZXQgaG9vay4K
-Pj4gZHJtX21vZGVfcGFnZV9mbGlwX2lvY3RsIGNhbGxzIGRybV9jcnRjX3ZibGFua19nZXQgYmVm
-b3JlIHRoZQo+PiBwYWdlX2ZsaXBfdGFyZ2V0IGhvb2suCj4+Cj4+IFlvdSdyZSByaWdodCB0aG91
-Z2ggdGhhdCB0aGUgZmFjdCB0aGF0IGRybV9hdG9taWNfaGVscGVyX3BhZ2VfZmxpcCBkb2Vzbid0
-Cj4+IGNhbGwgZHJtX2NydGNfdmJsYW5rX2dldCBpcyBhIGJpdCBhbGFybWluZy4gRnJvbSB0aGUK
-Pj4gRFJNX0lPQ1RMX01PREVfUEFHRV9GTElQIFBPViwgZHJtX2NydGNfdmJsYW5rX2dldCBtdXN0
-IGJlIGNhbGxlZAo+PiB3aGVuIHVzZXJzcGFjZSBjYWxscyB0aGUgaW9jdGwgKGVpdGhlciBieSBk
-cm1fbW9kZV9wYWdlX2ZsaXBfaW9jdGwgb3IgdGhlCj4+IHBhZ2VfZmxpcCBob29rIGltcGxlbWVu
-dGF0aW9uKSwgYW5kIGRybV9jcnRjX3ZibGFua19wdXQgbXVzdCBiZSBjYWxsZWQKPj4gd2hlbiB0
-aGUgZmxpcCBjb21wbGV0ZXMgYW5kIHRoZSBldmVudCBpcyBzZW50IHRvIHVzZXJzcGFjZS4gSG93
-IGlzIHRoaXMKPj4gc3VwcG9zZWQgdG8gYmUgaGFuZGxlZCB3aXRoIGF0b21pYz8KPiAKPiBGaXJz
-dCBsZXQgbWUgYXNrIHlvdSAtIHdoeSB3ZSBoYXZlIHRvIGVuYWJsZSB2bGJhbmsgYXMgcGFydCBv
-ZiBwZmxpcCwgCj4gSSB1bmRlcnN0YW5kIHdoeSBpdCBoYXMgdG8gYmUgZW5iYmxlZCBpbiBXQUlU
-X0ZPUl9WQkxBTksgSU9DVEwgCj4gYnV0IG5vdCBzdXJlIGFib3V0IFBGTElQIElPQ1RMLiAKCkl0
-J3MgcmVxdWlyZWQgZm9yIHRoZSB2Ymxhbmsgc2VxdWVuY2UgY291bnRlciB0byBiZSBhY2N1cmF0
-ZSBpbiB0aGUgcGFnZQpmbGlwIGNvbXBsZXRpb24gZXZlbnQgc2VudCB0byB1c2Vyc3BhY2UuCgoK
-PiBJTUhPIGluIGF0b21pYyBhcyBiZWZvcmUgaW4gbGVnYWN5IHBhZ2VfZmxpcCwgaXQncyB1cCB0
-byB0aGUgIGRyaXZlciAKPiBpbXBsZW1lbnRhdGlvbiBpbiBhdG9taWNfY29tbWl0IGhvb2sgICB0
-byBtYW5hZ2UgdmJsYW5rIElTUiBvbixvZmYuCgpXaGVuIHVzaW5nIHRoZSBwYWdlX2ZsaXAgaG9v
-aywgaXQncyBhbGwgdXAgdG8gdGhlIGltcGxlbWVudGF0aW9uIG9mIHRoYXQKaG9vay4gV2hlbiB1
-c2luZyB0aGUgcGFnZV9mbGlwX3RhcmdldCBob29rLCBkcm1fbW9kZV9wYWdlX2ZsaXBfaW9jdGwK
-Y2FsbHMgdmJsYW5rX2dldCwgc28gdGhlIGhvb2sgaW1wbGVtZW50YXRpb24gbXVzdCBtYWtlIHN1
-cmUgdGhhdCBhCm1hdGNoaW5nIHZibGFua19wdXQgY2FsbCBpcyBtYWRlIHdoZW4gdGhlIGZsaXAg
-Y29tcGxldGVzLgoKCj4+IEFuZHJleSwgZGlkIHlvdSBjaGVjayB2aWEgY29kZSBhdWRpdCBhbmQv
-b3IgdGVzdGluZyB0aGF0IHRoZSB2YmxhbmsKPj4gcmVmZXJlbmNlIGNvdW50IGlzIHN0aWxsIGJh
-bGFuY2VkIGFmdGVyIHRoaXMgY2hhbmdlPwo+Pgo+IFdpdGggdGhlIHBhZ2VfZmxpcF90YXJnZXQg
-eWVzLCBpZiBJIHN3aXRjaCBiYWNrIHRvIHBhZ2VfZmxpcCBob29rIHRoZW4gCj4gdmJsYW5rIElT
-UiBuZXZlciBnZXRzIGVuYWJsZWQgb24gRkxJUCBJUENUTCBhbmQgdGhlbiBJIHNlZSB3YXJuaW5n
-IGluIERBTCdzCj4gcGZsaXAgZG9uZSBJUlEgaGFuZGxlciBmcm9tIHZibGFua19wdXQgd2hpY2gg
-aXMgb2J2aW91cywKCkZvciBkcml2ZXJzIHVzaW5nIHRoZSBhdG9taWNfaGVscGVycyBmb3IgZmxp
-cCwgbWF5YmUgdGhlcmUgc2hvdWxkIGJlIChvcgptaWdodCBiZSBhbHJlYWR5KSBhIGNvcnJlc3Bv
-bmRpbmcgaGVscGVyIHdoaWNoIGRlYWxzIHdpdGggdGhpbmdzIGxpa2UKdGhpcyB3aGVuIHRoZSBm
-bGlwIGNvbXBsZXRlcywgc28gZHJpdmVycyBkb24ndCBoYXZlIHRvIGNhbGwgdmJsYW5rX3B1dAph
-bmQgc3VjaC4KCkFueXdheSwgaXQgc291bmRzIGxpa2UgdGhlIHZibGFua19nZXQvcHV0cyBhcmUg
-YmFsYW5jZWQgd2l0aCB0aGlzIHBhdGNoCmZvciBub3cuCgoKPiB3aGljaCBCVFcgZGlkbid0IGlt
-cGFjdCB0aGUgZmxpcHMsIEkgc3RpbGwgd2FzIGFibGUgdG8gcnVuIGdseGdlYXJzCj4gaW4gdnN5
-bmMgbW9kZS4KCkkgZG9uJ3QgdGhpbmsgZ2x4Z2VhcnMgcmVsaWVzIG9uIHRoZSB2Ymxhbmsgc2Vx
-dWVuY2UgbnVtYmVycyBiZWluZyBhY2N1cmF0ZS4KCgotLSAKRWFydGhsaW5nIE1pY2hlbCBEw6Ru
-emVyICAgICAgICAgICAgICAgfCAgICAgICAgICAgICAgIGh0dHA6Ly93d3cuYW1kLmNvbQpMaWJy
-ZSBzb2Z0d2FyZSBlbnRodXNpYXN0ICAgICAgICAgICAgIHwgICAgICAgICAgICAgTWVzYSBhbmQg
-WCBkZXZlbG9wZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1220445887==
+Content-Type: multipart/alternative; boundary="14847954010.E86D6cC90.28039";
+ charset="UTF-8"
+
+
+--14847954010.E86D6cC90.28039
+Date: Thu, 19 Jan 2017 03:10:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99396
+
+--- Comment #2 from afn2-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org ---
+FYI, I've managed to reproduce this bug with both mesa 13.0.3 as well as the
+current HEAD of master (180653c357d19ca88f7895f59874a58fac99cc53). I've also
+reproduced it with various versions of the kernel (most recently, 4.9.4 and
+4.10-rc4).
+
+This only happens with nouveau + mesa, not with the proprietary nvidia driv=
+er,
+which leads me to believe that the bug is most likely in mesa and not in gn=
+ome.
+
+I'm happy to dig deep into this but I'd appreciate some pointers on where to
+look. Thanks!
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14847954010.E86D6cC90.28039
+Date: Thu, 19 Jan 2017 03:10:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Crash in nouveau_dri.so when switching apps with alt-tab =
+in Gnome"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Crash in nouveau_dri.so when switching apps with alt-tab =
+in Gnome"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396">bug 99396<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+afn2&#64;cornell.edu" title=3D"afn2&#64;cornell.edu">afn2&#64;cornell.edu</=
+a>
+</span></b>
+        <pre>FYI, I've managed to reproduce this bug with both mesa 13.0.3 =
+as well as the
+current HEAD of master (180653c357d19ca88f7895f59874a58fac99cc53). I've also
+reproduced it with various versions of the kernel (most recently, 4.9.4 and
+4.10-rc4).
+
+This only happens with nouveau + mesa, not with the proprietary nvidia driv=
+er,
+which leads me to believe that the bug is most likely in mesa and not in gn=
+ome.
+
+I'm happy to dig deep into this but I'd appreciate some pointers on where to
+look. Thanks!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14847954010.E86D6cC90.28039--
+
+--===============1220445887==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1220445887==--
