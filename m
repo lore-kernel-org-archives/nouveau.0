@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99396] Crash in nouveau_dri.so when switching apps
  with alt-tab in Gnome
-Date: Thu, 19 Jan 2017 03:10:01 +0000
-Message-ID: <bug-99396-8800-48NFU6wSED@http.bugs.freedesktop.org/>
+Date: Thu, 19 Jan 2017 03:35:25 +0000
+Message-ID: <bug-99396-8800-j01uBrdMCL@http.bugs.freedesktop.org/>
 References: <bug-99396-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1220445887=="
+Content-Type: multipart/mixed; boundary="===============1758026432=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99396-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1220445887==
-Content-Type: multipart/alternative; boundary="14847954010.E86D6cC90.28039";
+--===============1758026432==
+Content-Type: multipart/alternative; boundary="14847969240.9A1cd.30724";
  charset="UTF-8"
 
 
---14847954010.E86D6cC90.28039
-Date: Thu, 19 Jan 2017 03:10:01 +0000
+--14847969240.9A1cd.30724
+Date: Thu, 19 Jan 2017 03:35:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,27 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99396
 
---- Comment #2 from afn2-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org ---
-FYI, I've managed to reproduce this bug with both mesa 13.0.3 as well as the
-current HEAD of master (180653c357d19ca88f7895f59874a58fac99cc53). I've also
-reproduced it with various versions of the kernel (most recently, 4.9.4 and
-4.10-rc4).
-
-This only happens with nouveau + mesa, not with the proprietary nvidia driv=
-er,
-which leads me to believe that the bug is most likely in mesa and not in gn=
-ome.
-
-I'm happy to dig deep into this but I'd appreciate some pointers on where to
-look. Thanks!
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+A backtrace would be a good start (with symbols, obviously). Also, make a
+mention of which GPU you're using. Lastly, I'm not sure if gnome-shell has
+jumped on the "let's use GL from multiple threads" bandwagon, but if so, th=
+at's
+just plain broken on nouveau for now - no point in trying to debug further.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14847954010.E86D6cC90.28039
-Date: Thu, 19 Jan 2017 03:10:01 +0000
+--14847969240.9A1cd.30724
+Date: Thu, 19 Jan 2017 03:35:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Crash in nouveau_dri.so when switching apps with alt-tab =
 in Gnome"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Crash in nouveau_dri.so when switching apps with alt-tab =
@@ -83,22 +76,16 @@ in Gnome"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396">bug 99396<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-afn2&#64;cornell.edu" title=3D"afn2&#64;cornell.edu">afn2&#64;cornell.edu</=
-a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>FYI, I've managed to reproduce this bug with both mesa 13.0.3 =
-as well as the
-current HEAD of master (180653c357d19ca88f7895f59874a58fac99cc53). I've also
-reproduced it with various versions of the kernel (most recently, 4.9.4 and
-4.10-rc4).
-
-This only happens with nouveau + mesa, not with the proprietary nvidia driv=
-er,
-which leads me to believe that the bug is most likely in mesa and not in gn=
-ome.
-
-I'm happy to dig deep into this but I'd appreciate some pointers on where to
-look. Thanks!</pre>
+        <pre>A backtrace would be a good start (with symbols, obviously). A=
+lso, make a
+mention of which GPU you're using. Lastly, I'm not sure if gnome-shell has
+jumped on the &quot;let's use GL from multiple threads&quot; bandwagon, but=
+ if so, that's
+just plain broken on nouveau for now - no point in trying to debug further.=
+</pre>
         </div>
       </p>
 
@@ -107,15 +94,15 @@ look. Thanks!</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14847954010.E86D6cC90.28039--
+--14847969240.9A1cd.30724--
 
---===============1220445887==
+--===============1758026432==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -125,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1220445887==--
+--===============1758026432==--
