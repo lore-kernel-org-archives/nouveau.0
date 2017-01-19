@@ -1,406 +1,111 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99396] Crash in nouveau_dri.so when switching apps
- with alt-tab in Gnome
-Date: Thu, 19 Jan 2017 04:29:04 +0000
-Message-ID: <bug-99396-8800-vb2ISnPttm@http.bugs.freedesktop.org/>
-References: <bug-99396-8800@http.bugs.freedesktop.org/>
+From: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
+Subject: [PATCH v3 2/3] drm/amd/display: Switch to using atomic_helper for
+ flip.
+Date: Wed, 18 Jan 2017 23:57:17 -0500
+Message-ID: <1484801837-8214-1-git-send-email-Andrey.Grodzovsky@amd.com>
+References: <79d1c845-3586-4641-ad06-73af32ab66e5@daenzer.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0302233703=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99396-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <79d1c845-3586-4641-ad06-73af32ab66e5@daenzer.net>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org
+Cc: dc_upstream@amd.com, nouveau@lists.freedesktop.org, michel@daenzer.net, amd-gfx@lists.freedesktop.org, laurent.pinchart@ideasonboard.com, Alexander.Deucher@amd.com, daniel.vetter@intel.com
 List-Id: nouveau.vger.kernel.org
 
-
---===============0302233703==
-Content-Type: multipart/alternative; boundary="14848001440.0De5e05EA.3215";
- charset="UTF-8"
-
-
---14848001440.0De5e05EA.3215
-Date: Thu, 19 Jan 2017 04:29:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99396
-
---- Comment #4 from afn2-HmMyXyqgL2CVc3sceRu5cw@public.gmane.org ---
-Thanks for the reply, Ilia. The video card is a GeForce 750M (GK107) in a
-mid-2014 MacBook Pro Retina.
-
-I rebuilt the library without stripping symbols and then reproduced the cra=
-sh.
-Here's an updated stack trace. Luckily it doesn't appear that there are
-multiple threads doing GL work:
-
-Jan 18 23:22:24 mbp systemd-coredump[23240]: Process 23187 (gnome-shell) of
-user 1000 dumped core.
-
-Stack trace of thread 23187:
-#0  0x00007f8e82236793 __memmove_avx_unaligned_erms (libc.so.6)
-#1  0x00007f8e6eb59160 nouveau_scratch_data (nouveau_dri.so)
-#2  0x00007f8e6ec65b58 nvc0_update_user_vbufs_shared (nouveau_dri.so)
-#3  0x00007f8e6ec5aea5 nvc0_state_validate (nouveau_dri.so)
-#4  0x00007f8e6ec5b087 nvc0_state_validate_3d (nouveau_dri.so)
-#5  0x00007f8e6ec66f14 nvc0_draw_vbo (nouveau_dri.so)
-#6  0x00007f8e6e9bfe12 cso_draw_arrays (nouveau_dri.so)
-#7  0x00007f8e6e8773d0 st_pbo_draw (nouveau_dri.so)
-#8  0x00007f8e6e82e897 try_pbo_upload_common (nouveau_dri.so)
-#9  0x00007f8e6e833f95 st_TexSubImage (nouveau_dri.so)
-#10 0x00007f8e6e834de0 st_TexImage (nouveau_dri.so)
-#11 0x00007f8e6e7b8f47 teximage (nouveau_dri.so)
-#12 0x00007f8e6e7b9d40 _mesa_TexImage2D (nouveau_dri.so)
-#13 0x00007f8e7fba94ed n/a (libmutter-cogl.so)
-#14 0x00007f8e7fb9ab14 n/a (libmutter-cogl.so)
-#15 0x00007f8e7fbcfe56 cogl_texture_allocate (libmutter-cogl.so)
-#16 0x00007f8e7fbeb40b n/a (libmutter-cogl.so)
-#17 0x00007f8e7fbeb909 cogl_texture_new_from_bitmap (libmutter-cogl.so)
-#18 0x00007f8e83243143 n/a (libmutter-clutter-1.0.so)
-#19 0x00007f8e8321f85d clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#20 0x00007f8e83225aab n/a (libmutter-clutter-1.0.so)
-#21 0x00007f8e85102aa0 n/a (libgnome-shell.so)
-#22 0x00007f8e829ebecf g_closure_invoke (libgobject-2.0.so.0)
-#23 0x00007f8e829fe37d n/a (libgobject-2.0.so.0)
-#24 0x00007f8e82a06bcc g_signal_emit_valist (libgobject-2.0.so.0)
-#25 0x00007f8e82a06faf g_signal_emit (libgobject-2.0.so.0)
-#26 0x00007f8e8321f8a3 clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#27 0x00007f8e83225aab n/a (libmutter-clutter-1.0.so)
-#28 0x00007f8e8510cf90 n/a (libgnome-shell.so)
-#29 0x00007f8e829ebecf g_closure_invoke (libgobject-2.0.so.0)
-#30 0x00007f8e829fe37d n/a (libgobject-2.0.so.0)
-#31 0x00007f8e82a06bcc g_signal_emit_valist (libgobject-2.0.so.0)
-#32 0x00007f8e82a06faf g_signal_emit (libgobject-2.0.so.0)
-#33 0x00007f8e8321f8a3 clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#34 0x00007f8e83225aab n/a (libmutter-clutter-1.0.so)
-#35 0x00007f8e8511b182 n/a (libgnome-shell.so)
-#36 0x00007f8e829ebecf g_closure_invoke (libgobject-2.0.so.0)
-#37 0x00007f8e829fe37d n/a (libgobject-2.0.so.0)
-#38 0x00007f8e82a06bcc g_signal_emit_valist (libgobject-2.0.so.0)
-#39 0x00007f8e82a06faf g_signal_emit (libgobject-2.0.so.0)
-#40 0x00007f8e8321f8a3 clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#41 0x00007f8e83225706 n/a (libmutter-clutter-1.0.so)
-#42 0x00007f8e85102aa0 n/a (libgnome-shell.so)
-#43 0x00007f8e829ebecf g_closure_invoke (libgobject-2.0.so.0)
-#44 0x00007f8e829fe37d n/a (libgobject-2.0.so.0)
-#45 0x00007f8e82a06bcc g_signal_emit_valist (libgobject-2.0.so.0)
-#46 0x00007f8e82a06faf g_signal_emit (libgobject-2.0.so.0)
-#47 0x00007f8e8321f8a3 clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#48 0x00007f8e83225aab n/a (libmutter-clutter-1.0.so)
-#49 0x00007f8e85102aa0 n/a (libgnome-shell.so)
-#50 0x00007f8e829ebecf g_closure_invoke (libgobject-2.0.so.0)
-#51 0x00007f8e829fe37d n/a (libgobject-2.0.so.0)
-#52 0x00007f8e82a06bcc g_signal_emit_valist (libgobject-2.0.so.0)
-#53 0x00007f8e82a06faf g_signal_emit (libgobject-2.0.so.0)
-#54 0x00007f8e8321f8a3 clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#55 0x00007f8e83225aab n/a (libmutter-clutter-1.0.so)
-#56 0x00007f8e85102aa0 n/a (libgnome-shell.so)
-#57 0x00007f8e829ebecf g_closure_invoke (libgobject-2.0.so.0)
-#58 0x00007f8e829fe37d n/a (libgobject-2.0.so.0)
-#59 0x00007f8e82a06bcc g_signal_emit_valist (libgobject-2.0.so.0)
-#60 0x00007f8e82a06faf g_signal_emit (libgobject-2.0.so.0)
-#61 0x00007f8e8321f8a3 clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#62 0x00007f8e83225aab n/a (libmutter-clutter-1.0.so)
-#63 0x00007f8e8327847a n/a (libmutter-clutter-1.0.so)
-
-Stack trace of thread 23196:
-#0  0x00007f8e821ed48d poll (libc.so.6)
-#1  0x00007f8e82713786 n/a (libglib-2.0.so.0)
-#2  0x00007f8e8271389c g_main_context_iteration (libglib-2.0.so.0)
-#3  0x00007f8e64ecc4bd n/a (libdconfsettings.so)
-#4  0x00007f8e8273b0d5 n/a (libglib-2.0.so.0)
-#5  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#6  0x00007f8e821f67df __clone (libc.so.6)
-
-Stack trace of thread 23189:
-#0  0x00007f8e821ed48d poll (libc.so.6)
-#1  0x00007f8e82713786 n/a (libglib-2.0.so.0)
-#2  0x00007f8e8271389c g_main_context_iteration (libglib-2.0.so.0)
-#3  0x00007f8e827138e1 n/a (libglib-2.0.so.0)
-#4  0x00007f8e8273b0d5 n/a (libglib-2.0.so.0)
-#5  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#6  0x00007f8e821f67df __clone (libc.so.6)
-
-Stack trace of thread 23199:
-#0  0x00007f8e821ed48d poll (libc.so.6)
-#1  0x00007f8e7e557ee1 n/a (libpulse.so.0)
-#2  0x00007f8e7e5496f1 pa_mainloop_poll (libpulse.so.0)
-#3  0x00007f8e7e549d8e pa_mainloop_iterate (libpulse.so.0)
-#4  0x00007f8e7e549e40 pa_mainloop_run (libpulse.so.0)
-#5  0x00007f8e7e557e29 n/a (libpulse.so.0)
-#6  0x00007f8e73cbdfe8 n/a (libpulsecommon-9.99.so)
-#7  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#8  0x00007f8e821f67df __clone (libc.so.6)
-
-Stack trace of thread 23200:
-#0  0x00007f8e824b910f pthread_cond_wait@@GLIBC_2.3.2 (libpthread.so.0)
-#1  0x00007f8e753ee4e0 PR_WaitCondVar (libnspr4.so)
-#2  0x00007f8e7dfadc0e n/a (libmozjs-24.so)
-#3  0x00007f8e753f3d6c n/a (libnspr4.so)
-#4  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#5  0x00007f8e821f67df __clone (libc.so.6)
-
-Stack trace of thread 23194:
-#0  0x00007f8e821f1f19 syscall (libc.so.6)
-#1  0x00007f8e8275903a g_cond_wait_until (libglib-2.0.so.0)
-#2  0x00007f8e826e7e89 n/a (libglib-2.0.so.0)
-#3  0x00007f8e826e84ac g_async_queue_timeout_pop (libglib-2.0.so.0)
-#4  0x00007f8e8273bb9d n/a (libglib-2.0.so.0)
-#5  0x00007f8e8273b0d5 n/a (libglib-2.0.so.0)
-#6  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#7  0x00007f8e821f67df __clone (libc.so.6)
-
-Stack trace of thread 23190:
-#0  0x00007f8e821ed48d poll (libc.so.6)
-#1  0x00007f8e82713786 n/a (libglib-2.0.so.0)
-#2  0x00007f8e82713b12 g_main_loop_run (libglib-2.0.so.0)
-#3  0x00007f8e82cf9316 n/a (libgio-2.0.so.0)
-#4  0x00007f8e8273b0d5 n/a (libglib-2.0.so.0)
-#5  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#6  0x00007f8e821f67df __clone (libc.so.6)
-
-Stack trace of thread 23201:
-#0  0x00007f8e824b910f pthread_cond_wait@@GLIBC_2.3.2 (libpthread.so.0)
-#1  0x00007f8e753ee4e0 PR_WaitCondVar (libnspr4.so)
-#2  0x00007f8e7e021bab n/a (libmozjs-24.so)
-#3  0x00007f8e753f3d6c n/a (libnspr4.so)
-#4  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#5  0x00007f8e821f67df __clone (libc.so.6)
-
-Thanks again!
-Tony
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14848001440.0De5e05EA.3215
-Date: Thu, 19 Jan 2017 04:29:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Crash in nouveau_dri.so when switching apps with alt-tab =
-in Gnome"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Crash in nouveau_dri.so when switching apps with alt-tab =
-in Gnome"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396">bug 99396<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-afn2&#64;cornell.edu" title=3D"afn2&#64;cornell.edu">afn2&#64;cornell.edu</=
-a>
-</span></b>
-        <pre>Thanks for the reply, Ilia. The video card is a GeForce 750M (=
-GK107) in a
-mid-2014 MacBook Pro Retina.
-
-I rebuilt the library without stripping symbols and then reproduced the cra=
-sh.
-Here's an updated stack trace. Luckily it doesn't appear that there are
-multiple threads doing GL work:
-
-Jan 18 23:22:24 mbp systemd-coredump[23240]: Process 23187 (gnome-shell) of
-user 1000 dumped core.
-
-Stack trace of thread 23187:
-#0  0x00007f8e82236793 __memmove_avx_unaligned_erms (libc.so.6)
-#1  0x00007f8e6eb59160 nouveau_scratch_data (nouveau_dri.so)
-#2  0x00007f8e6ec65b58 nvc0_update_user_vbufs_shared (nouveau_dri.so)
-#3  0x00007f8e6ec5aea5 nvc0_state_validate (nouveau_dri.so)
-#4  0x00007f8e6ec5b087 nvc0_state_validate_3d (nouveau_dri.so)
-#5  0x00007f8e6ec66f14 nvc0_draw_vbo (nouveau_dri.so)
-#6  0x00007f8e6e9bfe12 cso_draw_arrays (nouveau_dri.so)
-#7  0x00007f8e6e8773d0 st_pbo_draw (nouveau_dri.so)
-#8  0x00007f8e6e82e897 try_pbo_upload_common (nouveau_dri.so)
-#9  0x00007f8e6e833f95 st_TexSubImage (nouveau_dri.so)
-#10 0x00007f8e6e834de0 st_TexImage (nouveau_dri.so)
-#11 0x00007f8e6e7b8f47 teximage (nouveau_dri.so)
-#12 0x00007f8e6e7b9d40 _mesa_TexImage2D (nouveau_dri.so)
-#13 0x00007f8e7fba94ed n/a (libmutter-cogl.so)
-#14 0x00007f8e7fb9ab14 n/a (libmutter-cogl.so)
-#15 0x00007f8e7fbcfe56 cogl_texture_allocate (libmutter-cogl.so)
-#16 0x00007f8e7fbeb40b n/a (libmutter-cogl.so)
-#17 0x00007f8e7fbeb909 cogl_texture_new_from_bitmap (libmutter-cogl.so)
-#18 0x00007f8e83243143 n/a (libmutter-clutter-1.0.so)
-#19 0x00007f8e8321f85d clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#20 0x00007f8e83225aab n/a (libmutter-clutter-1.0.so)
-#21 0x00007f8e85102aa0 n/a (libgnome-shell.so)
-#22 0x00007f8e829ebecf g_closure_invoke (libgobject-2.0.so.0)
-#23 0x00007f8e829fe37d n/a (libgobject-2.0.so.0)
-#24 0x00007f8e82a06bcc g_signal_emit_valist (libgobject-2.0.so.0)
-#25 0x00007f8e82a06faf g_signal_emit (libgobject-2.0.so.0)
-#26 0x00007f8e8321f8a3 clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#27 0x00007f8e83225aab n/a (libmutter-clutter-1.0.so)
-#28 0x00007f8e8510cf90 n/a (libgnome-shell.so)
-#29 0x00007f8e829ebecf g_closure_invoke (libgobject-2.0.so.0)
-#30 0x00007f8e829fe37d n/a (libgobject-2.0.so.0)
-#31 0x00007f8e82a06bcc g_signal_emit_valist (libgobject-2.0.so.0)
-#32 0x00007f8e82a06faf g_signal_emit (libgobject-2.0.so.0)
-#33 0x00007f8e8321f8a3 clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#34 0x00007f8e83225aab n/a (libmutter-clutter-1.0.so)
-#35 0x00007f8e8511b182 n/a (libgnome-shell.so)
-#36 0x00007f8e829ebecf g_closure_invoke (libgobject-2.0.so.0)
-#37 0x00007f8e829fe37d n/a (libgobject-2.0.so.0)
-#38 0x00007f8e82a06bcc g_signal_emit_valist (libgobject-2.0.so.0)
-#39 0x00007f8e82a06faf g_signal_emit (libgobject-2.0.so.0)
-#40 0x00007f8e8321f8a3 clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#41 0x00007f8e83225706 n/a (libmutter-clutter-1.0.so)
-#42 0x00007f8e85102aa0 n/a (libgnome-shell.so)
-#43 0x00007f8e829ebecf g_closure_invoke (libgobject-2.0.so.0)
-#44 0x00007f8e829fe37d n/a (libgobject-2.0.so.0)
-#45 0x00007f8e82a06bcc g_signal_emit_valist (libgobject-2.0.so.0)
-#46 0x00007f8e82a06faf g_signal_emit (libgobject-2.0.so.0)
-#47 0x00007f8e8321f8a3 clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#48 0x00007f8e83225aab n/a (libmutter-clutter-1.0.so)
-#49 0x00007f8e85102aa0 n/a (libgnome-shell.so)
-#50 0x00007f8e829ebecf g_closure_invoke (libgobject-2.0.so.0)
-#51 0x00007f8e829fe37d n/a (libgobject-2.0.so.0)
-#52 0x00007f8e82a06bcc g_signal_emit_valist (libgobject-2.0.so.0)
-#53 0x00007f8e82a06faf g_signal_emit (libgobject-2.0.so.0)
-#54 0x00007f8e8321f8a3 clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#55 0x00007f8e83225aab n/a (libmutter-clutter-1.0.so)
-#56 0x00007f8e85102aa0 n/a (libgnome-shell.so)
-#57 0x00007f8e829ebecf g_closure_invoke (libgobject-2.0.so.0)
-#58 0x00007f8e829fe37d n/a (libgobject-2.0.so.0)
-#59 0x00007f8e82a06bcc g_signal_emit_valist (libgobject-2.0.so.0)
-#60 0x00007f8e82a06faf g_signal_emit (libgobject-2.0.so.0)
-#61 0x00007f8e8321f8a3 clutter_actor_continue_paint (libmutter-clutter-1.0.=
-so)
-#62 0x00007f8e83225aab n/a (libmutter-clutter-1.0.so)
-#63 0x00007f8e8327847a n/a (libmutter-clutter-1.0.so)
-
-Stack trace of thread 23196:
-#0  0x00007f8e821ed48d poll (libc.so.6)
-#1  0x00007f8e82713786 n/a (libglib-2.0.so.0)
-#2  0x00007f8e8271389c g_main_context_iteration (libglib-2.0.so.0)
-#3  0x00007f8e64ecc4bd n/a (libdconfsettings.so)
-#4  0x00007f8e8273b0d5 n/a (libglib-2.0.so.0)
-#5  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#6  0x00007f8e821f67df __clone (libc.so.6)
-
-Stack trace of thread 23189:
-#0  0x00007f8e821ed48d poll (libc.so.6)
-#1  0x00007f8e82713786 n/a (libglib-2.0.so.0)
-#2  0x00007f8e8271389c g_main_context_iteration (libglib-2.0.so.0)
-#3  0x00007f8e827138e1 n/a (libglib-2.0.so.0)
-#4  0x00007f8e8273b0d5 n/a (libglib-2.0.so.0)
-#5  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#6  0x00007f8e821f67df __clone (libc.so.6)
-
-Stack trace of thread 23199:
-#0  0x00007f8e821ed48d poll (libc.so.6)
-#1  0x00007f8e7e557ee1 n/a (libpulse.so.0)
-#2  0x00007f8e7e5496f1 pa_mainloop_poll (libpulse.so.0)
-#3  0x00007f8e7e549d8e pa_mainloop_iterate (libpulse.so.0)
-#4  0x00007f8e7e549e40 pa_mainloop_run (libpulse.so.0)
-#5  0x00007f8e7e557e29 n/a (libpulse.so.0)
-#6  0x00007f8e73cbdfe8 n/a (libpulsecommon-9.99.so)
-#7  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#8  0x00007f8e821f67df __clone (libc.so.6)
-
-Stack trace of thread 23200:
-#0  0x00007f8e824b910f pthread_cond_wait&#64;&#64;GLIBC_2.3.2 (libpthread.s=
-o.0)
-#1  0x00007f8e753ee4e0 PR_WaitCondVar (libnspr4.so)
-#2  0x00007f8e7dfadc0e n/a (libmozjs-24.so)
-#3  0x00007f8e753f3d6c n/a (libnspr4.so)
-#4  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#5  0x00007f8e821f67df __clone (libc.so.6)
-
-Stack trace of thread 23194:
-#0  0x00007f8e821f1f19 syscall (libc.so.6)
-#1  0x00007f8e8275903a g_cond_wait_until (libglib-2.0.so.0)
-#2  0x00007f8e826e7e89 n/a (libglib-2.0.so.0)
-#3  0x00007f8e826e84ac g_async_queue_timeout_pop (libglib-2.0.so.0)
-#4  0x00007f8e8273bb9d n/a (libglib-2.0.so.0)
-#5  0x00007f8e8273b0d5 n/a (libglib-2.0.so.0)
-#6  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#7  0x00007f8e821f67df __clone (libc.so.6)
-
-Stack trace of thread 23190:
-#0  0x00007f8e821ed48d poll (libc.so.6)
-#1  0x00007f8e82713786 n/a (libglib-2.0.so.0)
-#2  0x00007f8e82713b12 g_main_loop_run (libglib-2.0.so.0)
-#3  0x00007f8e82cf9316 n/a (libgio-2.0.so.0)
-#4  0x00007f8e8273b0d5 n/a (libglib-2.0.so.0)
-#5  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#6  0x00007f8e821f67df __clone (libc.so.6)
-
-Stack trace of thread 23201:
-#0  0x00007f8e824b910f pthread_cond_wait&#64;&#64;GLIBC_2.3.2 (libpthread.s=
-o.0)
-#1  0x00007f8e753ee4e0 PR_WaitCondVar (libnspr4.so)
-#2  0x00007f8e7e021bab n/a (libmozjs-24.so)
-#3  0x00007f8e753f3d6c n/a (libnspr4.so)
-#4  0x00007f8e824b3454 start_thread (libpthread.so.0)
-#5  0x00007f8e821f67df __clone (libc.so.6)
-
-Thanks again!
-Tony</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14848001440.0De5e05EA.3215--
-
---===============0302233703==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0302233703==--
+djM6IFJlbW92ZSB3aGl0ZSBzcGFjZSBjaGFuZ2UuCgpTaWduZWQtb2ZmLWJ5OiBBbmRyZXkgR3Jv
+ZHpvdnNreSA8QW5kcmV5Lkdyb2R6b3Zza3lAYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfbW9kZS5oICAgICAgICAgICB8ICAxIC0KIC4uLi9kcm0vYW1kL2Rp
+c3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV90eXBlcy5jICAgIHwgODkgKystLS0tLS0tLS0tLS0t
+LS0tLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDg1IGRlbGV0aW9ucygt
+KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9tb2RlLmgg
+Yi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfbW9kZS5oCmluZGV4IDRjMGE4NmUu
+LjNmZjNjMTQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9t
+b2RlLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X21vZGUuaApAQCAt
+NDQzLDcgKzQ0Myw2IEBAIHN0cnVjdCBhbWRncHVfY3J0YyB7CiAJZW51bSBhbWRncHVfaW50ZXJy
+dXB0X3N0YXRlIHZzeW5jX3RpbWVyX2VuYWJsZWQ7CiAKIAlpbnQgb3RnX2luc3Q7Ci0JdWludDMy
+X3QgZmxpcF9mbGFnczsKIAkvKiBBZnRlciBTZXQgTW9kZSB0YXJnZXQgd2lsbCBiZSBub24tTlVM
+TCAqLwogCXN0cnVjdCBkY190YXJnZXQgKnRhcmdldDsKIH07CmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV90eXBlcy5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG1fdHlwZXMuYwppbmRleCBh
+NDQzYjcwLi43MGUwMWFkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkv
+YW1kZ3B1X2RtL2FtZGdwdV9kbV90eXBlcy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlz
+cGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtX3R5cGVzLmMKQEAgLTEwNjAsODMgKzEwNjAsNiBAQCBz
+dGF0aWMgaW50IGRtX2NydGNfZnVuY3NfYXRvbWljX3NldF9wcm9wZXJ0eSgKIAlyZXR1cm4gMDsK
+IH0KIAotCi1zdGF0aWMgaW50IGFtZGdwdV9hdG9taWNfaGVscGVyX3BhZ2VfZmxpcChzdHJ1Y3Qg
+ZHJtX2NydGMgKmNydGMsCi0JCQkJc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAqZmIsCi0JCQkJc3Ry
+dWN0IGRybV9wZW5kaW5nX3ZibGFua19ldmVudCAqZXZlbnQsCi0JCQkJdWludDMyX3QgZmxhZ3Mp
+Ci17Ci0Jc3RydWN0IGRybV9wbGFuZSAqcGxhbmUgPSBjcnRjLT5wcmltYXJ5OwotCXN0cnVjdCBh
+bWRncHVfY3J0YyAqYWNydGMgPSB0b19hbWRncHVfY3J0YyhjcnRjKTsKLQlzdHJ1Y3QgZHJtX2F0
+b21pY19zdGF0ZSAqc3RhdGU7Ci0Jc3RydWN0IGRybV9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGU7
+Ci0Jc3RydWN0IGRybV9jcnRjX3N0YXRlICpjcnRjX3N0YXRlOwotCWludCByZXQgPSAwOwotCi0J
+c3RhdGUgPSBkcm1fYXRvbWljX3N0YXRlX2FsbG9jKHBsYW5lLT5kZXYpOwotCWlmICghc3RhdGUp
+Ci0JCXJldHVybiAtRU5PTUVNOwotCi0JcmV0ID0gZHJtX2NydGNfdmJsYW5rX2dldChjcnRjKTsK
+LQlpZiAocmV0KQotCQlyZXR1cm4gcmV0OwotCi0Jc3RhdGUtPmFjcXVpcmVfY3R4ID0gZHJtX21v
+ZGVzZXRfbGVnYWN5X2FjcXVpcmVfY3R4KGNydGMpOwotcmV0cnk6Ci0JY3J0Y19zdGF0ZSA9IGRy
+bV9hdG9taWNfZ2V0X2NydGNfc3RhdGUoc3RhdGUsIGNydGMpOwotCWlmIChJU19FUlIoY3J0Y19z
+dGF0ZSkpIHsKLQkJcmV0ID0gUFRSX0VSUihjcnRjX3N0YXRlKTsKLQkJZ290byBmYWlsOwotCX0K
+LQljcnRjX3N0YXRlLT5ldmVudCA9IGV2ZW50OwotCi0JcGxhbmVfc3RhdGUgPSBkcm1fYXRvbWlj
+X2dldF9wbGFuZV9zdGF0ZShzdGF0ZSwgcGxhbmUpOwotCWlmIChJU19FUlIocGxhbmVfc3RhdGUp
+KSB7Ci0JCXJldCA9IFBUUl9FUlIocGxhbmVfc3RhdGUpOwotCQlnb3RvIGZhaWw7Ci0JfQotCi0J
+cmV0ID0gZHJtX2F0b21pY19zZXRfY3J0Y19mb3JfcGxhbmUocGxhbmVfc3RhdGUsIGNydGMpOwot
+CWlmIChyZXQgIT0gMCkKLQkJZ290byBmYWlsOwotCWRybV9hdG9taWNfc2V0X2ZiX2Zvcl9wbGFu
+ZShwbGFuZV9zdGF0ZSwgZmIpOwotCi0JLyogTWFrZSBzdXJlIHdlIGRvbid0IGFjY2lkZW50YWxs
+eSBkbyBhIGZ1bGwgbW9kZXNldC4gKi8KLQlzdGF0ZS0+YWxsb3dfbW9kZXNldCA9IGZhbHNlOwot
+CWlmICghY3J0Y19zdGF0ZS0+YWN0aXZlKSB7Ci0JCURSTV9ERUJVR19BVE9NSUMoIltDUlRDOiVk
+XSBkaXNhYmxlZCwgcmVqZWN0aW5nIGxlZ2FjeSBmbGlwXG4iLAotCQkJCSBjcnRjLT5iYXNlLmlk
+KTsKLQkJcmV0ID0gLUVJTlZBTDsKLQkJZ290byBmYWlsOwotCX0KLQlhY3J0Yy0+ZmxpcF9mbGFn
+cyA9IGZsYWdzOwotCi0JcmV0ID0gZHJtX2F0b21pY19ub25ibG9ja2luZ19jb21taXQoc3RhdGUp
+OwotCi1mYWlsOgotCWlmIChyZXQgPT0gLUVERUFETEspCi0JCWdvdG8gYmFja29mZjsKLQotCWlm
+IChyZXQpCi0JCWRybV9jcnRjX3ZibGFua19wdXQoY3J0Yyk7Ci0KLQlkcm1fYXRvbWljX3N0YXRl
+X3B1dChzdGF0ZSk7Ci0KLQlyZXR1cm4gcmV0OwotYmFja29mZjoKLQlkcm1fYXRvbWljX3N0YXRl
+X2NsZWFyKHN0YXRlKTsKLQlkcm1fYXRvbWljX2xlZ2FjeV9iYWNrb2ZmKHN0YXRlKTsKLQotCS8q
+Ci0JICogU29tZW9uZSBtaWdodCBoYXZlIGV4Y2hhbmdlZCB0aGUgZnJhbWVidWZmZXIgd2hpbGUg
+d2UgZHJvcHBlZCBsb2NrcwotCSAqIGluIHRoZSBiYWNrb2ZmIGNvZGUuIFdlIG5lZWQgdG8gZml4
+IHVwIHRoZSBmYiByZWZjb3VudCB0cmFja2luZyB0aGUKLQkgKiBjb3JlIGRvZXMgZm9yIHVzLgot
+CSAqLwotCXBsYW5lLT5vbGRfZmIgPSBwbGFuZS0+ZmI7Ci0KLQlnb3RvIHJldHJ5OwotfQotCiAv
+KiBJbXBsZW1lbnRlZCBvbmx5IHRoZSBvcHRpb25zIGN1cnJlbnRseSBhdmFpbGlibGUgZm9yIHRo
+ZSBkcml2ZXIgKi8KIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2NydGNfZnVuY3MgYW1kZ3B1X2Rt
+X2NydGNfZnVuY3MgPSB7CiAJLnJlc2V0ID0gZHJtX2F0b21pY19oZWxwZXJfY3J0Y19yZXNldCwK
+QEAgLTExNDUsNyArMTA2OCw3IEBAIHN0YXRpYyBpbnQgYW1kZ3B1X2F0b21pY19oZWxwZXJfcGFn
+ZV9mbGlwKHN0cnVjdCBkcm1fY3J0YyAqY3J0YywKIAkuZGVzdHJveSA9IGFtZGdwdV9kbV9jcnRj
+X2Rlc3Ryb3ksCiAJLmdhbW1hX3NldCA9IGFtZGdwdV9kbV9hdG9taWNfY3J0Y19nYW1tYV9zZXQs
+CiAJLnNldF9jb25maWcgPSBkcm1fYXRvbWljX2hlbHBlcl9zZXRfY29uZmlnLAotCS5wYWdlX2Zs
+aXAgPSBhbWRncHVfYXRvbWljX2hlbHBlcl9wYWdlX2ZsaXAsCisJLnBhZ2VfZmxpcF90YXJnZXQg
+PSBkcm1fYXRvbWljX2hlbHBlcl9wYWdlX2ZsaXBfdGFyZ2V0LAogCS5hdG9taWNfZHVwbGljYXRl
+X3N0YXRlID0gZHJtX2F0b21pY19oZWxwZXJfY3J0Y19kdXBsaWNhdGVfc3RhdGUsCiAJLmF0b21p
+Y19kZXN0cm95X3N0YXRlID0gZHJtX2F0b21pY19oZWxwZXJfY3J0Y19kZXN0cm95X3N0YXRlLAog
+CS5hdG9taWNfc2V0X3Byb3BlcnR5ID0gZG1fY3J0Y19mdW5jc19hdG9taWNfc2V0X3Byb3BlcnR5
+CkBAIC0xNjc5LDcgKzE2MDIsNyBAQCBzdGF0aWMgYm9vbCBwYWdlX2ZsaXBfbmVlZGVkKAogCQkJ
+CSAgICBzaXplb2Yob2xkX3N0YXRlX3RtcCkpID09IDAgPyB0cnVlOmZhbHNlOwogCWlmIChuZXdf
+c3RhdGUtPmNydGMgJiYgcGFnZV9mbGlwX3JlcXVpcmVkID09IGZhbHNlKSB7CiAJCWFjcnRjX25l
+dyA9IHRvX2FtZGdwdV9jcnRjKG5ld19zdGF0ZS0+Y3J0Yyk7Ci0JCWlmIChhY3J0Y19uZXctPmZs
+aXBfZmxhZ3MgJiBEUk1fTU9ERV9QQUdFX0ZMSVBfQVNZTkMpCisJCWlmIChuZXdfc3RhdGUtPnBm
+bGlwX2ZsYWdzICYgRFJNX01PREVfUEFHRV9GTElQX0FTWU5DKQogCQkJcGFnZV9mbGlwX3JlcXVp
+cmVkID0gdHJ1ZTsKIAl9CiAJcmV0dXJuIHBhZ2VfZmxpcF9yZXF1aXJlZDsKQEAgLTI3NjAsNyAr
+MjY4Myw2IEBAIGludCBhbWRncHVfZG1fYXRvbWljX2NvbW1pdCgKIAlmb3JfZWFjaF9wbGFuZV9p
+bl9zdGF0ZShzdGF0ZSwgcGxhbmUsIG9sZF9wbGFuZV9zdGF0ZSwgaSkgewogCQlzdHJ1Y3QgZHJt
+X3BsYW5lX3N0YXRlICpwbGFuZV9zdGF0ZSA9IHBsYW5lLT5zdGF0ZTsKIAkJc3RydWN0IGRybV9j
+cnRjICpjcnRjID0gcGxhbmVfc3RhdGUtPmNydGM7Ci0JCXN0cnVjdCBhbWRncHVfY3J0YyAqYWNy
+dGMgPSB0b19hbWRncHVfY3J0YyhjcnRjKTsKIAkJc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAqZmIg
+PSBwbGFuZV9zdGF0ZS0+ZmI7CiAKIAkJaWYgKCFmYiB8fCAhY3J0YyB8fCAhY3J0Yy0+c3RhdGUt
+PnBsYW5lc19jaGFuZ2VkIHx8CkBAIC0yNzcxLDEwICsyNjkzLDkgQEAgaW50IGFtZGdwdV9kbV9h
+dG9taWNfY29tbWl0KAogCQkJcmV0ID0gYW1kZ3B1X2NydGNfcGFnZV9mbGlwX3RhcmdldChjcnRj
+LAogCQkJCQkJCSAgIGZiLAogCQkJCQkJCSAgIGNydGMtPnN0YXRlLT5ldmVudCwKLQkJCQkJCQkg
+ICBhY3J0Yy0+ZmxpcF9mbGFncywKLQkJCQkJCQkgICBkcm1fY3J0Y192YmxhbmtfY291bnQoY3J0
+YykpOwotCQkJLypjbGVhbiB1cCB0aGUgZmxhZ3MgZm9yIG5leHQgdXNhZ2UqLwotCQkJYWNydGMt
+PmZsaXBfZmxhZ3MgPSAwOworCQkJCQkJCSAgIHBsYW5lX3N0YXRlLT5wZmxpcF9mbGFncywKKwkJ
+CQkJCQkgICBjcnRjLT5zdGF0ZS0+dGFyZ2V0X3ZibGFuayk7CisKIAkJCWlmIChyZXQpCiAJCQkJ
+YnJlYWs7CiAJCX0KLS0gCjEuOS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9kcmktZGV2ZWwK
