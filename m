@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99464] openmw - Segfault with the nouveau ddx + DRI3
-Date: Fri, 20 Jan 2017 01:43:04 +0000
-Message-ID: <bug-99464-8800-CNrf7lwg2S@http.bugs.freedesktop.org/>
-References: <bug-99464-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv1a,nv1f/disp: fix memory clock rate retrieval
+Date: Thu, 19 Jan 2017 22:56:30 -0500
+Message-ID: <20170120035630.29625-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1053971906=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,90 +15,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1053971906==
-Content-Type: multipart/alternative; boundary="14848765830.78D1.16184";
- charset="UTF-8"
-
-
---14848765830.78D1.16184
-Date: Fri, 20 Jan 2017 01:43:03 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99464
-
---- Comment #1 from ovariegata-/E1597aS9LQAvxtiuMwx3w@public.gmane.org ---
-I asked a friend who also uses openmw, he has never experienced any crashes
-with xf86_video_ati + DRI3.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14848765830.78D1.16184
-Date: Fri, 20 Jan 2017 01:43:03 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - openmw - Segfault with the nouveau ddx + DRI3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99464#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - openmw - Segfault with the nouveau ddx + DRI3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99464">bug 99464<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ovariegata&#64;yahoo.com" title=3D"ovariegata&#64;yahoo.com">ovariegata&#64=
-;yahoo.com</a>
-</span></b>
-        <pre>I asked a friend who also uses openmw, he has never experience=
-d any crashes
-with xf86_video_ati + DRI3.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14848765830.78D1.16184--
-
---===============1053971906==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1053971906==--
+QmFzZWQgb24gdGhlIHhmODYtdmlkZW8tbnYgY29kZSwgTkZPUkNFIChOVjFBKSBhbmQgTkZPUkNF
+MiAoTlYxRikgaGF2ZSBhCmRpZmZlcmVudCB3YXkgb2YgcmV0cmlldmluZyBjbG9ja3MuIFNlZSB0
+aGUKbnZfaHcuYzpuRm9yY2VVcGRhdGVBcmJpdHJhdGlvblNldHRpbmdzIGZ1bmN0aW9uIGluIHRo
+ZSBvcmlnaW5hbCBjb2RlCmZvciBob3cgdGhlc2UgY2xvY2tzIHdlcmUgYWNjZXNzZWQuCgpCdWd6
+aWxsYTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NTQ1ODcK
+Q2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGlt
+aXJraW5AYWx1bS5taXQuZWR1PgotLS0KCkFjY29yZGluZyB0byBzZXZlcmFsIHVzZXJzIHRoaXMg
+aW1wcm92ZXMgdGhlIGZsaWNrZXJpbmcgc2l0dWF0aW9uCnN1YnN0YW50aWFsbHksIGJ1dCBkb2Vz
+IG5vdCBmaXggdGhlIHByb2JsZW1zIGVudGlyZWx5LiBJJ20gZ3Vlc3NpbmcKdGhlcmUncyBtb3Jl
+LCBidXQgdGhpcyBpcyBwcmV0dHkgZWFzeSB0byBjb21wYXJlIHdpdGggdGhlIG9sZCBsb2dpYy4K
+CiBkcm0vbm91dmVhdS9kaXNwbnYwNC9ody5jIHwgMyArKy0KIDEgZmlsZSBjaGFuZ2VkLCAyIGlu
+c2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9kaXNw
+bnYwNC9ody5jIGIvZHJtL25vdXZlYXUvZGlzcG52MDQvaHcuYwppbmRleCA0OGFkNGJlLi5iOTg1
+OTkwIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9kaXNwbnYwNC9ody5jCisrKyBiL2RybS9ub3V2
+ZWF1L2Rpc3BudjA0L2h3LmMKQEAgLTIyMiw2ICsyMjIsNyBAQCBub3V2ZWF1X2h3X2dldF9jbG9j
+ayhzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBlbnVtIG52Ymlvc19wbGxfdHlwZSBwbGx0eXBlKQog
+CQl1aW50MzJfdCBtcGxsUDsKIAogCQlwY2lfcmVhZF9jb25maWdfZHdvcmQocGNpX2dldF9idXNf
+YW5kX3Nsb3QoMCwgMyksIDB4NmMsICZtcGxsUCk7CisJCW1wbGxQID0gKG1wbGxQID4+IDgpICYg
+MHhmOwogCQlpZiAoIW1wbGxQKQogCQkJbXBsbFAgPSA0OwogCkBAIC0yMzIsNyArMjMzLDcgQEAg
+bm91dmVhdV9od19nZXRfY2xvY2soc3RydWN0IGRybV9kZXZpY2UgKmRldiwgZW51bSBudmJpb3Nf
+cGxsX3R5cGUgcGxsdHlwZSkKIAkJdWludDMyX3QgY2xvY2s7CiAKIAkJcGNpX3JlYWRfY29uZmln
+X2R3b3JkKHBjaV9nZXRfYnVzX2FuZF9zbG90KDAsIDUpLCAweDRjLCAmY2xvY2spOwotCQlyZXR1
+cm4gY2xvY2s7CisJCXJldHVybiBjbG9jayAvIDEwMDA7CiAJfQogCiAJcmV0ID0gbm91dmVhdV9o
+d19nZXRfcGxsdmFscyhkZXYsIHBsbHR5cGUsICZwbGx2YWxzKTsKLS0gCjIuMTAuMgoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
