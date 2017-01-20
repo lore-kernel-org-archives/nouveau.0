@@ -1,75 +1,46 @@
-From: poma <pomidorabelisima@gmail.com>
-Subject: Re: [Nouveau] NVAC "No Signal"
-Date: Fri, 20 Jan 2017 14:30:54 +0100
-Message-ID: <7e22d244-bad9-46fa-29ce-8c70872e66a7@gmail.com>
-References: <1de93d48-bc1c-bab4-11c4-395bfdfba7bb@gmail.com>
- <CAEXux-ZHdmop1c8F3FGRzAa_otwVjHUsT7OCVg6ObP_dg-Pcdw@mail.gmail.com>
- <90c3d7fc-16c9-bc81-8812-a9a1e86415dc@gmail.com>
- <CAEXux-Zr9SaRgSoVGCJKGO59CNYqq1MEwTo1ib23dCD+rxebjw@mail.gmail.com>
- <1f02c18b-e472-e3bc-9302-646d20e59d46@gmail.com>
- <CAEXux-a=F+AAr--rf8Dk_Cekcfk7yFF49mK4tW6MH4Xv=-2puA@mail.gmail.com>
- <07fa54e9-1a6f-de75-52ee-cc8aee96a541@gmail.com>
- <20161019175806.uqksdyiyr3dpkzu3@pmoreau.org>
- <f1d2a80f-5911-9ec7-f61f-4c10fe2ad87f@gmail.com>
- <f372e6ef-a030-ef79-c72f-0b00fdc48ffe@gmail.com>
- <4940241f-aadc-0277-a8c8-62879a41fc77@spliet.org>
- <be304bb1-621d-0e3a-3435-0430aa98a507@gmail.com>
- <d32d1fa0-1f65-3c3b-6b2c-b9f252663783@spliet.org>
+From: Geliang Tang <geliangtang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau/client: use rb_entry()
+Date: Fri, 20 Jan 2017 22:36:56 +0800
+Message-ID: <22da087ad757fafdb206fd0c57d286449302acdb.1484816560.git.geliangtang@gmail.com>
+References: <c6a809ea5820242a4ae126b03cdcd910a36e5cae.1484817152.git.geliangtang@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <d32d1fa0-1f65-3c3b-6b2c-b9f252663783@spliet.org>
-Sender: stable-owner@vger.kernel.org
-To: Dave Airlie <airlied@redhat.com>, "# 4 . 9 . x-" <stable@vger.kernel.org>
-Cc: Roy Spliet <nouveau@spliet.org>, Ben Skeggs <skeggsb@gmail.com>, nouveau@lists.freedesktop.org, Jeff Backus <jeff.backus@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <c6a809ea5820242a4ae126b03cdcd910a36e5cae.1484817152.git.geliangtang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
+Cc: Geliang Tang <geliangtang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 09.01.2017 19:20, Roy Spliet wrote:
-> Op 09-01-17 om 00:24 schreef Ben Skeggs:
->> On 12/24/2016 07:48 PM, Roy Spliet wrote:
->>> I've observed this regression on my NVAC board; a 1920x1080 TV on HDMI
->>> (single monitor set-up) gets no signal with Fedora kernels from 4.8.
->>> Trace sent to the mmio dumps mailbox. A brief scan already revealed that
->>> register 0xe840 is never touched, so it appears that NVIDIA does
->>> something different.
->>> VBIOS for this board is in the usual place. Commenting out 0xac from the
->>> workaround seems to solve the problem, as tested on a Fedora 4.9 kernel.
->>> I hope that helps you get a little further with this issue. Cheers, and
->>> happy holidays!
->> Thanks Roy,
->>
->> NVIDIA told me that it applied to these boards, but, I can't see NVIDIA
->> attempting the workaround in your trace, so until there's evidence to
->> the contrary, I've disabled it for MCP7x for now.
->>
->> Ben.
-> Thanks. Since your patch is the exact modification I made to verify the 
-> workaround was bugging me, consider it:
-> 
-> Tested-by: Roy Spliet <nouveau@spliet.org>
-> 
-> Given "no display on HDMI since 4.8" is quite a serious regression 
-> (albeit for a small userbase), please consider submitting this to 4.10 
-> as well as a "back-port" to the upstream 4.8 and 4.9 trees.
-> Thanks again! Cheers,
-> 
-> Roy
-> 
-
-
-Thanks Roy
-
-Hello Dave, Greg
-
-If it is not already, please push for:
-- stable 4.9.6
-- mainline 4.10-rc5
-
-Also:
-Reported-by: poma <poma@gmail.com>
-Tested-by: poma <poma@gmail.com>
-
-Ref.
-https://lists.freedesktop.org/archives/nouveau/2016-October/026242.html
-https://github.com/skeggsb/nouveau/commit/2e5fba2.patch
+VG8gbWFrZSB0aGUgY29kZSBjbGVhcmVyLCB1c2UgcmJfZW50cnkoKSBpbnN0ZWFkIG9mIGNvbnRh
+aW5lcl9vZigpIHRvCmRlYWwgd2l0aCByYnRyZWUuCgpTaWduZWQtb2ZmLWJ5OiBHZWxpYW5nIFRh
+bmcgPGdlbGlhbmd0YW5nQGdtYWlsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+dmttL2NvcmUvY2xpZW50LmMgfCA0ICsrLS0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMo
+KyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bnZrbS9jb3JlL2NsaWVudC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Ns
+aWVudC5jCmluZGV4IGUxOTQzOTEuLmFiMmVlMTQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vY29yZS9jbGllbnQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9udmttL2NvcmUvY2xpZW50LmMKQEAgLTIyMSw3ICsyMjEsNyBAQCBudmttX2NsaWVudF9pbnNl
+cnQoc3RydWN0IG52a21fY2xpZW50ICpjbGllbnQsIHN0cnVjdCBudmttX29iamVjdCAqb2JqZWN0
+KQogCiAJd2hpbGUgKCpwdHIpIHsKIAkJc3RydWN0IG52a21fb2JqZWN0ICp0aGlzID0KLQkJCWNv
+bnRhaW5lcl9vZigqcHRyLCB0eXBlb2YoKnRoaXMpLCBub2RlKTsKKwkJCXJiX2VudHJ5KCpwdHIs
+IHR5cGVvZigqdGhpcyksIG5vZGUpOwogCQlwYXJlbnQgPSAqcHRyOwogCQlpZiAob2JqZWN0LT5v
+YmplY3QgPCB0aGlzLT5vYmplY3QpCiAJCQlwdHIgPSAmcGFyZW50LT5yYl9sZWZ0OwpAQCAtMjQz
+LDcgKzI0Myw3IEBAIG52a21fY2xpZW50X3NlYXJjaChzdHJ1Y3QgbnZrbV9jbGllbnQgKmNsaWVu
+dCwgdTY0IGhhbmRsZSkKIAlzdHJ1Y3QgcmJfbm9kZSAqbm9kZSA9IGNsaWVudC0+b2Jqcm9vdC5y
+Yl9ub2RlOwogCXdoaWxlIChub2RlKSB7CiAJCXN0cnVjdCBudmttX29iamVjdCAqb2JqZWN0ID0K
+LQkJCWNvbnRhaW5lcl9vZihub2RlLCB0eXBlb2YoKm9iamVjdCksIG5vZGUpOworCQkJcmJfZW50
+cnkobm9kZSwgdHlwZW9mKCpvYmplY3QpLCBub2RlKTsKIAkJaWYgKGhhbmRsZSA8IG9iamVjdC0+
+b2JqZWN0KQogCQkJbm9kZSA9IG5vZGUtPnJiX2xlZnQ7CiAJCWVsc2UKLS0gCjIuOS4zCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
+bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
