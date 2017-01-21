@@ -1,13 +1,13 @@
-From: Geliang Tang <geliangtang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau/client: use rb_entry()
-Date: Fri, 20 Jan 2017 22:36:56 +0800
-Message-ID: <22da087ad757fafdb206fd0c57d286449302acdb.1484816560.git.geliangtang@gmail.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/client: use rb_entry()
+Date: Sat, 21 Jan 2017 10:14:57 +1000
+Message-ID: <1b2c2698-5f99-f851-4e19-5ca5b756e1a9@gmail.com>
 References: <c6a809ea5820242a4ae126b03cdcd910a36e5cae.1484817152.git.geliangtang@gmail.com>
+ <22da087ad757fafdb206fd0c57d286449302acdb.1484816560.git.geliangtang@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1549756663=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <c6a809ea5820242a4ae126b03cdcd910a36e5cae.1484817152.git.geliangtang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <22da087ad757fafdb206fd0c57d286449302acdb.1484816560.git.geliangtang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,30 +17,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
-Cc: Geliang Tang <geliangtang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VG8gbWFrZSB0aGUgY29kZSBjbGVhcmVyLCB1c2UgcmJfZW50cnkoKSBpbnN0ZWFkIG9mIGNvbnRh
-aW5lcl9vZigpIHRvCmRlYWwgd2l0aCByYnRyZWUuCgpTaWduZWQtb2ZmLWJ5OiBHZWxpYW5nIFRh
-bmcgPGdlbGlhbmd0YW5nQGdtYWlsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-dmttL2NvcmUvY2xpZW50LmMgfCA0ICsrLS0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMo
-KyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bnZrbS9jb3JlL2NsaWVudC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3JlL2Ns
-aWVudC5jCmluZGV4IGUxOTQzOTEuLmFiMmVlMTQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L252a20vY29yZS9jbGllbnQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9udmttL2NvcmUvY2xpZW50LmMKQEAgLTIyMSw3ICsyMjEsNyBAQCBudmttX2NsaWVudF9pbnNl
-cnQoc3RydWN0IG52a21fY2xpZW50ICpjbGllbnQsIHN0cnVjdCBudmttX29iamVjdCAqb2JqZWN0
-KQogCiAJd2hpbGUgKCpwdHIpIHsKIAkJc3RydWN0IG52a21fb2JqZWN0ICp0aGlzID0KLQkJCWNv
-bnRhaW5lcl9vZigqcHRyLCB0eXBlb2YoKnRoaXMpLCBub2RlKTsKKwkJCXJiX2VudHJ5KCpwdHIs
-IHR5cGVvZigqdGhpcyksIG5vZGUpOwogCQlwYXJlbnQgPSAqcHRyOwogCQlpZiAob2JqZWN0LT5v
-YmplY3QgPCB0aGlzLT5vYmplY3QpCiAJCQlwdHIgPSAmcGFyZW50LT5yYl9sZWZ0OwpAQCAtMjQz
-LDcgKzI0Myw3IEBAIG52a21fY2xpZW50X3NlYXJjaChzdHJ1Y3QgbnZrbV9jbGllbnQgKmNsaWVu
-dCwgdTY0IGhhbmRsZSkKIAlzdHJ1Y3QgcmJfbm9kZSAqbm9kZSA9IGNsaWVudC0+b2Jqcm9vdC5y
-Yl9ub2RlOwogCXdoaWxlIChub2RlKSB7CiAJCXN0cnVjdCBudmttX29iamVjdCAqb2JqZWN0ID0K
-LQkJCWNvbnRhaW5lcl9vZihub2RlLCB0eXBlb2YoKm9iamVjdCksIG5vZGUpOworCQkJcmJfZW50
-cnkobm9kZSwgdHlwZW9mKCpvYmplY3QpLCBub2RlKTsKIAkJaWYgKGhhbmRsZSA8IG9iamVjdC0+
-b2JqZWN0KQogCQkJbm9kZSA9IG5vZGUtPnJiX2xlZnQ7CiAJCWVsc2UKLS0gCjIuOS4zCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
-bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1549756663==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="mM5OuKSs9Ij1n81G8n7GAoWkGCf2CO6UH"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--mM5OuKSs9Ij1n81G8n7GAoWkGCf2CO6UH
+Content-Type: multipart/mixed; boundary="DBriT6N7iErjblNjhf7XMSSX50oHrTEC1"
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Message-ID: <1b2c2698-5f99-f851-4e19-5ca5b756e1a9-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/client: use rb_entry()
+References: <c6a809ea5820242a4ae126b03cdcd910a36e5cae.1484817152.git.geliangtang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+ <22da087ad757fafdb206fd0c57d286449302acdb.1484816560.git.geliangtang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <22da087ad757fafdb206fd0c57d286449302acdb.1484816560.git.geliangtang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+
+--DBriT6N7iErjblNjhf7XMSSX50oHrTEC1
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+On 01/21/2017 12:36 AM, Geliang Tang wrote:
+> To make the code clearer, use rb_entry() instead of container_of() to
+> deal with rbtree.
+Hey Geliang,
+
+Looks good, however, I've already got a patch handling this pending in
+my tree.
+
+Thank you!
+Ben.
+
+>=20
+> Signed-off-by: Geliang Tang <geliangtang-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/core/client.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/core/client.c b/drivers/gpu/d=
+rm/nouveau/nvkm/core/client.c
+> index e194391..ab2ee14 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/core/client.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/core/client.c
+> @@ -221,7 +221,7 @@ nvkm_client_insert(struct nvkm_client *client, stru=
+ct nvkm_object *object)
+> =20
+>  	while (*ptr) {
+>  		struct nvkm_object *this =3D
+> -			container_of(*ptr, typeof(*this), node);
+> +			rb_entry(*ptr, typeof(*this), node);
+>  		parent =3D *ptr;
+>  		if (object->object < this->object)
+>  			ptr =3D &parent->rb_left;
+> @@ -243,7 +243,7 @@ nvkm_client_search(struct nvkm_client *client, u64 =
+handle)
+>  	struct rb_node *node =3D client->objroot.rb_node;
+>  	while (node) {
+>  		struct nvkm_object *object =3D
+> -			container_of(node, typeof(*object), node);
+> +			rb_entry(node, typeof(*object), node);
+>  		if (handle < object->object)
+>  			node =3D node->rb_left;
+>  		else
+>=20
+
+
+--DBriT6N7iErjblNjhf7XMSSX50oHrTEC1--
+
+--mM5OuKSs9Ij1n81G8n7GAoWkGCf2CO6UH
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEETp/uv2nr9kIVth0/dgucYlCSkfsFAliCqAwACgkQdgucYlCS
+kftP7g//RI41mCQYm7aJc+6KFb4HpEhLXALL12bwc6U4/elIdSDjrkuk71BgjgcW
+rrb9gxJcc4GYm3IZrukTfz6idFfZkSLhOlVHJR+WQj1t2Pcw8vTexf5Z/Rmfqcss
+zea9fgAopmVtG+gqwGFl+ONmaGGAyRG5lmpYg4NWy80ya8ZWqracSo+Ocp5vqobB
+KXi4x/zcvhGLK4CE2o5VF5+rbzglCjUlB8m9xViLjcTysZtEM7UPd8qebL16TgE6
+G2JycONcve+Djfdy8XmblhDDWbJxwYSipVg6BuoBjJiUSkQQxooHZFem2W3vVf0q
+GelUeqkkqDHmkgLygCS6N3dC6wE6eJfL5heMPb5d4Pkzft9nP/k1h2TAnH2KtS4O
+yozomyiKNlQEc58BPDm/0jfEjzYzEa2aqnDZ+1M8rJRvCWleE5grOaQpfka/7Y1E
+GTo+kwNxgf+STQktqBWIGADSslztb9Nae8a7MiFWZMNibhPKFeuj89LQ98Pb8O0b
+EM8k3Xk9nqzHDXCAZ6WFoxTbUwD8wdKI3eHs4dIi5n+7V0KhiOu8NJZbleqPL55L
+ghQcfla/gvoJBCreUOYPh/PgvrPGgKNDjqEsdVbgNbJgcK0w/nH5A53M42WWp6qZ
+LOzbeJ1mMz15lvYz/IXmkfOGcUDGFlPJI0iVnm7RfsyZEa9unv8=
+=fQzj
+-----END PGP SIGNATURE-----
+
+--mM5OuKSs9Ij1n81G8n7GAoWkGCf2CO6UH--
+
+--===============1549756663==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1549756663==--
