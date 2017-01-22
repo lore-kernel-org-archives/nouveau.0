@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99487] [NV110] HP Pavilion 15 with Maxwell 950M
  fails to read BIOS (fix included)
-Date: Sun, 22 Jan 2017 04:37:21 +0000
-Message-ID: <bug-99487-8800-UwVDUnc4z8@http.bugs.freedesktop.org/>
+Date: Sun, 22 Jan 2017 04:39:53 +0000
+Message-ID: <bug-99487-8800-4WryfbgIB0@http.bugs.freedesktop.org/>
 References: <bug-99487-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1806644884=="
+Content-Type: multipart/mixed; boundary="===============1986158531=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99487-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1806644884==
-Content-Type: multipart/alternative; boundary="14850598410.b2f32eDAe.5051";
+--===============1986158531==
+Content-Type: multipart/alternative; boundary="14850599920.E27d3671C.4942";
  charset="UTF-8"
 
 
---14850598410.b2f32eDAe.5051
-Date: Sun, 22 Jan 2017 04:37:21 +0000
+--14850599920.E27d3671C.4942
+Date: Sun, 22 Jan 2017 04:39:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,26 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99487
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-So the *idea* is that the fast method should fail in your case, because it
-should require the checksum to match.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Er wait, that commit is there upstream
+(5dc7f4aa9d84ea94b54a9bfcef095f0289f1ebda). Not sure what I was looking at
+locally.
 
-Hmmm... the logic was added in Ben's tree in commit
-
-https://github.com/skeggsb/nouveau/commit/2f693ef05fc8ca4627535a85900d8563b=
-66032e9
-
-However I can't see that commit in the upstream kernel. That's rather odd.
-Either way, can you try applying that patch and seeing if that forces the f=
-ast
-method to error out?
+Either way... would be good to figure out why the require_checksum logic is=
+n't
+working.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14850598410.b2f32eDAe.5051
-Date: Sun, 22 Jan 2017 04:37:21 +0000
+--14850599920.E27d3671C.4942
+Date: Sun, 22 Jan 2017 04:39:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,8 +68,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV110] HP Pavilion 15 with Maxwell 950M fails to read BI=
 OS (fix included)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99487#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99487#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV110] HP Pavilion 15 with Maxwell 950M fails to read BI=
@@ -85,20 +80,13 @@ OS (fix included)"
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>So the *idea* is that the fast method should fail in your case=
-, because it
-should require the checksum to match.
+        <pre>Er wait, that commit is there upstream
+(5dc7f4aa9d84ea94b54a9bfcef095f0289f1ebda). Not sure what I was looking at
+locally.
 
-Hmmm... the logic was added in Ben's tree in commit
-
-<a href=3D"https://github.com/skeggsb/nouveau/commit/2f693ef05fc8ca4627535a=
-85900d8563b66032e9">https://github.com/skeggsb/nouveau/commit/2f693ef05fc8c=
-a4627535a85900d8563b66032e9</a>
-
-However I can't see that commit in the upstream kernel. That's rather odd.
-Either way, can you try applying that patch and seeing if that forces the f=
-ast
-method to error out?</pre>
+Either way... would be good to figure out why the require_checksum logic is=
+n't
+working.</pre>
         </div>
       </p>
 
@@ -112,9 +100,9 @@ method to error out?</pre>
     </body>
 </html>=
 
---14850598410.b2f32eDAe.5051--
+--14850599920.E27d3671C.4942--
 
---===============1806644884==
+--===============1986158531==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1806644884==--
+--===============1986158531==--
