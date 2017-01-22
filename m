@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99482] New: nouveau driver returns -16 trying to
-	hibernate
-Date: Sat, 21 Jan 2017 15:31:58 +0000
-Message-ID: <bug-99482-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99487] New: [NV110] HP Pavilion 15 with Maxwell 950M
+ fails to read BIOS (fix included)
+Date: Sun, 22 Jan 2017 04:28:45 +0000
+Message-ID: <bug-99487-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1682032655=="
+Content-Type: multipart/mixed; boundary="===============0011574027=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,162 +19,123 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1682032655==
-Content-Type: multipart/alternative; boundary="14850127180.cCa3559ef.14325";
+--===============0011574027==
+Content-Type: multipart/alternative; boundary="14850593250.47b9e1BCE.4587";
  charset="UTF-8"
 
 
---14850127180.cCa3559ef.14325
-Date: Sat, 21 Jan 2017 15:31:58 +0000
+--14850593250.47b9e1BCE.4587
+Date: Sun, 22 Jan 2017 04:28:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99482
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99487
 
-            Bug ID: 99482
-           Summary: nouveau driver returns -16 trying to hibernate
+            Bug ID: 99487
+           Summary: [NV110] HP Pavilion 15 with Maxwell 950M fails to read
+                    BIOS (fix included)
            Product: xorg
-           Version: 7.7 (2012.06)
+           Version: unspecified
           Hardware: x86-64 (AMD64)
                 OS: Linux (All)
             Status: NEW
-          Severity: blocker
+          Severity: major
           Priority: medium
          Component: Driver/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: brian-SquOHqY54CVWr29BmMi2cA@public.gmane.org
+          Reporter: nemesis-RBwgCYbvQ+vk1uMJSBkQmQ@public.gmane.org
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I am running Fedora 25 with kernel 4.8.15-300.fc25.x86_64.  I don't actually
-actively use the nouveau driver as my machine has an Intel/Nvidia hybrid so=
- I
-use the Intel driver for X.  But even when I do that, the nouveau driver ge=
-ts
-loaded (with 2 references) unless I blacklist it.
+(Please tell me what information to attach and I will attach it)
 
-So given the above, when I try to hibernate it typically works once but a
-second attempt to hibernate (after having been woken up of course) will fail
-and the kernel reports:
+HP Pavilion 15 (Skylake) with Maxwell 950M fails to load the whole BIOS.  T=
+he
+ACPI "fast" method is selected first, which partially loads the BIOS with a
+score of 6, which prevents the ACPI "slow" method which actually works from
+ever being attempted.
 
-Jan 20 17:42:15 laptop kernel: PM: Syncing filesystems ... done.
-Jan 20 17:42:15 laptop kernel: Freezing user space processes ... (elapsed 0=
-.264
-seconds) done.
-Jan 20 17:42:15 laptop kernel: Double checking all user space processes aft=
-er
-OOM killer disable... (elapsed 0.000 seconds)
-Jan 20 17:42:15 laptop kernel: PM: Marking nosave pages: [mem
-0x00000000-0x00000fff]
-Jan 20 17:42:15 laptop kernel: PM: Marking nosave pages: [mem
-0x0009d000-0x000fffff]
-Jan 20 17:42:15 laptop kernel: PM: Marking nosave pages: [mem
-0x48b7f000-0x49ffefff]
-Jan 20 17:42:15 laptop kernel: PM: Marking nosave pages: [mem
-0x4a000000-0xffffffff]
-Jan 20 17:42:15 laptop kernel: PM: Basic memory bitmaps created
-Jan 20 17:42:15 laptop kernel: PM: Preallocating image memory... done
-(allocated 1487391 pages)
-Jan 20 17:42:15 laptop kernel: PM: Allocated 5949564 kbytes in 0.34 seconds
-(17498.71 MB/s)
-Jan 20 17:42:15 laptop kernel: Freezing remaining freezable tasks ... (elap=
-sed
-0.216 seconds) done.
-Jan 20 17:42:15 laptop kernel: Suspending console(s) (use no_console_suspen=
-d to
-debug)
-Jan 20 17:42:15 laptop kernel: tpm tpm0: TPM savestate took 3100ms
-Jan 20 17:42:15 laptop kernel: parport_pc 00:04: disabled
-Jan 20 17:42:15 laptop kernel: nouveau 0000:01:00.0: DRM: suspending consol=
-e...
-Jan 20 17:42:15 laptop kernel: nouveau 0000:01:00.0: DRM: suspending displa=
-y...
-Jan 20 17:42:15 laptop kernel: nouveau 0000:01:00.0: DRM: evicting buffers.=
-..
-Jan 20 17:42:15 laptop kernel: nouveau 0000:01:00.0: DRM: waiting for kernel
-channels to go idle...
-Jan 20 17:42:15 laptop kernel: nouveau 0000:01:00.0: DRM: failed to idle
-channel 0 [DRM]
-Jan 20 17:42:15 laptop kernel: nouveau 0000:01:00.0: DRM: resuming display.=
-..
-Jan 20 17:42:15 laptop kernel: pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x=
-20
-[nouveau] returns -16
-Jan 20 17:42:15 laptop kernel: dpm_run_callback(): pci_pm_freeze+0x0/0xf0
-returns -16
-Jan 20 17:42:15 laptop kernel: PM: Device 0000:01:00.0 failed to freeze asy=
-nc:
-error -16
-Jan 20 17:42:15 laptop kernel: usb usb1: root hub lost power or was reset
-Jan 20 17:42:15 laptop kernel: usb usb3: root hub lost power or was reset
-Jan 20 17:42:15 laptop kernel: usb usb4: root hub lost power or was reset
-Jan 20 17:42:15 laptop kernel: usb usb2: root hub lost power or was reset
-Jan 20 17:42:15 laptop kernel: ehci-pci 0000:00:1a.0: cache line size of 64=
- is
-not supported
-Jan 20 17:42:15 laptop kernel: ehci-pci 0000:00:1d.0: cache line size of 64=
- is
-not supported
-Jan 20 17:42:15 laptop kernel: sd 0:0:0:0: [sda] Starting disk
-Jan 20 17:42:15 laptop kernel: pciehp 0000:3c:03.0:pcie204: Device 0000:5f:=
-00.0
-already exists at 0000:5f:00, cannot hot-add
-Jan 20 17:42:15 laptop kernel: pciehp 0000:3c:03.0:pcie204: Cannot add devi=
-ce
-at 0000:5f:00
-Jan 20 17:42:15 laptop kernel: usb 1-1: reset high-speed USB device number 3
-using ehci-pci
-Jan 20 17:42:15 laptop kernel: usb 2-1: reset high-speed USB device number 2
-using ehci-pci
-Jan 20 17:42:15 laptop kernel: ata3: SATA link down (SStatus 0 SControl 300)
-Jan 20 17:42:15 laptop kernel: ata1: SATA link up 6.0 Gbps (SStatus 133
-SControl 300)
-Jan 20 17:42:15 laptop kernel: ata1.00: supports DRM functions and may not =
-be
-fully accessible
-Jan 20 17:42:15 laptop kernel: ata4: SATA link down (SStatus 0 SControl 300)
-Jan 20 17:42:15 laptop kernel: ata1.00: supports DRM functions and may not =
-be
-fully accessible
-Jan 20 17:42:15 laptop kernel: ata1.00: configured for UDMA/133
-Jan 20 17:42:15 laptop kernel: usb 3-7: reset high-speed USB device number 3
-using xhci_hcd
-Jan 20 17:42:15 laptop kernel: usb 3-5: reset full-speed USB device number 2
-using xhci_hcd
-Jan 20 17:42:15 laptop kernel: usb 3-12: reset full-speed USB device number=
- 4
-using xhci_hcd
-Jan 20 17:42:15 laptop kernel: rtc_cmos 00:03: System wakeup disabled by AC=
-PI
-Jan 20 17:42:15 laptop kernel: parport_pc 00:04: activated
-Jan 20 17:42:15 laptop kernel: PM: restore of devices complete after 1370.0=
-00
-msecs
+To work around this I changed the name of the ACPI methods to "ACPIF" and
+"ACPIS" respectively, so that I could issue this parameter to target the sl=
+ow
+method directly:
+nouveau.config=3DNvBios=3DACPIS
 
-As you can see, the fatal part is the:
-
-Jan 20 17:42:15 laptop kernel: pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x=
-20
-[nouveau] returns -16
-Jan 20 17:42:15 laptop kernel: dpm_run_callback(): pci_pm_freeze+0x0/0xf0
-returns -16
-Jan 20 17:42:15 laptop kernel: PM: Device 0000:01:00.0 failed to freeze asy=
-nc:
-error -16
-
-If I do blacklist the nouveau driver completely so that it does not get loa=
-ded
-into the kernel even, I can hibernate and resume over and over again with no
-problem.
+Kernel log from trying to load nouveau normally of kernel 4.9.0:
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339060] ACPI Warning:
+\_SB.PCI0.GFX0._DSM: Argument #4 type mismatch - Found [Buffer], ACPI requi=
+res
+[Package] (20160831/nsarguments-95)
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339093] ACPI Warning:
+\_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type mismatch - Found [Buffer], ACPI
+requires [Package] (20160831/nsarguments-95)
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339132] ACPI Warning:
+\_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type mismatch - Found [Buffer], ACPI
+requires [Package] (20160831/nsarguments-95)
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339544] pci 0000:01:00.0: optimus
+capabilities: enabled, status dynamic power,=20
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339547] VGA switcheroo: detected Opt=
+imus
+DSM method \_SB_.PCI0.PEG0.PEGP handle
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339689] nouveau 0000:01:00.0: NVIDIA
+GM107 (1171a0a2)
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339734] nouveau 0000:01:00.0: pci: M=
+SI
+enabled
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339736] nouveau 0000:01:00.0: bios:
+trying PRAMIN...
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339748] nouveau 0000:01:00.0: bios: =
+...
+not enabled
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339749] nouveau 0000:01:00.0: bios:
+trying PROM...
+Jan 21 17:47:33 achpee2 kernel: [ 1835.344944] nouveau 0000:01:00.0: bios:
+00000000: ROM signature (0000) unknown
+Jan 21 17:47:33 achpee2 kernel: [ 1835.344945] nouveau 0000:01:00.0: bios:
+image 0 invalid
+Jan 21 17:47:33 achpee2 kernel: [ 1835.344950] nouveau 0000:01:00.0: bios:
+scored 0
+Jan 21 17:47:33 achpee2 kernel: [ 1835.344951] nouveau 0000:01:00.0: bios:
+trying ACPI...
+Jan 21 17:47:33 achpee2 kernel: [ 1835.345417] nouveau 0000:01:00.0: bios:
+00000000: type 00, 65536 bytes
+Jan 21 17:47:33 achpee2 kernel: [ 1835.345904] nouveau 0000:01:00.0: bios:
+00000000: checksum failed
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346372] nouveau 0000:01:00.0: bios:
+00010000: type e0, 37376 bytes
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346830] nouveau 0000:01:00.0: bios:
+00019200: ROM signature (0000) unknown
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346832] nouveau 0000:01:00.0: bios:
+image 2 invalid
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346833] nouveau 0000:01:00.0: bios:
+scored 6
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346834] nouveau 0000:01:00.0: bios:
+using image from ACPI
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346946] nouveau 0000:01:00.0: bios: =
+BIT
+signature found
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346949] nouveau 0000:01:00.0: bios:
+version 82.07.9b.00.d1
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346953] nouveau 0000:01:00.0: bios: =
+DCB
+contains no useful data
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346954] nouveau 0000:01:00.0: bios: =
+DCB
+contains no useful data
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346956] nouveau 0000:01:00.0: mxm: no
+VBIOS data, nothing to do
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346970] nouveau 0000:01:00.0: bios: =
+DCB
+contains no useful data
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14850127180.cCa3559ef.14325
-Date: Sat, 21 Jan 2017 15:31:58 +0000
+--14850593250.47b9e1BCE.4587
+Date: Sun, 22 Jan 2017 04:28:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -190,14 +151,16 @@ Auto-Submitted: auto-generated
           <th>Bug ID</th>
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau driver returns -16 trying to hibernate"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99482">99482</a>
+   title=3D"NEW - [NV110] HP Pavilion 15 with Maxwell 950M fails to read BI=
+OS (fix included)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99487">99487</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>nouveau driver returns -16 trying to hibernate
+          <td>[NV110] HP Pavilion 15 with Maxwell 950M fails to read BIOS (=
+fix included)
           </td>
         </tr>
 
@@ -209,7 +172,7 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Version</th>
-          <td>7.7 (2012.06)
+          <td>unspecified
           </td>
         </tr>
 
@@ -233,7 +196,7 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Severity</th>
-          <td>blocker
+          <td>major
           </td>
         </tr>
 
@@ -257,7 +220,7 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Reporter</th>
-          <td>brian&#64;interlinx.bc.ca
+          <td>nemesis&#64;icequake.net
           </td>
         </tr>
 
@@ -268,127 +231,90 @@ Auto-Submitted: auto-generated
         </tr></table>
       <p>
         <div>
-        <pre>I am running Fedora 25 with kernel 4.8.15-300.fc25.x86_64.  I =
-don't actually
-actively use the nouveau driver as my machine has an Intel/Nvidia hybrid so=
- I
-use the Intel driver for X.  But even when I do that, the nouveau driver ge=
-ts
-loaded (with 2 references) unless I blacklist it.
+        <pre>(Please tell me what information to attach and I will attach i=
+t)
 
-So given the above, when I try to hibernate it typically works once but a
-second attempt to hibernate (after having been woken up of course) will fail
-and the kernel reports:
+HP Pavilion 15 (Skylake) with Maxwell 950M fails to load the whole BIOS.  T=
+he
+ACPI &quot;fast&quot; method is selected first, which partially loads the B=
+IOS with a
+score of 6, which prevents the ACPI &quot;slow&quot; method which actually =
+works from
+ever being attempted.
 
-Jan 20 17:42:15 laptop kernel: PM: Syncing filesystems ... done.
-Jan 20 17:42:15 laptop kernel: Freezing user space processes ... (elapsed 0=
-.264
-seconds) done.
-Jan 20 17:42:15 laptop kernel: Double checking all user space processes aft=
-er
-OOM killer disable... (elapsed 0.000 seconds)
-Jan 20 17:42:15 laptop kernel: PM: Marking nosave pages: [mem
-0x00000000-0x00000fff]
-Jan 20 17:42:15 laptop kernel: PM: Marking nosave pages: [mem
-0x0009d000-0x000fffff]
-Jan 20 17:42:15 laptop kernel: PM: Marking nosave pages: [mem
-0x48b7f000-0x49ffefff]
-Jan 20 17:42:15 laptop kernel: PM: Marking nosave pages: [mem
-0x4a000000-0xffffffff]
-Jan 20 17:42:15 laptop kernel: PM: Basic memory bitmaps created
-Jan 20 17:42:15 laptop kernel: PM: Preallocating image memory... done
-(allocated 1487391 pages)
-Jan 20 17:42:15 laptop kernel: PM: Allocated 5949564 kbytes in 0.34 seconds
-(17498.71 MB/s)
-Jan 20 17:42:15 laptop kernel: Freezing remaining freezable tasks ... (elap=
-sed
-0.216 seconds) done.
-Jan 20 17:42:15 laptop kernel: Suspending console(s) (use no_console_suspen=
-d to
-debug)
-Jan 20 17:42:15 laptop kernel: tpm tpm0: TPM savestate took 3100ms
-Jan 20 17:42:15 laptop kernel: parport_pc 00:04: disabled
-Jan 20 17:42:15 laptop kernel: nouveau 0000:01:00.0: DRM: suspending consol=
-e...
-Jan 20 17:42:15 laptop kernel: nouveau 0000:01:00.0: DRM: suspending displa=
-y...
-Jan 20 17:42:15 laptop kernel: nouveau 0000:01:00.0: DRM: evicting buffers.=
-..
-Jan 20 17:42:15 laptop kernel: nouveau 0000:01:00.0: DRM: waiting for kernel
-channels to go idle...
-Jan 20 17:42:15 laptop kernel: nouveau 0000:01:00.0: DRM: failed to idle
-channel 0 [DRM]
-Jan 20 17:42:15 laptop kernel: nouveau 0000:01:00.0: DRM: resuming display.=
-..
-Jan 20 17:42:15 laptop kernel: pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x=
-20
-[nouveau] returns -16
-Jan 20 17:42:15 laptop kernel: dpm_run_callback(): pci_pm_freeze+0x0/0xf0
-returns -16
-Jan 20 17:42:15 laptop kernel: PM: Device 0000:01:00.0 failed to freeze asy=
-nc:
-error -16
-Jan 20 17:42:15 laptop kernel: usb usb1: root hub lost power or was reset
-Jan 20 17:42:15 laptop kernel: usb usb3: root hub lost power or was reset
-Jan 20 17:42:15 laptop kernel: usb usb4: root hub lost power or was reset
-Jan 20 17:42:15 laptop kernel: usb usb2: root hub lost power or was reset
-Jan 20 17:42:15 laptop kernel: ehci-pci 0000:00:1a.0: cache line size of 64=
- is
-not supported
-Jan 20 17:42:15 laptop kernel: ehci-pci 0000:00:1d.0: cache line size of 64=
- is
-not supported
-Jan 20 17:42:15 laptop kernel: sd 0:0:0:0: [sda] Starting disk
-Jan 20 17:42:15 laptop kernel: pciehp 0000:3c:03.0:pcie204: Device 0000:5f:=
-00.0
-already exists at 0000:5f:00, cannot hot-add
-Jan 20 17:42:15 laptop kernel: pciehp 0000:3c:03.0:pcie204: Cannot add devi=
-ce
-at 0000:5f:00
-Jan 20 17:42:15 laptop kernel: usb 1-1: reset high-speed USB device number 3
-using ehci-pci
-Jan 20 17:42:15 laptop kernel: usb 2-1: reset high-speed USB device number 2
-using ehci-pci
-Jan 20 17:42:15 laptop kernel: ata3: SATA link down (SStatus 0 SControl 300)
-Jan 20 17:42:15 laptop kernel: ata1: SATA link up 6.0 Gbps (SStatus 133
-SControl 300)
-Jan 20 17:42:15 laptop kernel: ata1.00: supports DRM functions and may not =
-be
-fully accessible
-Jan 20 17:42:15 laptop kernel: ata4: SATA link down (SStatus 0 SControl 300)
-Jan 20 17:42:15 laptop kernel: ata1.00: supports DRM functions and may not =
-be
-fully accessible
-Jan 20 17:42:15 laptop kernel: ata1.00: configured for UDMA/133
-Jan 20 17:42:15 laptop kernel: usb 3-7: reset high-speed USB device number 3
-using xhci_hcd
-Jan 20 17:42:15 laptop kernel: usb 3-5: reset full-speed USB device number 2
-using xhci_hcd
-Jan 20 17:42:15 laptop kernel: usb 3-12: reset full-speed USB device number=
- 4
-using xhci_hcd
-Jan 20 17:42:15 laptop kernel: rtc_cmos 00:03: System wakeup disabled by AC=
-PI
-Jan 20 17:42:15 laptop kernel: parport_pc 00:04: activated
-Jan 20 17:42:15 laptop kernel: PM: restore of devices complete after 1370.0=
-00
-msecs
+To work around this I changed the name of the ACPI methods to &quot;ACPIF&q=
+uot; and
+&quot;ACPIS&quot; respectively, so that I could issue this parameter to tar=
+get the slow
+method directly:
+nouveau.config=3DNvBios=3DACPIS
 
-As you can see, the fatal part is the:
-
-Jan 20 17:42:15 laptop kernel: pci_pm_freeze(): nouveau_pmops_freeze+0x0/0x=
-20
-[nouveau] returns -16
-Jan 20 17:42:15 laptop kernel: dpm_run_callback(): pci_pm_freeze+0x0/0xf0
-returns -16
-Jan 20 17:42:15 laptop kernel: PM: Device 0000:01:00.0 failed to freeze asy=
-nc:
-error -16
-
-If I do blacklist the nouveau driver completely so that it does not get loa=
-ded
-into the kernel even, I can hibernate and resume over and over again with no
-problem.</pre>
+Kernel log from trying to load nouveau normally of kernel 4.9.0:
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339060] ACPI Warning:
+\_SB.PCI0.GFX0._DSM: Argument #4 type mismatch - Found [Buffer], ACPI requi=
+res
+[Package] (20160831/nsarguments-95)
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339093] ACPI Warning:
+\_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type mismatch - Found [Buffer], ACPI
+requires [Package] (20160831/nsarguments-95)
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339132] ACPI Warning:
+\_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type mismatch - Found [Buffer], ACPI
+requires [Package] (20160831/nsarguments-95)
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339544] pci 0000:01:00.0: optimus
+capabilities: enabled, status dynamic power,=20
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339547] VGA switcheroo: detected Opt=
+imus
+DSM method \_SB_.PCI0.PEG0.PEGP handle
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339689] nouveau 0000:01:00.0: NVIDIA
+GM107 (1171a0a2)
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339734] nouveau 0000:01:00.0: pci: M=
+SI
+enabled
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339736] nouveau 0000:01:00.0: bios:
+trying PRAMIN...
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339748] nouveau 0000:01:00.0: bios: =
+...
+not enabled
+Jan 21 17:47:33 achpee2 kernel: [ 1835.339749] nouveau 0000:01:00.0: bios:
+trying PROM...
+Jan 21 17:47:33 achpee2 kernel: [ 1835.344944] nouveau 0000:01:00.0: bios:
+00000000: ROM signature (0000) unknown
+Jan 21 17:47:33 achpee2 kernel: [ 1835.344945] nouveau 0000:01:00.0: bios:
+image 0 invalid
+Jan 21 17:47:33 achpee2 kernel: [ 1835.344950] nouveau 0000:01:00.0: bios:
+scored 0
+Jan 21 17:47:33 achpee2 kernel: [ 1835.344951] nouveau 0000:01:00.0: bios:
+trying ACPI...
+Jan 21 17:47:33 achpee2 kernel: [ 1835.345417] nouveau 0000:01:00.0: bios:
+00000000: type 00, 65536 bytes
+Jan 21 17:47:33 achpee2 kernel: [ 1835.345904] nouveau 0000:01:00.0: bios:
+00000000: checksum failed
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346372] nouveau 0000:01:00.0: bios:
+00010000: type e0, 37376 bytes
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346830] nouveau 0000:01:00.0: bios:
+00019200: ROM signature (0000) unknown
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346832] nouveau 0000:01:00.0: bios:
+image 2 invalid
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346833] nouveau 0000:01:00.0: bios:
+scored 6
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346834] nouveau 0000:01:00.0: bios:
+using image from ACPI
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346946] nouveau 0000:01:00.0: bios: =
+BIT
+signature found
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346949] nouveau 0000:01:00.0: bios:
+version 82.07.9b.00.d1
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346953] nouveau 0000:01:00.0: bios: =
+DCB
+contains no useful data
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346954] nouveau 0000:01:00.0: bios: =
+DCB
+contains no useful data
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346956] nouveau 0000:01:00.0: mxm: no
+VBIOS data, nothing to do
+Jan 21 17:47:33 achpee2 kernel: [ 1835.346970] nouveau 0000:01:00.0: bios: =
+DCB
+contains no useful data</pre>
         </div>
       </p>
 
@@ -402,9 +328,9 @@ problem.</pre>
     </body>
 </html>=
 
---14850127180.cCa3559ef.14325--
+--14850593250.47b9e1BCE.4587--
 
---===============1682032655==
+--===============0011574027==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -414,4 +340,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1682032655==--
+--===============0011574027==--
