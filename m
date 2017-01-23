@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99505] Attempting to reclock GeForce GT740M (GK208)
  cause GPU and system to hang
-Date: Mon, 23 Jan 2017 13:33:10 +0000
-Message-ID: <bug-99505-8800-WejClGjrsY@http.bugs.freedesktop.org/>
+Date: Mon, 23 Jan 2017 13:44:05 +0000
+Message-ID: <bug-99505-8800-s6InQkU6nr@http.bugs.freedesktop.org/>
 References: <bug-99505-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1188818297=="
+Content-Type: multipart/mixed; boundary="===============0268076656=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99505-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1188818297==
-Content-Type: multipart/alternative; boundary="14851783891.ed1C.30246";
+--===============0268076656==
+Content-Type: multipart/alternative; boundary="14851790450.536AF.30787";
  charset="UTF-8"
 
 
---14851783891.ed1C.30246
-Date: Mon, 23 Jan 2017 13:33:09 +0000
+--14851790450.536AF.30787
+Date: Mon, 23 Jan 2017 13:44:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99505
 
---- Comment #2 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+--- Comment #3 from Boyan Ding <stu_dby-KN7UnAbNpbg@public.gmane.org> ---
 (In reply to Ilia Mirkin from comment #1)
 > I think you can't reclock while the GPU is disabled. Try running DRI_PRIM=
 E=3D1
 > glxgears while doing that echo.
 
-yeah, until now it hangs the thread. I have patches pending to fix it thoug=
-h.
+I tried to reclock while running glxgears (the AC line shows 405 MHz instea=
+d of
+0), but it also hangs.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14851783891.ed1C.30246
-Date: Mon, 23 Jan 2017 13:33:09 +0000
+--14851790450.536AF.30787
+Date: Mon, 23 Jan 2017 13:44:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +69,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Attempting to reclock GeForce GT740M (GK208) cause GPU an=
 d system to hang"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99505#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99505#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Attempting to reclock GeForce GT740M (GK208) cause GPU an=
@@ -77,8 +78,8 @@ d system to hang"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99505">bug 99505<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+stu_dby&#64;126.com" title=3D"Boyan Ding &lt;stu_dby&#64;126.com&gt;"> <spa=
+n class=3D"fn">Boyan Ding</span></a>
 </span></b>
         <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D995=
 05#c1">comment #1</a>)
@@ -86,8 +87,9 @@ com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 led. Try running DRI_PRIME=3D1
 &gt; glxgears while doing that echo.</span >
 
-yeah, until now it hangs the thread. I have patches pending to fix it thoug=
-h.</pre>
+I tried to reclock while running glxgears (the AC line shows 405 MHz instea=
+d of
+0), but it also hangs.</pre>
         </div>
       </p>
 
@@ -101,9 +103,9 @@ h.</pre>
     </body>
 </html>=
 
---14851783891.ed1C.30246--
+--14851790450.536AF.30787--
 
---===============1188818297==
+--===============0268076656==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1188818297==--
+--===============0268076656==--
