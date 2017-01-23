@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99505] Attempting to reclock GeForce GT740M (GK208)
- cause GPU and system to hang
-Date: Tue, 24 Jan 2017 03:38:36 +0000
-Message-ID: <bug-99505-8800-fsCy6jCIQ6@http.bugs.freedesktop.org/>
-References: <bug-99505-8800@http.bugs.freedesktop.org/>
+From: "Mr.ze" <mr.ze-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org>
+Subject: Nvidia recent drivers
+Date: Mon, 23 Jan 2017 14:50:34 -0500
+Message-ID: <UOZ0PUW7znrylDo5ZH7YDVSJr2sc4bphPjBLmGhSJRaane_z7Y00ijh2K446JN3itUooe9zS6QVLBPPbxi9TacCkg19T9QQpMowE6GcJVm8=@protonmail.com>
+Reply-To: "Mr.ze" <mr.ze-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1503248485=="
+Content-Type: multipart/mixed; boundary="===============0856416530=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99505-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,122 +15,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+This is a multi-part message in MIME format.
 
---===============1503248485==
-Content-Type: multipart/alternative; boundary="14852291161.50D20b7d.16146";
- charset="UTF-8"
+--===============0856416530==
+Content-Type: multipart/alternative;
+	boundary="b1_4988c74369abd9cd4988e47a28aa39d4"
 
+This is a multi-part message in MIME format.
 
---14852291161.50D20b7d.16146
-Date: Tue, 24 Jan 2017 03:38:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+--b1_4988c74369abd9cd4988e47a28aa39d4
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99505
-
-Boyan Ding <stu_dby-KN7UnAbNpbg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #8 from Boyan Ding <stu_dby-KN7UnAbNpbg@public.gmane.org> ---
-I built 4.10-rc5 and now it reclocks okay. I echoed 0f to pstate and ran
-through a few games. All worked very well. Thanks for the great work.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14852291161.50D20b7d.16146
-Date: Tue, 24 Jan 2017 03:38:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:stu_dby&#=
-64;126.com" title=3D"Boyan Ding &lt;stu_dby&#64;126.com&gt;"> <span class=
-=3D"fn">Boyan Ding</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Attempting to reclock GeForce GT740M (GK208) c=
-ause GPU and system to hang"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99505">bug 99505<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Attempting to reclock GeForce GT740M (GK208) c=
-ause GPU and system to hang"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99505#c8">Comment=
- # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Attempting to reclock GeForce GT740M (GK208) c=
-ause GPU and system to hang"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99505">bug 99505<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stu_dby&#64;126.com" title=3D"Boyan Ding &lt;stu_dby&#64;126.com&gt;"> <spa=
-n class=3D"fn">Boyan Ding</span></a>
-</span></b>
-        <pre>I built 4.10-rc5 and now it reclocks okay. I echoed 0f to psta=
-te and ran
-through a few games. All worked very well. Thanks for the great work.</pre>
-        </div>
-      </p>
+SGksCldoZW4gd2lsbCBOdmlkaWEgR2Vmb3JjZSA5NjVNIG5vdXZlYXUgZHJpdmVyIGJlIGF2YWls
+YWJsZT8KSXQncyBqdXN0IHRoYXQgd2hlbiBJIHVzZSBsaW51eCwgaSBoYXZlIHRvIHVzZSBpbnRl
+bCBIRCBncmFwaGljcyA6XAoKVGhhbmtzLApaZS4KCkg=
 
 
-      <hr>
-      <span>You are receiving this mail because:</span>
+--b1_4988c74369abd9cd4988e47a28aa39d4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
+PGRpdj5IaSw8YnI+PC9kaXY+PGRpdj5XaGVuIHdpbGwgPGI+TnZpZGlhIDwvYj48Yj5HZWZvcmNl
+IDk2NU08L2I+IDx1Pm5vdXZlYXUgZHJpdmVyPC91PiBiZSBhdmFpbGFibGU/PGJyPjwvZGl2Pjxk
+aXY+SXQncyBqdXN0IHRoYXQgd2hlbiBJIHVzZSBsaW51eCwgaSBoYXZlIHRvIHVzZSBpbnRlbCBI
+RCBncmFwaGljcyA6XDxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PlRoYW5rcyw8YnI+PC9k
+aXY+PGRpdj5aZS48YnI+PC9kaXY+PGRpdiBjbGFzcz0icHJvdG9ubWFpbF9zaWduYXR1cmVfYmxv
+Y2sgIj48ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay1wcm90b24gcHJvdG9u
+bWFpbF9zaWduYXR1cmVfYmxvY2stZW1wdHkiPkg8YnI+PC9kaXY+PC9kaXY+PGRpdj48YnI+PC9k
+aXY+
 
---14852291161.50D20b7d.16146--
 
---===============1503248485==
+
+--b1_4988c74369abd9cd4988e47a28aa39d4--
+
+
+--===============0856416530==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -142,4 +63,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1503248485==--
+--===============0856416530==--
