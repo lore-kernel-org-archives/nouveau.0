@@ -1,105 +1,76 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Mon, 23 Jan 2017 07:32:20 +0000
-Message-ID: <bug-94990-8800-reteTsaIw0@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH 0/4] Allow ASYNC flip with atomic helpers.
+Date: Mon, 23 Jan 2017 09:53:39 +0100
+Message-ID: <20170123085339.g2ap7hby5p665zvx@phenom.ffwll.local>
+References: <1484581498-32309-1-git-send-email-Andrey.Grodzovsky@amd.com>
+ <2060156.My7YhcrzaL@avalon>
+ <dc742da7-60c1-f512-4946-69807ce757a1@amd.com>
+ <11088745.dHJUufmsW1@avalon>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1675321216=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <11088745.dHJUufmsW1@avalon>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer-5C7GfCeVMHo@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alexander.Deucher-5C7GfCeVMHo@public.gmane.org, daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1675321216==
-Content-Type: multipart/alternative; boundary="14851567404.e6b6Eca.7201";
- charset="UTF-8"
-
-
---14851567404.e6b6Eca.7201
-Date: Mon, 23 Jan 2017 07:32:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
---- Comment #110 from Wojciech Arabczyk <arabek-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The most important bug nowadays... At least methinks.
-
-I sold my 970 because of it.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14851567404.e6b6Eca.7201
-Date: Mon, 23 Jan 2017 07:32:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c110">Comme=
-nt # 110</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-arabek&#64;gmail.com" title=3D"Wojciech Arabczyk &lt;arabek&#64;gmail.com&g=
-t;"> <span class=3D"fn">Wojciech Arabczyk</span></a>
-</span></b>
-        <pre>The most important bug nowadays... At least methinks.
-
-I sold my 970 because of it.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14851567404.e6b6Eca.7201--
-
---===============1675321216==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1675321216==--
+T24gVHVlLCBKYW4gMTcsIDIwMTcgYXQgMTI6MTQ6MjRBTSArMDIwMCwgTGF1cmVudCBQaW5jaGFy
+dCB3cm90ZToKPiBIaSBIYXJyeSwKPiAKPiBPbiBNb25kYXkgMTYgSmFuIDIwMTcgMTY6MTM6Mzkg
+SGFycnkgV2VudGxhbmQgd3JvdGU6Cj4gPiBPbiAyMDE3LTAxLTE2IDAzOjM5IFBNLCBMYXVyZW50
+IFBpbmNoYXJ0IHdyb3RlOgo+ID4gPiBPbiBNb25kYXkgMTYgSmFuIDIwMTcgMTA6NDQ6NTQgQW5k
+cmV5IEdyb2R6b3Zza3kgd3JvdGU6Cj4gPiA+PiBUaGlzIHNlcmllcyBpcyBhIGZvbG93LXVwIG9u
+Cj4gPiA+PiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzk1MDE3ODcvCj4gPiA+
+PiAKPiA+ID4+IFRoZSBmaXJzdCBwYXRjaCBtYWtlcyBjaGFuZ2VzIHRvIGF0b21pYyBoZWxwZXJz
+Cj4gPiA+PiB0byBhbGxvdyBmb3IgZHJpdmVzIHdpdGggQVNZTkMgZmxpcCBzdXBwb3J0IHRvIHVz
+ZSB0aGVtLgo+ID4gPj4gUGF0Y2hlcyAyIGFuZCAzIGFyZSB0byB1c2UgdGhpcyBpbiBBTURHUFUv
+REMgYW5kCj4gPiA+PiBwYXRjaCA0IGlzIHBvc3NpYmxlIGNsZWFudXAgaW4gbm91dmVhdS9rbXMg
+d2hvIHNlZW1zCj4gPiA+PiB0byBoYXZlIHRoZSBkdXBsaWNhdGUgdGhlIGhlbHBlciBhcyB3ZSBk
+aWQgdG8gc3VwcG9ydAo+ID4gPj4gQVNZTkMgZmxpcHMuCj4gPiA+IAo+ID4gPiBJIGhhdmUgbXkg
+ZG91YnRzIHJlZ2FyZGluZyB0aGlzLiBJJ2QgbXVjaCByYXRoZXIgc2VlIHVzZXJzcGFjZSBtb3Zp
+bmcgdG8KPiA+ID4gdGhlIGF0b21pYyBBUEkgaW5zdGVhZCBvZiBleHRlbmRpbmcgc3VwcG9ydCBm
+b3IgbGVnYWN5IEFQSXMuCj4gPiAKPiA+IFRoaXMgY2hhbmdlIGlzIG5vdCBhYm91dCBpbnRyb2R1
+Y2luZyB0aGUgYXN5bmMgZmxhZyBidXQgY2xlYW5pbmcgdXAgdGhlCj4gPiBsZWdhY3kgaGVscGVy
+cyB0byBtYWtlIHN1cmUgZHJpdmVycyB0aGF0IGN1cnJlbnRseSB1c2UgaXQgdGhyb3VnaCB0aGUK
+PiA+IGxlZ2FjeSBJT0NUTHMgY2FuIGJlbmVmaXQgZnJvbSB0aGUgaGVscGVycyBhbmQgbm90IGhh
+dmUgdG8gcm9sbCB0aGVpciBvd24uCj4gPiAKPiA+IElmIHRoZSBwcm9ibGVtIGlzIHdpdGggdGhl
+IHBmbGlwX2ZsYWdzLCB3b3VsZG4ndCBkcml2ZXJzIHN0aWxsIG5lZWQgdGhhdAo+ID4gYWZ0ZXIg
+bW92aW5nIHVzZXJzcGFjZSB0byB0aGUgYXRvbWljIElPQ1RMPwo+ID4gCj4gPiBJIGRvbid0IGRp
+c2FncmVlIHdpdGggeW91IG9uIGhhdmluZyB1c2Vyc3BhY2UgbW92ZSB0byBhdG9taWMgYnV0IEkg
+ZG9uJ3QKPiA+IGV4cGVjdCB0byBzZWUgYWxsIHVzZXJzcGFjZSBkcml2ZXJzIG1vdmUgdG8gYXRv
+bWljIGluIHRoZSBuZXh0IGNvdXBsZQo+ID4gbW9udGhzLiBXaHkgbm90IGNsZWFuIHRoaXMgdXAg
+aW4gdGhlIG1lYW50aW1lPwo+IAo+IElmIHRoaXMgcGF0Y2ggc2VyaWVzIHdhcyBqdXN0IGFib3V0
+IG1vdmluZyBjb21tb24gZHJpdmVyIGNvZGUgaW50byB0aGUgY29yZSwgCj4gc3VyZSwgYnV0IGl0
+IGdvZXMgYmV5b25kIHRoYXQuIE9yLCBhY3R1YWxseSwgaXQgbmVlZHMgdG8gZ28gYmV5b25kIHRo
+YXQsIGJ1dCAKPiBkb2Vzbid0IHlldC4gUmVtb3ZpbmcgdGhlIERSTV9NT0RFX1BBR0VfRkxJUF9B
+U1lOQyB0ZXN0IGluIHBhdGNoIDEvNCBtZWFucyAKPiB0aGF0IHRoZSBEUk0gY29yZSB3aWxsIG5v
+dCByZWplY3QgYXN5bmMgcGFnZSBmbGlwcyBhbnltb3JlLCBmb3IgYW55IGRyaXZlciAKPiB0aGF0
+IHVzZXMgdGhlIGhlbHBlci4gWW91IHRodXMgbmVlZCB0byBlaXRoZXIgcGF0Y2ggYWxsIGRyaXZl
+cnMgdGhhdCB1c2UgdGhlIAo+IGhlbHBlciB0byByZWplY3QgdGhlIGZsYWcsIG9yIGltcGxlbWVu
+dCB0aGUgZmVhdHVyZSBpbiB0aGUgZHJpdmVycyAoYW5kIAo+IHByZWZlcmFibHkgaW4gdGhlIGhl
+bHBlcnMgdGhlbikuIFRoZSBjdXJyZW50IHZlcnNpb24gb2YgdGhpcyBwYXRjaCBzZXJpZXMgd2ls
+bCAKPiBtYWtlIGFsbCBleGlzdGluZyB1c2VycyBvZiB0aGUgaGVscGVycyBhY2NlcHQgYXN5bmMg
+cGFnZSBmbGlwcyB3aXRob3V0IAo+IGFjdHVhbGx5IGltcGxlbWVudGluZyB0aGVtLgoKIkhvdyBk
+byB3ZSBjaGVjayBmb3IgdGhpcyBkcml2ZXIgZmVhdHVyZSIgd2FzIG9uZSBvZiB0aGUgb3BlbnMg
+SSByYWlzZWQKaGVyZSBvbiBpcmMsIGV2ZW4gYmVmb3JlIEFuZHJleSBzdGFydGVkIHR5cGluZyA6
+LSkgRGVmaW5pdGVseSBuZWVkcyB0byBiZQphZGRyZXNzZWQuIFdoYXQncyBpbW8gb3B0aW9uYWwg
+aXMgZXhwb3NpbmcgYXN5bmMgZmxpcHMgdGhyb3VnaCB0aGUgYXRvbWljCmlvY3RsLCBzaW5jZSBh
+dG0gbm8gYXRvbWljIHVzZXJzcGFjZSBzZWVtcyB0byBiZSBpbiBuZWVkIG9mIGFzeW5jIGZsaXBz
+CnlldC4gQW5kIHRoZSBzZW1hbnRpY3Mgb2YgbXVsdGktcGxhbmUgYXN5bmMgZmxpcHMgYXJlIHRy
+aWNreSB0byBkZWZpbmUKcHJvcGVybHksIHNvIGRlZmluaXRlbHkgd2FudCB0aGF0IHVzZXJzcGFj
+ZSB2YWxpZGF0aW9uLiBUaGF0J3Mgd2h5IEkgdGhpbmsKanVzdCBkb2luZyB0aGUgY29tcGF0IHN0
+dWZmIGlzIG9rLgotRGFuaWVsCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJ
+bnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2FtZC1nZngK
