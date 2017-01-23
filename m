@@ -1,100 +1,143 @@
-From: "Cheng, Tony" <Tony.Cheng@amd.com>
-Subject: RE: [PATCH 1/4] drm/atomic: Save flip flags in drm_plane_state
-Date: Mon, 23 Jan 2017 19:48:54 +0000
-Message-ID: <MWHPR12MB14066404FBCEF3C03EF24BF998720@MWHPR12MB1406.namprd12.prod.outlook.com>
-References: <1484581498-32309-1-git-send-email-Andrey.Grodzovsky@amd.com>
- <1484581498-32309-2-git-send-email-Andrey.Grodzovsky@amd.com>
- <20170123085452.jw3b3k36sbt4nekm@phenom.ffwll.local>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [GP107 chipset][PATCH] Recognise GP107 chipset (GTX
+ 1050/1050ti)
+Date: Tue, 24 Jan 2017 07:43:51 +1000
+Message-ID: <cd0bbf6d-b8f0-36d2-dd72-08b512280a1d@gmail.com>
+References: <CAPO+gU+K9dXFXs6L4Wd4HK-Uv9npsfFG=+ogB0FpiTb_8BfXDw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20170123085452.jw3b3k36sbt4nekm@phenom.ffwll.local>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Daniel Vetter <daniel@ffwll.ch>, "Grodzovsky, Andrey" <Andrey.Grodzovsky@amd.com>
-Cc: dc_upstream <dc_upstream@amd.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>, "daniel.vetter@intel.com" <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============0814024589=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAPO+gU+K9dXFXs6L4Wd4HK-Uv9npsfFG=+ogB0FpiTb_8BfXDw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogZHJpLWRldmVsIFttYWls
-dG86ZHJpLWRldmVsLWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnXSBPbiBCZWhhbGYNCj4g
-T2YgRGFuaWVsIFZldHRlcg0KPiBTZW50OiBNb25kYXksIEphbnVhcnkgMjMsIDIwMTcgMzo1NSBB
-TQ0KPiBUbzogR3JvZHpvdnNreSwgQW5kcmV5IDxBbmRyZXkuR3JvZHpvdnNreUBhbWQuY29tPg0K
-PiBDYzogRGV1Y2hlciwgQWxleGFuZGVyIDxBbGV4YW5kZXIuRGV1Y2hlckBhbWQuY29tPjsNCj4g
-bm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnOyBkcmktDQo+IGRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgZGFuaWVsLnZldHRlckBp
-bnRlbC5jb20NCj4gU3ViamVjdDogUmU6IFtQQVRDSCAxLzRdIGRybS9hdG9taWM6IFNhdmUgZmxp
-cCBmbGFncyBpbiBkcm1fcGxhbmVfc3RhdGUNCj4gDQo+IE9uIE1vbiwgSmFuIDE2LCAyMDE3IGF0
-IDEwOjQ0OjU1QU0gLTA1MDAsIEFuZHJleSBHcm9kem92c2t5IHdyb3RlOg0KPiA+IEFsbG93cyB1
-c2luZyBhdG9taWMgZmxpcCBoZWxwZXJzIGZvciBkcml2ZXJzIHVzaW5nIEFTWU5DIGZsaXAuDQo+
-ID4gUmVtb3ZlIEFTWU5DX0ZMSVAgcmVzdHJpY3Rpb24gaW4gaGVscGVycyBhbmQgY2FjaGVzIHRo
-ZSBwYWdlIGZsaXANCj4gPiBmbGFncyBpbiBkcm1fcGxhbmVfc3RhdGUgdG8gYmUgdXNlZCBpbiB0
-aGUgbG93IGxldmVsIGRyaXZlcnMuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBBbmRyZXkgR3Jv
-ZHpvdnNreSA8QW5kcmV5Lkdyb2R6b3Zza3lAYW1kLmNvbT4NCj4gDQo+IEl0J3MgbW9zdGx5IGd1
-ZXNzd29yaywgYnV0IEkgdGhpbmsgd2Ugc2hvdWxkIGhhdmUgdGhlIGZsaXAgZmxhZ3MgaW4gdGhl
-IGNydGMsIG5vdA0KPiBpbiBlYWNoIHBsYW5lLiBTaW1pbGFyIHRvIGhvdyB3ZSBtb3ZlIHRoZSBl
-dmVudCBmcm9tIHBsYW5lcyB0byBjcnRjLg0KPiAtRGFuaWVsDQoNCldoYXQgZG9lcyBBU1lOQyBm
-bGlwIG1lYW4/ICBIVyBmbGlwIGFzIHNvb24gYXMgcG9zc2libGUgYW5kIHJlc3VsdCBpbiB0ZWFy
-aW5nIG9uIHNjcmVlbj8gIElmIHNvIEkgY291bGQgaW1hZ2luZyBzb21lIHVzZSBjYXNlIHdoZXJl
-IHlvdSBoYXZlIHNvbWUgVUkgY29udHJvbC9tZW51IG92ZXJsYXkgb24gdG9wLCBhbmQgc29tZSBn
-YW1lIHJ1bm5pbmcgb24gYSB1bmRlcmxheSBwbGFuZSwgYW5kIHRoZSBnYW1lIHdhbnQgdG8gYmUg
-YWJsZSB0byBmbGlwIGFzIHNvb24gYXMgcG9zc2libGUuICBPciBEYW5pZWwgZG8geW91IHRoaW5r
-IEFTWU5DIHByb3BlcnR5IHdpbGwgYXBwbHkgdG8gYWxsIHBsYW5lcyBpbiBDUlRDPw0KDQo+IA0K
-PiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYyB8IDEwICsr
-Ky0tLS0tLS0NCj4gPiAgaW5jbHVkZS9kcm0vZHJtX3BsYW5lLmggICAgICAgICAgICAgfCAgOCAr
-KysrKysrKw0KPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyksIDcgZGVsZXRp
-b25zKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNf
-aGVscGVyLmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jDQo+ID4g
-aW5kZXggYTRlNTQ3Ny4uZjgzZGM0MyAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-ZHJtX2F0b21pY19oZWxwZXIuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWlj
-X2hlbHBlci5jDQo+ID4gQEAgLTI3MzcsNyArMjczNyw4IEBAIHN0YXRpYyBpbnQgcGFnZV9mbGlw
-X2NvbW1vbigNCj4gPiAgCQkJCXN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gPiAg
-CQkJCXN0cnVjdCBkcm1fY3J0YyAqY3J0YywNCj4gPiAgCQkJCXN0cnVjdCBkcm1fZnJhbWVidWZm
-ZXIgKmZiLA0KPiA+IC0JCQkJc3RydWN0IGRybV9wZW5kaW5nX3ZibGFua19ldmVudCAqZXZlbnQp
-DQo+ID4gKwkJCQlzdHJ1Y3QgZHJtX3BlbmRpbmdfdmJsYW5rX2V2ZW50ICpldmVudCwNCj4gPiAr
-CQkJCXVpbnQzMl90IGZsYWdzKQ0KPiA+ICB7DQo+ID4gIAlzdHJ1Y3QgZHJtX3BsYW5lICpwbGFu
-ZSA9IGNydGMtPnByaW1hcnk7DQo+ID4gIAlzdHJ1Y3QgZHJtX3BsYW5lX3N0YXRlICpwbGFuZV9z
-dGF0ZTsgQEAgLTI3NTQsNiArMjc1NSw3IEBAIHN0YXRpYw0KPiA+IGludCBwYWdlX2ZsaXBfY29t
-bW9uKA0KPiA+ICAJaWYgKElTX0VSUihwbGFuZV9zdGF0ZSkpDQo+ID4gIAkJcmV0dXJuIFBUUl9F
-UlIocGxhbmVfc3RhdGUpOw0KPiA+DQo+ID4gKwlwbGFuZV9zdGF0ZS0+cGZsaXBfZmxhZ3MgPSBm
-bGFnczsNCj4gPg0KPiA+ICAJcmV0ID0gZHJtX2F0b21pY19zZXRfY3J0Y19mb3JfcGxhbmUocGxh
-bmVfc3RhdGUsIGNydGMpOw0KPiA+ICAJaWYgKHJldCAhPSAwKQ0KPiA+IEBAIC0yODAwLDkgKzI4
-MDIsNiBAQCBpbnQgZHJtX2F0b21pY19oZWxwZXJfcGFnZV9mbGlwKHN0cnVjdCBkcm1fY3J0Yw0K
-PiAqY3J0YywNCj4gPiAgCXN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZTsNCj4gPiAgCWlu
-dCByZXQgPSAwOw0KPiA+DQo+ID4gLQlpZiAoZmxhZ3MgJiBEUk1fTU9ERV9QQUdFX0ZMSVBfQVNZ
-TkMpDQo+ID4gLQkJcmV0dXJuIC1FSU5WQUw7DQo+ID4gLQ0KPiA+ICAJc3RhdGUgPSBkcm1fYXRv
-bWljX3N0YXRlX2FsbG9jKHBsYW5lLT5kZXYpOw0KPiA+ICAJaWYgKCFzdGF0ZSkNCj4gPiAgCQly
-ZXR1cm4gLUVOT01FTTsNCj4gPiBAQCAtMjg2NSw5ICsyODY0LDYgQEAgaW50IGRybV9hdG9taWNf
-aGVscGVyX3BhZ2VfZmxpcF90YXJnZXQoDQo+ID4gIAlzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKmNy
-dGNfc3RhdGU7DQo+ID4gIAlpbnQgcmV0ID0gMDsNCj4gPg0KPiA+IC0JaWYgKGZsYWdzICYgRFJN
-X01PREVfUEFHRV9GTElQX0FTWU5DKQ0KPiA+IC0JCXJldHVybiAtRUlOVkFMOw0KPiA+IC0NCj4g
-PiAgCXN0YXRlID0gZHJtX2F0b21pY19zdGF0ZV9hbGxvYyhwbGFuZS0+ZGV2KTsNCj4gPiAgCWlm
-ICghc3RhdGUpDQo+ID4gIAkJcmV0dXJuIC1FTk9NRU07DQo+ID4gZGlmZiAtLWdpdCBhL2luY2x1
-ZGUvZHJtL2RybV9wbGFuZS5oIGIvaW5jbHVkZS9kcm0vZHJtX3BsYW5lLmggaW5kZXgNCj4gPiBk
-YjNiYmRlLi44NmQ4ZmZjIDEwMDY0NA0KPiA+IC0tLSBhL2luY2x1ZGUvZHJtL2RybV9wbGFuZS5o
-DQo+ID4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX3BsYW5lLmgNCj4gPiBAQCAtMTIyLDYgKzEyMiwx
-NCBAQCBzdHJ1Y3QgZHJtX3BsYW5lX3N0YXRlIHsNCj4gPiAgCSAqLw0KPiA+ICAJYm9vbCB2aXNp
-YmxlOw0KPiA+DQo+ID4gKw0KPiA+ICsJLyoqDQo+ID4gKwkgKiBAcGZsaXBfZmxhZ3M6DQo+ID4g
-KwkgKg0KPiA+ICsJICogRmxpcCByZWxhdGVkIGNvbmZpZyBvcHRpb25zDQo+ID4gKwkgKi8NCj4g
-PiArCXUzMiBwZmxpcF9mbGFnczsNCj4gPiArDQo+ID4gIAlzdHJ1Y3QgZHJtX2F0b21pY19zdGF0
-ZSAqc3RhdGU7DQo+ID4gIH07DQo+ID4NCj4gPiAtLQ0KPiA+IDEuOS4xDQo+ID4NCj4gPiBfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiA+IGRyaS1kZXZl
-bCBtYWlsaW5nIGxpc3QNCj4gPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+ID4g
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwN
-Cj4gDQo+IC0tDQo+IERhbmllbCBWZXR0ZXINCj4gU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENv
-cnBvcmF0aW9uDQo+IGh0dHA6Ly9ibG9nLmZmd2xsLmNoDQo+IF9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QNCj4g
-ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbA0KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2
-ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0814024589==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="9lq70MTLBhGW6jdNXegr8lVkCG0O4kLTD"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--9lq70MTLBhGW6jdNXegr8lVkCG0O4kLTD
+Content-Type: multipart/mixed; boundary="rcKh0ie1Eu50dN79OL1LpvP2IEINRgLKA"
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Message-ID: <cd0bbf6d-b8f0-36d2-dd72-08b512280a1d-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Nouveau] [GP107 chipset][PATCH] Recognise GP107 chipset (GTX
+ 1050/1050ti)
+References: <CAPO+gU+K9dXFXs6L4Wd4HK-Uv9npsfFG=+ogB0FpiTb_8BfXDw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAPO+gU+K9dXFXs6L4Wd4HK-Uv9npsfFG=+ogB0FpiTb_8BfXDw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+
+--rcKh0ie1Eu50dN79OL1LpvP2IEINRgLKA
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+On 01/23/2017 03:00 AM, Stefano Belli wrote:
+> Hello everyone, I would like to submit a simple patch to let nouveau
+> able to detect GTX 1050 / 1050ti cards. TESTED and WORKING on my
+> computer with my GPU (Gigabyte GTX 1050ti OC edition).
+>=20
+> drivers/gpu/drm/nouveau/nvkm/engine/device/
+> base.c
+Are you able to get a mmiotrace[1] of the binary driver, so I can take a
+quick look to ensure that nothing subtle has changed that needs to be
+handled?
+
+Thanks,
+Ben.
+
+[1] https://nouveau.freedesktop.org/wiki/MmioTrace/
+
+>=20
+> gpu_nouveau_gp107.patch
+>=20
+> 2272a2273,2301
+>> static const struct nvkm_device_chip
+>> nv137_chipset =3D {
+>>     .name =3D "GP107",
+>>     .bar =3D gf100_bar_new,
+>>     .bios =3D nvkm_bios_new,
+>>     .bus =3D gf100_bus_new,
+>>     .devinit =3D gm200_devinit_new,
+>>     .fb =3D gp102_fb_new,
+>>     .fuse =3D gm107_fuse_new,
+>>     .gpio =3D gk104_gpio_new,
+>>     .i2c =3D gm200_i2c_new,
+>>     .ibus =3D gm200_ibus_new,
+>>     .imem =3D nv50_instmem_new,
+>>     .ltc =3D gp100_ltc_new,
+>>     .mc =3D gp100_mc_new,
+>>     .mmu =3D gf100_mmu_new,
+>>     .pci =3D gp100_pci_new,
+>>     .pmu =3D gp102_pmu_new,
+>>     .timer =3D gk20a_timer_new,
+>>     .top =3D gk104_top_new,
+>>     .ce[0] =3D gp102_ce_new,
+>>     .ce[1] =3D gp102_ce_new,
+>>     .ce[2] =3D gp102_ce_new,
+>>     .ce[3] =3D gp102_ce_new,
+>>     .disp =3D gp102_disp_new,
+>>     .dma =3D gf119_dma_new,
+>>     .fifo =3D gp100_fifo_new,
+>> };
+>>
+> 2709a2739
+>>         case 0x137: device->chip =3D &nv137_chipset; break;
+>=20
+>=20
+>=20
+>=20
+>=20
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+>=20
+
+
+--rcKh0ie1Eu50dN79OL1LpvP2IEINRgLKA--
+
+--9lq70MTLBhGW6jdNXegr8lVkCG0O4kLTD
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEETp/uv2nr9kIVth0/dgucYlCSkfsFAliGeRcACgkQdgucYlCS
+kfviYxAAshNa4OQqDIBeJ64fllGhw2E2PCD3qNmtCUEnTLn/kgAVYxFGFqF+cNl9
+bAdDlY87o8Wb2Q0sW2P1qzCBBa4wtVnooh7GKAz8hp3Rl0gy157JckOWp1g13kIP
+41oGGOv+pRFKat//vMUe3T193YGqsabeJscg+dBtNaNLMf4oUz+F8YA6vSUn3UrA
+I781KsPpn7xMXndCfKCzyVM1m2EPUIw/WLiM2hHTexQ2Qwkuv9upg9eQr0qAhR0J
+Z8Dr7VBPPbJr9bTLjbAWhYfsPd4W5pfc2Y74UzNka05oaIawDPEBMq6aHd6EgU4z
+fJxX1KH8jWzsP50u06HG/V6urWsqByv48ouX3xSwuWN+9iokXAZoE2PTlX8JXffl
+aoIyR8tKkxOaOKBUdmjkO33SX8t5iWDt/BujmMCaC6BzEfXgPoAjUsGchz91fdvH
+DOTEU/zUISK91hl8RMg150z1k9kpxbvrJCne7ARMWFQAqg8zaGwcprBIjK880JrI
+m56rTjT1NHZK41Dbu2tkwzDBWkl455KwrTUe7bBaOsPl1or7MWX45q4MFA6w5a/E
+b98ofIQyJ8EAMl2dvUuuBtrLt9LNLgl5mfH7PmkVOfplrgrrj+8kspeOq+n6Lape
+IK+QD6pZGpZwjaTuyTuFjhCGDEYf8zsrAngZXbS+7IGkFZF7sM4=
+=95QG
+-----END PGP SIGNATURE-----
+
+--9lq70MTLBhGW6jdNXegr8lVkCG0O4kLTD--
+
+--===============0814024589==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0814024589==--
