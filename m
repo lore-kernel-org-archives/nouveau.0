@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99505] Attempting to reclock GeForce GT740M (GK208)
  cause GPU and system to hang
-Date: Mon, 23 Jan 2017 13:54:17 +0000
-Message-ID: <bug-99505-8800-t2I42THjHz@http.bugs.freedesktop.org/>
+Date: Mon, 23 Jan 2017 14:17:03 +0000
+Message-ID: <bug-99505-8800-uM4xnyrbrK@http.bugs.freedesktop.org/>
 References: <bug-99505-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1965932258=="
+Content-Type: multipart/mixed; boundary="===============1083815250=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99505-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1965932258==
-Content-Type: multipart/alternative; boundary="14851796570.316cc.31558";
+--===============1083815250==
+Content-Type: multipart/alternative; boundary="14851810220.8E7Fd4.362";
  charset="UTF-8"
 
 
---14851796570.316cc.31558
-Date: Mon, 23 Jan 2017 13:54:17 +0000
+--14851810220.8E7Fd4.362
+Date: Mon, 23 Jan 2017 14:17:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,30 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99505
 
---- Comment #4 from Boyan Ding <stu_dby-KN7UnAbNpbg@public.gmane.org> ---
-(In reply to Karol Herbst from comment #2)
-> yeah, until now it hangs the thread. I have patches pending to fix it tho=
-ugh.
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Boyan Ding from comment #3)
+> (In reply to Ilia Mirkin from comment #1)
+> > I think you can't reclock while the GPU is disabled. Try running DRI_PR=
+IME=3D1
+> > glxgears while doing that echo.
+>=20
+> I tried to reclock while running glxgears (the AC line shows 405 MHz inst=
+ead
+> of 0), but it also hangs.
 
-Are those patches published? I can compile my kernel test them if I can acc=
-ess
-the patches.
+Hmmm... this is probably a different issue then. To double-check, try booti=
+ng
+with nouveau.runpm=3D0 (which will disable all the runpm stuff).
+
+Either way, please try to figure out where the echo gets stuck (you can echo
+... something into sysrq-trigger, I forget what... 'w' maybe?)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14851796570.316cc.31558
-Date: Mon, 23 Jan 2017 13:54:17 +0000
+--14851810220.8E7Fd4.362
+Date: Mon, 23 Jan 2017 14:17:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +77,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Attempting to reclock GeForce GT740M (GK208) cause GPU an=
 d system to hang"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99505#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99505#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Attempting to reclock GeForce GT740M (GK208) cause GPU an=
@@ -77,17 +86,27 @@ d system to hang"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99505">bug 99505<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stu_dby&#64;126.com" title=3D"Boyan Ding &lt;stu_dby&#64;126.com&gt;"> <spa=
-n class=3D"fn">Boyan Ding</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Karol Herbst from <a href=3D"show_bug.cgi?id=3D99=
-505#c2">comment #2</a>)
-<span class=3D"quote">&gt; yeah, until now it hangs the thread. I have patc=
-hes pending to fix it though.</span >
+        <pre>(In reply to Boyan Ding from <a href=3D"show_bug.cgi?id=3D9950=
+5#c3">comment #3</a>)
+<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
+g.cgi?id=3D99505#c1">comment #1</a>)
+&gt; &gt; I think you can't reclock while the GPU is disabled. Try running =
+DRI_PRIME=3D1
+&gt; &gt; glxgears while doing that echo.
+&gt;=20
+&gt; I tried to reclock while running glxgears (the AC line shows 405 MHz i=
+nstead
+&gt; of 0), but it also hangs.</span >
 
-Are those patches published? I can compile my kernel test them if I can acc=
-ess
-the patches.</pre>
+Hmmm... this is probably a different issue then. To double-check, try booti=
+ng
+with nouveau.runpm=3D0 (which will disable all the runpm stuff).
+
+Either way, please try to figure out where the echo gets stuck (you can echo
+... something into sysrq-trigger, I forget what... 'w' maybe?)</pre>
         </div>
       </p>
 
@@ -101,9 +120,9 @@ the patches.</pre>
     </body>
 </html>=
 
---14851796570.316cc.31558--
+--14851810220.8E7Fd4.362--
 
---===============1965932258==
+--===============1083815250==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +132,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1965932258==--
+--===============1083815250==--
