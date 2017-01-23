@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99501] New: xrandr rotation does not work with
-	reverse prime
-Date: Mon, 23 Jan 2017 07:13:36 +0000
-Message-ID: <bug-99501-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99502] New: W530 hangs when iGPU is disabled and EFI
+ started in dock
+Date: Mon, 23 Jan 2017 07:22:26 +0000
+Message-ID: <bug-99502-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1224877359=="
+Content-Type: multipart/mixed; boundary="===============1065779501=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,23 +19,24 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1224877359==
-Content-Type: multipart/alternative; boundary="14851556150.2A0e8d9.5803";
+--===============1065779501==
+Content-Type: multipart/alternative; boundary="14851561460.3a97Dfd6.6221";
  charset="UTF-8"
 
 
---14851556150.2A0e8d9.5803
-Date: Mon, 23 Jan 2017 07:13:35 +0000
+--14851561460.3a97Dfd6.6221
+Date: Mon, 23 Jan 2017 07:22:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99501
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99502
 
-            Bug ID: 99501
-           Summary: xrandr rotation does not work with reverse prime
+            Bug ID: 99502
+           Summary: W530 hangs when iGPU is disabled and EFI started in
+                    dock
            Product: xorg
            Version: unspecified
           Hardware: Other
@@ -48,15 +49,24 @@ https://bugs.freedesktop.org/show_bug.cgi?id=3D99501
           Reporter: mpiechotka-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-When I used reverse prime (setprovideroutputsource) the xrandr rotation
-'succeeded' but the screens were in normal position.
+W530 hangs (black screen, does not react on power button) on nouveau load w=
+hen
+EFI booted in dock and iGPU is disabled in BIOS. When I boot EFI outside do=
+ck
+it does not happen even when I dock the laptop before loading kernel. It do=
+es
+not happen with our (nVidia) driver. It seems to be relatively new regressi=
+on
+(I can reproduce it in 4.8.x kernels but I don't remember having this issue=
+ few
+months back).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14851556150.2A0e8d9.5803
-Date: Mon, 23 Jan 2017 07:13:35 +0000
+--14851561460.3a97Dfd6.6221
+Date: Mon, 23 Jan 2017 07:22:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,14 +82,14 @@ Auto-Submitted: auto-generated
           <th>Bug ID</th>
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - xrandr rotation does not work with reverse prime"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99501">99501</a>
+   title=3D"NEW - W530 hangs when iGPU is disabled and EFI started in dock"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99502">99502</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>xrandr rotation does not work with reverse prime
+          <td>W530 hangs when iGPU is disabled and EFI started in dock
           </td>
         </tr>
 
@@ -150,9 +160,17 @@ Auto-Submitted: auto-generated
         </tr></table>
       <p>
         <div>
-        <pre>When I used reverse prime (setprovideroutputsource) the xrandr=
- rotation
-'succeeded' but the screens were in normal position.</pre>
+        <pre>W530 hangs (black screen, does not react on power button) on n=
+ouveau load when
+EFI booted in dock and iGPU is disabled in BIOS. When I boot EFI outside do=
+ck
+it does not happen even when I dock the laptop before loading kernel. It do=
+es
+not happen with our (nVidia) driver. It seems to be relatively new regressi=
+on
+(I can reproduce it in 4.8.x kernels but I don't remember having this issue=
+ few
+months back).</pre>
         </div>
       </p>
 
@@ -166,9 +184,9 @@ Auto-Submitted: auto-generated
     </body>
 </html>=
 
---14851556150.2A0e8d9.5803--
+--14851561460.3a97Dfd6.6221--
 
---===============1224877359==
+--===============1065779501==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -178,4 +196,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1224877359==--
+--===============1065779501==--
