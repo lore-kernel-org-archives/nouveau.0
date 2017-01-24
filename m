@@ -1,15 +1,13 @@
-From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 2/2] drm/nouveau: Queue hpd_work on (runtime)
-	resume
-Date: Tue, 24 Jan 2017 02:00:41 +0100
-Message-ID: <6d9c4d8c-9466-211b-26dd-6a361adc2e2a@gmail.com>
-References: <20161121165055.7041-1-hdegoede@redhat.com>
- <20161121165055.7041-2-hdegoede@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99505] Attempting to reclock GeForce GT740M (GK208)
+ cause GPU and system to hang
+Date: Tue, 24 Jan 2017 03:38:36 +0000
+Message-ID: <bug-99505-8800-fsCy6jCIQ6@http.bugs.freedesktop.org/>
+References: <bug-99505-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1503248485=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20161121165055.7041-2-hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-99505-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,156 +17,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTEvMjEvMjAxNiAwNTo1MCBQTSwgSGFucyBkZSBHb2VkZSB3cm90ZToKPiBXZSBuZWVkIHRv
-IGNhbGwgZHJtX2hlbHBlcl9ocGRfaXJxX2V2ZW50KCkgb24gcmVzdW1lIHRvIHByb3Blcmx5IGRl
-dGVjdAo+IG1vbml0b3IgY29ubmVjdGlvbiAvIGRpc2Nvbm5lY3Rpb24gb24gc29tZSBsYXB0b3Bz
-LCB1c2UgaHBkX3dvcmsgZm9yCj4gdGhpcyB0byBhdm9pZCBkZWFkbG9ja3MuCj4KCkhpLAoKdGhp
-cyBzZWVtcyB0byBpbnRyb2R1Y2UgYSBoYW5nIG9mIG5vdXZlYXUgaW4gNC4xMC1yYyBpZiB0aGUg
-Z3B1IGlzIApydW50aW1lIHJlc3VtZWQgd2hpbGUgbm8gZGlzcGxheXMgYXJlIGNvbm5lY3RlZCBh
-dCBhbGwuCgpJIGdldCBhIHBlcm1hbmVudCBoYW5nIC0gbmVlZCB0byBwb3dlciBjeWNsZSB0byBy
-ZWNvdmVyIC0gaWYgaSBlaXRoZXIKCmEpIEJvb3QgYSBNYWNQcm8gdGVzdCBtYWNoaW5lIHdoaWNo
-IGhhcyB0d28gZGlzY3JldGUgY2FyZHMsIG9uZSByYWRlb24sIApvbmUgZ2Vmb3JjZSwgYnV0IHRo
-ZSBkaXNwbGF5cyBhcmUgb25seSBjb25uZWN0ZWQgdG8gdGhlIHJhZGVvbiwgd2hlcmVhcyAKdGhl
-IG52aWRpYSBncHUgaGFzIG5vIGRpc3BsYXlzIGNvbm5lY3RlZCBkdXJpbmcgYm9vdC4KCmIpIE9u
-IGEgZ211eCdlZCBNYWNCb29rUHJvIDIwMTAgaW50ZWwgKyBudmlkaWEgaWYgaSBzd2l0Y2ggdG8g
-dGhlIGludGVsIApjYXJkIHZpYSB2Z2Fzd2l0Y2hlcm9vIChlY2hvIElHRCA+IC4uLnZnYXN3aXRj
-aGVyb28vc3dpdGNoKSBhbmQgdGhlbiAKYWZ0ZXIgbm91dmVhdSBoYXMgcG93ZXJlZCBkb3duIHRo
-ZSBudmlkaWEsIGkgdXNlIGVjaG8gT04gPiAKLi4udmdhc3dpdGNoZXJvby9zd2l0Y2gpIHRvIHBv
-d2VyIHVwIHRoZSBudmlkaWEgYWdhaW4sIGJ1dCBub3cgd2l0aCAKbm90aGluZyBjb25uZWN0ZWQg
-dG8gaXRzIG91dHB1dHMuCgpJIGNhbiBwcmV2ZW50IHRoZSBoYW5nIGlmIGkgZWl0aGVyIGJvb3Qg
-d2l0aCBub3V2ZWF1LnJ1bnBtPTAsIG9yIGNvbm5lY3QgCmRpc3BsYXlzIHRvIHRoZSBudmlkaWEg
-aW4gY2FzZSBhKSwgb3IgaWYgaSByZW1vdmUgdGhlIG5ldyAKc2NoZWR1bGVfd29yaygpIGZvciBo
-cGRfd29yayBpbiB0aGUgbm91dmVhdV9wbW9wc19ydW50aW1lX3Jlc3VtZSgpIGZ1bmN0aW9uLgoK
-T3RoZXJ3aXNlIGkgZ2V0IGEgaGFuZ2luZyBncHUtbWFuYWdlciBwcm9jZXNzIG9uIFVidW50dSBh
-bmQgdGhpcyAKcmVwZWF0aW5nIGluIG15IGtlcm5lbCBsb2c6CgpbICAyNDYuODk5NDI0XSBJTkZP
-OiB0YXNrIGt3b3JrZXIvNzoxOjEyNyBibG9ja2VkIGZvciBtb3JlIHRoYW4gMTIwIHNlY29uZHMu
-ClsgIDI0Ni44OTk0NzZdICAgICAgIFRhaW50ZWQ6IEcgICAgICAgICAgSSAgICAgNC45LjAtcmM4
-ICM2MApbICAyNDYuODk5NTExXSAiZWNobyAwID4gL3Byb2Mvc3lzL2tlcm5lbC9odW5nX3Rhc2tf
-dGltZW91dF9zZWNzIiAKZGlzYWJsZXMgdGhpcyBtZXNzYWdlLgpbICAyNDYuODk5NTYxXSBrd29y
-a2VyLzc6MSAgICAgRCAgICAwICAgMTI3ICAgICAgMiAweDAwMDAwMDAwClsgIDI0Ni44OTk1NzNd
-IFdvcmtxdWV1ZTogcG0gcG1fcnVudGltZV93b3JrClsgIDI0Ni44OTk1NzZdICBmZmZmOTE3YmNi
-ZWIyNjgwIDAwMDAwMDAwMDAwMDAwMDAgZmZmZjkxN2MwZThkMDAwMCAKZmZmZjkxN2MwZDg5MDAw
-MApbICAyNDYuODk5NTgyXSAgZmZmZjkxN2MxNjVkYTA1OCBmZmZmOWM4Njg2NmM3YjcwIGZmZmZm
-ZmZmOGM5MjBmYWIgCmZmZmY5MTdjMGRlM2QzNjAKWyAgMjQ2Ljg5OTU4N10gIDAwMDAwMDAwMDAw
-MDAwODYgMDAwMDAwMDAwZGUzZDM2MCBmZmZmOTE3YzE2NWRhMDU4IAowMDAwMDAwMDAwMDAwMDAw
-ClsgIDI0Ni44OTk1OTNdIENhbGwgVHJhY2U6ClsgIDI0Ni44OTk2MDFdICBbPGZmZmZmZmZmOGM5
-MjBmYWI+XSA/IF9fc2NoZWR1bGUrMHgyZmIvMHhiMzAKWyAgMjQ2Ljg5OTYwNV0gIFs8ZmZmZmZm
-ZmY4YzkyMTgyMD5dIHNjaGVkdWxlKzB4NDAvMHg5MApbICAyNDYuODk5NjA4XSAgWzxmZmZmZmZm
-ZjhjNWZmOGRhPl0gcnBtX3Jlc3VtZSsweDE0YS8weDc0MApbICAyNDYuODk5NjE0XSAgWzxmZmZm
-ZmZmZjhjMGUxYzEwPl0gPyB3YWtlX2F0b21pY190X2Z1bmN0aW9uKzB4NjAvMHg2MApbICAyNDYu
-ODk5NjE3XSAgWzxmZmZmZmZmZjhjNjAxMmUzPl0gcG1fcnVudGltZV9mb3JiaWQrMHg0My8weDUw
-ClsgIDI0Ni44OTk2NzhdICBbPGZmZmZmZmZmYzA4ZjY3YzU+XSAKbm91dmVhdV9wbW9wc19ydW50
-aW1lX3N1c3BlbmQrMHhjNS8weGQwIFtub3V2ZWF1XQpbICAyNDYuODk5Njg0XSAgWzxmZmZmZmZm
-ZjhjNGNlZDhkPl0gcGNpX3BtX3J1bnRpbWVfc3VzcGVuZCsweDVkLzB4MTkwClsgIDI0Ni44OTk2
-ODddICBbPGZmZmZmZmZmOGM0Y2VkMzA+XSA/IHBjaV9wbV9ydW50aW1lX3Jlc3VtZSsweGEwLzB4
-YTAKWyAgMjQ2Ljg5OTY5MF0gIFs8ZmZmZmZmZmY4YzVmZjI1Mj5dIF9fcnBtX2NhbGxiYWNrKzB4
-MzIvMHg3MApbICAyNDYuODk5NjkzXSAgWzxmZmZmZmZmZjhjNWZmMmI0Pl0gcnBtX2NhbGxiYWNr
-KzB4MjQvMHg4MApbICAyNDYuODk5Njk1XSAgWzxmZmZmZmZmZjhjNGNlZDMwPl0gPyBwY2lfcG1f
-cnVudGltZV9yZXN1bWUrMHhhMC8weGEwClsgIDI0Ni44OTk2OThdICBbPGZmZmZmZmZmOGM1ZmZm
-ZWU+XSBycG1fc3VzcGVuZCsweDExZS8weDZmMApbICAyNDYuODk5NzAxXSAgWzxmZmZmZmZmZjhj
-NjAxNDliPl0gcG1fcnVudGltZV93b3JrKzB4N2IvMHhjMApbICAyNDYuODk5NzA3XSAgWzxmZmZm
-ZmZmZjhjMGFmZTU4Pl0gcHJvY2Vzc19vbmVfd29yaysweDFmOC8weDc1MApbICAyNDYuODk5NzEw
-XSAgWzxmZmZmZmZmZjhjMGFmZGQ5Pl0gPyBwcm9jZXNzX29uZV93b3JrKzB4MTc5LzB4NzUwClsg
-IDI0Ni44OTk3MTNdICBbPGZmZmZmZmZmOGMwYjAzZmI+XSB3b3JrZXJfdGhyZWFkKzB4NGIvMHg0
-ZjAKWyAgMjQ2Ljg5OTcxN10gIFs8ZmZmZmZmZmY4YzBiZjhmYz5dID8gcHJlZW1wdF9jb3VudF9z
-dWIrMHg0Yy8weDgwClsgIDI0Ni44OTk3MjBdICBbPGZmZmZmZmZmOGMwYjAzYjA+XSA/IHByb2Nl
-c3Nfb25lX3dvcmsrMHg3NTAvMHg3NTAKWyAgMjQ2Ljg5OTcyM10gIFs8ZmZmZmZmZmY4YzBiNzIx
-Mj5dIGt0aHJlYWQrMHgxMDIvMHgxMjAKWyAgMjQ2Ljg5OTcyOF0gIFs8ZmZmZmZmZmY4YzBlZjU0
-Nj5dID8gdHJhY2VfaGFyZGlycXNfb25fY2FsbGVyKzB4MTYvMHgxYzAKWyAgMjQ2Ljg5OTczMl0g
-IFs8ZmZmZmZmZmY4YzBiNzExMD5dID8ga3RocmVhZF9wYXJrKzB4NjAvMHg2MApbICAyNDYuODk5
-NzM1XSAgWzxmZmZmZmZmZjhjOTI5YjJhPl0gcmV0X2Zyb21fZm9yaysweDJhLzB4NDAKWyAgMjQ2
-Ljg5OTczOF0gSU5GTzogbG9ja2RlcCBpcyB0dXJuZWQgb2ZmLgpbICAyNDYuODk5NzUxXSBJTkZP
-OiB0YXNrIGdwdS1tYW5hZ2VyOjExNzMgYmxvY2tlZCBmb3IgbW9yZSB0aGFuIDEyMCAKc2Vjb25k
-cy4KWyAgMjQ2Ljg5OTc5Nl0gICAgICAgVGFpbnRlZDogRyAgICAgICAgICBJICAgICA0LjkuMC1y
-YzggIzYwClsgIDI0Ni44OTk4MzJdICJlY2hvIDAgPiAvcHJvYy9zeXMva2VybmVsL2h1bmdfdGFz
-a190aW1lb3V0X3NlY3MiIApkaXNhYmxlcyB0aGlzIG1lc3NhZ2UuClsgIDI0Ni44OTk4ODBdIGdw
-dS1tYW5hZ2VyICAgICBEICAgIDAgIDExNzMgICAgICAxIDB4MDAwMDAwMDAKWyAgMjQ2Ljg5OTg4
-NF0gIGZmZmY5MTdiY2JkMzg1ODAgMDAwMDAwMDAwMDAwMDAwMCBmZmZmOTE3YzBlOGQ1MTgwIApm
-ZmZmOTE3YmNiY2VkMTgwClsgIDI0Ni44OTk4ODldICBmZmZmOTE3YzE2OWRhMDU4IGZmZmY5Yzg2
-ODg1NzNjZTAgZmZmZmZmZmY4YzkyMGZhYiAKZmZmZjkxN2MwZGUzZDM2MApbICAyNDYuODk5ODk0
-XSAgMDAwMDAwMDAwMDAwMDA4NiAwMDAwMDAwMDBkZTNkMzYwIGZmZmY5MTdjMTY5ZGEwNTggCjAw
-MDAwMDAwMDAwMDAwMDAKWyAgMjQ2Ljg5OTg5OV0gQ2FsbCBUcmFjZToKWyAgMjQ2Ljg5OTkwM10g
-IFs8ZmZmZmZmZmY4YzkyMGZhYj5dID8gX19zY2hlZHVsZSsweDJmYi8weGIzMApbICAyNDYuODk5
-OTA2XSAgWzxmZmZmZmZmZjhjOTIxODIwPl0gc2NoZWR1bGUrMHg0MC8weDkwClsgIDI0Ni44OTk5
-MDldICBbPGZmZmZmZmZmOGM1ZmY1OTU+XSBfX3BtX3J1bnRpbWVfYmFycmllcisweDk1LzB4MTQw
-ClsgIDI0Ni44OTk5MTNdICBbPGZmZmZmZmZmOGMwZTFjMTA+XSA/IHdha2VfYXRvbWljX3RfZnVu
-Y3Rpb24rMHg2MC8weDYwClsgIDI0Ni44OTk5MTVdICBbPGZmZmZmZmZmOGM2MDEwOWI+XSBwbV9y
-dW50aW1lX2JhcnJpZXIrMHg1Yi8weGMwClsgIDI0Ni44OTk5MTldICBbPGZmZmZmZmZmOGM0Y2Nl
-NmI+XSBwY2lfY29uZmlnX3BtX3J1bnRpbWVfZ2V0KzB4M2IvMHg2MApbICAyNDYuODk5OTIyXSAg
-WzxmZmZmZmZmZjhjNGQxYmFjPl0gcGNpX3JlYWRfY29uZmlnKzB4N2MvMHgyNjAKWyAgMjQ2Ljg5
-OTkyN10gIFs8ZmZmZmZmZmY4YzMwZmU2MD5dIHN5c2ZzX2tmX2Jpbl9yZWFkKzB4NTAvMHg4MApb
-ICAyNDYuODk5OTI5XSAgWzxmZmZmZmZmZjhjMzBmOTFhPl0ga2VybmZzX2ZvcF9yZWFkKzB4YmEv
-MHgxYzAKWyAgMjQ2Ljg5OTkzNF0gIFs8ZmZmZmZmZmY4YzI3N2Q5OD5dIF9fdmZzX3JlYWQrMHgy
-OC8weDEzMApbICAyNDYuODk5OTM5XSAgWzxmZmZmZmZmZjhjM2NiN2JlPl0gPyBzZWN1cml0eV9m
-aWxlX3Blcm1pc3Npb24rMHg5ZS8weGMwClsgIDI0Ni44OTk5NDJdICBbPGZmZmZmZmZmOGMyNzhk
-ZWU+XSA/IHJ3X3ZlcmlmeV9hcmVhKzB4NGUvMHhjMApbICAyNDYuODk5OTQ1XSAgWzxmZmZmZmZm
-ZjhjMjc4ZWY2Pl0gdmZzX3JlYWQrMHg5Ni8weDE0MApbICAyNDYuODk5OTQ4XSAgWzxmZmZmZmZm
-ZjhjMjdhNGJhPl0gU3lTX3ByZWFkNjQrMHg3YS8weDkwClsgIDI0Ni44OTk5NTJdICBbPGZmZmZm
-ZmZmOGM5Mjk4ODU+XSBlbnRyeV9TWVNDQUxMXzY0X2Zhc3RwYXRoKzB4MjMvMHhjNgpbICAyNDYu
-ODk5OTU1XSAgWzxmZmZmZmZmZjhjMGViNjFmPl0gPyB0cmFjZV9oYXJkaXJxc19vZmZfY2FsbGVy
-KzB4MWYvMHhjMApbICAyNDYuODk5OTU4XSBJTkZPOiBsb2NrZGVwIGlzIHR1cm5lZCBvZmYuClsg
-IDM2OS43NzU5MzZdIElORk86IHRhc2sga3dvcmtlci83OjE6MTI3IGJsb2NrZWQgZm9yIG1vcmUg
-dGhhbiAxMjAgc2Vjb25kcy4KWyAgMzY5Ljc3NTk4OV0gICAgICAgVGFpbnRlZDogRyAgICAgICAg
-ICBJICAgICA0LjkuMC1yYzggIzYwClsgIDM2OS43NzYwMjRdICJlY2hvIDAgPiAvcHJvYy9zeXMv
-a2VybmVsL2h1bmdfdGFza190aW1lb3V0X3NlY3MiIApkaXNhYmxlcyB0aGlzIG1lc3NhZ2UuClsg
-IDM2OS43NzYwNzRdIGt3b3JrZXIvNzoxICAgICBEICAgIDAgICAxMjcgICAgICAyIDB4MDAwMDAw
-MDAKWyAgMzY5Ljc3NjA4Nl0gV29ya3F1ZXVlOiBwbSBwbV9ydW50aW1lX3dvcmsKWyAgMzY5Ljc3
-NjA5MF0gIGZmZmY5MTdiY2JlYjI2ODAgMDAwMDAwMDAwMDAwMDAwMCBmZmZmOTE3YzBlOGQwMDAw
-IApmZmZmOTE3YzBkODkwMDAwClsgIDM2OS43NzYwOTZdICBmZmZmOTE3YzE2NWRhMDU4IGZmZmY5
-Yzg2ODY2YzdiNzAgZmZmZmZmZmY4YzkyMGZhYiAKZmZmZjkxN2MwZGUzZDM2MApbICAzNjkuNzc2
-MTAxXSAgMDAwMDAwMDAwMDAwMDA4NiAwMDAwMDAwMDBkZTNkMzYwIGZmZmY5MTdjMTY1ZGEwNTgg
-CjAwMDAwMDAwMDAwMDAwMDAKWyAgMzY5Ljc3NjEwNl0gQ2FsbCBUcmFjZToKWyAgMzY5Ljc3NjEx
-NF0gIFs8ZmZmZmZmZmY4YzkyMGZhYj5dID8gX19zY2hlZHVsZSsweDJmYi8weGIzMApbICAzNjku
-Nzc2MTE4XSAgWzxmZmZmZmZmZjhjOTIxODIwPl0gc2NoZWR1bGUrMHg0MC8weDkwClsgIDM2OS43
-NzYxMjFdICBbPGZmZmZmZmZmOGM1ZmY4ZGE+XSBycG1fcmVzdW1lKzB4MTRhLzB4NzQwClsgIDM2
-OS43NzYxMjddICBbPGZmZmZmZmZmOGMwZTFjMTA+XSA/IHdha2VfYXRvbWljX3RfZnVuY3Rpb24r
-MHg2MC8weDYwClsgIDM2OS43NzYxMzBdICBbPGZmZmZmZmZmOGM2MDEyZTM+XSBwbV9ydW50aW1l
-X2ZvcmJpZCsweDQzLzB4NTAKWyAgMzY5Ljc3NjE5Ml0gIFs8ZmZmZmZmZmZjMDhmNjdjNT5dIApu
-b3V2ZWF1X3Btb3BzX3J1bnRpbWVfc3VzcGVuZCsweGM1LzB4ZDAgW25vdXZlYXVdClsgIDM2OS43
-NzYxOTldICBbPGZmZmZmZmZmOGM0Y2VkOGQ+XSBwY2lfcG1fcnVudGltZV9zdXNwZW5kKzB4NWQv
-MHgxOTAKWyAgMzY5Ljc3NjIwMl0gIFs8ZmZmZmZmZmY4YzRjZWQzMD5dID8gcGNpX3BtX3J1bnRp
-bWVfcmVzdW1lKzB4YTAvMHhhMApbICAzNjkuNzc2MjA1XSAgWzxmZmZmZmZmZjhjNWZmMjUyPl0g
-X19ycG1fY2FsbGJhY2srMHgzMi8weDcwClsgIDM2OS43NzYyMDddICBbPGZmZmZmZmZmOGM1ZmYy
-YjQ+XSBycG1fY2FsbGJhY2srMHgyNC8weDgwClsgIDM2OS43NzYyMTBdICBbPGZmZmZmZmZmOGM0
-Y2VkMzA+XSA/IHBjaV9wbV9ydW50aW1lX3Jlc3VtZSsweGEwLzB4YTAKWyAgMzY5Ljc3NjIxMl0g
-IFs8ZmZmZmZmZmY4YzVmZmZlZT5dIHJwbV9zdXNwZW5kKzB4MTFlLzB4NmYwClsgIDM2OS43NzYy
-MTZdICBbPGZmZmZmZmZmOGM2MDE0OWI+XSBwbV9ydW50aW1lX3dvcmsrMHg3Yi8weGMwClsgIDM2
-OS43NzYyMjFdICBbPGZmZmZmZmZmOGMwYWZlNTg+XSBwcm9jZXNzX29uZV93b3JrKzB4MWY4LzB4
-NzUwClsgIDM2OS43NzYyMjRdICBbPGZmZmZmZmZmOGMwYWZkZDk+XSA/IHByb2Nlc3Nfb25lX3dv
-cmsrMHgxNzkvMHg3NTAKWyAgMzY5Ljc3NjIyOF0gIFs8ZmZmZmZmZmY4YzBiMDNmYj5dIHdvcmtl
-cl90aHJlYWQrMHg0Yi8weDRmMApbICAzNjkuNzc2MjMxXSAgWzxmZmZmZmZmZjhjMGJmOGZjPl0g
-PyBwcmVlbXB0X2NvdW50X3N1YisweDRjLzB4ODAKWyAgMzY5Ljc3NjIzNF0gIFs8ZmZmZmZmZmY4
-YzBiMDNiMD5dID8gcHJvY2Vzc19vbmVfd29yaysweDc1MC8weDc1MApbICAzNjkuNzc2MjM3XSAg
-WzxmZmZmZmZmZjhjMGI3MjEyPl0ga3RocmVhZCsweDEwMi8weDEyMApbICAzNjkuNzc2MjQyXSAg
-WzxmZmZmZmZmZjhjMGVmNTQ2Pl0gPyB0cmFjZV9oYXJkaXJxc19vbl9jYWxsZXIrMHgxNi8weDFj
-MApbICAzNjkuNzc2MjQ2XSAgWzxmZmZmZmZmZjhjMGI3MTEwPl0gPyBrdGhyZWFkX3BhcmsrMHg2
-MC8weDYwClsgIDM2OS43NzYyNDldICBbPGZmZmZmZmZmOGM5MjliMmE+XSByZXRfZnJvbV9mb3Jr
-KzB4MmEvMHg0MApbICAzNjkuNzc2MjUyXSBJTkZPOiBsb2NrZGVwIGlzIHR1cm5lZCBvZmYuCgp0
-aGFua3MsCi1tYXJpbwoKCj4gU2lnbmVkLW9mZi1ieTogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVA
-cmVkaGF0LmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0u
-YyB8IDExICsrKysrKysrKystCj4gIDEgZmlsZSBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCAx
-IGRlbGV0aW9uKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiBpbmRl
-eCAzMTAwZmQ4OC4uYjU2NGFiOCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2RybS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
-cm0uYwo+IEBAIC02OTIsNyArNjkyLDEyIEBAIG5vdXZlYXVfcG1vcHNfcmVzdW1lKHN0cnVjdCBk
-ZXZpY2UgKmRldikKPiAgCQlyZXR1cm4gcmV0Owo+ICAJcGNpX3NldF9tYXN0ZXIocGRldik7Cj4K
-PiAtCXJldHVybiBub3V2ZWF1X2RvX3Jlc3VtZShkcm1fZGV2LCBmYWxzZSk7Cj4gKwlyZXQgPSBu
-b3V2ZWF1X2RvX3Jlc3VtZShkcm1fZGV2LCBmYWxzZSk7Cj4gKwo+ICsJLyogTW9uaXRvcnMgbWF5
-IGhhdmUgYmVlbiBjb25uZWN0ZWQgLyBkaXNjb25uZWN0ZWQgZHVyaW5nIHN1c3BlbmQgKi8KPiAr
-CXNjaGVkdWxlX3dvcmsoJm5vdXZlYXVfZHJtKGRybV9kZXYpLT5ocGRfd29yayk7Cj4gKwo+ICsJ
-cmV0dXJuIHJldDsKPiAgfQo+Cj4gIHN0YXRpYyBpbnQKPiBAQCAtNzY2LDYgKzc3MSwxMCBAQCBu
-b3V2ZWF1X3Btb3BzX3J1bnRpbWVfcmVzdW1lKHN0cnVjdCBkZXZpY2UgKmRldikKPiAgCW52aWZf
-bWFzaygmZGV2aWNlLT5vYmplY3QsIDB4MDg4NDg4LCAoMSA8PCAyNSksICgxIDw8IDI1KSk7Cj4g
-IAl2Z2Ffc3dpdGNoZXJvb19zZXRfZHluYW1pY19zd2l0Y2gocGRldiwgVkdBX1NXSVRDSEVST09f
-T04pOwo+ICAJZHJtX2Rldi0+c3dpdGNoX3Bvd2VyX3N0YXRlID0gRFJNX1NXSVRDSF9QT1dFUl9P
-TjsKPiArCj4gKwkvKiBNb25pdG9ycyBtYXkgaGF2ZSBiZWVuIGNvbm5lY3RlZCAvIGRpc2Nvbm5l
-Y3RlZCBkdXJpbmcgc3VzcGVuZCAqLwo+ICsJc2NoZWR1bGVfd29yaygmbm91dmVhdV9kcm0oZHJt
-X2RldiktPmhwZF93b3JrKTsKPiArCj4gIAlyZXR1cm4gcmV0Owo+ICB9Cj4KPgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1503248485==
+Content-Type: multipart/alternative; boundary="14852291161.50D20b7d.16146";
+ charset="UTF-8"
+
+
+--14852291161.50D20b7d.16146
+Date: Tue, 24 Jan 2017 03:38:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99505
+
+Boyan Ding <stu_dby-KN7UnAbNpbg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #8 from Boyan Ding <stu_dby-KN7UnAbNpbg@public.gmane.org> ---
+I built 4.10-rc5 and now it reclocks okay. I echoed 0f to pstate and ran
+through a few games. All worked very well. Thanks for the great work.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14852291161.50D20b7d.16146
+Date: Tue, 24 Jan 2017 03:38:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:stu_dby&#=
+64;126.com" title=3D"Boyan Ding &lt;stu_dby&#64;126.com&gt;"> <span class=
+=3D"fn">Boyan Ding</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Attempting to reclock GeForce GT740M (GK208) c=
+ause GPU and system to hang"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99505">bug 99505<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Attempting to reclock GeForce GT740M (GK208) c=
+ause GPU and system to hang"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99505#c8">Comment=
+ # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Attempting to reclock GeForce GT740M (GK208) c=
+ause GPU and system to hang"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99505">bug 99505<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+stu_dby&#64;126.com" title=3D"Boyan Ding &lt;stu_dby&#64;126.com&gt;"> <spa=
+n class=3D"fn">Boyan Ding</span></a>
+</span></b>
+        <pre>I built 4.10-rc5 and now it reclocks okay. I echoed 0f to psta=
+te and ran
+through a few games. All worked very well. Thanks for the great work.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14852291161.50D20b7d.16146--
+
+--===============1503248485==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1503248485==--
