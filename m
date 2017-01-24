@@ -1,11 +1,13 @@
-From: "Mr.ze" <mr.ze-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org>
-Subject: Nvidia recent drivers
-Date: Mon, 23 Jan 2017 14:50:34 -0500
-Message-ID: <UOZ0PUW7znrylDo5ZH7YDVSJr2sc4bphPjBLmGhSJRaane_z7Y00ijh2K446JN3itUooe9zS6QVLBPPbxi9TacCkg19T9QQpMowE6GcJVm8=@protonmail.com>
-Reply-To: "Mr.ze" <mr.ze-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Tue, 24 Jan 2017 10:49:35 +0000
+Message-ID: <bug-94990-8800-aV4mqMHtDS@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0856416530=="
+Content-Type: multipart/mixed; boundary="===============0869986271=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,45 +17,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
 
---===============0856416530==
-Content-Type: multipart/alternative;
-	boundary="b1_4988c74369abd9cd4988e47a28aa39d4"
-
-This is a multi-part message in MIME format.
-
---b1_4988c74369abd9cd4988e47a28aa39d4
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-
-SGksCldoZW4gd2lsbCBOdmlkaWEgR2Vmb3JjZSA5NjVNIG5vdXZlYXUgZHJpdmVyIGJlIGF2YWls
-YWJsZT8KSXQncyBqdXN0IHRoYXQgd2hlbiBJIHVzZSBsaW51eCwgaSBoYXZlIHRvIHVzZSBpbnRl
-bCBIRCBncmFwaGljcyA6XAoKVGhhbmtzLApaZS4KCkg=
+--===============0869986271==
+Content-Type: multipart/alternative; boundary="14852549753.cADd.12557";
+ charset="UTF-8"
 
 
---b1_4988c74369abd9cd4988e47a28aa39d4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
+--14852549753.cADd.12557
+Date: Tue, 24 Jan 2017 10:49:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-PGRpdj5IaSw8YnI+PC9kaXY+PGRpdj5XaGVuIHdpbGwgPGI+TnZpZGlhIDwvYj48Yj5HZWZvcmNl
-IDk2NU08L2I+IDx1Pm5vdXZlYXUgZHJpdmVyPC91PiBiZSBhdmFpbGFibGU/PGJyPjwvZGl2Pjxk
-aXY+SXQncyBqdXN0IHRoYXQgd2hlbiBJIHVzZSBsaW51eCwgaSBoYXZlIHRvIHVzZSBpbnRlbCBI
-RCBncmFwaGljcyA6XDxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PlRoYW5rcyw8YnI+PC9k
-aXY+PGRpdj5aZS48YnI+PC9kaXY+PGRpdiBjbGFzcz0icHJvdG9ubWFpbF9zaWduYXR1cmVfYmxv
-Y2sgIj48ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay1wcm90b24gcHJvdG9u
-bWFpbF9zaWduYXR1cmVfYmxvY2stZW1wdHkiPkg8YnI+PC9kaXY+PC9kaXY+PGRpdj48YnI+PC9k
-aXY+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #111 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
+What can we do to help get this bug fixed?=E2=80=A6
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14852549753.cADd.12557
+Date: Tue, 24 Jan 2017 10:49:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c111">Comme=
+nt # 111</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
+un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
+</span></b>
+        <pre>What can we do to help get this bug fixed?=E2=80=A6</pre>
+        </div>
+      </p>
 
 
+      <hr>
+      <span>You are receiving this mail because:</span>
 
---b1_4988c74369abd9cd4988e47a28aa39d4--
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
 
+--14852549753.cADd.12557--
 
---===============0856416530==
+--===============0869986271==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -63,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0856416530==--
+--===============0869986271==--
