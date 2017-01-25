@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99532] Compute shader doesn't give right result
  under some circumstances
-Date: Wed, 25 Jan 2017 13:24:17 +0000
-Message-ID: <bug-99532-8800-s5hYiPRfIu@http.bugs.freedesktop.org/>
+Date: Wed, 25 Jan 2017 13:38:19 +0000
+Message-ID: <bug-99532-8800-9pETSCdopx@http.bugs.freedesktop.org/>
 References: <bug-99532-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0499647878=="
+Content-Type: multipart/mixed; boundary="===============1167219744=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99532-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0499647878==
-Content-Type: multipart/alternative; boundary="14853506570.8eC4133.13612";
+--===============1167219744==
+Content-Type: multipart/alternative; boundary="14853514991.1E70C.15389";
  charset="UTF-8"
 
 
---14853506570.8eC4133.13612
-Date: Wed, 25 Jan 2017 13:24:17 +0000
+--14853514991.1E70C.15389
+Date: Wed, 25 Jan 2017 13:38:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99532
 
---- Comment #4 from Boyan Ding <stu_dby-KN7UnAbNpbg@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #3)
-> On GM107 it actually appears to work correctly. However on GK208 I got a
-> blank histogram on the first run, and then a semi-random one on subsequent
-> runs. (And now it's blank again.)
->=20
-> What GPU are you using?
-
-Mine is a GT740M (GK208).
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you figure out which compute invocation messes up? Looks like you have 2
+compute shaders in there, although my bet is on the one that does all the
+atomic ops on shared memory - that stuff changed between Kepler and Maxwell,
+which could explain why it works on GM107.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14853506570.8eC4133.13612
-Date: Wed, 25 Jan 2017 13:24:17 +0000
+--14853514991.1E70C.15389
+Date: Wed, 25 Jan 2017 13:38:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,8 +66,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Compute shader doesn't give right result under some circu=
 mstances"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Compute shader doesn't give right result under some circu=
@@ -79,20 +75,14 @@ mstances"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532">bug 99532<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stu_dby&#64;126.com" title=3D"Boyan Ding &lt;stu_dby&#64;126.com&gt;"> <spa=
-n class=3D"fn">Boyan Ding</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D995=
-32#c3">comment #3</a>)
-<span class=3D"quote">&gt; On GM107 it actually appears to work correctly. =
-However on GK208 I got a
-&gt; blank histogram on the first run, and then a semi-random one on subseq=
-uent
-&gt; runs. (And now it's blank again.)
-&gt;=20
-&gt; What GPU are you using?</span >
-
-Mine is a GT740M (GK208).</pre>
+        <pre>Can you figure out which compute invocation messes up? Looks l=
+ike you have 2
+compute shaders in there, although my bet is on the one that does all the
+atomic ops on shared memory - that stuff changed between Kepler and Maxwell,
+which could explain why it works on GM107.</pre>
         </div>
       </p>
 
@@ -101,15 +91,15 @@ Mine is a GT740M (GK208).</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14853506570.8eC4133.13612--
+--14853514991.1E70C.15389--
 
---===============0499647878==
+--===============1167219744==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0499647878==--
+--===============1167219744==--
