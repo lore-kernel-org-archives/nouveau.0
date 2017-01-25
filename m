@@ -1,181 +1,244 @@
-From: Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [PATCH 2/2] drm/nouveau: Queue hpd_work on (runtime) resume
-Date: Tue, 24 Jan 2017 17:50:26 +0100
-Message-ID: <3d02b6bb-3a2c-befe-4329-92c4065c7267@redhat.com>
-References: <20161121165055.7041-1-hdegoede@redhat.com>
- <20161121165055.7041-2-hdegoede@redhat.com>
- <6d9c4d8c-9466-211b-26dd-6a361adc2e2a@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99532] New: Compute shader doesn't give right result
+ under some circumstances
+Date: Wed, 25 Jan 2017 11:35:33 +0000
+Message-ID: <bug-99532-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <6d9c4d8c-9466-211b-26dd-6a361adc2e2a@gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Mario Kleiner <mario.kleiner.de@gmail.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1992522125=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpPbiAwMS8yNC8yMDE3IDAyOjAwIEFNLCBNYXJpbyBLbGVpbmVyIHdyb3RlOgo+IE9uIDEx
-LzIxLzIwMTYgMDU6NTAgUE0sIEhhbnMgZGUgR29lZGUgd3JvdGU6Cj4+IFdlIG5lZWQgdG8gY2Fs
-bCBkcm1faGVscGVyX2hwZF9pcnFfZXZlbnQoKSBvbiByZXN1bWUgdG8gcHJvcGVybHkgZGV0ZWN0
-Cj4+IG1vbml0b3IgY29ubmVjdGlvbiAvIGRpc2Nvbm5lY3Rpb24gb24gc29tZSBsYXB0b3BzLCB1
-c2UgaHBkX3dvcmsgZm9yCj4+IHRoaXMgdG8gYXZvaWQgZGVhZGxvY2tzLgo+Pgo+Cj4gSGksCj4K
-PiB0aGlzIHNlZW1zIHRvIGludHJvZHVjZSBhIGhhbmcgb2Ygbm91dmVhdSBpbiA0LjEwLXJjIGlm
-IHRoZSBncHUgaXMgcnVudGltZSByZXN1bWVkIHdoaWxlIG5vIGRpc3BsYXlzIGFyZSBjb25uZWN0
-ZWQgYXQgYWxsLgo+Cj4gSSBnZXQgYSBwZXJtYW5lbnQgaGFuZyAtIG5lZWQgdG8gcG93ZXIgY3lj
-bGUgdG8gcmVjb3ZlciAtIGlmIGkgZWl0aGVyCj4KPiBhKSBCb290IGEgTWFjUHJvIHRlc3QgbWFj
-aGluZSB3aGljaCBoYXMgdHdvIGRpc2NyZXRlIGNhcmRzLCBvbmUgcmFkZW9uLCBvbmUgZ2Vmb3Jj
-ZSwgYnV0IHRoZSBkaXNwbGF5cyBhcmUgb25seSBjb25uZWN0ZWQgdG8gdGhlIHJhZGVvbiwgd2hl
-cmVhcyB0aGUgbnZpZGlhIGdwdSBoYXMgbm8gZGlzcGxheXMgY29ubmVjdGVkIGR1cmluZyBib290
-Lgo+Cj4gYikgT24gYSBnbXV4J2VkIE1hY0Jvb2tQcm8gMjAxMCBpbnRlbCArIG52aWRpYSBpZiBp
-IHN3aXRjaCB0byB0aGUgaW50ZWwgY2FyZCB2aWEgdmdhc3dpdGNoZXJvbyAoZWNobyBJR0QgPiAu
-Li52Z2Fzd2l0Y2hlcm9vL3N3aXRjaCkgYW5kIHRoZW4gYWZ0ZXIgbm91dmVhdSBoYXMgcG93ZXJl
-ZCBkb3duIHRoZSBudmlkaWEsIGkgdXNlIGVjaG8gT04gPiAuLi52Z2Fzd2l0Y2hlcm9vL3N3aXRj
-aCkgdG8gcG93ZXIgdXAgdGhlIG52aWRpYSBhZ2FpbiwgYnV0IG5vdyB3aXRoIG5vdGhpbmcgY29u
-bmVjdGVkIHRvIGl0cyBvdXRwdXRzLgo+Cj4gSSBjYW4gcHJldmVudCB0aGUgaGFuZyBpZiBpIGVp
-dGhlciBib290IHdpdGggbm91dmVhdS5ydW5wbT0wLCBvciBjb25uZWN0IGRpc3BsYXlzIHRvIHRo
-ZSBudmlkaWEgaW4gY2FzZSBhKSwgb3IgaWYgaSByZW1vdmUgdGhlIG5ldyBzY2hlZHVsZV93b3Jr
-KCkgZm9yIGhwZF93b3JrIGluIHRoZSBub3V2ZWF1X3Btb3BzX3J1bnRpbWVfcmVzdW1lKCkgZnVu
-Y3Rpb24uCj4KPiBPdGhlcndpc2UgaSBnZXQgYSBoYW5naW5nIGdwdS1tYW5hZ2VyIHByb2Nlc3Mg
-b24gVWJ1bnR1IGFuZCB0aGlzIHJlcGVhdGluZyBpbiBteSBrZXJuZWwgbG9nOgoKV2VpcmQsIEJl
-biBkbyB5b3UgaGF2ZSBhbnkgaWRlYXMgd2hhdCBtaWdodCBiZSBjYXVzaW5nIHRoaXMgPwoKUmVn
-YXJkcywKCkhhbnMKCgo+Cj4gWyAgMjQ2Ljg5OTQyNF0gSU5GTzogdGFzayBrd29ya2VyLzc6MTox
-MjcgYmxvY2tlZCBmb3IgbW9yZSB0aGFuIDEyMCBzZWNvbmRzLgo+IFsgIDI0Ni44OTk0NzZdICAg
-ICAgIFRhaW50ZWQ6IEcgICAgICAgICAgSSAgICAgNC45LjAtcmM4ICM2MAo+IFsgIDI0Ni44OTk1
-MTFdICJlY2hvIDAgPiAvcHJvYy9zeXMva2VybmVsL2h1bmdfdGFza190aW1lb3V0X3NlY3MiIGRp
-c2FibGVzIHRoaXMgbWVzc2FnZS4KPiBbICAyNDYuODk5NTYxXSBrd29ya2VyLzc6MSAgICAgRCAg
-ICAwICAgMTI3ICAgICAgMiAweDAwMDAwMDAwCj4gWyAgMjQ2Ljg5OTU3M10gV29ya3F1ZXVlOiBw
-bSBwbV9ydW50aW1lX3dvcmsKPiBbICAyNDYuODk5NTc2XSAgZmZmZjkxN2JjYmViMjY4MCAwMDAw
-MDAwMDAwMDAwMDAwIGZmZmY5MTdjMGU4ZDAwMDAgZmZmZjkxN2MwZDg5MDAwMAo+IFsgIDI0Ni44
-OTk1ODJdICBmZmZmOTE3YzE2NWRhMDU4IGZmZmY5Yzg2ODY2YzdiNzAgZmZmZmZmZmY4YzkyMGZh
-YiBmZmZmOTE3YzBkZTNkMzYwCj4gWyAgMjQ2Ljg5OTU4N10gIDAwMDAwMDAwMDAwMDAwODYgMDAw
-MDAwMDAwZGUzZDM2MCBmZmZmOTE3YzE2NWRhMDU4IDAwMDAwMDAwMDAwMDAwMDAKPiBbICAyNDYu
-ODk5NTkzXSBDYWxsIFRyYWNlOgo+IFsgIDI0Ni44OTk2MDFdICBbPGZmZmZmZmZmOGM5MjBmYWI+
-XSA/IF9fc2NoZWR1bGUrMHgyZmIvMHhiMzAKPiBbICAyNDYuODk5NjA1XSAgWzxmZmZmZmZmZjhj
-OTIxODIwPl0gc2NoZWR1bGUrMHg0MC8weDkwCj4gWyAgMjQ2Ljg5OTYwOF0gIFs8ZmZmZmZmZmY4
-YzVmZjhkYT5dIHJwbV9yZXN1bWUrMHgxNGEvMHg3NDAKPiBbICAyNDYuODk5NjE0XSAgWzxmZmZm
-ZmZmZjhjMGUxYzEwPl0gPyB3YWtlX2F0b21pY190X2Z1bmN0aW9uKzB4NjAvMHg2MAo+IFsgIDI0
-Ni44OTk2MTddICBbPGZmZmZmZmZmOGM2MDEyZTM+XSBwbV9ydW50aW1lX2ZvcmJpZCsweDQzLzB4
-NTAKPiBbICAyNDYuODk5Njc4XSAgWzxmZmZmZmZmZmMwOGY2N2M1Pl0gbm91dmVhdV9wbW9wc19y
-dW50aW1lX3N1c3BlbmQrMHhjNS8weGQwIFtub3V2ZWF1XQo+IFsgIDI0Ni44OTk2ODRdICBbPGZm
-ZmZmZmZmOGM0Y2VkOGQ+XSBwY2lfcG1fcnVudGltZV9zdXNwZW5kKzB4NWQvMHgxOTAKPiBbICAy
-NDYuODk5Njg3XSAgWzxmZmZmZmZmZjhjNGNlZDMwPl0gPyBwY2lfcG1fcnVudGltZV9yZXN1bWUr
-MHhhMC8weGEwCj4gWyAgMjQ2Ljg5OTY5MF0gIFs8ZmZmZmZmZmY4YzVmZjI1Mj5dIF9fcnBtX2Nh
-bGxiYWNrKzB4MzIvMHg3MAo+IFsgIDI0Ni44OTk2OTNdICBbPGZmZmZmZmZmOGM1ZmYyYjQ+XSBy
-cG1fY2FsbGJhY2srMHgyNC8weDgwCj4gWyAgMjQ2Ljg5OTY5NV0gIFs8ZmZmZmZmZmY4YzRjZWQz
-MD5dID8gcGNpX3BtX3J1bnRpbWVfcmVzdW1lKzB4YTAvMHhhMAo+IFsgIDI0Ni44OTk2OThdICBb
-PGZmZmZmZmZmOGM1ZmZmZWU+XSBycG1fc3VzcGVuZCsweDExZS8weDZmMAo+IFsgIDI0Ni44OTk3
-MDFdICBbPGZmZmZmZmZmOGM2MDE0OWI+XSBwbV9ydW50aW1lX3dvcmsrMHg3Yi8weGMwCj4gWyAg
-MjQ2Ljg5OTcwN10gIFs8ZmZmZmZmZmY4YzBhZmU1OD5dIHByb2Nlc3Nfb25lX3dvcmsrMHgxZjgv
-MHg3NTAKPiBbICAyNDYuODk5NzEwXSAgWzxmZmZmZmZmZjhjMGFmZGQ5Pl0gPyBwcm9jZXNzX29u
-ZV93b3JrKzB4MTc5LzB4NzUwCj4gWyAgMjQ2Ljg5OTcxM10gIFs8ZmZmZmZmZmY4YzBiMDNmYj5d
-IHdvcmtlcl90aHJlYWQrMHg0Yi8weDRmMAo+IFsgIDI0Ni44OTk3MTddICBbPGZmZmZmZmZmOGMw
-YmY4ZmM+XSA/IHByZWVtcHRfY291bnRfc3ViKzB4NGMvMHg4MAo+IFsgIDI0Ni44OTk3MjBdICBb
-PGZmZmZmZmZmOGMwYjAzYjA+XSA/IHByb2Nlc3Nfb25lX3dvcmsrMHg3NTAvMHg3NTAKPiBbICAy
-NDYuODk5NzIzXSAgWzxmZmZmZmZmZjhjMGI3MjEyPl0ga3RocmVhZCsweDEwMi8weDEyMAo+IFsg
-IDI0Ni44OTk3MjhdICBbPGZmZmZmZmZmOGMwZWY1NDY+XSA/IHRyYWNlX2hhcmRpcnFzX29uX2Nh
-bGxlcisweDE2LzB4MWMwCj4gWyAgMjQ2Ljg5OTczMl0gIFs8ZmZmZmZmZmY4YzBiNzExMD5dID8g
-a3RocmVhZF9wYXJrKzB4NjAvMHg2MAo+IFsgIDI0Ni44OTk3MzVdICBbPGZmZmZmZmZmOGM5Mjli
-MmE+XSByZXRfZnJvbV9mb3JrKzB4MmEvMHg0MAo+IFsgIDI0Ni44OTk3MzhdIElORk86IGxvY2tk
-ZXAgaXMgdHVybmVkIG9mZi4KPiBbICAyNDYuODk5NzUxXSBJTkZPOiB0YXNrIGdwdS1tYW5hZ2Vy
-OjExNzMgYmxvY2tlZCBmb3IgbW9yZSB0aGFuIDEyMCBzZWNvbmRzLgo+IFsgIDI0Ni44OTk3OTZd
-ICAgICAgIFRhaW50ZWQ6IEcgICAgICAgICAgSSAgICAgNC45LjAtcmM4ICM2MAo+IFsgIDI0Ni44
-OTk4MzJdICJlY2hvIDAgPiAvcHJvYy9zeXMva2VybmVsL2h1bmdfdGFza190aW1lb3V0X3NlY3Mi
-IGRpc2FibGVzIHRoaXMgbWVzc2FnZS4KPiBbICAyNDYuODk5ODgwXSBncHUtbWFuYWdlciAgICAg
-RCAgICAwICAxMTczICAgICAgMSAweDAwMDAwMDAwCj4gWyAgMjQ2Ljg5OTg4NF0gIGZmZmY5MTdi
-Y2JkMzg1ODAgMDAwMDAwMDAwMDAwMDAwMCBmZmZmOTE3YzBlOGQ1MTgwIGZmZmY5MTdiY2JjZWQx
-ODAKPiBbICAyNDYuODk5ODg5XSAgZmZmZjkxN2MxNjlkYTA1OCBmZmZmOWM4Njg4NTczY2UwIGZm
-ZmZmZmZmOGM5MjBmYWIgZmZmZjkxN2MwZGUzZDM2MAo+IFsgIDI0Ni44OTk4OTRdICAwMDAwMDAw
-MDAwMDAwMDg2IDAwMDAwMDAwMGRlM2QzNjAgZmZmZjkxN2MxNjlkYTA1OCAwMDAwMDAwMDAwMDAw
-MDAwCj4gWyAgMjQ2Ljg5OTg5OV0gQ2FsbCBUcmFjZToKPiBbICAyNDYuODk5OTAzXSAgWzxmZmZm
-ZmZmZjhjOTIwZmFiPl0gPyBfX3NjaGVkdWxlKzB4MmZiLzB4YjMwCj4gWyAgMjQ2Ljg5OTkwNl0g
-IFs8ZmZmZmZmZmY4YzkyMTgyMD5dIHNjaGVkdWxlKzB4NDAvMHg5MAo+IFsgIDI0Ni44OTk5MDld
-ICBbPGZmZmZmZmZmOGM1ZmY1OTU+XSBfX3BtX3J1bnRpbWVfYmFycmllcisweDk1LzB4MTQwCj4g
-WyAgMjQ2Ljg5OTkxM10gIFs8ZmZmZmZmZmY4YzBlMWMxMD5dID8gd2FrZV9hdG9taWNfdF9mdW5j
-dGlvbisweDYwLzB4NjAKPiBbICAyNDYuODk5OTE1XSAgWzxmZmZmZmZmZjhjNjAxMDliPl0gcG1f
-cnVudGltZV9iYXJyaWVyKzB4NWIvMHhjMAo+IFsgIDI0Ni44OTk5MTldICBbPGZmZmZmZmZmOGM0
-Y2NlNmI+XSBwY2lfY29uZmlnX3BtX3J1bnRpbWVfZ2V0KzB4M2IvMHg2MAo+IFsgIDI0Ni44OTk5
-MjJdICBbPGZmZmZmZmZmOGM0ZDFiYWM+XSBwY2lfcmVhZF9jb25maWcrMHg3Yy8weDI2MAo+IFsg
-IDI0Ni44OTk5MjddICBbPGZmZmZmZmZmOGMzMGZlNjA+XSBzeXNmc19rZl9iaW5fcmVhZCsweDUw
-LzB4ODAKPiBbICAyNDYuODk5OTI5XSAgWzxmZmZmZmZmZjhjMzBmOTFhPl0ga2VybmZzX2ZvcF9y
-ZWFkKzB4YmEvMHgxYzAKPiBbICAyNDYuODk5OTM0XSAgWzxmZmZmZmZmZjhjMjc3ZDk4Pl0gX192
-ZnNfcmVhZCsweDI4LzB4MTMwCj4gWyAgMjQ2Ljg5OTkzOV0gIFs8ZmZmZmZmZmY4YzNjYjdiZT5d
-ID8gc2VjdXJpdHlfZmlsZV9wZXJtaXNzaW9uKzB4OWUvMHhjMAo+IFsgIDI0Ni44OTk5NDJdICBb
-PGZmZmZmZmZmOGMyNzhkZWU+XSA/IHJ3X3ZlcmlmeV9hcmVhKzB4NGUvMHhjMAo+IFsgIDI0Ni44
-OTk5NDVdICBbPGZmZmZmZmZmOGMyNzhlZjY+XSB2ZnNfcmVhZCsweDk2LzB4MTQwCj4gWyAgMjQ2
-Ljg5OTk0OF0gIFs8ZmZmZmZmZmY4YzI3YTRiYT5dIFN5U19wcmVhZDY0KzB4N2EvMHg5MAo+IFsg
-IDI0Ni44OTk5NTJdICBbPGZmZmZmZmZmOGM5Mjk4ODU+XSBlbnRyeV9TWVNDQUxMXzY0X2Zhc3Rw
-YXRoKzB4MjMvMHhjNgo+IFsgIDI0Ni44OTk5NTVdICBbPGZmZmZmZmZmOGMwZWI2MWY+XSA/IHRy
-YWNlX2hhcmRpcnFzX29mZl9jYWxsZXIrMHgxZi8weGMwCj4gWyAgMjQ2Ljg5OTk1OF0gSU5GTzog
-bG9ja2RlcCBpcyB0dXJuZWQgb2ZmLgo+IFsgIDM2OS43NzU5MzZdIElORk86IHRhc2sga3dvcmtl
-ci83OjE6MTI3IGJsb2NrZWQgZm9yIG1vcmUgdGhhbiAxMjAgc2Vjb25kcy4KPiBbICAzNjkuNzc1
-OTg5XSAgICAgICBUYWludGVkOiBHICAgICAgICAgIEkgICAgIDQuOS4wLXJjOCAjNjAKPiBbICAz
-NjkuNzc2MDI0XSAiZWNobyAwID4gL3Byb2Mvc3lzL2tlcm5lbC9odW5nX3Rhc2tfdGltZW91dF9z
-ZWNzIiBkaXNhYmxlcyB0aGlzIG1lc3NhZ2UuCj4gWyAgMzY5Ljc3NjA3NF0ga3dvcmtlci83OjEg
-ICAgIEQgICAgMCAgIDEyNyAgICAgIDIgMHgwMDAwMDAwMAo+IFsgIDM2OS43NzYwODZdIFdvcmtx
-dWV1ZTogcG0gcG1fcnVudGltZV93b3JrCj4gWyAgMzY5Ljc3NjA5MF0gIGZmZmY5MTdiY2JlYjI2
-ODAgMDAwMDAwMDAwMDAwMDAwMCBmZmZmOTE3YzBlOGQwMDAwIGZmZmY5MTdjMGQ4OTAwMDAKPiBb
-ICAzNjkuNzc2MDk2XSAgZmZmZjkxN2MxNjVkYTA1OCBmZmZmOWM4Njg2NmM3YjcwIGZmZmZmZmZm
-OGM5MjBmYWIgZmZmZjkxN2MwZGUzZDM2MAo+IFsgIDM2OS43NzYxMDFdICAwMDAwMDAwMDAwMDAw
-MDg2IDAwMDAwMDAwMGRlM2QzNjAgZmZmZjkxN2MxNjVkYTA1OCAwMDAwMDAwMDAwMDAwMDAwCj4g
-WyAgMzY5Ljc3NjEwNl0gQ2FsbCBUcmFjZToKPiBbICAzNjkuNzc2MTE0XSAgWzxmZmZmZmZmZjhj
-OTIwZmFiPl0gPyBfX3NjaGVkdWxlKzB4MmZiLzB4YjMwCj4gWyAgMzY5Ljc3NjExOF0gIFs8ZmZm
-ZmZmZmY4YzkyMTgyMD5dIHNjaGVkdWxlKzB4NDAvMHg5MAo+IFsgIDM2OS43NzYxMjFdICBbPGZm
-ZmZmZmZmOGM1ZmY4ZGE+XSBycG1fcmVzdW1lKzB4MTRhLzB4NzQwCj4gWyAgMzY5Ljc3NjEyN10g
-IFs8ZmZmZmZmZmY4YzBlMWMxMD5dID8gd2FrZV9hdG9taWNfdF9mdW5jdGlvbisweDYwLzB4NjAK
-PiBbICAzNjkuNzc2MTMwXSAgWzxmZmZmZmZmZjhjNjAxMmUzPl0gcG1fcnVudGltZV9mb3JiaWQr
-MHg0My8weDUwCj4gWyAgMzY5Ljc3NjE5Ml0gIFs8ZmZmZmZmZmZjMDhmNjdjNT5dIG5vdXZlYXVf
-cG1vcHNfcnVudGltZV9zdXNwZW5kKzB4YzUvMHhkMCBbbm91dmVhdV0KPiBbICAzNjkuNzc2MTk5
-XSAgWzxmZmZmZmZmZjhjNGNlZDhkPl0gcGNpX3BtX3J1bnRpbWVfc3VzcGVuZCsweDVkLzB4MTkw
-Cj4gWyAgMzY5Ljc3NjIwMl0gIFs8ZmZmZmZmZmY4YzRjZWQzMD5dID8gcGNpX3BtX3J1bnRpbWVf
-cmVzdW1lKzB4YTAvMHhhMAo+IFsgIDM2OS43NzYyMDVdICBbPGZmZmZmZmZmOGM1ZmYyNTI+XSBf
-X3JwbV9jYWxsYmFjaysweDMyLzB4NzAKPiBbICAzNjkuNzc2MjA3XSAgWzxmZmZmZmZmZjhjNWZm
-MmI0Pl0gcnBtX2NhbGxiYWNrKzB4MjQvMHg4MAo+IFsgIDM2OS43NzYyMTBdICBbPGZmZmZmZmZm
-OGM0Y2VkMzA+XSA/IHBjaV9wbV9ydW50aW1lX3Jlc3VtZSsweGEwLzB4YTAKPiBbICAzNjkuNzc2
-MjEyXSAgWzxmZmZmZmZmZjhjNWZmZmVlPl0gcnBtX3N1c3BlbmQrMHgxMWUvMHg2ZjAKPiBbICAz
-NjkuNzc2MjE2XSAgWzxmZmZmZmZmZjhjNjAxNDliPl0gcG1fcnVudGltZV93b3JrKzB4N2IvMHhj
-MAo+IFsgIDM2OS43NzYyMjFdICBbPGZmZmZmZmZmOGMwYWZlNTg+XSBwcm9jZXNzX29uZV93b3Jr
-KzB4MWY4LzB4NzUwCj4gWyAgMzY5Ljc3NjIyNF0gIFs8ZmZmZmZmZmY4YzBhZmRkOT5dID8gcHJv
-Y2Vzc19vbmVfd29yaysweDE3OS8weDc1MAo+IFsgIDM2OS43NzYyMjhdICBbPGZmZmZmZmZmOGMw
-YjAzZmI+XSB3b3JrZXJfdGhyZWFkKzB4NGIvMHg0ZjAKPiBbICAzNjkuNzc2MjMxXSAgWzxmZmZm
-ZmZmZjhjMGJmOGZjPl0gPyBwcmVlbXB0X2NvdW50X3N1YisweDRjLzB4ODAKPiBbICAzNjkuNzc2
-MjM0XSAgWzxmZmZmZmZmZjhjMGIwM2IwPl0gPyBwcm9jZXNzX29uZV93b3JrKzB4NzUwLzB4NzUw
-Cj4gWyAgMzY5Ljc3NjIzN10gIFs8ZmZmZmZmZmY4YzBiNzIxMj5dIGt0aHJlYWQrMHgxMDIvMHgx
-MjAKPiBbICAzNjkuNzc2MjQyXSAgWzxmZmZmZmZmZjhjMGVmNTQ2Pl0gPyB0cmFjZV9oYXJkaXJx
-c19vbl9jYWxsZXIrMHgxNi8weDFjMAo+IFsgIDM2OS43NzYyNDZdICBbPGZmZmZmZmZmOGMwYjcx
-MTA+XSA/IGt0aHJlYWRfcGFyaysweDYwLzB4NjAKPiBbICAzNjkuNzc2MjQ5XSAgWzxmZmZmZmZm
-ZjhjOTI5YjJhPl0gcmV0X2Zyb21fZm9yaysweDJhLzB4NDAKPiBbICAzNjkuNzc2MjUyXSBJTkZP
-OiBsb2NrZGVwIGlzIHR1cm5lZCBvZmYuCj4KPiB0aGFua3MsCj4gLW1hcmlvCj4KPgo+PiBTaWdu
-ZWQtb2ZmLWJ5OiBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPgo+PiAtLS0KPj4g
-IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgfCAxMSArKysrKysrKysrLQo+
-PiAgMSBmaWxlIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPj4KPj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgYi9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4+IGluZGV4IDMxMDBmZDg4Li5iNTY0
-YWI4IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5j
-Cj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPj4gQEAgLTY5
-Miw3ICs2OTIsMTIgQEAgbm91dmVhdV9wbW9wc19yZXN1bWUoc3RydWN0IGRldmljZSAqZGV2KQo+
-PiAgICAgICAgICByZXR1cm4gcmV0Owo+PiAgICAgIHBjaV9zZXRfbWFzdGVyKHBkZXYpOwo+Pgo+
-PiAtICAgIHJldHVybiBub3V2ZWF1X2RvX3Jlc3VtZShkcm1fZGV2LCBmYWxzZSk7Cj4+ICsgICAg
-cmV0ID0gbm91dmVhdV9kb19yZXN1bWUoZHJtX2RldiwgZmFsc2UpOwo+PiArCj4+ICsgICAgLyog
-TW9uaXRvcnMgbWF5IGhhdmUgYmVlbiBjb25uZWN0ZWQgLyBkaXNjb25uZWN0ZWQgZHVyaW5nIHN1
-c3BlbmQgKi8KPj4gKyAgICBzY2hlZHVsZV93b3JrKCZub3V2ZWF1X2RybShkcm1fZGV2KS0+aHBk
-X3dvcmspOwo+PiArCj4+ICsgICAgcmV0dXJuIHJldDsKPj4gIH0KPj4KPj4gIHN0YXRpYyBpbnQK
-Pj4gQEAgLTc2Niw2ICs3NzEsMTAgQEAgbm91dmVhdV9wbW9wc19ydW50aW1lX3Jlc3VtZShzdHJ1
-Y3QgZGV2aWNlICpkZXYpCj4+ICAgICAgbnZpZl9tYXNrKCZkZXZpY2UtPm9iamVjdCwgMHgwODg0
-ODgsICgxIDw8IDI1KSwgKDEgPDwgMjUpKTsKPj4gICAgICB2Z2Ffc3dpdGNoZXJvb19zZXRfZHlu
-YW1pY19zd2l0Y2gocGRldiwgVkdBX1NXSVRDSEVST09fT04pOwo+PiAgICAgIGRybV9kZXYtPnN3
-aXRjaF9wb3dlcl9zdGF0ZSA9IERSTV9TV0lUQ0hfUE9XRVJfT047Cj4+ICsKPj4gKyAgICAvKiBN
-b25pdG9ycyBtYXkgaGF2ZSBiZWVuIGNvbm5lY3RlZCAvIGRpc2Nvbm5lY3RlZCBkdXJpbmcgc3Vz
-cGVuZCAqLwo+PiArICAgIHNjaGVkdWxlX3dvcmsoJm5vdXZlYXVfZHJtKGRybV9kZXYpLT5ocGRf
-d29yayk7Cj4+ICsKPj4gICAgICByZXR1cm4gcmV0Owo+PiAgfQo+Pgo+PgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0
-CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1992522125==
+Content-Type: multipart/alternative; boundary="14853441340.9c225D01.4587";
+ charset="UTF-8"
+
+
+--14853441340.9c225D01.4587
+Date: Wed, 25 Jan 2017 11:35:34 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99532
+
+            Bug ID: 99532
+           Summary: Compute shader doesn't give right result under some
+                    circumstances
+           Product: Mesa
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: stu_dby-KN7UnAbNpbg@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 129135
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129135&action=3Dedit
+apitrace of my program
+
+When I'm doing a course project in my compute graphics class, I found my
+program didn't fully work on nouveau while it was working fine on intel and
+nvidia proprietary drivers. It is a program using deferred shading with some
+shadow map techniques, and it has an option to draw a "histogram" of depth
+distribution sampled by a compute shader. I found histogram was showing wro=
+ng
+results (totally blank) on nouveau.
+
+After looking into the problem for a while, I happened to find that if I di=
+dn't
+render the histogram (i.e. didn't use compute shader to sample) on the first
+frame, the histogram would go wrong, otherwise, it would be okay.
+
+This problem can be reproduced with the attached apitrace file, recorded wi=
+th
+simplified program and trimmed to contain only 4 frames. The first 2 frames=
+ are
+mainly initialization and the third frame renders the scene from one angle
+without generating histogram. The last frame renders the scene from another
+angle and generates a histogram at bottom-right edge, which is completely b=
+lank
+on nouveau. However, if the trace is further trimmed to contain frame 0,1,3,
+the histogram will render correctly. (Results of the two will be attached
+below)
+
+I'm willing provide assistance if needed.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14853441340.9c225D01.4587
+Date: Wed, 25 Jan 2017 11:35:34 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Compute shader doesn't give right result under some circu=
+mstances"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532">99532</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Compute shader doesn't give right result under some circumsta=
+nces
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>stu_dby&#64;126.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129135=
+" name=3D"attach_129135" title=3D"apitrace of my program">attachment 129135=
+</a> <a href=3D"attachment.cgi?id=3D129135&amp;action=3Dedit" title=3D"apit=
+race of my program">[details]</a></span>
+apitrace of my program
+
+When I'm doing a course project in my compute graphics class, I found my
+program didn't fully work on nouveau while it was working fine on intel and
+nvidia proprietary drivers. It is a program using deferred shading with some
+shadow map techniques, and it has an option to draw a &quot;histogram&quot;=
+ of depth
+distribution sampled by a compute shader. I found histogram was showing wro=
+ng
+results (totally blank) on nouveau.
+
+After looking into the problem for a while, I happened to find that if I di=
+dn't
+render the histogram (i.e. didn't use compute shader to sample) on the first
+frame, the histogram would go wrong, otherwise, it would be okay.
+
+This problem can be reproduced with the attached apitrace file, recorded wi=
+th
+simplified program and trimmed to contain only 4 frames. The first 2 frames=
+ are
+mainly initialization and the third frame renders the scene from one angle
+without generating histogram. The last frame renders the scene from another
+angle and generates a histogram at bottom-right edge, which is completely b=
+lank
+on nouveau. However, if the trace is further trimmed to contain frame 0,1,3,
+the histogram will render correctly. (Results of the two will be attached
+below)
+
+I'm willing provide assistance if needed.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14853441340.9c225D01.4587--
+
+--===============1992522125==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1992522125==--
