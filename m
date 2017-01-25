@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99532] Compute shader doesn't give right result
  under some circumstances
-Date: Wed, 25 Jan 2017 13:44:35 +0000
-Message-ID: <bug-99532-8800-KheyPxSUIW@http.bugs.freedesktop.org/>
+Date: Wed, 25 Jan 2017 13:47:56 +0000
+Message-ID: <bug-99532-8800-dumTq9Ijk8@http.bugs.freedesktop.org/>
 References: <bug-99532-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0897620522=="
+Content-Type: multipart/mixed; boundary="===============1760660272=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99532-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0897620522==
-Content-Type: multipart/alternative; boundary="14853518750.Ed47E3F.15616";
+--===============1760660272==
+Content-Type: multipart/alternative; boundary="14853520760.c0f2afaD.15616";
  charset="UTF-8"
 
 
---14853518750.Ed47E3F.15616
-Date: Wed, 25 Jan 2017 13:44:35 +0000
+--14853520760.c0f2afaD.15616
+Date: Wed, 25 Jan 2017 13:47:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,26 +36,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99532
 
---- Comment #7 from Boyan Ding <stu_dby-KN7UnAbNpbg@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #6)
-> Oh wait - while there are 2 compute shaders, you only use one of them (the
-> one with all the shared atomics). Also need to double-check that it's not=
- an
-> earlier draw messing things up (e.g. that the compute shader is getting t=
-he
-> proper inputs). But my bet is on an issue in the compute shader.
+--- Comment #8 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+A missing OP_CCTL maybe? I have something which could help (but it's defini=
+tely
+not the right thing to do).
 
-I agree with you, since the same compute shader input was also used in
-subsequent rendering. If that were wrong, the following render would also be
-incorrect.
+The possible fix is here:
+https://cgit.freedesktop.org/~hakzsam/mesa/commit/?h=3Datomic_fixes&id=3Dd3=
+a1158acde83d9d7a2a58e431623dd89e59ca65
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14853518750.Ed47E3F.15616
-Date: Wed, 25 Jan 2017 13:44:35 +0000
+--14853520760.c0f2afaD.15616
+Date: Wed, 25 Jan 2017 13:47:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,8 +69,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Compute shader doesn't give right result under some circu=
 mstances"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532#c7">Comment=
- # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532#c8">Comment=
+ # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Compute shader doesn't give right result under some circu=
@@ -82,23 +78,18 @@ mstances"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532">bug 99532<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stu_dby&#64;126.com" title=3D"Boyan Ding &lt;stu_dby&#64;126.com&gt;"> <spa=
-n class=3D"fn">Boyan Ding</span></a>
+samuel.pitoiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset=
+&#64;gmail.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D995=
-32#c6">comment #6</a>)
-<span class=3D"quote">&gt; Oh wait - while there are 2 compute shaders, you=
- only use one of them (the
-&gt; one with all the shared atomics). Also need to double-check that it's =
-not an
-&gt; earlier draw messing things up (e.g. that the compute shader is gettin=
-g the
-&gt; proper inputs). But my bet is on an issue in the compute shader.</span=
- >
+        <pre>A missing OP_CCTL maybe? I have something which could help (bu=
+t it's definitely
+not the right thing to do).
 
-I agree with you, since the same compute shader input was also used in
-subsequent rendering. If that were wrong, the following render would also be
-incorrect.</pre>
+The possible fix is here:
+<a href=3D"https://cgit.freedesktop.org/~hakzsam/mesa/commit/?h=3Datomic_fi=
+xes&amp;id=3Dd3a1158acde83d9d7a2a58e431623dd89e59ca65">https://cgit.freedes=
+ktop.org/~hakzsam/mesa/commit/?h=3Datomic_fixes&amp;id=3Dd3a1158acde83d9d7a=
+2a58e431623dd89e59ca65</a></pre>
         </div>
       </p>
 
@@ -113,9 +104,9 @@ incorrect.</pre>
     </body>
 </html>=
 
---14853518750.Ed47E3F.15616--
+--14853520760.c0f2afaD.15616--
 
---===============0897620522==
+--===============1760660272==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -125,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0897620522==--
+--===============1760660272==--
