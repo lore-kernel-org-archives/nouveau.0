@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99532] Compute shader doesn't give right result
  under some circumstances
-Date: Wed, 25 Jan 2017 13:38:19 +0000
-Message-ID: <bug-99532-8800-9pETSCdopx@http.bugs.freedesktop.org/>
+Date: Wed, 25 Jan 2017 13:41:50 +0000
+Message-ID: <bug-99532-8800-KvlKU1BKux@http.bugs.freedesktop.org/>
 References: <bug-99532-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1167219744=="
+Content-Type: multipart/mixed; boundary="===============1519468595=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99532-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1167219744==
-Content-Type: multipart/alternative; boundary="14853514991.1E70C.15389";
+--===============1519468595==
+Content-Type: multipart/alternative; boundary="14853517101.fe3BB8Ff5.15554";
  charset="UTF-8"
 
 
---14853514991.1E70C.15389
-Date: Wed, 25 Jan 2017 13:38:19 +0000
+--14853517101.fe3BB8Ff5.15554
+Date: Wed, 25 Jan 2017 13:41:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99532
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you figure out which compute invocation messes up? Looks like you have 2
-compute shaders in there, although my bet is on the one that does all the
-atomic ops on shared memory - that stuff changed between Kepler and Maxwell,
-which could explain why it works on GM107.
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Oh wait - while there are 2 compute shaders, you only use one of them (the =
+one
+with all the shared atomics). Also need to double-check that it's not an
+earlier draw messing things up (e.g. that the compute shader is getting the
+proper inputs). But my bet is on an issue in the compute shader.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14853514991.1E70C.15389
-Date: Wed, 25 Jan 2017 13:38:19 +0000
+--14853517101.fe3BB8Ff5.15554
+Date: Wed, 25 Jan 2017 13:41:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Compute shader doesn't give right result under some circu=
 mstances"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Compute shader doesn't give right result under some circu=
@@ -78,11 +79,11 @@ mstances"
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Can you figure out which compute invocation messes up? Looks l=
-ike you have 2
-compute shaders in there, although my bet is on the one that does all the
-atomic ops on shared memory - that stuff changed between Kepler and Maxwell,
-which could explain why it works on GM107.</pre>
+        <pre>Oh wait - while there are 2 compute shaders, you only use one =
+of them (the one
+with all the shared atomics). Also need to double-check that it's not an
+earlier draw messing things up (e.g. that the compute shader is getting the
+proper inputs). But my bet is on an issue in the compute shader.</pre>
         </div>
       </p>
 
@@ -97,9 +98,9 @@ which could explain why it works on GM107.</pre>
     </body>
 </html>=
 
---14853514991.1E70C.15389--
+--14853517101.fe3BB8Ff5.15554--
 
---===============1167219744==
+--===============1519468595==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1167219744==--
+--===============1519468595==--
