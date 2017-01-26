@@ -1,254 +1,119 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
- 5; PGR engine fault
-Date: Thu, 26 Jan 2017 00:26:52 +0000
-Message-ID: <bug-92077-8800-2ND2QJYcuz@http.bugs.freedesktop.org/>
-References: <bug-92077-8800@http.bugs.freedesktop.org/>
+From: "Grodzovsky, Andrey" <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
+Subject: RE: [PATCH 1/4] drm/atomic: Save flip flags in drm_plane_state
+Date: Thu, 26 Jan 2017 05:01:01 +0000
+Message-ID: <DM5PR12MB1147AEF3F8CFFAD4B69E114EEA770@DM5PR12MB1147.namprd12.prod.outlook.com>
+References: <1484581498-32309-1-git-send-email-Andrey.Grodzovsky@amd.com>
+ <1484581498-32309-2-git-send-email-Andrey.Grodzovsky@amd.com>
+ <20170123085452.jw3b3k36sbt4nekm@phenom.ffwll.local>
+ <MWHPR12MB14066404FBCEF3C03EF24BF998720@MWHPR12MB1406.namprd12.prod.outlook.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2072979717=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <MWHPR12MB14066404FBCEF3C03EF24BF998720-Gy0DoCVfaSXS1+HfpYZxvgdYzm3356FpvxpqHgZTriW3zl9H0oFU5g@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: "Cheng, Tony" <Tony.Cheng-5C7GfCeVMHo@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Cc: dc_upstream <dc_upstream-5C7GfCeVMHo@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "Deucher,
+ Alexander" <Alexander.Deucher-5C7GfCeVMHo@public.gmane.org>, "daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org" <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2072979717==
-Content-Type: multipart/alternative; boundary="14853904123.aFa9CD.6927";
- charset="UTF-8"
-
-
---14853904123.aFa9CD.6927
-Date: Thu, 26 Jan 2017 00:26:52 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92077
-
---- Comment #31 from Andrey Mazo <ahippo-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
-I've started to get a slightly different crash with update to kernel 4.9.5
-and/or newer Plasma.
-
-It usually happens while unlocking the screen (enter password, hit enter, a=
-nd
-boom -- left monitor is black, right monitor is frozen with a mouse cursor
-(well, a glitch instead of a normal cursor) moving).
-
-
-x11-base/xorg-server-1.18.4
-x11-drivers/xf86-video-nouveau-1.0.12
-media-libs/mesa-12.0.1
-x11-libs/libdrm-2.4.70
-kde-plasma/plasma-workspace-5.8.3-r4
-kde-frameworks/plasma-5.29.0
-
-
-[94521.089913] DMAR: DRHD: handling fault status reg 2
-[94521.089940] DMAR: [DMA Read] Request device [03:00.0] fault addr edb60000
-[fault reason 06] PTE Read access is not set
-[94521.089947] DMAR: [DMA Read] Request device [03:00.0] fault addr edb60000
-[fault reason 06] PTE Read access is not set
-<snip>
-[94521.090876] DMAR: [DMA Read] Request device [03:00.0] fault addr edba3000
-[fault reason 06] PTE Read access is not set
-[94521.090876] DMAR: [DMA Read] Request device [03:00.0] fault addr edba3000
-[fault reason 06] PTE Read access is not set
-[94521.096700] DMAR: DRHD: handling fault status reg 500
-[94521.096729] nouveau 0000:03:00.0: fifo: write fault at 00029a7000 engine=
- 15
-[PCE0] client 01 [PCOPY0] reason 02 [PAGE_NOT_PRESENT] on channel 0 [001fe7=
-2000
-DRM]
-[94521.096732] nouveau 0000:03:00.0: fifo: ce0 engine fault on channel 0,
-recovering...
-
-
-Xorg.log has usual (in such cases) EQ overflow errors:
-(EE) [mi] EQ overflowing.  Additional events will be discarded until existi=
-ng
-events are processed.
-(EE)
-(EE) Backtrace:
-(EE) 0: /usr/bin/X (xorg_backtrace+0x56) [0x589af6]
-(EE) 1: /usr/bin/X (mieqEnqueue+0x24b) [0x56bb6b]
-(EE) 2: /usr/bin/X (QueuePointerEvents+0x52) [0x44dd22]
-(EE) 3: /usr/lib64/xorg/modules/input/evdev_drv.so (0x7fb450ad0000+0x623f)
-[0x7fb450ad623f]
-(EE) 4: /usr/lib64/xorg/modules/input/evdev_drv.so (0x7fb450ad0000+0x6acd)
-[0x7fb450ad6acd]
-(EE) 5: /usr/bin/X (0x400000+0x750c8) [0x4750c8]
-(EE) 6: /usr/bin/X (0x400000+0x9a056) [0x49a056]
-(EE) 7: /lib64/libc.so.6 (0x7fb45b990000+0x331f0) [0x7fb45b9c31f0]
-(EE) 8: /lib64/libc.so.6 (ioctl+0x5) [0x7fb45ba6fc75]
-(EE) 9: /usr/lib64/libdrm.so.2 (drmIoctl+0x28) [0x7fb45cb1dc68]
-(EE) 10: /usr/lib64/libdrm.so.2 (drmCommandWrite+0x1b) [0x7fb45cb2098b]
-(EE) 11: /usr/lib64/libdrm_nouveau.so.2 (nouveau_bo_wait+0xbc) [0x7fb4578fd=
-44c]
-(EE) 12: /usr/lib64/xorg/modules/drivers/nouveau_drv.so (0x7fb457b02000+0xc=
-5a7)
-[0x7fb457b0e5a7]
-(EE) 13: /usr/lib64/xorg/modules/drivers/nouveau_drv.so (0x7fb457b02000+0xc=
-fed)
-[0x7fb457b0efed]
-(EE) 14: /usr/bin/X (DRI2SwapBuffers+0x1c8) [0x55cd68]
-(EE) 15: /usr/bin/X (0x400000+0x15e5ec) [0x55e5ec]
-(EE) 16: /usr/bin/X (0x400000+0x355bf) [0x4355bf]
-(EE) 17: /usr/bin/X (0x400000+0x39643) [0x439643]
-(EE) 18: /lib64/libc.so.6 (__libc_start_main+0xf0) [0x7fb45b9b0790]
-(EE) 19: /usr/bin/X (_start+0x29) [0x423939]
-(EE)
-(EE) [mi] These backtraces from mieqEnqueue may point to a culprit higher up
-the stack.
-(EE) [mi] mieq is *NOT* the cause.  It is a victim.
-(EE) [mi] EQ overflow continuing.  100 events have been dropped.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14853904123.aFa9CD.6927
-Date: Thu, 26 Jan 2017 00:26:52 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engi=
-ne fault"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92077#c31">Commen=
-t # 31</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engi=
-ne fault"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92077">bug 92077<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ahippo&#64;yandex.ru" title=3D"Andrey Mazo &lt;ahippo&#64;yandex.ru&gt;"> <=
-span class=3D"fn">Andrey Mazo</span></a>
-</span></b>
-        <pre>I've started to get a slightly different crash with update to =
-kernel 4.9.5
-and/or newer Plasma.
-
-It usually happens while unlocking the screen (enter password, hit enter, a=
-nd
-boom -- left monitor is black, right monitor is frozen with a mouse cursor
-(well, a glitch instead of a normal cursor) moving).
-
-
-x11-base/xorg-server-1.18.4
-x11-drivers/xf86-video-nouveau-1.0.12
-media-libs/mesa-12.0.1
-x11-libs/libdrm-2.4.70
-kde-plasma/plasma-workspace-5.8.3-r4
-kde-frameworks/plasma-5.29.0
-
-
-[94521.089913] DMAR: DRHD: handling fault status reg 2
-[94521.089940] DMAR: [DMA Read] Request device [03:00.0] fault addr edb60000
-[fault reason 06] PTE Read access is not set
-[94521.089947] DMAR: [DMA Read] Request device [03:00.0] fault addr edb60000
-[fault reason 06] PTE Read access is not set
-&lt;snip&gt;
-[94521.090876] DMAR: [DMA Read] Request device [03:00.0] fault addr edba3000
-[fault reason 06] PTE Read access is not set
-[94521.090876] DMAR: [DMA Read] Request device [03:00.0] fault addr edba3000
-[fault reason 06] PTE Read access is not set
-[94521.096700] DMAR: DRHD: handling fault status reg 500
-[94521.096729] nouveau 0000:03:00.0: fifo: write fault at 00029a7000 engine=
- 15
-[PCE0] client 01 [PCOPY0] reason 02 [PAGE_NOT_PRESENT] on channel 0 [001fe7=
-2000
-DRM]
-[94521.096732] nouveau 0000:03:00.0: fifo: ce0 engine fault on channel 0,
-recovering...
-
-
-Xorg.log has usual (in such cases) EQ overflow errors:
-(EE) [mi] EQ overflowing.  Additional events will be discarded until existi=
-ng
-events are processed.
-(EE)
-(EE) Backtrace:
-(EE) 0: /usr/bin/X (xorg_backtrace+0x56) [0x589af6]
-(EE) 1: /usr/bin/X (mieqEnqueue+0x24b) [0x56bb6b]
-(EE) 2: /usr/bin/X (QueuePointerEvents+0x52) [0x44dd22]
-(EE) 3: /usr/lib64/xorg/modules/input/evdev_drv.so (0x7fb450ad0000+0x623f)
-[0x7fb450ad623f]
-(EE) 4: /usr/lib64/xorg/modules/input/evdev_drv.so (0x7fb450ad0000+0x6acd)
-[0x7fb450ad6acd]
-(EE) 5: /usr/bin/X (0x400000+0x750c8) [0x4750c8]
-(EE) 6: /usr/bin/X (0x400000+0x9a056) [0x49a056]
-(EE) 7: /lib64/libc.so.6 (0x7fb45b990000+0x331f0) [0x7fb45b9c31f0]
-(EE) 8: /lib64/libc.so.6 (ioctl+0x5) [0x7fb45ba6fc75]
-(EE) 9: /usr/lib64/libdrm.so.2 (drmIoctl+0x28) [0x7fb45cb1dc68]
-(EE) 10: /usr/lib64/libdrm.so.2 (drmCommandWrite+0x1b) [0x7fb45cb2098b]
-(EE) 11: /usr/lib64/libdrm_nouveau.so.2 (nouveau_bo_wait+0xbc) [0x7fb4578fd=
-44c]
-(EE) 12: /usr/lib64/xorg/modules/drivers/nouveau_drv.so (0x7fb457b02000+0xc=
-5a7)
-[0x7fb457b0e5a7]
-(EE) 13: /usr/lib64/xorg/modules/drivers/nouveau_drv.so (0x7fb457b02000+0xc=
-fed)
-[0x7fb457b0efed]
-(EE) 14: /usr/bin/X (DRI2SwapBuffers+0x1c8) [0x55cd68]
-(EE) 15: /usr/bin/X (0x400000+0x15e5ec) [0x55e5ec]
-(EE) 16: /usr/bin/X (0x400000+0x355bf) [0x4355bf]
-(EE) 17: /usr/bin/X (0x400000+0x39643) [0x439643]
-(EE) 18: /lib64/libc.so.6 (__libc_start_main+0xf0) [0x7fb45b9b0790]
-(EE) 19: /usr/bin/X (_start+0x29) [0x423939]
-(EE)
-(EE) [mi] These backtraces from mieqEnqueue may point to a culprit higher up
-the stack.
-(EE) [mi] mieq is *NOT* the cause.  It is a victim.
-(EE) [mi] EQ overflow continuing.  100 events have been dropped.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14853904123.aFa9CD.6927--
-
---===============2072979717==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2072979717==--
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQ2hlbmcsIFRvbnkNCj4g
+U2VudDogTW9uZGF5LCBKYW51YXJ5IDIzLCAyMDE3IDI6NDkgUE0NCj4gVG86IERhbmllbCBWZXR0
+ZXI7IEdyb2R6b3Zza3ksIEFuZHJleQ0KPiBDYzogRGV1Y2hlciwgQWxleGFuZGVyOyBub3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgYW1kLQ0KPiBnZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+OyBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOw0KPiBkYW5pZWwudmV0dGVyQGludGVs
+LmNvbTsgZGNfdXBzdHJlYW0NCj4gU3ViamVjdDogUkU6IFtQQVRDSCAxLzRdIGRybS9hdG9taWM6
+IFNhdmUgZmxpcCBmbGFncyBpbiBkcm1fcGxhbmVfc3RhdGUNCj4gDQo+IA0KPiANCj4gPiAtLS0t
+LU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+IEZyb206IGRyaS1kZXZlbCBbbWFpbHRvOmRyaS1k
+ZXZlbC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZ10gT24NCj4gPiBCZWhhbGYgT2YgRGFu
+aWVsIFZldHRlcg0KPiA+IFNlbnQ6IE1vbmRheSwgSmFudWFyeSAyMywgMjAxNyAzOjU1IEFNDQo+
+ID4gVG86IEdyb2R6b3Zza3ksIEFuZHJleSA8QW5kcmV5Lkdyb2R6b3Zza3lAYW1kLmNvbT4NCj4g
+PiBDYzogRGV1Y2hlciwgQWxleGFuZGVyIDxBbGV4YW5kZXIuRGV1Y2hlckBhbWQuY29tPjsNCj4g
+PiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgYW1kLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmc7IGRyaS0NCj4gPiBkZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGRhbmllbC52ZXR0
+ZXJAaW50ZWwuY29tDQo+ID4gU3ViamVjdDogUmU6IFtQQVRDSCAxLzRdIGRybS9hdG9taWM6IFNh
+dmUgZmxpcCBmbGFncyBpbg0KPiA+IGRybV9wbGFuZV9zdGF0ZQ0KPiA+DQo+ID4gT24gTW9uLCBK
+YW4gMTYsIDIwMTcgYXQgMTA6NDQ6NTVBTSAtMDUwMCwgQW5kcmV5IEdyb2R6b3Zza3kgd3JvdGU6
+DQo+ID4gPiBBbGxvd3MgdXNpbmcgYXRvbWljIGZsaXAgaGVscGVycyBmb3IgZHJpdmVycyB1c2lu
+ZyBBU1lOQyBmbGlwLg0KPiA+ID4gUmVtb3ZlIEFTWU5DX0ZMSVAgcmVzdHJpY3Rpb24gaW4gaGVs
+cGVycyBhbmQgY2FjaGVzIHRoZSBwYWdlIGZsaXANCj4gPiA+IGZsYWdzIGluIGRybV9wbGFuZV9z
+dGF0ZSB0byBiZSB1c2VkIGluIHRoZSBsb3cgbGV2ZWwgZHJpdmVycy4NCj4gPiA+DQo+ID4gPiBT
+aWduZWQtb2ZmLWJ5OiBBbmRyZXkgR3JvZHpvdnNreSA8QW5kcmV5Lkdyb2R6b3Zza3lAYW1kLmNv
+bT4NCj4gPg0KPiA+IEl0J3MgbW9zdGx5IGd1ZXNzd29yaywgYnV0IEkgdGhpbmsgd2Ugc2hvdWxk
+IGhhdmUgdGhlIGZsaXAgZmxhZ3MgaW4NCj4gPiB0aGUgY3J0Yywgbm90IGluIGVhY2ggcGxhbmUu
+IFNpbWlsYXIgdG8gaG93IHdlIG1vdmUgdGhlIGV2ZW50IGZyb20gcGxhbmVzDQo+IHRvIGNydGMu
+DQo+ID4gLURhbmllbA0KPiANCkRvIHlvdSBtZWFuIGhlcmUgY3J0YyBvciBjcnRjX3N0YXRlID8N
+Cg0KPiBXaGF0IGRvZXMgQVNZTkMgZmxpcCBtZWFuPyAgSFcgZmxpcCBhcyBzb29uIGFzIHBvc3Np
+YmxlIGFuZCByZXN1bHQgaW4gdGVhcmluZw0KPiBvbiBzY3JlZW4/ICBJZiBzbyBJIGNvdWxkIGlt
+YWdpbmcgc29tZSB1c2UgY2FzZSB3aGVyZSB5b3UgaGF2ZSBzb21lIFVJDQo+IGNvbnRyb2wvbWVu
+dSBvdmVybGF5IG9uIHRvcCwgYW5kIHNvbWUgZ2FtZSBydW5uaW5nIG9uIGEgdW5kZXJsYXkgcGxh
+bmUsDQo+IGFuZCB0aGUgZ2FtZSB3YW50IHRvIGJlIGFibGUgdG8gZmxpcCBhcyBzb29uIGFzIHBv
+c3NpYmxlLiAgT3IgRGFuaWVsIGRvIHlvdQ0KPiB0aGluayBBU1lOQyBwcm9wZXJ0eSB3aWxsIGFw
+cGx5IHRvIGFsbCBwbGFuZXMgaW4gQ1JUQz8NCj4gDQpBbHNvIHRoZSBjbGllbnQgY29kZSBib3Ro
+IGluIG5vdXZlYXUgYW5kIEFNRC9EQUwgaXRlcmF0ZXMgb3ZlciBuZXcgcGxhbmVzIGFuZCB0aGVp
+ciBuZXcgc3RhdGVzDQpzbyBpdCBzZWVtcyB0byBtZSBlYXNpZXIgdG8gcmV0cmlldmUgdGhlIHBh
+cmFtZXRlciBmcm9tIHRoZSBwbGFuZV9zdGF0ZSBhbmQgbm90IGFkZGluZyBsb29wDQp0byBmaW5k
+IG1hdGNoaW5nIGNydGMgb3IgaXRzICBzdGF0ZSwgZXNwZWNpYWxseSBpZiBpdCdzIGJlZm9yZSBk
+cm1fYXRvbWljX2hlbHBlcl9zd2FwX3N0YXRlIGlzIGNhbGxlZCwNCiB3aGVuIGNydGMtPnN0YXRl
+IHN0aWxsIHBvaW50cyB0byB0aGUgb2xkIHN0YXRlIC4uLg0KW0dyb2R6b3Zza3ksIEFuZHJleV0g
+DQo+ID4NCj4gPiA+IC0tLQ0KPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBl
+ci5jIHwgMTAgKysrLS0tLS0tLQ0KPiA+ID4gIGluY2x1ZGUvZHJtL2RybV9wbGFuZS5oICAgICAg
+ICAgICAgIHwgIDggKysrKysrKysNCj4gPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDExIGluc2VydGlv
+bnMoKyksIDcgZGVsZXRpb25zKC0pDQo+ID4gPg0KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jDQo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9kcm1f
+YXRvbWljX2hlbHBlci5jDQo+ID4gPiBpbmRleCBhNGU1NDc3Li5mODNkYzQzIDEwMDY0NA0KPiA+
+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfaGVscGVyLmMNCj4gPiA+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jDQo+ID4gPiBAQCAtMjczNyw3ICsy
+NzM3LDggQEAgc3RhdGljIGludCBwYWdlX2ZsaXBfY29tbW9uKA0KPiA+ID4gIAkJCQlzdHJ1Y3Qg
+ZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gPiAgCQkJCXN0cnVjdCBkcm1fY3J0YyAqY3J0
+YywNCj4gPiA+ICAJCQkJc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAqZmIsDQo+ID4gPiAtCQkJCXN0
+cnVjdCBkcm1fcGVuZGluZ192YmxhbmtfZXZlbnQgKmV2ZW50KQ0KPiA+ID4gKwkJCQlzdHJ1Y3Qg
+ZHJtX3BlbmRpbmdfdmJsYW5rX2V2ZW50ICpldmVudCwNCj4gPiA+ICsJCQkJdWludDMyX3QgZmxh
+Z3MpDQo+ID4gPiAgew0KPiA+ID4gIAlzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSA9IGNydGMtPnBy
+aW1hcnk7DQo+ID4gPiAgCXN0cnVjdCBkcm1fcGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRlOyBAQCAt
+Mjc1NCw2ICsyNzU1LDcgQEAgc3RhdGljDQo+ID4gPiBpbnQgcGFnZV9mbGlwX2NvbW1vbigNCj4g
+PiA+ICAJaWYgKElTX0VSUihwbGFuZV9zdGF0ZSkpDQo+ID4gPiAgCQlyZXR1cm4gUFRSX0VSUihw
+bGFuZV9zdGF0ZSk7DQo+ID4gPg0KPiA+ID4gKwlwbGFuZV9zdGF0ZS0+cGZsaXBfZmxhZ3MgPSBm
+bGFnczsNCj4gPiA+DQo+ID4gPiAgCXJldCA9IGRybV9hdG9taWNfc2V0X2NydGNfZm9yX3BsYW5l
+KHBsYW5lX3N0YXRlLCBjcnRjKTsNCj4gPiA+ICAJaWYgKHJldCAhPSAwKQ0KPiA+ID4gQEAgLTI4
+MDAsOSArMjgwMiw2IEBAIGludCBkcm1fYXRvbWljX2hlbHBlcl9wYWdlX2ZsaXAoc3RydWN0DQo+
+ID4gPiBkcm1fY3J0Yw0KPiA+ICpjcnRjLA0KPiA+ID4gIAlzdHJ1Y3QgZHJtX2F0b21pY19zdGF0
+ZSAqc3RhdGU7DQo+ID4gPiAgCWludCByZXQgPSAwOw0KPiA+ID4NCj4gPiA+IC0JaWYgKGZsYWdz
+ICYgRFJNX01PREVfUEFHRV9GTElQX0FTWU5DKQ0KPiA+ID4gLQkJcmV0dXJuIC1FSU5WQUw7DQo+
+ID4gPiAtDQo+ID4gPiAgCXN0YXRlID0gZHJtX2F0b21pY19zdGF0ZV9hbGxvYyhwbGFuZS0+ZGV2
+KTsNCj4gPiA+ICAJaWYgKCFzdGF0ZSkNCj4gPiA+ICAJCXJldHVybiAtRU5PTUVNOw0KPiA+ID4g
+QEAgLTI4NjUsOSArMjg2NCw2IEBAIGludCBkcm1fYXRvbWljX2hlbHBlcl9wYWdlX2ZsaXBfdGFy
+Z2V0KA0KPiA+ID4gIAlzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKmNydGNfc3RhdGU7DQo+ID4gPiAg
+CWludCByZXQgPSAwOw0KPiA+ID4NCj4gPiA+IC0JaWYgKGZsYWdzICYgRFJNX01PREVfUEFHRV9G
+TElQX0FTWU5DKQ0KPiA+ID4gLQkJcmV0dXJuIC1FSU5WQUw7DQo+ID4gPiAtDQo+ID4gPiAgCXN0
+YXRlID0gZHJtX2F0b21pY19zdGF0ZV9hbGxvYyhwbGFuZS0+ZGV2KTsNCj4gPiA+ICAJaWYgKCFz
+dGF0ZSkNCj4gPiA+ICAJCXJldHVybiAtRU5PTUVNOw0KPiA+ID4gZGlmZiAtLWdpdCBhL2luY2x1
+ZGUvZHJtL2RybV9wbGFuZS5oIGIvaW5jbHVkZS9kcm0vZHJtX3BsYW5lLmggaW5kZXgNCj4gPiA+
+IGRiM2JiZGUuLjg2ZDhmZmMgMTAwNjQ0DQo+ID4gPiAtLS0gYS9pbmNsdWRlL2RybS9kcm1fcGxh
+bmUuaA0KPiA+ID4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX3BsYW5lLmgNCj4gPiA+IEBAIC0xMjIs
+NiArMTIyLDE0IEBAIHN0cnVjdCBkcm1fcGxhbmVfc3RhdGUgew0KPiA+ID4gIAkgKi8NCj4gPiA+
+ICAJYm9vbCB2aXNpYmxlOw0KPiA+ID4NCj4gPiA+ICsNCj4gPiA+ICsJLyoqDQo+ID4gPiArCSAq
+IEBwZmxpcF9mbGFnczoNCj4gPiA+ICsJICoNCj4gPiA+ICsJICogRmxpcCByZWxhdGVkIGNvbmZp
+ZyBvcHRpb25zDQo+ID4gPiArCSAqLw0KPiA+ID4gKwl1MzIgcGZsaXBfZmxhZ3M7DQo+ID4gPiAr
+DQo+ID4gPiAgCXN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZTsNCj4gPiA+ICB9Ow0KPiA+
+ID4NCj4gPiA+IC0tDQo+ID4gPiAxLjkuMQ0KPiA+ID4NCj4gPiA+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+ID4gPiBkcmktZGV2ZWwgbWFpbGluZyBs
+aXN0DQo+ID4gPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+ID4gPiBodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbA0KPiA+DQo+
+ID4gLS0NCj4gPiBEYW5pZWwgVmV0dGVyDQo+ID4gU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENv
+cnBvcmF0aW9uDQo+ID4gaHR0cDovL2Jsb2cuZmZ3bGwuY2gNCj4gPiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiA+IGRyaS1kZXZlbCBtYWlsaW5nIGxp
+c3QNCj4gPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+ID4gaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwNCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0
+CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
