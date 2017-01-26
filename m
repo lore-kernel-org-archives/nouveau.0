@@ -1,113 +1,62 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99532] Compute shader doesn't give right result
- under some circumstances
-Date: Thu, 26 Jan 2017 06:10:27 +0000
-Message-ID: <bug-99532-8800-zZ3Huw7hOG@http.bugs.freedesktop.org/>
-References: <bug-99532-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH 1/4] drm/atomic: Save flip flags in drm_plane_state
+Date: Thu, 26 Jan 2017 10:39:02 +0100
+Message-ID: <20170126093902.wi3j24cgf7fzkwgv@phenom.ffwll.local>
+References: <1484581498-32309-1-git-send-email-Andrey.Grodzovsky@amd.com>
+ <1484581498-32309-2-git-send-email-Andrey.Grodzovsky@amd.com>
+ <20170123085452.jw3b3k36sbt4nekm@phenom.ffwll.local>
+ <MWHPR12MB14066404FBCEF3C03EF24BF998720@MWHPR12MB1406.namprd12.prod.outlook.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1705236881=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99532-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <MWHPR12MB14066404FBCEF3C03EF24BF998720@MWHPR12MB1406.namprd12.prod.outlook.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: "Cheng, Tony" <Tony.Cheng@amd.com>
+Cc: dc_upstream <dc_upstream@amd.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, "daniel.vetter@intel.com" <daniel.vetter@intel.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1705236881==
-Content-Type: multipart/alternative; boundary="14854110270.b7DFAcDC.631";
- charset="UTF-8"
-
-
---14854110270.b7DFAcDC.631
-Date: Thu, 26 Jan 2017 06:10:27 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99532
-
---- Comment #12 from Boyan Ding <stu_dby-KN7UnAbNpbg@public.gmane.org> ---
-Created attachment 129158
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129158&action=3Dedit
-The compute shader binary and assembly compiled with proprietary driver
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14854110270.b7DFAcDC.631
-Date: Thu, 26 Jan 2017 06:10:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Compute shader doesn't give right result under some circu=
-mstances"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532#c12">Commen=
-t # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Compute shader doesn't give right result under some circu=
-mstances"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532">bug 99532<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stu_dby&#64;126.com" title=3D"Boyan Ding &lt;stu_dby&#64;126.com&gt;"> <spa=
-n class=3D"fn">Boyan Ding</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129158=
-" name=3D"attach_129158" title=3D"The compute shader binary and assembly co=
-mpiled with proprietary driver">attachment 129158</a> <a href=3D"attachment=
-.cgi?id=3D129158&amp;action=3Dedit" title=3D"The compute shader binary and =
-assembly compiled with proprietary driver">[details]</a></span>
-The compute shader binary and assembly compiled with proprietary driver</pr=
-e>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14854110270.b7DFAcDC.631--
-
---===============1705236881==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1705236881==--
+T24gTW9uLCBKYW4gMjMsIDIwMTcgYXQgMDc6NDg6NTRQTSArMDAwMCwgQ2hlbmcsIFRvbnkgd3Jv
+dGU6Cj4gCj4gCj4gPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQo+ID4gRnJvbTogZHJpLWRl
+dmVsIFttYWlsdG86ZHJpLWRldmVsLWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnXSBPbiBC
+ZWhhbGYKPiA+IE9mIERhbmllbCBWZXR0ZXIKPiA+IFNlbnQ6IE1vbmRheSwgSmFudWFyeSAyMywg
+MjAxNyAzOjU1IEFNCj4gPiBUbzogR3JvZHpvdnNreSwgQW5kcmV5IDxBbmRyZXkuR3JvZHpvdnNr
+eUBhbWQuY29tPgo+ID4gQ2M6IERldWNoZXIsIEFsZXhhbmRlciA8QWxleGFuZGVyLkRldWNoZXJA
+YW1kLmNvbT47Cj4gPiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgYW1kLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmc7IGRyaS0KPiA+IGRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsg
+ZGFuaWVsLnZldHRlckBpbnRlbC5jb20KPiA+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMS80XSBkcm0v
+YXRvbWljOiBTYXZlIGZsaXAgZmxhZ3MgaW4gZHJtX3BsYW5lX3N0YXRlCj4gPiAKPiA+IE9uIE1v
+biwgSmFuIDE2LCAyMDE3IGF0IDEwOjQ0OjU1QU0gLTA1MDAsIEFuZHJleSBHcm9kem92c2t5IHdy
+b3RlOgo+ID4gPiBBbGxvd3MgdXNpbmcgYXRvbWljIGZsaXAgaGVscGVycyBmb3IgZHJpdmVycyB1
+c2luZyBBU1lOQyBmbGlwLgo+ID4gPiBSZW1vdmUgQVNZTkNfRkxJUCByZXN0cmljdGlvbiBpbiBo
+ZWxwZXJzIGFuZCBjYWNoZXMgdGhlIHBhZ2UgZmxpcAo+ID4gPiBmbGFncyBpbiBkcm1fcGxhbmVf
+c3RhdGUgdG8gYmUgdXNlZCBpbiB0aGUgbG93IGxldmVsIGRyaXZlcnMuCj4gPiA+Cj4gPiA+IFNp
+Z25lZC1vZmYtYnk6IEFuZHJleSBHcm9kem92c2t5IDxBbmRyZXkuR3JvZHpvdnNreUBhbWQuY29t
+Pgo+ID4gCj4gPiBJdCdzIG1vc3RseSBndWVzc3dvcmssIGJ1dCBJIHRoaW5rIHdlIHNob3VsZCBo
+YXZlIHRoZSBmbGlwIGZsYWdzIGluIHRoZSBjcnRjLCBub3QKPiA+IGluIGVhY2ggcGxhbmUuIFNp
+bWlsYXIgdG8gaG93IHdlIG1vdmUgdGhlIGV2ZW50IGZyb20gcGxhbmVzIHRvIGNydGMuCj4gPiAt
+RGFuaWVsCj4gCj4gV2hhdCBkb2VzIEFTWU5DIGZsaXAgbWVhbj8gIEhXIGZsaXAgYXMgc29vbiBh
+cyBwb3NzaWJsZSBhbmQgcmVzdWx0IGluCj4gdGVhcmluZyBvbiBzY3JlZW4/ICBJZiBzbyBJIGNv
+dWxkIGltYWdpbmcgc29tZSB1c2UgY2FzZSB3aGVyZSB5b3UgaGF2ZQo+IHNvbWUgVUkgY29udHJv
+bC9tZW51IG92ZXJsYXkgb24gdG9wLCBhbmQgc29tZSBnYW1lIHJ1bm5pbmcgb24gYSB1bmRlcmxh
+eQo+IHBsYW5lLCBhbmQgdGhlIGdhbWUgd2FudCB0byBiZSBhYmxlIHRvIGZsaXAgYXMgc29vbiBh
+cyBwb3NzaWJsZS4gIE9yCj4gRGFuaWVsIGRvIHlvdSB0aGluayBBU1lOQyBwcm9wZXJ0eSB3aWxs
+IGFwcGx5IHRvIGFsbCBwbGFuZXMgaW4gQ1JUQz8KClRob3NlIGtpbmQgb2YgcXVlc3Rpb25zIGFy
+ZSBleGFjdGx5IHdoeSBJIHRoaW5rIHdlIHNob3VsZCB3YWl0IHdpdGgKZXhwb3NpbmcgYXN5bmMg
+dGhyb3VnaCB0aGUgYXRvbWljIGlvY3RsIHVudGlsIHNvbWVvbmUgbmVlZHMgaXQuIEFuZCB5ZXMK
+YXN5bmMgbWVhbnMgImFzIGZhc3QgYXMgcG9zc2libGUsIHdpdGggdGVhcmluZyIuCi1EYW5pZWwK
+LS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0
+dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ry
+aS1kZXZlbAo=
