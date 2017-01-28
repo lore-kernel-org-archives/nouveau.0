@@ -1,16 +1,12 @@
-From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Subject: Re: Nvidia recent drivers
-Date: Sat, 28 Jan 2017 11:48:21 +0100
-Message-ID: <20170128104821.GA13308@al>
-References: <UOZ0PUW7znrylDo5ZH7YDVSJr2sc4bphPjBLmGhSJRaane_z7Y00ijh2K446JN3itUooe9zS6QVLBPPbxi9TacCkg19T9QQpMowE6GcJVm8=@protonmail.com>
- <4813CD8E-8E01-48BE-B4AA-8B57E6A4531C@lekensteyn.nl>
- <20170128065832.GA27774@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
+Date: Sat, 28 Jan 2017 15:57:26 +0000
+Message-ID: <bug-99400-8800-myv1ZWMJWx@http.bugs.freedesktop.org/>
+References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2080601721=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20170128065832.GA27774-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +16,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "Mr.ze" <mr.ze-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgTHVrYXMsCgpPbiBTYXQsIEphbiAyOCwgMjAxNyBhdCAwNzo1ODozMkFNICswMTAwLCBMdWth
-cyBXdW5uZXIgd3JvdGU6Cj4gT24gRnJpLCBKYW4gMjcsIDIwMTcgYXQgMDQ6MDY6MzhQTSArMDEw
-MCwgUGV0ZXIgV3Ugd3JvdGU6Cj4gPiBBbHNvIG5vdGUgdGhhdCBtYW55IGxhcHRvcHMgd2l0aCB0
-aGVzZSBjYXJkIHN1ZmZlciBmcm9tIGEgcHJvYmxlbQo+ID4gdGhhdCBjYXVzZSBsb2NrdXBzIHdo
-ZW4gcnVucG0ga2lja3MgaW4uCj4gPiBTZWUgaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3No
-b3dfYnVnLmNnaT9pZD0xNTYzNDEKPiAKPiBQZXRlciwgSSBub3RpY2UgeW91IHdlcmVuJ3QgY2Mn
-ZWQgb24gdGhlIGxhc3QgZmV3IG1lc3NhZ2VzIG9mIHRoZQo+ICdQQ0k6IFJldmVydCAiUENJOiBB
-ZGQgcnVudGltZSBQTSBzdXBwb3J0IGZvciBQQ0llIHBvcnRzIicgdGhyZWFkLAo+IHRoZSBzaW1p
-bGFyIGJ1ZyBodHRwczovL2J1Z3ppbGxhLmtlcm5lbC5vcmcvc2hvd19idWcuY2dpP2lkPTE5MDg2
-MQo+IHR1cm5lZCBvdXQgdG8gYmUgY2F1c2VkIGJ5IGxvY2tpbmcgaXNzdWVzIGluIG5vdXZlYXUg
-d2hpY2ggd2VyZQo+IGZpeGVkIHdpdGggMzg0NmZkOWI4NjAwIGluIExpbnVzJyB0cmVlLiAgVGhh
-dCBjb21taXQgc3dpZnRseSBnb3QKPiByZXZlcnRlZCBiZWNhdXNlIGl0IGxhY2tlZCBwcmVyZXF1
-aXNpdGVzLCBhbmQgcmVwbGFjZWQgYnkgdGhlCj4gdGVtcG9yYXJ5IGZpeCBjYWU5ZmYwMzZlZWEg
-KyAxNTI2NmFlMzhmZTAuICBUaGVzZSB0d28gd2lsbCBiZQo+IHJldmVydGVkIGluIDQuMTEgYW5k
-IHJlcGxhY2VkIHdpdGggdGhlIHByb3BlciBzb2x1dGlvbiAod2hpY2ggd2FzCj4gMzg0NmZkOWI4
-NjAwKS4gIExvbmcgc3Rvcnkgc2hvcnQsIHRoZSBpc3N1ZSBzZWVtcyBzb2x2ZWQsIHRoZSByZXZl
-cnQKPiBvZiBQQ0llIHBvcnQgUE0gaXMgZGVxdWV1ZWQuICBQZXJoYXBzIHRoaXMgYWxzbyBmaXhl
-cyB0aGUgaXNzdWVzIGluCj4gdGhlIGJ1Z3ppbGxhIGVudHJ5IHlvdSBtZW50aW9uZWQgYWJvdmUs
-IGF0IGxlYXN0IGZvciBzb21lIGxhcHRvcHM/CgpUaGFua3MgZm9yIGZvbGxvd2luZyB1cCwgYnV0
-IEkgYW0gYWZyYWlkIGl0IHdvbid0IGhlbHAgc2luY2UgdGhlIG90aGVyCnByb2JsZW0gaXMgaW4g
-QUNQSSBvciBQQ0kgd2hpbGUgdGhpcyBmaXhlcyBhIGxvY2tpbmcgcHJvYmxlbSAoaW4gNC4xMCwK
-Y3VycmVudCBzdGFibGUgNC45IHdhcyB1bmFmZmVjdGVkKS4KCkZZSSwgdGhlIGZiY29uIHBhdGNo
-IG1lbnRpb25lZCBhYm92ZSB3aWxsIGFsc28gKHRlbXBvcmFyeSkKUmVsYXRlZCB0byB0aGUgZmJj
-b24gcGF0Y2gsIHRoZXJlIHdhcyBhbiBhdHRlbXB0IHRvIGRvIHNvbWV0aGluZyBzaW1pbGFyCmxh
-c3QgeWVhciwgYWxzbyBkdWUgdG8gbG9ja2luZyBpc3N1ZXMgKHdpdGggY29uc29sZV9sb2NrKToK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZXMvZHJpLWRldmVsLzIwMTYtSnVs
-eS8xMTMwODcuaHRtbApUaGUgMTUyNjZhZTM4ZmUwIHBhdGNoIHdpbGwgcHJvYmFibHkgZml4IHRo
-YXQgZm9yIHRoZSBtb21lbnQsIGJ1dCB3aGVuCnJldmVydGluZyBpdCB0aGUgcHJvYmxlbSByZXR1
-cm5zLgotLSAKS2luZCByZWdhcmRzLApQZXRlciBXdQpodHRwczovL2xla2Vuc3RleW4ubmwKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2080601721==
+Content-Type: multipart/alternative; boundary="14856190460.D11fAa3.31846";
+ charset="UTF-8"
+
+
+--14856190460.D11fAa3.31846
+Date: Sat, 28 Jan 2017 15:57:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
+
+--- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Olivier,
+
+I'd like to help you, but I'm just not sure how -- I don't have Wayland (or=
+ any
+interest in setting that up), and your traces appear incomplete. I don't kn=
+ow
+why - I've never seen that before. But they don't create contexts. Compare =
+your
+Xephyr trace, which has
+
+1 glXChooseFBConfig
+...
+9 glXCreateContext
+10 glXMakeCurrent
+
+While the Xwayland trace has none of those. Paradoxically, it starts at call
+31. Perhaps you have a non-egl-enabled apitrace? Also note that there's not=
+ a
+single instance of UseProgram or any other shader-related items in the XWay=
+land
+trace.
+
+Does the Xephyr trace exhibit the problems for you when replayed? If so, I =
+can
+investigate that. However on my GK208 (or with llvmpipe), when replayed, it
+doesn't appear to render anything.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14856190460.D11fAa3.31846
+Date: Sat, 28 Jan 2017 15:57:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c13">Commen=
+t # 13</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Olivier,
+
+I'd like to help you, but I'm just not sure how -- I don't have Wayland (or=
+ any
+interest in setting that up), and your traces appear incomplete. I don't kn=
+ow
+why - I've never seen that before. But they don't create contexts. Compare =
+your
+Xephyr trace, which has
+
+1 glXChooseFBConfig
+...
+9 glXCreateContext
+10 glXMakeCurrent
+
+While the Xwayland trace has none of those. Paradoxically, it starts at call
+31. Perhaps you have a non-egl-enabled apitrace? Also note that there's not=
+ a
+single instance of UseProgram or any other shader-related items in the XWay=
+land
+trace.
+
+Does the Xephyr trace exhibit the problems for you when replayed? If so, I =
+can
+investigate that. However on my GK208 (or with llvmpipe), when replayed, it
+doesn't appear to render anything.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14856190460.D11fAa3.31846--
+
+--===============2080601721==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2080601721==--
