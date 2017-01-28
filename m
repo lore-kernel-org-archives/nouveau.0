@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97620] [REGRESSION,
- bisected] KMS can't initialize GeForce GTX 460 after commit
- a6a0f67ca7aae2e6bec7ebf55d1e4853dc220816
-Date: Fri, 27 Jan 2017 19:05:00 +0000
-Message-ID: <bug-97620-8800-rYJU2rixcy@http.bugs.freedesktop.org/>
-References: <bug-97620-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH] devinit/gf100-: detect if BIOS invoked devinit
+Date: Fri, 27 Jan 2017 19:41:07 -0500
+Message-ID: <CAKb7Uvj5OhP_5vnEAJj583d3YBqws2xAkfu8mib-y+CY6RZA9g@mail.gmail.com>
+References: <1455156604-32049-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1134400263=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1455156604-32049-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,91 +17,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1134400263==
-Content-Type: multipart/alternative; boundary="14855439001.eB344D1e.19931";
- charset="UTF-8"
-
-
---14855439001.eB344D1e.19931
-Date: Fri, 27 Jan 2017 19:05:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
-
---- Comment #32 from Luke Tidd <lukeisgreat-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-If a developer is interested in this card, please contact me. You can have =
-it,
-I replaced it as I rely on this machine.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14855439001.eB344D1e.19931
-Date: Fri, 27 Jan 2017 19:05:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [REGRESSION, bisected] KMS can't initialize GeForce GTX 4=
-60 after commit a6a0f67ca7aae2e6bec7ebf55d1e4853dc220816"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c32">Commen=
-t # 32</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [REGRESSION, bisected] KMS can't initialize GeForce GTX 4=
-60 after commit a6a0f67ca7aae2e6bec7ebf55d1e4853dc220816"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lukeisgreat&#64;gmail.com" title=3D"Luke Tidd &lt;lukeisgreat&#64;gmail.com=
-&gt;"> <span class=3D"fn">Luke Tidd</span></a>
-</span></b>
-        <pre>If a developer is interested in this card, please contact me. =
-You can have it,
-I replaced it as I rely on this machine.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14855439001.eB344D1e.19931--
-
---===============1134400263==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1134400263==--
+T24gV2VkLCBGZWIgMTAsIDIwMTYgYXQgOToxMCBQTSwgQWxleGFuZHJlIENvdXJib3QgPGdudXJv
+dUBnbWFpbC5jb20+IHdyb3RlOgo+IEl0IGlzIG5vdCBhZHZpc2FibGUgdG8gcGVyZm9ybSBkZXZp
+bml0IGlmIGl0IGhhcyBhbHJlYWR5IGJlZW4gZG9uZS4KPiBWQklPUyB3aWxsIHZlcnkgbGlrZWx5
+IGhhdmUgaW52b2tlZCBkZXZpbml0IGlmIHRoZSBHUFUgaXMgdGhlIHByaW1hcnkKPiBncmFwaGlj
+cyBkZXZpY2UsIGJ1dCB0aGVyZSBpcyBubyBhY2N1cmF0ZSB3YXkgdG8gZGV0ZWN0IHRoaXMgZmFj
+dCB5ZXQuCj4KPiBUaGlzIHBhdGNoIGFkZHMgc3VjaCBhIG1ldGhvZCBmb3IgZ2YxMDAgYW5kIGxh
+dGVyIGNoaXBzLCBieSBtZWFucyBvZiB0aGUKPiBOVl9QVE9QX1NDUkFUQ0gxX0RFVklOSVRfQ09N
+UExFVEVEIGJpdC4gVGhpcyBiaXQgaXMgc2V0IHRvIDEgYnkgZGV2aW5pdCwKPiBhbmQgcmVzZXQg
+dG8gMCB3aGVuIHRoZSBHUFUgaXMgcG93ZXJlZC4KPgo+IFNpZ25lZC1vZmYtYnk6IEFsZXhhbmRy
+ZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgoKRG9lcyB0aGlzIHBhdGNoIGJyaW5nIGFu
+eSB0YW5naWJsZSBiZW5lZml0cyBmb3IgcHJlLW1heHdlbGw/IFNvbWUKVkJJT1Nlc1sxXSwgbmFt
+ZWx5IGEgYnVuY2ggb2YgR0YxMDQgYW5kIGF0IGxlYXN0IG9uZSBHSzEwNyBzaGlwcGVkCndpdGhv
+dXQgc2V0dGluZyB0aGlzIGJpdCBhcyBwYXJ0IG9mIHRoZSBWQklPUyBpbml0IHNjcmlwdCBzZXF1
+ZW5jZS4KUGVyaGFwcyBvdGhlcnMsIGFzIGl0J3Mgbm90IGxpa2Ugd2UgaGF2ZSBhIDEwMCUgY29t
+cGxldGUgVkJJT1MgcmVwby4KVGhpcyBjYXVzZXMgbm91dmVhdSB0byByZS1ydW4gdGhlIFZCSU9T
+LCB3aXRoIGFwcGFyZW50bHkgcmF0aGVyCm5lZ2F0aXZlIGVmZmVjdHMgb24gYXQgbGVhc3QgdGhl
+IEdGMTA0J3MgaW4gcXVlc3Rpb24uIFBlcmhhcHMgdGhpcyBpcwpvbmx5IG5lY2Vzc2FyeSBzdGFy
+dGluZyBHTTIwMD8gT3Igc29tZXRoaW5nIGVsc2U/IENhbiB3ZSBhZGQgdGhlCnJkdmdhYyB0aGlu
+ZyB0byB0aGUgZ2YxMDAgaGV1cmlzdGljIGxpa2UgaXQncyB1c2VkIG9uIG52NTA/CgpDaGVlcnMs
+CgogIC1pbGlhCgpbMV0gaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/
+aWQ9OTc2MjAjYzI3Cgo+IC0tLQo+ICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9kZXZpbml0L2dm
+MTAwLmMgfCAxNCArKysrKysrKysrKysrLQo+ICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9kZXZp
+bml0L2dtMTA3LmMgfCAgMiArLQo+ICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9kZXZpbml0L2dt
+MjA0LmMgfCAgNCArKystCj4gIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2RldmluaXQvbnY1MC5o
+ICB8ICAxICsKPiAgNCBmaWxlcyBjaGFuZ2VkLCAxOCBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9u
+cygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2RldmluaXQvZ2Yx
+MDAuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2RldmluaXQvZ2YxMDAuYwo+IGluZGV4IDIy
+YjAxNDAuLjI5MjM1OTggMTAwNjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZGV2
+aW5pdC9nZjEwMC5jCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZGV2aW5pdC9nZjEw
+MC5jCj4gQEAgLTkwLDkgKzkwLDIxIEBAIGdmMTAwX2RldmluaXRfZGlzYWJsZShzdHJ1Y3QgbnZr
+bV9kZXZpbml0ICppbml0KQo+ICAgICAgICAgcmV0dXJuIGRpc2FibGU7Cj4gIH0KPgo+ICt2b2lk
+Cj4gK2dmMTAwX2RldmluaXRfcHJlaW5pdChzdHJ1Y3QgbnZrbV9kZXZpbml0ICpiYXNlKQo+ICt7
+Cj4gKyAgICAgICBzdHJ1Y3QgbnY1MF9kZXZpbml0ICppbml0ID0gbnY1MF9kZXZpbml0KGJhc2Up
+Owo+ICsgICAgICAgc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSAmaW5pdC0+YmFzZS5zdWJk
+ZXY7Cj4gKyAgICAgICBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSA9IHN1YmRldi0+ZGV2aWNl
+Owo+ICsKPiArICAgICAgIC8qIFRoaXMgYml0IGlzIHNldCBieSBkZXZpbml0LCBhbmQgZmxpcHMg
+YmFjayB0byAwIG9uIHN1c3BlbmQgKi8KPiArICAgICAgIGlmICghYmFzZS0+cG9zdCkKPiArICAg
+ICAgICAgICAgICAgYmFzZS0+cG9zdCA9ICgobnZrbV9yZDMyKGRldmljZSwgMHgyMjQwYykgJiBC
+SVQoMSkpID09IDApOwo+ICt9Cj4gKwo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IG52a21fZGV2aW5p
+dF9mdW5jCj4gIGdmMTAwX2RldmluaXQgPSB7Cj4gLSAgICAgICAucHJlaW5pdCA9IG52NTBfZGV2
+aW5pdF9wcmVpbml0LAo+ICsgICAgICAgLnByZWluaXQgPSBnZjEwMF9kZXZpbml0X3ByZWluaXQs
+Cj4gICAgICAgICAuaW5pdCA9IG52NTBfZGV2aW5pdF9pbml0LAo+ICAgICAgICAgLnBvc3QgPSBu
+djA0X2RldmluaXRfcG9zdCwKPiAgICAgICAgIC5wbGxfc2V0ID0gZ2YxMDBfZGV2aW5pdF9wbGxf
+c2V0LAo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9kZXZpbml0L2dtMTA3
+LmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9kZXZpbml0L2dtMTA3LmMKPiBpbmRleCAyYmU5
+OGJkLi4yOGNhMDFiIDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Rldmlu
+aXQvZ20xMDcuYwo+ICsrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2RldmluaXQvZ20xMDcu
+Ywo+IEBAIC00Niw3ICs0Niw3IEBAIGdtMTA3X2RldmluaXRfZGlzYWJsZShzdHJ1Y3QgbnZrbV9k
+ZXZpbml0ICppbml0KQo+Cj4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgbnZrbV9kZXZpbml0X2Z1bmMK
+PiAgZ20xMDdfZGV2aW5pdCA9IHsKPiAtICAgICAgIC5wcmVpbml0ID0gbnY1MF9kZXZpbml0X3By
+ZWluaXQsCj4gKyAgICAgICAucHJlaW5pdCA9IGdmMTAwX2RldmluaXRfcHJlaW5pdCwKPiAgICAg
+ICAgIC5pbml0ID0gbnY1MF9kZXZpbml0X2luaXQsCj4gICAgICAgICAucG9zdCA9IG52MDRfZGV2
+aW5pdF9wb3N0LAo+ICAgICAgICAgLnBsbF9zZXQgPSBnZjEwMF9kZXZpbml0X3BsbF9zZXQsCj4g
+ZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2RldmluaXQvZ20yMDQuYyBiL2Ry
+bS9ub3V2ZWF1L252a20vc3ViZGV2L2RldmluaXQvZ20yMDQuYwo+IGluZGV4IDJiOWMzZjEuLjg0
+NDUxZGQgMTAwNjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZGV2aW5pdC9nbTIw
+NC5jCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZGV2aW5pdC9nbTIwNC5jCj4gQEAg
+LTE2MiwxMSArMTYyLDEzIEBAIGdtMjA0X2RldmluaXRfcG9zdChzdHJ1Y3QgbnZrbV9kZXZpbml0
+ICpiYXNlLCBib29sIHBvc3QpCj4KPiAgICAgICAgIC8qIGxvYWQgYW5kIGV4ZWN1dGUgc29tZSBv
+dGhlciB1Y29kZSBpbWFnZSAoYmlvcyB0aGVybT8pICovCj4gICAgICAgICByZXR1cm4gcG11X2xv
+YWQoaW5pdCwgMHgwMSwgcG9zdCwgTlVMTCwgTlVMTCk7Cj4gKwo+ICsKPiAgfQo+Cj4gIHN0YXRp
+YyBjb25zdCBzdHJ1Y3QgbnZrbV9kZXZpbml0X2Z1bmMKPiAgZ20yMDRfZGV2aW5pdCA9IHsKPiAt
+ICAgICAgIC5wcmVpbml0ID0gbnY1MF9kZXZpbml0X3ByZWluaXQsCj4gKyAgICAgICAucHJlaW5p
+dCA9IGdmMTAwX2RldmluaXRfcHJlaW5pdCwKPiAgICAgICAgIC5pbml0ID0gbnY1MF9kZXZpbml0
+X2luaXQsCj4gICAgICAgICAucG9zdCA9IGdtMjA0X2RldmluaXRfcG9zdCwKPiAgICAgICAgIC5w
+bGxfc2V0ID0gZ2YxMDBfZGV2aW5pdF9wbGxfc2V0LAo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVh
+dS9udmttL3N1YmRldi9kZXZpbml0L252NTAuaCBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Rl
+dmluaXQvbnY1MC5oCj4gaW5kZXggNWRlNzBhOC4uMjVkMmFlMyAxMDA2NDQKPiAtLS0gYS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9kZXZpbml0L252NTAuaAo+ICsrKyBiL2RybS9ub3V2ZWF1L252
+a20vc3ViZGV2L2RldmluaXQvbnY1MC5oCj4gQEAgLTIwLDYgKzIwLDcgQEAgaW50ICBnZjEwMF9k
+ZXZpbml0X2N0b3Ioc3RydWN0IG52a21fb2JqZWN0ICosIHN0cnVjdCBudmttX29iamVjdCAqLAo+
+ICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBudmttX29jbGFzcyAqLCB2b2lkICosIHUz
+MiwKPiAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgbnZrbV9vYmplY3QgKiopOwo+ICBp
+bnQgIGdmMTAwX2RldmluaXRfcGxsX3NldChzdHJ1Y3QgbnZrbV9kZXZpbml0ICosIHUzMiwgdTMy
+KTsKPiArdm9pZCBnZjEwMF9kZXZpbml0X3ByZWluaXQoc3RydWN0IG52a21fZGV2aW5pdCAqKTsK
+Pgo+ICB1NjQgIGdtMTA3X2RldmluaXRfZGlzYWJsZShzdHJ1Y3QgbnZrbV9kZXZpbml0ICopOwo+
+ICAjZW5kaWYKPiAtLQo+IDIuNy4xCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
