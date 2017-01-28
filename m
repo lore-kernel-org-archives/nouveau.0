@@ -1,55 +1,109 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] drm/nouveau/devinit/gf100-: try to avoid double-running vbios
- scripts
-Date: Fri, 27 Jan 2017 20:44:14 -0500
-Message-ID: <20170128014414.18691-1-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 97620] [REGRESSION,
+ bisected] KMS can't initialize GeForce GTX 460 after commit
+ a6a0f67ca7aae2e6bec7ebf55d1e4853dc220816
+Date: Sat, 28 Jan 2017 04:03:48 +0000
+Message-ID: <bug-97620-8800-Jl4KI05Ij2@http.bugs.freedesktop.org/>
+References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Alexandre Courbot <acourbot@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1081102976=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VHVybnMgb3V0IHNvbWUgVkJJT1NlcyBkb24ndCBhY3R1YWxseSBzZXQgdGhlIGJpdCBpbiBxdWVz
-dGlvbiBpbiAyMjQwYy4KVXNlIHRoZSBudjUwLXN0eWxlIGRldGVjdGlvbiB0byB0cnkgYXZvaWRp
-bmcgcnVubmluZyB0aGUgdmJpb3MgdHdpY2UuCgpGaXhlczogYTZhMGY2N2NhN2FhICgiZHJtL25v
-dXZlYXUvZGV2aW5pdC9nZjEwMC06IGRldGVjdCBpZiBCSU9TIGludm9rZWQgZGV2aW5pdCIpCkJ1
-Z3ppbGxhOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD05NzYy
-MApDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZyAjIHY0LjYrClNpZ25lZC1vZmYtYnk6IElsaWEg
-TWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KLS0tCgpOb3Qgc3VyZSBpZiB0aGlzIGlzIHNh
-ZmUgdG8gZG8gZXNwIG9uIEdNMjB4KyBib2FyZHM/CgogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bnZrbS9zdWJkZXYvZGV2aW5pdC9nZjEwMC5jIHwgMTkgKysrKysrKysrKysrKysrKysrKwogMSBm
-aWxlIGNoYW5nZWQsIDE5IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9udmttL3N1YmRldi9kZXZpbml0L2dmMTAwLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9kZXZpbml0L2dmMTAwLmMKaW5kZXggOGIxYjM0Yy4uYTU2OGJi
-ZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZGV2aW5p
-dC9nZjEwMC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Rldmlu
-aXQvZ2YxMDAuYwpAQCAtMTAyLDYgKzEwMiwyNSBAQCBnZjEwMF9kZXZpbml0X3ByZWluaXQoc3Ry
-dWN0IG52a21fZGV2aW5pdCAqYmFzZSkKIAkgKiBjYW4gdXNlIGl0IGFzIGEgcmVsaWFibGUgd2F5
-IHRvIGtub3cgd2hldGhlciB3ZSBzaG91bGQgcnVuIGRldmluaXQuCiAJICovCiAJYmFzZS0+cG9z
-dCA9ICgobnZrbV9yZDMyKGRldmljZSwgMHgyMjQwYykgJiBCSVQoMSkpID09IDApOworCisJLyoK
-KwkgKiBIb3dldmVyIHNvbWUgVkJJT1MgaW5pdCBzZXF1ZW5jZXMgbWlzcyB0aGlzIGJpdC4gU28g
-ZmFsbCBiYWNrIHRvCisJICogdGhlIG52NTAgbWV0aG9kIG9mIGNoZWNraW5nIGlmIHRoZSBiaXQg
-aXMgbm90IHNldC4gUnVubmluZyB0aGUKKwkgKiBWQklPUyBtdWx0aXBsZSB0aW1lcyBtYXkgaGF2
-ZSBkZXRyaW1lbnRhbCBlZmZlY3RzLgorCSAqLworCWlmIChiYXNlLT5wb3N0KSB7CisJCXU2NCBk
-aXNhYmxlID0gbnZrbV9kZXZpbml0X2Rpc2FibGUoYmFzZSk7CisJCS8qIG1hZ2ljIHRvIGRldGVj
-dCB3aGV0aGVyIG9yIG5vdCB4ODYgdmJpb3MgY29kZSBoYXMKKwkJICogZXhlY3V0ZWQgdGhlIGRl
-dmluaXQgc2NyaXB0cyB0byBpbml0aWFsaXNlIHRoZQorCQkgKiBib2FyZC4gb25seSB3b3JrcyBp
-ZiB0aGVyZSdzIGEgZGlzcGxheSBlbmdpbmUuCisJCSAqLworCQlpZiAoIShkaXNhYmxlICYgKDFV
-TEwgPDwgTlZLTV9FTkdJTkVfRElTUCkpKSB7CisJCQlpZiAobnZrbV9yZHZnYWMoZGV2aWNlLCAw
-LCAweDAwKSB8fAorCQkJICAgIG52a21fcmR2Z2FjKGRldmljZSwgMCwgMHgxYSkpIHsKKwkJCQli
-YXNlLT5wb3N0ID0gZmFsc2U7CisJCQl9CisJCX0KKwl9CiB9CiAKIHN0YXRpYyBjb25zdCBzdHJ1
-Y3QgbnZrbV9kZXZpbml0X2Z1bmMKLS0gCjIuMTAuMgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============1081102976==
+Content-Type: multipart/alternative; boundary="14855762280.568f29.20954";
+ charset="UTF-8"
+
+
+--14855762280.568f29.20954
+Date: Sat, 28 Jan 2017 04:03:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
+
+--- Comment #33 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Could someone see if https://patchwork.freedesktop.org/patch/135772/ improv=
+es
+the situation?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14855762280.568f29.20954
+Date: Sat, 28 Jan 2017 04:03:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [REGRESSION, bisected] KMS can't initialize GeForce GTX 4=
+60 after commit a6a0f67ca7aae2e6bec7ebf55d1e4853dc220816"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c33">Commen=
+t # 33</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [REGRESSION, bisected] KMS can't initialize GeForce GTX 4=
+60 after commit a6a0f67ca7aae2e6bec7ebf55d1e4853dc220816"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Could someone see if <a href=3D"https://patchwork.freedesktop.=
+org/patch/135772/">https://patchwork.freedesktop.org/patch/135772/</a> impr=
+oves
+the situation?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14855762280.568f29.20954--
+
+--===============1081102976==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1081102976==--
