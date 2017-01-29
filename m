@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99584] XVMC on nv43 class card broken with recent
  mesa + kernel.
-Date: Sun, 29 Jan 2017 07:29:05 +0000
-Message-ID: <bug-99584-8800-nT0AuSqSQn@http.bugs.freedesktop.org/>
+Date: Sun, 29 Jan 2017 07:30:43 +0000
+Message-ID: <bug-99584-8800-XcI0oqKz3a@http.bugs.freedesktop.org/>
 References: <bug-99584-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1134884301=="
+Content-Type: multipart/mixed; boundary="===============1562929799=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99584-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1134884301==
-Content-Type: multipart/alternative; boundary="14856749450.Ef1Fae.27193";
+--===============1562929799==
+Content-Type: multipart/alternative; boundary="14856750430.d49Cd.27193";
  charset="UTF-8"
 
 
---14856749450.Ef1Fae.27193
-Date: Sun, 29 Jan 2017 07:29:05 +0000
+--14856750430.d49Cd.27193
+Date: Sun, 29 Jan 2017 07:30:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99584
 
---- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Created attachment 129208
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129208&action=3Dedit
-current X log
+--- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 129209
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129209&action=3Dedit
+dmesg
+
+added  nouveau.debug=3Dtrace to kernel commandline
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14856749450.Ef1Fae.27193
-Date: Sun, 29 Jan 2017 07:29:05 +0000
+--14856750430.d49Cd.27193
+Date: Sun, 29 Jan 2017 07:30:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +66,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - XVMC on nv43 class card broken with recent mesa + kernel."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99584#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99584#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - XVMC on nv43 class card broken with recent mesa + kernel."
@@ -75,11 +77,13 @@ Auto-Submitted: auto-generated
 randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
 gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129208=
-" name=3D"attach_129208" title=3D"current X log">attachment 129208</a> <a h=
-ref=3D"attachment.cgi?id=3D129208&amp;action=3Dedit" title=3D"current X log=
-">[details]</a></span>
-current X log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129209=
+" name=3D"attach_129209" title=3D"dmesg">attachment 129209</a> <a href=3D"a=
+ttachment.cgi?id=3D129209&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
+/span>
+dmesg
+
+added  nouveau.debug=3Dtrace to kernel commandline</pre>
         </div>
       </p>
 
@@ -94,9 +98,9 @@ current X log</pre>
     </body>
 </html>=
 
---14856749450.Ef1Fae.27193--
+--14856750430.d49Cd.27193--
 
---===============1134884301==
+--===============1562929799==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1134884301==--
+--===============1562929799==--
