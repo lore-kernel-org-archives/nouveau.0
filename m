@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99385] Nouveau produces soft lockups
-Date: Sun, 29 Jan 2017 14:47:01 +0000
-Message-ID: <bug-99385-8800-AaS9v3Mk7D@http.bugs.freedesktop.org/>
+Date: Sun, 29 Jan 2017 15:04:04 +0000
+Message-ID: <bug-99385-8800-Ku5VgH5zvq@http.bugs.freedesktop.org/>
 References: <bug-99385-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2060256302=="
+Content-Type: multipart/mixed; boundary="===============0264959195=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99385-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2060256302==
-Content-Type: multipart/alternative; boundary="14857012211.26E2dd.25489";
+--===============0264959195==
+Content-Type: multipart/alternative; boundary="14857022441.DC7a8Eb.27127";
  charset="UTF-8"
 
 
---14857012211.26E2dd.25489
-Date: Sun, 29 Jan 2017 14:47:01 +0000
+--14857022441.DC7a8Eb.27127
+Date: Sun, 29 Jan 2017 15:04:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,47 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99385
 
---- Comment #1 from celelibi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 129216
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129216&action=3Dedit
-acpidump -z -o acpidump.txt
+Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org
+
+--- Comment #2 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
+Based on your acpidump for an Alienware 15 R3/0GY3V1, BIOS 1.0.8 11/12/2016
+with GTX 1070, I found this in ssdt6.dsl:
+
+        Method (PGOF, 1, Serialized)
+        {
+...
+            If (((\_SB.GGIV (0x01030009) =3D=3D Zero) || (OSYS =3D=3D 0x07D=
+9)))
+            {
+...
+            }
+            Else
+            {
+                LKDS (PIOF)
+            }
+...
+        }
+
+This is a common pattern that is known to give issues. The "LKDS" part seem=
+s to
+cause issues, so you want to force the other code path. As OSYS is 2009 (se=
+t in
+DSDT), try booting with:
+
+ acpi_osi=3D! acpi_osi=3D"Windows 2009"
+
+See also https://bugzilla.kernel.org/show_bug.cgi?id=3D156341
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14857012211.26E2dd.25489
-Date: Sun, 29 Jan 2017 14:47:01 +0000
+--14857022441.DC7a8Eb.27127
+Date: Sun, 29 Jan 2017 15:04:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,28 +86,76 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:peter&#64=
+;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"> <span c=
+lass=3D"fn">Peter Wu</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau produces soft lockups"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99385">bug 99385<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>peter&#64;lekensteyn.nl
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nouveau produces soft lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99385#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99385#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nouveau produces soft lockups"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99385">bug 99385<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-celelibi&#64;gmail.com" title=3D"celelibi&#64;gmail.com">celelibi&#64;gmail=
-.com</a>
+peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
+> <span class=3D"fn">Peter Wu</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129216=
-" name=3D"attach_129216" title=3D"acpidump -z -o acpidump.txt">attachment 1=
-29216</a> <a href=3D"attachment.cgi?id=3D129216&amp;action=3Dedit" title=3D=
-"acpidump -z -o acpidump.txt">[details]</a></span>
-acpidump -z -o acpidump.txt</pre>
+        <pre>Based on your acpidump for an Alienware 15 R3/0GY3V1, BIOS 1.0=
+.8 11/12/2016
+with GTX 1070, I found this in ssdt6.dsl:
+
+        Method (PGOF, 1, Serialized)
+        {
+...
+            If (((\_SB.GGIV (0x01030009) =3D=3D Zero) || (OSYS =3D=3D 0x07D=
+9)))
+            {
+...
+            }
+            Else
+            {
+                LKDS (PIOF)
+            }
+...
+        }
+
+This is a common pattern that is known to give issues. The &quot;LKDS&quot;=
+ part seems to
+cause issues, so you want to force the other code path. As OSYS is 2009 (se=
+t in
+DSDT), try booting with:
+
+ acpi_osi=3D! acpi_osi=3D&quot;Windows 2009&quot;
+
+See also <a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D156341">h=
+ttps://bugzilla.kernel.org/show_bug.cgi?id=3D156341</a></pre>
         </div>
       </p>
 
@@ -91,9 +169,9 @@ acpidump -z -o acpidump.txt</pre>
     </body>
 </html>=
 
---14857012211.26E2dd.25489--
+--14857022441.DC7a8Eb.27127--
 
---===============2060256302==
+--===============0264959195==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +181,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2060256302==--
+--===============0264959195==--
