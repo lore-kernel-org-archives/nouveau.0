@@ -1,120 +1,83 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
-Date: Mon, 30 Jan 2017 19:51:12 +0000
-Message-ID: <bug-99400-8800-SQN3Jdqqf1@http.bugs.freedesktop.org/>
-References: <bug-99400-8800@http.bugs.freedesktop.org/>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: [PATCH] drm/nouveau: gk20a: Turn instmem lock into mutex
+Date: Mon, 30 Jan 2017 21:03:07 +0100
+Message-ID: <20170130200307.18574-1-thierry.reding@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0700489888=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0700489888==
-Content-Type: multipart/alternative; boundary="14858058720.B8CeF01.10488";
- charset="UTF-8"
-
-
---14858058720.B8CeF01.10488
-Date: Mon, 30 Jan 2017 19:51:12 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
-
---- Comment #19 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OH! DUH!
-
-apitrace: warning: glMapBufferRange: MAP_COHERENT_BIT|MAP_WRITE_BIT unsuppo=
-rted
-<https://git.io/vV9kM>
-
-Right, so you need to run this with
-MESA_EXTENSION_OVERRIDE=3D-GL_ARB_buffer_storage. Or find some way to force
-glamor to disable it. apitrace doesn't like it. I'm sure that's why the
-textures are garbage.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14858058720.B8CeF01.10488
-Date: Mon, 30 Jan 2017 19:51:12 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c19">Commen=
-t # 19</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>OH! DUH!
-
-apitrace: warning: glMapBufferRange: MAP_COHERENT_BIT|MAP_WRITE_BIT unsuppo=
-rted
-&lt;<a href=3D"https://git.io/vV9kM">https://git.io/vV9kM</a>&gt;
-
-Right, so you need to run this with
-MESA_EXTENSION_OVERRIDE=3D-GL_ARB_buffer_storage. Or find some way to force
-glamor to disable it. apitrace doesn't like it. I'm sure that's why the
-textures are garbage.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14858058720.B8CeF01.10488--
-
---===============0700489888==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0700489888==--
+RnJvbTogVGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4KClRoZSBnazIwYSBpbXBs
+ZW1lbnRhdGlvbiBvZiBpbnN0YW5jZSBtZW1vcnkgdXNlcyB2bWFwKCkvdnVubWFwKCkgdG8gbWFw
+Cm1lbW9yeSByZWdpb25zIGludG8gdGhlIGtlcm5lbCdzIHZpcnR1YWwgYWRkcmVzcyBzcGFjZS4g
+VGhlc2UgZnVuY3Rpb25zCm1heSBzbGVlcCwgc28gcHJvdGVjdGluZyB0aGVtIGJ5IGEgc3BpbiBs
+b2NrIGlzIG5vdCBzYWZlLiBUaGlzIHRyaWdnZXJzCmEgd2FybmluZyBpZiB0aGUgREVCVUdfQVRP
+TUlDX1NMRUVQIEtjb25maWcgb3B0aW9uIGlzIGVuYWJsZWQuIEZpeCB0aGlzCmJ5IHVzaW5nIGEg
+bXV0ZXggaW5zdGVhZC4KClNpZ25lZC1vZmYtYnk6IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5nQG52
+aWRpYS5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaW5zdG1l
+bS9nazIwYS5jIHwgMTkgKysrKysrKystLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDggaW5z
+ZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvaW5zdG1lbS9nazIwYS5jIGIvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvaW5zdG1lbS9nazIwYS5jCmluZGV4IGE2YTdmYTBkNzY3OS4uN2Y1
+MjQ0ZDU3ZDJmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di9pbnN0bWVtL2drMjBhLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJk
+ZXYvaW5zdG1lbS9nazIwYS5jCkBAIC05NCw3ICs5NCw3IEBAIHN0cnVjdCBnazIwYV9pbnN0bWVt
+IHsKIAlzdHJ1Y3QgbnZrbV9pbnN0bWVtIGJhc2U7CiAKIAkvKiBwcm90ZWN0cyB2YWRkcl8qIGFu
+ZCBnazIwYV9pbnN0b2JqOjp2YWRkciogKi8KLQlzcGlubG9ja190IGxvY2s7CisJc3RydWN0IG11
+dGV4IGxvY2s7CiAKIAkvKiBDUFUgbWFwcGluZ3MgTFJVICovCiAJdW5zaWduZWQgaW50IHZhZGRy
+X3VzZTsKQEAgLTE4NCwxMSArMTg0LDEwIEBAIGdrMjBhX2luc3RvYmpfYWNxdWlyZV9pb21tdShz
+dHJ1Y3QgbnZrbV9tZW1vcnkgKm1lbW9yeSkKIAlzdHJ1Y3QgZ2syMGFfaW5zdG1lbSAqaW1lbSA9
+IG5vZGUtPmJhc2UuaW1lbTsKIAlzdHJ1Y3QgbnZrbV9sdGMgKmx0YyA9IGltZW0tPmJhc2Uuc3Vi
+ZGV2LmRldmljZS0+bHRjOwogCWNvbnN0IHU2NCBzaXplID0gbnZrbV9tZW1vcnlfc2l6ZShtZW1v
+cnkpOwotCXVuc2lnbmVkIGxvbmcgZmxhZ3M7CiAKIAludmttX2x0Y19mbHVzaChsdGMpOwogCi0J
+c3Bpbl9sb2NrX2lycXNhdmUoJmltZW0tPmxvY2ssIGZsYWdzKTsKKwltdXRleF9sb2NrKCZpbWVt
+LT5sb2NrKTsKIAogCWlmIChub2RlLT5iYXNlLnZhZGRyKSB7CiAJCWlmICghbm9kZS0+dXNlX2Nw
+dCkgewpAQCAtMjE2LDcgKzIxNSw3IEBAIGdrMjBhX2luc3RvYmpfYWNxdWlyZV9pb21tdShzdHJ1
+Y3QgbnZrbV9tZW1vcnkgKm1lbW9yeSkKIAogb3V0OgogCW5vZGUtPnVzZV9jcHQrKzsKLQlzcGlu
+X3VubG9ja19pcnFyZXN0b3JlKCZpbWVtLT5sb2NrLCBmbGFncyk7CisJbXV0ZXhfdW5sb2NrKCZp
+bWVtLT5sb2NrKTsKIAogCXJldHVybiBub2RlLT5iYXNlLnZhZGRyOwogfQpAQCAtMjM5LDkgKzIz
+OCw4IEBAIGdrMjBhX2luc3RvYmpfcmVsZWFzZV9pb21tdShzdHJ1Y3QgbnZrbV9tZW1vcnkgKm1l
+bW9yeSkKIAlzdHJ1Y3QgZ2syMGFfaW5zdG9ial9pb21tdSAqbm9kZSA9IGdrMjBhX2luc3RvYmpf
+aW9tbXUobWVtb3J5KTsKIAlzdHJ1Y3QgZ2syMGFfaW5zdG1lbSAqaW1lbSA9IG5vZGUtPmJhc2Uu
+aW1lbTsKIAlzdHJ1Y3QgbnZrbV9sdGMgKmx0YyA9IGltZW0tPmJhc2Uuc3ViZGV2LmRldmljZS0+
+bHRjOwotCXVuc2lnbmVkIGxvbmcgZmxhZ3M7CiAKLQlzcGluX2xvY2tfaXJxc2F2ZSgmaW1lbS0+
+bG9jaywgZmxhZ3MpOworCW11dGV4X2xvY2soJmltZW0tPmxvY2spOwogCiAJLyogd2Ugc2hvdWxk
+IGF0IGxlYXN0IGhhdmUgb25lIHVzZXIgdG8gcmVsZWFzZS4uLiAqLwogCWlmIChXQVJOX09OKG5v
+ZGUtPnVzZV9jcHQgPT0gMCkpCkBAIC0yNTIsNyArMjUwLDcgQEAgZ2syMGFfaW5zdG9ial9yZWxl
+YXNlX2lvbW11KHN0cnVjdCBudmttX21lbW9yeSAqbWVtb3J5KQogCQlsaXN0X2FkZF90YWlsKCZu
+b2RlLT52YWRkcl9ub2RlLCAmaW1lbS0+dmFkZHJfbHJ1KTsKIAogb3V0OgotCXNwaW5fdW5sb2Nr
+X2lycXJlc3RvcmUoJmltZW0tPmxvY2ssIGZsYWdzKTsKKwltdXRleF91bmxvY2soJmltZW0tPmxv
+Y2spOwogCiAJd21iKCk7CiAJbnZrbV9sdGNfaW52YWxpZGF0ZShsdGMpOwpAQCAtMzA2LDE5ICsz
+MDQsMTggQEAgZ2syMGFfaW5zdG9ial9kdG9yX2lvbW11KHN0cnVjdCBudmttX21lbW9yeSAqbWVt
+b3J5KQogCXN0cnVjdCBnazIwYV9pbnN0bWVtICppbWVtID0gbm9kZS0+YmFzZS5pbWVtOwogCXN0
+cnVjdCBkZXZpY2UgKmRldiA9IGltZW0tPmJhc2Uuc3ViZGV2LmRldmljZS0+ZGV2OwogCXN0cnVj
+dCBudmttX21tX25vZGUgKnI7Ci0JdW5zaWduZWQgbG9uZyBmbGFnczsKIAlpbnQgaTsKIAogCWlm
+ICh1bmxpa2VseShsaXN0X2VtcHR5KCZub2RlLT5iYXNlLm1lbS5yZWdpb25zKSkpCiAJCWdvdG8g
+b3V0OwogCi0Jc3Bpbl9sb2NrX2lycXNhdmUoJmltZW0tPmxvY2ssIGZsYWdzKTsKKwltdXRleF9s
+b2NrKCZpbWVtLT5sb2NrKTsKIAogCS8qIHZhZGRyIGhhcyBhbHJlYWR5IGJlZW4gcmVjeWNsZWQg
+Ki8KIAlpZiAobm9kZS0+YmFzZS52YWRkcikKIAkJZ2syMGFfaW5zdG9ial9pb21tdV9yZWN5Y2xl
+X3ZhZGRyKG5vZGUpOwogCi0Jc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmaW1lbS0+bG9jaywgZmxh
+Z3MpOworCW11dGV4X3VubG9jaygmaW1lbS0+bG9jayk7CiAKIAlyID0gbGlzdF9maXJzdF9lbnRy
+eSgmbm9kZS0+YmFzZS5tZW0ucmVnaW9ucywgc3RydWN0IG52a21fbW1fbm9kZSwKIAkJCSAgICAg
+cmxfZW50cnkpOwpAQCAtNTgwLDcgKzU3Nyw3IEBAIGdrMjBhX2luc3RtZW1fbmV3KHN0cnVjdCBu
+dmttX2RldmljZSAqZGV2aWNlLCBpbnQgaW5kZXgsCiAJaWYgKCEoaW1lbSA9IGt6YWxsb2Moc2l6
+ZW9mKCppbWVtKSwgR0ZQX0tFUk5FTCkpKQogCQlyZXR1cm4gLUVOT01FTTsKIAludmttX2luc3Rt
+ZW1fY3RvcigmZ2syMGFfaW5zdG1lbSwgZGV2aWNlLCBpbmRleCwgJmltZW0tPmJhc2UpOwotCXNw
+aW5fbG9ja19pbml0KCZpbWVtLT5sb2NrKTsKKwltdXRleF9pbml0KCZpbWVtLT5sb2NrKTsKIAkq
+cGltZW0gPSAmaW1lbS0+YmFzZTsKIAogCS8qIGRvIG5vdCBhbGxvdyBtb3JlIHRoYW4gMU1CIG9m
+IENQVS1tYXBwZWQgaW5zdG1lbSAqLwotLSAKMi4xMS4wCgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZl
+bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
