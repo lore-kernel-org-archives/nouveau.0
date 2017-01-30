@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
-Date: Mon, 30 Jan 2017 12:50:18 +0000
-Message-ID: <bug-99400-8800-zgv2xq9nhe@http.bugs.freedesktop.org/>
-References: <bug-99400-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99147] xorg hangs at initial startup on linux-4.9.0
+Date: Mon, 30 Jan 2017 14:17:35 +0000
+Message-ID: <bug-99147-8800-ZXo82n2LGs@http.bugs.freedesktop.org/>
+References: <bug-99147-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1579998731=="
+Content-Type: multipart/mixed; boundary="===============0166808366=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99147-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,41 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1579998731==
-Content-Type: multipart/alternative; boundary="14857806180.A8F7.9945";
+--===============0166808366==
+Content-Type: multipart/alternative; boundary="14857858550.378EeDD1A.16634";
  charset="UTF-8"
 
 
---14857806180.A8F7.9945
-Date: Mon, 30 Jan 2017 12:50:18 +0000
+--14857858550.378EeDD1A.16634
+Date: Mon, 30 Jan 2017 14:17:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99147
 
---- Comment #17 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> changed:
 
-Updated traces and logs here:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |DUPLICATE
+                 CC|                            |peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org
+             Status|NEW                         |RESOLVED
 
-https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.log
-https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.trace
+--- Comment #11 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
+Seems related indeed, marking as dup.
 
-With this, I see interesting errors like:
-
-Mesa: User error: GL_INVALID_VALUE in glCopyTexSubImage2D(xoffset+width)
-(EE) glamor0: GL error: GL_INVALID_VALUE in glCopyTexSubImage2D(xoffset+wid=
-th)
+*** This bug has been marked as a duplicate of bug 98690 ***
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14857806180.A8F7.9945
-Date: Mon, 30 Jan 2017 12:50:18 +0000
+--14857858550.378EeDD1A.16634
+Date: Mon, 30 Jan 2017 14:17:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,36 +64,73 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:peter&#64=
+;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"> <span c=
+lass=3D"fn">Peter Wu</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - xorg hangs at initial startup on linux-4.9=
+.0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147">bug 99147<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>peter&#64;lekensteyn.nl
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c17">Commen=
-t # 17</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - xorg hangs at initial startup on linux-4.9=
+.0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147#c11">Commen=
+t # 11</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - xorg hangs at initial startup on linux-4.9=
+.0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99147">bug 99147<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
-"> <span class=3D"fn">Olivier Fourdan</span></a>
+peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
+> <span class=3D"fn">Peter Wu</span></a>
 </span></b>
-        <pre>
-Updated traces and logs here:
+        <pre>Seems related indeed, marking as dup.
 
-<a href=3D"https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.log">=
-https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.log</a>
-<a href=3D"https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.trace=
-">https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.trace</a>
-
-With this, I see interesting errors like:
-
-Mesa: User error: GL_INVALID_VALUE in glCopyTexSubImage2D(xoffset+width)
-(EE) glamor0: GL error: GL_INVALID_VALUE in glCopyTexSubImage2D(xoffset+wid=
-th)</pre>
+*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [SKL bisected] System freeze when starting X using kernel=
+ 4.9-rc1 or later"
+   href=3D"show_bug.cgi?id=3D98690">bug 98690</a> ***</pre>
         </div>
       </p>
 
@@ -104,14 +140,13 @@ th)</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14857806180.A8F7.9945--
+--14857858550.378EeDD1A.16634--
 
---===============1579998731==
+--===============0166808366==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -121,4 +156,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1579998731==--
+--===============0166808366==--
