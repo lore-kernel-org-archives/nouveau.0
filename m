@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
-Date: Mon, 30 Jan 2017 19:49:10 +0000
-Message-ID: <bug-99400-8800-usX7UUkA1k@http.bugs.freedesktop.org/>
+Date: Mon, 30 Jan 2017 19:51:12 +0000
+Message-ID: <bug-99400-8800-SQN3Jdqqf1@http.bugs.freedesktop.org/>
 References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1086188771=="
+Content-Type: multipart/mixed; boundary="===============0700489888=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1086188771==
-Content-Type: multipart/alternative; boundary="14858057501.43e45093.10345";
+--===============0700489888==
+Content-Type: multipart/alternative; boundary="14858058720.B8CeF01.10488";
  charset="UTF-8"
 
 
---14858057501.43e45093.10345
-Date: Mon, 30 Jan 2017 19:49:10 +0000
+--14858058720.B8CeF01.10488
+Date: Mon, 30 Jan 2017 19:51:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,31 +35,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
 
---- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Curious. It should perhaps be noted that there are no instances of
-glCopyTexSubImage2D in your trace. That means they happen some other way...
+--- Comment #19 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OH! DUH!
 
-It should be noted that the warning in question can only come out as
+apitrace: warning: glMapBufferRange: MAP_COHERENT_BIT|MAP_WRITE_BIT unsuppo=
+rted
+<https://git.io/vV9kM>
 
-      if (yoffset + subHeight > (GLint) destImage->Height) {
-         _mesa_error(ctx, GL_INVALID_VALUE, "%s(yoffset+height)", func);
-         return GL_TRUE;
-      }
-
-Anyways, looking at your recent trace, while it contains various useful ite=
-ms,
-I can't get any of the framebuffers to show particularly useful data when
-replaying to specific draws on an intel system. Can you find a draw that sh=
-ould
-have a useful image?
+Right, so you need to run this with
+MESA_EXTENSION_OVERRIDE=3D-GL_ARB_buffer_storage. Or find some way to force
+glamor to disable it. apitrace doesn't like it. I'm sure that's why the
+textures are garbage.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14858057501.43e45093.10345
-Date: Mon, 30 Jan 2017 19:49:10 +0000
+--14858058720.B8CeF01.10488
+Date: Mon, 30 Jan 2017 19:51:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,8 +70,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c18">Commen=
-t # 18</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c19">Commen=
+t # 19</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
@@ -87,24 +81,16 @@ t # 18</a>
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Curious. It should perhaps be noted that there are no instance=
-s of
-glCopyTexSubImage2D in your trace. That means they happen some other way...
+        <pre>OH! DUH!
 
-It should be noted that the warning in question can only come out as
+apitrace: warning: glMapBufferRange: MAP_COHERENT_BIT|MAP_WRITE_BIT unsuppo=
+rted
+&lt;<a href=3D"https://git.io/vV9kM">https://git.io/vV9kM</a>&gt;
 
-      if (yoffset + subHeight &gt; (GLint) destImage-&gt;Height) {
-         _mesa_error(ctx, GL_INVALID_VALUE, &quot;%s(yoffset+height)&quot;,=
- func);
-         return GL_TRUE;
-      }
-
-Anyways, looking at your recent trace, while it contains various useful ite=
-ms,
-I can't get any of the framebuffers to show particularly useful data when
-replaying to specific draws on an intel system. Can you find a draw that sh=
-ould
-have a useful image?</pre>
+Right, so you need to run this with
+MESA_EXTENSION_OVERRIDE=3D-GL_ARB_buffer_storage. Or find some way to force
+glamor to disable it. apitrace doesn't like it. I'm sure that's why the
+textures are garbage.</pre>
         </div>
       </p>
 
@@ -119,9 +105,9 @@ have a useful image?</pre>
     </body>
 </html>=
 
---14858057501.43e45093.10345--
+--14858058720.B8CeF01.10488--
 
---===============1086188771==
+--===============0700489888==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -131,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1086188771==--
+--===============0700489888==--
