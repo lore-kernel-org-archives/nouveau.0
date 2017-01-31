@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94367] Under KDE5 menus drawing is corrupted
-Date: Tue, 31 Jan 2017 09:00:26 +0000
-Message-ID: <bug-94367-8800-RVo8WqlaQx@http.bugs.freedesktop.org/>
+Date: Tue, 31 Jan 2017 09:02:08 +0000
+Message-ID: <bug-94367-8800-hRSV2uKxmq@http.bugs.freedesktop.org/>
 References: <bug-94367-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1727017294=="
+Content-Type: multipart/mixed; boundary="===============1936611732=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94367-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1727017294==
-Content-Type: multipart/alternative; boundary="14858532260.a8a629B2.29006";
+--===============1936611732==
+Content-Type: multipart/alternative; boundary="14858533270.6fcC.28612";
  charset="UTF-8"
 
 
---14858532260.a8a629B2.29006
-Date: Tue, 31 Jan 2017 09:00:26 +0000
+--14858533270.6fcC.28612
+Date: Tue, 31 Jan 2017 09:02:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,26 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94367
 
---- Comment #3 from Riku Voipio <riku.voipio-X3B1VOXEql0@public.gmane.org> ---
-I have similar corruption on GK107, and also in the closed:
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98266
-
-Debian stretch up date
-Kernel: 4.9.0-1
-xserver: 1.19.0-3
-nouveau: 1.0.13-1=20
-
-Nothing else seems common with the other reporters but the use of modeset a=
-nd
-kde5.
+--- Comment #4 from Riku Voipio <riku.voipio-X3B1VOXEql0@public.gmane.org> ---
+Created attachment 129248
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129248&action=3Dedit
+Debian xorg.0.log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14858532260.a8a629B2.29006
-Date: Tue, 31 Jan 2017 09:00:26 +0000
+--14858533270.6fcC.28612
+Date: Tue, 31 Jan 2017 09:02:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Under KDE5 menus drawing is corrupted"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94367#c3">Comment=
- # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94367#c4">Comment=
+ # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Under KDE5 menus drawing is corrupted"
@@ -82,23 +73,11 @@ Auto-Submitted: auto-generated
 riku.voipio&#64;iki.fi" title=3D"Riku Voipio &lt;riku.voipio&#64;iki.fi&gt;=
 "> <span class=3D"fn">Riku Voipio</span></a>
 </span></b>
-        <pre>I have similar corruption on GK107, and also in the closed:
-
-<a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Geforce GTX 960: display corruption under KDE =
-Plasma"
-   href=3D"show_bug.cgi?id=3D98266">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D98266</a>
-
-Debian stretch up date
-Kernel: 4.9.0-1
-xserver: 1.19.0-3
-nouveau: 1.0.13-1=20
-
-Nothing else seems common with the other reporters but the use of modeset a=
-nd
-kde5.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129248=
+" name=3D"attach_129248" title=3D"Debian xorg.0.log">attachment 129248</a> =
+<a href=3D"attachment.cgi?id=3D129248&amp;action=3Dedit" title=3D"Debian xo=
+rg.0.log">[details]</a></span>
+Debian xorg.0.log</pre>
         </div>
       </p>
 
@@ -112,9 +91,9 @@ kde5.</pre>
     </body>
 </html>=
 
---14858532260.a8a629B2.29006--
+--14858533270.6fcC.28612--
 
---===============1727017294==
+--===============1936611732==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1727017294==--
+--===============1936611732==--
