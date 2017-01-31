@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
-Date: Tue, 31 Jan 2017 12:37:26 +0000
-Message-ID: <bug-99400-8800-jhj5iur4JD@http.bugs.freedesktop.org/>
-References: <bug-99400-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97620] [REGRESSION,
+ bisected] KMS can't initialize GeForce GTX 460 after commit
+ a6a0f67ca7aae2e6bec7ebf55d1e4853dc220816
+Date: Tue, 31 Jan 2017 14:50:08 +0000
+Message-ID: <bug-97620-8800-ufKk6JyM9Y@http.bugs.freedesktop.org/>
+References: <bug-97620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0213900131=="
+Content-Type: multipart/mixed; boundary="===============0073647854=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,72 +22,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0213900131==
-Content-Type: multipart/alternative; boundary="14858662460.e7EdDfdc9.12936";
+--===============0073647854==
+Content-Type: multipart/alternative; boundary="14858742073.5AbAE0f.24330";
  charset="UTF-8"
 
 
---14858662460.e7EdDfdc9.12936
-Date: Tue, 31 Jan 2017 12:37:26 +0000
+--14858742073.5AbAE0f.24330
+Date: Tue, 31 Jan 2017 14:50:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97620
 
---- Comment #21 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
-(In reply to Olivier Fourdan from comment #20)
+--- Comment #37 from Carl Lucas <carl.lucas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ben Skeggs from comment #36)
+> Are you able to grab a mmiotrace[1] of the NVIDIA binary driver initialis=
+ing
+> this GPU for me please?
 >=20
-> I cannot load the file on nouveau where it was captured, it says
+> Ben.
 >=20
->  | 2 @0 eglGetPlatformDisplayEXT(platform =3D EGL_PLATFORM_GBM_KHR,
-> native_display =3D 0x26926b0, attrib_list =3D {}) =3D 0x26d8250
->  | 2: warning: unsupported eglGetPlatformDisplayEXT call
-> error: failed to create OpenGL 3.1 context.
+> [1] https://nouveau.freedesktop.org/wiki/MmioTrace/
 
-Quick follow up on this, this is because of the way glamor works, it first
-creates an EGL context with some config attributes (which include the OpenGL
-version 3.1) and if it fails, it retries with no config attributes:
-
-https://cgit.freedesktop.org/xorg/xserver/tree/glamor/glamor_egl.c#n819
-
-or for Xwayland:
-
-https://cgit.freedesktop.org/xorg/xserver/tree/hw/xwayland/xwayland-glamor.=
-c#n310
-
-So back to apitrace, as the config attributes specifies OpenGL 3.1, it fails
-and apitrace just stops there. So I changed Xwayland to not do the first ca=
-ll
-(which on this HW returns NULL anyway) and now apitrace is a happy buddy, I=
- can
-replay the trace on nouveau as well.
-
-Same links, updated files:
-
-https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.log
-https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.trace
-
-> For example frame 8932 (toward the end) is interesting imho, [...]
-
-Let's forget about this, now that the new trace can replay on both intel and
-nouveau.
-
-The problem I see is rather that I see no problem in apitrace, the frames l=
-ook
-fine, AFAICT.
-
-And yet the rendering was wrong on screen when I captured the trace...
+Absolutely - I probably won't be able to get to it until this Saturday (2/4)
+though. I'll post the results once I've got them.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14858662460.e7EdDfdc9.12936
-Date: Tue, 31 Jan 2017 12:37:26 +0000
+--14858742073.5AbAE0f.24330
+Date: Tue, 31 Jan 2017 14:50:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -101,67 +71,33 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c21">Commen=
-t # 21</a>
+   title=3D"NEW - [REGRESSION, bisected] KMS can't initialize GeForce GTX 4=
+60 after commit a6a0f67ca7aae2e6bec7ebf55d1e4853dc220816"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620#c37">Commen=
+t # 37</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
+   title=3D"NEW - [REGRESSION, bisected] KMS can't initialize GeForce GTX 4=
+60 after commit a6a0f67ca7aae2e6bec7ebf55d1e4853dc220816"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97620">bug 97620<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
-"> <span class=3D"fn">Olivier Fourdan</span></a>
+carl.lucas&#64;gmail.com" title=3D"Carl Lucas &lt;carl.lucas&#64;gmail.com&=
+gt;"> <span class=3D"fn">Carl Lucas</span></a>
 </span></b>
-        <pre>(In reply to Olivier Fourdan from <a href=3D"show_bug.cgi?id=
-=3D99400#c20">comment #20</a>)
-<span class=3D"quote">&gt;=20
-&gt; I cannot load the file on nouveau where it was captured, it says
+        <pre>(In reply to Ben Skeggs from <a href=3D"show_bug.cgi?id=3D9762=
+0#c36">comment #36</a>)
+<span class=3D"quote">&gt; Are you able to grab a mmiotrace[1] of the NVIDI=
+A binary driver initialising
+&gt; this GPU for me please?
 &gt;=20
-&gt;  | 2 &#64;0 eglGetPlatformDisplayEXT(platform =3D EGL_PLATFORM_GBM_KHR,
-&gt; native_display =3D 0x26926b0, attrib_list =3D {}) =3D 0x26d8250
-&gt;  | 2: warning: unsupported eglGetPlatformDisplayEXT call
-&gt; error: failed to create OpenGL 3.1 context.</span >
+&gt; Ben.
+&gt;=20
+&gt; [1] <a href=3D"https://nouveau.freedesktop.org/wiki/MmioTrace/">https:=
+//nouveau.freedesktop.org/wiki/MmioTrace/</a></span >
 
-Quick follow up on this, this is because of the way glamor works, it first
-creates an EGL context with some config attributes (which include the OpenGL
-version 3.1) and if it fails, it retries with no config attributes:
-
-<a href=3D"https://cgit.freedesktop.org/xorg/xserver/tree/glamor/glamor_egl=
-.c#n819">https://cgit.freedesktop.org/xorg/xserver/tree/glamor/glamor_egl.c=
-#n819</a>
-
-or for Xwayland:
-
-<a href=3D"https://cgit.freedesktop.org/xorg/xserver/tree/hw/xwayland/xwayl=
-and-glamor.c#n310">https://cgit.freedesktop.org/xorg/xserver/tree/hw/xwayla=
-nd/xwayland-glamor.c#n310</a>
-
-So back to apitrace, as the config attributes specifies OpenGL 3.1, it fails
-and apitrace just stops there. So I changed Xwayland to not do the first ca=
-ll
-(which on this HW returns NULL anyway) and now apitrace is a happy buddy, I=
- can
-replay the trace on nouveau as well.
-
-Same links, updated files:
-
-<a href=3D"https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.log">=
-https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.log</a>
-<a href=3D"https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.trace=
-">https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.trace</a>
-
-<span class=3D"quote">&gt; For example frame 8932 (toward the end) is inter=
-esting imho, [...]</span >
-
-Let's forget about this, now that the new trace can replay on both intel and
-nouveau.
-
-The problem I see is rather that I see no problem in apitrace, the frames l=
-ook
-fine, AFAICT.
-
-And yet the rendering was wrong on screen when I captured the trace...</pre>
+Absolutely - I probably won't be able to get to it until this Saturday (2/4)
+though. I'll post the results once I've got them.</pre>
         </div>
       </p>
 
@@ -170,15 +106,14 @@ And yet the rendering was wrong on screen when I captured the trace...</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14858662460.e7EdDfdc9.12936--
+--14858742073.5AbAE0f.24330--
 
---===============0213900131==
+--===============0073647854==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -188,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0213900131==--
+--===============0073647854==--
