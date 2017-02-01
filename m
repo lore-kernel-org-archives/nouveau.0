@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99499] [REGRESSION,
- bisected] KMS hard-freezes around fbcon initialization on NV1A
-Date: Mon, 23 Jan 2017 13:32:18 +0000
-Message-ID: <bug-99499-8800-JZTYXsg5fe@http.bugs.freedesktop.org/>
-References: <bug-99499-8800@http.bugs.freedesktop.org/>
+From: Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>
+Subject: Re: [v3 PATCH 1/3] drm/atomic: Save flip flags in
+	drm_crtct_state
+Date: Wed, 01 Feb 2017 12:17:44 +0200
+Message-ID: <3632355.WsSN60Qz5N@avalon>
+References: <1485656811-4211-1-git-send-email-Andrey.Grodzovsky@amd.com>
+ <2062170.iKGFjiAuil@avalon>
+ <DM5PR12MB1147E9F2CB563F4CC75416B7EA4B0@DM5PR12MB1147.namprd12.prod.outlook.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1010280237=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99499-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <DM5PR12MB1147E9F2CB563F4CC75416B7EA4B0-2J9CzHegvk9IwjGPM8RDJwdYzm3356FpvxpqHgZTriW3zl9H0oFU5g@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,124 +20,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "Grodzovsky, Andrey" <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
+Cc: dc_upstream <dc_upstream-5C7GfCeVMHo@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org" <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1010280237==
-Content-Type: multipart/alternative; boundary="14851783380.f8BB8c01.30156";
- charset="UTF-8"
-
-
---14851783380.f8BB8c01.30156
-Date: Mon, 23 Jan 2017 13:32:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99499
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-          Component|DRM/other                   |Driver/nouveau
-            Product|DRI                         |xorg
-         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |.org                        |rg
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14851783380.f8BB8c01.30156
-Date: Mon, 23 Jan 2017 13:32:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [REGRESSION, bisected] KMS hard-freezes around fbcon init=
-ialization on NV1A"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99499">bug 99499<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>DRM/other
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Product</td>
-           <td>DRI
-           </td>
-           <td>xorg
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14851783380.f8BB8c01.30156--
-
---===============1010280237==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1010280237==--
+SGkgQW5kcmV5LAoKKGJ5IHRoZSB3YXkgdGhlcmUncyBhIHR5cG8gaW4gdGhlIHN1YmplY3QpCgpP
+biBNb25kYXkgMzAgSmFuIDIwMTcgMTk6NDI6MjMgR3JvZHpvdnNreSwgQW5kcmV5IHdyb3RlOgo+
+IE9uIE1vbmRheSwgSmFudWFyeSAzMCwgMjAxNyA2OjA1IEFNIExhdXJlbnQgUGluY2hhcnQgd3Jv
+dGU6Cj4gPiBPbiBTYXR1cmRheSAyOCBKYW4gMjAxNyAyMToyNjo0OSBBbmRyZXkgR3JvZHpvdnNr
+eSB3cm90ZToKPiA+PiBBbGxvd3MgdXNpbmcgYXRvbWljIGZsaXAgaGVscGVycyBmb3IgZHJpdmVy
+cyB1c2luZyBBU1lOQyBmbGlwLgo+ID4+IFJlbW92ZSBBU1lOQ19GTElQIHJlc3RyaWN0aW9uIGlu
+IGhlbHBlcnMgYW5kIGNhY2hlcyB0aGUgcGFnZSBmbGlwCj4gPj4gZmxhZ3MgaW4gZHJtX2NydGNf
+c3RhdGUgdG8gYmUgdXNlZCBpbiB0aGUgbG93IGxldmVsIGRyaXZlcnMuCj4gPj4gCj4gPj4gdjI6
+Cj4gPj4gUmVzZW5kaW5nIHRoZSBwYXRjaCBzaW5jZSB0aGUgb3JpZ2luYWwgd2FzIGJyb2tlbi4K
+PiA+PiAKPiA+PiB2MzoKPiA+PiBTYXZlIGZsYWcgaW4gY3J0Y19zdGF0ZSBpbnN0ZWFkIG9mIHBs
+YW5lX3N0YXRlCj4gPj4gCj4gPj4gU2lnbmVkLW9mZi1ieTogQW5kcmV5IEdyb2R6b3Zza3kgPEFu
+ZHJleS5Hcm9kem92c2t5QGFtZC5jb20+Cj4gPj4gLS0tCj4gPj4gCj4gPj4gIGRyaXZlcnMvZ3B1
+L2RybS9kcm1fYXRvbWljX2hlbHBlci5jIHwgMTkgKysrKystLS0tLS0tLS0tLS0tLQo+ID4+ICBp
+bmNsdWRlL2RybS9kcm1fY3J0Yy5oICAgICAgICAgICAgICB8ICA4ICsrKysrKystCj4gPj4gIGlu
+Y2x1ZGUvZHJtL2RybV9wbGFuZS5oICAgICAgICAgICAgIHwgIDEgKwo+ID4+ICAzIGZpbGVzIGNo
+YW5nZWQsIDEzIGluc2VydGlvbnMoKyksIDE1IGRlbGV0aW9ucygtKQo+ID4+IAo+ID4+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYwo+ID4+IGIvZHJpdmVy
+cy9ncHUvZHJtL2RybV9hdG9taWNfaGVscGVyLmMgaW5kZXggYTRlNTQ3Ny4uMjgwNjVlZSAxMDA2
+NDQKPiA+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYwo+ID4+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jCgpbc25pcF0KCj4gPj4gZGlm
+ZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9jcnRjLmggYi9pbmNsdWRlL2RybS9kcm1fY3J0Yy5o
+IGluZGV4Cj4gPj4gNWM3N2MzZi4uNzY0NTdhNCAxMDA2NDQKPiA+PiAtLS0gYS9pbmNsdWRlL2Ry
+bS9kcm1fY3J0Yy5oCj4gPj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX2NydGMuaAo+ID4+IEBAIC0x
+NjIsMTAgKzE2MiwxNiBAQCBzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgewo+ID4+ICAJICogVGFyZ2V0
+IHZlcnRpY2FsIGJsYW5rIHBlcmlvZCB3aGVuIGEgcGFnZSBmbGlwCj4gPj4gIAkgKiBzaG91bGQg
+dGFrZSBlZmZlY3QuCj4gPj4gIAkgKi8KPiA+PiAgCXUzMiB0YXJnZXRfdmJsYW5rOwo+ID4+ICAJ
+Cj4gPj4gIAkvKioKPiA+PiArCSAqIEBwZmxpcF9mbGFnczoKPiA+PiArCSAqCj4gPj4gKwkgKiBG
+bGlwIHJlbGF0ZWQgY29uZmlnIG9wdGlvbnMKPiA+IAo+ID4gVGhpcyBpc24ndCBkZXRhaWxlZCBl
+bm91Z2guIEkgcHJvcG9zZSBzb21ldGhpbmcgYWxvbmcgdGhlIGxpbmVzIG9mCj4gPiAKPiA+ICJE
+Uk1fTU9ERV9QQUdFX0ZMSVBfKiBwYWdlIGZsaXAgZmxhZ3MsIGFzIHBhc3NlZCB0byB0aGUgcGFn
+ZSBmbGlwIGlvY3RsLgo+ID4gQWx3YXlzIHplcm8gZm9yIGF0b21pYyBjb21taXRzIHRoYXQgZG9u
+J3Qgb3JpZ2luYXRlIGZyb20gYSBwYWdlIGZsaXAKPiA+IGlvY3RsLiIKPiA+IAo+ID4gWW91IHdp
+bGwgdGhlbiBhbHNvIG5lZWQgdG8gcmVzZXQgdGhlIGZpZWxkIHRvIDAgYXQgYW4gYXBwcm9wcmlh
+dGUgcG9pbnQsCj4gPiBhcyBpdCdzIG1vcmUgYW4gYXRvbWljIGNvbW1pdCB0cmFuc2FjdGlvbiBp
+bmZvcm1hdGlvbiB0aGFuIGEgc3RhdGUuIEFwYXJ0Cj4gPiBmcm9tIHRoYXQgdGhpcyBwYXRjaCBs
+b29rcyBnb29kIHRvIG1lLgo+IAo+IFRoYW5rcyBmb3IgeW91ciBjb21tZW50cywgaSBhbSBub3Qg
+c3VyZSBJIHVuZGVyc3RhbmQgd2h5IHRoZSByZXNldCBpcwo+IG5lZWRlZCwgZm9yIGFueSBmdXR1
+cmUgY29tbWl0IG9uIHNhbWUgY3J0YyB0aGUgbmV3IHN0YXRlIHdpbGwgaGF2ZSB0aGUKPiBmaWVs
+ZCBlbXB0eQoKSXQgd29uJ3QsIF9fZHJtX2F0b21pY19oZWxwZXJfY3J0Y19kdXBsaWNhdGVfc3Rh
+dGUoKSBtZW1jcHkncyB0aGUgc3RhdGUsIHNvIAp0aGUgcGFnZSBmbGlwIGZsYWdzIHdpbGwgYmUg
+Y29waWVkIHRvIHRoZSBuZXcgc3RhdGUgdW50aWwgYW5vdGhlciBsZWdhY3kgcGFnZSAKZmxpcCBv
+dmVyd3JpdGVzIHRoZW0uCgo+IGFuZCBpZiBpdCdzIGEgZmxpcCBJT0NUTCB0aGUgZmllbGQgd2ls
+bCBiZSBmaWxsZWQgYXMgbmVlZGVkIGluCj4gcGFnZV9mbGlwX2NvbW1vbiwgb3RoZXJ3aXNlIGl0
+IHdpbGwgc3RheSBlbXB0eS4gSWYgdGhlIGxhc3QgY29tbWl0IG9uIHRoYXQKPiBjcnRjIHdhcyBh
+IGZsaXAgdGhlbiB3aHkgbm90IGtlZXAgdGhpcyBmaWVsZCB3aXRoIHRoZSBiaXRzIHRoYXQgdGhl
+IHVzZXIKPiBtb2RlIHNldCA/CgpUaGUgcGFnZSBmbGlwIGZsYWdzIGFyZSBub3Qgc3RhdGUgaW5m
+b3JtYXRpb24uIFRoZXkgZGVzY3JpYmUgYW4gb3BlcmF0aW9uLCBub3QgCmEgc3RhdGUuIFRoZXkn
+cmUgbmVlZGVkIHdoZW4gcGVyZm9ybWluZyB0aGUgb3BlcmF0aW9uLCBidXQgaWYgd2UgZG9uJ3Qg
+cmVzZXQgCnRoZW0gd2hlbiBpdCBjb21wbGV0ZXMgKGF0IHRoZSBsYXRlc3Qgd2hlbiBkdXBsaWNh
+dGluZyB0aGUgc3RhdGUgZm9yIHRoZSBuZXh0IAphdG9taWMgY29tbWl0LCBidXQgcG9zc2libHkg
+ZWFybGllcikgdGhlcmUncyBhIHJpc2sgdGhhdCBhIGRyaXZlciB3aWxsIAptaXN0YWtlbmx5IHBl
+cmZvcm0gYW4gYXN5bmMgcGFnZSBmbGlwIGR1cmluZyBhIGxhdGVyIG9wZXJhdGlvbi4KCj4gPj4g
+KwkgKi8KPiA+PiArCXUzMiBwZmxpcF9mbGFnczsKCltzbmlwXQoKLS0gClJlZ2FyZHMsCgpMYXVy
+ZW50IFBpbmNoYXJ0CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
