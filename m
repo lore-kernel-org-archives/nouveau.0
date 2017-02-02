@@ -1,160 +1,123 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
-Date: Thu, 02 Feb 2017 06:26:35 +0000
-Message-ID: <bug-99400-8800-xK6TKEOtm1@http.bugs.freedesktop.org/>
-References: <bug-99400-8800@http.bugs.freedesktop.org/>
+From: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v4 1/3] drm/atomic: Save flip flags in drm_crtct_state
+Date: Thu, 2 Feb 2017 11:57:56 -0500
+Message-ID: <CADnq5_M8bPRGeAkG-O+vhDmW6Ce5_arT=u7rXSanc9JvBq-8=A@mail.gmail.com>
+References: <1485968616-4296-1-git-send-email-Andrey.Grodzovsky@amd.com>
+ <1485968616-4296-2-git-send-email-Andrey.Grodzovsky@amd.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0604462975=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1485968616-4296-2-git-send-email-Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Andrey Grodzovsky <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
+Cc: dc_upstream-5C7GfCeVMHo@public.gmane.org, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0604462975==
-Content-Type: multipart/alternative; boundary="14860167951.B86Ec3aBc.2683";
- charset="UTF-8"
-
-
---14860167951.B86Ec3aBc.2683
-Date: Thu, 2 Feb 2017 06:26:35 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
-
---- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Olivier Fourdan from comment #21)
-> Same links, updated files:
->=20
-> https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.log
-> https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.trace
->=20
-> > For example frame 8932 (toward the end) is interesting imho, [...]
->=20
-> Let's forget about this, now that the new trace can replay on both intel =
-and
-> nouveau.
->=20
-> The problem I see is rather that I see no problem in apitrace, the frames
-> look fine, AFAICT.
-
-Hmmm... this is very unfortunate. And furthermore unfortunate is that this
-trace makes use of NPOT textures, which my NV34 doesn't support (at least n=
-ot
-without some pretty nasty workarounds).
-
-If replaying the trace yields the desired results, then this is all for nau=
-ght.
-You can try running
-
-  apitrace dump-images --calls=3D'*/draw' Xwayland.trace
-
-and see if any of the screenshots generated show the artifacts. If not, then
-this is a much more insidious problem.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14860167951.B86Ec3aBc.2683
-Date: Thu, 2 Feb 2017 06:26:35 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c22">Commen=
-t # 22</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Olivier Fourdan from <a href=3D"show_bug.cgi?id=
-=3D99400#c21">comment #21</a>)
-<span class=3D"quote">&gt; Same links, updated files:
-&gt;=20
-&gt; <a href=3D"https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.=
-log">https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.log</a>
-&gt; <a href=3D"https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.=
-trace">https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.trace</a>
-&gt;=20
-&gt; &gt; For example frame 8932 (toward the end) is interesting imho, [...]
-&gt;=20
-&gt; Let's forget about this, now that the new trace can replay on both int=
-el and
-&gt; nouveau.
-&gt;=20
-&gt; The problem I see is rather that I see no problem in apitrace, the fra=
-mes
-&gt; look fine, AFAICT.</span >
-
-Hmmm... this is very unfortunate. And furthermore unfortunate is that this
-trace makes use of NPOT textures, which my NV34 doesn't support (at least n=
-ot
-without some pretty nasty workarounds).
-
-If replaying the trace yields the desired results, then this is all for nau=
-ght.
-You can try running
-
-  apitrace dump-images --calls=3D'*/draw' Xwayland.trace
-
-and see if any of the screenshots generated show the artifacts. If not, then
-this is a much more insidious problem.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14860167951.B86Ec3aBc.2683--
-
---===============0604462975==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0604462975==--
+T24gV2VkLCBGZWIgMSwgMjAxNyBhdCAxMjowMyBQTSwgQW5kcmV5IEdyb2R6b3Zza3kKPEFuZHJl
+eS5Hcm9kem92c2t5QGFtZC5jb20+IHdyb3RlOgo+IEFsbG93cyB1c2luZyBhdG9taWMgZmxpcCBo
+ZWxwZXJzIGZvciBkcml2ZXJzCj4gdXNpbmcgQVNZTkMgZmxpcC4KPiBSZW1vdmUgQVNZTkNfRkxJ
+UCByZXN0cmljdGlvbiBpbiBoZWxwZXJzIGFuZAo+IGNhY2hlcyB0aGUgcGFnZSBmbGlwIGZsYWdz
+IGluIGRybV9jcnRjX3N0YXRlCj4gdG8gYmUgdXNlZCBpbiB0aGUgbG93IGxldmVsIGRyaXZlcnMu
+Cj4KPiB2MjoKPiBSZXNlbmRpbmcgdGhlIHBhdGNoIHNpbmNlIHRoZSBvcmlnaW5hbCB3YXMgYnJv
+a2VuLgo+Cj4gdjM6Cj4gU2F2ZSBmbGFnIGluIGNydGNfc3RhdGUgaW5zdGVhZCBvZiBwbGFuZV9z
+dGF0ZQo+Cj4gdjQ6Cj4gUmVzZXQgdGhlIGZsYWcgYmVmb3JlIHVzaW5nIGFnYWluLgo+Cj4gQ2hh
+bmdlLUlkOiBJMDIxOWMzZWMzZWNjZWI4MjE0M2VlMTc2ZDMwY2I1MGQ5YWE3NmJmMAo+IFNpZ25l
+ZC1vZmYtYnk6IEFuZHJleSBHcm9kem92c2t5IDxBbmRyZXkuR3JvZHpvdnNreUBhbWQuY29tPgoK
+dHlwbyBpbiB0aGUgcGF0Y2ggdGl0bGU6CmRybV9jcnRjdF9zdGF0ZQoKCgo+IC0tLQo+ICBkcml2
+ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYyB8IDIwICsrKysrKy0tLS0tLS0tLS0tLS0t
+Cj4gIGluY2x1ZGUvZHJtL2RybV9jcnRjLmggICAgICAgICAgICAgIHwgIDkgKysrKysrKystCj4g
+IGluY2x1ZGUvZHJtL2RybV9wbGFuZS5oICAgICAgICAgICAgIHwgIDEgKwo+ICAzIGZpbGVzIGNo
+YW5nZWQsIDE1IGluc2VydGlvbnMoKyksIDE1IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jIGIvZHJpdmVycy9ncHUvZHJtL2Ry
+bV9hdG9taWNfaGVscGVyLmMKPiBpbmRleCBhNGU1NDc3Li5mODRiNWFhIDEwMDY0NAo+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jCj4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2RybV9hdG9taWNfaGVscGVyLmMKPiBAQCAtMjczNyw3ICsyNzM3LDggQEAgc3RhdGljIGlu
+dCBwYWdlX2ZsaXBfY29tbW9uKAo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3Ry
+dWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLAo+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgc3RydWN0IGRybV9jcnRjICpjcnRjLAo+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAqZmIsCj4gLSAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBzdHJ1Y3QgZHJtX3BlbmRpbmdfdmJsYW5rX2V2ZW50ICpldmVudCkKPiArICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBkcm1fcGVuZGluZ192YmxhbmtfZXZl
+bnQgKmV2ZW50LAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdWludDMyX3QgZmxh
+Z3MpCj4gIHsKPiAgICAgICAgIHN0cnVjdCBkcm1fcGxhbmUgKnBsYW5lID0gY3J0Yy0+cHJpbWFy
+eTsKPiAgICAgICAgIHN0cnVjdCBkcm1fcGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRlOwo+IEBAIC0y
+NzQ5LDEyICsyNzUwLDEyIEBAIHN0YXRpYyBpbnQgcGFnZV9mbGlwX2NvbW1vbigKPiAgICAgICAg
+ICAgICAgICAgcmV0dXJuIFBUUl9FUlIoY3J0Y19zdGF0ZSk7Cj4KPiAgICAgICAgIGNydGNfc3Rh
+dGUtPmV2ZW50ID0gZXZlbnQ7Cj4gKyAgICAgICBjcnRjX3N0YXRlLT5wZmxpcF9mbGFncyA9IGZs
+YWdzOwo+Cj4gICAgICAgICBwbGFuZV9zdGF0ZSA9IGRybV9hdG9taWNfZ2V0X3BsYW5lX3N0YXRl
+KHN0YXRlLCBwbGFuZSk7Cj4gICAgICAgICBpZiAoSVNfRVJSKHBsYW5lX3N0YXRlKSkKPiAgICAg
+ICAgICAgICAgICAgcmV0dXJuIFBUUl9FUlIocGxhbmVfc3RhdGUpOwo+Cj4gLQo+ICAgICAgICAg
+cmV0ID0gZHJtX2F0b21pY19zZXRfY3J0Y19mb3JfcGxhbmUocGxhbmVfc3RhdGUsIGNydGMpOwo+
+ICAgICAgICAgaWYgKHJldCAhPSAwKQo+ICAgICAgICAgICAgICAgICByZXR1cm4gcmV0Owo+IEBA
+IC0yNzgxLDEwICsyNzgyLDYgQEAgc3RhdGljIGludCBwYWdlX2ZsaXBfY29tbW9uKAo+ICAgKiBQ
+cm92aWRlcyBhIGRlZmF1bHQgJmRybV9jcnRjX2Z1bmNzLnBhZ2VfZmxpcCBpbXBsZW1lbnRhdGlv
+bgo+ICAgKiB1c2luZyB0aGUgYXRvbWljIGRyaXZlciBpbnRlcmZhY2UuCj4gICAqCj4gLSAqIE5v
+dGUgdGhhdCBmb3Igbm93IHNvIGNhbGxlZCBhc3luYyBwYWdlIGZsaXBzIChpLmUuIHVwZGF0ZXMg
+d2hpY2ggYXJlIG5vdAo+IC0gKiBzeW5jaHJvbml6ZWQgdG8gdmJsYW5rKSBhcmUgbm90IHN1cHBv
+cnRlZCwgc2luY2UgdGhlIGF0b21pYyBpbnRlcmZhY2VzIGhhdmUKPiAtICogbm8gcHJvdmlzaW9u
+cyBmb3IgdGhpcyB5ZXQuCj4gLSAqCj4gICAqIFJldHVybnM6Cj4gICAqIFJldHVybnMgMCBvbiBz
+dWNjZXNzLCBuZWdhdGl2ZSBlcnJubyBudW1iZXJzIG9uIGZhaWx1cmUuCj4gICAqCj4gQEAgLTI4
+MDAsOSArMjc5Nyw2IEBAIGludCBkcm1fYXRvbWljX2hlbHBlcl9wYWdlX2ZsaXAoc3RydWN0IGRy
+bV9jcnRjICpjcnRjLAo+ICAgICAgICAgc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlOwo+
+ICAgICAgICAgaW50IHJldCA9IDA7Cj4KPiAtICAgICAgIGlmIChmbGFncyAmIERSTV9NT0RFX1BB
+R0VfRkxJUF9BU1lOQykKPiAtICAgICAgICAgICAgICAgcmV0dXJuIC1FSU5WQUw7Cj4gLQo+ICAg
+ICAgICAgc3RhdGUgPSBkcm1fYXRvbWljX3N0YXRlX2FsbG9jKHBsYW5lLT5kZXYpOwo+ICAgICAg
+ICAgaWYgKCFzdGF0ZSkKPiAgICAgICAgICAgICAgICAgcmV0dXJuIC1FTk9NRU07Cj4gQEAgLTI4
+MTAsNyArMjgwNCw3IEBAIGludCBkcm1fYXRvbWljX2hlbHBlcl9wYWdlX2ZsaXAoc3RydWN0IGRy
+bV9jcnRjICpjcnRjLAo+ICAgICAgICAgc3RhdGUtPmFjcXVpcmVfY3R4ID0gZHJtX21vZGVzZXRf
+bGVnYWN5X2FjcXVpcmVfY3R4KGNydGMpOwo+Cj4gIHJldHJ5Ogo+IC0gICAgICAgcmV0ID0gcGFn
+ZV9mbGlwX2NvbW1vbihzdGF0ZSwgY3J0YywgZmIsIGV2ZW50KTsKPiArICAgICAgIHJldCA9IHBh
+Z2VfZmxpcF9jb21tb24oc3RhdGUsIGNydGMsIGZiLCBldmVudCwgZmxhZ3MpOwo+ICAgICAgICAg
+aWYgKHJldCAhPSAwKQo+ICAgICAgICAgICAgICAgICBnb3RvIGZhaWw7Cj4KPiBAQCAtMjg2NSw5
+ICsyODU5LDYgQEAgaW50IGRybV9hdG9taWNfaGVscGVyX3BhZ2VfZmxpcF90YXJnZXQoCj4gICAg
+ICAgICBzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKmNydGNfc3RhdGU7Cj4gICAgICAgICBpbnQgcmV0
+ID0gMDsKPgo+IC0gICAgICAgaWYgKGZsYWdzICYgRFJNX01PREVfUEFHRV9GTElQX0FTWU5DKQo+
+IC0gICAgICAgICAgICAgICByZXR1cm4gLUVJTlZBTDsKPiAtCj4gICAgICAgICBzdGF0ZSA9IGRy
+bV9hdG9taWNfc3RhdGVfYWxsb2MocGxhbmUtPmRldik7Cj4gICAgICAgICBpZiAoIXN0YXRlKQo+
+ICAgICAgICAgICAgICAgICByZXR1cm4gLUVOT01FTTsKPiBAQCAtMjg3NSw3ICsyODY2LDcgQEAg
+aW50IGRybV9hdG9taWNfaGVscGVyX3BhZ2VfZmxpcF90YXJnZXQoCj4gICAgICAgICBzdGF0ZS0+
+YWNxdWlyZV9jdHggPSBkcm1fbW9kZXNldF9sZWdhY3lfYWNxdWlyZV9jdHgoY3J0Yyk7Cj4KPiAg
+cmV0cnk6Cj4gLSAgICAgICByZXQgPSBwYWdlX2ZsaXBfY29tbW9uKHN0YXRlLCBjcnRjLCBmYiwg
+ZXZlbnQpOwo+ICsgICAgICAgcmV0ID0gcGFnZV9mbGlwX2NvbW1vbihzdGF0ZSwgY3J0YywgZmIs
+IGV2ZW50LCBmbGFncyk7Cj4gICAgICAgICBpZiAocmV0ICE9IDApCj4gICAgICAgICAgICAgICAg
+IGdvdG8gZmFpbDsKPgo+IEBAIC0zMDcyLDYgKzMwNjMsNyBAQCB2b2lkIF9fZHJtX2F0b21pY19o
+ZWxwZXJfY3J0Y19kdXBsaWNhdGVfc3RhdGUoc3RydWN0IGRybV9jcnRjICpjcnRjLAo+ICAgICAg
+ICAgc3RhdGUtPmNvbG9yX21nbXRfY2hhbmdlZCA9IGZhbHNlOwo+ICAgICAgICAgc3RhdGUtPnpw
+b3NfY2hhbmdlZCA9IGZhbHNlOwo+ICAgICAgICAgc3RhdGUtPmV2ZW50ID0gTlVMTDsKPiArICAg
+ICAgIHN0YXRlLT5wZmxpcF9mbGFncyA9IDA7Cj4gIH0KPiAgRVhQT1JUX1NZTUJPTChfX2RybV9h
+dG9taWNfaGVscGVyX2NydGNfZHVwbGljYXRlX3N0YXRlKTsKPgo+IGRpZmYgLS1naXQgYS9pbmNs
+dWRlL2RybS9kcm1fY3J0Yy5oIGIvaW5jbHVkZS9kcm0vZHJtX2NydGMuaAo+IGluZGV4IDVjNzdj
+M2YuLmI3NGRiZTEgMTAwNjQ0Cj4gLS0tIGEvaW5jbHVkZS9kcm0vZHJtX2NydGMuaAo+ICsrKyBi
+L2luY2x1ZGUvZHJtL2RybV9jcnRjLmgKPiBAQCAtMTYyLDEwICsxNjIsMTcgQEAgc3RydWN0IGRy
+bV9jcnRjX3N0YXRlIHsKPiAgICAgICAgICAqIFRhcmdldCB2ZXJ0aWNhbCBibGFuayBwZXJpb2Qg
+d2hlbiBhIHBhZ2UgZmxpcAo+ICAgICAgICAgICogc2hvdWxkIHRha2UgZWZmZWN0Lgo+ICAgICAg
+ICAgICovCj4gLQo+ICAgICAgICAgdTMyIHRhcmdldF92Ymxhbms7Cj4KPiAgICAgICAgIC8qKgo+
+ICsgICAgICAgICogQHBmbGlwX2ZsYWdzOgo+ICsgICAgICAgICoKPiArICAgICAgICAqIERSTV9N
+T0RFX1BBR0VfRkxJUF8qIGZsYWdzLCBhcyBwYXNzZWQgdG8gdGhlIHBhZ2UgZmxpcCBpb2N0bC4K
+PiArICAgICAgICAqIFplcm8gaW4gYW55IG90aGVyIGNhc2UuCj4gKyAgICAgICAgKi8KPiArICAg
+ICAgIHUzMiBwZmxpcF9mbGFnczsKCkkgY2FuIGdvIGVpdGhlciB3YXkgb24gd2hldGhlciB3ZSBj
+YWxsIHRoaXMgcGZsaXAgb3IgcGFnZV9mbGlwLiAgSQpndWVzcyBpdCdzIGJldHRlciB0byBzcGVs
+bCBpdCBvdXQuCgo+ICsKPiArICAgICAgIC8qKgo+ICAgICAgICAgICogQGV2ZW50Ogo+ICAgICAg
+ICAgICoKPiAgICAgICAgICAqIE9wdGlvbmFsIHBvaW50ZXIgdG8gYSBEUk0gZXZlbnQgdG8gc2ln
+bmFsIHVwb24gY29tcGxldGlvbiBvZiB0aGUKPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJt
+X3BsYW5lLmggYi9pbmNsdWRlL2RybS9kcm1fcGxhbmUuaAo+IGluZGV4IGRiM2JiZGUuLjU3NDE0
+YWUgMTAwNjQ0Cj4gLS0tIGEvaW5jbHVkZS9kcm0vZHJtX3BsYW5lLmgKPiArKysgYi9pbmNsdWRl
+L2RybS9kcm1fcGxhbmUuaAo+IEBAIC0xMjIsNiArMTIyLDcgQEAgc3RydWN0IGRybV9wbGFuZV9z
+dGF0ZSB7Cj4gICAgICAgICAgKi8KPiAgICAgICAgIGJvb2wgdmlzaWJsZTsKPgo+ICsKPiAgICAg
+ICAgIHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZTsKPiAgfTsKClVucmVsYXRlZCBodW5r
+LiAgUGxlYXNlIGRyb3AgdGhpcy4KCj4KPiAtLQo+IDEuOS4xCj4KPiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGFtZC1nZnggbWFpbGluZyBsaXN0Cj4g
+YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9hbWQtZ2Z4Cg==
