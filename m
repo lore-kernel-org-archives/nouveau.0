@@ -1,61 +1,160 @@
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: Re: [PATCH v4 1/3] drm/atomic: Save flip flags in drm_crtct_state
-Date: Wed, 1 Feb 2017 19:25:43 +0200
-Message-ID: <20170201172543.GD31595@intel.com>
-References: <1485968616-4296-1-git-send-email-Andrey.Grodzovsky@amd.com>
- <1485968616-4296-2-git-send-email-Andrey.Grodzovsky@amd.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
+Date: Thu, 02 Feb 2017 06:26:35 +0000
+Message-ID: <bug-99400-8800-xK6TKEOtm1@http.bugs.freedesktop.org/>
+References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1485968616-4296-2-git-send-email-Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andrey Grodzovsky <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
-Cc: dc_upstream-5C7GfCeVMHo@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org, daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============0604462975=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBGZWIgMDEsIDIwMTcgYXQgMTI6MDM6MzRQTSAtMDUwMCwgQW5kcmV5IEdyb2R6b3Zz
-a3kgd3JvdGU6Cj4gQWxsb3dzIHVzaW5nIGF0b21pYyBmbGlwIGhlbHBlcnMgZm9yIGRyaXZlcnMK
-PiB1c2luZyBBU1lOQyBmbGlwLgo+IFJlbW92ZSBBU1lOQ19GTElQIHJlc3RyaWN0aW9uIGluIGhl
-bHBlcnMgYW5kCj4gY2FjaGVzIHRoZSBwYWdlIGZsaXAgZmxhZ3MgaW4gZHJtX2NydGNfc3RhdGUK
-PiB0byBiZSB1c2VkIGluIHRoZSBsb3cgbGV2ZWwgZHJpdmVycy4KPiAKPiB2MjoKPiBSZXNlbmRp
-bmcgdGhlIHBhdGNoIHNpbmNlIHRoZSBvcmlnaW5hbCB3YXMgYnJva2VuLgo+IAo+IHYzOgo+IFNh
-dmUgZmxhZyBpbiBjcnRjX3N0YXRlIGluc3RlYWQgb2YgcGxhbmVfc3RhdGUKPiAKPiB2NDoKPiBS
-ZXNldCB0aGUgZmxhZyBiZWZvcmUgdXNpbmcgYWdhaW4uCj4gCj4gQ2hhbmdlLUlkOiBJMDIxOWMz
-ZWMzZWNjZWI4MjE0M2VlMTc2ZDMwY2I1MGQ5YWE3NmJmMAo+IFNpZ25lZC1vZmYtYnk6IEFuZHJl
-eSBHcm9kem92c2t5IDxBbmRyZXkuR3JvZHpvdnNreUBhbWQuY29tPgo+IC0tLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYyB8IDIwICsrKysrKy0tLS0tLS0tLS0tLS0tCj4g
-IGluY2x1ZGUvZHJtL2RybV9jcnRjLmggICAgICAgICAgICAgIHwgIDkgKysrKysrKystCj4gIGlu
-Y2x1ZGUvZHJtL2RybV9wbGFuZS5oICAgICAgICAgICAgIHwgIDEgKwo+ICAzIGZpbGVzIGNoYW5n
-ZWQsIDE1IGluc2VydGlvbnMoKyksIDE1IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1f
-YXRvbWljX2hlbHBlci5jCj4gaW5kZXggYTRlNTQ3Ny4uZjg0YjVhYSAxMDA2NDQKPiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9kcm1fYXRvbWljX2hlbHBlci5jCj4gQEAgLTI3MzcsNyArMjczNyw4IEBAIHN0YXRpYyBpbnQg
-cGFnZV9mbGlwX2NvbW1vbigKPiAgCQkJCXN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSwK
-PiAgCQkJCXN0cnVjdCBkcm1fY3J0YyAqY3J0YywKPiAgCQkJCXN0cnVjdCBkcm1fZnJhbWVidWZm
-ZXIgKmZiLAo+IC0JCQkJc3RydWN0IGRybV9wZW5kaW5nX3ZibGFua19ldmVudCAqZXZlbnQpCj4g
-KwkJCQlzdHJ1Y3QgZHJtX3BlbmRpbmdfdmJsYW5rX2V2ZW50ICpldmVudCwKPiArCQkJCXVpbnQz
-Ml90IGZsYWdzKQo+ICB7Cj4gIAlzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSA9IGNydGMtPnByaW1h
-cnk7Cj4gIAlzdHJ1Y3QgZHJtX3BsYW5lX3N0YXRlICpwbGFuZV9zdGF0ZTsKPiBAQCAtMjc0OSwx
-MiArMjc1MCwxMiBAQCBzdGF0aWMgaW50IHBhZ2VfZmxpcF9jb21tb24oCj4gIAkJcmV0dXJuIFBU
-Ul9FUlIoY3J0Y19zdGF0ZSk7Cj4gIAo+ICAJY3J0Y19zdGF0ZS0+ZXZlbnQgPSBldmVudDsKPiAr
-CWNydGNfc3RhdGUtPnBmbGlwX2ZsYWdzID0gZmxhZ3M7CgpTdGlsbCB3b25kZXJpbmcgd2h5IHdl
-IGNhbid0IGFmZm9yZCB0byBzcGVsbCBvdXQgInBhZ2VfZmxpcCIgY29tcGxldGVseT8KCj4gIAo+
-ICAJcGxhbmVfc3RhdGUgPSBkcm1fYXRvbWljX2dldF9wbGFuZV9zdGF0ZShzdGF0ZSwgcGxhbmUp
-Owo+ICAJaWYgKElTX0VSUihwbGFuZV9zdGF0ZSkpCj4gIAkJcmV0dXJuIFBUUl9FUlIocGxhbmVf
-c3RhdGUpOwo+ICAKPiAtCj4gIAlyZXQgPSBkcm1fYXRvbWljX3NldF9jcnRjX2Zvcl9wbGFuZShw
-bGFuZV9zdGF0ZSwgY3J0Yyk7Cj4gIAlpZiAocmV0ICE9IDApCj4gIAkJcmV0dXJuIHJldDsKCi0t
-IApWaWxsZSBTeXJqw6Rsw6QKSW50ZWwgT1RDCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vYW1kLWdmeAo=
+
+--===============0604462975==
+Content-Type: multipart/alternative; boundary="14860167951.B86Ec3aBc.2683";
+ charset="UTF-8"
+
+
+--14860167951.B86Ec3aBc.2683
+Date: Thu, 2 Feb 2017 06:26:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
+
+--- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Olivier Fourdan from comment #21)
+> Same links, updated files:
+>=20
+> https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.log
+> https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.trace
+>=20
+> > For example frame 8932 (toward the end) is interesting imho, [...]
+>=20
+> Let's forget about this, now that the new trace can replay on both intel =
+and
+> nouveau.
+>=20
+> The problem I see is rather that I see no problem in apitrace, the frames
+> look fine, AFAICT.
+
+Hmmm... this is very unfortunate. And furthermore unfortunate is that this
+trace makes use of NPOT textures, which my NV34 doesn't support (at least n=
+ot
+without some pretty nasty workarounds).
+
+If replaying the trace yields the desired results, then this is all for nau=
+ght.
+You can try running
+
+  apitrace dump-images --calls=3D'*/draw' Xwayland.trace
+
+and see if any of the screenshots generated show the artifacts. If not, then
+this is a much more insidious problem.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14860167951.B86Ec3aBc.2683
+Date: Thu, 2 Feb 2017 06:26:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c22">Commen=
+t # 22</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Olivier Fourdan from <a href=3D"show_bug.cgi?id=
+=3D99400#c21">comment #21</a>)
+<span class=3D"quote">&gt; Same links, updated files:
+&gt;=20
+&gt; <a href=3D"https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.=
+log">https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.log</a>
+&gt; <a href=3D"https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.=
+trace">https://people.freedesktop.org/~ofourdan/bug99400/Xwayland.trace</a>
+&gt;=20
+&gt; &gt; For example frame 8932 (toward the end) is interesting imho, [...]
+&gt;=20
+&gt; Let's forget about this, now that the new trace can replay on both int=
+el and
+&gt; nouveau.
+&gt;=20
+&gt; The problem I see is rather that I see no problem in apitrace, the fra=
+mes
+&gt; look fine, AFAICT.</span >
+
+Hmmm... this is very unfortunate. And furthermore unfortunate is that this
+trace makes use of NPOT textures, which my NV34 doesn't support (at least n=
+ot
+without some pretty nasty workarounds).
+
+If replaying the trace yields the desired results, then this is all for nau=
+ght.
+You can try running
+
+  apitrace dump-images --calls=3D'*/draw' Xwayland.trace
+
+and see if any of the screenshots generated show the artifacts. If not, then
+this is a much more insidious problem.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14860167951.B86Ec3aBc.2683--
+
+--===============0604462975==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0604462975==--
