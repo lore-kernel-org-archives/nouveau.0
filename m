@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99487] [NV110] HP Pavilion 15 with Maxwell 950M
- fails to read BIOS (fix included)
-Date: Fri, 03 Feb 2017 05:19:34 +0000
-Message-ID: <bug-99487-8800-rKB28AY5v6@http.bugs.freedesktop.org/>
-References: <bug-99487-8800@http.bugs.freedesktop.org/>
+From: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v5 0/3] Allow ASYNC flip with atomic helpers.
+Date: Fri, 3 Feb 2017 12:46:18 -0500
+Message-ID: <CADnq5_N74zmu+O-yHMp28+8pihvwYV06mzTfD_NbzZnKJB+r_w@mail.gmail.com>
+References: <1486072591-3893-1-git-send-email-Andrey.Grodzovsky@amd.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1186816512=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99487-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1486072591-3893-1-git-send-email-Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,91 +17,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Andrey Grodzovsky <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
+Cc: dc_upstream-5C7GfCeVMHo@public.gmane.org, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>, "Deucher,
+ Alexander" <Alexander.Deucher-5C7GfCeVMHo@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1186816512==
-Content-Type: multipart/alternative; boundary="14860991740.c8e7Ca70f.10301";
- charset="UTF-8"
-
-
---14860991740.c8e7Ca70f.10301
-Date: Fri, 3 Feb 2017 05:19:34 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99487
-
---- Comment #6 from Ryan Underwood <nemesis-RBwgCYbvQ+vk1uMJSBkQmQ@public.gmane.org> ---
-Indeed, it does seem to work on 4.10-rc5.  But there is a weird FAULT messa=
-ge,
-in case that is of interest?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14860991740.c8e7Ca70f.10301
-Date: Fri, 3 Feb 2017 05:19:34 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV110] HP Pavilion 15 with Maxwell 950M fails to read BI=
-OS (fix included)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99487#c6">Comment=
- # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV110] HP Pavilion 15 with Maxwell 950M fails to read BI=
-OS (fix included)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99487">bug 99487<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nemesis&#64;icequake.net" title=3D"Ryan Underwood &lt;nemesis&#64;icequake.=
-net&gt;"> <span class=3D"fn">Ryan Underwood</span></a>
-</span></b>
-        <pre>Indeed, it does seem to work on 4.10-rc5.  But there is a weir=
-d FAULT message,
-in case that is of interest?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14860991740.c8e7Ca70f.10301--
-
---===============1186816512==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1186816512==--
+T24gVGh1LCBGZWIgMiwgMjAxNyBhdCA0OjU2IFBNLCBBbmRyZXkgR3JvZHpvdnNreQo8QW5kcmV5
+Lkdyb2R6b3Zza3lAYW1kLmNvbT4gd3JvdGU6Cj4gVGhpcyBzZXJpZXMgaXMgYSBmb2xvdy11cCBv
+bgo+IGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvOTUwMTc4Ny8KPgo+IFRoZSBm
+aXJzdCBwYXRjaCBtYWtlcyBjaGFuZ2VzIHRvIGF0b21pYyBoZWxwZXJzIHRvIGFsbG93IGZvciBk
+cml2ZXMgd2l0aCBBU1lOQyBmbGlwIHN1cHBvcnQgdG8gdXNlIHRoZW0uCj4gUGF0Y2ggMiBpcyB0
+byB1c2UgdGhpcyBpbiBBTURHUFUvREMuCj4gUGF0Y2ggMyBpcyBwb3NzaWJsZSBjbGVhbnVwIGlu
+IG5vdXZlYXUva21zIHdobyBzZWVtcyB0byBoYXZlIHRvIGR1cGxpY2F0ZSB0aGUgaGVscGVyIGFz
+IHdlIGRpZCB0byBzdXBwb3J0IEFTWU5DIGZsaXBzLgo+Cj4gdjI6Cj4gUmVzZW5kIGRybS9hdG9t
+aWM6IFNhdmUgZmxpcCBmbGFncyBpbiBkcm1fcGxhbmVfc3RhdGUgc2luY2UgdGhlIG9yaWdpbmFs
+IHBhdGNoIHdhcyBpbmNvbXBsZXRlLgo+IFNxdWFzaCAyIEFNRCBjaGFuZ2VzIGludG8gb25lIHRv
+IG5vdCBicmVhayBjb21waWxhdGlvbi4KPgo+IHYzOgo+IEZvbGxvd2luZyBEYW5pZWwncyBjb21t
+ZW50cywgc2F2ZSBmbGlwIGZsYWdzIGluIGNydGNfc3RhdGUgaW5zdGVhZCBvZiBwbGFuZV9zdGF0
+ZS4KPgo+IHY0Ogo+IExhdXJlbidzIGNvbW1lbnQsIHJlc2V0IGZscCBmbGFncyBiZWZvcmUgdXNp
+bmcgYWdhaW4uCj4gSGFycnkncyBjb21tZW50LCBmaXggaWRlbnRhdGlvbiBpbiBhbWQvZGlzcGxh
+eS4KPgo+IHY1Ogo+IFJlbmFtZSB0aGUgZmxhZywgZml4IHR5cG8gaW4gaGVhZGVyLgoKTG9va3Mg
+Z29vZC4gIFRoZSBzZXJpZXMgaXM6ClJldmlld2VkLWJ5OiBBbGV4IERldWNoZXIgPGFsZXhhbmRl
+ci5kZXVjaGVyQGFtZC5jb20+ClVubGVzcyB0aGVyZSBhcmUgYW55IG9iamVjdGlvbnMgSSdsbCBw
+dXNoIHRvIGRybS1taXNjIHRvZGF5LgoKVGhhbmtzIQoKQWxleAoKPgo+IEFuZHJleSBHcm9kem92
+c2t5ICgzKToKPiAgIGRybS9hdG9taWM6IFNhdmUgZmxpcCBmbGFncyBpbiBkcm1fY3J0Y19zdGF0
+ZQo+ICAgZHJtL25vdXZlYXUva21zL252NTA6IFN3aXRjaCB0byB1c2luZyBhdG9taWMgaGVscGVy
+IGZvciBmbGlwLgo+ICAgZHJtL2FtZC9kaXNwbGF5OiBTd2l0Y2ggdG8gdXNpbmcgYXRvbWljX2hl
+bHBlciBmb3IgZmxpcC4KPgo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfbW9k
+ZS5oICAgICAgICAgICB8ICAgMSAtCj4gIC4uLi9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2Ft
+ZGdwdV9kbV90eXBlcy5jICAgIHwgMTEzICsrKysrLS0tLS0tLS0tLS0tLS0tLQo+ICBkcml2ZXJz
+L2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYyAgICAgICAgICAgICAgICB8ICAyMCArKy0tCj4g
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jICAgICAgICAgICAgIHwgIDg0
+ICsrLS0tLS0tLS0tLS0tLQo+ICBpbmNsdWRlL2RybS9kcm1fY3J0Yy5oICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICB8ICAgOSArLQo+ICA1IGZpbGVzIGNoYW5nZWQsIDQ4IGluc2VydGlvbnMo
+KyksIDE3OSBkZWxldGlvbnMoLSkKPgo+IC0tCj4gMS45LjEKPgo+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gYW1kLWdmeCBtYWlsaW5nIGxpc3QKPiBh
+bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
