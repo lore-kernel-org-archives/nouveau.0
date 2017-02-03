@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99487] [NV110] HP Pavilion 15 with Maxwell 950M
  fails to read BIOS (fix included)
-Date: Fri, 03 Feb 2017 05:19:10 +0000
-Message-ID: <bug-99487-8800-P4ebhJJG1U@http.bugs.freedesktop.org/>
+Date: Fri, 03 Feb 2017 05:19:34 +0000
+Message-ID: <bug-99487-8800-rKB28AY5v6@http.bugs.freedesktop.org/>
 References: <bug-99487-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1424220974=="
+Content-Type: multipart/mixed; boundary="===============1186816512=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99487-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1424220974==
-Content-Type: multipart/alternative; boundary="14860991501.8c0ffdA5.10300";
+--===============1186816512==
+Content-Type: multipart/alternative; boundary="14860991740.c8e7Ca70f.10301";
  charset="UTF-8"
 
 
---14860991501.8c0ffdA5.10300
-Date: Fri, 3 Feb 2017 05:19:10 +0000
+--14860991740.c8e7Ca70f.10301
+Date: Fri, 3 Feb 2017 05:19:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99487
 
---- Comment #5 from Ryan Underwood <nemesis-RBwgCYbvQ+vk1uMJSBkQmQ@public.gmane.org> ---
-Created attachment 129310
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129310&action=3Dedit
-dmesg 4.10-rc5
+--- Comment #6 from Ryan Underwood <nemesis-RBwgCYbvQ+vk1uMJSBkQmQ@public.gmane.org> ---
+Indeed, it does seem to work on 4.10-rc5.  But there is a weird FAULT messa=
+ge,
+in case that is of interest?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14860991501.8c0ffdA5.10300
-Date: Fri, 3 Feb 2017 05:19:10 +0000
+--14860991740.c8e7Ca70f.10301
+Date: Fri, 3 Feb 2017 05:19:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV110] HP Pavilion 15 with Maxwell 950M fails to read BI=
 OS (fix included)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99487#c5">Comment=
- # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99487#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV110] HP Pavilion 15 with Maxwell 950M fails to read BI=
@@ -76,11 +76,9 @@ OS (fix included)"
 nemesis&#64;icequake.net" title=3D"Ryan Underwood &lt;nemesis&#64;icequake.=
 net&gt;"> <span class=3D"fn">Ryan Underwood</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129310=
-" name=3D"attach_129310" title=3D"dmesg 4.10-rc5">attachment 129310</a> <a =
-href=3D"attachment.cgi?id=3D129310&amp;action=3Dedit" title=3D"dmesg 4.10-r=
-c5">[details]</a></span>
-dmesg 4.10-rc5</pre>
+        <pre>Indeed, it does seem to work on 4.10-rc5.  But there is a weir=
+d FAULT message,
+in case that is of interest?</pre>
         </div>
       </p>
 
@@ -94,9 +92,9 @@ dmesg 4.10-rc5</pre>
     </body>
 </html>=
 
---14860991501.8c0ffdA5.10300--
+--14860991740.c8e7Ca70f.10301--
 
---===============1424220974==
+--===============1186816512==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1424220974==--
+--===============1186816512==--
