@@ -1,59 +1,159 @@
-From: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Edward O'Callaghan <funfunctor-dczkZgxz+BNUPWh3PAxdjQ@public.gmane.org>
 Subject: Re: [PATCH v5 0/3] Allow ASYNC flip with atomic helpers.
-Date: Fri, 3 Feb 2017 12:46:18 -0500
-Message-ID: <CADnq5_N74zmu+O-yHMp28+8pihvwYV06mzTfD_NbzZnKJB+r_w@mail.gmail.com>
+Date: Sat, 4 Feb 2017 23:11:49 +1100
+Message-ID: <e784ec98-b96e-2554-40f4-fd4a15dcaabb@folklore1984.net>
 References: <1486072591-3893-1-git-send-email-Andrey.Grodzovsky@amd.com>
+ <CADnq5_N74zmu+O-yHMp28+8pihvwYV06mzTfD_NbzZnKJB+r_w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1486072591-3893-1-git-send-email-Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andrey Grodzovsky <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============2076422059=="
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CADnq5_N74zmu+O-yHMp28+8pihvwYV06mzTfD_NbzZnKJB+r_w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Andrey Grodzovsky <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
 Cc: dc_upstream-5C7GfCeVMHo@public.gmane.org, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>, "Deucher,
  Alexander" <Alexander.Deucher-5C7GfCeVMHo@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBGZWIgMiwgMjAxNyBhdCA0OjU2IFBNLCBBbmRyZXkgR3JvZHpvdnNreQo8QW5kcmV5
-Lkdyb2R6b3Zza3lAYW1kLmNvbT4gd3JvdGU6Cj4gVGhpcyBzZXJpZXMgaXMgYSBmb2xvdy11cCBv
-bgo+IGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvOTUwMTc4Ny8KPgo+IFRoZSBm
-aXJzdCBwYXRjaCBtYWtlcyBjaGFuZ2VzIHRvIGF0b21pYyBoZWxwZXJzIHRvIGFsbG93IGZvciBk
-cml2ZXMgd2l0aCBBU1lOQyBmbGlwIHN1cHBvcnQgdG8gdXNlIHRoZW0uCj4gUGF0Y2ggMiBpcyB0
-byB1c2UgdGhpcyBpbiBBTURHUFUvREMuCj4gUGF0Y2ggMyBpcyBwb3NzaWJsZSBjbGVhbnVwIGlu
-IG5vdXZlYXUva21zIHdobyBzZWVtcyB0byBoYXZlIHRvIGR1cGxpY2F0ZSB0aGUgaGVscGVyIGFz
-IHdlIGRpZCB0byBzdXBwb3J0IEFTWU5DIGZsaXBzLgo+Cj4gdjI6Cj4gUmVzZW5kIGRybS9hdG9t
-aWM6IFNhdmUgZmxpcCBmbGFncyBpbiBkcm1fcGxhbmVfc3RhdGUgc2luY2UgdGhlIG9yaWdpbmFs
-IHBhdGNoIHdhcyBpbmNvbXBsZXRlLgo+IFNxdWFzaCAyIEFNRCBjaGFuZ2VzIGludG8gb25lIHRv
-IG5vdCBicmVhayBjb21waWxhdGlvbi4KPgo+IHYzOgo+IEZvbGxvd2luZyBEYW5pZWwncyBjb21t
-ZW50cywgc2F2ZSBmbGlwIGZsYWdzIGluIGNydGNfc3RhdGUgaW5zdGVhZCBvZiBwbGFuZV9zdGF0
-ZS4KPgo+IHY0Ogo+IExhdXJlbidzIGNvbW1lbnQsIHJlc2V0IGZscCBmbGFncyBiZWZvcmUgdXNp
-bmcgYWdhaW4uCj4gSGFycnkncyBjb21tZW50LCBmaXggaWRlbnRhdGlvbiBpbiBhbWQvZGlzcGxh
-eS4KPgo+IHY1Ogo+IFJlbmFtZSB0aGUgZmxhZywgZml4IHR5cG8gaW4gaGVhZGVyLgoKTG9va3Mg
-Z29vZC4gIFRoZSBzZXJpZXMgaXM6ClJldmlld2VkLWJ5OiBBbGV4IERldWNoZXIgPGFsZXhhbmRl
-ci5kZXVjaGVyQGFtZC5jb20+ClVubGVzcyB0aGVyZSBhcmUgYW55IG9iamVjdGlvbnMgSSdsbCBw
-dXNoIHRvIGRybS1taXNjIHRvZGF5LgoKVGhhbmtzIQoKQWxleAoKPgo+IEFuZHJleSBHcm9kem92
-c2t5ICgzKToKPiAgIGRybS9hdG9taWM6IFNhdmUgZmxpcCBmbGFncyBpbiBkcm1fY3J0Y19zdGF0
-ZQo+ICAgZHJtL25vdXZlYXUva21zL252NTA6IFN3aXRjaCB0byB1c2luZyBhdG9taWMgaGVscGVy
-IGZvciBmbGlwLgo+ICAgZHJtL2FtZC9kaXNwbGF5OiBTd2l0Y2ggdG8gdXNpbmcgYXRvbWljX2hl
-bHBlciBmb3IgZmxpcC4KPgo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfbW9k
-ZS5oICAgICAgICAgICB8ICAgMSAtCj4gIC4uLi9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2Ft
-ZGdwdV9kbV90eXBlcy5jICAgIHwgMTEzICsrKysrLS0tLS0tLS0tLS0tLS0tLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYyAgICAgICAgICAgICAgICB8ICAyMCArKy0tCj4g
-IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jICAgICAgICAgICAgIHwgIDg0
-ICsrLS0tLS0tLS0tLS0tLQo+ICBpbmNsdWRlL2RybS9kcm1fY3J0Yy5oICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICB8ICAgOSArLQo+ICA1IGZpbGVzIGNoYW5nZWQsIDQ4IGluc2VydGlvbnMo
-KyksIDE3OSBkZWxldGlvbnMoLSkKPgo+IC0tCj4gMS45LjEKPgo+IF9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gYW1kLWdmeCBtYWlsaW5nIGxpc3QKPiBh
-bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============2076422059==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="A6i0M7fjIOk04FQ6DSNgGtfVBW06VDLL2"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--A6i0M7fjIOk04FQ6DSNgGtfVBW06VDLL2
+Content-Type: multipart/mixed; boundary="5NDxELS76Iqd721FUwjWR7JAFb8oj6TMg";
+ protected-headers="v1"
+From: Edward O'Callaghan <funfunctor-dczkZgxz+BNUPWh3PAxdjQ@public.gmane.org>
+To: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>,
+ Andrey Grodzovsky <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
+Cc: dc_upstream-5C7GfCeVMHo@public.gmane.org,
+ "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>,
+ Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>,
+ amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>,
+ Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>,
+ "Deucher, Alexander" <Alexander.Deucher-5C7GfCeVMHo@public.gmane.org>,
+ Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Message-ID: <e784ec98-b96e-2554-40f4-fd4a15dcaabb-dczkZgxz+BNUPWh3PAxdjQ@public.gmane.org>
+Subject: Re: [PATCH v5 0/3] Allow ASYNC flip with atomic helpers.
+References: <1486072591-3893-1-git-send-email-Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>
+ <CADnq5_N74zmu+O-yHMp28+8pihvwYV06mzTfD_NbzZnKJB+r_w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CADnq5_N74zmu+O-yHMp28+8pihvwYV06mzTfD_NbzZnKJB+r_w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+
+--5NDxELS76Iqd721FUwjWR7JAFb8oj6TMg
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Reviewed-by: Edward O'Callaghan <funfunctor-dczkZgxz+BNUPWh3PAxdjQ@public.gmane.org>
+
+On 02/04/2017 04:46 AM, Alex Deucher wrote:
+> On Thu, Feb 2, 2017 at 4:56 PM, Andrey Grodzovsky
+> <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org> wrote:
+>> This series is a folow-up on
+>> https://patchwork.kernel.org/patch/9501787/
+>>
+>> The first patch makes changes to atomic helpers to allow for drives wi=
+th ASYNC flip support to use them.
+>> Patch 2 is to use this in AMDGPU/DC.
+>> Patch 3 is possible cleanup in nouveau/kms who seems to have to duplic=
+ate the helper as we did to support ASYNC flips.
+>>
+>> v2:
+>> Resend drm/atomic: Save flip flags in drm_plane_state since the origin=
+al patch was incomplete.
+>> Squash 2 AMD changes into one to not break compilation.
+>>
+>> v3:
+>> Following Daniel's comments, save flip flags in crtc_state instead of =
+plane_state.
+>>
+>> v4:
+>> Lauren's comment, reset flp flags before using again.
+>> Harry's comment, fix identation in amd/display.
+>>
+>> v5:
+>> Rename the flag, fix typo in header.
+>=20
+> Looks good.  The series is:
+> Reviewed-by: Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
+> Unless there are any objections I'll push to drm-misc today.
+>=20
+> Thanks!
+>=20
+> Alex
+>=20
+>>
+>> Andrey Grodzovsky (3):
+>>   drm/atomic: Save flip flags in drm_crtc_state
+>>   drm/nouveau/kms/nv50: Switch to using atomic helper for flip.
+>>   drm/amd/display: Switch to using atomic_helper for flip.
+>>
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h           |   1 -
+>>  .../drm/amd/display/amdgpu_dm/amdgpu_dm_types.c    | 113 +++++-------=
+---------
+>>  drivers/gpu/drm/drm_atomic_helper.c                |  20 ++--
+>>  drivers/gpu/drm/nouveau/nv50_display.c             |  84 ++----------=
+---
+>>  include/drm/drm_crtc.h                             |   9 +-
+>>  5 files changed, 48 insertions(+), 179 deletions(-)
+>>
+>> --
+>> 1.9.1
+>>
+>> _______________________________________________
+>> amd-gfx mailing list
+>> amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+>=20
+
+
+--5NDxELS76Iqd721FUwjWR7JAFb8oj6TMg--
+
+--A6i0M7fjIOk04FQ6DSNgGtfVBW06VDLL2
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJYlcUFAAoJEP4bvbfZuWjbUkQQAIptDsGlarI9jPutVxPXB0Jy
+SOAeI6mzu544qAe5d6eCmcwOfYleeV0Krm2nv1SGN5/apQeBJOzayYr0fuIRl/Mm
+AIbXNMVRGaPpBDUeIFZPs+vH5p3TK86sWSGsgUEqrAyAWBeeFf3t+6/B+E8I4uOg
+izcEbBHew53/WfxRAIP1wxr5/yhAh42gVAD/fr3WJjLfDGW8bVDIN8BX0YAmShd3
+hnlJ9AKKeMW8Up/CH2dYZEOOY1i3tfXooA/E5gBZO1iRx9IOBfQ9DreumI+vpLrV
+CWhra4Oi6uPGSumnWZz6r6fFvC7OoAFVQPQfhA77cHa1YcnA9l9Gd53FA8LlM4qs
+wH11o96nRRxXUGoawEd/LpySOsxZObaDkXT532vF3QMGBw4qjd42YZvDA4GLMwYE
+iTFDYWKTCqt6LEjuilgtZCvJcYTMLD8Eg3IWJF1Q0wMjh6F0FGS/vdlrkRYmXhSU
+j7Tt5f1kDwxSP5d7B06EehhOWbZCBy0TF4QTL1+SqtK5xOQAdba40O8wBFQ+qZiv
+NcXXyuCNOXdEO1vLUeq0XffgRV66Nw/rs2wVUHMlK5lp/oAm/qrEyAYA9TvvFXsl
+z5LmFf8Bv7DTD+940UAMIwtNH1g+S64/sxx8jdIxDY3L3eyd/qYWMEsrEzzwo6W5
+k/Jx7MrPy3zIMY7sWm1t
+=8Zrl
+-----END PGP SIGNATURE-----
+
+--A6i0M7fjIOk04FQ6DSNgGtfVBW06VDLL2--
+
+--===============2076422059==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+
+--===============2076422059==--
