@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99532] Compute shader doesn't give right result
- under some circumstances
-Date: Mon, 06 Feb 2017 12:24:50 +0000
-Message-ID: <bug-99532-8800-qHnT2BCyjx@http.bugs.freedesktop.org/>
-References: <bug-99532-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97367] k520 card produce high volume of IRQ
+Date: Mon, 06 Feb 2017 15:35:11 +0000
+Message-ID: <bug-97367-8800-eiTs4m9Hh1@http.bugs.freedesktop.org/>
+References: <bug-97367-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0017560670=="
+Content-Type: multipart/mixed; boundary="===============0477639726=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99532-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97367-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0017560670==
-Content-Type: multipart/alternative; boundary="14863838900.A76eD3.15397";
+--===============0477639726==
+Content-Type: multipart/alternative; boundary="14863953111.02aAb.32135";
  charset="UTF-8"
 
 
---14863838900.A76eD3.15397
-Date: Mon, 6 Feb 2017 12:24:50 +0000
+--14863953111.02aAb.32135
+Date: Mon, 6 Feb 2017 15:35:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99532
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97367
 
---- Comment #13 from Boyan Ding <stu_dby-KN7UnAbNpbg@public.gmane.org> ---
-Now I doubt if the problem really lies in the atomic operations, even in
-compiler at all. I changed the compute shader a little bit, only letting th=
-read
-(0, 0) to accumulate its result to the ssbo (the dividing factor in histogr=
-am
-fragment shader changed from 20000 to 20). This bypasses atomic operation a=
-nd
-shared memory, but the same problem persists.
-
-I suspect that the input state of compute shader is somehow invalid, and th=
-at
-explains why removing one frame of the trace will magically eliminate the
-problem.
+--- Comment #8 from Mathieu Maret <mmaret-LWXiaffTwBPZJqsBc5GL+g@public.gmane.org> ---
+Disabling MSI interrupts (with config=3D"NvMSI=3D0") reduce the number of I=
+RQ to
+about 1k/s
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14863838900.A76eD3.15397
-Date: Mon, 6 Feb 2017 12:24:50 +0000
+--14863953111.02aAb.32135
+Date: Mon, 6 Feb 2017 15:35:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,34 +61,21 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Compute shader doesn't give right result under some circu=
-mstances"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532#c13">Commen=
-t # 13</a>
+   title=3D"NEW - k520 card produce high volume of IRQ"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367#c8">Comment=
+ # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Compute shader doesn't give right result under some circu=
-mstances"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532">bug 99532<=
+   title=3D"NEW - k520 card produce high volume of IRQ"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367">bug 97367<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stu_dby&#64;126.com" title=3D"Boyan Ding &lt;stu_dby&#64;126.com&gt;"> <spa=
-n class=3D"fn">Boyan Ding</span></a>
+mmaret&#64;genymobile.com" title=3D"Mathieu Maret &lt;mmaret&#64;genymobile=
+.com&gt;"> <span class=3D"fn">Mathieu Maret</span></a>
 </span></b>
-        <pre>Now I doubt if the problem really lies in the atomic operation=
-s, even in
-compiler at all. I changed the compute shader a little bit, only letting th=
-read
-(0, 0) to accumulate its result to the ssbo (the dividing factor in histogr=
-am
-fragment shader changed from 20000 to 20). This bypasses atomic operation a=
-nd
-shared memory, but the same problem persists.
-
-I suspect that the input state of compute shader is somehow invalid, and th=
-at
-explains why removing one frame of the trace will magically eliminate the
-problem.</pre>
+        <pre>Disabling MSI interrupts (with config=3D&quot;NvMSI=3D0&quot;)=
+ reduce the number of IRQ to
+about 1k/s</pre>
         </div>
       </p>
 
@@ -110,14 +85,13 @@ problem.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14863838900.A76eD3.15397--
+--14863953111.02aAb.32135--
 
---===============0017560670==
+--===============0477639726==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0017560670==--
+--===============0477639726==--
