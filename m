@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 97367] k520 card produce high volume of IRQ
-Date: Wed, 08 Feb 2017 15:44:20 +0000
-Message-ID: <bug-97367-8800-7Bk3E2uo64@http.bugs.freedesktop.org/>
+Date: Wed, 08 Feb 2017 16:54:05 +0000
+Message-ID: <bug-97367-8800-7jluULDeXO@http.bugs.freedesktop.org/>
 References: <bug-97367-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1672549494=="
+Content-Type: multipart/mixed; boundary="===============0070898368=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-97367-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1672549494==
-Content-Type: multipart/alternative; boundary="14865686601.eDc73C8.20568";
+--===============0070898368==
+Content-Type: multipart/alternative; boundary="14865728450.A6aB4D7d.25821";
  charset="UTF-8"
 
 
---14865686601.eDc73C8.20568
-Date: Wed, 8 Feb 2017 15:44:20 +0000
+--14865728450.A6aB4D7d.25821
+Date: Wed, 8 Feb 2017 16:54:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D97367
 
---- Comment #9 from Mathieu Maret <mmaret-LWXiaffTwBPZJqsBc5GL+g@public.gmane.org> ---
-Created attachment 129412
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129412&action=3Dedit
-Tracing using ftrace during 1sec
+--- Comment #10 from Mathieu Maret <mmaret-LWXiaffTwBPZJqsBc5GL+g@public.gmane.org> ---
+This issue can be reproduce on 4.10-rc10
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14865686601.eDc73C8.20568
-Date: Wed, 8 Feb 2017 15:44:20 +0000
+--14865728450.A6aB4D7d.25821
+Date: Wed, 8 Feb 2017 16:54:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +60,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - k520 card produce high volume of IRQ"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367#c9">Comment=
- # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - k520 card produce high volume of IRQ"
@@ -73,11 +71,7 @@ Auto-Submitted: auto-generated
 mmaret&#64;genymobile.com" title=3D"Mathieu Maret &lt;mmaret&#64;genymobile=
 .com&gt;"> <span class=3D"fn">Mathieu Maret</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129412=
-" name=3D"attach_129412" title=3D"Tracing using ftrace during 1sec">attachm=
-ent 129412</a> <a href=3D"attachment.cgi?id=3D129412&amp;action=3Dedit" tit=
-le=3D"Tracing using ftrace during 1sec">[details]</a></span>
-Tracing using ftrace during 1sec</pre>
+        <pre>This issue can be reproduce on 4.10-rc10</pre>
         </div>
       </p>
 
@@ -91,9 +85,9 @@ Tracing using ftrace during 1sec</pre>
     </body>
 </html>=
 
---14865686601.eDc73C8.20568--
+--14865728450.A6aB4D7d.25821--
 
---===============1672549494==
+--===============0070898368==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1672549494==--
+--===============0070898368==--
