@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97367] k520 card produce high volume of IRQ
-Date: Wed, 08 Feb 2017 16:54:05 +0000
-Message-ID: <bug-97367-8800-7jluULDeXO@http.bugs.freedesktop.org/>
-References: <bug-97367-8800@http.bugs.freedesktop.org/>
+From: Sampsa Riikonen <sampsa.riikonen-X3B1VOXEql0@public.gmane.org>
+Subject: OpenGL context switching with Noveau
+Date: Wed, 8 Feb 2017 20:38:29 +0200
+Message-ID: <d72cd4f4-cda4-587c-4f0d-6a1a7bfaffdf@iki.fi>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0070898368=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97367-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,82 +18,40 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0070898368==
-Content-Type: multipart/alternative; boundary="14865728450.A6aB4D7d.25821";
- charset="UTF-8"
-
-
---14865728450.A6aB4D7d.25821
-Date: Wed, 8 Feb 2017 16:54:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97367
-
---- Comment #10 from Mathieu Maret <mmaret-LWXiaffTwBPZJqsBc5GL+g@public.gmane.org> ---
-This issue can be reproduce on 4.10-rc10
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14865728450.A6aB4D7d.25821
-Date: Wed, 8 Feb 2017 16:54:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - k520 card produce high volume of IRQ"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367#c10">Commen=
-t # 10</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - k520 card produce high volume of IRQ"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97367">bug 97367<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mmaret&#64;genymobile.com" title=3D"Mathieu Maret &lt;mmaret&#64;genymobile=
-.com&gt;"> <span class=3D"fn">Mathieu Maret</span></a>
-</span></b>
-        <pre>This issue can be reproduce on 4.10-rc10</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14865728450.A6aB4D7d.25821--
-
---===============0070898368==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0070898368==--
+RGVhciBEZXZzLAoKKEkgaG9wZSB0aGlzIHF1ZXN0aW9uIGlzIG5vdCB0aGF0IG11Y2ggT1QgZm9y
+IHRoaXMgbGlzdC4uKQoKTXkgcXVlc3Rpb24gaXMgYWJvdXQgZmFzdCBPcGVuR0wgY29udGV4dCBz
+d2l0Y2hpbmcsIGkuZS4gd2hlbiB0aGVyZSBhcmUgCnNldmVyYWwgcHJvY2Vzc2VzIHVzaW5nIHRo
+ZSBzYW1lIG52aWRpYSBjYXJkLCBlYWNoIG9uZSB3aXRoIHRoZWlyIG93biAKT3BlbkdMIGNvbnRl
+eHQuICBJbiBteSBzcGVjaWZpYyBjYXNlLCBJIGFtIHRyeWluZyB0byBkdW1wIDcyMHAgdmlkZW8g
+CnNpbXVsdGFuZW91c2x5IHRvIG11bHRpcGxlIHdpbmRvd3MgdXNpbmcgT3BlbkdMIHRleHR1cmVz
+LgoKU28sIHRvIGJlZ2luIHdpdGgsIEkgaGF2ZSBhIHByb2Nlc3MgdGhhdCBzcGFucyBjaGlsZCBw
+cm9jZXNzZXMgKCpub3QqIAp0aHJlYWRzLCBpLmUuIHVzaW5nIHRoZSBmb3JrIHN5c3RlbSBjYWxs
+KQoKRWFjaCBvbmUgb2YgdGhlc2UgKG11bHRpKXByb2Nlc3NlcyBoYXMgYSB2aWRlbyBkZWNvZGVy
+IHRoYXQgcHJvZHVjZXMgCmJpdG1hcHMgYXQgMjUgZnBzIHJhdGUuICBJIGFtIGR1bXBpbmcgdGhl
+IGJpdG1hcHMgdG8gb3BlbkdMIHVzaW5nIHBpeGVsIApidWZmZXIgb2JqZWN0cyAoUEJPcykgYW5k
+IHRleHR1cmVzLgoKRWFjaCB0aW1lIHdoZW4gdXBsb2FkaW5nIGEgUEJPIGFuZCBsYXRlciBvbiwg
+d2hlbiBzaG93aW5nIHRoZSB0ZXh0dXJlLCAKZWFjaCAobXVsdGkpcHJvY2VzcyBuZWVkcyB0byBj
+aGFuZ2UgdG8gaXRzIG93biBjb250ZXh0IGJ5IHBlcmZvcm1pbmcgdGhlIApHTFggY2FsbAoKZ2xY
+TWFrZUN1cnJlbnQoZGlzcGxheV9pZCwgd2luZG93X2lkLCBjb250ZXh0X2lkKQoKU28gdGhlcmUg
+aXMgcXVpdGUgYSBiaXQgb2YgY29udGV4dCBzd2l0Y2hpbmcgZ29pbmcgb24uLiEgIElmIHRoZXJl
+IGFyZSAKMzAgd2luZG93cywgdGhhdCdzID4gNzUwIGNvbnRleHQgc3dpdGNoZXMgcGVyIHNlY29u
+ZC4gIEkgYW0gYWJsZSB0byBwdWxsIAp0aGlzIG9mZiB3aXRoIGludGVsIGFuZCBhdGkgZ3JhcGhp
+Y3MgY2FyZHMsIGJ1dCBub3Qgd2l0aCBhbnkgbnZpZGlhIGNhcmQgCih0cmllZCBhIGZldyBvZiB0
+aGVtKSwgbmVpdGhlciB3aXRoIHRoZSBwcm9wcmlldGFyeSBkcml2ZXIgbm9yIHdpdGggbm92ZWF1
+LgoKQXJlIHRoZXJlIGFueSBzcGVjaWZpYyB0cmlja3MgdG8gYWNoaWV2ZSB0aGlzPyAgT3Igc2hv
+dWxkIEkganVzdCB1c2Ugb25lIApjb250ZXh0IGZyb20gb25lIHByb2Nlc3MsIGkuZS4gdXNlIG11
+bHRpdGhyZWFkaW5nIGluc3RlYWQgb2YgCm11bHRpcHJvY2Vzc2luZyBhbmQgYXZvaWQgY29udGV4
+dCBzd2l0Y2hpbmcgYWxsdG9nZXRoZXI/ICAoaXMgdGhlcmUgCnNvbWV0aGluZyBmdW5kYW1lbnRh
+bGx5IHdyb25nIGluIG15IGFwcHJvYWNoIG9mIG11bHRpcHJvY2Vzc2VzIGFuZCAKY29udGV4dCBz
+d2l0Y2hpbmc/KQoKSW50ZXJlc3RpbmdseSwgd2hlbiB1c2luZyBOPjIgbXVsdGlwcm9jZXNzZXMg
+KHNwYW5uZWQgd2l0aCBmb3JrKSwgb25seSAKb25lIG9mIHRoZSB0ZXh0dXJlcyBpcyB1cGRhdGlu
+ZyAtIHRoZSBvdGhlcnMgZnJlZXplLiAgSG93ZXZlciwgd2hlbiAKdXNpbmcgdGhlIHNhbWUgY29k
+ZSBhcyBpbmRlcGVuZGVudGx5IGxhdW5jaGVkIHByb2dyYW1zLCBJIGNhbiBhY2hpZXZlIApOPTEw
+Ky4gIEhvd2V2ZXIsIHRoaXMgc2VlbXMgbm90IHRvIGJlIGFsd2F5cyBzdGFibGUgKHdob2xlIFgg
+c2VydmVyIApmcmVlemVzIHNvbWV0aW1lcykuCgpPbiB0aGUgb3RoZXIgaGFuZCwgSSBjYW4gYWxz
+byB1c2UsIHNheSwgc2V2ZXJhbCB2bGMgY2xpZW50cyB0byBjcmVhdGUgYSAKc2FtZSBraW5kIG9m
+IHNpdHVhdGlvbiBhbmQgaXQgc2VlbXMgdG8gd29yay4KCkF5IGluc2lnaHQgaGlnaGx5IGFwcHJl
+Y2lhdGVkLi4KClJlZ2FyZHMsCgpTYW1wc2EgUmlpa29uZW4KCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
