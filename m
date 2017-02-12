@@ -1,11 +1,13 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] pci/g92: Fix rearm
-Date: Sat, 11 Feb 2017 12:58:17 +0100
-Message-ID: <20170211115817.6711-1-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99532] Compute shader doesn't give right result
+ under some circumstances
+Date: Sun, 12 Feb 2017 18:35:57 +0000
+Message-ID: <bug-99532-8800-GktzeQW1lz@http.bugs.freedesktop.org/>
+References: <bug-99532-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0443049196=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99532-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,130 +18,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-NzA0YTZjMDA4Yjc5NDJiYjdmMzBiYjQzZDJhNmJjYWQ3ZjU0MzY2MiBicm9rZSBwY2kgbXNpIHJl
-YXJtIGZvciBnOTIgR1BVcy4KCmc5MiBuZWVkcyB0aGUgbnY0Nl9wY2lfbXNpX3JlYXJtLCB3aGVy
-ZSBnOTQrIGdwdXMgdXNlZCBudjQwX3BjaV9tc2lfcmVhcm0uCgpSZXBvcnRlZC1ieTogQW5kcmV3
-IFJhbmRyaWFuYXN1bHUgPHJhbmRyaWFuYXN1bHVAZ21haWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBL
-YXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KLS0tCiBkcm0vbm91dmVhdS9pbmNs
-dWRlL252a20vc3ViZGV2L3BjaS5oIHwgIDEgKwogZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2
-aWNlL2Jhc2UuYyB8IDIwICsrKysrKystLS0tLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9w
-Y2kvS2J1aWxkICAgIHwgIDEgKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2c5Mi5jICAg
-ICB8ICAyICstCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvZzk0LmMgICAgIHwgNDkgKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKIDUgZmlsZXMgY2hhbmdlZCwgNjIgaW5z
-ZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvcGNpL2c5NC5jCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvaW5jbHVk
-ZS9udmttL3N1YmRldi9wY2kuaCBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNp
-LmgKaW5kZXggMjU5MmQ4NmEuLmFjMmE2OTU5IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9pbmNs
-dWRlL252a20vc3ViZGV2L3BjaS5oCisrKyBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJk
-ZXYvcGNpLmgKQEAgLTQ0LDYgKzQ0LDcgQEAgaW50IG52NDZfcGNpX25ldyhzdHJ1Y3QgbnZrbV9k
-ZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9wY2kgKiopOwogaW50IG52NGNfcGNpX25ldyhzdHJ1
-Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9wY2kgKiopOwogaW50IGc4NF9wY2lf
-bmV3KHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQsIHN0cnVjdCBudmttX3BjaSAqKik7CiBpbnQg
-ZzkyX3BjaV9uZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fcGNpICoq
-KTsKK2ludCBnOTRfcGNpX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZr
-bV9wY2kgKiopOwogaW50IGdmMTAwX3BjaV9uZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwg
-c3RydWN0IG52a21fcGNpICoqKTsKIGludCBnZjEwNl9wY2lfbmV3KHN0cnVjdCBudmttX2Rldmlj
-ZSAqLCBpbnQsIHN0cnVjdCBudmttX3BjaSAqKik7CiBpbnQgZ2sxMDRfcGNpX25ldyhzdHJ1Y3Qg
-bnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9wY2kgKiopOwpkaWZmIC0tZ2l0IGEvZHJt
-L25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vZW5n
-aW5lL2RldmljZS9iYXNlLmMKaW5kZXggZjQwMjczY2QuLjI3MzU2MmRkIDEwMDY0NAotLS0gYS9k
-cm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jCisrKyBiL2RybS9ub3V2ZWF1L252
-a20vZW5naW5lL2RldmljZS9iYXNlLmMKQEAgLTEwMjUsNyArMTAyNSw3IEBAIG52OTRfY2hpcHNl
-dCA9IHsKIAkubWMgPSBnODRfbWNfbmV3LAogCS5tbXUgPSBudjUwX21tdV9uZXcsCiAJLm14bSA9
-IG52NTBfbXhtX25ldywKLQkucGNpID0gZzkyX3BjaV9uZXcsCisJLnBjaSA9IGc5NF9wY2lfbmV3
-LAogCS50aGVybSA9IGc4NF90aGVybV9uZXcsCiAJLnRpbWVyID0gbnY0MV90aW1lcl9uZXcsCiAJ
-LnZvbHQgPSBudjQwX3ZvbHRfbmV3LApAQCAtMTA1Nyw3ICsxMDU3LDcgQEAgbnY5Nl9jaGlwc2V0
-ID0gewogCS5tYyA9IGc4NF9tY19uZXcsCiAJLm1tdSA9IG52NTBfbW11X25ldywKIAkubXhtID0g
-bnY1MF9teG1fbmV3LAotCS5wY2kgPSBnOTJfcGNpX25ldywKKwkucGNpID0gZzk0X3BjaV9uZXcs
-CiAJLnRoZXJtID0gZzg0X3RoZXJtX25ldywKIAkudGltZXIgPSBudjQxX3RpbWVyX25ldywKIAku
-dm9sdCA9IG52NDBfdm9sdF9uZXcsCkBAIC0xMDg5LDcgKzEwODksNyBAQCBudjk4X2NoaXBzZXQg
-PSB7CiAJLm1jID0gZzk4X21jX25ldywKIAkubW11ID0gbnY1MF9tbXVfbmV3LAogCS5teG0gPSBu
-djUwX214bV9uZXcsCi0JLnBjaSA9IGc5Ml9wY2lfbmV3LAorCS5wY2kgPSBnOTRfcGNpX25ldywK
-IAkudGhlcm0gPSBnODRfdGhlcm1fbmV3LAogCS50aW1lciA9IG52NDFfdGltZXJfbmV3LAogCS52
-b2x0ID0gbnY0MF92b2x0X25ldywKQEAgLTExMjEsNyArMTEyMSw3IEBAIG52YTBfY2hpcHNldCA9
-IHsKIAkubWMgPSBnODRfbWNfbmV3LAogCS5tbXUgPSBudjUwX21tdV9uZXcsCiAJLm14bSA9IG52
-NTBfbXhtX25ldywKLQkucGNpID0gZzkyX3BjaV9uZXcsCisJLnBjaSA9IGc5NF9wY2lfbmV3LAog
-CS50aGVybSA9IGc4NF90aGVybV9uZXcsCiAJLnRpbWVyID0gbnY0MV90aW1lcl9uZXcsCiAJLnZv
-bHQgPSBudjQwX3ZvbHRfbmV3LApAQCAtMTE1Myw3ICsxMTUzLDcgQEAgbnZhM19jaGlwc2V0ID0g
-ewogCS5tYyA9IGd0MjE1X21jX25ldywKIAkubW11ID0gbnY1MF9tbXVfbmV3LAogCS5teG0gPSBu
-djUwX214bV9uZXcsCi0JLnBjaSA9IGc5Ml9wY2lfbmV3LAorCS5wY2kgPSBnOTRfcGNpX25ldywK
-IAkucG11ID0gZ3QyMTVfcG11X25ldywKIAkudGhlcm0gPSBndDIxNV90aGVybV9uZXcsCiAJLnRp
-bWVyID0gbnY0MV90aW1lcl9uZXcsCkBAIC0xMTg3LDcgKzExODcsNyBAQCBudmE1X2NoaXBzZXQg
-PSB7CiAJLm1jID0gZ3QyMTVfbWNfbmV3LAogCS5tbXUgPSBudjUwX21tdV9uZXcsCiAJLm14bSA9
-IG52NTBfbXhtX25ldywKLQkucGNpID0gZzkyX3BjaV9uZXcsCisJLnBjaSA9IGc5NF9wY2lfbmV3
-LAogCS5wbXUgPSBndDIxNV9wbXVfbmV3LAogCS50aGVybSA9IGd0MjE1X3RoZXJtX25ldywKIAku
-dGltZXIgPSBudjQxX3RpbWVyX25ldywKQEAgLTEyMjAsNyArMTIyMCw3IEBAIG52YThfY2hpcHNl
-dCA9IHsKIAkubWMgPSBndDIxNV9tY19uZXcsCiAJLm1tdSA9IG52NTBfbW11X25ldywKIAkubXht
-ID0gbnY1MF9teG1fbmV3LAotCS5wY2kgPSBnOTJfcGNpX25ldywKKwkucGNpID0gZzk0X3BjaV9u
-ZXcsCiAJLnBtdSA9IGd0MjE1X3BtdV9uZXcsCiAJLnRoZXJtID0gZ3QyMTVfdGhlcm1fbmV3LAog
-CS50aW1lciA9IG52NDFfdGltZXJfbmV3LApAQCAtMTI1Myw3ICsxMjUzLDcgQEAgbnZhYV9jaGlw
-c2V0ID0gewogCS5tYyA9IGc5OF9tY19uZXcsCiAJLm1tdSA9IG52NTBfbW11X25ldywKIAkubXht
-ID0gbnY1MF9teG1fbmV3LAotCS5wY2kgPSBnOTJfcGNpX25ldywKKwkucGNpID0gZzk0X3BjaV9u
-ZXcsCiAJLnRoZXJtID0gZzg0X3RoZXJtX25ldywKIAkudGltZXIgPSBudjQxX3RpbWVyX25ldywK
-IAkudm9sdCA9IG52NDBfdm9sdF9uZXcsCkBAIC0xMjg1LDcgKzEyODUsNyBAQCBudmFjX2NoaXBz
-ZXQgPSB7CiAJLm1jID0gZzk4X21jX25ldywKIAkubW11ID0gbnY1MF9tbXVfbmV3LAogCS5teG0g
-PSBudjUwX214bV9uZXcsCi0JLnBjaSA9IGc5Ml9wY2lfbmV3LAorCS5wY2kgPSBnOTRfcGNpX25l
-dywKIAkudGhlcm0gPSBnODRfdGhlcm1fbmV3LAogCS50aW1lciA9IG52NDFfdGltZXJfbmV3LAog
-CS52b2x0ID0gbnY0MF92b2x0X25ldywKQEAgLTEzMTcsNyArMTMxNyw3IEBAIG52YWZfY2hpcHNl
-dCA9IHsKIAkubWMgPSBndDIxNV9tY19uZXcsCiAJLm1tdSA9IG52NTBfbW11X25ldywKIAkubXht
-ID0gbnY1MF9teG1fbmV3LAotCS5wY2kgPSBnOTJfcGNpX25ldywKKwkucGNpID0gZzk0X3BjaV9u
-ZXcsCiAJLnBtdSA9IGd0MjE1X3BtdV9uZXcsCiAJLnRoZXJtID0gZ3QyMTVfdGhlcm1fbmV3LAog
-CS50aW1lciA9IG52NDFfdGltZXJfbmV3LApkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvcGNpL0tidWlsZCBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9LYnVpbGQKaW5k
-ZXggY2RiN2NlMjIuLjg3YmY0MWNlIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9wY2kvS2J1aWxkCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9LYnVpbGQKQEAg
-LTcsNiArNyw3IEBAIG52a20teSArPSBudmttL3N1YmRldi9wY2kvbnY0Ni5vCiBudmttLXkgKz0g
-bnZrbS9zdWJkZXYvcGNpL252NGMubwogbnZrbS15ICs9IG52a20vc3ViZGV2L3BjaS9nODQubwog
-bnZrbS15ICs9IG52a20vc3ViZGV2L3BjaS9nOTIubworbnZrbS15ICs9IG52a20vc3ViZGV2L3Bj
-aS9nOTQubwogbnZrbS15ICs9IG52a20vc3ViZGV2L3BjaS9nZjEwMC5vCiBudmttLXkgKz0gbnZr
-bS9zdWJkZXYvcGNpL2dmMTA2Lm8KIG52a20teSArPSBudmttL3N1YmRldi9wY2kvZ2sxMDQubwpk
-aWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2c5Mi5jIGIvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvcGNpL2c5Mi5jCmluZGV4IDY1NDYwN2UwLi40ODg3NDM1OSAxMDA2NDQK
-LS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2c5Mi5jCisrKyBiL2RybS9ub3V2ZWF1
-L252a20vc3ViZGV2L3BjaS9nOTIuYwpAQCAtMzcsNyArMzcsNyBAQCBnOTJfcGNpX2Z1bmMgPSB7
-CiAJLnJkMzIgPSBudjQwX3BjaV9yZDMyLAogCS53cjA4ID0gbnY0MF9wY2lfd3IwOCwKIAkud3Iz
-MiA9IG52NDBfcGNpX3dyMzIsCi0JLm1zaV9yZWFybSA9IG52NDBfcGNpX21zaV9yZWFybSwKKwku
-bXNpX3JlYXJtID0gbnY0Nl9wY2lfbXNpX3JlYXJtLAogCiAJLnBjaWUuaW5pdCA9IGc4NF9wY2ll
-X2luaXQsCiAJLnBjaWUuc2V0X2xpbmsgPSBnODRfcGNpZV9zZXRfbGluaywKZGlmZiAtLWdpdCBh
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9nOTQuYyBiL2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L3BjaS9nOTQuYwpuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwMC4uMDlhZGIz
-N2EKLS0tIC9kZXYvbnVsbAorKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvZzk0LmMK
-QEAgLTAsMCArMSw0OSBAQAorLyoKKyAqIENvcHlyaWdodCAyMDE1IFJlZCBIYXQgSW5jLgorICoK
-KyAqIFBlcm1pc3Npb24gaXMgaGVyZWJ5IGdyYW50ZWQsIGZyZWUgb2YgY2hhcmdlLCB0byBhbnkg
-cGVyc29uIG9idGFpbmluZyBhCisgKiBjb3B5IG9mIHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0
-ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAodGhlICJTb2Z0d2FyZSIpLAorICogdG8gZGVhbCBpbiB0
-aGUgU29mdHdhcmUgd2l0aG91dCByZXN0cmljdGlvbiwgaW5jbHVkaW5nIHdpdGhvdXQgbGltaXRh
-dGlvbgorICogdGhlIHJpZ2h0cyB0byB1c2UsIGNvcHksIG1vZGlmeSwgbWVyZ2UsIHB1Ymxpc2gs
-IGRpc3RyaWJ1dGUsIHN1YmxpY2Vuc2UsCisgKiBhbmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNv
-ZnR3YXJlLCBhbmQgdG8gcGVybWl0IHBlcnNvbnMgdG8gd2hvbSB0aGUKKyAqIFNvZnR3YXJlIGlz
-IGZ1cm5pc2hlZCB0byBkbyBzbywgc3ViamVjdCB0byB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnM6
-CisgKgorICogVGhlIGFib3ZlIGNvcHlyaWdodCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBu
-b3RpY2Ugc2hhbGwgYmUgaW5jbHVkZWQgaW4KKyAqIGFsbCBjb3BpZXMgb3Igc3Vic3RhbnRpYWwg
-cG9ydGlvbnMgb2YgdGhlIFNvZnR3YXJlLgorICoKKyAqIFRIRSBTT0ZUV0FSRSBJUyBQUk9WSURF
-RCAiQVMgSVMiLCBXSVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBSRVNTIE9SCisgKiBJ
-TVBMSUVELCBJTkNMVURJTkcgQlVUIE5PVCBMSU1JVEVEIFRPIFRIRSBXQVJSQU5USUVTIE9GIE1F
-UkNIQU5UQUJJTElUWSwKKyAqIEZJVE5FU1MgRk9SIEEgUEFSVElDVUxBUiBQVVJQT1NFIEFORCBO
-T05JTkZSSU5HRU1FTlQuICBJTiBOTyBFVkVOVCBTSEFMTAorICogVEhFIENPUFlSSUdIVCBIT0xE
-RVIoUykgT1IgQVVUSE9SKFMpIEJFIExJQUJMRSBGT1IgQU5ZIENMQUlNLCBEQU1BR0VTIE9SCisg
-KiBPVEhFUiBMSUFCSUxJVFksIFdIRVRIRVIgSU4gQU4gQUNUSU9OIE9GIENPTlRSQUNULCBUT1JU
-IE9SIE9USEVSV0lTRSwKKyAqIEFSSVNJTkcgRlJPTSwgT1VUIE9GIE9SIElOIENPTk5FQ1RJT04g
-V0lUSCBUSEUgU09GVFdBUkUgT1IgVEhFIFVTRSBPUgorICogT1RIRVIgREVBTElOR1MgSU4gVEhF
-IFNPRlRXQVJFLgorICoKKyAqIEF1dGhvcnM6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNv
-bT4KKyAqLworI2luY2x1ZGUgInByaXYuaCIKKworc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3Bj
-aV9mdW5jCitnOTRfcGNpX2Z1bmMgPSB7CisJLmluaXQgPSBnODRfcGNpX2luaXQsCisJLnJkMzIg
-PSBudjQwX3BjaV9yZDMyLAorCS53cjA4ID0gbnY0MF9wY2lfd3IwOCwKKwkud3IzMiA9IG52NDBf
-cGNpX3dyMzIsCisJLm1zaV9yZWFybSA9IG52NDBfcGNpX21zaV9yZWFybSwKKworCS5wY2llLmlu
-aXQgPSBnODRfcGNpZV9pbml0LAorCS5wY2llLnNldF9saW5rID0gZzg0X3BjaWVfc2V0X2xpbmss
-CisKKwkucGNpZS5tYXhfc3BlZWQgPSBnODRfcGNpZV9tYXhfc3BlZWQsCisJLnBjaWUuY3VyX3Nw
-ZWVkID0gZzg0X3BjaWVfY3VyX3NwZWVkLAorCisJLnBjaWUuc2V0X3ZlcnNpb24gPSBnODRfcGNp
-ZV9zZXRfdmVyc2lvbiwKKwkucGNpZS52ZXJzaW9uID0gZzg0X3BjaWVfdmVyc2lvbiwKKwkucGNp
-ZS52ZXJzaW9uX3N1cHBvcnRlZCA9IGc5Ml9wY2llX3ZlcnNpb25fc3VwcG9ydGVkLAorfTsKKwor
-aW50CitnOTRfcGNpX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwgaW50IGluZGV4LCBz
-dHJ1Y3QgbnZrbV9wY2kgKipwcGNpKQoreworCXJldHVybiBudmttX3BjaV9uZXdfKCZnOTRfcGNp
-X2Z1bmMsIGRldmljZSwgaW5kZXgsIHBwY2kpOworfQotLSAKMi4xMS4xCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0443049196==
+Content-Type: multipart/alternative; boundary="14869245570.c90EF.1940";
+ charset="UTF-8"
+
+
+--14869245570.c90EF.1940
+Date: Sun, 12 Feb 2017 18:35:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99532
+
+--- Comment #17 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+A few observations:
+
+- Pretty sure you want GL_TEXTURE_FETCH_BARRIER_BIT. Not that this matters =
+for
+nvc0.
+- In addition to this always working on GM107, it *sometimes* works on my
+GK208. Something about card state? Or something in compute insufficiently
+initialized?
+- I tried setting the DEPTH_TEXTURE bit in the TIC with no effect.
+- The GM107 works just as effectively with both old- and new-style TIC form=
+ats.
+- Throwing glFlush or glTextureBarrier into the mix made no difference, so =
+it's
+not a cache issue.
+- Switching to DEPTH24 and DEPTH32F made no difference.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14869245570.c90EF.1940
+Date: Sun, 12 Feb 2017 18:35:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Compute shader doesn't give right result under some circu=
+mstances"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532#c17">Commen=
+t # 17</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Compute shader doesn't give right result under some circu=
+mstances"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532">bug 99532<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>A few observations:
+
+- Pretty sure you want GL_TEXTURE_FETCH_BARRIER_BIT. Not that this matters =
+for
+nvc0.
+- In addition to this always working on GM107, it *sometimes* works on my
+GK208. Something about card state? Or something in compute insufficiently
+initialized?
+- I tried setting the DEPTH_TEXTURE bit in the TIC with no effect.
+- The GM107 works just as effectively with both old- and new-style TIC form=
+ats.
+- Throwing glFlush or glTextureBarrier into the mix made no difference, so =
+it's
+not a cache issue.
+- Switching to DEPTH24 and DEPTH32F made no difference.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14869245570.c90EF.1940--
+
+--===============0443049196==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0443049196==--
