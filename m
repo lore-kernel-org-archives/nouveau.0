@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99799] New: Civilization VI makes nouveau crash on
+Subject: [Bug 99799] Civilization VI makes nouveau crash on
  register allocation
-Date: Mon, 13 Feb 2017 20:27:01 +0000
-Message-ID: <bug-99799-8800@http.bugs.freedesktop.org/>
+Date: Mon, 13 Feb 2017 21:10:13 +0000
+Message-ID: <bug-99799-8800-pZ3Q0o1l45@http.bugs.freedesktop.org/>
+References: <bug-99799-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0787093258=="
+Content-Type: multipart/mixed; boundary="===============0131212675=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99799-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0787093258==
-Content-Type: multipart/alternative; boundary="14870176210.A12E2.19005";
+--===============0131212675==
+Content-Type: multipart/alternative; boundary="14870202130.2cC6F0.21983";
  charset="UTF-8"
 
 
---14870176210.A12E2.19005
-Date: Mon, 13 Feb 2017 20:27:01 +0000
+--14870202130.2cC6F0.21983
+Date: Mon, 13 Feb 2017 21:10:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,48 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99799
 
-            Bug ID: 99799
-           Summary: Civilization VI makes nouveau crash on register
-                    allocation
-           Product: Mesa
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-Civilization IV consistently segfaults on register allocation when loading a
-scenario, regardless if it's actual game or the benchmark mode.
-I am attaching an apitrace [1] leading to the aforementioned segfault.
-Also attaching a stacktrace, line listing of the crashing point and register
-dump [2] obtained by running the game through gdb.
-
-I should also mention that the game sometimes randomly crashes in a peculiar
-way before even reaching the main menu. This report is not for that bug, wh=
-ich
-is not yet properly reported. I am mentioning this because replaying the tr=
-ace
-does sometimes trigger that bug, too. Therefore, be advised that unless the
-trace goes past the main menu, You ought to replay again to reach the point=
- of
-this bug.
-
-[1] https://seriouss.am/etc/civ6-nouveau.trace.xz (apitrace file; xz'ed;
-653MiB; 1050MiB uncompressed)
-[2] https://seriouss.am/etc/civ6-gdb (plaintext; 5.6KiB)
+--- Comment #1 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
+A dump of Nouveau's compiler's[?] debug output, complete with shaders and
+whatnot:
+https://seriouss.am/etc/civ6-shaderdump (plaintext; 635KiB; contains ANSI c=
+olor
+escape sequences all over)
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14870176210.A12E2.19005
-Date: Mon, 13 Feb 2017 20:27:01 +0000
+--14870202130.2cC6F0.21983
+Date: Mon, 13 Feb 2017 21:10:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -86,112 +60,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Civilization VI makes nouveau crash on register allocatio=
 n"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799">99799</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Civilization VI makes nouveau crash on register allocation
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>gediminas&#64;varciai.lt
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Civilization IV consistently segfaults on register allocation =
-when loading a
-scenario, regardless if it's actual game or the benchmark mode.
-I am attaching an apitrace [1] leading to the aforementioned segfault.
-Also attaching a stacktrace, line listing of the crashing point and register
-dump [2] obtained by running the game through gdb.
-
-I should also mention that the game sometimes randomly crashes in a peculiar
-way before even reaching the main menu. This report is not for that bug, wh=
-ich
-is not yet properly reported. I am mentioning this because replaying the tr=
-ace
-does sometimes trigger that bug, too. Therefore, be advised that unless the
-trace goes past the main menu, You ought to replay again to reach the point=
- of
-this bug.
-
-[1] <a href=3D"https://seriouss.am/etc/civ6-nouveau.trace.xz">https://serio=
-uss.am/etc/civ6-nouveau.trace.xz</a> (apitrace file; xz'ed;
-653MiB; 1050MiB uncompressed)
-[2] <a href=3D"https://seriouss.am/etc/civ6-gdb">https://seriouss.am/etc/ci=
-v6-gdb</a> (plaintext; 5.6KiB)</pre>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Civilization VI makes nouveau crash on register allocatio=
+n"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799">bug 99799<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gediminas&#64;varciai.lt" title=3D"Gediminas Jakutis &lt;gediminas&#64;varc=
+iai.lt&gt;"> <span class=3D"fn">Gediminas Jakutis</span></a>
+</span></b>
+        <pre>A dump of Nouveau's compiler's[?] debug output, complete with =
+shaders and
+whatnot:
+<a href=3D"https://seriouss.am/etc/civ6-shaderdump">https://seriouss.am/etc=
+/civ6-shaderdump</a> (plaintext; 635KiB; contains ANSI color
+escape sequences all over)</pre>
         </div>
       </p>
 
@@ -206,9 +99,9 @@ v6-gdb</a> (plaintext; 5.6KiB)</pre>
     </body>
 </html>=
 
---14870176210.A12E2.19005--
+--14870202130.2cC6F0.21983--
 
---===============0787093258==
+--===============0131212675==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -218,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0787093258==--
+--===============0131212675==--
