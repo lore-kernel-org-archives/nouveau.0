@@ -1,15 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: nouveau preventing shutdown after suspend-resume
-Date: Fri, 17 Feb 2017 12:06:26 -0500
-Message-ID: <CAKb7Uvh63a3_MnTYZeVOTZWnFtKiM9D2+Kb-OoQ-D2j4iAytbg@mail.gmail.com>
-References: <CA+A7VXWrzz2wXAswaaYCvnoFy-C9T1OQCdv+WG0vzfb2_SCQnw@mail.gmail.com>
- <CAKb7UviY981Vbbf7h_yFCBB9tKSpznzTTQ40iPtt3THFVzybdg@mail.gmail.com>
- <CA+A7VXXQnL26HQXkUwzfu+q29bq=gwuYSMnOEE6QSPras_B97A@mail.gmail.com>
+From: Shawn Lin <shawn.lin-TNX95d0MmH7DzftRWevZcw@public.gmane.org>
+Subject: Where to know the BAR size of NVIDIA GPU
+Date: Mon, 13 Feb 2017 17:52:23 +0800
+Message-ID: <f46ddf2b-b4f1-1c07-181b-1d08c3e6bdc0@rock-chips.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CA+A7VXXQnL26HQXkUwzfu+q29bq=gwuYSMnOEE6QSPras_B97A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,31 +15,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Jo=C3=A3o_Paulo_Rechi_Vita?= <jprvita-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, =?UTF-8?Q?Jo=C3=A3o_Paulo_Rechi_Vita?= <jprvita-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBGZWIgMTcsIDIwMTcgYXQgMTE6MjIgQU0sIEpvw6NvIFBhdWxvIFJlY2hpIFZpdGEK
-PGpwcnZpdGFAZ21haWwuY29tPiB3cm90ZToKPiBIZWxsbyBJbGlhLAo+Cj4gT24gMTcgRmVicnVh
-cnkgMjAxNyBhdCAxMToxNCwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90
-ZToKPj4gT24gRnJpLCBGZWIgMTcsIDIwMTcgYXQgMTA6NTQgQU0sIEpvw6NvIFBhdWxvIFJlY2hp
-IFZpdGEKPj4gPGpwcnZpdGFAZ21haWwuY29tPiB3cm90ZToKPj4+IEknbSBoYXBweSB0byBmaWxl
-Cj4+PiBhIGJ1Z3ppbGxhIGVudHJ5IGFuZCBwcm92aWRlIGFueSBvdGhlciBuZWVkZWQgaW5mb3Jt
-YXRpb24gb3IgaGVscCB3aXRoCj4+PiB0ZXN0aW5nLiBBcmUgbm91dmVhdSBidWdzIHRyYWNrZWQg
-b24gYnVncy5rZXJuZWwub3JnIG9yIHRoZSBmZG8KPj4+IGJ1Z3ppbGxhPwo+Pgo+PiBOb3V2ZWF1
-IGJ1Z3MgYXJlIHRyYWNrZWQgb24gdGhlIGZkbyBidWd6aWxsYS4gSXQgd291bGQgYXBwZWFyIHRo
-YXQKPj4geW91J3JlIHVzaW5nIGEgNC44IGtlcm5lbC4gRG8gaXNzdWVzIHBlcnNpc3Qgd2l0aCBh
-IDQuMTAga2VybmVsPyBJJ20KPj4gdGhpbmtpbmcgb2YgdXBzdHJlYW0gY29tbWl0IGNhZTlmZjAz
-NmVlLCBidXQgaXQncyBsaWtlbHkgdGhhdCB0aGVyZQo+PiBoYXZlIGFsc28gYmVlbiBvdGhlcnMg
-SSdtIG5vdCB0aGlua2luZyBvZi4KPj4KPgo+IFllcywgYWx0aG91Z2ggdGhlIGxvZ3MgSSBoYXZl
-IHBhc3RlZCB3ZXJlIGluZGVlZCBjb2xsZWN0ZWQgdXNpbmcgYSA0LjgKPiBrZXJuZWwsIHRoZSBw
-cm9ibGVtIHBlcnNpc3RzIHdpdGggYSByZWNlbnQgTGludXMnIHRyZWUgKHY0LjEwLXJjOCArIGEK
-PiBjb3VwbGUgb2YgY29tbWl0cykgd2hpY2ggY29udGFpbnMgY2FlOWZmMDM2ZWUuCgpZb3Ugc2hv
-dWxkIGZpbGUgYSBidWcgd2l0aCBhbGwgdGhlIHJlbGV2YW50IGluZm8uIEJUVywgb2RkIHRoYXQg
-dGhlCmRldmljZSBpcyByZXBvcnRlZCBhcyAxNzljLiAxNzgwLTE3YmYgaXNuJ3QgYWxsb2NhdGVk
-IHRvIGFueXRoaW5nLgpUaGVyZSAqaXMqIGEgMTM5YyBkZXZpY2UsICJHTTEwN00gW0dlRm9yY2Ug
-OTQwTV0iLCBidXQgdGhhdCB3b3VsZAppbXBseSB0aGVyZSdzIGFuIGV4dHJhIDB4MDQwMCBiaXQg
-c2V0LgoKQ2hlZXJzLAoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+SGkgZmxva3MsCgoKSSBoYXZlIGEgcGxhdGZvcm0gdGhhdCBvbmx5IGNvdWxkIHByb3ZpZGUgMzJN
+QiBtZW1vcnkgc3BhY2UgZm9yClBDSWUgZW5kcG9pbnQuIFNvIGlmIEkgd291bGQgbGlrZSB0byB1
+c2UgYSBOVklESUEgR1BVLCBjb3VsZCB5b3UKLG5vdXZlYXUgZm9sa3MsIGtpbmRseSBwb2ludCBt
+ZSB0byB0aGUgcmlnaHQgcHJvZHVjdHMgdGhhdCByZXF1aXJlCmxlc3MgdGhhdCAzMk1CIE1FTSwg
+c28gSSBjb3VsZCBidXkgb25lIGJlZm9yZSBrbm93aW5nIHRoYXQgbXkgcGxhdGZvcm0KY291bGQg
+dXNlIGl0LiA6KQoKClRoYW5rcy4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
