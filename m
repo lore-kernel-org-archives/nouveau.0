@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99532] Compute shader doesn't give right result
  under some circumstances
-Date: Sun, 12 Feb 2017 18:35:57 +0000
-Message-ID: <bug-99532-8800-GktzeQW1lz@http.bugs.freedesktop.org/>
+Date: Mon, 13 Feb 2017 01:31:19 +0000
+Message-ID: <bug-99532-8800-SegzuPUgj8@http.bugs.freedesktop.org/>
 References: <bug-99532-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0443049196=="
+Content-Type: multipart/mixed; boundary="===============1113910872=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99532-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0443049196==
-Content-Type: multipart/alternative; boundary="14869245570.c90EF.1940";
+--===============1113910872==
+Content-Type: multipart/alternative; boundary="14869494790.83cb15948.26841";
  charset="UTF-8"
 
 
---14869245570.c90EF.1940
-Date: Sun, 12 Feb 2017 18:35:57 +0000
+--14869494790.83cb15948.26841
+Date: Mon, 13 Feb 2017 01:31:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,30 +36,45 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99532
 
---- Comment #17 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-A few observations:
+--- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Also likely relevant is the fact that all these fail, even on GM107. But the
+ones for other shader stages do pass. We're clearly missing some setting of
+some kind.
 
-- Pretty sure you want GL_TEXTURE_FETCH_BARRIER_BIT. Not that this matters =
-for
-nvc0.
-- In addition to this always working on GM107, it *sometimes* works on my
-GK208. Something about card state? Or something in compute insufficiently
-initialized?
-- I tried setting the DEPTH_TEXTURE bit in the TIC with no effect.
-- The GM107 works just as effectively with both old- and new-style TIC form=
-ats.
-- Throwing glFlush or glTextureBarrier into the mix made no difference, so =
-it's
-not a cache issue.
-- Switching to DEPTH24 and DEPTH32F made no difference.
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_literal.c=
+ompute.sampler2dshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_literal.c=
+ompute.samplercubeshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_literal.c=
+ompute.sampler2darrayshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_literal.c=
+ompute.isampler2d,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_expressio=
+n.compute.sampler2dshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_expressio=
+n.compute.samplercubeshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_expressio=
+n.compute.sampler2darrayshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.uniform.compute=
+.sampler2dshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.uniform.compute=
+.samplercubeshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.uniform.compute=
+.sampler2darrayshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.dynamically_uni=
+form.compute.sampler2dshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.dynamically_uni=
+form.compute.samplercubeshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.dynamically_uni=
+form.compute.sampler2darrayshadow,Fail
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14869245570.c90EF.1940
-Date: Sun, 12 Feb 2017 18:35:57 +0000
+--14869494790.83cb15948.26841
+Date: Mon, 13 Feb 2017 01:31:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,8 +92,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Compute shader doesn't give right result under some circu=
 mstances"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532#c17">Commen=
-t # 17</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532#c18">Commen=
+t # 18</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Compute shader doesn't give right result under some circu=
@@ -89,21 +104,37 @@ mstances"
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>A few observations:
+        <pre>Also likely relevant is the fact that all these fail, even on =
+GM107. But the
+ones for other shader stages do pass. We're clearly missing some setting of
+some kind.
 
-- Pretty sure you want GL_TEXTURE_FETCH_BARRIER_BIT. Not that this matters =
-for
-nvc0.
-- In addition to this always working on GM107, it *sometimes* works on my
-GK208. Something about card state? Or something in compute insufficiently
-initialized?
-- I tried setting the DEPTH_TEXTURE bit in the TIC with no effect.
-- The GM107 works just as effectively with both old- and new-style TIC form=
-ats.
-- Throwing glFlush or glTextureBarrier into the mix made no difference, so =
-it's
-not a cache issue.
-- Switching to DEPTH24 and DEPTH32F made no difference.</pre>
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_literal.c=
+ompute.sampler2dshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_literal.c=
+ompute.samplercubeshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_literal.c=
+ompute.sampler2darrayshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_literal.c=
+ompute.isampler2d,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_expressio=
+n.compute.sampler2dshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_expressio=
+n.compute.samplercubeshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.const_expressio=
+n.compute.sampler2darrayshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.uniform.compute=
+.sampler2dshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.uniform.compute=
+.samplercubeshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.uniform.compute=
+.sampler2darrayshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.dynamically_uni=
+form.compute.sampler2dshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.dynamically_uni=
+form.compute.samplercubeshadow,Fail
+dEQP-GLES31.functional.shaders.opaque_type_indexing.sampler.dynamically_uni=
+form.compute.sampler2darrayshadow,Fail</pre>
         </div>
       </p>
 
@@ -118,9 +149,9 @@ not a cache issue.
     </body>
 </html>=
 
---14869245570.c90EF.1940--
+--14869494790.83cb15948.26841--
 
---===============0443049196==
+--===============1113910872==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +161,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0443049196==--
+--===============1113910872==--
