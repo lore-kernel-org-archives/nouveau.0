@@ -1,11 +1,13 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: NVAC: WARN_ON(nvbo->pin_refcnt > 0);
-Date: Tue, 14 Feb 2017 16:25:38 +0100
-Message-ID: <e9a0b563-5272-5314-0800-7c4610c6b852@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99799] Civilization VI makes nouveau crash on
+ register allocation
+Date: Tue, 14 Feb 2017 17:43:50 +0000
+Message-ID: <bug-99799-8800-Baxfjm9Ywz@http.bugs.freedesktop.org/>
+References: <bug-99799-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1177528541=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99799-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,44 +17,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8gZmVsbG93cyEKClNpZ25hbCBmaW5hbGx5IGdvZXMgdGhyb3VnaCBJT04ncyBIRE1JLApo
-b3dldmVyCiMgY2h2dCBmcm9tIDUgImdyYXBoaWNhbCIgdG8gMyAidGV4dHVhbCIsCmFuZCB0aGVu
-IGF0IHRoZSB2ZXJ5IGVuZCBvZiByZWJvb3QsCldBUk4gZW1lcmdlczoKLi4uCm5vdXZlYXUgMDAw
-MDowMTowMC4wOiBEUk06IEVWTyB0aW1lb3V0Ci0tLS0tLS0tLS0tLVsgY3V0IGhlcmUgXS0tLS0t
-LS0tLS0tLQpXQVJOSU5HOiBDUFU6IDEgUElEOiA3MDEgYXQgZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9iby5jOjEzNyBub3V2ZWF1X2JvX2RlbF90dG0rMHg3Zi8weDkwIFtub3V2ZWF1
-XQpNb2R1bGVzIGxpbmtlZCBpbjogLi4uIG5vdXZlYXUgbXhtX3dtaSB2aWRlbyBpMmNfYWxnb19i
-aXQgdHRtIGRybV9rbXNfaGVscGVyIGRybSB3bWkgLi4uCkNQVTogMSBQSUQ6IDcwMSBDb21tOiBY
-b3JnIE5vdCB0YWludGVkIDQuMTAuMC0wLnJjOC5naXQwLjEuZmMyNi54ODZfNjQgIzEKLi4uCkNh
-bGwgVHJhY2U6CiBkdW1wX3N0YWNrKzB4NjMvMHg4NAogX193YXJuKzB4Y2IvMHhmMAogd2Fybl9z
-bG93cGF0aF9udWxsKzB4MWQvMHgyMAogbm91dmVhdV9ib19kZWxfdHRtKzB4N2YvMHg5MCBbbm91
-dmVhdV0KIHR0bV9ib19yZWxlYXNlX2xpc3QrMHhkNy8weDFlMCBbdHRtXQogdHRtX2JvX3JlbGVh
-c2UrMHgxOWMvMHgyNTAgW3R0bV0KIHR0bV9ib191bnJlZisweDIzLzB4MzAgW3R0bV0KIG5vdXZl
-YXVfZ2VtX29iamVjdF9kZWwrMHg4Zi8weGUwIFtub3V2ZWF1XQogZHJtX2dlbV9vYmplY3RfZnJl
-ZSsweDI5LzB4NzAgW2RybV0KIGRybV9nZW1fb2JqZWN0X3VucmVmZXJlbmNlX3VubG9ja2VkKzB4
-MzQvMHg4MCBbZHJtXQogZHJtX2dlbV9vYmplY3RfaGFuZGxlX3VucmVmZXJlbmNlX3VubG9ja2Vk
-KzB4NjkvMHhjMCBbZHJtXQogZHJtX2dlbV9vYmplY3RfcmVsZWFzZV9oYW5kbGUrMHg1My8weDkw
-IFtkcm1dCiA/IGRybV9nZW1fb2JqZWN0X2hhbmRsZV91bnJlZmVyZW5jZV91bmxvY2tlZCsweGMw
-LzB4YzAgW2RybV0KIGlkcl9mb3JfZWFjaCsweGE0LzB4MTAwCiA/IG5vdXZlYXVfYWJpMTZfZmlu
-aSsweDUwLzB4NzAgW25vdXZlYXVdCiBkcm1fZ2VtX3JlbGVhc2UrMHgyMC8weDMwIFtkcm1dCiBk
-cm1fcmVsZWFzZSsweDMzZC8weDM5MCBbZHJtXQogX19mcHV0KzB4ZGYvMHgxZTAKIF9fX19mcHV0
-KzB4ZS8weDEwCiB0YXNrX3dvcmtfcnVuKzB4NzYvMHg5MAogZG9fZXhpdCsweDJkMC8weGI3MAog
-PyBfX2RvX3BhZ2VfZmF1bHQrMHgyNjcvMHg0YzAKIGRvX2dyb3VwX2V4aXQrMHg0Ny8weGIwCiBT
-eVNfZXhpdF9ncm91cCsweDE0LzB4MjAKIGVudHJ5X1NZU0NBTExfNjRfZmFzdHBhdGgrMHgxYS8w
-eGE5ClJJUDogMDAzMzoweDdmYTU1MTBhY2RkOApSU1A6IDAwMmI6MDAwMDdmZmY0YTBjYjYwOCBF
-RkxBR1M6IDAwMDAwMjQ2IE9SSUdfUkFYOiAwMDAwMDAwMDAwMDAwMGU3ClJBWDogZmZmZmZmZmZm
-ZmZmZmZkYSBSQlg6IDAwMDA3ZmE1NTM2ODM5YTAgUkNYOiAwMDAwN2ZhNTUxMGFjZGQ4ClJEWDog
-MDAwMDAwMDAwMDAwMDAwMCBSU0k6IDAwMDAwMDAwMDAwMDAwM2MgUkRJOiAwMDAwMDAwMDAwMDAw
-MDAwClJCUDogMDAwMDdmZmY0YTBjYjYwMCBSMDg6IDAwMDAwMDAwMDAwMDAwZTcgUjA5OiBmZmZm
-ZmZmZmZmZmZmYzg4ClIxMDogMDAwMDdmYTU1MmJmNWQ4MCBSMTE6IDAwMDAwMDAwMDAwMDAyNDYg
-UjEyOiAwMDAwN2ZhNTUyYmY1ZDY4ClIxMzogMDAwMDAwMDAwMDAwMDA0YSBSMTQ6IDAwMDAwMDAw
-MDAwMDAwMDAgUjE1OiAwMDAwN2ZmZjRhMGNiMmYwCi0tLVsgZW5kIHRyYWNlIDUzZjZkOTFkZThl
-MzgyODEgXS0tLQoKUmVmLgpodHRwczovL2dpdC5rZXJuZWwub3JnL2NnaXQvbGludXgva2VybmVs
-L2dpdC90b3J2YWxkcy9saW51eC5naXQvdHJlZS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2JvLmM/aWQ9cmVmcy90YWdzL3Y0LjEwLXJjOCNuMTM3Cl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1177528541==
+Content-Type: multipart/alternative; boundary="14870942300.9B4c2.9587";
+ charset="UTF-8"
+
+
+--14870942300.9B4c2.9587
+Date: Tue, 14 Feb 2017 17:43:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99799
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OK, so this is a previously-known issue. There's another bug filed about it
+somewhere... crysis maybe? Anyways, it comes down to a problem with the
+delete_Instruction() in the spill code. When deleting the instruction
+(Instruction::~Instruction), it clears out its own ValueDef's (ValueDef::se=
+t),
+which should in turn update the relevant Value's defs lists.
+
+However this happens in the middle of RA, which means that various instruct=
+ions
+are joined into nodes, and value A's defs list ends up in value B's defs li=
+st.
+
+Now this is where I get confused - when I change the logic to also remove t=
+he
+ValueDef from val->join, this does not help.
+
+Further vexing is the fact that this particular spill shouldn't even be
+happening in the first place - it's a move between 2 LValues which I'm pret=
+ty
+sure are joined to each other.
+
+Valgrind catches the first badness where this happens, which is when buildi=
+ng
+live sets after spilling happens. Need to add more breaks and poke around m=
+ore.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14870942300.9B4c2.9587
+Date: Tue, 14 Feb 2017 17:43:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Civilization VI makes nouveau crash on register allocatio=
+n"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Civilization VI makes nouveau crash on register allocatio=
+n"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799">bug 99799<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>OK, so this is a previously-known issue. There's another bug f=
+iled about it
+somewhere... crysis maybe? Anyways, it comes down to a problem with the
+delete_Instruction() in the spill code. When deleting the instruction
+(Instruction::~Instruction), it clears out its own ValueDef's (ValueDef::se=
+t),
+which should in turn update the relevant Value's defs lists.
+
+However this happens in the middle of RA, which means that various instruct=
+ions
+are joined into nodes, and value A's defs list ends up in value B's defs li=
+st.
+
+Now this is where I get confused - when I change the logic to also remove t=
+he
+ValueDef from val-&gt;join, this does not help.
+
+Further vexing is the fact that this particular spill shouldn't even be
+happening in the first place - it's a move between 2 LValues which I'm pret=
+ty
+sure are joined to each other.
+
+Valgrind catches the first badness where this happens, which is when buildi=
+ng
+live sets after spilling happens. Need to add more breaks and poke around m=
+ore.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14870942300.9B4c2.9587--
+
+--===============1177528541==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1177528541==--
