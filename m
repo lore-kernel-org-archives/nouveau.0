@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99799] Civilization VI makes nouveau crash on
- register allocation
-Date: Mon, 13 Feb 2017 21:10:13 +0000
-Message-ID: <bug-99799-8800-pZ3Q0o1l45@http.bugs.freedesktop.org/>
-References: <bug-99799-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99532] Compute shader doesn't give right result
+ under some circumstances
+Date: Tue, 14 Feb 2017 02:14:11 +0000
+Message-ID: <bug-99532-8800-kZ1UT32Lgc@http.bugs.freedesktop.org/>
+References: <bug-99532-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0131212675=="
+Content-Type: multipart/mixed; boundary="===============1080498840=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99799-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99532-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,50 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0131212675==
-Content-Type: multipart/alternative; boundary="14870202130.2cC6F0.21983";
+--===============1080498840==
+Content-Type: multipart/alternative; boundary="14870384500.B37E.9983";
  charset="UTF-8"
 
 
---14870202130.2cC6F0.21983
-Date: Mon, 13 Feb 2017 21:10:13 +0000
+--14870384500.B37E.9983
+Date: Tue, 14 Feb 2017 02:14:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99799
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99532
 
---- Comment #1 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
-A dump of Nouveau's compiler's[?] debug output, complete with shaders and
-whatnot:
-https://seriouss.am/etc/civ6-shaderdump (plaintext; 635KiB; contains ANSI c=
-olor
-escape sequences all over)
+Boyan Ding <stu_dby-KN7UnAbNpbg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #19 from Boyan Ding <stu_dby-KN7UnAbNpbg@public.gmane.org> ---
+commit 956556b3c30ce3d38d0af795f9383df3bc2cf8a2
+Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Date:   Mon Feb 13 11:14:51 2017 -0500
+
+    nvc0: disable linked tsc mode in compute launch descriptor
+
+    Empirically, this makes things work. Presumably this was originally
+    copied from the blob, which does make use of linked tsc mode.
+
+    Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=3D99532
+    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+    Reviewed-by: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+    Cc: mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14870202130.2cC6F0.21983
-Date: Mon, 13 Feb 2017 21:10:13 +0000
+--14870384500.B37E.9983
+Date: Tue, 14 Feb 2017 02:14:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,31 +75,79 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:stu_dby&#=
+64;126.com" title=3D"Boyan Ding &lt;stu_dby&#64;126.com&gt;"> <span class=
+=3D"fn">Boyan Ding</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Compute shader doesn't give right result under=
+ some circumstances"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532">bug 99532<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Civilization VI makes nouveau crash on register allocatio=
-n"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799#c1">Comment=
- # 1</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Compute shader doesn't give right result under=
+ some circumstances"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532#c19">Commen=
+t # 19</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Civilization VI makes nouveau crash on register allocatio=
-n"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799">bug 99799<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Compute shader doesn't give right result under=
+ some circumstances"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99532">bug 99532<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gediminas&#64;varciai.lt" title=3D"Gediminas Jakutis &lt;gediminas&#64;varc=
-iai.lt&gt;"> <span class=3D"fn">Gediminas Jakutis</span></a>
+stu_dby&#64;126.com" title=3D"Boyan Ding &lt;stu_dby&#64;126.com&gt;"> <spa=
+n class=3D"fn">Boyan Ding</span></a>
 </span></b>
-        <pre>A dump of Nouveau's compiler's[?] debug output, complete with =
-shaders and
-whatnot:
-<a href=3D"https://seriouss.am/etc/civ6-shaderdump">https://seriouss.am/etc=
-/civ6-shaderdump</a> (plaintext; 635KiB; contains ANSI color
-escape sequences all over)</pre>
+        <pre>commit 956556b3c30ce3d38d0af795f9383df3bc2cf8a2
+Author: Ilia Mirkin &lt;<a href=3D"mailto:imirkin&#64;alum.mit.edu">imirkin=
+&#64;alum.mit.edu</a>&gt;
+Date:   Mon Feb 13 11:14:51 2017 -0500
+
+    nvc0: disable linked tsc mode in compute launch descriptor
+
+    Empirically, this makes things work. Presumably this was originally
+    copied from the blob, which does make use of linked tsc mode.
+
+    Bugzilla: <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Compute shader doesn't give right result under=
+ some circumstances"
+   href=3D"show_bug.cgi?id=3D99532">https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D99532</a>
+    Signed-off-by: Ilia Mirkin &lt;<a href=3D"mailto:imirkin&#64;alum.mit.e=
+du">imirkin&#64;alum.mit.edu</a>&gt;
+    Reviewed-by: Samuel Pitoiset &lt;<a href=3D"mailto:samuel.pitoiset&#64;=
+gmail.com">samuel.pitoiset&#64;gmail.com</a>&gt;
+    Cc: <a href=3D"mailto:mesa-stable&#64;lists.freedesktop.org">mesa-stabl=
+e&#64;lists.freedesktop.org</a></pre>
         </div>
       </p>
 
@@ -93,15 +156,15 @@ escape sequences all over)</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14870202130.2cC6F0.21983--
+--14870384500.B37E.9983--
 
---===============0131212675==
+--===============1080498840==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +174,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0131212675==--
+--===============1080498840==--
