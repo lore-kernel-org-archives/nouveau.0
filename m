@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97614] occasional screen distortions with nouveau
- under 4.8.0-rc4+
-Date: Thu, 16 Feb 2017 17:23:15 +0000
-Message-ID: <bug-97614-8800-RCI1jJtzNd@http.bugs.freedesktop.org/>
-References: <bug-97614-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 95282] G96: system hang on video playback via vdpau
+Date: Thu, 16 Feb 2017 17:30:12 +0000
+Message-ID: <bug-95282-8800-MQOq9rl90J@http.bugs.freedesktop.org/>
+References: <bug-95282-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1156352979=="
+Content-Type: multipart/mixed; boundary="===============0833987707=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97614-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1156352979==
-Content-Type: multipart/alternative; boundary="14872657950.00c7ed35.5948";
+--===============0833987707==
+Content-Type: multipart/alternative; boundary="14872662111.f1fE9A33.6851";
  charset="UTF-8"
 
 
---14872657950.00c7ed35.5948
-Date: Thu, 16 Feb 2017 17:23:15 +0000
+--14872662111.f1fE9A33.6851
+Date: Thu, 16 Feb 2017 17:30:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97614
+https://bugs.freedesktop.org/show_bug.cgi?id=3D95282
 
-Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
+--- Comment #19 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+VDPAU - playback still crashing / not implemented with 4.10.0-rc8+ (Wed Feb=
+ 15
+13:10:17 CET 2017) for the NV50 family (tested with G96GLM [Quadro FX 770M]=
+. As
+vdpau support for this card is on your ToDo-list at
+nouveau.freedesktop.org/wiki/VideoAcceleration at least for the iso6avc1mp41
+and the H.264 codecs I have tested videos with these codecs  and both videos
+have crashed with xine -V vdpau right after xine started having done some
+init-steps first. I will add a screenshot of these messages shortly.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14872657950.00c7ed35.5948
-Date: Thu, 16 Feb 2017 17:23:15 +0000
+--14872662111.f1fE9A33.6851
+Date: Thu, 16 Feb 2017 17:30:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,40 +62,33 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:estellnb&=
-#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;=
-"> <span class=3D"fn">Elmar Stellnberger</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - occasional screen distortions with nouveau und=
-er 4.8.0-rc4+"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614">bug 97614<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c19">Commen=
+t # 19</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282">bug 95282<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
+l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>VDPAU - playback still crashing / not implemented with 4.10.0-=
+rc8+ (Wed Feb 15
+13:10:17 CET 2017) for the NV50 family (tested with G96GLM [Quadro FX 770M]=
+. As
+vdpau support for this card is on your ToDo-list at
+nouveau.freedesktop.org/wiki/VideoAcceleration at least for the iso6avc1mp41
+and the H.264 codecs I have tested videos with these codecs  and both videos
+have crashed with xine -V vdpau right after xine started having done some
+init-steps first. I will add a screenshot of these messages shortly.</pre>
+        </div>
       </p>
 
 
@@ -105,9 +101,9 @@ er 4.8.0-rc4+"
     </body>
 </html>=
 
---14872657950.00c7ed35.5948--
+--14872662111.f1fE9A33.6851--
 
---===============1156352979==
+--===============0833987707==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1156352979==--
+--===============0833987707==--
