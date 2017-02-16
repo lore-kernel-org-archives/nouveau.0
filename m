@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95282] G96: system hang on video playback via vdpau
-Date: Thu, 16 Feb 2017 17:34:43 +0000
-Message-ID: <bug-95282-8800-aytw4PW70s@http.bugs.freedesktop.org/>
+Date: Thu, 16 Feb 2017 17:37:53 +0000
+Message-ID: <bug-95282-8800-tkcPjPtCxb@http.bugs.freedesktop.org/>
 References: <bug-95282-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1140588027=="
+Content-Type: multipart/mixed; boundary="===============1101841652=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1140588027==
-Content-Type: multipart/alternative; boundary="14872664820.a2EC.7028";
+--===============1101841652==
+Content-Type: multipart/alternative; boundary="14872666731.AD447a2.7356";
  charset="UTF-8"
 
 
---14872664820.a2EC.7028
-Date: Thu, 16 Feb 2017 17:34:42 +0000
+--14872666731.AD447a2.7356
+Date: Thu, 16 Feb 2017 17:37:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,29 +35,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D95282
 
---- Comment #20 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 129680
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129680&action=3Dedit
-screenshot trying to play an iso6avc1mp41 file - hanging on startup
+--- Comment #21 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+  Anyone here who could asses whether the hang-problem with vdpau could be
+related to GART/IOMMU? Here is what I have in my dmesg:
 
-You can see some messages including the message that avc1 has not yet been
-implemented. Still I wonder why it is crashing if it can not use VDPAU dire=
-ctly
-for video decodation. Though I have run nice -20 dmesg --follow in another
-terminal at the same time no messages have appeared while xine was hanging =
-the
-system. Quite a while after startup the music (and only the music) played f=
-or
-short but that was all of what had happened after the given messages appear=
-ed
-on the xine-console. Escaping with SysRq-S-U-B was still possible.
+[    5.186566] Linux agpgart interface v0.103
+[    5.186765] AMD IOMMUv2 driver by Joerg Roedel <jroedel-l3A5Bk7waGM@public.gmane.org>
+[    5.186766] AMD IOMMUv2 functionality not available on this system
+[    8.857000] nouveau 0000:01:00.0: DRM: VRAM: 256 MiB
+[    8.857001] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14872664820.a2EC.7028
-Date: Thu, 16 Feb 2017 17:34:42 +0000
+--14872666731.AD447a2.7356
+Date: Thu, 16 Feb 2017 17:37:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,8 +67,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - G96: system hang on video playback via vdpau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c20">Commen=
-t # 20</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c21">Commen=
+t # 21</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - G96: system hang on video playback via vdpau"
@@ -85,24 +78,16 @@ t # 20</a>
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129680=
-" name=3D"attach_129680" title=3D"screenshot trying to play an iso6avc1mp41=
- file - hanging on startup">attachment 129680</a> <a href=3D"attachment.cgi=
-?id=3D129680&amp;action=3Dedit" title=3D"screenshot trying to play an iso6a=
-vc1mp41 file - hanging on startup">[details]</a></span>
-screenshot trying to play an iso6avc1mp41 file - hanging on startup
+        <pre>  Anyone here who could asses whether the hang-problem with vd=
+pau could be
+related to GART/IOMMU? Here is what I have in my dmesg:
 
-You can see some messages including the message that avc1 has not yet been
-implemented. Still I wonder why it is crashing if it can not use VDPAU dire=
-ctly
-for video decodation. Though I have run nice -20 dmesg --follow in another
-terminal at the same time no messages have appeared while xine was hanging =
-the
-system. Quite a while after startup the music (and only the music) played f=
-or
-short but that was all of what had happened after the given messages appear=
-ed
-on the xine-console. Escaping with SysRq-S-U-B was still possible.</pre>
+[    5.186566] Linux agpgart interface v0.103
+[    5.186765] AMD IOMMUv2 driver by Joerg Roedel &lt;<a href=3D"mailto:jro=
+edel&#64;suse.de">jroedel&#64;suse.de</a>&gt;
+[    5.186766] AMD IOMMUv2 functionality not available on this system
+[    8.857000] nouveau 0000:01:00.0: DRM: VRAM: 256 MiB
+[    8.857001] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB</pre>
         </div>
       </p>
 
@@ -116,9 +101,9 @@ on the xine-console. Escaping with SysRq-S-U-B was still possible.</pre>
     </body>
 </html>=
 
---14872664820.a2EC.7028--
+--14872666731.AD447a2.7356--
 
---===============1140588027==
+--===============1101841652==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -128,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1140588027==--
+--===============1101841652==--
