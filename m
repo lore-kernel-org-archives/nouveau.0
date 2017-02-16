@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/core: recognise GP107 chipset
-Date: Tue, 14 Feb 2017 15:42:17 -0500
-Message-ID: <CAKb7UvitwNtZxFHS+9aKpEgyOg7BNac+OP8+pHFtjYdFUhD7ZQ@mail.gmail.com>
-References: <20170214193419.16711-1-drake@endlessm.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99799] Civilization VI makes nouveau crash on
+ register allocation
+Date: Thu, 16 Feb 2017 02:57:38 +0000
+Message-ID: <bug-99799-8800-HgHcT9U2cq@http.bugs.freedesktop.org/>
+References: <bug-99799-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0554043877=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170214193419.16711-1-drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
+In-Reply-To: <bug-99799-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,63 +17,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, chiu-6IF/jdPJHihWk0Htik3J/w@public.gmane.org, linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SSBiZWxpZXZlIHdoYXQncyBtaXNzaW5nIGF0IHRoaXMgcG9pbnQgaXMgYSBtbWlvdHJhY2Ugb2Yg
-dGhlIE5WSURJQQpkcml2ZXIgdG8gbWFrZSBzdXJlIHRoYXQgdGhlcmUncyBub3RoaW5nIGRpZmZl
-cmVudCBhYm91dCB0aGlzIEdQVS4gSWYKeW91IGNhbiBtYWtlIG9uZSAoc2VlIGh0dHBzOi8vd2lr
-aS51YnVudHUuY29tL1gvTU1JT1RyYWNpbmcgZm9yIGEKZ3VpZGUgLSBzaG91bGQgZW5kIHVwIH4x
-MDBNQiB1bmNvbXByZXNzZWQpLCBwbGVhc2Ugc2VuZCBhIGNvbXByZXNzZWQKb25lIHRvIG1taW8u
-ZHVtcHNAZ21haWwuY29tIG9yIG1ha2UgYXZhaWxhYmxlIHNvbWUgb3RoZXIgd2F5LgoKT24gVHVl
-LCBGZWIgMTQsIDIwMTcgYXQgMjozNCBQTSwgRGFuaWVsIERyYWtlIDxkcmFrZUBlbmRsZXNzbS5j
-b20+IHdyb3RlOgo+IEZyb206IENocmlzIENoaXUgPGNoaXVAZW5kbGVzc20uY29tPgo+Cj4gVGhp
-cyBuZXcgZ3JhcGhpY3MgY2FyZCB3YXMgZmFpbGluZyB0byBpbml0aWFsaXplIHdpdGggbm91dmVh
-dSBkdWUgdG8KPiBhbiAidW5rbm93biBjaGlwc2V0IiBlcnJvci4KPgo+IENvcHkgdGhlIEdQMTA2
-IGNvbmZpZ3VyYXRpb24gYW5kIHJlbmFtZSBmb3IgR1AxMDcvTlYxMzcuIFdlIGRvbid0Cj4ga25v
-dyBmb3IgY2VydGFpbiB0aGF0IHRoaXMgaXMgZnVsbHkgY29ycmVjdCwgYnV0IGJyaWVmIGRlc2t0
-b3AgdGVzdGluZwo+IHN1Z2dlc3RzIHRoaXMgaXMgd29ya2luZyBmaW5lLgo+Cj4gU2lnbmVkLW9m
-Zi1ieTogQ2hyaXMgQ2hpdSA8Y2hpdUBlbmRsZXNzbS5jb20+Cj4gU2lnbmVkLW9mZi1ieTogRGFu
-aWVsIERyYWtlIDxkcmFrZUBlbmRsZXNzbS5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgfCAyOSArKysrKysrKysrKysrKysrKysr
-KysrKwo+ICAxIGZpbGUgY2hhbmdlZCwgMjkgaW5zZXJ0aW9ucygrKQo+Cj4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgYi9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jCj4gaW5kZXggZmVh
-MzBkNi4uZDI0MjQzMSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
-L2VuZ2luZS9kZXZpY2UvYmFzZS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
-bS9lbmdpbmUvZGV2aWNlL2Jhc2UuYwo+IEBAIC0yMjM3LDYgKzIyMzcsMzQgQEAgbnYxMzZfY2hp
-cHNldCA9IHsKPiAgICAgICAgIC5maWZvID0gZ3AxMDBfZmlmb19uZXcsCj4gIH07Cj4KPiArc3Rh
-dGljIGNvbnN0IHN0cnVjdCBudmttX2RldmljZV9jaGlwCj4gK252MTM3X2NoaXBzZXQgPSB7Cj4g
-KyAgICAgICAubmFtZSA9ICJHUDEwNyIsCj4gKyAgICAgICAuYmFyID0gZ2YxMDBfYmFyX25ldywK
-PiArICAgICAgIC5iaW9zID0gbnZrbV9iaW9zX25ldywKPiArICAgICAgIC5idXMgPSBnZjEwMF9i
-dXNfbmV3LAo+ICsgICAgICAgLmRldmluaXQgPSBnbTIwMF9kZXZpbml0X25ldywKPiArICAgICAg
-IC5mYiA9IGdwMTA0X2ZiX25ldywKPiArICAgICAgIC5mdXNlID0gZ20xMDdfZnVzZV9uZXcsCj4g
-KyAgICAgICAuZ3BpbyA9IGdrMTA0X2dwaW9fbmV3LAo+ICsgICAgICAgLmkyYyA9IGdtMjAwX2ky
-Y19uZXcsCj4gKyAgICAgICAuaWJ1cyA9IGdtMjAwX2lidXNfbmV3LAo+ICsgICAgICAgLmltZW0g
-PSBudjUwX2luc3RtZW1fbmV3LAo+ICsgICAgICAgLmx0YyA9IGdwMTAwX2x0Y19uZXcsCj4gKyAg
-ICAgICAubWMgPSBncDEwMF9tY19uZXcsCj4gKyAgICAgICAubW11ID0gZ2YxMDBfbW11X25ldywK
-PiArICAgICAgIC5wY2kgPSBncDEwMF9wY2lfbmV3LAo+ICsgICAgICAgLnRpbWVyID0gZ2syMGFf
-dGltZXJfbmV3LAo+ICsgICAgICAgLnRvcCA9IGdrMTA0X3RvcF9uZXcsCj4gKyAgICAgICAuY2Vb
-MF0gPSBncDEwNF9jZV9uZXcsCj4gKyAgICAgICAuY2VbMV0gPSBncDEwNF9jZV9uZXcsCj4gKyAg
-ICAgICAuY2VbMl0gPSBncDEwNF9jZV9uZXcsCj4gKyAgICAgICAuY2VbM10gPSBncDEwNF9jZV9u
-ZXcsCj4gKyAgICAgICAuZGlzcCA9IGdwMTA0X2Rpc3BfbmV3LAo+ICsgICAgICAgLmRtYSA9IGdm
-MTE5X2RtYV9uZXcsCj4gKyAgICAgICAuZmlmbyA9IGdwMTAwX2ZpZm9fbmV3LAo+ICt9Owo+ICsK
-PiAgc3RhdGljIGludAo+ICBudmttX2RldmljZV9ldmVudF9jdG9yKHN0cnVjdCBudmttX29iamVj
-dCAqb2JqZWN0LCB2b2lkICpkYXRhLCB1MzIgc2l6ZSwKPiAgICAgICAgICAgICAgICAgICAgICAg
-IHN0cnVjdCBudmttX25vdGlmeSAqbm90aWZ5KQo+IEBAIC0yNjczLDYgKzI3MDEsNyBAQCBudmtt
-X2RldmljZV9jdG9yKGNvbnN0IHN0cnVjdCBudmttX2RldmljZV9mdW5jICpmdW5jLAo+ICAgICAg
-ICAgICAgICAgICBjYXNlIDB4MTMwOiBkZXZpY2UtPmNoaXAgPSAmbnYxMzBfY2hpcHNldDsgYnJl
-YWs7Cj4gICAgICAgICAgICAgICAgIGNhc2UgMHgxMzQ6IGRldmljZS0+Y2hpcCA9ICZudjEzNF9j
-aGlwc2V0OyBicmVhazsKPiAgICAgICAgICAgICAgICAgY2FzZSAweDEzNjogZGV2aWNlLT5jaGlw
-ID0gJm52MTM2X2NoaXBzZXQ7IGJyZWFrOwo+ICsgICAgICAgICAgICAgICBjYXNlIDB4MTM3OiBk
-ZXZpY2UtPmNoaXAgPSAmbnYxMzdfY2hpcHNldDsgYnJlYWs7Cj4gICAgICAgICAgICAgICAgIGRl
-ZmF1bHQ6Cj4gICAgICAgICAgICAgICAgICAgICAgICAgbnZkZXZfZXJyb3IoZGV2aWNlLCAidW5r
-bm93biBjaGlwc2V0ICglMDh4KVxuIiwgYm9vdDApOwo+ICAgICAgICAgICAgICAgICAgICAgICAg
-IGdvdG8gZG9uZTsKPiAtLQo+IDIuOS4zCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwo+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9kcmktZGV2ZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+
+--===============0554043877==
+Content-Type: multipart/alternative; boundary="14872138582.CCC72AD.3802";
+ charset="UTF-8"
+
+
+--14872138582.CCC72AD.3802
+Date: Thu, 16 Feb 2017 02:57:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99799
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 129659
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129659&action=3Dedit
+patch that works around the issue
+
+The attached patch should work around the issue of spilling a value into it=
+self
+without invoking the wrath of the underlying bug that caused the whole thin=
+g to
+go south in the first place.
+
+I'm not entirely convinced of this patch's correctness, so it will need some
+careful testing.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14872138582.CCC72AD.3802
+Date: Thu, 16 Feb 2017 02:57:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Civilization VI makes nouveau crash on register allocatio=
+n"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Civilization VI makes nouveau crash on register allocatio=
+n"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799">bug 99799<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129659=
+" name=3D"attach_129659" title=3D"patch that works around the issue">attach=
+ment 129659</a> <a href=3D"attachment.cgi?id=3D129659&amp;action=3Dedit" ti=
+tle=3D"patch that works around the issue">[details]</a></span> <a href=3D'p=
+age.cgi?id=3Dsplinter.html&amp;bug=3D99799&amp;attachment=3D129659'>[review=
+]</a>
+patch that works around the issue
+
+The attached patch should work around the issue of spilling a value into it=
+self
+without invoking the wrath of the underlying bug that caused the whole thin=
+g to
+go south in the first place.
+
+I'm not entirely convinced of this patch's correctness, so it will need some
+careful testing.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14872138582.CCC72AD.3802--
+
+--===============0554043877==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0554043877==--
