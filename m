@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 95282] G96: system hang on video playback via vdpau
-Date: Thu, 16 Feb 2017 17:37:53 +0000
-Message-ID: <bug-95282-8800-tkcPjPtCxb@http.bugs.freedesktop.org/>
-References: <bug-95282-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97614] occasional screen distortions with nouveau
+ under 4.8.0-rc4+
+Date: Thu, 16 Feb 2017 17:41:18 +0000
+Message-ID: <bug-97614-8800-elXWzx5s53@http.bugs.freedesktop.org/>
+References: <bug-97614-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1101841652=="
+Content-Type: multipart/mixed; boundary="===============1559797388=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97614-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1101841652==
-Content-Type: multipart/alternative; boundary="14872666731.AD447a2.7356";
+--===============1559797388==
+Content-Type: multipart/alternative; boundary="14872668781.8f650.7819";
  charset="UTF-8"
 
 
---14872666731.AD447a2.7356
-Date: Thu, 16 Feb 2017 17:37:53 +0000
+--14872668781.8f650.7819
+Date: Thu, 16 Feb 2017 17:41:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D95282
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97614
 
---- Comment #21 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-  Anyone here who could asses whether the hang-problem with vdpau could be
-related to GART/IOMMU? Here is what I have in my dmesg:
+Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
 
-[    5.186566] Linux agpgart interface v0.103
-[    5.186765] AMD IOMMUv2 driver by Joerg Roedel <jroedel-l3A5Bk7waGM@public.gmane.org>
-[    5.186766] AMD IOMMUv2 functionality not available on this system
-[    8.857000] nouveau 0000:01:00.0: DRM: VRAM: 256 MiB
-[    8.857001] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|FIXED                       |---
+             Status|RESOLVED                    |REOPENED
+
+--- Comment #12 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+not all screen distortions have gone; you can just not see any major
+distortions. Some screen content has just gotten warped on scrolling; anoth=
+er
+time I had some black spots above the font with thunderbird.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14872666731.AD447a2.7356
-Date: Thu, 16 Feb 2017 17:37:53 +0000
+--14872668781.8f650.7819
+Date: Thu, 16 Feb 2017 17:41:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,33 +65,62 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:estellnb&=
+#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;=
+"> <span class=3D"fn">Elmar Stellnberger</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - occasional screen distortions with nouveau under 4.8=
+.0-rc4+"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614">bug 97614<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>FIXED
+           </td>
+           <td>---
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - G96: system hang on video playback via vdpau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c21">Commen=
-t # 21</a>
+          bz_status_REOPENED "
+   title=3D"REOPENED - occasional screen distortions with nouveau under 4.8=
+.0-rc4+"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614#c12">Commen=
+t # 12</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - G96: system hang on video playback via vdpau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282">bug 95282<=
+          bz_status_REOPENED "
+   title=3D"REOPENED - occasional screen distortions with nouveau under 4.8=
+.0-rc4+"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614">bug 97614<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>  Anyone here who could asses whether the hang-problem with vd=
-pau could be
-related to GART/IOMMU? Here is what I have in my dmesg:
-
-[    5.186566] Linux agpgart interface v0.103
-[    5.186765] AMD IOMMUv2 driver by Joerg Roedel &lt;<a href=3D"mailto:jro=
-edel&#64;suse.de">jroedel&#64;suse.de</a>&gt;
-[    5.186766] AMD IOMMUv2 functionality not available on this system
-[    8.857000] nouveau 0000:01:00.0: DRM: VRAM: 256 MiB
-[    8.857001] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB</pre>
+        <pre>not all screen distortions have gone; you can just not see any=
+ major
+distortions. Some screen content has just gotten warped on scrolling; anoth=
+er
+time I had some black spots above the font with thunderbird.</pre>
         </div>
       </p>
 
@@ -101,9 +134,9 @@ edel&#64;suse.de">jroedel&#64;suse.de</a>&gt;
     </body>
 </html>=
 
---14872666731.AD447a2.7356--
+--14872668781.8f650.7819--
 
---===============1101841652==
+--===============1559797388==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1101841652==--
+--===============1559797388==--
