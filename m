@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95282] G96: system hang on video playback via vdpau
-Date: Thu, 16 Feb 2017 17:30:12 +0000
-Message-ID: <bug-95282-8800-MQOq9rl90J@http.bugs.freedesktop.org/>
+Date: Thu, 16 Feb 2017 17:34:43 +0000
+Message-ID: <bug-95282-8800-aytw4PW70s@http.bugs.freedesktop.org/>
 References: <bug-95282-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0833987707=="
+Content-Type: multipart/mixed; boundary="===============1140588027=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0833987707==
-Content-Type: multipart/alternative; boundary="14872662111.f1fE9A33.6851";
+--===============1140588027==
+Content-Type: multipart/alternative; boundary="14872664820.a2EC.7028";
  charset="UTF-8"
 
 
---14872662111.f1fE9A33.6851
-Date: Thu, 16 Feb 2017 17:30:11 +0000
+--14872664820.a2EC.7028
+Date: Thu, 16 Feb 2017 17:34:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,23 +35,29 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D95282
 
---- Comment #19 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-VDPAU - playback still crashing / not implemented with 4.10.0-rc8+ (Wed Feb=
- 15
-13:10:17 CET 2017) for the NV50 family (tested with G96GLM [Quadro FX 770M]=
-. As
-vdpau support for this card is on your ToDo-list at
-nouveau.freedesktop.org/wiki/VideoAcceleration at least for the iso6avc1mp41
-and the H.264 codecs I have tested videos with these codecs  and both videos
-have crashed with xine -V vdpau right after xine started having done some
-init-steps first. I will add a screenshot of these messages shortly.
+--- Comment #20 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 129680
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129680&action=3Dedit
+screenshot trying to play an iso6avc1mp41 file - hanging on startup
+
+You can see some messages including the message that avc1 has not yet been
+implemented. Still I wonder why it is crashing if it can not use VDPAU dire=
+ctly
+for video decodation. Though I have run nice -20 dmesg --follow in another
+terminal at the same time no messages have appeared while xine was hanging =
+the
+system. Quite a while after startup the music (and only the music) played f=
+or
+short but that was all of what had happened after the given messages appear=
+ed
+on the xine-console. Escaping with SysRq-S-U-B was still possible.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14872662111.f1fE9A33.6851
-Date: Thu, 16 Feb 2017 17:30:11 +0000
+--14872664820.a2EC.7028
+Date: Thu, 16 Feb 2017 17:34:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +74,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - G96: system hang on video playback via vdpau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c19">Commen=
-t # 19</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c20">Commen=
+t # 20</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - G96: system hang on video playback via vdpau"
@@ -79,15 +85,24 @@ t # 19</a>
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>VDPAU - playback still crashing / not implemented with 4.10.0-=
-rc8+ (Wed Feb 15
-13:10:17 CET 2017) for the NV50 family (tested with G96GLM [Quadro FX 770M]=
-. As
-vdpau support for this card is on your ToDo-list at
-nouveau.freedesktop.org/wiki/VideoAcceleration at least for the iso6avc1mp41
-and the H.264 codecs I have tested videos with these codecs  and both videos
-have crashed with xine -V vdpau right after xine started having done some
-init-steps first. I will add a screenshot of these messages shortly.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129680=
+" name=3D"attach_129680" title=3D"screenshot trying to play an iso6avc1mp41=
+ file - hanging on startup">attachment 129680</a> <a href=3D"attachment.cgi=
+?id=3D129680&amp;action=3Dedit" title=3D"screenshot trying to play an iso6a=
+vc1mp41 file - hanging on startup">[details]</a></span>
+screenshot trying to play an iso6avc1mp41 file - hanging on startup
+
+You can see some messages including the message that avc1 has not yet been
+implemented. Still I wonder why it is crashing if it can not use VDPAU dire=
+ctly
+for video decodation. Though I have run nice -20 dmesg --follow in another
+terminal at the same time no messages have appeared while xine was hanging =
+the
+system. Quite a while after startup the music (and only the music) played f=
+or
+short but that was all of what had happened after the given messages appear=
+ed
+on the xine-console. Escaping with SysRq-S-U-B was still possible.</pre>
         </div>
       </p>
 
@@ -101,9 +116,9 @@ init-steps first. I will add a screenshot of these messages shortly.</pre>
     </body>
 </html>=
 
---14872662111.f1fE9A33.6851--
+--14872664820.a2EC.7028--
 
---===============0833987707==
+--===============1140588027==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +128,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0833987707==--
+--===============1140588027==--
