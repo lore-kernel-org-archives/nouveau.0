@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99799] Civilization VI makes nouveau crash on
- register allocation
-Date: Thu, 16 Feb 2017 06:16:08 +0000
-Message-ID: <bug-99799-8800-2lSXZPwtnM@http.bugs.freedesktop.org/>
-References: <bug-99799-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97614] occasional screen distortions with nouveau
+ under 4.8.0-rc4+
+Date: Thu, 16 Feb 2017 17:23:06 +0000
+Message-ID: <bug-97614-8800-qnJehBX2k7@http.bugs.freedesktop.org/>
+References: <bug-97614-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0167739817=="
+Content-Type: multipart/mixed; boundary="===============1766732707=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99799-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97614-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0167739817==
-Content-Type: multipart/alternative; boundary="14872257670.a97f.15762";
+--===============1766732707==
+Content-Type: multipart/alternative; boundary="14872657861.A2dEBeA.5999";
  charset="UTF-8"
 
 
---14872257670.a97f.15762
-Date: Thu, 16 Feb 2017 06:16:07 +0000
+--14872657861.A2dEBeA.5999
+Date: Thu, 16 Feb 2017 17:23:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99799
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97614
 
---- Comment #4 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
-It now consistently segfaults in another point instead.
-Backtrace and whatnot: https://seriouss.am/etc/civ-gdb-2017-02-16
+--- Comment #11 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 129678
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129678&action=3Dedit
+current dmesg for 4.10.0-rc8+; no screen distortions - considered good
 
-I should note that NV50_PROG_OPTIMIZE=3D0 prevents a segfault, same as with=
-out
-the patch.
+currently no such distortions with vanilla 4.10.0-rc8+; this has likely alr=
+eady
+been resolved with 4.9.0+.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14872257670.a97f.15762
-Date: Thu, 16 Feb 2017 06:16:07 +0000
+--14872657861.A2dEBeA.5999
+Date: Thu, 16 Feb 2017 17:23:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,27 +66,30 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Civilization VI makes nouveau crash on register allocatio=
-n"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799#c4">Comment=
- # 4</a>
+   title=3D"NEW - occasional screen distortions with nouveau under 4.8.0-rc=
+4+"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614#c11">Commen=
+t # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Civilization VI makes nouveau crash on register allocatio=
-n"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799">bug 99799<=
+   title=3D"NEW - occasional screen distortions with nouveau under 4.8.0-rc=
+4+"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97614">bug 97614<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gediminas&#64;varciai.lt" title=3D"Gediminas Jakutis &lt;gediminas&#64;varc=
-iai.lt&gt;"> <span class=3D"fn">Gediminas Jakutis</span></a>
+estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
+l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>It now consistently segfaults in another point instead.
-Backtrace and whatnot: <a href=3D"https://seriouss.am/etc/civ-gdb-2017-02-1=
-6">https://seriouss.am/etc/civ-gdb-2017-02-16</a>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129678=
+" name=3D"attach_129678" title=3D"current dmesg for 4.10.0-rc8+; no screen =
+distortions - considered good">attachment 129678</a> <a href=3D"attachment.=
+cgi?id=3D129678&amp;action=3Dedit" title=3D"current dmesg for 4.10.0-rc8+; =
+no screen distortions - considered good">[details]</a></span>
+current dmesg for 4.10.0-rc8+; no screen distortions - considered good
 
-I should note that NV50_PROG_OPTIMIZE=3D0 prevents a segfault, same as with=
-out
-the patch.</pre>
+currently no such distortions with vanilla 4.10.0-rc8+; this has likely alr=
+eady
+been resolved with 4.9.0+.</pre>
         </div>
       </p>
 
@@ -95,15 +98,14 @@ the patch.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14872257670.a97f.15762--
+--14872657861.A2dEBeA.5999--
 
---===============0167739817==
+--===============1766732707==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0167739817==--
+--===============1766732707==--
