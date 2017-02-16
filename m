@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99841] Switching to VT freezes X only on a dual
 	screen
-Date: Thu, 16 Feb 2017 18:43:09 +0000
-Message-ID: <bug-99841-8800-CKrwmytEZb@http.bugs.freedesktop.org/>
+Date: Thu, 16 Feb 2017 18:50:39 +0000
+Message-ID: <bug-99841-8800-6t5rIQEpSl@http.bugs.freedesktop.org/>
 References: <bug-99841-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1019509839=="
+Content-Type: multipart/mixed; boundary="===============1920154355=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99841-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1019509839==
-Content-Type: multipart/alternative; boundary="14872705890.6a01C69.13568";
+--===============1920154355==
+Content-Type: multipart/alternative; boundary="14872710391.6Bc355.13831";
  charset="UTF-8"
 
 
---14872705890.6a01C69.13568
-Date: Thu, 16 Feb 2017 18:43:09 +0000
+--14872710391.6Bc355.13831
+Date: Thu, 16 Feb 2017 18:50:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,7 +36,7 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99841
 
---- Comment #3 from Elimar Riesebieter <riesebie-xZYEWGoilGM@public.gmane.org> ---
+--- Comment #4 from Elimar Riesebieter <riesebie-xZYEWGoilGM@public.gmane.org> ---
 Graphics and CPU:
 
 01:00.0 VGA compatible controller: NVIDIA Corporation GK104 [GeForce GTX 76=
@@ -154,8 +154,8 @@ power management:
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14872705890.6a01C69.13568
-Date: Thu, 16 Feb 2017 18:43:09 +0000
+--14872710391.6Bc355.13831
+Date: Thu, 16 Feb 2017 18:50:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -172,8 +172,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Switching to VT freezes X only on a dual screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99841#c3">Comment=
- # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99841#c4">Comment=
+ # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Switching to VT freezes X only on a dual screen"
@@ -308,9 +308,9 @@ power management:</pre>
     </body>
 </html>=
 
---14872705890.6a01C69.13568--
+--14872710391.6Bc355.13831--
 
---===============1019509839==
+--===============1920154355==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -320,4 +320,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1019509839==--
+--===============1920154355==--
