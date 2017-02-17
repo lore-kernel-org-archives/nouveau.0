@@ -1,11 +1,13 @@
-From: Shawn Lin <shawn.lin-TNX95d0MmH7DzftRWevZcw@public.gmane.org>
-Subject: Where to know the BAR size of NVIDIA GPU
-Date: Mon, 13 Feb 2017 17:52:23 +0800
-Message-ID: <f46ddf2b-b4f1-1c07-181b-1d08c3e6bdc0@rock-chips.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Where to know the BAR size of NVIDIA GPU
+Date: Fri, 17 Feb 2017 12:26:10 -0500
+Message-ID: <CAKb7UvgymWq9K5QJ_e-iR5x5dcsxgQ8teSOgw1QV4J9=iEtEYw@mail.gmail.com>
+References: <f46ddf2b-b4f1-1c07-181b-1d08c3e6bdc0@rock-chips.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <f46ddf2b-b4f1-1c07-181b-1d08c3e6bdc0-TNX95d0MmH7DzftRWevZcw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,15 +17,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Shawn Lin <shawn.lin-TNX95d0MmH7DzftRWevZcw@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGkgZmxva3MsCgoKSSBoYXZlIGEgcGxhdGZvcm0gdGhhdCBvbmx5IGNvdWxkIHByb3ZpZGUgMzJN
-QiBtZW1vcnkgc3BhY2UgZm9yClBDSWUgZW5kcG9pbnQuIFNvIGlmIEkgd291bGQgbGlrZSB0byB1
-c2UgYSBOVklESUEgR1BVLCBjb3VsZCB5b3UKLG5vdXZlYXUgZm9sa3MsIGtpbmRseSBwb2ludCBt
-ZSB0byB0aGUgcmlnaHQgcHJvZHVjdHMgdGhhdCByZXF1aXJlCmxlc3MgdGhhdCAzMk1CIE1FTSwg
-c28gSSBjb3VsZCBidXkgb25lIGJlZm9yZSBrbm93aW5nIHRoYXQgbXkgcGxhdGZvcm0KY291bGQg
-dXNlIGl0LiA6KQoKClRoYW5rcy4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQo=
+Q2FuIHlvdSBlbGFib3JhdGUgd2hhdCB5b3UgbWVhbiBieSAiMzJNQiBtZW1vcnkgc3BhY2UiPyBE
+byB5b3UgbWVhbgp0aGF0IHRoZSBzdW0gb2YgdGhlIFBDSSBtZW1vcnkgcmVnaW9ucyBoYXMgdG8g
+YmUgdW5kZXIgMzJNQj8gSWYgc28sCnlvdSBtYXkgYmUgb3V0IG9mIGx1Y2ssIHRoZSBWUkFNIEJB
+UiBpcyBhbHdheXMgYXQgbGVhc3QgNjRNQiBmb3IgR1BVcwp0aGF0IGhhdmUgUENJZSBpbnRlcmZh
+Y2VzLiBTZWUKCmh0dHBzOi8vZW52eXRvb2xzLnJlYWR0aGVkb2NzLmlvL2VuL2xhdGVzdC9ody9i
+dXMvYmFycy5odG1sI2JhcjEtdnJhbS1hcGVydHVyZQoKT24gTW9uLCBGZWIgMTMsIDIwMTcgYXQg
+NDo1MiBBTSwgU2hhd24gTGluIDxzaGF3bi5saW5Acm9jay1jaGlwcy5jb20+IHdyb3RlOgo+IEhp
+IGZsb2tzLAo+Cj4KPiBJIGhhdmUgYSBwbGF0Zm9ybSB0aGF0IG9ubHkgY291bGQgcHJvdmlkZSAz
+Mk1CIG1lbW9yeSBzcGFjZSBmb3IKPiBQQ0llIGVuZHBvaW50LiBTbyBpZiBJIHdvdWxkIGxpa2Ug
+dG8gdXNlIGEgTlZJRElBIEdQVSwgY291bGQgeW91Cj4gLG5vdXZlYXUgZm9sa3MsIGtpbmRseSBw
+b2ludCBtZSB0byB0aGUgcmlnaHQgcHJvZHVjdHMgdGhhdCByZXF1aXJlCj4gbGVzcyB0aGF0IDMy
+TUIgTUVNLCBzbyBJIGNvdWxkIGJ1eSBvbmUgYmVmb3JlIGtub3dpbmcgdGhhdCBteSBwbGF0Zm9y
+bQo+IGNvdWxkIHVzZSBpdC4gOikKPgo+Cj4gVGhhbmtzLgo+Cj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQo=
