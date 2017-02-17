@@ -1,323 +1,203 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99841] Switching to VT freezes X only on a dual
-	screen
-Date: Thu, 16 Feb 2017 18:50:39 +0000
-Message-ID: <bug-99841-8800-6t5rIQEpSl@http.bugs.freedesktop.org/>
-References: <bug-99841-8800@http.bugs.freedesktop.org/>
+From: Joe Perches <joe@perches.com>
+Subject: [PATCH 00/35] treewide trivial patches converting
+	pr_warning to pr_warn
+Date: Thu, 16 Feb 2017 23:11:13 -0800
+Message-ID: <cover.1487314666.git.joe@perches.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1920154355=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99841-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <xen-devel-bounces@lists.xen.org>
+List-Unsubscribe: <https://lists.xen.org/cgi-bin/mailman/options/xen-devel>,
+ <mailto:xen-devel-request@lists.xen.org?subject=unsubscribe>
+List-Post: <mailto:xen-devel@lists.xen.org>
+List-Help: <mailto:xen-devel-request@lists.xen.org?subject=help>
+List-Subscribe: <https://lists.xen.org/cgi-bin/mailman/listinfo/xen-devel>,
+ <mailto:xen-devel-request@lists.xen.org?subject=subscribe>
+Errors-To: xen-devel-bounces@lists.xen.org
+Sender: "Xen-devel" <xen-devel-bounces@lists.xen.org>
+To: Alexander Shishkin <alexander.shishkin@linux.intel.com>, Karol Herbst <karolherbst@gmail.com>, Pekka Paalanen <ppaalanen@gmail.com>, Richard Weinberger <richard@nod.at>, Fabio Estevam <fabio.estevam@nxp.com>, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org, tboot-devel@lists.sourceforge.net, nouveau@lists.freedesktop.org, oprofile-list@lists.sf.net, sfi-devel@simplefirmware.org, xen-devel@lists.xenproject.org, linux-acpi@vger.kernel.org, drbd-dev@lists.linbit.com, virtualization@lists.linux-foundation.org, linux-crypto@vger.kernel.org, linux-ide@vger.kernel.org, gigaset307x-common@lists.sourceforge.net, linux-media@vger.kernel.org, linux-omap@vger.kernel.org, linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, acpi4asus-user@lists.sourceforge.net, platform-driver-x86@vger.kernel.org, linux-scsi@vger.kernel.org
+Cc: linux-ia64@vger.kernel.org, linux-sh@vger.kernel.org, netdev@vger.kernel.org, linux-input@vger.kernel.org, adi-buildroot-devel@lists.sourceforge.net, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-alpha@vger.kernel.org, sparclinux@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1920154355==
-Content-Type: multipart/alternative; boundary="14872710391.6Bc355.13831";
- charset="UTF-8"
-
-
---14872710391.6Bc355.13831
-Date: Thu, 16 Feb 2017 18:50:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99841
-
---- Comment #4 from Elimar Riesebieter <riesebie-xZYEWGoilGM@public.gmane.org> ---
-Graphics and CPU:
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GK104 [GeForce GTX 76=
-0]
-(rev a1) (prog-if 00 [VGA controller])
-        Subsystem: Gigabyte Technology Co., Ltd GK104 [GeForce GTX 760]
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR- FastB2B- DisINTx+
-        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast >TAbort- <T=
-Abort-
-<MAbort- >SERR- <PERR- INTx-
-        Latency: 0, Cache Line Size: 64 bytes
-        Interrupt: pin A routed to IRQ 24
-        Region 0: Memory at ee000000 (32-bit, non-prefetchable) [size=3D16M]
-        Region 1: Memory at e0000000 (64-bit, prefetchable) [size=3D128M]
-        Region 3: Memory at e8000000 (64-bit, prefetchable) [size=3D32M]
-        Region 5: I/O ports at e000 [size=3D128]
-        Expansion ROM at 000c0000 [disabled] [size=3D128K]
-        Capabilities: [60] Power Management version 3
-                Flags: PMEClk- DSI- D1- D2- AuxCurrent=3D0mA
-PME(D0-,D1-,D2-,D3hot-,D3cold-)
-                Status: D0 NoSoftRst+ PME-Enable- DSel=3D0 DScale=3D0 PME-
-        Capabilities: [68] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
-                Address: 00000000feeff00c  Data: 4181
-        Capabilities: [78] Express (v2) Endpoint, MSI 00
-                DevCap: MaxPayload 256 bytes, PhantFunc 0, Latency L0s
-unlimited, L1 <64us
-                        ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
-SlotPowerLimit 75.000W
-                DevCtl: Report errors: Correctable- Non-Fatal- Fatal-
-Unsupported-
-                        RlxdOrd- ExtTag+ PhantFunc- AuxPwr- NoSnoop+
-                        MaxPayload 256 bytes, MaxReadReq 512 bytes
-                DevSta: CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr-
-TransPend-
-                LnkCap: Port #0, Speed 8GT/s, Width x16, ASPM L0s L1, Exit
-Latency L0s <512ns, L1 <4us
-                        ClockPM+ Surprise- LLActRep- BwNot- ASPMOptComp+
-                LnkCtl: ASPM Disabled; RCB 64 bytes Disabled- CommClk+
-                        ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
-                LnkSta: Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk+
-DLActive- BWMgmt- ABWMgmt-
-                DevCap2: Completion Timeout: Range AB, TimeoutDis+, LTR-, O=
-BFF
-Not Supported
-                DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-, LTR=
--,
-OBFF Disabled
-                LnkCtl2: Target Link Speed: 8GT/s, EnterCompliance- SpeedDi=
-s-
-                         Transmit Margin: Normal Operating Range,
-EnterModifiedCompliance- ComplianceSOS-
-                         Compliance De-emphasis: -6dB
-                LnkSta2: Current De-emphasis Level: -3.5dB,
-EqualizationComplete+, EqualizationPhase1+
-                         EqualizationPhase2+, EqualizationPhase3+,
-LinkEqualizationRequest+
-        Capabilities: [b4] Vendor Specific Information: Len=3D14 <?>
-        Capabilities: [100 v1] Virtual Channel
-                Caps:   LPEVC=3D0 RefClk=3D100ns PATEntryBits=3D1
-                Arb:    Fixed- WRR32- WRR64- WRR128-
-                Ctrl:   ArbSelect=3DFixed
-                Status: InProgress-
-                VC0:    Caps:   PATOffset=3D00 MaxTimeSlots=3D1 RejSnoopTra=
-ns-
-                        Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR25=
-6-
-                        Ctrl:   Enable+ ID=3D0 ArbSelect=3DFixed TC/VC=3D01
-                        Status: NegoPending- InProgress-
-        Capabilities: [128 v1] Power Budgeting <?>
-        Capabilities: [600 v1] Vendor Specific Information: ID=3D0001 Rev=
-=3D1
-Len=3D024 <?>
-        Capabilities: [900 v1] #19
-        Kernel driver in use: nouveau
-
-
-processor       : [0-7]
-vendor_id       : GenuineIntel
-cpu family      : 6
-model           : 60
-model name      : Intel(R) Core(TM) i7-4770K CPU @ 3.50GHz
-stepping        : 3
-microcode       : 0x19
-cpu MHz         : 800.000
-cache size      : 8192 KB
-physical id     : 0
-siblings        : 8
-core id         : 0
-cpu cores       : 4
-apicid          : 0
-initial apicid  : 0
-fpu             : yes
-fpu_exception   : yes
-cpuid level     : 13
-wp              : yes
-flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca =
-cmov
-pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb
-rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology
-nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est=
- tm2
-ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 movbe popcnt
-tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm epb tpr_shadow vnmi
-flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid
-xsaveopt dtherm ida arat pln pts
-bugs            :
-bogomips        : 6996.12
-clflush size    : 64
-cache_alignment : 64
-address sizes   : 39 bits physical, 48 bits virtual
-power management:
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14872710391.6Bc355.13831
-Date: Thu, 16 Feb 2017 18:50:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Switching to VT freezes X only on a dual screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99841#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Switching to VT freezes X only on a dual screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99841">bug 99841<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-riesebie&#64;lxtec.de" title=3D"Elimar Riesebieter &lt;riesebie&#64;lxtec.d=
-e&gt;"> <span class=3D"fn">Elimar Riesebieter</span></a>
-</span></b>
-        <pre>Graphics and CPU:
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GK104 [GeForce GTX 76=
-0]
-(rev a1) (prog-if 00 [VGA controller])
-        Subsystem: Gigabyte Technology Co., Ltd GK104 [GeForce GTX 760]
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR- FastB2B- DisINTx+
-        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast &gt;TAbort-=
- &lt;TAbort-
-&lt;MAbort- &gt;SERR- &lt;PERR- INTx-
-        Latency: 0, Cache Line Size: 64 bytes
-        Interrupt: pin A routed to IRQ 24
-        Region 0: Memory at ee000000 (32-bit, non-prefetchable) [size=3D16M]
-        Region 1: Memory at e0000000 (64-bit, prefetchable) [size=3D128M]
-        Region 3: Memory at e8000000 (64-bit, prefetchable) [size=3D32M]
-        Region 5: I/O ports at e000 [size=3D128]
-        Expansion ROM at 000c0000 [disabled] [size=3D128K]
-        Capabilities: [60] Power Management version 3
-                Flags: PMEClk- DSI- D1- D2- AuxCurrent=3D0mA
-PME(D0-,D1-,D2-,D3hot-,D3cold-)
-                Status: D0 NoSoftRst+ PME-Enable- DSel=3D0 DScale=3D0 PME-
-        Capabilities: [68] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
-                Address: 00000000feeff00c  Data: 4181
-        Capabilities: [78] Express (v2) Endpoint, MSI 00
-                DevCap: MaxPayload 256 bytes, PhantFunc 0, Latency L0s
-unlimited, L1 &lt;64us
-                        ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
-SlotPowerLimit 75.000W
-                DevCtl: Report errors: Correctable- Non-Fatal- Fatal-
-Unsupported-
-                        RlxdOrd- ExtTag+ PhantFunc- AuxPwr- NoSnoop+
-                        MaxPayload 256 bytes, MaxReadReq 512 bytes
-                DevSta: CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr-
-TransPend-
-                LnkCap: Port #0, Speed 8GT/s, Width x16, ASPM L0s L1, Exit
-Latency L0s &lt;512ns, L1 &lt;4us
-                        ClockPM+ Surprise- LLActRep- BwNot- ASPMOptComp+
-                LnkCtl: ASPM Disabled; RCB 64 bytes Disabled- CommClk+
-                        ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
-                LnkSta: Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk+
-DLActive- BWMgmt- ABWMgmt-
-                DevCap2: Completion Timeout: Range AB, TimeoutDis+, LTR-, O=
-BFF
-Not Supported
-                DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-, LTR=
--,
-OBFF Disabled
-                LnkCtl2: Target Link Speed: 8GT/s, EnterCompliance- SpeedDi=
-s-
-                         Transmit Margin: Normal Operating Range,
-EnterModifiedCompliance- ComplianceSOS-
-                         Compliance De-emphasis: -6dB
-                LnkSta2: Current De-emphasis Level: -3.5dB,
-EqualizationComplete+, EqualizationPhase1+
-                         EqualizationPhase2+, EqualizationPhase3+,
-LinkEqualizationRequest+
-        Capabilities: [b4] Vendor Specific Information: Len=3D14 &lt;?&gt;
-        Capabilities: [100 v1] Virtual Channel
-                Caps:   LPEVC=3D0 RefClk=3D100ns PATEntryBits=3D1
-                Arb:    Fixed- WRR32- WRR64- WRR128-
-                Ctrl:   ArbSelect=3DFixed
-                Status: InProgress-
-                VC0:    Caps:   PATOffset=3D00 MaxTimeSlots=3D1 RejSnoopTra=
-ns-
-                        Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR25=
-6-
-                        Ctrl:   Enable+ ID=3D0 ArbSelect=3DFixed TC/VC=3D01
-                        Status: NegoPending- InProgress-
-        Capabilities: [128 v1] Power Budgeting &lt;?&gt;
-        Capabilities: [600 v1] Vendor Specific Information: ID=3D0001 Rev=
-=3D1
-Len=3D024 &lt;?&gt;
-        Capabilities: [900 v1] #19
-        Kernel driver in use: nouveau
-
-
-processor       : [0-7]
-vendor_id       : GenuineIntel
-cpu family      : 6
-model           : 60
-model name      : Intel(R) Core(TM) i7-4770K CPU &#64; 3.50GHz
-stepping        : 3
-microcode       : 0x19
-cpu MHz         : 800.000
-cache size      : 8192 KB
-physical id     : 0
-siblings        : 8
-core id         : 0
-cpu cores       : 4
-apicid          : 0
-initial apicid  : 0
-fpu             : yes
-fpu_exception   : yes
-cpuid level     : 13
-wp              : yes
-flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca =
-cmov
-pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb
-rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology
-nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est=
- tm2
-ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 movbe popcnt
-tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm epb tpr_shadow vnmi
-flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid
-xsaveopt dtherm ida arat pln pts
-bugs            :
-bogomips        : 6996.12
-clflush size    : 64
-cache_alignment : 64
-address sizes   : 39 bits physical, 48 bits virtual
-power management:</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14872710391.6Bc355.13831--
-
---===============1920154355==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1920154355==--
+VGhlcmUgYXJlIH40MzAwIHVzZXMgb2YgcHJfd2FybiBhbmQgfjI1MCB1c2VzIG9mIHRoZSBvbGRl
+cgpwcl93YXJuaW5nIGluIHRoZSBrZXJuZWwgc291cmNlIHRyZWUuCgpNYWtlIHRoZSB1c2Ugb2Yg
+cHJfd2FybiBjb25zaXN0ZW50IGFjcm9zcyBhbGwga2VybmVsIGZpbGVzLgoKVGhpcyBleGNsdWRl
+cyBhbGwgZmlsZXMgaW4gdG9vbHMvIGFzIHRoZXJlIGlzIGEgc2VwYXJhdGUKZGVmaW5lIHByX3dh
+cm5pbmcgZm9yIHRoYXQgZGlyZWN0b3J5IHRyZWUgYW5kIHByX3dhcm4gaXMKbm90IHVzZWQgaW4g
+dG9vbHMvLgoKRG9uZSB3aXRoICdzZWQgcy9cYnByX3dhcm5pbmdcYi9wcl93YXJuLycgYW5kIHNv
+bWUgZW1hY3NpbmcuCgpNaXNjZWxsYW5lYToKCm8gQ29hbGVzY2UgZm9ybWF0cyBhbmQgcmVhbGln
+biBhcmd1bWVudHMKClNvbWUgZmlsZXMgbm90IGNvbXBpbGVkIC0gbm8gY3Jvc3MtY29tcGlsZXJz
+CgpKb2UgUGVyY2hlcyAoMzUpOgogIGFscGhhOiBDb252ZXJ0IHJlbWFpbmluZyB1c2VzIG9mIHBy
+X3dhcm5pbmcgdG8gcHJfd2FybgogIEFSTTogZXA5M3h4OiBDb252ZXJ0IHJlbWFpbmluZyB1c2Vz
+IG9mIHByX3dhcm5pbmcgdG8gcHJfd2FybgogIGFybTY0OiBDb252ZXJ0IHJlbWFpbmluZyB1c2Vz
+IG9mIHByX3dhcm5pbmcgdG8gcHJfd2FybgogIGFyY2gvYmxhY2tmaW46IENvbnZlcnQgcmVtYWlu
+aW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCiAgaWE2NDogQ29udmVydCByZW1haW5p
+bmcgdXNlIG9mIHByX3dhcm5pbmcgdG8gcHJfd2FybgogIHBvd2VycGM6IENvbnZlcnQgcmVtYWlu
+aW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCiAgc2g6IENvbnZlcnQgcmVtYWluaW5n
+IHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCiAgc3BhcmM6IENvbnZlcnQgcmVtYWluaW5n
+IHVzZSBvZiBwcl93YXJuaW5nIHRvIHByX3dhcm4KICB4ODY6IENvbnZlcnQgcmVtYWluaW5nIHVz
+ZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCiAgZHJpdmVycy9hY3BpOiBDb252ZXJ0IHJlbWFp
+bmluZyB1c2VzIG9mIHByX3dhcm5pbmcgdG8gcHJfd2FybgogIGJsb2NrL2RyYmQ6IENvbnZlcnQg
+cmVtYWluaW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCiAgZ2Ryb206IENvbnZlcnQg
+cmVtYWluaW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCiAgZHJpdmVycy9jaGFyOiBD
+b252ZXJ0IHJlbWFpbmluZyB1c2Ugb2YgcHJfd2FybmluZyB0byBwcl93YXJuCiAgY2xvY2tzb3Vy
+Y2U6IENvbnZlcnQgcmVtYWluaW5nIHVzZSBvZiBwcl93YXJuaW5nIHRvIHByX3dhcm4KICBkcml2
+ZXJzL2NyeXB0bzogQ29udmVydCByZW1haW5pbmcgdXNlcyBvZiBwcl93YXJuaW5nIHRvIHByX3dh
+cm4KICBmbWM6IENvbnZlcnQgcmVtYWluaW5nIHVzZSBvZiBwcl93YXJuaW5nIHRvIHByX3dhcm4K
+ICBkcml2ZXJzL2dwdTogQ29udmVydCByZW1haW5pbmcgdXNlcyBvZiBwcl93YXJuaW5nIHRvIHBy
+X3dhcm4KICBkcml2ZXJzL2lkZTogQ29udmVydCByZW1haW5pbmcgdXNlcyBvZiBwcl93YXJuaW5n
+IHRvIHByX3dhcm4KICBkcml2ZXJzL2lucHV0OiBDb252ZXJ0IHJlbWFpbmluZyB1c2VzIG9mIHBy
+X3dhcm5pbmcgdG8gcHJfd2FybgogIGRyaXZlcnMvaXNkbjogQ29udmVydCByZW1haW5pbmcgdXNl
+cyBvZiBwcl93YXJuaW5nIHRvIHByX3dhcm4KICBkcml2ZXJzL21hY2ludG9zaDogQ29udmVydCBy
+ZW1haW5pbmcgdXNlcyBvZiBwcl93YXJuaW5nIHRvIHByX3dhcm4KICBkcml2ZXJzL21lZGlhOiBD
+b252ZXJ0IHJlbWFpbmluZyB1c2Ugb2YgcHJfd2FybmluZyB0byBwcl93YXJuCiAgZHJpdmVycy9t
+ZmQ6IENvbnZlcnQgcmVtYWluaW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCiAgZHJp
+dmVycy9tdGQ6IENvbnZlcnQgcmVtYWluaW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJu
+CiAgZHJpdmVycy9vZjogQ29udmVydCByZW1haW5pbmcgdXNlcyBvZiBwcl93YXJuaW5nIHRvIHBy
+X3dhcm4KICBkcml2ZXJzL29wcm9maWxlOiBDb252ZXJ0IHJlbWFpbmluZyB1c2VzIG9mIHByX3dh
+cm5pbmcgdG8gcHJfd2FybgogIGRyaXZlcnMvcGxhdGZvcm06IENvbnZlcnQgcmVtYWluaW5nIHVz
+ZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCiAgZHJpdmVycy9yYXBpZGlvOiBDb252ZXJ0IHJl
+bWFpbmluZyB1c2Ugb2YgcHJfd2FybmluZyB0byBwcl93YXJuCiAgZHJpdmVycy9zY3NpOiBDb252
+ZXJ0IHJlbWFpbmluZyB1c2Ugb2YgcHJfd2FybmluZyB0byBwcl93YXJuCiAgZHJpdmVycy9zaDog
+Q29udmVydCByZW1haW5pbmcgdXNlIG9mIHByX3dhcm5pbmcgdG8gcHJfd2FybgogIGRyaXZlcnMv
+dHR5OiBDb252ZXJ0IHJlbWFpbmluZyB1c2VzIG9mIHByX3dhcm5pbmcgdG8gcHJfd2FybgogIGRy
+aXZlcnMvdmlkZW86IENvbnZlcnQgcmVtYWluaW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93
+YXJuCiAga2VybmVsL3RyYWNlOiBDb252ZXJ0IHJlbWFpbmluZyB1c2VzIG9mIHByX3dhcm5pbmcg
+dG8gcHJfd2FybgogIGxpYjogQ29udmVydCByZW1haW5pbmcgdXNlcyBvZiBwcl93YXJuaW5nIHRv
+IHByX3dhcm4KICBzb3VuZC9zb2M6IENvbnZlcnQgcmVtYWluaW5nIHVzZXMgb2YgcHJfd2Fybmlu
+ZyB0byBwcl93YXJuCgogYXJjaC9hbHBoYS9rZXJuZWwvcGVyZl9ldmVudC5jICAgICAgICAgICAg
+ICAgICAgICAgfCAgNCArLQogYXJjaC9hcm0vbWFjaC1lcDkzeHgvY29yZS5jICAgICAgICAgICAg
+ICAgICAgICAgICAgfCAgNCArLQogYXJjaC9hcm02NC9pbmNsdWRlL2FzbS9zeXNjYWxsLmggICAg
+ICAgICAgICAgICAgICAgfCAgOCArKy0tCiBhcmNoL2FybTY0L2tlcm5lbC9od19icmVha3BvaW50
+LmMgICAgICAgICAgICAgICAgICB8ICA4ICsrLS0KIGFyY2gvYXJtNjQva2VybmVsL3NtcC5jICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDQgKy0KIGFyY2gvYmxhY2tmaW4va2VybmVsL25t
+aS5jICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDIgKy0KIGFyY2gvYmxhY2tmaW4va2VybmVs
+L3B0cmFjZS5jICAgICAgICAgICAgICAgICAgICAgIHwgIDIgKy0KIGFyY2gvYmxhY2tmaW4vbWFj
+aC1iZjUzMy9ib2FyZHMvc3RhbXAuYyAgICAgICAgICAgIHwgIDIgKy0KIGFyY2gvYmxhY2tmaW4v
+bWFjaC1iZjUzNy9ib2FyZHMvY21fYmY1MzdlLmMgICAgICAgIHwgIDIgKy0KIGFyY2gvYmxhY2tm
+aW4vbWFjaC1iZjUzNy9ib2FyZHMvY21fYmY1Mzd1LmMgICAgICAgIHwgIDIgKy0KIGFyY2gvYmxh
+Y2tmaW4vbWFjaC1iZjUzNy9ib2FyZHMvc3RhbXAuYyAgICAgICAgICAgIHwgIDIgKy0KIGFyY2gv
+YmxhY2tmaW4vbWFjaC1iZjUzNy9ib2FyZHMvdGNtX2JmNTM3LmMgICAgICAgIHwgIDIgKy0KIGFy
+Y2gvYmxhY2tmaW4vbWFjaC1iZjU2MS9ib2FyZHMvY21fYmY1NjEuYyAgICAgICAgIHwgIDIgKy0K
+IGFyY2gvYmxhY2tmaW4vbWFjaC1iZjU2MS9ib2FyZHMvZXpraXQuYyAgICAgICAgICAgIHwgIDIg
+Ky0KIGFyY2gvYmxhY2tmaW4vbW0vaXNyYW0tZHJpdmVyLmMgICAgICAgICAgICAgICAgICAgIHwg
+IDQgKy0KIGFyY2gvaWE2NC9rZXJuZWwvc2V0dXAuYyAgICAgICAgICAgICAgICAgICAgICAgICAg
+IHwgIDYgKy0tCiBhcmNoL3Bvd2VycGMva2VybmVsL3BjaS1jb21tb24uYyAgICAgICAgICAgICAg
+ICAgICB8ICA0ICstCiBhcmNoL3Bvd2VycGMvbW0vaW5pdF82NC5jICAgICAgICAgICAgICAgICAg
+ICAgICAgICB8ICA1ICstLQogYXJjaC9wb3dlcnBjL21tL21lbS5jICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgfCAgMyArLQogYXJjaC9wb3dlcnBjL3BsYXRmb3Jtcy81MTJ4L21wYzUxMnhf
+c2hhcmVkLmMgICAgICAgfCAgNCArLQogYXJjaC9wb3dlcnBjL3BsYXRmb3Jtcy84NXh4L3NvY3Jh
+dGVzX2ZwZ2FfcGljLmMgICAgfCAgNyArKy0tCiBhcmNoL3Bvd2VycGMvcGxhdGZvcm1zLzg2eHgv
+bXBjODZ4eF9ocGNuLmMgICAgICAgICB8ICAyICstCiBhcmNoL3Bvd2VycGMvcGxhdGZvcm1zL3Bh
+c2VtaS9kbWFfbGliLmMgICAgICAgICAgICB8ICA0ICstCiBhcmNoL3Bvd2VycGMvcGxhdGZvcm1z
+L3Bvd2VybnYvb3BhbC5jICAgICAgICAgICAgICB8ICA4ICsrLS0KIGFyY2gvcG93ZXJwYy9wbGF0
+Zm9ybXMvcG93ZXJudi9wY2ktaW9kYS5jICAgICAgICAgIHwgMTAgKystLS0KIGFyY2gvcG93ZXJw
+Yy9wbGF0Zm9ybXMvcHMzL2RldmljZS1pbml0LmMgICAgICAgICAgIHwgMTQgKysrLS0tLQogYXJj
+aC9wb3dlcnBjL3BsYXRmb3Jtcy9wczMvbW0uYyAgICAgICAgICAgICAgICAgICAgfCAgNCArLQog
+YXJjaC9wb3dlcnBjL3BsYXRmb3Jtcy9wczMvb3MtYXJlYS5jICAgICAgICAgICAgICAgfCAgMiAr
+LQogYXJjaC9wb3dlcnBjL3BsYXRmb3Jtcy9wc2VyaWVzL2lvbW11LmMgICAgICAgICAgICAgfCAg
+OCArKy0tCiBhcmNoL3Bvd2VycGMvcGxhdGZvcm1zL3BzZXJpZXMvc2V0dXAuYyAgICAgICAgICAg
+ICB8ICA0ICstCiBhcmNoL3Bvd2VycGMvc3lzZGV2L2ZzbF9wY2kuYyAgICAgICAgICAgICAgICAg
+ICAgICB8ICA5ICsrLS0tCiBhcmNoL3Bvd2VycGMvc3lzZGV2L21waWMuYyAgICAgICAgICAgICAg
+ICAgICAgICAgICB8IDEwICsrLS0tCiBhcmNoL3Bvd2VycGMvc3lzZGV2L3hpY3MvaWNwLW5hdGl2
+ZS5jICAgICAgICAgICAgICB8IDEwICsrLS0tCiBhcmNoL3Bvd2VycGMvc3lzZGV2L3hpY3MvaWNz
+LW9wYWwuYyAgICAgICAgICAgICAgICB8ICA0ICstCiBhcmNoL3Bvd2VycGMvc3lzZGV2L3hpY3Mv
+aWNzLXJ0YXMuYyAgICAgICAgICAgICAgICB8ICA0ICstCiBhcmNoL3Bvd2VycGMvc3lzZGV2L3hp
+Y3MveGljcy1jb21tb24uYyAgICAgICAgICAgICB8ICA4ICsrLS0KIGFyY2gvc2gvYm9hcmRzL21h
+Y2gtc2RrNzc4Ni9ubWkuYyAgICAgICAgICAgICAgICAgIHwgIDIgKy0KIGFyY2gvc2gvZHJpdmVy
+cy9wY2kvZml4dXBzLXNkazc3ODYuYyAgICAgICAgICAgICAgIHwgIDIgKy0KIGFyY2gvc2gva2Vy
+bmVsL2lvX3RyYXBwZWQuYyAgICAgICAgICAgICAgICAgICAgICAgIHwgIDIgKy0KIGFyY2gvc2gv
+a2VybmVsL3NldHVwLmMgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDIgKy0KIGFyY2gv
+c2gvbW0vY29uc2lzdGVudC5jICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDUgKy0tCiBh
+cmNoL3NwYXJjL2tlcm5lbC9zbXBfNjQuYyAgICAgICAgICAgICAgICAgICAgICAgICB8ICA1ICst
+LQogYXJjaC94ODYva2VybmVsL2FtZF9nYXJ0XzY0LmMgICAgICAgICAgICAgICAgICAgICAgfCAx
+MiArKy0tLS0KIGFyY2gveDg2L2tlcm5lbC9hcGljL2FwaWMuYyAgICAgICAgICAgICAgICAgICAg
+ICAgIHwgNDYgKysrKysrKysrKy0tLS0tLS0tLS0tLQogYXJjaC94ODYva2VybmVsL2FwaWMvYXBp
+Y19ub29wLmMgICAgICAgICAgICAgICAgICAgfCAgMiArLQogYXJjaC94ODYva2VybmVsL3NldHVw
+X3BlcmNwdS5jICAgICAgICAgICAgICAgICAgICAgfCAgNCArLQogYXJjaC94ODYva2VybmVsL3Ri
+b290LmMgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAxNSArKysrLS0tCiBhcmNoL3g4Ni9r
+ZXJuZWwvdHNjX3N5bmMuYyAgICAgICAgICAgICAgICAgICAgICAgICB8ICA4ICsrLS0KIGFyY2gv
+eDg2L21tL2ttbWlvLmMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDggKystLQog
+YXJjaC94ODYvbW0vbW1pby1tb2QuYyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgNSAr
+LS0KIGFyY2gveDg2L21tL251bWEuYyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwg
+MTIgKysrLS0tCiBhcmNoL3g4Ni9tbS9udW1hX2VtdWxhdGlvbi5jICAgICAgICAgICAgICAgICAg
+ICAgICB8ICA2ICstLQogYXJjaC94ODYvbW0vdGVzdG1taW90cmFjZS5jICAgICAgICAgICAgICAg
+ICAgICAgICAgfCAgNSArLS0KIGFyY2gveDg2L29wcm9maWxlL29wX3g4Nl9tb2RlbC5oICAgICAg
+ICAgICAgICAgICAgIHwgIDYgKy0tCiBhcmNoL3g4Ni9wbGF0Zm9ybS9vbHBjL29scGMteG8xNS1z
+Y2kuYyAgICAgICAgICAgICB8ICAyICstCiBhcmNoL3g4Ni9wbGF0Zm9ybS9zZmkvc2ZpLmMgICAg
+ICAgICAgICAgICAgICAgICAgICB8ICAzICstCiBhcmNoL3g4Ni94ZW4vZGVidWdmcy5jICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICB8ICAyICstCiBhcmNoL3g4Ni94ZW4vc2V0dXAuYyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAyICstCiBkcml2ZXJzL2FjcGkvYXBlaS9hcGVp
+LWJhc2UuYyAgICAgICAgICAgICAgICAgICAgICB8IDMyICsrKysrKystLS0tLS0tLQogZHJpdmVy
+cy9hY3BpL2FwZWkvZWluai5jICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgNCArLQogZHJp
+dmVycy9hY3BpL2FwZWkvZXJzdC1kYmcuYyAgICAgICAgICAgICAgICAgICAgICAgfCAgNCArLQog
+ZHJpdmVycy9hY3BpL2FwZWkvZ2hlcy5jICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAzMCAr
+KysrKysrLS0tLS0tLQogZHJpdmVycy9hY3BpL2FwZWkvaGVzdC5jICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgfCAxMCArKy0tLQogZHJpdmVycy9hY3BpL3Jlc291cmNlLmMgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgfCAgNCArLQogZHJpdmVycy9ibG9jay9kcmJkL2RyYmRfbmwuYyAgICAg
+ICAgICAgICAgICAgICAgICAgfCAxMyArKystLS0KIGRyaXZlcnMvY2Ryb20vZ2Ryb20uYyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDQgKy0KIGRyaXZlcnMvY2hhci92aXJ0aW9fY29u
+c29sZS5jICAgICAgICAgICAgICAgICAgICAgIHwgIDIgKy0KIGRyaXZlcnMvY2xvY2tzb3VyY2Uv
+c2Ftc3VuZ19wd21fdGltZXIuYyAgICAgICAgICAgIHwgIDQgKy0KIGRyaXZlcnMvY3J5cHRvL24y
+X2NvcmUuYyAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgMTIgKysrLS0tCiBkcml2ZXJzL2Zt
+Yy9mbWMtZmFrZWRldi5jICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAyICstCiBkcml2ZXJz
+L2dwdS9kcm0vYW1kL3Bvd2VycGxheS9od21nci9zbXU3X2h3bWdyLmMgICB8ICAyICstCiBkcml2
+ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9pbmMvcHBfZGVidWcuaCAgICAgICB8ICAyICstCiBk
+cml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9zbXVtZ3IvZmlqaV9zbWMuYyAgICB8ICA0ICst
+CiBkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9zbXVtZ3IvaWNlbGFuZF9zbWMuYyB8IDE0
+ICsrKy0tLS0KIC4uLi9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvc211bWdyL3BvbGFyaXMxMF9zbWMu
+YyAgIHwgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L3NtdW1nci90b25nYV9z
+bWMuYyAgIHwgIDQgKy0KIGRyaXZlcnMvaWRlL3R4NDkzOGlkZS5jICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIHwgIDIgKy0KIGRyaXZlcnMvaWRlL3R4NDkzOWlkZS5jICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIHwgIDUgKy0tCiBkcml2ZXJzL2lucHV0L2dhbWVwb3J0L2dhbWVwb3J0LmMg
+ICAgICAgICAgICAgICAgICB8ICA0ICstCiBkcml2ZXJzL2lucHV0L2pveXN0aWNrL2dhbWVjb24u
+YyAgICAgICAgICAgICAgICAgICB8ICAzICstCiBkcml2ZXJzL2lucHV0L21pc2MvYXBhbmVsLmMg
+ICAgICAgICAgICAgICAgICAgICAgICB8ICAzICstCiBkcml2ZXJzL2lucHV0L21pc2MveGVuLWti
+ZGZyb250LmMgICAgICAgICAgICAgICAgICB8ICA4ICsrLS0KIGRyaXZlcnMvaW5wdXQvc2VyaW8v
+c2VyaW8uYyAgICAgICAgICAgICAgICAgICAgICAgIHwgIDggKystLQogZHJpdmVycy9pc2RuL2dp
+Z2FzZXQvaW50ZXJmYWNlLmMgICAgICAgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9pc2Ru
+L2hhcmR3YXJlL21JU0ROL2F2bWZyaXR6LmMgICAgICAgICAgICAgfCAxNyArKysrLS0tLQogZHJp
+dmVycy9pc2RuL2hhcmR3YXJlL21JU0ROL2hmY211bHRpLmMgICAgICAgICAgICAgfCAgOCArKy0t
+CiBkcml2ZXJzL2lzZG4vaGFyZHdhcmUvbUlTRE4vaGZjcGNpLmMgICAgICAgICAgICAgICB8ICA0
+ICstCiBkcml2ZXJzL2lzZG4vaGFyZHdhcmUvbUlTRE4vaGZjc3VzYi5jICAgICAgICAgICAgICB8
+ICA0ICstCiBkcml2ZXJzL2lzZG4vaGFyZHdhcmUvbUlTRE4vbUlTRE5pcGFjLmMgICAgICAgICAg
+ICB8ICA0ICstCiBkcml2ZXJzL2lzZG4vaGFyZHdhcmUvbUlTRE4vbUlTRE5pc2FyLmMgICAgICAg
+ICAgICB8IDEwICsrLS0tCiBkcml2ZXJzL2lzZG4vaGFyZHdhcmUvbUlTRE4vbmV0amV0LmMgICAg
+ICAgICAgICAgICB8ICA4ICsrLS0KIGRyaXZlcnMvaXNkbi9oYXJkd2FyZS9tSVNETi93NjY5Mi5j
+ICAgICAgICAgICAgICAgIHwgMTIgKysrLS0tCiBkcml2ZXJzL2lzZG4vbUlTRE4vaHdjaGFubmVs
+LmMgICAgICAgICAgICAgICAgICAgICB8ICA4ICsrLS0KIGRyaXZlcnMvbWFjaW50b3NoL3dpbmRm
+YXJtX2ZjdV9jb250cm9scy5jICAgICAgICAgIHwgIDUgKy0tCiBkcml2ZXJzL21hY2ludG9zaC93
+aW5kZmFybV9sbTg3X3NlbnNvci5jICAgICAgICAgICB8ICA0ICstCiBkcml2ZXJzL21hY2ludG9z
+aC93aW5kZmFybV9wbTcyLmMgICAgICAgICAgICAgICAgICB8IDIyICsrKysrLS0tLS0tCiBkcml2
+ZXJzL21hY2ludG9zaC93aW5kZmFybV9ybTMxLmMgICAgICAgICAgICAgICAgICB8ICA2ICstLQog
+ZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9zaF92b3UuYyAgICAgICAgICAgICAgICAgICAgfCAgNCAr
+LQogZHJpdmVycy9tZmQvZGI4NTAwLXByY211LmMgICAgICAgICAgICAgICAgICAgICAgICAgfCAg
+MiArLQogZHJpdmVycy9tZmQvc3RhMngxMS1tZmQuYyAgICAgICAgICAgICAgICAgICAgICAgICAg
+fCAgNCArLQogZHJpdmVycy9tZmQvdHdsNDAzMC1wb3dlci5jICAgICAgICAgICAgICAgICAgICAg
+ICAgfCAgNyArLS0tCiBkcml2ZXJzL210ZC9jaGlwcy9jZmlfY21kc2V0XzAwMDIuYyAgICAgICAg
+ICAgICAgICB8IDEyICsrKystLQogZHJpdmVycy9tdGQvbmFuZC9jbXgyNzBfbmFuZC5jICAgICAg
+ICAgICAgICAgICAgICAgfCAgNCArLQogZHJpdmVycy9tdGQvb2ZwYXJ0LmMgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgfCAgNCArLQogZHJpdmVycy9vZi9mZHQuYyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgfCAyMCArKysrKy0tLS0tCiBkcml2ZXJzL29wcm9maWxlL29w
+cm9maWxlX3BlcmYuYyAgICAgICAgICAgICAgICAgICB8ICA4ICsrLS0KIGRyaXZlcnMvcGxhdGZv
+cm0veDg2L2FzdXMtbGFwdG9wLmMgICAgICAgICAgICAgICAgIHwgIDIgKy0KIGRyaXZlcnMvcGxh
+dGZvcm0veDg2L2VlZXBjLWxhcHRvcC5jICAgICAgICAgICAgICAgIHwgIDIgKy0KIGRyaXZlcnMv
+cGxhdGZvcm0veDg2L2ludGVsX29ha3RyYWlsLmMgICAgICAgICAgICAgIHwgMTAgKystLS0KIGRy
+aXZlcnMvcmFwaWRpby9yaW8tc3lzZnMuYyAgICAgICAgICAgICAgICAgICAgICAgIHwgIDQgKy0K
+IGRyaXZlcnMvc2NzaS9hMzAwMC5jICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDIg
+Ky0KIGRyaXZlcnMvc2gvaW50Yy9jb3JlLmMgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwg
+IDQgKy0KIGRyaXZlcnMvdHR5L2h2Yy9odmNzLmMgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IHwgIDIgKy0KIGRyaXZlcnMvdHR5L3R0eV9pby5jICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIHwgIDQgKy0KIGRyaXZlcnMvdmlkZW8vZmJkZXYvYXR5L3JhZGVvbl9iYXNlLmMgICAgICAg
+ICAgICAgIHwgIDQgKy0KIGRyaXZlcnMvdmlkZW8vZmJkZXYvY29yZS9mYm1vbi5jICAgICAgICAg
+ICAgICAgICAgIHwgIDQgKy0KIGRyaXZlcnMvdmlkZW8vZmJkZXYvcHhhZmIuYyAgICAgICAgICAg
+ICAgICAgICAgICAgIHwgIDcgKystLQoga2VybmVsL3RyYWNlL3RyYWNlX2JlbmNobWFyay5jICAg
+ICAgICAgICAgICAgICAgICAgfCAgNCArLQogbGliL2NwdV9ybWFwLmMgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgfCAgMiArLQogbGliL2RtYS1kZWJ1Zy5jICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgfCAgMiArLQogc291bmQvc29jL2ZzbC9pbXgtYXVkbXV4
+LmMgICAgICAgICAgICAgICAgICAgICAgICAgfCAgNiArLS0KIHNvdW5kL3NvYy9zYW1zdW5nL3Mz
+Yy1pMnMtdjIuYyAgICAgICAgICAgICAgICAgICAgIHwgIDYgKy0tCiAxMjIgZmlsZXMgY2hhbmdl
+ZCwgMzY3IGluc2VydGlvbnMoKyksIDM5NyBkZWxldGlvbnMoLSkKCi0tIAoyLjEwLjAucmMyLjEu
+ZzA1MzQzNWMKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpYZW4tZGV2ZWwgbWFpbGluZyBsaXN0Clhlbi1kZXZlbEBsaXN0cy54ZW4ub3JnCmh0dHBzOi8v
+bGlzdHMueGVuLm9yZy94ZW4tZGV2ZWwK
