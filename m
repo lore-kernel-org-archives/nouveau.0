@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98405] No signal on HDMI output after upgrade to
 	kernel 4.8.3-1
-Date: Sun, 19 Feb 2017 18:29:57 +0000
-Message-ID: <bug-98405-8800-2MR6Eserg3@http.bugs.freedesktop.org/>
+Date: Sun, 19 Feb 2017 18:31:55 +0000
+Message-ID: <bug-98405-8800-6olzcIwYJW@http.bugs.freedesktop.org/>
 References: <bug-98405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0072471201=="
+Content-Type: multipart/mixed; boundary="===============1315616156=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0072471201==
-Content-Type: multipart/alternative; boundary="14875289971.aC92CAa6.31030";
+--===============1315616156==
+Content-Type: multipart/alternative; boundary="14875291154.fbebb.31430";
  charset="UTF-8"
 
 
---14875289971.aC92CAa6.31030
-Date: Sun, 19 Feb 2017 18:29:57 +0000
+--14875291154.fbebb.31430
+Date: Sun, 19 Feb 2017 18:31:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,18 +40,18 @@ poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Component|DRM/other                   |Driver/nouveau
-            Product|DRI                         |xorg
-           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |.org                        |rg
+                 CC|                            |ulr_bugs_freedesktop_org@mo
+                   |                            |ehrkevielfalt.de
+
+--- Comment #3 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+*** Bug 99858 has been marked as a duplicate of this bug. ***
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14875289971.aC92CAa6.31030
-Date: Sun, 19 Feb 2017 18:29:57 +0000
+--14875291154.fbebb.31430
+Date: Sun, 19 Feb 2017 18:31:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,38 +80,36 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
+           <td style=3D"text-align:right;">CC</td>
            <td>
                &nbsp;
            </td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>DRM/other
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Product</td>
-           <td>DRI
-           </td>
-           <td>xorg
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
+           <td>ulr_bugs_freedesktop_org&#64;moehrkevielfalt.de
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - No signal on HDMI output after upgrade to kernel 4.8.3-1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98405#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - No signal on HDMI output after upgrade to kernel 4.8.3-1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98405">bug 98405<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
+l.com&gt;"> <span class=3D"fn">poma</span></a>
+</span></b>
+        <pre>*** <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - [NVAC] disp: ERROR 4 [INVALID_VALUE] 84 []=
+ chid 0 mthd 0828 data 000099bb"
+   href=3D"show_bug.cgi?id=3D99858">Bug 99858</a> has been marked as a dupl=
+icate of this bug. ***</pre>
+        </div>
       </p>
 
 
@@ -124,9 +122,9 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
     </body>
 </html>=
 
---14875289971.aC92CAa6.31030--
+--14875291154.fbebb.31430--
 
---===============0072471201==
+--===============1315616156==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -136,4 +134,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0072471201==--
+--===============1315616156==--
