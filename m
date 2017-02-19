@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98405] No signal on HDMI output after upgrade to
-	kernel 4.8.3-1
+Subject: [Bug 99858] [NVAC] disp: ERROR 4 [INVALID_VALUE] 84 []
+ chid 0 mthd 0828 data 000099bb
 Date: Sun, 19 Feb 2017 18:31:55 +0000
-Message-ID: <bug-98405-8800-6olzcIwYJW@http.bugs.freedesktop.org/>
-References: <bug-98405-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-99858-8800-gPYCe38U1O@http.bugs.freedesktop.org/>
+References: <bug-99858-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1315616156=="
+Content-Type: multipart/mixed; boundary="===============0489447959=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1315616156==
-Content-Type: multipart/alternative; boundary="14875291154.fbebb.31430";
+--===============0489447959==
+Content-Type: multipart/alternative; boundary="14875291142.2b2Fac.31430";
  charset="UTF-8"
 
 
---14875291154.fbebb.31430
-Date: Sun, 19 Feb 2017 18:31:55 +0000
+--14875291142.2b2Fac.31430
+Date: Sun, 19 Feb 2017 18:31:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98405
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99858
 
 poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |ulr_bugs_freedesktop_org@mo
-                   |                            |ehrkevielfalt.de
+         Resolution|---                         |DUPLICATE
+             Status|NEW                         |RESOLVED
 
---- Comment #3 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-*** Bug 99858 has been marked as a duplicate of this bug. ***
+--- Comment #7 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+
+
+*** This bug has been marked as a duplicate of bug 98405 ***
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14875291154.fbebb.31430
-Date: Sun, 19 Feb 2017 18:31:55 +0000
+--14875291142.2b2Fac.31430
+Date: Sun, 19 Feb 2017 18:31:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,9 +69,10 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
 "> <span class=3D"fn">poma</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - No signal on HDMI output after upgrade to kernel 4.8.3-1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98405">bug 98405<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - [NVAC] disp: ERROR 4 [INVALID_VALUE] 84 []=
+ chid 0 mthd 0828 data 000099bb"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99858">bug 99858<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -80,35 +83,44 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
            </td>
-           <td>ulr_bugs_freedesktop_org&#64;moehrkevielfalt.de
+           <td>DUPLICATE
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - No signal on HDMI output after upgrade to kernel 4.8.3-1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98405#c3">Comment=
- # 3</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - [NVAC] disp: ERROR 4 [INVALID_VALUE] 84 []=
+ chid 0 mthd 0828 data 000099bb"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99858#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - No signal on HDMI output after upgrade to kernel 4.8.3-1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98405">bug 98405<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - [NVAC] disp: ERROR 4 [INVALID_VALUE] 84 []=
+ chid 0 mthd 0828 data 000099bb"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99858">bug 99858<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
 l.com&gt;"> <span class=3D"fn">poma</span></a>
 </span></b>
-        <pre>*** <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - [NVAC] disp: ERROR 4 [INVALID_VALUE] 84 []=
- chid 0 mthd 0828 data 000099bb"
-   href=3D"show_bug.cgi?id=3D99858">Bug 99858</a> has been marked as a dupl=
-icate of this bug. ***</pre>
+        <pre>
+
+*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - No signal on HDMI output after upgrade to kernel 4.8.3-1"
+   href=3D"show_bug.cgi?id=3D98405">bug 98405</a> ***</pre>
         </div>
       </p>
 
@@ -122,9 +134,9 @@ icate of this bug. ***</pre>
     </body>
 </html>=
 
---14875291154.fbebb.31430--
+--14875291142.2b2Fac.31430--
 
---===============1315616156==
+--===============0489447959==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1315616156==--
+--===============0489447959==--
