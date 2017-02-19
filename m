@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99858] [NVAC] disp: ERROR 4 [INVALID_VALUE] 84 []
- chid 0 mthd 0828 data 000099bb
-Date: Sun, 19 Feb 2017 18:31:55 +0000
-Message-ID: <bug-99858-8800-gPYCe38U1O@http.bugs.freedesktop.org/>
-References: <bug-99858-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98405] [NVAC] No signal on HDMI output after upgrade
+ to kernel 4.8.3-1
+Date: Sun, 19 Feb 2017 18:35:07 +0000
+Message-ID: <bug-98405-8800-dQU0kI7rHJ@http.bugs.freedesktop.org/>
+References: <bug-98405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0489447959=="
+Content-Type: multipart/mixed; boundary="===============1354560003=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0489447959==
-Content-Type: multipart/alternative; boundary="14875291142.2b2Fac.31430";
+--===============1354560003==
+Content-Type: multipart/alternative; boundary="14875293072.f6d5E.31713";
  charset="UTF-8"
 
 
---14875291142.2b2Fac.31430
-Date: Sun, 19 Feb 2017 18:31:54 +0000
+--14875293072.f6d5E.31713
+Date: Sun, 19 Feb 2017 18:35:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99858
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98405
 
 poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |DUPLICATE
-             Status|NEW                         |RESOLVED
-
---- Comment #7 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-
-
-*** This bug has been marked as a duplicate of bug 98405 ***
+            Summary|No signal on HDMI output    |[NVAC] No signal on HDMI
+                   |after upgrade to kernel     |output after upgrade to
+                   |4.8.3-1                     |kernel 4.8.3-1
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14875291142.2b2Fac.31430
-Date: Sun, 19 Feb 2017 18:31:54 +0000
+--14875293072.f6d5E.31713
+Date: Sun, 19 Feb 2017 18:35:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,10 +65,10 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
 "> <span class=3D"fn">poma</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - [NVAC] disp: ERROR 4 [INVALID_VALUE] 84 []=
- chid 0 mthd 0828 data 000099bb"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99858">bug 99858<=
+          bz_status_NEW "
+   title=3D"NEW - [NVAC] No signal on HDMI output after upgrade to kernel 4=
+.8.3-1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98405">bug 98405<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -83,45 +79,14 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
+           <td style=3D"text-align:right;">Summary</td>
+           <td>No signal on HDMI output after upgrade to kernel 4.8.3-1
            </td>
-           <td>DUPLICATE
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
+           <td>[NVAC] No signal on HDMI output after upgrade to kernel 4.8.=
+3-1
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - [NVAC] disp: ERROR 4 [INVALID_VALUE] 84 []=
- chid 0 mthd 0828 data 000099bb"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99858#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - [NVAC] disp: ERROR 4 [INVALID_VALUE] 84 []=
- chid 0 mthd 0828 data 000099bb"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99858">bug 99858<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
-l.com&gt;"> <span class=3D"fn">poma</span></a>
-</span></b>
-        <pre>
-
-*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - No signal on HDMI output after upgrade to kernel 4.8.3-1"
-   href=3D"show_bug.cgi?id=3D98405">bug 98405</a> ***</pre>
-        </div>
       </p>
 
 
@@ -134,9 +99,9 @@ l.com&gt;"> <span class=3D"fn">poma</span></a>
     </body>
 </html>=
 
---14875291142.2b2Fac.31430--
+--14875293072.f6d5E.31713--
 
---===============0489447959==
+--===============1354560003==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0489447959==--
+--===============1354560003==--
