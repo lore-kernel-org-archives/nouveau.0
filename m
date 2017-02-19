@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99858] [NVAC] disp: ERROR 4 [INVALID_VALUE] 84 []
- chid 0 mthd 0828 data 000099bb
-Date: Sun, 19 Feb 2017 18:27:52 +0000
-Message-ID: <bug-99858-8800-smkhFTIWMX@http.bugs.freedesktop.org/>
-References: <bug-99858-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98405] No signal on HDMI output after upgrade to
+	kernel 4.8.3-1
+Date: Sun, 19 Feb 2017 18:29:57 +0000
+Message-ID: <bug-98405-8800-2MR6Eserg3@http.bugs.freedesktop.org/>
+References: <bug-98405-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0839207564=="
+Content-Type: multipart/mixed; boundary="===============0072471201=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99858-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98405-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0839207564==
-Content-Type: multipart/alternative; boundary="14875288724.bcdDbecb7.30387";
+--===============0072471201==
+Content-Type: multipart/alternative; boundary="14875289971.aC92CAa6.31030";
  charset="UTF-8"
 
 
---14875288724.bcdDbecb7.30387
-Date: Sun, 19 Feb 2017 18:27:52 +0000
+--14875289971.aC92CAa6.31030
+Date: Sun, 19 Feb 2017 18:29:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99858
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98405
 
 poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=3D98405
+         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Component|DRM/other                   |Driver/nouveau
+            Product|DRI                         |xorg
+           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |.org                        |rg
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14875288724.bcdDbecb7.30387
-Date: Sun, 19 Feb 2017 18:27:52 +0000
+--14875289971.aC92CAa6.31030
+Date: Sun, 19 Feb 2017 18:29:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,9 +68,8 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVAC] disp: ERROR 4 [INVALID_VALUE] 84 [] chid 0 mthd 08=
-28 data 000099bb"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99858">bug 99858<=
+   title=3D"NEW - No signal on HDMI output after upgrade to kernel 4.8.3-1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98405">bug 98405<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -78,11 +80,35 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">See Also</td>
+           <td style=3D"text-align:right;">QA Contact</td>
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D98405
+           <td>xorg-team&#64;lists.x.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>DRM/other
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Product</td>
+           <td>DRI
+           </td>
+           <td>xorg
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>dri-devel&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
            </td>
          </tr></table>
       <p>
@@ -98,9 +124,9 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
     </body>
 </html>=
 
---14875288724.bcdDbecb7.30387--
+--14875289971.aC92CAa6.31030--
 
---===============0839207564==
+--===============0072471201==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +136,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0839207564==--
+--===============0072471201==--
