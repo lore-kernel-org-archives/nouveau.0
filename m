@@ -1,75 +1,130 @@
-From: Adan Hawthorn <adanhawthorn@gmail.com>
-Subject: Re: [PATCH 09/35] x86: Convert remaining uses of pr_warning to pr_warn
-Date: Mon, 20 Feb 2017 20:12:38 -0500
-Message-ID: <CADRb1HaywV+O0nM7g1b35xo=89jWj7z0AO-mAg3fU24WPmpz+A@mail.gmail.com>
-References: <cover.1487314666.git.joe@perches.com> <be5fd9c52a11473a52e317b28cc32d2845def094.1487314667.git.joe@perches.com>
+From: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Subject: [PATCH 1/3] drm/atomic: Make disable_all helper fully
+	disable the crtc.
+Date: Tue, 21 Feb 2017 14:51:40 +0100
+Message-ID: <1487685102-31991-2-git-send-email-maarten.lankhorst@linux.intel.com>
+References: <1487685102-31991-1-git-send-email-maarten.lankhorst@linux.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <be5fd9c52a11473a52e317b28cc32d2845def094.1487314667.git.joe@perches.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Joe Perches <joe@perches.com>
-Cc: Ning Sun <ning.sun@intel.com>, Steven Rostedt <rostedt@goodmis.org>, Karol Herbst <karolherbst@gmail.com>, Pekka Paalanen <ppaalanen@gmail.com>, Robert Richter <rric@kernel.org>, Len Brown <lenb@kernel.org>, Boris Ostrovsky <boris.ostrovsky@oracle.com>, Juergen Gross <jgross@suse.com>, Thomas Gleixner <tglx@linutronix.de>, "H. Peter Anvin" <hpa@zytor.com>, x86@kernel.org, linux-kernel@vger.kernel.org, tboot-devel@lists.sourceforge.net, nouveau@lists.freedesktop.org, oprofile-list@lists.sf.net, sfi-devel@simplefirmware.org, xen-devel@lists.xenproject.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1487685102-31991-1-git-send-email-maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Feb 17, 2017 at 2:11 AM, Joe Perches <joe@perches.com> wrote:
-> To enable eventual removal of pr_warning
->
-> This makes pr_warn use consistent for arch/x86
->
-> Prior to this patch, there were 46 uses of pr_warning and
-> 122 uses of pr_warn in arch/x86
->
-> Miscellanea:
->
-> o Coalesce a few formats and realign arguments
-> o Convert a couple of multiple line printks to single line
->
-> Signed-off-by: Joe Perches <joe@perches.com>
-
-...
-
-> diff --git a/arch/x86/kernel/apic/apic.c b/arch/x86/kernel/apic/apic.c
-> index 4261b3282ad9..37e9129da8b3 100644
-> --- a/arch/x86/kernel/apic/apic.c
-> +++ b/arch/x86/kernel/apic/apic.c
-
-...
-
-> @@ -1503,11 +1503,11 @@ static int __init setup_nox2apic(char *str)
->                 int apicid = native_apic_msr_read(APIC_ID);
->
->                 if (apicid >= 255) {
-> -                       pr_warning("Apicid: %08x, cannot enforce nox2apic\n",
-> -                                  apicid);
-> +                       pr_warn("Apicid: %08x, cannot enforce nox2apic\n",
-> +                               apicid);
->                         return 0;
->                 }
-> -               pr_warning("x2apic already enabled.\n");
-> +               pr_warn("x2apic already enabled\n");
->                 __x2apic_disable();
->         }
->         setup_clear_cpu_cap(X86_FEATURE_X2APIC);
-
-...
-
-> diff --git a/arch/x86/mm/kmmio.c b/arch/x86/mm/kmmio.c
-> index afc47f5c9531..ad70518cdcc7 100644
-> --- a/arch/x86/mm/kmmio.c
-> +++ b/arch/x86/mm/kmmio.c
->         WARN_ONCE(ret < 0, KERN_ERR pr_fmt("arming at 0x%08lx failed.\n"),
-> @@ -335,8 +335,8 @@ static int post_kmmio_handler(unsigned long condition, struct pt_regs *regs)
->                  * something external causing them (f.e. using a debugger while
->                  * mmio tracing enabled), or erroneous behaviour
->                  */
-> -               pr_warning("unexpected debug trap on CPU %d.\n",
-> -                          smp_processor_id());
-> +               pr_warn("unexpected debug trap on CPU %d\n",
-> +                       smp_processor_id());
->                 goto out;
->         }
->
-
-As just a few examples from the full diff: would not the double line
-pr_warn's (above) read better if coalesced each on one line?
+SXQgc2VlbXMgdGhhdCBub3V2ZWF1IHJlcXVpcmVzIHRoaXMsIHNvIGJlc3QgdG8gZG8gdGhpcyBp
+biB0aGUgaGVscGVyLgpUaGlzIGFsbG93cyBub3V2ZWF1IHRvIHVzZSB0aGUgYXRvbWljIHN1c3Bl
+bmQgaGVscGVyLgoKQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCkFja2VkLWJ5OiBC
+ZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+ICNpcmMKU2lnbmVkLW9mZi1ieTogTWFhcnRl
+biBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2
+ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYyAgICAgICB8ICA1MSArKysrKysrKysrLS0t
+LQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgfCAxMTMgKy0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDM4IGluc2VydGlvbnMo
+KyksIDEyNiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0
+b21pY19oZWxwZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jCmluZGV4
+IDkyMDNmM2U5MzNmNy4uZmYzNjEwNjYzODFlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+ZHJtX2F0b21pY19oZWxwZXIuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxw
+ZXIuYwpAQCAtMjQyNyw5ICsyNDI3LDEzIEBAIGludCBkcm1fYXRvbWljX2hlbHBlcl9kaXNhYmxl
+X2FsbChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAogCQkJCSAgc3RydWN0IGRybV9tb2Rlc2V0X2Fj
+cXVpcmVfY3R4ICpjdHgpCiB7CiAJc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlOworCXN0
+cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRlOwogCXN0cnVjdCBkcm1fY29ubmVj
+dG9yICpjb25uOwotCXN0cnVjdCBkcm1fY29ubmVjdG9yX2xpc3RfaXRlciBjb25uX2l0ZXI7Ci0J
+aW50IGVycjsKKwlzdHJ1Y3QgZHJtX3BsYW5lX3N0YXRlICpwbGFuZV9zdGF0ZTsKKwlzdHJ1Y3Qg
+ZHJtX3BsYW5lICpwbGFuZTsKKwlzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKmNydGNfc3RhdGU7CisJ
+c3RydWN0IGRybV9jcnRjICpjcnRjOworCWludCByZXQsIGk7CiAKIAlzdGF0ZSA9IGRybV9hdG9t
+aWNfc3RhdGVfYWxsb2MoZGV2KTsKIAlpZiAoIXN0YXRlKQpAQCAtMjQzNywyOSArMjQ0MSw0OCBA
+QCBpbnQgZHJtX2F0b21pY19oZWxwZXJfZGlzYWJsZV9hbGwoc3RydWN0IGRybV9kZXZpY2UgKmRl
+diwKIAogCXN0YXRlLT5hY3F1aXJlX2N0eCA9IGN0eDsKIAotCWRybV9jb25uZWN0b3JfbGlzdF9p
+dGVyX2dldChkZXYsICZjb25uX2l0ZXIpOwotCWRybV9mb3JfZWFjaF9jb25uZWN0b3JfaXRlcihj
+b25uLCAmY29ubl9pdGVyKSB7Ci0JCXN0cnVjdCBkcm1fY3J0YyAqY3J0YyA9IGNvbm4tPnN0YXRl
+LT5jcnRjOwotCQlzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKmNydGNfc3RhdGU7Ci0KLQkJaWYgKCFj
+cnRjIHx8IGNvbm4tPmRwbXMgIT0gRFJNX01PREVfRFBNU19PTikKLQkJCWNvbnRpbnVlOwotCisJ
+ZHJtX2Zvcl9lYWNoX2NydGMoY3J0YywgZGV2KSB7CiAJCWNydGNfc3RhdGUgPSBkcm1fYXRvbWlj
+X2dldF9jcnRjX3N0YXRlKHN0YXRlLCBjcnRjKTsKIAkJaWYgKElTX0VSUihjcnRjX3N0YXRlKSkg
+ewotCQkJZXJyID0gUFRSX0VSUihjcnRjX3N0YXRlKTsKKwkJCXJldCA9IFBUUl9FUlIoY3J0Y19z
+dGF0ZSk7CiAJCQlnb3RvIGZyZWU7CiAJCX0KIAogCQljcnRjX3N0YXRlLT5hY3RpdmUgPSBmYWxz
+ZTsKKworCQlyZXQgPSBkcm1fYXRvbWljX3NldF9tb2RlX3Byb3BfZm9yX2NydGMoY3J0Y19zdGF0
+ZSwgTlVMTCk7CisJCWlmIChyZXQgPCAwKQorCQkJZ290byBmcmVlOworCisJCXJldCA9IGRybV9h
+dG9taWNfYWRkX2FmZmVjdGVkX3BsYW5lcyhzdGF0ZSwgY3J0Yyk7CisJCWlmIChyZXQgPCAwKQor
+CQkJZ290byBmcmVlOworCisJCXJldCA9IGRybV9hdG9taWNfYWRkX2FmZmVjdGVkX2Nvbm5lY3Rv
+cnMoc3RhdGUsIGNydGMpOworCQlpZiAocmV0IDwgMCkKKwkJCWdvdG8gZnJlZTsKIAl9CiAKLQll
+cnIgPSBkcm1fYXRvbWljX2NvbW1pdChzdGF0ZSk7CisJZm9yX2VhY2hfY29ubmVjdG9yX2luX3N0
+YXRlKHN0YXRlLCBjb25uLCBjb25uX3N0YXRlLCBpKSB7CisJCXJldCA9IGRybV9hdG9taWNfc2V0
+X2NydGNfZm9yX2Nvbm5lY3Rvcihjb25uX3N0YXRlLCBOVUxMKTsKKwkJaWYgKHJldCA8IDApCisJ
+CQlnb3RvIGZyZWU7CisJfQorCisJZm9yX2VhY2hfcGxhbmVfaW5fc3RhdGUoc3RhdGUsIHBsYW5l
+LCBwbGFuZV9zdGF0ZSwgaSkgeworCQlyZXQgPSBkcm1fYXRvbWljX3NldF9jcnRjX2Zvcl9wbGFu
+ZShwbGFuZV9zdGF0ZSwgTlVMTCk7CisJCWlmIChyZXQgPCAwKQorCQkJZ290byBmcmVlOworCisJ
+CWRybV9hdG9taWNfc2V0X2ZiX2Zvcl9wbGFuZShwbGFuZV9zdGF0ZSwgTlVMTCk7CisJfQorCisJ
+cmV0ID0gZHJtX2F0b21pY19jb21taXQoc3RhdGUpOwogZnJlZToKLQlkcm1fY29ubmVjdG9yX2xp
+c3RfaXRlcl9wdXQoJmNvbm5faXRlcik7CiAJZHJtX2F0b21pY19zdGF0ZV9wdXQoc3RhdGUpOwot
+CXJldHVybiBlcnI7CisJcmV0dXJuIHJldDsKIH0KKwogRVhQT1JUX1NZTUJPTChkcm1fYXRvbWlj
+X2hlbHBlcl9kaXNhYmxlX2FsbCk7CiAKIC8qKgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
+ZWF1X2Rpc3BsYXkuYwppbmRleCBkNDc5YWFkOTdjZDQuLjgyMGY0NGJlZjBiZCAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMKQEAgLTYyNSwxMTcgKzYyNSw2IEBA
+IG5vdXZlYXVfZGlzcGxheV9kZXN0cm95KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJa2ZyZWUo
+ZGlzcCk7CiB9CiAKLXN0YXRpYyBpbnQKLW5vdXZlYXVfYXRvbWljX2Rpc2FibGVfY29ubmVjdG9y
+KHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSwKLQkJCQkgc3RydWN0IGRybV9jb25uZWN0
+b3IgKmNvbm5lY3RvcikKLXsKLQlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqY29ubmVjdG9y
+X3N0YXRlOwotCXN0cnVjdCBkcm1fY3J0YyAqY3J0YzsKLQlzdHJ1Y3QgZHJtX2NydGNfc3RhdGUg
+KmNydGNfc3RhdGU7Ci0Jc3RydWN0IGRybV9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGU7Ci0Jc3Ry
+dWN0IGRybV9wbGFuZSAqcGxhbmU7Ci0JaW50IHJldDsKLQotCWlmICghKGNydGMgPSBjb25uZWN0
+b3ItPnN0YXRlLT5jcnRjKSkKLQkJcmV0dXJuIDA7Ci0KLQljb25uZWN0b3Jfc3RhdGUgPSBkcm1f
+YXRvbWljX2dldF9jb25uZWN0b3Jfc3RhdGUoc3RhdGUsIGNvbm5lY3Rvcik7Ci0JaWYgKElTX0VS
+Uihjb25uZWN0b3Jfc3RhdGUpKQotCQlyZXR1cm4gUFRSX0VSUihjb25uZWN0b3Jfc3RhdGUpOwot
+Ci0JcmV0ID0gZHJtX2F0b21pY19zZXRfY3J0Y19mb3JfY29ubmVjdG9yKGNvbm5lY3Rvcl9zdGF0
+ZSwgTlVMTCk7Ci0JaWYgKHJldCkKLQkJcmV0dXJuIHJldDsKLQotCWNydGNfc3RhdGUgPSBkcm1f
+YXRvbWljX2dldF9jcnRjX3N0YXRlKHN0YXRlLCBjcnRjKTsKLQlpZiAoSVNfRVJSKGNydGNfc3Rh
+dGUpKQotCQlyZXR1cm4gUFRSX0VSUihjcnRjX3N0YXRlKTsKLQotCXJldCA9IGRybV9hdG9taWNf
+c2V0X21vZGVfZm9yX2NydGMoY3J0Y19zdGF0ZSwgTlVMTCk7Ci0JaWYgKHJldCkKLQkJcmV0dXJu
+IHJldDsKLQotCWNydGNfc3RhdGUtPmFjdGl2ZSA9IGZhbHNlOwotCi0JZHJtX2Zvcl9lYWNoX3Bs
+YW5lX21hc2socGxhbmUsIGNvbm5lY3Rvci0+ZGV2LCBjcnRjX3N0YXRlLT5wbGFuZV9tYXNrKSB7
+Ci0JCXBsYW5lX3N0YXRlID0gZHJtX2F0b21pY19nZXRfcGxhbmVfc3RhdGUoc3RhdGUsIHBsYW5l
+KTsKLQkJaWYgKElTX0VSUihwbGFuZV9zdGF0ZSkpCi0JCQlyZXR1cm4gUFRSX0VSUihwbGFuZV9z
+dGF0ZSk7Ci0KLQkJcmV0ID0gZHJtX2F0b21pY19zZXRfY3J0Y19mb3JfcGxhbmUocGxhbmVfc3Rh
+dGUsIE5VTEwpOwotCQlpZiAocmV0KQotCQkJcmV0dXJuIHJldDsKLQotCQlkcm1fYXRvbWljX3Nl
+dF9mYl9mb3JfcGxhbmUocGxhbmVfc3RhdGUsIE5VTEwpOwotCX0KLQotCXJldHVybiAwOwotfQot
+Ci1zdGF0aWMgaW50Ci1ub3V2ZWF1X2F0b21pY19kaXNhYmxlKHN0cnVjdCBkcm1fZGV2aWNlICpk
+ZXYsCi0JCSAgICAgICBzdHJ1Y3QgZHJtX21vZGVzZXRfYWNxdWlyZV9jdHggKmN0eCkKLXsKLQlz
+dHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGU7Ci0Jc3RydWN0IGRybV9jb25uZWN0b3IgKmNv
+bm5lY3RvcjsKLQlpbnQgcmV0OwotCi0Jc3RhdGUgPSBkcm1fYXRvbWljX3N0YXRlX2FsbG9jKGRl
+dik7Ci0JaWYgKCFzdGF0ZSkKLQkJcmV0dXJuIC1FTk9NRU07Ci0KLQlzdGF0ZS0+YWNxdWlyZV9j
+dHggPSBjdHg7Ci0KLQlkcm1fZm9yX2VhY2hfY29ubmVjdG9yKGNvbm5lY3RvciwgZGV2KSB7Ci0J
+CXJldCA9IG5vdXZlYXVfYXRvbWljX2Rpc2FibGVfY29ubmVjdG9yKHN0YXRlLCBjb25uZWN0b3Ip
+OwotCQlpZiAocmV0KQotCQkJYnJlYWs7Ci0JfQotCi0JaWYgKHJldCA9PSAwKQotCQlyZXQgPSBk
+cm1fYXRvbWljX2NvbW1pdChzdGF0ZSk7Ci0JZHJtX2F0b21pY19zdGF0ZV9wdXQoc3RhdGUpOwot
+CXJldHVybiByZXQ7Ci19Ci0KLXN0YXRpYyBzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqCi1ub3V2
+ZWF1X2F0b21pY19zdXNwZW5kKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCi17Ci0Jc3RydWN0IGRy
+bV9tb2Rlc2V0X2FjcXVpcmVfY3R4IGN0eDsKLQlzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3Rh
+dGU7Ci0JaW50IHJldDsKLQotCWRybV9tb2Rlc2V0X2FjcXVpcmVfaW5pdCgmY3R4LCAwKTsKLQot
+cmV0cnk6Ci0JcmV0ID0gZHJtX21vZGVzZXRfbG9ja19hbGxfY3R4KGRldiwgJmN0eCk7Ci0JaWYg
+KHJldCA8IDApIHsKLQkJc3RhdGUgPSBFUlJfUFRSKHJldCk7Ci0JCWdvdG8gdW5sb2NrOwotCX0K
+LQotCXN0YXRlID0gZHJtX2F0b21pY19oZWxwZXJfZHVwbGljYXRlX3N0YXRlKGRldiwgJmN0eCk7
+Ci0JaWYgKElTX0VSUihzdGF0ZSkpCi0JCWdvdG8gdW5sb2NrOwotCi0JcmV0ID0gbm91dmVhdV9h
+dG9taWNfZGlzYWJsZShkZXYsICZjdHgpOwotCWlmIChyZXQgPCAwKSB7Ci0JCWRybV9hdG9taWNf
+c3RhdGVfcHV0KHN0YXRlKTsKLQkJc3RhdGUgPSBFUlJfUFRSKHJldCk7Ci0JCWdvdG8gdW5sb2Nr
+OwotCX0KLQotdW5sb2NrOgotCWlmIChQVFJfRVJSKHN0YXRlKSA9PSAtRURFQURMSykgewotCQlk
+cm1fbW9kZXNldF9iYWNrb2ZmKCZjdHgpOwotCQlnb3RvIHJldHJ5OwotCX0KLQotCWRybV9tb2Rl
+c2V0X2Ryb3BfbG9ja3MoJmN0eCk7Ci0JZHJtX21vZGVzZXRfYWNxdWlyZV9maW5pKCZjdHgpOwot
+CXJldHVybiBzdGF0ZTsKLX0KLQogaW50CiBub3V2ZWF1X2Rpc3BsYXlfc3VzcGVuZChzdHJ1Y3Qg
+ZHJtX2RldmljZSAqZGV2LCBib29sIHJ1bnRpbWUpCiB7CkBAIC03NDQsNyArNjMzLDcgQEAgbm91
+dmVhdV9kaXNwbGF5X3N1c3BlbmQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgYm9vbCBydW50aW1l
+KQogCiAJaWYgKGRybV9kcnZfdXNlc19hdG9taWNfbW9kZXNldChkZXYpKSB7CiAJCWlmICghcnVu
+dGltZSkgewotCQkJZGlzcC0+c3VzcGVuZCA9IG5vdXZlYXVfYXRvbWljX3N1c3BlbmQoZGV2KTsK
+KwkJCWRpc3AtPnN1c3BlbmQgPSBkcm1fYXRvbWljX2hlbHBlcl9zdXNwZW5kKGRldik7CiAJCQlp
+ZiAoSVNfRVJSKGRpc3AtPnN1c3BlbmQpKSB7CiAJCQkJaW50IHJldCA9IFBUUl9FUlIoZGlzcC0+
+c3VzcGVuZCk7CiAJCQkJZGlzcC0+c3VzcGVuZCA9IE5VTEw7Ci0tIAoyLjcuNAoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
