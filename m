@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99900] nouveau: freeze / crash after kernel update
-	to 4.10
-Date: Wed, 22 Feb 2017 13:56:02 +0000
-Message-ID: <bug-99900-8800-fnztrlyUCG@http.bugs.freedesktop.org/>
+Subject: [Bug 99900] [NVC1] nouveau: freeze / crash after kernel
+ update to 4.10
+Date: Wed, 22 Feb 2017 13:58:58 +0000
+Message-ID: <bug-99900-8800-wKt9zwn5yC@http.bugs.freedesktop.org/>
 References: <bug-99900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1376848688=="
+Content-Type: multipart/mixed; boundary="===============0854419818=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1376848688==
-Content-Type: multipart/alternative; boundary="14877717620.CE6Ebee.6371";
+--===============0854419818==
+Content-Type: multipart/alternative; boundary="14877719381.FC7bf.6754";
  charset="UTF-8"
 
 
---14877717620.CE6Ebee.6371
-Date: Wed, 22 Feb 2017 13:56:02 +0000
+--14877719381.FC7bf.6754
+Date: Wed, 22 Feb 2017 13:58:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,19 +40,16 @@ poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |.org                        |rg
-         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-            Version|XOrg git                    |unspecified
-          Component|DRM/other                   |Driver/nouveau
-            Product|DRI                         |xorg
+            Summary|nouveau: freeze / crash     |[NVC1] nouveau: freeze /
+                   |after kernel update to 4.10 |crash after kernel update
+                   |                            |to 4.10
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14877717620.CE6Ebee.6371
-Date: Wed, 22 Feb 2017 13:56:02 +0000
+--14877719381.FC7bf.6754
+Date: Wed, 22 Feb 2017 13:58:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,7 +66,8 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau: freeze / crash after kernel update to 4.10"
+   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
+0"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900">bug 99900<=
 /a>
           <br>
@@ -81,43 +79,10 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>dri-devel&#64;lists.freedesktop.org
+           <td style=3D"text-align:right;">Summary</td>
+           <td>nouveau: freeze / crash after kernel update to 4.10
            </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Version</td>
-           <td>XOrg git
-           </td>
-           <td>unspecified
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>DRM/other
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Product</td>
-           <td>DRI
-           </td>
-           <td>xorg
+           <td>[NVC1] nouveau: freeze / crash after kernel update to 4.10
            </td>
          </tr></table>
       <p>
@@ -133,9 +98,9 @@ elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
     </body>
 </html>=
 
---14877717620.CE6Ebee.6371--
+--14877719381.FC7bf.6754--
 
---===============1376848688==
+--===============0854419818==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -145,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1376848688==--
+--===============0854419818==--
