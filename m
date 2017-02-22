@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99913] [G96] Reclocking fails on voltage
-Date: Wed, 22 Feb 2017 19:25:55 +0000
-Message-ID: <bug-99913-8800-xaj7r6TGyz@http.bugs.freedesktop.org/>
+Date: Wed, 22 Feb 2017 19:31:27 +0000
+Message-ID: <bug-99913-8800-gtSatHwgQd@http.bugs.freedesktop.org/>
 References: <bug-99913-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0602689350=="
+Content-Type: multipart/mixed; boundary="===============0612301515=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0602689350==
-Content-Type: multipart/alternative; boundary="14877915551.AaCEF796.820";
+--===============0612301515==
+Content-Type: multipart/alternative; boundary="14877918870.B7890.1392";
  charset="UTF-8"
 
 
---14877915551.AaCEF796.820
-Date: Wed, 22 Feb 2017 19:25:55 +0000
+--14877918870.B7890.1392
+Date: Wed, 22 Feb 2017 19:31:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99913
 
---- Comment #3 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 129841
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129841&action=3Dedit
-dmesg
+--- Comment #4 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #2)
+> Without looking at your VBIOS, I suspect if you first clock to 07 and then
+> to 0f, you'll be able to get 07's core/shader speeds and the faster memory
+> clock.
+
+That's a good idea, and it indeed seems to be working. I ended up with:
+
+03: core 169 MHz shader 338 MHz memory 100 MHz
+05: core 275 MHz shader 550 MHz memory 300 MHz
+07: core 400 MHz shader 800 MHz memory 300 MHz
+0f: core 625 MHz shader 1563 MHz memory 800 MHz AC DC *
+AC: core 400 MHz shader 800 MHz memory 799 MHz
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14877915551.AaCEF796.820
-Date: Wed, 22 Feb 2017 19:25:55 +0000
+--14877918870.B7890.1392
+Date: Wed, 22 Feb 2017 19:31:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +71,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c3">Comment=
- # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c4">Comment=
+ # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [G96] Reclocking fails on voltage"
@@ -73,11 +82,21 @@ Auto-Submitted: auto-generated
 ppaalanen&#64;gmail.com" title=3D"Pekka Paalanen &lt;ppaalanen&#64;gmail.co=
 m&gt;"> <span class=3D"fn">Pekka Paalanen</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129841=
-" name=3D"attach_129841" title=3D"dmesg">attachment 129841</a> <a href=3D"a=
-ttachment.cgi?id=3D129841&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
-/span>
-dmesg</pre>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D999=
+13#c2">comment #2</a>)
+<span class=3D"quote">&gt; Without looking at your VBIOS, I suspect if you =
+first clock to 07 and then
+&gt; to 0f, you'll be able to get 07's core/shader speeds and the faster me=
+mory
+&gt; clock.</span >
+
+That's a good idea, and it indeed seems to be working. I ended up with:
+
+03: core 169 MHz shader 338 MHz memory 100 MHz
+05: core 275 MHz shader 550 MHz memory 300 MHz
+07: core 400 MHz shader 800 MHz memory 300 MHz
+0f: core 625 MHz shader 1563 MHz memory 800 MHz AC DC *
+AC: core 400 MHz shader 800 MHz memory 799 MHz</pre>
         </div>
       </p>
 
@@ -91,9 +110,9 @@ dmesg</pre>
     </body>
 </html>=
 
---14877915551.AaCEF796.820--
+--14877918870.B7890.1392--
 
---===============0602689350==
+--===============0612301515==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0602689350==--
+--===============0612301515==--
