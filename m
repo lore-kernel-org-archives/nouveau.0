@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99913] [G96] Reclocking fails on voltage
-Date: Wed, 22 Feb 2017 19:21:28 +0000
-Message-ID: <bug-99913-8800-iUNkCZN0Le@http.bugs.freedesktop.org/>
+Date: Wed, 22 Feb 2017 19:25:55 +0000
+Message-ID: <bug-99913-8800-xaj7r6TGyz@http.bugs.freedesktop.org/>
 References: <bug-99913-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0586460879=="
+Content-Type: multipart/mixed; boundary="===============0602689350=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0586460879==
-Content-Type: multipart/alternative; boundary="14877912870.748E8f03.645";
+--===============0602689350==
+Content-Type: multipart/alternative; boundary="14877915551.AaCEF796.820";
  charset="UTF-8"
 
 
---14877912870.748E8f03.645
-Date: Wed, 22 Feb 2017 19:21:27 +0000
+--14877915551.AaCEF796.820
+Date: Wed, 22 Feb 2017 19:25:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,23 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99913
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This is probably apparent to anyone investigating, but for your benefit...
-what's happening is that memory reclock works fine, but changing core/shader
-clocks requires a voltage adjustment, and that fails. So your core/shader
-clocks remain unchanged, while memory gets reclocked.
-
-Without looking at your VBIOS, I suspect if you first clock to 07 and then =
-to
-0f, you'll be able to get 07's core/shader speeds and the faster memory clo=
-ck.
+--- Comment #3 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 129841
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129841&action=3Dedit
+dmesg
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14877912870.748E8f03.645
-Date: Wed, 22 Feb 2017 19:21:27 +0000
+--14877915551.AaCEF796.820
+Date: Wed, 22 Feb 2017 19:25:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,27 +62,22 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [G96] Reclocking fails on voltage"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913">bug 99913<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+ppaalanen&#64;gmail.com" title=3D"Pekka Paalanen &lt;ppaalanen&#64;gmail.co=
+m&gt;"> <span class=3D"fn">Pekka Paalanen</span></a>
 </span></b>
-        <pre>This is probably apparent to anyone investigating, but for you=
-r benefit...
-what's happening is that memory reclock works fine, but changing core/shader
-clocks requires a voltage adjustment, and that fails. So your core/shader
-clocks remain unchanged, while memory gets reclocked.
-
-Without looking at your VBIOS, I suspect if you first clock to 07 and then =
-to
-0f, you'll be able to get 07's core/shader speeds and the faster memory clo=
-ck.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129841=
+" name=3D"attach_129841" title=3D"dmesg">attachment 129841</a> <a href=3D"a=
+ttachment.cgi?id=3D129841&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
+/span>
+dmesg</pre>
         </div>
       </p>
 
@@ -102,9 +91,9 @@ ck.</pre>
     </body>
 </html>=
 
---14877912870.748E8f03.645--
+--14877915551.AaCEF796.820--
 
---===============0586460879==
+--===============0602689350==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0586460879==--
+--===============0602689350==--
