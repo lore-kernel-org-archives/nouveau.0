@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99889] nouveau preventing shutdown after
-	suspend-resume
-Date: Tue, 21 Feb 2017 16:04:20 +0000
-Message-ID: <bug-99889-8800-nEaqC9v1fx@http.bugs.freedesktop.org/>
-References: <bug-99889-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99900] nouveau: freeze / crash after kernel update
+	to 4.10
+Date: Wed, 22 Feb 2017 13:56:02 +0000
+Message-ID: <bug-99900-8800-fnztrlyUCG@http.bugs.freedesktop.org/>
+References: <bug-99900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1245214449=="
+Content-Type: multipart/mixed; boundary="===============1376848688=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1245214449==
-Content-Type: multipart/alternative; boundary="14876930602.1AB538f5F.25952";
+--===============1376848688==
+Content-Type: multipart/alternative; boundary="14877717620.CE6Ebee.6371";
  charset="UTF-8"
 
 
---14876930602.1AB538f5F.25952
-Date: Tue, 21 Feb 2017 16:04:20 +0000
+--14877717620.CE6Ebee.6371
+Date: Wed, 22 Feb 2017 13:56:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99889
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99900
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Product|DRI                         |xorg
-         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
            Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
                    |.org                        |rg
+         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+            Version|XOrg git                    |unspecified
           Component|DRM/other                   |Driver/nouveau
-            Version|DRI git                     |unspecified
+            Product|DRI                         |xorg
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14876930602.1AB538f5F.25952
-Date: Tue, 21 Feb 2017 16:04:20 +0000
+--14877717620.CE6Ebee.6371
+Date: Wed, 22 Feb 2017 13:56:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,14 +63,14 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pomidorab=
+elisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmail.com&gt;=
+"> <span class=3D"fn">poma</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889">bug 99889<=
+   title=3D"NEW - nouveau: freeze / crash after kernel update to 4.10"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900">bug 99900<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -81,10 +81,10 @@ pan class=3D"fn">Ilia Mirkin</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Product</td>
-           <td>DRI
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>dri-devel&#64;lists.freedesktop.org
            </td>
-           <td>xorg
+           <td>nouveau&#64;lists.freedesktop.org
            </td>
          </tr>
 
@@ -98,10 +98,10 @@ pan class=3D"fn">Ilia Mirkin</span></a>
          </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>dri-devel&#64;lists.freedesktop.org
+           <td style=3D"text-align:right;">Version</td>
+           <td>XOrg git
            </td>
-           <td>nouveau&#64;lists.freedesktop.org
+           <td>unspecified
            </td>
          </tr>
 
@@ -114,10 +114,10 @@ pan class=3D"fn">Ilia Mirkin</span></a>
          </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Version</td>
-           <td>DRI git
+           <td style=3D"text-align:right;">Product</td>
+           <td>DRI
            </td>
-           <td>unspecified
+           <td>xorg
            </td>
          </tr></table>
       <p>
@@ -133,9 +133,9 @@ pan class=3D"fn">Ilia Mirkin</span></a>
     </body>
 </html>=
 
---14876930602.1AB538f5F.25952--
+--14877717620.CE6Ebee.6371--
 
---===============1245214449==
+--===============1376848688==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -145,4 +145,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1245214449==--
+--===============1376848688==--
