@@ -1,78 +1,183 @@
-From: Rob Herring <robh-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH 00/35] treewide trivial patches converting pr_warning to
- pr_warn
-Date: Thu, 23 Feb 2017 09:28:23 -0600
-Message-ID: <CAL_JsqLTaq-QLTqfyDO8EVJYpgeUx1e4J0Fo2NvfFWqVoiVedQ@mail.gmail.com>
-References: <cover.1487314666.git.joe@perches.com>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH] drm/nouveau: gk20a: Turn instmem lock into mutex
+Date: Thu, 23 Feb 2017 17:20:15 +0100
+Message-ID: <20170223162015.GA15693@ulmo.ba.sec>
+References: <20170130200307.18574-1-thierry.reding@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <cover.1487314666.git.joe-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Joe Perches <joe-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>
-Cc: "linux-fbdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-fbdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, linux-ia64-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, SH-Linux <linux-sh-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Alexander Shishkin <alexander.shishkin-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux-ALSA <alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, "linux-ide-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-ide-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "linux-mtd-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org" <linux-mtd-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>, sparclinux-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, drbd-dev-cunTk1MwBs8qoQakbn7OcQ@public.gmane.org, linux-scsi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Richard Weinberger <richard-/L3Ra7n9ekc@public.gmane.org>, sfi-devel-yLnuTTp1/kvcsJTPyzm5gB2eb7JE58TQ@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, tboot-devel-5NWGOfrQmneRv+LV9MX5uipxlwaOVQ5f@public.gmane.org, oprofile-list-TtF/mJH4Jtrk1uMJSBkQmQ@public.gmane.org, "linux-input-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-input-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, xen-devel-GuqFBffKawtpuQazS67q72D2FQJk+8+b@public.gmane.org, linux-media@vger.k
+Content-Type: multipart/mixed; boundary="===============1343466103=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20170130200307.18574-1-thierry.reding@gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBGZWIgMTcsIDIwMTcgYXQgMToxMSBBTSwgSm9lIFBlcmNoZXMgPGpvZUBwZXJjaGVz
-LmNvbT4gd3JvdGU6Cj4gVGhlcmUgYXJlIH40MzAwIHVzZXMgb2YgcHJfd2FybiBhbmQgfjI1MCB1
-c2VzIG9mIHRoZSBvbGRlcgo+IHByX3dhcm5pbmcgaW4gdGhlIGtlcm5lbCBzb3VyY2UgdHJlZS4K
-Pgo+IE1ha2UgdGhlIHVzZSBvZiBwcl93YXJuIGNvbnNpc3RlbnQgYWNyb3NzIGFsbCBrZXJuZWwg
-ZmlsZXMuCj4KPiBUaGlzIGV4Y2x1ZGVzIGFsbCBmaWxlcyBpbiB0b29scy8gYXMgdGhlcmUgaXMg
-YSBzZXBhcmF0ZQo+IGRlZmluZSBwcl93YXJuaW5nIGZvciB0aGF0IGRpcmVjdG9yeSB0cmVlIGFu
-ZCBwcl93YXJuIGlzCj4gbm90IHVzZWQgaW4gdG9vbHMvLgo+Cj4gRG9uZSB3aXRoICdzZWQgcy9c
-YnByX3dhcm5pbmdcYi9wcl93YXJuLycgYW5kIHNvbWUgZW1hY3NpbmcuCj4KPiBNaXNjZWxsYW5l
-YToKPgo+IG8gQ29hbGVzY2UgZm9ybWF0cyBhbmQgcmVhbGlnbiBhcmd1bWVudHMKPgo+IFNvbWUg
-ZmlsZXMgbm90IGNvbXBpbGVkIC0gbm8gY3Jvc3MtY29tcGlsZXJzCj4KPiBKb2UgUGVyY2hlcyAo
-MzUpOgo+ICAgYWxwaGE6IENvbnZlcnQgcmVtYWluaW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBw
-cl93YXJuCj4gICBBUk06IGVwOTN4eDogQ29udmVydCByZW1haW5pbmcgdXNlcyBvZiBwcl93YXJu
-aW5nIHRvIHByX3dhcm4KPiAgIGFybTY0OiBDb252ZXJ0IHJlbWFpbmluZyB1c2VzIG9mIHByX3dh
-cm5pbmcgdG8gcHJfd2Fybgo+ICAgYXJjaC9ibGFja2ZpbjogQ29udmVydCByZW1haW5pbmcgdXNl
-cyBvZiBwcl93YXJuaW5nIHRvIHByX3dhcm4KPiAgIGlhNjQ6IENvbnZlcnQgcmVtYWluaW5nIHVz
-ZSBvZiBwcl93YXJuaW5nIHRvIHByX3dhcm4KPiAgIHBvd2VycGM6IENvbnZlcnQgcmVtYWluaW5n
-IHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCj4gICBzaDogQ29udmVydCByZW1haW5pbmcg
-dXNlcyBvZiBwcl93YXJuaW5nIHRvIHByX3dhcm4KPiAgIHNwYXJjOiBDb252ZXJ0IHJlbWFpbmlu
-ZyB1c2Ugb2YgcHJfd2FybmluZyB0byBwcl93YXJuCj4gICB4ODY6IENvbnZlcnQgcmVtYWluaW5n
-IHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCj4gICBkcml2ZXJzL2FjcGk6IENvbnZlcnQg
-cmVtYWluaW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCj4gICBibG9jay9kcmJkOiBD
-b252ZXJ0IHJlbWFpbmluZyB1c2VzIG9mIHByX3dhcm5pbmcgdG8gcHJfd2Fybgo+ICAgZ2Ryb206
-IENvbnZlcnQgcmVtYWluaW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCj4gICBkcml2
-ZXJzL2NoYXI6IENvbnZlcnQgcmVtYWluaW5nIHVzZSBvZiBwcl93YXJuaW5nIHRvIHByX3dhcm4K
-PiAgIGNsb2Nrc291cmNlOiBDb252ZXJ0IHJlbWFpbmluZyB1c2Ugb2YgcHJfd2FybmluZyB0byBw
-cl93YXJuCj4gICBkcml2ZXJzL2NyeXB0bzogQ29udmVydCByZW1haW5pbmcgdXNlcyBvZiBwcl93
-YXJuaW5nIHRvIHByX3dhcm4KPiAgIGZtYzogQ29udmVydCByZW1haW5pbmcgdXNlIG9mIHByX3dh
-cm5pbmcgdG8gcHJfd2Fybgo+ICAgZHJpdmVycy9ncHU6IENvbnZlcnQgcmVtYWluaW5nIHVzZXMg
-b2YgcHJfd2FybmluZyB0byBwcl93YXJuCj4gICBkcml2ZXJzL2lkZTogQ29udmVydCByZW1haW5p
-bmcgdXNlcyBvZiBwcl93YXJuaW5nIHRvIHByX3dhcm4KPiAgIGRyaXZlcnMvaW5wdXQ6IENvbnZl
-cnQgcmVtYWluaW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCj4gICBkcml2ZXJzL2lz
-ZG46IENvbnZlcnQgcmVtYWluaW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCj4gICBk
-cml2ZXJzL21hY2ludG9zaDogQ29udmVydCByZW1haW5pbmcgdXNlcyBvZiBwcl93YXJuaW5nIHRv
-IHByX3dhcm4KPiAgIGRyaXZlcnMvbWVkaWE6IENvbnZlcnQgcmVtYWluaW5nIHVzZSBvZiBwcl93
-YXJuaW5nIHRvIHByX3dhcm4KPiAgIGRyaXZlcnMvbWZkOiBDb252ZXJ0IHJlbWFpbmluZyB1c2Vz
-IG9mIHByX3dhcm5pbmcgdG8gcHJfd2Fybgo+ICAgZHJpdmVycy9tdGQ6IENvbnZlcnQgcmVtYWlu
-aW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCj4gICBkcml2ZXJzL29mOiBDb252ZXJ0
-IHJlbWFpbmluZyB1c2VzIG9mIHByX3dhcm5pbmcgdG8gcHJfd2Fybgo+ICAgZHJpdmVycy9vcHJv
-ZmlsZTogQ29udmVydCByZW1haW5pbmcgdXNlcyBvZiBwcl93YXJuaW5nIHRvIHByX3dhcm4KPiAg
-IGRyaXZlcnMvcGxhdGZvcm06IENvbnZlcnQgcmVtYWluaW5nIHVzZXMgb2YgcHJfd2FybmluZyB0
-byBwcl93YXJuCj4gICBkcml2ZXJzL3JhcGlkaW86IENvbnZlcnQgcmVtYWluaW5nIHVzZSBvZiBw
-cl93YXJuaW5nIHRvIHByX3dhcm4KPiAgIGRyaXZlcnMvc2NzaTogQ29udmVydCByZW1haW5pbmcg
-dXNlIG9mIHByX3dhcm5pbmcgdG8gcHJfd2Fybgo+ICAgZHJpdmVycy9zaDogQ29udmVydCByZW1h
-aW5pbmcgdXNlIG9mIHByX3dhcm5pbmcgdG8gcHJfd2Fybgo+ICAgZHJpdmVycy90dHk6IENvbnZl
-cnQgcmVtYWluaW5nIHVzZXMgb2YgcHJfd2FybmluZyB0byBwcl93YXJuCj4gICBkcml2ZXJzL3Zp
-ZGVvOiBDb252ZXJ0IHJlbWFpbmluZyB1c2VzIG9mIHByX3dhcm5pbmcgdG8gcHJfd2Fybgo+ICAg
-a2VybmVsL3RyYWNlOiBDb252ZXJ0IHJlbWFpbmluZyB1c2VzIG9mIHByX3dhcm5pbmcgdG8gcHJf
-d2Fybgo+ICAgbGliOiBDb252ZXJ0IHJlbWFpbmluZyB1c2VzIG9mIHByX3dhcm5pbmcgdG8gcHJf
-d2Fybgo+ICAgc291bmQvc29jOiBDb252ZXJ0IHJlbWFpbmluZyB1c2VzIG9mIHByX3dhcm5pbmcg
-dG8gcHJfd2FybgoKV2hlcmUncyB0aGUgcmVtb3ZhbCBvZiBwcl93YXJuaW5nIHNvIHdlIGRvbid0
-IGhhdmUgbW9yZSBzbmVhayBpbj8KClJvYgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2FtZC1nZngK
+
+--===============1343466103==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="wRRV7LY7NUeQGEoC"
+Content-Disposition: inline
+
+
+--wRRV7LY7NUeQGEoC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jan 30, 2017 at 09:03:07PM +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+>=20
+> The gk20a implementation of instance memory uses vmap()/vunmap() to map
+> memory regions into the kernel's virtual address space. These functions
+> may sleep, so protecting them by a spin lock is not safe. This triggers
+> a warning if the DEBUG_ATOMIC_SLEEP Kconfig option is enabled. Fix this
+> by using a mutex instead.
+>=20
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c | 19 ++++++++-------=
+----
+>  1 file changed, 8 insertions(+), 11 deletions(-)
+
+Alex, could you take a look at this?
+
+Thanks,
+Thierry
+
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c b/driver=
+s/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
+> index a6a7fa0d7679..7f5244d57d2f 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
+> @@ -94,7 +94,7 @@ struct gk20a_instmem {
+>  	struct nvkm_instmem base;
+> =20
+>  	/* protects vaddr_* and gk20a_instobj::vaddr* */
+> -	spinlock_t lock;
+> +	struct mutex lock;
+> =20
+>  	/* CPU mappings LRU */
+>  	unsigned int vaddr_use;
+> @@ -184,11 +184,10 @@ gk20a_instobj_acquire_iommu(struct nvkm_memory *mem=
+ory)
+>  	struct gk20a_instmem *imem =3D node->base.imem;
+>  	struct nvkm_ltc *ltc =3D imem->base.subdev.device->ltc;
+>  	const u64 size =3D nvkm_memory_size(memory);
+> -	unsigned long flags;
+> =20
+>  	nvkm_ltc_flush(ltc);
+> =20
+> -	spin_lock_irqsave(&imem->lock, flags);
+> +	mutex_lock(&imem->lock);
+> =20
+>  	if (node->base.vaddr) {
+>  		if (!node->use_cpt) {
+> @@ -216,7 +215,7 @@ gk20a_instobj_acquire_iommu(struct nvkm_memory *memor=
+y)
+> =20
+>  out:
+>  	node->use_cpt++;
+> -	spin_unlock_irqrestore(&imem->lock, flags);
+> +	mutex_unlock(&imem->lock);
+> =20
+>  	return node->base.vaddr;
+>  }
+> @@ -239,9 +238,8 @@ gk20a_instobj_release_iommu(struct nvkm_memory *memor=
+y)
+>  	struct gk20a_instobj_iommu *node =3D gk20a_instobj_iommu(memory);
+>  	struct gk20a_instmem *imem =3D node->base.imem;
+>  	struct nvkm_ltc *ltc =3D imem->base.subdev.device->ltc;
+> -	unsigned long flags;
+> =20
+> -	spin_lock_irqsave(&imem->lock, flags);
+> +	mutex_lock(&imem->lock);
+> =20
+>  	/* we should at least have one user to release... */
+>  	if (WARN_ON(node->use_cpt =3D=3D 0))
+> @@ -252,7 +250,7 @@ gk20a_instobj_release_iommu(struct nvkm_memory *memor=
+y)
+>  		list_add_tail(&node->vaddr_node, &imem->vaddr_lru);
+> =20
+>  out:
+> -	spin_unlock_irqrestore(&imem->lock, flags);
+> +	mutex_unlock(&imem->lock);
+> =20
+>  	wmb();
+>  	nvkm_ltc_invalidate(ltc);
+> @@ -306,19 +304,18 @@ gk20a_instobj_dtor_iommu(struct nvkm_memory *memory)
+>  	struct gk20a_instmem *imem =3D node->base.imem;
+>  	struct device *dev =3D imem->base.subdev.device->dev;
+>  	struct nvkm_mm_node *r;
+> -	unsigned long flags;
+>  	int i;
+> =20
+>  	if (unlikely(list_empty(&node->base.mem.regions)))
+>  		goto out;
+> =20
+> -	spin_lock_irqsave(&imem->lock, flags);
+> +	mutex_lock(&imem->lock);
+> =20
+>  	/* vaddr has already been recycled */
+>  	if (node->base.vaddr)
+>  		gk20a_instobj_iommu_recycle_vaddr(node);
+> =20
+> -	spin_unlock_irqrestore(&imem->lock, flags);
+> +	mutex_unlock(&imem->lock);
+> =20
+>  	r =3D list_first_entry(&node->base.mem.regions, struct nvkm_mm_node,
+>  			     rl_entry);
+> @@ -580,7 +577,7 @@ gk20a_instmem_new(struct nvkm_device *device, int ind=
+ex,
+>  	if (!(imem =3D kzalloc(sizeof(*imem), GFP_KERNEL)))
+>  		return -ENOMEM;
+>  	nvkm_instmem_ctor(&gk20a_instmem, device, index, &imem->base);
+> -	spin_lock_init(&imem->lock);
+> +	mutex_init(&imem->lock);
+>  	*pimem =3D &imem->base;
+> =20
+>  	/* do not allow more than 1MB of CPU-mapped instmem */
+> --=20
+> 2.11.0
+>=20
+
+--wRRV7LY7NUeQGEoC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlivC74ACgkQ3SOs138+
+s6E5kxAAotmA5+kEd5Lf4qWaE0HGb+LZUAKPamwyXlmTh3vE6U8b7BjZF3EN0zT2
+6v8SlTr88ee6xv6P9GcI1JdCx7/t1Jzr9xKQE4NdoS1paVU78dLGaCAINY1+LXJe
+h2ESH4hhhcbSpVA009Xgcl3NW9zxzDqs4WBb7U6pONWLcDXw4Xn9RPyFU6Y1f1Ru
+thbrIlAoScLKBRC5X4GAJPO5im4RIpIGIJEVnEb1rBSlzJTsTEIuDXHAMmxTlvsn
+g5bs6BxnnUHOnco4rXTZ/mj4vbJQ3C3tKNXVLRbXOqtnLtJL8EBLlJkWQj9CExtN
+nM7y8F/0TpwD2h1UnKUF5jjd6suJjUg+4U0HasFhLTslsf3b9bA4Z94LiUKWG3Xj
+K/IYF3ZUW6YYAVQ7OO+C6wxnp0xB+0zkgC7UsPjQVH8FTs4dH5COnlieDH61aDp3
+ScFuc8XnhpFArabQBBvtPTrLL32NYxjWpl/QxFlvV7k9h/aPW+dzBymfPduC8xnQ
+o3gSyhIKbGCQ7fcTSQ2P9R/H6jphnM2yi1BFNP/40Q2bEL6Eysx7rGPX5+f+EERc
+g6qIatBPMKsk3nBOSYceQqeqTu+MQsf8nnVtKRt8BvsEy5SUVV3SvOxQGq8qHPHN
+cRJRWtwVK9PI0KzsKB0Ur98Chv+Id1opKHiFvCKGZnCWaLlDYog=
+=7SEH
+-----END PGP SIGNATURE-----
+
+--wRRV7LY7NUeQGEoC--
+
+--===============1343466103==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============1343466103==--
