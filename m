@@ -1,61 +1,41 @@
-From: Joe Perches <joe@perches.com>
-Subject: Re: [PATCH 00/35] treewide trivial patches converting pr_warning to
- pr_warn
-Date: Thu, 23 Feb 2017 09:53:41 -0800
-Message-ID: <1487872421.14159.38.camel@perches.com>
-References: <cover.1487314666.git.joe@perches.com>
- <CAL_JsqLTaq-QLTqfyDO8EVJYpgeUx1e4J0Fo2NvfFWqVoiVedQ@mail.gmail.com>
- <1487870304.14159.29.camel@perches.com>
- <CACvgo50LUm5VSn_F=Dh8kL5zCPpCQDoCyUEL=Z+=1+6hJpfTaw@mail.gmail.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH 1/3] drm/atomic: Make disable_all helper
+ fully disable the crtc.
+Date: Thu, 23 Feb 2017 21:10:00 +0100
+Message-ID: <5bd5742b-f66d-cc52-d03c-cbc7992e47f2@linux.intel.com>
+References: <1487685102-31991-1-git-send-email-maarten.lankhorst@linux.intel.com>
+ <1487685102-31991-2-git-send-email-maarten.lankhorst@linux.intel.com>
+ <20170223150345.GA17822@art_vandelay>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org>
-In-Reply-To: <CACvgo50LUm5VSn_F=Dh8kL5zCPpCQDoCyUEL=Z+=1+6hJpfTaw@mail.gmail.com>
-List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-arm-kernel>,
- <mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
-List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
-List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
-List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
-List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
- <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-Errors-To: linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org
-To: Emil Velikov <emil.l.velikov@gmail.com>
-Cc: "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>, linux-ia64@vger.kernel.org, SH-Linux <linux-sh@vger.kernel.org>, Alexander Shishkin <alexander.shishkin@linux.intel.com>, ML nouveau <nouveau@lists.freedesktop.org>, Linux-ALSA <alsa-devel@alsa-project.org>, dri-devel <dri-devel@lists.freedesktop.org>, "open list:VIRTIO GPU DRIVER" <virtualization@lists.linux-foundation.org>, "linux-ide@vger.kernel.org" <linux-ide@vger.kernel.org>, "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>, sparclinux@vger.kernel.org, drbd-dev@lists.linbit.com, Rob Herring <robh@kernel.org>, linux-omap <linux-omap@vger.kernel.org>, linux-scsi@vger.kernel.org, Richard Weinberger <richard@nod.at>, tboot-devel@lists.sourceforge.net, amd-gfx mailing list <amd-gfx@lists.freedesktop.org>, "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, sfi-devel@simplefirmware.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20170223150345.GA17822@art_vandelay>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Sean Paul <seanpaul@chromium.org>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 2017-02-23 at 17:41 +0000, Emil Velikov wrote:
-> On 23 February 2017 at 17:18, Joe Perches <joe@perches.com> wrote:
-> > On Thu, 2017-02-23 at 09:28 -0600, Rob Herring wrote:
-> > > On Fri, Feb 17, 2017 at 1:11 AM, Joe Perches <joe@perches.com> wrote:
-> > > > There are ~4300 uses of pr_warn and ~250 uses of the older
-> > > > pr_warning in the kernel source tree.
-> > > > 
-> > > > Make the use of pr_warn consistent across all kernel files.
-> > > > 
-> > > > This excludes all files in tools/ as there is a separate
-> > > > define pr_warning for that directory tree and pr_warn is
-> > > > not used in tools/.
-> > > > 
-> > > > Done with 'sed s/\bpr_warning\b/pr_warn/' and some emacsing.
-> > 
-> > []
-> > > Where's the removal of pr_warning so we don't have more sneak in?
-> > 
-> > After all of these actually get applied,
-> > and maybe a cycle or two later, one would
-> > get sent.
-> > 
-> 
-> By which point you'll get a few reincarnation of it. So you'll have to
-> do the same exercise again :-(
-
-Maybe to one or two files.  Not a big deal.
-
-> I guess the question is - are you expecting to get the series merged
-> all together/via one tree ?
-
-No.  The only person that could do that effectively is Linus.
-
-> If not, your plan is perfectly reasonable.
+T3AgMjMtMDItMTcgb20gMTY6MDMgc2NocmVlZiBTZWFuIFBhdWw6Cj4gT24gVHVlLCBGZWIgMjEs
+IDIwMTcgYXQgMDI6NTE6NDBQTSArMDEwMCwgTWFhcnRlbiBMYW5raG9yc3Qgd3JvdGU6Cj4+IEl0
+IHNlZW1zIHRoYXQgbm91dmVhdSByZXF1aXJlcyB0aGlzLCBzbyBiZXN0IHRvIGRvIHRoaXMgaW4g
+dGhlIGhlbHBlci4KPj4gVGhpcyBhbGxvd3Mgbm91dmVhdSB0byB1c2UgdGhlIGF0b21pYyBzdXNw
+ZW5kIGhlbHBlci4KPiBQYXJkb24gdGhlIHN0dXBpZCBxdWVzdGlvbiwgYnV0IHdoeSBjYW4ndCBu
+b3V2ZWF1IGp1c3QgZG8gdGhlIHJpZ2h0IHRoaW5nIHdoZW4KPiBjcnRjX3N0YXRlLT5hY3RpdmUg
+YmVjb21lcyBmYWxzZT8KVGhpcyBwYXRjaCBpcyBhbHNvIHJlcXVpcmVkIHRvIGNsZWFuIHVwIGEg
+Y29ubmVjdG9yIGxlYWsgaW4gaTkxNSBkcml2ZXIgdW5sb2FkIGFzIHdlbGwsIGFuZCBhbHNvIHRv
+IGNsZWFuIHVwIHBsYW5lIHN0YXRlIGRlc3RydWN0aW9uIHRoZXJlLiBOb3V2ZWF1IG5lZWRzIGl0
+IHRvIHVucGluIHNvbWUgZnJhbWVidWZmZXJzIGR1cmluZyBzdXNwZW5kLCBidXQgZXZlbiBpZiBu
+b25lIG9mIHRoaXMgd2FzIHRydWUsIHRoaXMgaXMgdGhlIHJpZ2h0IHdheSB0byBoYW5kbGUgZGlz
+YWJsZV9hbGwuCgpMb29raW5nIGF0IERQTVMgaXMgZnJhZ2lsZS4KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
