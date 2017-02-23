@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84515] [NV96] HDMI audio works,
-	but has audio gaps or pauses
-Date: Thu, 23 Feb 2017 08:58:38 +0000
-Message-ID: <bug-84515-8800-8P4uVaeezK@http.bugs.freedesktop.org/>
-References: <bug-84515-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99913] [G96] Reclocking fails on voltage
+Date: Thu, 23 Feb 2017 09:03:53 +0000
+Message-ID: <bug-99913-8800-CqLpnBHH9y@http.bugs.freedesktop.org/>
+References: <bug-99913-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0238366539=="
+Content-Type: multipart/mixed; boundary="===============0461406392=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84515-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0238366539==
-Content-Type: multipart/alternative; boundary="14878403181.0FFaBcf0c.26240";
+--===============0461406392==
+Content-Type: multipart/alternative; boundary="14878406331.ABC5E0b.26807";
  charset="UTF-8"
 
 
---14878403181.0FFaBcf0c.26240
-Date: Thu, 23 Feb 2017 08:58:38 +0000
+--14878406331.ABC5E0b.26807
+Date: Thu, 23 Feb 2017 09:03:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D84515
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99913
 
 Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEEDINFO                    |RESOLVED
-         Resolution|---                         |WORKSFORME
+             Status|NEEDINFO                    |NEW
 
---- Comment #6 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-After two and a half years, I have still not produced an mmiotrace. I also
-haven't done things that would have suffered from the gaps.
+--- Comment #7 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Actually, I found out that there is an old dump from this laptop referred t=
+o in
+bug #60680:
+http://people.freedesktop.org/~pq/mmiotrace-fdo-bug-60680.tar.xz
 
-So I suppose I can just close this report.
+Does that help?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14878403181.0FFaBcf0c.26240
-Date: Thu, 23 Feb 2017 08:58:38 +0000
+--14878406331.ABC5E0b.26807
+Date: Thu, 23 Feb 2017 09:03:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,10 +70,9 @@ Auto-Submitted: auto-generated
 span class=3D"fn">Pekka Paalanen</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WORKSFORME - [NV96] HDMI audio works, but has audio ga=
-ps or pauses"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84515">bug 84515<=
+          bz_status_NEW "
+   title=3D"NEW - [G96] Reclocking fails on voltage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913">bug 99913<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -87,40 +86,36 @@ ps or pauses"
            <td style=3D"text-align:right;">Status</td>
            <td>NEEDINFO
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>WORKSFORME
+           <td>NEW
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WORKSFORME - [NV96] HDMI audio works, but has audio ga=
-ps or pauses"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84515#c6">Comment=
- # 6</a>
+          bz_status_NEW "
+   title=3D"NEW - [G96] Reclocking fails on voltage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WORKSFORME - [NV96] HDMI audio works, but has audio ga=
-ps or pauses"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84515">bug 84515<=
+          bz_status_NEW "
+   title=3D"NEW - [G96] Reclocking fails on voltage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913">bug 99913<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 ppaalanen&#64;gmail.com" title=3D"Pekka Paalanen &lt;ppaalanen&#64;gmail.co=
 m&gt;"> <span class=3D"fn">Pekka Paalanen</span></a>
 </span></b>
-        <pre>After two and a half years, I have still not produced an mmiot=
-race. I also
-haven't done things that would have suffered from the gaps.
+        <pre>Actually, I found out that there is an old dump from this lapt=
+op referred to in
+<a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NV96] HDMI is connected and has mode, TV says=
+ &quot;no signal&quot;"
+   href=3D"show_bug.cgi?id=3D60680">bug #60680</a>:
+<a href=3D"http://people.freedesktop.org/~pq/mmiotrace-fdo-bug-60680.tar.xz=
+">http://people.freedesktop.org/~pq/mmiotrace-fdo-bug-60680.tar.xz</a>
 
-So I suppose I can just close this report.</pre>
+Does that help?</pre>
         </div>
       </p>
 
@@ -134,9 +129,9 @@ So I suppose I can just close this report.</pre>
     </body>
 </html>=
 
---14878403181.0FFaBcf0c.26240--
+--14878406331.ABC5E0b.26807--
 
---===============0238366539==
+--===============0461406392==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +141,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0238366539==--
+--===============0461406392==--
