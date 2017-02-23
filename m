@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99913] [G96] Reclocking fails on voltage
-Date: Thu, 23 Feb 2017 00:06:17 +0000
-Message-ID: <bug-99913-8800-vmcxgbsCT1@http.bugs.freedesktop.org/>
+Date: Thu, 23 Feb 2017 08:24:06 +0000
+Message-ID: <bug-99913-8800-1XuPdrQpfB@http.bugs.freedesktop.org/>
 References: <bug-99913-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1764921868=="
+Content-Type: multipart/mixed; boundary="===============0716045825=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1764921868==
-Content-Type: multipart/alternative; boundary="14878083761.CcF7b665.21568";
+--===============0716045825==
+Content-Type: multipart/alternative; boundary="14878382451.DbF95Cc.23559";
  charset="UTF-8"
 
 
---14878083761.CcF7b665.21568
-Date: Thu, 23 Feb 2017 00:06:16 +0000
+--14878382451.DbF95Cc.23559
+Date: Thu, 23 Feb 2017 08:24:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,46 +35,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99913
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Huh. Well, this is what's in the vbios:
+Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Voltage table at 0xd0c9. Version 32.
-Header:
-0x0000d0c9: 20 06 02 04 00 01                               mask =3D 0x1
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
 
-2 entries
--- Vid =3D 0x0, voltage =3D 890000 <C2><B5>V --
--- GPIO tag 0x4(VID) data (logic 0) --
-0x0000d0cf: 59 00 00 00=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-
--- Vid =3D 0x1, voltage =3D 1050000 <C2><B5>V --
--- GPIO tag 0x4(VID) data (logic 1) --
-0x0000d0d3: 69 01 00 00=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-
--- ID 0x3 Core 169MHz Memory 100MHz Shader 338MHz Vdec 169MHz Dom6 208MHz
-Voltage 89[*10mV] Timing 0 Fan 100 PCIe link width 1 --
--- ID 0x5 Core 275MHz Memory 300MHz Shader 550MHz Vdec 275MHz Dom6 277MHz
-Voltage 89[*10mV] Timing 16 Fan 100 PCIe link width 16 --
--- ID 0x7 Core 400MHz Memory 300MHz Shader 800MHz Vdec 450MHz Dom6 416MHz
-Voltage 89[*10mV] Timing 0 Fan 100 PCIe link width 16 --
--- ID 0xf Core 625MHz Memory 800MHz Shader 1563MHz Vdec 450MHz Dom6 416MHz
-Voltage 116[*10mV] Timing 0 Fan 100 PCIe link width 16 --
-
-Note that the 89 voltage is clearly covered by voltage entry 0, while the 1=
-16
-voltage is not available. It'd be instructional to see what the blob does. =
-If
-you have any mmiotrace (even a very old one) for this board, it'd be
-interesting to look at.
+--- Comment #6 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks, I'll have a look, but don't hold your breath.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14878083761.CcF7b665.21568
-Date: Thu, 23 Feb 2017 00:06:16 +0000
+--14878382451.DbF95Cc.23559
+Date: Thu, 23 Feb 2017 08:24:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -85,55 +60,47 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ppaalanen=
+&#64;gmail.com" title=3D"Pekka Paalanen &lt;ppaalanen&#64;gmail.com&gt;"> <=
+span class=3D"fn">Pekka Paalanen</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - [G96] Reclocking fails on voltage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913">bug 99913<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c5">Comment=
- # 5</a>
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - [G96] Reclocking fails on voltage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [G96] Reclocking fails on voltage"
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - [G96] Reclocking fails on voltage"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913">bug 99913<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+ppaalanen&#64;gmail.com" title=3D"Pekka Paalanen &lt;ppaalanen&#64;gmail.co=
+m&gt;"> <span class=3D"fn">Pekka Paalanen</span></a>
 </span></b>
-        <pre>Huh. Well, this is what's in the vbios:
-
-Voltage table at 0xd0c9. Version 32.
-Header:
-0x0000d0c9: 20 06 02 04 00 01                               mask =3D 0x1
-
-2 entries
--- Vid =3D 0x0, voltage =3D 890000 &lt;C2&gt;&lt;B5&gt;V --
--- GPIO tag 0x4(VID) data (logic 0) --
-0x0000d0cf: 59 00 00 00=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-
--- Vid =3D 0x1, voltage =3D 1050000 &lt;C2&gt;&lt;B5&gt;V --
--- GPIO tag 0x4(VID) data (logic 1) --
-0x0000d0d3: 69 01 00 00=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-
--- ID 0x3 Core 169MHz Memory 100MHz Shader 338MHz Vdec 169MHz Dom6 208MHz
-Voltage 89[*10mV] Timing 0 Fan 100 PCIe link width 1 --
--- ID 0x5 Core 275MHz Memory 300MHz Shader 550MHz Vdec 275MHz Dom6 277MHz
-Voltage 89[*10mV] Timing 16 Fan 100 PCIe link width 16 --
--- ID 0x7 Core 400MHz Memory 300MHz Shader 800MHz Vdec 450MHz Dom6 416MHz
-Voltage 89[*10mV] Timing 0 Fan 100 PCIe link width 16 --
--- ID 0xf Core 625MHz Memory 800MHz Shader 1563MHz Vdec 450MHz Dom6 416MHz
-Voltage 116[*10mV] Timing 0 Fan 100 PCIe link width 16 --
-
-Note that the 89 voltage is clearly covered by voltage entry 0, while the 1=
-16
-voltage is not available. It'd be instructional to see what the blob does. =
-If
-you have any mmiotrace (even a very old one) for this board, it'd be
-interesting to look at.</pre>
+        <pre>Thanks, I'll have a look, but don't hold your breath.</pre>
         </div>
       </p>
 
@@ -147,9 +114,9 @@ interesting to look at.</pre>
     </body>
 </html>=
 
---14878083761.CcF7b665.21568--
+--14878382451.DbF95Cc.23559--
 
---===============1764921868==
+--===============0716045825==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -159,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1764921868==--
+--===============0716045825==--
