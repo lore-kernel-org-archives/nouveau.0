@@ -1,123 +1,147 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99922] [NVE4] [regression,
- bisected] 4.10 (atomic): X shows black screen with cursor after
- monitors turn off
-Date: Thu, 23 Feb 2017 14:33:59 +0000
-Message-ID: <bug-99922-8800-CDVWoSpXSp@http.bugs.freedesktop.org/>
-References: <bug-99922-8800@http.bugs.freedesktop.org/>
+From: Sean Paul <seanpaul@chromium.org>
+Subject: Re: [PATCH 1/3] drm/atomic: Make disable_all helper
+ fully disable the crtc.
+Date: Thu, 23 Feb 2017 10:03:45 -0500
+Message-ID: <20170223150345.GA17822@art_vandelay>
+References: <1487685102-31991-1-git-send-email-maarten.lankhorst@linux.intel.com>
+ <1487685102-31991-2-git-send-email-maarten.lankhorst@linux.intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0440888671=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <1487685102-31991-2-git-send-email-maarten.lankhorst@linux.intel.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0440888671==
-Content-Type: multipart/alternative; boundary="14878604391.bb87bD3.32261";
- charset="UTF-8"
-
-
---14878604391.bb87bD3.32261
-Date: Thu, 23 Feb 2017 14:33:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99922
-
---- Comment #3 from kevin-Fk+Xth6EFAKtEw7EPzjzzg@public.gmane.org ---
-Created attachment 129872
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129872&action=3Dedit
-problematic xorg log on 4.10 with three monitors
-
-(Apologies for the email spam; I'm new to bugzilla. I'll refrain from posti=
-ng
-any more attachments to avoid more spam. If you need the vbios/other dmesgs=
- or
-Xorg logs, just ask.)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14878604391.bb87bD3.32261
-Date: Thu, 23 Feb 2017 14:33:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
-k screen with cursor after monitors turn off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
-k screen with cursor after monitors turn off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922">bug 99922<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-kevin&#64;potatofrom.space" title=3D"kevin&#64;potatofrom.space">kevin&#64;=
-potatofrom.space</a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129872=
-" name=3D"attach_129872" title=3D"problematic xorg log on 4.10 with three m=
-onitors">attachment 129872</a> <a href=3D"attachment.cgi?id=3D129872&amp;ac=
-tion=3Dedit" title=3D"problematic xorg log on 4.10 with three monitors">[de=
-tails]</a></span>
-problematic xorg log on 4.10 with three monitors
-
-(Apologies for the email spam; I'm new to bugzilla. I'll refrain from posti=
-ng
-any more attachments to avoid more spam. If you need the vbios/other dmesgs=
- or
-Xorg logs, just ask.)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14878604391.bb87bD3.32261--
-
---===============0440888671==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0440888671==--
+T24gVHVlLCBGZWIgMjEsIDIwMTcgYXQgMDI6NTE6NDBQTSArMDEwMCwgTWFhcnRlbiBMYW5raG9y
+c3Qgd3JvdGU6Cj4gSXQgc2VlbXMgdGhhdCBub3V2ZWF1IHJlcXVpcmVzIHRoaXMsIHNvIGJlc3Qg
+dG8gZG8gdGhpcyBpbiB0aGUgaGVscGVyLgo+IFRoaXMgYWxsb3dzIG5vdXZlYXUgdG8gdXNlIHRo
+ZSBhdG9taWMgc3VzcGVuZCBoZWxwZXIuCgpQYXJkb24gdGhlIHN0dXBpZCBxdWVzdGlvbiwgYnV0
+IHdoeSBjYW4ndCBub3V2ZWF1IGp1c3QgZG8gdGhlIHJpZ2h0IHRoaW5nIHdoZW4KY3J0Y19zdGF0
+ZS0+YWN0aXZlIGJlY29tZXMgZmFsc2U/CgpTZWFuCgo+IAo+IENjOiBub3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwo+IEFja2VkLWJ5OiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+
+ICNpcmMKPiBTaWduZWQtb2ZmLWJ5OiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9y
+c3RAbGludXguaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19o
+ZWxwZXIuYyAgICAgICB8ICA1MSArKysrKysrKysrLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyB8IDExMyArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0KPiAgMiBmaWxlcyBjaGFuZ2VkLCAzOCBpbnNlcnRpb25zKCspLCAxMjYgZGVsZXRpb25zKC0p
+Cj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfaGVscGVyLmMKPiBpbmRleCA5MjAzZjNlOTMzZjcu
+LmZmMzYxMDY2MzgxZSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19o
+ZWxwZXIuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jCj4gQEAg
+LTI0MjcsOSArMjQyNywxMyBAQCBpbnQgZHJtX2F0b21pY19oZWxwZXJfZGlzYWJsZV9hbGwoc3Ry
+dWN0IGRybV9kZXZpY2UgKmRldiwKPiAgCQkJCSAgc3RydWN0IGRybV9tb2Rlc2V0X2FjcXVpcmVf
+Y3R4ICpjdHgpCj4gIHsKPiAgCXN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZTsKPiArCXN0
+cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRlOwo+ICAJc3RydWN0IGRybV9jb25u
+ZWN0b3IgKmNvbm47Cj4gLQlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9saXN0X2l0ZXIgY29ubl9pdGVy
+Owo+IC0JaW50IGVycjsKPiArCXN0cnVjdCBkcm1fcGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRlOwo+
+ICsJc3RydWN0IGRybV9wbGFuZSAqcGxhbmU7Cj4gKwlzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKmNy
+dGNfc3RhdGU7Cj4gKwlzdHJ1Y3QgZHJtX2NydGMgKmNydGM7Cj4gKwlpbnQgcmV0LCBpOwo+ICAK
+PiAgCXN0YXRlID0gZHJtX2F0b21pY19zdGF0ZV9hbGxvYyhkZXYpOwo+ICAJaWYgKCFzdGF0ZSkK
+PiBAQCAtMjQzNywyOSArMjQ0MSw0OCBAQCBpbnQgZHJtX2F0b21pY19oZWxwZXJfZGlzYWJsZV9h
+bGwoc3RydWN0IGRybV9kZXZpY2UgKmRldiwKPiAgCj4gIAlzdGF0ZS0+YWNxdWlyZV9jdHggPSBj
+dHg7Cj4gIAo+IC0JZHJtX2Nvbm5lY3Rvcl9saXN0X2l0ZXJfZ2V0KGRldiwgJmNvbm5faXRlcik7
+Cj4gLQlkcm1fZm9yX2VhY2hfY29ubmVjdG9yX2l0ZXIoY29ubiwgJmNvbm5faXRlcikgewo+IC0J
+CXN0cnVjdCBkcm1fY3J0YyAqY3J0YyA9IGNvbm4tPnN0YXRlLT5jcnRjOwo+IC0JCXN0cnVjdCBk
+cm1fY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZTsKPiAtCj4gLQkJaWYgKCFjcnRjIHx8IGNvbm4tPmRw
+bXMgIT0gRFJNX01PREVfRFBNU19PTikKPiAtCQkJY29udGludWU7Cj4gLQo+ICsJZHJtX2Zvcl9l
+YWNoX2NydGMoY3J0YywgZGV2KSB7Cj4gIAkJY3J0Y19zdGF0ZSA9IGRybV9hdG9taWNfZ2V0X2Ny
+dGNfc3RhdGUoc3RhdGUsIGNydGMpOwo+ICAJCWlmIChJU19FUlIoY3J0Y19zdGF0ZSkpIHsKPiAt
+CQkJZXJyID0gUFRSX0VSUihjcnRjX3N0YXRlKTsKPiArCQkJcmV0ID0gUFRSX0VSUihjcnRjX3N0
+YXRlKTsKPiAgCQkJZ290byBmcmVlOwo+ICAJCX0KPiAgCj4gIAkJY3J0Y19zdGF0ZS0+YWN0aXZl
+ID0gZmFsc2U7Cj4gKwo+ICsJCXJldCA9IGRybV9hdG9taWNfc2V0X21vZGVfcHJvcF9mb3JfY3J0
+YyhjcnRjX3N0YXRlLCBOVUxMKTsKPiArCQlpZiAocmV0IDwgMCkKPiArCQkJZ290byBmcmVlOwo+
+ICsKPiArCQlyZXQgPSBkcm1fYXRvbWljX2FkZF9hZmZlY3RlZF9wbGFuZXMoc3RhdGUsIGNydGMp
+Owo+ICsJCWlmIChyZXQgPCAwKQo+ICsJCQlnb3RvIGZyZWU7Cj4gKwo+ICsJCXJldCA9IGRybV9h
+dG9taWNfYWRkX2FmZmVjdGVkX2Nvbm5lY3RvcnMoc3RhdGUsIGNydGMpOwo+ICsJCWlmIChyZXQg
+PCAwKQo+ICsJCQlnb3RvIGZyZWU7Cj4gIAl9Cj4gIAo+IC0JZXJyID0gZHJtX2F0b21pY19jb21t
+aXQoc3RhdGUpOwo+ICsJZm9yX2VhY2hfY29ubmVjdG9yX2luX3N0YXRlKHN0YXRlLCBjb25uLCBj
+b25uX3N0YXRlLCBpKSB7Cj4gKwkJcmV0ID0gZHJtX2F0b21pY19zZXRfY3J0Y19mb3JfY29ubmVj
+dG9yKGNvbm5fc3RhdGUsIE5VTEwpOwo+ICsJCWlmIChyZXQgPCAwKQo+ICsJCQlnb3RvIGZyZWU7
+Cj4gKwl9Cj4gKwo+ICsJZm9yX2VhY2hfcGxhbmVfaW5fc3RhdGUoc3RhdGUsIHBsYW5lLCBwbGFu
+ZV9zdGF0ZSwgaSkgewo+ICsJCXJldCA9IGRybV9hdG9taWNfc2V0X2NydGNfZm9yX3BsYW5lKHBs
+YW5lX3N0YXRlLCBOVUxMKTsKPiArCQlpZiAocmV0IDwgMCkKPiArCQkJZ290byBmcmVlOwo+ICsK
+PiArCQlkcm1fYXRvbWljX3NldF9mYl9mb3JfcGxhbmUocGxhbmVfc3RhdGUsIE5VTEwpOwo+ICsJ
+fQo+ICsKPiArCXJldCA9IGRybV9hdG9taWNfY29tbWl0KHN0YXRlKTsKPiAgZnJlZToKPiAtCWRy
+bV9jb25uZWN0b3JfbGlzdF9pdGVyX3B1dCgmY29ubl9pdGVyKTsKPiAgCWRybV9hdG9taWNfc3Rh
+dGVfcHV0KHN0YXRlKTsKPiAtCXJldHVybiBlcnI7Cj4gKwlyZXR1cm4gcmV0Owo+ICB9Cj4gKwo+
+ICBFWFBPUlRfU1lNQk9MKGRybV9hdG9taWNfaGVscGVyX2Rpc2FibGVfYWxsKTsKPiAgCj4gIC8q
+Kgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXku
+YyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCj4gaW5kZXggZDQ3
+OWFhZDk3Y2Q0Li44MjBmNDRiZWYwYmQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9kaXNwbGF5LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2Rpc3BsYXkuYwo+IEBAIC02MjUsMTE3ICs2MjUsNiBAQCBub3V2ZWF1X2Rpc3BsYXlf
+ZGVzdHJveShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ICAJa2ZyZWUoZGlzcCk7Cj4gIH0KPiAg
+Cj4gLXN0YXRpYyBpbnQKPiAtbm91dmVhdV9hdG9taWNfZGlzYWJsZV9jb25uZWN0b3Ioc3RydWN0
+IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLAo+IC0JCQkJIHN0cnVjdCBkcm1fY29ubmVjdG9yICpj
+b25uZWN0b3IpCj4gLXsKPiAtCXN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uZWN0b3Jf
+c3RhdGU7Cj4gLQlzdHJ1Y3QgZHJtX2NydGMgKmNydGM7Cj4gLQlzdHJ1Y3QgZHJtX2NydGNfc3Rh
+dGUgKmNydGNfc3RhdGU7Cj4gLQlzdHJ1Y3QgZHJtX3BsYW5lX3N0YXRlICpwbGFuZV9zdGF0ZTsK
+PiAtCXN0cnVjdCBkcm1fcGxhbmUgKnBsYW5lOwo+IC0JaW50IHJldDsKPiAtCj4gLQlpZiAoIShj
+cnRjID0gY29ubmVjdG9yLT5zdGF0ZS0+Y3J0YykpCj4gLQkJcmV0dXJuIDA7Cj4gLQo+IC0JY29u
+bmVjdG9yX3N0YXRlID0gZHJtX2F0b21pY19nZXRfY29ubmVjdG9yX3N0YXRlKHN0YXRlLCBjb25u
+ZWN0b3IpOwo+IC0JaWYgKElTX0VSUihjb25uZWN0b3Jfc3RhdGUpKQo+IC0JCXJldHVybiBQVFJf
+RVJSKGNvbm5lY3Rvcl9zdGF0ZSk7Cj4gLQo+IC0JcmV0ID0gZHJtX2F0b21pY19zZXRfY3J0Y19m
+b3JfY29ubmVjdG9yKGNvbm5lY3Rvcl9zdGF0ZSwgTlVMTCk7Cj4gLQlpZiAocmV0KQo+IC0JCXJl
+dHVybiByZXQ7Cj4gLQo+IC0JY3J0Y19zdGF0ZSA9IGRybV9hdG9taWNfZ2V0X2NydGNfc3RhdGUo
+c3RhdGUsIGNydGMpOwo+IC0JaWYgKElTX0VSUihjcnRjX3N0YXRlKSkKPiAtCQlyZXR1cm4gUFRS
+X0VSUihjcnRjX3N0YXRlKTsKPiAtCj4gLQlyZXQgPSBkcm1fYXRvbWljX3NldF9tb2RlX2Zvcl9j
+cnRjKGNydGNfc3RhdGUsIE5VTEwpOwo+IC0JaWYgKHJldCkKPiAtCQlyZXR1cm4gcmV0Owo+IC0K
+PiAtCWNydGNfc3RhdGUtPmFjdGl2ZSA9IGZhbHNlOwo+IC0KPiAtCWRybV9mb3JfZWFjaF9wbGFu
+ZV9tYXNrKHBsYW5lLCBjb25uZWN0b3ItPmRldiwgY3J0Y19zdGF0ZS0+cGxhbmVfbWFzaykgewo+
+IC0JCXBsYW5lX3N0YXRlID0gZHJtX2F0b21pY19nZXRfcGxhbmVfc3RhdGUoc3RhdGUsIHBsYW5l
+KTsKPiAtCQlpZiAoSVNfRVJSKHBsYW5lX3N0YXRlKSkKPiAtCQkJcmV0dXJuIFBUUl9FUlIocGxh
+bmVfc3RhdGUpOwo+IC0KPiAtCQlyZXQgPSBkcm1fYXRvbWljX3NldF9jcnRjX2Zvcl9wbGFuZShw
+bGFuZV9zdGF0ZSwgTlVMTCk7Cj4gLQkJaWYgKHJldCkKPiAtCQkJcmV0dXJuIHJldDsKPiAtCj4g
+LQkJZHJtX2F0b21pY19zZXRfZmJfZm9yX3BsYW5lKHBsYW5lX3N0YXRlLCBOVUxMKTsKPiAtCX0K
+PiAtCj4gLQlyZXR1cm4gMDsKPiAtfQo+IC0KPiAtc3RhdGljIGludAo+IC1ub3V2ZWF1X2F0b21p
+Y19kaXNhYmxlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gLQkJICAgICAgIHN0cnVjdCBkcm1f
+bW9kZXNldF9hY3F1aXJlX2N0eCAqY3R4KQo+IC17Cj4gLQlzdHJ1Y3QgZHJtX2F0b21pY19zdGF0
+ZSAqc3RhdGU7Cj4gLQlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yOwo+IC0JaW50IHJl
+dDsKPiAtCj4gLQlzdGF0ZSA9IGRybV9hdG9taWNfc3RhdGVfYWxsb2MoZGV2KTsKPiAtCWlmICgh
+c3RhdGUpCj4gLQkJcmV0dXJuIC1FTk9NRU07Cj4gLQo+IC0Jc3RhdGUtPmFjcXVpcmVfY3R4ID0g
+Y3R4Owo+IC0KPiAtCWRybV9mb3JfZWFjaF9jb25uZWN0b3IoY29ubmVjdG9yLCBkZXYpIHsKPiAt
+CQlyZXQgPSBub3V2ZWF1X2F0b21pY19kaXNhYmxlX2Nvbm5lY3RvcihzdGF0ZSwgY29ubmVjdG9y
+KTsKPiAtCQlpZiAocmV0KQo+IC0JCQlicmVhazsKPiAtCX0KPiAtCj4gLQlpZiAocmV0ID09IDAp
+Cj4gLQkJcmV0ID0gZHJtX2F0b21pY19jb21taXQoc3RhdGUpOwo+IC0JZHJtX2F0b21pY19zdGF0
+ZV9wdXQoc3RhdGUpOwo+IC0JcmV0dXJuIHJldDsKPiAtfQo+IC0KPiAtc3RhdGljIHN0cnVjdCBk
+cm1fYXRvbWljX3N0YXRlICoKPiAtbm91dmVhdV9hdG9taWNfc3VzcGVuZChzdHJ1Y3QgZHJtX2Rl
+dmljZSAqZGV2KQo+IC17Cj4gLQlzdHJ1Y3QgZHJtX21vZGVzZXRfYWNxdWlyZV9jdHggY3R4Owo+
+IC0Jc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlOwo+IC0JaW50IHJldDsKPiAtCj4gLQlk
+cm1fbW9kZXNldF9hY3F1aXJlX2luaXQoJmN0eCwgMCk7Cj4gLQo+IC1yZXRyeToKPiAtCXJldCA9
+IGRybV9tb2Rlc2V0X2xvY2tfYWxsX2N0eChkZXYsICZjdHgpOwo+IC0JaWYgKHJldCA8IDApIHsK
+PiAtCQlzdGF0ZSA9IEVSUl9QVFIocmV0KTsKPiAtCQlnb3RvIHVubG9jazsKPiAtCX0KPiAtCj4g
+LQlzdGF0ZSA9IGRybV9hdG9taWNfaGVscGVyX2R1cGxpY2F0ZV9zdGF0ZShkZXYsICZjdHgpOwo+
+IC0JaWYgKElTX0VSUihzdGF0ZSkpCj4gLQkJZ290byB1bmxvY2s7Cj4gLQo+IC0JcmV0ID0gbm91
+dmVhdV9hdG9taWNfZGlzYWJsZShkZXYsICZjdHgpOwo+IC0JaWYgKHJldCA8IDApIHsKPiAtCQlk
+cm1fYXRvbWljX3N0YXRlX3B1dChzdGF0ZSk7Cj4gLQkJc3RhdGUgPSBFUlJfUFRSKHJldCk7Cj4g
+LQkJZ290byB1bmxvY2s7Cj4gLQl9Cj4gLQo+IC11bmxvY2s6Cj4gLQlpZiAoUFRSX0VSUihzdGF0
+ZSkgPT0gLUVERUFETEspIHsKPiAtCQlkcm1fbW9kZXNldF9iYWNrb2ZmKCZjdHgpOwo+IC0JCWdv
+dG8gcmV0cnk7Cj4gLQl9Cj4gLQo+IC0JZHJtX21vZGVzZXRfZHJvcF9sb2NrcygmY3R4KTsKPiAt
+CWRybV9tb2Rlc2V0X2FjcXVpcmVfZmluaSgmY3R4KTsKPiAtCXJldHVybiBzdGF0ZTsKPiAtfQo+
+IC0KPiAgaW50Cj4gIG5vdXZlYXVfZGlzcGxheV9zdXNwZW5kKHN0cnVjdCBkcm1fZGV2aWNlICpk
+ZXYsIGJvb2wgcnVudGltZSkKPiAgewo+IEBAIC03NDQsNyArNjMzLDcgQEAgbm91dmVhdV9kaXNw
+bGF5X3N1c3BlbmQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgYm9vbCBydW50aW1lKQo+ICAKPiAg
+CWlmIChkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVzZXQoZGV2KSkgewo+ICAJCWlmICghcnVudGlt
+ZSkgewo+IC0JCQlkaXNwLT5zdXNwZW5kID0gbm91dmVhdV9hdG9taWNfc3VzcGVuZChkZXYpOwo+
+ICsJCQlkaXNwLT5zdXNwZW5kID0gZHJtX2F0b21pY19oZWxwZXJfc3VzcGVuZChkZXYpOwo+ICAJ
+CQlpZiAoSVNfRVJSKGRpc3AtPnN1c3BlbmQpKSB7Cj4gIAkJCQlpbnQgcmV0ID0gUFRSX0VSUihk
+aXNwLT5zdXNwZW5kKTsKPiAgCQkJCWRpc3AtPnN1c3BlbmQgPSBOVUxMOwo+IC0tIAo+IDIuNy40
+Cj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+
+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+CgotLSAKU2VhbiBQYXVsLCBTb2Z0d2FyZSBFbmdpbmVlciwgR29vZ2xlIC8gQ2hyb21pdW0gT1MK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
