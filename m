@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99913] [G96] Reclocking fails on voltage
-Date: Thu, 23 Feb 2017 09:03:53 +0000
-Message-ID: <bug-99913-8800-CqLpnBHH9y@http.bugs.freedesktop.org/>
-References: <bug-99913-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99921] New: [NVE4] [regression,
+ bisected] 4.10 (atomic): X shows black screen with cursor after
+ monitors turn off
+Date: Thu, 23 Feb 2017 14:26:40 +0000
+Message-ID: <bug-99921-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0461406392=="
+Content-Type: multipart/mixed; boundary="===============2010369876=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,41 +20,94 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0461406392==
-Content-Type: multipart/alternative; boundary="14878406331.ABC5E0b.26807";
+--===============2010369876==
+Content-Type: multipart/alternative; boundary="14878600000.db3E6.31480";
  charset="UTF-8"
 
 
---14878406331.ABC5E0b.26807
-Date: Thu, 23 Feb 2017 09:03:53 +0000
+--14878600000.db3E6.31480
+Date: Thu, 23 Feb 2017 14:26:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99913
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99921
 
-Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+            Bug ID: 99921
+           Summary: [NVE4] [regression, bisected] 4.10 (atomic): X shows
+                    black screen with cursor after monitors turn off
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: kevin-Fk+Xth6EFAKtEw7EPzjzzg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEEDINFO                    |NEW
+Created attachment 129870
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129870&action=3Dedit
+git bisect log
 
---- Comment #7 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Actually, I found out that there is an old dump from this laptop referred t=
-o in
-bug #60680:
-http://people.freedesktop.org/~pq/mmiotrace-fdo-bug-60680.tar.xz
+On Linux 4.10, after waking monitors up from powersave mode, X displays onl=
+y a
+black screen with a movable cursor on all three monitors. Linux 4.9.11 does=
+ not
+exhibit this issue.
 
-Does that help?
+I initially noticed the issue with a triple-monitor setup, but it still occ=
+urs
+even if only one monitor is plugged in via HDMI.
+
+I've bisected the issue to the following atomic-mode-setting commit (full g=
+it
+bisect log attached):
+
+commit 839ca903f12ef8f09374e0b655456482536a733e
+Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date:   Fri Nov 4 17:20:36 2016 +1000
+
+    drm/nouveau/kms/nv50: transition to atomic interfaces internally
+
+    This commit implements the atomic commit interfaces, and implements the
+    legacy modeset and page flipping interfaces on top of them.
+
+    There's two major changes in behavior from before:
+
+    - We're now making use of interlocks between core and satellite EVO
+      channels, which greatly improves our ability to keep their states
+      synchronised.
+    - DPMS is now implemented as a full modeset to either tear down the
+      entire pipe (or bring it back up).  This choice was made mostly
+      to ease the initial implementation, but I'm also not sure what we
+      gain by bring backing the old behaviour.  We shall see.
+
+    This does NOT currently expose the atomic ioctl by default, due to
+    limited testing having been performed.
+
+    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+
+Dmesgs and Xorg logs are provided for the following configurations that exh=
+ibit
+the issue:
+ - 4.10, with one monitor attached
+ - 4.10, with three monitors attached
+ - A bisected revision that displays the issue (seems to have a bit more
+information)
+
+I'm using an MSI GTX 770 2GB; vbios is attached.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14878406331.ABC5E0b.26807
-Date: Thu, 23 Feb 2017 09:03:53 +0000
+--14878600000.db3E6.31480
+Date: Thu, 23 Feb 2017 14:26:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,57 +118,146 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ppaalanen=
-&#64;gmail.com" title=3D"Pekka Paalanen &lt;ppaalanen&#64;gmail.com&gt;"> <=
-span class=3D"fn">Pekka Paalanen</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913">bug 99913<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
+k screen with cursor after monitors turn off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99921">99921</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEEDINFO
-           </td>
-           <td>NEW
-           </td>
-         </tr></table>
+        <tr>
+          <th>Summary</th>
+          <td>[NVE4] [regression, bisected] 4.10 (atomic): X shows black sc=
+reen with cursor after monitors turn off
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>kevin&#64;potatofrom.space
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913">bug 99913<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ppaalanen&#64;gmail.com" title=3D"Pekka Paalanen &lt;ppaalanen&#64;gmail.co=
-m&gt;"> <span class=3D"fn">Pekka Paalanen</span></a>
-</span></b>
-        <pre>Actually, I found out that there is an old dump from this lapt=
-op referred to in
-<a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NV96] HDMI is connected and has mode, TV says=
- &quot;no signal&quot;"
-   href=3D"show_bug.cgi?id=3D60680">bug #60680</a>:
-<a href=3D"http://people.freedesktop.org/~pq/mmiotrace-fdo-bug-60680.tar.xz=
-">http://people.freedesktop.org/~pq/mmiotrace-fdo-bug-60680.tar.xz</a>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129870=
+" name=3D"attach_129870" title=3D"git bisect log">attachment 129870</a> <a =
+href=3D"attachment.cgi?id=3D129870&amp;action=3Dedit" title=3D"git bisect l=
+og">[details]</a></span>
+git bisect log
 
-Does that help?</pre>
+On Linux 4.10, after waking monitors up from powersave mode, X displays onl=
+y a
+black screen with a movable cursor on all three monitors. Linux 4.9.11 does=
+ not
+exhibit this issue.
+
+I initially noticed the issue with a triple-monitor setup, but it still occ=
+urs
+even if only one monitor is plugged in via HDMI.
+
+I've bisected the issue to the following atomic-mode-setting commit (full g=
+it
+bisect log attached):
+
+commit 839ca903f12ef8f09374e0b655456482536a733e
+Author: Ben Skeggs &lt;<a href=3D"mailto:bskeggs&#64;redhat.com">bskeggs&#6=
+4;redhat.com</a>&gt;
+Date:   Fri Nov 4 17:20:36 2016 +1000
+
+    drm/nouveau/kms/nv50: transition to atomic interfaces internally
+
+    This commit implements the atomic commit interfaces, and implements the
+    legacy modeset and page flipping interfaces on top of them.
+
+    There's two major changes in behavior from before:
+
+    - We're now making use of interlocks between core and satellite EVO
+      channels, which greatly improves our ability to keep their states
+      synchronised.
+    - DPMS is now implemented as a full modeset to either tear down the
+      entire pipe (or bring it back up).  This choice was made mostly
+      to ease the initial implementation, but I'm also not sure what we
+      gain by bring backing the old behaviour.  We shall see.
+
+    This does NOT currently expose the atomic ioctl by default, due to
+    limited testing having been performed.
+
+    Signed-off-by: Ben Skeggs &lt;<a href=3D"mailto:bskeggs&#64;redhat.com"=
+>bskeggs&#64;redhat.com</a>&gt;
+
+Dmesgs and Xorg logs are provided for the following configurations that exh=
+ibit
+the issue:
+ - 4.10, with one monitor attached
+ - 4.10, with three monitors attached
+ - A bisected revision that displays the issue (seems to have a bit more
+information)
+
+I'm using an MSI GTX 770 2GB; vbios is attached.</pre>
         </div>
       </p>
 
@@ -129,9 +271,9 @@ Does that help?</pre>
     </body>
 </html>=
 
---14878406331.ABC5E0b.26807--
+--14878600000.db3E6.31480--
 
---===============0461406392==
+--===============2010369876==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -141,4 +283,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0461406392==--
+--===============2010369876==--
