@@ -1,76 +1,192 @@
-From: Bjorn Helgaas <bhelgaas@google.com>
-Subject: Re: [PATCH 3/5] drm/nouveau: Don't register Thunderbolt eGPU with
- vga_switcheroo
-Date: Fri, 24 Feb 2017 14:59:44 -0600
-Message-ID: <CAErSpo5Vvk8F=nVgsvTBze+P-=v2rwk1waUMaGVXj2BDKdsiEg@mail.gmail.com>
+From: Bjorn Helgaas <helgaas@kernel.org>
+Subject: Re: [PATCH 1/5] PCI: Recognize Thunderbolt devices
+Date: Fri, 24 Feb 2017 16:17:24 -0600
+Message-ID: <20170224221724.GA26430@bhelgaas-glaptop.roam.corp.google.com>
 References: <cover.1487938188.git.lukas@wunner.de>
- <859ea96a4aaddd203a6d7795322cf0e4543257b5.1487938188.git.lukas@wunner.de>
+ <c42a235e126f273e9b8712a7154f813f757db507.1487938188.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <859ea96a4aaddd203a6d7795322cf0e4543257b5.1487938188.git.lukas@wunner.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-pci-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <c42a235e126f273e9b8712a7154f813f757db507.1487938188.git.lukas@wunner.de>
+Sender: linux-pci-owner@vger.kernel.org
 To: Lukas Wunner <lukas@wunner.de>
-Cc: Michael Jamet <michael.jamet@intel.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, DRI mailing list <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, Peter Wu <peter@lekensteyn.nl>
+Cc: dri-devel@lists.freedesktop.org, Bjorn Helgaas <bhelgaas@google.com>, Michael Jamet <michael.jamet@intel.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, linux-pci@vger.kernel.org, Darren Hart <dvhart@infradead.org>, Andy Shevchenko <andy@infradead.org>, platform-driver-x86@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, amd-gfx@lists.freedesktop.org, Peter Wu <peter@lekensteyn.nl>
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBGZWIgMjQsIDIwMTcgYXQgMToxOSBQTSwgTHVrYXMgV3VubmVyIDxsdWthc0B3dW5u
-ZXIuZGU+IHdyb3RlOgo+IEFuIGV4dGVybmFsIFRodW5kZXJib2x0IEdQVSBjYW4gbmVpdGhlciBk
-cml2ZSB0aGUgbGFwdG9wJ3MgcGFuZWwgbm9yIGJlCj4gcG93ZXJlZCBvZmYgYnkgdGhlIHBsYXRm
-b3JtLCBzbyB0aGVyZSdzIG5vIHBvaW50IGluIHJlZ2lzdGVyaW5nIGl0IHdpdGgKPiB2Z2Ffc3dp
-dGNoZXJvby4KCj4gSW4gZmFjdCwgd2hlbiB0aGUgZXh0ZXJuYWwgR1BVIGlzIHJ1bnRpbWUgc3Vz
-cGVuZGVkLAo+IHZnYV9zd2l0Y2hlcm9vIHdpbGwgY3V0IHBvd2VyIHRvIHRoZSBpbnRlcm5hbCBk
-aXNjcmV0ZSBHUFUsIHJlc3VsdGluZyBpbgo+IGEgbG9ja3VwLgoKV2h5IGRvZXMgc3VzcGVuZGlu
-ZyB0aGUgZXh0ZXJuYWwgR1BVIGNhdXNlIHZnYV9zd2l0Y2hlcm9vIHRvIGN1dCBwb3dlcgp0byB0
-aGUgaW50ZXJuYWwgR1BVPyAgTm8gZG91YnQgdGhpcyB3b3VsZCBiZSBvYnZpb3VzIHRvIGEgR1BV
-IHBlcnNvbiwKd2hpY2ggSSBkZWZpbml0ZWx5IGFtIG5vdC4KCj4gQ2M6IEJlbiBTa2VnZ3MgPGJz
-a2VnZ3NAcmVkaGF0LmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1
-bm5lci5kZT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV92Z2EuYyB8
-IDEwICsrKysrKysrKy0KPiAgMSBmaWxlIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgMSBkZWxl
-dGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-dmdhLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3ZnYS5jCj4gaW5kZXggZWVm
-MjJjNmI5NjY1Li5jMmE3ZmQ2MDZjMmUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV92Z2EuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfdmdhLmMKPiBAQCAtOTUsNiArOTUsMTAgQEAgbm91dmVhdV92Z2FfaW5pdChzdHJ1Y3Qgbm91
-dmVhdV9kcm0gKmRybSkKPgo+ICAgICAgICAgdmdhX2NsaWVudF9yZWdpc3RlcihkZXYtPnBkZXYs
-IGRldiwgTlVMTCwgbm91dmVhdV92Z2Ffc2V0X2RlY29kZSk7Cj4KPiArICAgICAgIC8qIGRvbid0
-IHJlZ2lzdGVyIFRodW5kZXJib2x0IGVHUFUgd2l0aCB2Z2Ffc3dpdGNoZXJvbyAqLwo+ICsgICAg
-ICAgaWYgKHBjaV9pc190aHVuZGVyYm9sdF9hdHRhY2hlZChkZXYtPnBkZXYpKQo+ICsgICAgICAg
-ICAgICAgICByZXR1cm47CgpJIGd1ZXNzIHRoZXJlJ3Mgbm8gd2F5IHRvIG1vdmUgdGhpcyBpbnNp
-ZGUKdmdhX3N3aXRjaGVyb29fcmVnaXN0ZXJfY2xpZW50KCkgaW5zdGVhZCBvZiBwdXR0aW5nIHRo
-ZSB0ZXN0IGluIGFsbAp0aGUgZHJpdmVycz8KCj4gKwo+ICAgICAgICAgaWYgKG5vdXZlYXVfcnVu
-dGltZV9wbSA9PSAxKQo+ICAgICAgICAgICAgICAgICBydW50aW1lID0gdHJ1ZTsKPiAgICAgICAg
-IGlmICgobm91dmVhdV9ydW50aW1lX3BtID09IC0xKSAmJiAobm91dmVhdV9pc19vcHRpbXVzKCkg
-fHwgbm91dmVhdV9pc192MV9kc20oKSkpCj4gQEAgLTExMSw2ICsxMTUsMTEgQEAgbm91dmVhdV92
-Z2FfZmluaShzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSkKPiAgICAgICAgIHN0cnVjdCBkcm1fZGV2
-aWNlICpkZXYgPSBkcm0tPmRldjsKPiAgICAgICAgIGJvb2wgcnVudGltZSA9IGZhbHNlOwo+Cj4g
-KyAgICAgICB2Z2FfY2xpZW50X3JlZ2lzdGVyKGRldi0+cGRldiwgTlVMTCwgTlVMTCwgTlVMTCk7
-Cj4gKwo+ICsgICAgICAgaWYgKHBjaV9pc190aHVuZGVyYm9sdF9hdHRhY2hlZChkZXYtPnBkZXYp
-KQo+ICsgICAgICAgICAgICAgICByZXR1cm47Cj4gKwo+ICAgICAgICAgaWYgKG5vdXZlYXVfcnVu
-dGltZV9wbSA9PSAxKQo+ICAgICAgICAgICAgICAgICBydW50aW1lID0gdHJ1ZTsKPiAgICAgICAg
-IGlmICgobm91dmVhdV9ydW50aW1lX3BtID09IC0xKSAmJiAobm91dmVhdV9pc19vcHRpbXVzKCkg
-fHwgbm91dmVhdV9pc192MV9kc20oKSkpCj4gQEAgLTExOSw3ICsxMjgsNiBAQCBub3V2ZWF1X3Zn
-YV9maW5pKHN0cnVjdCBub3V2ZWF1X2RybSAqZHJtKQo+ICAgICAgICAgdmdhX3N3aXRjaGVyb29f
-dW5yZWdpc3Rlcl9jbGllbnQoZGV2LT5wZGV2KTsKPiAgICAgICAgIGlmIChydW50aW1lICYmIG5v
-dXZlYXVfaXNfdjFfZHNtKCkgJiYgIW5vdXZlYXVfaXNfb3B0aW11cygpKQo+ICAgICAgICAgICAg
-ICAgICB2Z2Ffc3dpdGNoZXJvb19maW5pX2RvbWFpbl9wbV9vcHMoZHJtLT5kZXYtPmRldik7Cj4g
-LSAgICAgICB2Z2FfY2xpZW50X3JlZ2lzdGVyKGRldi0+cGRldiwgTlVMTCwgTlVMTCwgTlVMTCk7
-CgpUaGUgYW1kICYgcmFkZW9uIHBhdGNoZXMgbG9vayBsaWtlIHRoaXM6CgotICAgICAgIHZnYV9z
-d2l0Y2hlcm9vX3VucmVnaXN0ZXJfY2xpZW50KHJkZXYtPnBkZXYpOworICAgICAgIGlmICghcGNp
-X2lzX3RodW5kZXJib2x0X2F0dGFjaGVkKGFkZXYtPnBkZXYpKQorICAgICAgICAgICAgICAgdmdh
-X3N3aXRjaGVyb29fdW5yZWdpc3Rlcl9jbGllbnQoYWRldi0+cGRldik7CgpUaGlzIG5vdXZlYXUg
-cGF0Y2ggbG9va3Mgc3VzcGljaW91c2x5IGRpZmZlcmVudC4gIEJ1dCBhZ2FpbiwgSSdtIG5vdCBh
-CkdQVSBndXkgc28gYWxsIEkgY2FuIHJlYWxseSBzYXkgaXMgImhtbSwgSSB3b25kZXIgd2h5IGl0
-J3MgZGlmZmVyZW50PyIKCj4gIH0KPgo+Cj4gLS0KPiAyLjExLjAKPgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRy
-aS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+On Fri, Feb 24, 2017 at 08:19:45PM +0100, Lukas Wunner wrote:
+> Detect on probe whether a PCI device is part of a Thunderbolt controller.
+> 
+> Intel uses a Vendor-Specific Extended Capability (VSEC) with ID 0x1234
+> on such devices.  Detect presence of this VSEC and cache it in a newly
+> added is_thunderbolt bit in struct pci_dev.  Add a helper to check
+> whether a given PCI device is situated on a Thunderbolt daisy chain.
+> 
+> The necessity arises from the following:
+> 
+> * To power off Thunderbolt controllers on Macs even if their BIOS is
+>   older than 2015, their PCIe ports need to be whitelisted for runtime
+>   PM.  For this we need a way to recognize them.
+> 
+> * Dual GPU MacBook Pros introduced 2011+ can no longer switch external
+>   DisplayPort ports between GPUs.  (They're no longer just used for DP
+>   but have become combined DP/Thunderbolt ports.)  The driver to switch
+>   the ports, drivers/platform/x86/apple-gmux.c, needs to detect presence
+>   of a Thunderbolt controller and, if found, keep external ports
+>   permanently switched to the discrete GPU.
+> 
+> * If an external Thunderbolt GPU is connected to a dual GPU laptop (Mac
+>   or not), that GPU is currently registered with vga_switcheroo even
+>   though it can neither drive the laptop's panel nor be powered off by
+>   the platform.  To vga_switcheroo it will appear as if two discrete
+>   GPUs are present.  As a result, when the external GPU is runtime
+>   suspended, vga_switcheroo will cut power to the internal discrete GPU
+>   which may not be runtime suspended at all at this moment.  The
+>   solution is to not register external GPUs with vga_switcheroo, which
+>   necessitates a way to recognize if they're on a Thunderbolt daisy
+>   chain.
+
+If I understand correctly, vga_switcheroo manages two GPUs that have a
+single output: either there's a mux that connects one GPU or the other
+to the output, or one GPU is permanently connected to the output and
+the other does offline rendering.
+
+To this non-GPU person, it sounds like the important question is
+whether two GPUs are related in this way (either they feed the same
+mux, or there's some special offline rendering connection between
+them).  That sounds unrelated to the question of how the GPUs
+themselves are connected to the PCI hierarchy.
+
+From a pure PCI perspective, I assume it would be conceivable to have
+two Thunderbolt-connected GPUs feeding into a mux.  Or to have a GPU
+(unrelated to the mux) in a non-Thunderbolt plugin slot or connected
+externally via a non-Thunderbolt switch and an iPass cable.
+
+If that's the case, and we're using Thunderbolt-connectedness as a
+hint that happens to work for the hardware we know about now, that's
+fine -- I'm just trying to understand what's a hint and what's
+intrisic to being connected via Thunderbolt.
+
+> Cc: Andreas Noever <andreas.noever@gmail.com>
+> Cc: Michael Jamet <michael.jamet@intel.com>
+> Cc: Tomas Winkler <tomas.winkler@intel.com>
+> Cc: Amir Levy <amir.jer.levy@intel.com>
+> Signed-off-by: Lukas Wunner <lukas@wunner.de>
+> ---
+>  drivers/pci/pci.h   |  2 ++
+>  drivers/pci/probe.c | 21 +++++++++++++++++++++
+>  include/linux/pci.h | 23 +++++++++++++++++++++++
+>  3 files changed, 46 insertions(+)
+> 
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index cb17db242f30..45c2b8144911 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -3,6 +3,8 @@
+>  
+>  #define PCI_FIND_CAP_TTL	48
+>  
+> +#define PCI_VSEC_ID_INTEL_TBT	0x1234	/* Thunderbolt */
+> +
+>  extern const unsigned char pcie_link_speed[];
+>  
+>  bool pcie_cap_has_lnkctl(const struct pci_dev *dev);
+> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+> index 204960e70333..7963ecc6d85f 100644
+> --- a/drivers/pci/probe.c
+> +++ b/drivers/pci/probe.c
+> @@ -1208,6 +1208,24 @@ void set_pcie_hotplug_bridge(struct pci_dev *pdev)
+>  		pdev->is_hotplug_bridge = 1;
+>  }
+>  
+> +static void set_pcie_thunderbolt(struct pci_dev *dev)
+> +{
+> +	int vsec = 0;
+> +	u32 header;
+> +
+> +	while ((vsec = pci_find_next_ext_capability(dev, vsec,
+> +						    PCI_EXT_CAP_ID_VNDR))) {
+> +		pci_read_config_dword(dev, vsec + PCI_VNDR_HEADER, &header);
+> +
+> +		/* Is the device part of a Thunderbolt controller? */
+> +		if (dev->vendor == PCI_VENDOR_ID_INTEL &&
+> +		    PCI_VNDR_HEADER_ID(header) == PCI_VSEC_ID_INTEL_TBT) {
+> +			dev->is_thunderbolt = 1;
+> +			return;
+> +		}
+> +	}
+> +}
+> +
+>  /**
+>   * pci_ext_cfg_is_aliased - is ext config space just an alias of std config?
+>   * @dev: PCI device
+> @@ -1360,6 +1378,9 @@ int pci_setup_device(struct pci_dev *dev)
+>  	/* need to have dev->class ready */
+>  	dev->cfg_size = pci_cfg_space_size(dev);
+>  
+> +	/* need to have dev->cfg_size ready */
+> +	set_pcie_thunderbolt(dev);
+> +
+>  	/* "Unknown power state" */
+>  	dev->current_state = PCI_UNKNOWN;
+>  
+> diff --git a/include/linux/pci.h b/include/linux/pci.h
+> index e2d1a124216a..36dfcfd946f4 100644
+> --- a/include/linux/pci.h
+> +++ b/include/linux/pci.h
+> @@ -358,6 +358,7 @@ struct pci_dev {
+>  	unsigned int	is_virtfn:1;
+>  	unsigned int	reset_fn:1;
+>  	unsigned int    is_hotplug_bridge:1;
+> +	unsigned int	is_thunderbolt:1; /* Thunderbolt controller */
+
+I'm not really keen on having this in the PCI core because the core
+doesn't need this or even know what it means.
+
+pci_find_next_ext_capability() is available to drivers, and if
+Thunderbolt-connectedness is useful information to apple-gmux or GPU
+drivers, it's fine with me if you want to use it there.  I just don't
+see the benefit to having it in the core.
+
+>  	unsigned int    __aer_firmware_first_valid:1;
+>  	unsigned int	__aer_firmware_first:1;
+>  	unsigned int	broken_intx_masking:1;
+> @@ -2171,6 +2172,28 @@ static inline bool pci_ari_enabled(struct pci_bus *bus)
+>  	return bus->self && bus->self->ari_enabled;
+>  }
+>  
+> +/**
+> + * pci_is_thunderbolt_attached - whether device is on a Thunderbolt daisy chain
+> + * @pdev: PCI device to check
+> + *
+> + * Walk upwards from @pdev and check for each encountered bridge if it's
+> + * part of a Thunderbolt controller.  Reaching the host bridge means @pdev
+> + * is soldered to the mainboard.
+
+The comment suggests this returns false only if @pdev is soldered to
+the mainboard.  I don't think that's the case.  This will return true
+for a Thunderbolt controller and all devices downstream from it.  It
+will return false for all others, whether they're soldered down or
+not.
+
+> + */
+> +static inline bool pci_is_thunderbolt_attached(struct pci_dev *pdev)
+> +{
+> +	struct pci_dev *parent = pdev;
+> +
+> +	if (pdev->is_thunderbolt)
+> +		return true;
+> +
+> +	while ((parent = pci_upstream_bridge(parent)))
+> +		if (parent->is_thunderbolt)
+> +			return true;
+> +
+> +	return false;
+> +}
+> +
+>  /* provide the legacy pci_dma_* API */
+>  #include <linux/pci-dma-compat.h>
+>  
+> -- 
+> 2.11.0
+> 
