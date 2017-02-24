@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99922] [NVE4] [regression,
- bisected] 4.10 (atomic): X shows black screen with cursor after
- monitors turn off
-Date: Fri, 24 Feb 2017 12:39:58 +0000
-Message-ID: <bug-99922-8800-G065hYzAqG@http.bugs.freedesktop.org/>
-References: <bug-99922-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: [PATCH 0/5] Thunderbolt GPU fixes
+Date: Fri, 24 Feb 2017 20:19:45 +0100
+Message-ID: <cover.1487938188.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0269352643=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,96 +15,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Michael Jamet <michael.jamet-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, platform-driver-x86-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, Darren Hart <dvhart-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>, Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Christian Koenig <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Andy Shevchenko <andy-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0269352643==
-Content-Type: multipart/alternative; boundary="14879399980.beBfd02f.2387";
- charset="UTF-8"
-
-
---14879399980.beBfd02f.2387
-Date: Fri, 24 Feb 2017 12:39:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99922
-
-kevin-Fk+Xth6EFAKtEw7EPzjzzg@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #129896|text/x-log                  |text/plain
-          mime type|                            |
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14879399980.beBfd02f.2387
-Date: Fri, 24 Feb 2017 12:39:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:kevin&#64=
-;potatofrom.space" title=3D"kevin&#64;potatofrom.space">kevin&#64;potatofro=
-m.space</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
-k screen with cursor after monitors turn off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922">bug 99922<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #129896 mime type</td>
-           <td>text/x-log
-           </td>
-           <td>text/plain
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14879399980.beBfd02f.2387--
-
---===============0269352643==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0269352643==--
+Rml4IFRodW5kZXJib2x0LXJlbGF0ZWQgaXNzdWVzIGluIGFwcGxlLWdtdXggYW5kIHZnYV9zd2l0
+Y2hlcm9vOgoKUGF0Y2ggWzEvNV0gKCJSZWNvZ25pemUgVGh1bmRlcmJvbHQgZGV2aWNlcyIpIGhh
+cyBhbHJlYWR5IGJlZW4gc3ViamVjdGVkCnRvIGEgZmFpciBhbW91bnQgb2Ygc2NydXRpbnkgb3Zl
+ciBhdCBsaW51eC1wY2lALCBJJ3ZlIHN1Ym1pdHRlZCBpdCA1IHRpbWVzCnRvdGFsIHNpbmNlIE1h
+eSAyMDE2LiAgV2l0aCBsdWNrIGl0IG1heSBiZSBpbiBhY2stYWJsZSBzaGFwZSBub3cuCgpQYXRj
+aCBbMi81XSBhbWVuZHMgYXBwbGUtZ211eCB0byBoYW5kbGUgY29tYmluZWQgRFAvVGh1bmRlcmJv
+bHQgcG9ydHMKcHJvcGVybHkgb24gbmV3ZXIgTWFjQm9vayBQcm9zLgoKUGF0Y2hlcyBbMy81XSB0
+byBbNS81XSBhdm9pZCByZWdpc3RlcmluZyBleHRlcm5hbCBUaHVuZGVyYm9sdCBHUFVzIHdpdGgK
+dmdhX3N3aXRjaGVyb286ICBEYXZlIEFpcmxpZSBkZXNpZ25lZCB2Z2Ffc3dpdGNoZXJvbyB0byBy
+ZWdpc3RlciBHUFVzCnVuY29uZGl0aW9uYWxseS4gIFNvIGlmIGEgZGVza3RvcCBib3ggaGFzIG11
+bHRpcGxlIEdQVXMsIHZnYV9zd2l0Y2hlcm9vCndpbGwgc2VlIG1vcmUgdGhhbiBvbmUgZGlzY3Jl
+dGUgR1BVIGJ1dCB0aGF0J3Mgbm90IGEgcHJvYmxlbSBiZWNhdXNlIG9uCmRlc2t0b3AgYm94ZXMg
+bm8gaGFuZGxlciBpcyByZWdpc3RlcmVkIGFuZCB0aHVzIHZnYV9zd2l0Y2hlcm9vX2VuYWJsZSgp
+CmlzIG5ldmVyIGNhbGxlZC4gIEh5YnJpZCBncmFwaGljcyBsYXB0b3BzIG9uIHRoZSBvdGhlciBo
+YW5kIGRvIHJlZ2lzdGVyCmEgaGFuZGxlciwgYnV0IGFyZSBhc3N1bWVkIHRvIG5ldmVyIHJlZ2lz
+dGVyIG1vcmUgdGhhbiBvbmUgZGlzY3JldGUgR1BVLgpIb3dldmVyIG9uY2UgYSBUaHVuZGVyYm9s
+dCBlR1BVIGlzIGF0dGFjaGVkIHRvIGEgaHlicmlkIGdyYXBoaWNzIGxhcHRvcCwKdGhhdCBhc3N1
+bXB0aW9uIGlzIG5vIGxvbmdlciB0cnVlIGFuZCB0aGluZ3MgZ28gc291dGggd2hlbiB2Z2Ffc3dp
+dGNoZXJvbwpydW50aW1lIHN1c3BlbmRzIHRoZSBleHRlcm5hbCBkaXNjcmV0ZSBHUFUgYW5kIHRo
+ZW4gY2FsbHMgdGhlIGhhbmRsZXIgdG8KY3V0IHBvd2VyIHRvIHRoZSBpbnRlcm5hbCBkaXNjcmV0
+ZSBHUFUuICBUaGUgZHJpdmVyIGZvciB0aGUgaW50ZXJuYWwgR1BVCndpbGwgc2l0IHRoZXJlIHB1
+enpsZWQgYW5kIHR5cGljYWxseSBjYXVzZSBhIGxvY2t1cC4KClRoaXMgc2VyaWVzIGlzIGp1c3Qg
+YSBmaXJzdCBzdGVwIHRvd2FyZHMgcHJvcGVyIGhhbmRsaW5nIG9mIGVHUFVzLCBhbm90aGVyCndp
+bGwgYmUgc3VwcG9ydCBmb3Igc3VycHJpc2UgcmVtb3ZhbDogIERSTSBkcml2ZXJzIG5lZWQgdG8g
+Y2Vhc2UgTU1JTyBhbmQKUENJIGNvbmZpZyBzcGFjZSBhY2Nlc3Mgb25jZSBhIGRldmljZSBpcyBn
+b25lIHRvIGF2b2lkIGRlbGF5aW5nIGRldmljZQp0ZWFyZG93biBvciBhY2Nlc3NpbmcgYSBuZXds
+eSBhdHRhY2hlZCByZXBsYWNlbWVudCBkZXZpY2UuICBBbHNvLCBNTUlPCnJlYWRzIHRvIHJlbW92
+ZWQgZGV2aWNlcyByZXR1cm4gImFsbCBvbmVzIiwgd2hpY2ggcmVzdWx0cyBpbiBhbiBpbmZpbml0
+ZQpsb29wIGUuZy4gaW4gbm91dmVhdSdzIG52a21fbnNlYygpLgoKVGhlIHF1ZXN0aW9uIGlzIGhv
+dyB0byByZWNvZ25pemUgZGV2aWNlIHJlbW92YWwuICBPbmUgY29tbW9uIG1ldGhvZCBpcyB0bwpy
+ZWFkIHRoZSB2ZW5kb3IgcmVnaXN0ZXIgd2l0aCBwY2lfZGV2aWNlX2lzX3ByZXNlbnQoKSwgYnV0
+IHRoaXMgcmVwb3J0cwphIGZhbHNlIHBvc2l0aXZlIGlmIHRoZSBkZXZpY2UgaXMgcHJlc2VudCBi
+dXQgaW4gRDNjb2xkLiAgQSBiZXR0ZXIgbWV0aG9kCmlzIHRvIGxldCB0aGUgUENJZSBob3RwbHVn
+IGRyaXZlciByZWNvZ25pemUgYW5kIGNhY2hlIGRldmljZSByZW1vdmFsLgpLZWl0aCBCdXNjaCBo
+YXMgZGV2ZWxvcGVkIHBhdGNoZXMgd2hpY2ggZG8gZXhhY3RseSB0aGF0LCB0aGV5J3JlIG5vdyBh
+dAp2NiBhbmQgZnVsbHkgcmV2aWV3ZWQgYnkgQ2hyaXN0b3BoIEhlbGx3aWcgYnV0IGFsYXMgd2Vy
+ZSBub3QgaW5jbHVkZWQgaW4KdGhlIDQuMTEgUENJIHB1bGwgZm9yIHNvbWUgcmVhc29uOgpodHRw
+Oi8vd3d3LnNwaW5pY3MubmV0L2xpc3RzL2xpbnV4LXBjaS9tc2c1ODEyMy5odG1sCgpJJ3ZlIHB1
+c2hlZCB0aGUgcHJlc2VudCBzZXJpZXMgdG8gR2l0SHViIGluIGNhc2UgYW55b25lIHByZWZlcnMg
+cmV2aWV3aW5nCml0IGluIGEgR1VJOgpodHRwczovL2dpdGh1Yi5jb20vbDFrL2xpbnV4L2NvbW1p
+dHMvdGh1bmRlcmJvbHRfZ3B1X3YxCgpUaGFua3MsCgpMdWthcwoKCkx1a2FzIFd1bm5lciAoNSk6
+CiAgUENJOiBSZWNvZ25pemUgVGh1bmRlcmJvbHQgZGV2aWNlcwogIGFwcGxlLWdtdXg6IERvbid0
+IHN3aXRjaCBleHRlcm5hbCBEUCBwb3J0IG9uIDIwMTErIE1hY0Jvb2sgUHJvcwogIGRybS9ub3V2
+ZWF1OiBEb24ndCByZWdpc3RlciBUaHVuZGVyYm9sdCBlR1BVIHdpdGggdmdhX3N3aXRjaGVyb28K
+ICBkcm0vcmFkZW9uOiBEb24ndCByZWdpc3RlciBUaHVuZGVyYm9sdCBlR1BVIHdpdGggdmdhX3N3
+aXRjaGVyb28KICBkcm0vYW1kZ3B1OiBEb24ndCByZWdpc3RlciBUaHVuZGVyYm9sdCBlR1BVIHdp
+dGggdmdhX3N3aXRjaGVyb28KCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2
+aWNlLmMgfCAgNyArKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfa21z
+LmMgICAgfCAgMyArKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfdmdhLmMgICAg
+ICB8IDEwICsrKysrKysrKy0KIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2RldmljZS5j
+ICAgICB8ICA3ICsrKysrLS0KIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2ttcy5jICAg
+ICAgICB8ICAzICsrLQogZHJpdmVycy9wY2kvcGNpLmggICAgICAgICAgICAgICAgICAgICAgICAg
+IHwgIDIgKysKIGRyaXZlcnMvcGNpL3Byb2JlLmMgICAgICAgICAgICAgICAgICAgICAgICB8IDIx
+ICsrKysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL3BsYXRmb3JtL3g4Ni9hcHBsZS1nbXV4LmMg
+ICAgICAgICAgfCAzMSArKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0KIGluY2x1ZGUvbGlu
+dXgvcGNpLmggICAgICAgICAgICAgICAgICAgICAgICB8IDIzICsrKysrKysrKysrKysrKysrKysr
+KysKIDkgZmlsZXMgY2hhbmdlZCwgOTkgaW5zZXJ0aW9ucygrKSwgOCBkZWxldGlvbnMoLSkKCi0t
+IAoyLjExLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
