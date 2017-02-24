@@ -1,41 +1,107 @@
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH 1/3] drm/atomic: Make disable_all helper
- fully disable the crtc.
-Date: Thu, 23 Feb 2017 21:10:00 +0100
-Message-ID: <5bd5742b-f66d-cc52-d03c-cbc7992e47f2@linux.intel.com>
-References: <1487685102-31991-1-git-send-email-maarten.lankhorst@linux.intel.com>
- <1487685102-31991-2-git-send-email-maarten.lankhorst@linux.intel.com>
- <20170223150345.GA17822@art_vandelay>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99922] [NVE4] [regression,
+ bisected] 4.10 (atomic): X shows black screen with cursor after
+ monitors turn off
+Date: Fri, 24 Feb 2017 01:35:59 +0000
+Message-ID: <bug-99922-8800-lKaccuiNjt@http.bugs.freedesktop.org/>
+References: <bug-99922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20170223150345.GA17822@art_vandelay>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Sean Paul <seanpaul@chromium.org>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2121208229=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T3AgMjMtMDItMTcgb20gMTY6MDMgc2NocmVlZiBTZWFuIFBhdWw6Cj4gT24gVHVlLCBGZWIgMjEs
-IDIwMTcgYXQgMDI6NTE6NDBQTSArMDEwMCwgTWFhcnRlbiBMYW5raG9yc3Qgd3JvdGU6Cj4+IEl0
-IHNlZW1zIHRoYXQgbm91dmVhdSByZXF1aXJlcyB0aGlzLCBzbyBiZXN0IHRvIGRvIHRoaXMgaW4g
-dGhlIGhlbHBlci4KPj4gVGhpcyBhbGxvd3Mgbm91dmVhdSB0byB1c2UgdGhlIGF0b21pYyBzdXNw
-ZW5kIGhlbHBlci4KPiBQYXJkb24gdGhlIHN0dXBpZCBxdWVzdGlvbiwgYnV0IHdoeSBjYW4ndCBu
-b3V2ZWF1IGp1c3QgZG8gdGhlIHJpZ2h0IHRoaW5nIHdoZW4KPiBjcnRjX3N0YXRlLT5hY3RpdmUg
-YmVjb21lcyBmYWxzZT8KVGhpcyBwYXRjaCBpcyBhbHNvIHJlcXVpcmVkIHRvIGNsZWFuIHVwIGEg
-Y29ubmVjdG9yIGxlYWsgaW4gaTkxNSBkcml2ZXIgdW5sb2FkIGFzIHdlbGwsIGFuZCBhbHNvIHRv
-IGNsZWFuIHVwIHBsYW5lIHN0YXRlIGRlc3RydWN0aW9uIHRoZXJlLiBOb3V2ZWF1IG5lZWRzIGl0
-IHRvIHVucGluIHNvbWUgZnJhbWVidWZmZXJzIGR1cmluZyBzdXNwZW5kLCBidXQgZXZlbiBpZiBu
-b25lIG9mIHRoaXMgd2FzIHRydWUsIHRoaXMgaXMgdGhlIHJpZ2h0IHdheSB0byBoYW5kbGUgZGlz
-YWJsZV9hbGwuCgpMb29raW5nIGF0IERQTVMgaXMgZnJhZ2lsZS4KX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+--===============2121208229==
+Content-Type: multipart/alternative; boundary="14879001592.7084.20531";
+ charset="UTF-8"
+
+
+--14879001592.7084.20531
+Date: Fri, 24 Feb 2017 01:35:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99922
+
+--- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Are you able to try with xf86-video-modesetting instead of the nouveau 2d
+driver and report if the issue still occurs?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14879001592.7084.20531
+Date: Fri, 24 Feb 2017 01:35:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
+k screen with cursor after monitors turn off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
+k screen with cursor after monitors turn off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922">bug 99922<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ben Skeggs</span></a>
+</span></b>
+        <pre>Are you able to try with xf86-video-modesetting instead of the=
+ nouveau 2d
+driver and report if the issue still occurs?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14879001592.7084.20531--
+
+--===============2121208229==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2121208229==--
