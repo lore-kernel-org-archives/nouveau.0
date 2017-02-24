@@ -1,107 +1,101 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99922] [NVE4] [regression,
- bisected] 4.10 (atomic): X shows black screen with cursor after
- monitors turn off
-Date: Fri, 24 Feb 2017 01:35:59 +0000
-Message-ID: <bug-99922-8800-lKaccuiNjt@http.bugs.freedesktop.org/>
-References: <bug-99922-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot@nvidia.com>
+Subject: Re: [PATCH] drm/nouveau: gk20a: Turn instmem lock into mutex
+Date: Fri, 24 Feb 2017 16:25:42 +0900
+Message-ID: <6febf110-a04a-da21-20b4-638bde1eaf36@nvidia.com>
+References: <20170130200307.18574-1-thierry.reding@gmail.com>
+ <20170223162015.GA15693@ulmo.ba.sec>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2121208229=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20170223162015.GA15693@ulmo.ba.sec>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Thierry Reding <thierry.reding@gmail.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2121208229==
-Content-Type: multipart/alternative; boundary="14879001592.7084.20531";
- charset="UTF-8"
-
-
---14879001592.7084.20531
-Date: Fri, 24 Feb 2017 01:35:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99922
-
---- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Are you able to try with xf86-video-modesetting instead of the nouveau 2d
-driver and report if the issue still occurs?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14879001592.7084.20531
-Date: Fri, 24 Feb 2017 01:35:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
-k screen with cursor after monitors turn off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
-k screen with cursor after monitors turn off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922">bug 99922<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>Are you able to try with xf86-video-modesetting instead of the=
- nouveau 2d
-driver and report if the issue still occurs?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14879001592.7084.20531--
-
---===============2121208229==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2121208229==--
+T24gMDIvMjQvMjAxNyAwMToyMCBBTSwgVGhpZXJyeSBSZWRpbmcgd3JvdGU6Cj4gKiBQR1AgU2ln
+bmVkIGJ5IGFuIHVua25vd24ga2V5Cj4KPiBPbiBNb24sIEphbiAzMCwgMjAxNyBhdCAwOTowMzow
+N1BNICswMTAwLCBUaGllcnJ5IFJlZGluZyB3cm90ZToKPj4gRnJvbTogVGhpZXJyeSBSZWRpbmcg
+PHRyZWRpbmdAbnZpZGlhLmNvbT4KPj4KPj4gVGhlIGdrMjBhIGltcGxlbWVudGF0aW9uIG9mIGlu
+c3RhbmNlIG1lbW9yeSB1c2VzIHZtYXAoKS92dW5tYXAoKSB0byBtYXAKPj4gbWVtb3J5IHJlZ2lv
+bnMgaW50byB0aGUga2VybmVsJ3MgdmlydHVhbCBhZGRyZXNzIHNwYWNlLiBUaGVzZSBmdW5jdGlv
+bnMKPj4gbWF5IHNsZWVwLCBzbyBwcm90ZWN0aW5nIHRoZW0gYnkgYSBzcGluIGxvY2sgaXMgbm90
+IHNhZmUuIFRoaXMgdHJpZ2dlcnMKPj4gYSB3YXJuaW5nIGlmIHRoZSBERUJVR19BVE9NSUNfU0xF
+RVAgS2NvbmZpZyBvcHRpb24gaXMgZW5hYmxlZC4gRml4IHRoaXMKPj4gYnkgdXNpbmcgYSBtdXRl
+eCBpbnN0ZWFkLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBUaGllcnJ5IFJlZGluZyA8dHJlZGluZ0Bu
+dmlkaWEuY29tPgo+PiAtLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2luc3RtZW0vZ2syMGEuYyB8IDE5ICsrKysrKysrLS0tLS0tLS0tLS0KPj4gIDEgZmlsZSBjaGFu
+Z2VkLCA4IGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9ucygtKQo+Cj4gQWxleCwgY291bGQgeW91
+IHRha2UgYSBsb29rIGF0IHRoaXM/CgpTb3JyeSEgWWVzLCB1c2luZyBhIG11dGV4IGhlcmUgc2hv
+dWxkIGJlIHNhZmUgc2luY2Ugdm1hcCgpIGNhbiBzbGVlcCAKYW55d2F5LiBBbmQgSSBkb24ndCB0
+aGluayB0aGlzIGNvZGUgY2FuIGV2ZXIgYmUgcmVhY2hlZCBpbiBhdG9taWMgCmNvbnRleHQgKEJl
+biBjYW4gY29uZmlybSB0aGF0IGxhc3QgcG9pbnQpLiBUZXN0ZWQgdGhpcyBwYXRjaCBhbmQgaXQg
+CnNlZW1zIHRvIHdvcmsgbGlrZSBhIGNoYXJtLgoKUmV2aWV3ZWQtYnk6IEFsZXhhbmRyZSBDb3Vy
+Ym90IDxhY291cmJvdEBudmlkaWEuY29tPgpUZXN0ZWQtYnk6IEFsZXhhbmRyZSBDb3VyYm90IDxh
+Y291cmJvdEBudmlkaWEuY29tPgoKPgo+IFRoYW5rcywKPiBUaGllcnJ5Cj4KPj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vZ2syMGEuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vZ2syMGEuYwo+PiBp
+bmRleCBhNmE3ZmEwZDc2NzkuLjdmNTI0NGQ1N2QyZiAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaW5zdG1lbS9nazIwYS5jCj4+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vZ2syMGEuYwo+PiBAQCAtOTQs
+NyArOTQsNyBAQCBzdHJ1Y3QgZ2syMGFfaW5zdG1lbSB7Cj4+ICAJc3RydWN0IG52a21faW5zdG1l
+bSBiYXNlOwo+Pgo+PiAgCS8qIHByb3RlY3RzIHZhZGRyXyogYW5kIGdrMjBhX2luc3RvYmo6OnZh
+ZGRyKiAqLwo+PiAtCXNwaW5sb2NrX3QgbG9jazsKPj4gKwlzdHJ1Y3QgbXV0ZXggbG9jazsKPj4K
+Pj4gIAkvKiBDUFUgbWFwcGluZ3MgTFJVICovCj4+ICAJdW5zaWduZWQgaW50IHZhZGRyX3VzZTsK
+Pj4gQEAgLTE4NCwxMSArMTg0LDEwIEBAIGdrMjBhX2luc3RvYmpfYWNxdWlyZV9pb21tdShzdHJ1
+Y3QgbnZrbV9tZW1vcnkgKm1lbW9yeSkKPj4gIAlzdHJ1Y3QgZ2syMGFfaW5zdG1lbSAqaW1lbSA9
+IG5vZGUtPmJhc2UuaW1lbTsKPj4gIAlzdHJ1Y3QgbnZrbV9sdGMgKmx0YyA9IGltZW0tPmJhc2Uu
+c3ViZGV2LmRldmljZS0+bHRjOwo+PiAgCWNvbnN0IHU2NCBzaXplID0gbnZrbV9tZW1vcnlfc2l6
+ZShtZW1vcnkpOwo+PiAtCXVuc2lnbmVkIGxvbmcgZmxhZ3M7Cj4+Cj4+ICAJbnZrbV9sdGNfZmx1
+c2gobHRjKTsKPj4KPj4gLQlzcGluX2xvY2tfaXJxc2F2ZSgmaW1lbS0+bG9jaywgZmxhZ3MpOwo+
+PiArCW11dGV4X2xvY2soJmltZW0tPmxvY2spOwo+Pgo+PiAgCWlmIChub2RlLT5iYXNlLnZhZGRy
+KSB7Cj4+ICAJCWlmICghbm9kZS0+dXNlX2NwdCkgewo+PiBAQCAtMjE2LDcgKzIxNSw3IEBAIGdr
+MjBhX2luc3RvYmpfYWNxdWlyZV9pb21tdShzdHJ1Y3QgbnZrbV9tZW1vcnkgKm1lbW9yeSkKPj4K
+Pj4gIG91dDoKPj4gIAlub2RlLT51c2VfY3B0Kys7Cj4+IC0Jc3Bpbl91bmxvY2tfaXJxcmVzdG9y
+ZSgmaW1lbS0+bG9jaywgZmxhZ3MpOwo+PiArCW11dGV4X3VubG9jaygmaW1lbS0+bG9jayk7Cj4+
+Cj4+ICAJcmV0dXJuIG5vZGUtPmJhc2UudmFkZHI7Cj4+ICB9Cj4+IEBAIC0yMzksOSArMjM4LDgg
+QEAgZ2syMGFfaW5zdG9ial9yZWxlYXNlX2lvbW11KHN0cnVjdCBudmttX21lbW9yeSAqbWVtb3J5
+KQo+PiAgCXN0cnVjdCBnazIwYV9pbnN0b2JqX2lvbW11ICpub2RlID0gZ2syMGFfaW5zdG9ial9p
+b21tdShtZW1vcnkpOwo+PiAgCXN0cnVjdCBnazIwYV9pbnN0bWVtICppbWVtID0gbm9kZS0+YmFz
+ZS5pbWVtOwo+PiAgCXN0cnVjdCBudmttX2x0YyAqbHRjID0gaW1lbS0+YmFzZS5zdWJkZXYuZGV2
+aWNlLT5sdGM7Cj4+IC0JdW5zaWduZWQgbG9uZyBmbGFnczsKPj4KPj4gLQlzcGluX2xvY2tfaXJx
+c2F2ZSgmaW1lbS0+bG9jaywgZmxhZ3MpOwo+PiArCW11dGV4X2xvY2soJmltZW0tPmxvY2spOwo+
+Pgo+PiAgCS8qIHdlIHNob3VsZCBhdCBsZWFzdCBoYXZlIG9uZSB1c2VyIHRvIHJlbGVhc2UuLi4g
+Ki8KPj4gIAlpZiAoV0FSTl9PTihub2RlLT51c2VfY3B0ID09IDApKQo+PiBAQCAtMjUyLDcgKzI1
+MCw3IEBAIGdrMjBhX2luc3RvYmpfcmVsZWFzZV9pb21tdShzdHJ1Y3QgbnZrbV9tZW1vcnkgKm1l
+bW9yeSkKPj4gIAkJbGlzdF9hZGRfdGFpbCgmbm9kZS0+dmFkZHJfbm9kZSwgJmltZW0tPnZhZGRy
+X2xydSk7Cj4+Cj4+ICBvdXQ6Cj4+IC0Jc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmaW1lbS0+bG9j
+aywgZmxhZ3MpOwo+PiArCW11dGV4X3VubG9jaygmaW1lbS0+bG9jayk7Cj4+Cj4+ICAJd21iKCk7
+Cj4+ICAJbnZrbV9sdGNfaW52YWxpZGF0ZShsdGMpOwo+PiBAQCAtMzA2LDE5ICszMDQsMTggQEAg
+Z2syMGFfaW5zdG9ial9kdG9yX2lvbW11KHN0cnVjdCBudmttX21lbW9yeSAqbWVtb3J5KQo+PiAg
+CXN0cnVjdCBnazIwYV9pbnN0bWVtICppbWVtID0gbm9kZS0+YmFzZS5pbWVtOwo+PiAgCXN0cnVj
+dCBkZXZpY2UgKmRldiA9IGltZW0tPmJhc2Uuc3ViZGV2LmRldmljZS0+ZGV2Owo+PiAgCXN0cnVj
+dCBudmttX21tX25vZGUgKnI7Cj4+IC0JdW5zaWduZWQgbG9uZyBmbGFnczsKPj4gIAlpbnQgaTsK
+Pj4KPj4gIAlpZiAodW5saWtlbHkobGlzdF9lbXB0eSgmbm9kZS0+YmFzZS5tZW0ucmVnaW9ucykp
+KQo+PiAgCQlnb3RvIG91dDsKPj4KPj4gLQlzcGluX2xvY2tfaXJxc2F2ZSgmaW1lbS0+bG9jaywg
+ZmxhZ3MpOwo+PiArCW11dGV4X2xvY2soJmltZW0tPmxvY2spOwo+Pgo+PiAgCS8qIHZhZGRyIGhh
+cyBhbHJlYWR5IGJlZW4gcmVjeWNsZWQgKi8KPj4gIAlpZiAobm9kZS0+YmFzZS52YWRkcikKPj4g
+IAkJZ2syMGFfaW5zdG9ial9pb21tdV9yZWN5Y2xlX3ZhZGRyKG5vZGUpOwo+Pgo+PiAtCXNwaW5f
+dW5sb2NrX2lycXJlc3RvcmUoJmltZW0tPmxvY2ssIGZsYWdzKTsKPj4gKwltdXRleF91bmxvY2so
+JmltZW0tPmxvY2spOwo+Pgo+PiAgCXIgPSBsaXN0X2ZpcnN0X2VudHJ5KCZub2RlLT5iYXNlLm1l
+bS5yZWdpb25zLCBzdHJ1Y3QgbnZrbV9tbV9ub2RlLAo+PiAgCQkJICAgICBybF9lbnRyeSk7Cj4+
+IEBAIC01ODAsNyArNTc3LDcgQEAgZ2syMGFfaW5zdG1lbV9uZXcoc3RydWN0IG52a21fZGV2aWNl
+ICpkZXZpY2UsIGludCBpbmRleCwKPj4gIAlpZiAoIShpbWVtID0ga3phbGxvYyhzaXplb2YoKmlt
+ZW0pLCBHRlBfS0VSTkVMKSkpCj4+ICAJCXJldHVybiAtRU5PTUVNOwo+PiAgCW52a21faW5zdG1l
+bV9jdG9yKCZnazIwYV9pbnN0bWVtLCBkZXZpY2UsIGluZGV4LCAmaW1lbS0+YmFzZSk7Cj4+IC0J
+c3Bpbl9sb2NrX2luaXQoJmltZW0tPmxvY2spOwo+PiArCW11dGV4X2luaXQoJmltZW0tPmxvY2sp
+Owo+PiAgCSpwaW1lbSA9ICZpbWVtLT5iYXNlOwo+Pgo+PiAgCS8qIGRvIG5vdCBhbGxvdyBtb3Jl
+IHRoYW4gMU1CIG9mIENQVS1tYXBwZWQgaW5zdG1lbSAqLwo+PiAtLQo+PiAyLjExLjAKPj4KPgo+
+ICogVW5rbm93biBLZXkKPiAqIDB4N0YzRUIzQTEKPgoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vZHJpLWRldmVsCg==
