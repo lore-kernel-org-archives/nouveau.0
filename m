@@ -1,50 +1,106 @@
-From: Bjorn Helgaas <helgaas@kernel.org>
-Subject: Re: [PATCH 1/5] PCI: Recognize Thunderbolt devices
-Date: Sat, 25 Feb 2017 08:44:46 -0600
-Message-ID: <20170225144446.GA27943@bhelgaas-glaptop.roam.corp.google.com>
-References: <cover.1487938188.git.lukas@wunner.de>
- <c42a235e126f273e9b8712a7154f813f757db507.1487938188.git.lukas@wunner.de>
- <20170224221724.GA26430@bhelgaas-glaptop.roam.corp.google.com>
- <20170225074003.GA905@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 84721] [NVC1] Nvidia Geforce GT 630 using nouveau on
+ 3.16 kernel. dangerous Fan speed
+Date: Sat, 25 Feb 2017 20:42:07 +0000
+Message-ID: <bug-84721-8800-wYOJ7nbOxR@http.bugs.freedesktop.org/>
+References: <bug-84721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-pci-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20170225074003.GA905@wunner.de>
-Sender: linux-pci-owner@vger.kernel.org
-To: Lukas Wunner <lukas@wunner.de>
-Cc: dri-devel@lists.freedesktop.org, Michael Jamet <michael.jamet@intel.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, linux-pci@vger.kernel.org, Darren Hart <dvhart@infradead.org>, Andy Shevchenko <andy@infradead.org>, platform-driver-x86@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, amd-gfx@lists.freedesktop.org, Peter Wu <peter@lekensteyn.nl>
+Content-Type: multipart/mixed; boundary="===============1244075483=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-84721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Feb 25, 2017 at 08:40:03AM +0100, Lukas Wunner wrote:
-> On Fri, Feb 24, 2017 at 04:17:24PM -0600, Bjorn Helgaas wrote:
-> > On Fri, Feb 24, 2017 at 08:19:45PM +0100, Lukas Wunner wrote:
-> > > --- a/include/linux/pci.h
-> > > +++ b/include/linux/pci.h
-> > > @@ -358,6 +358,7 @@ struct pci_dev {
-> > >  	unsigned int	is_virtfn:1;
-> > >  	unsigned int	reset_fn:1;
-> > >  	unsigned int    is_hotplug_bridge:1;
-> > > +	unsigned int	is_thunderbolt:1; /* Thunderbolt controller */
-> > 
-> > I'm not really keen on having this in the PCI core because the core
-> > doesn't need this or even know what it means.
-> > 
-> > pci_find_next_ext_capability() is available to drivers, and if
-> > Thunderbolt-connectedness is useful information to apple-gmux or GPU
-> > drivers, it's fine with me if you want to use it there.  I just don't
-> > see the benefit to having it in the core.
-> 
-> The above contradicts your statement 3 days earlier:
-> 
-> 	"Assuming we need it, having it in struct pci_dev is fine.
-> 	 There's no point in looking up the VSEC capability more than once."
-> 	(http://www.spinics.net/lists/linux-pci/msg58532.html)
 
-It's clear that none of the proposed uses is related to Thunderbolt as
-a technology, which is why I would suggest we don't need the flag.
-But in the interest of moving on, if you remove the changelog part
-about whitelisting Thunderbolt for runtime PM (since that's not part
-of this series), you can add my:
+--===============1244075483==
+Content-Type: multipart/alternative; boundary="14880553273.808Ed.30982";
+ charset="UTF-8"
 
-Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+
+--14880553273.808Ed.30982
+Date: Sat, 25 Feb 2017 20:42:07 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D84721
+
+--- Comment #18 from matheus4551-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
+Still happening as 4.11 kernel. I have to use the closed driver or the fan
+noise will fry my nerves.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14880553273.808Ed.30982
+Date: Sat, 25 Feb 2017 20:42:07 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel=
+. dangerous Fan speed"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84721#c18">Commen=
+t # 18</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel=
+. dangerous Fan speed"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84721">bug 84721<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+matheus4551&#64;hotmail.com" title=3D"matheus4551&#64;hotmail.com">matheus4=
+551&#64;hotmail.com</a>
+</span></b>
+        <pre>Still happening as 4.11 kernel. I have to use the closed drive=
+r or the fan
+noise will fry my nerves.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14880553273.808Ed.30982--
+
+--===============1244075483==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1244075483==--
