@@ -1,192 +1,106 @@
-From: Bjorn Helgaas <helgaas@kernel.org>
-Subject: Re: [PATCH 1/5] PCI: Recognize Thunderbolt devices
-Date: Fri, 24 Feb 2017 16:17:24 -0600
-Message-ID: <20170224221724.GA26430@bhelgaas-glaptop.roam.corp.google.com>
-References: <cover.1487938188.git.lukas@wunner.de>
- <c42a235e126f273e9b8712a7154f813f757db507.1487938188.git.lukas@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99502] W530 hangs when iGPU is disabled and EFI
+	started in dock
+Date: Sat, 25 Feb 2017 00:19:52 +0000
+Message-ID: <bug-99502-8800-yvcieWeYz6@http.bugs.freedesktop.org/>
+References: <bug-99502-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-pci-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <c42a235e126f273e9b8712a7154f813f757db507.1487938188.git.lukas@wunner.de>
-Sender: linux-pci-owner@vger.kernel.org
-To: Lukas Wunner <lukas@wunner.de>
-Cc: dri-devel@lists.freedesktop.org, Bjorn Helgaas <bhelgaas@google.com>, Michael Jamet <michael.jamet@intel.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, linux-pci@vger.kernel.org, Darren Hart <dvhart@infradead.org>, Andy Shevchenko <andy@infradead.org>, platform-driver-x86@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, amd-gfx@lists.freedesktop.org, Peter Wu <peter@lekensteyn.nl>
+Content-Type: multipart/mixed; boundary="===============1218389537=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99502-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Feb 24, 2017 at 08:19:45PM +0100, Lukas Wunner wrote:
-> Detect on probe whether a PCI device is part of a Thunderbolt controller.
-> 
-> Intel uses a Vendor-Specific Extended Capability (VSEC) with ID 0x1234
-> on such devices.  Detect presence of this VSEC and cache it in a newly
-> added is_thunderbolt bit in struct pci_dev.  Add a helper to check
-> whether a given PCI device is situated on a Thunderbolt daisy chain.
-> 
-> The necessity arises from the following:
-> 
-> * To power off Thunderbolt controllers on Macs even if their BIOS is
->   older than 2015, their PCIe ports need to be whitelisted for runtime
->   PM.  For this we need a way to recognize them.
-> 
-> * Dual GPU MacBook Pros introduced 2011+ can no longer switch external
->   DisplayPort ports between GPUs.  (They're no longer just used for DP
->   but have become combined DP/Thunderbolt ports.)  The driver to switch
->   the ports, drivers/platform/x86/apple-gmux.c, needs to detect presence
->   of a Thunderbolt controller and, if found, keep external ports
->   permanently switched to the discrete GPU.
-> 
-> * If an external Thunderbolt GPU is connected to a dual GPU laptop (Mac
->   or not), that GPU is currently registered with vga_switcheroo even
->   though it can neither drive the laptop's panel nor be powered off by
->   the platform.  To vga_switcheroo it will appear as if two discrete
->   GPUs are present.  As a result, when the external GPU is runtime
->   suspended, vga_switcheroo will cut power to the internal discrete GPU
->   which may not be runtime suspended at all at this moment.  The
->   solution is to not register external GPUs with vga_switcheroo, which
->   necessitates a way to recognize if they're on a Thunderbolt daisy
->   chain.
 
-If I understand correctly, vga_switcheroo manages two GPUs that have a
-single output: either there's a mux that connects one GPU or the other
-to the output, or one GPU is permanently connected to the output and
-the other does offline rendering.
+--===============1218389537==
+Content-Type: multipart/alternative; boundary="14879819920.33B1FBc.23545";
+ charset="UTF-8"
 
-To this non-GPU person, it sounds like the important question is
-whether two GPUs are related in this way (either they feed the same
-mux, or there's some special offline rendering connection between
-them).  That sounds unrelated to the question of how the GPUs
-themselves are connected to the PCI hierarchy.
 
-From a pure PCI perspective, I assume it would be conceivable to have
-two Thunderbolt-connected GPUs feeding into a mux.  Or to have a GPU
-(unrelated to the mux) in a non-Thunderbolt plugin slot or connected
-externally via a non-Thunderbolt switch and an iPass cable.
+--14879819920.33B1FBc.23545
+Date: Sat, 25 Feb 2017 00:19:52 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-If that's the case, and we're using Thunderbolt-connectedness as a
-hint that happens to work for the hardware we know about now, that's
-fine -- I'm just trying to understand what's a hint and what's
-intrisic to being connected via Thunderbolt.
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99502
 
-> Cc: Andreas Noever <andreas.noever@gmail.com>
-> Cc: Michael Jamet <michael.jamet@intel.com>
-> Cc: Tomas Winkler <tomas.winkler@intel.com>
-> Cc: Amir Levy <amir.jer.levy@intel.com>
-> Signed-off-by: Lukas Wunner <lukas@wunner.de>
-> ---
->  drivers/pci/pci.h   |  2 ++
->  drivers/pci/probe.c | 21 +++++++++++++++++++++
->  include/linux/pci.h | 23 +++++++++++++++++++++++
->  3 files changed, 46 insertions(+)
-> 
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index cb17db242f30..45c2b8144911 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -3,6 +3,8 @@
->  
->  #define PCI_FIND_CAP_TTL	48
->  
-> +#define PCI_VSEC_ID_INTEL_TBT	0x1234	/* Thunderbolt */
-> +
->  extern const unsigned char pcie_link_speed[];
->  
->  bool pcie_cap_has_lnkctl(const struct pci_dev *dev);
-> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-> index 204960e70333..7963ecc6d85f 100644
-> --- a/drivers/pci/probe.c
-> +++ b/drivers/pci/probe.c
-> @@ -1208,6 +1208,24 @@ void set_pcie_hotplug_bridge(struct pci_dev *pdev)
->  		pdev->is_hotplug_bridge = 1;
->  }
->  
-> +static void set_pcie_thunderbolt(struct pci_dev *dev)
-> +{
-> +	int vsec = 0;
-> +	u32 header;
-> +
-> +	while ((vsec = pci_find_next_ext_capability(dev, vsec,
-> +						    PCI_EXT_CAP_ID_VNDR))) {
-> +		pci_read_config_dword(dev, vsec + PCI_VNDR_HEADER, &header);
-> +
-> +		/* Is the device part of a Thunderbolt controller? */
-> +		if (dev->vendor == PCI_VENDOR_ID_INTEL &&
-> +		    PCI_VNDR_HEADER_ID(header) == PCI_VSEC_ID_INTEL_TBT) {
-> +			dev->is_thunderbolt = 1;
-> +			return;
-> +		}
-> +	}
-> +}
-> +
->  /**
->   * pci_ext_cfg_is_aliased - is ext config space just an alias of std config?
->   * @dev: PCI device
-> @@ -1360,6 +1378,9 @@ int pci_setup_device(struct pci_dev *dev)
->  	/* need to have dev->class ready */
->  	dev->cfg_size = pci_cfg_space_size(dev);
->  
-> +	/* need to have dev->cfg_size ready */
-> +	set_pcie_thunderbolt(dev);
-> +
->  	/* "Unknown power state" */
->  	dev->current_state = PCI_UNKNOWN;
->  
-> diff --git a/include/linux/pci.h b/include/linux/pci.h
-> index e2d1a124216a..36dfcfd946f4 100644
-> --- a/include/linux/pci.h
-> +++ b/include/linux/pci.h
-> @@ -358,6 +358,7 @@ struct pci_dev {
->  	unsigned int	is_virtfn:1;
->  	unsigned int	reset_fn:1;
->  	unsigned int    is_hotplug_bridge:1;
-> +	unsigned int	is_thunderbolt:1; /* Thunderbolt controller */
+--- Comment #1 from mpiechotka-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org <mpiechotka-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> ---
+I cannot reproduce problem when the internal LCD is primary display instead=
+ of
+external one.
 
-I'm not really keen on having this in the PCI core because the core
-doesn't need this or even know what it means.
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
 
-pci_find_next_ext_capability() is available to drivers, and if
-Thunderbolt-connectedness is useful information to apple-gmux or GPU
-drivers, it's fine with me if you want to use it there.  I just don't
-see the benefit to having it in the core.
+--14879819920.33B1FBc.23545
+Date: Sat, 25 Feb 2017 00:19:52 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
->  	unsigned int    __aer_firmware_first_valid:1;
->  	unsigned int	__aer_firmware_first:1;
->  	unsigned int	broken_intx_masking:1;
-> @@ -2171,6 +2172,28 @@ static inline bool pci_ari_enabled(struct pci_bus *bus)
->  	return bus->self && bus->self->ari_enabled;
->  }
->  
-> +/**
-> + * pci_is_thunderbolt_attached - whether device is on a Thunderbolt daisy chain
-> + * @pdev: PCI device to check
-> + *
-> + * Walk upwards from @pdev and check for each encountered bridge if it's
-> + * part of a Thunderbolt controller.  Reaching the host bridge means @pdev
-> + * is soldered to the mainboard.
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - W530 hangs when iGPU is disabled and EFI started in dock"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99502#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - W530 hangs when iGPU is disabled and EFI started in dock"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99502">bug 99502<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mpiechotka&#64;nvidia.com" title=3D"mpiechotka&#64;nvidia.com &lt;mpiechotk=
+a&#64;nvidia.com&gt;"> <span class=3D"fn">mpiechotka&#64;nvidia.com</span><=
+/a>
+</span></b>
+        <pre>I cannot reproduce problem when the internal LCD is primary di=
+splay instead of
+external one.</pre>
+        </div>
+      </p>
 
-The comment suggests this returns false only if @pdev is soldered to
-the mainboard.  I don't think that's the case.  This will return true
-for a Thunderbolt controller and all devices downstream from it.  It
-will return false for all others, whether they're soldered down or
-not.
 
-> + */
-> +static inline bool pci_is_thunderbolt_attached(struct pci_dev *pdev)
-> +{
-> +	struct pci_dev *parent = pdev;
-> +
-> +	if (pdev->is_thunderbolt)
-> +		return true;
-> +
-> +	while ((parent = pci_upstream_bridge(parent)))
-> +		if (parent->is_thunderbolt)
-> +			return true;
-> +
-> +	return false;
-> +}
-> +
->  /* provide the legacy pci_dma_* API */
->  #include <linux/pci-dma-compat.h>
->  
-> -- 
-> 2.11.0
-> 
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14879819920.33B1FBc.23545--
+
+--===============1218389537==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1218389537==--
