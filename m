@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99968] [NV4C] System crashes reliably with glxinfo
-Date: Sun, 26 Feb 2017 01:24:47 +0000
-Message-ID: <bug-99968-8800-y2Icci7tMp@http.bugs.freedesktop.org/>
-References: <bug-99968-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97438] Running a lot of Firefox instances causes
+ kernel page fault.
+Date: Sun, 26 Feb 2017 11:24:49 +0000
+Message-ID: <bug-97438-8800-PfWRKuyn7M@http.bugs.freedesktop.org/>
+References: <bug-97438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1096835603=="
+Content-Type: multipart/mixed; boundary="===============0896517286=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99968-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1096835603==
-Content-Type: multipart/alternative; boundary="14880722870.1BCE5846.16387";
+--===============0896517286==
+Content-Type: multipart/alternative; boundary="14881082893.ED180Fe.403";
  charset="UTF-8"
 
 
---14880722870.1BCE5846.16387
-Date: Sun, 26 Feb 2017 01:24:47 +0000
+--14881082893.ED180Fe.403
+Date: Sun, 26 Feb 2017 11:24:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99968
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97438
 
---- Comment #3 from Dave Odell <dmo2118-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 129923
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129923&action=3Dedit
-VBIOS
+--- Comment #10 from Maris Nartiss <maris.nartiss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ben Skeggs from comment #7)
+> Give this[1] patch a try, it might be relevant.
+>=20
+> [1]
+> https://github.com/skeggsb/nouveau/commit/
+> 8135089922f84c4ef7b47aeaa707490a2ee29a1d
 
-Obtained via /sys/bus/pci/devices/0000:00:04.0/rom, as described in
-<https://nouveau.freedesktop.org/wiki/DumpingVideoBios/>.
+I experienced a few crashes with similarly looking backtraces with lots of =
+FF
+and KDE5 Okular et al. windows open. Applied this patch to kernel 4.9.6 and
+since then haven't had any issues. Although I had no reliable way how repro=
+duce
+the crash to 100% confirm patch's effectiveness, at least the patch seems to
+not cause any bad side effects.
+
+Tested on ~AMD64 Gentoo with G98M [Quadro NVS 160M]
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.
-You are on the CC list for the bug.=
+You are the assignee for the bug.=
 
---14880722870.1BCE5846.16387
-Date: Sun, 26 Feb 2017 01:24:47 +0000
+--14881082893.ED180Fe.403
+Date: Sun, 26 Feb 2017 11:24:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,28 +74,39 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV4C] System crashes reliably with glxinfo"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99968#c3">Comment=
- # 3</a>
+          bz_status_REOPENED "
+   title=3D"REOPENED - Running a lot of Firefox instances causes kernel pag=
+e fault."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97438#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV4C] System crashes reliably with glxinfo"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99968">bug 99968<=
+          bz_status_REOPENED "
+   title=3D"REOPENED - Running a lot of Firefox instances causes kernel pag=
+e fault."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97438">bug 97438<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dmo2118&#64;gmail.com" title=3D"Dave Odell &lt;dmo2118&#64;gmail.com&gt;"> =
-<span class=3D"fn">Dave Odell</span></a>
+maris.nartiss&#64;gmail.com" title=3D"Maris Nartiss &lt;maris.nartiss&#64;g=
+mail.com&gt;"> <span class=3D"fn">Maris Nartiss</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129923=
-" name=3D"attach_129923" title=3D"VBIOS">attachment 129923</a> <a href=3D"a=
-ttachment.cgi?id=3D129923&amp;action=3Dedit" title=3D"VBIOS">[details]</a><=
-/span>
-VBIOS
+        <pre>(In reply to Ben Skeggs from <a href=3D"show_bug.cgi?id=3D9743=
+8#c7">comment #7</a>)
+<span class=3D"quote">&gt; Give this[1] patch a try, it might be relevant.
+&gt;=20
+&gt; [1]
+&gt; <a href=3D"https://github.com/skeggsb/nouveau/commit/">https://github.=
+com/skeggsb/nouveau/commit/</a>
+&gt; 8135089922f84c4ef7b47aeaa707490a2ee29a1d</span >
 
-Obtained via /sys/bus/pci/devices/0000:00:04.0/rom, as described in
-&lt;<a href=3D"https://nouveau.freedesktop.org/wiki/DumpingVideoBios/">http=
-s://nouveau.freedesktop.org/wiki/DumpingVideoBios/</a>&gt;.</pre>
+I experienced a few crashes with similarly looking backtraces with lots of =
+FF
+and KDE5 Okular et al. windows open. Applied this patch to kernel 4.9.6 and
+since then haven't had any issues. Although I had no reliable way how repro=
+duce
+the crash to 100% confirm patch's effectiveness, at least the patch seems to
+not cause any bad side effects.
+
+Tested on ~AMD64 Gentoo with G98M [Quadro NVS 160M]</pre>
         </div>
       </p>
 
@@ -96,15 +116,13 @@ s://nouveau.freedesktop.org/wiki/DumpingVideoBios/</a>&gt;.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are on the CC list for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14880722870.1BCE5846.16387--
+--14881082893.ED180Fe.403--
 
---===============1096835603==
+--===============0896517286==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +132,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1096835603==--
+--===============0896517286==--
