@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91992] [NV4C] computer hangs after few minutes of use
-Date: Sun, 26 Feb 2017 01:16:06 +0000
-Message-ID: <bug-91992-8800-NB001boEHK@http.bugs.freedesktop.org/>
-References: <bug-91992-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99968] [NV4C] System crashes reliably with glxinfo
+Date: Sun, 26 Feb 2017 01:17:23 +0000
+Message-ID: <bug-99968-8800-VUSt5xt5Ll@http.bugs.freedesktop.org/>
+References: <bug-99968-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1542111129=="
+Content-Type: multipart/mixed; boundary="===============1776307771=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99968-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1542111129==
-Content-Type: multipart/alternative; boundary="14880717663.88fb28c.15993";
+--===============1776307771==
+Content-Type: multipart/alternative; boundary="14880718430.7F58eaD.16230";
  charset="UTF-8"
 
 
---14880717663.88fb28c.15993
-Date: Sun, 26 Feb 2017 01:16:06 +0000
+--14880718430.7F58eaD.16230
+Date: Sun, 26 Feb 2017 01:17:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91992
-
-Dave Odell <dmo2118-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Blocks|                            |99968
-
-
-Referenced Bugs:
-
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99968
-[Bug 99968] [NV4C] System crashes reliably with glxinfo
+
+--- Comment #1 from Dave Odell <dmo2118-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 129921
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D129921&action=3Dedit
+dmesg
+
+Kernel messages, partially from dmesg, and partially from netconsole.
+
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are on the CC list for the bug.=
 
---14880717663.88fb28c.15993
-Date: Sun, 26 Feb 2017 01:16:06 +0000
+--14880718430.7F58eaD.16230
+Date: Sun, 26 Feb 2017 01:17:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,62 +60,48 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:dmo2118&#=
-64;gmail.com" title=3D"Dave Odell &lt;dmo2118&#64;gmail.com&gt;"> <span cla=
-ss=3D"fn">Dave Odell</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NV4C] computer hangs after few minutes of use"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91992">bug 91992<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Blocks</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>99968
-           </td>
-         </tr></table>
+    <body>
       <p>
-      </p>
-
-        <div id=3D"referenced">
-          <hr style=3D"border: 1px dashed #969696">
-          <b>Referenced Bugs:</b>
-          <ul>
-              <li>
-                [<a class=3D"bz_bug_link=20
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV4C] System crashes reliably with glxinfo"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99968">Bug 99968<=
-/a>] [NV4C] System crashes reliably with glxinfo
-              </li>
-          </ul>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99968#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV4C] System crashes reliably with glxinfo"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99968">bug 99968<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dmo2118&#64;gmail.com" title=3D"Dave Odell &lt;dmo2118&#64;gmail.com&gt;"> =
+<span class=3D"fn">Dave Odell</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D129921=
+" name=3D"attach_129921" title=3D"dmesg">attachment 129921</a> <a href=3D"a=
+ttachment.cgi?id=3D129921&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
+/span>
+dmesg
+
+Kernel messages, partially from dmesg, and partially from netconsole.</pre>
         </div>
-        <br>
+      </p>
+
 
       <hr>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+          <li>You are on the CC list for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14880717663.88fb28c.15993--
+--14880718430.7F58eaD.16230--
 
---===============1542111129==
+--===============1776307771==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -128,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1542111129==--
+--===============1776307771==--
