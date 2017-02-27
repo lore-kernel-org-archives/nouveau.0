@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99841] Switching to VT freezes X only on a dual
-	screen
-Date: Mon, 27 Feb 2017 14:44:16 +0000
-Message-ID: <bug-99841-8800-ln3cv0T8XQ@http.bugs.freedesktop.org/>
-References: <bug-99841-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99900] [NVC1] nouveau: freeze / crash after kernel
+ update to 4.10
+Date: Mon, 27 Feb 2017 21:14:28 +0000
+Message-ID: <bug-99900-8800-rF2GHd9nAT@http.bugs.freedesktop.org/>
+References: <bug-99900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0912761407=="
+Content-Type: multipart/mixed; boundary="===============0505534322=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99841-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0912761407==
-Content-Type: multipart/alternative; boundary="14882066551.86BDf9.1036";
+--===============0505534322==
+Content-Type: multipart/alternative; boundary="14882300682.f1D4C.1169";
  charset="UTF-8"
 
 
---14882066551.86BDf9.1036
-Date: Mon, 27 Feb 2017 14:44:15 +0000
+--14882300682.f1D4C.1169
+Date: Mon, 27 Feb 2017 21:14:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99841
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99900
 
---- Comment #8 from Shawn Starr <shawn.starr-bJEeYj9oJeDQT0dZR+AlfA@public.gmane.org> ---
-This isn't just dual screen, I confirm this happening on single screen also
-with 4.10 kernel.
+Joshua Baergen <joshuabaergen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |joshuabaergen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #2 from Joshua Baergen <joshuabaergen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I've also had nouveau issues after upgrading to 4.10(.1), but in my case sy=
+slog
+is spammed with:
+
+Feb 27 14:02:31 baergj kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 04000000
+[ACQUIRE] ch 2 [007f9bb000 X[2107]] subc 0 mthd 0000 data 00000000
+
+This appears to happen after screen blank at some point. Like Torsten, I do=
+n't
+have a problem with the 4.9 series.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14882066551.86BDf9.1036
-Date: Mon, 27 Feb 2017 14:44:15 +0000
+--14882300682.f1D4C.1169
+Date: Mon, 27 Feb 2017 21:14:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,26 +70,60 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:joshuabae=
+rgen&#64;gmail.com" title=3D"Joshua Baergen &lt;joshuabaergen&#64;gmail.com=
+&gt;"> <span class=3D"fn">Joshua Baergen</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
+0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900">bug 99900<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>joshuabaergen&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Switching to VT freezes X only on a dual screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99841#c8">Comment=
- # 8</a>
+   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
+0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Switching to VT freezes X only on a dual screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99841">bug 99841<=
+   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
+0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900">bug 99900<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-shawn.starr&#64;rogers.com" title=3D"Shawn Starr &lt;shawn.starr&#64;rogers=
-.com&gt;"> <span class=3D"fn">Shawn Starr</span></a>
+joshuabaergen&#64;gmail.com" title=3D"Joshua Baergen &lt;joshuabaergen&#64;=
+gmail.com&gt;"> <span class=3D"fn">Joshua Baergen</span></a>
 </span></b>
-        <pre>This isn't just dual screen, I confirm this happening on singl=
-e screen also
-with 4.10 kernel.</pre>
+        <pre>I've also had nouveau issues after upgrading to 4.10(.1), but =
+in my case syslog
+is spammed with:
+
+Feb 27 14:02:31 baergj kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 04000000
+[ACQUIRE] ch 2 [007f9bb000 X[2107]] subc 0 mthd 0000 data 00000000
+
+This appears to happen after screen blank at some point. Like Torsten, I do=
+n't
+have a problem with the 4.9 series.</pre>
         </div>
       </p>
 
@@ -89,9 +137,9 @@ with 4.10 kernel.</pre>
     </body>
 </html>=
 
---14882066551.86BDf9.1036--
+--14882300682.f1D4C.1169--
 
---===============0912761407==
+--===============0505534322==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +149,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0912761407==--
+--===============0505534322==--
