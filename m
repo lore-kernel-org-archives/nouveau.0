@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99900] [NVC1] nouveau: freeze / crash after kernel
- update to 4.10
-Date: Mon, 27 Feb 2017 21:16:38 +0000
-Message-ID: <bug-99900-8800-fvP9RcVUuo@http.bugs.freedesktop.org/>
-References: <bug-99900-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99995] New: Dirt showdown very low fps (~3fps) after
+ update mesa
+Date: Mon, 27 Feb 2017 23:47:59 +0000
+Message-ID: <bug-99995-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1418112293=="
+Content-Type: multipart/mixed; boundary="===============1865122391=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +19,56 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1418112293==
-Content-Type: multipart/alternative; boundary="14882301980.57BC909.1208";
+--===============1865122391==
+Content-Type: multipart/alternative; boundary="14882392790.DC2cDC8.13318";
  charset="UTF-8"
 
 
---14882301980.57BC909.1208
-Date: Mon, 27 Feb 2017 21:16:38 +0000
+--14882392790.DC2cDC8.13318
+Date: Mon, 27 Feb 2017 23:47:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99900
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99995
 
---- Comment #3 from Joshua Baergen <joshuabaergen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Oh, I should have included this:
+            Bug ID: 99995
+           Summary: Dirt showdown very low fps (~3fps) after update mesa
+           Product: Mesa
+           Version: 17.0
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: kevin01010-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-[    46.789] (--) NOUVEAU(0): Chipset: "NVIDIA NVE7"
+Hi, I updated from mesa 13.0.x to 17.0 and Dirt showdown in mesa 13 has aro=
+und
+25 fps and with mesa 17 has about 2fps..
+I tried in ArchLinux and Fedora (fedora 26 mesa builds), and is the same, m=
+esa
+13 works a lot better in this game
+
+My computer is a i5 4690 and has a Nvidia GTX 750
+
+Mesa 17: CPU is 1 core 100% and the rest about 10%
+Mesa 13.0.4: CPU is about 15-20% all cores
+
+Maybe mesa is taking all work to CPU?
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14882301980.57BC909.1208
-Date: Mon, 27 Feb 2017 21:16:38 +0000
+--14882392790.DC2cDC8.13318
+Date: Mon, 27 Feb 2017 23:47:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -57,28 +79,102 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Dirt showdown very low fps (~3fps) after update mesa"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995">99995</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Dirt showdown very low fps (~3fps) after update mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>17.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>kevin01010&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
-0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
-0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900">bug 99900<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-joshuabaergen&#64;gmail.com" title=3D"Joshua Baergen &lt;joshuabaergen&#64;=
-gmail.com&gt;"> <span class=3D"fn">Joshua Baergen</span></a>
-</span></b>
-        <pre>Oh, I should have included this:
+        <pre>Hi, I updated from mesa 13.0.x to 17.0 and Dirt showdown in me=
+sa 13 has around
+25 fps and with mesa 17 has about 2fps..
+I tried in ArchLinux and Fedora (fedora 26 mesa builds), and is the same, m=
+esa
+13 works a lot better in this game
 
-[    46.789] (--) NOUVEAU(0): Chipset: &quot;NVIDIA NVE7&quot;</pre>
+My computer is a i5 4690 and has a Nvidia GTX 750
+
+Mesa 17: CPU is 1 core 100% and the rest about 10%
+Mesa 13.0.4: CPU is about 15-20% all cores
+
+Maybe mesa is taking all work to CPU?</pre>
         </div>
       </p>
 
@@ -88,13 +184,14 @@ gmail.com&gt;"> <span class=3D"fn">Joshua Baergen</span></a>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14882301980.57BC909.1208--
+--14882392790.DC2cDC8.13318--
 
---===============1418112293==
+--===============1865122391==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +201,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1418112293==--
+--===============1865122391==--
