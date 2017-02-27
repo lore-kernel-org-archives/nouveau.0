@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 97438] Running a lot of Firefox instances causes
- kernel page fault.
-Date: Sun, 26 Feb 2017 11:24:49 +0000
-Message-ID: <bug-97438-8800-PfWRKuyn7M@http.bugs.freedesktop.org/>
-References: <bug-97438-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99922] [NVE4] [regression,
+ bisected] 4.10 (atomic): X shows black screen with cursor after
+ monitors turn off
+Date: Mon, 27 Feb 2017 12:43:22 +0000
+Message-ID: <bug-99922-8800-EhWP0BYJkL@http.bugs.freedesktop.org/>
+References: <bug-99922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0896517286=="
+Content-Type: multipart/mixed; boundary="===============0986237941=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-97438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +22,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0896517286==
-Content-Type: multipart/alternative; boundary="14881082893.ED180Fe.403";
+--===============0986237941==
+Content-Type: multipart/alternative; boundary="14881994010.b024655d.22861";
  charset="UTF-8"
 
 
---14881082893.ED180Fe.403
-Date: Sun, 26 Feb 2017 11:24:49 +0000
+--14881994010.b024655d.22861
+Date: Mon, 27 Feb 2017 12:43:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D97438
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99922
 
---- Comment #10 from Maris Nartiss <maris.nartiss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ben Skeggs from comment #7)
-> Give this[1] patch a try, it might be relevant.
->=20
-> [1]
-> https://github.com/skeggsb/nouveau/commit/
-> 8135089922f84c4ef7b47aeaa707490a2ee29a1d
+--- Comment #7 from bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org ---
+I can confirm this problem. I'm using nouveau on a "NVIDIA Corporation GT20=
+0b
+[GeForce GTX 285]" GPU. I'm not using DRI3 either:
 
-I experienced a few crashes with similarly looking backtraces with lots of =
-FF
-and KDE5 Okular et al. windows open. Applied this patch to kernel 4.9.6 and
-since then haven't had any issues. Although I had no reliable way how repro=
-duce
-the crash to 100% confirm patch's effectiveness, at least the patch seems to
-not cause any bad side effects.
+$ grep DRI /var/log/Xorg.0.log
+[    14.197] (=3D=3D) NOUVEAU(0): Allowed maximum DRI level 2.
+[    14.350] (=3D=3D) NOUVEAU(G0): Allowed maximum DRI level 2.
+[    14.426] (II) NOUVEAU(G0): [DRI2] Setup complete
+[    14.426] (II) NOUVEAU(G0): [DRI2]   DRI driver: nouveau
+[    14.426] (II) NOUVEAU(G0): [DRI2]   VDPAU driver: nouveau
+[    14.443] (II) NOUVEAU(0): [DRI2] Setup complete
+[    14.443] (II) NOUVEAU(0): [DRI2]   DRI driver: nouveau
+[    14.443] (II) NOUVEAU(0): [DRI2]   VDPAU driver: nouveau
+[    14.598] (II) GLX: Initialized DRI2 GL provider for screen 0
 
-Tested on ~AMD64 Gentoo with G98M [Quadro NVS 160M]
+$ LIBGL_DEBUG=3Dverbose glxinfo 2>&1 | grep DRI
+libGL: Using DRI2 for screen 0
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14881082893.ED180Fe.403
-Date: Sun, 26 Feb 2017 11:24:49 +0000
+--14881994010.b024655d.22861
+Date: Mon, 27 Feb 2017 12:43:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,39 +76,38 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Running a lot of Firefox instances causes kernel pag=
-e fault."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97438#c10">Commen=
-t # 10</a>
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
+k screen with cursor after monitors turn off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Running a lot of Firefox instances causes kernel pag=
-e fault."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97438">bug 97438<=
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
+k screen with cursor after monitors turn off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922">bug 99922<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-maris.nartiss&#64;gmail.com" title=3D"Maris Nartiss &lt;maris.nartiss&#64;g=
-mail.com&gt;"> <span class=3D"fn">Maris Nartiss</span></a>
+bastian.beischer&#64;rwth-aachen.de" title=3D"bastian.beischer&#64;rwth-aac=
+hen.de">bastian.beischer&#64;rwth-aachen.de</a>
 </span></b>
-        <pre>(In reply to Ben Skeggs from <a href=3D"show_bug.cgi?id=3D9743=
-8#c7">comment #7</a>)
-<span class=3D"quote">&gt; Give this[1] patch a try, it might be relevant.
-&gt;=20
-&gt; [1]
-&gt; <a href=3D"https://github.com/skeggsb/nouveau/commit/">https://github.=
-com/skeggsb/nouveau/commit/</a>
-&gt; 8135089922f84c4ef7b47aeaa707490a2ee29a1d</span >
+        <pre>I can confirm this problem. I'm using nouveau on a &quot;NVIDI=
+A Corporation GT200b
+[GeForce GTX 285]&quot; GPU. I'm not using DRI3 either:
 
-I experienced a few crashes with similarly looking backtraces with lots of =
-FF
-and KDE5 Okular et al. windows open. Applied this patch to kernel 4.9.6 and
-since then haven't had any issues. Although I had no reliable way how repro=
-duce
-the crash to 100% confirm patch's effectiveness, at least the patch seems to
-not cause any bad side effects.
+$ grep DRI /var/log/Xorg.0.log
+[    14.197] (=3D=3D) NOUVEAU(0): Allowed maximum DRI level 2.
+[    14.350] (=3D=3D) NOUVEAU(G0): Allowed maximum DRI level 2.
+[    14.426] (II) NOUVEAU(G0): [DRI2] Setup complete
+[    14.426] (II) NOUVEAU(G0): [DRI2]   DRI driver: nouveau
+[    14.426] (II) NOUVEAU(G0): [DRI2]   VDPAU driver: nouveau
+[    14.443] (II) NOUVEAU(0): [DRI2] Setup complete
+[    14.443] (II) NOUVEAU(0): [DRI2]   DRI driver: nouveau
+[    14.443] (II) NOUVEAU(0): [DRI2]   VDPAU driver: nouveau
+[    14.598] (II) GLX: Initialized DRI2 GL provider for screen 0
 
-Tested on ~AMD64 Gentoo with G98M [Quadro NVS 160M]</pre>
+$ LIBGL_DEBUG=3Dverbose glxinfo 2&gt;&amp;1 | grep DRI
+libGL: Using DRI2 for screen 0</pre>
         </div>
       </p>
 
@@ -120,9 +121,9 @@ Tested on ~AMD64 Gentoo with G98M [Quadro NVS 160M]</pre>
     </body>
 </html>=
 
---14881082893.ED180Fe.403--
+--14881994010.b024655d.22861--
 
---===============0896517286==
+--===============0986237941==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -132,4 +133,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0896517286==--
+--===============0986237941==--
