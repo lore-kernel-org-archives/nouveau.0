@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99995] Dirt showdown very low fps (~3fps) after
-	update mesa
-Date: Tue, 28 Feb 2017 11:17:52 +0000
-Message-ID: <bug-99995-8800-dWJnGi0xnO@http.bugs.freedesktop.org/>
-References: <bug-99995-8800@http.bugs.freedesktop.org/>
+From: Joe Perches <joe-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>
+Subject: [PATCH 0/3] gpu: drm: Convert printk(KERN_<level> to
+	pr_<level>
+Date: Tue, 28 Feb 2017 04:55:51 -0800
+Message-ID: <cover.1488285953.git.joe@perches.com>
+References: <20170228090409.722xmltrx4g6i3tz@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1198854223=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99995-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20170228090409.722xmltrx4g6i3tz-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,142 +18,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1198854223==
-Content-Type: multipart/alternative; boundary="14882806720.e2Ab.4860";
- charset="UTF-8"
-
-
---14882806720.e2Ab.4860
-Date: Tue, 28 Feb 2017 11:17:52 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99995
-
---- Comment #3 from Kevin Puertas <kevin01010-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #1)
-
-> One difference is that 17.0 has GL 4.3 enabled for Maxwell (e.g. GTX 750),
-> which perhaps causes the game to choose a different path, thus not really=
- be
-> directly comparable. Try it with
->=20
-> MESA_GL_VERSION_OVERRIDE=3D4.1
-
-If I export this before opening steam, steam causes a segfault
-
-
-> Or try it with
->=20
-> MESA_EXTENSION_OVERRIDE=3D'-GL_ARB_shader_image_load_store
-> -GL_ARB_compute_shader'
-
-If I try this, game loads smooth and works about 45fps, better than with me=
-sa
-13
-
-
-
-(In reply to Gregor M=C3=BCnch from comment #2)
->With higher GL versions, Dirt enables "advanced lighting" options in the g=
-raphics menu.
-At least for me, it is there, but Off in all the tests
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14882806720.e2Ab.4860
-Date: Tue, 28 Feb 2017 11:17:52 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Dirt showdown very low fps (~3fps) after update mesa"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Dirt showdown very low fps (~3fps) after update mesa"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995">bug 99995<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-kevin01010&#64;gmail.com" title=3D"Kevin Puertas &lt;kevin01010&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Kevin Puertas</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D999=
-95#c1">comment #1</a>)
-
-<span class=3D"quote">&gt; One difference is that 17.0 has GL 4.3 enabled f=
-or Maxwell (e.g. GTX 750),
-&gt; which perhaps causes the game to choose a different path, thus not rea=
-lly be
-&gt; directly comparable. Try it with
-&gt;=20
-&gt; MESA_GL_VERSION_OVERRIDE=3D4.1</span >
-
-If I export this before opening steam, steam causes a segfault
-
-
-<span class=3D"quote">&gt; Or try it with
-&gt;=20
-&gt; MESA_EXTENSION_OVERRIDE=3D'-GL_ARB_shader_image_load_store
-&gt; -GL_ARB_compute_shader'</span >
-
-If I try this, game loads smooth and works about 45fps, better than with me=
-sa
-13
-
-
-
-(In reply to Gregor M=C3=BCnch from <a href=3D"show_bug.cgi?id=3D99995#c2">=
-comment #2</a>)
-<span class=3D"quote">&gt;With higher GL versions, Dirt enables &quot;advan=
-ced lighting&quot; options in the graphics menu.</span >
-At least for me, it is there, but Off in all the tests</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14882806720.e2Ab.4860--
-
---===============1198854223==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1198854223==--
+QnJva2VuIHVwIGZvciBEYW5pZWwgVmV0dGVyCgpKb2UgUGVyY2hlcyAoMyk6CiAgZ3B1OiBkcm06
+IGFtZC9yYWRlb246IENvbnZlcnQgcHJpbnRrKEtFUk5fPExFVkVMPiB0byBwcl88bGV2ZWw+CiAg
+Z3B1OiBkcm06IGNvcmU6IENvbnZlcnQgcHJpbnRrKEtFUk5fPExFVkVMPiB0byBwcl88bGV2ZWw+
+CiAgZ3B1OiBkcm06IGRyaXZlcnM6IENvbnZlcnQgcHJpbnRrKEtFUk5fPExFVkVMPiB0byBwcl88
+bGV2ZWw+CgogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1LmggICAgICAgICAgICAg
+ICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FmbXQuYyAgICAg
+ICAgICAgfCAgNCArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2F0cHhfaGFu
+ZGxlci5jICAgfCAgNCArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rldmlj
+ZS5jICAgICAgICAgfCAgNCArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Zi
+LmMgICAgICAgICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
+X3Rlc3QuYyAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYXRv
+bS5jICAgICAgICAgICAgICAgICAgfCA0NCArKysrKysrKy0tLS0tLS0tLQogZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRncHUvY2lfZHBtLmMgICAgICAgICAgICAgICAgfCAgNCArLQogZHJpdmVycy9n
+cHUvZHJtL2FtZC9hbWRncHUvY2lrX3NkbWEuYyAgICAgICAgICAgICAgfCAgNCArLQogZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y2XzAuYyAgICAgICAgICAgICAgfCAgNCArLQogZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y3XzAuYyAgICAgICAgICAgICAgfCAgNCArLQog
+ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ21jX3Y3XzAuYyAgICAgICAgICAgICAgfCAgOCAr
+Ky0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nbWNfdjhfMC5jICAgICAgICAgICAgICB8
+ICA4ICsrLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3NkbWFfdjJfNC5jICAgICAgICAg
+ICAgIHwgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3NkbWFfdjNfMC5jICAgICAg
+ICAgICAgIHwgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvaW5jbHVkZS9hbWRfcGNpZV9oZWxw
+ZXJzLmggICAgIHwgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2h3bWdyL3Nt
+dTdfaHdtZ3IuYyAgIHwgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2luYy9w
+cF9kZWJ1Zy5oICAgICAgIHwgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L3Nt
+dW1nci9maWppX3NtYy5jICAgIHwgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5
+L3NtdW1nci9pY2VsYW5kX3NtYy5jIHwgMTQgKysrLS0tCiAuLi4vZ3B1L2RybS9hbWQvcG93ZXJw
+bGF5L3NtdW1nci9wb2xhcmlzMTBfc21jLmMgICB8ICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vYW1k
+L3Bvd2VycGxheS9zbXVtZ3IvdG9uZ2Ffc21jLmMgICB8ICA0ICstCiBkcml2ZXJzL2dwdS9kcm0v
+ZHJtX2NhY2hlLmMgICAgICAgICAgICAgICAgICAgICAgICB8IDEyICsrLS0tCiBkcml2ZXJzL2dw
+dS9kcm0vZHJtX2VkaWQuYyAgICAgICAgICAgICAgICAgICAgICAgICB8ICA0ICstCiBkcml2ZXJz
+L2dwdS9kcm0vZHJtX2lvYzMyLmMgICAgICAgICAgICAgICAgICAgICAgICB8ICAzICstCiBkcml2
+ZXJzL2dwdS9kcm0vZ21hNTAwL2Nkdl9pbnRlbF9sdmRzLmMgICAgICAgICAgICB8ICA5ICsrLS0K
+IGRyaXZlcnMvZ3B1L2RybS9nbWE1MDAvb2FrdHJhaWxfbHZkcy5jICAgICAgICAgICAgIHwgMTgg
+KysrLS0tLQogZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2JfZHJ2LmggICAgICAgICAgICAgICAg
+ICAgfCAgNSArLQogZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2JfaW50ZWxfbHZkcy5jICAgICAg
+ICAgICAgfCAgNyArKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfc3dfZmVuY2UuYyAgICAg
+ICAgICAgICAgIHwgIDggKystLQogZHJpdmVycy9ncHUvZHJtL21nYWcyMDAvbWdhZzIwMF9tb2Rl
+LmMgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL21zbS9tc21fZHJ2LmMgICAg
+ICAgICAgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9hY3BpLmMgICAgICAgICAgICAgfCAgNyArLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfdmdhLmMgICAgICAgICAgICAgIHwgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L252NTBfZGlzcGxheS5jICAgICAgICAgICAgIHwgMjIgKysrKy0tLS0tCiBkcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9udmttL2NvcmUvbW0uYyAgICAgICAgICAgICB8IDEwICsrLS0KIGRyaXZlcnMv
+Z3B1L2RybS9vbWFwZHJtL2Rzcy9kc2kuYyAgICAgICAgICAgICAgICAgIHwgMTcgKysrKy0tLQog
+ZHJpdmVycy9ncHUvZHJtL29tYXBkcm0vZHNzL2Rzcy5jICAgICAgICAgICAgICAgICAgfCAgMyAr
+LQogZHJpdmVycy9ncHUvZHJtL29tYXBkcm0vZHNzL2Rzcy5oICAgICAgICAgICAgICAgICAgfCAx
+NSArKystLS0KIGRyaXZlcnMvZ3B1L2RybS9vbWFwZHJtL29tYXBfZ2VtLmMgICAgICAgICAgICAg
+ICAgIHwgIDUgKy0KIGRyaXZlcnMvZ3B1L2RybS9yMTI4L3IxMjhfY2NlLmMgICAgICAgICAgICAg
+ICAgICAgIHwgIDcgKystCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2F0b20uYyAgICAgICAgICAg
+ICAgICAgICAgICB8IDQ2ICsrKysrKysrLS0tLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL3JhZGVv
+bi9jaWsuYyAgICAgICAgICAgICAgICAgICAgICAgfCA1NiArKysrKysrKy0tLS0tLS0tLS0tLS0t
+CiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2V2ZXJncmVlbi5jICAgICAgICAgICAgICAgICB8ICAy
+ICstCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2V2ZXJncmVlbl9jcy5jICAgICAgICAgICAgICB8
+ICA3ICsrLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9uaS5jICAgICAgICAgICAgICAgICAgICAg
+ICAgfCAyMiArKystLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcjEwMC5jICAgICAgICAg
+ICAgICAgICAgICAgIHwgMTggKysrLS0tLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yMjAwLmMg
+ICAgICAgICAgICAgICAgICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yMzAw
+LmMgICAgICAgICAgICAgICAgICAgICAgfCAxMyArKy0tLQogZHJpdmVycy9ncHUvZHJtL3JhZGVv
+bi9yNDIwLmMgICAgICAgICAgICAgICAgICAgICAgfCAgOSArKy0tCiBkcml2ZXJzL2dwdS9kcm0v
+cmFkZW9uL3I1MjAuYyAgICAgICAgICAgICAgICAgICAgICB8ICAzICstCiBkcml2ZXJzL2dwdS9k
+cm0vcmFkZW9uL3I2MDAuYyAgICAgICAgICAgICAgICAgICAgICB8IDIxICsrKy0tLS0tCiBkcml2
+ZXJzL2dwdS9kcm0vcmFkZW9uL3I2MDBfY3MuYyAgICAgICAgICAgICAgICAgICB8ICA3ICsrLQog
+ZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb24uaCAgICAgICAgICAgICAgICAgICAgfCAgMyAr
+LQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fYXRweF9oYW5kbGVyLmMgICAgICAgfCAg
+NCArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fYXVkaW8uYyAgICAgICAgICAgICAg
+fCAgNCArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fY2xvY2tzLmMgICAgICAgICAg
+ICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZGV2aWNlLmMgICAgICAg
+ICAgICAgfCAgOCArKy0tCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9mYi5jICAgICAg
+ICAgICAgICAgICB8ICAzICstCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9nZW0uYyAg
+ICAgICAgICAgICAgICB8ICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl90ZXN0
+LmMgICAgICAgICAgICAgICB8ICA2ICstLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yczQwMC5j
+ICAgICAgICAgICAgICAgICAgICAgfCAgNCArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yczY5
+MC5jICAgICAgICAgICAgICAgICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9y
+djUxNS5jICAgICAgICAgICAgICAgICAgICAgfCAgOSArKy0tCiBkcml2ZXJzL2dwdS9kcm0vcmFk
+ZW9uL3NpLmMgICAgICAgICAgICAgICAgICAgICAgICB8IDQ1ICsrKysrKy0tLS0tLS0tLS0tCiBk
+cml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jICAgICAgICAgICAgICAgICAgICAgICB8ICAyICst
+CiBkcml2ZXJzL2dwdS9kcm0vdm13Z2Z4L3Ztd2dmeF9mZW5jZS5jICAgICAgICAgICAgICB8ICA2
+ICstLQogZHJpdmVycy9ncHUvZHJtL3Ztd2dmeC92bXdnZnhfZ21yaWRfbWFuYWdlci5jICAgICAg
+fCAgMyArLQogZHJpdmVycy9ncHUvZHJtL3Ztd2dmeC92bXdnZnhfcmVzb3VyY2UuYyAgICAgICAg
+ICAgfCAgNCArLQogNjkgZmlsZXMgY2hhbmdlZCwgMjUzIGluc2VydGlvbnMoKyksIDM2MiBkZWxl
+dGlvbnMoLSkKCi0tIAoyLjEwLjAucmMyLjEuZzA1MzQzNWMKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
