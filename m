@@ -1,160 +1,105 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99841] Switching to VT freezes X only on a dual
-	screen
-Date: Tue, 28 Feb 2017 00:55:36 +0000
-Message-ID: <bug-99841-8800-grdovcEuYU@http.bugs.freedesktop.org/>
-References: <bug-99841-8800@http.bugs.freedesktop.org/>
+From: Joe Perches <joe@perches.com>
+Subject: [PATCH 0/2] gpu: drm: Use pr_cont and neaten logging
+Date: Mon, 27 Feb 2017 17:31:02 -0800
+Message-ID: <cover.1488245365.git.joe@perches.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1311946511=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99841-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1311946511==
-Content-Type: multipart/alternative; boundary="14882433364.35BB3ec.17770";
- charset="UTF-8"
-
-
---14882433364.35BB3ec.17770
-Date: Tue, 28 Feb 2017 00:55:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99841
-
-Michel D=C3=A4nzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-          Component|Driver/nouveau              |DRM/other
-            Product|xorg                        |DRI
-         QA Contact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org
-                   |rg                          |.org
-
---- Comment #9 from Michel D=C3=A4nzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org> ---
-This also happens with other drivers, seems to be a core DRM issue.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14882433364.35BB3ec.17770
-Date: Tue, 28 Feb 2017 00:55:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:michel&#6=
-4;daenzer.net" title=3D"Michel D=C3=A4nzer &lt;michel&#64;daenzer.net&gt;">=
- <span class=3D"fn">Michel D=C3=A4nzer</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Switching to VT freezes X only on a dual screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99841">bug 99841<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>Driver/nouveau
-           </td>
-           <td>DRM/other
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Product</td>
-           <td>xorg
-           </td>
-           <td>DRI
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-           <td>
-               &nbsp;
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Switching to VT freezes X only on a dual screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99841#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Switching to VT freezes X only on a dual screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99841">bug 99841<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-michel&#64;daenzer.net" title=3D"Michel D=C3=A4nzer &lt;michel&#64;daenzer.=
-net&gt;"> <span class=3D"fn">Michel D=C3=A4nzer</span></a>
-</span></b>
-        <pre>This also happens with other drivers, seems to be a core DRM i=
-ssue.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14882433364.35BB3ec.17770--
-
---===============1311946511==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1311946511==--
+Sm9lIFBlcmNoZXMgKDIpOgogIGRybTogVXNlIHByX2NvbnQgd2hlcmUgYXBwcm9wcmlhdGUKICBn
+cHU6IGRybTogQ29udmVydCBwcmludGsoS0VSTl88TEVWRUw+IHRvIHByXzxsZXZlbD4KCiBkcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHUuaCAgICAgICAgICAgICAgICB8ICAzICstCiBk
+cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYWZtdC5jICAgICAgICAgICB8ICA0ICst
+CiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYXRweF9oYW5kbGVyLmMgICB8ICA0
+ICstCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMgICAgICAgICB8
+ICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZHBtLmMgICAgICAgICAg
+ICB8IDcwICsrKysrKysrKystLS0tLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X2ZiLmMgICAgICAgICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X3Rlc3QuYyAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvYXRvbS5jICAgICAgICAgICAgICAgICAgfCA0NCArKysrKystLS0tLS0tLQogZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvY2lfZHBtLmMgICAgICAgICAgICAgICAgfCAgNCArLQogZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvY2lrX3NkbWEuYyAgICAgICAgICAgICAgfCAgNCArLQog
+ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y2XzAuYyAgICAgICAgICAgICAgfCAgNCAr
+LQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y3XzAuYyAgICAgICAgICAgICAgfCAg
+NCArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ21jX3Y3XzAuYyAgICAgICAgICAgICAg
+fCAgOCArLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dtY192OF8wLmMgICAgICAgICAg
+ICAgIHwgIDggKy0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zZG1hX3YyXzQuYyAgICAg
+ICAgICAgICB8ICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zZG1hX3YzXzAuYyAg
+ICAgICAgICAgICB8ICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2luY2x1ZGUvYW1kX3BjaWVf
+aGVscGVycy5oICAgICB8ICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9od21n
+ci9zbXU3X2h3bWdyLmMgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9p
+bmMvcHBfZGVidWcuaCAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxh
+eS9zbXVtZ3IvZmlqaV9zbWMuYyAgICB8ICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2Vy
+cGxheS9zbXVtZ3IvaWNlbGFuZF9zbWMuYyB8IDE0ICsrLS0tCiAuLi4vZ3B1L2RybS9hbWQvcG93
+ZXJwbGF5L3NtdW1nci9wb2xhcmlzMTBfc21jLmMgICB8ICA0ICstCiBkcml2ZXJzL2dwdS9kcm0v
+YW1kL3Bvd2VycGxheS9zbXVtZ3IvdG9uZ2Ffc21jLmMgICB8ICA0ICstCiBkcml2ZXJzL2dwdS9k
+cm0vZHJtX2NhY2hlLmMgICAgICAgICAgICAgICAgICAgICAgICB8IDEyICsrLS0KIGRyaXZlcnMv
+Z3B1L2RybS9kcm1fZWRpZC5jICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDQgKy0KIGRyaXZl
+cnMvZ3B1L2RybS9kcm1faW9jMzIuYyAgICAgICAgICAgICAgICAgICAgICAgIHwgIDMgKy0KIGRy
+aXZlcnMvZ3B1L2RybS9nbWE1MDAvY2R2X2ludGVsX2x2ZHMuYyAgICAgICAgICAgIHwgIDkgKyst
+CiBkcml2ZXJzL2dwdS9kcm0vZ21hNTAwL29ha3RyYWlsX2x2ZHMuYyAgICAgICAgICAgICB8IDE4
+ICsrKy0tLQogZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2JfZHJ2LmggICAgICAgICAgICAgICAg
+ICAgfCAgNSArLQogZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9wc2JfaW50ZWxfbHZkcy5jICAgICAg
+ICAgICAgfCAgNyArLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfc3dfZmVuY2UuYyAgICAg
+ICAgICAgICAgIHwgIDggKy0tCiBkcml2ZXJzL2dwdS9kcm0vbWdhZzIwMC9tZ2FnMjAwX21vZGUu
+YyAgICAgICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vbXNtL21zbV9kcnYuYyAgICAg
+ICAgICAgICAgICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2FjcGkuYyAgICAgICAgICAgICB8ICA3ICsrLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV92Z2EuYyAgICAgICAgICAgICAgfCAgNCArLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bnY1MF9kaXNwbGF5LmMgICAgICAgICAgICAgfCAyMiArKystLS0tCiBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udmttL2NvcmUvbW0uYyAgICAgICAgICAgICB8IDEwICstLQogZHJpdmVycy9ncHUv
+ZHJtL29tYXBkcm0vZHNzL2RzaS5jICAgICAgICAgICAgICAgICAgfCAxNyArKystLS0KIGRyaXZl
+cnMvZ3B1L2RybS9vbWFwZHJtL2Rzcy9kc3MuYyAgICAgICAgICAgICAgICAgIHwgIDMgKy0KIGRy
+aXZlcnMvZ3B1L2RybS9vbWFwZHJtL2Rzcy9kc3MuaCAgICAgICAgICAgICAgICAgIHwgMTUgKyst
+LS0KIGRyaXZlcnMvZ3B1L2RybS9vbWFwZHJtL29tYXBfZ2VtLmMgICAgICAgICAgICAgICAgIHwg
+IDUgKy0KIGRyaXZlcnMvZ3B1L2RybS9yMTI4L3IxMjhfY2NlLmMgICAgICAgICAgICAgICAgICAg
+IHwgIDcgKy0tCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2F0b20uYyAgICAgICAgICAgICAgICAg
+ICAgICB8IDQ2ICsrKysrKy0tLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2Npay5jICAg
+ICAgICAgICAgICAgICAgICAgICB8IDU2ICsrKysrKy0tLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9k
+cm0vcmFkZW9uL2V2ZXJncmVlbi5jICAgICAgICAgICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dw
+dS9kcm0vcmFkZW9uL2V2ZXJncmVlbl9jcy5jICAgICAgICAgICAgICB8ICA3ICstLQogZHJpdmVy
+cy9ncHUvZHJtL3JhZGVvbi9uaS5jICAgICAgICAgICAgICAgICAgICAgICAgfCAyMiArKystLS0t
+CiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3IxMDAuYyAgICAgICAgICAgICAgICAgICAgICB8IDE4
+ICsrLS0tLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yMjAwLmMgICAgICAgICAgICAgICAgICAg
+ICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yMzAwLmMgICAgICAgICAgICAgICAg
+ICAgICAgfCAxMyArKy0tCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3I0MjAuYyAgICAgICAgICAg
+ICAgICAgICAgICB8ICA5ICstLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yNTIwLmMgICAgICAg
+ICAgICAgICAgICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yNjAwLmMgICAg
+ICAgICAgICAgICAgICAgICAgfCAyMSArKystLS0tCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3I2
+MDBfY3MuYyAgICAgICAgICAgICAgICAgICB8ICA3ICstLQogZHJpdmVycy9ncHUvZHJtL3JhZGVv
+bi9yNjAwX2RwbS5jICAgICAgICAgICAgICAgICAgfCA3MSArKysrKysrKysrKy0tLS0tLS0tLS0t
+CiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbi5oICAgICAgICAgICAgICAgICAgICB8ICAz
+ICstCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9hdHB4X2hhbmRsZXIuYyAgICAgICB8
+ICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9hdWRpby5jICAgICAgICAgICAg
+ICB8ICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9jbG9ja3MuYyAgICAgICAg
+ICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9kZXZpY2UuYyAgICAg
+ICAgICAgICB8ICA4ICstLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZmIuYyAgICAg
+ICAgICAgICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZ2VtLmMg
+ICAgICAgICAgICAgICAgfCAgNCArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fdGVz
+dC5jICAgICAgICAgICAgICAgfCAgNiArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yczQwMC5j
+ICAgICAgICAgICAgICAgICAgICAgfCAgNCArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yczY5
+MC5jICAgICAgICAgICAgICAgICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9y
+djUxNS5jICAgICAgICAgICAgICAgICAgICAgfCAgOSArLS0KIGRyaXZlcnMvZ3B1L2RybS9yYWRl
+b24vc2kuYyAgICAgICAgICAgICAgICAgICAgICAgIHwgNDUgKysrKystLS0tLS0tLS0KIGRyaXZl
+cnMvZ3B1L2RybS90dG0vdHRtX2JvLmMgICAgICAgICAgICAgICAgICAgICAgIHwgIDIgKy0KIGRy
+aXZlcnMvZ3B1L2RybS92bXdnZngvdm13Z2Z4X2ZlbmNlLmMgICAgICAgICAgICAgIHwgIDYgKy0K
+IGRyaXZlcnMvZ3B1L2RybS92bXdnZngvdm13Z2Z4X2dtcmlkX21hbmFnZXIuYyAgICAgIHwgIDMg
+Ky0KIGRyaXZlcnMvZ3B1L2RybS92bXdnZngvdm13Z2Z4X3Jlc291cmNlLmMgICAgICAgICAgIHwg
+IDQgKy0KIDcxIGZpbGVzIGNoYW5nZWQsIDMyNiBpbnNlcnRpb25zKCspLCA0MzAgZGVsZXRpb25z
+KC0pCgotLSAKMi4xMC4wLnJjMi4xLmcwNTM0MzVjCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9kcmktZGV2ZWwK
