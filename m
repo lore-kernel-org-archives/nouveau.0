@@ -1,16 +1,13 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH 0/3] gpu: drm: Convert printk(KERN_<level> to
- pr_<level>
-Date: Tue, 28 Feb 2017 14:33:15 +0100
-Message-ID: <20170228133315.elsqoq636oqnsydk@phenom.ffwll.local>
-References: <20170228090409.722xmltrx4g6i3tz@phenom.ffwll.local>
- <cover.1488285953.git.joe@perches.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94727] [NV30/NV40] nouveau/pushbuf.c:238:
+ pushbuf_krel: Assertion `bkref` failed.
+Date: Tue, 28 Feb 2017 15:58:38 +0000
+Message-ID: <bug-94727-8800-4tSBs69gcC@http.bugs.freedesktop.org/>
+References: <bug-94727-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1389640016=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <cover.1488285953.git.joe-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>
+In-Reply-To: <bug-94727-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,103 +17,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Joe Perches <joe-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBGZWIgMjgsIDIwMTcgYXQgMDQ6NTU6NTFBTSAtMDgwMCwgSm9lIFBlcmNoZXMgd3Jv
-dGU6Cj4gQnJva2VuIHVwIGZvciBEYW5pZWwgVmV0dGVyCgpUaGFua3MsIEkgYXBwbGllZCB0aGUg
-Y29yZSBwYXRjaCAobmVlZGVkIGEgbWlub3IgcmVzb2x1dGlvbiBpbgpkcm1fZWRpZC5jKS4gSSds
-bCB3YWl0IHdpdGggdGhlIGRyaXZlciBwYXRjaCBmb3IgYSBmZXcgbW9yZSBhY2tzIG1heWJlLAph
-bmQgbGVhdmUgdGhlIDIgb3RoZXIgcGF0Y2hlcyB0byBBbGV4IGZvciBwaWNraW5nIHVwIGRpcmVj
-dGx5LgoKVGhhbmtzLCBEYW5pZWwKCj4gCj4gSm9lIFBlcmNoZXMgKDMpOgo+ICAgZ3B1OiBkcm06
-IGFtZC9yYWRlb246IENvbnZlcnQgcHJpbnRrKEtFUk5fPExFVkVMPiB0byBwcl88bGV2ZWw+Cj4g
-ICBncHU6IGRybTogY29yZTogQ29udmVydCBwcmludGsoS0VSTl88TEVWRUw+IHRvIHByXzxsZXZl
-bD4KPiAgIGdwdTogZHJtOiBkcml2ZXJzOiBDb252ZXJ0IHByaW50ayhLRVJOXzxMRVZFTD4gdG8g
-cHJfPGxldmVsPgo+IAo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHUuaCAgICAg
-ICAgICAgICAgICB8ICAzICstCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9h
-Zm10LmMgICAgICAgICAgIHwgIDQgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
-Z3B1X2F0cHhfaGFuZGxlci5jICAgfCAgNCArLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS9hbWRncHVfZGV2aWNlLmMgICAgICAgICB8ICA0ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV9mYi5jICAgICAgICAgICAgIHwgIDMgKy0KPiAgZHJpdmVycy9ncHUvZHJt
-L2FtZC9hbWRncHUvYW1kZ3B1X3Rlc3QuYyAgICAgICAgICAgfCAgMiArLQo+ICBkcml2ZXJzL2dw
-dS9kcm0vYW1kL2FtZGdwdS9hdG9tLmMgICAgICAgICAgICAgICAgICB8IDQ0ICsrKysrKysrLS0t
-LS0tLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2NpX2RwbS5jICAgICAgICAgICAg
-ICAgIHwgIDQgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvY2lrX3NkbWEuYyAgICAg
-ICAgICAgICAgfCAgNCArLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjZfMC5j
-ICAgICAgICAgICAgICB8ICA0ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92
-N18wLmMgICAgICAgICAgICAgIHwgIDQgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-Z21jX3Y3XzAuYyAgICAgICAgICAgICAgfCAgOCArKy0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2dtY192OF8wLmMgICAgICAgICAgICAgIHwgIDggKystLQo+ICBkcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9zZG1hX3YyXzQuYyAgICAgICAgICAgICB8ICA0ICstCj4gIGRyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1L3NkbWFfdjNfMC5jICAgICAgICAgICAgIHwgIDQgKy0KPiAgZHJp
-dmVycy9ncHUvZHJtL2FtZC9pbmNsdWRlL2FtZF9wY2llX2hlbHBlcnMuaCAgICAgfCAgNCArLQo+
-ICBkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9od21nci9zbXU3X2h3bWdyLmMgICB8ICAy
-ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJwbGF5L2luYy9wcF9kZWJ1Zy5oICAgICAg
-IHwgIDIgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9wb3dlcnBsYXkvc211bWdyL2Zpamlfc21j
-LmMgICAgfCAgNCArLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL3Bvd2VycGxheS9zbXVtZ3IvaWNl
-bGFuZF9zbWMuYyB8IDE0ICsrKy0tLQo+ICAuLi4vZ3B1L2RybS9hbWQvcG93ZXJwbGF5L3NtdW1n
-ci9wb2xhcmlzMTBfc21jLmMgICB8ICA0ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvcG93ZXJw
-bGF5L3NtdW1nci90b25nYV9zbWMuYyAgIHwgIDQgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2RybV9j
-YWNoZS5jICAgICAgICAgICAgICAgICAgICAgICAgfCAxMiArKy0tLQo+ICBkcml2ZXJzL2dwdS9k
-cm0vZHJtX2VkaWQuYyAgICAgICAgICAgICAgICAgICAgICAgICB8ICA0ICstCj4gIGRyaXZlcnMv
-Z3B1L2RybS9kcm1faW9jMzIuYyAgICAgICAgICAgICAgICAgICAgICAgIHwgIDMgKy0KPiAgZHJp
-dmVycy9ncHUvZHJtL2dtYTUwMC9jZHZfaW50ZWxfbHZkcy5jICAgICAgICAgICAgfCAgOSArKy0t
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9nbWE1MDAvb2FrdHJhaWxfbHZkcy5jICAgICAgICAgICAgIHwg
-MTggKysrLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9kcnYuaCAgICAgICAgICAg
-ICAgICAgICB8ICA1ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9nbWE1MDAvcHNiX2ludGVsX2x2ZHMu
-YyAgICAgICAgICAgIHwgIDcgKystCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfc3dfZmVu
-Y2UuYyAgICAgICAgICAgICAgIHwgIDggKystLQo+ICBkcml2ZXJzL2dwdS9kcm0vbWdhZzIwMC9t
-Z2FnMjAwX21vZGUuYyAgICAgICAgICAgICB8ICAyICstCj4gIGRyaXZlcnMvZ3B1L2RybS9tc20v
-bXNtX2Rydi5jICAgICAgICAgICAgICAgICAgICAgIHwgIDIgKy0KPiAgZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9hY3BpLmMgICAgICAgICAgICAgfCAgNyArLS0KPiAgZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV92Z2EuYyAgICAgICAgICAgICAgfCAgNCArLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYyAgICAgICAgICAgICB8IDIyICsrKyst
-LS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2NvcmUvbW0uYyAgICAgICAgICAg
-ICB8IDEwICsrLS0KPiAgZHJpdmVycy9ncHUvZHJtL29tYXBkcm0vZHNzL2RzaS5jICAgICAgICAg
-ICAgICAgICAgfCAxNyArKysrLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9vbWFwZHJtL2Rzcy9kc3Mu
-YyAgICAgICAgICAgICAgICAgIHwgIDMgKy0KPiAgZHJpdmVycy9ncHUvZHJtL29tYXBkcm0vZHNz
-L2Rzcy5oICAgICAgICAgICAgICAgICAgfCAxNSArKystLS0KPiAgZHJpdmVycy9ncHUvZHJtL29t
-YXBkcm0vb21hcF9nZW0uYyAgICAgICAgICAgICAgICAgfCAgNSArLQo+ICBkcml2ZXJzL2dwdS9k
-cm0vcjEyOC9yMTI4X2NjZS5jICAgICAgICAgICAgICAgICAgICB8ICA3ICsrLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vcmFkZW9uL2F0b20uYyAgICAgICAgICAgICAgICAgICAgICB8IDQ2ICsrKysrKysr
-LS0tLS0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2Npay5jICAgICAgICAgICAgICAg
-ICAgICAgICB8IDU2ICsrKysrKysrLS0tLS0tLS0tLS0tLS0KPiAgZHJpdmVycy9ncHUvZHJtL3Jh
-ZGVvbi9ldmVyZ3JlZW4uYyAgICAgICAgICAgICAgICAgfCAgMiArLQo+ICBkcml2ZXJzL2dwdS9k
-cm0vcmFkZW9uL2V2ZXJncmVlbl9jcy5jICAgICAgICAgICAgICB8ICA3ICsrLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vcmFkZW9uL25pLmMgICAgICAgICAgICAgICAgICAgICAgICB8IDIyICsrKy0tLS0t
-LQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3IxMDAuYyAgICAgICAgICAgICAgICAgICAgICB8
-IDE4ICsrKy0tLS0KPiAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yMjAwLmMgICAgICAgICAgICAg
-ICAgICAgICAgfCAgMyArLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3IzMDAuYyAgICAgICAg
-ICAgICAgICAgICAgICB8IDEzICsrLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcjQyMC5j
-ICAgICAgICAgICAgICAgICAgICAgIHwgIDkgKystLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9u
-L3I1MjAuYyAgICAgICAgICAgICAgICAgICAgICB8ICAzICstCj4gIGRyaXZlcnMvZ3B1L2RybS9y
-YWRlb24vcjYwMC5jICAgICAgICAgICAgICAgICAgICAgIHwgMjEgKysrLS0tLS0KPiAgZHJpdmVy
-cy9ncHUvZHJtL3JhZGVvbi9yNjAwX2NzLmMgICAgICAgICAgICAgICAgICAgfCAgNyArKy0KPiAg
-ZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb24uaCAgICAgICAgICAgICAgICAgICAgfCAgMyAr
-LQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9hdHB4X2hhbmRsZXIuYyAgICAgICB8
-ICA0ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2F1ZGlvLmMgICAgICAgICAg
-ICAgIHwgIDQgKy0KPiAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fY2xvY2tzLmMgICAg
-ICAgICAgICAgfCAgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9kZXZpY2Uu
-YyAgICAgICAgICAgICB8ICA4ICsrLS0KPiAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25f
-ZmIuYyAgICAgICAgICAgICAgICAgfCAgMyArLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3Jh
-ZGVvbl9nZW0uYyAgICAgICAgICAgICAgICB8ICA0ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9yYWRl
-b24vcmFkZW9uX3Rlc3QuYyAgICAgICAgICAgICAgIHwgIDYgKy0tCj4gIGRyaXZlcnMvZ3B1L2Ry
-bS9yYWRlb24vcnM0MDAuYyAgICAgICAgICAgICAgICAgICAgIHwgIDQgKy0KPiAgZHJpdmVycy9n
-cHUvZHJtL3JhZGVvbi9yczY5MC5jICAgICAgICAgICAgICAgICAgICAgfCAgMyArLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vcmFkZW9uL3J2NTE1LmMgICAgICAgICAgICAgICAgICAgICB8ICA5ICsrLS0K
-PiAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9zaS5jICAgICAgICAgICAgICAgICAgICAgICAgfCA0
-NSArKysrKystLS0tLS0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jICAgICAg
-ICAgICAgICAgICAgICAgICB8ICAyICstCj4gIGRyaXZlcnMvZ3B1L2RybS92bXdnZngvdm13Z2Z4
-X2ZlbmNlLmMgICAgICAgICAgICAgIHwgIDYgKy0tCj4gIGRyaXZlcnMvZ3B1L2RybS92bXdnZngv
-dm13Z2Z4X2dtcmlkX21hbmFnZXIuYyAgICAgIHwgIDMgKy0KPiAgZHJpdmVycy9ncHUvZHJtL3Zt
-d2dmeC92bXdnZnhfcmVzb3VyY2UuYyAgICAgICAgICAgfCAgNCArLQo+ICA2OSBmaWxlcyBjaGFu
-Z2VkLCAyNTMgaW5zZXJ0aW9ucygrKSwgMzYyIGRlbGV0aW9ucygtKQo+IAo+IC0tIAo+IDIuMTAu
-MC5yYzIuMS5nMDUzNDM1Ywo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbm91dmVhdQoKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENv
-cnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbm91dmVhdQo=
+
+--===============1389640016==
+Content-Type: multipart/alternative; boundary="14882975171.eBE23DDb9.30184";
+ charset="UTF-8"
+
+
+--14882975171.eBE23DDb9.30184
+Date: Tue, 28 Feb 2017 15:58:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94727
+
+--- Comment #16 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+Haven't heard back from the original reporter downstream, but FAF (Fedora
+Analysis Framework) reports thousands (literally) of similar bugs:
+
+https://retrace.fedoraproject.org/faf/problems/2833836/
+
+I see the patch in comment 13 has landed and is included in mesa-13.0.4, and
+Fedora has an updated mesa package for 13.0.4 and, interestingly, I don't s=
+ee
+any mention of 13.0.4 in the FAF report, so it could be that this patch ind=
+eed
+fixes the issue with glamor/Xwayland on nv30.
+
+Thanks again for your help, Ilia!
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14882975171.eBE23DDb9.30184
+Date: Tue, 28 Feb 2017 15:58:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
+n `bkref` failed."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727#c16">Commen=
+t # 16</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV30/NV40] nouveau/pushbuf.c:238: pushbuf_krel: Assertio=
+n `bkref` failed."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94727">bug 94727<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
+</span></b>
+        <pre>Haven't heard back from the original reporter downstream, but =
+FAF (Fedora
+Analysis Framework) reports thousands (literally) of similar bugs:
+
+<a href=3D"https://retrace.fedoraproject.org/faf/problems/2833836/">https:/=
+/retrace.fedoraproject.org/faf/problems/2833836/</a>
+
+I see the patch in <a href=3D"show_bug.cgi?id=3D94727#c13">comment 13</a> h=
+as landed and is included in mesa-13.0.4, and
+Fedora has an updated mesa package for 13.0.4 and, interestingly, I don't s=
+ee
+any mention of 13.0.4 in the FAF report, so it could be that this patch ind=
+eed
+fixes the issue with glamor/Xwayland on nv30.
+
+Thanks again for your help, Ilia!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14882975171.eBE23DDb9.30184--
+
+--===============1389640016==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1389640016==--
