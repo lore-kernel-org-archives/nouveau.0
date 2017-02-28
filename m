@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99995] Dirt showdown very low fps (~3fps) after
 	update mesa
-Date: Tue, 28 Feb 2017 09:08:46 +0000
-Message-ID: <bug-99995-8800-H2fZfZ21P3@http.bugs.freedesktop.org/>
+Date: Tue, 28 Feb 2017 11:17:52 +0000
+Message-ID: <bug-99995-8800-dWJnGi0xnO@http.bugs.freedesktop.org/>
 References: <bug-99995-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0385534917=="
+Content-Type: multipart/mixed; boundary="===============1198854223=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99995-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0385534917==
-Content-Type: multipart/alternative; boundary="14882729260.d8443b7.24838";
+--===============1198854223==
+Content-Type: multipart/alternative; boundary="14882806720.e2Ab.4860";
  charset="UTF-8"
 
 
---14882729260.d8443b7.24838
-Date: Tue, 28 Feb 2017 09:08:46 +0000
+--14882806720.e2Ab.4860
+Date: Tue, 28 Feb 2017 11:17:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,31 +36,42 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99995
 
---- Comment #2 from Gregor M=C3=BCnch <gr.muench-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Maybe related:
-With higher GL versions, Dirt enables "advanced lighting" options in the
-graphics menu. Setting this to "On" makes the game basically a slide show. =
-But
-Im on a Radeon HD 7970. Also all other Radeon cards have a performance prob=
-lem:
-http://www.phoronix.com/scan.php?page=3Darticle&item=3Dmesa171-pro60-rx470&=
-num=3D2
+--- Comment #3 from Kevin Puertas <kevin01010-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #1)
 
-where figures looked better in 2015:
-http://www.phoronix.com/scan.php?page=3Darticle&item=3Ddirt-showdown-linux&=
-num=3D3
+> One difference is that 17.0 has GL 4.3 enabled for Maxwell (e.g. GTX 750),
+> which perhaps causes the game to choose a different path, thus not really=
+ be
+> directly comparable. Try it with
+>=20
+> MESA_GL_VERSION_OVERRIDE=3D4.1
 
-Some more infos about the lightning options:
-http://www.rage3d.com/articles/gaming/codemaster_dirt_showdown_tech_review/=
-index.php?p=3D2
+If I export this before opening steam, steam causes a segfault
+
+
+> Or try it with
+>=20
+> MESA_EXTENSION_OVERRIDE=3D'-GL_ARB_shader_image_load_store
+> -GL_ARB_compute_shader'
+
+If I try this, game loads smooth and works about 45fps, better than with me=
+sa
+13
+
+
+
+(In reply to Gregor M=C3=BCnch from comment #2)
+>With higher GL versions, Dirt enables "advanced lighting" options in the g=
+raphics menu.
+At least for me, it is there, but Off in all the tests
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14882729260.d8443b7.24838
-Date: Tue, 28 Feb 2017 09:08:46 +0000
+--14882806720.e2Ab.4860
+Date: Tue, 28 Feb 2017 11:17:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,37 +88,47 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Dirt showdown very low fps (~3fps) after update mesa"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Dirt showdown very low fps (~3fps) after update mesa"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995">bug 99995<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gr.muench&#64;gmail.com" title=3D"Gregor M=C3=BCnch &lt;gr.muench&#64;gmail=
-.com&gt;"> <span class=3D"fn">Gregor M=C3=BCnch</span></a>
+kevin01010&#64;gmail.com" title=3D"Kevin Puertas &lt;kevin01010&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Kevin Puertas</span></a>
 </span></b>
-        <pre>Maybe related:
-With higher GL versions, Dirt enables &quot;advanced lighting&quot; options=
- in the
-graphics menu. Setting this to &quot;On&quot; makes the game basically a sl=
-ide show. But
-Im on a Radeon HD 7970. Also all other Radeon cards have a performance prob=
-lem:
-<a href=3D"http://www.phoronix.com/scan.php?page=3Darticle&amp;item=3Dmesa1=
-71-pro60-rx470&amp;num=3D2">http://www.phoronix.com/scan.php?page=3Darticle=
-&amp;item=3Dmesa171-pro60-rx470&amp;num=3D2</a>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D999=
+95#c1">comment #1</a>)
 
-where figures looked better in 2015:
-<a href=3D"http://www.phoronix.com/scan.php?page=3Darticle&amp;item=3Ddirt-=
-showdown-linux&amp;num=3D3">http://www.phoronix.com/scan.php?page=3Darticle=
-&amp;item=3Ddirt-showdown-linux&amp;num=3D3</a>
+<span class=3D"quote">&gt; One difference is that 17.0 has GL 4.3 enabled f=
+or Maxwell (e.g. GTX 750),
+&gt; which perhaps causes the game to choose a different path, thus not rea=
+lly be
+&gt; directly comparable. Try it with
+&gt;=20
+&gt; MESA_GL_VERSION_OVERRIDE=3D4.1</span >
 
-Some more infos about the lightning options:
-<a href=3D"http://www.rage3d.com/articles/gaming/codemaster_dirt_showdown_t=
-ech_review/index.php?p=3D2">http://www.rage3d.com/articles/gaming/codemaste=
-r_dirt_showdown_tech_review/index.php?p=3D2</a></pre>
+If I export this before opening steam, steam causes a segfault
+
+
+<span class=3D"quote">&gt; Or try it with
+&gt;=20
+&gt; MESA_EXTENSION_OVERRIDE=3D'-GL_ARB_shader_image_load_store
+&gt; -GL_ARB_compute_shader'</span >
+
+If I try this, game loads smooth and works about 45fps, better than with me=
+sa
+13
+
+
+
+(In reply to Gregor M=C3=BCnch from <a href=3D"show_bug.cgi?id=3D99995#c2">=
+comment #2</a>)
+<span class=3D"quote">&gt;With higher GL versions, Dirt enables &quot;advan=
+ced lighting&quot; options in the graphics menu.</span >
+At least for me, it is there, but Off in all the tests</pre>
         </div>
       </p>
 
@@ -116,15 +137,15 @@ r_dirt_showdown_tech_review/index.php?p=3D2</a></pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14882729260.d8443b7.24838--
+--14882806720.e2Ab.4860--
 
---===============0385534917==
+--===============1198854223==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +155,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0385534917==--
+--===============1198854223==--
