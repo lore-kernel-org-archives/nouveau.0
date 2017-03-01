@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99995] Dirt showdown very low fps (~3fps) after
-	update mesa
-Date: Wed, 01 Mar 2017 14:09:41 +0000
-Message-ID: <bug-99995-8800-zeUhJS7hjr@http.bugs.freedesktop.org/>
-References: <bug-99995-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100025] Energy saving setting freezes X server
+Date: Wed, 01 Mar 2017 17:53:16 +0000
+Message-ID: <bug-100025-8800-kME0orWRW5@http.bugs.freedesktop.org/>
+References: <bug-100025-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1905118641=="
+Content-Type: multipart/mixed; boundary="===============1978886457=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99995-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100025-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1905118641==
-Content-Type: multipart/alternative; boundary="14883773810.5a4c27E.32120";
+--===============1978886457==
+Content-Type: multipart/alternative; boundary="14883907953.B1f790a.17437";
  charset="UTF-8"
 
 
---14883773810.5a4c27E.32120
-Date: Wed, 1 Mar 2017 14:09:41 +0000
+--14883907953.B1f790a.17437
+Date: Wed, 1 Mar 2017 17:53:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99995
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100025
 
---- Comment #5 from Kevin Puertas <kevin01010-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #4)
-> The speed improvement on Maxwell is expected - Mesa 17.0 starts to add
-> proper shader instruction scheduling information. In various tests it has
-> improved overall perf ~2x (varies a lot based on how
-> shader-computation-limited the software is, vs memory bandwidth-limited).
+Alan Coopersmith <alan.coopersmith-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org> changed:
 
-I know :)
-But I dont know why I have to "workaround" mesa this way to play, maybe the=
-re
-are lot of people that not know this too and it are with mesa 17..
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Assignee|aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org        |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+          Component|Driver/nVidia (open)        |Driver/nouveau
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14883773810.5a4c27E.32120
-Date: Wed, 1 Mar 2017 14:09:41 +0000
+--14883907953.B1f790a.17437
+Date: Wed, 1 Mar 2017 17:53:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,38 +59,39 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:alan.coop=
+ersmith&#64;oracle.com" title=3D"Alan Coopersmith &lt;alan.coopersmith&#64;=
+oracle.com&gt;"> <span class=3D"fn">Alan Coopersmith</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Dirt showdown very low fps (~3fps) after update mesa"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Dirt showdown very low fps (~3fps) after update mesa"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995">bug 99995<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-kevin01010&#64;gmail.com" title=3D"Kevin Puertas &lt;kevin01010&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Kevin Puertas</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D999=
-95#c4">comment #4</a>)
-<span class=3D"quote">&gt; The speed improvement on Maxwell is expected - M=
-esa 17.0 starts to add
-&gt; proper shader instruction scheduling information. In various tests it =
-has
-&gt; improved overall perf ~2x (varies a lot based on how
-&gt; shader-computation-limited the software is, vs memory bandwidth-limite=
-d).</span >
+   title=3D"NEW - Energy saving setting freezes X server"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100025">bug 10002=
+5</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-I know :)
-But I dont know why I have to &quot;workaround&quot; mesa this way to play,=
- maybe there
-are lot of people that not know this too and it are with mesa 17..</pre>
-        </div>
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>aplattner&#64;nvidia.com
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>Driver/nVidia (open)
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -105,14 +100,13 @@ are lot of people that not know this too and it are with mesa 17..</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14883773810.5a4c27E.32120--
+--14883907953.B1f790a.17437--
 
---===============1905118641==
+--===============1978886457==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -122,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1905118641==--
+--===============1978886457==--
