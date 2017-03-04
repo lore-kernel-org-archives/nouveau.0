@@ -1,11 +1,13 @@
-From: "Zhengjie (PARC)" <zj.zhengjie-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-Subject: A request for Virtual GPU based on Nouveau
-Date: Sat, 25 Feb 2017 03:39:37 +0000
-Message-ID: <23237D6EDF923F47ABCC70E942B37DDD43023A9E@SZXEMA511-MBS.china.huawei.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99900] [NVC1] nouveau: freeze / crash after kernel
+ update to 4.10
+Date: Sat, 04 Mar 2017 07:36:26 +0000
+Message-ID: <bug-99900-8800-JfzIsHm9PW@http.bugs.freedesktop.org/>
+References: <bug-99900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0920656461=="
+Content-Type: multipart/mixed; boundary="===============0879109073=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: zh-CN
+In-Reply-To: <bug-99900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,110 +17,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0920656461==
-Content-Language: zh-CN
-Content-Type: multipart/alternative;
-	boundary="_000_23237D6EDF923F47ABCC70E942B37DDD43023A9ESZXEMA511MBSchi_"
 
---_000_23237D6EDF923F47ABCC70E942B37DDD43023A9ESZXEMA511MBSchi_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-
-SGksDQoNCknigJltIGEgZGV2ZWxvcGVyIGZyb20gSHVhd2VpIFRlY2hub2xvZ2llcyBDby4sTHRk
-LiBDaGluYS4gSeKAmW0gd29ya2luZyBvbiBHUFUgVmlydHVhbGl6YXRpb24uDQpJIGZvdW5kIHNv
-bWUgYWNhZGVtaWMgcGFwZXJzIG9uIGdvb2dsZSB3aGljaCBkZXNjcmliZSBob3cgdG8gdmlydHVh
-bGl6ZSBHUFUgb24gQ2xvdWQgYmFzZWQgb24gTm91dmVhdSwgU3VjaCBhcyA8IFRpbWVHcmFwaDog
-R1BVIFNjaGVkdWxpbmcgZm9yIFJlYWwtVGltZSBNdWx0aS1UYXNraW5nIEVudmlyb25tZW50cyA+
-ICA8R2RldjogRmlyc3QtQ2xhc3MgR1BVIFJlc291cmNlIE1hbmFnZW1lbnQgaW4gdGhlIE9wZXJh
-dGluZyBTeXN0ZW0+IHdyaXR0ZW4gYnkgUGguRCBTaGlucGVpIEthdG8uDQpJIGtub3cgdGhlIG5v
-dXZlYXUgcHJvamVjdCBhaW1zIHRvIGJ1aWxkIGhpZ2gtcXVhbGl0eSwgZnJlZS9saWJyZSBzb2Z0
-d2FyZSBkcml2ZXJzIGZvciBuVmlkaWEgY2FyZHM8aHR0cHM6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9w
-Lm9yZy93aWtpL0NvZGVOYW1lcy8+LiBNYXliZSB0aGUgbm91dmVhdSBwcm9qZWN0IGRldmVsb3Bl
-cnMgY2FuIGRvIHNvbWV0aGluZyB0byBoZWxwIEdQVSBWaXJ0dWFsaXphdGlvbi4gU28gSeKAmWQg
-bGlrZSB0byBhc2sgd2hldGhlciB0aGVyZSBpcyB0aGUgcG9zc2liaWxpdHkgb2YgY29vcGVyYXRp
-b24gb24gR1BVIFZpcnR1YWxpemF0aW9uIGJldHdlZW4gSHVhd2VpIGFuZCB0aGUgbm91dmVhdSBw
-cm9qZWN0Lg0KTWF5YmUgdGhlcmUgaXMgYW5vdGhlciB3YXkgZm9yIGNvb3BlcmF0aW9uLiBCdXQg
-SSBkb27igJl0IGtub3cgaG93LiBPciB5b3UgY2FuIGdpdmUgc29tZSBhZHZpY2VzIHRvIHVzIG9u
-IEdQVSBWaXJ0dWFsaXphdGlvbiBiYXNlZCBvbiBub3V2ZWF1LiBUaGF0IHdpbGwgYmUgZ3JhdGVm
-dWwuIEnigJltIGxvb2tpbmcgZm9yd2FyZCB0byB5b3UgcmVwbHkuDQoNCkJlc3QNCkpheQ0KDQo=
-
---_000_23237D6EDF923F47ABCC70E942B37DDD43023A9ESZXEMA511MBSchi_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
-
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6eD0idXJuOnNjaGVtYXMtbWljcm9z
-b2Z0LWNvbTpvZmZpY2U6ZXhjZWwiIHhtbG5zOm09Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5j
-b20vb2ZmaWNlLzIwMDQvMTIvb21tbCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnL1RSL1JFQy1o
-dG1sNDAiPg0KPGhlYWQ+DQo8bWV0YSBodHRwLWVxdWl2PSJDb250ZW50LVR5cGUiIGNvbnRlbnQ9
-InRleHQvaHRtbDsgY2hhcnNldD11dGYtOCI+DQo8bWV0YSBuYW1lPSJHZW5lcmF0b3IiIGNvbnRl
-bnQ9Ik1pY3Jvc29mdCBXb3JkIDE1IChmaWx0ZXJlZCBtZWRpdW0pIj4NCjxzdHlsZT48IS0tDQov
-KiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OuWui+S9kzsN
-CglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAxO30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1p
-bHk65a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0K
-CXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30N
-CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IlxA5a6L5L2TIjsNCglwYW5vc2UtMToyIDEgNiAw
-IDMgMSAxIDEgMSAxO30NCi8qIFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwgbGku
-TXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowY207DQoJbWFyZ2luLWJvdHRvbTou
-MDAwMXB0Ow0KCXRleHQtYWxpZ246anVzdGlmeTsNCgl0ZXh0LWp1c3RpZnk6aW50ZXItaWRlb2dy
-YXBoOw0KCWZvbnQtc2l6ZToxMC41cHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2Vy
-aWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7
-DQoJY29sb3I6IzA1NjNDMTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRl
-ZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJ
-Y29sb3I6Izk1NEY3MjsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uRW1haWxT
-dHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLWNvbXBvc2U7DQoJZm9udC1mYW1pbHk6
-IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQpzcGFuLmFwcGxlLWNv
-bnZlcnRlZC1zcGFjZQ0KCXttc28tc3R5bGUtbmFtZTphcHBsZS1jb252ZXJ0ZWQtc3BhY2U7fQ0K
-Lk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7fQ0KLyogUGFnZSBE
-ZWZpbml0aW9ucyAqLw0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0
-Ow0KCW1hcmdpbjo3Mi4wcHQgOTAuMHB0IDcyLjBwdCA5MC4wcHQ7fQ0KZGl2LldvcmRTZWN0aW9u
-MQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48
-eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwv
-eG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQg
-djpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hh
-cGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJaSC1DTiIg
-bGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiIHN0eWxlPSJ0ZXh0LWp1c3RpZnktdHJpbTpw
-dW5jdHVhdGlvbiI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkhpLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+SeKAmW0gYSBk
-ZXZlbG9wZXIgZnJvbSBIdWF3ZWkgVGVjaG5vbG9naWVzIENvLixMdGQuIENoaW5hLiBJ4oCZbSB3
-b3JraW5nIG9uIEdQVSBWaXJ0dWFsaXphdGlvbi48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+SSBmb3VuZCBzb21lIGFjYWRlbWlj
-IHBhcGVycyBvbiBnb29nbGUgd2hpY2ggZGVzY3JpYmUgaG93IHRvIHZpcnR1YWxpemUgR1BVIG9u
-IENsb3VkIGJhc2VkIG9uIE5vdXZlYXUsIFN1Y2ggYXMgJmx0OyBUaW1lR3JhcGg6IEdQVSBTY2hl
-ZHVsaW5nIGZvciBSZWFsLVRpbWUgTXVsdGktVGFza2luZyBFbnZpcm9ubWVudHMgJmd0OyAmbmJz
-cDsmbHQ7R2RldjogRmlyc3QtQ2xhc3MgR1BVIFJlc291cmNlIE1hbmFnZW1lbnQNCiBpbiB0aGUg
-T3BlcmF0aW5nIFN5c3RlbSZndDsgd3JpdHRlbiBieSBQaC5EIFNoaW5wZWkgS2F0by4gPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
-Pkkga25vdyB0aGUmbmJzcDtub3V2ZWF1Jm5ic3A7cHJvamVjdCBhaW1zIHRvIGJ1aWxkIGhpZ2gt
-cXVhbGl0eSwgZnJlZS9saWJyZSBzb2Z0d2FyZSBkcml2ZXJzIGZvciZuYnNwOzxhIGhyZWY9Imh0
-dHBzOi8vbm91dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9Db2RlTmFtZXMvIj48c3BhbiBzdHls
-ZT0iY29sb3I6d2luZG93dGV4dDt0ZXh0LWRlY29yYXRpb246bm9uZSI+blZpZGlhIGNhcmRzPC9z
-cGFuPjwvYT4uJm5ic3A7TWF5YmUNCiB0aGUmbmJzcDtub3V2ZWF1Jm5ic3A7cHJvamVjdCBkZXZl
-bG9wZXJzIGNhbiBkbyBzb21ldGhpbmcgdG8gaGVscCBHUFUgVmlydHVhbGl6YXRpb24uIFNvIEni
-gJlkIGxpa2UgdG8gYXNrIHdoZXRoZXIgdGhlcmUgaXMgdGhlIHBvc3NpYmlsaXR5IG9mIGNvb3Bl
-cmF0aW9uIG9uIEdQVSBWaXJ0dWFsaXphdGlvbiBiZXR3ZWVuIEh1YXdlaSBhbmQgdGhlJm5ic3A7
-bm91dmVhdSBwcm9qZWN0LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5NYXliZSB0aGVyZSBpcyBhbm90aGVyIHdheSBmb3IgY29v
-cGVyYXRpb24uIEJ1dCBJIGRvbuKAmXQga25vdyBob3cuIE9yIHlvdSBjYW4gZ2l2ZSBzb21lIGFk
-dmljZXMgdG8gdXMgb24gR1BVIFZpcnR1YWxpemF0aW9uIGJhc2VkIG9uIG5vdXZlYXUuIFRoYXQg
-d2lsbCBiZSBncmF0ZWZ1bC4gSeKAmW0gbG9va2luZyBmb3J3YXJkIHRvIHlvdSByZXBseS48bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
-UyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gbGFuZz0iRU4tVVMiPkJlc3QgPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkpheTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwv
-c3Bhbj48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
-
---_000_23237D6EDF923F47ABCC70E942B37DDD43023A9ESZXEMA511MBSchi_--
+--===============0879109073==
+Content-Type: multipart/alternative; boundary="14886129862.7De206.19706";
+ charset="UTF-8"
 
 
---===============0920656461==
+--14886129862.7De206.19706
+Date: Sat, 4 Mar 2017 07:36:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99900
+
+--- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+https://lists.freedesktop.org/archives/nouveau/2017-March/027422.html
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14886129862.7De206.19706
+Date: Sat, 4 Mar 2017 07:36:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
+0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900#c9">Comment=
+ # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
+0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900">bug 99900<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ben Skeggs</span></a>
+</span></b>
+        <pre><a href=3D"https://lists.freedesktop.org/archives/nouveau/2017=
+-March/027422.html">https://lists.freedesktop.org/archives/nouveau/2017-Mar=
+ch/027422.html</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14886129862.7De206.19706--
+
+--===============0879109073==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -128,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0920656461==--
+--===============0879109073==--
