@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99900] [NVC1] nouveau: freeze / crash after kernel
  update to 4.10
-Date: Sat, 04 Mar 2017 07:36:26 +0000
-Message-ID: <bug-99900-8800-JfzIsHm9PW@http.bugs.freedesktop.org/>
+Date: Sat, 04 Mar 2017 07:37:33 +0000
+Message-ID: <bug-99900-8800-DnRr92JoSQ@http.bugs.freedesktop.org/>
 References: <bug-99900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0879109073=="
+Content-Type: multipart/mixed; boundary="===============2097049062=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0879109073==
-Content-Type: multipart/alternative; boundary="14886129862.7De206.19706";
+--===============2097049062==
+Content-Type: multipart/alternative; boundary="14886130530.A91c8691.19789";
  charset="UTF-8"
 
 
---14886129862.7De206.19706
-Date: Sat, 4 Mar 2017 07:36:26 +0000
+--14886130530.A91c8691.19789
+Date: Sat, 4 Mar 2017 07:37:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,15 +36,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99900
 
---- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-https://lists.freedesktop.org/archives/nouveau/2017-March/027422.html
+--- Comment #10 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Oops, ignore previous comment.  Wrong bug!
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14886129862.7De206.19706
-Date: Sat, 4 Mar 2017 07:36:26 +0000
+--14886130530.A91c8691.19789
+Date: Sat, 4 Mar 2017 07:37:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
 0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900#c9">Comment=
- # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900#c10">Commen=
+t # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
@@ -74,9 +74,7 @@ Auto-Submitted: auto-generated
 skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
 <span class=3D"fn">Ben Skeggs</span></a>
 </span></b>
-        <pre><a href=3D"https://lists.freedesktop.org/archives/nouveau/2017=
--March/027422.html">https://lists.freedesktop.org/archives/nouveau/2017-Mar=
-ch/027422.html</a></pre>
+        <pre>Oops, ignore previous comment.  Wrong bug!</pre>
         </div>
       </p>
 
@@ -90,9 +88,9 @@ ch/027422.html</a></pre>
     </body>
 </html>=
 
---14886129862.7De206.19706--
+--14886130530.A91c8691.19789--
 
---===============0879109073==
+--===============2097049062==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0879109073==--
+--===============2097049062==--
