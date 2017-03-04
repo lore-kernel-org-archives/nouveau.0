@@ -1,157 +1,97 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99922] [NVE4] [regression,
- bisected] 4.10 (atomic): X shows black screen with cursor after
- monitors turn off
-Date: Sat, 04 Mar 2017 07:38:36 +0000
-Message-ID: <bug-99922-8800-SRtQyBm6es@http.bugs.freedesktop.org/>
-References: <bug-99922-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: Re: [PATCH 3/5] drm/nouveau: Don't register Thunderbolt eGPU with
+ vga_switcheroo
+Date: Sat, 4 Mar 2017 11:16:36 +0100
+Message-ID: <20170304101636.GA3143@wunner.de>
+References: <cover.1487938188.git.lukas@wunner.de>
+ <859ea96a4aaddd203a6d7795322cf0e4543257b5.1487938188.git.lukas@wunner.de>
+ <CAErSpo5Vvk8F=nVgsvTBze+P-=v2rwk1waUMaGVXj2BDKdsiEg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1952387328=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <CAErSpo5Vvk8F=nVgsvTBze+P-=v2rwk1waUMaGVXj2BDKdsiEg@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Bjorn Helgaas <bhelgaas@google.com>
+Cc: Michael Jamet <michael.jamet@intel.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, DRI mailing list <dri-devel@lists.freedesktop.org>, "Levy,
+ Amir (Jer)" <amir.jer.levy@intel.com>, Ben Skeggs <bskeggs@redhat.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, Peter Wu <peter@lekensteyn.nl>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1952387328==
-Content-Type: multipart/alternative; boundary="14886131163.Ba1d4aFc2.19842";
- charset="UTF-8"
-
-
---14886131163.Ba1d4aFc2.19842
-Date: Sat, 4 Mar 2017 07:38:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99922
-
---- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ben Skeggs from comment #6)
-> (In reply to kevin from comment #5)
-> > Created attachment 129896 [details]
-> > Normal Xorg logs on Linux 4.10 with xf86-video-modesetting
-> >=20
-> > Interestingly, the bug does not appear with the generic modesetting dri=
-ver!
-> > I've attached the Xorg log, but it seems normal.
->=20
-> Yeah, the nouveau 2D driver doesn't handle page flips failing correctly f=
-or
-> some reason (this can happen under atomic when DPMS is set to a power-sav=
-ing
-> mode).
->=20
-> I wasn't able to reproduce this with the nouveau DDX running in its
-> (default) DRI2 mode, only DRI3, so I hadn't prioritized looking into it.
-
-Lyude has posted a patch[1] which should address this issue.
-
-Ben.
-
-[1] https://lists.freedesktop.org/archives/nouveau/2017-March/027422.html
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14886131163.Ba1d4aFc2.19842
-Date: Sat, 4 Mar 2017 07:38:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
-k screen with cursor after monitors turn off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
-k screen with cursor after monitors turn off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922">bug 99922<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>(In reply to Ben Skeggs from <a href=3D"show_bug.cgi?id=3D9992=
-2#c6">comment #6</a>)
-<span class=3D"quote">&gt; (In reply to kevin from <a href=3D"show_bug.cgi?=
-id=3D99922#c5">comment #5</a>)
-&gt; &gt; Created <span class=3D""><a href=3D"attachment.cgi?id=3D129896" n=
-ame=3D"attach_129896" title=3D"Normal Xorg logs on Linux 4.10 with xf86-vid=
-eo-modesetting">attachment 129896</a> <a href=3D"attachment.cgi?id=3D129896=
-&amp;action=3Dedit" title=3D"Normal Xorg logs on Linux 4.10 with xf86-video=
--modesetting">[details]</a></span>
-&gt; &gt; Normal Xorg logs on Linux 4.10 with xf86-video-modesetting
-&gt; &gt;=20
-&gt; &gt; Interestingly, the bug does not appear with the generic modesetti=
-ng driver!
-&gt; &gt; I've attached the Xorg log, but it seems normal.
-&gt;=20
-&gt; Yeah, the nouveau 2D driver doesn't handle page flips failing correctl=
-y for
-&gt; some reason (this can happen under atomic when DPMS is set to a power-=
-saving
-&gt; mode).
-&gt;=20
-&gt; I wasn't able to reproduce this with the nouveau DDX running in its
-&gt; (default) DRI2 mode, only DRI3, so I hadn't prioritized looking into i=
-t.</span >
-
-Lyude has posted a patch[1] which should address this issue.
-
-Ben.
-
-[1] <a href=3D"https://lists.freedesktop.org/archives/nouveau/2017-March/02=
-7422.html">https://lists.freedesktop.org/archives/nouveau/2017-March/027422=
-.html</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14886131163.Ba1d4aFc2.19842--
-
---===============1952387328==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1952387328==--
+T24gRnJpLCBGZWIgMjQsIDIwMTcgYXQgMDI6NTk6NDRQTSAtMDYwMCwgQmpvcm4gSGVsZ2FhcyB3
+cm90ZToKPiBPbiBGcmksIEZlYiAyNCwgMjAxNyBhdCAxOjE5IFBNLCBMdWthcyBXdW5uZXIgPGx1
+a2FzQHd1bm5lci5kZT4gd3JvdGU6Cj4gPiBBbiBleHRlcm5hbCBUaHVuZGVyYm9sdCBHUFUgY2Fu
+IG5laXRoZXIgZHJpdmUgdGhlIGxhcHRvcCdzIHBhbmVsIG5vciBiZQo+ID4gcG93ZXJlZCBvZmYg
+YnkgdGhlIHBsYXRmb3JtLCBzbyB0aGVyZSdzIG5vIHBvaW50IGluIHJlZ2lzdGVyaW5nIGl0IHdp
+dGgKPiA+IHZnYV9zd2l0Y2hlcm9vLgo+IAo+ID4gSW4gZmFjdCwgd2hlbiB0aGUgZXh0ZXJuYWwg
+R1BVIGlzIHJ1bnRpbWUgc3VzcGVuZGVkLAo+ID4gdmdhX3N3aXRjaGVyb28gd2lsbCBjdXQgcG93
+ZXIgdG8gdGhlIGludGVybmFsIGRpc2NyZXRlIEdQVSwgcmVzdWx0aW5nIGluCj4gPiBhIGxvY2t1
+cC4KPiAKPiBXaHkgZG9lcyBzdXNwZW5kaW5nIHRoZSBleHRlcm5hbCBHUFUgY2F1c2UgdmdhX3N3
+aXRjaGVyb28gdG8gY3V0IHBvd2VyCj4gdG8gdGhlIGludGVybmFsIEdQVT8gIE5vIGRvdWJ0IHRo
+aXMgd291bGQgYmUgb2J2aW91cyB0byBhIEdQVSBwZXJzb24sCj4gd2hpY2ggSSBkZWZpbml0ZWx5
+IGFtIG5vdC4KCnZnYV9zd2l0Y2hlcm9vX2luaXRfZG9tYWluX3BtX29wcygpIGlzIGN1cnJlbnRs
+eSBjYWxsZWQgYm90aCBmb3IgYW4KaW50ZXJuYWwgZGlzY3JldGUgR1BVIGFzIHdlbGwgYXMgYW4g
+ZXh0ZXJuYWwgb25lIGF0dGFjaGVkIHdpdGggVGh1bmRlcmJvbHQuCgpUaGF0IGZ1bmN0aW9uIG92
+ZXJyaWRlcyB0aGUgLT5ydW50aW1lX3N1c3BlbmQgaG9vayB0byBjdXQgcG93ZXIgdG8gdGhlCmlu
+dGVybmFsIGRpc2NyZXRlIEdQVSBhZnRlciBydW50aW1lIHN1c3BlbmRpbmcgd2hpY2hldmVyIEdQ
+VSB0aGUKLT5ydW50aW1lX3N1c3BlbmQgaG9vayB3YXMgY2FsbGVkIGZvci4gIFNvIHRoZSBleHRl
+cm5hbCBHUFUgcnVudGltZQpzdXNwZW5kcywgdGhlIGhvb2sgY3V0cyBwb3dlciB0byB0aGUgaW50
+ZXJuYWwgR1BVLCBib29tLgoKVGhlIGZ1bmN0aW9uIHNob3VsZCBvbmx5IGJlIGNhbGxlZCBmb3Ig
+dGhlIGludGVybmFsIEdQVSwgd2hpY2ggaXMgdGhlCm9iamVjdGl2ZSBvZiB0aGlzIHBhdGNoLgoK
+Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3ZnYS5jCj4gPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3ZnYS5jCj4gPiBAQCAtOTUsNiArOTUs
+MTAgQEAgbm91dmVhdV92Z2FfaW5pdChzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSkKPiA+Cj4gPiAg
+ICAgICAgIHZnYV9jbGllbnRfcmVnaXN0ZXIoZGV2LT5wZGV2LCBkZXYsIE5VTEwsIG5vdXZlYXVf
+dmdhX3NldF9kZWNvZGUpOwo+ID4KPiA+ICsgICAgICAgLyogZG9uJ3QgcmVnaXN0ZXIgVGh1bmRl
+cmJvbHQgZUdQVSB3aXRoIHZnYV9zd2l0Y2hlcm9vICovCj4gPiArICAgICAgIGlmIChwY2lfaXNf
+dGh1bmRlcmJvbHRfYXR0YWNoZWQoZGV2LT5wZGV2KSkKPiA+ICsgICAgICAgICAgICAgICByZXR1
+cm47Cj4gCj4gSSBndWVzcyB0aGVyZSdzIG5vIHdheSB0byBtb3ZlIHRoaXMgaW5zaWRlCj4gdmdh
+X3N3aXRjaGVyb29fcmVnaXN0ZXJfY2xpZW50KCkgaW5zdGVhZCBvZiBwdXR0aW5nIHRoZSB0ZXN0
+IGluIGFsbAo+IHRoZSBkcml2ZXJzPwoKSXQncyBvbmx5IG5lZWRlZCBmb3IgYSBzdWJzZXQgb2Yg
+dGhlIGRyaXZlcnMsIGluIHBhcnRpY3VsYXIgbm90IGZvciBpOTE1LgoKVGhlIHByZWZlcnJlZCBh
+cHByb2FjaCBpbiB0aGUga2VybmVsIHNlZW1zIHRvIGJlIHRvIGF2b2lkIG1pZGxheWVycyB3aGlj
+aApidW5kbGUgc3R1ZmYgdGhhdCBpcyBub3QgYXBwbGljYWJsZSB0byBldmVyeSBkcml2ZXIgaW50
+ZXJmYWNpbmcgd2l0aCBpdCwKYW5kIGluc3RlYWQgcHV0IHRoZSBmdW5jdGlvbmFsaXR5IGluIGxp
+YnJhcnkgZnVuY3Rpb25zIHdoaWNoIGRyaXZlcnMgY2FuCm9wdCBpbiB0byBpZiBuZWNlc3Nhcnku
+ICBJbiB0aGlzIGNhc2UgdGhhdCBsaWJyYXJ5IGZ1bmN0aW9uIHdvdWxkIGJlCnBjaV9pc190aHVu
+ZGVyYm9sdF9hdHRhY2hlZCgpLgoKQSBsaW5rIGxpc3Qgb24gbWlkbGF5ZXJzIHZzLiBsaWJyYXJp
+ZXMgaXMgaGVyZToKaHR0cDovL2Jsb2cuZmZ3bGwuY2gvMjAxNi8xMi9taWRsYXllcnMtb25jZS1t
+b3JlLXdpdGgtZmVlbGluZy5odG1sCgoKPiA+IEBAIC0xMTEsNiArMTE1LDExIEBAIG5vdXZlYXVf
+dmdhX2Zpbmkoc3RydWN0IG5vdXZlYXVfZHJtICpkcm0pCj4gPiAgICAgICAgIHN0cnVjdCBkcm1f
+ZGV2aWNlICpkZXYgPSBkcm0tPmRldjsKPiA+ICAgICAgICAgYm9vbCBydW50aW1lID0gZmFsc2U7
+Cj4gPgo+ID4gKyAgICAgICB2Z2FfY2xpZW50X3JlZ2lzdGVyKGRldi0+cGRldiwgTlVMTCwgTlVM
+TCwgTlVMTCk7Cj4gPiArCj4gPiArICAgICAgIGlmIChwY2lfaXNfdGh1bmRlcmJvbHRfYXR0YWNo
+ZWQoZGV2LT5wZGV2KSkKPiA+ICsgICAgICAgICAgICAgICByZXR1cm47Cj4gPiArCj4gPiAgICAg
+ICAgIGlmIChub3V2ZWF1X3J1bnRpbWVfcG0gPT0gMSkKPiA+ICAgICAgICAgICAgICAgICBydW50
+aW1lID0gdHJ1ZTsKPiA+ICAgICAgICAgaWYgKChub3V2ZWF1X3J1bnRpbWVfcG0gPT0gLTEpICYm
+IChub3V2ZWF1X2lzX29wdGltdXMoKSB8fCBub3V2ZWF1X2lzX3YxX2RzbSgpKSkKPiA+IEBAIC0x
+MTksNyArMTI4LDYgQEAgbm91dmVhdV92Z2FfZmluaShzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSkK
+PiA+ICAgICAgICAgdmdhX3N3aXRjaGVyb29fdW5yZWdpc3Rlcl9jbGllbnQoZGV2LT5wZGV2KTsK
+PiA+ICAgICAgICAgaWYgKHJ1bnRpbWUgJiYgbm91dmVhdV9pc192MV9kc20oKSAmJiAhbm91dmVh
+dV9pc19vcHRpbXVzKCkpCj4gPiAgICAgICAgICAgICAgICAgdmdhX3N3aXRjaGVyb29fZmluaV9k
+b21haW5fcG1fb3BzKGRybS0+ZGV2LT5kZXYpOwo+ID4gLSAgICAgICB2Z2FfY2xpZW50X3JlZ2lz
+dGVyKGRldi0+cGRldiwgTlVMTCwgTlVMTCwgTlVMTCk7Cj4gCj4gVGhlIGFtZCAmIHJhZGVvbiBw
+YXRjaGVzIGxvb2sgbGlrZSB0aGlzOgo+IAo+IC0gICAgICAgdmdhX3N3aXRjaGVyb29fdW5yZWdp
+c3Rlcl9jbGllbnQocmRldi0+cGRldik7Cj4gKyAgICAgICBpZiAoIXBjaV9pc190aHVuZGVyYm9s
+dF9hdHRhY2hlZChhZGV2LT5wZGV2KSkKPiArICAgICAgICAgICAgICAgdmdhX3N3aXRjaGVyb29f
+dW5yZWdpc3Rlcl9jbGllbnQoYWRldi0+cGRldik7Cj4gCj4gVGhpcyBub3V2ZWF1IHBhdGNoIGxv
+b2tzIHN1c3BpY2lvdXNseSBkaWZmZXJlbnQuICBCdXQgYWdhaW4sIEknbSBub3QgYQo+IEdQVSBn
+dXkgc28gYWxsIEkgY2FuIHJlYWxseSBzYXkgaXMgImhtbSwgSSB3b25kZXIgd2h5IGl0J3MgZGlm
+ZmVyZW50PyIKCkZ1bmN0aW9uYWxseSBpdCdzIHRoZSBzYW1lLCBpdCBvbmx5IGxvb2tzIGRpZmZl
+cmVudGx5IGJlY2F1c2UgdGhlCkRSTSBkcml2ZXJzIGFyZW4ndCBzdHJ1Y3R1cmVkIGlkZW50aWNh
+bGx5LiAgSW4gcGFydGljdWxhciwgcmFkZW9uCmFuZCBhbWRncHUgY2FsbCB2Z2Ffc3dpdGNoZXJv
+b19pbml0X2RvbWFpbl9wbV9vcHMoKSBvbmx5IGlmIHRoZSBmbGFnClJBREVPTl9JU19QWCAvIEFN
+RF9JU19QWCAoaXMgUG93ZXJYcHJlc3MpIGhhcyBiZWVuIHNldCwgc28gYSBjYWxsCnRvIHBjaV9p
+c190aHVuZGVyYm9sdF9hdHRhY2hlZCgpIGlzIGFkZGVkIHdoZW4gc2V0dGluZyB0aGF0IGZsYWcs
+CndoZXJlYXMgbm91dmVhdSBkb2Vzbid0IGhhdmUgdGhhdCBpbmRpcmVjdGlvbi4KClRoYW5rcywK
+Ckx1a2FzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRy
+aS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
