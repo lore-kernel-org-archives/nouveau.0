@@ -1,14 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 2/9] clk: Remove dstate
-Date: Sun, 5 Mar 2017 11:40:14 -0500
-Message-ID: <CAKb7UvgihqY80HxRXaBiWSdEN8LW9NYx=ZpopSch7UKXx92T1A@mail.gmail.com>
-References: <20170305163507.2002-1-karolherbst@gmail.com>
- <20170305163507.2002-3-karolherbst@gmail.com>
+From: Jack Coulter <jscinoz-6Q7r4viT83dXWpQWGVM7sQ@public.gmane.org>
+Subject: Re: A request for Virtual GPU based on Nouveau
+Date: Mon, 6 Mar 2017 10:54:08 +1100
+Message-ID: <2db4f118-bf11-a3d5-3489-0a315d91f18f@jscinoz.so>
+References: <23237D6EDF923F47ABCC70E942B37DDD43023A9E@SZXEMA511-MBS.china.huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2005517298=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170305163507.2002-3-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <23237D6EDF923F47ABCC70E942B37DDD43023A9E-WoCHQBGQUPbVoO+7gWNeMAK1hpo4iccwjNknBlVQO8k@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,74 +16,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBNYXIgNSwgMjAxNyBhdCAxMTozNSBBTSwgS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJz
-dEBnbWFpbC5jb20+IHdyb3RlOgo+IFdlIHdvbid0IG5lZWQgaXQgbm93LCBiZWNhdXNlIHdlIHdp
-bGwgYWRqdXN0IHRoZSBjbG9ja3MgZGVwZW5kaW5nIG9uIGVuZ2luZQo+IGxvYWRzIGxhdGVyIG9u
-IGFueXdheSBvciBhIHN0YXRpYyBsb2NrdXAgdGFibGUuIEl0IGFsc28gc2ltcGxpZmllcyB0aGUK
-ClByZXN1bWFibHkgImxvb2t1cCI/Cgo+IGNsb2NraW5nIGxvZ2ljLgo+Cj4gVGhpcyBjb2RlIHdh
-cyBub3doZXJlIHVzZWQgYW55d2F5IGFuZCBqdXN0IGEgbW9jayB1cC4KPgo+IFNpZ25lZC1vZmYt
-Ynk6IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgo+IFJldmlld2VkLWJ5OiBN
-YXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BmcmVlLmZyPgo+IC0tLQo+ICBkcm0vbm91dmVhdS9p
-bmNsdWRlL252a20vc3ViZGV2L2Nsay5oIHwgIDIgLS0KPiAgZHJtL25vdXZlYXUvbnZrbS9zdWJk
-ZXYvY2xrL2Jhc2UuYyAgICB8IDE2ICsrLS0tLS0tLS0tLS0tLS0KPiAgMiBmaWxlcyBjaGFuZ2Vk
-LCAyIGluc2VydGlvbnMoKyksIDE2IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RybS9u
-b3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvY2xrLmggYi9kcm0vbm91dmVhdS9pbmNsdWRlL252
-a20vc3ViZGV2L2Nsay5oCj4gaW5kZXggYjJjOTRjZDUuLjY5OTQyYjE0IDEwMDY0NAo+IC0tLSBh
-L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvY2xrLmgKPiArKysgYi9kcm0vbm91dmVh
-dS9pbmNsdWRlL252a20vc3ViZGV2L2Nsay5oCj4gQEAgLTk5LDcgKzk5LDYgQEAgc3RydWN0IG52
-a21fY2xrIHsKPiAgICAgICAgIGludCB1c3RhdGVfYWM7IC8qIHVzZXItcmVxdWVzdGVkICgtMSBk
-aXNhYmxlZCwgLTIgcGVyZm1vbikgKi8KPiAgICAgICAgIGludCB1c3RhdGVfZGM7IC8qIHVzZXIt
-cmVxdWVzdGVkICgtMSBkaXNhYmxlZCwgLTIgcGVyZm1vbikgKi8KPiAgICAgICAgIGludCBhc3Rh
-dGU7IC8qIHBlcmZtb24gYWRqdXN0bWVudCAoYmFzZSkgKi8KPiAtICAgICAgIGludCBkc3RhdGU7
-IC8qIGRpc3BsYXkgYWRqdXN0bWVudCAobWluKykgKi8KPiAgICAgICAgIHU4ICB0ZW1wOwo+Cj4g
-ICAgICAgICBib29sIGFsbG93X3JlY2xvY2s7Cj4gQEAgLTEyMSw3ICsxMjAsNiBAQCBzdHJ1Y3Qg
-bnZrbV9jbGsgewo+ICBpbnQgbnZrbV9jbGtfcmVhZChzdHJ1Y3QgbnZrbV9jbGsgKiwgZW51bSBu
-dl9jbGtfc3JjKTsKPiAgaW50IG52a21fY2xrX3VzdGF0ZShzdHJ1Y3QgbnZrbV9jbGsgKiwgaW50
-IHJlcSwgaW50IHB3cik7Cj4gIGludCBudmttX2Nsa19hc3RhdGUoc3RydWN0IG52a21fY2xrICos
-IGludCByZXEsIGludCByZWwsIGJvb2wgd2FpdCk7Cj4gLWludCBudmttX2Nsa19kc3RhdGUoc3Ry
-dWN0IG52a21fY2xrICosIGludCByZXEsIGludCByZWwpOwo+ICBpbnQgbnZrbV9jbGtfdHN0YXRl
-KHN0cnVjdCBudmttX2NsayAqLCB1OCB0ZW1wZXJhdHVyZSk7Cj4gIGludCBudmttX2Nsa191cGRh
-dGUoc3RydWN0IG52a21fY2xrICpjbGssIGJvb2wgd2FpdCk7Cj4KPiBkaWZmIC0tZ2l0IGEvZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2
-L2Nsay9iYXNlLmMKPiBpbmRleCBlY2ZmM2ZmMy4uMDdkNTMwZWQgMTAwNjQ0Cj4gLS0tIGEvZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwo+ICsrKyBiL2RybS9ub3V2ZWF1L252a20v
-c3ViZGV2L2Nsay9iYXNlLmMKPiBAQCAtMzA2LDE1ICszMDYsMTQgQEAgbnZrbV9jbGtfdXBkYXRl
-X3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQo+ICAgICAgICAgICAgICAgICByZXR1cm47
-Cj4gICAgICAgICBjbGstPnB3cnNyYyA9IHBvd2VyX3N1cHBseV9pc19zeXN0ZW1fc3VwcGxpZWQo
-KTsKPgo+IC0gICAgICAgbnZrbV90cmFjZShzdWJkZXYsICJQICVkIFBXUiAlZCBVKEFDKSAlZCBV
-KERDKSAlZCBBICVkIFQgJWTCsEMgRCAlZFxuIiwKPiArICAgICAgIG52a21fdHJhY2Uoc3ViZGV2
-LCAiUCAlZCBQV1IgJWQgVShBQykgJWQgVShEQykgJWQgQSAlZCBUICVkwrBDXG4iLAo+ICAgICAg
-ICAgICAgICAgICAgICBjbGstPnBzdGF0ZSwgY2xrLT5wd3JzcmMsIGNsay0+dXN0YXRlX2FjLCBj
-bGstPnVzdGF0ZV9kYywKPiAtICAgICAgICAgICAgICAgICAgY2xrLT5hc3RhdGUsIGNsay0+dGVt
-cCwgY2xrLT5kc3RhdGUpOwo+ICsgICAgICAgICAgICAgICAgICBjbGstPmFzdGF0ZSwgY2xrLT50
-ZW1wKTsKPgo+ICAgICAgICAgcHN0YXRlID0gY2xrLT5wd3JzcmMgPyBjbGstPnVzdGF0ZV9hYyA6
-IGNsay0+dXN0YXRlX2RjOwo+ICAgICAgICAgaWYgKGNsay0+c3RhdGVfbnIgJiYgcHN0YXRlICE9
-IC0xKSB7Cj4gICAgICAgICAgICAgICAgIHBzdGF0ZSA9IChwc3RhdGUgPCAwKSA/IGNsay0+YXN0
-YXRlIDogcHN0YXRlOwo+ICAgICAgICAgICAgICAgICBwc3RhdGUgPSBtaW4ocHN0YXRlLCBjbGst
-PnN0YXRlX25yIC0gMSk7Cj4gLSAgICAgICAgICAgICAgIHBzdGF0ZSA9IG1heChwc3RhdGUsIGNs
-ay0+ZHN0YXRlKTsKPiAgICAgICAgIH0gZWxzZSB7Cj4gICAgICAgICAgICAgICAgIHBzdGF0ZSA9
-IGNsay0+cHN0YXRlID0gLTE7Cj4gICAgICAgICB9Cj4gQEAgLTU1NCwxNiArNTUzLDYgQEAgbnZr
-bV9jbGtfdHN0YXRlKHN0cnVjdCBudmttX2NsayAqY2xrLCB1OCB0ZW1wKQo+ICAgICAgICAgcmV0
-dXJuIG52a21fY2xrX3VwZGF0ZShjbGssIGZhbHNlKTsKPiAgfQo+Cj4gLWludAo+IC1udmttX2Ns
-a19kc3RhdGUoc3RydWN0IG52a21fY2xrICpjbGssIGludCByZXEsIGludCByZWwpCj4gLXsKPiAt
-ICAgICAgIGlmICghcmVsKSBjbGstPmRzdGF0ZSAgPSByZXE7Cj4gLSAgICAgICBpZiAoIHJlbCkg
-Y2xrLT5kc3RhdGUgKz0gcmVsOwo+IC0gICAgICAgY2xrLT5kc3RhdGUgPSBtaW4oY2xrLT5kc3Rh
-dGUsIGNsay0+c3RhdGVfbnIgLSAxKTsKPiAtICAgICAgIGNsay0+ZHN0YXRlID0gbWF4KGNsay0+
-ZHN0YXRlLCAwKTsKPiAtICAgICAgIHJldHVybiBudmttX2Nsa191cGRhdGUoY2xrLCB0cnVlKTsK
-PiAtfQo+IC0KPiAgc3RhdGljIGludAo+ICBudmttX2Nsa19wd3JzcmMoc3RydWN0IG52a21fbm90
-aWZ5ICpub3RpZnkpCj4gIHsKPiBAQCAtNjIxLDcgKzYxMCw2IEBAIG52a21fY2xrX2luaXQoc3Ry
-dWN0IG52a21fc3ViZGV2ICpzdWJkZXYpCj4gICAgICAgICAgICAgICAgIHJldHVybiBjbGstPmZ1
-bmMtPmluaXQoY2xrKTsKPgo+ICAgICAgICAgY2xrLT5hc3RhdGUgPSBjbGstPnN0YXRlX25yIC0g
-MTsKPiAtICAgICAgIGNsay0+ZHN0YXRlID0gMDsKPiAgICAgICAgIGNsay0+cHN0YXRlID0gLTE7
-Cj4gICAgICAgICBjbGstPnRlbXAgPSA5MDsgLyogcmVhc29uYWJsZSBkZWZhdWx0IHZhbHVlICov
-Cj4gICAgICAgICBudmttX2Nsa191cGRhdGUoY2xrLCB0cnVlKTsKPiAtLQo+IDIuMTIuMAo+Cj4g
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1
-IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============2005517298==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="GIe8bkBK2LH9cL5U1b1tDr3eClHcofOTv"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--GIe8bkBK2LH9cL5U1b1tDr3eClHcofOTv
+Content-Type: multipart/mixed; boundary="xCL9miSlleCqihwHvNDbAaOoPAVAa31s8";
+ protected-headers="v1"
+From: Jack Coulter <jscinoz-6Q7r4viT83dXWpQWGVM7sQ@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Message-ID: <2db4f118-bf11-a3d5-3489-0a315d91f18f-6Q7r4viT83dXWpQWGVM7sQ@public.gmane.org>
+Subject: Re: [Nouveau] A request for Virtual GPU based on Nouveau
+References: <23237D6EDF923F47ABCC70E942B37DDD43023A9E-WoCHQBGQUPbVoO+7gWNeMAK1hpo4iccwjNknBlVQO8k@public.gmane.org>
+In-Reply-To: <23237D6EDF923F47ABCC70E942B37DDD43023A9E-WoCHQBGQUPbVoO+7gWNeMAK1hpo4iccwjNknBlVQO8k@public.gmane.org>
+
+--xCL9miSlleCqihwHvNDbAaOoPAVAa31s8
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Jay,
+
+
+On 25/02/17 14:39, Zhengjie (PARC) wrote:
+>
+> I know the nouveau project aims to build high-quality, free/libre
+> software drivers for nVidia cards
+> <https://nouveau.freedesktop.org/wiki/CodeNames/>. Maybe
+> the nouveau project developers can do something to help GPU
+> Virtualization. So I=E2=80=99d like to ask whether there is the possibi=
+lity of
+> cooperation on GPU Virtualization between Huawei and the nouveau projec=
+t.
+>
+> Maybe there is another way for cooperation. But I don=E2=80=99t know ho=
+w. Or
+> you can give some advices to us on GPU Virtualization based on
+> nouveau. That will be grateful. I=E2=80=99m looking forward to you repl=
+y.
+>
+I'm no kernel dev, but it's worth mentioning a lot of infrastructure for
+GPU virtualisation was merged in 4.10; specifically the GVT
+functionality written by Intel which makes use of the VFIO mediated
+device framework which itself landed in 4.9, I believe (I could be
+mistaken). It may be worth while asking on the intel-gvt-dev list [1]
+too, as we would surely all benefit from having standard interfaces for
+virtual GPUs regardless of hardware vendor.
+
+You may wish to have a look at the following files & directories in the
+kernel source tree:
+
+Documentation/vfio-mediated-device.txt
+drivers/vfio/mdev/
+drivers/gpu/drm/i915/gvt/
+
+None of this is specifically related to nouveau, but there's certainly
+some common infrastructure (mdev) that could be utilised.
+
+
+[1] https://lists.freedesktop.org/mailman/listinfo/intel-gvt-dev
+
+
+Cheers,
+Jack
+
+
+
+--xCL9miSlleCqihwHvNDbAaOoPAVAa31s8--
+
+--GIe8bkBK2LH9cL5U1b1tDr3eClHcofOTv
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEE71dKCcCYmA5mev89/Re7FwgNKc8FAli8pSQACgkQ/Re7FwgN
+Kc//7g//ZuqZRXqqc6VP7zWRLkguTHaBb2Y1y07hHLxowBz3QtlOeV7yX5fDQXmT
+mWQXOtUYfLfeuWsDHQSYGZ0HMwZiRzO78eQ6GU1ZfsqiY8J3GgflhbEbsHXdrTr/
+gqC7iCWNZmoez6zEzokcu9SJ6QHoX3BCA+vEreCFIb3ZGmrG6S5tXIl3NtjaZedD
+095f45FdU7RpnVejt25vJq1AT8DZ1MXPPFzBVj47GYAOx4zrZl1gElfuk1zVfjXq
+wc2ghD0dHvNZX0TxYhnzJRUknvtkCSzgn30+63MLAZU1mGk8na8SkNkiv0g2rSSI
+ANi0Ktw5B36nAsCsFtPuqJ9Vw45qGP1DBaBOUC2nRfcV5CsosyoG2I2yH7yrPy5Q
+75inyjQWGxgVkrhwAs9gTNzg2kEo+ESSwEay2LfW2Tshizto5hk70V5mkTqBuE9E
+ozz7TlnDpPsA1z+FAU0R5FWUEc1IUeGRBX86MbssLLGqsNuXKVum4mWG74o2eLWV
+xGCAvBbyVBSTzZrSaYNsjpe6GxSHYPxnpY6Pa6TL4TwJmil3BB5NKk5WRuOlPdp9
+76JioO0/DDjLb3TRJ/pegot22QMbWjoEBVgNSEboCId71jA+28p0uFFf22PNnHEB
+pzFS5wUC/foFiKbnYrQ/sZkEwKTjg7MCMzZpLbVTxY8uIa5X7Ys=
+=8/yc
+-----END PGP SIGNATURE-----
+
+--GIe8bkBK2LH9cL5U1b1tDr3eClHcofOTv--
+
+--===============2005517298==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2005517298==--
