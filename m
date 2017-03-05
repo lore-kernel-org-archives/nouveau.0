@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99913] [G96] Reclocking fails on voltage
-Date: Sun, 05 Mar 2017 15:58:39 +0000
-Message-ID: <bug-99913-8800-IrTXcqiJ7i@http.bugs.freedesktop.org/>
-References: <bug-99913-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 0/9] clk subdev updates
+Date: Sun,  5 Mar 2017 17:34:58 +0100
+Message-ID: <20170305163507.2002-1-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1633010587=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,83 +18,37 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1633010587==
-Content-Type: multipart/alternative; boundary="14887295192.6EebB.6087";
- charset="UTF-8"
-
-
---14887295192.6EebB.6087
-Date: Sun, 5 Mar 2017 15:58:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99913
-
---- Comment #11 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-but you can use OpenGL stuff to confirm if it doesn't use the higher clocks
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14887295192.6EebB.6087
-Date: Sun, 5 Mar 2017 15:58:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c11">Commen=
-t # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913">bug 99913<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
-</span></b>
-        <pre>but you can use OpenGL stuff to confirm if it doesn't use the =
-higher clocks</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14887295192.6EebB.6087--
-
---===============1633010587==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1633010587==--
+VGhpcyBzZXJpZXMgYWRkcmVzc2VzIHZhcmlvdXMgaXNzdWVzIGluc2lkZSB0aGUgcmVjbG9ja2lu
+ZyBjb2RlOgoxLiBhZnRlciByZXN1bWUgdGhlIHNldCBjbG9ja3MgYXJlIHJlc2V0CjIuIHJlY2xv
+Y2tpbmcgbm90IHBvc3NpYmxlIHdoaWxlIEdQVSBpcyBzdXNwZW5kZWQKMy4gbm91dmVhdSBhbHdh
+eXMgZG9lcyBmdWxsIHJlY2xvY2tzIGV2ZW4gaWYgb25seSBhIGNoYW5nZSBvZiB0aGUgdm9sdGFn
+ZSBpcwogICByZXF1aXJlZAoKU29tZSBvZiB0aGUgcGF0Y2hlcyB3ZXJlIHBhcnQgb2YgdGhlIGJp
+Z2dlciByZWNsb2NraW5nIHNlcmllcyBJIHNlbnQgbW9udGhzCmFnbywgc29tZSB0aGluZ3MgaGF2
+ZSBjaGFuZ2VkIHRob3VnaC4KClRoaXMgaXMgYWxzbyBwcmVwYXJhdGlvbiB3b3JrIG9mIGNoYW5n
+aW5nIHRoZSBjbG9jayBzdGF0ZSBkdWUgdG8gdGVtcGVyYXR1cmUKY2hhbmdlcyBhbmQgZHluYW1p
+YyByZWNsb2NraW5nLgoKS2Fyb2wgSGVyYnN0ICg5KToKICBjbGs6IFJlbmFtZSBudmttX3BzdGF0
+ZV9jYWxjIHRvIG52a21fY2xrX3VwZGF0ZSBhbmQgZXhwb3J0IGl0CiAgY2xrOiBSZW1vdmUgZHN0
+YXRlCiAgY2xrOiBNYWtlIHBzdGF0ZSBhIHBvaW50ZXIgdG8gbnZrbV9wc3RhdGUKICBjbGs6IEhv
+bGQgaW5mb3JtYXRpb24gYWJvdXQgdGhlIGN1cnJlbnQgY3N0YXRlIHN0YXR1cwogIGNsazogV2Ug
+c2hvdWxkIHBhc3MgdGhlIHBzdGF0ZSBpZCBhcm91bmQgbm90IHRoZSBpbmRleCBpbiB0aGUgbGlz
+dAogIGNsazogU3BsaXQgb3V0IHVwZGF0ZSBjb2RlIHRvIG52NDAKICBjbGs6IE9ubHkgZG8gcGFy
+dGlhbCByZWNsb2NrcyBhcyByZXF1aXJlZAogIGNsazogU2V0IGNsb2NrcyB0byBwcmUgc3VzcGVu
+ZCBzdGF0ZSBhZnRlciBzdXNwZW5kCiAgY2xrOiBDaGVjayBwbV9ydW50aW1lIHN0YXR1cyBiZWZv
+cmUgcmVjbG9ja2luZwoKIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvY2xrLmggfCAg
+IDkgKy0KIGRybS9ub3V2ZWF1L25vdXZlYXVfZGVidWdmcy5jICAgICAgICAgfCAgIDYgKy0KIGRy
+bS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9jdHJsLmMgfCAgIDUgKy0KIGRybS9ub3V2ZWF1
+L252a20vc3ViZGV2L2Nsay9iYXNlLmMgICAgfCAxOTIgKysrKysrKysrKysrKysrKysrKystLS0t
+LS0tLS0tLS0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2c4NC5jICAgICB8ICAgMSAr
+CiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2YxMDAuYyAgIHwgIDYzICsrKysrKysrKysr
+CiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2sxMDQuYyAgIHwgICAxICsKIGRybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2Nsay9nazIwYS5jICAgfCAgIDEgKwogZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvY2xrL2dtMjBiLmMgICB8ICAgMSArCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsv
+Z3QyMTUuYyAgIHwgICAxICsKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9tY3A3Ny5jICAg
+fCAgIDEgKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL252NDAuYyAgICB8ICAxOCArKysr
+CiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvbnY1MC5jICAgIHwgICAxICsKIGRybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2Nsay9wcml2LmggICAgfCAgMTMgKysrCiBkcm0vbm91dmVhdS9udmtt
+L3N1YmRldi9wbXUvZ2syMGEuYyAgIHwgIDE4ICsrLS0KIDE1IGZpbGVzIGNoYW5nZWQsIDIzMiBp
+bnNlcnRpb25zKCspLCA5OSBkZWxldGlvbnMoLSkKCi0tIAoyLjEyLjAKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
