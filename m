@@ -1,16 +1,12 @@
-From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Subject: Re: [PATCH 1/5] PCI: Recognize Thunderbolt devices
-Date: Sat, 4 Mar 2017 12:14:46 +0100
-Message-ID: <20170304111446.GB3143@wunner.de>
-References: <cover.1487938188.git.lukas@wunner.de>
- <c42a235e126f273e9b8712a7154f813f757db507.1487938188.git.lukas@wunner.de>
- <20170224221724.GA26430@bhelgaas-glaptop.roam.corp.google.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99913] [G96] Reclocking fails on voltage
+Date: Sun, 05 Mar 2017 10:05:59 +0000
+Message-ID: <bug-99913-8800-rchTuaurb7@http.bugs.freedesktop.org/>
+References: <bug-99913-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0971888579=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20170224221724.GA26430-1RhO1Y9PlrlHTL0Zs8A6p5iNqAH0jzoTYJqu5kTmcBRl57MIdRCFDg@public.gmane.org>
+In-Reply-To: <bug-99913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,64 +16,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Michael Jamet <michael.jamet-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, platform-driver-x86-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Amir Levy <amir.jer.levy-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, Darren Hart <dvhart-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>, Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Christian Koenig <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Andy Shevchenko <andy-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBGZWIgMjQsIDIwMTcgYXQgMDQ6MTc6MjRQTSAtMDYwMCwgQmpvcm4gSGVsZ2FhcyB3
-cm90ZToKPiBPbiBGcmksIEZlYiAyNCwgMjAxNyBhdCAwODoxOTo0NVBNICswMTAwLCBMdWthcyBX
-dW5uZXIgd3JvdGU6Cj4gPiBEZXRlY3Qgb24gcHJvYmUgd2hldGhlciBhIFBDSSBkZXZpY2UgaXMg
-cGFydCBvZiBhIFRodW5kZXJib2x0IGNvbnRyb2xsZXIuClsuLi5dCj4gPiAqIElmIGFuIGV4dGVy
-bmFsIFRodW5kZXJib2x0IEdQVSBpcyBjb25uZWN0ZWQgdG8gYSBkdWFsIEdQVSBsYXB0b3AgKE1h
-Ywo+ID4gICBvciBub3QpLCB0aGF0IEdQVSBpcyBjdXJyZW50bHkgcmVnaXN0ZXJlZCB3aXRoIHZn
-YV9zd2l0Y2hlcm9vIGV2ZW4KPiA+ICAgdGhvdWdoIGl0IGNhbiBuZWl0aGVyIGRyaXZlIHRoZSBs
-YXB0b3AncyBwYW5lbCBub3IgYmUgcG93ZXJlZCBvZmYgYnkKPiA+ICAgdGhlIHBsYXRmb3JtLiAg
-VG8gdmdhX3N3aXRjaGVyb28gaXQgd2lsbCBhcHBlYXIgYXMgaWYgdHdvIGRpc2NyZXRlCj4gPiAg
-IEdQVXMgYXJlIHByZXNlbnQuICBBcyBhIHJlc3VsdCwgd2hlbiB0aGUgZXh0ZXJuYWwgR1BVIGlz
-IHJ1bnRpbWUKPiA+ICAgc3VzcGVuZGVkLCB2Z2Ffc3dpdGNoZXJvbyB3aWxsIGN1dCBwb3dlciB0
-byB0aGUgaW50ZXJuYWwgZGlzY3JldGUgR1BVCj4gPiAgIHdoaWNoIG1heSBub3QgYmUgcnVudGlt
-ZSBzdXNwZW5kZWQgYXQgYWxsIGF0IHRoaXMgbW9tZW50LiAgVGhlCj4gPiAgIHNvbHV0aW9uIGlz
-IHRvIG5vdCByZWdpc3RlciBleHRlcm5hbCBHUFVzIHdpdGggdmdhX3N3aXRjaGVyb28sIHdoaWNo
-Cj4gPiAgIG5lY2Vzc2l0YXRlcyBhIHdheSB0byByZWNvZ25pemUgaWYgdGhleSdyZSBvbiBhIFRo
-dW5kZXJib2x0IGRhaXN5Cj4gPiAgIGNoYWluLgo+IAo+IElmIEkgdW5kZXJzdGFuZCBjb3JyZWN0
-bHksIHZnYV9zd2l0Y2hlcm9vIG1hbmFnZXMgdHdvIEdQVXMgdGhhdCBoYXZlIGEKPiBzaW5nbGUg
-b3V0cHV0OiBlaXRoZXIgdGhlcmUncyBhIG11eCB0aGF0IGNvbm5lY3RzIG9uZSBHUFUgb3IgdGhl
-IG90aGVyCj4gdG8gdGhlIG91dHB1dCwgb3Igb25lIEdQVSBpcyBwZXJtYW5lbnRseSBjb25uZWN0
-ZWQgdG8gdGhlIG91dHB1dCBhbmQKPiB0aGUgb3RoZXIgZG9lcyBvZmZsaW5lIHJlbmRlcmluZy4K
-ClRoZXJlIGFyZSB0d28gYXNwZWN0cyB0byBoeWJyaWQgZ3JhcGhpY3MsIHN3aXRjaGluZyB0aGUg
-cGFuZWwgYmV0d2VlbgpHUFVzIGFuZCBwb3dlcmluZyBvZmYgdGhlIGRpc2NyZXRlIEdQVS4gIChT
-b21lIGxhcHRvcHMgY2FuIGFsc28gc3dpdGNoCmV4dGVybmFsIERQIHBvcnRzIGJldHdlZW4gR1BV
-cyBhbmQgc29tZSwgYXMgeW91IHNheSwgY2Fubm90IHN3aXRjaCB0aGUKcGFuZWwgYW5kIG9ubHkg
-dXNlIHRoZSBkaXNjcmV0ZSBHUFUgZm9yIHJlbmRlciBvZmZsb2FkaW5nLikKCgo+IFRvIHRoaXMg
-bm9uLUdQVSBwZXJzb24sIGl0IHNvdW5kcyBsaWtlIHRoZSBpbXBvcnRhbnQgcXVlc3Rpb24gaXMK
-PiB3aGV0aGVyIHR3byBHUFVzIGFyZSByZWxhdGVkIGluIHRoaXMgd2F5IChlaXRoZXIgdGhleSBm
-ZWVkIHRoZSBzYW1lCj4gbXV4LCBvciB0aGVyZSdzIHNvbWUgc3BlY2lhbCBvZmZsaW5lIHJlbmRl
-cmluZyBjb25uZWN0aW9uIGJldHdlZW4KPiB0aGVtKS4gIFRoYXQgc291bmRzIHVucmVsYXRlZCB0
-byB0aGUgcXVlc3Rpb24gb2YgaG93IHRoZSBHUFVzCj4gdGhlbXNlbHZlcyBhcmUgY29ubmVjdGVk
-IHRvIHRoZSBQQ0kgaGllcmFyY2h5LgoKVG8gdGhlIGJlc3Qgb2YgbXkga25vd2xlZGdlIHRoZXJl
-J3Mgbm8gZGVmaW5pdGUgd2F5IHRvIGRldGVybWluZSB3aGV0aGVyCnR3byBHUFVzIGFyZSBjb25u
-ZWN0ZWQgdG8gdGhlIHNhbWUgcGFuZWwgdmlhIGEgbXV4LgoKVGhlcmUgaXMgYWxzbyBubyBzdWNo
-IHRoaW5nIGFzIGEgc3BlY2lhbCByZW5kZXIgb2ZmbG9hZGluZyBjb25uZWN0aW9uOgpGcmFtZXMg
-YXJlIGNvbXB1dGVkIG9uIGEgZGlzY3JldGUgR1BVLCB0aGVuIGNvcGllZCBvdmVyIFBDSWUgaW50
-byB0aGUKZnJhbWVidWZmZXIgb2YgdGhlIGludGVncmF0ZWQgR1BVLiAgV2hldGhlciB0aGF0IGRp
-c2NyZXRlIEdQVSBpcwpvbi1ib2FyZCBvciBleHRlcm5hbGx5IGNvbm5lY3RlZCBpcyBjb21wbGV0
-ZWx5IHRyYW5zcGFyZW50IGFuZCBub3QKZGlzY2VybmlibGUgb3RoZXIgdGhhbiBieSBsb29raW5n
-IGF0IHRoZSBQQ0kgaGllcmFyY2h5LgoKVGhlIHNhbWUgaXNzdWUgZXhpc3RzIGZvciBIRCBBdWRp
-byBjb250cm9sbGVycyBpbnRlZ3JhdGVkIGludG8gbWFueQpkaXNjcmV0ZSBHUFVzOiAgVG8gdGhl
-IE9TIHRoZXNlIGxvb2sgbGlrZSBzZXBhcmF0ZSBQQ0kgZnVuY3Rpb25zCmFuZCBpbiBzb3VuZC9w
-Y2kvaGRhL2hkYV9pbnRlbC5jOmdldF9ib3VuZF92Z2EoKSB3ZSBsZXZlcmFnZSB0aGUgZmFjdAp0
-aGF0IHRoZSBHUFUgaXMgYWx3YXlzIGZ1bmN0aW9uIDAgYW5kIHRoZSBIRCBBdWRpbyBpcyBmdW5j
-dGlvbiAxIHRvCmRpc2NvdmVyIHRoZSBHUFUgY29ycmVzcG9uZGluZyB0byBhIHBhcnRpY3VsYXIg
-SEQgQXVkaW8gY29udHJvbGxlci4KU28gYWdhaW4gdGhhdCByZWxhdGlvbnNoaXAgaXMgZGVkdWNl
-ZCBmcm9tIHRoZSBQQ0kgaGllcmFyY2h5LgoKCj4gRnJvbSBhIHB1cmUgUENJIHBlcnNwZWN0aXZl
-LCBJIGFzc3VtZSBpdCB3b3VsZCBiZSBjb25jZWl2YWJsZSB0byBoYXZlCj4gdHdvIFRodW5kZXJi
-b2x0LWNvbm5lY3RlZCBHUFVzIGZlZWRpbmcgaW50byBhIG11eC4gIE9yIHRvIGhhdmUgYSBHUFUK
-PiAodW5yZWxhdGVkIHRvIHRoZSBtdXgpIGluIGEgbm9uLVRodW5kZXJib2x0IHBsdWdpbiBzbG90
-IG9yIGNvbm5lY3RlZAo+IGV4dGVybmFsbHkgdmlhIGEgbm9uLVRodW5kZXJib2x0IHN3aXRjaCBh
-bmQgYW4gaVBhc3MgY2FibGUuCgpUZWNobmljYWxseSBzdWNoIHByb2R1Y3RzIHdvdWxkIGJlIHBv
-c3NpYmxlLCBidXQgSSBiZWxpZXZlIHRoZXkgZG9uJ3QKZXhpc3QuICAoVW5saWtlIFRodW5kZXJi
-b2x0IGVHUFVzLCB3aGljaCBoYXZlIGJlZW4gb24gdGhlIG1hcmtldCBmb3IKYSBmZXcgeWVhcnMu
-KQoKVGhhbmtzLAoKTHVrYXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cg==
+
+--===============0971888579==
+Content-Type: multipart/alternative; boundary="14887083591.4c93.16622";
+ charset="UTF-8"
+
+
+--14887083591.4c93.16622
+Date: Sun, 5 Mar 2017 10:05:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99913
+
+--- Comment #8 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+it would be quite unpleasant if nvidia would indeed use the highest clock l=
+evel
+here.
+
+And that mmiotrace seems a bit odd, because it accesses a GPIO which should=
+n't
+exist and in any case it doesn't change the voltage of that GPU.
+
+Would you mind checking what nvidia clocks to on this system?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14887083591.4c93.16622
+Date: Sun, 5 Mar 2017 10:05:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [G96] Reclocking fails on voltage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c8">Comment=
+ # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [G96] Reclocking fails on voltage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913">bug 99913<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+</span></b>
+        <pre>it would be quite unpleasant if nvidia would indeed use the hi=
+ghest clock level
+here.
+
+And that mmiotrace seems a bit odd, because it accesses a GPIO which should=
+n't
+exist and in any case it doesn't change the voltage of that GPU.
+
+Would you mind checking what nvidia clocks to on this system?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14887083591.4c93.16622--
+
+--===============0971888579==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0971888579==--
