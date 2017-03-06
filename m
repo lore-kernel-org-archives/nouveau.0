@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99922] [NVE4] [regression,
  bisected] 4.10 (atomic): X shows black screen with cursor after
  monitors turn off
-Date: Mon, 06 Mar 2017 23:21:25 +0000
-Message-ID: <bug-99922-8800-aS8AnenbgQ@http.bugs.freedesktop.org/>
+Date: Mon, 06 Mar 2017 23:23:11 +0000
+Message-ID: <bug-99922-8800-rcQHWp3UyO@http.bugs.freedesktop.org/>
 References: <bug-99922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0898456109=="
+Content-Type: multipart/mixed; boundary="===============1596573362=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,13 +22,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0898456109==
-Content-Type: multipart/alternative; boundary="14888424851.04BAF.3604";
+--===============1596573362==
+Content-Type: multipart/alternative; boundary="14888425913.8fCFED90F.4170";
  charset="UTF-8"
 
 
---14888424851.04BAF.3604
-Date: Mon, 6 Mar 2017 23:21:25 +0000
+--14888425913.8fCFED90F.4170
+Date: Mon, 6 Mar 2017 23:23:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -37,17 +37,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99922
 
---- Comment #10 from kevin-Fk+Xth6EFAKtEw7EPzjzzg@public.gmane.org ---
-The patch indeed fixes this issue! The monitors go to sleep and wake up wit=
-hout
-problems.
+--- Comment #11 from bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org ---
+I can also confirm that the patch fixes the problem.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14888424851.04BAF.3604
-Date: Mon, 6 Mar 2017 23:21:25 +0000
+--14888425913.8fCFED90F.4170
+Date: Mon, 6 Mar 2017 23:23:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +63,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
 k screen with cursor after monitors turn off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c10">Commen=
-t # 10</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c11">Commen=
+t # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
@@ -74,12 +72,10 @@ k screen with cursor after monitors turn off"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922">bug 99922<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-kevin&#64;potatofrom.space" title=3D"kevin&#64;potatofrom.space">kevin&#64;=
-potatofrom.space</a>
+bastian.beischer&#64;rwth-aachen.de" title=3D"bastian.beischer&#64;rwth-aac=
+hen.de">bastian.beischer&#64;rwth-aachen.de</a>
 </span></b>
-        <pre>The patch indeed fixes this issue! The monitors go to sleep an=
-d wake up without
-problems.</pre>
+        <pre>I can also confirm that the patch fixes the problem.</pre>
         </div>
       </p>
 
@@ -93,9 +89,9 @@ problems.</pre>
     </body>
 </html>=
 
---14888424851.04BAF.3604--
+--14888425913.8fCFED90F.4170--
 
---===============0898456109==
+--===============1596573362==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0898456109==--
+--===============1596573362==--
