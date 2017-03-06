@@ -1,15 +1,14 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH 1/9] clk: Rename nvkm_pstate_calc to
- nvkm_clk_update and export it
-Date: Tue, 7 Mar 2017 01:09:43 +0200
-Message-ID: <d10d017b-89f3-6cf8-9afb-43bf0a5ce6f7@free.fr>
-References: <20170305163507.2002-1-karolherbst@gmail.com>
- <20170305163507.2002-2-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99922] [NVE4] [regression,
+ bisected] 4.10 (atomic): X shows black screen with cursor after
+ monitors turn off
+Date: Mon, 06 Mar 2017 23:21:25 +0000
+Message-ID: <bug-99922-8800-aS8AnenbgQ@http.bugs.freedesktop.org/>
+References: <bug-99922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0898456109=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170305163507.2002-2-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-99922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,82 +18,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDUvMDMvMTcgMTg6MzQsIEthcm9sIEhlcmJzdCB3cm90ZToKPiBUaGlzIGZ1bmN0aW9uIHdp
-bGwgYmUgdXNlZCB0byB1cGRhdGUgdGhlIGN1cnJlbnQgY2xvY2sgc3RhdGUuCj4KPiBUaGlzIHdp
-bGwgaGFwcGVuIGZvciB2YXJpb3VzIHJlYXNvbnM6Cj4gICAqIFRlbXBlcmF0dXJlIGNoYW5nZXMK
-PiAgICogVXNlciBjaGFuZ2VzIGNsb2NraW5nIHN0YXRlCj4gICAqIExvYWQgY2hhbmdlcwo+Cj4g
-U2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Cj4gLS0t
-Cj4gIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvY2xrLmggfCAgMSArCj4gIGRybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgICAgfCAyNiArKysrKysrKysrKysrKysrLS0t
-LS0tLS0tLQo+ICAyIGZpbGVzIGNoYW5nZWQsIDE3IGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9u
-cygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvY2xr
-LmggYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Nsay5oCj4gaW5kZXggZTUyNzVm
-NzQuLmIyYzk0Y2Q1IDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJk
-ZXYvY2xrLmgKPiArKysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Nsay5oCj4g
-QEAgLTEyMyw2ICsxMjMsNyBAQCBpbnQgbnZrbV9jbGtfdXN0YXRlKHN0cnVjdCBudmttX2NsayAq
-LCBpbnQgcmVxLCBpbnQgcHdyKTsKPiAgaW50IG52a21fY2xrX2FzdGF0ZShzdHJ1Y3QgbnZrbV9j
-bGsgKiwgaW50IHJlcSwgaW50IHJlbCwgYm9vbCB3YWl0KTsKPiAgaW50IG52a21fY2xrX2RzdGF0
-ZShzdHJ1Y3QgbnZrbV9jbGsgKiwgaW50IHJlcSwgaW50IHJlbCk7Cj4gIGludCBudmttX2Nsa190
-c3RhdGUoc3RydWN0IG52a21fY2xrICosIHU4IHRlbXBlcmF0dXJlKTsKPiAraW50IG52a21fY2xr
-X3VwZGF0ZShzdHJ1Y3QgbnZrbV9jbGsgKmNsaywgYm9vbCB3YWl0KTsKClRvIGtlZXAgaW4gbGlu
-ZSB3aXRoIHRoZSByZXN0LCBwbGVhc2UgZ2V0IHJpZCBvZiAnY2xrJy4KCk90aGVyd2lzZSwgbG9v
-a3MgZ29vZCB0byBtZSEKCj4KPiAgaW50IG52MDRfY2xrX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2Ug
-KiwgaW50LCBzdHJ1Y3QgbnZrbV9jbGsgKiopOwo+ICBpbnQgbnY0MF9jbGtfbmV3KHN0cnVjdCBu
-dmttX2RldmljZSAqLCBpbnQsIHN0cnVjdCBudmttX2NsayAqKik7Cj4gZGlmZiAtLWdpdCBhL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9jbGsvYmFzZS5jCj4gaW5kZXggZTRjOGQzMTAuLmVjZmYzZmYzIDEwMDY0NAo+IC0tLSBhL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMKPiArKysgYi9kcm0vbm91dmVhdS9udmtt
-L3N1YmRldi9jbGsvYmFzZS5jCj4gQEAgLTI5Niw3ICsyOTYsNyBAQCBudmttX3BzdGF0ZV9wcm9n
-KHN0cnVjdCBudmttX2NsayAqY2xrLCBpbnQgcHN0YXRlaSkKPiAgfQo+Cj4gIHN0YXRpYyB2b2lk
-Cj4gLW52a21fcHN0YXRlX3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQo+ICtudmttX2Ns
-a191cGRhdGVfd29yayhzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmspCj4gIHsKPiAgCXN0cnVjdCBu
-dmttX2NsayAqY2xrID0gY29udGFpbmVyX29mKHdvcmssIHR5cGVvZigqY2xrKSwgd29yayk7Cj4g
-IAlzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldiA9ICZjbGstPnN1YmRldjsKPiBAQCAtMzMyLDkg
-KzMzMiwxNSBAQCBudmttX3BzdGF0ZV93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKPiAg
-CW52a21fbm90aWZ5X2dldCgmY2xrLT5wd3JzcmNfbnRmeSk7Cj4gIH0KPgo+IC1zdGF0aWMgaW50
-Cj4gLW52a21fcHN0YXRlX2NhbGMoc3RydWN0IG52a21fY2xrICpjbGssIGJvb2wgd2FpdCkKPiAr
-aW50Cj4gK252a21fY2xrX3VwZGF0ZShzdHJ1Y3QgbnZrbV9jbGsgKmNsaywgYm9vbCB3YWl0KQo+
-ICB7Cj4gKwlpZiAoIWNsaykKPiArCQlyZXR1cm4gLUVJTlZBTDsKPiArCj4gKwlpZiAoIWNsay0+
-YWxsb3dfcmVjbG9jaykKPiArCQlyZXR1cm4gLUVOT0RFVjsKPiArCj4gIAlhdG9taWNfc2V0KCZj
-bGstPndhaXRpbmcsIDEpOwo+ICAJc2NoZWR1bGVfd29yaygmY2xrLT53b3JrKTsKPiAgCWlmICh3
-YWl0KQo+IEBAIC01MjQsNyArNTMwLDcgQEAgbnZrbV9jbGtfdXN0YXRlKHN0cnVjdCBudmttX2Ns
-ayAqY2xrLCBpbnQgcmVxLCBpbnQgcHdyKQo+ICAJaWYgKHJldCA+PSAwKSB7Cj4gIAkJaWYgKHJl
-dCAtPSAyLCBwd3IpIGNsay0+dXN0YXRlX2FjID0gcmV0Owo+ICAJCWVsc2UJCSAgIGNsay0+dXN0
-YXRlX2RjID0gcmV0Owo+IC0JCXJldHVybiBudmttX3BzdGF0ZV9jYWxjKGNsaywgdHJ1ZSk7Cj4g
-KwkJcmV0dXJuIG52a21fY2xrX3VwZGF0ZShjbGssIHRydWUpOwo+ICAJfQo+ICAJcmV0dXJuIHJl
-dDsKPiAgfQo+IEBAIC01MzYsNyArNTQyLDcgQEAgbnZrbV9jbGtfYXN0YXRlKHN0cnVjdCBudmtt
-X2NsayAqY2xrLCBpbnQgcmVxLCBpbnQgcmVsLCBib29sIHdhaXQpCj4gIAlpZiAoIHJlbCkgY2xr
-LT5hc3RhdGUgKz0gcmVsOwo+ICAJY2xrLT5hc3RhdGUgPSBtaW4oY2xrLT5hc3RhdGUsIGNsay0+
-c3RhdGVfbnIgLSAxKTsKPiAgCWNsay0+YXN0YXRlID0gbWF4KGNsay0+YXN0YXRlLCAwKTsKPiAt
-CXJldHVybiBudmttX3BzdGF0ZV9jYWxjKGNsaywgd2FpdCk7Cj4gKwlyZXR1cm4gbnZrbV9jbGtf
-dXBkYXRlKGNsaywgd2FpdCk7Cj4gIH0KPgo+ICBpbnQKPiBAQCAtNTQ1LDcgKzU1MSw3IEBAIG52
-a21fY2xrX3RzdGF0ZShzdHJ1Y3QgbnZrbV9jbGsgKmNsaywgdTggdGVtcCkKPiAgCWlmIChjbGst
-PnRlbXAgPT0gdGVtcCkKPiAgCQlyZXR1cm4gMDsKPiAgCWNsay0+dGVtcCA9IHRlbXA7Cj4gLQly
-ZXR1cm4gbnZrbV9wc3RhdGVfY2FsYyhjbGssIGZhbHNlKTsKPiArCXJldHVybiBudmttX2Nsa191
-cGRhdGUoY2xrLCBmYWxzZSk7Cj4gIH0KPgo+ICBpbnQKPiBAQCAtNTU1LDcgKzU2MSw3IEBAIG52
-a21fY2xrX2RzdGF0ZShzdHJ1Y3QgbnZrbV9jbGsgKmNsaywgaW50IHJlcSwgaW50IHJlbCkKPiAg
-CWlmICggcmVsKSBjbGstPmRzdGF0ZSArPSByZWw7Cj4gIAljbGstPmRzdGF0ZSA9IG1pbihjbGst
-PmRzdGF0ZSwgY2xrLT5zdGF0ZV9uciAtIDEpOwo+ICAJY2xrLT5kc3RhdGUgPSBtYXgoY2xrLT5k
-c3RhdGUsIDApOwo+IC0JcmV0dXJuIG52a21fcHN0YXRlX2NhbGMoY2xrLCB0cnVlKTsKPiArCXJl
-dHVybiBudmttX2Nsa191cGRhdGUoY2xrLCB0cnVlKTsKPiAgfQo+Cj4gIHN0YXRpYyBpbnQKPiBA
-QCAtNTYzLDcgKzU2OSw3IEBAIG52a21fY2xrX3B3cnNyYyhzdHJ1Y3QgbnZrbV9ub3RpZnkgKm5v
-dGlmeSkKPiAgewo+ICAJc3RydWN0IG52a21fY2xrICpjbGsgPQo+ICAJCWNvbnRhaW5lcl9vZihu
-b3RpZnksIHR5cGVvZigqY2xrKSwgcHdyc3JjX250ZnkpOwo+IC0JbnZrbV9wc3RhdGVfY2FsYyhj
-bGssIGZhbHNlKTsKPiArCW52a21fY2xrX3VwZGF0ZShjbGssIGZhbHNlKTsKPiAgCXJldHVybiBO
-VktNX05PVElGWV9EUk9QOwo+ICB9Cj4KPiBAQCAtNjE4LDcgKzYyNCw3IEBAIG52a21fY2xrX2lu
-aXQoc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYpCj4gIAljbGstPmRzdGF0ZSA9IDA7Cj4gIAlj
-bGstPnBzdGF0ZSA9IC0xOwo+ICAJY2xrLT50ZW1wID0gOTA7IC8qIHJlYXNvbmFibGUgZGVmYXVs
-dCB2YWx1ZSAqLwo+IC0JbnZrbV9wc3RhdGVfY2FsYyhjbGssIHRydWUpOwo+ICsJbnZrbV9jbGtf
-dXBkYXRlKGNsaywgdHJ1ZSk7Cj4gIAlyZXR1cm4gMDsKPiAgfQo+Cj4gQEAgLTY3NSw3ICs2ODEs
-NyBAQCBudmttX2Nsa19jdG9yKGNvbnN0IHN0cnVjdCBudmttX2Nsa19mdW5jICpmdW5jLCBzdHJ1
-Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwKPiAgCWNsay0+dXN0YXRlX2RjID0gLTE7Cj4gIAljbGst
-PmFsbG93X3JlY2xvY2sgPSBhbGxvd19yZWNsb2NrOwo+Cj4gLQlJTklUX1dPUksoJmNsay0+d29y
-aywgbnZrbV9wc3RhdGVfd29yayk7Cj4gKwlJTklUX1dPUksoJmNsay0+d29yaywgbnZrbV9jbGtf
-dXBkYXRlX3dvcmspOwo+ICAJaW5pdF93YWl0cXVldWVfaGVhZCgmY2xrLT53YWl0KTsKPiAgCWF0
-b21pY19zZXQoJmNsay0+d2FpdGluZywgMCk7Cj4KPgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+
+--===============0898456109==
+Content-Type: multipart/alternative; boundary="14888424851.04BAF.3604";
+ charset="UTF-8"
+
+
+--14888424851.04BAF.3604
+Date: Mon, 6 Mar 2017 23:21:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99922
+
+--- Comment #10 from kevin-Fk+Xth6EFAKtEw7EPzjzzg@public.gmane.org ---
+The patch indeed fixes this issue! The monitors go to sleep and wake up wit=
+hout
+problems.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14888424851.04BAF.3604
+Date: Mon, 6 Mar 2017 23:21:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
+k screen with cursor after monitors turn off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c10">Commen=
+t # 10</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
+k screen with cursor after monitors turn off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922">bug 99922<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+kevin&#64;potatofrom.space" title=3D"kevin&#64;potatofrom.space">kevin&#64;=
+potatofrom.space</a>
+</span></b>
+        <pre>The patch indeed fixes this issue! The monitors go to sleep an=
+d wake up without
+problems.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14888424851.04BAF.3604--
+
+--===============0898456109==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0898456109==--
