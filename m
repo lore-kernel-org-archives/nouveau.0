@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Tue, 07 Mar 2017 05:12:49 +0000
-Message-ID: <bug-94990-8800-K4BFvloYdJ@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: A request for Virtual GPU based on Nouveau
+Date: Tue, 7 Mar 2017 17:29:11 +0200
+Message-ID: <d82f651c-dde1-b8ae-0cd7-fca6325e918d@free.fr>
+References: <23237D6EDF923F47ABCC70E942B37DDD43023A9E@SZXEMA511-MBS.china.huawei.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1426867365=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <23237D6EDF923F47ABCC70E942B37DDD43023A9E-WoCHQBGQUPbVoO+7gWNeMAK1hpo4iccwjNknBlVQO8k@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,100 +17,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "Zhengjie (PARC)" <zj.zhengjie-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1426867365==
-Content-Type: multipart/alternative; boundary="14888635703.D9d8BcB9f.24157";
- charset="UTF-8"
-
-
---14888635703.D9d8BcB9f.24157
-Date: Tue, 7 Mar 2017 05:12:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
---- Comment #115 from Bernie Innocenti <bernie-+SBua99wBSpAfugRpC6u6w@public.gmane.org> ---
-I tested the nouveau module built from https://github.com/skeggsb/nouveau on
-top of the latest drm-next kernel and I can confirm that it fixes the black
-screen issue on my GTX 970 with 4GB of VRAM.
-
-Ben, would it be possible to extract the relevant patches and backport them
-onto recent stable kernels such as 4.9 and 4.10?
-
-Haven't tested Lyude's patch yet.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14888635703.D9d8BcB9f.24157
-Date: Tue, 7 Mar 2017 05:12:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c115">Comme=
-nt # 115</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bernie&#64;codewiz.org" title=3D"Bernie Innocenti &lt;bernie&#64;codewiz.or=
-g&gt;"> <span class=3D"fn">Bernie Innocenti</span></a>
-</span></b>
-        <pre>I tested the nouveau module built from <a href=3D"https://gith=
-ub.com/skeggsb/nouveau">https://github.com/skeggsb/nouveau</a> on
-top of the latest drm-next kernel and I can confirm that it fixes the black
-screen issue on my GTX 970 with 4GB of VRAM.
-
-Ben, would it be possible to extract the relevant patches and backport them
-onto recent stable kernels such as 4.9 and 4.10?
-
-Haven't tested Lyude's patch yet.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14888635703.D9d8BcB9f.24157--
-
---===============1426867365==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1426867365==--
+T24gMjUvMDIvMTcgMDU6MzksIFpoZW5namllIChQQVJDKSB3cm90ZToKPiBIaSwKPgo+IEnigJlt
+IGEgZGV2ZWxvcGVyIGZyb20gSHVhd2VpIFRlY2hub2xvZ2llcyBDby4sTHRkLiBDaGluYS4gSeKA
+mW0gd29ya2luZyBvbgo+IEdQVSBWaXJ0dWFsaXphdGlvbi4KPgo+IEkgZm91bmQgc29tZSBhY2Fk
+ZW1pYyBwYXBlcnMgb24gZ29vZ2xlIHdoaWNoIGRlc2NyaWJlIGhvdyB0byB2aXJ0dWFsaXplCj4g
+R1BVIG9uIENsb3VkIGJhc2VkIG9uIE5vdXZlYXUsIFN1Y2ggYXMgPCBUaW1lR3JhcGg6IEdQVSBT
+Y2hlZHVsaW5nIGZvcgo+IFJlYWwtVGltZSBNdWx0aS1UYXNraW5nIEVudmlyb25tZW50cyA+ICA8
+R2RldjogRmlyc3QtQ2xhc3MgR1BVIFJlc291cmNlCj4gTWFuYWdlbWVudCBpbiB0aGUgT3BlcmF0
+aW5nIFN5c3RlbT4gd3JpdHRlbiBieSBQaC5EIFNoaW5wZWkgS2F0by4KPgo+IEkga25vdyB0aGUg
+bm91dmVhdSBwcm9qZWN0IGFpbXMgdG8gYnVpbGQgaGlnaC1xdWFsaXR5LCBmcmVlL2xpYnJlCj4g
+c29mdHdhcmUgZHJpdmVycyBmb3IgblZpZGlhIGNhcmRzCj4gPGh0dHBzOi8vbm91dmVhdS5mcmVl
+ZGVza3RvcC5vcmcvd2lraS9Db2RlTmFtZXMvPi4gTWF5YmUKPiB0aGUgbm91dmVhdSBwcm9qZWN0
+IGRldmVsb3BlcnMgY2FuIGRvIHNvbWV0aGluZyB0byBoZWxwIEdQVQo+IFZpcnR1YWxpemF0aW9u
+LiBTbyBJ4oCZZCBsaWtlIHRvIGFzayB3aGV0aGVyIHRoZXJlIGlzIHRoZSBwb3NzaWJpbGl0eSBv
+Zgo+IGNvb3BlcmF0aW9uIG9uIEdQVSBWaXJ0dWFsaXphdGlvbiBiZXR3ZWVuIEh1YXdlaSBhbmQg
+dGhlIG5vdXZlYXUgcHJvamVjdC4KPgo+IE1heWJlIHRoZXJlIGlzIGFub3RoZXIgd2F5IGZvciBj
+b29wZXJhdGlvbi4gQnV0IEkgZG9u4oCZdCBrbm93IGhvdy4gT3IgeW91Cj4gY2FuIGdpdmUgc29t
+ZSBhZHZpY2VzIHRvIHVzIG9uIEdQVSBWaXJ0dWFsaXphdGlvbiBiYXNlZCBvbiBub3V2ZWF1LiBU
+aGF0Cj4gd2lsbCBiZSBncmF0ZWZ1bC4gSeKAmW0gbG9va2luZyBmb3J3YXJkIHRvIHlvdSByZXBs
+eS4KPgoKTm91dmVhdSdzIGRlc2lnbiBpcyBtZWFudCBmb3IgYWxsb3dpbmcgdmlydHVhbGl6YXRp
+b24sIHNvIHlvdSBzaG91bGQgbm90IApoYXZlIHRvbyBtdWNoIHRyb3VibGUgZ2V0dGluZyBzb21l
+dGhpbmcgdG8gd29yaywgcHJvdmlkZWQgeW91IGNhbiBtYWtlIApoeXBlcmNhbGxzLiBDaGVjayBv
+dXQgTlZJRiBpbiB0aGUgbm91dmVhdSdzIHNvdXJjZS4KCk1hcnRpbgoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
