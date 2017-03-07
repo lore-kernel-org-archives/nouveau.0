@@ -1,15 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH 9/9] clk: Check pm_runtime status before
-	reclocking
-Date: Tue, 7 Mar 2017 01:46:35 +0200
-Message-ID: <4f184870-2a4c-85b8-6d80-15a4d5b5b2c3@free.fr>
-References: <20170305163507.2002-1-karolherbst@gmail.com>
- <20170305163507.2002-10-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Tue, 07 Mar 2017 00:00:14 +0000
+Message-ID: <bug-94990-8800-85z4crkrnF@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0953670184=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170305163507.2002-10-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,35 +17,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDUvMDMvMTcgMTg6MzUsIEthcm9sIEhlcmJzdCB3cm90ZToKPiBXZSBkb24ndCB3YW50IHRv
-IGNoYW5nZSBhbnl0aGluZyBvbiB0aGUgR1BVIGlmIGl0J3Mgc3VzcGVuZGVkLiBBbHNvIHdlCj4g
-bmVlZCB0byBpbmNyZWFzZSB0aGUgcmVmY291bnQgb24gdGhlIHBtX3J1bnRpbWUgY291bnRlciBz
-byB0aGF0IHRoZSBHUFUKPiB3b24ndCBiZSBzdXNwZW5kZWQgd2hpbGUgcmVjbG9ja2luZy4KPgo+
-IFNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgo+IC0t
-LQo+ICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jIHwgMTAgKysrKysrKysrLQo+
-ICAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4KPiBkaWZm
-IC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYyBiL2RybS9ub3V2ZWF1
-L252a20vc3ViZGV2L2Nsay9iYXNlLmMKPiBpbmRleCBiYzY1OTA2ZS4uMTQzY2UwZWEgMTAwNjQ0
-Cj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwo+ICsrKyBiL2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMKPiBAQCAtMzIwLDYgKzMyMCw3IEBAIG52a21f
-Y2xrX3VwZGF0ZV93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKPiAgewo+ICAJc3RydWN0
-IG52a21fY2xrICpjbGsgPSBjb250YWluZXJfb2Yod29yaywgdHlwZW9mKCpjbGspLCB3b3JrKTsK
-PiAgCXN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gJmNsay0+c3ViZGV2Owo+ICsJc3RydWN0
-IGRldmljZSAqZGV2ID0gc3ViZGV2LT5kZXZpY2UtPmRldjsKPiAgCWludCBwc3RhdGU7Cj4KPiAg
-CWlmICghYXRvbWljX3hjaGcoJmNsay0+d2FpdGluZywgMCkpCj4gQEAgLTM0NSw3ICszNDYsMTQg
-QEAgbnZrbV9jbGtfdXBkYXRlX3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQo+ICAJCXBz
-dGF0ZSA9IE5WS01fQ0xLX1BTVEFURV9ERUZBVUxUOwo+ICAJfQo+Cj4gLQljbGstPmZ1bmMtPnVw
-ZGF0ZShjbGssIHBzdGF0ZSk7Cj4gKwkvLyBvbmx5IGNhbGwgaW50byB0aGUgY29kZSBpZiB0aGUg
-R1BVIGlzIHBvd2VyZWQgb24KPiArCWlmICghcG1fcnVudGltZV9zdXNwZW5kZWQoZGV2KSkgewo+
-ICsJCS8vIGl0IHdvdWxkIGJlIGEgc2hhbWUgaWYgdGhlIEdQVSBnb2VzIGludG8gc3VzcGVuZAo+
-ICsJCS8vIHdoaWxlIGRvaW5nIHRoZSByZWNsb2NrCj4gKwkJcG1fcnVudGltZV9nZXRfc3luYyhk
-ZXYpOwo+ICsJCWNsay0+ZnVuYy0+dXBkYXRlKGNsaywgcHN0YXRlKTsKPiArCQlwbV9ydW50aW1l
-X3B1dChkZXYpOwo+ICsJfQoKR29vZCBjYXRjaCEgQnV0IEphdmEgaGFzIGNvcnJ1cHRlZCB5b3Vy
-IG1pbmQgOkQgUGxlYXNlIHVzZSAvKiAqLyBmb3IgCmNvbW1lbnRzLgoKPgo+ICAJd2FrZV91cF9h
-bGwoJmNsay0+d2FpdCk7Cj4gIAludmttX25vdGlmeV9nZXQoJmNsay0+cHdyc3JjX250ZnkpOwo+
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0953670184==
+Content-Type: multipart/alternative; boundary="14888448158.f404eFD.7817";
+ charset="UTF-8"
+
+
+--14888448158.f404eFD.7817
+Date: Tue, 7 Mar 2017 00:00:15 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #113 from Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
+Hey, as well even though this is fixed in the development branch I was aske=
+d by
+one of the other nouveau guys to post this for people running older kernels
+since it's easier to backport. This is a very dirty hack that disables the =
+last
+512 MB of VRAM for the GTX970, however it does technically fix the issue and
+let your GPU run. If you can't use Ben Skegg's patch, give this one a try
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14888448158.f404eFD.7817
+Date: Tue, 7 Mar 2017 00:00:15 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c113">Comme=
+nt # 113</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+lyude&#64;redhat.com" title=3D"Lyude Paul &lt;lyude&#64;redhat.com&gt;"> <s=
+pan class=3D"fn">Lyude Paul</span></a>
+</span></b>
+        <pre>Hey, as well even though this is fixed in the development bran=
+ch I was asked by
+one of the other nouveau guys to post this for people running older kernels
+since it's easier to backport. This is a very dirty hack that disables the =
+last
+512 MB of VRAM for the GTX970, however it does technically fix the issue and
+let your GPU run. If you can't use Ben Skegg's patch, give this one a try</=
+pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14888448158.f404eFD.7817--
+
+--===============0953670184==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0953670184==--
