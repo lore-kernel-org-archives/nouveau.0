@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
 	(v4.6+)
-Date: Tue, 07 Mar 2017 00:00:14 +0000
-Message-ID: <bug-94990-8800-85z4crkrnF@http.bugs.freedesktop.org/>
+Date: Tue, 07 Mar 2017 00:01:13 +0000
+Message-ID: <bug-94990-8800-MoB3QuWuyb@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0953670184=="
+Content-Type: multipart/mixed; boundary="===============0617436472=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0953670184==
-Content-Type: multipart/alternative; boundary="14888448158.f404eFD.7817";
+--===============0617436472==
+Content-Type: multipart/alternative; boundary="14888448735.7b6b99F.8014";
  charset="UTF-8"
 
 
---14888448158.f404eFD.7817
-Date: Tue, 7 Mar 2017 00:00:15 +0000
+--14888448735.7b6b99F.8014
+Date: Tue, 7 Mar 2017 00:01:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #113 from Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
-Hey, as well even though this is fixed in the development branch I was aske=
-d by
-one of the other nouveau guys to post this for people running older kernels
-since it's easier to backport. This is a very dirty hack that disables the =
-last
-512 MB of VRAM for the GTX970, however it does technically fix the issue and
-let your GPU run. If you can't use Ben Skegg's patch, give this one a try
+--- Comment #114 from Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
+Created attachment 130094
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130094&action=3Dedit
+Disable last 512 MiB of VRAM on GTX970
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14888448158.f404eFD.7817
-Date: Tue, 7 Mar 2017 00:00:15 +0000
+--14888448735.7b6b99F.8014
+Date: Tue, 7 Mar 2017 00:01:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c113">Comme=
-nt # 113</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c114">Comme=
+nt # 114</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
@@ -78,14 +74,13 @@ nt # 113</a>
 lyude&#64;redhat.com" title=3D"Lyude Paul &lt;lyude&#64;redhat.com&gt;"> <s=
 pan class=3D"fn">Lyude Paul</span></a>
 </span></b>
-        <pre>Hey, as well even though this is fixed in the development bran=
-ch I was asked by
-one of the other nouveau guys to post this for people running older kernels
-since it's easier to backport. This is a very dirty hack that disables the =
-last
-512 MB of VRAM for the GTX970, however it does technically fix the issue and
-let your GPU run. If you can't use Ben Skegg's patch, give this one a try</=
-pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130094=
+" name=3D"attach_130094" title=3D"Disable last 512 MiB of VRAM on GTX970">a=
+ttachment 130094</a> <a href=3D"attachment.cgi?id=3D130094&amp;action=3Dedi=
+t" title=3D"Disable last 512 MiB of VRAM on GTX970">[details]</a></span> <a=
+ href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D94990&amp;attachment=3D13009=
+4'>[review]</a>
+Disable last 512 MiB of VRAM on GTX970</pre>
         </div>
       </p>
 
@@ -99,9 +94,9 @@ pre>
     </body>
 </html>=
 
---14888448158.f404eFD.7817--
+--14888448735.7b6b99F.8014--
 
---===============0953670184==
+--===============0617436472==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0953670184==--
+--===============0617436472==--
