@@ -1,74 +1,144 @@
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: Re: [PATCH 0/5] Thunderbolt GPU fixes
-Date: Fri, 10 Mar 2017 14:15:45 +0200
-Message-ID: <CAHp75Vcg_1EjtVLeLSpoadAcFa_+1fkzHyU4m_rY9O1taQOAmA@mail.gmail.com>
-References: <cover.1487938188.git.lukas@wunner.de>
- <20170309150347.a4k4w2sclox2365t@phenom.ffwll.local>
- <20170310120725.GA24595@h08.hostsharing.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100139] [DRI2][PRIME] nouveau driver cannot find any
+ connected connector
+Date: Fri, 10 Mar 2017 16:11:33 +0000
+Message-ID: <bug-100139-8800-jxHZVzBcOZ@http.bugs.freedesktop.org/>
+References: <bug-100139-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20170310120725.GA24595@h08.hostsharing.net>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Michael Jamet <michael.jamet@intel.com>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, Peter Wu <peter@lekensteyn.nl>, dri-devel@lists.freedesktop.org, Platform Driver <platform-driver-x86@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Darren Hart <dvhart@infradead.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, Christian Koenig <christian.koenig@amd.com>, Andy Shevchenko <andy@infradead.org>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1426972611=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100139-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBNYXIgMTAsIDIwMTcgYXQgMjowNyBQTSwgTHVrYXMgV3VubmVyIDxsdWthc0B3dW5u
-ZXIuZGU+IHdyb3RlOgo+IE9uIFRodSwgTWFyIDA5LCAyMDE3IGF0IDA0OjAzOjQ3UE0gKzAxMDAs
-IERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4+IE9uIEZyaSwgRmViIDI0LCAyMDE3IGF0IDA4OjE5OjQ1
-UE0gKzAxMDAsIEx1a2FzIFd1bm5lciB3cm90ZToKPj4gPiBGaXggVGh1bmRlcmJvbHQtcmVsYXRl
-ZCBpc3N1ZXMgaW4gYXBwbGUtZ211eCBhbmQgdmdhX3N3aXRjaGVyb286Cj4+ID4KPj4gPiBQYXRj
-aCBbMS81XSAoIlJlY29nbml6ZSBUaHVuZGVyYm9sdCBkZXZpY2VzIikgaGFzIGFscmVhZHkgYmVl
-biBzdWJqZWN0ZWQKPj4gPiB0byBhIGZhaXIgYW1vdW50IG9mIHNjcnV0aW55IG92ZXIgYXQgbGlu
-dXgtcGNpQCwgSSd2ZSBzdWJtaXR0ZWQgaXQgNSB0aW1lcwo+PiA+IHRvdGFsIHNpbmNlIE1heSAy
-MDE2LiAgV2l0aCBsdWNrIGl0IG1heSBiZSBpbiBhY2stYWJsZSBzaGFwZSBub3cuCj4+ID4KPj4g
-PiBQYXRjaCBbMi81XSBhbWVuZHMgYXBwbGUtZ211eCB0byBoYW5kbGUgY29tYmluZWQgRFAvVGh1
-bmRlcmJvbHQgcG9ydHMKPj4gPiBwcm9wZXJseSBvbiBuZXdlciBNYWNCb29rIFByb3MuCj4+ID4K
-Pj4gPiBQYXRjaGVzIFszLzVdIHRvIFs1LzVdIGF2b2lkIHJlZ2lzdGVyaW5nIGV4dGVybmFsIFRo
-dW5kZXJib2x0IEdQVXMgd2l0aAo+PiA+IHZnYV9zd2l0Y2hlcm9vOiAgRGF2ZSBBaXJsaWUgZGVz
-aWduZWQgdmdhX3N3aXRjaGVyb28gdG8gcmVnaXN0ZXIgR1BVcwo+PiA+IHVuY29uZGl0aW9uYWxs
-eS4gIFNvIGlmIGEgZGVza3RvcCBib3ggaGFzIG11bHRpcGxlIEdQVXMsIHZnYV9zd2l0Y2hlcm9v
-Cj4+ID4gd2lsbCBzZWUgbW9yZSB0aGFuIG9uZSBkaXNjcmV0ZSBHUFUgYnV0IHRoYXQncyBub3Qg
-YSBwcm9ibGVtIGJlY2F1c2Ugb24KPj4gPiBkZXNrdG9wIGJveGVzIG5vIGhhbmRsZXIgaXMgcmVn
-aXN0ZXJlZCBhbmQgdGh1cyB2Z2Ffc3dpdGNoZXJvb19lbmFibGUoKQo+PiA+IGlzIG5ldmVyIGNh
-bGxlZC4gIEh5YnJpZCBncmFwaGljcyBsYXB0b3BzIG9uIHRoZSBvdGhlciBoYW5kIGRvIHJlZ2lz
-dGVyCj4+ID4gYSBoYW5kbGVyLCBidXQgYXJlIGFzc3VtZWQgdG8gbmV2ZXIgcmVnaXN0ZXIgbW9y
-ZSB0aGFuIG9uZSBkaXNjcmV0ZSBHUFUuCj4+ID4gSG93ZXZlciBvbmNlIGEgVGh1bmRlcmJvbHQg
-ZUdQVSBpcyBhdHRhY2hlZCB0byBhIGh5YnJpZCBncmFwaGljcyBsYXB0b3AsCj4+ID4gdGhhdCBh
-c3N1bXB0aW9uIGlzIG5vIGxvbmdlciB0cnVlIGFuZCB0aGluZ3MgZ28gc291dGggd2hlbiB2Z2Ff
-c3dpdGNoZXJvbwo+PiA+IHJ1bnRpbWUgc3VzcGVuZHMgdGhlIGV4dGVybmFsIGRpc2NyZXRlIEdQ
-VSBhbmQgdGhlbiBjYWxscyB0aGUgaGFuZGxlciB0bwo+PiA+IGN1dCBwb3dlciB0byB0aGUgaW50
-ZXJuYWwgZGlzY3JldGUgR1BVLiAgVGhlIGRyaXZlciBmb3IgdGhlIGludGVybmFsIEdQVQo+PiA+
-IHdpbGwgc2l0IHRoZXJlIHB1enpsZWQgYW5kIHR5cGljYWxseSBjYXVzZSBhIGxvY2t1cC4KPiBb
-c25pcF0KPj4gPiBJJ3ZlIHB1c2hlZCB0aGUgcHJlc2VudCBzZXJpZXMgdG8gR2l0SHViIGluIGNh
-c2UgYW55b25lIHByZWZlcnMgcmV2aWV3aW5nCj4+ID4gaXQgaW4gYSBHVUk6Cj4+ID4gaHR0cHM6
-Ly9naXRodWIuY29tL2wxay9saW51eC9jb21taXRzL3RodW5kZXJib2x0X2dwdV92MQo+Pgo+PiBG
-b3IgbWVyZ2luZywgc2hvdWxkIEkgc21hc2ggdGhpcyBhbGwgaW50byBkcm0tbWlzYz8gVGhlIG9u
-bHkgdGhpbmcgb3V0c2lkZQo+PiBpcyB0aGUgYXBwbGUtZ211eCBkcml2ZXIgLi4uCj4KPiBNZXJn
-aW5nIHRocm91Z2ggZHJtLW1pc2Mgd291bGQgYmUgbG92ZWx5LiAgSG93ZXZlciBJJ3ZlIHByZXBh
-cmVkIGEgdjIgb2YKPiBwYXRjaCBbMS81XSB0byBhZGRyZXNzIEJqb3JuJ3MgY29tbWVudHMgKGFt
-ZW5kZWQgdGhlIGNvbW1pdCBtZXNzYWdlIGFuZCBhCj4gY29kZSBjb21tZW50KS4gIEknbGwgcmVz
-cGluIHRoZSBzZXJpZXMgdGhpcyBldmVuaW5nIGFuZCBpbmNsdWRlIHRoZSBhY2tzCj4gSSd2ZSBj
-b2xsZWN0ZWQgc28gZmFyLgo+Cj4gQERhcnJlbiAmIEFuZHk6Cj4gUGxlYXNlIGFjayBwYXRjaCBb
-NS81XSBvZiB0aGlzIHNlcmllcywgYmFycmluZyBhbnkgb2JqZWN0aW9ucy4KPgo+IEknbGwgbW92
-ZSB0aGUgYXBwbGUtZ211eCBwYXRjaCB0byB0aGUgZW5kIG9mIHRoZSBzZXJpZXMsIHNvIG1lcmdp
-bmcgdGhhdAo+IG9uZSBjYW4gYmUgcG9zdHBvbmVkIHVudGlsIERhcnJlbiBhbmQgQW5keSBmaW5k
-IHRoZSB0aW1lIHRvIGxvb2sgYXQgaXQuCgpZZWFoLCBwbGVhc2UgcmVzZW5kLiBJdCdzIHByb2Jh
-Ymx5IGJ1cmllZCBpbiB0aGUgcGlsZSBvZiBkZWxldGVkIG1haWxzLgpUaG91Z2ggSSBoYXZlIHN0
-aWxsIHBhdGNod29yayB0aWNrZXQuCgpPa2F5LCBJIGhhdmUgbG9va2VkIGF0IGl0IGFuZCBJJ20g
-ZmluZSB3aXRoIHRoZSBjb2RlLiBIb3BlIHRoaXMKZG9lc24ndCBicmVhayBhbnl0aGluZy4KCkFj
-a2VkLWJ5OiBBbmR5IFNoZXZjaGVua28gPGFuZHkuc2hldmNoZW5rb0BnbWFpbC5jb20+CgotLSAK
-V2l0aCBCZXN0IFJlZ2FyZHMsCkFuZHkgU2hldmNoZW5rbwpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZl
-bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1426972611==
+Content-Type: multipart/alternative; boundary="14891622930.56c1D29d.22757";
+ charset="UTF-8"
+
+
+--14891622930.56c1D29d.22757
+Date: Fri, 10 Mar 2017 16:11:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100139
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Anthoine Bourgeois from comment #4)
+> (In reply to Ilia Mirkin from comment #3)
+> > No clue. I don't use xfwm and don't want to lie about what it does. Most
+> > wm's (window managers) are not compositors at all.
+>=20
+> It works with mutter/grome3, so it was a xfwm problem.
+
+The composition probably just needs to come from a different application. L=
+ike
+xcompmgr or something. Or perhaps xfwm has an option to enable composition.
+
+If you update your stack and switch to DRI3, you won't need to use a
+compositor. I'd recommend Xorg 1.18 + Mesa 17.0. With the latter you'll get=
+ a
+lot more out of both your iGPU and dGPUs.
+
+If you update to kernel 4.10 you should be able to manually reclock your dG=
+PU
+in order to make full use of its performance.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14891622930.56c1D29d.22757
+Date: Fri, 10 Mar 2017 16:11:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - [DRI2][PRIME] nouveau driver cannot find =
+any connected connector"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100139#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - [DRI2][PRIME] nouveau driver cannot find =
+any connected connector"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100139">bug 10013=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Anthoine Bourgeois from <a href=3D"show_bug.cgi?i=
+d=3D100139#c4">comment #4</a>)
+<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
+g.cgi?id=3D100139#c3">comment #3</a>)
+&gt; &gt; No clue. I don't use xfwm and don't want to lie about what it doe=
+s. Most
+&gt; &gt; wm's (window managers) are not compositors at all.
+&gt;=20
+&gt; It works with mutter/grome3, so it was a xfwm problem.</span >
+
+The composition probably just needs to come from a different application. L=
+ike
+xcompmgr or something. Or perhaps xfwm has an option to enable composition.
+
+If you update your stack and switch to DRI3, you won't need to use a
+compositor. I'd recommend Xorg 1.18 + Mesa 17.0. With the latter you'll get=
+ a
+lot more out of both your iGPU and dGPUs.
+
+If you update to kernel 4.10 you should be able to manually reclock your dG=
+PU
+in order to make full use of its performance.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14891622930.56c1D29d.22757--
+
+--===============1426972611==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1426972611==--
