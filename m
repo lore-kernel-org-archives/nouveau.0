@@ -1,237 +1,67 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100146] New: nouveau system lockup -> fifo: read
- fault engine 15 [PCE0] client 01 [PCOPY0] reason 02 [PAGE_NOT_PRESENT] on
- channel
-Date: Fri, 10 Mar 2017 10:14:37 +0000
-Message-ID: <bug-100146-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: Re: [PATCH 0/5] Thunderbolt GPU fixes
+Date: Fri, 10 Mar 2017 13:07:25 +0100
+Message-ID: <20170310120725.GA24595@h08.hostsharing.net>
+References: <cover.1487938188.git.lukas@wunner.de>
+ <20170309150347.a4k4w2sclox2365t@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1084761922=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20170309150347.a4k4w2sclox2365t-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Darren Hart <dvhart-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>, Andy Shevchenko <andy-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>
+Cc: Michael Jamet <michael.jamet-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, platform-driver-x86-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Christian Koenig <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1084761922==
-Content-Type: multipart/alternative; boundary="14891408770.a52eC4.17462";
- charset="UTF-8"
-
-
---14891408770.a52eC4.17462
-Date: Fri, 10 Mar 2017 10:14:37 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100146
-
-            Bug ID: 100146
-           Summary: nouveau system lockup -> fifo: read fault engine 15
-                    [PCE0] client 01 [PCOPY0] reason 02 [PAGE_NOT_PRESENT]
-                    on channel
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: gareth-vYTEC60ixJX10XsdtD+oqA@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 130153
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130153&action=3Dedit
-kern.log relating to nouveau driver and system lockup
-
-Ok, over the last few months my system has gone from "rock solid, runs fore=
-ver"
-to "it will crash at least once today, if not 3 or 4 times". Given I'm runn=
-ing
-Ubuntu 16.04 I've sort of been ignoring it hoping someone is making it bett=
-er,
-but it keeps getting worse, and every time it crashes I have 3-4 hours of R=
-AID
-sync to live with.
-
-I'm running a NVIDIA Corporation GF108 [GeForce GT 430] (rev a1), one scree=
-n ::
-2560x1440 @ 60Hz.
-
-Symptoms, screen locks up, comes back after 1-2 mins just long enough to
-refresh the screen - then freezes.
-(stock XUbuntu 16.04)
-
-Linux version 4.4.0-66-generic (buildd@lgw01-28) (gcc version 5.4.0 20160609
-(Ubuntu 5.4.0-6ubuntu1~16.04.4) ) #87-Ubuntu SMP Fri Mar 3 15:29:05 UTC 2017
-
-kern.log attached
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14891408770.a52eC4.17462
-Date: Fri, 10 Mar 2017 10:14:37 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau system lockup -&gt; fifo: read fault engine 15 [P=
-CE0] client 01 [PCOPY0] reason 02 [PAGE_NOT_PRESENT] on channel"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100146">100146</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>nouveau system lockup -&gt; fifo: read fault engine 15 [PCE0]=
- client 01 [PCOPY0] reason 02 [PAGE_NOT_PRESENT] on channel
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>critical
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>gareth&#64;linux.co.uk
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130153=
-" name=3D"attach_130153" title=3D"kern.log relating to nouveau driver and s=
-ystem lockup">attachment 130153</a> <a href=3D"attachment.cgi?id=3D130153&a=
-mp;action=3Dedit" title=3D"kern.log relating to nouveau driver and system l=
-ockup">[details]</a></span>
-kern.log relating to nouveau driver and system lockup
-
-Ok, over the last few months my system has gone from &quot;rock solid, runs=
- forever&quot;
-to &quot;it will crash at least once today, if not 3 or 4 times&quot;. Give=
-n I'm running
-Ubuntu 16.04 I've sort of been ignoring it hoping someone is making it bett=
-er,
-but it keeps getting worse, and every time it crashes I have 3-4 hours of R=
-AID
-sync to live with.
-
-I'm running a NVIDIA Corporation GF108 [GeForce GT 430] (rev a1), one scree=
-n ::
-2560x1440 &#64; 60Hz.
-
-Symptoms, screen locks up, comes back after 1-2 mins just long enough to
-refresh the screen - then freezes.
-(stock XUbuntu 16.04)
-
-Linux version 4.4.0-66-generic (buildd&#64;lgw01-28) (gcc version 5.4.0 201=
-60609
-(Ubuntu 5.4.0-6ubuntu1~16.04.4) ) #87-Ubuntu SMP Fri Mar 3 15:29:05 UTC 2017
-
-kern.log attached</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14891408770.a52eC4.17462--
-
---===============1084761922==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1084761922==--
+T24gVGh1LCBNYXIgMDksIDIwMTcgYXQgMDQ6MDM6NDdQTSArMDEwMCwgRGFuaWVsIFZldHRlciB3
+cm90ZToKPiBPbiBGcmksIEZlYiAyNCwgMjAxNyBhdCAwODoxOTo0NVBNICswMTAwLCBMdWthcyBX
+dW5uZXIgd3JvdGU6Cj4gPiBGaXggVGh1bmRlcmJvbHQtcmVsYXRlZCBpc3N1ZXMgaW4gYXBwbGUt
+Z211eCBhbmQgdmdhX3N3aXRjaGVyb286Cj4gPiAKPiA+IFBhdGNoIFsxLzVdICgiUmVjb2duaXpl
+IFRodW5kZXJib2x0IGRldmljZXMiKSBoYXMgYWxyZWFkeSBiZWVuIHN1YmplY3RlZAo+ID4gdG8g
+YSBmYWlyIGFtb3VudCBvZiBzY3J1dGlueSBvdmVyIGF0IGxpbnV4LXBjaUAsIEkndmUgc3VibWl0
+dGVkIGl0IDUgdGltZXMKPiA+IHRvdGFsIHNpbmNlIE1heSAyMDE2LiAgV2l0aCBsdWNrIGl0IG1h
+eSBiZSBpbiBhY2stYWJsZSBzaGFwZSBub3cuCj4gPiAKPiA+IFBhdGNoIFsyLzVdIGFtZW5kcyBh
+cHBsZS1nbXV4IHRvIGhhbmRsZSBjb21iaW5lZCBEUC9UaHVuZGVyYm9sdCBwb3J0cwo+ID4gcHJv
+cGVybHkgb24gbmV3ZXIgTWFjQm9vayBQcm9zLgo+ID4gCj4gPiBQYXRjaGVzIFszLzVdIHRvIFs1
+LzVdIGF2b2lkIHJlZ2lzdGVyaW5nIGV4dGVybmFsIFRodW5kZXJib2x0IEdQVXMgd2l0aAo+ID4g
+dmdhX3N3aXRjaGVyb286ICBEYXZlIEFpcmxpZSBkZXNpZ25lZCB2Z2Ffc3dpdGNoZXJvbyB0byBy
+ZWdpc3RlciBHUFVzCj4gPiB1bmNvbmRpdGlvbmFsbHkuICBTbyBpZiBhIGRlc2t0b3AgYm94IGhh
+cyBtdWx0aXBsZSBHUFVzLCB2Z2Ffc3dpdGNoZXJvbwo+ID4gd2lsbCBzZWUgbW9yZSB0aGFuIG9u
+ZSBkaXNjcmV0ZSBHUFUgYnV0IHRoYXQncyBub3QgYSBwcm9ibGVtIGJlY2F1c2Ugb24KPiA+IGRl
+c2t0b3AgYm94ZXMgbm8gaGFuZGxlciBpcyByZWdpc3RlcmVkIGFuZCB0aHVzIHZnYV9zd2l0Y2hl
+cm9vX2VuYWJsZSgpCj4gPiBpcyBuZXZlciBjYWxsZWQuICBIeWJyaWQgZ3JhcGhpY3MgbGFwdG9w
+cyBvbiB0aGUgb3RoZXIgaGFuZCBkbyByZWdpc3Rlcgo+ID4gYSBoYW5kbGVyLCBidXQgYXJlIGFz
+c3VtZWQgdG8gbmV2ZXIgcmVnaXN0ZXIgbW9yZSB0aGFuIG9uZSBkaXNjcmV0ZSBHUFUuCj4gPiBI
+b3dldmVyIG9uY2UgYSBUaHVuZGVyYm9sdCBlR1BVIGlzIGF0dGFjaGVkIHRvIGEgaHlicmlkIGdy
+YXBoaWNzIGxhcHRvcCwKPiA+IHRoYXQgYXNzdW1wdGlvbiBpcyBubyBsb25nZXIgdHJ1ZSBhbmQg
+dGhpbmdzIGdvIHNvdXRoIHdoZW4gdmdhX3N3aXRjaGVyb28KPiA+IHJ1bnRpbWUgc3VzcGVuZHMg
+dGhlIGV4dGVybmFsIGRpc2NyZXRlIEdQVSBhbmQgdGhlbiBjYWxscyB0aGUgaGFuZGxlciB0bwo+
+ID4gY3V0IHBvd2VyIHRvIHRoZSBpbnRlcm5hbCBkaXNjcmV0ZSBHUFUuICBUaGUgZHJpdmVyIGZv
+ciB0aGUgaW50ZXJuYWwgR1BVCj4gPiB3aWxsIHNpdCB0aGVyZSBwdXp6bGVkIGFuZCB0eXBpY2Fs
+bHkgY2F1c2UgYSBsb2NrdXAuCltzbmlwXQo+ID4gSSd2ZSBwdXNoZWQgdGhlIHByZXNlbnQgc2Vy
+aWVzIHRvIEdpdEh1YiBpbiBjYXNlIGFueW9uZSBwcmVmZXJzIHJldmlld2luZwo+ID4gaXQgaW4g
+YSBHVUk6Cj4gPiBodHRwczovL2dpdGh1Yi5jb20vbDFrL2xpbnV4L2NvbW1pdHMvdGh1bmRlcmJv
+bHRfZ3B1X3YxCj4gCj4gRm9yIG1lcmdpbmcsIHNob3VsZCBJIHNtYXNoIHRoaXMgYWxsIGludG8g
+ZHJtLW1pc2M/IFRoZSBvbmx5IHRoaW5nIG91dHNpZGUKPiBpcyB0aGUgYXBwbGUtZ211eCBkcml2
+ZXIgLi4uCgpNZXJnaW5nIHRocm91Z2ggZHJtLW1pc2Mgd291bGQgYmUgbG92ZWx5LiAgSG93ZXZl
+ciBJJ3ZlIHByZXBhcmVkIGEgdjIgb2YKcGF0Y2ggWzEvNV0gdG8gYWRkcmVzcyBCam9ybidzIGNv
+bW1lbnRzIChhbWVuZGVkIHRoZSBjb21taXQgbWVzc2FnZSBhbmQgYQpjb2RlIGNvbW1lbnQpLiAg
+SSdsbCByZXNwaW4gdGhlIHNlcmllcyB0aGlzIGV2ZW5pbmcgYW5kIGluY2x1ZGUgdGhlIGFja3MK
+SSd2ZSBjb2xsZWN0ZWQgc28gZmFyLgoKQERhcnJlbiAmIEFuZHk6ClBsZWFzZSBhY2sgcGF0Y2gg
+WzUvNV0gb2YgdGhpcyBzZXJpZXMsIGJhcnJpbmcgYW55IG9iamVjdGlvbnMuCgpJJ2xsIG1vdmUg
+dGhlIGFwcGxlLWdtdXggcGF0Y2ggdG8gdGhlIGVuZCBvZiB0aGUgc2VyaWVzLCBzbyBtZXJnaW5n
+IHRoYXQKb25lIGNhbiBiZSBwb3N0cG9uZWQgdW50aWwgRGFycmVuIGFuZCBBbmR5IGZpbmQgdGhl
+IHRpbWUgdG8gbG9vayBhdCBpdC4KClRoYW5rcyEKCkx1a2FzCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vYW1kLWdmeAo=
