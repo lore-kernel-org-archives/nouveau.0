@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100139] [DRI2][PRIME] nouveau driver cannot find any
- connected connector
-Date: Thu, 09 Mar 2017 17:53:15 +0000
-Message-ID: <bug-100139-8800-ardrzQMGSo@http.bugs.freedesktop.org/>
-References: <bug-100139-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] secboot: fix NULL pointer dereference
+Date: Fri, 10 Mar 2017 17:16:48 +0900
+Message-ID: <20170310081648.13776-1-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0448348245=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100139-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,103 +15,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0448348245==
-Content-Type: multipart/alternative; boundary="14890819950.11378.16188";
- charset="UTF-8"
-
-
---14890819950.11378.16188
-Date: Thu, 9 Mar 2017 17:53:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100139
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No clue. I don't use xfwm and don't want to lie about what it does. Most wm=
-'s
-(window managers) are not compositors at all.
-
-vgaswitcheroo likely will have no effect on your system as it most likely d=
-oes
-not have a mux for the panel, and clearly both GPUs can be powered on at the
-same time.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14890819950.11378.16188
-Date: Thu, 9 Mar 2017 17:53:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [DRI2][PRIME] nouveau driver cannot find any connected co=
-nnector"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100139#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [DRI2][PRIME] nouveau driver cannot find any connected co=
-nnector"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100139">bug 10013=
-9</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>No clue. I don't use xfwm and don't want to lie about what it =
-does. Most wm's
-(window managers) are not compositors at all.
-
-vgaswitcheroo likely will have no effect on your system as it most likely d=
-oes
-not have a mux for the panel, and clearly both GPUs can be powered on at the
-same time.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14890819950.11378.16188--
-
---===============0448348245==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0448348245==--
+VGhlIG1zZ3F1ZXVlIHBvaW50ZXIgdmFsaWRpdHkgc2hvdWxkIGJlIGNoZWNrZWQgYnkgaXRzIG93
+bmVyLCBub3QgYnkgdGhlCm1zZ3F1ZXVlIGNvZGUgaXRzZWxmIHRvIGF2b2lkIHRoaXMgc2l0dWF0
+aW9uLgoKU2lnbmVkLW9mZi1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5j
+b20+ClJlcG9ydGVkLWJ5OiBKdWxpYSBMYXdhbGwgPGp1bGlhLmxhd2FsbEBsaXA2LmZyPgotLS0K
+IGRybS9ub3V2ZWF1L252a20vZW5naW5lL3NlYzIvYmFzZS5jIHwgNyArKysrKysrCiBkcm0vbm91
+dmVhdS9udmttL2ZhbGNvbi9tc2dxdWV1ZS5jICB8IDUgKystLS0KIGRybS9ub3V2ZWF1L252a20v
+c3ViZGV2L3BtdS9nbTIwYi5jIHwgNiArKysrKysKIDMgZmlsZXMgY2hhbmdlZCwgMTUgaW5zZXJ0
+aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2Vu
+Z2luZS9zZWMyL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL3NlYzIvYmFzZS5jCmlu
+ZGV4IDgxNGRhZjM1ZTIxZi4uZjg2NWQyYTNlMTg0IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9u
+dmttL2VuZ2luZS9zZWMyL2Jhc2UuYworKysgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9zZWMy
+L2Jhc2UuYwpAQCAtNTksNiArNTksMTMgQEAgc3RhdGljIHZvaWQKIG52a21fc2VjMl9yZWN2KHN0
+cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKIHsKIAlzdHJ1Y3QgbnZrbV9zZWMyICpzZWMyID0gY29u
+dGFpbmVyX29mKHdvcmssIHR5cGVvZigqc2VjMiksIHdvcmspOworCisJaWYgKCFzZWMyLT5xdWV1
+ZSkgeworCQludmttX3dhcm4oJnNlYzItPmVuZ2luZS5zdWJkZXYsCisJCQkgICJyZWN2IGZ1bmN0
+aW9uIGNhbGxlZCB3aGlsZSBubyBmaXJtd2FyZSBzZXQhXG4iKTsKKwkJcmV0dXJuOworCX0KKwog
+CW52a21fbXNncXVldWVfcmVjdihzZWMyLT5xdWV1ZSk7CiB9CiAKZGlmZiAtLWdpdCBhL2RybS9u
+b3V2ZWF1L252a20vZmFsY29uL21zZ3F1ZXVlLmMgYi9kcm0vbm91dmVhdS9udmttL2ZhbGNvbi9t
+c2dxdWV1ZS5jCmluZGV4IDE4MTExZDY2ZDNkNC4uMDdlNzUyNjAzYmFlIDEwMDY0NAotLS0gYS9k
+cm0vbm91dmVhdS9udmttL2ZhbGNvbi9tc2dxdWV1ZS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20v
+ZmFsY29uL21zZ3F1ZXVlLmMKQEAgLTUxMSwxMSArNTExLDEwIEBAIG52a21fbXNncXVldWVfZGVs
+KHN0cnVjdCBudmttX21zZ3F1ZXVlICoqcXVldWUpCiB2b2lkCiBudmttX21zZ3F1ZXVlX3JlY3Yo
+c3RydWN0IG52a21fbXNncXVldWUgKnF1ZXVlKQogewotCWlmICghcXVldWUgfHwgIXF1ZXVlLT5m
+dW5jIHx8ICFxdWV1ZS0+ZnVuYy0+cmVjdikgeworCWlmICghcXVldWUtPmZ1bmMgfHwgIXF1ZXVl
+LT5mdW5jLT5yZWN2KSB7CiAJCWNvbnN0IHN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gcXVl
+dWUtPmZhbGNvbi0+b3duZXI7CiAKLQkJbnZrbV93YXJuKHN1YmRldiwKLQkJICAgICAgImNtZHF1
+ZXVlIHJlY3YgZnVuY3Rpb24gY2FsbGVkIHdoaWxlIG5vIGZpcm13YXJlIHNldCFcbiIpOworCQlu
+dmttX3dhcm4oc3ViZGV2LCAibWlzc2luZyBtc2dxdWV1ZSByZWN2IGZ1bmN0aW9uXG4iKTsKIAkJ
+cmV0dXJuOwogCX0KIApkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2dt
+MjBiLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZ20yMGIuYwppbmRleCA0OGFlMDJk
+NDU2NTYuLjQ0YmVmMjJiY2U1MiAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
+cG11L2dtMjBiLmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2dtMjBiLmMKQEAg
+LTI3LDYgKzI3LDEyIEBACiBzdGF0aWMgdm9pZAogZ20yMGJfcG11X3JlY3Yoc3RydWN0IG52a21f
+cG11ICpwbXUpCiB7CisJaWYgKCFwbXUtPnF1ZXVlKSB7CisJCW52a21fd2FybigmcG11LT5zdWJk
+ZXYsCisJCQkgICJyZWN2IGZ1bmN0aW9uIGNhbGxlZCB3aGlsZSBubyBmaXJtd2FyZSBzZXQhXG4i
+KTsKKwkJcmV0dXJuOworCX0KKwogCW52a21fbXNncXVldWVfcmVjdihwbXUtPnF1ZXVlKTsKIH0K
+IAotLSAKMi4xMi4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
