@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86539] [NVAC] Trying to register nv_backlight after
-	NV96 did it
-Date: Sun, 12 Mar 2017 20:56:07 +0000
-Message-ID: <bug-86539-8800-f5OY2ipX8J@http.bugs.freedesktop.org/>
-References: <bug-86539-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100177] New: [GM206] Misrendering in XCOM Ennemy
+	Within
+Date: Sun, 12 Mar 2017 22:37:23 +0000
+Message-ID: <bug-100177-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1303665694=="
+Content-Type: multipart/mixed; boundary="===============1712330626=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86539-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +19,57 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1303665694==
-Content-Type: multipart/alternative; boundary="14893521671.2dAA.4449";
+--===============1712330626==
+Content-Type: multipart/alternative; boundary="14893582430.2c04a9.13875";
  charset="UTF-8"
 
 
---14893521671.2dAA.4449
-Date: Sun, 12 Mar 2017 20:56:07 +0000
+--14893582430.2c04a9.13875
+Date: Sun, 12 Mar 2017 22:37:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D86539
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100177
 
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+            Bug ID: 100177
+           Summary: [GM206] Misrendering in XCOM Ennemy Within
+           Product: Mesa
+           Version: 17.0
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: pierre.morrow-GANU6spQydw@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+Created attachment 130180
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130180&action=3Dedit
+IG Menu Screen in working state
 
---- Comment #13 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Fixed by db1a0ae21461afa4bc435651a6dd55e0e6ef4a8b.
+On the menu screen of XCOM Ennemy Within, most of the background is not
+visible, and some orther parts are flickering (some z-fighting?).
+I tested with the same software stack on a Fermi card, and it worked there.
+
+Card: GeForce GTX 960 (GM206)
+Mesa: 17.0.1
+Linux: 4.10
+
+An apitrace of the bug is available here:
+https://phabricator.pmoreau.org/F111738
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14893521671.2dAA.4449
-Date: Sun, 12 Mar 2017 20:56:07 +0000
+--14893582430.2c04a9.13875
+Date: Sun, 12 Mar 2017 22:37:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,58 +80,106 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pierre.mo=
-rrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"=
-> <span class=3D"fn">Pierre Moreau</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVAC] Trying to register nv_backlight after N=
-V96 did it"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86539">bug 86539<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM206] Misrendering in XCOM Ennemy Within"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100177">100177</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
+        <tr>
+          <th>Summary</th>
+          <td>[GM206] Misrendering in XCOM Ennemy Within
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>17.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>pierre.morrow&#64;free.fr
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVAC] Trying to register nv_backlight after N=
-V96 did it"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86539#c13">Commen=
-t # 13</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVAC] Trying to register nv_backlight after N=
-V96 did it"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86539">bug 86539<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Fixed by db1a0ae21461afa4bc435651a6dd55e0e6ef4a8b.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130180=
+" name=3D"attach_130180" title=3D"IG Menu Screen in working state">attachme=
+nt 130180</a> <a href=3D"attachment.cgi?id=3D130180&amp;action=3Dedit" titl=
+e=3D"IG Menu Screen in working state">[details]</a></span>
+IG Menu Screen in working state
+
+On the menu screen of XCOM Ennemy Within, most of the background is not
+visible, and some orther parts are flickering (some z-fighting?).
+I tested with the same software stack on a Fermi card, and it worked there.
+
+Card: GeForce GTX 960 (GM206)
+Mesa: 17.0.1
+Linux: 4.10
+
+An apitrace of the bug is available here:
+<a href=3D"https://phabricator.pmoreau.org/F111738">https://phabricator.pmo=
+reau.org/F111738</a></pre>
         </div>
       </p>
 
@@ -123,13 +189,14 @@ e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14893521671.2dAA.4449--
+--14893582430.2c04a9.13875--
 
---===============1303665694==
+--===============1712330626==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -139,4 +206,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1303665694==--
+--===============1712330626==--
