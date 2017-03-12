@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: =?utf-8?q?=5BBug_100167=5D__nouveau_sometimes_doesn?=
  =?utf-8?q?=E2=80=99t_resume_properly_from_suspend?=
-Date: Sun, 12 Mar 2017 14:11:01 +0000
-Message-ID: <bug-100167-8800-6rjuP04zQ5@http.bugs.freedesktop.org/>
+Date: Sun, 12 Mar 2017 14:15:48 +0000
+Message-ID: <bug-100167-8800-oPCx7zQdgw@http.bugs.freedesktop.org/>
 References: <bug-100167-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0765910847=="
+Content-Type: multipart/mixed; boundary="===============1293731020=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100167-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0765910847==
-Content-Type: multipart/alternative; boundary="14893278611.8927DeB4A.32163";
+--===============1293731020==
+Content-Type: multipart/alternative; boundary="14893281470.5A8C8B7e.31718";
  charset="UTF-8"
 
 
---14893278611.8927DeB4A.32163
-Date: Sun, 12 Mar 2017 14:11:01 +0000
+--14893281470.5A8C8B7e.31718
+Date: Sun, 12 Mar 2017 14:15:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100167
 
---- Comment #2 from silverunicorn2011-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org ---
-Created attachment 130174
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130174&action=3Dedit
-PCI device list (lspci -v)
+--- Comment #3 from silverunicorn2011-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org ---
+System: Parabola GNU/Linux (=E2=89=88Arch)
+
+Kernel: linux-libre 4.9.11_gnu-1
+Linux version 4.9.11-gnu-1 (builduser@emulatorman) (gcc version 6.3.1 20170=
+109
+(GCC) ) #1 SMP PREEMPT Sun Feb 19 18:36:28 UYT 2017
+
+Nouveau: xf86-video-nouveau 1.0.13-3
+
+Xorg: xorg-server 1.19.2-1
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14893278611.8927DeB4A.32163
-Date: Sun, 12 Mar 2017 14:11:01 +0000
+--14893281470.5A8C8B7e.31718
+Date: Sun, 12 Mar 2017 14:15:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +71,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - nouveau sometimes doesn=E2=80=99t resume properly from su=
 spend"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100167#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100167#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau sometimes doesn=E2=80=99t resume properly from su=
@@ -76,11 +83,16 @@ spend"
 silverunicorn2011&#64;yandex.ru" title=3D"silverunicorn2011&#64;yandex.ru">=
 silverunicorn2011&#64;yandex.ru</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130174=
-" name=3D"attach_130174" title=3D"PCI device list (lspci -v)">attachment 13=
-0174</a> <a href=3D"attachment.cgi?id=3D130174&amp;action=3Dedit" title=3D"=
-PCI device list (lspci -v)">[details]</a></span>
-PCI device list (lspci -v)</pre>
+        <pre>System: Parabola GNU/Linux (=E2=89=88Arch)
+
+Kernel: linux-libre 4.9.11_gnu-1
+Linux version 4.9.11-gnu-1 (builduser&#64;emulatorman) (gcc version 6.3.1 2=
+0170109
+(GCC) ) #1 SMP PREEMPT Sun Feb 19 18:36:28 UYT 2017
+
+Nouveau: xf86-video-nouveau 1.0.13-3
+
+Xorg: xorg-server 1.19.2-1</pre>
         </div>
       </p>
 
@@ -94,9 +106,9 @@ PCI device list (lspci -v)</pre>
     </body>
 </html>=
 
---14893278611.8927DeB4A.32163--
+--14893281470.5A8C8B7e.31718--
 
---===============0765910847==
+--===============1293731020==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0765910847==--
+--===============1293731020==--
