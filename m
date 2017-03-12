@@ -1,10 +1,13 @@
-From: Marcelo Ribeiro <mbribeiro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: nVidia ION on Acer Revo out of signal after boot.
-Date: Sun, 12 Mar 2017 15:27:15 +0000
-Message-ID: <CADRxDdevdh8sYZuXs5hKxiD6n5Tk56X8fPV2qugV92KzTUi+5A@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: nVidia ION on Acer Revo out of signal after boot.
+Date: Sun, 12 Mar 2017 11:37:29 -0400
+Message-ID: <CAKb7Uvg5i2z1p3cyvqs9CvxeCohBuJ1f85ScfWqgdnRxf0pS8g@mail.gmail.com>
+References: <CADRxDdevdh8sYZuXs5hKxiD6n5Tk56X8fPV2qugV92KzTUi+5A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1126165480=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CADRxDdevdh8sYZuXs5hKxiD6n5Tk56X8fPV2qugV92KzTUi+5A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -14,462 +17,201 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Marcelo Ribeiro <mbribeiro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1126165480==
-Content-Type: multipart/alternative; boundary=94eb2c07aadc6c39b7054a8a3bff
-
---94eb2c07aadc6c39b7054a8a3bff
-Content-Type: text/plain; charset=UTF-8
-
-Hi, I am changing from proprietary nvidia drivers to Nouveau drivers in my
-mediacenter.
-
-I run a Gentoo linux in this hardware and I am facing an out of signal
-screen just after the boot (when the nouveau module is loaded). If I
-blacklist this module and modprobe it in the prompt, the screen gets out of
-signal in my 1080p TV in this moment.
-
-I tried recompile the kernel enabling and disabling a lot of modules but
-the result is always the same. By a ssh I can access my media center and
-all the logs are normal, even Xorg (it thinks it is sending its image to
-hdmi as it should).
-I tryed system rescue cd and it uses nouveau driver and it works well. It
-uses kernel  3.14.31-std451-amd64  and I am using 4.9.6-gentoo-r1 #5.
-
-Here is some output from my non-working dmesg.
-
-4.9.6-gentoo-r1 #5
-
-[    8.450837] [drm] Initialized
-[    8.733804] ACPI: PCI Interrupt Link [LAZA] enabled at IRQ 22
-[    8.733830] snd_hda_intel 0000:00:08.0: Disabling MSI
-[    9.224126] ACPI: PCI Interrupt Link [SGRU] enabled at IRQ 21
-[    9.224489] nouveau 0000:03:00.0: NVIDIA MCP79/MCP7A (0ace80b1)
-[    9.244211] nouveau 0000:03:00.0: bios: version 62.79.6c.00.01
-[    9.266689] nouveau 0000:03:00.0: fb: 256 MiB stolen system memory
-[    9.317562] [TTM] Zone  kernel: Available graphics memory: 1413098 kiB
-[    9.317566] [TTM] Initializing pool allocator
-[    9.317599] [TTM] Initializing DMA pool allocator
-[    9.317677] nouveau 0000:03:00.0: DRM: VRAM: 256 MiB
-[    9.317682] nouveau 0000:03:00.0: DRM: GART: 1048576 MiB
-[    9.317692] nouveau 0000:03:00.0: DRM: TMDS table version 2.0
-[    9.317697] nouveau 0000:03:00.0: DRM: DCB version 4.0
-[    9.317704] nouveau 0000:03:00.0: DRM: DCB outp 00: 02021332 00020010
-[    9.317709] nouveau 0000:03:00.0: DRM: DCB outp 01: 02000300 0000001e
-[    9.317714] nouveau 0000:03:00.0: DRM: DCB conn 00: 00000000
-[    9.317719] nouveau 0000:03:00.0: DRM: DCB conn 01: 00002161
-[    9.368777] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
-[    9.368784] [drm] Driver supports precise vblank timestamp query.
-[    9.369124] snd_hda_codec_realtek hdaudioC0D0: autoconfig for ALC662
-rev1: line_outs=1 (0x14/0x0/0x0/0x0/0x0) type:hp
-[    9.369135] snd_hda_codec_realtek hdaudioC0D0:    speaker_outs=0
-(0x0/0x0/0x0/0x0/0x0)
-[    9.369142] snd_hda_codec_realtek hdaudioC0D0:    hp_outs=0
-(0x0/0x0/0x0/0x0/0x0)
-[    9.369147] snd_hda_codec_realtek hdaudioC0D0:    mono: mono_out=0x0
-[    9.369152] snd_hda_codec_realtek hdaudioC0D0:    dig-out=0x1e/0x0
-[    9.369156] snd_hda_codec_realtek hdaudioC0D0:    inputs:
-[    9.369165] snd_hda_codec_realtek hdaudioC0D0:      Mic=0x18
-[    9.434609] nouveau 0000:03:00.0: DRM: MM: using M2MF for buffer copies
-[    9.529103] nouveau 0000:03:00.0: DRM: allocated 1920x1080 fb: 0x50000,
-bo ffff8800baac3000
-[    9.529521] fbcon: nouveaufb (fb0) is primary device
-[   10.595960] input: HDA NVidia Mic as
-/devices/pci0000:00/0000:00:08.0/sound/card0/input9
-[   10.596707] input: HDA NVidia Headphone as
-/devices/pci0000:00/0000:00:08.0/sound/card0/input10
-[   16.284253] Console: switching to colour frame buffer device 240x67
-[   16.287137] nouveau 0000:03:00.0: fb0: nouveaufb frame buffer device
-[   16.295232] [drm] Initialized nouveau 1.3.1 20120801 for 0000:03:00.0 on
-minor 0
-
-log # lsmod
-Module                  Size  Used by
-auth_rpcgss            39557  0
-oid_registry            2754  1 auth_rpcgss
-nfsv4                 444263  2
-nfs                   189555  2 nfsv4
-lockd                  57722  1 nfs
-grace                   2426  1 lockd
-sunrpc                248435  10 auth_rpcgss,nfsv4,lockd,nfs
-snd_hda_codec_hdmi     30572  1
-snd_hda_codec_realtek    68090  1
-snd_hda_codec_generic    48982  1 snd_hda_codec_realtek
-nouveau              1302011  1
-video                  30144  1 nouveau
-snd_hda_intel          25892  0
-i2c_algo_bit            5273  1 nouveau
-drm_kms_helper        110022  1 nouveau
-snd_hda_codec          97219  4
-snd_hda_intel,snd_hda_codec_hdmi,snd_hda_codec_generic,snd_hda_codec_realtek
-cfbfillrect             3374  1 drm_kms_helper
-snd_hwdep               5801  1 snd_hda_codec
-syscopyarea             3010  1 drm_kms_helper
-cfbimgblt               2352  1 drm_kms_helper
-snd_hda_core           54864  5
-snd_hda_intel,snd_hda_codec,snd_hda_codec_hdmi,snd_hda_codec_generic,snd_hda_codec_realtek
-sysfillrect             3246  1 drm_kms_helper
-sysimgblt               2288  1 drm_kms_helper
-fb_sys_fops             1602  1 drm_kms_helper
-cfbcopyarea             3138  1 drm_kms_helper
-snd_pcm                82027  4
-snd_hda_intel,snd_hda_codec,snd_hda_core,snd_hda_codec_hdmi
-ttm                    74797  1 nouveau
-snd_timer              19853  1 snd_pcm
-drm                   293837  4 nouveau,ttm,drm_kms_helper
-snd                    61356  8
-snd_hda_intel,snd_hwdep,snd_hda_codec,snd_timer,snd_hda_codec_hdmi,snd_hda_codec_generic,snd_hda_codec_realtek,snd_pcm
-soundcore               6047  1 snd
-i2c_nforce2             5414  0
------------------------------------------------------------------
-and here is the output of the working version in Rescue Cd.
-
-Linux sysresccd 3.14.31-std451-amd64
-
-[    6.736180] [drm] Initialized drm 1.1.0 20060810
-[    6.794441] [drm] hdmi device  not found 3 0 1
-[    6.794523] nouveau  [  DEVICE][0000:03:00.0] BOOT0  : 0x0ace80b1
-[    6.794532] nouveau  [  DEVICE][0000:03:00.0] Chipset: MCP79/MCP7A (NVAC)
-[    6.794538] nouveau  [  DEVICE][0000:03:00.0] Family : NV50
-[    6.794655] nouveau  [   VBIOS][0000:03:00.0] checking PRAMIN for
-image...
-[    6.868390] nouveau  [   VBIOS][0000:03:00.0] ... appears to be valid
-[    6.868400] nouveau  [   VBIOS][0000:03:00.0] using image from PRAMIN
-[    6.869141] nouveau  [   VBIOS][0000:03:00.0] BIT signature found
-[    6.869151] nouveau  [   VBIOS][0000:03:00.0] version 62.79.6c.00.01
-[    6.890670] nouveau 0000:03:00.0: irq 41 for MSI/MSI-X
-[    6.890713] nouveau  [     PMC][0000:03:00.0] MSI interrupts enabled
-[    6.890790] nouveau  [     PFB][0000:03:00.0] RAM type: stolen system
-memory
-[    6.890797] nouveau  [     PFB][0000:03:00.0] RAM size: 256 MiB
-[    6.890803] nouveau  [     PFB][0000:03:00.0]    ZCOMP: 0 tags
-[    6.917639] nouveau  [  PTHERM][0000:03:00.0] FAN control: none /
-external
-[    6.917677] nouveau  [  PTHERM][0000:03:00.0] fan management: automatic
-[    6.917686] nouveau  [  PTHERM][0000:03:00.0] internal sensor: yes
-[    6.917714] nouveau  [     CLK][0000:03:00.0] 03: core 200 MHz shader
-400 MHz vdec 200 MHz
-[    6.917732] nouveau  [     CLK][0000:03:00.0] 05: core 300 MHz shader
-600 MHz vdec 300 MHz
-[    6.917744] nouveau  [     CLK][0000:03:00.0] 07: core 350 MHz shader
-800 MHz vdec 350 MHz
-[    6.917756] nouveau  [     CLK][0000:03:00.0] 0f: core 450 MHz shader
-1100 MHz vdec 450 MHz
-[    6.917786] nouveau  [     CLK][0000:03:00.0] --: core 450 MHz shader
-1100 MHz vdec 450 MHz
-[    6.918199] [TTM] Zone  kernel: Available graphics memory: 1411362 kiB
-[    6.918205] [TTM] Initializing pool allocator
-[    6.918231] [TTM] Initializing DMA pool allocator
-[    6.918282] nouveau  [     DRM] VRAM: 256 MiB
-[    6.918288] nouveau  [     DRM] GART: 1048576 MiB
-[    6.918299] nouveau  [     DRM] TMDS table version 2.0
-[    6.918305] nouveau  [     DRM] DCB version 4.0
-[    6.918313] nouveau  [     DRM] DCB outp 00: 02021332 00020010
-[    6.918320] nouveau  [     DRM] DCB outp 01: 02000300 0000001e
-[    6.918326] nouveau  [     DRM] DCB conn 00: 00000000
-[    6.918333] nouveau  [     DRM] DCB conn 01: 00002161
-[    6.936583] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
-[    6.936592] [drm] Driver supports precise vblank timestamp query.
-[    6.960336] nouveau  [     DRM] MM: using M2MF for buffer copies
-[    7.031184] nouveau  [     DRM] allocated 1920x1080 fb: 0x50000, bo
-ffff8800023de400
-[    7.031578] fbcon: nouveaufb (fb0) is primary device
-[    7.094997] Console: switching to colour frame buffer device 240x67
-[    7.097873] nouveau 0000:03:00.0: fb0: nouveaufb frame buffer device
-[    7.097880] nouveau 0000:03:00.0: registered panic notifier
-[    7.097896] [drm] Initialized nouveau 1.1.2 20120801 for 0000:03:00.0 on
-minor 0
-
-lsmod
-root@sysresccd /var/log % lsmod
-Module                  Size  Used by
-arc4                   12390  2
-rt2800pci              12437  0
-rt2800mmio             14394  1 rt2800pci
-rt2800lib              73558  2 rt2800pci,rt2800mmio
-rt2x00pci              12719  1 rt2800pci
-rt2x00mmio             12863  2 rt2800pci,rt2800mmio
-rt2x00lib              48382  5
-rt2x00pci,rt2800lib,rt2800pci,rt2800mmio,rt2x00mmio
-eeprom_93cx6           12739  1 rt2800pci
-mac80211              421465  3 rt2x00lib,rt2x00pci,rt2800lib
-cfg80211              320349  2 mac80211,rt2x00lib
-crc_ccitt              12519  1 rt2800lib
-coretemp               12390  0
-rfkill                 18094  2 cfg80211
-microcode              41719  0
-joydev                 16535  0
-serio_raw              12439  0
-i2c_nforce2            12523  0
-shpchp                 29571  0
-raid10                 37123  0
-raid456                57671  0
-async_raid6_recov      12621  1 raid456
-async_pq               12640  2 raid456,async_raid6_recov
-async_xor              12573  3 async_pq,raid456,async_raid6_recov
-async_memcpy           12464  2 raid456,async_raid6_recov
-async_tx               12840  5
-async_pq,raid456,async_xor,async_memcpy,async_raid6_recov
-raid1                  28900  0
-raid0                  16515  0
-multipath              12390  0
-linear                 12390  0
-nouveau               793903  2
-ttm                    66567  1 nouveau
-drm_kms_helper         37632  1 nouveau
-drm                   216971  4 ttm,drm_kms_helper,nouveau
-i2c_algo_bit           12633  1 nouveau
-i2c_core               28421  5
-drm,drm_kms_helper,i2c_algo_bit,nouveau,i2c_nforce2
-mxm_wmi                12672  1 nouveau
-video                  16832  1 nouveau
-usb_storage            52365  1
-forcedeth              49417  0
-wmi                    13114  2 mxm_wmi,nouveau
----------------------------------------------------------------------
-
-Sorry for the huge e-mail. I would appreciate any help.
-
-Thanks in advance.
-
-Marcelo.
-
---94eb2c07aadc6c39b7054a8a3bff
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi, I am changing from proprietary nvidia drivers to Nouve=
-au drivers in my mediacenter.<div><br></div><div>I run a Gentoo linux in th=
-is hardware and I am facing an out of signal screen just after the boot (wh=
-en the nouveau module is loaded). If I blacklist this module and modprobe i=
-t in the prompt, the screen gets out of signal in my 1080p TV in this momen=
-t.</div><div><br></div><div>I tried recompile the kernel enabling and disab=
-ling a lot of modules but the result is always the same. By a ssh I can acc=
-ess my media center and all the logs are normal, even Xorg (it thinks it is=
- sending its image to hdmi as it should).</div><div>I tryed system rescue c=
-d and it uses nouveau driver and it works well. It uses kernel=C2=A0=C2=A03=
-.14.31-std451-amd64 =C2=A0and I am using=C2=A04.9.6-gentoo-r1 #5.</div><div=
-><br></div><div>Here is some output from my non-working dmesg.</div><div><b=
-r></div><div><div>4.9.6-gentoo-r1 #5</div><div><br></div><div>[ =C2=A0 =C2=
-=A08.450837] [drm] Initialized</div><div>[ =C2=A0 =C2=A08.733804] ACPI: PCI=
- Interrupt Link [LAZA] enabled at IRQ 22</div><div>[ =C2=A0 =C2=A08.733830]=
- snd_hda_intel 0000:00:08.0: Disabling MSI</div><div>[ =C2=A0 =C2=A09.22412=
-6] ACPI: PCI Interrupt Link [SGRU] enabled at IRQ 21</div><div>[ =C2=A0 =C2=
-=A09.224489] nouveau 0000:03:00.0: NVIDIA MCP79/MCP7A (0ace80b1)</div><div>=
-[ =C2=A0 =C2=A09.244211] nouveau 0000:03:00.0: bios: version 62.79.6c.00.01=
-</div><div>[ =C2=A0 =C2=A09.266689] nouveau 0000:03:00.0: fb: 256 MiB stole=
-n system memory</div><div>[ =C2=A0 =C2=A09.317562] [TTM] Zone =C2=A0kernel:=
- Available graphics memory: 1413098 kiB</div><div>[ =C2=A0 =C2=A09.317566] =
-[TTM] Initializing pool allocator</div><div>[ =C2=A0 =C2=A09.317599] [TTM] =
-Initializing DMA pool allocator</div><div>[ =C2=A0 =C2=A09.317677] nouveau =
-0000:03:00.0: DRM: VRAM: 256 MiB</div><div>[ =C2=A0 =C2=A09.317682] nouveau=
- 0000:03:00.0: DRM: GART: 1048576 MiB</div><div>[ =C2=A0 =C2=A09.317692] no=
-uveau 0000:03:00.0: DRM: TMDS table version 2.0</div><div>[ =C2=A0 =C2=A09.=
-317697] nouveau 0000:03:00.0: DRM: DCB version 4.0</div><div>[ =C2=A0 =C2=
-=A09.317704] nouveau 0000:03:00.0: DRM: DCB outp 00: 02021332 00020010</div=
-><div>[ =C2=A0 =C2=A09.317709] nouveau 0000:03:00.0: DRM: DCB outp 01: 0200=
-0300 0000001e</div><div>[ =C2=A0 =C2=A09.317714] nouveau 0000:03:00.0: DRM:=
- DCB conn 00: 00000000</div><div>[ =C2=A0 =C2=A09.317719] nouveau 0000:03:0=
-0.0: DRM: DCB conn 01: 00002161</div><div>[ =C2=A0 =C2=A09.368777] [drm] Su=
-pports vblank timestamp caching Rev 2 (21.10.2013).</div><div>[ =C2=A0 =C2=
-=A09.368784] [drm] Driver supports precise vblank timestamp query.</div><di=
-v>[ =C2=A0 =C2=A09.369124] snd_hda_codec_realtek hdaudioC0D0: autoconfig fo=
-r ALC662 rev1: line_outs=3D1 (0x14/0x0/0x0/0x0/0x0) type:hp</div><div>[ =C2=
-=A0 =C2=A09.369135] snd_hda_codec_realtek hdaudioC0D0: =C2=A0 =C2=A0speaker=
-_outs=3D0 (0x0/0x0/0x0/0x0/0x0)</div><div>[ =C2=A0 =C2=A09.369142] snd_hda_=
-codec_realtek hdaudioC0D0: =C2=A0 =C2=A0hp_outs=3D0 (0x0/0x0/0x0/0x0/0x0)</=
-div><div>[ =C2=A0 =C2=A09.369147] snd_hda_codec_realtek hdaudioC0D0: =C2=A0=
- =C2=A0mono: mono_out=3D0x0</div><div>[ =C2=A0 =C2=A09.369152] snd_hda_code=
-c_realtek hdaudioC0D0: =C2=A0 =C2=A0dig-out=3D0x1e/0x0</div><div>[ =C2=A0 =
-=C2=A09.369156] snd_hda_codec_realtek hdaudioC0D0: =C2=A0 =C2=A0inputs:</di=
-v><div>[ =C2=A0 =C2=A09.369165] snd_hda_codec_realtek hdaudioC0D0: =C2=A0 =
-=C2=A0 =C2=A0Mic=3D0x18</div><div>[ =C2=A0 =C2=A09.434609] nouveau 0000:03:=
-00.0: DRM: MM: using M2MF for buffer copies</div><div>[ =C2=A0 =C2=A09.5291=
-03] nouveau 0000:03:00.0: DRM: allocated 1920x1080 fb: 0x50000, bo ffff8800=
-baac3000</div><div>[ =C2=A0 =C2=A09.529521] fbcon: nouveaufb (fb0) is prima=
-ry device</div><div>[ =C2=A0 10.595960] input: HDA NVidia Mic as /devices/p=
-ci0000:00/0000:00:08.0/sound/card0/input9</div><div>[ =C2=A0 10.596707] inp=
-ut: HDA NVidia Headphone as /devices/pci0000:00/0000:00:08.0/sound/card0/in=
-put10</div><div>[ =C2=A0 16.284253] Console: switching to colour frame buff=
-er device 240x67</div><div>[ =C2=A0 16.287137] nouveau 0000:03:00.0: fb0: n=
-ouveaufb frame buffer device</div><div>[ =C2=A0 16.295232] [drm] Initialize=
-d nouveau 1.3.1 20120801 for 0000:03:00.0 on minor 0</div><div><br></div><d=
-iv>log # lsmod</div><div>Module =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0Size =C2=A0Used by</div><div>auth_rpcgss =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A039557 =C2=A00</div><div>oid_registry =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02754 =C2=A01 auth_rpcgss</div><div>nfsv4 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 444263 =C2=A02</div><d=
-iv>nfs =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 18955=
-5 =C2=A02 nfsv4</div><div>lockd =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A057722 =C2=A01 nfs</div><div>grace =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2426 =C2=A01 lockd</div><div>sunr=
-pc =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0248435 =C2=A010 a=
-uth_rpcgss,nfsv4,lockd,nfs</div><div>snd_hda_codec_hdmi =C2=A0 =C2=A0 30572=
- =C2=A01</div><div>snd_hda_codec_realtek =C2=A0 =C2=A068090 =C2=A01</div><d=
-iv>snd_hda_codec_generic =C2=A0 =C2=A048982 =C2=A01 snd_hda_codec_realtek</=
-div><div>nouveau =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01302011 =
-=C2=A01</div><div>video =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A030144 =C2=A01 nouveau</div><div>snd_hda_intel =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A025892 =C2=A00</div><div>i2c_algo_bit =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A05273 =C2=A01 nouveau</div><div>drm_kms_helper =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0110022 =C2=A01 nouveau</div><div>snd_hda_codec =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A097219 =C2=A04 snd_hda_intel,snd_hda_codec_hd=
-mi,snd_hda_codec_generic,snd_hda_codec_realtek</div><div>cfbfillrect =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 3374 =C2=A01 drm_kms_helper</div><div>s=
-nd_hwdep =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 5801 =C2=A01 snd_=
-hda_codec</div><div>syscopyarea =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 3=
-010 =C2=A01 drm_kms_helper</div><div>cfbimgblt =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 2352 =C2=A01 drm_kms_helper</div><div>snd_hda_core =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 54864 =C2=A05 snd_hda_intel,snd_hda_codec,s=
-nd_hda_codec_hdmi,snd_hda_codec_generic,snd_hda_codec_realtek</div><div>sys=
-fillrect =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 3246 =C2=A01 drm_kms_hel=
-per</div><div>sysimgblt =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 22=
-88 =C2=A01 drm_kms_helper</div><div>fb_sys_fops =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 1602 =C2=A01 drm_kms_helper</div><div>cfbcopyarea =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 3138 =C2=A01 drm_kms_helper</div><div>snd_p=
-cm =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A082027 =C2=A04 snd=
-_hda_intel,snd_hda_codec,snd_hda_core,snd_hda_codec_hdmi</div><div>ttm =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A074797 =C2=
-=A01 nouveau</div><div>snd_timer =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A019853 =C2=A01 snd_pcm</div><div>drm =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 293837 =C2=A04 nouveau,ttm,drm_kms_helper</=
-div><div>snd =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A061356 =C2=A08 snd_hda_intel,snd_hwdep,snd_hda_codec,snd_timer,snd_hd=
-a_codec_hdmi,snd_hda_codec_generic,snd_hda_codec_realtek,snd_pcm</div><div>=
-soundcore =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 6047 =C2=A01 snd=
-</div><div>i2c_nforce2 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 5414 =C2=
-=A00</div></div><div>------------------------------------------------------=
------------</div><div>and here is the output of the working version in Resc=
-ue Cd.</div><div><br></div><div>Linux sysresccd 3.14.31-std451-amd64=C2=A0<=
-/div><div><br></div><div>[ =C2=A0 =C2=A06.736180] [drm] Initialized drm 1.1=
-.0 20060810</div><div>[ =C2=A0 =C2=A06.794441] [drm] hdmi device =C2=A0not =
-found 3 0 1</div><div>[ =C2=A0 =C2=A06.794523] nouveau =C2=A0[ =C2=A0DEVICE=
-][0000:03:00.0] BOOT0 =C2=A0: 0x0ace80b1</div><div>[ =C2=A0 =C2=A06.794532]=
- nouveau =C2=A0[ =C2=A0DEVICE][0000:03:00.0] Chipset: MCP79/MCP7A (NVAC)</d=
-iv><div>[ =C2=A0 =C2=A06.794538] nouveau =C2=A0[ =C2=A0DEVICE][0000:03:00.0=
-] Family : NV50</div><div>[ =C2=A0 =C2=A06.794655] nouveau =C2=A0[ =C2=A0 V=
-BIOS][0000:03:00.0] checking PRAMIN for image...</div><div>[ =C2=A0 =C2=A06=
-.868390] nouveau =C2=A0[ =C2=A0 VBIOS][0000:03:00.0] ... appears to be vali=
-d</div><div>[ =C2=A0 =C2=A06.868400] nouveau =C2=A0[ =C2=A0 VBIOS][0000:03:=
-00.0] using image from PRAMIN</div><div>[ =C2=A0 =C2=A06.869141] nouveau =
-=C2=A0[ =C2=A0 VBIOS][0000:03:00.0] BIT signature found</div><div>[ =C2=A0 =
-=C2=A06.869151] nouveau =C2=A0[ =C2=A0 VBIOS][0000:03:00.0] version 62.79.6=
-c.00.01</div><div>[ =C2=A0 =C2=A06.890670] nouveau 0000:03:00.0: irq 41 for=
- MSI/MSI-X</div><div>[ =C2=A0 =C2=A06.890713] nouveau =C2=A0[ =C2=A0 =C2=A0=
- PMC][0000:03:00.0] MSI interrupts enabled</div><div>[ =C2=A0 =C2=A06.89079=
-0] nouveau =C2=A0[ =C2=A0 =C2=A0 PFB][0000:03:00.0] RAM type: stolen system=
- memory</div><div>[ =C2=A0 =C2=A06.890797] nouveau =C2=A0[ =C2=A0 =C2=A0 PF=
-B][0000:03:00.0] RAM size: 256 MiB</div><div>[ =C2=A0 =C2=A06.890803] nouve=
-au =C2=A0[ =C2=A0 =C2=A0 PFB][0000:03:00.0] =C2=A0 =C2=A0ZCOMP: 0 tags</div=
-><div>[ =C2=A0 =C2=A06.917639] nouveau =C2=A0[ =C2=A0PTHERM][0000:03:00.0] =
-FAN control: none / external</div><div>[ =C2=A0 =C2=A06.917677] nouveau =C2=
-=A0[ =C2=A0PTHERM][0000:03:00.0] fan management: automatic</div><div>[ =C2=
-=A0 =C2=A06.917686] nouveau =C2=A0[ =C2=A0PTHERM][0000:03:00.0] internal se=
-nsor: yes</div><div>[ =C2=A0 =C2=A06.917714] nouveau =C2=A0[ =C2=A0 =C2=A0 =
-CLK][0000:03:00.0] 03: core 200 MHz shader 400 MHz vdec 200 MHz</div><div>[=
- =C2=A0 =C2=A06.917732] nouveau =C2=A0[ =C2=A0 =C2=A0 CLK][0000:03:00.0] 05=
-: core 300 MHz shader 600 MHz vdec 300 MHz</div><div>[ =C2=A0 =C2=A06.91774=
-4] nouveau =C2=A0[ =C2=A0 =C2=A0 CLK][0000:03:00.0] 07: core 350 MHz shader=
- 800 MHz vdec 350 MHz</div><div>[ =C2=A0 =C2=A06.917756] nouveau =C2=A0[ =
-=C2=A0 =C2=A0 CLK][0000:03:00.0] 0f: core 450 MHz shader 1100 MHz vdec 450 =
-MHz</div><div>[ =C2=A0 =C2=A06.917786] nouveau =C2=A0[ =C2=A0 =C2=A0 CLK][0=
-000:03:00.0] --: core 450 MHz shader 1100 MHz vdec 450 MHz</div><div>[ =C2=
-=A0 =C2=A06.918199] [TTM] Zone =C2=A0kernel: Available graphics memory: 141=
-1362 kiB</div><div>[ =C2=A0 =C2=A06.918205] [TTM] Initializing pool allocat=
-or</div><div>[ =C2=A0 =C2=A06.918231] [TTM] Initializing DMA pool allocator=
-</div><div>[ =C2=A0 =C2=A06.918282] nouveau =C2=A0[ =C2=A0 =C2=A0 DRM] VRAM=
-: 256 MiB</div><div>[ =C2=A0 =C2=A06.918288] nouveau =C2=A0[ =C2=A0 =C2=A0 =
-DRM] GART: 1048576 MiB</div><div>[ =C2=A0 =C2=A06.918299] nouveau =C2=A0[ =
-=C2=A0 =C2=A0 DRM] TMDS table version 2.0</div><div>[ =C2=A0 =C2=A06.918305=
-] nouveau =C2=A0[ =C2=A0 =C2=A0 DRM] DCB version 4.0</div><div>[ =C2=A0 =C2=
-=A06.918313] nouveau =C2=A0[ =C2=A0 =C2=A0 DRM] DCB outp 00: 02021332 00020=
-010</div><div>[ =C2=A0 =C2=A06.918320] nouveau =C2=A0[ =C2=A0 =C2=A0 DRM] D=
-CB outp 01: 02000300 0000001e</div><div>[ =C2=A0 =C2=A06.918326] nouveau =
-=C2=A0[ =C2=A0 =C2=A0 DRM] DCB conn 00: 00000000</div><div>[ =C2=A0 =C2=A06=
-.918333] nouveau =C2=A0[ =C2=A0 =C2=A0 DRM] DCB conn 01: 00002161</div><div=
->[ =C2=A0 =C2=A06.936583] [drm] Supports vblank timestamp caching Rev 2 (21=
-.10.2013).</div><div>[ =C2=A0 =C2=A06.936592] [drm] Driver supports precise=
- vblank timestamp query.</div><div>[ =C2=A0 =C2=A06.960336] nouveau =C2=A0[=
- =C2=A0 =C2=A0 DRM] MM: using M2MF for buffer copies</div><div>[ =C2=A0 =C2=
-=A07.031184] nouveau =C2=A0[ =C2=A0 =C2=A0 DRM] allocated 1920x1080 fb: 0x5=
-0000, bo ffff8800023de400</div><div>[ =C2=A0 =C2=A07.031578] fbcon: nouveau=
-fb (fb0) is primary device</div><div>[ =C2=A0 =C2=A07.094997] Console: swit=
-ching to colour frame buffer device 240x67</div><div>[ =C2=A0 =C2=A07.09787=
-3] nouveau 0000:03:00.0: fb0: nouveaufb frame buffer device</div><div>[ =C2=
-=A0 =C2=A07.097880] nouveau 0000:03:00.0: registered panic notifier</div><d=
-iv>[ =C2=A0 =C2=A07.097896] [drm] Initialized nouveau 1.1.2 20120801 for 00=
-00:03:00.0 on minor 0</div><div><br></div><div>lsmod</div><div>root@sysresc=
-cd /var/log % lsmod=C2=A0</div><div>Module =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Size =C2=A0Used by</div><div>arc4 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 12390 =C2=A02=C2=A0</d=
-iv><div>rt2800pci =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A012437 =C2=
-=A00=C2=A0</div><div>rt2800mmio =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 1=
-4394 =C2=A01 rt2800pci</div><div>rt2800lib =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A073558 =C2=A02 rt2800pci,rt2800mmio</div><div>rt2x00pci =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A012719 =C2=A01 rt2800pci</div><=
-div>rt2x00mmio =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 12863 =C2=A02 rt28=
-00pci,rt2800mmio</div><div>rt2x00lib =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A048382 =C2=A05 rt2x00pci,rt2800lib,rt2800pci,rt2800mmio,rt2x00mmio=
-</div><div>eeprom_93cx6 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 12739 =C2=A01 rt=
-2800pci</div><div>mac80211 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-421465 =C2=A03 rt2x00lib,rt2x00pci,rt2800lib</div><div>cfg80211 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0320349 =C2=A02 mac80211,rt2x00lib</di=
-v><div>crc_ccitt =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A012519 =C2=
-=A01 rt2800lib</div><div>coretemp =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 12390 =C2=A00=C2=A0</div><div>rfkill =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 18094 =C2=A02 cfg80211</div><div>microcode =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A041719 =C2=A00=C2=A0</div><div>=
-joydev =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 16535 =C2=A0=
-0=C2=A0</div><div>serio_raw =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A012439 =C2=A00=C2=A0</div><div>i2c_nforce2 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A012523 =C2=A00=C2=A0</div><div>shpchp =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 29571 =C2=A00=C2=A0</div><div>raid10 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 37123 =C2=A00=C2=A0</div>=
-<div>raid456 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A057671 =
-=C2=A00=C2=A0</div><div>async_raid6_recov =C2=A0 =C2=A0 =C2=A012621 =C2=A01=
- raid456</div><div>async_pq =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 12640 =C2=A02 raid456,async_raid6_recov</div><div>async_xor =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A012573 =C2=A03 async_pq,raid456,async_=
-raid6_recov</div><div>async_memcpy =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 12464=
- =C2=A02 raid456,async_raid6_recov</div><div>async_tx =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 12840 =C2=A05 async_pq,raid456,async_xor,async_=
-memcpy,async_raid6_recov</div><div>raid1 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A028900 =C2=A00=C2=A0</div><div>raid0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A016515 =C2=A00=C2=A0</di=
-v><div>multipath =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A012390 =C2=
-=A00=C2=A0</div><div>linear =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 12390 =C2=A00=C2=A0</div><div>nouveau =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 793903 =C2=A02=C2=A0</div><div>ttm =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A066567 =C2=A01 nouvea=
-u</div><div>drm_kms_helper =C2=A0 =C2=A0 =C2=A0 =C2=A0 37632 =C2=A01 nouvea=
-u</div><div>drm =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 216971 =C2=A04 ttm,drm_kms_helper,nouveau</div><div>i2c_algo_bit =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 12633 =C2=A01 nouveau</div><div>i2c_core =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 28421 =C2=A05 drm,drm_kms_hel=
-per,i2c_algo_bit,nouveau,i2c_nforce2</div><div>mxm_wmi =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A012672 =C2=A01 nouveau</div><div>video =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A016832 =C2=A01=
- nouveau</div><div>usb_storage =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0523=
-65 =C2=A01=C2=A0</div><div>forcedeth =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A049417 =C2=A00=C2=A0</div><div>wmi =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A013114 =C2=A02 mxm_wmi,nouveau=C2=A0</=
-div><div>------------------------------------------------------------------=
----</div><div><br></div><div>Sorry for the huge e-mail. I would appreciate =
-any help.</div><div><br></div><div>Thanks in advance.</div><div><br></div><=
-div>Marcelo.</div><div><br></div><div><br></div><div><br></div></div>
-
---94eb2c07aadc6c39b7054a8a3bff--
-
---===============1126165480==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1126165480==--
+SSB0aGluayB5b3Ugd2FudCBrZXJuZWwgNC4xMCwgb3IgY2hlcnJ5LXBpY2sgdXBzdHJlYW0gY29t
+bWl0CjdkZmVlNjgyNzc4MGQ0MjI4MTQ4MjYzNTQ1YWY5MzZkMGNhZTg5MzAuCgpPbiBTdW4sIE1h
+ciAxMiwgMjAxNyBhdCAxMToyNyBBTSwgTWFyY2VsbyBSaWJlaXJvIDxtYnJpYmVpcm9AZ21haWwu
+Y29tPiB3cm90ZToKPiBIaSwgSSBhbSBjaGFuZ2luZyBmcm9tIHByb3ByaWV0YXJ5IG52aWRpYSBk
+cml2ZXJzIHRvIE5vdXZlYXUgZHJpdmVycyBpbiBteQo+IG1lZGlhY2VudGVyLgo+Cj4gSSBydW4g
+YSBHZW50b28gbGludXggaW4gdGhpcyBoYXJkd2FyZSBhbmQgSSBhbSBmYWNpbmcgYW4gb3V0IG9m
+IHNpZ25hbAo+IHNjcmVlbiBqdXN0IGFmdGVyIHRoZSBib290ICh3aGVuIHRoZSBub3V2ZWF1IG1v
+ZHVsZSBpcyBsb2FkZWQpLiBJZiBJCj4gYmxhY2tsaXN0IHRoaXMgbW9kdWxlIGFuZCBtb2Rwcm9i
+ZSBpdCBpbiB0aGUgcHJvbXB0LCB0aGUgc2NyZWVuIGdldHMgb3V0IG9mCj4gc2lnbmFsIGluIG15
+IDEwODBwIFRWIGluIHRoaXMgbW9tZW50Lgo+Cj4gSSB0cmllZCByZWNvbXBpbGUgdGhlIGtlcm5l
+bCBlbmFibGluZyBhbmQgZGlzYWJsaW5nIGEgbG90IG9mIG1vZHVsZXMgYnV0IHRoZQo+IHJlc3Vs
+dCBpcyBhbHdheXMgdGhlIHNhbWUuIEJ5IGEgc3NoIEkgY2FuIGFjY2VzcyBteSBtZWRpYSBjZW50
+ZXIgYW5kIGFsbCB0aGUKPiBsb2dzIGFyZSBub3JtYWwsIGV2ZW4gWG9yZyAoaXQgdGhpbmtzIGl0
+IGlzIHNlbmRpbmcgaXRzIGltYWdlIHRvIGhkbWkgYXMgaXQKPiBzaG91bGQpLgo+IEkgdHJ5ZWQg
+c3lzdGVtIHJlc2N1ZSBjZCBhbmQgaXQgdXNlcyBub3V2ZWF1IGRyaXZlciBhbmQgaXQgd29ya3Mg
+d2VsbC4gSXQKPiB1c2VzIGtlcm5lbCAgMy4xNC4zMS1zdGQ0NTEtYW1kNjQgIGFuZCBJIGFtIHVz
+aW5nIDQuOS42LWdlbnRvby1yMSAjNS4KPgo+IEhlcmUgaXMgc29tZSBvdXRwdXQgZnJvbSBteSBu
+b24td29ya2luZyBkbWVzZy4KPgo+IDQuOS42LWdlbnRvby1yMSAjNQo+Cj4gWyAgICA4LjQ1MDgz
+N10gW2RybV0gSW5pdGlhbGl6ZWQKPiBbICAgIDguNzMzODA0XSBBQ1BJOiBQQ0kgSW50ZXJydXB0
+IExpbmsgW0xBWkFdIGVuYWJsZWQgYXQgSVJRIDIyCj4gWyAgICA4LjczMzgzMF0gc25kX2hkYV9p
+bnRlbCAwMDAwOjAwOjA4LjA6IERpc2FibGluZyBNU0kKPiBbICAgIDkuMjI0MTI2XSBBQ1BJOiBQ
+Q0kgSW50ZXJydXB0IExpbmsgW1NHUlVdIGVuYWJsZWQgYXQgSVJRIDIxCj4gWyAgICA5LjIyNDQ4
+OV0gbm91dmVhdSAwMDAwOjAzOjAwLjA6IE5WSURJQSBNQ1A3OS9NQ1A3QSAoMGFjZTgwYjEpCj4g
+WyAgICA5LjI0NDIxMV0gbm91dmVhdSAwMDAwOjAzOjAwLjA6IGJpb3M6IHZlcnNpb24gNjIuNzku
+NmMuMDAuMDEKPiBbICAgIDkuMjY2Njg5XSBub3V2ZWF1IDAwMDA6MDM6MDAuMDogZmI6IDI1NiBN
+aUIgc3RvbGVuIHN5c3RlbSBtZW1vcnkKPiBbICAgIDkuMzE3NTYyXSBbVFRNXSBab25lICBrZXJu
+ZWw6IEF2YWlsYWJsZSBncmFwaGljcyBtZW1vcnk6IDE0MTMwOTgga2lCCj4gWyAgICA5LjMxNzU2
+Nl0gW1RUTV0gSW5pdGlhbGl6aW5nIHBvb2wgYWxsb2NhdG9yCj4gWyAgICA5LjMxNzU5OV0gW1RU
+TV0gSW5pdGlhbGl6aW5nIERNQSBwb29sIGFsbG9jYXRvcgo+IFsgICAgOS4zMTc2NzddIG5vdXZl
+YXUgMDAwMDowMzowMC4wOiBEUk06IFZSQU06IDI1NiBNaUIKPiBbICAgIDkuMzE3NjgyXSBub3V2
+ZWF1IDAwMDA6MDM6MDAuMDogRFJNOiBHQVJUOiAxMDQ4NTc2IE1pQgo+IFsgICAgOS4zMTc2OTJd
+IG5vdXZlYXUgMDAwMDowMzowMC4wOiBEUk06IFRNRFMgdGFibGUgdmVyc2lvbiAyLjAKPiBbICAg
+IDkuMzE3Njk3XSBub3V2ZWF1IDAwMDA6MDM6MDAuMDogRFJNOiBEQ0IgdmVyc2lvbiA0LjAKPiBb
+ICAgIDkuMzE3NzA0XSBub3V2ZWF1IDAwMDA6MDM6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMDogMDIw
+MjEzMzIgMDAwMjAwMTAKPiBbICAgIDkuMzE3NzA5XSBub3V2ZWF1IDAwMDA6MDM6MDAuMDogRFJN
+OiBEQ0Igb3V0cCAwMTogMDIwMDAzMDAgMDAwMDAwMWUKPiBbICAgIDkuMzE3NzE0XSBub3V2ZWF1
+IDAwMDA6MDM6MDAuMDogRFJNOiBEQ0IgY29ubiAwMDogMDAwMDAwMDAKPiBbICAgIDkuMzE3NzE5
+XSBub3V2ZWF1IDAwMDA6MDM6MDAuMDogRFJNOiBEQ0IgY29ubiAwMTogMDAwMDIxNjEKPiBbICAg
+IDkuMzY4Nzc3XSBbZHJtXSBTdXBwb3J0cyB2YmxhbmsgdGltZXN0YW1wIGNhY2hpbmcgUmV2IDIg
+KDIxLjEwLjIwMTMpLgo+IFsgICAgOS4zNjg3ODRdIFtkcm1dIERyaXZlciBzdXBwb3J0cyBwcmVj
+aXNlIHZibGFuayB0aW1lc3RhbXAgcXVlcnkuCj4gWyAgICA5LjM2OTEyNF0gc25kX2hkYV9jb2Rl
+Y19yZWFsdGVrIGhkYXVkaW9DMEQwOiBhdXRvY29uZmlnIGZvciBBTEM2NjIKPiByZXYxOiBsaW5l
+X291dHM9MSAoMHgxNC8weDAvMHgwLzB4MC8weDApIHR5cGU6aHAKPiBbICAgIDkuMzY5MTM1XSBz
+bmRfaGRhX2NvZGVjX3JlYWx0ZWsgaGRhdWRpb0MwRDA6ICAgIHNwZWFrZXJfb3V0cz0wCj4gKDB4
+MC8weDAvMHgwLzB4MC8weDApCj4gWyAgICA5LjM2OTE0Ml0gc25kX2hkYV9jb2RlY19yZWFsdGVr
+IGhkYXVkaW9DMEQwOiAgICBocF9vdXRzPTAKPiAoMHgwLzB4MC8weDAvMHgwLzB4MCkKPiBbICAg
+IDkuMzY5MTQ3XSBzbmRfaGRhX2NvZGVjX3JlYWx0ZWsgaGRhdWRpb0MwRDA6ICAgIG1vbm86IG1v
+bm9fb3V0PTB4MAo+IFsgICAgOS4zNjkxNTJdIHNuZF9oZGFfY29kZWNfcmVhbHRlayBoZGF1ZGlv
+QzBEMDogICAgZGlnLW91dD0weDFlLzB4MAo+IFsgICAgOS4zNjkxNTZdIHNuZF9oZGFfY29kZWNf
+cmVhbHRlayBoZGF1ZGlvQzBEMDogICAgaW5wdXRzOgo+IFsgICAgOS4zNjkxNjVdIHNuZF9oZGFf
+Y29kZWNfcmVhbHRlayBoZGF1ZGlvQzBEMDogICAgICBNaWM9MHgxOAo+IFsgICAgOS40MzQ2MDld
+IG5vdXZlYXUgMDAwMDowMzowMC4wOiBEUk06IE1NOiB1c2luZyBNMk1GIGZvciBidWZmZXIgY29w
+aWVzCj4gWyAgICA5LjUyOTEwM10gbm91dmVhdSAwMDAwOjAzOjAwLjA6IERSTTogYWxsb2NhdGVk
+IDE5MjB4MTA4MCBmYjogMHg1MDAwMCwKPiBibyBmZmZmODgwMGJhYWMzMDAwCj4gWyAgICA5LjUy
+OTUyMV0gZmJjb246IG5vdXZlYXVmYiAoZmIwKSBpcyBwcmltYXJ5IGRldmljZQo+IFsgICAxMC41
+OTU5NjBdIGlucHV0OiBIREEgTlZpZGlhIE1pYyBhcwo+IC9kZXZpY2VzL3BjaTAwMDA6MDAvMDAw
+MDowMDowOC4wL3NvdW5kL2NhcmQwL2lucHV0OQo+IFsgICAxMC41OTY3MDddIGlucHV0OiBIREEg
+TlZpZGlhIEhlYWRwaG9uZSBhcwo+IC9kZXZpY2VzL3BjaTAwMDA6MDAvMDAwMDowMDowOC4wL3Nv
+dW5kL2NhcmQwL2lucHV0MTAKPiBbICAgMTYuMjg0MjUzXSBDb25zb2xlOiBzd2l0Y2hpbmcgdG8g
+Y29sb3VyIGZyYW1lIGJ1ZmZlciBkZXZpY2UgMjQweDY3Cj4gWyAgIDE2LjI4NzEzN10gbm91dmVh
+dSAwMDAwOjAzOjAwLjA6IGZiMDogbm91dmVhdWZiIGZyYW1lIGJ1ZmZlciBkZXZpY2UKPiBbICAg
+MTYuMjk1MjMyXSBbZHJtXSBJbml0aWFsaXplZCBub3V2ZWF1IDEuMy4xIDIwMTIwODAxIGZvciAw
+MDAwOjAzOjAwLjAgb24KPiBtaW5vciAwCj4KPiBsb2cgIyBsc21vZAo+IE1vZHVsZSAgICAgICAg
+ICAgICAgICAgIFNpemUgIFVzZWQgYnkKPiBhdXRoX3JwY2dzcyAgICAgICAgICAgIDM5NTU3ICAw
+Cj4gb2lkX3JlZ2lzdHJ5ICAgICAgICAgICAgMjc1NCAgMSBhdXRoX3JwY2dzcwo+IG5mc3Y0ICAg
+ICAgICAgICAgICAgICA0NDQyNjMgIDIKPiBuZnMgICAgICAgICAgICAgICAgICAgMTg5NTU1ICAy
+IG5mc3Y0Cj4gbG9ja2QgICAgICAgICAgICAgICAgICA1NzcyMiAgMSBuZnMKPiBncmFjZSAgICAg
+ICAgICAgICAgICAgICAyNDI2ICAxIGxvY2tkCj4gc3VucnBjICAgICAgICAgICAgICAgIDI0ODQz
+NSAgMTAgYXV0aF9ycGNnc3MsbmZzdjQsbG9ja2QsbmZzCj4gc25kX2hkYV9jb2RlY19oZG1pICAg
+ICAzMDU3MiAgMQo+IHNuZF9oZGFfY29kZWNfcmVhbHRlayAgICA2ODA5MCAgMQo+IHNuZF9oZGFf
+Y29kZWNfZ2VuZXJpYyAgICA0ODk4MiAgMSBzbmRfaGRhX2NvZGVjX3JlYWx0ZWsKPiBub3V2ZWF1
+ICAgICAgICAgICAgICAxMzAyMDExICAxCj4gdmlkZW8gICAgICAgICAgICAgICAgICAzMDE0NCAg
+MSBub3V2ZWF1Cj4gc25kX2hkYV9pbnRlbCAgICAgICAgICAyNTg5MiAgMAo+IGkyY19hbGdvX2Jp
+dCAgICAgICAgICAgIDUyNzMgIDEgbm91dmVhdQo+IGRybV9rbXNfaGVscGVyICAgICAgICAxMTAw
+MjIgIDEgbm91dmVhdQo+IHNuZF9oZGFfY29kZWMgICAgICAgICAgOTcyMTkgIDQKPiBzbmRfaGRh
+X2ludGVsLHNuZF9oZGFfY29kZWNfaGRtaSxzbmRfaGRhX2NvZGVjX2dlbmVyaWMsc25kX2hkYV9j
+b2RlY19yZWFsdGVrCj4gY2ZiZmlsbHJlY3QgICAgICAgICAgICAgMzM3NCAgMSBkcm1fa21zX2hl
+bHBlcgo+IHNuZF9od2RlcCAgICAgICAgICAgICAgIDU4MDEgIDEgc25kX2hkYV9jb2RlYwo+IHN5
+c2NvcHlhcmVhICAgICAgICAgICAgIDMwMTAgIDEgZHJtX2ttc19oZWxwZXIKPiBjZmJpbWdibHQg
+ICAgICAgICAgICAgICAyMzUyICAxIGRybV9rbXNfaGVscGVyCj4gc25kX2hkYV9jb3JlICAgICAg
+ICAgICA1NDg2NCAgNQo+IHNuZF9oZGFfaW50ZWwsc25kX2hkYV9jb2RlYyxzbmRfaGRhX2NvZGVj
+X2hkbWksc25kX2hkYV9jb2RlY19nZW5lcmljLHNuZF9oZGFfY29kZWNfcmVhbHRlawo+IHN5c2Zp
+bGxyZWN0ICAgICAgICAgICAgIDMyNDYgIDEgZHJtX2ttc19oZWxwZXIKPiBzeXNpbWdibHQgICAg
+ICAgICAgICAgICAyMjg4ICAxIGRybV9rbXNfaGVscGVyCj4gZmJfc3lzX2ZvcHMgICAgICAgICAg
+ICAgMTYwMiAgMSBkcm1fa21zX2hlbHBlcgo+IGNmYmNvcHlhcmVhICAgICAgICAgICAgIDMxMzgg
+IDEgZHJtX2ttc19oZWxwZXIKPiBzbmRfcGNtICAgICAgICAgICAgICAgIDgyMDI3ICA0Cj4gc25k
+X2hkYV9pbnRlbCxzbmRfaGRhX2NvZGVjLHNuZF9oZGFfY29yZSxzbmRfaGRhX2NvZGVjX2hkbWkK
+PiB0dG0gICAgICAgICAgICAgICAgICAgIDc0Nzk3ICAxIG5vdXZlYXUKPiBzbmRfdGltZXIgICAg
+ICAgICAgICAgIDE5ODUzICAxIHNuZF9wY20KPiBkcm0gICAgICAgICAgICAgICAgICAgMjkzODM3
+ICA0IG5vdXZlYXUsdHRtLGRybV9rbXNfaGVscGVyCj4gc25kICAgICAgICAgICAgICAgICAgICA2
+MTM1NiAgOAo+IHNuZF9oZGFfaW50ZWwsc25kX2h3ZGVwLHNuZF9oZGFfY29kZWMsc25kX3RpbWVy
+LHNuZF9oZGFfY29kZWNfaGRtaSxzbmRfaGRhX2NvZGVjX2dlbmVyaWMsc25kX2hkYV9jb2RlY19y
+ZWFsdGVrLHNuZF9wY20KPiBzb3VuZGNvcmUgICAgICAgICAgICAgICA2MDQ3ICAxIHNuZAo+IGky
+Y19uZm9yY2UyICAgICAgICAgICAgIDU0MTQgIDAKPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+IGFuZCBoZXJlIGlzIHRo
+ZSBvdXRwdXQgb2YgdGhlIHdvcmtpbmcgdmVyc2lvbiBpbiBSZXNjdWUgQ2QuCj4KPiBMaW51eCBz
+eXNyZXNjY2QgMy4xNC4zMS1zdGQ0NTEtYW1kNjQKPgo+IFsgICAgNi43MzYxODBdIFtkcm1dIElu
+aXRpYWxpemVkIGRybSAxLjEuMCAyMDA2MDgxMAo+IFsgICAgNi43OTQ0NDFdIFtkcm1dIGhkbWkg
+ZGV2aWNlICBub3QgZm91bmQgMyAwIDEKPiBbICAgIDYuNzk0NTIzXSBub3V2ZWF1ICBbICBERVZJ
+Q0VdWzAwMDA6MDM6MDAuMF0gQk9PVDAgIDogMHgwYWNlODBiMQo+IFsgICAgNi43OTQ1MzJdIG5v
+dXZlYXUgIFsgIERFVklDRV1bMDAwMDowMzowMC4wXSBDaGlwc2V0OiBNQ1A3OS9NQ1A3QSAoTlZB
+QykKPiBbICAgIDYuNzk0NTM4XSBub3V2ZWF1ICBbICBERVZJQ0VdWzAwMDA6MDM6MDAuMF0gRmFt
+aWx5IDogTlY1MAo+IFsgICAgNi43OTQ2NTVdIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDowMzow
+MC4wXSBjaGVja2luZyBQUkFNSU4gZm9yCj4gaW1hZ2UuLi4KPiBbICAgIDYuODY4MzkwXSBub3V2
+ZWF1ICBbICAgVkJJT1NdWzAwMDA6MDM6MDAuMF0gLi4uIGFwcGVhcnMgdG8gYmUgdmFsaWQKPiBb
+ICAgIDYuODY4NDAwXSBub3V2ZWF1ICBbICAgVkJJT1NdWzAwMDA6MDM6MDAuMF0gdXNpbmcgaW1h
+Z2UgZnJvbSBQUkFNSU4KPiBbICAgIDYuODY5MTQxXSBub3V2ZWF1ICBbICAgVkJJT1NdWzAwMDA6
+MDM6MDAuMF0gQklUIHNpZ25hdHVyZSBmb3VuZAo+IFsgICAgNi44NjkxNTFdIG5vdXZlYXUgIFsg
+ICBWQklPU11bMDAwMDowMzowMC4wXSB2ZXJzaW9uIDYyLjc5LjZjLjAwLjAxCj4gWyAgICA2Ljg5
+MDY3MF0gbm91dmVhdSAwMDAwOjAzOjAwLjA6IGlycSA0MSBmb3IgTVNJL01TSS1YCj4gWyAgICA2
+Ljg5MDcxM10gbm91dmVhdSAgWyAgICAgUE1DXVswMDAwOjAzOjAwLjBdIE1TSSBpbnRlcnJ1cHRz
+IGVuYWJsZWQKPiBbICAgIDYuODkwNzkwXSBub3V2ZWF1ICBbICAgICBQRkJdWzAwMDA6MDM6MDAu
+MF0gUkFNIHR5cGU6IHN0b2xlbiBzeXN0ZW0KPiBtZW1vcnkKPiBbICAgIDYuODkwNzk3XSBub3V2
+ZWF1ICBbICAgICBQRkJdWzAwMDA6MDM6MDAuMF0gUkFNIHNpemU6IDI1NiBNaUIKPiBbICAgIDYu
+ODkwODAzXSBub3V2ZWF1ICBbICAgICBQRkJdWzAwMDA6MDM6MDAuMF0gICAgWkNPTVA6IDAgdGFn
+cwo+IFsgICAgNi45MTc2MzldIG5vdXZlYXUgIFsgIFBUSEVSTV1bMDAwMDowMzowMC4wXSBGQU4g
+Y29udHJvbDogbm9uZSAvCj4gZXh0ZXJuYWwKPiBbICAgIDYuOTE3Njc3XSBub3V2ZWF1ICBbICBQ
+VEhFUk1dWzAwMDA6MDM6MDAuMF0gZmFuIG1hbmFnZW1lbnQ6IGF1dG9tYXRpYwo+IFsgICAgNi45
+MTc2ODZdIG5vdXZlYXUgIFsgIFBUSEVSTV1bMDAwMDowMzowMC4wXSBpbnRlcm5hbCBzZW5zb3I6
+IHllcwo+IFsgICAgNi45MTc3MTRdIG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDowMzowMC4wXSAw
+MzogY29yZSAyMDAgTUh6IHNoYWRlciA0MDAKPiBNSHogdmRlYyAyMDAgTUh6Cj4gWyAgICA2Ljkx
+NzczMl0gbm91dmVhdSAgWyAgICAgQ0xLXVswMDAwOjAzOjAwLjBdIDA1OiBjb3JlIDMwMCBNSHog
+c2hhZGVyIDYwMAo+IE1IeiB2ZGVjIDMwMCBNSHoKPiBbICAgIDYuOTE3NzQ0XSBub3V2ZWF1ICBb
+ICAgICBDTEtdWzAwMDA6MDM6MDAuMF0gMDc6IGNvcmUgMzUwIE1IeiBzaGFkZXIgODAwCj4gTUh6
+IHZkZWMgMzUwIE1Iego+IFsgICAgNi45MTc3NTZdIG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDow
+MzowMC4wXSAwZjogY29yZSA0NTAgTUh6IHNoYWRlcgo+IDExMDAgTUh6IHZkZWMgNDUwIE1Iego+
+IFsgICAgNi45MTc3ODZdIG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDowMzowMC4wXSAtLTogY29y
+ZSA0NTAgTUh6IHNoYWRlcgo+IDExMDAgTUh6IHZkZWMgNDUwIE1Iego+IFsgICAgNi45MTgxOTld
+IFtUVE1dIFpvbmUgIGtlcm5lbDogQXZhaWxhYmxlIGdyYXBoaWNzIG1lbW9yeTogMTQxMTM2MiBr
+aUIKPiBbICAgIDYuOTE4MjA1XSBbVFRNXSBJbml0aWFsaXppbmcgcG9vbCBhbGxvY2F0b3IKPiBb
+ICAgIDYuOTE4MjMxXSBbVFRNXSBJbml0aWFsaXppbmcgRE1BIHBvb2wgYWxsb2NhdG9yCj4gWyAg
+ICA2LjkxODI4Ml0gbm91dmVhdSAgWyAgICAgRFJNXSBWUkFNOiAyNTYgTWlCCj4gWyAgICA2Ljkx
+ODI4OF0gbm91dmVhdSAgWyAgICAgRFJNXSBHQVJUOiAxMDQ4NTc2IE1pQgo+IFsgICAgNi45MTgy
+OTldIG5vdXZlYXUgIFsgICAgIERSTV0gVE1EUyB0YWJsZSB2ZXJzaW9uIDIuMAo+IFsgICAgNi45
+MTgzMDVdIG5vdXZlYXUgIFsgICAgIERSTV0gRENCIHZlcnNpb24gNC4wCj4gWyAgICA2LjkxODMx
+M10gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Igb3V0cCAwMDogMDIwMjEzMzIgMDAwMjAwMTAKPiBb
+ICAgIDYuOTE4MzIwXSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBvdXRwIDAxOiAwMjAwMDMwMCAw
+MDAwMDAxZQo+IFsgICAgNi45MTgzMjZdIG5vdXZlYXUgIFsgICAgIERSTV0gRENCIGNvbm4gMDA6
+IDAwMDAwMDAwCj4gWyAgICA2LjkxODMzM10gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0IgY29ubiAw
+MTogMDAwMDIxNjEKPiBbICAgIDYuOTM2NTgzXSBbZHJtXSBTdXBwb3J0cyB2YmxhbmsgdGltZXN0
+YW1wIGNhY2hpbmcgUmV2IDIgKDIxLjEwLjIwMTMpLgo+IFsgICAgNi45MzY1OTJdIFtkcm1dIERy
+aXZlciBzdXBwb3J0cyBwcmVjaXNlIHZibGFuayB0aW1lc3RhbXAgcXVlcnkuCj4gWyAgICA2Ljk2
+MDMzNl0gbm91dmVhdSAgWyAgICAgRFJNXSBNTTogdXNpbmcgTTJNRiBmb3IgYnVmZmVyIGNvcGll
+cwo+IFsgICAgNy4wMzExODRdIG5vdXZlYXUgIFsgICAgIERSTV0gYWxsb2NhdGVkIDE5MjB4MTA4
+MCBmYjogMHg1MDAwMCwgYm8KPiBmZmZmODgwMDAyM2RlNDAwCj4gWyAgICA3LjAzMTU3OF0gZmJj
+b246IG5vdXZlYXVmYiAoZmIwKSBpcyBwcmltYXJ5IGRldmljZQo+IFsgICAgNy4wOTQ5OTddIENv
+bnNvbGU6IHN3aXRjaGluZyB0byBjb2xvdXIgZnJhbWUgYnVmZmVyIGRldmljZSAyNDB4NjcKPiBb
+ICAgIDcuMDk3ODczXSBub3V2ZWF1IDAwMDA6MDM6MDAuMDogZmIwOiBub3V2ZWF1ZmIgZnJhbWUg
+YnVmZmVyIGRldmljZQo+IFsgICAgNy4wOTc4ODBdIG5vdXZlYXUgMDAwMDowMzowMC4wOiByZWdp
+c3RlcmVkIHBhbmljIG5vdGlmaWVyCj4gWyAgICA3LjA5Nzg5Nl0gW2RybV0gSW5pdGlhbGl6ZWQg
+bm91dmVhdSAxLjEuMiAyMDEyMDgwMSBmb3IgMDAwMDowMzowMC4wIG9uCj4gbWlub3IgMAo+Cj4g
+bHNtb2QKPiByb290QHN5c3Jlc2NjZCAvdmFyL2xvZyAlIGxzbW9kCj4gTW9kdWxlICAgICAgICAg
+ICAgICAgICAgU2l6ZSAgVXNlZCBieQo+IGFyYzQgICAgICAgICAgICAgICAgICAgMTIzOTAgIDIK
+PiBydDI4MDBwY2kgICAgICAgICAgICAgIDEyNDM3ICAwCj4gcnQyODAwbW1pbyAgICAgICAgICAg
+ICAxNDM5NCAgMSBydDI4MDBwY2kKPiBydDI4MDBsaWIgICAgICAgICAgICAgIDczNTU4ICAyIHJ0
+MjgwMHBjaSxydDI4MDBtbWlvCj4gcnQyeDAwcGNpICAgICAgICAgICAgICAxMjcxOSAgMSBydDI4
+MDBwY2kKPiBydDJ4MDBtbWlvICAgICAgICAgICAgIDEyODYzICAyIHJ0MjgwMHBjaSxydDI4MDBt
+bWlvCj4gcnQyeDAwbGliICAgICAgICAgICAgICA0ODM4MiAgNQo+IHJ0MngwMHBjaSxydDI4MDBs
+aWIscnQyODAwcGNpLHJ0MjgwMG1taW8scnQyeDAwbW1pbwo+IGVlcHJvbV85M2N4NiAgICAgICAg
+ICAgMTI3MzkgIDEgcnQyODAwcGNpCj4gbWFjODAyMTEgICAgICAgICAgICAgIDQyMTQ2NSAgMyBy
+dDJ4MDBsaWIscnQyeDAwcGNpLHJ0MjgwMGxpYgo+IGNmZzgwMjExICAgICAgICAgICAgICAzMjAz
+NDkgIDIgbWFjODAyMTEscnQyeDAwbGliCj4gY3JjX2NjaXR0ICAgICAgICAgICAgICAxMjUxOSAg
+MSBydDI4MDBsaWIKPiBjb3JldGVtcCAgICAgICAgICAgICAgIDEyMzkwICAwCj4gcmZraWxsICAg
+ICAgICAgICAgICAgICAxODA5NCAgMiBjZmc4MDIxMQo+IG1pY3JvY29kZSAgICAgICAgICAgICAg
+NDE3MTkgIDAKPiBqb3lkZXYgICAgICAgICAgICAgICAgIDE2NTM1ICAwCj4gc2VyaW9fcmF3ICAg
+ICAgICAgICAgICAxMjQzOSAgMAo+IGkyY19uZm9yY2UyICAgICAgICAgICAgMTI1MjMgIDAKPiBz
+aHBjaHAgICAgICAgICAgICAgICAgIDI5NTcxICAwCj4gcmFpZDEwICAgICAgICAgICAgICAgICAz
+NzEyMyAgMAo+IHJhaWQ0NTYgICAgICAgICAgICAgICAgNTc2NzEgIDAKPiBhc3luY19yYWlkNl9y
+ZWNvdiAgICAgIDEyNjIxICAxIHJhaWQ0NTYKPiBhc3luY19wcSAgICAgICAgICAgICAgIDEyNjQw
+ICAyIHJhaWQ0NTYsYXN5bmNfcmFpZDZfcmVjb3YKPiBhc3luY194b3IgICAgICAgICAgICAgIDEy
+NTczICAzIGFzeW5jX3BxLHJhaWQ0NTYsYXN5bmNfcmFpZDZfcmVjb3YKPiBhc3luY19tZW1jcHkg
+ICAgICAgICAgIDEyNDY0ICAyIHJhaWQ0NTYsYXN5bmNfcmFpZDZfcmVjb3YKPiBhc3luY190eCAg
+ICAgICAgICAgICAgIDEyODQwICA1Cj4gYXN5bmNfcHEscmFpZDQ1Nixhc3luY194b3IsYXN5bmNf
+bWVtY3B5LGFzeW5jX3JhaWQ2X3JlY292Cj4gcmFpZDEgICAgICAgICAgICAgICAgICAyODkwMCAg
+MAo+IHJhaWQwICAgICAgICAgICAgICAgICAgMTY1MTUgIDAKPiBtdWx0aXBhdGggICAgICAgICAg
+ICAgIDEyMzkwICAwCj4gbGluZWFyICAgICAgICAgICAgICAgICAxMjM5MCAgMAo+IG5vdXZlYXUg
+ICAgICAgICAgICAgICA3OTM5MDMgIDIKPiB0dG0gICAgICAgICAgICAgICAgICAgIDY2NTY3ICAx
+IG5vdXZlYXUKPiBkcm1fa21zX2hlbHBlciAgICAgICAgIDM3NjMyICAxIG5vdXZlYXUKPiBkcm0g
+ICAgICAgICAgICAgICAgICAgMjE2OTcxICA0IHR0bSxkcm1fa21zX2hlbHBlcixub3V2ZWF1Cj4g
+aTJjX2FsZ29fYml0ICAgICAgICAgICAxMjYzMyAgMSBub3V2ZWF1Cj4gaTJjX2NvcmUgICAgICAg
+ICAgICAgICAyODQyMSAgNQo+IGRybSxkcm1fa21zX2hlbHBlcixpMmNfYWxnb19iaXQsbm91dmVh
+dSxpMmNfbmZvcmNlMgo+IG14bV93bWkgICAgICAgICAgICAgICAgMTI2NzIgIDEgbm91dmVhdQo+
+IHZpZGVvICAgICAgICAgICAgICAgICAgMTY4MzIgIDEgbm91dmVhdQo+IHVzYl9zdG9yYWdlICAg
+ICAgICAgICAgNTIzNjUgIDEKPiBmb3JjZWRldGggICAgICAgICAgICAgIDQ5NDE3ICAwCj4gd21p
+ICAgICAgICAgICAgICAgICAgICAxMzExNCAgMiBteG1fd21pLG5vdXZlYXUKPiAtLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0KPgo+IFNvcnJ5IGZvciB0aGUgaHVnZSBlLW1haWwuIEkgd291bGQgYXBwcmVjaWF0ZSBhbnkg
+aGVscC4KPgo+IFRoYW5rcyBpbiBhZHZhbmNlLgo+Cj4gTWFyY2Vsby4KPgo+Cj4KPgo+IF9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWls
+aW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+Cl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
