@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100177] [GM206] Misrendering in XCOM Ennemy Within
-Date: Mon, 13 Mar 2017 02:27:55 +0000
-Message-ID: <bug-100177-8800-V1MNOdhgWG@http.bugs.freedesktop.org/>
+Date: Mon, 13 Mar 2017 04:08:31 +0000
+Message-ID: <bug-100177-8800-XQL42fWtpA@http.bugs.freedesktop.org/>
 References: <bug-100177-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1988562557=="
+Content-Type: multipart/mixed; boundary="===============1966059152=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100177-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1988562557==
-Content-Type: multipart/alternative; boundary="14893720750.dcb0fb.32237";
+--===============1966059152==
+Content-Type: multipart/alternative; boundary="14893781120.3044.7686";
  charset="UTF-8"
 
 
---14893720750.dcb0fb.32237
-Date: Mon, 13 Mar 2017 02:27:55 +0000
+--14893781120.3044.7686
+Date: Mon, 13 Mar 2017 04:08:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,33 +35,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100177
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I have an unproven theory that this is related to polygon-offset failing on
-GM20x. Can't figure out what we're missing. In the GM20x traces it seems li=
-ke
-it's jumping through crazy hoops to set all the polygon offset stuff by usi=
-ng a
-macro to write out the values. It's effectively conditional on the value in
-some scratch register. I suspect it's to be able to apply a CSO without
-recomputing it, and adjusting its effect by adjusting scratch registers.
-However things are configured s.t. it does do the writes.
-
-One thought is that there's a register somewhere that sets the value of "r",
-i.e. the unit of polygon offset. This has traditionally been driven off the
-depth format as a function of rasterization details, but perhaps now it's s=
-et
-explicitly. It'd be 1/1<<24 for Z24, 1/1<<16 for Z16, and "variable" for Z3=
-2F.
-However no such setting has been found, and there's nothing obvious in the
-trace.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Actually it looks broken on GM107, so forget about the polygon offset theor=
+y.
+Looks fine on fermi. Disabling optimizations or scheduling don't appear to =
+have
+any effect.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14893720750.dcb0fb.32237
-Date: Mon, 13 Mar 2017 02:27:55 +0000
+--14893781120.3044.7686
+Date: Mon, 13 Mar 2017 04:08:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,8 +65,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM206] Misrendering in XCOM Ennemy Within"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100177#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100177#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM206] Misrendering in XCOM Ennemy Within"
@@ -89,26 +76,11 @@ t # 1</a>
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I have an unproven theory that this is related to polygon-offs=
-et failing on
-GM20x. Can't figure out what we're missing. In the GM20x traces it seems li=
-ke
-it's jumping through crazy hoops to set all the polygon offset stuff by usi=
-ng a
-macro to write out the values. It's effectively conditional on the value in
-some scratch register. I suspect it's to be able to apply a CSO without
-recomputing it, and adjusting its effect by adjusting scratch registers.
-However things are configured s.t. it does do the writes.
-
-One thought is that there's a register somewhere that sets the value of &qu=
-ot;r&quot;,
-i.e. the unit of polygon offset. This has traditionally been driven off the
-depth format as a function of rasterization details, but perhaps now it's s=
-et
-explicitly. It'd be 1/1&lt;&lt;24 for Z24, 1/1&lt;&lt;16 for Z16, and &quot=
-;variable&quot; for Z32F.
-However no such setting has been found, and there's nothing obvious in the
-trace.</pre>
+        <pre>Actually it looks broken on GM107, so forget about the polygon=
+ offset theory.
+Looks fine on fermi. Disabling optimizations or scheduling don't appear to =
+have
+any effect.</pre>
         </div>
       </p>
 
@@ -123,9 +95,9 @@ trace.</pre>
     </body>
 </html>=
 
---14893720750.dcb0fb.32237--
+--14893781120.3044.7686--
 
---===============1988562557==
+--===============1966059152==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1988562557==--
+--===============1966059152==--
