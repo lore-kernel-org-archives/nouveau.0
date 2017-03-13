@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100177] [GM206] Misrendering in XCOM Ennemy Within
-Date: Mon, 13 Mar 2017 09:57:24 +0000
-Message-ID: <bug-100177-8800-PCojAIrEYD@http.bugs.freedesktop.org/>
-References: <bug-100177-8800@http.bugs.freedesktop.org/>
+From: Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>
+Subject: Re: [PATCH 14/24] drm/nouveau: Merge pre/postclose hooks
+Date: Mon, 13 Mar 2017 15:07:54 -0400
+Message-ID: <20170313190754.GN20329@art_vandelay>
+References: <20170308141257.12119-1-daniel.vetter@ffwll.ch>
+ <20170308141257.12119-15-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0422044738=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100177-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20170308141257.12119-15-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,87 +19,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Cc: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0422044738==
-Content-Type: multipart/alternative; boundary="14893990440.cfEd533.4042";
- charset="UTF-8"
-
-
---14893990440.cfEd533.4042
-Date: Mon, 13 Mar 2017 09:57:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100177
-
---- Comment #4 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Similar issue to Heaven and Valley maybe?
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14893990440.cfEd533.4042
-Date: Mon, 13 Mar 2017 09:57:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM206] Misrendering in XCOM Ennemy Within"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100177#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM206] Misrendering in XCOM Ennemy Within"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100177">bug 10017=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-samuel.pitoiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset=
-&#64;gmail.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
-</span></b>
-        <pre>Similar issue to Heaven and Valley maybe?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14893990440.cfEd533.4042--
-
---===============0422044738==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0422044738==--
+T24gV2VkLCBNYXIgMDgsIDIwMTcgYXQgMDM6MTI6NDdQTSArMDEwMCwgRGFuaWVsIFZldHRlciB3
+cm90ZToKPiBBZ2FpbiBubyBhcHBhcmVudCBleHBsYW5hdGlvbiBmb3IgdGhlIHNwbGl0IGV4Y2Vw
+dCBoeXN0ZXJpY2FsIHJhaXNpbnMuCj4gTWVyZ2luZyB0aGVtIGFsc28gbWFrZXMgaXQgYSBiaXQg
+bW9yZSBvYnZpdW9zIHdoYXQncyBnb2luZyBvbiB3cnQgdGhlCj4gcnVudGltZSBwbSByZWZkYW5j
+aW5nLgoKWWVhaCwgaG9sZGluZyB0aGUgcG0gcmVmZXJlbmNlIGZyb20gcHJlY2xvc2UgdG8gcG9z
+dGNsb3NlIGhhZCBtZSBhIGxpdHRsZQpuZXJ2b3VzLiBIb3dldmVyLCBpdCBzZWVtcyBsaWtlIHRo
+ZSByZWZlcmVuY2UgaXMganVzdCBuZWVkZWQgZm9yCm5vdXZlYXVfYWJpMTZfZmluaSgpIGFuZCBu
+b3V2ZWF1X2NsaV9maW5pKCksIGFzIG9wcG9zZWQgdG8gYmVpbmcgbmVlZGVkIHdoaWxlCmRybV9y
+ZWxlYXNlKCkgaXMgYWN0aXZlLgoKUmV2aWV3ZWQtYnk6IFNlYW4gUGF1bCA8c2VhbnBhdWxAY2hy
+b21pdW0ub3JnPgoKPiAKPiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgo+IENj
+OiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IFNpZ25lZC1vZmYtYnk6IERhbmllbCBW
+ZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2RybS5jIHwgOSArLS0tLS0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDEg
+aW5zZXJ0aW9uKCspLCA4IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9kcm0uYwo+IGluZGV4IGYwYmI3NjA2ZWI4Yi4uMGUyNmJlMDE3ZGU3IDEwMDY0NAo+IC0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4gQEAgLTg4MSw3ICs4ODEsNyBAQCBub3V2
+ZWF1X2RybV9vcGVuKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBkcm1fZmlsZSAqZnBy
+aXYpCj4gIH0KPiAgCj4gIHN0YXRpYyB2b2lkCj4gLW5vdXZlYXVfZHJtX3ByZWNsb3NlKHN0cnVj
+dCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBkcm1fZmlsZSAqZnByaXYpCj4gK25vdXZlYXVfZHJt
+X3Bvc3RjbG9zZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3QgZHJtX2ZpbGUgKmZwcml2
+KQo+ICB7Cj4gIAlzdHJ1Y3Qgbm91dmVhdV9jbGkgKmNsaSA9IG5vdXZlYXVfY2xpKGZwcml2KTsK
+PiAgCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKPiBAQCAtODk3
+LDEyICs4OTcsNiBAQCBub3V2ZWF1X2RybV9wcmVjbG9zZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2
+LCBzdHJ1Y3QgZHJtX2ZpbGUgKmZwcml2KQo+ICAJbGlzdF9kZWwoJmNsaS0+aGVhZCk7Cj4gIAlt
+dXRleF91bmxvY2soJmRybS0+Y2xpZW50Lm11dGV4KTsKPiAgCj4gLX0KPiAtCj4gLXN0YXRpYyB2
+b2lkCj4gLW5vdXZlYXVfZHJtX3Bvc3RjbG9zZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBzdHJ1
+Y3QgZHJtX2ZpbGUgKmZwcml2KQo+IC17Cj4gLQlzdHJ1Y3Qgbm91dmVhdV9jbGkgKmNsaSA9IG5v
+dXZlYXVfY2xpKGZwcml2KTsKPiAgCW5vdXZlYXVfY2xpX2ZpbmkoY2xpKTsKPiAgCWtmcmVlKGNs
+aSk7Cj4gIAlwbV9ydW50aW1lX21hcmtfbGFzdF9idXN5KGRldi0+ZGV2KTsKPiBAQCAtOTc0LDcg
+Kzk2OCw2IEBAIGRyaXZlcl9zdHViID0gewo+ICAJLmxvYWQgPSBub3V2ZWF1X2RybV9sb2FkLAo+
+ICAJLnVubG9hZCA9IG5vdXZlYXVfZHJtX3VubG9hZCwKPiAgCS5vcGVuID0gbm91dmVhdV9kcm1f
+b3BlbiwKPiAtCS5wcmVjbG9zZSA9IG5vdXZlYXVfZHJtX3ByZWNsb3NlLAo+ICAJLnBvc3RjbG9z
+ZSA9IG5vdXZlYXVfZHJtX3Bvc3RjbG9zZSwKPiAgCS5sYXN0Y2xvc2UgPSBub3V2ZWF1X3ZnYV9s
+YXN0Y2xvc2UsCj4gIAo+IC0tIAo+IDIuMTEuMAo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCj4gZHJpLWRldmVsIG1haWxpbmcgbGlzdAo+IGRyaS1k
+ZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbApfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
