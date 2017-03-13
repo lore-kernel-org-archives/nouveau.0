@@ -1,57 +1,102 @@
-From: Alexandre Courbot <gnurou@gmail.com>
-Subject: Re: [Nouveau] [bug report] drm/nouveau/secboot: add
- gp102/gp104/gp106/gp107 support
-Date: Mon, 13 Mar 2017 18:15:07 +0900
-Message-ID: <CAAVeFuL_pk8_xZEMiUGA3x_F3d3BDKxVr2QNEvWyotwxTUvYEw@mail.gmail.com>
-References: <20170310205506.GA28366@mwanda>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100177] [GM206] Misrendering in XCOM Ennemy Within
+Date: Mon, 13 Mar 2017 09:57:24 +0000
+Message-ID: <bug-100177-8800-PCojAIrEYD@http.bugs.freedesktop.org/>
+References: <bug-100177-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20170310205506.GA28366@mwanda>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0422044738=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100177-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBNYXIgMTEsIDIwMTcgYXQgNTo1NSBBTSwgRGFuIENhcnBlbnRlciA8ZGFuLmNhcnBl
-bnRlckBvcmFjbGUuY29tPiB3cm90ZToKPiBIZWxsbyBBbGV4YW5kcmUgQ291cmJvdCwKPgo+IFRo
-ZSBwYXRjaCA1NDI5ZjgyZjM0MTU6ICJkcm0vbm91dmVhdS9zZWNib290OiBhZGQKPiBncDEwMi9n
-cDEwNC9ncDEwNi9ncDEwNyBzdXBwb3J0IiBmcm9tIEphbiAyNiwgMjAxNywgbGVhZHMgdG8gdGhl
-Cj4gZm9sbG93aW5nIHN0YXRpYyBjaGVja2VyIHdhcm5pbmc6Cj4KPiAgICAgICAgIGRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvZ3AxMDIuYzo2MyBncDEwMl9ydW5f
-c2VjdXJlX3NjcnViKCkKPiAgICAgICAgIHdhcm46IHBhc3NpbmcgemVybyB0byAnUFRSX0VSUicK
-Pgo+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvZ3AxMDIuYwo+
-ICAgICA0NiAgc3RhdGljIGludAo+ICAgICA0NyAgZ3AxMDJfcnVuX3NlY3VyZV9zY3J1YihzdHJ1
-Y3QgbnZrbV9zZWNib290ICpzYikKPiAgICAgNDggIHsKPiAgICAgNDkgICAgICAgICAgc3RydWN0
-IG52a21fc3ViZGV2ICpzdWJkZXYgPSAmc2ItPnN1YmRldjsKPiAgICAgNTAgICAgICAgICAgc3Ry
-dWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBzdWJkZXYtPmRldmljZTsKPiAgICAgNTEgICAgICAg
-ICAgc3RydWN0IG52a21fZW5naW5lICplbmdpbmU7Cj4gICAgIDUyICAgICAgICAgIHN0cnVjdCBu
-dmttX2ZhbGNvbiAqZmFsY29uOwo+ICAgICA1MyAgICAgICAgICB2b2lkICpzY3J1Yl9pbWFnZTsK
-PiAgICAgNTQgICAgICAgICAgc3RydWN0IGZ3X2Jpbl9oZWFkZXIgKmhzYmluX2hkcjsKPiAgICAg
-NTUgICAgICAgICAgc3RydWN0IGhzZl9md19oZWFkZXIgKmZ3X2hkcjsKPiAgICAgNTYgICAgICAg
-ICAgc3RydWN0IGhzZl9sb2FkX2hlYWRlciAqbGhkcjsKPiAgICAgNTcgICAgICAgICAgdm9pZCAq
-c2NydWJfZGF0YTsKPiAgICAgNTggICAgICAgICAgaW50IHJldDsKPiAgICAgNTkKPiAgICAgNjAg
-ICAgICAgICAgbnZrbV9kZWJ1ZyhzdWJkZXYsICJydW5uaW5nIFZQUiBzY3J1YmJlciBiaW5hcnkg
-b24gTlZERUMuLi5cbiIpOwo+ICAgICA2MQo+ICAgICA2MiAgICAgICAgICBpZiAoIShlbmdpbmUg
-PSBudmttX2VuZ2luZV9yZWYoJmRldmljZS0+bnZkZWMtPmVuZ2luZSkpKQo+ICAgICA2MyAgICAg
-ICAgICAgICAgICAgIHJldHVybiBQVFJfRVJSKGVuZ2luZSk7Cj4KPiBUaGlzIGNvZGUgZG9lc24n
-dCBtYWtlIHNlbnNlLiAgbnZrbV9lbmdpbmVfcmVmKCkgaXNuJ3QgZ29pbmcgdG8gcmV0dXJuCj4g
-TlVMTCBiZWNhdXNlIHdlJ3JlIG5vdCBwYXNzaW5nIGEgTlVMTCB0byBpdC4gIEkgZ3Vlc3Mgd2Ug
-c2hvdWxkIGJlCj4gY2hlY2tpbmcgZm9yIEVSUl9QVFIoKS4gIEJ1dCByZWFsbHkgd2h5IGRvZXMg
-bnZrbV9lbmdpbmVfcmVmKCkgZXZlcgo+IHJldHVybiBOVUxMPyAgSXQgZmVlbHMgbGlrZSBpZiB3
-ZSBwYXNzIGl0IGEgTlVMTCBwb2ludGVyIGl0IHNob3VsZAo+IHJldHVybiBFUlJfUFRSKC1FSU5W
-QUwpIG9uIHRoYXQgcGF0aCBpbnN0ZWFkLgoKSW5kZWVkLCBub3Qgc3VyZSB3aGF0IEkgd2FzIHNt
-b2tpbmcuIFRoZSBwcm9wZXIgZml4IGlzIHRvIGNoZWNrIGZvcgpFUlJfUFRSLCB3aWxsIHNlbmQg
-YSBwYXRjaCB0byBmaXggaXQgc2hvcnRseS4gVGhhbmtzIGZvciB0aGUgcmVwb3J0IQpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGlu
-ZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============0422044738==
+Content-Type: multipart/alternative; boundary="14893990440.cfEd533.4042";
+ charset="UTF-8"
+
+
+--14893990440.cfEd533.4042
+Date: Mon, 13 Mar 2017 09:57:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100177
+
+--- Comment #4 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Similar issue to Heaven and Valley maybe?
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14893990440.cfEd533.4042
+Date: Mon, 13 Mar 2017 09:57:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM206] Misrendering in XCOM Ennemy Within"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100177#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM206] Misrendering in XCOM Ennemy Within"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100177">bug 10017=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+samuel.pitoiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset=
+&#64;gmail.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
+</span></b>
+        <pre>Similar issue to Heaven and Valley maybe?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14893990440.cfEd533.4042--
+
+--===============0422044738==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0422044738==--
