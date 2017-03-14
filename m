@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99900] [NVC1] nouveau: freeze / crash after kernel
- update to 4.10
-Date: Tue, 14 Mar 2017 12:09:46 +0000
-Message-ID: <bug-99900-8800-TnKvNjzau2@http.bugs.freedesktop.org/>
-References: <bug-99900-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100204] New: Crash: system still active, no video
+Date: Tue, 14 Mar 2017 21:24:58 +0000
+Message-ID: <bug-100204-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1647330182=="
+Content-Type: multipart/mixed; boundary="===============1286808645=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,67 +18,54 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1647330182==
-Content-Type: multipart/alternative; boundary="14894933850.4d28c.7219";
+--===============1286808645==
+Content-Type: multipart/alternative; boundary="14895266981.2e46A31.6788";
  charset="UTF-8"
 
 
---14894933850.4d28c.7219
-Date: Tue, 14 Mar 2017 12:09:45 +0000
+--14895266981.2e46A31.6788
+Date: Tue, 14 Mar 2017 21:24:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99900
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100204
 
---- Comment #12 from Antoine Saroufim <antoine.saroufim-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'm experiencing the same issues. Nouveau (Gallium 0.4 - NVC1) freezes
-everything on Wayland, sometimes the kernel too and it turns the display in=
-to a
-black screen with a visible cursor on X11. I've noticed this since I've
-upgraded to kernel 4.10. Here are a few other things I've observed:
+            Bug ID: 100204
+           Summary: Crash: system still active, no video
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: blocker
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: ubuntu-i3p9Qu92kIBBDgjK7y7TUQ@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-On (X)Wayland:
-- Display freezes when starting fullscreen wine games. Graphics sometimes t=
-urn
-dark and the display freezes. (Can reproduce this 100% of the times if I la=
-unch
-a mission in Starcraft 2)
-- Launching a fullscreen wine game while triggering the GNOME Overview mode
-freezes everything including the kernel (can intentionally reproduce this t=
-oo)
+Created attachment 130224
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130224&action=3Dedit
+dmesg.log
 
-On X11:
--Whenever a lockscreen mechanism is triggered and the screen goes blank, wa=
-king
-the screen up yields an unresponsive X session with a black screen and a
-working cursor.
-- If X11 freezes, it can be killed and the session can be reopened. The ker=
-nel
-never freezes and you can still switch to other TTYs, unlike on Wayland.
-- This happens on both GNOME and Plasma
-- The blackscreen X11 issue happens way more often (once every 1-2 hours) t=
-han
-Wayland's freezing issue (2-3 times per 14 hours).=20
+No particular pattern. Sometimes happens immediately after logging in.
+Sometimes happens 10 times per day, sometimes after a week of trouble-free
+operation. No particular application causes it.
 
-This happens on Mesa 17.1 (Git) and 17.0 (from openSUSE's repos). It does n=
-ot
-happen on the proprietary driver.=20
+This most recent time it happened 3 times in a row. Last was upon pressing
+Alt+Tab from Chrome.
 
-Extra information:
-
-Graphics Card: GT730
-Operating System: OpenSUSE Tumbleweed
-Kernel: 4.10
+Hardware is a Macbook 7,1 mid2011. Dmesg output attached.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14894933850.4d28c.7219
-Date: Tue, 14 Mar 2017 12:09:45 +0000
+--14895266981.2e46A31.6788
+Date: Tue, 14 Mar 2017 21:24:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -92,64 +76,103 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Crash: system still active, no video"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100204">100204</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Crash: system still active, no video
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>blocker
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ubuntu&#64;jeromio.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
-0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900#c12">Commen=
-t # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
-0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900">bug 99900<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-antoine.saroufim&#64;gmail.com" title=3D"Antoine Saroufim &lt;antoine.sarou=
-fim&#64;gmail.com&gt;"> <span class=3D"fn">Antoine Saroufim</span></a>
-</span></b>
-        <pre>I'm experiencing the same issues. Nouveau (Gallium 0.4 - NVC1)=
- freezes
-everything on Wayland, sometimes the kernel too and it turns the display in=
-to a
-black screen with a visible cursor on X11. I've noticed this since I've
-upgraded to kernel 4.10. Here are a few other things I've observed:
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130224=
+" name=3D"attach_130224" title=3D"dmesg.log">attachment 130224</a> <a href=
+=3D"attachment.cgi?id=3D130224&amp;action=3Dedit" title=3D"dmesg.log">[deta=
+ils]</a></span>
+dmesg.log
 
-On (X)Wayland:
-- Display freezes when starting fullscreen wine games. Graphics sometimes t=
-urn
-dark and the display freezes. (Can reproduce this 100% of the times if I la=
-unch
-a mission in Starcraft 2)
-- Launching a fullscreen wine game while triggering the GNOME Overview mode
-freezes everything including the kernel (can intentionally reproduce this t=
-oo)
+No particular pattern. Sometimes happens immediately after logging in.
+Sometimes happens 10 times per day, sometimes after a week of trouble-free
+operation. No particular application causes it.
 
-On X11:
--Whenever a lockscreen mechanism is triggered and the screen goes blank, wa=
-king
-the screen up yields an unresponsive X session with a black screen and a
-working cursor.
-- If X11 freezes, it can be killed and the session can be reopened. The ker=
-nel
-never freezes and you can still switch to other TTYs, unlike on Wayland.
-- This happens on both GNOME and Plasma
-- The blackscreen X11 issue happens way more often (once every 1-2 hours) t=
-han
-Wayland's freezing issue (2-3 times per 14 hours).=20
+This most recent time it happened 3 times in a row. Last was upon pressing
+Alt+Tab from Chrome.
 
-This happens on Mesa 17.1 (Git) and 17.0 (from openSUSE's repos). It does n=
-ot
-happen on the proprietary driver.=20
-
-Extra information:
-
-Graphics Card: GT730
-Operating System: OpenSUSE Tumbleweed
-Kernel: 4.10</pre>
+Hardware is a Macbook 7,1 mid2011. Dmesg output attached.</pre>
         </div>
       </p>
 
@@ -163,9 +186,9 @@ Kernel: 4.10</pre>
     </body>
 </html>=
 
---14894933850.4d28c.7219--
+--14895266981.2e46A31.6788--
 
---===============1647330182==
+--===============1286808645==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -175,4 +198,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1647330182==--
+--===============1286808645==--
