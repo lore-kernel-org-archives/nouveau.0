@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100228] New: [NV137] unknown chipset (137000a1)
-Date: Thu, 16 Mar 2017 11:38:35 +0000
-Message-ID: <bug-100228-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100228] [NV137] unknown chipset (137000a1)
+Date: Thu, 16 Mar 2017 17:12:44 +0000
+Message-ID: <bug-100228-8800-ecCnvas9hm@http.bugs.freedesktop.org/>
+References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1819514542=="
+Content-Type: multipart/mixed; boundary="===============1575970838=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1819514542==
-Content-Type: multipart/alternative; boundary="14896643150.F98A21C2.11714";
+--===============1575970838==
+Content-Type: multipart/alternative; boundary="14896843640.d4644AfE.21430";
  charset="UTF-8"
 
 
---14896643150.F98A21C2.11714
-Date: Thu, 16 Mar 2017 11:38:35 +0000
+--14896843640.d4644AfE.21430
+Date: Thu, 16 Mar 2017 17:12:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -33,51 +35,43 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
 
-            Bug ID: 100228
-           Summary: [NV137] unknown chipset (137000a1)
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: fake.ae-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This is expected. None of the software you listed supports your GPU.
 
-Created attachment 130256
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130256&action=3Dedit
-kernel logs
+With the latest released kernel (4.10), you can easily write a patch that w=
+ill
+add support. The reason it has not been integrated is that I believe we're
+still waiting for a blob mmiotrace (and I don't appear to remember the pass=
+word
+for the mmio.dumps-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org account to check - others do though) to make s=
+ure
+that there are no odd differences in setup.
 
-Hi
+An example of such a patch is available at
+https://www.spinics.net/lists/dri-devel/msg132664.html .
 
-i've recently bought a new laptop HP Omen 15-ax201nc.
-It comes with nvidia 1050 ti video card which is supposedly should be suppo=
-rted
-by nouveau driver. But during boot i get "unknown chipset (137000a1)"
-X server is loading regardless, but it has limited features (i think, like =
-no
-gnome animations is what i see at first place).
+However this won't get you acceleration - just modesetting. If you want
+acceleration, you also need the drm-next tree (targeted at Linux 4.12) as w=
+ell
+as the associated firmware from nvidia.
 
-Mesa-dri-nouveau version is 11.2.2-166.1
-xf86-video-nouveau version is 1.0.14-30.1=20
-I use opensuse Leap 42.2
+Then you'd need a version of xf86-video-nouveau that supports GP10x - the
+current codebase doesn't, but it should, again, be a trivial patch, just ne=
+eds
+testing.
 
-uname -a
-Linux 78qwHJ4D 4.4.49-16-default #1 SMP Sun Feb 19 17:40:35 UTC 2017 (70e99=
-54)
-x86_64 x86_64 x86_64 GNU/Linux
+You'll likely also need mesa from git, as the 17.0 release doesn't have som=
+e of
+the relevant logic.
 
-dmesg logs are attached
+[Long story short - it's not quite there yet.]
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14896643150.F98A21C2.11714
-Date: Thu, 16 Mar 2017 11:38:35 +0000
+--14896843640.d4644AfE.21430
+Date: Thu, 16 Mar 2017 17:12:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -88,116 +82,54 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] unknown chipset (137000a1)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">100228</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NV137] unknown chipset (137000a1)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>fake.ae&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130256=
-" name=3D"attach_130256" title=3D"kernel logs">attachment 130256</a> <a hre=
-f=3D"attachment.cgi?id=3D130256&amp;action=3Dedit" title=3D"kernel logs">[d=
-etails]</a></span>
-kernel logs
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137] unknown chipset (137000a1)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137] unknown chipset (137000a1)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
+8</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>This is expected. None of the software you listed supports you=
+r GPU.
 
-Hi
+With the latest released kernel (4.10), you can easily write a patch that w=
+ill
+add support. The reason it has not been integrated is that I believe we're
+still waiting for a blob mmiotrace (and I don't appear to remember the pass=
+word
+for the <a href=3D"mailto:mmio.dumps&#64;gmail.com">mmio.dumps&#64;gmail.co=
+m</a> account to check - others do though) to make sure
+that there are no odd differences in setup.
 
-i've recently bought a new laptop HP Omen 15-ax201nc.
-It comes with nvidia 1050 ti video card which is supposedly should be suppo=
-rted
-by nouveau driver. But during boot i get &quot;unknown chipset (137000a1)&q=
-uot;
-X server is loading regardless, but it has limited features (i think, like =
-no
-gnome animations is what i see at first place).
+An example of such a patch is available at
+<a href=3D"https://www.spinics.net/lists/dri-devel/msg132664.html">https://=
+www.spinics.net/lists/dri-devel/msg132664.html</a> .
 
-Mesa-dri-nouveau version is 11.2.2-166.1
-xf86-video-nouveau version is 1.0.14-30.1=20
-I use opensuse Leap 42.2
+However this won't get you acceleration - just modesetting. If you want
+acceleration, you also need the drm-next tree (targeted at Linux 4.12) as w=
+ell
+as the associated firmware from nvidia.
 
-uname -a
-Linux 78qwHJ4D 4.4.49-16-default #1 SMP Sun Feb 19 17:40:35 UTC 2017 (70e99=
-54)
-x86_64 x86_64 x86_64 GNU/Linux
+Then you'd need a version of xf86-video-nouveau that supports GP10x - the
+current codebase doesn't, but it should, again, be a trivial patch, just ne=
+eds
+testing.
 
-dmesg logs are attached</pre>
+You'll likely also need mesa from git, as the 17.0 release doesn't have som=
+e of
+the relevant logic.
+
+[Long story short - it's not quite there yet.]</pre>
         </div>
       </p>
 
@@ -211,9 +143,9 @@ dmesg logs are attached</pre>
     </body>
 </html>=
 
---14896643150.F98A21C2.11714--
+--14896843640.d4644AfE.21430--
 
---===============1819514542==
+--===============1575970838==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -223,4 +155,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1819514542==--
+--===============1575970838==--
