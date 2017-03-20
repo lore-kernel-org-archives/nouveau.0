@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
-Date: Mon, 20 Mar 2017 11:13:08 +0000
-Message-ID: <bug-99400-8800-Is3fYac4ta@http.bugs.freedesktop.org/>
+Date: Mon, 20 Mar 2017 18:11:40 +0000
+Message-ID: <bug-99400-8800-Yjrz2aOWew@http.bugs.freedesktop.org/>
 References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1589557446=="
+Content-Type: multipart/mixed; boundary="===============1657452533=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1589557446==
-Content-Type: multipart/alternative; boundary="14900083881.CedED9b40.1933";
+--===============1657452533==
+Content-Type: multipart/alternative; boundary="14900334991.8D7A5E.27055";
  charset="UTF-8"
 
 
---14900083881.CedED9b40.1933
-Date: Mon, 20 Mar 2017 11:13:08 +0000
+--14900334991.8D7A5E.27055
+Date: Mon, 20 Mar 2017 18:11:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,54 +35,31 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
 
---- Comment #25 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+--- Comment #26 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Olivier Fourdan from comment #24)
+> One possibility would be to run a live image of Fedora 25 (which comes wi=
+th
+> Wayland by default), at least it would allow for a quick test (no need for
+> you to install everything if it's not reproducible on your hardware setup=
+...)
+>=20
+> However, gtk-demo (which is the simple way to reproduce) comes with the
+> devel packages, which won't be on a live image... But this should be
+> installable, even on a live image, as long as a network connection is
+> available.
 
-Daily/nightly composes can be found here:
-
-Fedora 26
-https://dl.fedoraproject.org/pub/fedora/linux/development/26/Spins/x86_64/i=
-so/
-https://dl.fedoraproject.org/pub/fedora/linux/development/26/Workstation/x8=
-6_64/iso/
-
-Rawhide - Fedora 27
-https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Spins/x86=
-_64/iso/
-https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Workstati=
-on/x86_64/iso/
-
-...........................................................
-
-How to write LiveDVD ISO image to portable USB flash drive:
-
-e.g.
-# dd if=3DFedora*Live*.iso of=3D/dev/disk/by-id/usb-<ID_SERIAL> \
-  bs=3D1M iflag=3Ddirect oflag=3Ddirect conv=3Dfdatasync status=3Dprogress
-
-If /dev/sdz represents portable USB flash drive
-$ udevadm info -q env -n sdz | grep ID_SERIAL=3D
-
-Using ID_SERIAL known is the exact device that will be used
-
-WARNING: using 'dd' will erase all partitions and -data- on portable USB fl=
-ash
-drive
-
-Ref.
-https://fedoraproject.org/wiki/How_to_create_and_use_Live_USB
-
-..........................................
-
-How to install demonstrative GTK+ widgets:
-# dnf install gtk2-devel gtk3-devel
+I was hoping to avoid rebooting :) But like... would weston + gtk2-demo be
+sufficient? Or do I need something else, like, say, GNOME or KDE or somethi=
+ng?
+(If the latter, that's pretty much a non-starter.)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14900083881.CedED9b40.1933
-Date: Mon, 20 Mar 2017 11:13:08 +0000
+--14900334991.8D7A5E.27055
+Date: Mon, 20 Mar 2017 18:11:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -99,61 +76,35 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c25">Commen=
-t # 25</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c26">Commen=
+t # 26</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
-l.com&gt;"> <span class=3D"fn">poma</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>
-Daily/nightly composes can be found here:
+        <pre>(In reply to Olivier Fourdan from <a href=3D"show_bug.cgi?id=
+=3D99400#c24">comment #24</a>)
+<span class=3D"quote">&gt; One possibility would be to run a live image of =
+Fedora 25 (which comes with
+&gt; Wayland by default), at least it would allow for a quick test (no need=
+ for
+&gt; you to install everything if it's not reproducible on your hardware se=
+tup...)
+&gt;=20
+&gt; However, gtk-demo (which is the simple way to reproduce) comes with the
+&gt; devel packages, which won't be on a live image... But this should be
+&gt; installable, even on a live image, as long as a network connection is
+&gt; available.</span >
 
-Fedora 26
-<a href=3D"https://dl.fedoraproject.org/pub/fedora/linux/development/26/Spi=
-ns/x86_64/iso/">https://dl.fedoraproject.org/pub/fedora/linux/development/2=
-6/Spins/x86_64/iso/</a>
-<a href=3D"https://dl.fedoraproject.org/pub/fedora/linux/development/26/Wor=
-kstation/x86_64/iso/">https://dl.fedoraproject.org/pub/fedora/linux/develop=
-ment/26/Workstation/x86_64/iso/</a>
-
-Rawhide - Fedora 27
-<a href=3D"https://dl.fedoraproject.org/pub/fedora/linux/development/rawhid=
-e/Spins/x86_64/iso/">https://dl.fedoraproject.org/pub/fedora/linux/developm=
-ent/rawhide/Spins/x86_64/iso/</a>
-<a href=3D"https://dl.fedoraproject.org/pub/fedora/linux/development/rawhid=
-e/Workstation/x86_64/iso/">https://dl.fedoraproject.org/pub/fedora/linux/de=
-velopment/rawhide/Workstation/x86_64/iso/</a>
-
-...........................................................
-
-How to write LiveDVD ISO image to portable USB flash drive:
-
-e.g.
-# dd if=3DFedora*Live*.iso of=3D/dev/disk/by-id/usb-&lt;ID_SERIAL&gt; \
-  bs=3D1M iflag=3Ddirect oflag=3Ddirect conv=3Dfdatasync status=3Dprogress
-
-If /dev/sdz represents portable USB flash drive
-$ udevadm info -q env -n sdz | grep ID_SERIAL=3D
-
-Using ID_SERIAL known is the exact device that will be used
-
-WARNING: using 'dd' will erase all partitions and -data- on portable USB fl=
-ash
-drive
-
-Ref.
-<a href=3D"https://fedoraproject.org/wiki/How_to_create_and_use_Live_USB">h=
-ttps://fedoraproject.org/wiki/How_to_create_and_use_Live_USB</a>
-
-..........................................
-
-How to install demonstrative GTK+ widgets:
-# dnf install gtk2-devel gtk3-devel</pre>
+I was hoping to avoid rebooting :) But like... would weston + gtk2-demo be
+sufficient? Or do I need something else, like, say, GNOME or KDE or somethi=
+ng?
+(If the latter, that's pretty much a non-starter.)</pre>
         </div>
       </p>
 
@@ -168,9 +119,9 @@ How to install demonstrative GTK+ widgets:
     </body>
 </html>=
 
---14900083881.CedED9b40.1933--
+--14900334991.8D7A5E.27055--
 
---===============1589557446==
+--===============1657452533==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -180,4 +131,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1589557446==--
+--===============1657452533==--
