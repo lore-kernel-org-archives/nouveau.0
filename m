@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99584] XVMC on nv43 class card broken with recent
- mesa + kernel.
-Date: Sun, 19 Mar 2017 02:24:35 +0000
-Message-ID: <bug-99584-8800-kED18kd8M2@http.bugs.freedesktop.org/>
-References: <bug-99584-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
+Date: Mon, 20 Mar 2017 08:29:20 +0000
+Message-ID: <bug-99400-8800-3vxGeG2WvS@http.bugs.freedesktop.org/>
+References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0962409494=="
+Content-Type: multipart/mixed; boundary="===============0968540771=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99584-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,67 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0962409494==
-Content-Type: multipart/alternative; boundary="14898902751.73D3CdFD.3400";
+--===============0968540771==
+Content-Type: multipart/alternative; boundary="14899985600.75EA.11519";
  charset="UTF-8"
 
 
---14898902751.73D3CdFD.3400
-Date: Sun, 19 Mar 2017 02:24:35 +0000
+--14899985600.75EA.11519
+Date: Mon, 20 Mar 2017 08:29:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99584
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-FWIW with mesa 17.0.1 and kernel 4.10.4, I'm unable to fully reproduce the
-issue. I have a NV4A, which uses the nv44 mpeg object, which in turn is rat=
-her
-different than the "plain" nv40 one which you have.
+--- Comment #24 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+One possibility would be to run a live image of Fedora 25 (which comes with
+Wayland by default), at least it would allow for a quick test (no need for =
+you
+to install everything if it's not reproducible on your hardware setup...)
 
-I get a ton of warnings in dmesg:
-
-[15871.309494] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000010 000001b0 00006051
-[15871.309516] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000380 0058b000
-[15871.309531] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 0000038c 0068b000
-[15871.326326] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000380 0058b000
-[15871.326356] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000384 0000b350
-[15871.326371] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 0000038c 0068b000
-[15871.326385] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000390 000467e8
-[15871.372669] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000380 0058b000
-[15871.372690] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000384 000069c0
-[15871.372708] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 0000038c 0068b000
-[15871.372723] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000390 00010604
-
-and so on. The first one is harmless (simple bug that causes it to be print=
-ed
-instead of hidden), but the rest are harmful. The end-result is random junk=
- on
-the screen, but that makes perfect sense given the above errors. I have fix=
-es
-for some things, but not others. Will update when I have fixed my setup.
+However, gtk-demo (which is the simple way to reproduce) comes with the dev=
+el
+packages, which won't be on a live image... But this should be installable,
+even on a live image, as long as a network connection is available.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14898902751.73D3CdFD.3400
-Date: Sun, 19 Mar 2017 02:24:35 +0000
+--14899985600.75EA.11519
+Date: Mon, 20 Mar 2017 08:29:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -97,57 +68,28 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - XVMC on nv43 class card broken with recent mesa + kernel."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99584#c4">Comment=
- # 4</a>
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c24">Commen=
+t # 24</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - XVMC on nv43 class card broken with recent mesa + kernel."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99584">bug 99584<=
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
 </span></b>
-        <pre>FWIW with mesa 17.0.1 and kernel 4.10.4, I'm unable to fully r=
-eproduce the
-issue. I have a NV4A, which uses the nv44 mpeg object, which in turn is rat=
-her
-different than the &quot;plain&quot; nv40 one which you have.
+        <pre>One possibility would be to run a live image of Fedora 25 (whi=
+ch comes with
+Wayland by default), at least it would allow for a quick test (no need for =
+you
+to install everything if it's not reproducible on your hardware setup...)
 
-I get a ton of warnings in dmesg:
-
-[15871.309494] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000010 000001b0 00006051
-[15871.309516] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000380 0058b000
-[15871.309531] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 0000038c 0068b000
-[15871.326326] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000380 0058b000
-[15871.326356] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000384 0000b350
-[15871.326371] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 0000038c 0068b000
-[15871.326385] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000390 000467e8
-[15871.372669] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000380 0058b000
-[15871.372690] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000384 000069c0
-[15871.372708] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 0000038c 0068b000
-[15871.372723] nouveau 0000:09:00.0: mpeg: ch 4 [00060530 mplayer[26300]]
-01000000 00000020 00000390 00010604
-
-and so on. The first one is harmless (simple bug that causes it to be print=
-ed
-instead of hidden), but the rest are harmful. The end-result is random junk=
- on
-the screen, but that makes perfect sense given the above errors. I have fix=
-es
-for some things, but not others. Will update when I have fixed my setup.</p=
-re>
+However, gtk-demo (which is the simple way to reproduce) comes with the dev=
+el
+packages, which won't be on a live image... But this should be installable,
+even on a live image, as long as a network connection is available.</pre>
         </div>
       </p>
 
@@ -162,9 +104,9 @@ re>
     </body>
 </html>=
 
---14898902751.73D3CdFD.3400--
+--14899985600.75EA.11519--
 
---===============0962409494==
+--===============0968540771==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -174,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0962409494==--
+--===============0968540771==--
