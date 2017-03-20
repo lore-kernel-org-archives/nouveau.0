@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
-Date: Mon, 20 Mar 2017 18:11:40 +0000
-Message-ID: <bug-99400-8800-Yjrz2aOWew@http.bugs.freedesktop.org/>
+Date: Mon, 20 Mar 2017 18:45:38 +0000
+Message-ID: <bug-99400-8800-096d36z8WA@http.bugs.freedesktop.org/>
 References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1657452533=="
+Content-Type: multipart/mixed; boundary="===============0456356429=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1657452533==
-Content-Type: multipart/alternative; boundary="14900334991.8D7A5E.27055";
+--===============0456356429==
+Content-Type: multipart/alternative; boundary="14900355370.BDbcFBb.31792";
  charset="UTF-8"
 
 
---14900334991.8D7A5E.27055
-Date: Mon, 20 Mar 2017 18:11:39 +0000
+--14900355370.BDbcFBb.31792
+Date: Mon, 20 Mar 2017 18:45:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,31 +35,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
 
---- Comment #26 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Olivier Fourdan from comment #24)
-> One possibility would be to run a live image of Fedora 25 (which comes wi=
-th
-> Wayland by default), at least it would allow for a quick test (no need for
-> you to install everything if it's not reproducible on your hardware setup=
-...)
->=20
-> However, gtk-demo (which is the simple way to reproduce) comes with the
-> devel packages, which won't be on a live image... But this should be
-> installable, even on a live image, as long as a network connection is
-> available.
+--- Comment #27 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #26)
+> I was hoping to avoid rebooting :) But like... would weston + gtk2-demo be
+> sufficient? Or do I need something else, like, say, GNOME or KDE or
+> something? (If the latter, that's pretty much a non-starter.)
 
-I was hoping to avoid rebooting :) But like... would weston + gtk2-demo be
-sufficient? Or do I need something else, like, say, GNOME or KDE or somethi=
-ng?
-(If the latter, that's pretty much a non-starter.)
+Sure, no need for GNOME or KDE, weston + Xwayland + gtk+-2.24.x should be
+sufficient.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14900334991.8D7A5E.27055
-Date: Mon, 20 Mar 2017 18:11:39 +0000
+--14900355370.BDbcFBb.31792
+Date: Mon, 20 Mar 2017 18:45:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,35 +67,26 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c26">Commen=
-t # 26</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c27">Commen=
+t # 27</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
 </span></b>
-        <pre>(In reply to Olivier Fourdan from <a href=3D"show_bug.cgi?id=
-=3D99400#c24">comment #24</a>)
-<span class=3D"quote">&gt; One possibility would be to run a live image of =
-Fedora 25 (which comes with
-&gt; Wayland by default), at least it would allow for a quick test (no need=
- for
-&gt; you to install everything if it's not reproducible on your hardware se=
-tup...)
-&gt;=20
-&gt; However, gtk-demo (which is the simple way to reproduce) comes with the
-&gt; devel packages, which won't be on a live image... But this should be
-&gt; installable, even on a live image, as long as a network connection is
-&gt; available.</span >
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D994=
+00#c26">comment #26</a>)
+<span class=3D"quote">&gt; I was hoping to avoid rebooting :) But like... w=
+ould weston + gtk2-demo be
+&gt; sufficient? Or do I need something else, like, say, GNOME or KDE or
+&gt; something? (If the latter, that's pretty much a non-starter.)</span >
 
-I was hoping to avoid rebooting :) But like... would weston + gtk2-demo be
-sufficient? Or do I need something else, like, say, GNOME or KDE or somethi=
-ng?
-(If the latter, that's pretty much a non-starter.)</pre>
+Sure, no need for GNOME or KDE, weston + Xwayland + gtk+-2.24.x should be
+sufficient.</pre>
         </div>
       </p>
 
@@ -113,15 +95,15 @@ ng?
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14900334991.8D7A5E.27055--
+--14900355370.BDbcFBb.31792--
 
---===============1657452533==
+--===============0456356429==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -131,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1657452533==--
+--===============0456356429==--
