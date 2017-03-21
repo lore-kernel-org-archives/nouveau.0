@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
-Date: Mon, 20 Mar 2017 18:45:38 +0000
-Message-ID: <bug-99400-8800-096d36z8WA@http.bugs.freedesktop.org/>
-References: <bug-99400-8800@http.bugs.freedesktop.org/>
+From: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Subject: use-after-free bug with GT218 on arm64 machine
+Date: Tue, 21 Mar 2017 17:08:10 +0000
+Message-ID: <CAKv+Gu8-bv2U+92VSPYjcoNznXQBUmhDzB_gWi3wMuKnF1eVbA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0456356429=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,101 +15,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Mark Rutland <mark.rutland-5wv7dgnIgG8@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0456356429==
-Content-Type: multipart/alternative; boundary="14900355370.BDbcFBb.31792";
- charset="UTF-8"
-
-
---14900355370.BDbcFBb.31792
-Date: Mon, 20 Mar 2017 18:45:37 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
-
---- Comment #27 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #26)
-> I was hoping to avoid rebooting :) But like... would weston + gtk2-demo be
-> sufficient? Or do I need something else, like, say, GNOME or KDE or
-> something? (If the latter, that's pretty much a non-starter.)
-
-Sure, no need for GNOME or KDE, weston + Xwayland + gtk+-2.24.x should be
-sufficient.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14900355370.BDbcFBb.31792
-Date: Mon, 20 Mar 2017 18:45:37 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c27">Commen=
-t # 27</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
-"> <span class=3D"fn">Olivier Fourdan</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D994=
-00#c26">comment #26</a>)
-<span class=3D"quote">&gt; I was hoping to avoid rebooting :) But like... w=
-ould weston + gtk2-demo be
-&gt; sufficient? Or do I need something else, like, say, GNOME or KDE or
-&gt; something? (If the latter, that's pretty much a non-starter.)</span >
-
-Sure, no need for GNOME or KDE, weston + Xwayland + gtk+-2.24.x should be
-sufficient.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14900355370.BDbcFBb.31792--
-
---===============0456356429==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0456356429==--
+SGVsbG8gYWxsLAoKSSBhbSB0cnlpbmcgdG8gZGVidWcgYW4gZWx1c2l2ZSBtZW1vcnkgY29ycnVw
+dGlvbiBidWcgb24gbXkgYXJtNjQKbWFjaGluZSB3aGljaCBhcHBlYXJzIHRvIGJlIGluIHRoZSBu
+b3V2ZWF1IGRyaXZlci4KCkkgZ290IHRoZSBmb2xsb3dpbmcgc3BsYXQgZnJvbSB0aGUgcmVmY291
+bnQgZGVidWdnaW5nIGNvZGU6CgoiIiIKcmVmY291bnRfdDogdW5kZXJmbG93OyB1c2UtYWZ0ZXIt
+ZnJlZS4KLS0tLS0tLS0tLS0tWyBjdXQgaGVyZSBdLS0tLS0tLS0tLS0tCldBUk5JTkc6IENQVTog
+MCBQSUQ6IDMzNjYgYXQgbGliL3JlZmNvdW50LmM6MTI4IHJlZmNvdW50X3N1Yl9hbmRfdGVzdCsw
+eGU4LzB4MTA4Ck1vZHVsZXMgbGlua2VkIGluOiBmdXNlIG5vdXZlYXUgdHRtIGRybV9rbXNfaGVs
+cGVyIGRybSBpcF90YWJsZXMgeF90YWJsZXMgaXB2NgoKQ1BVOiAwIFBJRDogMzM2NiBDb21tOiBn
+bm9tZS1zaGVsbCBOb3QgdGFpbnRlZCA0LjExLjAtcmMzLTAwNDA3LWc5N2RhMzg1NGM1MjYgIzEK
+SGFyZHdhcmUgbmFtZTogQU1EIFNlYXR0bGUvU2VhdHRsZSwgQklPUyAxMToxNDoyNyBNYXIgMjAg
+MjAxNwp0YXNrOiBmZmZmZmZkNmNjYTViNjAwIHRhc2suc3RhY2s6IGZmZmZmZmQ2YzgxMjAwMDAK
+UEMgaXMgYXQgcmVmY291bnRfc3ViX2FuZF90ZXN0KzB4ZTgvMHgxMDgKTFIgaXMgYXQgcmVmY291
+bnRfc3ViX2FuZF90ZXN0KzB4ZTgvMHgxMDgKcGMgOiBbPGZmZmZmZmExZjgxYWY3ZjA+XSBsciA6
+IFs8ZmZmZmZmYTFmODFhZjdmMD5dIHBzdGF0ZTogMjAwMDAxNDUKc3AgOiBmZmZmZmZkNmM4MTIz
+N2MwCngyOTogZmZmZmZmZDZjODEyMzdjMCB4Mjg6IDAwMDAwMDAwMDAwMDAwMjgKeDI3OiBmZmZm
+ZmZkNmNjYTViNjEwIHgyNjogZmZmZmZmZDZiNDQxNzA4MAp4MjU6IGZmZmZmZmQ2ODcxNWEwMDAg
+eDI0OiBmZmZmZmZkNmNjYTViNjEwCngyMzogZmZmZmZmZDY4YjUxMzY4MCB4MjI6IGZmZmZmZmEx
+Zjg0NzNhMzAKeDIxOiBmZmZmZmZkNmM3Y2M5ZTAwIHgyMDogMDAwMDAwMDAwMDAwMDAwMQp4MTk6
+IGZmZmZmZmQ2OGI1MTM1MDAgeDE4OiAwMDAwMDAwMDAwMDAwMDIwCngxNzogMDAwMDAwN2ZiNjRk
+M2RiMCB4MTY6IGZmZmZmZmExZjg0NzNmMTgKeDE1OiAwMDAwMDAwMDMwNDBkMjMwIHgxNDogMDAw
+MDAwMDIwMDAwMDAwMAp4MTM6IDAwMDAwMDAyMDAwMDAwMTAgeDEyOiBmZmZmZmZmZmZmZmZmZmZm
+CngxMTogMWZmZmZmZjQzZjNlOGUxZiB4MTA6IGZmZmZmZjg0M2YzZThlMWYKeDkgOiBkZmZmZmY5
+MDAwMDAwMDAwIHg4IDogZmZmZmZmYTFmOWY0NzBmYwp4NyA6IDAwMDAwMDAwMDAwMDAwMDAgeDYg
+OiBmZmZmZmY4NDNmM2U4ZTIwCng1IDogZmZmZmZmODQzZjNlOGUyMCB4NCA6IDAwMDAwMDAwMDAw
+MDAwMDAKeDMgOiAwMDAwMDAzNjAwZDUyMDAwIHgyIDogZGZmZmZmOTAwMDAwMDAwMAp4MSA6IGZm
+ZmZmZjhhZDkwMjQ2YzYgeDAgOiAwMDAwMDAwMDAwMDAwMDI2CgotLS1bIGVuZCB0cmFjZSBkMTg4
+ZDE4ZDVkM2QyNWRiIF0tLS0KQ2FsbCB0cmFjZToKRXhjZXB0aW9uIHN0YWNrKDB4ZmZmZmZmZDZj
+ODEyMzU5MCB0byAweGZmZmZmZmQ2YzgxMjM2YzApCjM1ODA6ICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICBmZmZmZmZkNjhiNTEzNTAwIDAwMDAwMDgwMDAwMDAwMDAKMzVhMDogZmZm
+ZmZmZDZjODEyMzdjMCBmZmZmZmZhMWY4MWFmN2YwIDAwMDAwMDAwMjAwMDAxNDUgMDAwMDAwMDAw
+MDAwMDAzZAozNWMwOiBmZmZmZmZkNjg3MTVhMDAwIGZmZmZmZmExZjdlNTkxYjggMDAwMDAwMDA0
+MWI1OGFiMyBmZmZmZmZhMWY4ZmUxMWI4CjM1ZTA6IGZmZmZmZmExZjdjZjE1YjggZmZmZmZmYTFm
+ODQ3M2EzMCBmZmZmZmZkNjhiNTEzNjgwIGZmZmZmZmQ2Y2NhNWI2MTAKMzYwMDogZmZmZmZmZDY4
+NzE1YTAwMCBmZmZmZmZkNmI0NDE3MDgwIGZmZmZmZmQ2YzgxMjM3YzAgZmZmZmZmZDZjODEyMzdj
+MAozNjIwOiBmZmZmZmZkNmM4MTIzNzgwIDAwMDAwMDAwZmZmZmZmYzggMDAwMDAwMDA0MWI1OGFi
+MyBmZmZmZmZhMWY4ZmVhMTM4CjM2NDA6IGZmZmZmZmExZjdkYzA1NDAgZmZmZmZmYTFmN2NmYWQy
+OCBmZmZmZmZhMWY3ZWU5ZWU4IGZmZmZmZjkwMDExNjJlMTAKMzY2MDogZmZmZmZmOTAwMTEzZjA4
+NCBmZmZmZmY5MDAwZWQ4NGI4IGZmZmZmZjkwMDExMzIwMGMgZmZmZmZmYTFmN2YyYzkxMAozNjgw
+OiBmZmZmZmZhMWY3ZjJkMjBjIGZmZmZmZmExZjdjZjM3MzAgMDAwMDAwMDAwMDAwMDAyNiBmZmZm
+ZmY4YWQ5MDI0NmM2CjM2YTA6IGRmZmZmZjkwMDAwMDAwMDAgMDAwMDAwMzYwMGQ1MjAwMCAwMDAw
+MDAwMDAwMDAwMDAwIGZmZmZmZjg0M2YzZThlMjAKWzxmZmZmZmZhMWY4MWFmN2YwPl0gcmVmY291
+bnRfc3ViX2FuZF90ZXN0KzB4ZTgvMHgxMDgKWzxmZmZmZmZhMWY4MWFmODI0Pl0gcmVmY291bnRf
+ZGVjX2FuZF90ZXN0KzB4MTQvMHgyMApbPGZmZmZmZmExZjg0NzQwNWM+XSByZXNlcnZhdGlvbl9v
+YmplY3RfYWRkX2V4Y2xfZmVuY2UrMHgxNDQvMHgxZTAKWzxmZmZmZmY5MDAxMTNjY2UwPl0gbm91
+dmVhdV9ib19mZW5jZSsweDUwLzB4NjAgW25vdXZlYXVdCls8ZmZmZmZmOTAwMTEzZDFkYz5dIHZh
+bGlkYXRlX2Zpbmlfbm9fdGlja2V0KzB4YzQvMHgxOTAgW25vdXZlYXVdCls8ZmZmZmZmOTAwMTEz
+ZTFmYz5dIG5vdXZlYXVfZ2VtX2lvY3RsX3B1c2hidWYrMHg0OWMvMHgxYzc4IFtub3V2ZWF1XQpb
+PGZmZmZmZjkwMDBlZDg0Yjg+XSBkcm1faW9jdGwrMHgyODAvMHg1OTAgW2RybV0KWzxmZmZmZmY5
+MDAxMTMyMDBjPl0gbm91dmVhdV9kcm1faW9jdGwrMHg4Yy8weDEwMCBbbm91dmVhdV0KWzxmZmZm
+ZmZhMWY3ZjJjOTEwPl0gZG9fdmZzX2lvY3RsKzB4MTMwLzB4OWEwCls8ZmZmZmZmYTFmN2YyZDIw
+Yz5dIFN5U19pb2N0bCsweDhjLzB4YTAKWzxmZmZmZmZhMWY3Y2YzNzMwPl0gZWwwX3N2Y19uYWtl
+ZCsweDI0LzB4MjgKIiIiCgpFbmFibGluZyBLQVNBTiBnaXZlcyBzb21lIGFkZGl0aW9uYWwgaW5m
+b3JtYXRpb24sIG1hbnkgcmVwb3J0cyBzaW1pbGFyIHRvCgoKIiIiCj09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQpCVUc6IEtB
+U0FOOiB1c2UtYWZ0ZXItZnJlZSBpbiBub3V2ZWF1X2ZlbmNlX3N5bmMrMHgxNTQvMHgzOTggW25v
+dXZlYXVdCiAgICAgICAgICAgICAgICAgICAgICAgYXQgYWRkciBmZmZmZmZkNjkwNjRmODA4ClJl
+YWQgb2Ygc2l6ZSA4IGJ5IHRhc2sgZ25vbWUtc2hlbGwvMzM2NgpDUFU6IDQgUElEOiAzMzY2IENv
+bW06IGdub21lLXNoZWxsIFRhaW50ZWQ6IEcgICAgICAgIFcKICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICA0LjExLjAtcmMzLTAwNDA3LWc5N2RhMzg1NGM1MjYgIzEKSGFyZHdhcmUg
+bmFtZTogQU1EIFNlYXR0bGUvU2VhdHRsZSwgQklPUyAxMToxNDoyNyBNYXIgMjAgMjAxNwpDYWxs
+IHRyYWNlOgpbPGZmZmZmZmExZjdjZmIxZjg+XSBkdW1wX2JhY2t0cmFjZSsweDAvMHgzMDAKWzxm
+ZmZmZmZhMWY3Y2ZiNTBjPl0gc2hvd19zdGFjaysweDE0LzB4MjAKWzxmZmZmZmZhMWY4MTg4Nzg4
+Pl0gZHVtcF9zdGFjaysweGE4LzB4ZDAKWzxmZmZmZmZhMWY3ZWVhOTY0Pl0ga2FzYW5fb2JqZWN0
+X2VycisweDI0LzB4ODAKWzxmZmZmZmZhMWY3ZWVhYmVjPl0ga2FzYW5fcmVwb3J0X2Vycm9yKzB4
+MWNjLzB4NGYwCls8ZmZmZmZmYTFmN2VlYjJlOD5dIGthc2FuX3JlcG9ydCsweDM4LzB4NDAKWzxm
+ZmZmZmZhMWY3ZWU5ODVjPl0gX19hc2FuX2xvYWQ4KzB4ODQvMHg5OApbPGZmZmZmZjkwMDExNjJh
+OWM+XSBub3V2ZWF1X2ZlbmNlX3N5bmMrMHgxNTQvMHgzOTggW25vdXZlYXVdCls8ZmZmZmZmOTAw
+MTEzZTkwND5dIG5vdXZlYXVfZ2VtX2lvY3RsX3B1c2hidWYrMHhiYTQvMHgxYzc4IFtub3V2ZWF1
+XQpbPGZmZmZmZjkwMDBlZDg0Yjg+XSBkcm1faW9jdGwrMHgyODAvMHg1OTAgW2RybV0KWzxmZmZm
+ZmY5MDAxMTMyMDBjPl0gbm91dmVhdV9kcm1faW9jdGwrMHg4Yy8weDEwMCBbbm91dmVhdV0KWzxm
+ZmZmZmZhMWY3ZjJjOTEwPl0gZG9fdmZzX2lvY3RsKzB4MTMwLzB4OWEwCls8ZmZmZmZmYTFmN2Yy
+ZDIwYz5dIFN5U19pb2N0bCsweDhjLzB4YTAKWzxmZmZmZmZhMWY3Y2YzNzMwPl0gZWwwX3N2Y19u
+YWtlZCsweDI0LzB4MjgKT2JqZWN0IGF0IGZmZmZmZmQ2OTA2NGY4MDAsIGluIGNhY2hlIGttYWxs
+b2MtMjU2IHNpemU6IDI1NgpBbGxvY2F0ZWQ6ClBJRCA9IDMzNjYKIHNhdmVfc3RhY2tfdHJhY2Vf
+dHNrKzB4MC8weDIyMAogc2F2ZV9zdGFja190cmFjZSsweDE4LzB4MjAKIGthc2FuX2ttYWxsb2Mr
+MHhkOC8weDE4OAogbm91dmVhdV9mZW5jZV9uZXcrMHhiMC8weDE1MCBbbm91dmVhdV0KIG5vdXZl
+YXVfZ2VtX2lvY3RsX3B1c2hidWYrMHgxMzI0LzB4MWM3OCBbbm91dmVhdV0KIGRybV9pb2N0bCsw
+eDI4MC8weDU5MCBbZHJtXQogbm91dmVhdV9kcm1faW9jdGwrMHg4Yy8weDEwMCBbbm91dmVhdV0K
+IGRvX3Zmc19pb2N0bCsweDEzMC8weDlhMAogU3lTX2lvY3RsKzB4OGMvMHhhMAogZWwwX3N2Y19u
+YWtlZCsweDI0LzB4MjgKRnJlZWQ6ClBJRCA9IDAKIHNhdmVfc3RhY2tfdHJhY2VfdHNrKzB4MC8w
+eDIyMAogc2F2ZV9zdGFja190cmFjZSsweDE4LzB4MjAKIGthc2FuX3NsYWJfZnJlZSsweDg4LzB4
+MTg4CiBrZnJlZSsweDcwLzB4MWUwCiByY3VfcHJvY2Vzc19jYWxsYmFja3MrMHgyOTAvMHg2YTgK
+IF9fZG9fc29mdGlycSsweDFhMC8weDMyOApNZW1vcnkgc3RhdGUgYXJvdW5kIHRoZSBidWdneSBh
+ZGRyZXNzOgogZmZmZmZmZDY5MDY0ZjcwMDogZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmIg
+ZmIgZmIgZmIgZmIgZmIgZmIKIGZmZmZmZmQ2OTA2NGY3ODA6IGZjIGZjIGZjIGZjIGZjIGZjIGZj
+IGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZjCj5mZmZmZmZkNjkwNjRmODAwOiBmYiBmYiBmYiBm
+YiBmYiBmYiBmYiBmYiBmYiBmYiBmYiBmYiBmYiBmYiBmYiBmYgogICAgICAgICAgICAgICAgICAg
+ICAgXgogZmZmZmZmZDY5MDY0Zjg4MDogZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmIg
+ZmIgZmIgZmIgZmIgZmIKIGZmZmZmZmQ2OTA2NGY5MDA6IGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZj
+IGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZjCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoiIiIKCkkgZ3Vlc3MgdGhlc2UgYXJl
+IGJvdGggcmVzdWx0cyBvZiB0aGUgZmFjdCB0aGF0IGEgZG1hX2ZlbmNlIG9iamVjdCB3YXMKZnJl
+ZWQgYnV0IHN0aWxsIHR1cm5zIHVwIGluIHNvbWUgbGlzdC4KClNvIG15IHF1ZXN0aW9uIGlzIHdo
+ZXRoZXIgYW55b25lIGNhbiB0ZWxsIHdoYXQncyBnb2luZyBvbiByaWdodCBvZmYKdGhlIGJhdCAo
+aGV5LCBJIGNhbiBhbHdheXMgdHJ5KSwgYW5kIGlmIG5vdCwgbWF5IEkgcGxlYXNlIGhhdmUgc29t
+ZQpzdWdnZXN0aW9ucyBvbiBob3cgdG8gcHJvY2VlZCBkZWJ1Z2dpbmcgdGhpcz8KClJlZ2FyZHMs
+CkFyZC4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
