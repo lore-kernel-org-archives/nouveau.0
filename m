@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH xf86-video-nouveau v2] Add Pascal family support,
-	identical to Maxwell
-Date: Tue, 21 Mar 2017 21:33:59 -0400
-Message-ID: <20170322013359.5787-1-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99995] Dirt showdown very low fps (~3fps) after
+	update mesa
+Date: Wed, 22 Mar 2017 16:54:28 +0000
+Message-ID: <bug-99995-8800-JIMExkCcWq@http.bugs.freedesktop.org/>
+References: <bug-99995-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1265734539=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99995-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,61 +20,113 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KCnYx
-IC0+IHYyOiBhZGQgMHgxMzAgYXMgYSB2YWxpZCBjaGlwIHR5cGUgZWFybHkgb24gaW4gZGV0ZWN0
-aW9uCgogc3JjL25vdXZlYXVfY29weS5jICAgIHwgMiArKwogc3JjL25vdXZlYXVfZXhhLmMgICAg
-IHwgMSArCiBzcmMvbnZfYWNjZWxfY29tbW9uLmMgfCAxICsKIHNyYy9udl9kcml2ZXIuYyAgICAg
-ICB8IDQgKysrKwogc3JjL252X3R5cGUuaCAgICAgICAgIHwgMSArCiBzcmMvbnZjMF9hY2NlbC5j
-ICAgICAgfCA2ICsrKysrKwogNiBmaWxlcyBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspCgpkaWZm
-IC0tZ2l0IGEvc3JjL25vdXZlYXVfY29weS5jIGIvc3JjL25vdXZlYXVfY29weS5jCmluZGV4IDcx
-MThhN2EuLjdmYmNjODcgMTAwNjQ0Ci0tLSBhL3NyYy9ub3V2ZWF1X2NvcHkuYworKysgYi9zcmMv
-bm91dmVhdV9jb3B5LmMKQEAgLTQyLDYgKzQyLDcgQEAgbm91dmVhdV9jb3B5X2luaXQoU2NyZWVu
-UHRyIHBTY3JlZW4pCiAJCWludCBlbmdpbmU7CiAJCUJvb2wgKCppbml0KShOVlB0cik7CiAJfSBt
-ZXRob2RzW10gPSB7CisJCXsgMHhjMWI1LCAwLCBub3V2ZWF1X2NvcHlhMGI1X2luaXQgfSwKIAkJ
-eyAweGMwYjUsIDAsIG5vdXZlYXVfY29weWEwYjVfaW5pdCB9LAogCQl7IDB4YjBiNSwgMCwgbm91
-dmVhdV9jb3B5YTBiNV9pbml0IH0sCiAJCXsgMHhhMGI1LCAwLCBub3V2ZWF1X2NvcHlhMGI1X2lu
-aXQgfSwKQEAgLTg0LDYgKzg1LDcgQEAgbm91dmVhdV9jb3B5X2luaXQoU2NyZWVuUHRyIHBTY3Jl
-ZW4pCiAJCWJyZWFrOwogCWNhc2UgTlZfS0VQTEVSOgogCWNhc2UgTlZfTUFYV0VMTDoKKwljYXNl
-IE5WX1BBU0NBTDoKIAkJcmV0ID0gbm91dmVhdV9vYmplY3RfbmV3KCZwTnYtPmRldi0+b2JqZWN0
-LCAwLAogCQkJCQkgTk9VVkVBVV9GSUZPX0NIQU5ORUxfQ0xBU1MsCiAJCQkJCSAmKHN0cnVjdCBu
-dmUwX2ZpZm8pIHsKZGlmZiAtLWdpdCBhL3NyYy9ub3V2ZWF1X2V4YS5jIGIvc3JjL25vdXZlYXVf
-ZXhhLmMKaW5kZXggMGYwMmI5OS4uNTVkZjZmOCAxMDA2NDQKLS0tIGEvc3JjL25vdXZlYXVfZXhh
-LmMKKysrIGIvc3JjL25vdXZlYXVfZXhhLmMKQEAgLTUxNSw2ICs1MTUsNyBAQCBub3V2ZWF1X2V4
-YV9pbml0KFNjcmVlblB0ciBwU2NyZWVuKQogCWNhc2UgTlZfRkVSTUk6CiAJY2FzZSBOVl9LRVBM
-RVI6CiAJY2FzZSBOVl9NQVhXRUxMOgorCWNhc2UgTlZfUEFTQ0FMOgogCQlleGEtPkNoZWNrQ29t
-cG9zaXRlICAgPSBOVkMwRVhBQ2hlY2tDb21wb3NpdGU7CiAJCWV4YS0+UHJlcGFyZUNvbXBvc2l0
-ZSA9IE5WQzBFWEFQcmVwYXJlQ29tcG9zaXRlOwogCQlleGEtPkNvbXBvc2l0ZSAgICAgICAgPSBO
-VkMwRVhBQ29tcG9zaXRlOwpkaWZmIC0tZ2l0IGEvc3JjL252X2FjY2VsX2NvbW1vbi5jIGIvc3Jj
-L252X2FjY2VsX2NvbW1vbi5jCmluZGV4IDVkMTJkZDguLjU1NjE3MDggMTAwNjQ0Ci0tLSBhL3Ny
-Yy9udl9hY2NlbF9jb21tb24uYworKysgYi9zcmMvbnZfYWNjZWxfY29tbW9uLmMKQEAgLTcyMyw2
-ICs3MjMsNyBAQCBOVkFjY2VsQ29tbW9uSW5pdChTY3JuSW5mb1B0ciBwU2NybikKIAljYXNlIE5W
-X0ZFUk1JOgogCWNhc2UgTlZfS0VQTEVSOgogCWNhc2UgTlZfTUFYV0VMTDoKKwljYXNlIE5WX1BB
-U0NBTDoKIAkJSU5JVF9DT05URVhUX09CSkVDVCgzRF9OVkMwKTsKIAkJYnJlYWs7CiAJY2FzZSBO
-Vl9URVNMQToKZGlmZiAtLWdpdCBhL3NyYy9udl9kcml2ZXIuYyBiL3NyYy9udl9kcml2ZXIuYwpp
-bmRleCA2MTk0MGE4Li4zMjA2MmViIDEwMDY0NAotLS0gYS9zcmMvbnZfZHJpdmVyLmMKKysrIGIv
-c3JjL252X2RyaXZlci5jCkBAIC0zOTEsNiArMzkxLDcgQEAgTlZIYXNLTVMoc3RydWN0IHBjaV9k
-ZXZpY2UgKnBjaV9kZXYsIHN0cnVjdCB4Zjg2X3BsYXRmb3JtX2RldmljZSAqcGxhdGZvcm1fZGV2
-KQogCWNhc2UgMHgxMDA6CiAJY2FzZSAweDExMDoKIAljYXNlIDB4MTIwOgorCWNhc2UgMHgxMzA6
-CiAJCWJyZWFrOwogCWRlZmF1bHQ6CiAJCXhmODZEcnZNc2coLTEsIFhfRVJST1IsICJVbmtub3du
-IGNoaXBzZXQ6IE5WJTAyWFxuIiwgY2hpcHNldCk7CkBAIC05NDUsNiArOTQ2LDkgQEAgTlZQcmVJ
-bml0KFNjcm5JbmZvUHRyIHBTY3JuLCBpbnQgZmxhZ3MpCiAJY2FzZSAweDEyMDoKIAkJcE52LT5B
-cmNoaXRlY3R1cmUgPSBOVl9NQVhXRUxMOwogCQlicmVhazsKKwljYXNlIDB4MTMwOgorCQlwTnYt
-PkFyY2hpdGVjdHVyZSA9IE5WX1BBU0NBTDsKKwkJYnJlYWs7CiAJZGVmYXVsdDoKIAkJcmV0dXJu
-IEZBTFNFOwogCX0KZGlmZiAtLWdpdCBhL3NyYy9udl90eXBlLmggYi9zcmMvbnZfdHlwZS5oCmlu
-ZGV4IDZjM2UzMzkuLmEwYzQwZTMgMTAwNjQ0Ci0tLSBhL3NyYy9udl90eXBlLmgKKysrIGIvc3Jj
-L252X3R5cGUuaApAQCAtMjMsNiArMjMsNyBAQAogI2RlZmluZSBOVl9GRVJNSSAgICAweGMwCiAj
-ZGVmaW5lIE5WX0tFUExFUiAgIDB4ZTAKICNkZWZpbmUgTlZfTUFYV0VMTCAgMHgxMTAKKyNkZWZp
-bmUgTlZfUEFTQ0FMICAgMHgxMzAKIAogc3RydWN0IHhmODZfcGxhdGZvcm1fZGV2aWNlOwogCmRp
-ZmYgLS1naXQgYS9zcmMvbnZjMF9hY2NlbC5jIGIvc3JjL252YzBfYWNjZWwuYwppbmRleCA2YzJi
-YWU4Li4xMDQ3ZDM2IDEwMDY0NAotLS0gYS9zcmMvbnZjMF9hY2NlbC5jCisrKyBiL3NyYy9udmMw
-X2FjY2VsLmMKQEAgLTI1MCw2ICsyNTAsMTIgQEAgTlZBY2NlbEluaXQzRF9OVkMwKFNjcm5JbmZv
-UHRyIHBTY3JuKQogCX0gZWxzZSBpZiAocE52LT5kZXYtPmNoaXBzZXQgPCAweDEzMCkgewogCQlj
-bGFzcyAgPSAweGIxOTc7CiAJCWhhbmRsZSA9IDB4MDAwMDkwNmU7CisJfSBlbHNlIGlmIChwTnYt
-PmRldi0+Y2hpcHNldCA9PSAweDEzMCkgeworCQljbGFzcyAgPSAweGMwOTc7CisJCWhhbmRsZSA9
-IDB4MDAwMDkwNmU7CisJfSBlbHNlIGlmIChwTnYtPmRldi0+Y2hpcHNldCA8IDB4MTQwKSB7CisJ
-CWNsYXNzICA9IDB4YzE5NzsKKwkJaGFuZGxlID0gMHgwMDAwOTA2ZTsKIAl9IGVsc2UgewogCQl4
-Zjg2RHJ2TXNnKHBTY3JuLT5zY3JuSW5kZXgsIFhfSU5GTywKIAkJCSAgICJObyAzRCBhY2NlbGVy
-YXRpb24gc3VwcG9ydCBmb3IgTlYlWFxuIiwKLS0gCjIuMTAuMgoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
-dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1265734539==
+Content-Type: multipart/alternative; boundary="14902016681.c03d.4667";
+ charset="UTF-8"
+
+
+--14902016681.c03d.4667
+Date: Wed, 22 Mar 2017 16:54:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99995
+
+Vedran Mileti=C4=87 <vedran-v8Fv/IwHOXbR7s880joybQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Blocks|                            |77449
+
+
+Referenced Bugs:
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D77449
+[Bug 77449] Tracker bug for all bugs related to Steam titles
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14902016681.c03d.4667
+Date: Wed, 22 Mar 2017 16:54:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:vedran&#6=
+4;miletic.net" title=3D"Vedran Mileti=C4=87 &lt;vedran&#64;miletic.net&gt;"=
+> <span class=3D"fn">Vedran Mileti=C4=87</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Dirt showdown very low fps (~3fps) after update mesa"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995">bug 99995<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Blocks</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>77449
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+        <div id=3D"referenced">
+          <hr style=3D"border: 1px dashed #969696">
+          <b>Referenced Bugs:</b>
+          <ul>
+              <li>
+                [<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Tracker bug for all bugs related to Steam titles"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D77449">Bug 77449<=
+/a>] Tracker bug for all bugs related to Steam titles
+              </li>
+          </ul>
+        </div>
+        <br>
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14902016681.c03d.4667--
+
+--===============1265734539==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1265734539==--
