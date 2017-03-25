@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100357] [NVA3] Resume from hibernate/suspend does
-	not work
-Date: Thu, 23 Mar 2017 15:14:14 +0000
-Message-ID: <bug-100357-8800-lnJYO7U0UU@http.bugs.freedesktop.org/>
-References: <bug-100357-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: NVAC - BUG: unable to handle kernel NULL pointer
+	dereference
+Date: Sat, 25 Mar 2017 11:47:07 +0100
+Message-ID: <f48ccc4d-fcec-aaf2-360e-4bcb9ebdbe8b@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1701117064=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,88 +16,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1701117064==
-Content-Type: multipart/alternative; boundary="14902820540.Fc93E3C89.20733";
- charset="UTF-8"
-
-
---14902820540.Fc93E3C89.20733
-Date: Thu, 23 Mar 2017 15:14:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100357
-
---- Comment #2 from miguel.deval-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-This problem happens randomly about 50% of the time resuming form
-hibernate/suspend.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14902820540.Fc93E3C89.20733
-Date: Thu, 23 Mar 2017 15:14:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVA3] Resume from hibernate/suspend does not work"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100357#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVA3] Resume from hibernate/suspend does not work"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100357">bug 10035=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-miguel.deval&#64;gmail.com" title=3D"miguel.deval&#64;gmail.com">miguel.dev=
-al&#64;gmail.com</a>
-</span></b>
-        <pre>This problem happens randomly about 50% of the time resuming f=
-orm
-hibernate/suspend.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14902820540.Fc93E3C89.20733--
-
---===============1701117064==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1701117064==--
+CldpdGggbGlnaHR3ZWlnaHQgZGVza3RvcGluZywKdGhlIGF0b21pYyBtb2Rlc2V0dGluZyBzZWVt
+cyBmYXIgZnJvbSByb2J1c3QuCgpCVUc6IHVuYWJsZSB0byBoYW5kbGUga2VybmVsIE5VTEwgcG9p
+bnRlciBkZXJlZmVyZW5jZSBhdCAwMDAwMDAwMDAwMDAwMDIxCklQOiBkbWFfZmVuY2Vfd2FpdF90
+aW1lb3V0KzB4MzYvMHhmMAouLi4KT29wczogMDAwMCBbIzFdIFNNUApNb2R1bGVzIGxpbmtlZCBp
+bjogLi4uIG5vdXZlYXUgLi4uCkNQVTogMCBQSUQ6IDY4OTUgQ29tbTogWG9yZyBOb3QgdGFpbnRl
+ZCA0LjEwLjUtMTAwMS5mYzI0Lng4Nl82NCAjMQouLi4KQ2FsbCBUcmFjZToKIGRybV9hdG9taWNf
+aGVscGVyX3dhaXRfZm9yX2ZlbmNlcysweDQ4LzB4MTIwIFtkcm1fa21zX2hlbHBlcl0KIG52NTBf
+ZGlzcF9hdG9taWNfY29tbWl0KzB4MTljLzB4MmEwIFtub3V2ZWF1XQogZHJtX2F0b21pY19jb21t
+aXQrMHg0Yi8weDUwIFtkcm1dCiBkcm1fYXRvbWljX2hlbHBlcl91cGRhdGVfcGxhbmUrMHhlYy8w
+eDE1MCBbZHJtX2ttc19oZWxwZXJdCiBfX3NldHBsYW5lX2ludGVybmFsKzB4MWI0LzB4MjgwIFtk
+cm1dCiBkcm1fbW9kZV9jdXJzb3JfdW5pdmVyc2FsKzB4MTI2LzB4MjEwIFtkcm1dCiBkcm1fbW9k
+ZV9jdXJzb3JfY29tbW9uKzB4ODYvMHgxODAgW2RybV0KIGRybV9tb2RlX2N1cnNvcl9pb2N0bCsw
+eDUwLzB4NzAgW2RybV0KIGRybV9pb2N0bCsweDIxYi8weDRjMCBbZHJtXQogPyBkcm1fbW9kZV9z
+ZXRwbGFuZSsweDFhMC8weDFhMCBbZHJtXQogbm91dmVhdV9kcm1faW9jdGwrMHg3NC8weGMwIFtu
+b3V2ZWF1XQogZG9fdmZzX2lvY3RsKzB4YTMvMHg1ZjAKIFN5U19pb2N0bCsweDc5LzB4OTAKIGVu
+dHJ5X1NZU0NBTExfNjRfZmFzdHBhdGgrMHgxYS8weGE5Ci4uLgpSSVA6IGRtYV9mZW5jZV93YWl0
+X3RpbWVvdXQrMHgzNi8weGYwIFJTUDogZmZmZmMxZjcwMDcyM2EzOAouLi4KLS0tWyBlbmQgdHJh
+Y2UgYTZiZWYyZDMyZWQ1ZmJiYyBdLS0tCgoKQlVHOiB1bmFibGUgdG8gaGFuZGxlIGtlcm5lbCBO
+VUxMIHBvaW50ZXIgZGVyZWZlcmVuY2UgYXQgMDAwMDAwMDAwMDAwMDAyMQpJUDogZG1hX2ZlbmNl
+X3dhaXRfdGltZW91dCsweDM2LzB4ZjAKLi4uCk9vcHM6IDAwMDAgWyMxXSBTTVAKTW9kdWxlcyBs
+aW5rZWQgaW46IC4uLiBub3V2ZWF1IC4uLgpDUFU6IDMgUElEOiAzMDY1NCBDb21tOiBYb3JnIFRh
+aW50ZWQ6IEcgICAgICAgICAgICBFICAgNC4xMS4wLTAucmMzLmdpdDAuMS5mYzI2Lng4Nl82NCAj
+MQouLi4KQ2FsbCBUcmFjZToKIGRybV9hdG9taWNfaGVscGVyX3dhaXRfZm9yX2ZlbmNlcysweDcz
+LzB4MTEwIFtkcm1fa21zX2hlbHBlcl0KIG52NTBfZGlzcF9hdG9taWNfY29tbWl0KzB4MjhhLzB4
+MmMwIFtub3V2ZWF1XQogPyByZWZjb3VudF9kZWNfYW5kX3Rlc3QrMHgxMS8weDIwCiBkcm1fYXRv
+bWljX2NvbW1pdCsweDRiLzB4NTAgW2RybV0KIGRybV9hdG9taWNfaGVscGVyX3VwZGF0ZV9wbGFu
+ZSsweGYxLzB4MTUwIFtkcm1fa21zX2hlbHBlcl0KIF9fc2V0cGxhbmVfaW50ZXJuYWwrMHgxZmEv
+MHgyNjAgW2RybV0KIGRybV9tb2RlX2N1cnNvcl91bml2ZXJzYWwrMHgxMmEvMHgyMjAgW2RybV0K
+IGRybV9tb2RlX2N1cnNvcl9jb21tb24rMHg4OC8weDE4MCBbZHJtXQogZHJtX21vZGVfY3Vyc29y
+X2lvY3RsKzB4NGEvMHg2MCBbZHJtXQogZHJtX2lvY3RsKzB4MjAzLzB4NGQwIFtkcm1dCiA/IGRy
+bV9tb2RlX3NldHBsYW5lKzB4MWEwLzB4MWEwIFtkcm1dCiBub3V2ZWF1X2RybV9pb2N0bCsweDcy
+LzB4YzAgW25vdXZlYXVdCiBkb192ZnNfaW9jdGwrMHhhNS8weDYwMAogPyBzZWN1cml0eV9pbm9k
+ZV9nZXRzZWNpZCsweDFiLzB4NDAKIFN5U19pb2N0bCsweDc5LzB4OTAKIGVudHJ5X1NZU0NBTExf
+NjRfZmFzdHBhdGgrMHgxYS8weGE5Ci4uLgpSSVA6IGRtYV9mZW5jZV93YWl0X3RpbWVvdXQrMHgz
+Ni8weGYwIFJTUDogZmZmZmJkYTcwMDcyM2E0MAouLi4KLS0tWyBlbmQgdHJhY2UgOTViMGZjYTZh
+ODI5NTgzOSBdLS0tCgoKU3Vic2VxdWVudGx5LCBoYXJkd2FyZSByZXNldCBpcyBuZWVkZWQuCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
