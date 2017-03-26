@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99584] XVMC on nv43 class card broken with recent
  mesa + kernel.
-Date: Sun, 26 Mar 2017 05:38:02 +0000
-Message-ID: <bug-99584-8800-73w7Zo69sj@http.bugs.freedesktop.org/>
+Date: Sun, 26 Mar 2017 06:18:41 +0000
+Message-ID: <bug-99584-8800-CZGo9WIHL9@http.bugs.freedesktop.org/>
 References: <bug-99584-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0791033716=="
+Content-Type: multipart/mixed; boundary="===============0806150492=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99584-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0791033716==
-Content-Type: multipart/alternative; boundary="14905066821.7AAdD.15814";
+--===============0806150492==
+Content-Type: multipart/alternative; boundary="14905091201.dCD20Bac.17529";
  charset="UTF-8"
 
 
---14905066821.7AAdD.15814
-Date: Sun, 26 Mar 2017 05:38:02 +0000
+--14905091201.dCD20Bac.17529
+Date: Sun, 26 Mar 2017 06:18:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,30 +36,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99584
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Er, scratch that. I guess the board doesn't have enough power when there's a
-second GPU in another PCIe slot. It comes up fine now, and I get the same
-issue.
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OK, looks like this isn't so trivial to solve. The code really likes having
+something in chan->engn[] so that it can get the address. The old code just
+stuck a "4" in if it was a non-GR class. I wonder if the current code should
+check for ->engn[] !=3D null, and if it's null, use a 4 there for the inst
+address.
 
-Looks like this bit of nvkm_ioctl_new is somehow failing with -ENODEV. My
-latest theory is:
-
-nvkm_fifo_chan_child_new calls engine_ctor (nv40_fifo_dma_engine_ctor), whi=
-ch
-in turn calls nvkm_object_bind() on something it's not supposed to (like the
-engine object, I think), which in turn returns -ENODEV as there's no bind
-pointer. I suspect the solution here is to add a dummy .bind to nv31_mpeg_c=
-han,
-since the binding effectively happens at chan_new time. Or we could move the
-mpeg->chan check to the bind action.
+This will need consultation with Ben, as this is well outside my knowledge
+area.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14905066821.7AAdD.15814
-Date: Sun, 26 Mar 2017 05:38:02 +0000
+--14905091201.dCD20Bac.17529
+Date: Sun, 26 Mar 2017 06:18:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,8 +69,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - XVMC on nv43 class card broken with recent mesa + kernel."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99584#c6">Comment=
- # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99584#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - XVMC on nv43 class card broken with recent mesa + kernel."
@@ -87,22 +80,18 @@ Auto-Submitted: auto-generated
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Er, scratch that. I guess the board doesn't have enough power =
-when there's a
-second GPU in another PCIe slot. It comes up fine now, and I get the same
-issue.
+        <pre>OK, looks like this isn't so trivial to solve. The code really=
+ likes having
+something in chan-&gt;engn[] so that it can get the address. The old code j=
+ust
+stuck a &quot;4&quot; in if it was a non-GR class. I wonder if the current =
+code should
+check for -&gt;engn[] !=3D null, and if it's null, use a 4 there for the in=
+st
+address.
 
-Looks like this bit of nvkm_ioctl_new is somehow failing with -ENODEV. My
-latest theory is:
-
-nvkm_fifo_chan_child_new calls engine_ctor (nv40_fifo_dma_engine_ctor), whi=
-ch
-in turn calls nvkm_object_bind() on something it's not supposed to (like the
-engine object, I think), which in turn returns -ENODEV as there's no bind
-pointer. I suspect the solution here is to add a dummy .bind to nv31_mpeg_c=
-han,
-since the binding effectively happens at chan_new time. Or we could move the
-mpeg-&gt;chan check to the bind action.</pre>
+This will need consultation with Ben, as this is well outside my knowledge
+area.</pre>
         </div>
       </p>
 
@@ -117,9 +106,9 @@ mpeg-&gt;chan check to the bind action.</pre>
     </body>
 </html>=
 
---14905066821.7AAdD.15814--
+--14905091201.dCD20Bac.17529--
 
---===============0791033716==
+--===============0806150492==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0791033716==--
+--===============0806150492==--
