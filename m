@@ -1,13 +1,11 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v5 3/5] gk110/ir: add LIMM form of mad
-Date: Sun, 26 Mar 2017 21:45:59 +0200
-Message-ID: <20170326194601.608-4-karolherbst@gmail.com>
-References: <20170326194601.608-1-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100406] New: [GP106M - Prime] Stall while waking
+ card with DRI_PRIME=1 app
+Date: Sun, 26 Mar 2017 22:38:05 +0000
+Message-ID: <bug-100406-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1275670501=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170326194601.608-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,72 +15,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-djI6IHJlbmFtZWQgY29tbWl0CiAgICByZW9yZGVyZWQgbW9kaWZpZXJzCiAgICBhZGQgYXNzZXJ0
-KGRzdCA9PSBzcmMyKQp2MzogcmVtb3ZlZCB3cm9uZyBuZWcgbW9kIGVtaXNzaW9uCgpTaWduZWQt
-b2ZmLWJ5OiBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KLS0tCiAuLi4vZHJp
-dmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9lbWl0X2drMTEwLmNwcCB8IDUwICsrKysrKysr
-KysrKysrLS0tLS0tLS0KIC4uLi9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBo
-b2xlLmNwcCAgIHwgIDIgKy0KIDIgZmlsZXMgY2hhbmdlZCwgMzQgaW5zZXJ0aW9ucygrKSwgMTgg
-ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2Nv
-ZGVnZW4vbnY1MF9pcl9lbWl0X2drMTEwLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9jb2RlZ2VuL252NTBfaXJfZW1pdF9nazExMC5jcHAKaW5kZXggNDIxMDMyMWFlMS4uMTEyMWFl
-MDkxMiAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1
-MF9pcl9lbWl0X2drMTEwLmNwcAorKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29k
-ZWdlbi9udjUwX2lyX2VtaXRfZ2sxMTAuY3BwCkBAIC00Nyw3ICs0Nyw3IEBAIHByaXZhdGU6CiBw
-cml2YXRlOgogICAgdm9pZCBlbWl0Rm9ybV8yMShjb25zdCBJbnN0cnVjdGlvbiAqLCB1aW50MzJf
-dCBvcGMyLCB1aW50MzJfdCBvcGMxKTsKICAgIHZvaWQgZW1pdEZvcm1fQyhjb25zdCBJbnN0cnVj
-dGlvbiAqLCB1aW50MzJfdCBvcGMsIHVpbnQ4X3QgY3RnKTsKLSAgIHZvaWQgZW1pdEZvcm1fTChj
-b25zdCBJbnN0cnVjdGlvbiAqLCB1aW50MzJfdCBvcGMsIHVpbnQ4X3QgY3RnLCBNb2RpZmllcik7
-CisgICB2b2lkIGVtaXRGb3JtX0woY29uc3QgSW5zdHJ1Y3Rpb24gKiwgdWludDMyX3Qgb3BjLCB1
-aW50OF90IGN0ZywgTW9kaWZpZXIsIGludCBzQ291bnQgPSAzKTsKIAogICAgdm9pZCBlbWl0UHJl
-ZGljYXRlKGNvbnN0IEluc3RydWN0aW9uICopOwogCkBAIC0zNjUsNyArMzY1LDcgQEAgQ29kZUVt
-aXR0ZXJHSzExMDo6c2V0SW1tZWRpYXRlMzIoY29uc3QgSW5zdHJ1Y3Rpb24gKmksIGNvbnN0IGlu
-dCBzLAogCiB2b2lkCiBDb2RlRW1pdHRlckdLMTEwOjplbWl0Rm9ybV9MKGNvbnN0IEluc3RydWN0
-aW9uICppLCB1aW50MzJfdCBvcGMsIHVpbnQ4X3QgY3RnLAotICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICBNb2RpZmllciBtb2QpCisgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1vZGlm
-aWVyIG1vZCwgaW50IHNDb3VudCkKIHsKICAgIGNvZGVbMF0gPSBjdGc7CiAgICBjb2RlWzFdID0g
-b3BjIDw8IDIwOwpAQCAtMzc0LDcgKzM3NCw3IEBAIENvZGVFbWl0dGVyR0sxMTA6OmVtaXRGb3Jt
-X0woY29uc3QgSW5zdHJ1Y3Rpb24gKmksIHVpbnQzMl90IG9wYywgdWludDhfdCBjdGcsCiAKICAg
-IGRlZklkKGktPmRlZigwKSwgMik7CiAKLSAgIGZvciAoaW50IHMgPSAwOyBzIDwgMyAmJiBpLT5z
-cmNFeGlzdHMocyk7ICsrcykgeworICAgZm9yIChpbnQgcyA9IDA7IHMgPCBzQ291bnQgJiYgaS0+
-c3JjRXhpc3RzKHMpOyArK3MpIHsKICAgICAgIHN3aXRjaCAoaS0+c3JjKHMpLmdldEZpbGUoKSkg
-ewogICAgICAgY2FzZSBGSUxFX0dQUjoKICAgICAgICAgIHNyY0lkKGktPnNyYyhzKSwgcyA/IDQy
-IDogMTApOwpAQCAtNDg3LDI1ICs0ODcsNDEgQEAgQ29kZUVtaXR0ZXJHSzExMDo6ZW1pdE5PUChj
-b25zdCBJbnN0cnVjdGlvbiAqaSkKIHZvaWQKIENvZGVFbWl0dGVyR0sxMTA6OmVtaXRGTUFEKGNv
-bnN0IEluc3RydWN0aW9uICppKQogewotICAgYXNzZXJ0KCFpc0xJTU0oaS0+c3JjKDEpLCBUWVBF
-X0YzMikpOworICAgYm9vbCBuZWcxID0gKGktPnNyYygwKS5tb2QgXiBpLT5zcmMoMSkubW9kKS5u
-ZWcoKTsKIAotICAgZW1pdEZvcm1fMjEoaSwgMHgwYzAsIDB4OTQwKTsKKyAgIGlmIChpc0xJTU0o
-aS0+c3JjKDEpLCBUWVBFX0YzMikpIHsKKyAgICAgIGFzc2VydChpLT5nZXREZWYoMCktPnJlZy5k
-YXRhLmlkID09IGktPmdldFNyYygyKS0+cmVnLmRhdGEuaWQpOwogCi0gICBORUdfKDM0LCAyKTsK
-LSAgIFNBVF8oMzUpOwotICAgUk5EXygzNiwgRik7Ci0gICBGVFpfKDM4KTsKLSAgIEROWl8oMzkp
-OworICAgICAgLy8gbGFzdCBzb3VyY2UgaXMgZHN0LCBzbyBmb3JjZSAyIHNvdXJjZXMKKyAgICAg
-IGVtaXRGb3JtX0woaSwgMHg2MDAsIDB4MCwgMCwgMik7CiAKLSAgIGJvb2wgbmVnMSA9IChpLT5z
-cmMoMCkubW9kIF4gaS0+c3JjKDEpLm1vZCkubmVnKCk7CisgICAgICBpZiAoaS0+ZmxhZ3NEZWYg
-Pj0gMCkKKyAgICAgICAgIGNvZGVbMV0gfD0gMSA8PCAyMzsKIAotICAgaWYgKGNvZGVbMF0gJiAw
-eDEpIHsKLSAgICAgIGlmIChuZWcxKQotICAgICAgICAgY29kZVsxXSBePSAxIDw8IDI3OwotICAg
-fSBlbHNlCi0gICBpZiAobmVnMSkgewotICAgICAgY29kZVsxXSB8PSAxIDw8IDE5OworICAgICAg
-U0FUXygzYSk7CisgICAgICBORUdfKDNjLCAyKTsKKworICAgICAgaWYgKG5lZzEpIHsKKyAgICAg
-ICAgIGNvZGVbMV0gfD0gMSA8PCAyNzsKKyAgICAgIH0KKyAgIH0gZWxzZSB7CisgICAgICBlbWl0
-Rm9ybV8yMShpLCAweDBjMCwgMHg5NDApOworCisgICAgICBORUdfKDM0LCAyKTsKKyAgICAgIFNB
-VF8oMzUpOworICAgICAgUk5EXygzNiwgRik7CisKKyAgICAgIGlmIChjb2RlWzBdICYgMHgxKSB7
-CisgICAgICAgICBpZiAobmVnMSkKKyAgICAgICAgICAgIGNvZGVbMV0gXj0gMSA8PCAyNzsKKyAg
-ICAgIH0gZWxzZQorICAgICAgaWYgKG5lZzEpIHsKKyAgICAgICAgIGNvZGVbMV0gfD0gMSA8PCAx
-OTsKKyAgICAgIH0KICAgIH0KKworICAgRlRaXygzOCk7CisgICBETlpfKDM5KTsKIH0KIAogdm9p
-ZApkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9p
-cl9wZWVwaG9sZS5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUw
-X2lyX3BlZXBob2xlLmNwcAppbmRleCA1NDI0MzIyYjI0Li41OWNhY2E4MTQ2IDEwMDY0NAotLS0g
-YS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNw
-cAorKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBo
-b2xlLmNwcApAQCAtMzc0MCw3ICszNzQwLDcgQEAgYm9vbAogUHJvZ3JhbTo6b3B0aW1pemVQb3N0
-UkEoaW50IGxldmVsKQogewogICAgUlVOX1BBU1MoMiwgRmxhdHRlbmluZ1Bhc3MsIHJ1bik7Ci0g
-ICBpZiAoZ2V0VGFyZ2V0KCktPmdldENoaXBzZXQoKSA8IE5WSVNBX0dLMjBBX0NISVBTRVQpCisg
-ICBpZiAoZ2V0VGFyZ2V0KCktPmdldENoaXBzZXQoKSA8IE5WSVNBX0dNMTA3X0NISVBTRVQpCiAg
-ICAgICBSVU5fUEFTUygyLCBQb3N0UmFMb2FkUHJvcGFnYXRpb24sIHJ1bik7CiAKICAgIHJldHVy
-biB0cnVlOwotLSAKMi4xMi4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============1275670501==
+Content-Type: multipart/alternative; boundary="14905678851.85cb.23700";
+ charset="UTF-8"
+
+
+--14905678851.85cb.23700
+Date: Sun, 26 Mar 2017 22:38:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100406
+
+            Bug ID: 100406
+           Summary: [GP106M - Prime] Stall while waking card with
+                    DRI_PRIME=3D1 app
+           Product: xorg
+           Version: git
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 130474
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130474&action=3Dedit
+dmesg with the stall
+
+This stall happened while running Daves drm-next tree to get 3D acceleration
+for the pascal card. It only happened once until now, but it looks like a g=
+ood
+idea to report it anyway. IF you need more information, let me know!
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14905678851.85cb.23700
+Date: Sun, 26 Mar 2017 22:38:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GP106M - Prime] Stall while waking card with DRI_PRIME=
+=3D1 app"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100406">100406</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[GP106M - Prime] Stall while waking card with DRI_PRIME=3D1 a=
+pp
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>tobias.klausmann&#64;mni.thm.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130474=
+" name=3D"attach_130474" title=3D"dmesg with the stall">attachment 130474</=
+a> <a href=3D"attachment.cgi?id=3D130474&amp;action=3Dedit" title=3D"dmesg =
+with the stall">[details]</a></span>
+dmesg with the stall
+
+This stall happened while running Daves drm-next tree to get 3D acceleration
+for the pascal card. It only happened once until now, but it looks like a g=
+ood
+idea to report it anyway. IF you need more information, let me know!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14905678851.85cb.23700--
+
+--===============1275670501==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1275670501==--
