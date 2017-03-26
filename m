@@ -1,14 +1,12 @@
-From: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
-Subject: Re: NVAC - BUG: unable to handle kernel NULL pointer
-	dereference
-Date: Sat, 25 Mar 2017 12:37:27 +0000
-Message-ID: <54D752DD-8C93-42C6-9175-32E30682FEC9@linaro.org>
-References: <f48ccc4d-fcec-aaf2-360e-4bcb9ebdbe8b@gmail.com>
-Mime-Version: 1.0 (1.0)
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
+Date: Sun, 26 Mar 2017 02:03:44 +0000
+Message-ID: <bug-99400-8800-vMjfP1EgFT@http.bugs.freedesktop.org/>
+References: <bug-99400-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============1763878907=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <f48ccc4d-fcec-aaf2-360e-4bcb9ebdbe8b-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,55 +16,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Cgo+IE9uIDI1IE1hciAyMDE3LCBhdCAxMDo0NywgcG9tYSA8cG9taWRvcmFiZWxpc2ltYUBnbWFp
-bC5jb20+IHdyb3RlOgo+IAo+IAo+IFdpdGggbGlnaHR3ZWlnaHQgZGVza3RvcGluZywKPiB0aGUg
-YXRvbWljIG1vZGVzZXR0aW5nIHNlZW1zIGZhciBmcm9tIHJvYnVzdC4KPiAKPiBCVUc6IHVuYWJs
-ZSB0byBoYW5kbGUga2VybmVsIE5VTEwgcG9pbnRlciBkZXJlZmVyZW5jZSBhdCAwMDAwMDAwMDAw
-MDAwMDIxCj4gSVA6IGRtYV9mZW5jZV93YWl0X3RpbWVvdXQrMHgzNi8weGYwCj4gLi4uCgpJIGFt
-IHNlZWluZyBzaW1pbGFyIGlzc3VlcyB3aXRoIHY0LjEwIG9uIGFybTY0IHVzaW5nIGEgZ3QyMTgu
-CgpLYXNhbiB0ZWxscyBtZSBpdCBpcyBhIHVzZS1hZnRlci1mcmVlIGVycm9yIG9mIGEgZG1hX2Zl
-bmNlLiBGdWxsIHJlcG9ydCB3YXMgc2VudCB0byB0aGUgbWFpbGluZyBsaXN0Cgo+IE9vcHM6IDAw
-MDAgWyMxXSBTTVAKPiBNb2R1bGVzIGxpbmtlZCBpbjogLi4uIG5vdXZlYXUgLi4uCj4gQ1BVOiAw
-IFBJRDogNjg5NSBDb21tOiBYb3JnIE5vdCB0YWludGVkIDQuMTAuNS0xMDAxLmZjMjQueDg2XzY0
-ICMxCj4gLi4uCj4gQ2FsbCBUcmFjZToKPiBkcm1fYXRvbWljX2hlbHBlcl93YWl0X2Zvcl9mZW5j
-ZXMrMHg0OC8weDEyMCBbZHJtX2ttc19oZWxwZXJdCj4gbnY1MF9kaXNwX2F0b21pY19jb21taXQr
-MHgxOWMvMHgyYTAgW25vdXZlYXVdCj4gZHJtX2F0b21pY19jb21taXQrMHg0Yi8weDUwIFtkcm1d
-Cj4gZHJtX2F0b21pY19oZWxwZXJfdXBkYXRlX3BsYW5lKzB4ZWMvMHgxNTAgW2RybV9rbXNfaGVs
-cGVyXQo+IF9fc2V0cGxhbmVfaW50ZXJuYWwrMHgxYjQvMHgyODAgW2RybV0KPiBkcm1fbW9kZV9j
-dXJzb3JfdW5pdmVyc2FsKzB4MTI2LzB4MjEwIFtkcm1dCj4gZHJtX21vZGVfY3Vyc29yX2NvbW1v
-bisweDg2LzB4MTgwIFtkcm1dCj4gZHJtX21vZGVfY3Vyc29yX2lvY3RsKzB4NTAvMHg3MCBbZHJt
-XQo+IGRybV9pb2N0bCsweDIxYi8weDRjMCBbZHJtXQo+ID8gZHJtX21vZGVfc2V0cGxhbmUrMHgx
-YTAvMHgxYTAgW2RybV0KPiBub3V2ZWF1X2RybV9pb2N0bCsweDc0LzB4YzAgW25vdXZlYXVdCj4g
-ZG9fdmZzX2lvY3RsKzB4YTMvMHg1ZjAKPiBTeVNfaW9jdGwrMHg3OS8weDkwCj4gZW50cnlfU1lT
-Q0FMTF82NF9mYXN0cGF0aCsweDFhLzB4YTkKPiAuLi4KPiBSSVA6IGRtYV9mZW5jZV93YWl0X3Rp
-bWVvdXQrMHgzNi8weGYwIFJTUDogZmZmZmMxZjcwMDcyM2EzOAo+IC4uLgo+IC0tLVsgZW5kIHRy
-YWNlIGE2YmVmMmQzMmVkNWZiYmMgXS0tLQo+IAo+IAo+IEJVRzogdW5hYmxlIHRvIGhhbmRsZSBr
-ZXJuZWwgTlVMTCBwb2ludGVyIGRlcmVmZXJlbmNlIGF0IDAwMDAwMDAwMDAwMDAwMjEKPiBJUDog
-ZG1hX2ZlbmNlX3dhaXRfdGltZW91dCsweDM2LzB4ZjAKPiAuLi4KPiBPb3BzOiAwMDAwIFsjMV0g
-U01QCj4gTW9kdWxlcyBsaW5rZWQgaW46IC4uLiBub3V2ZWF1IC4uLgo+IENQVTogMyBQSUQ6IDMw
-NjU0IENvbW06IFhvcmcgVGFpbnRlZDogRyAgICAgICAgICAgIEUgICA0LjExLjAtMC5yYzMuZ2l0
-MC4xLmZjMjYueDg2XzY0ICMxCj4gLi4uCj4gQ2FsbCBUcmFjZToKPiBkcm1fYXRvbWljX2hlbHBl
-cl93YWl0X2Zvcl9mZW5jZXMrMHg3My8weDExMCBbZHJtX2ttc19oZWxwZXJdCj4gbnY1MF9kaXNw
-X2F0b21pY19jb21taXQrMHgyOGEvMHgyYzAgW25vdXZlYXVdCj4gPyByZWZjb3VudF9kZWNfYW5k
-X3Rlc3QrMHgxMS8weDIwCj4gZHJtX2F0b21pY19jb21taXQrMHg0Yi8weDUwIFtkcm1dCj4gZHJt
-X2F0b21pY19oZWxwZXJfdXBkYXRlX3BsYW5lKzB4ZjEvMHgxNTAgW2RybV9rbXNfaGVscGVyXQo+
-IF9fc2V0cGxhbmVfaW50ZXJuYWwrMHgxZmEvMHgyNjAgW2RybV0KPiBkcm1fbW9kZV9jdXJzb3Jf
-dW5pdmVyc2FsKzB4MTJhLzB4MjIwIFtkcm1dCj4gZHJtX21vZGVfY3Vyc29yX2NvbW1vbisweDg4
-LzB4MTgwIFtkcm1dCj4gZHJtX21vZGVfY3Vyc29yX2lvY3RsKzB4NGEvMHg2MCBbZHJtXQo+IGRy
-bV9pb2N0bCsweDIwMy8weDRkMCBbZHJtXQo+ID8gZHJtX21vZGVfc2V0cGxhbmUrMHgxYTAvMHgx
-YTAgW2RybV0KPiBub3V2ZWF1X2RybV9pb2N0bCsweDcyLzB4YzAgW25vdXZlYXVdCj4gZG9fdmZz
-X2lvY3RsKzB4YTUvMHg2MDAKPiA/IHNlY3VyaXR5X2lub2RlX2dldHNlY2lkKzB4MWIvMHg0MAo+
-IFN5U19pb2N0bCsweDc5LzB4OTAKPiBlbnRyeV9TWVNDQUxMXzY0X2Zhc3RwYXRoKzB4MWEvMHhh
-OQo+IC4uLgo+IFJJUDogZG1hX2ZlbmNlX3dhaXRfdGltZW91dCsweDM2LzB4ZjAgUlNQOiBmZmZm
-YmRhNzAwNzIzYTQwCj4gLi4uCj4gLS0tWyBlbmQgdHJhY2UgOTViMGZjYTZhODI5NTgzOSBdLS0t
-Cj4gCj4gCj4gU3Vic2VxdWVudGx5LCBoYXJkd2FyZSByZXNldCBpcyBuZWVkZWQuCj4gCj4gX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1h
-aWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1763878907==
+Content-Type: multipart/alternative; boundary="14904938240.dF6CA071.4278";
+ charset="UTF-8"
+
+
+--14904938240.dF6CA071.4278
+Date: Sun, 26 Mar 2017 02:03:44 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
+
+--- Comment #28 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OK, this weston stuff is a no-go. No way to run it against a specific dri c=
+ard
+without intensive udev work (which I have no interest in learning), and
+apparently won't even let me start without some env vars (XDG_RUNTIME_DIR,
+perhaps others) after I tried starting it under X.
+
+So... I can't repro with the given instructions (because I can't follow the
+instructions successfully). Perhaps there are other instructions that repro=
+duce
+the issue? Does Xephyr -glamor reproduce the issue? Something else that I c=
+an
+run?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14904938240.dF6CA071.4278
+Date: Sun, 26 Mar 2017 02:03:44 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c28">Commen=
+t # 28</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>OK, this weston stuff is a no-go. No way to run it against a s=
+pecific dri card
+without intensive udev work (which I have no interest in learning), and
+apparently won't even let me start without some env vars (XDG_RUNTIME_DIR,
+perhaps others) after I tried starting it under X.
+
+So... I can't repro with the given instructions (because I can't follow the
+instructions successfully). Perhaps there are other instructions that repro=
+duce
+the issue? Does Xephyr -glamor reproduce the issue? Something else that I c=
+an
+run?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14904938240.dF6CA071.4278--
+
+--===============1763878907==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1763878907==--
