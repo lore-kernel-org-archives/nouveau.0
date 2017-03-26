@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99584] XVMC on nv43 class card broken with recent
- mesa + kernel.
-Date: Sun, 26 Mar 2017 06:18:41 +0000
-Message-ID: <bug-99584-8800-CZGo9WIHL9@http.bugs.freedesktop.org/>
-References: <bug-99584-8800@http.bugs.freedesktop.org/>
+Subject: =?utf-8?q?=5BBug_100167=5D__nouveau_sometimes_doesn?=
+ =?utf-8?q?=E2=80=99t_resume_properly_from_suspend?=
+Date: Sun, 26 Mar 2017 13:14:22 +0000
+Message-ID: <bug-100167-8800-Z2Nd6p1tqw@http.bugs.freedesktop.org/>
+References: <bug-100167-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0806150492=="
+Content-Type: multipart/mixed; boundary="===============0865319026=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99584-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100167-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0806150492==
-Content-Type: multipart/alternative; boundary="14905091201.dCD20Bac.17529";
+--===============0865319026==
+Content-Type: multipart/alternative; boundary="14905340620.fb9f.13644";
  charset="UTF-8"
 
 
---14905091201.dCD20Bac.17529
-Date: Sun, 26 Mar 2017 06:18:40 +0000
+--14905340620.fb9f.13644
+Date: Sun, 26 Mar 2017 13:14:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99584
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100167
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, looks like this isn't so trivial to solve. The code really likes having
-something in chan->engn[] so that it can get the address. The old code just
-stuck a "4" in if it was a non-GR class. I wonder if the current code should
-check for ->engn[] !=3D null, and if it's null, use a 4 there for the inst
-address.
+silverunicorn2011-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org changed:
 
-This will need consultation with Ben, as this is well outside my knowledge
-area.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #4 from silverunicorn2011-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org ---
+Seems to be fixed in xf86-video-nouveau 1.0.14-1, thanks.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14905091201.dCD20Bac.17529
-Date: Sun, 26 Mar 2017 06:18:40 +0000
+--14905340620.fb9f.13644
+Date: Sun, 26 Mar 2017 13:14:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,35 +62,58 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:silveruni=
+corn2011&#64;yandex.ru" title=3D"silverunicorn2011&#64;yandex.ru">silveruni=
+corn2011&#64;yandex.ru</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - nouveau sometimes doesn=E2=80=99t resume prope=
+rly from suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100167">bug 10016=
+7</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - XVMC on nv43 class card broken with recent mesa + kernel."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99584#c7">Comment=
- # 7</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - nouveau sometimes doesn=E2=80=99t resume prope=
+rly from suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100167#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - XVMC on nv43 class card broken with recent mesa + kernel."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99584">bug 99584<=
-/a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - nouveau sometimes doesn=E2=80=99t resume prope=
+rly from suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100167">bug 10016=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+silverunicorn2011&#64;yandex.ru" title=3D"silverunicorn2011&#64;yandex.ru">=
+silverunicorn2011&#64;yandex.ru</a>
 </span></b>
-        <pre>OK, looks like this isn't so trivial to solve. The code really=
- likes having
-something in chan-&gt;engn[] so that it can get the address. The old code j=
-ust
-stuck a &quot;4&quot; in if it was a non-GR class. I wonder if the current =
-code should
-check for -&gt;engn[] !=3D null, and if it's null, use a 4 there for the in=
-st
-address.
-
-This will need consultation with Ben, as this is well outside my knowledge
-area.</pre>
+        <pre>Seems to be fixed in xf86-video-nouveau 1.0.14-1, thanks.</pre>
         </div>
       </p>
 
@@ -100,15 +122,14 @@ area.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14905091201.dCD20Bac.17529--
+--14905340620.fb9f.13644--
 
---===============0806150492==
+--===============0865319026==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +139,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0806150492==--
+--===============0865319026==--
