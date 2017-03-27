@@ -1,15 +1,13 @@
-From: Alastair Bridgewater <alastair.bridgewater-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v2 09/10] drm/nouveau: Handle frame-packing mode
-	geometry and timing effects
-Date: Mon, 27 Mar 2017 17:58:06 -0400
-Message-ID: <20170327215807.8461-10-alastair.bridgewater@gmail.com>
-References: <20170117224204.27516-1-alastair.bridgewater@gmail.com>
- <20170327215807.8461-1-alastair.bridgewater@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
+ Pointer to {TDMS, flat panel} table invalid
+Date: Mon, 27 Mar 2017 23:12:50 +0000
+Message-ID: <bug-98386-8800-hqRMNjDBQS@http.bugs.freedesktop.org/>
+References: <bug-98386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2132242705=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170327215807.8461-1-alastair.bridgewater-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,70 +17,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-ICAqIEZyYW1lLXBhY2tpbmcgbW9kZXMgYWRkIGFuIGV4dHJhIHZ0b3RhbCByYXN0ZXIgbGluZXMg
-dG8gZWFjaApmcmFtZSBhYm92ZSBhbmQgYmV5b25kIHdoYXQgdGhlIGJhc2ljIG1vZGUgZGVzY3Jp
-cHRpb24gY2FsbHMgZm9yLgpBY2NvdW50IGZvciB0aGlzIGR1cmluZyBzY2FsZXIgY29uZmlndXJh
-dGlvbiAocG9zc2libHkgYSBiaXQgb2YgYQpoYWNrKSwgZHVyaW5nIENSVEMgY29uZmlndXJhdGlv
-biAoY2xlYXJseSBub3QgYSBoYWNrKSwgYW5kIHdoZW4KY2hlY2tpbmcgdGhhdCBhIG1vZGUgaXMg
-dmFpbGQgZm9yIGEgZ2l2ZW4gY29ubmVjdG9yIChjcmliYmVkIGZyb20KdGhlIGk5MTUgZHJpdmVy
-KS4KClNpZ25lZC1vZmYtYnk6IEFsYXN0YWlyIEJyaWRnZXdhdGVyIDxhbGFzdGFpci5icmlkZ2V3
-YXRlckBnbWFpbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25u
-ZWN0b3IuYyB8ICAzICsrKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMg
-ICAgICB8IDIxICsrKysrKysrKysrKysrLS0tLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCAxNyBpbnNl
-cnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2Nvbm5lY3Rvci5jCmluZGV4IDk0N2MyMDAuLjRlMzU2M2UgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMKKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwpAQCAtMTA0NCw2ICsxMDQ0LDkgQEAgbm91
-dmVhdV9jb25uZWN0b3JfbW9kZV92YWxpZChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9y
-LAogCQlyZXR1cm4gTU9ERV9CQUQ7CiAJfQogCisJaWYgKChtb2RlLT5mbGFncyAmIERSTV9NT0RF
-X0ZMQUdfM0RfTUFTSykgPT0gRFJNX01PREVfRkxBR18zRF9GUkFNRV9QQUNLSU5HKQorCQljbG9j
-ayAqPSAyOworCiAJaWYgKGNsb2NrIDwgbWluX2Nsb2NrKQogCQlyZXR1cm4gTU9ERV9DTE9DS19M
-T1c7CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5j
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKaW5kZXggMDA4YWVhNi4u
-ZmE5NzYwNCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5
-LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKQEAgLTE5NjMs
-NiArMTk2Myw3IEBAIG52NTBfaGVhZF9hdG9taWNfY2hlY2tfdmlldyhzdHJ1Y3QgbnY1MF9oZWFk
-X2F0b20gKmFybWgsCiAJc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKnVtb2RlID0gJmFzeWgtPnN0
-YXRlLm1vZGU7CiAJaW50IG1vZGUgPSBhc3ljLT5zY2FsZXIubW9kZTsKIAlzdHJ1Y3QgZWRpZCAq
-ZWRpZDsKKwlpbnQgdW1vZGVfdmRpc3BsYXksIG9tb2RlX2hkaXNwbGF5LCBvbW9kZV92ZGlzcGxh
-eTsKIAogCWlmIChjb25uZWN0b3ItPmVkaWRfYmxvYl9wdHIpCiAJCWVkaWQgPSAoc3RydWN0IGVk
-aWQgKiljb25uZWN0b3ItPmVkaWRfYmxvYl9wdHItPmRhdGE7CkBAIC0xOTc3LDEyICsxOTc4LDE4
-IEBAIG52NTBfaGVhZF9hdG9taWNfY2hlY2tfdmlldyhzdHJ1Y3QgbnY1MF9oZWFkX2F0b20gKmFy
-bWgsCiAJCW1vZGUgPSBEUk1fTU9ERV9TQ0FMRV9GVUxMU0NSRUVOOwogCX0KIAorCS8qIEZvciB0
-aGUgdXNlci1zcGVjaWZpZWQgbW9kZSwgd2UgbXVzdCBpZ25vcmUgZG91Ymxlc2NhbiBhbmQKKwkg
-KiB0aGUgbGlrZSwgYnV0IGhvbm9yIGZyYW1lIHBhY2tpbmcuCisJICovCisJdW1vZGVfdmRpc3Bs
-YXkgPSB1bW9kZS0+dmRpc3BsYXk7CisJaWYgKCh1bW9kZS0+ZmxhZ3MgJiBEUk1fTU9ERV9GTEFH
-XzNEX01BU0spID09IERSTV9NT0RFX0ZMQUdfM0RfRlJBTUVfUEFDS0lORykKKwkJdW1vZGVfdmRp
-c3BsYXkgKz0gdW1vZGUtPnZ0b3RhbDsKIAlhc3loLT52aWV3LmlXID0gdW1vZGUtPmhkaXNwbGF5
-OwotCWFzeWgtPnZpZXcuaUggPSB1bW9kZS0+dmRpc3BsYXk7Ci0JYXN5aC0+dmlldy5vVyA9IG9t
-b2RlLT5oZGlzcGxheTsKLQlhc3loLT52aWV3Lm9IID0gb21vZGUtPnZkaXNwbGF5OwotCWlmIChv
-bW9kZS0+ZmxhZ3MgJiBEUk1fTU9ERV9GTEFHX0RCTFNDQU4pCi0JCWFzeWgtPnZpZXcub0ggKj0g
-MjsKKwlhc3loLT52aWV3LmlIID0gdW1vZGVfdmRpc3BsYXk7CisJLyogRm9yIHRoZSBvdXB1dCBt
-b2RlLCB3ZSBjYW4ganVzdCB1c2UgdGhlIHN0b2NrIGhlbHBlci4gKi8KKwlkcm1fY3J0Y19nZXRf
-aHZfdGltaW5nKG9tb2RlLCAmb21vZGVfaGRpc3BsYXksICZvbW9kZV92ZGlzcGxheSk7CisJYXN5
-aC0+dmlldy5vVyA9IG9tb2RlX2hkaXNwbGF5OworCWFzeWgtPnZpZXcub0ggPSBvbW9kZV92ZGlz
-cGxheTsKIAogCS8qIEFkZCBvdmVyc2NhbiBjb21wZW5zYXRpb24gaWYgbmVjZXNzYXJ5LCB3aWxs
-IGtlZXAgdGhlIGFzcGVjdAogCSAqIHJhdGlvIHRoZSBzYW1lIGFzIHRoZSBiYWNrZW5kIG1vZGUg
-dW5sZXNzIG92ZXJyaWRkZW4gYnkgdGhlCkBAIC0yMDEyLDcgKzIwMTksNyBAQCBudjUwX2hlYWRf
-YXRvbWljX2NoZWNrX3ZpZXcoc3RydWN0IG52NTBfaGVhZF9hdG9tICphcm1oLAogCXN3aXRjaCAo
-bW9kZSkgewogCWNhc2UgRFJNX01PREVfU0NBTEVfQ0VOVEVSOgogCQlhc3loLT52aWV3Lm9XID0g
-bWluKCh1MTYpdW1vZGUtPmhkaXNwbGF5LCBhc3loLT52aWV3Lm9XKTsKLQkJYXN5aC0+dmlldy5v
-SCA9IG1pbigodTE2KXVtb2RlLT52ZGlzcGxheSwgYXN5aC0+dmlldy5vSCk7CisJCWFzeWgtPnZp
-ZXcub0ggPSBtaW4oKHUxNil1bW9kZV92ZGlzcGxheSwgYXN5aC0+dmlldy5vSCk7CiAJCS8qIGZh
-bGwtdGhyb3VnaCAqLwogCWNhc2UgRFJNX01PREVfU0NBTEVfQVNQRUNUOgogCQlpZiAoYXN5aC0+
-dmlldy5vSCA8IGFzeWgtPnZpZXcub1cpIHsKQEAgLTIwMzcsNyArMjA0NCw3IEBAIG52NTBfaGVh
-ZF9hdG9taWNfY2hlY2tfbW9kZShzdHJ1Y3QgbnY1MF9oZWFkICpoZWFkLCBzdHJ1Y3QgbnY1MF9o
-ZWFkX2F0b20gKmFzeWgpCiAJc3RydWN0IG52NTBfaGVhZF9tb2RlICptID0gJmFzeWgtPm1vZGU7
-CiAJdTMyIGhiYWNrcCwgdmJhY2twLCBoZnJvbnRwLCB2ZnJvbnRwOwogCi0JZHJtX21vZGVfc2V0
-X2NydGNpbmZvKG1vZGUsIENSVENfSU5URVJMQUNFX0hBTFZFX1YpOworCWRybV9tb2RlX3NldF9j
-cnRjaW5mbyhtb2RlLCBDUlRDX0lOVEVSTEFDRV9IQUxWRV9WIHwgQ1JUQ19TVEVSRU9fRE9VQkxF
-KTsKIAogCWhiYWNrcCA9IG1vZGUtPmNydGNfaHRvdGFsIC0gbW9kZS0+Y3J0Y19oc3luY19lbmQ7
-CiAJdmJhY2twID0gbW9kZS0+Y3J0Y192dG90YWwgLSBtb2RlLT5jcnRjX3ZzeW5jX2VuZDsKLS0g
-CjIuMTAuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2132242705==
+Content-Type: multipart/alternative; boundary="14906563691.1DAa4.28274";
+ charset="UTF-8"
+
+
+--14906563691.1DAa4.28274
+Date: Mon, 27 Mar 2017 23:12:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
+
+--- Comment #15 from Bruno Pagani <bruno.n.pagani-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+@Bob Bugzilla: I=E2=80=99m not sure glxgears can be considered as a proper =
+benchmark=E2=80=A6
+
+Anyway, I think it=E2=80=99s really unlikely an issue on your Nvidia card a=
+ffects the
+performances of your Intel one, which is what you=E2=80=99re currently sayi=
+ng.
+
+Also, are you sure this issue is new? What did you have before? Because AFA=
+IR,
+I had this for as long as
+https://bugzilla.freedesktop.org/show_bug.cgi?id=3D70354 has been solved, a=
+nd
+prior to that, well=E2=80=A6
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14906563691.1DAa4.28274
+Date: Mon, 27 Mar 2017 23:12:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
+TDMS,flat panel} table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c15">Commen=
+t # 15</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
+TDMS,flat panel} table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+bruno.n.pagani&#64;gmail.com" title=3D"Bruno Pagani &lt;bruno.n.pagani&#64;=
+gmail.com&gt;"> <span class=3D"fn">Bruno Pagani</span></a>
+</span></b>
+        <pre>&#64;Bob Bugzilla: I=E2=80=99m not sure glxgears can be consid=
+ered as a proper benchmark=E2=80=A6
+
+Anyway, I think it=E2=80=99s really unlikely an issue on your Nvidia card a=
+ffects the
+performances of your Intel one, which is what you=E2=80=99re currently sayi=
+ng.
+
+Also, are you sure this issue is new? What did you have before? Because AFA=
+IR,
+I had this for as long as
+<a href=3D"https://bugzilla.freedesktop.org/show_bug.cgi?id=3D70354">https:=
+//bugzilla.freedesktop.org/show_bug.cgi?id=3D70354</a> has been solved, and
+prior to that, well=E2=80=A6</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14906563691.1DAa4.28274--
+
+--===============2132242705==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2132242705==--
