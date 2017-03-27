@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
  Pointer to {TDMS, flat panel} table invalid
-Date: Mon, 27 Mar 2017 20:44:01 +0000
-Message-ID: <bug-98386-8800-0q62dto9Ff@http.bugs.freedesktop.org/>
+Date: Mon, 27 Mar 2017 20:48:09 +0000
+Message-ID: <bug-98386-8800-GKUn3agLkL@http.bugs.freedesktop.org/>
 References: <bug-98386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1682455681=="
+Content-Type: multipart/mixed; boundary="===============0235321578=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1682455681==
-Content-Type: multipart/alternative; boundary="14906474411.f8FfB.18600";
+--===============0235321578==
+Content-Type: multipart/alternative; boundary="14906476890.3b524.18800";
  charset="UTF-8"
 
 
---14906474411.f8FfB.18600
-Date: Mon, 27 Mar 2017 20:44:01 +0000
+--14906476890.3b524.18800
+Date: Mon, 27 Mar 2017 20:48:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,22 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
 
---- Comment #12 from Bruno Pagani <bruno.n.pagani-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #11)
-> While those errors are undesirable, do they end up in any actual issues
-> beyond the error logs themselves? Just want to make sure I understand this
-> bug report properly.
-
-Not that I=E2=80=99m aware of. But OTOH I=E2=80=99ve haven=E2=80=99t played=
- a lot if at all with my
-Nvidia GPU, so=E2=80=A6
+--- Comment #13 from Bob Bugzilla <bugzilla-QDUPAvFnyULR7s880joybQ@public.gmane.org> ---
+I have the noted graphics performance issue.  I attribute this to the error=
+s,
+as I believe that the errors are new.  However, I do not know enough about =
+the
+errors to correlate them to the performance issue directly.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14906474411.f8FfB.18600
-Date: Mon, 27 Mar 2017 20:44:01 +0000
+--14906476890.3b524.18800
+Date: Mon, 27 Mar 2017 20:48:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,8 +66,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
 TDMS,flat panel} table invalid"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c12">Commen=
-t # 12</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c13">Commen=
+t # 13</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
@@ -78,20 +75,14 @@ TDMS,flat panel} table invalid"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bruno.n.pagani&#64;gmail.com" title=3D"Bruno Pagani &lt;bruno.n.pagani&#64;=
-gmail.com&gt;"> <span class=3D"fn">Bruno Pagani</span></a>
+bugzilla&#64;scrunch.net" title=3D"Bob Bugzilla &lt;bugzilla&#64;scrunch.ne=
+t&gt;"> <span class=3D"fn">Bob Bugzilla</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D983=
-86#c11">comment #11</a>)
-<span class=3D"quote">&gt; While those errors are undesirable, do they end =
-up in any actual issues
-&gt; beyond the error logs themselves? Just want to make sure I understand =
-this
-&gt; bug report properly.</span >
-
-Not that I=E2=80=99m aware of. But OTOH I=E2=80=99ve haven=E2=80=99t played=
- a lot if at all with my
-Nvidia GPU, so=E2=80=A6</pre>
+        <pre>I have the noted graphics performance issue.  I attribute this=
+ to the errors,
+as I believe that the errors are new.  However, I do not know enough about =
+the
+errors to correlate them to the performance issue directly.</pre>
         </div>
       </p>
 
@@ -105,9 +96,9 @@ Nvidia GPU, so=E2=80=A6</pre>
     </body>
 </html>=
 
---14906474411.f8FfB.18600--
+--14906476890.3b524.18800--
 
---===============1682455681==
+--===============0235321578==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1682455681==--
+--===============0235321578==--
