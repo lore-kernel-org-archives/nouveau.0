@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
  Pointer to {TDMS, flat panel} table invalid
-Date: Mon, 27 Mar 2017 17:27:57 +0000
-Message-ID: <bug-98386-8800-f2W7NlfALY@http.bugs.freedesktop.org/>
+Date: Mon, 27 Mar 2017 17:45:37 +0000
+Message-ID: <bug-98386-8800-ZINAPSQ0SD@http.bugs.freedesktop.org/>
 References: <bug-98386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2094662934=="
+Content-Type: multipart/mixed; boundary="===============1163693237=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2094662934==
-Content-Type: multipart/alternative; boundary="14906356762.eE60.5129";
+--===============1163693237==
+Content-Type: multipart/alternative; boundary="14906367360.c7b43c.6148";
  charset="UTF-8"
 
 
---14906356762.eE60.5129
-Date: Mon, 27 Mar 2017 17:27:56 +0000
+--14906367360.c7b43c.6148
+Date: Mon, 27 Mar 2017 17:45:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,24 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Bob Bugzilla from comment #6)
-> Benchmark test: "export vblank_mode=3D0; glxgears"
->=20
-> Normally get 12,000 FPS.
->=20
-> With this bug, 1,000 FPS.
-
-With PRIME, that's a benchmark of PCIe bandwidth. Probably stuck at 2.5 GT/=
-s if
-you didn't reclock.
+--- Comment #8 from Bob Bugzilla <bugzilla-QDUPAvFnyULR7s880joybQ@public.gmane.org> ---
+Not using Optimus or Prime.  Have never needed that.  The second cpu (nvidi=
+a)
+is not directly usable for x display.  The benchmark is being run on the In=
+tel
+chip (which hands 3D requests back to the nvidia chip).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14906356762.eE60.5129
-Date: Mon, 27 Mar 2017 17:27:56 +0000
+--14906367360.c7b43c.6148
+Date: Mon, 27 Mar 2017 17:45:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,8 +66,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
 TDMS,flat panel} table invalid"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c7">Comment=
- # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c8">Comment=
+ # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
@@ -80,21 +75,14 @@ TDMS,flat panel} table invalid"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+bugzilla&#64;scrunch.net" title=3D"Bob Bugzilla &lt;bugzilla&#64;scrunch.ne=
+t&gt;"> <span class=3D"fn">Bob Bugzilla</span></a>
 </span></b>
-        <pre>(In reply to Bob Bugzilla from <a href=3D"show_bug.cgi?id=3D98=
-386#c6">comment #6</a>)
-<span class=3D"quote">&gt; Benchmark test: &quot;export vblank_mode=3D0; gl=
-xgears&quot;
-&gt;=20
-&gt; Normally get 12,000 FPS.
-&gt;=20
-&gt; With this bug, 1,000 FPS.</span >
-
-With PRIME, that's a benchmark of PCIe bandwidth. Probably stuck at 2.5 GT/=
-s if
-you didn't reclock.</pre>
+        <pre>Not using Optimus or Prime.  Have never needed that.  The seco=
+nd cpu (nvidia)
+is not directly usable for x display.  The benchmark is being run on the In=
+tel
+chip (which hands 3D requests back to the nvidia chip).</pre>
         </div>
       </p>
 
@@ -108,9 +96,9 @@ you didn't reclock.</pre>
     </body>
 </html>=
 
---14906356762.eE60.5129--
+--14906367360.c7b43c.6148--
 
---===============2094662934==
+--===============1163693237==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2094662934==--
+--===============1163693237==--
