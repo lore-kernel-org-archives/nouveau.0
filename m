@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
  Pointer to {TDMS, flat panel} table invalid
-Date: Mon, 27 Mar 2017 17:19:28 +0000
-Message-ID: <bug-98386-8800-A8n9yO8Hph@http.bugs.freedesktop.org/>
+Date: Mon, 27 Mar 2017 17:21:53 +0000
+Message-ID: <bug-98386-8800-0fwLIl0mjM@http.bugs.freedesktop.org/>
 References: <bug-98386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1480866865=="
+Content-Type: multipart/mixed; boundary="===============0169372071=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1480866865==
-Content-Type: multipart/alternative; boundary="14906351672.D8DaAEdf.4518";
+--===============0169372071==
+Content-Type: multipart/alternative; boundary="14906353130.842D.4801";
  charset="UTF-8"
 
 
---14906351672.D8DaAEdf.4518
-Date: Mon, 27 Mar 2017 17:19:27 +0000
+--14906353130.842D.4801
+Date: Mon, 27 Mar 2017 17:21:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,60 +36,27 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
 
-Bob Bugzilla <bugzilla-QDUPAvFnyULR7s880joybQ@public.gmane.org> changed:
+--- Comment #5 from Bob Bugzilla <bugzilla-QDUPAvFnyULR7s880joybQ@public.gmane.org> ---
+Created attachment 130485
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130485&action=3Dedit
+dmesg output
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|medium                      |high
-                 CC|                            |bugzilla-QDUPAvFnyULR7s880joybQ@public.gmane.org
-           Severity|minor                       |major
-
---- Comment #4 from Bob Bugzilla <bugzilla-QDUPAvFnyULR7s880joybQ@public.gmane.org> ---
-Seeing this same issue in the latest Fedora 25 updates.
-
-Will post dmesg output.
-
-This is for a NVE7 (GK107) GK107GLM [Quadro K1100M] chip.
-It is a hybrid solution with an Intel i915 (VGA) in front of the nVidia chi=
-p.
-The nVidia chips is not usable as a display device, it just handles 3D for =
-the
-intel chip.
-
-# inxi -Fzx
-System:    Host: xyzzy Kernel: 4.9.14-200.fc25.x86_64 x86_64 (64 bit gcc:
-6.3.1)
-           Desktop: Cinnamon 3.2.8 (Gtk 3.22.10) Distro: Fedora release 25
-(Twenty Five)
-Machine:   Device: portable System: Dell product: Dell Precision M3800 v: A=
-09
-           Mobo: Dell model: Dell Precision M3800 v: A09 BIOS: Dell v: A09
-date: 01/08/2015
-CPU:       Quad core Intel Core i7-4712HQ (-HT-MCP-) cache: 6144 KB
-           flags: (lm nx sse sse2 sse3 sse4_1 sse4_2 ssse3 vmx) bmips: 18358
-           clock speeds: max: 3300 MHz 1: 799 MHz 2: 799 MHz 3: 799 MHz 4: =
-799
-MHz 5: 800 MHz 6: 799 MHz
-           7: 800 MHz 8: 799 MHz
-Graphics:  Card-1: Intel 4th Gen Core Processor Integrated Graphics Control=
-ler
-bus-ID: 00:02.0
-           Card-2: NVIDIA GK107GLM [Quadro K1100M] bus-ID: 02:00.0
-           Display Server: Fedora X.org 119.1 drivers: nouveau,intel (unloa=
-ded:
-modesetting,fbdev,vesa)
-           Resolution: 1920x1080-qEAkLYPErqw@public.gmane.org, 2560x1440-UUa59ato0MI@public.gmane.org
-           GLX Renderer: Mesa DRI Intel Haswell Mobile GLX Version: 3.0 Mesa
-13.0.4 Direct Rendering: Yes
-
-Will post dmesg output.
+[  383.017431] nouveau 0000:02:00.0: DRM: evicting buffers...
+[  383.017436] nouveau 0000:02:00.0: DRM: waiting for kernel channels to go
+idle...
+[  383.017485] nouveau 0000:02:00.0: DRM: suspending client object trees...
+[  383.023473] nouveau 0000:02:00.0: DRM: suspending kernel object tree...
+[  467.070587] nouveau 0000:02:00.0: DRM: resuming kernel object tree...
+[  467.386991] nouveau 0000:02:00.0: bus: MMIO write of 00000002 FAULT at
+4188ac [ IBUS ]
+[  467.408872] nouveau 0000:02:00.0: DRM: resuming client object trees...
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14906351672.D8DaAEdf.4518
-Date: Mon, 27 Mar 2017 17:19:27 +0000
+--14906353130.842D.4801
+Date: Mon, 27 Mar 2017 17:21:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -100,56 +67,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:bugzilla&=
-#64;scrunch.net" title=3D"Bob Bugzilla &lt;bugzilla&#64;scrunch.net&gt;"> <=
-span class=3D"fn">Bob Bugzilla</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
-TDMS,flat panel} table invalid"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Priority</td>
-           <td>medium
-           </td>
-           <td>high
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>bugzilla&#64;scrunch.net
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Severity</td>
-           <td>minor
-           </td>
-           <td>major
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
 TDMS,flat panel} table invalid"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
@@ -160,46 +86,22 @@ TDMS,flat panel} table invalid"
 bugzilla&#64;scrunch.net" title=3D"Bob Bugzilla &lt;bugzilla&#64;scrunch.ne=
 t&gt;"> <span class=3D"fn">Bob Bugzilla</span></a>
 </span></b>
-        <pre>Seeing this same issue in the latest Fedora 25 updates.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130485=
+" name=3D"attach_130485" title=3D"dmesg output">attachment 130485</a> <a hr=
+ef=3D"attachment.cgi?id=3D130485&amp;action=3Dedit" title=3D"dmesg output">=
+[details]</a></span>
+dmesg output
 
-Will post dmesg output.
-
-This is for a NVE7 (GK107) GK107GLM [Quadro K1100M] chip.
-It is a hybrid solution with an Intel i915 (VGA) in front of the nVidia chi=
-p.
-The nVidia chips is not usable as a display device, it just handles 3D for =
-the
-intel chip.
-
-# inxi -Fzx
-System:    Host: xyzzy Kernel: 4.9.14-200.fc25.x86_64 x86_64 (64 bit gcc:
-6.3.1)
-           Desktop: Cinnamon 3.2.8 (Gtk 3.22.10) Distro: Fedora release 25
-(Twenty Five)
-Machine:   Device: portable System: Dell product: Dell Precision M3800 v: A=
-09
-           Mobo: Dell model: Dell Precision M3800 v: A09 BIOS: Dell v: A09
-date: 01/08/2015
-CPU:       Quad core Intel Core i7-4712HQ (-HT-MCP-) cache: 6144 KB
-           flags: (lm nx sse sse2 sse3 sse4_1 sse4_2 ssse3 vmx) bmips: 18358
-           clock speeds: max: 3300 MHz 1: 799 MHz 2: 799 MHz 3: 799 MHz 4: =
-799
-MHz 5: 800 MHz 6: 799 MHz
-           7: 800 MHz 8: 799 MHz
-Graphics:  Card-1: Intel 4th Gen Core Processor Integrated Graphics Control=
-ler
-bus-ID: 00:02.0
-           Card-2: NVIDIA GK107GLM [Quadro K1100M] bus-ID: 02:00.0
-           Display Server: Fedora X.org 119.1 drivers: nouveau,intel (unloa=
-ded:
-modesetting,fbdev,vesa)
-           Resolution: <a href=3D"mailto:1920x1080&#64;60.00hz">1920x1080&#=
-64;60.00hz</a>, <a href=3D"mailto:2560x1440&#64;59.95hz">2560x1440&#64;59.9=
-5hz</a>
-           GLX Renderer: Mesa DRI Intel Haswell Mobile GLX Version: 3.0 Mesa
-13.0.4 Direct Rendering: Yes
-
-Will post dmesg output.</pre>
+[  383.017431] nouveau 0000:02:00.0: DRM: evicting buffers...
+[  383.017436] nouveau 0000:02:00.0: DRM: waiting for kernel channels to go
+idle...
+[  383.017485] nouveau 0000:02:00.0: DRM: suspending client object trees...
+[  383.023473] nouveau 0000:02:00.0: DRM: suspending kernel object tree...
+[  467.070587] nouveau 0000:02:00.0: DRM: resuming kernel object tree...
+[  467.386991] nouveau 0000:02:00.0: bus: MMIO write of 00000002 FAULT at
+4188ac [ IBUS ]
+[  467.408872] nouveau 0000:02:00.0: DRM: resuming client object trees...</=
+pre>
         </div>
       </p>
 
@@ -213,9 +115,9 @@ Will post dmesg output.</pre>
     </body>
 </html>=
 
---14906351672.D8DaAEdf.4518--
+--14906353130.842D.4801--
 
---===============1480866865==
+--===============0169372071==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -225,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1480866865==--
+--===============0169372071==--
