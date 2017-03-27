@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100406] New: [GP106M - Prime] Stall while waking
- card with DRI_PRIME=1 app
-Date: Sun, 26 Mar 2017 22:38:05 +0000
-Message-ID: <bug-100406-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
+Date: Mon, 27 Mar 2017 13:26:43 +0000
+Message-ID: <bug-99400-8800-3F6IlteHhR@http.bugs.freedesktop.org/>
+References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1275670501=="
+Content-Type: multipart/mixed; boundary="===============1093751079=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,51 +20,62 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1275670501==
-Content-Type: multipart/alternative; boundary="14905678851.85cb.23700";
+--===============1093751079==
+Content-Type: multipart/alternative; boundary="14906212030.7cBF111d.18533";
  charset="UTF-8"
 
 
---14905678851.85cb.23700
-Date: Sun, 26 Mar 2017 22:38:05 +0000
+--14906212030.7cBF111d.18533
+Date: Mon, 27 Mar 2017 13:26:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100406
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
 
-            Bug ID: 100406
-           Summary: [GP106M - Prime] Stall while waking card with
-                    DRI_PRIME=3D1 app
-           Product: xorg
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #29 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #28)
+> OK, this weston stuff is a no-go. No way to run it against a specific dri
+> card without intensive udev work (which I have no interest in learning), =
+and
+> apparently won't even let me start without some env vars (XDG_RUNTIME_DIR,
+> perhaps others) after I tried starting it under X.
 
-Created attachment 130474
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130474&action=3Dedit
-dmesg with the stall
+You need Xwayland, and therefore a Wayland compositor to connect to. But
+Xwayland can run standalone (within a Wayland compositor) so once/if you can
+get a Wayland compositor to run, you could run Xwayland from there and
+(hopefully) reproduce, e.g.:
 
-This stall happened while running Daves drm-next tree to get 3D acceleration
-for the pascal card. It only happened once until now, but it looks like a g=
-ood
-idea to report it anyway. IF you need more information, let me know!
+    Xwayland :30 &
+    DISPLAY=3D:30 gtk-demo
+
+But the requirement is to have a Wayland compositor so that Xwayland can ru=
+n.
+
+Weston is not the only Wayland compositor, apart from GNOME, there are other
+smaller Wayland compositors such as sway (http://swaywm.org/) which can run
+nested as well (so you can test from an existing X11 session), but I haven't
+played much with those.
+
+> So... I can't repro with the given instructions (because I can't follow t=
+he
+> instructions successfully). Perhaps there are other instructions that
+> reproduce the issue? Does Xephyr -glamor reproduce the issue? Something e=
+lse
+> that I can run?
+
+Unfortunately no, "Xephyr -glamor" does not reproduce the issue, which makes
+things even more confusing, admittedly.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14905678851.85cb.23700
-Date: Sun, 26 Mar 2017 22:38:05 +0000
+--14906212030.7cBF111d.18533
+Date: Mon, 27 Mar 2017 13:26:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,101 +86,60 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GP106M - Prime] Stall while waking card with DRI_PRIME=
-=3D1 app"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100406">100406</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[GP106M - Prime] Stall while waking card with DRI_PRIME=3D1 a=
-pp
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>tobias.klausmann&#64;mni.thm.de
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130474=
-" name=3D"attach_130474" title=3D"dmesg with the stall">attachment 130474</=
-a> <a href=3D"attachment.cgi?id=3D130474&amp;action=3Dedit" title=3D"dmesg =
-with the stall">[details]</a></span>
-dmesg with the stall
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c29">Commen=
+t # 29</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D994=
+00#c28">comment #28</a>)
+<span class=3D"quote">&gt; OK, this weston stuff is a no-go. No way to run =
+it against a specific dri
+&gt; card without intensive udev work (which I have no interest in learning=
+), and
+&gt; apparently won't even let me start without some env vars (XDG_RUNTIME_=
+DIR,
+&gt; perhaps others) after I tried starting it under X.</span >
 
-This stall happened while running Daves drm-next tree to get 3D acceleration
-for the pascal card. It only happened once until now, but it looks like a g=
-ood
-idea to report it anyway. IF you need more information, let me know!</pre>
+You need Xwayland, and therefore a Wayland compositor to connect to. But
+Xwayland can run standalone (within a Wayland compositor) so once/if you can
+get a Wayland compositor to run, you could run Xwayland from there and
+(hopefully) reproduce, e.g.:
+
+    Xwayland :30 &amp;
+    DISPLAY=3D:30 gtk-demo
+
+But the requirement is to have a Wayland compositor so that Xwayland can ru=
+n.
+
+Weston is not the only Wayland compositor, apart from GNOME, there are other
+smaller Wayland compositors such as sway (<a href=3D"http://swaywm.org/">ht=
+tp://swaywm.org/</a>) which can run
+nested as well (so you can test from an existing X11 session), but I haven't
+played much with those.
+
+<span class=3D"quote">&gt; So... I can't repro with the given instructions =
+(because I can't follow the
+&gt; instructions successfully). Perhaps there are other instructions that
+&gt; reproduce the issue? Does Xephyr -glamor reproduce the issue? Somethin=
+g else
+&gt; that I can run?</span >
+
+Unfortunately no, &quot;Xephyr -glamor&quot; does not reproduce the issue, =
+which makes
+things even more confusing, admittedly.</pre>
         </div>
       </p>
 
@@ -178,13 +149,14 @@ idea to report it anyway. IF you need more information, let me know!</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14905678851.85cb.23700--
+--14906212030.7cBF111d.18533--
 
---===============1275670501==
+--===============1093751079==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -194,4 +166,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1275670501==--
+--===============1093751079==--
