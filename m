@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100435] Nouveau 1.0.14 crashes randomly
-Date: Tue, 28 Mar 2017 18:11:02 +0000
-Message-ID: <bug-100435-8800-xB5oYaPkD3@http.bugs.freedesktop.org/>
+Date: Tue, 28 Mar 2017 18:11:30 +0000
+Message-ID: <bug-100435-8800-FYcoDmdhlx@http.bugs.freedesktop.org/>
 References: <bug-100435-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1746533873=="
+Content-Type: multipart/mixed; boundary="===============0257566203=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1746533873==
-Content-Type: multipart/alternative; boundary="14907246620.CfdC.14364";
+--===============0257566203==
+Content-Type: multipart/alternative; boundary="14907246901.cEDF34.15006";
  charset="UTF-8"
 
 
---14907246620.CfdC.14364
-Date: Tue, 28 Mar 2017 18:11:01 +0000
+--14907246901.cEDF34.15006
+Date: Tue, 28 Mar 2017 18:11:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100435
 
---- Comment #1 from Jeff Skaistis <skaistis-fOEEimlCFOXk1uMJSBkQmQ@public.gmane.org> ---
-Created attachment 130510
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130510&action=3Dedit
-lspci output
+--- Comment #2 from Jeff Skaistis <skaistis-fOEEimlCFOXk1uMJSBkQmQ@public.gmane.org> ---
+Created attachment 130511
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130511&action=3Dedit
+crash trace logs
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14907246620.CfdC.14364
-Date: Tue, 28 Mar 2017 18:11:02 +0000
+--14907246901.cEDF34.15006
+Date: Tue, 28 Mar 2017 18:11:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nouveau 1.0.14 crashes randomly"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100435#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100435#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nouveau 1.0.14 crashes randomly"
@@ -73,11 +73,11 @@ t # 1</a>
 skaistis&#64;perlogic.net" title=3D"Jeff Skaistis &lt;skaistis&#64;perlogic=
 .net&gt;"> <span class=3D"fn">Jeff Skaistis</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130510=
-" name=3D"attach_130510" title=3D"lspci output">attachment 130510</a> <a hr=
-ef=3D"attachment.cgi?id=3D130510&amp;action=3Dedit" title=3D"lspci output">=
-[details]</a></span>
-lspci output</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130511=
+" name=3D"attach_130511" title=3D"crash trace logs">attachment 130511</a> <=
+a href=3D"attachment.cgi?id=3D130511&amp;action=3Dedit" title=3D"crash trac=
+e logs">[details]</a></span>
+crash trace logs</pre>
         </div>
       </p>
 
@@ -91,9 +91,9 @@ lspci output</pre>
     </body>
 </html>=
 
---14907246620.CfdC.14364--
+--14907246901.cEDF34.15006--
 
---===============1746533873==
+--===============0257566203==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1746533873==--
+--===============0257566203==--
