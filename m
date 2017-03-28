@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
- Pointer to {TDMS, flat panel} table invalid
-Date: Tue, 28 Mar 2017 15:46:07 +0000
-Message-ID: <bug-98386-8800-OU0iQOMV3U@http.bugs.freedesktop.org/>
-References: <bug-98386-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100435] New: Nouveau 1.0.14 crashes randomly
+Date: Tue, 28 Mar 2017 18:10:37 +0000
+Message-ID: <bug-100435-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1066885259=="
+Content-Type: multipart/mixed; boundary="===============0272985191=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,44 +18,55 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1066885259==
-Content-Type: multipart/alternative; boundary="14907159671.c2FCfd18.2584";
+--===============0272985191==
+Content-Type: multipart/alternative; boundary="14907246370.F0445b.14364";
  charset="UTF-8"
 
 
---14907159671.c2FCfd18.2584
-Date: Tue, 28 Mar 2017 15:46:07 +0000
+--14907246370.F0445b.14364
+Date: Tue, 28 Mar 2017 18:10:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100435
 
---- Comment #16 from Bob Bugzilla <bugzilla-QDUPAvFnyULR7s880joybQ@public.gmane.org> ---
-Hi @Bruno Pagani
+            Bug ID: 100435
+           Summary: Nouveau 1.0.14 crashes randomly
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: skaistis-fOEEimlCFOXk1uMJSBkQmQ@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I used glxgears as a relative benchmark (not absolute). Previously had 12,0=
-00
-FPS.  Now get 1,000 FPS.
+Created attachment 130509
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130509&action=3Dedit
+dmesg output
 
-This is new and the timing correlates with the arrival of the nouveau fault=
-s in
-dmesg, and both correlate with applying the latest updates via Fedora 25.
+After upgrading to nouveau 1.0.14, I've been experiencing random crashes. I=
+t's
+happened a couple of times switching desktops in the Gnome shell, but other
+times appear to be pretty random. At that point the system is unresponsive =
+and
+has to be power-cycled. Downgrading to 1.0.13 stabilizes things.
 
-I did try the "options nouveau config=3DWar00C800_0=3D1" modprobe.d patch f=
-rom bug
-70354, but no change.
-
-Looking for things to try, but don't know where to look.  Ideas?
+Attaching dmesg, lspci, and some of the trace information that I was able to
+get out of the logs.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14907159671.c2FCfd18.2584
-Date: Tue, 28 Mar 2017 15:46:07 +0000
+--14907246370.F0445b.14364
+Date: Tue, 28 Mar 2017 18:10:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,40 +77,104 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau 1.0.14 crashes randomly"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100435">100435</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau 1.0.14 crashes randomly
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>skaistis&#64;perlogic.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
-TDMS,flat panel} table invalid"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c16">Commen=
-t # 16</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
-TDMS,flat panel} table invalid"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bugzilla&#64;scrunch.net" title=3D"Bob Bugzilla &lt;bugzilla&#64;scrunch.ne=
-t&gt;"> <span class=3D"fn">Bob Bugzilla</span></a>
-</span></b>
-        <pre>Hi &#64;Bruno Pagani
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130509=
+" name=3D"attach_130509" title=3D"dmesg output">attachment 130509</a> <a hr=
+ef=3D"attachment.cgi?id=3D130509&amp;action=3Dedit" title=3D"dmesg output">=
+[details]</a></span>
+dmesg output
 
-I used glxgears as a relative benchmark (not absolute). Previously had 12,0=
-00
-FPS.  Now get 1,000 FPS.
+After upgrading to nouveau 1.0.14, I've been experiencing random crashes. I=
+t's
+happened a couple of times switching desktops in the Gnome shell, but other
+times appear to be pretty random. At that point the system is unresponsive =
+and
+has to be power-cycled. Downgrading to 1.0.13 stabilizes things.
 
-This is new and the timing correlates with the arrival of the nouveau fault=
-s in
-dmesg, and both correlate with applying the latest updates via Fedora 25.
-
-I did try the &quot;options nouveau config=3DWar00C800_0=3D1&quot; modprobe=
-.d patch from bug
-70354, but no change.
-
-Looking for things to try, but don't know where to look.  Ideas?</pre>
+Attaching dmesg, lspci, and some of the trace information that I was able to
+get out of the logs.</pre>
         </div>
       </p>
 
@@ -116,9 +188,9 @@ Looking for things to try, but don't know where to look.  Ideas?</pre>
     </body>
 </html>=
 
---14907159671.c2FCfd18.2584--
+--14907246370.F0445b.14364--
 
---===============1066885259==
+--===============0272985191==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -128,4 +200,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1066885259==--
+--===============0272985191==--
