@@ -1,11 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100446] New: Backlight control not working on Pascal
- / GP106 using nouveau drivers
-Date: Wed, 29 Mar 2017 10:42:53 +0000
-Message-ID: <bug-100446-8800@http.bugs.freedesktop.org/>
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Subject: Re: [PATCH v2 00/10] Enable HDMI Stereoscopy
+Date: Wed, 29 Mar 2017 15:02:47 +0300
+Message-ID: <20170329120247.GX30290@intel.com>
+References: <20170117224204.27516-1-alastair.bridgewater@gmail.com>
+ <20170327215807.8461-1-alastair.bridgewater@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0033671597=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20170327215807.8461-1-alastair.bridgewater-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,207 +19,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alastair Bridgewater <alastair.bridgewater-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0033671597==
-Content-Type: multipart/alternative; boundary="14907841730.E23a9D3.23992";
- charset="UTF-8"
-
-
---14907841730.E23a9D3.23992
-Date: Wed, 29 Mar 2017 10:42:53 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100446
-
-            Bug ID: 100446
-           Summary: Backlight control not working on Pascal / GP106 using
-                    nouveau drivers
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-I'm currently working on an ASUS GL702VMK. This machine is shipping a GeFor=
-ce
-GTX 1060 GP106 (136000a1) connected to an internal DisplayPort on DFP-5 (us=
-ual
-AU Optronics Corporation).
-
-Using the unmodified latest nouveau drivers I have no backlight control.
-Modifying nouveau_backlight.c adding a case for NV_DEVICE_INFO_V0_PASCAL I
-finally get /sys/class/backlight/nv_backlight/ but changing the backlight v=
-alue
-in there is not working anyway.
-
-Trying to manually poke NV50_PDISP_SOR_PWM_CTL(1) with `nvapoke` has no eff=
-ect
-whatsoever on the brightness (on or=3D=3D1)
-
-Backlight control is not working using the proprietary 375 / 378 drivers
-either. Also in this case the value of NV50_PDISP_SOR_PWM_CTL is actually
-changed by `xbacklight` but with no visible effect.
-
-Any hint?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14907841730.E23a9D3.23992
-Date: Wed, 29 Mar 2017 10:42:53 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
-veau drivers"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446">100446</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Backlight control not working on Pascal / GP106 using nouveau=
- drivers
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>carlo&#64;caione.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>I'm currently working on an ASUS GL702VMK. This machine is shi=
-pping a GeForce
-GTX 1060 GP106 (136000a1) connected to an internal DisplayPort on DFP-5 (us=
-ual
-AU Optronics Corporation).
-
-Using the unmodified latest nouveau drivers I have no backlight control.
-Modifying nouveau_backlight.c adding a case for NV_DEVICE_INFO_V0_PASCAL I
-finally get /sys/class/backlight/nv_backlight/ but changing the backlight v=
-alue
-in there is not working anyway.
-
-Trying to manually poke NV50_PDISP_SOR_PWM_CTL(1) with `nvapoke` has no eff=
-ect
-whatsoever on the brightness (on or=3D=3D1)
-
-Backlight control is not working using the proprietary 375 / 378 drivers
-either. Also in this case the value of NV50_PDISP_SOR_PWM_CTL is actually
-changed by `xbacklight` but with no visible effect.
-
-Any hint?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14907841730.E23a9D3.23992--
-
---===============0033671597==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0033671597==--
+T24gTW9uLCBNYXIgMjcsIDIwMTcgYXQgMDU6NTc6NTdQTSAtMDQwMCwgQWxhc3RhaXIgQnJpZGdl
+d2F0ZXIgd3JvdGU6Cj4gSERNSSAzRCBtb2RlIHN1cHBvcnQsIHJvdW5kIHR3by4gIFJldmlzaW9u
+cyBpbmNsdWRlIG5vIGxvbmdlciBkZWFsaW5nCj4gd2l0aCBhdWRpbyBJbmZvRnJhbWVzLCBwYXNz
+aW5nIGluZm9mcmFtZSBkYXRhIHRvIE5WS00gYXMgYmFncyBvZiBieXRlcwo+IHJhdGhlciB0aGFu
+IGFzIGRhdGEgcHJlLXBhY2tlZCBmb3IgdGhlIGhhcmR3YXJlLCBtb3JlLW5vcm1hbCByZXR1cm4K
+PiB2YWx1ZSBjaGVja2luZyBmb3IgZHJtX2hkbWlfKl9pbmZvZnJhbWVfZnJvbV9kaXNwbGF5X21v
+ZGUoKSByZXN1bHRzLAo+IEZyYW1lLVBhY2tpbmcgbW9kZSBzdXBwb3J0LCBtb3JlLXByaW5jaXBs
+ZWQgbG9naWMgZm9yIGVuYWJsaW5nIHN0ZXJlbwo+IG1vZGUgc3VwcG9ydCBvbiBhIGNvbm5lY3Rv
+ciwgYW5kIHN1cHBvcnQgZm9yIGFsbCBmb3VyIG52NTArIERJU1BzLgo+IEFkZGl0aW9uYWxseSwg
+dGhpcyBwYXRjaCBzZXQgaXMgYmVpbmcgc2VudCB0byB0aGUgZHJpLWRldmVsIGxpc3QgYXMKPiB3
+ZWxsIGFzIHRoZSBub3V2ZWF1IGxpc3QuICBEcm9wcGVkIGluIHRoaXMgdmVyc2lvbiBpcyB0aGUg
+cmVtb3ZhbCBvZgo+IHRoZSAibWFuZGF0b3J5IiAzRCBtb2RlIGxvZ2ljLiAgQWZ0ZXIgZGlzY3Vz
+c2lvbiwgSSdtIHN0aWxsIGNvbnZpbmNlZAo+IHRoYXQgaXQncyB3cm9uZywgYnV0IG5vdyBJJ20g
+Y29udmluY2VkIHRoYXQgaXQncyB0b28gY29uc2VydmF0aXZlCj4gcmF0aGVyIHRoYW4gbXkgb3Jp
+Z2luYWwgYmVsaWVmIHdoaWNoIHdhcyB0aGF0IGl0IHdhcyB0b28gbGliZXJhbC4KPiAKPiBUaGFu
+a3MgdG8gSWxpYSBNaXJraW4sIERhbWllbiBMZXNwaWF1LCBhbmQgQmVuIFNrZWdncyBmb3IgZmVl
+ZGJhY2sgb24KPiB0aGUgb3JpZ2luYWwgcGF0Y2ggc2V0LiAgSWYgSSBoYXZlIG5lZ2xlY3RlZCB0
+byBtZW50aW9uIGFueW9uZSwgbWVhCj4gY3VscGEuCj4gCj4gVGhlIGZpcnN0IHBhdGNoIHBlcmhh
+cHMgaXNuJ3QgdGVjaG5pY2FsbHkgbmVjZXNzYXJ5LCBidXQgc2ltcGxpZmllcwo+IHRoZSBsYXRl
+ciBsb2dpYyBmb3IgZml4aW5nIGZyYW1lLXBhY2tpbmcgbW9kZSB0aW1pbmcuICBUaGVyZSBtYXkg
+YmUKPiBzb21lIGVmZmVjdCBmcm9tIGFwcGx5aW5nIHRoaXMsIGFzIGRybV9tb2RlX3NldF9jcnRj
+aW5mbygpIGRvZXMKPiBzb21ldGhpbmcgd2l0aCB2c2NhbiB3aGljaCBjYW4gYWZmZWN0IHRoZSBn
+aXZlbiBDUlRDIHRpbWluZy4gIEknbQo+IG5vdCBzdXJlIHdoYXQncyBnb2luZyBvbiB0aGVyZSwg
+aWYgdGhlcmUncyBhbnkgYmVoYXZpb3JhbCBjaGFuZ2Ugb3IKPiBub3QsIGFuZCBpZiB0aGVyZSBp
+cyB3aGF0IHRvIGRvIGFib3V0IGl0IChvdGhlciB0aGFuIHVzaW5nCj4gZHJtX21vZGVfc2V0X2Ny
+dGNpbmZvKCkgdHdpY2UsIG9uY2Ugd2l0aCBDUlRDX05PX1ZTQ0FOIGFuZCBvbmNlCj4gd2l0aG91
+dCkuCj4gCj4gVGhlIHNlY29uZCB0aHJvdWdoIGVpZ2h0aCBwYXRjaGVzIGFyZSBhbGwgdGhlIElu
+Zm9GcmFtZSBsb2dpYyBhZ2FpbiwKPiB0aGlzIHRpbWUgd2l0aCBzdXBwb3J0IGZvciBhbGwgZm91
+ciBESVNQIHR5cGVzLiAgVGhpcyBkb2VzIG5vdCBhcHBlYXIKPiB0byBjYXVzZSByZWdyZXNzaW9u
+cyBpbiBIRE1JIGF1ZGlvIG9uIEdUMjE1LCBHRjExOSwgb3IgR0sxMDQuICBJIGhvcGUKPiB0aGF0
+IGl0IGRvZXNuJ3QgY2F1c2UgYSByZWdyZXNzaW9uIG9uIEc4NCwgYnV0IGhhdmVuJ3QgeWV0IG1h
+bmFnZWQgdG8KPiBzZXQgdXAgYSB0ZXN0IGNhc2UgZm9yIEc4NCBhbmQgSERNSSBhdWRpby4KPiAK
+PiBUaGUgbmludGggcGF0Y2ggaXMgdG8gZml4IHVwIGZyYW1lLXBhY2tpbmcgbW9kZSB0aW1pbmdz
+IGFuZCBnZW9tZXRyeS4KPiBBcyB0aGUgcGF0Y2ggY29tbWVudCBzYXlzLCB0aGVyZSBhcmUgY2xl
+YXJseS1jb3JyZWN0IHBhcnRzLCBhbmQgdGhlcmUKPiBhcmUgcG9zc2libHktaGFja3kgcGFydHMu
+ICBCdXQgaXQgZ2V0cyBmcmFtZS1wYWNraW5nIG1vZGVzIHdvcmtpbmcsCj4gYW5kIHdlIGNhbiBy
+ZXZpc2UgZnJvbSB0aGVyZSBpZiBuZWNlc3NhcnkuCj4gCj4gQW5kIHRoZSB0ZW50aCBwYXRjaCBl
+bmFibGVzIHN0ZXJlbyBtb2RlIHN1cHBvcnQuLi4gIG9uIEhETUkgYW5kIERQb3J0Cj4gY29ubmVj
+dG9ycyBvbiBudjUwKyBoYXJkd2FyZS4gIEhETUkgY29ubmVjdG9ycyBiZWNhdXNlIG9idmlvdXMu
+ICBEUG9ydAo+IGNvbm5lY3RvcnMgYmVjYXVzZSBvZiBEUG9ydCB0byBIRE1JIGFkYXB0b3JzLgoK
+RG8geW91IG1lYW4gRFArKyBvciBhY3R1YWwgcHJvdG9jb2wgY29udmVydGVycz8gRFArKyBpcyBq
+dXN0IEhETUkgd2l0aAphIHNvbWUgZWxlY3RyaWNhbCB0d2Vha3MsIGJ1dCBJSVJDIHByb3BlciBE
+UCBkZWZpbmVzIDNEIHN0ZXJlbyBxdWl0ZQpkaWZmZXJlbnRseSB0aGFuIEhETUkuIEknbSBub3Qg
+c3VyZSBpZiB3ZSBzaG91bGQgYmUgYWJsZSB0byBwdXNoIEhETUkKc3R5bGUgM0QgdGhyb3VnaCBE
+UC0+SERNSS9EUCsrIGFkYXB0b3JzLiBUaGUgc3BlY3MgYXJlIHVuZm9ydHVuYXRlbHkKdmVyeSB2
+YWd1ZSB3aGVuIGl0IGNvbWVzIHRvIHN1Y2ggZGV2aWNlcy4KCj4gZURQIGNvbm5lY3RvcnMgYmVj
+YXVzZQo+IGl0IHNob3VsZG4ndCBkbyBhbnkgaGFybSwgYW5kIHNvbWVvbmUgbWlnaHQgaGF2ZSBi
+ZWVuIG1hbmlhYyBlbm91Z2ggdG8KPiBzZXQgdXAgYW4gZURQIHBvcnQgdG8gcG9pbnQgdG8gc29t
+ZXRoaW5nIHdpdGggYW4gSERNSSAzRCBzZXR1cC4gIEFuZAo+IG52NTArIGhhcmR3YXJlIG9ubHkg
+YmVjYXVzZSB3aGlsZSBJJ20gbm90IGF3YXJlIG9mIGFueSBwcmUtbnY1MCBjYXJkcwo+IHRoYXQg
+aGF2ZSBIRE1JIG91dHB1dHMsIHRoZXJlIGNvdWxkIGJlIGEgc2V0dXAgb3V0IHRoZXJlIGxpa2Ug
+dGhlIFBTMwo+IHRoYXQgdXNlcyBhbiBleHRlcm5hbCBIRE1JIGVuY29kZXIgb24gcHJlLW52NTAg
+aGFyZHdhcmUsIGF0IHdoaWNoCj4gcG9pbnQgbm9uZSBvZiB0aGUgbW9kZSB0aW1pbmcgb3IgSW5m
+b0ZyYW1lIHN1cHBvcnQgaXMgaW4gcGxhY2UgZm9yIGl0Lgo+IAo+IEFsYXN0YWlyIEJyaWRnZXdh
+dGVyICgxMCk6Cj4gICBkcm0vbm91dmVhdTogVXNlIGRybV9tb2RlX3NldF9jcnRjaW5mbygpIHRv
+IGNvbXBlbnNhdGUgZm9yIHZzY2FuIC8KPiAgICAgaWxhY2UKPiAgIGRybS9ub3V2ZWF1OiBFeHRl
+bmQgTlZLTSBIRE1JIHBvd2VyIGNvbnRyb2wgbWV0aG9kIHRvIHNldCBJbmZvRnJhbWVzCj4gICBk
+cm0vbm91dmVhdTogUGFzcyBtb2RlLWRlcGVuZGVudCBBVkkgYW5kIFZlbmRvciBIRE1JIEluZm9G
+cmFtZXMgdG8KPiAgICAgTlZLTQo+ICAgZHJtL25vdXZlYXU6IEFkZCBtZWNoYW5pc20gdG8gY29u
+dmVydCBIRE1JIEluZm9GcmFtZXMgdG8gaGFyZHdhcmUKPiAgICAgZm9ybWF0Cj4gICBkcm0vbm91
+dmVhdTogVXNlIHN1cHBsaWVkIEhETUkgSW5mb0ZyYW1lcyBvbiBHODQgaGFyZHdhcmUKPiAgIGRy
+bS9ub3V2ZWF1OiBVc2Ugc3VwcGxpZWQgSERNSSBJbmZvRnJhbWVzIG9uIEdUMjE1IGhhcmR3YXJl
+Cj4gICBkcm0vbm91dmVhdTogVXNlIHN1cHBsaWVkIEhETUkgSW5mb0ZyYW1lcyBvbiBHRjExOSBo
+YXJkd2FyZQo+ICAgZHJtL25vdXZlYXU6IFVzZSBzdXBwbGllZCBIRE1JIEluZm9GcmFtZXMgb24g
+R0sxMDQgaGFyZHdhcmUKPiAgIGRybS9ub3V2ZWF1OiBIYW5kbGUgZnJhbWUtcGFja2luZyBtb2Rl
+IGdlb21ldHJ5IGFuZCB0aW1pbmcgZWZmZWN0cwo+ICAgZHJtL25vdXZlYXU6IEVuYWJsZSBzdGVy
+ZW9zY29waWMgM0Qgb3V0cHV0IG92ZXIgSERNSQo+IAo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9pbmNsdWRlL252aWYvY2w1MDcwLmggICAgICB8ICA0ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMgICAgICAgIHwgMTAgKysrCj4gIGRyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jICAgICAgICAgICAgIHwgODAgKysrKysrKysrKysr
+KysrKy0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL0ti
+dWlsZCAgICB8ICAxICsKPiAgLi4uL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvaGRtaV9p
+bmZvZnJhbWUuYyAgfCA2NiArKysrKysrKysrKysrKysrKysKPiAgZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9oZG1pZzg0LmMgfCA0NiArKysrKysrKysrKy0tCj4gIC4u
+Li9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9oZG1pZ2YxMTkuYyAgIHwgNDkgKysr
+KysrKysrKystLQo+ICAuLi4vZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvaGRtaWdr
+MTA0LmMgICB8IDQ1ICsrKysrKysrKystLQo+ICAuLi4vZ3B1L2RybS9ub3V2ZWF1L252a20vZW5n
+aW5lL2Rpc3AvaGRtaWd0MjE1LmMgICB8IDQ2ICsrKysrKysrKysrLS0KPiAgZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9udjUwLmggICAgfCAxMSArKysKPiAgMTAgZmls
+ZXMgY2hhbmdlZCwgMzA3IGluc2VydGlvbnMoKyksIDUxIGRlbGV0aW9ucygtKQo+ICBjcmVhdGUg
+bW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9oZG1p
+X2luZm9mcmFtZS5jCj4gCj4gLS0gCj4gMi4xMC4yCj4gCj4gX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KPiBkcmktZGV2ZWwgbWFpbGluZyBsaXN0Cj4gZHJp
+LWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCgotLSAKVmlsbGUgU3lyasOkbMOkCkludGVs
+IE9UQwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
