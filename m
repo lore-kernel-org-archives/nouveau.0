@@ -1,16 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH v2 00/10] Enable HDMI Stereoscopy
-Date: Wed, 29 Mar 2017 10:48:02 -0400
-Message-ID: <CAKb7UvjWCwaG7WbkPd-jfYeUyzuHauizs_15uT75atdVB=M-HA@mail.gmail.com>
-References: <20170117224204.27516-1-alastair.bridgewater@gmail.com>
- <20170327215807.8461-1-alastair.bridgewater@gmail.com>
- <20170329120247.GX30290@intel.com>
- <CAEcYz2Qb74b27efw=s+ZSSO4SEQQ2_mVKXz4D3za1GkVh_AHgg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98383] X server is crashing/eats 100% cpu when
+ turning on monitor
+Date: Wed, 29 Mar 2017 15:06:13 +0000
+Message-ID: <bug-98383-8800-BwfYQ5v39W@http.bugs.freedesktop.org/>
+References: <bug-98383-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0350656137=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAEcYz2Qb74b27efw=s+ZSSO4SEQQ2_mVKXz4D3za1GkVh_AHgg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-98383-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,42 +17,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alastair Bridgewater <alastair.bridgewater-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBNYXIgMjksIDIwMTcgYXQgMTA6MjQgQU0sIEFsYXN0YWlyIEJyaWRnZXdhdGVyCjxh
-bGFzdGFpci5icmlkZ2V3YXRlckBnbWFpbC5jb20+IHdyb3RlOgo+IE9uIFdlZCwgTWFyIDI5LCAy
-MDE3IGF0IDg6MDIgQU0sIFZpbGxlIFN5cmrDpGzDpAo+IDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4gd3JvdGU6Cj4+Cj4+IE9uIE1vbiwgTWFyIDI3LCAyMDE3IGF0IDA1OjU3OjU3UE0g
-LTA0MDAsIEFsYXN0YWlyIEJyaWRnZXdhdGVyIHdyb3RlOgo+PiA+IEFuZCB0aGUgdGVudGggcGF0
-Y2ggZW5hYmxlcyBzdGVyZW8gbW9kZSBzdXBwb3J0Li4uICBvbiBIRE1JIGFuZCBEUG9ydAo+PiA+
-IGNvbm5lY3RvcnMgb24gbnY1MCsgaGFyZHdhcmUuICBIRE1JIGNvbm5lY3RvcnMgYmVjYXVzZSBv
-YnZpb3VzLiAgRFBvcnQKPj4gPiBjb25uZWN0b3JzIGJlY2F1c2Ugb2YgRFBvcnQgdG8gSERNSSBh
-ZGFwdG9ycy4KPj4KPj4gRG8geW91IG1lYW4gRFArKyBvciBhY3R1YWwgcHJvdG9jb2wgY29udmVy
-dGVycz8gRFArKyBpcyBqdXN0IEhETUkgd2l0aAo+PiBhIHNvbWUgZWxlY3RyaWNhbCB0d2Vha3Ms
-IGJ1dCBJSVJDIHByb3BlciBEUCBkZWZpbmVzIDNEIHN0ZXJlbyBxdWl0ZQo+PiBkaWZmZXJlbnRs
-eSB0aGFuIEhETUkuIEknbSBub3Qgc3VyZSBpZiB3ZSBzaG91bGQgYmUgYWJsZSB0byBwdXNoIEhE
-TUkKPj4gc3R5bGUgM0QgdGhyb3VnaCBEUC0+SERNSS9EUCsrIGFkYXB0b3JzLiBUaGUgc3BlY3Mg
-YXJlIHVuZm9ydHVuYXRlbHkKPj4gdmVyeSB2YWd1ZSB3aGVuIGl0IGNvbWVzIHRvIHN1Y2ggZGV2
-aWNlcy4KPgo+IERQKysuIEdvb2QgcG9pbnQgYWJvdXQgdGhlIHByb3RvY29sIGNvbnZlcnRlcnMs
-IHRob3VnaCBJIGRvbid0IHJlY2FsbAo+IHNlZWluZyBhbnkgd2F5IHRvIGRpc3Rpbmd1aXNoIGJl
-dHdlZW4gYSBEUCBhbmQgYSBEUCsrIGNvbm5lY3RvciBpbgo+IG5vdXZlYXUsIG5vciBkbyBJIGtu
-b3cgaWYgblZpZGlhIGFjdHVhbGx5IG1hZGUgYW55IGJvYXJkcyB3aXRoIERQIHRoYXQKPiBpc24n
-dCBEUCsrLiBJIGd1ZXNzIEkgaGF2ZSBzb21lIGRpZ2dpbmcgdG8gZG8gaW4gdGhhdCBkaXJlY3Rp
-b24uIFRoYW5rCj4geW91LgoKSSB3b3VsZG4ndCBiZSBzdXJwcmlzZWQgaWYgdGhlIGV4dGVybmFs
-bHktZW5jb2RlcmVkIEcyMDAgRFAgY29ubmVjdG9ycwpkaWRuJ3Qgc3VwcG9ydCBEUCsrLiBJIGRv
-IHRoaW5rIHRoYXQgdGhlIHZhc3QgbWFqb3JpdHkgb2YgRFAgcG9ydHMgYXJlCmFjdHVhbGx5IERQ
-KysgKG9uIE5WSURJQSwgYW5kIHByb2JhYmx5IGV2ZXJ5d2hlcmUpLiBIb3dldmVyIHNpbmNlIHRo
-aXMKaXMgKGVkZ2UgY2FzZSleMiBbRzIwMCBEUCwgM0QgRFBdLCBJIHdvdWxkbid0IHNwZW5kIHRv
-byBtdWNoIHRpbWUKd29ycnlpbmcgYWJvdXQgaXQuIEkgZG91YnQgaXQncyBkb2N1bWVudGVkIGFu
-eXdoZXJlLCBhbmQgZXF1YWxseQpkb3VidGZ1bCBhbnkgc3VjaCBzaW5rcyBleGlzdC4gU2hvdWxk
-IGJlIGFibGUgdG8gZmluZCBhIFZCSU9TIHdpdGggdGhlCmV4dGVybmFsIERQIGVuY29kZXJzIHRo
-b3VnaCwgYW5kIHlvdSBjYW4gY2hlY2sgdGhlIERDQiBzcGVjcyB0aGF0Ck5WSURJQSBwdWJsaXNo
-ZWQgYXQKZnRwOi8vZG93bmxvYWQubnZpZGlhLmNvbS9vcGVuLWdwdS1kb2MvRENCLzIvRENCLTQu
-eC1TcGVjaWZpY2F0aW9uLmh0bWwuCihMb29rcyBsaWtlIHRoZXJlIGlzIHNvbWV0aGluZyB0aGVy
-ZSB1bmRlciAiREZQIFNwZWNpZmljIEluZm9ybWF0aW9uIgotPiBIRE1JLCBub3QgMTAwJSBzdXJl
-IHdoZXJlIGluIG5vdXZlYXUgaXQncyBkZWNvZGVkIHRob3VnaC4pCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0350656137==
+Content-Type: multipart/alternative; boundary="14907999733.3d935.15566";
+ charset="UTF-8"
+
+
+--14907999733.3d935.15566
+Date: Wed, 29 Mar 2017 15:06:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98383
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Priority|high                        |medium
+           Severity|critical                    |normal
+
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Mariusz Bia=C5=82o=C5=84czyk from comment #7)
+> It is now over a five months from the time when I reported it. Is it real=
+ly
+> so hard to cooperate with me to get rid of this bug? I can try your patch=
+es,
+> give you additional debug information, I have programming skills.
+
+A few things to consider:
+
+1. nouveau is largely volunteer-driven. Volunteers tend to do the things th=
+at
+interest them, not the things that interest non-contributors. (Which means =
+that
+the end user may have to persuade that their problem is more worthwhile to =
+work
+on, and stomping your foot on the ground isn't the best way to achieve that=
+.)
+
+2. You initially filed the bug against a component that no nouveau developer
+monitors
+
+3. If you want to get help figuring this out yourself, you may want to try
+#nouveau and #dri-devel on freenode.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14907999733.3d935.15566
+Date: Wed, 29 Mar 2017 15:06:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - X server is crashing/eats 100% cpu when turning on monito=
+r"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98383">bug 98383<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Priority</td>
+           <td>high
+           </td>
+           <td>medium
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Severity</td>
+           <td>critical
+           </td>
+           <td>normal
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - X server is crashing/eats 100% cpu when turning on monito=
+r"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98383#c8">Comment=
+ # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - X server is crashing/eats 100% cpu when turning on monito=
+r"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98383">bug 98383<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Mariusz Bia=C5=82o=C5=84czyk from <a href=3D"show=
+_bug.cgi?id=3D98383#c7">comment #7</a>)
+<span class=3D"quote">&gt; It is now over a five months from the time when =
+I reported it. Is it really
+&gt; so hard to cooperate with me to get rid of this bug? I can try your pa=
+tches,
+&gt; give you additional debug information, I have programming skills.</spa=
+n >
+
+A few things to consider:
+
+1. nouveau is largely volunteer-driven. Volunteers tend to do the things th=
+at
+interest them, not the things that interest non-contributors. (Which means =
+that
+the end user may have to persuade that their problem is more worthwhile to =
+work
+on, and stomping your foot on the ground isn't the best way to achieve that=
+.)
+
+2. You initially filed the bug against a component that no nouveau developer
+monitors
+
+3. If you want to get help figuring this out yourself, you may want to try
+#nouveau and #dri-devel on freenode.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14907999733.3d935.15566--
+
+--===============0350656137==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0350656137==--
