@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98383] X server is crashing/eats 100% cpu when
- turning on monitor
-Date: Wed, 29 Mar 2017 15:06:13 +0000
-Message-ID: <bug-98383-8800-BwfYQ5v39W@http.bugs.freedesktop.org/>
-References: <bug-98383-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 09/15] fb: add GP10B support
+Date: Wed, 29 Mar 2017 18:31:17 +0900
+Message-ID: <20170329093123.24656-10-acourbot@nvidia.com>
+References: <20170329093123.24656-1-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0350656137=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98383-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20170329093123.24656-1-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,172 +17,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0350656137==
-Content-Type: multipart/alternative; boundary="14907999733.3d935.15566";
- charset="UTF-8"
-
-
---14907999733.3d935.15566
-Date: Wed, 29 Mar 2017 15:06:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98383
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|high                        |medium
-           Severity|critical                    |normal
-
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Mariusz Bia=C5=82o=C5=84czyk from comment #7)
-> It is now over a five months from the time when I reported it. Is it real=
-ly
-> so hard to cooperate with me to get rid of this bug? I can try your patch=
-es,
-> give you additional debug information, I have programming skills.
-
-A few things to consider:
-
-1. nouveau is largely volunteer-driven. Volunteers tend to do the things th=
-at
-interest them, not the things that interest non-contributors. (Which means =
-that
-the end user may have to persuade that their problem is more worthwhile to =
-work
-on, and stomping your foot on the ground isn't the best way to achieve that=
-.)
-
-2. You initially filed the bug against a component that no nouveau developer
-monitors
-
-3. If you want to get help figuring this out yourself, you may want to try
-#nouveau and #dri-devel on freenode.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14907999733.3d935.15566
-Date: Wed, 29 Mar 2017 15:06:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - X server is crashing/eats 100% cpu when turning on monito=
-r"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98383">bug 98383<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Priority</td>
-           <td>high
-           </td>
-           <td>medium
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Severity</td>
-           <td>critical
-           </td>
-           <td>normal
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - X server is crashing/eats 100% cpu when turning on monito=
-r"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98383#c8">Comment=
- # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - X server is crashing/eats 100% cpu when turning on monito=
-r"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98383">bug 98383<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Mariusz Bia=C5=82o=C5=84czyk from <a href=3D"show=
-_bug.cgi?id=3D98383#c7">comment #7</a>)
-<span class=3D"quote">&gt; It is now over a five months from the time when =
-I reported it. Is it really
-&gt; so hard to cooperate with me to get rid of this bug? I can try your pa=
-tches,
-&gt; give you additional debug information, I have programming skills.</spa=
-n >
-
-A few things to consider:
-
-1. nouveau is largely volunteer-driven. Volunteers tend to do the things th=
-at
-interest them, not the things that interest non-contributors. (Which means =
-that
-the end user may have to persuade that their problem is more worthwhile to =
-work
-on, and stomping your foot on the ground isn't the best way to achieve that=
-.)
-
-2. You initially filed the bug against a component that no nouveau developer
-monitors
-
-3. If you want to get help figuring this out yourself, you may want to try
-#nouveau and #dri-devel on freenode.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14907999733.3d935.15566--
-
---===============0350656137==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
+R1AxMEIncyBGQiBpcyBsYXJnZWx5IGNvbXBhdGlibGUgd2l0aCB0aGUgR1AxMDAgaW1wbGVtZW50
+YXRpb24sIGFuZCBvbmx5CnJlcXVpcmVzIGEgZmV3IGFkZGl0aW9uYWwgcmVnaXN0ZXIgaW5pdHMu
+CgpTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4K
+LS0tCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2ZiLmggfCAgMSArCiBkcm0vbm91
+dmVhdS9udmttL3N1YmRldi9mYi9LYnVpbGQgICAgfCAgMSArCiBkcm0vbm91dmVhdS9udmttL3N1
+YmRldi9mYi9ncDEwYi5jICAgfCAzOCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+KysKIDMgZmlsZXMgY2hhbmdlZCwgNDAgaW5zZXJ0aW9ucygrKQogY3JlYXRlIG1vZGUgMTAwNjQ0
+IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL2dwMTBiLmMKCmRpZmYgLS1naXQgYS9kcm0vbm91
+dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2ZiLmggYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20v
+c3ViZGV2L2ZiLmgKaW5kZXggODkxNDk3YTBmZTNiLi4yOGQ1MTNmYmY0NGMgMTAwNjQ0Ci0tLSBh
+L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvZmIuaAorKysgYi9kcm0vbm91dmVhdS9p
+bmNsdWRlL252a20vc3ViZGV2L2ZiLmgKQEAgLTk3LDYgKzk3LDcgQEAgaW50IGdtMjAwX2ZiX25l
+dyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9mYiAqKik7CiBpbnQgZ20y
+MGJfZmJfbmV3KHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQsIHN0cnVjdCBudmttX2ZiICoqKTsK
+IGludCBncDEwMF9mYl9uZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21f
+ZmIgKiopOwogaW50IGdwMTAyX2ZiX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1
+Y3QgbnZrbV9mYiAqKik7CitpbnQgZ3AxMGJfZmJfbmV3KHN0cnVjdCBudmttX2RldmljZSAqLCBp
+bnQsIHN0cnVjdCBudmttX2ZiICoqKTsKIAogI2luY2x1ZGUgPHN1YmRldi9iaW9zLmg+CiAjaW5j
+bHVkZSA8c3ViZGV2L2Jpb3MvcmFtY2ZnLmg+CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmtt
+L3N1YmRldi9mYi9LYnVpbGQgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9LYnVpbGQKaW5k
+ZXggMWM1ZTViYTQ4N2E4Li4yNTcxNTMwZTgyZjEgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252
+a20vc3ViZGV2L2ZiL0tidWlsZAorKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9LYnVp
+bGQKQEAgLTI4LDYgKzI4LDcgQEAgbnZrbS15ICs9IG52a20vc3ViZGV2L2ZiL2dtMjAwLm8KIG52
+a20teSArPSBudmttL3N1YmRldi9mYi9nbTIwYi5vCiBudmttLXkgKz0gbnZrbS9zdWJkZXYvZmIv
+Z3AxMDAubwogbnZrbS15ICs9IG52a20vc3ViZGV2L2ZiL2dwMTAyLm8KK252a20teSArPSBudmtt
+L3N1YmRldi9mYi9ncDEwYi5vCiAKIG52a20teSArPSBudmttL3N1YmRldi9mYi9yYW0ubwogbnZr
+bS15ICs9IG52a20vc3ViZGV2L2ZiL3JhbW52MDQubwpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvZmIvZ3AxMGIuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL2dwMTBi
+LmMKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi5mMmIxZmJmNDI4ZDUK
+LS0tIC9kZXYvbnVsbAorKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9ncDEwYi5jCkBA
+IC0wLDAgKzEsMzggQEAKKy8qCisgKiBDb3B5cmlnaHQgKGMpIDIwMTYsIE5WSURJQSBDT1JQT1JB
+VElPTi4gQWxsIHJpZ2h0cyByZXNlcnZlZC4KKyAqCisgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBn
+cmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQorICogY29w
+eSBvZiB0aGlzIHNvZnR3YXJlIGFuZCBhc3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRo
+ZSAiU29mdHdhcmUiKSwKKyAqIHRvIGRlYWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJp
+Y3Rpb24sIGluY2x1ZGluZyB3aXRob3V0IGxpbWl0YXRpb24KKyAqIHRoZSByaWdodHMgdG8gdXNl
+LCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNlbnNlLAor
+ICogYW5kL29yIHNlbGwgY29waWVzIG9mIHRoZSBTb2Z0d2FyZSwgYW5kIHRvIHBlcm1pdCBwZXJz
+b25zIHRvIHdob20gdGhlCisgKiBTb2Z0d2FyZSBpcyBmdXJuaXNoZWQgdG8gZG8gc28sIHN1Ympl
+Y3QgdG8gdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOgorICoKKyAqIFRoZSBhYm92ZSBjb3B5cmln
+aHQgbm90aWNlIGFuZCB0aGlzIHBlcm1pc3Npb24gbm90aWNlIHNoYWxsIGJlIGluY2x1ZGVkIGlu
+CisgKiBhbGwgY29waWVzIG9yIHN1YnN0YW50aWFsIHBvcnRpb25zIG9mIHRoZSBTb2Z0d2FyZS4K
+KyAqCisgKiBUSEUgU09GVFdBUkUgSVMgUFJPVklERUQgIkFTIElTIiwgV0lUSE9VVCBXQVJSQU5U
+WSBPRiBBTlkgS0lORCwgRVhQUkVTUyBPUgorICogSU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1Qg
+TElNSVRFRCBUTyBUSEUgV0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFksCisgKiBGSVRORVNT
+IEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiAgSU4gTk8gRVZF
+TlQgU0hBTEwKKyAqIFRIRSBBVVRIT1JTIE9SIENPUFlSSUdIVCBIT0xERVJTIEJFIExJQUJMRSBG
+T1IgQU5ZIENMQUlNLCBEQU1BR0VTIE9SIE9USEVSCisgKiBMSUFCSUxJVFksIFdIRVRIRVIgSU4g
+QU4gQUNUSU9OIE9GIENPTlRSQUNULCBUT1JUIE9SIE9USEVSV0lTRSwgQVJJU0lORworICogRlJP
+TSwgT1VUIE9GIE9SIElOIENPTk5FQ1RJT04gV0lUSCBUSEUgU09GVFdBUkUgT1IgVEhFIFVTRSBP
+UiBPVEhFUgorICogREVBTElOR1MgSU4gVEhFIFNPRlRXQVJFLgorICovCisjaW5jbHVkZSAiZ2Yx
+MDAuaCIKKworc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX2ZiX2Z1bmMKK2dwMTBiX2ZiID0gewor
+CS5kdG9yID0gZ2YxMDBfZmJfZHRvciwKKwkub25laW5pdCA9IGdmMTAwX2ZiX29uZWluaXQsCisJ
+LmluaXQgPSBnbTIwMF9mYl9pbml0LAorCS5pbml0X3BhZ2UgPSBnbTIwMF9mYl9pbml0X3BhZ2Us
+CisJLmludHIgPSBnZjEwMF9mYl9pbnRyLAorCS5tZW10eXBlX3ZhbGlkID0gZ2YxMDBfZmJfbWVt
+dHlwZV92YWxpZCwKK307CisKK2ludAorZ3AxMGJfZmJfbmV3KHN0cnVjdCBudmttX2RldmljZSAq
+ZGV2aWNlLCBpbnQgaW5kZXgsIHN0cnVjdCBudmttX2ZiICoqcGZiKQoreworCXJldHVybiBnZjEw
+MF9mYl9uZXdfKCZncDEwYl9mYiwgZGV2aWNlLCBpbmRleCwgcGZiKTsKK30KLS0gCjIuMTIuMAoK
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0350656137==--
