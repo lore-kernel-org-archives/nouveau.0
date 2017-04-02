@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99913] [G96] Reclocking fails on voltage
-Date: Thu, 30 Mar 2017 15:38:24 +0000
-Message-ID: <bug-99913-8800-Xid5pGhhV5@http.bugs.freedesktop.org/>
-References: <bug-99913-8800@http.bugs.freedesktop.org/>
+From: Adam Borowski <kilobyte-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org>
+Subject: [PATCH] drm/nouveau: enable interrupts on cards with 32
+	intr lines
+Date: Sun,  2 Apr 2017 07:03:28 +0200
+Message-ID: <20170402050328.9511-1-kilobyte@angband.pl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1149521592=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,88 +16,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Adam Borowski <kilobyte-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1149521592==
-Content-Type: multipart/alternative; boundary="14908883030.2e8bDB.27082";
- charset="UTF-8"
-
-
---14908883030.2e8bDB.27082
-Date: Thu, 30 Mar 2017 15:38:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99913
-
---- Comment #12 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Note to self: need to rebuild my kernel without CONFIG_TRIM_UNUSED_KSYMS.
-Otherwise the driver won't install.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14908883030.2e8bDB.27082
-Date: Thu, 30 Mar 2017 15:38:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c12">Commen=
-t # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913">bug 99913<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ppaalanen&#64;gmail.com" title=3D"Pekka Paalanen &lt;ppaalanen&#64;gmail.co=
-m&gt;"> <span class=3D"fn">Pekka Paalanen</span></a>
-</span></b>
-        <pre>Note to self: need to rebuild my kernel without CONFIG_TRIM_UN=
-USED_KSYMS.
-Otherwise the driver won't install.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14908883030.2e8bDB.27082--
-
---===============1149521592==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1149521592==--
+VGhlIGNvZGUgYXR0ZW1wdHMgdG8gZW5hYmxlIHRoZW0sIGJ1dCBoaXRzIGFuIHVuZGVmaW5lZCBi
+ZWhhdmlvdXIgYnkKc2hpZnRpbmcgYnkgdGhlIGVudGlyZSByZWdpc3RlcidzIHdpZHRoOgoKICAg
+IGludCBsaW5lcyA9IDMyOwogICAgdTMyIG1hc2sgPSAoMSA8PCBsaW5lcykgLSAxOyAgICAvLyAw
+MDAwMDAwMCBvbiB4ODYKICAgIHUzMiBtYXNrID0gKDEgPDwgbGluZXMpIC0gMTsgICAgLy8gZmZm
+ZmZmZmYgb24gYXJtICgzMikKICAgIHUzMiBtYXNrID0gKDEgPDwgbGluZXMpIC0gMTsgICAgLy8g
+MDAwMDAwMDAgb24gYXJtNjQKICAgIHUzMiBtYXNrID0gKDFVTEwgPDwgbGluZXMpIC0gMTsgLy8g
+ZmZmZmZmZmYgZXZlcnl3aGVyZQoKU2lnbmVkLW9mZi1ieTogQWRhbSBCb3Jvd3NraSA8a2lsb2J5
+dGVAYW5nYmFuZC5wbD4KLS0tClRvIGJlIGhvbmVzdCwgSSBjYW4ndCB0ZWxsIHRoZSBkaWZmZXJl
+bmNlIG90aGVyIHRoYW4gVUJTQU4gc3RvcHBpbmcgaXRzCmNvbXBsYWludHMsIGJ1dCB0aGUgY3Vy
+cmVudCBjb2RlIGlzIG9idmlvdXNseSB3cm9uZy4KCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+dmttL3N1YmRldi9ncGlvL2Jhc2UuYyB8IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlv
+bigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L252a20vc3ViZGV2L2dwaW8vYmFzZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvZ3Bpby9iYXNlLmMKaW5kZXggNzdjNjQ5NzIzYWQ3Li40YTU3ZGVmYzk5YjMgMTAwNjQ0
+Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2dwaW8vYmFzZS5jCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2dwaW8vYmFzZS5jCkBAIC0x
+NjQsNyArMTY0LDcgQEAgc3RhdGljIGludAogbnZrbV9ncGlvX2Zpbmkoc3RydWN0IG52a21fc3Vi
+ZGV2ICpzdWJkZXYsIGJvb2wgc3VzcGVuZCkKIHsKIAlzdHJ1Y3QgbnZrbV9ncGlvICpncGlvID0g
+bnZrbV9ncGlvKHN1YmRldik7Ci0JdTMyIG1hc2sgPSAoMSA8PCBncGlvLT5mdW5jLT5saW5lcykg
+LSAxOworCXUzMiBtYXNrID0gKDFVTEwgPDwgZ3Bpby0+ZnVuYy0+bGluZXMpIC0gMTsKIAogCWdw
+aW8tPmZ1bmMtPmludHJfbWFzayhncGlvLCBOVktNX0dQSU9fVE9HR0xFRCwgbWFzaywgMCk7CiAJ
+Z3Bpby0+ZnVuYy0+aW50cl9zdGF0KGdwaW8sICZtYXNrLCAmbWFzayk7Ci0tIAoyLjExLjAKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
+bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
