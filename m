@@ -1,45 +1,35 @@
-From: Karol Herbst <karolherbst@gmail.com>
-Subject: [PATCH 1/3] nv50/ir: fix AlgebraicOpt for slcts with mods
-Date: Mon,  3 Apr 2017 17:55:51 +0200
-Message-ID: <20170403155553.996-2-karolherbst@gmail.com>
-References: <20170403155553.996-1-karolherbst@gmail.com>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH v2 0/3] nv50/ir: Preapre for running Opts inside a
+	loop
+Date: Mon,  3 Apr 2017 17:58:19 +0200
+Message-ID: <20170403155822.1810-1-karolherbst@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <20170403155553.996-1-karolherbst@gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org, Karol Herbst <nouveau@karolherbst.de>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgoKU2lnbmVkLW9mZi1i
-eTogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Ci0tLQogc3JjL2dhbGxpdW0v
-ZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAgfCA2ICsrKy0tLQog
-MSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xl
-LmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhv
-bGUuY3BwCmluZGV4IDRjOTJhMWVmYjUuLmJkNjBhODQ5OTggMTAwNjQ0Ci0tLSBhL3NyYy9nYWxs
-aXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCisrKyBiL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCkBA
-IC0xNzk3LDEwICsxNzk3LDEwIEBAIEFsZ2VicmFpY09wdDo6aGFuZGxlU0xDVChJbnN0cnVjdGlv
-biAqc2xjdCkKICAgICAgIGlmIChzbGN0LT5nZXRTcmMoMiktPmFzSW1tKCktPmNvbXBhcmUoc2xj
-dC0+YXNDbXAoKS0+c2V0Q29uZCwgMC4wZikpCiAgICAgICAgICBzbGN0LT5zZXRTcmMoMCwgc2xj
-dC0+Z2V0U3JjKDEpKTsKICAgIH0gZWxzZQotICAgaWYgKHNsY3QtPmdldFNyYygwKSAhPSBzbGN0
-LT5nZXRTcmMoMSkpIHsKKyAgIGlmIChzbGN0LT5nZXRTcmMoMCkgIT0gc2xjdC0+Z2V0U3JjKDEp
-IHx8IHNsY3QtPnNyYygwKS5tb2QgIT0gc2xjdC0+c3JjKDEpLm1vZCkKICAgICAgIHJldHVybjsK
-LSAgIH0KLSAgIHNsY3QtPm9wID0gT1BfTU9WOworICAgc2xjdC0+b3AgPSBzbGN0LT5zcmMoMCku
-bW9kLmdldE9wKCk7CisgICBzbGN0LT5zcmMoMCkubW9kID0gc2xjdC0+c3JjKDApLm1vZCBeIE1v
-ZGlmaWVyKHNsY3QtPm9wKTsKICAgIHNsY3QtPnNldFNyYygxLCBOVUxMKTsKICAgIHNsY3QtPnNl
-dFNyYygyLCBOVUxMKTsKIH0KLS0gCjIuMTIuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL21lc2EtZGV2Cg==
+U2xvd2x5IHdlIGFyZSBnZXR0aW5nIHRvIHRoZSBwb2ludCwgdGhhdCB3ZSBtaXNzIGVub3VnaCBv
+cHRpbWl6YXRpb24Kb3Bwb3J0dW5pdGllcyBhcyB0aGUgcmVzdWx0IG9mIG91ciBvd24gcGFzc2Vz
+LgoKRm9yIHRoaXMgd2UgbmVlZCB0byBmaXggQWxnZWJyYWljT3B0IHRvIGJlIGFibGUgdG8gaGFu
+ZGxlIG1vZHMgb24gc291cmNlcwp3aXRob3V0IGNyZWF0aW5nIG5ldyBpc3N1ZXMuCgpUaGUgbGFz
+dCBwYXRjaCBlbmFibGVzIGxvb3Bpbmcgb3B0cy4KCnYyOiB1cGRhdGUgY29tbWl0IGF1dGhvcgoK
+S2Fyb2wgSGVyYnN0ICgzKToKICBudjUwL2lyOiBmaXggQWxnZWJyYWljT3B0IGZvciBzbGN0cyB3
+aXRoIG1vZHMKICBudjUwL2lyOiBoYW5kbGUgbG9nb3BzIHdpdGggTk9UIGluIEFsZ2VicmFpY09w
+dAogIG52NTAvaXI6IHJ1biBzb21lIHBhc3NlcyBtdWx0aXBsZSB0aW1lcwoKIC4uLi9kcml2ZXJz
+L25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcCAgIHwgMjkgKysrKysrKysrKysr
+KysrLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDIwIGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25z
+KC0pCgotLSAKMi4xMi4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
