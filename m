@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100581] Memory corruption & crash in
-	nouveau_fence_sync
-Date: Wed, 05 Apr 2017 13:13:47 +0000
-Message-ID: <bug-100581-8800-CFUG9t9SdR@http.bugs.freedesktop.org/>
-References: <bug-100581-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100435] [GM107] Kernel 4.10(.6) nouveau_fence_sync
+ -> ... dma_fence_default_wait, null spinlock error.
+Date: Wed, 05 Apr 2017 13:51:41 +0000
+Message-ID: <bug-100435-8800-cYjik015wp@http.bugs.freedesktop.org/>
+References: <bug-100435-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0443962224=="
+Content-Type: multipart/mixed; boundary="===============2126295352=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100581-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0443962224==
-Content-Type: multipart/alternative; boundary="14913980271.DB8Ee5f.22860";
+--===============2126295352==
+Content-Type: multipart/alternative; boundary="14914003010.eACC.27785";
  charset="UTF-8"
 
 
---14913980271.DB8Ee5f.22860
-Date: Wed, 5 Apr 2017 13:13:47 +0000
+--14914003010.eACC.27785
+Date: Wed, 5 Apr 2017 13:51:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100581
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100435
 
---- Comment #2 from Jeremy Booker <jeremy.booker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Similar, possibly related bug in
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100435.
-
-My crash was in nouveau_fence_sync, while the crash in #100435 was in
-dma_fence_default_wait and has to do with a spin lock.
+--- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100431 could be relevant her=
+e.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14913980271.DB8Ee5f.22860
-Date: Wed, 5 Apr 2017 13:13:47 +0000
+--14914003010.eACC.27785
+Date: Wed, 5 Apr 2017 13:51:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,28 +61,26 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Memory corruption &amp; crash in nouveau_fence_sync"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100581#c2">Commen=
-t # 2</a>
+   title=3D"NEW - [GM107] Kernel 4.10(.6) nouveau_fence_sync -&gt; ... dma_=
+fence_default_wait, null spinlock error."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100435#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Memory corruption &amp; crash in nouveau_fence_sync"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100581">bug 10058=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jeremy.booker&#64;gmail.com" title=3D"Jeremy Booker &lt;jeremy.booker&#64;g=
-mail.com&gt;"> <span class=3D"fn">Jeremy Booker</span></a>
-</span></b>
-        <pre>Similar, possibly related bug in
-<a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM107] Kernel 4.10(.6) nouveau_fence_sync -&gt; ... dma_=
 fence_default_wait, null spinlock error."
-   href=3D"show_bug.cgi?id=3D100435">https://bugs.freedesktop.org/show_bug.=
-cgi?id=3D100435</a>.
-
-My crash was in nouveau_fence_sync, while the crash in #100435 was in
-dma_fence_default_wait and has to do with a spin lock.</pre>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100435">bug 10043=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ben Skeggs</span></a>
+</span></b>
+        <pre><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv50: memory corruption due to use-after-free of dma_fenc=
+e"
+   href=3D"show_bug.cgi?id=3D100431">https://bugs.freedesktop.org/show_bug.=
+cgi?id=3D100431</a> could be relevant here.</pre>
         </div>
       </p>
 
@@ -99,9 +94,9 @@ dma_fence_default_wait and has to do with a spin lock.</pre>
     </body>
 </html>=
 
---14913980271.DB8Ee5f.22860--
+--14914003010.eACC.27785--
 
---===============0443962224==
+--===============2126295352==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0443962224==--
+--===============2126295352==--
