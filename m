@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100567] New: Nouveau system freeze fifo: SCHED_ERROR
- 0a [CTXSW_TIMEOUT]
-Date: Tue, 04 Apr 2017 20:09:12 +0000
-Message-ID: <bug-100567-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100431] nv50: memory corruption due to
+ use-after-free of dma_fence
+Date: Wed, 05 Apr 2017 08:30:53 +0000
+Message-ID: <bug-100431-8800-LUkNcLP2fW@http.bugs.freedesktop.org/>
+References: <bug-100431-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0194753435=="
+Content-Type: multipart/mixed; boundary="===============1925072536=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100431-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,69 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0194753435==
-Content-Type: multipart/alternative; boundary="14913365520.ba58bfD9.13525";
+--===============1925072536==
+Content-Type: multipart/alternative; boundary="14913810532.C06C99AD.25841";
  charset="UTF-8"
 
 
---14913365520.ba58bfD9.13525
-Date: Tue, 4 Apr 2017 20:09:12 +0000
+--14913810532.C06C99AD.25841
+Date: Wed, 5 Apr 2017 08:30:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100431
 
-            Bug ID: 100567
-           Summary: Nouveau system freeze fifo: SCHED_ERROR 0a
-                    [CTXSW_TIMEOUT]
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: jeremy.booker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Can you give this commit[1] a try?
 
-Created attachment 130676
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130676&action=3Dedit
-journalctl output for last boot to crash
+Ben.
 
-I'm experiencing a random, but consistent hard-free (cannot switch virtual
-terminals) running an nVidia card with three monitors under Fedora 25. Rece=
-nt
-kernel and driver updates have seemed to make this freeze much more frequent
-(5-6 times in two work days).
-
-Journalctl -b -1 output is attached. Most relevant lines are:
-
-kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-kernel: nouveau 0000:01:00.0: fifo: gr engine fault on channel 12,
-recovering...
-kernel: [drm:drm_atomic_helper_swap_state [drm_kms_helper]] *ERROR*
-[CRTC:37:head-0] hw_done timed out
-kernel: [drm:drm_atomic_helper_wait_for_dependencies [drm_kms_helper]] *ERR=
-OR*
-[CRTC:37:head-0] hw_done timed out
-kernel: [drm:drm_atomic_helper_wait_for_dependencies [drm_kms_helper]] *ERR=
-OR*
-[CRTC:37:head-0] flip_done timed out
-
-A possibly related bug is #96562, but it is old and hasn't received any
-attention, so I'm opening a new one.
+[1]
+https://github.com/skeggsb/nouveau/commit/23da66b47d9a7ca6a7c4a7f574a8842d8=
+356fec5
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14913365520.ba58bfD9.13525
-Date: Tue, 4 Apr 2017 20:09:12 +0000
+--14913810532.C06C99AD.25841
+Date: Wed, 5 Apr 2017 08:30:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -92,118 +61,33 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">100567</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>jeremy.booker&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130676=
-" name=3D"attach_130676" title=3D"journalctl output for last boot to crash"=
->attachment 130676</a> <a href=3D"attachment.cgi?id=3D130676&amp;action=3De=
-dit" title=3D"journalctl output for last boot to crash">[details]</a></span>
-journalctl output for last boot to crash
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv50: memory corruption due to use-after-free of dma_fenc=
+e"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100431#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv50: memory corruption due to use-after-free of dma_fenc=
+e"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100431">bug 10043=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ben Skeggs</span></a>
+</span></b>
+        <pre>Can you give this commit[1] a try?
 
-I'm experiencing a random, but consistent hard-free (cannot switch virtual
-terminals) running an nVidia card with three monitors under Fedora 25. Rece=
-nt
-kernel and driver updates have seemed to make this freeze much more frequent
-(5-6 times in two work days).
+Ben.
 
-Journalctl -b -1 output is attached. Most relevant lines are:
-
-kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-kernel: nouveau 0000:01:00.0: fifo: gr engine fault on channel 12,
-recovering...
-kernel: [drm:drm_atomic_helper_swap_state [drm_kms_helper]] *ERROR*
-[CRTC:37:head-0] hw_done timed out
-kernel: [drm:drm_atomic_helper_wait_for_dependencies [drm_kms_helper]] *ERR=
-OR*
-[CRTC:37:head-0] hw_done timed out
-kernel: [drm:drm_atomic_helper_wait_for_dependencies [drm_kms_helper]] *ERR=
-OR*
-[CRTC:37:head-0] flip_done timed out
-
-A possibly related bug is #96562, but it is old and hasn't received any
-attention, so I'm opening a new one.</pre>
+[1]
+<a href=3D"https://github.com/skeggsb/nouveau/commit/23da66b47d9a7ca6a7c4a7=
+f574a8842d8356fec5">https://github.com/skeggsb/nouveau/commit/23da66b47d9a7=
+ca6a7c4a7f574a8842d8356fec5</a></pre>
         </div>
       </p>
 
@@ -217,9 +101,9 @@ attention, so I'm opening a new one.</pre>
     </body>
 </html>=
 
---14913365520.ba58bfD9.13525--
+--14913810532.C06C99AD.25841--
 
---===============0194753435==
+--===============1925072536==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -229,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0194753435==--
+--===============1925072536==--
