@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100431] nv50: memory corruption due to
  use-after-free of dma_fence
-Date: Wed, 05 Apr 2017 08:30:53 +0000
-Message-ID: <bug-100431-8800-LUkNcLP2fW@http.bugs.freedesktop.org/>
+Date: Wed, 05 Apr 2017 11:30:55 +0000
+Message-ID: <bug-100431-8800-4OZUpSO6In@http.bugs.freedesktop.org/>
 References: <bug-100431-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1925072536=="
+Content-Type: multipart/mixed; boundary="===============2041330831=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100431-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1925072536==
-Content-Type: multipart/alternative; boundary="14913810532.C06C99AD.25841";
+--===============2041330831==
+Content-Type: multipart/alternative; boundary="14913918550.eDAB.9682";
  charset="UTF-8"
 
 
---14913810532.C06C99AD.25841
-Date: Wed, 5 Apr 2017 08:30:53 +0000
+--14913918550.eDAB.9682
+Date: Wed, 5 Apr 2017 11:30:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100431
 
---- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Can you give this commit[1] a try?
+--- Comment #3 from Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org> ---
+Thanks Ben, the quoted commit applied onto v4.10.7 fixes the problem for me.
 
-Ben.
+Tested-by: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
 
-[1]
-https://github.com/skeggsb/nouveau/commit/23da66b47d9a7ca6a7c4a7f574a8842d8=
-356fec5
+I take it this will be tagged for -stable?
+
+Thanks,
+Ard.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14913810532.C06C99AD.25841
-Date: Wed, 5 Apr 2017 08:30:53 +0000
+--14913918550.eDAB.9682
+Date: Wed, 5 Apr 2017 11:30:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +69,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - nv50: memory corruption due to use-after-free of dma_fenc=
 e"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100431#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100431#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nv50: memory corruption due to use-after-free of dma_fenc=
@@ -77,17 +78,19 @@ e"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100431">bug 10043=
 1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
+ard.biesheuvel&#64;linaro.org" title=3D"Ard Biesheuvel &lt;ard.biesheuvel&#=
+64;linaro.org&gt;"> <span class=3D"fn">Ard Biesheuvel</span></a>
 </span></b>
-        <pre>Can you give this commit[1] a try?
+        <pre>Thanks Ben, the quoted commit applied onto v4.10.7 fixes the p=
+roblem for me.
 
-Ben.
+Tested-by: Ard Biesheuvel &lt;<a href=3D"mailto:ard.biesheuvel&#64;linaro.o=
+rg">ard.biesheuvel&#64;linaro.org</a>&gt;
 
-[1]
-<a href=3D"https://github.com/skeggsb/nouveau/commit/23da66b47d9a7ca6a7c4a7=
-f574a8842d8356fec5">https://github.com/skeggsb/nouveau/commit/23da66b47d9a7=
-ca6a7c4a7f574a8842d8356fec5</a></pre>
+I take it this will be tagged for -stable?
+
+Thanks,
+Ard.</pre>
         </div>
       </p>
 
@@ -101,9 +104,9 @@ ca6a7c4a7f574a8842d8356fec5</a></pre>
     </body>
 </html>=
 
---14913810532.C06C99AD.25841--
+--14913918550.eDAB.9682--
 
---===============1925072536==
+--===============2041330831==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1925072536==--
+--===============2041330831==--
