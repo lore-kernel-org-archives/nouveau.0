@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT]
-Date: Wed, 05 Apr 2017 16:18:18 +0000
-Message-ID: <bug-100567-8800-smyRJGkd9B@http.bugs.freedesktop.org/>
-References: <bug-100567-8800@http.bugs.freedesktop.org/>
+From: David Howells <dhowells-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 02/38] Annotate hardware config module parameters
+ in arch/x86/mm/
+Date: Wed, 05 Apr 2017 17:57:08 +0100
+Message-ID: <149141142839.29162.10470212173396183651.stgit@warthog.procyon.org.uk>
+References: <149141141298.29162.5612793122429261720.stgit@warthog.procyon.org.uk>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1503537812=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <149141141298.29162.5612793122429261720.stgit-S6HVgzuS8uM4Awkfq6JHfwNdhmdF6hFW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,113 +18,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: gnomes-qBU/x9rampVanCEyBjwyrvXRex20P6io@public.gmane.org, "H. Peter Anvin" <hpa-YMNOUZJC4hwAvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, x86-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, Steven Rostedt <rostedt-nx8X9YLhiw1AfugRpC6u6w@public.gmane.org>, dhowells-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, linux-security-module-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, keyrings-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org, Thomas Gleixner <tglx-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>, Ingo Molnar <mingo-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1503537812==
-Content-Type: multipart/alternative; boundary="14914090980.3e77.14565";
- charset="UTF-8"
-
-
---14914090980.3e77.14565
-Date: Wed, 5 Apr 2017 16:18:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
-
---- Comment #1 from Jeremy Booker <jeremy.booker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I've tried downgrading to kernel 4.9.14, as the 4.10 series seems to have o=
-ther
-changes relating to video drives and nouveau (which are also causing crashe=
-s).
-
-I made it from ~8am to ~noon without a crash. Same basic log entries found =
-in
-journalctl output:
-
-
-Apr 05 12:10:09 localhost.localdomain kernel: nouveau 0000:01:00.0: fifo:
-SCHED_ERROR 0a [CTXSW_TIMEOUT]
-Apr 05 12:10:09 localhost.localdomain kernel: nouveau 0000:01:00.0: fifo: gr
-engine fault on channel 10, recovering...
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14914090980.3e77.14565
-Date: Wed, 5 Apr 2017 16:18:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jeremy.booker&#64;gmail.com" title=3D"Jeremy Booker &lt;jeremy.booker&#64;g=
-mail.com&gt;"> <span class=3D"fn">Jeremy Booker</span></a>
-</span></b>
-        <pre>I've tried downgrading to kernel 4.9.14, as the 4.10 series se=
-ems to have other
-changes relating to video drives and nouveau (which are also causing crashe=
-s).
-
-I made it from ~8am to ~noon without a crash. Same basic log entries found =
-in
-journalctl output:
-
-
-Apr 05 12:10:09 localhost.localdomain kernel: nouveau 0000:01:00.0: fifo:
-SCHED_ERROR 0a [CTXSW_TIMEOUT]
-Apr 05 12:10:09 localhost.localdomain kernel: nouveau 0000:01:00.0: fifo: gr
-engine fault on channel 10, recovering...</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14914090980.3e77.14565--
-
---===============1503537812==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1503537812==--
+V2hlbiB0aGUga2VybmVsIGlzIHJ1bm5pbmcgaW4gc2VjdXJlIGJvb3QgbW9kZSwgd2UgbG9jayBk
+b3duIHRoZSBrZXJuZWwgdG8KcHJldmVudCB1c2Vyc3BhY2UgZnJvbSBtb2RpZnlpbmcgdGhlIHJ1
+bm5pbmcga2VybmVsIGltYWdlLiAgV2hpbHN0IHRoaXMKaW5jbHVkZXMgcHJvaGliaXRpbmcgYWNj
+ZXNzIHRvIHRoaW5ncyBsaWtlIC9kZXYvbWVtLCBpdCBtdXN0IGFsc28gcHJldmVudAphY2Nlc3Mg
+YnkgbWVhbnMgb2YgY29uZmlndXJpbmcgZHJpdmVyIG1vZHVsZXMgaW4gc3VjaCBhIHdheSBhcyB0
+byBjYXVzZSBhCmRldmljZSB0byBhY2Nlc3Mgb3IgbW9kaWZ5IHRoZSBrZXJuZWwgaW1hZ2UuCgpU
+byB0aGlzIGVuZCwgYW5ub3RhdGUgbW9kdWxlX3BhcmFtKiBzdGF0ZW1lbnRzIHRoYXQgcmVmZXIg
+dG8gaGFyZHdhcmUKY29uZmlndXJhdGlvbiBhbmQgaW5kaWNhdGUgZm9yIGZ1dHVyZSByZWZlcmVu
+Y2Ugd2hhdCB0eXBlIG9mIHBhcmFtZXRlciB0aGV5CnNwZWNpZnkuICBUaGUgcGFyYW1ldGVyIHBh
+cnNlciBpbiB0aGUgY29yZSBzZWVzIHRoaXMgaW5mb3JtYXRpb24gYW5kIGNhbgpza2lwIHN1Y2gg
+cGFyYW1ldGVycyB3aXRoIGFuIGVycm9yIG1lc3NhZ2UgaWYgdGhlIGtlcm5lbCBpcyBsb2NrZWQg
+ZG93bi4KVGhlIG1vZHVsZSBpbml0aWFsaXNhdGlvbiB0aGVuIHJ1bnMgYXMgbm9ybWFsLCBidXQg
+anVzdCBzZWVzIHdoYXRldmVyIHRoZQpkZWZhdWx0IHZhbHVlcyBmb3IgdGhvc2UgcGFyYW1ldGVy
+cyBpcy4KCk5vdGUgdGhhdCB3ZSBkbyBzdGlsbCBuZWVkIHRvIGRvIHRoZSBtb2R1bGUgaW5pdGlh
+bGlzYXRpb24gYmVjYXVzZSBzb21lCmRyaXZlcnMgaGF2ZSB2aWFibGUgZGVmYXVsdHMgc2V0IGlu
+IGNhc2UgcGFyYW1ldGVycyBhcmVuJ3Qgc3BlY2lmaWVkIGFuZApzb21lIGRyaXZlcnMgc3VwcG9y
+dCBhdXRvbWF0aWMgY29uZmlndXJhdGlvbiAoZS5nLiBQTlAgb3IgUENJKSBpbiBhZGRpdGlvbgp0
+byBtYW51YWxseSBjb2RlZCBwYXJhbWV0ZXJzLgoKVGhpcyBwYXRjaCBhbm5vdGF0ZXMgZHJpdmVy
+cyBpbiBhcmNoL3g4Ni9tbS8uCgpTdWdnZXN0ZWQtYnk6IEFsYW4gQ294IDxnbm9tZXNAbHhvcmd1
+ay51a3V1Lm9yZy51az4KU2lnbmVkLW9mZi1ieTogRGF2aWQgSG93ZWxscyA8ZGhvd2VsbHNAcmVk
+aGF0LmNvbT4KY2M6IFN0ZXZlbiBSb3N0ZWR0IDxyb3N0ZWR0QGdvb2RtaXMub3JnPgpjYzogSW5n
+byBNb2xuYXIgPG1pbmdvQGtlcm5lbC5vcmc+CmNjOiBUaG9tYXMgR2xlaXhuZXIgPHRnbHhAbGlu
+dXRyb25peC5kZT4KY2M6ICJILiBQZXRlciBBbnZpbiIgPGhwYUB6eXRvci5jb20+CmNjOiB4ODZA
+a2VybmVsLm9yZwpjYzogbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZwpjYzogbm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKLS0tCgogYXJjaC94ODYvbW0vdGVzdG1taW90cmFjZS5jIHwg
+ICAgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpk
+aWZmIC0tZ2l0IGEvYXJjaC94ODYvbW0vdGVzdG1taW90cmFjZS5jIGIvYXJjaC94ODYvbW0vdGVz
+dG1taW90cmFjZS5jCmluZGV4IDM4ODY4YWRmMDdlYS4uZjZhZTY4MzBiMzQxIDEwMDY0NAotLS0g
+YS9hcmNoL3g4Ni9tbS90ZXN0bW1pb3RyYWNlLmMKKysrIGIvYXJjaC94ODYvbW0vdGVzdG1taW90
+cmFjZS5jCkBAIC05LDcgKzksNyBAQAogI2luY2x1ZGUgPGxpbnV4L21taW90cmFjZS5oPgogCiBz
+dGF0aWMgdW5zaWduZWQgbG9uZyBtbWlvX2FkZHJlc3M7Ci1tb2R1bGVfcGFyYW0obW1pb19hZGRy
+ZXNzLCB1bG9uZywgMCk7Cittb2R1bGVfcGFyYW1faHcobW1pb19hZGRyZXNzLCB1bG9uZywgaW9t
+ZW0sIDApOwogTU9EVUxFX1BBUk1fREVTQyhtbWlvX2FkZHJlc3MsICIgU3RhcnQgYWRkcmVzcyBv
+ZiB0aGUgbWFwcGluZyBvZiAxNiBrQiAiCiAJCQkJIihvciA4IE1CIGlmIHJlYWRfZmFyIGlzIG5v
+bi16ZXJvKS4iKTsKIAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
