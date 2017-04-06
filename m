@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT]
-Date: Thu, 06 Apr 2017 15:18:12 +0000
-Message-ID: <bug-100567-8800-ZVPsxUsGnz@http.bugs.freedesktop.org/>
-References: <bug-100567-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH v2] bios/perf: Parse PCIe speeds correctly for ver
+	0x40
+Date: Thu,  6 Apr 2017 23:17:31 +0200
+Message-ID: <20170406211731.7322-1-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1195462291=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,89 +19,25 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1195462291==
-Content-Type: multipart/alternative; boundary="14914918911.8aF1CD.11945";
- charset="UTF-8"
-
-
---14914918911.8aF1CD.11945
-Date: Thu, 6 Apr 2017 15:18:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
-
---- Comment #2 from Jeremy Booker <jeremy.booker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90453 Sounds related.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14914918911.8aF1CD.11945
-Date: Thu, 6 Apr 2017 15:18:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jeremy.booker&#64;gmail.com" title=3D"Jeremy Booker &lt;jeremy.booker&#64;g=
-mail.com&gt;"> <span class=3D"fn">Jeremy Booker</span></a>
-</span></b>
-        <pre><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR=
- errors"
-   href=3D"show_bug.cgi?id=3D90453">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D90453</a> Sounds related.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14914918911.8aF1CD.11945--
-
---===============1195462291==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1195462291==--
+djI6IDB4MjEgYWxzbyBtZWFucyAyLjUgR1QvcwoKU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0
+IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Ci0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlv
+cy9wZXJmLmMgfCAxNSArKysrKysrLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlv
+bnMoKyksIDggZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJk
+ZXYvYmlvcy9wZXJmLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3BlcmYuYwppbmRl
+eCBjMzA2ODM1OC4uM2JiYjdmZWQgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2Jpb3MvcGVyZi5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvcGVyZi5jCkBA
+IC0xNDYsMTggKzE0NiwxNyBAQCBudmJpb3NfcGVyZkVwKHN0cnVjdCBudmttX2Jpb3MgKmJpb3Ms
+IGludCBpZHgsCiAJCWJyZWFrOwogCWNhc2UgMHg0MDoKIAkJaW5mby0+dm9sdGFnZSAgPSBudmJp
+b3NfcmQwOChiaW9zLCBwZXJmICsgMHgwMik7Ci0JCXN3aXRjaCAobnZiaW9zX3JkMDgoYmlvcywg
+cGVyZiArIDB4YikgJiAweDMpIHsKLQkJY2FzZSAwOgotCQkJaW5mby0+cGNpZV9zcGVlZCA9IE5W
+S01fUENJRV9TUEVFRF81XzA7Ci0JCQlicmVhazsKLQkJY2FzZSAzOgotCQljYXNlIDE6CisJCXN3
+aXRjaCAobnZiaW9zX3JkMDgoYmlvcywgcGVyZiArIDB4YikgJiAweDIxKSB7CisJCWNhc2UgMHgw
+MToKKwkJY2FzZSAweDIxOgogCQkJaW5mby0+cGNpZV9zcGVlZCA9IE5WS01fUENJRV9TUEVFRF8y
+XzU7CiAJCQlicmVhazsKLQkJY2FzZSAyOgotCQkJaW5mby0+cGNpZV9zcGVlZCA9IE5WS01fUENJ
+RV9TUEVFRF84XzA7CisJCWNhc2UgMHgyMDoKKwkJCWluZm8tPnBjaWVfc3BlZWQgPSBOVktNX1BD
+SUVfU1BFRURfNV8wOwogCQkJYnJlYWs7CisJCWNhc2UgMHgwMDoKIAkJZGVmYXVsdDoKKwkJCWlu
+Zm8tPnBjaWVfc3BlZWQgPSBOVktNX1BDSUVfU1BFRURfOF8wOwogCQkJYnJlYWs7CiAJCX0KIAkJ
+aW5mby0+cGNpZV93aWR0aCA9IDB4ZmY7Ci0tIAoyLjEyLjIKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
