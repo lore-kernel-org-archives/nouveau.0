@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90453] [NVE4] Desktop freezes & PDISP, PFIFO,
- PGRAPH and PGR errors
-Date: Thu, 06 Apr 2017 15:17:39 +0000
-Message-ID: <bug-90453-8800-ObQgZ3Mnav@http.bugs.freedesktop.org/>
-References: <bug-90453-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
+ [CTXSW_TIMEOUT]
+Date: Thu, 06 Apr 2017 15:18:12 +0000
+Message-ID: <bug-100567-8800-ZVPsxUsGnz@http.bugs.freedesktop.org/>
+References: <bug-100567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0548248341=="
+Content-Type: multipart/mixed; boundary="===============1195462291=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0548248341==
-Content-Type: multipart/alternative; boundary="14914918592.f33A80d3.12147";
+--===============1195462291==
+Content-Type: multipart/alternative; boundary="14914918911.8aF1CD.11945";
  charset="UTF-8"
 
 
---14914918592.f33A80d3.12147
-Date: Thu, 6 Apr 2017 15:17:39 +0000
+--14914918911.8aF1CD.11945
+Date: Thu, 6 Apr 2017 15:18:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90453
-
-Jeremy Booker <jeremy.booker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |jeremy.booker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #28 from Jeremy Booker <jeremy.booker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I may have reported a duplicate/related bug here:
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
 
-I'm also running Fedora 25 with Wayland/Gnome3 and had this crash under both
-the 4.9 and 4.10 kernels using the nouveau drivers. I have an nVidia NVS 510
-card with 3 monitors attached.
+--- Comment #2 from Jeremy Booker <jeremy.booker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+https://bugs.freedesktop.org/show_bug.cgi?id=3D90453 Sounds related.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14914918592.f33A80d3.12147
-Date: Thu, 6 Apr 2017 15:17:39 +0000
+--14914918911.8aF1CD.11945
+Date: Thu, 6 Apr 2017 15:18:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,61 +55,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jeremy.bo=
-oker&#64;gmail.com" title=3D"Jeremy Booker &lt;jeremy.booker&#64;gmail.com&=
-gt;"> <span class=3D"fn">Jeremy Booker</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR=
- errors"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90453">bug 90453<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>jeremy.booker&#64;gmail.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR=
- errors"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90453#c28">Commen=
-t # 28</a>
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR=
- errors"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90453">bug 90453<=
-/a>
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 jeremy.booker&#64;gmail.com" title=3D"Jeremy Booker &lt;jeremy.booker&#64;g=
 mail.com&gt;"> <span class=3D"fn">Jeremy Booker</span></a>
 </span></b>
-        <pre>I may have reported a duplicate/related bug here:
-<a class=3D"bz_bug_link=20
+        <pre><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"show_bug.cgi?id=3D100567">https://bugs.freedesktop.org/show_bug.=
-cgi?id=3D100567</a>
-
-I'm also running Fedora 25 with Wayland/Gnome3 and had this crash under both
-the 4.9 and 4.10 kernels using the nouveau drivers. I have an nVidia NVS 510
-card with 3 monitors attached.</pre>
+   title=3D"NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR=
+ errors"
+   href=3D"show_bug.cgi?id=3D90453">https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D90453</a> Sounds related.</pre>
         </div>
       </p>
 
@@ -134,9 +93,9 @@ card with 3 monitors attached.</pre>
     </body>
 </html>=
 
---14914918592.f33A80d3.12147--
+--14914918911.8aF1CD.11945--
 
---===============0548248341==
+--===============1195462291==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0548248341==--
+--===============1195462291==--
