@@ -1,11 +1,13 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: NVAC - WARN_ON(nvbo->pin_refcnt > 0);
-Date: Thu, 6 Apr 2017 16:44:38 +0200
-Message-ID: <02454129-11d3-1ffa-7a6e-75910d5bff97@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90453] [NVE4] Desktop freezes & PDISP, PFIFO,
+ PGRAPH and PGR errors
+Date: Thu, 06 Apr 2017 15:17:39 +0000
+Message-ID: <bug-90453-8800-ObQgZ3Mnav@http.bugs.freedesktop.org/>
+References: <bug-90453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0548248341=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,36 +17,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ci0tLS0tLS0tLS0tLVsgY3V0IGhlcmUgXS0tLS0tLS0tLS0tLQpXQVJOSU5HOiBDUFU6IDMgUElE
-OiA2OTIgYXQgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jOjEzNyBub3V2ZWF1
-X2JvX2RlbF90dG0rMHg3Zi8weDkwIFtub3V2ZWF1XQpNb2R1bGVzIGxpbmtlZCBpbjogLi4uIG5v
-dXZlYXUgbXhtX3dtaSB2aWRlbyBpMmNfYWxnb19iaXQgdHRtIGRybV9rbXNfaGVscGVyIGRybSB3
-bWkgLi4uCkNQVTogMyBQSUQ6IDY5MiBDb21tOiBYb3JnIE5vdCB0YWludGVkIDQuMTAuOC0xMDAy
-LmZjMjQueDg2XzY0ICMxCi4uLgpDYWxsIFRyYWNlOgogZHVtcF9zdGFjaysweDYzLzB4ODYKIF9f
-d2FybisweGNiLzB4ZjAKIHdhcm5fc2xvd3BhdGhfbnVsbCsweDFkLzB4MjAKIG5vdXZlYXVfYm9f
-ZGVsX3R0bSsweDdmLzB4OTAgW25vdXZlYXVdCiB0dG1fYm9fcmVsZWFzZV9saXN0KzB4Y2IvMHgy
-MTAgW3R0bV0KIHR0bV9ib19yZWxlYXNlKzB4MTk4LzB4MjQwIFt0dG1dCiB0dG1fYm9fdW5yZWYr
-MHgyNC8weDMwIFt0dG1dCiBub3V2ZWF1X2dlbV9vYmplY3RfZGVsKzB4OTQvMHhmMCBbbm91dmVh
-dV0KIGRybV9nZW1fb2JqZWN0X2ZyZWUrMHgyOS8weDcwIFtkcm1dCiBkcm1fZ2VtX29iamVjdF91
-bnJlZmVyZW5jZV91bmxvY2tlZCsweDNhLzB4YTAgW2RybV0KIGRybV9nZW1fb2JqZWN0X2hhbmRs
-ZV91bnJlZmVyZW5jZV91bmxvY2tlZCsweDY1LzB4YjAgW2RybV0KIGRybV9nZW1fb2JqZWN0X3Jl
-bGVhc2VfaGFuZGxlKzB4NTMvMHg5MCBbZHJtXQogaWRyX2Zvcl9lYWNoKzB4YjAvMHgxMTAKID8g
-ZHJtX2dlbV9vYmplY3RfaGFuZGxlX3VucmVmZXJlbmNlX3VubG9ja2VkKzB4YjAvMHhiMCBbZHJt
-XQogPyBub3V2ZWF1X2FiaTE2X2ZpbmkrMHg1MC8weDcwIFtub3V2ZWF1XQogZHJtX2dlbV9yZWxl
-YXNlKzB4MjAvMHgzMCBbZHJtXQogZHJtX3JlbGVhc2UrMHgzNGMvMHgzYTAgW2RybV0KIF9fZnB1
-dCsweGRmLzB4MWUwCiBfX19fZnB1dCsweGUvMHgxMAogdGFza193b3JrX3J1bisweDgwLzB4YTAK
-IGRvX2V4aXQrMHgyYzgvMHhiODAKID8gX19kb19wYWdlX2ZhdWx0KzB4MjY2LzB4NGUwCiBkb19n
-cm91cF9leGl0KzB4NDcvMHhiMAogU3lTX2V4aXRfZ3JvdXArMHgxNC8weDIwCiBlbnRyeV9TWVND
-QUxMXzY0X2Zhc3RwYXRoKzB4MWEvMHhhOQouLi4KLS0tWyBlbmQgdHJhY2UgMDJiZDRiNzVjOTFj
-OTRhNyBdLS0tCgo0LjEwLjgtMTAwMi5mYzI0Lng4Nl82NCA9IDQuMTAuOC0xMDAuZmMyNC54ODZf
-NjQgKyBodHRwczovL2dpdGh1Yi5jb20vc2tlZ2dzYi9ub3V2ZWF1L2NvbW1pdC8yM2RhNjZiLnBh
-dGNoCmkuZS4Kc3RhYmxlIDQuMTAuOCArICJrbXMvbnY1MDogZml4IGRvdWJsZSBkbWFfZmVuY2Vf
-cHV0KCkgd2hlbiBkZXN0cm95aW5nIHBsYW5lIHN0YXRlIgoKClJlZi4KaHR0cHM6Ly9naXQua2Vy
-bmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvc3RhYmxlL2xpbnV4LXN0YWJsZS5naXQv
-dHJlZS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmM/aWQ9cmVmcy90YWdzL3Y0
-LjEwLjgjbjEzNwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0548248341==
+Content-Type: multipart/alternative; boundary="14914918592.f33A80d3.12147";
+ charset="UTF-8"
+
+
+--14914918592.f33A80d3.12147
+Date: Thu, 6 Apr 2017 15:17:39 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D90453
+
+Jeremy Booker <jeremy.booker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |jeremy.booker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #28 from Jeremy Booker <jeremy.booker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I may have reported a duplicate/related bug here:
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
+
+I'm also running Fedora 25 with Wayland/Gnome3 and had this crash under both
+the 4.9 and 4.10 kernels using the nouveau drivers. I have an nVidia NVS 510
+card with 3 monitors attached.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14914918592.f33A80d3.12147
+Date: Thu, 6 Apr 2017 15:17:39 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jeremy.bo=
+oker&#64;gmail.com" title=3D"Jeremy Booker &lt;jeremy.booker&#64;gmail.com&=
+gt;"> <span class=3D"fn">Jeremy Booker</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR=
+ errors"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90453">bug 90453<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>jeremy.booker&#64;gmail.com
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR=
+ errors"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90453#c28">Commen=
+t # 28</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR=
+ errors"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90453">bug 90453<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jeremy.booker&#64;gmail.com" title=3D"Jeremy Booker &lt;jeremy.booker&#64;g=
+mail.com&gt;"> <span class=3D"fn">Jeremy Booker</span></a>
+</span></b>
+        <pre>I may have reported a duplicate/related bug here:
+<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"show_bug.cgi?id=3D100567">https://bugs.freedesktop.org/show_bug.=
+cgi?id=3D100567</a>
+
+I'm also running Fedora 25 with Wayland/Gnome3 and had this crash under both
+the 4.9 and 4.10 kernels using the nouveau drivers. I have an nVidia NVS 510
+card with 3 monitors attached.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14914918592.f33A80d3.12147--
+
+--===============0548248341==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0548248341==--
