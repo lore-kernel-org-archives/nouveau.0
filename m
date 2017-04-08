@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
-	]
-Date: Fri, 07 Apr 2017 13:37:01 +0000
-Message-ID: <bug-100423-8800-ztLY14y9mM@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?Q?Attila_T=c3=b3th?= <tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Small bug in nv50 with vdpau
+Date: Sat, 8 Apr 2017 08:02:19 +0200
+Message-ID: <daad6907-84aa-ccc3-1cbc-d8a5efd28674@gmail.com>
+References: <88c9048a-d892-eb16-9b45-f721e32d0148@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0277379907=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <88c9048a-d892-eb16-9b45-f721e32d0148-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,122 +20,31 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0277379907==
-Content-Type: multipart/alternative; boundary="14915722212.eec9c2F12.29104";
- charset="UTF-8"
-
-
---14915722212.eec9c2F12.29104
-Date: Fri, 7 Apr 2017 13:37:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
-
---- Comment #1 from gene <gjunk-AoUl3cPchBZWk0Htik3J/w@public.gmane.org> ---
-I have similar issue on dell precision 5520 with=20
-Intel(R) Core(TM) i7-7820HQ CPU @ 2.90GHz
-Has nvidia maxwell (NV117) and 4k touch screen
-
-I see these :
-
-
- nouveau 0000:01:00.0: fb: 4096 MiB GDDR5=20
- nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]=
-=20
- nouveau 0000:01:00.0: priv: HUB0: 10ecc0 ffffffff (1f40822c)=20
- vga_switcheroo: enabled
- [TTM] Zone  kernel: Available graphics memory: 16334986 kiB=20
- [TTM] Zone   dma32: Available graphics memory: 2097152 kiB=20
- [TTM] Initializing pool allocator=20
- [TTM] Initializing DMA pool allocator=20
- nouveau 0000:01:00.0: DRM: VRAM: 4096 MiB=20
- nouveau 0000:01:00.0: DRM: GART: 1048576 MiB=20
- nouveau 0000:01:00.0: DRM: Pointer to TMDS table invalid=20
- nouveau 0000:01:00.0: DRM: DCB version 4.0=20
- nouveau 0000:01:00.0: DRM: Pointer to flat panel table invalid
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14915722212.eec9c2F12.29104
-Date: Fri, 7 Apr 2017 13:37:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gjunk&#64;sapience.com" title=3D"gene &lt;gjunk&#64;sapience.com&gt;"> <spa=
-n class=3D"fn">gene</span></a>
-</span></b>
-        <pre>I have similar issue on dell precision 5520 with=20
-Intel(R) Core(TM) i7-7820HQ CPU &#64; 2.90GHz
-Has nvidia maxwell (NV117) and 4k touch screen
-
-I see these :
-
-
- nouveau 0000:01:00.0: fb: 4096 MiB GDDR5=20
- nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]=
-=20
- nouveau 0000:01:00.0: priv: HUB0: 10ecc0 ffffffff (1f40822c)=20
- vga_switcheroo: enabled
- [TTM] Zone  kernel: Available graphics memory: 16334986 kiB=20
- [TTM] Zone   dma32: Available graphics memory: 2097152 kiB=20
- [TTM] Initializing pool allocator=20
- [TTM] Initializing DMA pool allocator=20
- nouveau 0000:01:00.0: DRM: VRAM: 4096 MiB=20
- nouveau 0000:01:00.0: DRM: GART: 1048576 MiB=20
- nouveau 0000:01:00.0: DRM: Pointer to TMDS table invalid=20
- nouveau 0000:01:00.0: DRM: DCB version 4.0=20
- nouveau 0000:01:00.0: DRM: Pointer to flat panel table invalid</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14915722212.eec9c2F12.29104--
-
---===============0277379907==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0277379907==--
+CkhpLAoKaSBoYXZlIG1hbnkgdHJvdWJsZXMgd2l0aCBsYXN0IGdwdSBvbiBsYXB0b3A6IHF1YWRy
+byBmeCA4ODBtIGR1cmluZwp2aWRlbyBkZWNvZGluZy4gSXQgaXMgcGVyZm9ybWFuY2UgcHJvYmxl
+bXMgYW5kIGFyZSBtYW55IGFydGVmYWN0cyBpbgp2ZXJ5IGZhc3QgcGFydCBvZiBtb3ZpZXMuIFRo
+aXMgdHJvdWJsZXMgd2FzIG5vdCBpbiBteSBvbGRlciBncHUgcXVhZHJvCmZ4NzcwbS4KClNvbHV0
+aW9uOgoKU2V0IGF0IGxlYXN0IGZvciBhbGwgdmlkZW8gcGxheWluZyBhdCBwZXJmb3JtYW5jZSBs
+ZXZlbCAxLgoKCmV4cGxhbmF0aW9uOgoKcXVhZHJvIGZ4ODgwbSBoYXZlIHBlcmZvcm1hbmNlIGxl
+dmVsIGFsc28gMCwgd2hpY2ggaXMgdXNlZCBkdXJpbmcgdmlkZW8KYWNjZWxlcmF0aW9uLCBidXQg
+aGF2ZSBwZXJmb3JtYWNlIGdwdSBvbmx5IDEzNS4wMCBNSHogKHZlcnkgbG93IGZvcgpmdWxsaGQg
+bXBlZzQgaW4gZmFzdCBwYXJ0IG9mIG1vb3ZpZXMgb3IgaW4geW91dHViZSB2aWRlb3MpLgoKT2xk
+ZXIgcXVhZHJvIGZ4NzcwbSBoYWQgcGVyZnJvYW1uY2UgbGV2ZWwgMCwgYXQgMTY5LjAwIG1oeiAo
+aXQgd2FzIG1heWJlCnRocmVzaG9sZCkuCgpOZXdlciBxdWFkcm8gazExMDBtIGhhdmUgcGVyZnJv
+bWFuY2UgbGV2ZWwgMCBhdCAgNDA1LjAwIE1Iei4KCgpUaHguIEkgY2hlY2tlZCBhbHNvIHBlcmZv
+cm1hbmNlIGxldmVsIGluIHByb3ByZXRpYXJ5IGRyaXZlciBkdXJpbmcgcGxheQpvZiBtb3ZpZXMu
+CgpJbiBxdWFkcm8gZng4MDBtIGlzIHVzZWQgcGVyZnJvYW1jZSBsZXZlbCAyIChncHUgY2xvY2sg
+NTUwbWh6LCBidXQgaQp0aGluZyBpdCB3aWxsIGJlIG9rIG9ubHkgcGVyZnJvYW1jZSBsZXZlbCAx
+IHdpdGggNDA1IG1oeikuCgoKRGVzY3JpcHRpb24gb2YgcGVyZm9ybWFuY2UgbGV2ZWxzIGluIGdw
+dXMKCmh0dHBzOi8vd3d3LnRlY2hwb3dlcnVwLmNvbS92Z2FiaW9zLzMyNDA5L2hwLXF1YWRyb2Z4
+NzcwbS01MTItMDgwNjI1CgpodHRwczovL3d3dy50ZWNocG93ZXJ1cC5jb20vdmdhYmlvcy85ODU0
+Ni9ocC1xdWFkcm9meDg4MG0tMTAyNC0xMDAzMDgKCmh0dHBzOi8vd3d3LnRlY2hwb3dlcnVwLmNv
+bS92Z2FiaW9zLzE1NzkyMS8xNTc5MjEKCgotLSAKUyBwb3pkcmF2b20gLyBtaXQgZnJldW5kbGlj
+aGVuIEdyw7zDn2VuIC8gYmVzdCByZWdhcmRzCgpJbmcuIEF0dGlsYSBUw7N0aCwgUGhELgoKRW1h
+aWwgYWRyZXNzIDogdG90aHNvZnRAZ21haWwuY29tIChQZXJzb25hbCkKClRlbCAtIFNLOiAgICAg
+ICs0MjEgOTEwIDI5OSAxODkgIChTV0FOIDRLQSAtIFNsb3ZhayBSZXB1YmxpYykKSVAgUGhvbmU6
+ICAgICAgKzQyMCA5MTAgMTE5IDc1OSAgKE9kb3Jpay5jeikKClBsZWFzZSBjb25zaWRlciB5b3Vy
+IGVudmlyb25tZW50YWwgcmVzcG9uc2liaWxpdHkgYmVmb3JlIHByaW50aW5nIHRoaXMgZS1tYWls
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
+IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
