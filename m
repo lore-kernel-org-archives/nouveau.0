@@ -1,50 +1,54 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH v2 2/3] nv50/ir: handle logops with NOT in
-	AlgebraicOpt
-Date: Sun, 9 Apr 2017 13:36:06 -0400
-Message-ID: <CAKb7Uvj-du8TtSA+OiSiZWmXc=0hgoksX3Lqvt0RcH3RYqQXJg@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH v2 1/3] nv50/ir: fix AlgebraicOpt for slcts
+	with mods
+Date: Sun, 9 Apr 2017 13:34:42 -0400
+Message-ID: <CAKb7UviJHvC=1o06HA1TN5b-iLe7iUNXED8ZSqCzuBpcoexQQw@mail.gmail.com>
 References: <20170403155822.1810-1-karolherbst@gmail.com>
- <20170403155822.1810-3-karolherbst@gmail.com>
+ <20170403155822.1810-2-karolherbst@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <20170403155822.1810-3-karolherbst@gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Karol Herbst <karolherbst@gmail.com>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20170403155822.1810-2-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 T24gTW9uLCBBcHIgMywgMjAxNyBhdCAxMTo1OCBBTSwgS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJz
 dEBnbWFpbC5jb20+IHdyb3RlOgo+IFNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJzdCA8a2Fyb2xo
 ZXJic3RAZ21haWwuY29tPgo+IC0tLQo+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29k
-ZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcCB8IDYgKysrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCA2
-IGluc2VydGlvbnMoKykKPgo+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
-dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCj4gaW5kZXggYmQ2MGE4NDk5OC4uMGRl
-ODRmZTlmYyAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdl
-bi9udjUwX2lyX3BlZXBob2xlLmNwcAo+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCj4gQEAgLTE4NTYsNiArMTg1NiwxMiBAQCBB
-bGdlYnJhaWNPcHQ6OmhhbmRsZUxPR09QKEluc3RydWN0aW9uICpsb2dvcCkKPgo+ICAgICAgICBz
-ZXQwID0gY2xvbmVGb3J3YXJkKGZ1bmMsIHNldDApOwo+ICAgICAgICBzZXQxID0gY2xvbmVTaGFs
-bG93KGZ1bmMsIHNldDEpOwo+ICsKPiArICAgICAgaWYgKGxvZ29wLT5zcmMoMCkubW9kID09IE1v
-ZGlmaWVyKE5WNTBfSVJfTU9EX05PVCkpCj4gKyAgICAgICAgIHNldDAtPmFzQ21wKCktPnNldENv
-bmQgPSBpbnZlcnNlQ29uZENvZGUoc2V0MC0+YXNDbXAoKS0+c2V0Q29uZCk7Cj4gKyAgICAgIGlm
-IChsb2dvcC0+c3JjKDEpLm1vZCA9PSBNb2RpZmllcihOVjUwX0lSX01PRF9OT1QpKQo+ICsgICAg
-ICAgICBzZXQxLT5hc0NtcCgpLT5zZXRDb25kID0gaW52ZXJzZUNvbmRDb2RlKHNldDEtPmFzQ21w
-KCktPnNldENvbmQpOwoKc2V0MC9zZXQxIG1heSBoYXZlIGJlZW4gc3dhcHBlZCBmdXJ0aGVyIHVw
-LCBzbyB5b3UgbmVlZCB0byBrZWVwIHRyYWNrIG9mIHRoYXQuCgpBbHNvLCBJIGRvbid0IHRoaW5r
-IHRoaXMgd2lsbCB3b3JrIGlmIG9uZSBvZiB0aGUgc2V0cyBpcyBhIFNFVF9BTkQgLS0KdGhlIGNv
-bmRjb2RlIGFwcGxpZXMgdG8gdGhlIHNldCBiaXQsIG5vdCB0byB0aGUgQU5EIGJpdC4gSSB0aGlu
-ayB5b3UnZAphbHNvIGhhdmUgdG8gZmxpcCBBTkQgPC0+IE9SIGFuZCBmbGlwIHRoZSBuZWcuCgog
-IC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCm1l
-c2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
+ZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcCB8IDYgKysrLS0tCj4gIDEgZmlsZSBjaGFuZ2VkLCAz
+IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAgYi9zcmMvZ2Fs
+bGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcAo+IGluZGV4
+IDRjOTJhMWVmYjUuLmJkNjBhODQ5OTggMTAwNjQ0Cj4gLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVy
+cy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKPiArKysgYi9zcmMvZ2FsbGl1
+bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcAo+IEBAIC0xNzk3
+LDEwICsxNzk3LDEwIEBAIEFsZ2VicmFpY09wdDo6aGFuZGxlU0xDVChJbnN0cnVjdGlvbiAqc2xj
+dCkKPiAgICAgICAgaWYgKHNsY3QtPmdldFNyYygyKS0+YXNJbW0oKS0+Y29tcGFyZShzbGN0LT5h
+c0NtcCgpLT5zZXRDb25kLCAwLjBmKSkKPiAgICAgICAgICAgc2xjdC0+c2V0U3JjKDAsIHNsY3Qt
+PmdldFNyYygxKSk7Cj4gICAgIH0gZWxzZQo+IC0gICBpZiAoc2xjdC0+Z2V0U3JjKDApICE9IHNs
+Y3QtPmdldFNyYygxKSkgewo+ICsgICBpZiAoc2xjdC0+Z2V0U3JjKDApICE9IHNsY3QtPmdldFNy
+YygxKSB8fCBzbGN0LT5zcmMoMCkubW9kICE9IHNsY3QtPnNyYygxKS5tb2QpCgpTTENUIGNhbid0
+IGhhdmUgbW9kcyBvbiBzcmMwL3NyYzEuIE9ubHkgb24gc3JjMi4gSSdkIGJlIGp1c3QgYXMgaGFw
+cHkKdG8gYXNzZXJ0IHRoYXQgdGhleSdyZSBib3RoID09IDAgaGVyZS4gWW91IGNhbiBhbHNvIGFk
+ZCBhIGhlbHBlciB0bwpWYWx1ZVJlZiB0byBzZWUgaWYgaXQncyA9PSB0byBhbm90aGVyIFZhbHVl
+UmVmLCB3aGljaCBjb21wYXJlcyBib3RoCnRoZSBWYWx1ZSBwdHIgYXMgd2VsbCBhcyBhbnkgbW9k
+aWZpZXJzLCBpbmRpcmVjdHMsIGV0Yy4gQnV0IGl0IGFnYWluCmRvZXNuJ3QgdWx0aW1hdGVseSBu
+ZWVkIHRvIGJlIHVzZWQgaGVyZS4KCj4gICAgICAgIHJldHVybjsKPiAtICAgfQo+IC0gICBzbGN0
+LT5vcCA9IE9QX01PVjsKPiArICAgc2xjdC0+b3AgPSBzbGN0LT5zcmMoMCkubW9kLmdldE9wKCk7
+Cj4gKyAgIHNsY3QtPnNyYygwKS5tb2QgPSBzbGN0LT5zcmMoMCkubW9kIF4gTW9kaWZpZXIoc2xj
+dC0+b3ApOwo+ICAgICBzbGN0LT5zZXRTcmMoMSwgTlVMTCk7Cj4gICAgIHNsY3QtPnNldFNyYygy
+LCBOVUxMKTsKPiAgfQo+IC0tCj4gMi4xMi4yCj4KX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
