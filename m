@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
- G1 Gaming GTX970
-Date: Mon, 10 Apr 2017 18:10:15 +0000
-Message-ID: <bug-89664-8800-fTpN4D1uud@http.bugs.freedesktop.org/>
-References: <bug-89664-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
+Subject: [PATCH 02/11] nvkm/ramgf100: Calculate timings
+Date: Mon, 10 Apr 2017 20:37:19 +0100
+Message-ID: <20170410193728.29026-3-nouveau@spliet.org>
+References: <20170410193728.29026-1-nouveau@spliet.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1094011013=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20170410193728.29026-1-nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,127 +17,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Ben Skeggs <bskeggsb-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1094011013==
-Content-Type: multipart/alternative; boundary="14918478151.7a754f.11190";
- charset="UTF-8"
-
-
---14918478151.7a754f.11190
-Date: Mon, 10 Apr 2017 18:10:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89664
-
---- Comment #19 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Jonas Nordlund from comment #18)
-> Is this perhaps bug 94990?
-
-If it is, should be solved by using drm-next.
-
-> It's too bad because it cripples the GTX 970 on most Linux distros, leavi=
-ng
-> one with the remaining option to add the nomodeset option to the Linux bo=
-ot
-
-You could also boot with
-
-nouveau.config=3Dgr=3D0,sec=3D0
-
-which should disable the graph unit initialization, causing the trouble. (M=
-ight
-be secboot and not sec.) Note, I haven't tested this, going from memory on =
-how
-this works.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14918478151.7a754f.11190
-Date: Mon, 10 Apr 2017 18:10:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
-X970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c19">Commen=
-t # 19</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
-X970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664">bug 89664<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Jonas Nordlund from <a href=3D"show_bug.cgi?id=3D=
-89664#c18">comment #18</a>)
-<span class=3D"quote">&gt; Is this perhaps <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"show_bug.cgi?id=3D94990">bug 94990</a>?</span >
-
-If it is, should be solved by using drm-next.
-
-<span class=3D"quote">&gt; It's too bad because it cripples the GTX 970 on =
-most Linux distros, leaving
-&gt; one with the remaining option to add the nomodeset option to the Linux=
- boot</span >
-
-You could also boot with
-
-nouveau.config=3Dgr=3D0,sec=3D0
-
-which should disable the graph unit initialization, causing the trouble. (M=
-ight
-be secboot and not sec.) Note, I haven't tested this, going from memory on =
-how
-this works.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14918478151.7a754f.11190--
-
---===============1094011013==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1094011013==--
+VG9kbzoKLSBEZXRlcm1pbmUgc291cmNlIG9mIFJbMTBmMjk4XSAmIDB4MTEKClNpZ25lZC1vZmYt
+Ynk6IFJveSBTcGxpZXQgPG5vdXZlYXVAc3BsaWV0Lm9yZz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9mYi9yYW1nZjEwMC5jIHwgMTE1ICsrKysrKysrKysrKysrLS0t
+LS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA3NiBpbnNlcnRpb25zKCspLCAzOSBkZWxldGlvbnMoLSkK
+CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9yYW1n
+ZjEwMC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvcmFtZ2YxMDAu
+YwppbmRleCBmZmZkMDFhLi42ZWJkYzRjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9udmttL3N1YmRldi9mYi9yYW1nZjEwMC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2ZiL3JhbWdmMTAwLmMKQEAgLTQ4LDExICs0OCw3IEBAIHN0cnVjdCBn
+ZjEwMF9yYW1mdWMgewogCiAJc3RydWN0IHJhbWZ1Y19yZWcgcl8weDEzNzM5MDsKIAotCXN0cnVj
+dCByYW1mdWNfcmVnIHJfMHgxMGYyOTA7Ci0Jc3RydWN0IHJhbWZ1Y19yZWcgcl8weDEwZjI5NDsK
+LQlzdHJ1Y3QgcmFtZnVjX3JlZyByXzB4MTBmMjk4OwotCXN0cnVjdCByYW1mdWNfcmVnIHJfMHgx
+MGYyOWM7Ci0Jc3RydWN0IHJhbWZ1Y19yZWcgcl8weDEwZjJhMDsKKwlzdHJ1Y3QgcmFtZnVjX3Jl
+ZyByXzB4MTBmMjkwWzVdOwogCiAJc3RydWN0IHJhbWZ1Y19yZWcgcl8weDEwZjMwMDsKIAlzdHJ1
+Y3QgcmFtZnVjX3JlZyByXzB4MTBmMzM4OwpAQCAtMTA0LDYgKzEwMCw1MCBAQCBzdHJ1Y3QgZ2Yx
+MDBfcmFtIHsKIAlzdHJ1Y3QgbnZiaW9zX3BsbCBtZW1wbGw7CiB9OwogCisjZGVmaW5lIFQodCkg
+Y2ZnLT50aW1pbmdfMTBfIyN0CitzdGF0aWMgaW50CitnZjEwMF9yYW1fdGltaW5nX2NhbGMoc3Ry
+dWN0IGdmMTAwX3JhbSAqcmFtLCB1MzIgKnRpbWluZykKK3sKKwlzdHJ1Y3QgbnZiaW9zX3JhbWNm
+ZyAqY2ZnID0gJnJhbS0+YmFzZS50YXJnZXQuYmlvczsKKwlzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1
+YmRldiA9ICZyYW0tPmJhc2UuZmItPnN1YmRldjsKKwlzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmlj
+ZSA9IHN1YmRldi0+ZGV2aWNlOworCXUzMiBjdXIxLCBjdXIyLCBjdXI0OworCisJY3VyMSA9IG52
+a21fcmQzMihkZXZpY2UsIDB4MTBmMjk0KTsKKwljdXIyID0gbnZrbV9yZDMyKGRldmljZSwgMHgx
+MGYyOTgpOworCWN1cjQgPSBudmttX3JkMzIoZGV2aWNlLCAweDEwZjJhMCk7CisKKwkvKiBYWFg6
+IChHKUREUjM/ICovCisJc3dpdGNoICgoIVQoQ1dMKSkgKiByYW0tPmJhc2UudHlwZSkgeworCWNh
+c2UgTlZLTV9SQU1fVFlQRV9HRERSNToKKwkJVChDV0wpID0gKGN1cjEgJiAweDAwMDAwMzgwKSA+
+PiA3OworCQlicmVhazsKKwl9CisKKwl0aW1pbmdbMF0gPSAoVChSUCkgPDwgMjQgfCBUKFJBUykg
+PDwgMTcgfCBUKFJGQykgPDwgOCB8IFQoUkMpKTsKKwl0aW1pbmdbMV0gPSAoY3VyMSAmIH4weDAz
+ZmZjMDdmKSB8CisJCSAgICAoVChSQ0RXUikgPDwgMjApIHwKKwkJICAgIChUKFJDRFJEKSA8PCAx
+NCkgfAorCQkgICAgKFQoQ1dMKSA8PCA3KSB8CisJCSAgICAoVChDTCkpOworCS8qIFhYWDogbG93
+ZXIgOCBieXRlcyBhcmUgdHdvIGJpdHMgaW5kaWNhdGluZyAiZmVhdHVyZShzKSBYIiAqLworCXRp
+bWluZ1syXSA9IChjdXIyICYgfjB4MDBmZmZmZmYpIHwKKwkJICAgIChUKFdSKSA8PCAxNikgfAor
+CQkgICAgKFQoV1RSKSA8PCA4KTsKKwl0aW1pbmdbM10gPSAoVChGQVcpKSA8PCA5IHwKKwkJICAg
+IChUKENLRSkpIDw8IDUgfAorCQkgICAgKFQoWFBETEwpKTsKKwl0aW1pbmdbNF0gPSAoY3VyNCAm
+IH4weDAwMWY4MDAwKSB8CisJCSAgICAoVChSUkQpIDw8IDE1KTsKKworCW52a21fZGVidWcoc3Vi
+ZGV2LCAiRW50cnk6IDI5MDogJTA4eCAlMDh4ICUwOHggJTA4eFxuIiwKKwkJICAgdGltaW5nWzBd
+LCB0aW1pbmdbMV0sIHRpbWluZ1syXSwgdGltaW5nWzNdKTsKKwludmttX2RlYnVnKHN1YmRldiwg
+IiAgMmEwOiAlMDh4XG4iLAorCQkgICB0aW1pbmdbNF0pOworCXJldHVybiAwOworfQorI3VuZGVm
+IFQKKwogc3RhdGljIHZvaWQKIGdmMTAwX3JhbV90cmFpbihzdHJ1Y3QgZ2YxMDBfcmFtZnVjICpm
+dWMsIHUzMiBtYWdpYykKIHsKQEAgLTEzNiwxMCArMTc2LDExIEBAIGdmMTAwX3JhbV9jYWxjKHN0
+cnVjdCBudmttX3JhbSAqYmFzZSwgdTMyIGZyZXEpCiAJc3RydWN0IG52a21fcmFtX2RhdGEgKm5l
+eHQ7CiAJdTggIHZlciwgaGRyLCBjbnQsIGxlbiwgc3RyYXA7CiAJdTMyIGRhdGE7CisJdTMyIHRp
+bWluZ1s1XTsKIAlpbnQgcmVmLCBkaXYsIG91dDsKIAlpbnQgZnJvbSwgbW9kZTsKIAlpbnQgTjEs
+IE0xLCBQOwotCWludCByZXQ7CisJaW50IGksIHJldDsKIAogCW5leHQgPSAmcmFtLT5iYXNlLnRh
+cmdldDsKIAluZXh0LT5mcmVxID0gZnJlcTsKQEAgLTE3OSw2ICsyMjAsOCBAQCBnZjEwMF9yYW1f
+Y2FsYyhzdHJ1Y3QgbnZrbV9yYW0gKmJhc2UsIHUzMiBmcmVxKQogCQl9CiAJfQogCisJZ2YxMDBf
+cmFtX3RpbWluZ19jYWxjKHJhbSwgdGltaW5nKTsKKwogCXJldCA9IHJhbV9pbml0KGZ1YywgcmFt
+LT5iYXNlLmZiKTsKIAlpZiAocmV0KQogCQlyZXR1cm4gcmV0OwpAQCAtMzE0LDI4ICszNTcsNiBA
+QCBnZjEwMF9yYW1fY2FsYyhzdHJ1Y3QgbnZrbV9yYW0gKmJhc2UsIHUzMiBmcmVxKQogCQlyYW1f
+d3IzMihmdWMsIDB4MTBmMzM4LCAweDAwMzAwMjIwKTsKIAkJcmFtX3dyMzIoZnVjLCAweDEwZjMw
+MCwgMHgwMDAwMDExZCk7CiAJCXJhbV9uc2VjKGZ1YywgMTAwMCk7Ci0JCXJhbV93cjMyKGZ1Yywg
+MHgxMGYyOTAsIDB4MDIwNjA1MDUpOwotCQlyYW1fd3IzMihmdWMsIDB4MTBmMjk0LCAweDM0MjA4
+Mjg4KTsKLQkJcmFtX3dyMzIoZnVjLCAweDEwZjI5OCwgMHg0NDA1MDQxMSk7Ci0JCXJhbV93cjMy
+KGZ1YywgMHgxMGYyOWMsIDB4MDAwMDExNGMpOwotCQlyYW1fd3IzMihmdWMsIDB4MTBmMmEwLCAw
+eDQyZTEwMDY5KTsKLQkJcmFtX3dyMzIoZnVjLCAweDEwZjYxNCwgMHg0MDA0NGY3Nyk7Ci0JCXJh
+bV93cjMyKGZ1YywgMHgxMGY2MTAsIDB4NDAwNDRmNzcpOwotCQlyYW1fd3IzMihmdWMsIDB4MTBm
+MzQ0LCAweDAwNjAwMDA5KTsKLQkJcmFtX25zZWMoZnVjLCAxMDAwKTsKLQkJcmFtX3dyMzIoZnVj
+LCAweDEwZjM0OCwgMHgwMDcwMDAwOCk7Ci0JCXJhbV93cjMyKGZ1YywgMHg2MWMxNDAsIDB4MTky
+NDAwMDApOwotCQlyYW1fd3IzMihmdWMsIDB4MTBmODMwLCAweDAwMzAwMDE3KTsKLQkJZ2YxMDBf
+cmFtX3RyYWluKGZ1YywgMHg4MDAyMTAwMSk7Ci0JCWdmMTAwX3JhbV90cmFpbihmdWMsIDB4ODAw
+ODEwMDEpOwotCQlyYW1fd3IzMihmdWMsIDB4MTBmMzQwLCAweDAwNTAwMDA0KTsKLQkJcmFtX25z
+ZWMoZnVjLCAxMDAwKTsKLQkJcmFtX3dyMzIoZnVjLCAweDEwZjgzMCwgMHgwMTMwMDAxNyk7Ci0J
+CXJhbV93cjMyKGZ1YywgMHgxMGY4MzAsIDB4MDAzMDAwMTcpOwotLy8gMHgwMDAzMDAyMCAvLyAw
+eDAwMDAwMDAwIC8vIDB4MDAwMDAwMDAKLS8vIDB4MDAwMjAwMzQgLy8gMHgwMDAwMDAwYgotCQly
+YW1fd3IzMihmdWMsIDB4MTAwYjBjLCAweDAwMDgwMDI4KTsKLQkJcmFtX3dyMzIoZnVjLCAweDYx
+MTIwMCwgMHgwMDAwMzMzMCk7CiAJfSBlbHNlIHsKIAkJcmFtX3dyMzIoZnVjLCAweDEwZjgwMCwg
+MHgwMDAwMTgwMCk7CiAJCXJhbV93cjMyKGZ1YywgMHgxM2Q4ZjQsIDB4MDAwMDAwMDApOwpAQCAt
+MzY0LDExICszODUsMzAgQEAgZ2YxMDBfcmFtX2NhbGMoc3RydWN0IG52a21fcmFtICpiYXNlLCB1
+MzIgZnJlcSkKIAkJcmFtX3dyMzIoZnVjLCAweDEwZjMzOCwgMHgwMDMwMDIwMCk7CiAJCXJhbV93
+cjMyKGZ1YywgMHgxMGYzMDAsIDB4MDAwMDA4NGQpOwogCQlyYW1fbnNlYyhmdWMsIDEwMDApOwot
+CQlyYW1fd3IzMihmdWMsIDB4MTBmMjkwLCAweDBiMzQzODI1KTsKLQkJcmFtX3dyMzIoZnVjLCAw
+eDEwZjI5NCwgMHgzNDgzMDI4ZSk7Ci0JCXJhbV93cjMyKGZ1YywgMHgxMGYyOTgsIDB4NDQwYzA2
+MDApOwotCQlyYW1fd3IzMihmdWMsIDB4MTBmMjljLCAweDAwMDAyMTRjKTsKLQkJcmFtX3dyMzIo
+ZnVjLCAweDEwZjJhMCwgMHg0MmUyMDA2OSk7CisJfQorCisJZm9yIChpID0gMDsgaSA8IDU7IGkr
+KykKKwkJcmFtX3dyMzIoZnVjLCAweDEwZjI5MFtpXSwgdGltaW5nW2ldKTsKKworCWlmIChtb2Rl
+ID09IDApIHsKKwkJcmFtX3dyMzIoZnVjLCAweDEwZjYxNCwgMHg0MDA0NGY3Nyk7CisJCXJhbV93
+cjMyKGZ1YywgMHgxMGY2MTAsIDB4NDAwNDRmNzcpOworCQlyYW1fd3IzMihmdWMsIDB4MTBmMzQ0
+LCAweDAwNjAwMDA5KTsKKwkJcmFtX25zZWMoZnVjLCAxMDAwKTsKKwkJcmFtX3dyMzIoZnVjLCAw
+eDEwZjM0OCwgMHgwMDcwMDAwOCk7CisJCXJhbV93cjMyKGZ1YywgMHg2MWMxNDAsIDB4MTkyNDAw
+MDApOworCQlyYW1fd3IzMihmdWMsIDB4MTBmODMwLCAweDAwMzAwMDE3KTsKKwkJZ2YxMDBfcmFt
+X3RyYWluKGZ1YywgMHg4MDAyMTAwMSk7CisJCWdmMTAwX3JhbV90cmFpbihmdWMsIDB4ODAwODEw
+MDEpOworCQlyYW1fd3IzMihmdWMsIDB4MTBmMzQwLCAweDAwNTAwMDA0KTsKKwkJcmFtX25zZWMo
+ZnVjLCAxMDAwKTsKKwkJcmFtX3dyMzIoZnVjLCAweDEwZjgzMCwgMHgwMTMwMDAxNyk7CisJCXJh
+bV93cjMyKGZ1YywgMHgxMGY4MzAsIDB4MDAzMDAwMTcpOworLy8gMHgwMDAzMDAyMCAvLyAweDAw
+MDAwMDAwIC8vIDB4MDAwMDAwMDAKKy8vIDB4MDAwMjAwMzQgLy8gMHgwMDAwMDAwYgorCQlyYW1f
+d3IzMihmdWMsIDB4MTAwYjBjLCAweDAwMDgwMDI4KTsKKwkJcmFtX3dyMzIoZnVjLCAweDYxMTIw
+MCwgMHgwMDAwMzMzMCk7CisJfSBlbHNlIHsKIAkJcmFtX3dyMzIoZnVjLCAweDEwZjIwMCwgMHgw
+MGNlMDAwMCk7CiAJCXJhbV93cjMyKGZ1YywgMHgxMGY2MTQsIDB4NjAwNDRlNzcpOwogCQlyYW1f
+d3IzMihmdWMsIDB4MTBmNjEwLCAweDYwMDQ0ZTc3KTsKQEAgLTYzMCw3ICs2NzAsNyBAQCBnZjEw
+MF9yYW1fbmV3KHN0cnVjdCBudmttX2ZiICpmYiwgc3RydWN0IG52a21fcmFtICoqcHJhbSkKIAlz
+dHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldiA9ICZmYi0+c3ViZGV2OwogCXN0cnVjdCBudmttX2Jp
+b3MgKmJpb3MgPSBzdWJkZXYtPmRldmljZS0+YmlvczsKIAlzdHJ1Y3QgZ2YxMDBfcmFtICpyYW07
+Ci0JaW50IHJldDsKKwlpbnQgaSwgcmV0OwogCiAJaWYgKCEocmFtID0ga3phbGxvYyhzaXplb2Yo
+KnJhbSksIEdGUF9LRVJORUwpKSkKIAkJcmV0dXJuIC1FTk9NRU07CkBAIC02NjMsMTEgKzcwMyw4
+IEBAIGdmMTAwX3JhbV9uZXcoc3RydWN0IG52a21fZmIgKmZiLCBzdHJ1Y3QgbnZrbV9yYW0gKipw
+cmFtKQogCiAJcmFtLT5mdWMucl8weDEzNzM5MCA9IHJhbWZ1Y19yZWcoMHgxMzczOTApOwogCi0J
+cmFtLT5mdWMucl8weDEwZjI5MCA9IHJhbWZ1Y19yZWcoMHgxMGYyOTApOwotCXJhbS0+ZnVjLnJf
+MHgxMGYyOTQgPSByYW1mdWNfcmVnKDB4MTBmMjk0KTsKLQlyYW0tPmZ1Yy5yXzB4MTBmMjk4ID0g
+cmFtZnVjX3JlZygweDEwZjI5OCk7Ci0JcmFtLT5mdWMucl8weDEwZjI5YyA9IHJhbWZ1Y19yZWco
+MHgxMGYyOWMpOwotCXJhbS0+ZnVjLnJfMHgxMGYyYTAgPSByYW1mdWNfcmVnKDB4MTBmMmEwKTsK
+Kwlmb3IgKGkgPSAwOyBpIDwgNTsgaSsrKQorCQlyYW0tPmZ1Yy5yXzB4MTBmMjkwW2ldID0gcmFt
+ZnVjX3JlZygweDEwZjI5MCArIChpICogNCkpOwogCiAJcmFtLT5mdWMucl8weDEwZjMwMCA9IHJh
+bWZ1Y19yZWcoMHgxMGYzMDApOwogCXJhbS0+ZnVjLnJfMHgxMGYzMzggPSByYW1mdWNfcmVnKDB4
+MTBmMzM4KTsKLS0gCjIuOS4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
+YXUK
