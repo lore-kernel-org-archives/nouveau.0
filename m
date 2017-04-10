@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100446] Backlight control not working on Pascal /
  GP106 using nouveau drivers
-Date: Mon, 10 Apr 2017 17:12:34 +0000
-Message-ID: <bug-100446-8800-bGR5wwrI0C@http.bugs.freedesktop.org/>
+Date: Mon, 10 Apr 2017 17:14:45 +0000
+Message-ID: <bug-100446-8800-J3MVfIDIJV@http.bugs.freedesktop.org/>
 References: <bug-100446-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0834502603=="
+Content-Type: multipart/mixed; boundary="===============1464270823=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100446-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0834502603==
-Content-Type: multipart/alternative; boundary="14918443530.fa9Ab.4331";
+--===============1464270823==
+Content-Type: multipart/alternative; boundary="14918444850.Ecff7E63.4434";
  charset="UTF-8"
 
 
---14918443530.fa9Ab.4331
-Date: Mon, 10 Apr 2017 17:12:33 +0000
+--14918444850.Ecff7E63.4434
+Date: Mon, 10 Apr 2017 17:14:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,28 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100446
 
---- Comment #2 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
-In attachment (tar + xz -9):
-- vbios
-- mmiotrace
-- demmio'd mmiotrace
-
-The trace was taken in pure Xorg with only xterm running and:
-
-echo "XSET50IN" > /sys/kernel/debug/tracing/trace_marker
-    && xbacklight -set 50 -steps 1
-    && echo "XSET50OUT" > /sys/kernel/debug/tracing/trace_marker
-sleep 2
-echo "XSET100IN" > /sys/kernel/debug/tracing/trace_marker
-    && xbacklight -set 100 -steps 1
-    && echo "XSET100OUT" > /sys/kernel/debug/tracing/trace_marker
+--- Comment #3 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
+I forgot: the mmiotrace was taken using the proprietary NVIDIA drivers 381.=
+09
+(beta). With this version I'm able to change the brightness using xbackligh=
+t.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14918443530.fa9Ab.4331
-Date: Mon, 10 Apr 2017 17:12:33 +0000
+--14918444850.Ecff7E63.4434
+Date: Mon, 10 Apr 2017 17:14:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,8 +65,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
 veau drivers"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
@@ -87,22 +77,10 @@ veau drivers"
 carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
 <span class=3D"fn">Carlo Caione</span></a>
 </span></b>
-        <pre>In attachment (tar + xz -9):
-- vbios
-- mmiotrace
-- demmio'd mmiotrace
-
-The trace was taken in pure Xorg with only xterm running and:
-
-echo &quot;XSET50IN&quot; &gt; /sys/kernel/debug/tracing/trace_marker
-    &amp;&amp; xbacklight -set 50 -steps 1
-    &amp;&amp; echo &quot;XSET50OUT&quot; &gt; /sys/kernel/debug/tracing/tr=
-ace_marker
-sleep 2
-echo &quot;XSET100IN&quot; &gt; /sys/kernel/debug/tracing/trace_marker
-    &amp;&amp; xbacklight -set 100 -steps 1
-    &amp;&amp; echo &quot;XSET100OUT&quot; &gt; /sys/kernel/debug/tracing/t=
-race_marker</pre>
+        <pre>I forgot: the mmiotrace was taken using the proprietary NVIDIA=
+ drivers 381.09
+(beta). With this version I'm able to change the brightness using xbackligh=
+t.</pre>
         </div>
       </p>
 
@@ -116,9 +94,9 @@ race_marker</pre>
     </body>
 </html>=
 
---14918443530.fa9Ab.4331--
+--14918444850.Ecff7E63.4434--
 
---===============0834502603==
+--===============1464270823==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -128,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0834502603==--
+--===============1464270823==--
