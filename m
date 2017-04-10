@@ -1,14 +1,13 @@
-From: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH 13/13] nvkm/bios/perf: Retreive pointer to unk1c
-	script
-Date: Mon, 10 Apr 2017 20:50:50 +0100
-Message-ID: <20170410195050.29638-14-nouveau@spliet.org>
-References: <20170410195050.29638-1-nouveau@spliet.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99900] [NVC1] nouveau: freeze / crash after kernel
+ update to 4.10
+Date: Mon, 10 Apr 2017 23:31:02 +0000
+Message-ID: <bug-99900-8800-KLyB18RVRp@http.bugs.freedesktop.org/>
+References: <bug-99900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0335215120=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170410195050.29638-1-nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <bug-99900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,42 +17,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogUm95IFNwbGlldCA8bm91dmVhdUBzcGxpZXQub3JnPgotLS0KIGRyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9wZXJmLmggfCAgMSAr
-CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3BlcmYuYyAgICAgICAg
-IHwgMTQgKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2
-L2ZiL3JhbWdmMTAwLmMgICAgICAgfCAgMSArCiAzIGZpbGVzIGNoYW5nZWQsIDE2IGluc2VydGlv
-bnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20v
-c3ViZGV2L2Jpb3MvcGVyZi5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmtt
-L3N1YmRldi9iaW9zL3BlcmYuaAppbmRleCA0NzhiMWMwLi4yODU1NWQ2IDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3MvcGVyZi5oCisr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9wZXJm
-LmgKQEAgLTQwLDQgKzQwLDUgQEAgc3RydWN0IG52Ymlvc19wZXJmX2ZhbiB7CiB9OwogCiBpbnQg
-bnZiaW9zX3BlcmZfZmFuX3BhcnNlKHN0cnVjdCBudmttX2Jpb3MgKiwgc3RydWN0IG52Ymlvc19w
-ZXJmX2ZhbiAqKTsKK3UxNiBudmJpb3NfcGVyZl9zY3JpcHRfdW5rMWMoc3RydWN0IG52a21fYmlv
-cyAqYmlvcyk7CiAjZW5kaWYKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
-a20vc3ViZGV2L2Jpb3MvcGVyZi5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJk
-ZXYvYmlvcy9wZXJmLmMKaW5kZXggYzMwNjgzNS4uNTVjMWYzNiAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9wZXJmLmMKKysrIGIvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9wZXJmLmMKQEAgLTIxMywzICsyMTMsMTcg
-QEAgbnZiaW9zX3BlcmZfZmFuX3BhcnNlKHN0cnVjdCBudmttX2Jpb3MgKmJpb3MsCiAKIAlyZXR1
-cm4gMDsKIH0KKwordTE2CitudmJpb3NfcGVyZl9zY3JpcHRfdW5rMWMoc3RydWN0IG52a21fYmlv
-cyAqYmlvcykKK3sKKwlzdHJ1Y3QgYml0X2VudHJ5IGJpdF9QOworCisJaWYgKCFiaXRfZW50cnko
-YmlvcywgJ1AnLCAmYml0X1ApKSB7CisJCWlmIChiaXRfUC52ZXJzaW9uID09IDIpIHsKKwkJCXJl
-dHVybiBudmJpb3NfcmQxNihiaW9zLCBiaXRfUC5vZmZzZXQgKyAweDFjKTsKKwkJfQorCX0KKwor
-CXJldHVybiAweDAwMDA7Cit9CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9mYi9yYW1nZjEwMC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvZmIvcmFtZ2YxMDAuYwppbmRleCBlZWJkMjBiLi5kZWYxMTljIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9yYW1nZjEwMC5jCisrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbWdmMTAwLmMKQEAgLTMxLDYg
-KzMxLDcgQEAKICNpbmNsdWRlIDxzdWJkZXYvYmlvcy9NMDIwNS5oPgogI2luY2x1ZGUgPHN1YmRl
-di9iaW9zL3JhbW1hcC5oPgogI2luY2x1ZGUgPHN1YmRldi9iaW9zL3RpbWluZy5oPgorI2luY2x1
-ZGUgPHN1YmRldi9iaW9zL3BlcmYuaD4KICNpbmNsdWRlIDxzdWJkZXYvY2xrLmg+CiAjaW5jbHVk
-ZSA8c3ViZGV2L2Nsay9wbGwuaD4KICNpbmNsdWRlIDxzdWJkZXYvbHRjLmg+Ci0tIAoyLjkuMwoK
+
+--===============0335215120==
+Content-Type: multipart/alternative; boundary="14918670623.dB1AdFEF.12746";
+ charset="UTF-8"
+
+
+--14918670623.dB1AdFEF.12746
+Date: Mon, 10 Apr 2017 23:31:02 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99900
+
+--- Comment #13 from Mike <mwc-250sav-fOdFMYwuEsI@public.gmane.org> ---
+I am also hitting this problem after starting to use 4.10.* kernels
+
+F25, 4.10.6.200, X86_64, Quadro K600, nouveau, KDE.
+
+workarounds: boot with nouveau.runpm=3D0, or turn off display power managem=
+ent
+using desktop settings.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14918670623.dB1AdFEF.12746
+Date: Mon, 10 Apr 2017 23:31:02 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
+0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900#c13">Commen=
+t # 13</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
+0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900">bug 99900<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mwc-250sav&#64;att.net" title=3D"Mike &lt;mwc-250sav&#64;att.net&gt;"> <spa=
+n class=3D"fn">Mike</span></a>
+</span></b>
+        <pre>I am also hitting this problem after starting to use 4.10.* ke=
+rnels
+
+F25, 4.10.6.200, X86_64, Quadro K600, nouveau, KDE.
+
+workarounds: boot with nouveau.runpm=3D0, or turn off display power managem=
+ent
+using desktop settings.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14918670623.dB1AdFEF.12746--
+
+--===============0335215120==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0335215120==--
