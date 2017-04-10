@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61321] [regression][NV4c] System hang while loading
- gdm on 3.7 kernel (works on 3.6)
-Date: Mon, 10 Apr 2017 08:18:45 +0000
-Message-ID: <bug-61321-8800-zuMJwDTzuJ@http.bugs.freedesktop.org/>
-References: <bug-61321-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100446] Backlight control not working on Pascal /
+ GP106 using nouveau drivers
+Date: Mon, 10 Apr 2017 17:10:49 +0000
+Message-ID: <bug-100446-8800-XE7abJIBG3@http.bugs.freedesktop.org/>
+References: <bug-100446-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1153602115=="
+Content-Type: multipart/mixed; boundary="===============0102747481=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61321-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100446-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1153602115==
-Content-Type: multipart/alternative; boundary="14918123251.c47fA0.3038";
+--===============0102747481==
+Content-Type: multipart/alternative; boundary="14918442501.d1000B.4218";
  charset="UTF-8"
 
 
---14918123251.c47fA0.3038
-Date: Mon, 10 Apr 2017 08:18:45 +0000
+--14918442501.d1000B.4218
+Date: Mon, 10 Apr 2017 17:10:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D61321
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100446
 
-Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Assignee|bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org         |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
+--- Comment #1 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
+Created attachment 130784
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130784&action=3Dedit
+vbios + mmiotrace
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14918123251.c47fA0.3038
-Date: Mon, 10 Apr 2017 08:18:45 +0000
+--14918442501.d1000B.4218
+Date: Mon, 10 Apr 2017 17:10:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,32 +57,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:bugs&#64;=
-mblankhorst.nl" title=3D"Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"=
-> <span class=3D"fn">Maarten Lankhorst</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [regression][NV4c] System hang while loading gdm on 3.7 k=
-ernel (works on 3.6)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D61321">bug 61321<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>bugs&#64;mblankhorst.nl
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446">bug 10044=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
+<span class=3D"fn">Carlo Caione</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130784=
+" name=3D"attach_130784" title=3D"vbios + mmiotrace">attachment 130784</a> =
+<a href=3D"attachment.cgi?id=3D130784&amp;action=3Dedit" title=3D"vbios + m=
+miotrace">[details]</a></span>
+vbios + mmiotrace</pre>
+        </div>
       </p>
 
 
@@ -97,9 +94,9 @@ ernel (works on 3.6)"
     </body>
 </html>=
 
---14918123251.c47fA0.3038--
+--14918442501.d1000B.4218--
 
---===============1153602115==
+--===============0102747481==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1153602115==--
+--===============0102747481==--
