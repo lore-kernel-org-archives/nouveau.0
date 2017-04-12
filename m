@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100660] [nouveau] No temperature/voltages/GPU and
- RAM frequency/fan speed reporting for GTX 1060 6GB
-Date: Wed, 12 Apr 2017 08:09:28 +0000
-Message-ID: <bug-100660-8800-KC7qkw0YG2@http.bugs.freedesktop.org/>
-References: <bug-100660-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100659] [nouveau] Certain errors on initializing GTX
+	1060 6GB
+Date: Wed, 12 Apr 2017 08:10:54 +0000
+Message-ID: <bug-100659-8800-gYx7pn84Tn@http.bugs.freedesktop.org/>
+References: <bug-100659-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2021118383=="
+Content-Type: multipart/mixed; boundary="===============1540834157=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2021118383==
-Content-Type: multipart/alternative; boundary="14919845681.e38F.8697";
+--===============1540834157==
+Content-Type: multipart/alternative; boundary="14919846541.D4C2CE8.9351";
  charset="UTF-8"
 
 
---14919845681.e38F.8697
-Date: Wed, 12 Apr 2017 08:09:28 +0000
+--14919846541.D4C2CE8.9351
+Date: Wed, 12 Apr 2017 08:10:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100660
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100659
 
 Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> changed:
 
@@ -44,18 +44,14 @@ Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> changed:
                  OS|All                         |Linux (All)
 
 --- Comment #1 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
-I'm running:
-
-Linux localhost.localdomain 4.10.9-200.fc25.x86_64 #1 SMP Mon Apr 10 14:48:=
-16
-UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+I didn't notice any immediate errors or problems.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14919845681.e38F.8697
-Date: Wed, 12 Apr 2017 08:09:28 +0000
+--14919846541.D4C2CE8.9351
+Date: Wed, 12 Apr 2017 08:10:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,10 +68,9 @@ t;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nouveau] No temperature/voltages/GPU and RAM frequency/f=
-an speed reporting for GTX 1060 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660">bug 10066=
-0</a>
+   title=3D"NEW - [nouveau] Certain errors on initializing GTX 1060 6GB"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100659">bug 10065=
+9</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -103,25 +98,19 @@ an speed reporting for GTX 1060 6GB"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nouveau] No temperature/voltages/GPU and RAM frequency/f=
-an speed reporting for GTX 1060 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660#c1">Commen=
+   title=3D"NEW - [nouveau] Certain errors on initializing GTX 1060 6GB"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100659#c1">Commen=
 t # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nouveau] No temperature/voltages/GPU and RAM frequency/f=
-an speed reporting for GTX 1060 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660">bug 10066=
-0</a>
+   title=3D"NEW - [nouveau] Certain errors on initializing GTX 1060 6GB"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100659">bug 10065=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
 ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
 </span></b>
-        <pre>I'm running:
-
-Linux localhost.localdomain 4.10.9-200.fc25.x86_64 #1 SMP Mon Apr 10 14:48:=
-16
-UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</pre>
+        <pre>I didn't notice any immediate errors or problems.</pre>
         </div>
       </p>
 
@@ -135,9 +124,9 @@ UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</pre>
     </body>
 </html>=
 
---14919845681.e38F.8697--
+--14919846541.D4C2CE8.9351--
 
---===============2021118383==
+--===============1540834157==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -147,4 +136,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2021118383==--
+--===============1540834157==--
