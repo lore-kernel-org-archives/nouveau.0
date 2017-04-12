@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100660] New: [nouveau] No temperature/voltages/GPU
- and RAM frequency/fan speed reporting for GTX 1060 6GB
-Date: Wed, 12 Apr 2017 08:08:46 +0000
-Message-ID: <bug-100660-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100660] [nouveau] No temperature/voltages/GPU and
+ RAM frequency/fan speed reporting for GTX 1060 6GB
+Date: Wed, 12 Apr 2017 08:09:28 +0000
+Message-ID: <bug-100660-8800-KC7qkw0YG2@http.bugs.freedesktop.org/>
+References: <bug-100660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0895945789=="
+Content-Type: multipart/mixed; boundary="===============2021118383=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0895945789==
-Content-Type: multipart/alternative; boundary="14919845261.13E2c.8854";
+--===============2021118383==
+Content-Type: multipart/alternative; boundary="14919845681.e38F.8697";
  charset="UTF-8"
 
 
---14919845261.13E2c.8854
-Date: Wed, 12 Apr 2017 08:08:46 +0000
+--14919845681.e38F.8697
+Date: Wed, 12 Apr 2017 08:09:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,43 +36,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100660
 
-            Bug ID: 100660
-           Summary: [nouveau] No temperature/voltages/GPU and RAM
-                    frequency/fan speed reporting for GTX 1060 6GB
-           Product: xorg
-           Version: git
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> changed:
 
-Created attachment 130809
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130809&action=3Dedit
-nouveau kernel module errors
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Hardware|Other                       |x86-64 (AMD64)
+                 OS|All                         |Linux (All)
 
-I wonder if this feature is indeed implemented but is reported differently =
-than
-with e.g. Kepler cards where nouveau reports it via lm-sensors.
+--- Comment #1 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
+I'm running:
 
-`sensors` doesn't report anything.
-`dmesg` doesn't report anything.
-
-I couldn't find anything interesting under /sys.
-
-I'm just run `sensors-detect` and answered YES to all questions, yet nothing
-has surfaced except a ton of errors(?) from the kernel module:
+Linux localhost.localdomain 4.10.9-200.fc25.x86_64 #1 SMP Mon Apr 10 14:48:=
+16
+UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14919845261.13E2c.8854
-Date: Wed, 12 Apr 2017 08:08:46 +0000
+--14919845681.e38F.8697
+Date: Wed, 12 Apr 2017 08:09:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -81,108 +66,62 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:t.artem&#=
+64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailcity.com&g=
+t;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] No temperature/voltages/GPU and RAM frequency/f=
 an speed reporting for GTX 1060 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660">100660</a>
-          </td>
-        </tr>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660">bug 10066=
+0</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>[nouveau] No temperature/voltages/GPU and RAM frequency/fan s=
-peed reporting for GTX 1060 6GB
-          </td>
-        </tr>
+         <tr>
+           <td style=3D"text-align:right;">Hardware</td>
+           <td>Other
+           </td>
+           <td>x86-64 (AMD64)
+           </td>
+         </tr>
 
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>t.artem&#64;mailcity.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style=3D"text-align:right;">OS</td>
+           <td>All
+           </td>
+           <td>Linux (All)
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130809=
-" name=3D"attach_130809" title=3D"nouveau kernel module errors">attachment =
-130809</a> <a href=3D"attachment.cgi?id=3D130809&amp;action=3Dedit" title=
-=3D"nouveau kernel module errors">[details]</a></span>
-nouveau kernel module errors
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] No temperature/voltages/GPU and RAM frequency/f=
+an speed reporting for GTX 1060 6GB"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] No temperature/voltages/GPU and RAM frequency/f=
+an speed reporting for GTX 1060 6GB"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660">bug 10066=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
+ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
+</span></b>
+        <pre>I'm running:
 
-I wonder if this feature is indeed implemented but is reported differently =
-than
-with e.g. Kepler cards where nouveau reports it via lm-sensors.
-
-`sensors` doesn't report anything.
-`dmesg` doesn't report anything.
-
-I couldn't find anything interesting under /sys.
-
-I'm just run `sensors-detect` and answered YES to all questions, yet nothing
-has surfaced except a ton of errors(?) from the kernel module:</pre>
+Linux localhost.localdomain 4.10.9-200.fc25.x86_64 #1 SMP Mon Apr 10 14:48:=
+16
+UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</pre>
         </div>
       </p>
 
@@ -196,9 +135,9 @@ has surfaced except a ton of errors(?) from the kernel module:</pre>
     </body>
 </html>=
 
---14919845261.13E2c.8854--
+--14919845681.e38F.8697--
 
---===============0895945789==
+--===============2021118383==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -208,4 +147,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0895945789==--
+--===============2021118383==--
