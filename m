@@ -1,11 +1,12 @@
-From: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH 0/4] nouveau_hwmon: migrate to
- hwmon_device_register_with_info
-Date: Thu, 13 Apr 2017 23:16:43 +0100
-Message-ID: <6c953447-e01c-37fc-5eb0-a8bc91451071@spliet.org>
+	hwmon_device_register_with_info
+Date: Fri, 14 Apr 2017 00:26:53 +0200
+Message-ID: <CAEXux-ZL1bUtefHok4+=DoQUNGFW4mM693AFaB8sHBBA_3Wz=w@mail.gmail.com>
 References: <20170413090706.qlmph5y4g5iac45l@linux-3pot>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1537459884=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <20170413090706.qlmph5y4g5iac45l@linux-3pot>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -17,278 +18,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Oscar Salvador <osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============1537459884==
-Content-Type: multipart/alternative;
- boundary="------------96A9FF6F4AF70E4399E9561D"
-
-This is a multi-part message in MIME format.
---------------96A9FF6F4AF70E4399E9561D
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Just a non-technical (but important!) point: if you send four patches, 
-make sure their title (the first line of your git commit messages) 
-describes the content. Given you re-used the same title four times, I 
-dare to say it's too generic.
-Also, I noticed that this is not the standard git patch format as 
-produced by git format-patch. I don't know whether this is a concern (or 
-whether you tweaked the format yourself), but in the off chance that you 
-are relatively new to git, I recommend you to look up the "git 
-format-patch" and "git send-email" commands. They make life a lot easier 
-in our mailing-list based work-flow!
-This being said, thanks for the work! I'm sure with a bit of minor 
-tweaking this is suitable for upstream.
-
-Roy
-
-Op 13-04-17 om 10:07 schreef Oscar Salvador:
-> Hi again,
->
-> I've split the patches as Karol Herbst suggested.
-> I hope now it's fine.
->
-> This series of patches introduce the new hwmon_device_register_with_info
-> and gets rid of the old hwmon_device_register.
->
-> This patch adds the default sensors with their possible config values.
-> Just to prepare for the next patches
->
->
-> --- linux/drivers/gpu/drm/nouveau/nouveau_hwmon.c.orig	2017-04-12 19:18:09.638073562 +0200
-> +++ linux/drivers/gpu/drm/nouveau/nouveau_hwmon.c	2017-04-12 19:19:44.244797202 +0200
-> @@ -692,6 +692,78 @@ static const struct attribute_group hwmo
->   static const struct attribute_group hwmon_power_caps_attrgroup = {
->   	.attrs = hwmon_power_caps_attributes,
->   };
-> +
-> +static const u32 nouveau_config_chip[] = {
-> +	HWMON_C_UPDATE_INTERVAL,
-> +	0
-> +};
-> +
-> +static const u32 nouveau_config_in[] = {
-> +	HWMON_I_INPUT | HWMON_I_MIN | HWMON_I_MAX | HWMON_I_LABEL,
-> +	0
-> +};
-> +
-> +static const u32 nouveau_config_temp[] = {
-> +	HWMON_T_INPUT | HWMON_T_MAX | HWMON_T_MAX_HYST |
-> +	HWMON_T_CRIT | HWMON_T_CRIT_HYST | HWMON_T_EMERGENCY |
-> +	HWMON_T_EMERGENCY_HYST,
-> +	0
-> +};
-> +
-> +static const u32 nouveau_config_fan[] = {
-> +	HWMON_F_INPUT,
-> +	0
-> +};
-> +
-> +static const u32 nouveau_config_pwm[] = {
-> +	HWMON_PWM_INPUT | HWMON_PWM_ENABLE,
-> +	0
-> +};
-> +
-> +static const u32 nouveau_config_power[] = {
-> +	HWMON_P_INPUT | HWMON_P_CAP_MAX | HWMON_P_CRIT,
-> +	0
-> +};
-> +
-> +static const struct hwmon_channel_info nouveau_chip = {
-> +	.type = hwmon_chip,
-> +	.config = nouveau_config_chip,
-> +};
-> +
-> +static const struct hwmon_channel_info nouveau_temp = {
-> +	.type = hwmon_temp,
-> +	.config = nouveau_config_temp,
-> +};
-> +
-> +static const struct hwmon_channel_info nouveau_fan = {
-> +	.type = hwmon_fan,
-> +	.config = nouveau_config_fan,
-> +};
-> +
-> +static const struct hwmon_channel_info nouveau_in = {
-> +	.type = hwmon_in,
-> +	.config = nouveau_config_in,
-> +};
-> +
-> +static const struct hwmon_channel_info nouveau_pwm = {
-> +	.type = hwmon_pwm,
-> +	.config = nouveau_config_pwm,
-> +};
-> +
-> +static const struct hwmon_channel_info nouveau_power = {
-> +	.type = hwmon_power,
-> +	.config = nouveau_config_power,
-> +};
-> +
-> +static const struct hwmon_channel_info *nouveau_info[] = {
-> +	&nouveau_chip,
-> +	&nouveau_temp,
-> +	&nouveau_fan,
-> +	&nouveau_in,
-> +	&nouveau_pwm,
-> +	&nouveau_power,
-> +	NULL
-> +};
->   #endif
->   
->   int
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
-
-
---------------96A9FF6F4AF70E4399E9561D
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <font size="-1">Just a non-technical (but important!) point: if you
-      send four patches, make sure their title (the first line of your
-      git commit messages) describes the content. Given you re-used the
-      same title four times, I dare to say it's too generic.</font><br>
-    <font size="-1">Also, I noticed that this is not the standard git
-      patch format as produced by git format-patch. I don't know whether
-      this is a concern (or whether you tweaked the format yourself),
-      but in the off chance that you are relatively new to git, I
-      recommend you to look up the "git format-patch" and "git
-      send-email" commands. They make life a lot easier in our
-      mailing-list based work-flow!</font><br>
-    <font size="-1">This being said, thanks for the work! I'm sure with
-      a bit of minor tweaking this is suitable for upstream.<br>
-      <br>
-    </font><font size="-1">Roy<br>
-      <br>
-    </font>
-    <div class="moz-cite-prefix">Op 13-04-17 om 10:07 schreef Oscar
-      Salvador:<br>
-    </div>
-    <blockquote cite="mid:20170413090706.qlmph5y4g5iac45l@linux-3pot"
-      type="cite">
-      <pre wrap="">Hi again,
-
-I've split the patches as Karol Herbst suggested.
-I hope now it's fine.
-
-This series of patches introduce the new hwmon_device_register_with_info
-and gets rid of the old hwmon_device_register.
-
-This patch adds the default sensors with their possible config values.
-Just to prepare for the next patches
-
-
---- linux/drivers/gpu/drm/nouveau/nouveau_hwmon.c.orig	2017-04-12 19:18:09.638073562 +0200
-+++ linux/drivers/gpu/drm/nouveau/nouveau_hwmon.c	2017-04-12 19:19:44.244797202 +0200
-@@ -692,6 +692,78 @@ static const struct attribute_group hwmo
- static const struct attribute_group hwmon_power_caps_attrgroup = {
- 	.attrs = hwmon_power_caps_attributes,
- };
-+
-+static const u32 nouveau_config_chip[] = {
-+	HWMON_C_UPDATE_INTERVAL,
-+	0
-+};
-+
-+static const u32 nouveau_config_in[] = {
-+	HWMON_I_INPUT | HWMON_I_MIN | HWMON_I_MAX | HWMON_I_LABEL,
-+	0
-+};
-+
-+static const u32 nouveau_config_temp[] = {
-+	HWMON_T_INPUT | HWMON_T_MAX | HWMON_T_MAX_HYST |
-+	HWMON_T_CRIT | HWMON_T_CRIT_HYST | HWMON_T_EMERGENCY |
-+	HWMON_T_EMERGENCY_HYST,
-+	0
-+};
-+
-+static const u32 nouveau_config_fan[] = {
-+	HWMON_F_INPUT,
-+	0
-+};
-+
-+static const u32 nouveau_config_pwm[] = {
-+	HWMON_PWM_INPUT | HWMON_PWM_ENABLE,
-+	0
-+};
-+
-+static const u32 nouveau_config_power[] = {
-+	HWMON_P_INPUT | HWMON_P_CAP_MAX | HWMON_P_CRIT,
-+	0
-+};
-+
-+static const struct hwmon_channel_info nouveau_chip = {
-+	.type = hwmon_chip,
-+	.config = nouveau_config_chip,
-+};
-+
-+static const struct hwmon_channel_info nouveau_temp = {
-+	.type = hwmon_temp,
-+	.config = nouveau_config_temp,
-+};
-+
-+static const struct hwmon_channel_info nouveau_fan = {
-+	.type = hwmon_fan,
-+	.config = nouveau_config_fan,
-+};
-+
-+static const struct hwmon_channel_info nouveau_in = {
-+	.type = hwmon_in,
-+	.config = nouveau_config_in,
-+};
-+
-+static const struct hwmon_channel_info nouveau_pwm = {
-+	.type = hwmon_pwm,
-+	.config = nouveau_config_pwm,
-+};
-+
-+static const struct hwmon_channel_info nouveau_power = {
-+	.type = hwmon_power,
-+	.config = nouveau_config_power,
-+};
-+
-+static const struct hwmon_channel_info *nouveau_info[] = {
-+	&amp;nouveau_chip,
-+	&amp;nouveau_temp,
-+	&amp;nouveau_fan,
-+	&amp;nouveau_in,
-+	&amp;nouveau_pwm,
-+	&amp;nouveau_power,
-+	NULL
-+};
- #endif
- 
- int
-_______________________________________________
-Nouveau mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/nouveau">https://lists.freedesktop.org/mailman/listinfo/nouveau</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------96A9FF6F4AF70E4399E9561D--
-
---===============1537459884==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1537459884==--
+SGkgT3NjYXIsCgp0aGlzIGlzIGEgY292ZXIgbGV0dGVyLCB0aGVyZSBzaG91bGQgYmUgbm8gcGF0
+Y2ggYXR0YWNoZWQgdG8gaXQsIGJ1dCBhCnN0YXQgb2YgdGhlIGZvbGxvd2luZyBwYXRjaGVzIGFu
+ZCBhbiBleHBsZW5hdGlvbiB3aGF0IHRoZSBzZXJpZXMgaXMKZG9pbmcuCgoyMDE3LTA0LTEzIDEx
+OjA3IEdNVCswMjowMCBPc2NhciBTYWx2YWRvciA8b3NhbHZhZG9yLnZpbGFyZGFnYUBnbWFpbC5j
+b20+Ogo+IEhpIGFnYWluLAo+Cj4gSSd2ZSBzcGxpdCB0aGUgcGF0Y2hlcyBhcyBLYXJvbCBIZXJi
+c3Qgc3VnZ2VzdGVkLgo+IEkgaG9wZSBub3cgaXQncyBmaW5lLgo+Cj4gVGhpcyBzZXJpZXMgb2Yg
+cGF0Y2hlcyBpbnRyb2R1Y2UgdGhlIG5ldyBod21vbl9kZXZpY2VfcmVnaXN0ZXJfd2l0aF9pbmZv
+Cj4gYW5kIGdldHMgcmlkIG9mIHRoZSBvbGQgaHdtb25fZGV2aWNlX3JlZ2lzdGVyLgo+Cj4gVGhp
+cyBwYXRjaCBhZGRzIHRoZSBkZWZhdWx0IHNlbnNvcnMgd2l0aCB0aGVpciBwb3NzaWJsZSBjb25m
+aWcgdmFsdWVzLgo+IEp1c3QgdG8gcHJlcGFyZSBmb3IgdGhlIG5leHQgcGF0Y2hlcwo+Cj4KPiAt
+LS0gbGludXgvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jLm9yaWcgIDIw
+MTctMDQtMTIgMTk6MTg6MDkuNjM4MDczNTYyICswMjAwCj4gKysrIGxpbnV4L2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYyAgICAgICAyMDE3LTA0LTEyIDE5OjE5OjQ0LjI0
+NDc5NzIwMiArMDIwMAo+IEBAIC02OTIsNiArNjkyLDc4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3Qg
+YXR0cmlidXRlX2dyb3VwIGh3bW8KPiAgc3RhdGljIGNvbnN0IHN0cnVjdCBhdHRyaWJ1dGVfZ3Jv
+dXAgaHdtb25fcG93ZXJfY2Fwc19hdHRyZ3JvdXAgPSB7Cj4gICAgICAgICAuYXR0cnMgPSBod21v
+bl9wb3dlcl9jYXBzX2F0dHJpYnV0ZXMsCj4gIH07Cj4gKwo+ICtzdGF0aWMgY29uc3QgdTMyIG5v
+dXZlYXVfY29uZmlnX2NoaXBbXSA9IHsKPiArICAgICAgIEhXTU9OX0NfVVBEQVRFX0lOVEVSVkFM
+LAo+ICsgICAgICAgMAo+ICt9Owo+ICsKPiArc3RhdGljIGNvbnN0IHUzMiBub3V2ZWF1X2NvbmZp
+Z19pbltdID0gewo+ICsgICAgICAgSFdNT05fSV9JTlBVVCB8IEhXTU9OX0lfTUlOIHwgSFdNT05f
+SV9NQVggfCBIV01PTl9JX0xBQkVMLAo+ICsgICAgICAgMAo+ICt9Owo+ICsKPiArc3RhdGljIGNv
+bnN0IHUzMiBub3V2ZWF1X2NvbmZpZ190ZW1wW10gPSB7Cj4gKyAgICAgICBIV01PTl9UX0lOUFVU
+IHwgSFdNT05fVF9NQVggfCBIV01PTl9UX01BWF9IWVNUIHwKPiArICAgICAgIEhXTU9OX1RfQ1JJ
+VCB8IEhXTU9OX1RfQ1JJVF9IWVNUIHwgSFdNT05fVF9FTUVSR0VOQ1kgfAo+ICsgICAgICAgSFdN
+T05fVF9FTUVSR0VOQ1lfSFlTVCwKPiArICAgICAgIDAKPiArfTsKPiArCj4gK3N0YXRpYyBjb25z
+dCB1MzIgbm91dmVhdV9jb25maWdfZmFuW10gPSB7Cj4gKyAgICAgICBIV01PTl9GX0lOUFVULAo+
+ICsgICAgICAgMAo+ICt9Owo+ICsKPiArc3RhdGljIGNvbnN0IHUzMiBub3V2ZWF1X2NvbmZpZ19w
+d21bXSA9IHsKPiArICAgICAgIEhXTU9OX1BXTV9JTlBVVCB8IEhXTU9OX1BXTV9FTkFCTEUsCj4g
+KyAgICAgICAwCj4gK307Cj4gKwo+ICtzdGF0aWMgY29uc3QgdTMyIG5vdXZlYXVfY29uZmlnX3Bv
+d2VyW10gPSB7Cj4gKyAgICAgICBIV01PTl9QX0lOUFVUIHwgSFdNT05fUF9DQVBfTUFYIHwgSFdN
+T05fUF9DUklULAo+ICsgICAgICAgMAo+ICt9Owo+ICsKPiArc3RhdGljIGNvbnN0IHN0cnVjdCBo
+d21vbl9jaGFubmVsX2luZm8gbm91dmVhdV9jaGlwID0gewo+ICsgICAgICAgLnR5cGUgPSBod21v
+bl9jaGlwLAo+ICsgICAgICAgLmNvbmZpZyA9IG5vdXZlYXVfY29uZmlnX2NoaXAsCj4gK307Cj4g
+Kwo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGh3bW9uX2NoYW5uZWxfaW5mbyBub3V2ZWF1X3RlbXAg
+PSB7Cj4gKyAgICAgICAudHlwZSA9IGh3bW9uX3RlbXAsCj4gKyAgICAgICAuY29uZmlnID0gbm91
+dmVhdV9jb25maWdfdGVtcCwKPiArfTsKPiArCj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgaHdtb25f
+Y2hhbm5lbF9pbmZvIG5vdXZlYXVfZmFuID0gewo+ICsgICAgICAgLnR5cGUgPSBod21vbl9mYW4s
+Cj4gKyAgICAgICAuY29uZmlnID0gbm91dmVhdV9jb25maWdfZmFuLAo+ICt9Owo+ICsKPiArc3Rh
+dGljIGNvbnN0IHN0cnVjdCBod21vbl9jaGFubmVsX2luZm8gbm91dmVhdV9pbiA9IHsKPiArICAg
+ICAgIC50eXBlID0gaHdtb25faW4sCj4gKyAgICAgICAuY29uZmlnID0gbm91dmVhdV9jb25maWdf
+aW4sCj4gK307Cj4gKwo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGh3bW9uX2NoYW5uZWxfaW5mbyBu
+b3V2ZWF1X3B3bSA9IHsKPiArICAgICAgIC50eXBlID0gaHdtb25fcHdtLAo+ICsgICAgICAgLmNv
+bmZpZyA9IG5vdXZlYXVfY29uZmlnX3B3bSwKPiArfTsKPiArCj4gK3N0YXRpYyBjb25zdCBzdHJ1
+Y3QgaHdtb25fY2hhbm5lbF9pbmZvIG5vdXZlYXVfcG93ZXIgPSB7Cj4gKyAgICAgICAudHlwZSA9
+IGh3bW9uX3Bvd2VyLAo+ICsgICAgICAgLmNvbmZpZyA9IG5vdXZlYXVfY29uZmlnX3Bvd2VyLAo+
+ICt9Owo+ICsKPiArc3RhdGljIGNvbnN0IHN0cnVjdCBod21vbl9jaGFubmVsX2luZm8gKm5vdXZl
+YXVfaW5mb1tdID0gewo+ICsgICAgICAgJm5vdXZlYXVfY2hpcCwKPiArICAgICAgICZub3V2ZWF1
+X3RlbXAsCj4gKyAgICAgICAmbm91dmVhdV9mYW4sCj4gKyAgICAgICAmbm91dmVhdV9pbiwKPiAr
+ICAgICAgICZub3V2ZWF1X3B3bSwKPiArICAgICAgICZub3V2ZWF1X3Bvd2VyLAo+ICsgICAgICAg
+TlVMTAo+ICt9Owo+ICAjZW5kaWYKPgo+ICBpbnQKPiBfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cg==
