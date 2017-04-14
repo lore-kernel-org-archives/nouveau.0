@@ -1,80 +1,119 @@
-From: Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH 02/38] Annotate hardware config module parameters in
- arch/x86/mm/
-Date: Fri, 14 Apr 2017 20:15:49 +0200 (CEST)
-Message-ID: <alpine.DEB.2.20.1704142007590.2327@nanos>
-References: <149141141298.29162.5612793122429261720.stgit@warthog.procyon.org.uk> <149141142839.29162.10470212173396183651.stgit@warthog.procyon.org.uk>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100433] Kernel Oops on attempting to return from
+ locked screen on gnome-session
+Date: Fri, 14 Apr 2017 22:42:03 +0000
+Message-ID: <bug-100433-8800-qBxaXhteU7@http.bugs.freedesktop.org/>
+References: <bug-100433-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Return-path: <linux-security-module-owner@vger.kernel.org>
-In-Reply-To: <149141142839.29162.10470212173396183651.stgit@warthog.procyon.org.uk>
-Sender: owner-linux-security-module@vger.kernel.org
-To: David Howells <dhowells@redhat.com>
-Cc: linux-kernel@vger.kernel.org, gnomes@lxorguk.ukuu.org.uk, gregkh@linuxfoundation.org, nouveau@lists.freedesktop.org, x86@kernel.org, Steven Rostedt <rostedt@goodmis.org>, linux-security-module@vger.kernel.org, keyrings@vger.kernel.org, "H. Peter Anvin" <hpa@zytor.com>, Ingo Molnar <mingo@kernel.org>
+Content-Type: multipart/mixed; boundary="===============2112131158=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100433-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 5 Apr 2017, David Howells wrote:
 
-The subject line hardly qualifies as a valid one.
-
-    arch/subsys: Short description
-
-Do I really have to explain that to you?
-
-> When the kernel is running in secure boot mode, we lock down the kernel to
-> prevent userspace from modifying the running kernel image.  Whilst this
-> includes prohibiting access to things like /dev/mem, it must also prevent
-> access by means of configuring driver modules in such a way as to cause a
-> device to access or modify the kernel image.
-> 
-> To this end, annotate module_param* statements that refer to hardware
-> configuration and indicate for future reference what type of parameter they
-> specify.  The parameter parser in the core sees this information and can
-> skip such parameters with an error message if the kernel is locked down.
-> The module initialisation then runs as normal, but just sees whatever the
-> default values for those parameters is.
-> 
-> Note that we do still need to do the module initialisation because some
-> drivers have viable defaults set in case parameters aren't specified and
-> some drivers support automatic configuration (e.g. PNP or PCI) in addition
-> to manually coded parameters.
-> 
-> This patch annotates drivers in arch/x86/mm/.
-
-We already know that this is a patch. There is a chapter in
-Documentation/process/SubmittingPatches which explains that. That file is
-not only for newbies.
-
-> diff --git a/arch/x86/mm/testmmiotrace.c b/arch/x86/mm/testmmiotrace.c
-> index 38868adf07ea..f6ae6830b341 100644
-> --- a/arch/x86/mm/testmmiotrace.c
-> +++ b/arch/x86/mm/testmmiotrace.c
-> @@ -9,7 +9,7 @@
->  #include <linux/mmiotrace.h>
->  
->  static unsigned long mmio_address;
-> -module_param(mmio_address, ulong, 0);
-> +module_param_hw(mmio_address, ulong, iomem, 0);
->  MODULE_PARM_DESC(mmio_address, " Start address of the mapping of 16 kB "
->  				"(or 8 MB if read_far is non-zero).");
-
-The copied boilerplate above is really nonsensical here. The default
-address is 0, so the init function will emit:
-
-     pr_err("you have to use the module argument mmio_address.\n");
-     pr_err("DO NOT LOAD THIS MODULE UNLESS YOU REALLY KNOW WHAT YOU ARE DOING!\n");
-
-Pretty useless when you can't supply a valid address.
-
-       if (kernel_locked_down()) {
-       		pr_info("This is not allowed because ...");
-		return -EPERM;
-       }
-
-would make too much sense for the user, right?
-
-Thanks,
-
-	tglx
+--===============2112131158==
+Content-Type: multipart/alternative; boundary="14922097230.2A7f6Dbd.9252";
+ charset="UTF-8"
 
 
+--14922097230.2A7f6Dbd.9252
+Date: Fri, 14 Apr 2017 22:42:03 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100433
+
+--- Comment #2 from Atri <badshah400-CZK690njTpI@public.gmane.org> ---
+(In reply to Atri from comment #1)
+> Still happening with 4/10/8, with crashes like these:
+
+Sorry, obviously I meant with kernel 4.10.8 there.
+
+Also, just to add, uninstalling the nouveau driver (and running e.g. on
+llvmpipe) makes this problem disappear.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14922097230.2A7f6Dbd.9252
+Date: Fri, 14 Apr 2017 22:42:03 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel Oops on attempting to return from locked screen on=
+ gnome-session"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100433#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel Oops on attempting to return from locked screen on=
+ gnome-session"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100433">bug 10043=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+badshah400&#64;aim.com" title=3D"Atri &lt;badshah400&#64;aim.com&gt;"> <spa=
+n class=3D"fn">Atri</span></a>
+</span></b>
+        <pre>(In reply to Atri from <a href=3D"show_bug.cgi?id=3D100433#c1"=
+>comment #1</a>)
+<span class=3D"quote">&gt; Still happening with 4/10/8, with crashes like t=
+hese:</span >
+
+Sorry, obviously I meant with kernel 4.10.8 there.
+
+Also, just to add, uninstalling the nouveau driver (and running e.g. on
+llvmpipe) makes this problem disappear.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14922097230.2A7f6Dbd.9252--
+
+--===============2112131158==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2112131158==--
