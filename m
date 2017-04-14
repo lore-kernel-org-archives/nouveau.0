@@ -1,142 +1,148 @@
-From: Oscar Salvador <osalvador.vilardaga@gmail.com>
-Subject: Re: [Nouveau] [PATCH 1/4] nouveau_hwmon: migrate to
- hwmon_device_register_with_info
-Date: Fri, 14 Apr 2017 09:14:17 +0200
-Message-ID: <CAOXBz7gU+CqrwNBbns7NETC_-mMpAgKAL51j=KeGzyPg+9yMMw@mail.gmail.com>
-References: <20170413090831.qxnrmacxm4ypbqv5@linux-3pot>
- <CAEXux-ZAorRMz_5TdcOXvTrV6mceqHQ=FLxuLDpE+SUjjY36RQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100676] gp104 - messy(random green and/or missing
+ pixel lines) then no output at and after boot
+Date: Fri, 14 Apr 2017 08:50:50 +0000
+Message-ID: <bug-100676-8800-Xoyn50pbmr@http.bugs.freedesktop.org/>
+References: <bug-100676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAEXux-ZAorRMz_5TdcOXvTrV6mceqHQ=FLxuLDpE+SUjjY36RQ@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Karol Herbst <karolherbst@gmail.com>
-Cc: ML nouveau <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1591619704=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U29ycnksIEl0J3MgbXkgZmlyc3QgdGltZSBzZW5kaW5nIGEgcGF0Y2ggYW5kIEknbSBhIGJpdCBs
-b3N0LiBJIGRpZG4ndAprbm93IHRoZSBmaXJzdCBvbmUgbXVzdCBiZSBhIGNvdmVyIGxldHRlci4K
-SSdsbCB3cml0ZSBhbm90aGVyIHNlcmllcyBvZiBwYXRjaCBkb2luZyBpdCByaWdodCBhbmQgd2l0
-aCB0aGUgY2hhbmdlcwp5b3Ugc3VnZ2VzdGVkIGluIGl0LgoKSSdsbCBwdXQgdjIgYWZ0ZXIgUEFU
-Q0guCgpUaGFua3MKCk9uIDE0IEFwcmlsIDIwMTcgYXQgMDE6MjEsIEthcm9sIEhlcmJzdCA8a2Fy
-b2xoZXJic3RAZ21haWwuY29tPiB3cm90ZToKPiAyMDE3LTA0LTEzIDExOjA4IEdNVCswMjowMCBP
-c2NhciBTYWx2YWRvciA8b3NhbHZhZG9yLnZpbGFyZGFnYUBnbWFpbC5jb20+Ogo+PiBUaGlzIHBh
-dGNoIGludHJvZHVjZXMgdGhlIHN0cnVjdHVyZSAic3RydWN0IGh3bW9uX29wcyIgIGFuZCBzZXRz
-IHVwIHRoZSAgIi52aXNpYmxlIiBvcGVyYXRpb24uCj4+IElzIGFsc28gYSBwcmVwYXJhdGlvbiBm
-b3IgdGhlIG5leHQgcGF0Y2ggd2hlcmUgYWxsIHdvcmsgaXMgYmVpbmcgZG9uZS4KPj4KPj4gLS0t
-IGxpbnV4L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYy5vcmlnICAyMDE3
-LTA0LTEyIDE5OjIyOjI5LjA3MDU3MzE4NyArMDIwMAo+PiArKysgbGludXgvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jICAgICAgIDIwMTctMDQtMTIgMTk6MjE6MzIuMzkx
-MzM4MDExICswMjAwCj4+IEBAIC03NjQsNiArNzY0LDE2NiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0
-IGh3bW9uX2NoYW5uZWxfaW5mbyAqCj4+ICAgICAgICAgJm5vdXZlYXVfcG93ZXIsCj4+ICAgICAg
-ICAgTlVMTAo+PiAgfTsKPj4gKwo+PiArc3RhdGljIHVtb2RlX3QKPj4gK25vdXZlYXVfY2hpcF9p
-c192aXNpYmxlKGNvbnN0IHZvaWQgKmRhdGEsIHUzMiBhdHRyLCBpbnQgY2hhbm5lbCkKPj4gK3sK
-Pj4gKyAgICAgICBzd2l0Y2ggKGF0dHIpIHsKPj4gKyAgICAgICBjYXNlIGh3bW9uX2NoaXBfdXBk
-YXRlX2ludGVydmFsOgo+PiArICAgICAgICAgICAgICAgcmV0dXJuIDA0NDQ7Cj4+ICsgICAgICAg
-ZGVmYXVsdDoKPj4gKyAgICAgICAgICAgICAgIHJldHVybiAwOwo+PiArICAgICAgIH0KPj4gK30K
-Pj4gKwo+PiArc3RhdGljIHVtb2RlX3QKPj4gK25vdXZlYXVfcG93ZXJfaXNfdmlzaWJsZShjb25z
-dCB2b2lkICpkYXRhLCB1MzIgYXR0ciwgaW50IGNoYW5uZWwpCj4+ICt7Cj4+ICsgICAgICAgc3Ry
-dWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2ZWF1X2RybSgoc3RydWN0IGRybV9kZXZpY2UgKilk
-YXRhKTsKPj4gKyAgICAgICBzdHJ1Y3QgbnZrbV9pY2NzZW5zZSAqaWNjc2Vuc2UgPSBudnh4X2lj
-Y3NlbnNlKCZkcm0tPmNsaWVudC5kZXZpY2UpOwo+PiArCj4+ICsgICAgICAgc3dpdGNoIChhdHRy
-KSB7Cj4+ICsgICAgICAgY2FzZSBod21vbl9wb3dlcl9pbnB1dDoKPj4gKyAgICAgICAgICAgICAg
-IGlmIChpY2NzZW5zZSAmJiBpY2NzZW5zZS0+ZGF0YV92YWxpZCAmJgo+PiArICAgICAgICAgICAg
-ICAgICAgICAgICAhbGlzdF9lbXB0eSgmaWNjc2Vuc2UtPnJhaWxzKSkKPj4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgcmV0dXJuIDA0NDQ7Cj4KPiBubyBmYWxsdGhyb3VnaCBoZXJlLgo+Cj4+ICsg
-ICAgICAgY2FzZSBod21vbl9wb3dlcl9tYXg6Cj4+ICsgICAgICAgY2FzZSBod21vbl9wb3dlcl9j
-cml0Ogo+PiArICAgICAgICAgICAgICAgaWYgKGljY3NlbnNlLT5wb3dlcl93X21heCAmJiBpY2Nz
-ZW5zZS0+cG93ZXJfd19jcml0KQo+PiArICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gMDQ0
-NDsKPgo+IGl0IG1ha2VzIHNlbnNlIHRvIHNwbGl0IHRob3NlCj4KPj4gKyAgICAgICBkZWZhdWx0
-Ogo+PiArICAgICAgICAgICAgICAgcmV0dXJuIDA7Cj4+ICsgICAgICAgfQo+PiArfQo+PiArCj4+
-ICtzdGF0aWMgdW1vZGVfdAo+PiArbm91dmVhdV90ZW1wX2lzX3Zpc2libGUoY29uc3Qgdm9pZCAq
-ZGF0YSwgdTMyIGF0dHIsIGludCBjaGFubmVsKQo+PiArewo+PiArICAgICAgIHN0cnVjdCBub3V2
-ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oKHN0cnVjdCBkcm1fZGV2aWNlICopZGF0YSk7Cj4+
-ICsgICAgICAgc3RydWN0IG52a21fdGhlcm0gKnRoZXJtID0gbnZ4eF90aGVybSgmZHJtLT5jbGll
-bnQuZGV2aWNlKTsKPj4gKwo+PiArICAgICAgIGlmICh0aGVybSAmJiB0aGVybS0+YXR0cl9nZXQg
-JiYgdGhlcm0tPmF0dHJfc2V0KQo+PiArICAgICAgICAgICAgICAgaWYgKG52a21fdGhlcm1fdGVt
-cF9nZXQodGhlcm0pIDwgMCkKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIDA7Cj4K
-PiBJIHRoaW5rIHlvdSBjYW4gbWVyZ2UgdGhvc2UgaWYgc3RhdGVtZW50cwo+Cj4+ICsKPj4gKyAg
-ICAgICBzd2l0Y2ggKGF0dHIpIHsKPj4gKyAgICAgICBjYXNlIGh3bW9uX3RlbXBfaW5wdXQ6Cj4+
-ICsgICAgICAgICAgICAgICByZXR1cm4gMDQ0NDsKPj4gKyAgICAgICBjYXNlIGh3bW9uX3RlbXBf
-bWF4Ogo+PiArICAgICAgIGNhc2UgaHdtb25fdGVtcF9tYXhfaHlzdDoKPj4gKyAgICAgICBjYXNl
-IGh3bW9uX3RlbXBfY3JpdDoKPj4gKyAgICAgICBjYXNlIGh3bW9uX3RlbXBfY3JpdF9oeXN0Ogo+
-PiArICAgICAgIGNhc2UgaHdtb25fdGVtcF9lbWVyZ2VuY3k6Cj4+ICsgICAgICAgY2FzZSBod21v
-bl90ZW1wX2VtZXJnZW5jeV9oeXN0Ogo+PiArICAgICAgICAgICAgICAgcmV0dXJuIDA2NDQ7Cj4K
-PiBJIGRvdWJ0IHdlIGV2ZXIgd2FudCB0byBzdXBwb3J0IGNoYW5naW5nIHRob3NlLCBwbGVhc2Ug
-bGVhdmUgdGhlbSBhcyByZWFkIG9ubHkKPgo+PiArICAgICAgIGRlZmF1bHQ6Cj4+ICsgICAgICAg
-ICAgICAgICByZXR1cm4gMDsKPj4gKyAgICAgICB9Cj4+ICt9Cj4+ICsKPj4gK3N0YXRpYyB1bW9k
-ZV90Cj4+ICtub3V2ZWF1X3B3bV9pc192aXNpYmxlKGNvbnN0IHZvaWQgKmRhdGEsIHUzMiBhdHRy
-LCBpbnQgY2hhbm5lbCkKPj4gK3sKPj4gKyAgICAgICBzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9
-IG5vdXZlYXVfZHJtKChzdHJ1Y3QgZHJtX2RldmljZSAqKWRhdGEpOwo+PiArICAgICAgIHN0cnVj
-dCBudmttX3RoZXJtICp0aGVybSA9IG52eHhfdGhlcm0oJmRybS0+Y2xpZW50LmRldmljZSk7Cj4+
-ICsKPj4gKyAgICAgICBpZiAodGhlcm0gJiYgdGhlcm0tPmF0dHJfZ2V0KQo+PiArICAgICAgICAg
-ICAgICAgaWYgKHRoZXJtLT5mYW5fZ2V0ICYmIHRoZXJtLT5mYW5fZ2V0KHRoZXJtKSA8IDApCj4+
-ICsgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiAwOwo+Cj4gbWVyZ2UgdGhlIGlmcwo+Cj4+
-ICsKPj4gKyAgICAgICBzd2l0Y2ggKGF0dHIpIHsKPj4gKyAgICAgICBjYXNlIGh3bW9uX3B3bV9l
-bmFibGU6Cj4+ICsgICAgICAgY2FzZSBod21vbl9wd21faW5wdXQ6Cj4+ICsgICAgICAgICAgICAg
-ICByZXR1cm4gMDY0NDsKPj4gKyAgICAgICBkZWZhdWx0Ogo+PiArICAgICAgICAgICAgICAgcmV0
-dXJuIDA7Cj4+ICsgICAgICAgfQo+PiArfQo+PiArCj4+ICtzdGF0aWMgdW1vZGVfdAo+PiArbm91
-dmVhdV9pbnB1dF9pc192aXNpYmxlKGNvbnN0IHZvaWQgKmRhdGEsIHUzMiBhdHRyLCBpbnQgY2hh
-bm5lbCkKPj4gK3sKPj4gKyAgICAgICBzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVf
-ZHJtKChzdHJ1Y3QgZHJtX2RldmljZSAqKWRhdGEpOwo+PiArICAgICAgIHN0cnVjdCBudmttX3Zv
-bHQgKnZvbHQgPSBudnh4X3ZvbHQoJmRybS0+Y2xpZW50LmRldmljZSk7Cj4+ICsKPj4gKyAgICAg
-ICBpZiAoIXZvbHQgfHwgbnZrbV92b2x0X2dldCh2b2x0KSA8IDApCj4+ICsgICAgICAgICAgICAg
-ICByZXR1cm4gMDsKPj4gKwo+PiArICAgICAgIHN3aXRjaCAoYXR0cikgewo+PiArICAgICAgIGNh
-c2UgaHdtb25faW5faW5wdXQ6Cj4+ICsgICAgICAgY2FzZSBod21vbl9pbl9sYWJlbDoKPj4gKyAg
-ICAgICBjYXNlIGh3bW9uX2luX21pbjoKPj4gKyAgICAgICBjYXNlIGh3bW9uX2luX21heDoKPj4g
-KyAgICAgICAgICAgICAgIHJldHVybiAwNDQ0Owo+PiArICAgICAgIGRlZmF1bHQ6Cj4+ICsgICAg
-ICAgICAgICAgICByZXR1cm4gMDsKPj4gKyAgICAgICB9Cj4+ICt9Cj4+ICsKPj4gK3N0YXRpYyB1
-bW9kZV90Cj4+ICtub3V2ZWF1X2Zhbl9pc192aXNpYmxlKGNvbnN0IHZvaWQgKmRhdGEsIHUzMiBh
-dHRyLCBpbnQgY2hhbm5lbCkKPj4gK3sKPj4gKyAgICAgICBzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRy
-bSA9IG5vdXZlYXVfZHJtKChzdHJ1Y3QgZHJtX2RldmljZSAqKWRhdGEpOwo+PiArICAgICAgIHN0
-cnVjdCBudmttX3RoZXJtICp0aGVybSA9IG52eHhfdGhlcm0oJmRybS0+Y2xpZW50LmRldmljZSk7
-Cj4+ICsKPj4gKyAgICAgICBpZiAoIXRoZXJtIHx8ICF0aGVybS0+YXR0cl9nZXQgfHwgbnZrbV90
-aGVybV9mYW5fc2Vuc2UodGhlcm0pIDwgMCkKPj4gKyAgICAgICAgICAgICAgIHJldHVybiAwOwo+
-PiArCj4+ICsgICAgICAgc3dpdGNoIChhdHRyKSB7Cj4+ICsgICAgICAgY2FzZSBod21vbl9mYW5f
-aW5wdXQ6Cj4+ICsgICAgICAgICAgICAgICByZXR1cm4gMDQ0NDsKPj4gKyAgICAgICBkZWZhdWx0
-Ogo+PiArICAgICAgICAgICAgICAgcmV0dXJuIDA7Cj4+ICsgICAgICAgfQo+PiArfQo+PiArCj4+
-ICtzdGF0aWMgdW1vZGVfdAo+PiArbm91dmVhdV9pc192aXNpYmxlKGNvbnN0IHZvaWQgKmRhdGEs
-IGVudW0gaHdtb25fc2Vuc29yX3R5cGVzIHR5cGUsIHUzMiBhdHRyLAo+PiArICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaW50IGNo
-YW5uZWwpCj4KPiBJbmRlbnRhdGlvbgo+Cj4+ICt7Cj4+ICsgICAgICAgc3dpdGNoICh0eXBlKSB7
-Cj4+ICsgICAgICAgY2FzZSBod21vbl9jaGlwOgo+PiArICAgICAgICAgICAgICAgcmV0dXJuIG5v
-dXZlYXVfY2hpcF9pc192aXNpYmxlKGRhdGEsIGF0dHIsIGNoYW5uZWwpOwo+PiArICAgICAgIGNh
-c2UgaHdtb25fdGVtcDoKPj4gKyAgICAgICAgICAgICAgIHJldHVybiBub3V2ZWF1X3RlbXBfaXNf
-dmlzaWJsZShkYXRhLCBhdHRyLCBjaGFubmVsKTsKPj4gKyAgICAgICBjYXNlIGh3bW9uX2ZhbjoK
-Pj4gKyAgICAgICAgICAgICAgIHJldHVybiBub3V2ZWF1X2Zhbl9pc192aXNpYmxlKGRhdGEsIGF0
-dHIsIGNoYW5uZWwpOwo+PiArICAgICAgIGNhc2UgaHdtb25faW46Cj4+ICsgICAgICAgICAgICAg
-ICByZXR1cm4gbm91dmVhdV9pbnB1dF9pc192aXNpYmxlKGRhdGEsIGF0dHIsIGNoYW5uZWwpOwo+
-PiArICAgICAgIGNhc2UgaHdtb25fcHdtOgo+PiArICAgICAgICAgICAgICAgcmV0dXJuIG5vdXZl
-YXVfcHdtX2lzX3Zpc2libGUoZGF0YSwgYXR0ciwgY2hhbm5lbCk7Cj4+ICsgICAgICAgY2FzZSBo
-d21vbl9wb3dlcjoKPj4gKyAgICAgICAgICAgICAgIHJldHVybiBub3V2ZWF1X3Bvd2VyX2lzX3Zp
-c2libGUoZGF0YSwgYXR0ciwgY2hhbm5lbCk7Cj4+ICsgICAgICAgZGVmYXVsdDoKPj4gKyAgICAg
-ICAgICAgICAgIHJldHVybiAwOwo+PiArICAgICAgIH0KPj4gK30KPj4gKwo+PiArc3RhdGljIGNo
-YXIgKmlucHV0X2xhYmVsID0gIkdQVSBjb3JlIjsKPj4gKwo+PiArc3RhdGljIGludAo+PiArbm91
-dmVhdV9yZWFkX3N0cmluZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIGVudW0gaHdtb25fc2Vuc29yX3R5
-cGVzIHR5cGUsIHUzMiBhdHRyLAo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIGludCBjaGFubmVsLCBjaGFyICoqYnVmKQo+Cj4gSW5kZW50
-YXRpb24KPgo+PiArewo+PiArICAgICAgIGlmICh0eXBlID09IGh3bW9uX2luICYmIGF0dHIgPT0g
-aHdtb25faW5fbGFiZWwpIHsKPj4gKyAgICAgICAgICAgICAgICpidWYgPSBpbnB1dF9sYWJlbDsK
-Pj4gKyAgICAgICAgICAgICAgIHJldHVybiAwOwo+PiArICAgICAgIH0KPj4gKwo+PiArICAgICAg
-IHJldHVybiAtRU9QTk9UU1VQUDsKPj4gK30KPj4gKwo+PiArc3RhdGljIGNvbnN0IHN0cnVjdCBo
-d21vbl9vcHMgbm91dmVhdV9od21vbl9vcHMgPSB7Cj4+ICsgICAgICAgLmlzX3Zpc2libGUgPSBu
-b3V2ZWF1X2lzX3Zpc2libGUsCj4+ICsgICAgICAgLnJlYWQgPSBOVUxMLAo+PiArICAgICAgIC5y
-ZWFkX3N0cmluZyA9IG5vdXZlYXVfcmVhZF9zdHJpbmcsCj4+ICsgICAgICAgLndyaXRlID0gTlVM
-TCwKPj4gK307Cj4+ICsKPj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgaHdtb25fY2hpcF9pbmZvIG5v
-dXZlYXVfY2hpcF9pbmZvID0gewo+PiArICAgICAgIC5vcHMgPSAmbm91dmVhdV9od21vbl9vcHMs
-Cj4+ICsgICAgICAgLmluZm8gPSBub3V2ZWF1X2luZm8sCj4+ICt9Owo+PiAgI2VuZGlmCj4+Cj4+
-ICBpbnQKPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-Pj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-Pj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZl
-bCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============1591619704==
+Content-Type: multipart/alternative; boundary="14921598500.26F2a82E.6188";
+ charset="UTF-8"
+
+
+--14921598500.26F2a82E.6188
+Date: Fri, 14 Apr 2017 08:50:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100676
+
+xen <nvbugs-8HG2SOrYmURWk0Htik3J/w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #130836|0                           |1
+        is obsolete|                            |
+
+--- Comment #2 from xen <nvbugs-8HG2SOrYmURWk0Htik3J/w@public.gmane.org> ---
+Created attachment 130841
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130841&action=3Dedit
+extracted journalctl log #2
+
+kernel log with "log_buf_len=3D8M drm.debug=3D0x14
+nouveau.debug=3Ddisp=3Dtrace,i2c=3Dtrace,bios=3Dtrace"
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14921598500.26F2a82E.6188
+Date: Fri, 14 Apr 2017 08:50:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:nvbugs&#6=
+4;nym.hush.com" title=3D"xen &lt;nvbugs&#64;nym.hush.com&gt;"> <span class=
+=3D"fn">xen</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - gp104 - messy(random green and/or missing pixel lines) th=
+en no output at and after boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100676">bug 10067=
+6</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #130836 is obsolete</=
+td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - gp104 - messy(random green and/or missing pixel lines) th=
+en no output at and after boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100676#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - gp104 - messy(random green and/or missing pixel lines) th=
+en no output at and after boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100676">bug 10067=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+nvbugs&#64;nym.hush.com" title=3D"xen &lt;nvbugs&#64;nym.hush.com&gt;"> <sp=
+an class=3D"fn">xen</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130841=
+" name=3D"attach_130841" title=3D"extracted journalctl log #2">attachment 1=
+30841</a> <a href=3D"attachment.cgi?id=3D130841&amp;action=3Dedit" title=3D=
+"extracted journalctl log #2">[details]</a></span>
+extracted journalctl log #2
+
+kernel log with &quot;log_buf_len=3D8M drm.debug=3D0x14
+nouveau.debug=3Ddisp=3Dtrace,i2c=3Dtrace,bios=3Dtrace&quot;</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14921598500.26F2a82E.6188--
+
+--===============1591619704==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1591619704==--
