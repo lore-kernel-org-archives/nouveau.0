@@ -1,126 +1,80 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100676] gp104 - messy(random green and/or missing
- pixel lines) then no output at and after boot
-Date: Fri, 14 Apr 2017 12:32:41 +0000
-Message-ID: <bug-100676-8800-bFWZa3mKpK@http.bugs.freedesktop.org/>
-References: <bug-100676-8800@http.bugs.freedesktop.org/>
+From: Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH 02/38] Annotate hardware config module parameters in
+ arch/x86/mm/
+Date: Fri, 14 Apr 2017 20:15:49 +0200 (CEST)
+Message-ID: <alpine.DEB.2.20.1704142007590.2327@nanos>
+References: <149141141298.29162.5612793122429261720.stgit@warthog.procyon.org.uk> <149141142839.29162.10470212173396183651.stgit@warthog.procyon.org.uk>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0918405369=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=US-ASCII
+Return-path: <linux-security-module-owner@vger.kernel.org>
+In-Reply-To: <149141142839.29162.10470212173396183651.stgit@warthog.procyon.org.uk>
+Sender: owner-linux-security-module@vger.kernel.org
+To: David Howells <dhowells@redhat.com>
+Cc: linux-kernel@vger.kernel.org, gnomes@lxorguk.ukuu.org.uk, gregkh@linuxfoundation.org, nouveau@lists.freedesktop.org, x86@kernel.org, Steven Rostedt <rostedt@goodmis.org>, linux-security-module@vger.kernel.org, keyrings@vger.kernel.org, "H. Peter Anvin" <hpa@zytor.com>, Ingo Molnar <mingo@kernel.org>
 List-Id: nouveau.vger.kernel.org
 
+On Wed, 5 Apr 2017, David Howells wrote:
 
---===============0918405369==
-Content-Type: multipart/alternative; boundary="14921731601.DCBB2c6.2171";
- charset="UTF-8"
+The subject line hardly qualifies as a valid one.
 
+    arch/subsys: Short description
 
---14921731601.DCBB2c6.2171
-Date: Fri, 14 Apr 2017 12:32:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Do I really have to explain that to you?
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100676
+> When the kernel is running in secure boot mode, we lock down the kernel to
+> prevent userspace from modifying the running kernel image.  Whilst this
+> includes prohibiting access to things like /dev/mem, it must also prevent
+> access by means of configuring driver modules in such a way as to cause a
+> device to access or modify the kernel image.
+> 
+> To this end, annotate module_param* statements that refer to hardware
+> configuration and indicate for future reference what type of parameter they
+> specify.  The parameter parser in the core sees this information and can
+> skip such parameters with an error message if the kernel is locked down.
+> The module initialisation then runs as normal, but just sees whatever the
+> default values for those parameters is.
+> 
+> Note that we do still need to do the module initialisation because some
+> drivers have viable defaults set in case parameters aren't specified and
+> some drivers support automatic configuration (e.g. PNP or PCI) in addition
+> to manually coded parameters.
+> 
+> This patch annotates drivers in arch/x86/mm/.
 
---- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to xen from comment #3)
-> Created attachment 130842 [details]
-> photo taken from primary output during boot
+We already know that this is a patch. There is a chapter in
+Documentation/process/SubmittingPatches which explains that. That file is
+not only for newbies.
 
-Ah, thank you.  I know what's going on here, it relates to some as of yet
-unimplemented display architecture changes that GM20x requires.
+> diff --git a/arch/x86/mm/testmmiotrace.c b/arch/x86/mm/testmmiotrace.c
+> index 38868adf07ea..f6ae6830b341 100644
+> --- a/arch/x86/mm/testmmiotrace.c
+> +++ b/arch/x86/mm/testmmiotrace.c
+> @@ -9,7 +9,7 @@
+>  #include <linux/mmiotrace.h>
+>  
+>  static unsigned long mmio_address;
+> -module_param(mmio_address, ulong, 0);
+> +module_param_hw(mmio_address, ulong, iomem, 0);
+>  MODULE_PARM_DESC(mmio_address, " Start address of the mapping of 16 kB "
+>  				"(or 8 MB if read_far is non-zero).");
 
-I shall fix it, but it might take me a little while to figure out how exact=
-ly
-to go about it.
+The copied boilerplate above is really nonsensical here. The default
+address is 0, so the init function will emit:
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+     pr_err("you have to use the module argument mmio_address.\n");
+     pr_err("DO NOT LOAD THIS MODULE UNLESS YOU REALLY KNOW WHAT YOU ARE DOING!\n");
 
---14921731601.DCBB2c6.2171
-Date: Fri, 14 Apr 2017 12:32:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Pretty useless when you can't supply a valid address.
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - gp104 - messy(random green and/or missing pixel lines) th=
-en no output at and after boot"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100676#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - gp104 - messy(random green and/or missing pixel lines) th=
-en no output at and after boot"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100676">bug 10067=
-6</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>(In reply to xen from <a href=3D"show_bug.cgi?id=3D100676#c3">=
-comment #3</a>)
-<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
-gi?id=3D130842" name=3D"attach_130842" title=3D"photo taken from primary ou=
-tput during boot">attachment 130842</a> <a href=3D"attachment.cgi?id=3D1308=
-42&amp;action=3Dedit" title=3D"photo taken from primary output during boot"=
->[details]</a></span>
-&gt; photo taken from primary output during boot</span >
+       if (kernel_locked_down()) {
+       		pr_info("This is not allowed because ...");
+		return -EPERM;
+       }
 
-Ah, thank you.  I know what's going on here, it relates to some as of yet
-unimplemented display architecture changes that GM20x requires.
+would make too much sense for the user, right?
 
-I shall fix it, but it might take me a little while to figure out how exact=
-ly
-to go about it.</pre>
-        </div>
-      </p>
+Thanks,
+
+	tglx
 
 
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14921731601.DCBB2c6.2171--
-
---===============0918405369==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0918405369==--
