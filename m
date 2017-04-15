@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100433] Kernel Oops on attempting to return from
  locked screen on gnome-session
-Date: Fri, 14 Apr 2017 22:42:03 +0000
-Message-ID: <bug-100433-8800-qBxaXhteU7@http.bugs.freedesktop.org/>
+Date: Sat, 15 Apr 2017 15:14:13 +0000
+Message-ID: <bug-100433-8800-qT3QstnISb@http.bugs.freedesktop.org/>
 References: <bug-100433-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2112131158=="
+Content-Type: multipart/mixed; boundary="===============1974045216=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100433-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2112131158==
-Content-Type: multipart/alternative; boundary="14922097230.2A7f6Dbd.9252";
+--===============1974045216==
+Content-Type: multipart/alternative; boundary="14922692531.B61FcfC.13205";
  charset="UTF-8"
 
 
---14922097230.2A7f6Dbd.9252
-Date: Fri, 14 Apr 2017 22:42:03 +0000
+--14922692531.B61FcfC.13205
+Date: Sat, 15 Apr 2017 15:14:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,22 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100433
 
---- Comment #2 from Atri <badshah400-CZK690njTpI@public.gmane.org> ---
-(In reply to Atri from comment #1)
-> Still happening with 4/10/8, with crashes like these:
-
-Sorry, obviously I meant with kernel 4.10.8 there.
-
-Also, just to add, uninstalling the nouveau driver (and running e.g. on
-llvmpipe) makes this problem disappear.
+--- Comment #3 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+If you use the modesetting DDX, or update the Nouveau DDX to 1.0.14, does it
+still happen?
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14922097230.2A7f6Dbd.9252
-Date: Fri, 14 Apr 2017 22:42:03 +0000
+--14922692531.B61FcfC.13205
+Date: Sat, 15 Apr 2017 15:14:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Kernel Oops on attempting to return from locked screen on=
  gnome-session"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100433#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100433#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel Oops on attempting to return from locked screen on=
@@ -78,18 +73,12 @@ t # 2</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100433">bug 10043=
 3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-badshah400&#64;aim.com" title=3D"Atri &lt;badshah400&#64;aim.com&gt;"> <spa=
-n class=3D"fn">Atri</span></a>
+pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
+e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>(In reply to Atri from <a href=3D"show_bug.cgi?id=3D100433#c1"=
->comment #1</a>)
-<span class=3D"quote">&gt; Still happening with 4/10/8, with crashes like t=
-hese:</span >
-
-Sorry, obviously I meant with kernel 4.10.8 there.
-
-Also, just to add, uninstalling the nouveau driver (and running e.g. on
-llvmpipe) makes this problem disappear.</pre>
+        <pre>If you use the modesetting DDX, or update the Nouveau DDX to 1=
+.0.14, does it
+still happen?</pre>
         </div>
       </p>
 
@@ -104,9 +93,9 @@ llvmpipe) makes this problem disappear.</pre>
     </body>
 </html>=
 
---14922097230.2A7f6Dbd.9252--
+--14922692531.B61FcfC.13205--
 
---===============2112131158==
+--===============1974045216==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2112131158==--
+--===============1974045216==--
