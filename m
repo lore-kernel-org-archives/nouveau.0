@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100433] Kernel Oops on attempting to return from
- locked screen on gnome-session
-Date: Sun, 16 Apr 2017 01:54:05 +0000
-Message-ID: <bug-100433-8800-CpK9KUJ641@http.bugs.freedesktop.org/>
-References: <bug-100433-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99922] [NVE4] [regression,
+ bisected] 4.10 (atomic): X shows black screen with cursor after
+ monitors turn off
+Date: Sun, 16 Apr 2017 17:45:37 +0000
+Message-ID: <bug-99922-8800-oJSreCNPaH@http.bugs.freedesktop.org/>
+References: <bug-99922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0150200997=="
+Content-Type: multipart/mixed; boundary="===============1540155340=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100433-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +22,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0150200997==
-Content-Type: multipart/alternative; boundary="14923076450.f5Beb0.24405";
+--===============1540155340==
+Content-Type: multipart/alternative; boundary="14923647372.B0CbB.32646";
  charset="UTF-8"
 
 
---14923076450.f5Beb0.24405
-Date: Sun, 16 Apr 2017 01:54:05 +0000
+--14923647372.B0CbB.32646
+Date: Sun, 16 Apr 2017 17:45:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100433
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99922
 
---- Comment #4 from Atri <badshah400-CZK690njTpI@public.gmane.org> ---
-I am using nouveau 1.0.14 and modesetting, it still happens.
+--- Comment #12 from Stefan Becker <chemobejk-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I can also confirm that the DPMS problem with kernel 4.10.x is gone after
+installing xorg-x11-drv-nouveau-1.0.14-1.fc25.x86_64.
+
+1.0.14 includes the patch:
+https://cgit.freedesktop.org/nouveau/xf86-video-nouveau/log/?id=3Db71de83b7=
+fae0abeb311251e6144294d319062cf
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14923076450.f5Beb0.24405
-Date: Sun, 16 Apr 2017 01:54:05 +0000
+--14923647372.B0CbB.32646
+Date: Sun, 16 Apr 2017 17:45:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,22 +66,29 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Kernel Oops on attempting to return from locked screen on=
- gnome-session"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100433#c4">Commen=
-t # 4</a>
+   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
+k screen with cursor after monitors turn off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c12">Commen=
+t # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Kernel Oops on attempting to return from locked screen on=
- gnome-session"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100433">bug 10043=
-3</a>
+   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
+k screen with cursor after monitors turn off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922">bug 99922<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-badshah400&#64;aim.com" title=3D"Atri &lt;badshah400&#64;aim.com&gt;"> <spa=
-n class=3D"fn">Atri</span></a>
+chemobejk&#64;gmail.com" title=3D"Stefan Becker &lt;chemobejk&#64;gmail.com=
+&gt;"> <span class=3D"fn">Stefan Becker</span></a>
 </span></b>
-        <pre>I am using nouveau 1.0.14 and modesetting, it still happens.</=
-pre>
+        <pre>I can also confirm that the DPMS problem with kernel 4.10.x is=
+ gone after
+installing xorg-x11-drv-nouveau-1.0.14-1.fc25.x86_64.
+
+1.0.14 includes the patch:
+<a href=3D"https://cgit.freedesktop.org/nouveau/xf86-video-nouveau/log/?id=
+=3Db71de83b7fae0abeb311251e6144294d319062cf">https://cgit.freedesktop.org/n=
+ouveau/xf86-video-nouveau/log/?id=3Db71de83b7fae0abeb311251e6144294d319062c=
+f</a></pre>
         </div>
       </p>
 
@@ -85,15 +97,14 @@ pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14923076450.f5Beb0.24405--
+--14923647372.B0CbB.32646--
 
---===============0150200997==
+--===============1540155340==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0150200997==--
+--===============1540155340==--
