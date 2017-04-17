@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99922] [NVE4] [regression,
- bisected] 4.10 (atomic): X shows black screen with cursor after
- monitors turn off
-Date: Sun, 16 Apr 2017 17:45:37 +0000
-Message-ID: <bug-99922-8800-oJSreCNPaH@http.bugs.freedesktop.org/>
-References: <bug-99922-8800@http.bugs.freedesktop.org/>
+From: Oscar Salvador <osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH v2 2/5] nouveau_hwmon: Add nouveau_hwmon_ops
+	structure with .is_visible/.read_string
+Date: Mon, 17 Apr 2017 09:47:49 +0200
+Message-ID: <1492415272-20378-3-git-send-email-osalvador.vilardaga@gmail.com>
+References: <1492415272-20378-1-git-send-email-osalvador.vilardaga@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1540155340=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1492415272-20378-1-git-send-email-osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,100 +18,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Oscar Salvador <osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1540155340==
-Content-Type: multipart/alternative; boundary="14923647372.B0CbB.32646";
- charset="UTF-8"
-
-
---14923647372.B0CbB.32646
-Date: Sun, 16 Apr 2017 17:45:37 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99922
-
---- Comment #12 from Stefan Becker <chemobejk-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I can also confirm that the DPMS problem with kernel 4.10.x is gone after
-installing xorg-x11-drv-nouveau-1.0.14-1.fc25.x86_64.
-
-1.0.14 includes the patch:
-https://cgit.freedesktop.org/nouveau/xf86-video-nouveau/log/?id=3Db71de83b7=
-fae0abeb311251e6144294d319062cf
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14923647372.B0CbB.32646
-Date: Sun, 16 Apr 2017 17:45:37 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
-k screen with cursor after monitors turn off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c12">Commen=
-t # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
-k screen with cursor after monitors turn off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922">bug 99922<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-chemobejk&#64;gmail.com" title=3D"Stefan Becker &lt;chemobejk&#64;gmail.com=
-&gt;"> <span class=3D"fn">Stefan Becker</span></a>
-</span></b>
-        <pre>I can also confirm that the DPMS problem with kernel 4.10.x is=
- gone after
-installing xorg-x11-drv-nouveau-1.0.14-1.fc25.x86_64.
-
-1.0.14 includes the patch:
-<a href=3D"https://cgit.freedesktop.org/nouveau/xf86-video-nouveau/log/?id=
-=3Db71de83b7fae0abeb311251e6144294d319062cf">https://cgit.freedesktop.org/n=
-ouveau/xf86-video-nouveau/log/?id=3Db71de83b7fae0abeb311251e6144294d319062c=
-f</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14923647372.B0CbB.32646--
-
---===============1540155340==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1540155340==--
+VGhpcyBwYXRjaCBpbnRyb2R1Y2VzIHRoZSBub3V2ZWF1X2h3bW9uX29wcyBzdHJ1Y3R1cmUsIHNl
+dHMgdXAKLmlzX3Zpc2libGUgYW5kIC5yZWFkX3N0cmluZyBvcGVyYXRpb25zIGFuZCBhZGRzIGFs
+bCB0aGUgZnVuY3Rpb25zCmZvciB0aGVzZSBvcGVyYXRpb25zLgpUaGlzIGlzIGFsc28gYSBwcmVw
+YXJhdGlvbiBmb3IgdGhlIG5leHQgcGF0Y2hlcywgd2hlcmUgbW9zdCBvZiB0aGUKd29yayBpcyBi
+ZWluZyBkb25lLgpUaGlzIGNvZGUgZG9lc24ndCBpbnRlcmFjdHVyZSB3aXRoIHRoZSBvbGQgb25l
+LgpJdCdzIGp1c3QgdG8gbWFrZSBlYXNpZXIgdGhlIHJldmlldyBvZiBhbGwgcGF0Y2hlcy4KLS0t
+CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMgfCAxNjYgKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAxNjYgaW5zZXJ0aW9ucygr
+KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYwppbmRleCAyNGI0MGM1Li45
+YjY0MjNjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9u
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jCkBAIC03NjQs
+NiArNzY0LDE3MiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGh3bW9uX2NoYW5uZWxfaW5mbyAqbm91
+dmVhdV9pbmZvW10gPSB7CiAJJm5vdXZlYXVfcG93ZXIsCiAJTlVMTAogfTsKKworc3RhdGljIHVt
+b2RlX3QKK25vdXZlYXVfY2hpcF9pc192aXNpYmxlKGNvbnN0IHZvaWQgKmRhdGEsIHUzMiBhdHRy
+LCBpbnQgY2hhbm5lbCkKK3sKKwlzd2l0Y2ggKGF0dHIpIHsKKwljYXNlIGh3bW9uX2NoaXBfdXBk
+YXRlX2ludGVydmFsOgorCQlyZXR1cm4gMDQ0NDsKKwlkZWZhdWx0OgorCQlyZXR1cm4gMDsKKwl9
+Cit9CisKK3N0YXRpYyB1bW9kZV90Citub3V2ZWF1X3Bvd2VyX2lzX3Zpc2libGUoY29uc3Qgdm9p
+ZCAqZGF0YSwgdTMyIGF0dHIsIGludCBjaGFubmVsKQoreworCXN0cnVjdCBub3V2ZWF1X2RybSAq
+ZHJtID0gbm91dmVhdV9kcm0oKHN0cnVjdCBkcm1fZGV2aWNlICopZGF0YSk7CisJc3RydWN0IG52
+a21faWNjc2Vuc2UgKmljY3NlbnNlID0gbnZ4eF9pY2NzZW5zZSgmZHJtLT5jbGllbnQuZGV2aWNl
+KTsKKworCXN3aXRjaCAoYXR0cikgeworCWNhc2UgaHdtb25fcG93ZXJfaW5wdXQ6CisJCWlmIChp
+Y2NzZW5zZSAmJgorCQkJaWNjc2Vuc2UtPmRhdGFfdmFsaWQgJiYKKwkJCSFsaXN0X2VtcHR5KCZp
+Y2NzZW5zZS0+cmFpbHMpKQorCQkJcmV0dXJuIDA0NDQ7CisJY2FzZSBod21vbl9wb3dlcl9tYXg6
+CisJCWlmIChpY2NzZW5zZS0+cG93ZXJfd19tYXgpCisJCQlyZXR1cm4gMDQ0NDsKKwljYXNlIGh3
+bW9uX3Bvd2VyX2NyaXQ6CisJCWlmIChpY2NzZW5zZS0+cG93ZXJfd19jcml0KQorCQkJcmV0dXJu
+IDA0NDQ7CisJZGVmYXVsdDoKKwkJcmV0dXJuIDA7CisJfQorfQorCitzdGF0aWMgdW1vZGVfdAor
+bm91dmVhdV90ZW1wX2lzX3Zpc2libGUoY29uc3Qgdm9pZCAqZGF0YSwgdTMyIGF0dHIsIGludCBj
+aGFubmVsKQoreworCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oKHN0cnVj
+dCBkcm1fZGV2aWNlICopZGF0YSk7CisJc3RydWN0IG52a21fdGhlcm0gKnRoZXJtID0gbnZ4eF90
+aGVybSgmZHJtLT5jbGllbnQuZGV2aWNlKTsKKworCWlmICh0aGVybSAmJgorCQl0aGVybS0+YXR0
+cl9nZXQgJiYKKwkJdGhlcm0tPmF0dHJfc2V0ICYmCisJCW52a21fdGhlcm1fdGVtcF9nZXQodGhl
+cm0pIDwgMCkKKwkJcmV0dXJuIDA7CisKKwlzd2l0Y2ggKGF0dHIpIHsKKwljYXNlIGh3bW9uX3Rl
+bXBfaW5wdXQ6CisJY2FzZSBod21vbl90ZW1wX21heDoKKwljYXNlIGh3bW9uX3RlbXBfbWF4X2h5
+c3Q6CisJY2FzZSBod21vbl90ZW1wX2NyaXQ6CisJY2FzZSBod21vbl90ZW1wX2NyaXRfaHlzdDoK
+KwljYXNlIGh3bW9uX3RlbXBfZW1lcmdlbmN5OgorCWNhc2UgaHdtb25fdGVtcF9lbWVyZ2VuY3lf
+aHlzdDoKKwkJcmV0dXJuIDA0NDQ7CisJZGVmYXVsdDoKKwkJcmV0dXJuIDA7CisJfQorfQorCitz
+dGF0aWMgdW1vZGVfdAorbm91dmVhdV9wd21faXNfdmlzaWJsZShjb25zdCB2b2lkICpkYXRhLCB1
+MzIgYXR0ciwgaW50IGNoYW5uZWwpCit7CisJc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2
+ZWF1X2RybSgoc3RydWN0IGRybV9kZXZpY2UgKilkYXRhKTsKKwlzdHJ1Y3QgbnZrbV90aGVybSAq
+dGhlcm0gPSBudnh4X3RoZXJtKCZkcm0tPmNsaWVudC5kZXZpY2UpOworCisJaWYgKHRoZXJtICYm
+CisJCXRoZXJtLT5hdHRyX2dldCAmJgorCQl0aGVybS0+ZmFuX2dldCAmJgorCQl0aGVybS0+ZmFu
+X2dldCh0aGVybSkgPCAwKQorCQlyZXR1cm4gMDsKKworCXN3aXRjaCAoYXR0cikgeworCWNhc2Ug
+aHdtb25fcHdtX2VuYWJsZToKKwljYXNlIGh3bW9uX3B3bV9pbnB1dDoKKwkJcmV0dXJuIDA2NDQ7
+CisJZGVmYXVsdDoKKwkJcmV0dXJuIDA7CisJfQorfQorCitzdGF0aWMgdW1vZGVfdAorbm91dmVh
+dV9pbnB1dF9pc192aXNpYmxlKGNvbnN0IHZvaWQgKmRhdGEsIHUzMiBhdHRyLCBpbnQgY2hhbm5l
+bCkKK3sKKwlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKChzdHJ1Y3QgZHJt
+X2RldmljZSAqKWRhdGEpOworCXN0cnVjdCBudmttX3ZvbHQgKnZvbHQgPSBudnh4X3ZvbHQoJmRy
+bS0+Y2xpZW50LmRldmljZSk7CisKKwlpZiAoIXZvbHQgfHwgbnZrbV92b2x0X2dldCh2b2x0KSA8
+IDApCisJCXJldHVybiAwOworCisJc3dpdGNoIChhdHRyKSB7CisJY2FzZSBod21vbl9pbl9pbnB1
+dDoKKwljYXNlIGh3bW9uX2luX2xhYmVsOgorCWNhc2UgaHdtb25faW5fbWluOgorCWNhc2UgaHdt
+b25faW5fbWF4OgorCQlyZXR1cm4gMDQ0NDsKKwlkZWZhdWx0OgorCQlyZXR1cm4gMDsKKwl9Cit9
+CisKK3N0YXRpYyB1bW9kZV90Citub3V2ZWF1X2Zhbl9pc192aXNpYmxlKGNvbnN0IHZvaWQgKmRh
+dGEsIHUzMiBhdHRyLCBpbnQgY2hhbm5lbCkKK3sKKwlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9
+IG5vdXZlYXVfZHJtKChzdHJ1Y3QgZHJtX2RldmljZSAqKWRhdGEpOworCXN0cnVjdCBudmttX3Ro
+ZXJtICp0aGVybSA9IG52eHhfdGhlcm0oJmRybS0+Y2xpZW50LmRldmljZSk7CisKKwlpZiAoIXRo
+ZXJtIHx8ICF0aGVybS0+YXR0cl9nZXQgfHwgbnZrbV90aGVybV9mYW5fc2Vuc2UodGhlcm0pIDwg
+MCkKKwkJcmV0dXJuIDA7CisKKwlzd2l0Y2ggKGF0dHIpIHsKKwljYXNlIGh3bW9uX2Zhbl9pbnB1
+dDoKKwkJcmV0dXJuIDA0NDQ7CisJZGVmYXVsdDoKKwkJcmV0dXJuIDA7CisJfQorfQorCitzdGF0
+aWMgdW1vZGVfdAorbm91dmVhdV9pc192aXNpYmxlKGNvbnN0IHZvaWQgKmRhdGEsIGVudW0gaHdt
+b25fc2Vuc29yX3R5cGVzIHR5cGUsIHUzMiBhdHRyLAorCQkJCQkJCQlpbnQgY2hhbm5lbCkKK3sK
+Kwlzd2l0Y2ggKHR5cGUpIHsKKwljYXNlIGh3bW9uX2NoaXA6CisJCXJldHVybiBub3V2ZWF1X2No
+aXBfaXNfdmlzaWJsZShkYXRhLCBhdHRyLCBjaGFubmVsKTsKKwljYXNlIGh3bW9uX3RlbXA6CisJ
+CXJldHVybiBub3V2ZWF1X3RlbXBfaXNfdmlzaWJsZShkYXRhLCBhdHRyLCBjaGFubmVsKTsKKwlj
+YXNlIGh3bW9uX2ZhbjoKKwkJcmV0dXJuIG5vdXZlYXVfZmFuX2lzX3Zpc2libGUoZGF0YSwgYXR0
+ciwgY2hhbm5lbCk7CisJY2FzZSBod21vbl9pbjoKKwkJcmV0dXJuIG5vdXZlYXVfaW5wdXRfaXNf
+dmlzaWJsZShkYXRhLCBhdHRyLCBjaGFubmVsKTsKKwljYXNlIGh3bW9uX3B3bToKKwkJcmV0dXJu
+IG5vdXZlYXVfcHdtX2lzX3Zpc2libGUoZGF0YSwgYXR0ciwgY2hhbm5lbCk7CisJY2FzZSBod21v
+bl9wb3dlcjoKKwkJcmV0dXJuIG5vdXZlYXVfcG93ZXJfaXNfdmlzaWJsZShkYXRhLCBhdHRyLCBj
+aGFubmVsKTsKKwlkZWZhdWx0OgorCQlyZXR1cm4gMDsKKwl9Cit9CisKK3N0YXRpYyBjaGFyICpp
+bnB1dF9sYWJlbCA9ICJHUFUgY29yZSI7CisKK3N0YXRpYyBpbnQKK25vdXZlYXVfcmVhZF9zdHJp
+bmcoc3RydWN0IGRldmljZSAqZGV2LCBlbnVtIGh3bW9uX3NlbnNvcl90eXBlcyB0eXBlLCB1MzIg
+YXR0ciwKKwkJCQkJCQlpbnQgY2hhbm5lbCwgY2hhciAqKmJ1ZikKK3sKKwlpZiAodHlwZSA9PSBo
+d21vbl9pbiAmJiBhdHRyID09IGh3bW9uX2luX2xhYmVsKSB7CisJCSpidWYgPSBpbnB1dF9sYWJl
+bDsKKwkJcmV0dXJuIDA7CisJfQorCisJcmV0dXJuIC1FT1BOT1RTVVBQOworfQorCitzdGF0aWMg
+Y29uc3Qgc3RydWN0IGh3bW9uX29wcyBub3V2ZWF1X2h3bW9uX29wcyA9IHsKKwkuaXNfdmlzaWJs
+ZSA9IG5vdXZlYXVfaXNfdmlzaWJsZSwKKwkucmVhZCA9IE5VTEwsCisJLnJlYWRfc3RyaW5nID0g
+bm91dmVhdV9yZWFkX3N0cmluZywKKwkud3JpdGUgPSBOVUxMLAorfTsKKworc3RhdGljIGNvbnN0
+IHN0cnVjdCBod21vbl9jaGlwX2luZm8gbm91dmVhdV9jaGlwX2luZm8gPSB7CisJLm9wcyA9ICZu
+b3V2ZWF1X2h3bW9uX29wcywKKwkuaW5mbyA9IG5vdXZlYXVfaW5mbywKK307CiAjZW5kaWYKIAog
+aW50Ci0tIAoyLjEuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
