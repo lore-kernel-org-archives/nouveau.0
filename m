@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
 	(v4.6+)
-Date: Wed, 19 Apr 2017 10:44:40 +0000
-Message-ID: <bug-94990-8800-xrigyza0JU@http.bugs.freedesktop.org/>
+Date: Wed, 19 Apr 2017 11:27:36 +0000
+Message-ID: <bug-94990-8800-2kDnAba6Qd@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0849149651=="
+Content-Type: multipart/mixed; boundary="===============0978766164=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0849149651==
-Content-Type: multipart/alternative; boundary="149259868013.Dc4fe0C0a.31427";
+--===============0978766164==
+Content-Type: multipart/alternative; boundary="14926012564.B5d9b.4857";
  charset="UTF-8"
 
 
---149259868013.Dc4fe0C0a.31427
-Date: Wed, 19 Apr 2017 10:44:40 +0000
+--14926012564.B5d9b.4857
+Date: Wed, 19 Apr 2017 11:27:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #118 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
-More than a year and still no end in sight=E2=80=A6 Is the solution to get =
-another card
-or use the propitiatory driver?
+--- Comment #119 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+(In reply to Yann Golanski from comment #118)
+> More than a year and still no end in sight=E2=80=A6 Is the solution to ge=
+t another
+> card or use the propitiatory driver?
+
+Have you tried building Ben=E2=80=99s tree (see comment #112) and it didn=
+=E2=80=99t work for
+you? Because the issue should be fixed in the development version of Nouvea=
+u,
+and by the looks of it, will land in Linux 4.12.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---149259868013.Dc4fe0C0a.31427
-Date: Wed, 19 Apr 2017 10:44:40 +0000
+--14926012564.B5d9b.4857
+Date: Wed, 19 Apr 2017 11:27:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,20 +70,28 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c118">Comme=
-nt # 118</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c119">Comme=
+nt # 119</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
-un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
+pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
+e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>More than a year and still no end in sight=E2=80=A6 Is the sol=
-ution to get another card
-or use the propitiatory driver?</pre>
+        <pre>(In reply to Yann Golanski from <a href=3D"show_bug.cgi?id=3D9=
+4990#c118">comment #118</a>)
+<span class=3D"quote">&gt; More than a year and still no end in sight=E2=80=
+=A6 Is the solution to get another
+&gt; card or use the propitiatory driver?</span >
+
+Have you tried building Ben=E2=80=99s tree (see <a href=3D"show_bug.cgi?id=
+=3D94990#c112">comment #112</a>) and it didn=E2=80=99t work for
+you? Because the issue should be fixed in the development version of Nouvea=
+u,
+and by the looks of it, will land in Linux 4.12.</pre>
         </div>
       </p>
 
@@ -90,9 +105,9 @@ or use the propitiatory driver?</pre>
     </body>
 </html>=
 
---149259868013.Dc4fe0C0a.31427--
+--14926012564.B5d9b.4857--
 
---===============0849149651==
+--===============0978766164==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0849149651==--
+--===============0978766164==--
