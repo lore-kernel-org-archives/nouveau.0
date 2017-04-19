@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Wed, 19 Apr 2017 11:27:36 +0000
-Message-ID: <bug-94990-8800-2kDnAba6Qd@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH v2 1/5] nouveau_hwmon: Add config for all
+ sensors and their settings
+Date: Wed, 19 Apr 2017 14:11:19 -0400
+Message-ID: <CAKb7UvjjFGoHA51dM+8BkXmKMTpzPFAPYjcYbwF4nU44wQ=Uuw@mail.gmail.com>
+References: <1492415272-20378-1-git-send-email-osalvador.vilardaga@gmail.com>
+ <1492415272-20378-2-git-send-email-osalvador.vilardaga@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0978766164=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1492415272-20378-2-git-send-email-osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,104 +19,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Oscar Salvador <osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0978766164==
-Content-Type: multipart/alternative; boundary="14926012564.B5d9b.4857";
- charset="UTF-8"
-
-
---14926012564.B5d9b.4857
-Date: Wed, 19 Apr 2017 11:27:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
---- Comment #119 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(In reply to Yann Golanski from comment #118)
-> More than a year and still no end in sight=E2=80=A6 Is the solution to ge=
-t another
-> card or use the propitiatory driver?
-
-Have you tried building Ben=E2=80=99s tree (see comment #112) and it didn=
-=E2=80=99t work for
-you? Because the issue should be fixed in the development version of Nouvea=
-u,
-and by the looks of it, will land in Linux 4.12.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14926012564.B5d9b.4857
-Date: Wed, 19 Apr 2017 11:27:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c119">Comme=
-nt # 119</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>(In reply to Yann Golanski from <a href=3D"show_bug.cgi?id=3D9=
-4990#c118">comment #118</a>)
-<span class=3D"quote">&gt; More than a year and still no end in sight=E2=80=
-=A6 Is the solution to get another
-&gt; card or use the propitiatory driver?</span >
-
-Have you tried building Ben=E2=80=99s tree (see <a href=3D"show_bug.cgi?id=
-=3D94990#c112">comment #112</a>) and it didn=E2=80=99t work for
-you? Because the issue should be fixed in the development version of Nouvea=
-u,
-and by the looks of it, will land in Linux 4.12.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14926012564.B5d9b.4857--
-
---===============0978766164==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0978766164==--
+QWxsIGtlcm5lbCBwYXRjaGVzIG11c3QgaGF2ZSBhIFNpZ25lZC1vZmYtYnk6ICR1c2VyLiBTZWUK
+aHR0cHM6Ly93d3cua2VybmVsLm9yZy9kb2MvaHRtbC9sYXRlc3QvcHJvY2Vzcy9zdWJtaXR0aW5n
+LXBhdGNoZXMuaHRtbCNzaWduLXlvdXItd29yay10aGUtZGV2ZWxvcGVyLXMtY2VydGlmaWNhdGUt
+b2Ytb3JpZ2luCgpPbiBNb24sIEFwciAxNywgMjAxNyBhdCAzOjQ3IEFNLCBPc2NhciBTYWx2YWRv
+cgo8b3NhbHZhZG9yLnZpbGFyZGFnYUBnbWFpbC5jb20+IHdyb3RlOgo+IFRoaXMgaXMgYSBwcmVw
+YXJhdGlvbiBmb3IgdGhlIG5leHQgcGF0Y2hlcy4gSXQganVzdCBhZGRzIHRoZSBzZW5zb3JzIHdp
+dGgKPiB0aGVpciBwb3NzaWJsZSBjb25maWd1cmFibGUgc2V0dGluZ3MgYW5kIHRoZW4gZmlsbHMg
+dGhlIHN0cnVjdCBod21vbl9jaGFubmVsX2luZm8KPiB3aXRoIGFsbCB0aGlzIGluZm9ybWF0aW9u
+Lgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMgfCA3MiAr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKPiAgMSBmaWxlIGNoYW5nZWQsIDcyIGlu
+c2VydGlvbnMoKykKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
+ZWF1X2h3bW9uLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMKPiBp
+bmRleCAyM2IxNjcwLi4yNGI0MGM1IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L25vdXZlYXVfaHdtb24uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfaHdtb24uYwo+IEBAIC02OTIsNiArNjkyLDc4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgYXR0
+cmlidXRlX2dyb3VwIGh3bW9uX3Bvd2VyX2F0dHJncm91cCA9IHsKPiAgc3RhdGljIGNvbnN0IHN0
+cnVjdCBhdHRyaWJ1dGVfZ3JvdXAgaHdtb25fcG93ZXJfY2Fwc19hdHRyZ3JvdXAgPSB7Cj4gICAg
+ICAgICAuYXR0cnMgPSBod21vbl9wb3dlcl9jYXBzX2F0dHJpYnV0ZXMsCj4gIH07Cj4gKwo+ICtz
+dGF0aWMgY29uc3QgdTMyIG5vdXZlYXVfY29uZmlnX2NoaXBbXSA9IHsKPiArICAgICAgIEhXTU9O
+X0NfVVBEQVRFX0lOVEVSVkFMLAo+ICsgICAgICAgMAo+ICt9Owo+ICsKPiArc3RhdGljIGNvbnN0
+IHUzMiBub3V2ZWF1X2NvbmZpZ19pbltdID0gewo+ICsgICAgICAgSFdNT05fSV9JTlBVVCB8IEhX
+TU9OX0lfTUlOIHwgSFdNT05fSV9NQVggfCBIV01PTl9JX0xBQkVMLAo+ICsgICAgICAgMAo+ICt9
+Owo+ICsKPiArc3RhdGljIGNvbnN0IHUzMiBub3V2ZWF1X2NvbmZpZ190ZW1wW10gPSB7Cj4gKyAg
+ICAgICBIV01PTl9UX0lOUFVUIHwgSFdNT05fVF9NQVggfCBIV01PTl9UX01BWF9IWVNUIHwKPiAr
+ICAgICAgIEhXTU9OX1RfQ1JJVCB8IEhXTU9OX1RfQ1JJVF9IWVNUIHwgSFdNT05fVF9FTUVSR0VO
+Q1kgfAo+ICsgICAgICAgSFdNT05fVF9FTUVSR0VOQ1lfSFlTVCwKPiArICAgICAgIDAKPiArfTsK
+PiArCj4gK3N0YXRpYyBjb25zdCB1MzIgbm91dmVhdV9jb25maWdfZmFuW10gPSB7Cj4gKyAgICAg
+ICBIV01PTl9GX0lOUFVULAo+ICsgICAgICAgMAo+ICt9Owo+ICsKPiArc3RhdGljIGNvbnN0IHUz
+MiBub3V2ZWF1X2NvbmZpZ19wd21bXSA9IHsKPiArICAgICAgIEhXTU9OX1BXTV9JTlBVVCB8IEhX
+TU9OX1BXTV9FTkFCTEUsCj4gKyAgICAgICAwCj4gK307Cj4gKwo+ICtzdGF0aWMgY29uc3QgdTMy
+IG5vdXZlYXVfY29uZmlnX3Bvd2VyW10gPSB7Cj4gKyAgICAgICBIV01PTl9QX0lOUFVUIHwgSFdN
+T05fUF9DQVBfTUFYIHwgSFdNT05fUF9DUklULAo+ICsgICAgICAgMAo+ICt9Owo+ICsKPiArc3Rh
+dGljIGNvbnN0IHN0cnVjdCBod21vbl9jaGFubmVsX2luZm8gbm91dmVhdV9jaGlwID0gewo+ICsg
+ICAgICAgLnR5cGUgPSBod21vbl9jaGlwLAo+ICsgICAgICAgLmNvbmZpZyA9IG5vdXZlYXVfY29u
+ZmlnX2NoaXAsCj4gK307Cj4gKwo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGh3bW9uX2NoYW5uZWxf
+aW5mbyBub3V2ZWF1X3RlbXAgPSB7Cj4gKyAgICAgICAudHlwZSA9IGh3bW9uX3RlbXAsCj4gKyAg
+ICAgICAuY29uZmlnID0gbm91dmVhdV9jb25maWdfdGVtcCwKPiArfTsKPiArCj4gK3N0YXRpYyBj
+b25zdCBzdHJ1Y3QgaHdtb25fY2hhbm5lbF9pbmZvIG5vdXZlYXVfZmFuID0gewo+ICsgICAgICAg
+LnR5cGUgPSBod21vbl9mYW4sCj4gKyAgICAgICAuY29uZmlnID0gbm91dmVhdV9jb25maWdfZmFu
+LAo+ICt9Owo+ICsKPiArc3RhdGljIGNvbnN0IHN0cnVjdCBod21vbl9jaGFubmVsX2luZm8gbm91
+dmVhdV9pbiA9IHsKPiArICAgICAgIC50eXBlID0gaHdtb25faW4sCj4gKyAgICAgICAuY29uZmln
+ID0gbm91dmVhdV9jb25maWdfaW4sCj4gK307Cj4gKwo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGh3
+bW9uX2NoYW5uZWxfaW5mbyBub3V2ZWF1X3B3bSA9IHsKPiArICAgICAgIC50eXBlID0gaHdtb25f
+cHdtLAo+ICsgICAgICAgLmNvbmZpZyA9IG5vdXZlYXVfY29uZmlnX3B3bSwKPiArfTsKPiArCj4g
+K3N0YXRpYyBjb25zdCBzdHJ1Y3QgaHdtb25fY2hhbm5lbF9pbmZvIG5vdXZlYXVfcG93ZXIgPSB7
+Cj4gKyAgICAgICAudHlwZSA9IGh3bW9uX3Bvd2VyLAo+ICsgICAgICAgLmNvbmZpZyA9IG5vdXZl
+YXVfY29uZmlnX3Bvd2VyLAo+ICt9Owo+ICsKPiArc3RhdGljIGNvbnN0IHN0cnVjdCBod21vbl9j
+aGFubmVsX2luZm8gKm5vdXZlYXVfaW5mb1tdID0gewo+ICsgICAgICAgJm5vdXZlYXVfY2hpcCwK
+PiArICAgICAgICZub3V2ZWF1X3RlbXAsCj4gKyAgICAgICAmbm91dmVhdV9mYW4sCj4gKyAgICAg
+ICAmbm91dmVhdV9pbiwKPiArICAgICAgICZub3V2ZWF1X3B3bSwKPiArICAgICAgICZub3V2ZWF1
+X3Bvd2VyLAo+ICsgICAgICAgTlVMTAo+ICt9Owo+ICAjZW5kaWYKPgo+ICBpbnQKPiAtLQo+IDIu
+MS40Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+
+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
