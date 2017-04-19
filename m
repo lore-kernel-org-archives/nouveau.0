@@ -1,17 +1,13 @@
-From: David Howells <dhowells-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 02/38] Annotate hardware config module
-	parameters in arch/x86/mm/
-Date: Tue, 18 Apr 2017 13:38:26 +0100
-Message-ID: <10432.1492519106@warthog.procyon.org.uk>
-References: <alpine.DEB.2.20.1704142007590.2327@nanos>
- <149141141298.29162.5612793122429261720.stgit@warthog.procyon.org.uk>
- <149141142839.29162.10470212173396183651.stgit@warthog.procyon.org.uk>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Wed, 19 Apr 2017 10:44:40 +0000
+Message-ID: <bug-94990-8800-xrigyza0JU@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0849149651=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <alpine.DEB.2.20.1704142007590.2327@nanos>
-Content-ID: <10431.1492519106.1-S6HVgzuS8uM4Awkfq6JHfwNdhmdF6hFW@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +17,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Thomas Gleixner <tglx-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>
-Cc: gnomes-qBU/x9rampVanCEyBjwyrvXRex20P6io@public.gmane.org, "H. Peter Anvin" <hpa-YMNOUZJC4hwAvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, x86-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Steven Rostedt <rostedt-nx8X9YLhiw1AfugRpC6u6w@public.gmane.org>, dhowells-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, linux-security-module-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, keyrings-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org, Ingo Molnar <mingo-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhvbWFzIEdsZWl4bmVyIDx0Z2x4QGxpbnV0cm9uaXguZGU+IHdyb3RlOgoKPiA+IC1tb2R1bGVf
-cGFyYW0obW1pb19hZGRyZXNzLCB1bG9uZywgMCk7Cj4gPiArbW9kdWxlX3BhcmFtX2h3KG1taW9f
-YWRkcmVzcywgdWxvbmcsIGlvbWVtLCAwKTsKPiA+ICBNT0RVTEVfUEFSTV9ERVNDKG1taW9fYWRk
-cmVzcywgIiBTdGFydCBhZGRyZXNzIG9mIHRoZSBtYXBwaW5nIG9mIDE2IGtCICIKPiA+ICAJCQkJ
-IihvciA4IE1CIGlmIHJlYWRfZmFyIGlzIG5vbi16ZXJvKS4iKTsKPiAKPiBUaGUgY29waWVkIGJv
-aWxlcnBsYXRlIGFib3ZlIGlzIHJlYWxseSBub25zZW5zaWNhbCBoZXJlLiBUaGUgZGVmYXVsdAo+
-IGFkZHJlc3MgaXMgMCwgc28gdGhlIGluaXQgZnVuY3Rpb24gd2lsbCBlbWl0Ogo+IAo+ICAgICAg
-cHJfZXJyKCJ5b3UgaGF2ZSB0byB1c2UgdGhlIG1vZHVsZSBhcmd1bWVudCBtbWlvX2FkZHJlc3Mu
-XG4iKTsKPiAgICAgIHByX2VycigiRE8gTk9UIExPQUQgVEhJUyBNT0RVTEUgVU5MRVNTIFlPVSBS
-RUFMTFkgS05PVyBXSEFUIFlPVSBBUkUgRE9JTkchXG4iKTsKPiAKPiBQcmV0dHkgdXNlbGVzcyB3
-aGVuIHlvdSBjYW4ndCBzdXBwbHkgYSB2YWxpZCBhZGRyZXNzLgo+IAo+ICAgICAgICBpZiAoa2Vy
-bmVsX2xvY2tlZF9kb3duKCkpIHsKPiAgICAgICAgCQlwcl9pbmZvKCJUaGlzIGlzIG5vdCBhbGxv
-d2VkIGJlY2F1c2UgLi4uIik7Cj4gCQlyZXR1cm4gLUVQRVJNOwo+ICAgICAgICB9Cj4gCj4gd291
-bGQgbWFrZSB0b28gbXVjaCBzZW5zZSBmb3IgdGhlIHVzZXIsIHJpZ2h0PwoKSW4gc29tZSBkcml2
-ZXJzLCB0aGlzIHdvdWxkIGJlIHdyb25nIC0gaXBtaSwgZm9yIGV4YW1wbGUgLSBhbmQgd2UndmUg
-YWxyZWFkeQpiZWVuIHRocm91Z2ggdGhpcy4gIFRoZSBod3BhcmFtIHNlcmllcyBvZiBwYXRjaGVz
-IGFubm90YXRlcyAqYWxsKgppb3BvcnQvaW9tZW0vaXJxL2RtYSBzcGVjaWZpZXJzIHVuY29uZGl0
-aW9uYWxseS4gIFRoZSBod3BhcmFtIHNlcmllcyBpcyB0aGUKd2F5IGl0IGlzIGlzIGJlY2F1c2Ug
-dGhpcyBoYXMgbm8gb3ZlcmhlYWQgaWYgaXQncyBub3QgdXNlZCAtIGFuZCBhbHNvIGhhcyB0aGUK
-cG90ZW50aWFsbHkgdXNlZnVsIHNpZGUgZWZmZWN0IG9mIG1ha2luZyBzdWNoIHBhcmFtZXRlcnMg
-Z3JlcHBhYmxlLgoKSXQgbWF5IHdlbGwgbWFrZSBzZW5zZSB0byBhZGQgeW91ciBhYm92ZSBzdWdn
-ZXN0aW9uIGFsc28gLSBidXQgaW4gdGhlIG90aGVyCnBhdGNoIHNlcmllcy4KCkRhdmlkCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0849149651==
+Content-Type: multipart/alternative; boundary="149259868013.Dc4fe0C0a.31427";
+ charset="UTF-8"
+
+
+--149259868013.Dc4fe0C0a.31427
+Date: Wed, 19 Apr 2017 10:44:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #118 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
+More than a year and still no end in sight=E2=80=A6 Is the solution to get =
+another card
+or use the propitiatory driver?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--149259868013.Dc4fe0C0a.31427
+Date: Wed, 19 Apr 2017 10:44:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c118">Comme=
+nt # 118</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
+un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
+</span></b>
+        <pre>More than a year and still no end in sight=E2=80=A6 Is the sol=
+ution to get another card
+or use the propitiatory driver?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--149259868013.Dc4fe0C0a.31427--
+
+--===============0849149651==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0849149651==--
