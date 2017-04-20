@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT]
-Date: Thu, 20 Apr 2017 14:44:24 +0000
-Message-ID: <bug-100567-8800-SRltkvoZtD@http.bugs.freedesktop.org/>
-References: <bug-100567-8800@http.bugs.freedesktop.org/>
+From: Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
+Subject: [bug report] drm/nouveau/secboot/gm20b: add secure boot
+	support
+Date: Thu, 20 Apr 2017 22:01:17 +0300
+Message-ID: <20170420190117.lgjd5oe5fxxcaxl6@mwanda>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0135176602=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,194 +17,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0135176602==
-Content-Type: multipart/alternative; boundary="14926994640.0092067FB.26136";
- charset="UTF-8"
-
-
---14926994640.0092067FB.26136
-Date: Thu, 20 Apr 2017 14:44:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
-
---- Comment #5 from kevin-Fk+Xth6EFAKtEw7EPzjzzg@public.gmane.org ---
-Created attachment 130945
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130945&action=3Dedit
-journalctl -kb of CTXSW_TIMEOUT on 4.10.10
-
-Can reproduce on Linux 4.10.10 as well. Along with the initial CTXSW_TIMEOU=
-T,
-it seems to hang a few kernel tasks relating to atomic commits.
-
-Relevant(?) snippet:
-
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: TRAP ch 3 [007f7c20=
-00
-X[3611]]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC1/TPC0/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3e000d [OOR_REG]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC2/TPC0/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3e000d [OOR_REG]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: TRAP ch 3 [007f7c20=
-00
-X[3611]]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC1/TPC0/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3f000d [OOR_REG]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC1/TPC1/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3f000d [OOR_REG]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC2/TPC0/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3f000d [OOR_REG]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC3/TPC0/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3f000d [OOR_REG]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC3/TPC1/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3d000d [OOR_REG]
-Apr 20 10:06:07 jenny kernel: nouveau 0000:02:00.0: fifo: SCHED_ERROR 0a
-[CTXSW_TIMEOUT]
-Apr 20 10:06:07 jenny kernel: nouveau 0000:02:00.0: fifo: gr engine fault on
-channel 6, recovering...
-Apr 20 10:06:18 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:18 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:19 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:19 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:19 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:20 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:20 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:20 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:21 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-...
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14926994640.0092067FB.26136
-Date: Thu, 20 Apr 2017 14:44:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-kevin&#64;potatofrom.space" title=3D"kevin&#64;potatofrom.space">kevin&#64;=
-potatofrom.space</a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130945=
-" name=3D"attach_130945" title=3D"journalctl -kb of CTXSW_TIMEOUT on 4.10.1=
-0">attachment 130945</a> <a href=3D"attachment.cgi?id=3D130945&amp;action=
-=3Dedit" title=3D"journalctl -kb of CTXSW_TIMEOUT on 4.10.10">[details]</a>=
-</span>
-journalctl -kb of CTXSW_TIMEOUT on 4.10.10
-
-Can reproduce on Linux 4.10.10 as well. Along with the initial CTXSW_TIMEOU=
-T,
-it seems to hang a few kernel tasks relating to atomic commits.
-
-Relevant(?) snippet:
-
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: TRAP ch 3 [007f7c20=
-00
-X[3611]]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC1/TPC0/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3e000d [OOR_REG]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC2/TPC0/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3e000d [OOR_REG]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: TRAP ch 3 [007f7c20=
-00
-X[3611]]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC1/TPC0/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3f000d [OOR_REG]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC1/TPC1/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3f000d [OOR_REG]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC2/TPC0/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3f000d [OOR_REG]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC3/TPC0/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3f000d [OOR_REG]
-Apr 20 10:06:03 jenny kernel: nouveau 0000:02:00.0: gr: GPC3/TPC1/MP trap:
-global 00000004 [MULTIPLE_WARP_ERRORS] warp 3d000d [OOR_REG]
-Apr 20 10:06:07 jenny kernel: nouveau 0000:02:00.0: fifo: SCHED_ERROR 0a
-[CTXSW_TIMEOUT]
-Apr 20 10:06:07 jenny kernel: nouveau 0000:02:00.0: fifo: gr engine fault on
-channel 6, recovering...
-Apr 20 10:06:18 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:18 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:19 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:19 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:19 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:20 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:20 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:20 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-Apr 20 10:06:21 jenny kernel: nouveau 0000:02:00.0: X[3611]: nv50cal_space:=
- -16
-...</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14926994640.0092067FB.26136--
-
---===============0135176602==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0135176602==--
+SGVsbG8gQWxleGFuZHJlIENvdXJib3QsCgpUaGUgcGF0Y2ggOTIzZjFiZDI3YmYxOiAiZHJtL25v
+dXZlYXUvc2VjYm9vdC9nbTIwYjogYWRkIHNlY3VyZSBib290CnN1cHBvcnQiIGZyb20gRmViIDI0
+LCAyMDE2LCBsZWFkcyB0byB0aGUgZm9sbG93aW5nIHN0YXRpYyBjaGVja2VyCndhcm5pbmc6CgoJ
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9nbTIwYi5jOjEyOSBn
+bTIwYl9zZWNib290X25ldygpCgl3YXJuOiBkaWQgeW91IG1lYW4gdG8gc2V0ICcqcHNiJyBpbnN0
+ZWFkIG9mICdwc2InCgpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290
+L2dtMjBiLmMKICAgMTAzICBpbnQKICAgMTA0ICBnbTIwYl9zZWNib290X25ldyhzdHJ1Y3QgbnZr
+bV9kZXZpY2UgKmRldmljZSwgaW50IGluZGV4LAogICAxMDUgICAgICAgICAgICAgICAgICAgIHN0
+cnVjdCBudmttX3NlY2Jvb3QgKipwc2IpCiAgIDEwNiAgewogICAxMDcgICAgICAgICAgaW50IHJl
+dDsKICAgMTA4ICAgICAgICAgIHN0cnVjdCBnbTIwMF9zZWNib290ICpnc2I7CiAgIDEwOSAgICAg
+ICAgICBzdHJ1Y3QgbnZrbV9hY3IgKmFjcjsKICAgMTEwICAKICAgMTExICAgICAgICAgIGFjciA9
+IGFjcl9yMzUyX25ldyhCSVQoTlZLTV9TRUNCT09UX0ZBTENPTl9GRUNTKSB8CiAgIDExMiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgQklUKE5WS01fU0VDQk9PVF9GQUxDT05fUE1VKSk7CiAg
+IDExMyAgICAgICAgICBpZiAoSVNfRVJSKGFjcikpCiAgIDExNCAgICAgICAgICAgICAgICAgIHJl
+dHVybiBQVFJfRVJSKGFjcik7CiAgIDExNSAgICAgICAgICAvKiBTdXBwb3J0IHRoZSBpbml0aWFs
+IEdNMjBCIGZpcm13YXJlIHJlbGVhc2Ugd2l0aG91dCBQTVUgKi8KICAgMTE2ICAgICAgICAgIGFj
+ci0+b3B0aW9uYWxfZmFsY29ucyA9IEJJVChOVktNX1NFQ0JPT1RfRkFMQ09OX1BNVSk7CiAgIDEx
+NyAgCiAgIDExOCAgICAgICAgICBnc2IgPSBremFsbG9jKHNpemVvZigqZ3NiKSwgR0ZQX0tFUk5F
+TCk7CiAgIDExOSAgICAgICAgICBpZiAoIWdzYikgewogICAxMjAgICAgICAgICAgICAgICAgICBw
+c2IgPSBOVUxMOwoKSXQncyBjb21wbGFpbmluZyBhYm91dCB0aGlzLiAgV2Ugb2J2aW91c2x5IGRp
+ZCBpbnRlbmQgdG8gc2V0ICpwc2IgPSBOVUxMCmJlY2F1c2UgdGhlIGNvZGUgaXMgYSBuby1vcCBh
+cyBpdCBpcyBub3cuICBCdXQgc2hvdWxkbid0IHdlIGp1c3QgZG8gaXQKYXQgdGhlIHN0YXJ0IG9m
+IHRoZSBmdW5jdGlvbiBzbyBpdCdzIHNldCBmb3IgdGhlIG90aGVyIGVhcmxpZXIgcmV0dXJuCmFz
+IHdlbGw/CgogICAxMjEgICAgICAgICAgICAgICAgICByZXR1cm4gLUVOT01FTTsKICAgMTIyICAg
+ICAgICAgIH0KICAgMTIzICAgICAgICAgICpwc2IgPSAmZ3NiLT5iYXNlOwogICAxMjQgIAogICAx
+MjUgICAgICAgICAgcmV0ID0gbnZrbV9zZWNib290X2N0b3IoJmdtMjBiX3NlY2Jvb3QsIGFjciwg
+ZGV2aWNlLCBpbmRleCwgJmdzYi0+YmFzZSk7CiAgIDEyNiAgICAgICAgICBpZiAocmV0KQogICAx
+MjcgICAgICAgICAgICAgICAgICByZXR1cm4gcmV0OwoKQW5kIHdoYXQgYWJvdXQgaGVyZSwgZG8g
+d2Ugbm90IHdhbnQgaXQgdG8gYmUgTlVMTCBvbiB0aGlzIGZhaWx1cmUgcGF0aD8KCkkgd2Fzbid0
+IGFibGUgdG8gZmlndXJlIG91dCBob3cgdGhpcyBjb2RlIGlzIGNhbGxlZC4gIE5vcm1hbGx5IFNt
+YXRjaCBpcwphYmxlIHRvIGZpZ3VyZSBvdXQgdGhlIGNhbGwgdHJlZSBidXQgSSBhbHNvIHdhc24n
+dCBhYmxlIHRvIGZpZ3VyZSBpdCBvdXQKbWFudWFsbHkuICBDb3VsZCB5b3UgcG9pbnQgbWUgd2hl
+cmUgdGhpcyBmdW5jdGlvbiBpcyBjYWxsZWQ/CgogICAxMjggIAogICAxMjkgICAgICAgICAgcmV0
+dXJuIDA7CiAgIDEzMCAgfQoKVGhpcyBjb2RlIGlzIGp1c3QgY3V0IGFuZCBwYXN0ZWQgYW5kIHRo
+ZSBvdGhlciBmdW5jdGlvbnMgaGF2ZSB0aGlzIGJ1ZwphcyB3ZWxsLiAgU2VlIGFsc286Cgpkcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2dwMTAyLmM6MTcwIGdwMTAy
+X3NlY2Jvb3RfbmV3KCkgd2FybjogZGlkIHlvdSBtZWFuIHRvIHNldCAnKnBzYicgaW5zdGVhZCBv
+ZiAncHNiJwpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2dwMTBi
+LmM6NzQgZ3AxMGJfc2VjYm9vdF9uZXcoKSB3YXJuOiBkaWQgeW91IG1lYW4gdG8gc2V0ICcqcHNi
+JyBpbnN0ZWFkIG9mICdwc2InCmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3Nl
+Y2Jvb3QvZ20yMDAuYzoyMDMgZ20yMDBfc2VjYm9vdF9uZXcoKSB3YXJuOiBkaWQgeW91IG1lYW4g
+dG8gc2V0ICcqcHNiJyBpbnN0ZWFkIG9mICdwc2InCgpyZWdhcmRzLApkYW4gY2FycGVudGVyCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
+bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
