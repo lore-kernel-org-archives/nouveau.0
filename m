@@ -1,16 +1,16 @@
 From: Oscar Salvador <osalvador.vilardaga@gmail.com>
 Subject: Re: [Nouveau] [PATCH v2 2/5] nouveau_hwmon: Add nouveau_hwmon_ops
  structure with .is_visible/.read_string
-Date: Thu, 20 Apr 2017 08:47:50 +0200
-Message-ID: <CAOXBz7ixqxwfwr-V+fSiwiOJ65u9frgTyNLvSS4msTjNof1VBg@mail.gmail.com>
+Date: Thu, 20 Apr 2017 09:32:39 +0200
+Message-ID: <CAOXBz7gcBktRA82rXYHCeiiWFkhe6X29HdORMC2s02fvxFYJ+g@mail.gmail.com>
 References: <1492415272-20378-1-git-send-email-osalvador.vilardaga@gmail.com>
  <1492415272-20378-3-git-send-email-osalvador.vilardaga@gmail.com>
  <CAEXux-ZSfHOFECRF4MbQ2dwUt4kbWCoD8uiAmtvHn7i8whaytg@mail.gmail.com>
+ <CAOXBz7ixqxwfwr-V+fSiwiOJ65u9frgTyNLvSS4msTjNof1VBg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2018712443=="
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAEXux-ZSfHOFECRF4MbQ2dwUt4kbWCoD8uiAmtvHn7i8whaytg@mail.gmail.com>
+In-Reply-To: <CAOXBz7ixqxwfwr-V+fSiwiOJ65u9frgTyNLvSS4msTjNof1VBg@mail.gmail.com>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
@@ -24,138 +24,616 @@ To: Karol Herbst <karolherbst@gmail.com>
 Cc: ML nouveau <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-SGkgS2Fyb2wsCgpJIGRvbid0IGdldCB3aGF0IHlvdSBtZWFuIHdpdGggcmV0dXJuIGR1ZSB0byBm
-YWxsdGhyb3VnaC4gSSBtZWFuLCBJCmtub3cgd2hhdCBpcyBpdCwgYnV0IEkgZG9uJ3Qgc2VlIGhv
-dyBJIGNhbiBkbyBpdCB0aGVyZS4KTW92aW5nIHRoZSBjaGVjayBiZWZvcmUgdGhlIHN3aXRjaCBs
-b29rcyBsaWtlIHRoYXQ6CgogICAgICAgIGlmICghaWNjc2Vuc2UpCiAgICAgICAgICAgICAgICBy
-ZXR1cm4gMDsKCiAgICAgICAgc3dpdGNoIChhdHRyKSB7CiAgICAgICAgY2FzZSBod21vbl9wb3dl
-cl9pbnB1dDoKICAgICAgICAgICAgICAgIGlmIChpY2NzZW5zZS0+ZGF0YV92YWxpZCAmJgogICAg
-ICAgICAgICAgICAgICAgICAgICAhbGlzdF9lbXB0eSgmaWNjc2Vuc2UtPnJhaWxzKSkKICAgICAg
-ICAgICAgICAgICAgICAgICAgcmV0dXJuIDA0NDQ7CiAgICAgICAgY2FzZSBod21vbl9wb3dlcl9t
-YXg6CiAgICAgICAgICAgICAgICBpZiAoaWNjc2Vuc2UtPnBvd2VyX3dfbWF4KQogICAgICAgICAg
-ICAgICAgICAgICAgICByZXR1cm4gMDQ0NDsKICAgICAgICBjYXNlIGh3bW9uX3Bvd2VyX2NyaXQ6
-CiAgICAgICAgICAgICAgICBpZiAoaWNjc2Vuc2UtPnBvd2VyX3dfY3JpdCkKICAgICAgICAgICAg
-ICAgICAgICAgICAgcmV0dXJuIDA0NDQ7CiAgICAgICAgZGVmYXVsdDoKICAgICAgICAgICAgICAg
-IHJldHVybiAwOwogICAgICAgIH0KCkNvdWxkIHlvdSBkcm9wIG1lIGEgaGludD8KCgpPbiAxOCBB
-cHJpbCAyMDE3IGF0IDA5OjU2LCBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4g
-d3JvdGU6Cj4gMjAxNy0wNC0xNyA5OjQ3IEdNVCswMjowMCBPc2NhciBTYWx2YWRvciA8b3NhbHZh
-ZG9yLnZpbGFyZGFnYUBnbWFpbC5jb20+Ogo+PiBUaGlzIHBhdGNoIGludHJvZHVjZXMgdGhlIG5v
-dXZlYXVfaHdtb25fb3BzIHN0cnVjdHVyZSwgc2V0cyB1cAo+PiAuaXNfdmlzaWJsZSBhbmQgLnJl
-YWRfc3RyaW5nIG9wZXJhdGlvbnMgYW5kIGFkZHMgYWxsIHRoZSBmdW5jdGlvbnMKPj4gZm9yIHRo
-ZXNlIG9wZXJhdGlvbnMuCj4+IFRoaXMgaXMgYWxzbyBhIHByZXBhcmF0aW9uIGZvciB0aGUgbmV4
-dCBwYXRjaGVzLCB3aGVyZSBtb3N0IG9mIHRoZQo+PiB3b3JrIGlzIGJlaW5nIGRvbmUuCj4+IFRo
-aXMgY29kZSBkb2Vzbid0IGludGVyYWN0dXJlIHdpdGggdGhlIG9sZCBvbmUuCj4+IEl0J3MganVz
-dCB0byBtYWtlIGVhc2llciB0aGUgcmV2aWV3IG9mIGFsbCBwYXRjaGVzLgo+PiAtLS0KPj4gIGRy
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYyB8IDE2NiArKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKwo+PiAgMSBmaWxlIGNoYW5nZWQsIDE2NiBpbnNlcnRpb25zKCsp
-Cj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9u
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMKPj4gaW5kZXggMjRi
-NDBjNS4uOWI2NDIzYyAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9od21vbi5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdt
-b24uYwo+PiBAQCAtNzY0LDYgKzc2NCwxNzIgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBod21vbl9j
-aGFubmVsX2luZm8gKm5vdXZlYXVfaW5mb1tdID0gewo+PiAgICAgICAgICZub3V2ZWF1X3Bvd2Vy
-LAo+PiAgICAgICAgIE5VTEwKPj4gIH07Cj4+ICsKPj4gK3N0YXRpYyB1bW9kZV90Cj4+ICtub3V2
-ZWF1X2NoaXBfaXNfdmlzaWJsZShjb25zdCB2b2lkICpkYXRhLCB1MzIgYXR0ciwgaW50IGNoYW5u
-ZWwpCj4+ICt7Cj4+ICsgICAgICAgc3dpdGNoIChhdHRyKSB7Cj4+ICsgICAgICAgY2FzZSBod21v
-bl9jaGlwX3VwZGF0ZV9pbnRlcnZhbDoKPj4gKyAgICAgICAgICAgICAgIHJldHVybiAwNDQ0Owo+
-PiArICAgICAgIGRlZmF1bHQ6Cj4+ICsgICAgICAgICAgICAgICByZXR1cm4gMDsKPj4gKyAgICAg
-ICB9Cj4+ICt9Cj4+ICsKPj4gK3N0YXRpYyB1bW9kZV90Cj4+ICtub3V2ZWF1X3Bvd2VyX2lzX3Zp
-c2libGUoY29uc3Qgdm9pZCAqZGF0YSwgdTMyIGF0dHIsIGludCBjaGFubmVsKQo+PiArewo+PiAr
-ICAgICAgIHN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oKHN0cnVjdCBkcm1f
-ZGV2aWNlICopZGF0YSk7Cj4+ICsgICAgICAgc3RydWN0IG52a21faWNjc2Vuc2UgKmljY3NlbnNl
-ID0gbnZ4eF9pY2NzZW5zZSgmZHJtLT5jbGllbnQuZGV2aWNlKTsKPj4gKwo+PiArICAgICAgIHN3
-aXRjaCAoYXR0cikgewo+PiArICAgICAgIGNhc2UgaHdtb25fcG93ZXJfaW5wdXQ6Cj4+ICsgICAg
-ICAgICAgICAgICBpZiAoaWNjc2Vuc2UgJiYKPgo+IG1vdmUgdGhlIHBvaW50ZXIgY2hlY2sgYmVm
-b3JlIHRoZSBzd2l0Y2gsIGJlY2F1c2UgeW91IG5lZWQgdG8gY2hlY2sgaXQKPiBpbiBldmVyeSBj
-YXNlIChvciBtb3ZlIGl0IHRvIGV2ZXJ5IGNhc2UsIGJ1dCBkb2luZyBpdCBvbmNlIGlzCj4gc2lt
-cGxpZXIvY2xlYW5lcikKPgo+PiArICAgICAgICAgICAgICAgICAgICAgICBpY2NzZW5zZS0+ZGF0
-YV92YWxpZCAmJgo+PiArICAgICAgICAgICAgICAgICAgICAgICAhbGlzdF9lbXB0eSgmaWNjc2Vu
-c2UtPnJhaWxzKSkKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIDA0NDQ7Cj4KPiBh
-ZGQgcmV0dXJuIGR1ZSB0byBmYWxsdGhyb3VnaAo+Cj4+ICsgICAgICAgY2FzZSBod21vbl9wb3dl
-cl9tYXg6Cj4+ICsgICAgICAgICAgICAgICBpZiAoaWNjc2Vuc2UtPnBvd2VyX3dfbWF4KQo+PiAr
-ICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gMDQ0NDsKPgo+IGFkZCByZXR1cm4gZHVlIHRv
-IGZhbGx0aHJvdWdoCj4KPj4gKyAgICAgICBjYXNlIGh3bW9uX3Bvd2VyX2NyaXQ6Cj4+ICsgICAg
-ICAgICAgICAgICBpZiAoaWNjc2Vuc2UtPnBvd2VyX3dfY3JpdCkKPj4gKyAgICAgICAgICAgICAg
-ICAgICAgICAgcmV0dXJuIDA0NDQ7Cj4KPiBhZGQgcmV0dXJuIGR1ZSB0byBmYWxsdGhyb3VnaAo+
-Cj4+ICsgICAgICAgZGVmYXVsdDoKPj4gKyAgICAgICAgICAgICAgIHJldHVybiAwOwo+PiArICAg
-ICAgIH0KPj4gK30KPj4gKwo+PiArc3RhdGljIHVtb2RlX3QKPj4gK25vdXZlYXVfdGVtcF9pc192
-aXNpYmxlKGNvbnN0IHZvaWQgKmRhdGEsIHUzMiBhdHRyLCBpbnQgY2hhbm5lbCkKPj4gK3sKPj4g
-KyAgICAgICBzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKChzdHJ1Y3QgZHJt
-X2RldmljZSAqKWRhdGEpOwo+PiArICAgICAgIHN0cnVjdCBudmttX3RoZXJtICp0aGVybSA9IG52
-eHhfdGhlcm0oJmRybS0+Y2xpZW50LmRldmljZSk7Cj4+ICsKPj4gKyAgICAgICBpZiAodGhlcm0g
-JiYKPj4gKyAgICAgICAgICAgICAgIHRoZXJtLT5hdHRyX2dldCAmJgo+PiArICAgICAgICAgICAg
-ICAgdGhlcm0tPmF0dHJfc2V0ICYmCj4+ICsgICAgICAgICAgICAgICBudmttX3RoZXJtX3RlbXBf
-Z2V0KHRoZXJtKSA8IDApCj4+ICsgICAgICAgICAgICAgICByZXR1cm4gMDsKPj4gKwo+PiArICAg
-ICAgIHN3aXRjaCAoYXR0cikgewo+PiArICAgICAgIGNhc2UgaHdtb25fdGVtcF9pbnB1dDoKPj4g
-KyAgICAgICBjYXNlIGh3bW9uX3RlbXBfbWF4Ogo+PiArICAgICAgIGNhc2UgaHdtb25fdGVtcF9t
-YXhfaHlzdDoKPj4gKyAgICAgICBjYXNlIGh3bW9uX3RlbXBfY3JpdDoKPj4gKyAgICAgICBjYXNl
-IGh3bW9uX3RlbXBfY3JpdF9oeXN0Ogo+PiArICAgICAgIGNhc2UgaHdtb25fdGVtcF9lbWVyZ2Vu
-Y3k6Cj4+ICsgICAgICAgY2FzZSBod21vbl90ZW1wX2VtZXJnZW5jeV9oeXN0Ogo+PiArICAgICAg
-ICAgICAgICAgcmV0dXJuIDA0NDQ7Cj4+ICsgICAgICAgZGVmYXVsdDoKPj4gKyAgICAgICAgICAg
-ICAgIHJldHVybiAwOwo+PiArICAgICAgIH0KPj4gK30KPj4gKwo+PiArc3RhdGljIHVtb2RlX3QK
-Pj4gK25vdXZlYXVfcHdtX2lzX3Zpc2libGUoY29uc3Qgdm9pZCAqZGF0YSwgdTMyIGF0dHIsIGlu
-dCBjaGFubmVsKQo+PiArewo+PiArICAgICAgIHN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91
-dmVhdV9kcm0oKHN0cnVjdCBkcm1fZGV2aWNlICopZGF0YSk7Cj4+ICsgICAgICAgc3RydWN0IG52
-a21fdGhlcm0gKnRoZXJtID0gbnZ4eF90aGVybSgmZHJtLT5jbGllbnQuZGV2aWNlKTsKPj4gKwo+
-PiArICAgICAgIGlmICh0aGVybSAmJgo+PiArICAgICAgICAgICAgICAgdGhlcm0tPmF0dHJfZ2V0
-ICYmCj4+ICsgICAgICAgICAgICAgICB0aGVybS0+ZmFuX2dldCAmJgo+PiArICAgICAgICAgICAg
-ICAgdGhlcm0tPmZhbl9nZXQodGhlcm0pIDwgMCkKPj4gKyAgICAgICAgICAgICAgIHJldHVybiAw
-Owo+PiArCj4+ICsgICAgICAgc3dpdGNoIChhdHRyKSB7Cj4+ICsgICAgICAgY2FzZSBod21vbl9w
-d21fZW5hYmxlOgo+PiArICAgICAgIGNhc2UgaHdtb25fcHdtX2lucHV0Ogo+PiArICAgICAgICAg
-ICAgICAgcmV0dXJuIDA2NDQ7Cj4+ICsgICAgICAgZGVmYXVsdDoKPj4gKyAgICAgICAgICAgICAg
-IHJldHVybiAwOwo+PiArICAgICAgIH0KPj4gK30KPj4gKwo+PiArc3RhdGljIHVtb2RlX3QKPj4g
-K25vdXZlYXVfaW5wdXRfaXNfdmlzaWJsZShjb25zdCB2b2lkICpkYXRhLCB1MzIgYXR0ciwgaW50
-IGNoYW5uZWwpCj4+ICt7Cj4+ICsgICAgICAgc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2
-ZWF1X2RybSgoc3RydWN0IGRybV9kZXZpY2UgKilkYXRhKTsKPj4gKyAgICAgICBzdHJ1Y3QgbnZr
-bV92b2x0ICp2b2x0ID0gbnZ4eF92b2x0KCZkcm0tPmNsaWVudC5kZXZpY2UpOwo+PiArCj4+ICsg
-ICAgICAgaWYgKCF2b2x0IHx8IG52a21fdm9sdF9nZXQodm9sdCkgPCAwKQo+PiArICAgICAgICAg
-ICAgICAgcmV0dXJuIDA7Cj4+ICsKPj4gKyAgICAgICBzd2l0Y2ggKGF0dHIpIHsKPj4gKyAgICAg
-ICBjYXNlIGh3bW9uX2luX2lucHV0Ogo+PiArICAgICAgIGNhc2UgaHdtb25faW5fbGFiZWw6Cj4+
-ICsgICAgICAgY2FzZSBod21vbl9pbl9taW46Cj4+ICsgICAgICAgY2FzZSBod21vbl9pbl9tYXg6
-Cj4+ICsgICAgICAgICAgICAgICByZXR1cm4gMDQ0NDsKPj4gKyAgICAgICBkZWZhdWx0Ogo+PiAr
-ICAgICAgICAgICAgICAgcmV0dXJuIDA7Cj4+ICsgICAgICAgfQo+PiArfQo+PiArCj4+ICtzdGF0
-aWMgdW1vZGVfdAo+PiArbm91dmVhdV9mYW5faXNfdmlzaWJsZShjb25zdCB2b2lkICpkYXRhLCB1
-MzIgYXR0ciwgaW50IGNoYW5uZWwpCj4+ICt7Cj4+ICsgICAgICAgc3RydWN0IG5vdXZlYXVfZHJt
-ICpkcm0gPSBub3V2ZWF1X2RybSgoc3RydWN0IGRybV9kZXZpY2UgKilkYXRhKTsKPj4gKyAgICAg
-ICBzdHJ1Y3QgbnZrbV90aGVybSAqdGhlcm0gPSBudnh4X3RoZXJtKCZkcm0tPmNsaWVudC5kZXZp
-Y2UpOwo+PiArCj4+ICsgICAgICAgaWYgKCF0aGVybSB8fCAhdGhlcm0tPmF0dHJfZ2V0IHx8IG52
-a21fdGhlcm1fZmFuX3NlbnNlKHRoZXJtKSA8IDApCj4+ICsgICAgICAgICAgICAgICByZXR1cm4g
-MDsKPj4gKwo+PiArICAgICAgIHN3aXRjaCAoYXR0cikgewo+PiArICAgICAgIGNhc2UgaHdtb25f
-ZmFuX2lucHV0Ogo+PiArICAgICAgICAgICAgICAgcmV0dXJuIDA0NDQ7Cj4+ICsgICAgICAgZGVm
-YXVsdDoKPj4gKyAgICAgICAgICAgICAgIHJldHVybiAwOwo+PiArICAgICAgIH0KPj4gK30KPj4g
-Kwo+PiArc3RhdGljIHVtb2RlX3QKPj4gK25vdXZlYXVfaXNfdmlzaWJsZShjb25zdCB2b2lkICpk
-YXRhLCBlbnVtIGh3bW9uX3NlbnNvcl90eXBlcyB0eXBlLCB1MzIgYXR0ciwKPj4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlu
-dCBjaGFubmVsKQo+PiArewo+PiArICAgICAgIHN3aXRjaCAodHlwZSkgewo+PiArICAgICAgIGNh
-c2UgaHdtb25fY2hpcDoKPj4gKyAgICAgICAgICAgICAgIHJldHVybiBub3V2ZWF1X2NoaXBfaXNf
-dmlzaWJsZShkYXRhLCBhdHRyLCBjaGFubmVsKTsKPj4gKyAgICAgICBjYXNlIGh3bW9uX3RlbXA6
-Cj4+ICsgICAgICAgICAgICAgICByZXR1cm4gbm91dmVhdV90ZW1wX2lzX3Zpc2libGUoZGF0YSwg
-YXR0ciwgY2hhbm5lbCk7Cj4+ICsgICAgICAgY2FzZSBod21vbl9mYW46Cj4+ICsgICAgICAgICAg
-ICAgICByZXR1cm4gbm91dmVhdV9mYW5faXNfdmlzaWJsZShkYXRhLCBhdHRyLCBjaGFubmVsKTsK
-Pj4gKyAgICAgICBjYXNlIGh3bW9uX2luOgo+PiArICAgICAgICAgICAgICAgcmV0dXJuIG5vdXZl
-YXVfaW5wdXRfaXNfdmlzaWJsZShkYXRhLCBhdHRyLCBjaGFubmVsKTsKPj4gKyAgICAgICBjYXNl
-IGh3bW9uX3B3bToKPj4gKyAgICAgICAgICAgICAgIHJldHVybiBub3V2ZWF1X3B3bV9pc192aXNp
-YmxlKGRhdGEsIGF0dHIsIGNoYW5uZWwpOwo+PiArICAgICAgIGNhc2UgaHdtb25fcG93ZXI6Cj4+
-ICsgICAgICAgICAgICAgICByZXR1cm4gbm91dmVhdV9wb3dlcl9pc192aXNpYmxlKGRhdGEsIGF0
-dHIsIGNoYW5uZWwpOwo+PiArICAgICAgIGRlZmF1bHQ6Cj4+ICsgICAgICAgICAgICAgICByZXR1
-cm4gMDsKPj4gKyAgICAgICB9Cj4+ICt9Cj4+ICsKPj4gK3N0YXRpYyBjaGFyICppbnB1dF9sYWJl
-bCA9ICJHUFUgY29yZSI7Cj4+ICsKPj4gK3N0YXRpYyBpbnQKPj4gK25vdXZlYXVfcmVhZF9zdHJp
-bmcoc3RydWN0IGRldmljZSAqZGV2LCBlbnVtIGh3bW9uX3NlbnNvcl90eXBlcyB0eXBlLCB1MzIg
-YXR0ciwKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICBpbnQgY2hhbm5lbCwgY2hhciAqKmJ1ZikKPj4gK3sKPj4gKyAgICAgICBpZiAodHlw
-ZSA9PSBod21vbl9pbiAmJiBhdHRyID09IGh3bW9uX2luX2xhYmVsKSB7Cj4+ICsgICAgICAgICAg
-ICAgICAqYnVmID0gaW5wdXRfbGFiZWw7Cj4+ICsgICAgICAgICAgICAgICByZXR1cm4gMDsKPj4g
-KyAgICAgICB9Cj4+ICsKPj4gKyAgICAgICByZXR1cm4gLUVPUE5PVFNVUFA7Cj4+ICt9Cj4+ICsK
-Pj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgaHdtb25fb3BzIG5vdXZlYXVfaHdtb25fb3BzID0gewo+
-PiArICAgICAgIC5pc192aXNpYmxlID0gbm91dmVhdV9pc192aXNpYmxlLAo+PiArICAgICAgIC5y
-ZWFkID0gTlVMTCwKPj4gKyAgICAgICAucmVhZF9zdHJpbmcgPSBub3V2ZWF1X3JlYWRfc3RyaW5n
-LAo+PiArICAgICAgIC53cml0ZSA9IE5VTEwsCj4+ICt9Owo+PiArCj4+ICtzdGF0aWMgY29uc3Qg
-c3RydWN0IGh3bW9uX2NoaXBfaW5mbyBub3V2ZWF1X2NoaXBfaW5mbyA9IHsKPj4gKyAgICAgICAu
-b3BzID0gJm5vdXZlYXVfaHdtb25fb3BzLAo+PiArICAgICAgIC5pbmZvID0gbm91dmVhdV9pbmZv
-LAo+PiArfTsKPj4gICNlbmRpZgo+Pgo+PiAgaW50Cj4+IC0tCj4+IDIuMS40Cj4+Cj4+IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFp
-bGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0
-CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+--===============2018712443==
+Content-Type: multipart/alternative; boundary=94eb2c0566ce5adf69054d94251b
+
+--94eb2c0566ce5adf69054d94251b
+Content-Type: text/plain; charset=UTF-8
+
+I got what you meant. I"ll fix it
+
+El dia 20/04/2017 08:47, "Oscar Salvador" <osalvador.vilardaga@gmail.com>
+va escriure:
+
+> Hi Karol,
+>
+> I don't get what you mean with return due to fallthrough. I mean, I
+> know what is it, but I don't see how I can do it there.
+> Moving the check before the switch looks like that:
+>
+>         if (!iccsense)
+>                 return 0;
+>
+>         switch (attr) {
+>         case hwmon_power_input:
+>                 if (iccsense->data_valid &&
+>                         !list_empty(&iccsense->rails))
+>                         return 0444;
+>         case hwmon_power_max:
+>                 if (iccsense->power_w_max)
+>                         return 0444;
+>         case hwmon_power_crit:
+>                 if (iccsense->power_w_crit)
+>                         return 0444;
+>         default:
+>                 return 0;
+>         }
+>
+> Could you drop me a hint?
+>
+>
+> On 18 April 2017 at 09:56, Karol Herbst <karolherbst@gmail.com> wrote:
+> > 2017-04-17 9:47 GMT+02:00 Oscar Salvador <osalvador.vilardaga@gmail.com
+> >:
+> >> This patch introduces the nouveau_hwmon_ops structure, sets up
+> >> .is_visible and .read_string operations and adds all the functions
+> >> for these operations.
+> >> This is also a preparation for the next patches, where most of the
+> >> work is being done.
+> >> This code doesn't interacture with the old one.
+> >> It's just to make easier the review of all patches.
+> >> ---
+> >>  drivers/gpu/drm/nouveau/nouveau_hwmon.c | 166
+> ++++++++++++++++++++++++++++++++
+> >>  1 file changed, 166 insertions(+)
+> >>
+> >> diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> >> index 24b40c5..9b6423c 100644
+> >> --- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> >> +++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> >> @@ -764,6 +764,172 @@ static const struct hwmon_channel_info
+> *nouveau_info[] = {
+> >>         &nouveau_power,
+> >>         NULL
+> >>  };
+> >> +
+> >> +static umode_t
+> >> +nouveau_chip_is_visible(const void *data, u32 attr, int channel)
+> >> +{
+> >> +       switch (attr) {
+> >> +       case hwmon_chip_update_interval:
+> >> +               return 0444;
+> >> +       default:
+> >> +               return 0;
+> >> +       }
+> >> +}
+> >> +
+> >> +static umode_t
+> >> +nouveau_power_is_visible(const void *data, u32 attr, int channel)
+> >> +{
+> >> +       struct nouveau_drm *drm = nouveau_drm((struct drm_device
+> *)data);
+> >> +       struct nvkm_iccsense *iccsense = nvxx_iccsense(&drm->client.
+> device);
+> >> +
+> >> +       switch (attr) {
+> >> +       case hwmon_power_input:
+> >> +               if (iccsense &&
+> >
+> > move the pointer check before the switch, because you need to check it
+> > in every case (or move it to every case, but doing it once is
+> > simplier/cleaner)
+> >
+> >> +                       iccsense->data_valid &&
+> >> +                       !list_empty(&iccsense->rails))
+> >> +                       return 0444;
+> >
+> > add return due to fallthrough
+> >
+> >> +       case hwmon_power_max:
+> >> +               if (iccsense->power_w_max)
+> >> +                       return 0444;
+> >
+> > add return due to fallthrough
+> >
+> >> +       case hwmon_power_crit:
+> >> +               if (iccsense->power_w_crit)
+> >> +                       return 0444;
+> >
+> > add return due to fallthrough
+> >
+> >> +       default:
+> >> +               return 0;
+> >> +       }
+> >> +}
+> >> +
+> >> +static umode_t
+> >> +nouveau_temp_is_visible(const void *data, u32 attr, int channel)
+> >> +{
+> >> +       struct nouveau_drm *drm = nouveau_drm((struct drm_device
+> *)data);
+> >> +       struct nvkm_therm *therm = nvxx_therm(&drm->client.device);
+> >> +
+> >> +       if (therm &&
+> >> +               therm->attr_get &&
+> >> +               therm->attr_set &&
+> >> +               nvkm_therm_temp_get(therm) < 0)
+> >> +               return 0;
+> >> +
+> >> +       switch (attr) {
+> >> +       case hwmon_temp_input:
+> >> +       case hwmon_temp_max:
+> >> +       case hwmon_temp_max_hyst:
+> >> +       case hwmon_temp_crit:
+> >> +       case hwmon_temp_crit_hyst:
+> >> +       case hwmon_temp_emergency:
+> >> +       case hwmon_temp_emergency_hyst:
+> >> +               return 0444;
+> >> +       default:
+> >> +               return 0;
+> >> +       }
+> >> +}
+> >> +
+> >> +static umode_t
+> >> +nouveau_pwm_is_visible(const void *data, u32 attr, int channel)
+> >> +{
+> >> +       struct nouveau_drm *drm = nouveau_drm((struct drm_device
+> *)data);
+> >> +       struct nvkm_therm *therm = nvxx_therm(&drm->client.device);
+> >> +
+> >> +       if (therm &&
+> >> +               therm->attr_get &&
+> >> +               therm->fan_get &&
+> >> +               therm->fan_get(therm) < 0)
+> >> +               return 0;
+> >> +
+> >> +       switch (attr) {
+> >> +       case hwmon_pwm_enable:
+> >> +       case hwmon_pwm_input:
+> >> +               return 0644;
+> >> +       default:
+> >> +               return 0;
+> >> +       }
+> >> +}
+> >> +
+> >> +static umode_t
+> >> +nouveau_input_is_visible(const void *data, u32 attr, int channel)
+> >> +{
+> >> +       struct nouveau_drm *drm = nouveau_drm((struct drm_device
+> *)data);
+> >> +       struct nvkm_volt *volt = nvxx_volt(&drm->client.device);
+> >> +
+> >> +       if (!volt || nvkm_volt_get(volt) < 0)
+> >> +               return 0;
+> >> +
+> >> +       switch (attr) {
+> >> +       case hwmon_in_input:
+> >> +       case hwmon_in_label:
+> >> +       case hwmon_in_min:
+> >> +       case hwmon_in_max:
+> >> +               return 0444;
+> >> +       default:
+> >> +               return 0;
+> >> +       }
+> >> +}
+> >> +
+> >> +static umode_t
+> >> +nouveau_fan_is_visible(const void *data, u32 attr, int channel)
+> >> +{
+> >> +       struct nouveau_drm *drm = nouveau_drm((struct drm_device
+> *)data);
+> >> +       struct nvkm_therm *therm = nvxx_therm(&drm->client.device);
+> >> +
+> >> +       if (!therm || !therm->attr_get || nvkm_therm_fan_sense(therm) <
+> 0)
+> >> +               return 0;
+> >> +
+> >> +       switch (attr) {
+> >> +       case hwmon_fan_input:
+> >> +               return 0444;
+> >> +       default:
+> >> +               return 0;
+> >> +       }
+> >> +}
+> >> +
+> >> +static umode_t
+> >> +nouveau_is_visible(const void *data, enum hwmon_sensor_types type, u32
+> attr,
+> >> +                                                               int
+> channel)
+> >> +{
+> >> +       switch (type) {
+> >> +       case hwmon_chip:
+> >> +               return nouveau_chip_is_visible(data, attr, channel);
+> >> +       case hwmon_temp:
+> >> +               return nouveau_temp_is_visible(data, attr, channel);
+> >> +       case hwmon_fan:
+> >> +               return nouveau_fan_is_visible(data, attr, channel);
+> >> +       case hwmon_in:
+> >> +               return nouveau_input_is_visible(data, attr, channel);
+> >> +       case hwmon_pwm:
+> >> +               return nouveau_pwm_is_visible(data, attr, channel);
+> >> +       case hwmon_power:
+> >> +               return nouveau_power_is_visible(data, attr, channel);
+> >> +       default:
+> >> +               return 0;
+> >> +       }
+> >> +}
+> >> +
+> >> +static char *input_label = "GPU core";
+> >> +
+> >> +static int
+> >> +nouveau_read_string(struct device *dev, enum hwmon_sensor_types type,
+> u32 attr,
+> >> +                                                       int channel,
+> char **buf)
+> >> +{
+> >> +       if (type == hwmon_in && attr == hwmon_in_label) {
+> >> +               *buf = input_label;
+> >> +               return 0;
+> >> +       }
+> >> +
+> >> +       return -EOPNOTSUPP;
+> >> +}
+> >> +
+> >> +static const struct hwmon_ops nouveau_hwmon_ops = {
+> >> +       .is_visible = nouveau_is_visible,
+> >> +       .read = NULL,
+> >> +       .read_string = nouveau_read_string,
+> >> +       .write = NULL,
+> >> +};
+> >> +
+> >> +static const struct hwmon_chip_info nouveau_chip_info = {
+> >> +       .ops = &nouveau_hwmon_ops,
+> >> +       .info = nouveau_info,
+> >> +};
+> >>  #endif
+> >>
+> >>  int
+> >> --
+> >> 2.1.4
+> >>
+> >> _______________________________________________
+> >> Nouveau mailing list
+> >> Nouveau@lists.freedesktop.org
+> >> https://lists.freedesktop.org/mailman/listinfo/nouveau
+>
+
+--94eb2c0566ce5adf69054d94251b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">I got what you meant. I&quot;ll fix it</div><div class=3D=
+"gmail_extra"><br><div class=3D"gmail_quote">El dia 20/04/2017 08:47, &quot=
+;Oscar Salvador&quot; &lt;<a href=3D"mailto:osalvador.vilardaga@gmail.com">=
+osalvador.vilardaga@gmail.com</a>&gt; va escriure:<br type=3D"attribution">=
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Hi Karol,<br>
+<br>
+I don&#39;t get what you mean with return due to fallthrough. I mean, I<br>
+know what is it, but I don&#39;t see how I can do it there.<br>
+Moving the check before the switch looks like that:<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (!iccsense)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return 0;<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 switch (attr) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 case hwmon_power_input:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (iccsense-&gt;da=
+ta_valid &amp;&amp;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 !list_empty(&amp;iccsense-&gt;rails))<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 return 0444;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 case hwmon_power_max:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (iccsense-&gt;po=
+wer_w_max)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 return 0444;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 case hwmon_power_crit:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (iccsense-&gt;po=
+wer_w_crit)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 return 0444;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 default:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return 0;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+<br>
+Could you drop me a hint?<br>
+<br>
+<br>
+On 18 April 2017 at 09:56, Karol Herbst &lt;<a href=3D"mailto:karolherbst@g=
+mail.com">karolherbst@gmail.com</a>&gt; wrote:<br>
+&gt; 2017-04-17 9:47 GMT+02:00 Oscar Salvador &lt;<a href=3D"mailto:osalvad=
+or.vilardaga@gmail.com">osalvador.vilardaga@gmail.com</a><wbr>&gt;:<br>
+&gt;&gt; This patch introduces the nouveau_hwmon_ops structure, sets up<br>
+&gt;&gt; .is_visible and .read_string operations and adds all the functions=
+<br>
+&gt;&gt; for these operations.<br>
+&gt;&gt; This is also a preparation for the next patches, where most of the=
+<br>
+&gt;&gt; work is being done.<br>
+&gt;&gt; This code doesn&#39;t interacture with the old one.<br>
+&gt;&gt; It&#39;s just to make easier the review of all patches.<br>
+&gt;&gt; ---<br>
+&gt;&gt;=C2=A0 drivers/gpu/drm/nouveau/<wbr>nouveau_hwmon.c | 166 +++++++++=
++++++++++++++++++++++<wbr>++<br>
+&gt;&gt;=C2=A0 1 file changed, 166 insertions(+)<br>
+&gt;&gt;<br>
+&gt;&gt; diff --git a/drivers/gpu/drm/nouveau/<wbr>nouveau_hwmon.c b/driver=
+s/gpu/drm/nouveau/<wbr>nouveau_hwmon.c<br>
+&gt;&gt; index 24b40c5..9b6423c 100644<br>
+&gt;&gt; --- a/drivers/gpu/drm/nouveau/<wbr>nouveau_hwmon.c<br>
+&gt;&gt; +++ b/drivers/gpu/drm/nouveau/<wbr>nouveau_hwmon.c<br>
+&gt;&gt; @@ -764,6 +764,172 @@ static const struct hwmon_channel_info *nouv=
+eau_info[] =3D {<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&amp;nouveau_power,<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0NULL<br>
+&gt;&gt;=C2=A0 };<br>
+&gt;&gt; +<br>
+&gt;&gt; +static umode_t<br>
+&gt;&gt; +nouveau_chip_is_visible(const void *data, u32 attr, int channel)<=
+br>
+&gt;&gt; +{<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0switch (attr) {<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_chip_update_interval:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 044=
+4;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0default:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<=
+br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;&gt; +}<br>
+&gt;&gt; +<br>
+&gt;&gt; +static umode_t<br>
+&gt;&gt; +nouveau_power_is_visible(<wbr>const void *data, u32 attr, int cha=
+nnel)<br>
+&gt;&gt; +{<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0struct nouveau_drm *drm =3D nouveau_dr=
+m((struct drm_device *)data);<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0struct nvkm_iccsense *iccsense =3D nvx=
+x_iccsense(&amp;drm-&gt;client.<wbr>device);<br>
+&gt;&gt; +<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0switch (attr) {<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_power_input:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (iccsen=
+se &amp;&amp;<br>
+&gt;<br>
+&gt; move the pointer check before the switch, because you need to check it=
+<br>
+&gt; in every case (or move it to every case, but doing it once is<br>
+&gt; simplier/cleaner)<br>
+&gt;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0iccsense-&gt;data_valid &amp;&amp;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0!list_empty(&amp;iccsense-&gt;rails))<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0return 0444;<br>
+&gt;<br>
+&gt; add return due to fallthrough<br>
+&gt;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_power_max:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (iccsen=
+se-&gt;power_w_max)<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0return 0444;<br>
+&gt;<br>
+&gt; add return due to fallthrough<br>
+&gt;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_power_crit:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (iccsen=
+se-&gt;power_w_crit)<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0return 0444;<br>
+&gt;<br>
+&gt; add return due to fallthrough<br>
+&gt;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0default:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<=
+br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;&gt; +}<br>
+&gt;&gt; +<br>
+&gt;&gt; +static umode_t<br>
+&gt;&gt; +nouveau_temp_is_visible(const void *data, u32 attr, int channel)<=
+br>
+&gt;&gt; +{<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0struct nouveau_drm *drm =3D nouveau_dr=
+m((struct drm_device *)data);<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0struct nvkm_therm *therm =3D nvxx_ther=
+m(&amp;drm-&gt;client.<wbr>device);<br>
+&gt;&gt; +<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0if (therm &amp;&amp;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0therm-&gt;=
+attr_get &amp;&amp;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0therm-&gt;=
+attr_set &amp;&amp;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0nvkm_therm=
+_temp_get(therm) &lt; 0)<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<=
+br>
+&gt;&gt; +<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0switch (attr) {<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_temp_input:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_temp_max:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_temp_max_hyst:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_temp_crit:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_temp_crit_hyst:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_temp_emergency:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_temp_emergency_hyst:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 044=
+4;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0default:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<=
+br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;&gt; +}<br>
+&gt;&gt; +<br>
+&gt;&gt; +static umode_t<br>
+&gt;&gt; +nouveau_pwm_is_visible(const void *data, u32 attr, int channel)<b=
+r>
+&gt;&gt; +{<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0struct nouveau_drm *drm =3D nouveau_dr=
+m((struct drm_device *)data);<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0struct nvkm_therm *therm =3D nvxx_ther=
+m(&amp;drm-&gt;client.<wbr>device);<br>
+&gt;&gt; +<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0if (therm &amp;&amp;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0therm-&gt;=
+attr_get &amp;&amp;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0therm-&gt;=
+fan_get &amp;&amp;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0therm-&gt;=
+fan_get(therm) &lt; 0)<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<=
+br>
+&gt;&gt; +<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0switch (attr) {<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_pwm_enable:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_pwm_input:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 064=
+4;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0default:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<=
+br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;&gt; +}<br>
+&gt;&gt; +<br>
+&gt;&gt; +static umode_t<br>
+&gt;&gt; +nouveau_input_is_visible(<wbr>const void *data, u32 attr, int cha=
+nnel)<br>
+&gt;&gt; +{<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0struct nouveau_drm *drm =3D nouveau_dr=
+m((struct drm_device *)data);<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0struct nvkm_volt *volt =3D nvxx_volt(&=
+amp;drm-&gt;client.device)<wbr>;<br>
+&gt;&gt; +<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0if (!volt || nvkm_volt_get(volt) &lt; =
+0)<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<=
+br>
+&gt;&gt; +<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0switch (attr) {<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_in_input:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_in_label:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_in_min:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_in_max:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 044=
+4;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0default:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<=
+br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;&gt; +}<br>
+&gt;&gt; +<br>
+&gt;&gt; +static umode_t<br>
+&gt;&gt; +nouveau_fan_is_visible(const void *data, u32 attr, int channel)<b=
+r>
+&gt;&gt; +{<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0struct nouveau_drm *drm =3D nouveau_dr=
+m((struct drm_device *)data);<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0struct nvkm_therm *therm =3D nvxx_ther=
+m(&amp;drm-&gt;client.<wbr>device);<br>
+&gt;&gt; +<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0if (!therm || !therm-&gt;attr_get || n=
+vkm_therm_fan_sense(therm) &lt; 0)<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<=
+br>
+&gt;&gt; +<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0switch (attr) {<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_fan_input:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 044=
+4;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0default:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<=
+br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;&gt; +}<br>
+&gt;&gt; +<br>
+&gt;&gt; +static umode_t<br>
+&gt;&gt; +nouveau_is_visible(const void *data, enum hwmon_sensor_types type=
+, u32 attr,<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0int channel)<br>
+&gt;&gt; +{<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0switch (type) {<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_chip:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return nou=
+veau_chip_is_visible(data, attr, channel);<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_temp:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return nou=
+veau_temp_is_visible(data, attr, channel);<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_fan:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return nou=
+veau_fan_is_visible(data, attr, channel);<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_in:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return nou=
+veau_input_is_visible(data, attr, channel);<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_pwm:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return nou=
+veau_pwm_is_visible(data, attr, channel);<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0case hwmon_power:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return nou=
+veau_power_is_visible(data, attr, channel);<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0default:<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<=
+br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;&gt; +}<br>
+&gt;&gt; +<br>
+&gt;&gt; +static char *input_label =3D &quot;GPU core&quot;;<br>
+&gt;&gt; +<br>
+&gt;&gt; +static int<br>
+&gt;&gt; +nouveau_read_string(struct device *dev, enum hwmon_sensor_types t=
+ype, u32 attr,<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0int channel, cha=
+r **buf)<br>
+&gt;&gt; +{<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0if (type =3D=3D hwmon_in &amp;&amp; at=
+tr =3D=3D hwmon_in_label) {<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*buf =3D i=
+nput_label;<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<=
+br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;&gt; +<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0return -EOPNOTSUPP;<br>
+&gt;&gt; +}<br>
+&gt;&gt; +<br>
+&gt;&gt; +static const struct hwmon_ops nouveau_hwmon_ops =3D {<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0.is_visible =3D nouveau_is_visible,<br=
+>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0.read =3D NULL,<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0.read_string =3D nouveau_read_string,<=
+br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0.write =3D NULL,<br>
+&gt;&gt; +};<br>
+&gt;&gt; +<br>
+&gt;&gt; +static const struct hwmon_chip_info nouveau_chip_info =3D {<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0.ops =3D &amp;nouveau_hwmon_ops,<br>
+&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0.info =3D nouveau_info,<br>
+&gt;&gt; +};<br>
+&gt;&gt;=C2=A0 #endif<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 int<br>
+&gt;&gt; --<br>
+&gt;&gt; 2.1.4<br>
+&gt;&gt;<br>
+&gt;&gt; ______________________________<wbr>_________________<br>
+&gt;&gt; Nouveau mailing list<br>
+&gt;&gt; <a href=3D"mailto:Nouveau@lists.freedesktop.org">Nouveau@lists.fre=
+edesktop.org</a><br>
+&gt;&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau"=
+ rel=3D"noreferrer" target=3D"_blank">https://lists.freedesktop.org/<wbr>ma=
+ilman/listinfo/nouveau</a><br>
+</blockquote></div></div>
+
+--94eb2c0566ce5adf69054d94251b--
+
+--===============2018712443==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============2018712443==--
