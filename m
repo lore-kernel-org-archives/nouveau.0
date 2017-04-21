@@ -1,71 +1,105 @@
-From: Oscar Salvador <osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v3 4/5] nouveau_hwmon: Add support for auto_point
-	attributes
-Date: Fri, 21 Apr 2017 18:57:44 +0200
-Message-ID: <1492793865-2504-5-git-send-email-osalvador.vilardaga@gmail.com>
-References: <1492793865-2504-1-git-send-email-osalvador.vilardaga@gmail.com>
+From: Lyude Paul <thatslyude-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: xf86-video-nouveau 1.0.15
+Date: Fri, 21 Apr 2017 14:53:51 -0400
+Message-ID: <1492800831.20823.2.camel@gmail.com>
+Reply-To: xorg-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1492793865-2504-1-git-send-email-osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Oscar Salvador <osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0802434944=="
+Return-path: <xorg-announce-bounces-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
+List-Unsubscribe: <https://lists.x.org/mailman/options/xorg-announce>,
+ <mailto:xorg-announce-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.x.org/archives/xorg-announce>
+List-Post: <mailto:xorg-announce-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
+List-Help: <mailto:xorg-announce-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.x.org/mailman/listinfo/xorg-announce>,
+ <mailto:xorg-announce-request-go0+a7rfsptAfugRpC6u6w@public.gmane.org?subject=subscribe>
+Errors-To: xorg-announce-bounces-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Sender: "xorg-announce" <xorg-announce-bounces-go0+a7rfsptAfugRpC6u6w@public.gmane.org>
+To: xorg-announce-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBwYXRjaCBjcmVhdGVzIGEgc3BlY2lhbCBncm91cCBhdHRyaWJ1dGVzIGZvciBhdHRycyBs
-aWtlICIqYXV0b19wb2ludCoiLgpXZSBjaGVjayBpZiB3ZSBoYXZlIHN1cHBvcnQgZm9yIHRoZW0s
-IGFuZCBpZiB3ZSBkbywgd2UgZ2F0aGVyIHRoZW0gYWxsIGluCmFuIGF0dHJpYnV0ZV9ncm91cCdz
-IHN0cnVjdHVyZSB3aGljaCBpcyB0aGUgcGFyYW1ldGVyIHJlZ2FyZGluZyBzcGVjaWFsIGdyb3Vw
-cwpvZiBod21vbl9kZXZpY2VfcmVnaXN0ZXJfd2l0aF9pbmZvLgoKU2lnbmVkLW9mZi1ieTogT3Nj
-YXIgU2FsdmFkb3IgPG9zYWx2YWRvci52aWxhcmRhZ2FAZ21haWwuY29tPgotLS0KIGRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYyB8IDMwICsrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrLQogMSBmaWxlIGNoYW5nZWQsIDI5IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24o
-LSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMKaW5kZXggNTcyOTZjYi4u
-YjllZmMyOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9od21v
-bi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYwpAQCAtMzU4
-LDYgKzM1OCwyNCBAQCBub3V2ZWF1X2h3bW9uX2dldF9wb3dlcjFfY3JpdChzdHJ1Y3Qgbm91dmVh
-dV9kcm0gKmRybSkKIAlyZXR1cm4gaWNjc2Vuc2UtPnBvd2VyX3dfY3JpdDsKIH0KIAorc3RhdGlj
-IGNvbnN0IHN0cnVjdCBhdHRyaWJ1dGUgKnB3bV9mYW5fc2Vuc29yX2F0dHJzW10gPSB7CisJJnNl
-bnNvcl9kZXZfYXR0cl9wd20xX21pbi5kZXZfYXR0ci5hdHRyLAorCSZzZW5zb3JfZGV2X2F0dHJf
-cHdtMV9tYXguZGV2X2F0dHIuYXR0ciwKKwlOVUxMCit9OworQVRUUklCVVRFX0dST1VQUyhwd21f
-ZmFuX3NlbnNvcik7CisKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgYXR0cmlidXRlICp0ZW1wMV9hdXRv
-X3BvaW50X3NlbnNvcl9hdHRyc1tdID0geworCSZzZW5zb3JfZGV2X2F0dHJfdGVtcDFfYXV0b19w
-b2ludDFfcHdtLmRldl9hdHRyLmF0dHIsCisJJnNlbnNvcl9kZXZfYXR0cl90ZW1wMV9hdXRvX3Bv
-aW50MV90ZW1wLmRldl9hdHRyLmF0dHIsCisJJnNlbnNvcl9kZXZfYXR0cl90ZW1wMV9hdXRvX3Bv
-aW50MV90ZW1wX2h5c3QuZGV2X2F0dHIuYXR0ciwKKwlOVUxMCit9OworQVRUUklCVVRFX0dST1VQ
-Uyh0ZW1wMV9hdXRvX3BvaW50X3NlbnNvcik7CisKKyNkZWZpbmUgTl9BVFRSX0dST1VQUyAgIDMK
-KworCiBzdGF0aWMgY29uc3QgdTMyIG5vdXZlYXVfY29uZmlnX2NoaXBbXSA9IHsKIAlIV01PTl9D
-X1VQREFURV9JTlRFUlZBTCwKIAkwCkBAIC03OTMsMTcgKzgxMSwyNyBAQCBub3V2ZWF1X2h3bW9u
-X2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKICNpZiBkZWZpbmVkKENPTkZJR19IV01PTikg
-fHwgKGRlZmluZWQoTU9EVUxFKSAmJiBkZWZpbmVkKENPTkZJR19IV01PTl9NT0RVTEUpKQogCXN0
-cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKIAlzdHJ1Y3QgbnZrbV90
-aGVybSAqdGhlcm0gPSBudnh4X3RoZXJtKCZkcm0tPmNsaWVudC5kZXZpY2UpOworCWNvbnN0IHN0
-cnVjdCBhdHRyaWJ1dGVfZ3JvdXAgKnNwZWNpYWxfZ3JvdXBzW05fQVRUUl9HUk9VUFNdOwogCXN0
-cnVjdCBub3V2ZWF1X2h3bW9uICpod21vbjsKIAlzdHJ1Y3QgZGV2aWNlICpod21vbl9kZXY7CiAJ
-aW50IHJldCA9IDA7CisJaW50IGkgPSAwOwogCiAJaHdtb24gPSBkcm0tPmh3bW9uID0ga3phbGxv
-YyhzaXplb2YoKmh3bW9uKSwgR0ZQX0tFUk5FTCk7CiAJaWYgKCFod21vbikKIAkJcmV0dXJuIC1F
-Tk9NRU07CiAJaHdtb24tPmRldiA9IGRldjsKIAorCWlmICh0aGVybSAmJiB0aGVybS0+YXR0cl9n
-ZXQgJiYgdGhlcm0tPmF0dHJfc2V0KSB7CisJCWlmIChudmttX3RoZXJtX3RlbXBfZ2V0KHRoZXJt
-KSA+PSAwKQorCQkJc3BlY2lhbF9ncm91cHNbaSsrXSA9ICZ0ZW1wMV9hdXRvX3BvaW50X3NlbnNv
-cl9ncm91cDsKKwkJaWYgKHRoZXJtLT5mYW5fZ2V0ICYmIHRoZXJtLT5mYW5fZ2V0KHRoZXJtKSA+
-PSAwKQorCQkJc3BlY2lhbF9ncm91cHNbaSsrXSA9ICZwd21fZmFuX3NlbnNvcl9ncm91cDsKKwl9
-CisKKwlzcGVjaWFsX2dyb3Vwc1tpXSA9IDA7CiAJaHdtb25fZGV2ID0gaHdtb25fZGV2aWNlX3Jl
-Z2lzdGVyX3dpdGhfaW5mbyhkZXYtPmRldiwgIm5vdXZlYXUiLCBkZXYsCi0JCQkJCQkmbm91dmVh
-dV9jaGlwX2luZm8sIE5VTEwpOworCQkJCQkmbm91dmVhdV9jaGlwX2luZm8sIHNwZWNpYWxfZ3Jv
-dXBzKTsKIAlpZiAoSVNfRVJSKGh3bW9uX2RldikpIHsKIAkJcmV0ID0gUFRSX0VSUihod21vbl9k
-ZXYpOwogCQlOVl9FUlJPUihkcm0sICJVbmFibGUgdG8gcmVnaXN0ZXIgaHdtb24gZGV2aWNlOiAl
-ZFxuIiwgcmV0KTsKLS0gCjIuMS40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+
+--===============0802434944==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-Ho0mUpRjgQaZSwt8XDkT"
+
+
+--=-Ho0mUpRjgQaZSwt8XDkT
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Ben Skeggs (1):
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0fix null pointer deref when building ag=
+ainst >=3Dlibdrm 2.4.78
+
+Ilia Mirkin (1):
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Add Pascal family support, identical to=
+ Maxwell
+
+Lyude (1):
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Bump version to 1.0.15
+
+Mariusz Bialonczyk (1):
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Do not register hotplug without RandR
+
+git tag: xf86-video-nouveau-1.0.15
+
+https://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1=
+.0.15.tar.bz2
+MD5:=C2=A0=C2=A0717203cb87029cddcbccf7398f9ad8c3=C2=A0=C2=A0xf86-video-nouv=
+eau-1.0.15.tar.bz2
+SHA1: ed699a59ea509550f60019eef1e092ed0ccdea08=C2=A0=C2=A0xf86-video-nouvea=
+u-1.0.15.tar.bz2
+SHA256: aede10fd395610a328697adca3434fb14e9afbd79911d6c8545cfa2c0e541d4c=C2=
+=A0=C2=A0xf86-video-nouveau-1.0.15.tar.bz2
+PGP:=C2=A0=C2=A0https://xorg.freedesktop.org/archive/individual/driver/xf86=
+-video-nouveau-1.0.15.tar.bz2.sig
+
+https://xorg.freedesktop.org/archive/individual/driver/xf86-video-nouveau-1=
+.0.15.tar.gz
+MD5:=C2=A0=C2=A013035498cd5d66f47de075de8cc11ec9=C2=A0=C2=A0xf86-video-nouv=
+eau-1.0.15.tar.gz
+SHA1: b7fcc51339a2058f2f82b3a806dfe9aa44ea6d2e=C2=A0=C2=A0xf86-video-nouvea=
+u-1.0.15.tar.gz
+SHA256: 3932af6878b000eac5a8992ce797f9c7a334f9b3257c5cf53f2bf177c1f942c2=C2=
+=A0=C2=A0xf86-video-nouveau-1.0.15.tar.gz
+PGP:=C2=A0=C2=A0https://xorg.freedesktop.org/archive/individual/driver/xf86=
+-video-nouveau-1.0.15.tar.gz.sig
+--=-Ho0mUpRjgQaZSwt8XDkT
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAABCAAGBQJY+lU/AAoJEMVGn7h1j5wrlooQAMdxDTF17Xelecnd+v8QB1MM
+gWZc/ClfOixnFhxcqBqlooi37DxgAJY9ar/JC1d9OTNLbNipdHPjOsv/k8kYhjn4
+JX9MlYNflT3zSwLo/76gf1qwnAl4lMydsr5qOPKkbhjxxJbPx+bPxyBdnaq3VV8/
+uew5NOQxbPzPUKa9xnZ8TL0mMccqIrjt+IhteIfdg8Dq9UaLe4DWeTvRSPgs/fpX
+XfPs1Ihx/k1EyxEr+upX7aK55a9wefyNoahe1jyvtEhI17xs2GZCfyHPWCceZMQF
+YJoeIMWgeB+PHiv56kaVKuR/40GbnWwXhrh4rVza+kBxalJxmLlqKPilxNLKrIkX
+YrxDP4453WftJvUmjI25yaR2V6pEdVH5m/7toIaaUhqXuXgctgHEEVmPYUGm6kiX
+HYnku6vPVeCFZazeteQ5TSkdv36tT4V/194dfi5iA2wW/33T0v0Jbfbb06g9N8T5
+8TMQi9AHdeV4bYM+x+Is5pj3xHKRT+2U1WyMayzhUM7jpp7wji845n1db/YvkiQp
+5td+gghReqbQHN15cMRVKFF+gyQaDtLAO3eeiSgPxwbSXOVhhsdbLo41BBWxHYa3
+mCn2G+xMmCcxLr2CNFj1Tviy1uiWkklageHkKULV4pq0ZNH7q9j1h/UvrrFZG79e
+t+kPLO79Qwftd3VcwaEk
+=9QZy
+-----END PGP SIGNATURE-----
+
+--=-Ho0mUpRjgQaZSwt8XDkT--
+
+
+--===============0802434944==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KeG9yZy1hbm5v
+dW5jZSBtYWlsaW5nIGxpc3QKeG9yZy1hbm5vdW5jZUBsaXN0cy54Lm9yZwpodHRwczovL2xpc3Rz
+Lngub3JnL21haWxtYW4vbGlzdGluZm8veG9yZy1hbm5vdW5jZQo=
+
+--===============0802434944==--
