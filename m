@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100758] Kernel Oops when starting X nv50_dma_push
-Date: Sat, 22 Apr 2017 15:05:25 +0000
-Message-ID: <bug-100758-8800-uoyRO4rBad@http.bugs.freedesktop.org/>
+Date: Sat, 22 Apr 2017 15:06:51 +0000
+Message-ID: <bug-100758-8800-8tH2Pvn4Yw@http.bugs.freedesktop.org/>
 References: <bug-100758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0574604213=="
+Content-Type: multipart/mixed; boundary="===============1175688616=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0574604213==
-Content-Type: multipart/alternative; boundary="14928735240.921C1.6959";
+--===============1175688616==
+Content-Type: multipart/alternative; boundary="14928736101.3d8b.7130";
  charset="UTF-8"
 
 
---14928735240.921C1.6959
-Date: Sat, 22 Apr 2017 15:05:24 +0000
+--14928736101.3d8b.7130
+Date: Sat, 22 Apr 2017 15:06:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,33 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100758
 
---- Comment #2 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 130982
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D130982&action=3Dedit
-Xorg log
+--- Comment #3 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+01:00.0 VGA compatible controller: NVIDIA Corporation GT216M [GeForce GT 23=
+0M]
+(rev a2) (prog-if 00 [VGA controller])
+        Subsystem: Hewlett-Packard Company Device 365c
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx+
+        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast >TAbort- <T=
+Abort-
+<MAbort- >SERR- <PERR- INTx-
+        Latency: 0, Cache Line Size: 64 bytes
+        Interrupt: pin A routed to IRQ 29
+        Region 0: Memory at d2000000 (32-bit, non-prefetchable) [size=3D16M]
+        Region 1: Memory at c0000000 (64-bit, prefetchable) [size=3D256M]
+        Region 3: Memory at d0000000 (64-bit, prefetchable) [size=3D32M]
+        Region 5: I/O ports at 6000 [size=3D128]
+        Expansion ROM at 000c0000 [disabled] [size=3D128K]
+        Capabilities: <access denied>
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14928735240.921C1.6959
-Date: Sat, 22 Apr 2017 15:05:24 +0000
+--14928736101.3d8b.7130
+Date: Sat, 22 Apr 2017 15:06:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +78,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel Oops when starting X nv50_dma_push"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100758#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100758#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel Oops when starting X nv50_dma_push"
@@ -73,11 +89,25 @@ t # 2</a>
 kjwinchester&#64;gmail.com" title=3D"Kevin Winchester &lt;kjwinchester&#64;=
 gmail.com&gt;"> <span class=3D"fn">Kevin Winchester</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D130982=
-" name=3D"attach_130982" title=3D"Xorg log">attachment 130982</a> <a href=
-=3D"attachment.cgi?id=3D130982&amp;action=3Dedit" title=3D"Xorg log">[detai=
-ls]</a></span>
-Xorg log</pre>
+        <pre>01:00.0 VGA compatible controller: NVIDIA Corporation GT216M [=
+GeForce GT 230M]
+(rev a2) (prog-if 00 [VGA controller])
+        Subsystem: Hewlett-Packard Company Device 365c
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx+
+        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast &gt;TAbort-=
+ &lt;TAbort-
+&lt;MAbort- &gt;SERR- &lt;PERR- INTx-
+        Latency: 0, Cache Line Size: 64 bytes
+        Interrupt: pin A routed to IRQ 29
+        Region 0: Memory at d2000000 (32-bit, non-prefetchable) [size=3D16M]
+        Region 1: Memory at c0000000 (64-bit, prefetchable) [size=3D256M]
+        Region 3: Memory at d0000000 (64-bit, prefetchable) [size=3D32M]
+        Region 5: I/O ports at 6000 [size=3D128]
+        Expansion ROM at 000c0000 [disabled] [size=3D128K]
+        Capabilities: &lt;access denied&gt;
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau</pre>
         </div>
       </p>
 
@@ -91,9 +121,9 @@ Xorg log</pre>
     </body>
 </html>=
 
---14928735240.921C1.6959--
+--14928736101.3d8b.7130--
 
---===============0574604213==
+--===============1175688616==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +133,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0574604213==--
+--===============1175688616==--
