@@ -1,15 +1,12 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] volt: Improve min/max deteaction of range
-	based volting
-Date: Sat, 22 Apr 2017 16:58:30 +0200
-Message-ID: <CAEXux-bB_+h_gnrDQ_U+JCApj6abmA_DAgcT09qbpSgziqoxXg@mail.gmail.com>
-References: <20170422122201.3084-1-karolherbst@gmail.com>
- <8db2d215-6d75-03c3-7588-61b74aff1dc8@spliet.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100758] Kernel Oops when starting X nv50_dma_push
+Date: Sat, 22 Apr 2017 15:01:50 +0000
+Message-ID: <bug-100758-8800-5oqP2EbYkK@http.bugs.freedesktop.org/>
+References: <bug-100758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1407773379=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <8db2d215-6d75-03c3-7588-61b74aff1dc8-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <bug-100758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,48 +16,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-MjAxNy0wNC0yMiAxNjo0NiBHTVQrMDI6MDAgUm95IFNwbGlldCA8bm91dmVhdUBzcGxpZXQub3Jn
-PjoKPiBSZXNwb25zZSBpbi1saW5lOgo+Cj4KPiBPcCAyMi0wNC0xNyBvbSAxMzoyMiBzY2hyZWVm
-IEthcm9sIEhlcmJzdDoKPj4KPj4gaW5mby5taW4gYW5kIGluZm8ubWF4IGRvZXNuJ3QgYWx3YXlz
-IHJlcHJlc2VudCB0aGUgYWN0dWFsIHZvbHRhZ2UgcmFuZ2Ugd2UKPj4gY2FuIHVzZS4gRG8gdGhl
-IHNhbWUgYXMgd2l0aCB0aGUgZW50cnkgYmFzZWQgdm9sdGluZy4KPj4KPj4gRml4ZXMgIkVSUk9S
-OiBDYW4ndCBnZXQgdmFsdWUgb2Ygc3ViZmVhdHVyZSBpbjBfbWluOiBDYW4ndCByZWFkIiBlcnJv
-cnMKPj4gaW4gc2Vuc29ycy4KPj4KPj4gU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxrYXJv
-bGhlcmJzdEBnbWFpbC5jb20+Cj4+IC0tLQo+PiAgIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3Zv
-bHQvYmFzZS5jIHwgNiArKysrLS0KPj4gICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCsp
-LCAyIGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJk
-ZXYvdm9sdC9iYXNlLmMKPj4gYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2Jhc2UuYwo+
-PiBpbmRleCBlMzQ0OTAxYy4uNjFiMjljN2EgMTAwNjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L252
-a20vc3ViZGV2L3ZvbHQvYmFzZS5jCj4+ICsrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3Zv
-bHQvYmFzZS5jCj4+IEBAIC0xOTUsMTQgKzE5NSwxNiBAQCBudmttX3ZvbHRfcGFyc2VfYmlvcyhz
-dHJ1Y3QgbnZrbV9iaW9zICpiaW9zLCBzdHJ1Y3QKPj4gbnZrbV92b2x0ICp2b2x0KQo+PiAgICAg
-ICAgIGRhdGEgPSBudmJpb3Nfdm9sdF9wYXJzZShiaW9zLCAmdmVyLCAmaGRyLCAmY250LCAmbGVu
-LCAmaW5mbyk7Cj4+ICAgICAgICAgaWYgKGRhdGEgJiYgaW5mby52aWRtYXNrICYmIGluZm8uYmFz
-ZSAmJiBpbmZvLnN0ZXAgJiYgaW5mby5yYW5nZWQpCj4+IHsKPj4gICAgICAgICAgICAgICAgIG52
-a21fZGVidWcoc3ViZGV2LCAiZm91bmQgcmFuZ2VkIGJhc2VkIFZJRHNcbiIpOwo+PiAtICAgICAg
-ICAgICAgICAgdm9sdC0+bWluX3V2ID0gaW5mby5taW47Cj4+IC0gICAgICAgICAgICAgICB2b2x0
-LT5tYXhfdXYgPSBpbmZvLm1heDsKPj4gKyAgICAgICAgICAgICAgIHZvbHQtPm1pbl91diA9IDB4
-ZmZmZmZmZmY7Cj4+ICsgICAgICAgICAgICAgICB2b2x0LT5tYXhfdXYgPSAwOwo+PiAgICAgICAg
-ICAgICAgICAgZm9yIChpID0gMDsgaSA8IGluZm8udmlkbWFzayArIDE7IGkrKykgewo+PiAgICAg
-ICAgICAgICAgICAgICAgICAgICBpZiAoaW5mby5iYXNlID49IGluZm8ubWluICYmCj4+ICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgaW5mby5iYXNlIDw9IGluZm8ubWF4KSB7Cj4KPiBI
-b3cgYm9ndXMgYXJlIGluZm8ubWluIGFuZCBpbmZvLm1heCB3aGVuIHlvdSBnZXQgdGhhdCBlcnJv
-cj8gSXMgdGhpcwo+IGlmLXN0YXRlbWVudCBzdGlsbCB2YWxpZD8KCmluZm8ubWluIGlzIHNldCB0
-byAwLiBhbmQgaW5mby5tYXggdG8gdGhlIGJhc2UgdmFsdWUuIFRoZSB2YmlvcwpwYXJzaW5nIGlz
-IGFsc28gYSBsaXR0bGUgaW5jb21wbGV0ZSwgd2hpY2ggSSBjb3VsZCBmaXggaW5zdGVhZCBhcwp3
-ZWxsLgoKTGV0IG1lIGhhY2sgc29tZXRoaW5nIHVwLgoKPj4KPj4gICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICB2b2x0LT52aWRbdm9sdC0+dmlkX25yXS51diA9IGluZm8uYmFzZTsKPj4g
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB2b2x0LT52aWRbdm9sdC0+dmlkX25yXS52
-aWQgPSBpOwo+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZvbHQtPnZpZF9ucisr
-Owo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZvbHQtPm1pbl91diA9IG1pbih2
-b2x0LT5taW5fdXYsCj4+IGluZm8uYmFzZSk7Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgdm9sdC0+bWF4X3V2ID0gbWF4KHZvbHQtPm1heF91diwKPj4gaW5mby5iYXNlKTsKPj4g
-ICAgICAgICAgICAgICAgICAgICAgICAgfQo+PiAgICAgICAgICAgICAgICAgICAgICAgICBpbmZv
-LmJhc2UgKz0gaW5mby5zdGVwOwo+PiAgICAgICAgICAgICAgICAgfQo+Cj4KX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1407773379==
+Content-Type: multipart/alternative; boundary="14928733101.d12Db8078.6492";
+ charset="UTF-8"
+
+
+--14928733101.d12Db8078.6492
+Date: Sat, 22 Apr 2017 15:01:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100758
+
+--- Comment #1 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Versions:
+
+Linux karpov 4.10.11-1-ARCH #1 SMP PREEMPT Tue Apr 18 08:39:42 CEST 2017 x8=
+6_64
+GNU/Linux
+
+
+core/linux 4.10.11-1
+extra/xorg-server 1.19.3-2
+extra/xf86-video-nouveau 1.0.15-1
+extra/libdrm 2.4.80-1
+extra/mesa 17.0.4-2
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14928733101.d12Db8078.6492
+Date: Sat, 22 Apr 2017 15:01:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel Oops when starting X nv50_dma_push"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100758#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel Oops when starting X nv50_dma_push"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100758">bug 10075=
+8</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+kjwinchester&#64;gmail.com" title=3D"Kevin Winchester &lt;kjwinchester&#64;=
+gmail.com&gt;"> <span class=3D"fn">Kevin Winchester</span></a>
+</span></b>
+        <pre>Versions:
+
+Linux karpov 4.10.11-1-ARCH #1 SMP PREEMPT Tue Apr 18 08:39:42 CEST 2017 x8=
+6_64
+GNU/Linux
+
+
+core/linux 4.10.11-1
+extra/xorg-server 1.19.3-2
+extra/xf86-video-nouveau 1.0.15-1
+extra/libdrm 2.4.80-1
+extra/mesa 17.0.4-2</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14928733101.d12Db8078.6492--
+
+--===============1407773379==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1407773379==--
