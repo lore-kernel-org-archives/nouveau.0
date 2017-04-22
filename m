@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100758] Kernel Oops when starting X nv50_dma_push
-Date: Sat, 22 Apr 2017 15:08:37 +0000
-Message-ID: <bug-100758-8800-pDNPNPk1OS@http.bugs.freedesktop.org/>
+Date: Sat, 22 Apr 2017 15:14:28 +0000
+Message-ID: <bug-100758-8800-5ykBmXfTW9@http.bugs.freedesktop.org/>
 References: <bug-100758-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2147165349=="
+Content-Type: multipart/mixed; boundary="===============0465980210=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2147165349==
-Content-Type: multipart/alternative; boundary="14928737171.ecea8.7227";
+--===============0465980210==
+Content-Type: multipart/alternative; boundary="14928740681.bFbA3DcBB.7569";
  charset="UTF-8"
 
 
---14928737171.ecea8.7227
-Date: Sat, 22 Apr 2017 15:08:37 +0000
+--14928740681.bFbA3DcBB.7569
+Date: Sat, 22 Apr 2017 15:14:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,33 +35,47 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100758
 
---- Comment #4 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-[kevin@karpov ~]$ cat /etc/X11/xorg.conf.d/20-nouveau.conf
+--- Comment #5 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+After this crash, I rebooted and I'm currently running sway on wayland and
+things seem to work well, but I've been having trouble with X for weeks now.
 
-Section "Monitor"
-          Identifier   "LVDS"
-          Option "PreferredMode" "1600x900_60.0"
-          Option "RightOf" "VGA"
-EndSection
+I first noticed issues when the following messages started appearing in my =
+boot
+logs:
 
-Section "Monitor"
-          Identifier   "VGA"
-          Option "PreferredMode" "1680x1050_59.9"
-EndSection
+nouveau 0000:01:00.0: bios: OOB 1 015f1901 015f1901
+nouveau 0000:01:00.0: bios: OOB 1 b90900b8 b90900b8
+nouveau 0000:01:00.0: bios: OOB 1 b90900b8 b90900b8
+nouveau 0000:01:00.0: bios: OOB 1 b90900b8 b90900b8
 
-Section "Device"
-    Identifier "nvidia"
-    Driver "nouveau"
-    Option  "Monitor-LVDS-1" "LVDS"
-    Option  "Monitor-VGA-1" "VGA"
-EndSection
+I have a dual monitor setup and I was always running with no specific
+xorg.config files, just the following in my .xinitrc file:
+
+xrandr --output LVDS-1 --preferred
+xrandr --output HDMI-1 --preferred --primary --left-of LVDS-1
+
+But suddenly after some updates, that was resulting in the same content bei=
+ng
+displayed on both screens, but I can still move my mouse cursor over onto t=
+he
+second screen.
+
+I put in the xorg.conf file that I used to use (already pasted in) and it
+seemed to improve the situation, but there were still issues. The same cont=
+ent
+would still appear on both screens, but once I let the xfce power management
+shut off the monitors and then woke the computer back up, the screens would
+work correctly again.
+
+Then this I installed a new kernel and nouveau driver, and after starting X
+everything froze and I found the Oops in my logs.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14928737171.ecea8.7227
-Date: Sat, 22 Apr 2017 15:08:37 +0000
+--14928740681.bFbA3DcBB.7569
+Date: Sat, 22 Apr 2017 15:14:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,8 +92,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel Oops when starting X nv50_dma_push"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100758#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100758#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel Oops when starting X nv50_dma_push"
@@ -89,25 +103,40 @@ t # 4</a>
 kjwinchester&#64;gmail.com" title=3D"Kevin Winchester &lt;kjwinchester&#64;=
 gmail.com&gt;"> <span class=3D"fn">Kevin Winchester</span></a>
 </span></b>
-        <pre>[kevin&#64;karpov ~]$ cat /etc/X11/xorg.conf.d/20-nouveau.conf
+        <pre>After this crash, I rebooted and I'm currently running sway on=
+ wayland and
+things seem to work well, but I've been having trouble with X for weeks now.
 
-Section &quot;Monitor&quot;
-          Identifier   &quot;LVDS&quot;
-          Option &quot;PreferredMode&quot; &quot;1600x900_60.0&quot;
-          Option &quot;RightOf&quot; &quot;VGA&quot;
-EndSection
+I first noticed issues when the following messages started appearing in my =
+boot
+logs:
 
-Section &quot;Monitor&quot;
-          Identifier   &quot;VGA&quot;
-          Option &quot;PreferredMode&quot; &quot;1680x1050_59.9&quot;
-EndSection
+nouveau 0000:01:00.0: bios: OOB 1 015f1901 015f1901
+nouveau 0000:01:00.0: bios: OOB 1 b90900b8 b90900b8
+nouveau 0000:01:00.0: bios: OOB 1 b90900b8 b90900b8
+nouveau 0000:01:00.0: bios: OOB 1 b90900b8 b90900b8
 
-Section &quot;Device&quot;
-    Identifier &quot;nvidia&quot;
-    Driver &quot;nouveau&quot;
-    Option  &quot;Monitor-LVDS-1&quot; &quot;LVDS&quot;
-    Option  &quot;Monitor-VGA-1&quot; &quot;VGA&quot;
-EndSection</pre>
+I have a dual monitor setup and I was always running with no specific
+xorg.config files, just the following in my .xinitrc file:
+
+xrandr --output LVDS-1 --preferred
+xrandr --output HDMI-1 --preferred --primary --left-of LVDS-1
+
+But suddenly after some updates, that was resulting in the same content bei=
+ng
+displayed on both screens, but I can still move my mouse cursor over onto t=
+he
+second screen.
+
+I put in the xorg.conf file that I used to use (already pasted in) and it
+seemed to improve the situation, but there were still issues. The same cont=
+ent
+would still appear on both screens, but once I let the xfce power management
+shut off the monitors and then woke the computer back up, the screens would
+work correctly again.
+
+Then this I installed a new kernel and nouveau driver, and after starting X
+everything froze and I found the Oops in my logs.</pre>
         </div>
       </p>
 
@@ -121,9 +150,9 @@ EndSection</pre>
     </body>
 </html>=
 
---14928737171.ecea8.7227--
+--14928740681.bFbA3DcBB.7569--
 
---===============2147165349==
+--===============0465980210==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -133,4 +162,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2147165349==--
+--===============0465980210==--
