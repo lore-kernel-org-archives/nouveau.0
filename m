@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100760] Rapid flickering when an app is placed on
  the second Nouveau ZaphodHeads display
-Date: Sun, 23 Apr 2017 02:31:54 +0000
-Message-ID: <bug-100760-8800-RfDLt62AGD@http.bugs.freedesktop.org/>
+Date: Sun, 23 Apr 2017 05:22:21 +0000
+Message-ID: <bug-100760-8800-K56hSl1GUD@http.bugs.freedesktop.org/>
 References: <bug-100760-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2089445064=="
+Content-Type: multipart/mixed; boundary="===============1900196280=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100760-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2089445064==
-Content-Type: multipart/alternative; boundary="14929147130.92d43ea39.14680";
+--===============1900196280==
+Content-Type: multipart/alternative; boundary="14929249411.eC6ABE1E.2337";
  charset="UTF-8"
 
 
---14929147130.92d43ea39.14680
-Date: Sun, 23 Apr 2017 02:31:53 +0000
+--14929249411.eC6ABE1E.2337
+Date: Sun, 23 Apr 2017 05:22:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,32 +36,56 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100760
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-While Zaphod is considered a legacy feature, that doesn't mean that things
-should break. Just that it's unlikely to be extended to support new things.
+--- Comment #3 from mrj-ejQy8aU/RJumpXlQD71PVDSf8X3wrgjD@public.gmane.org ---
+Many thanks Ilia for those helpful suggestions.
 
-There has recently been some bugs introduced into xserver which break
-non-xrandr setups. There are also some issues in the nouveau driver. One of
-those was fixed in xf86-video-nouveau 1.0.15. For the xserver issues, see b=
-ug
-#100293.
+The results of the experiments are, that in ZaphodHeads mode:
 
-I cannot comment on any bugs that happen in MATE/whatever other software as=
- a
-result of multi-screen displays. Note that these are not commonly tested. If
-you can do 'DISPLAY=3D:0.1 xterm', then everything else is down to the X cl=
-ients.
+1. Running "DISPLAY=3D:0.1 gnome-terminal" under all window managers makes =
+the
+terminal display correctly, but on display :0.0.
 
-Please try the above fixes and see if they improve things. If they don't,
-you're going to have to debug this, or provide sufficient info for others to
-debug it.
+2. Running "DISPLAY=3D:0.1 mate-terminal" or "DISPLAY=3D:0.1 xterm" under G=
+nome 3,
+Gnome Classic, or Gnome on X (rather than Wayland) makes the terminal appea=
+r on
+display :0.1 without flickering, but there's no window border, and any typi=
+ng
+goes to the original terminal.
+
+3. Running "DISPLAY=3D:0.1 mate-terminal" or "DISPLAY=3D:0.1 xterm" under M=
+ATE
+causes the same as above plus the intense flickering.
+
+So the flickering is a MATE problem, but the inability to use the second
+display is an X problem. This matches my experience with the problems start=
+ing
+under the proprietary driver, with the background image and menus going fir=
+st,
+and later requiring the explicit setting of DISPLAY.
+
+I've found independent virtual desktops such a productive feature, I'm
+disappointed it's going away.
+
+I suppose other than the fix-it-myself option you suggest, I could:
+
+1. Try to install an X (and maybe also a MATE) downgrade, such as the one t=
+hat
+was working on F23,
+
+2. Get a new graphics card to see whether that works with twin X-displays on
+either Nouveau or the proprietary driver (again the hardware will have
+outlasted the software). Is anyone successfully using Zaphod on a current
+distro?, or
+
+3. Wait for an X update that fixes this.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14929147130.92d43ea39.14680
-Date: Sun, 23 Apr 2017 02:31:53 +0000
+--14929249411.eC6ABE1E.2337
+Date: Sun, 23 Apr 2017 05:22:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,8 +103,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Rapid flickering when an app is placed on the second Nouv=
 eau ZaphodHeads display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100760#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100760#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Rapid flickering when an app is placed on the second Nouv=
@@ -88,28 +112,51 @@ eau ZaphodHeads display"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100760">bug 10076=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+mrj&#64;advancedcontrols.com.au" title=3D"mrj&#64;advancedcontrols.com.au">=
+mrj&#64;advancedcontrols.com.au</a>
 </span></b>
-        <pre>While Zaphod is considered a legacy feature, that doesn't mean=
- that things
-should break. Just that it's unlikely to be extended to support new things.
+        <pre>Many thanks Ilia for those helpful suggestions.
 
-There has recently been some bugs introduced into xserver which break
-non-xrandr setups. There are also some issues in the nouveau driver. One of
-those was fixed in xf86-video-nouveau 1.0.15. For the xserver issues, see b=
-ug
-#100293.
+The results of the experiments are, that in ZaphodHeads mode:
 
-I cannot comment on any bugs that happen in MATE/whatever other software as=
- a
-result of multi-screen displays. Note that these are not commonly tested. If
-you can do 'DISPLAY=3D:0.1 xterm', then everything else is down to the X cl=
-ients.
+1. Running &quot;DISPLAY=3D:0.1 gnome-terminal&quot; under all window manag=
+ers makes the
+terminal display correctly, but on display :0.0.
 
-Please try the above fixes and see if they improve things. If they don't,
-you're going to have to debug this, or provide sufficient info for others to
-debug it.</pre>
+2. Running &quot;DISPLAY=3D:0.1 mate-terminal&quot; or &quot;DISPLAY=3D:0.1=
+ xterm&quot; under Gnome 3,
+Gnome Classic, or Gnome on X (rather than Wayland) makes the terminal appea=
+r on
+display :0.1 without flickering, but there's no window border, and any typi=
+ng
+goes to the original terminal.
+
+3. Running &quot;DISPLAY=3D:0.1 mate-terminal&quot; or &quot;DISPLAY=3D:0.1=
+ xterm&quot; under MATE
+causes the same as above plus the intense flickering.
+
+So the flickering is a MATE problem, but the inability to use the second
+display is an X problem. This matches my experience with the problems start=
+ing
+under the proprietary driver, with the background image and menus going fir=
+st,
+and later requiring the explicit setting of DISPLAY.
+
+I've found independent virtual desktops such a productive feature, I'm
+disappointed it's going away.
+
+I suppose other than the fix-it-myself option you suggest, I could:
+
+1. Try to install an X (and maybe also a MATE) downgrade, such as the one t=
+hat
+was working on F23,
+
+2. Get a new graphics card to see whether that works with twin X-displays on
+either Nouveau or the proprietary driver (again the hardware will have
+outlasted the software). Is anyone successfully using Zaphod on a current
+distro?, or
+
+3. Wait for an X update that fixes this.</pre>
         </div>
       </p>
 
@@ -123,9 +170,9 @@ debug it.</pre>
     </body>
 </html>=
 
---14929147130.92d43ea39.14680--
+--14929249411.eC6ABE1E.2337--
 
---===============2089445064==
+--===============1900196280==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +182,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2089445064==--
+--===============1900196280==--
