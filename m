@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100760] Rapid flickering when an app is placed on
- the second Nouveau ZaphodHeads display
-Date: Sun, 23 Apr 2017 05:22:21 +0000
-Message-ID: <bug-100760-8800-K56hSl1GUD@http.bugs.freedesktop.org/>
-References: <bug-100760-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] bios/volt: Parse min and max for Version 0x40
+Date: Sun, 23 Apr 2017 10:36:31 +0200
+Message-ID: <20170423083631.5687-1-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1900196280=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100760-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,166 +18,24 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1900196280==
-Content-Type: multipart/alternative; boundary="14929249411.eC6ABE1E.2337";
- charset="UTF-8"
-
-
---14929249411.eC6ABE1E.2337
-Date: Sun, 23 Apr 2017 05:22:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100760
-
---- Comment #3 from mrj-ejQy8aU/RJumpXlQD71PVDSf8X3wrgjD@public.gmane.org ---
-Many thanks Ilia for those helpful suggestions.
-
-The results of the experiments are, that in ZaphodHeads mode:
-
-1. Running "DISPLAY=3D:0.1 gnome-terminal" under all window managers makes =
-the
-terminal display correctly, but on display :0.0.
-
-2. Running "DISPLAY=3D:0.1 mate-terminal" or "DISPLAY=3D:0.1 xterm" under G=
-nome 3,
-Gnome Classic, or Gnome on X (rather than Wayland) makes the terminal appea=
-r on
-display :0.1 without flickering, but there's no window border, and any typi=
-ng
-goes to the original terminal.
-
-3. Running "DISPLAY=3D:0.1 mate-terminal" or "DISPLAY=3D:0.1 xterm" under M=
-ATE
-causes the same as above plus the intense flickering.
-
-So the flickering is a MATE problem, but the inability to use the second
-display is an X problem. This matches my experience with the problems start=
-ing
-under the proprietary driver, with the background image and menus going fir=
-st,
-and later requiring the explicit setting of DISPLAY.
-
-I've found independent virtual desktops such a productive feature, I'm
-disappointed it's going away.
-
-I suppose other than the fix-it-myself option you suggest, I could:
-
-1. Try to install an X (and maybe also a MATE) downgrade, such as the one t=
-hat
-was working on F23,
-
-2. Get a new graphics card to see whether that works with twin X-displays on
-either Nouveau or the proprietary driver (again the hardware will have
-outlasted the software). Is anyone successfully using Zaphod on a current
-distro?, or
-
-3. Wait for an X update that fixes this.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14929249411.eC6ABE1E.2337
-Date: Sun, 23 Apr 2017 05:22:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Rapid flickering when an app is placed on the second Nouv=
-eau ZaphodHeads display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100760#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Rapid flickering when an app is placed on the second Nouv=
-eau ZaphodHeads display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100760">bug 10076=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mrj&#64;advancedcontrols.com.au" title=3D"mrj&#64;advancedcontrols.com.au">=
-mrj&#64;advancedcontrols.com.au</a>
-</span></b>
-        <pre>Many thanks Ilia for those helpful suggestions.
-
-The results of the experiments are, that in ZaphodHeads mode:
-
-1. Running &quot;DISPLAY=3D:0.1 gnome-terminal&quot; under all window manag=
-ers makes the
-terminal display correctly, but on display :0.0.
-
-2. Running &quot;DISPLAY=3D:0.1 mate-terminal&quot; or &quot;DISPLAY=3D:0.1=
- xterm&quot; under Gnome 3,
-Gnome Classic, or Gnome on X (rather than Wayland) makes the terminal appea=
-r on
-display :0.1 without flickering, but there's no window border, and any typi=
-ng
-goes to the original terminal.
-
-3. Running &quot;DISPLAY=3D:0.1 mate-terminal&quot; or &quot;DISPLAY=3D:0.1=
- xterm&quot; under MATE
-causes the same as above plus the intense flickering.
-
-So the flickering is a MATE problem, but the inability to use the second
-display is an X problem. This matches my experience with the problems start=
-ing
-under the proprietary driver, with the background image and menus going fir=
-st,
-and later requiring the explicit setting of DISPLAY.
-
-I've found independent virtual desktops such a productive feature, I'm
-disappointed it's going away.
-
-I suppose other than the fix-it-myself option you suggest, I could:
-
-1. Try to install an X (and maybe also a MATE) downgrade, such as the one t=
-hat
-was working on F23,
-
-2. Get a new graphics card to see whether that works with twin X-displays on
-either Nouveau or the proprietary driver (again the hardware will have
-outlasted the software). Is anyone successfully using Zaphod on a current
-distro?, or
-
-3. Wait for an X update that fixes this.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14929249411.eC6ABE1E.2337--
-
---===============1900196280==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1900196280==--
+VGhpcyBpcyBhY2NvcmRpbmcgdG8gd2hhdCB3ZSBoYXZlIGluIG52Ymlvcy4KCkZpeGVzICJFUlJP
+UjogQ2FuJ3QgZ2V0IHZhbHVlIG9mIHN1YmZlYXR1cmUgaW4wX21pbjogQ2FuJ3QgcmVhZCIgZXJy
+b3JzCmluIHNlbnNvcnMgZm9yIHNvbWUgR1BVcy4KClNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJz
+dCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgotLS0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jp
+b3Mvdm9sdC5jIHwgNiArKystLS0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMg
+ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy92
+b2x0LmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYwppbmRleCBhNzc5N2E5
+ZS4uNzE0M2VhNDYgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvdm9s
+dC5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvdm9sdC5jCkBAIC05Myw5ICs5
+Myw5IEBAIG52Ymlvc192b2x0X3BhcnNlKHN0cnVjdCBudmttX2Jpb3MgKmJpb3MsIHU4ICp2ZXIs
+IHU4ICpoZHIsIHU4ICpjbnQsIHU4ICpsZW4sCiAJCWluZm8tPnN0ZXAgICAgPSBudmJpb3NfcmQx
+NihiaW9zLCB2b2x0ICsgMHgwOCk7CiAJCWluZm8tPnZpZG1hc2sgPSBudmJpb3NfcmQwOChiaW9z
+LCB2b2x0ICsgMHgwYik7CiAJCWluZm8tPnJhbmdlZCAgPSB0cnVlOyAvKiBYWFg6IGZpbmQgdGhl
+IGZsYWcgYnl0ZSAqLwotCQkvKlhYWCovCi0JCWluZm8tPm1pbiAgICAgPSAwOwotCQlpbmZvLT5t
+YXggICAgID0gaW5mby0+YmFzZTsKKwkJaW5mby0+bWluICAgICA9IG1pbihpbmZvLT5iYXNlLAor
+CQkJCSAgICBpbmZvLT5iYXNlICsgaW5mby0+c3RlcCAqIGluZm8tPnZpZG1hc2spOworCQlpbmZv
+LT5tYXggICAgID0gbnZiaW9zX3JkMzIoYmlvcywgdm9sdCArIDB4MGUpOwogCQlicmVhazsKIAlj
+YXNlIDB4NTA6CiAJCWluZm8tPm1pbiAgICAgPSBudmJpb3NfcmQzMihiaW9zLCB2b2x0ICsgMHgw
+YSk7Ci0tIAoyLjEyLjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
