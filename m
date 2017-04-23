@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100760] Rapid flickering when an app is placed on
  the second Nouveau ZaphodHeads display
-Date: Sat, 22 Apr 2017 23:45:23 +0000
-Message-ID: <bug-100760-8800-Uh5Hotv4nk@http.bugs.freedesktop.org/>
+Date: Sun, 23 Apr 2017 02:31:54 +0000
+Message-ID: <bug-100760-8800-RfDLt62AGD@http.bugs.freedesktop.org/>
 References: <bug-100760-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1995199793=="
+Content-Type: multipart/mixed; boundary="===============2089445064=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100760-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1995199793==
-Content-Type: multipart/alternative; boundary="14929047221.CDd4b78e2.29717";
+--===============2089445064==
+Content-Type: multipart/alternative; boundary="14929147130.92d43ea39.14680";
  charset="UTF-8"
 
 
---14929047221.CDd4b78e2.29717
-Date: Sat, 22 Apr 2017 23:45:22 +0000
+--14929147130.92d43ea39.14680
+Date: Sun, 23 Apr 2017 02:31:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,32 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100760
 
---- Comment #1 from mrj-ejQy8aU/RJumpXlQD71PVDSf8X3wrgjD@public.gmane.org ---
-Further information:
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+While Zaphod is considered a legacy feature, that doesn't mean that things
+should break. Just that it's unlikely to be extended to support new things.
 
-1. The graphics card is a GeForce 7600 GT (NV4B/G73). Would ZaphodHeads be =
-more
-likely to work in a recent card?
+There has recently been some bugs introduced into xserver which break
+non-xrandr setups. There are also some issues in the nouveau driver. One of
+those was fixed in xf86-video-nouveau 1.0.15. For the xserver issues, see b=
+ug
+#100293.
 
-2. The working single-X-display mode is using XRandR (I said Xinerama).
+I cannot comment on any bugs that happen in MATE/whatever other software as=
+ a
+result of multi-screen displays. Note that these are not commonly tested. If
+you can do 'DISPLAY=3D:0.1 xterm', then everything else is down to the X cl=
+ients.
+
+Please try the above fixes and see if they improve things. If they don't,
+you're going to have to debug this, or provide sufficient info for others to
+debug it.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14929047221.CDd4b78e2.29717
-Date: Sat, 22 Apr 2017 23:45:22 +0000
+--14929147130.92d43ea39.14680
+Date: Sun, 23 Apr 2017 02:31:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +79,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Rapid flickering when an app is placed on the second Nouv=
 eau ZaphodHeads display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100760#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100760#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Rapid flickering when an app is placed on the second Nouv=
@@ -77,17 +88,28 @@ eau ZaphodHeads display"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100760">bug 10076=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mrj&#64;advancedcontrols.com.au" title=3D"mrj&#64;advancedcontrols.com.au">=
-mrj&#64;advancedcontrols.com.au</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Further information:
+        <pre>While Zaphod is considered a legacy feature, that doesn't mean=
+ that things
+should break. Just that it's unlikely to be extended to support new things.
 
-1. The graphics card is a GeForce 7600 GT (NV4B/G73). Would ZaphodHeads be =
-more
-likely to work in a recent card?
+There has recently been some bugs introduced into xserver which break
+non-xrandr setups. There are also some issues in the nouveau driver. One of
+those was fixed in xf86-video-nouveau 1.0.15. For the xserver issues, see b=
+ug
+#100293.
 
-2. The working single-X-display mode is using XRandR (I said Xinerama).</pr=
-e>
+I cannot comment on any bugs that happen in MATE/whatever other software as=
+ a
+result of multi-screen displays. Note that these are not commonly tested. If
+you can do 'DISPLAY=3D:0.1 xterm', then everything else is down to the X cl=
+ients.
+
+Please try the above fixes and see if they improve things. If they don't,
+you're going to have to debug this, or provide sufficient info for others to
+debug it.</pre>
         </div>
       </p>
 
@@ -101,9 +123,9 @@ e>
     </body>
 </html>=
 
---14929047221.CDd4b78e2.29717--
+--14929147130.92d43ea39.14680--
 
---===============1995199793==
+--===============2089445064==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +135,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1995199793==--
+--===============2089445064==--
