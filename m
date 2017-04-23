@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100762] Nouveau powersave/suspend for discrete card
- stopped working
-Date: Sun, 23 Apr 2017 14:40:13 +0000
-Message-ID: <bug-100762-8800-VeOJlnknIR@http.bugs.freedesktop.org/>
-References: <bug-100762-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH v2] bios/iccsense: rails for power sensors have a
+	mask of 0xf8 for version 0x10
+Date: Sun, 23 Apr 2017 20:05:02 +0200
+Message-ID: <20170423180502.8086-1-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1431255603=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100762-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,91 +19,23 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1431255603==
-Content-Type: multipart/alternative; boundary="14929584120.6c2eFCAE.23219";
- charset="UTF-8"
-
-
---14929584120.6c2eFCAE.23219
-Date: Sun, 23 Apr 2017 14:40:12 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100762
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you try booting with pcie_pm_port=3Doff ? If this helps, this may be an
-instance of bug 98398.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14929584120.6c2eFCAE.23219
-Date: Sun, 23 Apr 2017 14:40:12 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau powersave/suspend for discrete card stopped worki=
-ng"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100762#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau powersave/suspend for discrete card stopped worki=
-ng"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100762">bug 10076=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Can you try booting with pcie_pm_port=3Doff ? If this helps, t=
-his may be an
-instance of <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - Acer Aspire V7-582PG (Haswell, GTX 750M) fails to po=
-wer off GPU with runtime PM"
-   href=3D"show_bug.cgi?id=3D98398">bug 98398</a>.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14929584120.6c2eFCAE.23219--
-
---===============1431255603==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1431255603==--
+SSBvbmx5IHNhdyB0aG9zZSB2YWx1ZXMgaW5zaWRlIHRoZSB2YmlvczogMHhmZiwgMHhmZCwgMHhm
+YywgMHhmYSBmb3IgdmFsaWQKcmFpbHMuCgpObyBpZGVhIHdoYXQgdGhlIGxvd2VyIHZhbHVlIGRv
+ZXMsIGJ1dCBhdCBsZWFzdCB3ZSBnZXQgcG93ZXIgcmVhZGluZ3Mgb24KYSBsb3Qgb2YgRmVybWkg
+R1BVcyB3aXRoIHRoYXQuCgp2MjogYWRkIG1pc3NpbmcgcGFyZW50aGVzZXMKClNpZ25lZC1vZmYt
+Ynk6IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgotLS0KIGRybS9ub3V2ZWF1
+L252a20vc3ViZGV2L2Jpb3MvaWNjc2Vuc2UuYyB8IDUgKysrKy0KIDEgZmlsZSBjaGFuZ2VkLCA0
+IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9u
+dmttL3N1YmRldi9iaW9zL2ljY3NlbnNlLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9z
+L2ljY3NlbnNlLmMKaW5kZXggMzk1M2QxMTguLjQzZDMwNGNlIDEwMDY0NAotLS0gYS9kcm0vbm91
+dmVhdS9udmttL3N1YmRldi9iaW9zL2ljY3NlbnNlLmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvYmlvcy9pY2NzZW5zZS5jCkBAIC04Nyw3ICs4NywxMCBAQCBudmJpb3NfaWNjc2Vuc2Vf
+cGFyc2Uoc3RydWN0IG52a21fYmlvcyAqYmlvcywgc3RydWN0IG52Ymlvc19pY2NzZW5zZSAqaWNj
+c2Vuc2UpCiAKIAkJc3dpdGNoKHZlcikgewogCQljYXNlIDB4MTA6Ci0JCQlyYWlsLT5tb2RlID0g
+bnZiaW9zX3JkMDgoYmlvcywgZW50cnkgKyAweDEpOworCQkJaWYgKG52Ymlvc19yZDA4KGJpb3Ms
+IGVudHJ5ICsgMHgxKSAmIDB4ZjggPT0gMHhmOCkKKwkJCQlyYWlsLT5tb2RlID0gMTsKKwkJCWVs
+c2UKKwkJCQlyYWlsLT5tb2RlID0gMDsKIAkJCXJhaWwtPmV4dGRldl9pZCA9IG52Ymlvc19yZDA4
+KGJpb3MsIGVudHJ5ICsgMHgyKTsKIAkJCXJlc19zdGFydCA9IDB4MzsKIAkJCWJyZWFrOwotLSAK
+Mi4xMi4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
