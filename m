@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100769] Segfault in libgtk-3.so when starting
  gnome-session after upgrade
-Date: Mon, 24 Apr 2017 10:27:52 +0000
-Message-ID: <bug-100769-8800-44B72ewOth@http.bugs.freedesktop.org/>
+Date: Mon, 24 Apr 2017 10:39:37 +0000
+Message-ID: <bug-100769-8800-n6HKZ1CsK6@http.bugs.freedesktop.org/>
 References: <bug-100769-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1819692389=="
+Content-Type: multipart/mixed; boundary="===============1547156346=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100769-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1819692389==
-Content-Type: multipart/alternative; boundary="14930296720.6f5d44.9114";
+--===============1547156346==
+Content-Type: multipart/alternative; boundary="14930303770.c3c8A41b.10031";
  charset="UTF-8"
 
 
---14930296720.6f5d44.9114
-Date: Mon, 24 Apr 2017 10:27:52 +0000
+--14930303770.c3c8A41b.10031
+Date: Mon, 24 Apr 2017 10:39:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100769
 
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
-
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It's fixed in 1.0.14-2.
+--- Comment #2 from loopsysdev-osHb8hq8U8NBDgjK7y7TUQ@public.gmane.org ---
+Thanks! I can confirm that updating to 1.0.14 fixes it.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14930296720.6f5d44.9114
-Date: Mon, 24 Apr 2017 10:27:52 +0000
+--14930303770.c3c8A41b.10031
+Date: Mon, 24 Apr 2017 10:39:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,47 +56,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:skeggsb&#=
-64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span cla=
-ss=3D"fn">Ben Skeggs</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Segfault in libgtk-3.so when starting gnome-se=
-ssion after upgrade"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100769">bug 10076=
-9</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED FIXED - Segfault in libgtk-3.so when starting gnome-se=
 ssion after upgrade"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100769#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100769#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED FIXED - Segfault in libgtk-3.so when starting gnome-se=
@@ -111,10 +72,10 @@ ssion after upgrade"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100769">bug 10076=
 9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
+loopsysdev&#64;navetas.com" title=3D"loopsysdev&#64;navetas.com">loopsysdev=
+&#64;navetas.com</a>
 </span></b>
-        <pre>It's fixed in 1.0.14-2.</pre>
+        <pre>Thanks! I can confirm that updating to 1.0.14 fixes it.</pre>
         </div>
       </p>
 
@@ -123,15 +84,15 @@ skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14930296720.6f5d44.9114--
+--14930303770.c3c8A41b.10031--
 
---===============1819692389==
+--===============1547156346==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -141,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1819692389==--
+--===============1547156346==--
