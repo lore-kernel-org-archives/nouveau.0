@@ -1,12 +1,14 @@
-From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] drm/nouveau/kms: Increase max retries in scanout
-	position queries.
-Date: Mon, 24 Apr 2017 01:59:34 +0200
-Message-ID: <1492991974-10492-1-git-send-email-mario.kleiner.de@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99922] [NVE4] [regression,
+ bisected] 4.10 (atomic): X shows black screen with cursor after
+ monitors turn off
+Date: Mon, 24 Apr 2017 00:06:15 +0000
+Message-ID: <bug-99922-8800-lLnd7crsS2@http.bugs.freedesktop.org/>
+References: <bug-99922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0562541847=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,50 +19,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-U28gZmFyIHdlIG9ubHkgYWxsb3dlZCBmb3IgMSByZXRyeSBhbmQganVzdCBmYWlsZWQgdGhlIHF1
-ZXJ5Ci0gYW5kIHRoZXJlYnkgaGlnaCBwcmVjaXNpb24gdmJsYW5rIHRpbWVzdGFtcGluZyAtIGlm
-IHdlIGRpZApub3QgZ2V0IGEgcmVhc29uYWJsZSByZXN1bHQsIGFzIHN1Y2ggYSBmYWlsdXJlIHdh
-c24ndCBjb25zaWRlcmVkCmFsbCB0b28gaG9ycmlibGUuIFRoZXJlIGFyZSBhIGZldyBOVmlkaWEg
-Z3B1IG1vZGVscyBvdXQgdGhlcmUgd2hpY2gKbWF5IG5lZWQgYSBiaXQgbW9yZSB0aGFuIDEgcmV0
-cnkgdG8gZ2V0IGEgc3VjY2Vzc2Z1bCBxdWVyeSByZXN1bHQKdW5kZXIgc29tZSBjb25kaXRpb25z
-LgoKU2luY2UgTGludXggNC40IHRoZSB1cGRhdGUgY29kZSBmb3IgdmJsYW5rIGNvdW50ZXIgYW5k
-IHRpbWVzdGFtcAppbiBkcm1fdXBkYXRlX3ZibGFua19jb3VudCgpIGNoYW5nZWQgc28gdGhhdCB0
-aGUgaW1wbGVtZW50YXRpb24KYXNzdW1lcyB0aGF0IGhpZ2ggcHJlY2lzaW9uIHZibGFuayB0aW1l
-c3RhbXBpbmcgb2YgYSBrbXMgZHJpdmVyCmVpdGhlciBjb25zaXN0ZW50bHkgc3VjY2VlZHMgb3Ig
-Y29uc2lzdGVudGx5IGZhaWxzIGZvciBhIGdpdmVuCnZpZGVvIG1vZGUgYW5kIGVuY29kZXIvY29u
-bmVjdG9yIGNvbWJvLiBJb3cuIHN3aXRjaGluZyBmcm9tIHN1Y2Nlc3MKdG8gZmFpbCBvciB2aWNl
-IHZlcnNhIG9uIGEgbW9kZXNldCBvciBjb25uZWN0b3IgY2hhbmdlIGlzIG9rLCBidXQKc3B1cmlv
-dXMgdGVtcG9yYXJ5IGZhaWx1cmUgZm9yIGEgZ2l2ZW4gc2V0dXAgY2FuIGNvbmZ1c2UgdGhlIGNv
-cmUKY29kZSBhbmQgcG90ZW50aWFsbHkgY2F1c2UgYmFkIG1pc2NvdW50aW5nIG9mIHZibGFua3Mg
-YW5kIGNvbmZ1c2lvbgpvciBoYW5ncyBpbiB1c2Vyc3BhY2UgY2xpZW50cyB3aGljaCByZWx5IG9u
-IHZibGFuayAgc3R1ZmYsIGUuZy4sCmRlc2t0b3AgY29tcG9zaXRvcnMuCgpUaGVyZWZvcmUgY2hh
-bmdlIHRoZSBtYXggcmV0cnkgY291bnQgdG8gYSBsYXJnZXIgbnVtYmVyIC0gbW9yZSB0aGFuCmFu
-eSBncHUgc28gZmFyIGlzIGtub3duIHRvIG5lZWQgdG8gc3VjY2VlZCwgYnV0IHN0aWxsIGxvdyBl
-bm91Z2gKc28gdGhhdCB0aGVzZSBxdWVyaWVzIHdoaWNoIGRvIGFsc28gaGFwcGVuIGluIHZibGFu
-ayBpbnRlcnJ1cHQgYXJlCnN0aWxsIGZhc3QgZW5vdWdoIHRvIGJlIG5vdCBkaXNhc3Ryb3VzbHkg
-bG9uZyBpZiBzb21ldGhpbmcgd291bGQKZ28gYmFkbHkgd3Jvbmcgd2l0aCB0aGVtLgoKQXMgc3Vj
-aCBzcG9yYWRpYyByZXRyaWVzIG9ubHkgaGFwcGVuIHNlbGRvbSBldmVuIG9uIGFmZmVjdGVkIGdw
-dSdzLAp0aGlzIGNvdWxkIG1lYW4gYSB2YmxhbmsgaXJxIGNvdWxkIHRha2UgYSBmZXcgZG96ZW4g
-bWljcm9zZWNvbmRzCmxvbmdlciBldmVyeSBmZXcgaG91cnMgb2YgdXB0aW1lIC0tIGJldHRlciB0
-aGFuIGEgZGVza3RvcCBjb21wb3NpdG9yCnJhbmRvbWx5IGhhbmdpbmcgZXZlcnkgY291cGxlIG9m
-IGhvdXJzIG9yIGRheXMgb2YgdXB0aW1lIGluIGEgaGFyZAp0byByZXByb2R1Y2UgbWFubmVyLgoK
-U2lnbmVkLW9mZi1ieTogTWFyaW8gS2xlaW5lciA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5jb20+
-CkNjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNl
-cnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-ZGlzcGxheS5jCmluZGV4IDYxMDRmNjEuLjIxYjEwZjkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZGlzcGxheS5jCkBAIC0xMTEsNyArMTExLDcgQEAgbm91dmVhdV9kaXNwbGF5
-X3NjYW5vdXRwb3NfaGVhZChzdHJ1Y3QgZHJtX2NydGMgKmNydGMsIGludCAqdnBvcywgaW50ICpo
-cG9zLAogCX07CiAJc3RydWN0IG5vdXZlYXVfZGlzcGxheSAqZGlzcCA9IG5vdXZlYXVfZGlzcGxh
-eShjcnRjLT5kZXYpOwogCXN0cnVjdCBkcm1fdmJsYW5rX2NydGMgKnZibGFuayA9ICZjcnRjLT5k
-ZXYtPnZibGFua1tkcm1fY3J0Y19pbmRleChjcnRjKV07Ci0JaW50IHJldCwgcmV0cnkgPSAxOwor
-CWludCByZXQsIHJldHJ5ID0gMjA7CiAKIAlkbyB7CiAJCXJldCA9IG52aWZfbXRoZCgmZGlzcC0+
-ZGlzcCwgMCwgJmFyZ3MsIHNpemVvZihhcmdzKSk7Ci0tIAoyLjcuNAoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0562541847==
+Content-Type: multipart/alternative; boundary="14929923752.826AFc0.17738";
+ charset="UTF-8"
+
+
+--14929923752.826AFc0.17738
+Date: Mon, 24 Apr 2017 00:06:15 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99922
+
+--- Comment #13 from mish <bradford-2EFSgMI5/k+zXXRXsSGsVFaTQe2KTcn/@public.gmane.org> ---
+I had the same issue on an Intel-based system.  I managed to overcome it by
+changing the BIOS video settings from PEG to IGD.  I have to use the on-boa=
+rd
+video to see the BIOS bootup screen, but once Linux takes over, both of my
+monitors work fine.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14929923752.826AFc0.17738
+Date: Mon, 24 Apr 2017 00:06:15 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
+k screen with cursor after monitors turn off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c13">Commen=
+t # 13</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE4] [regression, bisected] 4.10 (atomic): X shows blac=
+k screen with cursor after monitors turn off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922">bug 99922<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+bradford&#64;inthelightphotos.com" title=3D"mish &lt;bradford&#64;intheligh=
+tphotos.com&gt;"> <span class=3D"fn">mish</span></a>
+</span></b>
+        <pre>I had the same issue on an Intel-based system.  I managed to o=
+vercome it by
+changing the BIOS video settings from PEG to IGD.  I have to use the on-boa=
+rd
+video to see the BIOS bootup screen, but once Linux takes over, both of my
+monitors work fine.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14929923752.826AFc0.17738--
+
+--===============0562541847==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0562541847==--
