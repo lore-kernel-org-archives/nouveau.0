@@ -1,42 +1,36 @@
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: xfree86: use modesetting driver by default on GeForce
- 8 and newer - Fedora
-Date: Tue, 25 Apr 2017 19:34:01 +1000
-Message-ID: <1fff27e6-0d3b-f3e0-75d5-229eb61c84e6@redhat.com>
-References: <7de014b6-1145-7c17-8bf0-6c509fdb26d7@gmail.com>
+From: Wei Yongjun <weiyj.lk@gmail.com>
+Subject: [PATCH -next] drm/nouveau/secboot/gm20b: fix the error return code in gm20b_secboot_tegra_read_wpr()
+Date: Tue, 25 Apr 2017 14:36:42 +0000
+Message-ID: <20170425143642.1342-1-weiyj.lk@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <7de014b6-1145-7c17-8bf0-6c509fdb26d7-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org" <xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Alexandre Courbot <acourbot@nvidia.com>
+Cc: Wei Yongjun <weiyongjun1@huawei.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDQvMjUvMjAxNyAwMzo1OSBQTSwgcG9tYSB3cm90ZToKPiBIZWxsbwo+Cj4gRGVmYXVsdCB0
-byB4Zjg2LXZpZGVvLW1vZGVzZXR0aW5nIG9uIEdlRm9yY2UgOCBhbmQgbmV3ZXIuCj4gaHR0cHM6
-Ly9zcmMuZmVkb3JhcHJvamVjdC5vcmcvY2dpdC9ycG1zL3hvcmcteDExLXNlcnZlci5naXQvY29t
-bWl0Lz9pZD1kZTFjODQ5ZmYxOGI0MWY1M2QwMDNiYjcwYmY4YjE3NDRiNzQ5YWY4Cj4KPiBUaGlz
-IGlzIHRocm93biBvbnRvIHVzZXJzIGRvd25zdHJlYW0sIHdpdGhvdXQgYW55IGZ1cnRoZXIgZXhw
-bGFuYXRpb24sIHdoeSBtb2Rlc2V0dGluZyBpcyBwcmVmZXJyZWQgZm9yIEdlRm9yY2UgOC4KPiBJ
-cyB0aGUgbm91dmVhdSBYb3JnIEREWCBpLmUuIHhmODYtdmlkZW8tbm91dmVhdSBicm9rZW4gd2l0
-aCBOVjUwIGZhbWlseSAoVGVzbGEpPwo+Cj4gSSBtZWFuIHhmODYtdmlkZW8tbm91dmVhdSB3b3Jr
-cyBoZXJlIHdpdGggYSBjb3VwbGUgb2YgTlY1MCwgc28gd2hhdCBpcyB0aGUgc3RvcnkgdGhlcmU/
-CjEpIHhmODYtdmlkZW8tbW9kZXNldHRpbmcgaXMgZmFyIGJldHRlciBtYWludGFpbmVkIHRoYW4g
-dGhlIE5vdXZlYXUgRERYLgoyKSBUaGUgTm91dmVhdSBERFggZG9lcyBub3Qgc3VwcG9ydCBNU1Qg
-Y29ubmVjdG9ycyBhcHBlYXJpbmcgYW5kIApkaXNhcHBlYXJpbmcuCjMpIEJ5IGRlZmF1bHQsIEZl
-ZG9yYSBhbHJlYWR5IHVzZXMgV2F5bGFuZCwgYW5kIGhlbmNlIGdsYW1vciBmb3IgCmFjY2VsZXJh
-dGlvbiBvZiBYIGFwcGxpY2F0aW9ucyBvbiBYd2F5bGFuZC4gIFRoaXMganVzdCBtYWtlcyBhIG5h
-dGl2ZSAKWG9yZyBzZXJ2ZXIgZG8gdGhlIHNhbWUgZm9yIE5WSURJQSBHUFVzIChsaWtlIHdlIGRv
-IGFscmVhZHkgZm9yIG5ldyAKZW5vdWdoIEludGVsIEdQVXMpLgoKQmVuLgoKPgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+From: Wei Yongjun <weiyongjun1@huawei.com>
+
+The error return code PTR_ERR(mc) is always 0 since mc is
+equal to 0 in this error handling case.
+
+Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
+index b10ed59..30491d1 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/gm20b.c
+@@ -48,7 +48,7 @@ gm20b_secboot_tegra_read_wpr(struct gm200_secboot *gsb, u32 mc_base)
+ 	mc = ioremap(mc_base, 0xd00);
+ 	if (!mc) {
+ 		nvkm_error(&sb->subdev, "Cannot map Tegra MC registers\n");
+-		return PTR_ERR(mc);
++		return -ENOMEM;
+ 	}
+ 	sb->wpr_addr = ioread32_native(mc + MC_SECURITY_CARVEOUT2_BOM_0) |
+ 	      ((u64)ioread32_native(mc + MC_SECURITY_CARVEOUT2_BOM_HI_0) << 32);
