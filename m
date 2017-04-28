@@ -1,9 +1,10 @@
 From: Mark James <mrj-ejQy8aU/RJumpXlQD71PVDSf8X3wrgjD@public.gmane.org>
 Subject: ZaphodHeads: Still works on newer cards?
-Date: Fri, 28 Apr 2017 14:54:20 +1000
-Message-ID: <6f8b4bbd-acc1-c108-9188-63f994bb9265@advancedcontrols.com.au>
+Date: Fri, 28 Apr 2017 19:35:06 +1000
+Message-ID: <01fd3ef6-e483-b4d4-78e6-aeba32ab8f77@advancedcontrols.com.au>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1018637477=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Language: en-AU
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -18,54 +19,29 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1018637477==
-Content-Type: text/html; charset=utf-8
-Content-Language: en-AU
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Hello,<br>
-    </p>
-    <p>As I reported in <a moz-do-not-send="true"
-        href="https://bugs.freedesktop.org/show_bug.cgi?id=100760">this</a>
-      bug, the Nouveau ZaphodHeads option (separate X-displays for the
-      two heads of a single GPU) stopped working on my GeForce 7600 GT
-      (NV4B/G73) when I upgraded from Fedora 23 to 25. I'm really keen
-      on getting it back, because it's been painful losing the
-      independent sets of virtual desktops, plus other annoyances I'm
-      now getting on XRandR.</p>
-    <p>But before I dive into harder options such as bisecting an X
-      downgrade to find the problem, or implementing an independent
-      virtual desktop option in the MATE window manager, I'd be
-      interested to find out whether there's anyone with a newer card
-      (NVidia or AMD) who's successfully using Zaphod on the latest
-      software. If so, I'll buy myself a new card.</p>
-    <p>I was forced onto Nouveau when the proprietary Nvidia driver
-      stopped supporting my card on the latest X. The "<a
-        moz-do-not-send="true"
-href="http://us.download.nvidia.com/XFree86/Linux-x86/173.14.12/README/chapter-15.html">Multiple
-        X Screens</a>" mode of this driver is equivalent to ZaphodHeads.
-      The former may not be deprecated like the latter. So a new card
-      and the proprietary driver might give me ongoing reliable
-      separate-X-display support.</p>
-    <p>Thanks.</p>
-    <p>Mark</p>
-  </body>
-</html>
-
---===============1018637477==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1018637477==--
+W1Bvc3RpbmcgYWdhaW4uIFRoZSBtYWlsaW5nIGxpc3QgZG9lc24ndCBsaWtlIEhUTUwgbGlua3Mu
+XQoKSGVsbG8sCgpBcyBJIHJlcG9ydGVkIGluIHRoaXMoKikgYnVnLCB0aGUgTm91dmVhdSBaYXBo
+b2RIZWFkcyBvcHRpb24gKHNlcGFyYXRlIFgtZGlzcGxheXMgZm9yIHRoZSB0d28gaGVhZHMgb2Yg
+YSBzaW5nbGUgR1BVKQpzdG9wcGVkIHdvcmtpbmcgb24gbXkgR2VGb3JjZSA3NjAwIEdUIChOVjRC
+L0c3Mykgd2hlbiBJIHVwZ3JhZGVkIGZyb20gRmVkb3JhIDIzIHRvIDI1LiBJJ20gcmVhbGx5IGtl
+ZW4gb24gZ2V0dGluZyBpdApiYWNrLCBiZWNhdXNlIGl0J3MgYmVlbiBwYWluZnVsIGxvc2luZyB0
+aGUgaW5kZXBlbmRlbnQgc2V0cyBvZiB2aXJ0dWFsIGRlc2t0b3BzLCBwbHVzIG90aGVyIGFubm95
+YW5jZXMgSSdtIG5vdyBnZXR0aW5nCm9uIFhSYW5kUi4KCkJ1dCBiZWZvcmUgSSBkaXZlIGludG8g
+aGFyZGVyIG9wdGlvbnMgc3VjaCBhcyBiaXNlY3RpbmcgYW4gWCBkb3duZ3JhZGUgdG8gZmluZCB0
+aGUgcHJvYmxlbSwgb3IgaW1wbGVtZW50aW5nIGFuCmluZGVwZW5kZW50IHZpcnR1YWwgZGVza3Rv
+cCBvcHRpb24gaW4gdGhlIE1BVEUgd2luZG93IG1hbmFnZXIsIEknZCBiZSBpbnRlcmVzdGVkIHRv
+IGZpbmQgb3V0IHdoZXRoZXIgdGhlcmUncyBhbnlvbmUgd2l0aAphIG5ld2VyIGNhcmQgKE5WaWRp
+YSBvciBBTUQpIHdobydzIHN1Y2Nlc3NmdWxseSB1c2luZyBaYXBob2Qgb24gdGhlIGxhdGVzdCBz
+b2Z0d2FyZS4gSWYgc28sIEknbGwgYnV5IG15c2VsZiBhIG5ldyBjYXJkLgoKSSB3YXMgZm9yY2Vk
+IG9udG8gTm91dmVhdSB3aGVuIHRoZSBwcm9wcmlldGFyeSBOdmlkaWEgZHJpdmVyIHN0b3BwZWQg
+c3VwcG9ydGluZyBteSBjYXJkIG9uIHRoZSBsYXRlc3QgWC4gVGhlICJNdWx0aXBsZSBYClNjcmVl
+bnMiKCoqKSBtb2RlIG9mIHRoaXMgZHJpdmVyIGlzIGVxdWl2YWxlbnQgdG8gWmFwaG9kSGVhZHMu
+IFRoZSBmb3JtZXIgbWF5IG5vdCBiZSBkZXByZWNhdGVkIGxpa2UgdGhlIGxhdHRlci4gU28gYQpu
+ZXcgY2FyZCBhbmQgdGhlIHByb3ByaWV0YXJ5IGRyaXZlciBtaWdodCBnaXZlIG1lIG9uZ29pbmcg
+cmVsaWFibGUgc2VwYXJhdGUtWC1kaXNwbGF5IHN1cHBvcnQuCgpUaGFua3MuCgpNYXJrCgooKikg
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTAwNzYwCgooKiop
+IGh0dHA6Ly91cy5kb3dubG9hZC5udmlkaWEuY29tL1hGcmVlODYvTGludXgteDg2LzE3My4xNC4x
+Mi9SRUFETUUvY2hhcHRlci0xNS5odG1sCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
