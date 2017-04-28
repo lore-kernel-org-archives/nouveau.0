@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100860] Dual Monitor display problem,
- after switching screen positions, with 4.10 Kernels
-Date: Thu, 27 Apr 2017 21:57:02 +0000
-Message-ID: <bug-100860-8800-nVPH7SAPNB@http.bugs.freedesktop.org/>
-References: <bug-100860-8800@http.bugs.freedesktop.org/>
+From: Mark James <mrj-ejQy8aU/RJumpXlQD71PVDSf8X3wrgjD@public.gmane.org>
+Subject: ZaphodHeads: Still works on newer cards?
+Date: Fri, 28 Apr 2017 14:54:20 +1000
+Message-ID: <6f8b4bbd-acc1-c108-9188-63f994bb9265@advancedcontrols.com.au>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0383601902=="
+Content-Type: multipart/mixed; boundary="===============1018637477=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100860-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Language: en-AU
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,83 +18,47 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0383601902==
-Content-Type: multipart/alternative; boundary="14933302220.B5bf.9349";
- charset="UTF-8"
-
-
---14933302220.B5bf.9349
-Date: Thu, 27 Apr 2017 21:57:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100860
-
---- Comment #1 from Tobias Muhlhofer <tobias.muhlhofer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 131106
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131106&action=3Dedit
-Xorg.0.log
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14933302220.B5bf.9349
-Date: Thu, 27 Apr 2017 21:57:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+--===============1018637477==
+Content-Type: text/html; charset=utf-8
+Content-Language: en-AU
+Content-Transfer-Encoding: 7bit
 
 <html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Dual Monitor display problem, after switching screen posi=
-tions, with 4.10 Kernels"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100860#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Dual Monitor display problem, after switching screen posi=
-tions, with 4.10 Kernels"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100860">bug 10086=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tobias.muhlhofer&#64;gmail.com" title=3D"Tobias Muhlhofer &lt;tobias.muhlho=
-fer&#64;gmail.com&gt;"> <span class=3D"fn">Tobias Muhlhofer</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131106=
-" name=3D"attach_131106" title=3D"Xorg.0.log">attachment 131106</a> <a href=
-=3D"attachment.cgi?id=3D131106&amp;action=3Dedit" title=3D"Xorg.0.log">[det=
-ails]</a></span>
-Xorg.0.log</pre>
-        </div>
-      </p>
+  <head>
 
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Hello,<br>
+    </p>
+    <p>As I reported in <a moz-do-not-send="true"
+        href="https://bugs.freedesktop.org/show_bug.cgi?id=100760">this</a>
+      bug, the Nouveau ZaphodHeads option (separate X-displays for the
+      two heads of a single GPU) stopped working on my GeForce 7600 GT
+      (NV4B/G73) when I upgraded from Fedora 23 to 25. I'm really keen
+      on getting it back, because it's been painful losing the
+      independent sets of virtual desktops, plus other annoyances I'm
+      now getting on XRandR.</p>
+    <p>But before I dive into harder options such as bisecting an X
+      downgrade to find the problem, or implementing an independent
+      virtual desktop option in the MATE window manager, I'd be
+      interested to find out whether there's anyone with a newer card
+      (NVidia or AMD) who's successfully using Zaphod on the latest
+      software. If so, I'll buy myself a new card.</p>
+    <p>I was forced onto Nouveau when the proprietary Nvidia driver
+      stopped supporting my card on the latest X. The "<a
+        moz-do-not-send="true"
+href="http://us.download.nvidia.com/XFree86/Linux-x86/173.14.12/README/chapter-15.html">Multiple
+        X Screens</a>" mode of this driver is equivalent to ZaphodHeads.
+      The former may not be deprecated like the latter. So a new card
+      and the proprietary driver might give me ongoing reliable
+      separate-X-display support.</p>
+    <p>Thanks.</p>
+    <p>Mark</p>
+  </body>
+</html>
 
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14933302220.B5bf.9349--
-
---===============0383601902==
+--===============1018637477==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +68,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0383601902==--
+--===============1018637477==--
