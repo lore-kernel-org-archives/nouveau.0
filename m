@@ -1,40 +1,49 @@
-From: Karol Herbst <karolherbst@gmail.com>
-Subject: [PATCH] nv50/ir: we can't replace 0x0 with the zero reg
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH] nv50/ir: we can't replace 0x0 with zero reg
 	for SHLADD
-Date: Sat, 29 Apr 2017 17:10:20 +0200
-Message-ID: <20170429151020.516-1-karolherbst@gmail.com>
+Date: Sat, 29 Apr 2017 11:18:46 -0400
+Message-ID: <CAKb7UvgBwo6nfq8Gxz56C0SqdcA9NTX729ekJexNPuu60d=ZyQ@mail.gmail.com>
+References: <20170429144146.3905-1-karolherbst@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org, "13 . 0 17 . 0 17 . 1" <mesa-stable@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20170429144146.3905-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Zml4ZXMgYSBjcmFzaCBpbiBBbGllbiBJc29sYXRpb24KClNpZ25lZC1vZmYtYnk6IEthcm9sIEhl
-cmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgpDYzogMTMuMCAxNy4wIDE3LjEgPG1lc2Etc3Rh
-YmxlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4KLS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvY29kZWdlbi9udjUwX2lyX2xvd2VyaW5nX252YzAuY3BwIHwgMiArLQogMSBmaWxlIGNoYW5n
-ZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxp
-dW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19udmMwLmNwcCBiL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfbG93ZXJpbmdfbnZjMC5j
-cHAKaW5kZXggNzMyZTFhOTNiNC4uNDgxNWQ2ZGYwNyAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0v
-ZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19udmMwLmNwcAorKysgYi9z
-cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2xvd2VyaW5nX252YzAu
-Y3BwCkBAIC03NDAsNyArNzQwLDcgQEAgTlZDMExlZ2FsaXplUG9zdFJBOjp2aXNpdChCYXNpY0Js
-b2NrICpiYikKICAgICAgICAgICAgICAgIG5leHQgPSBoaTsKICAgICAgICAgIH0KIAotICAgICAg
-ICAgaWYgKGktPm9wICE9IE9QX01PViAmJiBpLT5vcCAhPSBPUF9QRkVUQ0gpCisgICAgICAgICBp
-ZiAoaS0+b3AgIT0gT1BfTU9WICYmIGktPm9wICE9IE9QX1BGRVRDSCAmJiBpLT5vcCAhPSBPUF9T
-SExBREQpCiAgICAgICAgICAgICByZXBsYWNlWmVybyhpKTsKICAgICAgIH0KICAgIH0KLS0gCjIu
-MTIuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVz
-YS1kZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
+T24gU2F0LCBBcHIgMjksIDIwMTcgYXQgMTA6NDEgQU0sIEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJi
+c3RAZ21haWwuY29tPiB3cm90ZToKPiBmaXhlcyBhIGNyYXNoIGluIEFsaWVuIElzb2xhdGlvbgoK
+V2hhdCBjcmFzaD8gSG93IGRpZCB0aGUgemVybyBnZXQgdGhlcmU/IERvZXMgdGhpcyBvbmx5IGhh
+cHBlbiBpZiB5b3UKZG8geW91ciBvcHRpbWl6YXRpb24gbG9vcCB0aGluZz8KCkluIGVpdGhlciBj
+YXNlLCB3ZSBzdGlsbCB3YW50IHRoZSByZXBsYWNlWmVybygpIGxvZ2ljLiBIb3dldmVyIHRoYXQK
+bG9naWMgc2hvdWxkIGJlIGF3YXJlIHRoYXQgdGhlIG1pZGRsZSBhcmd1bWVudCBvZiBhIFNITEFE
+RCBpcyBub3QgdG8KYmUgdG91Y2hlZC4gT3RoZXJ3aXNlIHdlIGNvdWxkIGVuZCB1cCB3aXRoIGFu
+IHVuLWVtaXR0YWJsZQppbnN0cnVjdGlvbi4KCj4KPiBTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJi
+c3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KPiAtLS0KPiAgc3JjL2dhbGxpdW0vZHJpdmVycy9u
+b3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19udmMwLmNwcCB8IDIgKy0KPiAgMSBmaWxl
+IGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4KPiBkaWZmIC0tZ2l0IGEv
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19udmMw
+LmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfbG93ZXJp
+bmdfbnZjMC5jcHAKPiBpbmRleCA3MzJlMWE5M2I0Li40ODE1ZDZkZjA3IDEwMDY0NAo+IC0tLSBh
+L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfbG93ZXJpbmdfbnZj
+MC5jcHAKPiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2ly
+X2xvd2VyaW5nX252YzAuY3BwCj4gQEAgLTc0MCw3ICs3NDAsNyBAQCBOVkMwTGVnYWxpemVQb3N0
+UkE6OnZpc2l0KEJhc2ljQmxvY2sgKmJiKQo+ICAgICAgICAgICAgICAgICBuZXh0ID0gaGk7Cj4g
+ICAgICAgICAgIH0KPgo+IC0gICAgICAgICBpZiAoaS0+b3AgIT0gT1BfTU9WICYmIGktPm9wICE9
+IE9QX1BGRVRDSCkKPiArICAgICAgICAgaWYgKGktPm9wICE9IE9QX01PViAmJiBpLT5vcCAhPSBP
+UF9QRkVUQ0ggJiYgaS0+b3AgIT0gT1BfU0hMQUREKQo+ICAgICAgICAgICAgICByZXBsYWNlWmVy
+byhpKTsKPiAgICAgICAgfQo+ICAgICB9Cj4gLS0KPiAyLjEyLjIKPgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
+ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
