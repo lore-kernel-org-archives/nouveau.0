@@ -1,197 +1,75 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH v2] nv50/ir: optimize shl(a, 0) to a
-Date: Sat, 29 Apr 2017 20:28:26 -0400
-Message-ID: <CAKb7UvjfCUF2_WN9FrjoZnpX_2K+YwY9_PhPYjH=fOfM2SRN8A@mail.gmail.com>
+Date: Sun, 30 Apr 2017 14:14:16 +0200
+Message-ID: <CAEXux-a0_eMe34mQ8khWf4zO6RgP-j4zRXX2TBew=dVPfvm5jw@mail.gmail.com>
 References: <20170429220934.3355-1-karolherbst@gmail.com>
  <CAKb7UvgimVPhzybu-ewdN0AUUJkRpAaivxbAO+v3L5UC2SPqLA@mail.gmail.com>
  <CAEXux-b4v4JgsOq4xpdribgeV0k3dm7tRE-4cgz9E8Aj6MqpZg@mail.gmail.com>
  <CAKb7Uvg2ZxT4JyfeG24BLDTKHXbFuyx=H2tRnQBM63h1k_kJ8Q@mail.gmail.com>
+ <CAKb7UvjfCUF2_WN9FrjoZnpX_2K+YwY9_PhPYjH=fOfM2SRN8A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1396970365=="
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7Uvg2ZxT4JyfeG24BLDTKHXbFuyx=H2tRnQBM63h1k_kJ8Q@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Karol Herbst <karolherbst@gmail.com>
-Cc: nouveau@lists.freedesktop.org, mesa-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvjfCUF2_WN9FrjoZnpX_2K+YwY9_PhPYjH=fOfM2SRN8A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, ML mesa-dev <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1396970365==
-Content-Type: multipart/alternative; boundary=001a1140a35a95db9b054e5762d2
-
---001a1140a35a95db9b054e5762d2
-Content-Type: text/plain; charset=UTF-8
-
-Maybe in a separate change. I'd want to double check on all gens. I think
-the thing I suggested is sufficient.
-
-On Apr 29, 2017 8:09 PM, "Karol Herbst" <karolherbst@gmail.com> wrote:
-
-2017-04-30 0:28 GMT+02:00 Ilia Mirkin <imirkin@alum.mit.edu>:
-> On Sat, Apr 29, 2017 at 6:09 PM, Karol Herbst <karolherbst@gmail.com>
-wrote:
->> helps two alien isolation shaders
->>
->> shader-db:
->> total instructions in shared programs : 4251497 -> 4251494 (-0.00%)
->> total gprs used in shared programs    : 513962 -> 513962 (0.00%)
->> total local used in shared programs   : 29797 -> 29797 (0.00%)
->> total bytes used in shared programs   : 38960264 -> 38960232 (-0.00%)
->>
->>                 local        gpr       inst      bytes
->>     helped           0           0           2           2
->>       hurt           0           0           0           0
->>
->> v2: handle potential mods on src0
->>
->> Signed-off-by: Karol Herbst <karolherbst@gmail.com>
->> Reviewed-by: Samuel Pitoiset <samuel.pitoiset@gmail.com>
->> Reviewed-by: Ilia Mirkin <imirkin@alum.mit.edu>
->> ---
->>  src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
-b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
->> index 015def0391..82da0d3e48 100644
->> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
->> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
->> @@ -1284,6 +1284,13 @@ ConstantFolding::opnd(Instruction *i,
-ImmediateValue &imm0, int s)
->>
->>     case OP_SHL:
->>     {
->> +      if (s == 1 && imm0.isInteger(0)) {
->> +         i->op = i->src(0).mod.getOp();
->> +         if (i->op != OP_CVT)
->> +            i->src(0).mod = 0;
->
-> Is this necessary? Presumably if the op != 0, then op == OP_CVT...
->
-
-yeah, no idea. I just thought I do it right when I actually depend on
-the getOp magic. But we can't emit any mods to begin with, so maybe we
-should just drop the mod handling and be done with it?
-
->> +         i->setSrc(1, NULL);
->> +         break;
->> +      }
->>        if (s != 1 || i->src(0).mod != Modifier(0))
->>           break;
->>        // try to concatenate shifts
->> --
->> 2.12.2
->>
-
---001a1140a35a95db9b054e5762d2
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">Maybe in a separate change. I&#39;d want to double check =
-on all gens. I think the thing I suggested is sufficient.</div><div class=
-=3D"gmail_extra"><br><div class=3D"gmail_quote">On Apr 29, 2017 8:09 PM, &q=
-uot;Karol Herbst&quot; &lt;<a href=3D"mailto:karolherbst@gmail.com">karolhe=
-rbst@gmail.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"=
-quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
-ex"><div class=3D"elided-text">2017-04-30 0:28 GMT+02:00 Ilia Mirkin &lt;<a=
- href=3D"mailto:imirkin@alum.mit.edu">imirkin@alum.mit.edu</a>&gt;:<br>
-&gt; On Sat, Apr 29, 2017 at 6:09 PM, Karol Herbst &lt;<a href=3D"mailto:ka=
-rolherbst@gmail.com">karolherbst@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; helps two alien isolation shaders<br>
-&gt;&gt;<br>
-&gt;&gt; shader-db:<br>
-&gt;&gt; total instructions in shared programs : 4251497 -&gt; 4251494 (-0.=
-00%)<br>
-&gt;&gt; total gprs used in shared programs=C2=A0 =C2=A0 : 513962 -&gt; 513=
-962 (0.00%)<br>
-&gt;&gt; total local used in shared programs=C2=A0 =C2=A0: 29797 -&gt; 2979=
-7 (0.00%)<br>
-&gt;&gt; total bytes used in shared programs=C2=A0 =C2=A0: 38960264 -&gt; 3=
-8960232 (-0.00%)<br>
-&gt;&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0local=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 gpr=C2=A0 =C2=A0 =C2=A0 =C2=A0inst=C2=A0 =C2=A0=
- =C2=A0 bytes<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0helped=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A02=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0hurt=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A00=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00<br>
-&gt;&gt;<br>
-&gt;&gt; v2: handle potential mods on src0<br>
-&gt;&gt;<br>
-&gt;&gt; Signed-off-by: Karol Herbst &lt;<a href=3D"mailto:karolherbst@gmai=
-l.com">karolherbst@gmail.com</a>&gt;<br>
-&gt;&gt; Reviewed-by: Samuel Pitoiset &lt;<a href=3D"mailto:samuel.pitoiset=
-@gmail.com">samuel.pitoiset@gmail.com</a>&gt;<br>
-&gt;&gt; Reviewed-by: Ilia Mirkin &lt;<a href=3D"mailto:imirkin@alum.mit.ed=
-u">imirkin@alum.mit.edu</a>&gt;<br>
-&gt;&gt; ---<br>
-&gt;&gt;=C2=A0 src/gallium/drivers/nouveau/<wbr>codegen/nv50_ir_peephole.cp=
-p | 7 +++++++<br>
-&gt;&gt;=C2=A0 1 file changed, 7 insertions(+)<br>
-&gt;&gt;<br>
-&gt;&gt; diff --git a/src/gallium/drivers/nouveau/<wbr>codegen/nv50_ir_peep=
-hole.cpp b/src/gallium/drivers/nouveau/<wbr>codegen/nv50_ir_peephole.cpp<br=
->
-&gt;&gt; index 015def0391..82da0d3e48 100644<br>
-&gt;&gt; --- a/src/gallium/drivers/nouveau/<wbr>codegen/nv50_ir_peephole.cp=
-p<br>
-&gt;&gt; +++ b/src/gallium/drivers/nouveau/<wbr>codegen/nv50_ir_peephole.cp=
-p<br>
-&gt;&gt; @@ -1284,6 +1284,13 @@ ConstantFolding::opnd(<wbr>Instruction *i, =
-ImmediateValue &amp;imm0, int s)<br>
-&gt;&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0case OP_SHL:<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0{<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 if (s =3D=3D 1 &amp;&amp; imm0.isInteger(0))=
- {<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0i-&gt;op =3D i-&gt;src(0).mod.g=
-etOp();<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (i-&gt;op !=3D OP_CVT)<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 i-&gt;src(0).mod =3D 0;=
-<br>
-&gt;<br>
-&gt; Is this necessary? Presumably if the op !=3D 0, then op =3D=3D OP_CVT.=
-..<br>
-&gt;<br>
-<br>
-</div>yeah, no idea. I just thought I do it right when I actually depend on=
-<br>
-the getOp magic. But we can&#39;t emit any mods to begin with, so maybe we<=
-br>
-should just drop the mod handling and be done with it?<br>
-<div class=3D"elided-text"><br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0i-&gt;setSrc(1, NULL);<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 }<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (s !=3D 1 || i-&gt;src(0).mod !=3D M=
-odifier(0))<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 // try to concatenate shifts<br>
-&gt;&gt; --<br>
-&gt;&gt; 2.12.2<br>
-&gt;&gt;<br>
-</div></blockquote></div><br></div>
-
---001a1140a35a95db9b054e5762d2--
-
---===============1396970365==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYg
-bWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
-
---===============1396970365==--
+MjAxNy0wNC0zMCAyOjI4IEdNVCswMjowMCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5l
+ZHU+Ogo+IE1heWJlIGluIGEgc2VwYXJhdGUgY2hhbmdlLiBJJ2Qgd2FudCB0byBkb3VibGUgY2hl
+Y2sgb24gYWxsIGdlbnMuIEkgdGhpbmsKPiB0aGUgdGhpbmcgSSBzdWdnZXN0ZWQgaXMgc3VmZmlj
+aWVudC4KPgoKd2VsbCwgaWYgSSBqdXN0IGZpeHVwIHRoZSBvcCwgSSBraW5kIG9mIGhhdmUgdG8g
+Zml4IHRoZSBtb2QgYXMgd2VsbC4KQW5kIGlmIEkgdXNlIGdldE9wLCBpdCBjb3VsZCBhbHNvIHJl
+dHVybiBhIE9QX0NWVCwgc28gSSBoYXZlIHRvIGRvIHRoZQpjaGVjay4KCkkgZG9uJ3Qgc2VlIGhv
+dyBJIGNhbiBvbmx5IHVzZSBnZXRPcCwgYnV0IG5vdCBmaXhpbmcgdGhlIG1vZD8KCj4gT24gQXBy
+IDI5LCAyMDE3IDg6MDkgUE0sICJLYXJvbCBIZXJic3QiIDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+
+IHdyb3RlOgo+Cj4gMjAxNy0wNC0zMCAwOjI4IEdNVCswMjowMCBJbGlhIE1pcmtpbiA8aW1pcmtp
+bkBhbHVtLm1pdC5lZHU+Ogo+PiBPbiBTYXQsIEFwciAyOSwgMjAxNyBhdCA2OjA5IFBNLCBLYXJv
+bCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KPj4gd3JvdGU6Cj4+PiBoZWxwcyB0d28g
+YWxpZW4gaXNvbGF0aW9uIHNoYWRlcnMKPj4+Cj4+PiBzaGFkZXItZGI6Cj4+PiB0b3RhbCBpbnN0
+cnVjdGlvbnMgaW4gc2hhcmVkIHByb2dyYW1zIDogNDI1MTQ5NyAtPiA0MjUxNDk0ICgtMC4wMCUp
+Cj4+PiB0b3RhbCBncHJzIHVzZWQgaW4gc2hhcmVkIHByb2dyYW1zICAgIDogNTEzOTYyIC0+IDUx
+Mzk2MiAoMC4wMCUpCj4+PiB0b3RhbCBsb2NhbCB1c2VkIGluIHNoYXJlZCBwcm9ncmFtcyAgIDog
+Mjk3OTcgLT4gMjk3OTcgKDAuMDAlKQo+Pj4gdG90YWwgYnl0ZXMgdXNlZCBpbiBzaGFyZWQgcHJv
+Z3JhbXMgICA6IDM4OTYwMjY0IC0+IDM4OTYwMjMyICgtMC4wMCUpCj4+Pgo+Pj4gICAgICAgICAg
+ICAgICAgIGxvY2FsICAgICAgICBncHIgICAgICAgaW5zdCAgICAgIGJ5dGVzCj4+PiAgICAgaGVs
+cGVkICAgICAgICAgICAwICAgICAgICAgICAwICAgICAgICAgICAyICAgICAgICAgICAyCj4+PiAg
+ICAgICBodXJ0ICAgICAgICAgICAwICAgICAgICAgICAwICAgICAgICAgICAwICAgICAgICAgICAw
+Cj4+Pgo+Pj4gdjI6IGhhbmRsZSBwb3RlbnRpYWwgbW9kcyBvbiBzcmMwCj4+Pgo+Pj4gU2lnbmVk
+LW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Cj4+PiBSZXZpZXdl
+ZC1ieTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lzZXRAZ21haWwuY29tPgo+Pj4gUmV2
+aWV3ZWQtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KPj4+IC0tLQo+Pj4g
+IHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3Bw
+IHwgNyArKysrKysrCj4+PiAgMSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKQo+Pj4KPj4+
+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2ly
+X3BlZXBob2xlLmNwcAo+Pj4gYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9u
+djUwX2lyX3BlZXBob2xlLmNwcAo+Pj4gaW5kZXggMDE1ZGVmMDM5MS4uODJkYTBkM2U0OCAxMDA2
+NDQKPj4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJf
+cGVlcGhvbGUuY3BwCj4+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdl
+bi9udjUwX2lyX3BlZXBob2xlLmNwcAo+Pj4gQEAgLTEyODQsNiArMTI4NCwxMyBAQCBDb25zdGFu
+dEZvbGRpbmc6Om9wbmQoSW5zdHJ1Y3Rpb24gKmksCj4+PiBJbW1lZGlhdGVWYWx1ZSAmaW1tMCwg
+aW50IHMpCj4+Pgo+Pj4gICAgIGNhc2UgT1BfU0hMOgo+Pj4gICAgIHsKPj4+ICsgICAgICBpZiAo
+cyA9PSAxICYmIGltbTAuaXNJbnRlZ2VyKDApKSB7Cj4+PiArICAgICAgICAgaS0+b3AgPSBpLT5z
+cmMoMCkubW9kLmdldE9wKCk7Cj4+PiArICAgICAgICAgaWYgKGktPm9wICE9IE9QX0NWVCkKPj4+
+ICsgICAgICAgICAgICBpLT5zcmMoMCkubW9kID0gMDsKPj4KPj4gSXMgdGhpcyBuZWNlc3Nhcnk/
+IFByZXN1bWFibHkgaWYgdGhlIG9wICE9IDAsIHRoZW4gb3AgPT0gT1BfQ1ZULi4uCj4+Cj4KPiB5
+ZWFoLCBubyBpZGVhLiBJIGp1c3QgdGhvdWdodCBJIGRvIGl0IHJpZ2h0IHdoZW4gSSBhY3R1YWxs
+eSBkZXBlbmQgb24KPiB0aGUgZ2V0T3AgbWFnaWMuIEJ1dCB3ZSBjYW4ndCBlbWl0IGFueSBtb2Rz
+IHRvIGJlZ2luIHdpdGgsIHNvIG1heWJlIHdlCj4gc2hvdWxkIGp1c3QgZHJvcCB0aGUgbW9kIGhh
+bmRsaW5nIGFuZCBiZSBkb25lIHdpdGggaXQ/Cj4KPj4+ICsgICAgICAgICBpLT5zZXRTcmMoMSwg
+TlVMTCk7Cj4+PiArICAgICAgICAgYnJlYWs7Cj4+PiArICAgICAgfQo+Pj4gICAgICAgIGlmIChz
+ICE9IDEgfHwgaS0+c3JjKDApLm1vZCAhPSBNb2RpZmllcigwKSkKPj4+ICAgICAgICAgICBicmVh
+azsKPj4+ICAgICAgICAvLyB0cnkgdG8gY29uY2F0ZW5hdGUgc2hpZnRzCj4+PiAtLQo+Pj4gMi4x
+Mi4yCj4+Pgo+Cj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
