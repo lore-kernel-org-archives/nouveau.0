@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100860] Dual Monitor display problem,
- after switching screen positions, with 4.10 Kernels
-Date: Mon, 01 May 2017 07:05:56 +0000
-Message-ID: <bug-100860-8800-BQgcKQ40z6@http.bugs.freedesktop.org/>
-References: <bug-100860-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91632] Assert in nouveau_pushbuf_data
+Date: Mon, 01 May 2017 12:21:55 +0000
+Message-ID: <bug-91632-8800-HWZP8LrCOe@http.bugs.freedesktop.org/>
+References: <bug-91632-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0171214636=="
+Content-Type: multipart/mixed; boundary="===============1643812854=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100860-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0171214636==
-Content-Type: multipart/alternative; boundary="14936223560.06F75.24204";
+--===============1643812854==
+Content-Type: multipart/alternative; boundary="14936413153.590AA1CbF.14060";
  charset="UTF-8"
 
 
---14936223560.06F75.24204
-Date: Mon, 1 May 2017 07:05:56 +0000
+--14936413153.590AA1CbF.14060
+Date: Mon, 1 May 2017 12:21:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100860
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91632
 
---- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Give this commit a try :)
-
-https://github.com/skeggsb/nouveau/commit/05f6b91406a382af7d16d6306034c6859=
-afc3eaf
+--- Comment #12 from Andrey <andrey.aleksandrovich-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+Same here with qupzilla. But Chromium is working fine.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14936223560.06F75.24204
-Date: Mon, 1 May 2017 07:05:56 +0000
+--14936413153.590AA1CbF.14060
+Date: Mon, 1 May 2017 12:21:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,25 +60,19 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Dual Monitor display problem, after switching screen posi=
-tions, with 4.10 Kernels"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100860#c2">Commen=
-t # 2</a>
+   title=3D"NEW - Assert in nouveau_pushbuf_data"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632#c12">Commen=
+t # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Dual Monitor display problem, after switching screen posi=
-tions, with 4.10 Kernels"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100860">bug 10086=
-0</a>
+   title=3D"NEW - Assert in nouveau_pushbuf_data"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632">bug 91632<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
+andrey.aleksandrovich&#64;googlemail.com" title=3D"Andrey &lt;andrey.aleksa=
+ndrovich&#64;googlemail.com&gt;"> <span class=3D"fn">Andrey</span></a>
 </span></b>
-        <pre>Give this commit a try :)
-
-<a href=3D"https://github.com/skeggsb/nouveau/commit/05f6b91406a382af7d16d6=
-306034c6859afc3eaf">https://github.com/skeggsb/nouveau/commit/05f6b91406a38=
-2af7d16d6306034c6859afc3eaf</a></pre>
+        <pre>Same here with qupzilla. But Chromium is working fine.</pre>
         </div>
       </p>
 
@@ -91,13 +82,14 @@ skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14936223560.06F75.24204--
+--14936413153.590AA1CbF.14060--
 
---===============0171214636==
+--===============1643812854==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0171214636==--
+--===============1643812854==--
