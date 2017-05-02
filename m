@@ -1,16 +1,13 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v5 5/5] nouveau_hwmon: Change permissions to
-	numeric
-Date: Tue, 2 May 2017 10:03:23 +0200
-Message-ID: <CAEXux-a_jRUj4Ds52QCA+ai1RjnhA9wzwTF9V8K-qcLkaUYqAA@mail.gmail.com>
-References: <1493225191-3337-1-git-send-email-osalvador.vilardaga@gmail.com>
- <1493225191-3337-6-git-send-email-osalvador.vilardaga@gmail.com>
- <a82cf1c2-f668-31cb-7e01-46e6ab29c99f@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
+	]
+Date: Tue, 02 May 2017 13:47:01 +0000
+Message-ID: <bug-100423-8800-Usj1oreq5U@http.bugs.freedesktop.org/>
+References: <bug-100423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0369820914=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <a82cf1c2-f668-31cb-7e01-46e6ab29c99f-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,76 +17,258 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Oscar Salvador <osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-MjAxNy0wNS0wMiA3OjA3IEdNVCswMjowMCBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BmcmVl
-LmZyPjoKPiBPbiAyNi8wNC8xNyAxOTo0NiwgT3NjYXIgU2FsdmFkb3Igd3JvdGU6Cj4+IFRoaXMg
-cGF0Y2ggcmVwbGFjZXMgdGhlIHN5bWJvbGljIHBlcm1pc3Npb25zIHdpdGggdGhlIG51bWVyaWMg
-b25lcywKPj4gYW5kIGFkZHMgbWUgdG8gdGhlIGF1dGhvcnMgdG9vLgo+Pgo+PiBTaWduZWQtb2Zm
-LWJ5OiBPc2NhciBTYWx2YWRvciA8b3NhbHZhZG9yLnZpbGFyZGFnYUBnbWFpbC5jb20+Cj4KPgo+
-PiAtLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYyB8IDE0ICsr
-KysrKystLS0tLS0tCj4+ICAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspLCA3IGRlbGV0
-aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9od21vbi5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jCj4+IGlu
-ZGV4IDkxNDI3NzkuLjQ1YjVjODUgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfaHdtb24uYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2h3bW9uLmMKPj4gQEAgLTEsNSArMSw2IEBACj4+ICAvKgo+PiAtICogQ29weXJpZ2h0IDIw
-MTAgUmVkIEhhdCBJbmMuCj4+ICsgKiBDb3B5cmlnaHQgMjAxMCBSZWQgSGF0IEluYy4gKEJlbiBT
-a2VnZ3MpCj4KPiBQbGVhc2UgZHJvcCB0aGlzIGNoYW5nZS4KPgo+PiArICogQ29weXJpZ2h0IDIw
-MTcgT3NjYXIgU2FsdmFkb3IKPj4gICAqCj4+ICAgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFu
-dGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQo+PiAgICogY29w
-eSBvZiB0aGlzIHNvZnR3YXJlIGFuZCBhc3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRo
-ZSAiU29mdHdhcmUiKSwKPj4gQEAgLTE5LDcgKzIwLDYgQEAKPj4gICAqIEFSSVNJTkcgRlJPTSwg
-T1VUIE9GIE9SIElOIENPTk5FQ1RJT04gV0lUSCBUSEUgU09GVFdBUkUgT1IgVEhFIFVTRSBPUgo+
-PiAgICogT1RIRVIgREVBTElOR1MgSU4gVEhFIFNPRlRXQVJFLgo+PiAgICoKPj4gLSAqIEF1dGhv
-cnM6IEJlbiBTa2VnZ3MKPgo+IFlvdSBjYW4ndCByZW1vdmUgcGVvcGxlIGFzIGJlaW5nIHRoZSBh
-dXRob3Igb2Ygc29tZXRoaW5nLiBKdXN0IGFkZAo+IHlvdXJzZWxmIGlmIHlvdSBjYXJlIGFib3V0
-IHRoaXMgKEkgZGlkIG5vdCBjYXJlIHRvIGFkZCBteSBuYW1lIHdoZW4gSQo+IHdyb3RlIGluIHRo
-aXMgZmlsZSwgYmVjYXVzZSB0aGUgZ2l0IGhpc3RvcnkgbWFrZXMgbW9yZSBzZW5zZSBub3dhZGF5
-cy4KPgo+IE90aGVyd2lzZSwgSSBoYXZlIG5vIHN0cm9uZyBvcGluaW9ucyBvbiB0aGlzIHBhdGNo
-LiBJIGd1ZXNzIHRoZSBudW1lcmljCj4gcmVwcmVzZW50YXRpb24gaXMgZWFzaWVyIHRvIHJlYWQs
-IHNvIEkgd2lsbCBnaXZlIHlvdSBteSBSLWIgZm9yIHRoaXMgYW5kCj4gbGV0IG90aGVycyBkZWNp
-ZGUgd2hhdCB0byBkbzoKPgoKY29weXJpZ2h0IGhvbGRlciAhPSBBdXRob3IgdGhvdWdoLiBTbyB5
-ZWFoLCBoZSBpc24ndCBhbGxvd2VkIHRvIGNoYW5nZSB0aGF0LgoKPiBSZXZpZXdlZC1ieTogTWFy
-dGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4KPgo+PiAgICovCj4+Cj4+ICAjaWZkZWYg
-Q09ORklHX0FDUEkKPj4gQEAgLTU2LDcgKzU2LDcgQEAgbm91dmVhdV9od21vbl9zaG93X3RlbXAx
-X2F1dG9fcG9pbnQxX3B3bShzdHJ1Y3QgZGV2aWNlICpkLAo+PiAgewo+PiAgICAgICByZXR1cm4g
-c25wcmludGYoYnVmLCBQQUdFX1NJWkUsICIlZFxuIiwgMTAwKTsKPj4gIH0KPj4gLXN0YXRpYyBT
-RU5TT1JfREVWSUNFX0FUVFIodGVtcDFfYXV0b19wb2ludDFfcHdtLCBTX0lSVUdPLAo+PiArc3Rh
-dGljIFNFTlNPUl9ERVZJQ0VfQVRUUih0ZW1wMV9hdXRvX3BvaW50MV9wd20sIDA0NDQsCj4+ICAg
-ICAgICAgICAgICAgICAgICAgICAgIG5vdXZlYXVfaHdtb25fc2hvd190ZW1wMV9hdXRvX3BvaW50
-MV9wd20sIE5VTEwsIDApOwo+Pgo+PiAgc3RhdGljIHNzaXplX3QKPj4gQEAgLTg4LDcgKzg4LDcg
-QEAgbm91dmVhdV9od21vbl9zZXRfdGVtcDFfYXV0b19wb2ludDFfdGVtcChzdHJ1Y3QgZGV2aWNl
-ICpkLAo+Pgo+PiAgICAgICByZXR1cm4gY291bnQ7Cj4+ICB9Cj4+IC1zdGF0aWMgU0VOU09SX0RF
-VklDRV9BVFRSKHRlbXAxX2F1dG9fcG9pbnQxX3RlbXAsIFNfSVJVR08gfCBTX0lXVVNSLAo+PiAr
-c3RhdGljIFNFTlNPUl9ERVZJQ0VfQVRUUih0ZW1wMV9hdXRvX3BvaW50MV90ZW1wLCAwNjQ0LAo+
-PiAgICAgICAgICAgICAgICAgICAgICAgICBub3V2ZWF1X2h3bW9uX3RlbXAxX2F1dG9fcG9pbnQx
-X3RlbXAsCj4+ICAgICAgICAgICAgICAgICAgICAgICAgIG5vdXZlYXVfaHdtb25fc2V0X3RlbXAx
-X2F1dG9fcG9pbnQxX3RlbXAsIDApOwo+Pgo+PiBAQCAtMTIxLDcgKzEyMSw3IEBAIG5vdXZlYXVf
-aHdtb25fc2V0X3RlbXAxX2F1dG9fcG9pbnQxX3RlbXBfaHlzdChzdHJ1Y3QgZGV2aWNlICpkLAo+
-Pgo+PiAgICAgICByZXR1cm4gY291bnQ7Cj4+ICB9Cj4+IC1zdGF0aWMgU0VOU09SX0RFVklDRV9B
-VFRSKHRlbXAxX2F1dG9fcG9pbnQxX3RlbXBfaHlzdCwgU19JUlVHTyB8IFNfSVdVU1IsCj4+ICtz
-dGF0aWMgU0VOU09SX0RFVklDRV9BVFRSKHRlbXAxX2F1dG9fcG9pbnQxX3RlbXBfaHlzdCwgMDY0
-NCwKPj4gICAgICAgICAgICAgICAgICAgICAgICAgbm91dmVhdV9od21vbl90ZW1wMV9hdXRvX3Bv
-aW50MV90ZW1wX2h5c3QsCj4+ICAgICAgICAgICAgICAgICAgICAgICAgIG5vdXZlYXVfaHdtb25f
-c2V0X3RlbXAxX2F1dG9fcG9pbnQxX3RlbXBfaHlzdCwgMCk7Cj4+Cj4+IEBAIC0yNTUsNyArMjU1
-LDcgQEAgbm91dmVhdV9od21vbl9zZXRfcHdtMV9taW4oc3RydWN0IGRldmljZSAqZCwgc3RydWN0
-IGRldmljZV9hdHRyaWJ1dGUgKmEsCj4+ICAgICAgIHJldHVybiBjb3VudDsKPj4gIH0KPj4KPj4g
-LXN0YXRpYyBTRU5TT1JfREVWSUNFX0FUVFIocHdtMV9taW4sIFNfSVJVR08gfCBTX0lXVVNSLAo+
-PiArc3RhdGljIFNFTlNPUl9ERVZJQ0VfQVRUUihwd20xX21pbiwgMDY0NCwKPj4gICAgICAgICAg
-ICAgICAgICAgICAgICAgbm91dmVhdV9od21vbl9nZXRfcHdtMV9taW4sCj4+ICAgICAgICAgICAg
-ICAgICAgICAgICAgIG5vdXZlYXVfaHdtb25fc2V0X3B3bTFfbWluLCAwKTsKPj4KPj4gQEAgLTI5
-NSw3ICsyOTUsNyBAQCBub3V2ZWF1X2h3bW9uX3NldF9wd20xX21heChzdHJ1Y3QgZGV2aWNlICpk
-LCBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSAqYSwKPj4gICAgICAgcmV0dXJuIGNvdW50Owo+PiAg
-fQo+Pgo+PiAtc3RhdGljIFNFTlNPUl9ERVZJQ0VfQVRUUihwd20xX21heCwgU19JUlVHTyB8IFNf
-SVdVU1IsCj4+ICtzdGF0aWMgU0VOU09SX0RFVklDRV9BVFRSKHB3bTFfbWF4LCAwNjQ0LAo+PiAg
-ICAgICAgICAgICAgICAgICAgICAgICBub3V2ZWF1X2h3bW9uX2dldF9wd20xX21heCwKPj4gICAg
-ICAgICAgICAgICAgICAgICAgICAgbm91dmVhdV9od21vbl9zZXRfcHdtMV9tYXgsIDApOwo+Pgo+
-Pgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBO
-b3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0369820914==
+Content-Type: multipart/alternative; boundary="14937328212.Ac6bc.1785";
+ charset="UTF-8"
+
+
+--14937328212.Ac6bc.1785
+Date: Tue, 2 May 2017 13:47:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
+
+--- Comment #3 from Johnny B. Goode <adamos-zBjOIweZRQ4nvi+hAk5376sMm+1xrEX8@public.gmane.org> ---
+Almost same for i7-6700, GM206 [GTX 950]
+No touch screen, no hybrid graphics. Pure desktop. Intel 530 on chip but
+disabled in BIOS. Only one Asus Graphic Card.
+Problem started on Kernel 4.10.x and is going on 4.11.0. Kernel 4.9.x is FA=
+ULT
+free. Different distributions Fedora 25, Gentoo.
+------------------------------------
+
+dmesg | grep -i nouveau
+[    1.688288] fb: switching to nouveaufb from EFI VGA
+[    1.689206] nouveau 0000:01:00.0: NVIDIA GM206 (126020a1)
+[    1.787066] nouveau 0000:01:00.0: bios: version 84.06.3d.00.6f
+[    1.787209] nouveau 0000:01:00.0: disp: dcb 15 type 8 unknown
+[    1.787571] nouveau 0000:01:00.0: fb: 2048 MiB GDDR5
+[    1.787585] nouveau 0000:01:00.0: bus: MMIO write of 80000136 FAULT at
+10eb14 [ IBUS ]
+[    1.794508] nouveau 0000:01:00.0: DRM: VRAM: 2048 MiB
+[    1.794509] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
+[    1.794512] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
+[    1.794513] nouveau 0000:01:00.0: DRM: DCB version 4.1
+[    1.794515] nouveau 0000:01:00.0: DRM: DCB outp 00: 01000f02 00020030
+[    1.794517] nouveau 0000:01:00.0: DRM: DCB outp 01: 02000f00 00000000
+[    1.794518] nouveau 0000:01:00.0: DRM: DCB outp 02: 02811f66 04400010
+[    1.794520] nouveau 0000:01:00.0: DRM: DCB outp 03: 02011f62 00020010
+[    1.794522] nouveau 0000:01:00.0: DRM: DCB outp 04: 02022f72 00020020
+[    1.794523] nouveau 0000:01:00.0: DRM: DCB outp 05: 04033f82 00020030
+[    1.794525] nouveau 0000:01:00.0: DRM: DCB outp 15: 01df4ff8 00000000
+[    1.794526] nouveau 0000:01:00.0: DRM: DCB conn 00: 00001030
+[    1.794528] nouveau 0000:01:00.0: DRM: DCB conn 01: 00010146
+[    1.794529] nouveau 0000:01:00.0: DRM: DCB conn 02: 00020261
+[    1.794531] nouveau 0000:01:00.0: DRM: DCB conn 03: 02000331
+[    1.794532] nouveau 0000:01:00.0: DRM: DCB conn 04: 00000470
+[    1.794534] nouveau 0000:01:00.0: DRM: Pointer to flat panel table inval=
+id
+[    1.828756] nouveau 0000:01:00.0: DRM: unknown connector type 70
+[    1.828775] nouveau 0000:01:00.0: DRM: failed to create encoder 1/8/0: -=
+19
+[    1.828778] nouveau 0000:01:00.0: DRM: Unknown-1 has no encoders, removi=
+ng
+[    1.934421] nouveau 0000:01:00.0: hwmon_device_register() is deprecated.
+Please convert the driver to use hwmon_device_register_with_info().
+[    1.993646] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+[    2.072744] nouveau 0000:01:00.0: priv: GPC0: 419df4 00000000 (1c40820e)
+[    2.072763] nouveau 0000:01:00.0: priv: GPC1: 419df4 00000000 (1c40820e)
+[    2.174707] nouveau 0000:01:00.0: DRM: allocated 1600x1200 fb: 0x60000, =
+bo
+ffff9b09ca6eb800
+[    2.176838] fbcon: nouveaufb (fb0) is primary device
+[    2.375660] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
+[    2.389828] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
+minor 0
+
+Almost same, because my FAULT is at 10eb14=20
+------------------------------------
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GM206 [GeForce GTX 95=
+0]
+(rev a1) (prog-if 00 [VGA controller])
+        Subsystem: ASUSTeK Computer Inc. Device 8555
+        Flags: bus master, fast devsel, latency 0, IRQ 134
+        Memory at de000000 (32-bit, non-prefetchable) [size=3D16M]
+        Memory at 2fe0000000 (64-bit, prefetchable) [size=3D256M]
+        Memory at 2ff0000000 (64-bit, prefetchable) [size=3D32M]
+        I/O ports at e000 [size=3D128]
+        Expansion ROM at 000c0000 [disabled] [size=3D128K]
+        Capabilities: [60] Power Management version 3
+        Capabilities: [68] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
+        Capabilities: [78] Express Legacy Endpoint, MSI 00
+        Capabilities: [100] Virtual Channel
+        Capabilities: [258] L1 PM Substates
+        Capabilities: [128] Power Budgeting <?>
+        Capabilities: [420] Advanced Error Reporting
+        Capabilities: [600] Vendor Specific Information: ID=3D0001 Rev=3D1 =
+Len=3D024
+<?>
+        Capabilities: [900] #19
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau
+------------------------------------
+
+xorg-x11-drv-nouveau-1.0.14-2.fc25.x86_64
+libdrm-2.4.79-1.fc25.x86_64
+and:
+xf86-video-nouveau-1.0.13
+libdrm-2.4.75
+
+Should I open a new bug with "FAULT at 10eb14" or is it this same issue?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14937328212.Ac6bc.1785
+Date: Tue, 2 May 2017 13:47:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c3">Commen=
+t # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+adamos&#64;hell.factory.net.pl" title=3D"Johnny B. Goode &lt;adamos&#64;hel=
+l.factory.net.pl&gt;"> <span class=3D"fn">Johnny B. Goode</span></a>
+</span></b>
+        <pre>Almost same for i7-6700, GM206 [GTX 950]
+No touch screen, no hybrid graphics. Pure desktop. Intel 530 on chip but
+disabled in BIOS. Only one Asus Graphic Card.
+Problem started on Kernel 4.10.x and is going on 4.11.0. Kernel 4.9.x is FA=
+ULT
+free. Different distributions Fedora 25, Gentoo.
+------------------------------------
+
+dmesg | grep -i nouveau
+[    1.688288] fb: switching to nouveaufb from EFI VGA
+[    1.689206] nouveau 0000:01:00.0: NVIDIA GM206 (126020a1)
+[    1.787066] nouveau 0000:01:00.0: bios: version 84.06.3d.00.6f
+[    1.787209] nouveau 0000:01:00.0: disp: dcb 15 type 8 unknown
+[    1.787571] nouveau 0000:01:00.0: fb: 2048 MiB GDDR5
+[    1.787585] nouveau 0000:01:00.0: bus: MMIO write of 80000136 FAULT at
+10eb14 [ IBUS ]
+[    1.794508] nouveau 0000:01:00.0: DRM: VRAM: 2048 MiB
+[    1.794509] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
+[    1.794512] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
+[    1.794513] nouveau 0000:01:00.0: DRM: DCB version 4.1
+[    1.794515] nouveau 0000:01:00.0: DRM: DCB outp 00: 01000f02 00020030
+[    1.794517] nouveau 0000:01:00.0: DRM: DCB outp 01: 02000f00 00000000
+[    1.794518] nouveau 0000:01:00.0: DRM: DCB outp 02: 02811f66 04400010
+[    1.794520] nouveau 0000:01:00.0: DRM: DCB outp 03: 02011f62 00020010
+[    1.794522] nouveau 0000:01:00.0: DRM: DCB outp 04: 02022f72 00020020
+[    1.794523] nouveau 0000:01:00.0: DRM: DCB outp 05: 04033f82 00020030
+[    1.794525] nouveau 0000:01:00.0: DRM: DCB outp 15: 01df4ff8 00000000
+[    1.794526] nouveau 0000:01:00.0: DRM: DCB conn 00: 00001030
+[    1.794528] nouveau 0000:01:00.0: DRM: DCB conn 01: 00010146
+[    1.794529] nouveau 0000:01:00.0: DRM: DCB conn 02: 00020261
+[    1.794531] nouveau 0000:01:00.0: DRM: DCB conn 03: 02000331
+[    1.794532] nouveau 0000:01:00.0: DRM: DCB conn 04: 00000470
+[    1.794534] nouveau 0000:01:00.0: DRM: Pointer to flat panel table inval=
+id
+[    1.828756] nouveau 0000:01:00.0: DRM: unknown connector type 70
+[    1.828775] nouveau 0000:01:00.0: DRM: failed to create encoder 1/8/0: -=
+19
+[    1.828778] nouveau 0000:01:00.0: DRM: Unknown-1 has no encoders, removi=
+ng
+[    1.934421] nouveau 0000:01:00.0: hwmon_device_register() is deprecated.
+Please convert the driver to use hwmon_device_register_with_info().
+[    1.993646] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+[    2.072744] nouveau 0000:01:00.0: priv: GPC0: 419df4 00000000 (1c40820e)
+[    2.072763] nouveau 0000:01:00.0: priv: GPC1: 419df4 00000000 (1c40820e)
+[    2.174707] nouveau 0000:01:00.0: DRM: allocated 1600x1200 fb: 0x60000, =
+bo
+ffff9b09ca6eb800
+[    2.176838] fbcon: nouveaufb (fb0) is primary device
+[    2.375660] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
+[    2.389828] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
+minor 0
+
+Almost same, because my FAULT is at 10eb14=20
+------------------------------------
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GM206 [GeForce GTX 95=
+0]
+(rev a1) (prog-if 00 [VGA controller])
+        Subsystem: ASUSTeK Computer Inc. Device 8555
+        Flags: bus master, fast devsel, latency 0, IRQ 134
+        Memory at de000000 (32-bit, non-prefetchable) [size=3D16M]
+        Memory at 2fe0000000 (64-bit, prefetchable) [size=3D256M]
+        Memory at 2ff0000000 (64-bit, prefetchable) [size=3D32M]
+        I/O ports at e000 [size=3D128]
+        Expansion ROM at 000c0000 [disabled] [size=3D128K]
+        Capabilities: [60] Power Management version 3
+        Capabilities: [68] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
+        Capabilities: [78] Express Legacy Endpoint, MSI 00
+        Capabilities: [100] Virtual Channel
+        Capabilities: [258] L1 PM Substates
+        Capabilities: [128] Power Budgeting &lt;?&gt;
+        Capabilities: [420] Advanced Error Reporting
+        Capabilities: [600] Vendor Specific Information: ID=3D0001 Rev=3D1 =
+Len=3D024
+&lt;?&gt;
+        Capabilities: [900] #19
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau
+------------------------------------
+
+xorg-x11-drv-nouveau-1.0.14-2.fc25.x86_64
+libdrm-2.4.79-1.fc25.x86_64
+and:
+xf86-video-nouveau-1.0.13
+libdrm-2.4.75
+
+Should I open a new bug with &quot;FAULT at 10eb14&quot; or is it this same=
+ issue?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14937328212.Ac6bc.1785--
+
+--===============0369820914==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0369820914==--
