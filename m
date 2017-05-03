@@ -1,35 +1,132 @@
-From: David Binderman <dcb314@hotmail.com>
-Subject: drivers/gpu/drm/nouveau/nvkm/engine/dma/usernv04.c:124:: possible
- unintended fallthrough ?
-Date: Tue, 2 May 2017 16:05:29 +0000
-Message-ID: <HE1PR0801MB18654F172567ABEAB382F5269C170@HE1PR0801MB1865.eurprd08.prod.outlook.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Wed, 03 May 2017 13:16:53 +0000
+Message-ID: <bug-94990-8800-XRO17NpPHR@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Language: en-GB
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: "bskeggs@redhat.com" <bskeggs@redhat.com>, "airlied@linux.ie" <airlied@linux.ie>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1317867203=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8gdGhlcmUsCgpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kbWEvdXNl
-cm52MDQuYzoxMjQ6MTg6IHdhcm5pbmc6IHRoaXMgc3RhdGVtZW50IG1heSBmYWxsIHRocm91Z2gg
-Wy1XaW1wbGljaXQtZmFsbHRocm91Z2g9XQoKU291cmNlIGNvZGUgaXMKCiAgICBzd2l0Y2ggKGRt
-YW9iai0+YmFzZS5hY2Nlc3MpIHsKICAgIGNhc2UgTlZfTUVNX0FDQ0VTU19STzoKICAgICAgICBk
-bWFvYmotPmZsYWdzMCB8PSAweDAwMDA0MDAwOwogICAgICAgIGJyZWFrOwogICAgY2FzZSBOVl9N
-RU1fQUNDRVNTX1dPOgogICAgICAgIGRtYW9iai0+ZmxhZ3MwIHw9IDB4MDAwMDgwMDA7CiAgICBj
-YXNlIE5WX01FTV9BQ0NFU1NfUlc6CiAgICAgICAgZG1hb2JqLT5mbGFnczIgfD0gMHgwMDAwMDAw
-MjsKICAgICAgICBicmVhazsKICAgIGRlZmF1bHQ6CiAgICAgICAgcmV0dXJuIC1FSU5WQUw7CiAg
-ICB9CgpTdWdnZXN0IGVpdGhlciBkb2N1bWVudCB0aGUgZmFsbHRocm91Z2ggb3IgYWRkIHRoZSBt
-aXNzaW5nIGJyZWFrLgoKUmVnYXJkcwoKRGF2aWQgQmluZGVybWFuCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRy
-aS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1317867203==
+Content-Type: multipart/alternative; boundary="14938174137.f9467.27340";
+ charset="UTF-8"
+
+
+--14938174137.f9467.27340
+Date: Wed, 3 May 2017 13:16:53 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #120 from Hans Petter Jansson <hpj-hdLLBzy348kXWF+eFR7m5Q@public.gmane.org> ---
+Created attachment 131184
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131184&action=3Dedit
+nouveau-fdo94990-linux-4.10.patch
+
+I was able to get my GTX 970 working with KMS on Linux 4.10 by cherry-picki=
+ng a
+few of Ben's commits from the master branch onto the linux-4.10 branch (see
+patch).
+
+These are also available in the linux-4.10 branch of
+https://github.com/hpjansson/nouveau.git for convenience.
+
+With this, I can boot and Plymouth and Xorg work fine, but Wayland still
+freezes -- however, I think that's caused by a different issue.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14938174137.f9467.27340
+Date: Wed, 3 May 2017 13:16:53 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c120">Comme=
+nt # 120</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+hpj&#64;copyleft.no" title=3D"Hans Petter Jansson &lt;hpj&#64;copyleft.no&g=
+t;"> <span class=3D"fn">Hans Petter Jansson</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131184=
+" name=3D"attach_131184" title=3D"nouveau-fdo94990-linux-4.10.patch">attach=
+ment 131184</a> <a href=3D"attachment.cgi?id=3D131184&amp;action=3Dedit" ti=
+tle=3D"nouveau-fdo94990-linux-4.10.patch">[details]</a></span> <a href=3D'p=
+age.cgi?id=3Dsplinter.html&amp;bug=3D94990&amp;attachment=3D131184'>[review=
+]</a>
+nouveau-fdo94990-linux-4.10.patch
+
+I was able to get my GTX 970 working with KMS on Linux 4.10 by cherry-picki=
+ng a
+few of Ben's commits from the master branch onto the linux-4.10 branch (see
+patch).
+
+These are also available in the linux-4.10 branch of
+<a href=3D"https://github.com/hpjansson/nouveau.git">https://github.com/hpj=
+ansson/nouveau.git</a> for convenience.
+
+With this, I can boot and Plymouth and Xorg work fine, but Wayland still
+freezes -- however, I think that's caused by a different issue.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14938174137.f9467.27340--
+
+--===============1317867203==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1317867203==--
