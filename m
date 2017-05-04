@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Wed, 03 May 2017 13:16:53 +0000
-Message-ID: <bug-94990-8800-XRO17NpPHR@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100860] Dual Monitor display problem,
+ after switching screen positions, with 4.10 Kernels
+Date: Thu, 04 May 2017 01:38:32 +0000
+Message-ID: <bug-100860-8800-Sqp3B0dkCn@http.bugs.freedesktop.org/>
+References: <bug-100860-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1317867203=="
+Content-Type: multipart/mixed; boundary="===============1241261995=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100860-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1317867203==
-Content-Type: multipart/alternative; boundary="14938174137.f9467.27340";
+--===============1241261995==
+Content-Type: multipart/alternative; boundary="14938619110.CFed97771.2770";
  charset="UTF-8"
 
 
---14938174137.f9467.27340
-Date: Wed, 3 May 2017 13:16:53 +0000
+--14938619110.CFed97771.2770
+Date: Thu, 4 May 2017 01:38:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100860
 
---- Comment #120 from Hans Petter Jansson <hpj-hdLLBzy348kXWF+eFR7m5Q@public.gmane.org> ---
-Created attachment 131184
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131184&action=3Dedit
-nouveau-fdo94990-linux-4.10.patch
+--- Comment #3 from Tobias Muhlhofer <tobias.muhlhofer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Sorry for the stupid question, but could not find this by googling.
 
-I was able to get my GTX 970 working with KMS on Linux 4.10 by cherry-picki=
-ng a
-few of Ben's commits from the master branch onto the linux-4.10 branch (see
-patch).
+How do I try this on an RPM-based system (FC24)? I guess I have to somehow
+recompile the nouveau module, right? Can you point to relevant instructions?
 
-These are also available in the linux-4.10 branch of
-https://github.com/hpjansson/nouveau.git for convenience.
+Guess it's something like this. But how do I integrate your code before
+building the module?
 
-With this, I can boot and Plymouth and Xorg work fine, but Wayland still
-freezes -- however, I think that's caused by a different issue.
+https://fedoraproject.org/wiki/Building_a_custom_kernel#Building_Only_Kerne=
+l_Modules_.28Out_Of_Tree_Modules.29
+
+Sorry again. Haven't seriously tinkered with kernel modules in quite a whil=
+e,
+and never on Fedora.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14938174137.f9467.27340
-Date: Wed, 3 May 2017 13:16:53 +0000
+--14938619110.CFed97771.2770
+Date: Thu, 4 May 2017 01:38:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,37 +73,37 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c120">Comme=
-nt # 120</a>
+   title=3D"NEW - Dual Monitor display problem, after switching screen posi=
+tions, with 4.10 Kernels"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100860#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
+   title=3D"NEW - Dual Monitor display problem, after switching screen posi=
+tions, with 4.10 Kernels"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100860">bug 10086=
+0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-hpj&#64;copyleft.no" title=3D"Hans Petter Jansson &lt;hpj&#64;copyleft.no&g=
-t;"> <span class=3D"fn">Hans Petter Jansson</span></a>
+tobias.muhlhofer&#64;gmail.com" title=3D"Tobias Muhlhofer &lt;tobias.muhlho=
+fer&#64;gmail.com&gt;"> <span class=3D"fn">Tobias Muhlhofer</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131184=
-" name=3D"attach_131184" title=3D"nouveau-fdo94990-linux-4.10.patch">attach=
-ment 131184</a> <a href=3D"attachment.cgi?id=3D131184&amp;action=3Dedit" ti=
-tle=3D"nouveau-fdo94990-linux-4.10.patch">[details]</a></span> <a href=3D'p=
-age.cgi?id=3Dsplinter.html&amp;bug=3D94990&amp;attachment=3D131184'>[review=
-]</a>
-nouveau-fdo94990-linux-4.10.patch
+        <pre>Sorry for the stupid question, but could not find this by goog=
+ling.
 
-I was able to get my GTX 970 working with KMS on Linux 4.10 by cherry-picki=
-ng a
-few of Ben's commits from the master branch onto the linux-4.10 branch (see
-patch).
+How do I try this on an RPM-based system (FC24)? I guess I have to somehow
+recompile the nouveau module, right? Can you point to relevant instructions?
 
-These are also available in the linux-4.10 branch of
-<a href=3D"https://github.com/hpjansson/nouveau.git">https://github.com/hpj=
-ansson/nouveau.git</a> for convenience.
+Guess it's something like this. But how do I integrate your code before
+building the module?
 
-With this, I can boot and Plymouth and Xorg work fine, but Wayland still
-freezes -- however, I think that's caused by a different issue.</pre>
+<a href=3D"https://fedoraproject.org/wiki/Building_a_custom_kernel#Building=
+_Only_Kernel_Modules_.28Out_Of_Tree_Modules.29">https://fedoraproject.org/w=
+iki/Building_a_custom_kernel#Building_Only_Kernel_Modules_.28Out_Of_Tree_Mo=
+dules.29</a>
+
+Sorry again. Haven't seriously tinkered with kernel modules in quite a whil=
+e,
+and never on Fedora.</pre>
         </div>
       </p>
 
@@ -117,9 +117,9 @@ freezes -- however, I think that's caused by a different issue.</pre>
     </body>
 </html>=
 
---14938174137.f9467.27340--
+--14938619110.CFed97771.2770--
 
---===============1317867203==
+--===============1241261995==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +129,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1317867203==--
+--===============1241261995==--
