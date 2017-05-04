@@ -1,13 +1,12 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [bug report] drm/nouveau/object: merge with handle
-Date: Thu, 4 May 2017 17:31:49 +1000
-Message-ID: <7611aba4-1049-2edf-1d76-c463abbc2452@gmail.com>
-References: <20170504065842.znkgzykecdvwgc6d@mwanda>
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: Re: NV130 - gtx 1050 ti
+Date: Thu, 4 May 2017 11:00:40 +0200
+Message-ID: <20170504090040.xnlpegbhp6jbwalp@pmoreau.org>
+References: <160646ee-8f7f-7a5d-b703-dd951b1d815b@xtronics.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2089012375=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170504065842.znkgzykecdvwgc6d@mwanda>
+In-Reply-To: <160646ee-8f7f-7a5d-b703-dd951b1d815b-WH+jy8H4ZDlWk0Htik3J/w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,41 +16,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karl Schmidt <karl-WH+jy8H4ZDlWk0Htik3J/w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDUvMDQvMjAxNyAwNDo1OCBQTSwgRGFuIENhcnBlbnRlciB3cm90ZToKPiBIZWxsbyBCZW4g
-U2tlZ2dzLApIZXkgRGFuLAoKPgo+IFRoZSBwYXRjaCBmYmQ1OGViZGE5Yzg6ICJkcm0vbm91dmVh
-dS9vYmplY3Q6IG1lcmdlIHdpdGggaGFuZGxlIiBmcm9tCj4gQXVnIDIwLCAyMDE1LCBsZWFkcyB0
-byB0aGUgZm9sbG93aW5nIHN0YXRpYyBjaGVja2VyIHdhcm5pbmc6Cj4KPiAJZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbnZrbS9jb3JlL29iamVjdC5jOjI5OCBudmttX29iamVjdF9jdG9yKCkKPiAJ
-d2FybjogJ29iamVjdC0+ZW5naW5lJyBpcyBhbiBlcnJvciBwb2ludGVyIG9yIHZhbGlkCj4KPiBk
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2NvcmUvb2JqZWN0LmMKPiAgICAyODMgIHZvaWQK
-PiAgICAyODQgIG52a21fb2JqZWN0X2N0b3IoY29uc3Qgc3RydWN0IG52a21fb2JqZWN0X2Z1bmMg
-KmZ1bmMsCj4gICAgMjg1ICAgICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBudmttX29jbGFz
-cyAqb2NsYXNzLCBzdHJ1Y3QgbnZrbV9vYmplY3QgKm9iamVjdCkKPiAgICAyODYgIHsKPiAgICAy
-ODcgICAgICAgICAgb2JqZWN0LT5mdW5jID0gZnVuYzsKPiAgICAyODggICAgICAgICAgb2JqZWN0
-LT5jbGllbnQgPSBvY2xhc3MtPmNsaWVudDsKPiAgICAyODkgICAgICAgICAgb2JqZWN0LT5lbmdp
-bmUgPSBudmttX2VuZ2luZV9yZWYob2NsYXNzLT5lbmdpbmUpOwo+ICAgIDI5MCAgICAgICAgICBv
-YmplY3QtPm9jbGFzcyA9IG9jbGFzcy0+YmFzZS5vY2xhc3M7Cj4gICAgMjkxICAgICAgICAgIG9i
-amVjdC0+aGFuZGxlID0gb2NsYXNzLT5oYW5kbGU7Cj4gICAgMjkyICAgICAgICAgIG9iamVjdC0+
-cm91dGUgID0gb2NsYXNzLT5yb3V0ZTsKPiAgICAyOTMgICAgICAgICAgb2JqZWN0LT50b2tlbiAg
-PSBvY2xhc3MtPnRva2VuOwo+ICAgIDI5NCAgICAgICAgICBvYmplY3QtPm9iamVjdCA9IG9jbGFz
-cy0+b2JqZWN0Owo+ICAgIDI5NSAgICAgICAgICBJTklUX0xJU1RfSEVBRCgmb2JqZWN0LT5oZWFk
-KTsKPiAgICAyOTYgICAgICAgICAgSU5JVF9MSVNUX0hFQUQoJm9iamVjdC0+dHJlZSk7Cj4gICAg
-Mjk3ICAgICAgICAgIFJCX0NMRUFSX05PREUoJm9iamVjdC0+bm9kZSk7Cj4gICAgMjk4ICAgICAg
-ICAgIFdBUk5fT04ob2NsYXNzLT5lbmdpbmUgJiYgIW9iamVjdC0+ZW5naW5lKTsKPiAgICAgICAg
-ICAgICAgICAgICAgICAgICBeXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl4KPiBJZiBv
-Y2xhc3MtPmVuZ2luZSBpcyBub24tTlVMTCB0aGVuIG9iamVjdC0+ZW5naW5lIGFsc28gY2FuJ3Qg
-YmUgTlVMTC4KPiBJdCBjb3VsZCBiZSBhbiBlcnJvciBwb2ludGVyIHRob3VnaCBzbyBwZXJoYXBz
-IHdlIGludGVuZGVkIHRvIGNoZWNrIGZvcgo+IHRoYXQ/ICBPciBpdCdzIGFsc28gcG9zc2libGUg
-dGhhdCB3ZSB3YW50IGl0IGFzIGlzLgpUaGUgY29uZGl0aW9uIGl0c2VsZiBzaG91bGQgYmUgaW1w
-b3NzaWJsZSwgYnV0LCBJJ3ZlIGxlZnQgaXQgaW4ganVzdCBpbiAKY2FzZSBhbmQgcmVwbGFjZWQg
-dGhlIGNoZWNrIHdpdGggYSBzaW1wbGUgSVNfRVJSKCkuCgpUaGFua3MhCkJlbi4KPgo+ICAgIDI5
-OSAgfQo+Cj4gcmVnYXJkcywKPiBkYW4gY2FycGVudGVyCj4gX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1Cg==
+
+--===============2089012375==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kxr7qzekt4pq5clz"
+Content-Disposition: inline
+
+
+--kxr7qzekt4pq5clz
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+Acceleration for Pascal cards is coming in Linux 4.12, support for Pascal c=
+ards
+in xorg-video-nouveau is in 1.0.15, and if I remember correctly, on the
+Mesa-side, you will need >=3D17.0.
+
+Pierre
+
+On 02:04 am - May 04 2017, Karl Schmidt wrote:
+> This is probably the problem
+> May  3 16:44:45 kernel: [    7.068336] nouveau E[  DEVICE][0000:08:00.0] =
+unknown chipset, 0x137000a1
+> May  3 16:44:45 kernel: [    7.068401] nouveau E[     DRM] failed to crea=
+te 0x80000080, -22
+> May  3 16:44:45 kernel: [    7.068723] nouveau: probe of 0000:08:00.0 fai=
+led with error -22
+>=20
+> I can make this card available - if you can tell me an older card that ca=
+n do the
+> hdmi2 480x1200 60hz 4:4:4 output that is in
+>=20
+> xserver-xorg-video-nouveau 1:1.0.13-3
+>=20
+> --=20
+> -------------------------------------------------------------------------=
+-------
+> Karl Schmidt                                  EMail Karl-WH+jy8H4ZDlWk0Htik3J/w@public.gmane.org
+> Transtronics, Inc.                              WEB http://secure.transtr=
+onics.com
+> 3209 West 9th Street                             Ph (785) 841-3089
+> Lawrence, KS 66049                              FAX (785) 841-0434
+>=20
+> Coordination does not run in my family,
+> it stumbles.
+> -------------------------------------------------------------------------=
+-------
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--kxr7qzekt4pq5clz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEYgBv5JnnDxeItcEHU3l4X80+KSQFAlkK7bQACgkQU3l4X80+
+KSSxjw/+JZXvGsYcvNqLLzwLHVNdjT8amaEWia/NMvM0Gs0MA717aRyOF7GHYuKv
+YigO9E4Ifpbu5BNiXQgbWYGE8b8hdVZCNolUEPJcZx+I1vaxwsif/QEPp7/sThjY
+rtc8ePVDdpxVgstBLowmWtOKeRblSF8EVQNT+TMu55D9Y0punjZBys+S1VGPoFqo
+0dheqEuxPbh3qoFwbjKnuRPkxdwNorXaLal2qrSiACYHdcDgZpFvywGRo6XDjwyt
+NWr6uqcM9z04N7NhSU7YwObUe/7zPSmcOY/qjhcVD3f2/Pz9GO+vnFmT3H9aIo2C
+SN8Pq2wZ/GGE9wgrDkr5CnlZKvZD0ermDF6s50HZ4jRU6SSauWDaCSzRdSo2YqfP
+aJMT83V+NCZZvVUfs1E1zHPP7VDKrlZKMRi9Jz1uCNId/hUDgnLEO3O/Ows+OhXt
+CYqTCVVEj9W//P/s8PkX480VU63d1/JmBfWuaOh0XYEHlVqGNMkMuW9CgV4/jXdT
+E5e4vpRU0uRoabPbEe6fZdbgM/co8lq1Aqwd9Zzlg1oijvsTvmYbS7/s880ufpAF
+ixfU/lD+YzXvDTOuk6Lv21J/G+B0O8n8JO1aZyVkSOCKj3TzHMD7OIN83BwT8v3G
+EOZGgFWGcHrAbVAq35lfUivZThL5TkpW88vQaPsY5QnPAWT0xEY=
+=haqj
+-----END PGP SIGNATURE-----
+
+--kxr7qzekt4pq5clz--
+
+--===============2089012375==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2089012375==--
