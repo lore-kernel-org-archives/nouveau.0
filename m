@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Fri, 05 May 2017 10:55:02 +0000
-Message-ID: <bug-94990-8800-CZSpxEd7T6@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: Karl Schmidt <karl-WH+jy8H4ZDlWk0Htik3J/w@public.gmane.org>
+Subject: NV130 - gtx 1050 ti
+Date: Thu, 4 May 2017 00:17:59 -0500
+Message-ID: <810799e9-865a-2c87-b28b-c0350ff67e8c@xtronics.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1484393851=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,116 +18,37 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1484393851==
-Content-Type: multipart/alternative; boundary="14939817026.b34fB595.612";
- charset="UTF-8"
-
-
---14939817026.b34fB595.612
-Date: Fri, 5 May 2017 10:55:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
---- Comment #121 from Yann Golanski <freedesktop-0sa3Xf22Pasdnm+yROfE0A@public.gmane.org> ---
-(In reply to Pierre Moreau from comment #119)
-> (In reply to Yann Golanski from comment #118)
-> > More than a year and still no end in sight=E2=80=A6 Is the solution to =
-get another
-> > card or use the propitiatory driver?
->=20
-> Have you tried building Ben=E2=80=99s tree (see comment #112) and it didn=
-=E2=80=99t work for
-> you? Because the issue should be fixed in the development version of
-> Nouveau, and by the looks of it, will land in Linux 4.12.
-
-Sorry for the delay, my BIOS got re-written by Windows (thanks=E2=B8=AE) an=
-d it took me
-some time to fix it.=20
-
-I am happy to wait till 4.12 is released on Fedora but would like to know it
-works: several comments pointed to it being flaky=E2=80=A6
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14939817026.b34fB595.612
-Date: Fri, 5 May 2017 10:55:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c121">Comme=
-nt # 121</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktop&#64;kierun.org" title=3D"Yann Golanski &lt;freedesktop&#64;kier=
-un.org&gt;"> <span class=3D"fn">Yann Golanski</span></a>
-</span></b>
-        <pre>(In reply to Pierre Moreau from <a href=3D"show_bug.cgi?id=3D9=
-4990#c119">comment #119</a>)
-<span class=3D"quote">&gt; (In reply to Yann Golanski from <a href=3D"show_=
-bug.cgi?id=3D94990#c118">comment #118</a>)
-&gt; &gt; More than a year and still no end in sight=E2=80=A6 Is the soluti=
-on to get another
-&gt; &gt; card or use the propitiatory driver?
-&gt;=20
-&gt; Have you tried building Ben=E2=80=99s tree (see <a href=3D"show_bug.cg=
-i?id=3D94990#c112">comment #112</a>) and it didn=E2=80=99t work for
-&gt; you? Because the issue should be fixed in the development version of
-&gt; Nouveau, and by the looks of it, will land in Linux 4.12.</span >
-
-Sorry for the delay, my BIOS got re-written by Windows (thanks=E2=B8=AE) an=
-d it took me
-some time to fix it.=20
-
-I am happy to wait till 4.12 is released on Fedora but would like to know it
-works: several comments pointed to it being flaky=E2=80=A6</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14939817026.b34fB595.612--
-
---===============1484393851==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1484393851==--
+VGhpcyBpcyBzb3J0IG9mIHdvcmtpbmcgLS0gYnV0CgpJIGNhbid0IGdldCBpdCB0byBkbyBhIDRr
+IG91dHB1dC4KCk5vdCBzdXJlIGhvdyB0aGUgbW9uaXRvciByZXNvbHV0aW9uIGlzIGRldGVjdGVk
+IC0KVGhpcyBtb25pdG9yIGlzIHN1cHBvc2VkIHRvIGRvIDM0ODB4MTIwMCA2MGh6IDQ6NDo0CgpC
+dXQgdGhlIGluZm8gSSBnZXQgZnJvbSBod2luZm8gaXMgZGlmZmVyZW50LgoKSG93IGRvZXMgbm91
+dmVhdSBnZXQgdGhpcyBpbmZvcm1hdGlvbj8KCklmIGl0IGlzIGZyb20gYW4gSUQgLSB3aXRoIGEg
+bGlzdCAtIHRoZSBsaXN0IGlzIHByb2JhYmx5IGlzIHdyb25nLgoKCiMgaHdpbmZvIC0tbW9uaXRv
+cgo5NTogTm9uZSAwMC4xOiAxMDAwMiBMQ0QgTW9uaXRvcgogICBbQ3JlYXRlZCBhdCBtb25pdG9y
+Ljk3XQogICBVbmlxdWUgSUQ6IGp5aEcuaDlac2g0MGZGVzIKICAgSGFyZHdhcmUgQ2xhc3M6IG1v
+bml0b3IKICAgTW9kZWw6ICJTT05ZIFRWICAqMDAiCiAgIFZlbmRvcjogU05ZICJTT05ZIgogICBE
+ZXZpY2U6IGVpc2EgMHhmMzAzICJTT05ZIFRWICAqMDAiCiAgIFJlc29sdXRpb246IDY0MHg0ODBA
+NjBIegogICBSZXNvbHV0aW9uOiA4MDB4NjAwQDYwSHoKICAgUmVzb2x1dGlvbjogMTAyNHg3NjhA
+NjBIegogICBSZXNvbHV0aW9uOiAxMjgweDEwMjRANjBIegogICBSZXNvbHV0aW9uOiAxNjAweDkw
+MEA2MEh6CiAgIFJlc29sdXRpb246IDExNTJ4ODY0QDc1SHoKICAgUmVzb2x1dGlvbjogMTI4MHg3
+MjBANjBIegogICBSZXNvbHV0aW9uOiAxOTIweDEwODBANjBIegogICBTaXplOiAxMDg1eDYxMCBt
+bQogICBZZWFyIG9mIE1hbnVmYWN0dXJlOiAyMDE2CiAgIFdlZWsgb2YgTWFudWZhY3R1cmU6IDEK
+ICAgRGV0YWlsZWQgVGltaW5ncyAjMDoKICAgICAgUmVzb2x1dGlvbjogMTkyMHgxMDgwCiAgICAg
+IEhvcml6b250YWw6IDE5MjAgMjAwOCAyMDUyIDIyMDAgKCs4OCArMTMyICsyODApICtoc3luYwog
+ICAgICAgIFZlcnRpY2FsOiAxMDgwIDEwODQgMTA4OSAxMTI1ICgrNCArOSArNDUpICt2c3luYwog
+ICAgIEZyZXF1ZW5jaWVzOiAxNDguNTAgTUh6LCA2Ny41MCBrSHosIDYwLjAwIEh6CiAgIFllYXIg
+b2YgTWFudWZhY3R1cmU6IDIwMTYKICAgV2VlayBvZiBNYW51ZmFjdHVyZTogMQoKUnVubmluZyA6
+CmxpYmRybS1ub3V2ZWF1MjphbWQ2NCAgICAgICAgMi40Ljc0LTEKeHNlcnZlci14b3JnLXZpZGVv
+LW5vdXZlYXUgICAxOjEuMC4xMy0zCmxpbnV4LWltYWdlLTQuOS4wLTItYW1kNjQKCgoKLS0gCi0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tCkthcmwgU2NobWlkdCAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBFTWFpbCBLYXJsQHh0cm9uaWNzLmNvbQpUcmFuc3Ryb25pY3MsIEluYy4gICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBXRUIgaHR0cDovL3NlY3VyZS50cmFuc3Ryb25pY3Mu
+Y29tCjMyMDkgV2VzdCA5dGggU3RyZWV0ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBQaCAo
+Nzg1KSA4NDEtMzA4OQpMYXdyZW5jZSwgS1MgNjYwNDkgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBGQVggKDc4NSkgODQxLTA0MzQKCkNvb3JkaW5hdGlvbiBkb2VzIG5vdCBydW4gaW4gbXkg
+ZmFtaWx5LAppdCBzdHVtYmxlcy4KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
