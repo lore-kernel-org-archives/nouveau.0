@@ -1,10 +1,13 @@
-From: Vincent Vanackere <vincent.vanackere-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: GT 730 freeze : how do diagnose / debug ?
-Date: Sun, 7 May 2017 22:03:36 +0200
-Message-ID: <CAMpZLrg3G7SYUDzXbzug9y98K_KmkQTwPMc2OWjnuxCicR6Uhw@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: GT 730 freeze : how do diagnose / debug ?
+Date: Sun, 7 May 2017 17:50:57 -0400
+Message-ID: <CAKb7UvhvmcmirvgeJEVw4pdiumgWav7m8ZT4d09k4UMnb4p9fg@mail.gmail.com>
+References: <CAMpZLrg3G7SYUDzXbzug9y98K_KmkQTwPMc2OWjnuxCicR6Uhw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0554010713=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAMpZLrg3G7SYUDzXbzug9y98K_KmkQTwPMc2OWjnuxCicR6Uhw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -14,188 +17,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Vincent Vanackere <vincent.vanackere-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0554010713==
-Content-Type: multipart/alternative; boundary=001a11405f20fde410054ef49fee
-
---001a11405f20fde410054ef49fee
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
- I own an Asus GT730-SL-2GD3-BRK, trying to drive two monitors at 2560x1440
-resolution. Using gnome-shell with either Xorg or wayland I get screen
-freezes very frequently. Those freezes usually require a reboot to get
-working graphics (below a sample trace that I got yesterday).
- I am running Ubuntu 17.04 with the latest kernels avalable, I also tested
-various more recent kernels including the latest drm tree at
-https://cgit.freedesktop.org/~airlied/linux/log/?h=3Ddrm-next but the probl=
-em
-always occurs.
- When a freeze occurs, the computer is still reachable through ssh but the
-only action I found so far to get graphics back is to restart the computer.
-  I am willing to run diagnostics programs or test any patch if it would
-help. I'm also not excluding the possibility that I may have some faulty
-hardware so any hardwae-health-test advice would be welcome...
-
-Regards,
-
-Vincent Vanack=C3=A8re
-
-[    1.199135] nouveau 0000:01:00.0: NVIDIA GK208B (b06070b1)
-[    1.319930] nouveau 0000:01:00.0: bios: version 80.28.92.00.10
-[    1.322095] nouveau 0000:01:00.0: fb: 2048 MiB DDR3
-[    2.620362] nouveau 0000:01:00.0: DRM: VRAM: 2048 MiB
-[    2.620362] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-[    2.620364] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
-[    2.620378] nouveau 0000:01:00.0: DRM: DCB version 4.0
-[    2.620379] nouveau 0000:01:00.0: DRM: DCB outp 00: 01000f02 00020030
-[    2.620380] nouveau 0000:01:00.0: DRM: DCB outp 01: 02011f62 00020010
-[    2.620380] nouveau 0000:01:00.0: DRM: DCB outp 02: 02022f10 00000000
-[    2.620381] nouveau 0000:01:00.0: DRM: DCB conn 00: 00001031
-[    2.620381] nouveau 0000:01:00.0: DRM: DCB conn 01: 00002161
-[    2.620382] nouveau 0000:01:00.0: DRM: DCB conn 02: 00000200
-[    2.666199] nouveau 0000:01:00.0: hwmon_device_register() is deprecated.
-Please convert the driver to use hwmon_device_register_with_info().
-[    2.717519] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
-[    2.992994] nouveau 0000:01:00.0: DRM: allocated 2560x1440 fb: 0x60000,
-bo ffff8cd1499f8000
-[    3.025200] fbcon: nouveaufb (fb0) is primary device
-[    3.253561] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
-[    3.268163] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
-minor 0
-[ 2150.225651] nouveau 0000:01:00.0: fifo: read fault at 0006710000 engine
-00 [GR] client 02 [GPC0/PE_0] reason 02 [PTE] on channel 31 [007e8cb000
-Xwayland[3019]]
-[ 2150.225662] nouveau 0000:01:00.0: fifo: channel 31: killed
-[ 2150.225663] nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recover=
-y
-[ 2150.225666] nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
-[ 2150.225669] nouveau 0000:01:00.0: Xwayland[3019]: channel 31 killed!
-[ 2296.863975] Workqueue: events_unbound nv50_disp_atomic_commit_work
-[nouveau]
-[ 2296.863990]  ? nvkm_ioctl_ntfy_get+0x69/0xb0 [nouveau]
-[ 2296.864032]  nv50_disp_atomic_commit_tail+0x55/0x3a00 [nouveau]
-[ 2296.864047]  nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
-[ 2296.864118] Workqueue: events_unbound nv50_disp_atomic_commit_work
-[nouveau]
-[ 2296.864138]  ? nouveau_bo_rd32+0x2a/0x30 [nouveau]
-[ 2296.864153]  ? nv84_fence_read+0x2e/0x30 [nouveau]
-[ 2296.864175]  nv50_disp_atomic_commit_tail+0x55/0x3a00 [nouveau]
-[ 2296.864189]  nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
-[ 2417.699641] Workqueue: events_unbound nv50_disp_atomic_commit_work
-[nouveau]
-[ 2417.699656]  ? nvkm_ioctl_ntfy_get+0x69/0xb0 [nouveau]
-[ 2417.699688]  nv50_disp_atomic_commit_tail+0x55/0x3a00 [nouveau]
-[ 2417.699705]  nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
-[ 2417.699785] Workqueue: events_unbound nv50_disp_atomic_commit_work
-[nouveau]
-[ 2417.699808]  ? nouveau_bo_rd32+0x2a/0x30 [nouveau]
-[ 2417.699825]  ? nv84_fence_read+0x2e/0x30 [nouveau]
-[ 2417.699851]  nv50_disp_atomic_commit_tail+0x55/0x3a00 [nouveau]
-[ 2417.699867]  nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
-[ 2538.535424] Workqueue: events_unbound nv50_disp_atomic_commit_work
-[nouveau]
-[ 2538.535439]  ? nvkm_ioctl_ntfy_get+0x69/0xb0 [nouveau]
-[ 2538.535469]  nv50_disp_atomic_commit_tail+0x55/0x3a00 [nouveau]
-[ 2538.535485]  nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
-[ 2538.535555] Workqueue: events_unbound nv50_disp_atomic_commit_work
-[nouveau]
-[ 2538.535576]  ? nouveau_bo_rd32+0x2a/0x30 [nouveau]
-[ 2538.535591]  ? nv84_fence_read+0x2e/0x30 [nouveau]
-[ 2538.535614]  nv50_disp_atomic_commit_tail+0x55/0x3a00 [nouveau]
-[ 2538.535628]  nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
-
---001a11405f20fde410054ef49fee
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div>Hi,<br><br></div>=C2=A0I own an Asus GT730-SL-2G=
-D3-BRK, trying to drive two monitors at 2560x1440 resolution. Using gnome-s=
-hell with either Xorg or wayland I get screen freezes very frequently. Thos=
-e freezes usually require a reboot to get working graphics (below a sample =
-trace that I got yesterday). <br>=C2=A0I am running Ubuntu 17.04 with the l=
-atest kernels avalable, I also tested various more recent kernels including=
- the latest drm tree at <a href=3D"https://cgit.freedesktop.org/~airlied/li=
-nux/log/?h=3Ddrm-next" target=3D"_blank">https://cgit.freedesktop.org/~<wbr=
->airlied/linux/log/?h=3Ddrm-next</a> but the problem always occurs.<br>=C2=
-=A0When a freeze occurs, the computer is still reachable through ssh but th=
-e only action I found so far to get graphics back is to restart the compute=
-r. <br>=C2=A0 I am willing to run diagnostics programs or test any patch if=
- it would help. I&#39;m also not excluding the possibility that I may have =
-some faulty hardware so any hardwae-health-test advice would be welcome...<=
-br>=C2=A0<br></div><div>Regards,<br><br></div><div>Vincent Vanack=C3=A8re<b=
-r></div><div><div><br>[=C2=A0=C2=A0=C2=A0 1.199135] nouveau 0000:01:00.0: N=
-VIDIA GK208B (b06070b1)<br>[=C2=A0=C2=A0=C2=A0 1.319930] nouveau 0000:01:00=
-.0: bios: version 80.28.92.00.10<br>[=C2=A0=C2=A0=C2=A0 1.322095] nouveau 0=
-000:01:00.0: fb: 2048 MiB DDR3<br>[=C2=A0=C2=A0=C2=A0 2.620362] nouveau 000=
-0:01:00.0: DRM: VRAM: 2048 MiB<br>[=C2=A0=C2=A0=C2=A0 2.620362] nouveau 000=
-0:01:00.0: DRM: GART: 1048576 MiB<br>[=C2=A0=C2=A0=C2=A0 2.620364] nouveau =
-0000:01:00.0: DRM: TMDS table version 2.0<br>[=C2=A0=C2=A0=C2=A0 2.620378] =
-nouveau 0000:01:00.0: DRM: DCB version 4.0<br>[=C2=A0=C2=A0=C2=A0 2.620379]=
- nouveau 0000:01:00.0: DRM: DCB outp 00: 01000f02 00020030<br>[=C2=A0=C2=A0=
-=C2=A0 2.620380] nouveau 0000:01:00.0: DRM: DCB outp 01: 02011f62 00020010<=
-br>[=C2=A0=C2=A0=C2=A0 2.620380] nouveau 0000:01:00.0: DRM: DCB outp 02: 02=
-022f10 00000000<br>[=C2=A0=C2=A0=C2=A0 2.620381] nouveau 0000:01:00.0: DRM:=
- DCB conn 00: 00001031<br>[=C2=A0=C2=A0=C2=A0 2.620381] nouveau 0000:01:00.=
-0: DRM: DCB conn 01: 00002161<br>[=C2=A0=C2=A0=C2=A0 2.620382] nouveau 0000=
-:01:00.0: DRM: DCB conn 02: 00000200<br>[=C2=A0=C2=A0=C2=A0 2.666199] nouve=
-au 0000:01:00.0: hwmon_device_register() is deprecated. Please convert the =
-driver to use hwmon_device_register_with_<wbr>info().<br>[=C2=A0=C2=A0=C2=
-=A0 2.717519] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies<b=
-r>[=C2=A0=C2=A0=C2=A0 2.992994] nouveau 0000:01:00.0: DRM: allocated 2560x1=
-440 fb: 0x60000, bo ffff8cd1499f8000<br>[=C2=A0=C2=A0=C2=A0 3.025200] fbcon=
-: nouveaufb (fb0) is primary device<br>[=C2=A0=C2=A0=C2=A0 3.253561] nouvea=
-u 0000:01:00.0: fb0: nouveaufb frame buffer device<br>[=C2=A0=C2=A0=C2=A0 3=
-.268163] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on minor=
- 0<br>[ 2150.225651] nouveau 0000:01:00.0: fifo: read fault at 0006710000 e=
-ngine 00 [GR] client 02 [GPC0/PE_0] reason 02 [PTE] on channel 31 [007e8cb0=
-00 Xwayland[3019]]<br>[ 2150.225662] nouveau 0000:01:00.0: fifo: channel 31=
-: killed<br>[ 2150.225663] nouveau 0000:01:00.0: fifo: runlist 0: scheduled=
- for recovery<br>[ 2150.225666] nouveau 0000:01:00.0: fifo: engine 0: sched=
-uled for recovery<br>[ 2150.225669] nouveau 0000:01:00.0: Xwayland[3019]: c=
-hannel 31 killed!<br>[ 2296.863975] Workqueue: events_unbound nv50_disp_ato=
-mic_commit_work [nouveau]<br>[ 2296.863990]=C2=A0 ? nvkm_ioctl_ntfy_get+0x6=
-9/0xb0 [nouveau]<br>[ 2296.864032]=C2=A0 nv50_disp_atomic_commit_tail+<wbr>=
-0x55/0x3a00 [nouveau]<br>[ 2296.864047]=C2=A0 nv50_disp_atomic_commit_work+=
-<wbr>0x12/0x20 [nouveau]<br>[ 2296.864118] Workqueue: events_unbound nv50_d=
-isp_atomic_commit_work [nouveau]<br>[ 2296.864138]=C2=A0 ? nouveau_bo_rd32+=
-0x2a/0x30 [nouveau]<br>[ 2296.864153]=C2=A0 ? nv84_fence_read+0x2e/0x30 [no=
-uveau]<br>[ 2296.864175]=C2=A0 nv50_disp_atomic_commit_tail+<wbr>0x55/0x3a0=
-0 [nouveau]<br>[ 2296.864189]=C2=A0 nv50_disp_atomic_commit_work+<wbr>0x12/=
-0x20 [nouveau]<br>[ 2417.699641] Workqueue: events_unbound nv50_disp_atomic=
-_commit_work [nouveau]<br>[ 2417.699656]=C2=A0 ? nvkm_ioctl_ntfy_get+0x69/0=
-xb0 [nouveau]<br>[ 2417.699688]=C2=A0 nv50_disp_atomic_commit_tail+<wbr>0x5=
-5/0x3a00 [nouveau]<br>[ 2417.699705]=C2=A0 nv50_disp_atomic_commit_work+<wb=
-r>0x12/0x20 [nouveau]<br>[ 2417.699785] Workqueue: events_unbound nv50_disp=
-_atomic_commit_work [nouveau]<br>[ 2417.699808]=C2=A0 ? nouveau_bo_rd32+0x2=
-a/0x30 [nouveau]<br>[ 2417.699825]=C2=A0 ? nv84_fence_read+0x2e/0x30 [nouve=
-au]<br>[ 2417.699851]=C2=A0 nv50_disp_atomic_commit_tail+<wbr>0x55/0x3a00 [=
-nouveau]<br>[ 2417.699867]=C2=A0 nv50_disp_atomic_commit_work+<wbr>0x12/0x2=
-0 [nouveau]<br>[ 2538.535424] Workqueue: events_unbound nv50_disp_atomic_co=
-mmit_work [nouveau]<br>[ 2538.535439]=C2=A0 ? nvkm_ioctl_ntfy_get+0x69/0xb0=
- [nouveau]<br>[ 2538.535469]=C2=A0 nv50_disp_atomic_commit_tail+<wbr>0x55/0=
-x3a00 [nouveau]<br>[ 2538.535485]=C2=A0 nv50_disp_atomic_commit_work+<wbr>0=
-x12/0x20 [nouveau]<br>[ 2538.535555] Workqueue: events_unbound nv50_disp_at=
-omic_commit_work [nouveau]<br>[ 2538.535576]=C2=A0 ? nouveau_bo_rd32+0x2a/0=
-x30 [nouveau]<br>[ 2538.535591]=C2=A0 ? nv84_fence_read+0x2e/0x30 [nouveau]=
-<br>[ 2538.535614]=C2=A0 nv50_disp_atomic_commit_tail+<wbr>0x55/0x3a00 [nou=
-veau]<br>[ 2538.535628]=C2=A0 nv50_disp_atomic_commit_work+<wbr>0x12/0x20 [=
-nouveau]<br><br></div></div></div>
-
---001a11405f20fde410054ef49fee--
-
---===============0554010713==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0554010713==--
+WW91IGhhdmUgdHdvIGlzc3VlczoKCihhKSBub3V2ZWF1J3MgR0wgZHJpdmVyIG1lc3NlZCBzb21l
+dGhpbmcgdXAsIGNhdXNpbmcgYSByZWFkIGZhdWx0IGVycm9yCihiKSBub3V2ZWF1J3Mga2VybmVs
+IGRyaXZlciB0cmllZCB0byByZWNvdmVyLiBJdCBmYWlsZWQuCgpTb2x1dGlvbiB0byAjMTogTm9u
+ZSwgcmVhbGx5LiBZb3UgY2FuIHRyeSB1cGRhdGluZyBtZXNhLCBhbmQgaG9wZSBpdApoZWxwcy4g
+Tm90IHN1cmUgd2hhdCB2ZXJzaW9uIHlvdSdyZSBvbi4KU29sdXRpb24gdG8gIzI6IEJlbiBTa2Vn
+Z3Mgd2lsbCBob3BlZnVsbHkgaGF2ZSBzb21ldGhpbmcgY2xldmVyIHRvCnNheS4gVGhlIHJlY292
+ZXJ5IGxvZ2ljIHdhcyByZWNlbnRseSBiZWVmZWQgdXAgY29uc2lkZXJhYmx5LCBzbyB0aGUKZmFj
+dCB0aGF0IHlvdSBldmVuIGdvdCB0aGF0IGZhciBpcyBhbHJlYWR5IGEgZ29vZCBzdGFydC4KCklm
+IHlvdSdyZSBsb29raW5nIGZvciBhIHN0YWJsZSBleHBlcmllbmNlIHdpdGggWG9yZywgSSByZWNv
+bW1lbmQgdXNpbmcKeGY4Ni12aWRlby1ub3V2ZWF1IC0tIGl0J3MgYmVlbiBleHRlbnNpdmVseSBi
+YXR0bGUtdGVzdGVkLCBhbmQgaXMKcXVpdGUgc2ltcGxlIGxvZ2ljOyBJIGFsc28gcmVjb21tZW5k
+IGFnYWluc3QgYW55dGhpbmcgdGhhdCB1c2VzIEdMIG9uCmFuIG9uZ29pbmcgYmFzaXMgKHdoaWNo
+LCBzYWRseSwgZXZlcnlvbmUgdGhpbmtzIGlzIHRoZSBjb29sZXN0IHRoaW5nCnRvIGRvIHRoZXNl
+IGRheXMpLiBJZiB5b3UncmUgbG9va2luZyBmb3IgYSBzdGFibGUgZXhwZXJpZW5jZSB3aXRoIGEK
+R0wtYmFzZWQgV2F5bGFuZCBjb21wb3NpdG9yLCB5b3UnbGwgaGF2ZSB0byB3YWl0IHVudGlsIGVp
+dGhlciB0aGUKbm91dmVhdSBHTCBkcml2ZXIgaXMgcGVyZmVjdCBvciBub3V2ZWF1IGtlcm5lbCBt
+b2R1bGUgY2FuIHByb3Blcmx5CnJlY292ZXIgZnJvbSBhbnkgc2NyZXd1cHMgdGhlIEdMIGRyaXZl
+ciBtYWtlcy4KCllvdSBjYW4gYWxzbyByZW1vdmUgbm91dmVhdV9kcmkuc28gZW50aXJlbHksIHdo
+aWNoIGlzIGEgYmlnIGhhbW1lcgphZ2FpbnN0IHRoZXNlIHR5cGVzIG9mIGlzc3VlcyAocmVtb3Zl
+cyBhbGwgR0wtYmFzZWQgYWNjZWxlcmF0aW9uKSwgb3IKeW91IGNhbiBydW4gY2VydGFpbiBrZXkg
+cGllY2VzIG9mIHNvZnR3YXJlIHdpdGgKTElCR0xfQUxXQVlTX1NPRlRXQVJFPTEsIHdoaWNoIHdp
+bGwgZm9yY2UgYSBDUFUtYmFzZWQgR0wKaW1wbGVtZW50YXRpb24uCgpDaGVlcnMsCgogIC1pbGlh
+CgoKMjAxNy0wNS0wNyAxNjowMyBHTVQtMDQ6MDAgVmluY2VudCBWYW5hY2tlcmUgPHZpbmNlbnQu
+dmFuYWNrZXJlQGdtYWlsLmNvbT46Cj4gSGksCj4KPiAgSSBvd24gYW4gQXN1cyBHVDczMC1TTC0y
+R0QzLUJSSywgdHJ5aW5nIHRvIGRyaXZlIHR3byBtb25pdG9ycyBhdCAyNTYweDE0NDAKPiByZXNv
+bHV0aW9uLiBVc2luZyBnbm9tZS1zaGVsbCB3aXRoIGVpdGhlciBYb3JnIG9yIHdheWxhbmQgSSBn
+ZXQgc2NyZWVuCj4gZnJlZXplcyB2ZXJ5IGZyZXF1ZW50bHkuIFRob3NlIGZyZWV6ZXMgdXN1YWxs
+eSByZXF1aXJlIGEgcmVib290IHRvIGdldAo+IHdvcmtpbmcgZ3JhcGhpY3MgKGJlbG93IGEgc2Ft
+cGxlIHRyYWNlIHRoYXQgSSBnb3QgeWVzdGVyZGF5KS4KPiAgSSBhbSBydW5uaW5nIFVidW50dSAx
+Ny4wNCB3aXRoIHRoZSBsYXRlc3Qga2VybmVscyBhdmFsYWJsZSwgSSBhbHNvIHRlc3RlZAo+IHZh
+cmlvdXMgbW9yZSByZWNlbnQga2VybmVscyBpbmNsdWRpbmcgdGhlIGxhdGVzdCBkcm0gdHJlZSBh
+dAo+IGh0dHBzOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvfmFpcmxpZWQvbGludXgvbG9nLz9oPWRy
+bS1uZXh0IGJ1dCB0aGUgcHJvYmxlbQo+IGFsd2F5cyBvY2N1cnMuCj4gIFdoZW4gYSBmcmVlemUg
+b2NjdXJzLCB0aGUgY29tcHV0ZXIgaXMgc3RpbGwgcmVhY2hhYmxlIHRocm91Z2ggc3NoIGJ1dCB0
+aGUKPiBvbmx5IGFjdGlvbiBJIGZvdW5kIHNvIGZhciB0byBnZXQgZ3JhcGhpY3MgYmFjayBpcyB0
+byByZXN0YXJ0IHRoZSBjb21wdXRlci4KPiAgIEkgYW0gd2lsbGluZyB0byBydW4gZGlhZ25vc3Rp
+Y3MgcHJvZ3JhbXMgb3IgdGVzdCBhbnkgcGF0Y2ggaWYgaXQgd291bGQKPiBoZWxwLiBJJ20gYWxz
+byBub3QgZXhjbHVkaW5nIHRoZSBwb3NzaWJpbGl0eSB0aGF0IEkgbWF5IGhhdmUgc29tZSBmYXVs
+dHkKPiBoYXJkd2FyZSBzbyBhbnkgaGFyZHdhZS1oZWFsdGgtdGVzdCBhZHZpY2Ugd291bGQgYmUg
+d2VsY29tZS4uLgo+Cj4gUmVnYXJkcywKPgo+IFZpbmNlbnQgVmFuYWNrw6hyZQo+Cj4gWyAgICAx
+LjE5OTEzNV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IE5WSURJQSBHSzIwOEIgKGIwNjA3MGIxKQo+
+IFsgICAgMS4zMTk5MzBdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBiaW9zOiB2ZXJzaW9uIDgwLjI4
+LjkyLjAwLjEwCj4gWyAgICAxLjMyMjA5NV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZiOiAyMDQ4
+IE1pQiBERFIzCj4gWyAgICAyLjYyMDM2Ml0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogVlJB
+TTogMjA0OCBNaUIKPiBbICAgIDIuNjIwMzYyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBH
+QVJUOiAxMDQ4NTc2IE1pQgo+IFsgICAgMi42MjAzNjRdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBE
+Uk06IFRNRFMgdGFibGUgdmVyc2lvbiAyLjAKPiBbICAgIDIuNjIwMzc4XSBub3V2ZWF1IDAwMDA6
+MDE6MDAuMDogRFJNOiBEQ0IgdmVyc2lvbiA0LjAKPiBbICAgIDIuNjIwMzc5XSBub3V2ZWF1IDAw
+MDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMDogMDEwMDBmMDIgMDAwMjAwMzAKPiBbICAgIDIu
+NjIwMzgwXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMTogMDIwMTFmNjIg
+MDAwMjAwMTAKPiBbICAgIDIuNjIwMzgwXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Ig
+b3V0cCAwMjogMDIwMjJmMTAgMDAwMDAwMDAKPiBbICAgIDIuNjIwMzgxXSBub3V2ZWF1IDAwMDA6
+MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwMDogMDAwMDEwMzEKPiBbICAgIDIuNjIwMzgxXSBub3V2
+ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwMTogMDAwMDIxNjEKPiBbICAgIDIuNjIw
+MzgyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwMjogMDAwMDAyMDAKPiBb
+ICAgIDIuNjY2MTk5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogaHdtb25fZGV2aWNlX3JlZ2lzdGVy
+KCkgaXMgZGVwcmVjYXRlZC4KPiBQbGVhc2UgY29udmVydCB0aGUgZHJpdmVyIHRvIHVzZSBod21v
+bl9kZXZpY2VfcmVnaXN0ZXJfd2l0aF9pbmZvKCkuCj4gWyAgICAyLjcxNzUxOV0gbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IERSTTogTU06IHVzaW5nIENPUFkgZm9yIGJ1ZmZlciBjb3BpZXMKPiBbICAg
+IDIuOTkyOTk0XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBhbGxvY2F0ZWQgMjU2MHgxNDQw
+IGZiOiAweDYwMDAwLAo+IGJvIGZmZmY4Y2QxNDk5ZjgwMDAKPiBbICAgIDMuMDI1MjAwXSBmYmNv
+bjogbm91dmVhdWZiIChmYjApIGlzIHByaW1hcnkgZGV2aWNlCj4gWyAgICAzLjI1MzU2MV0gbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IGZiMDogbm91dmVhdWZiIGZyYW1lIGJ1ZmZlciBkZXZpY2UKPiBb
+ICAgIDMuMjY4MTYzXSBbZHJtXSBJbml0aWFsaXplZCBub3V2ZWF1IDEuMy4xIDIwMTIwODAxIGZv
+ciAwMDAwOjAxOjAwLjAgb24KPiBtaW5vciAwCj4gWyAyMTUwLjIyNTY1MV0gbm91dmVhdSAwMDAw
+OjAxOjAwLjA6IGZpZm86IHJlYWQgZmF1bHQgYXQgMDAwNjcxMDAwMCBlbmdpbmUKPiAwMCBbR1Jd
+IGNsaWVudCAwMiBbR1BDMC9QRV8wXSByZWFzb24gMDIgW1BURV0gb24gY2hhbm5lbCAzMSBbMDA3
+ZThjYjAwMAo+IFh3YXlsYW5kWzMwMTldXQo+IFsgMjE1MC4yMjU2NjJdIG5vdXZlYXUgMDAwMDow
+MTowMC4wOiBmaWZvOiBjaGFubmVsIDMxOiBraWxsZWQKPiBbIDIxNTAuMjI1NjYzXSBub3V2ZWF1
+IDAwMDA6MDE6MDAuMDogZmlmbzogcnVubGlzdCAwOiBzY2hlZHVsZWQgZm9yIHJlY292ZXJ5Cj4g
+WyAyMTUwLjIyNTY2Nl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZpZm86IGVuZ2luZSAwOiBzY2hl
+ZHVsZWQgZm9yIHJlY292ZXJ5Cj4gWyAyMTUwLjIyNTY2OV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6
+IFh3YXlsYW5kWzMwMTldOiBjaGFubmVsIDMxIGtpbGxlZCEKPiBbIDIyOTYuODYzOTc1XSBXb3Jr
+cXVldWU6IGV2ZW50c191bmJvdW5kIG52NTBfZGlzcF9hdG9taWNfY29tbWl0X3dvcmsKPiBbbm91
+dmVhdV0KPiBbIDIyOTYuODYzOTkwXSAgPyBudmttX2lvY3RsX250ZnlfZ2V0KzB4NjkvMHhiMCBb
+bm91dmVhdV0KPiBbIDIyOTYuODY0MDMyXSAgbnY1MF9kaXNwX2F0b21pY19jb21taXRfdGFpbCsw
+eDU1LzB4M2EwMCBbbm91dmVhdV0KPiBbIDIyOTYuODY0MDQ3XSAgbnY1MF9kaXNwX2F0b21pY19j
+b21taXRfd29yaysweDEyLzB4MjAgW25vdXZlYXVdCj4gWyAyMjk2Ljg2NDExOF0gV29ya3F1ZXVl
+OiBldmVudHNfdW5ib3VuZCBudjUwX2Rpc3BfYXRvbWljX2NvbW1pdF93b3JrCj4gW25vdXZlYXVd
+Cj4gWyAyMjk2Ljg2NDEzOF0gID8gbm91dmVhdV9ib19yZDMyKzB4MmEvMHgzMCBbbm91dmVhdV0K
+PiBbIDIyOTYuODY0MTUzXSAgPyBudjg0X2ZlbmNlX3JlYWQrMHgyZS8weDMwIFtub3V2ZWF1XQo+
+IFsgMjI5Ni44NjQxNzVdICBudjUwX2Rpc3BfYXRvbWljX2NvbW1pdF90YWlsKzB4NTUvMHgzYTAw
+IFtub3V2ZWF1XQo+IFsgMjI5Ni44NjQxODldICBudjUwX2Rpc3BfYXRvbWljX2NvbW1pdF93b3Jr
+KzB4MTIvMHgyMCBbbm91dmVhdV0KPiBbIDI0MTcuNjk5NjQxXSBXb3JrcXVldWU6IGV2ZW50c191
+bmJvdW5kIG52NTBfZGlzcF9hdG9taWNfY29tbWl0X3dvcmsKPiBbbm91dmVhdV0KPiBbIDI0MTcu
+Njk5NjU2XSAgPyBudmttX2lvY3RsX250ZnlfZ2V0KzB4NjkvMHhiMCBbbm91dmVhdV0KPiBbIDI0
+MTcuNjk5Njg4XSAgbnY1MF9kaXNwX2F0b21pY19jb21taXRfdGFpbCsweDU1LzB4M2EwMCBbbm91
+dmVhdV0KPiBbIDI0MTcuNjk5NzA1XSAgbnY1MF9kaXNwX2F0b21pY19jb21taXRfd29yaysweDEy
+LzB4MjAgW25vdXZlYXVdCj4gWyAyNDE3LjY5OTc4NV0gV29ya3F1ZXVlOiBldmVudHNfdW5ib3Vu
+ZCBudjUwX2Rpc3BfYXRvbWljX2NvbW1pdF93b3JrCj4gW25vdXZlYXVdCj4gWyAyNDE3LjY5OTgw
+OF0gID8gbm91dmVhdV9ib19yZDMyKzB4MmEvMHgzMCBbbm91dmVhdV0KPiBbIDI0MTcuNjk5ODI1
+XSAgPyBudjg0X2ZlbmNlX3JlYWQrMHgyZS8weDMwIFtub3V2ZWF1XQo+IFsgMjQxNy42OTk4NTFd
+ICBudjUwX2Rpc3BfYXRvbWljX2NvbW1pdF90YWlsKzB4NTUvMHgzYTAwIFtub3V2ZWF1XQo+IFsg
+MjQxNy42OTk4NjddICBudjUwX2Rpc3BfYXRvbWljX2NvbW1pdF93b3JrKzB4MTIvMHgyMCBbbm91
+dmVhdV0KPiBbIDI1MzguNTM1NDI0XSBXb3JrcXVldWU6IGV2ZW50c191bmJvdW5kIG52NTBfZGlz
+cF9hdG9taWNfY29tbWl0X3dvcmsKPiBbbm91dmVhdV0KPiBbIDI1MzguNTM1NDM5XSAgPyBudmtt
+X2lvY3RsX250ZnlfZ2V0KzB4NjkvMHhiMCBbbm91dmVhdV0KPiBbIDI1MzguNTM1NDY5XSAgbnY1
+MF9kaXNwX2F0b21pY19jb21taXRfdGFpbCsweDU1LzB4M2EwMCBbbm91dmVhdV0KPiBbIDI1Mzgu
+NTM1NDg1XSAgbnY1MF9kaXNwX2F0b21pY19jb21taXRfd29yaysweDEyLzB4MjAgW25vdXZlYXVd
+Cj4gWyAyNTM4LjUzNTU1NV0gV29ya3F1ZXVlOiBldmVudHNfdW5ib3VuZCBudjUwX2Rpc3BfYXRv
+bWljX2NvbW1pdF93b3JrCj4gW25vdXZlYXVdCj4gWyAyNTM4LjUzNTU3Nl0gID8gbm91dmVhdV9i
+b19yZDMyKzB4MmEvMHgzMCBbbm91dmVhdV0KPiBbIDI1MzguNTM1NTkxXSAgPyBudjg0X2ZlbmNl
+X3JlYWQrMHgyZS8weDMwIFtub3V2ZWF1XQo+IFsgMjUzOC41MzU2MTRdICBudjUwX2Rpc3BfYXRv
+bWljX2NvbW1pdF90YWlsKzB4NTUvMHgzYTAwIFtub3V2ZWF1XQo+IFsgMjUzOC41MzU2MjhdICBu
+djUwX2Rpc3BfYXRvbWljX2NvbW1pdF93b3JrKzB4MTIvMHgyMCBbbm91dmVhdV0KPgo+Cj4gX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1h
+aWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
