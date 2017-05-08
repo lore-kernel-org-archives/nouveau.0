@@ -1,50 +1,54 @@
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Subject: [PATCH v2] drm/nouveau/secboot: plug memory leak in ls_ucode_img_load_gr() error path
-Date: Mon,  8 May 2017 14:30:43 +0200
-Message-ID: <20170508123043.18127-1-christophe.jaillet@wanadoo.fr>
-Return-path: <kernel-janitors-owner@vger.kernel.org>
-Sender: kernel-janitors-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, acourbot@nvidia.com
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org, Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: GT 730 freeze : how do diagnose / debug ?
+Date: Mon, 8 May 2017 08:39:39 -0400
+Message-ID: <CAKb7Uvi7rPWvE5-8y-Y3q4e1NjMooudX3tfD=qzggqpMk9o12w@mail.gmail.com>
+References: <CAMpZLrg3G7SYUDzXbzug9y98K_KmkQTwPMc2OWjnuxCicR6Uhw@mail.gmail.com>
+ <CAKb7UvhvmcmirvgeJEVw4pdiumgWav7m8ZT4d09k4UMnb4p9fg@mail.gmail.com>
+ <126fd102-0eac-5317-edd9-b1ade2524e22@gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <126fd102-0eac-5317-edd9-b1ade2524e22-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Vincent Vanackere <vincent.vanackere-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-The last goto looks spurious because it releases less resources than the
-previous one.
-Also free 'img->sig' if 'ls_ucode_img_build()' fails.
-
-Fixes: 9d896f3e41a6 ("drm/nouveau/secboot: abstract LS firmware loading functions")
-
-Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
----
-v2: update topic
-    only free 'img->sig' if 'ls_ucode_img_build()' fails
----
- drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_gr.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_gr.c b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_gr.c
-index d1cf02d22db1..1b0c793c0192 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_gr.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_gr.c
-@@ -116,6 +116,7 @@ ls_ucode_img_load_gr(const struct nvkm_subdev *subdev, struct ls_ucode_img *img,
- 	ret = nvkm_firmware_get(subdev->device, f, &sig);
- 	if (ret)
- 		goto free_data;
-+
- 	img->sig = kmemdup(sig->data, sig->size, GFP_KERNEL);
- 	if (!img->sig) {
- 		ret = -ENOMEM;
-@@ -126,8 +127,9 @@ ls_ucode_img_load_gr(const struct nvkm_subdev *subdev, struct ls_ucode_img *img,
- 	img->ucode_data = ls_ucode_img_build(bl, code, data,
- 					     &img->ucode_desc);
- 	if (IS_ERR(img->ucode_data)) {
-+		kfree(img->sig);
- 		ret = PTR_ERR(img->ucode_data);
--		goto free_data;
-+		goto free_sig;
- 	}
- 	img->ucode_size = img->ucode_desc.image_size;
- 
--- 
-2.11.0
-
+T24gTW9uLCBNYXkgOCwgMjAxNyBhdCA3OjUwIEFNLCBWaW5jZW50IFZhbmFja2VyZQo8dmluY2Vu
+dC52YW5hY2tlcmVAZ21haWwuY29tPiB3cm90ZToKPiBBbHRlcm5hdGl2ZWx5IGlmIHlvdSBrbm93
+IG9mIGEgZmFubGVzcyBncmFwaGljIGNhcmQgbW9kZWwgdGhhdCB3b3VsZCBiZSBhYmxlIHRvIGRy
+aXZlIDIgbW9uaXRvcnMgYXQgMjU2MHgxNDQwIHdpdGggcHJvcGVyIGxpbnV4IHN1cHBvcnQsIEkn
+bSBpbnRlcmVzdGVkIDstKQoKQW55dGhpbmcgbWFkZSBieSBBTUQgd2lsbCBsaWtlbHkgd29yayB3
+ZWxsIG9uIGxpbnV4IChhbmQgaWYgaXQKZG9lc24ndCwgeW91IHNob3VsZCBnZXQgc29tZXRoaW5n
+IHRoYXQgY2xvc2VyIHJlc2VtYmxlcyBzdXBwb3J0KS4gSQpiZWxpZXZlIHRoYXQgdGhlcmUgYXJl
+IHNvbWUgb2xkZXIgbW9kZWwgZmFubGVzcyBIRE1JICsgZHVhbC1saW5rIERWSQpib2FyZHMsIGJ1
+dCBJJ20gbm90IGludGltYXRlbHkgZmFtaWxpYXIgd2l0aCB0aGUgZnVsbCBsaW5lIG9mIEFNRApv
+ZmZlcmluZ3MuCgpTZXBhcmF0ZWx5LCBteSByZWNvbW1lbmRhdGlvbiBvZiB1c2luZyB4Zjg2LXZp
+ZGVvLW5vdXZlYXUgc3RhbmRzIChhbmQKaXMsIEkgbWlnaHQgcG9pbnQgb3V0LCBlbnRpcmVseSBj
+b250cmFyeSB0byBCZW4ncywgd2hvIGlzIHRoZSBSZWRIYXQKIm5vdXZlYXUiIGd1eSBhbmQga2Vy
+bmVsIG1vZHVsZSBtYWludGFpbmVyKS4gSG93ZXZlciB0aGF0IHdvbid0IGZpeCBpbgphbnkgd2F5
+IGFueSBHTCBhcHBsaWNhdGlvbnMgdGhhdCAiZG8gYmFkIHRoaW5ncyIgKG9yIGNhdXNlIG5vdXZl
+YXUgdG8KZG8gYmFkIHRoaW5ncykuIEZXSVcgaW4gbXkgcmVndWxhciAobm9uLW5vdXZlYXUtZGV2
+ZWxvcG1lbnQtdGFyZ2V0ZWQpCnVzZSBvZiBYb3JnIHdpdGggYSB2YXJpZXR5IG9mIG52aWRpYSBi
+b2FyZHMsIGN1cnJlbnRseSB0aGUgc2FtZSBHSzIwOEIKYXMgeW91LCBhbmQgd2l0aG91dCBhbnkg
+b2YgdGhlICJtb2Rlcm4iIGhvdG5lc3MsIEkndmUgYWxtb3N0IG5ldmVyCmVuY291bnRlcmVkIGhh
+cmQgaGFuZ3MsIGRlc3BpdGUgdXNpbmcgYXBwbGljYXRpb25zIGxpa2UgY2hyb21lLCBldGMKd2hp
+Y2ggZG8gdGVuZCB0byBtYWtlIHVzZSBvZiBzb21lIEdMIGNhcGFiaWxpdGllcy4KCk5vdGUgdGhh
+dCBzb21lIEdLMjA4J3MsIGxpa2UgbWluZSwgYW5kIHNvbWUgb3RoZXIgYm9hcmRzIGFzIHdlbGws
+IGhhdmUKYSB2ZXJ5IHNhZCBoYW5nLWR1ZS10by1mYW4gc2l0dWF0aW9uLiBUaGUgYnVnIGlzCmh0
+dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTkxNDEzI2M2LCB0aGUg
+aGFja3BhdGNoCmlzIGF0IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL25v
+dXZlYXUvMjAxNS1NYXJjaC8wMjA0MjEuaHRtbAouIEl0J3MgYmVlbiBnb2luZyBvbiBmb3IgbGl0
+ZXJhbGx5IHllYXJzIHdpdGhvdXQgYmVpbmcgYWRkcmVzc2VkLgoKQ2hlZXJzLAoKICAtaWxpYQpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
