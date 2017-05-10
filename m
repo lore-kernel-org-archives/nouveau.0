@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: regression? no more separate xscreens
-Date: Wed, 10 May 2017 10:09:43 -0400
-Message-ID: <CAKb7Uvi0JmiG+i3CGDzAP-pKo4qUfHt7ygDtHkvN4WJ5-8KWnQ@mail.gmail.com>
-References: <956cb800-fe0e-c77c-00af-5b82f2731359@iki.fi>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
+ Pointer to {TDMS, flat panel} table invalid
+Date: Wed, 10 May 2017 23:12:53 +0000
+Message-ID: <bug-98386-8800-i1dxyQDDPS@http.bugs.freedesktop.org/>
+References: <bug-98386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0080416028=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <956cb800-fe0e-c77c-00af-5b82f2731359-X3B1VOXEql0@public.gmane.org>
+In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,90 +17,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Sampsa Riikonen <sampsa.riikonen-X3B1VOXEql0@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBNYXkgMTAsIDIwMTcgYXQgNDoyMCBBTSwgU2FtcHNhIFJpaWtvbmVuIDxzYW1wc2Eu
-cmlpa29uZW5AaWtpLmZpPiB3cm90ZToKPiBEZWFyIERldnMsCj4KPiBUaGUgc3VwcG9ydCBmb3Ig
-bXVsdGlwbGUgeHNjcmVlbnMgKGkuZS4gbm8geGluZXJhbWEsIGp1c3Qgc2VwYXJhdGUgOjAuMCBh
-bmQKPiA6MC4xIGRpc3BsYXlzKSBpbiBub3V2ZWF1IGlzIGJyb2tlbi4KCkhlcmUncyBhIGZyZWUg
-cGllY2Ugb2YgYWR2aWNlIC0gYmVmb3JlIGRlY2xhcmluZyB0aGluZ3MgYXMgYnJva2VuLApjb25z
-aWRlciB0aGUgcG9zc2liaWxpdHksIHJlbW90ZSB0aG91Z2ggaXQgbWlnaHQgYmUsIHRoYXQgeW91
-J3JlIGRvaW5nCnNvbWV0aGluZyB0aGF0J3Mgb2ZmLiBJdCB3b3VsZCBkZWZpbml0ZWx5IGF2b2lk
-IG1lIGhhdmluZyBhbgp1bnBsZWFzYW50IHRhc3RlIGluIG15IG1vdXRoIGFzIEkgc3RpbGwgYXR0
-ZW1wdCB0byBoZWxwIHlvdS4KCj4gaHR0cHM6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93aWtp
-L011bHRpTW9uaXRvckRlc2t0b3AvCj4KPiAqKiogeG9yZy5jb25mICoqKgo+Cj4gU2VjdGlvbiAi
-U2VydmVyTGF5b3V0Igo+ICAgICBJZGVudGlmaWVyICAiTGF5b3V0MCIKPiAgICAgIyBPcHRpb24g
-ICAgICAiWGluZXJhbWEiICJvZmYiICAjIHRyaWVkIGNvbW1lbnRpbmcgJiB1bmNvbW1lbnRpbmcg
-dGhpcwo+IG9uZQo+ICAgICAjIE9wdGlvbiAgICAgICJDbG9uZSIgICAgIm9mZiIKPiAgICAgIyBZ
-b3Ugd291bGQgbmVlZCBvbmUgc2NyZWVuIGZvciBlYWNoIG1vbml0b3IKPiAgICAgU2NyZWVuICAg
-MCAgIlNjcmVlbjAiCj4gICAgIFNjcmVlbiAgIDEgICJTY3JlZW4xIiAgUmlnaHRPZiAiU2NyZWVu
-MCIKPiBFbmRTZWN0aW9uCj4KPiBTZWN0aW9uICJEZXZpY2UiCj4gICAgIElkZW50aWZpZXIgICJE
-ZXZpY2UwIgo+ICAgICBEcml2ZXIgICAgICAibm91dmVhdSIKPiAgICAgIyBBY3R1YWwgUENJIGxv
-Y2F0aW9uIG9mIGZpcnN0IGNhcmQvZ3B1Cj4gICAgIEJ1c0lEICAgICAgICJQQ0k6MTowOjAiCj4g
-ICAgICMgQWN0dWFsIGNvbm5lY3RvciAtIGFzIHJlcG9ydGVkIGJ5IC9zeXMvY2xhc3MvZHJtL2Nh
-cmQwLXh4IChleGNlcHQKPiBIRE1JLCB3aGljaCBpcyBIRE1JLXggaW5zdGVhZCBvZiBIRE1JLUEt
-eCkKPiAgICAgT3B0aW9uICAgICAgIlphcGhvZEhlYWRzIiAiRFZJLUktMSIKPiAgICAgIyBTY3Jl
-ZW4gbnVtYmVyIGZvciB0aGF0IFBDSSBkZXZpY2UsIGkuZS4gMCwgMSwgZXRjLgo+ICAgICBTY3Jl
-ZW4gICAgICAwCj4gRW5kU2VjdGlvbgo+Cj4gU2VjdGlvbiAiRGV2aWNlIgo+ICAgICBJZGVudGlm
-aWVyICAiRGV2aWNlMSIKPiAgICAgRHJpdmVyICAgICAgIm5vdXZlYXUiCj4gICAgICMgQWN0dWFs
-IFBDSSBsb2NhdGlvbiBvZiBzZWNvbmQgY2FyZC9ncHUKPiAgICAgQnVzSUQgICAgICAgIlBDSToy
-OjA6MCIKPiAgICAgIyBBY3R1YWwgY29ubmVjdG9yIC0gYXMgcmVwb3J0ZWQgYnkgL3N5cy9jbGFz
-cy9kcm0vY2FyZDAteHggKGV4Y2VwdAo+IEhETUksIHdoaWNoIGlzIEhETUkteCBpbnN0ZWFkIG9m
-IEhETUktQS14KQo+ICAgICBPcHRpb24gICAgICAiWmFwaG9kSGVhZHMiICJEVkktSS0yIgo+ICAg
-ICAjIFNjcmVlbiBudW1iZXIgZm9yIHRoYXQgUENJIGRldmljZSwgaS5lLiAwLCAxLCBldGMuCj4g
-ICAgIFNjcmVlbiAgICAgIDEKCllvdSBwcm9iYWJseSB3YW50ZWQgMCBoZXJlLCBub3QgMS4gSXQg
-c2hvdWxkIGJlIDEgZm9yIHRoZSBzZWNvbmQKc2NyZWVuICpvZiB0aGUgZ3B1Kiwgbm90IG92ZXJh
-bGwuCgo+IEVuZFNlY3Rpb24KPgo+IFNlY3Rpb24gIlNjcmVlbiIKPiAgICAgSWRlbnRpZmllciAg
-IlNjcmVlbjAiCj4gICAgIERldmljZSAgICAgICJEZXZpY2UwIgo+IEVuZFNlY3Rpb24KPgo+IFNl
-Y3Rpb24gIlNjcmVlbiIKPiAgICAgSWRlbnRpZmllciAgIlNjcmVlbjEiCj4gICAgIERldmljZSAg
-ICAgICJEZXZpY2UxIgo+IEVuZFNlY3Rpb24KPgo+ICoqKiBYb3JnLjAubG9nICoqKgo+CgpbLi4u
-XQoKPiBbICAgICA2Ljk0N10gKElJKSBMb2FkTW9kdWxlOiAibm91dmVhdSIKPiBbICAgICA2Ljk0
-N10gKElJKSBMb2FkaW5nIC91c3IvbGliL3hvcmcvbW9kdWxlcy9kcml2ZXJzL25vdXZlYXVfZHJ2
-LnNvCj4gWyAgICAgNi45NDddIChJSSkgTW9kdWxlIG5vdXZlYXU6IHZlbmRvcj0iWC5PcmcgRm91
-bmRhdGlvbiIKPiBbICAgICA2Ljk0N10gICAgY29tcGlsZWQgZm9yIDEuMTguMSwgbW9kdWxlIHZl
-cnNpb24gPSAxLjAuMTIKPiBbICAgICA2Ljk0N10gICAgTW9kdWxlIGNsYXNzOiBYLk9yZyBWaWRl
-byBEcml2ZXIKPiBbICAgICA2Ljk0N10gICAgQUJJIGNsYXNzOiBYLk9yZyBWaWRlbyBEcml2ZXIs
-IHZlcnNpb24gMjAuMAoKWy4uLl0KCj4gWyAgICAgNi45NTBdIChJSSkgW2RybV0gbm91dmVhdSBp
-bnRlcmZhY2UgdmVyc2lvbjogMS4zLjEKPiBbICAgICA2Ljk1MF0gKEVFKSBVbmtub3duIGNoaXBz
-ZXQ6IE5WMTE3Cj4gWyAgICAgNi45NTBdIChJSSkgW2RybV0gbm91dmVhdSBpbnRlcmZhY2UgdmVy
-c2lvbjogMS4zLjEKPiBbICAgICA2Ljk1MF0gKEVFKSBVbmtub3duIGNoaXBzZXQ6IE5WMTE3Cj4g
-WyAgICAgNi45NTBdIChJSSkgW2RybV0gbm91dmVhdSBpbnRlcmZhY2UgdmVyc2lvbjogMS4zLjEK
-PiBbICAgICA2Ljk1MF0gKEVFKSBVbmtub3duIGNoaXBzZXQ6IE5WMTE3Cj4gWyAgICAgNi45NTBd
-IChJSSkgW2RybV0gbm91dmVhdSBpbnRlcmZhY2UgdmVyc2lvbjogMS4zLjEKPiBbICAgICA2Ljk1
-MF0gKEVFKSBVbmtub3duIGNoaXBzZXQ6IE5WMTE3Cj4gWyAgICAgNi45NTBdIChJSSkgW2RybV0g
-bm91dmVhdSBpbnRlcmZhY2UgdmVyc2lvbjogMS4zLjEKPiBbICAgICA2Ljk1MV0gKEVFKSBVbmtu
-b3duIGNoaXBzZXQ6IE5WMTE3Cj4gWyAgICAgNi45NTFdIChJSSkgW2RybV0gbm91dmVhdSBpbnRl
-cmZhY2UgdmVyc2lvbjogMS4zLjEKPiBbICAgICA2Ljk1MV0gKEVFKSBVbmtub3duIGNoaXBzZXQ6
-IE5WMTE3Cj4gWyAgICAgNi45NTFdIChJSSkgW2RybV0gbm91dmVhdSBpbnRlcmZhY2UgdmVyc2lv
-bjogMS4zLjEKPiBbICAgICA2Ljk1MV0gKEVFKSBVbmtub3duIGNoaXBzZXQ6IE5WMTE3Cj4gWyAg
-ICAgNi45NTFdIChJSSkgW2RybV0gbm91dmVhdSBpbnRlcmZhY2UgdmVyc2lvbjogMS4zLjEKPiBb
-ICAgICA2Ljk1MV0gKEVFKSBVbmtub3duIGNoaXBzZXQ6IE5WMTE3CgpUaGlzIHJlYWxseSBkaWRu
-J3Qgc2VlbSB0byB5b3UgbGlrZSBhIGhpbnQgdGhhdCBzb21ldGhpbmcgaW4geW91cgpjb25maWd1
-cmF0aW9uIHdhcyBvZmY/Cgo+IFsgICAgIDYuOTUxXSAoSUkpIGludGVsKEcwKTogVXNpbmcgS2Vy
-bmVsIE1vZGUgU2V0dGluZyBkcml2ZXI6IGk5MTVfYnBvLAo+IHZlcnNpb24gMS42LjAgMjAxNjA0
-MjUKPiBbICAgICA2Ljk1MV0gKElJKSBpbnRlbChHMCk6IFNOQSBjb21waWxlZDogeHNlcnZlci14
-b3JnLXZpZGVvLWludGVsCj4gMjoyLjk5LjkxNytnaXQyMDE2MDMyNS0xdWJ1bnR1MS4yIChUaW1v
-IEFhbHRvbmVuIDx0amFhbHRvbkBkZWJpYW4ub3JnPikKPiBbICAgICA2Ljk1MV0gKElJKSBpbnRl
-bChHMCk6IFNOQSBjb21waWxlZCBmb3IgdXNlIHdpdGggdmFsZ3JpbmQKPiBbICAgICA2Ljk1Ml0g
-KElJKSBtb2Rlc2V0KDApOiB1c2luZyBkcnYgL2Rldi9kcmkvY2FyZDAKPiBbICAgICA2Ljk1Ml0g
-KElJKSBtb2Rlc2V0KEcxKTogdXNpbmcgZHJ2IC9kZXYvZHJpL2NhcmQyCj4gWyAgICAgNi45NTJd
-IChXVykgRmFsbGluZyBiYWNrIHRvIG9sZCBwcm9iZSBtZXRob2QgZm9yIGZiZGV2Cj4gWyAgICAg
-Ni45NTJdIChJSSkgTG9hZGluZyBzdWIgbW9kdWxlICJmYmRldmh3Igo+IFsgICAgIDYuOTUyXSAo
-SUkpIExvYWRNb2R1bGU6ICJmYmRldmh3Igo+IFsgICAgIDYuOTUyXSAoSUkpIExvYWRpbmcgL3Vz
-ci9saWIveG9yZy9tb2R1bGVzL2xpYmZiZGV2aHcuc28KPiBbICAgICA2Ljk1Ml0gKElJKSBNb2R1
-bGUgZmJkZXZodzogdmVuZG9yPSJYLk9yZyBGb3VuZGF0aW9uIgo+IFsgICAgIDYuOTUyXSAgICBj
-b21waWxlZCBmb3IgMS4xOC40LCBtb2R1bGUgdmVyc2lvbiA9IDAuMC4yCj4gWyAgICAgNi45NTJd
-ICAgIEFCSSBjbGFzczogWC5PcmcgVmlkZW8gRHJpdmVyLCB2ZXJzaW9uIDIwLjAKPiBbICAgICA2
-Ljk1Ml0gKFdXKSBGYWxsaW5nIGJhY2sgdG8gb2xkIHByb2JlIG1ldGhvZCBmb3IgdmVzYQo+IFsg
-ICAgIDYuOTY1XSAoSUkpIG1vZGVzZXQoMCk6IENyZWF0aW5nIGRlZmF1bHQgRGlzcGxheSBzdWJz
-ZWN0aW9uIGluIFNjcmVlbgo+IHNlY3Rpb24KPiAgICAgICAgICJTY3JlZW4wIiBmb3IgZGVwdGgv
-ZmJicHAgMjQvMzIKClNvIC4uLiB5b3Ugc2VlIHRoYXQgdGhlIG1vZGVzZXR0aW5nIGRyaXZlciBp
-cyBiZWluZyB1c2VkIGZvciB0aGUKbnZpZGlhIGdwdSwgYW5kIHlldCBubyBhbGFybSBiZWxscyBn
-byBvZmYsICJtYXliZSBzb21ldGhpbmcgaXMgd3JvbmciPwoKVGhlIGlzc3VlIGlzIHRoYXQgeW91
-J3JlIHRyeWluZyB0byB1c2Ugbm91dmVhdSAxLjAuMTIgd2l0aCBhIEdNMTA3CkdQVSwgd2hpbGUg
-c3VwcG9ydCBpbiB0aGUgRERYIGZvciBzdWNoIEdQVXMgd2FzIG9ubHkgYWRkZWQgaW4gMS4wLjE0
-LgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
-IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0080416028==
+Content-Type: multipart/alternative; boundary="14944579720.7DbB4F.4870";
+ charset="UTF-8"
+
+
+--14944579720.7DbB4F.4870
+Date: Wed, 10 May 2017 23:12:52 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
+
+--- Comment #18 from coristus <coristus-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I am having the exact same error:
+[  255.209084] IPv6: ADDRCONF(NETDEV_UP): wlp4s0: link is not ready
+[  255.301306] wlp4s0: authenticate with 58:8b:f3:66:30:a9
+[  255.304574] wlp4s0: send auth to 58:8b:f3:66:30:a9 (try 1/3)
+[  255.305597] wlp4s0: authenticated
+[  255.307531] wlp4s0: associate with 58:8b:f3:66:30:a9 (try 1/3)
+[  255.310428] wlp4s0: RX AssocResp from 58:8b:f3:66:30:a9 (capab=3D0x511
+status=3D0 aid=3D105)
+[  255.311686] wlp4s0: associated
+[  255.311719] IPv6: ADDRCONF(NETDEV_CHANGE): wlp4s0: link becomes ready
+[  259.246451] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
+[  259.942027] nouveau 0000:01:00.0: bus: MMIO write of 00000002 FAULT at
+4188ac [ IBUS ]
+
+mind you, I am no linux specialist. but sys specs are:
+Asus N550-JV, gt750m. I am scared my video card is burned through extensive
+deeplearning tho. Matlab gave some really weird errors.
+ubuntu version 17.04 (same errors on 16.04)=20
+did a full reinstall. same errors.
+Do you need more info, and if so: please tell me how to get it ;)
+
+cheers,
+cory
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14944579720.7DbB4F.4870
+Date: Wed, 10 May 2017 23:12:52 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
+TDMS,flat panel} table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c18">Commen=
+t # 18</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
+TDMS,flat panel} table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+coristus&#64;gmail.com" title=3D"coristus &lt;coristus&#64;gmail.com&gt;"> =
+<span class=3D"fn">coristus</span></a>
+</span></b>
+        <pre>I am having the exact same error:
+[  255.209084] IPv6: ADDRCONF(NETDEV_UP): wlp4s0: link is not ready
+[  255.301306] wlp4s0: authenticate with 58:8b:f3:66:30:a9
+[  255.304574] wlp4s0: send auth to 58:8b:f3:66:30:a9 (try 1/3)
+[  255.305597] wlp4s0: authenticated
+[  255.307531] wlp4s0: associate with 58:8b:f3:66:30:a9 (try 1/3)
+[  255.310428] wlp4s0: RX AssocResp from 58:8b:f3:66:30:a9 (capab=3D0x511
+status=3D0 aid=3D105)
+[  255.311686] wlp4s0: associated
+[  255.311719] IPv6: ADDRCONF(NETDEV_CHANGE): wlp4s0: link becomes ready
+[  259.246451] nouveau 0000:01:00.0: DRM: resuming kernel object tree...
+[  259.942027] nouveau 0000:01:00.0: bus: MMIO write of 00000002 FAULT at
+4188ac [ IBUS ]
+
+mind you, I am no linux specialist. but sys specs are:
+Asus N550-JV, gt750m. I am scared my video card is burned through extensive
+deeplearning tho. Matlab gave some really weird errors.
+ubuntu version 17.04 (same errors on 16.04)=20
+did a full reinstall. same errors.
+Do you need more info, and if so: please tell me how to get it ;)
+
+cheers,
+cory</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14944579720.7DbB4F.4870--
+
+--===============0080416028==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0080416028==--
