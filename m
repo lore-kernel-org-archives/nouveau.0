@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99396] Crash in nouveau_dri.so when switching apps
- with alt-tab in Gnome
-Date: Wed, 10 May 2017 11:57:25 +0000
-Message-ID: <bug-99396-8800-4pZDr4ZBtz@http.bugs.freedesktop.org/>
-References: <bug-99396-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: regression? no more separate xscreens
+Date: Wed, 10 May 2017 10:09:43 -0400
+Message-ID: <CAKb7Uvi0JmiG+i3CGDzAP-pKo4qUfHt7ygDtHkvN4WJ5-8KWnQ@mail.gmail.com>
+References: <956cb800-fe0e-c77c-00af-5b82f2731359@iki.fi>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1655469668=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99396-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <956cb800-fe0e-c77c-00af-5b82f2731359-X3B1VOXEql0@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,113 +17,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Sampsa Riikonen <sampsa.riikonen-X3B1VOXEql0@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1655469668==
-Content-Type: multipart/alternative; boundary="14944174450.056Cd7.18317";
- charset="UTF-8"
-
-
---14944174450.056Cd7.18317
-Date: Wed, 10 May 2017 11:57:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99396
-
---- Comment #10 from G=C3=A9za B=C3=BAza <bghome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 131294
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131294&action=3Dedit
-Systemd coredump
-
-This bug affects the latest Mesa version.
-
-Environment:
-Mesa: 17.0.5
-Kernel: 4.10.13
-Gnome Shell: 3.24.1
-
-I attached the gnome_shell_coredump.log for reference.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14944174450.056Cd7.18317
-Date: Wed, 10 May 2017 11:57:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Crash in nouveau_dri.so when switching apps with alt-tab =
-in Gnome"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396#c10">Commen=
-t # 10</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Crash in nouveau_dri.so when switching apps with alt-tab =
-in Gnome"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396">bug 99396<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bghome&#64;gmail.com" title=3D"G=C3=A9za B=C3=BAza &lt;bghome&#64;gmail.com=
-&gt;"> <span class=3D"fn">G=C3=A9za B=C3=BAza</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131294=
-" name=3D"attach_131294" title=3D"Systemd coredump">attachment 131294</a> <=
-a href=3D"attachment.cgi?id=3D131294&amp;action=3Dedit" title=3D"Systemd co=
-redump">[details]</a></span>
-Systemd coredump
-
-This bug affects the latest Mesa version.
-
-Environment:
-Mesa: 17.0.5
-Kernel: 4.10.13
-Gnome Shell: 3.24.1
-
-I attached the gnome_shell_coredump.log for reference.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14944174450.056Cd7.18317--
-
---===============1655469668==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1655469668==--
+T24gV2VkLCBNYXkgMTAsIDIwMTcgYXQgNDoyMCBBTSwgU2FtcHNhIFJpaWtvbmVuIDxzYW1wc2Eu
+cmlpa29uZW5AaWtpLmZpPiB3cm90ZToKPiBEZWFyIERldnMsCj4KPiBUaGUgc3VwcG9ydCBmb3Ig
+bXVsdGlwbGUgeHNjcmVlbnMgKGkuZS4gbm8geGluZXJhbWEsIGp1c3Qgc2VwYXJhdGUgOjAuMCBh
+bmQKPiA6MC4xIGRpc3BsYXlzKSBpbiBub3V2ZWF1IGlzIGJyb2tlbi4KCkhlcmUncyBhIGZyZWUg
+cGllY2Ugb2YgYWR2aWNlIC0gYmVmb3JlIGRlY2xhcmluZyB0aGluZ3MgYXMgYnJva2VuLApjb25z
+aWRlciB0aGUgcG9zc2liaWxpdHksIHJlbW90ZSB0aG91Z2ggaXQgbWlnaHQgYmUsIHRoYXQgeW91
+J3JlIGRvaW5nCnNvbWV0aGluZyB0aGF0J3Mgb2ZmLiBJdCB3b3VsZCBkZWZpbml0ZWx5IGF2b2lk
+IG1lIGhhdmluZyBhbgp1bnBsZWFzYW50IHRhc3RlIGluIG15IG1vdXRoIGFzIEkgc3RpbGwgYXR0
+ZW1wdCB0byBoZWxwIHlvdS4KCj4gaHR0cHM6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93aWtp
+L011bHRpTW9uaXRvckRlc2t0b3AvCj4KPiAqKiogeG9yZy5jb25mICoqKgo+Cj4gU2VjdGlvbiAi
+U2VydmVyTGF5b3V0Igo+ICAgICBJZGVudGlmaWVyICAiTGF5b3V0MCIKPiAgICAgIyBPcHRpb24g
+ICAgICAiWGluZXJhbWEiICJvZmYiICAjIHRyaWVkIGNvbW1lbnRpbmcgJiB1bmNvbW1lbnRpbmcg
+dGhpcwo+IG9uZQo+ICAgICAjIE9wdGlvbiAgICAgICJDbG9uZSIgICAgIm9mZiIKPiAgICAgIyBZ
+b3Ugd291bGQgbmVlZCBvbmUgc2NyZWVuIGZvciBlYWNoIG1vbml0b3IKPiAgICAgU2NyZWVuICAg
+MCAgIlNjcmVlbjAiCj4gICAgIFNjcmVlbiAgIDEgICJTY3JlZW4xIiAgUmlnaHRPZiAiU2NyZWVu
+MCIKPiBFbmRTZWN0aW9uCj4KPiBTZWN0aW9uICJEZXZpY2UiCj4gICAgIElkZW50aWZpZXIgICJE
+ZXZpY2UwIgo+ICAgICBEcml2ZXIgICAgICAibm91dmVhdSIKPiAgICAgIyBBY3R1YWwgUENJIGxv
+Y2F0aW9uIG9mIGZpcnN0IGNhcmQvZ3B1Cj4gICAgIEJ1c0lEICAgICAgICJQQ0k6MTowOjAiCj4g
+ICAgICMgQWN0dWFsIGNvbm5lY3RvciAtIGFzIHJlcG9ydGVkIGJ5IC9zeXMvY2xhc3MvZHJtL2Nh
+cmQwLXh4IChleGNlcHQKPiBIRE1JLCB3aGljaCBpcyBIRE1JLXggaW5zdGVhZCBvZiBIRE1JLUEt
+eCkKPiAgICAgT3B0aW9uICAgICAgIlphcGhvZEhlYWRzIiAiRFZJLUktMSIKPiAgICAgIyBTY3Jl
+ZW4gbnVtYmVyIGZvciB0aGF0IFBDSSBkZXZpY2UsIGkuZS4gMCwgMSwgZXRjLgo+ICAgICBTY3Jl
+ZW4gICAgICAwCj4gRW5kU2VjdGlvbgo+Cj4gU2VjdGlvbiAiRGV2aWNlIgo+ICAgICBJZGVudGlm
+aWVyICAiRGV2aWNlMSIKPiAgICAgRHJpdmVyICAgICAgIm5vdXZlYXUiCj4gICAgICMgQWN0dWFs
+IFBDSSBsb2NhdGlvbiBvZiBzZWNvbmQgY2FyZC9ncHUKPiAgICAgQnVzSUQgICAgICAgIlBDSToy
+OjA6MCIKPiAgICAgIyBBY3R1YWwgY29ubmVjdG9yIC0gYXMgcmVwb3J0ZWQgYnkgL3N5cy9jbGFz
+cy9kcm0vY2FyZDAteHggKGV4Y2VwdAo+IEhETUksIHdoaWNoIGlzIEhETUkteCBpbnN0ZWFkIG9m
+IEhETUktQS14KQo+ICAgICBPcHRpb24gICAgICAiWmFwaG9kSGVhZHMiICJEVkktSS0yIgo+ICAg
+ICAjIFNjcmVlbiBudW1iZXIgZm9yIHRoYXQgUENJIGRldmljZSwgaS5lLiAwLCAxLCBldGMuCj4g
+ICAgIFNjcmVlbiAgICAgIDEKCllvdSBwcm9iYWJseSB3YW50ZWQgMCBoZXJlLCBub3QgMS4gSXQg
+c2hvdWxkIGJlIDEgZm9yIHRoZSBzZWNvbmQKc2NyZWVuICpvZiB0aGUgZ3B1Kiwgbm90IG92ZXJh
+bGwuCgo+IEVuZFNlY3Rpb24KPgo+IFNlY3Rpb24gIlNjcmVlbiIKPiAgICAgSWRlbnRpZmllciAg
+IlNjcmVlbjAiCj4gICAgIERldmljZSAgICAgICJEZXZpY2UwIgo+IEVuZFNlY3Rpb24KPgo+IFNl
+Y3Rpb24gIlNjcmVlbiIKPiAgICAgSWRlbnRpZmllciAgIlNjcmVlbjEiCj4gICAgIERldmljZSAg
+ICAgICJEZXZpY2UxIgo+IEVuZFNlY3Rpb24KPgo+ICoqKiBYb3JnLjAubG9nICoqKgo+CgpbLi4u
+XQoKPiBbICAgICA2Ljk0N10gKElJKSBMb2FkTW9kdWxlOiAibm91dmVhdSIKPiBbICAgICA2Ljk0
+N10gKElJKSBMb2FkaW5nIC91c3IvbGliL3hvcmcvbW9kdWxlcy9kcml2ZXJzL25vdXZlYXVfZHJ2
+LnNvCj4gWyAgICAgNi45NDddIChJSSkgTW9kdWxlIG5vdXZlYXU6IHZlbmRvcj0iWC5PcmcgRm91
+bmRhdGlvbiIKPiBbICAgICA2Ljk0N10gICAgY29tcGlsZWQgZm9yIDEuMTguMSwgbW9kdWxlIHZl
+cnNpb24gPSAxLjAuMTIKPiBbICAgICA2Ljk0N10gICAgTW9kdWxlIGNsYXNzOiBYLk9yZyBWaWRl
+byBEcml2ZXIKPiBbICAgICA2Ljk0N10gICAgQUJJIGNsYXNzOiBYLk9yZyBWaWRlbyBEcml2ZXIs
+IHZlcnNpb24gMjAuMAoKWy4uLl0KCj4gWyAgICAgNi45NTBdIChJSSkgW2RybV0gbm91dmVhdSBp
+bnRlcmZhY2UgdmVyc2lvbjogMS4zLjEKPiBbICAgICA2Ljk1MF0gKEVFKSBVbmtub3duIGNoaXBz
+ZXQ6IE5WMTE3Cj4gWyAgICAgNi45NTBdIChJSSkgW2RybV0gbm91dmVhdSBpbnRlcmZhY2UgdmVy
+c2lvbjogMS4zLjEKPiBbICAgICA2Ljk1MF0gKEVFKSBVbmtub3duIGNoaXBzZXQ6IE5WMTE3Cj4g
+WyAgICAgNi45NTBdIChJSSkgW2RybV0gbm91dmVhdSBpbnRlcmZhY2UgdmVyc2lvbjogMS4zLjEK
+PiBbICAgICA2Ljk1MF0gKEVFKSBVbmtub3duIGNoaXBzZXQ6IE5WMTE3Cj4gWyAgICAgNi45NTBd
+IChJSSkgW2RybV0gbm91dmVhdSBpbnRlcmZhY2UgdmVyc2lvbjogMS4zLjEKPiBbICAgICA2Ljk1
+MF0gKEVFKSBVbmtub3duIGNoaXBzZXQ6IE5WMTE3Cj4gWyAgICAgNi45NTBdIChJSSkgW2RybV0g
+bm91dmVhdSBpbnRlcmZhY2UgdmVyc2lvbjogMS4zLjEKPiBbICAgICA2Ljk1MV0gKEVFKSBVbmtu
+b3duIGNoaXBzZXQ6IE5WMTE3Cj4gWyAgICAgNi45NTFdIChJSSkgW2RybV0gbm91dmVhdSBpbnRl
+cmZhY2UgdmVyc2lvbjogMS4zLjEKPiBbICAgICA2Ljk1MV0gKEVFKSBVbmtub3duIGNoaXBzZXQ6
+IE5WMTE3Cj4gWyAgICAgNi45NTFdIChJSSkgW2RybV0gbm91dmVhdSBpbnRlcmZhY2UgdmVyc2lv
+bjogMS4zLjEKPiBbICAgICA2Ljk1MV0gKEVFKSBVbmtub3duIGNoaXBzZXQ6IE5WMTE3Cj4gWyAg
+ICAgNi45NTFdIChJSSkgW2RybV0gbm91dmVhdSBpbnRlcmZhY2UgdmVyc2lvbjogMS4zLjEKPiBb
+ICAgICA2Ljk1MV0gKEVFKSBVbmtub3duIGNoaXBzZXQ6IE5WMTE3CgpUaGlzIHJlYWxseSBkaWRu
+J3Qgc2VlbSB0byB5b3UgbGlrZSBhIGhpbnQgdGhhdCBzb21ldGhpbmcgaW4geW91cgpjb25maWd1
+cmF0aW9uIHdhcyBvZmY/Cgo+IFsgICAgIDYuOTUxXSAoSUkpIGludGVsKEcwKTogVXNpbmcgS2Vy
+bmVsIE1vZGUgU2V0dGluZyBkcml2ZXI6IGk5MTVfYnBvLAo+IHZlcnNpb24gMS42LjAgMjAxNjA0
+MjUKPiBbICAgICA2Ljk1MV0gKElJKSBpbnRlbChHMCk6IFNOQSBjb21waWxlZDogeHNlcnZlci14
+b3JnLXZpZGVvLWludGVsCj4gMjoyLjk5LjkxNytnaXQyMDE2MDMyNS0xdWJ1bnR1MS4yIChUaW1v
+IEFhbHRvbmVuIDx0amFhbHRvbkBkZWJpYW4ub3JnPikKPiBbICAgICA2Ljk1MV0gKElJKSBpbnRl
+bChHMCk6IFNOQSBjb21waWxlZCBmb3IgdXNlIHdpdGggdmFsZ3JpbmQKPiBbICAgICA2Ljk1Ml0g
+KElJKSBtb2Rlc2V0KDApOiB1c2luZyBkcnYgL2Rldi9kcmkvY2FyZDAKPiBbICAgICA2Ljk1Ml0g
+KElJKSBtb2Rlc2V0KEcxKTogdXNpbmcgZHJ2IC9kZXYvZHJpL2NhcmQyCj4gWyAgICAgNi45NTJd
+IChXVykgRmFsbGluZyBiYWNrIHRvIG9sZCBwcm9iZSBtZXRob2QgZm9yIGZiZGV2Cj4gWyAgICAg
+Ni45NTJdIChJSSkgTG9hZGluZyBzdWIgbW9kdWxlICJmYmRldmh3Igo+IFsgICAgIDYuOTUyXSAo
+SUkpIExvYWRNb2R1bGU6ICJmYmRldmh3Igo+IFsgICAgIDYuOTUyXSAoSUkpIExvYWRpbmcgL3Vz
+ci9saWIveG9yZy9tb2R1bGVzL2xpYmZiZGV2aHcuc28KPiBbICAgICA2Ljk1Ml0gKElJKSBNb2R1
+bGUgZmJkZXZodzogdmVuZG9yPSJYLk9yZyBGb3VuZGF0aW9uIgo+IFsgICAgIDYuOTUyXSAgICBj
+b21waWxlZCBmb3IgMS4xOC40LCBtb2R1bGUgdmVyc2lvbiA9IDAuMC4yCj4gWyAgICAgNi45NTJd
+ICAgIEFCSSBjbGFzczogWC5PcmcgVmlkZW8gRHJpdmVyLCB2ZXJzaW9uIDIwLjAKPiBbICAgICA2
+Ljk1Ml0gKFdXKSBGYWxsaW5nIGJhY2sgdG8gb2xkIHByb2JlIG1ldGhvZCBmb3IgdmVzYQo+IFsg
+ICAgIDYuOTY1XSAoSUkpIG1vZGVzZXQoMCk6IENyZWF0aW5nIGRlZmF1bHQgRGlzcGxheSBzdWJz
+ZWN0aW9uIGluIFNjcmVlbgo+IHNlY3Rpb24KPiAgICAgICAgICJTY3JlZW4wIiBmb3IgZGVwdGgv
+ZmJicHAgMjQvMzIKClNvIC4uLiB5b3Ugc2VlIHRoYXQgdGhlIG1vZGVzZXR0aW5nIGRyaXZlciBp
+cyBiZWluZyB1c2VkIGZvciB0aGUKbnZpZGlhIGdwdSwgYW5kIHlldCBubyBhbGFybSBiZWxscyBn
+byBvZmYsICJtYXliZSBzb21ldGhpbmcgaXMgd3JvbmciPwoKVGhlIGlzc3VlIGlzIHRoYXQgeW91
+J3JlIHRyeWluZyB0byB1c2Ugbm91dmVhdSAxLjAuMTIgd2l0aCBhIEdNMTA3CkdQVSwgd2hpbGUg
+c3VwcG9ydCBpbiB0aGUgRERYIGZvciBzdWNoIEdQVXMgd2FzIG9ubHkgYWRkZWQgaW4gMS4wLjE0
+LgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
+IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
