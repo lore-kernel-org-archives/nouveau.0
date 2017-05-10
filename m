@@ -1,89 +1,145 @@
-From: Zhang Rui <rui.zhang@intel.com>
-Subject: Re: [PATCH v1] ACPI: Switch to use generic UUID API
-Date: Wed, 10 May 2017 09:20:51 +0800
-Message-ID: <1494379251.2129.15.camel@intel.com>
-References: <20170504092151.88646-1-andriy.shevchenko@linux.intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100922] Redundant nv_backlight created on Optimus
+ enabled laptop.
+Date: Wed, 10 May 2017 07:08:48 +0000
+Message-ID: <bug-100922-8800-SnvQz4iM0R@http.bugs.freedesktop.org/>
+References: <bug-100922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-acpi-owner@vger.kernel.org>
-In-Reply-To: <20170504092151.88646-1-andriy.shevchenko@linux.intel.com>
-Sender: linux-acpi-owner@vger.kernel.org
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, linux-acpi@vger.kernel.org, tpmdd-devel@lists.sourceforge.net, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-input@vger.kernel.org, iommu@lists.linux-foundation.org, linux-mmc@vger.kernel.org, netdev@vger.kernel.org, linux-pci@vger.kernel.org, linux-usb@vger.kernel.org, alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
-Cc: "Rafael J . Wysocki" <rjw@rjwysocki.net>, Mika Westerberg <mika.westerberg@linux.intel.com>, Borislav Petkov <bp@suse.de>, Dan Williams <dan.j.williams@intel.com>, Amir Goldstein <amir73il@gmail.com>, Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Ben Skeggs <bskeggs@redhat.com>, Benjamin Tissoires <benjamin.tissoires@redhat.com>, Joerg Roedel <joro@8bytes.org>, Adrian Hunter <adrian.hunter@intel.com>, Yisen Zhuang <yisen.zhuang@huawei.com>, Bjorn Helgaas <bhelgaas@google.com>, Felipe Balbi <balbi@kernel.org>, Mathias Nyman <mathias.nyman@intel.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Content-Type: multipart/mixed; boundary="===============1266811184=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 2017-05-04 at 12:21 +0300, Andy Shevchenko wrote:
-> acpi_evaluate_dsm() and friends take a pointer to a raw buffer of 16
-> bytes. Instead we convert them to use uuid_le type. At the same time
-> we
-> convert current users.
-> 
-> acpi_str_to_uuid() becomes useless after the conversion and it's safe
-> to
-> get rid of it.
-> 
-> The conversion fixes a potential bug in int340x_thermal as well since
-> we have to use memcmp() on binary data.
-> 
-> Cc: Rafael J. Wysocki <rjw@rjwysocki.net>
-> Cc: Mika Westerberg <mika.westerberg@linux.intel.com>
-> Cc: Borislav Petkov <bp@suse.de>
-> Cc: Dan Williams <dan.j.williams@intel.com>
-> Cc: Amir Goldstein <amir73il@gmail.com>
-> Cc: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: Benjamin Tissoires <benjamin.tissoires@redhat.com>
-> Cc: Joerg Roedel <joro@8bytes.org>
-> Cc: Adrian Hunter <adrian.hunter@intel.com>
-> Cc: Yisen Zhuang <yisen.zhuang@huawei.com>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Zhang Rui <rui.zhang@intel.com>
-> Cc: Felipe Balbi <balbi@kernel.org>
-> Cc: Mathias Nyman <mathias.nyman@intel.com>
-> Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: Mark Brown <broonie@kernel.org>
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
-> 
-> diff --git a/drivers/thermal/int340x_thermal/int3400_thermal.c
-> b/drivers/thermal/int340x_thermal/int3400_thermal.c
-> index 9413c4abf0b9..c0eb3bb19b23 100644
-> --- a/drivers/thermal/int340x_thermal/int3400_thermal.c
-> +++ b/drivers/thermal/int340x_thermal/int3400_thermal.c
-> @@ -23,7 +23,7 @@ enum int3400_thermal_uuid {
->  	INT3400_THERMAL_MAXIMUM_UUID,
->  };
->  
-> -static u8 *int3400_thermal_uuids[INT3400_THERMAL_MAXIMUM_UUID] = {
-> +static const char
-> *int3400_thermal_uuids[INT3400_THERMAL_MAXIMUM_UUID] = {
->  	"42A441D6-AE6A-462b-A84B-4A8CE79027D3",
->  	"3A95C389-E4B8-4629-A526-C52C88626BAE",
->  	"97C68AE7-15FA-499c-B8C9-5DA81D606E0A",
-> @@ -141,10 +141,10 @@ static int int3400_thermal_get_uuids(struct
-> int3400_thermal_priv *priv)
->  		}
->  
->  		for (j = 0; j < INT3400_THERMAL_MAXIMUM_UUID; j++) {
-> -			u8 uuid[16];
-> +			uuid_le u;
->  
-> -			acpi_str_to_uuid(int3400_thermal_uuids[j],
-> uuid);
-> -			if (!strncmp(uuid, objb->buffer.pointer,
-> 16)) {
-> +			uuid_le_to_bin(int3400_thermal_uuids[j],
-> &u);
-> +			if (!uuid_le_cmp(*(uuid_le *)objb-
-> >buffer.pointer), u) {
->  				priv->uuid_bitmap |= (1 << j);
->  				break;
->  			}
-thanks for the fix.
 
-Acked-by: Zhang Rui <rui.zhang@intel.com>
+--===============1266811184==
+Content-Type: multipart/alternative; boundary="14944001290.714Fcd.19236";
+ charset="UTF-8"
 
--rui
+
+--14944001290.714Fcd.19236
+Date: Wed, 10 May 2017 07:08:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100922
+
+Kai-Heng Feng <kai.heng.feng-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |WONTFIX
+
+--- Comment #1 from Kai-Heng Feng <kai.heng.feng-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> ---
+This can be resolved via userspace program:=20
+https://bugzilla.gnome.org/show_bug.cgi?id=3D782211
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14944001290.714Fcd.19236
+Date: Wed, 10 May 2017 07:08:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:kai.heng.=
+feng&#64;canonical.com" title=3D"Kai-Heng Feng &lt;kai.heng.feng&#64;canoni=
+cal.com&gt;"> <span class=3D"fn">Kai-Heng Feng</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WONTFIX - Redundant nv_backlight created on Optimus en=
+abled laptop."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100922">bug 10092=
+2</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WONTFIX
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WONTFIX - Redundant nv_backlight created on Optimus en=
+abled laptop."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100922#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WONTFIX - Redundant nv_backlight created on Optimus en=
+abled laptop."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100922">bug 10092=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+kai.heng.feng&#64;canonical.com" title=3D"Kai-Heng Feng &lt;kai.heng.feng&#=
+64;canonical.com&gt;"> <span class=3D"fn">Kai-Heng Feng</span></a>
+</span></b>
+        <pre>This can be resolved via userspace program:=20
+<a href=3D"https://bugzilla.gnome.org/show_bug.cgi?id=3D782211">https://bug=
+zilla.gnome.org/show_bug.cgi?id=3D782211</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14944001290.714Fcd.19236--
+
+--===============1266811184==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1266811184==--
