@@ -1,81 +1,129 @@
-From: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 5/5] ACPI: button: Obselete acpi_lid_open()  invocations
-Date: Wed, 10 May 2017 13:30:50 +0300
-Message-ID: <87d1bhngv9.fsf@intel.com>
-References: <2a779ae8c280c968b3237ac4a3d9580df7262a46.1493951798.git.lv.zheng@intel.com> <22b130fe0cf3fca19b0e14c69426fe36766cf2ee.1494311429.git.lv.zheng@intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99396] Crash in nouveau_dri.so when switching apps
+ with alt-tab in Gnome
+Date: Wed, 10 May 2017 11:57:25 +0000
+Message-ID: <bug-99396-8800-4pZDr4ZBtz@http.bugs.freedesktop.org/>
+References: <bug-99396-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain
-Return-path: <linux-acpi-owner@vger.kernel.org>
-In-Reply-To: <22b130fe0cf3fca19b0e14c69426fe36766cf2ee.1494311429.git.lv.zheng@intel.com>
-Sender: linux-acpi-owner@vger.kernel.org
-To: "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Len Brown <len.brown@intel.com>
-Cc: linux-acpi@vger.kernel.org, intel-gfx@lists.freedesktop.org, Lv Zheng <lv.zheng@intel.com>, Lv Zheng <zetalog@gmail.com>, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1655469668=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99396-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 09 May 2017, Lv Zheng <lv.zheng@intel.com> wrote:
-> Since notification side has been changed to always notify kernel listeners
-> using _LID returning value. Now listeners needn't invoke acpi_lid_open(),
-> it should use a spec suggested control method lid device usage model:
-> register lid notification and use the notified value instead, which is the
-> only way to ensure the value is correct for "button.lid_init_state=ignore"
-> mode or other modes with "button.lid_fake_events=N" specified.
->
-> This patch fixes i915 driver to drop acpi_lid_open() user. It's not
-> possible to change nouveau_connector.c user using a simple way now. So this
-> patch only marks acpi_lid_open() as deprecated to accelerate this process
-> by indicating this change to the nouveau developers.
 
-Where's the rest of the series? Please send it all to intel-gfx so our
-CI can crunch through it. And I could take a peek too.
-
-This seems relevant:
-
-Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=100923
+--===============1655469668==
+Content-Type: multipart/alternative; boundary="14944174450.056Cd7.18317";
+ charset="UTF-8"
 
 
-BR,
-Jani.
+--14944174450.056Cd7.18317
+Date: Wed, 10 May 2017 11:57:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
->
-> Cc: <intel-gfx@lists.freedesktop.org>
-> Cc: <nouveau@lists.freedesktop.org>
-> Signed-off-by: Lv Zheng <lv.zheng@intel.com>
-> ---
->  drivers/acpi/button.c             | 7 ++++++-
->  drivers/gpu/drm/i915/intel_lvds.c | 2 +-
->  2 files changed, 7 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/acpi/button.c b/drivers/acpi/button.c
-> index 7ff3a75..50d7898 100644
-> --- a/drivers/acpi/button.c
-> +++ b/drivers/acpi/button.c
-> @@ -348,7 +348,12 @@ int acpi_lid_notifier_unregister(struct notifier_block *nb)
->  }
->  EXPORT_SYMBOL(acpi_lid_notifier_unregister);
->  
-> -int acpi_lid_open(void)
-> +/*
-> + * The intentional usage model is to register a lid notifier and use the
-> + * notified value instead. Directly evaluating _LID without seeing a
-> + * Notify(lid, 0x80) is not reliable.
-> + */
-> +int __deprecated acpi_lid_open(void)
->  {
->  	if (!lid_device)
->  		return -ENODEV;
-> diff --git a/drivers/gpu/drm/i915/intel_lvds.c b/drivers/gpu/drm/i915/intel_lvds.c
-> index 9ca4dc4..8ca9080 100644
-> --- a/drivers/gpu/drm/i915/intel_lvds.c
-> +++ b/drivers/gpu/drm/i915/intel_lvds.c
-> @@ -548,7 +548,7 @@ static int intel_lid_notify(struct notifier_block *nb, unsigned long val,
->  	/* Don't force modeset on machines where it causes a GPU lockup */
->  	if (dmi_check_system(intel_no_modeset_on_lid))
->  		goto exit;
-> -	if (!acpi_lid_open()) {
-> +	if (!val) {
->  		/* do modeset on next lid open event */
->  		dev_priv->modeset_restore = MODESET_ON_LID_OPEN;
->  		goto exit;
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99396
 
--- 
-Jani Nikula, Intel Open Source Technology Center
+--- Comment #10 from G=C3=A9za B=C3=BAza <bghome-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 131294
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131294&action=3Dedit
+Systemd coredump
+
+This bug affects the latest Mesa version.
+
+Environment:
+Mesa: 17.0.5
+Kernel: 4.10.13
+Gnome Shell: 3.24.1
+
+I attached the gnome_shell_coredump.log for reference.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14944174450.056Cd7.18317
+Date: Wed, 10 May 2017 11:57:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Crash in nouveau_dri.so when switching apps with alt-tab =
+in Gnome"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396#c10">Commen=
+t # 10</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Crash in nouveau_dri.so when switching apps with alt-tab =
+in Gnome"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396">bug 99396<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+bghome&#64;gmail.com" title=3D"G=C3=A9za B=C3=BAza &lt;bghome&#64;gmail.com=
+&gt;"> <span class=3D"fn">G=C3=A9za B=C3=BAza</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131294=
+" name=3D"attach_131294" title=3D"Systemd coredump">attachment 131294</a> <=
+a href=3D"attachment.cgi?id=3D131294&amp;action=3Dedit" title=3D"Systemd co=
+redump">[details]</a></span>
+Systemd coredump
+
+This bug affects the latest Mesa version.
+
+Environment:
+Mesa: 17.0.5
+Kernel: 4.10.13
+Gnome Shell: 3.24.1
+
+I attached the gnome_shell_coredump.log for reference.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14944174450.056Cd7.18317--
+
+--===============1655469668==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1655469668==--
