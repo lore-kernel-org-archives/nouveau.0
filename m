@@ -1,48 +1,81 @@
-From: Tommi Rantala <tt.rantala-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: nouveau "eDP-1: EDID is invalid" regression after 4.11
- with HP ZBook 15 G3
-Date: Wed, 10 May 2017 11:24:14 +0300
-Message-ID: <CA+ydwtofv0i07C-hWNfE9c82snc35-E3dHxKKhWj0VcJjiPbBw@mail.gmail.com>
+From: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 5/5] ACPI: button: Obselete acpi_lid_open()  invocations
+Date: Wed, 10 May 2017 13:30:50 +0300
+Message-ID: <87d1bhngv9.fsf@intel.com>
+References: <2a779ae8c280c968b3237ac4a3d9580df7262a46.1493951798.git.lv.zheng@intel.com> <22b130fe0cf3fca19b0e14c69426fe36766cf2ee.1494311429.git.lv.zheng@intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain
+Return-path: <linux-acpi-owner@vger.kernel.org>
+In-Reply-To: <22b130fe0cf3fca19b0e14c69426fe36766cf2ee.1494311429.git.lv.zheng@intel.com>
+Sender: linux-acpi-owner@vger.kernel.org
+To: "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Len Brown <len.brown@intel.com>
+Cc: linux-acpi@vger.kernel.org, intel-gfx@lists.freedesktop.org, Lv Zheng <lv.zheng@intel.com>, Lv Zheng <zetalog@gmail.com>, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpUaGUgSFAgWkJvb2sgMTUgRzMgbGFwdG9wIGJ1aWx0aW4gZGlzcGxheSAoZURQLTEpIGRv
-ZXMgbm90IHdvcmsKY29ycmVjdGx5IHdpdGggdjQuMTEtMTE0MTMtZzI4NjhiMjUuCgpXaGVuIGJv
-b3RpbmcgdGhlIGxhcHRvcCwgdGhlIHJlc29sdXRpb24gc2VlbXMgdG8gYmUgbGltaXRlZCB0bwox
-MDI0eDc2OCwgYW5kIGdub21lLXNlc3Npb24gc2VnZmF1bHRzLgoKVXAgdG8gNC4xMSB0aGUgZGlz
-cGxheSB3b3JrcyBqdXN0IGZpbmUgaW4gMTkyMHgxMDgwIG1vZGUuCgpJJ20gc2VlaW5nIHRoaXMg
-aW4gdGhlIGtlcm5lbCBsb2dzOgoKbm91dmVhdSAwMDAwOjAxOjAwLjA6IGVEUC0xOiBFRElEIGlz
-IGludmFsaWQ6CiAgICAgICAgWzAwXSBCQUQgIDAwIGZmIGZmIGZmIGZmIGZmIGZmIDAwIGZmIGZm
-IGZmIGZmIGZmIGZmIGZmIGZmCiAgICAgICAgWzAwXSBCQUQgIGZmIGZmIGZmIGZmIGZmIGZmIGZm
-IGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmCiAgICAgICAgWzAwXSBCQUQgIGZmIGZmIGZmIGZm
-IGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIDg0IDUzIDU0CiAgICAgICAgWzAwXSBCQUQgIDY2
-IDY5IDUwIDU1IDU3IDY2IDc0IDQ5IDQ4IGZmIGZmIGZmIGZmIGZmIGZmIGZmCiAgICAgICAgWzAw
-XSBCQUQgIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmCiAg
-ICAgICAgWzAwXSBCQUQgIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZm
-IGZmIGZmCiAgICAgICAgWzAwXSBCQUQgIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZm
-IGZmIGZmIGZmIGZmIGZmCiAgICAgICAgWzAwXSBCQUQgIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZm
-IGZmIGZmIGZmIDAwIDAwIGZmIDAwIGZmCm5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyBy
-ZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBlRFAtMQpbZHJtXSBDYW5ub3QgZmluZCBhbnkgY3J0
-YyBvciBzaXplcyAtIGdvaW5nIDEwMjR4NzY4CgoKJCBsc3BjaSB8IGdyZXAgTlZJRElBCjAxOjAw
-LjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxlcjogTlZJRElBIENvcnBvcmF0aW9uIEdNMTA3R0xN
-IFtRdWFkcm8KTTIwMDBNXSAocmV2IGEyKQoKQW55IGlkZWFzLCBvciBzaG91bGQgSSBiaXNlY3Q/
-Cgo0LjExIGRtZXNnICYgeHJhbmRyIG91dHB1dDoKaHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3L1A5
-TEdQN2UxCgo0LjExLTExNDEzLWcyODY4YjI1IGRtZXNnOgpodHRwczovL3Bhc3RlYmluLmNvbS9y
-YXcvUUJUOW1NdWEKCi1Ub21taQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+On Tue, 09 May 2017, Lv Zheng <lv.zheng@intel.com> wrote:
+> Since notification side has been changed to always notify kernel listeners
+> using _LID returning value. Now listeners needn't invoke acpi_lid_open(),
+> it should use a spec suggested control method lid device usage model:
+> register lid notification and use the notified value instead, which is the
+> only way to ensure the value is correct for "button.lid_init_state=ignore"
+> mode or other modes with "button.lid_fake_events=N" specified.
+>
+> This patch fixes i915 driver to drop acpi_lid_open() user. It's not
+> possible to change nouveau_connector.c user using a simple way now. So this
+> patch only marks acpi_lid_open() as deprecated to accelerate this process
+> by indicating this change to the nouveau developers.
+
+Where's the rest of the series? Please send it all to intel-gfx so our
+CI can crunch through it. And I could take a peek too.
+
+This seems relevant:
+
+Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=100923
+
+
+BR,
+Jani.
+
+>
+> Cc: <intel-gfx@lists.freedesktop.org>
+> Cc: <nouveau@lists.freedesktop.org>
+> Signed-off-by: Lv Zheng <lv.zheng@intel.com>
+> ---
+>  drivers/acpi/button.c             | 7 ++++++-
+>  drivers/gpu/drm/i915/intel_lvds.c | 2 +-
+>  2 files changed, 7 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/acpi/button.c b/drivers/acpi/button.c
+> index 7ff3a75..50d7898 100644
+> --- a/drivers/acpi/button.c
+> +++ b/drivers/acpi/button.c
+> @@ -348,7 +348,12 @@ int acpi_lid_notifier_unregister(struct notifier_block *nb)
+>  }
+>  EXPORT_SYMBOL(acpi_lid_notifier_unregister);
+>  
+> -int acpi_lid_open(void)
+> +/*
+> + * The intentional usage model is to register a lid notifier and use the
+> + * notified value instead. Directly evaluating _LID without seeing a
+> + * Notify(lid, 0x80) is not reliable.
+> + */
+> +int __deprecated acpi_lid_open(void)
+>  {
+>  	if (!lid_device)
+>  		return -ENODEV;
+> diff --git a/drivers/gpu/drm/i915/intel_lvds.c b/drivers/gpu/drm/i915/intel_lvds.c
+> index 9ca4dc4..8ca9080 100644
+> --- a/drivers/gpu/drm/i915/intel_lvds.c
+> +++ b/drivers/gpu/drm/i915/intel_lvds.c
+> @@ -548,7 +548,7 @@ static int intel_lid_notify(struct notifier_block *nb, unsigned long val,
+>  	/* Don't force modeset on machines where it causes a GPU lockup */
+>  	if (dmi_check_system(intel_no_modeset_on_lid))
+>  		goto exit;
+> -	if (!acpi_lid_open()) {
+> +	if (!val) {
+>  		/* do modeset on next lid open event */
+>  		dev_priv->modeset_restore = MODESET_ON_LID_OPEN;
+>  		goto exit;
+
+-- 
+Jani Nikula, Intel Open Source Technology Center
