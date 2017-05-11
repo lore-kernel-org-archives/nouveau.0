@@ -1,84 +1,227 @@
-From: Benjamin Tissoires <benjamin.tissoires@gmail.com>
-Subject: Re: [PATCH v2 5/5] ACPI: button: Obselete acpi_lid_open() invocations
-Date: Thu, 11 May 2017 12:33:02 +0200
-Message-ID: <CAN+gG=G_yh77Vab_bvWxTOVHsiUm21-X8bajo14utjaCwf1x=Q@mail.gmail.com>
-References: <2a779ae8c280c968b3237ac4a3d9580df7262a46.1493951798.git.lv.zheng@intel.com>
- <22b130fe0cf3fca19b0e14c69426fe36766cf2ee.1494311429.git.lv.zheng@intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101000] New: Cinelerra crashes with OpenGL output on
+	mesa git
+Date: Thu, 11 May 2017 10:50:03 +0000
+Message-ID: <bug-101000-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-acpi-owner@vger.kernel.org>
-In-Reply-To: <22b130fe0cf3fca19b0e14c69426fe36766cf2ee.1494311429.git.lv.zheng@intel.com>
-Sender: linux-acpi-owner@vger.kernel.org
-To: Lv Zheng <lv.zheng@intel.com>
-Cc: "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Len Brown <len.brown@intel.com>, Lv Zheng <zetalog@gmail.com>, ACPI Devel Maling List <linux-acpi@vger.kernel.org>, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0021234882=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, May 9, 2017 at 9:02 AM, Lv Zheng <lv.zheng@intel.com> wrote:
-> Since notification side has been changed to always notify kernel listeners
-> using _LID returning value. Now listeners needn't invoke acpi_lid_open(),
-> it should use a spec suggested control method lid device usage model:
-> register lid notification and use the notified value instead, which is the
-> only way to ensure the value is correct for "button.lid_init_state=ignore"
-> mode or other modes with "button.lid_fake_events=N" specified.
->
-> This patch fixes i915 driver to drop acpi_lid_open() user. It's not
-> possible to change nouveau_connector.c user using a simple way now. So this
-> patch only marks acpi_lid_open() as deprecated to accelerate this process
-> by indicating this change to the nouveau developers.
 
-If  the only 2 users of acpi_lid_open() are intel and nouveau, and if
-they should rely on the value stored in the input node, not the one
-exported by the _LID method (which can be wrong on some platforms),
-how about simply changing the implementation of acpi_lid_open() to
-fetch the value from the input node directly?
+--===============0021234882==
+Content-Type: multipart/alternative; boundary="14944998030.A7Defca.543";
+ charset="UTF-8"
 
-Cheers,
-Benjamin
 
->
-> Cc: <intel-gfx@lists.freedesktop.org>
-> Cc: <nouveau@lists.freedesktop.org>
-> Signed-off-by: Lv Zheng <lv.zheng@intel.com>
-> ---
->  drivers/acpi/button.c             | 7 ++++++-
->  drivers/gpu/drm/i915/intel_lvds.c | 2 +-
->  2 files changed, 7 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/acpi/button.c b/drivers/acpi/button.c
-> index 7ff3a75..50d7898 100644
-> --- a/drivers/acpi/button.c
-> +++ b/drivers/acpi/button.c
-> @@ -348,7 +348,12 @@ int acpi_lid_notifier_unregister(struct notifier_block *nb)
->  }
->  EXPORT_SYMBOL(acpi_lid_notifier_unregister);
->
-> -int acpi_lid_open(void)
-> +/*
-> + * The intentional usage model is to register a lid notifier and use the
-> + * notified value instead. Directly evaluating _LID without seeing a
-> + * Notify(lid, 0x80) is not reliable.
-> + */
-> +int __deprecated acpi_lid_open(void)
->  {
->         if (!lid_device)
->                 return -ENODEV;
-> diff --git a/drivers/gpu/drm/i915/intel_lvds.c b/drivers/gpu/drm/i915/intel_lvds.c
-> index 9ca4dc4..8ca9080 100644
-> --- a/drivers/gpu/drm/i915/intel_lvds.c
-> +++ b/drivers/gpu/drm/i915/intel_lvds.c
-> @@ -548,7 +548,7 @@ static int intel_lid_notify(struct notifier_block *nb, unsigned long val,
->         /* Don't force modeset on machines where it causes a GPU lockup */
->         if (dmi_check_system(intel_no_modeset_on_lid))
->                 goto exit;
-> -       if (!acpi_lid_open()) {
-> +       if (!val) {
->                 /* do modeset on next lid open event */
->                 dev_priv->modeset_restore = MODESET_ON_LID_OPEN;
->                 goto exit;
-> --
-> 2.7.4
->
-> --
-> To unsubscribe from this list: send the line "unsubscribe linux-acpi" in
-> the body of a message to majordomo@vger.kernel.org
-> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+--14944998030.A7Defca.543
+Date: Thu, 11 May 2017 10:50:03 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101000
+
+            Bug ID: 101000
+           Summary: Cinelerra crashes with OpenGL output on mesa git
+           Product: Mesa
+           Version: git
+          Hardware: x86 (IA32)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: randrik-JGs/UdohzUI@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 131311
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131311&action=3Dedit
+apitrace
+
+Hello!
+
+Not sure if this bug is regression or it was there for long time, but master
+branch of Cinelerra-CV (open-source video editing software, see
+https://git.cinelerra-cv.org/gitweb for their source code, I talk about ver=
+sion
+from https://git.cinelerra-cv.org/gitweb?p=3DCinelerraCV.git;a=3Dsummary ) =
+crashes
+for me on Mesa/Nouveau (nv92), if I set Video Output for OpenGL, on video l=
+oad.
+
+I made apitrace of this crash, but it strangely short (attached)
+
+Currently running mesa OpenGL core profile version string: 3.3 (Core Profil=
+e)
+Mesa 17.2.0-devel (git-bdaff25) , X server 1.19.1, kernel 4.11.0-rc7-x64+,
+xf86-video-nouveau commit a7c190e0c230ed2d5e047ed6aba12d71a4866950 (1.0.15).
+
+I'll attach gdb session log, too.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--14944998030.A7Defca.543
+Date: Thu, 11 May 2017 10:50:03 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Cinelerra crashes with OpenGL output on mesa git"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101000">101000</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Cinelerra crashes with OpenGL output on mesa git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>randrik&#64;mail.ru
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131311=
+" name=3D"attach_131311" title=3D"apitrace">attachment 131311</a> <a href=
+=3D"attachment.cgi?id=3D131311&amp;action=3Dedit" title=3D"apitrace">[detai=
+ls]</a></span>
+apitrace
+
+Hello!
+
+Not sure if this bug is regression or it was there for long time, but master
+branch of Cinelerra-CV (open-source video editing software, see
+<a href=3D"https://git.cinelerra-cv.org/gitweb">https://git.cinelerra-cv.or=
+g/gitweb</a> for their source code, I talk about version
+from <a href=3D"https://git.cinelerra-cv.org/gitweb?p=3DCinelerraCV.git;a=
+=3Dsummary">https://git.cinelerra-cv.org/gitweb?p=3DCinelerraCV.git;a=3Dsum=
+mary</a> ) crashes
+for me on Mesa/Nouveau (nv92), if I set Video Output for OpenGL, on video l=
+oad.
+
+I made apitrace of this crash, but it strangely short (attached)
+
+Currently running mesa OpenGL core profile version string: 3.3 (Core Profil=
+e)
+Mesa 17.2.0-devel (git-bdaff25) , X server 1.19.1, kernel 4.11.0-rc7-x64+,
+xf86-video-nouveau commit a7c190e0c230ed2d5e047ed6aba12d71a4866950 (1.0.15).
+
+I'll attach gdb session log, too.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14944998030.A7Defca.543--
+
+--===============0021234882==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0021234882==--
