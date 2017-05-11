@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101000] New: Cinelerra crashes with OpenGL output on
-	mesa git
-Date: Thu, 11 May 2017 10:50:03 +0000
-Message-ID: <bug-101000-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101000] Cinelerra crashes with OpenGL output on mesa
+	git
+Date: Thu, 11 May 2017 10:52:07 +0000
+Message-ID: <bug-101000-8800-Y6m1xChRmp@http.bugs.freedesktop.org/>
+References: <bug-101000-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0021234882=="
+Content-Type: multipart/mixed; boundary="===============1247316031=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101000-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0021234882==
-Content-Type: multipart/alternative; boundary="14944998030.A7Defca.543";
+--===============1247316031==
+Content-Type: multipart/alternative; boundary="14944999270.20D2893.583";
  charset="UTF-8"
 
 
---14944998030.A7Defca.543
-Date: Thu, 11 May 2017 10:50:03 +0000
+--14944999270.20D2893.583
+Date: Thu, 11 May 2017 10:52:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,51 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101000
 
-            Bug ID: 101000
-           Summary: Cinelerra crashes with OpenGL output on mesa git
-           Product: Mesa
-           Version: git
-          Hardware: x86 (IA32)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: randrik-JGs/UdohzUI@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-Created attachment 131311
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131311&action=3Dedit
-apitrace
-
-Hello!
-
-Not sure if this bug is regression or it was there for long time, but master
-branch of Cinelerra-CV (open-source video editing software, see
-https://git.cinelerra-cv.org/gitweb for their source code, I talk about ver=
-sion
-from https://git.cinelerra-cv.org/gitweb?p=3DCinelerraCV.git;a=3Dsummary ) =
-crashes
-for me on Mesa/Nouveau (nv92), if I set Video Output for OpenGL, on video l=
-oad.
-
-I made apitrace of this crash, but it strangely short (attached)
-
-Currently running mesa OpenGL core profile version string: 3.3 (Core Profil=
-e)
-Mesa 17.2.0-devel (git-bdaff25) , X server 1.19.1, kernel 4.11.0-rc7-x64+,
-xf86-video-nouveau commit a7c190e0c230ed2d5e047ed6aba12d71a4866950 (1.0.15).
-
-I'll attach gdb session log, too.
+--- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 131312
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131312&action=3Dedit
+GDB log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14944998030.A7Defca.543
-Date: Thu, 11 May 2017 10:50:03 +0000
+--14944999270.20D2893.583
+Date: Thu, 11 May 2017 10:52:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -89,115 +58,28 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Cinelerra crashes with OpenGL output on mesa git"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101000">101000</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Cinelerra crashes with OpenGL output on mesa git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86 (IA32)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>randrik&#64;mail.ru
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131311=
-" name=3D"attach_131311" title=3D"apitrace">attachment 131311</a> <a href=
-=3D"attachment.cgi?id=3D131311&amp;action=3Dedit" title=3D"apitrace">[detai=
-ls]</a></span>
-apitrace
-
-Hello!
-
-Not sure if this bug is regression or it was there for long time, but master
-branch of Cinelerra-CV (open-source video editing software, see
-<a href=3D"https://git.cinelerra-cv.org/gitweb">https://git.cinelerra-cv.or=
-g/gitweb</a> for their source code, I talk about version
-from <a href=3D"https://git.cinelerra-cv.org/gitweb?p=3DCinelerraCV.git;a=
-=3Dsummary">https://git.cinelerra-cv.org/gitweb?p=3DCinelerraCV.git;a=3Dsum=
-mary</a> ) crashes
-for me on Mesa/Nouveau (nv92), if I set Video Output for OpenGL, on video l=
-oad.
-
-I made apitrace of this crash, but it strangely short (attached)
-
-Currently running mesa OpenGL core profile version string: 3.3 (Core Profil=
-e)
-Mesa 17.2.0-devel (git-bdaff25) , X server 1.19.1, kernel 4.11.0-rc7-x64+,
-xf86-video-nouveau commit a7c190e0c230ed2d5e047ed6aba12d71a4866950 (1.0.15).
-
-I'll attach gdb session log, too.</pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Cinelerra crashes with OpenGL output on mesa git"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101000#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Cinelerra crashes with OpenGL output on mesa git"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101000">bug 10100=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
+gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131312=
+" name=3D"attach_131312" title=3D"GDB log">attachment 131312</a> <a href=3D=
+"attachment.cgi?id=3D131312&amp;action=3Dedit" title=3D"GDB log">[details]<=
+/a></span>
+GDB log</pre>
         </div>
       </p>
 
@@ -212,9 +94,9 @@ I'll attach gdb session log, too.</pre>
     </body>
 </html>=
 
---14944998030.A7Defca.543--
+--14944999270.20D2893.583--
 
---===============0021234882==
+--===============1247316031==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -224,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0021234882==--
+--===============1247316031==--
