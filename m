@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101000] Cinelerra crashes with OpenGL output on mesa
 	git
-Date: Thu, 11 May 2017 10:52:07 +0000
-Message-ID: <bug-101000-8800-Y6m1xChRmp@http.bugs.freedesktop.org/>
+Date: Thu, 11 May 2017 10:53:52 +0000
+Message-ID: <bug-101000-8800-dFQEirbXaR@http.bugs.freedesktop.org/>
 References: <bug-101000-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1247316031=="
+Content-Type: multipart/mixed; boundary="===============1286083186=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101000-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1247316031==
-Content-Type: multipart/alternative; boundary="14944999270.20D2893.583";
+--===============1286083186==
+Content-Type: multipart/alternative; boundary="14945000320.3301C.586";
  charset="UTF-8"
 
 
---14944999270.20D2893.583
-Date: Thu, 11 May 2017 10:52:07 +0000
+--14945000320.3301C.586
+Date: Thu, 11 May 2017 10:53:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101000
 
---- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Created attachment 131312
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131312&action=3Dedit
-GDB log
+--- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 131313
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131313&action=3Dedit
+X log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---14944999270.20D2893.583
-Date: Thu, 11 May 2017 10:52:07 +0000
+--14945000320.3301C.586
+Date: Thu, 11 May 2017 10:53:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Cinelerra crashes with OpenGL output on mesa git"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101000#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101000#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Cinelerra crashes with OpenGL output on mesa git"
@@ -75,11 +75,11 @@ t # 1</a>
 randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
 gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131312=
-" name=3D"attach_131312" title=3D"GDB log">attachment 131312</a> <a href=3D=
-"attachment.cgi?id=3D131312&amp;action=3Dedit" title=3D"GDB log">[details]<=
-/a></span>
-GDB log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131313=
+" name=3D"attach_131313" title=3D"X log">attachment 131313</a> <a href=3D"a=
+ttachment.cgi?id=3D131313&amp;action=3Dedit" title=3D"X log">[details]</a><=
+/span>
+X log</pre>
         </div>
       </p>
 
@@ -94,9 +94,9 @@ GDB log</pre>
     </body>
 </html>=
 
---14944999270.20D2893.583--
+--14945000320.3301C.586--
 
---===============1247316031==
+--===============1286083186==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1247316031==--
+--===============1286083186==--
