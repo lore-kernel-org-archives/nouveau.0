@@ -1,142 +1,240 @@
-From: "Zheng, Lv" <lv.zheng@intel.com>
-Subject: RE: [PATCH v2 5/5] ACPI: button: Obselete acpi_lid_open()
- invocations
-Date: Fri, 12 May 2017 06:08:09 +0000
-Message-ID: <1AE640813FDE7649BE1B193DEA596E886CEA2E0E@SHSMSX101.ccr.corp.intel.com>
+From: Benjamin Tissoires <benjamin.tissoires@gmail.com>
+Subject: Re: [PATCH v2 5/5] ACPI: button: Obselete acpi_lid_open() invocations
+Date: Fri, 12 May 2017 12:20:36 +0200
+Message-ID: <CAN+gG=GazunH_RFDUusbnT+ncNoejLuA5=v-49KDFFJ4oy8xuw@mail.gmail.com>
 References: <2a779ae8c280c968b3237ac4a3d9580df7262a46.1493951798.git.lv.zheng@intel.com>
  <22b130fe0cf3fca19b0e14c69426fe36766cf2ee.1494311429.git.lv.zheng@intel.com>
  <CAN+gG=G_yh77Vab_bvWxTOVHsiUm21-X8bajo14utjaCwf1x=Q@mail.gmail.com>
- <1AE640813FDE7649BE1B193DEA596E886CEA2BB0@SHSMSX101.ccr.corp.intel.com>
+ <1AE640813FDE7649BE1B193DEA596E886CEA2BB0@SHSMSX101.ccr.corp.intel.com> <1AE640813FDE7649BE1B193DEA596E886CEA2E0E@SHSMSX101.ccr.corp.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <linux-acpi-owner@vger.kernel.org>
-In-Reply-To: <1AE640813FDE7649BE1B193DEA596E886CEA2BB0@SHSMSX101.ccr.corp.intel.com>
-Content-Language: en-US
+In-Reply-To: <1AE640813FDE7649BE1B193DEA596E886CEA2E0E@SHSMSX101.ccr.corp.intel.com>
 Sender: linux-acpi-owner@vger.kernel.org
-To: "Zheng, Lv" <lv.zheng@intel.com>, Benjamin Tissoires <benjamin.tissoires@gmail.com>
+To: "Zheng, Lv" <lv.zheng@intel.com>
 Cc: "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, "Brown, Len" <len.brown@intel.com>, Lv Zheng <zetalog@gmail.com>, ACPI Devel Maling List <linux-acpi@vger.kernel.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-SGksDQoNCklmIG15IHByZXZpb3VzIHJlcGx5IGlzIG5vdCBwZXJzdWFzaXZlIGVub3VnaC4NCkxl
-dCBtZSBkbyB0aGF0IGluIGEgZGlmZmVyZW50IHdheS4NCg0KPiBGcm9tOiBsaW51eC1hY3BpLW93
-bmVyQHZnZXIua2VybmVsLm9yZyBbbWFpbHRvOmxpbnV4LWFjcGktb3duZXJAdmdlci5rZXJuZWwu
-b3JnXSBPbiBCZWhhbGYgT2YgWmhlbmcsDQo+IEx2DQo+IFN1YmplY3Q6IFJFOiBbUEFUQ0ggdjIg
-NS81XSBBQ1BJOiBidXR0b246IE9ic2VsZXRlIGFjcGlfbGlkX29wZW4oKSBpbnZvY2F0aW9ucw0K
-PiANCj4gSGksDQo+IA0KPiA+IEZyb206IEJlbmphbWluIFRpc3NvaXJlcyBbbWFpbHRvOmJlbmph
-bWluLnRpc3NvaXJlc0BnbWFpbC5jb21dDQo+ID4gU3ViamVjdDogUmU6IFtQQVRDSCB2MiA1LzVd
-IEFDUEk6IGJ1dHRvbjogT2JzZWxldGUgYWNwaV9saWRfb3BlbigpIGludm9jYXRpb25zDQo+ID4N
-Cj4gPiBPbiBUdWUsIE1heSA5LCAyMDE3IGF0IDk6MDIgQU0sIEx2IFpoZW5nIDxsdi56aGVuZ0Bp
-bnRlbC5jb20+IHdyb3RlOg0KPiA+ID4gU2luY2Ugbm90aWZpY2F0aW9uIHNpZGUgaGFzIGJlZW4g
-Y2hhbmdlZCB0byBhbHdheXMgbm90aWZ5IGtlcm5lbCBsaXN0ZW5lcnMNCj4gPiA+IHVzaW5nIF9M
-SUQgcmV0dXJuaW5nIHZhbHVlLiBOb3cgbGlzdGVuZXJzIG5lZWRuJ3QgaW52b2tlIGFjcGlfbGlk
-X29wZW4oKSwNCj4gPiA+IGl0IHNob3VsZCB1c2UgYSBzcGVjIHN1Z2dlc3RlZCBjb250cm9sIG1l
-dGhvZCBsaWQgZGV2aWNlIHVzYWdlIG1vZGVsOg0KPiA+ID4gcmVnaXN0ZXIgbGlkIG5vdGlmaWNh
-dGlvbiBhbmQgdXNlIHRoZSBub3RpZmllZCB2YWx1ZSBpbnN0ZWFkLCB3aGljaCBpcyB0aGUNCj4g
-PiA+IG9ubHkgd2F5IHRvIGVuc3VyZSB0aGUgdmFsdWUgaXMgY29ycmVjdCBmb3IgImJ1dHRvbi5s
-aWRfaW5pdF9zdGF0ZT1pZ25vcmUiDQo+ID4gPiBtb2RlIG9yIG90aGVyIG1vZGVzIHdpdGggImJ1
-dHRvbi5saWRfZmFrZV9ldmVudHM9TiIgc3BlY2lmaWVkLg0KPiA+ID4NCj4gPiA+IFRoaXMgcGF0
-Y2ggZml4ZXMgaTkxNSBkcml2ZXIgdG8gZHJvcCBhY3BpX2xpZF9vcGVuKCkgdXNlci4gSXQncyBu
-b3QNCj4gPiA+IHBvc3NpYmxlIHRvIGNoYW5nZSBub3V2ZWF1X2Nvbm5lY3Rvci5jIHVzZXIgdXNp
-bmcgYSBzaW1wbGUgd2F5IG5vdy4gU28gdGhpcw0KPiA+ID4gcGF0Y2ggb25seSBtYXJrcyBhY3Bp
-X2xpZF9vcGVuKCkgYXMgZGVwcmVjYXRlZCB0byBhY2NlbGVyYXRlIHRoaXMgcHJvY2Vzcw0KPiA+
-ID4gYnkgaW5kaWNhdGluZyB0aGlzIGNoYW5nZSB0byB0aGUgbm91dmVhdSBkZXZlbG9wZXJzLg0K
-PiA+DQo+ID4gSWYgIHRoZSBvbmx5IDIgdXNlcnMgb2YgYWNwaV9saWRfb3BlbigpIGFyZSBpbnRl
-bCBhbmQgbm91dmVhdSwgYW5kIGlmDQo+ID4gdGhleSBzaG91bGQgcmVseSBvbiB0aGUgdmFsdWUg
-c3RvcmVkIGluIHRoZSBpbnB1dCBub2RlLCBub3QgdGhlIG9uZQ0KPiA+IGV4cG9ydGVkIGJ5IHRo
-ZSBfTElEIG1ldGhvZCAod2hpY2ggY2FuIGJlIHdyb25nIG9uIHNvbWUgcGxhdGZvcm1zKSwNCj4g
-PiBob3cgYWJvdXQgc2ltcGx5IGNoYW5naW5nIHRoZSBpbXBsZW1lbnRhdGlvbiBvZiBhY3BpX2xp
-ZF9vcGVuKCkgdG8NCj4gPiBmZXRjaCB0aGUgdmFsdWUgZnJvbSB0aGUgaW5wdXQgbm9kZSBkaXJl
-Y3RseT8NCg0KSWYgYWNwaV9saWRfb3BlbigpIHJldHVybnMgc3RvcmVkIHZhbHVlIGluIGlucHV0
-IG5vZGUsDQp0aGVuIGl0IGFjdHVhbGx5IHJldHVybnMgdGhlIHZhbHVlIHdlIG5vdGlmaWVkIHRv
-IHRoZSBpbnB1dCBsYXllci4NCldoaWxlIGk5MTUgYW5kIG5vdXZlYXUgZXhwbGljaXRseSBkbyBu
-b3QgdHJ1c3QgdGhhdCB2YWx1ZSBhbmQgaW52b2tlIGFjcGlfbGlkX29wZW4oKS4NCg0KRm9yIGJ1
-dHRvbi5saWRfaW5pdF9zdGF0ZT1tZXRob2QsIFBBVENIIDQvNSBpcyB1c2VsZXNzIGFzIHRoZSB2
-YWx1ZXMgYXJlIHNhbWUuDQoNCkhvd2V2ZXIgaW4gbXkgcmVwbHkgb2YgUEFUQ0ggMi4NCkkgZXhw
-bGFpbmVkIHRoZSBkaWZmZXJlbmNlIG9mIG1ldGhvZC9jbG9zZSwgZm9yIHRoZSBzYW1lIHJlYXNv
-biwgd2UgY2FuIGFsc28gc2Vuc2UgdGhlIGRpZmZlcmVuY2Ugb2YgbWV0aG9kL29wZW4uDQpUaGUg
-ZGlmZmVyZW5jZSB0aGVuIGNhbiBleHBsYWluIHRoZSB1c2VmdWxuZXNzIG9mIG9wZW4vY2xvc2Ug
-bW9kZXMuDQoNCkdpdmVuIG9wZW4vY2xvc2UgbW9kZXMgYXJlIGFsbCB1c2VmdWw6DQpidXR0b24u
-bGlkX2luaXRfc3RhdGU9b3Blbg0KMS4gYnV0dG9uIGRyaXZlciBzZW5kcyBvcGVuIHRvIGlucHV0
-IGxheWVyIGFmdGVyIGJvb3QvcmVzdW1lDQoyLiBpOTE1L25vdXZlYXUgdXNlcyBfTElEIHJldHVy
-biB2YWx1ZSBhZnRlciBib290L3Jlc3VtZQ0KSWYgX0xJRCByZXR1cm4gdmFsdWUgYWZ0ZXIgYm9v
-dC9yZXN1bWUgaXMgImNsb3NlIiwgdGhleSBhcmUgZGlmZmVyZW50Lg0KDQpidXR0b24ubGlkX2lu
-aXRfc3RhdGU9Y2xvc2UNCjEuIGJ1dHRvbiBkcml2ZXIgc2VuZHMgY2xvc2UgdG8gaW5wdXQgbGF5
-ZXIgYWZ0ZXIgYm9vdC9yZXN1bWUNCjIuIGk5MTUvbm91dmVhdSB1c2VzIF9MSUQgcmV0dXJuIHZh
-bHVlIGFmdGVyIGJvb3QvcmVzdW1lDQpJZiBfTElEIHJldHVybiB2YWx1ZSBhZnRlciBib290L3Jl
-c3VtZSBpcyAib3BlbiIsIHRoZXkgYXJlIGRpZmZlcmVudC4NCg0KVGhlIG9ubHkgd2F5IHRvIGJl
-IGNvbnNpc3RlbnQgdG8gb2xkIGk5MTUvbm91dmVhdSBiZWhhdmlvciBpczoNCmJ1dHRvbi5saWRf
-aW5pdF9zdGF0ZT1vcGVuL2Nsb3NlDQoxLiBidXR0b24gZHJpdmVyIHNlbmRzIG9wZW4vY2xvc2Ug
-dG8gaW5wdXQgbGF5ZXIgYWZ0ZXIgYm9vdC9yZXN1bWUNCjIuIGJ1dHRvbiBkcml2ZXIgc2VuZHMg
-X0xJRCByZXR1cm4gdmFsdWUgdG8gaTkxNSBhZnRlciBib290L3Jlc3VtZSAoUEFUQ0ggNCkNClNv
-IHRoYXQgaTkxNSBjYW4ganVzdCB1c2UgdGhlIG5vdGlmaWVkIHZhbHVlIGluIHRoaXMgcGF0Y2gg
-KFBBVENIIDUpLg0KRm9yIG5vdXZlYXUsIG5vIGNoYW5nZSBoYXMgYmVlbiBtYWRlIGZvciBub3cs
-IGFuZCBhcyBhIGNvbmNlcXVlbmNlLCBhY3BpX2xpZF9vcGVuKCkgaXMgc3RpbGwga2VwdCBidXQg
-bWFya2VkIGFzIGRlcHJlY2F0ZWQuDQoNCj4gDQo+IFNlZSBteSByZXBseSBvZiBQQVRDSCA0Lg0K
-PiBJdCBzZWVtcyB0aGV5IHRydXN0IF9MSUQgcmV0dXJuIHZhbHVlIG1vcmUgdGhhbiB3aGF0IHdl
-IHNlbmQgdG8gdGhlbS4NCj4gDQo+IFdlIGNhbiBhY3R1YWxseSBzZW5kIGZha2VkICJvcGVuL2Ns
-b3NlIiB0byB0aGVtIHdoZW4gYnV0dG9uLmxpZF9pbml0X3N0YXRlPW9wZW4vY2xvc2UgaXMgc3Bl
-Y2lmaWVkLg0KPiANCj4gU28gdGhlc2UgMiBwYXRjaGVzIFtQQVRDSCA0LTUvNV0gYXJlIHVzZWQg
-dG8gZG8gYSBzbWFsbCBjbGVhbnVwIGZvciBsaWQgZXZlbnQgbm90aWZpZXIgQVBJcy4NCj4gSSB0
-aGluayB0aGV5IGFyZSBub3Qgc3RyaWN0bHkgcmVsYXRlZCB0byB0aGUgbGlkIGlzc3VlcyB3ZSBh
-cmUgdGFsa2luZyBhYm91dC4NCg0KU2VlIERvY3VtZW50YXRpb24vYWNwaS9hY3BpLWxpZC50eHQ6
-DQpUaGUgX0xJRCBjb250cm9sIG1ldGhvZCBpcyBkZXNjcmliZWQgdG8gcmV0dXJuIHRoZSAiY3Vy
-cmVudCIgbGlkIHN0YXRlLg0KSG93ZXZlciB0aGUgd29yZCBvZiAiY3VycmVudCIgaGFzIGFtYmln
-dWl0eSwgc29tZSBidWdneSBBTUwgdGFibGVzIHJldHVybg0KdGhlIGxpZCBzdGF0ZSB1cG9uIHRo
-ZSBsYXN0IGxpZCBub3RpZmljYXRpb24gaW5zdGVhZCBvZiByZXR1cm5pbmcgdGhlIGxpZA0Kc3Rh
-dGUgdXBvbiB0aGUgbGFzdCBfTElEIGV2YWx1YXRpb24uDQoNCkluIG9yZGVyIHRvIGhhdmUgYWNw
-aSBsaWQgZXZlbnQgbm90aWZpZXIgQVBJIGNvbXBsaWFudCB0byB0aGUgYWJvdmUgbWVudGlvbmVk
-IGJvdGggImJ1Z2d5IiBhbmQgIm5vbmJ1Z2d5IiBpbXBsZW1lbnRhdGlvbi4NClRoZSBlbnN1cmVk
-IGxpZCBldmVudCBtb2RlbCBpbnRlcmZhY2Ugc2hvdWxkIGJlOg0KMS4gTGlkIGV2ZW50IG5vdGlm
-aWVyIGxpc3RlbmVycyBpbnZva2VzIGFjcGlfbGlkX25vdGlmaWVyX3JlZ2lzdGVyKCkuDQoyLiBB
-bmQgaW4gdGhlIGNhbGxiYWNrLCB1c2VzIF9MSUQgcmV0dXJuIHZhbHVlLg0KVGhpcyBpcyBhbHNv
-IHRoZSBvbmx5IHBvc3NpYmxlIHdheSB0byBjb21iaW5lICJyZWNlaXZpbmcgbGlkIG5vdGlmeSIg
-YW5kICJldmFsdWF0ZSBfTElEIiBpbnRvIDEgc2luZ2xlIGF0b21pYyBvcGVyYXRpb24uDQoNClNv
-IEkgdHJlbmQgdG8gcmVtb3ZlIGFjcGlfbGlkX29wZW4oKSBhbmQgZW5mb3JjZSB0aGUgbmV3IEFQ
-SS4NCg0KQXMgYSBjb25jbHVzaW9uLCBQQVRDSCA0LTUNCjEuIG1ha2VzIGEgaGlkZGVuIGxvZ2lj
-IGV4cGxpY2l0IC0gdGhlIGxpZCBldmVudCBsaXN0ZW5lcnMgYWx3YXlzIHVzZSBfTElEIHJldHVy
-biB2YWx1ZS4gTGVzcyBoaWRkZW4gbG9naWNzIHNob3VsZCBsZWF2ZSBsZXNzIGNoYW5jZXMgb2Yg
-YnVncy4NCjIuIGlzIGFuIGltcGxlbWVudGF0aW9uIGZvciBvdXIgZG9jdW1lbnRlZCBBQ1BJIGxp
-ZCBldmVudCBtb2RlbC4NCkFuZCB0aGUgaW1wbGVtZW50YXRpb24gaXMgZG9uZSBpbiBhIHJlZ3Jl
-c3Npb24gc2FmZSB3YXkuDQoNClRoYW5rcywNCkx2DQoNCj4gDQo+IENoZWVycywNCj4gTHYNCj4g
-DQo+ID4NCj4gPiBDaGVlcnMsDQo+ID4gQmVuamFtaW4NCj4gPg0KPiA+ID4NCj4gPiA+IENjOiA8
-aW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4NCj4gPiA+IENjOiA8bm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmc+DQo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBMdiBaaGVuZyA8bHYuemhl
-bmdAaW50ZWwuY29tPg0KPiA+ID4gLS0tDQo+ID4gPiAgZHJpdmVycy9hY3BpL2J1dHRvbi5jICAg
-ICAgICAgICAgIHwgNyArKysrKystDQo+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
-bHZkcy5jIHwgMiArLQ0KPiA+ID4gIDIgZmlsZXMgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspLCAy
-IGRlbGV0aW9ucygtKQ0KPiA+ID4NCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2FjcGkvYnV0
-dG9uLmMgYi9kcml2ZXJzL2FjcGkvYnV0dG9uLmMNCj4gPiA+IGluZGV4IDdmZjNhNzUuLjUwZDc4
-OTggMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2FjcGkvYnV0dG9uLmMNCj4gPiA+ICsrKyBi
-L2RyaXZlcnMvYWNwaS9idXR0b24uYw0KPiA+ID4gQEAgLTM0OCw3ICszNDgsMTIgQEAgaW50IGFj
-cGlfbGlkX25vdGlmaWVyX3VucmVnaXN0ZXIoc3RydWN0IG5vdGlmaWVyX2Jsb2NrICpuYikNCj4g
-PiA+ICB9DQo+ID4gPiAgRVhQT1JUX1NZTUJPTChhY3BpX2xpZF9ub3RpZmllcl91bnJlZ2lzdGVy
-KTsNCj4gPiA+DQo+ID4gPiAtaW50IGFjcGlfbGlkX29wZW4odm9pZCkNCj4gPiA+ICsvKg0KPiA+
-ID4gKyAqIFRoZSBpbnRlbnRpb25hbCB1c2FnZSBtb2RlbCBpcyB0byByZWdpc3RlciBhIGxpZCBu
-b3RpZmllciBhbmQgdXNlIHRoZQ0KPiA+ID4gKyAqIG5vdGlmaWVkIHZhbHVlIGluc3RlYWQuIERp
-cmVjdGx5IGV2YWx1YXRpbmcgX0xJRCB3aXRob3V0IHNlZWluZyBhDQo+ID4gPiArICogTm90aWZ5
-KGxpZCwgMHg4MCkgaXMgbm90IHJlbGlhYmxlLg0KPiA+ID4gKyAqLw0KPiA+ID4gK2ludCBfX2Rl
-cHJlY2F0ZWQgYWNwaV9saWRfb3Blbih2b2lkKQ0KPiA+ID4gIHsNCj4gPiA+ICAgICAgICAgaWYg
-KCFsaWRfZGV2aWNlKQ0KPiA+ID4gICAgICAgICAgICAgICAgIHJldHVybiAtRU5PREVWOw0KPiA+
-ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2x2ZHMuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2ludGVsX2x2ZHMuYw0KPiA+ID4gaW5kZXggOWNhNGRjNC4uOGNhOTA4
-MCAxMDA2NDQNCj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2x2ZHMuYw0K
-PiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbHZkcy5jDQo+ID4gPiBAQCAt
-NTQ4LDcgKzU0OCw3IEBAIHN0YXRpYyBpbnQgaW50ZWxfbGlkX25vdGlmeShzdHJ1Y3Qgbm90aWZp
-ZXJfYmxvY2sgKm5iLCB1bnNpZ25lZCBsb25nIHZhbCwNCj4gPiA+ICAgICAgICAgLyogRG9uJ3Qg
-Zm9yY2UgbW9kZXNldCBvbiBtYWNoaW5lcyB3aGVyZSBpdCBjYXVzZXMgYSBHUFUgbG9ja3VwICov
-DQo+ID4gPiAgICAgICAgIGlmIChkbWlfY2hlY2tfc3lzdGVtKGludGVsX25vX21vZGVzZXRfb25f
-bGlkKSkNCj4gPiA+ICAgICAgICAgICAgICAgICBnb3RvIGV4aXQ7DQo+ID4gPiAtICAgICAgIGlm
-ICghYWNwaV9saWRfb3BlbigpKSB7DQo+ID4gPiArICAgICAgIGlmICghdmFsKSB7DQo+ID4gPiAg
-ICAgICAgICAgICAgICAgLyogZG8gbW9kZXNldCBvbiBuZXh0IGxpZCBvcGVuIGV2ZW50ICovDQo+
-ID4gPiAgICAgICAgICAgICAgICAgZGV2X3ByaXYtPm1vZGVzZXRfcmVzdG9yZSA9IE1PREVTRVRf
-T05fTElEX09QRU47DQo+ID4gPiAgICAgICAgICAgICAgICAgZ290byBleGl0Ow0KPiA+ID4gLS0N
-Cj4gPiA+IDIuNy40DQo+ID4gPg0KPiA+ID4gLS0NCj4gPiA+IFRvIHVuc3Vic2NyaWJlIGZyb20g
-dGhpcyBsaXN0OiBzZW5kIHRoZSBsaW5lICJ1bnN1YnNjcmliZSBsaW51eC1hY3BpIiBpbg0KPiA+
-ID4gdGhlIGJvZHkgb2YgYSBtZXNzYWdlIHRvIG1ham9yZG9tb0B2Z2VyLmtlcm5lbC5vcmcNCj4g
-PiA+IE1vcmUgbWFqb3Jkb21vIGluZm8gYXQgIGh0dHA6Ly92Z2VyLmtlcm5lbC5vcmcvbWFqb3Jk
-b21vLWluZm8uaHRtbA0KPiAT77+977+97Lm7HO+/vSbvv71+77+9Ju+/vRjvv73vv70rLe+/ve+/
-vd22F++/ve+/vXfvv73vv73Lm++/ve+/ve+/vW3vv71i77+977+9WnLvv73vv73vv73vv71ebu+/
-vXLvv73vv73vv71677+9Gu+/ve+/vWjvv73vv73vv73vv70m77+977+9Hu+/vUfvv73vv73vv71o
-77+9Ayjvv73pmo4NCj4g77+93aJqIu+/ve+/vRrvv70bbe+/ve+/ve+/ve+/ve+/vXrvv73elu+/
-ve+/ve+/vWbvv73vv73vv71o77+977+977+9fu+/vW3vv70NCg==
+Hi Lv,
+
+I am trying to reduce the number of parallel discussion we have on the
+same subject, but there is something here I can't let you have.
+
+On Fri, May 12, 2017 at 8:08 AM, Zheng, Lv <lv.zheng@intel.com> wrote:
+> Hi,
+>
+> If my previous reply is not persuasive enough.
+> Let me do that in a different way.
+>
+>> From: linux-acpi-owner@vger.kernel.org [mailto:linux-acpi-owner@vger.ker=
+nel.org] On Behalf Of Zheng,
+>> Lv
+>> Subject: RE: [PATCH v2 5/5] ACPI: button: Obselete acpi_lid_open() invoc=
+ations
+>>
+>> Hi,
+>>
+>> > From: Benjamin Tissoires [mailto:benjamin.tissoires@gmail.com]
+>> > Subject: Re: [PATCH v2 5/5] ACPI: button: Obselete acpi_lid_open() inv=
+ocations
+>> >
+>> > On Tue, May 9, 2017 at 9:02 AM, Lv Zheng <lv.zheng@intel.com> wrote:
+>> > > Since notification side has been changed to always notify kernel lis=
+teners
+>> > > using _LID returning value. Now listeners needn't invoke acpi_lid_op=
+en(),
+>> > > it should use a spec suggested control method lid device usage model=
+:
+>> > > register lid notification and use the notified value instead, which =
+is the
+>> > > only way to ensure the value is correct for "button.lid_init_state=
+=3Dignore"
+>> > > mode or other modes with "button.lid_fake_events=3DN" specified.
+>> > >
+>> > > This patch fixes i915 driver to drop acpi_lid_open() user. It's not
+>> > > possible to change nouveau_connector.c user using a simple way now. =
+So this
+>> > > patch only marks acpi_lid_open() as deprecated to accelerate this pr=
+ocess
+>> > > by indicating this change to the nouveau developers.
+>> >
+>> > If  the only 2 users of acpi_lid_open() are intel and nouveau, and if
+>> > they should rely on the value stored in the input node, not the one
+>> > exported by the _LID method (which can be wrong on some platforms),
+>> > how about simply changing the implementation of acpi_lid_open() to
+>> > fetch the value from the input node directly?
+>
+> If acpi_lid_open() returns stored value in input node,
+> then it actually returns the value we notified to the input layer.
+> While i915 and nouveau explicitly do not trust that value and invoke acpi=
+_lid_open().
+>
+> For button.lid_init_state=3Dmethod, PATCH 4/5 is useless as the values ar=
+e same.
+>
+> However in my reply of PATCH 2.
+> I explained the difference of method/close, for the same reason, we can a=
+lso sense the difference of method/open.
+> The difference then can explain the usefulness of open/close modes.
+>
+> Given open/close modes are all useful:
+> button.lid_init_state=3Dopen
+> 1. button driver sends open to input layer after boot/resume
+> 2. i915/nouveau uses _LID return value after boot/resume
+> If _LID return value after boot/resume is "close", they are different.
+>
+> button.lid_init_state=3Dclose
+> 1. button driver sends close to input layer after boot/resume
+> 2. i915/nouveau uses _LID return value after boot/resume
+> If _LID return value after boot/resume is "open", they are different.
+>
+> The only way to be consistent to old i915/nouveau behavior is:
+> button.lid_init_state=3Dopen/close
+
+But these two modes are wrong in the absolute case:
+- a laptop has no reasons for not being powered up with the lid
+physically closed (wake on lan?) -> so open is an approximation
+already made on good assumption that there is not a high chance of the
+users powering/resuming the laptop with the lid closed
+- in the "close" case, this setting works for docked laptops, but if
+the laptop can be docked, it can also be undocked. And if you boot
+with button.lid_init_state=3Dclose, undock your laptop, go into suspend,
+resume -> the lid state is now "closed" while it should be opened.
+
+So no, these are just workarounds. i915/nouveau expect the acpi/button
+state to be reliable, or they should ignore it. But you can't fake
+events when you are not absolutely sure of what is happening.
+
+> 1. button driver sends open/close to input layer after boot/resume
+> 2. button driver sends _LID return value to i915 after boot/resume (PATCH=
+ 4)
+> So that i915 can just use the notified value in this patch (PATCH 5).
+> For nouveau, no change has been made for now, and as a concequence, acpi_=
+lid_open() is still kept but marked as deprecated.
+>
+>>
+>> See my reply of PATCH 4.
+>> It seems they trust _LID return value more than what we send to them.
+>>
+>> We can actually send faked "open/close" to them when button.lid_init_sta=
+te=3Dopen/close is specified.
+>>
+>> So these 2 patches [PATCH 4-5/5] are used to do a small cleanup for lid =
+event notifier APIs.
+>> I think they are not strictly related to the lid issues we are talking a=
+bout.
+>
+> See Documentation/acpi/acpi-lid.txt:
+> The _LID control method is described to return the "current" lid state.
+> However the word of "current" has ambiguity, some buggy AML tables return
+> the lid state upon the last lid notification instead of returning the lid
+> state upon the last _LID evaluation.
+>
+> In order to have acpi lid event notifier API compliant to the above menti=
+oned both "buggy" and "nonbuggy" implementation.
+> The ensured lid event model interface should be:
+> 1. Lid event notifier listeners invokes acpi_lid_notifier_register().
+> 2. And in the callback, uses _LID return value.
+> This is also the only possible way to combine "receiving lid notify" and =
+"evaluate _LID" into 1 single atomic operation.
+>
+> So I trend to remove acpi_lid_open() and enforce the new API.
+>
+> As a conclusion, PATCH 4-5
+> 1. makes a hidden logic explicit - the lid event listeners always use _LI=
+D return value. Less hidden logics should leave less chances of bugs.
+> 2. is an implementation for our documented ACPI lid event model.
+> And the implementation is done in a regression safe way.
+
+I understand all of that. But my point is still that on some
+platforms, the lid acpi state is not reliable, and the code in
+i915/nouveau is not made for those platforms. So the ideal solution is
+to know which platforms are problematic and take the right decisions
+having everything at hands. Just "fixing" the internal API won't help
+teaching these drivers to not make the assumption that the _LID acpi
+call is always correct.
+
+So yes, nouveau/i915 might need to be fixed, but IMO, fixing
+acpi/button to report correct (true, accurate, actual, or physical if
+you prefer) is the best, future proof way (minus platform quirks).
+
+Cheers,
+Benjamin
+
+>
+> Thanks,
+> Lv
+>
+>>
+>> Cheers,
+>> Lv
+>>
+>> >
+>> > Cheers,
+>> > Benjamin
+>> >
+>> > >
+>> > > Cc: <intel-gfx@lists.freedesktop.org>
+>> > > Cc: <nouveau@lists.freedesktop.org>
+>> > > Signed-off-by: Lv Zheng <lv.zheng@intel.com>
+>> > > ---
+>> > >  drivers/acpi/button.c             | 7 ++++++-
+>> > >  drivers/gpu/drm/i915/intel_lvds.c | 2 +-
+>> > >  2 files changed, 7 insertions(+), 2 deletions(-)
+>> > >
+>> > > diff --git a/drivers/acpi/button.c b/drivers/acpi/button.c
+>> > > index 7ff3a75..50d7898 100644
+>> > > --- a/drivers/acpi/button.c
+>> > > +++ b/drivers/acpi/button.c
+>> > > @@ -348,7 +348,12 @@ int acpi_lid_notifier_unregister(struct notifie=
+r_block *nb)
+>> > >  }
+>> > >  EXPORT_SYMBOL(acpi_lid_notifier_unregister);
+>> > >
+>> > > -int acpi_lid_open(void)
+>> > > +/*
+>> > > + * The intentional usage model is to register a lid notifier and us=
+e the
+>> > > + * notified value instead. Directly evaluating _LID without seeing =
+a
+>> > > + * Notify(lid, 0x80) is not reliable.
+>> > > + */
+>> > > +int __deprecated acpi_lid_open(void)
+>> > >  {
+>> > >         if (!lid_device)
+>> > >                 return -ENODEV;
+>> > > diff --git a/drivers/gpu/drm/i915/intel_lvds.c b/drivers/gpu/drm/i91=
+5/intel_lvds.c
+>> > > index 9ca4dc4..8ca9080 100644
+>> > > --- a/drivers/gpu/drm/i915/intel_lvds.c
+>> > > +++ b/drivers/gpu/drm/i915/intel_lvds.c
+>> > > @@ -548,7 +548,7 @@ static int intel_lid_notify(struct notifier_bloc=
+k *nb, unsigned long val,
+>> > >         /* Don't force modeset on machines where it causes a GPU loc=
+kup */
+>> > >         if (dmi_check_system(intel_no_modeset_on_lid))
+>> > >                 goto exit;
+>> > > -       if (!acpi_lid_open()) {
+>> > > +       if (!val) {
+>> > >                 /* do modeset on next lid open event */
+>> > >                 dev_priv->modeset_restore =3D MODESET_ON_LID_OPEN;
+>> > >                 goto exit;
+>> > > --
+>> > > 2.7.4
+>> > >
+>> > > --
+>> > > To unsubscribe from this list: send the line "unsubscribe linux-acpi=
+" in
+>> > > the body of a message to majordomo@vger.kernel.org
+>> > > More majordomo info at  http://vger.kernel.org/majordomo-info.html
+>>  =EF=BF=BD=EF=BF=BD=EC=B9=BB =EF=BF=BD&=EF=BF=BD~=EF=BF=BD&=EF=BF=BD =EF=
+=BF=BD=EF=BF=BD+-=EF=BF=BD=EF=BF=BD=DD=B6 =EF=BF=BD=EF=BF=BDw=EF=BF=BD=EF=
+=BF=BD=CB=9B=EF=BF=BD=EF=BF=BD=EF=BF=BDm=EF=BF=BDb=EF=BF=BD=EF=BF=BDZr=EF=
+=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD^n=EF=BF=BDr=EF=BF=BD=EF=BF=BD=EF=BF=BDz=
+=EF=BF=BD =EF=BF=BD=EF=BF=BDh=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD&=EF=BF=BD=
+=EF=BF=BD =EF=BF=BDG=EF=BF=BD=EF=BF=BD=EF=BF=BDh=EF=BF=BD (=EF=BF=BD=E9=9A=
+=8E
+>> =EF=BF=BD=DD=A2j"=EF=BF=BD=EF=BF=BD =EF=BF=BD m=EF=BF=BD=EF=BF=BD=EF=BF=
+=BD=EF=BF=BD=EF=BF=BDz=EF=BF=BD=DE=96=EF=BF=BD=EF=BF=BD=EF=BF=BDf=EF=BF=BD=
+=EF=BF=BD=EF=BF=BDh=EF=BF=BD=EF=BF=BD=EF=BF=BD~=EF=BF=BDm=EF=BF=BD
