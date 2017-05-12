@@ -1,103 +1,84 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101000] Cinelerra crashes with OpenGL output on mesa
-	git
-Date: Thu, 11 May 2017 23:28:45 +0000
-Message-ID: <bug-101000-8800-rOHnosQisV@http.bugs.freedesktop.org/>
-References: <bug-101000-8800@http.bugs.freedesktop.org/>
+From: "Zheng, Lv" <lv.zheng@intel.com>
+Subject: RE: [PATCH v2 5/5] ACPI: button: Obselete acpi_lid_open()
+ invocations
+Date: Fri, 12 May 2017 01:25:18 +0000
+Message-ID: <1AE640813FDE7649BE1B193DEA596E886CEA2BB0@SHSMSX101.ccr.corp.intel.com>
+References: <2a779ae8c280c968b3237ac4a3d9580df7262a46.1493951798.git.lv.zheng@intel.com>
+ <22b130fe0cf3fca19b0e14c69426fe36766cf2ee.1494311429.git.lv.zheng@intel.com>
+ <CAN+gG=G_yh77Vab_bvWxTOVHsiUm21-X8bajo14utjaCwf1x=Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1988450334=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101000-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <linux-acpi-owner@vger.kernel.org>
+In-Reply-To: <CAN+gG=G_yh77Vab_bvWxTOVHsiUm21-X8bajo14utjaCwf1x=Q@mail.gmail.com>
+Content-Language: en-US
+Sender: linux-acpi-owner@vger.kernel.org
+To: Benjamin Tissoires <benjamin.tissoires@gmail.com>
+Cc: "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, "Brown, Len" <len.brown@intel.com>, Lv Zheng <zetalog@gmail.com>, ACPI Devel Maling List <linux-acpi@vger.kernel.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1988450334==
-Content-Type: multipart/alternative; boundary="14945453250.3705a0fF.16961";
- charset="UTF-8"
-
-
---14945453250.3705a0fF.16961
-Date: Thu, 11 May 2017 23:28:45 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101000
-
---- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-LIBGL_ALWAYS_SOFTWARE=3D1 cinelerra does not crash.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14945453250.3705a0fF.16961
-Date: Thu, 11 May 2017 23:28:45 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Cinelerra crashes with OpenGL output on mesa git"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101000#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Cinelerra crashes with OpenGL output on mesa git"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101000">bug 10100=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
-gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
-</span></b>
-        <pre>LIBGL_ALWAYS_SOFTWARE=3D1 cinelerra does not crash.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14945453250.3705a0fF.16961--
-
---===============1988450334==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1988450334==--
+SGksDQoNCj4gRnJvbTogQmVuamFtaW4gVGlzc29pcmVzIFttYWlsdG86YmVuamFtaW4udGlzc29p
+cmVzQGdtYWlsLmNvbV0NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2MiA1LzVdIEFDUEk6IGJ1dHRv
+bjogT2JzZWxldGUgYWNwaV9saWRfb3BlbigpIGludm9jYXRpb25zDQo+IA0KPiBPbiBUdWUsIE1h
+eSA5LCAyMDE3IGF0IDk6MDIgQU0sIEx2IFpoZW5nIDxsdi56aGVuZ0BpbnRlbC5jb20+IHdyb3Rl
+Og0KPiA+IFNpbmNlIG5vdGlmaWNhdGlvbiBzaWRlIGhhcyBiZWVuIGNoYW5nZWQgdG8gYWx3YXlz
+IG5vdGlmeSBrZXJuZWwgbGlzdGVuZXJzDQo+ID4gdXNpbmcgX0xJRCByZXR1cm5pbmcgdmFsdWUu
+IE5vdyBsaXN0ZW5lcnMgbmVlZG4ndCBpbnZva2UgYWNwaV9saWRfb3BlbigpLA0KPiA+IGl0IHNo
+b3VsZCB1c2UgYSBzcGVjIHN1Z2dlc3RlZCBjb250cm9sIG1ldGhvZCBsaWQgZGV2aWNlIHVzYWdl
+IG1vZGVsOg0KPiA+IHJlZ2lzdGVyIGxpZCBub3RpZmljYXRpb24gYW5kIHVzZSB0aGUgbm90aWZp
+ZWQgdmFsdWUgaW5zdGVhZCwgd2hpY2ggaXMgdGhlDQo+ID4gb25seSB3YXkgdG8gZW5zdXJlIHRo
+ZSB2YWx1ZSBpcyBjb3JyZWN0IGZvciAiYnV0dG9uLmxpZF9pbml0X3N0YXRlPWlnbm9yZSINCj4g
+PiBtb2RlIG9yIG90aGVyIG1vZGVzIHdpdGggImJ1dHRvbi5saWRfZmFrZV9ldmVudHM9TiIgc3Bl
+Y2lmaWVkLg0KPiA+DQo+ID4gVGhpcyBwYXRjaCBmaXhlcyBpOTE1IGRyaXZlciB0byBkcm9wIGFj
+cGlfbGlkX29wZW4oKSB1c2VyLiBJdCdzIG5vdA0KPiA+IHBvc3NpYmxlIHRvIGNoYW5nZSBub3V2
+ZWF1X2Nvbm5lY3Rvci5jIHVzZXIgdXNpbmcgYSBzaW1wbGUgd2F5IG5vdy4gU28gdGhpcw0KPiA+
+IHBhdGNoIG9ubHkgbWFya3MgYWNwaV9saWRfb3BlbigpIGFzIGRlcHJlY2F0ZWQgdG8gYWNjZWxl
+cmF0ZSB0aGlzIHByb2Nlc3MNCj4gPiBieSBpbmRpY2F0aW5nIHRoaXMgY2hhbmdlIHRvIHRoZSBu
+b3V2ZWF1IGRldmVsb3BlcnMuDQo+IA0KPiBJZiAgdGhlIG9ubHkgMiB1c2VycyBvZiBhY3BpX2xp
+ZF9vcGVuKCkgYXJlIGludGVsIGFuZCBub3V2ZWF1LCBhbmQgaWYNCj4gdGhleSBzaG91bGQgcmVs
+eSBvbiB0aGUgdmFsdWUgc3RvcmVkIGluIHRoZSBpbnB1dCBub2RlLCBub3QgdGhlIG9uZQ0KPiBl
+eHBvcnRlZCBieSB0aGUgX0xJRCBtZXRob2QgKHdoaWNoIGNhbiBiZSB3cm9uZyBvbiBzb21lIHBs
+YXRmb3JtcyksDQo+IGhvdyBhYm91dCBzaW1wbHkgY2hhbmdpbmcgdGhlIGltcGxlbWVudGF0aW9u
+IG9mIGFjcGlfbGlkX29wZW4oKSB0bw0KPiBmZXRjaCB0aGUgdmFsdWUgZnJvbSB0aGUgaW5wdXQg
+bm9kZSBkaXJlY3RseT8NCg0KU2VlIG15IHJlcGx5IG9mIFBBVENIIDQuDQpJdCBzZWVtcyB0aGV5
+IHRydXN0IF9MSUQgcmV0dXJuIHZhbHVlIG1vcmUgdGhhbiB3aGF0IHdlIHNlbmQgdG8gdGhlbS4N
+Cg0KV2UgY2FuIGFjdHVhbGx5IHNlbmQgZmFrZWQgIm9wZW4vY2xvc2UiIHRvIHRoZW0gd2hlbiBi
+dXR0b24ubGlkX2luaXRfc3RhdGU9b3Blbi9jbG9zZSBpcyBzcGVjaWZpZWQuDQoNClNvIHRoZXNl
+IDIgcGF0Y2hlcyBbUEFUQ0ggNC01LzVdIGFyZSB1c2VkIHRvIGRvIGEgc21hbGwgY2xlYW51cCBm
+b3IgbGlkIGV2ZW50IG5vdGlmaWVyIEFQSXMuDQpJIHRoaW5rIHRoZXkgYXJlIG5vdCBzdHJpY3Rs
+eSByZWxhdGVkIHRvIHRoZSBsaWQgaXNzdWVzIHdlIGFyZSB0YWxraW5nIGFib3V0Lg0KDQpDaGVl
+cnMsDQpMdg0KDQo+IA0KPiBDaGVlcnMsDQo+IEJlbmphbWluDQo+IA0KPiA+DQo+ID4gQ2M6IDxp
+bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPg0KPiA+IENjOiA8bm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmc+DQo+ID4gU2lnbmVkLW9mZi1ieTogTHYgWmhlbmcgPGx2LnpoZW5nQGlu
+dGVsLmNvbT4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9hY3BpL2J1dHRvbi5jICAgICAgICAgICAg
+IHwgNyArKysrKystDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2x2ZHMuYyB8IDIg
+Ky0NCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0p
+DQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9hY3BpL2J1dHRvbi5jIGIvZHJpdmVycy9h
+Y3BpL2J1dHRvbi5jDQo+ID4gaW5kZXggN2ZmM2E3NS4uNTBkNzg5OCAxMDA2NDQNCj4gPiAtLS0g
+YS9kcml2ZXJzL2FjcGkvYnV0dG9uLmMNCj4gPiArKysgYi9kcml2ZXJzL2FjcGkvYnV0dG9uLmMN
+Cj4gPiBAQCAtMzQ4LDcgKzM0OCwxMiBAQCBpbnQgYWNwaV9saWRfbm90aWZpZXJfdW5yZWdpc3Rl
+cihzdHJ1Y3Qgbm90aWZpZXJfYmxvY2sgKm5iKQ0KPiA+ICB9DQo+ID4gIEVYUE9SVF9TWU1CT0wo
+YWNwaV9saWRfbm90aWZpZXJfdW5yZWdpc3Rlcik7DQo+ID4NCj4gPiAtaW50IGFjcGlfbGlkX29w
+ZW4odm9pZCkNCj4gPiArLyoNCj4gPiArICogVGhlIGludGVudGlvbmFsIHVzYWdlIG1vZGVsIGlz
+IHRvIHJlZ2lzdGVyIGEgbGlkIG5vdGlmaWVyIGFuZCB1c2UgdGhlDQo+ID4gKyAqIG5vdGlmaWVk
+IHZhbHVlIGluc3RlYWQuIERpcmVjdGx5IGV2YWx1YXRpbmcgX0xJRCB3aXRob3V0IHNlZWluZyBh
+DQo+ID4gKyAqIE5vdGlmeShsaWQsIDB4ODApIGlzIG5vdCByZWxpYWJsZS4NCj4gPiArICovDQo+
+ID4gK2ludCBfX2RlcHJlY2F0ZWQgYWNwaV9saWRfb3Blbih2b2lkKQ0KPiA+ICB7DQo+ID4gICAg
+ICAgICBpZiAoIWxpZF9kZXZpY2UpDQo+ID4gICAgICAgICAgICAgICAgIHJldHVybiAtRU5PREVW
+Ow0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9sdmRzLmMgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9sdmRzLmMNCj4gPiBpbmRleCA5Y2E0ZGM0Li44Y2E5
+MDgwIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2x2ZHMuYw0K
+PiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2x2ZHMuYw0KPiA+IEBAIC01NDgs
+NyArNTQ4LDcgQEAgc3RhdGljIGludCBpbnRlbF9saWRfbm90aWZ5KHN0cnVjdCBub3RpZmllcl9i
+bG9jayAqbmIsIHVuc2lnbmVkIGxvbmcgdmFsLA0KPiA+ICAgICAgICAgLyogRG9uJ3QgZm9yY2Ug
+bW9kZXNldCBvbiBtYWNoaW5lcyB3aGVyZSBpdCBjYXVzZXMgYSBHUFUgbG9ja3VwICovDQo+ID4g
+ICAgICAgICBpZiAoZG1pX2NoZWNrX3N5c3RlbShpbnRlbF9ub19tb2Rlc2V0X29uX2xpZCkpDQo+
+ID4gICAgICAgICAgICAgICAgIGdvdG8gZXhpdDsNCj4gPiAtICAgICAgIGlmICghYWNwaV9saWRf
+b3BlbigpKSB7DQo+ID4gKyAgICAgICBpZiAoIXZhbCkgew0KPiA+ICAgICAgICAgICAgICAgICAv
+KiBkbyBtb2Rlc2V0IG9uIG5leHQgbGlkIG9wZW4gZXZlbnQgKi8NCj4gPiAgICAgICAgICAgICAg
+ICAgZGV2X3ByaXYtPm1vZGVzZXRfcmVzdG9yZSA9IE1PREVTRVRfT05fTElEX09QRU47DQo+ID4g
+ICAgICAgICAgICAgICAgIGdvdG8gZXhpdDsNCj4gPiAtLQ0KPiA+IDIuNy40DQo+ID4NCj4gPiAt
+LQ0KPiA+IFRvIHVuc3Vic2NyaWJlIGZyb20gdGhpcyBsaXN0OiBzZW5kIHRoZSBsaW5lICJ1bnN1
+YnNjcmliZSBsaW51eC1hY3BpIiBpbg0KPiA+IHRoZSBib2R5IG9mIGEgbWVzc2FnZSB0byBtYWpv
+cmRvbW9Admdlci5rZXJuZWwub3JnDQo+ID4gTW9yZSBtYWpvcmRvbW8gaW5mbyBhdCAgaHR0cDov
+L3ZnZXIua2VybmVsLm9yZy9tYWpvcmRvbW8taW5mby5odG1sDQo=
