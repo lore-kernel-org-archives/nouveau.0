@@ -1,9 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101024] New: Complete graphic freeze
-Date: Fri, 12 May 2017 21:26:18 +0000
-Message-ID: <bug-101024-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101027] New: Monitor goes black (gpu fans running
+ even system does nothing) only system reset helps
+Date: Sat, 13 May 2017 00:12:28 +0000
+Message-ID: <bug-101027-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1217923768=="
+Content-Type: multipart/mixed; boundary="===============0953549641=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,65 +19,94 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1217923768==
-Content-Type: multipart/alternative; boundary="14946243780.43EE.22817";
+--===============0953549641==
+Content-Type: multipart/alternative; boundary="14946343481.9ed0B9.31199";
  charset="UTF-8"
 
 
---14946243780.43EE.22817
-Date: Fri, 12 May 2017 21:26:18 +0000
+--14946343481.9ed0B9.31199
+Date: Sat, 13 May 2017 00:12:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101024
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101027
 
-            Bug ID: 101024
-           Summary: Complete graphic freeze
+            Bug ID: 101027
+           Summary: Monitor goes black (gpu fans running even system does
+                    nothing) only system reset helps
            Product: xorg
-           Version: unspecified
+           Version: git
           Hardware: x86-64 (AMD64)
                 OS: Linux (All)
             Status: NEW
-          Severity: major
+          Severity: critical
           Priority: medium
          Component: Driver/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: mcondarelli-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Reporter: mail-3q2wXJgvQBgtTFl30EOYJwC/G2K4zDHf@public.gmane.org
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Created attachment 131340
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131340&action=3Dedit
-dmesg dump (complete)
+Hi,
+I am using the nouveau driver because its really great, even better than the
+official ndivida driver. i get better rendering results with nouveau than w=
+ith
+the original nvidia driver what is a shame for nvidia, but thats another to=
+pic.
 
-I experience random (relatively low occurrence ~ twice a week) graphic lock=
-ups.
-Video is not updated, mouse is moving but no interaction is possible either
-with mouse or keyboard.
+The only problem that I have currently is that nouveau leads to make my mon=
+itor
+goes off randomly and only a complete system reset helps me out. I have tes=
+ted
+with another laptop and the same monitor, I didnt see the same problem. Als=
+o I
+have changed the port and the cable, so that I guess its not the cable eith=
+er.
 
-System is somewhat alive and I can login via ssh.
+I have tested with the original nvidia linux driver and I didnt see the mon=
+itor
+going off again. So I guess its because of nouveau. When my monitor goes of=
+f I
+see also the gpu fans runs in full speed what is strange because the system=
+ is
+not running any gpu related apps.
 
-I attach a complete dmesg dump taken via ssh.
+my system configuration:=20
 
-Attempting to kill xorg to restart it resulted in a complete lockup (ssh ti=
-med
-out) and I had to brutally power-cycle the machine.
+$ lspci | grep -i vga
+01:00.0 VGA compatible controller: NVIDIA Corporation GP104 [GeForce GTX 10=
+80]
+(rev a1)
 
-System is an up-to-date debian testing (stretch).
+$ uname -a
+Linux rs.com 4.10.13-1-ARCH #1 SMP PREEMPT Thu Apr 27 12:15:09 CEST 2017 x8=
+6_64
+GNU/Linux
 
-At the time of freeze I had one VirtualBox client (Win7) open but inactive
-(window minimized).
+My monitor is the Asus Curved PG348Q ROG
 
-I will be available to give further info, if required.
+I get also strange entires in the bootlog. My monitor went off recently so =
+that
+I post a log before the monitor went off and the second log is after the
+monitor went off (after a system reset). Hope this can help somehow.
+
+FIRST LOG (BEFORE MONITOR WENT BLACK)
+https://ptpb.pw/xI8k
+
+AFTER SYSTEM RESET:
+https://ptpb.pw/-m9c
+
+I would really like to find a solution as soon as possible coz it blocks my
+work.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14946243780.43EE.22817
-Date: Fri, 12 May 2017 21:26:18 +0000
+--14946343481.9ed0B9.31199
+Date: Sat, 13 May 2017 00:12:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -92,14 +122,16 @@ Auto-Submitted: auto-generated
           <th>Bug ID</th>
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Complete graphic freeze"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101024">101024</a>
+   title=3D"NEW - Monitor goes black (gpu fans running even system does not=
+hing) only system reset helps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101027">101027</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>Complete graphic freeze
+          <td>Monitor goes black (gpu fans running even system does nothing=
+) only system reset helps
           </td>
         </tr>
 
@@ -111,7 +143,7 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Version</th>
-          <td>unspecified
+          <td>git
           </td>
         </tr>
 
@@ -135,7 +167,7 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Severity</th>
-          <td>major
+          <td>critical
           </td>
         </tr>
 
@@ -159,7 +191,7 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Reporter</th>
-          <td>mcondarelli&#64;gmail.com
+          <td>mail&#64;rudolfschmidt.com
           </td>
         </tr>
 
@@ -170,31 +202,57 @@ Auto-Submitted: auto-generated
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131340=
-" name=3D"attach_131340" title=3D"dmesg dump (complete)">attachment 131340<=
-/a> <a href=3D"attachment.cgi?id=3D131340&amp;action=3Dedit" title=3D"dmesg=
- dump (complete)">[details]</a></span>
-dmesg dump (complete)
+        <pre>Hi,
+I am using the nouveau driver because its really great, even better than the
+official ndivida driver. i get better rendering results with nouveau than w=
+ith
+the original nvidia driver what is a shame for nvidia, but thats another to=
+pic.
 
-I experience random (relatively low occurrence ~ twice a week) graphic lock=
-ups.
-Video is not updated, mouse is moving but no interaction is possible either
-with mouse or keyboard.
+The only problem that I have currently is that nouveau leads to make my mon=
+itor
+goes off randomly and only a complete system reset helps me out. I have tes=
+ted
+with another laptop and the same monitor, I didnt see the same problem. Als=
+o I
+have changed the port and the cable, so that I guess its not the cable eith=
+er.
 
-System is somewhat alive and I can login via ssh.
+I have tested with the original nvidia linux driver and I didnt see the mon=
+itor
+going off again. So I guess its because of nouveau. When my monitor goes of=
+f I
+see also the gpu fans runs in full speed what is strange because the system=
+ is
+not running any gpu related apps.
 
-I attach a complete dmesg dump taken via ssh.
+my system configuration:=20
 
-Attempting to kill xorg to restart it resulted in a complete lockup (ssh ti=
-med
-out) and I had to brutally power-cycle the machine.
+$ lspci | grep -i vga
+01:00.0 VGA compatible controller: NVIDIA Corporation GP104 [GeForce GTX 10=
+80]
+(rev a1)
 
-System is an up-to-date debian testing (stretch).
+$ uname -a
+Linux rs.com 4.10.13-1-ARCH #1 SMP PREEMPT Thu Apr 27 12:15:09 CEST 2017 x8=
+6_64
+GNU/Linux
 
-At the time of freeze I had one VirtualBox client (Win7) open but inactive
-(window minimized).
+My monitor is the Asus Curved PG348Q ROG
 
-I will be available to give further info, if required.</pre>
+I get also strange entires in the bootlog. My monitor went off recently so =
+that
+I post a log before the monitor went off and the second log is after the
+monitor went off (after a system reset). Hope this can help somehow.
+
+FIRST LOG (BEFORE MONITOR WENT BLACK)
+<a href=3D"https://ptpb.pw/xI8k">https://ptpb.pw/xI8k</a>
+
+AFTER SYSTEM RESET:
+<a href=3D"https://ptpb.pw/-m9c">https://ptpb.pw/-m9c</a>
+
+I would really like to find a solution as soon as possible coz it blocks my
+work.</pre>
         </div>
       </p>
 
@@ -208,9 +266,9 @@ I will be available to give further info, if required.</pre>
     </body>
 </html>=
 
---14946243780.43EE.22817--
+--14946343481.9ed0B9.31199--
 
---===============1217923768==
+--===============0953549641==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -220,4 +278,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1217923768==--
+--===============0953549641==--
