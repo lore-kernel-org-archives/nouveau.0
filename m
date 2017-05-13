@@ -1,11 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101027] Monitor goes black (gpu fans running even
- system does nothing) only system reset helps
-Date: Sat, 13 May 2017 10:33:34 +0000
-Message-ID: <bug-101027-8800-RE2Yxc6KQT@http.bugs.freedesktop.org/>
+Subject: [Bug 101027] Monitor turns black - only system helps
+Date: Sat, 13 May 2017 11:04:31 +0000
+Message-ID: <bug-101027-8800-L3iV7WEhdJ@http.bugs.freedesktop.org/>
 References: <bug-101027-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1609130122=="
+Content-Type: multipart/mixed; boundary="===============1875830520=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101027-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1609130122==
-Content-Type: multipart/alternative; boundary="14946716140.CaeC0.23724";
+--===============1875830520==
+Content-Type: multipart/alternative; boundary="14946734700.3dF1CFa5.30698";
  charset="UTF-8"
 
 
---14946716140.CaeC0.23724
-Date: Sat, 13 May 2017 10:33:34 +0000
+--14946734700.3dF1CFa5.30698
+Date: Sat, 13 May 2017 11:04:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,14 +39,17 @@ mail-3q2wXJgvQBgtTFl30EOYJwC/G2K4zDHf@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Priority|medium                      |highest
+            Summary|Monitor goes black (gpu     |Monitor turns black - only
+                   |fans running even system    |system helps
+                   |does nothing) only system   |
+                   |reset helps                 |
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14946716140.CaeC0.23724
-Date: Sat, 13 May 2017 10:33:34 +0000
+--14946734700.3dF1CFa5.30698
+Date: Sat, 13 May 2017 11:04:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +66,7 @@ idt.com</a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Monitor goes black (gpu fans running even system does not=
-hing) only system reset helps"
+   title=3D"NEW - Monitor turns black - only system helps"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101027">bug 10102=
 7</a>
           <br>
@@ -77,10 +78,11 @@ hing) only system reset helps"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Priority</td>
-           <td>medium
+           <td style=3D"text-align:right;">Summary</td>
+           <td>Monitor goes black (gpu fans running even system does nothin=
+g) only system reset helps
            </td>
-           <td>highest
+           <td>Monitor turns black - only system helps
            </td>
          </tr></table>
       <p>
@@ -96,9 +98,9 @@ hing) only system reset helps"
     </body>
 </html>=
 
---14946716140.CaeC0.23724--
+--14946734700.3dF1CFa5.30698--
 
---===============1609130122==
+--===============1875830520==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1609130122==--
+--===============1875830520==--
