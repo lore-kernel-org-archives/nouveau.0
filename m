@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101000] Cinelerra crashes with OpenGL output on mesa
-	git
-Date: Sat, 13 May 2017 06:04:02 +0000
-Message-ID: <bug-101000-8800-vRjsHc23Fj@http.bugs.freedesktop.org/>
-References: <bug-101000-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101027] Monitor goes black (gpu fans running even
+ system does nothing) only system reset helps
+Date: Sat, 13 May 2017 10:33:34 +0000
+Message-ID: <bug-101027-8800-RE2Yxc6KQT@http.bugs.freedesktop.org/>
+References: <bug-101027-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1076646315=="
+Content-Type: multipart/mixed; boundary="===============1609130122=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101000-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101027-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1076646315==
-Content-Type: multipart/alternative; boundary="14946554410.A556E26.19397";
+--===============1609130122==
+Content-Type: multipart/alternative; boundary="14946716140.CaeC0.23724";
  charset="UTF-8"
 
 
---14946554410.A556E26.19397
-Date: Sat, 13 May 2017 06:04:01 +0000
+--14946716140.CaeC0.23724
+Date: Sat, 13 May 2017 10:33:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101000
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101027
 
---- Comment #5 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-LIBGL_DRI3_DISABLE=3D1 also fixes crash. Additionally, this  setting fixes =
-OpenGL
-accelerated effects in another branch of Cinelerra (5.1).
+mail-3q2wXJgvQBgtTFl30EOYJwC/G2K4zDHf@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Priority|medium                      |highest
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---14946554410.A556E26.19397
-Date: Sat, 13 May 2017 06:04:01 +0000
+--14946716140.CaeC0.23724
+Date: Sat, 13 May 2017 10:33:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,27 +58,32 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:mail&#64;=
+rudolfschmidt.com" title=3D"mail&#64;rudolfschmidt.com">mail&#64;rudolfschm=
+idt.com</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Monitor goes black (gpu fans running even system does not=
+hing) only system reset helps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101027">bug 10102=
+7</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Priority</td>
+           <td>medium
+           </td>
+           <td>highest
+           </td>
+         </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Cinelerra crashes with OpenGL output on mesa git"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101000#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Cinelerra crashes with OpenGL output on mesa git"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101000">bug 10100=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
-gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
-</span></b>
-        <pre>LIBGL_DRI3_DISABLE=3D1 also fixes crash. Additionally, this  s=
-etting fixes OpenGL
-accelerated effects in another branch of Cinelerra (5.1).</pre>
-        </div>
       </p>
 
 
@@ -87,14 +92,13 @@ accelerated effects in another branch of Cinelerra (5.1).</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14946554410.A556E26.19397--
+--14946716140.CaeC0.23724--
 
---===============1076646315==
+--===============1609130122==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1076646315==--
+--===============1609130122==--
