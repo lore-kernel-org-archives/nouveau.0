@@ -1,110 +1,63 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101027] Monitor turns black - only system reset helps
-Date: Sat, 13 May 2017 11:04:39 +0000
-Message-ID: <bug-101027-8800-6hbigBFIlV@http.bugs.freedesktop.org/>
-References: <bug-101027-8800@http.bugs.freedesktop.org/>
+From: Tommi Rantala <tt.rantala@gmail.com>
+Subject: Re: nouveau "eDP-1: EDID is invalid" regression after 4.11 with HP
+ ZBook 15 G3
+Date: Sun, 14 May 2017 18:10:25 +0300
+Message-ID: <CA+ydwtrE8QVH7u5rTV06woiiV7Ew8OcHz1Zd1hMX4jSbO1MDHw@mail.gmail.com>
+References: <CA+ydwtofv0i07C-hWNfE9c82snc35-E3dHxKKhWj0VcJjiPbBw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0179628045=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101027-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CA+ydwtofv0i07C-hWNfE9c82snc35-E3dHxKKhWj0VcJjiPbBw@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, DRI Development <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0179628045==
-Content-Type: multipart/alternative; boundary="14946734791.cC8Df.30293";
- charset="UTF-8"
-
-
---14946734791.cC8Df.30293
-Date: Sat, 13 May 2017 11:04:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101027
-
-mail-3q2wXJgvQBgtTFl30EOYJwC/G2K4zDHf@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Monitor turns black - only  |Monitor turns black - only
-                   |system helps                |system reset helps
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14946734791.cC8Df.30293
-Date: Sat, 13 May 2017 11:04:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:mail&#64;=
-rudolfschmidt.com" title=3D"mail&#64;rudolfschmidt.com">mail&#64;rudolfschm=
-idt.com</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Monitor turns black - only system reset helps"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101027">bug 10102=
-7</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>Monitor turns black - only system helps
-           </td>
-           <td>Monitor turns black - only system reset helps
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14946734791.cC8Df.30293--
-
---===============0179628045==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0179628045==--
+SGksCgpCaXNlY3RlZCB0aGlzIHRvOgoKY29tbWl0IGRmOGRjOTdjZDE3MjY5NDc0MzQ0ZDczY2Mw
+MjczOTUzMmM0NjhkMDQKQXV0aG9yOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+CkRh
+dGU6ICAgV2VkIE1hciAxIDA5OjQyOjA0IDIwMTcgKzEwMDAKCiAgIGRybS9ub3V2ZWF1L2ttcy9u
+djUwOiB1c2UgZHJtIGNvcmUgaTJjLW92ZXItYXV4IGFsZ29yaXRobQoKICAgSSdtIG5vdCBlbnRp
+cmVseSBzdXJlIE5WS00gbmVlZHMgdG8gc3VwcG9ydCB0aGlzIG5vdywgYnV0IEkgaGF2ZW4ndAog
+ICByZW1vdmVkIGl0IGFzIG9mIHlldCBqdXN0IGluIGNhc2UgaXQncyBuZWVkZWQgZnJvbSBERVZJ
+TklUIHNjcmlwdHMKICAgd2hlcmUgRFJNIGlzbid0IGF2YWlsYWJsZS4KCiAgIFNpZ25lZC1vZmYt
+Ynk6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KCgpkbWVzZyBhZnRlciBib290IHdp
+dGggZHJtLmRlYnVnIGVuYWJsZWQ6Cgp2NC4xMC0xMDQwOS1nNWM2OGQ5MSAoc3RpbGwgd29ya3Mp
+OgpodHRwOi8vdGVybWJpbi5jb20vYjBpcwoKdjQuMTAtMTA0MTAtZ2RmOGRjOTcgKGZhaWx1cmUp
+OgpodHRwOi8vdGVybWJpbi5jb20vajZscQoKClRvbW1pCgoKMjAxNy0wNS0xMCAxMToyNCBHTVQr
+MDM6MDAgVG9tbWkgUmFudGFsYSA8dHQucmFudGFsYUBnbWFpbC5jb20+Ogo+IEhpLAo+Cj4gVGhl
+IEhQIFpCb29rIDE1IEczIGxhcHRvcCBidWlsdGluIGRpc3BsYXkgKGVEUC0xKSBkb2VzIG5vdCB3
+b3JrCj4gY29ycmVjdGx5IHdpdGggdjQuMTEtMTE0MTMtZzI4NjhiMjUuCj4KPiBXaGVuIGJvb3Rp
+bmcgdGhlIGxhcHRvcCwgdGhlIHJlc29sdXRpb24gc2VlbXMgdG8gYmUgbGltaXRlZCB0bwo+IDEw
+MjR4NzY4LCBhbmQgZ25vbWUtc2Vzc2lvbiBzZWdmYXVsdHMuCj4KPiBVcCB0byA0LjExIHRoZSBk
+aXNwbGF5IHdvcmtzIGp1c3QgZmluZSBpbiAxOTIweDEwODAgbW9kZS4KPgo+IEknbSBzZWVpbmcg
+dGhpcyBpbiB0aGUga2VybmVsIGxvZ3M6Cj4KPiBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZURQLTE6
+IEVESUQgaXMgaW52YWxpZDoKPiAgICAgICAgIFswMF0gQkFEICAwMCBmZiBmZiBmZiBmZiBmZiBm
+ZiAwMCBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZgo+ICAgICAgICAgWzAwXSBCQUQgIGZmIGZmIGZm
+IGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmCj4gICAgICAgICBbMDBdIEJB
+RCAgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgODQgNTMgNTQKPiAgICAg
+ICAgIFswMF0gQkFEICA2NiA2OSA1MCA1NSA1NyA2NiA3NCA0OSA0OCBmZiBmZiBmZiBmZiBmZiBm
+ZiBmZgo+ICAgICAgICAgWzAwXSBCQUQgIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZm
+IGZmIGZmIGZmIGZmIGZmCj4gICAgICAgICBbMDBdIEJBRCAgZmYgZmYgZmYgZmYgZmYgZmYgZmYg
+ZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYKPiAgICAgICAgIFswMF0gQkFEICBmZiBmZiBmZiBm
+ZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZgo+ICAgICAgICAgWzAwXSBCQUQg
+IGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIDAwIDAwIGZmIDAwIGZmCj4gbm91dmVh
+dSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIGVEUC0x
+Cj4gW2RybV0gQ2Fubm90IGZpbmQgYW55IGNydGMgb3Igc2l6ZXMgLSBnb2luZyAxMDI0eDc2OAo+
+Cj4KPiAkIGxzcGNpIHwgZ3JlcCBOVklESUEKPiAwMTowMC4wIFZHQSBjb21wYXRpYmxlIGNvbnRy
+b2xsZXI6IE5WSURJQSBDb3Jwb3JhdGlvbiBHTTEwN0dMTSBbUXVhZHJvCj4gTTIwMDBNXSAocmV2
+IGEyKQo+Cj4gQW55IGlkZWFzLCBvciBzaG91bGQgSSBiaXNlY3Q/Cj4KPiA0LjExIGRtZXNnICYg
+eHJhbmRyIG91dHB1dDoKPiBodHRwczovL3Bhc3RlYmluLmNvbS9yYXcvUDlMR1A3ZTEKPgo+IDQu
+MTEtMTE0MTMtZzI4NjhiMjUgZG1lc2c6Cj4gaHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3L1FCVDlt
+TXVhCj4KPiAtVG9tbWkKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRl
+dmVsCg==
