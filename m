@@ -1,43 +1,95 @@
-From: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH v2 5/5] ACPI: button:
-	Obselete	acpi_lid_open() invocations
-Date: Mon, 15 May 2017 11:42:16 +0300
-Message-ID: <87a86emryv.fsf@intel.com>
-References: <2a779ae8c280c968b3237ac4a3d9580df7262a46.1493951798.git.lv.zheng@intel.com>
- <22b130fe0cf3fca19b0e14c69426fe36766cf2ee.1494311429.git.lv.zheng@intel.com>
- <CAN+gG=G_yh77Vab_bvWxTOVHsiUm21-X8bajo14utjaCwf1x=Q@mail.gmail.com>
- <1AE640813FDE7649BE1B193DEA596E886CEA2BB0@SHSMSX101.ccr.corp.intel.com>
- <1AE640813FDE7649BE1B193DEA596E886CEA2E0E@SHSMSX101.ccr.corp.intel.com>
- <CAN+gG=GazunH_RFDUusbnT+ncNoejLuA5=v-49KDFFJ4oy8xuw@mail.gmail.com>
- <1AE640813FDE7649BE1B193DEA596E886CEA38F0@SHSMSX101.ccr.corp.intel.com>
- <CAN+gG=E1FX7Fxur62WoEOcgcuX51HPY0BfP-7FbPf+pRMPTamw@mail.gmail.com>
+From: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Subject: [PATCH] drm/nouveau: Fix drm poll_helper handling
+Date: Mon, 15 May 2017 12:04:31 +0300
+Message-ID: <20170515090431.32325-1-peter.ujfalusi@ti.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <CAN+gG=E1FX7Fxur62WoEOcgcuX51HPY0BfP-7FbPf+pRMPTamw@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Benjamin Tissoires <benjamin.tissoires@gmail.com>, "Zheng,
- Lv" <lv.zheng@intel.com>
-Cc: "Brown, Len" <len.brown@intel.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Wysocki,
- Rafael J" <rafael.j.wysocki@intel.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Lv Zheng <zetalog@gmail.com>, ACPI Devel Maling List <linux-acpi@vger.kernel.org>
+Content-Type: text/plain
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Lyude Paul <lyude@redhat.com>, Dave Airlie <airlied@redhat.com>, Gleb Nemshilov <gleb@fastmail.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAxNSBNYXkgMjAxNywgQmVuamFtaW4gVGlzc29pcmVzIDxiZW5qYW1pbi50aXNzb2ly
-ZXNAZ21haWwuY29tPiB3cm90ZToKPiBJJ2xsIGFuc3dlciBldmVyeXRoaW5nIGluIHRoZSBvdGhl
-ciB0aHJlYWQsIHdoZXJlIHRoZXJlIGFyZSBzbGlnaHRseQo+IG1vcmUgb3RoZXIgcG9pbnRzIHJh
-aXNlZDogaHR0cHM6Ly9sa21sLm9yZy9sa21sLzIwMTcvNS8xNS8xMAoKSWYgeW91IGFyZSBkaXNj
-dXNzaW5nIGNoYW5nZXMgaW1wYWN0aW5nIGk5MTUsIHBsZWFzZSBrZWVwIGludGVsLWdmeCBsaXN0
-CmluIHRoZSBsb29wLgoKVGhhbmtzLApKYW5pLgoKCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3Bl
-biBTb3VyY2UgVGVjaG5vbG9neSBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+Commit cae9ff036eea effectively disabled the drm poll_helper by checking
+the wrong flag to see if the driver should enable the poll or not:
+mode_config.poll_enabled is only set to true by poll_init and it is not
+indicating if the poll is enabled or not.
+nouveau_display_create() will initialize the poll and going to disable it
+right away. After poll_init() the mode_config.poll_enabled will be true,
+but the poll itself is disabled.
+
+To avoid the race caused by calling the poll_enable() from different paths,
+this patch will enable the poll from one place, in the
+nouveau_display_hpd_work().
+
+In case the pm_runtime is disabled we will enable the poll in
+nouveau_drm_load() once.
+
+Fixes: cae9ff036eea ("drm/nouveau: Don't enabling polling twice on runtime resume")
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Gleb Nemshilov <gleb@fastmail.com>
+---
+Hi,
+
+this patch was created and tested in connection of:
+https://bugs.freedesktop.org/show_bug.cgi?id=98690
+
+Regards,
+Peter
+
+ drivers/gpu/drm/nouveau/nouveau_display.c | 6 ++----
+ drivers/gpu/drm/nouveau/nouveau_drm.c     | 6 +++---
+ 2 files changed, 5 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 21b10f9840c9..549763f5e17d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -360,6 +360,8 @@ nouveau_display_hpd_work(struct work_struct *work)
+ 	pm_runtime_get_sync(drm->dev->dev);
+ 
+ 	drm_helper_hpd_irq_event(drm->dev);
++	/* enable polling for external displays */
++	drm_kms_helper_poll_enable(drm->dev);
+ 
+ 	pm_runtime_mark_last_busy(drm->dev->dev);
+ 	pm_runtime_put_sync(drm->dev->dev);
+@@ -413,10 +415,6 @@ nouveau_display_init(struct drm_device *dev)
+ 	if (ret)
+ 		return ret;
+ 
+-	/* enable polling for external displays */
+-	if (!dev->mode_config.poll_enabled)
+-		drm_kms_helper_poll_enable(dev);
+-
+ 	/* enable hotplug interrupts */
+ 	list_for_each_entry(connector, &dev->mode_config.connector_list, head) {
+ 		struct nouveau_connector *conn = nouveau_connector(connector);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 2b6ac24ce690..36268e1802b5 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -502,6 +502,9 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+ 		pm_runtime_allow(dev->dev);
+ 		pm_runtime_mark_last_busy(dev->dev);
+ 		pm_runtime_put(dev->dev);
++	} else {
++		/* enable polling for external displays */
++		drm_kms_helper_poll_enable(dev);
+ 	}
+ 	return 0;
+ 
+@@ -774,9 +777,6 @@ nouveau_pmops_runtime_resume(struct device *dev)
+ 
+ 	ret = nouveau_do_resume(drm_dev, true);
+ 
+-	if (!drm_dev->mode_config.poll_enabled)
+-		drm_kms_helper_poll_enable(drm_dev);
+-
+ 	/* do magic */
+ 	nvif_mask(&device->object, 0x088488, (1 << 25), (1 << 25));
+ 	vga_switcheroo_set_dynamic_switch(pdev, VGA_SWITCHEROO_ON);
+-- 
+2.12.2
