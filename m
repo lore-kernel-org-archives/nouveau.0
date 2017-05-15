@@ -1,95 +1,46 @@
-From: Peter Ujfalusi <peter.ujfalusi@ti.com>
-Subject: [PATCH] drm/nouveau: Fix drm poll_helper handling
-Date: Mon, 15 May 2017 12:04:31 +0300
-Message-ID: <20170515090431.32325-1-peter.ujfalusi@ti.com>
+From: Benjamin Tissoires <benjamin.tissoires@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v2 5/5] ACPI: button: Obselete acpi_lid_open() invocations
+Date: Mon, 15 May 2017 11:21:22 +0200
+Message-ID: <CAN+gG=EDRbFBqkKTDKutv0QSrD-qgEFbKYQ0SXRrCU7aJ4cQZA@mail.gmail.com>
+References: <2a779ae8c280c968b3237ac4a3d9580df7262a46.1493951798.git.lv.zheng@intel.com>
+ <22b130fe0cf3fca19b0e14c69426fe36766cf2ee.1494311429.git.lv.zheng@intel.com>
+ <CAN+gG=G_yh77Vab_bvWxTOVHsiUm21-X8bajo14utjaCwf1x=Q@mail.gmail.com>
+ <1AE640813FDE7649BE1B193DEA596E886CEA2BB0@SHSMSX101.ccr.corp.intel.com>
+ <1AE640813FDE7649BE1B193DEA596E886CEA2E0E@SHSMSX101.ccr.corp.intel.com>
+ <CAN+gG=GazunH_RFDUusbnT+ncNoejLuA5=v-49KDFFJ4oy8xuw@mail.gmail.com>
+ <1AE640813FDE7649BE1B193DEA596E886CEA38F0@SHSMSX101.ccr.corp.intel.com>
+ <CAN+gG=E1FX7Fxur62WoEOcgcuX51HPY0BfP-7FbPf+pRMPTamw@mail.gmail.com> <87a86emryv.fsf@intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Lyude Paul <lyude@redhat.com>, Dave Airlie <airlied@redhat.com>, Gleb Nemshilov <gleb@fastmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-acpi-owner@vger.kernel.org>
+In-Reply-To: <87a86emryv.fsf@intel.com>
+Sender: linux-acpi-owner@vger.kernel.org
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: "Zheng, Lv" <lv.zheng@intel.com>, "Brown, Len" <len.brown@intel.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Lv Zheng <zetalog@gmail.com>, ACPI Devel Maling List <linux-acpi@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-Commit cae9ff036eea effectively disabled the drm poll_helper by checking
-the wrong flag to see if the driver should enable the poll or not:
-mode_config.poll_enabled is only set to true by poll_init and it is not
-indicating if the poll is enabled or not.
-nouveau_display_create() will initialize the poll and going to disable it
-right away. After poll_init() the mode_config.poll_enabled will be true,
-but the poll itself is disabled.
+On Mon, May 15, 2017 at 10:42 AM, Jani Nikula
+<jani.nikula@linux.intel.com> wrote:
+> On Mon, 15 May 2017, Benjamin Tissoires <benjamin.tissoires@gmail.com> wrote:
+>> I'll answer everything in the other thread, where there are slightly
+>> more other points raised: https://lkml.org/lkml/2017/5/15/10
+>
+> If you are discussing changes impacting i915, please keep intel-gfx list
+> in the loop.
+>
 
-To avoid the race caused by calling the poll_enable() from different paths,
-this patch will enable the poll from one place, in the
-nouveau_display_hpd_work().
+I can add intel-gfx to the other thread if you want, but this will IMO
+just add more noise to your list.
+The question is whether or not the kernel should provide a fake state
+for the _LID acpi call, and until we reach an agreement on how to
+handle things, there is no point changing the currently working code
+in i915.
 
-In case the pm_runtime is disabled we will enable the poll in
-nouveau_drm_load() once.
+It is true that there is an issue in i915 regarding the fact that
+intel_lid_notify() doesn't use the provided value but calls
+acpi_lid_open(), but this is something that can be solved in
+https://bugs.freedesktop.org/show_bug.cgi?id=100923, when the
+situation clarifies.
 
-Fixes: cae9ff036eea ("drm/nouveau: Don't enabling polling twice on runtime resume")
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Gleb Nemshilov <gleb@fastmail.com>
----
-Hi,
-
-this patch was created and tested in connection of:
-https://bugs.freedesktop.org/show_bug.cgi?id=98690
-
-Regards,
-Peter
-
- drivers/gpu/drm/nouveau/nouveau_display.c | 6 ++----
- drivers/gpu/drm/nouveau/nouveau_drm.c     | 6 +++---
- 2 files changed, 5 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index 21b10f9840c9..549763f5e17d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -360,6 +360,8 @@ nouveau_display_hpd_work(struct work_struct *work)
- 	pm_runtime_get_sync(drm->dev->dev);
- 
- 	drm_helper_hpd_irq_event(drm->dev);
-+	/* enable polling for external displays */
-+	drm_kms_helper_poll_enable(drm->dev);
- 
- 	pm_runtime_mark_last_busy(drm->dev->dev);
- 	pm_runtime_put_sync(drm->dev->dev);
-@@ -413,10 +415,6 @@ nouveau_display_init(struct drm_device *dev)
- 	if (ret)
- 		return ret;
- 
--	/* enable polling for external displays */
--	if (!dev->mode_config.poll_enabled)
--		drm_kms_helper_poll_enable(dev);
--
- 	/* enable hotplug interrupts */
- 	list_for_each_entry(connector, &dev->mode_config.connector_list, head) {
- 		struct nouveau_connector *conn = nouveau_connector(connector);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 2b6ac24ce690..36268e1802b5 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -502,6 +502,9 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
- 		pm_runtime_allow(dev->dev);
- 		pm_runtime_mark_last_busy(dev->dev);
- 		pm_runtime_put(dev->dev);
-+	} else {
-+		/* enable polling for external displays */
-+		drm_kms_helper_poll_enable(dev);
- 	}
- 	return 0;
- 
-@@ -774,9 +777,6 @@ nouveau_pmops_runtime_resume(struct device *dev)
- 
- 	ret = nouveau_do_resume(drm_dev, true);
- 
--	if (!drm_dev->mode_config.poll_enabled)
--		drm_kms_helper_poll_enable(drm_dev);
--
- 	/* do magic */
- 	nvif_mask(&device->object, 0x088488, (1 << 25), (1 << 25));
- 	vga_switcheroo_set_dynamic_switch(pdev, VGA_SWITCHEROO_ON);
--- 
-2.12.2
+Cheers,
+Benjamin
