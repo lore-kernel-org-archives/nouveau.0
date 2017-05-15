@@ -1,63 +1,99 @@
-From: Tommi Rantala <tt.rantala@gmail.com>
+From: Ben Skeggs <bskeggs@redhat.com>
 Subject: Re: nouveau "eDP-1: EDID is invalid" regression after 4.11 with HP
  ZBook 15 G3
-Date: Sun, 14 May 2017 18:10:25 +0300
-Message-ID: <CA+ydwtrE8QVH7u5rTV06woiiV7Ew8OcHz1Zd1hMX4jSbO1MDHw@mail.gmail.com>
+Date: Mon, 15 May 2017 10:03:33 +1000
+Message-ID: <b7171c1e-5a4f-f703-800a-e1c7b4bfcd27@redhat.com>
 References: <CA+ydwtofv0i07C-hWNfE9c82snc35-E3dHxKKhWj0VcJjiPbBw@mail.gmail.com>
+ <CA+ydwtrE8QVH7u5rTV06woiiV7Ew8OcHz1Zd1hMX4jSbO1MDHw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CA+ydwtofv0i07C-hWNfE9c82snc35-E3dHxKKhWj0VcJjiPbBw@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: nouveau@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CA+ydwtrE8QVH7u5rTV06woiiV7Ew8OcHz1Zd1hMX4jSbO1MDHw@mail.gmail.com>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: Tommi Rantala <tt.rantala@gmail.com>
+Cc: David Airlie <airlied@linux.ie>, LKML <linux-kernel@vger.kernel.org>, DRI Development <dri-devel@lists.freedesktop.org>, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpCaXNlY3RlZCB0aGlzIHRvOgoKY29tbWl0IGRmOGRjOTdjZDE3MjY5NDc0MzQ0ZDczY2Mw
-MjczOTUzMmM0NjhkMDQKQXV0aG9yOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+CkRh
-dGU6ICAgV2VkIE1hciAxIDA5OjQyOjA0IDIwMTcgKzEwMDAKCiAgIGRybS9ub3V2ZWF1L2ttcy9u
-djUwOiB1c2UgZHJtIGNvcmUgaTJjLW92ZXItYXV4IGFsZ29yaXRobQoKICAgSSdtIG5vdCBlbnRp
-cmVseSBzdXJlIE5WS00gbmVlZHMgdG8gc3VwcG9ydCB0aGlzIG5vdywgYnV0IEkgaGF2ZW4ndAog
-ICByZW1vdmVkIGl0IGFzIG9mIHlldCBqdXN0IGluIGNhc2UgaXQncyBuZWVkZWQgZnJvbSBERVZJ
-TklUIHNjcmlwdHMKICAgd2hlcmUgRFJNIGlzbid0IGF2YWlsYWJsZS4KCiAgIFNpZ25lZC1vZmYt
-Ynk6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KCgpkbWVzZyBhZnRlciBib290IHdp
-dGggZHJtLmRlYnVnIGVuYWJsZWQ6Cgp2NC4xMC0xMDQwOS1nNWM2OGQ5MSAoc3RpbGwgd29ya3Mp
-OgpodHRwOi8vdGVybWJpbi5jb20vYjBpcwoKdjQuMTAtMTA0MTAtZ2RmOGRjOTcgKGZhaWx1cmUp
-OgpodHRwOi8vdGVybWJpbi5jb20vajZscQoKClRvbW1pCgoKMjAxNy0wNS0xMCAxMToyNCBHTVQr
-MDM6MDAgVG9tbWkgUmFudGFsYSA8dHQucmFudGFsYUBnbWFpbC5jb20+Ogo+IEhpLAo+Cj4gVGhl
-IEhQIFpCb29rIDE1IEczIGxhcHRvcCBidWlsdGluIGRpc3BsYXkgKGVEUC0xKSBkb2VzIG5vdCB3
-b3JrCj4gY29ycmVjdGx5IHdpdGggdjQuMTEtMTE0MTMtZzI4NjhiMjUuCj4KPiBXaGVuIGJvb3Rp
-bmcgdGhlIGxhcHRvcCwgdGhlIHJlc29sdXRpb24gc2VlbXMgdG8gYmUgbGltaXRlZCB0bwo+IDEw
-MjR4NzY4LCBhbmQgZ25vbWUtc2Vzc2lvbiBzZWdmYXVsdHMuCj4KPiBVcCB0byA0LjExIHRoZSBk
-aXNwbGF5IHdvcmtzIGp1c3QgZmluZSBpbiAxOTIweDEwODAgbW9kZS4KPgo+IEknbSBzZWVpbmcg
-dGhpcyBpbiB0aGUga2VybmVsIGxvZ3M6Cj4KPiBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZURQLTE6
-IEVESUQgaXMgaW52YWxpZDoKPiAgICAgICAgIFswMF0gQkFEICAwMCBmZiBmZiBmZiBmZiBmZiBm
-ZiAwMCBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZgo+ICAgICAgICAgWzAwXSBCQUQgIGZmIGZmIGZm
-IGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmCj4gICAgICAgICBbMDBdIEJB
-RCAgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgODQgNTMgNTQKPiAgICAg
-ICAgIFswMF0gQkFEICA2NiA2OSA1MCA1NSA1NyA2NiA3NCA0OSA0OCBmZiBmZiBmZiBmZiBmZiBm
-ZiBmZgo+ICAgICAgICAgWzAwXSBCQUQgIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZm
-IGZmIGZmIGZmIGZmIGZmCj4gICAgICAgICBbMDBdIEJBRCAgZmYgZmYgZmYgZmYgZmYgZmYgZmYg
-ZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYgZmYKPiAgICAgICAgIFswMF0gQkFEICBmZiBmZiBmZiBm
-ZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZiBmZgo+ICAgICAgICAgWzAwXSBCQUQg
-IGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIGZmIDAwIDAwIGZmIDAwIGZmCj4gbm91dmVh
-dSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIGVEUC0x
-Cj4gW2RybV0gQ2Fubm90IGZpbmQgYW55IGNydGMgb3Igc2l6ZXMgLSBnb2luZyAxMDI0eDc2OAo+
-Cj4KPiAkIGxzcGNpIHwgZ3JlcCBOVklESUEKPiAwMTowMC4wIFZHQSBjb21wYXRpYmxlIGNvbnRy
-b2xsZXI6IE5WSURJQSBDb3Jwb3JhdGlvbiBHTTEwN0dMTSBbUXVhZHJvCj4gTTIwMDBNXSAocmV2
-IGEyKQo+Cj4gQW55IGlkZWFzLCBvciBzaG91bGQgSSBiaXNlY3Q/Cj4KPiA0LjExIGRtZXNnICYg
-eHJhbmRyIG91dHB1dDoKPiBodHRwczovL3Bhc3RlYmluLmNvbS9yYXcvUDlMR1A3ZTEKPgo+IDQu
-MTEtMTE0MTMtZzI4NjhiMjUgZG1lc2c6Cj4gaHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3L1FCVDlt
-TXVhCj4KPiAtVG9tbWkKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRl
-dmVsCg==
+On 05/15/2017 01:10 AM, Tommi Rantala wrote:
+> Hi,
+Hey Tommi,
+
+Thanks for bisecting this.  It's rather unexpected that you should be 
+seeing problems here, but, the commit makes sense for it at least.
+
+Are you able to get me new kernel logs of both before and after this 
+patch with "log_buf_len=8M drm.debug=0x14 
+nouveau.debug=disp=trace,i2c=trace,bios=trace" please?
+
+Thanks,
+Ben.
+
+> 
+> Bisected this to:
+> 
+> commit df8dc97cd17269474344d73cc02739532c468d04
+> Author: Ben Skeggs <bskeggs@redhat.com>
+> Date:   Wed Mar 1 09:42:04 2017 +1000
+> 
+>     drm/nouveau/kms/nv50: use drm core i2c-over-aux algorithm
+> 
+>     I'm not entirely sure NVKM needs to support this now, but I haven't
+>     removed it as of yet just in case it's needed from DEVINIT scripts
+>     where DRM isn't available.
+> 
+>     Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
+> 
+> 
+> dmesg after boot with drm.debug enabled:
+> 
+> v4.10-10409-g5c68d91 (still works):
+> http://termbin.com/b0is
+> 
+> v4.10-10410-gdf8dc97 (failure):
+> http://termbin.com/j6lq
+> 
+> 
+> Tommi
+> 
+> 
+> 2017-05-10 11:24 GMT+03:00 Tommi Rantala <tt.rantala@gmail.com>:
+>> Hi,
+>>
+>> The HP ZBook 15 G3 laptop builtin display (eDP-1) does not work
+>> correctly with v4.11-11413-g2868b25.
+>>
+>> When booting the laptop, the resolution seems to be limited to
+>> 1024x768, and gnome-session segfaults.
+>>
+>> Up to 4.11 the display works just fine in 1920x1080 mode.
+>>
+>> I'm seeing this in the kernel logs:
+>>
+>> nouveau 0000:01:00.0: eDP-1: EDID is invalid:
+>>          [00] BAD  00 ff ff ff ff ff ff 00 ff ff ff ff ff ff ff ff
+>>          [00] BAD  ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+>>          [00] BAD  ff ff ff ff ff ff ff ff ff ff ff ff ff 84 53 54
+>>          [00] BAD  66 69 50 55 57 66 74 49 48 ff ff ff ff ff ff ff
+>>          [00] BAD  ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+>>          [00] BAD  ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+>>          [00] BAD  ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+>>          [00] BAD  ff ff ff ff ff ff ff ff ff ff ff 00 00 ff 00 ff
+>> nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for eDP-1
+>> [drm] Cannot find any crtc or sizes - going 1024x768
+>>
+>>
+>> $ lspci | grep NVIDIA
+>> 01:00.0 VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro
+>> M2000M] (rev a2)
+>>
+>> Any ideas, or should I bisect?
+>>
+>> 4.11 dmesg & xrandr output:
+>> https://pastebin.com/raw/P9LGP7e1
+>>
+>> 4.11-11413-g2868b25 dmesg:
+>> https://pastebin.com/raw/QBT9mMua
+>>
+>> -Tommi
