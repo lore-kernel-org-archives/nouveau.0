@@ -1,15 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v7 0/5] replace hwmon_device_register for
- hwmon_device_register_with_info
-Date: Wed, 17 May 2017 09:06:22 +1000
-Message-ID: <0a130a48-47d3-7c30-6cef-2f25914fda34@gmail.com>
-References: <1494969522-9834-1-git-send-email-osalvador.vilardaga@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Tue, 16 May 2017 23:40:25 +0000
+Message-ID: <bug-94990-8800-pikA1stpu7@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0999751463=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1494969522-9834-1-git-send-email-osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,48 +17,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Oscar Salvador <osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDUvMTcvMjAxNyAwNzoxOCBBTSwgT3NjYXIgU2FsdmFkb3Igd3JvdGU6Cj4gVGhpcyB2NyBm
-aXhlcyByZW1vdmVzIGR1bW15IGZ1bmN0aW9ucyB3aGljaCBvbmx5IGhhZCBhIHJldHVybiBhbmQg
-bW92ZXMgdGhlIGNvZGUKPiBpbnRvIHRoZSBzd2l0Y2ggc3RhdGVtZW50cy4KSGV5IE9zY2FyLAoK
-SSBzZWUgbmV3IHdhcm5pbmdzIHdpdGggdGhpcyBzZXJpZXM6CgovaG9tZS9za2VnZ3NiL2dpdC9u
-b3V2ZWF1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYzo2NDU6ODogd2FybmluZzogCmFzc2ln
-bm1lbnQgZGlzY2FyZHMg4oCYY29uc3TigJkgcXVhbGlmaWVyIGZyb20gcG9pbnRlciB0YXJnZXQg
-dHlwZSAKWy1XZGlzY2FyZGVkLXF1YWxpZmllcnNdCiAgICAqYnVmID0gaW5wdXRfbGFiZWw7Cgph
-bmQKCi9ob21lL3NrZWdnc2IvZ2l0L25vdXZlYXUvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5j
-OjIwMDoxODogd2FybmluZzogCuKAmHB3bV9mYW5fc2Vuc29yX2dyb3Vwc+KAmSBkZWZpbmVkIGJ1
-dCBub3QgdXNlZCBbLVd1bnVzZWQtdmFyaWFibGVdCgpUaGUgc2Vjb25kIG9uZSBhbHNvIHdhcm5z
-IGZvciB0ZW1wMV9hdXRvX3BvaW50X3NlbnNvcl9ncm91cHMgdG9vLgoKVGhhbmtzLApCZW4uCgo+
-IAo+IFZlcnNpb25zOgo+IAo+IHYxIC0+IHYyOgo+ICAgICAgICAgICogS2VlcCB0ZW1wIGF0dHJz
-IGFzIHJlYWQgb25seQo+IHYyIC0+IHYzOgo+ICAgICAgICAgICogQ29kZSBmaXgtdXBzOiBzdHJ1
-Y3QgYW5kIHN0cmluZyBhcyBjb25zdCBhbmQgYWRkIHJldHVybiB3aXRoaW4gc3dpdGNoCj4gICAg
-ICAgICAgZHVlIHRvIGZhbGx0aHJvdWdoCj4gICAgICAgICAgKiBBZGQgU2lnbmVkLW9mZi1ieSB0
-byBhbGwgY29tbWl0cwo+IHYzIC0+IHY0Ogo+ICAgICAgICAgICogUmV2ZXIgY29uc3QgdG8gc3Ry
-dWN0IGF0dHJpYnV0ZS4gS2J1aWxkIGNvbXBsYWlucy4KPiB2NCAtPiB2NToKPiAgICAgICAgICAq
-IERyb3BzIGEgY2hlY2sgZm9yIGF0dHJfc2V0IGluICJub3V2ZWF1X3RlbXBfaXNfdmlzaWJsZSIu
-Cj4gdjUgLT4gdjY6Cj4gCSogQ2hhbmdlIHRvIG5vdXZlYXUvaHdtb24gYWxsIGNvbW1pdCB0aXRs
-ZXMKPiAJKiBEcm9wIGF1dGhvciBjaGFuZ2UKPiAJKiBDb2RpbmctU3R5bGUKPiAJKiBNb3ZlIHRo
-ZSBjaGVjayBiZWZvcmUgdGhlIHN3aXRjaCBpbiBub3V2ZWF1X3Bvd2VyX2lzX3Zpc2libGUgZnVu
-Y3Rpb24KPiAJKiBFeHBvc2UgdGVtcGVyYXR1cmUgYXR0cnMgYXMgUlcgYWdhaW4KPiAJKiBHZXQg
-cmlkIG9mIG5vdXZlYXVfaHdtb25fc2V0X3B3bTEvX2VuYWJsZSBhbmQgaW1wbGVtZW50IHRoZSBj
-b2RlIGluc2lkZQo+IAlub3V2ZWF1X3B3bV93cml0ZQo+IAkqIEdldCByaWQgb2Ygbm91dmVhdV9o
-d21vbl9zZXRfdGVtcF8qIGFuZCBpbXBsZW1lbnQgdGhlIGNvZGUgaW5zaWRlCj4gCW5vdXZlYXVf
-dGVtcF93cml0ZQo+IHY2IC0+IHY3Ogo+IAkqIEdvdCByaWQgb2YgYWxsIGR1bW15IGZ1bmN0aW9u
-cyB0aGF0IG9ubHkgaGFkIGEgcmV0dXJuLCBhbmQgbW92ZWQKPiAJY29kZSBpbnRvIHRoZSBzd2l0
-Y2ggc3RhdGVtZW50cy4KPiAJCj4gCj4gVGhpcyBwYXRjaHNlcmllcyByZXBsYWNlcyB0aGUgZGVw
-cmVjYXRlZCBod21vbl9kZXZpY2VfcmVnaXN0ZXIgZnVuY3Rpb24gd2l0aCB0aGUKPiBuZXcgb25l
-IGh3bW9uX2RldmljZV9yZWdpc3Rlcl93aXRoX2luZm8uCj4gSXQgYWxzbyBkb2VzIHNvbWUgY2xl
-YW51cC4KPiAKPiBPc2NhciBTYWx2YWRvciAoNSk6Cj4gICAgbm91dmVhdS9od21vbjogQWRkIGNv
-bmZpZyBmb3IgYWxsIHNlbnNvcnMgYW5kIHRoZWlyIHNldHRpbmdzCj4gICAgbm91dmVhdS9od21v
-bjogQWRkIG5vdXZlYXVfaHdtb25fb3BzIHN0cnVjdHVyZSB3aXRoCj4gICAgICAuaXNfdmlzaWJs
-ZS8ucmVhZF9zdHJpbmcKPiAgICBub3V2ZWF1L2h3bW9uOiBSZW1vdmUgb2xkIGNvZGUsIGFkZCAu
-d3JpdGUvLnJlYWQgb3BlcmF0aW9ucwo+ICAgIG5vdXZlYXUvaHdtb246IGV4cG9zZSB0aGUgYXV0
-b19wb2ludCBhbmQgcHdtX21pbi9tYXggYXR0cnMKPiAgICBub3V2ZWF1L2h3bW9uOiBDaGFuZ2Ug
-cGVybWlzc2lvbnMgdG8gbnVtZXJpYwo+IAo+ICAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9od21vbi5jIHwgOTc5ICsrKysrKysrKysrKysrKy0tLS0tLS0tLS0tLS0tLS0tCj4gICAx
-IGZpbGUgY2hhbmdlZCwgNDYwIGluc2VydGlvbnMoKyksIDUxOSBkZWxldGlvbnMoLSkKPiAKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0999751463==
+Content-Type: multipart/alternative; boundary="149497802511.6EcC6Dd02.3922";
+ charset="UTF-8"
+
+
+--149497802511.6EcC6Dd02.3922
+Date: Tue, 16 May 2017 23:40:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #122 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+(In reply to Yann Golanski from comment #121)
+> I am happy to wait till 4.12 is released on Fedora but would like to know=
+ it
+> works: several comments pointed to it being flaky=E2=80=A6
+
+Hans Petter had X working (though not Wayland) by cherry-picking those comm=
+its
+and Bernie had it working as well with Ben's tree.
+The others tested different patches.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--149497802511.6EcC6Dd02.3922
+Date: Tue, 16 May 2017 23:40:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c122">Comme=
+nt # 122</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
+e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>(In reply to Yann Golanski from <a href=3D"show_bug.cgi?id=3D9=
+4990#c121">comment #121</a>)
+<span class=3D"quote">&gt; I am happy to wait till 4.12 is released on Fedo=
+ra but would like to know it
+&gt; works: several comments pointed to it being flaky=E2=80=A6</span >
+
+Hans Petter had X working (though not Wayland) by cherry-picking those comm=
+its
+and Bernie had it working as well with Ben's tree.
+The others tested different patches.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--149497802511.6EcC6Dd02.3922--
+
+--===============0999751463==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0999751463==--
