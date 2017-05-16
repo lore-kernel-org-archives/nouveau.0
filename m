@@ -1,85 +1,141 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH] drm/nouveau: Fix drm poll_helper handling
-Date: Mon, 15 May 2017 10:11:36 -0400
-Message-ID: <1494857496.14698.0.camel@redhat.com>
-References: <20170515090431.32325-1-peter.ujfalusi@ti.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100446] Backlight control not working on Pascal /
+ GP106 using nouveau drivers
+Date: Tue, 16 May 2017 11:20:26 +0000
+Message-ID: <bug-100446-8800-vo5TsqowiM@http.bugs.freedesktop.org/>
+References: <bug-100446-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20170515090431.32325-1-peter.ujfalusi@ti.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Peter Ujfalusi <peter.ujfalusi@ti.com>, bskeggs@redhat.com, airlied@linux.ie
-Cc: nouveau@lists.freedesktop.org, Gleb Nemshilov <gleb@fastmail.com>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1888099166=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100446-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-R29vZCBjYXRjaCEKClJldmlld2VkLWJ5OiBMeXVkZSA8bHl1ZGVAcmVkaGF0LmNvbT4KCk9uIE1v
-biwgMjAxNy0wNS0xNSBhdCAxMjowNCArMDMwMCwgUGV0ZXIgVWpmYWx1c2kgd3JvdGU6Cj4gQ29t
-bWl0IGNhZTlmZjAzNmVlYSBlZmZlY3RpdmVseSBkaXNhYmxlZCB0aGUgZHJtIHBvbGxfaGVscGVy
-IGJ5Cj4gY2hlY2tpbmcKPiB0aGUgd3JvbmcgZmxhZyB0byBzZWUgaWYgdGhlIGRyaXZlciBzaG91
-bGQgZW5hYmxlIHRoZSBwb2xsIG9yIG5vdDoKPiBtb2RlX2NvbmZpZy5wb2xsX2VuYWJsZWQgaXMg
-b25seSBzZXQgdG8gdHJ1ZSBieSBwb2xsX2luaXQgYW5kIGl0IGlzCj4gbm90Cj4gaW5kaWNhdGlu
-ZyBpZiB0aGUgcG9sbCBpcyBlbmFibGVkIG9yIG5vdC4KPiBub3V2ZWF1X2Rpc3BsYXlfY3JlYXRl
-KCkgd2lsbCBpbml0aWFsaXplIHRoZSBwb2xsIGFuZCBnb2luZyB0bwo+IGRpc2FibGUgaXQKPiBy
-aWdodCBhd2F5LiBBZnRlciBwb2xsX2luaXQoKSB0aGUgbW9kZV9jb25maWcucG9sbF9lbmFibGVk
-IHdpbGwgYmUKPiB0cnVlLAo+IGJ1dCB0aGUgcG9sbCBpdHNlbGYgaXMgZGlzYWJsZWQuCj4gCj4g
-VG8gYXZvaWQgdGhlIHJhY2UgY2F1c2VkIGJ5IGNhbGxpbmcgdGhlIHBvbGxfZW5hYmxlKCkgZnJv
-bSBkaWZmZXJlbnQKPiBwYXRocywKPiB0aGlzIHBhdGNoIHdpbGwgZW5hYmxlIHRoZSBwb2xsIGZy
-b20gb25lIHBsYWNlLCBpbiB0aGUKPiBub3V2ZWF1X2Rpc3BsYXlfaHBkX3dvcmsoKS4KPiAKPiBJ
-biBjYXNlIHRoZSBwbV9ydW50aW1lIGlzIGRpc2FibGVkIHdlIHdpbGwgZW5hYmxlIHRoZSBwb2xs
-IGluCj4gbm91dmVhdV9kcm1fbG9hZCgpIG9uY2UuCj4gCj4gRml4ZXM6IGNhZTlmZjAzNmVlYSAo
-ImRybS9ub3V2ZWF1OiBEb24ndCBlbmFibGluZyBwb2xsaW5nIHR3aWNlIG9uCj4gcnVudGltZSBy
-ZXN1bWUiKQo+IFNpZ25lZC1vZmYtYnk6IFBldGVyIFVqZmFsdXNpIDxwZXRlci51amZhbHVzaUB0
-aS5jb20+Cj4gQ2M6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4gQ2M6IERhdmUgQWly
-bGllIDxhaXJsaWVkQHJlZGhhdC5jb20+Cj4gQ2M6IEdsZWIgTmVtc2hpbG92IDxnbGViQGZhc3Rt
-YWlsLmNvbT4KPiAtLS0KPiBIaSwKPiAKPiB0aGlzIHBhdGNoIHdhcyBjcmVhdGVkIGFuZCB0ZXN0
-ZWQgaW4gY29ubmVjdGlvbiBvZjoKPiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3df
-YnVnLmNnaT9pZD05ODY5MAo+IAo+IFJlZ2FyZHMsCj4gUGV0ZXIKPiAKPiDCoGRyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jIHwgNiArKy0tLS0KPiDCoGRyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmPCoMKgwqDCoMKgfCA2ICsrKy0tLQo+IMKgMiBmaWxl
-cyBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCj4gYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYwo+IGluZGV4IDIxYjEwZjk4NDBjOS4u
-NTQ5NzYzZjVlMTdkIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfZGlzcGxheS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNw
-bGF5LmMKPiBAQCAtMzYwLDYgKzM2MCw4IEBAIG5vdXZlYXVfZGlzcGxheV9ocGRfd29yayhzdHJ1
-Y3Qgd29ya19zdHJ1Y3QKPiAqd29yaykKPiDCoAlwbV9ydW50aW1lX2dldF9zeW5jKGRybS0+ZGV2
-LT5kZXYpOwo+IMKgCj4gwqAJZHJtX2hlbHBlcl9ocGRfaXJxX2V2ZW50KGRybS0+ZGV2KTsKPiAr
-CS8qIGVuYWJsZSBwb2xsaW5nIGZvciBleHRlcm5hbCBkaXNwbGF5cyAqLwo+ICsJZHJtX2ttc19o
-ZWxwZXJfcG9sbF9lbmFibGUoZHJtLT5kZXYpOwo+IMKgCj4gwqAJcG1fcnVudGltZV9tYXJrX2xh
-c3RfYnVzeShkcm0tPmRldi0+ZGV2KTsKPiDCoAlwbV9ydW50aW1lX3B1dF9zeW5jKGRybS0+ZGV2
-LT5kZXYpOwo+IEBAIC00MTMsMTAgKzQxNSw2IEBAIG5vdXZlYXVfZGlzcGxheV9pbml0KHN0cnVj
-dCBkcm1fZGV2aWNlICpkZXYpCj4gwqAJaWYgKHJldCkKPiDCoAkJcmV0dXJuIHJldDsKPiDCoAo+
-IC0JLyogZW5hYmxlIHBvbGxpbmcgZm9yIGV4dGVybmFsIGRpc3BsYXlzICovCj4gLQlpZiAoIWRl
-di0+bW9kZV9jb25maWcucG9sbF9lbmFibGVkKQo+IC0JCWRybV9rbXNfaGVscGVyX3BvbGxfZW5h
-YmxlKGRldik7Cj4gLQo+IMKgCS8qIGVuYWJsZSBob3RwbHVnIGludGVycnVwdHMgKi8KPiDCoAls
-aXN0X2Zvcl9lYWNoX2VudHJ5KGNvbm5lY3RvciwgJmRldi0KPiA+bW9kZV9jb25maWcuY29ubmVj
-dG9yX2xpc3QsIGhlYWQpIHsKPiDCoAkJc3RydWN0IG5vdXZlYXVfY29ubmVjdG9yICpjb25uID0K
-PiBub3V2ZWF1X2Nvbm5lY3Rvcihjb25uZWN0b3IpOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4gYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2RybS5jCj4gaW5kZXggMmI2YWMyNGNlNjkwLi4zNjI2OGUxODAyYjUgMTAwNjQ0Cj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiBAQCAtNTAyLDYgKzUwMiw5IEBAIG5v
-dXZlYXVfZHJtX2xvYWQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdW5zaWduZWQKPiBsb25nIGZs
-YWdzKQo+IMKgCQlwbV9ydW50aW1lX2FsbG93KGRldi0+ZGV2KTsKPiDCoAkJcG1fcnVudGltZV9t
-YXJrX2xhc3RfYnVzeShkZXYtPmRldik7Cj4gwqAJCXBtX3J1bnRpbWVfcHV0KGRldi0+ZGV2KTsK
-PiArCX0gZWxzZSB7Cj4gKwkJLyogZW5hYmxlIHBvbGxpbmcgZm9yIGV4dGVybmFsIGRpc3BsYXlz
-ICovCj4gKwkJZHJtX2ttc19oZWxwZXJfcG9sbF9lbmFibGUoZGV2KTsKPiDCoAl9Cj4gwqAJcmV0
-dXJuIDA7Cj4gwqAKPiBAQCAtNzc0LDkgKzc3Nyw2IEBAIG5vdXZlYXVfcG1vcHNfcnVudGltZV9y
-ZXN1bWUoc3RydWN0IGRldmljZSAqZGV2KQo+IMKgCj4gwqAJcmV0ID0gbm91dmVhdV9kb19yZXN1
-bWUoZHJtX2RldiwgdHJ1ZSk7Cj4gwqAKPiAtCWlmICghZHJtX2Rldi0+bW9kZV9jb25maWcucG9s
-bF9lbmFibGVkKQo+IC0JCWRybV9rbXNfaGVscGVyX3BvbGxfZW5hYmxlKGRybV9kZXYpOwo+IC0K
-PiDCoAkvKiBkbyBtYWdpYyAqLwo+IMKgCW52aWZfbWFzaygmZGV2aWNlLT5vYmplY3QsIDB4MDg4
-NDg4LCAoMSA8PCAyNSksICgxIDw8IDI1KSk7Cj4gwqAJdmdhX3N3aXRjaGVyb29fc2V0X2R5bmFt
-aWNfc3dpdGNoKHBkZXYsIFZHQV9TV0lUQ0hFUk9PX09OKTsKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2
-ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============1888099166==
+Content-Type: multipart/alternative; boundary="14949336260.C2bbCDA8a.5796";
+ charset="UTF-8"
+
+
+--14949336260.C2bbCDA8a.5796
+Date: Tue, 16 May 2017 11:20:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100446
+
+--- Comment #4 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
+For the sake of completeness some more info on this.
+
+The two settings differ only for couple of accesses:
+
+< MMIO32 W 0x00d980 0x000000ff PGPIO+0x980 <=3D 0xff
+---
+> MMIO32 W 0x00d980 0x0000007f PGPIO+0x980 <=3D 0x7f
+
+< MMIO32 W 0x619484 0x0000ff00 PDISPLAY.VGA.CR+0x84 <=3D 0xff00
+---
+> MMIO32 W 0x619484 0x00007000 PDISPLAY.VGA.CR+0x84 <=3D 0x7000
+
+The problem is that poking at those registers using nvapeek / nvapoke doesn=
+'t
+change the brightness.
+
+Also trying to use nvammiotracereplay to reply step-by-step the mmio trace =
+has
+no effect on the brightness.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14949336260.C2bbCDA8a.5796
+Date: Tue, 16 May 2017 11:20:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446">bug 10044=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
+<span class=3D"fn">Carlo Caione</span></a>
+</span></b>
+        <pre>For the sake of completeness some more info on this.
+
+The two settings differ only for couple of accesses:
+
+&lt; MMIO32 W 0x00d980 0x000000ff PGPIO+0x980 &lt;=3D 0xff
+---
+<span class=3D"quote">&gt; MMIO32 W 0x00d980 0x0000007f PGPIO+0x980 &lt;=3D=
+ 0x7f</span >
+
+&lt; MMIO32 W 0x619484 0x0000ff00 PDISPLAY.VGA.CR+0x84 &lt;=3D 0xff00
+---
+<span class=3D"quote">&gt; MMIO32 W 0x619484 0x00007000 PDISPLAY.VGA.CR+0x8=
+4 &lt;=3D 0x7000</span >
+
+The problem is that poking at those registers using nvapeek / nvapoke doesn=
+'t
+change the brightness.
+
+Also trying to use nvammiotracereplay to reply step-by-step the mmio trace =
+has
+no effect on the brightness.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14949336260.C2bbCDA8a.5796--
+
+--===============1888099166==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1888099166==--
