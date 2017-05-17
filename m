@@ -1,118 +1,73 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
-	(v4.6+)
-Date: Tue, 16 May 2017 23:40:25 +0000
-Message-ID: <bug-94990-8800-pikA1stpu7@http.bugs.freedesktop.org/>
-References: <bug-94990-8800@http.bugs.freedesktop.org/>
+From: Oscar Salvador <osalvador.vilardaga@gmail.com>
+Subject: Re: [PATCH v7 0/5] replace hwmon_device_register for
+ hwmon_device_register_with_info
+Date: Wed, 17 May 2017 08:26:09 +0200
+Message-ID: <CAOXBz7gaQwSas-K5+rNKZOB0FxrU9dQqau_jkAT7TRu8X6TyGQ@mail.gmail.com>
+References: <1494969522-9834-1-git-send-email-osalvador.vilardaga@gmail.com>
+ <0a130a48-47d3-7c30-6cef-2f25914fda34@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0999751463=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <0a130a48-47d3-7c30-6cef-2f25914fda34@gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <skeggsb@gmail.com>
+Cc: ML nouveau <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0999751463==
-Content-Type: multipart/alternative; boundary="149497802511.6EcC6Dd02.3922";
- charset="UTF-8"
-
-
---149497802511.6EcC6Dd02.3922
-Date: Tue, 16 May 2017 23:40:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
-
---- Comment #122 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(In reply to Yann Golanski from comment #121)
-> I am happy to wait till 4.12 is released on Fedora but would like to know=
- it
-> works: several comments pointed to it being flaky=E2=80=A6
-
-Hans Petter had X working (though not Wayland) by cherry-picking those comm=
-its
-and Bernie had it working as well with Ben's tree.
-The others tested different patches.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---149497802511.6EcC6Dd02.3922
-Date: Tue, 16 May 2017 23:40:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c122">Comme=
-nt # 122</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>(In reply to Yann Golanski from <a href=3D"show_bug.cgi?id=3D9=
-4990#c121">comment #121</a>)
-<span class=3D"quote">&gt; I am happy to wait till 4.12 is released on Fedo=
-ra but would like to know it
-&gt; works: several comments pointed to it being flaky=E2=80=A6</span >
-
-Hans Petter had X working (though not Wayland) by cherry-picking those comm=
-its
-and Bernie had it working as well with Ben's tree.
-The others tested different patches.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---149497802511.6EcC6Dd02.3922--
-
---===============0999751463==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0999751463==--
+SGkgQmVuLAoKSSdsbCBmaXggdGhlIHdhcm5pbmdzLgoKVGhhbmtzIGZvciB0aGUgdGltZQoKUmVn
+YXJkcwpPc2NhciBTYWx2YWRvcgoKT24gMTcgTWF5IDIwMTcgYXQgMDE6MDYsIEJlbiBTa2VnZ3Mg
+PHNrZWdnc2JAZ21haWwuY29tPiB3cm90ZToKPiBPbiAwNS8xNy8yMDE3IDA3OjE4IEFNLCBPc2Nh
+ciBTYWx2YWRvciB3cm90ZToKPj4KPj4gVGhpcyB2NyBmaXhlcyByZW1vdmVzIGR1bW15IGZ1bmN0
+aW9ucyB3aGljaCBvbmx5IGhhZCBhIHJldHVybiBhbmQgbW92ZXMKPj4gdGhlIGNvZGUKPj4gaW50
+byB0aGUgc3dpdGNoIHN0YXRlbWVudHMuCj4KPiBIZXkgT3NjYXIsCj4KPiBJIHNlZSBuZXcgd2Fy
+bmluZ3Mgd2l0aCB0aGlzIHNlcmllczoKPgo+IC9ob21lL3NrZWdnc2IvZ2l0L25vdXZlYXUvZHJt
+L25vdXZlYXUvbm91dmVhdV9od21vbi5jOjY0NTo4OiB3YXJuaW5nOgo+IGFzc2lnbm1lbnQgZGlz
+Y2FyZHMg4oCYY29uc3TigJkgcXVhbGlmaWVyIGZyb20gcG9pbnRlciB0YXJnZXQgdHlwZQo+IFst
+V2Rpc2NhcmRlZC1xdWFsaWZpZXJzXQo+ICAgICpidWYgPSBpbnB1dF9sYWJlbDsKPgo+IGFuZAo+
+Cj4gL2hvbWUvc2tlZ2dzYi9naXQvbm91dmVhdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmM6
+MjAwOjE4OiB3YXJuaW5nOgo+IOKAmHB3bV9mYW5fc2Vuc29yX2dyb3Vwc+KAmSBkZWZpbmVkIGJ1
+dCBub3QgdXNlZCBbLVd1bnVzZWQtdmFyaWFibGVdCj4KPiBUaGUgc2Vjb25kIG9uZSBhbHNvIHdh
+cm5zIGZvciB0ZW1wMV9hdXRvX3BvaW50X3NlbnNvcl9ncm91cHMgdG9vLgo+Cj4gVGhhbmtzLAo+
+IEJlbi4KPgo+Cj4+Cj4+IFZlcnNpb25zOgo+Pgo+PiB2MSAtPiB2MjoKPj4gICAgICAgICAgKiBL
+ZWVwIHRlbXAgYXR0cnMgYXMgcmVhZCBvbmx5Cj4+IHYyIC0+IHYzOgo+PiAgICAgICAgICAqIENv
+ZGUgZml4LXVwczogc3RydWN0IGFuZCBzdHJpbmcgYXMgY29uc3QgYW5kIGFkZCByZXR1cm4gd2l0
+aGluCj4+IHN3aXRjaAo+PiAgICAgICAgICBkdWUgdG8gZmFsbHRocm91Z2gKPj4gICAgICAgICAg
+KiBBZGQgU2lnbmVkLW9mZi1ieSB0byBhbGwgY29tbWl0cwo+PiB2MyAtPiB2NDoKPj4gICAgICAg
+ICAgKiBSZXZlciBjb25zdCB0byBzdHJ1Y3QgYXR0cmlidXRlLiBLYnVpbGQgY29tcGxhaW5zLgo+
+PiB2NCAtPiB2NToKPj4gICAgICAgICAgKiBEcm9wcyBhIGNoZWNrIGZvciBhdHRyX3NldCBpbiAi
+bm91dmVhdV90ZW1wX2lzX3Zpc2libGUiLgo+PiB2NSAtPiB2NjoKPj4gICAgICAgICAqIENoYW5n
+ZSB0byBub3V2ZWF1L2h3bW9uIGFsbCBjb21taXQgdGl0bGVzCj4+ICAgICAgICAgKiBEcm9wIGF1
+dGhvciBjaGFuZ2UKPj4gICAgICAgICAqIENvZGluZy1TdHlsZQo+PiAgICAgICAgICogTW92ZSB0
+aGUgY2hlY2sgYmVmb3JlIHRoZSBzd2l0Y2ggaW4gbm91dmVhdV9wb3dlcl9pc192aXNpYmxlCj4+
+IGZ1bmN0aW9uCj4+ICAgICAgICAgKiBFeHBvc2UgdGVtcGVyYXR1cmUgYXR0cnMgYXMgUlcgYWdh
+aW4KPj4gICAgICAgICAqIEdldCByaWQgb2Ygbm91dmVhdV9od21vbl9zZXRfcHdtMS9fZW5hYmxl
+IGFuZCBpbXBsZW1lbnQgdGhlIGNvZGUKPj4gaW5zaWRlCj4+ICAgICAgICAgbm91dmVhdV9wd21f
+d3JpdGUKPj4gICAgICAgICAqIEdldCByaWQgb2Ygbm91dmVhdV9od21vbl9zZXRfdGVtcF8qIGFu
+ZCBpbXBsZW1lbnQgdGhlIGNvZGUKPj4gaW5zaWRlCj4+ICAgICAgICAgbm91dmVhdV90ZW1wX3dy
+aXRlCj4+IHY2IC0+IHY3Ogo+PiAgICAgICAgICogR290IHJpZCBvZiBhbGwgZHVtbXkgZnVuY3Rp
+b25zIHRoYXQgb25seSBoYWQgYSByZXR1cm4sIGFuZCBtb3ZlZAo+PiAgICAgICAgIGNvZGUgaW50
+byB0aGUgc3dpdGNoIHN0YXRlbWVudHMuCj4+Cj4+Cj4+IFRoaXMgcGF0Y2hzZXJpZXMgcmVwbGFj
+ZXMgdGhlIGRlcHJlY2F0ZWQgaHdtb25fZGV2aWNlX3JlZ2lzdGVyIGZ1bmN0aW9uCj4+IHdpdGgg
+dGhlCj4+IG5ldyBvbmUgaHdtb25fZGV2aWNlX3JlZ2lzdGVyX3dpdGhfaW5mby4KPj4gSXQgYWxz
+byBkb2VzIHNvbWUgY2xlYW51cC4KPj4KPj4gT3NjYXIgU2FsdmFkb3IgKDUpOgo+PiAgICBub3V2
+ZWF1L2h3bW9uOiBBZGQgY29uZmlnIGZvciBhbGwgc2Vuc29ycyBhbmQgdGhlaXIgc2V0dGluZ3MK
+Pj4gICAgbm91dmVhdS9od21vbjogQWRkIG5vdXZlYXVfaHdtb25fb3BzIHN0cnVjdHVyZSB3aXRo
+Cj4+ICAgICAgLmlzX3Zpc2libGUvLnJlYWRfc3RyaW5nCj4+ICAgIG5vdXZlYXUvaHdtb246IFJl
+bW92ZSBvbGQgY29kZSwgYWRkIC53cml0ZS8ucmVhZCBvcGVyYXRpb25zCj4+ICAgIG5vdXZlYXUv
+aHdtb246IGV4cG9zZSB0aGUgYXV0b19wb2ludCBhbmQgcHdtX21pbi9tYXggYXR0cnMKPj4gICAg
+bm91dmVhdS9od21vbjogQ2hhbmdlIHBlcm1pc3Npb25zIHRvIG51bWVyaWMKPj4KPj4gICBkcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMgfCA5NzkKPj4gKysrKysrKysrKysr
+KysrLS0tLS0tLS0tLS0tLS0tLS0KPj4gICAxIGZpbGUgY2hhbmdlZCwgNDYwIGluc2VydGlvbnMo
+KyksIDUxOSBkZWxldGlvbnMoLSkKPj4KPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9kcmktZGV2ZWwK
