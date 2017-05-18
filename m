@@ -1,19 +1,20 @@
-From: Liviu Dudau <liviu.dudau@arm.com>
+From: Sinclair Yeh <syeh@vmware.com>
 Subject: Re: [PATCH v3] drm: Add DRM_MODE_ROTATE_ and DRM_MODE_REFLECT_ to
  UAPI
-Date: Thu, 18 May 2017 11:05:19 +0100
-Message-ID: <20170518100519.GW7759@e110455-lin.cambridge.arm.com>
+Date: Thu, 18 May 2017 09:24:40 -0700
+Message-ID: <20170518162439.GB73131@ubuntu>
 References: <20170518013911.29626-1-robert.foss@collabora.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
 Return-path: <linux-arm-msm-owner@vger.kernel.org>
 Content-Disposition: inline
 In-Reply-To: <20170518013911.29626-1-robert.foss@collabora.com>
 Sender: linux-arm-msm-owner@vger.kernel.org
 To: Robert Foss <robert.foss@collabora.com>
-Cc: brian.starkey@arm.com, malidp@foss.arm.com, airlied@linux.ie, linux@armlinux.org.uk, boris.brezillon@free-electrons.com, daniel.vetter@intel.com, jani.nikula@linux.intel.com, seanpaul@chromium.org, p.zabel@pengutronix.de, robdclark@gmail.com, bskeggs@redhat.com, tomi.valkeinen@ti.com, linux-graphics-maintainer@vmware.com, syeh@vmware.com, thellstrom@vmware.com, architt@codeaurora.org, ville.syrjala@linux.intel.com, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Tomeu Vizoso <tomeu.vizoso@collabora.com>, Emil Velikov <emil.l.velikov@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Kristian =?utf-8?B?SMO4Z3NiZXJn?= <hoegsberg@gmail>
+Cc: liviu.dudau@arm.com, brian.starkey@arm.com, malidp@foss.arm.com, airlied@linux.ie, linux@armlinux.org.uk, boris.brezillon@free-electrons.com, daniel.vetter@intel.com, jani.nikula@linux.intel.com, seanpaul@chromium.org, p.zabel@pengutronix.de, robdclark@gmail.com, bskeggs@redhat.com, tomi.valkeinen@ti.com, linux-graphics-maintainer@vmware.com, thellstrom@vmware.com, architt@codeaurora.org, ville.syrjala@linux.intel.com, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, Tomeu Vizoso <tomeu.vizoso@collabora.com>, Emil Velikov <emil.l.velikov@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
+
+vmwgfx part: Reviewed-by: Sinclair Yeh <syeh@vmware.com>
 
 On Wed, May 17, 2017 at 09:39:11PM -0400, Robert Foss wrote:
 > Add DRM_MODE_ROTATE_ and DRM_MODE_REFLECT_ defines to the UAPI
@@ -141,15 +142,6 @@ On Wed, May 17, 2017 at 09:39:11PM -0400, Robert Foss wrote:
 >  		malidp_hw_write(malidp->dev, MALIDP_ALPHA_LUT,
 >  				plane->layer->base + MALIDP_LAYER_COMPOSE);
 >  	}
-
-For the mali-dp part:
-
-Acked-by: Liviu Dudau <Liviu.Dudau@arm.com>
-
-Thanks,
-Liviu
-
-
 > diff --git a/drivers/gpu/drm/armada/armada_overlay.c b/drivers/gpu/drm/armada/armada_overlay.c
 > index 424e465ff407..e9a29df4b443 100644
 > --- a/drivers/gpu/drm/armada/armada_overlay.c
@@ -1115,13 +1107,3 @@ Liviu
 > -- 
 > 2.11.0.453.g787f75f05
 > 
-
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
