@@ -1,112 +1,60 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100676] gp104 - messy(random green and/or missing
- pixel lines) then no output at and after boot
-Date: Fri, 19 May 2017 14:06:39 +0000
-Message-ID: <bug-100676-8800-3b7CbXE5EG@http.bugs.freedesktop.org/>
-References: <bug-100676-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [PATCH v8 0/5] replace hwmon_device_register for
+ hwmon_device_register_with_info
+Date: Sat, 20 May 2017 00:49:18 +1000
+Message-ID: <7dbbc88e-198d-bc01-bc41-a2c31207f0cb@gmail.com>
+References: <1495142678-7734-1-git-send-email-osalvador.vilardaga@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1700294785=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1495142678-7734-1-git-send-email-osalvador.vilardaga@gmail.com>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Oscar Salvador <osalvador.vilardaga@gmail.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1700294785==
-Content-Type: multipart/alternative; boundary="14952027992.Aaf9.24412";
- charset="UTF-8"
-
-
---14952027992.Aaf9.24412
-Date: Fri, 19 May 2017 14:06:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100676
-
---- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-If you build the kernel module from my tree[1], I believe your issues will =
-be
-resolved now.
-
-[1] https://github.com/skeggsb/nouveau/commits/master
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14952027992.Aaf9.24412
-Date: Fri, 19 May 2017 14:06:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - gp104 - messy(random green and/or missing pixel lines) th=
-en no output at and after boot"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100676#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - gp104 - messy(random green and/or missing pixel lines) th=
-en no output at and after boot"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100676">bug 10067=
-6</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>If you build the kernel module from my tree[1], I believe your=
- issues will be
-resolved now.
-
-[1] <a href=3D"https://github.com/skeggsb/nouveau/commits/master">https://g=
-ithub.com/skeggsb/nouveau/commits/master</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14952027992.Aaf9.24412--
-
---===============1700294785==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1700294785==--
+T24gMDUvMTkvMjAxNyAwNzoyNCBBTSwgT3NjYXIgU2FsdmFkb3Igd3JvdGU6Cj4gVGhpcyB2OCBm
+aXhlcyByZW1vdmVzIGR1bW15IGZ1bmN0aW9ucyB3aGljaCBvbmx5IGhhZCBhIHJldHVybiBhbmQg
+bW92ZXMgdGhlIGNvZGUKPiBpbnRvIHRoZSBzd2l0Y2ggc3RhdGVtZW50cy4KTWVyZ2VkLiAgVGhh
+bmsgeW91IQoKPiAKPiBWZXJzaW9uczoKPiAKPiB2MSAtPiB2MjoKPiAgICAgICAgICAqIEtlZXAg
+dGVtcCBhdHRycyBhcyByZWFkIG9ubHkKPiB2MiAtPiB2MzoKPiAgICAgICAgICAqIENvZGUgZml4
+LXVwczogc3RydWN0IGFuZCBzdHJpbmcgYXMgY29uc3QgYW5kIGFkZCByZXR1cm4gd2l0aGluIHN3
+aXRjaAo+ICAgICAgICAgIGR1ZSB0byBmYWxsdGhyb3VnaAo+ICAgICAgICAgICogQWRkIFNpZ25l
+ZC1vZmYtYnkgdG8gYWxsIGNvbW1pdHMKPiB2MyAtPiB2NDoKPiAgICAgICAgICAqIFJldmVyIGNv
+bnN0IHRvIHN0cnVjdCBhdHRyaWJ1dGUuIEtidWlsZCBjb21wbGFpbnMuCj4gdjQgLT4gdjU6Cj4g
+ICAgICAgICAgKiBEcm9wcyBhIGNoZWNrIGZvciBhdHRyX3NldCBpbiAibm91dmVhdV90ZW1wX2lz
+X3Zpc2libGUiLgo+IHY1IC0+IHY2Ogo+ICAgICAgICAgICogQ2hhbmdlIHRvIG5vdXZlYXUvaHdt
+b24gYWxsIGNvbW1pdCB0aXRsZXMKPiAgICAgICAgICAqIERyb3AgYXV0aG9yIGNoYW5nZQo+ICAg
+ICAgICAgICogQ29kaW5nLVN0eWxlCj4gICAgICAgICAgKiBNb3ZlIHRoZSBjaGVjayBiZWZvcmUg
+dGhlIHN3aXRjaCBpbiBub3V2ZWF1X3Bvd2VyX2lzX3Zpc2libGUgZnVuY3Rpb24KPiAgICAgICAg
+ICAqIEV4cG9zZSB0ZW1wZXJhdHVyZSBhdHRycyBhcyBSVyBhZ2Fpbgo+ICAgICAgICAgICogR2V0
+IHJpZCBvZiBub3V2ZWF1X2h3bW9uX3NldF9wd20xL19lbmFibGUgYW5kIGltcGxlbWVudCB0aGUg
+Y29kZSBpbnNpZGUKPiAgICAgICAgICBub3V2ZWF1X3B3bV93cml0ZQo+ICAgICAgICAgICogR2V0
+IHJpZCBvZiBub3V2ZWF1X2h3bW9uX3NldF90ZW1wXyogYW5kIGltcGxlbWVudCB0aGUgY29kZSBp
+bnNpZGUKPiAgICAgICAgICBub3V2ZWF1X3RlbXBfd3JpdGUKPiB2NiAtPiB2NzoKPiAgICAgICAg
+ICAqIEdvdCByaWQgb2YgYWxsIGR1bW15IGZ1bmN0aW9ucyB0aGF0IG9ubHkgaGFkIGEgcmV0dXJu
+LCBhbmQgbW92ZWQKPiAgICAgICAgICBjb2RlIGludG8gdGhlIHN3aXRjaCBzdGF0ZW1lbnRzLgo+
+IHY3IC0+IHY4Ogo+IAkqIEZpeCB3YXJuaW5ncwo+IAo+IFRoaXMgcGF0Y2hzZXJpZXMgcmVwbGFj
+ZXMgdGhlIGRlcHJlY2F0ZWQgaHdtb25fZGV2aWNlX3JlZ2lzdGVyIGZ1bmN0aW9uIHdpdGggdGhl
+Cj4gbmV3IG9uZSBod21vbl9kZXZpY2VfcmVnaXN0ZXJfd2l0aF9pbmZvLgo+IEl0IGFsc28gZG9l
+cyBzb21lIGNsZWFudXAuCj4gCj4gT3NjYXIgU2FsdmFkb3IgKDUpOgo+ICAgIG5vdXZlYXUvaHdt
+b246IEFkZCBjb25maWcgZm9yIGFsbCBzZW5zb3JzIGFuZCB0aGVpciBzZXR0aW5ncwo+ICAgIG5v
+dXZlYXUvaHdtb246IEFkZCBub3V2ZWF1X2h3bW9uX29wcyBzdHJ1Y3R1cmUgd2l0aAo+ICAgICAg
+LmlzX3Zpc2libGUvLnJlYWRfc3RyaW5nCj4gICAgbm91dmVhdS9od21vbjogUmVtb3ZlIG9sZCBj
+b2RlLCBhZGQgLndyaXRlLy5yZWFkIG9wZXJhdGlvbnMKPiAgICBub3V2ZWF1L2h3bW9uOiBleHBv
+c2UgdGhlIGF1dG9fcG9pbnQgYW5kIHB3bV9taW4vbWF4IGF0dHJzCj4gICAgbm91dmVhdS9od21v
+bjogQ2hhbmdlIHBlcm1pc3Npb25zIHRvIG51bWVyaWMKPiAKPiAgIGRyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L25vdXZlYXVfaHdtb24uYyB8IDk4MyArKysrKysrKysrKysrKystLS0tLS0tLS0tLS0t
+LS0tLQo+ICAgMSBmaWxlIGNoYW5nZWQsIDQ2NCBpbnNlcnRpb25zKCspLCA1MTkgZGVsZXRpb25z
+KC0pCj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRy
+aS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
