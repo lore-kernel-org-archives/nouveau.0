@@ -1,14 +1,13 @@
-From: Oscar Salvador <osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v8 5/5] nouveau/hwmon: Change permissions to
-	numeric
-Date: Thu, 18 May 2017 23:24:38 +0200
-Message-ID: <1495142678-7734-6-git-send-email-osalvador.vilardaga@gmail.com>
-References: <1495142678-7734-1-git-send-email-osalvador.vilardaga@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100676] gp104 - messy(random green and/or missing
+ pixel lines) then no output at and after boot
+Date: Fri, 19 May 2017 14:06:39 +0000
+Message-ID: <bug-100676-8800-3b7CbXE5EG@http.bugs.freedesktop.org/>
+References: <bug-100676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1700294785=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1495142678-7734-1-git-send-email-osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-100676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,47 +17,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Oscar Salvador <osalvador.vilardaga-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBwYXRjaCByZXBsYWNlcyB0aGUgc3ltYm9saWMgcGVybWlzc2lvbnMgd2l0aCB0aGUgbnVt
-ZXJpYyBvbmVzLgoKU2lnbmVkLW9mZi1ieTogT3NjYXIgU2FsdmFkb3IgPG9zYWx2YWRvci52aWxh
-cmRhZ2FAZ21haWwuY29tPgpSZXZpZXdlZC1ieTogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNA
-ZnJlZS5mcj4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMgfCAx
-MCArKysrKy0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9u
-cygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24u
-YyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYwppbmRleCBhMzBjZjk0
-Li4xMTUwMDgxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3
-bW9uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jCkBAIC00
-NSw3ICs0NSw3IEBAIG5vdXZlYXVfaHdtb25fc2hvd190ZW1wMV9hdXRvX3BvaW50MV9wd20oc3Ry
-dWN0IGRldmljZSAqZCwKIHsKIAlyZXR1cm4gc25wcmludGYoYnVmLCBQQUdFX1NJWkUsICIlZFxu
-IiwgMTAwKTsKIH0KLXN0YXRpYyBTRU5TT1JfREVWSUNFX0FUVFIodGVtcDFfYXV0b19wb2ludDFf
-cHdtLCBTX0lSVUdPLAorc3RhdGljIFNFTlNPUl9ERVZJQ0VfQVRUUih0ZW1wMV9hdXRvX3BvaW50
-MV9wd20sIDA0NDQsCiAJCQkgIG5vdXZlYXVfaHdtb25fc2hvd190ZW1wMV9hdXRvX3BvaW50MV9w
-d20sIE5VTEwsIDApOwogCiBzdGF0aWMgc3NpemVfdApAQCAtNzcsNyArNzcsNyBAQCBub3V2ZWF1
-X2h3bW9uX3NldF90ZW1wMV9hdXRvX3BvaW50MV90ZW1wKHN0cnVjdCBkZXZpY2UgKmQsCiAKIAly
-ZXR1cm4gY291bnQ7CiB9Ci1zdGF0aWMgU0VOU09SX0RFVklDRV9BVFRSKHRlbXAxX2F1dG9fcG9p
-bnQxX3RlbXAsIFNfSVJVR08gfCBTX0lXVVNSLAorc3RhdGljIFNFTlNPUl9ERVZJQ0VfQVRUUih0
-ZW1wMV9hdXRvX3BvaW50MV90ZW1wLCAwNjQ0LAogCQkJICBub3V2ZWF1X2h3bW9uX3RlbXAxX2F1
-dG9fcG9pbnQxX3RlbXAsCiAJCQkgIG5vdXZlYXVfaHdtb25fc2V0X3RlbXAxX2F1dG9fcG9pbnQx
-X3RlbXAsIDApOwogCkBAIC0xMTAsNyArMTEwLDcgQEAgbm91dmVhdV9od21vbl9zZXRfdGVtcDFf
-YXV0b19wb2ludDFfdGVtcF9oeXN0KHN0cnVjdCBkZXZpY2UgKmQsCiAKIAlyZXR1cm4gY291bnQ7
-CiB9Ci1zdGF0aWMgU0VOU09SX0RFVklDRV9BVFRSKHRlbXAxX2F1dG9fcG9pbnQxX3RlbXBfaHlz
-dCwgU19JUlVHTyB8IFNfSVdVU1IsCitzdGF0aWMgU0VOU09SX0RFVklDRV9BVFRSKHRlbXAxX2F1
-dG9fcG9pbnQxX3RlbXBfaHlzdCwgMDY0NCwKIAkJCSAgbm91dmVhdV9od21vbl90ZW1wMV9hdXRv
-X3BvaW50MV90ZW1wX2h5c3QsCiAJCQkgIG5vdXZlYXVfaHdtb25fc2V0X3RlbXAxX2F1dG9fcG9p
-bnQxX3RlbXBfaHlzdCwgMCk7CiAKQEAgLTE2NSw3ICsxNjUsNyBAQCBub3V2ZWF1X2h3bW9uX3Nl
-dF9wd20xX21pbihzdHJ1Y3QgZGV2aWNlICpkLCBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSAqYSwK
-IAogCXJldHVybiBjb3VudDsKIH0KLXN0YXRpYyBTRU5TT1JfREVWSUNFX0FUVFIocHdtMV9taW4s
-IFNfSVJVR08gfCBTX0lXVVNSLAorc3RhdGljIFNFTlNPUl9ERVZJQ0VfQVRUUihwd20xX21pbiwg
-MDY0NCwKIAkJCSAgbm91dmVhdV9od21vbl9nZXRfcHdtMV9taW4sCiAJCQkgIG5vdXZlYXVfaHdt
-b25fc2V0X3B3bTFfbWluLCAwKTsKIApAQCAtMTg4LDcgKzE4OCw3IEBAIG5vdXZlYXVfaHdtb25f
-c2V0X3B3bTFfbWF4KHN0cnVjdCBkZXZpY2UgKmQsIHN0cnVjdCBkZXZpY2VfYXR0cmlidXRlICph
-LAogCiAJcmV0dXJuIGNvdW50OwogfQotc3RhdGljIFNFTlNPUl9ERVZJQ0VfQVRUUihwd20xX21h
-eCwgU19JUlVHTyB8IFNfSVdVU1IsCitzdGF0aWMgU0VOU09SX0RFVklDRV9BVFRSKHB3bTFfbWF4
-LCAwNjQ0LAogCQkJICBub3V2ZWF1X2h3bW9uX2dldF9wd20xX21heCwKIAkJCSAgbm91dmVhdV9o
-d21vbl9zZXRfcHdtMV9tYXgsIDApOwogCi0tIAoyLjEuNAoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1700294785==
+Content-Type: multipart/alternative; boundary="14952027992.Aaf9.24412";
+ charset="UTF-8"
+
+
+--14952027992.Aaf9.24412
+Date: Fri, 19 May 2017 14:06:39 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100676
+
+--- Comment #5 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+If you build the kernel module from my tree[1], I believe your issues will =
+be
+resolved now.
+
+[1] https://github.com/skeggsb/nouveau/commits/master
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14952027992.Aaf9.24412
+Date: Fri, 19 May 2017 14:06:39 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - gp104 - messy(random green and/or missing pixel lines) th=
+en no output at and after boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100676#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - gp104 - messy(random green and/or missing pixel lines) th=
+en no output at and after boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100676">bug 10067=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ben Skeggs</span></a>
+</span></b>
+        <pre>If you build the kernel module from my tree[1], I believe your=
+ issues will be
+resolved now.
+
+[1] <a href=3D"https://github.com/skeggsb/nouveau/commits/master">https://g=
+ithub.com/skeggsb/nouveau/commits/master</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14952027992.Aaf9.24412--
+
+--===============1700294785==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1700294785==--
