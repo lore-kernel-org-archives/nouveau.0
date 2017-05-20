@@ -1,15 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [RFC PATCH 0/3] drm/nouveau/dispnv04 overlay and
- primary fb format fixes
-Date: Sat, 20 May 2017 15:47:44 +1000
-Message-ID: <a0dd895d-02f8-4d80-3a75-549f80e7b00a@gmail.com>
-References: <20170520025749.9291-1-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
+ G1 Gaming GTX970
+Date: Sat, 20 May 2017 16:46:43 +0000
+Message-ID: <bug-89664-8800-VHDaLlmUxS@http.bugs.freedesktop.org/>
+References: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1450687351=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170520025749.9291-1-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,33 +17,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDUvMjAvMjAxNyAxMjo1NyBQTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gVGhpcyBjYW1lIG91
-dCBvZiBzb21lIGRlYnVnZ2luZyBJIHdhcyBkb2luZyB0byBmaWd1cmUgb3V0IGhvdyBCRSBtb2Rl
-IHdvcmtzCj4gb24gdGhpcyBoYXJkd2FyZS4gQW1vbmcgb3RoZXIgdGhpbmdzLCBpdCBjYW1lIG91
-dCB0aGF0IHdlJ3JlIG5vdCBleHBvc2luZwo+IDE2LWJwcCBtb2RlIHN1cHBvcnQgYW5kIHRoYXQg
-dGhlIEFSR0I4ODg4IG1vZGUgdGhhdCB3ZSBkbyBleHBvc2UgaXMgYnJva2VuLgo+IEFsc28gdGhl
-IG92ZXJsYXkgbG9naWMgd2FzIHByZXR0eSBicm9rZW4sIEkgbXVzdCBoYXZlIG9ubHkgdGVzdGVk
-IHdpdGggdmVyeQo+ICJub3JtYWwiIG92ZXJsYXkgYnVmZmVyIHNpemVzIHdpdGggbW9kZXRlc3Qg
-YmVmb3JlLgo+IAo+IFRoYXQgc2FpZCwgdGhpcyBjb2RlIGhhcyBvbmx5IHJlY2VpdmVkIGxpdGVy
-YWwgdGVzdGluZyBvbiBhIE5WMzQvRzUgUFBDIGNvbWJvLgo+IEkgd2FzIHBva2luZyBhdCB2YXJp
-b3VzIHJlZ2lzdGVycyBvbiBhIE5WMzQveDg2IHRvIG1ha2UgbW9kZXRlc3QgZGlzcGxheSB0aGUK
-PiBjb3JyZWN0IGRhdGEgdGhvdWdoLiBUaGF0J3Mgd2hlcmUgZS5nLiB0aGUgcGl0Y2ggbWFzayBj
-b21lcyBmcm9tLgo+IAo+IEkgaGF2ZW4ndCBhdCBhbGwgdGVzdGVkIG9uIG15IE5WMDUgb3IgTlYx
-eCBoYXJkd2FyZS4gU2hvdWxkIHByb2JhYmx5IGRvIHRoYXQKPiBiZWZvcmUgd2UgcHVzaCB0aGlz
-IG91dC4gQnV0IHNpbmNlIEkndmUgYWxyZWFkeSBiZWVuIHNpdHRpbmcgb24gdGhlc2UgcGF0Y2hl
-cwo+IGZvciBhIGZldyB3ZWVrcywgdGhvdWdodCBJJ2QgZ2V0IHRoZW0gb3V0IHRoZXJlLgpUaGUg
-cGF0Y2hlcyBsb29rIGZpbmUgdG8gbWUsIGJ1dCBJIGNhbiB3YWl0IHRvIG1lcmdlIHRoZW0gdW50
-aWwgeW91J3ZlIAp0ZXN0ZWQgdGhlIG9sZGVyIEhXIGlmIHlvdSBwcmVmZXIuCgpCZW4uCgo+IAo+
-IElsaWEgTWlya2luICgzKToKPiAgICBkcm0vbm91dmVhdS9vdmVybGF5OiBpbXByb3ZlIGVycm9y
-IGRldGVjdGlvbiwgZml4IHBpdGNoIHNldHRpbmcKPiAgICBkcm0vbm91dmVhdS9vdmVybGF5OiBh
-ZGQgTlYyMSBzdXBwb3J0Cj4gICAgZHJtL25vdXZlYXUvZGlzcG52MDQ6IGZpeCBleHBvc2VkIGZv
-cm1hdCBsaXN0Cj4gCj4gICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9jcnRjLmMg
-ICAgfCAzNiArKysrKysrKysrKy0KPiAgIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0
-L292ZXJsYXkuYyB8IDg5ICsrKysrKysrKysrKysrKysrKystLS0tLS0tLS0tLQo+ICAgMiBmaWxl
-cyBjaGFuZ2VkLCA5MyBpbnNlcnRpb25zKCspLCAzMiBkZWxldGlvbnMoLSkKPiAKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1450687351==
+Content-Type: multipart/alternative; boundary="14952988031.Dab5AE.3676";
+ charset="UTF-8"
+
+
+--14952988031.Dab5AE.3676
+Date: Sat, 20 May 2017 16:46:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89664
+
+--- Comment #22 from Miko=C5=82aj =C5=9Awi=C4=85tek <mikolaj.swiatek@gmail.=
+com> ---
+I think I'm suffering from the same bug, though I've only been able to
+experience it after the VRAM detection problem was fixed in 4.12.
+
+I have a MSI GTX 970 4GB feeding two 1080p monitors - one via HDMI and one =
+via
+DP.=20=20
+With kernel 4.12-rc1, and a single monitor connected, everything works fine=
+, on
+both monitors individually. However, when I try to boot with both connected=
+ at
+the same time, I get corrupted output similar to what Omar described - a
+coloured stripe at the top of the screen, and what looks like garbled text
+below it. Output only appears on one monitor, second stays in standby mode.
+This happens irrespective of whether I boot straight into X or single-user
+mode. None of the nouveau.config options mentioned do anything different th=
+an
+what Omar reported.
+
+I have some logs captured with nouveau.debug=3Ddebug, and can upload them if
+needed.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14952988031.Dab5AE.3676
+Date: Sat, 20 May 2017 16:46:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
+X970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c22">Commen=
+t # 22</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
+X970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664">bug 89664<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mikolaj.swiatek&#64;gmail.com" title=3D"Miko=C5=82aj =C5=9Awi=C4=85tek &lt;=
+mikolaj.swiatek&#64;gmail.com&gt;"> <span class=3D"fn">Miko=C5=82aj =C5=9Aw=
+i=C4=85tek</span></a>
+</span></b>
+        <pre>I think I'm suffering from the same bug, though I've only been=
+ able to
+experience it after the VRAM detection problem was fixed in 4.12.
+
+I have a MSI GTX 970 4GB feeding two 1080p monitors - one via HDMI and one =
+via
+DP.=20=20
+With kernel 4.12-rc1, and a single monitor connected, everything works fine=
+, on
+both monitors individually. However, when I try to boot with both connected=
+ at
+the same time, I get corrupted output similar to what Omar described - a
+coloured stripe at the top of the screen, and what looks like garbled text
+below it. Output only appears on one monitor, second stays in standby mode.
+This happens irrespective of whether I boot straight into X or single-user
+mode. None of the nouveau.config options mentioned do anything different th=
+an
+what Omar reported.
+
+I have some logs captured with nouveau.debug=3Ddebug, and can upload them if
+needed.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14952988031.Dab5AE.3676--
+
+--===============1450687351==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1450687351==--
