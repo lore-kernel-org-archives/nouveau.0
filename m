@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
 	(v4.6+)
-Date: Tue, 23 May 2017 18:26:29 +0000
-Message-ID: <bug-94990-8800-tV8mjPnCg8@http.bugs.freedesktop.org/>
+Date: Tue, 23 May 2017 18:29:53 +0000
+Message-ID: <bug-94990-8800-wzF4kHRbGA@http.bugs.freedesktop.org/>
 References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1189496763=="
+Content-Type: multipart/mixed; boundary="===============0093949525=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1189496763==
-Content-Type: multipart/alternative; boundary="149556398914.B65b5cAB.5013";
+--===============0093949525==
+Content-Type: multipart/alternative; boundary="14955641947.4EF757f.4757";
  charset="UTF-8"
 
 
---149556398914.B65b5cAB.5013
-Date: Tue, 23 May 2017 18:26:29 +0000
+--14955641947.4EF757f.4757
+Date: Tue, 23 May 2017 18:29:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,16 +36,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
 
---- Comment #124 from Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> ---
-Works like a charm now! (4.12-rc1)
-4.12.0-0.rc1.git0.1.vanilla.knurd.1.fc25.x86_64
+--- Comment #125 from Florian Mickler <florian-sVu6HhrpSfRAfugRpC6u6w@public.gmane.org> ---
+(Working with a 2 monitor setup and Fedora 25)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---149556398914.B65b5cAB.5013
-Date: Tue, 23 May 2017 18:26:29 +0000
+--14955641947.4EF757f.4757
+Date: Tue, 23 May 2017 18:29:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +61,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c124">Comme=
-nt # 124</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c125">Comme=
+nt # 125</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
@@ -73,8 +72,7 @@ nt # 124</a>
 florian&#64;mickler.org" title=3D"Florian Mickler &lt;florian&#64;mickler.o=
 rg&gt;"> <span class=3D"fn">Florian Mickler</span></a>
 </span></b>
-        <pre>Works like a charm now! (4.12-rc1)
-4.12.0-0.rc1.git0.1.vanilla.knurd.1.fc25.x86_64</pre>
+        <pre>(Working with a 2 monitor setup and Fedora 25)</pre>
         </div>
       </p>
 
@@ -88,9 +86,9 @@ rg&gt;"> <span class=3D"fn">Florian Mickler</span></a>
     </body>
 </html>=
 
---149556398914.B65b5cAB.5013--
+--14955641947.4EF757f.4757--
 
---===============1189496763==
+--===============0093949525==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1189496763==--
+--===============0093949525==--
