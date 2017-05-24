@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101164] [GP107] Failed to create kernel channel, -22
-Date: Wed, 24 May 2017 15:02:50 +0000
-Message-ID: <bug-101164-8800-ZLSRpzHOCq@http.bugs.freedesktop.org/>
-References: <bug-101164-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: GTX 1080 Ti (NV132/GP102)
+Date: Wed, 24 May 2017 11:04:43 -0400
+Message-ID: <CAKb7UvizmS==c21wZfe2V2q1p7awpWmi8FwQhYJWX-V+sxcdgQ@mail.gmail.com>
+References: <CAF3gKsxF4aHmPXaBp_hBWU9YY0b4POU7Q-zVMxQdvfLPXbLkQA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1753381840=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAF3gKsxF4aHmPXaBp_hBWU9YY0b4POU7Q-zVMxQdvfLPXbLkQA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,106 +17,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Shahar Or <mightyiampresence-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1753381840==
-Content-Type: multipart/alternative; boundary="14956381691.99f9C1B.24015";
- charset="UTF-8"
-
-
---14956381691.99f9C1B.24015
-Date: Wed, 24 May 2017 15:02:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101164
-
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Pacho Ramos from comment #3)
-> Ah, nice thanks, I thought 4.11.x was including needed fixes (well, I only
-> need nouveau support to try to make my HDMI output work with reverse PRIM=
-E).
-> I guess I will need to wait a bit more then :)
->=20
-> See you
-
-In that case, you don't need acceleration support. Ignore that "failed to
-create kernel channel" error.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14956381691.99f9C1B.24015
-Date: Wed, 24 May 2017 15:02:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [GP107] Failed to create kernel channel, -22"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101164#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [GP107] Failed to create kernel channel, -22"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101164">bug 10116=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Pacho Ramos from <a href=3D"show_bug.cgi?id=3D101=
-164#c3">comment #3</a>)
-<span class=3D"quote">&gt; Ah, nice thanks, I thought 4.11.x was including =
-needed fixes (well, I only
-&gt; need nouveau support to try to make my HDMI output work with reverse P=
-RIME).
-&gt; I guess I will need to wait a bit more then :)
-&gt;=20
-&gt; See you</span >
-
-In that case, you don't need acceleration support. Ignore that &quot;failed=
- to
-create kernel channel&quot; error.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14956381691.99f9C1B.24015--
-
---===============1753381840==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1753381840==--
+R1AxMDIgc2hvdWxkIGJlIHN1cHBvcnRlZC4gRGVwZW5kaW5nIG9uIHdoYXQgeW91J3JlIGxvb2tp
+bmcgZm9yIHRvIGJlCnN1cHBvcnRlZCwgeW91ciBkaXN0cmlidXRpb24gbWF5IG5vdCBiZSBzaGlw
+cGluZyB0aGUgcmVxdWlyZWQgdmVyc2lvbnMKb2YgdmFyaW91cyBzb2Z0d2FyZS4KCk9uIFdlZCwg
+TWF5IDI0LCAyMDE3IGF0IDU6NTIgQU0sIFNoYWhhciBPciA8bWlnaHR5aWFtcHJlc2VuY2VAZ21h
+aWwuY29tPiB3cm90ZToKPiBIZXksIEkgYW0gZXhwZXJpZW5jaW5nIHNvbWUgaXNzdWVzIGluIFVi
+dW50dSAxNy4xMCB3aXRoIHRoaXMgY2FyZC4KPgo+IEJlZm9yZSBJIGFkZCBhbnkgaW5mbywgcGVy
+aGFwcyB0aGlzIGlzIG5vdCBhdCBhbGwgc3VwcG9ydGVkPyBJIGRvbid0IHNlZQo+IHRoaXMgY2Fy
+ZCBpbiB0aGUgZmVhdHVyZSBtYXRyaXg6Cj4gaHR0cHM6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9y
+Zy93aWtpL0ZlYXR1cmVNYXRyaXgvCj4KPgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cg==
