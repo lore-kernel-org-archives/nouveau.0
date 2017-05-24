@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101164] [GP107] Failed to create kernel channel, -22
-Date: Wed, 24 May 2017 11:34:49 +0000
-Message-ID: <bug-101164-8800-xWwuXCgHZZ@http.bugs.freedesktop.org/>
-References: <bug-101164-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Subject: [PATCH 27/37] drm/nouveau: Drop drm_vblank_cleanup
+Date: Wed, 24 May 2017 16:52:02 +0200
+Message-ID: <20170524145212.27837-28-daniel.vetter@ffwll.ch>
+References: <20170524145212.27837-1-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1889790763=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20170524145212.27837-1-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,97 +17,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1889790763==
-Content-Type: multipart/alternative; boundary="14956256880.Ba98.8931";
- charset="UTF-8"
-
-
---14956256880.Ba98.8931
-Date: Wed, 24 May 2017 11:34:48 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101164
-
---- Comment #3 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Ah, nice thanks, I thought 4.11.x was including needed fixes (well, I only =
-need
-nouveau support to try to make my HDMI output work with reverse PRIME). I g=
-uess
-I will need to wait a bit more then :)
-
-See you
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14956256880.Ba98.8931
-Date: Wed, 24 May 2017 11:34:48 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [GP107] Failed to create kernel channel, -22"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101164#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [GP107] Failed to create kernel channel, -22"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101164">bug 10116=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pachoramos1&#64;gmail.com" title=3D"Pacho Ramos &lt;pachoramos1&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
-</span></b>
-        <pre>Ah, nice thanks, I thought 4.11.x was including needed fixes (=
-well, I only need
-nouveau support to try to make my HDMI output work with reverse PRIME). I g=
-uess
-I will need to wait a bit more then :)
-
-See you</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14956256880.Ba98.8931--
-
---===============1889790763==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1889790763==--
+bm91dmVhdV9kaXNwbGF5X3ZibGFua19maW5pIGlzIGNhbGxlZCBpbiB0aGUgbG9hZCBlcnJvciBw
+YXRoICh3aGVyZSBpdApkb2Vzbid0IG1hdHRlcikgYW5kIG1vZHVsZSB1bmxvYWQgKHdoZXJlIHZi
+bGFua3MgaGF2ZSBiZWVuIHNodXQgZG93bgpjb3JyZWN0bHkgYWxyZWFkeSB0aHJvdWdoIGRybV92
+Ymxhbmtfb2ZmKSwgd2UgY2FuIGRyb3AgaXQuCgpDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRo
+YXQuY29tPgpDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKU2lnbmVkLW9mZi1ieTog
+RGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgfCAyIC0tCiAxIGZpbGUgY2hhbmdlZCwgMiBk
+ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCmlu
+ZGV4IDhkMWRmNTY3OGVhYS4uYjlhMTA5YmU5ODljIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2Rpc3BsYXkuYwpAQCAtMTU5LDggKzE1OSw2IEBAIG5vdXZlYXVfZGlzcGxheV92
+YmxhbmtfZmluaShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQogewogCXN0cnVjdCBkcm1fY3J0YyAq
+Y3J0YzsKIAotCWRybV92YmxhbmtfY2xlYW51cChkZXYpOwotCiAJbGlzdF9mb3JfZWFjaF9lbnRy
+eShjcnRjLCAmZGV2LT5tb2RlX2NvbmZpZy5jcnRjX2xpc3QsIGhlYWQpIHsKIAkJc3RydWN0IG5v
+dXZlYXVfY3J0YyAqbnZfY3J0YyA9IG5vdXZlYXVfY3J0YyhjcnRjKTsKIAkJbnZpZl9ub3RpZnlf
+ZmluaSgmbnZfY3J0Yy0+dmJsYW5rKTsKLS0gCjIuMTEuMAoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
