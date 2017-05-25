@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
  G1 Gaming GTX970
-Date: Thu, 25 May 2017 09:46:28 +0000
-Message-ID: <bug-89664-8800-zPt8rZK2da@http.bugs.freedesktop.org/>
+Date: Thu, 25 May 2017 09:51:18 +0000
+Message-ID: <bug-89664-8800-KOLcrpCDSt@http.bugs.freedesktop.org/>
 References: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1389515403=="
+Content-Type: multipart/mixed; boundary="===============1702699150=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1389515403==
-Content-Type: multipart/alternative; boundary="14957055882.1ddAD4cA.25539";
+--===============1702699150==
+Content-Type: multipart/alternative; boundary="14957058781.9BA8877b.28128";
  charset="UTF-8"
 
 
---14957055882.1ddAD4cA.25539
-Date: Thu, 25 May 2017 09:46:28 +0000
+--14957058781.9BA8877b.28128
+Date: Thu, 25 May 2017 09:51:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,47 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D89664
 
---- Comment #26 from Miko=C5=82aj =C5=9Awi=C4=85tek <mikolaj.swiatek@gmail.=
+--- Comment #27 from Miko=C5=82aj =C5=9Awi=C4=85tek <mikolaj.swiatek@gmail.=
 com> ---
-Created attachment 131502
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131502&action=3Dedit
-Kernel module built from master, nouveau.debug=3Ddebug
+(In reply to Ben Skeggs from comment #25)
+> (In reply to Miko=C5=82aj =C5=9Awi=C4=85tek from comment #24)
+> > (In reply to Ilia Mirkin from comment #23)
+> > > Have a look at bug #100676. Is it the same issue? (Please test the pa=
+tches
+> > > that were provided there.)
+> >=20
+> > I don't *think* it's the exact same issue. The screen photo in that rep=
+ort
+> > is similar to what I see, though my text output is completely
+> > unintelligible, rather than just slightly corrupted. The reason I thoug=
+ht it
+> > was this bug was that the log messages about unknown connectors and fai=
+ling
+> > to create encoders are identical with Omar's in my case.
+> >=20
+> > In any event, I've built the kernel module from Ben's tree and it didn't
+> > change anything at all, same behaviour.
+>=20
+> Can I see your kernel log output from that please?  Bonus points if you b=
+oot
+> with "log_buf_len=3D8M nouveau.debug=3Dtrace".
 
-nouveau.debug=3Dtrace resulted in too much spam for journald to handle...
+Tried to do it that way, but it somehow resulted in so much output that I
+couldn't even see the boot log with journalctl. I guess the kernel ring buf=
+fer
+fills up and  the beginning gets overwritten before journald can read it? N=
+ot
+an expert at debugging kernel modules by any stretch, so let me know if I'm
+missing something obvious here.
+
+In the meantime, uploaded a run with nouveau.debug=3Ddebug.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14957055882.1ddAD4cA.25539
-Date: Thu, 25 May 2017 09:46:28 +0000
+--14957058781.9BA8877b.28128
+Date: Thu, 25 May 2017 09:51:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,8 +94,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
 X970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c26">Commen=
-t # 26</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c27">Commen=
+t # 27</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
@@ -80,15 +107,46 @@ mikolaj.swiatek&#64;gmail.com" title=3D"Miko=C5=82aj =C5=9Awi=C4=85tek &lt;=
 mikolaj.swiatek&#64;gmail.com&gt;"> <span class=3D"fn">Miko=C5=82aj =C5=9Aw=
 i=C4=85tek</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131502=
-" name=3D"attach_131502" title=3D"Kernel module built from master, nouveau.=
-debug=3Ddebug">attachment 131502</a> <a href=3D"attachment.cgi?id=3D131502&=
-amp;action=3Dedit" title=3D"Kernel module built from master, nouveau.debug=
-=3Ddebug">[details]</a></span>
-Kernel module built from master, nouveau.debug=3Ddebug
+        <pre>(In reply to Ben Skeggs from <a href=3D"show_bug.cgi?id=3D8966=
+4#c25">comment #25</a>)
+<span class=3D"quote">&gt; (In reply to Miko=C5=82aj =C5=9Awi=C4=85tek from=
+ <a href=3D"show_bug.cgi?id=3D89664#c24">comment #24</a>)
+&gt; &gt; (In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D89664#=
+c23">comment #23</a>)
+&gt; &gt; &gt; Have a look at <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - gp104 - messy(random green and/or missing pixel lines) th=
+en no output at and after boot"
+   href=3D"show_bug.cgi?id=3D100676">bug #100676</a>. Is it the same issue?=
+ (Please test the patches
+&gt; &gt; &gt; that were provided there.)
+&gt; &gt;=20
+&gt; &gt; I don't *think* it's the exact same issue. The screen photo in th=
+at report
+&gt; &gt; is similar to what I see, though my text output is completely
+&gt; &gt; unintelligible, rather than just slightly corrupted. The reason I=
+ thought it
+&gt; &gt; was this bug was that the log messages about unknown connectors a=
+nd failing
+&gt; &gt; to create encoders are identical with Omar's in my case.
+&gt; &gt;=20
+&gt; &gt; In any event, I've built the kernel module from Ben's tree and it=
+ didn't
+&gt; &gt; change anything at all, same behaviour.
+&gt;=20
+&gt; Can I see your kernel log output from that please?  Bonus points if yo=
+u boot
+&gt; with &quot;log_buf_len=3D8M nouveau.debug=3Dtrace&quot;.</span >
 
-nouveau.debug=3Dtrace resulted in too much spam for journald to handle...</=
-pre>
+Tried to do it that way, but it somehow resulted in so much output that I
+couldn't even see the boot log with journalctl. I guess the kernel ring buf=
+fer
+fills up and  the beginning gets overwritten before journald can read it? N=
+ot
+an expert at debugging kernel modules by any stretch, so let me know if I'm
+missing something obvious here.
+
+In the meantime, uploaded a run with nouveau.debug=3Ddebug.</pre>
         </div>
       </p>
 
@@ -102,9 +160,9 @@ pre>
     </body>
 </html>=
 
---14957055882.1ddAD4cA.25539--
+--14957058781.9BA8877b.28128--
 
---===============1389515403==
+--===============1702699150==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +172,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1389515403==--
+--===============1702699150==--
