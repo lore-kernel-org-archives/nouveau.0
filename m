@@ -1,15 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: GTX 1080 Ti (NV132/GP102)
-Date: Wed, 24 May 2017 12:06:04 -0400
-Message-ID: <CAKb7UvhwFfUF4Nn-4uW9ykK=T1nSbJYMvDkO9OmA6j6SiGyGQQ@mail.gmail.com>
-References: <CAF3gKsxF4aHmPXaBp_hBWU9YY0b4POU7Q-zVMxQdvfLPXbLkQA@mail.gmail.com>
- <CAKb7UvizmS==c21wZfe2V2q1p7awpWmi8FwQhYJWX-V+sxcdgQ@mail.gmail.com>
- <CAF3gKsx=HrJEB+cmJU8comm6F4JbEC0ATHG76sT34sR4qhuVeg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
+ G1 Gaming GTX970
+Date: Thu, 25 May 2017 09:46:28 +0000
+Message-ID: <bug-89664-8800-zPt8rZK2da@http.bugs.freedesktop.org/>
+References: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1389515403=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAF3gKsx=HrJEB+cmJU8comm6F4JbEC0ATHG76sT34sR4qhuVeg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,32 +17,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Shahar Or <mightyiampresence-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-aHR0cHM6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93aWtpLwoKTGludXggS2VybmVsIDQuOCBm
-b3IgbW9kZXNldHRpbmcgKGFsdGhvdWdoIHRoZXJlIHdlcmUgaW1wb3J0YW50IGZpeGVzCmxhdGVy
-IG9uLCBzbyBhdCBsZWFzdCA0LjEwIGlzIHByb2JhYmx5IGdvb2QpLCBhbmQgTGludXggS2VybmVs
-IDQuMTIKZm9yIEdQVSBhY2NlbGVyYXRpb24gKGZvciB3aGljaCB5b3UnbGwgYWxzbyBuZWVkIE1l
-c2EgMTcuMS54KS4KCkNoZWVycywKCiAgLWlsaWEKCk9uIFdlZCwgTWF5IDI0LCAyMDE3IGF0IDEx
-OjIxIEFNLCBTaGFoYXIgT3IgPG1pZ2h0eWlhbXByZXNlbmNlQGdtYWlsLmNvbT4gd3JvdGU6Cj4g
-InNob3VsZCBiZSBzdXBwb3J0ZWQiIHNvdW5kcyBwcm9taXNpbmcuIERvIHlvdSBrbm93IHNpbmNl
-IHdoYXQgdmVyc2lvbiBvZgo+IHdoYXQgdGhpbmdzIGl0ICJzaG91bGQgYmUgc3VwcG9ydGVkIiwg
-cGxlYXNlPwo+Cj4gT24gV2VkLCBNYXkgMjQsIDIwMTcgYXQgNjowNCBQTSBJbGlhIE1pcmtpbiA8
-aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+Pgo+PiBHUDEwMiBzaG91bGQgYmUgc3VwcG9y
-dGVkLiBEZXBlbmRpbmcgb24gd2hhdCB5b3UncmUgbG9va2luZyBmb3IgdG8gYmUKPj4gc3VwcG9y
-dGVkLCB5b3VyIGRpc3RyaWJ1dGlvbiBtYXkgbm90IGJlIHNoaXBwaW5nIHRoZSByZXF1aXJlZCB2
-ZXJzaW9ucwo+PiBvZiB2YXJpb3VzIHNvZnR3YXJlLgo+Pgo+PiBPbiBXZWQsIE1heSAyNCwgMjAx
-NyBhdCA1OjUyIEFNLCBTaGFoYXIgT3IgPG1pZ2h0eWlhbXByZXNlbmNlQGdtYWlsLmNvbT4KPj4g
-d3JvdGU6Cj4+ID4gSGV5LCBJIGFtIGV4cGVyaWVuY2luZyBzb21lIGlzc3VlcyBpbiBVYnVudHUg
-MTcuMTAgd2l0aCB0aGlzIGNhcmQuCj4+ID4KPj4gPiBCZWZvcmUgSSBhZGQgYW55IGluZm8sIHBl
-cmhhcHMgdGhpcyBpcyBub3QgYXQgYWxsIHN1cHBvcnRlZD8gSSBkb24ndCBzZWUKPj4gPiB0aGlz
-IGNhcmQgaW4gdGhlIGZlYXR1cmUgbWF0cml4Ogo+PiA+IGh0dHBzOi8vbm91dmVhdS5mcmVlZGVz
-a3RvcC5vcmcvd2lraS9GZWF0dXJlTWF0cml4Lwo+PiA+Cj4+ID4KPj4gPgo+PiA+IF9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+ID4gTm91dmVhdSBtYWls
-aW5nIGxpc3QKPj4gPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiA+IGh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+PiA+Cl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1389515403==
+Content-Type: multipart/alternative; boundary="14957055882.1ddAD4cA.25539";
+ charset="UTF-8"
+
+
+--14957055882.1ddAD4cA.25539
+Date: Thu, 25 May 2017 09:46:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89664
+
+--- Comment #26 from Miko=C5=82aj =C5=9Awi=C4=85tek <mikolaj.swiatek@gmail.=
+com> ---
+Created attachment 131502
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131502&action=3Dedit
+Kernel module built from master, nouveau.debug=3Ddebug
+
+nouveau.debug=3Dtrace resulted in too much spam for journald to handle...
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14957055882.1ddAD4cA.25539
+Date: Thu, 25 May 2017 09:46:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
+X970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c26">Commen=
+t # 26</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
+X970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664">bug 89664<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mikolaj.swiatek&#64;gmail.com" title=3D"Miko=C5=82aj =C5=9Awi=C4=85tek &lt;=
+mikolaj.swiatek&#64;gmail.com&gt;"> <span class=3D"fn">Miko=C5=82aj =C5=9Aw=
+i=C4=85tek</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131502=
+" name=3D"attach_131502" title=3D"Kernel module built from master, nouveau.=
+debug=3Ddebug">attachment 131502</a> <a href=3D"attachment.cgi?id=3D131502&=
+amp;action=3Dedit" title=3D"Kernel module built from master, nouveau.debug=
+=3Ddebug">[details]</a></span>
+Kernel module built from master, nouveau.debug=3Ddebug
+
+nouveau.debug=3Dtrace resulted in too much spam for journald to handle...</=
+pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14957055882.1ddAD4cA.25539--
+
+--===============1389515403==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1389515403==--
