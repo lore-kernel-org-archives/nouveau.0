@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
- G1 Gaming GTX970
-Date: Thu, 25 May 2017 09:51:18 +0000
-Message-ID: <bug-89664-8800-KOLcrpCDSt@http.bugs.freedesktop.org/>
-References: <bug-89664-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101184] New: [bisected] Panic on boot with GK106
+Date: Thu, 25 May 2017 10:17:09 +0000
+Message-ID: <bug-101184-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1702699150=="
+Content-Type: multipart/mixed; boundary="===============1811286426=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,62 +18,50 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1702699150==
-Content-Type: multipart/alternative; boundary="14957058781.9BA8877b.28128";
+--===============1811286426==
+Content-Type: multipart/alternative; boundary="14957074290.38b7ae.1565";
  charset="UTF-8"
 
 
---14957058781.9BA8877b.28128
-Date: Thu, 25 May 2017 09:51:18 +0000
+--14957074290.38b7ae.1565
+Date: Thu, 25 May 2017 10:17:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89664
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101184
 
---- Comment #27 from Miko=C5=82aj =C5=9Awi=C4=85tek <mikolaj.swiatek@gmail.=
-com> ---
-(In reply to Ben Skeggs from comment #25)
-> (In reply to Miko=C5=82aj =C5=9Awi=C4=85tek from comment #24)
-> > (In reply to Ilia Mirkin from comment #23)
-> > > Have a look at bug #100676. Is it the same issue? (Please test the pa=
-tches
-> > > that were provided there.)
-> >=20
-> > I don't *think* it's the exact same issue. The screen photo in that rep=
-ort
-> > is similar to what I see, though my text output is completely
-> > unintelligible, rather than just slightly corrupted. The reason I thoug=
-ht it
-> > was this bug was that the log messages about unknown connectors and fai=
-ling
-> > to create encoders are identical with Omar's in my case.
-> >=20
-> > In any event, I've built the kernel module from Ben's tree and it didn't
-> > change anything at all, same behaviour.
->=20
-> Can I see your kernel log output from that please?  Bonus points if you b=
-oot
-> with "log_buf_len=3D8M nouveau.debug=3Dtrace".
+            Bug ID: 101184
+           Summary: [bisected] Panic on boot with GK106
+           Product: xorg
+           Version: git
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Tried to do it that way, but it somehow resulted in so much output that I
-couldn't even see the boot log with journalctl. I guess the kernel ring buf=
-fer
-fills up and  the beginning gets overwritten before journald can read it? N=
-ot
-an expert at debugging kernel modules by any stretch, so let me know if I'm
-missing something obvious here.
+Created attachment 131503
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131503&action=3Dedit
+Transcription of kernel panic
 
-In the meantime, uploaded a run with nouveau.debug=3Ddebug.
+Since e4311ee51d1e2676001b2d8fcefd92bdd79aad85 "drm/nouveau/therm: remove
+ineffective workarounds for alarm bugs", my machine with a GTX 650 panics on
+boot. I will attach lspci output and a transcription of the panic, and I can
+provide more information or test patches as needed.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14957058781.9BA8877b.28128
-Date: Thu, 25 May 2017 09:51:18 +0000
+--14957074290.38b7ae.1565
+Date: Thu, 25 May 2017 10:17:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -87,66 +72,101 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [bisected] Panic on boot with GK106"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">101184</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[bisected] Panic on boot with GK106
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>sgilles&#64;math.umd.edu
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
-X970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c27">Commen=
-t # 27</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
-X970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664">bug 89664<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mikolaj.swiatek&#64;gmail.com" title=3D"Miko=C5=82aj =C5=9Awi=C4=85tek &lt;=
-mikolaj.swiatek&#64;gmail.com&gt;"> <span class=3D"fn">Miko=C5=82aj =C5=9Aw=
-i=C4=85tek</span></a>
-</span></b>
-        <pre>(In reply to Ben Skeggs from <a href=3D"show_bug.cgi?id=3D8966=
-4#c25">comment #25</a>)
-<span class=3D"quote">&gt; (In reply to Miko=C5=82aj =C5=9Awi=C4=85tek from=
- <a href=3D"show_bug.cgi?id=3D89664#c24">comment #24</a>)
-&gt; &gt; (In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D89664#=
-c23">comment #23</a>)
-&gt; &gt; &gt; Have a look at <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - gp104 - messy(random green and/or missing pixel lines) th=
-en no output at and after boot"
-   href=3D"show_bug.cgi?id=3D100676">bug #100676</a>. Is it the same issue?=
- (Please test the patches
-&gt; &gt; &gt; that were provided there.)
-&gt; &gt;=20
-&gt; &gt; I don't *think* it's the exact same issue. The screen photo in th=
-at report
-&gt; &gt; is similar to what I see, though my text output is completely
-&gt; &gt; unintelligible, rather than just slightly corrupted. The reason I=
- thought it
-&gt; &gt; was this bug was that the log messages about unknown connectors a=
-nd failing
-&gt; &gt; to create encoders are identical with Omar's in my case.
-&gt; &gt;=20
-&gt; &gt; In any event, I've built the kernel module from Ben's tree and it=
- didn't
-&gt; &gt; change anything at all, same behaviour.
-&gt;=20
-&gt; Can I see your kernel log output from that please?  Bonus points if yo=
-u boot
-&gt; with &quot;log_buf_len=3D8M nouveau.debug=3Dtrace&quot;.</span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131503=
+" name=3D"attach_131503" title=3D"Transcription of kernel panic">attachment=
+ 131503</a> <a href=3D"attachment.cgi?id=3D131503&amp;action=3Dedit" title=
+=3D"Transcription of kernel panic">[details]</a></span>
+Transcription of kernel panic
 
-Tried to do it that way, but it somehow resulted in so much output that I
-couldn't even see the boot log with journalctl. I guess the kernel ring buf=
-fer
-fills up and  the beginning gets overwritten before journald can read it? N=
-ot
-an expert at debugging kernel modules by any stretch, so let me know if I'm
-missing something obvious here.
-
-In the meantime, uploaded a run with nouveau.debug=3Ddebug.</pre>
+Since e4311ee51d1e2676001b2d8fcefd92bdd79aad85 &quot;drm/nouveau/therm: rem=
+ove
+ineffective workarounds for alarm bugs&quot;, my machine with a GTX 650 pan=
+ics on
+boot. I will attach lspci output and a transcription of the panic, and I can
+provide more information or test patches as needed.</pre>
         </div>
       </p>
 
@@ -160,9 +180,9 @@ In the meantime, uploaded a run with nouveau.debug=3Ddebug.</pre>
     </body>
 </html>=
 
---14957058781.9BA8877b.28128--
+--14957074290.38b7ae.1565--
 
---===============1702699150==
+--===============1811286426==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -172,4 +192,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1702699150==--
+--===============1811286426==--
