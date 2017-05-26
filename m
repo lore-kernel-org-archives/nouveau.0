@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101206] intermittent lock up after login to GNOME
 	under wayland
-Date: Fri, 26 May 2017 20:02:20 +0000
-Message-ID: <bug-101206-8800-8954fHjerU@http.bugs.freedesktop.org/>
+Date: Fri, 26 May 2017 20:03:02 +0000
+Message-ID: <bug-101206-8800-qy71ieY33i@http.bugs.freedesktop.org/>
 References: <bug-101206-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1064712118=="
+Content-Type: multipart/mixed; boundary="===============1220068990=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101206-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1064712118==
-Content-Type: multipart/alternative; boundary="14958289400.bD104Cb.16177";
+--===============1220068990==
+Content-Type: multipart/alternative; boundary="14958289821.5Cf1bdFC.17360";
  charset="UTF-8"
 
 
---14958289400.bD104Cb.16177
-Date: Fri, 26 May 2017 20:02:20 +0000
+--14958289821.5Cf1bdFC.17360
+Date: Fri, 26 May 2017 20:03:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101206
 
-Adi <adi-D1akFU9K7Sphl2p70BpVqQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #131530|0                           |1
-        is obsolete|                            |
+--- Comment #2 from Adi <adi-D1akFU9K7Sphl2p70BpVqQ@public.gmane.org> ---
+looks like the log from 2017-05-11 doesn't contain any reference to the err=
+or.
+so please ignore.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14958289400.bD104Cb.16177
-Date: Fri, 26 May 2017 20:02:20 +0000
+--14958289821.5Cf1bdFC.17360
+Date: Fri, 26 May 2017 20:03:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,33 +57,27 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:adi&#64;s=
-ieker.io" title=3D"Adi &lt;adi&#64;sieker.io&gt;"> <span class=3D"fn">Adi</=
-span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - intermittent lock up after login to GNOME under wayland"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101206#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - intermittent lock up after login to GNOME under wayland"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101206">bug 10120=
 6</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #131530 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
-      <p>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+adi&#64;sieker.io" title=3D"Adi &lt;adi&#64;sieker.io&gt;"> <span class=3D"=
+fn">Adi</span></a>
+</span></b>
+        <pre>looks like the log from 2017-05-11 doesn't contain any referen=
+ce to the error.
+so please ignore.</pre>
+        </div>
       </p>
 
 
@@ -98,9 +90,9 @@ td>
     </body>
 </html>=
 
---14958289400.bD104Cb.16177--
+--14958289821.5Cf1bdFC.17360--
 
---===============1064712118==
+--===============1220068990==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1064712118==--
+--===============1220068990==--
