@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
- G1 Gaming GTX970
-Date: Fri, 26 May 2017 15:19:26 +0000
-Message-ID: <bug-89664-8800-JMJv6wokRD@http.bugs.freedesktop.org/>
-References: <bug-89664-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101206] New: intermittent lock up after login to
+ GNOME under wayland
+Date: Fri, 26 May 2017 19:59:35 +0000
+Message-ID: <bug-101206-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0585705558=="
+Content-Type: multipart/mixed; boundary="===============0551410732=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +19,62 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0585705558==
-Content-Type: multipart/alternative; boundary="14958119660.F4ed64b.18668";
+--===============0551410732==
+Content-Type: multipart/alternative; boundary="14958287750.7C1313c68.17360";
  charset="UTF-8"
 
 
---14958119660.F4ed64b.18668
-Date: Fri, 26 May 2017 15:19:26 +0000
+--14958287750.7C1313c68.17360
+Date: Fri, 26 May 2017 19:59:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89664
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101206
 
---- Comment #30 from Miko=C5=82aj =C5=9Awi=C4=85tek <mikolaj.swiatek@gmail.=
-com> ---
-Created attachment 131522
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131522&action=3Dedit
-nouveau master, trace
+            Bug ID: 101206
+           Summary: intermittent lock up after login to GNOME under
+                    wayland
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: adi-D1akFU9K7Sphl2p70BpVqQ@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Module built from bskeggs/nouveau master, booted with "log_buf_len=3D8M
-drm.debug=3D0x14 nouveau.debug=3Ddisp=3Dtrace,i2c=3Dtrace,bios=3Dtrace".
+Created attachment 131529
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131529&action=3Dedit
+last 260 lines of journalctl log 2017-05-26
+
+my notebook locks up intermittently directly after login in to GNOME running
+under wayland.
+
+I'm running Fedora 24 with all updates installed. Kernel is 4.10.14, althou=
+gh
+I've had this problem at least since 4.9, if not before.
+
+Attached are two logs from journalctl from when the locks up happens. I've =
+only
+attached just enough so I don't have to zip the logs. If needed I can attac=
+hed
+complete logs as zips or compressed tars.
+
+The notebook also sometimes locks up (although not as frequently) when
+unblanking the screen.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14958119660.F4ed64b.18668
-Date: Fri, 26 May 2017 15:19:26 +0000
+--14958287750.7C1313c68.17360
+Date: Fri, 26 May 2017 19:59:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,35 +85,111 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - intermittent lock up after login to GNOME under wayland"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101206">101206</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>intermittent lock up after login to GNOME under wayland
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>adi&#64;sieker.io
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
-X970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c30">Commen=
-t # 30</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
-X970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664">bug 89664<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mikolaj.swiatek&#64;gmail.com" title=3D"Miko=C5=82aj =C5=9Awi=C4=85tek &lt;=
-mikolaj.swiatek&#64;gmail.com&gt;"> <span class=3D"fn">Miko=C5=82aj =C5=9Aw=
-i=C4=85tek</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131522=
-" name=3D"attach_131522" title=3D"nouveau master, trace">attachment 131522<=
-/a> <a href=3D"attachment.cgi?id=3D131522&amp;action=3Dedit" title=3D"nouve=
-au master, trace">[details]</a></span>
-nouveau master, trace
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131529=
+" name=3D"attach_131529" title=3D"last 260 lines of journalctl log 2017-05-=
+26">attachment 131529</a> <a href=3D"attachment.cgi?id=3D131529&amp;action=
+=3Dedit" title=3D"last 260 lines of journalctl log 2017-05-26">[details]</a=
+></span>
+last 260 lines of journalctl log 2017-05-26
 
-Module built from bskeggs/nouveau master, booted with &quot;log_buf_len=3D8M
-drm.debug=3D0x14 nouveau.debug=3Ddisp=3Dtrace,i2c=3Dtrace,bios=3Dtrace&quot=
-;.</pre>
+my notebook locks up intermittently directly after login in to GNOME running
+under wayland.
+
+I'm running Fedora 24 with all updates installed. Kernel is 4.10.14, althou=
+gh
+I've had this problem at least since 4.9, if not before.
+
+Attached are two logs from journalctl from when the locks up happens. I've =
+only
+attached just enough so I don't have to zip the logs. If needed I can attac=
+hed
+complete logs as zips or compressed tars.
+
+The notebook also sometimes locks up (although not as frequently) when
+unblanking the screen.</pre>
         </div>
       </p>
 
@@ -103,9 +203,9 @@ drm.debug=3D0x14 nouveau.debug=3Ddisp=3Dtrace,i2c=3Dtrace,bios=3Dtrace&quot=
     </body>
 </html>=
 
---14958119660.F4ed64b.18668--
+--14958287750.7C1313c68.17360--
 
---===============0585705558==
+--===============0551410732==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +215,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0585705558==--
+--===============0551410732==--
