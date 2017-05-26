@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101206] intermittent lock up after login to GNOME
-	under wayland
-Date: Fri, 26 May 2017 20:09:02 +0000
-Message-ID: <bug-101206-8800-YvLHvhIbf0@http.bugs.freedesktop.org/>
-References: <bug-101206-8800@http.bugs.freedesktop.org/>
+From: "Joe Kesselman (via Android)" <keshlam.cat.nospam-H+0wwilmMs3R7s880joybQ@public.gmane.org>
+Subject: Known bug? Two adjacent letters randomly not rendered or
+ painted over
+Date: Fri, 26 May 2017 16:32:33 -0400
+Message-ID: <20170526204431.1DA316EEAA@gabe.freedesktop.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1352527086=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101206-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,98 +19,21 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1352527086==
-Content-Type: multipart/alternative; boundary="14958293420.A83a3.18363";
- charset="UTF-8"
-
-
---14958293420.A83a3.18363
-Date: Fri, 26 May 2017 20:09:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101206
-
---- Comment #4 from Adi <adi-D1akFU9K7Sphl2p70BpVqQ@public.gmane.org> ---
-Created attachment 131531
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131531&action=3Dedit
-last 260 lines of journalctl log 2017-05-11
-
-here is the correct log from 2017-05-11.
-This lock up can't have happend after login in to GNOME since the lock up
-happens at 6:40 on the 11th. The journalctl log starts on the 10th though.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14958293420.A83a3.18363
-Date: Fri, 26 May 2017 20:09:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - intermittent lock up after login to GNOME under wayland"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101206#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - intermittent lock up after login to GNOME under wayland"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101206">bug 10120=
-6</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-adi&#64;sieker.io" title=3D"Adi &lt;adi&#64;sieker.io&gt;"> <span class=3D"=
-fn">Adi</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131531=
-" name=3D"attach_131531" title=3D"last 260 lines of journalctl log 2017-05-=
-11">attachment 131531</a> <a href=3D"attachment.cgi?id=3D131531&amp;action=
-=3Dedit" title=3D"last 260 lines of journalctl log 2017-05-11">[details]</a=
-></span>
-last 260 lines of journalctl log 2017-05-11
-
-here is the correct log from 2017-05-11.
-This lock up can't have happend after login in to GNOME since the lock up
-happens at 6:40 on the 11th. The journalctl log starts on the 10th though.<=
-/pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14958293420.A83a3.18363--
-
---===============1352527086==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
+SGksIGZvbGtzLiBVc2luZyB0aGUgTm92ZWF1IGRyaXZlcnMgb24gbXkgUkhFTDcgVGhpbmtwYWQg
+KHdoaWNoIGlzIGhvdyBvdXIgSVMgc2hvcCBzdXBwbGllcyB0aGVzZSBtYWNoaW5lcyksIEkgd2ls
+bCBzZWUgaXQgZHJvcCB0d28gbGV0dGVycyBvdXQgb2YgYSB3aW5kb3cgZnVsbCBvZiB0ZXh0IChh
+cyBpZiByZW5kZXJpbmcgdGhlbSBpbiB0aGUgYmFja2dyb3VuZCBjb2xvciBvciBkcmF3aW5nIGEg
+cmVjdGFuZ2xlICBvZiB0aGF0IGNvbG9yIG92ZXIgdGhlbSkuCgogVGhpcyBoYXBwZW5zIGluIGV2
+ZXJ5dGhpbmcgZnJvbSBFY2xpcHNlIG1vdXNlLW92ZXIgc3ludGF4IHBvcC11cCB3aW5kb3dzIHRv
+IExpYnJlIE9mZmljZSB3b3JkIHByb2Nlc3Npbmcgc2NyZWVucy4gSSBoYXZlbid0IGZvdW5k4oCL
+IGFuZCBwYXR0ZXJuIHlldCBpbiB3aGF0IGdldHMgc3RlcHBlZCBvbiBvciB3aGVuLgoKSSBoYXZl
+IG9jY2FzaW9uYWxseSBiZWVuIGFibGUgdG8gZ2V0IGl0IHRvIHBhaW50IGp1c3QgdGhlIGJvdHRv
+bSBmZXcgcGl4ZWxzIG9mIHRoZXNlIGNoYXJhY3RlcnMsIGJ1dCBJIGNhbid0IHByb3Zva2UgdGhh
+dCByZWxpYWJseSB5ZXQuCgpJIGhhdmUgc2VlbiBzb21lIGFyY2hpdmVkIGRpc2N1c3Npb24gb2Yg
+YSBzaW1pbGFyIGVmZmVjdCwgc28gdGhpcyBtYXkgYmUgYSBTb2x2ZWQgUHJvYmxlbS4gSWYgc28g
+cGxlYXNlIGxldCBtZSBrbm93IGFuZCBwb2ludCBtZSB0byB1cGdyYWRlIHByb2Nlc3MuIElmIG5v
+dCwgSSdtIHdpbGxpbmcgdG8gZG8gc29tZSBhZGRpdGlvbmFsIGRhdGEgZ2F0aGVyaW5nIGlmIGFu
+eW9uZSBjYW4gc3VnZ2VzdCB1c2VmdWwgZXhwZXJpbWVudHMuCgotLQpPTUcgR09QIFdURiA/IT8K
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1352527086==--
