@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101206] intermittent lock up after login to GNOME
 	under wayland
-Date: Fri, 26 May 2017 20:01:07 +0000
-Message-ID: <bug-101206-8800-PpSNJVNT9R@http.bugs.freedesktop.org/>
+Date: Fri, 26 May 2017 20:02:20 +0000
+Message-ID: <bug-101206-8800-8954fHjerU@http.bugs.freedesktop.org/>
 References: <bug-101206-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0020526021=="
+Content-Type: multipart/mixed; boundary="===============1064712118=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101206-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0020526021==
-Content-Type: multipart/alternative; boundary="14958288671.b444ce.16860";
+--===============1064712118==
+Content-Type: multipart/alternative; boundary="14958289400.bD104Cb.16177";
  charset="UTF-8"
 
 
---14958288671.b444ce.16860
-Date: Fri, 26 May 2017 20:01:07 +0000
+--14958289400.bD104Cb.16177
+Date: Fri, 26 May 2017 20:02:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,15 +40,15 @@ Adi <adi-D1akFU9K7Sphl2p70BpVqQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #131529|text/x-log                  |text/plain
-          mime type|                            |
+ Attachment #131530|0                           |1
+        is obsolete|                            |
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14958288671.b444ce.16860
-Date: Fri, 26 May 2017 20:01:07 +0000
+--14958289400.bD104Cb.16177
+Date: Fri, 26 May 2017 20:02:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,10 +77,12 @@ span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Attachment #131529 mime type</td>
-           <td>text/x-log
+           <td style=3D"text-align:right;">Attachment #131530 is obsolete</=
+td>
+           <td>
+               &nbsp;
            </td>
-           <td>text/plain
+           <td>1
            </td>
          </tr></table>
       <p>
@@ -96,9 +98,9 @@ span></a>
     </body>
 </html>=
 
---14958288671.b444ce.16860--
+--14958289400.bD104Cb.16177--
 
---===============0020526021==
+--===============1064712118==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0020526021==--
+--===============1064712118==--
