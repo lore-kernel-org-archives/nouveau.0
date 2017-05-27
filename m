@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99482] nouveau driver returns -16 trying to hibernate
-Date: Sat, 27 May 2017 18:34:48 +0000
-Message-ID: <bug-99482-8800-GROYlJpEId@http.bugs.freedesktop.org/>
-References: <bug-99482-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101206] intermittent lock up after login to GNOME
+	under wayland
+Date: Sat, 27 May 2017 21:31:20 +0000
+Message-ID: <bug-101206-8800-vtTmFwEd3y@http.bugs.freedesktop.org/>
+References: <bug-101206-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1365211431=="
+Content-Type: multipart/mixed; boundary="===============2058286280=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99482-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101206-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,45 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1365211431==
-Content-Type: multipart/alternative; boundary="14959100881.8eCf8.20557";
+--===============2058286280==
+Content-Type: multipart/alternative; boundary="14959206790.C1eFF.27372";
  charset="UTF-8"
 
 
---14959100881.8eCf8.20557
-Date: Sat, 27 May 2017 18:34:48 +0000
+--14959206790.C1eFF.27372
+Date: Sat, 27 May 2017 21:31:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99482
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101206
 
-dr_bugzilla-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Version|7.7 (2012.06)               |unspecified
-
---- Comment #2 from dr_bugzilla-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org ---
-Quick followup:
-
-Bug #99889 "nouveau preventing shutdown after suspend-resume" seems to be
-related to this one:
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99889
-
-See also this thread on the Nouveau mailing list:
-
-https://lists.freedesktop.org/archives/nouveau/2017-February/027316.html
+--- Comment #5 from Adi <adi-D1akFU9K7Sphl2p70BpVqQ@public.gmane.org> ---
+I also forgot to mention that it's a NVIDIA Corporation GT218M [NVS 3100M] =
+(rev
+a2) chip.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14959100881.8eCf8.20557
-Date: Sat, 27 May 2017 18:34:48 +0000
+--14959206790.C1eFF.27372
+Date: Sat, 27 May 2017 21:31:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,66 +57,26 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:dr_bugzil=
-la&#64;protonmail.com" title=3D"dr_bugzilla&#64;protonmail.com">dr_bugzilla=
-&#64;protonmail.com</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau driver returns -16 trying to hibernate"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99482">bug 99482<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Version</td>
-           <td>7.7 (2012.06)
-           </td>
-           <td>unspecified
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau driver returns -16 trying to hibernate"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99482#c2">Comment=
- # 2</a>
+   title=3D"NEW - intermittent lock up after login to GNOME under wayland"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101206#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau driver returns -16 trying to hibernate"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99482">bug 99482<=
-/a>
+   title=3D"NEW - intermittent lock up after login to GNOME under wayland"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101206">bug 10120=
+6</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dr_bugzilla&#64;protonmail.com" title=3D"dr_bugzilla&#64;protonmail.com">dr=
-_bugzilla&#64;protonmail.com</a>
+adi&#64;sieker.io" title=3D"Adi &lt;adi&#64;sieker.io&gt;"> <span class=3D"=
+fn">Adi</span></a>
 </span></b>
-        <pre>Quick followup:
-
-<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
-   href=3D"show_bug.cgi?id=3D99889">Bug #99889</a> &quot;nouveau preventing=
- shutdown after suspend-resume&quot; seems to be
-related to this one:
-
-<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
-   href=3D"show_bug.cgi?id=3D99889">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D99889</a>
-
-See also this thread on the Nouveau mailing list:
-
-<a href=3D"https://lists.freedesktop.org/archives/nouveau/2017-February/027=
-316.html">https://lists.freedesktop.org/archives/nouveau/2017-February/0273=
-16.html</a></pre>
+        <pre>I also forgot to mention that it's a NVIDIA Corporation GT218M=
+ [NVS 3100M] (rev
+a2) chip.</pre>
         </div>
       </p>
 
@@ -142,9 +90,9 @@ See also this thread on the Nouveau mailing list:
     </body>
 </html>=
 
---14959100881.8eCf8.20557--
+--14959206790.C1eFF.27372--
 
---===============1365211431==
+--===============2058286280==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -154,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1365211431==--
+--===============2058286280==--
