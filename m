@@ -1,14 +1,13 @@
-From: Lv Zheng <lv.zheng-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: [RFC PATCH v3 5/5] ACPI: button: Always notify kernel
-	space using _LID returning value
-Date: Sat, 27 May 2017 07:42:56 +0800
-Message-ID: <6a7418a5300e407ba3227d1c53e173ca5c981ddc.1495804411.git.lv.zheng@intel.com>
-References: <2a779ae8c280c968b3237ac4a3d9580df7262a46.1493951798.git.lv.zheng@intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
+ G1 Gaming GTX970
+Date: Sat, 27 May 2017 01:34:03 +0000
+Message-ID: <bug-89664-8800-nyPgU6qPKT@http.bugs.freedesktop.org/>
+References: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1422636863=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <2a779ae8c280c968b3237ac4a3d9580df7262a46.1493951798.git.lv.zheng-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,70 +17,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "Rafael J. Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, "Rafael J. Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, Len Brown <len.brown-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: Peter Hutterer <peter.hutterer-Pf4JEFdB4epeoWH0uzbU5w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Lv Zheng <zetalog-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Benjamin Tissoires <benjamin.tissoires-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Lv Zheng <lv.zheng-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Qm90aCBub3V2ZWF1IGFuZCBpOTE1LCB0aGUgb25seSAyIGtlcm5lbCBzcGFjZSBsaWQgbm90aWZp
-Y2F0aW9uIGxpc3RlbmVycywKaW52b2tlIGFjcGlfbGlkX29wZW4oKSBBUEkgdG8gb2J0YWluIF9M
-SUQgcmV0dXJuaW5nIHZhbHVlIGluc3RlYWQgb2YgdXNpbmcKdGhlIG5vdGlmaWVkIHZhbHVlLgoK
-U28gdGhpcyBwYXRjaCBtb3ZlcyB0aGlzIGxvZ2ljIGZyb20gbGlzdGVuZXJzIHRvIGxpZCBkcml2
-ZXIsIGFsd2F5cyBub3RpZnkKa2VybmVsIHNwYWNlIGxpc3RlbmVycyB1c2luZyBfTElEIHJldHVy
-bmluZyB2YWx1ZS4KClRoaXMgaXMgYSBuby1vcCBjbGVhbnVwLCBidXQgZmFjaWxpdGF0ZXMgYWRt
-aW5pc3RyYXRvcnMgdG8gY29uZmlndXJlIHRvCm5vdGlmeSBrZXJuZWwgZHJpdmVycyB3aXRoIGZh
-a2VkIGxpZCBpbml0IHN0YXRlcyB2aWEgY29tbWFuZCBsaW5lCiJidXR0b24ubGlkX25vdGlmeV9p
-bml0X3N0YXRlPVkiLgoKQ2M6IDxpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPgpDYzog
-PG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPgpDYzogQmVuamFtaW4gVGlzc29pcmVzIDxi
-ZW5qYW1pbi50aXNzb2lyZXNAcmVkaGF0LmNvbT4KQ2M6IFBldGVyIEh1dHRlcmVyIDxwZXRlci5o
-dXR0ZXJlckB3aG8tdC5uZXQ+ClNpZ25lZC1vZmYtYnk6IEx2IFpoZW5nIDxsdi56aGVuZ0BpbnRl
-bC5jb20+Ci0tLQogZHJpdmVycy9hY3BpL2J1dHRvbi5jICAgICAgICAgICAgIHwgMTYgKysrKysr
-KysrKysrKystLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbHZkcy5jIHwgIDIgKy0KIDIg
-ZmlsZXMgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2FjcGkvYnV0dG9uLmMgYi9kcml2ZXJzL2FjcGkvYnV0dG9uLmMKaW5kZXgg
-NGFiZjhhZS4uZTA0N2QzNCAxMDA2NDQKLS0tIGEvZHJpdmVycy9hY3BpL2J1dHRvbi5jCisrKyBi
-L2RyaXZlcnMvYWNwaS9idXR0b24uYwpAQCAtMTE5LDYgKzExOSw5IEBAIHN0YXRpYyB1OCBsaWRf
-aW5pdF9zdGF0ZSA9IEFDUElfQlVUVE9OX0xJRF9JTklUX09QRU47CiBzdGF0aWMgdW5zaWduZWQg
-bG9uZyBsaWRfcmVwb3J0X2ludGVydmFsIF9fcmVhZF9tb3N0bHkgPSA1MDA7CiBtb2R1bGVfcGFy
-YW0obGlkX3JlcG9ydF9pbnRlcnZhbCwgdWxvbmcsIDA2NDQpOwogTU9EVUxFX1BBUk1fREVTQyhs
-aWRfcmVwb3J0X2ludGVydmFsLCAiSW50ZXJ2YWwgKG1zKSBiZXR3ZWVuIGxpZCBrZXkgZXZlbnRz
-Iik7CitzdGF0aWMgYm9vbCBsaWRfbm90aWZ5X2luaXRfc3RhdGUgX19yZWFkX21vc3RseSA9IGZh
-bHNlOworbW9kdWxlX3BhcmFtKGxpZF9ub3RpZnlfaW5pdF9zdGF0ZSwgYm9vbCwgMDY0NCk7CitN
-T0RVTEVfUEFSTV9ERVNDKGxpZF9ub3RpZnlfaW5pdF9zdGF0ZSwgIk5vdGlmeSBpbml0IGxpZCBz
-dGF0ZSB0byBrZXJuZWwgZHJpdmVycyBhZnRlciBib290L3Jlc3VtZSIpOwogCiAvKiAtLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRlMgSW50ZXJmYWNlICgv
-cHJvYykKQEAgLTIyNCw2ICsyMjcsMTUgQEAgc3RhdGljIHZvaWQgYWNwaV9saWRfbm90aWZ5X3N0
-YXRlKHN0cnVjdCBhY3BpX2RldmljZSAqZGV2aWNlLAogCWlmIChzdGF0ZSkKIAkJcG1fd2FrZXVw
-X2V2ZW50KCZkZXZpY2UtPmRldiwgMCk7CiAKKwlpZiAoIWxpZF9ub3RpZnlfaW5pdF9zdGF0ZSkg
-eworCQkvKgorCQkgKiBUaGVyZSBhcmUgY2FzZXMgInN0YXRlIiBpcyBub3QgYSBfTElEIHJldHVy
-biB2YWx1ZSwgc28KKwkJICogY29ycmVjdCBpdCBiZWZvcmUgbm90aWZpY2F0aW9uLgorCQkgKi8K
-KwkJaWYgKCFiaW9zX25vdGlmeSAmJgorCQkgICAgbGlkX2luaXRfc3RhdGUgIT0gQUNQSV9CVVRU
-T05fTElEX0lOSVRfTUVUSE9EKQorCQkJc3RhdGUgPSBhY3BpX2xpZF9ldmFsdWF0ZV9zdGF0ZShk
-ZXZpY2UpOworCX0KIAlhY3BpX2xpZF9ub3RpZmllcl9jYWxsKGRldmljZSwgc3RhdGUpOwogfQog
-CkBAIC01NzIsMTAgKzU4NCwxMCBAQCBzdGF0aWMgaW50IHBhcmFtX3NldF9saWRfaW5pdF9zdGF0
-ZShjb25zdCBjaGFyICp2YWwsIHN0cnVjdCBrZXJuZWxfcGFyYW0gKmtwKQogCiAJaWYgKCFzdHJu
-Y21wKHZhbCwgIm9wZW4iLCBzaXplb2YoIm9wZW4iKSAtIDEpKSB7CiAJCWxpZF9pbml0X3N0YXRl
-ID0gQUNQSV9CVVRUT05fTElEX0lOSVRfT1BFTjsKLQkJcHJfaW5mbygiTm90aWZ5IGluaXRpYWwg
-bGlkIHN0YXRlIGFzIG9wZW5cbiIpOworCQlwcl9pbmZvKCJOb3RpZnkgaW5pdGlhbCBsaWQgc3Rh
-dGUgdG8gdXNlcnMgc3BhY2UgYXMgb3BlbiBhbmQga2VybmVsIGRyaXZlcnMgd2l0aCBfTElEIHJl
-dHVybiB2YWx1ZVxuIik7CiAJfSBlbHNlIGlmICghc3RybmNtcCh2YWwsICJtZXRob2QiLCBzaXpl
-b2YoIm1ldGhvZCIpIC0gMSkpIHsKIAkJbGlkX2luaXRfc3RhdGUgPSBBQ1BJX0JVVFRPTl9MSURf
-SU5JVF9NRVRIT0Q7Ci0JCXByX2luZm8oIk5vdGlmeSBpbml0aWFsIGxpZCBzdGF0ZSB3aXRoIF9M
-SUQgcmV0dXJuIHZhbHVlXG4iKTsKKwkJcHJfaW5mbygiTm90aWZ5IGluaXRpYWwgbGlkIHN0YXRl
-IHRvIHVzZXIva2VybmVsIHNwYWNlIHdpdGggX0xJRCByZXR1cm4gdmFsdWVcbiIpOwogCX0gZWxz
-ZSBpZiAoIXN0cm5jbXAodmFsLCAiaWdub3JlIiwgc2l6ZW9mKCJpZ25vcmUiKSAtIDEpKSB7CiAJ
-CWxpZF9pbml0X3N0YXRlID0gQUNQSV9CVVRUT05fTElEX0lOSVRfSUdOT1JFOwogCQlwcl9pbmZv
-KCJEbyBub3Qgbm90aWZ5IGluaXRpYWwgbGlkIHN0YXRlXG4iKTsKZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2ludGVsX2x2ZHMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
-X2x2ZHMuYwppbmRleCA5Y2E0ZGM0Li44Y2E5MDgwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pbnRlbF9sdmRzLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbHZk
-cy5jCkBAIC01NDgsNyArNTQ4LDcgQEAgc3RhdGljIGludCBpbnRlbF9saWRfbm90aWZ5KHN0cnVj
-dCBub3RpZmllcl9ibG9jayAqbmIsIHVuc2lnbmVkIGxvbmcgdmFsLAogCS8qIERvbid0IGZvcmNl
-IG1vZGVzZXQgb24gbWFjaGluZXMgd2hlcmUgaXQgY2F1c2VzIGEgR1BVIGxvY2t1cCAqLwogCWlm
-IChkbWlfY2hlY2tfc3lzdGVtKGludGVsX25vX21vZGVzZXRfb25fbGlkKSkKIAkJZ290byBleGl0
-OwotCWlmICghYWNwaV9saWRfb3BlbigpKSB7CisJaWYgKCF2YWwpIHsKIAkJLyogZG8gbW9kZXNl
-dCBvbiBuZXh0IGxpZCBvcGVuIGV2ZW50ICovCiAJCWRldl9wcml2LT5tb2Rlc2V0X3Jlc3RvcmUg
-PSBNT0RFU0VUX09OX0xJRF9PUEVOOwogCQlnb3RvIGV4aXQ7Ci0tIAoyLjcuNAoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1422636863==
+Content-Type: multipart/alternative; boundary="14958488431.eEcfa74.26472";
+ charset="UTF-8"
+
+
+--14958488431.eEcfa74.26472
+Date: Sat, 27 May 2017 01:34:03 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89664
+
+--- Comment #31 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Miko=C5=82aj =C5=9Awi=C4=85tek from comment #30)
+> Created attachment 131522 [details]
+> nouveau master, trace
+>=20
+> Module built from bskeggs/nouveau master, booted with "log_buf_len=3D8M
+> drm.debug=3D0x14 nouveau.debug=3Ddisp=3Dtrace,i2c=3Dtrace,bios=3Dtrace".
+
+According to the log messages here, this output isn't from the code on my
+master branch.  Perhaps another version of the module got loaded instead?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14958488431.eEcfa74.26472
+Date: Sat, 27 May 2017 01:34:03 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
+X970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c31">Commen=
+t # 31</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
+X970"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664">bug 89664<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ben Skeggs</span></a>
+</span></b>
+        <pre>(In reply to Miko=C5=82aj =C5=9Awi=C4=85tek from <a href=3D"sh=
+ow_bug.cgi?id=3D89664#c30">comment #30</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D131522" name=3D"attach_131522" title=3D"nouveau master, trace">atta=
+chment 131522</a> <a href=3D"attachment.cgi?id=3D131522&amp;action=3Dedit" =
+title=3D"nouveau master, trace">[details]</a></span>
+&gt; nouveau master, trace
+&gt;=20
+&gt; Module built from bskeggs/nouveau master, booted with &quot;log_buf_le=
+n=3D8M
+&gt; drm.debug=3D0x14 nouveau.debug=3Ddisp=3Dtrace,i2c=3Dtrace,bios=3Dtrace=
+&quot;.</span >
+
+According to the log messages here, this output isn't from the code on my
+master branch.  Perhaps another version of the module got loaded instead?</=
+pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14958488431.eEcfa74.26472--
+
+--===============1422636863==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1422636863==--
