@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101184] [NVE6] [bisected] Panic on boot with GK106
-Date: Sat, 27 May 2017 09:16:38 +0000
-Message-ID: <bug-101184-8800-wvDrQYPeNC@http.bugs.freedesktop.org/>
-References: <bug-101184-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101199] nouveau_screen.c: undefined reference to
+ `nouveau_drm_del'
+Date: Sat, 27 May 2017 14:08:51 +0000
+Message-ID: <bug-101199-8800-7hk8W2Nd7f@http.bugs.freedesktop.org/>
+References: <bug-101199-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0726533457=="
+Content-Type: multipart/mixed; boundary="===============0856073577=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101184-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101199-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,58 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0726533457==
-Content-Type: multipart/alternative; boundary="14958765980.d3590FDb.30405";
+--===============0856073577==
+Content-Type: multipart/alternative; boundary="14958941311.80CDb258A.30061";
  charset="UTF-8"
 
 
---14958765980.d3590FDb.30405
-Date: Sat, 27 May 2017 09:16:38 +0000
+--14958941311.80CDb258A.30061
+Date: Sat, 27 May 2017 14:08:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101184
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101199
 
-S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|[bisected] Panic on boot    |[NVE6] [bisected] Panic on
-                   |with GK106                  |boot with GK106
+             Status|REOPENED                    |RESOLVED
+         Resolution|---                         |NOTOURBUG
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Andrey from comment #2)
+> (In reply to Ilia Mirkin from comment #1)
+> > You have an issue on your system. You're picking up a version of
+> > drm/nouveau.h which is not the one that configure found.
+>=20
+> I have two libdrms:
+>=20
+> 1) The system's one libdrm-devel-2.4.60-1.fc21.x86_64
+> 2) The local one needed for mesa: /path/to/libdrm/2.4.80/
+>=20
+> How can I tell configure to pick up a right one?
+>=20
+> Thank you.
+
+No clue. If libdrm-devel is installed in a system path, and you have other
+libraries installed in system paths, this may not be a supportable
+configuration, since all include paths are just mashed together.
+
+Uninstall libdrm-devel perhaps?
+
+Either way, not a nouveau issue.
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14958765980.d3590FDb.30405
-Date: Sat, 27 May 2017 09:16:38 +0000
+--14958941311.80CDb258A.30061
+Date: Sat, 27 May 2017 14:08:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,15 +83,16 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sgilles&#=
-64;math.umd.edu" title=3D"S. Gilles &lt;sgilles&#64;math.umd.edu&gt;"> <spa=
-n class=3D"fn">S. Gilles</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">bug 10118=
-4</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - nouveau_screen.c: undefined reference to `=
+nouveau_drm_del'"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101199">bug 10119=
+9</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -76,13 +102,62 @@ n class=3D"fn">S. Gilles</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>[bisected] Panic on boot with GK106
+           <td style=3D"text-align:right;">Status</td>
+           <td>REOPENED
            </td>
-           <td>[NVE6] [bisected] Panic on boot with GK106
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>NOTOURBUG
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - nouveau_screen.c: undefined reference to `=
+nouveau_drm_del'"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101199#c3">Commen=
+t # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - nouveau_screen.c: undefined reference to `=
+nouveau_drm_del'"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101199">bug 10119=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Andrey from <a href=3D"show_bug.cgi?id=3D101199#c=
+2">comment #2</a>)
+<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
+g.cgi?id=3D101199#c1">comment #1</a>)
+&gt; &gt; You have an issue on your system. You're picking up a version of
+&gt; &gt; drm/nouveau.h which is not the one that configure found.
+&gt;=20
+&gt; I have two libdrms:
+&gt;=20
+&gt; 1) The system's one libdrm-devel-2.4.60-1.fc21.x86_64
+&gt; 2) The local one needed for mesa: /path/to/libdrm/2.4.80/
+&gt;=20
+&gt; How can I tell configure to pick up a right one?
+&gt;=20
+&gt; Thank you.</span >
+
+No clue. If libdrm-devel is installed in a system path, and you have other
+libraries installed in system paths, this may not be a supportable
+configuration, since all include paths are just mashed together.
+
+Uninstall libdrm-devel perhaps?
+
+Either way, not a nouveau issue.</pre>
+        </div>
       </p>
 
 
@@ -90,14 +165,15 @@ n class=3D"fn">S. Gilles</span></a>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14958765980.d3590FDb.30405--
+--14958941311.80CDb258A.30061--
 
---===============0726533457==
+--===============0856073577==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +183,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0726533457==--
+--===============0856073577==--
