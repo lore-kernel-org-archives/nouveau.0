@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101184] [NVE6] [bisected] Panic on boot with GK106
-Date: Mon, 29 May 2017 10:57:02 +0000
-Message-ID: <bug-101184-8800-hBKBHB4Z6h@http.bugs.freedesktop.org/>
+Date: Mon, 29 May 2017 10:57:53 +0000
+Message-ID: <bug-101184-8800-ebhaOeYRPU@http.bugs.freedesktop.org/>
 References: <bug-101184-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0048742179=="
+Content-Type: multipart/mixed; boundary="===============1807132844=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101184-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0048742179==
-Content-Type: multipart/alternative; boundary="14960554220.a7e9b.1222";
+--===============1807132844==
+Content-Type: multipart/alternative; boundary="14960554730.599B3de.2142";
  charset="UTF-8"
 
 
---14960554220.a7e9b.1222
-Date: Mon, 29 May 2017 10:57:02 +0000
+--14960554730.599B3de.2142
+Date: Mon, 29 May 2017 10:57:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,26 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101184
 
---- Comment #3 from S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> ---
-It certainly feels reproducible.  I've tested ~20 boots past the listed com=
-mit,
-and ~10 from very close to before it, and if that commit isn't the dividing
-line, it's doing a very good job of pretending to be. (I agree with you tha=
-t it
-looks pretty harmless, though.)
-
-I'm about to attach a dmesg from a working kernel (4.11.0-rc4) with
-"nouveau.modeset=3D1 nouveau.config=3DNvGrUseFW=3D1 nouveau.debug=3Ddebug" =
-(my standard
-command line has "nouveau.modeset=3D1 nouveau.config=3DNvGrUseFW=3D1" if it=
- matters).
+--- Comment #4 from S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> ---
+Created attachment 131565
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131565&action=3Dedit
+output of dmesg on (working) 4.11.0-rc4 with nouveau.debug=3Ddebug
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14960554220.a7e9b.1222
-Date: Mon, 29 May 2017 10:57:02 +0000
+--14960554730.599B3de.2142
+Date: Mon, 29 May 2017 10:57:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
@@ -82,18 +73,12 @@ t # 3</a>
 sgilles&#64;math.umd.edu" title=3D"S. Gilles &lt;sgilles&#64;math.umd.edu&g=
 t;"> <span class=3D"fn">S. Gilles</span></a>
 </span></b>
-        <pre>It certainly feels reproducible.  I've tested ~20 boots past t=
-he listed commit,
-and ~10 from very close to before it, and if that commit isn't the dividing
-line, it's doing a very good job of pretending to be. (I agree with you tha=
-t it
-looks pretty harmless, though.)
-
-I'm about to attach a dmesg from a working kernel (4.11.0-rc4) with
-&quot;nouveau.modeset=3D1 nouveau.config=3DNvGrUseFW=3D1 nouveau.debug=3Dde=
-bug&quot; (my standard
-command line has &quot;nouveau.modeset=3D1 nouveau.config=3DNvGrUseFW=3D1&q=
-uot; if it matters).</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131565=
+" name=3D"attach_131565" title=3D"output of dmesg on (working) 4.11.0-rc4 w=
+ith nouveau.debug=3Ddebug">attachment 131565</a> <a href=3D"attachment.cgi?=
+id=3D131565&amp;action=3Dedit" title=3D"output of dmesg on (working) 4.11.0=
+-rc4 with nouveau.debug=3Ddebug">[details]</a></span>
+output of dmesg on (working) 4.11.0-rc4 with nouveau.debug=3Ddebug</pre>
         </div>
       </p>
 
@@ -107,9 +92,9 @@ uot; if it matters).</pre>
     </body>
 </html>=
 
---14960554220.a7e9b.1222--
+--14960554730.599B3de.2142--
 
---===============0048742179==
+--===============1807132844==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0048742179==--
+--===============1807132844==--
