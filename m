@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101184] [NVE6] [bisected] Panic on boot with GK106
-Date: Mon, 29 May 2017 10:57:53 +0000
-Message-ID: <bug-101184-8800-ebhaOeYRPU@http.bugs.freedesktop.org/>
+Date: Mon, 29 May 2017 11:37:19 +0000
+Message-ID: <bug-101184-8800-6YS3kJopUA@http.bugs.freedesktop.org/>
 References: <bug-101184-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1807132844=="
+Content-Type: multipart/mixed; boundary="===============0600864139=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101184-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1807132844==
-Content-Type: multipart/alternative; boundary="14960554730.599B3de.2142";
+--===============0600864139==
+Content-Type: multipart/alternative; boundary="14960578391.E52BD.14596";
  charset="UTF-8"
 
 
---14960554730.599B3de.2142
-Date: Mon, 29 May 2017 10:57:53 +0000
+--14960578391.E52BD.14596
+Date: Mon, 29 May 2017 11:37:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101184
 
---- Comment #4 from S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> ---
-Created attachment 131565
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131565&action=3Dedit
-output of dmesg on (working) 4.11.0-rc4 with nouveau.debug=3Ddebug
+--- Comment #5 from S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> ---
+I just reverted e4311ee51d1e2676001b2d8fcefd92bdd79aad85 on -mainline, and =
+the
+resulting kernel doesn't panic.  It doesn't receive input from any USB devi=
+ces,
+but I think that's probably unrelated. :)
+
+Following that, I reset to -mainline, then went through the four changes of=
+ the
+commit and tried reverting them individually.  Reverting three of them does
+nothing, but reverting the change to
+drivers/gpu/drm/nouveau/nvkm/subdev/therm/fan.c does prevent the panic.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14960554730.599B3de.2142
-Date: Mon, 29 May 2017 10:57:53 +0000
+--14960578391.E52BD.14596
+Date: Mon, 29 May 2017 11:37:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +70,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
@@ -73,12 +81,18 @@ t # 4</a>
 sgilles&#64;math.umd.edu" title=3D"S. Gilles &lt;sgilles&#64;math.umd.edu&g=
 t;"> <span class=3D"fn">S. Gilles</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131565=
-" name=3D"attach_131565" title=3D"output of dmesg on (working) 4.11.0-rc4 w=
-ith nouveau.debug=3Ddebug">attachment 131565</a> <a href=3D"attachment.cgi?=
-id=3D131565&amp;action=3Dedit" title=3D"output of dmesg on (working) 4.11.0=
--rc4 with nouveau.debug=3Ddebug">[details]</a></span>
-output of dmesg on (working) 4.11.0-rc4 with nouveau.debug=3Ddebug</pre>
+        <pre>I just reverted e4311ee51d1e2676001b2d8fcefd92bdd79aad85 on -m=
+ainline, and the
+resulting kernel doesn't panic.  It doesn't receive input from any USB devi=
+ces,
+but I think that's probably unrelated. :)
+
+Following that, I reset to -mainline, then went through the four changes of=
+ the
+commit and tried reverting them individually.  Reverting three of them does
+nothing, but reverting the change to
+drivers/gpu/drm/nouveau/nvkm/subdev/therm/fan.c does prevent the panic.</pr=
+e>
         </div>
       </p>
 
@@ -92,9 +106,9 @@ output of dmesg on (working) 4.11.0-rc4 with nouveau.debug=3Ddebug</pre>
     </body>
 </html>=
 
---14960554730.599B3de.2142--
+--14960578391.E52BD.14596--
 
---===============1807132844==
+--===============0600864139==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1807132844==--
+--===============0600864139==--
