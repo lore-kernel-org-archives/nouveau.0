@@ -1,121 +1,109 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101184] [NVE6] [bisected] Panic on boot with GK106
-Date: Mon, 29 May 2017 11:37:19 +0000
-Message-ID: <bug-101184-8800-6YS3kJopUA@http.bugs.freedesktop.org/>
-References: <bug-101184-8800@http.bugs.freedesktop.org/>
+From: Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Subject: Re: [RFC PATCH v3 5/5] ACPI: button: Always notify kernel space
+ using _LID returning value
+Date: Mon, 29 May 2017 18:08:09 +0200
+Message-ID: <20170529160809.GB28287@mail.corp.redhat.com>
+References: <2a779ae8c280c968b3237ac4a3d9580df7262a46.1493951798.git.lv.zheng@intel.com>
+ <6a7418a5300e407ba3227d1c53e173ca5c981ddc.1495804411.git.lv.zheng@intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0600864139=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101184-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=utf-8
+Return-path: <linux-acpi-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <6a7418a5300e407ba3227d1c53e173ca5c981ddc.1495804411.git.lv.zheng@intel.com>
+Sender: linux-acpi-owner@vger.kernel.org
+To: Lv Zheng <lv.zheng@intel.com>
+Cc: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, Len Brown <len.brown@intel.com>, Lv Zheng <zetalog@gmail.com>, linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, Peter Hutterer <peter.hutterer@who-t.net>
 List-Id: nouveau.vger.kernel.org
 
+Hi Lv,
 
---===============0600864139==
-Content-Type: multipart/alternative; boundary="14960578391.E52BD.14596";
- charset="UTF-8"
+On May 27 2017 or thereabouts, Lv Zheng wrote:
+> Both nouveau and i915, the only 2 kernel space lid notification listeners,
+> invoke acpi_lid_open() API to obtain _LID returning value instead of using
+> the notified value.
+> 
+> So this patch moves this logic from listeners to lid driver, always notify
+> kernel space listeners using _LID returning value.
+> 
+> This is a no-op cleanup, but facilitates administrators to configure to
+> notify kernel drivers with faked lid init states via command line
+> "button.lid_notify_init_state=Y".
+> 
+> Cc: <intel-gfx@lists.freedesktop.org>
+> Cc: <nouveau@lists.freedesktop.org>
+> Cc: Benjamin Tissoires <benjamin.tissoires@redhat.com>
+> Cc: Peter Hutterer <peter.hutterer@who-t.net>
+> Signed-off-by: Lv Zheng <lv.zheng@intel.com>
+> ---
+>  drivers/acpi/button.c             | 16 ++++++++++++++--
+>  drivers/gpu/drm/i915/intel_lvds.c |  2 +-
+>  2 files changed, 15 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/acpi/button.c b/drivers/acpi/button.c
+> index 4abf8ae..e047d34 100644
+> --- a/drivers/acpi/button.c
+> +++ b/drivers/acpi/button.c
+> @@ -119,6 +119,9 @@ static u8 lid_init_state = ACPI_BUTTON_LID_INIT_OPEN;
+>  static unsigned long lid_report_interval __read_mostly = 500;
+>  module_param(lid_report_interval, ulong, 0644);
+>  MODULE_PARM_DESC(lid_report_interval, "Interval (ms) between lid key events");
+> +static bool lid_notify_init_state __read_mostly = false;
+> +module_param(lid_notify_init_state, bool, 0644);
+> +MODULE_PARM_DESC(lid_notify_init_state, "Notify init lid state to kernel drivers after boot/resume");
+>  
+>  /* --------------------------------------------------------------------------
+>                                FS Interface (/proc)
+> @@ -224,6 +227,15 @@ static void acpi_lid_notify_state(struct acpi_device *device,
+>  	if (state)
+>  		pm_wakeup_event(&device->dev, 0);
+>  
+> +	if (!lid_notify_init_state) {
+> +		/*
+> +		 * There are cases "state" is not a _LID return value, so
+> +		 * correct it before notification.
+> +		 */
+> +		if (!bios_notify &&
+> +		    lid_init_state != ACPI_BUTTON_LID_INIT_METHOD)
+> +			state = acpi_lid_evaluate_state(device);
+> +	}
+>  	acpi_lid_notifier_call(device, state);
+>  }
+>  
+> @@ -572,10 +584,10 @@ static int param_set_lid_init_state(const char *val, struct kernel_param *kp)
+>  
+>  	if (!strncmp(val, "open", sizeof("open") - 1)) {
+>  		lid_init_state = ACPI_BUTTON_LID_INIT_OPEN;
+> -		pr_info("Notify initial lid state as open\n");
+> +		pr_info("Notify initial lid state to users space as open and kernel drivers with _LID return value\n");
+>  	} else if (!strncmp(val, "method", sizeof("method") - 1)) {
+>  		lid_init_state = ACPI_BUTTON_LID_INIT_METHOD;
+> -		pr_info("Notify initial lid state with _LID return value\n");
+> +		pr_info("Notify initial lid state to user/kernel space with _LID return value\n");
+>  	} else if (!strncmp(val, "ignore", sizeof("ignore") - 1)) {
+>  		lid_init_state = ACPI_BUTTON_LID_INIT_IGNORE;
+>  		pr_info("Do not notify initial lid state\n");
+> diff --git a/drivers/gpu/drm/i915/intel_lvds.c b/drivers/gpu/drm/i915/intel_lvds.c
+> index 9ca4dc4..8ca9080 100644
+> --- a/drivers/gpu/drm/i915/intel_lvds.c
+> +++ b/drivers/gpu/drm/i915/intel_lvds.c
+> @@ -548,7 +548,7 @@ static int intel_lid_notify(struct notifier_block *nb, unsigned long val,
+>  	/* Don't force modeset on machines where it causes a GPU lockup */
+>  	if (dmi_check_system(intel_no_modeset_on_lid))
+>  		goto exit;
+> -	if (!acpi_lid_open()) {
+> +	if (!val) {
+>  		/* do modeset on next lid open event */
+>  		dev_priv->modeset_restore = MODESET_ON_LID_OPEN;
+>  		goto exit;
 
+This last hunk should really be in its own patch because the intel GPU
+folks would need to apply the rest of the series for their CI suite, and
+also because there is no reason for this change to be alongside any
+other acpi/button.c change.
 
---14960578391.E52BD.14596
-Date: Mon, 29 May 2017 11:37:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Cheers,
+Benjamin
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101184
-
---- Comment #5 from S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> ---
-I just reverted e4311ee51d1e2676001b2d8fcefd92bdd79aad85 on -mainline, and =
-the
-resulting kernel doesn't panic.  It doesn't receive input from any USB devi=
-ces,
-but I think that's probably unrelated. :)
-
-Following that, I reset to -mainline, then went through the four changes of=
- the
-commit and tried reverting them individually.  Reverting three of them does
-nothing, but reverting the change to
-drivers/gpu/drm/nouveau/nvkm/subdev/therm/fan.c does prevent the panic.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14960578391.E52BD.14596
-Date: Mon, 29 May 2017 11:37:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">bug 10118=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sgilles&#64;math.umd.edu" title=3D"S. Gilles &lt;sgilles&#64;math.umd.edu&g=
-t;"> <span class=3D"fn">S. Gilles</span></a>
-</span></b>
-        <pre>I just reverted e4311ee51d1e2676001b2d8fcefd92bdd79aad85 on -m=
-ainline, and the
-resulting kernel doesn't panic.  It doesn't receive input from any USB devi=
-ces,
-but I think that's probably unrelated. :)
-
-Following that, I reset to -mainline, then went through the four changes of=
- the
-commit and tried reverting them individually.  Reverting three of them does
-nothing, but reverting the change to
-drivers/gpu/drm/nouveau/nvkm/subdev/therm/fan.c does prevent the panic.</pr=
-e>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14960578391.E52BD.14596--
-
---===============0600864139==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0600864139==--
+> -- 
+> 2.7.4
+> 
