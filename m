@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101220] xorg-server-1.19.3 crashes when trying to
- enable HDMI output
-Date: Tue, 30 May 2017 01:38:31 +0000
-Message-ID: <bug-101220-8800-gMsdrC0t4L@http.bugs.freedesktop.org/>
-References: <bug-101220-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101184] [NVE6] [bisected] Panic on boot with GK106
+Date: Mon, 29 May 2017 09:35:47 +0000
+Message-ID: <bug-101184-8800-Pf0n1342KL@http.bugs.freedesktop.org/>
+References: <bug-101184-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0117473603=="
+Content-Type: multipart/mixed; boundary="===============0779717231=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101184-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0117473603==
-Content-Type: multipart/alternative; boundary="14961083110.dF4D.17051";
+--===============0779717231==
+Content-Type: multipart/alternative; boundary="14960505462.4a0fdA6c.9684";
  charset="UTF-8"
 
 
---14961083110.dF4D.17051
-Date: Tue, 30 May 2017 01:38:31 +0000
+--14960505462.4a0fdA6c.9684
+Date: Mon, 29 May 2017 09:35:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101184
 
---- Comment #6 from Michel D=C3=A4nzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #5)
-> I wonder if this is due to the fact that it's running in NoAccel mode.
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+That's, uh, rather strange.  Is this fully reproducible?
 
-Possibly, you might want something like
-
-https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/?id=3Db19417=
-e2fddf4df725951aea5ad5e9558338f59e
+Could I also see a kernel log with "nouveau.debug=3Ddebug" from a working k=
+ernel?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14961083110.dF4D.17051
-Date: Tue, 30 May 2017 01:38:31 +0000
+--14960505462.4a0fdA6c.9684
+Date: Mon, 29 May 2017 09:35:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,31 +62,22 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
-put"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c6">Commen=
-t # 6</a>
+   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
-put"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
-0</a>
+   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">bug 10118=
+4</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-michel&#64;daenzer.net" title=3D"Michel D=C3=A4nzer &lt;michel&#64;daenzer.=
-net&gt;"> <span class=3D"fn">Michel D=C3=A4nzer</span></a>
+skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ben Skeggs</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D101=
-220#c5">comment #5</a>)
-<span class=3D"quote">&gt; I wonder if this is due to the fact that it's ru=
-nning in NoAccel mode.</span >
+        <pre>That's, uh, rather strange.  Is this fully reproducible?
 
-Possibly, you might want something like
-
-<a href=3D"https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/?=
-id=3Db19417e2fddf4df725951aea5ad5e9558338f59e">https://cgit.freedesktop.org=
-/xorg/driver/xf86-video-ati/commit/?id=3Db19417e2fddf4df725951aea5ad5e95583=
-38f59e</a></pre>
+Could I also see a kernel log with &quot;nouveau.debug=3Ddebug&quot; from a=
+ working kernel?</pre>
         </div>
       </p>
 
@@ -104,9 +91,9 @@ id=3Db19417e2fddf4df725951aea5ad5e9558338f59e">https://cgit.freedesktop.org=
     </body>
 </html>=
 
---14961083110.dF4D.17051--
+--14960505462.4a0fdA6c.9684--
 
---===============0117473603==
+--===============0779717231==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0117473603==--
+--===============0779717231==--
