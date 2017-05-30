@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101220] xorg-server-1.19.3 crashes when trying to
  enable HDMI output
-Date: Tue, 30 May 2017 13:22:55 +0000
-Message-ID: <bug-101220-8800-HFM4ukGqlz@http.bugs.freedesktop.org/>
+Date: Tue, 30 May 2017 13:24:33 +0000
+Message-ID: <bug-101220-8800-AcVbWdCelq@http.bugs.freedesktop.org/>
 References: <bug-101220-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0794396737=="
+Content-Type: multipart/mixed; boundary="===============2058445691=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0794396737==
-Content-Type: multipart/alternative; boundary="14961505751.FF2C8a.20068";
+--===============2058445691==
+Content-Type: multipart/alternative; boundary="14961506730.c11C0F.21153";
  charset="UTF-8"
 
 
---14961505751.FF2C8a.20068
-Date: Tue, 30 May 2017 13:22:55 +0000
+--14961506730.c11C0F.21153
+Date: Tue, 30 May 2017 13:24:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
 
---- Comment #8 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 131572
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131572&action=3Dedit
-Photo as soon as I try to start X with kernel 4.12-rc3
+--- Comment #9 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 131573
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131573&action=3Dedit
+dmesg output with kernel 4.12-rc3
 
-I have tried with 4.12-rc3... but it's even worse and as soon as I try to s=
-tart
-X I get a kernel Oops (I have taken a photo to show it)
+dmesg looks to contain lots of errors with kernel 4.12-rc3. I am using nouv=
+eau
+1.0.15 and linux-firmware from 20170519
+
+Thanks
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14961505751.FF2C8a.20068
-Date: Tue, 30 May 2017 13:22:55 +0000
+--14961506730.c11C0F.21153
+Date: Tue, 30 May 2017 13:24:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +70,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
 put"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c8">Commen=
-t # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
@@ -80,16 +82,17 @@ put"
 pachoramos1&#64;gmail.com" title=3D"Pacho Ramos &lt;pachoramos1&#64;gmail.c=
 om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131572=
-" name=3D"attach_131572" title=3D"Photo as soon as I try to start X with ke=
-rnel 4.12-rc3">attachment 131572</a> <a href=3D"attachment.cgi?id=3D131572&=
-amp;action=3Dedit" title=3D"Photo as soon as I try to start X with kernel 4=
-.12-rc3">[details]</a></span>
-Photo as soon as I try to start X with kernel 4.12-rc3
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131573=
+" name=3D"attach_131573" title=3D"dmesg output with kernel 4.12-rc3">attach=
+ment 131573</a> <a href=3D"attachment.cgi?id=3D131573&amp;action=3Dedit" ti=
+tle=3D"dmesg output with kernel 4.12-rc3">[details]</a></span>
+dmesg output with kernel 4.12-rc3
 
-I have tried with 4.12-rc3... but it's even worse and as soon as I try to s=
-tart
-X I get a kernel Oops (I have taken a photo to show it)</pre>
+dmesg looks to contain lots of errors with kernel 4.12-rc3. I am using nouv=
+eau
+1.0.15 and linux-firmware from 20170519
+
+Thanks</pre>
         </div>
       </p>
 
@@ -103,9 +106,9 @@ X I get a kernel Oops (I have taken a photo to show it)</pre>
     </body>
 </html>=
 
---14961505751.FF2C8a.20068--
+--14961506730.c11C0F.21153--
 
---===============0794396737==
+--===============2058445691==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0794396737==--
+--===============2058445691==--
