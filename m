@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101184] [NVE6] [bisected] Panic on boot with GK106
-Date: Mon, 29 May 2017 09:35:47 +0000
-Message-ID: <bug-101184-8800-Pf0n1342KL@http.bugs.freedesktop.org/>
-References: <bug-101184-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101220] xorg-server-1.19.3 crashes when trying to
+ enable HDMI output
+Date: Tue, 30 May 2017 07:37:04 +0000
+Message-ID: <bug-101220-8800-j3uVHjTT8c@http.bugs.freedesktop.org/>
+References: <bug-101220-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0779717231=="
+Content-Type: multipart/mixed; boundary="===============1012666682=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101184-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0779717231==
-Content-Type: multipart/alternative; boundary="14960505462.4a0fdA6c.9684";
+--===============1012666682==
+Content-Type: multipart/alternative; boundary="14961298240.0a9bfD.16998";
  charset="UTF-8"
 
 
---14960505462.4a0fdA6c.9684
-Date: Mon, 29 May 2017 09:35:46 +0000
+--14961298240.0a9bfD.16998
+Date: Tue, 30 May 2017 07:37:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101184
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
 
---- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-That's, uh, rather strange.  Is this fully reproducible?
+--- Comment #7 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #5)
+> I wonder if this is due to the fact that it's running in NoAccel mode.
+> (Haven't actually looked at any of the code though.)
+>=20
+> Pacho, can you test 4.12-rcN with the nvidia-supplied firmware installed
+> (part of linux-firmware) which will allow you to have acceleration on your
+> board?
 
-Could I also see a kernel log with "nouveau.debug=3Ddebug" from a working k=
-ernel?
+I tried already, but it's even worse because nouveau causes a kernel Oops w=
+hen
+running with acceleration and kernel 4.12-rc2... then, I needed to pass
+nouveau.noaccel=3D1 and, even getting X started, I got the same crash
+(additionally, I don't know why on kernel 4.12-rc2 my touchpad stops to mov=
+e...
+it clicks but doesn't move... but that is probably a different bug :( )
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14960505462.4a0fdA6c.9684
-Date: Mon, 29 May 2017 09:35:46 +0000
+--14961298240.0a9bfD.16998
+Date: Tue, 30 May 2017 07:37:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,22 +74,40 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c2">Commen=
-t # 2</a>
+   title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
+put"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">bug 10118=
-4</a>
+   title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
+put"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
+0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
+pachoramos1&#64;gmail.com" title=3D"Pacho Ramos &lt;pachoramos1&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
 </span></b>
-        <pre>That's, uh, rather strange.  Is this fully reproducible?
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D101=
+220#c5">comment #5</a>)
+<span class=3D"quote">&gt; I wonder if this is due to the fact that it's ru=
+nning in NoAccel mode.
+&gt; (Haven't actually looked at any of the code though.)
+&gt;=20
+&gt; Pacho, can you test 4.12-rcN with the nvidia-supplied firmware install=
+ed
+&gt; (part of linux-firmware) which will allow you to have acceleration on =
+your
+&gt; board?</span >
 
-Could I also see a kernel log with &quot;nouveau.debug=3Ddebug&quot; from a=
- working kernel?</pre>
+I tried already, but it's even worse because nouveau causes a kernel Oops w=
+hen
+running with acceleration and kernel 4.12-rc2... then, I needed to pass
+nouveau.noaccel=3D1 and, even getting X started, I got the same crash
+(additionally, I don't know why on kernel 4.12-rc2 my touchpad stops to mov=
+e...
+it clicks but doesn't move... but that is probably a different bug :( )</pr=
+e>
         </div>
       </p>
 
@@ -91,9 +121,9 @@ Could I also see a kernel log with &quot;nouveau.debug=3Ddebug&quot; from a=
     </body>
 </html>=
 
---14960505462.4a0fdA6c.9684--
+--14961298240.0a9bfD.16998--
 
---===============0779717231==
+--===============1012666682==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +133,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0779717231==--
+--===============1012666682==--
