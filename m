@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101220] xorg-server-1.19.3 crashes when trying to
  enable HDMI output
-Date: Mon, 29 May 2017 21:57:04 +0000
-Message-ID: <bug-101220-8800-cft0LYb8c2@http.bugs.freedesktop.org/>
+Date: Tue, 30 May 2017 01:38:31 +0000
+Message-ID: <bug-101220-8800-gMsdrC0t4L@http.bugs.freedesktop.org/>
 References: <bug-101220-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1704073204=="
+Content-Type: multipart/mixed; boundary="===============0117473603=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1704073204==
-Content-Type: multipart/alternative; boundary="14960950240.a1A20f3.20670";
+--===============0117473603==
+Content-Type: multipart/alternative; boundary="14961083110.dF4D.17051";
  charset="UTF-8"
 
 
---14960950240.a1A20f3.20670
-Date: Mon, 29 May 2017 21:57:04 +0000
+--14961083110.dF4D.17051
+Date: Tue, 30 May 2017 01:38:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I wonder if this is due to the fact that it's running in NoAccel mode. (Hav=
-en't
-actually looked at any of the code though.)
+--- Comment #6 from Michel D=C3=A4nzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #5)
+> I wonder if this is due to the fact that it's running in NoAccel mode.
 
-Pacho, can you test 4.12-rcN with the nvidia-supplied firmware installed (p=
-art
-of linux-firmware) which will allow you to have acceleration on your board?
+Possibly, you might want something like
+
+https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/?id=3Db19417=
+e2fddf4df725951aea5ad5e9558338f59e
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14960950240.a1A20f3.20670
-Date: Mon, 29 May 2017 21:57:04 +0000
+--14961083110.dF4D.17051
+Date: Tue, 30 May 2017 01:38:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +68,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
 put"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
@@ -77,17 +77,20 @@ put"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+michel&#64;daenzer.net" title=3D"Michel D=C3=A4nzer &lt;michel&#64;daenzer.=
+net&gt;"> <span class=3D"fn">Michel D=C3=A4nzer</span></a>
 </span></b>
-        <pre>I wonder if this is due to the fact that it's running in NoAcc=
-el mode. (Haven't
-actually looked at any of the code though.)
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D101=
+220#c5">comment #5</a>)
+<span class=3D"quote">&gt; I wonder if this is due to the fact that it's ru=
+nning in NoAccel mode.</span >
 
-Pacho, can you test 4.12-rcN with the nvidia-supplied firmware installed (p=
-art
-of linux-firmware) which will allow you to have acceleration on your board?=
-</pre>
+Possibly, you might want something like
+
+<a href=3D"https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/?=
+id=3Db19417e2fddf4df725951aea5ad5e9558338f59e">https://cgit.freedesktop.org=
+/xorg/driver/xf86-video-ati/commit/?id=3Db19417e2fddf4df725951aea5ad5e95583=
+38f59e</a></pre>
         </div>
       </p>
 
@@ -101,9 +104,9 @@ of linux-firmware) which will allow you to have acceleration on your board?=
     </body>
 </html>=
 
---14960950240.a1A20f3.20670--
+--14961083110.dF4D.17051--
 
---===============1704073204==
+--===============0117473603==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1704073204==--
+--===============0117473603==--
