@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101220] xorg-server-1.19.3 crashes when trying to
  enable HDMI output
-Date: Tue, 30 May 2017 14:14:09 +0000
-Message-ID: <bug-101220-8800-o0np82Q4WX@http.bugs.freedesktop.org/>
+Date: Tue, 30 May 2017 14:28:21 +0000
+Message-ID: <bug-101220-8800-KOi8LmvAPK@http.bugs.freedesktop.org/>
 References: <bug-101220-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2006725814=="
+Content-Type: multipart/mixed; boundary="===============0655523017=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2006725814==
-Content-Type: multipart/alternative; boundary="14961536490.06a92.32385";
+--===============0655523017==
+Content-Type: multipart/alternative; boundary="14961545012.8acAb65.2217";
  charset="UTF-8"
 
 
---14961536490.06a92.32385
-Date: Tue, 30 May 2017 14:14:09 +0000
+--14961545012.8acAb65.2217
+Date: Tue, 30 May 2017 14:28:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,22 +36,43 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
 
---- Comment #11 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I don't know how that RAID is done... this is a Dell Inspiron 15 7000 laptop
-that probably uses that setup to work with a small SSD as main device and a
-bigger HD ... but this is working nice with kernel 4.9.x from 4.11 :/
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Pacho Ramos from comment #11)
+> I don't use any initrd... I could rely on CONFIG_EXTRA_FIRMWARE... but I
+> thought I didn't need that as nouveau is compiled as a module and not into
+> the kernel :|
 
-I don't use any initrd... I could rely on CONFIG_EXTRA_FIRMWARE... but I
-thought I didn't need that as nouveau is compiled as a module and not into =
-the
-kernel :|
+OK, well if modules are loaded off the FS and not initrd, then you're good =
+on
+that front, assuming you really do have the updated linux-firwmare (April 4=
+ or
+later --
+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git=
+/commit/?id=3Db14134583c2a15d4404695f72cb523daedb877ab).
+Lots of people use initrd without understanding how it works.
+
+So there are two issues here...
+
+#1: we should probably disable reverse prime if you don't have acceleration=
+ (or
+figure out how to make it work without accel... should just be a very slow
+memcpy away... not great, but better than a non-working screen)
+
+#2: we should figure out what's going on with accel on your GP107 -- looks =
+like
+stuff is just hanging (that's the "timeout" messages you see, we're waiting=
+ for
+some condition to become true, and it never does).
+
+I can help with the former, and hopefully Ben Skeggs can investigate the
+latter.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14961536490.06a92.32385
-Date: Tue, 30 May 2017 14:14:09 +0000
+--14961545012.8acAb65.2217
+Date: Tue, 30 May 2017 14:28:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,8 +90,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
 put"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c11">Comme=
-nt # 11</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c12">Comme=
+nt # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
@@ -78,18 +99,43 @@ put"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pachoramos1&#64;gmail.com" title=3D"Pacho Ramos &lt;pachoramos1&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I don't know how that RAID is done... this is a Dell Inspiron =
-15 7000 laptop
-that probably uses that setup to work with a small SSD as main device and a
-bigger HD ... but this is working nice with kernel 4.9.x from 4.11 :/
+        <pre>(In reply to Pacho Ramos from <a href=3D"show_bug.cgi?id=3D101=
+220#c11">comment #11</a>)
+<span class=3D"quote">&gt; I don't use any initrd... I could rely on CONFIG=
+_EXTRA_FIRMWARE... but I
+&gt; thought I didn't need that as nouveau is compiled as a module and not =
+into
+&gt; the kernel :|</span >
 
-I don't use any initrd... I could rely on CONFIG_EXTRA_FIRMWARE... but I
-thought I didn't need that as nouveau is compiled as a module and not into =
-the
-kernel :|</pre>
+OK, well if modules are loaded off the FS and not initrd, then you're good =
+on
+that front, assuming you really do have the updated linux-firwmare (April 4=
+ or
+later --
+<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-f=
+irmware.git/commit/?id=3Db14134583c2a15d4404695f72cb523daedb877ab">https://=
+git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/=
+?id=3Db14134583c2a15d4404695f72cb523daedb877ab</a>).
+Lots of people use initrd without understanding how it works.
+
+So there are two issues here...
+
+#1: we should probably disable reverse prime if you don't have acceleration=
+ (or
+figure out how to make it work without accel... should just be a very slow
+memcpy away... not great, but better than a non-working screen)
+
+#2: we should figure out what's going on with accel on your GP107 -- looks =
+like
+stuff is just hanging (that's the &quot;timeout&quot; messages you see, we'=
+re waiting for
+some condition to become true, and it never does).
+
+I can help with the former, and hopefully Ben Skeggs can investigate the
+latter.</pre>
         </div>
       </p>
 
@@ -103,9 +149,9 @@ kernel :|</pre>
     </body>
 </html>=
 
---14961536490.06a92.32385--
+--14961545012.8acAb65.2217--
 
---===============2006725814==
+--===============0655523017==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +161,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2006725814==--
+--===============0655523017==--
