@@ -1,12 +1,14 @@
-From: adlo <adloconwy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Subject: Re: Rendering issues with KDE (GeForce 7150M/nForce 630M)
-Date: Wed, 31 May 2017 00:36:03 +0100
-Message-ID: <CAFqtjKL=JO49CS4RK6KV8CBHn3kHu6F+-uZv7QaD5+z2Yu25vw@mail.gmail.com>
+Date: Tue, 30 May 2017 19:46:24 -0400
+Message-ID: <CAKb7UvgnF7RD_4NZQbPNTWccBMdLp6uCXqWkd2AH5v-WHA3L7Q@mail.gmail.com>
 References: <CAFqtjK+EgN37PDcoDmGj-ueUnA9eWUD99iTh4wwDAfXrpjRXpQ@mail.gmail.com>
+ <CAFqtjKL=JO49CS4RK6KV8CBHn3kHu6F+-uZv7QaD5+z2Yu25vw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0009222639=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAFqtjK+EgN37PDcoDmGj-ueUnA9eWUD99iTh4wwDAfXrpjRXpQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAFqtjKL=JO49CS4RK6KV8CBHn3kHu6F+-uZv7QaD5+z2Yu25vw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,88 +18,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, =?UTF-8?Q?Nerijus_Bali=C5=ABnas?= <nerijus-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: adlo <adloconwy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?Q?Nerijus_Bali=C5=ABnas?= <nerijus-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0009222639==
-Content-Type: multipart/alternative; boundary="f403045e79765857390550c6442d"
-
---f403045e79765857390550c6442d
-Content-Type: text/plain; charset="UTF-8"
-
-In order to get a clear image on your screen so that you can test this, you
-may need to set your display's resolution to 1024x768 in order to get
-around bug 70972.
-
-Regards
-
-adlo
-
-On Wed, May 31, 2017 at 12:15 AM, adlo <adloconwy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-
-> In addition to bug 70972 (Modesetting failure at 1280x800), there may be
-> another bug affecting the NVIDIA GeForce 7150M/nForce 630M. I think that
-> this is a separate issue from the above.
->
-> When using KDE or Ubuntu Unity with nouveau on this GPU, there were
-> artifacts and missing UI elements. I think that this is probably more
-> likely to be a rendering issue rather than a display issue.
->
-> I am not sure if this issue still exists as this was two years ago and I
-> no longer use this machine, so I am unable to provide any further
-> information.
->
-> If you have an NVIDIA GeForce 7150M/nForce 630M, would you be able to test
-> KDE on nouveau, and if you experience a problem, please could you open an
-> issue?
->
-> I think it may be important to compare what happens depending on whether
-> KWin's compositing is enabled or disabled.
->
-> Regards
->
-> adlo
->
-
---f403045e79765857390550c6442d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">In order to get a clear image on your screen so that you c=
-an test this, you may need to set your display&#39;s resolution to 1024x768=
- in order to get around bug 70972.<div><br></div><div>Regards</div><div><br=
-></div><div>adlo</div></div><div class=3D"gmail_extra"><br><div class=3D"gm=
-ail_quote">On Wed, May 31, 2017 at 12:15 AM, adlo <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:adloconwy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">adloconwy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</=
-a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">In =
-addition to bug 70972 (Modesetting failure at 1280x800), there may be anoth=
-er bug affecting the NVIDIA GeForce 7150M/nForce 630M. I think that this is=
- a separate issue from the above.<div><br></div><div>When using KDE or Ubun=
-tu Unity with nouveau on this GPU, there were artifacts and missing UI elem=
-ents. I think that this is probably more likely to be a rendering issue rat=
-her than a display issue.</div><div><br></div><div>I am not sure if this is=
-sue still exists as this was two years ago and I no longer use this machine=
-, so I am unable to provide any further information.</div><div><br></div><d=
-iv>If you have an NVIDIA GeForce 7150M/nForce 630M, would you be able to te=
-st KDE on nouveau, and if you experience a problem, please could you open a=
-n issue?</div><div><br></div><div>I think it may be important to compare wh=
-at happens depending on whether KWin&#39;s compositing is enabled or disabl=
-ed.</div><div><br></div><div>Regards</div><span class=3D"HOEnZb"><font colo=
-r=3D"#888888"><div><br></div><div>adlo</div></font></span></div>
-</blockquote></div><br></div>
-
---f403045e79765857390550c6442d--
-
---===============0009222639==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0009222639==--
+SSB0aGluayBhbGwgdGhlIGNvbW1vbiBkaXN0cm9zIGhhdmUgcHJldHR5IG11Y2ggc3RvcHBlZCBj
+YXJpbmcgKGlmCnRoZXkgZXZlciBkaWQpIGFib3V0IGFsbG93aW5nIHVzZXJzIHRvIHJlYXNvbmFi
+bHkgb3BlcmF0ZSB0aGVpcgpkZWZhdWx0IGVudmlyb25tZW50cyB3aXRoIGhhcmR3YXJlIHRoYXQg
+aGFzIGltcGVyZmVjdCAzRCBkcml2ZXJzLgoKUGxlYXNlIHVzZSBlbnZpcm9ubWVudHMgdGhhdCBk
+b24ndCByZXF1aXJlIDNEIGZvciByZWd1bGFyIG9wZXJhdGlvbiBvbgpzdWNoIGJvYXJkcy4KCiAg
+LWlsaWEKCk9uIFR1ZSwgTWF5IDMwLCAyMDE3IGF0IDc6MzYgUE0sIGFkbG8gPGFkbG9jb253eUBn
+bWFpbC5jb20+IHdyb3RlOgo+IEluIG9yZGVyIHRvIGdldCBhIGNsZWFyIGltYWdlIG9uIHlvdXIg
+c2NyZWVuIHNvIHRoYXQgeW91IGNhbiB0ZXN0IHRoaXMsIHlvdQo+IG1heSBuZWVkIHRvIHNldCB5
+b3VyIGRpc3BsYXkncyByZXNvbHV0aW9uIHRvIDEwMjR4NzY4IGluIG9yZGVyIHRvIGdldCBhcm91
+bmQKPiBidWcgNzA5NzIuCj4KPiBSZWdhcmRzCj4KPiBhZGxvCj4KPiBPbiBXZWQsIE1heSAzMSwg
+MjAxNyBhdCAxMjoxNSBBTSwgYWRsbyA8YWRsb2Nvbnd5QGdtYWlsLmNvbT4gd3JvdGU6Cj4+Cj4+
+IEluIGFkZGl0aW9uIHRvIGJ1ZyA3MDk3MiAoTW9kZXNldHRpbmcgZmFpbHVyZSBhdCAxMjgweDgw
+MCksIHRoZXJlIG1heSBiZQo+PiBhbm90aGVyIGJ1ZyBhZmZlY3RpbmcgdGhlIE5WSURJQSBHZUZv
+cmNlIDcxNTBNL25Gb3JjZSA2MzBNLiBJIHRoaW5rIHRoYXQKPj4gdGhpcyBpcyBhIHNlcGFyYXRl
+IGlzc3VlIGZyb20gdGhlIGFib3ZlLgo+Pgo+PiBXaGVuIHVzaW5nIEtERSBvciBVYnVudHUgVW5p
+dHkgd2l0aCBub3V2ZWF1IG9uIHRoaXMgR1BVLCB0aGVyZSB3ZXJlCj4+IGFydGlmYWN0cyBhbmQg
+bWlzc2luZyBVSSBlbGVtZW50cy4gSSB0aGluayB0aGF0IHRoaXMgaXMgcHJvYmFibHkgbW9yZSBs
+aWtlbHkKPj4gdG8gYmUgYSByZW5kZXJpbmcgaXNzdWUgcmF0aGVyIHRoYW4gYSBkaXNwbGF5IGlz
+c3VlLgo+Pgo+PiBJIGFtIG5vdCBzdXJlIGlmIHRoaXMgaXNzdWUgc3RpbGwgZXhpc3RzIGFzIHRo
+aXMgd2FzIHR3byB5ZWFycyBhZ28gYW5kIEkKPj4gbm8gbG9uZ2VyIHVzZSB0aGlzIG1hY2hpbmUs
+IHNvIEkgYW0gdW5hYmxlIHRvIHByb3ZpZGUgYW55IGZ1cnRoZXIKPj4gaW5mb3JtYXRpb24uCj4+
+Cj4+IElmIHlvdSBoYXZlIGFuIE5WSURJQSBHZUZvcmNlIDcxNTBNL25Gb3JjZSA2MzBNLCB3b3Vs
+ZCB5b3UgYmUgYWJsZSB0byB0ZXN0Cj4+IEtERSBvbiBub3V2ZWF1LCBhbmQgaWYgeW91IGV4cGVy
+aWVuY2UgYSBwcm9ibGVtLCBwbGVhc2UgY291bGQgeW91IG9wZW4gYW4KPj4gaXNzdWU/Cj4+Cj4+
+IEkgdGhpbmsgaXQgbWF5IGJlIGltcG9ydGFudCB0byBjb21wYXJlIHdoYXQgaGFwcGVucyBkZXBl
+bmRpbmcgb24gd2hldGhlcgo+PiBLV2luJ3MgY29tcG9zaXRpbmcgaXMgZW5hYmxlZCBvciBkaXNh
+YmxlZC4KPj4KPj4gUmVnYXJkcwo+Pgo+PiBhZGxvCj4KPgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
