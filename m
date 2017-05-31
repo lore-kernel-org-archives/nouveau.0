@@ -1,185 +1,98 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101220] xorg-server-1.19.3 crashes when trying to
- enable HDMI output
-Date: Wed, 31 May 2017 06:46:42 +0000
-Message-ID: <bug-101220-8800-PrwjB7EpYn@http.bugs.freedesktop.org/>
-References: <bug-101220-8800@http.bugs.freedesktop.org/>
+From: "Zheng, Lv" <lv.zheng@intel.com>
+Subject: RE: [RFC PATCH v3 5/5] ACPI: button: Always notify kernel space
+ using _LID returning value
+Date: Wed, 31 May 2017 08:59:56 +0000
+Message-ID: <1AE640813FDE7649BE1B193DEA596E886CEC0827@SHSMSX101.ccr.corp.intel.com>
+References: <2a779ae8c280c968b3237ac4a3d9580df7262a46.1493951798.git.lv.zheng@intel.com>
+ <6a7418a5300e407ba3227d1c53e173ca5c981ddc.1495804411.git.lv.zheng@intel.com>
+ <20170529160809.GB28287@mail.corp.redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0272506870=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <linux-acpi-owner@vger.kernel.org>
+In-Reply-To: <20170529160809.GB28287@mail.corp.redhat.com>
+Content-Language: en-US
+Sender: linux-acpi-owner@vger.kernel.org
+To: Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Cc: "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, "Brown, Len" <len.brown@intel.com>, Lv Zheng <zetalog@gmail.com>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Peter Hutterer <peter.hutterer@who-t.net>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0272506870==
-Content-Type: multipart/alternative; boundary="14962132021.B9048.6248";
- charset="UTF-8"
-
-
---14962132021.B9048.6248
-Date: Wed, 31 May 2017 06:46:42 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
-
---- Comment #13 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #12)
-> (In reply to Pacho Ramos from comment #11)
-> > I don't use any initrd... I could rely on CONFIG_EXTRA_FIRMWARE... but I
-> > thought I didn't need that as nouveau is compiled as a module and not i=
-nto
-> > the kernel :|
->=20
-> OK, well if modules are loaded off the FS and not initrd, then you're good
-> on that front, assuming you really do have the updated linux-firwmare (Ap=
-ril
-> 4 or later --
-> https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.g=
-it/
-> commit/?id=3Db14134583c2a15d4404695f72cb523daedb877ab). Lots of people use
-> initrd without understanding how it works.
-
-Yeah, my linux-firmware snapshot is the one up to
-https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git=
-/commit/?id=3Ddf40d15d6ad617e72ce7ea00b91d9117d92dcccc
-
->=20
-> So there are two issues here...
->=20
-> #1: we should probably disable reverse prime if you don't have accelerati=
-on
-> (or figure out how to make it work without accel... should just be a very
-> slow memcpy away... not great, but better than a non-working screen)
->=20
-> #2: we should figure out what's going on with accel on your GP107 -- looks
-> like stuff is just hanging (that's the "timeout" messages you see, we're
-> waiting for some condition to become true, and it never does).
->=20
-> I can help with the former, and hopefully Ben Skeggs can investigate the
-> latter.
-
-Great, thanks a lot:)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14962132021.B9048.6248
-Date: Wed, 31 May 2017 06:46:42 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
-put"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c13">Comme=
-nt # 13</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
-put"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pachoramos1&#64;gmail.com" title=3D"Pacho Ramos &lt;pachoramos1&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D101=
-220#c12">comment #12</a>)
-<span class=3D"quote">&gt; (In reply to Pacho Ramos from <a href=3D"show_bu=
-g.cgi?id=3D101220#c11">comment #11</a>)
-&gt; &gt; I don't use any initrd... I could rely on CONFIG_EXTRA_FIRMWARE..=
-. but I
-&gt; &gt; thought I didn't need that as nouveau is compiled as a module and=
- not into
-&gt; &gt; the kernel :|
-&gt;=20
-&gt; OK, well if modules are loaded off the FS and not initrd, then you're =
-good
-&gt; on that front, assuming you really do have the updated linux-firwmare =
-(April
-&gt; 4 or later --
-&gt; <a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/firmware/li=
-nux-firmware.git/">https://git.kernel.org/pub/scm/linux/kernel/git/firmware=
-/linux-firmware.git/</a>
-&gt; commit/?id=3Db14134583c2a15d4404695f72cb523daedb877ab). Lots of people=
- use
-&gt; initrd without understanding how it works.</span >
-
-Yeah, my linux-firmware snapshot is the one up to
-<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-f=
-irmware.git/commit/?id=3Ddf40d15d6ad617e72ce7ea00b91d9117d92dcccc">https://=
-git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/=
-?id=3Ddf40d15d6ad617e72ce7ea00b91d9117d92dcccc</a>
-
-<span class=3D"quote">&gt;=20
-&gt; So there are two issues here...
-&gt;=20
-&gt; #1: we should probably disable reverse prime if you don't have acceler=
-ation
-&gt; (or figure out how to make it work without accel... should just be a v=
-ery
-&gt; slow memcpy away... not great, but better than a non-working screen)
-&gt;=20
-&gt; #2: we should figure out what's going on with accel on your GP107 -- l=
-ooks
-&gt; like stuff is just hanging (that's the &quot;timeout&quot; messages yo=
-u see, we're
-&gt; waiting for some condition to become true, and it never does).
-&gt;=20
-&gt; I can help with the former, and hopefully Ben Skeggs can investigate t=
-he
-&gt; latter.</span >
-
-Great, thanks a lot:)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14962132021.B9048.6248--
-
---===============0272506870==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0272506870==--
+SGksDQoNCj4gRnJvbTogQmVuamFtaW4gVGlzc29pcmVzIFttYWlsdG86YmVuamFtaW4udGlzc29p
+cmVzQHJlZGhhdC5jb21dDQo+IFN1YmplY3Q6IFJlOiBbUkZDIFBBVENIIHYzIDUvNV0gQUNQSTog
+YnV0dG9uOiBBbHdheXMgbm90aWZ5IGtlcm5lbCBzcGFjZSB1c2luZyBfTElEIHJldHVybmluZyB2
+YWx1ZQ0KPiANCj4gSGkgTHYsDQo+IA0KPiBPbiBNYXkgMjcgMjAxNyBvciB0aGVyZWFib3V0cywg
+THYgWmhlbmcgd3JvdGU6DQo+ID4gQm90aCBub3V2ZWF1IGFuZCBpOTE1LCB0aGUgb25seSAyIGtl
+cm5lbCBzcGFjZSBsaWQgbm90aWZpY2F0aW9uIGxpc3RlbmVycywNCj4gPiBpbnZva2UgYWNwaV9s
+aWRfb3BlbigpIEFQSSB0byBvYnRhaW4gX0xJRCByZXR1cm5pbmcgdmFsdWUgaW5zdGVhZCBvZiB1
+c2luZw0KPiA+IHRoZSBub3RpZmllZCB2YWx1ZS4NCj4gPg0KPiA+IFNvIHRoaXMgcGF0Y2ggbW92
+ZXMgdGhpcyBsb2dpYyBmcm9tIGxpc3RlbmVycyB0byBsaWQgZHJpdmVyLCBhbHdheXMgbm90aWZ5
+DQo+ID4ga2VybmVsIHNwYWNlIGxpc3RlbmVycyB1c2luZyBfTElEIHJldHVybmluZyB2YWx1ZS4N
+Cj4gPg0KPiA+IFRoaXMgaXMgYSBuby1vcCBjbGVhbnVwLCBidXQgZmFjaWxpdGF0ZXMgYWRtaW5p
+c3RyYXRvcnMgdG8gY29uZmlndXJlIHRvDQo+ID4gbm90aWZ5IGtlcm5lbCBkcml2ZXJzIHdpdGgg
+ZmFrZWQgbGlkIGluaXQgc3RhdGVzIHZpYSBjb21tYW5kIGxpbmUNCj4gPiAiYnV0dG9uLmxpZF9u
+b3RpZnlfaW5pdF9zdGF0ZT1ZIi4NCj4gPg0KPiA+IENjOiA8aW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZz4NCj4gPiBDYzogPG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPg0KPiA+
+IENjOiBCZW5qYW1pbiBUaXNzb2lyZXMgPGJlbmphbWluLnRpc3NvaXJlc0ByZWRoYXQuY29tPg0K
+PiA+IENjOiBQZXRlciBIdXR0ZXJlciA8cGV0ZXIuaHV0dGVyZXJAd2hvLXQubmV0Pg0KPiA+IFNp
+Z25lZC1vZmYtYnk6IEx2IFpoZW5nIDxsdi56aGVuZ0BpbnRlbC5jb20+DQo+ID4gLS0tDQo+ID4g
+IGRyaXZlcnMvYWNwaS9idXR0b24uYyAgICAgICAgICAgICB8IDE2ICsrKysrKysrKysrKysrLS0N
+Cj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbHZkcy5jIHwgIDIgKy0NCj4gPiAgMiBm
+aWxlcyBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQ0KPiA+DQo+ID4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvYWNwaS9idXR0b24uYyBiL2RyaXZlcnMvYWNwaS9idXR0b24u
+Yw0KPiA+IGluZGV4IDRhYmY4YWUuLmUwNDdkMzQgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9h
+Y3BpL2J1dHRvbi5jDQo+ID4gKysrIGIvZHJpdmVycy9hY3BpL2J1dHRvbi5jDQo+ID4gQEAgLTEx
+OSw2ICsxMTksOSBAQCBzdGF0aWMgdTggbGlkX2luaXRfc3RhdGUgPSBBQ1BJX0JVVFRPTl9MSURf
+SU5JVF9PUEVOOw0KPiA+ICBzdGF0aWMgdW5zaWduZWQgbG9uZyBsaWRfcmVwb3J0X2ludGVydmFs
+IF9fcmVhZF9tb3N0bHkgPSA1MDA7DQo+ID4gIG1vZHVsZV9wYXJhbShsaWRfcmVwb3J0X2ludGVy
+dmFsLCB1bG9uZywgMDY0NCk7DQo+ID4gIE1PRFVMRV9QQVJNX0RFU0MobGlkX3JlcG9ydF9pbnRl
+cnZhbCwgIkludGVydmFsIChtcykgYmV0d2VlbiBsaWQga2V5IGV2ZW50cyIpOw0KPiA+ICtzdGF0
+aWMgYm9vbCBsaWRfbm90aWZ5X2luaXRfc3RhdGUgX19yZWFkX21vc3RseSA9IGZhbHNlOw0KPiA+
+ICttb2R1bGVfcGFyYW0obGlkX25vdGlmeV9pbml0X3N0YXRlLCBib29sLCAwNjQ0KTsNCj4gPiAr
+TU9EVUxFX1BBUk1fREVTQyhsaWRfbm90aWZ5X2luaXRfc3RhdGUsICJOb3RpZnkgaW5pdCBsaWQg
+c3RhdGUgdG8ga2VybmVsIGRyaXZlcnMgYWZ0ZXINCj4gYm9vdC9yZXN1bWUiKTsNCj4gPg0KPiA+
+ICAvKiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBGUyBJbnRlcmZhY2UgKC9wcm9jKQ0KPiA+IEBAIC0yMjQsNiArMjI3LDE1IEBAIHN0YXRpYyB2
+b2lkIGFjcGlfbGlkX25vdGlmeV9zdGF0ZShzdHJ1Y3QgYWNwaV9kZXZpY2UgKmRldmljZSwNCj4g
+PiAgCWlmIChzdGF0ZSkNCj4gPiAgCQlwbV93YWtldXBfZXZlbnQoJmRldmljZS0+ZGV2LCAwKTsN
+Cj4gPg0KPiA+ICsJaWYgKCFsaWRfbm90aWZ5X2luaXRfc3RhdGUpIHsNCj4gPiArCQkvKg0KPiA+
+ICsJCSAqIFRoZXJlIGFyZSBjYXNlcyAic3RhdGUiIGlzIG5vdCBhIF9MSUQgcmV0dXJuIHZhbHVl
+LCBzbw0KPiA+ICsJCSAqIGNvcnJlY3QgaXQgYmVmb3JlIG5vdGlmaWNhdGlvbi4NCj4gPiArCQkg
+Ki8NCj4gPiArCQlpZiAoIWJpb3Nfbm90aWZ5ICYmDQo+ID4gKwkJICAgIGxpZF9pbml0X3N0YXRl
+ICE9IEFDUElfQlVUVE9OX0xJRF9JTklUX01FVEhPRCkNCj4gPiArCQkJc3RhdGUgPSBhY3BpX2xp
+ZF9ldmFsdWF0ZV9zdGF0ZShkZXZpY2UpOw0KPiA+ICsJfQ0KPiA+ICAJYWNwaV9saWRfbm90aWZp
+ZXJfY2FsbChkZXZpY2UsIHN0YXRlKTsNCj4gPiAgfQ0KPiA+DQo+ID4gQEAgLTU3MiwxMCArNTg0
+LDEwIEBAIHN0YXRpYyBpbnQgcGFyYW1fc2V0X2xpZF9pbml0X3N0YXRlKGNvbnN0IGNoYXIgKnZh
+bCwgc3RydWN0IGtlcm5lbF9wYXJhbSAqa3ApDQo+ID4NCj4gPiAgCWlmICghc3RybmNtcCh2YWws
+ICJvcGVuIiwgc2l6ZW9mKCJvcGVuIikgLSAxKSkgew0KPiA+ICAJCWxpZF9pbml0X3N0YXRlID0g
+QUNQSV9CVVRUT05fTElEX0lOSVRfT1BFTjsNCj4gPiAtCQlwcl9pbmZvKCJOb3RpZnkgaW5pdGlh
+bCBsaWQgc3RhdGUgYXMgb3BlblxuIik7DQo+ID4gKwkJcHJfaW5mbygiTm90aWZ5IGluaXRpYWwg
+bGlkIHN0YXRlIHRvIHVzZXJzIHNwYWNlIGFzIG9wZW4gYW5kIGtlcm5lbCBkcml2ZXJzIHdpdGgg
+X0xJRA0KPiByZXR1cm4gdmFsdWVcbiIpOw0KPiA+ICAJfSBlbHNlIGlmICghc3RybmNtcCh2YWws
+ICJtZXRob2QiLCBzaXplb2YoIm1ldGhvZCIpIC0gMSkpIHsNCj4gPiAgCQlsaWRfaW5pdF9zdGF0
+ZSA9IEFDUElfQlVUVE9OX0xJRF9JTklUX01FVEhPRDsNCj4gPiAtCQlwcl9pbmZvKCJOb3RpZnkg
+aW5pdGlhbCBsaWQgc3RhdGUgd2l0aCBfTElEIHJldHVybiB2YWx1ZVxuIik7DQo+ID4gKwkJcHJf
+aW5mbygiTm90aWZ5IGluaXRpYWwgbGlkIHN0YXRlIHRvIHVzZXIva2VybmVsIHNwYWNlIHdpdGgg
+X0xJRCByZXR1cm4gdmFsdWVcbiIpOw0KPiA+ICAJfSBlbHNlIGlmICghc3RybmNtcCh2YWwsICJp
+Z25vcmUiLCBzaXplb2YoImlnbm9yZSIpIC0gMSkpIHsNCj4gPiAgCQlsaWRfaW5pdF9zdGF0ZSA9
+IEFDUElfQlVUVE9OX0xJRF9JTklUX0lHTk9SRTsNCj4gPiAgCQlwcl9pbmZvKCJEbyBub3Qgbm90
+aWZ5IGluaXRpYWwgbGlkIHN0YXRlXG4iKTsNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaW50ZWxfbHZkcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbHZkcy5j
+DQo+ID4gaW5kZXggOWNhNGRjNC4uOGNhOTA4MCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pbnRlbF9sdmRzLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+bnRlbF9sdmRzLmMNCj4gPiBAQCAtNTQ4LDcgKzU0OCw3IEBAIHN0YXRpYyBpbnQgaW50ZWxfbGlk
+X25vdGlmeShzdHJ1Y3Qgbm90aWZpZXJfYmxvY2sgKm5iLCB1bnNpZ25lZCBsb25nIHZhbCwNCj4g
+PiAgCS8qIERvbid0IGZvcmNlIG1vZGVzZXQgb24gbWFjaGluZXMgd2hlcmUgaXQgY2F1c2VzIGEg
+R1BVIGxvY2t1cCAqLw0KPiA+ICAJaWYgKGRtaV9jaGVja19zeXN0ZW0oaW50ZWxfbm9fbW9kZXNl
+dF9vbl9saWQpKQ0KPiA+ICAJCWdvdG8gZXhpdDsNCj4gPiAtCWlmICghYWNwaV9saWRfb3Blbigp
+KSB7DQo+ID4gKwlpZiAoIXZhbCkgew0KPiA+ICAJCS8qIGRvIG1vZGVzZXQgb24gbmV4dCBsaWQg
+b3BlbiBldmVudCAqLw0KPiA+ICAJCWRldl9wcml2LT5tb2Rlc2V0X3Jlc3RvcmUgPSBNT0RFU0VU
+X09OX0xJRF9PUEVOOw0KPiA+ICAJCWdvdG8gZXhpdDsNCj4gDQo+IFRoaXMgbGFzdCBodW5rIHNo
+b3VsZCByZWFsbHkgYmUgaW4gaXRzIG93biBwYXRjaCBiZWNhdXNlIHRoZSBpbnRlbCBHUFUNCj4g
+Zm9sa3Mgd291bGQgbmVlZCB0byBhcHBseSB0aGUgcmVzdCBvZiB0aGUgc2VyaWVzIGZvciB0aGVp
+ciBDSSBzdWl0ZSwgYW5kDQo+IGFsc28gYmVjYXVzZSB0aGVyZSBpcyBubyByZWFzb24gZm9yIHRo
+aXMgY2hhbmdlIHRvIGJlIGFsb25nc2lkZSBhbnkNCj4gb3RoZXIgYWNwaS9idXR0b24uYyBjaGFu
+Z2UuDQoNCk9LLCBJJ2xsIGRyb3AgaTkxNSByZWxhdGVkIGNoYW5nZXMuDQpIb3dldmVyIEkgY2Fu
+IHNlZSBjbGVhbnVwIGNoYW5jZXMgaW4gYnV0dG9uLmMuDQpJIGZlZWwgSSBzaG91bGQgYXQgbGVh
+c3QgZG8gbWluaW1hbCB0dW5pbmdzIGluIGJ1dHRvbiBkcml2ZXIgdG8gYWxsb3cgZnV0dXJlIGlt
+cHJvdmVtZW50cy4NCg0KQ2hlZXJzLA0KTHYNCg0KPiBDaGVlcnMsDQo+IEJlbmphbWluDQo=
