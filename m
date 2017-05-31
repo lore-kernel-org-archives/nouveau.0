@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Rendering issues with KDE (GeForce 7150M/nForce 630M)
-Date: Tue, 30 May 2017 19:46:24 -0400
-Message-ID: <CAKb7UvgnF7RD_4NZQbPNTWccBMdLp6uCXqWkd2AH5v-WHA3L7Q@mail.gmail.com>
-References: <CAFqtjK+EgN37PDcoDmGj-ueUnA9eWUD99iTh4wwDAfXrpjRXpQ@mail.gmail.com>
- <CAFqtjKL=JO49CS4RK6KV8CBHn3kHu6F+-uZv7QaD5+z2Yu25vw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101220] xorg-server-1.19.3 crashes when trying to
+ enable HDMI output
+Date: Wed, 31 May 2017 06:46:42 +0000
+Message-ID: <bug-101220-8800-PrwjB7EpYn@http.bugs.freedesktop.org/>
+References: <bug-101220-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0272506870=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAFqtjKL=JO49CS4RK6KV8CBHn3kHu6F+-uZv7QaD5+z2Yu25vw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,37 +17,169 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: adlo <adloconwy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?Q?Nerijus_Bali=C5=ABnas?= <nerijus-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SSB0aGluayBhbGwgdGhlIGNvbW1vbiBkaXN0cm9zIGhhdmUgcHJldHR5IG11Y2ggc3RvcHBlZCBj
-YXJpbmcgKGlmCnRoZXkgZXZlciBkaWQpIGFib3V0IGFsbG93aW5nIHVzZXJzIHRvIHJlYXNvbmFi
-bHkgb3BlcmF0ZSB0aGVpcgpkZWZhdWx0IGVudmlyb25tZW50cyB3aXRoIGhhcmR3YXJlIHRoYXQg
-aGFzIGltcGVyZmVjdCAzRCBkcml2ZXJzLgoKUGxlYXNlIHVzZSBlbnZpcm9ubWVudHMgdGhhdCBk
-b24ndCByZXF1aXJlIDNEIGZvciByZWd1bGFyIG9wZXJhdGlvbiBvbgpzdWNoIGJvYXJkcy4KCiAg
-LWlsaWEKCk9uIFR1ZSwgTWF5IDMwLCAyMDE3IGF0IDc6MzYgUE0sIGFkbG8gPGFkbG9jb253eUBn
-bWFpbC5jb20+IHdyb3RlOgo+IEluIG9yZGVyIHRvIGdldCBhIGNsZWFyIGltYWdlIG9uIHlvdXIg
-c2NyZWVuIHNvIHRoYXQgeW91IGNhbiB0ZXN0IHRoaXMsIHlvdQo+IG1heSBuZWVkIHRvIHNldCB5
-b3VyIGRpc3BsYXkncyByZXNvbHV0aW9uIHRvIDEwMjR4NzY4IGluIG9yZGVyIHRvIGdldCBhcm91
-bmQKPiBidWcgNzA5NzIuCj4KPiBSZWdhcmRzCj4KPiBhZGxvCj4KPiBPbiBXZWQsIE1heSAzMSwg
-MjAxNyBhdCAxMjoxNSBBTSwgYWRsbyA8YWRsb2Nvbnd5QGdtYWlsLmNvbT4gd3JvdGU6Cj4+Cj4+
-IEluIGFkZGl0aW9uIHRvIGJ1ZyA3MDk3MiAoTW9kZXNldHRpbmcgZmFpbHVyZSBhdCAxMjgweDgw
-MCksIHRoZXJlIG1heSBiZQo+PiBhbm90aGVyIGJ1ZyBhZmZlY3RpbmcgdGhlIE5WSURJQSBHZUZv
-cmNlIDcxNTBNL25Gb3JjZSA2MzBNLiBJIHRoaW5rIHRoYXQKPj4gdGhpcyBpcyBhIHNlcGFyYXRl
-IGlzc3VlIGZyb20gdGhlIGFib3ZlLgo+Pgo+PiBXaGVuIHVzaW5nIEtERSBvciBVYnVudHUgVW5p
-dHkgd2l0aCBub3V2ZWF1IG9uIHRoaXMgR1BVLCB0aGVyZSB3ZXJlCj4+IGFydGlmYWN0cyBhbmQg
-bWlzc2luZyBVSSBlbGVtZW50cy4gSSB0aGluayB0aGF0IHRoaXMgaXMgcHJvYmFibHkgbW9yZSBs
-aWtlbHkKPj4gdG8gYmUgYSByZW5kZXJpbmcgaXNzdWUgcmF0aGVyIHRoYW4gYSBkaXNwbGF5IGlz
-c3VlLgo+Pgo+PiBJIGFtIG5vdCBzdXJlIGlmIHRoaXMgaXNzdWUgc3RpbGwgZXhpc3RzIGFzIHRo
-aXMgd2FzIHR3byB5ZWFycyBhZ28gYW5kIEkKPj4gbm8gbG9uZ2VyIHVzZSB0aGlzIG1hY2hpbmUs
-IHNvIEkgYW0gdW5hYmxlIHRvIHByb3ZpZGUgYW55IGZ1cnRoZXIKPj4gaW5mb3JtYXRpb24uCj4+
-Cj4+IElmIHlvdSBoYXZlIGFuIE5WSURJQSBHZUZvcmNlIDcxNTBNL25Gb3JjZSA2MzBNLCB3b3Vs
-ZCB5b3UgYmUgYWJsZSB0byB0ZXN0Cj4+IEtERSBvbiBub3V2ZWF1LCBhbmQgaWYgeW91IGV4cGVy
-aWVuY2UgYSBwcm9ibGVtLCBwbGVhc2UgY291bGQgeW91IG9wZW4gYW4KPj4gaXNzdWU/Cj4+Cj4+
-IEkgdGhpbmsgaXQgbWF5IGJlIGltcG9ydGFudCB0byBjb21wYXJlIHdoYXQgaGFwcGVucyBkZXBl
-bmRpbmcgb24gd2hldGhlcgo+PiBLV2luJ3MgY29tcG9zaXRpbmcgaXMgZW5hYmxlZCBvciBkaXNh
-YmxlZC4KPj4KPj4gUmVnYXJkcwo+Pgo+PiBhZGxvCj4KPgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0272506870==
+Content-Type: multipart/alternative; boundary="14962132021.B9048.6248";
+ charset="UTF-8"
+
+
+--14962132021.B9048.6248
+Date: Wed, 31 May 2017 06:46:42 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
+
+--- Comment #13 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #12)
+> (In reply to Pacho Ramos from comment #11)
+> > I don't use any initrd... I could rely on CONFIG_EXTRA_FIRMWARE... but I
+> > thought I didn't need that as nouveau is compiled as a module and not i=
+nto
+> > the kernel :|
+>=20
+> OK, well if modules are loaded off the FS and not initrd, then you're good
+> on that front, assuming you really do have the updated linux-firwmare (Ap=
+ril
+> 4 or later --
+> https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.g=
+it/
+> commit/?id=3Db14134583c2a15d4404695f72cb523daedb877ab). Lots of people use
+> initrd without understanding how it works.
+
+Yeah, my linux-firmware snapshot is the one up to
+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git=
+/commit/?id=3Ddf40d15d6ad617e72ce7ea00b91d9117d92dcccc
+
+>=20
+> So there are two issues here...
+>=20
+> #1: we should probably disable reverse prime if you don't have accelerati=
+on
+> (or figure out how to make it work without accel... should just be a very
+> slow memcpy away... not great, but better than a non-working screen)
+>=20
+> #2: we should figure out what's going on with accel on your GP107 -- looks
+> like stuff is just hanging (that's the "timeout" messages you see, we're
+> waiting for some condition to become true, and it never does).
+>=20
+> I can help with the former, and hopefully Ben Skeggs can investigate the
+> latter.
+
+Great, thanks a lot:)
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14962132021.B9048.6248
+Date: Wed, 31 May 2017 06:46:42 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
+put"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c13">Comme=
+nt # 13</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
+put"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pachoramos1&#64;gmail.com" title=3D"Pacho Ramos &lt;pachoramos1&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D101=
+220#c12">comment #12</a>)
+<span class=3D"quote">&gt; (In reply to Pacho Ramos from <a href=3D"show_bu=
+g.cgi?id=3D101220#c11">comment #11</a>)
+&gt; &gt; I don't use any initrd... I could rely on CONFIG_EXTRA_FIRMWARE..=
+. but I
+&gt; &gt; thought I didn't need that as nouveau is compiled as a module and=
+ not into
+&gt; &gt; the kernel :|
+&gt;=20
+&gt; OK, well if modules are loaded off the FS and not initrd, then you're =
+good
+&gt; on that front, assuming you really do have the updated linux-firwmare =
+(April
+&gt; 4 or later --
+&gt; <a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/firmware/li=
+nux-firmware.git/">https://git.kernel.org/pub/scm/linux/kernel/git/firmware=
+/linux-firmware.git/</a>
+&gt; commit/?id=3Db14134583c2a15d4404695f72cb523daedb877ab). Lots of people=
+ use
+&gt; initrd without understanding how it works.</span >
+
+Yeah, my linux-firmware snapshot is the one up to
+<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-f=
+irmware.git/commit/?id=3Ddf40d15d6ad617e72ce7ea00b91d9117d92dcccc">https://=
+git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/=
+?id=3Ddf40d15d6ad617e72ce7ea00b91d9117d92dcccc</a>
+
+<span class=3D"quote">&gt;=20
+&gt; So there are two issues here...
+&gt;=20
+&gt; #1: we should probably disable reverse prime if you don't have acceler=
+ation
+&gt; (or figure out how to make it work without accel... should just be a v=
+ery
+&gt; slow memcpy away... not great, but better than a non-working screen)
+&gt;=20
+&gt; #2: we should figure out what's going on with accel on your GP107 -- l=
+ooks
+&gt; like stuff is just hanging (that's the &quot;timeout&quot; messages yo=
+u see, we're
+&gt; waiting for some condition to become true, and it never does).
+&gt;=20
+&gt; I can help with the former, and hopefully Ben Skeggs can investigate t=
+he
+&gt; latter.</span >
+
+Great, thanks a lot:)</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14962132021.B9048.6248--
+
+--===============0272506870==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0272506870==--
