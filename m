@@ -1,107 +1,69 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101273] [NV108] Random kernel panic
-Date: Thu, 01 Jun 2017 17:51:02 +0000
-Message-ID: <bug-101273-8800-s3XHV89yjr@http.bugs.freedesktop.org/>
-References: <bug-101273-8800@http.bugs.freedesktop.org/>
+From: Daniel Drake <drake@endlessm.com>
+Subject: Re: Kernel panic on nouveau during boot on NVIDIA NV118 (GM108)
+Date: Fri, 2 Jun 2017 08:24:33 -0600
+Message-ID: <CAD8Lp45dr7UXaY5rZzT7822ThoWXPywBhpvGOsxLpGVCuDS52Q@mail.gmail.com>
+References: <CAB4CAwfQ21pAkSxhQoRbdzVXxb8XtyXR4a=R1XRTBVH-pkRVgg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0875912072=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CAB4CAwfQ21pAkSxhQoRbdzVXxb8XtyXR4a=R1XRTBVH-pkRVgg@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Chris Chiu <chiu@endlessm.com>
+Cc: nouveau@lists.freedesktop.org, Linux Upstreaming Team <linux@endlessm.com>, Ben Skeggs <bskeggs@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0875912072==
-Content-Type: multipart/alternative; boundary="14963394620.EB15BC.23116";
- charset="UTF-8"
-
-
---14963394620.EB15BC.23116
-Date: Thu, 1 Jun 2017 17:51:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101273
-
---- Comment #1 from mrblooter-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
-Created attachment 131647
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131647&action=3Dedit
-dmesg output (when the kernel panic didn't happen)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14963394620.EB15BC.23116
-Date: Thu, 1 Jun 2017 17:51:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV108] Random kernel panic"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101273#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV108] Random kernel panic"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101273">bug 10127=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mrblooter&#64;hotmail.com" title=3D"mrblooter&#64;hotmail.com">mrblooter&#6=
-4;hotmail.com</a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131647=
-" name=3D"attach_131647" title=3D"dmesg output (when the kernel panic didn'=
-t happen)">attachment 131647</a> <a href=3D"attachment.cgi?id=3D131647&amp;=
-action=3Dedit" title=3D"dmesg output (when the kernel panic didn't happen)"=
->[details]</a></span>
-dmesg output (when the kernel panic didn't happen)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14963394620.EB15BC.23116--
-
---===============0875912072==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0875912072==--
+T24gRnJpLCBKdW4gMiwgMjAxNyBhdCA0OjAxIEFNLCBDaHJpcyBDaGl1IDxjaGl1QGVuZGxlc3Nt
+LmNvbT4gd3JvdGU6Cj4gV2UgYXJlIHdvcmtpbmcgd2l0aCBuZXcgZGVza3RvcCB0aGF0IGhhdmUg
+dGhlIE5WSURJQSBOVjExOAo+IGNoaXBzZXQuCj4KPiBEdXJpbmcgYm9vdCwgdGhlIGRpc3BsYXkg
+YmVjb21lcyB1bnVzYWJsZSBhdCB0aGUgcG9pbnQgd2hlcmUgdGhlCj4gbm91dmVhdSBkcml2ZXIg
+bG9hZHMuIFdlIGhhdmUgcmVwcm9kdWNlZCBvbiA0LjgsIDQuMTEgYW5kIGxpbnV4Cj4gbWFzdGVy
+ICg0LjEyLXJjMykuCgpUbyBzYXZlIGRpZ2dpbmcgaW50byB0aGUgYXR0YWNobWVudCwgaGVyZSBp
+cyB0aGUgY3Jhc2g6Cgpub3V2ZWF1IDAwMDA6MDE6MDAuMDogcGNpOiBmYWlsZWQgdG8gYWRqdXN0
+IGNhcCBzcGVlZApub3V2ZWF1IDAwMDA6MDE6MDAuMDogcGNpOiBmYWlsZWQgdG8gYWRqdXN0IGxu
+a2N0bCBzcGVlZApub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmI6IDAgTWlCIEREUjMKZGl2aWRlIGVy
+cm9yOiAwMDAwIFsjMV0gU01QCk1vZHVsZXMgbGlua2VkIGluOiBoaWRfZ2VuZXJpYyB1c2Jtb3Vz
+ZSB1c2JrYmQgdXNiaGlkIGk5MTUgbm91dmVhdSgrKQpteG1fd21pIGkyY19hbGdvX2JpdCBkcm1f
+a21zX2hlbHBlciBzZGhjaV9wY2kgc3lzY29weWFyZWEgc3lzZmlsbHJlY3QKc3lzaW1nYmx0IGZi
+X3N5c19mb3BzIHR0bSBzZGhjaSBkcm0gYWhjaSBsaWJhaGNpIHdtaSBpMmNfaGlkIGhpZCB2aWRl
+bwpDUFU6IDMgUElEOiAyMDAgQ29tbTogc3lzdGVtZC11ZGV2ZCBOb3QgdGFpbnRlZCA0LjExLjAt
+Mi1nZW5lcmljCiM3K2RldjE0My45ZjllY2QyYmVvczMuMi4yLUVuZGxlc3MKSGFyZHdhcmUgbmFt
+ZTogQWNlciBBc3BpcmUgWjIwLTczMC9JUE1BTC1CUjMsIEJJT1MgRDAxIDA3LzA3LzIwMTYKdGFz
+azogZmZmZjhhMzA3MDI4ODAwMCB0YXNrLnN0YWNrOiBmZmZmYTNlYjQxMDNjMDAwClJJUDogMDAx
+MDpnZjEwMF9sdGNfb25laW5pdF90YWdfcmFtKzB4YmEvMHgxMDAgW25vdXZlYXVdClJTUDogMDAx
+ODpmZmZmYTNlYjQxMDNmNmI4IEVGTEFHUzogMDAwMTAyMDYKUkFYOiAwMDAwMTAwMGZmZWZkZmZm
+IFJCWDogZmZmZjhhMzA2ZjkxNTAwMCBSQ1g6IGZmZmY4YTMwNzU1NzAwMzAKUkRYOiAwMDAwMDAw
+MDAwMDAwMDAwIFJTSTogZGVhZDAwMDAwMDAwMDIwMCBSREk6IGZmZmY4YTMwN2ZkOWI3MDAKUkJQ
+OiBmZmZmYTNlYjQxMDNmNmQwIFIwODogMDAwMDAwMDAwMDAxZTk4MCBSMDk6IGZmZmY4YTMwNzcw
+MDM5MDAKUjEwOiBmZmZmYTNlYjQwY2RiZGEwIFIxMTogZmZmZjhhMzA3ZmQ5ODZhNCBSMTI6IDAw
+MDAwMDAwMDAwMDAwMDAKUjEzOiAwMDAwMDAwMTAwMDA1ZmZmIFIxNDogZmZmZjhhMzA2ZmEyZTQw
+MCBSMTU6IGZmZmY4YTMwNmY5MTRlMDAKRlM6ICAwMDAwN2Y0NTZkMDUyOTAwKDAwMDApIEdTOmZm
+ZmY4YTMwN2ZkODAwMDAoMDAwMCkga25sR1M6MDAwMDAwMDAwMDAwMDAwMApDUzogIDAwMTAgRFM6
+IDAwMDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUwMDMzCkNSMjogMDAwMDdmZWZjZWIxYzAy
+MCBDUjM6IDAwMDAwMDAyNmZiYzUwMDAgQ1I0OiAwMDAwMDAwMDAwMzQwNmUwCkNhbGwgVHJhY2U6
+CiBnbTEwN19sdGNfb25laW5pdCsweDdjLzB4OTAgW25vdXZlYXVdCiBudmttX2x0Y19vbmVpbml0
+KzB4MTMvMHgyMCBbbm91dmVhdV0KIG52a21fc3ViZGV2X2luaXQrMHg1MC8weDIxMCBbbm91dmVh
+dV0KIG52a21fZGV2aWNlX2luaXQrMHgxNTEvMHgyNzAgW25vdXZlYXVdCiBudmttX3VkZXZpY2Vf
+aW5pdCsweDQ4LzB4NjAgW25vdXZlYXVdCiBudmttX29iamVjdF9pbml0KzB4NDAvMHgxOTAgW25v
+dXZlYXVdCiBudmttX2lvY3RsX25ldysweDE3OS8weDI5MCBbbm91dmVhdV0KID8gbnZrbV9jbGll
+bnRfbm90aWZ5KzB4MzAvMHgzMCBbbm91dmVhdV0KID8gbnZrbV91ZGV2aWNlX3JkMDgrMHgzMC8w
+eDMwIFtub3V2ZWF1XQogbnZrbV9pb2N0bCsweDE2OC8weDI0MCBbbm91dmVhdV0KID8gbnZpZl9j
+bGllbnRfaW5pdCsweDQyLzB4MTEwIFtub3V2ZWF1XQogbnZrbV9jbGllbnRfaW9jdGwrMHgxMi8w
+eDIwIFtub3V2ZWF1XQogbnZpZl9vYmplY3RfaW9jdGwrMHg0Mi8weDUwIFtub3V2ZWF1XQogbnZp
+Zl9vYmplY3RfaW5pdCsweGMyLzB4MTMwIFtub3V2ZWF1XQogbnZpZl9kZXZpY2VfaW5pdCsweDEy
+LzB4MzAgW25vdXZlYXVdCiBub3V2ZWF1X2NsaV9pbml0KzB4MTVlLzB4MWQwIFtub3V2ZWF1XQog
+bm91dmVhdV9kcm1fbG9hZCsweDY3LzB4OGIwIFtub3V2ZWF1XQogPyBzeXNmc19kb19jcmVhdGVf
+bGlua19zZC5pc3JhLjIrMHg3MC8weGIwCiBkcm1fZGV2X3JlZ2lzdGVyKzB4MTQ4LzB4MWUwIFtk
+cm1dCiBkcm1fZ2V0X3BjaV9kZXYrMHhhMC8weDE2MCBbZHJtXQogbm91dmVhdV9kcm1fcHJvYmUr
+MHgxZDkvMHgyNjAgW25vdXZlYXVdCgpEYW5pZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vZHJpLWRldmVsCg==
