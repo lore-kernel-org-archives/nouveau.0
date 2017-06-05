@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101220] xorg-server-1.19.3 crashes when trying to
- enable HDMI output
-Date: Mon, 05 Jun 2017 11:21:49 +0000
-Message-ID: <bug-101220-8800-spgAET2zR5@http.bugs.freedesktop.org/>
-References: <bug-101220-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101273] [NV108] Random kernel panic
+Date: Mon, 05 Jun 2017 12:31:29 +0000
+Message-ID: <bug-101273-8800-YAqD2KdWcD@http.bugs.freedesktop.org/>
+References: <bug-101273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1592205655=="
+Content-Type: multipart/mixed; boundary="===============1841371605=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1592205655==
-Content-Type: multipart/alternative; boundary="14966617091.7EeaFc91.2733";
+--===============1841371605==
+Content-Type: multipart/alternative; boundary="14966658890.E0A5E0A9d.16086";
  charset="UTF-8"
 
 
---14966617091.7EeaFc91.2733
-Date: Mon, 5 Jun 2017 11:21:49 +0000
+--14966658890.E0A5E0A9d.16086
+Date: Mon, 5 Jun 2017 12:31:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101273
 
---- Comment #14 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Pacho Ramos from comment #7)
-[...]
-> (additionally, I don't know why on kernel 4.12-rc2 my touchpad stops to
-> move... it clicks but doesn't move... but that is probably a different bug
-> :( )
+--- Comment #4 from mrblooter-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
+Yes, 4.11.2 works. I just tested it myself and another user also reported[0]
+that it works for them.
 
-This was indeed a different bug that got fixed in rc4 :)... but nouveau sti=
-ll
-keeps failing in the same way with rc4 :(, do you need updated logs with th=
-at
-kernel? (they seem quite similar though) Thanks
+[0] https://bbs.archlinux.org/viewtopic.php?pid=3D1715603#p1715603
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14966617091.7EeaFc91.2733
-Date: Mon, 5 Jun 2017 11:21:49 +0000
+--14966658890.E0A5E0A9d.16086
+Date: Mon, 5 Jun 2017 12:31:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,34 +62,24 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
-put"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c14">Comme=
-nt # 14</a>
+   title=3D"NEW - [NV108] Random kernel panic"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101273#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
-put"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
-0</a>
+   title=3D"NEW - [NV108] Random kernel panic"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101273">bug 10127=
+3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pachoramos1&#64;gmail.com" title=3D"Pacho Ramos &lt;pachoramos1&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
+mrblooter&#64;hotmail.com" title=3D"mrblooter&#64;hotmail.com">mrblooter&#6=
+4;hotmail.com</a>
 </span></b>
-        <pre>(In reply to Pacho Ramos from <a href=3D"show_bug.cgi?id=3D101=
-220#c7">comment #7</a>)
-[...]
-<span class=3D"quote">&gt; (additionally, I don't know why on kernel 4.12-r=
-c2 my touchpad stops to
-&gt; move... it clicks but doesn't move... but that is probably a different=
- bug
-&gt; :( )</span >
+        <pre>Yes, 4.11.2 works. I just tested it myself and another user al=
+so reported[0]
+that it works for them.
 
-This was indeed a different bug that got fixed in rc4 :)... but nouveau sti=
-ll
-keeps failing in the same way with rc4 :(, do you need updated logs with th=
-at
-kernel? (they seem quite similar though) Thanks</pre>
+[0] <a href=3D"https://bbs.archlinux.org/viewtopic.php?pid=3D1715603#p17156=
+03">https://bbs.archlinux.org/viewtopic.php?pid=3D1715603#p1715603</a></pre>
         </div>
       </p>
 
@@ -111,9 +93,9 @@ kernel? (they seem quite similar though) Thanks</pre>
     </body>
 </html>=
 
---14966617091.7EeaFc91.2733--
+--14966658890.E0A5E0A9d.16086--
 
---===============1592205655==
+--===============1841371605==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1592205655==--
+--===============1841371605==--
