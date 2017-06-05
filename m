@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101184] [NVE6] [bisected] Panic on boot with GK106
-Date: Mon, 05 Jun 2017 17:23:49 +0000
-Message-ID: <bug-101184-8800-Db6F8dHGXQ@http.bugs.freedesktop.org/>
-References: <bug-101184-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH v3 1/7] pmu/fuc: add macros for pmu engine counters
+Date: Mon,  5 Jun 2017 22:35:38 +0200
+Message-ID: <20170605203544.4047-2-karolherbst@gmail.com>
+References: <20170605203544.4047-1-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0704850887=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101184-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20170605203544.4047-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,116 +20,33 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0704850887==
-Content-Type: multipart/alternative; boundary="14966834293.aFD5c.11167";
- charset="UTF-8"
-
-
---14966834293.aFD5c.11167
-Date: Mon, 5 Jun 2017 17:23:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101184
-
-Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |mrblooter-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
-
---- Comment #8 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-*** Bug 101273 has been marked as a duplicate of this bug. ***
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14966834293.aFD5c.11167
-Date: Mon, 5 Jun 2017 17:23:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:karolherb=
-st&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.com&gt;">=
- <span class=3D"fn">Karol Herbst</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">bug 10118=
-4</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>mrblooter&#64;hotmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c8">Commen=
-t # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">bug 10118=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
-</span></b>
-        <pre>*** <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - [NV108] Random kernel panic"
-   href=3D"show_bug.cgi?id=3D101273">Bug 101273</a> has been marked as a du=
-plicate of this bug. ***</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14966834293.aFD5c.11167--
-
---===============0704850887==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0704850887==--
+djI6IHJlbW92ZWQgZGVmaW5pdGlvbnMgd2Ugd29uJ3QgbmVlZCBhbnltb3JlCnYzOiByZW5hbWUg
+SUZfTk9UX0FMTCB0byBJRl9BTlkKClNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJzdCA8a2Fyb2xo
+ZXJic3RAZ21haWwuY29tPgpSZXZpZXdlZC1ieTogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNA
+ZnJlZS5mcj4KLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZnVjL21hY3Jvcy5mdWMg
+fCA4ICsrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0
+IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2Z1Yy9tYWNyb3MuZnVjIGIvZHJtL25vdXZl
+YXUvbnZrbS9zdWJkZXYvcG11L2Z1Yy9tYWNyb3MuZnVjCmluZGV4IDM3MzdiZDI3Li5kMTRmMjc3
+MSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2Z1Yy9tYWNyb3MuZnVj
+CisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9mdWMvbWFjcm9zLmZ1YwpAQCAtNjUs
+NiArNjUsMTQgQEAKICNkZWZpbmUgTlZfUFBXUl9SRklGT19HRVQgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDA0Y2MKICNkZWZpbmUgTlZfUFBXUl9IMkQg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDA0
+ZDAKICNkZWZpbmUgTlZfUFBXUl9EMkggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAweDA0ZGMKKyNkZWZpbmUgTlZfUFBXUl9DT1VOVEVSX01BU0so
+aSkgICAgICAgICAgICAgICAgICAgICAgICAgICAgKDB4MTAgKiAoaSkgKyAweDA1MDQpCisjZGVm
+aW5lIE5WX1BQV1JfQ09VTlRFUl9DT1VOVChpKSAgICAgICAgICAgICAgICAgICAgICAgICAgICgw
+eDEwICogKGkpICsgMHgwNTA4KQorI2RlZmluZSBOVl9QUFdSX0NPVU5URVJfQ09VTlRfUkVTRVQg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHg4MDAwMDAwMAorI2RlZmluZSBOVl9Q
+UFdSX0NPVU5URVJfTU9ERShpKSAgICAgICAgICAgICAgICAgICAgICAgICAgICAoMHgxMCAqIChp
+KSArIDB4MDUwYykKKyNkZWZpbmUgTlZfUFBXUl9DT1VOVEVSX01PREVfTkVWRVIgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAKKyNkZWZpbmUgTlZfUFBXUl9DT1VO
+VEVSX01PREVfSUZfQUxMICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IDEKKyNkZWZpbmUgTlZfUFBXUl9DT1VOVEVSX01PREVfSUZfQU5ZICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIDIKKyNkZWZpbmUgTlZfUFBXUl9DT1VOVEVSX01PREVf
+QUxXQVlTICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDMKICNpZiBO
+VktNX1BQV1JfQ0hJUFNFVCA8IEdLMjA4CiAjZGVmaW5lIE5WX1BQV1JfRFNDUkFUQ0goaSkgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICg0ICogKGkpICsgMHgwNWQwKQogI2VuZGlm
+Ci0tIAoyLjEzLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
