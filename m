@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101273] [NV108] Random kernel panic
-Date: Mon, 05 Jun 2017 10:18:12 +0000
-Message-ID: <bug-101273-8800-5BqEIP1CYH@http.bugs.freedesktop.org/>
-References: <bug-101273-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101220] xorg-server-1.19.3 crashes when trying to
+ enable HDMI output
+Date: Mon, 05 Jun 2017 11:21:49 +0000
+Message-ID: <bug-101220-8800-spgAET2zR5@http.bugs.freedesktop.org/>
+References: <bug-101220-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0372035345=="
+Content-Type: multipart/mixed; boundary="===============1592205655=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0372035345==
-Content-Type: multipart/alternative; boundary="14966578920.d9d14.21750";
+--===============1592205655==
+Content-Type: multipart/alternative; boundary="14966617091.7EeaFc91.2733";
  charset="UTF-8"
 
 
---14966578920.d9d14.21750
-Date: Mon, 5 Jun 2017 10:18:12 +0000
+--14966617091.7EeaFc91.2733
+Date: Mon, 5 Jun 2017 11:21:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101273
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
 
---- Comment #3 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I think on the 4.11 kernel tree it is triggered by this commit:
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git/com=
-mit/?h=3Dv4.11.3&id=3D2138faf017517acf837816101f778d5c9cda37ef
+--- Comment #14 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Pacho Ramos from comment #7)
+[...]
+> (additionally, I don't know why on kernel 4.12-rc2 my touchpad stops to
+> move... it clicks but doesn't move... but that is probably a different bug
+> :( )
 
-could you verify that linux 4.11.2 works?
+This was indeed a different bug that got fixed in rc4 :)... but nouveau sti=
+ll
+keeps failing in the same way with rc4 :(, do you need updated logs with th=
+at
+kernel? (they seem quite similar though) Thanks
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14966578920.d9d14.21750
-Date: Mon, 5 Jun 2017 10:18:12 +0000
+--14966617091.7EeaFc91.2733
+Date: Mon, 5 Jun 2017 11:21:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,25 +70,34 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV108] Random kernel panic"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101273#c3">Commen=
-t # 3</a>
+   title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
+put"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c14">Comme=
+nt # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV108] Random kernel panic"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101273">bug 10127=
-3</a>
+   title=3D"NEW - xorg-server-1.19.3 crashes when trying to enable HDMI out=
+put"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
+0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+pachoramos1&#64;gmail.com" title=3D"Pacho Ramos &lt;pachoramos1&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
 </span></b>
-        <pre>I think on the 4.11 kernel tree it is triggered by this commit:
-<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-sta=
-ble.git/commit/?h=3Dv4.11.3&amp;id=3D2138faf017517acf837816101f778d5c9cda37=
-ef">https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git=
-/commit/?h=3Dv4.11.3&amp;id=3D2138faf017517acf837816101f778d5c9cda37ef</a>
+        <pre>(In reply to Pacho Ramos from <a href=3D"show_bug.cgi?id=3D101=
+220#c7">comment #7</a>)
+[...]
+<span class=3D"quote">&gt; (additionally, I don't know why on kernel 4.12-r=
+c2 my touchpad stops to
+&gt; move... it clicks but doesn't move... but that is probably a different=
+ bug
+&gt; :( )</span >
 
-could you verify that linux 4.11.2 works?</pre>
+This was indeed a different bug that got fixed in rc4 :)... but nouveau sti=
+ll
+keeps failing in the same way with rc4 :(, do you need updated logs with th=
+at
+kernel? (they seem quite similar though) Thanks</pre>
         </div>
       </p>
 
@@ -95,9 +111,9 @@ could you verify that linux 4.11.2 works?</pre>
     </body>
 </html>=
 
---14966578920.d9d14.21750--
+--14966617091.7EeaFc91.2733--
 
---===============0372035345==
+--===============1592205655==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0372035345==--
+--===============1592205655==--
