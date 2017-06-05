@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101184] [NVE6] [bisected] Panic on boot with GK106
-Date: Mon, 05 Jun 2017 07:27:14 +0000
-Message-ID: <bug-101184-8800-3zF4KfQ5CF@http.bugs.freedesktop.org/>
-References: <bug-101184-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101273] [NV108] Random kernel panic
+Date: Mon, 05 Jun 2017 10:18:12 +0000
+Message-ID: <bug-101273-8800-5BqEIP1CYH@http.bugs.freedesktop.org/>
+References: <bug-101273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1291354834=="
+Content-Type: multipart/mixed; boundary="===============0372035345=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101184-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,40 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1291354834==
-Content-Type: multipart/alternative; boundary="14966476340.F97E.20035";
+--===============0372035345==
+Content-Type: multipart/alternative; boundary="14966578920.d9d14.21750";
  charset="UTF-8"
 
 
---14966476340.F97E.20035
-Date: Mon, 5 Jun 2017 07:27:14 +0000
+--14966578920.d9d14.21750
+Date: Mon, 5 Jun 2017 10:18:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101184
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101273
 
---- Comment #6 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 131704
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131704&action=3Dedit
-test fix
+--- Comment #3 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I think on the 4.11 kernel tree it is triggered by this commit:
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git/com=
+mit/?h=3Dv4.11.3&id=3D2138faf017517acf837816101f778d5c9cda37ef
 
-Can you give this patch a try please?
-
-I'm not 100% convinced this is the issue here, but I'd like to rule it in/o=
-ut.=20
-I have identical hardware to a couple of the other reporters of this issue,=
- but
-have been completely unable to reproduce for unknown reasons.
+could you verify that linux 4.11.2 works?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14966476340.F97E.20035
-Date: Mon, 5 Jun 2017 07:27:14 +0000
+--14966578920.d9d14.21750
+Date: Mon, 5 Jun 2017 10:18:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,32 +63,25 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c6">Commen=
-t # 6</a>
+   title=3D"NEW - [NV108] Random kernel panic"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101273#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">bug 10118=
-4</a>
+   title=3D"NEW - [NV108] Random kernel panic"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101273">bug 10127=
+3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131704=
-" name=3D"attach_131704" title=3D"test fix">attachment 131704</a> <a href=
-=3D"attachment.cgi?id=3D131704&amp;action=3Dedit" title=3D"test fix">[detai=
-ls]</a></span> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D101184&amp;=
-attachment=3D131704'>[review]</a>
-test fix
+        <pre>I think on the 4.11 kernel tree it is triggered by this commit:
+<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-sta=
+ble.git/commit/?h=3Dv4.11.3&amp;id=3D2138faf017517acf837816101f778d5c9cda37=
+ef">https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git=
+/commit/?h=3Dv4.11.3&amp;id=3D2138faf017517acf837816101f778d5c9cda37ef</a>
 
-Can you give this patch a try please?
-
-I'm not 100% convinced this is the issue here, but I'd like to rule it in/o=
-ut.=20
-I have identical hardware to a couple of the other reporters of this issue,=
- but
-have been completely unable to reproduce for unknown reasons.</pre>
+could you verify that linux 4.11.2 works?</pre>
         </div>
       </p>
 
@@ -108,9 +95,9 @@ have been completely unable to reproduce for unknown reasons.</pre>
     </body>
 </html>=
 
---14966476340.F97E.20035--
+--14966578920.d9d14.21750--
 
---===============1291354834==
+--===============0372035345==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1291354834==--
+--===============0372035345==--
