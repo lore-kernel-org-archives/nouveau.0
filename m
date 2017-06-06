@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101322] GM108/NV118: 0 MiB DDR3 and boot crash in
- gf100_ltc_oneinit_tag_ram
-Date: Tue, 06 Jun 2017 20:52:26 +0000
-Message-ID: <bug-101322-8800-NTtOBc8t63@http.bugs.freedesktop.org/>
-References: <bug-101322-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101323] New: [nv20] glx-swap-event hangs X server
+Date: Tue, 06 Jun 2017 22:37:42 +0000
+Message-ID: <bug-101323-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0263613439=="
+Content-Type: multipart/mixed; boundary="===============0465830736=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101322-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,97 +18,153 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0263613439==
-Content-Type: multipart/alternative; boundary="14967823462.Fe04.18271";
+--===============0465830736==
+Content-Type: multipart/alternative; boundary="14967886621.60f3.7000";
  charset="UTF-8"
 
 
---14967823462.Fe04.18271
-Date: Tue, 6 Jun 2017 20:52:26 +0000
+--14967886621.60f3.7000
+Date: Tue, 6 Jun 2017 22:37:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101322
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101323
 
---- Comment #1 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Daniel Drake from comment #0)
-> Created attachment 131742 [details]
-> full dmesg log
->=20
-> On the Acer Z20-730 laptop, the nouveau driver crashes during boot with:
->=20
-> [    4.041108] nouveau 0000:01:00.0: pci: failed to adjust cap speed
-> [    4.041167] nouveau 0000:01:00.0: pci: failed to adjust lnkctl speed
-> [    9.633613] nouveau 0000:01:00.0: fb: 0 MiB DDR3
-> [   20.811768] divide error: 0000 [#1] SMP
-> [   20.813654] Modules linked in: hid_generic usbmouse usbkbd usbhid i915
-> nouveau(+) mxm_wmi i2c_algo_bit drm_kms_helper sdhci_pci syscopyarea
-> sysfillrect sysimgblt fb_sys_fops ttm sdhci drm ahci libahci wmi i2c_hid =
-hid
-> video
-> [   20.815697] CPU: 3 PID: 200 Comm: systemd-udevd Not tainted
-> 4.11.0-2-generic #7+dev143.9f9ecd2beos3.2.2-Endless
-> [   20.817684] Hardware name: Acer Aspire Z20-730/IPMAL-BR3, BIOS D01
-> 07/07/2016
-> [   20.819711] task: ffff8a3070288000 task.stack: ffffa3eb4103c000
-> [   20.821762] RIP: 0010:gf100_ltc_oneinit_tag_ram+0xba/0x100 [nouveau]
-> [   20.823789] RSP: 0018:ffffa3eb4103f6b8 EFLAGS: 00010206
-> [   20.825773] RAX: 00001000ffefdfff RBX: ffff8a306f915000 RCX:
-> ffff8a3075570030
-> [   20.827820] RDX: 0000000000000000 RSI: dead000000000200 RDI:
-> ffff8a307fd9b700
-> [   20.829797] RBP: ffffa3eb4103f6d0 R08: 000000000001e980 R09:
-> ffff8a3077003900
-> [   20.831825] R10: ffffa3eb40cdbda0 R11: ffff8a307fd986a4 R12:
-> 0000000000000000
-> [   20.833814] R13: 0000000100005fff R14: ffff8a306fa2e400 R15:
-> ffff8a306f914e00
-> [   20.835882] FS:  00007f456d052900(0000) GS:ffff8a307fd80000(0000)
-> knlGS:0000000000000000
-> [   20.837874] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [   20.839935] CR2: 00007fefceb1c020 CR3: 000000026fbc5000 CR4:
-> 00000000003406e0
-> [   20.841918] Call Trace:
-> [   20.843972]  gm107_ltc_oneinit+0x7c/0x90 [nouveau]
-> [   20.845952]  nvkm_ltc_oneinit+0x13/0x20 [nouveau]
-> [   20.847991]  nvkm_subdev_init+0x50/0x210 [nouveau]
-> [   20.849977]  nvkm_device_init+0x151/0x270 [nouveau]
-> [   20.851997]  nvkm_udevice_init+0x48/0x60 [nouveau]
-> [   20.853944]  nvkm_object_init+0x40/0x190 [nouveau]
-> [   20.855924]  nvkm_ioctl_new+0x179/0x290 [nouveau]
-> [   20.857838]  ? nvkm_client_notify+0x30/0x30 [nouveau]
-> [   20.859794]  ? nvkm_udevice_rd08+0x30/0x30 [nouveau]
-> [   20.861674]  nvkm_ioctl+0x168/0x240 [nouveau]
-> [   20.863576]  ? nvif_client_init+0x42/0x110 [nouveau]
-> [   20.865449]  nvkm_client_ioctl+0x12/0x20 [nouveau]
-> [   20.867368]  nvif_object_ioctl+0x42/0x50 [nouveau]
-> [   20.869237]  nvif_object_init+0xc2/0x130 [nouveau]
-> [   20.871141]  nvif_device_init+0x12/0x30 [nouveau]
-> [   20.872994]  nouveau_cli_init+0x15e/0x1d0 [nouveau]
-> [   20.874873]  nouveau_drm_load+0x67/0x8b0 [nouveau]
-> [   20.876674]  ? sysfs_do_create_link_sd.isra.2+0x70/0xb0
-> [   20.878451]  drm_dev_register+0x148/0x1e0 [drm]
-> [   20.880302]  drm_get_pci_dev+0xa0/0x160 [drm]
-> [   20.882166]  nouveau_drm_probe+0x1d9/0x260 [nouveau]
->=20
-> This has been reproduced on 4.12-rc3. Please let us know how we can help
-> with further debugging.
+            Bug ID: 101323
+           Summary: [nv20] glx-swap-event hangs X server
+           Product: Mesa
+           Version: git
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: idr-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-does this error appear on older kernels?
+Running 'bin/glx-swap-event --async -auto' on at least NV20 hangs the X ser=
+ver.
 
-Can you get a dmesg booted with "nouveau.debug=3Ddebug"?
+Some dmesg info that *might* be related (during a full piglit run):
 
-thanks
+[ 3288.695639] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 16bc data 00000001
+[ 3288.695674] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0af0 data 00000000
+[ 3288.695692] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0af4 data 00000000
+[ 3288.695711] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0af8 data 4affffff
+[ 3288.695728] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0afc data 477fff00
+[ 3288.695747] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0800
+[STATE_INVALID] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 14f8 data ffffffff
+[ 3288.695765] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0800
+[STATE_INVALID] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 14fc data ffffffff
+[ 3288.695783] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0800
+[STATE_INVALID] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 147c data 00000000
+[ 3288.695800] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 03f8 data 00000000
+[ 3288.695817] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 03fc data 00000000
+[ 3288.695864] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 16bc data 00000001
+[ 3288.695882] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0af0 data 00000000
+[ 3288.695900] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0af4 data 00000000
+[ 3288.695918] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0af8 data 4affffff
+[ 3288.695935] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0afc data 477fff00
+[ 3288.695952] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0800
+[STATE_INVALID] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 14f8 data ffffffff
+[ 3288.695969] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0800
+[STATE_INVALID] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 14fc data ffffffff
+[ 3288.695986] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0800
+[STATE_INVALID] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 147c data 00000000
+[ 3288.696003] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 03f8 data 00000000
+[ 3288.696052] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 03fc data 00000000
+
+Backtrace of the X server process:
+
+(gdb) bt
+#0  0x00007f999b0d1787 in ioctl () from /lib64/libc.so.6
+#1  0x00007f999c5d52e8 in drmIoctl () from /lib64/libdrm.so.2
+#2  0x00007f999c5d7e6b in drmCommandWrite () from /lib64/libdrm.so.2
+#3  0x00007f99979701f2 in nouveau_bo_wait () from /lib64/libdrm_nouveau.so.2
+#4  0x00007f9997b812e2 in nouveau_dri2_copy_region2 () from
+/usr/lib64/xorg/modules/drivers/nouveau_drv.so
+#5  0x000000000056ce6b in dri2_copy_region ()
+#6  0x000000000056e19f in DRI2SwapBuffers ()
+#7  0x000000000056f9ad in ProcDRI2Dispatch ()
+#8  0x00000000004370f5 in Dispatch ()
+#9  0x000000000043b078 in dix_main ()
+#10 0x00007f999aff4401 in __libc_start_main () from /lib64/libc.so.6
+#11 0x0000000000424d5a in _start ()
+
+This is on Fedora 24.
+
+xorg-x11-server-Xorg-1.19.3-1.fc25.x86_64
+kernel-4.11.3-200.fc25.x86_64
+xorg-x11-drv-nouveau-1.0.15-2.fc25.x86_64
+
+I'm using Mesa master from the last couple days (commit 06f425192).
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14967823462.Fe04.18271
-Date: Tue, 6 Jun 2017 20:52:26 +0000
+--14967886621.60f3.7000
+Date: Tue, 6 Jun 2017 22:37:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -122,100 +175,199 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nv20] glx-swap-event hangs X server"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101323">101323</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[nv20] glx-swap-event hangs X server
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>idr&#64;freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
-it_tag_ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
-it_tag_ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322">bug 10132=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
-</span></b>
-        <pre>(In reply to Daniel Drake from <a href=3D"show_bug.cgi?id=3D10=
-1322#c0">comment #0</a>)
-<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
-gi?id=3D131742" name=3D"attach_131742" title=3D"full dmesg log">attachment =
-131742</a> <a href=3D"attachment.cgi?id=3D131742&amp;action=3Dedit" title=
-=3D"full dmesg log">[details]</a></span>
-&gt; full dmesg log
-&gt;=20
-&gt; On the Acer Z20-730 laptop, the nouveau driver crashes during boot wit=
-h:
-&gt;=20
-&gt; [    4.041108] nouveau 0000:01:00.0: pci: failed to adjust cap speed
-&gt; [    4.041167] nouveau 0000:01:00.0: pci: failed to adjust lnkctl speed
-&gt; [    9.633613] nouveau 0000:01:00.0: fb: 0 MiB DDR3
-&gt; [   20.811768] divide error: 0000 [#1] SMP
-&gt; [   20.813654] Modules linked in: hid_generic usbmouse usbkbd usbhid i=
-915
-&gt; nouveau(+) mxm_wmi i2c_algo_bit drm_kms_helper sdhci_pci syscopyarea
-&gt; sysfillrect sysimgblt fb_sys_fops ttm sdhci drm ahci libahci wmi i2c_h=
-id hid
-&gt; video
-&gt; [   20.815697] CPU: 3 PID: 200 Comm: systemd-udevd Not tainted
-&gt; 4.11.0-2-generic #7+dev143.9f9ecd2beos3.2.2-Endless
-&gt; [   20.817684] Hardware name: Acer Aspire Z20-730/IPMAL-BR3, BIOS D01
-&gt; 07/07/2016
-&gt; [   20.819711] task: ffff8a3070288000 task.stack: ffffa3eb4103c000
-&gt; [   20.821762] RIP: 0010:gf100_ltc_oneinit_tag_ram+0xba/0x100 [nouveau]
-&gt; [   20.823789] RSP: 0018:ffffa3eb4103f6b8 EFLAGS: 00010206
-&gt; [   20.825773] RAX: 00001000ffefdfff RBX: ffff8a306f915000 RCX:
-&gt; ffff8a3075570030
-&gt; [   20.827820] RDX: 0000000000000000 RSI: dead000000000200 RDI:
-&gt; ffff8a307fd9b700
-&gt; [   20.829797] RBP: ffffa3eb4103f6d0 R08: 000000000001e980 R09:
-&gt; ffff8a3077003900
-&gt; [   20.831825] R10: ffffa3eb40cdbda0 R11: ffff8a307fd986a4 R12:
-&gt; 0000000000000000
-&gt; [   20.833814] R13: 0000000100005fff R14: ffff8a306fa2e400 R15:
-&gt; ffff8a306f914e00
-&gt; [   20.835882] FS:  00007f456d052900(0000) GS:ffff8a307fd80000(0000)
-&gt; knlGS:0000000000000000
-&gt; [   20.837874] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-&gt; [   20.839935] CR2: 00007fefceb1c020 CR3: 000000026fbc5000 CR4:
-&gt; 00000000003406e0
-&gt; [   20.841918] Call Trace:
-&gt; [   20.843972]  gm107_ltc_oneinit+0x7c/0x90 [nouveau]
-&gt; [   20.845952]  nvkm_ltc_oneinit+0x13/0x20 [nouveau]
-&gt; [   20.847991]  nvkm_subdev_init+0x50/0x210 [nouveau]
-&gt; [   20.849977]  nvkm_device_init+0x151/0x270 [nouveau]
-&gt; [   20.851997]  nvkm_udevice_init+0x48/0x60 [nouveau]
-&gt; [   20.853944]  nvkm_object_init+0x40/0x190 [nouveau]
-&gt; [   20.855924]  nvkm_ioctl_new+0x179/0x290 [nouveau]
-&gt; [   20.857838]  ? nvkm_client_notify+0x30/0x30 [nouveau]
-&gt; [   20.859794]  ? nvkm_udevice_rd08+0x30/0x30 [nouveau]
-&gt; [   20.861674]  nvkm_ioctl+0x168/0x240 [nouveau]
-&gt; [   20.863576]  ? nvif_client_init+0x42/0x110 [nouveau]
-&gt; [   20.865449]  nvkm_client_ioctl+0x12/0x20 [nouveau]
-&gt; [   20.867368]  nvif_object_ioctl+0x42/0x50 [nouveau]
-&gt; [   20.869237]  nvif_object_init+0xc2/0x130 [nouveau]
-&gt; [   20.871141]  nvif_device_init+0x12/0x30 [nouveau]
-&gt; [   20.872994]  nouveau_cli_init+0x15e/0x1d0 [nouveau]
-&gt; [   20.874873]  nouveau_drm_load+0x67/0x8b0 [nouveau]
-&gt; [   20.876674]  ? sysfs_do_create_link_sd.isra.2+0x70/0xb0
-&gt; [   20.878451]  drm_dev_register+0x148/0x1e0 [drm]
-&gt; [   20.880302]  drm_get_pci_dev+0xa0/0x160 [drm]
-&gt; [   20.882166]  nouveau_drm_probe+0x1d9/0x260 [nouveau]
-&gt;=20
-&gt; This has been reproduced on 4.12-rc3. Please let us know how we can he=
-lp
-&gt; with further debugging.</span >
+        <pre>Running 'bin/glx-swap-event --async -auto' on at least NV20 ha=
+ngs the X server.
 
-does this error appear on older kernels?
+Some dmesg info that *might* be related (during a full piglit run):
 
-Can you get a dmesg booted with &quot;nouveau.debug=3Ddebug&quot;?
+[ 3288.695639] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 16bc data 00000001
+[ 3288.695674] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0af0 data 00000000
+[ 3288.695692] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0af4 data 00000000
+[ 3288.695711] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0af8 data 4affffff
+[ 3288.695728] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0afc data 477fff00
+[ 3288.695747] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0800
+[STATE_INVALID] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 14f8 data ffffffff
+[ 3288.695765] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0800
+[STATE_INVALID] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 14fc data ffffffff
+[ 3288.695783] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0800
+[STATE_INVALID] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 147c data 00000000
+[ 3288.695800] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 03f8 data 00000000
+[ 3288.695817] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 03fc data 00000000
+[ 3288.695864] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 16bc data 00000001
+[ 3288.695882] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0af0 data 00000000
+[ 3288.695900] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0af4 data 00000000
+[ 3288.695918] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0af8 data 4affffff
+[ 3288.695935] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 0afc data 477fff00
+[ 3288.695952] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0800
+[STATE_INVALID] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 14f8 data ffffffff
+[ 3288.695969] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0800
+[STATE_INVALID] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 14fc data ffffffff
+[ 3288.695986] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0800
+[STATE_INVALID] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 147c data 00000000
+[ 3288.696003] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 03f8 data 00000000
+[ 3288.696052] nouveau 0000:04:00.0: gr: intr 00100000 [ERROR] nsource 0000=
+0040
+[ILLEGAL_MTHD] nstatus 05000000 [INVALID_STATE PROTECTION_FAULT] ch 1
+[Xorg[713]] subc 7 class 0096 mthd 03fc data 00000000
 
-thanks</pre>
+Backtrace of the X server process:
+
+(gdb) bt
+#0  0x00007f999b0d1787 in ioctl () from /lib64/libc.so.6
+#1  0x00007f999c5d52e8 in drmIoctl () from /lib64/libdrm.so.2
+#2  0x00007f999c5d7e6b in drmCommandWrite () from /lib64/libdrm.so.2
+#3  0x00007f99979701f2 in nouveau_bo_wait () from /lib64/libdrm_nouveau.so.2
+#4  0x00007f9997b812e2 in nouveau_dri2_copy_region2 () from
+/usr/lib64/xorg/modules/drivers/nouveau_drv.so
+#5  0x000000000056ce6b in dri2_copy_region ()
+#6  0x000000000056e19f in DRI2SwapBuffers ()
+#7  0x000000000056f9ad in ProcDRI2Dispatch ()
+#8  0x00000000004370f5 in Dispatch ()
+#9  0x000000000043b078 in dix_main ()
+#10 0x00007f999aff4401 in __libc_start_main () from /lib64/libc.so.6
+#11 0x0000000000424d5a in _start ()
+
+This is on Fedora 24.
+
+xorg-x11-server-Xorg-1.19.3-1.fc25.x86_64
+kernel-4.11.3-200.fc25.x86_64
+xorg-x11-drv-nouveau-1.0.15-2.fc25.x86_64
+
+I'm using Mesa master from the last couple days (commit 06f425192).</pre>
         </div>
       </p>
 
@@ -224,14 +376,15 @@ thanks</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14967823462.Fe04.18271--
+--14967886621.60f3.7000--
 
---===============0263613439==
+--===============0465830736==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -241,4 +394,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0263613439==--
+--===============0465830736==--
