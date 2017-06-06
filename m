@@ -1,144 +1,48 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101323] [nv20] glx-swap-event hangs X server
-Date: Tue, 06 Jun 2017 22:44:58 +0000
-Message-ID: <bug-101323-8800-vcauXffQtn@http.bugs.freedesktop.org/>
-References: <bug-101323-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres@free.fr>
+Subject: XDC 2017 : Call for paper
+Date: Wed, 7 Jun 2017 02:19:49 +0300
+Message-ID: <b8797a4f-ecf9-862a-bb01-ef5f0ccbbcfe@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1483648494=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101323-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: "X . Org development list" <xorg-devel@lists.x.org>, wayland-devel@lists.freedesktop.org, apitrace@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, events@lists.x.org
+Cc: X_Org Foundation <board@foundation.x.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1483648494==
-Content-Type: multipart/alternative; boundary="14967890972.B505b635.7911";
- charset="UTF-8"
-
-
---14967890972.B505b635.7911
-Date: Tue, 6 Jun 2017 22:44:57 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101323
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-A few things you may be interested in:
-
-(a) The pid always comes back as Xorg, since that's who opens the FD, even =
-in a
-dri3 scenario. Only time that it's the real application is when you're using
-DRI3 *and* running on a secondary GPU.
-
-(b) Hangs in nouveau_bo_wait indicate that the GPU hung. Basically it's an
-ioctl that stalls until a fence is hit (the command for writing the fence is
-sent by the kernel on command submission). If it never returns, that means =
-the
-fence is never hit. [Or there's a bug in our fence logic... I wonder if the=
-re's
-some sort of 32-bit wraparound sadness in there which is helped by piglit.]
-
-Since you have a reproducible hang, might want to check dmesg *before* runn=
-ing
-the test, and then seeing what happens.
-
-FWIW I always run piglit with "-x glx" -- that stuff never ends well on any
-generation with nouveau, and I've never had the desire to investigate it.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---14967890972.B505b635.7911
-Date: Tue, 6 Jun 2017 22:44:57 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nv20] glx-swap-event hangs X server"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101323#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nv20] glx-swap-event hangs X server"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101323">bug 10132=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>A few things you may be interested in:
-
-(a) The pid always comes back as Xorg, since that's who opens the FD, even =
-in a
-dri3 scenario. Only time that it's the real application is when you're using
-DRI3 *and* running on a secondary GPU.
-
-(b) Hangs in nouveau_bo_wait indicate that the GPU hung. Basically it's an
-ioctl that stalls until a fence is hit (the command for writing the fence is
-sent by the kernel on command submission). If it never returns, that means =
-the
-fence is never hit. [Or there's a bug in our fence logic... I wonder if the=
-re's
-some sort of 32-bit wraparound sadness in there which is helped by piglit.]
-
-Since you have a reproducible hang, might want to check dmesg *before* runn=
-ing
-the test, and then seeing what happens.
-
-FWIW I always run piglit with &quot;-x glx&quot; -- that stuff never ends w=
-ell on any
-generation with nouveau, and I've never had the desire to investigate it.</=
-pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14967890972.B505b635.7911--
-
---===============1483648494==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1483648494==--
+SGVsbG8sCgpJIGhhdmUgdGhlIHBsZWFzdXJlIHRvIGFubm91bmNlIHRoYXQgdGhlIFgub3JnIERl
+dmVsb3BlciBDb25mZXJlbmNlIDIwMTcKd2lsbCBiZSBoZWxkIGluIE1vdW50YWluIFZpZXcsIENh
+bGlmb3JuaWEgZnJvbSBTZXB0ZW1iZXIgMjB0aCB0bwpTZXB0ZW1iZXIgMjJuZC4gVGhlIHZlbnVl
+IGlzIGxvY2F0ZWQgYXQgdGhlIEdvb2dsZXBsZXguCgpUaGUgb2ZmaWNpYWwgcGFnZSBmb3IgdGhl
+IGV2ZW50IGlzIGh0dHA6Ly93d3cueC5vcmcvd2lraS9FdmVudHMvWERDMjAxNwp3aGlsZSB0aGUg
+Y2FsbCBmb3IgcGFwZXIgaXMgYXQgaHR0cDovL3d3dy54Lm9yZy93aWtpL090aGVyL1ByZXNzL0NG
+UDIwMTcvCgpBcyB1c3VhbCwgd2UgYXJlIG9wZW4gdG8gdGFsa3MgYWNyb3NzIHRoZSBsYXllcnMg
+b2YgdGhlIGdyYXBoaWNzIHN0YWNrLApmcm9tIHRoZSBrZXJuZWwgdG8gZGVza3RvcCBlbnZpcm9u
+bWVudHMgLyBncmFwaGljYWwgYXBwbGljYXRpb25zIGFuZAphYm91dCBob3cgdG8gbWFrZSB0aGlu
+Z3MgYmV0dGVyIGZvciB0aGUgZGV2ZWxvcGVycyB3aG8gYnVpbGQgdGhlbS4KR2l2ZW4gdGhhdCB0
+aGUgY29uZmVyZW5jZSBpcyBsb2NhdGVkIGF0IEdvb2dsZSwgd2Ugd291bGQgd2VsY29tZSB0b3Bp
+Y3MKcmVsYXRlZCB0byBBbmRyb2lkIGFuZCBDaHJvbWVib29rcy4gV2Ugd291bGQgYWxzbyBsaWtl
+IHRvIGhlYXIgYWJvdXQKVmlydHVhbCBSZWFsaXR5IGFuZCBlbmQtdG8tZW5kIGJ1ZmZlciBmb3Jt
+YXQgbmVnb2NpYXRpb24uIElmIHlvdSdyZSBub3QKc3VyZSBpZiBzb21ldGhpbmcgbWlnaHQgZml0
+LCBtYWlsIG1lIG9yIGFkZCBpdCB0byB0aGUgaWRlYXMgbGlzdCBmb3VuZAppbiB0aGUgcHJvZ3Jh
+bSBwYWdlLgoKVGhlIGNvbmZlcmVuY2UgaXMgZnJlZSBvZiBjaGFyZ2UgYW5kIG9wZW4gdG8gdGhl
+IGdlbmVyYWwgcHVibGljLiBJZgp5b3UgcGxhbiBvbiBjb21pbmcsIHBsZWFzZSBhZGQgeW91cnNl
+bGYgdG8gdGhlIGF0dGVuZGVlcyBsaXN0LiBXZSdsbAp1c2UgdGhpcyBsaXN0IHRvIG1ha2UgYmFk
+Z2VzIGFuZCBwbGFuIGZvciB0aGUgY2F0ZXJpbmcsIHNvIGlmIHlvdSBhcmUKYXR0ZW5kaW5nIHBs
+ZWFzZSBhZGQgeW91ciBuYW1lIGFzIGVhcmx5IGFzIHBvc3NpYmxlLgoKSSBhbSBsb29raW5nIGZv
+cndhcmQgdG8gc2VlaW5nIHlvdSB0aGVyZS4gSWYgeW91IGhhdmUgYW55CmlucXVpcmllcy9xdWVz
+dGlvbnMsIHBsZWFzZSBzZW5kIHRoZW0gdG8gU3TDqXBoYW5lIE1hcmNoZXNpbiAocGxlYXNlIGFs
+c28KQ0M6IGJvYXJkIGF0IGZvdW5kYXRpb24ueC5vcmcpLgoKTWFydGluIFBlcmVzCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcg
+bGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
