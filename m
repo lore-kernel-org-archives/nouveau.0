@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101322] GM108/NV118: 0 MiB DDR3 and boot crash in
  gf100_ltc_oneinit_tag_ram
-Date: Wed, 07 Jun 2017 13:10:06 +0000
-Message-ID: <bug-101322-8800-1dJkgAPZ0l@http.bugs.freedesktop.org/>
+Date: Wed, 07 Jun 2017 13:11:21 +0000
+Message-ID: <bug-101322-8800-bMktczi7L3@http.bugs.freedesktop.org/>
 References: <bug-101322-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0543449786=="
+Content-Type: multipart/mixed; boundary="===============0673977327=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101322-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0543449786==
-Content-Type: multipart/alternative; boundary="14968410060.7DBDDd.7659";
+--===============0673977327==
+Content-Type: multipart/alternative; boundary="14968410811.046dC0.8226";
  charset="UTF-8"
 
 
---14968410060.7DBDDd.7659
-Date: Wed, 7 Jun 2017 13:10:06 +0000
+--14968410811.046dC0.8226
+Date: Wed, 7 Jun 2017 13:11:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,25 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101322
 
---- Comment #2 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
-Created attachment 131772
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131772&action=3Dedit
-dmesg with nouveau.debug=3Ddebug
-
-Here is the debug log. By the way, this is exactly the same report as was
-posted on the nouveau list "Kernel panic on nouveau during boot on NVIDIA N=
-V118
-(GM108)" - I just duplicated it here after no response on the list (plus I
-think here is the more appropriate place?)
-
-Thanks for your help so far!
+--- Comment #3 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
+And yes this problem has been reproduced on v4.8, v4.11, v4.12-rc3. We don't
+know of any working kernels.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14968410060.7DBDDd.7659
-Date: Wed, 7 Jun 2017 13:10:06 +0000
+--14968410811.046dC0.8226
+Date: Wed, 7 Jun 2017 13:11:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,8 +63,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
 it_tag_ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
@@ -84,20 +75,9 @@ it_tag_ram"
 dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
 gt;"> <span class=3D"fn">Daniel Drake</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131772=
-" name=3D"attach_131772" title=3D"dmesg with nouveau.debug=3Ddebug">attachm=
-ent 131772</a> <a href=3D"attachment.cgi?id=3D131772&amp;action=3Dedit" tit=
-le=3D"dmesg with nouveau.debug=3Ddebug">[details]</a></span>
-dmesg with nouveau.debug=3Ddebug
-
-Here is the debug log. By the way, this is exactly the same report as was
-posted on the nouveau list &quot;Kernel panic on nouveau during boot on NVI=
-DIA NV118
-(GM108)&quot; - I just duplicated it here after no response on the list (pl=
-us I
-think here is the more appropriate place?)
-
-Thanks for your help so far!</pre>
+        <pre>And yes this problem has been reproduced on v4.8, v4.11, v4.12=
+-rc3. We don't
+know of any working kernels.</pre>
         </div>
       </p>
 
@@ -111,9 +91,9 @@ Thanks for your help so far!</pre>
     </body>
 </html>=
 
---14968410060.7DBDDd.7659--
+--14968410811.046dC0.8226--
 
---===============0543449786==
+--===============0673977327==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0543449786==--
+--===============0673977327==--
