@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101335] New: build failure: nouveau_screen.c:105:8:
+Subject: [Bug 101335] build failure: nouveau_screen.c:105:8:
  error:=?UTF-8?Q?=20implicit=20declaration=20of=20function=20=E2=80=98nouveau=5Fdrm=5Fnew=E2=80=99?=;
-Date: Wed, 07 Jun 2017 20:19:16 +0000
-Message-ID: <bug-101335-8800@http.bugs.freedesktop.org/>
+Date: Wed, 07 Jun 2017 20:27:36 +0000
+Message-ID: <bug-101335-8800-OXMVFqgurc@http.bugs.freedesktop.org/>
+References: <bug-101335-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0977007262=="
+Content-Type: multipart/mixed; boundary="===============1742940378=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101335-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0977007262==
-Content-Type: multipart/alternative; boundary="14968667560.3CD5bd.27253";
+--===============1742940378==
+Content-Type: multipart/alternative; boundary="14968672560.FCE435fE9.28919";
  charset="UTF-8"
 
 
---14968667560.3CD5bd.27253
-Date: Wed, 7 Jun 2017 20:19:16 +0000
+--14968672560.FCE435fE9.28919
+Date: Wed, 7 Jun 2017 20:27:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,63 +36,53 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101335
 
-            Bug ID: 101335
-           Summary: build failure:  nouveau_screen.c:105:8: error:
-                    implicit declaration of function =E2=80=98nouveau_drm_n=
-ew=E2=80=99;
-           Product: Mesa
-           Version: git
-          Hardware: x86 (IA32)
-                OS: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: David.Ronis-BAnzPxqWUM23NexWsGEg3A@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+--- Comment #1 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to David Ronis from comment #0)
+> I'm trying to build the git master on an 32 bit machine.  The build dies
+> with:
+>=20
+>  CC     nouveau_surface.lo
+> nouveau_screen.c: In function =E2=80=98nouveau_init_screen2=E2=80=99:
+> nouveau_screen.c:105:8: error: implicit declaration of function
+> =E2=80=98nouveau_drm_new=E2=80=99; did you mean =E2=80=98nouveau_bo_new=
+=E2=80=99?
+> [-Werror=3Dimplicit-function-declaration]
+>   ret =3D nouveau_drm_new(dri_screen->fd, &screen->drm);
+>         ^~~~~~~~~~~~~~~
+>         nouveau_bo_new
+> nouveau_screen.c:111:8: error: implicit declaration of function
+> =E2=80=98nouveau_device_new=E2=80=99; did you mean =E2=80=98nouveau_devic=
+e_del=E2=80=99?
+> [-Werror=3Dimplicit-function-declaration]
+>   ret =3D nouveau_device_new(&screen->drm->client, NV_DEVICE,
+>         ^~~~~~~~~~~~~~~~~~
+>         nouveau_device_del
+> nouveau_screen.c:111:39: error: dereferencing pointer to incomplete type
+> =E2=80=98struct nouveau_drm=E2=80=99
+>   ret =3D nouveau_device_new(&screen->drm->client, NV_DEVICE,
+>                                        ^~
+>   CC     nouveau_texture.lo
+> nouveau_screen.c: In function =E2=80=98nouveau_destroy_screen=E2=80=99:
+> nouveau_screen.c:230:2: error: implicit declaration of function
+> =E2=80=98nouveau_drm_del=E2=80=99; did you mean =E2=80=98nouveau_bo_ref=
+=E2=80=99?
+> [-Werror=3Dimplicit-function-declaration]
+>   nouveau_drm_del(&screen->drm);
+>   ^~~~~~~~~~~~~~~
+>   nouveau_bo_ref
+> cc1: some warnings being treated as errors
 
-I'm trying to build the git master on an 32 bit machine.  The build dies wi=
-th:
-
- CC     nouveau_surface.lo
-nouveau_screen.c: In function =E2=80=98nouveau_init_screen2=E2=80=99:
-nouveau_screen.c:105:8: error: implicit declaration of function
-=E2=80=98nouveau_drm_new=E2=80=99; did you mean =E2=80=98nouveau_bo_new=E2=
-=80=99?
-[-Werror=3Dimplicit-function-declaration]
-  ret =3D nouveau_drm_new(dri_screen->fd, &screen->drm);
-        ^~~~~~~~~~~~~~~
-        nouveau_bo_new
-nouveau_screen.c:111:8: error: implicit declaration of function
-=E2=80=98nouveau_device_new=E2=80=99; did you mean =E2=80=98nouveau_device_=
-del=E2=80=99?
-[-Werror=3Dimplicit-function-declaration]
-  ret =3D nouveau_device_new(&screen->drm->client, NV_DEVICE,
-        ^~~~~~~~~~~~~~~~~~
-        nouveau_device_del
-nouveau_screen.c:111:39: error: dereferencing pointer to incomplete type
-=E2=80=98struct nouveau_drm=E2=80=99
-  ret =3D nouveau_device_new(&screen->drm->client, NV_DEVICE,
-                                       ^~
-  CC     nouveau_texture.lo
-nouveau_screen.c: In function =E2=80=98nouveau_destroy_screen=E2=80=99:
-nouveau_screen.c:230:2: error: implicit declaration of function
-=E2=80=98nouveau_drm_del=E2=80=99; did you mean =E2=80=98nouveau_bo_ref=E2=
-=80=99?
-[-Werror=3Dimplicit-function-declaration]
-  nouveau_drm_del(&screen->drm);
-  ^~~~~~~~~~~~~~~
-  nouveau_bo_ref
-cc1: some warnings being treated as errors
+you need to build against drm-next kernel tree or a different tree the modu=
+le
+is actually based on. Check for the last drm-next commit in the tree.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14968667560.3CD5bd.27253
-Date: Wed, 7 Jun 2017 20:19:16 +0000
+--14968672560.FCE435fE9.28919
+Date: Wed, 7 Jun 2017 20:27:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -101,124 +93,66 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - build failure: nouveau_screen.c:105:8: error: implicit de=
 claration of function =E2=80=98nouveau_drm_new=E2=80=99;"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101335">101335</a>
-          </td>
-        </tr>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101335#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - build failure: nouveau_screen.c:105:8: error: implicit de=
+claration of function =E2=80=98nouveau_drm_new=E2=80=99;"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101335">bug 10133=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+</span></b>
+        <pre>(In reply to David Ronis from <a href=3D"show_bug.cgi?id=3D101=
+335#c0">comment #0</a>)
+<span class=3D"quote">&gt; I'm trying to build the git master on an 32 bit =
+machine.  The build dies
+&gt; with:
+&gt;=20
+&gt;  CC     nouveau_surface.lo
+&gt; nouveau_screen.c: In function =E2=80=98nouveau_init_screen2=E2=80=99:
+&gt; nouveau_screen.c:105:8: error: implicit declaration of function
+&gt; =E2=80=98nouveau_drm_new=E2=80=99; did you mean =E2=80=98nouveau_bo_ne=
+w=E2=80=99?
+&gt; [-Werror=3Dimplicit-function-declaration]
+&gt;   ret =3D nouveau_drm_new(dri_screen-&gt;fd, &amp;screen-&gt;drm);
+&gt;         ^~~~~~~~~~~~~~~
+&gt;         nouveau_bo_new
+&gt; nouveau_screen.c:111:8: error: implicit declaration of function
+&gt; =E2=80=98nouveau_device_new=E2=80=99; did you mean =E2=80=98nouveau_de=
+vice_del=E2=80=99?
+&gt; [-Werror=3Dimplicit-function-declaration]
+&gt;   ret =3D nouveau_device_new(&amp;screen-&gt;drm-&gt;client, NV_DEVICE,
+&gt;         ^~~~~~~~~~~~~~~~~~
+&gt;         nouveau_device_del
+&gt; nouveau_screen.c:111:39: error: dereferencing pointer to incomplete ty=
+pe
+&gt; =E2=80=98struct nouveau_drm=E2=80=99
+&gt;   ret =3D nouveau_device_new(&amp;screen-&gt;drm-&gt;client, NV_DEVICE,
+&gt;                                        ^~
+&gt;   CC     nouveau_texture.lo
+&gt; nouveau_screen.c: In function =E2=80=98nouveau_destroy_screen=E2=80=99:
+&gt; nouveau_screen.c:230:2: error: implicit declaration of function
+&gt; =E2=80=98nouveau_drm_del=E2=80=99; did you mean =E2=80=98nouveau_bo_re=
+f=E2=80=99?
+&gt; [-Werror=3Dimplicit-function-declaration]
+&gt;   nouveau_drm_del(&amp;screen-&gt;drm);
+&gt;   ^~~~~~~~~~~~~~~
+&gt;   nouveau_bo_ref
+&gt; cc1: some warnings being treated as errors</span >
 
-        <tr>
-          <th>Summary</th>
-          <td>build failure:  nouveau_screen.c:105:8: error: implicit decla=
-ration of function =E2=80=98nouveau_drm_new=E2=80=99;
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86 (IA32)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>David.Ronis&#64;McGill.CA
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>I'm trying to build the git master on an 32 bit machine.  The =
-build dies with:
-
- CC     nouveau_surface.lo
-nouveau_screen.c: In function =E2=80=98nouveau_init_screen2=E2=80=99:
-nouveau_screen.c:105:8: error: implicit declaration of function
-=E2=80=98nouveau_drm_new=E2=80=99; did you mean =E2=80=98nouveau_bo_new=E2=
-=80=99?
-[-Werror=3Dimplicit-function-declaration]
-  ret =3D nouveau_drm_new(dri_screen-&gt;fd, &amp;screen-&gt;drm);
-        ^~~~~~~~~~~~~~~
-        nouveau_bo_new
-nouveau_screen.c:111:8: error: implicit declaration of function
-=E2=80=98nouveau_device_new=E2=80=99; did you mean =E2=80=98nouveau_device_=
-del=E2=80=99?
-[-Werror=3Dimplicit-function-declaration]
-  ret =3D nouveau_device_new(&amp;screen-&gt;drm-&gt;client, NV_DEVICE,
-        ^~~~~~~~~~~~~~~~~~
-        nouveau_device_del
-nouveau_screen.c:111:39: error: dereferencing pointer to incomplete type
-=E2=80=98struct nouveau_drm=E2=80=99
-  ret =3D nouveau_device_new(&amp;screen-&gt;drm-&gt;client, NV_DEVICE,
-                                       ^~
-  CC     nouveau_texture.lo
-nouveau_screen.c: In function =E2=80=98nouveau_destroy_screen=E2=80=99:
-nouveau_screen.c:230:2: error: implicit declaration of function
-=E2=80=98nouveau_drm_del=E2=80=99; did you mean =E2=80=98nouveau_bo_ref=E2=
-=80=99?
-[-Werror=3Dimplicit-function-declaration]
-  nouveau_drm_del(&amp;screen-&gt;drm);
-  ^~~~~~~~~~~~~~~
-  nouveau_bo_ref
-cc1: some warnings being treated as errors</pre>
+you need to build against drm-next kernel tree or a different tree the modu=
+le
+is actually based on. Check for the last drm-next commit in the tree.</pre>
         </div>
       </p>
 
@@ -227,15 +161,15 @@ cc1: some warnings being treated as errors</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14968667560.3CD5bd.27253--
+--14968672560.FCE435fE9.28919--
 
---===============0977007262==
+--===============1742940378==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -245,4 +179,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0977007262==--
+--===============1742940378==--
