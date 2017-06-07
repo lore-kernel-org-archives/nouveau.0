@@ -1,48 +1,39 @@
-From: Martin Peres <martin.peres@free.fr>
-Subject: XDC 2017 : Call for paper
-Date: Wed, 7 Jun 2017 02:19:49 +0300
-Message-ID: <b8797a4f-ecf9-862a-bb01-ef5f0ccbbcfe@free.fr>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Kernel panic on nouveau during boot on NVIDIA NV118
+	(GM108)
+Date: Wed, 7 Jun 2017 09:56:33 +0200
+Message-ID: <CAEXux-bfQGFnmedciEAntGvaB40Oq_+H5CV3Lt23ht5TrN_ofA@mail.gmail.com>
+References: <CAB4CAwfQ21pAkSxhQoRbdzVXxb8XtyXR4a=R1XRTBVH-pkRVgg@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: "X . Org development list" <xorg-devel@lists.x.org>, wayland-devel@lists.freedesktop.org, apitrace@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, events@lists.x.org
-Cc: X_Org Foundation <board@foundation.x.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAB4CAwfQ21pAkSxhQoRbdzVXxb8XtyXR4a=R1XRTBVH-pkRVgg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Chris Chiu <chiu-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Upstreaming Team <linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8sCgpJIGhhdmUgdGhlIHBsZWFzdXJlIHRvIGFubm91bmNlIHRoYXQgdGhlIFgub3JnIERl
-dmVsb3BlciBDb25mZXJlbmNlIDIwMTcKd2lsbCBiZSBoZWxkIGluIE1vdW50YWluIFZpZXcsIENh
-bGlmb3JuaWEgZnJvbSBTZXB0ZW1iZXIgMjB0aCB0bwpTZXB0ZW1iZXIgMjJuZC4gVGhlIHZlbnVl
-IGlzIGxvY2F0ZWQgYXQgdGhlIEdvb2dsZXBsZXguCgpUaGUgb2ZmaWNpYWwgcGFnZSBmb3IgdGhl
-IGV2ZW50IGlzIGh0dHA6Ly93d3cueC5vcmcvd2lraS9FdmVudHMvWERDMjAxNwp3aGlsZSB0aGUg
-Y2FsbCBmb3IgcGFwZXIgaXMgYXQgaHR0cDovL3d3dy54Lm9yZy93aWtpL090aGVyL1ByZXNzL0NG
-UDIwMTcvCgpBcyB1c3VhbCwgd2UgYXJlIG9wZW4gdG8gdGFsa3MgYWNyb3NzIHRoZSBsYXllcnMg
-b2YgdGhlIGdyYXBoaWNzIHN0YWNrLApmcm9tIHRoZSBrZXJuZWwgdG8gZGVza3RvcCBlbnZpcm9u
-bWVudHMgLyBncmFwaGljYWwgYXBwbGljYXRpb25zIGFuZAphYm91dCBob3cgdG8gbWFrZSB0aGlu
-Z3MgYmV0dGVyIGZvciB0aGUgZGV2ZWxvcGVycyB3aG8gYnVpbGQgdGhlbS4KR2l2ZW4gdGhhdCB0
-aGUgY29uZmVyZW5jZSBpcyBsb2NhdGVkIGF0IEdvb2dsZSwgd2Ugd291bGQgd2VsY29tZSB0b3Bp
-Y3MKcmVsYXRlZCB0byBBbmRyb2lkIGFuZCBDaHJvbWVib29rcy4gV2Ugd291bGQgYWxzbyBsaWtl
-IHRvIGhlYXIgYWJvdXQKVmlydHVhbCBSZWFsaXR5IGFuZCBlbmQtdG8tZW5kIGJ1ZmZlciBmb3Jt
-YXQgbmVnb2NpYXRpb24uIElmIHlvdSdyZSBub3QKc3VyZSBpZiBzb21ldGhpbmcgbWlnaHQgZml0
-LCBtYWlsIG1lIG9yIGFkZCBpdCB0byB0aGUgaWRlYXMgbGlzdCBmb3VuZAppbiB0aGUgcHJvZ3Jh
-bSBwYWdlLgoKVGhlIGNvbmZlcmVuY2UgaXMgZnJlZSBvZiBjaGFyZ2UgYW5kIG9wZW4gdG8gdGhl
-IGdlbmVyYWwgcHVibGljLiBJZgp5b3UgcGxhbiBvbiBjb21pbmcsIHBsZWFzZSBhZGQgeW91cnNl
-bGYgdG8gdGhlIGF0dGVuZGVlcyBsaXN0LiBXZSdsbAp1c2UgdGhpcyBsaXN0IHRvIG1ha2UgYmFk
-Z2VzIGFuZCBwbGFuIGZvciB0aGUgY2F0ZXJpbmcsIHNvIGlmIHlvdSBhcmUKYXR0ZW5kaW5nIHBs
-ZWFzZSBhZGQgeW91ciBuYW1lIGFzIGVhcmx5IGFzIHBvc3NpYmxlLgoKSSBhbSBsb29raW5nIGZv
-cndhcmQgdG8gc2VlaW5nIHlvdSB0aGVyZS4gSWYgeW91IGhhdmUgYW55CmlucXVpcmllcy9xdWVz
-dGlvbnMsIHBsZWFzZSBzZW5kIHRoZW0gdG8gU3TDqXBoYW5lIE1hcmNoZXNpbiAocGxlYXNlIGFs
-c28KQ0M6IGJvYXJkIGF0IGZvdW5kYXRpb24ueC5vcmcpLgoKTWFydGluIFBlcmVzCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcg
-bGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
+SXQgbG9va3Mgc2ltaWxpYXIgdG8gdGhpcyBvbmU6Cmh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5v
+cmcvc2hvd19idWcuY2dpP2lkPTEwMTMyMgoKcGxlYXNlIHByb3ZpZGUgYSBkbWVzZyBib290ZWQg
+d2l0aCAibm91dmVhdS5kZWJ1Zz1kZWJ1ZyIgYXMgd2VsbAoKMjAxNy0wNi0wMiAxMjowMSBHTVQr
+MDI6MDAgQ2hyaXMgQ2hpdSA8Y2hpdUBlbmRsZXNzbS5jb20+Ogo+IFdlIGFyZSB3b3JraW5nIHdp
+dGggbmV3IGRlc2t0b3AgdGhhdCBoYXZlIHRoZSBOVklESUEgTlYxMTgKPiBjaGlwc2V0Lgo+Cj4g
+RHVyaW5nIGJvb3QsIHRoZSBkaXNwbGF5IGJlY29tZXMgdW51c2FibGUgYXQgdGhlIHBvaW50IHdo
+ZXJlIHRoZQo+IG5vdXZlYXUgZHJpdmVyIGxvYWRzLiBXZSBoYXZlIHJlcHJvZHVjZWQgb24gNC44
+LCA0LjExIGFuZCBsaW51eAo+IG1hc3RlciAoNC4xMi1yYzMpLgo+Cj4gRG1lc2cgbG9nIGlzIGF0
+dGFjaGVkLgo+Cj4gSXMgdGhpcyBhIGtub3duIGlzc3VlPyBBbnl0aGluZyB3ZSBjYW4gZG8gdG8g
+aGVscD8KPgo+IFRoYW5rcwo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
