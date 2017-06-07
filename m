@@ -1,39 +1,40 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Kernel panic on nouveau during boot on NVIDIA NV118
-	(GM108)
-Date: Wed, 7 Jun 2017 09:56:33 +0200
-Message-ID: <CAEXux-bfQGFnmedciEAntGvaB40Oq_+H5CV3Lt23ht5TrN_ofA@mail.gmail.com>
-References: <CAB4CAwfQ21pAkSxhQoRbdzVXxb8XtyXR4a=R1XRTBVH-pkRVgg@mail.gmail.com>
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH][drm-next] drm/nouveau: fix non-ANSI function declaration of
+ nouveau_pmops_runtime
+Date: Wed,  7 Jun 2017 12:35:17 +0100
+Message-ID: <20170607113517.29270-1-colin.king@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAB4CAwfQ21pAkSxhQoRbdzVXxb8XtyXR4a=R1XRTBVH-pkRVgg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Chris Chiu <chiu-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Upstreaming Team <linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-SXQgbG9va3Mgc2ltaWxpYXIgdG8gdGhpcyBvbmU6Cmh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5v
-cmcvc2hvd19idWcuY2dpP2lkPTEwMTMyMgoKcGxlYXNlIHByb3ZpZGUgYSBkbWVzZyBib290ZWQg
-d2l0aCAibm91dmVhdS5kZWJ1Zz1kZWJ1ZyIgYXMgd2VsbAoKMjAxNy0wNi0wMiAxMjowMSBHTVQr
-MDI6MDAgQ2hyaXMgQ2hpdSA8Y2hpdUBlbmRsZXNzbS5jb20+Ogo+IFdlIGFyZSB3b3JraW5nIHdp
-dGggbmV3IGRlc2t0b3AgdGhhdCBoYXZlIHRoZSBOVklESUEgTlYxMTgKPiBjaGlwc2V0Lgo+Cj4g
-RHVyaW5nIGJvb3QsIHRoZSBkaXNwbGF5IGJlY29tZXMgdW51c2FibGUgYXQgdGhlIHBvaW50IHdo
-ZXJlIHRoZQo+IG5vdXZlYXUgZHJpdmVyIGxvYWRzLiBXZSBoYXZlIHJlcHJvZHVjZWQgb24gNC44
-LCA0LjExIGFuZCBsaW51eAo+IG1hc3RlciAoNC4xMi1yYzMpLgo+Cj4gRG1lc2cgbG9nIGlzIGF0
-dGFjaGVkLgo+Cj4gSXMgdGhpcyBhIGtub3duIGlzc3VlPyBBbnl0aGluZyB3ZSBjYW4gZG8gdG8g
-aGVscD8KPgo+IFRoYW5rcwo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1Cj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KCkdpdmUgZnVu
+Y3Rpb24gbm91dmVhdV9wbW9wc19ydW50aW1lIGEgdm9pZCBhcmd1bWVudCB0byBtYWtlIGl0IGFu
+IEFOU0kKZnVuY3Rpb24gZGVjbGFyYXRpb24uIEZpeGVzIHNwYXJzZSB3YXJuaW5nOgoKd2Fybmlu
+Zzogbm9uLUFOU0kgZnVuY3Rpb24gZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24gJ25vdXZlYXVfcG1v
+cHNfcnVudGltZScKClNpZ25lZC1vZmYtYnk6IENvbGluIElhbiBLaW5nIDxjb2xpbi5raW5nQGNh
+bm9uaWNhbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyB8
+IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgYi9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCmluZGV4IDdhY2QxY2Y4YzVhNi4uOTA3NTdh
+ZjliYzczIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5j
+CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKQEAgLTcyNyw3ICs3
+MjcsNyBAQCBub3V2ZWF1X3Btb3BzX3RoYXcoc3RydWN0IGRldmljZSAqZGV2KQogfQogCiBib29s
+Ci1ub3V2ZWF1X3Btb3BzX3J1bnRpbWUoKQorbm91dmVhdV9wbW9wc19ydW50aW1lKHZvaWQpCiB7
+CiAJaWYgKG5vdXZlYXVfcnVudGltZV9wbSA9PSAtMSkKIAkJcmV0dXJuIG5vdXZlYXVfaXNfb3B0
+aW11cygpIHx8IG5vdXZlYXVfaXNfdjFfZHNtKCk7Ci0tIAoyLjExLjAKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QK
+ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
