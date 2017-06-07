@@ -1,40 +1,126 @@
-From: Colin King <colin.king@canonical.com>
-Subject: [PATCH][drm-next] drm/nouveau: fix non-ANSI function declaration of
- nouveau_pmops_runtime
-Date: Wed,  7 Jun 2017 12:35:17 +0100
-Message-ID: <20170607113517.29270-1-colin.king@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101322] GM108/NV118: 0 MiB DDR3 and boot crash in
+ gf100_ltc_oneinit_tag_ram
+Date: Wed, 07 Jun 2017 13:10:06 +0000
+Message-ID: <bug-101322-8800-1dJkgAPZ0l@http.bugs.freedesktop.org/>
+References: <bug-101322-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============0543449786=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101322-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KCkdpdmUgZnVu
-Y3Rpb24gbm91dmVhdV9wbW9wc19ydW50aW1lIGEgdm9pZCBhcmd1bWVudCB0byBtYWtlIGl0IGFu
-IEFOU0kKZnVuY3Rpb24gZGVjbGFyYXRpb24uIEZpeGVzIHNwYXJzZSB3YXJuaW5nOgoKd2Fybmlu
-Zzogbm9uLUFOU0kgZnVuY3Rpb24gZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24gJ25vdXZlYXVfcG1v
-cHNfcnVudGltZScKClNpZ25lZC1vZmYtYnk6IENvbGluIElhbiBLaW5nIDxjb2xpbi5raW5nQGNh
-bm9uaWNhbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyB8
-IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCmluZGV4IDdhY2QxY2Y4YzVhNi4uOTA3NTdh
-ZjliYzczIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5j
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKQEAgLTcyNyw3ICs3
-MjcsNyBAQCBub3V2ZWF1X3Btb3BzX3RoYXcoc3RydWN0IGRldmljZSAqZGV2KQogfQogCiBib29s
-Ci1ub3V2ZWF1X3Btb3BzX3J1bnRpbWUoKQorbm91dmVhdV9wbW9wc19ydW50aW1lKHZvaWQpCiB7
-CiAJaWYgKG5vdXZlYXVfcnVudGltZV9wbSA9PSAtMSkKIAkJcmV0dXJuIG5vdXZlYXVfaXNfb3B0
-aW11cygpIHx8IG5vdXZlYXVfaXNfdjFfZHNtKCk7Ci0tIAoyLjExLjAKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QK
-ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============0543449786==
+Content-Type: multipart/alternative; boundary="14968410060.7DBDDd.7659";
+ charset="UTF-8"
+
+
+--14968410060.7DBDDd.7659
+Date: Wed, 7 Jun 2017 13:10:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101322
+
+--- Comment #2 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
+Created attachment 131772
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131772&action=3Dedit
+dmesg with nouveau.debug=3Ddebug
+
+Here is the debug log. By the way, this is exactly the same report as was
+posted on the nouveau list "Kernel panic on nouveau during boot on NVIDIA N=
+V118
+(GM108)" - I just duplicated it here after no response on the list (plus I
+think here is the more appropriate place?)
+
+Thanks for your help so far!
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14968410060.7DBDDd.7659
+Date: Wed, 7 Jun 2017 13:10:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
+it_tag_ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
+it_tag_ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322">bug 10132=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
+gt;"> <span class=3D"fn">Daniel Drake</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131772=
+" name=3D"attach_131772" title=3D"dmesg with nouveau.debug=3Ddebug">attachm=
+ent 131772</a> <a href=3D"attachment.cgi?id=3D131772&amp;action=3Dedit" tit=
+le=3D"dmesg with nouveau.debug=3Ddebug">[details]</a></span>
+dmesg with nouveau.debug=3Ddebug
+
+Here is the debug log. By the way, this is exactly the same report as was
+posted on the nouveau list &quot;Kernel panic on nouveau during boot on NVI=
+DIA NV118
+(GM108)&quot; - I just duplicated it here after no response on the list (pl=
+us I
+think here is the more appropriate place?)
+
+Thanks for your help so far!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14968410060.7DBDDd.7659--
+
+--===============0543449786==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0543449786==--
