@@ -1,36 +1,103 @@
-From: Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 2/3] drm/nouveau/tegra: Don't leave GPU in reset
-Date: Fri,  9 Jun 2017 15:25:40 +0300
-Message-ID: <20170609122541.31118-2-mperttunen@nvidia.com>
-References: <20170609122541.31118-1-mperttunen@nvidia.com>
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <20170609122541.31118-1-mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, kholtta-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101184] [NVE6] [bisected] Panic on boot with GK106
+Date: Fri, 09 Jun 2017 16:34:50 +0000
+Message-ID: <bug-101184-8800-F4zHzoppMk@http.bugs.freedesktop.org/>
+References: <bug-101184-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============2054233729=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101184-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tegra186 systems with certain firmware revisions, leaving the GPU in
-reset can cause a hang. To prevent this, don't leave the GPU in reset.
 
-Signed-off-by: Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 3 ---
- 1 file changed, 3 deletions(-)
+--===============2054233729==
+Content-Type: multipart/alternative; boundary="14970260900.3F6e.27401";
+ charset="UTF-8"
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-index 3d42cdbbe9c0..189ed80e21ff 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-@@ -82,9 +82,6 @@ nvkm_device_tegra_power_down(struct nvkm_device_tegra *tdev)
- {
- 	int ret;
- 
--	reset_control_assert(tdev->rst);
--	udelay(10);
--
- 	clk_disable_unprepare(tdev->clk_pwr);
- 	if (tdev->clk_ref)
- 		clk_disable_unprepare(tdev->clk_ref);
--- 
-2.13.0
+
+--14970260900.3F6e.27401
+Date: Fri, 9 Jun 2017 16:34:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101184
+
+--- Comment #11 from mrblooter-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
+I can also confirm that it fixed the kernel panics for me with the patch
+applied.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14970260900.3F6e.27401
+Date: Fri, 9 Jun 2017 16:34:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c11">Comme=
+nt # 11</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">bug 10118=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mrblooter&#64;hotmail.com" title=3D"mrblooter&#64;hotmail.com">mrblooter&#6=
+4;hotmail.com</a>
+</span></b>
+        <pre>I can also confirm that it fixed the kernel panics for me with=
+ the patch
+applied.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14970260900.3F6e.27401--
+
+--===============2054233729==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2054233729==--
