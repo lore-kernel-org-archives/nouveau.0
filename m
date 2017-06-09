@@ -1,38 +1,42 @@
-From: Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH] drm/nouveau: use proper prototype in nouveau_pmops_runtime() definition
-Date: Fri,  9 Jun 2017 12:38:33 +0200
-Message-ID: <20170609103851.3267574-1-arnd@arndb.de>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
-Cc: Arnd Bergmann <arnd@arndb.de>, Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 1/3] drm/nouveau/tegra: Skip manual unpowergating when not necessary
+Date: Fri,  9 Jun 2017 15:25:39 +0300
+Message-ID: <20170609122541.31118-1-mperttunen@nvidia.com>
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, kholtta-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-There is a prototype for this function in the header, but the function
-itself lacks a 'void' in the argument list, causing a harmless warning
-when building with 'make W=1':
+On Tegra186, powergating is handled by the BPMP power domain provider
+and the "legacy" powergating API is not available. Therefore skip
+these calls if we are attached to a power domain.
 
-drivers/gpu/drm/nouveau/nouveau_drm.c: In function 'nouveau_pmops_runtime':
-drivers/gpu/drm/nouveau/nouveau_drm.c:730:1: error: old-style function definition [-Werror=old-style-definition]
-
-Fixes: 321f5c5f2c49 ("drm/nouveau: replace multiple open-coded runpm support checks with function")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_drm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 7acd1cf8c5a6..90757af9bc73 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -727,7 +727,7 @@ nouveau_pmops_thaw(struct device *dev)
- }
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
+index 6474bd2a6d07..3d42cdbbe9c0 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
+@@ -51,10 +51,12 @@ nvkm_device_tegra_power_up(struct nvkm_device_tegra *tdev)
+ 	reset_control_assert(tdev->rst);
+ 	udelay(10);
  
- bool
--nouveau_pmops_runtime()
-+nouveau_pmops_runtime(void)
- {
- 	if (nouveau_runtime_pm == -1)
- 		return nouveau_is_optimus() || nouveau_is_v1_dsm();
+-	ret = tegra_powergate_remove_clamping(TEGRA_POWERGATE_3D);
+-	if (ret)
+-		goto err_clamp;
+-	udelay(10);
++	if (!tdev->pdev->dev.pm_domain) {
++		ret = tegra_powergate_remove_clamping(TEGRA_POWERGATE_3D);
++		if (ret)
++			goto err_clamp;
++		udelay(10);
++	}
+ 
+ 	reset_control_deassert(tdev->rst);
+ 	udelay(10);
 -- 
-2.9.0
+2.13.0
