@@ -1,11 +1,13 @@
-From: "Wuzongyong (Cordius Wu, Euler Dept)" <wuzongyong1-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-Subject: How to prevent sb from flashing vbios inside a vm?
-Date: Fri, 9 Jun 2017 03:41:29 +0000
-Message-ID: <9BD73EA91F8E404F851CF3F519B14AA8CE7430@SZXEMI503-MBS.china.huawei.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98582] nouveau on a GM108 fails to resume properly
+ from suspension
+Date: Sat, 10 Jun 2017 00:31:22 +0000
+Message-ID: <bug-98582-8800-bYUHyd4WQt@http.bugs.freedesktop.org/>
+References: <bug-98582-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1073511729=="
+Content-Type: multipart/mixed; boundary="===============1259988151=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: zh-CN
+In-Reply-To: <bug-98582-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,106 +17,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: "Wanzongshun (Vincent)" <wanzongshun-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1073511729==
-Content-Language: zh-CN
-Content-Type: multipart/alternative;
-	boundary="_000_9BD73EA91F8E404F851CF3F519B14AA8CE7430SZXEMI503MBSchina_"
 
---_000_9BD73EA91F8E404F851CF3F519B14AA8CE7430SZXEMI503MBSchina_
-Content-Type: text/plain; charset="us-ascii"
+--===============1259988151==
+Content-Type: multipart/alternative; boundary="14970546810.8B5aD9eC.26511";
+ charset="UTF-8"
+
+
+--14970546810.8B5aD9eC.26511
+Date: Sat, 10 Jun 2017 00:31:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-Hi,
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98582
 
-Is there any method to prevent from flashing vbios(nvidia cards) in a virtu=
-al machine? Could someone give me some advices?
+hoboprimate-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-Thanks,
-Zongyong Wu
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
 
+--- Comment #12 from hoboprimate-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Using the latest Fedora 26 (alpha), suspension is working fine with nouveau
+loaded :) . Linux version is 4.11.3-302 .
 
---_000_9BD73EA91F8E404F851CF3F519B14AA8CE7430SZXEMI503MBSchina_
-Content-Type: text/html; charset="us-ascii"
+Closing this report.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14970546810.8B5aD9eC.26511
+Date: Sat, 10 Jun 2017 00:31:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi, <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is there any method to prevent from flashing vbios(n=
-vidia cards) in a virtual machine? Could someone give me some advices?<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Zongyong Wu<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:hoboprima=
+te&#64;gmail.com" title=3D"hoboprimate&#64;gmail.com">hoboprimate&#64;gmail=
+.com</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - nouveau on a GM108 fails to resume properly fr=
+om suspension"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
---_000_9BD73EA91F8E404F851CF3F519B14AA8CE7430SZXEMI503MBSchina_--
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - nouveau on a GM108 fails to resume properly fr=
+om suspension"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582#c12">Commen=
+t # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - nouveau on a GM108 fails to resume properly fr=
+om suspension"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+hoboprimate&#64;gmail.com" title=3D"hoboprimate&#64;gmail.com">hoboprimate&=
+#64;gmail.com</a>
+</span></b>
+        <pre>Using the latest Fedora 26 (alpha), suspension is working fine=
+ with nouveau
+loaded :) . Linux version is 4.11.3-302 .
+
+Closing this report.</pre>
+        </div>
+      </p>
 
 
---===============1073511729==
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14970546810.8B5aD9eC.26511--
+
+--===============1259988151==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1073511729==--
+--===============1259988151==--
