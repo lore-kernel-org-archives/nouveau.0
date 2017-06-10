@@ -1,11 +1,12 @@
 From: Aaryaman Vasishta <jem456.vasishta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v3] nv110/exa: update sched codes
-Date: Sat, 10 Jun 2017 16:10:57 +0900
-Message-ID: <20170610071057.13520-1-jem456.vasishta@gmail.com>
+Subject: Re: [PATCH v3] nv110/exa: update sched codes
+Date: Sat, 10 Jun 2017 16:14:17 +0900
+Message-ID: <CABVHfRuD4FqyvZGwn9ybsL9rATwyAbdCLRBF44VPzhQvNC1ZhQ@mail.gmail.com>
+References: <20170610071057.13520-1-jem456.vasishta@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1640737187=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20170610071057.13520-1-jem456.vasishta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,235 +16,1215 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBwYXRjaCBhZGRzIHByb3BlciBkZWxheXMgdG8gbWF4d2VsbCBleGEgc2hhZGVycy4gcmVu
-ZGVyY2hlY2sgdGVzdHMKc2VlbSBjb25zaXN0ZW50IHdpdGgvd2l0aG91dCB0aGlzIHBhdGNoLiBJ
-IGhhdmVuJ3QgZXh0ZW5zaXZlbHkgdGVzdGVkCnRoZW0gdGhvdWdoLgoKVHJlbGxvOgpodHRwczov
-L3RyZWxsby5jb20vYy82TFBCMkVJUy8xNzQtdXBkYXRlLW1heHdlbGwtc2hhZGVycy13aXRoLXBy
-b3Blci1kZWxheXMKClNpZ25lZC1vZmYtYnk6IEFhcnlhbWFuIFZhc2lzaHRhIDxqZW00NTYudmFz
-aXNodGFAZ21haWwuY29tPgotLS0KIHNyYy9zaGFkZXIvZXhhYzhudjExMC5mcCAgfCAxMCArKysr
-Ky0tLS0tCiBzcmMvc2hhZGVyL2V4YWM4bnYxMTAuZnBjIHwgMTggKysrKysrKysrLS0tLS0tLS0t
-CiBzcmMvc2hhZGVyL2V4YWNhbnYxMTAuZnAgIHwgMTAgKysrKystLS0tLQogc3JjL3NoYWRlci9l
-eGFjYW52MTEwLmZwYyB8IDE4ICsrKysrKysrKy0tLS0tLS0tLQogc3JjL3NoYWRlci9leGFjbW52
-MTEwLmZwICB8IDEwICsrKysrLS0tLS0KIHNyYy9zaGFkZXIvZXhhY21udjExMC5mcGMgfCAxOCAr
-KysrKysrKystLS0tLS0tLS0KIHNyYy9zaGFkZXIvZXhhczhudjExMC5mcCAgfCAgNiArKystLS0K
-IHNyYy9zaGFkZXIvZXhhczhudjExMC5mcGMgfCAxMiArKysrKystLS0tLS0KIHNyYy9zaGFkZXIv
-ZXhhc2FudjExMC5mcCAgfCAxMCArKysrKy0tLS0tCiBzcmMvc2hhZGVyL2V4YXNhbnYxMTAuZnBj
-IHwgMTggKysrKysrKysrLS0tLS0tLS0tCiBzcmMvc2hhZGVyL2V4YXNjbnYxMTAuZnAgIHwgIDYg
-KysrLS0tCiBzcmMvc2hhZGVyL2V4YXNjbnYxMTAuZnBjIHwgMTAgKysrKystLS0tLQogc3JjL3No
-YWRlci92aWRlb252MTEwLmZwICB8IDE0ICsrKysrKystLS0tLS0tCiBzcmMvc2hhZGVyL3ZpZGVv
-bnYxMTAuZnBjIHwgMjYgKysrKysrKysrKysrKy0tLS0tLS0tLS0tLS0KIDE0IGZpbGVzIGNoYW5n
-ZWQsIDkzIGluc2VydGlvbnMoKyksIDkzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NyYy9z
-aGFkZXIvZXhhYzhudjExMC5mcCBiL3NyYy9zaGFkZXIvZXhhYzhudjExMC5mcAppbmRleCBjZTc4
-MDM2Li4xMDFiNjdmIDEwMDY0NAotLS0gYS9zcmMvc2hhZGVyL2V4YWM4bnYxMTAuZnAKKysrIGIv
-c3JjL3NoYWRlci9leGFjOG52MTEwLmZwCkBAIC0yNSwyMyArMjUsMjMgQEAgTlYxMTBGUF9Db21w
-b3NpdGVfQThbXSA9IHsKIH07CiAjZWxzZQogCi1zY2hlZCAoc3QgMHgwKSAoc3QgMHgwKSAoc3Qg
-MHgwKQorc2NoZWQgKHN0IDB4ZiB3ciAweDApIChzdCAweGQgd3IgMHgwIHd0IDB4MSkgKHN0IDB4
-ZiB3ciAweDAgd3QgMHgxKQogaXBhIHBhc3MgJHIwIGFbMHg3Y10gMHgwIDB4MCAweDEKIG11ZnUg
-cmNwICRyMCAkcjAKIGlwYSAkcjMgYVsweDk0XSAkcjAgMHgwIDB4MQotc2NoZWQgKHN0IDB4MCkg
-KHN0IDB4MCkgKHN0IDB4MCkKK3NjaGVkIChzdCAweGYgd3IgMHgxKSAoc3QgMHhmIHdyIDB4MCBy
-ZCAweDEgd3QgMHgzKSAoc3QgMHhmIHdyIDB4MSB3dCAweDIpCiBpcGEgJHIyIGFbMHg5MF0gJHIw
-IDB4MCAweDEKIHRleCBub2RlcCAkcjEgJHIyIDB4MCAweDEgdDJkIDB4OAogaXBhICRyMyBhWzB4
-ODRdICRyMCAweDAgMHgxCi1zY2hlZCAoc3QgMHgwKSAoc3QgMHgwKSAoc3QgMHgwKQorc2NoZWQg
-KHN0IDB4ZiB3ciAweDIpIChzdCAweGYgd3IgMHgxIHd0IDB4NikgKHN0IDB4ZikKIGlwYSAkcjIg
-YVsweDgwXSAkcjAgMHgwIDB4MQogdGV4IG5vZGVwICRyMCAkcjIgMHgwIDB4MCB0MmQgMHg4CiBk
-ZXBiYXIgbGUgMHg1IDB4MCAweDAKLXNjaGVkIChzdCAweDApIChzdCAweDApIChzdCAweDApCitz
-Y2hlZCAoc3QgMHg2IHd0IDB4MykgKHN0IDB4MSkgKHN0IDB4MSkKIGZtdWwgZnR6ICRyMyAkcjAg
-JHIxCiBtb3YgJHIyICRyMyAweGYKIG1vdiAkcjEgJHIzIDB4Zgotc2NoZWQgKHN0IDB4MCkgKHN0
-IDB4MCkgKHN0IDB4MCkKK3NjaGVkIChzdCAweDEpIChzdCAweGYpIChzdCAweDApCiBtb3YgJHIw
-ICRyMyAweGYKIGV4aXQKICNlbmRpZgpkaWZmIC0tZ2l0IGEvc3JjL3NoYWRlci9leGFjOG52MTEw
-LmZwYyBiL3NyYy9zaGFkZXIvZXhhYzhudjExMC5mcGMKaW5kZXggNGFhMTM2OC4uMWY3ZDY0OSAx
-MDA2NDQKLS0tIGEvc3JjL3NoYWRlci9leGFjOG52MTEwLmZwYworKysgYi9zcmMvc2hhZGVyL2V4
-YWM4bnYxMTAuZnBjCkBAIC0xLDM2ICsxLDM2IEBACi0weGZjMDAwN2UwLAotMHgwMDFmODAwMCwK
-KzB4ZTFhMDA3MGYsCisweDAwM2MzYzAxLAogMHhjZmY3ZmYwMCwKIDB4ZTAwM2ZmODcsCiAweDAw
-NDcwMDAwLAogMHg1MDgwMDAwMCwKIDB4NDAwN2ZmMDMsCiAweGUwNDNmZjg5LAotMHhmYzAwMDdl
-MCwKLTB4MDAxZjgwMDAsCisweDIxZTAwNzJmLAorMHgwMDVjYmMwMywKIDB4MDAwN2ZmMDIsCiAw
-eGUwNDNmZjg5LAogMHgyZmY3MDIwMSwKIDB4YzAzYTAwMTQsCiAweDQwMDdmZjAzLAogMHhlMDQz
-ZmY4OCwKLTB4ZmMwMDA3ZTAsCi0weDAwMWY4MDAwLAorMHhlNWUwMDc0ZiwKKzB4MDAxZmJjMDYs
-CiAweDAwMDdmZjAyLAogMHhlMDQzZmY4OCwKIDB4MmZmNzAyMDAsCiAweGMwM2EwMDA0LAogMHgz
-NDA3MDAwMCwKIDB4ZjBmMDAwMDAsCi0weGZjMDAwN2UwLAotMHgwMDFmODAwMCwKKzB4ZmMyMDFm
-ZTYsCisweDAwMWY4NDAwLAogMHgwMDE3MDAwMywKIDB4NWM2ODEwMDAsCiAweDAwMzcwMDAyLAog
-MHg1Yzk4MDc4MCwKIDB4MDAzNzAwMDEsCiAweDVjOTgwNzgwLAotMHhmYzAwMDdlMCwKKzB4ZmRl
-MDA3ZTEsCiAweDAwMWY4MDAwLAogMHgwMDM3MDAwMCwKIDB4NWM5ODA3ODAsCmRpZmYgLS1naXQg
-YS9zcmMvc2hhZGVyL2V4YWNhbnYxMTAuZnAgYi9zcmMvc2hhZGVyL2V4YWNhbnYxMTAuZnAKaW5k
-ZXggYTcwZDVjNS4uOGE5YmQ0MyAxMDA2NDQKLS0tIGEvc3JjL3NoYWRlci9leGFjYW52MTEwLmZw
-CisrKyBiL3NyYy9zaGFkZXIvZXhhY2FudjExMC5mcApAQCAtMjUsMjMgKzI1LDIzIEBAIE5WMTEw
-RlBfQ0FDb21wb3NpdGVbXSA9IHsKIH07CiAjZWxzZQogCi1zY2hlZCAoc3QgMHgwKSAoc3QgMHgw
-KSAoc3QgMHgwKQorc2NoZWQgKHN0IDB4ZiB3ciAweDApIChzdCAweGQgd3IgMHgwIHd0IDB4MSkg
-KHN0IDB4ZiB3ciAweDAgd3QgMHgxKQogaXBhIHBhc3MgJHIwIGFbMHg3Y10gMHgwIDB4MCAweDEK
-IG11ZnUgcmNwICRyMCAkcjAKIGlwYSAkcjMgYVsweDk0XSAkcjAgMHgwIDB4MQotc2NoZWQgKHN0
-IDB4MCkgKHN0IDB4MCkgKHN0IDB4MCkKK3NjaGVkIChzdCAweGYgd3IgMHgxKSAoc3QgMHhmIHdy
-IDB4MCByZCAweDEgd3QgMHgzKSAoc3QgMHhmIHdyIDB4MikKIGlwYSAkcjIgYVsweDkwXSAkcjAg
-MHgwIDB4MQogdGV4IG5vZGVwICRyNCAkcjIgMHgwIDB4MSB0MmQgMHhmCiBpcGEgJHIxIGFbMHg4
-NF0gJHIwIDB4MCAweDEKLXNjaGVkIChzdCAweDApIChzdCAweDApIChzdCAweDApCitzY2hlZCAo
-c3QgMHhmIHdyIDB4MiB3dCAweDQpIChzdCAweGYgd3IgMHgyIHd0IDB4NCkgKHN0IDB4ZikKIGlw
-YSAkcjAgYVsweDgwXSAkcjAgMHgwIDB4MQogdGV4IG5vZGVwICRyMCAkcjAgMHgwIDB4MCB0MmQg
-MHhmCiBkZXBiYXIgbGUgMHg1IDB4MCAweDAKLXNjaGVkIChzdCAweDApIChzdCAweDApIChzdCAw
-eDApCitzY2hlZCAoc3QgMHgxIHd0IDB4NCkgKHN0IDB4MSkgKHN0IDB4MSkKIGZtdWwgZnR6ICRy
-MyAkcjMgJHI3CiBmbXVsIGZ0eiAkcjIgJHIyICRyNgogZm11bCBmdHogJHIxICRyMSAkcjUKLXNj
-aGVkIChzdCAweDApIChzdCAweDApIChzdCAweDApCitzY2hlZCAoc3QgMHgxIHd0IDB4MSkgKHN0
-IDB4ZikgKHN0IDB4MCkKIGZtdWwgZnR6ICRyMCAkcjAgJHI0CiBleGl0CiAjZW5kaWYKZGlmZiAt
-LWdpdCBhL3NyYy9zaGFkZXIvZXhhY2FudjExMC5mcGMgYi9zcmMvc2hhZGVyL2V4YWNhbnYxMTAu
-ZnBjCmluZGV4IDdjMGNhNWUuLjA4YTYzM2MgMTAwNjQ0Ci0tLSBhL3NyYy9zaGFkZXIvZXhhY2Fu
-djExMC5mcGMKKysrIGIvc3JjL3NoYWRlci9leGFjYW52MTEwLmZwYwpAQCAtMSwzNiArMSwzNiBA
-QAotMHhmYzAwMDdlMCwKLTB4MDAxZjgwMDAsCisweGUxYTAwNzBmLAorMHgwMDNjM2MwMSwKIDB4
-Y2ZmN2ZmMDAsCiAweGUwMDNmZjg3LAogMHgwMDQ3MDAwMCwKIDB4NTA4MDAwMDAsCiAweDQwMDdm
-ZjAzLAogMHhlMDQzZmY4OSwKLTB4ZmMwMDA3ZTAsCi0weDAwMWY4MDAwLAorMHgyMWUwMDcyZiwK
-KzB4MDAxZDNjMDMsCiAweDAwMDdmZjAyLAogMHhlMDQzZmY4OSwKIDB4YWZmNzAyMDQsCiAweGMw
-M2EwMDE3LAogMHg0MDA3ZmYwMSwKIDB4ZTA0M2ZmODgsCi0weGZjMDAwN2UwLAotMHgwMDFmODAw
-MCwKKzB4ZTllMDI3NGYsCisweDAwMWZiYzA0LAogMHgwMDA3ZmYwMCwKIDB4ZTA0M2ZmODgsCiAw
-eGFmZjcwMDAwLAogMHhjMDNhMDAwNywKIDB4MzQwNzAwMDAsCiAweGYwZjAwMDAwLAotMHhmYzAw
-MDdlMCwKLTB4MDAxZjgwMDAsCisweGZjMjAyN2UxLAorMHgwMDFmODQwMCwKIDB4MDA3NzAzMDMs
-CiAweDVjNjgxMDAwLAogMHgwMDY3MDIwMiwKIDB4NWM2ODEwMDAsCiAweDAwNTcwMTAxLAogMHg1
-YzY4MTAwMCwKLTB4ZmMwMDA3ZTAsCisweGZkZTAwZmUxLAogMHgwMDFmODAwMCwKIDB4MDA0NzAw
-MDAsCiAweDVjNjgxMDAwLApkaWZmIC0tZ2l0IGEvc3JjL3NoYWRlci9leGFjbW52MTEwLmZwIGIv
-c3JjL3NoYWRlci9leGFjbW52MTEwLmZwCmluZGV4IGZlNWMyOTQuLjM5YzQ5ZGUgMTAwNjQ0Ci0t
-LSBhL3NyYy9zaGFkZXIvZXhhY21udjExMC5mcAorKysgYi9zcmMvc2hhZGVyL2V4YWNtbnYxMTAu
-ZnAKQEAgLTI1LDIzICsyNSwyMyBAQCBOVjExMEZQX0NvbXBvc2l0ZVtdID0gewogfTsKICNlbHNl
-CiAKLXNjaGVkIChzdCAweDApIChzdCAweDApIChzdCAweDApCitzY2hlZCAoc3QgMHhmIHdyIDB4
-MCkgKHN0IDB4ZCB3ciAweDAgd3QgMHgxKSAoc3QgMHhmIHdyIDB4MCB3dCAweDEpCiBpcGEgcGFz
-cyAkcjAgYVsweDdjXSAweDAgMHgwIDB4MQogbXVmdSByY3AgJHIwICRyMAogaXBhICRyMyBhWzB4
-OTRdICRyMCAweDAgMHgxCi1zY2hlZCAoc3QgMHgwKSAoc3QgMHgwKSAoc3QgMHgwKQorc2NoZWQg
-KHN0IDB4ZiB3ciAweDEpIChzdCAweGYgd3IgMHgwIHd0IDB4MykgKHN0IDB4ZiB3ciAweDEgcmQg
-MHgyKQogaXBhICRyMiBhWzB4OTBdICRyMCAweDAgMHgxCiB0ZXggbm9kZXAgJHI0ICRyMiAweDAg
-MHgxIHQyZCAweDgKIGlwYSAkcjEgYVsweDg0XSAkcjAgMHgwIDB4MQotc2NoZWQgKHN0IDB4MCkg
-KHN0IDB4MCkgKHN0IDB4MCkKK3NjaGVkIChzdCAweGYgd3IgMHgyIHd0IDB4NCkgKHN0IDB4ZiB3
-ciAweDEgd3QgMHg2KSAoc3QgMHhmKQogaXBhICRyMCBhWzB4ODBdICRyMCAweDAgMHgxCiB0ZXgg
-bm9kZXAgJHIwICRyMCAweDAgMHgwIHQyZCAweGYKIGRlcGJhciBsZSAweDUgMHgwIDB4MAotc2No
-ZWQgKHN0IDB4MCkgKHN0IDB4MCkgKHN0IDB4MCkKK3NjaGVkIChzdCAweDEgd3QgMHgzKSAoc3Qg
-MHgxKSAoc3QgMHgxKQogZm11bCBmdHogJHIzICRyMyAkcjQKIGZtdWwgZnR6ICRyMiAkcjIgJHI0
-CiBmbXVsIGZ0eiAkcjEgJHIxICRyNAotc2NoZWQgKHN0IDB4MCkgKHN0IDB4MCkgKHN0IDB4MCkK
-K3NjaGVkIChzdCAweDEpIChzdCAweGYpIChzdCAweDApCiBmbXVsIGZ0eiAkcjAgJHIwICRyNAog
-ZXhpdAogI2VuZGlmCmRpZmYgLS1naXQgYS9zcmMvc2hhZGVyL2V4YWNtbnYxMTAuZnBjIGIvc3Jj
-L3NoYWRlci9leGFjbW52MTEwLmZwYwppbmRleCA5ZDYyYzFhLi5mNWYwNmUyIDEwMDY0NAotLS0g
-YS9zcmMvc2hhZGVyL2V4YWNtbnYxMTAuZnBjCisrKyBiL3NyYy9zaGFkZXIvZXhhY21udjExMC5m
-cGMKQEAgLTEsMzYgKzEsMzYgQEAKLTB4ZmMwMDA3ZTAsCi0weDAwMWY4MDAwLAorMHhlMWEwMDcw
-ZiwKKzB4MDAzYzNjMDEsCiAweGNmZjdmZjAwLAogMHhlMDAzZmY4NywKIDB4MDA0NzAwMDAsCiAw
-eDUwODAwMDAwLAogMHg0MDA3ZmYwMywKIDB4ZTA0M2ZmODksCi0weGZjMDAwN2UwLAotMHgwMDFm
-ODAwMCwKKzB4ZTFlMDA3MmYsCisweDAwMDhiYzAzLAogMHgwMDA3ZmYwMiwKIDB4ZTA0M2ZmODks
-CiAweDJmZjcwMjA0LAogMHhjMDNhMDAxNCwKIDB4NDAwN2ZmMDEsCiAweGUwNDNmZjg4LAotMHhm
-YzAwMDdlMCwKLTB4MDAxZjgwMDAsCisweGU1ZTAyNzRmLAorMHgwMDFmYmMwNiwKIDB4MDAwN2Zm
-MDAsCiAweGUwNDNmZjg4LAogMHhhZmY3MDAwMCwKIDB4YzAzYTAwMDcsCiAweDM0MDcwMDAwLAog
-MHhmMGYwMDAwMCwKLTB4ZmMwMDA3ZTAsCi0weDAwMWY4MDAwLAorMHhmYzIwMWZlMSwKKzB4MDAx
-Zjg0MDAsCiAweDAwNDcwMzAzLAogMHg1YzY4MTAwMCwKIDB4MDA0NzAyMDIsCiAweDVjNjgxMDAw
-LAogMHgwMDQ3MDEwMSwKIDB4NWM2ODEwMDAsCi0weGZjMDAwN2UwLAorMHhmZGUwMDdlMSwKIDB4
-MDAxZjgwMDAsCiAweDAwNDcwMDAwLAogMHg1YzY4MTAwMCwKZGlmZiAtLWdpdCBhL3NyYy9zaGFk
-ZXIvZXhhczhudjExMC5mcCBiL3NyYy9zaGFkZXIvZXhhczhudjExMC5mcAppbmRleCA0ZmUyZTE5
-Li5hNTU1YmViIDEwMDY0NAotLS0gYS9zcmMvc2hhZGVyL2V4YXM4bnYxMTAuZnAKKysrIGIvc3Jj
-L3NoYWRlci9leGFzOG52MTEwLmZwCkBAIC0yNSwxNSArMjUsMTUgQEAgTlYxMTBGUF9Tb3VyY2Vf
-QThbXSA9IHsKIH07CiAjZWxzZQogCi1zY2hlZCAoc3QgMHgwKSAoc3QgMHgwKSAoc3QgMHgwKQor
-c2NoZWQgKHN0IDB4ZiB3ciAweDApIChzdCAweGQgd3IgMHgwIHd0IDB4MSkgKHN0IDB4ZiB3ciAw
-eDAgd3QgMHgxKQogaXBhIHBhc3MgJHIwIGFbMHg3Y10gMHgwIDB4MCAweDEKIG11ZnUgcmNwICRy
-MCAkcjAKIGlwYSAkcjEgYVsweDg0XSAkcjAgMHgwIDB4MQotc2NoZWQgKHN0IDB4MCkgKHN0IDB4
-MCkgKHN0IDB4MCkKK3NjaGVkIChzdCAweGYgd3IgMHgxKSAoc3QgMHhmIHdyIDB4MCB3dCAweDMp
-IChzdCAweGYpCiBpcGEgJHIwIGFbMHg4MF0gJHIwIDB4MCAweDEKIHRleCBub2RlcCAkcjAgJHIw
-IDB4MCAweDAgdDJkIDB4OAogZGVwYmFyIGxlIDB4NSAweDAgMHgwCi1zY2hlZCAoc3QgMHgwKSAo
-c3QgMHgwKSAoc3QgMHgwKQorc2NoZWQgKHN0IDB4MSB3dCAweDEpIChzdCAweDEpIChzdCAweDEp
-CiBtb3YgJHIzICRyMCAweGYKIG1vdiAkcjIgJHIwIDB4ZgogbW92ICRyMSAkcjAgMHhmCmRpZmYg
-LS1naXQgYS9zcmMvc2hhZGVyL2V4YXM4bnYxMTAuZnBjIGIvc3JjL3NoYWRlci9leGFzOG52MTEw
-LmZwYwppbmRleCAxMTgxYzQxLi5lNThkMTY4IDEwMDY0NAotLS0gYS9zcmMvc2hhZGVyL2V4YXM4
-bnYxMTAuZnBjCisrKyBiL3NyYy9zaGFkZXIvZXhhczhudjExMC5mcGMKQEAgLTEsMjEgKzEsMjEg
-QEAKLTB4ZmMwMDA3ZTAsCi0weDAwMWY4MDAwLAorMHhlMWEwMDcwZiwKKzB4MDAzYzNjMDEsCiAw
-eGNmZjdmZjAwLAogMHhlMDAzZmY4NywKIDB4MDA0NzAwMDAsCiAweDUwODAwMDAwLAogMHg0MDA3
-ZmYwMSwKIDB4ZTA0M2ZmODgsCi0weGZjMDAwN2UwLAotMHgwMDFmODAwMCwKKzB4ZTFlMDA3MmYs
-CisweDAwMWZiYzAzLAogMHgwMDA3ZmYwMCwKIDB4ZTA0M2ZmODgsCiAweDJmZjcwMDAwLAogMHhj
-MDNhMDAwNCwKIDB4MzQwNzAwMDAsCiAweGYwZjAwMDAwLAotMHhmYzAwMDdlMCwKLTB4MDAxZjgw
-MDAsCisweGZjMjAwZmUxLAorMHgwMDFmODQwMCwKIDB4MDAwNzAwMDMsCiAweDVjOTgwNzgwLAog
-MHgwMDA3MDAwMiwKZGlmZiAtLWdpdCBhL3NyYy9zaGFkZXIvZXhhc2FudjExMC5mcCBiL3NyYy9z
-aGFkZXIvZXhhc2FudjExMC5mcAppbmRleCA2MTM3NGE2Li45Zjg3NDJhIDEwMDY0NAotLS0gYS9z
-cmMvc2hhZGVyL2V4YXNhbnYxMTAuZnAKKysrIGIvc3JjL3NoYWRlci9leGFzYW52MTEwLmZwCkBA
-IC0yNSwyMyArMjUsMjMgQEAgTlYxMTBGUF9DQUNvbXBvc2l0ZVNyY0FscGhhW10gPSB7CiB9Owog
-I2Vsc2UKIAotc2NoZWQgKHN0IDB4MCkgKHN0IDB4MCkgKHN0IDB4MCkKK3NjaGVkIChzdCAweGYg
-d3IgMHgwKSAoc3QgMHhkIHdyIDB4MCB3dCAweDEpIChzdCAweGYgd3IgMHgwIHd0IDB4MSkKIGlw
-YSBwYXNzICRyMCBhWzB4N2NdIDB4MCAweDAgMHgxCiBtdWZ1IHJjcCAkcjAgJHIwCiBpcGEgJHIz
-IGFbMHg4NF0gJHIwIDB4MCAweDEKLXNjaGVkIChzdCAweDApIChzdCAweDApIChzdCAweDApCitz
-Y2hlZCAoc3QgMHhmIHdyIDB4MSkgKHN0IDB4ZiB3ciAweDAgd3QgMHgzKSAoc3QgMHhmIHdyIDB4
-MSByZCAweDIpCiBpcGEgJHIyIGFbMHg4MF0gJHIwIDB4MCAweDEKIHRleCBub2RlcCAkcjQgJHIy
-IDB4MCAweDAgdDJkIDB4OAogaXBhICRyMSBhWzB4OTRdICRyMCAweDAgMHgxCi1zY2hlZCAoc3Qg
-MHgwKSAoc3QgMHgwKSAoc3QgMHgwKQorc2NoZWQgKHN0IDB4ZiB3ciAweDIgd3QgMHg0KSAoc3Qg
-MHhmIHdyIDB4MSB3dCAweDYpIChzdCAweGYpCiBpcGEgJHIwIGFbMHg5MF0gJHIwIDB4MCAweDEK
-IHRleCBub2RlcCAkcjAgJHIwIDB4MCAweDEgdDJkIDB4ZgogZGVwYmFyIGxlIDB4NSAweDAgMHgw
-Ci1zY2hlZCAoc3QgMHgwKSAoc3QgMHgwKSAoc3QgMHgwKQorc2NoZWQgKHN0IDB4MSB3dCAweDMp
-IChzdCAweDEpIChzdCAweDEpCiBmbXVsIGZ0eiAkcjMgJHIzICRyNAogZm11bCBmdHogJHIyICRy
-MiAkcjQKIGZtdWwgZnR6ICRyMSAkcjEgJHI0Ci1zY2hlZCAoc3QgMHgwKSAoc3QgMHgwKSAoc3Qg
-MHgwKQorc2NoZWQgKHN0IDB4MSkgKHN0IDB4ZikgKHN0IDB4MCkKIGZtdWwgZnR6ICRyMCAkcjAg
-JHI0CiBleGl0CiAjZW5kaWYKZGlmZiAtLWdpdCBhL3NyYy9zaGFkZXIvZXhhc2FudjExMC5mcGMg
-Yi9zcmMvc2hhZGVyL2V4YXNhbnYxMTAuZnBjCmluZGV4IDU1MTZhMDMuLmMyOTEyOTggMTAwNjQ0
-Ci0tLSBhL3NyYy9zaGFkZXIvZXhhc2FudjExMC5mcGMKKysrIGIvc3JjL3NoYWRlci9leGFzYW52
-MTEwLmZwYwpAQCAtMSwzNiArMSwzNiBAQAotMHhmYzAwMDdlMCwKLTB4MDAxZjgwMDAsCisweGUx
-YTAwNzBmLAorMHgwMDNjM2MwMSwKIDB4Y2ZmN2ZmMDAsCiAweGUwMDNmZjg3LAogMHgwMDQ3MDAw
-MCwKIDB4NTA4MDAwMDAsCiAweDQwMDdmZjAzLAogMHhlMDQzZmY4OCwKLTB4ZmMwMDA3ZTAsCi0w
-eDAwMWY4MDAwLAorMHhlMWUwMDcyZiwKKzB4MDAwOGJjMDMsCiAweDAwMDdmZjAyLAogMHhlMDQz
-ZmY4OCwKIDB4MmZmNzAyMDQsCiAweGMwM2EwMDA0LAogMHg0MDA3ZmYwMSwKIDB4ZTA0M2ZmODks
-Ci0weGZjMDAwN2UwLAotMHgwMDFmODAwMCwKKzB4ZTVlMDI3NGYsCisweDAwMWZiYzA2LAogMHgw
-MDA3ZmYwMCwKIDB4ZTA0M2ZmODksCiAweGFmZjcwMDAwLAogMHhjMDNhMDAxNywKIDB4MzQwNzAw
-MDAsCiAweGYwZjAwMDAwLAotMHhmYzAwMDdlMCwKLTB4MDAxZjgwMDAsCisweGZjMjAxZmUxLAor
-MHgwMDFmODQwMCwKIDB4MDA0NzAzMDMsCiAweDVjNjgxMDAwLAogMHgwMDQ3MDIwMiwKIDB4NWM2
-ODEwMDAsCiAweDAwNDcwMTAxLAogMHg1YzY4MTAwMCwKLTB4ZmMwMDA3ZTAsCisweGZkZTAwN2Ux
-LAogMHgwMDFmODAwMCwKIDB4MDA0NzAwMDAsCiAweDVjNjgxMDAwLApkaWZmIC0tZ2l0IGEvc3Jj
-L3NoYWRlci9leGFzY252MTEwLmZwIGIvc3JjL3NoYWRlci9leGFzY252MTEwLmZwCmluZGV4IDkw
-YmJiNTUuLjg2ZTE0ZTggMTAwNjQ0Ci0tLSBhL3NyYy9zaGFkZXIvZXhhc2NudjExMC5mcAorKysg
-Yi9zcmMvc2hhZGVyL2V4YXNjbnYxMTAuZnAKQEAgLTI1LDE0ICsyNSwxNCBAQCBOVjExMEZQX1Nv
-dXJjZVtdID0gewogfTsKICNlbHNlCiAKLXNjaGVkIChzdCAweDApIChzdCAweDApIChzdCAweDAp
-CitzY2hlZCAoc3QgMHhmIHdyIDB4MCkgKHN0IDB4ZCB3ciAweDAgd3QgMHgxKSAoc3QgMHhmIHdy
-IDB4MCB3dCAweDEpCiBpcGEgcGFzcyAkcjAgYVsweDdjXSAweDAgMHgwIDB4MQogbXVmdSByY3Ag
-JHIwICRyMAogaXBhICRyMSBhWzB4ODRdICRyMCAweDAgMHgxCi1zY2hlZCAoc3QgMHgwKSAoc3Qg
-MHgwKSAoc3QgMHgwKQorc2NoZWQgKHN0IDB4ZiB3ciAweDEpIChzdCAweGYgd3QgMHgzKSAoc3Qg
-MHhmKQogaXBhICRyMCBhWzB4ODBdICRyMCAweDAgMHgxCiB0ZXggbm9kZXAgJHIwICRyMCAweDAg
-MHgwIHQyZCAweGYKIGRlcGJhciBsZSAweDUgMHgwIDB4MAotc2NoZWQgKHN0IDB4MCkgKHN0IDB4
-MCkgKHN0IDB4MCkKK3NjaGVkIChzdCAweGYpIChzdCAweDApIChzdCAweDApCiBleGl0CiAjZW5k
-aWYKZGlmZiAtLWdpdCBhL3NyYy9zaGFkZXIvZXhhc2NudjExMC5mcGMgYi9zcmMvc2hhZGVyL2V4
-YXNjbnYxMTAuZnBjCmluZGV4IDJkYmExNWQuLjFmZWY1ZDIgMTAwNjQ0Ci0tLSBhL3NyYy9zaGFk
-ZXIvZXhhc2NudjExMC5mcGMKKysrIGIvc3JjL3NoYWRlci9leGFzY252MTEwLmZwYwpAQCAtMSwy
-MCArMSwyMCBAQAotMHhmYzAwMDdlMCwKLTB4MDAxZjgwMDAsCisweGUxYTAwNzBmLAorMHgwMDNj
-M2MwMSwKIDB4Y2ZmN2ZmMDAsCiAweGUwMDNmZjg3LAogMHgwMDQ3MDAwMCwKIDB4NTA4MDAwMDAs
-CiAweDQwMDdmZjAxLAogMHhlMDQzZmY4OCwKLTB4ZmMwMDA3ZTAsCi0weDAwMWY4MDAwLAorMHhm
-ZGUwMDcyZiwKKzB4MDAxZmJjMDMsCiAweDAwMDdmZjAwLAogMHhlMDQzZmY4OCwKIDB4YWZmNzAw
-MDAsCiAweGMwM2EwMDA3LAogMHgzNDA3MDAwMCwKIDB4ZjBmMDAwMDAsCi0weGZjMDAwN2UwLAor
-MHhmYzAwMDdlZiwKIDB4MDAxZjgwMDAsCiAweDAwMDcwMDBmLAogMHhlMzAwMDAwMCwKZGlmZiAt
-LWdpdCBhL3NyYy9zaGFkZXIvdmlkZW9udjExMC5mcCBiL3NyYy9zaGFkZXIvdmlkZW9udjExMC5m
-cAppbmRleCAyNzI4MzExLi5kZDM4MTZjIDEwMDY0NAotLS0gYS9zcmMvc2hhZGVyL3ZpZGVvbnYx
-MTAuZnAKKysrIGIvc3JjL3NoYWRlci92aWRlb252MTEwLmZwCkBAIC0yNSwzMCArMjUsMzAgQEAg
-TlYxMTBGUF9OVjEyW10gPSB7CiB9OwogI2Vsc2UKIAotc2NoZWQgKHN0IDB4MCkgKHN0IDB4MCkg
-KHN0IDB4MCkKK3NjaGVkIChzdCAweGYgd3IgMHgwKSAoc3QgMHhkIHdyIDB4MCB3dCAweDEpIChz
-dCAweGYgd3IgMHgwIHd0IDB4MSkKIGlwYSBwYXNzICRyMiBhWzB4N2NdIDB4MCAweDAgMHgxCiBt
-dWZ1IHJjcCAkcjIgJHIyCiBpcGEgJHIwIGFbMHg4MF0gJHIyIDB4MCAweDEKLXNjaGVkIChzdCAw
-eDApIChzdCAweDApIChzdCAweDApCitzY2hlZCAoc3QgMHhmIHdyIDB4MSkgKHN0IDB4ZiB3ciAw
-eDAgd3QgMHgzKSAoc3QgMHhmIHdyIDB4MSkKIGlwYSAkcjEgYVsweDg0XSAkcjIgMHgwIDB4MQog
-dGV4IG5vZGVwICRyNCAkcjAgMHgwIDB4MCB0MmQgMHg4CiB0ZXggbm9kZXAgJHIwICRyMCAweDAg
-MHgxIHQyZCAweGMKLXNjaGVkIChzdCAweDApIChzdCAweDApIChzdCAweDApCitzY2hlZCAoc3Qg
-MHhmKSAoc3QgMHg2IHd0IDB4MSkgKHN0IDB4NikKIGRlcGJhciBsZSAweDUgMHgxIDB4MQogZm11
-bCBmdHogJHI1ICRyNCBjMFsweDBdCiBmYWRkIGZ0eiAkcjMgJHI1IGMwWzB4NF0KLXNjaGVkIChz
-dCAweDApIChzdCAweDApIChzdCAweDApCitzY2hlZCAoc3QgMHg2KSAoc3QgMHg2KSAoc3QgMHhm
-KQogZmFkZCBmdHogJHI0ICRyNSBjMFsweDhdCiBmYWRkIGZ0eiAkcjUgJHI1IGMwWzB4Y10KIGRl
-cGJhciBsZSAweDUgMHgwIDB4MAotc2NoZWQgKHN0IDB4MCkgKHN0IDB4MCkgKHN0IDB4MCkKK3Nj
-aGVkIChzdCAweDYgd3QgMHgyKSAoc3QgMHgxKSAoc3QgMHgxKQogZmZtYSBmdHogJHIzICRyMCBj
-MFsweDEwXSAkcjMKIGZmbWEgZnR6ICRyNCAkcjAgYzBbMHgxNF0gJHI0CiBmZm1hIGZ0eiAkcjUg
-JHIwIGMwWzB4MThdICRyNQotc2NoZWQgKHN0IDB4MCkgKHN0IDB4MCkgKHN0IDB4MCkKK3NjaGVk
-IChzdCAweDEpIChzdCAweDEpIChzdCAweDYpCiBmZm1hIGZ0eiAkcjAgJHIxIGMwWzB4MWNdICRy
-MwogZmZtYSBmdHogJHIyICRyMSBjMFsweDI0XSAkcjUKIGZmbWEgZnR6ICRyMSAkcjEgYzBbMHgy
-MF0gJHI0Ci1zY2hlZCAoc3QgMHgwKSAoc3QgMHgwKSAoc3QgMHgwKQorc2NoZWQgKHN0IDB4Zikg
-KHN0IDB4MCkgKHN0IDB4MCkKIGV4aXQKICNlbmRpZgpkaWZmIC0tZ2l0IGEvc3JjL3NoYWRlci92
-aWRlb252MTEwLmZwYyBiL3NyYy9zaGFkZXIvdmlkZW9udjExMC5mcGMKaW5kZXggMzFkNzQ1YS4u
-OGZiYzI0NiAxMDA2NDQKLS0tIGEvc3JjL3NoYWRlci92aWRlb252MTEwLmZwYworKysgYi9zcmMv
-c2hhZGVyL3ZpZGVvbnYxMTAuZnBjCkBAIC0xLDUyICsxLDUyIEBACi0weGZjMDAwN2UwLAotMHgw
-MDFmODAwMCwKKzB4ZTFhMDA3MGYsCisweDAwM2MzYzAxLAogMHhjZmY3ZmYwMiwKIDB4ZTAwM2Zm
-ODcsCiAweDAwNDcwMjAyLAogMHg1MDgwMDAwMCwKIDB4MDAyN2ZmMDAsCiAweGUwNDNmZjg4LAot
-MHhmYzAwMDdlMCwKLTB4MDAxZjgwMDAsCisweGUxZTAwNzJmLAorMHgwMDFjYmMwMywKIDB4NDAy
-N2ZmMDEsCiAweGUwNDNmZjg4LAogMHgyZmY3MDAwNCwKIDB4YzAzYTAwMDQsCiAweDJmZjcwMDAw
-LAogMHhjMDNhMDAxNiwKLTB4ZmMwMDA3ZTAsCi0weDAwMWY4MDAwLAorMHhmY2MwMDdlZiwKKzB4
-MDAxZjk4MDEsCiAweDM0MTcwMDAxLAogMHhmMGYwMDAwMCwKIDB4MDAwNzA0MDUsCiAweDRjNjgx
-MDAwLAogMHgwMDE3MDUwMywKIDB4NGM1ODEwMDAsCi0weGZjMDAwN2UwLAotMHgwMDFmODAwMCwK
-KzB4ZmNjMDA3ZTYsCisweDAwMWZiYzAwLAogMHgwMDI3MDUwNCwKIDB4NGM1ODEwMDAsCiAweDAw
-MzcwNTA1LAogMHg0YzU4MTAwMCwKIDB4MzQwNzAwMDAsCiAweGYwZjAwMDAwLAotMHhmYzAwMDdl
-MCwKLTB4MDAxZjgwMDAsCisweGZjMjAxN2U2LAorMHgwMDFmODQwMCwKIDB4MDA0NzAwMDMsCiAw
-eDQ5YTAwMTgwLAogMHgwMDU3MDAwNCwKIDB4NDlhMDAyMDAsCiAweDAwNjcwMDA1LAogMHg0OWEw
-MDI4MCwKLTB4ZmMwMDA3ZTAsCi0weDAwMWY4MDAwLAorMHhmYzIwMDdlMSwKKzB4MDAxZjk4MDAs
-CiAweDAwNzcwMTAwLAogMHg0OWEwMDE4MCwKIDB4MDA5NzAxMDIsCiAweDQ5YTAwMjgwLAogMHgw
-MDg3MDEwMSwKIDB4NDlhMDAyMDAsCi0weGZjMDAwN2UwLAorMHhmYzAwMDdlZiwKIDB4MDAxZjgw
-MDAsCiAweDAwMDcwMDBmLAogMHhlMzAwMDAwMCwKLS0gCjIuMTEuMAoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+--===============1640737187==
+Content-Type: multipart/alternative; boundary="001a11410e62bc9bb7055195d682"
+
+--001a11410e62bc9bb7055195d682
+Content-Type: text/plain; charset="UTF-8"
+
+See the 'wt' on the first fmul in exacanv110.fp, exacmnv110.fp and
+exasanv110.fp. Any ideas on what could be causing the first fmul to require
+$r0 and/or $r1?
+
+Cheers,
+Aaryaman
+
+On Sat, Jun 10, 2017 at 4:10 PM, Aaryaman Vasishta <
+jem456.vasishta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+
+> This patch adds proper delays to maxwell exa shaders. rendercheck tests
+> seem consistent with/without this patch. I haven't extensively tested
+> them though.
+>
+> Trello:
+> https://trello.com/c/6LPB2EIS/174-update-maxwell-shaders-
+> with-proper-delays
+>
+> Signed-off-by: Aaryaman Vasishta <jem456.vasishta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
+>  src/shader/exac8nv110.fp  | 10 +++++-----
+>  src/shader/exac8nv110.fpc | 18 +++++++++---------
+>  src/shader/exacanv110.fp  | 10 +++++-----
+>  src/shader/exacanv110.fpc | 18 +++++++++---------
+>  src/shader/exacmnv110.fp  | 10 +++++-----
+>  src/shader/exacmnv110.fpc | 18 +++++++++---------
+>  src/shader/exas8nv110.fp  |  6 +++---
+>  src/shader/exas8nv110.fpc | 12 ++++++------
+>  src/shader/exasanv110.fp  | 10 +++++-----
+>  src/shader/exasanv110.fpc | 18 +++++++++---------
+>  src/shader/exascnv110.fp  |  6 +++---
+>  src/shader/exascnv110.fpc | 10 +++++-----
+>  src/shader/videonv110.fp  | 14 +++++++-------
+>  src/shader/videonv110.fpc | 26 +++++++++++++-------------
+>  14 files changed, 93 insertions(+), 93 deletions(-)
+>
+> diff --git a/src/shader/exac8nv110.fp b/src/shader/exac8nv110.fp
+> index ce78036..101b67f 100644
+> --- a/src/shader/exac8nv110.fp
+> +++ b/src/shader/exac8nv110.fp
+> @@ -25,23 +25,23 @@ NV110FP_Composite_A8[] = {
+>  };
+>  #else
+>
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)
+>  ipa pass $r0 a[0x7c] 0x0 0x0 0x1
+>  mufu rcp $r0 $r0
+>  ipa $r3 a[0x94] $r0 0x0 0x1
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x1) (st 0xf wr 0x0 rd 0x1 wt 0x3) (st 0xf wr 0x1 wt 0x2)
+>  ipa $r2 a[0x90] $r0 0x0 0x1
+>  tex nodep $r1 $r2 0x0 0x1 t2d 0x8
+>  ipa $r3 a[0x84] $r0 0x0 0x1
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x2) (st 0xf wr 0x1 wt 0x6) (st 0xf)
+>  ipa $r2 a[0x80] $r0 0x0 0x1
+>  tex nodep $r0 $r2 0x0 0x0 t2d 0x8
+>  depbar le 0x5 0x0 0x0
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0x6 wt 0x3) (st 0x1) (st 0x1)
+>  fmul ftz $r3 $r0 $r1
+>  mov $r2 $r3 0xf
+>  mov $r1 $r3 0xf
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0x1) (st 0xf) (st 0x0)
+>  mov $r0 $r3 0xf
+>  exit
+>  #endif
+> diff --git a/src/shader/exac8nv110.fpc b/src/shader/exac8nv110.fpc
+> index 4aa1368..1f7d649 100644
+> --- a/src/shader/exac8nv110.fpc
+> +++ b/src/shader/exac8nv110.fpc
+> @@ -1,36 +1,36 @@
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe1a0070f,
+> +0x003c3c01,
+>  0xcff7ff00,
+>  0xe003ff87,
+>  0x00470000,
+>  0x50800000,
+>  0x4007ff03,
+>  0xe043ff89,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0x21e0072f,
+> +0x005cbc03,
+>  0x0007ff02,
+>  0xe043ff89,
+>  0x2ff70201,
+>  0xc03a0014,
+>  0x4007ff03,
+>  0xe043ff88,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe5e0074f,
+> +0x001fbc06,
+>  0x0007ff02,
+>  0xe043ff88,
+>  0x2ff70200,
+>  0xc03a0004,
+>  0x34070000,
+>  0xf0f00000,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xfc201fe6,
+> +0x001f8400,
+>  0x00170003,
+>  0x5c681000,
+>  0x00370002,
+>  0x5c980780,
+>  0x00370001,
+>  0x5c980780,
+> -0xfc0007e0,
+> +0xfde007e1,
+>  0x001f8000,
+>  0x00370000,
+>  0x5c980780,
+> diff --git a/src/shader/exacanv110.fp b/src/shader/exacanv110.fp
+> index a70d5c5..8a9bd43 100644
+> --- a/src/shader/exacanv110.fp
+> +++ b/src/shader/exacanv110.fp
+> @@ -25,23 +25,23 @@ NV110FP_CAComposite[] = {
+>  };
+>  #else
+>
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)
+>  ipa pass $r0 a[0x7c] 0x0 0x0 0x1
+>  mufu rcp $r0 $r0
+>  ipa $r3 a[0x94] $r0 0x0 0x1
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x1) (st 0xf wr 0x0 rd 0x1 wt 0x3) (st 0xf wr 0x2)
+>  ipa $r2 a[0x90] $r0 0x0 0x1
+>  tex nodep $r4 $r2 0x0 0x1 t2d 0xf
+>  ipa $r1 a[0x84] $r0 0x0 0x1
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x2 wt 0x4) (st 0xf wr 0x2 wt 0x4) (st 0xf)
+>  ipa $r0 a[0x80] $r0 0x0 0x1
+>  tex nodep $r0 $r0 0x0 0x0 t2d 0xf
+>  depbar le 0x5 0x0 0x0
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0x1 wt 0x4) (st 0x1) (st 0x1)
+>  fmul ftz $r3 $r3 $r7
+>  fmul ftz $r2 $r2 $r6
+>  fmul ftz $r1 $r1 $r5
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0x1 wt 0x1) (st 0xf) (st 0x0)
+>  fmul ftz $r0 $r0 $r4
+>  exit
+>  #endif
+> diff --git a/src/shader/exacanv110.fpc b/src/shader/exacanv110.fpc
+> index 7c0ca5e..08a633c 100644
+> --- a/src/shader/exacanv110.fpc
+> +++ b/src/shader/exacanv110.fpc
+> @@ -1,36 +1,36 @@
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe1a0070f,
+> +0x003c3c01,
+>  0xcff7ff00,
+>  0xe003ff87,
+>  0x00470000,
+>  0x50800000,
+>  0x4007ff03,
+>  0xe043ff89,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0x21e0072f,
+> +0x001d3c03,
+>  0x0007ff02,
+>  0xe043ff89,
+>  0xaff70204,
+>  0xc03a0017,
+>  0x4007ff01,
+>  0xe043ff88,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe9e0274f,
+> +0x001fbc04,
+>  0x0007ff00,
+>  0xe043ff88,
+>  0xaff70000,
+>  0xc03a0007,
+>  0x34070000,
+>  0xf0f00000,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xfc2027e1,
+> +0x001f8400,
+>  0x00770303,
+>  0x5c681000,
+>  0x00670202,
+>  0x5c681000,
+>  0x00570101,
+>  0x5c681000,
+> -0xfc0007e0,
+> +0xfde00fe1,
+>  0x001f8000,
+>  0x00470000,
+>  0x5c681000,
+> diff --git a/src/shader/exacmnv110.fp b/src/shader/exacmnv110.fp
+> index fe5c294..39c49de 100644
+> --- a/src/shader/exacmnv110.fp
+> +++ b/src/shader/exacmnv110.fp
+> @@ -25,23 +25,23 @@ NV110FP_Composite[] = {
+>  };
+>  #else
+>
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)
+>  ipa pass $r0 a[0x7c] 0x0 0x0 0x1
+>  mufu rcp $r0 $r0
+>  ipa $r3 a[0x94] $r0 0x0 0x1
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x1) (st 0xf wr 0x0 wt 0x3) (st 0xf wr 0x1 rd 0x2)
+>  ipa $r2 a[0x90] $r0 0x0 0x1
+>  tex nodep $r4 $r2 0x0 0x1 t2d 0x8
+>  ipa $r1 a[0x84] $r0 0x0 0x1
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x2 wt 0x4) (st 0xf wr 0x1 wt 0x6) (st 0xf)
+>  ipa $r0 a[0x80] $r0 0x0 0x1
+>  tex nodep $r0 $r0 0x0 0x0 t2d 0xf
+>  depbar le 0x5 0x0 0x0
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0x1 wt 0x3) (st 0x1) (st 0x1)
+>  fmul ftz $r3 $r3 $r4
+>  fmul ftz $r2 $r2 $r4
+>  fmul ftz $r1 $r1 $r4
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0x1) (st 0xf) (st 0x0)
+>  fmul ftz $r0 $r0 $r4
+>  exit
+>  #endif
+> diff --git a/src/shader/exacmnv110.fpc b/src/shader/exacmnv110.fpc
+> index 9d62c1a..f5f06e2 100644
+> --- a/src/shader/exacmnv110.fpc
+> +++ b/src/shader/exacmnv110.fpc
+> @@ -1,36 +1,36 @@
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe1a0070f,
+> +0x003c3c01,
+>  0xcff7ff00,
+>  0xe003ff87,
+>  0x00470000,
+>  0x50800000,
+>  0x4007ff03,
+>  0xe043ff89,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe1e0072f,
+> +0x0008bc03,
+>  0x0007ff02,
+>  0xe043ff89,
+>  0x2ff70204,
+>  0xc03a0014,
+>  0x4007ff01,
+>  0xe043ff88,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe5e0274f,
+> +0x001fbc06,
+>  0x0007ff00,
+>  0xe043ff88,
+>  0xaff70000,
+>  0xc03a0007,
+>  0x34070000,
+>  0xf0f00000,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xfc201fe1,
+> +0x001f8400,
+>  0x00470303,
+>  0x5c681000,
+>  0x00470202,
+>  0x5c681000,
+>  0x00470101,
+>  0x5c681000,
+> -0xfc0007e0,
+> +0xfde007e1,
+>  0x001f8000,
+>  0x00470000,
+>  0x5c681000,
+> diff --git a/src/shader/exas8nv110.fp b/src/shader/exas8nv110.fp
+> index 4fe2e19..a555beb 100644
+> --- a/src/shader/exas8nv110.fp
+> +++ b/src/shader/exas8nv110.fp
+> @@ -25,15 +25,15 @@ NV110FP_Source_A8[] = {
+>  };
+>  #else
+>
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)
+>  ipa pass $r0 a[0x7c] 0x0 0x0 0x1
+>  mufu rcp $r0 $r0
+>  ipa $r1 a[0x84] $r0 0x0 0x1
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x1) (st 0xf wr 0x0 wt 0x3) (st 0xf)
+>  ipa $r0 a[0x80] $r0 0x0 0x1
+>  tex nodep $r0 $r0 0x0 0x0 t2d 0x8
+>  depbar le 0x5 0x0 0x0
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0x1 wt 0x1) (st 0x1) (st 0x1)
+>  mov $r3 $r0 0xf
+>  mov $r2 $r0 0xf
+>  mov $r1 $r0 0xf
+> diff --git a/src/shader/exas8nv110.fpc b/src/shader/exas8nv110.fpc
+> index 1181c41..e58d168 100644
+> --- a/src/shader/exas8nv110.fpc
+> +++ b/src/shader/exas8nv110.fpc
+> @@ -1,21 +1,21 @@
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe1a0070f,
+> +0x003c3c01,
+>  0xcff7ff00,
+>  0xe003ff87,
+>  0x00470000,
+>  0x50800000,
+>  0x4007ff01,
+>  0xe043ff88,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe1e0072f,
+> +0x001fbc03,
+>  0x0007ff00,
+>  0xe043ff88,
+>  0x2ff70000,
+>  0xc03a0004,
+>  0x34070000,
+>  0xf0f00000,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xfc200fe1,
+> +0x001f8400,
+>  0x00070003,
+>  0x5c980780,
+>  0x00070002,
+> diff --git a/src/shader/exasanv110.fp b/src/shader/exasanv110.fp
+> index 61374a6..9f8742a 100644
+> --- a/src/shader/exasanv110.fp
+> +++ b/src/shader/exasanv110.fp
+> @@ -25,23 +25,23 @@ NV110FP_CACompositeSrcAlpha[] = {
+>  };
+>  #else
+>
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)
+>  ipa pass $r0 a[0x7c] 0x0 0x0 0x1
+>  mufu rcp $r0 $r0
+>  ipa $r3 a[0x84] $r0 0x0 0x1
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x1) (st 0xf wr 0x0 wt 0x3) (st 0xf wr 0x1 rd 0x2)
+>  ipa $r2 a[0x80] $r0 0x0 0x1
+>  tex nodep $r4 $r2 0x0 0x0 t2d 0x8
+>  ipa $r1 a[0x94] $r0 0x0 0x1
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x2 wt 0x4) (st 0xf wr 0x1 wt 0x6) (st 0xf)
+>  ipa $r0 a[0x90] $r0 0x0 0x1
+>  tex nodep $r0 $r0 0x0 0x1 t2d 0xf
+>  depbar le 0x5 0x0 0x0
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0x1 wt 0x3) (st 0x1) (st 0x1)
+>  fmul ftz $r3 $r3 $r4
+>  fmul ftz $r2 $r2 $r4
+>  fmul ftz $r1 $r1 $r4
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0x1) (st 0xf) (st 0x0)
+>  fmul ftz $r0 $r0 $r4
+>  exit
+>  #endif
+> diff --git a/src/shader/exasanv110.fpc b/src/shader/exasanv110.fpc
+> index 5516a03..c291298 100644
+> --- a/src/shader/exasanv110.fpc
+> +++ b/src/shader/exasanv110.fpc
+> @@ -1,36 +1,36 @@
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe1a0070f,
+> +0x003c3c01,
+>  0xcff7ff00,
+>  0xe003ff87,
+>  0x00470000,
+>  0x50800000,
+>  0x4007ff03,
+>  0xe043ff88,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe1e0072f,
+> +0x0008bc03,
+>  0x0007ff02,
+>  0xe043ff88,
+>  0x2ff70204,
+>  0xc03a0004,
+>  0x4007ff01,
+>  0xe043ff89,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe5e0274f,
+> +0x001fbc06,
+>  0x0007ff00,
+>  0xe043ff89,
+>  0xaff70000,
+>  0xc03a0017,
+>  0x34070000,
+>  0xf0f00000,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xfc201fe1,
+> +0x001f8400,
+>  0x00470303,
+>  0x5c681000,
+>  0x00470202,
+>  0x5c681000,
+>  0x00470101,
+>  0x5c681000,
+> -0xfc0007e0,
+> +0xfde007e1,
+>  0x001f8000,
+>  0x00470000,
+>  0x5c681000,
+> diff --git a/src/shader/exascnv110.fp b/src/shader/exascnv110.fp
+> index 90bbb55..86e14e8 100644
+> --- a/src/shader/exascnv110.fp
+> +++ b/src/shader/exascnv110.fp
+> @@ -25,14 +25,14 @@ NV110FP_Source[] = {
+>  };
+>  #else
+>
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)
+>  ipa pass $r0 a[0x7c] 0x0 0x0 0x1
+>  mufu rcp $r0 $r0
+>  ipa $r1 a[0x84] $r0 0x0 0x1
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x1) (st 0xf wt 0x3) (st 0xf)
+>  ipa $r0 a[0x80] $r0 0x0 0x1
+>  tex nodep $r0 $r0 0x0 0x0 t2d 0xf
+>  depbar le 0x5 0x0 0x0
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf) (st 0x0) (st 0x0)
+>  exit
+>  #endif
+> diff --git a/src/shader/exascnv110.fpc b/src/shader/exascnv110.fpc
+> index 2dba15d..1fef5d2 100644
+> --- a/src/shader/exascnv110.fpc
+> +++ b/src/shader/exascnv110.fpc
+> @@ -1,20 +1,20 @@
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe1a0070f,
+> +0x003c3c01,
+>  0xcff7ff00,
+>  0xe003ff87,
+>  0x00470000,
+>  0x50800000,
+>  0x4007ff01,
+>  0xe043ff88,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xfde0072f,
+> +0x001fbc03,
+>  0x0007ff00,
+>  0xe043ff88,
+>  0xaff70000,
+>  0xc03a0007,
+>  0x34070000,
+>  0xf0f00000,
+> -0xfc0007e0,
+> +0xfc0007ef,
+>  0x001f8000,
+>  0x0007000f,
+>  0xe3000000,
+> diff --git a/src/shader/videonv110.fp b/src/shader/videonv110.fp
+> index 2728311..dd3816c 100644
+> --- a/src/shader/videonv110.fp
+> +++ b/src/shader/videonv110.fp
+> @@ -25,30 +25,30 @@ NV110FP_NV12[] = {
+>  };
+>  #else
+>
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)
+>  ipa pass $r2 a[0x7c] 0x0 0x0 0x1
+>  mufu rcp $r2 $r2
+>  ipa $r0 a[0x80] $r2 0x0 0x1
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf wr 0x1) (st 0xf wr 0x0 wt 0x3) (st 0xf wr 0x1)
+>  ipa $r1 a[0x84] $r2 0x0 0x1
+>  tex nodep $r4 $r0 0x0 0x0 t2d 0x8
+>  tex nodep $r0 $r0 0x0 0x1 t2d 0xc
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf) (st 0x6 wt 0x1) (st 0x6)
+>  depbar le 0x5 0x1 0x1
+>  fmul ftz $r5 $r4 c0[0x0]
+>  fadd ftz $r3 $r5 c0[0x4]
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0x6) (st 0x6) (st 0xf)
+>  fadd ftz $r4 $r5 c0[0x8]
+>  fadd ftz $r5 $r5 c0[0xc]
+>  depbar le 0x5 0x0 0x0
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0x6 wt 0x2) (st 0x1) (st 0x1)
+>  ffma ftz $r3 $r0 c0[0x10] $r3
+>  ffma ftz $r4 $r0 c0[0x14] $r4
+>  ffma ftz $r5 $r0 c0[0x18] $r5
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0x1) (st 0x1) (st 0x6)
+>  ffma ftz $r0 $r1 c0[0x1c] $r3
+>  ffma ftz $r2 $r1 c0[0x24] $r5
+>  ffma ftz $r1 $r1 c0[0x20] $r4
+> -sched (st 0x0) (st 0x0) (st 0x0)
+> +sched (st 0xf) (st 0x0) (st 0x0)
+>  exit
+>  #endif
+> diff --git a/src/shader/videonv110.fpc b/src/shader/videonv110.fpc
+> index 31d745a..8fbc246 100644
+> --- a/src/shader/videonv110.fpc
+> +++ b/src/shader/videonv110.fpc
+> @@ -1,52 +1,52 @@
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe1a0070f,
+> +0x003c3c01,
+>  0xcff7ff02,
+>  0xe003ff87,
+>  0x00470202,
+>  0x50800000,
+>  0x0027ff00,
+>  0xe043ff88,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xe1e0072f,
+> +0x001cbc03,
+>  0x4027ff01,
+>  0xe043ff88,
+>  0x2ff70004,
+>  0xc03a0004,
+>  0x2ff70000,
+>  0xc03a0016,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xfcc007ef,
+> +0x001f9801,
+>  0x34170001,
+>  0xf0f00000,
+>  0x00070405,
+>  0x4c681000,
+>  0x00170503,
+>  0x4c581000,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xfcc007e6,
+> +0x001fbc00,
+>  0x00270504,
+>  0x4c581000,
+>  0x00370505,
+>  0x4c581000,
+>  0x34070000,
+>  0xf0f00000,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xfc2017e6,
+> +0x001f8400,
+>  0x00470003,
+>  0x49a00180,
+>  0x00570004,
+>  0x49a00200,
+>  0x00670005,
+>  0x49a00280,
+> -0xfc0007e0,
+> -0x001f8000,
+> +0xfc2007e1,
+> +0x001f9800,
+>  0x00770100,
+>  0x49a00180,
+>  0x00970102,
+>  0x49a00280,
+>  0x00870101,
+>  0x49a00200,
+> -0xfc0007e0,
+> +0xfc0007ef,
+>  0x001f8000,
+>  0x0007000f,
+>  0xe3000000,
+> --
+> 2.11.0
+>
+>
+
+--001a11410e62bc9bb7055195d682
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">See the &#39;wt&#39; on the first fmul in exacanv110.fp, e=
+xacmnv110.fp and exasanv110.fp. Any ideas on what could be causing the firs=
+t fmul to require $r0 and/or $r1?<div><br></div><div>Cheers,</div><div>Aary=
+aman</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">O=
+n Sat, Jun 10, 2017 at 4:10 PM, Aaryaman Vasishta <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:jem456.vasishta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">jem456.vasishta=
+@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">This pat=
+ch adds proper delays to maxwell exa shaders. rendercheck tests<br>
+seem consistent with/without this patch. I haven&#39;t extensively tested<b=
+r>
+them though.<br>
+<br>
+Trello:<br>
+<a href=3D"https://trello.com/c/6LPB2EIS/174-update-maxwell-shaders-with-pr=
+oper-delays" rel=3D"noreferrer" target=3D"_blank">https://trello.com/c/6LPB=
+2EIS/<wbr>174-update-maxwell-shaders-<wbr>with-proper-delays</a><br>
+<br>
+Signed-off-by: Aaryaman Vasishta &lt;<a href=3D"mailto:jem456.vasishta@gmai=
+l.com">jem456.vasishta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt;<br>
+---<br>
+=C2=A0src/shader/exac8nv110.fp=C2=A0 | 10 +++++-----<br>
+=C2=A0src/shader/exac8nv110.fpc | 18 +++++++++---------<br>
+=C2=A0src/shader/exacanv110.fp=C2=A0 | 10 +++++-----<br>
+=C2=A0src/shader/exacanv110.fpc | 18 +++++++++---------<br>
+=C2=A0src/shader/exacmnv110.fp=C2=A0 | 10 +++++-----<br>
+=C2=A0src/shader/exacmnv110.fpc | 18 +++++++++---------<br>
+=C2=A0src/shader/exas8nv110.fp=C2=A0 |=C2=A0 6 +++---<br>
+=C2=A0src/shader/exas8nv110.fpc | 12 ++++++------<br>
+=C2=A0src/shader/exasanv110.fp=C2=A0 | 10 +++++-----<br>
+=C2=A0src/shader/exasanv110.fpc | 18 +++++++++---------<br>
+=C2=A0src/shader/exascnv110.fp=C2=A0 |=C2=A0 6 +++---<br>
+=C2=A0src/shader/exascnv110.fpc | 10 +++++-----<br>
+=C2=A0src/shader/videonv110.fp=C2=A0 | 14 +++++++-------<br>
+=C2=A0src/shader/videonv110.fpc | 26 +++++++++++++-------------<br>
+=C2=A014 files changed, 93 insertions(+), 93 deletions(-)<br>
+<br>
+diff --git a/src/shader/exac8nv110.fp b/src/shader/exac8nv110.fp<br>
+index ce78036..101b67f 100644<br>
+--- a/src/shader/exac8nv110.fp<br>
++++ b/src/shader/exac8nv110.fp<br>
+@@ -25,23 +25,23 @@ NV110FP_Composite_A8[] =3D {<br>
+=C2=A0};<br>
+=C2=A0#else<br>
+<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)<br>
+=C2=A0ipa pass $r0 a[0x7c] 0x0 0x0 0x1<br>
+=C2=A0mufu rcp $r0 $r0<br>
+=C2=A0ipa $r3 a[0x94] $r0 0x0 0x1<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x1) (st 0xf wr 0x0 rd 0x1 wt 0x3) (st 0xf wr 0x1 wt 0x2)=
+<br>
+=C2=A0ipa $r2 a[0x90] $r0 0x0 0x1<br>
+=C2=A0tex nodep $r1 $r2 0x0 0x1 t2d 0x8<br>
+=C2=A0ipa $r3 a[0x84] $r0 0x0 0x1<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x2) (st 0xf wr 0x1 wt 0x6) (st 0xf)<br>
+=C2=A0ipa $r2 a[0x80] $r0 0x0 0x1<br>
+=C2=A0tex nodep $r0 $r2 0x0 0x0 t2d 0x8<br>
+=C2=A0depbar le 0x5 0x0 0x0<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0x6 wt 0x3) (st 0x1) (st 0x1)<br>
+=C2=A0fmul ftz $r3 $r0 $r1<br>
+=C2=A0mov $r2 $r3 0xf<br>
+=C2=A0mov $r1 $r3 0xf<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0x1) (st 0xf) (st 0x0)<br>
+=C2=A0mov $r0 $r3 0xf<br>
+=C2=A0exit<br>
+=C2=A0#endif<br>
+diff --git a/src/shader/exac8nv110.fpc b/src/shader/exac8nv110.fpc<br>
+index 4aa1368..1f7d649 100644<br>
+--- a/src/shader/exac8nv110.fpc<br>
++++ b/src/shader/exac8nv110.fpc<br>
+@@ -1,36 +1,36 @@<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe1a0070f,<br>
++0x003c3c01,<br>
+=C2=A00xcff7ff00,<br>
+=C2=A00xe003ff87,<br>
+=C2=A00x00470000,<br>
+=C2=A00x50800000,<br>
+=C2=A00x4007ff03,<br>
+=C2=A00xe043ff89,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0x21e0072f,<br>
++0x005cbc03,<br>
+=C2=A00x0007ff02,<br>
+=C2=A00xe043ff89,<br>
+=C2=A00x2ff70201,<br>
+=C2=A00xc03a0014,<br>
+=C2=A00x4007ff03,<br>
+=C2=A00xe043ff88,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe5e0074f,<br>
++0x001fbc06,<br>
+=C2=A00x0007ff02,<br>
+=C2=A00xe043ff88,<br>
+=C2=A00x2ff70200,<br>
+=C2=A00xc03a0004,<br>
+=C2=A00x34070000,<br>
+=C2=A00xf0f00000,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xfc201fe6,<br>
++0x001f8400,<br>
+=C2=A00x00170003,<br>
+=C2=A00x5c681000,<br>
+=C2=A00x00370002,<br>
+=C2=A00x5c980780,<br>
+=C2=A00x00370001,<br>
+=C2=A00x5c980780,<br>
+-0xfc0007e0,<br>
++0xfde007e1,<br>
+=C2=A00x001f8000,<br>
+=C2=A00x00370000,<br>
+=C2=A00x5c980780,<br>
+diff --git a/src/shader/exacanv110.fp b/src/shader/exacanv110.fp<br>
+index a70d5c5..8a9bd43 100644<br>
+--- a/src/shader/exacanv110.fp<br>
++++ b/src/shader/exacanv110.fp<br>
+@@ -25,23 +25,23 @@ NV110FP_CAComposite[] =3D {<br>
+=C2=A0};<br>
+=C2=A0#else<br>
+<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)<br>
+=C2=A0ipa pass $r0 a[0x7c] 0x0 0x0 0x1<br>
+=C2=A0mufu rcp $r0 $r0<br>
+=C2=A0ipa $r3 a[0x94] $r0 0x0 0x1<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x1) (st 0xf wr 0x0 rd 0x1 wt 0x3) (st 0xf wr 0x2)<br>
+=C2=A0ipa $r2 a[0x90] $r0 0x0 0x1<br>
+=C2=A0tex nodep $r4 $r2 0x0 0x1 t2d 0xf<br>
+=C2=A0ipa $r1 a[0x84] $r0 0x0 0x1<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x2 wt 0x4) (st 0xf wr 0x2 wt 0x4) (st 0xf)<br>
+=C2=A0ipa $r0 a[0x80] $r0 0x0 0x1<br>
+=C2=A0tex nodep $r0 $r0 0x0 0x0 t2d 0xf<br>
+=C2=A0depbar le 0x5 0x0 0x0<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0x1 wt 0x4) (st 0x1) (st 0x1)<br>
+=C2=A0fmul ftz $r3 $r3 $r7<br>
+=C2=A0fmul ftz $r2 $r2 $r6<br>
+=C2=A0fmul ftz $r1 $r1 $r5<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0x1 wt 0x1) (st 0xf) (st 0x0)<br>
+=C2=A0fmul ftz $r0 $r0 $r4<br>
+=C2=A0exit<br>
+=C2=A0#endif<br>
+diff --git a/src/shader/exacanv110.fpc b/src/shader/exacanv110.fpc<br>
+index 7c0ca5e..08a633c 100644<br>
+--- a/src/shader/exacanv110.fpc<br>
++++ b/src/shader/exacanv110.fpc<br>
+@@ -1,36 +1,36 @@<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe1a0070f,<br>
++0x003c3c01,<br>
+=C2=A00xcff7ff00,<br>
+=C2=A00xe003ff87,<br>
+=C2=A00x00470000,<br>
+=C2=A00x50800000,<br>
+=C2=A00x4007ff03,<br>
+=C2=A00xe043ff89,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0x21e0072f,<br>
++0x001d3c03,<br>
+=C2=A00x0007ff02,<br>
+=C2=A00xe043ff89,<br>
+=C2=A00xaff70204,<br>
+=C2=A00xc03a0017,<br>
+=C2=A00x4007ff01,<br>
+=C2=A00xe043ff88,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe9e0274f,<br>
++0x001fbc04,<br>
+=C2=A00x0007ff00,<br>
+=C2=A00xe043ff88,<br>
+=C2=A00xaff70000,<br>
+=C2=A00xc03a0007,<br>
+=C2=A00x34070000,<br>
+=C2=A00xf0f00000,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xfc2027e1,<br>
++0x001f8400,<br>
+=C2=A00x00770303,<br>
+=C2=A00x5c681000,<br>
+=C2=A00x00670202,<br>
+=C2=A00x5c681000,<br>
+=C2=A00x00570101,<br>
+=C2=A00x5c681000,<br>
+-0xfc0007e0,<br>
++0xfde00fe1,<br>
+=C2=A00x001f8000,<br>
+=C2=A00x00470000,<br>
+=C2=A00x5c681000,<br>
+diff --git a/src/shader/exacmnv110.fp b/src/shader/exacmnv110.fp<br>
+index fe5c294..39c49de 100644<br>
+--- a/src/shader/exacmnv110.fp<br>
++++ b/src/shader/exacmnv110.fp<br>
+@@ -25,23 +25,23 @@ NV110FP_Composite[] =3D {<br>
+=C2=A0};<br>
+=C2=A0#else<br>
+<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)<br>
+=C2=A0ipa pass $r0 a[0x7c] 0x0 0x0 0x1<br>
+=C2=A0mufu rcp $r0 $r0<br>
+=C2=A0ipa $r3 a[0x94] $r0 0x0 0x1<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x1) (st 0xf wr 0x0 wt 0x3) (st 0xf wr 0x1 rd 0x2)<br>
+=C2=A0ipa $r2 a[0x90] $r0 0x0 0x1<br>
+=C2=A0tex nodep $r4 $r2 0x0 0x1 t2d 0x8<br>
+=C2=A0ipa $r1 a[0x84] $r0 0x0 0x1<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x2 wt 0x4) (st 0xf wr 0x1 wt 0x6) (st 0xf)<br>
+=C2=A0ipa $r0 a[0x80] $r0 0x0 0x1<br>
+=C2=A0tex nodep $r0 $r0 0x0 0x0 t2d 0xf<br>
+=C2=A0depbar le 0x5 0x0 0x0<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0x1 wt 0x3) (st 0x1) (st 0x1)<br>
+=C2=A0fmul ftz $r3 $r3 $r4<br>
+=C2=A0fmul ftz $r2 $r2 $r4<br>
+=C2=A0fmul ftz $r1 $r1 $r4<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0x1) (st 0xf) (st 0x0)<br>
+=C2=A0fmul ftz $r0 $r0 $r4<br>
+=C2=A0exit<br>
+=C2=A0#endif<br>
+diff --git a/src/shader/exacmnv110.fpc b/src/shader/exacmnv110.fpc<br>
+index 9d62c1a..f5f06e2 100644<br>
+--- a/src/shader/exacmnv110.fpc<br>
++++ b/src/shader/exacmnv110.fpc<br>
+@@ -1,36 +1,36 @@<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe1a0070f,<br>
++0x003c3c01,<br>
+=C2=A00xcff7ff00,<br>
+=C2=A00xe003ff87,<br>
+=C2=A00x00470000,<br>
+=C2=A00x50800000,<br>
+=C2=A00x4007ff03,<br>
+=C2=A00xe043ff89,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe1e0072f,<br>
++0x0008bc03,<br>
+=C2=A00x0007ff02,<br>
+=C2=A00xe043ff89,<br>
+=C2=A00x2ff70204,<br>
+=C2=A00xc03a0014,<br>
+=C2=A00x4007ff01,<br>
+=C2=A00xe043ff88,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe5e0274f,<br>
++0x001fbc06,<br>
+=C2=A00x0007ff00,<br>
+=C2=A00xe043ff88,<br>
+=C2=A00xaff70000,<br>
+=C2=A00xc03a0007,<br>
+=C2=A00x34070000,<br>
+=C2=A00xf0f00000,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xfc201fe1,<br>
++0x001f8400,<br>
+=C2=A00x00470303,<br>
+=C2=A00x5c681000,<br>
+=C2=A00x00470202,<br>
+=C2=A00x5c681000,<br>
+=C2=A00x00470101,<br>
+=C2=A00x5c681000,<br>
+-0xfc0007e0,<br>
++0xfde007e1,<br>
+=C2=A00x001f8000,<br>
+=C2=A00x00470000,<br>
+=C2=A00x5c681000,<br>
+diff --git a/src/shader/exas8nv110.fp b/src/shader/exas8nv110.fp<br>
+index 4fe2e19..a555beb 100644<br>
+--- a/src/shader/exas8nv110.fp<br>
++++ b/src/shader/exas8nv110.fp<br>
+@@ -25,15 +25,15 @@ NV110FP_Source_A8[] =3D {<br>
+=C2=A0};<br>
+=C2=A0#else<br>
+<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)<br>
+=C2=A0ipa pass $r0 a[0x7c] 0x0 0x0 0x1<br>
+=C2=A0mufu rcp $r0 $r0<br>
+=C2=A0ipa $r1 a[0x84] $r0 0x0 0x1<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x1) (st 0xf wr 0x0 wt 0x3) (st 0xf)<br>
+=C2=A0ipa $r0 a[0x80] $r0 0x0 0x1<br>
+=C2=A0tex nodep $r0 $r0 0x0 0x0 t2d 0x8<br>
+=C2=A0depbar le 0x5 0x0 0x0<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0x1 wt 0x1) (st 0x1) (st 0x1)<br>
+=C2=A0mov $r3 $r0 0xf<br>
+=C2=A0mov $r2 $r0 0xf<br>
+=C2=A0mov $r1 $r0 0xf<br>
+diff --git a/src/shader/exas8nv110.fpc b/src/shader/exas8nv110.fpc<br>
+index 1181c41..e58d168 100644<br>
+--- a/src/shader/exas8nv110.fpc<br>
++++ b/src/shader/exas8nv110.fpc<br>
+@@ -1,21 +1,21 @@<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe1a0070f,<br>
++0x003c3c01,<br>
+=C2=A00xcff7ff00,<br>
+=C2=A00xe003ff87,<br>
+=C2=A00x00470000,<br>
+=C2=A00x50800000,<br>
+=C2=A00x4007ff01,<br>
+=C2=A00xe043ff88,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe1e0072f,<br>
++0x001fbc03,<br>
+=C2=A00x0007ff00,<br>
+=C2=A00xe043ff88,<br>
+=C2=A00x2ff70000,<br>
+=C2=A00xc03a0004,<br>
+=C2=A00x34070000,<br>
+=C2=A00xf0f00000,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xfc200fe1,<br>
++0x001f8400,<br>
+=C2=A00x00070003,<br>
+=C2=A00x5c980780,<br>
+=C2=A00x00070002,<br>
+diff --git a/src/shader/exasanv110.fp b/src/shader/exasanv110.fp<br>
+index 61374a6..9f8742a 100644<br>
+--- a/src/shader/exasanv110.fp<br>
++++ b/src/shader/exasanv110.fp<br>
+@@ -25,23 +25,23 @@ NV110FP_CACompositeSrcAlpha[] =3D {<br>
+=C2=A0};<br>
+=C2=A0#else<br>
+<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)<br>
+=C2=A0ipa pass $r0 a[0x7c] 0x0 0x0 0x1<br>
+=C2=A0mufu rcp $r0 $r0<br>
+=C2=A0ipa $r3 a[0x84] $r0 0x0 0x1<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x1) (st 0xf wr 0x0 wt 0x3) (st 0xf wr 0x1 rd 0x2)<br>
+=C2=A0ipa $r2 a[0x80] $r0 0x0 0x1<br>
+=C2=A0tex nodep $r4 $r2 0x0 0x0 t2d 0x8<br>
+=C2=A0ipa $r1 a[0x94] $r0 0x0 0x1<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x2 wt 0x4) (st 0xf wr 0x1 wt 0x6) (st 0xf)<br>
+=C2=A0ipa $r0 a[0x90] $r0 0x0 0x1<br>
+=C2=A0tex nodep $r0 $r0 0x0 0x1 t2d 0xf<br>
+=C2=A0depbar le 0x5 0x0 0x0<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0x1 wt 0x3) (st 0x1) (st 0x1)<br>
+=C2=A0fmul ftz $r3 $r3 $r4<br>
+=C2=A0fmul ftz $r2 $r2 $r4<br>
+=C2=A0fmul ftz $r1 $r1 $r4<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0x1) (st 0xf) (st 0x0)<br>
+=C2=A0fmul ftz $r0 $r0 $r4<br>
+=C2=A0exit<br>
+=C2=A0#endif<br>
+diff --git a/src/shader/exasanv110.fpc b/src/shader/exasanv110.fpc<br>
+index 5516a03..c291298 100644<br>
+--- a/src/shader/exasanv110.fpc<br>
++++ b/src/shader/exasanv110.fpc<br>
+@@ -1,36 +1,36 @@<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe1a0070f,<br>
++0x003c3c01,<br>
+=C2=A00xcff7ff00,<br>
+=C2=A00xe003ff87,<br>
+=C2=A00x00470000,<br>
+=C2=A00x50800000,<br>
+=C2=A00x4007ff03,<br>
+=C2=A00xe043ff88,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe1e0072f,<br>
++0x0008bc03,<br>
+=C2=A00x0007ff02,<br>
+=C2=A00xe043ff88,<br>
+=C2=A00x2ff70204,<br>
+=C2=A00xc03a0004,<br>
+=C2=A00x4007ff01,<br>
+=C2=A00xe043ff89,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe5e0274f,<br>
++0x001fbc06,<br>
+=C2=A00x0007ff00,<br>
+=C2=A00xe043ff89,<br>
+=C2=A00xaff70000,<br>
+=C2=A00xc03a0017,<br>
+=C2=A00x34070000,<br>
+=C2=A00xf0f00000,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xfc201fe1,<br>
++0x001f8400,<br>
+=C2=A00x00470303,<br>
+=C2=A00x5c681000,<br>
+=C2=A00x00470202,<br>
+=C2=A00x5c681000,<br>
+=C2=A00x00470101,<br>
+=C2=A00x5c681000,<br>
+-0xfc0007e0,<br>
++0xfde007e1,<br>
+=C2=A00x001f8000,<br>
+=C2=A00x00470000,<br>
+=C2=A00x5c681000,<br>
+diff --git a/src/shader/exascnv110.fp b/src/shader/exascnv110.fp<br>
+index 90bbb55..86e14e8 100644<br>
+--- a/src/shader/exascnv110.fp<br>
++++ b/src/shader/exascnv110.fp<br>
+@@ -25,14 +25,14 @@ NV110FP_Source[] =3D {<br>
+=C2=A0};<br>
+=C2=A0#else<br>
+<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)<br>
+=C2=A0ipa pass $r0 a[0x7c] 0x0 0x0 0x1<br>
+=C2=A0mufu rcp $r0 $r0<br>
+=C2=A0ipa $r1 a[0x84] $r0 0x0 0x1<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x1) (st 0xf wt 0x3) (st 0xf)<br>
+=C2=A0ipa $r0 a[0x80] $r0 0x0 0x1<br>
+=C2=A0tex nodep $r0 $r0 0x0 0x0 t2d 0xf<br>
+=C2=A0depbar le 0x5 0x0 0x0<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf) (st 0x0) (st 0x0)<br>
+=C2=A0exit<br>
+=C2=A0#endif<br>
+diff --git a/src/shader/exascnv110.fpc b/src/shader/exascnv110.fpc<br>
+index 2dba15d..1fef5d2 100644<br>
+--- a/src/shader/exascnv110.fpc<br>
++++ b/src/shader/exascnv110.fpc<br>
+@@ -1,20 +1,20 @@<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe1a0070f,<br>
++0x003c3c01,<br>
+=C2=A00xcff7ff00,<br>
+=C2=A00xe003ff87,<br>
+=C2=A00x00470000,<br>
+=C2=A00x50800000,<br>
+=C2=A00x4007ff01,<br>
+=C2=A00xe043ff88,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xfde0072f,<br>
++0x001fbc03,<br>
+=C2=A00x0007ff00,<br>
+=C2=A00xe043ff88,<br>
+=C2=A00xaff70000,<br>
+=C2=A00xc03a0007,<br>
+=C2=A00x34070000,<br>
+=C2=A00xf0f00000,<br>
+-0xfc0007e0,<br>
++0xfc0007ef,<br>
+=C2=A00x001f8000,<br>
+=C2=A00x0007000f,<br>
+=C2=A00xe3000000,<br>
+diff --git a/src/shader/videonv110.fp b/src/shader/videonv110.fp<br>
+index 2728311..dd3816c 100644<br>
+--- a/src/shader/videonv110.fp<br>
++++ b/src/shader/videonv110.fp<br>
+@@ -25,30 +25,30 @@ NV110FP_NV12[] =3D {<br>
+=C2=A0};<br>
+=C2=A0#else<br>
+<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x0) (st 0xd wr 0x0 wt 0x1) (st 0xf wr 0x0 wt 0x1)<br>
+=C2=A0ipa pass $r2 a[0x7c] 0x0 0x0 0x1<br>
+=C2=A0mufu rcp $r2 $r2<br>
+=C2=A0ipa $r0 a[0x80] $r2 0x0 0x1<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf wr 0x1) (st 0xf wr 0x0 wt 0x3) (st 0xf wr 0x1)<br>
+=C2=A0ipa $r1 a[0x84] $r2 0x0 0x1<br>
+=C2=A0tex nodep $r4 $r0 0x0 0x0 t2d 0x8<br>
+=C2=A0tex nodep $r0 $r0 0x0 0x1 t2d 0xc<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf) (st 0x6 wt 0x1) (st 0x6)<br>
+=C2=A0depbar le 0x5 0x1 0x1<br>
+=C2=A0fmul ftz $r5 $r4 c0[0x0]<br>
+=C2=A0fadd ftz $r3 $r5 c0[0x4]<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0x6) (st 0x6) (st 0xf)<br>
+=C2=A0fadd ftz $r4 $r5 c0[0x8]<br>
+=C2=A0fadd ftz $r5 $r5 c0[0xc]<br>
+=C2=A0depbar le 0x5 0x0 0x0<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0x6 wt 0x2) (st 0x1) (st 0x1)<br>
+=C2=A0ffma ftz $r3 $r0 c0[0x10] $r3<br>
+=C2=A0ffma ftz $r4 $r0 c0[0x14] $r4<br>
+=C2=A0ffma ftz $r5 $r0 c0[0x18] $r5<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0x1) (st 0x1) (st 0x6)<br>
+=C2=A0ffma ftz $r0 $r1 c0[0x1c] $r3<br>
+=C2=A0ffma ftz $r2 $r1 c0[0x24] $r5<br>
+=C2=A0ffma ftz $r1 $r1 c0[0x20] $r4<br>
+-sched (st 0x0) (st 0x0) (st 0x0)<br>
++sched (st 0xf) (st 0x0) (st 0x0)<br>
+=C2=A0exit<br>
+=C2=A0#endif<br>
+diff --git a/src/shader/videonv110.fpc b/src/shader/videonv110.fpc<br>
+index 31d745a..8fbc246 100644<br>
+--- a/src/shader/videonv110.fpc<br>
++++ b/src/shader/videonv110.fpc<br>
+@@ -1,52 +1,52 @@<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe1a0070f,<br>
++0x003c3c01,<br>
+=C2=A00xcff7ff02,<br>
+=C2=A00xe003ff87,<br>
+=C2=A00x00470202,<br>
+=C2=A00x50800000,<br>
+=C2=A00x0027ff00,<br>
+=C2=A00xe043ff88,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xe1e0072f,<br>
++0x001cbc03,<br>
+=C2=A00x4027ff01,<br>
+=C2=A00xe043ff88,<br>
+=C2=A00x2ff70004,<br>
+=C2=A00xc03a0004,<br>
+=C2=A00x2ff70000,<br>
+=C2=A00xc03a0016,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xfcc007ef,<br>
++0x001f9801,<br>
+=C2=A00x34170001,<br>
+=C2=A00xf0f00000,<br>
+=C2=A00x00070405,<br>
+=C2=A00x4c681000,<br>
+=C2=A00x00170503,<br>
+=C2=A00x4c581000,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xfcc007e6,<br>
++0x001fbc00,<br>
+=C2=A00x00270504,<br>
+=C2=A00x4c581000,<br>
+=C2=A00x00370505,<br>
+=C2=A00x4c581000,<br>
+=C2=A00x34070000,<br>
+=C2=A00xf0f00000,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xfc2017e6,<br>
++0x001f8400,<br>
+=C2=A00x00470003,<br>
+=C2=A00x49a00180,<br>
+=C2=A00x00570004,<br>
+=C2=A00x49a00200,<br>
+=C2=A00x00670005,<br>
+=C2=A00x49a00280,<br>
+-0xfc0007e0,<br>
+-0x001f8000,<br>
++0xfc2007e1,<br>
++0x001f9800,<br>
+=C2=A00x00770100,<br>
+=C2=A00x49a00180,<br>
+=C2=A00x00970102,<br>
+=C2=A00x49a00280,<br>
+=C2=A00x00870101,<br>
+=C2=A00x49a00200,<br>
+-0xfc0007e0,<br>
++0xfc0007ef,<br>
+=C2=A00x001f8000,<br>
+=C2=A00x0007000f,<br>
+=C2=A00xe3000000,<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+2.11.0<br>
+<br>
+</font></span></blockquote></div><br></div>
+
+--001a11410e62bc9bb7055195d682--
+
+--===============1640737187==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1640737187==--
