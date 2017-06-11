@@ -1,115 +1,61 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101372] nouveau?/DRI3?: dual monitors unusable
- without running compton --paint-on-overlay (sometimes)
-Date: Sat, 10 Jun 2017 20:01:14 +0000
-Message-ID: <bug-101372-8800-3iJzUPIjWw@http.bugs.freedesktop.org/>
-References: <bug-101372-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst@gmail.com>
+Subject: [RFC 0/9] Add precise/invariant semantics to TGSI
+Date: Sun, 11 Jun 2017 20:42:30 +0200
+Message-ID: <20170611184239.7204-1-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0085692070=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101372-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0085692070==
-Content-Type: multipart/alternative; boundary="14971248742.A6ec5F9B.22086";
- charset="UTF-8"
-
-
---14971248742.A6ec5F9B.22086
-Date: Sat, 10 Jun 2017 20:01:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101372
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please include dmesg + xorg logs for both cases.
-
-The only relevant change I see in 4.9.8..4.910 is that the HDA ELD reporting
-was fixed, which should have enabled audio to work over HDMI. Could have be=
-en
-something as silly as a slight timing change which triggers another
-pre-existing issue.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14971248742.A6ec5F9B.22086
-Date: Sat, 10 Jun 2017 20:01:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau?/DRI3?: dual monitors unusable without running co=
-mpton --paint-on-overlay (sometimes)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101372#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau?/DRI3?: dual monitors unusable without running co=
-mpton --paint-on-overlay (sometimes)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101372">bug 10137=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Please include dmesg + xorg logs for both cases.
-
-The only relevant change I see in 4.9.8..4.910 is that the HDA ELD reporting
-was fixed, which should have enabled audio to work over HDMI. Could have be=
-en
-something as silly as a slight timing change which triggers another
-pre-existing issue.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14971248742.A6ec5F9B.22086--
-
---===============0085692070==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0085692070==--
+UnVubmluZyBUb21iIFJhaWRlciBvbiBOb3V2ZWF1IEkgZm91bmQgc29tZSBmbGlja2VyIGNhdXNl
+ZCBieSBpZ25vcmluZyBwcmVjaXNlCm1vZGlmaWVycyBvbiB2YXJpYWJsZXMgaW5zaWRlIE5vdXZl
+YXUuCgpUaGlzIHNlcmllcyBhZGQgcHJlY2lzZS9pbnZhcmlhbnQgaGFuZGxpbmcgdG8gVEdTSSwg
+d2hpY2ggY2FuIGJlIHRoZW4gdXNlZCBieQpkcml2ZXJzIHRvIGRpc2FibGUgY2VydGFpbiB1bnNh
+ZmUgb3B0aW1pc2F0aW9ucyB3aGljaCBtYXkgb3RoZXJ3aXNlIGFsdGVyCmNhbGN1bGF0aW9ucywg
+d2hpY2ggZGVwZW5kIG9uIGhhdmluZyB0aGUgc2FtZSByZXN1bHQgYWNyb3NzIHNoYWRlcnMuCgpU
+aGlzIHNlcmllcyBmaXhlcyB0aGlzIGJ1ZyBpbiBUb21iIFJhaWRlciBhbmQgb25lIENUUyB0ZXN0
+IGZvciA0LjQgYW5kIDQuNQoKTm90ZSBvbiBQYXRjaCAzOiBJIHJlYWxseSBkaXNsaWtlIGhvdyBJ
+IHRlbGwgZ2xzbF90b190Z3NpX3Zpc2l0b3IgdG8gYXBwbHkgdGhlCnByZWNpc2UgZmxhZyBvbiBp
+bnN0cnVjdGlvbiBlbWl0ZWQgaW4gaXJfYXNzaWdubWVudC0+cmhzLT5hY2NlcHQoKTsgYnV0IEkg
+Zm91bmQKbm8gb3RoZXIgZWFzeSB3YXkgdG8gaGFuZGxlIHRoaXMuIE1heWJlIHNvbWVib2R5IG9m
+IHlvdSBoYXMgYSBiZXR0ZXIgaWRlYT8KCkthcm9sIEhlcmJzdCAoOSk6CiAgdGdzaTogYWRkIHBy
+ZWNpc2UgZmxhZyB0byB0Z3NpX2luc3RydWN0aW9uCiAgdGdzaS9kdW1wOiBwcmludCBfUFJFQ0lT
+RSBtb2RpZmllciBvbiBJbnN0cnV0aW9ucwogIHN0L2dsc2xfdG9fdGdzaTogaGFuZGxlIHByZWNp
+c2UgbW9kaWZpZXIKICB0Z3NpOiBwb3B1bGF0ZSBwcmVjaXNlCiAgdGdzaS90ZXh0OiBwYXJzZSBf
+UFJFQ0lTRSBtb2RpZmllcgogIG52NTAvaXI6IGFkZCBwcmVjaXNlIGZpZWxkIHRvIEluc3RydWN0
+aW9uCiAgbnY1MC9pci90Z3NpOiBoYW5kbGUgcHJlY2lzZSBmb3IgbW9zdCBBTFUgaW5zdHJ1Y3Rp
+b25zCiAgbnY1MC9pcjogZGlzYWJsZSBtdWwrYWRkIHRvIG1hZCBmb3IgcHJlY2lzZSBpbnN0cnVj
+dGlvbnMKICBudjUwL2lyL3Rnc2k6IHNwbGl0IG1hZCB0byBtdWwrYWRkCgogc3JjL2dhbGxpdW0v
+YXV4aWxpYXJ5L3Rnc2kvdGdzaV9idWlsZC5jICAgICAgICAgICAgfCAgNCArCiBzcmMvZ2FsbGl1
+bS9hdXhpbGlhcnkvdGdzaS90Z3NpX2R1bXAuYyAgICAgICAgICAgICB8ICA0ICsKIHNyYy9nYWxs
+aXVtL2F1eGlsaWFyeS90Z3NpL3Rnc2lfdGV4dC5jICAgICAgICAgICAgIHwgMTUgKysrLQogc3Jj
+L2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV91cmVnLmMgICAgICAgICAgICAgfCAxNCArKyst
+CiBzcmMvZ2FsbGl1bS9hdXhpbGlhcnkvdGdzaS90Z3NpX3VyZWcuaCAgICAgICAgICAgICB8IDIw
+ICsrKystCiBzcmMvZ2FsbGl1bS9hdXhpbGlhcnkvdXRpbC91X3NpbXBsZV9zaGFkZXJzLmMgICAg
+ICB8ICAyICstCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyLmgg
+ICAgICB8ICAxICsKIC4uLi9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdz
+aS5jcHAgIHwgMTYgKysrKwogLi4uL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVl
+cGhvbGUuY3BwICAgfCAgNiArLQogc3JjL2dhbGxpdW0vaW5jbHVkZS9waXBlL3Bfc2hhZGVyX3Rv
+a2Vucy5oICAgICAgICAgfCAgMyArLQogc3JjL2dhbGxpdW0vc3RhdGVfdHJhY2tlcnMvbmluZS9u
+aW5lX3NoYWRlci5jICAgICAgfCAgNiArLQogc3JjL21lc2Evc3RhdGVfdHJhY2tlci9zdF9hdGlm
+c190b190Z3NpLmMgICAgICAgICAgfCAzOCArKysrLS0tLS0KIHNyYy9tZXNhL3N0YXRlX3RyYWNr
+ZXIvc3RfZ2xzbF90b190Z3NpLmNwcCAgICAgICAgIHwgOTIgKysrKysrKysrKysrKysrKystLS0t
+LQogc3JjL21lc2Evc3RhdGVfdHJhY2tlci9zdF9tZXNhX3RvX3Rnc2kuYyAgICAgICAgICAgfCAg
+OCArLQogc3JjL21lc2Evc3RhdGVfdHJhY2tlci9zdF9wYm8uYyAgICAgICAgICAgICAgICAgICAg
+fCAgMiArLQogMTUgZmlsZXMgY2hhbmdlZCwgMTcyIGluc2VydGlvbnMoKyksIDU5IGRlbGV0aW9u
+cygtKQoKLS0gCjIuMTMuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2Et
+ZGV2Cg==
