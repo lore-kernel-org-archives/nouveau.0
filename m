@@ -1,128 +1,88 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/3] drm/nouveau/tegra: Skip manual
- unpowergating when not necessary
-Date: Tue, 13 Jun 2017 08:52:14 +1000
-Message-ID: <c8569914-3264-bd12-9418-8bdaa4aaa379@gmail.com>
-References: <20170609122541.31118-1-mperttunen@nvidia.com>
+From: Roland Scheidegger <sroland@vmware.com>
+Subject: Re: [RFC 0/9] Add precise/invariant semantics to TGSI
+Date: Tue, 13 Jun 2017 01:57:31 +0200
+Message-ID: <8a99cdc6-c415-1423-dd1b-13a09f902288@vmware.com>
+References: <20170611184239.7204-1-karolherbst@gmail.com>
+ <6f999a01-c3db-0a38-a04c-bbb138eef46b@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1240404074=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170609122541.31118-1-mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <6f999a01-c3db-0a38-a04c-bbb138eef46b@gmail.com>
+Content-Language: de-DE
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: =?UTF-8?Q?Nicolai_H=c3=a4hnle?= <nhaehnle@gmail.com>, Karol Herbst <karolherbst@gmail.com>, mesa-dev@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1240404074==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="6CI1ELI3AvGnbddDmJaJkXlp3eHPVmtnH"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---6CI1ELI3AvGnbddDmJaJkXlp3eHPVmtnH
-Content-Type: multipart/mixed; boundary="FMb7dTdjFopgu53oBMkCwvB7dJsUkQJVs";
- protected-headers="v1"
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-To: Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org,
- nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, kholtta-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org,
- thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
-Message-ID: <c8569914-3264-bd12-9418-8bdaa4aaa379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/3] drm/nouveau/tegra: Skip manual unpowergating when not
- necessary
-References: <20170609122541.31118-1-mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-In-Reply-To: <20170609122541.31118-1-mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-
---FMb7dTdjFopgu53oBMkCwvB7dJsUkQJVs
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-On 06/09/2017 10:25 PM, Mikko Perttunen wrote:
-> On Tegra186, powergating is handled by the BPMP power domain provider
-> and the "legacy" powergating API is not available. Therefore skip
-> these calls if we are attached to a power domain.
-Thanks Mikko,
-
-Taken all 3 patches into my tree.
-
-Ben.
-
->=20
-> Signed-off-by: Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c b/drive=
-rs/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-> index 6474bd2a6d07..3d42cdbbe9c0 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-> @@ -51,10 +51,12 @@ nvkm_device_tegra_power_up(struct nvkm_device_tegra=
- *tdev)
->  	reset_control_assert(tdev->rst);
->  	udelay(10);
-> =20
-> -	ret =3D tegra_powergate_remove_clamping(TEGRA_POWERGATE_3D);
-> -	if (ret)
-> -		goto err_clamp;
-> -	udelay(10);
-> +	if (!tdev->pdev->dev.pm_domain) {
-> +		ret =3D tegra_powergate_remove_clamping(TEGRA_POWERGATE_3D);
-> +		if (ret)
-> +			goto err_clamp;
-> +		udelay(10);
-> +	}
-> =20
->  	reset_control_deassert(tdev->rst);
->  	udelay(10);
->=20
-
-
---FMb7dTdjFopgu53oBMkCwvB7dJsUkQJVs--
-
---6CI1ELI3AvGnbddDmJaJkXlp3eHPVmtnH
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEETp/uv2nr9kIVth0/dgucYlCSkfsFAlk/Gx4ACgkQdgucYlCS
-kft5OQ//eNJlSavlRLvMpdqAY+8lDzK5Yc2NPYs+FVQpqjjaOQ4wzWzEWDTIq1JX
-cBLnrSPm2qCZ43xbVX6RpaZTRzmJcT1S90mTo8RAiSh8B8lkzokh7RCz/0Yr9tLT
-c8gc4I/wU2H55OCzkSFrusGIRsxUwEcxiq+4QAGuIWxzGuFMFD2Pk5E1cyE75MRc
-B/BOkx6UkJu7f7yFGCVYfO10C4PqbvyN4+E36tB0jxPapEP55dQYRVNsq6X3Joce
-v9q5kj58BGBycYwD4E1oLBNo/TQenpHVb3+wOtcQCehr2If80RHh0y+fonuVD2SZ
-0S7Qt12kKmvwK2UvTdb5L4X7wD0dDGZ6dC4WMRYIGCcmYmcsM+J4gG3BVANcwkpr
-5tMjhVjv4PQnLYuZvOgsfgKgDag0Wt9digrPv/L9PWIGFfPD3rQ4nWoYpynUE5U7
-1nkllMV2Mi4Y6QJXpuSa7+/08d2tgZOcODmJDi9nnHLhRxebQPB6x809LhZPkzz0
-EKiZk4tMEsS4JuuRgzlZJwflE7NDEwHB3/dRjJSwZa3aMmKbq5hEIKhow6YugZSs
-HDfGxRlRAKqfpUqCR+oxBuLpO7Cj8fWToqIGuRPFbwduw3ZrfjF/UZpLD5AygzOz
-9RU6alelifEyHB/ylupSyw8Uirmwx/mXam2VMNGr64Fxr3ECeJE=
-=6LBs
------END PGP SIGNATURE-----
-
---6CI1ELI3AvGnbddDmJaJkXlp3eHPVmtnH--
-
---===============1240404074==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1240404074==--
+VGhpcyBsb29rcyBsaWtlIHRoZSByaWdodCBpZGVhIHRvIG1lIHRvby4gSXQgbWF5IHNvdW5kIGEg
+Yml0IHdlaXJkIHRvIGRvCnRoYXQgcGVyIGluc3RydWN0aW9uLCBidXQgZDNkMTEgZG9lcyB0aGF0
+IGFzIHdlbGwuIChTb21lIGQzZCB2ZXJzaW9ucwpqdXN0IGhhdmUgYSBnbG9iYWwgZmxhZyBiYXNp
+Y2FsbHkgZm9yYmlkZGluZyBvciBhbGxvd2luZyBhbnkgc3VjaCBmYXN0Cm1hdGggb3B0aW1pemF0
+aW9ucyBpbiB0aGUgYXNzZW1ibHksIGJ1dCBJJ20gbm90IGFjdHVhbGx5IHN1cmUgZXZlcnlib2R5
+Cmhvbm9ycyB0aGF0IHdpdGhvdXQgdGVzc2VsYXRpb24uLi4pCgpGb3IgMS85OgpSZXZpZXdlZC1i
+eTogUm9sYW5kIFNjaGVpZGVnZ2VyIDxzcm9sYW5kQHZtd2FyZS5jb20+CgoyLzkgaGFzIGEgdHlw
+byBpbiB0aGUgY29tbWl0IHNob3J0IGxvZyAoIkluc3RydXRpb25zIikuCgpGV0lXIHN1cmVseSBv
+biBudjUwIHlvdSBjb3VsZCBrZWVwIGEgc2luZ2xlIG1hZCBpbnN0cnVjdGlvbiBmb3IgdW1hZAoo
+c2FkIG1heWJlIHRvbz8pLiAoSSdtIGFjdHVhbGx5IHdvbmRlcmluZyBpZiB0aGUgaHcgcmVhbGx5
+IGNhbid0IGRvCnVuZnVzZWQgZmxvYXQgbXVsdGlwbHkrYWRkIGFzIGEgc2luZ2xlIGluc3RydWN0
+aW9uIGJ1dCBJIGtub3cgbmV4dCB0bwpub3RoaW5nIGFib3V0IG52aWRpYSBody4uLikKClJvbGFu
+ZAoKQW0gMTIuMDYuMjAxNyB1bSAxMjo0MiBzY2hyaWViIE5pY29sYWkgSMOkaG5sZToKPiBPbiAx
+MS4wNi4yMDE3IDIwOjQyLCBLYXJvbCBIZXJic3Qgd3JvdGU6Cj4+IFJ1bm5pbmcgVG9tYiBSYWlk
+ZXIgb24gTm91dmVhdSBJIGZvdW5kIHNvbWUgZmxpY2tlciBjYXVzZWQgYnkgaWdub3JpbmcKPj4g
+cHJlY2lzZQo+PiBtb2RpZmllcnMgb24gdmFyaWFibGVzIGluc2lkZSBOb3V2ZWF1Lgo+Pgo+PiBU
+aGlzIHNlcmllcyBhZGQgcHJlY2lzZS9pbnZhcmlhbnQgaGFuZGxpbmcgdG8gVEdTSSwgd2hpY2gg
+Y2FuIGJlIHRoZW4KPj4gdXNlZCBieQo+PiBkcml2ZXJzIHRvIGRpc2FibGUgY2VydGFpbiB1bnNh
+ZmUgb3B0aW1pc2F0aW9ucyB3aGljaCBtYXkgb3RoZXJ3aXNlIGFsdGVyCj4+IGNhbGN1bGF0aW9u
+cywgd2hpY2ggZGVwZW5kIG9uIGhhdmluZyB0aGUgc2FtZSByZXN1bHQgYWNyb3NzIHNoYWRlcnMu
+Cj4gCj4gSXQncyBraW5kIG9mIGFtYXppbmcgdGhhdCB3ZSBnb3QgdGhpcyBmYXIgd2l0aG91dCBk
+b2luZyB0aGlzLiBPbiB0aGUKPiByYWRlb25zaSBzaWRlLCBpdCdzIHByb2JhYmx5IHJlbGF0ZWQg
+dG8gaG93IGNvbnNlcnZhdGl2ZSBMTFZNIGlzLgo+IAo+IEJ1dCB0aGlzIHNlcmllcyBpcyBhIGdv
+b2QgaWRlYSwgc2luY2UgaXQgbWlnaHQgYWxsb3cgdXMgdG8gYmVjb21lIG1vcmUKPiBhZ2dyZXNz
+aXZlIHdpdGggb3B0aW1pemF0aW9ucyBpbiByYWRlb25zaSBhcyB3ZWxsLgo+IAo+IAo+PiBUaGlz
+IHNlcmllcyBmaXhlcyB0aGlzIGJ1ZyBpbiBUb21iIFJhaWRlciBhbmQgb25lIENUUyB0ZXN0IGZv
+ciA0LjQgYW5kCj4+IDQuNQo+Pgo+PiBOb3RlIG9uIFBhdGNoIDM6IEkgcmVhbGx5IGRpc2xpa2Ug
+aG93IEkgdGVsbCBnbHNsX3RvX3Rnc2lfdmlzaXRvciB0bwo+PiBhcHBseSB0aGUKPj4gcHJlY2lz
+ZSBmbGFnIG9uIGluc3RydWN0aW9uIGVtaXRlZCBpbiBpcl9hc3NpZ25tZW50LT5yaHMtPmFjY2Vw
+dCgpOwo+PiBidXQgSSBmb3VuZAo+PiBubyBvdGhlciBlYXN5IHdheSB0byBoYW5kbGUgdGhpcy4g
+TWF5YmUgc29tZWJvZHkgb2YgeW91IGhhcyBhIGJldHRlcgo+PiBpZGVhPwo+IAo+IFNlbnQgYSBz
+dWdnZXN0aW9uLCBhcyB3ZWxsIGFzIGNvbW1lbnRzIG9uIHBhdGNoZXMgNCAmIDUuIFBhdGNoZXMg
+MSAmIDI6Cj4gCj4gUmV2aWV3ZWQtYnk6IE5pY29sYWkgSMOkaG5sZSA8bmljb2xhaS5oYWVobmxl
+QGFtZC5jb20+Cj4gCj4gCj4+Cj4+IEthcm9sIEhlcmJzdCAoOSk6Cj4+ICAgIHRnc2k6IGFkZCBw
+cmVjaXNlIGZsYWcgdG8gdGdzaV9pbnN0cnVjdGlvbgo+PiAgICB0Z3NpL2R1bXA6IHByaW50IF9Q
+UkVDSVNFIG1vZGlmaWVyIG9uIEluc3RydXRpb25zCj4+ICAgIHN0L2dsc2xfdG9fdGdzaTogaGFu
+ZGxlIHByZWNpc2UgbW9kaWZpZXIKPj4gICAgdGdzaTogcG9wdWxhdGUgcHJlY2lzZQo+PiAgICB0
+Z3NpL3RleHQ6IHBhcnNlIF9QUkVDSVNFIG1vZGlmaWVyCj4+ICAgIG52NTAvaXI6IGFkZCBwcmVj
+aXNlIGZpZWxkIHRvIEluc3RydWN0aW9uCj4+ICAgIG52NTAvaXIvdGdzaTogaGFuZGxlIHByZWNp
+c2UgZm9yIG1vc3QgQUxVIGluc3RydWN0aW9ucwo+PiAgICBudjUwL2lyOiBkaXNhYmxlIG11bCth
+ZGQgdG8gbWFkIGZvciBwcmVjaXNlIGluc3RydWN0aW9ucwo+PiAgICBudjUwL2lyL3Rnc2k6IHNw
+bGl0IG1hZCB0byBtdWwrYWRkCj4+Cj4+ICAgc3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdz
+aV9idWlsZC5jICAgICAgICAgICAgfCAgNCArCj4+ICAgc3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rn
+c2kvdGdzaV9kdW1wLmMgICAgICAgICAgICAgfCAgNCArCj4+ICAgc3JjL2dhbGxpdW0vYXV4aWxp
+YXJ5L3Rnc2kvdGdzaV90ZXh0LmMgICAgICAgICAgICAgfCAxNSArKystCj4+ICAgc3JjL2dhbGxp
+dW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV91cmVnLmMgICAgICAgICAgICAgfCAxNCArKystCj4+ICAg
+c3JjL2dhbGxpdW0vYXV4aWxpYXJ5L3Rnc2kvdGdzaV91cmVnLmggICAgICAgICAgICAgfCAyMCAr
+KysrLQo+PiAgIHNyYy9nYWxsaXVtL2F1eGlsaWFyeS91dGlsL3Vfc2ltcGxlX3NoYWRlcnMuYyAg
+ICAgIHwgIDIgKy0KPj4gICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUw
+X2lyLmggICAgICB8ICAxICsKPj4gICAuLi4vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9p
+cl9mcm9tX3Rnc2kuY3BwICB8IDE2ICsrKysKPj4gICAuLi4vZHJpdmVycy9ub3V2ZWF1L2NvZGVn
+ZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAgICB8ICA2ICstCj4+ICAgc3JjL2dhbGxpdW0vaW5jbHVk
+ZS9waXBlL3Bfc2hhZGVyX3Rva2Vucy5oICAgICAgICAgfCAgMyArLQo+PiAgIHNyYy9nYWxsaXVt
+L3N0YXRlX3RyYWNrZXJzL25pbmUvbmluZV9zaGFkZXIuYyAgICAgIHwgIDYgKy0KPj4gICBzcmMv
+bWVzYS9zdGF0ZV90cmFja2VyL3N0X2F0aWZzX3RvX3Rnc2kuYyAgICAgICAgICB8IDM4ICsrKyst
+LS0tLQo+PiAgIHNyYy9tZXNhL3N0YXRlX3RyYWNrZXIvc3RfZ2xzbF90b190Z3NpLmNwcCAgICAg
+ICAgIHwgOTIKPj4gKysrKysrKysrKysrKysrKystLS0tLQo+PiAgIHNyYy9tZXNhL3N0YXRlX3Ry
+YWNrZXIvc3RfbWVzYV90b190Z3NpLmMgICAgICAgICAgIHwgIDggKy0KPj4gICBzcmMvbWVzYS9z
+dGF0ZV90cmFja2VyL3N0X3Biby5jICAgICAgICAgICAgICAgICAgICB8ICAyICstCj4+ICAgMTUg
+ZmlsZXMgY2hhbmdlZCwgMTcyIGluc2VydGlvbnMoKyksIDU5IGRlbGV0aW9ucygtKQo+Pgo+IAo+
+IAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1k
+ZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
