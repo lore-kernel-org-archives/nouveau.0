@@ -1,111 +1,60 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101404] GTX 970M (GM204-A) not powered off when not
- in use (DynPwr in stead of DynOff)
-Date: Tue, 13 Jun 2017 12:37:32 +0000
-Message-ID: <bug-101404-8800-AxJvEnLlOk@http.bugs.freedesktop.org/>
-References: <bug-101404-8800@http.bugs.freedesktop.org/>
+From: Mikko Perttunen <cyndis-/1wQRMveznE@public.gmane.org>
+Subject: Re: [PATCH 1/3] drm/nouveau/tegra: Skip manual unpowergating when not
+ necessary
+Date: Tue, 13 Jun 2017 15:43:01 +0300
+Message-ID: <abc5775b-a74e-7902-91ad-a90f3c1bfce4@kapsi.fi>
+References: <20170609122541.31118-1-mperttunen@nvidia.com>
+ <c8569914-3264-bd12-9418-8bdaa4aaa379@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0013690063=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101404-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <c8569914-3264-bd12-9418-8bdaa4aaa379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, kholtta-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On 13.06.2017 01:52, Ben Skeggs wrote:
+> On 06/09/2017 10:25 PM, Mikko Perttunen wrote:
+>> On Tegra186, powergating is handled by the BPMP power domain provider
+>> and the "legacy" powergating API is not available. Therefore skip
+>> these calls if we are attached to a power domain.
+> Thanks Mikko,
+>
+> Taken all 3 patches into my tree.
 
---===============0013690063==
-Content-Type: multipart/alternative; boundary="14973574510.DF0C4.29175";
- charset="UTF-8"
+Thanks!
 
-
---14973574510.DF0C4.29175
-Date: Tue, 13 Jun 2017 12:37:31 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101404
-
-Benny Ammitzb=C3=B8ll <benny-t2dRYjLbInkVZ4pArIi0Q3XJ5CkEIoRN@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Hardware|Other                       |x86-64 (AMD64)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14973574510.DF0C4.29175
-Date: Tue, 13 Jun 2017 12:37:31 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:benny&#64=
-;ammitzboell-consult.dk" title=3D"Benny Ammitzb=C3=B8ll &lt;benny&#64;ammit=
-zboell-consult.dk&gt;"> <span class=3D"fn">Benny Ammitzb=C3=B8ll</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GTX 970M (GM204-A) not powered off when not in use (DynPw=
-r in stead of DynOff)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101404">bug 10140=
-4</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14973574510.DF0C4.29175--
-
---===============0013690063==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0013690063==--
+>
+> Ben.
+>
+>>
+>> Signed-off-by: Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>> ---
+>>  drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 10 ++++++----
+>>  1 file changed, 6 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
+>> index 6474bd2a6d07..3d42cdbbe9c0 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
+>> @@ -51,10 +51,12 @@ nvkm_device_tegra_power_up(struct nvkm_device_tegra *tdev)
+>>  	reset_control_assert(tdev->rst);
+>>  	udelay(10);
+>>
+>> -	ret = tegra_powergate_remove_clamping(TEGRA_POWERGATE_3D);
+>> -	if (ret)
+>> -		goto err_clamp;
+>> -	udelay(10);
+>> +	if (!tdev->pdev->dev.pm_domain) {
+>> +		ret = tegra_powergate_remove_clamping(TEGRA_POWERGATE_3D);
+>> +		if (ret)
+>> +			goto err_clamp;
+>> +		udelay(10);
+>> +	}
+>>
+>>  	reset_control_deassert(tdev->rst);
+>>  	udelay(10);
+>>
+>
