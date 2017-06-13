@@ -1,18 +1,13 @@
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Mesa-dev] [RFC 0/9] Add precise/invariant semantics
-	to TGSI
-Date: Tue, 13 Jun 2017 17:06:20 +0200
-Message-ID: <CAAxE2A7mjVSqxLdW1aDCnoNk3ZRqddYLM_JmMyRzO8s0N2uY8w@mail.gmail.com>
-References: <20170611184239.7204-1-karolherbst@gmail.com>
- <6f999a01-c3db-0a38-a04c-bbb138eef46b@gmail.com>
- <8a99cdc6-c415-1423-dd1b-13a09f902288@vmware.com>
- <CAKb7UviKiLbRG+z4paq8=-6epuWtKSxty2DHw6SQ1LZ+ULQgmw@mail.gmail.com>
- <6ffa13fd-c90b-bda6-b243-13c4857346f7@vmware.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101368] Nouveau regression GT218M in Kernel 4.11
+	Won't Boot
+Date: Tue, 13 Jun 2017 23:20:26 +0000
+Message-ID: <bug-101368-8800-EUp3gbYivS@http.bugs.freedesktop.org/>
+References: <bug-101368-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1564590039=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6ffa13fd-c90b-bda6-b243-13c4857346f7-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-101368-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,33 +17,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Roland Scheidegger <sroland-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?Q?Nicolai_H=C3=A4hnle?= <nhaehnle-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdW4gMTMsIDIwMTcgYXQgMjozMyBBTSwgUm9sYW5kIFNjaGVpZGVnZ2VyIDxzcm9s
-YW5kQHZtd2FyZS5jb20+IHdyb3RlOgo+IEFtIDEzLjA2LjIwMTcgdW0gMDI6MDUgc2NocmllYiBJ
-bGlhIE1pcmtpbjoKPj4gT24gTW9uLCBKdW4gMTIsIDIwMTcgYXQgNzo1NyBQTSwgUm9sYW5kIFNj
-aGVpZGVnZ2VyIDxzcm9sYW5kQHZtd2FyZS5jb20+IHdyb3RlOgo+Pj4gRldJVyBzdXJlbHkgb24g
-bnY1MCB5b3UgY291bGQga2VlcCBhIHNpbmdsZSBtYWQgaW5zdHJ1Y3Rpb24gZm9yIHVtYWQKPj4+
-IChzYWQgbWF5YmUgdG9vPykuIChJJ20gYWN0dWFsbHkgd29uZGVyaW5nIGlmIHRoZSBodyByZWFs
-bHkgY2FuJ3QgZG8KPj4+IHVuZnVzZWQgZmxvYXQgbXVsdGlwbHkrYWRkIGFzIGEgc2luZ2xlIGlu
-c3RydWN0aW9uIGJ1dCBJIGtub3cgbmV4dCB0bwo+Pj4gbm90aGluZyBhYm91dCBudmlkaWEgaHcu
-Li4pCj4+Cj4+IFRoZSBjb21waWxlciBzaG91bGQgcmVhc3NvY2lhdGUgYSBtdWwgKyBhZGQgaW50
-byBhIG1hZCB3aGVyZSBwb3NzaWJsZS4KPj4gSW4gYWN0dWFsaXR5LCBJTUFEIGlzIGFjdHVhbGx5
-IHN1cGVyLXNsb3cuLi4gYWxsZWdlZGx5IHNsb3dlciB0aGFuCj4+IElNVUwgKyBJQURELiBOb3Qg
-c3VyZSB3aHkuIE1heHdlbGwgYWRkZWQgYSBYTUFEIG9wZXJhdGlvbiB3aGljaCBpcwo+PiBmYXN0
-ZXIgYnV0IHdlIGhhdmVuJ3QgZmlndXJlZCBvdXQgaG93IHRvIG9wZXJhdGUgaXQgeWV0LiBJJ20g
-bm90IGF3YXJlCj4+IG9mIGEgbXVsYWRkIHZlcnNpb24gb2YgZm1hIG9uIGZlcm1pIGFuZCBuZXdl
-ciAoR0wgNC4wKS4gVGhlIHRlc2xhCj4+IHNlcmllcyBkb2VzIGhhdmUgYSBmbG9hdGluZyBwb2lu
-dCBtdWwrYWRkIChidXQgbm8gZm1hKS4KPj4KPgo+IEludGVyZXN0aW5nLiByYWRlb25zIHNlZW0g
-dG8gYWx3YXlzIGhhdmUgYSB1bmZ1c2VkIG1hZC4gcHJlLWdjbiBwYXJ0cwo+IGFwcGFyZW50bHkg
-b25seSBoYXZlIGEgMzJiaXQgZm1hIHdpdGggcGFydHMgc3VwcG9ydGluZyBkb3VibGUgcHJlY2lz
-aW9uLgo+IFRoZSBzYW1lIHJlc3RyaWN0aW9uIGlzIHN0YXRlZCBmb3IgZ2NuIHBhcnRzIGluIHRo
-ZSBpc2EgZG9jcywgd2hpY2gKPiBvYnZpb3VzbHkgZG9lc24ndCBtYWtlIHNlbnNlLCBidXQgSSBo
-YXZlIG5vIGlkZWEgaWYgdGhlIGZtYSBpcyBmdWxsIHNwZWVkLi4uCgpmbWEgaXMgZnVsbC1yYXRl
-IG9uIFRhaGl0aSBhbmQgSGF3YWlpIGFuZCBxdWFydGVyLXJhdGUgb24gb3RoZXIgR0NOIGNoaXBz
-LiBGUDY0Cm9wY29kZXMgYXJlIGFsd2F5cyAyeCBvciA0eCBzbG93ZXIgdGhhbiBmbWFfZjMyLgoK
-TWFyZWsKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1564590039==
+Content-Type: multipart/alternative; boundary="14973960260.314E44C7.30126";
+ charset="UTF-8"
+
+
+--14973960260.314E44C7.30126
+Date: Tue, 13 Jun 2017 23:20:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101368
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+            Product|DRI                         |xorg
+           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |.org                        |rg
+          Component|DRM/other                   |Driver/nouveau
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14973960260.314E44C7.30126
+Date: Tue, 13 Jun 2017 23:20:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau regression GT218M in Kernel 4.11 Won't Boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101368">bug 10136=
+8</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">QA Contact</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Product</td>
+           <td>DRI
+           </td>
+           <td>xorg
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>dri-devel&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>DRM/other
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14973960260.314E44C7.30126--
+
+--===============1564590039==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1564590039==--
