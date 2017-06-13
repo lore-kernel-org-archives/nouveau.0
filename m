@@ -1,13 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101322] GM108/NV118: 0 MiB DDR3 and boot crash in
- gf100_ltc_oneinit_tag_ram
-Date: Tue, 13 Jun 2017 15:02:26 +0000
-Message-ID: <bug-101322-8800-IHlcxYCIMc@http.bugs.freedesktop.org/>
-References: <bug-101322-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Mesa-dev] [RFC 0/9] Add precise/invariant semantics
+	to TGSI
+Date: Tue, 13 Jun 2017 17:06:20 +0200
+Message-ID: <CAAxE2A7mjVSqxLdW1aDCnoNk3ZRqddYLM_JmMyRzO8s0N2uY8w@mail.gmail.com>
+References: <20170611184239.7204-1-karolherbst@gmail.com>
+ <6f999a01-c3db-0a38-a04c-bbb138eef46b@gmail.com>
+ <8a99cdc6-c415-1423-dd1b-13a09f902288@vmware.com>
+ <CAKb7UviKiLbRG+z4paq8=-6epuWtKSxty2DHw6SQ1LZ+ULQgmw@mail.gmail.com>
+ <6ffa13fd-c90b-bda6-b243-13c4857346f7@vmware.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0529177583=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101322-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <6ffa13fd-c90b-bda6-b243-13c4857346f7-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,88 +22,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Roland Scheidegger <sroland-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?Q?Nicolai_H=C3=A4hnle?= <nhaehnle-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0529177583==
-Content-Type: multipart/alternative; boundary="14973661450.CB013.25517";
- charset="UTF-8"
-
-
---14973661450.CB013.25517
-Date: Tue, 13 Jun 2017 15:02:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101322
-
---- Comment #6 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
-The nvapeek 101000 output is "PCI init failure".
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14973661450.CB013.25517
-Date: Tue, 13 Jun 2017 15:02:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
-it_tag_ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322#c6">Commen=
-t # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
-it_tag_ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322">bug 10132=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
-gt;"> <span class=3D"fn">Daniel Drake</span></a>
-</span></b>
-        <pre>The nvapeek 101000 output is &quot;PCI init failure&quot;.</pr=
-e>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14973661450.CB013.25517--
-
---===============0529177583==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0529177583==--
+T24gVHVlLCBKdW4gMTMsIDIwMTcgYXQgMjozMyBBTSwgUm9sYW5kIFNjaGVpZGVnZ2VyIDxzcm9s
+YW5kQHZtd2FyZS5jb20+IHdyb3RlOgo+IEFtIDEzLjA2LjIwMTcgdW0gMDI6MDUgc2NocmllYiBJ
+bGlhIE1pcmtpbjoKPj4gT24gTW9uLCBKdW4gMTIsIDIwMTcgYXQgNzo1NyBQTSwgUm9sYW5kIFNj
+aGVpZGVnZ2VyIDxzcm9sYW5kQHZtd2FyZS5jb20+IHdyb3RlOgo+Pj4gRldJVyBzdXJlbHkgb24g
+bnY1MCB5b3UgY291bGQga2VlcCBhIHNpbmdsZSBtYWQgaW5zdHJ1Y3Rpb24gZm9yIHVtYWQKPj4+
+IChzYWQgbWF5YmUgdG9vPykuIChJJ20gYWN0dWFsbHkgd29uZGVyaW5nIGlmIHRoZSBodyByZWFs
+bHkgY2FuJ3QgZG8KPj4+IHVuZnVzZWQgZmxvYXQgbXVsdGlwbHkrYWRkIGFzIGEgc2luZ2xlIGlu
+c3RydWN0aW9uIGJ1dCBJIGtub3cgbmV4dCB0bwo+Pj4gbm90aGluZyBhYm91dCBudmlkaWEgaHcu
+Li4pCj4+Cj4+IFRoZSBjb21waWxlciBzaG91bGQgcmVhc3NvY2lhdGUgYSBtdWwgKyBhZGQgaW50
+byBhIG1hZCB3aGVyZSBwb3NzaWJsZS4KPj4gSW4gYWN0dWFsaXR5LCBJTUFEIGlzIGFjdHVhbGx5
+IHN1cGVyLXNsb3cuLi4gYWxsZWdlZGx5IHNsb3dlciB0aGFuCj4+IElNVUwgKyBJQURELiBOb3Qg
+c3VyZSB3aHkuIE1heHdlbGwgYWRkZWQgYSBYTUFEIG9wZXJhdGlvbiB3aGljaCBpcwo+PiBmYXN0
+ZXIgYnV0IHdlIGhhdmVuJ3QgZmlndXJlZCBvdXQgaG93IHRvIG9wZXJhdGUgaXQgeWV0LiBJJ20g
+bm90IGF3YXJlCj4+IG9mIGEgbXVsYWRkIHZlcnNpb24gb2YgZm1hIG9uIGZlcm1pIGFuZCBuZXdl
+ciAoR0wgNC4wKS4gVGhlIHRlc2xhCj4+IHNlcmllcyBkb2VzIGhhdmUgYSBmbG9hdGluZyBwb2lu
+dCBtdWwrYWRkIChidXQgbm8gZm1hKS4KPj4KPgo+IEludGVyZXN0aW5nLiByYWRlb25zIHNlZW0g
+dG8gYWx3YXlzIGhhdmUgYSB1bmZ1c2VkIG1hZC4gcHJlLWdjbiBwYXJ0cwo+IGFwcGFyZW50bHkg
+b25seSBoYXZlIGEgMzJiaXQgZm1hIHdpdGggcGFydHMgc3VwcG9ydGluZyBkb3VibGUgcHJlY2lz
+aW9uLgo+IFRoZSBzYW1lIHJlc3RyaWN0aW9uIGlzIHN0YXRlZCBmb3IgZ2NuIHBhcnRzIGluIHRo
+ZSBpc2EgZG9jcywgd2hpY2gKPiBvYnZpb3VzbHkgZG9lc24ndCBtYWtlIHNlbnNlLCBidXQgSSBo
+YXZlIG5vIGlkZWEgaWYgdGhlIGZtYSBpcyBmdWxsIHNwZWVkLi4uCgpmbWEgaXMgZnVsbC1yYXRl
+IG9uIFRhaGl0aSBhbmQgSGF3YWlpIGFuZCBxdWFydGVyLXJhdGUgb24gb3RoZXIgR0NOIGNoaXBz
+LiBGUDY0Cm9wY29kZXMgYXJlIGFsd2F5cyAyeCBvciA0eCBzbG93ZXIgdGhhbiBmbWFfZjMyLgoK
+TWFyZWsKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
