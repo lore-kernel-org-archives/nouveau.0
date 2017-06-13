@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101404] GTX 970M (GM204-A) not powered off when not
- in use (DynPwr in stead of DynOff)
-Date: Tue, 13 Jun 2017 13:03:17 +0000
-Message-ID: <bug-101404-8800-s0VNBGRh5N@http.bugs.freedesktop.org/>
-References: <bug-101404-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101322] GM108/NV118: 0 MiB DDR3 and boot crash in
+ gf100_ltc_oneinit_tag_ram
+Date: Tue, 13 Jun 2017 15:02:26 +0000
+Message-ID: <bug-101322-8800-IHlcxYCIMc@http.bugs.freedesktop.org/>
+References: <bug-101322-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1817846599=="
+Content-Type: multipart/mixed; boundary="===============0529177583=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101404-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101322-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1817846599==
-Content-Type: multipart/alternative; boundary="14973589970.BC8Aa4D.849";
+--===============0529177583==
+Content-Type: multipart/alternative; boundary="14973661450.CB013.25517";
  charset="UTF-8"
 
 
---14973589970.BC8Aa4D.849
-Date: Tue, 13 Jun 2017 13:03:17 +0000
+--14973661450.CB013.25517
+Date: Tue, 13 Jun 2017 15:02:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101404
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101322
 
---- Comment #2 from Benny Ammitzb=C3=B8ll <benny-t2dRYjLbInkVZ4pArIi0Q3XJ5CkEIoRN@public.gmane.org> ---
-Workaround to force DynOff when on AC and nvidia card not in use: Use power=
-top
-to toggle all tunables "Bad" into "Good" (probably only need to toggle the
-nvidia PCI).
+--- Comment #6 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
+The nvapeek 101000 output is "PCI init failure".
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14973589970.BC8Aa4D.849
-Date: Tue, 13 Jun 2017 13:03:17 +0000
+--14973661450.CB013.25517
+Date: Tue, 13 Jun 2017 15:02:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,26 +60,22 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GTX 970M (GM204-A) not powered off when not in use (DynPw=
-r in stead of DynOff)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101404#c2">Commen=
-t # 2</a>
+   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
+it_tag_ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GTX 970M (GM204-A) not powered off when not in use (DynPw=
-r in stead of DynOff)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101404">bug 10140=
-4</a>
+   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
+it_tag_ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322">bug 10132=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-benny&#64;ammitzboell-consult.dk" title=3D"Benny Ammitzb=C3=B8ll &lt;benny&=
-#64;ammitzboell-consult.dk&gt;"> <span class=3D"fn">Benny Ammitzb=C3=B8ll</=
-span></a>
+dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
+gt;"> <span class=3D"fn">Daniel Drake</span></a>
 </span></b>
-        <pre>Workaround to force DynOff when on AC and nvidia card not in u=
-se: Use powertop
-to toggle all tunables &quot;Bad&quot; into &quot;Good&quot; (probably only=
- need to toggle the
-nvidia PCI).</pre>
+        <pre>The nvapeek 101000 output is &quot;PCI init failure&quot;.</pr=
+e>
         </div>
       </p>
 
@@ -96,9 +89,9 @@ nvidia PCI).</pre>
     </body>
 </html>=
 
---14973589970.BC8Aa4D.849--
+--14973661450.CB013.25517--
 
---===============1817846599==
+--===============0529177583==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1817846599==--
+--===============0529177583==--
