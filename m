@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101418] Build failure in GNOME Continuous
-Date: Wed, 14 Jun 2017 09:37:59 +0000
-Message-ID: <bug-101418-8800-Ad4RVCE1P0@http.bugs.freedesktop.org/>
+Date: Wed, 14 Jun 2017 13:22:10 +0000
+Message-ID: <bug-101418-8800-62vBfD5gB1@http.bugs.freedesktop.org/>
 References: <bug-101418-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1569697401=="
+Content-Type: multipart/mixed; boundary="===============0311195083=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101418-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1569697401==
-Content-Type: multipart/alternative; boundary="14974330791.faBFcEEE.23661";
+--===============0311195083==
+Content-Type: multipart/alternative; boundary="14974465300.E038b.3474";
  charset="UTF-8"
 
 
---14974330791.faBFcEEE.23661
-Date: Wed, 14 Jun 2017 09:37:59 +0000
+--14974465300.E038b.3474
+Date: Wed, 14 Jun 2017 13:22:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101418
 
---- Comment #1 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Does this help ?
-
-https://lists.freedesktop.org/archives/mesa-dev/2017-June/159245.html
+--- Comment #2 from Yanko Kaneti <yaneti-jUE9FD3ILm5BDgjK7y7TUQ@public.gmane.org> ---
+Helps here (rawhide, configuration along the line of the continuous setup)
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---14974330791.faBFcEEE.23661
-Date: Wed, 14 Jun 2017 09:37:59 +0000
+--14974465300.E038b.3474
+Date: Wed, 14 Jun 2017 13:22:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,22 +61,19 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Build failure in GNOME Continuous"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101418#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101418#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Build failure in GNOME Continuous"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101418">bug 10141=
 8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-samuel.pitoiset&#64;gmail.com" title=3D"Samuel Pitoiset &lt;samuel.pitoiset=
-&#64;gmail.com&gt;"> <span class=3D"fn">Samuel Pitoiset</span></a>
+yaneti&#64;declera.com" title=3D"Yanko Kaneti &lt;yaneti&#64;declera.com&gt=
+;"> <span class=3D"fn">Yanko Kaneti</span></a>
 </span></b>
-        <pre>Does this help ?
-
-<a href=3D"https://lists.freedesktop.org/archives/mesa-dev/2017-June/159245=
-.html">https://lists.freedesktop.org/archives/mesa-dev/2017-June/159245.htm=
-l</a></pre>
+        <pre>Helps here (rawhide, configuration along the line of the conti=
+nuous setup)</pre>
         </div>
       </p>
 
@@ -87,15 +82,15 @@ l</a></pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14974330791.faBFcEEE.23661--
+--14974465300.E038b.3474--
 
---===============1569697401==
+--===============0311195083==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1569697401==--
+--===============0311195083==--
