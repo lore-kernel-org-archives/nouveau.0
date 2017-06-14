@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101322] GM108/NV118: 0 MiB DDR3 and boot crash in
- gf100_ltc_oneinit_tag_ram
-Date: Wed, 14 Jun 2017 00:40:34 +0000
-Message-ID: <bug-101322-8800-yqW4O6bdst@http.bugs.freedesktop.org/>
-References: <bug-101322-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101418] New: Build failure in GNOME Continuous
+Date: Wed, 14 Jun 2017 09:27:52 +0000
+Message-ID: <bug-101418-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1611979809=="
+Content-Type: multipart/mixed; boundary="===============1479523689=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101322-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +18,69 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1611979809==
-Content-Type: multipart/alternative; boundary="14974008340.C2E1.14205";
+--===============1479523689==
+Content-Type: multipart/alternative; boundary="14974324720.dfefD34.21428";
  charset="UTF-8"
 
 
---14974008340.C2E1.14205
-Date: Wed, 14 Jun 2017 00:40:34 +0000
+--14974324720.dfefD34.21428
+Date: Wed, 14 Jun 2017 09:27:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101322
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101418
 
---- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 131939
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D131939&action=3Dedit
-test disabling pci link config twiddling
+            Bug ID: 101418
+           Summary: Build failure in GNOME Continuous
+           Product: Mesa
+           Version: git
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: ebassi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-Can you give this patch a try?  It looks like things are working normally up
-until we try to fiddle with the PCIE link configuration, and I'd like to ru=
-le
-this in/out as a culprit.
+Mesa master branch is failing to build in the GNOME Continuous build servic=
+e:
+
+libtool: link: ( cd ".libs" && rm -f "libnouveau.la" && ln -s
+"../libnouveau.la" "libnouveau.la" )
+/bin/sh ../../../../libtool  --tag=3DCXX   --mode=3Dlink
+x86_64-gnomeostree-linux-g++  -g -m64 -mtune=3Dgeneric -Wall -fno-math-errno
+-fno-trapping-math    -o nouveau_compiler nouveau_compiler.o libnouveau.la
+../../../../src/gallium/auxiliary/libgallium.la
+../../../../src/util/libmesautil.la -lm    -lpthread -ldl -ldrm=20
+libtool: link: x86_64-gnomeostree-linux-g++ -g -m64 -mtune=3Dgeneric -Wall
+-fno-math-errno -fno-trapping-math -o nouveau_compiler nouveau_compiler.o=20
+./.libs/libnouveau.a ../../../../src/gallium/auxiliary/.libs/libgallium.a
+../../../../src/util/.libs/libmesautil.a -lz -lm -lpthread -ldl -ldrm
+../../../../src/gallium/auxiliary/.libs/libgallium.a(tgsi_scan.o): In funct=
+ion
+`scan_instruction':
+/ostbuild/source/mesa/_build/src/gallium/auxiliary/../../../../src/gallium/=
+auxiliary/tgsi/tgsi_scan.c:402:
+undefined reference to `tgsi_is_bindless_image_file'
+/ostbuild/source/mesa/_build/src/gallium/auxiliary/../../../../src/gallium/=
+auxiliary/tgsi/tgsi_scan.c:406:
+undefined reference to `tgsi_is_bindless_image_file'
+collect2: error: ld returned 1 exit status
+Makefile:1128: recipe for target 'nouveau_compiler' failed
+make[4]: *** [nouveau_compiler] Error 1
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14974008340.C2E1.14205
-Date: Wed, 14 Jun 2017 00:40:34 +0000
+--14974324720.dfefD34.21428
+Date: Wed, 14 Jun 2017 09:27:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,37 +91,116 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Build failure in GNOME Continuous"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101418">101418</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Build failure in GNOME Continuous
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ebassi&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
-it_tag_ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322#c7">Commen=
-t # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
-it_tag_ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322">bug 10132=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D131939=
-" name=3D"attach_131939" title=3D"test disabling pci link config twiddling"=
->attachment 131939</a> <a href=3D"attachment.cgi?id=3D131939&amp;action=3De=
-dit" title=3D"test disabling pci link config twiddling">[details]</a></span=
-> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D101322&amp;attachment=3D=
-131939'>[review]</a>
-test disabling pci link config twiddling
+        <pre>Mesa master branch is failing to build in the GNOME Continuous=
+ build service:
 
-Can you give this patch a try?  It looks like things are working normally up
-until we try to fiddle with the PCIE link configuration, and I'd like to ru=
-le
-this in/out as a culprit.</pre>
+libtool: link: ( cd &quot;.libs&quot; &amp;&amp; rm -f &quot;libnouveau.la&=
+quot; &amp;&amp; ln -s
+&quot;../libnouveau.la&quot; &quot;libnouveau.la&quot; )
+/bin/sh ../../../../libtool  --tag=3DCXX   --mode=3Dlink
+x86_64-gnomeostree-linux-g++  -g -m64 -mtune=3Dgeneric -Wall -fno-math-errno
+-fno-trapping-math    -o nouveau_compiler nouveau_compiler.o libnouveau.la
+../../../../src/gallium/auxiliary/libgallium.la
+../../../../src/util/libmesautil.la -lm    -lpthread -ldl -ldrm=20
+libtool: link: x86_64-gnomeostree-linux-g++ -g -m64 -mtune=3Dgeneric -Wall
+-fno-math-errno -fno-trapping-math -o nouveau_compiler nouveau_compiler.o=20
+./.libs/libnouveau.a ../../../../src/gallium/auxiliary/.libs/libgallium.a
+../../../../src/util/.libs/libmesautil.a -lz -lm -lpthread -ldl -ldrm
+../../../../src/gallium/auxiliary/.libs/libgallium.a(tgsi_scan.o): In funct=
+ion
+`scan_instruction':
+/ostbuild/source/mesa/_build/src/gallium/auxiliary/../../../../src/gallium/=
+auxiliary/tgsi/tgsi_scan.c:402:
+undefined reference to `tgsi_is_bindless_image_file'
+/ostbuild/source/mesa/_build/src/gallium/auxiliary/../../../../src/gallium/=
+auxiliary/tgsi/tgsi_scan.c:406:
+undefined reference to `tgsi_is_bindless_image_file'
+collect2: error: ld returned 1 exit status
+Makefile:1128: recipe for target 'nouveau_compiler' failed
+make[4]: *** [nouveau_compiler] Error 1</pre>
         </div>
       </p>
 
@@ -102,13 +210,14 @@ this in/out as a culprit.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14974008340.C2E1.14205--
+--14974324720.dfefD34.21428--
 
---===============1611979809==
+--===============1479523689==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +227,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1611979809==--
+--===============1479523689==--
