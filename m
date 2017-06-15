@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101418] Build failure in GNOME Continuous
-Date: Thu, 15 Jun 2017 13:35:15 +0000
-Message-ID: <bug-101418-8800-durR7XwLV5@http.bugs.freedesktop.org/>
+Date: Thu, 15 Jun 2017 15:33:40 +0000
+Message-ID: <bug-101418-8800-zYgpOeh3wZ@http.bugs.freedesktop.org/>
 References: <bug-101418-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0808984029=="
+Content-Type: multipart/mixed; boundary="===============1123142947=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101418-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0808984029==
-Content-Type: multipart/alternative; boundary="14975337140.CFe01Fa.9478";
+--===============1123142947==
+Content-Type: multipart/alternative; boundary="14975408200.Cb9E03e3.3783";
  charset="UTF-8"
 
 
---14975337140.CFe01Fa.9478
-Date: Thu, 15 Jun 2017 13:35:14 +0000
+--14975408200.Cb9E03e3.3783
+Date: Thu, 15 Jun 2017 15:33:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -39,32 +39,22 @@ Emmanuele Bassi (:ebassi) <ebassi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> chang
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|FIXED                       |---
+         Resolution|---                         |FIXED
+             Status|REOPENED                    |RESOLVED
 
---- Comment #4 from Emmanuele Bassi (:ebassi) <ebassi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Nope, the build is still bust:
+--- Comment #5 from Emmanuele Bassi (:ebassi) <ebassi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Turns out the buildbot got stuck and it didn't check out the updated master
+branch.
 
-/ostbuild/source/mesa/_build/src/gallium/auxiliary/../../../../src/gallium/=
-auxiliary/tgsi/tgsi_scan.c:402:
-undefined reference to `tgsi_is_bindless_image_file'
-/ostbuild/source/mesa/_build/src/gallium/auxiliary/../../../../src/gallium/=
-auxiliary/tgsi/tgsi_scan.c:406:
-undefined reference to `tgsi_is_bindless_image_file'
-
-Full log:
-http://build.gnome.org/continuous/buildmaster/builds/2017/06/14/21/build/lo=
-g-mesa.txt
-
-This is a linker issue, not a static inline one.
+Closing.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---14975337140.CFe01Fa.9478
-Date: Thu, 15 Jun 2017 13:35:14 +0000
+--14975408200.Cb9E03e3.3783
+Date: Thu, 15 Jun 2017 15:33:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,8 +70,8 @@ Auto-Submitted: auto-generated
 ;"> <span class=3D"fn">Emmanuele Bassi (:ebassi)</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Build failure in GNOME Continuous"
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Build failure in GNOME Continuous"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101418">bug 10141=
 8</a>
           <br>
@@ -93,51 +83,41 @@ Auto-Submitted: auto-generated
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>RESOLVED
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
            </td>
-           <td>REOPENED
+           <td>FIXED
            </td>
          </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>FIXED
+           <td style=3D"text-align:right;">Status</td>
+           <td>REOPENED
            </td>
-           <td>---
+           <td>RESOLVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Build failure in GNOME Continuous"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101418#c4">Commen=
-t # 4</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Build failure in GNOME Continuous"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101418#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Build failure in GNOME Continuous"
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Build failure in GNOME Continuous"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101418">bug 10141=
 8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 ebassi&#64;gmail.com" title=3D"Emmanuele Bassi (:ebassi) &lt;ebassi&#64;gma=
 il.com&gt;"> <span class=3D"fn">Emmanuele Bassi (:ebassi)</span></a>
 </span></b>
-        <pre>Nope, the build is still bust:
+        <pre>Turns out the buildbot got stuck and it didn't check out the u=
+pdated master
+branch.
 
-/ostbuild/source/mesa/_build/src/gallium/auxiliary/../../../../src/gallium/=
-auxiliary/tgsi/tgsi_scan.c:402:
-undefined reference to `tgsi_is_bindless_image_file'
-/ostbuild/source/mesa/_build/src/gallium/auxiliary/../../../../src/gallium/=
-auxiliary/tgsi/tgsi_scan.c:406:
-undefined reference to `tgsi_is_bindless_image_file'
-
-Full log:
-<a href=3D"http://build.gnome.org/continuous/buildmaster/builds/2017/06/14/=
-21/build/log-mesa.txt">http://build.gnome.org/continuous/buildmaster/builds=
-/2017/06/14/21/build/log-mesa.txt</a>
-
-This is a linker issue, not a static inline one.</pre>
+Closing.</pre>
         </div>
       </p>
 
@@ -146,15 +126,15 @@ This is a linker issue, not a static inline one.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14975337140.CFe01Fa.9478--
+--14975408200.Cb9E03e3.3783--
 
---===============0808984029==
+--===============1123142947==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -164,4 +144,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0808984029==--
+--===============1123142947==--
