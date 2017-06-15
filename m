@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101448] [GP106] Kernel crashes while using nouveau
-Date: Thu, 15 Jun 2017 13:12:26 +0000
-Message-ID: <bug-101448-8800-jjfIVnuhAE@http.bugs.freedesktop.org/>
-References: <bug-101448-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101418] Build failure in GNOME Continuous
+Date: Thu, 15 Jun 2017 13:35:15 +0000
+Message-ID: <bug-101418-8800-durR7XwLV5@http.bugs.freedesktop.org/>
+References: <bug-101418-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2061384297=="
+Content-Type: multipart/mixed; boundary="===============0808984029=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101448-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101418-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +20,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2061384297==
-Content-Type: multipart/alternative; boundary="14975323462.bb3A37f.4373";
+--===============0808984029==
+Content-Type: multipart/alternative; boundary="14975337140.CFe01Fa.9478";
  charset="UTF-8"
 
 
---14975323462.bb3A37f.4373
-Date: Thu, 15 Jun 2017 13:12:26 +0000
+--14975337140.CFe01Fa.9478
+Date: Thu, 15 Jun 2017 13:35:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101448
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101418
 
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+Emmanuele Bassi (:ebassi) <ebassi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Kernel crashes while using  |[GP106] Kernel crashes
-                   |nouveau                     |while using nouveau
+             Status|RESOLVED                    |REOPENED
+         Resolution|FIXED                       |---
+
+--- Comment #4 from Emmanuele Bassi (:ebassi) <ebassi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Nope, the build is still bust:
+
+/ostbuild/source/mesa/_build/src/gallium/auxiliary/../../../../src/gallium/=
+auxiliary/tgsi/tgsi_scan.c:402:
+undefined reference to `tgsi_is_bindless_image_file'
+/ostbuild/source/mesa/_build/src/gallium/auxiliary/../../../../src/gallium/=
+auxiliary/tgsi/tgsi_scan.c:406:
+undefined reference to `tgsi_is_bindless_image_file'
+
+Full log:
+http://build.gnome.org/continuous/buildmaster/builds/2017/06/14/21/build/lo=
+g-mesa.txt
+
+This is a linker issue, not a static inline one.
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---14975323462.bb3A37f.4373
-Date: Thu, 15 Jun 2017 13:12:26 +0000
+--14975337140.CFe01Fa.9478
+Date: Thu, 15 Jun 2017 13:35:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,14 +75,14 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pierre.mo=
-rrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"=
-> <span class=3D"fn">Pierre Moreau</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ebassi&#6=
+4;gmail.com" title=3D"Emmanuele Bassi (:ebassi) &lt;ebassi&#64;gmail.com&gt=
+;"> <span class=3D"fn">Emmanuele Bassi (:ebassi)</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GP106] Kernel crashes while using nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101448">bug 10144=
+          bz_status_REOPENED "
+   title=3D"REOPENED - Build failure in GNOME Continuous"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101418">bug 10141=
 8</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -76,13 +93,52 @@ rrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"=
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>Kernel crashes while using nouveau
+           <td style=3D"text-align:right;">Status</td>
+           <td>RESOLVED
            </td>
-           <td>[GP106] Kernel crashes while using nouveau
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>FIXED
+           </td>
+           <td>---
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Build failure in GNOME Continuous"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101418#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Build failure in GNOME Continuous"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101418">bug 10141=
+8</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ebassi&#64;gmail.com" title=3D"Emmanuele Bassi (:ebassi) &lt;ebassi&#64;gma=
+il.com&gt;"> <span class=3D"fn">Emmanuele Bassi (:ebassi)</span></a>
+</span></b>
+        <pre>Nope, the build is still bust:
+
+/ostbuild/source/mesa/_build/src/gallium/auxiliary/../../../../src/gallium/=
+auxiliary/tgsi/tgsi_scan.c:402:
+undefined reference to `tgsi_is_bindless_image_file'
+/ostbuild/source/mesa/_build/src/gallium/auxiliary/../../../../src/gallium/=
+auxiliary/tgsi/tgsi_scan.c:406:
+undefined reference to `tgsi_is_bindless_image_file'
+
+Full log:
+<a href=3D"http://build.gnome.org/continuous/buildmaster/builds/2017/06/14/=
+21/build/log-mesa.txt">http://build.gnome.org/continuous/buildmaster/builds=
+/2017/06/14/21/build/log-mesa.txt</a>
+
+This is a linker issue, not a static inline one.</pre>
+        </div>
       </p>
 
 
@@ -90,14 +146,15 @@ rrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"=
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---14975323462.bb3A37f.4373--
+--14975337140.CFe01Fa.9478--
 
---===============2061384297==
+--===============0808984029==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +164,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2061384297==--
+--===============0808984029==--
