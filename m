@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101184] [NVE6] [bisected] Panic on boot with GK106
-Date: Thu, 15 Jun 2017 07:35:08 +0000
-Message-ID: <bug-101184-8800-9ImUXa57s4@http.bugs.freedesktop.org/>
-References: <bug-101184-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98690] [nouveau bisected] System freeze when
+ starting X using kernel 4.9-rc1 or later
+Date: Thu, 15 Jun 2017 07:41:04 +0000
+Message-ID: <bug-98690-8800-1UOsmawHeT@http.bugs.freedesktop.org/>
+References: <bug-98690-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0959331507=="
+Content-Type: multipart/mixed; boundary="===============1654471219=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101184-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98690-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,42 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0959331507==
-Content-Type: multipart/alternative; boundary="14975121081.4E8B245.1836";
+--===============1654471219==
+Content-Type: multipart/alternative; boundary="14975124648.fB3ad2.1460";
  charset="UTF-8"
 
 
---14975121081.4E8B245.1836
-Date: Thu, 15 Jun 2017 07:35:08 +0000
+--14975124648.fB3ad2.1460
+Date: Thu, 15 Jun 2017 07:41:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101184
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98690
 
-S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> changed:
+Jani Nikula <jani.nikula-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #13 from S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> ---
-It appears the fix has been merged into mainline as
-b4e382ca7586a63b6c1e5221ce0863ff867c2df6 "drm/nouveau/tmr: fully separate a=
-larm
-execution/pending lists". I can also confirm that unpatched -mainline now b=
-oots
-- thank you for the fix!
+         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+            Product|DRI                         |xorg
+          Component|DRM/other                   |Driver/nouveau
+           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |.org                        |rg
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14975121081.4E8B245.1836
-Date: Thu, 15 Jun 2017 07:35:08 +0000
+--14975124648.fB3ad2.1460
+Date: Thu, 15 Jun 2017 07:41:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,15 +62,16 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sgilles&#=
-64;math.umd.edu" title=3D"S. Gilles &lt;sgilles&#64;math.umd.edu&gt;"> <spa=
-n class=3D"fn">S. Gilles</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jani.niku=
+la&#64;intel.com" title=3D"Jani Nikula &lt;jani.nikula&#64;intel.com&gt;"> =
+<span class=3D"fn">Jani Nikula</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">bug 10118=
-4</a>
+          bz_status_NEW "
+   title=3D"NEW - [nouveau bisected] System freeze when starting X using ke=
+rnel 4.9-rc1 or later"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98690">bug 98690<=
+/a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -84,43 +81,38 @@ n class=3D"fn">S. Gilles</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
+           <td style=3D"text-align:right;">QA Contact</td>
+           <td>
+               &nbsp;
            </td>
-           <td>RESOLVED
+           <td>xorg-team&#64;lists.x.org
            </td>
          </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
+           <td style=3D"text-align:right;">Product</td>
+           <td>DRI
            </td>
-           <td>FIXED
+           <td>xorg
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>DRM/other
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>dri-devel&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c13">Comme=
-nt # 13</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">bug 10118=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sgilles&#64;math.umd.edu" title=3D"S. Gilles &lt;sgilles&#64;math.umd.edu&g=
-t;"> <span class=3D"fn">S. Gilles</span></a>
-</span></b>
-        <pre>It appears the fix has been merged into mainline as
-b4e382ca7586a63b6c1e5221ce0863ff867c2df6 &quot;drm/nouveau/tmr: fully separ=
-ate alarm
-execution/pending lists&quot;. I can also confirm that unpatched -mainline =
-now boots
-- thank you for the fix!</pre>
-        </div>
       </p>
 
 
@@ -133,9 +125,9 @@ now boots
     </body>
 </html>=
 
---14975121081.4E8B245.1836--
+--14975124648.fB3ad2.1460--
 
---===============0959331507==
+--===============1654471219==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -145,4 +137,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0959331507==--
+--===============1654471219==--
