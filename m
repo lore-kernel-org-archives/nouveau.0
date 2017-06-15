@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101184] [NVE6] [bisected] Panic on boot with GK106
-Date: Thu, 15 Jun 2017 06:57:25 +0000
-Message-ID: <bug-101184-8800-tLQh3zAlhb@http.bugs.freedesktop.org/>
+Date: Thu, 15 Jun 2017 07:35:08 +0000
+Message-ID: <bug-101184-8800-9ImUXa57s4@http.bugs.freedesktop.org/>
 References: <bug-101184-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1846663336=="
+Content-Type: multipart/mixed; boundary="===============0959331507=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101184-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1846663336==
-Content-Type: multipart/alternative; boundary="14975098440.3dbdD.26499";
+--===============0959331507==
+Content-Type: multipart/alternative; boundary="14975121081.4E8B245.1836";
  charset="UTF-8"
 
 
---14975098440.3dbdD.26499
-Date: Thu, 15 Jun 2017 06:57:24 +0000
+--14975121081.4E8B245.1836
+Date: Thu, 15 Jun 2017 07:35:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,15 +35,27 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101184
 
---- Comment #12 from mrblooter-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
-Using kernel 4.11.5 fixed this.
+S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #13 from S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> ---
+It appears the fix has been merged into mainline as
+b4e382ca7586a63b6c1e5221ce0863ff867c2df6 "drm/nouveau/tmr: fully separate a=
+larm
+execution/pending lists". I can also confirm that unpatched -mainline now b=
+oots
+- thank you for the fix!
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14975098440.3dbdD.26499
-Date: Thu, 15 Jun 2017 06:57:24 +0000
+--14975121081.4E8B245.1836
+Date: Thu, 15 Jun 2017 07:35:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -54,24 +66,60 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sgilles&#=
+64;math.umd.edu" title=3D"S. Gilles &lt;sgilles&#64;math.umd.edu&gt;"> <spa=
+n class=3D"fn">S. Gilles</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVE6] [bisected] Panic on boot with GK106"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">bug 10118=
+4</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c12">Comme=
-nt # 12</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVE6] [bisected] Panic on boot with GK106"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184#c13">Comme=
+nt # 13</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] [bisected] Panic on boot with GK106"
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVE6] [bisected] Panic on boot with GK106"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101184">bug 10118=
 4</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mrblooter&#64;hotmail.com" title=3D"mrblooter&#64;hotmail.com">mrblooter&#6=
-4;hotmail.com</a>
+sgilles&#64;math.umd.edu" title=3D"S. Gilles &lt;sgilles&#64;math.umd.edu&g=
+t;"> <span class=3D"fn">S. Gilles</span></a>
 </span></b>
-        <pre>Using kernel 4.11.5 fixed this.</pre>
+        <pre>It appears the fix has been merged into mainline as
+b4e382ca7586a63b6c1e5221ce0863ff867c2df6 &quot;drm/nouveau/tmr: fully separ=
+ate alarm
+execution/pending lists&quot;. I can also confirm that unpatched -mainline =
+now boots
+- thank you for the fix!</pre>
         </div>
       </p>
 
@@ -85,9 +133,9 @@ mrblooter&#64;hotmail.com" title=3D"mrblooter&#64;hotmail.com">mrblooter&#6=
     </body>
 </html>=
 
---14975098440.3dbdD.26499--
+--14975121081.4E8B245.1836--
 
---===============1846663336==
+--===============0959331507==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +145,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1846663336==--
+--===============0959331507==--
