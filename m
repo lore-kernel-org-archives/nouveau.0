@@ -1,11 +1,12 @@
-From: "Wuzongyong (Cordius Wu, Euler Dept)" <wuzongyong1-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-Subject: How to dump vbioses of Pascal cards?
-Date: Fri, 16 Jun 2017 01:42:26 +0000
-Message-ID: <9BD73EA91F8E404F851CF3F519B14AA8CE8124@SZXEMI503-MBS.china.huawei.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: How to dump vbioses of Pascal cards?
+Date: Fri, 16 Jun 2017 15:39:48 +1000
+Message-ID: <562529ae-014a-265b-e08f-818234d68ee0@gmail.com>
+References: <9BD73EA91F8E404F851CF3F519B14AA8CE8124@SZXEMI503-MBS.china.huawei.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1325279172=="
+Content-Type: multipart/mixed; boundary="===============0176588802=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: zh-CN
+In-Reply-To: <9BD73EA91F8E404F851CF3F519B14AA8CE8124-OQh+Io27EUn0mp2XfTw+mgK1hpo4iccwjNknBlVQO8k@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,105 +16,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: "Wanzongshun (Vincent)" <wanzongshun-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1325279172==
-Content-Language: zh-CN
-Content-Type: multipart/alternative;
-	boundary="_000_9BD73EA91F8E404F851CF3F519B14AA8CE8124SZXEMI503MBSchina_"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0176588802==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="jQumu3PVqcXxQGnmS07tGlbHoNm21X23x"
 
---_000_9BD73EA91F8E404F851CF3F519B14AA8CE8124SZXEMI503MBSchina_
-Content-Type: text/plain; charset="us-ascii"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--jQumu3PVqcXxQGnmS07tGlbHoNm21X23x
+Content-Type: multipart/mixed; boundary="A2lLDgiESWJOKuKaex3KqCHJFga5MKnkg";
+ protected-headers="v1"
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Message-ID: <562529ae-014a-265b-e08f-818234d68ee0-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Nouveau] How to dump vbioses of Pascal cards?
+References: <9BD73EA91F8E404F851CF3F519B14AA8CE8124-OQh+Io27EUn0mp2XfTw+mgK1hpo4iccwjNknBlVQO8k@public.gmane.org>
+In-Reply-To: <9BD73EA91F8E404F851CF3F519B14AA8CE8124-OQh+Io27EUn0mp2XfTw+mgK1hpo4iccwjNknBlVQO8k@public.gmane.org>
+
+--A2lLDgiESWJOKuKaex3KqCHJFga5MKnkg
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-Is there any method to dump vbioses of NVIDIA Pascal  cards(not use nvflash=
-), such as P100/P4?
-I used nvagetbios, but it just report a error "Card has second bios", what =
-does this mean?
+On 06/16/2017 11:42 AM, Wuzongyong (Cordius Wu, Euler Dept) wrote:
+> Is there any method to dump vbioses of NVIDIA Pascal  cards(not use
+> nvflash), such as P100/P4?
+>=20
+> I used nvagetbios, but it just report a error =93Card has second bios=94=
+,
+> what does this mean?
+"nvagetbios -s PROM > vbios.rom" should work just fine, despite that
+message.
 
-Thanks,
-Zongyong Wu
+Ben.
 
-
---_000_9BD73EA91F8E404F851CF3F519B14AA8CE8124SZXEMI503MBSchina_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:\5B8B\4F53;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@\5B8B\4F53";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Is there any method to dump vbioses of NVIDIA Pascal=
- &nbsp;cards(not use nvflash), such as P100/P4?<o:p></o:p></p>
-<p class=3D"MsoNormal">I used nvagetbios, but it just report a error &#8220=
-;Card has second bios&#8221;, what does this mean?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Zongyong Wu<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9BD73EA91F8E404F851CF3F519B14AA8CE8124SZXEMI503MBSchina_--
+>=20
+> =20
+>=20
+> Thanks,
+>=20
+> Zongyong Wu
+>=20
+> =20
+>=20
+>=20
+>=20
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+>=20
 
 
---===============1325279172==
+--A2lLDgiESWJOKuKaex3KqCHJFga5MKnkg--
+
+--jQumu3PVqcXxQGnmS07tGlbHoNm21X23x
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEETp/uv2nr9kIVth0/dgucYlCSkfsFAllDbyQACgkQdgucYlCS
+kfskCBAAkfso22w5grzhisNFZvhWMO67aVbe7UpbjmQwK9QKOJ0QHBgsLz6gjfph
+swAqbsMesJmPPkiLPDa3WDxahscH364AM415ZdH3YfIFEhTMlcgm9IRn04bqT4aD
+JD7b92br3+FdF2rsFHvhzm3I1gN7piNKLFnHlMSeml98NMOw84t/ntYYNKXOXHCR
+dS9uRuMYx2hv9XPXV3tCgX55XocleFXRe/CzElJTj1TaiskgMYHAkVBsZQVXr8L5
+qcP1aPfVUlZcNzS3Ae3Fta+U8HZPBnS19IBqiFtIBhSl9/uqtNo/OqR0KPIGft//
+3PG1cNaKpZBxE2GKbmIH48JYM43S6sYvUQulaGEgMfNN+TijwRf2IrHJ/FZZEUX4
+GCGaF881kno4pTxwHxYDLukHE6X1iqvqEKvcRjjsRp/AbsP6pL9VgWhv96IDK51j
+StnQh+JVQ78LXENrkhdMiyBRSG6rU4k44uk693lp/l3TzebKn95a/sl8MkPDO5P7
+6EFxMtnCin9r2mt7g/XDXooEbMA2f/BVFuPWotvfW5gbrBQhlegKpaEcS/l1rM4p
+KePJRGtitKs2v53FwdAV8bRfO8qPhGgVRFpFs9yZHiC2b+ioFDTZKVn/IyLsR18U
+k60zIiXVPoefXmbj0k7ruRdYZxmQeTAOCt6nap2nsd7f6W7kVJc=
+=+sME
+-----END PGP SIGNATURE-----
+
+--jQumu3PVqcXxQGnmS07tGlbHoNm21X23x--
+
+--===============0176588802==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1325279172==--
+--===============0176588802==--
