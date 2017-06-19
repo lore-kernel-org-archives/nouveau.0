@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101372] nouveau?/DRI3?: dual monitors unusable
- without running compton --paint-on-overlay (sometimes)
-Date: Sat, 17 Jun 2017 22:03:04 +0000
-Message-ID: <bug-101372-8800-l3jmSVe6OS@http.bugs.freedesktop.org/>
-References: <bug-101372-8800@http.bugs.freedesktop.org/>
+From: Boyan Ding <boyan.j.ding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [gsoc] Report of Week 3
+Date: Mon, 19 Jun 2017 23:08:24 +0800
+Message-ID: <CAC9R0PEdT8+5E3JVPFMrOFeVww5JPyLjs1vTXnLi5KE5tVydiw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0629241215=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101372-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,97 +15,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0629241215==
-Content-Type: multipart/alternative; boundary="14977369831.396EfC8.15464";
- charset="UTF-8"
-
-
---14977369831.396EfC8.15464
-Date: Sat, 17 Jun 2017 22:03:03 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101372
-
---- Comment #2 from jimijames.bove-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I just upgraded to 4.11, and the issue seems to have disappeared. It's eith=
-er
-gone or now has different behavior, because it doesn't even happen when com=
-pton
-is not running. Either way, I can no longer reproduce it. I'll come back to
-this report if this issue comes back.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14977369831.396EfC8.15464
-Date: Sat, 17 Jun 2017 22:03:03 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau?/DRI3?: dual monitors unusable without running co=
-mpton --paint-on-overlay (sometimes)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101372#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau?/DRI3?: dual monitors unusable without running co=
-mpton --paint-on-overlay (sometimes)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101372">bug 10137=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jimijames.bove&#64;gmail.com" title=3D"jimijames.bove&#64;gmail.com">jimija=
-mes.bove&#64;gmail.com</a>
-</span></b>
-        <pre>I just upgraded to 4.11, and the issue seems to have disappear=
-ed. It's either
-gone or now has different behavior, because it doesn't even happen when com=
-pton
-is not running. Either way, I can no longer reproduce it. I'll come back to
-this report if this issue comes back.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14977369831.396EfC8.15464--
-
---===============0629241215==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0629241215==--
+SGksCgpUaGlzIGlzIHRoZSBteSByZXBvcnQgZm9yIHdlZWsgMyBvZiBHU29DLgoKTXkgZ29hbCBm
+b3IgdGhlIHByZXZpb3VzIHdlZWsgd2FzIHRvIGltcGxlbWVudCBhIGJhc2ljIGRlcGVuZGVuY3kK
+dHJhY2tpbmcgZnJhbWV3b3JrIHVzZWQgdG8gY29uc3RydWN0IGRlcGVuZGVuY3kgREFHIGluIGNv
+ZGVnZW4uIEFuZCBJCmhhdmUgZmluaXNoZWQgdGhlIHRhc2suIEkgYWxzbyB3cm90ZSBhIHZlcnkg
+c2ltcGxlIHNjaGVkdWxpbmcgcG9saWN5LAppbiB3aGljaCBpbnN0cnVjdGlvbnMgd2l0aCB0aGVp
+ciBkZXBlbmRlbmNpZXMgbWV0IGFyZSBwdXQgaW50byBhIEZJRk8sCndhaXRpbmcgdG8gc2NoZWR1
+bGUuIFRoaXMgc2NoZWR1bGluZyBwb2xpY3kgaXMgZGVmaW5pdGVseSBub3QgYSBnb29kCm9uZSwg
+d2l0aG91dCB0YWtpbmcgbGF0ZW5jeSBpbnRvIGFjY291bnQsIG5vdCB0byBtZW50aW9uIHJlZ2lz
+dGVyCnByZXNzdXJlLiBIb3dldmVyLCBzb21lIHNpbXBsZSB0ZXN0aW5nIHlpZWxkcyBpbnRlcmVz
+dGluZyByZXN1bHQuCkZyYW1lIHRpbWUgb2YgcGl4bWFyayBwaWFubyBjaGFuZ2VkIGZyb20gMTI3
+bXMgdG8gMTIxbXMgd2l0aApzY2hlZHVsaW5nIG9uLiBBbHNvLCBJIHNhdyBpbXByb3ZlbWVudHMg
+aW4gSVBDIGluIHNvbWUgcHJvZ3JhbXMgdGhhdCBJCndyb3RlLiBJIHdpbGwgcHV0IG15IGNvZGUg
+b24gZ2l0aHViIHRvbW9ycm93LgoKTm93IHRoYXQgZGVwZW5kZW5jeSB0cmFja2luZyBpcyBuZWFy
+bHkgZG9uZSwgbXkgZm9jdXMgZm9yIG5leHQgc2V2ZXJhbAp3ZWVrcyB3aWxsIGJlIGltcGxlbWVu
+dGluZyBzb21lIHNjaGVkdWxpbmcgcG9saWNpZXMuIEZvciB0aGUgbmV4dAp3ZWVrLCBJIHBsYW4g
+Zmlyc3QgdG8gY29uc2lkZXIgbGF0ZW5jeS4gVGhpcyBpcyBmdXJ0aGVyIGRpdmlkZWQgaW50bwp0
+d28gcHJvYmxlbXM6IGxhdGVuY3kgbW9kZWwgYW5kIGhvdyB0byB0YWtlIGFkdmFudGFnZSBvZiBs
+YXRlbmN5CmluZm9ybWF0aW9uLiBJJ2xsIHNlZSBpZiBJIGNhbiBtYWtlIHVzZSBvZiBjdXJyZW50
+IGNvZGUgZm9yIGxhdGVuY3kKY2FsY3VsYXRpb24sIGFuZCB0cnkgZGlmZmVyZW50IHdheXMgc3Vj
+aCBhcyB0b3AtZG93biBvciBib3R0b20gdXAsIGFuZApldmFsdWF0ZSB0aGVpciBlZmZlY3RpdmVu
+ZXNzLiBJZiBJIGNhbiBmaW5pc2ggdGhlbSB0aGlzIHdlZWssIEknbGwKaW52ZXN0aWdhdGUgcmVn
+aXN0ZXIgcHJlc3N1cmUuCgpSZWdhcmRzLApCb3lhbiBEaW5nCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
