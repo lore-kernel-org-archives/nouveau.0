@@ -1,17 +1,12 @@
-From: Aaryaman Vasishta <jem456.vasishta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v3] nv110/exa: update sched codes
-Date: Tue, 20 Jun 2017 01:32:13 +0900
-Message-ID: <CABVHfRvd6j8Xha76eLFyxbL4BFfeyiLpq5zgqt-NUaURa7db5A@mail.gmail.com>
-References: <20170610071057.13520-1-jem456.vasishta@gmail.com>
- <CABVHfRuD4FqyvZGwn9ybsL9rATwyAbdCLRBF44VPzhQvNC1ZhQ@mail.gmail.com>
- <dbc1de05-d4e1-403f-5492-3b9f96cfaae0@gmail.com>
- <CAKb7UvgYJBWtnRpUmfJnYMc5MFuvheznpUVn-ymLfYkkSKSyPg@mail.gmail.com>
- <CABVHfRuq=5obep+Q7DujB-FxuDGBHrj-xPWXPbf=hkkaSVUMCA@mail.gmail.com>
- <CAKb7UvjnBctUwAA7cAhKFCjHBVEFd4L4fJdsv3ibY44Rsu6_KA@mail.gmail.com>
+From: James <bjlockie-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
+Subject: speed of card?
+Date: Mon, 19 Jun 2017 13:00:01 -0400
+Message-ID: <oi8vuc$3i5$1@blaine.gmane.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1392481367=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvjnBctUwAA7cAhKFCjHBVEFd4L4fJdsv3ibY44Rsu6_KA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,140 +16,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1392481367==
-Content-Type: multipart/alternative; boundary="001a114ca4ac9bd34c055252aebf"
-
---001a114ca4ac9bd34c055252aebf
-Content-Type: text/plain; charset="UTF-8"
-
-On Tue, Jun 20, 2017 at 1:25 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-
-> On Mon, Jun 19, 2017 at 11:22 AM, Aaryaman Vasishta
-> <jem456.vasishta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> > Sorry for the late response, been busy with some personal stuff + work...
-> >
-> > On Tue, Jun 13, 2017 at 6:52 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-> wrote:
-> >>
-> >> On Mon, Jun 12, 2017 at 5:46 PM, Samuel Pitoiset
-> >> <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> >> >
-> >> >
-> >> > On 06/10/2017 09:14 AM, Aaryaman Vasishta wrote:
-> >> >>
-> >> >> See the 'wt' on the first fmul in exacanv110.fp, exacmnv110.fp and
-> >> >> exasanv110.fp. Any ideas on what could be causing the first fmul to
-> >> >> require
-> >> >> $r0 and/or $r1?
-> >> >
-> >> >
-> >> > 'tex nodep $r4 $r2 0x0 0x1 t2d 0xf'
-> >> >
-> >> > is actually:
-> >> >
-> >> > 'tex nodep $r4:$r7 $r2 0x0 0x1 t2d 0xf'
-> >
-> > That's definitely confusing, but quite interesting.
-> >>
-> >>
-> >> Actually more like:
-> >>
-> >> tex nodep $r4:$r5:$r6:$r7 $r2:$r3 ...
-> >
-> > Any idea why is it this way? The only way I could figure out so far is by
-> > trial and error, but is there any better way to detect such dependencies?
->
-> The t2d means "2 args for source" (with various additional modifiers
-> which could add arguments). 0xf means return all 4 components (it's a
-> component mask... e.g. 0x8 would be return only the alpha).
-
-Ah, I see, makes sense. Thanks for the explanation!
-
-Cheers,
-Aaryaman
-
->
->   -ilia
->
-
---001a114ca4ac9bd34c055252aebf
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Tue, Jun 20, 2017 at 1:25 AM, Ilia Mirkin <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org" target=3D"_blank">imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org<=
-/a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
-0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On=
- Mon, Jun 19, 2017 at 11:22 AM, Aaryaman Vasishta<br>
-&lt;<a href=3D"mailto:jem456.vasishta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">jem456.vasishta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org<=
-/a>&gt; wrote:<br>
-&gt; Sorry for the late response, been busy with some personal stuff + work=
-...<br>
-&gt;<br>
-&gt; On Tue, Jun 13, 2017 at 6:52 AM, Ilia Mirkin &lt;<a href=3D"mailto:imi=
-rkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org">imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; On Mon, Jun 12, 2017 at 5:46 PM, Samuel Pitoiset<br>
-&gt;&gt; &lt;<a href=3D"mailto:samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">samuel.pitoiset@g=
-mail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; On 06/10/2017 09:14 AM, Aaryaman Vasishta wrote:<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; See the &#39;wt&#39; on the first fmul in exacanv110.fp, =
-exacmnv110.fp and<br>
-&gt;&gt; &gt;&gt; exasanv110.fp. Any ideas on what could be causing the fir=
-st fmul to<br>
-&gt;&gt; &gt;&gt; require<br>
-&gt;&gt; &gt;&gt; $r0 and/or $r1?<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; &#39;tex nodep $r4 $r2 0x0 0x1 t2d 0xf&#39;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; is actually:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; &#39;tex nodep $r4:$r7 $r2 0x0 0x1 t2d 0xf&#39;<br>
-&gt;<br>
-&gt; That&#39;s definitely confusing, but quite interesting.<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; Actually more like:<br>
-&gt;&gt;<br>
-&gt;&gt; tex nodep $r4:$r5:$r6:$r7 $r2:$r3 ...<br>
-&gt;<br>
-&gt; Any idea why is it this way? The only way I could figure out so far is=
- by<br>
-&gt; trial and error, but is there any better way to detect such dependenci=
-es?<br>
-<br>
-</span>The t2d means &quot;2 args for source&quot; (with various additional=
- modifiers<br>
-which could add arguments). 0xf means return all 4 components (it&#39;s a<b=
-r>
-component mask... e.g. 0x8 would be return only the alpha).=C2=A0</blockquo=
-te><div>Ah, I see, makes sense. Thanks for the explanation!</div><div><br><=
-/div><div>Cheers,</div><div>Aaryaman=C2=A0</div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
-ex">
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-=C2=A0 -ilia<br>
-</font></span></blockquote></div><br></div></div>
-
---001a114ca4ac9bd34c055252aebf--
-
---===============1392481367==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1392481367==--
+SSBoYXZlIGEgTlZFNyAoR0sxMDcpLgpIb3cgZG8gSSBzZWUgdGhlIGN1cnJlbnQgbWVtb3J5L0NQ
+VSBzcGVlZD8KCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
