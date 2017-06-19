@@ -1,11 +1,15 @@
-From: Boyan Ding <boyan.j.ding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [gsoc] Report of Week 3
-Date: Mon, 19 Jun 2017 23:08:24 +0800
-Message-ID: <CAC9R0PEdT8+5E3JVPFMrOFeVww5JPyLjs1vTXnLi5KE5tVydiw@mail.gmail.com>
+From: Aaryaman Vasishta <jem456.vasishta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v3] nv110/exa: update sched codes
+Date: Tue, 20 Jun 2017 00:22:48 +0900
+Message-ID: <CABVHfRuq=5obep+Q7DujB-FxuDGBHrj-xPWXPbf=hkkaSVUMCA@mail.gmail.com>
+References: <20170610071057.13520-1-jem456.vasishta@gmail.com>
+ <CABVHfRuD4FqyvZGwn9ybsL9rATwyAbdCLRBF44VPzhQvNC1ZhQ@mail.gmail.com>
+ <dbc1de05-d4e1-403f-5492-3b9f96cfaae0@gmail.com>
+ <CAKb7UvgYJBWtnRpUmfJnYMc5MFuvheznpUVn-ymLfYkkSKSyPg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1952067570=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvgYJBWtnRpUmfJnYMc5MFuvheznpUVn-ymLfYkkSKSyPg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,31 +20,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpUaGlzIGlzIHRoZSBteSByZXBvcnQgZm9yIHdlZWsgMyBvZiBHU29DLgoKTXkgZ29hbCBm
-b3IgdGhlIHByZXZpb3VzIHdlZWsgd2FzIHRvIGltcGxlbWVudCBhIGJhc2ljIGRlcGVuZGVuY3kK
-dHJhY2tpbmcgZnJhbWV3b3JrIHVzZWQgdG8gY29uc3RydWN0IGRlcGVuZGVuY3kgREFHIGluIGNv
-ZGVnZW4uIEFuZCBJCmhhdmUgZmluaXNoZWQgdGhlIHRhc2suIEkgYWxzbyB3cm90ZSBhIHZlcnkg
-c2ltcGxlIHNjaGVkdWxpbmcgcG9saWN5LAppbiB3aGljaCBpbnN0cnVjdGlvbnMgd2l0aCB0aGVp
-ciBkZXBlbmRlbmNpZXMgbWV0IGFyZSBwdXQgaW50byBhIEZJRk8sCndhaXRpbmcgdG8gc2NoZWR1
-bGUuIFRoaXMgc2NoZWR1bGluZyBwb2xpY3kgaXMgZGVmaW5pdGVseSBub3QgYSBnb29kCm9uZSwg
-d2l0aG91dCB0YWtpbmcgbGF0ZW5jeSBpbnRvIGFjY291bnQsIG5vdCB0byBtZW50aW9uIHJlZ2lz
-dGVyCnByZXNzdXJlLiBIb3dldmVyLCBzb21lIHNpbXBsZSB0ZXN0aW5nIHlpZWxkcyBpbnRlcmVz
-dGluZyByZXN1bHQuCkZyYW1lIHRpbWUgb2YgcGl4bWFyayBwaWFubyBjaGFuZ2VkIGZyb20gMTI3
-bXMgdG8gMTIxbXMgd2l0aApzY2hlZHVsaW5nIG9uLiBBbHNvLCBJIHNhdyBpbXByb3ZlbWVudHMg
-aW4gSVBDIGluIHNvbWUgcHJvZ3JhbXMgdGhhdCBJCndyb3RlLiBJIHdpbGwgcHV0IG15IGNvZGUg
-b24gZ2l0aHViIHRvbW9ycm93LgoKTm93IHRoYXQgZGVwZW5kZW5jeSB0cmFja2luZyBpcyBuZWFy
-bHkgZG9uZSwgbXkgZm9jdXMgZm9yIG5leHQgc2V2ZXJhbAp3ZWVrcyB3aWxsIGJlIGltcGxlbWVu
-dGluZyBzb21lIHNjaGVkdWxpbmcgcG9saWNpZXMuIEZvciB0aGUgbmV4dAp3ZWVrLCBJIHBsYW4g
-Zmlyc3QgdG8gY29uc2lkZXIgbGF0ZW5jeS4gVGhpcyBpcyBmdXJ0aGVyIGRpdmlkZWQgaW50bwp0
-d28gcHJvYmxlbXM6IGxhdGVuY3kgbW9kZWwgYW5kIGhvdyB0byB0YWtlIGFkdmFudGFnZSBvZiBs
-YXRlbmN5CmluZm9ybWF0aW9uLiBJJ2xsIHNlZSBpZiBJIGNhbiBtYWtlIHVzZSBvZiBjdXJyZW50
-IGNvZGUgZm9yIGxhdGVuY3kKY2FsY3VsYXRpb24sIGFuZCB0cnkgZGlmZmVyZW50IHdheXMgc3Vj
-aCBhcyB0b3AtZG93biBvciBib3R0b20gdXAsIGFuZApldmFsdWF0ZSB0aGVpciBlZmZlY3RpdmVu
-ZXNzLiBJZiBJIGNhbiBmaW5pc2ggdGhlbSB0aGlzIHdlZWssIEknbGwKaW52ZXN0aWdhdGUgcmVn
-aXN0ZXIgcHJlc3N1cmUuCgpSZWdhcmRzLApCb3lhbiBEaW5nCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+--===============1952067570==
+Content-Type: multipart/alternative; boundary="001a1137289a6206b6055251b6da"
+
+--001a1137289a6206b6055251b6da
+Content-Type: text/plain; charset="UTF-8"
+
+Sorry for the late response, been busy with some personal stuff + work...
+
+On Tue, Jun 13, 2017 at 6:52 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+
+> On Mon, Jun 12, 2017 at 5:46 PM, Samuel Pitoiset
+> <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> >
+> >
+> > On 06/10/2017 09:14 AM, Aaryaman Vasishta wrote:
+> >>
+> >> See the 'wt' on the first fmul in exacanv110.fp, exacmnv110.fp and
+> >> exasanv110.fp. Any ideas on what could be causing the first fmul to
+> require
+> >> $r0 and/or $r1?
+> >
+> >
+> > 'tex nodep $r4 $r2 0x0 0x1 t2d 0xf'
+> >
+> > is actually:
+> >
+> > 'tex nodep $r4:$r7 $r2 0x0 0x1 t2d 0xf'
+>
+That's definitely confusing, but quite interesting.
+
+>
+> Actually more like:
+>
+> tex nodep $r4:$r5:$r6:$r7 $r2:$r3 ...
+>
+Any idea why is it this way? The only way I could figure out so far is by
+trial and error, but is there any better way to detect such dependencies?
+
+In the mean time, I'll update the shaders again and start to do some tests.
+Any tips on how to proceed doing so would really be appreciated ^_^
+
+Cheers,
+Aaryaman
+
+--001a1137289a6206b6055251b6da
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Sorry for the late response, been busy with some personal =
+stuff + work...<br><div class=3D"gmail_extra"><br><div class=3D"gmail_quote=
+">On Tue, Jun 13, 2017 at 6:52 AM, Ilia Mirkin <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org" target=3D"_blank">imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org</a=
+>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 =
+0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On M=
+on, Jun 12, 2017 at 5:46 PM, Samuel Pitoiset<br>
+&lt;<a href=3D"mailto:samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org<=
+/a>&gt; wrote:<br>
+&gt;<br>
+&gt;<br>
+&gt; On 06/10/2017 09:14 AM, Aaryaman Vasishta wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; See the &#39;wt&#39; on the first fmul in exacanv110.fp, exacmnv11=
+0.fp and<br>
+&gt;&gt; exasanv110.fp. Any ideas on what could be causing the first fmul t=
+o require<br>
+&gt;&gt; $r0 and/or $r1?<br>
+&gt;<br>
+&gt;<br>
+&gt; &#39;tex nodep $r4 $r2 0x0 0x1 t2d 0xf&#39;<br>
+&gt;<br>
+&gt; is actually:<br>
+&gt;<br>
+&gt; &#39;tex nodep $r4:$r7 $r2 0x0 0x1 t2d 0xf&#39;<br></span></blockquote=
+><div>That&#39;s definitely confusing, but quite interesting.=C2=A0</div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
+#ccc solid;padding-left:1ex"><span class=3D"">
+<br>
+</span>Actually more like:<br>
+<br>
+tex nodep $r4:$r5:$r6:$r7 $r2:$r3 ...<br></blockquote><div>Any idea why is =
+it this way? The only way I could figure out so far is by trial and error, =
+but is there any better way to detect such dependencies?</div><div><br></di=
+v><div>In the mean time, I&#39;ll update the shaders again and start to do =
+some tests. Any tips on how to proceed doing so would really be appreciated=
+ ^_^</div><div><br></div><div>Cheers,</div><div>Aaryaman</div></div><br></d=
+iv></div>
+
+--001a1137289a6206b6055251b6da--
+
+--===============1952067570==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1952067570==--
