@@ -1,53 +1,106 @@
-From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 3/4] drm/amdgpu: Allow vblank_disable_immediate.
-Date: Wed, 21 Jun 2017 03:44:56 +0200
-Message-ID: <20170621014457.26587-4-mario.kleiner.de@gmail.com>
-References: <20170621014457.26587-1-mario.kleiner.de@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100228] [NV137] unknown chipset (137000a1)
+Date: Wed, 21 Jun 2017 03:10:49 +0000
+Message-ID: <bug-100228-8800-d3rniZeasO@http.bugs.freedesktop.org/>
+References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170621014457.26587-1-mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer-5C7GfCeVMHo@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============2079417781=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2l0aCBpbnN0YW50YW5lb3VzIGhpZ2ggcHJlY2lzaW9uIHZibGFuayB0aW1lc3RhbXBpbmcKdGhh
-dCB1cGRhdGVzIGF0IGxlYWRpbmcgZWRnZSBvZiB2YmxhbmssIGEgY29va2VkIGh3CnZibGFuayBj
-b3VudGVyIHdoaWNoIGluY3JlbWVudHMgYXQgbGVhZGluZyBlZGdlIG9mCnZibGFuaywgYW5kIHJl
-bGlhYmxlIHBhZ2UgZmxpcCBleGVjdXRpb24gYW5kIGNvbXBsZXRpb24KYXQgbGVhZGluZyBlZGdl
-IG9mIHZibGFuaywgd2Ugc2hvdWxkIG1lZXQgdGhlIHJlcXVpcmVtZW50cwpmb3IgZmFzdC9pbW1l
-ZGlhdGUgdmJsYW5rIGlycSBkaXNhYmxlL2VuYWJsZS4KClRlc3Rpbmcgb24gTGludXgtNC4xMi1y
-YzUgKyBkcm0tbmV4dCBvbiBhIFJhZGVvbiBSOSAzODAKVG9uZ2EgUHJvIChEQ0UgMTApIHdpdGgg
-dGltaW5nIG1lYXN1cmVtZW50IGVxdWlwbWVudAppbmRpY2F0ZXMgdGhpcyB3b3JrcyBmaW5lLCBz
-byBhbGxvdyBpbW1lZGlhdGUgdmJsYW5rCmRpc2FibGUgZm9yIHBvd2VyIHNhdmluZy4KCkZvciBk
-ZWJ1Z2dpbmcgaW4gY2FzZSBvZiB1bmV4cGVjdGVkIHRyb3VibGUsIGJvb3RpbmcKd2l0aCBrZXJu
-ZWwgY21kbGluZSBvcHRpb24gZHJtLnZibGFua29mZmRlbGF5PTAKKG9yIGVjaG8gMCA+IC9zeXMv
-bW9kdWxlL2RybS9wYXJhbWV0ZXJzL3ZibGFua29mZmRlbGF5KQp3b3VsZCBrZWVwIHZibGFuayBp
-cnFzIHBlcm1hbmVudGx5IG9uIHRvIGFwcHJveGltYXRlIG9sZApiZWhhdmlvci4KClNpZ25lZC1v
-ZmYtYnk6IE1hcmlvIEtsZWluZXIgPG1hcmlvLmtsZWluZXIuZGVAZ21haWwuY29tPgpDYzogQWxl
-eCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgpDYzogTWljaGVsIETDpG56ZXIg
-PG1pY2hlbC5kYWVuemVyQGFtZC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-YW1kZ3B1X2lycS5jIHwgNCArKysrCiAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspCgpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2lycS5jIGIvZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2lycS5jCmluZGV4IDYyZGE2YzUuLmEyOGY4
-YWEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9pcnEuYwor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfaXJxLmMKQEAgLTIyMCw2ICsy
-MjAsMTAgQEAgaW50IGFtZGdwdV9pcnFfaW5pdChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikK
-IAlpbnQgciA9IDA7CiAKIAlzcGluX2xvY2tfaW5pdCgmYWRldi0+aXJxLmxvY2spOworCisJLyog
-RGlzYWJsZSB2YmxhbmsgaXJxcyBhZ2dyZXNzaXZlbHkgZm9yIHBvd2VyLXNhdmluZyAqLworCWFk
-ZXYtPmRkZXYtPnZibGFua19kaXNhYmxlX2ltbWVkaWF0ZSA9IHRydWU7CisKIAlyID0gZHJtX3Zi
-bGFua19pbml0KGFkZXYtPmRkZXYsIGFkZXYtPm1vZGVfaW5mby5udW1fY3J0Yyk7CiAJaWYgKHIp
-IHsKIAkJcmV0dXJuIHI7Ci0tIAoyLjcuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9hbWQtZ2Z4Cg==
+
+--===============2079417781==
+Content-Type: multipart/alternative; boundary="14980146492.dD93.2508";
+ charset="UTF-8"
+
+
+--14980146492.dD93.2508
+Date: Wed, 21 Jun 2017 03:10:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
+
+--- Comment #3 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 132109
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132109&action=3Dedit
+dmesg | grep nouveau (kernel v4.12-rc5)
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14980146492.dD93.2508
+Date: Wed, 21 Jun 2017 03:10:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137] unknown chipset (137000a1)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c3">Commen=
+t # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137] unknown chipset (137000a1)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
+8</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
+ <span class=3D"fn">Rhys Kidd</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132109=
+" name=3D"attach_132109" title=3D"dmesg | grep nouveau (kernel v4.12-rc5)">=
+attachment 132109</a> <a href=3D"attachment.cgi?id=3D132109&amp;action=3Ded=
+it" title=3D"dmesg | grep nouveau (kernel v4.12-rc5)">[details]</a></span>
+dmesg | grep nouveau (kernel v4.12-rc5)</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14980146492.dD93.2508--
+
+--===============2079417781==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2079417781==--
