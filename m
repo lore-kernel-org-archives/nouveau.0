@@ -1,63 +1,51 @@
-From: Peter Rosin <peda@axentia.se>
-Subject: Re: [PATCH 08/11] drm: nouveau: remove dead code and pointless local
- lut storage
-Date: Wed, 21 Jun 2017 12:35:02 +0200
-Message-ID: <abeaa572-c129-f942-1aa4-ec028da846be@axentia.se>
-References: <1497986735-14418-1-git-send-email-peda@axentia.se>
- <1497986735-14418-9-git-send-email-peda@axentia.se>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: drm/nouveau: Remove no longer needed local
+ ACPI_VIDEO_NOTIFY_PROBE define
+Date: Wed, 21 Jun 2017 15:19:17 +0200
+Message-ID: <7412d557-9b08-3d46-568b-bc1940ad4e40@redhat.com>
+References: <20170526073508.4044-1-hdegoede@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1497986735-14418-9-git-send-email-peda@axentia.se>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20170526073508.4044-1-hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: linux-kernel@vger.kernel.org
-Cc: Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>, David Airlie <airlied@linux.ie>, Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Sean Paul <seanpaul@chromium.org>, Patrik Jakobsson <patrik.r.jakobsson@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, Yannick Fertre <yannick.fertre@st.com>, Philippe Cornu <philippe.cornu@st.com>, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Vincent Abriou <vincent.abriou@st.com>, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, Boris
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 2017-06-20 21:25, Peter Rosin wrote:
-> The redundant fb helpers .load_lut, .gamma_set and .gamma_get are
-> no longer used. Remove the dead code and hook up the crtc .gamma_set
-> to use the crtc gamma_store directly instead of duplicating that
-> info locally.
-
-[...]
-
-> -	for (i = 0; i < 256; i++) {
-> -		u16 r = nv_crtc->lut.r[i] >> 2;
-> -		u16 g = nv_crtc->lut.g[i] >> 2;
-> -		u16 b = nv_crtc->lut.b[i] >> 2;
-> +	r = crtc->gamma_store;
-> +	g = r + crtc->gamma_size;
-> +	b = g + crtc->gamma_size;
->  
-> +	for (i = 0; i < 256; i++) {
->  		if (disp->disp->oclass < GF110_DISP) {
-> -			writew(r + 0x0000, lut + (i * 0x08) + 0);
-> -			writew(g + 0x0000, lut + (i * 0x08) + 2);
-> -			writew(b + 0x0000, lut + (i * 0x08) + 4);
-> +			writew((*r++ >> 2) + 0x0000, lut + (i * 0x08) + 0);
-> +			writew((*g++ >> 2) + 0x0000, lut + (i * 0x08) + 2);
-> +			writew((*b++ >> 2) + 0x0000, lut + (i * 0x08) + 4);
->  		} else {
-> -			writew(r + 0x6000, lut + (i * 0x20) + 0);
-> -			writew(g + 0x6000, lut + (i * 0x20) + 2);
-> -			writew(b + 0x6000, lut + (i * 0x20) + 4);
-> +			writew((*r++ >> 2) + 0x6000, lut + (i * 0x20) + 0);
-> +			writew((*g++ >> 2) + 0x6000, lut + (i * 0x20) + 2);
-> +			writew((*b++ >> 2) + 0x6000, lut + (i * 0x20) + 4);
->  		}
->  	}
->  }
-
-I forgot to mention this, but the above is very strange for
-disp->disp->oclass >= GF110_DISP because 0x6000 interferes with
-the 14 bits that appear to be the lut depth in the registers.
-
-I suspect some other bit-shift should be used for that case?
-
-Someone should probably consult a datasheet...
-
-Cheers,
-peda
+SGksCgpPbiAyNi0wNS0xNyAwOTozNSwgSGFucyBEZSBHb2VkZSB3cm90ZToKPiBUaGUgbG9jYWwg
+I2RlZmluZSBvZiBBQ1BJX1ZJREVPX05PVElGWV9QUk9CRSB3YXMgb25seSBhZGRlZCB0ZW1wb3Jh
+cmlseQo+IHRvIGF2b2lkIGEgZGVwZW5kZW5jeSBiZXR3ZWVuIHRoZSBhY3BpIGFuZCBub3V2ZWF1
+IHRyZWVzIHdoaWxlIG1lcmdpbmcuCj4gCj4gVGhpcyBpcyBub3cgcHJvcGVybHkgZGVmaW5lZCBp
+biBhY3BpL3ZpZGVvLmggYW5kIHRoZSBsb2NhbCAjZGVmaW5lIGNhbgo+IGJlIGRyb3BwZWQuCj4g
+Cj4gU2lnbmVkLW9mZi1ieTogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KCnBp
+bmcsIHdoYXQgaXMgdGhlIHN0YXR1cyBvZiB0aGlzIHBhdGNoID8KClJlZ2FyZHMsCgpIYW5zCgoK
+PiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jIHwgOSAt
+LS0tLS0tLS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCA5IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCj4gaW5kZXggNTQ5NzYzZjVlMTdkLi43
+MGRlMjA3OWIyY2MgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9kaXNwbGF5LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3Bs
+YXkuYwo+IEBAIC0zNjksMTUgKzM2OSw2IEBAIG5vdXZlYXVfZGlzcGxheV9ocGRfd29yayhzdHJ1
+Y3Qgd29ya19zdHJ1Y3QgKndvcmspCj4gICAKPiAgICNpZmRlZiBDT05GSUdfQUNQSQo+ICAgCj4g
+LS8qCj4gLSAqIEhhbnMgZGUgR29lZGU6IFRoaXMgZGVmaW5lIGJlbG9uZ3MgaW4gYWNwaS92aWRl
+by5oLCBJJ3ZlIHN1Ym1pdHRlZCBhIHBhdGNoCj4gLSAqIHRvIHRoZSBhY3BpIHN1YnN5cyB0byBt
+b3ZlIGl0IHRoZXJlIGZyb20gZHJpdmVycy9hY3BpL2FjcGlfdmlkZW8uYyAuCj4gLSAqIFRoaXMg
+c2hvdWxkIGJlIGRyb3BwZWQgb25jZSB0aGF0IGlzIG1lcmdlZC4KPiAtICovCj4gLSNpZm5kZWYg
+QUNQSV9WSURFT19OT1RJRllfUFJPQkUKPiAtI2RlZmluZSBBQ1BJX1ZJREVPX05PVElGWV9QUk9C
+RQkJCTB4ODEKPiAtI2VuZGlmCj4gLQo+ICAgc3RhdGljIGludAo+ICAgbm91dmVhdV9kaXNwbGF5
+X2FjcGlfbnRmeShzdHJ1Y3Qgbm90aWZpZXJfYmxvY2sgKm5iLCB1bnNpZ25lZCBsb25nIHZhbCwK
+PiAgIAkJCSAgdm9pZCAqZGF0YSkKPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
+b3V2ZWF1Cg==
