@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101559] Displays fail to wake up when booting
  machine away from Display Port KVM switch
-Date: Thu, 22 Jun 2017 16:38:24 +0000
-Message-ID: <bug-101559-8800-zR2qIKFUj1@http.bugs.freedesktop.org/>
+Date: Thu, 22 Jun 2017 16:46:35 +0000
+Message-ID: <bug-101559-8800-UwKD99rFGt@http.bugs.freedesktop.org/>
 References: <bug-101559-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0604064525=="
+Content-Type: multipart/mixed; boundary="===============1091924941=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101559-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0604064525==
-Content-Type: multipart/alternative; boundary="14981495040.B02e8.15064";
+--===============1091924941==
+Content-Type: multipart/alternative; boundary="14981499950.65f620c.17006";
  charset="UTF-8"
 
 
---14981495040.B02e8.15064
-Date: Thu, 22 Jun 2017 16:38:23 +0000
+--14981499950.65f620c.17006
+Date: Thu, 22 Jun 2017 16:46:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101559
 
---- Comment #2 from dhruv.a.thakkar-taCtA1Gr/WzQT0dZR+AlfA@public.gmane.org ---
-Created attachment 132144
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132144&action=3Dedit
-xorg.conf for nouveau driver
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You appear to be using a 3.10 kernel. This was released in June 2013. Nouve=
+au
+has been rewritten ~3 times by now. Can you try more recent software?
+
+Better DP link training logic is one of the things that has had a lot of
+revisions to it.
+
+Separately, you appear to want to use the card in Zaphod mode, but you have=
+n't
+explicitly enabled it... no clue what happens when you do it that way.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14981495040.B02e8.15064
-Date: Thu, 22 Jun 2017 16:38:24 +0000
+--14981499950.65f620c.17006
+Date: Thu, 22 Jun 2017 16:46:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +71,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Displays fail to wake up when booting machine away from D=
 isplay Port KVM switch"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101559#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101559#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Displays fail to wake up when booting machine away from D=
@@ -73,14 +80,19 @@ isplay Port KVM switch"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101559">bug 10155=
 9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dhruv.a.thakkar&#64;leidos.com" title=3D"dhruv.a.thakkar&#64;leidos.com">dh=
-ruv.a.thakkar&#64;leidos.com</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132144=
-" name=3D"attach_132144" title=3D"xorg.conf for nouveau driver">attachment =
-132144</a> <a href=3D"attachment.cgi?id=3D132144&amp;action=3Dedit" title=
-=3D"xorg.conf for nouveau driver">[details]</a></span>
-xorg.conf for nouveau driver</pre>
+        <pre>You appear to be using a 3.10 kernel. This was released in Jun=
+e 2013. Nouveau
+has been rewritten ~3 times by now. Can you try more recent software?
+
+Better DP link training logic is one of the things that has had a lot of
+revisions to it.
+
+Separately, you appear to want to use the card in Zaphod mode, but you have=
+n't
+explicitly enabled it... no clue what happens when you do it that way.</pre>
         </div>
       </p>
 
@@ -94,9 +106,9 @@ xorg.conf for nouveau driver</pre>
     </body>
 </html>=
 
---14981495040.B02e8.15064--
+--14981499950.65f620c.17006--
 
---===============0604064525==
+--===============1091924941==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0604064525==--
+--===============1091924941==--
