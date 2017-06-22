@@ -1,52 +1,152 @@
-From: Boris Brezillon <boris.brezillon@free-electrons.com>
-Subject: Re: [PATCH 11/11] drm: remove unused and redundant
-	callbacks
-Date: Thu, 22 Jun 2017 09:13:36 +0200
-Message-ID: <20170622091336.3ef46ba5@bbrezillon>
-References: <1497986735-14418-12-git-send-email-peda@axentia.se>
- <201706220036.6WxRju5X%fengguang.wu@intel.com>
- <20170622063755.3bfwybkotacyn4p7@phenom.ffwll.local>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101553] [GP107] failed to create kernel channel, -22
+Date: Thu, 22 Jun 2017 07:55:19 +0000
+Message-ID: <bug-101553-8800-0MavmPxNVs@http.bugs.freedesktop.org/>
+References: <bug-101553-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20170622063755.3bfwybkotacyn4p7@phenom.ffwll.local>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: kbuild-all@01.org, Gerd Hoffmann <kraxel@redhat.com>, Philippe Cornu <philippe.cornu@st.com>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Yannick Fertre <yannick.fertre@st.com>, dri-devel@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, Daniel Vetter <daniel.vetter@intel.com>, Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>, Vincent Abriou <vincent.abriou@st.com>, Peter Rosin <peda@axentia.se>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1283920349=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101553-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAyMiBKdW4gMjAxNyAwODozNzo1NSArMDIwMApEYW5pZWwgVmV0dGVyIDxkYW5pZWxA
-ZmZ3bGwuY2g+IHdyb3RlOgoKPiBPbiBUaHUsIEp1biAyMiwgMjAxNyBhdCAxMjozNDozNkFNICsw
-ODAwLCBrYnVpbGQgdGVzdCByb2JvdCB3cm90ZToKPiA+IEhpIFBldGVyLAo+ID4gCj4gPiBbYXV0
-byBidWlsZCB0ZXN0IEVSUk9SIG9uIGRybS9kcm0tbmV4dF0KPiA+IFthbHNvIGJ1aWxkIHRlc3Qg
-RVJST1Igb24gbmV4dC0yMDE3MDYyMV0KPiA+IFtjYW5ub3QgYXBwbHkgdG8gdjQuMTItcmM2XQo+
-ID4gW2lmIHlvdXIgcGF0Y2ggaXMgYXBwbGllZCB0byB0aGUgd3JvbmcgZ2l0IHRyZWUsIHBsZWFz
-ZSBkcm9wIHVzIGEgbm90ZSB0byBoZWxwIGltcHJvdmUgdGhlIHN5c3RlbV0KPiA+IAo+ID4gdXJs
-OiAgICBodHRwczovL2dpdGh1Yi5jb20vMGRheS1jaS9saW51eC9jb21taXRzL1BldGVyLVJvc2lu
-L2ltcHJvdmUtdGhlLWZiX3NldGNtYXAtaGVscGVyLzIwMTcwNjIxLTIwNTQ0MQo+ID4gYmFzZTog
-ICBnaXQ6Ly9wZW9wbGUuZnJlZWRlc2t0b3Aub3JnL35haXJsaWVkL2xpbnV4LmdpdCBkcm0tbmV4
-dAo+ID4gY29uZmlnOiBhcm0tYWxsbW9kY29uZmlnIChhdHRhY2hlZCBhcyAuY29uZmlnKQo+ID4g
-Y29tcGlsZXI6IGFybS1saW51eC1nbnVlYWJpLWdjYyAoRGViaWFuIDYuMS4xLTkpIDYuMS4xIDIw
-MTYwNzA1Cj4gPiByZXByb2R1Y2U6Cj4gPiAgICAgICAgIHdnZXQgaHR0cHM6Ly9yYXcuZ2l0aHVi
-dXNlcmNvbnRlbnQuY29tLzAxb3JnL2xrcC10ZXN0cy9tYXN0ZXIvc2Jpbi9tYWtlLmNyb3NzIC1P
-IH4vYmluL21ha2UuY3Jvc3MKPiA+ICAgICAgICAgY2htb2QgK3ggfi9iaW4vbWFrZS5jcm9zcwo+
-ID4gICAgICAgICAjIHNhdmUgdGhlIGF0dGFjaGVkIC5jb25maWcgdG8gbGludXggYnVpbGQgdHJl
-ZQo+ID4gICAgICAgICBtYWtlLmNyb3NzIEFSQ0g9YXJtIAo+ID4gCj4gPiBBbGwgZXJyb3JzIChu
-ZXcgb25lcyBwcmVmaXhlZCBieSA+Pik6Cj4gPiAgIAo+ID4gPj4gZHJpdmVycy9ncHUvL2RybS9h
-cm1hZGEvYXJtYWRhX2ZiZGV2LmM6MTIxOjI6IGVycm9yOiB1bmtub3duIGZpZWxkICdnYW1tYV9z
-ZXQnIHNwZWNpZmllZCBpbiBpbml0aWFsaXplciAgCj4gPiAgICAgIC5nYW1tYV9zZXQgPSBhcm1h
-ZGFfZHJtX2NydGNfZ2FtbWFfc2V0LCAgCj4gCj4gTG9va3MgbGlrZSB5b3UndmUgbWlzc2VkIGF0
-IGxlYXN0IHRoZSBhcm1hZGEgZHJpdmVyIGluIHlvdXIgY29udmVyc2lvbj8KCkFscmVhZHkgZml4
-ZWQgaW4gdjIgOy0pLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-ZngK
+
+--===============1283920349==
+Content-Type: multipart/alternative; boundary="14981181182.922cC.401";
+ charset="UTF-8"
+
+
+--14981181182.922cC.401
+Date: Thu, 22 Jun 2017 07:55:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101553
+
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[    8.944203] nouveau      |[GP107] failed to create
+                   |0000:01:00.0: DRM: failed   |kernel channel, -22
+                   |to create kernel channel,   |
+                   |-22                         |
+
+--- Comment #1 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+FYI, if you want to blacklist Nouveau (or any module), the syntax is
+`modprobe.blacklist=3Dnouveau`. You can also disable Nouveau by setting
+`nouveau.modeset=3D0`.
+
+Hardware acceleration support for GP10x cards is coming with 4.12, so it is
+expected that <4.12 fails to create the kernel channel. There is some initi=
+al
+acceleration support for GP107 in 4.12, but I don=E2=80=99t whether it need=
+s more work
+to be usable, or not.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14981181182.922cC.401
+Date: Thu, 22 Jun 2017 07:55:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pierre.mo=
+rrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"=
+> <span class=3D"fn">Pierre Moreau</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GP107] failed to create kernel channel, -22"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101553">bug 10155=
+3</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>[    8.944203] nouveau 0000:01:00.0: DRM: failed to create k=
+ernel channel, -22
+           </td>
+           <td>[GP107] failed to create kernel channel, -22
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GP107] failed to create kernel channel, -22"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101553#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GP107] failed to create kernel channel, -22"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101553">bug 10155=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
+e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>FYI, if you want to blacklist Nouveau (or any module), the syn=
+tax is
+`modprobe.blacklist=3Dnouveau`. You can also disable Nouveau by setting
+`nouveau.modeset=3D0`.
+
+Hardware acceleration support for GP10x cards is coming with 4.12, so it is
+expected that &lt;4.12 fails to create the kernel channel. There is some in=
+itial
+acceleration support for GP107 in 4.12, but I don=E2=80=99t whether it need=
+s more work
+to be usable, or not.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14981181182.922cC.401--
+
+--===============1283920349==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1283920349==--
