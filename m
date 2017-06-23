@@ -1,122 +1,88 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101368] Nouveau regression GT218M in Kernel 4.11
-	Won't Boot
-Date: Fri, 23 Jun 2017 01:11:20 +0000
-Message-ID: <bug-101368-8800-osQxf6AVpT@http.bugs.freedesktop.org/>
-References: <bug-101368-8800@http.bugs.freedesktop.org/>
+From: Peter Rosin <peda@axentia.se>
+Subject: Re: [PATCH v2 13/14] drm: stm: remove dead code and pointless local
+ lut storage
+Date: Fri, 23 Jun 2017 07:29:06 +0200
+Message-ID: <c5dc7fca-a359-b6d4-fd14-2488f6b1a64e@axentia.se>
+References: <1498111597-10714-1-git-send-email-peda@axentia.se>
+ <1498111597-10714-14-git-send-email-peda@axentia.se>
+ <159dad37-7f12-0b4d-5512-d19a80670d5c@st.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1123106369=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101368-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <159dad37-7f12-0b4d-5512-d19a80670d5c@st.com>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: Philippe CORNU <philippe.cornu@st.com>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc: Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>, David Airlie <airlied@linux.ie>, Russell King <linux@armlinux.org.uk>, Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Sean Paul <seanpaul@chromium.org>, Patrik Jakobsson <patrik.r.jakobsson@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, Yannick FERTRE <yannick.fertre@st.com>, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Vincent ABRIOU <vincent.abriou@st.com>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "virtualization@lists.linux-foundation.org" <virtua>
 List-Id: nouveau.vger.kernel.org
 
+On 2017-06-22 13:49, Philippe CORNU wrote:
+> On 06/22/2017 08:06 AM, Peter Rosin wrote:
+>> The redundant fb helper .load_lut is no longer used, and can not
+>> work right without also providing the fb helpers .gamma_set and
+>> .gamma_get thus rendering the code in this driver suspect.
+>>
+> 
+> Hi Peter,
+> STM32 chipsets supports 8-bit CLUT mode but this driver version does not 
+> support it "yet" (final patch has not been upstreamed because it was a 
+> too big fbdev patch for simply adding CLUT...).
+> 
+> Regarding your patch below, if it helps you to ease the drm framework 
+> update then I am agree to "acknowledge it" asap, else if you are not in 
+> a hurry, I would prefer a better and definitive patch handling 8-bit 
+> CLUT properly and I am ok to help or/and to do it : )
 
---===============1123106369==
-Content-Type: multipart/alternative; boundary="14981802793.cb5C14D98.20424";
- charset="UTF-8"
+Hi!
 
+The thing is, without my series you will have to provide four callbacks.
+The crtc .gamma_set and the three redundant fb helpers .gamma_get,
+.gamma_set and .load_lut that pretty much does exactly what the crtc
+.gamma_set is doing. Well not .gamma_get, but...
 
---14981802793.cb5C14D98.20424
-Date: Fri, 23 Jun 2017 01:11:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+With my series, you only have to provide the crtc .gamma_set, which you
+have to provide anyway. and ...the core will handle everything that
+.gamma_get was used for...
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101368
+I.e., your work to provide CLUT support should start with drm support,
+which means the crtc .gamma_set, and then move on to the fbdev
+emulation. And I have just eliminated the second step for you, and
+as suger on top, you no longer have to convince the core drm maintainers
+that adding a lot of fbdev emulation code is needed.
 
---- Comment #11 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ben Steel from comment #10)
-> Thank you Mr. Coenen. I agree. Kernel 4.12.0-rc6 does not exhibit the
-> problem on a Lenovo T510 either.
-> Between a fix already in the pipeline and a modeset workaround in the
-> meantime, I'm happy. Does anyone still need the bisection completed?
+So, I think you actually want to wait for my series to land before adding
+CLUT support.
 
-I, personally, wouldn't mind knowing what the cause was exactly, and what f=
-ixed
-it.  It could be important down the line if it ever reappears.
+> Extra questions:
+> - any plan to update modetest with the DRM_FORMAT_C8 support + gamma 
+> get/set?
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+I don't know that code base at all, but from the glimpse I got when browsing
+it, it seemed like it was pretty hardwired to non-palettized modes. I ended
+up having no need for it, see below...
 
---14981802793.cb5C14D98.20424
-Date: Fri, 23 Jun 2017 01:11:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+> - do you have a simple way to test clut with fbdev, last year we where 
+> using an old version of the SDL but I am still looking for a small piece 
+> of code to do it (else I will do it myself but C8 on fbdev is not really 
+> a priority ;-)
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Nouveau regression GT218M in Kernel 4.11 Won't=
- Boot"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101368#c11">Comme=
-nt # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Nouveau regression GT218M in Kernel 4.11 Won't=
- Boot"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101368">bug 10136=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>(In reply to Ben Steel from <a href=3D"show_bug.cgi?id=3D10136=
-8#c10">comment #10</a>)
-<span class=3D"quote">&gt; Thank you Mr. Coenen. I agree. Kernel 4.12.0-rc6=
- does not exhibit the
-&gt; problem on a Lenovo T510 either.
-&gt; Between a fix already in the pipeline and a modeset workaround in the
-&gt; meantime, I'm happy. Does anyone still need the bisection completed?</=
-span >
+I'm doing pretty much the same thing, I have an application that requires
+an old SDL, and I'm using the programs/demos/demo.c program from the very
+old libggi as a second test app. But that's just because libggi is what
+I'm most familiar with, and it doesn't try to be "nice" and do things
+automatically, instead you have to manually insert helpers providing
+e.g. palette emulation if the application assumes a palettized mode and
+only truecolor modes are available from the HW. SDL tends to add those
+things for you, making it less easy to test thing, but I'm not an
+"SDL-guy", so there may very well exist some knobs I don't know about.
 
-I, personally, wouldn't mind knowing what the cause was exactly, and what f=
-ixed
-it.  It could be important down the line if it ever reappears.</pre>
-        </div>
-      </p>
+Oh, you probably didn't see this:
+http://marc.info/?l=linux-kernel&m=149786920731175&w=4
 
+It sports modeset-pal.c that sets the C8 mode, and does a 5 second
+palette animation, w/o using fbdev. I used it instead of digging
+further into modetest.
 
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14981802793.cb5C14D98.20424--
-
---===============1123106369==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1123106369==--
+Cheers,
+peda
