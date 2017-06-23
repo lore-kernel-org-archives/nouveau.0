@@ -1,91 +1,112 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v2 13/14] drm: stm: remove dead code and
- pointless local lut storage
-Date: Fri, 23 Jun 2017 11:35:32 +0200
-Message-ID: <20170623093532.gtkl4ia7smc5gudc@phenom.ffwll.local>
-References: <1498111597-10714-1-git-send-email-peda@axentia.se>
- <1498111597-10714-14-git-send-email-peda@axentia.se>
- <159dad37-7f12-0b4d-5512-d19a80670d5c@st.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101368] Nouveau regression GT218M in Kernel 4.11
+	Won't Boot
+Date: Fri, 23 Jun 2017 16:00:31 +0000
+Message-ID: <bug-101368-8800-ZH4pCgjT3n@http.bugs.freedesktop.org/>
+References: <bug-101368-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <159dad37-7f12-0b4d-5512-d19a80670d5c@st.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Philippe CORNU <philippe.cornu@st.com>
-Cc: Boris Brezillon <boris.brezillon@free-electrons.com>, Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, David Airlie <airlied@linux.ie>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, Russell King <linux@armlinux.org.uk>, Yannick FERTRE <yannick.fertre@st.com>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Dave Airlie <airlied@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, Daniel Vetter <daniel.vetter@intel.com>, "virtualization@lists.linux-foundation.org" <virtualization@lists.linux-foundation.org>, Vincent ABRIOU <vincent.abriou@st>
+Content-Type: multipart/mixed; boundary="===============0493357519=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101368-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBKdW4gMjIsIDIwMTcgYXQgMTE6NDk6MzRBTSArMDAwMCwgUGhpbGlwcGUgQ09STlUg
-d3JvdGU6Cj4gCj4gCj4gT24gMDYvMjIvMjAxNyAwODowNiBBTSwgUGV0ZXIgUm9zaW4gd3JvdGU6
-Cj4gPiBUaGUgcmVkdW5kYW50IGZiIGhlbHBlciAubG9hZF9sdXQgaXMgbm8gbG9uZ2VyIHVzZWQs
-IGFuZCBjYW4gbm90Cj4gPiB3b3JrIHJpZ2h0IHdpdGhvdXQgYWxzbyBwcm92aWRpbmcgdGhlIGZi
-IGhlbHBlcnMgLmdhbW1hX3NldCBhbmQKPiA+IC5nYW1tYV9nZXQgdGh1cyByZW5kZXJpbmcgdGhl
-IGNvZGUgaW4gdGhpcyBkcml2ZXIgc3VzcGVjdC4KPiA+IAo+IAo+IEhpIFBldGVyLAo+IFNUTTMy
-IGNoaXBzZXRzIHN1cHBvcnRzIDgtYml0IENMVVQgbW9kZSBidXQgdGhpcyBkcml2ZXIgdmVyc2lv
-biBkb2VzIG5vdCAKPiBzdXBwb3J0IGl0ICJ5ZXQiIChmaW5hbCBwYXRjaCBoYXMgbm90IGJlZW4g
-dXBzdHJlYW1lZCBiZWNhdXNlIGl0IHdhcyBhIAo+IHRvbyBiaWcgZmJkZXYgcGF0Y2ggZm9yIHNp
-bXBseSBhZGRpbmcgQ0xVVC4uLikuCj4gCj4gUmVnYXJkaW5nIHlvdXIgcGF0Y2ggYmVsb3csIGlm
-IGl0IGhlbHBzIHlvdSB0byBlYXNlIHRoZSBkcm0gZnJhbWV3b3JrIAo+IHVwZGF0ZSB0aGVuIEkg
-YW0gYWdyZWUgdG8gImFja25vd2xlZGdlIGl0IiBhc2FwLCBlbHNlIGlmIHlvdSBhcmUgbm90IGlu
-IAo+IGEgaHVycnksIEkgd291bGQgcHJlZmVyIGEgYmV0dGVyIGFuZCBkZWZpbml0aXZlIHBhdGNo
-IGhhbmRsaW5nIDgtYml0IAo+IENMVVQgcHJvcGVybHkgYW5kIEkgYW0gb2sgdG8gaGVscCBvci9h
-bmQgdG8gZG8gaXQgOiApCgpJJ2xsIHRha2UgeW91ciBhY2ssIHNpbmNlIHlvdXIgOGJpdCBsdXQg
-c3VwcG9ydCB3aWxsIGJlIG1hc3NpdmVseSBzaW1wbGVyCndpdGggUGV0ZXIncyBzZXJpZXMgaGVy
-ZSA6LSkKCj4gRXh0cmEgcXVlc3Rpb25zOgo+IC0gYW55IHBsYW4gdG8gdXBkYXRlIG1vZGV0ZXN0
-IHdpdGggdGhlIERSTV9GT1JNQVRfQzggc3VwcG9ydCArIGdhbW1hIAo+IGdldC9zZXQ/CgpXZSBo
-YXZlIGdhbW1hIGlndHMsIHdlbGwgZm9yIHRoZSBmYW5jeSBuZXcgYXRvbWljIGNvbG9yIG1hbmFn
-ZXIgc3R1ZmYuClRlc3RpbmcgZHJpdmVycyB3aXRoIG1vZGV0ZXN0IGlzIGtpbmRhIG5vdCB0aGF0
-IGF3ZXNvbWUgOi0pCi1EYW5pZWwKCj4gLSBkbyB5b3UgaGF2ZSBhIHNpbXBsZSB3YXkgdG8gdGVz
-dCBjbHV0IHdpdGggZmJkZXYsIGxhc3QgeWVhciB3ZSB3aGVyZSAKPiB1c2luZyBhbiBvbGQgdmVy
-c2lvbiBvZiB0aGUgU0RMIGJ1dCBJIGFtIHN0aWxsIGxvb2tpbmcgZm9yIGEgc21hbGwgcGllY2Ug
-Cj4gb2YgY29kZSB0byBkbyBpdCAoZWxzZSBJIHdpbGwgZG8gaXQgbXlzZWxmIGJ1dCBDOCBvbiBm
-YmRldiBpcyBub3QgcmVhbGx5IAo+IGEgcHJpb3JpdHkgOy0pCj4gCj4gYmVzdCByZWdhcmRzLAo+
-IFBoaWxpcHBlCj4gCj4gPiBKdXN0IHJlbW92ZSB0aGUgZGVhZCBjb2RlLgo+ID4gCj4gPiBTaWdu
-ZWQtb2ZmLWJ5OiBQZXRlciBSb3NpbiA8cGVkYUBheGVudGlhLnNlPgo+ID4gLS0tCj4gPiAgIGRy
-aXZlcnMvZ3B1L2RybS9zdG0vbHRkYy5jIHwgMTIgLS0tLS0tLS0tLS0tCj4gPiAgIGRyaXZlcnMv
-Z3B1L2RybS9zdG0vbHRkYy5oIHwgIDEgLQo+ID4gICAyIGZpbGVzIGNoYW5nZWQsIDEzIGRlbGV0
-aW9ucygtKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3N0bS9sdGRjLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vc3RtL2x0ZGMuYwo+ID4gaW5kZXggMWI5NDgzZC4uODc4MjliOSAx
-MDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9zdG0vbHRkYy5jCj4gPiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vc3RtL2x0ZGMuYwo+ID4gQEAgLTM3NSwxNyArMzc1LDYgQEAgc3RhdGljIGly
-cXJldHVybl90IGx0ZGNfaXJxKGludCBpcnEsIHZvaWQgKmFyZykKPiA+ICAgICogRFJNX0NSVEMK
-PiA+ICAgICovCj4gPiAgIAo+ID4gLXN0YXRpYyB2b2lkIGx0ZGNfY3J0Y19sb2FkX2x1dChzdHJ1
-Y3QgZHJtX2NydGMgKmNydGMpCj4gPiAtewo+ID4gLQlzdHJ1Y3QgbHRkY19kZXZpY2UgKmxkZXYg
-PSBjcnRjX3RvX2x0ZGMoY3J0Yyk7Cj4gPiAtCXVuc2lnbmVkIGludCBpLCBsYXk7Cj4gPiAtCj4g
-PiAtCWZvciAobGF5ID0gMDsgbGF5IDwgbGRldi0+Y2Fwcy5uYl9sYXllcnM7IGxheSsrKQo+ID4g
-LQkJZm9yIChpID0gMDsgaSA8IDI1NjsgaSsrKQo+ID4gLQkJCXJlZ193cml0ZShsZGV2LT5yZWdz
-LCBMVERDX0wxQ0xVVFdSICsgbGF5ICogTEFZX09GUywKPiA+IC0JCQkJICBsZGV2LT5jbHV0W2ld
-KTsKPiA+IC19Cj4gPiAtCj4gPiAgIHN0YXRpYyB2b2lkIGx0ZGNfY3J0Y19lbmFibGUoc3RydWN0
-IGRybV9jcnRjICpjcnRjKQo+ID4gICB7Cj4gPiAgIAlzdHJ1Y3QgbHRkY19kZXZpY2UgKmxkZXYg
-PSBjcnRjX3RvX2x0ZGMoY3J0Yyk7Cj4gPiBAQCAtNTIzLDcgKzUxMiw2IEBAIHN0YXRpYyB2b2lk
-IGx0ZGNfY3J0Y19hdG9taWNfZmx1c2goc3RydWN0IGRybV9jcnRjICpjcnRjLAo+ID4gICB9Cj4g
-PiAgIAo+ID4gICBzdGF0aWMgc3RydWN0IGRybV9jcnRjX2hlbHBlcl9mdW5jcyBsdGRjX2NydGNf
-aGVscGVyX2Z1bmNzID0gewo+ID4gLQkubG9hZF9sdXQgPSBsdGRjX2NydGNfbG9hZF9sdXQsCj4g
-PiAgIAkuZW5hYmxlID0gbHRkY19jcnRjX2VuYWJsZSwKPiA+ICAgCS5kaXNhYmxlID0gbHRkY19j
-cnRjX2Rpc2FibGUsCj4gPiAgIAkubW9kZV9zZXRfbm9mYiA9IGx0ZGNfY3J0Y19tb2RlX3NldF9u
-b2ZiLAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9zdG0vbHRkYy5oIGIvZHJpdmVy
-cy9ncHUvZHJtL3N0bS9sdGRjLmgKPiA+IGluZGV4IGQ3YTljNzMuLjYyMGNhNTUgMTAwNjQ0Cj4g
-PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vc3RtL2x0ZGMuaAo+ID4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL3N0bS9sdGRjLmgKPiA+IEBAIC0yNyw3ICsyNyw2IEBAIHN0cnVjdCBsdGRjX2RldmljZSB7
-Cj4gPiAgIAlzdHJ1Y3QgZHJtX3BhbmVsICpwYW5lbDsKPiA+ICAgCXN0cnVjdCBtdXRleCBlcnJf
-bG9jazsJLyogcHJvdGVjdGluZyBlcnJvcl9zdGF0dXMgKi8KPiA+ICAgCXN0cnVjdCBsdGRjX2Nh
-cHMgY2FwczsKPiA+IC0JdTMyIGNsdXRbMjU2XTsJCS8qIGNvbG9yIGxvb2sgdXAgdGFibGUgKi8K
-PiA+ICAgCXUzMiBlcnJvcl9zdGF0dXM7Cj4gPiAgIAl1MzIgaXJxX3N0YXR1czsKPiA+ICAgfTsK
-PiA+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4g
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
-eAoKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9u
-Cmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo=
+
+--===============0493357519==
+Content-Type: multipart/alternative; boundary="14982336311.cB83A.29273";
+ charset="UTF-8"
+
+
+--14982336311.cB83A.29273
+Date: Fri, 23 Jun 2017 16:00:31 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101368
+
+--- Comment #12 from Ben Steel <bhs_suse-cB/ihCqopeGiRCDHeDlHb1HQbgUU0Jf+@public.gmane.org> ---
+Yikes. I only waited about 28 hours before completely restoring that machine
+from backup and putting it back in service. Food for thought: my greatest f=
+ear
+is that the problem may have been illuminated by the change to GCC 7, which
+doesn't like compiling 4.10 kernels.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14982336311.cB83A.29273
+Date: Fri, 23 Jun 2017 16:00:31 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Nouveau regression GT218M in Kernel 4.11 Won't=
+ Boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101368#c12">Comme=
+nt # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Nouveau regression GT218M in Kernel 4.11 Won't=
+ Boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101368">bug 10136=
+8</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+bhs_suse&#64;precisionforesight.com" title=3D"Ben Steel &lt;bhs_suse&#64;pr=
+ecisionforesight.com&gt;"> <span class=3D"fn">Ben Steel</span></a>
+</span></b>
+        <pre>Yikes. I only waited about 28 hours before completely restorin=
+g that machine
+from backup and putting it back in service. Food for thought: my greatest f=
+ear
+is that the problem may have been illuminated by the change to GCC 7, which
+doesn't like compiling 4.10 kernels.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14982336311.cB83A.29273--
+
+--===============0493357519==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0493357519==--
