@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101573] GP107 crash with no HDMI connected on
 	4.12.rc6
-Date: Sat, 24 Jun 2017 15:25:31 +0000
-Message-ID: <bug-101573-8800-ZZAEok6ETn@http.bugs.freedesktop.org/>
+Date: Sat, 24 Jun 2017 15:55:01 +0000
+Message-ID: <bug-101573-8800-2s0Fyywaid@http.bugs.freedesktop.org/>
 References: <bug-101573-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1839965453=="
+Content-Type: multipart/mixed; boundary="===============1423156558=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101573-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1839965453==
-Content-Type: multipart/alternative; boundary="14983179311.1f01.7634";
+--===============1423156558==
+Content-Type: multipart/alternative; boundary="14983197011.8ff7A.14728";
  charset="UTF-8"
 
 
---14983179311.1f01.7634
-Date: Sat, 24 Jun 2017 15:25:31 +0000
+--14983197011.8ff7A.14728
+Date: Sat, 24 Jun 2017 15:55:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,31 +36,28 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101573
 
---- Comment #5 from harry_x <harry_x-ZOxssm6ufFDtwjQa/ONI9g@public.gmane.org> ---
-Hello Rhys and Ilia,=20
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to harry_x from comment #5)
+> But if there is anything how can I help with
+> debugging of this problem, I would be happy to help.
 
-thank you for your feedback. Is there anything I can do to help you track d=
-own
-this issue ? I am senior C developer with kernel driver development experie=
-nce,
-but I know nothing of the NVIDIA card architecture, so I can't probably fix=
- it
-myself...  But if there is anything how can I help with debugging of this
-problem, I would be happy to help. Right now it works with NVIDIA BLOB, but=
- I
-am quite unhappy about the setup, I would much prefer to use open source dr=
-iver
-for many reasons...
+Join us in #nouveau on irc.freenode.net. Unfortunately with these newer boa=
+rds,
+we understand very little about their initialization, esp wrt secboot.
 
-I am not sure it is the same issue regarding PCI bus, I can see the device
-normally in lspci -vv, but I don't know if that means anything...
+> I am not sure it is the same issue regarding PCI bus, I can see the device
+> normally in lspci -vv, but I don't know if that means anything...
+
+Yeah, it's clearly a different issue. Just seemed a little reminiscent --
+without HDMI plugged in, gr init times out because it feels like the GPU is
+semi-off.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14983179311.1f01.7634
-Date: Sat, 24 Jun 2017 15:25:31 +0000
+--14983197011.8ff7A.14728
+Date: Sat, 24 Jun 2017 15:55:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,8 +75,8 @@ Auto-Submitted: auto-generated
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED DUPLICATE - GP107 crash with no HDMI connected on 4.12=
 .rc6"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101573#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101573#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED DUPLICATE - GP107 crash with no HDMI connected on 4.12=
@@ -87,26 +84,26 @@ t # 5</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101573">bug 10157=
 3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-harry_x&#64;babylon5.cz" title=3D"harry_x &lt;harry_x&#64;babylon5.cz&gt;">=
- <span class=3D"fn">harry_x</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hello Rhys and Ilia,=20
+        <pre>(In reply to harry_x from <a href=3D"show_bug.cgi?id=3D101573#=
+c5">comment #5</a>)
+<span class=3D"quote">&gt; But if there is anything how can I help with
+&gt; debugging of this problem, I would be happy to help.</span >
 
-thank you for your feedback. Is there anything I can do to help you track d=
-own
-this issue ? I am senior C developer with kernel driver development experie=
-nce,
-but I know nothing of the NVIDIA card architecture, so I can't probably fix=
- it
-myself...  But if there is anything how can I help with debugging of this
-problem, I would be happy to help. Right now it works with NVIDIA BLOB, but=
- I
-am quite unhappy about the setup, I would much prefer to use open source dr=
-iver
-for many reasons...
+Join us in #nouveau on irc.freenode.net. Unfortunately with these newer boa=
+rds,
+we understand very little about their initialization, esp wrt secboot.
 
-I am not sure it is the same issue regarding PCI bus, I can see the device
-normally in lspci -vv, but I don't know if that means anything...</pre>
+<span class=3D"quote">&gt; I am not sure it is the same issue regarding PCI=
+ bus, I can see the device
+&gt; normally in lspci -vv, but I don't know if that means anything...</spa=
+n >
+
+Yeah, it's clearly a different issue. Just seemed a little reminiscent --
+without HDMI plugged in, gr init times out because it feels like the GPU is
+semi-off.</pre>
         </div>
       </p>
 
@@ -120,9 +117,9 @@ normally in lspci -vv, but I don't know if that means anything...</pre>
     </body>
 </html>=
 
---14983179311.1f01.7634--
+--14983197011.8ff7A.14728--
 
---===============1839965453==
+--===============1423156558==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -132,4 +129,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1839965453==--
+--===============1423156558==--
