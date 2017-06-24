@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
  409800 [ TIMEOUT ]
-Date: Sat, 24 Jun 2017 14:36:30 +0000
-Message-ID: <bug-100228-8800-xeokYoSDEC@http.bugs.freedesktop.org/>
+Date: Sat, 24 Jun 2017 14:38:49 +0000
+Message-ID: <bug-100228-8800-Io6sl7F43a@http.bugs.freedesktop.org/>
 References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1289358957=="
+Content-Type: multipart/mixed; boundary="===============1469964225=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1289358957==
-Content-Type: multipart/alternative; boundary="14983149904.5a12deb5.31490";
+--===============1469964225==
+Content-Type: multipart/alternative; boundary="14983151290.6Bc1C569.32022";
  charset="UTF-8"
 
 
---14983149904.5a12deb5.31490
-Date: Sat, 24 Jun 2017 14:36:30 +0000
+--14983151290.6Bc1C569.32022
+Date: Sat, 24 Jun 2017 14:38:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
 
-Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #7 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+harry_x reports that:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |harry_x-ZOxssm6ufFDtwjQa/ONI9g@public.gmane.org
-
---- Comment #6 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-*** Bug 101573 has been marked as a duplicate of this bug. ***
+> When starting the machine on Dell Inspiron 7000 (Kabylake, GTX 1050 Ti) w=
+ith
+> HDMI monitor connected (HDMI output is provided by NVIDIA card, eDP is=20
+> connected to internal), everything seems to work (using reverse prime tha=
+t is=20
+> automatically setup). There is lot of tearing, but it works.
+>=20
+> But when starting the machine without HDMI output connected (so the NVIDIA
+> card has no connected output), it fails with [the timeout]:"
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14983149904.5a12deb5.31490
-Date: Sat, 24 Jun 2017 14:36:30 +0000
+--14983151290.6Bc1C569.32022
+Date: Sat, 24 Jun 2017 14:38:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,40 +65,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rhyskidd&=
-#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;"> <span cl=
-ass=3D"fn">Rhys Kidd</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
-8</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>harry_x&#64;babylon5.cz
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
 OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c6">Commen=
-t # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
@@ -105,12 +84,20 @@ OUT ]"
 rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
  <span class=3D"fn">Rhys Kidd</span></a>
 </span></b>
-        <pre>*** <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - GP107 crash with no HDMI connected on 4.12=
-.rc6"
-   href=3D"show_bug.cgi?id=3D101573">Bug 101573</a> has been marked as a du=
-plicate of this bug. ***</pre>
+        <pre>harry_x reports that:
+
+<span class=3D"quote">&gt; When starting the machine on Dell Inspiron 7000 =
+(Kabylake, GTX 1050 Ti) with
+&gt; HDMI monitor connected (HDMI output is provided by NVIDIA card, eDP is=
+=20
+&gt; connected to internal), everything seems to work (using reverse prime =
+that is=20
+&gt; automatically setup). There is lot of tearing, but it works.
+&gt;=20
+&gt; But when starting the machine without HDMI output connected (so the NV=
+IDIA
+&gt; card has no connected output), it fails with [the timeout]:&quot;</spa=
+n ></pre>
         </div>
       </p>
 
@@ -124,9 +111,9 @@ plicate of this bug. ***</pre>
     </body>
 </html>=
 
---14983149904.5a12deb5.31490--
+--14983151290.6Bc1C569.32022--
 
---===============1289358957==
+--===============1469964225==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -136,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1289358957==--
+--===============1469964225==--
