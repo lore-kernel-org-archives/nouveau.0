@@ -1,110 +1,66 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101601] Nvidia GT 1030 (NV138/GP108) support
-Date: Mon, 26 Jun 2017 14:11:43 +0000
-Message-ID: <bug-101601-8800-1HDS0ePyfS@http.bugs.freedesktop.org/>
-References: <bug-101601-8800@http.bugs.freedesktop.org/>
+From: Peter Rosin <peda@axentia.se>
+Subject: Re: [PATCH v2 00/14] improve the fb_setcmap helper
+Date: Mon, 26 Jun 2017 21:13:19 +0200
+Message-ID: <59515CCF.8060406@axentia.se>
+References: <1498111597-10714-1-git-send-email-peda@axentia.se> <20170626093526.7dezn6d74m5ktsok@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0871362743=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20170626093526.7dezn6d74m5ktsok@phenom.ffwll.local>
+Sender: linux-kernel-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>, Boris Brezillon <boris.brezillon@free-electrons.com>, Russell King <linux@armlinux.org.uk>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org, Vincent Abriou <vincent.abriou@st.com>, Philippe Cornu <philippe.cornu@st.com>, Yannick Fertre <yannick.fertre@st.com>, Alex Deucher <alexander.deucher@amd.com>, =?windows-1252?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, Gerd Hoffmann <kraxel@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
+On 2017-06-26 11:35, Daniel Vetter wrote:
+> On Thu, Jun 22, 2017 at 08:06:23AM +0200, Peter Rosin wrote:
+>> Hi!
+>>
+>> While trying to get CLUT support for the atmel_hlcdc driver, and
+>> specifically for the emulated fbdev interface, I received some
+>> push-back that my feeble in-driver attempts should be solved
+>> by the core. This is my attempt to do it right.
+>>
+>> I have obviously not tested all of this with more than a compile,
+>> but patches 1 and 3 are enough to make the atmel-hlcdc driver
+>> do what I need (when patched to support CLUT modes). The rest is
+>> just lots of removals and cleanup made possible by the improved
+>> core.
+>>
+>> Please test, I would not be surprised if I have fouled up some
+>> bit-manipulation somewhere in this mostly mechanical change...
+>>
+>> Changes since v1:
+>>
+>> - Rebased to next-20170621
+>> - Split 1/11 into a preparatory patch, a cleanup patch and then
+>>   the meat in 3/14.
+>> - Handle pseudo-palette for FB_VISUAL_TRUECOLOR.
+>> - Removed the empty .gamma_get/.gamma_set fb helpers from the
+>>   armada driver that I had somehow managed to ignore but which
+>>   0day found real quick.
+>> - Be less judgemental on drivers only providing .gamma_get and
+>>   .gamma_set, but no .load_lut. That's actually a valid thing
+>>   to do if you only need pseudo-palette for FB_VISUAL_TRUECOLOR.
+>> - Add a comment about colliding bitfields in the nouveau driver.
+>> - Remove gamma_set/gamma_get declarations from the radeon driver
+>>   (the definitions were removed in v1).
+> 
+> Ok some nits/questions on the first three, but in principle looks all ok I
+> think. The driver patches also look good (but I didn't yet carefully
+> review all the conversion). What we might want to do is entirely remove
+> driver's reliance on ->gamma_store (mostly amounts to in-lining the
+> load_lut functions) and only update ->gamma_store after gamma_set returned
+> successfully. But that's a bit more work.
+> 
+> Save/restoring it instead might be simpler to fix that bug, but since it's
+> pre-existing also ok as follow-up.
 
---===============0871362743==
-Content-Type: multipart/alternative; boundary="14984863020.03668cc5.4204";
- charset="UTF-8"
+I'm traveling and cannot make progress this week. The merge window is
+also real close so this series will therefore probably miss it unless
+something unexpected happens...
 
+I'll get back to this for the next cycle, just a heads up.
 
---14984863020.03668cc5.4204
-Date: Mon, 26 Jun 2017 14:11:42 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101601
-
---- Comment #1 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
-Created attachment 132256
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132256&action=3Dedit
-VBIOS
-
-VBIOS exctracted with nvagetbios -s prom
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14984863020.03668cc5.4204
-Date: Mon, 26 Jun 2017 14:11:42 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601">bug 10160=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
-<span class=3D"fn">Carlo Caione</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132256=
-" name=3D"attach_132256" title=3D"VBIOS">attachment 132256</a> <a href=3D"a=
-ttachment.cgi?id=3D132256&amp;action=3Dedit" title=3D"VBIOS">[details]</a><=
-/span>
-VBIOS
-
-VBIOS exctracted with nvagetbios -s prom</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14984863020.03668cc5.4204--
-
---===============0871362743==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0871362743==--
+Cheers,
+peda
