@@ -1,125 +1,119 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v2 00/14] improve the fb_setcmap helper
-Date: Mon, 26 Jun 2017 11:35:27 +0200
-Message-ID: <20170626093526.7dezn6d74m5ktsok@phenom.ffwll.local>
-References: <1498111597-10714-1-git-send-email-peda@axentia.se>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
+ [CTXSW_TIMEOUT]
+Date: Mon, 26 Jun 2017 09:42:46 +0000
+Message-ID: <bug-100567-8800-keXflzVwIY@http.bugs.freedesktop.org/>
+References: <bug-100567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <1498111597-10714-1-git-send-email-peda@axentia.se>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Peter Rosin <peda@axentia.se>
-Cc: Boris Brezillon <boris.brezillon@free-electrons.com>, Gerd Hoffmann <kraxel@redhat.com>, Philippe Cornu <philippe.cornu@st.com>, Russell King <linux@armlinux.org.uk>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Yannick Fertre <yannick.fertre@st.com>, dri-devel@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, Daniel Vetter <daniel.vetter@intel.com>, Vincent Abriou <vincent.abriou@st.com>, Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============0491293128=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBKdW4gMjIsIDIwMTcgYXQgMDg6MDY6MjNBTSArMDIwMCwgUGV0ZXIgUm9zaW4gd3Jv
-dGU6Cj4gSGkhCj4gCj4gV2hpbGUgdHJ5aW5nIHRvIGdldCBDTFVUIHN1cHBvcnQgZm9yIHRoZSBh
-dG1lbF9obGNkYyBkcml2ZXIsIGFuZAo+IHNwZWNpZmljYWxseSBmb3IgdGhlIGVtdWxhdGVkIGZi
-ZGV2IGludGVyZmFjZSwgSSByZWNlaXZlZCBzb21lCj4gcHVzaC1iYWNrIHRoYXQgbXkgZmVlYmxl
-IGluLWRyaXZlciBhdHRlbXB0cyBzaG91bGQgYmUgc29sdmVkCj4gYnkgdGhlIGNvcmUuIFRoaXMg
-aXMgbXkgYXR0ZW1wdCB0byBkbyBpdCByaWdodC4KPiAKPiBJIGhhdmUgb2J2aW91c2x5IG5vdCB0
-ZXN0ZWQgYWxsIG9mIHRoaXMgd2l0aCBtb3JlIHRoYW4gYSBjb21waWxlLAo+IGJ1dCBwYXRjaGVz
-IDEgYW5kIDMgYXJlIGVub3VnaCB0byBtYWtlIHRoZSBhdG1lbC1obGNkYyBkcml2ZXIKPiBkbyB3
-aGF0IEkgbmVlZCAod2hlbiBwYXRjaGVkIHRvIHN1cHBvcnQgQ0xVVCBtb2RlcykuIFRoZSByZXN0
-IGlzCj4ganVzdCBsb3RzIG9mIHJlbW92YWxzIGFuZCBjbGVhbnVwIG1hZGUgcG9zc2libGUgYnkg
-dGhlIGltcHJvdmVkCj4gY29yZS4KPiAKPiBQbGVhc2UgdGVzdCwgSSB3b3VsZCBub3QgYmUgc3Vy
-cHJpc2VkIGlmIEkgaGF2ZSBmb3VsZWQgdXAgc29tZQo+IGJpdC1tYW5pcHVsYXRpb24gc29tZXdo
-ZXJlIGluIHRoaXMgbW9zdGx5IG1lY2hhbmljYWwgY2hhbmdlLi4uCj4gCj4gQ2hhbmdlcyBzaW5j
-ZSB2MToKPiAKPiAtIFJlYmFzZWQgdG8gbmV4dC0yMDE3MDYyMQo+IC0gU3BsaXQgMS8xMSBpbnRv
-IGEgcHJlcGFyYXRvcnkgcGF0Y2gsIGEgY2xlYW51cCBwYXRjaCBhbmQgdGhlbgo+ICAgdGhlIG1l
-YXQgaW4gMy8xNC4KPiAtIEhhbmRsZSBwc2V1ZG8tcGFsZXR0ZSBmb3IgRkJfVklTVUFMX1RSVUVD
-T0xPUi4KPiAtIFJlbW92ZWQgdGhlIGVtcHR5IC5nYW1tYV9nZXQvLmdhbW1hX3NldCBmYiBoZWxw
-ZXJzIGZyb20gdGhlCj4gICBhcm1hZGEgZHJpdmVyIHRoYXQgSSBoYWQgc29tZWhvdyBtYW5hZ2Vk
-IHRvIGlnbm9yZSBidXQgd2hpY2gKPiAgIDBkYXkgZm91bmQgcmVhbCBxdWljay4KPiAtIEJlIGxl
-c3MganVkZ2VtZW50YWwgb24gZHJpdmVycyBvbmx5IHByb3ZpZGluZyAuZ2FtbWFfZ2V0IGFuZAo+
-ICAgLmdhbW1hX3NldCwgYnV0IG5vIC5sb2FkX2x1dC4gVGhhdCdzIGFjdHVhbGx5IGEgdmFsaWQg
-dGhpbmcKPiAgIHRvIGRvIGlmIHlvdSBvbmx5IG5lZWQgcHNldWRvLXBhbGV0dGUgZm9yIEZCX1ZJ
-U1VBTF9UUlVFQ09MT1IuCj4gLSBBZGQgYSBjb21tZW50IGFib3V0IGNvbGxpZGluZyBiaXRmaWVs
-ZHMgaW4gdGhlIG5vdXZlYXUgZHJpdmVyLgo+IC0gUmVtb3ZlIGdhbW1hX3NldC9nYW1tYV9nZXQg
-ZGVjbGFyYXRpb25zIGZyb20gdGhlIHJhZGVvbiBkcml2ZXIKPiAgICh0aGUgZGVmaW5pdGlvbnMg
-d2VyZSByZW1vdmVkIGluIHYxKS4KCk9rIHNvbWUgbml0cy9xdWVzdGlvbnMgb24gdGhlIGZpcnN0
-IHRocmVlLCBidXQgaW4gcHJpbmNpcGxlIGxvb2tzIGFsbCBvayBJCnRoaW5rLiBUaGUgZHJpdmVy
-IHBhdGNoZXMgYWxzbyBsb29rIGdvb2QgKGJ1dCBJIGRpZG4ndCB5ZXQgY2FyZWZ1bGx5CnJldmll
-dyBhbGwgdGhlIGNvbnZlcnNpb24pLiBXaGF0IHdlIG1pZ2h0IHdhbnQgdG8gZG8gaXMgZW50aXJl
-bHkgcmVtb3ZlCmRyaXZlcidzIHJlbGlhbmNlIG9uIC0+Z2FtbWFfc3RvcmUgKG1vc3RseSBhbW91
-bnRzIHRvIGluLWxpbmluZyB0aGUKbG9hZF9sdXQgZnVuY3Rpb25zKSBhbmQgb25seSB1cGRhdGUg
-LT5nYW1tYV9zdG9yZSBhZnRlciBnYW1tYV9zZXQgcmV0dXJuZWQKc3VjY2Vzc2Z1bGx5LiBCdXQg
-dGhhdCdzIGEgYml0IG1vcmUgd29yay4KClNhdmUvcmVzdG9yaW5nIGl0IGluc3RlYWQgbWlnaHQg
-YmUgc2ltcGxlciB0byBmaXggdGhhdCBidWcsIGJ1dCBzaW5jZSBpdCdzCnByZS1leGlzdGluZyBh
-bHNvIG9rIGFzIGZvbGxvdy11cC4KCkNoZWVycywgRGFuaWVsCgo+IAo+IENoZWVycywKPiBwZWRh
-Cj4gCj4gUGV0ZXIgUm9zaW4gKDE0KToKPiAgIGRybS9mYi1oZWxwZXI6IGtlZXAgdGhlIC5nYW1t
-YV9zdG9yZSB1cGRhdGVkIGluIGRybV9mYl9oZWxwZXJfc2V0Y21hcAo+ICAgZHJtL2ZiLWhlbHBl
-cjogcmVtb3ZlIGRybV9mYl9oZWxwZXJfc2F2ZV9sdXRfYXRvbWljCj4gICBkcm0vZmItaGVscGVy
-OiBkbyBhIGdlbmVyaWMgZmJfc2V0Y21hcCBoZWxwZXIgaW4gdGVybXMgb2YgY3J0Ywo+ICAgICAu
-Z2FtbWFfc2V0Cj4gICBkcm06IGFtZDogcmVtb3ZlIGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxv
-Y2FsIGx1dCBzdG9yYWdlCj4gICBkcm06IGFybWFkYTogcmVtb3ZlIGRlYWQgZW1wdHkgZnVuY3Rp
-b25zCj4gICBkcm06IGFzdDogcmVtb3ZlIGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxvY2FsIGx1
-dCBzdG9yYWdlCj4gICBkcm06IGNpcnJ1czogcmVtb3ZlIGRlYWQgY29kZSBhbmQgcG9pbnRsZXNz
-IGxvY2FsIGx1dCBzdG9yYWdlCj4gICBkcm06IGdtYTUwMDogcmVtb3ZlIGRlYWQgY29kZSBhbmQg
-cG9pbnRsZXNzIGxvY2FsIGx1dCBzdG9yYWdlCj4gICBkcm06IGk5MTU6IHJlbW92ZSBkZWFkIGNv
-ZGUgYW5kIHBvaW50bGVzcyBsb2NhbCBsdXQgc3RvcmFnZQo+ICAgZHJtOiBtZ2FnMjAwOiByZW1v
-dmUgZGVhZCBjb2RlIGFuZCBwb2ludGxlc3MgbG9jYWwgbHV0IHN0b3JhZ2UKPiAgIGRybTogbm91
-dmVhdTogcmVtb3ZlIGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxvY2FsIGx1dCBzdG9yYWdlCj4g
-ICBkcm06IHJhZGVvbjogcmVtb3ZlIGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxvY2FsIGx1dCBz
-dG9yYWdlCj4gICBkcm06IHN0bTogcmVtb3ZlIGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxvY2Fs
-IGx1dCBzdG9yYWdlCj4gICBkcm06IHJlbW92ZSB1bnVzZWQgYW5kIHJlZHVuZGFudCBjYWxsYmFj
-a3MKPiAKPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2ZiLmMgICAgICB8ICAy
-NCAtLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9tb2RlLmggICAgfCAg
-IDEgLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2VfdjEwXzAuYyAgICAgIHwgIDI3
-ICsrLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2RjZV92MTFfMC5jICAgICAgfCAg
-MjcgKystLS0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3Y2XzAuYyAgICAgICB8
-ICAyNyArKy0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2VfdjhfMC5jICAgICAg
-IHwgIDI3ICsrLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2RjZV92aXJ0dWFsLmMg
-ICAgfCAgMjMgLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vYXJtYWRhL2FybWFkYV9jcnRjLmMgICAg
-ICAgIHwgIDEwIC0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hcm1hZGEvYXJtYWRhX2NydGMuaCAgICAg
-ICAgfCAgIDIgLQo+ICBkcml2ZXJzL2dwdS9kcm0vYXJtYWRhL2FybWFkYV9mYmRldi5jICAgICAg
-IHwgICAyIC0KPiAgZHJpdmVycy9ncHUvZHJtL2FzdC9hc3RfZHJ2LmggICAgICAgICAgICAgICB8
-ICAgMSAtCj4gIGRyaXZlcnMvZ3B1L2RybS9hc3QvYXN0X2ZiLmMgICAgICAgICAgICAgICAgfCAg
-MjAgLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vYXN0L2FzdF9tb2RlLmMgICAgICAgICAgICAgIHwg
-IDI2ICstLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9jaXJydXMvY2lycnVzX2Rydi5oICAgICAgICAg
-fCAgIDggLS0KPiAgZHJpdmVycy9ncHUvZHJtL2NpcnJ1cy9jaXJydXNfZmJkZXYuYyAgICAgICB8
-ICAgMiAtCj4gIGRyaXZlcnMvZ3B1L2RybS9jaXJydXMvY2lycnVzX21vZGUuYyAgICAgICAgfCAg
-NzEgKysrLS0tLS0tLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fZmJfaGVscGVyLmMgICAgICAg
-ICAgICAgfCAxNjQgKysrKysrKysrKysrKy0tLS0tLS0tLS0tLS0tLQo+ICBkcml2ZXJzL2dwdS9k
-cm0vZ21hNTAwL2ZyYW1lYnVmZmVyLmMgICAgICAgIHwgIDIyIC0tLS0KPiAgZHJpdmVycy9ncHUv
-ZHJtL2dtYTUwMC9nbWFfZGlzcGxheS5jICAgICAgICB8ICAzMiArKy0tLS0KPiAgZHJpdmVycy9n
-cHUvZHJtL2dtYTUwMC9wc2JfaW50ZWxfZGlzcGxheS5jICB8ICAgNyArLQo+ICBkcml2ZXJzL2dw
-dS9kcm0vZ21hNTAwL3BzYl9pbnRlbF9kcnYuaCAgICAgIHwgICAxIC0KPiAgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaW50ZWxfZHJ2LmggICAgICAgICAgICB8ICAgMSAtCj4gIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2ludGVsX2ZiZGV2LmMgICAgICAgICAgfCAgMzEgLS0tLS0tCj4gIGRyaXZlcnMvZ3B1
-L2RybS9tZ2FnMjAwL21nYWcyMDBfZHJ2LmggICAgICAgfCAgIDUgLQo+ICBkcml2ZXJzL2dwdS9k
-cm0vbWdhZzIwMC9tZ2FnMjAwX2ZiLmMgICAgICAgIHwgICAyIC0KPiAgZHJpdmVycy9ncHUvZHJt
-L21nYWcyMDAvbWdhZzIwMF9tb2RlLmMgICAgICB8ICA2MiArKystLS0tLS0tLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9jcnRjLmMgICAgIHwgIDI2ICsrLS0tCj4gIGRyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY3J0Yy5oICAgICAgfCAgIDMgLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMgICAgIHwgIDIyIC0tLS0KPiAgZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgICAgICB8ICA0MCArKystLS0tCj4gIGRy
-aXZlcnMvZ3B1L2RybS9yYWRlb24vYXRvbWJpb3NfY3J0Yy5jICAgICAgfCAgIDEgLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9jb25uZWN0b3JzLmMgIHwgICA3ICstCj4gIGRyaXZl
-cnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Rpc3BsYXkuYyAgICAgfCAgNzEgKysrKystLS0tLS0t
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2ZiLmMgICAgICAgICAgfCAgIDIgLQo+
-ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9sZWdhY3lfY3J0Yy5jIHwgICAxIC0KPiAg
-ZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fbW9kZS5oICAgICAgICB8ICAgNCAtCj4gIGRy
-aXZlcnMvZ3B1L2RybS9zdG0vbHRkYy5jICAgICAgICAgICAgICAgICAgfCAgMTIgLS0KPiAgZHJp
-dmVycy9ncHUvZHJtL3N0bS9sdGRjLmggICAgICAgICAgICAgICAgICB8ICAgMSAtCj4gIGluY2x1
-ZGUvZHJtL2RybV9mYl9oZWxwZXIuaCAgICAgICAgICAgICAgICAgfCAgMzIgLS0tLS0tCj4gIGlu
-Y2x1ZGUvZHJtL2RybV9tb2Rlc2V0X2hlbHBlcl92dGFibGVzLmggICAgfCAgMTYgLS0tCj4gIDQw
-IGZpbGVzIGNoYW5nZWQsIDIwNSBpbnNlcnRpb25zKCspLCA2NTggZGVsZXRpb25zKC0pCj4gCj4g
-LS0gCj4gMi4xLjQKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwo+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9kcmktZGV2ZWwKCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBD
-b3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============0491293128==
+Content-Type: multipart/alternative; boundary="14984701663.3ba335.13579";
+ charset="UTF-8"
+
+
+--14984701663.3ba335.13579
+Date: Mon, 26 Jun 2017 09:42:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
+
+--- Comment #6 from jadziadax30-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Same problem on 4.9.16-gentoo.
+
+I've attached syslog and dmesg.=20
+
+In average the problem occurs every one or two days on my machine with one
+monitor, resolution 3440x1440.=20
+
+
+The x11-drivers/xf86-video-nouveau driver version is 1.0.15
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14984701663.3ba335.13579
+Date: Mon, 26 Jun 2017 09:42:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c6">Commen=
+t # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jadziadax30&#64;gmail.com" title=3D"jadziadax30&#64;gmail.com">jadziadax30&=
+#64;gmail.com</a>
+</span></b>
+        <pre>Same problem on 4.9.16-gentoo.
+
+I've attached syslog and dmesg.=20
+
+In average the problem occurs every one or two days on my machine with one
+monitor, resolution 3440x1440.=20
+
+
+The x11-drivers/xf86-video-nouveau driver version is 1.0.15</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14984701663.3ba335.13579--
+
+--===============0491293128==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0491293128==--
