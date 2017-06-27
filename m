@@ -1,32 +1,50 @@
-From: =?UTF-8?Q?La=c3=abl_Cellier?= <lael.cellier-QFKgK+z4sOrR7s880joybQ@public.gmane.org>
-Subject: Quad buffering support with Opengl and recent cosumer
-	cards
-Date: Mon, 26 Jun 2017 04:59:40 +0200
-Message-ID: <91da7320-8e9b-5895-4c7e-4b78753df49a@laposte.net>
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH] drm/nouveau/therm: fix spelling mistake on array thresolds
+Date: Tue, 27 Jun 2017 09:08:58 +0100
+Message-ID: <20170627080858.12218-1-colin.king@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-GB
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8sIHJlY2VudCBjb25zdW1lciBOVmlkaWEgY2FyZHMgYWRkZWQgcXVhZCBidWZmZXJpbmcg
-c3VwcG9ydCAoSSAKdGVzdGVkIGl0IHdpdGggRGlyZWN0M0QgYW5kIGEgR2Vmb3JjZSAxMDcwIHdp
-dGhvdXQgdGhpbmdzIGxpa2UgM2R2aXNpb24gCm9yIDNkIHR2IHBsYXkpCgpBcmUgdGhlcmUgY3Vy
-cmVudGx5IHBsYW5zIHRvIGJyaW5nIHF1YWQgYnVmZmVyaW5nIHN1cHBvcnQgZm9yIApzdGVyZW9z
-Y29waWMgcmVuZGVyaW5nIG92ZXIgaGRtaSAxLjQgZm9yIHRob3NlIGNhcmRzLCBvciBkb2VzIHN1
-cHBvcnQgCndpbGwgbmVlZCB0byB3YWl0IHNldmVyYWwgeWVhcnM/CgpPZiBjb3Vyc2UsIGl0IHdv
-dWxkIGJlIGFib3V0IE9wZW5nbCBhbmQgTGludXguCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbm91dmVhdQo=
+RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KCkFycmF5IHRo
+cmVzb2xkcyBzaG91bGQgYmUgbmFtZWQgdGhyZXNob2xkcywgcmVuYW1lIGl0LiBBbHNvIG1ha2Ug
+aXQgc3RhdGljCnN0YXRpYyBjb25zdCBjaGFyICogY29uc3QKClNpZ25lZC1vZmYtYnk6IENvbGlu
+IElhbiBLaW5nIDxjb2xpbi5raW5nQGNhbm9uaWNhbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vdGVtcC5jIHwgNiArKystLS0KIDEgZmlsZSBjaGFu
+Z2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vdGVtcC5jIGIvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vdGVtcC5jCmluZGV4IGU5M2IyNDEwYzM4Yi4u
+NjQ0OTc3MWI5ZGM2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
+YmRldi90aGVybS90ZW1wLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJk
+ZXYvdGhlcm0vdGVtcC5jCkBAIC04Myw3ICs4Myw3IEBAIG52a21fdGhlcm1fc2Vuc29yX2V2ZW50
+KHN0cnVjdCBudmttX3RoZXJtICp0aGVybSwgZW51bSBudmttX3RoZXJtX3RocnMgdGhycywKIHsK
+IAlzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldiA9ICZ0aGVybS0+c3ViZGV2OwogCWJvb2wgYWN0
+aXZlOwotCWNvbnN0IGNoYXIgKnRocmVzb2xkc1tdID0geworCXN0YXRpYyBjb25zdCBjaGFyICog
+Y29uc3QgdGhyZXNob2xkc1tdID0gewogCQkiZmFuYm9vc3QiLCAiZG93bmNsb2NrIiwgImNyaXRp
+Y2FsIiwgInNodXRkb3duIgogCX07CiAJaW50IHRlbXBlcmF0dXJlID0gdGhlcm0tPmZ1bmMtPnRl
+bXBfZ2V0KHRoZXJtKTsKQEAgLTk0LDEwICs5NCwxMCBAQCBudmttX3RoZXJtX3NlbnNvcl9ldmVu
+dChzdHJ1Y3QgbnZrbV90aGVybSAqdGhlcm0sIGVudW0gbnZrbV90aGVybV90aHJzIHRocnMsCiAJ
+aWYgKGRpciA9PSBOVktNX1RIRVJNX1RIUlNfRkFMTElORykKIAkJbnZrbV9pbmZvKHN1YmRldiwK
+IAkJCSAgInRlbXBlcmF0dXJlICglaSBDKSB3ZW50IGJlbG93IHRoZSAnJXMnIHRocmVzaG9sZFxu
+IiwKLQkJCSAgdGVtcGVyYXR1cmUsIHRocmVzb2xkc1t0aHJzXSk7CisJCQkgIHRlbXBlcmF0dXJl
+LCB0aHJlc2hvbGRzW3RocnNdKTsKIAllbHNlCiAJCW52a21faW5mbyhzdWJkZXYsICJ0ZW1wZXJh
+dHVyZSAoJWkgQykgaGl0IHRoZSAnJXMnIHRocmVzaG9sZFxuIiwKLQkJCSAgdGVtcGVyYXR1cmUs
+IHRocmVzb2xkc1t0aHJzXSk7CisJCQkgIHRlbXBlcmF0dXJlLCB0aHJlc2hvbGRzW3RocnNdKTsK
+IAogCWFjdGl2ZSA9IChkaXIgPT0gTlZLTV9USEVSTV9USFJTX1JJU0lORyk7CiAJc3dpdGNoICh0
+aHJzKSB7Ci0tIAoyLjExLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ry
+aS1kZXZlbAo=
