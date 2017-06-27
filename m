@@ -1,57 +1,126 @@
-From: Martin Peres <martin.peres@free.fr>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/therm: fix spelling mistake on
- array thresolds
-Date: Tue, 27 Jun 2017 13:07:45 +0300
-Message-ID: <e293780c-4e02-025b-2cf5-f41b8a3cd659@free.fr>
-References: <20170627080858.12218-1-colin.king@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101601] Nvidia GT 1030 (NV138/GP108) support
+Date: Tue, 27 Jun 2017 13:50:24 +0000
+Message-ID: <bug-101601-8800-a62KpZGyQQ@http.bugs.freedesktop.org/>
+References: <bug-101601-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20170627080858.12218-1-colin.king@canonical.com>
-Content-Language: en-GB
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Colin King <colin.king@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1297270389=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMjcvMDYvMTcgMTE6MDgsIENvbGluIEtpbmcgd3JvdGU6Cj4gRnJvbTogQ29saW4gSWFuIEtp
-bmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KPiAKPiBBcnJheSB0aHJlc29sZHMgc2hvdWxk
-IGJlIG5hbWVkIHRocmVzaG9sZHMsIHJlbmFtZSBpdC4gQWxzbyBtYWtlIGl0IHN0YXRpYwo+IHN0
-YXRpYyBjb25zdCBjaGFyICogY29uc3QKPiAKPiBTaWduZWQtb2ZmLWJ5OiBDb2xpbiBJYW4gS2lu
-ZyA8Y29saW4ua2luZ0BjYW5vbmljYWwuY29tPgoKVGhhbmtzIGZvciBkb2luZyB0aGlzLAoKUmV2
-aWV3ZWQtYnk6IE1hcnRpbiBQZXJlcyA8bWFydGluLnBlcmVzQGZyZWUuZnI+Cgo+IC0tLQo+ICAg
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vdGVtcC5jIHwgNiArKyst
-LS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4g
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJt
-L3RlbXAuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL3RlbXAu
-Ywo+IGluZGV4IGU5M2IyNDEwYzM4Yi4uNjQ0OTc3MWI5ZGM2IDEwMDY0NAo+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL3RlbXAuYwo+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL3RlbXAuYwo+IEBAIC04Myw3ICs4
-Myw3IEBAIG52a21fdGhlcm1fc2Vuc29yX2V2ZW50KHN0cnVjdCBudmttX3RoZXJtICp0aGVybSwg
-ZW51bSBudmttX3RoZXJtX3RocnMgdGhycywKPiAgIHsKPiAgIAlzdHJ1Y3QgbnZrbV9zdWJkZXYg
-KnN1YmRldiA9ICZ0aGVybS0+c3ViZGV2Owo+ICAgCWJvb2wgYWN0aXZlOwo+IC0JY29uc3QgY2hh
-ciAqdGhyZXNvbGRzW10gPSB7Cj4gKwlzdGF0aWMgY29uc3QgY2hhciAqIGNvbnN0IHRocmVzaG9s
-ZHNbXSA9IHsKPiAgIAkJImZhbmJvb3N0IiwgImRvd25jbG9jayIsICJjcml0aWNhbCIsICJzaHV0
-ZG93biIKPiAgIAl9Owo+ICAgCWludCB0ZW1wZXJhdHVyZSA9IHRoZXJtLT5mdW5jLT50ZW1wX2dl
-dCh0aGVybSk7Cj4gQEAgLTk0LDEwICs5NCwxMCBAQCBudmttX3RoZXJtX3NlbnNvcl9ldmVudChz
-dHJ1Y3QgbnZrbV90aGVybSAqdGhlcm0sIGVudW0gbnZrbV90aGVybV90aHJzIHRocnMsCj4gICAJ
-aWYgKGRpciA9PSBOVktNX1RIRVJNX1RIUlNfRkFMTElORykKPiAgIAkJbnZrbV9pbmZvKHN1YmRl
-diwKPiAgIAkJCSAgInRlbXBlcmF0dXJlICglaSBDKSB3ZW50IGJlbG93IHRoZSAnJXMnIHRocmVz
-aG9sZFxuIiwKPiAtCQkJICB0ZW1wZXJhdHVyZSwgdGhyZXNvbGRzW3RocnNdKTsKPiArCQkJICB0
-ZW1wZXJhdHVyZSwgdGhyZXNob2xkc1t0aHJzXSk7Cj4gICAJZWxzZQo+ICAgCQludmttX2luZm8o
-c3ViZGV2LCAidGVtcGVyYXR1cmUgKCVpIEMpIGhpdCB0aGUgJyVzJyB0aHJlc2hvbGRcbiIsCj4g
-LQkJCSAgdGVtcGVyYXR1cmUsIHRocmVzb2xkc1t0aHJzXSk7Cj4gKwkJCSAgdGVtcGVyYXR1cmUs
-IHRocmVzaG9sZHNbdGhyc10pOwo+ICAgCj4gICAJYWN0aXZlID0gKGRpciA9PSBOVktNX1RIRVJN
-X1RIUlNfUklTSU5HKTsKPiAgIAlzd2l0Y2ggKHRocnMpIHsKPiAKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJp
-LWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============1297270389==
+Content-Type: multipart/alternative; boundary="14985714251.7EecA2E7.10282";
+ charset="UTF-8"
+
+
+--14985714251.7EecA2E7.10282
+Date: Tue, 27 Jun 2017 13:50:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101601
+
+--- Comment #2 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
+Created attachment 132283
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132283&action=3Dedit
+log_gf119_disp_pioc_init_returns_0
+
+The problem is that gf119_disp_pioc_init() is returning -EBUSY.
+
+Modesetting works fine (let's say 90% of the times) if I force
+gf119_disp_pioc_init() to return 0. Of course I highly doubt this is a
+reasonable fix but at least it could give an hint where the real issue is.
+
+In attachment the log with this ugly change (but at least I was able to hav=
+e a
+reasonable resolution).
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14985714251.7EecA2E7.10282
+Date: Tue, 27 Jun 2017 13:50:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601">bug 10160=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
+<span class=3D"fn">Carlo Caione</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132283=
+" name=3D"attach_132283" title=3D"log_gf119_disp_pioc_init_returns_0">attac=
+hment 132283</a> <a href=3D"attachment.cgi?id=3D132283&amp;action=3Dedit" t=
+itle=3D"log_gf119_disp_pioc_init_returns_0">[details]</a></span>
+log_gf119_disp_pioc_init_returns_0
+
+The problem is that gf119_disp_pioc_init() is returning -EBUSY.
+
+Modesetting works fine (let's say 90% of the times) if I force
+gf119_disp_pioc_init() to return 0. Of course I highly doubt this is a
+reasonable fix but at least it could give an hint where the real issue is.
+
+In attachment the log with this ugly change (but at least I was able to hav=
+e a
+reasonable resolution).</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14985714251.7EecA2E7.10282--
+
+--===============1297270389==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1297270389==--
