@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101601] Nvidia GT 1030 (NV138/GP108) support
-Date: Wed, 28 Jun 2017 08:07:46 +0000
-Message-ID: <bug-101601-8800-FZT3xxYgbg@http.bugs.freedesktop.org/>
+Date: Wed, 28 Jun 2017 08:38:06 +0000
+Message-ID: <bug-101601-8800-uQNcPzKrBv@http.bugs.freedesktop.org/>
 References: <bug-101601-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1278328367=="
+Content-Type: multipart/mixed; boundary="===============0142753062=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1278328367==
-Content-Type: multipart/alternative; boundary="14986372662.C0abb1abE.11954";
+--===============0142753062==
+Content-Type: multipart/alternative; boundary="14986390861.fb5DBb.18539";
  charset="UTF-8"
 
 
---14986372662.C0abb1abE.11954
-Date: Wed, 28 Jun 2017 08:07:46 +0000
+--14986390861.fb5DBb.18539
+Date: Wed, 28 Jun 2017 08:38:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,20 +35,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101601
 
---- Comment #7 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
-Created attachment 132296
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132296&action=3Dedit
-backport fix
+--- Comment #8 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
+Ok, tested again the latest drm-next __without__ the patch proposed by Ilia=
+ and
+it fails with the same error:
 
-Well, your patch backported to 4.12 works fine. Attached the patch I'm usin=
-g.
+nouveau 0000:01:00.0: DRM: curs917a allocation failed: -16
+nouveau: probe of 0000:01:00.0 failed with error -16
+
+So the problem is not related to your patch (that at this point I'm fairly
+confident it should work fine since it works correctly backporting it) but =
+with
+drm-next itself I guess.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14986372662.C0abb1abE.11954
-Date: Wed, 28 Jun 2017 08:07:46 +0000
+--14986390861.fb5DBb.18539
+Date: Wed, 28 Jun 2017 08:38:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +70,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c7">Commen=
-t # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
@@ -76,15 +81,17 @@ t # 7</a>
 carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
 <span class=3D"fn">Carlo Caione</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132296=
-" name=3D"attach_132296" title=3D"backport fix">attachment 132296</a> <a hr=
-ef=3D"attachment.cgi?id=3D132296&amp;action=3Dedit" title=3D"backport fix">=
-[details]</a></span> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D10160=
-1&amp;attachment=3D132296'>[review]</a>
-backport fix
+        <pre>Ok, tested again the latest drm-next __without__ the patch pro=
+posed by Ilia and
+it fails with the same error:
 
-Well, your patch backported to 4.12 works fine. Attached the patch I'm usin=
-g.</pre>
+nouveau 0000:01:00.0: DRM: curs917a allocation failed: -16
+nouveau: probe of 0000:01:00.0 failed with error -16
+
+So the problem is not related to your patch (that at this point I'm fairly
+confident it should work fine since it works correctly backporting it) but =
+with
+drm-next itself I guess.</pre>
         </div>
       </p>
 
@@ -98,9 +105,9 @@ g.</pre>
     </body>
 </html>=
 
---14986372662.C0abb1abE.11954--
+--14986390861.fb5DBb.18539--
 
---===============1278328367==
+--===============0142753062==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1278328367==--
+--===============0142753062==--
