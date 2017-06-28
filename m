@@ -1,11 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] disp/nv50-: bump max chans to 21
-Date: Wed, 28 Jun 2017 08:24:45 -0400
-Message-ID: <20170628122445.27885-1-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101601] Nvidia GT 1030 (NV138/GP108) support
+Date: Wed, 28 Jun 2017 12:32:42 +0000
+Message-ID: <bug-101601-8800-fcg4jFfJI1@http.bugs.freedesktop.org/>
+References: <bug-101601-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1490454948=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,24 +16,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-R1AxMDIncyBjdXJzb3JzIGdvIGZyb20gY2hhbiAxNy4uMjAuIEluY3JlYXNlIHRoZSBhcnJheSBz
-aXplIHRvIGhvbGQKdGhlaXIgZGF0YSBwcm9wZXJseS4KCkZpeGVzOiBlNTBmY2ZmMTVmICgiZHJt
-L25vdXZlYXUvZGlzcC9ncDEwMjogZml4IGN1cnNvci9vdmVybGF5IGltbWVkaWF0ZSBjaGFubmVs
-IGluZGljZXMiKQpDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZyAjIHY0LjEwKwpTaWduZWQtb2Zm
-LWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ci0tLQogZHJtL25vdXZlYXUv
-bnZrbS9lbmdpbmUvZGlzcC9udjUwLmggfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRp
-b24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2lu
-ZS9kaXNwL252NTAuaCBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvbnY1MC5oCmluZGV4
-IDE5YzYzNTY2Li42ZWExOTQ2NiAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
-ZGlzcC9udjUwLmgKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9udjUwLmgKQEAg
-LTIyLDcgKzIyLDcgQEAgc3RydWN0IG52NTBfZGlzcCB7CiAJCXU4IHR5cGVbM107CiAJfSBwaW9y
-OwogCi0Jc3RydWN0IG52NTBfZGlzcF9jaGFuICpjaGFuWzE3XTsKKwlzdHJ1Y3QgbnY1MF9kaXNw
-X2NoYW4gKmNoYW5bMjFdOwogfTsKIAogdm9pZCBudjUwX2Rpc3Bfc3VwZXJfMShzdHJ1Y3QgbnY1
-MF9kaXNwICopOwotLSAKMi4xMy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+
+--===============1490454948==
+Content-Type: multipart/alternative; boundary="14986531622.94A1c6ea.11294";
+ charset="UTF-8"
+
+
+--14986531622.94A1c6ea.11294
+Date: Wed, 28 Jun 2017 12:32:42 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101601
+
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+https://patchwork.freedesktop.org/patch/164205/
+
+See if that helps with drm-next (in addition to the other patch).
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14986531622.94A1c6ea.11294
+Date: Wed, 28 Jun 2017 12:32:42 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c10">Comme=
+nt # 10</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601">bug 10160=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre><a href=3D"https://patchwork.freedesktop.org/patch/164205/">ht=
+tps://patchwork.freedesktop.org/patch/164205/</a>
+
+See if that helps with drm-next (in addition to the other patch).</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14986531622.94A1c6ea.11294--
+
+--===============1490454948==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1490454948==--
