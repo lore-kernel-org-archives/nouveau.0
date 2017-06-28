@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101601] Nvidia GT 1030 (NV138/GP108) support
-Date: Tue, 27 Jun 2017 18:12:32 +0000
-Message-ID: <bug-101601-8800-lxeyrucHaQ@http.bugs.freedesktop.org/>
+Date: Wed, 28 Jun 2017 03:11:11 +0000
+Message-ID: <bug-101601-8800-VYGoQIu0rM@http.bugs.freedesktop.org/>
 References: <bug-101601-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1427784470=="
+Content-Type: multipart/mixed; boundary="===============2079935915=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1427784470==
-Content-Type: multipart/alternative; boundary="14985871520.b493D3Ce3.9950";
+--===============2079935915==
+Content-Type: multipart/alternative; boundary="14986194711.BF5e248B.25089";
  charset="UTF-8"
 
 
---14985871520.b493D3Ce3.9950
-Date: Tue, 27 Jun 2017 18:12:32 +0000
+--14986194711.BF5e248B.25089
+Date: Wed, 28 Jun 2017 03:11:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,23 +35,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101601
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-So it seems like there are only 2 heads instead of 4. Carlo hardcoded the h=
-eads
-from 4 to 2 in gf119_disp_new_ and crtc's to 2 in nv50_display_create and w=
-as
-able to get something up and running.
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 132292
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132292&action=3Dedit
+patch to check if heads are there before initialization
 
-22448 indeed returns 4. Looking over the mmiotrace, 2245c returns 2. No clu=
-e if
-that just happens to be 2 or if that's the number of heads.
+Based on comments from Ben, I wrote this patch against drm-next. Entirely
+untested. (Won't apply to 4.12, sadly.)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14985871520.b493D3Ce3.9950
-Date: Tue, 27 Jun 2017 18:12:32 +0000
+--14986194711.BF5e248B.25089
+Date: Wed, 28 Jun 2017 03:11:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +65,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
@@ -79,15 +76,16 @@ t # 4</a>
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>So it seems like there are only 2 heads instead of 4. Carlo ha=
-rdcoded the heads
-from 4 to 2 in gf119_disp_new_ and crtc's to 2 in nv50_display_create and w=
-as
-able to get something up and running.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132292=
+" name=3D"attach_132292" title=3D"patch to check if heads are there before =
+initialization">attachment 132292</a> <a href=3D"attachment.cgi?id=3D132292=
+&amp;action=3Dedit" title=3D"patch to check if heads are there before initi=
+alization">[details]</a></span> <a href=3D'page.cgi?id=3Dsplinter.html&amp;=
+bug=3D101601&amp;attachment=3D132292'>[review]</a>
+patch to check if heads are there before initialization
 
-22448 indeed returns 4. Looking over the mmiotrace, 2245c returns 2. No clu=
-e if
-that just happens to be 2 or if that's the number of heads.</pre>
+Based on comments from Ben, I wrote this patch against drm-next. Entirely
+untested. (Won't apply to 4.12, sadly.)</pre>
         </div>
       </p>
 
@@ -101,9 +99,9 @@ that just happens to be 2 or if that's the number of heads.</pre>
     </body>
 </html>=
 
---14985871520.b493D3Ce3.9950--
+--14986194711.BF5e248B.25089--
 
---===============1427784470==
+--===============2079935915==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1427784470==--
+--===============2079935915==--
