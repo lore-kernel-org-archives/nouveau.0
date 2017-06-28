@@ -1,68 +1,110 @@
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 2/2] drm/atomic: Wait indefinitely and
-	interruptibly for hw_done.
-Date: Wed, 28 Jun 2017 15:28:12 +0200
-Message-ID: <20170628132812.14927-2-maarten.lankhorst@linux.intel.com>
-References: <20170628132812.14927-1-maarten.lankhorst@linux.intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101601] Nvidia GT 1030 (NV138/GP108) support
+Date: Wed, 28 Jun 2017 13:58:46 +0000
+Message-ID: <bug-101601-8800-l4lLvwI2b1@http.bugs.freedesktop.org/>
+References: <bug-101601-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20170628132812.14927-1-maarten.lankhorst@linux.intel.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: dri-devel@lists.freedesktop.org
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, Thierry Reding <thierry.reding@gmail.com>, Daniel Vetter <daniel.vetter@intel.com>, Boris Brezillon <boris.brezillon@free-electrons.com>, Jonathan Hunter <jonathanh@nvidia.com>, Tomi Valkeinen <tomi.valkeinen@ti.com>, Ben Skeggs <bskeggs@redhat.com>, CK Hu <ck.hu@mediatek.com>, linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org, Jyri Sarha <jsarha@ti.com>, Matthias Brugger <matthias.bgg@gmail.com>, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>, freedreno@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0269725282=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2l0aG91dCB3YWl0aW5nIGZvciBod19kb25lLCBwcmV2aW91cyBhdG9taWMgdXBkYXRlcyBtYXkg
-ZGVyZWZlcmVuY2UKdGhlIHdyb25nIHN0YXRlIGFuZCBjYXVzZSBhIGxvdCBvZiBjb25mdXNpb24u
-IFRoZSByZWFsIGZpeCBpcyBmaXhpbmcKYWxsIG9iai0+c3RhdGUgdG8gdXNlIHRoZSBhY2Nlc3Nv
-ciBtYWNyb3MsIGJ1dCBmb3Igbm93IHdhaXQKaW5kZWZpbml0ZWx5IGFuZCBpbnRlcnJ1cHRpYmx5
-LgoKQ2M6IEJvcmlzIEJyZXppbGxvbiA8Ym9yaXMuYnJlemlsbG9uQGZyZWUtZWxlY3Ryb25zLmNv
-bT4KQ2M6IERhdmlkIEFpcmxpZSA8YWlybGllZEBsaW51eC5pZT4KQ2M6IERhbmllbCBWZXR0ZXIg
-PGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxp
-bnV4LmludGVsLmNvbT4KQ2M6IFNlYW4gUGF1bCA8c2VhbnBhdWxAY2hyb21pdW0ub3JnPgpDYzog
-Q0sgSHUgPGNrLmh1QG1lZGlhdGVrLmNvbT4KQ2M6IFBoaWxpcHAgWmFiZWwgPHAuemFiZWxAcGVu
-Z3V0cm9uaXguZGU+CkNjOiBNYXR0aGlhcyBCcnVnZ2VyIDxtYXR0aGlhcy5iZ2dAZ21haWwuY29t
-PgpDYzogUm9iIENsYXJrIDxyb2JkY2xhcmtAZ21haWwuY29tPgpDYzogQmVuIFNrZWdncyA8YnNr
-ZWdnc0ByZWRoYXQuY29tPgpDYzogVGhpZXJyeSBSZWRpbmcgPHRoaWVycnkucmVkaW5nQGdtYWls
-LmNvbT4KQ2M6IEpvbmF0aGFuIEh1bnRlciA8am9uYXRoYW5oQG52aWRpYS5jb20+CkNjOiBKeXJp
-IFNhcmhhIDxqc2FyaGFAdGkuY29tPgpDYzogVG9taSBWYWxrZWluZW4gPHRvbWkudmFsa2VpbmVu
-QHRpLmNvbT4KQ2M6IEVyaWMgQW5ob2x0IDxlcmljQGFuaG9sdC5uZXQ+CkNjOiBkcmktZGV2ZWxA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCkNjOiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnCkNj
-OiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCkNjOiBsaW51eC1hcm0ta2VybmVsQGxp
-c3RzLmluZnJhZGVhZC5vcmcKQ2M6IGxpbnV4LW1lZGlhdGVrQGxpc3RzLmluZnJhZGVhZC5vcmcK
-Q2M6IGxpbnV4LWFybS1tc21Admdlci5rZXJuZWwub3JnCkNjOiBmcmVlZHJlbm9AbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCkNjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpDYzogbGludXgt
-dGVncmFAdmdlci5rZXJuZWwub3JnClNpZ25lZC1vZmYtYnk6IE1hYXJ0ZW4gTGFua2hvcnN0IDxt
-YWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2Ry
-bV9hdG9taWNfaGVscGVyLmMgfCAxMiArKysrKy0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA1IGlu
-c2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2RybV9hdG9taWNfaGVscGVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIu
-YwppbmRleCBmNjZiNmM0NWNkZDAuLjU2ZTc3MjlkOTkzZCAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2RybV9hdG9taWNfaGVscGVyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9t
-aWNfaGVscGVyLmMKQEAgLTIxNDQsOCArMjE0NCw3IEBAIEVYUE9SVF9TWU1CT0woZHJtX2F0b21p
-Y19oZWxwZXJfY2xlYW51cF9wbGFuZXMpOwogaW50IGRybV9hdG9taWNfaGVscGVyX3N3YXBfc3Rh
-dGUoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLAogCQkJCSAgYm9vbCBzdGFsbCkKIHsK
-LQlpbnQgaTsKLQlsb25nIHJldDsKKwlpbnQgaSwgcmV0OwogCXN0cnVjdCBkcm1fY29ubmVjdG9y
-ICpjb25uZWN0b3I7CiAJc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKm9sZF9jb25uX3N0YXRl
-LCAqbmV3X2Nvbm5fc3RhdGU7CiAJc3RydWN0IGRybV9jcnRjICpjcnRjOwpAQCAtMjE2OCwxMiAr
-MjE2NywxMSBAQCBpbnQgZHJtX2F0b21pY19oZWxwZXJfc3dhcF9zdGF0ZShzdHJ1Y3QgZHJtX2F0
-b21pY19zdGF0ZSAqc3RhdGUsCiAJCQlpZiAoIWNvbW1pdCkKIAkJCQljb250aW51ZTsKIAotCQkJ
-cmV0ID0gd2FpdF9mb3JfY29tcGxldGlvbl90aW1lb3V0KCZjb21taXQtPmh3X2RvbmUsCi0JCQkJ
-CQkJICAxMCpIWik7Ci0JCQlpZiAocmV0ID09IDApCi0JCQkJRFJNX0VSUk9SKCJbQ1JUQzolZDol
-c10gaHdfZG9uZSB0aW1lZCBvdXRcbiIsCi0JCQkJCSAgY3J0Yy0+YmFzZS5pZCwgY3J0Yy0+bmFt
-ZSk7CisJCQlyZXQgPSB3YWl0X2Zvcl9jb21wbGV0aW9uX2ludGVycnVwdGlibGUoJmNvbW1pdC0+
-aHdfZG9uZSk7CiAJCQlkcm1fY3J0Y19jb21taXRfcHV0KGNvbW1pdCk7CisKKwkJCWlmIChyZXQp
-CisJCQkJcmV0dXJuIHJldDsKIAkJfQogCX0KIAotLSAKMi4xMS4wCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
-dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+
+--===============0269725282==
+Content-Type: multipart/alternative; boundary="14986583250.cdc71b9.24550";
+ charset="UTF-8"
+
+
+--14986583250.cdc71b9.24550
+Date: Wed, 28 Jun 2017 13:58:45 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101601
+
+--- Comment #11 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
+Yeah, that solved the issue.
+So your patch works fine with that fix on top and adding:
+
+case 0x138: device->chip =3D &nv137_chipset; break;
+
+Thanks,
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14986583250.cdc71b9.24550
+Date: Wed, 28 Jun 2017 13:58:45 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c11">Comme=
+nt # 11</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601">bug 10160=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
+<span class=3D"fn">Carlo Caione</span></a>
+</span></b>
+        <pre>Yeah, that solved the issue.
+So your patch works fine with that fix on top and adding:
+
+case 0x138: device-&gt;chip =3D &amp;nv137_chipset; break;
+
+Thanks,</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14986583250.cdc71b9.24550--
+
+--===============0269725282==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0269725282==--
