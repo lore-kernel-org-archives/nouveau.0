@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT]
-Date: Fri, 30 Jun 2017 07:39:47 +0000
-Message-ID: <bug-100567-8800-1ATBFrsw3s@http.bugs.freedesktop.org/>
-References: <bug-100567-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69827] [NVC1] Uneven, jerky mouse movement,
+ increasing CPU usage
+Date: Fri, 30 Jun 2017 10:36:58 +0000
+Message-ID: <bug-69827-8800-11O4N4WNH4@http.bugs.freedesktop.org/>
+References: <bug-69827-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0675694044=="
+Content-Type: multipart/mixed; boundary="===============1536018020=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69827-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,47 +21,63 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0675694044==
-Content-Type: multipart/alternative; boundary="14988083861.aA0bCc9.9289";
+--===============1536018020==
+Content-Type: multipart/alternative; boundary="14988190182.5c3B0Ef25.26300";
  charset="UTF-8"
 
 
---14988083861.aA0bCc9.9289
-Date: Fri, 30 Jun 2017 07:39:46 +0000
+--14988190182.5c3B0Ef25.26300
+Date: Fri, 30 Jun 2017 10:36:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
+https://bugs.freedesktop.org/show_bug.cgi?id=3D69827
 
---- Comment #9 from rahulmehra-BHOPoEIaRVNhmhkoCovsdw@public.gmane.org ---
-I think I am experiencing the same problem on 4.10.0-24-generic on Ubuntu 1=
-7.04
-with GNOME 3.24. I have 1 monitor running an Nvidia card.
+Sbcglobal.Net Email Phone Support 18558566451 <sbcglobalservice-O5WfVfzUwx8@public.gmane.org> c=
+hanged:
 
-The desktop freezes between 20 mins to 5 hours of the system running from b=
-oot.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                URL|                            |https://www.wikigenes.org/e
+                   |                            |/author/e/1450518.html
 
-This is the system log when it crashes
-
-Jun 30 16:49:47 r-ubuntu kernel: [ 2282.503403] nouveau 0000:01:00.0: gr: T=
-RAP
-ch 2 [003fa29000 Xorg[1154]]
-Jun 30 16:49:47 r-ubuntu kernel: [ 2282.503411] nouveau 0000:01:00.0: gr:
-GPC0/TPC0/MP trap: global 00000004 [MULTIPLE_WARP_ERRORS] warp 3c000d [OOR_=
-REG]
-
-
-Let me know if I need to provide more info
+--- Comment #25 from Sbcglobal.Net Email Phone Support 18558566451 <sbcglob=
+alservice-O5WfVfzUwx8@public.gmane.org> ---
+Sbcglobal Email Account Support =C2=B6=C2=B6+1 855 856 6451=C2=B6=C2=B6=E2=
+=98=BB Sbcglobal.Net Email
+Problem ?1-855-856-6451? Sbcglobal Email Phone Support Number
+=C2=B7=C2=B71-855-856-6451=C2=B7=C2=B7
+Sbcglobal Email Tech Support Number ```1-855-856-6451```` Sbcglobal.Net Ema=
+il
+Support Number =C2=A91-855-856-6451=C2=A9 Sbcglobal Customer Support @18558=
+566451=C2=B0=C2=B0=C2=B0
+Sbcglobal Email Customer Service Phone Number @**1-855-856-6451 Sbcglobal E=
+mail
+Toll Free Number(1-855)-856-6451 Sbcglobal Email Technical Contact
+Number**1-855-856-6451** Sbcglobal.Net Email Customer Support ~1-855-856-64=
+51~
+Sbcglobal.Net Email Phone Support =C2=AE=C2=AE18558566451=C2=AE=C2=AE Sbcgl=
+obal Email Toll Free
+Number$$$ 18558566451 $$$ Sbcglobal Email Phone Support Number 1-855-856-64=
+51
+***1.855.856.6451***sbcglobal.net email customer support @ @ 1-855-856-6451=
+@ @
+sbcglobal.net email phone supportSbcglobal Email Toll Free Number$$$
+18558566451 $$$ Sbcglobal Email Phone Support Number 1-855-856-6451
+***1.855.856.6451***sbcglobal.net email customer support USA @ @
+1-855-856-6451@ @ sbcglobal.net email phone supportSbcglobal Email Toll Free
+Number$$$ 18558566451 $$$ USA Sbcglobal Email Phone Support Number
+1-855-856-6451
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14988083861.aA0bCc9.9289
-Date: Fri, 30 Jun 2017 07:39:46 +0000
+--14988190182.5c3B0Ef25.26300
+Date: Fri, 30 Jun 2017 10:36:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,43 +88,78 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sbcglobal=
+service&#64;mail.com" title=3D"Sbcglobal.Net Email Phone Support 1855856645=
+1 &lt;sbcglobalservice&#64;mail.com&gt;"> <span class=3D"fn">Sbcglobal.Net =
+Email Phone Support 18558566451</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_UNCONFIRMED "
+   title=3D"UNCONFIRMED - [NVC1] Uneven, jerky mouse movement, increasing C=
+PU usage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69827">bug 69827<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">URL</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://www.wikigenes.org/e/author/e/1450518.html
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c9">Commen=
-t # 9</a>
+          bz_status_UNCONFIRMED "
+   title=3D"UNCONFIRMED - [NVC1] Uneven, jerky mouse movement, increasing C=
+PU usage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69827#c25">Commen=
+t # 25</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
-7</a>
+          bz_status_UNCONFIRMED "
+   title=3D"UNCONFIRMED - [NVC1] Uneven, jerky mouse movement, increasing C=
+PU usage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69827">bug 69827<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rahulmehra&#64;techgeek.co.in" title=3D"rahulmehra&#64;techgeek.co.in">rahu=
-lmehra&#64;techgeek.co.in</a>
+sbcglobalservice&#64;mail.com" title=3D"Sbcglobal.Net Email Phone Support 1=
+8558566451 &lt;sbcglobalservice&#64;mail.com&gt;"> <span class=3D"fn">Sbcgl=
+obal.Net Email Phone Support 18558566451</span></a>
 </span></b>
-        <pre>I think I am experiencing the same problem on 4.10.0-24-generi=
-c on Ubuntu 17.04
-with GNOME 3.24. I have 1 monitor running an Nvidia card.
-
-The desktop freezes between 20 mins to 5 hours of the system running from b=
-oot.
-
-This is the system log when it crashes
-
-Jun 30 16:49:47 r-ubuntu kernel: [ 2282.503403] nouveau 0000:01:00.0: gr: T=
-RAP
-ch 2 [003fa29000 Xorg[1154]]
-Jun 30 16:49:47 r-ubuntu kernel: [ 2282.503411] nouveau 0000:01:00.0: gr:
-GPC0/TPC0/MP trap: global 00000004 [MULTIPLE_WARP_ERRORS] warp 3c000d [OOR_=
-REG]
-
-
-Let me know if I need to provide more info</pre>
+        <pre>Sbcglobal Email Account Support =C2=B6=C2=B6+1 855 856 6451=C2=
+=B6=C2=B6=E2=98=BB Sbcglobal.Net Email
+Problem ?1-855-856-6451? Sbcglobal Email Phone Support Number
+=C2=B7=C2=B71-855-856-6451=C2=B7=C2=B7
+Sbcglobal Email Tech Support Number ```1-855-856-6451```` Sbcglobal.Net Ema=
+il
+Support Number =C2=A91-855-856-6451=C2=A9 Sbcglobal Customer Support &#64;1=
+8558566451=C2=B0=C2=B0=C2=B0
+Sbcglobal Email Customer Service Phone Number &#64;**1-855-856-6451 Sbcglob=
+al Email
+Toll Free Number(1-855)-856-6451 Sbcglobal Email Technical Contact
+Number**1-855-856-6451** Sbcglobal.Net Email Customer Support ~1-855-856-64=
+51~
+Sbcglobal.Net Email Phone Support =C2=AE=C2=AE18558566451=C2=AE=C2=AE Sbcgl=
+obal Email Toll Free
+Number$$$ 18558566451 $$$ Sbcglobal Email Phone Support Number 1-855-856-64=
+51
+***1.855.856.6451***sbcglobal.net email customer support &#64; &#64; 1-855-=
+856-6451&#64; &#64;
+sbcglobal.net email phone supportSbcglobal Email Toll Free Number$$$
+18558566451 $$$ Sbcglobal Email Phone Support Number 1-855-856-6451
+***1.855.856.6451***sbcglobal.net email customer support USA &#64; &#64;
+1-855-856-6451&#64; &#64; sbcglobal.net email phone supportSbcglobal Email =
+Toll Free
+Number$$$ 18558566451 $$$ USA Sbcglobal Email Phone Support Number
+1-855-856-6451</pre>
         </div>
       </p>
 
@@ -122,9 +173,9 @@ Let me know if I need to provide more info</pre>
     </body>
 </html>=
 
---14988083861.aA0bCc9.9289--
+--14988190182.5c3B0Ef25.26300--
 
---===============0675694044==
+--===============1536018020==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +185,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0675694044==--
+--===============1536018020==--
