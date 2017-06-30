@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101665] New: lspci blocks forever with a GP107M
-Date: Fri, 30 Jun 2017 17:13:52 +0000
-Message-ID: <bug-101665-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101665] lspci blocks forever with a GP107M
+Date: Fri, 30 Jun 2017 18:08:43 +0000
+Message-ID: <bug-101665-8800-kZHkLzxU5N@http.bugs.freedesktop.org/>
+References: <bug-101665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1932879607=="
+Content-Type: multipart/mixed; boundary="===============1433860105=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1932879607==
-Content-Type: multipart/alternative; boundary="14988428322.e9b2.618";
+--===============1433860105==
+Content-Type: multipart/alternative; boundary="14988461230.AB4C9EC5.5331";
  charset="UTF-8"
 
 
---14988428322.e9b2.618
-Date: Fri, 30 Jun 2017 17:13:52 +0000
+--14988461230.AB4C9EC5.5331
+Date: Fri, 30 Jun 2017 18:08:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -33,54 +35,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
 
-            Bug ID: 101665
-           Summary: lspci blocks forever with a GP107M
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: kenneth-xkhwgxqQjnbNLxjTenLetw@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I believe including a full dmesg (from boot) would be helpful to show what =
+may
+be going wrong.
 
-Hello,
-
-I have a Dell XPS 15 9560 with a GTX 1050 Mobile (GP107M) and an Intel Kaby=
-lake
-CPU.  Using Kernel 4.11.3 on the Arch installer image, whenever I run 'lspc=
-i',
-it blocks indefinitely and never prints any output.
-
-After running lspci, dmesg contains:
-
-[   54.819264] nouveau 0000:01:00.0: Refused to change power state, current=
-ly
-in D3
-[   54.879968] nouveau 0000:01:00.0: Refused to change power state, current=
-ly
-in D3
-[   54.879973] nouveau 0000:01:00.0: Refused to change power state, current=
-ly
-in D3
-[   54.879974] nouveau 0000:01:00.0: DRM: resuming object tree...
-
-Eventually the scheduler gets cranky about the hung process and starts spew=
-ing
-[  245.385522] INFO: task lspci:576 blocked for more than 120 seconds.
-and a backtrace every 2 minutes.
-
-Blacklisting nouveau makes lspci work.
+Note that running with nouveau.runpm=3D0 will prevent the suspend from happ=
+ening.
+However that will, of course, cause the GPU to remain on. [I believe it will
+remain on without nouveau loading as well, but with this new PCIe PM stuff,=
+ I'm
+not sure anymore.]
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14988428322.e9b2.618
-Date: Fri, 30 Jun 2017 17:13:52 +0000
+--14988461230.AB4C9EC5.5331
+Date: Fri, 30 Jun 2017 18:08:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -91,116 +63,33 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - lspci blocks forever with a GP107M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">101665</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>lspci blocks forever with a GP107M
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>kenneth&#64;whitecape.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Hello,
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>I believe including a full dmesg (from boot) would be helpful =
+to show what may
+be going wrong.
 
-I have a Dell XPS 15 9560 with a GTX 1050 Mobile (GP107M) and an Intel Kaby=
-lake
-CPU.  Using Kernel 4.11.3 on the Arch installer image, whenever I run 'lspc=
-i',
-it blocks indefinitely and never prints any output.
-
-After running lspci, dmesg contains:
-
-[   54.819264] nouveau 0000:01:00.0: Refused to change power state, current=
-ly
-in D3
-[   54.879968] nouveau 0000:01:00.0: Refused to change power state, current=
-ly
-in D3
-[   54.879973] nouveau 0000:01:00.0: Refused to change power state, current=
-ly
-in D3
-[   54.879974] nouveau 0000:01:00.0: DRM: resuming object tree...
-
-Eventually the scheduler gets cranky about the hung process and starts spew=
-ing
-[  245.385522] INFO: task lspci:576 blocked for more than 120 seconds.
-and a backtrace every 2 minutes.
-
-Blacklisting nouveau makes lspci work.</pre>
+Note that running with nouveau.runpm=3D0 will prevent the suspend from happ=
+ening.
+However that will, of course, cause the GPU to remain on. [I believe it will
+remain on without nouveau loading as well, but with this new PCIe PM stuff,=
+ I'm
+not sure anymore.]</pre>
         </div>
       </p>
 
@@ -214,9 +103,9 @@ Blacklisting nouveau makes lspci work.</pre>
     </body>
 </html>=
 
---14988428322.e9b2.618--
+--14988461230.AB4C9EC5.5331--
 
---===============1932879607==
+--===============1433860105==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -226,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1932879607==--
+--===============1433860105==--
