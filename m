@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101676] kmail hangs or causes desktop to hang when
- used with Nouveau graphics driver
-Date: Mon, 03 Jul 2017 17:26:04 +0000
-Message-ID: <bug-101676-8800-vr9qmPM6o8@http.bugs.freedesktop.org/>
-References: <bug-101676-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] therm/gm200: Added
+Date: Mon,  3 Jul 2017 20:02:51 +0200
+Message-ID: <20170703180251.4525-1-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2019603727=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101676-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,105 +18,95 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2019603727==
-Content-Type: multipart/alternative; boundary="14991027640.05B865.9649";
- charset="UTF-8"
-
-
---14991027640.05B865.9649
-Date: Mon, 3 Jul 2017 17:26:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101676
-
---- Comment #2 from Nick <nick.craig.law-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks for the comment, I'll setup another KDE Neon in virtualbox with the
-Nouveau driver, make sure I've still got the problem then wait for the late=
-st
-KDE update and see if things have improved.
-
-For my main system (used for work) I need something stable so am using the
-Nvidia driver for the time being until things improve. I really like kmail =
-and
-have used it for years so don't really want to switch to Thunderbird which I
-guess is a possible option for some.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---14991027640.05B865.9649
-Date: Mon, 3 Jul 2017 17:26:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - kmail hangs or causes desktop to hang when used with Nouv=
-eau graphics driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101676#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - kmail hangs or causes desktop to hang when used with Nouv=
-eau graphics driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101676">bug 10167=
-6</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nick.craig.law&#64;gmail.com" title=3D"Nick &lt;nick.craig.law&#64;gmail.co=
-m&gt;"> <span class=3D"fn">Nick</span></a>
-</span></b>
-        <pre>Thanks for the comment, I'll setup another KDE Neon in virtual=
-box with the
-Nouveau driver, make sure I've still got the problem then wait for the late=
-st
-KDE update and see if things have improved.
-
-For my main system (used for work) I need something stable so am using the
-Nvidia driver for the time being until things improve. I really like kmail =
-and
-have used it for years so don't really want to switch to Thunderbird which I
-guess is a possible option for some.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14991027640.05B865.9649--
-
---===============2019603727==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2019603727==--
+VGhpcyBhbGxvd3MgdGVtcGVyYXR1cmUgcmVhZG91dHMgb24gbWF4d2VsbDIgR1BVcy4KClNpZ25l
+ZC1vZmYtYnk6IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgotLS0KIGRybS9u
+b3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvdGhlcm0uaCB8ICAxICsKIGRybS9ub3V2ZWF1L252
+a20vZW5naW5lL2RldmljZS9iYXNlLmMgICB8ICAzICsrKwogZHJtL25vdXZlYXUvbnZrbS9zdWJk
+ZXYvdGhlcm0vS2J1aWxkICAgIHwgIDEgKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0v
+Zzg0LmMgICAgIHwgIDIgKy0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL2dtMjAwLmMg
+ICB8IDM5ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKwogZHJtL25vdXZlYXUvbnZr
+bS9zdWJkZXYvdGhlcm0vcHJpdi5oICAgIHwgIDEgKwogNiBmaWxlcyBjaGFuZ2VkLCA0NiBpbnNl
+cnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvdGhlcm0vZ20yMDAuYwoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2luY2x1
+ZGUvbnZrbS9zdWJkZXYvdGhlcm0uaCBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYv
+dGhlcm0uaAppbmRleCBiMjY4Yjk2Zi4uMWJmZDkzYjggMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1
+L2luY2x1ZGUvbnZrbS9zdWJkZXYvdGhlcm0uaAorKysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252
+a20vc3ViZGV2L3RoZXJtLmgKQEAgLTk2LDQgKzk2LDUgQEAgaW50IGc4NF90aGVybV9uZXcoc3Ry
+dWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fdGhlcm0gKiopOwogaW50IGd0MjE1
+X3RoZXJtX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV90aGVybSAq
+Kik7CiBpbnQgZ2YxMTlfdGhlcm1fbmV3KHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQsIHN0cnVj
+dCBudmttX3RoZXJtICoqKTsKIGludCBnbTEwN190aGVybV9uZXcoc3RydWN0IG52a21fZGV2aWNl
+ICosIGludCwgc3RydWN0IG52a21fdGhlcm0gKiopOworaW50IGdtMjAwX3RoZXJtX25ldyhzdHJ1
+Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV90aGVybSAqKik7CiAjZW5kaWYKZGlm
+ZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgYi9kcm0vbm91
+dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jCmluZGV4IDdiZGM3YTVhLi4zOWZkYWZlZCAx
+MDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYworKysgYi9k
+cm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jCkBAIC0yMDQzLDYgKzIwNDMsNyBA
+QCBudjEyMF9jaGlwc2V0ID0gewogCS5teG0gPSBudjUwX214bV9uZXcsCiAJLnBjaSA9IGdrMTA0
+X3BjaV9uZXcsCiAJLnBtdSA9IGdtMTA3X3BtdV9uZXcsCisJLnRoZXJtID0gZ20yMDBfdGhlcm1f
+bmV3LAogCS5zZWNib290ID0gZ20yMDBfc2VjYm9vdF9uZXcsCiAJLnRpbWVyID0gZ2syMGFfdGlt
+ZXJfbmV3LAogCS50b3AgPSBnazEwNF90b3BfbmV3LApAQCAtMjA3Nyw2ICsyMDc4LDcgQEAgbnYx
+MjRfY2hpcHNldCA9IHsKIAkubXhtID0gbnY1MF9teG1fbmV3LAogCS5wY2kgPSBnazEwNF9wY2lf
+bmV3LAogCS5wbXUgPSBnbTEwN19wbXVfbmV3LAorCS50aGVybSA9IGdtMjAwX3RoZXJtX25ldywK
+IAkuc2VjYm9vdCA9IGdtMjAwX3NlY2Jvb3RfbmV3LAogCS50aW1lciA9IGdrMjBhX3RpbWVyX25l
+dywKIAkudG9wID0gZ2sxMDRfdG9wX25ldywKQEAgLTIxMTEsNiArMjExMyw3IEBAIG52MTI2X2No
+aXBzZXQgPSB7CiAJLm14bSA9IG52NTBfbXhtX25ldywKIAkucGNpID0gZ2sxMDRfcGNpX25ldywK
+IAkucG11ID0gZ20xMDdfcG11X25ldywKKwkudGhlcm0gPSBnbTIwMF90aGVybV9uZXcsCiAJLnNl
+Y2Jvb3QgPSBnbTIwMF9zZWNib290X25ldywKIAkudGltZXIgPSBnazIwYV90aW1lcl9uZXcsCiAJ
+LnRvcCA9IGdrMTA0X3RvcF9uZXcsCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di90aGVybS9LYnVpbGQgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9LYnVpbGQKaW5k
+ZXggMTM1NzU4YmEuLjJiYWZjYzFkIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di90aGVybS9LYnVpbGQKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vS2J1aWxk
+CkBAIC0xMSwzICsxMSw0IEBAIG52a20teSArPSBudmttL3N1YmRldi90aGVybS9nODQubwogbnZr
+bS15ICs9IG52a20vc3ViZGV2L3RoZXJtL2d0MjE1Lm8KIG52a20teSArPSBudmttL3N1YmRldi90
+aGVybS9nZjExOS5vCiBudmttLXkgKz0gbnZrbS9zdWJkZXYvdGhlcm0vZ20xMDcubworbnZrbS15
+ICs9IG52a20vc3ViZGV2L3RoZXJtL2dtMjAwLm8KZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252
+a20vc3ViZGV2L3RoZXJtL2c4NC5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vZzg0
+LmMKaW5kZXggODZlODE5MzAuLjk2ZjhkYTQwIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmtt
+L3N1YmRldi90aGVybS9nODQuYworKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9n
+ODQuYwpAQCAtMjAzLDcgKzIwMyw3IEBAIGc4NF90aGVybV9maW5pKHN0cnVjdCBudmttX3RoZXJt
+ICp0aGVybSkKIAludmttX3dyMzIoZGV2aWNlLCAweDExMDAsIDB4MTAwMDApOyAvKiBQQlVTICov
+CiB9CiAKLXN0YXRpYyB2b2lkCit2b2lkCiBnODRfdGhlcm1faW5pdChzdHJ1Y3QgbnZrbV90aGVy
+bSAqdGhlcm0pCiB7CiAJZzg0X3NlbnNvcl9zZXR1cCh0aGVybSk7CmRpZmYgLS1naXQgYS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi90aGVybS9nbTIwMC5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJk
+ZXYvdGhlcm0vZ20yMDAuYwpuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwMC4uNzNk
+Yzc4MDkKLS0tIC9kZXYvbnVsbAorKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9n
+bTIwMC5jCkBAIC0wLDAgKzEsMzkgQEAKKy8qCisgKiBDb3B5cmlnaHQgMjAxNyBLYXJvbCBIZXJi
+c3QKKyAqCisgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwg
+dG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQorICogY29weSBvZiB0aGlzIHNvZnR3YXJlIGFuZCBh
+c3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRoZSAiU29mdHdhcmUiKSwKKyAqIHRvIGRl
+YWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJpY3Rpb24sIGluY2x1ZGluZyB3aXRob3V0
+IGxpbWl0YXRpb24KKyAqIHRoZSByaWdodHMgdG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBw
+dWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNlbnNlLAorICogYW5kL29yIHNlbGwgY29waWVzIG9m
+IHRoZSBTb2Z0d2FyZSwgYW5kIHRvIHBlcm1pdCBwZXJzb25zIHRvIHdob20gdGhlCisgKiBTb2Z0
+d2FyZSBpcyBmdXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3QgdG8gdGhlIGZvbGxvd2luZyBjb25k
+aXRpb25zOgorICoKKyAqIFRoZSBhYm92ZSBjb3B5cmlnaHQgbm90aWNlIGFuZCB0aGlzIHBlcm1p
+c3Npb24gbm90aWNlIHNoYWxsIGJlIGluY2x1ZGVkIGluCisgKiBhbGwgY29waWVzIG9yIHN1YnN0
+YW50aWFsIHBvcnRpb25zIG9mIHRoZSBTb2Z0d2FyZS4KKyAqCisgKiBUSEUgU09GVFdBUkUgSVMg
+UFJPVklERUQgIkFTIElTIiwgV0lUSE9VVCBXQVJSQU5UWSBPRiBBTlkgS0lORCwgRVhQUkVTUyBP
+UgorICogSU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1QgTElNSVRFRCBUTyBUSEUgV0FSUkFOVElF
+UyBPRiBNRVJDSEFOVEFCSUxJVFksCisgKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9T
+RSBBTkQgTk9OSU5GUklOR0VNRU5ULiAgSU4gTk8gRVZFTlQgU0hBTEwKKyAqIFRIRSBDT1BZUklH
+SFQgSE9MREVSKFMpIE9SIEFVVEhPUihTKSBCRSBMSUFCTEUgRk9SIEFOWSBDTEFJTSwgREFNQUdF
+UyBPUgorICogT1RIRVIgTElBQklMSVRZLCBXSEVUSEVSIElOIEFOIEFDVElPTiBPRiBDT05UUkFD
+VCwgVE9SVCBPUiBPVEhFUldJU0UsCisgKiBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJTiBDT05O
+RUNUSU9OIFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IKKyAqIE9USEVSIERFQUxJTkdT
+IElOIFRIRSBTT0ZUV0FSRS4KKyAqCisgKiBBdXRob3JzOiBLYXJvbCBIZXJic3QKKyAqLworI2lu
+Y2x1ZGUgInByaXYuaCIKKworc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3RoZXJtX2Z1bmMKK2dt
+MjAwX3RoZXJtID0geworCS5pbml0ID0gZzg0X3RoZXJtX2luaXQsCisJLmZpbmkgPSBnODRfdGhl
+cm1fZmluaSwKKwkudGVtcF9nZXQgPSBnODRfdGVtcF9nZXQsCisJLnByb2dyYW1fYWxhcm1zID0g
+bnZrbV90aGVybV9wcm9ncmFtX2FsYXJtc19wb2xsaW5nLAorfTsKKworaW50CitnbTIwMF90aGVy
+bV9uZXcoc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UsIGludCBpbmRleCwKKwkJc3RydWN0IG52
+a21fdGhlcm0gKipwdGhlcm0pCit7CisJcmV0dXJuIG52a21fdGhlcm1fbmV3XygmZ20yMDBfdGhl
+cm0sIGRldmljZSwgaW5kZXgsIHB0aGVybSk7Cit9CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9u
+dmttL3N1YmRldi90aGVybS9wcml2LmggYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9w
+cml2LmgKaW5kZXggMjM1YTVkOGQuLjFmNDZlMzcxIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9u
+dmttL3N1YmRldi90aGVybS9wcml2LmgKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhl
+cm0vcHJpdi5oCkBAIC0xMTEsNiArMTExLDcgQEAgdm9pZCBnODRfdGhlcm1fZmluaShzdHJ1Y3Qg
+bnZrbV90aGVybSAqKTsKIAogaW50IGd0MjE1X3RoZXJtX2Zhbl9zZW5zZShzdHJ1Y3QgbnZrbV90
+aGVybSAqKTsKIAordm9pZCBnODRfdGhlcm1faW5pdChzdHJ1Y3QgbnZrbV90aGVybSAqKTsKIHZv
+aWQgZ2YxMTlfdGhlcm1faW5pdChzdHJ1Y3QgbnZrbV90aGVybSAqKTsKIAogaW50IG52a21fZmFu
+cHdtX2NyZWF0ZShzdHJ1Y3QgbnZrbV90aGVybSAqLCBzdHJ1Y3QgZGNiX2dwaW9fZnVuYyAqKTsK
+LS0gCjIuMTMuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
