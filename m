@@ -1,14 +1,13 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v2 7/7] clk: Check pm_runtime status before
-	reclocking
-Date: Sat,  1 Jul 2017 18:02:51 +0200
-Message-ID: <20170701160251.6346-8-karolherbst@gmail.com>
-References: <20170701160251.6346-1-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99889] nouveau preventing shutdown after
+	suspend-resume
+Date: Mon, 03 Jul 2017 08:05:17 +0000
+Message-ID: <bug-99889-8800-24vIDnjhIu@http.bugs.freedesktop.org/>
+References: <bug-99889-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0101502594=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170701160251.6346-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-99889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +20,82 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2UgZG9uJ3Qgd2FudCB0byBjaGFuZ2UgYW55dGhpbmcgb24gdGhlIEdQVSBpZiBpdCdzIHN1c3Bl
-bmRlZC4gQWxzbyB3ZQpuZWVkIHRvIGluY3JlYXNlIHRoZSByZWZjb3VudCBvbiB0aGUgcG1fcnVu
-dGltZSBjb3VudGVyIHNvIHRoYXQgdGhlIEdQVQp3b24ndCBiZSBzdXNwZW5kZWQgd2hpbGUgcmVj
-bG9ja2luZy4KCnYyOiBjb252ZXJ0IHRvIEMgc3R5bGUgY29tbWVudHMKClNpZ25lZC1vZmYtYnk6
-IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgotLS0KIGRybS9ub3V2ZWF1L252
-a20vc3ViZGV2L2Nsay9iYXNlLmMgfCAxNCArKysrKysrKysrKystLQogMSBmaWxlIGNoYW5nZWQs
-IDEyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9i
-YXNlLmMKaW5kZXggNTQxODhkMmIuLjgxMDkzZTEzIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9jbGsvYmFzZS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9i
-YXNlLmMKQEAgLTMxNSw2ICszMTUsNyBAQCBudmttX2Nsa191cGRhdGVfd29yayhzdHJ1Y3Qgd29y
-a19zdHJ1Y3QgKndvcmspCiB7CiAJc3RydWN0IG52a21fY2xrICpjbGsgPSBjb250YWluZXJfb2Yo
-d29yaywgdHlwZW9mKCpjbGspLCB3b3JrKTsKIAlzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldiA9
-ICZjbGstPnN1YmRldjsKKwlzdHJ1Y3QgZGV2aWNlICpkZXYgPSBzdWJkZXYtPmRldmljZS0+ZGV2
-OwogCWludCBwc3RhdGU7CiAKIAlpZiAoIWF0b21pY194Y2hnKCZjbGstPndhaXRpbmcsIDApKQpA
-QCAtMzM3LDggKzMzOCwxNyBAQCBudmttX2Nsa191cGRhdGVfd29yayhzdHJ1Y3Qgd29ya19zdHJ1
-Y3QgKndvcmspCiAJfQogCiAJbnZrbV90cmFjZShzdWJkZXYsICItPiAlZFxuIiwgcHN0YXRlKTsK
-LQlpZiAoIWNsay0+cHN0YXRlIHx8IHBzdGF0ZSAhPSBjbGstPnBzdGF0ZS0+cHN0YXRlKSB7Ci0J
-CWludCByZXQgPSBudmttX3BzdGF0ZV9wcm9nKGNsaywgcHN0YXRlKTsKKworCS8qIG9ubHkgY2Fs
-bCBpbnRvIHRoZSBjb2RlIGlmIHRoZSBHUFUgaXMgcG93ZXJlZCBvbiAqLworCWlmICgoIWNsay0+
-cHN0YXRlIHx8IHBzdGF0ZSAhPSBjbGstPnBzdGF0ZS0+cHN0YXRlKQorCSAgICAgJiYgIXBtX3J1
-bnRpbWVfc3VzcGVuZGVkKGRldikpIHsKKwkJaW50IHJldDsKKwkJLyogaXQgd291bGQgYmUgYSBz
-aGFtZSBpZiB0aGUgR1BVIGdvZXMgaW50byBzdXNwZW5kIHdoaWxlIGRvaW5nCisJCSAqIHRoZSBy
-ZWNsb2NrCisJCSAqLworCQlwbV9ydW50aW1lX2dldF9zeW5jKGRldik7CisJCXJldCA9IG52a21f
-cHN0YXRlX3Byb2coY2xrLCBwc3RhdGUpOworCQlwbV9ydW50aW1lX3B1dChkZXYpOwogCQlpZiAo
-cmV0KSB7CiAJCQludmttX2Vycm9yKHN1YmRldiwgImVycm9yIHNldHRpbmcgcHN0YXRlICVkOiAl
-ZFxuIiwKIAkJCQkgICBwc3RhdGUsIHJldCk7Ci0tIAoyLjEzLjIKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0101502594==
+Content-Type: multipart/alternative; boundary="14990691170.6d87.28647";
+ charset="UTF-8"
+
+
+--14990691170.6d87.28647
+Date: Mon, 3 Jul 2017 08:05:17 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99889
+
+--- Comment #3 from Ali <sunmooon15-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+respond please
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14990691170.6d87.28647
+Date: Mon, 3 Jul 2017 08:05:17 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889">bug 99889<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+sunmooon15&#64;gmail.com" title=3D"Ali &lt;sunmooon15&#64;gmail.com&gt;"> <=
+span class=3D"fn">Ali</span></a>
+</span></b>
+        <pre>respond please</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14990691170.6d87.28647--
+
+--===============0101502594==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0101502594==--
