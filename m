@@ -1,287 +1,302 @@
-From: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/atomic: Change
- drm_atomic_helper_swap_state to return an error.
-Date: Mon, 3 Jul 2017 14:03:02 +0200
-Message-ID: <62ef6e18-9dc5-3477-0901-6767a00c89ee@linux.intel.com>
-References: <20170628132812.14927-1-maarten.lankhorst@linux.intel.com>
- <20170630135621.c2xlunjaepne2vqt@phenom.ffwll.local>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101676] New: kmail hangs or causes desktop to hang
+ when used with Nouveau graphics driver
+Date: Mon, 03 Jul 2017 14:22:58 +0000
+Message-ID: <bug-101676-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <20170630135621.c2xlunjaepne2vqt-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
-Content-Language: en-US
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Boris Brezillon <boris.brezillon-wi1+55ScJUtKEb57/3fJTNBPR1lH4CV8@public.gmane.org>, Jonathan Hunter <jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, CK Hu <ck.hu-NuS5LvNUpcJWk0Htik3J/w@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, Jyri Sarha <jsarha-l0cyMroinI0@public.gmane.org>, Matthias Brugger <matthias.bgg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Philipp Zabel <p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============2058272097=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Op 30-06-17 om 15:56 schreef Daniel Vetter:
-> On Wed, Jun 28, 2017 at 03:28:11PM +0200, Maarten Lankhorst wrote:
->> We want to change swap_state to wait indefinitely, but to do this
->> swap_state should wait interruptibly. This requires propagating
->> the error to each driver. All drivers have changes to deal with the
->> clean up. In order to allow easy reverting, the commit that changes
->> behavior is separate so someone only has to revert that for testing.
->>
->> Nouveau has a small bugfix, if drm_atomic_helper_wait_for_fences
->> failed cleanup_planes was not called.
->>
->> Cc: Boris Brezillon <boris.brezillon-wi1+55ScJUtKEb57/3fJTNBPR1lH4CV8@public.gmane.org>
->> Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
->> Cc: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
->> Cc: Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
->> Cc: Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>
->> Cc: CK Hu <ck.hu-NuS5LvNUpcJWk0Htik3J/w@public.gmane.org>
->> Cc: Philipp Zabel <p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
->> Cc: Matthias Brugger <matthias.bgg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->> Cc: Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->> Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
->> Cc: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->> Cc: Jonathan Hunter <jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
->> Cc: Jyri Sarha <jsarha-l0cyMroinI0@public.gmane.org>
->> Cc: Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>
->> Cc: Eric Anholt <eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org>
->> Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> Cc: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
->> Cc: intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> Cc: linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
->> Cc: linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
->> Cc: linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
->> Cc: freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-> We kinda need to backport this to older kernels, but I don't really see
-> how :( Maybe we should split this up:
-> patch 1: Change to int return type
-> patches 2-(n-1): Driver conversions
-> patch n: __must_check addition
->
-> That would at least somewhat make this backportable ...
->
->> ---
->>  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c | 14 ++++++++++++--
->>  drivers/gpu/drm/drm_atomic_helper.c          | 18 ++++++++++++------
->>  drivers/gpu/drm/i915/intel_display.c         | 10 +++++++++-
->>  drivers/gpu/drm/mediatek/mtk_drm_drv.c       |  7 ++++++-
->>  drivers/gpu/drm/msm/msm_atomic.c             | 14 +++++++++-----
->>  drivers/gpu/drm/nouveau/nv50_display.c       | 10 ++++++++--
->>  drivers/gpu/drm/tegra/drm.c                  |  7 ++++++-
->>  drivers/gpu/drm/tilcdc/tilcdc_drv.c          |  6 +++++-
->>  drivers/gpu/drm/vc4/vc4_kms.c                | 21 +++++++++++++--------
->>  include/drm/drm_atomic_helper.h              |  4 ++--
->>  10 files changed, 82 insertions(+), 29 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
->> index 516d9547d331..d4f787bf1d4a 100644
->> --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
->> +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
->> @@ -544,9 +544,11 @@ static int atmel_hlcdc_dc_atomic_commit(struct drm_device *dev,
->>  		goto error;
->>  	}
->>  
->> -	/* Swap the state, this is the point of no return. */
->> -	drm_atomic_helper_swap_state(state, true);
-> Push the swap_state up over the commit setup (but after the allocation)
-> and there's no more a problem with unrolling.
-I think just like msm this might also use stall = false safely.
->> diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/msm_atomic.c
->> index 9633a68b14d7..85dd485fdef4 100644
->> --- a/drivers/gpu/drm/msm/msm_atomic.c
->> +++ b/drivers/gpu/drm/msm/msm_atomic.c
->> @@ -232,8 +232,12 @@ int msm_atomic_commit(struct drm_device *dev,
->>  	 * mark our set of crtc's as busy:
->>  	 */
->>  	ret = start_atomic(dev->dev_private, c->crtc_mask);
->> +	if (ret)
->> +		goto err_free;
->> +
->> +	ret = drm_atomic_helper_swap_state(state, true);
-> Hm, might be simpler to have stall = false (which btw makes your
-> __must_check annotation a lie, you only have to check when you stall),
-> since start_atomic above already does stall for everything as needed.
-True, could we create a separate function for swap_state_and_wait, and kill the stall argument?
->>  	if (ret) {
->> -		kfree(c);
->> +		commit_destroy(c);
->>  		goto error;
->>  	}
->>  
->> @@ -241,11 +245,9 @@ int msm_atomic_commit(struct drm_device *dev,
->>  	 * This is the point of no return - everything below never fails except
->>  	 * when the hw goes bonghits. Which means we can commit the new state on
->>  	 * the software side now.
->> +	 *
->> +	 * swap driver private state while still holding state_lock
->>  	 */
->> -
->> -	drm_atomic_helper_swap_state(state, true);
->> -
->> -	/* swap driver private state while still holding state_lock */
->>  	if (to_kms_state(state)->state)
->>  		priv->kms->funcs->swap_state(priv->kms, state);
->>  
->> @@ -275,6 +277,8 @@ int msm_atomic_commit(struct drm_device *dev,
->>  
->>  	return 0;
->>  
->> +err_free:
->> +	kfree(c);
->>  error:
->>  	drm_atomic_helper_cleanup_planes(dev, state);
->>  	return ret;
->> diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
->> index 42a85c14aea0..fb2c763c88a8 100644
->> --- a/drivers/gpu/drm/nouveau/nv50_display.c
->> +++ b/drivers/gpu/drm/nouveau/nv50_display.c
->> @@ -4119,9 +4119,13 @@ nv50_disp_atomic_commit(struct drm_device *dev,
->>  	if (!nonblock) {
->>  		ret = drm_atomic_helper_wait_for_fences(dev, state, true);
->>  		if (ret)
->> -			goto done;
->> +			goto err_cleanup;
->>  	}
->>  
->> +	ret = drm_atomic_helper_swap_state(state, true);
->> +	if (ret)
->> +		goto err_cleanup;
->> +
->>  	for_each_plane_in_state(state, plane, plane_state, i) {
->>  		struct nv50_wndw_atom *asyw = nv50_wndw_atom(plane_state);
->>  		struct nv50_wndw *wndw = nv50_wndw(plane);
->> @@ -4135,7 +4139,6 @@ nv50_disp_atomic_commit(struct drm_device *dev,
->>  		}
->>  	}
->>  
->> -	drm_atomic_helper_swap_state(state, true);
->>  	drm_atomic_state_get(state);
->>  
->>  	if (nonblock)
->> @@ -4158,7 +4161,10 @@ nv50_disp_atomic_commit(struct drm_device *dev,
->>  		pm_runtime_put_autosuspend(dev->dev);
->>  		drm->have_disp_power_ref = false;
->>  	}
->> +	goto done;
->>  
->> +err_cleanup:
->> +	drm_atomic_helper_cleanup_planes(dev, state);
->>  done:
->>  	pm_runtime_put_autosuspend(dev->dev);
->>  	return ret;
-> lgtm, but might want to split out the bugfix.
->
->> diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
->> index ad3d124a972d..3ba659a5940d 100644
->> --- a/drivers/gpu/drm/tegra/drm.c
->> +++ b/drivers/gpu/drm/tegra/drm.c
->> @@ -100,7 +100,12 @@ static int tegra_atomic_commit(struct drm_device *drm,
->>  	 * the software side now.
->>  	 */
->>  
->> -	drm_atomic_helper_swap_state(state, true);
->> +	err = drm_atomic_helper_swap_state(state, true);
->> +	if (err) {
->> +		mutex_unlock(&tegra->commit.lock);
->> +		drm_atomic_helper_cleanup_planes(drm, state);
->> +		return err;
->> +	}
->>  
->>  	drm_atomic_state_get(state);
->>  	if (nonblock)
-> lgtm.
->
->> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
->> index d67e18983a7d..049d2f5a1ee4 100644
->> --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
->> +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
->> @@ -108,7 +108,11 @@ static int tilcdc_commit(struct drm_device *dev,
->>  	if (ret)
->>  		return ret;
->>  
->> -	drm_atomic_helper_swap_state(state, true);
->> +	ret = drm_atomic_helper_swap_state(state, true);
->> +	if (ret) {
->> +		drm_atomic_helper_cleanup_planes(dev, state);
->> +		return ret;
->> +	}
->>  
->>  	/*
->>  	 * Everything below can be run asynchronously without the need to grab
-> lgtm.
->
-> Well tilcdc should stop hand-rolling their commit since it's not even
-> nonblocking, but meh.
->
->> diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
->> index 27edae427025..83952a4014a5 100644
->> --- a/drivers/gpu/drm/vc4/vc4_kms.c
->> +++ b/drivers/gpu/drm/vc4/vc4_kms.c
->> @@ -113,20 +113,20 @@ static int vc4_atomic_commit(struct drm_device *dev,
->>  
->>  	if (!nonblock) {
->>  		ret = drm_atomic_helper_wait_for_fences(dev, state, true);
->> -		if (ret) {
->> -			drm_atomic_helper_cleanup_planes(dev, state);
->> -			up(&vc4->async_modeset);
->> -			return ret;
->> -		}
->> +		if (ret)
->> +			goto err;
->>  	}
->>  
->>  	/*
->> -	 * This is the point of no return - everything below never fails except
->> -	 * when the hw goes bonghits. Which means we can commit the new state on
->> +	 * If swap_state() succeeds, this is the point of no return -
->> +	 * everything below never fails except when the hw goes bonghits.
->> +	 * Which means we can commit the new state on
->>  	 * the software side now.
->>  	 */
->>  
->> -	drm_atomic_helper_swap_state(state, true);
->> +	ret = drm_atomic_helper_swap_state(state, true);
->> +	if (ret)
->> +		goto err;
->>  
->>  	/*
->>  	 * Everything below can be run asynchronously without the need to grab
->> @@ -151,6 +151,11 @@ static int vc4_atomic_commit(struct drm_device *dev,
->>  		vc4_atomic_complete_commit(state);
->>  
->>  	return 0;
->> +
->> +err:
->> +	drm_atomic_helper_cleanup_planes(dev, state);
->> +	up(&vc4->async_modeset);
->> +	return ret;
->>  }
->>  
->>  static struct drm_framebuffer *vc4_fb_create(struct drm_device *dev,
-> lgtm. Will probably clash with ongoing work in vc4 to switch to plain
-> drm_atomic_helper_commit().
->
->> diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
->> index 3bfeb2b2f746..4f3b6b5362ec 100644
->> --- a/include/drm/drm_atomic_helper.h
->> +++ b/include/drm/drm_atomic_helper.h
->> @@ -80,8 +80,8 @@ void
->>  drm_atomic_helper_disable_planes_on_crtc(struct drm_crtc_state *old_crtc_state,
->>  					 bool atomic);
->>  
->> -void drm_atomic_helper_swap_state(struct drm_atomic_state *state,
->> -				  bool stall);
->> +int __must_check drm_atomic_helper_swap_state(struct drm_atomic_state *state,
->> +					      bool stall);
-> __must_check is a lie I think, since with stall = false you don't need it.
-> -Daniel
->
->>  
->>  /* nonblocking commit helpers */
->>  int drm_atomic_helper_setup_commit(struct drm_atomic_state *state,
->> -- 
->> 2.11.0
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2058272097==
+Content-Type: multipart/alternative; boundary="14990917780.416051D4C.29789";
+ charset="UTF-8"
+
+
+--14990917780.416051D4C.29789
+Date: Mon, 3 Jul 2017 14:22:58 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101676
+
+            Bug ID: 101676
+           Summary: kmail hangs or causes desktop to hang when used with
+                    Nouveau graphics driver
+           Product: Mesa
+           Version: unspecified
+          Hardware: Other
+                OS: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: nick.craig.law-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 132409
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132409&action=3Dedit
+syslog output when kmail causes kmail/desktop to hang
+
+System Config, KDE Neon LTS 5.8.7, Nouveau driver 1:1.0.12-2 as described by
+Ubuntu 16.04.1 LTS. Nvidia GeForce GTX570M, kmail 5.5.2.
+
+Kmail will become unresponsive when attempting to scroll or click left on an
+email. Sometimes just the controls/buttons in kmail will be unreponsive but
+sometimes the whole desktop will become unreponsive and freeze, requiring a
+ALT-SYSRq RSEIUB command to reboot system, ALT-F1 not working. If instead I=
+ use
+the Nvidia 375 driver the problem disappears, so this problem seems to be
+related to the use of the Nouveau driver. syslog reports the following erro=
+rs..
+
+
+Jul  2 23:02:30 nick-X681X kernel: [12787.488155] nouveau 0000:01:00.0:
+kmail[8229]: Unknown handle 0x0000002c
+Jul  2 23:02:30 nick-X681X kernel: [12787.488159] nouveau 0000:01:00.0:
+kmail[8229]: validate_init
+Jul  2 23:02:30 nick-X681X kernel: [12787.488161] nouveau 0000:01:00.0:
+kmail[8229]: validate: -2
+Jul  2 23:02:33 nick-X681X kernel: [12790.327435] nouveau 0000:01:00.0: gr:
+TRAP ch 17 [005f1f4000 kmail[8229]]
+Jul  2 23:02:33 nick-X681X kernel: [12790.327448] nouveau 0000:01:00.0: gr:
+GPC0/TPC0/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327456] nouveau 0000:01:00.0: gr:
+GPC0/TPC1/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327464] nouveau 0000:01:00.0: gr:
+GPC0/TPC2/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327472] nouveau 0000:01:00.0: gr:
+GPC0/TPC3/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327481] nouveau 0000:01:00.0: gr:
+GPC1/TPC0/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327489] nouveau 0000:01:00.0: gr:
+GPC1/TPC1/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327498] nouveau 0000:01:00.0: gr:
+GPC1/TPC2/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327513] nouveau 0000:01:00.0: fif=
+o:
+read fault at 0002a0a000 engine 00 [PGRAPH] client 01 [GPC1/TEX] reason 02
+[PAGE_NOT_PRESENT] on channel 17 [005f1f4000 kmail[8229]]
+Jul  2 23:02:33 nick-X681X kernel: [12790.327516] nouveau 0000:01:00.0: fif=
+o:
+gr engine fault on channel 17, recovering...
+Jul  2 23:03:33 nick-X681X kernel: [12850.755747] nouveau 0000:01:00.0:
+kmail[8229]: failed to idle channel 17 [kmail[8229]]
+Jul  2 23:03:48 nick-X681X kernel: [12865.757800] nouveau 0000:01:00.0:
+kmail[8229]: failed to idle channel 17 [kmail[8229]]
+
+It also generates a second different error on some occasions ie a FIFO read
+fault at 0001afa00 engine 00 [PGRAPH] client 01 [GPC1/TEX] reason 02 [Page =
+not
+present] on channel 5.
+
+This error tends to hang the entire desktop, hence why I have attached a ph=
+oto
+of the tail -f /var/log/syslog output.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--14990917780.416051D4C.29789
+Date: Mon, 3 Jul 2017 14:22:58 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - kmail hangs or causes desktop to hang when used with Nouv=
+eau graphics driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101676">101676</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>kmail hangs or causes desktop to hang when used with Nouveau =
+graphics driver
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>nick.craig.law&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132409=
+" name=3D"attach_132409" title=3D"syslog output when kmail causes kmail/des=
+ktop to hang">attachment 132409</a> <a href=3D"attachment.cgi?id=3D132409&a=
+mp;action=3Dedit" title=3D"syslog output when kmail causes kmail/desktop to=
+ hang">[details]</a></span>
+syslog output when kmail causes kmail/desktop to hang
+
+System Config, KDE Neon LTS 5.8.7, Nouveau driver 1:1.0.12-2 as described by
+Ubuntu 16.04.1 LTS. Nvidia GeForce GTX570M, kmail 5.5.2.
+
+Kmail will become unresponsive when attempting to scroll or click left on an
+email. Sometimes just the controls/buttons in kmail will be unreponsive but
+sometimes the whole desktop will become unreponsive and freeze, requiring a
+ALT-SYSRq RSEIUB command to reboot system, ALT-F1 not working. If instead I=
+ use
+the Nvidia 375 driver the problem disappears, so this problem seems to be
+related to the use of the Nouveau driver. syslog reports the following erro=
+rs..
+
+
+Jul  2 23:02:30 nick-X681X kernel: [12787.488155] nouveau 0000:01:00.0:
+kmail[8229]: Unknown handle 0x0000002c
+Jul  2 23:02:30 nick-X681X kernel: [12787.488159] nouveau 0000:01:00.0:
+kmail[8229]: validate_init
+Jul  2 23:02:30 nick-X681X kernel: [12787.488161] nouveau 0000:01:00.0:
+kmail[8229]: validate: -2
+Jul  2 23:02:33 nick-X681X kernel: [12790.327435] nouveau 0000:01:00.0: gr:
+TRAP ch 17 [005f1f4000 kmail[8229]]
+Jul  2 23:02:33 nick-X681X kernel: [12790.327448] nouveau 0000:01:00.0: gr:
+GPC0/TPC0/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327456] nouveau 0000:01:00.0: gr:
+GPC0/TPC1/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327464] nouveau 0000:01:00.0: gr:
+GPC0/TPC2/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327472] nouveau 0000:01:00.0: gr:
+GPC0/TPC3/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327481] nouveau 0000:01:00.0: gr:
+GPC1/TPC0/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327489] nouveau 0000:01:00.0: gr:
+GPC1/TPC1/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327498] nouveau 0000:01:00.0: gr:
+GPC1/TPC2/TEX: 80000041
+Jul  2 23:02:33 nick-X681X kernel: [12790.327513] nouveau 0000:01:00.0: fif=
+o:
+read fault at 0002a0a000 engine 00 [PGRAPH] client 01 [GPC1/TEX] reason 02
+[PAGE_NOT_PRESENT] on channel 17 [005f1f4000 kmail[8229]]
+Jul  2 23:02:33 nick-X681X kernel: [12790.327516] nouveau 0000:01:00.0: fif=
+o:
+gr engine fault on channel 17, recovering...
+Jul  2 23:03:33 nick-X681X kernel: [12850.755747] nouveau 0000:01:00.0:
+kmail[8229]: failed to idle channel 17 [kmail[8229]]
+Jul  2 23:03:48 nick-X681X kernel: [12865.757800] nouveau 0000:01:00.0:
+kmail[8229]: failed to idle channel 17 [kmail[8229]]
+
+It also generates a second different error on some occasions ie a FIFO read
+fault at 0001afa00 engine 00 [PGRAPH] client 01 [GPC1/TEX] reason 02 [Page =
+not
+present] on channel 5.
+
+This error tends to hang the entire desktop, hence why I have attached a ph=
+oto
+of the tail -f /var/log/syslog output.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14990917780.416051D4C.29789--
+
+--===============2058272097==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2058272097==--
