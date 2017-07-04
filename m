@@ -1,232 +1,133 @@
 From: Peter Rosin <peda@axentia.se>
-Subject: [PATCH v3 13/16] drm: nouveau: remove dead code and pointless local lut storage
-Date: Tue,  4 Jul 2017 12:37:09 +0200
-Message-ID: <1499164632-5582-14-git-send-email-peda@axentia.se>
-References: <1499164632-5582-1-git-send-email-peda@axentia.se>
+Subject: [PATCH v3 00/16] improve the fb_setcmap helper
+Date: Tue,  4 Jul 2017 12:36:56 +0200
+Message-ID: <1499164632-5582-1-git-send-email-peda@axentia.se>
 Mime-Version: 1.0
 Content-Type: text/plain
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1499164632-5582-1-git-send-email-peda@axentia.se>
 Sender: linux-kernel-owner@vger.kernel.org
 To: linux-kernel@vger.kernel.org
-Cc: Peter Rosin <peda@axentia.se>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Sean Paul <seanpaul@chromium.org>, Boris Brezillon <boris.brezillon@free-electrons.com>
+Cc: Peter Rosin <peda@axentia.se>, Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, David Airlie <airlied@linux.ie>, Russell King <linux@armlinux.org.uk>, Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Sean Paul <seanpaul@chromium.org>, Patrik Jakobsson <patrik.r.jakobsson@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, Yannick Fertre <yannick.fertre@st.com>, Philippe Cornu <philippe.cornu@st.com>, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Vincent Abriou <vincent.abriou@st.com>, Eric Anholt <eric@anholt.net>, VMware Graphics <linux-graphics-maintainer@vmware.com>, Sinclair Yeh <syeh>
 List-Id: nouveau.vger.kernel.org
 
-The redundant fb helpers .load_lut, .gamma_set and .gamma_get are
-no longer used. Remove the dead code and hook up the crtc .gamma_set
-to use the crtc gamma_store directly instead of duplicating that
-info locally.
+Hi!
 
-Signed-off-by: Peter Rosin <peda@axentia.se>
----
- drivers/gpu/drm/nouveau/dispnv04/crtc.c | 26 ++++++++-------------
- drivers/gpu/drm/nouveau/nouveau_crtc.h  |  3 ---
- drivers/gpu/drm/nouveau/nouveau_fbcon.c | 22 ------------------
- drivers/gpu/drm/nouveau/nv50_display.c  | 40 +++++++++++----------------------
- 4 files changed, 22 insertions(+), 69 deletions(-)
+While trying to get CLUT support for the atmel_hlcdc driver, and
+specifically for the emulated fbdev interface, I received some
+push-back that my feeble in-driver attempts should be solved
+by the core. This is my attempt to do it right.
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-index f562824..b233412 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-@@ -764,13 +764,18 @@ nv_crtc_gamma_load(struct drm_crtc *crtc)
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
- 	struct drm_device *dev = nv_crtc->base.dev;
- 	struct rgb { uint8_t r, g, b; } __attribute__((packed)) *rgbs;
-+	u16 *r, *g, *b;
- 	int i;
- 
- 	rgbs = (struct rgb *)nv04_display(dev)->mode_reg.crtc_reg[nv_crtc->index].DAC;
-+	r = crtc->gamma_store;
-+	g = r + crtc->gamma_size;
-+	b = g + crtc->gamma_size;
-+
- 	for (i = 0; i < 256; i++) {
--		rgbs[i].r = nv_crtc->lut.r[i] >> 8;
--		rgbs[i].g = nv_crtc->lut.g[i] >> 8;
--		rgbs[i].b = nv_crtc->lut.b[i] >> 8;
-+		rgbs[i].r = *r++ >> 8;
-+		rgbs[i].g = *g++ >> 8;
-+		rgbs[i].b = *b++ >> 8;
- 	}
- 
- 	nouveau_hw_load_state_palette(dev, nv_crtc->index, &nv04_display(dev)->mode_reg);
-@@ -792,13 +797,6 @@ nv_crtc_gamma_set(struct drm_crtc *crtc, u16 *r, u16 *g, u16 *b,
- 		  struct drm_crtc_state *state)
- {
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
--	int i;
--
--	for (i = 0; i < size; i++) {
--		nv_crtc->lut.r[i] = r[i];
--		nv_crtc->lut.g[i] = g[i];
--		nv_crtc->lut.b[i] = b[i];
--	}
- 
- 	/* We need to know the depth before we upload, but it's possible to
- 	 * get called before a framebuffer is bound.  If this is the case,
-@@ -1095,7 +1093,6 @@ static const struct drm_crtc_helper_funcs nv04_crtc_helper_funcs = {
- 	.mode_set = nv_crtc_mode_set,
- 	.mode_set_base = nv04_crtc_mode_set_base,
- 	.mode_set_base_atomic = nv04_crtc_mode_set_base_atomic,
--	.load_lut = nv_crtc_gamma_load,
- 	.disable = nv_crtc_disable,
- };
- 
-@@ -1103,17 +1100,12 @@ int
- nv04_crtc_create(struct drm_device *dev, int crtc_num)
- {
- 	struct nouveau_crtc *nv_crtc;
--	int ret, i;
-+	int ret;
- 
- 	nv_crtc = kzalloc(sizeof(*nv_crtc), GFP_KERNEL);
- 	if (!nv_crtc)
- 		return -ENOMEM;
- 
--	for (i = 0; i < 256; i++) {
--		nv_crtc->lut.r[i] = i << 8;
--		nv_crtc->lut.g[i] = i << 8;
--		nv_crtc->lut.b[i] = i << 8;
--	}
- 	nv_crtc->lut.depth = 0;
- 
- 	nv_crtc->index = crtc_num;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_crtc.h b/drivers/gpu/drm/nouveau/nouveau_crtc.h
-index 050fcf3..b7a18fb 100644
---- a/drivers/gpu/drm/nouveau/nouveau_crtc.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_crtc.h
-@@ -61,9 +61,6 @@ struct nouveau_crtc {
- 
- 	struct {
- 		struct nouveau_bo *nvbo;
--		uint16_t r[256];
--		uint16_t g[256];
--		uint16_t b[256];
- 		int depth;
- 	} lut;
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-index 2665a07..f770784 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-@@ -278,26 +278,6 @@ nouveau_fbcon_accel_init(struct drm_device *dev)
- 		info->fbops = &nouveau_fbcon_ops;
- }
- 
--static void nouveau_fbcon_gamma_set(struct drm_crtc *crtc, u16 red, u16 green,
--				    u16 blue, int regno)
--{
--	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
--
--	nv_crtc->lut.r[regno] = red;
--	nv_crtc->lut.g[regno] = green;
--	nv_crtc->lut.b[regno] = blue;
--}
--
--static void nouveau_fbcon_gamma_get(struct drm_crtc *crtc, u16 *red, u16 *green,
--				    u16 *blue, int regno)
--{
--	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
--
--	*red = nv_crtc->lut.r[regno];
--	*green = nv_crtc->lut.g[regno];
--	*blue = nv_crtc->lut.b[regno];
--}
--
- static void
- nouveau_fbcon_zfill(struct drm_device *dev, struct nouveau_fbdev *fbcon)
- {
-@@ -467,8 +447,6 @@ void nouveau_fbcon_gpu_lockup(struct fb_info *info)
- }
- 
- static const struct drm_fb_helper_funcs nouveau_fbcon_helper_funcs = {
--	.gamma_set = nouveau_fbcon_gamma_set,
--	.gamma_get = nouveau_fbcon_gamma_get,
- 	.fb_probe = nouveau_fbcon_create,
- };
- 
-diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-index f13fa74..93c66c0 100644
---- a/drivers/gpu/drm/nouveau/nv50_display.c
-+++ b/drivers/gpu/drm/nouveau/nv50_display.c
-@@ -2204,28 +2204,29 @@ nv50_head_lut_load(struct drm_crtc *crtc)
- 	struct nv50_disp *disp = nv50_disp(crtc->dev);
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
- 	void __iomem *lut = nvbo_kmap_obj_iovirtual(nv_crtc->lut.nvbo);
-+	u16 *r, *g, *b;
- 	int i;
- 
--	for (i = 0; i < 256; i++) {
--		u16 r = nv_crtc->lut.r[i] >> 2;
--		u16 g = nv_crtc->lut.g[i] >> 2;
--		u16 b = nv_crtc->lut.b[i] >> 2;
-+	r = crtc->gamma_store;
-+	g = r + crtc->gamma_size;
-+	b = g + crtc->gamma_size;
- 
-+	for (i = 0; i < 256; i++) {
- 		if (disp->disp->oclass < GF110_DISP) {
--			writew(r + 0x0000, lut + (i * 0x08) + 0);
--			writew(g + 0x0000, lut + (i * 0x08) + 2);
--			writew(b + 0x0000, lut + (i * 0x08) + 4);
-+			writew((*r++ >> 2) + 0x0000, lut + (i * 0x08) + 0);
-+			writew((*g++ >> 2) + 0x0000, lut + (i * 0x08) + 2);
-+			writew((*b++ >> 2) + 0x0000, lut + (i * 0x08) + 4);
- 		} else {
--			writew(r + 0x6000, lut + (i * 0x20) + 0);
--			writew(g + 0x6000, lut + (i * 0x20) + 2);
--			writew(b + 0x6000, lut + (i * 0x20) + 4);
-+			/* 0x6000 interferes with the 14-bit color??? */
-+			writew((*r++ >> 2) + 0x6000, lut + (i * 0x20) + 0);
-+			writew((*g++ >> 2) + 0x6000, lut + (i * 0x20) + 2);
-+			writew((*b++ >> 2) + 0x6000, lut + (i * 0x20) + 4);
- 		}
- 	}
- }
- 
- static const struct drm_crtc_helper_funcs
- nv50_head_help = {
--	.load_lut = nv50_head_lut_load,
- 	.atomic_check = nv50_head_atomic_check,
- };
- 
-@@ -2234,15 +2235,6 @@ nv50_head_gamma_set(struct drm_crtc *crtc, u16 *r, u16 *g, u16 *b,
- 		    uint32_t size,
- 		    struct drm_crtc_state *state)
- {
--	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
--	u32 i;
--
--	for (i = 0; i < size; i++) {
--		nv_crtc->lut.r[i] = r[i];
--		nv_crtc->lut.g[i] = g[i];
--		nv_crtc->lut.b[i] = b[i];
--	}
--
- 	nv50_head_lut_load(crtc);
- 	return 0;
- }
-@@ -2340,19 +2332,13 @@ nv50_head_create(struct drm_device *dev, int index)
- 	struct nv50_base *base;
- 	struct nv50_curs *curs;
- 	struct drm_crtc *crtc;
--	int ret, i;
-+	int ret;
- 
- 	head = kzalloc(sizeof(*head), GFP_KERNEL);
- 	if (!head)
- 		return -ENOMEM;
- 
- 	head->base.index = index;
--	for (i = 0; i < 256; i++) {
--		head->base.lut.r[i] = i << 8;
--		head->base.lut.g[i] = i << 8;
--		head->base.lut.b[i] = i << 8;
--	}
--
- 	ret = nv50_base_new(drm, head, &base);
- 	if (ret == 0)
- 		ret = nv50_curs_new(drm, head, &curs);
+I have obviously not tested all of this with more than a compile,
+but patches 1 through 5 are enough to make the atmel-hlcdc driver
+do what I need. The rest is just lots of removals and cleanup made
+possible by the improved core.
+
+Please test, I would not be surprised if I have fouled up some
+bit-manipulation somewhere, or if I have misunderstood something
+about atomics...
+
+Changes since v2:
+- Added patch 1/16 which factors out pseudo-palette handling.
+- Removed the if (cmap->start + cmap->len < cmap->start)
+  sanity check on the assumption that the fbdev core handles it.
+- Added patch 4/16 which factors out atomic state and commit
+  handling from drm_atomic_helper_legacy_gamma_set to
+  drm_mode_gamma_set_ioctl.
+- Do one atomic commit for all affected crtc.
+- Removed a now obsolete note in include/drm/drm_crtc.h (ammended
+  the last patch).
+- Cc list is getting long, so I have redused the list for the
+  individual patches. If you would like to get the full series
+  (or nothing at all) for the next round (if that is needed) just
+  say so.
+
+Changes since v1:
+
+- Rebased to next-20170621
+- Split 1/11 into a preparatory patch, a cleanup patch and then
+  the meat in 3/14.
+- Handle pseudo-palette for FB_VISUAL_TRUECOLOR.
+- Removed the empty .gamma_get/.gamma_set fb helpers from the
+  armada driver that I had somehow managed to ignore but which
+  0day found real quick.
+- Be less judgemental on drivers only providing .gamma_get and
+  .gamma_set, but no .load_lut. That's actually a valid thing
+  to do if you only need pseudo-palette for FB_VISUAL_TRUECOLOR.
+- Add a comment about colliding bitfields in the nouveau driver.
+- Remove gamma_set/gamma_get declarations from the radeon driver
+  (the definitions were removed in v1).
+
+Cheers,
+peda
+
+Peter Rosin (16):
+  drm/fb-helper: factor out pseudo-palette
+  drm/fb-helper: keep the .gamma_store updated in drm_fb_helper_setcmap
+  drm/fb-helper: remove drm_fb_helper_save_lut_atomic
+  drm/color-mgmt: move atomic state/commit out from .gamma_set
+  drm/fb-helper: do a generic fb_setcmap helper in terms of crtc
+    .gamma_set
+  drm: amd: remove dead code and pointless local lut storage
+  drm: armada: remove dead empty functions
+  drm: ast: remove dead code and pointless local lut storage
+  drm: cirrus: remove dead code and pointless local lut storage
+  drm: gma500: remove dead code and pointless local lut storage
+  drm: i915: remove dead code and pointless local lut storage
+  drm: mgag200: remove dead code and pointless local lut storage
+  drm: nouveau: remove dead code and pointless local lut storage
+  drm: radeon: remove dead code and pointless local lut storage
+  drm: stm: remove dead code and pointless local lut storage
+  drm: remove unused and redundant callbacks
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c      |  24 ----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h    |   1 -
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c      |  29 ++---
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c      |  29 ++---
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c       |  29 ++---
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c       |  29 ++---
+ drivers/gpu/drm/amd/amdgpu/dce_virtual.c    |  25 +---
+ drivers/gpu/drm/armada/armada_crtc.c        |  10 --
+ drivers/gpu/drm/armada/armada_crtc.h        |   2 -
+ drivers/gpu/drm/armada/armada_fbdev.c       |   2 -
+ drivers/gpu/drm/ast/ast_drv.h               |   1 -
+ drivers/gpu/drm/ast/ast_fb.c                |  20 ---
+ drivers/gpu/drm/ast/ast_mode.c              |  28 +---
+ drivers/gpu/drm/cirrus/cirrus_drv.h         |   8 --
+ drivers/gpu/drm/cirrus/cirrus_fbdev.c       |   2 -
+ drivers/gpu/drm/cirrus/cirrus_mode.c        |  73 +++--------
+ drivers/gpu/drm/drm_atomic_helper.c         |  37 ++----
+ drivers/gpu/drm/drm_color_mgmt.c            |  27 +++-
+ drivers/gpu/drm/drm_fb_helper.c             | 195 +++++++++++++++++-----------
+ drivers/gpu/drm/gma500/framebuffer.c        |  22 ----
+ drivers/gpu/drm/gma500/gma_display.c        |  34 ++---
+ drivers/gpu/drm/gma500/gma_display.h        |   2 +-
+ drivers/gpu/drm/gma500/psb_intel_display.c  |   7 +-
+ drivers/gpu/drm/gma500/psb_intel_drv.h      |   1 -
+ drivers/gpu/drm/i915/intel_drv.h            |   1 -
+ drivers/gpu/drm/i915/intel_fbdev.c          |  31 -----
+ drivers/gpu/drm/mgag200/mgag200_drv.h       |   5 -
+ drivers/gpu/drm/mgag200/mgag200_fb.c        |   2 -
+ drivers/gpu/drm/mgag200/mgag200_mode.c      |  64 +++------
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c     |  28 ++--
+ drivers/gpu/drm/nouveau/nouveau_crtc.h      |   3 -
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c     |  22 ----
+ drivers/gpu/drm/nouveau/nv50_display.c      |  42 ++----
+ drivers/gpu/drm/radeon/atombios_crtc.c      |   1 -
+ drivers/gpu/drm/radeon/radeon_connectors.c  |   7 +-
+ drivers/gpu/drm/radeon/radeon_display.c     |  73 +++++------
+ drivers/gpu/drm/radeon/radeon_fb.c          |   2 -
+ drivers/gpu/drm/radeon/radeon_legacy_crtc.c |   1 -
+ drivers/gpu/drm/radeon/radeon_mode.h        |   4 -
+ drivers/gpu/drm/stm/ltdc.c                  |  12 --
+ drivers/gpu/drm/stm/ltdc.h                  |   1 -
+ drivers/gpu/drm/vc4/vc4_crtc.c              |   2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c         |   2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.h         |   2 +-
+ include/drm/drm_atomic_helper.h             |   2 +-
+ include/drm/drm_crtc.h                      |  11 +-
+ include/drm/drm_fb_helper.h                 |  32 -----
+ include/drm/drm_modeset_helper_vtables.h    |  16 ---
+ 48 files changed, 301 insertions(+), 702 deletions(-)
+
 -- 
 2.1.4
