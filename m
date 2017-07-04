@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101601] Nvidia GT 1030 (NV138/GP108) support
-Date: Tue, 04 Jul 2017 12:29:11 +0000
-Message-ID: <bug-101601-8800-0C0EnbUYTl@http.bugs.freedesktop.org/>
-References: <bug-101601-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] secboot/acr352: reset PMU after secboot
+Date: Tue,  4 Jul 2017 19:35:23 +0200
+Message-ID: <20170704173523.5308-1-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1653284855=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,92 +18,25 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1653284855==
-Content-Type: multipart/alternative; boundary="14991713511.F4e2774.11377";
- charset="UTF-8"
-
-
---14991713511.F4e2774.11377
-Date: Tue, 4 Jul 2017 12:29:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101601
-
---- Comment #12 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
-Hey guys,
-anything else we can do to help you upstreaming the patch? We have a bunch =
-of
-nvidia boards around, just ask if you need any more test / data / trace.
-
-thanks,
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14991713511.F4e2774.11377
-Date: Tue, 4 Jul 2017 12:29:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c12">Comme=
-nt # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601">bug 10160=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
-<span class=3D"fn">Carlo Caione</span></a>
-</span></b>
-        <pre>Hey guys,
-anything else we can do to help you upstreaming the patch? We have a bunch =
-of
-nvidia boards around, just ask if you need any more test / data / trace.
-
-thanks,</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14991713511.F4e2774.11377--
-
---===============1653284855==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1653284855==--
+VGhpcyBpcyBuZWVkZWQgZm9yIHVzaW5nIE5vdXZlYXVzIFBNVSBpbWFnZSBhZnRlciBwZXJmb3Jt
+aW5nIHNlY2Jvb3QuIFRoaXMgd2lsbApiZSBoZWxwZnVsbCBmb3IgTWF4d2VsbDIgcmVjbG9ja2lu
+ZyBvbiBib2FyZHMgd2l0aG91dCBleHRlcm5hbGx5IGNvbnRyb2xsZWQKZmFucyBsaWtlIG9uIG1v
+c3QgbGFwdG9wcyBvciBmYW5sZXNzIGJvYXJkcy4KClNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJz
+dCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgotLS0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3Nl
+Y2Jvb3QvYWNyX3IzNTIuYyB8IDEzICsrKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAxMyBp
+bnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9v
+dC9hY3JfcjM1Mi5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9hY3JfcjM1Mi5j
+CmluZGV4IGE3MjEzNTQyLi4wMDA5NWVmOCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvc2VjYm9vdC9hY3JfcjM1Mi5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3Nl
+Y2Jvb3QvYWNyX3IzNTIuYwpAQCAtOTI0LDYgKzkyNCwxOSBAQCBhY3JfcjM1Ml9ib290c3RyYXAo
+c3RydWN0IGFjcl9yMzUyICphY3IsIHN0cnVjdCBudmttX3NlY2Jvb3QgKnNiKQogCQl9CiAJfQog
+CisJLyogcmVzZXQgdGhlIFBNVSBpZiBuZWVkZWQgKi8KKwlpZiAoYWNyLT5iYXNlLmJvb3RfZmFs
+Y29uID09IE5WS01fU0VDQk9PVF9GQUxDT05fUE1VICYmCisJICAgICFudmttX3NlY2Jvb3RfaXNf
+bWFuYWdlZChzYiwgTlZLTV9TRUNCT09UX0ZBTENPTl9QTVUpKSB7CisJCXN0cnVjdCBudmttX3Bt
+dSAqcG11ID0gc3ViZGV2LT5kZXZpY2UtPnBtdTsKKwkJaWYgKHBtdSkgeworCQkJcmV0ID0gbnZr
+bV9zdWJkZXZfaW5pdCgmcG11LT5zdWJkZXYpOworCQkJaWYgKHJldCA8IDApIHsKKwkJCQludmtt
+X2Vycm9yKHN1YmRldiwgIkZhaWxlZCB0byByZXNldCBQTVVcbiIpOworCQkJCXJldHVybiByZXQ7
+CisJCQl9CisJCX0KKwl9CisKIAlyZXR1cm4gMDsKIH0KIAotLSAKMi4xMy4yCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
