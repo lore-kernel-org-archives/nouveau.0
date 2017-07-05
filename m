@@ -1,110 +1,110 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101601] Nvidia GT 1030 (NV138/GP108) support
-Date: Wed, 05 Jul 2017 16:02:55 +0000
-Message-ID: <bug-101601-8800-fX5VC97YQH@http.bugs.freedesktop.org/>
-References: <bug-101601-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH v3 00/16] improve the fb_setcmap helper
+Date: Wed, 5 Jul 2017 22:19:58 +0200
+Message-ID: <20170705201958.unu7gwx6guetqiep@phenom.ffwll.local>
+References: <1499164632-5582-1-git-send-email-peda@axentia.se>
+ <20170705060816.nwufo2m7cmthjopn@phenom.ffwll.local>
+ <3810fb8e-76d6-0810-26aa-1aae6bac2f9a@axentia.se>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2041619772=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <3810fb8e-76d6-0810-26aa-1aae6bac2f9a@axentia.se>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Peter Rosin <peda@axentia.se>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>, Boris Brezillon <boris.brezillon@free-electrons.com>, Thomas Hellstrom <thellstrom@vmware.com>, Russell King <linux@armlinux.org.uk>, amd-gfx@lists.freedesktop.org, VMware Graphics <linux-graphics-maintainer@vmware.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org, Vincent Abriou <vincent.abriou@st.com>, Philippe Cornu <philippe.cornu@st.com>, linux-kernel@vger.kernel.org, Yannick Fertre <yannick.fertre@st.com>, Alex Deucher <alexander.deucher@amd.com>, Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2041619772==
-Content-Type: multipart/alternative; boundary="14992705753.e24abb3.2977";
- charset="UTF-8"
-
-
---14992705753.e24abb3.2977
-Date: Wed, 5 Jul 2017 16:02:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101601
-
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-BTW, this is the patch I sent to enable GP108:
-https://patchwork.freedesktop.org/patch/164973/
-
-And this is Ben's tree with the updated versions of those patches:
-https://github.com/skeggsb/nouveau/commits/master
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14992705753.e24abb3.2977
-Date: Wed, 5 Jul 2017 16:02:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c14">Comme=
-nt # 14</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601">bug 10160=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>BTW, this is the patch I sent to enable GP108:
-<a href=3D"https://patchwork.freedesktop.org/patch/164973/">https://patchwo=
-rk.freedesktop.org/patch/164973/</a>
-
-And this is Ben's tree with the updated versions of those patches:
-<a href=3D"https://github.com/skeggsb/nouveau/commits/master">https://githu=
-b.com/skeggsb/nouveau/commits/master</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14992705753.e24abb3.2977--
-
---===============2041619772==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2041619772==--
+T24gV2VkLCBKdWwgMDUsIDIwMTcgYXQgMTA6MDk6MjFBTSArMDIwMCwgUGV0ZXIgUm9zaW4gd3Jv
+dGU6Cj4gT24gMjAxNy0wNy0wNSAwODowOCwgRGFuaWVsIFZldHRlciB3cm90ZToKPiA+IE9uIFR1
+ZSwgSnVsIDA0LCAyMDE3IGF0IDEyOjM2OjU2UE0gKzAyMDAsIFBldGVyIFJvc2luIHdyb3RlOgo+
+ID4+IEhpIQo+ID4+Cj4gPj4gV2hpbGUgdHJ5aW5nIHRvIGdldCBDTFVUIHN1cHBvcnQgZm9yIHRo
+ZSBhdG1lbF9obGNkYyBkcml2ZXIsIGFuZAo+ID4+IHNwZWNpZmljYWxseSBmb3IgdGhlIGVtdWxh
+dGVkIGZiZGV2IGludGVyZmFjZSwgSSByZWNlaXZlZCBzb21lCj4gPj4gcHVzaC1iYWNrIHRoYXQg
+bXkgZmVlYmxlIGluLWRyaXZlciBhdHRlbXB0cyBzaG91bGQgYmUgc29sdmVkCj4gPj4gYnkgdGhl
+IGNvcmUuIFRoaXMgaXMgbXkgYXR0ZW1wdCB0byBkbyBpdCByaWdodC4KPiA+Pgo+ID4+IEkgaGF2
+ZSBvYnZpb3VzbHkgbm90IHRlc3RlZCBhbGwgb2YgdGhpcyB3aXRoIG1vcmUgdGhhbiBhIGNvbXBp
+bGUsCj4gPj4gYnV0IHBhdGNoZXMgMSB0aHJvdWdoIDUgYXJlIGVub3VnaCB0byBtYWtlIHRoZSBh
+dG1lbC1obGNkYyBkcml2ZXIKPiA+PiBkbyB3aGF0IEkgbmVlZC4gVGhlIHJlc3QgaXMganVzdCBs
+b3RzIG9mIHJlbW92YWxzIGFuZCBjbGVhbnVwIG1hZGUKPiA+PiBwb3NzaWJsZSBieSB0aGUgaW1w
+cm92ZWQgY29yZS4KPiA+Pgo+ID4+IFBsZWFzZSB0ZXN0LCBJIHdvdWxkIG5vdCBiZSBzdXJwcmlz
+ZWQgaWYgSSBoYXZlIGZvdWxlZCB1cCBzb21lCj4gPj4gYml0LW1hbmlwdWxhdGlvbiBzb21ld2hl
+cmUsIG9yIGlmIEkgaGF2ZSBtaXN1bmRlcnN0b29kIHNvbWV0aGluZwo+ID4+IGFib3V0IGF0b21p
+Y3MuLi4KPiA+Pgo+ID4+IENoYW5nZXMgc2luY2UgdjI6Cj4gPj4gLSBBZGRlZCBwYXRjaCAxLzE2
+IHdoaWNoIGZhY3RvcnMgb3V0IHBzZXVkby1wYWxldHRlIGhhbmRsaW5nLgo+ID4+IC0gUmVtb3Zl
+ZCB0aGUgaWYgKGNtYXAtPnN0YXJ0ICsgY21hcC0+bGVuIDwgY21hcC0+c3RhcnQpCj4gPj4gICBz
+YW5pdHkgY2hlY2sgb24gdGhlIGFzc3VtcHRpb24gdGhhdCB0aGUgZmJkZXYgY29yZSBoYW5kbGVz
+IGl0Lgo+ID4+IC0gQWRkZWQgcGF0Y2ggNC8xNiB3aGljaCBmYWN0b3JzIG91dCBhdG9taWMgc3Rh
+dGUgYW5kIGNvbW1pdAo+ID4+ICAgaGFuZGxpbmcgZnJvbSBkcm1fYXRvbWljX2hlbHBlcl9sZWdh
+Y3lfZ2FtbWFfc2V0IHRvCj4gPj4gICBkcm1fbW9kZV9nYW1tYV9zZXRfaW9jdGwuCj4gPj4gLSBE
+byBvbmUgYXRvbWljIGNvbW1pdCBmb3IgYWxsIGFmZmVjdGVkIGNydGMuCj4gPj4gLSBSZW1vdmVk
+IGEgbm93IG9ic29sZXRlIG5vdGUgaW4gaW5jbHVkZS9kcm0vZHJtX2NydGMuaCAoYW1tZW5kZWQK
+PiA+PiAgIHRoZSBsYXN0IHBhdGNoKS4KPiA+PiAtIENjIGxpc3QgaXMgZ2V0dGluZyBsb25nLCBz
+byBJIGhhdmUgcmVkdXNlZCB0aGUgbGlzdCBmb3IgdGhlCj4gPj4gICBpbmRpdmlkdWFsIHBhdGNo
+ZXMuIElmIHlvdSB3b3VsZCBsaWtlIHRvIGdldCB0aGUgZnVsbCBzZXJpZXMKPiA+PiAgIChvciBu
+b3RoaW5nIGF0IGFsbCkgZm9yIHRoZSBuZXh0IHJvdW5kIChpZiB0aGF0IGlzIG5lZWRlZCkganVz
+dAo+ID4+ICAgc2F5IHNvLgo+ID4gCj4gPiBJcyB0aGlzIHN0aWxsIG9uIHRvcCBvZiBteSBsb2Nr
+aW5nIHJld29yaz8gSSB0cmllZCB0byBhcHBseSBwYXRjaGVzIDEtMywKPiA+IGJ1dCB0aGVyZSdz
+IG1pbm9yIGNvbmZsaWN0cyAuLi4KPiA+IC1EYW5pZWwKPiAKPiB2MyBoYXMgdGhlIHNhbWUgYmFz
+ZSBhcyB2Mi4gSSBjb2xsZWN0ZWQgeW91ciBsb2NraW5nIHJld29yayBzb21ldGltZQo+IGFmdGVy
+IGp1bmUgMjEsIHlvdSBoYXZlIHBlcmhhcHMgY2hhbmdlZCB0aGluZ3Mgc2luY2U/IEkgc2F3IGFu
+IHVwZGF0ZQo+IG9mIHRoYXQgZHBtcyBwYXRjaCB5b3UgQ2MgbWUsIGJ1dCBmaWd1cmVkIHRoZXJl
+IHdlcmUgbm8gc2lnbmlmaWNhbnQKPiBjaGFuZ2VzIHRoYXQgSSBuZWVkZWQgdG8gaGFuZGxlIHNp
+bmNlIEkgZGlkbid0IGdldCB0aGUgZnVsbCBzZXQKPiB0aGlzIHRpbWUgZWl0aGVyLiBBIGJhZCBh
+c3N1bXB0aW9uIGl0IHNlZW1zLi4uCgpUaGVyZSdzIGEgZGlmZmVyZW5jZSBiZXR3ZWVuIG15IG93
+biBwcml2YXRlIHBhdGNoZXMsIGFuZCB0aGUgbWFpbnRhaW5lcgpyZXBvIHdoZXJlIHN0dWZmIGdl
+dHMgYXBwbGllZC4gQnV0IHRoYXQgZXhwbGFpbnMgd2h5IHRoZXJlIHdhcyBhIGNvbmZsaWN0LgoK
+SSBwbGFuIHRvIG1lcmdlIG15IGxvY2tpbmcgY2hhbmdlcyB0b21vcnJvdyAodGhleSdyZSByZXZp
+ZXdlZCBhbmQgcmVhZHkKbm93KSwgSSdsbCBhcHBseSB5b3VyIHBhdGNoZXMgYWZ0ZXIgdGhhdC4g
+VGhhdCBzaG91bGQgdGFrZSBjYXJlIG9mIHRoZQpjb25mbGljdHMuCgpUaGFua3MsIERhbmllbAoK
+PiAKPiBBbnl3YXksIHRoZSBiYXNlIEkgaGF2ZSBmb3IgdjMgKGFuZCB2MikgaXMgbGludXggbmV4
+dC0yMDE3MDYyMSBwbHVzCj4gdGhlIGZvbGxvd2luZyBsb2NraW5nIHJld29yayBjb21taXRzIChp
+biByZXZlcnNlIG9yZGVyKToKPiAKPiBBdXRob3I6IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5nQG52
+aWRpYS5jb20+Cj4gRGF0ZTogV2VkIEp1biAyMSAyMDoyODoxNSAyMDE3ICswMjAwCj4gU3ViamVj
+dDogZHJtL2hpc2lsaWNvbjogUmVtb3ZlIGN1c3RvbSBGQiBoZWxwZXIgZGVmZXJyZWQgc2V0dXAK
+PiAKPiBBdXRob3I6IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Cj4gRGF0ZTog
+V2VkIEp1biAyMSAyMDoyODoxNCAyMDE3ICswMjAwCj4gU3ViamVjdDogZHJtL2V4eW5vczogUmVt
+b3ZlIGN1c3RvbSBGQiBoZWxwZXIgZGVmZXJyZWQgc2V0dXAKPiAKPiBBdXRob3I6IFRoaWVycnkg
+UmVkaW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Cj4gRGF0ZTogV2VkIEp1biAyMSAyMDoyODoxMyAy
+MDE3ICswMjAwCj4gU3ViamVjdDogZHJtL2ZiLWhlbHBlcjogU3VwcG9ydCBkZWZlcnJlZCBzZXR1
+cAo+IAo+IEF1dGhvcjogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPiBE
+YXRlOiBXZWQgSnVuIDIxIDIwOjI4OjEyIDIwMTcgKzAyMDAKPiBTdWJqZWN0OiBkcm0vZmItaGVs
+cGVyOiBTcGxpdCBkcG1zIGhhbmRsaW5nIGludG8gbGVnYWN5IGFuZCBhdG9taWMgcGF0aHMKPiAK
+PiBBdXRob3I6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cj4gRGF0ZTog
+V2VkIEp1biAyMSAyMDoyODoxMSAyMDE3ICswMjAwCj4gU3ViamVjdDogZHJtL2ZiLWhlbHBlcjog
+U3RvcCB1c2luZyBtb2RlX2NvbmZpZy5tdXRleCBmb3IgaW50ZXJuYWxzCj4gCj4gQXV0aG9yOiBE
+YW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgo+IERhdGU6IFdlZCBKdW4gMjEg
+MjA6Mjg6MTAgMjAxNyArMDIwMAo+IFN1YmplY3Q6IGRybS9mYi1oZWxwZXI6IFB1c2ggbG9ja2lu
+ZyBpbnRvIHJlc3RvcmVfZmJkZXZfbW9kZV9hdG9taWN8bGVnYWN5Cj4gCj4gQXV0aG9yOiBEYW5p
+ZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgo+IERhdGU6IFdlZCBKdW4gMjEgMjA6
+Mjg6MDkgMjAxNyArMDIwMAo+IFN1YmplY3Q6IGRybS9mYi1oZWxwZXI6IFB1c2ggbG9ja2luZyBp
+bnRvIHBhbl9kaXNwbGF5X2F0b21pY3xsZWdhY3kKPiAKPiBBdXRob3I6IERhbmllbCBWZXR0ZXIg
+PGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cj4gRGF0ZTogV2VkIEp1biAyMSAyMDoyODowOCAyMDE3
+ICswMjAwCj4gU3ViamVjdDogZHJtL2ZiLWhlbHBlcjogRHJvcCBsb2NraW5nIGZyb20gdGhlIHZz
+eW5jIHdhaXQgaW9jdGwgY29kZQo+IAo+IEF1dGhvcjogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZl
+dHRlckBmZndsbC5jaD4KPiBEYXRlOiBXZWQgSnVuIDIxIDIwOjI4OjA3IDIwMTcgKzAyMDAKPiBT
+dWJqZWN0OiBkcm0vZmItaGVscGVyOiBQdXNoIGxvY2tpbmcgaW4gZmJfaXNfYm91bmQKPiAKPiBB
+dXRob3I6IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Cj4gRGF0ZTogV2VkIEp1
+biAyMSAyMDoyODowNiAyMDE3ICswMjAwCj4gU3ViamVjdDogZHJtL2ZiLWhlbHBlcjogQWRkIHRv
+cC1sZXZlbCBsb2NrCj4gCj4gQXV0aG9yOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZm
+d2xsLmNoPgo+IERhdGU6IFdlZCBKdW4gMjEgMjA6Mjg6MDUgMjAxNyArMDIwMAo+IFN1YmplY3Q6
+IGRybS9pOTE1OiBEcm9wIEZCREVWICNpZmRldiBpbiBtc3QgY29kZQo+IAo+IEF1dGhvcjogVGhp
+ZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4KPiBEYXRlOiBXZWQgSnVuIDIxIDIwOjI4
+OjA0IDIwMTcgKzAyMDAKPiBTdWJqZWN0OiBkcm0vZmItaGVscGVyOiBQdXNoIGRvd24gbW9kZXNl
+dCBsb2NrIGludG8gRkIgaGVscGVycwo+IAo+IENoZWVycywKPiBwZWRhCj4gX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBJbnRlbC1nZnggbWFpbGluZyBs
+aXN0Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4CgotLSAKRGFuaWVsIFZldHRl
+cgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwu
+Y2gKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRl
+dmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
