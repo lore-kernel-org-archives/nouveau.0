@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101601] Nvidia GT 1030 (NV138/GP108) support
-Date: Wed, 05 Jul 2017 16:01:27 +0000
-Message-ID: <bug-101601-8800-RMh3o0oHVz@http.bugs.freedesktop.org/>
+Date: Wed, 05 Jul 2017 16:02:55 +0000
+Message-ID: <bug-101601-8800-fX5VC97YQH@http.bugs.freedesktop.org/>
 References: <bug-101601-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0776694817=="
+Content-Type: multipart/mixed; boundary="===============2041619772=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0776694817==
-Content-Type: multipart/alternative; boundary="14992704871.A740.1415";
+--===============2041619772==
+Content-Type: multipart/alternative; boundary="14992705753.e24abb3.2977";
  charset="UTF-8"
 
 
---14992704871.A740.1415
-Date: Wed, 5 Jul 2017 16:01:27 +0000
+--14992705753.e24abb3.2977
+Date: Wed, 5 Jul 2017 16:02:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101601
 
---- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Note that the preparatory patches are in Ben's tree now, should show up in =
-4.13
-or 4.14. The one to actually enable GP108 is being delayed as he'd like some
-time with the mmiotrace to double-check a few things.
+--- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+BTW, this is the patch I sent to enable GP108:
+https://patchwork.freedesktop.org/patch/164973/
+
+And this is Ben's tree with the updated versions of those patches:
+https://github.com/skeggsb/nouveau/commits/master
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14992704871.A740.1415
-Date: Wed, 5 Jul 2017 16:01:27 +0000
+--14992705753.e24abb3.2977
+Date: Wed, 5 Jul 2017 16:02:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +64,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c13">Comme=
-nt # 13</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c14">Comme=
+nt # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
@@ -74,10 +75,13 @@ nt # 13</a>
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Note that the preparatory patches are in Ben's tree now, shoul=
-d show up in 4.13
-or 4.14. The one to actually enable GP108 is being delayed as he'd like some
-time with the mmiotrace to double-check a few things.</pre>
+        <pre>BTW, this is the patch I sent to enable GP108:
+<a href=3D"https://patchwork.freedesktop.org/patch/164973/">https://patchwo=
+rk.freedesktop.org/patch/164973/</a>
+
+And this is Ben's tree with the updated versions of those patches:
+<a href=3D"https://github.com/skeggsb/nouveau/commits/master">https://githu=
+b.com/skeggsb/nouveau/commits/master</a></pre>
         </div>
       </p>
 
@@ -91,9 +95,9 @@ time with the mmiotrace to double-check a few things.</pre>
     </body>
 </html>=
 
---14992704871.A740.1415--
+--14992705753.e24abb3.2977--
 
---===============0776694817==
+--===============2041619772==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0776694817==--
+--===============2041619772==--
