@@ -1,69 +1,112 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] secboot/acr352: reset PMU after secboot
-Date: Wed, 5 Jul 2017 08:57:44 +0200
-Message-ID: <CAEXux-Yp2+0WUhgvFDvQ2RpLnwbFso=GWfKCzX680fdB3UVwng@mail.gmail.com>
-References: <20170704173523.5308-1-karolherbst@gmail.com>
- <85f35af5-8ecc-63be-cd26-6b1566d5b3b0@gmail.com>
+From: Peter Rosin <peda@axentia.se>
+Subject: Re: [Intel-gfx] [PATCH v3 00/16] improve the fb_setcmap helper
+Date: Wed, 5 Jul 2017 10:09:21 +0200
+Message-ID: <3810fb8e-76d6-0810-26aa-1aae6bac2f9a@axentia.se>
+References: <1499164632-5582-1-git-send-email-peda@axentia.se>
+ <20170705060816.nwufo2m7cmthjopn@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <85f35af5-8ecc-63be-cd26-6b1566d5b3b0-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20170705060816.nwufo2m7cmthjopn@phenom.ffwll.local>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Daniel Vetter <daniel.vetter@intel.com>, Boris Brezillon <boris.brezillon@free-electrons.com>, Thomas Hellstrom <thellstrom@vmware.com>, Sinclair Yeh <syeh@vmware.com>, Russell King <linux@armlinux.org.uk>, VMware Graphics <linux-graphics-maintainer@vmware.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org, Vincent Abriou <vincent.abriou@st.com>, amd-gfx@lists.freedesktop.org, Philippe Cornu <philippe.cornu@st.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKdWwgNSwgMjAxNyBhdCAzOjIzIEFNLCBCZW4gU2tlZ2dzIDxza2VnZ3NiQGdtYWls
-LmNvbT4gd3JvdGU6Cj4gT24gMDcvMDUvMjAxNyAwMzozNSBBTSwgS2Fyb2wgSGVyYnN0IHdyb3Rl
-Ogo+PiBUaGlzIGlzIG5lZWRlZCBmb3IgdXNpbmcgTm91dmVhdXMgUE1VIGltYWdlIGFmdGVyIHBl
-cmZvcm1pbmcgc2VjYm9vdC4gVGhpcyB3aWxsCj4+IGJlIGhlbHBmdWxsIGZvciBNYXh3ZWxsMiBy
-ZWNsb2NraW5nIG9uIGJvYXJkcyB3aXRob3V0IGV4dGVybmFsbHkgY29udHJvbGxlZAo+PiBmYW5z
-IGxpa2Ugb24gbW9zdCBsYXB0b3BzIG9yIGZhbmxlc3MgYm9hcmRzLgo+IEkgZ2V0IHRoZSBpZGVh
-IGluIHByaW5jaXBhbCwgYnV0IGhhdmUgc29tZSBjb25jZXJuczoKPgo+IC0gRG9lcyB0aGlzIHNj
-cmV3IHVwIHJlLXJ1bm5pbmcgc2VjYm9vdCBkdXJpbmcgY2hhbm5lbCByZWNvdmVyeSAoaWUuCj4g
-cGFnZSBmYXVsdCBvbiBncik/Cj4gLSBXaGF0IGFib3V0IHRoZSBydW5uaW5nIG9mIHRoZSB1bmxv
-YWQgYmxvYj8KPgo+IEl0IG1ha2VzIG1lIGFuZ3J5IHRoYXQgd2UgZXZlbiBoYXZlIHRvIHRoaW5r
-IGFib3V0IGRvaW5nIHN0dWZmIGxpa2UgdGhpcyEgOlAKPgo+IEJlbi4KPgoKWWVhaCBJIGtub3cs
-IGJ1dCB0aGlzIHdhcyB0aGUgYmVzdCBJIGNhbWUgdXAgd2l0aC4gSW4gZWFybGllciBhdHRlbXB0
-cwpJIG9ubHkgY2FtZSB1cCB3aXRoIHdvcnNlIHNvbHV0aW9ucy4KCkkgdGhpbmsgaXQncyB0ZWNo
-bmljYWxseSBmaW5lLCBiZWNhdXNlIG52a21fcG11X2luaXQgY2FsbHMKbnZrbV9wbXVfcmVzZXQg
-YW5kIHBtdS0+ZnVuYy0+aW5pdC4gSW4gcHJpb3IgdmVyc2lvbnMgSSd2ZSBhbHNvIGFkZGVkCmEg
-ZmluaSBjYWxsLCBidXQgdGhpcyBtYWRlIG5vdXZlYXUgdW5oYXBweSB3aGVuZXZlciBJIHJlY2xv
-Y2tlZCB0aGUKR1BVIGFuZCByZWxvYWRlZCBub3V2ZWF1IGFmdGVyd2FyZHMuIEkgY291bGQgZG8g
-c29tZSBtb3JlIHRlc3RpbmcKdGhvdWdoLgoKR29vZCB0aGluZyBpcyB0aGF0IHRoaXMgaXMgb25s
-eSBhIHByb2JsZW0gb24gR00yMFggR1BVcyBhbmQgd2Ugb25seQpuZWVkIGEgcHJvcGVyIHNvbHV0
-aW9uIGZvciB0aG9zZS4KCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJzdCA8a2Fyb2xo
-ZXJic3RAZ21haWwuY29tPgo+PiAtLS0KPj4gIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jv
-b3QvYWNyX3IzNTIuYyB8IDEzICsrKysrKysrKysrKysKPj4gIDEgZmlsZSBjaGFuZ2VkLCAxMyBp
-bnNlcnRpb25zKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9z
-ZWNib290L2Fjcl9yMzUyLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2Fjcl9y
-MzUyLmMKPj4gaW5kZXggYTcyMTM1NDIuLjAwMDk1ZWY4IDEwMDY0NAo+PiAtLS0gYS9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi9zZWNib290L2Fjcl9yMzUyLmMKPj4gKysrIGIvZHJtL25vdXZlYXUv
-bnZrbS9zdWJkZXYvc2VjYm9vdC9hY3JfcjM1Mi5jCj4+IEBAIC05MjQsNiArOTI0LDE5IEBAIGFj
-cl9yMzUyX2Jvb3RzdHJhcChzdHJ1Y3QgYWNyX3IzNTIgKmFjciwgc3RydWN0IG52a21fc2VjYm9v
-dCAqc2IpCj4+ICAgICAgICAgICAgICAgfQo+PiAgICAgICB9Cj4+Cj4+ICsgICAgIC8qIHJlc2V0
-IHRoZSBQTVUgaWYgbmVlZGVkICovCj4+ICsgICAgIGlmIChhY3ItPmJhc2UuYm9vdF9mYWxjb24g
-PT0gTlZLTV9TRUNCT09UX0ZBTENPTl9QTVUgJiYKPj4gKyAgICAgICAgICFudmttX3NlY2Jvb3Rf
-aXNfbWFuYWdlZChzYiwgTlZLTV9TRUNCT09UX0ZBTENPTl9QTVUpKSB7Cj4+ICsgICAgICAgICAg
-ICAgc3RydWN0IG52a21fcG11ICpwbXUgPSBzdWJkZXYtPmRldmljZS0+cG11Owo+PiArICAgICAg
-ICAgICAgIGlmIChwbXUpIHsKPj4gKyAgICAgICAgICAgICAgICAgICAgIHJldCA9IG52a21fc3Vi
-ZGV2X2luaXQoJnBtdS0+c3ViZGV2KTsKPj4gKyAgICAgICAgICAgICAgICAgICAgIGlmIChyZXQg
-PCAwKSB7Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG52a21fZXJyb3Ioc3ViZGV2
-LCAiRmFpbGVkIHRvIHJlc2V0IFBNVVxuIik7Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIHJldHVybiByZXQ7Cj4+ICsgICAgICAgICAgICAgICAgICAgICB9Cj4+ICsgICAgICAgICAg
-ICAgfQo+PiArICAgICB9Cj4+ICsKPj4gICAgICAgcmV0dXJuIDA7Cj4+ICB9Cj4+Cj4+Cj4KPgo+
-IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVh
-dSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+Cl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On 2017-07-05 08:08, Daniel Vetter wrote:
+> On Tue, Jul 04, 2017 at 12:36:56PM +0200, Peter Rosin wrote:
+>> Hi!
+>>
+>> While trying to get CLUT support for the atmel_hlcdc driver, and
+>> specifically for the emulated fbdev interface, I received some
+>> push-back that my feeble in-driver attempts should be solved
+>> by the core. This is my attempt to do it right.
+>>
+>> I have obviously not tested all of this with more than a compile,
+>> but patches 1 through 5 are enough to make the atmel-hlcdc driver
+>> do what I need. The rest is just lots of removals and cleanup made
+>> possible by the improved core.
+>>
+>> Please test, I would not be surprised if I have fouled up some
+>> bit-manipulation somewhere, or if I have misunderstood something
+>> about atomics...
+>>
+>> Changes since v2:
+>> - Added patch 1/16 which factors out pseudo-palette handling.
+>> - Removed the if (cmap->start + cmap->len < cmap->start)
+>>   sanity check on the assumption that the fbdev core handles it.
+>> - Added patch 4/16 which factors out atomic state and commit
+>>   handling from drm_atomic_helper_legacy_gamma_set to
+>>   drm_mode_gamma_set_ioctl.
+>> - Do one atomic commit for all affected crtc.
+>> - Removed a now obsolete note in include/drm/drm_crtc.h (ammended
+>>   the last patch).
+>> - Cc list is getting long, so I have redused the list for the
+>>   individual patches. If you would like to get the full series
+>>   (or nothing at all) for the next round (if that is needed) just
+>>   say so.
+> 
+> Is this still on top of my locking rework? I tried to apply patches 1-3,
+> but there's minor conflicts ...
+> -Daniel
+
+v3 has the same base as v2. I collected your locking rework sometime
+after june 21, you have perhaps changed things since? I saw an update
+of that dpms patch you Cc me, but figured there were no significant
+changes that I needed to handle since I didn't get the full set
+this time either. A bad assumption it seems...
+
+Anyway, the base I have for v3 (and v2) is linux next-20170621 plus
+the following locking rework commits (in reverse order):
+
+Author: Thierry Reding <treding@nvidia.com>
+Date: Wed Jun 21 20:28:15 2017 +0200
+Subject: drm/hisilicon: Remove custom FB helper deferred setup
+
+Author: Thierry Reding <treding@nvidia.com>
+Date: Wed Jun 21 20:28:14 2017 +0200
+Subject: drm/exynos: Remove custom FB helper deferred setup
+
+Author: Thierry Reding <treding@nvidia.com>
+Date: Wed Jun 21 20:28:13 2017 +0200
+Subject: drm/fb-helper: Support deferred setup
+
+Author: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed Jun 21 20:28:12 2017 +0200
+Subject: drm/fb-helper: Split dpms handling into legacy and atomic paths
+
+Author: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed Jun 21 20:28:11 2017 +0200
+Subject: drm/fb-helper: Stop using mode_config.mutex for internals
+
+Author: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed Jun 21 20:28:10 2017 +0200
+Subject: drm/fb-helper: Push locking into restore_fbdev_mode_atomic|legacy
+
+Author: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed Jun 21 20:28:09 2017 +0200
+Subject: drm/fb-helper: Push locking into pan_display_atomic|legacy
+
+Author: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed Jun 21 20:28:08 2017 +0200
+Subject: drm/fb-helper: Drop locking from the vsync wait ioctl code
+
+Author: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed Jun 21 20:28:07 2017 +0200
+Subject: drm/fb-helper: Push locking in fb_is_bound
+
+Author: Thierry Reding <treding@nvidia.com>
+Date: Wed Jun 21 20:28:06 2017 +0200
+Subject: drm/fb-helper: Add top-level lock
+
+Author: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed Jun 21 20:28:05 2017 +0200
+Subject: drm/i915: Drop FBDEV #ifdev in mst code
+
+Author: Thierry Reding <treding@nvidia.com>
+Date: Wed Jun 21 20:28:04 2017 +0200
+Subject: drm/fb-helper: Push down modeset lock into FB helpers
+
+Cheers,
+peda
