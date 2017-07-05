@@ -1,132 +1,152 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] secboot/acr352: reset PMU after secboot
-Date: Wed, 5 Jul 2017 11:23:47 +1000
-Message-ID: <85f35af5-8ecc-63be-cd26-6b1566d5b3b0@gmail.com>
-References: <20170704173523.5308-1-karolherbst@gmail.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH v3 00/16] improve the fb_setcmap helper
+Date: Wed, 5 Jul 2017 08:08:16 +0200
+Message-ID: <20170705060816.nwufo2m7cmthjopn@phenom.ffwll.local>
+References: <1499164632-5582-1-git-send-email-peda@axentia.se>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0309701790=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170704173523.5308-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <1499164632-5582-1-git-send-email-peda@axentia.se>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Peter Rosin <peda@axentia.se>
+Cc: linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Daniel Vetter <daniel.vetter@intel.com>, Boris Brezillon <boris.brezillon@free-electrons.com>, Thomas Hellstrom <thellstrom@vmware.com>, Sinclair Yeh <syeh@vmware.com>, Russell King <linux@armlinux.org.uk>, VMware Graphics <linux-graphics-maintainer@vmware.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org, Vincent Abriou <vincent.abriou@st.com>, amd-gfx@lists.freedesktop.org, Philippe Cornu <philippe.cornu@st.com>
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0309701790==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="0AtjoU1aJQEOETIWvKbpt3ncAsTnnK1kx"
+On Tue, Jul 04, 2017 at 12:36:56PM +0200, Peter Rosin wrote:
+> Hi!
+> 
+> While trying to get CLUT support for the atmel_hlcdc driver, and
+> specifically for the emulated fbdev interface, I received some
+> push-back that my feeble in-driver attempts should be solved
+> by the core. This is my attempt to do it right.
+> 
+> I have obviously not tested all of this with more than a compile,
+> but patches 1 through 5 are enough to make the atmel-hlcdc driver
+> do what I need. The rest is just lots of removals and cleanup made
+> possible by the improved core.
+> 
+> Please test, I would not be surprised if I have fouled up some
+> bit-manipulation somewhere, or if I have misunderstood something
+> about atomics...
+> 
+> Changes since v2:
+> - Added patch 1/16 which factors out pseudo-palette handling.
+> - Removed the if (cmap->start + cmap->len < cmap->start)
+>   sanity check on the assumption that the fbdev core handles it.
+> - Added patch 4/16 which factors out atomic state and commit
+>   handling from drm_atomic_helper_legacy_gamma_set to
+>   drm_mode_gamma_set_ioctl.
+> - Do one atomic commit for all affected crtc.
+> - Removed a now obsolete note in include/drm/drm_crtc.h (ammended
+>   the last patch).
+> - Cc list is getting long, so I have redused the list for the
+>   individual patches. If you would like to get the full series
+>   (or nothing at all) for the next round (if that is needed) just
+>   say so.
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---0AtjoU1aJQEOETIWvKbpt3ncAsTnnK1kx
-Content-Type: multipart/mixed; boundary="ttD2Xk2BMJJrmXC84ggHtatVliDdRGLWX";
- protected-headers="v1"
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Message-ID: <85f35af5-8ecc-63be-cd26-6b1566d5b3b0-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH] secboot/acr352: reset PMU after secboot
-References: <20170704173523.5308-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-In-Reply-To: <20170704173523.5308-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Is this still on top of my locking rework? I tried to apply patches 1-3,
+but there's minor conflicts ...
+-Daniel
 
---ttD2Xk2BMJJrmXC84ggHtatVliDdRGLWX
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+> 
+> Changes since v1:
+> 
+> - Rebased to next-20170621
+> - Split 1/11 into a preparatory patch, a cleanup patch and then
+>   the meat in 3/14.
+> - Handle pseudo-palette for FB_VISUAL_TRUECOLOR.
+> - Removed the empty .gamma_get/.gamma_set fb helpers from the
+>   armada driver that I had somehow managed to ignore but which
+>   0day found real quick.
+> - Be less judgemental on drivers only providing .gamma_get and
+>   .gamma_set, but no .load_lut. That's actually a valid thing
+>   to do if you only need pseudo-palette for FB_VISUAL_TRUECOLOR.
+> - Add a comment about colliding bitfields in the nouveau driver.
+> - Remove gamma_set/gamma_get declarations from the radeon driver
+>   (the definitions were removed in v1).
+> 
+> Cheers,
+> peda
+> 
+> Peter Rosin (16):
+>   drm/fb-helper: factor out pseudo-palette
+>   drm/fb-helper: keep the .gamma_store updated in drm_fb_helper_setcmap
+>   drm/fb-helper: remove drm_fb_helper_save_lut_atomic
+>   drm/color-mgmt: move atomic state/commit out from .gamma_set
+>   drm/fb-helper: do a generic fb_setcmap helper in terms of crtc
+>     .gamma_set
+>   drm: amd: remove dead code and pointless local lut storage
+>   drm: armada: remove dead empty functions
+>   drm: ast: remove dead code and pointless local lut storage
+>   drm: cirrus: remove dead code and pointless local lut storage
+>   drm: gma500: remove dead code and pointless local lut storage
+>   drm: i915: remove dead code and pointless local lut storage
+>   drm: mgag200: remove dead code and pointless local lut storage
+>   drm: nouveau: remove dead code and pointless local lut storage
+>   drm: radeon: remove dead code and pointless local lut storage
+>   drm: stm: remove dead code and pointless local lut storage
+>   drm: remove unused and redundant callbacks
+> 
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c      |  24 ----
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h    |   1 -
+>  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c      |  29 ++---
+>  drivers/gpu/drm/amd/amdgpu/dce_v11_0.c      |  29 ++---
+>  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c       |  29 ++---
+>  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c       |  29 ++---
+>  drivers/gpu/drm/amd/amdgpu/dce_virtual.c    |  25 +---
+>  drivers/gpu/drm/armada/armada_crtc.c        |  10 --
+>  drivers/gpu/drm/armada/armada_crtc.h        |   2 -
+>  drivers/gpu/drm/armada/armada_fbdev.c       |   2 -
+>  drivers/gpu/drm/ast/ast_drv.h               |   1 -
+>  drivers/gpu/drm/ast/ast_fb.c                |  20 ---
+>  drivers/gpu/drm/ast/ast_mode.c              |  28 +---
+>  drivers/gpu/drm/cirrus/cirrus_drv.h         |   8 --
+>  drivers/gpu/drm/cirrus/cirrus_fbdev.c       |   2 -
+>  drivers/gpu/drm/cirrus/cirrus_mode.c        |  73 +++--------
+>  drivers/gpu/drm/drm_atomic_helper.c         |  37 ++----
+>  drivers/gpu/drm/drm_color_mgmt.c            |  27 +++-
+>  drivers/gpu/drm/drm_fb_helper.c             | 195 +++++++++++++++++-----------
+>  drivers/gpu/drm/gma500/framebuffer.c        |  22 ----
+>  drivers/gpu/drm/gma500/gma_display.c        |  34 ++---
+>  drivers/gpu/drm/gma500/gma_display.h        |   2 +-
+>  drivers/gpu/drm/gma500/psb_intel_display.c  |   7 +-
+>  drivers/gpu/drm/gma500/psb_intel_drv.h      |   1 -
+>  drivers/gpu/drm/i915/intel_drv.h            |   1 -
+>  drivers/gpu/drm/i915/intel_fbdev.c          |  31 -----
+>  drivers/gpu/drm/mgag200/mgag200_drv.h       |   5 -
+>  drivers/gpu/drm/mgag200/mgag200_fb.c        |   2 -
+>  drivers/gpu/drm/mgag200/mgag200_mode.c      |  64 +++------
+>  drivers/gpu/drm/nouveau/dispnv04/crtc.c     |  28 ++--
+>  drivers/gpu/drm/nouveau/nouveau_crtc.h      |   3 -
+>  drivers/gpu/drm/nouveau/nouveau_fbcon.c     |  22 ----
+>  drivers/gpu/drm/nouveau/nv50_display.c      |  42 ++----
+>  drivers/gpu/drm/radeon/atombios_crtc.c      |   1 -
+>  drivers/gpu/drm/radeon/radeon_connectors.c  |   7 +-
+>  drivers/gpu/drm/radeon/radeon_display.c     |  73 +++++------
+>  drivers/gpu/drm/radeon/radeon_fb.c          |   2 -
+>  drivers/gpu/drm/radeon/radeon_legacy_crtc.c |   1 -
+>  drivers/gpu/drm/radeon/radeon_mode.h        |   4 -
+>  drivers/gpu/drm/stm/ltdc.c                  |  12 --
+>  drivers/gpu/drm/stm/ltdc.h                  |   1 -
+>  drivers/gpu/drm/vc4/vc4_crtc.c              |   2 +-
+>  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c         |   2 +-
+>  drivers/gpu/drm/vmwgfx/vmwgfx_kms.h         |   2 +-
+>  include/drm/drm_atomic_helper.h             |   2 +-
+>  include/drm/drm_crtc.h                      |  11 +-
+>  include/drm/drm_fb_helper.h                 |  32 -----
+>  include/drm/drm_modeset_helper_vtables.h    |  16 ---
+>  48 files changed, 301 insertions(+), 702 deletions(-)
+> 
+> -- 
+> 2.1.4
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-On 07/05/2017 03:35 AM, Karol Herbst wrote:
-> This is needed for using Nouveaus PMU image after performing secboot. T=
-his will
-> be helpfull for Maxwell2 reclocking on boards without externally contro=
-lled
-> fans like on most laptops or fanless boards.
-I get the idea in principal, but have some concerns:
-
-- Does this screw up re-running secboot during channel recovery (ie.
-page fault on gr)?
-- What about the running of the unload blob?
-
-It makes me angry that we even have to think about doing stuff like this!=
- :P
-
-Ben.
-
->=20
-> Signed-off-by: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  drm/nouveau/nvkm/subdev/secboot/acr_r352.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
->=20
-> diff --git a/drm/nouveau/nvkm/subdev/secboot/acr_r352.c b/drm/nouveau/n=
-vkm/subdev/secboot/acr_r352.c
-> index a7213542..00095ef8 100644
-> --- a/drm/nouveau/nvkm/subdev/secboot/acr_r352.c
-> +++ b/drm/nouveau/nvkm/subdev/secboot/acr_r352.c
-> @@ -924,6 +924,19 @@ acr_r352_bootstrap(struct acr_r352 *acr, struct nv=
-km_secboot *sb)
->  		}
->  	}
-> =20
-> +	/* reset the PMU if needed */
-> +	if (acr->base.boot_falcon =3D=3D NVKM_SECBOOT_FALCON_PMU &&
-> +	    !nvkm_secboot_is_managed(sb, NVKM_SECBOOT_FALCON_PMU)) {
-> +		struct nvkm_pmu *pmu =3D subdev->device->pmu;
-> +		if (pmu) {
-> +			ret =3D nvkm_subdev_init(&pmu->subdev);
-> +			if (ret < 0) {
-> +				nvkm_error(subdev, "Failed to reset PMU\n");
-> +				return ret;
-> +			}
-> +		}
-> +	}
-> +
->  	return 0;
->  }
-> =20
->=20
-
-
---ttD2Xk2BMJJrmXC84ggHtatVliDdRGLWX--
-
---0AtjoU1aJQEOETIWvKbpt3ncAsTnnK1kx
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEETp/uv2nr9kIVth0/dgucYlCSkfsFAllcP6MACgkQdgucYlCS
-kfuThQ//ZNNoRQoppxIY60zNUYwzWXdnSGRUt/zRp8yPpcOXx7hcE8IxZBZk8SBh
-h4kdcFFkVVDSqneynhspIjNHIOdAoWhZxohSeGgAaebFkTuceS3Pv2puCzaEIRx3
-RPAkZwD16Gz4aLnaangn/Ctl1Imk9J82MjMvCWBC7fXpeMQuhJv09DQcSoCU7mkx
-QRZ2UJ4oVxhMSwElWjvBTSnaX+FQAmlOLWbR1bPRqMFAIBYyGpdRBkHkpm7wJRw8
-BIrNnU58dvPArwlB8hQX2d7ALYe/x6wC4nC1KIUggLVpfkm19OoyyBepR6bMukXc
-gnuo+PG/a+P4RyyE8CLW/YndqGN5BJ7iSpUf88hUkYVRO4qcBDkAlkMKw/Nw+RXX
-JJIksT1Eo5ZcdavK5b9DOwknJQSu1i2WqM8xEBuPf/4/AAoofQJ1POp7PhGeiBQ8
-hCYi6KQ/UTsv0mNM1xEbY9eYq7AjXX0nLcwDVfO/Itoi2/DGeOjiR1xM45daMoTb
-nb5e0yoVBdHQxZ3+2dBJIPkTYNnMxDgT7PIe5gnffIU2D2mv5+pbRJq/hg0VZAtj
-yfGIVVWMH3BlHhDd2pN4xbSM/lbzuOWgWHvCsn1Px5hwubU/QVjcjQevEsf5rd66
-5xNj6AHLi5ettJeEu6+F+hG70nlsQwZfv+wSbRTHBlnVdUZhUTk=
-=EgTw
------END PGP SIGNATURE-----
-
---0AtjoU1aJQEOETIWvKbpt3ncAsTnnK1kx--
-
---===============0309701790==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0309701790==--
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
