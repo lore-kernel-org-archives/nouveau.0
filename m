@@ -1,152 +1,69 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH v3 00/16] improve the fb_setcmap helper
-Date: Wed, 5 Jul 2017 08:08:16 +0200
-Message-ID: <20170705060816.nwufo2m7cmthjopn@phenom.ffwll.local>
-References: <1499164632-5582-1-git-send-email-peda@axentia.se>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] secboot/acr352: reset PMU after secboot
+Date: Wed, 5 Jul 2017 08:57:44 +0200
+Message-ID: <CAEXux-Yp2+0WUhgvFDvQ2RpLnwbFso=GWfKCzX680fdB3UVwng@mail.gmail.com>
+References: <20170704173523.5308-1-karolherbst@gmail.com>
+ <85f35af5-8ecc-63be-cd26-6b1566d5b3b0@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <1499164632-5582-1-git-send-email-peda@axentia.se>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Peter Rosin <peda@axentia.se>
-Cc: linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Daniel Vetter <daniel.vetter@intel.com>, Boris Brezillon <boris.brezillon@free-electrons.com>, Thomas Hellstrom <thellstrom@vmware.com>, Sinclair Yeh <syeh@vmware.com>, Russell King <linux@armlinux.org.uk>, VMware Graphics <linux-graphics-maintainer@vmware.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org, Vincent Abriou <vincent.abriou@st.com>, amd-gfx@lists.freedesktop.org, Philippe Cornu <philippe.cornu@st.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <85f35af5-8ecc-63be-cd26-6b1566d5b3b0-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jul 04, 2017 at 12:36:56PM +0200, Peter Rosin wrote:
-> Hi!
-> 
-> While trying to get CLUT support for the atmel_hlcdc driver, and
-> specifically for the emulated fbdev interface, I received some
-> push-back that my feeble in-driver attempts should be solved
-> by the core. This is my attempt to do it right.
-> 
-> I have obviously not tested all of this with more than a compile,
-> but patches 1 through 5 are enough to make the atmel-hlcdc driver
-> do what I need. The rest is just lots of removals and cleanup made
-> possible by the improved core.
-> 
-> Please test, I would not be surprised if I have fouled up some
-> bit-manipulation somewhere, or if I have misunderstood something
-> about atomics...
-> 
-> Changes since v2:
-> - Added patch 1/16 which factors out pseudo-palette handling.
-> - Removed the if (cmap->start + cmap->len < cmap->start)
->   sanity check on the assumption that the fbdev core handles it.
-> - Added patch 4/16 which factors out atomic state and commit
->   handling from drm_atomic_helper_legacy_gamma_set to
->   drm_mode_gamma_set_ioctl.
-> - Do one atomic commit for all affected crtc.
-> - Removed a now obsolete note in include/drm/drm_crtc.h (ammended
->   the last patch).
-> - Cc list is getting long, so I have redused the list for the
->   individual patches. If you would like to get the full series
->   (or nothing at all) for the next round (if that is needed) just
->   say so.
-
-Is this still on top of my locking rework? I tried to apply patches 1-3,
-but there's minor conflicts ...
--Daniel
-
-> 
-> Changes since v1:
-> 
-> - Rebased to next-20170621
-> - Split 1/11 into a preparatory patch, a cleanup patch and then
->   the meat in 3/14.
-> - Handle pseudo-palette for FB_VISUAL_TRUECOLOR.
-> - Removed the empty .gamma_get/.gamma_set fb helpers from the
->   armada driver that I had somehow managed to ignore but which
->   0day found real quick.
-> - Be less judgemental on drivers only providing .gamma_get and
->   .gamma_set, but no .load_lut. That's actually a valid thing
->   to do if you only need pseudo-palette for FB_VISUAL_TRUECOLOR.
-> - Add a comment about colliding bitfields in the nouveau driver.
-> - Remove gamma_set/gamma_get declarations from the radeon driver
->   (the definitions were removed in v1).
-> 
-> Cheers,
-> peda
-> 
-> Peter Rosin (16):
->   drm/fb-helper: factor out pseudo-palette
->   drm/fb-helper: keep the .gamma_store updated in drm_fb_helper_setcmap
->   drm/fb-helper: remove drm_fb_helper_save_lut_atomic
->   drm/color-mgmt: move atomic state/commit out from .gamma_set
->   drm/fb-helper: do a generic fb_setcmap helper in terms of crtc
->     .gamma_set
->   drm: amd: remove dead code and pointless local lut storage
->   drm: armada: remove dead empty functions
->   drm: ast: remove dead code and pointless local lut storage
->   drm: cirrus: remove dead code and pointless local lut storage
->   drm: gma500: remove dead code and pointless local lut storage
->   drm: i915: remove dead code and pointless local lut storage
->   drm: mgag200: remove dead code and pointless local lut storage
->   drm: nouveau: remove dead code and pointless local lut storage
->   drm: radeon: remove dead code and pointless local lut storage
->   drm: stm: remove dead code and pointless local lut storage
->   drm: remove unused and redundant callbacks
-> 
->  drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c      |  24 ----
->  drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h    |   1 -
->  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c      |  29 ++---
->  drivers/gpu/drm/amd/amdgpu/dce_v11_0.c      |  29 ++---
->  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c       |  29 ++---
->  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c       |  29 ++---
->  drivers/gpu/drm/amd/amdgpu/dce_virtual.c    |  25 +---
->  drivers/gpu/drm/armada/armada_crtc.c        |  10 --
->  drivers/gpu/drm/armada/armada_crtc.h        |   2 -
->  drivers/gpu/drm/armada/armada_fbdev.c       |   2 -
->  drivers/gpu/drm/ast/ast_drv.h               |   1 -
->  drivers/gpu/drm/ast/ast_fb.c                |  20 ---
->  drivers/gpu/drm/ast/ast_mode.c              |  28 +---
->  drivers/gpu/drm/cirrus/cirrus_drv.h         |   8 --
->  drivers/gpu/drm/cirrus/cirrus_fbdev.c       |   2 -
->  drivers/gpu/drm/cirrus/cirrus_mode.c        |  73 +++--------
->  drivers/gpu/drm/drm_atomic_helper.c         |  37 ++----
->  drivers/gpu/drm/drm_color_mgmt.c            |  27 +++-
->  drivers/gpu/drm/drm_fb_helper.c             | 195 +++++++++++++++++-----------
->  drivers/gpu/drm/gma500/framebuffer.c        |  22 ----
->  drivers/gpu/drm/gma500/gma_display.c        |  34 ++---
->  drivers/gpu/drm/gma500/gma_display.h        |   2 +-
->  drivers/gpu/drm/gma500/psb_intel_display.c  |   7 +-
->  drivers/gpu/drm/gma500/psb_intel_drv.h      |   1 -
->  drivers/gpu/drm/i915/intel_drv.h            |   1 -
->  drivers/gpu/drm/i915/intel_fbdev.c          |  31 -----
->  drivers/gpu/drm/mgag200/mgag200_drv.h       |   5 -
->  drivers/gpu/drm/mgag200/mgag200_fb.c        |   2 -
->  drivers/gpu/drm/mgag200/mgag200_mode.c      |  64 +++------
->  drivers/gpu/drm/nouveau/dispnv04/crtc.c     |  28 ++--
->  drivers/gpu/drm/nouveau/nouveau_crtc.h      |   3 -
->  drivers/gpu/drm/nouveau/nouveau_fbcon.c     |  22 ----
->  drivers/gpu/drm/nouveau/nv50_display.c      |  42 ++----
->  drivers/gpu/drm/radeon/atombios_crtc.c      |   1 -
->  drivers/gpu/drm/radeon/radeon_connectors.c  |   7 +-
->  drivers/gpu/drm/radeon/radeon_display.c     |  73 +++++------
->  drivers/gpu/drm/radeon/radeon_fb.c          |   2 -
->  drivers/gpu/drm/radeon/radeon_legacy_crtc.c |   1 -
->  drivers/gpu/drm/radeon/radeon_mode.h        |   4 -
->  drivers/gpu/drm/stm/ltdc.c                  |  12 --
->  drivers/gpu/drm/stm/ltdc.h                  |   1 -
->  drivers/gpu/drm/vc4/vc4_crtc.c              |   2 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c         |   2 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_kms.h         |   2 +-
->  include/drm/drm_atomic_helper.h             |   2 +-
->  include/drm/drm_crtc.h                      |  11 +-
->  include/drm/drm_fb_helper.h                 |  32 -----
->  include/drm/drm_modeset_helper_vtables.h    |  16 ---
->  48 files changed, 301 insertions(+), 702 deletions(-)
-> 
-> -- 
-> 2.1.4
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+T24gV2VkLCBKdWwgNSwgMjAxNyBhdCAzOjIzIEFNLCBCZW4gU2tlZ2dzIDxza2VnZ3NiQGdtYWls
+LmNvbT4gd3JvdGU6Cj4gT24gMDcvMDUvMjAxNyAwMzozNSBBTSwgS2Fyb2wgSGVyYnN0IHdyb3Rl
+Ogo+PiBUaGlzIGlzIG5lZWRlZCBmb3IgdXNpbmcgTm91dmVhdXMgUE1VIGltYWdlIGFmdGVyIHBl
+cmZvcm1pbmcgc2VjYm9vdC4gVGhpcyB3aWxsCj4+IGJlIGhlbHBmdWxsIGZvciBNYXh3ZWxsMiBy
+ZWNsb2NraW5nIG9uIGJvYXJkcyB3aXRob3V0IGV4dGVybmFsbHkgY29udHJvbGxlZAo+PiBmYW5z
+IGxpa2Ugb24gbW9zdCBsYXB0b3BzIG9yIGZhbmxlc3MgYm9hcmRzLgo+IEkgZ2V0IHRoZSBpZGVh
+IGluIHByaW5jaXBhbCwgYnV0IGhhdmUgc29tZSBjb25jZXJuczoKPgo+IC0gRG9lcyB0aGlzIHNj
+cmV3IHVwIHJlLXJ1bm5pbmcgc2VjYm9vdCBkdXJpbmcgY2hhbm5lbCByZWNvdmVyeSAoaWUuCj4g
+cGFnZSBmYXVsdCBvbiBncik/Cj4gLSBXaGF0IGFib3V0IHRoZSBydW5uaW5nIG9mIHRoZSB1bmxv
+YWQgYmxvYj8KPgo+IEl0IG1ha2VzIG1lIGFuZ3J5IHRoYXQgd2UgZXZlbiBoYXZlIHRvIHRoaW5r
+IGFib3V0IGRvaW5nIHN0dWZmIGxpa2UgdGhpcyEgOlAKPgo+IEJlbi4KPgoKWWVhaCBJIGtub3cs
+IGJ1dCB0aGlzIHdhcyB0aGUgYmVzdCBJIGNhbWUgdXAgd2l0aC4gSW4gZWFybGllciBhdHRlbXB0
+cwpJIG9ubHkgY2FtZSB1cCB3aXRoIHdvcnNlIHNvbHV0aW9ucy4KCkkgdGhpbmsgaXQncyB0ZWNo
+bmljYWxseSBmaW5lLCBiZWNhdXNlIG52a21fcG11X2luaXQgY2FsbHMKbnZrbV9wbXVfcmVzZXQg
+YW5kIHBtdS0+ZnVuYy0+aW5pdC4gSW4gcHJpb3IgdmVyc2lvbnMgSSd2ZSBhbHNvIGFkZGVkCmEg
+ZmluaSBjYWxsLCBidXQgdGhpcyBtYWRlIG5vdXZlYXUgdW5oYXBweSB3aGVuZXZlciBJIHJlY2xv
+Y2tlZCB0aGUKR1BVIGFuZCByZWxvYWRlZCBub3V2ZWF1IGFmdGVyd2FyZHMuIEkgY291bGQgZG8g
+c29tZSBtb3JlIHRlc3RpbmcKdGhvdWdoLgoKR29vZCB0aGluZyBpcyB0aGF0IHRoaXMgaXMgb25s
+eSBhIHByb2JsZW0gb24gR00yMFggR1BVcyBhbmQgd2Ugb25seQpuZWVkIGEgcHJvcGVyIHNvbHV0
+aW9uIGZvciB0aG9zZS4KCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJzdCA8a2Fyb2xo
+ZXJic3RAZ21haWwuY29tPgo+PiAtLS0KPj4gIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jv
+b3QvYWNyX3IzNTIuYyB8IDEzICsrKysrKysrKysrKysKPj4gIDEgZmlsZSBjaGFuZ2VkLCAxMyBp
+bnNlcnRpb25zKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9z
+ZWNib290L2Fjcl9yMzUyLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2Fjcl9y
+MzUyLmMKPj4gaW5kZXggYTcyMTM1NDIuLjAwMDk1ZWY4IDEwMDY0NAo+PiAtLS0gYS9kcm0vbm91
+dmVhdS9udmttL3N1YmRldi9zZWNib290L2Fjcl9yMzUyLmMKPj4gKysrIGIvZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvc2VjYm9vdC9hY3JfcjM1Mi5jCj4+IEBAIC05MjQsNiArOTI0LDE5IEBAIGFj
+cl9yMzUyX2Jvb3RzdHJhcChzdHJ1Y3QgYWNyX3IzNTIgKmFjciwgc3RydWN0IG52a21fc2VjYm9v
+dCAqc2IpCj4+ICAgICAgICAgICAgICAgfQo+PiAgICAgICB9Cj4+Cj4+ICsgICAgIC8qIHJlc2V0
+IHRoZSBQTVUgaWYgbmVlZGVkICovCj4+ICsgICAgIGlmIChhY3ItPmJhc2UuYm9vdF9mYWxjb24g
+PT0gTlZLTV9TRUNCT09UX0ZBTENPTl9QTVUgJiYKPj4gKyAgICAgICAgICFudmttX3NlY2Jvb3Rf
+aXNfbWFuYWdlZChzYiwgTlZLTV9TRUNCT09UX0ZBTENPTl9QTVUpKSB7Cj4+ICsgICAgICAgICAg
+ICAgc3RydWN0IG52a21fcG11ICpwbXUgPSBzdWJkZXYtPmRldmljZS0+cG11Owo+PiArICAgICAg
+ICAgICAgIGlmIChwbXUpIHsKPj4gKyAgICAgICAgICAgICAgICAgICAgIHJldCA9IG52a21fc3Vi
+ZGV2X2luaXQoJnBtdS0+c3ViZGV2KTsKPj4gKyAgICAgICAgICAgICAgICAgICAgIGlmIChyZXQg
+PCAwKSB7Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG52a21fZXJyb3Ioc3ViZGV2
+LCAiRmFpbGVkIHRvIHJlc2V0IFBNVVxuIik7Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIHJldHVybiByZXQ7Cj4+ICsgICAgICAgICAgICAgICAgICAgICB9Cj4+ICsgICAgICAgICAg
+ICAgfQo+PiArICAgICB9Cj4+ICsKPj4gICAgICAgcmV0dXJuIDA7Cj4+ICB9Cj4+Cj4+Cj4KPgo+
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVh
+dSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+Cl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
