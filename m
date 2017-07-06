@@ -1,129 +1,232 @@
 From: Peter Rosin <peda@axentia.se>
-Subject: [PATCH v4 00/14] improve the fb_setcmap helper
-Date: Thu,  6 Jul 2017 14:20:34 +0200
-Message-ID: <1499343648-29695-1-git-send-email-peda@axentia.se>
+Subject: [PATCH v4 11/14] drm: nouveau: remove dead code and pointless local lut storage
+Date: Thu,  6 Jul 2017 14:20:45 +0200
+Message-ID: <1499343648-29695-12-git-send-email-peda@axentia.se>
+References: <1499343648-29695-1-git-send-email-peda@axentia.se>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+Content-Type: text/plain
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1499343648-29695-1-git-send-email-peda@axentia.se>
+Sender: linux-kernel-owner@vger.kernel.org
 To: linux-kernel@vger.kernel.org
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Daniel Vetter <daniel.vetter@intel.com>, Boris Brezillon <boris.brezillon@free-electrons.com>, Russell King <linux@armlinux.org.uk>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org, Vincent Abriou <vincent.abriou@st.com>, Philippe Cornu <philippe.cornu@st.com>, Peter Rosin <peda@axentia.se>, Yannick Fertre <yannick.fertre@st.com>, Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Gerd Hoffmann <kraxel@redhat.com>
+Cc: Peter Rosin <peda@axentia.se>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Sean Paul <seanpaul@chromium.org>, Boris Brezillon <boris.brezillon@free-electrons.com>
 List-Id: nouveau.vger.kernel.org
 
-SGkhCgpXaGlsZSB0cnlpbmcgdG8gZ2V0IENMVVQgc3VwcG9ydCBmb3IgdGhlIGF0bWVsX2hsY2Rj
-IGRyaXZlciwgYW5kCnNwZWNpZmljYWxseSBmb3IgdGhlIGVtdWxhdGVkIGZiZGV2IGludGVyZmFj
-ZSwgSSByZWNlaXZlZCBzb21lCnB1c2gtYmFjayB0aGF0IG15IGZlZWJsZSBpbi1kcml2ZXIgYXR0
-ZW1wdHMgc2hvdWxkIGJlIHNvbHZlZApieSB0aGUgY29yZS4gVGhpcyBpcyBteSBhdHRlbXB0IHRv
-IGRvIGl0IHJpZ2h0LgoKSSBoYXZlIG9idmlvdXNseSBub3QgdGVzdGVkIGFsbCBvZiB0aGlzIHdp
-dGggbW9yZSB0aGFuIGEgY29tcGlsZSwKYnV0IHBhdGNoZXMgMSBhbmQgMyBhcmUgZW5vdWdoIHRv
-IG1ha2UgdGhlIGF0bWVsLWhsY2RjIGRyaXZlcgpkbyB3aGF0IEkgbmVlZC4gVGhlIHJlc3QgaXMg
-anVzdCBsb3RzIG9mIHJlbW92YWxzIGFuZCBjbGVhbnVwIG1hZGUKcG9zc2libGUgYnkgdGhlIG90
-aGVyIGltcHJvdmVtZW50cy4KClBsZWFzZSB0ZXN0LCBJIHdvdWxkIG5vdCBiZSBzdXJwcmlzZWQg
-aWYgSSBoYXZlIGZvdWxlZCB1cCBzb21lCmJpdC1tYW5pcHVsYXRpb24gc29tZXdoZXJlLCBvciBp
-ZiBJIGhhdmUgbWlzdW5kZXJzdG9vZCBzb21ldGhpbmcKYWJvdXQgYXRvbWljcy4uLgoKQ2hhbmdl
-cyBzaW5jZSB2MzoKLSBSZWJhc2VkIG9udG8gZHJtLW1pc2MtbmV4dCBhbmQgZHJvcHBlZCBwYXRj
-aGVzIDEtMyBmcm9tIHYzLCBzaW5jZQogIHRoZXkgYXJlIGFscmVhZHkgbWVyZ2VkLgotIERyb3Bw
-ZWQgdGhlIHYzIHBhdGNoIDQvMTYgKCJkcm0vY29sb3ItbWdtdDogbW92ZSBhdG9taWMgc3RhdGUv
-Y29tbWl0CiAgb3V0IGZyb20gLmdhbW1hX3NldCIpIHNpbmNlIHRoZSBhdG9taWMgc2V0Y21hcCBu
-byBsb25nZXIgdXNlcwogIHRoZSBjcnRjIC5nYW1tYV9zZXQgY2FsbGJhY2suCi0gQWRkZWQgcGF0
-Y2ggMS8xNCB3aGljaCBleHBvcnRzIGRybV9hdG9taWNfcmVwbGFjZV9wcm9wZXJ0eV9ibG9iLi4u
-Ci0gLi4uYW5kIHBhdGNoIDIvMTQgd2hpY2ggdXNlcyB0aGlzIG5ldyBleHBvcnQgdG8gc2ltcGxp
-ZnkKICBkcm1fYXRvbWljX2hlbHBlcl9sZWdhY3lfZ2FtbWFfc2V0LgotIEJpZyBjaGFuZ2VzIHRv
-IHBhdGNoIDMvMTQgKHdhcyA1LzE2IGluIHYzKS4gSXQgaGFkIHZhcmlvdXMgbG9ja2luZwogIGlz
-c3VlcyBhbmQgdGhlIGF0b21pYyBzZXRjbWFwIGlzIHJhdGhlciBkaWZmZXJlbnQuCgpDaGFuZ2Vz
-IHNpbmNlIHYyOgotIEFkZGVkIHBhdGNoIDEvMTYgd2hpY2ggZmFjdG9ycyBvdXQgcHNldWRvLXBh
-bGV0dGUgaGFuZGxpbmcuCi0gUmVtb3ZlZCB0aGUgaWYgKGNtYXAtPnN0YXJ0ICsgY21hcC0+bGVu
-IDwgY21hcC0+c3RhcnQpCiAgc2FuaXR5IGNoZWNrIG9uIHRoZSBhc3N1bXB0aW9uIHRoYXQgdGhl
-IGZiZGV2IGNvcmUgaGFuZGxlcyBpdC4KLSBBZGRlZCBwYXRjaCA0LzE2IHdoaWNoIGZhY3RvcnMg
-b3V0IGF0b21pYyBzdGF0ZSBhbmQgY29tbWl0CiAgaGFuZGxpbmcgZnJvbSBkcm1fYXRvbWljX2hl
-bHBlcl9sZWdhY3lfZ2FtbWFfc2V0IHRvCiAgZHJtX21vZGVfZ2FtbWFfc2V0X2lvY3RsLgotIERv
-IG9uZSBhdG9taWMgY29tbWl0IGZvciBhbGwgYWZmZWN0ZWQgY3J0Yy4KLSBSZW1vdmVkIGEgbm93
-IG9ic29sZXRlIG5vdGUgaW4gaW5jbHVkZS9kcm0vZHJtX2NydGMuaCAoYW1tZW5kZWQKICB0aGUg
-bGFzdCBwYXRjaCkuCi0gQ2MgbGlzdCBpcyBnZXR0aW5nIGxvbmcsIHNvIEkgaGF2ZSByZWR1c2Vk
-IHRoZSBsaXN0IGZvciB0aGUKICBpbmRpdmlkdWFsIHBhdGNoZXMuIElmIHlvdSB3b3VsZCBsaWtl
-IHRvIGdldCB0aGUgZnVsbCBzZXJpZXMKICAob3Igbm90aGluZyBhdCBhbGwpIGZvciB0aGUgbmV4
-dCByb3VuZCAoaWYgdGhhdCBpcyBuZWVkZWQpIGp1c3QKICBzYXkgc28uCgpDaGFuZ2VzIHNpbmNl
-IHYxOgoKLSBSZWJhc2VkIHRvIG5leHQtMjAxNzA2MjEKLSBTcGxpdCAxLzExIGludG8gYSBwcmVw
-YXJhdG9yeSBwYXRjaCwgYSBjbGVhbnVwIHBhdGNoIGFuZCB0aGVuCiAgdGhlIG1lYXQgaW4gMy8x
-NC4KLSBIYW5kbGUgcHNldWRvLXBhbGV0dGUgZm9yIEZCX1ZJU1VBTF9UUlVFQ09MT1IuCi0gUmVt
-b3ZlZCB0aGUgZW1wdHkgLmdhbW1hX2dldC8uZ2FtbWFfc2V0IGZiIGhlbHBlcnMgZnJvbSB0aGUK
-ICBhcm1hZGEgZHJpdmVyIHRoYXQgSSBoYWQgc29tZWhvdyBtYW5hZ2VkIHRvIGlnbm9yZSBidXQg
-d2hpY2gKICAwZGF5IGZvdW5kIHJlYWwgcXVpY2suCi0gQmUgbGVzcyBqdWRnZW1lbnRhbCBvbiBk
-cml2ZXJzIG9ubHkgcHJvdmlkaW5nIC5nYW1tYV9nZXQgYW5kCiAgLmdhbW1hX3NldCwgYnV0IG5v
-IC5sb2FkX2x1dC4gVGhhdCdzIGFjdHVhbGx5IGEgdmFsaWQgdGhpbmcKICB0byBkbyBpZiB5b3Ug
-b25seSBuZWVkIHBzZXVkby1wYWxldHRlIGZvciBGQl9WSVNVQUxfVFJVRUNPTE9SLgotIEFkZCBh
-IGNvbW1lbnQgYWJvdXQgY29sbGlkaW5nIGJpdGZpZWxkcyBpbiB0aGUgbm91dmVhdSBkcml2ZXIu
-Ci0gUmVtb3ZlIGdhbW1hX3NldC9nYW1tYV9nZXQgZGVjbGFyYXRpb25zIGZyb20gdGhlIHJhZGVv
-biBkcml2ZXIKICAodGhlIGRlZmluaXRpb25zIHdlcmUgcmVtb3ZlZCBpbiB2MSkuCgpDaGVlcnMs
-CnBlZGEKClBldGVyIFJvc2luICgxNCk6CiAgZHJtL2F0b21pYzogZXhwb3J0IGRybV9hdG9taWNf
-cmVwbGFjZV9wcm9wZXJ0eV9ibG9iCiAgZHJtL2F0b21pYy1oZWxwZXI6IHVwZGF0ZSBsdXQgcHJv
-cHMgZGlyZWN0bHkgaW4gLi4uX2xlZ2FjeV9nYW1tYV9zZXQKICBkcm0vZmItaGVscGVyOiBzZXBh
-cmF0ZSB0aGUgZmJfc2V0Y21hcCBoZWxwZXIgaW50byBhdG9taWMgYW5kIGxlZ2FjeQogICAgcGF0
-aHMKICBkcm06IGFtZDogcmVtb3ZlIGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxvY2FsIGx1dCBz
-dG9yYWdlCiAgZHJtOiBhcm1hZGE6IHJlbW92ZSBkZWFkIGVtcHR5IGZ1bmN0aW9ucwogIGRybTog
-YXN0OiByZW1vdmUgZGVhZCBjb2RlIGFuZCBwb2ludGxlc3MgbG9jYWwgbHV0IHN0b3JhZ2UKICBk
-cm06IGNpcnJ1czogcmVtb3ZlIGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxvY2FsIGx1dCBzdG9y
-YWdlCiAgZHJtOiBnbWE1MDA6IHJlbW92ZSBkZWFkIGNvZGUgYW5kIHBvaW50bGVzcyBsb2NhbCBs
-dXQgc3RvcmFnZQogIGRybTogaTkxNTogcmVtb3ZlIGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxv
-Y2FsIGx1dCBzdG9yYWdlCiAgZHJtOiBtZ2FnMjAwOiByZW1vdmUgZGVhZCBjb2RlIGFuZCBwb2lu
-dGxlc3MgbG9jYWwgbHV0IHN0b3JhZ2UKICBkcm06IG5vdXZlYXU6IHJlbW92ZSBkZWFkIGNvZGUg
-YW5kIHBvaW50bGVzcyBsb2NhbCBsdXQgc3RvcmFnZQogIGRybTogcmFkZW9uOiByZW1vdmUgZGVh
-ZCBjb2RlIGFuZCBwb2ludGxlc3MgbG9jYWwgbHV0IHN0b3JhZ2UKICBkcm06IHN0bTogcmVtb3Zl
-IGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxvY2FsIGx1dCBzdG9yYWdlCiAgZHJtOiByZW1vdmUg
-dW51c2VkIGFuZCByZWR1bmRhbnQgY2FsbGJhY2tzCgogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvYW1kZ3B1X2ZiLmMgICAgICB8ICAyNCAtLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
-L2FtZGdwdV9tb2RlLmggICAgfCAgIDEgLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZGNl
-X3YxMF8wLmMgICAgICB8ICAyNyArLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2Vf
-djExXzAuYyAgICAgIHwgIDI3ICstLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2RjZV92
-Nl8wLmMgICAgICAgfCAgMjcgKy0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3Y4
-XzAuYyAgICAgICB8ICAyNyArLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2Vfdmly
-dHVhbC5jICAgIHwgIDIzIC0tLQogZHJpdmVycy9ncHUvZHJtL2FybWFkYS9hcm1hZGFfY3J0Yy5j
-ICAgICAgICB8ICAxMCAtLQogZHJpdmVycy9ncHUvZHJtL2FybWFkYS9hcm1hZGFfY3J0Yy5oICAg
-ICAgICB8ICAgMiAtCiBkcml2ZXJzL2dwdS9kcm0vYXJtYWRhL2FybWFkYV9mYmRldi5jICAgICAg
-IHwgICAyIC0KIGRyaXZlcnMvZ3B1L2RybS9hc3QvYXN0X2Rydi5oICAgICAgICAgICAgICAgfCAg
-IDEgLQogZHJpdmVycy9ncHUvZHJtL2FzdC9hc3RfZmIuYyAgICAgICAgICAgICAgICB8ICAyMCAt
-LS0KIGRyaXZlcnMvZ3B1L2RybS9hc3QvYXN0X21vZGUuYyAgICAgICAgICAgICAgfCAgMjYgKy0t
-LQogZHJpdmVycy9ncHUvZHJtL2NpcnJ1cy9jaXJydXNfZHJ2LmggICAgICAgICB8ICAgOCAtCiBk
-cml2ZXJzL2dwdS9kcm0vY2lycnVzL2NpcnJ1c19mYmRldi5jICAgICAgIHwgICAyIC0KIGRyaXZl
-cnMvZ3B1L2RybS9jaXJydXMvY2lycnVzX21vZGUuYyAgICAgICAgfCAgNzEgKystLS0tLS0tCiBk
-cml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pYy5jICAgICAgICAgICAgICAgIHwgIDE3ICstCiBkcml2
-ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYyAgICAgICAgIHwgIDIzICstLQogZHJpdmVy
-cy9ncHUvZHJtL2RybV9mYl9oZWxwZXIuYyAgICAgICAgICAgICB8IDIzMiArKysrKysrKysrKysr
-KysrKysrLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vZ21hNTAwL2ZyYW1lYnVmZmVyLmMgICAg
-ICAgIHwgIDIyIC0tLQogZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9nbWFfZGlzcGxheS5jICAgICAg
-ICB8ICAzMiArKy0tCiBkcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9pbnRlbF9kaXNwbGF5LmMg
-IHwgICA3ICstCiBkcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9pbnRlbF9kcnYuaCAgICAgIHwg
-ICAxIC0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rydi5oICAgICAgICAgICAgfCAgIDEg
-LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZmJkZXYuYyAgICAgICAgICB8ICAzMSAtLS0t
-CiBkcml2ZXJzL2dwdS9kcm0vbWdhZzIwMC9tZ2FnMjAwX2Rydi5oICAgICAgIHwgICA1IC0KIGRy
-aXZlcnMvZ3B1L2RybS9tZ2FnMjAwL21nYWcyMDBfZmIuYyAgICAgICAgfCAgIDIgLQogZHJpdmVy
-cy9ncHUvZHJtL21nYWcyMDAvbWdhZzIwMF9tb2RlLmMgICAgICB8ICA2MiArKy0tLS0tLQogZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvY3J0Yy5jICAgICB8ICAyNiArKy0tCiBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2NydGMuaCAgICAgIHwgICAzIC0KIGRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYyAgICAgfCAgMjIgLS0tCiBkcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYyAgICAgIHwgIDQwICsrLS0tCiBkcml2ZXJzL2dw
-dS9kcm0vcmFkZW9uL2F0b21iaW9zX2NydGMuYyAgICAgIHwgICAxIC0KIGRyaXZlcnMvZ3B1L2Ry
-bS9yYWRlb24vcmFkZW9uX2Nvbm5lY3RvcnMuYyAgfCAgIDcgKy0KIGRyaXZlcnMvZ3B1L2RybS9y
-YWRlb24vcmFkZW9uX2Rpc3BsYXkuYyAgICAgfCAgNzEgKysrKy0tLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vcmFkZW9uL3JhZGVvbl9mYi5jICAgICAgICAgIHwgICAyIC0KIGRyaXZlcnMvZ3B1L2RybS9y
-YWRlb24vcmFkZW9uX2xlZ2FjeV9jcnRjLmMgfCAgIDEgLQogZHJpdmVycy9ncHUvZHJtL3JhZGVv
-bi9yYWRlb25fbW9kZS5oICAgICAgICB8ICAgNCAtCiBkcml2ZXJzL2dwdS9kcm0vc3RtL2x0ZGMu
-YyAgICAgICAgICAgICAgICAgIHwgIDEyIC0tCiBkcml2ZXJzL2dwdS9kcm0vc3RtL2x0ZGMuaCAg
-ICAgICAgICAgICAgICAgIHwgICAxIC0KIGluY2x1ZGUvZHJtL2RybV9hdG9taWMuaCAgICAgICAg
-ICAgICAgICAgICAgfCAgIDQgKwogaW5jbHVkZS9kcm0vZHJtX2NydGMuaCAgICAgICAgICAgICAg
-ICAgICAgICB8ICAgOCAtCiBpbmNsdWRlL2RybS9kcm1fZmJfaGVscGVyLmggICAgICAgICAgICAg
-ICAgIHwgIDMyIC0tLS0KIGluY2x1ZGUvZHJtL2RybV9tb2Rlc2V0X2hlbHBlcl92dGFibGVzLmgg
-ICAgfCAgMTYgLS0KIDQ0IGZpbGVzIGNoYW5nZWQsIDMxNCBpbnNlcnRpb25zKCspLCA2NjkgZGVs
-ZXRpb25zKC0pCgotLSAKMi4xLjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo=
+The redundant fb helpers .load_lut, .gamma_set and .gamma_get are
+no longer used. Remove the dead code and hook up the crtc .gamma_set
+to use the crtc gamma_store directly instead of duplicating that
+info locally.
+
+Signed-off-by: Peter Rosin <peda@axentia.se>
+---
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c | 26 ++++++++-------------
+ drivers/gpu/drm/nouveau/nouveau_crtc.h  |  3 ---
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c | 22 ------------------
+ drivers/gpu/drm/nouveau/nv50_display.c  | 40 +++++++++++----------------------
+ 4 files changed, 22 insertions(+), 69 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+index 4b4b0b4..8f689f1 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@ -764,13 +764,18 @@ nv_crtc_gamma_load(struct drm_crtc *crtc)
+ 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
+ 	struct drm_device *dev = nv_crtc->base.dev;
+ 	struct rgb { uint8_t r, g, b; } __attribute__((packed)) *rgbs;
++	u16 *r, *g, *b;
+ 	int i;
+ 
+ 	rgbs = (struct rgb *)nv04_display(dev)->mode_reg.crtc_reg[nv_crtc->index].DAC;
++	r = crtc->gamma_store;
++	g = r + crtc->gamma_size;
++	b = g + crtc->gamma_size;
++
+ 	for (i = 0; i < 256; i++) {
+-		rgbs[i].r = nv_crtc->lut.r[i] >> 8;
+-		rgbs[i].g = nv_crtc->lut.g[i] >> 8;
+-		rgbs[i].b = nv_crtc->lut.b[i] >> 8;
++		rgbs[i].r = *r++ >> 8;
++		rgbs[i].g = *g++ >> 8;
++		rgbs[i].b = *b++ >> 8;
+ 	}
+ 
+ 	nouveau_hw_load_state_palette(dev, nv_crtc->index, &nv04_display(dev)->mode_reg);
+@@ -792,13 +797,6 @@ nv_crtc_gamma_set(struct drm_crtc *crtc, u16 *r, u16 *g, u16 *b,
+ 		  struct drm_modeset_acquire_ctx *ctx)
+ {
+ 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
+-	int i;
+-
+-	for (i = 0; i < size; i++) {
+-		nv_crtc->lut.r[i] = r[i];
+-		nv_crtc->lut.g[i] = g[i];
+-		nv_crtc->lut.b[i] = b[i];
+-	}
+ 
+ 	/* We need to know the depth before we upload, but it's possible to
+ 	 * get called before a framebuffer is bound.  If this is the case,
+@@ -1095,7 +1093,6 @@ static const struct drm_crtc_helper_funcs nv04_crtc_helper_funcs = {
+ 	.mode_set = nv_crtc_mode_set,
+ 	.mode_set_base = nv04_crtc_mode_set_base,
+ 	.mode_set_base_atomic = nv04_crtc_mode_set_base_atomic,
+-	.load_lut = nv_crtc_gamma_load,
+ 	.disable = nv_crtc_disable,
+ };
+ 
+@@ -1103,17 +1100,12 @@ int
+ nv04_crtc_create(struct drm_device *dev, int crtc_num)
+ {
+ 	struct nouveau_crtc *nv_crtc;
+-	int ret, i;
++	int ret;
+ 
+ 	nv_crtc = kzalloc(sizeof(*nv_crtc), GFP_KERNEL);
+ 	if (!nv_crtc)
+ 		return -ENOMEM;
+ 
+-	for (i = 0; i < 256; i++) {
+-		nv_crtc->lut.r[i] = i << 8;
+-		nv_crtc->lut.g[i] = i << 8;
+-		nv_crtc->lut.b[i] = i << 8;
+-	}
+ 	nv_crtc->lut.depth = 0;
+ 
+ 	nv_crtc->index = crtc_num;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_crtc.h b/drivers/gpu/drm/nouveau/nouveau_crtc.h
+index 050fcf3..b7a18fb 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_crtc.h
++++ b/drivers/gpu/drm/nouveau/nouveau_crtc.h
+@@ -61,9 +61,6 @@ struct nouveau_crtc {
+ 
+ 	struct {
+ 		struct nouveau_bo *nvbo;
+-		uint16_t r[256];
+-		uint16_t g[256];
+-		uint16_t b[256];
+ 		int depth;
+ 	} lut;
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+index 2665a07..f770784 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+@@ -278,26 +278,6 @@ nouveau_fbcon_accel_init(struct drm_device *dev)
+ 		info->fbops = &nouveau_fbcon_ops;
+ }
+ 
+-static void nouveau_fbcon_gamma_set(struct drm_crtc *crtc, u16 red, u16 green,
+-				    u16 blue, int regno)
+-{
+-	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
+-
+-	nv_crtc->lut.r[regno] = red;
+-	nv_crtc->lut.g[regno] = green;
+-	nv_crtc->lut.b[regno] = blue;
+-}
+-
+-static void nouveau_fbcon_gamma_get(struct drm_crtc *crtc, u16 *red, u16 *green,
+-				    u16 *blue, int regno)
+-{
+-	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
+-
+-	*red = nv_crtc->lut.r[regno];
+-	*green = nv_crtc->lut.g[regno];
+-	*blue = nv_crtc->lut.b[regno];
+-}
+-
+ static void
+ nouveau_fbcon_zfill(struct drm_device *dev, struct nouveau_fbdev *fbcon)
+ {
+@@ -467,8 +447,6 @@ void nouveau_fbcon_gpu_lockup(struct fb_info *info)
+ }
+ 
+ static const struct drm_fb_helper_funcs nouveau_fbcon_helper_funcs = {
+-	.gamma_set = nouveau_fbcon_gamma_set,
+-	.gamma_get = nouveau_fbcon_gamma_get,
+ 	.fb_probe = nouveau_fbcon_create,
+ };
+ 
+diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
+index 42a85c1..2ef03ed 100644
+--- a/drivers/gpu/drm/nouveau/nv50_display.c
++++ b/drivers/gpu/drm/nouveau/nv50_display.c
+@@ -2204,28 +2204,29 @@ nv50_head_lut_load(struct drm_crtc *crtc)
+ 	struct nv50_disp *disp = nv50_disp(crtc->dev);
+ 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
+ 	void __iomem *lut = nvbo_kmap_obj_iovirtual(nv_crtc->lut.nvbo);
++	u16 *r, *g, *b;
+ 	int i;
+ 
+-	for (i = 0; i < 256; i++) {
+-		u16 r = nv_crtc->lut.r[i] >> 2;
+-		u16 g = nv_crtc->lut.g[i] >> 2;
+-		u16 b = nv_crtc->lut.b[i] >> 2;
++	r = crtc->gamma_store;
++	g = r + crtc->gamma_size;
++	b = g + crtc->gamma_size;
+ 
++	for (i = 0; i < 256; i++) {
+ 		if (disp->disp->oclass < GF110_DISP) {
+-			writew(r + 0x0000, lut + (i * 0x08) + 0);
+-			writew(g + 0x0000, lut + (i * 0x08) + 2);
+-			writew(b + 0x0000, lut + (i * 0x08) + 4);
++			writew((*r++ >> 2) + 0x0000, lut + (i * 0x08) + 0);
++			writew((*g++ >> 2) + 0x0000, lut + (i * 0x08) + 2);
++			writew((*b++ >> 2) + 0x0000, lut + (i * 0x08) + 4);
+ 		} else {
+-			writew(r + 0x6000, lut + (i * 0x20) + 0);
+-			writew(g + 0x6000, lut + (i * 0x20) + 2);
+-			writew(b + 0x6000, lut + (i * 0x20) + 4);
++			/* 0x6000 interferes with the 14-bit color??? */
++			writew((*r++ >> 2) + 0x6000, lut + (i * 0x20) + 0);
++			writew((*g++ >> 2) + 0x6000, lut + (i * 0x20) + 2);
++			writew((*b++ >> 2) + 0x6000, lut + (i * 0x20) + 4);
+ 		}
+ 	}
+ }
+ 
+ static const struct drm_crtc_helper_funcs
+ nv50_head_help = {
+-	.load_lut = nv50_head_lut_load,
+ 	.atomic_check = nv50_head_atomic_check,
+ };
+ 
+@@ -2234,15 +2235,6 @@ nv50_head_gamma_set(struct drm_crtc *crtc, u16 *r, u16 *g, u16 *b,
+ 		    uint32_t size,
+ 		    struct drm_modeset_acquire_ctx *ctx)
+ {
+-	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
+-	u32 i;
+-
+-	for (i = 0; i < size; i++) {
+-		nv_crtc->lut.r[i] = r[i];
+-		nv_crtc->lut.g[i] = g[i];
+-		nv_crtc->lut.b[i] = b[i];
+-	}
+-
+ 	nv50_head_lut_load(crtc);
+ 	return 0;
+ }
+@@ -2340,19 +2332,13 @@ nv50_head_create(struct drm_device *dev, int index)
+ 	struct nv50_base *base;
+ 	struct nv50_curs *curs;
+ 	struct drm_crtc *crtc;
+-	int ret, i;
++	int ret;
+ 
+ 	head = kzalloc(sizeof(*head), GFP_KERNEL);
+ 	if (!head)
+ 		return -ENOMEM;
+ 
+ 	head->base.index = index;
+-	for (i = 0; i < 256; i++) {
+-		head->base.lut.r[i] = i << 8;
+-		head->base.lut.g[i] = i << 8;
+-		head->base.lut.b[i] = i << 8;
+-	}
+-
+ 	ret = nv50_base_new(drm, head, &base);
+ 	if (ret == 0)
+ 		ret = nv50_curs_new(drm, head, &curs);
+-- 
+2.1.4
