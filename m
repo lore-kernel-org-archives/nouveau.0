@@ -1,245 +1,129 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101404] GTX 970M (GM204-A) not powered off when not
- in use (DynPwr in stead of DynOff)
-Date: Thu, 06 Jul 2017 10:42:54 +0000
-Message-ID: <bug-101404-8800-Mj8gstxqoP@http.bugs.freedesktop.org/>
-References: <bug-101404-8800@http.bugs.freedesktop.org/>
+From: Peter Rosin <peda@axentia.se>
+Subject: [PATCH v4 00/14] improve the fb_setcmap helper
+Date: Thu,  6 Jul 2017 14:20:34 +0200
+Message-ID: <1499343648-29695-1-git-send-email-peda@axentia.se>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1558137189=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101404-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: linux-kernel@vger.kernel.org
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org, Benjamin Gaignard <benjamin.gaignard@linaro.org>, Daniel Vetter <daniel.vetter@intel.com>, Boris Brezillon <boris.brezillon@free-electrons.com>, Russell King <linux@armlinux.org.uk>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org, Vincent Abriou <vincent.abriou@st.com>, Philippe Cornu <philippe.cornu@st.com>, Peter Rosin <peda@axentia.se>, Yannick Fertre <yannick.fertre@st.com>, Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Gerd Hoffmann <kraxel@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1558137189==
-Content-Type: multipart/alternative; boundary="14993377742.1E5cbb3.24219";
- charset="UTF-8"
-
-
---14993377742.1E5cbb3.24219
-Date: Thu, 6 Jul 2017 10:42:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101404
-
---- Comment #5 from Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org> ---
-(In reply to Benny Ammitzb=C3=B8ll from comment #4)
-> (In reply to Peter Wu from comment #3)
-> > When the nouveau driver is loaded, runtime PM for the Nvidia PCI device
-> > (01:00.0 in your case) should be enabled.
->=20
-> Yes, I agree. Why is the Nvidia card not going to DynOff when on AC and n=
-ot
-> being used then? I can force it by using powertop, but why does this not
-> happen automatically?
-
-Please show the output of "lspci -nn". If you boot your laptop with an exte=
-rnal
-display plugged in, you will additionally have a HDMI audio function (01:00=
-.1)
-which must also have runtime PM enabled for the whole thing to power down.
-
-In powertop, what are the states for the Nvidia PCI device(s) and its root
-parent port before you change anything?
-
-> Ok, but then I don't understand why without pcie_port_pm=3Doff I get a hi=
-gher
-> power consumption? I mean, the parent device should power down the entire
-> PCIe port incl. the Nvidia card?
-
-See above, if there are other children, then these must also have runtime PM
-enabled or the parent will refuse to enter suspend.
-
-> And before linux kernel 4.8 (I think) pcie_port_pm=3Doff was not needed,
-> so what happened?
-
-Currently there are two methods to turn off the power on modern Nvidia devi=
-ces:
- - ACPI "DSM". The nouveau driver will call a special device-specific ACPI
-method  during runtime PM transitions.
- - ACPI Power Resources (since Linux 4.8). This means that when all devices
-(PCI root port and its children) are idle, the power resources can be turned
-off. This is a standard method that does not require a specific video drive=
-r,
-hence if you do not load nouveau but enable runtime PM, it will also work.
-
-Why is the second method preferred? The second method is the standard one s=
-ince
-Windows 8 and vendors might not test the former method. The former method is
-known to result in memory corruption issues on some models (bug 78530) and =
-in
-other cases it will not fully reduce power consumption (resulting in increa=
-sed
-heat, more fan noise and lower battery life).
-
-> > Any reason why you boot with acpi_osi=3D! acpi_osi=3DLinux? If you want=
- to
-> > prevent a lockup that occurs with Clevo P6xxRx models, try
-> > acpi_osi=3D"!Windows 2015"
-> > (see https://bugzilla.kernel.org/show_bug.cgi?id=3D156341)
->=20
-> Because while acpi_osi=3D"!Windows 2015" does prevent the lockup, I still=
- have
-> some Fn keys that are not working (notably those that adjust screen
-> brightness, but others as well). With acpi_osi=3D! acpi_osi=3DLinux all o=
-f my Fn
-> keys are working, incl. no lockup.
-
-Upgrade to kernel 4.10 or newer, then your brightness keys should work with=
-out
-forcing acpi_osi=3DLinux. See https://bugzilla.kernel.org/show_bug.cgi?id=
-=3D123651
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14993377742.1E5cbb3.24219
-Date: Thu, 6 Jul 2017 10:42:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GTX 970M (GM204-A) not powered off when not in use (DynPw=
-r in stead of DynOff)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101404#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GTX 970M (GM204-A) not powered off when not in use (DynPw=
-r in stead of DynOff)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101404">bug 10140=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-peter&#64;lekensteyn.nl" title=3D"Peter Wu &lt;peter&#64;lekensteyn.nl&gt;"=
-> <span class=3D"fn">Peter Wu</span></a>
-</span></b>
-        <pre>(In reply to Benny Ammitzb=C3=B8ll from <a href=3D"show_bug.cg=
-i?id=3D101404#c4">comment #4</a>)
-<span class=3D"quote">&gt; (In reply to Peter Wu from <a href=3D"show_bug.c=
-gi?id=3D101404#c3">comment #3</a>)
-&gt; &gt; When the nouveau driver is loaded, runtime PM for the Nvidia PCI =
-device
-&gt; &gt; (01:00.0 in your case) should be enabled.
-&gt;=20
-&gt; Yes, I agree. Why is the Nvidia card not going to DynOff when on AC an=
-d not
-&gt; being used then? I can force it by using powertop, but why does this n=
-ot
-&gt; happen automatically?</span >
-
-Please show the output of &quot;lspci -nn&quot;. If you boot your laptop wi=
-th an external
-display plugged in, you will additionally have a HDMI audio function (01:00=
-.1)
-which must also have runtime PM enabled for the whole thing to power down.
-
-In powertop, what are the states for the Nvidia PCI device(s) and its root
-parent port before you change anything?
-
-<span class=3D"quote">&gt; Ok, but then I don't understand why without pcie=
-_port_pm=3Doff I get a higher
-&gt; power consumption? I mean, the parent device should power down the ent=
-ire
-&gt; PCIe port incl. the Nvidia card?</span >
-
-See above, if there are other children, then these must also have runtime PM
-enabled or the parent will refuse to enter suspend.
-
-<span class=3D"quote">&gt; And before linux kernel 4.8 (I think) pcie_port_=
-pm=3Doff was not needed,
-&gt; so what happened?</span >
-
-Currently there are two methods to turn off the power on modern Nvidia devi=
-ces:
- - ACPI &quot;DSM&quot;. The nouveau driver will call a special device-spec=
-ific ACPI
-method  during runtime PM transitions.
- - ACPI Power Resources (since Linux 4.8). This means that when all devices
-(PCI root port and its children) are idle, the power resources can be turned
-off. This is a standard method that does not require a specific video drive=
-r,
-hence if you do not load nouveau but enable runtime PM, it will also work.
-
-Why is the second method preferred? The second method is the standard one s=
-ince
-Windows 8 and vendors might not test the former method. The former method is
-known to result in memory corruption issues on some models (<a class=3D"bz_=
-bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Memory corruption on Lenovo t440p with runpm"
-   href=3D"show_bug.cgi?id=3D78530">bug 78530</a>) and in
-other cases it will not fully reduce power consumption (resulting in increa=
-sed
-heat, more fan noise and lower battery life).
-
-<span class=3D"quote">&gt; &gt; Any reason why you boot with acpi_osi=3D! a=
-cpi_osi=3DLinux? If you want to
-&gt; &gt; prevent a lockup that occurs with Clevo P6xxRx models, try
-&gt; &gt; acpi_osi=3D&quot;!Windows 2015&quot;
-&gt; &gt; (see <a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D156=
-341">https://bugzilla.kernel.org/show_bug.cgi?id=3D156341</a>)
-&gt;=20
-&gt; Because while acpi_osi=3D&quot;!Windows 2015&quot; does prevent the lo=
-ckup, I still have
-&gt; some Fn keys that are not working (notably those that adjust screen
-&gt; brightness, but others as well). With acpi_osi=3D! acpi_osi=3DLinux al=
-l of my Fn
-&gt; keys are working, incl. no lockup.</span >
-
-Upgrade to kernel 4.10 or newer, then your brightness keys should work with=
-out
-forcing acpi_osi=3DLinux. See <a href=3D"https://bugzilla.kernel.org/show_b=
-ug.cgi?id=3D123651">https://bugzilla.kernel.org/show_bug.cgi?id=3D123651</a=
-></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14993377742.1E5cbb3.24219--
-
---===============1558137189==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1558137189==--
+SGkhCgpXaGlsZSB0cnlpbmcgdG8gZ2V0IENMVVQgc3VwcG9ydCBmb3IgdGhlIGF0bWVsX2hsY2Rj
+IGRyaXZlciwgYW5kCnNwZWNpZmljYWxseSBmb3IgdGhlIGVtdWxhdGVkIGZiZGV2IGludGVyZmFj
+ZSwgSSByZWNlaXZlZCBzb21lCnB1c2gtYmFjayB0aGF0IG15IGZlZWJsZSBpbi1kcml2ZXIgYXR0
+ZW1wdHMgc2hvdWxkIGJlIHNvbHZlZApieSB0aGUgY29yZS4gVGhpcyBpcyBteSBhdHRlbXB0IHRv
+IGRvIGl0IHJpZ2h0LgoKSSBoYXZlIG9idmlvdXNseSBub3QgdGVzdGVkIGFsbCBvZiB0aGlzIHdp
+dGggbW9yZSB0aGFuIGEgY29tcGlsZSwKYnV0IHBhdGNoZXMgMSBhbmQgMyBhcmUgZW5vdWdoIHRv
+IG1ha2UgdGhlIGF0bWVsLWhsY2RjIGRyaXZlcgpkbyB3aGF0IEkgbmVlZC4gVGhlIHJlc3QgaXMg
+anVzdCBsb3RzIG9mIHJlbW92YWxzIGFuZCBjbGVhbnVwIG1hZGUKcG9zc2libGUgYnkgdGhlIG90
+aGVyIGltcHJvdmVtZW50cy4KClBsZWFzZSB0ZXN0LCBJIHdvdWxkIG5vdCBiZSBzdXJwcmlzZWQg
+aWYgSSBoYXZlIGZvdWxlZCB1cCBzb21lCmJpdC1tYW5pcHVsYXRpb24gc29tZXdoZXJlLCBvciBp
+ZiBJIGhhdmUgbWlzdW5kZXJzdG9vZCBzb21ldGhpbmcKYWJvdXQgYXRvbWljcy4uLgoKQ2hhbmdl
+cyBzaW5jZSB2MzoKLSBSZWJhc2VkIG9udG8gZHJtLW1pc2MtbmV4dCBhbmQgZHJvcHBlZCBwYXRj
+aGVzIDEtMyBmcm9tIHYzLCBzaW5jZQogIHRoZXkgYXJlIGFscmVhZHkgbWVyZ2VkLgotIERyb3Bw
+ZWQgdGhlIHYzIHBhdGNoIDQvMTYgKCJkcm0vY29sb3ItbWdtdDogbW92ZSBhdG9taWMgc3RhdGUv
+Y29tbWl0CiAgb3V0IGZyb20gLmdhbW1hX3NldCIpIHNpbmNlIHRoZSBhdG9taWMgc2V0Y21hcCBu
+byBsb25nZXIgdXNlcwogIHRoZSBjcnRjIC5nYW1tYV9zZXQgY2FsbGJhY2suCi0gQWRkZWQgcGF0
+Y2ggMS8xNCB3aGljaCBleHBvcnRzIGRybV9hdG9taWNfcmVwbGFjZV9wcm9wZXJ0eV9ibG9iLi4u
+Ci0gLi4uYW5kIHBhdGNoIDIvMTQgd2hpY2ggdXNlcyB0aGlzIG5ldyBleHBvcnQgdG8gc2ltcGxp
+ZnkKICBkcm1fYXRvbWljX2hlbHBlcl9sZWdhY3lfZ2FtbWFfc2V0LgotIEJpZyBjaGFuZ2VzIHRv
+IHBhdGNoIDMvMTQgKHdhcyA1LzE2IGluIHYzKS4gSXQgaGFkIHZhcmlvdXMgbG9ja2luZwogIGlz
+c3VlcyBhbmQgdGhlIGF0b21pYyBzZXRjbWFwIGlzIHJhdGhlciBkaWZmZXJlbnQuCgpDaGFuZ2Vz
+IHNpbmNlIHYyOgotIEFkZGVkIHBhdGNoIDEvMTYgd2hpY2ggZmFjdG9ycyBvdXQgcHNldWRvLXBh
+bGV0dGUgaGFuZGxpbmcuCi0gUmVtb3ZlZCB0aGUgaWYgKGNtYXAtPnN0YXJ0ICsgY21hcC0+bGVu
+IDwgY21hcC0+c3RhcnQpCiAgc2FuaXR5IGNoZWNrIG9uIHRoZSBhc3N1bXB0aW9uIHRoYXQgdGhl
+IGZiZGV2IGNvcmUgaGFuZGxlcyBpdC4KLSBBZGRlZCBwYXRjaCA0LzE2IHdoaWNoIGZhY3RvcnMg
+b3V0IGF0b21pYyBzdGF0ZSBhbmQgY29tbWl0CiAgaGFuZGxpbmcgZnJvbSBkcm1fYXRvbWljX2hl
+bHBlcl9sZWdhY3lfZ2FtbWFfc2V0IHRvCiAgZHJtX21vZGVfZ2FtbWFfc2V0X2lvY3RsLgotIERv
+IG9uZSBhdG9taWMgY29tbWl0IGZvciBhbGwgYWZmZWN0ZWQgY3J0Yy4KLSBSZW1vdmVkIGEgbm93
+IG9ic29sZXRlIG5vdGUgaW4gaW5jbHVkZS9kcm0vZHJtX2NydGMuaCAoYW1tZW5kZWQKICB0aGUg
+bGFzdCBwYXRjaCkuCi0gQ2MgbGlzdCBpcyBnZXR0aW5nIGxvbmcsIHNvIEkgaGF2ZSByZWR1c2Vk
+IHRoZSBsaXN0IGZvciB0aGUKICBpbmRpdmlkdWFsIHBhdGNoZXMuIElmIHlvdSB3b3VsZCBsaWtl
+IHRvIGdldCB0aGUgZnVsbCBzZXJpZXMKICAob3Igbm90aGluZyBhdCBhbGwpIGZvciB0aGUgbmV4
+dCByb3VuZCAoaWYgdGhhdCBpcyBuZWVkZWQpIGp1c3QKICBzYXkgc28uCgpDaGFuZ2VzIHNpbmNl
+IHYxOgoKLSBSZWJhc2VkIHRvIG5leHQtMjAxNzA2MjEKLSBTcGxpdCAxLzExIGludG8gYSBwcmVw
+YXJhdG9yeSBwYXRjaCwgYSBjbGVhbnVwIHBhdGNoIGFuZCB0aGVuCiAgdGhlIG1lYXQgaW4gMy8x
+NC4KLSBIYW5kbGUgcHNldWRvLXBhbGV0dGUgZm9yIEZCX1ZJU1VBTF9UUlVFQ09MT1IuCi0gUmVt
+b3ZlZCB0aGUgZW1wdHkgLmdhbW1hX2dldC8uZ2FtbWFfc2V0IGZiIGhlbHBlcnMgZnJvbSB0aGUK
+ICBhcm1hZGEgZHJpdmVyIHRoYXQgSSBoYWQgc29tZWhvdyBtYW5hZ2VkIHRvIGlnbm9yZSBidXQg
+d2hpY2gKICAwZGF5IGZvdW5kIHJlYWwgcXVpY2suCi0gQmUgbGVzcyBqdWRnZW1lbnRhbCBvbiBk
+cml2ZXJzIG9ubHkgcHJvdmlkaW5nIC5nYW1tYV9nZXQgYW5kCiAgLmdhbW1hX3NldCwgYnV0IG5v
+IC5sb2FkX2x1dC4gVGhhdCdzIGFjdHVhbGx5IGEgdmFsaWQgdGhpbmcKICB0byBkbyBpZiB5b3Ug
+b25seSBuZWVkIHBzZXVkby1wYWxldHRlIGZvciBGQl9WSVNVQUxfVFJVRUNPTE9SLgotIEFkZCBh
+IGNvbW1lbnQgYWJvdXQgY29sbGlkaW5nIGJpdGZpZWxkcyBpbiB0aGUgbm91dmVhdSBkcml2ZXIu
+Ci0gUmVtb3ZlIGdhbW1hX3NldC9nYW1tYV9nZXQgZGVjbGFyYXRpb25zIGZyb20gdGhlIHJhZGVv
+biBkcml2ZXIKICAodGhlIGRlZmluaXRpb25zIHdlcmUgcmVtb3ZlZCBpbiB2MSkuCgpDaGVlcnMs
+CnBlZGEKClBldGVyIFJvc2luICgxNCk6CiAgZHJtL2F0b21pYzogZXhwb3J0IGRybV9hdG9taWNf
+cmVwbGFjZV9wcm9wZXJ0eV9ibG9iCiAgZHJtL2F0b21pYy1oZWxwZXI6IHVwZGF0ZSBsdXQgcHJv
+cHMgZGlyZWN0bHkgaW4gLi4uX2xlZ2FjeV9nYW1tYV9zZXQKICBkcm0vZmItaGVscGVyOiBzZXBh
+cmF0ZSB0aGUgZmJfc2V0Y21hcCBoZWxwZXIgaW50byBhdG9taWMgYW5kIGxlZ2FjeQogICAgcGF0
+aHMKICBkcm06IGFtZDogcmVtb3ZlIGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxvY2FsIGx1dCBz
+dG9yYWdlCiAgZHJtOiBhcm1hZGE6IHJlbW92ZSBkZWFkIGVtcHR5IGZ1bmN0aW9ucwogIGRybTog
+YXN0OiByZW1vdmUgZGVhZCBjb2RlIGFuZCBwb2ludGxlc3MgbG9jYWwgbHV0IHN0b3JhZ2UKICBk
+cm06IGNpcnJ1czogcmVtb3ZlIGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxvY2FsIGx1dCBzdG9y
+YWdlCiAgZHJtOiBnbWE1MDA6IHJlbW92ZSBkZWFkIGNvZGUgYW5kIHBvaW50bGVzcyBsb2NhbCBs
+dXQgc3RvcmFnZQogIGRybTogaTkxNTogcmVtb3ZlIGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxv
+Y2FsIGx1dCBzdG9yYWdlCiAgZHJtOiBtZ2FnMjAwOiByZW1vdmUgZGVhZCBjb2RlIGFuZCBwb2lu
+dGxlc3MgbG9jYWwgbHV0IHN0b3JhZ2UKICBkcm06IG5vdXZlYXU6IHJlbW92ZSBkZWFkIGNvZGUg
+YW5kIHBvaW50bGVzcyBsb2NhbCBsdXQgc3RvcmFnZQogIGRybTogcmFkZW9uOiByZW1vdmUgZGVh
+ZCBjb2RlIGFuZCBwb2ludGxlc3MgbG9jYWwgbHV0IHN0b3JhZ2UKICBkcm06IHN0bTogcmVtb3Zl
+IGRlYWQgY29kZSBhbmQgcG9pbnRsZXNzIGxvY2FsIGx1dCBzdG9yYWdlCiAgZHJtOiByZW1vdmUg
+dW51c2VkIGFuZCByZWR1bmRhbnQgY2FsbGJhY2tzCgogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X2ZiLmMgICAgICB8ICAyNCAtLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
+L2FtZGdwdV9tb2RlLmggICAgfCAgIDEgLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZGNl
+X3YxMF8wLmMgICAgICB8ICAyNyArLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2Vf
+djExXzAuYyAgICAgIHwgIDI3ICstLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2RjZV92
+Nl8wLmMgICAgICAgfCAgMjcgKy0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3Y4
+XzAuYyAgICAgICB8ICAyNyArLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2Vfdmly
+dHVhbC5jICAgIHwgIDIzIC0tLQogZHJpdmVycy9ncHUvZHJtL2FybWFkYS9hcm1hZGFfY3J0Yy5j
+ICAgICAgICB8ICAxMCAtLQogZHJpdmVycy9ncHUvZHJtL2FybWFkYS9hcm1hZGFfY3J0Yy5oICAg
+ICAgICB8ICAgMiAtCiBkcml2ZXJzL2dwdS9kcm0vYXJtYWRhL2FybWFkYV9mYmRldi5jICAgICAg
+IHwgICAyIC0KIGRyaXZlcnMvZ3B1L2RybS9hc3QvYXN0X2Rydi5oICAgICAgICAgICAgICAgfCAg
+IDEgLQogZHJpdmVycy9ncHUvZHJtL2FzdC9hc3RfZmIuYyAgICAgICAgICAgICAgICB8ICAyMCAt
+LS0KIGRyaXZlcnMvZ3B1L2RybS9hc3QvYXN0X21vZGUuYyAgICAgICAgICAgICAgfCAgMjYgKy0t
+LQogZHJpdmVycy9ncHUvZHJtL2NpcnJ1cy9jaXJydXNfZHJ2LmggICAgICAgICB8ICAgOCAtCiBk
+cml2ZXJzL2dwdS9kcm0vY2lycnVzL2NpcnJ1c19mYmRldi5jICAgICAgIHwgICAyIC0KIGRyaXZl
+cnMvZ3B1L2RybS9jaXJydXMvY2lycnVzX21vZGUuYyAgICAgICAgfCAgNzEgKystLS0tLS0tCiBk
+cml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pYy5jICAgICAgICAgICAgICAgIHwgIDE3ICstCiBkcml2
+ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYyAgICAgICAgIHwgIDIzICstLQogZHJpdmVy
+cy9ncHUvZHJtL2RybV9mYl9oZWxwZXIuYyAgICAgICAgICAgICB8IDIzMiArKysrKysrKysrKysr
+KysrKysrLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vZ21hNTAwL2ZyYW1lYnVmZmVyLmMgICAg
+ICAgIHwgIDIyIC0tLQogZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9nbWFfZGlzcGxheS5jICAgICAg
+ICB8ICAzMiArKy0tCiBkcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9pbnRlbF9kaXNwbGF5LmMg
+IHwgICA3ICstCiBkcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9pbnRlbF9kcnYuaCAgICAgIHwg
+ICAxIC0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rydi5oICAgICAgICAgICAgfCAgIDEg
+LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZmJkZXYuYyAgICAgICAgICB8ICAzMSAtLS0t
+CiBkcml2ZXJzL2dwdS9kcm0vbWdhZzIwMC9tZ2FnMjAwX2Rydi5oICAgICAgIHwgICA1IC0KIGRy
+aXZlcnMvZ3B1L2RybS9tZ2FnMjAwL21nYWcyMDBfZmIuYyAgICAgICAgfCAgIDIgLQogZHJpdmVy
+cy9ncHUvZHJtL21nYWcyMDAvbWdhZzIwMF9tb2RlLmMgICAgICB8ICA2MiArKy0tLS0tLQogZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvY3J0Yy5jICAgICB8ICAyNiArKy0tCiBkcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2NydGMuaCAgICAgIHwgICAzIC0KIGRyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYyAgICAgfCAgMjIgLS0tCiBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYyAgICAgIHwgIDQwICsrLS0tCiBkcml2ZXJzL2dw
+dS9kcm0vcmFkZW9uL2F0b21iaW9zX2NydGMuYyAgICAgIHwgICAxIC0KIGRyaXZlcnMvZ3B1L2Ry
+bS9yYWRlb24vcmFkZW9uX2Nvbm5lY3RvcnMuYyAgfCAgIDcgKy0KIGRyaXZlcnMvZ3B1L2RybS9y
+YWRlb24vcmFkZW9uX2Rpc3BsYXkuYyAgICAgfCAgNzEgKysrKy0tLS0tCiBkcml2ZXJzL2dwdS9k
+cm0vcmFkZW9uL3JhZGVvbl9mYi5jICAgICAgICAgIHwgICAyIC0KIGRyaXZlcnMvZ3B1L2RybS9y
+YWRlb24vcmFkZW9uX2xlZ2FjeV9jcnRjLmMgfCAgIDEgLQogZHJpdmVycy9ncHUvZHJtL3JhZGVv
+bi9yYWRlb25fbW9kZS5oICAgICAgICB8ICAgNCAtCiBkcml2ZXJzL2dwdS9kcm0vc3RtL2x0ZGMu
+YyAgICAgICAgICAgICAgICAgIHwgIDEyIC0tCiBkcml2ZXJzL2dwdS9kcm0vc3RtL2x0ZGMuaCAg
+ICAgICAgICAgICAgICAgIHwgICAxIC0KIGluY2x1ZGUvZHJtL2RybV9hdG9taWMuaCAgICAgICAg
+ICAgICAgICAgICAgfCAgIDQgKwogaW5jbHVkZS9kcm0vZHJtX2NydGMuaCAgICAgICAgICAgICAg
+ICAgICAgICB8ICAgOCAtCiBpbmNsdWRlL2RybS9kcm1fZmJfaGVscGVyLmggICAgICAgICAgICAg
+ICAgIHwgIDMyIC0tLS0KIGluY2x1ZGUvZHJtL2RybV9tb2Rlc2V0X2hlbHBlcl92dGFibGVzLmgg
+ICAgfCAgMTYgLS0KIDQ0IGZpbGVzIGNoYW5nZWQsIDMxNCBpbnNlcnRpb25zKCspLCA2NjkgZGVs
+ZXRpb25zKC0pCgotLSAKMi4xLjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
