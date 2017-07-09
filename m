@@ -1,15 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99202] system freeze - fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT] - MULTIPLE_WARP_ERRORS - DATA_ERROR 00000004
- [INVALID_VALUE] - ILLEGAL_CLASS ch 11 - RT_STORAGE_TYPE_MISMATCH -
- CLASS_SUBCH_MISMATCH
-Date: Thu, 06 Jul 2017 20:12:06 +0000
-Message-ID: <bug-99202-8800-0B1W1K8PIT@http.bugs.freedesktop.org/>
-References: <bug-99202-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101404] GTX 970M (GM204-A) not powered off when not
+ in use (DynPwr in stead of DynOff)
+Date: Sun, 09 Jul 2017 14:41:05 +0000
+Message-ID: <bug-101404-8800-LFhv43GiYG@http.bugs.freedesktop.org/>
+References: <bug-101404-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2064459346=="
+Content-Type: multipart/mixed; boundary="===============1918503175=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99202-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101404-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,71 +21,52 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2064459346==
-Content-Type: multipart/alternative; boundary="14993719262.Ddb9D6E2e.26887";
+--===============1918503175==
+Content-Type: multipart/alternative; boundary="14996112650.67C8.18916";
  charset="UTF-8"
 
 
---14993719262.Ddb9D6E2e.26887
-Date: Thu, 6 Jul 2017 20:12:06 +0000
+--14996112650.67C8.18916
+Date: Sun, 9 Jul 2017 14:41:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99202
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101404
 
---- Comment #2 from Jeff <jeff-p6X7lc9ZsvHQT0dZR+AlfA@public.gmane.org> ---
-I am seeing the _exact_ same issue (quoted below), as described by in the
-original message. Same symptoms and error messages.
+--- Comment #8 from Benny Ammitzb=C3=B8ll <benny-t2dRYjLbInkVZ4pArIi0Q3XJ5CkEIoRN@public.gmane.org> ---
+(In reply to Peter Wu from comment #7)
+> > >> Bad           Runtime PM for PCI Device NVIDIA Corporation GM204M [G=
+eForce GTX 970M]=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+> [..]
+> >    Bad           Runtime PM for PCI Device Intel Corporation Skylake PC=
+Ie
+> > Controller (x16)
+>=20
+> There is your problem. You have something that modifies runtime PM settin=
+gs.
+> In the default configuration, runtime PM would be enabled for both. Try
+> removing/disabling that problematic tool.
 
-"The screen freezes except for that the mouse pointer can be used (click ha=
-s no
-effect). Apart from the magic syskeys (sync, unmount, boot) the keyboard
-doesn't react. I can not use ALT-tab to switch to another program. I can not
-leave the game (fullscreen mode) by using the ingame console or using ALT-F=
-4.
-The mouse pointer is trapped on the monitor where the game runs (I have two=
-).
-The sound keeps playing and sound effects are played now and then too. I tr=
-ied
-to get to the terminals via CTRL-ALT-F[1-6] but nothing happens. Switching
-(KDE) desktops via CTRL-ALT-[arrow-left,arrow-right] is just the same."
+Hmm, ok, I do have laptop_mode enabled, so I tried stopping that, but still=
+ see
+"Bad" for those when on AC?
 
-I am running Ubuntu 16.10 on a Dell Precision Tower 5810.
+> > Not so, I am already on kernel 4.9.34:
+>=20
+> 4.9 is too old, use 4.10 (TEN) or newer.
 
-Jul  6 10:54:38 nachos gcr-prompter[22026]: GtkDialog mapped without a
-transient parent. This is discouraged.
-Jul  6 10:58:31 nachos kernel: [82204.289470] nouveau 0000:03:00.0: fifo:
-SCHED_ERROR 0a [CTXSW_TIMEOUT]
-Jul  6 10:58:31 nachos kernel: [82204.289480] nouveau 0000:03:00.0: fifo: gr
-engine fault on channel 5, recovering...
-
-03:00.0 VGA compatible controller: NVIDIA Corporation GK107 [NVS 510] (rev =
-a1)
-(prog-if 00 [VGA controller])
-        Subsystem: NVIDIA Corporation GK107 [NVS 510]
-        Physical Slot: 2
-        Flags: bus master, fast devsel, latency 0, IRQ 30
-        Memory at f6000000 (32-bit, non-prefetchable) [size=3D16M]
-        Memory at e0000000 (64-bit, prefetchable) [size=3D256M]
-        Memory at f0000000 (64-bit, prefetchable) [size=3D32M]
-        I/O ports at e000 [size=3D128]
-        Expansion ROM at 000c0000 [disabled] [size=3D128K]
-        Capabilities: <access denied>
-        Kernel driver in use: nouveau
-        Kernel modules: nvidiafb, nouveau
-
-Linux nachos 4.8.0-58-generic #63-Ubuntu SMP Mon Jun 26 17:08:21 UTC 2017
-x86_64 x86_64 x86_64 GNU/Linux
+Arrg, sorry, seems I can't read :-)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14993719262.Ddb9D6E2e.26887
-Date: Thu, 6 Jul 2017 20:12:06 +0000
+--14996112650.67C8.18916
+Date: Sun, 9 Jul 2017 14:41:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -103,65 +82,45 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - system freeze - fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT] - MU=
-LTIPLE_WARP_ERRORS - DATA_ERROR 00000004 [INVALID_VALUE] - ILLEGAL_CLASS ch=
- 11 - RT_STORAGE_TYPE_MISMATCH - CLASS_SUBCH_MISMATCH"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99202#c2">Comment=
- # 2</a>
+   title=3D"NEW - GTX 970M (GM204-A) not powered off when not in use (DynPw=
+r in stead of DynOff)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101404#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - system freeze - fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT] - MU=
-LTIPLE_WARP_ERRORS - DATA_ERROR 00000004 [INVALID_VALUE] - ILLEGAL_CLASS ch=
- 11 - RT_STORAGE_TYPE_MISMATCH - CLASS_SUBCH_MISMATCH"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99202">bug 99202<=
-/a>
+   title=3D"NEW - GTX 970M (GM204-A) not powered off when not in use (DynPw=
+r in stead of DynOff)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101404">bug 10140=
+4</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jeff&#64;youtah.com" title=3D"Jeff &lt;jeff&#64;youtah.com&gt;"> <span clas=
-s=3D"fn">Jeff</span></a>
+benny&#64;ammitzboell-consult.dk" title=3D"Benny Ammitzb=C3=B8ll &lt;benny&=
+#64;ammitzboell-consult.dk&gt;"> <span class=3D"fn">Benny Ammitzb=C3=B8ll</=
+span></a>
 </span></b>
-        <pre>I am seeing the _exact_ same issue (quoted below), as describe=
-d by in the
-original message. Same symptoms and error messages.
+        <pre>(In reply to Peter Wu from <a href=3D"show_bug.cgi?id=3D101404=
+#c7">comment #7</a>)
+<span class=3D"quote">&gt; &gt; &gt;&gt; Bad           Runtime PM for PCI D=
+evice NVIDIA Corporation GM204M [GeForce GTX 970M]=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+&gt; [..]
+&gt; &gt;    Bad           Runtime PM for PCI Device Intel Corporation Skyl=
+ake PCIe
+&gt; &gt; Controller (x16)
+&gt;=20
+&gt; There is your problem. You have something that modifies runtime PM set=
+tings.
+&gt; In the default configuration, runtime PM would be enabled for both. Try
+&gt; removing/disabling that problematic tool.</span >
 
-&quot;The screen freezes except for that the mouse pointer can be used (cli=
-ck has no
-effect). Apart from the magic syskeys (sync, unmount, boot) the keyboard
-doesn't react. I can not use ALT-tab to switch to another program. I can not
-leave the game (fullscreen mode) by using the ingame console or using ALT-F=
-4.
-The mouse pointer is trapped on the monitor where the game runs (I have two=
-).
-The sound keeps playing and sound effects are played now and then too. I tr=
-ied
-to get to the terminals via CTRL-ALT-F[1-6] but nothing happens. Switching
-(KDE) desktops via CTRL-ALT-[arrow-left,arrow-right] is just the same.&quot;
+Hmm, ok, I do have laptop_mode enabled, so I tried stopping that, but still=
+ see
+&quot;Bad&quot; for those when on AC?
 
-I am running Ubuntu 16.10 on a Dell Precision Tower 5810.
+<span class=3D"quote">&gt; &gt; Not so, I am already on kernel 4.9.34:
+&gt;=20
+&gt; 4.9 is too old, use 4.10 (TEN) or newer.</span >
 
-Jul  6 10:54:38 nachos gcr-prompter[22026]: GtkDialog mapped without a
-transient parent. This is discouraged.
-Jul  6 10:58:31 nachos kernel: [82204.289470] nouveau 0000:03:00.0: fifo:
-SCHED_ERROR 0a [CTXSW_TIMEOUT]
-Jul  6 10:58:31 nachos kernel: [82204.289480] nouveau 0000:03:00.0: fifo: gr
-engine fault on channel 5, recovering...
-
-03:00.0 VGA compatible controller: NVIDIA Corporation GK107 [NVS 510] (rev =
-a1)
-(prog-if 00 [VGA controller])
-        Subsystem: NVIDIA Corporation GK107 [NVS 510]
-        Physical Slot: 2
-        Flags: bus master, fast devsel, latency 0, IRQ 30
-        Memory at f6000000 (32-bit, non-prefetchable) [size=3D16M]
-        Memory at e0000000 (64-bit, prefetchable) [size=3D256M]
-        Memory at f0000000 (64-bit, prefetchable) [size=3D32M]
-        I/O ports at e000 [size=3D128]
-        Expansion ROM at 000c0000 [disabled] [size=3D128K]
-        Capabilities: &lt;access denied&gt;
-        Kernel driver in use: nouveau
-        Kernel modules: nvidiafb, nouveau
-
-Linux nachos 4.8.0-58-generic #63-Ubuntu SMP Mon Jun 26 17:08:21 UTC 2017
-x86_64 x86_64 x86_64 GNU/Linux</pre>
+Arrg, sorry, seems I can't read :-)</pre>
         </div>
       </p>
 
@@ -175,9 +134,9 @@ x86_64 x86_64 x86_64 GNU/Linux</pre>
     </body>
 </html>=
 
---14993719262.Ddb9D6E2e.26887--
+--14996112650.67C8.18916--
 
---===============2064459346==
+--===============1918503175==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -187,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2064459346==--
+--===============1918503175==--
