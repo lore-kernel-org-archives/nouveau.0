@@ -1,62 +1,47 @@
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v2 01/12] drm/nouveau: Fix error handling in nv50_disp_atomic_commit
-Date: Tue, 11 Jul 2017 16:33:03 +0200
-Message-ID: <20170711143314.2148-2-maarten.lankhorst@linux.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Subject: [PATCH v2 03/12] drm/nouveau: Handle
+	drm_atomic_helper_swap_state failure
+Date: Tue, 11 Jul 2017 16:33:05 +0200
+Message-ID: <20170711143314.2148-4-maarten.lankhorst@linux.intel.com>
 References: <20170711143314.2148-1-maarten.lankhorst@linux.intel.com>
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20170711143314.2148-1-maarten.lankhorst@linux.intel.com>
-Sender: stable-owner@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, "# v4 . 10+" <stable@vger.kernel.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20170711143314.2148-1-maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Make it more clear that post commit return ret is really return 0,
-
-and add a missing drm_atomic_helper_cleanup_planes when
-drm_atomic_helper_wait_for_fences fails.
-
-Fixes: 839ca903f12e ("drm/nouveau/kms/nv50: transition to atomic interfaces internally")
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v4.10+
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/nouveau/nv50_display.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-index 42a85c14aea0..8fb55b96c40f 100644
---- a/drivers/gpu/drm/nouveau/nv50_display.c
-+++ b/drivers/gpu/drm/nouveau/nv50_display.c
-@@ -4119,7 +4119,7 @@ nv50_disp_atomic_commit(struct drm_device *dev,
- 	if (!nonblock) {
- 		ret = drm_atomic_helper_wait_for_fences(dev, state, true);
- 		if (ret)
--			goto done;
-+			goto err_cleanup;
- 	}
- 
- 	for_each_plane_in_state(state, plane, plane_state, i) {
-@@ -4147,7 +4147,7 @@ nv50_disp_atomic_commit(struct drm_device *dev,
- 		if (crtc->state->enable) {
- 			if (!drm->have_disp_power_ref) {
- 				drm->have_disp_power_ref = true;
--				return ret;
-+				return 0;
- 			}
- 			active = true;
- 			break;
-@@ -4158,7 +4158,10 @@ nv50_disp_atomic_commit(struct drm_device *dev,
- 		pm_runtime_put_autosuspend(dev->dev);
- 		drm->have_disp_power_ref = false;
- 	}
-+	goto done;
- 
-+err_cleanup:
-+	drm_atomic_helper_cleanup_planes(dev, state);
- done:
- 	pm_runtime_put_autosuspend(dev->dev);
- 	return ret;
--- 
-2.11.0
+ZHJtX2F0b21pY19oZWxwZXJfc3dhcF9zdGF0ZSgpIHdpbGwgYmUgY2hhbmdlZCB0byBpbnRlcnJ1
+cHRpYmxlIHdhaXRpbmcKaW4gdGhlIG5leHQgZmV3IGNvbW1pdHMsIHNvIGFsbCBkcml2ZXJzIGhh
+dmUgdG8gYmUgY2hhbmdlZCB0byBoYW5kbGluZwpmYWlsdXJlLgoKU2lnbmVkLW9mZi1ieTogTWFh
+cnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KQ2M6IEJl
+biBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCi0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgfCA1ICsr
+KystCiAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgYi9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwppbmRleCA4ZmI1NWI5NmM0MGYuLjNiZmVh
+NTRmZmQ3YyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKQEAgLTQxMjIs
+NiArNDEyMiwxMCBAQCBudjUwX2Rpc3BfYXRvbWljX2NvbW1pdChzdHJ1Y3QgZHJtX2RldmljZSAq
+ZGV2LAogCQkJZ290byBlcnJfY2xlYW51cDsKIAl9CiAKKwlyZXQgPSBkcm1fYXRvbWljX2hlbHBl
+cl9zd2FwX3N0YXRlKHN0YXRlLCB0cnVlKTsKKwlpZiAocmV0KQorCQlnb3RvIGVycl9jbGVhbnVw
+OworCiAJZm9yX2VhY2hfcGxhbmVfaW5fc3RhdGUoc3RhdGUsIHBsYW5lLCBwbGFuZV9zdGF0ZSwg
+aSkgewogCQlzdHJ1Y3QgbnY1MF93bmR3X2F0b20gKmFzeXcgPSBudjUwX3duZHdfYXRvbShwbGFu
+ZV9zdGF0ZSk7CiAJCXN0cnVjdCBudjUwX3duZHcgKnduZHcgPSBudjUwX3duZHcocGxhbmUpOwpA
+QCAtNDEzNSw3ICs0MTM5LDYgQEAgbnY1MF9kaXNwX2F0b21pY19jb21taXQoc3RydWN0IGRybV9k
+ZXZpY2UgKmRldiwKIAkJfQogCX0KIAotCWRybV9hdG9taWNfaGVscGVyX3N3YXBfc3RhdGUoc3Rh
+dGUsIHRydWUpOwogCWRybV9hdG9taWNfc3RhdGVfZ2V0KHN0YXRlKTsKIAogCWlmIChub25ibG9j
+aykKLS0gCjIuMTEuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
