@@ -1,14 +1,13 @@
-From: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: [PATCH v2 03/12] drm/nouveau: Handle
-	drm_atomic_helper_swap_state failure
-Date: Tue, 11 Jul 2017 16:33:05 +0200
-Message-ID: <20170711143314.2148-4-maarten.lankhorst@linux.intel.com>
-References: <20170711143314.2148-1-maarten.lankhorst@linux.intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99889] nouveau preventing shutdown after
+	suspend-resume
+Date: Tue, 11 Jul 2017 15:52:40 +0000
+Message-ID: <bug-99889-8800-zt8onT1v2c@http.bugs.freedesktop.org/>
+References: <bug-99889-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1243561119=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170711143314.2148-1-maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+In-Reply-To: <bug-99889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,30 +17,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-ZHJtX2F0b21pY19oZWxwZXJfc3dhcF9zdGF0ZSgpIHdpbGwgYmUgY2hhbmdlZCB0byBpbnRlcnJ1
-cHRpYmxlIHdhaXRpbmcKaW4gdGhlIG5leHQgZmV3IGNvbW1pdHMsIHNvIGFsbCBkcml2ZXJzIGhh
-dmUgdG8gYmUgY2hhbmdlZCB0byBoYW5kbGluZwpmYWlsdXJlLgoKU2lnbmVkLW9mZi1ieTogTWFh
-cnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KQ2M6IEJl
-biBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCi0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgfCA1ICsr
-KystCiAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwppbmRleCA4ZmI1NWI5NmM0MGYuLjNiZmVh
-NTRmZmQ3YyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5
-LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKQEAgLTQxMjIs
-NiArNDEyMiwxMCBAQCBudjUwX2Rpc3BfYXRvbWljX2NvbW1pdChzdHJ1Y3QgZHJtX2RldmljZSAq
-ZGV2LAogCQkJZ290byBlcnJfY2xlYW51cDsKIAl9CiAKKwlyZXQgPSBkcm1fYXRvbWljX2hlbHBl
-cl9zd2FwX3N0YXRlKHN0YXRlLCB0cnVlKTsKKwlpZiAocmV0KQorCQlnb3RvIGVycl9jbGVhbnVw
-OworCiAJZm9yX2VhY2hfcGxhbmVfaW5fc3RhdGUoc3RhdGUsIHBsYW5lLCBwbGFuZV9zdGF0ZSwg
-aSkgewogCQlzdHJ1Y3QgbnY1MF93bmR3X2F0b20gKmFzeXcgPSBudjUwX3duZHdfYXRvbShwbGFu
-ZV9zdGF0ZSk7CiAJCXN0cnVjdCBudjUwX3duZHcgKnduZHcgPSBudjUwX3duZHcocGxhbmUpOwpA
-QCAtNDEzNSw3ICs0MTM5LDYgQEAgbnY1MF9kaXNwX2F0b21pY19jb21taXQoc3RydWN0IGRybV9k
-ZXZpY2UgKmRldiwKIAkJfQogCX0KIAotCWRybV9hdG9taWNfaGVscGVyX3N3YXBfc3RhdGUoc3Rh
-dGUsIHRydWUpOwogCWRybV9hdG9taWNfc3RhdGVfZ2V0KHN0YXRlKTsKIAogCWlmIChub25ibG9j
-aykKLS0gCjIuMTEuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1243561119==
+Content-Type: multipart/alternative; boundary="14997883601.D7899.27976";
+ charset="UTF-8"
+
+
+--14997883601.D7899.27976
+Date: Tue, 11 Jul 2017 15:52:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99889
+
+--- Comment #4 from Ali <sunmooon15-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+respond please
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--14997883601.D7899.27976
+Date: Tue, 11 Jul 2017 15:52:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889">bug 99889<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+sunmooon15&#64;gmail.com" title=3D"Ali &lt;sunmooon15&#64;gmail.com&gt;"> <=
+span class=3D"fn">Ali</span></a>
+</span></b>
+        <pre>respond please</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--14997883601.D7899.27976--
+
+--===============1243561119==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1243561119==--
