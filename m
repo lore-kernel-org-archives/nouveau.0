@@ -1,41 +1,62 @@
-From: Mike Galbraith <efault@gmx.de>
-Subject: Re: [regression drm/noveau] suspend to ram -> BOOM: exception RIP:
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Re: suspend to ram -> BOOM: exception RIP:
  drm_calc_vbltimestamp_from_scanoutpos+335
-Date: Tue, 11 Jul 2017 20:53:48 +0200
-Message-ID: <1499799228.5315.39.camel@gmx.de>
-References: <1499794333.5315.8.camel@gmx.de>
-         <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
-         <1499796510.5315.27.camel@gmx.de>
-         <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
+Date: Wed, 12 Jul 2017 00:30:45 +0200
+Message-ID: <2dd21233-d343-6079-83ea-5bf6cea61a25@mni.thm.de>
+References: <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: efault-Mmb7MZpHnFY@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 2017-07-11 at 14:22 -0400, Ilia Mirkin wrote:
-> 
-> OK, thanks. So in other words, a fairly standard desktop with a PCIe
-> board plugged in. No funny business. (Laptops can create a ton of
-> additional weirdness, which I assumed you had since you were talking
-> about STR.)
-
-Yup, garden variety deskside box.
-
-> My best guess is that gf119_head_vblank_put either has a bogus head id
-> (should be in the 0..3 range) which causes it to do an out-of-bounds
-> read on MMIO space, or that the MMIO mapping has already been removed
-> by the time nouveau_display_suspend runs. Adding Ben Skeggs for
-> additional insight.
-> 
-> Some display stuff did change for 4.13 for GM20x+ boards. If it's not
-> too much trouble, a bisect would be pretty useful.
-
-Vacation -> back to work happens in the very early AM, so bisection
-will have to wait a bit.
-
-	-Mike
+ID5PbiBUdWUsIEp1bCAxMSwgMjAxNyBhdCAyOjA4IFBNLCBNaWtlIEdhbGJyYWl0aCB3cm90ZToK
+ID4+IE9uIFR1ZSwgMjAxNy0wNy0xMSBhdCAxMzo1MSAtMDQwMCwgSWxpYSBNaXJraW4gd3JvdGU6
+CiA+Pj4gU29tZSBkZXRhaWxzIHRoYXQgbWF5IGJlIHVzZWZ1bCBpbiBhbmFseXNpcyBvZiB0aGUg
+YnVnOgogPj4+CiA+Pj4gMS4gbHNwY2kgLW5uIC1kIDEwZGU6CiA+PgogPj4gMDE6MDAuMCBWR0Eg
+Y29tcGF0aWJsZSBjb250cm9sbGVyIFswMzAwXTogTlZJRElBIENvcnBvcmF0aW9uIEdNMjA0IApb
+R2VGb3JjZSBHVFggOTgwXSBbMTBkZToxM2MwXSAocmV2IGExKQogPj4gMDE6MDAuMSBBdWRpbyBk
+ZXZpY2UgWzA0MDNdOiBOVklESUEgQ29ycG9yYXRpb24gR00yMDQgSGlnaCAKRGVmaW5pdGlvbiBB
+dWRpbyBDb250cm9sbGVyIFsxMGRlOjBmYmJdIChyZXYgYTEKID4+CiA+Pj4gMi4gV2hhdCBkaXNw
+bGF5cywgaWYgYW55LCB5b3UgaGF2ZSBwbHVnZ2VkIGludG8gdGhlIE5WSURJQSBib2FyZCB3aGVu
+CiA+Pj4gdGhpcyBoYXBwZW5zPwogPj4KID4+IEEgUGhpbGlwcyAyNzNWLCB2aWEgRFZJLgogPj4K
+ID4+PiAzLiBBbnkgYm9vdCBwYXJhbWV0ZXJzLCBlc3AgcmVsYXRpbmcgdG8gQUNQSSwgUE0sIG9y
+IHJlbGF0ZWQ/CiA+PgogPj4gTm9uZSBmb3IgdGhvc2UsIHdoYXQncyB0aGVyZSB0aGF0IHdpbGwg
+YmUgdW5mYW1pbGlhciB0byB5b3UgYXJlIGZvcgogPj4gcGF0Y2hlcyB0aGF0IGFyZW4ndCBhcHBs
+aWVkLgogPj4KID4+IG5vcnRzY2hlZCBocGNfY3B1c2V0cyBza2V3X3RpY2s9MSBmdHJhY2VfZHVt
+cF9vbl9vb3BzIGF1ZGl0PTAKID4+IG5vZGVsYXlhY2N0IGNncm91cF9kaXNhYmxlPW1lbW9yeSBy
+dGt0aHJlYWRzPTEgcnR3b3JrcXVldWVzPTIgcGFuaWM9NjAKID4+IGlnbm9yZV9sb2dsZXZlbCBj
+cmFzaGtlcm5lbD0yNTZNLGhpZ2gKID4KID4gT0ssIHRoYW5rcy4gU28gaW4gb3RoZXIgd29yZHMs
+IGEgZmFpcmx5IHN0YW5kYXJkIGRlc2t0b3Agd2l0aCBhIFBDSWUKID4gYm9hcmQgcGx1Z2dlZCBp
+bi4gTm8gZnVubnkgYnVzaW5lc3MuIChMYXB0b3BzIGNhbiBjcmVhdGUgYSB0b24gb2YKID4gYWRk
+aXRpb25hbCB3ZWlyZG5lc3MsIHdoaWNoIEkgYXNzdW1lZCB5b3UgaGFkIHNpbmNlIHlvdSB3ZXJl
+IHRhbGtpbmcKID4gYWJvdXQgU1RSLikKID4KID4gTXkgYmVzdCBndWVzcyBpcyB0aGF0IGdmMTE5
+X2hlYWRfdmJsYW5rX3B1dCBlaXRoZXIgaGFzIGEgYm9ndXMgaGVhZCBpZAogPiAoc2hvdWxkIGJl
+IGluIHRoZSAwLi4zIHJhbmdlKSB3aGljaCBjYXVzZXMgaXQgdG8gZG8gYW4gb3V0LW9mLWJvdW5k
+cwogPiByZWFkIG9uIE1NSU8gc3BhY2UsIG9yIHRoYXQgdGhlIE1NSU8gbWFwcGluZyBoYXMgYWxy
+ZWFkeSBiZWVuIHJlbW92ZWQKID4gYnkgdGhlIHRpbWUgbm91dmVhdV9kaXNwbGF5X3N1c3BlbmQg
+cnVucy4gQWRkaW5nIEJlbiBTa2VnZ3MgZm9yCiA+IGFkZGl0aW9uYWwgaW5zaWdodC4KID4KID4g
+U29tZSBkaXNwbGF5IHN0dWZmIGRpZCBjaGFuZ2UgZm9yIDQuMTMgZm9yIEdNMjB4KyBib2FyZHMu
+IElmIGl0J3Mgbm90CiA+IHRvbyBtdWNoIHRyb3VibGUsIGEgYmlzZWN0IHdvdWxkIGJlIHByZXR0
+eSB1c2VmdWwuCgoKSGV5IE1pa2UsCmp1c3QgdG8gaW5mb3JtIHlvdTogaSBoYXZlIGEgcXVpdGUg
+c2ltaWxhciBidWcgd2l0aCBubyBtb25pdG9yIGF0dGFjaGVkIAp3aGlsZSBwdXR0aW5nIG15IG5v
+dXZlYXUgY2FyZCB0byBzbGVlcCAobGFwdG9wL29wdGltdXMgc3lzdGVtKSB3aXRoaW4gCm5vdXZl
+YXVfZGlzcGxheV9zdXNwZW5kKCkuCgpJJ20gZ29pbmcgdG8gYmlzZWN0IHRoaXMsIGhvcGVmdWxs
+eSBvbiB0aGUgbG9uZyBydW4gdGhpcyB3aWxsIGFpZCBpbiAKcmVzb2x2aW5nIHlvdXIgaXNzdWUg
+YXMgd2VsbCEKCkdyZWV0aW5nLApUb2JpYXMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQo=
