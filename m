@@ -1,56 +1,41 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [regression drm/noveau] suspend to ram -> BOOM:
-	exception RIP: drm_calc_vbltimestamp_from_scanoutpos+335
-Date: Tue, 11 Jul 2017 14:22:49 -0400
-Message-ID: <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
+From: Mike Galbraith <efault@gmx.de>
+Subject: Re: [regression drm/noveau] suspend to ram -> BOOM: exception RIP:
+ drm_calc_vbltimestamp_from_scanoutpos+335
+Date: Tue, 11 Jul 2017 20:53:48 +0200
+Message-ID: <1499799228.5315.39.camel@gmx.de>
 References: <1499794333.5315.8.camel@gmx.de>
- <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
- <1499796510.5315.27.camel@gmx.de>
+         <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
+         <1499796510.5315.27.camel@gmx.de>
+         <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1499796510.5315.27.camel-Mmb7MZpHnFY@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdWwgMTEsIDIwMTcgYXQgMjowOCBQTSwgTWlrZSBHYWxicmFpdGggPGVmYXVsdEBn
-bXguZGU+IHdyb3RlOgo+IE9uIFR1ZSwgMjAxNy0wNy0xMSBhdCAxMzo1MSAtMDQwMCwgSWxpYSBN
-aXJraW4gd3JvdGU6Cj4+IFNvbWUgZGV0YWlscyB0aGF0IG1heSBiZSB1c2VmdWwgaW4gYW5hbHlz
-aXMgb2YgdGhlIGJ1ZzoKPj4KPj4gMS4gbHNwY2kgLW5uIC1kIDEwZGU6Cj4KPiAwMTowMC4wIFZH
-QSBjb21wYXRpYmxlIGNvbnRyb2xsZXIgWzAzMDBdOiBOVklESUEgQ29ycG9yYXRpb24gR00yMDQg
-W0dlRm9yY2UgR1RYIDk4MF0gWzEwZGU6MTNjMF0gKHJldiBhMSkKPiAwMTowMC4xIEF1ZGlvIGRl
-dmljZSBbMDQwM106IE5WSURJQSBDb3Jwb3JhdGlvbiBHTTIwNCBIaWdoIERlZmluaXRpb24gQXVk
-aW8gQ29udHJvbGxlciBbMTBkZTowZmJiXSAocmV2IGExCj4KPj4gMi4gV2hhdCBkaXNwbGF5cywg
-aWYgYW55LCB5b3UgaGF2ZSBwbHVnZ2VkIGludG8gdGhlIE5WSURJQSBib2FyZCB3aGVuCj4+IHRo
-aXMgaGFwcGVucz8KPgo+IEEgUGhpbGlwcyAyNzNWLCB2aWEgRFZJLgo+Cj4+IDMuIEFueSBib290
-IHBhcmFtZXRlcnMsIGVzcCByZWxhdGluZyB0byBBQ1BJLCBQTSwgb3IgcmVsYXRlZD8KPgo+IE5v
-bmUgZm9yIHRob3NlLCB3aGF0J3MgdGhlcmUgdGhhdCB3aWxsIGJlIHVuZmFtaWxpYXIgdG8geW91
-IGFyZSBmb3IKPiBwYXRjaGVzIHRoYXQgYXJlbid0IGFwcGxpZWQuCj4KPiBub3J0c2NoZWQgaHBj
-X2NwdXNldHMgc2tld190aWNrPTEgZnRyYWNlX2R1bXBfb25fb29wcyBhdWRpdD0wCj4gbm9kZWxh
-eWFjY3QgY2dyb3VwX2Rpc2FibGU9bWVtb3J5IHJ0a3RocmVhZHM9MSBydHdvcmtxdWV1ZXM9MiBw
-YW5pYz02MAo+IGlnbm9yZV9sb2dsZXZlbCBjcmFzaGtlcm5lbD0yNTZNLGhpZ2gKCk9LLCB0aGFu
-a3MuIFNvIGluIG90aGVyIHdvcmRzLCBhIGZhaXJseSBzdGFuZGFyZCBkZXNrdG9wIHdpdGggYSBQ
-Q0llCmJvYXJkIHBsdWdnZWQgaW4uIE5vIGZ1bm55IGJ1c2luZXNzLiAoTGFwdG9wcyBjYW4gY3Jl
-YXRlIGEgdG9uIG9mCmFkZGl0aW9uYWwgd2VpcmRuZXNzLCB3aGljaCBJIGFzc3VtZWQgeW91IGhh
-ZCBzaW5jZSB5b3Ugd2VyZSB0YWxraW5nCmFib3V0IFNUUi4pCgpNeSBiZXN0IGd1ZXNzIGlzIHRo
-YXQgZ2YxMTlfaGVhZF92YmxhbmtfcHV0IGVpdGhlciBoYXMgYSBib2d1cyBoZWFkIGlkCihzaG91
-bGQgYmUgaW4gdGhlIDAuLjMgcmFuZ2UpIHdoaWNoIGNhdXNlcyBpdCB0byBkbyBhbiBvdXQtb2Yt
-Ym91bmRzCnJlYWQgb24gTU1JTyBzcGFjZSwgb3IgdGhhdCB0aGUgTU1JTyBtYXBwaW5nIGhhcyBh
-bHJlYWR5IGJlZW4gcmVtb3ZlZApieSB0aGUgdGltZSBub3V2ZWF1X2Rpc3BsYXlfc3VzcGVuZCBy
-dW5zLiBBZGRpbmcgQmVuIFNrZWdncyBmb3IKYWRkaXRpb25hbCBpbnNpZ2h0LgoKU29tZSBkaXNw
-bGF5IHN0dWZmIGRpZCBjaGFuZ2UgZm9yIDQuMTMgZm9yIEdNMjB4KyBib2FyZHMuIElmIGl0J3Mg
-bm90CnRvbyBtdWNoIHRyb3VibGUsIGEgYmlzZWN0IHdvdWxkIGJlIHByZXR0eSB1c2VmdWwuCgpD
-aGVlcnMsCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Tue, 2017-07-11 at 14:22 -0400, Ilia Mirkin wrote:
+> 
+> OK, thanks. So in other words, a fairly standard desktop with a PCIe
+> board plugged in. No funny business. (Laptops can create a ton of
+> additional weirdness, which I assumed you had since you were talking
+> about STR.)
+
+Yup, garden variety deskside box.
+
+> My best guess is that gf119_head_vblank_put either has a bogus head id
+> (should be in the 0..3 range) which causes it to do an out-of-bounds
+> read on MMIO space, or that the MMIO mapping has already been removed
+> by the time nouveau_display_suspend runs. Adding Ben Skeggs for
+> additional insight.
+> 
+> Some display stuff did change for 4.13 for GM20x+ boards. If it's not
+> too much trouble, a bisect would be pretty useful.
+
+Vacation -> back to work happens in the very early AM, so bisection
+will have to wait a bit.
+
+	-Mike
