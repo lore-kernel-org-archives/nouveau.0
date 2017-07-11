@@ -1,40 +1,56 @@
-From: Mike Galbraith <efault@gmx.de>
-Subject: Re: [regression drm/noveau] suspend to ram -> BOOM: exception RIP:
- drm_calc_vbltimestamp_from_scanoutpos+335
-Date: Tue, 11 Jul 2017 20:08:30 +0200
-Message-ID: <1499796510.5315.27.camel@gmx.de>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [regression drm/noveau] suspend to ram -> BOOM:
+	exception RIP: drm_calc_vbltimestamp_from_scanoutpos+335
+Date: Tue, 11 Jul 2017 14:22:49 -0400
+Message-ID: <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
 References: <1499794333.5315.8.camel@gmx.de>
-         <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
+ <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
+ <1499796510.5315.27.camel@gmx.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1499796510.5315.27.camel-Mmb7MZpHnFY@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 2017-07-11 at 13:51 -0400, Ilia Mirkin wrote:
-> Some details that may be useful in analysis of the bug:
-> 
-> 1. lspci -nn -d 10de:
-
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM204 [GeForce GTX 980] [10de:13c0] (rev a1)
-01:00.1 Audio device [0403]: NVIDIA Corporation GM204 High Definition Audio Controller [10de:0fbb] (rev a1
-
-> 2. What displays, if any, you have plugged into the NVIDIA board when
-> this happens?
-
-A Philips 273V, via DVI.
-
-> 3. Any boot parameters, esp relating to ACPI, PM, or related?
-
-None for those, what's there that will be unfamiliar to you are for
-patches that aren't applied.
-
-nortsched hpc_cpusets skew_tick=1 ftrace_dump_on_oops audit=0
-nodelayacct cgroup_disable=memory rtkthreads=1 rtworkqueues=2 panic=60
-ignore_loglevel crashkernel=256M,high
-
-	-Mike
+T24gVHVlLCBKdWwgMTEsIDIwMTcgYXQgMjowOCBQTSwgTWlrZSBHYWxicmFpdGggPGVmYXVsdEBn
+bXguZGU+IHdyb3RlOgo+IE9uIFR1ZSwgMjAxNy0wNy0xMSBhdCAxMzo1MSAtMDQwMCwgSWxpYSBN
+aXJraW4gd3JvdGU6Cj4+IFNvbWUgZGV0YWlscyB0aGF0IG1heSBiZSB1c2VmdWwgaW4gYW5hbHlz
+aXMgb2YgdGhlIGJ1ZzoKPj4KPj4gMS4gbHNwY2kgLW5uIC1kIDEwZGU6Cj4KPiAwMTowMC4wIFZH
+QSBjb21wYXRpYmxlIGNvbnRyb2xsZXIgWzAzMDBdOiBOVklESUEgQ29ycG9yYXRpb24gR00yMDQg
+W0dlRm9yY2UgR1RYIDk4MF0gWzEwZGU6MTNjMF0gKHJldiBhMSkKPiAwMTowMC4xIEF1ZGlvIGRl
+dmljZSBbMDQwM106IE5WSURJQSBDb3Jwb3JhdGlvbiBHTTIwNCBIaWdoIERlZmluaXRpb24gQXVk
+aW8gQ29udHJvbGxlciBbMTBkZTowZmJiXSAocmV2IGExCj4KPj4gMi4gV2hhdCBkaXNwbGF5cywg
+aWYgYW55LCB5b3UgaGF2ZSBwbHVnZ2VkIGludG8gdGhlIE5WSURJQSBib2FyZCB3aGVuCj4+IHRo
+aXMgaGFwcGVucz8KPgo+IEEgUGhpbGlwcyAyNzNWLCB2aWEgRFZJLgo+Cj4+IDMuIEFueSBib290
+IHBhcmFtZXRlcnMsIGVzcCByZWxhdGluZyB0byBBQ1BJLCBQTSwgb3IgcmVsYXRlZD8KPgo+IE5v
+bmUgZm9yIHRob3NlLCB3aGF0J3MgdGhlcmUgdGhhdCB3aWxsIGJlIHVuZmFtaWxpYXIgdG8geW91
+IGFyZSBmb3IKPiBwYXRjaGVzIHRoYXQgYXJlbid0IGFwcGxpZWQuCj4KPiBub3J0c2NoZWQgaHBj
+X2NwdXNldHMgc2tld190aWNrPTEgZnRyYWNlX2R1bXBfb25fb29wcyBhdWRpdD0wCj4gbm9kZWxh
+eWFjY3QgY2dyb3VwX2Rpc2FibGU9bWVtb3J5IHJ0a3RocmVhZHM9MSBydHdvcmtxdWV1ZXM9MiBw
+YW5pYz02MAo+IGlnbm9yZV9sb2dsZXZlbCBjcmFzaGtlcm5lbD0yNTZNLGhpZ2gKCk9LLCB0aGFu
+a3MuIFNvIGluIG90aGVyIHdvcmRzLCBhIGZhaXJseSBzdGFuZGFyZCBkZXNrdG9wIHdpdGggYSBQ
+Q0llCmJvYXJkIHBsdWdnZWQgaW4uIE5vIGZ1bm55IGJ1c2luZXNzLiAoTGFwdG9wcyBjYW4gY3Jl
+YXRlIGEgdG9uIG9mCmFkZGl0aW9uYWwgd2VpcmRuZXNzLCB3aGljaCBJIGFzc3VtZWQgeW91IGhh
+ZCBzaW5jZSB5b3Ugd2VyZSB0YWxraW5nCmFib3V0IFNUUi4pCgpNeSBiZXN0IGd1ZXNzIGlzIHRo
+YXQgZ2YxMTlfaGVhZF92YmxhbmtfcHV0IGVpdGhlciBoYXMgYSBib2d1cyBoZWFkIGlkCihzaG91
+bGQgYmUgaW4gdGhlIDAuLjMgcmFuZ2UpIHdoaWNoIGNhdXNlcyBpdCB0byBkbyBhbiBvdXQtb2Yt
+Ym91bmRzCnJlYWQgb24gTU1JTyBzcGFjZSwgb3IgdGhhdCB0aGUgTU1JTyBtYXBwaW5nIGhhcyBh
+bHJlYWR5IGJlZW4gcmVtb3ZlZApieSB0aGUgdGltZSBub3V2ZWF1X2Rpc3BsYXlfc3VzcGVuZCBy
+dW5zLiBBZGRpbmcgQmVuIFNrZWdncyBmb3IKYWRkaXRpb25hbCBpbnNpZ2h0LgoKU29tZSBkaXNw
+bGF5IHN0dWZmIGRpZCBjaGFuZ2UgZm9yIDQuMTMgZm9yIEdNMjB4KyBib2FyZHMuIElmIGl0J3Mg
+bm90CnRvbyBtdWNoIHRyb3VibGUsIGEgYmlzZWN0IHdvdWxkIGJlIHByZXR0eSB1c2VmdWwuCgpD
+aGVlcnMsCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
