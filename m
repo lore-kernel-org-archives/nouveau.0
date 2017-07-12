@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101764] [regression] eaa2c988033b breaks GTX1050TI
  (GP107 / NV137)
-Date: Wed, 12 Jul 2017 15:44:42 +0000
-Message-ID: <bug-101764-8800-lSTSlboUpE@http.bugs.freedesktop.org/>
+Date: Wed, 12 Jul 2017 15:45:15 +0000
+Message-ID: <bug-101764-8800-cjyu6ArwOA@http.bugs.freedesktop.org/>
 References: <bug-101764-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1283917021=="
+Content-Type: multipart/mixed; boundary="===============0650696704=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101764-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1283917021==
-Content-Type: multipart/alternative; boundary="14998742821.d635.15637";
+--===============0650696704==
+Content-Type: multipart/alternative; boundary="14998743150.9ec952F1E.15916";
  charset="UTF-8"
 
 
---14998742821.d635.15637
-Date: Wed, 12 Jul 2017 15:44:42 +0000
+--14998743150.9ec952F1E.15916
+Date: Wed, 12 Jul 2017 15:45:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,34 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101764
 
---- Comment #5 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
-> So it's having trouble loading the firmware. Please confirm that you have=
- the=20
-> latest firmware for gp107 (as there was a window of time when linux-firmw=
-are=20
-> contained bad firmware for gp107 -- some time ago now already, but you co=
-uld=20
-> have a bad snapshot).
-The firmware is the latest one shipped in the linux-firmware git repo
-
->>> nouveau.noaccel=3D1 (see attachment)
-In this case the nouveau module is correct probed and I do not get any WARN=
-ING
-in the journal (even though a bit noisy on the PM part).
-
->>> only pcie_port_pm=3Doff
-The system hangs before reaching Xorg
-
->>> nouveau.runpm=3D0 (with or without pcie_port_pm=3Doff) (see attachment)
-Interestingly I can still reach Xorg but in the journal I have a lot of
-WARNINGs
+--- Comment #6 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
+Created attachment 132635
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132635&action=3Dedit
+GP107_noaccel
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14998742821.d635.15637
-Date: Wed, 12 Jul 2017 15:44:42 +0000
+--14998743150.9ec952F1E.15916
+Date: Wed, 12 Jul 2017 15:45:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -81,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [regression] eaa2c988033b breaks GTX1050TI (GP107 / NV137=
 )"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101764#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101764#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [regression] eaa2c988033b breaks GTX1050TI (GP107 / NV137=
@@ -93,28 +76,11 @@ t # 5</a>
 carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
 <span class=3D"fn">Carlo Caione</span></a>
 </span></b>
-        <pre><span class=3D"quote">&gt; So it's having trouble loading the =
-firmware. Please confirm that you have the=20
-&gt; latest firmware for gp107 (as there was a window of time when linux-fi=
-rmware=20
-&gt; contained bad firmware for gp107 -- some time ago now already, but you=
- could=20
-&gt; have a bad snapshot).</span >
-The firmware is the latest one shipped in the linux-firmware git repo
-
-<span class=3D"quote">&gt;&gt;&gt; nouveau.noaccel=3D1 (see attachment)</sp=
-an >
-In this case the nouveau module is correct probed and I do not get any WARN=
-ING
-in the journal (even though a bit noisy on the PM part).
-
-<span class=3D"quote">&gt;&gt;&gt; only pcie_port_pm=3Doff</span >
-The system hangs before reaching Xorg
-
-<span class=3D"quote">&gt;&gt;&gt; nouveau.runpm=3D0 (with or without pcie_=
-port_pm=3Doff) (see attachment)</span >
-Interestingly I can still reach Xorg but in the journal I have a lot of
-WARNINGs</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132635=
+" name=3D"attach_132635" title=3D"GP107_noaccel">attachment 132635</a> <a h=
+ref=3D"attachment.cgi?id=3D132635&amp;action=3Dedit" title=3D"GP107_noaccel=
+">[details]</a></span>
+GP107_noaccel</pre>
         </div>
       </p>
 
@@ -128,9 +94,9 @@ WARNINGs</pre>
     </body>
 </html>=
 
---14998742821.d635.15637--
+--14998743150.9ec952F1E.15916--
 
---===============1283917021==
+--===============0650696704==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -140,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1283917021==--
+--===============0650696704==--
