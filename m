@@ -1,61 +1,74 @@
-From: Mike Galbraith <efault@gmx.de>
-Subject: Re: [regression drm/noveau] suspend to ram -> BOOM: exception RIP:
- drm_calc_vbltimestamp_from_scanoutpos+335
-Date: Wed, 12 Jul 2017 19:19:32 +0200
-Message-ID: <1499879972.23742.50.camel@gmx.de>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Re: [regression drm/noveau] suspend to ram -> BOOM:
+ exception RIP: drm_calc_vbltimestamp_from_scanoutpos+335
+Date: Wed, 12 Jul 2017 21:33:49 +0200
+Message-ID: <adddc17c-9ed6-81f2-ca93-8c958b519bd4@mni.thm.de>
 References: <1499794333.5315.8.camel@gmx.de>
-         <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
-         <1499796510.5315.27.camel@gmx.de>
-         <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
-         <1499853345.23742.8.camel@gmx.de> <1499858703.23742.25.camel@gmx.de>
-         <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
+ <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
+ <1499796510.5315.27.camel@gmx.de>
+ <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
+ <1499853345.23742.8.camel@gmx.de> <1499858703.23742.25.camel@gmx.de>
+ <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
+ <1499879972.23742.50.camel@gmx.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1499879972.23742.50.camel-Mmb7MZpHnFY@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 2017-07-12 at 07:37 -0400, Ilia Mirkin wrote:
-> On Wed, Jul 12, 2017 at 7:25 AM, Mike Galbraith <efault@gmx.de> wrote:
-> > On Wed, 2017-07-12 at 11:55 +0200, Mike Galbraith wrote:
-> >> On Tue, 2017-07-11 at 14:22 -0400, Ilia Mirkin wrote:
-> >> >
-> >> > Some display stuff did change for 4.13 for GM20x+ boards. If it's not
-> >> > too much trouble, a bisect would be pretty useful.
-> >>
-> >> Bisection seemingly went fine, but the result is odd.
-> >>
-> >> e98c58e55f68f8785aebfab1f8c9a03d8de0afe1 is the first bad commit
-> >
-> > But it really really is bad.  Looking at gitk fork in the road leading
-> > to it...
-> >
-> > 52d9d38c183b drm/sti:fix spelling mistake: "compoment" -> "component" - good
-> > e4e818cc2d7c drm: make drm_panel.h self-contained                     - good
-> > 9cf8f5802f39 drm: add missing declaration to drm_blend.h              - good
-> >
-> > Before the git highway splits, all is well.  The lane with commits
-> > works fine at both ends, but e98c58e55f68 is busted.  Merge arfifact?
-> 
-> Hmmm... that tree does not appear to have gotten a v4.12 backmerge at
-> any point. The last backmerge from Linus as far as I can tell was
-> v4.11-rc7. Could be an interaction with some out-of-tree change.
-
-FWIW, checking out the fingered commit then..
-
-git log --oneline 52d9d38c183b..e98c58e55f68|grep nouveau and reverting
-the lot helped not at all.
-
-Checking out 6b7781b42dc9 and reverting the fingered commit did.  Given
-the nouveau bits reverted are mostly the vblank changes, CC to Daniel,
-maybe he'll know why both GTX 980 and GeForce 8600 GT get all upset.
-
-Either I'm damn lucky, both of my nvidia equipped boxen going boom 100%
-repeatably, or there are a lot of folks out there who haven't yet tried
-suspend with our latest/greatest kernel.  I suspect the later.
-
-	-Mike
+Ck9uIDcvMTIvMTcgNzoxOSBQTSwgTWlrZSBHYWxicmFpdGggd3JvdGU6Cj4gT24gV2VkLCAyMDE3
+LTA3LTEyIGF0IDA3OjM3IC0wNDAwLCBJbGlhIE1pcmtpbiB3cm90ZToKPj4gT24gV2VkLCBKdWwg
+MTIsIDIwMTcgYXQgNzoyNSBBTSwgTWlrZSBHYWxicmFpdGggPGVmYXVsdEBnbXguZGU+IHdyb3Rl
+Ogo+Pj4gT24gV2VkLCAyMDE3LTA3LTEyIGF0IDExOjU1ICswMjAwLCBNaWtlIEdhbGJyYWl0aCB3
+cm90ZToKPj4+PiBPbiBUdWUsIDIwMTctMDctMTEgYXQgMTQ6MjIgLTA0MDAsIElsaWEgTWlya2lu
+IHdyb3RlOgo+Pj4+PiBTb21lIGRpc3BsYXkgc3R1ZmYgZGlkIGNoYW5nZSBmb3IgNC4xMyBmb3Ig
+R00yMHgrIGJvYXJkcy4gSWYgaXQncyBub3QKPj4+Pj4gdG9vIG11Y2ggdHJvdWJsZSwgYSBiaXNl
+Y3Qgd291bGQgYmUgcHJldHR5IHVzZWZ1bC4KPj4+PiBCaXNlY3Rpb24gc2VlbWluZ2x5IHdlbnQg
+ZmluZSwgYnV0IHRoZSByZXN1bHQgaXMgb2RkLgo+Pj4+Cj4+Pj4gZTk4YzU4ZTU1ZjY4Zjg3ODVh
+ZWJmYWIxZjhjOWEwM2Q4ZGUwYWZlMSBpcyB0aGUgZmlyc3QgYmFkIGNvbW1pdAo+Pj4gQnV0IGl0
+IHJlYWxseSByZWFsbHkgaXMgYmFkLiAgTG9va2luZyBhdCBnaXRrIGZvcmsgaW4gdGhlIHJvYWQg
+bGVhZGluZwo+Pj4gdG8gaXQuLi4KPj4+Cj4+PiA1MmQ5ZDM4YzE4M2IgZHJtL3N0aTpmaXggc3Bl
+bGxpbmcgbWlzdGFrZTogImNvbXBvbWVudCIgLT4gImNvbXBvbmVudCIgLSBnb29kCj4+PiBlNGU4
+MThjYzJkN2MgZHJtOiBtYWtlIGRybV9wYW5lbC5oIHNlbGYtY29udGFpbmVkICAgICAgICAgICAg
+ICAgICAgICAgLSBnb29kCj4+PiA5Y2Y4ZjU4MDJmMzkgZHJtOiBhZGQgbWlzc2luZyBkZWNsYXJh
+dGlvbiB0byBkcm1fYmxlbmQuaCAgICAgICAgICAgICAgLSBnb29kCj4+Pgo+Pj4gQmVmb3JlIHRo
+ZSBnaXQgaGlnaHdheSBzcGxpdHMsIGFsbCBpcyB3ZWxsLiAgVGhlIGxhbmUgd2l0aCBjb21taXRz
+Cj4+PiB3b3JrcyBmaW5lIGF0IGJvdGggZW5kcywgYnV0IGU5OGM1OGU1NWY2OCBpcyBidXN0ZWQu
+ICBNZXJnZSBhcmZpZmFjdD8KPj4gSG1tbS4uLiB0aGF0IHRyZWUgZG9lcyBub3QgYXBwZWFyIHRv
+IGhhdmUgZ290dGVuIGEgdjQuMTIgYmFja21lcmdlIGF0Cj4+IGFueSBwb2ludC4gVGhlIGxhc3Qg
+YmFja21lcmdlIGZyb20gTGludXMgYXMgZmFyIGFzIEkgY2FuIHRlbGwgd2FzCj4+IHY0LjExLXJj
+Ny4gQ291bGQgYmUgYW4gaW50ZXJhY3Rpb24gd2l0aCBzb21lIG91dC1vZi10cmVlIGNoYW5nZS4K
+PiBGV0lXLCBjaGVja2luZyBvdXQgdGhlIGZpbmdlcmVkIGNvbW1pdCB0aGVuLi4KPgo+IGdpdCBs
+b2cgLS1vbmVsaW5lIDUyZDlkMzhjMTgzYi4uZTk4YzU4ZTU1ZjY4fGdyZXAgbm91dmVhdSBhbmQg
+cmV2ZXJ0aW5nCj4gdGhlIGxvdCBoZWxwZWQgbm90IGF0IGFsbC4KPgo+IENoZWNraW5nIG91dCA2
+Yjc3ODFiNDJkYzkgYW5kIHJldmVydGluZyB0aGUgZmluZ2VyZWQgY29tbWl0IGRpZC4gwqBHaXZl
+bgo+IHRoZSBub3V2ZWF1IGJpdHMgcmV2ZXJ0ZWQgYXJlIG1vc3RseSB0aGUgdmJsYW5rIGNoYW5n
+ZXMsIENDIHRvIERhbmllbCwKPiBtYXliZSBoZSdsbCBrbm93IHdoeSBib3RoIEdUWCA5ODAgYW5k
+wqBHZUZvcmNlIDg2MDAgR1QgZ2V0IGFsbCB1cHNldC4KPgo+IEVpdGhlciBJJ20gZGFtbiBsdWNr
+eSwgYm90aCBvZiBteSBudmlkaWEgZXF1aXBwZWQgYm94ZW4gZ29pbmcgYm9vbSAxMDAlCj4gcmVw
+ZWF0YWJseSwgb3IgdGhlcmUgYXJlIGEgbG90IG9mIGZvbGtzIG91dCB0aGVyZSB3aG8gaGF2ZW4n
+dCB5ZXQgdHJpZWQKPiBzdXNwZW5kIHdpdGggb3VyIGxhdGVzdC9ncmVhdGVzdCBrZXJuZWwuIMKg
+SSBzdXNwZWN0IHRoZSBsYXRlci4KPgo+IAktTWlrZQo+CgpJIHNob3VsZCBoYXZlIGhhZCBhIGxv
+b2sgYXQgbXkgaW5ib3gsIHdvdWxkIGhhdmUgc2F2ZSBtZSBhIGxvZyBvZiB3b3JrIApiaXNlY3Rp
+bmcuIFlldCBpIGNvbWUgdG8gdGhlIHNhbWUgY29uY2x1c2lvbjoKCiMgZmlyc3QgYmFkIGNvbW1p
+dDogW2U5OGM1OGU1NWY2OGY4Nzg1YWViZmFiMWY4YzlhMDNkOGRlMGFmZTFdIE1lcmdlIHRhZyAK
+J2RybS1taXNjLW5leHQtMjAxNy0wNS0xNicgb2YgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5v
+cmcvZ2l0L2RybS1taXNjIAppbnRvIGRybS1uZXh0CgoKSSBzdXNwZWN0IGl0IGlzIHNvbWUgdmJs
+YW5rIGNoYW5nZSBhcyBpdCBzaG93cyB1cCBpbiBldmVyeSB0cmFjZSBpIGhhdmUgCnNlZW4gd2hp
+bGUgYmlzZWN0aW5nLCBidXQgdGhhdCBpcyBqdXN0IGEgd2lsZCBndWVzcy4uLgoKR3JlZXRpbmdz
+LAoKVG9iaWFzCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
