@@ -1,117 +1,61 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101764] [regression] eaa2c988033b breaks GTX1050TI
- (GP107 / NV137)
-Date: Wed, 12 Jul 2017 16:56:23 +0000
-Message-ID: <bug-101764-8800-3cjclgMwXT@http.bugs.freedesktop.org/>
-References: <bug-101764-8800@http.bugs.freedesktop.org/>
+From: Mike Galbraith <efault@gmx.de>
+Subject: Re: [regression drm/noveau] suspend to ram -> BOOM: exception RIP:
+ drm_calc_vbltimestamp_from_scanoutpos+335
+Date: Wed, 12 Jul 2017 19:19:32 +0200
+Message-ID: <1499879972.23742.50.camel@gmx.de>
+References: <1499794333.5315.8.camel@gmx.de>
+         <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
+         <1499796510.5315.27.camel@gmx.de>
+         <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
+         <1499853345.23742.8.camel@gmx.de> <1499858703.23742.25.camel@gmx.de>
+         <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0884135159=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101764-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
+On Wed, 2017-07-12 at 07:37 -0400, Ilia Mirkin wrote:
+> On Wed, Jul 12, 2017 at 7:25 AM, Mike Galbraith <efault@gmx.de> wrote:
+> > On Wed, 2017-07-12 at 11:55 +0200, Mike Galbraith wrote:
+> >> On Tue, 2017-07-11 at 14:22 -0400, Ilia Mirkin wrote:
+> >> >
+> >> > Some display stuff did change for 4.13 for GM20x+ boards. If it's not
+> >> > too much trouble, a bisect would be pretty useful.
+> >>
+> >> Bisection seemingly went fine, but the result is odd.
+> >>
+> >> e98c58e55f68f8785aebfab1f8c9a03d8de0afe1 is the first bad commit
+> >
+> > But it really really is bad.  Looking at gitk fork in the road leading
+> > to it...
+> >
+> > 52d9d38c183b drm/sti:fix spelling mistake: "compoment" -> "component" - good
+> > e4e818cc2d7c drm: make drm_panel.h self-contained                     - good
+> > 9cf8f5802f39 drm: add missing declaration to drm_blend.h              - good
+> >
+> > Before the git highway splits, all is well.  The lane with commits
+> > works fine at both ends, but e98c58e55f68 is busted.  Merge arfifact?
+> 
+> Hmmm... that tree does not appear to have gotten a v4.12 backmerge at
+> any point. The last backmerge from Linus as far as I can tell was
+> v4.11-rc7. Could be an interaction with some out-of-tree change.
 
---===============0884135159==
-Content-Type: multipart/alternative; boundary="14998785820.3D25c6bf.22332";
- charset="UTF-8"
+FWIW, checking out the fingered commit then..
 
+git log --oneline 52d9d38c183b..e98c58e55f68|grep nouveau and reverting
+the lot helped not at all.
 
---14998785820.3D25c6bf.22332
-Date: Wed, 12 Jul 2017 16:56:22 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Checking out 6b7781b42dc9 and reverting the fingered commit did.  Given
+the nouveau bits reverted are mostly the vblank changes, CC to Daniel,
+maybe he'll know why both GTX 980 and GeForce 8600 GT get all upset.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101764
+Either I'm damn lucky, both of my nvidia equipped boxen going boom 100%
+repeatably, or there are a lot of folks out there who haven't yet tried
+suspend with our latest/greatest kernel.  I suspect the later.
 
---- Comment #8 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Looks to be a duplicate of https://bugs.freedesktop.org/show_bug.cgi?id=3D1=
-00228
-
-Was going to mark as such, but wanted to hear the thoughts of imirkin or ot=
-hers
-more experienced with nouveau first.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---14998785820.3D25c6bf.22332
-Date: Wed, 12 Jul 2017 16:56:22 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [regression] eaa2c988033b breaks GTX1050TI (GP107 / NV137=
-)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101764#c8">Commen=
-t # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [regression] eaa2c988033b breaks GTX1050TI (GP107 / NV137=
-)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101764">bug 10176=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
- <span class=3D"fn">Rhys Kidd</span></a>
-</span></b>
-        <pre>Looks to be a duplicate of <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"show_bug.cgi?id=3D100228">https://bugs.freedesktop.org/show_bug.=
-cgi?id=3D100228</a>
-
-Was going to mark as such, but wanted to hear the thoughts of imirkin or ot=
-hers
-more experienced with nouveau first.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---14998785820.3D25c6bf.22332--
-
---===============0884135159==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0884135159==--
+	-Mike
