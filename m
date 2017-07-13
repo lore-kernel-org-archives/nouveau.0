@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101782] GTX1050TI (GP107 / NV137): HDMI output not
 	working
-Date: Thu, 13 Jul 2017 13:09:11 +0000
-Message-ID: <bug-101782-8800-n3TP9gQ9aJ@http.bugs.freedesktop.org/>
+Date: Thu, 13 Jul 2017 13:09:38 +0000
+Message-ID: <bug-101782-8800-mUFjJVYqzI@http.bugs.freedesktop.org/>
 References: <bug-101782-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0854173174=="
+Content-Type: multipart/mixed; boundary="===============1191892447=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101782-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0854173174==
-Content-Type: multipart/alternative; boundary="14999513501.FAc4Bd40a.29574";
+--===============1191892447==
+Content-Type: multipart/alternative; boundary="14999513780.FEdfAF.29953";
  charset="UTF-8"
 
 
---14999513501.FAc4Bd40a.29574
-Date: Thu, 13 Jul 2017 13:09:10 +0000
+--14999513780.FEdfAF.29953
+Date: Thu, 13 Jul 2017 13:09:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101782
 
---- Comment #2 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
-Created attachment 132666
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132666&action=3Dedit
-xrand_before
+--- Comment #3 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
+Created attachment 132667
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132667&action=3Dedit
+xrandr_after
 
-xrandr output before attaching the HDMI cable
+xrandr output after attaching the HDMI cable
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14999513501.FAc4Bd40a.29574
-Date: Thu, 13 Jul 2017 13:09:10 +0000
+--14999513780.FEdfAF.29953
+Date: Thu, 13 Jul 2017 13:09:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +65,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GTX1050TI (GP107 / NV137): HDMI output not working"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101782#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101782#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GTX1050TI (GP107 / NV137): HDMI output not working"
@@ -76,13 +76,13 @@ t # 2</a>
 carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
 <span class=3D"fn">Carlo Caione</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132666=
-" name=3D"attach_132666" title=3D"xrand_before">attachment 132666</a> <a hr=
-ef=3D"attachment.cgi?id=3D132666&amp;action=3Dedit" title=3D"xrand_before">=
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132667=
+" name=3D"attach_132667" title=3D"xrandr_after">attachment 132667</a> <a hr=
+ef=3D"attachment.cgi?id=3D132667&amp;action=3Dedit" title=3D"xrandr_after">=
 [details]</a></span>
-xrand_before
+xrandr_after
 
-xrandr output before attaching the HDMI cable</pre>
+xrandr output after attaching the HDMI cable</pre>
         </div>
       </p>
 
@@ -96,9 +96,9 @@ xrandr output before attaching the HDMI cable</pre>
     </body>
 </html>=
 
---14999513501.FAc4Bd40a.29574--
+--14999513780.FEdfAF.29953--
 
---===============0854173174==
+--===============1191892447==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0854173174==--
+--===============1191892447==--
