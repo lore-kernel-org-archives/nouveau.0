@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101778] Kernel Error on Lenovo P51 when setting
  graphics to hybrid (Nvidia Optimus with intel+nvidia)
-Date: Thu, 13 Jul 2017 13:30:11 +0000
-Message-ID: <bug-101778-8800-mITsntDmXt@http.bugs.freedesktop.org/>
+Date: Thu, 13 Jul 2017 13:30:34 +0000
+Message-ID: <bug-101778-8800-bQEQotifpO@http.bugs.freedesktop.org/>
 References: <bug-101778-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2123791313=="
+Content-Type: multipart/mixed; boundary="===============0152313149=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101778-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2123791313==
-Content-Type: multipart/alternative; boundary="14999526111.Be7ADE.31010";
+--===============0152313149==
+Content-Type: multipart/alternative; boundary="14999526340.4BbF7ec0b.31730";
  charset="UTF-8"
 
 
---14999526111.Be7ADE.31010
-Date: Thu, 13 Jul 2017 13:30:11 +0000
+--14999526340.4BbF7ec0b.31730
+Date: Thu, 13 Jul 2017 13:30:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101778
 
---- Comment #2 from Development-gH/kpmAylh3vIoy7gQb1Kw@public.gmane.org ---
-Created attachment 132668
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132668&action=3Dedit
-/var/log/kernel.log
+--- Comment #3 from Development-gH/kpmAylh3vIoy7gQb1Kw@public.gmane.org ---
+Created attachment 132669
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132669&action=3Dedit
+/var/log/messages.log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---14999526111.Be7ADE.31010
-Date: Thu, 13 Jul 2017 13:30:11 +0000
+--14999526340.4BbF7ec0b.31730
+Date: Thu, 13 Jul 2017 13:30:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Kernel Error on Lenovo P51 when setting graphics to hybri=
 d (Nvidia Optimus with intel+nvidia)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101778#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101778#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel Error on Lenovo P51 when setting graphics to hybri=
@@ -76,11 +76,11 @@ d (Nvidia Optimus with intel+nvidia)"
 Development&#64;Geekparadise.de" title=3D"Development&#64;Geekparadise.de">=
 Development&#64;Geekparadise.de</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132668=
-" name=3D"attach_132668" title=3D"/var/log/kernel.log">attachment 132668</a=
-> <a href=3D"attachment.cgi?id=3D132668&amp;action=3Dedit" title=3D"/var/lo=
-g/kernel.log">[details]</a></span>
-/var/log/kernel.log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132669=
+" name=3D"attach_132669" title=3D"/var/log/messages.log">attachment 132669<=
+/a> <a href=3D"attachment.cgi?id=3D132669&amp;action=3Dedit" title=3D"/var/=
+log/messages.log">[details]</a></span>
+/var/log/messages.log</pre>
         </div>
       </p>
 
@@ -94,9 +94,9 @@ g/kernel.log">[details]</a></span>
     </body>
 </html>=
 
---14999526111.Be7ADE.31010--
+--14999526340.4BbF7ec0b.31730--
 
---===============2123791313==
+--===============0152313149==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2123791313==--
+--===============0152313149==--
