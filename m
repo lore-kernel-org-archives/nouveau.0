@@ -1,46 +1,83 @@
-From: Mike Galbraith <efault@gmx.de>
-Subject: Re: [regression drm/noveau] suspend to ram -> BOOM: exception RIP:
- drm_calc_vbltimestamp_from_scanoutpos+335
-Date: Fri, 14 Jul 2017 15:41:33 +0200
-Message-ID: <1500039693.5763.15.camel@gmx.de>
-References: <1499794333.5315.8.camel@gmx.de>
-         <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
-         <1499796510.5315.27.camel@gmx.de>
-         <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
-         <1499853345.23742.8.camel@gmx.de> <1499858703.23742.25.camel@gmx.de>
-         <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
-         <1500039368.5763.12.camel@gmx.de>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH v2 01/12] drm/nouveau: Fix error handling in
+ nv50_disp_atomic_commit
+Date: Fri, 14 Jul 2017 16:28:04 +0200
+Message-ID: <20170714142804.6xkfv76cofeotk4j@phenom.ffwll.local>
+References: <20170711143314.2148-1-maarten.lankhorst@linux.intel.com>
+ <20170711143314.2148-2-maarten.lankhorst@linux.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1500039368.5763.12.camel@gmx.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>, Peter Zijlstra <peterz@infradead.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <stable-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20170711143314.2148-2-maarten.lankhorst@linux.intel.com>
+Sender: stable-owner@vger.kernel.org
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, "# v4 . 10+" <stable@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 2017-07-14 at 15:36 +0200, Mike Galbraith wrote:
->  All DRM did was to slip a
-> WARN_ON_ONCE() that nouveau triggers into a kernel module where such
-> things no longer warn, they blow the box out of the water.
+On Tue, Jul 11, 2017 at 04:33:03PM +0200, Maarten Lankhorst wrote:
+> Make it more clear that post commit return ret is really return 0,
+> 
+> and add a missing drm_atomic_helper_cleanup_planes when
+> drm_atomic_helper_wait_for_fences fails.
+> 
+> Fixes: 839ca903f12e ("drm/nouveau/kms/nv50: transition to atomic interfaces internally")
+> Cc: Ben Skeggs <bskeggs@redhat.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: nouveau@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v4.10+
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>  drivers/gpu/drm/nouveau/nv50_display.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
+> index 42a85c14aea0..8fb55b96c40f 100644
+> --- a/drivers/gpu/drm/nouveau/nv50_display.c
+> +++ b/drivers/gpu/drm/nouveau/nv50_display.c
+> @@ -4119,7 +4119,7 @@ nv50_disp_atomic_commit(struct drm_device *dev,
+>  	if (!nonblock) {
+>  		ret = drm_atomic_helper_wait_for_fences(dev, state, true);
+>  		if (ret)
+> -			goto done;
+> +			goto err_cleanup;
+>  	}
+>  
+>  	for_each_plane_in_state(state, plane, plane_state, i) {
+> @@ -4147,7 +4147,7 @@ nv50_disp_atomic_commit(struct drm_device *dev,
+>  		if (crtc->state->enable) {
+>  			if (!drm->have_disp_power_ref) {
+>  				drm->have_disp_power_ref = true;
+> -				return ret;
+> +				return 0;
+>  			}
+>  			active = true;
+>  			break;
+> @@ -4158,7 +4158,10 @@ nv50_disp_atomic_commit(struct drm_device *dev,
+>  		pm_runtime_put_autosuspend(dev->dev);
+>  		drm->have_disp_power_ref = false;
+>  	}
+> +	goto done;
+>  
 
-BTW, turn that irksome WARN_ON_ONCE() in drivers/gpu/drm/drm_vblank.c
-into a WARN_ONCE(), and all is peachy, you get the warning, box lives.
+A bit convoluted, I prefer to wrap these in if (ret) to make them only run
+for the failure case.
 
----
- drivers/gpu/drm/drm_vblank.c |    3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Either way: Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> +err_cleanup:
+> +	drm_atomic_helper_cleanup_planes(dev, state);
+>  done:
+>  	pm_runtime_put_autosuspend(dev->dev);
+>  	return ret;
+> -- 
+> 2.11.0
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -605,7 +605,8 @@ bool drm_calc_vbltimestamp_from_scanoutp
- 	 */
- 	if (mode->crtc_clock == 0) {
- 		DRM_DEBUG("crtc %u: Noop due to uninitialized mode.\n", pipe);
--		WARN_ON_ONCE(drm_drv_uses_atomic_modeset(dev));
-+		WARN_ONCE(drm_drv_uses_atomic_modeset(dev), "%s: report me.\n",
-+			  dev->driver->name);
- 
- 		return false;
- 	}
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
