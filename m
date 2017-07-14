@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101792] nouveau driver doesn't work in kms mode with
 	ION GPU
-Date: Fri, 14 Jul 2017 17:00:35 +0000
-Message-ID: <bug-101792-8800-FxVMC8uUJG@http.bugs.freedesktop.org/>
+Date: Fri, 14 Jul 2017 17:06:32 +0000
+Message-ID: <bug-101792-8800-EO4aqM4NDj@http.bugs.freedesktop.org/>
 References: <bug-101792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1507006325=="
+Content-Type: multipart/mixed; boundary="===============1624878617=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101792-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1507006325==
-Content-Type: multipart/alternative; boundary="15000516340.BDbfa.8788";
+--===============1624878617==
+Content-Type: multipart/alternative; boundary="15000519910.8F03BeA3.9704";
  charset="UTF-8"
 
 
---15000516340.BDbfa.8788
-Date: Fri, 14 Jul 2017 17:00:34 +0000
+--15000519910.8F03BeA3.9704
+Date: Fri, 14 Jul 2017 17:06:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101792
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you try a newer kernel? There was an issue affecting MCP77/79 HDMI outp=
-uts
-that was fixed in 4.10 (commit 7dfee6827780d4228148263545af936d0cae8930
-upstream).
+--- Comment #2 from bigboo <bigboo3000-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+I don't know how to update kernel in lakka/librelec, but I'll wait for a new
+version and I will test that. Thank you!
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15000516340.BDbfa.8788
-Date: Fri, 14 Jul 2017 17:00:34 +0000
+--15000519910.8F03BeA3.9704
+Date: Fri, 14 Jul 2017 17:06:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,21 +62,20 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau driver doesn't work in kms mode with ION GPU"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101792#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101792#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau driver doesn't work in kms mode with ION GPU"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101792">bug 10179=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+bigboo3000&#64;hotmail.com" title=3D"bigboo &lt;bigboo3000&#64;hotmail.com&=
+gt;"> <span class=3D"fn">bigboo</span></a>
 </span></b>
-        <pre>Can you try a newer kernel? There was an issue affecting MCP77=
-/79 HDMI outputs
-that was fixed in 4.10 (commit 7dfee6827780d4228148263545af936d0cae8930
-upstream).</pre>
+        <pre>I don't know how to update kernel in lakka/librelec, but I'll =
+wait for a new
+version and I will test that. Thank you!</pre>
         </div>
       </p>
 
@@ -92,9 +89,9 @@ upstream).</pre>
     </body>
 </html>=
 
---15000516340.BDbfa.8788--
+--15000519910.8F03BeA3.9704--
 
---===============1507006325==
+--===============1624878617==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1507006325==--
+--===============1624878617==--
