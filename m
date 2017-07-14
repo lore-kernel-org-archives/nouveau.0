@@ -1,45 +1,42 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: [PATCH v2] drm/nouveau: honor return type of nvif_mthd,
-	trivial
-Date: Fri, 14 Jul 2017 17:26:09 +0200
-Message-ID: <20170714152609.10315-1-tobias.johannes.klausmann@mni.thm.de>
-References: <20170712212113.3678-1-tobias.johannes.klausmann@mni.thm.de>
+From: Peter Zijlstra <peterz@infradead.org>
+Subject: Re: [regression drm/noveau] suspend to ram -> BOOM: exception RIP:
+ drm_calc_vbltimestamp_from_scanoutpos+335
+Date: Fri, 14 Jul 2017 17:50:47 +0200
+Message-ID: <20170714155047.2zs3ps7cmnyvvwgb@hirez.programming.kicks-ass.net>
+References: <1499794333.5315.8.camel@gmx.de>
+ <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
+ <1499796510.5315.27.camel@gmx.de>
+ <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
+ <1499853345.23742.8.camel@gmx.de>
+ <1499858703.23742.25.camel@gmx.de>
+ <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
+ <1500039368.5763.12.camel@gmx.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170712212113.3678-1-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <1500039368.5763.12.camel@gmx.de>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Mike Galbraith <efault@gmx.de>
+Cc: Ilia Mirkin <imirkin@alum.mit.edu>, LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, jeyu@kernel.org
 List-Id: nouveau.vger.kernel.org
 
-bnZpZl9tdGhkKCkgcmV0dXJucyBhbiBpbnQsIHNvIHByb3ZpZGUgdGhhdCBmb3IgcmV0dXJuIGNo
-ZWNraW5nCgpTaWduZWQtb2ZmLWJ5OiBUb2JpYXMgS2xhdXNtYW5uIDx0b2JpYXMuam9oYW5uZXMu
-a2xhdXNtYW5uQG1uaS50aG0uZGU+Ci0tLQpWMjogZGVjbGFyZSB2YXIgb25seSBvbmNlClRoZSBv
-dGhlciBwYXRjaCBzaG91bGQgaGF2ZSBuZXZlciBnZXQgb3V0IGF0IGFsbCwgYnV0IGFzIGknbSBh
-dCBpdCwgc2VuZCBvdXQgYQpmaXhlZCBvbmUhCgogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9kaXNwbGF5LmMgfCA1ICsrKy0tCiAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCsp
-LCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
-dXZlYXVfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5
-LmMKaW5kZXggOGQxZGY1Njc4ZWFhLi41ODM3NTY2OWQ0OTIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCkBAIC0xMTMsMTAgKzExMywxMSBAQCBub3V2ZWF1X2Rp
-c3BsYXlfc2Nhbm91dHBvc19oZWFkKHN0cnVjdCBkcm1fY3J0YyAqY3J0YywgaW50ICp2cG9zLCBp
-bnQgKmhwb3MsCiAJc3RydWN0IGRybV92YmxhbmtfY3J0YyAqdmJsYW5rID0gJmNydGMtPmRldi0+
-dmJsYW5rW2RybV9jcnRjX2luZGV4KGNydGMpXTsKIAlpbnQgcmV0cnkgPSAyMDsKIAlib29sIHJl
-dCA9IGZhbHNlOworCWludCBtdGhkX3JldDsKIAogCWRvIHsKLQkJcmV0ID0gbnZpZl9tdGhkKCZk
-aXNwLT5kaXNwLCAwLCAmYXJncywgc2l6ZW9mKGFyZ3MpKTsKLQkJaWYgKHJldCAhPSAwKQorCQlt
-dGhkX3JldCA9IG52aWZfbXRoZCgmZGlzcC0+ZGlzcCwgMCwgJmFyZ3MsIHNpemVvZihhcmdzKSk7
-CisJCWlmIChtdGhkX3JldCAhPSAwKQogCQkJcmV0dXJuIGZhbHNlOwogCiAJCWlmIChhcmdzLnNj
-YW4udmxpbmUpIHsKLS0gCjIuMTMuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+On Fri, Jul 14, 2017 at 03:36:08PM +0200, Mike Galbraith wrote:
+> Ok, a network outage gave me time to go hunting.  Indeed it is a bad
+> interaction with the tree DRM merged into.  All DRM did was to slip a
+> WARN_ON_ONCE() that nouveau triggers into a kernel module where such
+> things no longer warn, they blow the box out of the water.  I made a
+> dinky testcase module (attached), and bisected to the real root....
+> 
+> 19d436268dde95389c616bb3819da73f0a8b28a8 is the first bad commit
+> commit 19d436268dde95389c616bb3819da73f0a8b28a8
+> Author: Peter Zijlstra <peterz@infradead.org>
+> Date:   Sat Feb 25 08:56:53 2017 +0100
+> 
+>     debug: Add _ONCE() logic to report_bug()
+
+Urgh, is for some mysterious reason the __bug_table section of modules
+ending up in RO memory?
+
+I forever get lost in that link magic :/
