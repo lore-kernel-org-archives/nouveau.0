@@ -1,104 +1,76 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101792] nouveau driver doesn't work in kms mode with
-	ION GPU
-Date: Fri, 14 Jul 2017 17:06:32 +0000
-Message-ID: <bug-101792-8800-EO4aqM4NDj@http.bugs.freedesktop.org/>
-References: <bug-101792-8800@http.bugs.freedesktop.org/>
+From: Josh Poimboeuf <jpoimboe@redhat.com>
+Subject: Re: [regression drm/noveau] suspend to ram -> BOOM: exception RIP:
+ drm_calc_vbltimestamp_from_scanoutpos+335
+Date: Fri, 14 Jul 2017 14:42:48 -0500
+Message-ID: <20170714194248.6n7rw5ln6luhnz3l@treble>
+References: <1499796510.5315.27.camel@gmx.de>
+ <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
+ <1499853345.23742.8.camel@gmx.de>
+ <1499858703.23742.25.camel@gmx.de>
+ <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
+ <1500039368.5763.12.camel@gmx.de>
+ <20170714155047.2zs3ps7cmnyvvwgb@hirez.programming.kicks-ass.net>
+ <1500047898.5763.25.camel@gmx.de>
+ <20170714161027.5htn5jlswvfgphzw@hirez.programming.kicks-ass.net>
+ <1500049981.5248.2.camel@gmx.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1624878617=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101792-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <1500049981.5248.2.camel@gmx.de>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Mike Galbraith <efault@gmx.de>
+Cc: Peter Zijlstra <peterz@infradead.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, jeyu@kernel.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1624878617==
-Content-Type: multipart/alternative; boundary="15000519910.8F03BeA3.9704";
- charset="UTF-8"
-
-
---15000519910.8F03BeA3.9704
-Date: Fri, 14 Jul 2017 17:06:31 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101792
-
---- Comment #2 from bigboo <bigboo3000-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-I don't know how to update kernel in lakka/librelec, but I'll wait for a new
-version and I will test that. Thank you!
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15000519910.8F03BeA3.9704
-Date: Fri, 14 Jul 2017 17:06:31 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau driver doesn't work in kms mode with ION GPU"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101792#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau driver doesn't work in kms mode with ION GPU"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101792">bug 10179=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bigboo3000&#64;hotmail.com" title=3D"bigboo &lt;bigboo3000&#64;hotmail.com&=
-gt;"> <span class=3D"fn">bigboo</span></a>
-</span></b>
-        <pre>I don't know how to update kernel in lakka/librelec, but I'll =
-wait for a new
-version and I will test that. Thank you!</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15000519910.8F03BeA3.9704--
-
---===============1624878617==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1624878617==--
+T24gRnJpLCBKdWwgMTQsIDIwMTcgYXQgMDY6MzM6MDFQTSArMDIwMCwgTWlrZSBHYWxicmFpdGgg
+d3JvdGU6Cj4gT24gRnJpLCAyMDE3LTA3LTE0IGF0IDE4OjEwICswMjAwLCBQZXRlciBaaWpsc3Ry
+YSB3cm90ZToKPiA+IE9uIEZyaSwgSnVsIDE0LCAyMDE3IGF0IDA1OjU4OjE4UE0gKzAyMDAsIE1p
+a2UgR2FsYnJhaXRoIHdyb3RlOgo+ID4gPiBPbiBGcmksIDIwMTctMDctMTQgYXQgMTc6NTAgKzAy
+MDAsIFBldGVyIFppamxzdHJhIHdyb3RlOgo+ID4gCj4gPiA+ID4gVXJnaCwgaXMgZm9yIHNvbWUg
+bXlzdGVyaW91cyByZWFzb24gdGhlIF9fYnVnX3RhYmxlIHNlY3Rpb24gb2YgbW9kdWxlcwo+ID4g
+PiA+IGVuZGluZyB1cCBpbiBSTyBtZW1vcnk/Cj4gPiA+ID4gCj4gPiA+ID4gSSBmb3JldmVyIGdl
+dCBsb3N0IGluIHRoYXQgbGluayBtYWdpYyA6Lwo+ID4gPiAKPiA+ID4gKzEKPiA+ID4gCj4gPiA+
+IGRybS5rbwo+ID4gPiDCoDIwIF9fYnVnX3RhYmxlwqDCoMKgMDAwMDA2MzDCoMKgMDAwMDAwMDAw
+MDAwMDAwMMKgwqAwMDAwMDAwMDAwMDAwMDAwwqDCoDAwMDRiZmYzwqDCoDIqKjAKPiA+ID4gwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgQ09OVEVOVFMsIEFMTE9DLCBMT0FELCBS
+RUxPQywgUkVBRE9OTFksIERBVEEKPiA+ID4gdm1saW51eAo+ID4gPiAgMTUgX19idWdfdGFibGUg
+ICAwMDAwYmE4NCAgZmZmZmZmZmY4MWFmMjZjMCAgMDAwMDAwMDAwMWFmMjZjMCAgMDBjZjI2YzAg
+IDIqKjAKPiA+ID4gICAgICAgICAgICAgICAgICAgQ09OVEVOVFMsIEFMTE9DLCBMT0FELCBSRUFE
+T05MWSwgREFUQQo+ID4gPiAKPiA+ID4gRGFuZ2VkIGlmIEkga25vdy4uLiB1bSB1bSBSRUxPQyBi
+dXNpbmVzcyBtdWNrcyB0aGluZ3MgdXA/Cj4gPiAKPiA+IEFyZ2gsIGl0IHNob3VsZG4ndCBiZSBS
+RUFET05MWSBmb3Igdm1saW51eCBlaXRoZXIsIGJ1dCBhcHBhcmVudGx5IHRoYXQKPiA+IGlzIHdv
+cmtpbmcgZm9yIG15c3RlcmlvdXMgcmVhc29ucy4KPiA+IAo+ID4gU29tZSBhcmNoaXRlY3R1cmVz
+IHdlcmUgaW4gZmFjdCBjb21wbGFpbmluZyB0aGF0IEkgYnJva2UgdGhhdCwgYW5kIGhlbmNlCj4g
+PiBwYXRjaDoKPiA+IAo+ID4gYjVlZmZkMzgxNWNjICgiZGVidWc6IEZpeCBfX2J1Z190YWJsZVtd
+IGluIGFyY2ggbGlua2VyIHNjcmlwdHMiKQo+ID4gCj4gPiBJIHRoaW5rIHdlIG5lZWQgcHJvZmVz
+c2lvbmFsIGhlbHAgd2l0aCB0aGlzIGxpbmtpbmcgc3R1ZmYsIGJ1dCB3aG8gdG8KPiA+IGFzaz8K
+PiAKPiBBbmR5IEx1dG9taXJza2k/CgpEb2VzIHRoaXMgZml4IGl0PwoKCmRpZmYgLS1naXQgYS9h
+cmNoL3g4Ni9pbmNsdWRlL2FzbS9idWcuaCBiL2FyY2gveDg2L2luY2x1ZGUvYXNtL2J1Zy5oCmlu
+ZGV4IDM5ZTcwMmQuLmFhNmIyMDIgMTAwNjQ0Ci0tLSBhL2FyY2gveDg2L2luY2x1ZGUvYXNtL2J1
+Zy5oCisrKyBiL2FyY2gveDg2L2luY2x1ZGUvYXNtL2J1Zy5oCkBAIC0zNSw3ICszNSw3IEBACiAj
+ZGVmaW5lIF9CVUdfRkxBR1MoaW5zLCBmbGFncykJCQkJCQlcCiBkbyB7CQkJCQkJCQkJXAogCWFz
+bSB2b2xhdGlsZSgiMTpcdCIgaW5zICJcbiIJCQkJCVwKLQkJICAgICAiLnB1c2hzZWN0aW9uIF9f
+YnVnX3RhYmxlLFwiYVwiXG4iCQkJXAorCQkgICAgICIucHVzaHNlY3Rpb24gX19idWdfdGFibGUs
+XCJhd1wiXG4iCQlcCiAJCSAgICAgIjI6XHQiIF9fQlVHX1JFTCgxYikgIlx0IyBidWdfZW50cnk6
+OmJ1Z19hZGRyXG4iCVwKIAkJICAgICAiXHQiICBfX0JVR19SRUwoJWMwKSAiXHQjIGJ1Z19lbnRy
+eTo6ZmlsZVxuIglcCiAJCSAgICAgIlx0LndvcmQgJWMxIiAgICAgICAgIlx0IyBidWdfZW50cnk6
+OmxpbmVcbiIJXApAQCAtNTIsNyArNTIsNyBAQCBkbyB7CQkJCQkJCQkJXAogI2RlZmluZSBfQlVH
+X0ZMQUdTKGlucywgZmxhZ3MpCQkJCQkJXAogZG8gewkJCQkJCQkJCVwKIAlhc20gdm9sYXRpbGUo
+IjE6XHQiIGlucyAiXG4iCQkJCQlcCi0JCSAgICAgIi5wdXNoc2VjdGlvbiBfX2J1Z190YWJsZSxc
+ImFcIlxuIgkJCVwKKwkJICAgICAiLnB1c2hzZWN0aW9uIF9fYnVnX3RhYmxlLFwiYXdcIlxuIgkJ
+XAogCQkgICAgICIyOlx0IiBfX0JVR19SRUwoMWIpICJcdCMgYnVnX2VudHJ5OjpidWdfYWRkclxu
+IglcCiAJCSAgICAgIlx0LndvcmQgJWMwIiAgICAgICAgIlx0IyBidWdfZW50cnk6OmZsYWdzXG4i
+CVwKIAkJICAgICAiXHQub3JnIDJiKyVjMVxuIgkJCQkJXApfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZl
+bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
