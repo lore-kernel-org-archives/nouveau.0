@@ -1,8 +1,8 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [regression drm/noveau] suspend to ram -> BOOM:
  exception RIP: drm_calc_vbltimestamp_from_scanoutpos+335
-Date: Fri, 14 Jul 2017 17:05:31 +0200
-Message-ID: <6341f91f-1c56-2188-f55b-2f47d23262fc@mni.thm.de>
+Date: Fri, 14 Jul 2017 17:10:34 +0200
+Message-ID: <CAEXux-b=u88Bu6JN3xbP+=Fwq2rPRXTXdNWJpBu+pSdsNYwQRQ@mail.gmail.com>
 References: <1499794333.5315.8.camel@gmx.de>
  <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
  <1499796510.5315.27.camel@gmx.de>
@@ -10,12 +10,12 @@ References: <1499794333.5315.8.camel@gmx.de>
  <1499853345.23742.8.camel@gmx.de> <1499858703.23742.25.camel@gmx.de>
  <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
  <1500039368.5763.12.camel@gmx.de> <1500039693.5763.15.camel@gmx.de>
+ <6341f91f-1c56-2188-f55b-2f47d23262fc@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1500039693.5763.15.camel-Mmb7MZpHnFY@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <6341f91f-1c56-2188-f55b-2f47d23262fc-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -25,31 +25,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Peter Zijlstra <peterz-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Cc: Peter Zijlstra <peterz-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gNy8xNC8xNyAzOjQxIFBNLCBNaWtlIEdhbGJyYWl0aCB3cm90ZToKPiBPbiBGcmksIDIwMTct
-MDctMTQgYXQgMTU6MzYgKzAyMDAsIE1pa2UgR2FsYnJhaXRoIHdyb3RlOgo+PiAgwqBBbGwgRFJN
-IGRpZCB3YXMgdG8gc2xpcCBhCj4+IFdBUk5fT05fT05DRSgpIHRoYXQgbm91dmVhdSB0cmlnZ2Vy
-cyBpbnRvIGEga2VybmVsIG1vZHVsZSB3aGVyZSBzdWNoCj4+IHRoaW5ncyBubyBsb25nZXIgd2Fy
-biwgdGhleSBibG93IHRoZSBib3ggb3V0IG9mIHRoZSB3YXRlci4KPiBCVFcsIHR1cm4gdGhhdCBp
-cmtzb21lIFdBUk5fT05fT05DRSgpIGluIGRyaXZlcnMvZ3B1L2RybS9kcm1fdmJsYW5rLmMKPiBp
-bnRvIGEgV0FSTl9PTkNFKCksIGFuZCBhbGwgaXMgcGVhY2h5LCB5b3UgZ2V0IHRoZSB3YXJuaW5n
-LCBib3ggbGl2ZXMuCj4KPiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9kcm1fdmJsYW5rLmMgfCAg
-ICAzICsrLQo+ICAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigt
-KQo+Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV92YmxhbmsuYwo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9kcm1fdmJsYW5rLmMKPiBAQCAtNjA1LDcgKzYwNSw4IEBAIGJvb2wgZHJtX2NhbGNf
-dmJsdGltZXN0YW1wX2Zyb21fc2Nhbm91dHAKPiAgIAkgKi8KPiAgIAlpZiAobW9kZS0+Y3J0Y19j
-bG9jayA9PSAwKSB7Cj4gICAJCURSTV9ERUJVRygiY3J0YyAldTogTm9vcCBkdWUgdG8gdW5pbml0
-aWFsaXplZCBtb2RlLlxuIiwgcGlwZSk7Cj4gLQkJV0FSTl9PTl9PTkNFKGRybV9kcnZfdXNlc19h
-dG9taWNfbW9kZXNldChkZXYpKTsKPiArCQlXQVJOX09OQ0UoZHJtX2Rydl91c2VzX2F0b21pY19t
-b2Rlc2V0KGRldiksICIlczogcmVwb3J0IG1lLlxuIiwKPiArCQkJICBkZXYtPmRyaXZlci0+bmFt
-ZSk7Cj4gICAKPiAgIAkJcmV0dXJuIGZhbHNlOwo+ICAgCX0KCgpIZXksCgpjb25maXJtZWQgdGhp
-cyBoZWxwcyBzYXZpbmcgdGhlIGJveCwgYnV0IHdlIHN0aWxsIGhhdmUgdG8gZmluZCB0aGUgcm9v
-dCAKY2F1c2UhIEJhY2t0cmFjZSB3aXRoIHRoZSBhYm92ZSBmaXggYXBwbGllZCAoYW5kIHRoZSBv
-bmUgd2hpY2ggY2FtZSBpbiAKd2l0aCB0aGUgbGF0ZXN0IGRybS1maXhlcyBtZXJnZSkhCgoKWzFd
-IGh0dHBzOi8vaGFzdGViaW4uY29tL3V5b3FpZmlqZWQuaHR0cAoKVGhhbmtzLAoKVG9iaWFzCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
-aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+WWVhaCwgd2Ugc2hvdWxkbid0IGxldCB0aGUgbWFjaGluZSBkaWUuIEFyZSB0aGVyZSBtb3JlIFdB
+Uk5fT05fT05DRQp1c2FnZSB3ZSBjb3VsZCBjb252ZXJ0IHRvIFdBUk5fT05DRT8KClJldmlld2Vk
+LUJ5OiBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KCk9uIEZyaSwgSnVsIDE0
+LCAyMDE3IGF0IDU6MDUgUE0sIFRvYmlhcyBLbGF1c21hbm4KPHRvYmlhcy5qb2hhbm5lcy5rbGF1
+c21hbm5AbW5pLnRobS5kZT4gd3JvdGU6Cj4gT24gNy8xNC8xNyAzOjQxIFBNLCBNaWtlIEdhbGJy
+YWl0aCB3cm90ZToKPj4KPj4gT24gRnJpLCAyMDE3LTA3LTE0IGF0IDE1OjM2ICswMjAwLCBNaWtl
+IEdhbGJyYWl0aCB3cm90ZToKPj4+Cj4+PiAgIEFsbCBEUk0gZGlkIHdhcyB0byBzbGlwIGEKPj4+
+IFdBUk5fT05fT05DRSgpIHRoYXQgbm91dmVhdSB0cmlnZ2VycyBpbnRvIGEga2VybmVsIG1vZHVs
+ZSB3aGVyZSBzdWNoCj4+PiB0aGluZ3Mgbm8gbG9uZ2VyIHdhcm4sIHRoZXkgYmxvdyB0aGUgYm94
+IG91dCBvZiB0aGUgd2F0ZXIuCj4+Cj4+IEJUVywgdHVybiB0aGF0IGlya3NvbWUgV0FSTl9PTl9P
+TkNFKCkgaW4gZHJpdmVycy9ncHUvZHJtL2RybV92YmxhbmsuYwo+PiBpbnRvIGEgV0FSTl9PTkNF
+KCksIGFuZCBhbGwgaXMgcGVhY2h5LCB5b3UgZ2V0IHRoZSB3YXJuaW5nLCBib3ggbGl2ZXMuCj4+
+Cj4+IC0tLQo+PiAgIGRyaXZlcnMvZ3B1L2RybS9kcm1fdmJsYW5rLmMgfCAgICAzICsrLQo+PiAg
+IDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPj4KPj4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2RybV92YmxhbmsuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+ZHJtX3ZibGFuay5jCj4+IEBAIC02MDUsNyArNjA1LDggQEAgYm9vbCBkcm1fY2FsY192Ymx0aW1l
+c3RhbXBfZnJvbV9zY2Fub3V0cAo+PiAgICAgICAgICAqLwo+PiAgICAgICAgIGlmIChtb2RlLT5j
+cnRjX2Nsb2NrID09IDApIHsKPj4gICAgICAgICAgICAgICAgIERSTV9ERUJVRygiY3J0YyAldTog
+Tm9vcCBkdWUgdG8gdW5pbml0aWFsaXplZCBtb2RlLlxuIiwKPj4gcGlwZSk7Cj4+IC0gICAgICAg
+ICAgICAgICBXQVJOX09OX09OQ0UoZHJtX2Rydl91c2VzX2F0b21pY19tb2Rlc2V0KGRldikpOwo+
+PiArICAgICAgICAgICAgICAgV0FSTl9PTkNFKGRybV9kcnZfdXNlc19hdG9taWNfbW9kZXNldChk
+ZXYpLCAiJXM6IHJlcG9ydAo+PiBtZS5cbiIsCj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
+ZGV2LT5kcml2ZXItPm5hbWUpOwo+PiAgICAgICAgICAgICAgICAgcmV0dXJuIGZhbHNlOwo+PiAg
+ICAgICAgIH0KPgo+Cj4KPiBIZXksCj4KPiBjb25maXJtZWQgdGhpcyBoZWxwcyBzYXZpbmcgdGhl
+IGJveCwgYnV0IHdlIHN0aWxsIGhhdmUgdG8gZmluZCB0aGUgcm9vdAo+IGNhdXNlISBCYWNrdHJh
+Y2Ugd2l0aCB0aGUgYWJvdmUgZml4IGFwcGxpZWQgKGFuZCB0aGUgb25lIHdoaWNoIGNhbWUgaW4g
+d2l0aAo+IHRoZSBsYXRlc3QgZHJtLWZpeGVzIG1lcmdlKSEKPgo+Cj4gWzFdIGh0dHBzOi8vaGFz
+dGViaW4uY29tL3V5b3FpZmlqZWQuaHR0cAo+Cj4gVGhhbmtzLAo+Cj4gVG9iaWFzCj5SZXZpZXdl
+ZC1CeTogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Cj4gX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlz
+dAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
