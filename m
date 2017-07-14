@@ -1,66 +1,59 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [regression drm/noveau] suspend to ram -> BOOM:
- exception RIP: drm_calc_vbltimestamp_from_scanoutpos+335
-Date: Fri, 14 Jul 2017 17:10:34 +0200
-Message-ID: <CAEXux-b=u88Bu6JN3xbP+=Fwq2rPRXTXdNWJpBu+pSdsNYwQRQ@mail.gmail.com>
+From: Mike Galbraith <efault@gmx.de>
+Subject: Re: [regression drm/noveau] suspend to ram -> BOOM: exception RIP:
+ drm_calc_vbltimestamp_from_scanoutpos+335
+Date: Fri, 14 Jul 2017 17:11:57 +0200
+Message-ID: <1500045117.5763.18.camel@gmx.de>
 References: <1499794333.5315.8.camel@gmx.de>
- <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
- <1499796510.5315.27.camel@gmx.de>
- <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
- <1499853345.23742.8.camel@gmx.de> <1499858703.23742.25.camel@gmx.de>
- <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
- <1500039368.5763.12.camel@gmx.de> <1500039693.5763.15.camel@gmx.de>
- <6341f91f-1c56-2188-f55b-2f47d23262fc@mni.thm.de>
+         <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
+         <1499796510.5315.27.camel@gmx.de>
+         <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
+         <1499853345.23742.8.camel@gmx.de> <1499858703.23742.25.camel@gmx.de>
+         <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
+         <1500039368.5763.12.camel@gmx.de> <1500039693.5763.15.camel@gmx.de>
+         <6341f91f-1c56-2188-f55b-2f47d23262fc@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6341f91f-1c56-2188-f55b-2f47d23262fc-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: Peter Zijlstra <peterz-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <6341f91f-1c56-2188-f55b-2f47d23262fc@mni.thm.de>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>, Ilia Mirkin <imirkin@alum.mit.edu>, Peter Zijlstra <peterz@infradead.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-WWVhaCwgd2Ugc2hvdWxkbid0IGxldCB0aGUgbWFjaGluZSBkaWUuIEFyZSB0aGVyZSBtb3JlIFdB
-Uk5fT05fT05DRQp1c2FnZSB3ZSBjb3VsZCBjb252ZXJ0IHRvIFdBUk5fT05DRT8KClJldmlld2Vk
-LUJ5OiBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KCk9uIEZyaSwgSnVsIDE0
-LCAyMDE3IGF0IDU6MDUgUE0sIFRvYmlhcyBLbGF1c21hbm4KPHRvYmlhcy5qb2hhbm5lcy5rbGF1
-c21hbm5AbW5pLnRobS5kZT4gd3JvdGU6Cj4gT24gNy8xNC8xNyAzOjQxIFBNLCBNaWtlIEdhbGJy
-YWl0aCB3cm90ZToKPj4KPj4gT24gRnJpLCAyMDE3LTA3LTE0IGF0IDE1OjM2ICswMjAwLCBNaWtl
-IEdhbGJyYWl0aCB3cm90ZToKPj4+Cj4+PiAgIEFsbCBEUk0gZGlkIHdhcyB0byBzbGlwIGEKPj4+
-IFdBUk5fT05fT05DRSgpIHRoYXQgbm91dmVhdSB0cmlnZ2VycyBpbnRvIGEga2VybmVsIG1vZHVs
-ZSB3aGVyZSBzdWNoCj4+PiB0aGluZ3Mgbm8gbG9uZ2VyIHdhcm4sIHRoZXkgYmxvdyB0aGUgYm94
-IG91dCBvZiB0aGUgd2F0ZXIuCj4+Cj4+IEJUVywgdHVybiB0aGF0IGlya3NvbWUgV0FSTl9PTl9P
-TkNFKCkgaW4gZHJpdmVycy9ncHUvZHJtL2RybV92YmxhbmsuYwo+PiBpbnRvIGEgV0FSTl9PTkNF
-KCksIGFuZCBhbGwgaXMgcGVhY2h5LCB5b3UgZ2V0IHRoZSB3YXJuaW5nLCBib3ggbGl2ZXMuCj4+
-Cj4+IC0tLQo+PiAgIGRyaXZlcnMvZ3B1L2RybS9kcm1fdmJsYW5rLmMgfCAgICAzICsrLQo+PiAg
-IDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPj4KPj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2RybV92YmxhbmsuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-ZHJtX3ZibGFuay5jCj4+IEBAIC02MDUsNyArNjA1LDggQEAgYm9vbCBkcm1fY2FsY192Ymx0aW1l
-c3RhbXBfZnJvbV9zY2Fub3V0cAo+PiAgICAgICAgICAqLwo+PiAgICAgICAgIGlmIChtb2RlLT5j
-cnRjX2Nsb2NrID09IDApIHsKPj4gICAgICAgICAgICAgICAgIERSTV9ERUJVRygiY3J0YyAldTog
-Tm9vcCBkdWUgdG8gdW5pbml0aWFsaXplZCBtb2RlLlxuIiwKPj4gcGlwZSk7Cj4+IC0gICAgICAg
-ICAgICAgICBXQVJOX09OX09OQ0UoZHJtX2Rydl91c2VzX2F0b21pY19tb2Rlc2V0KGRldikpOwo+
-PiArICAgICAgICAgICAgICAgV0FSTl9PTkNFKGRybV9kcnZfdXNlc19hdG9taWNfbW9kZXNldChk
-ZXYpLCAiJXM6IHJlcG9ydAo+PiBtZS5cbiIsCj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
-ZGV2LT5kcml2ZXItPm5hbWUpOwo+PiAgICAgICAgICAgICAgICAgcmV0dXJuIGZhbHNlOwo+PiAg
-ICAgICAgIH0KPgo+Cj4KPiBIZXksCj4KPiBjb25maXJtZWQgdGhpcyBoZWxwcyBzYXZpbmcgdGhl
-IGJveCwgYnV0IHdlIHN0aWxsIGhhdmUgdG8gZmluZCB0aGUgcm9vdAo+IGNhdXNlISBCYWNrdHJh
-Y2Ugd2l0aCB0aGUgYWJvdmUgZml4IGFwcGxpZWQgKGFuZCB0aGUgb25lIHdoaWNoIGNhbWUgaW4g
-d2l0aAo+IHRoZSBsYXRlc3QgZHJtLWZpeGVzIG1lcmdlKSEKPgo+Cj4gWzFdIGh0dHBzOi8vaGFz
-dGViaW4uY29tL3V5b3FpZmlqZWQuaHR0cAo+Cj4gVGhhbmtzLAo+Cj4gVG9iaWFzCj5SZXZpZXdl
-ZC1CeTogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Cj4gX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlz
-dAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+On Fri, 2017-07-14 at 17:05 +0200, Tobias Klausmann wrote:
+> On 7/14/17 3:41 PM, Mike Galbraith wrote:
+> > On Fri, 2017-07-14 at 15:36 +0200, Mike Galbraith wrote:
+> >>   All DRM did was to slip a
+> >> WARN_ON_ONCE() that nouveau triggers into a kernel module where such
+> >> things no longer warn, they blow the box out of the water.
+> > BTW, turn that irksome WARN_ON_ONCE() in drivers/gpu/drm/drm_vblank.c
+> > into a WARN_ONCE(), and all is peachy, you get the warning, box lives.
+> >
+> > ---
+> >   drivers/gpu/drm/drm_vblank.c |    3 ++-
+> >   1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > --- a/drivers/gpu/drm/drm_vblank.c
+> > +++ b/drivers/gpu/drm/drm_vblank.c
+> > @@ -605,7 +605,8 @@ bool drm_calc_vbltimestamp_from_scanoutp
+> >   	 */
+> >   	if (mode->crtc_clock == 0) {
+> >   		DRM_DEBUG("crtc %u: Noop due to uninitialized mode.\n", pipe);
+> > -		WARN_ON_ONCE(drm_drv_uses_atomic_modeset(dev));
+> > +		WARN_ONCE(drm_drv_uses_atomic_modeset(dev), "%s: report me.\n",
+> > +			  dev->driver->name);
+> >   
+> >   		return false;
+> >   	}
+> 
+> 
+> Hey,
+> 
+> confirmed this helps saving the box, but we still have to find the root 
+> cause! Backtrace with the above fix applied (and the one which came in 
+> with the latest drm-fixes merge)!
+
+Yeah, I'll be reporting some extra whining from my 8600 GT backup box.
+
+	-Mike
