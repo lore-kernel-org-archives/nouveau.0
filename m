@@ -1,50 +1,120 @@
-From: Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH 12/14] drm/nouveau/clk: fix gcc-7 -Wint-in-bool-context warning
-Date: Fri, 14 Jul 2017 11:31:05 +0200
-Message-ID: <20170714093129.1366900-3-arnd@arndb.de>
-References: <20170714092540.1217397-1-arnd@arndb.de>
+From: Mike Galbraith <efault@gmx.de>
+Subject: Re: [regression drm/noveau] suspend to ram -> BOOM: exception RIP:
+ drm_calc_vbltimestamp_from_scanoutpos+335
+Date: Fri, 14 Jul 2017 15:36:08 +0200
+Message-ID: <1500039368.5763.12.camel@gmx.de>
+References: <1499794333.5315.8.camel@gmx.de>
+         <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
+         <1499796510.5315.27.camel@gmx.de>
+         <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
+         <1499853345.23742.8.camel@gmx.de> <1499858703.23742.25.camel@gmx.de>
+         <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20170714092540.1217397-1-arnd@arndb.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
-Cc: Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, dri-devel@lists.freedesktop.org, linux-ide@vger.kernel.org, nouveau@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, akpm@linux-foundation.org, Linus Torvalds <torvalds@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, linux-media@vger.kernel.org
+Content-Type: multipart/mixed; boundary="=-QEsAZW81vc9tIYr3HPvB"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ilia Mirkin <imirkin@alum.mit.edu>, Peter Zijlstra <peterz@infradead.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Z2NjIHRoaW5rcyB0aGF0IGludGVycHJldGluZyBhIG11bHRpcGxpY2F0aW9uIHJlc3VsdCBhcyBh
-IGJvb2wKaXMgY29uZnVzaW5nOgoKZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-Y2xrL2d0MjE1LmM6IEluIGZ1bmN0aW9uICdyZWFkX3BsbCc6CmRyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L252a20vc3ViZGV2L2Nsay9ndDIxNS5jOjEzMzo4OiBlcnJvcjogJyonIGluIGJvb2xlYW4g
-Y29udGV4dCwgc3VnZ2VzdCAnJiYnIGluc3RlYWQgWy1XZXJyb3I9aW50LWluLWJvb2wtY29udGV4
-dF0KCkluIHRoaXMgaW5zdGFuY2UsIEkgdGhpbmsgdXNpbmcgbXVsdGlwbGljYXRpb24gaXMgbW9y
-ZSBpbnR1aXRpdmUKdGhhbiAnJiYnLCBzbyBJJ20gYWRkaW5nIGEgY29tcGFyaXNvbiB0byB6ZXJv
-IGluc3RlYWQgdG8gc2h1dCB1cAp0aGUgd2FybmluZy4gVG8gZnVydGhlciBpbXByb3ZlIHJlYWRh
-YmlsaXR5LCBJIGFsc28gbWFrZSB0aGUKZXJyb3IgY2FzZSBpbmRlbnRlZCBhbmQgbGVhdmUgdGhl
-IG5vcm1hbCBjYXNlIGFzIHRoZSBmaW5hbCAncmV0dXJuJwpzdGF0ZW1lbnQuCgpGaXhlczogNzYz
-MmIzMGU0YjhiICgiZHJtL25vdXZlYXUvY2xrOiBuYW1lc3BhY2UgKyBudmlkaWEgZ3B1IG5hbWVz
-IChubyBiaW5hcnkgY2hhbmdlKSIpClNpZ25lZC1vZmYtYnk6IEFybmQgQmVyZ21hbm4gPGFybmRA
-YXJuZGIuZGU+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2d0
-MjE1LmMgfCA2ICsrKy0tLQogMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxl
-dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9jbGsvZ3QyMTUuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9n
-dDIxNS5jCmluZGV4IDk2ZTA5NDFjOGVkZC4uMDRiNGY0Y2NmMTg2IDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ3QyMTUuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ3QyMTUuYwpAQCAtMTMwLDEwICsxMzAs
-MTAgQEAgcmVhZF9wbGwoc3RydWN0IGd0MjE1X2NsayAqY2xrLCBpbnQgaWR4LCB1MzIgcGxsKQog
-CQlzY2xrID0gcmVhZF9jbGsoY2xrLCAweDEwICsgaWR4LCBmYWxzZSk7CiAJfQogCi0JaWYgKE0g
-KiBQKQotCQlyZXR1cm4gc2NsayAqIE4gLyAoTSAqIFApOworCWlmIChNICogUCA9PSAwKQorCQly
-ZXR1cm4gMDsKIAotCXJldHVybiAwOworCXJldHVybiBzY2xrICogTiAvIChNICogUCk7CiB9CiAK
-IHN0YXRpYyBpbnQKLS0gCjIuOS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9kcmktZGV2ZWwK
+
+--=-QEsAZW81vc9tIYr3HPvB
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, 2017-07-12 at 07:37 -0400, Ilia Mirkin wrote:
+> On Wed, Jul 12, 2017 at 7:25 AM, Mike Galbraith <efault@gmx.de> wrote:
+> > On Wed, 2017-07-12 at 11:55 +0200, Mike Galbraith wrote:
+> >> On Tue, 2017-07-11 at 14:22 -0400, Ilia Mirkin wrote:
+> >> >
+> >> > Some display stuff did change for 4.13 for GM20x+ boards. If it's no=
+t
+> >> > too much trouble, a bisect would be pretty useful.
+> >>
+> >> Bisection seemingly went fine, but the result is odd.
+> >>
+> >> e98c58e55f68f8785aebfab1f8c9a03d8de0afe1 is the first bad commit
+> >
+> > But it really really is bad.  Looking at gitk fork in the road leading
+> > to it...
+> >
+> > 52d9d38c183b drm/sti:fix spelling mistake: "compoment" -> "component" -=
+ good
+> > e4e818cc2d7c drm: make drm_panel.h self-contained                     -=
+ good
+> > 9cf8f5802f39 drm: add missing declaration to drm_blend.h              -=
+ good
+> >
+> > Before the git highway splits, all is well.  The lane with commits
+> > works fine at both ends, but e98c58e55f68 is busted.  Merge arfifact?
+>=20
+> Hmmm... that tree does not appear to have gotten a v4.12 backmerge at
+> any point. The last backmerge from Linus as far as I can tell was
+> v4.11-rc7. Could be an interaction with some out-of-tree change.
+
+Ok, a network outage gave me time to go hunting. =C2=A0Indeed it is a bad
+interaction with the tree DRM merged into. =C2=A0All DRM did was to slip a
+WARN_ON_ONCE() that nouveau triggers into a kernel module where such
+things no longer warn, they blow the box out of the water. =C2=A0I made a
+dinky testcase module (attached), and bisected to the real root....
+
+19d436268dde95389c616bb3819da73f0a8b28a8 is the first bad commit
+commit 19d436268dde95389c616bb3819da73f0a8b28a8
+Author: Peter Zijlstra <peterz@infradead.org>
+Date:   Sat Feb 25 08:56:53 2017 +0100
+
+    debug: Add _ONCE() logic to report_bug()
+   =20
+    Josh suggested moving the _ONCE logic inside the trap handler, using a
+    bit in the bug_entry::flags field, avoiding the need for the extra
+    variable.
+   =20
+    Sadly this only works for WARN_ON_ONCE(), since the others have
+    printk() statements prior to triggering the trap.
+   =20
+    Still, this saves a fair amount of text and some data:
+   =20
+      text         data       filename
+      10682460     4530992    defconfig-build/vmlinux.orig
+      10665111     4530096    defconfig-build/vmlinux.patched
+   =20
+    Suggested-by: Josh Poimboeuf <jpoimboe@redhat.com>
+    Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+    Cc: Andy Lutomirski <luto@kernel.org>
+    Cc: Arnd Bergmann <arnd@arndb.de>
+    Cc: Borislav Petkov <bp@alien8.de>
+    Cc: Brian Gerst <brgerst@gmail.com>
+    Cc: Denys Vlasenko <dvlasenk@redhat.com>
+    Cc: H. Peter Anvin <hpa@zytor.com>
+    Cc: Linus Torvalds <torvalds@linux-foundation.org>
+    Cc: Peter Zijlstra <peterz@infradead.org>
+    Cc: Thomas Gleixner <tglx@linutronix.de>
+    Signed-off-by: Ingo Molnar <mingo@kernel.org>
+
+:040000 040000 9f47f66ec4c234f6ee8e2a09e991c95fe47cf2c1 3e92aa9e77b39ed075a=
+e2c3bdf041d92ef898f62 M	arch
+:040000 040000 34f70b73d40c82533dd7df9b289106be69e2fa8d dd5d7248694a36b3e17=
+0f2dca5d9c4121535a990 M	include
+:040000 040000 f6e627b0d378f0a00d2987fdd0c7b215306e6e3c b360d4ee2579744cce5=
+30184d7dab13493f73ee0 M	lib=C2=A0
+--=-QEsAZW81vc9tIYr3HPvB
+Content-Disposition: attachment; filename="warn_on_once.patch"
+Content-Type: text/x-patch; name="warn_on_once.patch"; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+LS0tCiBrZXJuZWwvTWFrZWZpbGUgfCAgICAyICsrCiBrZXJuZWwvZm9vLmMgICAgfCAgIDE1ICsr
+KysrKysrKysrKysrKwogMiBmaWxlcyBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspCgotLS0gYS9r
+ZXJuZWwvTWFrZWZpbGUKKysrIGIva2VybmVsL01ha2VmaWxlCkBAIC0xMTEsNiArMTExLDggQEAg
+b2JqLSQoQ09ORklHX01FTUJBUlJJRVIpICs9IG1lbWJhcnJpZXIubwogCiBvYmotJChDT05GSUdf
+SEFTX0lPTUVNKSArPSBtZW1yZW1hcC5vCiAKK29iai1tICs9IGZvby5vCisKICQob2JqKS9jb25m
+aWdzLm86ICQob2JqKS9jb25maWdfZGF0YS5oCiAKIHRhcmdldHMgKz0gY29uZmlnX2RhdGEuZ3oK
+LS0tIC9kZXYvbnVsbAorKysgYi9rZXJuZWwvZm9vLmMKQEAgLTAsMCArMSwxNSBAQAorI2luY2x1
+ZGUgPGxpbnV4L21vZHVsZS5oPgorI2luY2x1ZGUgPGxpbnV4L2J1Zy5oPgorCitzdGF0aWMgaW50
+IF9faW5pdCBmb29faW5pdCh2b2lkKQoreworCXByaW50ayhLRVJOX0lORk8gImZvbzogbW9kdWxl
+IGxvYWRlZFxuIik7CisJV0FSTl9PTl9PTkNFKDEpOworCXJldHVybiAwOworfQorCitzdGF0aWMg
+dm9pZCBfX2V4aXQgZm9vX2V4aXQodm9pZCkgeyB9CisKK21vZHVsZV9pbml0KGZvb19pbml0KTsK
+K21vZHVsZV9leGl0KGZvb19leGl0KTsKK01PRFVMRV9MSUNFTlNFKCJHUEwiKTsK
+
+
+--=-QEsAZW81vc9tIYr3HPvB--
