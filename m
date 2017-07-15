@@ -1,52 +1,101 @@
-From: Mike Galbraith <efault@gmx.de>
-Subject: Re: [regression drm/noveau] suspend to ram -> BOOM: exception RIP:
- drm_calc_vbltimestamp_from_scanoutpos+335
-Date: Sat, 15 Jul 2017 04:45:55 +0200
-Message-ID: <1500086755.5129.10.camel@gmx.de>
-References: <1499796510.5315.27.camel@gmx.de>
-         <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
-         <1499853345.23742.8.camel@gmx.de> <1499858703.23742.25.camel@gmx.de>
-         <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
-         <1500039368.5763.12.camel@gmx.de>
-         <20170714155047.2zs3ps7cmnyvvwgb@hirez.programming.kicks-ass.net>
-         <1500047898.5763.25.camel@gmx.de>
-         <20170714161027.5htn5jlswvfgphzw@hirez.programming.kicks-ass.net>
-         <1500049981.5248.2.camel@gmx.de> <20170714194248.6n7rw5ln6luhnz3l@treble>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99889] nouveau preventing shutdown after
+	suspend-resume
+Date: Sat, 15 Jul 2017 04:26:56 +0000
+Message-ID: <bug-99889-8800-LGOrJqRg1J@http.bugs.freedesktop.org/>
+References: <bug-99889-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20170714194248.6n7rw5ln6luhnz3l@treble>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Josh Poimboeuf <jpoimboe@redhat.com>
-Cc: Peter Zijlstra <peterz@infradead.org>, Ilia Mirkin <imirkin@alum.mit.edu>, LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, jeyu@kernel.org
+Content-Type: multipart/mixed; boundary="===============0942406837=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 2017-07-14 at 14:42 -0500, Josh Poimboeuf wrote:
-> 
-> Does this fix it?
 
-Yup, both READONLY __bug_table and "extra stern" warning are gone.
+--===============0942406837==
+Content-Type: multipart/alternative; boundary="15000928161.8EBfFcdf.12532";
+ charset="UTF-8"
 
-> diff --git a/arch/x86/include/asm/bug.h b/arch/x86/include/asm/bug.h
-> index 39e702d..aa6b202 100644
-> --- a/arch/x86/include/asm/bug.h
-> +++ b/arch/x86/include/asm/bug.h
-> @@ -35,7 +35,7 @@
->  #define _BUG_FLAGS(ins, flags)						\
->  do {									\
->  	asm volatile("1:\t" ins "\n"					\
-> -		     ".pushsection __bug_table,\"a\"\n"			\
-> +		     ".pushsection __bug_table,\"aw\"\n"		\
->  		     "2:\t" __BUG_REL(1b) "\t# bug_entry::bug_addr\n"	\
->  		     "\t"  __BUG_REL(%c0) "\t# bug_entry::file\n"	\
->  		     "\t.word %c1"        "\t# bug_entry::line\n"	\
-> @@ -52,7 +52,7 @@ do {									\
->  #define _BUG_FLAGS(ins, flags)						\
->  do {									\
->  	asm volatile("1:\t" ins "\n"					\
-> -		     ".pushsection __bug_table,\"a\"\n"			\
-> +		     ".pushsection __bug_table,\"aw\"\n"		\
->  		     "2:\t" __BUG_REL(1b) "\t# bug_entry::bug_addr\n"	\
->  		     "\t.word %c0"        "\t# bug_entry::flags\n"	\
->  		     "\t.org 2b+%c1\n"					\
+
+--15000928161.8EBfFcdf.12532
+Date: Sat, 15 Jul 2017 04:26:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99889
+
+--- Comment #5 from Ali <sunmooon15-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+respond please
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15000928161.8EBfFcdf.12532
+Date: Sat, 15 Jul 2017 04:26:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889">bug 99889<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+sunmooon15&#64;gmail.com" title=3D"Ali &lt;sunmooon15&#64;gmail.com&gt;"> <=
+span class=3D"fn">Ali</span></a>
+</span></b>
+        <pre>respond please</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15000928161.8EBfFcdf.12532--
+
+--===============0942406837==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0942406837==--
