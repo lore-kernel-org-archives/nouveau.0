@@ -1,76 +1,52 @@
-From: Josh Poimboeuf <jpoimboe@redhat.com>
+From: Mike Galbraith <efault@gmx.de>
 Subject: Re: [regression drm/noveau] suspend to ram -> BOOM: exception RIP:
  drm_calc_vbltimestamp_from_scanoutpos+335
-Date: Fri, 14 Jul 2017 14:42:48 -0500
-Message-ID: <20170714194248.6n7rw5ln6luhnz3l@treble>
+Date: Sat, 15 Jul 2017 04:45:55 +0200
+Message-ID: <1500086755.5129.10.camel@gmx.de>
 References: <1499796510.5315.27.camel@gmx.de>
- <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
- <1499853345.23742.8.camel@gmx.de>
- <1499858703.23742.25.camel@gmx.de>
- <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
- <1500039368.5763.12.camel@gmx.de>
- <20170714155047.2zs3ps7cmnyvvwgb@hirez.programming.kicks-ass.net>
- <1500047898.5763.25.camel@gmx.de>
- <20170714161027.5htn5jlswvfgphzw@hirez.programming.kicks-ass.net>
- <1500049981.5248.2.camel@gmx.de>
+         <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
+         <1499853345.23742.8.camel@gmx.de> <1499858703.23742.25.camel@gmx.de>
+         <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
+         <1500039368.5763.12.camel@gmx.de>
+         <20170714155047.2zs3ps7cmnyvvwgb@hirez.programming.kicks-ass.net>
+         <1500047898.5763.25.camel@gmx.de>
+         <20170714161027.5htn5jlswvfgphzw@hirez.programming.kicks-ass.net>
+         <1500049981.5248.2.camel@gmx.de> <20170714194248.6n7rw5ln6luhnz3l@treble>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <1500049981.5248.2.camel@gmx.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Mike Galbraith <efault@gmx.de>
-Cc: Peter Zijlstra <peterz@infradead.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, jeyu@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20170714194248.6n7rw5ln6luhnz3l@treble>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Josh Poimboeuf <jpoimboe@redhat.com>
+Cc: Peter Zijlstra <peterz@infradead.org>, Ilia Mirkin <imirkin@alum.mit.edu>, LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, jeyu@kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdWwgMTQsIDIwMTcgYXQgMDY6MzM6MDFQTSArMDIwMCwgTWlrZSBHYWxicmFpdGgg
-d3JvdGU6Cj4gT24gRnJpLCAyMDE3LTA3LTE0IGF0IDE4OjEwICswMjAwLCBQZXRlciBaaWpsc3Ry
-YSB3cm90ZToKPiA+IE9uIEZyaSwgSnVsIDE0LCAyMDE3IGF0IDA1OjU4OjE4UE0gKzAyMDAsIE1p
-a2UgR2FsYnJhaXRoIHdyb3RlOgo+ID4gPiBPbiBGcmksIDIwMTctMDctMTQgYXQgMTc6NTAgKzAy
-MDAsIFBldGVyIFppamxzdHJhIHdyb3RlOgo+ID4gCj4gPiA+ID4gVXJnaCwgaXMgZm9yIHNvbWUg
-bXlzdGVyaW91cyByZWFzb24gdGhlIF9fYnVnX3RhYmxlIHNlY3Rpb24gb2YgbW9kdWxlcwo+ID4g
-PiA+IGVuZGluZyB1cCBpbiBSTyBtZW1vcnk/Cj4gPiA+ID4gCj4gPiA+ID4gSSBmb3JldmVyIGdl
-dCBsb3N0IGluIHRoYXQgbGluayBtYWdpYyA6Lwo+ID4gPiAKPiA+ID4gKzEKPiA+ID4gCj4gPiA+
-IGRybS5rbwo+ID4gPiDCoDIwIF9fYnVnX3RhYmxlwqDCoMKgMDAwMDA2MzDCoMKgMDAwMDAwMDAw
-MDAwMDAwMMKgwqAwMDAwMDAwMDAwMDAwMDAwwqDCoDAwMDRiZmYzwqDCoDIqKjAKPiA+ID4gwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgQ09OVEVOVFMsIEFMTE9DLCBMT0FELCBS
-RUxPQywgUkVBRE9OTFksIERBVEEKPiA+ID4gdm1saW51eAo+ID4gPiAgMTUgX19idWdfdGFibGUg
-ICAwMDAwYmE4NCAgZmZmZmZmZmY4MWFmMjZjMCAgMDAwMDAwMDAwMWFmMjZjMCAgMDBjZjI2YzAg
-IDIqKjAKPiA+ID4gICAgICAgICAgICAgICAgICAgQ09OVEVOVFMsIEFMTE9DLCBMT0FELCBSRUFE
-T05MWSwgREFUQQo+ID4gPiAKPiA+ID4gRGFuZ2VkIGlmIEkga25vdy4uLiB1bSB1bSBSRUxPQyBi
-dXNpbmVzcyBtdWNrcyB0aGluZ3MgdXA/Cj4gPiAKPiA+IEFyZ2gsIGl0IHNob3VsZG4ndCBiZSBS
-RUFET05MWSBmb3Igdm1saW51eCBlaXRoZXIsIGJ1dCBhcHBhcmVudGx5IHRoYXQKPiA+IGlzIHdv
-cmtpbmcgZm9yIG15c3RlcmlvdXMgcmVhc29ucy4KPiA+IAo+ID4gU29tZSBhcmNoaXRlY3R1cmVz
-IHdlcmUgaW4gZmFjdCBjb21wbGFpbmluZyB0aGF0IEkgYnJva2UgdGhhdCwgYW5kIGhlbmNlCj4g
-PiBwYXRjaDoKPiA+IAo+ID4gYjVlZmZkMzgxNWNjICgiZGVidWc6IEZpeCBfX2J1Z190YWJsZVtd
-IGluIGFyY2ggbGlua2VyIHNjcmlwdHMiKQo+ID4gCj4gPiBJIHRoaW5rIHdlIG5lZWQgcHJvZmVz
-c2lvbmFsIGhlbHAgd2l0aCB0aGlzIGxpbmtpbmcgc3R1ZmYsIGJ1dCB3aG8gdG8KPiA+IGFzaz8K
-PiAKPiBBbmR5IEx1dG9taXJza2k/CgpEb2VzIHRoaXMgZml4IGl0PwoKCmRpZmYgLS1naXQgYS9h
-cmNoL3g4Ni9pbmNsdWRlL2FzbS9idWcuaCBiL2FyY2gveDg2L2luY2x1ZGUvYXNtL2J1Zy5oCmlu
-ZGV4IDM5ZTcwMmQuLmFhNmIyMDIgMTAwNjQ0Ci0tLSBhL2FyY2gveDg2L2luY2x1ZGUvYXNtL2J1
-Zy5oCisrKyBiL2FyY2gveDg2L2luY2x1ZGUvYXNtL2J1Zy5oCkBAIC0zNSw3ICszNSw3IEBACiAj
-ZGVmaW5lIF9CVUdfRkxBR1MoaW5zLCBmbGFncykJCQkJCQlcCiBkbyB7CQkJCQkJCQkJXAogCWFz
-bSB2b2xhdGlsZSgiMTpcdCIgaW5zICJcbiIJCQkJCVwKLQkJICAgICAiLnB1c2hzZWN0aW9uIF9f
-YnVnX3RhYmxlLFwiYVwiXG4iCQkJXAorCQkgICAgICIucHVzaHNlY3Rpb24gX19idWdfdGFibGUs
-XCJhd1wiXG4iCQlcCiAJCSAgICAgIjI6XHQiIF9fQlVHX1JFTCgxYikgIlx0IyBidWdfZW50cnk6
-OmJ1Z19hZGRyXG4iCVwKIAkJICAgICAiXHQiICBfX0JVR19SRUwoJWMwKSAiXHQjIGJ1Z19lbnRy
-eTo6ZmlsZVxuIglcCiAJCSAgICAgIlx0LndvcmQgJWMxIiAgICAgICAgIlx0IyBidWdfZW50cnk6
-OmxpbmVcbiIJXApAQCAtNTIsNyArNTIsNyBAQCBkbyB7CQkJCQkJCQkJXAogI2RlZmluZSBfQlVH
-X0ZMQUdTKGlucywgZmxhZ3MpCQkJCQkJXAogZG8gewkJCQkJCQkJCVwKIAlhc20gdm9sYXRpbGUo
-IjE6XHQiIGlucyAiXG4iCQkJCQlcCi0JCSAgICAgIi5wdXNoc2VjdGlvbiBfX2J1Z190YWJsZSxc
-ImFcIlxuIgkJCVwKKwkJICAgICAiLnB1c2hzZWN0aW9uIF9fYnVnX3RhYmxlLFwiYXdcIlxuIgkJ
-XAogCQkgICAgICIyOlx0IiBfX0JVR19SRUwoMWIpICJcdCMgYnVnX2VudHJ5OjpidWdfYWRkclxu
-IglcCiAJCSAgICAgIlx0LndvcmQgJWMwIiAgICAgICAgIlx0IyBidWdfZW50cnk6OmZsYWdzXG4i
-CVwKIAkJICAgICAiXHQub3JnIDJiKyVjMVxuIgkJCQkJXApfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZl
-bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+On Fri, 2017-07-14 at 14:42 -0500, Josh Poimboeuf wrote:
+> 
+> Does this fix it?
+
+Yup, both READONLY __bug_table and "extra stern" warning are gone.
+
+> diff --git a/arch/x86/include/asm/bug.h b/arch/x86/include/asm/bug.h
+> index 39e702d..aa6b202 100644
+> --- a/arch/x86/include/asm/bug.h
+> +++ b/arch/x86/include/asm/bug.h
+> @@ -35,7 +35,7 @@
+>  #define _BUG_FLAGS(ins, flags)						\
+>  do {									\
+>  	asm volatile("1:\t" ins "\n"					\
+> -		     ".pushsection __bug_table,\"a\"\n"			\
+> +		     ".pushsection __bug_table,\"aw\"\n"		\
+>  		     "2:\t" __BUG_REL(1b) "\t# bug_entry::bug_addr\n"	\
+>  		     "\t"  __BUG_REL(%c0) "\t# bug_entry::file\n"	\
+>  		     "\t.word %c1"        "\t# bug_entry::line\n"	\
+> @@ -52,7 +52,7 @@ do {									\
+>  #define _BUG_FLAGS(ins, flags)						\
+>  do {									\
+>  	asm volatile("1:\t" ins "\n"					\
+> -		     ".pushsection __bug_table,\"a\"\n"			\
+> +		     ".pushsection __bug_table,\"aw\"\n"		\
+>  		     "2:\t" __BUG_REL(1b) "\t# bug_entry::bug_addr\n"	\
+>  		     "\t.word %c0"        "\t# bug_entry::flags\n"	\
+>  		     "\t.org 2b+%c1\n"					\
