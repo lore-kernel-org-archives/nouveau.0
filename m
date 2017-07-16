@@ -1,44 +1,40 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [drm/nouveau] GeForce 8600 GT boot/suspend grumbling
-Date: Sun, 16 Jul 2017 11:59:32 -0400
-Message-ID: <CAKb7Uvh7WkbqMUG3U7PtwtmV4XN33OMK_LRGtUnjsgjAKDEyLg@mail.gmail.com>
-References: <1500097200.6712.17.camel@gmx.de>
- <CAKb7UvgO9ajtFAcj-OmfvG4mcyhASdaNa5PNTqLbN9Uskzvw6Q@mail.gmail.com>
- <1500180236.5334.7.camel@gmx.de>
+From: jurek <jurek.mlynarczyk-h7QdYz1kt/Q@public.gmane.org>
+Subject: gtx 650 ti boost oc random pixels problem
+Date: Sun, 16 Jul 2017 19:10:51 +0200
+Message-ID: <4cf78b2a-2a37-a9a5-b8ca-a2ffa19cc062@o2.pl>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1500180236.5334.7.camel@gmx.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Mike Galbraith <efault@gmx.de>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBKdWwgMTYsIDIwMTcgYXQgMTI6NDMgQU0sIE1pa2UgR2FsYnJhaXRoIDxlZmF1bHRA
-Z214LmRlPiB3cm90ZToKPiBPbiBTYXQsIDIwMTctMDctMTUgYXQgMTQ6NTIgLTA0MDAsIElsaWEg
-TWlya2luIHdyb3RlOgo+Pgo+PiBPSywgc28gdGhpcyBpc3N1ZSBhcHBlYXJzIHRvIGJlIHRoYXQg
-d2UncmUgY2FsbGluZwo+PiBkcm1fY3J0Y192Ymxhbmtfb2ZmKCkgb24gYSBjcnRjIGZvciB3aGlj
-aCB2YmxhbmsgaXMgYWxyZWFkeSBkaXNhYmxlZC4KPj4gTXkgZ3Vlc3MgaXMgdGhhdCB0aGlzIGhh
-cHBlbnMgYmVjYXVzZSB0aGUgY3J0YyBpcyBkaXNhYmxlZC4KPj4KPj4gTm90IHN1cmUgd2hhdCB0
-aGUgcHJvcGVyIGNoZWNrIGlzIHRvIHNlZSBpZiB2YmxhbmtzIGFyZSBhbHJlYWR5IGRpc2FibGVk
-Li4uCj4KPiBTZWVtcyBzbywgdGhlIGJlbG93IHNodXQgdXAgc3VzcGVuZCBmb3IgYm90aCA4NjAw
-IEdUIGFuZCBHVFggOTgwLgoKVGhlIG1vZGVzZXQgZG9uZSBieSBkcm1fYXRvbWljX2hlbHBlcl9z
-dXNwZW5kIChjYWxsZWQgcHJldmlvdXNseSB0bwp0aGF0ICpfZmluaSkgc2hvdWxkIGFscmVhZHkg
-dGFrZSBjYXJlIG9mIGRpc2FibGluZyB2YmxhbmtzLCBJIHRoaW5rLgpTbyB0aGUgdmJsYW5rX29m
-ZiBjYWxscyBjYW4ganVzdCBiZSBkb25lIHdoZW4gd2UncmUgbm90IGRvaW5nIGFuCmF0b21pYyBt
-b2Rlc2V0IFtkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVzZXQoZGV2KV0gLS0gdGhpcyBpcyBhbGwg
-dmVyeQpjb25mdXNpbmcgc2luY2UgcHJlLW52NTAgdXNlcyBsZWdhY3kgbW9kZXNldHMsIHdoaWxl
-IG52NTArIGhhcyBiZWVuCm1vdmVkIHRvIGF0b21pYywgYnV0IHRoZXkgc2hhcmUgYSBidW5jaCBv
-ZiBoZWxwZXJzID0vCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZl
-bAo=
+CkhlbGxvIGkgaGF2ZSBudmlkaWEgZ3R4IDY1MCB0aSBib290cyBvYyAyZ2Igd2l0aCAyIG1vbml0
+b3JzIGFuZCBndCAyNDAKZm9yIHhlbiBlbXVsYXRpb24gLk15IHNjcmVlbiBkaXNwbGF5cyByYW5k
+b20gcGl4ZWxzIGFuZCBmcmVlemUgaW4gcmFuZG9tCnRpbWVzIC4gSSBkb24ndCBmb3VuZCBlcnJv
+cnMgaW4gL3Zhci9sb2cvc3lzbG9nIGFuZCAvdmFyL2xvZy9rZXJuLmxvZwppdHMgbm91dmVhdSBl
+cnJvciBvbiBudmlkaWEtZHJpdmVyIHdvcmtzIGZpbmUgLiBTb21ldGltZXMgaXRzIGZyZWV6ZS4K
+c29tZXRpbWVzIHRoZXJlIGFyZSBmb250IGVycm9ycy4KdW5hbWUgLWEKCkxpbnV4IGRlYmlhbiA0
+LjkuMC0zLWFtZDY0ICMxIFNNUCBEZWJpYW4gNC45LjMwLTIrZGViOXUyICgyMDE3LTA2LTI2KQp4
+ODZfNjQgR05VL0xpbnV4CgoKZHBrZyAtbCB8IGdyZXAgbm91dmVhdQoKaWkgbGliZHJtLW5vdXZl
+YXUyOmFtZDY0IDIuNC43NC0xIGFtZDY0IFVzZXJzcGFjZSBpbnRlcmZhY2UgdG8gbm91dmVhCi1z
+cGVjaWZpYyBrZXJuZWwgRFJNIHNlcnZpY2VzIC0tIHJ1bnRpbWUKCmlpIGxpYmRybS1ub3V2ZWF1
+MjppMzg2IDIuNC43NC0xIGkzODYgVXNlcnNwYWNlIGludGVyZmFjZSB0byBub3V2ZWEKLXNwZWNp
+ZmljIGtlcm5lbCBEUk0gc2VydmljZXMgLS0gcnVudGltZQoKaWkgeHNlcnZlci14b3JnLXZpZGVv
+LW5vdXZlYXUgMToxLjAuMTMtMyBhbWQ2NCBYLk9yZyBYIHNlcnZlciAtLSBOb3V2ZWF1CmRpc3Bs
+YXkgZHJpdmVyCgoKaHR0cHM6Ly9tZWdhLm56LyMhZEJnazBKU1khTmlMTmlpRE44OE55TnU5ZWdk
+U3QtUklBejNHNWRPNlZ0U25GR24yNFV6YwprZXJuLmxvZwoKaHR0cDovL21lZ2EubnovIyFaUXcy
+REFRUSEyT0laM0xienA5dEYwZUVUd0t4aExqTEpnMjYtcjdzZzdYZ1ZzN2hPZVlNCnZiaW9zLnJv
+bQoKaHR0cHM6Ly9pbWd1ci5jb20vYS9aSGE5aCBzY3JlZW4gc2hvdHMKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
