@@ -1,13 +1,13 @@
-From: Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] drm/nouveau/hwmon: Uninitialized variables in
-	sysfs
-Date: Mon, 17 Jul 2017 11:17:11 +0300
-Message-ID: <20170717081711.4mj76r6qf2de4em6@mwanda>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101764] [regression] eaa2c988033b breaks GTX1050TI
+ (GP107 / NV137)
+Date: Mon, 17 Jul 2017 09:52:04 +0000
+Message-ID: <bug-101764-8800-fUrmChiRvu@http.bugs.freedesktop.org/>
+References: <bug-101764-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1894760723=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <bug-101764-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,45 +17,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-a3N0cnRvbCgpIGFuZCBmcmllbmRzIGNhbiByZXR1cm4gLUVJTlZBTCBvciAtRVJBTkdFLiAgV2Ug
-aGF2ZSB0byB0ZXN0CmZvciBib3RoLCBvdGhlcndpc2UgdGhlIHZhbHVlIGlzIHBvc3NpYmx5IHVu
-aW5pdGlhbGl6ZWQuICBBbHNvIGluIHNvbWUKb2YgdGhlc2UgZmlsZXMgd2UgYWNjaWRlbnRhbGx5
-IHJldHVybiAiY291bnQiIG9uIGVycm9yIGluc3RlYWQgb2YgYQpuZWdhdGl2ZSBlcnJvciBjb2Rl
-LgoKU2lnbmVkLW9mZi1ieTogRGFuIENhcnBlbnRlciA8ZGFuLmNhcnBlbnRlckBvcmFjbGUuY29t
-PgoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYyBi
-L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24uYwppbmRleCA3Yzk2NTY0OGRm
-ODAuLjVlNzVhZjkxYzQ0NiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9od21vbi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfaHdtb24u
-YwpAQCAtNjgsOSArNjgsMTEgQEAgbm91dmVhdV9od21vbl9zZXRfdGVtcDFfYXV0b19wb2ludDFf
-dGVtcChzdHJ1Y3QgZGV2aWNlICpkLAogCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVh
-dV9kcm0oZGV2KTsKIAlzdHJ1Y3QgbnZrbV90aGVybSAqdGhlcm0gPSBudnh4X3RoZXJtKCZkcm0t
-PmNsaWVudC5kZXZpY2UpOwogCWxvbmcgdmFsdWU7CisJaW50IHJldDsKIAotCWlmIChrc3RydG9s
-KGJ1ZiwgMTAsICZ2YWx1ZSkgPT0gLUVJTlZBTCkKLQkJcmV0dXJuIGNvdW50OworCXJldCA9IGtz
-dHJ0b2woYnVmLCAxMCwgJnZhbHVlKTsKKwlpZiAocmV0KQorCQlyZXR1cm4gcmV0OwogCiAJdGhl
-cm0tPmF0dHJfc2V0KHRoZXJtLCBOVktNX1RIRVJNX0FUVFJfVEhSU19GQU5fQk9PU1QsCiAJCQl2
-YWx1ZSAvIDEwMDApOwpAQCAtMTAxLDkgKzEwMywxMSBAQCBub3V2ZWF1X2h3bW9uX3NldF90ZW1w
-MV9hdXRvX3BvaW50MV90ZW1wX2h5c3Qoc3RydWN0IGRldmljZSAqZCwKIAlzdHJ1Y3Qgbm91dmVh
-dV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKGRldik7CiAJc3RydWN0IG52a21fdGhlcm0gKnRoZXJt
-ID0gbnZ4eF90aGVybSgmZHJtLT5jbGllbnQuZGV2aWNlKTsKIAlsb25nIHZhbHVlOworCWludCBy
-ZXQ7CiAKLQlpZiAoa3N0cnRvbChidWYsIDEwLCAmdmFsdWUpID09IC1FSU5WQUwpCi0JCXJldHVy
-biBjb3VudDsKKwlyZXQgPSBrc3RydG9sKGJ1ZiwgMTAsICZ2YWx1ZSk7CisJaWYgKHJldCkKKwkJ
-cmV0dXJuIHJldDsKIAogCXRoZXJtLT5hdHRyX3NldCh0aGVybSwgTlZLTV9USEVSTV9BVFRSX1RI
-UlNfRkFOX0JPT1NUX0hZU1QsCiAJCQl2YWx1ZSAvIDEwMDApOwpAQCAtMTU2LDggKzE2MCw5IEBA
-IG5vdXZlYXVfaHdtb25fc2V0X3B3bTFfbWluKHN0cnVjdCBkZXZpY2UgKmQsIHN0cnVjdCBkZXZp
-Y2VfYXR0cmlidXRlICphLAogCWxvbmcgdmFsdWU7CiAJaW50IHJldDsKIAotCWlmIChrc3RydG9s
-KGJ1ZiwgMTAsICZ2YWx1ZSkgPT0gLUVJTlZBTCkKLQkJcmV0dXJuIC1FSU5WQUw7CisJcmV0ID0g
-a3N0cnRvbChidWYsIDEwLCAmdmFsdWUpOworCWlmIChyZXQpCisJCXJldHVybiByZXQ7CiAKIAly
-ZXQgPSB0aGVybS0+YXR0cl9zZXQodGhlcm0sIE5WS01fVEhFUk1fQVRUUl9GQU5fTUlOX0RVVFks
-IHZhbHVlKTsKIAlpZiAocmV0IDwgMCkKQEAgLTE3OSw4ICsxODQsOSBAQCBub3V2ZWF1X2h3bW9u
-X3NldF9wd20xX21heChzdHJ1Y3QgZGV2aWNlICpkLCBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSAq
-YSwKIAlsb25nIHZhbHVlOwogCWludCByZXQ7CiAKLQlpZiAoa3N0cnRvbChidWYsIDEwLCAmdmFs
-dWUpID09IC1FSU5WQUwpCi0JCXJldHVybiAtRUlOVkFMOworCXJldCA9IGtzdHJ0b2woYnVmLCAx
-MCwgJnZhbHVlKTsKKwlpZiAocmV0KQorCQlyZXR1cm4gcmV0OwogCiAJcmV0ID0gdGhlcm0tPmF0
-dHJfc2V0KHRoZXJtLCBOVktNX1RIRVJNX0FUVFJfRkFOX01BWF9EVVRZLCB2YWx1ZSk7CiAJaWYg
-KHJldCA8IDApCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1894760723==
+Content-Type: multipart/alternative; boundary="15002851240.0B37.24699";
+ charset="UTF-8"
+
+
+--15002851240.0B37.24699
+Date: Mon, 17 Jul 2017 09:52:04 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101764
+
+--- Comment #9 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
+In the log I have
+
+nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10f200 [ IBUS ]
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15002851240.0B37.24699
+Date: Mon, 17 Jul 2017 09:52:04 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [regression] eaa2c988033b breaks GTX1050TI (GP107 / NV137=
+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101764#c9">Commen=
+t # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [regression] eaa2c988033b breaks GTX1050TI (GP107 / NV137=
+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101764">bug 10176=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
+<span class=3D"fn">Carlo Caione</span></a>
+</span></b>
+        <pre>In the log I have
+
+nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10f200 [ IBUS ]</=
+pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15002851240.0B37.24699--
+
+--===============1894760723==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1894760723==--
