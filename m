@@ -1,108 +1,66 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101764] [regression] eaa2c988033b breaks GTX1050TI
- (GP107 / NV137)
-Date: Mon, 17 Jul 2017 09:52:04 +0000
-Message-ID: <bug-101764-8800-fUrmChiRvu@http.bugs.freedesktop.org/>
-References: <bug-101764-8800@http.bugs.freedesktop.org/>
+From: Jessica Yu <jeyu@kernel.org>
+Subject: Re: suspend to ram -> BOOM: exception RIP:
+ drm_calc_vbltimestamp_from_scanoutpos+335
+Date: Mon, 17 Jul 2017 19:20:43 +0200
+Message-ID: <20170717172043.xk52z73qrz7wx7xw@redbean>
+References: <CAKb7Uvgh-gj+4dHhDfptLD1Ggz5rwxsG3jBOqQ3h6yxV6_woqg@mail.gmail.com>
+ <1499796510.5315.27.camel@gmx.de>
+ <CAKb7UvgOOzVj=tygh4-BDRXGFUr2Y8U0pkV+-oYjy6EVYsQ+hg@mail.gmail.com>
+ <1499853345.23742.8.camel@gmx.de>
+ <1499858703.23742.25.camel@gmx.de>
+ <CAKb7UvhMzbMKFMFP1UvbrTC0Un4F2u5_mv5VWrkizRxo_AbN4g@mail.gmail.com>
+ <1500039368.5763.12.camel@gmx.de>
+ <20170714155047.2zs3ps7cmnyvvwgb@hirez.programming.kicks-ass.net>
+ <1500047898.5763.25.camel@gmx.de>
+ <20170714161027.5htn5jlswvfgphzw@hirez.programming.kicks-ass.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1894760723=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101764-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20170714161027.5htn5jlswvfgphzw@hirez.programming.kicks-ass.net>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Peter Zijlstra <peterz@infradead.org>
+Cc: Mike Galbraith <efault@gmx.de>, Ilia Mirkin <imirkin@alum.mit.edu>, LKML <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
++++ Peter Zijlstra [14/07/17 18:10 +0200]:
+>On Fri, Jul 14, 2017 at 05:58:18PM +0200, Mike Galbraith wrote:
+>> On Fri, 2017-07-14 at 17:50 +0200, Peter Zijlstra wrote:
+>
+>> > Urgh, is for some mysterious reason the __bug_table section of modules
+>> > ending up in RO memory?
+>> >
+>> > I forever get lost in that link magic :/
+>>
+>> +1
+>>
+>> drm.ko
+>>  20 __bug_table   00000630  0000000000000000  0000000000000000  0004bff3  2**0
+>>                   CONTENTS, ALLOC, LOAD, RELOC, READONLY, DATA
+>> vmlinux
+>>  15 __bug_table   0000ba84  ffffffff81af26c0  0000000001af26c0  00cf26c0  2**0
+>>                   CONTENTS, ALLOC, LOAD, READONLY, DATA
+>>
+>> Danged if I know... um um RELOC business mucks things up?
+>
+>Argh, it shouldn't be READONLY for vmlinux either, but apparently that
+>is working for mysterious reasons.
 
---===============1894760723==
-Content-Type: multipart/alternative; boundary="15002851240.0B37.24699";
- charset="UTF-8"
+If I'm not mistaken, this works because __bug_table falls outside of
+the RO range as specified in the vmlinux linker script (using x86_64
+as the example, that means _text - __end_rodata_hpage_align).
+mark_rodata_ro() only sets ro memory protections for pages within this
+range, so __bug_table remains rw in memory despite its Elf section
+flags. Interestingly enough, my .rodata section is set 'WA' (rw) in
+vmlinux on my f25 system, so that leads me to think that Elf section
+flags in vmlinux don't seem to matter much when it comes to setting
+ro/nx protections..
 
+However, in the module loader it's a different story; we do set page
+protections strictly according to the section flags, so since
+__bug_table only has SHF_ALLOC set, it assumes it's a readonly section
+and gets treated as such. So I would think that Josh's patch would fix
+this issue.
 
---15002851240.0B37.24699
-Date: Mon, 17 Jul 2017 09:52:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101764
-
---- Comment #9 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
-In the log I have
-
-nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10f200 [ IBUS ]
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15002851240.0B37.24699
-Date: Mon, 17 Jul 2017 09:52:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [regression] eaa2c988033b breaks GTX1050TI (GP107 / NV137=
-)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101764#c9">Commen=
-t # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [regression] eaa2c988033b breaks GTX1050TI (GP107 / NV137=
-)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101764">bug 10176=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
-<span class=3D"fn">Carlo Caione</span></a>
-</span></b>
-        <pre>In the log I have
-
-nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10f200 [ IBUS ]</=
-pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15002851240.0B37.24699--
-
---===============1894760723==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1894760723==--
+Jessica
