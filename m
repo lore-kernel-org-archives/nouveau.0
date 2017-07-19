@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99889] nouveau preventing shutdown after
-	suspend-resume
-Date: Tue, 18 Jul 2017 07:04:29 +0000
-Message-ID: <bug-99889-8800-DIfCJC2Qnd@http.bugs.freedesktop.org/>
-References: <bug-99889-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Subject: [PATCH 01/12] drm/nouveau: Fix error handling in
+	nv50_disp_atomic_commit
+Date: Wed, 19 Jul 2017 09:40:41 +0200
+Message-ID: <20170719074052.2993-1-maarten.lankhorst@linux.intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1712810735=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,115 +16,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: intel-gfx-trybot-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "# v4 . 10+" <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1712810735==
-Content-Type: multipart/alternative; boundary="15003614682.Ffdedd.28301";
- charset="UTF-8"
-
-
---15003614682.Ffdedd.28301
-Date: Tue, 18 Jul 2017 07:04:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99889
-
---- Comment #6 from Olivier van der Toorn <oliviervdtoorn+freedesktop@gmail=
-.com> ---
-I can confirm this bug happens too on an Asus X556UQK machine running Gento=
-o.
-Currently running the latest kernel (4.13_rc1), and the bug is still presen=
-t.
-
-What I think has the same cause, is that when the laptop awakes from suspen=
-d,
-the screen is frozen after some 30 seconds after the waking up. It freezes =
-for
-about ten seconds, and then continues as if nothing happened. After that in
-dmesg the line:
-
-nouveau 0000:01:00.0: DRM: failed to idle channel 0 [DRM]
-
-shows up in red.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15003614682.Ffdedd.28301
-Date: Tue, 18 Jul 2017 07:04:28 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889#c6">Comment=
- # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889">bug 99889<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-oliviervdtoorn+freedesktop&#64;gmail.com" title=3D"Olivier van der Toorn &l=
-t;oliviervdtoorn+freedesktop&#64;gmail.com&gt;"> <span class=3D"fn">Olivier=
- van der Toorn</span></a>
-</span></b>
-        <pre>I can confirm this bug happens too on an Asus X556UQK machine =
-running Gentoo.
-Currently running the latest kernel (4.13_rc1), and the bug is still presen=
-t.
-
-What I think has the same cause, is that when the laptop awakes from suspen=
-d,
-the screen is frozen after some 30 seconds after the waking up. It freezes =
-for
-about ten seconds, and then continues as if nothing happened. After that in
-dmesg the line:
-
-nouveau 0000:01:00.0: DRM: failed to idle channel 0 [DRM]
-
-shows up in red.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15003614682.Ffdedd.28301--
-
---===============1712810735==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1712810735==--
+TWFrZSBpdCBtb3JlIGNsZWFyIHRoYXQgcG9zdCBjb21taXQgcmV0dXJuIHJldCBpcyByZWFsbHkg
+cmV0dXJuIDAsCgphbmQgYWRkIGEgbWlzc2luZyBkcm1fYXRvbWljX2hlbHBlcl9jbGVhbnVwX3Bs
+YW5lcyB3aGVuCmRybV9hdG9taWNfaGVscGVyX3dhaXRfZm9yX2ZlbmNlcyBmYWlscy4KCkZpeGVz
+OiA4MzljYTkwM2YxMmUgKCJkcm0vbm91dmVhdS9rbXMvbnY1MDogdHJhbnNpdGlvbiB0byBhdG9t
+aWMgaW50ZXJmYWNlcyBpbnRlcm5hbGx5IikKQ2M6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0
+LmNvbT4KQ2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6IG5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCkNjOiA8c3RhYmxlQHZnZXIua2VybmVsLm9yZz4gIyB2NC4xMCsK
+U2lnbmVkLW9mZi1ieTogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4
+LmludGVsLmNvbT4KTGluazogaHR0cDovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gv
+bXNnaWQvMjAxNzA3MTExNDMzMTQuMjE0OC0yLW1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVs
+LmNvbQpSZXZpZXdlZC1ieTogU2VhbiBQYXVsIDxzZWFucGF1bEBjaHJvbWl1bS5vcmc+ClttbGFu
+a2hvcnN0OiBVc2UgaWYgKHJldCkgdG8gcmVtb3ZlIHRoZSBnb3RvIGluIHN1Y2Nlc3MgY2FzZS5d
+ClJldmlld2VkLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgotLS0K
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jIHwgNyArKysrKy0tCiAxIGZp
+bGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKaW5kZXggNWY3MWUzMDQwMjJlLi5jMWU3MzA3YTI1Mzgg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCkBAIC00MTIwLDcgKzQxMjAs
+NyBAQCBudjUwX2Rpc3BfYXRvbWljX2NvbW1pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAogCWlm
+ICghbm9uYmxvY2spIHsKIAkJcmV0ID0gZHJtX2F0b21pY19oZWxwZXJfd2FpdF9mb3JfZmVuY2Vz
+KGRldiwgc3RhdGUsIHRydWUpOwogCQlpZiAocmV0KQotCQkJZ290byBkb25lOworCQkJZ290byBl
+cnJfY2xlYW51cDsKIAl9CiAKIAlmb3JfZWFjaF9wbGFuZV9pbl9zdGF0ZShzdGF0ZSwgcGxhbmUs
+IHBsYW5lX3N0YXRlLCBpKSB7CkBAIC00MTQ4LDcgKzQxNDgsNyBAQCBudjUwX2Rpc3BfYXRvbWlj
+X2NvbW1pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAogCQlpZiAoY3J0Yy0+c3RhdGUtPmVuYWJs
+ZSkgewogCQkJaWYgKCFkcm0tPmhhdmVfZGlzcF9wb3dlcl9yZWYpIHsKIAkJCQlkcm0tPmhhdmVf
+ZGlzcF9wb3dlcl9yZWYgPSB0cnVlOwotCQkJCXJldHVybiByZXQ7CisJCQkJcmV0dXJuIDA7CiAJ
+CQl9CiAJCQlhY3RpdmUgPSB0cnVlOwogCQkJYnJlYWs7CkBAIC00MTYwLDYgKzQxNjAsOSBAQCBu
+djUwX2Rpc3BfYXRvbWljX2NvbW1pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAogCQlkcm0tPmhh
+dmVfZGlzcF9wb3dlcl9yZWYgPSBmYWxzZTsKIAl9CiAKK2Vycl9jbGVhbnVwOgorCWlmIChyZXQp
+CisJCWRybV9hdG9taWNfaGVscGVyX2NsZWFudXBfcGxhbmVzKGRldiwgc3RhdGUpOwogZG9uZToK
+IAlwbV9ydW50aW1lX3B1dF9hdXRvc3VzcGVuZChkZXYtPmRldik7CiAJcmV0dXJuIHJldDsKLS0g
+CjIuMTEuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
