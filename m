@@ -1,57 +1,143 @@
-From: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
-Subject: Re: [PATCH 000/102] Convert drivers to explicit reset API
-Date: Thu, 20 Jul 2017 10:11:57 +0200
-Message-ID: <20170720081157.GA11630@kroah.com>
-References: <20170719152646.25903-1-p.zabel@pengutronix.de>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH] drm: disable vblank only if it got previously
+ enabled
+Date: Thu, 20 Jul 2017 10:13:21 +0200
+Message-ID: <20170720081321.34g4gwmojcvaqh7b@phenom.ffwll.local>
+References: <1500180236.5334.7.camel@gmx.de>
+ <20170719172509.2000-1-tobias.johannes.klausmann@mni.thm.de>
+ <CAKb7Uvj0J_gD12qXRLq-DdwtNzNGwKEON-ryUrTeFpS7O_jj2g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-mediatek-bounces+glpam-linux-mediatek=m.gmane.org-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20170719152646.25903-1-p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-mediatek>,
- <mailto:linux-mediatek-request-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.infradead.org/pipermail/linux-mediatek/>
-List-Post: <mailto:linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
-List-Help: <mailto:linux-mediatek-request-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-mediatek>,
- <mailto:linux-mediatek-request-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org?subject=subscribe>
-Sender: "Linux-mediatek" <linux-mediatek-bounces-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
-Errors-To: linux-mediatek-bounces+glpam-linux-mediatek=m.gmane.org-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
-To: Philipp Zabel <p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-Cc: Andrew Lunn <andrew-g2DYL2Zd6BY@public.gmane.org>, Prashant Gaikwad <pgaikwad-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Heiko Stuebner <heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org>, Peter Chen <Peter.Chen-3arQi8VN3Tc@public.gmane.org>, Linus Walleij <linus.walleij-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Marc Dietrich <marvin24-Mmb7MZpHnFY@public.gmane.org>, Rakesh Iyer <riyer-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Peter Meerwald-Stadler <pmeerw-jW+XmwGofnusTnJN9+BGXg@public.gmane.org>, linux-clk-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Wim Van Sebroeck <wim-IQzOog9fTRqzQB+pC5nmwQ@public.gmane.org>, Wolfram Sang <wsa-z923LK4zBo2bacvFa/9K2g@public.gmane.org>, Xinliang Liu <z.liuxinliang-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org>, Chanwoo Choi <cw00.choi-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Alan Stern <stern-nwvwT67g6+6dFdvTe/nMLpVzexx5G7lz@public.gmane.org>, Jiri Slaby <jslaby-IBi9RG/b67k@public.gmane.org>, Michael Turquette <mturquette-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>, Guenter Roeck <linux-0h96xk9xTtrk1uMJSBkQmQ@public.gmane.org>, Ohad Ben-Cohen <ohad-Ix1uc/W3ht7QT0dZR+AlfA@public.gmane.org>, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Thomas Gleixner <tglx-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>, Vincent Abriou <vincent.abriou-qxv4g6HH51o@public.gmane.org>, Bin Liu <b-liu-l0cyMroinI0@public.gmane.org>, linux-usb-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-wireless-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+In-Reply-To: <CAKb7Uvj0J_gD12qXRLq-DdwtNzNGwKEON-ryUrTeFpS7O_jj2g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jul 19, 2017 at 05:25:04PM +0200, Philipp Zabel wrote:
-> The reset control API has two modes: exclusive access, where the driver
-> expects to have full and immediate control over the state of the reset
-> line, and shared (clock-like) access, where drivers only request reset
-> deassertion while active, but don't care about the state of the reset line
-> while inactive.
-> 
-> Commit a53e35db70d1 ("reset: Ensure drivers are explicit when requesting
-> reset lines") started to transition the reset control request API calls
-> to explicitly state whether the driver needs exclusive or shared reset
-> control behavior.
-> 
-> This series converts all drivers that currently implicitly request
-> exclusive reset controls to the corresponding explicit API call. It is,
-> for the most part, generated from the following semantic patch:
-
-Hey, I'm all for large api changes, but this really seems ackward, isn't
-there a "better" way to do this?
-
-Why not, as you say the "implicit" request is exclusive, just leave
-everything alone and state that the "reset_control_get()" call is
-exclusive and make the shared one the "odd" usage as that seems to not
-be the normal case.
-
-That should be a much smaller patch right?
-
-That way you don't break everything here, and require 100+ patches to
-just change the name of a function from one to another and do nothing
-else.
-
-thanks,
-
-greg k-h
+T24gV2VkLCBKdWwgMTksIDIwMTcgYXQgMDQ6MTA6NTBQTSAtMDQwMCwgSWxpYSBNaXJraW4gd3Jv
+dGU6Cj4gSSBiZWxpZXZlIHRoZSBzb2x1dGlvbiBpcyB0byBub3QgY2FsbCBkcm1fY3J0Y192Ymxh
+bmtfb2ZmIGZvciBhdG9taWMKPiBtb2Rlc2V0dGluZyBpbiBub3V2ZWF1X2Rpc3BsYXlfZmluaS4g
+SSB0aGluayBCZW4ncyB3b3JraW5nIG9uIGl0LgoKWWVzLCB0aGUgZ29hbCBvZiB2Ymxhbmtfb24v
+b2ZmIHdhcyB2ZXJ5IG11Y2ggdG8gbm90IHBhcGVyIG92ZXIgZHJpdmVyIGJ1Z3MKd2l0aCBjbGV2
+ZXIgdHJpY2tzIGxpa2UgdGhlc2UuIElmIHRoZSBkcml2ZXIgY2FudCBrZWVwIHRyYWNrIG9mIGl0
+cwp2YmxhbmssIHNvbWV0aGluZyBoYXMgZ29uZSB3cm9uZywgYW5kIHRoZSBjb3JlIHNob3VsZCBf
+bm90XyBmaXggaXQgdXAuCk90aGVyd2lzZSB3ZSdyZSBiYWNrIHRvIHRoZSBvbGQgc3R5bGUgdmJs
+YW5rIGhvcnJvciBzaG93LgoKVGhhbmtzLCBEYW5pZWwKCj4gCj4gT24gV2VkLCBKdWwgMTksIDIw
+MTcgYXQgMToyNSBQTSwgVG9iaWFzIEtsYXVzbWFubgo+IDx0b2JpYXMuam9oYW5uZXMua2xhdXNt
+YW5uQG1uaS50aG0uZGU+IHdyb3RlOgo+ID4gbWltaWMgdGhlIGJlaGF2aW9yIG9mIHZibGFua19k
+aXNhYmxlX2ZuKCksIGFub3RoZXIgY2FsbGVyIG9mCj4gPiBkcm1fdmJsYW5rX2Rpc2FibGVfYW5k
+X3NhdmUoKS4KPiA+Cj4gPiBUaGlzIGF2b2lkcyBvb3BzaW5nLCB3aGlsZSB0cnlpbmcgdG8gZGlz
+YWJsZSB2Ymxhbmsgb24gYSBub3QgY29ubmVjdGVkIGRpc3BsYXk6Cj4gPgo+ID4gWyAgIDEyLjc2
+ODA3OV0gV0FSTklORzogQ1BVOiAwIFBJRDogMjc0IGF0IGRyaXZlcnMvZ3B1L2RybS9kcm1fdmJs
+YW5rLmM6NjA5IGRybV9jYWxjX3ZibHRpbWVzdGFtcF9mcm9tX3NjYW5vdXRwb3MrMHgyOTYvMHgz
+MjAgW2RybV0KPiA+IFsgICAxMi43NjgwODBdIE1vZHVsZXMgbGlua2VkIGluOiBibmVwIHNuZF9o
+ZGFfY29kZWNfaGRtaSBydHN4X3VzYl9zZG1tYyB1dmN2aWRlbyBydHN4X3VzYl9tcyBtbWNfY29y
+ZSB2aWRlb2J1ZjJfdm1hbGxvYyBtZW1zdGljayB2aWRlb2J1ZjJfbWVtb3BzIHZpZGVvYnVmMl92
+NGwyIHZpZGVvYnVmMl9jb3JlIHJ0c3hfdXNiIHZpZGVvZGV2IGJ0dXNiIGJ0cnRsIGFyYzQgc25k
+X2hkYV9jb2RlY19yZWFsdGVrIHNuZF9oZGFfY29kZWNfZ2VuZXJpYyBqb3lkZXYgbmxzX2lzbzg4
+NTlfMSBoaWRfbXVsdGl0b3VjaCBubHNfY3A0MzcgaW50ZWxfcmFwbCB4ODZfcGtnX3RlbXBfdGhl
+cm1hbCBpbnRlbF9wb3dlcmNsYW1wIHZmYXQgY29yZXRlbXAgZmF0IGt2bV9pbnRlbCBpVENPX3dk
+dCBpVENPX3ZlbmRvcl9zdXBwb3J0IGt2bSBpcnFieXBhc3MgY3JjdDEwZGlmX3BjbG11bCBjcmMz
+Ml9wY2xtdWwgY3JjMzJjX2ludGVsIGdoYXNoX2NsbXVsbmlfaW50ZWwgcGNiYyBhZXNuaV9pbnRl
+bCBhdGgxMGtfcGNpIHNuZF9oZGFfaW50ZWwgYXRoMTBrX2NvcmUgYWVzX3g4Nl82NCBzbmRfaGRh
+X2NvZGVjIGNyeXB0b19zaW1kIGF0aCBnbHVlX2hlbHBlciBjcnlwdGQgc25kX2hkYV9jb3JlIG1h
+YzgwMjExIHNuZF9od2RlcCBzbmRfcGNtIHBjc3BrciByODE2OSBjZmc4MDIxMSBtaWkgc25kX3Rp
+bWVyIGFjZXJfd21pIHNuZCBzcGFyc2Vfa2V5bWFwIHdtaV9ibW9mIGlkbWE2NCBoY2lfdWFydCB2
+aXJ0X2RtYSBtZWlfbWUgc291bmRjb3JlIGkyY19pODAxIG1laSBidGJjbSBzaHBjaHAgaW50ZWxf
+bHBzc19wY2kgaW50ZWxfcGNoX3RoZXJtYWwKPiA+IFsgICAxMi43NjgxMzBdICBzZXJkZXYgYnRx
+Y2EgdWNzaV9hY3BpIGJ0aW50ZWwgdHlwZWNfdWNzaSB0aGVybWFsIHR5cGVjIGJsdWV0b290aCBl
+Y2RoX2dlbmVyaWMgYmF0dGVyeSBhYyBwaW5jdHJsX3N1bnJpc2Vwb2ludCByZmtpbGwgaW50ZWxf
+bHBzc19hY3BpIHBpbmN0cmxfaW50ZWwgaW50ZWxfbHBzcyBhY3BpX3BhZCBub3V2ZWF1IHNlcmlv
+X3JhdyBpOTE1IG14bV93bWkgdHRtIGkyY19hbGdvX2JpdCBkcm1fa21zX2hlbHBlciB4aGNpX3Bj
+aSBzeXNjb3B5YXJlYSBzeXNmaWxscmVjdCBzeXNpbWdibHQgeGhjaV9oY2QgZmJfc3lzX2ZvcHMg
+dXNiY29yZSBkcm0gaTJjX2hpZCB3bWkgdmlkZW8gYnV0dG9uIHNnIGVmaXZhcmZzCj4gPiBbICAg
+MTIuNzY4MTU4XSBDUFU6IDAgUElEOiAyNzQgQ29tbToga3dvcmtlci8wOjIgTm90IHRhaW50ZWQg
+NC4xMi4wLWRlc2t0b3AtZGVidWctZHJtKyAjMgo+ID4gWyAgIDEyLjc2ODE2MF0gSGFyZHdhcmUg
+bmFtZTogQWNlciBBc3BpcmUgVk43LTU5M0cvUGx1dG9fS0xTLCBCSU9TIFYxLjA0IDAzLzMwLzIw
+MTcKPiA+IFsgICAxMi43NjgxNjRdIFdvcmtxdWV1ZTogcG0gcG1fcnVudGltZV93b3JrCj4gPiBb
+ICAgMTIuNzY4MTY2XSB0YXNrOiBmZmZmODg5YmYxNjI3MDQwIHRhc2suc3RhY2s6IGZmZmY5NTQx
+MDEzZTQwMDAKPiA+IFsgICAxMi43NjgxODBdIFJJUDogMDAxMDpkcm1fY2FsY192Ymx0aW1lc3Rh
+bXBfZnJvbV9zY2Fub3V0cG9zKzB4Mjk2LzB4MzIwIFtkcm1dCj4gPiBbICAgMTIuNzY4MTgxXSBS
+U1A6IDAwMTg6ZmZmZjk1NDEwMTNlN2IzMCBFRkxBR1M6IDAwMDEwMDg2Cj4gPiBbICAgMTIuNzY4
+MTgzXSBSQVg6IDAwMDAwMDAwMDAwMDAwMWMgUkJYOiBmZmZmODg5YjRjZWJkMDAwIFJDWDogMDAw
+MDAwMDAwMDAwMDAwNAo+ID4gWyAgIDEyLjc2ODE4NF0gUkRYOiAwMDAwMDAwMDgwMDAwMDA0IFJT
+STogZmZmZmZmZmY4N2EyZDk1MiBSREk6IDAwMDAwMDAwZmZmZmZmZmYKPiA+IFsgICAxMi43Njgx
+ODZdIFJCUDogZmZmZjk1NDEwMTNlN2I5MCBSMDg6IDAwMDAwMDAwMDAwMDAwMDEgUjA5OiAwMDAw
+MDAwMDAwMDAwMzlmCj4gPiBbICAgMTIuNzY4MTg3XSBSMTA6IGZmZmZmZmZmYzA1ZmU1MzAgUjEx
+OiAwMDAwMDAwMDAwMDAwMDAwIFIxMjogMDAwMDAwMDAwMDAwMDAwMAo+ID4gWyAgIDEyLjc2ODE4
+OF0gUjEzOiBmZmZmOTU0MTAxM2U3YmE0IFIxNDogZmZmZjg4OWJmMDQyNjA4OCBSMTU6IGZmZmY4
+ODliZjA0MjYwMDAKPiA+IFsgICAxMi43NjgxOTBdIEZTOiAgMDAwMDAwMDAwMDAwMDAwMCgwMDAw
+KSBHUzpmZmZmODg5YmZlYzAwMDAwKDAwMDApIGtubEdTOjAwMDAwMDAwMDAwMDAwMDAKPiA+IFsg
+ICAxMi43NjgxOTFdIENTOiAgMDAxMCBEUzogMDAwMCBFUzogMDAwMCBDUjA6IDAwMDAwMDAwODAw
+NTAwMzMKPiA+IFsgICAxMi43NjgxOTJdIENSMjogMDAwMDAwZWRiMTY1ODBiOCBDUjM6IDAwMDAw
+MDAyMGNjMDkwMDAgQ1I0OiAwMDAwMDAwMDAwMzQwNmYwCj4gPiBbICAgMTIuNzY4MTkzXSBDYWxs
+IFRyYWNlOgo+ID4gWyAgIDEyLjc2ODE5OF0gID8gZW5xdWV1ZV90YXNrX2ZhaXIrMHg2NC8weDYw
+MAo+ID4gWyAgIDEyLjc2ODIxMV0gID8gZHJtX2dldF9sYXN0X3ZibHRpbWVzdGFtcCsweDQ3LzB4
+NzAgW2RybV0KPiA+IFsgICAxMi43NjgyMjNdICA/IGRybV91cGRhdGVfdmJsYW5rX2NvdW50KzB4
+NjUvMHgyNDAgW2RybV0KPiA+IFsgICAxMi43NjgyMjddICA/IHBjaV9wbV9ydW50aW1lX3Jlc3Vt
+ZSsweGEwLzB4YTAKPiA+IFsgICAxMi43NjgyMzhdICA/IGRybV92YmxhbmtfZGlzYWJsZV9hbmRf
+c2F2ZSsweDU1LzB4YzAgW2RybV0KPiA+IFsgICAxMi43NjgyNTBdICA/IGRybV9jcnRjX3ZibGFu
+a19vZmYrMHhhOS8weDFlMCBbZHJtXQo+ID4gWyAgIDEyLjc2ODI1M10gID8gcGNpX3BtX3J1bnRp
+bWVfcmVzdW1lKzB4YTAvMHhhMAo+ID4gWyAgIDEyLjc2ODI5OV0gID8gbm91dmVhdV9kaXNwbGF5
+X2ZpbmkrMHg1Ni8weGQwIFtub3V2ZWF1XQo+ID4gWyAgIDEyLjc2ODMzOV0gID8gbm91dmVhdV9k
+aXNwbGF5X3N1c3BlbmQrMHg1MS8weDExMCBbbm91dmVhdV0KPiA+IFsgICAxMi43NjgzNzhdICA/
+IG5vdXZlYXVfZG9fc3VzcGVuZCsweDc2LzB4MWMwIFtub3V2ZWF1XQo+ID4gWyAgIDEyLjc2ODQx
+M10gID8gbm91dmVhdV9wbW9wc19ydW50aW1lX3N1c3BlbmQrMHg1NC8weGIwIFtub3V2ZWF1XQo+
+ID4gWyAgIDEyLjc2ODQxNl0gID8gcGNpX3BtX3J1bnRpbWVfc3VzcGVuZCsweDVjLzB4MTYwCj4g
+PiBbICAgMTIuNzY4NDE5XSAgPyBfX3JwbV9jYWxsYmFjaysweGI2LzB4MWUwCj4gPiBbICAgMTIu
+NzY4NDIzXSAgPyBrb2JqZWN0X3VldmVudF9lbnYrMHgxMTEvMHg1ZTAKPiA+IFsgICAxMi43Njg0
+MjVdICA/IHBjaV9wbV9ydW50aW1lX3Jlc3VtZSsweGEwLzB4YTAKPiA+IFsgICAxMi43Njg0Mjdd
+ICA/IHJwbV9jYWxsYmFjaysweDFmLzB4NzAKPiA+IFsgICAxMi43Njg0MjldICA/IHBjaV9wbV9y
+dW50aW1lX3Jlc3VtZSsweGEwLzB4YTAKPiA+IFsgICAxMi43Njg0MzFdICA/IHJwbV9zdXNwZW5k
+KzB4MTFmLzB4NjQwCj4gPiBbICAgMTIuNzY4NDQxXSAgPyBkcm1fZmJfaGVscGVyX2hvdHBsdWdf
+ZXZlbnQrMHg5YS8weGUwIFtkcm1fa21zX2hlbHBlcl0KPiA+IFsgICAxMi43Njg0NDddICA/IG91
+dHB1dF9wb2xsX2V4ZWN1dGUrMHgxN2IvMHgxYTAgW2RybV9rbXNfaGVscGVyXQo+ID4gWyAgIDEy
+Ljc2ODQ0OV0gID8gcG1fcnVudGltZV93b3JrKzB4NjQvMHhhMAo+ID4gWyAgIDEyLjc2ODQ1M10g
+ID8gcHJvY2Vzc19vbmVfd29yaysweDFkYi8weDQxMAo+ID4gWyAgIDEyLjc2ODQ1Nl0gID8gd29y
+a2VyX3RocmVhZCsweDQ3LzB4M2QwCj4gPiBbICAgMTIuNzY4NDU5XSAgPyBwcm9jZXNzX29uZV93
+b3JrKzB4NDEwLzB4NDEwCj4gPiBbICAgMTIuNzY4NDYxXSAgPyBrdGhyZWFkKzB4MTE3LzB4MTMw
+Cj4gPiBbICAgMTIuNzY4NDYzXSAgPyBrdGhyZWFkX2NyZWF0ZV9vbl9ub2RlKzB4NDAvMHg0MAo+
+ID4gWyAgIDEyLjc2ODQ2Nl0gID8gcmV0X2Zyb21fZm9yaysweDI1LzB4MzAKPiA+IFsgICAxMi43
+Njg0NjhdIENvZGU6IDgwIDNkIDI2IGYzIDAxIDAwIDAwIDBmIDg1IGFkIGZkIGZmIGZmIDQ4IDhi
+IDQzIDIwIDQ4IGM3IGM3IDMxIGEyIDIwIGMwIGM2IDA1IDBlIGYzIDAxIDAwIDAxIDQ4IDhiIGIw
+IDYwIDAxIDAwIDAwIGU4IDc1IDJlIGVjIGM2IDwwZj4gZmYgZTkgODggZmQgZmYgZmYgMzEgZjYg
+NDQgODggNTUgYjAgZTggMzggZmEgZWQgYzYgNDQgMGYgYjYKPiA+IFsgICAxMi43Njg1MDhdIC0t
+LVsgZW5kIHRyYWNlIGQ5YmI4NTNhZjM2NTliZDUgXS0tLQo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6
+IFRvYmlhcyBLbGF1c21hbm4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRobS5kZT4K
+PiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fdmJsYW5rLmMgfCA1ICsrKystCj4gPiAg
+MSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+ID4KPiA+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX3ZibGFuay5jIGIvZHJpdmVycy9ncHUvZHJt
+L2RybV92YmxhbmsuYwo+ID4gaW5kZXggYTIzM2E2YmU5MzRhLi40YTIxNzU2YmYyYmQgMTAwNjQ0
+Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX3ZibGFuay5jCj4gPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vZHJtX3ZibGFuay5jCj4gPiBAQCAtMTE0MCw4ICsxMTQwLDExIEBAIHZvaWQgZHJt
+X2NydGNfdmJsYW5rX29mZihzdHJ1Y3QgZHJtX2NydGMgKmNydGMpCj4gPgo+ID4gICAgICAgICAv
+KiBBdm9pZCByZWR1bmRhbnQgdmJsYW5rIGRpc2FibGVzIHdpdGhvdXQgcHJldmlvdXMKPiA+ICAg
+ICAgICAgICogZHJtX2NydGNfdmJsYW5rX29uKCkuICovCj4gPiAtICAgICAgIGlmIChkcm1fY29y
+ZV9jaGVja19mZWF0dXJlKGRldiwgRFJJVkVSX0FUT01JQykgfHwgIXZibGFuay0+aW5tb2Rlc2V0
+KQo+ID4gKyAgICAgICBpZiAoZHJtX2NvcmVfY2hlY2tfZmVhdHVyZShkZXYsIERSSVZFUl9BVE9N
+SUMpIHx8ICghdmJsYW5rLT5pbm1vZGVzZXQgJiYKPiA+ICsgICAgICAgICAgICAgICB2Ymxhbmst
+PmVuYWJsZWQpKSB7Cj4gPiArICAgICAgICAgICAgICAgRFJNX0RFQlVHKCJkaXNhYmxpbmcgdmJs
+YW5rIG9uIGNydGMgJXVcbiIsIHBpcGUpOwo+ID4gICAgICAgICAgICAgICAgIGRybV92Ymxhbmtf
+ZGlzYWJsZV9hbmRfc2F2ZShkZXYsIHBpcGUpOwo+ID4gKyAgICAgICB9Cj4gPgo+ID4gICAgICAg
+ICB3YWtlX3VwKCZ2YmxhbmstPnF1ZXVlKTsKPiA+Cj4gPiAtLQo+ID4gMi4xMy4yCj4gPgo+ID4g
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+IE5vdXZl
+YXUgbWFpbGluZyBsaXN0Cj4gPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4gX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1h
+aWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1CgotLSAKRGFuaWVsIFZl
+dHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3
+bGwuY2gKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
