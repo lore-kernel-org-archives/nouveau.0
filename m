@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101665] lspci blocks forever with a GP107M
+Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
+ 409800 [ TIMEOUT ]
 Date: Thu, 20 Jul 2017 14:05:19 +0000
-Message-ID: <bug-101665-8800-u3gtM30U5Q@http.bugs.freedesktop.org/>
-References: <bug-101665-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-100228-8800-0AWRmkY4YH@http.bugs.freedesktop.org/>
+References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1075367110=="
+Content-Type: multipart/mixed; boundary="===============2089741257=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1075367110==
-Content-Type: multipart/alternative; boundary="15005595191.aD59aA8B7.1269";
+--===============2089741257==
+Content-Type: multipart/alternative; boundary="15005595196.eaA6D0e4.1269";
  charset="UTF-8"
 
 
---15005595191.aD59aA8B7.1269
+--15005595196.eaA6D0e4.1269
 Date: Thu, 20 Jul 2017 14:05:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -33,21 +34,20 @@ Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
 
 Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=3D100228
-                 CC|                            |rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+                   |                            |g/show_bug.cgi?id=3D101665
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15005595191.aD59aA8B7.1269
+--15005595196.eaA6D0e4.1269
 Date: Thu, 20 Jul 2017 14:05:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -65,9 +65,10 @@ ass=3D"fn">Rhys Kidd</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - lspci blocks forever with a GP107M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
-5</a>
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
+8</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -81,16 +82,7 @@ ass=3D"fn">Rhys Kidd</span></a>
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>rhyskidd&#64;gmail.com
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
            </td>
          </tr></table>
       <p>
@@ -106,9 +98,9 @@ ass=3D"fn">Rhys Kidd</span></a>
     </body>
 </html>=
 
---15005595191.aD59aA8B7.1269--
+--15005595196.eaA6D0e4.1269--
 
---===============1075367110==
+--===============2089741257==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1075367110==--
+--===============2089741257==--
