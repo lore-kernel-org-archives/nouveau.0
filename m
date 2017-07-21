@@ -1,36 +1,93 @@
-From: Heiko Stuebner <heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org>
-Subject: Re: [PATCH 000/102] Convert drivers to explicit reset API
-Date: Thu, 20 Jul 2017 22:32:49 +0200
-Message-ID: <1687646.TMvigZNUOP__4187.64552237025$1500660934$gmane$org@phil>
-References: <20170719152646.25903-1-p.zabel@pengutronix.de>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [RFC PATCH 01/13] clk: Rename nvkm_pstate_calc to
+	nvkm_clk_update and export it
+Date: Fri, 21 Jul 2017 23:55:12 +0200
+Message-ID: <20170721215524.4665-2-karolherbst@gmail.com>
+References: <20170721215524.4665-1-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-rockchip-bounces+glpar-linux-rockchip=m.gmane.org-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
-In-Reply-To: <20170719152646.25903-1-p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-rockchip>,
- <mailto:linux-rockchip-request-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.infradead.org/pipermail/linux-rockchip/>
-List-Post: <mailto:linux-rockchip-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
-List-Help: <mailto:linux-rockchip-request-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-rockchip>,
- <mailto:linux-rockchip-request-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org?subject=subscribe>
-Sender: "Linux-rockchip" <linux-rockchip-bounces-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
-Errors-To: linux-rockchip-bounces+glpar-linux-rockchip=m.gmane.org-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
-To: Philipp Zabel <p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-Cc: Andrew Lunn <andrew-g2DYL2Zd6BY@public.gmane.org>, Prashant Gaikwad <pgaikwad-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Peter Chen <Peter.Chen-3arQi8VN3Tc@public.gmane.org>, Linus Walleij <linus.walleij-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Marc Dietrich <marvin24-Mmb7MZpHnFY@public.gmane.org>, Rakesh Iyer <riyer-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Peter Meerwald-Stadler <pmeerw-jW+XmwGofnusTnJN9+BGXg@public.gmane.org>, linux-clk-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Wim Van Sebroeck <wim-IQzOog9fTRqzQB+pC5nmwQ@public.gmane.org>, Wolfram Sang <wsa-z923LK4zBo2bacvFa/9K2g@public.gmane.org>, Xinliang Liu <z.liuxinliang-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org>, Chanwoo Choi <cw00.choi-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, Alan Stern <stern-nwvwT67g6+6dFdvTe/nMLpVzexx5G7lz@public.gmane.org>, Jiri Slaby <jslaby-IBi9RG/b67k@public.gmane.org>, Michael Turquette <mturquette-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>, Guenter Roeck <linux-0h96xk9xTtrk1uMJSBkQmQ@public.gmane.org>, Ohad Ben-Cohen <ohad-Ix1uc/W3ht7QT0dZR+AlfA@public.gmane.org>, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Thomas Gleixner <tglx-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>, Vincent Abriou <vincent.abriou-qxv4g6HH51o@public.gmane.org>, Bin Liu <b-liu-l0cyMroinI0@public.gmane.org>, Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, linux-usb-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-wireless-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20170721215524.4665-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
-
->   crypto: rockchip: explicitly request exclusive reset control
->   iio: adc: rockchip_saradc: explicitly request exclusive reset control
->   PCI: rockchip: explicitly request exclusive reset control
->   phy: rockchip-pcie: explicitly request exclusive reset control
->   phy: rockchip-typec: explicitly request exclusive reset control
->   phy: rockchip-usb: explicitly request exclusive reset control
->   thermal: rockchip: explicitly request exclusive reset control
-
-for the driver-related Rockchip changes
-
-Acked-by: Heiko Stuebner <heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org>
+VGhpcyBmdW5jdGlvbiB3aWxsIGJlIHVzZWQgdG8gdXBkYXRlIHRoZSBjdXJyZW50IGNsb2NrIHN0
+YXRlLgoKVGhpcyB3aWxsIGhhcHBlbiBmb3IgdmFyaW91cyByZWFzb25zOgogICogVGVtcGVyYXR1
+cmUgY2hhbmdlcwogICogVXNlciBjaGFuZ2VzIGNsb2NraW5nIHN0YXRlCiAgKiBMb2FkIGNoYW5n
+ZXMKCnYyOiByZW1vdmUgcGFyYW1ldGVyIG5hbWUKClNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJz
+dCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgotLS0KIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9z
+dWJkZXYvY2xrLmggfCAgMSArCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jICAg
+IHwgMjYgKysrKysrKysrKysrKysrKy0tLS0tLS0tLS0KIDIgZmlsZXMgY2hhbmdlZCwgMTcgaW5z
+ZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvaW5j
+bHVkZS9udmttL3N1YmRldi9jbGsuaCBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYv
+Y2xrLmgKaW5kZXggZTUyNzVmNzQuLmNlM2JiY2ZlIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9p
+bmNsdWRlL252a20vc3ViZGV2L2Nsay5oCisrKyBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9z
+dWJkZXYvY2xrLmgKQEAgLTEyMyw2ICsxMjMsNyBAQCBpbnQgbnZrbV9jbGtfdXN0YXRlKHN0cnVj
+dCBudmttX2NsayAqLCBpbnQgcmVxLCBpbnQgcHdyKTsKIGludCBudmttX2Nsa19hc3RhdGUoc3Ry
+dWN0IG52a21fY2xrICosIGludCByZXEsIGludCByZWwsIGJvb2wgd2FpdCk7CiBpbnQgbnZrbV9j
+bGtfZHN0YXRlKHN0cnVjdCBudmttX2NsayAqLCBpbnQgcmVxLCBpbnQgcmVsKTsKIGludCBudmtt
+X2Nsa190c3RhdGUoc3RydWN0IG52a21fY2xrICosIHU4IHRlbXBlcmF0dXJlKTsKK2ludCBudmtt
+X2Nsa191cGRhdGUoc3RydWN0IG52a21fY2xrICosIGJvb2wgd2FpdCk7CiAKIGludCBudjA0X2Ns
+a19uZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fY2xrICoqKTsKIGlu
+dCBudjQwX2Nsa19uZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fY2xr
+ICoqKTsKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgYi9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCmluZGV4IGU0YzhkMzEwLi5lY2ZmM2Zm
+MyAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYworKysgYi9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCkBAIC0yOTYsNyArMjk2LDcgQEAgbnZr
+bV9wc3RhdGVfcHJvZyhzdHJ1Y3QgbnZrbV9jbGsgKmNsaywgaW50IHBzdGF0ZWkpCiB9CiAKIHN0
+YXRpYyB2b2lkCi1udmttX3BzdGF0ZV93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKK252
+a21fY2xrX3VwZGF0ZV93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKIHsKIAlzdHJ1Y3Qg
+bnZrbV9jbGsgKmNsayA9IGNvbnRhaW5lcl9vZih3b3JrLCB0eXBlb2YoKmNsayksIHdvcmspOwog
+CXN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gJmNsay0+c3ViZGV2OwpAQCAtMzMyLDkgKzMz
+MiwxNSBAQCBudmttX3BzdGF0ZV93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKIAludmtt
+X25vdGlmeV9nZXQoJmNsay0+cHdyc3JjX250ZnkpOwogfQogCi1zdGF0aWMgaW50Ci1udmttX3Bz
+dGF0ZV9jYWxjKHN0cnVjdCBudmttX2NsayAqY2xrLCBib29sIHdhaXQpCitpbnQKK252a21fY2xr
+X3VwZGF0ZShzdHJ1Y3QgbnZrbV9jbGsgKmNsaywgYm9vbCB3YWl0KQogeworCWlmICghY2xrKQor
+CQlyZXR1cm4gLUVJTlZBTDsKKworCWlmICghY2xrLT5hbGxvd19yZWNsb2NrKQorCQlyZXR1cm4g
+LUVOT0RFVjsKKwogCWF0b21pY19zZXQoJmNsay0+d2FpdGluZywgMSk7CiAJc2NoZWR1bGVfd29y
+aygmY2xrLT53b3JrKTsKIAlpZiAod2FpdCkKQEAgLTUyNCw3ICs1MzAsNyBAQCBudmttX2Nsa191
+c3RhdGUoc3RydWN0IG52a21fY2xrICpjbGssIGludCByZXEsIGludCBwd3IpCiAJaWYgKHJldCA+
+PSAwKSB7CiAJCWlmIChyZXQgLT0gMiwgcHdyKSBjbGstPnVzdGF0ZV9hYyA9IHJldDsKIAkJZWxz
+ZQkJICAgY2xrLT51c3RhdGVfZGMgPSByZXQ7Ci0JCXJldHVybiBudmttX3BzdGF0ZV9jYWxjKGNs
+aywgdHJ1ZSk7CisJCXJldHVybiBudmttX2Nsa191cGRhdGUoY2xrLCB0cnVlKTsKIAl9CiAJcmV0
+dXJuIHJldDsKIH0KQEAgLTUzNiw3ICs1NDIsNyBAQCBudmttX2Nsa19hc3RhdGUoc3RydWN0IG52
+a21fY2xrICpjbGssIGludCByZXEsIGludCByZWwsIGJvb2wgd2FpdCkKIAlpZiAoIHJlbCkgY2xr
+LT5hc3RhdGUgKz0gcmVsOwogCWNsay0+YXN0YXRlID0gbWluKGNsay0+YXN0YXRlLCBjbGstPnN0
+YXRlX25yIC0gMSk7CiAJY2xrLT5hc3RhdGUgPSBtYXgoY2xrLT5hc3RhdGUsIDApOwotCXJldHVy
+biBudmttX3BzdGF0ZV9jYWxjKGNsaywgd2FpdCk7CisJcmV0dXJuIG52a21fY2xrX3VwZGF0ZShj
+bGssIHdhaXQpOwogfQogCiBpbnQKQEAgLTU0NSw3ICs1NTEsNyBAQCBudmttX2Nsa190c3RhdGUo
+c3RydWN0IG52a21fY2xrICpjbGssIHU4IHRlbXApCiAJaWYgKGNsay0+dGVtcCA9PSB0ZW1wKQog
+CQlyZXR1cm4gMDsKIAljbGstPnRlbXAgPSB0ZW1wOwotCXJldHVybiBudmttX3BzdGF0ZV9jYWxj
+KGNsaywgZmFsc2UpOworCXJldHVybiBudmttX2Nsa191cGRhdGUoY2xrLCBmYWxzZSk7CiB9CiAK
+IGludApAQCAtNTU1LDcgKzU2MSw3IEBAIG52a21fY2xrX2RzdGF0ZShzdHJ1Y3QgbnZrbV9jbGsg
+KmNsaywgaW50IHJlcSwgaW50IHJlbCkKIAlpZiAoIHJlbCkgY2xrLT5kc3RhdGUgKz0gcmVsOwog
+CWNsay0+ZHN0YXRlID0gbWluKGNsay0+ZHN0YXRlLCBjbGstPnN0YXRlX25yIC0gMSk7CiAJY2xr
+LT5kc3RhdGUgPSBtYXgoY2xrLT5kc3RhdGUsIDApOwotCXJldHVybiBudmttX3BzdGF0ZV9jYWxj
+KGNsaywgdHJ1ZSk7CisJcmV0dXJuIG52a21fY2xrX3VwZGF0ZShjbGssIHRydWUpOwogfQogCiBz
+dGF0aWMgaW50CkBAIC01NjMsNyArNTY5LDcgQEAgbnZrbV9jbGtfcHdyc3JjKHN0cnVjdCBudmtt
+X25vdGlmeSAqbm90aWZ5KQogewogCXN0cnVjdCBudmttX2NsayAqY2xrID0KIAkJY29udGFpbmVy
+X29mKG5vdGlmeSwgdHlwZW9mKCpjbGspLCBwd3JzcmNfbnRmeSk7Ci0JbnZrbV9wc3RhdGVfY2Fs
+YyhjbGssIGZhbHNlKTsKKwludmttX2Nsa191cGRhdGUoY2xrLCBmYWxzZSk7CiAJcmV0dXJuIE5W
+S01fTk9USUZZX0RST1A7CiB9CiAKQEAgLTYxOCw3ICs2MjQsNyBAQCBudmttX2Nsa19pbml0KHN0
+cnVjdCBudmttX3N1YmRldiAqc3ViZGV2KQogCWNsay0+ZHN0YXRlID0gMDsKIAljbGstPnBzdGF0
+ZSA9IC0xOwogCWNsay0+dGVtcCA9IDkwOyAvKiByZWFzb25hYmxlIGRlZmF1bHQgdmFsdWUgKi8K
+LQludmttX3BzdGF0ZV9jYWxjKGNsaywgdHJ1ZSk7CisJbnZrbV9jbGtfdXBkYXRlKGNsaywgdHJ1
+ZSk7CiAJcmV0dXJuIDA7CiB9CiAKQEAgLTY3NSw3ICs2ODEsNyBAQCBudmttX2Nsa19jdG9yKGNv
+bnN0IHN0cnVjdCBudmttX2Nsa19mdW5jICpmdW5jLCBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmlj
+ZSwKIAljbGstPnVzdGF0ZV9kYyA9IC0xOwogCWNsay0+YWxsb3dfcmVjbG9jayA9IGFsbG93X3Jl
+Y2xvY2s7CiAKLQlJTklUX1dPUksoJmNsay0+d29yaywgbnZrbV9wc3RhdGVfd29yayk7CisJSU5J
+VF9XT1JLKCZjbGstPndvcmssIG52a21fY2xrX3VwZGF0ZV93b3JrKTsKIAlpbml0X3dhaXRxdWV1
+ZV9oZWFkKCZjbGstPndhaXQpOwogCWF0b21pY19zZXQoJmNsay0+d2FpdGluZywgMCk7CiAKLS0g
+CjIuMTMuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
