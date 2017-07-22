@@ -1,16 +1,13 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [RFC PATCH 12/13] clk: parse thermal policies for
- throttling thresholds
-Date: Sat, 22 Jul 2017 02:50:49 +0200
-Message-ID: <CAEXux-ZgkcEbjBRx_y0uigu5yn1u-yd2nkBw4+=2ykLgOqjNtw@mail.gmail.com>
-References: <20170721215524.4665-1-karolherbst@gmail.com>
- <20170721215524.4665-13-karolherbst@gmail.com>
- <CAKb7Uvj80aFj+eWWGN-_JRqauE-zKGkXZU3XjX69n8beKRmkuw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 94990] [GM204] GTX 970 + 4GB VRAM fails at secboot
+	(v4.6+)
+Date: Sat, 22 Jul 2017 10:40:35 +0000
+Message-ID: <bug-94990-8800-WwhRu9uxvl@http.bugs.freedesktop.org/>
+References: <bug-94990-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2049295384=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvj80aFj+eWWGN-_JRqauE-zKGkXZU3XjX69n8beKRmkuw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-94990-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,70 +17,417 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBKdWwgMjIsIDIwMTcgYXQgMjoyMyBBTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
-bS5taXQuZWR1PiB3cm90ZToKPiBPbiBGcmksIEp1bCAyMSwgMjAxNyBhdCA1OjU1IFBNLCBLYXJv
-bCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4gd3JvdGU6Cj4+IFNpZ25lZC1vZmYtYnk6
-IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgo+PiAtLS0KPj4gIGRybS9ub3V2
-ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvY2xrLmggfCAgMiArKwo+PiAgZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvY2xrL2Jhc2UuYyAgICB8IDQyICsrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrCj4+ICAyIGZpbGVzIGNoYW5nZWQsIDQ0IGluc2VydGlvbnMoKykKPj4KPj4gZGlmZiAt
-LWdpdCBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvY2xrLmggYi9kcm0vbm91dmVh
-dS9pbmNsdWRlL252a20vc3ViZGV2L2Nsay5oCj4+IGluZGV4IGYzNTUxOGMzLi5mNWZmMWZkOSAx
-MDA2NDQKPj4gLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9jbGsuaAo+PiAr
-KysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Nsay5oCj4+IEBAIC0xMDQsNiAr
-MTA0LDggQEAgc3RydWN0IG52a21fY2xrIHsKPj4gICAgICAgICBzdHJ1Y3QgbnZrbV9jc3RhdGUg
-KmNzdGF0ZTsKPj4gICAgICAgICBpbnQgZXhwX2NzdGF0ZWlkOwo+PiAgICAgICAgIHU4ICB0ZW1w
-Owo+PiArICAgICAgIHU4ICBtYXhfdGVtcDsKPj4gKyAgICAgICB1OCAgcmVsYXhfdGVtcDsKPj4K
-Pj4gICAgICAgICBib29sIGFsbG93X3JlY2xvY2s7Cj4+ICAjZGVmaW5lIE5WS01fQ0xLX0JPT1NU
-X05PTkUgMHgwCj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFz
-ZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwo+PiBpbmRleCA4MTA5M2Ux
-My4uNjBlZGI1N2IgMTAwNjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9i
-YXNlLmMKPj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwo+PiBAQCAt
-MjcsNiArMjcsNyBAQAo+PiAgI2luY2x1ZGUgPHN1YmRldi9iaW9zL2Jvb3N0Lmg+Cj4+ICAjaW5j
-bHVkZSA8c3ViZGV2L2Jpb3MvY3N0ZXAuaD4KPj4gICNpbmNsdWRlIDxzdWJkZXYvYmlvcy9wZXJm
-Lmg+Cj4+ICsjaW5jbHVkZSA8c3ViZGV2L2Jpb3MvdGhlcm1hbF9wb2xpY2llcy5oPgo+PiAgI2lu
-Y2x1ZGUgPHN1YmRldi9iaW9zL3Zwc3RhdGUuaD4KPj4gICNpbmNsdWRlIDxzdWJkZXYvZmIuaD4K
-Pj4gICNpbmNsdWRlIDxzdWJkZXYvdGhlcm0uaD4KPj4gQEAgLTY2OSw2ICs2NzAsNDQgQEAgbnZr
-bV9jbGsgPSB7Cj4+ICAgICAgICAgLmZpbmkgPSBudmttX2Nsa19maW5pLAo+PiAgfTsKPj4KPj4g
-K3N0YXRpYyB2b2lkCj4+ICtudmttX2Nsa19wYXJzZV9tYXhfdGVtcChzdHJ1Y3QgbnZrbV9jbGsg
-KmNsaykKPj4gK3sKPj4gKyAgICAgICBzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldiA9ICZjbGst
-PnN1YmRldjsKPj4gKyAgICAgICBzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zID0gc3ViZGV2LT5kZXZp
-Y2UtPmJpb3M7Cj4+ICsgICAgICAgc3RydWN0IG52Ymlvc190aGVybWFsX3BvbGljaWVzX2hlYWRl
-ciBoZWFkZXI7Cj4+ICsgICAgICAgc3RydWN0IG52Ymlvc190aGVybWFsX3BvbGljaWVzX2VudHJ5
-IGVudHJ5Owo+PiArICAgICAgIHU4IGk7Cj4+ICsgICAgICAgczE2IG10ID0gMHhmZjsKPj4gKyAg
-ICAgICBzMTYgcnQgPSAweGZmOwo+PiArCj4+ICsgICAgICAgaWYgKG52Ymlvc190aGVybWFsX3Bv
-bGljaWVzX3BhcnNlKGJpb3MsICZoZWFkZXIpKQo+PiArICAgICAgICAgICAgICAgcmV0dXJuOwo+
-PiArCj4+ICsgICAgICAgaWYgKCFoZWFkZXIuZWNvdW50KQo+PiArICAgICAgICAgICAgICAgcmV0
-dXJuOwo+PiArCj4+ICsgICAgICAgZm9yIChpID0gMDsgaSA8IGhlYWRlci5lY291bnQ7IGkrKykg
-ewo+PiArICAgICAgICAgICAgICAgaWYgKG52Ymlvc190aGVybWFsX3BvbGljaWVzX2VudHJ5KGJp
-b3MsICZoZWFkZXIsIGksICZlbnRyeSkpCj4+ICsgICAgICAgICAgICAgICAgICAgICAgIHJldHVy
-bjsKPj4gKwo+PiArICAgICAgICAgICAgICAgaWYgKGVudHJ5Lm1vZGUgIT0gMSkKPj4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4+ICsKPj4gKyAgICAgICAgICAgICAgIG10ID0g
-bWluKG10LCAoczE2KSgoZW50cnkudDAgKyBlbnRyeS5kb3duX29mZnNldCkgLyAzMikpOwo+PiAr
-ICAgICAgICAgICAgICAgcnQgPSBtaW4ocnQsIChzMTYpKChlbnRyeS50MCArIGVudHJ5LnVwX29m
-ZnNldCkgLyAzMikpOwo+Cj4gSSBiZWxpZXZlIHlvdSdyZSBsb29raW5nIGZvcgo+Cj4gbWluX3Qo
-czE2LCBydCwgZm9vKQo+Cgpva2F5IHRoYW5rcywgdGhpcyBsb29rcyBhdCBsZWFzdCBhIGxpdHRs
-ZSBiZXR0ZXIKCj4+ICsgICAgICAgfQo+PiArCj4+ICsgICAgICAgaWYgKG10ID09IDB4ZmYgfHwg
-cnQgPT0gMHhmZikKPj4gKyAgICAgICAgICAgICAgIHJldHVybjsKPj4gKwo+PiArICAgICAgIGNs
-ay0+bWF4X3RlbXAgPSBtdDsKPj4gKyAgICAgICBjbGstPnJlbGF4X3RlbXAgPSBydDsKPj4gKwo+
-PiArICAgICAgIG52a21fZGVidWcoc3ViZGV2LCAic2V0dGluZyB1cCBzdyB0aHJvdHRsaW5nIHRo
-cmVzaG9sZHMgKCV1LyV1wrBDKVxuIiwKPj4gKyAgICAgICAgICAgICAgICAgIGNsay0+bWF4X3Rl
-bXAsIGNsay0+cmVsYXhfdGVtcCk7Cj4+ICt9Cj4+ICsKPj4gIGludAo+PiAgbnZrbV9jbGtfY3Rv
-cihjb25zdCBzdHJ1Y3QgbnZrbV9jbGtfZnVuYyAqZnVuYywgc3RydWN0IG52a21fZGV2aWNlICpk
-ZXZpY2UsCj4+ICAgICAgICAgICAgICAgaW50IGluZGV4LCBib29sIGFsbG93X3JlY2xvY2ssIHN0
-cnVjdCBudmttX2NsayAqY2xrKQo+PiBAQCAtNzQzLDYgKzc4Miw5IEBAIG52a21fY2xrX2N0b3Io
-Y29uc3Qgc3RydWN0IG52a21fY2xrX2Z1bmMgKmZ1bmMsIHN0cnVjdCBudmttX2RldmljZSAqZGV2
-aWNlLAo+Pgo+PiAgICAgICAgIGNsay0+Ym9vc3RfbW9kZSA9IG52a21fbG9uZ29wdChkZXZpY2Ut
-PmNmZ29wdCwgIk52Qm9vc3QiLAo+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICBOVktNX0NMS19CT09TVF9OT05FKTsKPj4gKwo+PiArICAgICAgIG52a21fY2xrX3BhcnNl
-X21heF90ZW1wKGNsayk7Cj4+ICsKPj4gICAgICAgICByZXR1cm4gMDsKPj4gIH0KPj4KPj4gLS0K
-Pj4gMi4xMy4yCj4+Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2049295384==
+Content-Type: multipart/alternative; boundary="15007200366.c32E5f.24603";
+ charset="UTF-8"
+
+
+--15007200366.c32E5f.24603
+Date: Sat, 22 Jul 2017 10:40:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D94990
+
+--- Comment #127 from fariouche-Qt13gs6zZMY@public.gmane.org ---
+Hi,
+
+I finally tried the 4.12.2 kernel, and in my case it does not fully work :(
+
+I can see a working console, but:
+- only on my first monitor (DVI)
+- no x11 (I can see a brief display of xfce4 but immediately turns black an=
+d no
+more display, even if I return to the console.)
+
+I think I'm facing 2 different issues. One is about detecting my second mon=
+itor
+(a 4K LG 31MU97 plugged on DP-0 (this display is maybe a bit slow to probe))
+The log shows a lot of error concerning this monitor...
+
+But I do not see anything on my third output too (HDMI, this is an av recei=
+ver,
+with a full HD tv). No error at all for this one, even the resolution is pr=
+obed
+correctly by xorg.
+
+
+The kernel log shows an EDID error for the LG monitor...
+[    1.065917] ACPI: Power Button [PWRF]
+[    1.066154] Monitor-Mwait will be used to enter C-1 state
+[    1.066158] Monitor-Mwait will be used to enter C-2 state
+[    1.066161] Monitor-Mwait will be used to enter C-3 state
+[    1.067170] ioatdma: Intel(R) QuickData Technology Driver 4.00
+[    1.067386] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+[    1.067877] Non-volatile memory driver v1.3
+[    1.068132] Linux agpgart interface v0.103
+[    1.068546] nouveau 0000:03:00.0: NVIDIA GM204 (124020a1)
+[    1.158533] nouveau 0000:03:00.0: bios: version 84.04.36.00.0b
+[    1.158944] nouveau 0000:03:00.0: disp: dcb 15 type 8 unknown
+[    1.159616] nouveau 0000:03:00.0: fb: 4096 MiB GDDR5
+[    1.159794] nouveau 0000:03:00.0: bus: MMIO write of 80000159 FAULT at
+10eb14 [ IBUS ]
+[    1.168074] [TTM] Zone  kernel: Available graphics memory: 8214682 kiB
+[    1.168244] [TTM] Zone   dma32: Available graphics memory: 2097152 kiB
+[    1.168410] [TTM] Initializing pool allocator
+[    1.168576] [TTM] Initializing DMA pool allocator
+[    1.168830] nouveau 0000:03:00.0: DRM: VRAM: 4096 MiB
+[    1.168995] nouveau 0000:03:00.0: DRM: GART: 1048576 MiB
+[    1.169161] nouveau 0000:03:00.0: DRM: TMDS table version 2.0
+[    1.169327] nouveau 0000:03:00.0: DRM: DCB version 4.1
+[    1.169492] nouveau 0000:03:00.0: DRM: DCB outp 00: 01000f02 00020030
+[    1.169666] nouveau 0000:03:00.0: DRM: DCB outp 01: 02000f00 00000000
+[    1.169838] nouveau 0000:03:00.0: DRM: DCB outp 02: 02811f76 04400020
+[    1.170004] nouveau 0000:03:00.0: DRM: DCB outp 03: 02011f72 00020020
+[    1.170170] nouveau 0000:03:00.0: DRM: DCB outp 04: 04822f86 04400010
+[    1.170337] nouveau 0000:03:00.0: DRM: DCB outp 05: 04022f82 00020010
+[    1.170504] nouveau 0000:03:00.0: DRM: DCB outp 06: 04833f96 04400020
+[    1.170678] nouveau 0000:03:00.0: DRM: DCB outp 07: 04033f92 00020020
+[    1.170848] nouveau 0000:03:00.0: DRM: DCB outp 08: 02044f62 00020010
+[    1.171015] nouveau 0000:03:00.0: DRM: DCB outp 15: 01df5ff8 00000000
+[    1.171181] nouveau 0000:03:00.0: DRM: DCB conn 00: 00001030
+[    1.171347] nouveau 0000:03:00.0: DRM: DCB conn 01: 00020146
+[    1.171511] nouveau 0000:03:00.0: DRM: DCB conn 02: 01000246
+[    1.171684] nouveau 0000:03:00.0: DRM: DCB conn 03: 02000346
+[    1.171853] nouveau 0000:03:00.0: DRM: DCB conn 04: 00010461
+[    1.172018] nouveau 0000:03:00.0: DRM: DCB conn 05: 00000570
+[    1.172183] nouveau 0000:03:00.0: DRM: Pointer to flat panel table inval=
+id
+[    1.214711] random: fast init done
+[    1.233460] nouveau 0000:03:00.0: DRM: unknown connector type 70
+[    1.233662] nouveau 0000:03:00.0: DRM: failed to create encoder 1/8/0: -=
+19
+[    1.233834] nouveau 0000:03:00.0: DRM: Unknown-1 has no encoders, removi=
+ng
+[    1.234034] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    1.234207] [drm] Driver supports precise vblank timestamp query.
+[    1.276832] nouveau 0000:03:00.0: hwmon_device_register() is deprecated.
+Please convert the driver to use hwmon_device_register_with_info().
+[    1.343188] nouveau 0000:03:00.0: DRM: MM: using COPY for buffer copies
+[    1.434201] nouveau 0000:03:00.0: DP-1: EDID is invalid:
+[    1.434384]  [00] BAD  03 12 71 45 10 04 03 01 00 23 09 07 07 83 01 00
+[    1.434568]  [00] BAD  00 02 3a 80 18 71 38 2d 40 58 2c 45 00 b8 6f 21
+[    1.434759]  [00] BAD  00 00 1e 00 00 00 00 00 00 00 00 00 00 00 00 00
+[    1.434939]  [00] BAD  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[    1.435121]  [00] BAD  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[    1.435301]  [00] BAD  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[    1.435482]  [00] BAD  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[    1.435670]  [00] BAD  00 00 00 00 00 00 00 00 00 00 00 00 00 00 44 00
+[    1.435855] nouveau 0000:03:00.0: DRM: DDC responded, but no EDID for DP=
+-1
+[    1.706882] nouveau 0000:03:00.0: DRM: allocated 1920x1200 fb: 0x60000, =
+bo
+ffff88041cec5800
+[    1.707396] fbcon: nouveaufb (fb0) is primary device
+[    1.798548] nouveau 0000:03:00.0: DRM: DDC responded, but no EDID for DP=
+-1
+[    2.068735] tsc: Refined TSC clocksource calibration: 3197.726 MHz
+[    2.068740] clocksource: tsc: mask: 0xffffffffffffffff max_cycles:
+0x2e17e64edfb, max_idle_ns: 440795351804 ns
+[    2.090622] nouveau 0000:03:00.0: DRM: DDC responded, but no EDID for DP=
+-1
+[    2.481844] Console: switching to colour frame buffer device 200x67
+[    2.501851] nouveau 0000:03:00.0: fb0: nouveaufb frame buffer device
+[    2.501864] [drm] Initialized nouveau 1.3.1 20120801 for 0000:03:00.0 on
+minor 0
+
+
+
+When switching to x11, I see the following errors:
+Jul 22 12:15:40 Quazar kernel: nouveau 0000:03:00.0: DRM: DDC responded, bu=
+t no
+EDID for DP-1
+Jul 22 12:15:40 Quazar kernel: nouveau 0000:03:00.0: DRM: DDC responded, bu=
+t no
+EDID for DP-1
+Jul 22 12:15:40 Quazar kernel: nouveau 0000:03:00.0: DRM: DDC responded, bu=
+t no
+EDID for DP-1
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: DRM: DDC responded, bu=
+t no
+EDID for DP-1
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: DRM: DDC responded, bu=
+t no
+EDID for DP-1
+Jul 22 12:15:42 Quazar dbus[4361]: [system] Activating service
+name=3D'org.freedesktop.UPower' (using servicehelper)
+Jul 22 12:15:42 Quazar dbus[4361]: [system] Successfully activated service
+'org.freedesktop.UPower'
+Jul 22 12:15:42 Quazar polkitd[4433]: Registered Authentication Agent for
+unix-session:/org/freedesktop/ConsoleKit/Session1 (system bus name :1.8
+[/usr/libexec/polkit-gnome-authentication-agent-1], object path
+/org/gnome/PolicyKit1/AuthenticationAgent, locale en_US.utf8)
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: bus: MMIO read of 0000=
+0000
+FAULT at 61c814 [ IBUS ]
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: disp: intr24 80000000
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: bus: MMIO read of 0000=
+0000
+FAULT at 61c930 [ IBUS ]
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: bus: MMIO read of 0000=
+0000
+FAULT at 61c9b0 [ IBUS ]
+.......
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: bus: MMIO read of 0000=
+0000
+FAULT at 61c9bc [ IBUS ]
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: disp: outp 02:0006:0f8=
+2:
+link training failed
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: bus: MMIO read of 0000=
+0000
+FAULT at 61c92c [ IBUS ]
+Jul 22 12:15:44 Quazar kernel: nouveau 0000:03:00.0: DRM: EVO timeout
+Jul 22 12:15:46 Quazar kernel: nouveau 0000:03:00.0: DRM: EVO timeout
+Jul 22 12:15:48 Quazar kernel: nouveau 0000:03:00.0: DRM: base-0: timeout
+Jul 22 12:15:48 Quazar kernel: nouveau 0000:03:00.0: bus: MMIO read of 0000=
+0000
+FAULT at 690400 [ IBUS TIMEOUT ]
+Jul 22 12:15:50 Quazar kernel: nouveau 0000:03:00.0: DRM: EVO timeout
+Jul 22 12:15:52 Quazar kernel: nouveau 0000:03:00.0: DRM: base-1: timeout
+Jul 22 12:16:05 Quazar kernel: nouveau 0000:03:00.0: DRM: base-0: timeout
+Jul 22 12:16:05 Quazar kernel: nouveau 0000:03:00.0: DRM: base-1: timeout
+Jul 22 12:16:05 Quazar kernel: nouveau 0000:03:00.0: DRM: base-0: timeout
+Jul 22 12:16:05 Quazar kernel: nouveau 0000:03:00.0: DRM: base-1: timeout
+Jul 22 12:16:05 Quazar kernel: nouveau 0000:03:00.0: DRM: base-0: timeout
+Jul 22 12:16:05 Quazar kernel: nouveau 0000:03:00.0: DRM: base-1: timeout
+
+
+
+I can attach all the relevant logs.
+
+Any idea? Maybe this belongs to an other bug?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15007200366.c32E5f.24603
+Date: Sat, 22 Jul 2017 10:40:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990#c127">Comme=
+nt # 127</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM204] GTX 970 + 4GB VRAM fails at secboot (v4.6+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94990">bug 94990<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+fariouche&#64;yahoo.fr" title=3D"fariouche&#64;yahoo.fr">fariouche&#64;yaho=
+o.fr</a>
+</span></b>
+        <pre>Hi,
+
+I finally tried the 4.12.2 kernel, and in my case it does not fully work :(
+
+I can see a working console, but:
+- only on my first monitor (DVI)
+- no x11 (I can see a brief display of xfce4 but immediately turns black an=
+d no
+more display, even if I return to the console.)
+
+I think I'm facing 2 different issues. One is about detecting my second mon=
+itor
+(a 4K LG 31MU97 plugged on DP-0 (this display is maybe a bit slow to probe))
+The log shows a lot of error concerning this monitor...
+
+But I do not see anything on my third output too (HDMI, this is an av recei=
+ver,
+with a full HD tv). No error at all for this one, even the resolution is pr=
+obed
+correctly by xorg.
+
+
+The kernel log shows an EDID error for the LG monitor...
+[    1.065917] ACPI: Power Button [PWRF]
+[    1.066154] Monitor-Mwait will be used to enter C-1 state
+[    1.066158] Monitor-Mwait will be used to enter C-2 state
+[    1.066161] Monitor-Mwait will be used to enter C-3 state
+[    1.067170] ioatdma: Intel(R) QuickData Technology Driver 4.00
+[    1.067386] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+[    1.067877] Non-volatile memory driver v1.3
+[    1.068132] Linux agpgart interface v0.103
+[    1.068546] nouveau 0000:03:00.0: NVIDIA GM204 (124020a1)
+[    1.158533] nouveau 0000:03:00.0: bios: version 84.04.36.00.0b
+[    1.158944] nouveau 0000:03:00.0: disp: dcb 15 type 8 unknown
+[    1.159616] nouveau 0000:03:00.0: fb: 4096 MiB GDDR5
+[    1.159794] nouveau 0000:03:00.0: bus: MMIO write of 80000159 FAULT at
+10eb14 [ IBUS ]
+[    1.168074] [TTM] Zone  kernel: Available graphics memory: 8214682 kiB
+[    1.168244] [TTM] Zone   dma32: Available graphics memory: 2097152 kiB
+[    1.168410] [TTM] Initializing pool allocator
+[    1.168576] [TTM] Initializing DMA pool allocator
+[    1.168830] nouveau 0000:03:00.0: DRM: VRAM: 4096 MiB
+[    1.168995] nouveau 0000:03:00.0: DRM: GART: 1048576 MiB
+[    1.169161] nouveau 0000:03:00.0: DRM: TMDS table version 2.0
+[    1.169327] nouveau 0000:03:00.0: DRM: DCB version 4.1
+[    1.169492] nouveau 0000:03:00.0: DRM: DCB outp 00: 01000f02 00020030
+[    1.169666] nouveau 0000:03:00.0: DRM: DCB outp 01: 02000f00 00000000
+[    1.169838] nouveau 0000:03:00.0: DRM: DCB outp 02: 02811f76 04400020
+[    1.170004] nouveau 0000:03:00.0: DRM: DCB outp 03: 02011f72 00020020
+[    1.170170] nouveau 0000:03:00.0: DRM: DCB outp 04: 04822f86 04400010
+[    1.170337] nouveau 0000:03:00.0: DRM: DCB outp 05: 04022f82 00020010
+[    1.170504] nouveau 0000:03:00.0: DRM: DCB outp 06: 04833f96 04400020
+[    1.170678] nouveau 0000:03:00.0: DRM: DCB outp 07: 04033f92 00020020
+[    1.170848] nouveau 0000:03:00.0: DRM: DCB outp 08: 02044f62 00020010
+[    1.171015] nouveau 0000:03:00.0: DRM: DCB outp 15: 01df5ff8 00000000
+[    1.171181] nouveau 0000:03:00.0: DRM: DCB conn 00: 00001030
+[    1.171347] nouveau 0000:03:00.0: DRM: DCB conn 01: 00020146
+[    1.171511] nouveau 0000:03:00.0: DRM: DCB conn 02: 01000246
+[    1.171684] nouveau 0000:03:00.0: DRM: DCB conn 03: 02000346
+[    1.171853] nouveau 0000:03:00.0: DRM: DCB conn 04: 00010461
+[    1.172018] nouveau 0000:03:00.0: DRM: DCB conn 05: 00000570
+[    1.172183] nouveau 0000:03:00.0: DRM: Pointer to flat panel table inval=
+id
+[    1.214711] random: fast init done
+[    1.233460] nouveau 0000:03:00.0: DRM: unknown connector type 70
+[    1.233662] nouveau 0000:03:00.0: DRM: failed to create encoder 1/8/0: -=
+19
+[    1.233834] nouveau 0000:03:00.0: DRM: Unknown-1 has no encoders, removi=
+ng
+[    1.234034] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    1.234207] [drm] Driver supports precise vblank timestamp query.
+[    1.276832] nouveau 0000:03:00.0: hwmon_device_register() is deprecated.
+Please convert the driver to use hwmon_device_register_with_info().
+[    1.343188] nouveau 0000:03:00.0: DRM: MM: using COPY for buffer copies
+[    1.434201] nouveau 0000:03:00.0: DP-1: EDID is invalid:
+[    1.434384]  [00] BAD  03 12 71 45 10 04 03 01 00 23 09 07 07 83 01 00
+[    1.434568]  [00] BAD  00 02 3a 80 18 71 38 2d 40 58 2c 45 00 b8 6f 21
+[    1.434759]  [00] BAD  00 00 1e 00 00 00 00 00 00 00 00 00 00 00 00 00
+[    1.434939]  [00] BAD  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[    1.435121]  [00] BAD  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[    1.435301]  [00] BAD  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[    1.435482]  [00] BAD  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[    1.435670]  [00] BAD  00 00 00 00 00 00 00 00 00 00 00 00 00 00 44 00
+[    1.435855] nouveau 0000:03:00.0: DRM: DDC responded, but no EDID for DP=
+-1
+[    1.706882] nouveau 0000:03:00.0: DRM: allocated 1920x1200 fb: 0x60000, =
+bo
+ffff88041cec5800
+[    1.707396] fbcon: nouveaufb (fb0) is primary device
+[    1.798548] nouveau 0000:03:00.0: DRM: DDC responded, but no EDID for DP=
+-1
+[    2.068735] tsc: Refined TSC clocksource calibration: 3197.726 MHz
+[    2.068740] clocksource: tsc: mask: 0xffffffffffffffff max_cycles:
+0x2e17e64edfb, max_idle_ns: 440795351804 ns
+[    2.090622] nouveau 0000:03:00.0: DRM: DDC responded, but no EDID for DP=
+-1
+[    2.481844] Console: switching to colour frame buffer device 200x67
+[    2.501851] nouveau 0000:03:00.0: fb0: nouveaufb frame buffer device
+[    2.501864] [drm] Initialized nouveau 1.3.1 20120801 for 0000:03:00.0 on
+minor 0
+
+
+
+When switching to x11, I see the following errors:
+Jul 22 12:15:40 Quazar kernel: nouveau 0000:03:00.0: DRM: DDC responded, bu=
+t no
+EDID for DP-1
+Jul 22 12:15:40 Quazar kernel: nouveau 0000:03:00.0: DRM: DDC responded, bu=
+t no
+EDID for DP-1
+Jul 22 12:15:40 Quazar kernel: nouveau 0000:03:00.0: DRM: DDC responded, bu=
+t no
+EDID for DP-1
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: DRM: DDC responded, bu=
+t no
+EDID for DP-1
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: DRM: DDC responded, bu=
+t no
+EDID for DP-1
+Jul 22 12:15:42 Quazar dbus[4361]: [system] Activating service
+name=3D'org.freedesktop.UPower' (using servicehelper)
+Jul 22 12:15:42 Quazar dbus[4361]: [system] Successfully activated service
+'org.freedesktop.UPower'
+Jul 22 12:15:42 Quazar polkitd[4433]: Registered Authentication Agent for
+unix-session:/org/freedesktop/ConsoleKit/Session1 (system bus name :1.8
+[/usr/libexec/polkit-gnome-authentication-agent-1], object path
+/org/gnome/PolicyKit1/AuthenticationAgent, locale en_US.utf8)
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: bus: MMIO read of 0000=
+0000
+FAULT at 61c814 [ IBUS ]
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: disp: intr24 80000000
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: bus: MMIO read of 0000=
+0000
+FAULT at 61c930 [ IBUS ]
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: bus: MMIO read of 0000=
+0000
+FAULT at 61c9b0 [ IBUS ]
+.......
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: bus: MMIO read of 0000=
+0000
+FAULT at 61c9bc [ IBUS ]
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: disp: outp 02:0006:0f8=
+2:
+link training failed
+Jul 22 12:15:42 Quazar kernel: nouveau 0000:03:00.0: bus: MMIO read of 0000=
+0000
+FAULT at 61c92c [ IBUS ]
+Jul 22 12:15:44 Quazar kernel: nouveau 0000:03:00.0: DRM: EVO timeout
+Jul 22 12:15:46 Quazar kernel: nouveau 0000:03:00.0: DRM: EVO timeout
+Jul 22 12:15:48 Quazar kernel: nouveau 0000:03:00.0: DRM: base-0: timeout
+Jul 22 12:15:48 Quazar kernel: nouveau 0000:03:00.0: bus: MMIO read of 0000=
+0000
+FAULT at 690400 [ IBUS TIMEOUT ]
+Jul 22 12:15:50 Quazar kernel: nouveau 0000:03:00.0: DRM: EVO timeout
+Jul 22 12:15:52 Quazar kernel: nouveau 0000:03:00.0: DRM: base-1: timeout
+Jul 22 12:16:05 Quazar kernel: nouveau 0000:03:00.0: DRM: base-0: timeout
+Jul 22 12:16:05 Quazar kernel: nouveau 0000:03:00.0: DRM: base-1: timeout
+Jul 22 12:16:05 Quazar kernel: nouveau 0000:03:00.0: DRM: base-0: timeout
+Jul 22 12:16:05 Quazar kernel: nouveau 0000:03:00.0: DRM: base-1: timeout
+Jul 22 12:16:05 Quazar kernel: nouveau 0000:03:00.0: DRM: base-0: timeout
+Jul 22 12:16:05 Quazar kernel: nouveau 0000:03:00.0: DRM: base-1: timeout
+
+
+
+I can attach all the relevant logs.
+
+Any idea? Maybe this belongs to an other bug?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15007200366.c32E5f.24603--
+
+--===============2049295384==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2049295384==--
