@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101887] gtx 970 black screen
-Date: Sun, 23 Jul 2017 20:01:39 +0000
-Message-ID: <bug-101887-8800-36qOIpy1s8@http.bugs.freedesktop.org/>
+Date: Sun, 23 Jul 2017 20:01:40 +0000
+Message-ID: <bug-101887-8800-JFl5VoLE0a@http.bugs.freedesktop.org/>
 References: <bug-101887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1007522825=="
+Content-Type: multipart/mixed; boundary="===============0229138440=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1007522825==
-Content-Type: multipart/alternative; boundary="15008400991.F05f8666.17911";
+--===============0229138440==
+Content-Type: multipart/alternative; boundary="15008401000.4E3bB6.17954";
  charset="UTF-8"
 
 
---15008400991.F05f8666.17911
-Date: Sun, 23 Jul 2017 20:01:39 +0000
+--15008401000.4E3bB6.17954
+Date: Sun, 23 Jul 2017 20:01:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,35 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101887
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There's an outstanding issue regarding DP displays. Does this patch help?
+--- Comment #3 from fariouche-Qt13gs6zZMY@public.gmane.org ---
+Created attachment 132853
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132853&action=3Dedit
+THe xorg.conf file I used
 
-https://github.com/skeggsb/nouveau/commit/6c0192f7b069b1402a46a23931b043d14=
-a34e43d
+If you need any more logs, please let me know.
+
+The kernel I've built was with nouveau in kernel (not as a module) with
+embedded firmwares in the kernel:
+
+CONFIG_EXTRA_FIRMWARE=3D"nvidia/gm204/gr/fecs_bl.bin
+nvidia/gm204/gr/fecs_inst.bin nvidia/gm204/gr/gpccs_bl.bin
+nvidia/gm204/gr/gpccs_inst.bin nvidia/gm204/gr/sw_bundle_init.bin
+nvidia/gm204/gr/sw_method_init.bin nvidia/gm204/gr/fecs_data.bin
+nvidia/gm204/gr/fecs_sig.bin nvidia/gm204/gr/gpccs_data.bin
+nvidia/gm204/gr/gpccs_sig.bin nvidia/gm204/gr/sw_ctx.bin
+nvidia/gm204/gr/sw_nonctx.bin nvidia/gm204/acr/bl.bin
+nvidia/gm204/acr/ucode_load.bin nvidia/gm204/acr/ucode_unload.bin "
+
+When fillin this bug, I just remembered that I do not remember the git firm=
+ware
+revision I'm using. At least 6months old.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15008400991.F05f8666.17911
-Date: Sun, 23 Jul 2017 20:01:39 +0000
+--15008401000.4E3bB6.17954
+Date: Sun, 23 Jul 2017 20:01:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,23 +80,40 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - gtx 970 black screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - gtx 970 black screen"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887">bug 10188=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+fariouche&#64;yahoo.fr" title=3D"fariouche&#64;yahoo.fr">fariouche&#64;yaho=
+o.fr</a>
 </span></b>
-        <pre>There's an outstanding issue regarding DP displays. Does this =
-patch help?
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132853=
+" name=3D"attach_132853" title=3D"THe xorg.conf file I used">attachment 132=
+853</a> <a href=3D"attachment.cgi?id=3D132853&amp;action=3Dedit" title=3D"T=
+He xorg.conf file I used">[details]</a></span>
+THe xorg.conf file I used
 
-<a href=3D"https://github.com/skeggsb/nouveau/commit/6c0192f7b069b1402a46a2=
-3931b043d14a34e43d">https://github.com/skeggsb/nouveau/commit/6c0192f7b069b=
-1402a46a23931b043d14a34e43d</a></pre>
+If you need any more logs, please let me know.
+
+The kernel I've built was with nouveau in kernel (not as a module) with
+embedded firmwares in the kernel:
+
+CONFIG_EXTRA_FIRMWARE=3D&quot;nvidia/gm204/gr/fecs_bl.bin
+nvidia/gm204/gr/fecs_inst.bin nvidia/gm204/gr/gpccs_bl.bin
+nvidia/gm204/gr/gpccs_inst.bin nvidia/gm204/gr/sw_bundle_init.bin
+nvidia/gm204/gr/sw_method_init.bin nvidia/gm204/gr/fecs_data.bin
+nvidia/gm204/gr/fecs_sig.bin nvidia/gm204/gr/gpccs_data.bin
+nvidia/gm204/gr/gpccs_sig.bin nvidia/gm204/gr/sw_ctx.bin
+nvidia/gm204/gr/sw_nonctx.bin nvidia/gm204/acr/bl.bin
+nvidia/gm204/acr/ucode_load.bin nvidia/gm204/acr/ucode_unload.bin &quot;
+
+When fillin this bug, I just remembered that I do not remember the git firm=
+ware
+revision I'm using. At least 6months old.</pre>
         </div>
       </p>
 
@@ -93,9 +127,9 @@ patch help?
     </body>
 </html>=
 
---15008400991.F05f8666.17911--
+--15008401000.4E3bB6.17954--
 
---===============1007522825==
+--===============0229138440==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +139,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1007522825==--
+--===============0229138440==--
