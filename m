@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101887] gtx 970 black screen
-Date: Sun, 23 Jul 2017 20:26:23 +0000
-Message-ID: <bug-101887-8800-GOH2jJmZIk@http.bugs.freedesktop.org/>
+Date: Sun, 23 Jul 2017 20:28:02 +0000
+Message-ID: <bug-101887-8800-JhBMndq1wE@http.bugs.freedesktop.org/>
 References: <bug-101887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0072093676=="
+Content-Type: multipart/mixed; boundary="===============1569687704=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0072093676==
-Content-Type: multipart/alternative; boundary="15008415821.a1cbF.23540";
+--===============1569687704==
+Content-Type: multipart/alternative; boundary="15008416810.5c8cd8.24048";
  charset="UTF-8"
 
 
---15008415821.a1cbF.23540
-Date: Sun, 23 Jul 2017 20:26:22 +0000
+--15008416810.5c8cd8.24048
+Date: Sun, 23 Jul 2017 20:28:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,21 +35,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101887
 
---- Comment #6 from fariouche-Qt13gs6zZMY@public.gmane.org ---
-(In reply to Ilia Mirkin from comment #2)
-> There's an outstanding issue regarding DP displays. Does this patch help?
->=20
-> https://github.com/skeggsb/nouveau/commit/
-> 6c0192f7b069b1402a46a23931b043d14a34e43d
-
-same issue :(
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please provide dmesg with the patch in question applied.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15008415821.a1cbF.23540
-Date: Sun, 23 Jul 2017 20:26:22 +0000
+--15008416810.5c8cd8.24048
+Date: Sun, 23 Jul 2017 20:28:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,27 +60,18 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - gtx 970 black screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c6">Commen=
-t # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - gtx 970 black screen"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887">bug 10188=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-fariouche&#64;yahoo.fr" title=3D"fariouche&#64;yahoo.fr">fariouche&#64;yaho=
-o.fr</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D101=
-887#c2">comment #2</a>)
-<span class=3D"quote">&gt; There's an outstanding issue regarding DP displa=
-ys. Does this patch help?
-&gt;=20
-&gt; <a href=3D"https://github.com/skeggsb/nouveau/commit/">https://github.=
-com/skeggsb/nouveau/commit/</a>
-&gt; 6c0192f7b069b1402a46a23931b043d14a34e43d</span >
-
-same issue :(</pre>
+        <pre>Please provide dmesg with the patch in question applied.</pre>
         </div>
       </p>
 
@@ -100,9 +85,9 @@ same issue :(</pre>
     </body>
 </html>=
 
---15008415821.a1cbF.23540--
+--15008416810.5c8cd8.24048--
 
---===============0072093676==
+--===============1569687704==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0072093676==--
+--===============1569687704==--
