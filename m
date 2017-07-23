@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101887] gtx 970 black screen
-Date: Sun, 23 Jul 2017 19:55:23 +0000
-Message-ID: <bug-101887-8800-bRuvKKvYIH@http.bugs.freedesktop.org/>
+Date: Sun, 23 Jul 2017 20:01:39 +0000
+Message-ID: <bug-101887-8800-36qOIpy1s8@http.bugs.freedesktop.org/>
 References: <bug-101887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1277364290=="
+Content-Type: multipart/mixed; boundary="===============1007522825=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1277364290==
-Content-Type: multipart/alternative; boundary="15008397231.15243581b.16628";
+--===============1007522825==
+Content-Type: multipart/alternative; boundary="15008400991.F05f8666.17911";
  charset="UTF-8"
 
 
---15008397231.15243581b.16628
-Date: Sun, 23 Jul 2017 19:55:23 +0000
+--15008400991.F05f8666.17911
+Date: Sun, 23 Jul 2017 20:01:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101887
 
---- Comment #1 from fariouche-Qt13gs6zZMY@public.gmane.org ---
-Created attachment 132852
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132852&action=3Dedit
-kernel messages when starting xorg
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+There's an outstanding issue regarding DP displays. Does this patch help?
+
+https://github.com/skeggsb/nouveau/commit/6c0192f7b069b1402a46a23931b043d14=
+a34e43d
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15008397231.15243581b.16628
-Date: Sun, 23 Jul 2017 19:55:23 +0000
+--15008400991.F05f8666.17911
+Date: Sun, 23 Jul 2017 20:01:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,22 +63,23 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - gtx 970 black screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - gtx 970 black screen"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887">bug 10188=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-fariouche&#64;yahoo.fr" title=3D"fariouche&#64;yahoo.fr">fariouche&#64;yaho=
-o.fr</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132852=
-" name=3D"attach_132852" title=3D"kernel messages when starting xorg">attac=
-hment 132852</a> <a href=3D"attachment.cgi?id=3D132852&amp;action=3Dedit" t=
-itle=3D"kernel messages when starting xorg">[details]</a></span>
-kernel messages when starting xorg</pre>
+        <pre>There's an outstanding issue regarding DP displays. Does this =
+patch help?
+
+<a href=3D"https://github.com/skeggsb/nouveau/commit/6c0192f7b069b1402a46a2=
+3931b043d14a34e43d">https://github.com/skeggsb/nouveau/commit/6c0192f7b069b=
+1402a46a23931b043d14a34e43d</a></pre>
         </div>
       </p>
 
@@ -91,9 +93,9 @@ kernel messages when starting xorg</pre>
     </body>
 </html>=
 
---15008397231.15243581b.16628--
+--15008400991.F05f8666.17911--
 
---===============1277364290==
+--===============1007522825==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1277364290==--
+--===============1007522825==--
