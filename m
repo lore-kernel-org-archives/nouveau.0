@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101887] gtx 970 black screen
-Date: Sun, 23 Jul 2017 21:05:39 +0000
-Message-ID: <bug-101887-8800-2eNp3XusIf@http.bugs.freedesktop.org/>
+Date: Sun, 23 Jul 2017 21:22:25 +0000
+Message-ID: <bug-101887-8800-3JJsQFOK6B@http.bugs.freedesktop.org/>
 References: <bug-101887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1861604522=="
+Content-Type: multipart/mixed; boundary="===============1090312217=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1861604522==
-Content-Type: multipart/alternative; boundary="15008439381.7C5ADDE5a.30775";
+--===============1090312217==
+Content-Type: multipart/alternative; boundary="15008449450.DCA9.2469";
  charset="UTF-8"
 
 
---15008439381.7C5ADDE5a.30775
-Date: Sun, 23 Jul 2017 21:05:38 +0000
+--15008449450.DCA9.2469
+Date: Sun, 23 Jul 2017 21:22:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,16 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101887
 
---- Comment #8 from fariouche-Qt13gs6zZMY@public.gmane.org ---
-I'm currently trying to build latest git kernel, with your latest master
-nouveau driver :)
+--- Comment #9 from fariouche-Qt13gs6zZMY@public.gmane.org ---
+strange, I'm unable to boot 4.13.1-rc1+ git kernel, PC restarts immediatly
+before any printk...
+I do not know why, but I think that this will take me a long time
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15008439381.7C5ADDE5a.30775
-Date: Sun, 23 Jul 2017 21:05:38 +0000
+--15008449450.DCA9.2469
+Date: Sun, 23 Jul 2017 21:22:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - gtx 970 black screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c8">Commen=
-t # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - gtx 970 black screen"
@@ -72,9 +73,10 @@ t # 8</a>
 fariouche&#64;yahoo.fr" title=3D"fariouche&#64;yahoo.fr">fariouche&#64;yaho=
 o.fr</a>
 </span></b>
-        <pre>I'm currently trying to build latest git kernel, with your lat=
-est master
-nouveau driver :)</pre>
+        <pre>strange, I'm unable to boot 4.13.1-rc1+ git kernel, PC restart=
+s immediatly
+before any printk...
+I do not know why, but I think that this will take me a long time</pre>
         </div>
       </p>
 
@@ -88,9 +90,9 @@ nouveau driver :)</pre>
     </body>
 </html>=
 
---15008439381.7C5ADDE5a.30775--
+--15008449450.DCA9.2469--
 
---===============1861604522==
+--===============1090312217==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1861604522==--
+--===============1090312217==--
