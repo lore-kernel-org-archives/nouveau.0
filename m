@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101887] gtx 970 black screen
-Date: Sun, 23 Jul 2017 21:59:08 +0000
-Message-ID: <bug-101887-8800-KrjLq5x2Ko@http.bugs.freedesktop.org/>
+Date: Sun, 23 Jul 2017 22:01:32 +0000
+Message-ID: <bug-101887-8800-xUx8aZUJkq@http.bugs.freedesktop.org/>
 References: <bug-101887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1133449173=="
+Content-Type: multipart/mixed; boundary="===============1290242612=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1133449173==
-Content-Type: multipart/alternative; boundary="15008471480.Aa303AeBb.12158";
+--===============1290242612==
+Content-Type: multipart/alternative; boundary="15008472920.8dfB3.13134";
  charset="UTF-8"
 
 
---15008471480.Aa303AeBb.12158
-Date: Sun, 23 Jul 2017 21:59:08 +0000
+--15008472920.8dfB3.13134
+Date: Sun, 23 Jul 2017 22:01:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101887
 
---- Comment #12 from fariouche-Qt13gs6zZMY@public.gmane.org ---
-Created attachment 132855
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132855&action=3Dedit
-/var/log/messages after starting xorg
+--- Comment #13 from fariouche-Qt13gs6zZMY@public.gmane.org ---
+Created attachment 132856
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D132856&action=3Dedit
+XOrg log file after starting xfce4
+
+Here I do not see any obvious error, DP resolution seem good.
+It is hard to return to the console, only a black screen is displayed here.
+after some time (because I've hit ctrl+C? or is it after ctrl+backspace? or
+just a timeout?), I can see the console again...
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15008471480.Aa303AeBb.12158
-Date: Sun, 23 Jul 2017 21:59:08 +0000
+--15008472920.8dfB3.13134
+Date: Sun, 23 Jul 2017 22:01:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +67,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - gtx 970 black screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c12">Comme=
-nt # 12</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c13">Comme=
+nt # 13</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - gtx 970 black screen"
@@ -73,11 +78,16 @@ nt # 12</a>
 fariouche&#64;yahoo.fr" title=3D"fariouche&#64;yahoo.fr">fariouche&#64;yaho=
 o.fr</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132855=
-" name=3D"attach_132855" title=3D"/var/log/messages after starting xorg">at=
-tachment 132855</a> <a href=3D"attachment.cgi?id=3D132855&amp;action=3Dedit=
-" title=3D"/var/log/messages after starting xorg">[details]</a></span>
-/var/log/messages after starting xorg</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D132856=
+" name=3D"attach_132856" title=3D"XOrg log file after starting xfce4">attac=
+hment 132856</a> <a href=3D"attachment.cgi?id=3D132856&amp;action=3Dedit" t=
+itle=3D"XOrg log file after starting xfce4">[details]</a></span>
+XOrg log file after starting xfce4
+
+Here I do not see any obvious error, DP resolution seem good.
+It is hard to return to the console, only a black screen is displayed here.
+after some time (because I've hit ctrl+C? or is it after ctrl+backspace? or
+just a timeout?), I can see the console again...</pre>
         </div>
       </p>
 
@@ -91,9 +101,9 @@ tachment 132855</a> <a href=3D"attachment.cgi?id=3D132855&amp;action=3Dedit=
     </body>
 </html>=
 
---15008471480.Aa303AeBb.12158--
+--15008472920.8dfB3.13134--
 
---===============1133449173==
+--===============1290242612==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1133449173==--
+--===============1290242612==--
