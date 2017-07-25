@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101887] gtx 970 black screen
-Date: Mon, 24 Jul 2017 12:20:07 +0000
-Message-ID: <bug-101887-8800-xzl2hBov1H@http.bugs.freedesktop.org/>
-References: <bug-101887-8800@http.bugs.freedesktop.org/>
+From: Rosen Penev <rosenp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] bios: Restrict missing fp table message to
+	desktop cards.
+Date: Mon, 24 Jul 2017 19:39:39 -0700
+Message-ID: <20170725023939.4850-1-rosenp@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0975719773=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,98 +19,27 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0975719773==
-Content-Type: multipart/alternative; boundary="15008988070.1fcC06101.20293";
- charset="UTF-8"
-
-
---15008988070.1fcC06101.20293
-Date: Mon, 24 Jul 2017 12:20:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101887
-
---- Comment #15 from fariouche-Qt13gs6zZMY@public.gmane.org ---
-(In reply to Ilia Mirkin from comment #14)
-> Uhhh... well the obvious errors are the WARN followed by the BUG in the
-> logs. This is stuff that Ben will have to look at.
-
-indeed, I haven't seen the oops in the dmesg output.
-
-By the way, I've just noticed that /var/log/messages includes all previous
-attempts. Please ignore then and just look at the latest boot
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15008988070.1fcC06101.20293
-Date: Mon, 24 Jul 2017 12:20:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - gtx 970 black screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c15">Comme=
-nt # 15</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - gtx 970 black screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887">bug 10188=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-fariouche&#64;yahoo.fr" title=3D"fariouche&#64;yahoo.fr">fariouche&#64;yaho=
-o.fr</a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D101=
-887#c14">comment #14</a>)
-<span class=3D"quote">&gt; Uhhh... well the obvious errors are the WARN fol=
-lowed by the BUG in the
-&gt; logs. This is stuff that Ben will have to look at.</span >
-
-indeed, I haven't seen the oops in the dmesg output.
-
-By the way, I've just noticed that /var/log/messages includes all previous
-attempts. Please ignore then and just look at the latest boot</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15008988070.1fcC06101.20293--
-
---===============0975719773==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0975719773==--
+QSAyIG1pbnV0ZSBnb29nbGUgc2VhcmNoIHNob3dzIHRoYXQgdGhpcyBlcnJvciBpcyBwcmV2YWxl
+bnQgd2l0aCBtb2JpbGUgTnZpZGlhCkdQVXMuIFNpbmNlIHdlIGNhbiBhc3N1bWUgbW9iaWxlIHBh
+cnRzIGhhdmUgbm8gZnAgdGFibGUsIGRlbW90ZSB0aGUgZXJyb3IgdG8KZGVza3RvcCBjYXJkcy4K
+CkFsc28gcmV3b3JkIHRoZSBjb21tZW50IHNpbmNlIHRoZSBlcnJvciBpcyBub3QgcmVzdHJpY3Rl
+ZCB0byBBcHBsZSBoYXJkd2FyZS4KClNpZ25lZC1vZmYgYnk6IFJvc2VuIFBlbmV2IDxyb3NlbnBA
+Z21haWwuY29tPgotLS0KIGRybS9ub3V2ZWF1L25vdXZlYXVfYmlvcy5jIHwgMTAgKysrKystLS0t
+LQogMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKCmRpZmYg
+LS1naXQgYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Jpb3MuYyBiL2RybS9ub3V2ZWF1L25vdXZlYXVf
+Ymlvcy5jCmluZGV4IGI5OThjMzNhLi43YzE3ODc4ZCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUv
+bm91dmVhdV9iaW9zLmMKKysrIGIvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMKQEAgLTM1MSwx
+MSArMzUxLDExIEBAIHN0YXRpYyBpbnQgcGFyc2VfZnBfbW9kZV90YWJsZShzdHJ1Y3QgZHJtX2Rl
+dmljZSAqZGV2LCBzdHJ1Y3QgbnZiaW9zICpiaW9zKQogCXN0cnVjdCBsdmRzdGFibGVoZWFkZXIg
+bHRoOwogCiAJaWYgKGJpb3MtPmZwLmZwdGFibGVwb2ludGVyID09IDB4MCkgewotCQkvKiBBcHBs
+ZSBjYXJkcyBkb24ndCBoYXZlIHRoZSBmcCB0YWJsZTsgdGhlIGxhcHRvcHMgdXNlIEREQyAqLwot
+CQkvKiBUaGUgdGFibGUgaXMgYWxzbyBtaXNzaW5nIG9uIHNvbWUgeDg2IElHUHMgKi8KLSNpZm5k
+ZWYgX19wb3dlcnBjX18KLQkJTlZfRVJST1IoZHJtLCAiUG9pbnRlciB0byBmbGF0IHBhbmVsIHRh
+YmxlIGludmFsaWRcbiIpOwotI2VuZGlmCisJCWlmICghYmlvcy0+aXNfbW9iaWxlKSB7CisJCQkv
+KiBNb3N0IGxhcHRvcCBjYXJkcyBsYWNrIGFuIGZwIHRhYmxlLiBUaGV5IHVzZSBEREMuKi8KKwkJ
+CU5WX0VSUk9SKGRybSwgIlBvaW50ZXIgdG8gZmxhdCBwYW5lbCB0YWJsZSBpbnZhbGlkXG4iKTsK
+KwkJfQorCiAJCWJpb3MtPmRpZ2l0YWxfbWluX2Zyb250X3BvcmNoID0gMHg0YjsKIAkJcmV0dXJu
+IDA7CiAJfQotLSAKMi4xMy4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
+YXUK
