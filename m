@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
  409800 [ TIMEOUT ]
-Date: Mon, 31 Jul 2017 07:34:22 +0000
-Message-ID: <bug-100228-8800-JvPy5u0oUN@http.bugs.freedesktop.org/>
+Date: Mon, 31 Jul 2017 07:39:38 +0000
+Message-ID: <bug-100228-8800-YUangRBOGM@http.bugs.freedesktop.org/>
 References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0947751895=="
+Content-Type: multipart/mixed; boundary="===============0081699966=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0947751895==
-Content-Type: multipart/alternative; boundary="15014864625.d1c1F32f1.16494";
+--===============0081699966==
+Content-Type: multipart/alternative; boundary="15014867780.c891767FC.17627";
  charset="UTF-8"
 
 
---15014864625.d1c1F32f1.16494
-Date: Mon, 31 Jul 2017 07:34:22 +0000
+--15014867780.c891767FC.17627
+Date: Mon, 31 Jul 2017 07:39:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
 
---- Comment #10 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
-Same as https://bugs.freedesktop.org/show_bug.cgi?id=3D101782 ?
-
-Do we have any workaround / fix / WiP for this issue?
+--- Comment #11 from harry_x <harry_x-ZOxssm6ufFDtwjQa/ONI9g@public.gmane.org> ---
+Running with runpm=3D0 parameter helped me. But that's not a real solution =
+for
+laptop anyway... So I had to resort to either run nvidia binary blob (which=
+ is
+also batter killer since all rendering is done on NVIDIA) OR not using the
+external display at all (so when I need battery life I reboot to kernel wit=
+hout
+nvidia/nouveau driver and disable the card using bbswitch) :-)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15014864625.d1c1F32f1.16494
-Date: Mon, 31 Jul 2017 07:34:22 +0000
+--15014867780.c891767FC.17627
+Date: Mon, 31 Jul 2017 07:39:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +69,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
 OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c10">Comme=
-nt # 10</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c11">Comme=
+nt # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
@@ -73,16 +78,17 @@ OUT ]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
 8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
-<span class=3D"fn">Carlo Caione</span></a>
+harry_x&#64;babylon5.cz" title=3D"harry_x &lt;harry_x&#64;babylon5.cz&gt;">=
+ <span class=3D"fn">harry_x</span></a>
 </span></b>
-        <pre>Same as <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GTX1050TI (GP107 / NV137): HDMI output not working"
-   href=3D"show_bug.cgi?id=3D101782">https://bugs.freedesktop.org/show_bug.=
-cgi?id=3D101782</a> ?
-
-Do we have any workaround / fix / WiP for this issue?</pre>
+        <pre>Running with runpm=3D0 parameter helped me. But that's not a r=
+eal solution for
+laptop anyway... So I had to resort to either run nvidia binary blob (which=
+ is
+also batter killer since all rendering is done on NVIDIA) OR not using the
+external display at all (so when I need battery life I reboot to kernel wit=
+hout
+nvidia/nouveau driver and disable the card using bbswitch) :-)</pre>
         </div>
       </p>
 
@@ -96,9 +102,9 @@ Do we have any workaround / fix / WiP for this issue?</pre>
     </body>
 </html>=
 
---15014864625.d1c1F32f1.16494--
+--15014867780.c891767FC.17627--
 
---===============0947751895==
+--===============0081699966==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0947751895==--
+--===============0081699966==--
