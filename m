@@ -1,40 +1,99 @@
-From: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
-Subject: [RFC PATCH] nv50/ir: allow spilling of def values for
-	constrained MERGES/UNIONS
-Date: Mon, 31 Jul 2017 13:21:40 +0200
-Message-ID: <20170731112140.2776-1-tobias.johannes.klausmann@mni.thm.de>
+From: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 0/3] Kconfig dependencies: acpi-video, backlight and thermal
+Date: Mon, 31 Jul 2017 14:28:58 +0300
+Message-ID: <87tw1sj151.fsf@nikula.org>
+References: <20170726135312.2214309-1-arnd@arndb.de> <20170726144041.plcrr6bg2hkh4q52@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: nouveau@lists.freedesktop.org, mesa-dev@lists.freedesktop.org
+Content-Type: text/plain
+Return-path: <linux-acpi-owner@vger.kernel.org>
+In-Reply-To: <20170726144041.plcrr6bg2hkh4q52@phenom.ffwll.local>
+Sender: linux-acpi-owner@vger.kernel.org
+To: Daniel Vetter <daniel@ffwll.ch>, Arnd Bergmann <arnd@arndb.de>
+Cc: devel@driverdev.osuosl.org, Daniel Drake <dsd@laptop.org>, Jens Frederich <jfrederich@gmail.com>, nouveau@lists.freedesktop.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>, etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org, linux-acpi@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Ben Skeggs <bskeggs@redhat.com>, Russell King <linux+etnaviv@armlinux.org.uk>, Daniel Vetter <daniel.vetter@intel.com>, Andy Shevchenko <andy@infradead.org>, intel-gfx@lists.freedesktop.org, Darren Hart <dvhart@infradead.org>, linux-kernel@vger.kernel.org, Len Brown <lenb@kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBsZXRzIHVzIHNwaWxsIG1vcmUgdmFsdWVzIGFuZCBjb21waWxlIGEgYmlnIHNoYWRlciBm
-b3IgQ2l2aWxpemF0aW9uIDYuCgpTaWduZWQtb2ZmLWJ5OiBUb2JpYXMgS2xhdXNtYW5uIDx0b2Jp
-YXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+Ci0tLQogc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9yYS5jcHAgfCAyIC0tCiAxIGZpbGUgY2hhbmdlZCwg
-MiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-Y29kZWdlbi9udjUwX2lyX3JhLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2Rl
-Z2VuL252NTBfaXJfcmEuY3BwCmluZGV4IGIzM2Q3YjQwMTAuLmYyOWM4YTFhOTUgMTAwNjQ0Ci0t
-LSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwCisr
-KyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwCkBA
-IC0yMzQ0LDggKzIzNDQsNiBAQCBSZWdBbGxvYzo6SW5zZXJ0Q29uc3RyYWludHNQYXNzOjppbnNl
-cnRDb25zdHJhaW50TW92ZXMoKQogICAgICAgICAgICAgY3N0LT5zZXRTcmMocywgbW92LT5nZXRE
-ZWYoMCkpOwogICAgICAgICAgICAgY3N0LT5iYi0+aW5zZXJ0QmVmb3JlKGNzdCwgbW92KTsKIAot
-ICAgICAgICAgICAgY3N0LT5nZXREZWYoMCktPmFzTFZhbHVlKCktPm5vU3BpbGwgPSAxOyAvLyBk
-b2Vzbid0IGhlbHAKLQogICAgICAgICAgICAgaWYgKGNzdC0+b3AgPT0gT1BfVU5JT04pCiAgICAg
-ICAgICAgICAgICBtb3YtPnNldFByZWRpY2F0ZShkZWZpLT5jYywgZGVmaS0+Z2V0UHJlZGljYXRl
-KCkpOwogICAgICAgICAgfQotLSAKMi4xMy4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbWVzYS1kZXYK
+On Wed, 26 Jul 2017, Daniel Vetter <daniel@ffwll.ch> wrote:
+> On Wed, Jul 26, 2017 at 03:53:09PM +0200, Arnd Bergmann wrote:
+>> Hi everyone,
+>> 
+>> It took me a while to figure this out properly, as I kept getting
+>> circular or missing dependencies with video drivers.
+>> 
+>> This set of three patches should simplify the situation a bit,
+>> mostly by cleaning up the dependencies around CONFIG_ACPI_VIDEO.
+>> With all three patches applied, I no longer run into those related
+>> warnings. If everyone agrees on the general direction, I hope
+>> we can merge all three through the DRM tree.
+>> 
+>> I originally had another larger patch in the series to replace all
+>> of the 'select BACKLIGHT_LCD_SUPPORT; select BACKLIGHT_CLASS_DEVICE'
+>> statements with 'depends on LCD_CLASS_DEVICE', that would clean
+>> it up some more, but it is also a more invasive change that we
+>> can do separately at some point.
+>
+> Looks reasonable, but I think it'd be good to get Jani Nikula's explicit
+> ack on this, since he dugg around a lot in this area. And he's on vacation
+> this week.
+
+I didn't dig through all the details, but looks good to me and
+definitely an improvement in drm Kconfigs.
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+
+
+> -Daniel
+>
+>> 
+>>        Arnd
+>> 
+>> Arnd Bergmann (3):
+>>   backlight: always select BACKLIGHT_LCD_SUPPORT for
+>>     BACKLIGHT_CLASS_DEVICE
+>>   ACPI/DRM: rework ACPI_VIDEO Kconfig dependencies
+>>   drm/etnaviv: add thermal dependency
+>> 
+>>  drivers/acpi/Kconfig              |  7 +++++--
+>>  drivers/gpu/drm/etnaviv/Kconfig   |  1 +
+>>  drivers/gpu/drm/gma500/Kconfig    |  5 +----
+>>  drivers/gpu/drm/i915/Kconfig      |  7 +------
+>>  drivers/gpu/drm/nouveau/Kconfig   | 10 ++--------
+>>  drivers/platform/x86/Kconfig      |  9 ++++-----
+>>  drivers/staging/olpc_dcon/Kconfig |  1 +
+>>  7 files changed, 15 insertions(+), 25 deletions(-)
+>> 
+>> To: dri-devel@lists.freedesktop.org
+>> Cc: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+>> Cc: Len Brown <lenb@kernel.org>
+>> Cc: Lucas Stach <l.stach@pengutronix.de>
+>> Cc: Russell King <linux+etnaviv@armlinux.org.uk>
+>> Cc: Christian Gmeiner <christian.gmeiner@gmail.com>
+>> Cc: David Airlie <airlied@linux.ie>
+>> Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+>> Cc: Daniel Vetter <daniel.vetter@intel.com>
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>> Cc: Ben Skeggs <bskeggs@redhat.com>
+>> Cc: Darren Hart <dvhart@infradead.org>
+>> Cc: Andy Shevchenko <andy@infradead.org>
+>> Cc: Jens Frederich <jfrederich@gmail.com>
+>> Cc: Daniel Drake <dsd@laptop.org>
+>> Cc: Jon Nettleton <jon.nettleton@gmail.com>
+>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+>> Cc: linux-acpi@vger.kernel.org
+>> Cc: linux-kernel@vger.kernel.org
+>> Cc: etnaviv@lists.freedesktop.org
+>> Cc: intel-gfx@lists.freedesktop.org
+>> Cc: nouveau@lists.freedesktop.org
+>> Cc: platform-driver-x86@vger.kernel.org
+>> Cc: devel@driverdev.osuosl.org
+>> 
+>> -- 
+>> 2.9.0
+>> 
+>> _______________________________________________
+>> Intel-gfx mailing list
+>> Intel-gfx@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Jani Nikula, Intel Open Source Technology Center
