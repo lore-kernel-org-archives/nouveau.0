@@ -1,117 +1,40 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
- 409800 [ TIMEOUT ]
-Date: Mon, 31 Jul 2017 07:39:38 +0000
-Message-ID: <bug-100228-8800-YUangRBOGM@http.bugs.freedesktop.org/>
-References: <bug-100228-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
+Subject: [RFC PATCH] nv50/ir: allow spilling of def values for
+	constrained MERGES/UNIONS
+Date: Mon, 31 Jul 2017 13:21:40 +0200
+Message-ID: <20170731112140.2776-1-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0081699966=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: nouveau@lists.freedesktop.org, mesa-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0081699966==
-Content-Type: multipart/alternative; boundary="15014867780.c891767FC.17627";
- charset="UTF-8"
-
-
---15014867780.c891767FC.17627
-Date: Mon, 31 Jul 2017 07:39:38 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
-
---- Comment #11 from harry_x <harry_x-ZOxssm6ufFDtwjQa/ONI9g@public.gmane.org> ---
-Running with runpm=3D0 parameter helped me. But that's not a real solution =
-for
-laptop anyway... So I had to resort to either run nvidia binary blob (which=
- is
-also batter killer since all rendering is done on NVIDIA) OR not using the
-external display at all (so when I need battery life I reboot to kernel wit=
-hout
-nvidia/nouveau driver and disable the card using bbswitch) :-)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15014867780.c891767FC.17627
-Date: Mon, 31 Jul 2017 07:39:38 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c11">Comme=
-nt # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-harry_x&#64;babylon5.cz" title=3D"harry_x &lt;harry_x&#64;babylon5.cz&gt;">=
- <span class=3D"fn">harry_x</span></a>
-</span></b>
-        <pre>Running with runpm=3D0 parameter helped me. But that's not a r=
-eal solution for
-laptop anyway... So I had to resort to either run nvidia binary blob (which=
- is
-also batter killer since all rendering is done on NVIDIA) OR not using the
-external display at all (so when I need battery life I reboot to kernel wit=
-hout
-nvidia/nouveau driver and disable the card using bbswitch) :-)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15014867780.c891767FC.17627--
-
---===============0081699966==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0081699966==--
+VGhpcyBsZXRzIHVzIHNwaWxsIG1vcmUgdmFsdWVzIGFuZCBjb21waWxlIGEgYmlnIHNoYWRlciBm
+b3IgQ2l2aWxpemF0aW9uIDYuCgpTaWduZWQtb2ZmLWJ5OiBUb2JpYXMgS2xhdXNtYW5uIDx0b2Jp
+YXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+Ci0tLQogc3JjL2dhbGxpdW0vZHJpdmVy
+cy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9yYS5jcHAgfCAyIC0tCiAxIGZpbGUgY2hhbmdlZCwg
+MiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
+Y29kZWdlbi9udjUwX2lyX3JhLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2Rl
+Z2VuL252NTBfaXJfcmEuY3BwCmluZGV4IGIzM2Q3YjQwMTAuLmYyOWM4YTFhOTUgMTAwNjQ0Ci0t
+LSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwCisr
+KyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwCkBA
+IC0yMzQ0LDggKzIzNDQsNiBAQCBSZWdBbGxvYzo6SW5zZXJ0Q29uc3RyYWludHNQYXNzOjppbnNl
+cnRDb25zdHJhaW50TW92ZXMoKQogICAgICAgICAgICAgY3N0LT5zZXRTcmMocywgbW92LT5nZXRE
+ZWYoMCkpOwogICAgICAgICAgICAgY3N0LT5iYi0+aW5zZXJ0QmVmb3JlKGNzdCwgbW92KTsKIAot
+ICAgICAgICAgICAgY3N0LT5nZXREZWYoMCktPmFzTFZhbHVlKCktPm5vU3BpbGwgPSAxOyAvLyBk
+b2Vzbid0IGhlbHAKLQogICAgICAgICAgICAgaWYgKGNzdC0+b3AgPT0gT1BfVU5JT04pCiAgICAg
+ICAgICAgICAgICBtb3YtPnNldFByZWRpY2F0ZShkZWZpLT5jYywgZGVmaS0+Z2V0UHJlZGljYXRl
+KCkpOwogICAgICAgICAgfQotLSAKMi4xMy4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbWVzYS1kZXYK
