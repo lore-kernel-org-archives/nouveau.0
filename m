@@ -1,124 +1,234 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: [RFC PATCH v2] nv50/ir: allow spilling of def values for
-	constrained MERGES/UNIONS
-Date: Wed,  2 Aug 2017 00:39:42 +0200
-Message-ID: <20170801223942.23825-1-tobias.johannes.klausmann@mni.thm.de>
-References: <20170731112140.2776-1-tobias.johannes.klausmann@mni.thm.de>
+From: Cihangir Akturk <cakturk-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 00/29] DRM API conversions
+Date: Thu,  3 Aug 2017 14:58:15 +0300
+Message-ID: <1501761585-11757-1-git-send-email-cakturk@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170731112140.2776-1-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-mediatek-bounces+glpam-linux-mediatek=m.gmane.org-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
+List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-mediatek>,
+ <mailto:linux-mediatek-request-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.infradead.org/pipermail/linux-mediatek/>
+List-Post: <mailto:linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
+List-Help: <mailto:linux-mediatek-request-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-mediatek>,
+ <mailto:linux-mediatek-request-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org?subject=subscribe>
+Sender: "Linux-mediatek" <linux-mediatek-bounces-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
+Errors-To: linux-mediatek-bounces+glpam-linux-mediatek=m.gmane.org-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
+Cc: Xinliang Liu <xinliang.liu-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, Benjamin Herrenschmidt <benh-XVmvHMARGAS8U2dJNN8I7kB+6BGkLq7r@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sumit Semwal <sumit.semwal-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, Alex Xie <AlexBin.Xie-5C7GfCeVMHo@public.gmane.org>, Chunming Zhou <David1.Zhou-5C7GfCeVMHo@public.gmane.org>, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrey Grodzovsky <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>, Masahiro Yamada <yamada.masahiro-uWyLwvC0a2jby3iVrkZq2A@public.gmane.org>, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Wei Yongjun <weiyj.lk-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?Nicolai=20H=C3=A4hnle?= <Nicolai.Haehnle-5C7GfCeVMHo@public.gmane.org>, Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer-5C7GfCeVMHo@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Ken Wang <Qingqing.Wang-5C7GfCeVMHo@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBsZXRzIHVzIHNwaWxsIG1vcmUgdmFsdWVzIGFuZCBjb21waWxlIGEgQ2l2aWxpemF0aW9u
-IDYgc2hhZGVyIHdpdGggbWFueQpsb2NhbCB2YXJzLiBBcyBhIHByZWNhdGlvbiwgb25seSBzcGls
-bCB0aG9zZSB2YXJzIGFzIGEgZmFsbGJhY2sgb3B0aW9uIGlmIGFsbApvdGhlciBzcGlsbGFibGUg
-dmFycyBhcmUgYWxyZWFkeSBzcGlsbGVkIQoKc2hhZGVyLWRiIHJ1biBzaG93czoKdG90YWwgaW5z
-dHJ1Y3Rpb25zIGluIHNoYXJlZCBwcm9ncmFtcyA6IDQ0MjcwMjAgLT4gNDQyNzM4OCAoMC4wMSUp
-CnRvdGFsIGdwcnMgdXNlZCBpbiBzaGFyZWQgcHJvZ3JhbXMgICAgOiA1MjI4MzYgLT4gNTIyODcx
-ICgwLjAxJSkKdG90YWwgbG9jYWwgdXNlZCBpbiBzaGFyZWQgcHJvZ3JhbXMgICA6IDE3MTI4IC0+
-IDE3NDY0ICgxLjk2JSkKCiAgICAgICAgICAgICAgICBsb2NhbCAgICAgICAgZ3ByICAgICAgIGlu
-c3QgICAgICBieXRlcwogICAgaGVscGVkICAgICAgICAgICAwICAgICAgICAgICAwICAgICAgICAg
-ICAwICAgICAgICAgICAwCiAgICAgIGh1cnQgICAgICAgICAgIDAgICAgICAgICAgIDAgICAgICAg
-ICAgIDAgICAgICAgICAgIDAKClRoZSBhZGRpdGlvbmFsIGluc3RydWN0aW9ucyAoKzM2OCkgZ3By
-cyAoKzM1KSBhbmQgbG9jYWwgKCszMzYpIGFyZSBjb250YWluZWQgaW4KdGhlIENpdmlsaXphdGlv
-biA2IHNoYWRlcjoKCjkwLnNoYWRlcl90ZXN0IC0gdHlwZTogMCwgbG9jYWw6IDMzNiwgZ3ByOiAz
-NSwgaW5zdDogMzY4LCBieXRlczogMzkyOAoKU2lnbmVkLW9mZi1ieTogVG9iaWFzIEtsYXVzbWFu
-biA8dG9iaWFzLmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPgotLS0KIHNyYy9nYWxsaXVt
-L2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXIuY3BwICAgIHwgIDIgKysKIHNyYy9nYWxs
-aXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXIuaCAgICAgIHwgIDMgKysKIHNyYy9n
-YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwIHwgMzkgKysrKysr
-KysrKysrKysrKy0tLS0tLQogMyBmaWxlcyBjaGFuZ2VkLCAzNCBpbnNlcnRpb25zKCspLCAxMCBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29k
-ZWdlbi9udjUwX2lyLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252
-NTBfaXIuY3BwCmluZGV4IDA4MTgxYjc5MGYuLjJmYThjMjJlMzMgMTAwNjQ0Ci0tLSBhL3NyYy9n
-YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXIuY3BwCisrKyBiL3NyYy9nYWxs
-aXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXIuY3BwCkBAIC0yMzMsNiArMjMzLDcg
-QEAgTFZhbHVlOjpMVmFsdWUoRnVuY3Rpb24gKmZuLCBEYXRhRmlsZSBmaWxlKQogICAgc3NhID0g
-MDsKICAgIGZpeGVkUmVnID0gMDsKICAgIG5vU3BpbGwgPSAwOworICAgc29mdE5vU3BpbGwgPSAw
-OwogCiAgICBmbi0+YWRkKHRoaXMsIHRoaXMtPmlkKTsKIH0KQEAgLTI1MCw2ICsyNTEsNyBAQCBM
-VmFsdWU6OkxWYWx1ZShGdW5jdGlvbiAqZm4sIExWYWx1ZSAqbHZhbCkKICAgIHNzYSA9IDA7CiAg
-ICBmaXhlZFJlZyA9IDA7CiAgICBub1NwaWxsID0gMDsKKyAgIHNvZnROb1NwaWxsID0gMDsKIAog
-ICAgZm4tPmFkZCh0aGlzLCB0aGlzLT5pZCk7CiB9CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyLmggYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvY29kZWdlbi9udjUwX2lyLmgKaW5kZXggYmMxNTk5MmRmMC4uY2E1YmNiNTM2MiAxMDA2
-NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pci5oCisr
-KyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXIuaApAQCAtNzA0
-LDYgKzcwNCw5IEBAIHB1YmxpYzoKICAgIHVuc2lnbmVkIHNzYSAgICAgIDogMTsKICAgIHVuc2ln
-bmVkIGZpeGVkUmVnIDogMTsgLy8gc2V0ICYgdXNlZCBieSBSQSwgZWFybGllciBqdXN0IHVzZSAo
-aWQgPCAwKQogICAgdW5zaWduZWQgbm9TcGlsbCAgOiAxOyAvLyBkbyBub3Qgc3BpbGwgKGUuZy4g
-aWYgc3BpbGwgdGVtcG9yYXJ5IGFscmVhZHkpCisgICB1bnNpZ25lZCBzb2Z0Tm9TcGlsbCA6IDE7
-IC8qIG9ubHkgc3BpbGwgdGhlc2UgdmFsdWVzIGlmIGFsbCBvdGhlciB2YWx1ZXMgYXJlCisgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAqIHNwaWxsZWQgYWxyZWFkeSEKKyAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICovCiB9OwogCiBjbGFzcyBTeW1ib2wgOiBwdWJsaWMgVmFsdWUK
-ZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJf
-cmEuY3BwIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9yYS5j
-cHAKaW5kZXggYjMzZDdiNDAxMC4uOWQ3MGVjM2M5YyAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0v
-ZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9yYS5jcHAKKysrIGIvc3JjL2dhbGxpdW0v
-ZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9yYS5jcHAKQEAgLTc2OSw3ICs3NjksNyBA
-QCBwcml2YXRlOgogICAgYm9vbCBjb2FsZXNjZShBcnJheUxpc3QmKTsKICAgIGJvb2wgZG9Db2Fs
-ZXNjZShBcnJheUxpc3QmLCB1bnNpZ25lZCBpbnQgbWFzayk7CiAgICB2b2lkIGNhbGN1bGF0ZVNw
-aWxsV2VpZ2h0cygpOwotICAgYm9vbCBzaW1wbGlmeSgpOworICAgYm9vbCBzaW1wbGlmeShib29s
-IHVzZVNvZnROb1NwaWxsKTsKICAgIGJvb2wgc2VsZWN0UmVnaXN0ZXJzKCk7CiAgICB2b2lkIGNs
-ZWFudXAoY29uc3QgYm9vbCBzdWNjZXNzKTsKIApAQCAtMTI0Miw3ICsxMjQyLDcgQEAgR0NSQTo6
-Y2FsY3VsYXRlU3BpbGxXZWlnaHRzKCkKICAgICAgIH0KICAgICAgIExWYWx1ZSAqdmFsID0gbm9k
-ZXNbaV0uZ2V0VmFsdWUoKTsKIAotICAgICAgaWYgKCF2YWwtPm5vU3BpbGwpIHsKKyAgICAgIGlm
-ICghdmFsLT5ub1NwaWxsIHx8IHZhbC0+c29mdE5vU3BpbGwpIHsKICAgICAgICAgIGludCByYyA9
-IDA7CiAgICAgICAgICBmb3IgKFZhbHVlOjpEZWZJdGVyYXRvciBpdCA9IHZhbC0+ZGVmcy5iZWdp
-bigpOwogICAgICAgICAgICAgICBpdCAhPSB2YWwtPmRlZnMuZW5kKCk7CkBAIC0xMzA0LDcgKzEz
-MDQsNyBAQCBHQ1JBOjpzaW1wbGlmeU5vZGUoUklHX05vZGUgKm5vZGUpCiB9CiAKIGJvb2wKLUdD
-UkE6OnNpbXBsaWZ5KCkKK0dDUkE6OnNpbXBsaWZ5KGJvb2wgdXNlU29mdE5vU3BpbGwpCiB7CiAg
-ICBmb3IgKDs7KSB7CiAgICAgICBpZiAoIURMTElTVF9FTVBUWSgmbG9bMF0pKSB7CkBAIC0xMzE3
-LDE3ICsxMzE3LDMyIEBAIEdDUkE6OnNpbXBsaWZ5KCkKICAgICAgIH0gZWxzZQogICAgICAgaWYg
-KCFETExJU1RfRU1QVFkoJmhpKSkgewogICAgICAgICAgUklHX05vZGUgKmJlc3QgPSBoaS5uZXh0
-OwotICAgICAgICAgZmxvYXQgYmVzdFNjb3JlID0gYmVzdC0+d2VpZ2h0IC8gKGZsb2F0KWJlc3Qt
-PmRlZ3JlZTsKKyAgICAgICAgIGJvb2wgc3BpbGxhYmxlID0gZmFsc2U7CisgICAgICAgICBpZiAo
-YmVzdC0+Z2V0VmFsdWUoKS0+bm9TcGlsbCAmJiBiZXN0LT5nZXRWYWx1ZSgpLT5zb2Z0Tm9TcGls
-bCAmJgorICAgICAgICAgICAgICAgdXNlU29mdE5vU3BpbGwpCisgICAgICAgICAgICBzcGlsbGFi
-bGUgPSB0cnVlOworICAgICAgICAgZmxvYXQgYmVzdFNjb3JlID0gSU5GSU5JVFk7CisgICAgICAg
-ICBpZiAoIWJlc3QtPmdldFZhbHVlKCktPm5vU3BpbGwgfHwgc3BpbGxhYmxlKQorICAgICAgICAg
-ICAgICBiZXN0U2NvcmUgPSBiZXN0LT53ZWlnaHQgLyAoZmxvYXQpYmVzdC0+ZGVncmVlOwogICAg
-ICAgICAgLy8gc3BpbGwgY2FuZGlkYXRlCiAgICAgICAgICBmb3IgKFJJR19Ob2RlICppdCA9IGJl
-c3QtPm5leHQ7IGl0ICE9ICZoaTsgaXQgPSBpdC0+bmV4dCkgewotICAgICAgICAgICAgZmxvYXQg
-c2NvcmUgPSBpdC0+d2VpZ2h0IC8gKGZsb2F0KWl0LT5kZWdyZWU7CisgICAgICAgICAgICBmbG9h
-dCBzY29yZSA9IElORklOSVRZOworICAgICAgICAgICAgYm9vbCBzcGlsbGFibGUgPSBmYWxzZTsK
-KyAgICAgICAgICAgIGlmIChpdC0+Z2V0VmFsdWUoKS0+bm9TcGlsbCAmJiBpdC0+Z2V0VmFsdWUo
-KS0+c29mdE5vU3BpbGwgJiYKKyAgICAgICAgICAgICAgICAgIHVzZVNvZnROb1NwaWxsKQorICAg
-ICAgICAgICAgICAgc3BpbGxhYmxlID0gdHJ1ZTsKKyAgICAgICAgICAgIGlmICghaXQtPmdldFZh
-bHVlKCktPm5vU3BpbGwgfHwgc3BpbGxhYmxlKSB7CisgICAgICAgICAgICAgICBzY29yZSA9IGl0
-LT53ZWlnaHQgLyAoZmxvYXQpaXQtPmRlZ3JlZTsKKyAgICAgICAgICAgIH0KICAgICAgICAgICAg
-IGlmIChzY29yZSA8IGJlc3RTY29yZSkgewogICAgICAgICAgICAgICAgYmVzdCA9IGl0OwogICAg
-ICAgICAgICAgICAgYmVzdFNjb3JlID0gc2NvcmU7CiAgICAgICAgICAgICB9CiAgICAgICAgICB9
-CiAgICAgICAgICBpZiAoaXNpbmYoYmVzdFNjb3JlKSkgewotICAgICAgICAgICAgRVJST1IoIm5v
-IHZpYWJsZSBzcGlsbCBjYW5kaWRhdGVzIGxlZnRcbiIpOworICAgICAgICAgICAgaWYgKHVzZVNv
-ZnROb1NwaWxsKQorICAgICAgICAgICAgICAgRVJST1IoIm5vIHZpYWJsZSBzcGlsbCBjYW5kaWRh
-dGVzIGxlZnRcbiIpOworCiAgICAgICAgICAgICByZXR1cm4gZmFsc2U7CiAgICAgICAgICB9CiAg
-ICAgICAgICBzaW1wbGlmeU5vZGUoYmVzdCk7CkBAIC0xNDkxLDkgKzE1MDYsMTIgQEAgR0NSQTo6
-YWxsb2NhdGVSZWdpc3RlcnMoQXJyYXlMaXN0JiBpbnNucykKIAogICAgYnVpbGRSSUcoaW5zbnMp
-OwogICAgY2FsY3VsYXRlU3BpbGxXZWlnaHRzKCk7Ci0gICByZXQgPSBzaW1wbGlmeSgpOwotICAg
-aWYgKCFyZXQpCi0gICAgICBnb3RvIG91dDsKKyAgIHJldCA9IHNpbXBsaWZ5KGZhbHNlKTsKKyAg
-IGlmICghcmV0KSB7CisgICAgICByZXQgPSBzaW1wbGlmeSh0cnVlKTsKKyAgICAgIGlmICghcmV0
-KQorICAgICAgICAgZ290byBvdXQ7CisgICB9CiAKICAgIHJldCA9IHNlbGVjdFJlZ2lzdGVycygp
-OwogICAgaWYgKCFyZXQpIHsKQEAgLTIzNDQsNyArMjM2Miw4IEBAIFJlZ0FsbG9jOjpJbnNlcnRD
-b25zdHJhaW50c1Bhc3M6Omluc2VydENvbnN0cmFpbnRNb3ZlcygpCiAgICAgICAgICAgICBjc3Qt
-PnNldFNyYyhzLCBtb3YtPmdldERlZigwKSk7CiAgICAgICAgICAgICBjc3QtPmJiLT5pbnNlcnRC
-ZWZvcmUoY3N0LCBtb3YpOwogCi0gICAgICAgICAgICBjc3QtPmdldERlZigwKS0+YXNMVmFsdWUo
-KS0+bm9TcGlsbCA9IDE7IC8vIGRvZXNuJ3QgaGVscAorICAgICAgICAgICAgY3N0LT5nZXREZWYo
-MCktPmFzTFZhbHVlKCktPnNvZnROb1NwaWxsID0gMTsKKyAgICAgICAgICAgIGNzdC0+Z2V0RGVm
-KDApLT5hc0xWYWx1ZSgpLT5ub1NwaWxsID0gMTsgLy8gYSBwcmVjYXV0aW9uCiAKICAgICAgICAg
-ICAgIGlmIChjc3QtPm9wID09IE9QX1VOSU9OKQogICAgICAgICAgICAgICAgbW92LT5zZXRQcmVk
-aWNhdGUoZGVmaS0+Y2MsIGRlZmktPmdldFByZWRpY2F0ZSgpKTsKLS0gCjIuMTMuMwoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+This patch set replaces the occurrences of drm_*_reference() and
+drm_*_unreference() with the new drm_*_get() and drm_*_put() functions.
+All patches in the series do the same thing, converting to the new APIs.
+I created patches per DRM driver as suggested by Daniel Vetter.
+
+Background:
+
+In the kernel, reference counting APIs use *_get(), *_put() style naming
+to reference-count the objects. But DRM subsystem uses a different
+naming for them such as *_reference(), *_unreference() which is
+inconsistent with the other reference counting APIs in the kernel. To
+solve this consistency issue, Thierry Reding introduced a couple of
+functions and compatibility aliases in the following commits for them.
+
+commit 020a218f95bd3ceff7dd1022ff7ebc0497bc7bf9
+Author: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Date:   Tue Feb 28 15:46:38 2017 +0100
+
+    drm: Introduce drm_mode_object_{get,put}()
+
+commit ad09360750afa18a0a0ce0253d6ea6033abc22e7
+Author: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Date:   Tue Feb 28 15:46:39 2017 +0100
+
+    drm: Introduce drm_connector_{get,put}()
+
+commit a4a69da06bc11a937a6e417938b1bb698ee1fa46
+Author: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Date:   Tue Feb 28 15:46:40 2017 +0100
+
+    drm: Introduce drm_framebuffer_{get,put}()
+
+commit e6b62714e87c8811d5564b6a0738dcde63a51774
+Author: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Date:   Tue Feb 28 15:46:41 2017 +0100
+
+    drm: Introduce drm_gem_object_{get,put}()
+
+commit 6472e5090be7c78749a3c279b4faae87ab835c40
+Author: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Date:   Tue Feb 28 15:46:42 2017 +0100
+
+    drm: Introduce drm_property_blob_{get,put}()
+
+
+This patch set was generated using the following shell script:
+
+#!/bin/sh
+
+path=$1
+
+do_replace() {
+    local pattern=$1
+    local replacement=$2
+
+    git grep -lw "${pattern}" -- "${path}/*.[hc]" |\
+        xargs -r sed -i "s/\b$pattern\b/$replacement/g"
+}
+
+do_replace drm_mode_object_reference drm_mode_object_get
+do_replace drm_mode_object_unreference drm_mode_object_put
+do_replace drm_connector_reference drm_connector_get
+do_replace drm_connector_unreference drm_connector_put
+do_replace drm_framebuffer_reference drm_framebuffer_get
+do_replace drm_framebuffer_unreference drm_framebuffer_put
+do_replace drm_gem_object_reference drm_gem_object_get
+do_replace drm_gem_object_unreference drm_gem_object_put
+do_replace __drm_gem_object_unreference __drm_gem_object_put
+do_replace drm_gem_object_unreference_unlocked drm_gem_object_put_unlocked
+do_replace drm_property_reference_blob drm_property_blob_get
+do_replace drm_property_unreference_blob drm_property_blob_put
+
+Cihangir Akturk (29):
+  drm/amdgpu: switch to drm_*{get,put} helpers
+  drm: mali-dp: switch to drm_*{get,put} helpers
+  drm/armada: switch to drm_*{get,put} helpers
+  drm/ast: switch to drm_*{get,put} helpers
+  drm/atmel-hlcdc: switch to drm_*{get,put} helpers
+  drm/bochs: switch to drm_*{get,put} helpers
+  drm/cirrus: switch to drm_*{get,put} helpers
+  drm/etnaviv: switch to drm_*{get,put} helpers
+  drm/exynos: switch to drm_*{get,put} helpers
+  drm/gma500: switch to drm_*{get,put} helpers
+  drm/hisilicon: switch to drm_*{get,put} helpers
+  drm/i915: switch to drm_*{get,put} helpers
+  drm/imx: switch to drm_*{get,put} helpers
+  drm/mediatek: switch to drm_*{get,put} helpers
+  drm/mgag200: switch to drm_*{get,put} helpers
+  drm/msm: switch to drm_*{get,put} helpers
+  drm/nouveau: switch to drm_*{get,put} helpers
+  drm/omap: switch to drm_*{get,put} helpers
+  drm/qxl: switch to drm_*{get,put} helpers
+  drm/radeon: switch to drm_*{get,put} helpers
+  drm/rockchip: switch to drm_*{get,put} helpers
+  drm/tegra: switch to drm_*{get,put} helpers
+  drm/tilcdc: switch to drm_*{get,put} helpers
+  drm/udl: switch to drm_*{get,put} helpers
+  drm/vc4: switch to drm_*{get,put} helpers
+  drm/vgem: switch to drm_*{get,put} helpers
+  drm/virtio: switch to drm_*{get,put} helpers
+  drm/vmwgfx: switch to drm_*{get,put} helpers
+  staging: vboxvideo: switch to drm_*{get,put} helpers
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c            |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c       |  6 ++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c            |  4 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c           | 22 ++++++++---------
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c            |  6 ++---
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c            |  6 ++---
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c             |  6 ++---
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c             |  6 ++---
+ drivers/gpu/drm/arm/malidp_planes.c               |  2 +-
+ drivers/gpu/drm/armada/armada_crtc.c              | 22 ++++++++---------
+ drivers/gpu/drm/armada/armada_drv.c               |  2 +-
+ drivers/gpu/drm/armada/armada_fb.c                |  8 +++---
+ drivers/gpu/drm/armada/armada_fbdev.c             |  6 ++---
+ drivers/gpu/drm/armada/armada_gem.c               | 14 +++++------
+ drivers/gpu/drm/armada/armada_overlay.c           |  4 +--
+ drivers/gpu/drm/ast/ast_fb.c                      |  2 +-
+ drivers/gpu/drm/ast/ast_main.c                    | 10 ++++----
+ drivers/gpu/drm/ast/ast_mode.c                    |  6 ++---
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c   |  8 +++---
+ drivers/gpu/drm/bochs/bochs_fbdev.c               |  2 +-
+ drivers/gpu/drm/bochs/bochs_mm.c                  | 10 ++++----
+ drivers/gpu/drm/cirrus/cirrus_fbdev.c             |  2 +-
+ drivers/gpu/drm/cirrus/cirrus_main.c              | 10 ++++----
+ drivers/gpu/drm/etnaviv/etnaviv_drv.c             |  8 +++---
+ drivers/gpu/drm/etnaviv/etnaviv_gem.c             | 20 +++++++--------
+ drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c       |  2 +-
+ drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c      |  4 +--
+ drivers/gpu/drm/exynos/exynos_drm_fb.c            |  4 +--
+ drivers/gpu/drm/exynos/exynos_drm_gem.c           | 12 ++++-----
+ drivers/gpu/drm/exynos/exynos_drm_plane.c         |  2 +-
+ drivers/gpu/drm/gma500/framebuffer.c              |  4 +--
+ drivers/gpu/drm/gma500/gem.c                      |  4 +--
+ drivers/gpu/drm/gma500/gma_display.c              |  6 ++---
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c |  4 +--
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c       |  8 +++---
+ drivers/gpu/drm/i915/i915_gem_object.h            | 10 ++++----
+ drivers/gpu/drm/i915/intel_display.c              | 24 +++++++++---------
+ drivers/gpu/drm/i915/intel_dp_mst.c               |  2 +-
+ drivers/gpu/drm/i915/intel_fbdev.c                |  4 +--
+ drivers/gpu/drm/imx/ipuv3-crtc.c                  |  2 +-
+ drivers/gpu/drm/mediatek/mtk_drm_fb.c             |  4 +--
+ drivers/gpu/drm/mediatek/mtk_drm_gem.c            |  4 +--
+ drivers/gpu/drm/mgag200/mgag200_cursor.c          |  2 +-
+ drivers/gpu/drm/mgag200/mgag200_fb.c              |  4 +--
+ drivers/gpu/drm/mgag200/mgag200_main.c            | 10 ++++----
+ drivers/gpu/drm/msm/adreno/a5xx_gpu.c             | 10 ++++----
+ drivers/gpu/drm/msm/adreno/a5xx_power.c           |  2 +-
+ drivers/gpu/drm/msm/adreno/adreno_gpu.c           |  2 +-
+ drivers/gpu/drm/msm/mdp/mdp4/mdp4_crtc.c          |  6 ++---
+ drivers/gpu/drm/msm/mdp/mdp4/mdp4_kms.c           |  2 +-
+ drivers/gpu/drm/msm/mdp/mdp5/mdp5_crtc.c          |  2 +-
+ drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c         |  4 +--
+ drivers/gpu/drm/msm/msm_drv.c                     |  8 +++---
+ drivers/gpu/drm/msm/msm_fb.c                      |  4 +--
+ drivers/gpu/drm/msm/msm_fbdev.c                   |  2 +-
+ drivers/gpu/drm/msm/msm_gem.c                     |  8 +++---
+ drivers/gpu/drm/msm/msm_gem_submit.c              |  4 +--
+ drivers/gpu/drm/msm/msm_gpu.c                     |  4 +--
+ drivers/gpu/drm/msm/msm_ringbuffer.c              |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c           |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_abi16.c           |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_display.c         |  8 +++---
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c           |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.c             | 14 +++++------
+ drivers/gpu/drm/nouveau/nv50_display.c            |  2 +-
+ drivers/gpu/drm/omapdrm/omap_drv.c                |  2 +-
+ drivers/gpu/drm/omapdrm/omap_fb.c                 |  4 +--
+ drivers/gpu/drm/omapdrm/omap_fbdev.c              |  2 +-
+ drivers/gpu/drm/omapdrm/omap_gem.c                |  4 +--
+ drivers/gpu/drm/omapdrm/omap_gem_dmabuf.c         |  2 +-
+ drivers/gpu/drm/qxl/qxl_display.c                 |  4 +--
+ drivers/gpu/drm/qxl/qxl_dumb.c                    |  2 +-
+ drivers/gpu/drm/qxl/qxl_fb.c                      |  6 ++---
+ drivers/gpu/drm/qxl/qxl_gem.c                     |  2 +-
+ drivers/gpu/drm/qxl/qxl_ioctl.c                   |  4 +--
+ drivers/gpu/drm/qxl/qxl_object.c                  |  6 ++---
+ drivers/gpu/drm/radeon/radeon_cs.c                |  2 +-
+ drivers/gpu/drm/radeon/radeon_cursor.c            |  6 ++---
+ drivers/gpu/drm/radeon/radeon_display.c           | 12 ++++-----
+ drivers/gpu/drm/radeon/radeon_fb.c                |  4 +--
+ drivers/gpu/drm/radeon/radeon_gem.c               | 30 +++++++++++------------
+ drivers/gpu/drm/radeon/radeon_object.c            |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.c        |  6 ++---
+ drivers/gpu/drm/rockchip/rockchip_drm_fbdev.c     |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c       |  4 +--
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c       |  4 +--
+ drivers/gpu/drm/tegra/drm.c                       | 12 ++++-----
+ drivers/gpu/drm/tegra/fb.c                        |  8 +++---
+ drivers/gpu/drm/tegra/gem.c                       | 10 ++++----
+ drivers/gpu/drm/tilcdc/tilcdc_crtc.c              |  6 ++---
+ drivers/gpu/drm/udl/udl_fb.c                      |  6 ++---
+ drivers/gpu/drm/udl/udl_gem.c                     |  4 +--
+ drivers/gpu/drm/vc4/vc4_bo.c                      | 12 ++++-----
+ drivers/gpu/drm/vc4/vc4_crtc.c                    |  6 ++---
+ drivers/gpu/drm/vc4/vc4_gem.c                     | 14 +++++------
+ drivers/gpu/drm/vc4/vc4_kms.c                     |  2 +-
+ drivers/gpu/drm/vgem/vgem_drv.c                   |  4 +--
+ drivers/gpu/drm/vgem/vgem_fence.c                 |  2 +-
+ drivers/gpu/drm/virtio/virtgpu_display.c          |  4 +--
+ drivers/gpu/drm/virtio/virtgpu_gem.c              |  4 +--
+ drivers/gpu/drm/virtio/virtgpu_ioctl.c            | 14 +++++------
+ drivers/gpu/drm/vmwgfx/vmwgfx_fb.c                |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ioctl.c             |  4 +--
+ drivers/staging/vboxvideo/vbox_fb.c               |  2 +-
+ drivers/staging/vboxvideo/vbox_main.c             |  8 +++---
+ drivers/staging/vboxvideo/vbox_mode.c             |  2 +-
+ 107 files changed, 319 insertions(+), 319 deletions(-)
+
+-- 
+2.7.4
