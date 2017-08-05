@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99913] [G96] Reclocking fails on voltage
-Date: Sat, 05 Aug 2017 07:27:35 +0000
-Message-ID: <bug-99913-8800-z0CpYG2p8Q@http.bugs.freedesktop.org/>
+Date: Sat, 05 Aug 2017 08:04:15 +0000
+Message-ID: <bug-99913-8800-W941GSnmEk@http.bugs.freedesktop.org/>
 References: <bug-99913-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0707245040=="
+Content-Type: multipart/mixed; boundary="===============1665492403=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0707245040==
-Content-Type: multipart/alternative; boundary="15019180541.4BE5.29499";
+--===============1665492403==
+Content-Type: multipart/alternative; boundary="15019202550.456ee118f.4953";
  charset="UTF-8"
 
 
---15019180541.4BE5.29499
-Date: Sat, 5 Aug 2017 07:27:34 +0000
+--15019202550.456ee118f.4953
+Date: Sat, 5 Aug 2017 08:04:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99913
 
---- Comment #13 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Seems unlikely I will ever get around to make that mmiotrace. Should we clo=
-se
-this report?
+--- Comment #14 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Pekka Paalanen from comment #13)
+> Seems unlikely I will ever get around to make that mmiotrace. Should we
+> close this report?
+
+can you run the nvidia legacy driver and see what perf level is set?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15019180541.4BE5.29499
-Date: Sat, 5 Aug 2017 07:27:34 +0000
+--15019202550.456ee118f.4953
+Date: Sat, 5 Aug 2017 08:04:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,20 +64,24 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEEDINFO "
    title=3D"NEEDINFO - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c13">Commen=
-t # 13</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c14">Commen=
+t # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEEDINFO "
    title=3D"NEEDINFO - [G96] Reclocking fails on voltage"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913">bug 99913<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ppaalanen&#64;gmail.com" title=3D"Pekka Paalanen &lt;ppaalanen&#64;gmail.co=
-m&gt;"> <span class=3D"fn">Pekka Paalanen</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Seems unlikely I will ever get around to make that mmiotrace. =
-Should we close
-this report?</pre>
+        <pre>(In reply to Pekka Paalanen from <a href=3D"show_bug.cgi?id=3D=
+99913#c13">comment #13</a>)
+<span class=3D"quote">&gt; Seems unlikely I will ever get around to make th=
+at mmiotrace. Should we
+&gt; close this report?</span >
+
+can you run the nvidia legacy driver and see what perf level is set?</pre>
         </div>
       </p>
 
@@ -89,9 +95,9 @@ this report?</pre>
     </body>
 </html>=
 
---15019180541.4BE5.29499--
+--15019202550.456ee118f.4953--
 
---===============0707245040==
+--===============1665492403==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0707245040==--
+--===============1665492403==--
