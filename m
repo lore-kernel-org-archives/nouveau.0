@@ -1,110 +1,66 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99913] [G96] Reclocking fails on voltage
-Date: Sat, 05 Aug 2017 08:04:15 +0000
-Message-ID: <bug-99913-8800-W941GSnmEk@http.bugs.freedesktop.org/>
-References: <bug-99913-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] drm/nouveau/mpeg: print more debug info when rejecting dma
+ objects
+Date: Sat,  5 Aug 2017 22:19:53 -0400
+Message-ID: <20170806021953.3689-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1665492403=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1665492403==
-Content-Type: multipart/alternative; boundary="15019202550.456ee118f.4953";
- charset="UTF-8"
-
-
---15019202550.456ee118f.4953
-Date: Sat, 5 Aug 2017 08:04:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99913
-
---- Comment #14 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Pekka Paalanen from comment #13)
-> Seems unlikely I will ever get around to make that mmiotrace. Should we
-> close this report?
-
-can you run the nvidia legacy driver and see what perf level is set?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15019202550.456ee118f.4953
-Date: Sat, 5 Aug 2017 08:04:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913#c14">Commen=
-t # 14</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [G96] Reclocking fails on voltage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99913">bug 99913<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
-</span></b>
-        <pre>(In reply to Pekka Paalanen from <a href=3D"show_bug.cgi?id=3D=
-99913#c13">comment #13</a>)
-<span class=3D"quote">&gt; Seems unlikely I will ever get around to make th=
-at mmiotrace. Should we
-&gt; close this report?</span >
-
-can you run the nvidia legacy driver and see what perf level is set?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15019202550.456ee118f.4953--
-
---===============1665492403==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1665492403==--
+U2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KClRo
+aXMgd2FzIGhlbHBmdWwgd2hlbiBkZWJ1Z2dpbmcgb3VyIGVhcmxpZXIgbXBlZyB3b2VzLiBNYXkg
+YXMgd2VsbCBoYXZlIGl0IHVwc3RyZWFtLgoKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
+ZW5naW5lL21wZWcvbnYzMS5jIHwgNyArKysrKystCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+dmttL2VuZ2luZS9tcGVnL252NDAuYyB8IDcgKysrKysrLQogMiBmaWxlcyBjaGFuZ2VkLCAxMiBp
+bnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vZW5naW5lL21wZWcvbnYzMS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbnZrbS9lbmdpbmUvbXBlZy9udjMxLmMKaW5kZXggOGE4ODk1MjQ2ZDI2Li45OWYzM2Q4OGQ5
+NDAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL21wZWcv
+bnYzMS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL21wZWcvbnYz
+MS5jCkBAIC0xMjQsNiArMTI0LDggQEAgbnYzMV9tcGVnX3RpbGUoc3RydWN0IG52a21fZW5naW5l
+ICplbmdpbmUsIGludCBpLCBzdHJ1Y3QgbnZrbV9mYl90aWxlICp0aWxlKQogc3RhdGljIGJvb2wK
+IG52MzFfbXBlZ19tdGhkX2RtYShzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwgdTMyIG10aGQs
+IHUzMiBkYXRhKQogeworCXN0cnVjdCBudjMxX21wZWcgKm1wZWcgPSBudjMxX21wZWcoZGV2aWNl
+LT5tcGVnKTsKKwlzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldiA9ICZtcGVnLT5lbmdpbmUuc3Vi
+ZGV2OwogCXUzMiBpbnN0ID0gZGF0YSA8PCA0OwogCXUzMiBkbWEwID0gbnZrbV9yZDMyKGRldmlj
+ZSwgMHg3MDAwMDAgKyBpbnN0KTsKIAl1MzIgZG1hMSA9IG52a21fcmQzMihkZXZpY2UsIDB4NzAw
+MDA0ICsgaW5zdCk7CkBAIC0xMzIsOCArMTM0LDExIEBAIG52MzFfbXBlZ19tdGhkX2RtYShzdHJ1
+Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwgdTMyIG10aGQsIHUzMiBkYXRhKQogCXUzMiBzaXplID0g
+ZG1hMSArIDE7CiAKIAkvKiBvbmx5IGFsbG93IGxpbmVhciBETUEgb2JqZWN0cyAqLwotCWlmICgh
+KGRtYTAgJiAweDAwMDAyMDAwKSkKKwlpZiAoIShkbWEwICYgMHgwMDAwMjAwMCkpIHsKKwkJbnZr
+bV9lcnJvcihzdWJkZXYsICJpbnN0ICUwOHggZG1hMCAlMDh4IGRtYTEgJTA4eCBkbWEyICUwOHhc
+biIsCisJCQkgICBpbnN0LCBkbWEwLCBkbWExLCBkbWEyKTsKIAkJcmV0dXJuIGZhbHNlOworCX0K
+IAogCWlmIChtdGhkID09IDB4MDE5MCkgewogCQkvKiBETUFfQ01EICovCmRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9tcGVnL252NDAuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL21wZWcvbnY0MC5jCmluZGV4IDE2ZGU1YmQ5NGIx
+NC4uYjVlYzdjNTA0ZGM2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
+L2VuZ2luZS9tcGVnL252NDAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2Vu
+Z2luZS9tcGVnL252NDAuYwpAQCAtMzEsNiArMzEsOCBAQCBib29sCiBudjQwX21wZWdfbXRoZF9k
+bWEoc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UsIHUzMiBtdGhkLCB1MzIgZGF0YSkKIHsKIAlz
+dHJ1Y3QgbnZrbV9pbnN0bWVtICppbWVtID0gZGV2aWNlLT5pbWVtOworCXN0cnVjdCBudjMxX21w
+ZWcgKm1wZWcgPSBudjMxX21wZWcoZGV2aWNlLT5tcGVnKTsKKwlzdHJ1Y3QgbnZrbV9zdWJkZXYg
+KnN1YmRldiA9ICZtcGVnLT5lbmdpbmUuc3ViZGV2OwogCXUzMiBpbnN0ID0gZGF0YSA8PCA0Owog
+CXUzMiBkbWEwID0gbnZrbV9pbnN0bWVtX3JkMzIoaW1lbSwgaW5zdCArIDApOwogCXUzMiBkbWEx
+ID0gbnZrbV9pbnN0bWVtX3JkMzIoaW1lbSwgaW5zdCArIDQpOwpAQCAtMzksOCArNDEsMTEgQEAg
+bnY0MF9tcGVnX210aGRfZG1hKHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlLCB1MzIgbXRoZCwg
+dTMyIGRhdGEpCiAJdTMyIHNpemUgPSBkbWExICsgMTsKIAogCS8qIG9ubHkgYWxsb3cgbGluZWFy
+IERNQSBvYmplY3RzICovCi0JaWYgKCEoZG1hMCAmIDB4MDAwMDIwMDApKQorCWlmICghKGRtYTAg
+JiAweDAwMDAyMDAwKSkgeworCQludmttX2Vycm9yKHN1YmRldiwgImluc3QgJTA4eCBkbWEwICUw
+OHggZG1hMSAlMDh4IGRtYTIgJTA4eFxuIiwKKwkJCSAgIGluc3QsIGRtYTAsIGRtYTEsIGRtYTIp
+OwogCQlyZXR1cm4gZmFsc2U7CisJfQogCiAJaWYgKG10aGQgPT0gMHgwMTkwKSB7CiAJCS8qIERN
+QV9DTUQgKi8KLS0gCjIuMTMuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+ZHJpLWRldmVsCg==
