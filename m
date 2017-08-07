@@ -1,15 +1,13 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/mpeg: print more debug info when
- rejecting dma objects
-Date: Sun, 6 Aug 2017 16:02:29 +0200
-Message-ID: <993bb225-eff6-41a9-4ca5-5dcfbfa24954@mni.thm.de>
-References: <20170806021953.3689-1-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99799] Civilization VI makes nouveau crash on
+ register allocation
+Date: Mon, 07 Aug 2017 15:52:58 +0000
+Message-ID: <bug-99799-8800-kBe7lxeNVP@http.bugs.freedesktop.org/>
+References: <bug-99799-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0136399196=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170806021953.3689-1-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <bug-99799-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,55 +17,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpMZ3RtIQoKUmV2aWV3ZWQtYnk6IFRvYmlhcyBLbGF1c21hbm4gPHRvYmlhcy5qb2hhbm5l
-cy5rbGF1c21hbm5AbW5pLnRobS5kZT4KCgpPbiA4LzYvMTcgNDoxOSBBTSwgSWxpYSBNaXJraW4g
-d3JvdGU6Cj4gU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1
-Pgo+IC0tLQo+Cj4gVGhpcyB3YXMgaGVscGZ1bCB3aGVuIGRlYnVnZ2luZyBvdXIgZWFybGllciBt
-cGVnIHdvZXMuIE1heSBhcyB3ZWxsIGhhdmUgaXQgdXBzdHJlYW0uCj4KPiAgZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvbXBlZy9udjMxLmMgfCA3ICsrKysrKy0KPiAgZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvbXBlZy9udjQwLmMgfCA3ICsrKysrKy0KPiAg
-MiBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+Cj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL21wZWcvbnYzMS5j
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvbXBlZy9udjMxLmMKPiBpbmRl
-eCA4YTg4OTUyNDZkMjYuLjk5ZjMzZDg4ZDk0MCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9udmttL2VuZ2luZS9tcGVnL252MzEuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L252a20vZW5naW5lL21wZWcvbnYzMS5jCj4gQEAgLTEyNCw2ICsxMjQsOCBAQCBu
-djMxX21wZWdfdGlsZShzdHJ1Y3QgbnZrbV9lbmdpbmUgKmVuZ2luZSwgaW50IGksIHN0cnVjdCBu
-dmttX2ZiX3RpbGUgKnRpbGUpCj4gIHN0YXRpYyBib29sCj4gIG52MzFfbXBlZ19tdGhkX2RtYShz
-dHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwgdTMyIG10aGQsIHUzMiBkYXRhKQo+ICB7Cj4gKwlz
-dHJ1Y3QgbnYzMV9tcGVnICptcGVnID0gbnYzMV9tcGVnKGRldmljZS0+bXBlZyk7Cj4gKwlzdHJ1
-Y3QgbnZrbV9zdWJkZXYgKnN1YmRldiA9ICZtcGVnLT5lbmdpbmUuc3ViZGV2Owo+ICAJdTMyIGlu
-c3QgPSBkYXRhIDw8IDQ7Cj4gIAl1MzIgZG1hMCA9IG52a21fcmQzMihkZXZpY2UsIDB4NzAwMDAw
-ICsgaW5zdCk7Cj4gIAl1MzIgZG1hMSA9IG52a21fcmQzMihkZXZpY2UsIDB4NzAwMDA0ICsgaW5z
-dCk7Cj4gQEAgLTEzMiw4ICsxMzQsMTEgQEAgbnYzMV9tcGVnX210aGRfZG1hKHN0cnVjdCBudmtt
-X2RldmljZSAqZGV2aWNlLCB1MzIgbXRoZCwgdTMyIGRhdGEpCj4gIAl1MzIgc2l6ZSA9IGRtYTEg
-KyAxOwo+ICAKPiAgCS8qIG9ubHkgYWxsb3cgbGluZWFyIERNQSBvYmplY3RzICovCj4gLQlpZiAo
-IShkbWEwICYgMHgwMDAwMjAwMCkpCj4gKwlpZiAoIShkbWEwICYgMHgwMDAwMjAwMCkpIHsKPiAr
-CQludmttX2Vycm9yKHN1YmRldiwgImluc3QgJTA4eCBkbWEwICUwOHggZG1hMSAlMDh4IGRtYTIg
-JTA4eFxuIiwKPiArCQkJICAgaW5zdCwgZG1hMCwgZG1hMSwgZG1hMik7Cj4gIAkJcmV0dXJuIGZh
-bHNlOwo+ICsJfQo+ICAKPiAgCWlmIChtdGhkID09IDB4MDE5MCkgewo+ICAJCS8qIERNQV9DTUQg
-Ki8KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvbXBl
-Zy9udjQwLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9tcGVnL252NDAu
-Ywo+IGluZGV4IDE2ZGU1YmQ5NGIxNC4uYjVlYzdjNTA0ZGM2IDEwMDY0NAo+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL21wZWcvbnY0MC5jCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvbXBlZy9udjQwLmMKPiBAQCAtMzEsNiArMzEs
-OCBAQCBib29sCj4gIG52NDBfbXBlZ19tdGhkX2RtYShzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmlj
-ZSwgdTMyIG10aGQsIHUzMiBkYXRhKQo+ICB7Cj4gIAlzdHJ1Y3QgbnZrbV9pbnN0bWVtICppbWVt
-ID0gZGV2aWNlLT5pbWVtOwo+ICsJc3RydWN0IG52MzFfbXBlZyAqbXBlZyA9IG52MzFfbXBlZyhk
-ZXZpY2UtPm1wZWcpOwo+ICsJc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSAmbXBlZy0+ZW5n
-aW5lLnN1YmRldjsKPiAgCXUzMiBpbnN0ID0gZGF0YSA8PCA0Owo+ICAJdTMyIGRtYTAgPSBudmtt
-X2luc3RtZW1fcmQzMihpbWVtLCBpbnN0ICsgMCk7Cj4gIAl1MzIgZG1hMSA9IG52a21faW5zdG1l
-bV9yZDMyKGltZW0sIGluc3QgKyA0KTsKPiBAQCAtMzksOCArNDEsMTEgQEAgbnY0MF9tcGVnX210
-aGRfZG1hKHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlLCB1MzIgbXRoZCwgdTMyIGRhdGEpCj4g
-IAl1MzIgc2l6ZSA9IGRtYTEgKyAxOwo+ICAKPiAgCS8qIG9ubHkgYWxsb3cgbGluZWFyIERNQSBv
-YmplY3RzICovCj4gLQlpZiAoIShkbWEwICYgMHgwMDAwMjAwMCkpCj4gKwlpZiAoIShkbWEwICYg
-MHgwMDAwMjAwMCkpIHsKPiArCQludmttX2Vycm9yKHN1YmRldiwgImluc3QgJTA4eCBkbWEwICUw
-OHggZG1hMSAlMDh4IGRtYTIgJTA4eFxuIiwKPiArCQkJICAgaW5zdCwgZG1hMCwgZG1hMSwgZG1h
-Mik7Cj4gIAkJcmV0dXJuIGZhbHNlOwo+ICsJfQo+ICAKPiAgCWlmIChtdGhkID09IDB4MDE5MCkg
-ewo+ICAJCS8qIERNQV9DTUQgKi8KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+
+--===============0136399196==
+Content-Type: multipart/alternative; boundary="15021211780.4299f.27707";
+ charset="UTF-8"
+
+
+--15021211780.4299f.27707
+Date: Mon, 7 Aug 2017 15:52:58 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99799
+
+--- Comment #5 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+Patch at [1] lets you run Civ6 without disabling optimizations. Please note
+that this patch will not be upstreamed, though!
+
+
+[1] https://patchwork.freedesktop.org/patch/169870/
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15021211780.4299f.27707
+Date: Mon, 7 Aug 2017 15:52:58 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Civilization VI makes nouveau crash on register allocatio=
+n"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Civilization VI makes nouveau crash on register allocatio=
+n"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99799">bug 99799<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tobias.klausmann&#64;mni.thm.de" title=3D"Tobias Klausmann &lt;tobias.klaus=
+mann&#64;mni.thm.de&gt;"> <span class=3D"fn">Tobias Klausmann</span></a>
+</span></b>
+        <pre>Patch at [1] lets you run Civ6 without disabling optimizations=
+. Please note
+that this patch will not be upstreamed, though!
+
+
+[1] <a href=3D"https://patchwork.freedesktop.org/patch/169870/">https://pat=
+chwork.freedesktop.org/patch/169870/</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15021211780.4299f.27707--
+
+--===============0136399196==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0136399196==--
