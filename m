@@ -1,108 +1,41 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102106] xorg crashes when running gscan2pdf
- (libgtk2-perl) test case
-Date: Tue, 08 Aug 2017 10:10:17 +0000
-Message-ID: <bug-102106-8800-OMMHZDSc2I@http.bugs.freedesktop.org/>
-References: <bug-102106-8800@http.bugs.freedesktop.org/>
+From: Vincent ABRIOU <vincent.abriou@st.com>
+Subject: Re: [PATCH 7/8] drm: Nuke drm_atomic_helper_connector_dpms
+Date: Tue, 8 Aug 2017 10:05:11 +0000
+Message-ID: <462c98df-2633-3c61-9ae6-e567780941c0@st.com>
+References: <20170725080122.20548-1-daniel.vetter@ffwll.ch>
+ <20170725080122.20548-8-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2079886010=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20170725080122.20548-8-daniel.vetter@ffwll.ch>
+Content-Language: en-US
+Content-ID: <C1D66642F494334E83389CC9FEAF0D3A@st.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: Martyn Welch <martyn.welch@collabora.co.uk>, Neil Armstrong <narmstrong@baylibre.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, DRI Development <dri-devel@lists.freedesktop.org>, "virtualization@lists.linux-foundation.org" <virtualization@lists.linux-foundation.org>, Tomi Valkeinen <tomi.valkeinen@ti.com>, "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Romain Perier <romain.perier@collabora.com>, Daniel Vetter <daniel.vetter@intel.com>, Jyri Sarha <jsarha@ti.com>, Marek Vasut <marex@denx.de>, "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, Kevin Hilman <khilman@baylibre.com>, Alexey Brodkin <abrodkin@synopsys.com>, Russell King <linux@armlinux.org.uk>, Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, Xinliang
 List-Id: nouveau.vger.kernel.org
 
-
---===============2079886010==
-Content-Type: multipart/alternative; boundary="15021870170.d8D8.31565";
- charset="UTF-8"
-
-
---15021870170.d8D8.31565
-Date: Tue, 8 Aug 2017 10:10:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102106
-
---- Comment #1 from jffry-VwIFZPTo/vqsTnJN9+BGXg@public.gmane.org ---
-This has been forwarded from Debian:
-
-https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D857620
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15021870170.d8D8.31565
-Date: Tue, 8 Aug 2017 10:10:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xorg crashes when running gscan2pdf (libgtk2-perl) test c=
-ase"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xorg crashes when running gscan2pdf (libgtk2-perl) test c=
-ase"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106">bug 10210=
-6</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jffry&#64;posteo.net" title=3D"jffry&#64;posteo.net">jffry&#64;posteo.net</=
-a>
-</span></b>
-        <pre>This has been forwarded from Debian:
-
-<a href=3D"https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D857620">http=
-s://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D857620</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15021870170.d8D8.31565--
-
---===============2079886010==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2079886010==--
+DQoNCk9uIDA3LzI1LzIwMTcgMTA6MDEgQU0sIERhbmllbCBWZXR0ZXIgd3JvdGU6DQo+IEl0J3Mg
+ZGVhZCBjb2RlLCB0aGUgY29yZSBoYW5kbGVzIGFsbCB0aGlzIGRpcmVjdGx5IG5vdy4NCj4gDQo+
+IFRoZSBvbmx5IHNwZWNpYWwgY2FzZSBpcyBub3V2ZWF1IGFuZCB0ZGE5ODh4IHdoaWNoIHVzZWQg
+b25lIGZ1bmN0aW9uDQo+IGZvciBib3RoIGxlZ2FjeSBtb2Rlc2V0IGNvZGUgYW5kIC1udjUwIGF0
+b21pYyB3b3JsZCBpbnN0ZWFkIG9mIDINCj4gdnRhYmxlcy4gQnV0IGFtb3VudHMgdG8gZXhhY3Rs
+eSB0aGUgc2FtZS4NCj4gDQo+IHYyOiBSZWJhc2Ugb3ZlciB0aGUgcGFuZWwvYnJpZGVnIHJlZmFj
+dG9yaW5ncyBpbiBzdG0vbHRkYy4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIg
+PGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPg0KDQpbLi4uXQ0KDQo+ICAgZHJpdmVycy9ncHUvZHJt
+L3N0aS9zdGlfZHZvLmMgICAgICAgICAgICAgICAgICAgICAgfCAgMSAtDQo+ICAgZHJpdmVycy9n
+cHUvZHJtL3N0aS9zdGlfaGRhLmMgICAgICAgICAgICAgICAgICAgICAgfCAgMSAtDQo+ICAgZHJp
+dmVycy9ncHUvZHJtL3N0aS9zdGlfaGRtaS5jICAgICAgICAgICAgICAgICAgICAgfCAgMSAtDQoN
+CkFja2VkLWJ5OiBWaW5jZW50IEFicmlvdSA8dmluY2VudC5hYnJpb3VAc3QuY29tPg0KDQpCUg0K
+VmluY2VudApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpk
+cmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
