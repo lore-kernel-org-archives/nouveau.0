@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101782] GTX1050TI (GP107 / NV137): HDMI output not
 	working
-Date: Tue, 08 Aug 2017 17:40:43 +0000
-Message-ID: <bug-101782-8800-FhOINqW5G2@http.bugs.freedesktop.org/>
+Date: Tue, 08 Aug 2017 20:26:56 +0000
+Message-ID: <bug-101782-8800-CQB6s57BxS@http.bugs.freedesktop.org/>
 References: <bug-101782-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1734700051=="
+Content-Type: multipart/mixed; boundary="===============0809105284=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101782-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1734700051==
-Content-Type: multipart/alternative; boundary="15022140431.fc18a0df.22772";
+--===============0809105284==
+Content-Type: multipart/alternative; boundary="15022240167.3f96f7F.1877";
  charset="UTF-8"
 
 
---15022140431.fc18a0df.22772
-Date: Tue, 8 Aug 2017 17:40:43 +0000
+--15022240167.3f96f7F.1877
+Date: Tue, 8 Aug 2017 20:26:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101782
 
-Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> changed:
+Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |INVALID
-             Status|NEW                         |RESOLVED
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=3D100228
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15022140431.fc18a0df.22772
-Date: Tue, 8 Aug 2017 17:40:43 +0000
+--15022240167.3f96f7F.1877
+Date: Tue, 8 Aug 2017 20:26:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,9 +59,9 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:carlo&#64=
-;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> <span cla=
-ss=3D"fn">Carlo Caione</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rhyskidd&=
+#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;"> <span cl=
+ass=3D"fn">Rhys Kidd</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
@@ -78,18 +78,11 @@ orking"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
+           <td style=3D"text-align:right;">See Also</td>
+           <td>
+               &nbsp;
            </td>
-           <td>INVALID
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
            </td>
          </tr></table>
       <p>
@@ -105,9 +98,9 @@ orking"
     </body>
 </html>=
 
---15022140431.fc18a0df.22772--
+--15022240167.3f96f7F.1877--
 
---===============1734700051==
+--===============0809105284==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1734700051==--
+--===============0809105284==--
