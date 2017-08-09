@@ -1,63 +1,188 @@
-From: Joe Kniss <djmk@google.com>
-Subject: Re: [PATCH libdrm] drm: Remove create_handle() drm_framebuffer
- "virtual".
-Date: Wed, 9 Aug 2017 16:13:05 -0700
-Message-ID: <CAOvnNvbEt=Uyve3cu_+6BB0EepvO=OKC6gpV3isRef+UdVoX-g@mail.gmail.com>
-References: <20170808234237.62051-1-djmk@google.com>
- <8a7bf59a-0f58-21ba-8b82-78e6ba873065@tronnes.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 102135] New: WARN_ON hit when loading G71 with
+	v4.13-rc3
+Date: Wed, 09 Aug 2017 23:44:52 +0000
+Message-ID: <bug-102135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <8a7bf59a-0f58-21ba-8b82-78e6ba873065@tronnes.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
-Cc: Michel Daenzer <michel.daenzer@amd.com>, dri-devel <dri-devel@lists.freedesktop.org>, "open list:VIRTIO CORE,
- NET..." <virtualization@lists.linux-foundation.org>, "Zhang,
- Jerry" <Jerry.Zhang@amd.com>, Thierry Reding <thierry.reding@gmail.com>, "Vetter, Daniel" <daniel.vetter@intel.com>, baoyou.xie@linaro.org, Alex Xie <AlexBin.Xie@amd.com>, "StDenis, Tom" <tom.stdenis@amd.com>, linux-samsung-soc <linux-samsung-soc@vger.kernel.org>, joe@perches.com, linux-mediatek@lists.infradead.org, Russell King <linux@armlinux.org.uk>, krzk@kernel.org, jonathanh@nvidia.com, "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>, Tomi Valkeinen <tomi.valkeinen@ti.com>, Ben Skeggs <bskeggs@redhat.com>, nouveau <nouveau@lists.freedesktop.org>, Kyungmin Park <kyungmin.park@samsung.com>, Xiaojie.Yuan@amd.com, Alexandre Demers <alexandre.f.demers@gmail.com>, Joe Kniss <djmk@chr>
+Content-Type: multipart/mixed; boundary="===============1533298582=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBBdWcgOSwgMjAxNyBhdCAxMjoxNCBQTSwgTm9yYWxmIFRyw7hubmVzIDxub3JhbGZA
-dHJvbm5lcy5vcmc+IHdyb3RlOgo+Cj4gRGVuIDA5LjA4LjIwMTcgMDEuNDIsIHNrcmV2IEpvZSBL
-bmlzczoKPj4KPj4gQmVjYXVzZSBhbGwgZHJpdmVycyBjdXJyZW50bHkgdXNlIGdlbSBvYmplY3Rz
-IGZvciBmcmFtZWJ1ZmZlciBwbGFuZXMsCj4+IHRoZSB2aXJ0dWFsIGNyZWF0ZV9oYW5kbGUoKSBp
-cyBub3QgcmVxdWlyZWQuICBUaGlzIGNoYW5nZSBhZGRzIGEKPj4gc3RydWN0IGRybV9nZW1fb2Jq
-ZWN0ICpnZW1zWzRdIGZpZWxkIHRvIGRybV9mcmFtZWJ1ZmZlciBhbmQgcmVtb3Zlcwo+PiBjcmVh
-dGVfaGFuZGxlKCkgZnVuY3Rpb24gcG9pbnRlciBmcm9tIGRybV9mcmFtZWJ1ZmZlcl9mdW5jcy4g
-IFRoZQo+PiBjb3JyZXNwb25kaW5nICpfY3JlYXRlX2hhbmRsZSgpIGZ1bmN0aW9uIGlzIHJlbW92
-ZWQgZnJvbSBlYWNoIGRyaXZlci4KPj4KPj4gSW4gbWFueSBjYXNlcyB0aGlzIGNoYW5nZSBlbGlt
-aW5hdGVzIGEgc3RydWN0ICpfZnJhbWVidWZmZXIgb2JqZWN0LAo+PiBhcyB0aGUgb25seSBuZWVk
-IGZvciB0aGUgZGVyaXZlZCBzdHJ1Y3QgaXMgdGhlIGFkZGl0aW9uIG9mIHRoZSBnZW0KPj4gb2Jq
-ZWN0IHBvaW50ZXIuCj4+Cj4+IFRFU1RFRDogY29tcGlsZWQ6IGFsbHllc2NvbmZpZyBBUkNIPXg4
-Nixhcm0gcGxhdGZvcm1zOmk5MTUsIHJvY2tjaGlwCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IEpvZSBL
-bmlzcyA8ZGpta0Bnb29nbGUuY29tPgo+PiAtLS0KPgo+Cj4gSGkgSm9lLAo+Cj4gSSdtIGFsc28g
-bG9va2luZyBpbnRvIGFkZGluZyBnZW0gb2JqcyB0byBkcm1fZnJhbWVidWZmZXIgaW4gdGhpcyBw
-YXRjaDoKPiBbUEFUQ0ggdjIgMDEvMjJdIGRybTogQWRkIEdFTSBiYWNrZWQgZnJhbWVidWZmZXIg
-bGlicmFyeQo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZl
-bC8yMDE3LUF1Z3VzdC8xNDk3ODIuaHRtbAo+CgpHcmVhdC4gIFRoZXJlJ3Mgb25seSBtaW5pbWFs
-IG92ZXJsYXAgaGVyZS4gIEknbGwgcmViYXNlIHRoaXMgY2hhbmdlIG9uIHlvdXJzCm9uY2UgaXQn
-cyBpbi4KCj4gWy4uLl0KPgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9mYl9j
-bWFfaGVscGVyLmMKPj4gYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2ZiX2NtYV9oZWxwZXIuYwo+PiBp
-bmRleCBhZGUzMTlkMTBlNzAuLmY1ZjAxMWI5MTBiMSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2RybV9mYl9jbWFfaGVscGVyLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9m
-Yl9jbWFfaGVscGVyLmMKPj4gQEAgLTMxLDE0ICszMSw5IEBACj4+ICAgICAjZGVmaW5lIERFRkFV
-TFRfRkJERUZJT19ERUxBWV9NUyA1MAo+PiAgIC1zdHJ1Y3QgZHJtX2ZiX2NtYSB7Cj4+IC0gICAg
-ICAgc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAgICAgICAgICBmYjsKPj4gLSAgICAgICBzdHJ1Y3Qg
-ZHJtX2dlbV9jbWFfb2JqZWN0ICAgICAgICpvYmpbNF07Cj4+IC19Owo+PiAtCj4+ICAgc3RydWN0
-IGRybV9mYmRldl9jbWEgewo+PiAgICAgICAgIHN0cnVjdCBkcm1fZmJfaGVscGVyICAgIGZiX2hl
-bHBlcjsKPj4gLSAgICAgICBzdHJ1Y3QgZHJtX2ZiX2NtYSAgICAgICAqZmI7Cj4+ICsgICAgICAg
-c3RydWN0IGRybV9mcmFtZWJ1ZmZlciAgKmZiOwo+Cj4KPiBUaGlzIGZiIHBvaW50ZXIgaXNuJ3Qg
-bmVjZXNzYXJ5LCBzaW5jZSBmYl9oZWxwZXIgYWxyZWFkeSBoYXMgb25lLgo+CgpJJ2xsIHJlbW92
-ZSBpdC4uLiBidXQgSSBhbSBzdXJlIHdoZW4gSSBsb29rIGRlZXBlciB0aGVyZSB3aWxsIGJlIG1v
-cmUKb2YgdGhlc2UgaW4gdGhlIHZhcmlvdXMgZHJpdmVycyB0b28uCgo+IE5vcmFsZi4KPgo+Cgot
-am9lCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1k
-ZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============1533298582==
+Content-Type: multipart/alternative; boundary="15023222921.cC1c05.20741";
+ charset="UTF-8"
+
+
+--15023222921.cC1c05.20741
+Date: Wed, 9 Aug 2017 23:44:52 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102135
+
+            Bug ID: 102135
+           Summary: WARN_ON hit when loading G71 with v4.13-rc3
+           Product: xorg
+           Version: unspecified
+          Hardware: PowerPC
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: aperez-P0qA4ro/4R/CXR85Y8Hu3Q@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 133417
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D133417&action=3Dedit
+dmesg on linux-4.13-rc4 ppc64
+
+Filing at the request of Ilia Mirkin
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15023222921.cC1c05.20741
+Date: Wed, 9 Aug 2017 23:44:52 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - WARN_ON hit when loading G71 with v4.13-rc3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135">102135</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>WARN_ON hit when loading G71 with v4.13-rc3
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>PowerPC
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>aperez&#64;alexperez.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D133417=
+" name=3D"attach_133417" title=3D"dmesg on linux-4.13-rc4 ppc64">attachment=
+ 133417</a> <a href=3D"attachment.cgi?id=3D133417&amp;action=3Dedit" title=
+=3D"dmesg on linux-4.13-rc4 ppc64">[details]</a></span>
+dmesg on linux-4.13-rc4 ppc64
+
+Filing at the request of Ilia Mirkin</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15023222921.cC1c05.20741--
+
+--===============1533298582==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1533298582==--
