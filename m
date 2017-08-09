@@ -1,149 +1,122 @@
-From: Joe Kniss <djmk-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [Intel-gfx] [PATCH libdrm] drm: Remove create_handle()
- drm_framebuffer "virtual".
-Date: Tue, 8 Aug 2017 16:53:45 -0700
-Message-ID: <CAOvnNvbEdMA-8bGiZquYEoLGUPTc083-EbUn6UpAZvd7khGixw@mail.gmail.com>
-References: <20170808234237.62051-1-djmk@google.com>
- <CAPM=9tzQuont4B9ybMXEDpqP583V_G64ypCR4E+zGvxLGdTULw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 71900] [NV40] GPU lockup and segmentation fault of
+ Nouveau-1.0.10 on PowerMac G5 with acceleration
+Date: Wed, 09 Aug 2017 16:02:18 +0000
+Message-ID: <bug-71900-8800-DVHdW9Izu7@http.bugs.freedesktop.org/>
+References: <bug-71900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0183168959=="
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAPM=9tzQuont4B9ybMXEDpqP583V_G64ypCR4E+zGvxLGdTULw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org>, Edward O'Callaghan <funfunctor-dczkZgxz+BNUPWh3PAxdjQ@public.gmane.org>, Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "open list:VIRTIO CORE,
- NET..." <virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "Vetter, Daniel" <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, baoyou.xie-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org, Alex Xie <AlexBin.Xie-5C7GfCeVMHo@public.gmane.org>, "StDenis, Tom" <tom.stdenis-5C7GfCeVMHo@public.gmane.org>, zhoucm1 <David1.Zhou-5C7GfCeVMHo@public.gmane.org>, linux-samsung-soc <linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Joonyoung Shim <jy0922.shim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>, =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf-L59+Z2yzLopAfugRpC6u6w@public.gmane.org>, Russell King <linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, krzk-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, "open list:ARM/Rockchip SoC..." <linux-rockchip@list>
+Content-Type: multipart/mixed; boundary="===============0877557931=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-71900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0183168959==
-Content-Type: multipart/alternative; boundary="001a113cdeaa859de8055646ac90"
 
---001a113cdeaa859de8055646ac90
+--===============0877557931==
+Content-Type: multipart/alternative; boundary="15022945380.2BdBC31F.32696";
+ charset="UTF-8"
+
+
+--15022945380.2BdBC31F.32696
+Date: Wed, 9 Aug 2017 16:02:18 +0000
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-I didn't mean to add libdrm, sorry, there is a separate change for that.
-I'll double check and test the drivers that don't implement the virtual.
+https://bugs.freedesktop.org/show_bug.cgi?id=3D71900
 
-Thanks for the quick reply!
+--- Comment #12 from Alex Perez <aperez-P0qA4ro/4R/CXR85Y8Hu3Q@public.gmane.org> ---
+Ping, this bug is zombified. It's been open for nearly five years now, and
+hasn't had a comment in over two years.=20
 
--j
+Ben, two years ago, you wrote "I plan on attempting to untangle the vm mess=
+ in
+the next few weeks, and this will be one of the things I'll attempt to addr=
+ess
+while doing so."
 
-On Tue, Aug 8, 2017 at 4:50 PM, Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+Did anything ever come of that?
 
-> On 9 August 2017 at 09:42, Joe Kniss <djmk-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org> wrote:
-> > Because all drivers currently use gem objects for framebuffer planes,
-> > the virtual create_handle() is not required.  This change adds a
-> > struct drm_gem_object *gems[4] field to drm_framebuffer and removes
-> > create_handle() function pointer from drm_framebuffer_funcs.  The
-> > corresponding *_create_handle() function is removed from each driver.
-> >
-> > In many cases this change eliminates a struct *_framebuffer object,
-> > as the only need for the derived struct is the addition of the gem
-> > object pointer.
->
-> Why the libdrm in the tag? this isn't for libdrm.
->
-> This will break drivers that don't current implement the virtual at all.
->
-> I think vwmgfx.
->
-> The current code checks if the virtual is there before callng it, this code
-> just calls the gem code always.
->
-> Dave.
->
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
 
-
-
--- 
-Dr. Joe Michael Kniss |  Google ChromeOS |  djmk-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org   |
-1-801-898-7977
-
---001a113cdeaa859de8055646ac90
+--15022945380.2BdBC31F.32696
+Date: Wed, 9 Aug 2017 16:02:18 +0000
+MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-<div dir=3D"ltr">I didn&#39;t mean to add libdrm, sorry, there is a separat=
-e change for that.=C2=A0 I&#39;ll double check and test the drivers that do=
-n&#39;t implement the virtual. =C2=A0<div><br></div><div>Thanks for the qui=
-ck reply!</div><div><br></div><div>-j</div></div><div class=3D"gmail_extra"=
-><br><div class=3D"gmail_quote">On Tue, Aug 8, 2017 at 4:50 PM, Dave Airlie=
- <span dir=3D"ltr">&lt;<a href=3D"mailto:airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blan=
-k">airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
-"><span class=3D"">On 9 August 2017 at 09:42, Joe Kniss &lt;<a href=3D"mail=
-to:djmk-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org">djmk-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org</a>&gt; wrote:<br>
-&gt; Because all drivers currently use gem objects for framebuffer planes,<=
-br>
-&gt; the virtual create_handle() is not required.=C2=A0 This change adds a<=
-br>
-&gt; struct drm_gem_object *gems[4] field to drm_framebuffer and removes<br=
->
-&gt; create_handle() function pointer from drm_framebuffer_funcs.=C2=A0 The=
-<br>
-&gt; corresponding *_create_handle() function is removed from each driver.<=
-br>
-&gt;<br>
-&gt; In many cases this change eliminates a struct *_framebuffer object,<br=
->
-&gt; as the only need for the derived struct is the addition of the gem<br>
-&gt; object pointer.<br>
-<br>
-</span>Why the libdrm in the tag? this isn&#39;t for libdrm.<br>
-<br>
-This will break drivers that don&#39;t current implement the virtual at all=
-.<br>
-<br>
-I think vwmgfx.<br>
-<br>
-The current code checks if the virtual is there before callng it, this code=
-<br>
-just calls the gem code always.<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Dave.<br>
-</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
-r><div class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div di=
-r=3D"ltr"><div><div dir=3D"ltr"><table cellspacing=3D"0" cellpadding=3D"0" =
-style=3D"text-align:center;color:rgb(80,0,80);font-family:&#39;Times New Ro=
-man&#39;"><tbody><tr style=3D"color:rgb(85,85,85);font-family:sans-serif;fo=
-nt-size:small"><td nowrap style=3D"border-top-style:solid;border-top-color:=
-rgb(213,15,37);border-top-width:2px"><font size=3D"1"><font face=3D"garamon=
-d, serif">Dr. Joe Michael Kniss </font>|</font></td><td nowrap style=3D"bor=
-der-top-style:solid;border-top-color:rgb(51,105,232);border-top-width:2px">=
-<font size=3D"1">=C2=A0<font face=3D"garamond, serif"><font color=3D"#0b539=
-4">G</font><font color=3D"#cc0000">o</font><font color=3D"#bf9000">o</font>=
-<font color=3D"#0b5394">g</font><font color=3D"#38761d">l</font><font color=
-=3D"#cc0000">e</font><font color=3D"#000000">=C2=A0</font><font color=3D"#4=
-44444">ChromeOS</font></font><font color=3D"#000000">=C2=A0</font>|</font><=
-/td><td nowrap style=3D"border-top-style:solid;border-top-color:rgb(0,153,5=
-7);border-top-width:2px"><font size=3D"1"><font face=3D"garamond, serif">=
-=C2=A0<a href=3D"mailto:djmk-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org" target=3D"_blank">djmk<font color=
-=3D"#1155cc">@google.com</font></a>=C2=A0</font>=C2=A0</font></td><td nowra=
-p style=3D"border-top-style:solid;border-top-color:rgb(238,178,17);border-t=
-op-width:2px"><font size=3D"1"><a value=3D"+16504298119" style=3D"color:rgb=
-(17,85,204)">| </a><font face=3D"garamond, serif"><font color=3D"#1155cc">1=
--801-898-7977</font><br></font></font></td></tr></tbody></table></div></div=
-></div></div>
-</div>
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV40] GPU lockup and segmentation fault of Nouveau-1.0.1=
+0 on PowerMac G5 with acceleration"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71900#c12">Commen=
+t # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV40] GPU lockup and segmentation fault of Nouveau-1.0.1=
+0 on PowerMac G5 with acceleration"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71900">bug 71900<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+aperez&#64;alexperez.com" title=3D"Alex Perez &lt;aperez&#64;alexperez.com&=
+gt;"> <span class=3D"fn">Alex Perez</span></a>
+</span></b>
+        <pre>Ping, this bug is zombified. It's been open for nearly five ye=
+ars now, and
+hasn't had a comment in over two years.=20
 
---001a113cdeaa859de8055646ac90--
+Ben, two years ago, you wrote &quot;I plan on attempting to untangle the vm=
+ mess in
+the next few weeks, and this will be one of the things I'll attempt to addr=
+ess
+while doing so.&quot;
 
---===============0183168959==
+Did anything ever come of that?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15022945380.2BdBC31F.32696--
+
+--===============0877557931==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0183168959==--
+--===============0877557931==--
