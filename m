@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71900] [NV40] GPU lockup and segmentation fault of
  Nouveau-1.0.10 on PowerMac G5 with acceleration
-Date: Wed, 09 Aug 2017 16:02:18 +0000
-Message-ID: <bug-71900-8800-DVHdW9Izu7@http.bugs.freedesktop.org/>
+Date: Wed, 09 Aug 2017 16:21:20 +0000
+Message-ID: <bug-71900-8800-DftEpNwCs3@http.bugs.freedesktop.org/>
 References: <bug-71900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0877557931=="
+Content-Type: multipart/mixed; boundary="===============1556621164=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0877557931==
-Content-Type: multipart/alternative; boundary="15022945380.2BdBC31F.32696";
+--===============1556621164==
+Content-Type: multipart/alternative; boundary="15022956790.dC36.3574";
  charset="UTF-8"
 
 
---15022945380.2BdBC31F.32696
-Date: Wed, 9 Aug 2017 16:02:18 +0000
+--15022956790.dC36.3574
+Date: Wed, 9 Aug 2017 16:21:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,24 +36,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D71900
 
---- Comment #12 from Alex Perez <aperez-P0qA4ro/4R/CXR85Y8Hu3Q@public.gmane.org> ---
-Ping, this bug is zombified. It's been open for nearly five years now, and
-hasn't had a comment in over two years.=20
+--- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Alex, which issue are you talking about? Like almost every issue where some=
+one
+says "me too", they actually have a totally different issue. Here's a list =
+of
+problems:
 
-Ben, two years ago, you wrote "I plan on attempting to untangle the vm mess=
- in
-the next few weeks, and this will be one of the things I'll attempt to addr=
-ess
-while doing so."
+- MSI is broken
+- 64k pages are broken
+- Undiagnosed issue with the NV40 AGP
 
-Did anything ever come of that?
+AFAIK all these issues are wholly unrelated to each other.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15022945380.2BdBC31F.32696
-Date: Wed, 9 Aug 2017 16:02:18 +0000
+--15022956790.dC36.3574
+Date: Wed, 9 Aug 2017 16:21:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,8 +72,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV40] GPU lockup and segmentation fault of Nouveau-1.0.1=
 0 on PowerMac G5 with acceleration"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71900#c12">Commen=
-t # 12</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71900#c13">Commen=
+t # 13</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV40] GPU lockup and segmentation fault of Nouveau-1.0.1=
@@ -80,20 +81,20 @@ t # 12</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71900">bug 71900<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-aperez&#64;alexperez.com" title=3D"Alex Perez &lt;aperez&#64;alexperez.com&=
-gt;"> <span class=3D"fn">Alex Perez</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Ping, this bug is zombified. It's been open for nearly five ye=
-ars now, and
-hasn't had a comment in over two years.=20
+        <pre>Alex, which issue are you talking about? Like almost every iss=
+ue where someone
+says &quot;me too&quot;, they actually have a totally different issue. Here=
+'s a list of
+problems:
 
-Ben, two years ago, you wrote &quot;I plan on attempting to untangle the vm=
- mess in
-the next few weeks, and this will be one of the things I'll attempt to addr=
-ess
-while doing so.&quot;
+- MSI is broken
+- 64k pages are broken
+- Undiagnosed issue with the NV40 AGP
 
-Did anything ever come of that?</pre>
+AFAIK all these issues are wholly unrelated to each other.</pre>
         </div>
       </p>
 
@@ -107,9 +108,9 @@ Did anything ever come of that?</pre>
     </body>
 </html>=
 
---15022945380.2BdBC31F.32696--
+--15022956790.dC36.3574--
 
---===============0877557931==
+--===============1556621164==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0877557931==--
+--===============1556621164==--
