@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
-	]
-Date: Thu, 10 Aug 2017 02:24:40 +0000
-Message-ID: <bug-100423-8800-LUrk7aTjuR@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102135] WARN_ON hit when loading G71 with v4.13-rc4
+Date: Thu, 10 Aug 2017 03:55:29 +0000
+Message-ID: <bug-102135-8800-zTyQdy23Mw@http.bugs.freedesktop.org/>
+References: <bug-102135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0284697286=="
+Content-Type: multipart/mixed; boundary="===============0628327908=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-102135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0284697286==
-Content-Type: multipart/alternative; boundary="15023318802.C316f4Edb.27931";
+--===============0628327908==
+Content-Type: multipart/alternative; boundary="15023373282.BfAa.18901";
  charset="UTF-8"
 
 
---15023318802.C316f4Edb.27931
-Date: Thu, 10 Aug 2017 02:24:40 +0000
+--15023373282.BfAa.18901
+Date: Thu, 10 Aug 2017 03:55:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102135
 
---- Comment #5 from rosenp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I've bisected the issue. It happens with this commit:
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Should be fixed by:
 
-
-fb/gf100-: modify constructors to allow more customisation
+https://github.com/skeggsb/nouveau/commit/33d8409a5cd51f347ab3f5b848b82b331=
+ac7e279
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15023318802.C316f4Edb.27931
-Date: Thu, 10 Aug 2017 02:24:40 +0000
+--15023373282.BfAa.18901
+Date: Thu, 10 Aug 2017 03:55:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,22 +62,23 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c5">Commen=
-t # 5</a>
+   title=3D"NEW - WARN_ON hit when loading G71 with v4.13-rc4"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
+   title=3D"NEW - WARN_ON hit when loading G71 with v4.13-rc4"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135">bug 10213=
+5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rosenp&#64;gmail.com" title=3D"rosenp&#64;gmail.com">rosenp&#64;gmail.com</=
-a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I've bisected the issue. It happens with this commit:
+        <pre>Should be fixed by:
 
-
-fb/gf100-: modify constructors to allow more customisation</pre>
+<a href=3D"https://github.com/skeggsb/nouveau/commit/33d8409a5cd51f347ab3f5=
+b848b82b331ac7e279">https://github.com/skeggsb/nouveau/commit/33d8409a5cd51=
+f347ab3f5b848b82b331ac7e279</a></pre>
         </div>
       </p>
 
@@ -92,9 +92,9 @@ fb/gf100-: modify constructors to allow more customisation</pre>
     </body>
 </html>=
 
---15023318802.C316f4Edb.27931--
+--15023373282.BfAa.18901--
 
---===============0284697286==
+--===============0628327908==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0284697286==--
+--===============0628327908==--
