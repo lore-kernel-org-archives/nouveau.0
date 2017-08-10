@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 102135] WARN_ON hit when loading G71 with v4.13-rc4
-Date: Wed, 09 Aug 2017 23:45:23 +0000
-Message-ID: <bug-102135-8800-THm3e61env@http.bugs.freedesktop.org/>
+Date: Thu, 10 Aug 2017 00:46:04 +0000
+Message-ID: <bug-102135-8800-WTshdcm9HC@http.bugs.freedesktop.org/>
 References: <bug-102135-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1987913219=="
+Content-Type: multipart/mixed; boundary="===============0456361736=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-102135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1987913219==
-Content-Type: multipart/alternative; boundary="15023223231.EFC5a6.20726";
+--===============0456361736==
+Content-Type: multipart/alternative; boundary="15023259640.DdeFab3a4.3504";
  charset="UTF-8"
 
 
---15023223231.EFC5a6.20726
-Date: Wed, 9 Aug 2017 23:45:23 +0000
+--15023259640.DdeFab3a4.3504
+Date: Thu, 10 Aug 2017 00:46:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D102135
 
---- Comment #1 from Alex Perez <aperez-P0qA4ro/4R/CXR85Y8Hu3Q@public.gmane.org> ---
-Created attachment 133418
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D133418&action=3Dedit
-attached G71 vbios from this board.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The issue at hand being the multiple
+
+WARNING: CPU: 0 PID: 1 at drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.c:1=
+80
+.nvkm_outp_init+0x170/0x2d0
+
+which happen inside nvkm_disp_init. According to Alex, the board works fine
+(except for MSI being broken, but that's unrelated).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15023223231.EFC5a6.20726
-Date: Wed, 9 Aug 2017 23:45:23 +0000
+--15023259640.DdeFab3a4.3504
+Date: Thu, 10 Aug 2017 00:46:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,22 +67,25 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - WARN_ON hit when loading G71 with v4.13-rc4"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - WARN_ON hit when loading G71 with v4.13-rc4"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135">bug 10213=
 5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-aperez&#64;alexperez.com" title=3D"Alex Perez &lt;aperez&#64;alexperez.com&=
-gt;"> <span class=3D"fn">Alex Perez</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D133418=
-" name=3D"attach_133418" title=3D"attached G71 vbios from this board.">atta=
-chment 133418</a> <a href=3D"attachment.cgi?id=3D133418&amp;action=3Dedit" =
-title=3D"attached G71 vbios from this board.">[details]</a></span>
-attached G71 vbios from this board.</pre>
+        <pre>The issue at hand being the multiple
+
+WARNING: CPU: 0 PID: 1 at drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.c:1=
+80
+.nvkm_outp_init+0x170/0x2d0
+
+which happen inside nvkm_disp_init. According to Alex, the board works fine
+(except for MSI being broken, but that's unrelated).</pre>
         </div>
       </p>
 
@@ -91,9 +99,9 @@ attached G71 vbios from this board.</pre>
     </body>
 </html>=
 
---15023223231.EFC5a6.20726--
+--15023259640.DdeFab3a4.3504--
 
---===============1987913219==
+--===============0456361736==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1987913219==--
+--===============0456361736==--
