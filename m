@@ -1,40 +1,115 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] pci/msi: disable MSI on big-endian platforms by default
-Date: Thu, 10 Aug 2017 12:13:40 -0400
-Message-ID: <20170810161340.17928-1-imirkin@alum.mit.edu>
-Return-path: <stable-owner@vger.kernel.org>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ilia Mirkin <imirkin@alum.mit.edu>, stable@vger.kernel.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 102106] xorg crashes when running gscan2pdf
+ (libgtk2-perl) test case
+Date: Thu, 10 Aug 2017 17:37:30 +0000
+Message-ID: <bug-102106-8800-p3ZybfPsgc@http.bugs.freedesktop.org/>
+References: <bug-102106-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============1542219985=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-102106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-It appears that MSI does not work on either G5 PPC nor on a E5500-based
-platform, where other hardware is reported to work fine with MSI.
 
-Both tests were conducted with NV4x hardware, so perhaps other (or even
-this) hardware can be made to work. It's still possible to force-enable
-with config=NvMSI=1 on load.
+--===============1542219985==
+Content-Type: multipart/alternative; boundary="15023866500.BBAcA.8581";
+ charset="UTF-8"
 
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: stable@vger.kernel.org
----
- drm/nouveau/nvkm/subdev/pci/base.c | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/drm/nouveau/nvkm/subdev/pci/base.c b/drm/nouveau/nvkm/subdev/pci/base.c
-index eb9b2781..a4cb8249 100644
---- a/drm/nouveau/nvkm/subdev/pci/base.c
-+++ b/drm/nouveau/nvkm/subdev/pci/base.c
-@@ -192,6 +192,10 @@ nvkm_pci_new_(const struct nvkm_pci_func *func, struct nvkm_device *device,
- 		}
- 	}
- 
-+#ifdef __BIG_ENDIAN
-+	pci->msi = false;
-+#endif
-+
- 	pci->msi = nvkm_boolopt(device->cfgopt, "NvMSI", pci->msi);
- 	if (pci->msi && func->msi_rearm) {
- 		pci->msi = pci_enable_msi(pci->pdev) == 0;
--- 
-2.13.0
+--15023866500.BBAcA.8581
+Date: Thu, 10 Aug 2017 17:37:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102106
+
+--- Comment #5 from jffry-VwIFZPTo/vqsTnJN9+BGXg@public.gmane.org ---
+The other two that crash X for me are:
+
+t/124_cancel_save_djvu.t
+
+t/252_cancel_negate.t
+
+Do you have things still set up to try those, too?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15023866500.BBAcA.8581
+Date: Thu, 10 Aug 2017 17:37:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xorg crashes when running gscan2pdf (libgtk2-perl) test c=
+ase"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xorg crashes when running gscan2pdf (libgtk2-perl) test c=
+ase"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106">bug 10210=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jffry&#64;posteo.net" title=3D"jffry&#64;posteo.net">jffry&#64;posteo.net</=
+a>
+</span></b>
+        <pre>The other two that crash X for me are:
+
+t/124_cancel_save_djvu.t
+
+t/252_cancel_negate.t
+
+Do you have things still set up to try those, too?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15023866500.BBAcA.8581--
+
+--===============1542219985==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1542219985==--
