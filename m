@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102135] WARN_ON hit when loading G71 with v4.13-rc4
-Date: Thu, 10 Aug 2017 00:46:04 +0000
-Message-ID: <bug-102135-8800-WTshdcm9HC@http.bugs.freedesktop.org/>
-References: <bug-102135-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102106] xorg crashes when running gscan2pdf
+ (libgtk2-perl) test case
+Date: Thu, 10 Aug 2017 02:11:07 +0000
+Message-ID: <bug-102106-8800-ypl155yvJ0@http.bugs.freedesktop.org/>
+References: <bug-102106-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0456361736=="
+Content-Type: multipart/mixed; boundary="===============1049868744=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-102106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0456361736==
-Content-Type: multipart/alternative; boundary="15023259640.DdeFab3a4.3504";
+--===============1049868744==
+Content-Type: multipart/alternative; boundary="15023310670.2Dea7C9.24827";
  charset="UTF-8"
 
 
---15023259640.DdeFab3a4.3504
-Date: Thu, 10 Aug 2017 00:46:04 +0000
+--15023310670.2Dea7C9.24827
+Date: Thu, 10 Aug 2017 02:11:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102135
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102106
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The issue at hand being the multiple
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Works for me...
 
-WARNING: CPU: 0 PID: 1 at drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.c:1=
-80
-.nvkm_outp_init+0x170/0x2d0
+$ DISPLAY=3D:1 PERL5LIB=3D"blib:lib:$PERL5LIB" perl t/114_cancel_save_pdf.t=
+=20
+1..1
+test.jpg JPEG 70x46 70x46+0+0 8-bit sRGB 2649B 0.000u 0:00.000
+ok 1 - can create a valid JPG after cancelling save PDF process
 
-which happen inside nvkm_disp_init. According to Alex, the board works fine
-(except for MSI being broken, but that's unrelated).
+Where DISPLAY=3D:1 is running on a G92 GPU.
+
+Xorg 1.19.3 + xf86-video-nouveau 1.0.15
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15023259640.DdeFab3a4.3504
-Date: Thu, 10 Aug 2017 00:46:04 +0000
+--15023310670.2Dea7C9.24827
+Date: Thu, 10 Aug 2017 02:11:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,26 +70,31 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - WARN_ON hit when loading G71 with v4.13-rc4"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135#c2">Commen=
-t # 2</a>
+   title=3D"NEW - xorg crashes when running gscan2pdf (libgtk2-perl) test c=
+ase"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - WARN_ON hit when loading G71 with v4.13-rc4"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135">bug 10213=
-5</a>
+   title=3D"NEW - xorg crashes when running gscan2pdf (libgtk2-perl) test c=
+ase"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106">bug 10210=
+6</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>The issue at hand being the multiple
+        <pre>Works for me...
 
-WARNING: CPU: 0 PID: 1 at drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.c:1=
-80
-.nvkm_outp_init+0x170/0x2d0
+$ DISPLAY=3D:1 PERL5LIB=3D&quot;blib:lib:$PERL5LIB&quot; perl t/114_cancel_=
+save_pdf.t=20
+1..1
+test.jpg JPEG 70x46 70x46+0+0 8-bit sRGB 2649B 0.000u 0:00.000
+ok 1 - can create a valid JPG after cancelling save PDF process
 
-which happen inside nvkm_disp_init. According to Alex, the board works fine
-(except for MSI being broken, but that's unrelated).</pre>
+Where DISPLAY=3D:1 is running on a G92 GPU.
+
+Xorg 1.19.3 + xf86-video-nouveau 1.0.15</pre>
         </div>
       </p>
 
@@ -99,9 +108,9 @@ which happen inside nvkm_disp_init. According to Alex, the board works fine
     </body>
 </html>=
 
---15023259640.DdeFab3a4.3504--
+--15023310670.2Dea7C9.24827--
 
---===============0456361736==
+--===============1049868744==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0456361736==--
+--===============1049868744==--
