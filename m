@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 102106] xorg crashes when running gscan2pdf
  (libgtk2-perl) test case
-Date: Thu, 10 Aug 2017 17:37:30 +0000
-Message-ID: <bug-102106-8800-p3ZybfPsgc@http.bugs.freedesktop.org/>
+Date: Thu, 10 Aug 2017 17:44:34 +0000
+Message-ID: <bug-102106-8800-JWRU3JQcWe@http.bugs.freedesktop.org/>
 References: <bug-102106-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1542219985=="
+Content-Type: multipart/mixed; boundary="===============0116993782=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-102106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1542219985==
-Content-Type: multipart/alternative; boundary="15023866500.BBAcA.8581";
+--===============0116993782==
+Content-Type: multipart/alternative; boundary="15023870742.Abbb82.10420";
  charset="UTF-8"
 
 
---15023866500.BBAcA.8581
-Date: Thu, 10 Aug 2017 17:37:30 +0000
+--15023870742.Abbb82.10420
+Date: Thu, 10 Aug 2017 17:44:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D102106
 
---- Comment #5 from jffry-VwIFZPTo/vqsTnJN9+BGXg@public.gmane.org ---
-The other two that crash X for me are:
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Well, my guess is there's something more going on. What GPU do you have? I =
+can
+try running on a GK208 GPU as well (just wasn't easy to do immediately since
+that's my main one, but I can start a second X session separately).
 
-t/124_cancel_save_djvu.t
-
-t/252_cancel_negate.t
-
-Do you have things still set up to try those, too?
+[Yes, it's relatively easy for me to test, but not this second.]
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15023866500.BBAcA.8581
-Date: Thu, 10 Aug 2017 17:37:30 +0000
+--15023870742.Abbb82.10420
+Date: Thu, 10 Aug 2017 17:44:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - xorg crashes when running gscan2pdf (libgtk2-perl) test c=
 ase"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg crashes when running gscan2pdf (libgtk2-perl) test c=
@@ -77,16 +76,15 @@ ase"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106">bug 10210=
 6</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jffry&#64;posteo.net" title=3D"jffry&#64;posteo.net">jffry&#64;posteo.net</=
-a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>The other two that crash X for me are:
+        <pre>Well, my guess is there's something more going on. What GPU do=
+ you have? I can
+try running on a GK208 GPU as well (just wasn't easy to do immediately since
+that's my main one, but I can start a second X session separately).
 
-t/124_cancel_save_djvu.t
-
-t/252_cancel_negate.t
-
-Do you have things still set up to try those, too?</pre>
+[Yes, it's relatively easy for me to test, but not this second.]</pre>
         </div>
       </p>
 
@@ -100,9 +98,9 @@ Do you have things still set up to try those, too?</pre>
     </body>
 </html>=
 
---15023866500.BBAcA.8581--
+--15023870742.Abbb82.10420--
 
---===============1542219985==
+--===============0116993782==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1542219985==--
+--===============0116993782==--
