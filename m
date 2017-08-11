@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101601] Nvidia GT 1030 (NV138/GP108) support
-Date: Fri, 11 Aug 2017 09:48:38 +0000
-Message-ID: <bug-101601-8800-koFHIjDOGI@http.bugs.freedesktop.org/>
-References: <bug-101601-8800@http.bugs.freedesktop.org/>
+From: Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Document nouveau support for Tegra
+	in DRIVER_DESC
+Date: Fri, 11 Aug 2017 06:56:16 -0400
+Message-ID: <20170811105616.9727-1-rhyskidd@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0901991457=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,93 +16,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0901991457==
-Content-Type: multipart/alternative; boundary="15024449181.AF5eaEf0.32683";
- charset="UTF-8"
-
-
---15024449181.AF5eaEf0.32683
-Date: Fri, 11 Aug 2017 09:48:38 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101601
-
---- Comment #15 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
-The patch titled " disp/gf119-: avoid creating non-existent heads " is not =
-in
-linux-next, does this mean it's no longer planned for inclusion in 4.14?
-
-Also I guess the GP108 one is still pending the mmiotrace analysis?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15024449181.AF5eaEf0.32683
-Date: Fri, 11 Aug 2017 09:48:38 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c15">Comme=
-nt # 15</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601">bug 10160=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
-gt;"> <span class=3D"fn">Daniel Drake</span></a>
-</span></b>
-        <pre>The patch titled &quot; disp/gf119-: avoid creating non-existe=
-nt heads &quot; is not in
-linux-next, does this mean it's no longer planned for inclusion in 4.14?
-
-Also I guess the GP108 one is still pending the mmiotrace analysis?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15024449181.AF5eaEf0.32683--
-
---===============0901991457==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0901991457==--
+bm91dmVhdSBzdXBwb3J0cyB0aGUgVGVncmEgSzEgYW5kIGhpZ2hlciBhZnRlciB0aGUgU29DLWJh
+c2VkIEdQVXMgY29udmVyZ2VkCndpdGggdGhlIG1haW4gR2VGb3JjZSBHUFUgZmFtaWxpZXMuCgpT
+aWduZWQtb2ZmLWJ5OiBSaHlzIEtpZGQgPHJoeXNraWRkQGdtYWlsLmNvbT4KLS0tCiBkcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oIHwgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEg
+aW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+ZHJ2LmgKaW5kZXggODIyZmUxZDRkMzVlLi5mYmU0MmVjMGE1ZjEgMTAwNjQ0Ci0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9kcnYuaApAQCAtNSw3ICs1LDcgQEAKICNkZWZpbmUgRFJJVkVSX0VNQUlM
+CQkibm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmciCiAKICNkZWZpbmUgRFJJVkVSX05BTUUJ
+CSJub3V2ZWF1IgotI2RlZmluZSBEUklWRVJfREVTQwkJIm5WaWRpYSBSaXZhL1ROVC9HZUZvcmNl
+L1F1YWRyby9UZXNsYSIKKyNkZWZpbmUgRFJJVkVSX0RFU0MJCSJuVmlkaWEgUml2YS9UTlQvR2VG
+b3JjZS9RdWFkcm8vVGVzbGEvVGVncmEiCiAjZGVmaW5lIERSSVZFUl9EQVRFCQkiMjAxMjA4MDEi
+CiAKICNkZWZpbmUgRFJJVkVSX01BSk9SCQkxCi0tIAoyLjExLjAKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
