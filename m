@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
  409800 [ TIMEOUT ]
-Date: Sun, 13 Aug 2017 10:52:32 +0000
-Message-ID: <bug-100228-8800-wVmYSClylv@http.bugs.freedesktop.org/>
+Date: Sun, 13 Aug 2017 13:31:53 +0000
+Message-ID: <bug-100228-8800-U4yONPTyuS@http.bugs.freedesktop.org/>
 References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2006297987=="
+Content-Type: multipart/mixed; boundary="===============1459661950=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2006297987==
-Content-Type: multipart/alternative; boundary="15026215523.e38d7f0.21907";
+--===============1459661950==
+Content-Type: multipart/alternative; boundary="15026311141.888Da.25818";
  charset="UTF-8"
 
 
---15026215523.e38d7f0.21907
-Date: Sun, 13 Aug 2017 10:52:32 +0000
+--15026311141.888Da.25818
+Date: Sun, 13 Aug 2017 13:31:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,15 +36,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
 
---- Comment #13 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
-Same as https://bugs.freedesktop.org/show_bug.cgi?id=3D101764#c3
+--- Comment #14 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+*** Bug 102192 has been marked as a duplicate of this bug. ***
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15026215523.e38d7f0.21907
-Date: Sun, 13 Aug 2017 10:52:32 +0000
+--15026311141.888Da.25818
+Date: Sun, 13 Aug 2017 13:31:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
 OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c13">Comme=
-nt # 13</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c14">Comme=
+nt # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
@@ -71,15 +71,16 @@ OUT ]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
 8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
-<span class=3D"fn">Carlo Caione</span></a>
+rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
+ <span class=3D"fn">Rhys Kidd</span></a>
 </span></b>
-        <pre>Same as <a class=3D"bz_bug_link=20
+        <pre>*** <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - [regression] eaa2c988033b breaks GTX1050TI=
- (GP107 / NV137)"
-   href=3D"show_bug.cgi?id=3D101764#c3">https://bugs.freedesktop.org/show_b=
-ug.cgi?id=3D101764#c3</a></pre>
+   title=3D"RESOLVED DUPLICATE - Dell XPS 15 9560: PU: 1 PID: 58 at drivers=
+/gpu/drm/nouveau/nvkm/subdev/mmu/gf100.c:190 gf100_vm_flush+0x1b3/0x1c0 [no=
+uveau]"
+   href=3D"show_bug.cgi?id=3D102192">Bug 102192</a> has been marked as a du=
+plicate of this bug. ***</pre>
         </div>
       </p>
 
@@ -93,9 +94,9 @@ ug.cgi?id=3D101764#c3</a></pre>
     </body>
 </html>=
 
---15026215523.e38d7f0.21907--
+--15026311141.888Da.25818--
 
---===============2006297987==
+--===============1459661950==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2006297987==--
+--===============1459661950==--
