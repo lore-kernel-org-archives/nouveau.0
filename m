@@ -1,206 +1,86 @@
-From: Michal Hocko <mhocko@kernel.org>
-Subject: nouveau driver locks up with 4.11 kernel
-Date: Mon, 14 Aug 2017 21:18:19 +0200
-Message-ID: <20170814191818.GA20455@dhcp22.suse.cz>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: nouveau driver locks up with 4.11 kernel
+Date: Mon, 14 Aug 2017 15:27:20 -0400
+Message-ID: <CAKb7UvhCt1gw=oOyTtnPHH88f3vNE2s4Dc7QvtH1qd382bN9_A@mail.gmail.com>
+References: <20170814191818.GA20455@dhcp22.suse.cz>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20170814191818.GA20455-2MMpYkNvuYDjFM9bn6wA6Q@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Michal Hocko <mhocko-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi,
-I am having issues with nouveau driver in 4.11 Debian distribution
-kernel. I can start X session but the screen locks up e.g. when I try to
-exit mplayer fullscreen mode. The lock is swamped with tons of
-nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-
-messages and I also can see some warnings
- ------------[ cut here ]------------
- WARNING: CPU: 1 PID: 3535 at /build/linux-J4LMtv/linux-4.11.6/drivers/gpu/drm/nouveau/nvkm/engine/fifo/gpfifogf100.c:85 gf100_fifo_gpfifo_engine_fini+0x14f/0x1d0 [nouveau]
- nouveau 0000:03:00.0: timeout
- Modules linked in: nouveau mxm_wmi wmi ttm cpufreq_powersave cpufreq_conservative cpufreq_userspace iptable_filter iptable_nat nf_conntrack_ipv4 nf_defrag_ipv4 nf_nat_ipv4 nf_nat iptable_mangle ip_tables x_tables binfmt_misc nfsd auth_rpcgss oid_registry nfs_acl nfs lockd grace fscache sunrpc i2c_sis96x hwmon_vid nf_conntrack_ftp nf_conntrack fuse i2c_dev thermal fan ac battery ntfs snd_intel8x0 snd_ac97_codec ac97_bus psmouse lp snd_hda_codec_realtek snd_hda_codec_hdmi snd_hda_codec_generic snd_hda_intel ppdev intel_powerclamp iTCO_wdt iTCO_vendor_support snd_hda_codec coretemp gma500_gfx snd_hda_core evdev serio_raw drm_kms_helper snd_hwdep snd_pcm_oss pcspkr snd_mixer_oss snd_pcm drm snd_seq_midi snd_seq_midi_event sg snd_rawmidi snd_seq snd_seq_device snd_timer parport_pc snd soundcor
- e
-  parport i2c_algo_bit shpchp lpc_ich tpm_infineon mfd_core video button ext4 crc16 jbd2 fscrypto ecb crypto_simd cryptd aes_i586 mbcache raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c crc32c_generic raid0 multipath linear uas usb_storage dm_mod raid1 md_mod sd_mod hid_generic usbhid hid ahci libahci libata i2c_i801 scsi_mod ehci_pci uhci_hcd e1000e ptp pps_core ehci_hcd usbcore usb_common
- CPU: 1 PID: 3535 Comm: mpv/vo Tainted: G        W       4.11.0-1-686-pae #1 Debian 4.11.6-1
- Hardware name:                  /D2500HN, BIOS MUCDT10N.86A.0073.2012.1101.1638 11/01/2012
- Call Trace:
-  ? dump_stack+0x55/0x73
-  ? __warn+0xea/0x110
-  ? gf100_fifo_gpfifo_engine_fini+0x14f/0x1d0 [nouveau]
-  ? gf100_fifo_gpfifo_engine_fini+0x14f/0x1d0 [nouveau]
-  ? warn_slowpath_fmt+0x46/0x60
-  ? gf100_fifo_gpfifo_engine_fini+0x14f/0x1d0 [nouveau]
-  ? gf100_fifo_gpfifo_engine_addr.isra.1+0xa0/0xa0 [nouveau]
-  ? nvkm_fifo_chan_child_fini+0x4e/0x120 [nouveau]
-  ? nvkm_object_del+0x58/0x90 [nouveau]
-  ? ktime_get+0x4b/0x110
-  ? nvkm_oproxy_fini+0x23/0x80 [nouveau]
-  ? nvkm_object_fini+0x137/0x300 [nouveau]
-  ? nvkm_ioctl_del+0x8c/0xa0 [nouveau]
-  ? nvkm_ioctl+0x100/0x290 [nouveau]
-  ? __check_object_size+0x9e/0x13c
-  ? __check_object_size+0x9e/0x13c
-  ? nvif_client_ioctl+0x2b/0x40 [nouveau]
-  ? usif_ioctl+0x4eb/0x790 [nouveau]
-  ? nouveau_drm_ioctl+0xab/0xb0 [nouveau]
-  ? nouveau_pmops_resume+0x80/0x80 [nouveau]
-  ? do_vfs_ioctl+0x91/0x6b0
-  ? SyS_ioctl+0x60/0x70
-  ? do_fast_syscall_32+0x8a/0x150
-  ? entry_SYSENTER_32+0x4e/0x7c
- ---[ end trace 1bf6c731018c2e52 ]---
-
-followed by
-nouveau 0000:03:00.0: fifo: channel 6 [mpv/vo[3535]] kick timeout
-nouveau: mpv/vo[3535]:00000000:0000906f: detach gr failed, -110
-
-Then there are
-nouveau 0000:03:00.0: mpv/vo[3535]: failed to idle channel 6 [mpv/vo[3535]]
-
-Is this a known issue? 
-
-$ grep "kernel: nouveau" /var/log/kern.log | sed 's@.*kernel: @@' | uniq -c
-grep "kernel: nouveau" /var/log/kern.log | sed 's@.*kernel: @@' | uniq -c
-      1 nouveau 0000:03:00.0: NVIDIA GF119 (0d90a0a1)
-      1 nouveau 0000:03:00.0: bios: version 75.19.1b.00.01
-      1 nouveau 0000:03:00.0: bios: OOB 1 144b0928 144b0928
-      1 nouveau 0000:03:00.0: bios: OOB 1 00f11900 00f11900
-      1 nouveau 0000:03:00.0: fb: 512 MiB DDR3
-      1 nouveau 0000:03:00.0: DRM: VRAM: 512 MiB
-      1 nouveau 0000:03:00.0: DRM: GART: 1048576 MiB
-      1 nouveau 0000:03:00.0: DRM: TMDS table version 2.0
-      1 nouveau 0000:03:00.0: DRM: DCB version 4.0
-      1 nouveau 0000:03:00.0: DRM: DCB outp 00: 02000300 00000000
-      1 nouveau 0000:03:00.0: DRM: DCB outp 01: 01000302 00020030
-      1 nouveau 0000:03:00.0: DRM: DCB outp 02: 02011362 00020010
-      1 nouveau 0000:03:00.0: DRM: DCB outp 03: 04022310 00000000
-      1 nouveau 0000:03:00.0: DRM: DCB conn 00: 00001030
-      1 nouveau 0000:03:00.0: DRM: DCB conn 01: 00002161
-      1 nouveau 0000:03:00.0: DRM: DCB conn 02: 00000200
-      1 nouveau 0000:03:00.0: hwmon_device_register() is deprecated. Please convert the driver to use hwmon_device_register_with_info().
-      1 nouveau 0000:03:00.0: DRM: MM: using COPY0 for buffer copies
-      1 nouveau 0000:03:00.0: DRM: allocated 1920x1080 fb: 0x60000, bo f1000000
-      1 nouveau 0000:03:00.0: fb0: nouveaufb frame buffer device
-    110 nouveau 0000:03:00.0: fifo: INTR 01000000: 00000005
-      1 nouveau 0000:03:00.0: DRM: suspending console...
-      1 nouveau 0000:03:00.0: DRM: suspending display...
-      1 nouveau 0000:03:00.0: DRM: evicting buffers...
-      1 nouveau 0000:03:00.0: DRM: waiting for kernel channels to go idle...
-      1 nouveau 0000:03:00.0: DRM: suspending fence...
-      1 nouveau 0000:03:00.0: DRM: suspending object tree...
-      1 nouveau 0000:03:00.0: DRM: resuming object tree...
-      1 nouveau 0000:03:00.0: DRM: resuming fence...
-      1 nouveau 0000:03:00.0: DRM: resuming display...
-      1 nouveau 0000:03:00.0: DRM: resuming console...
-    184 nouveau 0000:03:00.0: fifo: INTR 01000000: 00000005
-      1 nouveau 0000:03:00.0: fifo: INTR 00010000: 00000001
-      1 nouveau 0000:03:00.0: fifo: INTR 00800000
-     59 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: timeout
-      1 nouveau 0000:03:00.0: fifo: channel 6 [mpv/vo[3535]] kick timeout
-      1 nouveau: mpv/vo[3535]:00000000:0000906f: detach gr failed, -110
-      1 nouveau 0000:03:00.0: fifo: SCHED_ERROR 0d []
-     59 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: timeout
-      1 nouveau 0000:03:00.0: fifo: channel 6 [mpv/vo[3535]] kick timeout
-      1 nouveau: mpv/vo[3535]:00000000:0000906f: detach sw failed, -110
-    447 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: mpv/vo[3535]: failed to idle channel 6 [mpv/vo[3535]]
-    446 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: mpv/vo[3535]: failed to idle channel 6 [mpv/vo[3535]]
-      1 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: SCHED_ERROR 0d []
-     59 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: runlist update timeout
-      1 nouveau 0000:03:00.0: fifo: INTR 00000001: 00000003
-    821 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: PBDMA0: 00000002 [] ch 6 [0000000000 unknown] subc 0 mthd 001c data 00000002
-   3637 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: x-terminal-emul[3280]: failed to idle channel 5 [x-terminal-emul[3280]]
-    446 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: x-terminal-emul[3280]: failed to idle channel 5 [x-terminal-emul[3280]]
-     60 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: timeout
-      1 nouveau 0000:03:00.0: fifo: channel 5 [x-terminal-emul[3280]] kick timeout
-      1 nouveau: x-terminal-emul[3280]:00000000:0000906f: detach gr failed, -110
-     60 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: timeout
-      1 nouveau 0000:03:00.0: fifo: channel 5 [x-terminal-emul[3280]] kick timeout
-      1 nouveau: x-terminal-emul[3280]:00000000:0000906f: detach sw failed, -110
-      1 nouveau 0000:03:00.0: fifo: SCHED_ERROR 0d []
-     59 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: runlist update timeout
-    447 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: Xorg[3059]: failed to idle channel 4 [Xorg[3059]]
-    447 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: Xorg[3059]: failed to idle channel 4 [Xorg[3059]]
-     59 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: timeout
-      1 nouveau 0000:03:00.0: fifo: channel 4 [Xorg[3059]] kick timeout
-      1 nouveau: Xorg[3059]:00000000:0000906f: detach gr failed, -110
-     60 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: timeout
-      1 nouveau 0000:03:00.0: fifo: channel 4 [Xorg[3059]] kick timeout
-      1 nouveau: Xorg[3059]:00000000:0000906f: detach sw failed, -110
-      1 nouveau 0000:03:00.0: fifo: SCHED_ERROR 0d []
-     60 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: runlist update timeout
-    446 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: Xorg[3059]: failed to idle channel 3 [Xorg[3059]]
-     60 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: timeout
-      1 nouveau 0000:03:00.0: fifo: channel 3 [Xorg[3059]] kick timeout
-      1 nouveau: Xorg[3059]:00000000:0000906f: detach ce0 failed, -110
-    446 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: Xorg[3059]: failed to idle channel 3 [Xorg[3059]]
-      1 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: SCHED_ERROR 0d []
-     60 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: runlist update timeout
-    446 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: Xorg[3059]: failed to idle channel 2 [Xorg[3059]]
-     60 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: timeout
-      1 nouveau 0000:03:00.0: fifo: channel 2 [Xorg[3059]] kick timeout
-      1 nouveau: Xorg[3059]:00000000:0000906f: detach sw failed, -110
-     60 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: timeout
-      1 nouveau 0000:03:00.0: fifo: channel 2 [Xorg[3059]] kick timeout
-      1 nouveau: Xorg[3059]:00000000:0000906f: detach gr failed, -110
-    446 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: Xorg[3059]: failed to idle channel 2 [Xorg[3059]]
-      1 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: SCHED_ERROR 0d []
-     60 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: runlist update timeout
-     59 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: DRM: EVO timeout
-     10 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: SCHED_ERROR 0d []
-     59 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: runlist update timeout
-      3 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: SCHED_ERROR 0d []
-     59 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: runlist update timeout
-    447 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: Xorg[3739]: failed to idle channel 3 [Xorg[3739]]
-    446 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: Xorg[3739]: failed to idle channel 3 [Xorg[3739]]
-    447 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: Xorg[3739]: failed to idle channel 3 [Xorg[3739]]
-    446 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: Xorg[3739]: failed to idle channel 3 [Xorg[3739]]
-    447 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: Xorg[3739]: failed to idle channel 3 [Xorg[3739]]
-      6 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: SCHED_ERROR 0d []
-     59 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
-      1 nouveau 0000:03:00.0: fifo: runlist update timeout
-   4249 nouveau 0000:03:00.0: fifo: SCHED_ERROR 13 []
--- 
-Michal Hocko
-SUSE Labs
+T24gTW9uLCBBdWcgMTQsIDIwMTcgYXQgMzoxOCBQTSwgTWljaGFsIEhvY2tvIDxtaG9ja29Aa2Vy
+bmVsLm9yZz4gd3JvdGU6Cj4gSGksCj4gSSBhbSBoYXZpbmcgaXNzdWVzIHdpdGggbm91dmVhdSBk
+cml2ZXIgaW4gNC4xMSBEZWJpYW4gZGlzdHJpYnV0aW9uCj4ga2VybmVsLiBJIGNhbiBzdGFydCBY
+IHNlc3Npb24gYnV0IHRoZSBzY3JlZW4gbG9ja3MgdXAgZS5nLiB3aGVuIEkgdHJ5IHRvCj4gZXhp
+dCBtcGxheWVyIGZ1bGxzY3JlZW4gbW9kZS4gVGhlIGxvY2sgaXMgc3dhbXBlZCB3aXRoIHRvbnMg
+b2YKPiBub3V2ZWF1IDAwMDA6MDM6MDAuMDogZmlmbzogU0NIRURfRVJST1IgMTMgW10KPgo+IG1l
+c3NhZ2VzIGFuZCBJIGFsc28gY2FuIHNlZSBzb21lIHdhcm5pbmdzCj4gIC0tLS0tLS0tLS0tLVsg
+Y3V0IGhlcmUgXS0tLS0tLS0tLS0tLQo+ICBXQVJOSU5HOiBDUFU6IDEgUElEOiAzNTM1IGF0IC9i
+dWlsZC9saW51eC1KNExNdHYvbGludXgtNC4xMS42L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
+a20vZW5naW5lL2ZpZm8vZ3BmaWZvZ2YxMDAuYzo4NSBnZjEwMF9maWZvX2dwZmlmb19lbmdpbmVf
+ZmluaSsweDE0Zi8weDFkMCBbbm91dmVhdV0KPiAgbm91dmVhdSAwMDAwOjAzOjAwLjA6IHRpbWVv
+dXQKPiAgTW9kdWxlcyBsaW5rZWQgaW46IG5vdXZlYXUgbXhtX3dtaSB3bWkgdHRtIGNwdWZyZXFf
+cG93ZXJzYXZlIGNwdWZyZXFfY29uc2VydmF0aXZlIGNwdWZyZXFfdXNlcnNwYWNlIGlwdGFibGVf
+ZmlsdGVyIGlwdGFibGVfbmF0IG5mX2Nvbm50cmFja19pcHY0IG5mX2RlZnJhZ19pcHY0IG5mX25h
+dF9pcHY0IG5mX25hdCBpcHRhYmxlX21hbmdsZSBpcF90YWJsZXMgeF90YWJsZXMgYmluZm10X21p
+c2MgbmZzZCBhdXRoX3JwY2dzcyBvaWRfcmVnaXN0cnkgbmZzX2FjbCBuZnMgbG9ja2QgZ3JhY2Ug
+ZnNjYWNoZSBzdW5ycGMgaTJjX3Npczk2eCBod21vbl92aWQgbmZfY29ubnRyYWNrX2Z0cCBuZl9j
+b25udHJhY2sgZnVzZSBpMmNfZGV2IHRoZXJtYWwgZmFuIGFjIGJhdHRlcnkgbnRmcyBzbmRfaW50
+ZWw4eDAgc25kX2FjOTdfY29kZWMgYWM5N19idXMgcHNtb3VzZSBscCBzbmRfaGRhX2NvZGVjX3Jl
+YWx0ZWsgc25kX2hkYV9jb2RlY19oZG1pIHNuZF9oZGFfY29kZWNfZ2VuZXJpYyBzbmRfaGRhX2lu
+dGVsIHBwZGV2IGludGVsX3Bvd2VyY2xhbXAgaVRDT193ZHQgaVRDT192ZW5kb3Jfc3VwcG9ydCBz
+bmRfaGRhX2NvZGVjIGNvcmV0ZW1wIGdtYTUwMF9nZnggc25kX2hkYV9jb3JlIGV2ZGV2IHNlcmlv
+X3JhdyBkcm1fa21zX2hlbHBlciBzbmRfaHdkZXAgc25kX3BjbV9vc3MgcGNzcGtyIHNuZF9taXhl
+cl9vc3Mgc25kX3BjbSBkcm0gc25kX3NlcV9taWRpIHNuZF9zZXFfbWlkaV9ldmVudCBzZyBzbmRf
+cmF3bWlkaSBzbmRfc2VxIHNuZF9zZXFfZGV2aWNlIHNuZF90aW1lciBwYXJwb3J0X3BjIHNuZCBz
+b3VuZGNvcmUKPiAgIHBhcnBvcnQgaTJjX2FsZ29fYml0IHNocGNocCBscGNfaWNoIHRwbV9pbmZp
+bmVvbiBtZmRfY29yZSB2aWRlbyBidXR0b24gZXh0NCBjcmMxNiBqYmQyIGZzY3J5cHRvIGVjYiBj
+cnlwdG9fc2ltZCBjcnlwdGQgYWVzX2k1ODYgbWJjYWNoZSByYWlkMTAgcmFpZDQ1NiBhc3luY19y
+YWlkNl9yZWNvdiBhc3luY19tZW1jcHkgYXN5bmNfcHEgYXN5bmNfeG9yIGFzeW5jX3R4IHhvciBy
+YWlkNl9wcSBsaWJjcmMzMmMgY3JjMzJjX2dlbmVyaWMgcmFpZDAgbXVsdGlwYXRoIGxpbmVhciB1
+YXMgdXNiX3N0b3JhZ2UgZG1fbW9kIHJhaWQxIG1kX21vZCBzZF9tb2QgaGlkX2dlbmVyaWMgdXNi
+aGlkIGhpZCBhaGNpIGxpYmFoY2kgbGliYXRhIGkyY19pODAxIHNjc2lfbW9kIGVoY2lfcGNpIHVo
+Y2lfaGNkIGUxMDAwZSBwdHAgcHBzX2NvcmUgZWhjaV9oY2QgdXNiY29yZSB1c2JfY29tbW9uCj4g
+IENQVTogMSBQSUQ6IDM1MzUgQ29tbTogbXB2L3ZvIFRhaW50ZWQ6IEcgICAgICAgIFcgICAgICAg
+NC4xMS4wLTEtNjg2LXBhZSAjMSBEZWJpYW4gNC4xMS42LTEKPiAgSGFyZHdhcmUgbmFtZTogICAg
+ICAgICAgICAgICAgICAvRDI1MDBITiwgQklPUyBNVUNEVDEwTi44NkEuMDA3My4yMDEyLjExMDEu
+MTYzOCAxMS8wMS8yMDEyCj4gIENhbGwgVHJhY2U6Cj4gICA/IGR1bXBfc3RhY2srMHg1NS8weDcz
+Cj4gICA/IF9fd2FybisweGVhLzB4MTEwCj4gICA/IGdmMTAwX2ZpZm9fZ3BmaWZvX2VuZ2luZV9m
+aW5pKzB4MTRmLzB4MWQwIFtub3V2ZWF1XQo+ICAgPyBnZjEwMF9maWZvX2dwZmlmb19lbmdpbmVf
+ZmluaSsweDE0Zi8weDFkMCBbbm91dmVhdV0KPiAgID8gd2Fybl9zbG93cGF0aF9mbXQrMHg0Ni8w
+eDYwCj4gICA/IGdmMTAwX2ZpZm9fZ3BmaWZvX2VuZ2luZV9maW5pKzB4MTRmLzB4MWQwIFtub3V2
+ZWF1XQo+ICAgPyBnZjEwMF9maWZvX2dwZmlmb19lbmdpbmVfYWRkci5pc3JhLjErMHhhMC8weGEw
+IFtub3V2ZWF1XQo+ICAgPyBudmttX2ZpZm9fY2hhbl9jaGlsZF9maW5pKzB4NGUvMHgxMjAgW25v
+dXZlYXVdCj4gICA/IG52a21fb2JqZWN0X2RlbCsweDU4LzB4OTAgW25vdXZlYXVdCj4gICA/IGt0
+aW1lX2dldCsweDRiLzB4MTEwCj4gICA/IG52a21fb3Byb3h5X2ZpbmkrMHgyMy8weDgwIFtub3V2
+ZWF1XQo+ICAgPyBudmttX29iamVjdF9maW5pKzB4MTM3LzB4MzAwIFtub3V2ZWF1XQo+ICAgPyBu
+dmttX2lvY3RsX2RlbCsweDhjLzB4YTAgW25vdXZlYXVdCj4gICA/IG52a21faW9jdGwrMHgxMDAv
+MHgyOTAgW25vdXZlYXVdCj4gICA/IF9fY2hlY2tfb2JqZWN0X3NpemUrMHg5ZS8weDEzYwo+ICAg
+PyBfX2NoZWNrX29iamVjdF9zaXplKzB4OWUvMHgxM2MKPiAgID8gbnZpZl9jbGllbnRfaW9jdGwr
+MHgyYi8weDQwIFtub3V2ZWF1XQo+ICAgPyB1c2lmX2lvY3RsKzB4NGViLzB4NzkwIFtub3V2ZWF1
+XQo+ICAgPyBub3V2ZWF1X2RybV9pb2N0bCsweGFiLzB4YjAgW25vdXZlYXVdCj4gICA/IG5vdXZl
+YXVfcG1vcHNfcmVzdW1lKzB4ODAvMHg4MCBbbm91dmVhdV0KPiAgID8gZG9fdmZzX2lvY3RsKzB4
+OTEvMHg2YjAKPiAgID8gU3lTX2lvY3RsKzB4NjAvMHg3MAo+ICAgPyBkb19mYXN0X3N5c2NhbGxf
+MzIrMHg4YS8weDE1MAo+ICAgPyBlbnRyeV9TWVNFTlRFUl8zMisweDRlLzB4N2MKPiAgLS0tWyBl
+bmQgdHJhY2UgMWJmNmM3MzEwMThjMmU1MiBdLS0tCj4KPiBmb2xsb3dlZCBieQo+IG5vdXZlYXUg
+MDAwMDowMzowMC4wOiBmaWZvOiBjaGFubmVsIDYgW21wdi92b1szNTM1XV0ga2ljayB0aW1lb3V0
+Cj4gbm91dmVhdTogbXB2L3ZvWzM1MzVdOjAwMDAwMDAwOjAwMDA5MDZmOiBkZXRhY2ggZ3IgZmFp
+bGVkLCAtMTEwCgpBcmUgeW91IHVzaW5nIG1wdiBpbiBjb25qdW5jdGlvbiB3aXRoIHRoZSBHTCB2
+aWRlbyBvdXRwdXQgYW5kClZEUEFVLWJhc2VkIGFjY2VsZXJhdGlvbj8gVGhhdCB3aWxsIGtpbGwg
+bm91dmVhdS4gRm9yIFZEUEFVLCBJCnJlY29tbWVuZCBtcGxheWVyLgoKQ2hlZXJzLAoKICAtaWxp
+YQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
+IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
