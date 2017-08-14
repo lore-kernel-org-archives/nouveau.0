@@ -1,33 +1,52 @@
-From: Michal Hocko <mhocko@kernel.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Subject: Re: nouveau driver locks up with 4.11 kernel
-Date: Mon, 14 Aug 2017 22:29:40 +0200
-Message-ID: <20170814202939.GA23014@dhcp22.suse.cz>
+Date: Mon, 14 Aug 2017 16:35:18 -0400
+Message-ID: <CAKb7UviWDhCB9hh2imq6v61uF0DsA1D2g3G4TON6Bk+7vQKnSw@mail.gmail.com>
 References: <20170814191818.GA20455@dhcp22.suse.cz>
  <CAKb7UvhCt1gw=oOyTtnPHH88f3vNE2s4Dc7QvtH1qd382bN9_A@mail.gmail.com>
+ <20170814202939.GA23014@dhcp22.suse.cz>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <CAKb7UvhCt1gw=oOyTtnPHH88f3vNE2s4Dc7QvtH1qd382bN9_A@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20170814202939.GA23014-2MMpYkNvuYDjFM9bn6wA6Q@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Michal Hocko <mhocko-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon 14-08-17 15:27:20, Ilia Mirkin wrote:
-> On Mon, Aug 14, 2017 at 3:18 PM, Michal Hocko <mhocko@kernel.org> wrote:
-[...]
-> > nouveau 0000:03:00.0: fifo: channel 6 [mpv/vo[3535]] kick timeout
-> > nouveau: mpv/vo[3535]:00000000:0000906f: detach gr failed, -110
-> 
-> Are you using mpv in conjunction with the GL video output and
-> VDPAU-based acceleration? That will kill nouveau. For VDPAU, I
-> recommend mplayer.
-
-Well, I am using mplayer package and vo=sdl. Which video output should I
-try instead? Btw. xine seems to be using VDPAU as well, yet it doesn't
-lockup the whole X session. The videou output doesn't work properly
-either but at least I am able to kill xine and still have the session.
--- 
-Michal Hocko
-SUSE Labs
+T24gTW9uLCBBdWcgMTQsIDIwMTcgYXQgNDoyOSBQTSwgTWljaGFsIEhvY2tvIDxtaG9ja29Aa2Vy
+bmVsLm9yZz4gd3JvdGU6Cj4gT24gTW9uIDE0LTA4LTE3IDE1OjI3OjIwLCBJbGlhIE1pcmtpbiB3
+cm90ZToKPj4gT24gTW9uLCBBdWcgMTQsIDIwMTcgYXQgMzoxOCBQTSwgTWljaGFsIEhvY2tvIDxt
+aG9ja29Aa2VybmVsLm9yZz4gd3JvdGU6Cj4gWy4uLl0KPj4gPiBub3V2ZWF1IDAwMDA6MDM6MDAu
+MDogZmlmbzogY2hhbm5lbCA2IFttcHYvdm9bMzUzNV1dIGtpY2sgdGltZW91dAo+PiA+IG5vdXZl
+YXU6IG1wdi92b1szNTM1XTowMDAwMDAwMDowMDAwOTA2ZjogZGV0YWNoIGdyIGZhaWxlZCwgLTEx
+MAo+Pgo+PiBBcmUgeW91IHVzaW5nIG1wdiBpbiBjb25qdW5jdGlvbiB3aXRoIHRoZSBHTCB2aWRl
+byBvdXRwdXQgYW5kCj4+IFZEUEFVLWJhc2VkIGFjY2VsZXJhdGlvbj8gVGhhdCB3aWxsIGtpbGwg
+bm91dmVhdS4gRm9yIFZEUEFVLCBJCj4+IHJlY29tbWVuZCBtcGxheWVyLgo+Cj4gV2VsbCwgSSBh
+bSB1c2luZyBtcGxheWVyIHBhY2thZ2UgYW5kIHZvPXNkbC4gV2hpY2ggdmlkZW8gb3V0cHV0IHNo
+b3VsZCBJCgpXZWxsLCBhY2NvcmRpbmcgdG8gdGhlIGxvZ3MgeW91J3JlIHVzaW5nICJtcHYiLCB3
+aGljaCwgYWxvbmcgd2l0aAptcGxheWVyMiwgaXMgbm90IG1wbGF5ZXIuIEkgcmVjb21tZW5kIG1w
+bGF5ZXIuIE5vdCBzdXJlIHdoYXQgdGhlIHNkbAp2aWRlbyBvdXRwdXQgZG9lcyBUQkgsIEkndmUg
+bmV2ZXIgdXNlZCBpdCAtLSBwZXJoYXBzIG1wdiBzdGlsbCBtYW5hZ2VzCnRvIHVzZSBHTCBmb3Ig
+dGhhdD8geHYgYW5kIHZkcGF1IGFyZSBvbmVzIHRvIHVzZS4gWyBJbiBvcmRlciB0byB1c2UKVkRQ
+QVUgZm9yIGRlY29kaW5nLCB5b3Ugb2YgY291cnNlIGhhdmUgdG8gZm9sbG93IHRoZSBpbnN0cnVj
+dGlvbnMgYXQKaHR0cHM6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93aWtpL1ZpZGVvQWNjZWxl
+cmF0aW9uLyNmaXJtd2FyZSBdCgo+IHRyeSBpbnN0ZWFkPyBCdHcuIHhpbmUgc2VlbXMgdG8gYmUg
+dXNpbmcgVkRQQVUgYXMgd2VsbCwgeWV0IGl0IGRvZXNuJ3QKPiBsb2NrdXAgdGhlIHdob2xlIFgg
+c2Vzc2lvbi4gVGhlIHZpZGVvdSBvdXRwdXQgZG9lc24ndCB3b3JrIHByb3Blcmx5Cj4gZWl0aGVy
+IGJ1dCBhdCBsZWFzdCBJIGFtIGFibGUgdG8ga2lsbCB4aW5lIGFuZCBzdGlsbCBoYXZlIHRoZSBz
+ZXNzaW9uLgoKSGFwcHkgdG8gZXhwbGFpbiBhbGwgdGhlIGRpcnR5IGRldGFpbHMgb24gSVJDIGlm
+IHlvdSdyZSBjdXJpb3VzLiBEb2luZwp0aGluZ3MgaW4gbXVsdGlwbGUgdGhyZWFkcyBraWxscyBu
+b3V2ZWF1LCBhbmQgbXB2IGRvZXMgcHJlY2lzZWx5IHRoYXQuCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
