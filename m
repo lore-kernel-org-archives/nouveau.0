@@ -1,15 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: nouveau driver locks up with 4.11 kernel
-Date: Mon, 14 Aug 2017 16:35:18 -0400
-Message-ID: <CAKb7UviWDhCB9hh2imq6v61uF0DsA1D2g3G4TON6Bk+7vQKnSw@mail.gmail.com>
-References: <20170814191818.GA20455@dhcp22.suse.cz>
- <CAKb7UvhCt1gw=oOyTtnPHH88f3vNE2s4Dc7QvtH1qd382bN9_A@mail.gmail.com>
- <20170814202939.GA23014@dhcp22.suse.cz>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 102106] xorg crashes when running gscan2pdf
+ (libgtk2-perl) test case
+Date: Mon, 14 Aug 2017 20:51:38 +0000
+Message-ID: <bug-102106-8800-In6OEU9u5r@http.bugs.freedesktop.org/>
+References: <bug-102106-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1314921800=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170814202939.GA23014-2MMpYkNvuYDjFM9bn6wA6Q@public.gmane.org>
+In-Reply-To: <bug-102106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,34 +17,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Michal Hocko <mhocko-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBBdWcgMTQsIDIwMTcgYXQgNDoyOSBQTSwgTWljaGFsIEhvY2tvIDxtaG9ja29Aa2Vy
-bmVsLm9yZz4gd3JvdGU6Cj4gT24gTW9uIDE0LTA4LTE3IDE1OjI3OjIwLCBJbGlhIE1pcmtpbiB3
-cm90ZToKPj4gT24gTW9uLCBBdWcgMTQsIDIwMTcgYXQgMzoxOCBQTSwgTWljaGFsIEhvY2tvIDxt
-aG9ja29Aa2VybmVsLm9yZz4gd3JvdGU6Cj4gWy4uLl0KPj4gPiBub3V2ZWF1IDAwMDA6MDM6MDAu
-MDogZmlmbzogY2hhbm5lbCA2IFttcHYvdm9bMzUzNV1dIGtpY2sgdGltZW91dAo+PiA+IG5vdXZl
-YXU6IG1wdi92b1szNTM1XTowMDAwMDAwMDowMDAwOTA2ZjogZGV0YWNoIGdyIGZhaWxlZCwgLTEx
-MAo+Pgo+PiBBcmUgeW91IHVzaW5nIG1wdiBpbiBjb25qdW5jdGlvbiB3aXRoIHRoZSBHTCB2aWRl
-byBvdXRwdXQgYW5kCj4+IFZEUEFVLWJhc2VkIGFjY2VsZXJhdGlvbj8gVGhhdCB3aWxsIGtpbGwg
-bm91dmVhdS4gRm9yIFZEUEFVLCBJCj4+IHJlY29tbWVuZCBtcGxheWVyLgo+Cj4gV2VsbCwgSSBh
-bSB1c2luZyBtcGxheWVyIHBhY2thZ2UgYW5kIHZvPXNkbC4gV2hpY2ggdmlkZW8gb3V0cHV0IHNo
-b3VsZCBJCgpXZWxsLCBhY2NvcmRpbmcgdG8gdGhlIGxvZ3MgeW91J3JlIHVzaW5nICJtcHYiLCB3
-aGljaCwgYWxvbmcgd2l0aAptcGxheWVyMiwgaXMgbm90IG1wbGF5ZXIuIEkgcmVjb21tZW5kIG1w
-bGF5ZXIuIE5vdCBzdXJlIHdoYXQgdGhlIHNkbAp2aWRlbyBvdXRwdXQgZG9lcyBUQkgsIEkndmUg
-bmV2ZXIgdXNlZCBpdCAtLSBwZXJoYXBzIG1wdiBzdGlsbCBtYW5hZ2VzCnRvIHVzZSBHTCBmb3Ig
-dGhhdD8geHYgYW5kIHZkcGF1IGFyZSBvbmVzIHRvIHVzZS4gWyBJbiBvcmRlciB0byB1c2UKVkRQ
-QVUgZm9yIGRlY29kaW5nLCB5b3Ugb2YgY291cnNlIGhhdmUgdG8gZm9sbG93IHRoZSBpbnN0cnVj
-dGlvbnMgYXQKaHR0cHM6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93aWtpL1ZpZGVvQWNjZWxl
-cmF0aW9uLyNmaXJtd2FyZSBdCgo+IHRyeSBpbnN0ZWFkPyBCdHcuIHhpbmUgc2VlbXMgdG8gYmUg
-dXNpbmcgVkRQQVUgYXMgd2VsbCwgeWV0IGl0IGRvZXNuJ3QKPiBsb2NrdXAgdGhlIHdob2xlIFgg
-c2Vzc2lvbi4gVGhlIHZpZGVvdSBvdXRwdXQgZG9lc24ndCB3b3JrIHByb3Blcmx5Cj4gZWl0aGVy
-IGJ1dCBhdCBsZWFzdCBJIGFtIGFibGUgdG8ga2lsbCB4aW5lIGFuZCBzdGlsbCBoYXZlIHRoZSBz
-ZXNzaW9uLgoKSGFwcHkgdG8gZXhwbGFpbiBhbGwgdGhlIGRpcnR5IGRldGFpbHMgb24gSVJDIGlm
-IHlvdSdyZSBjdXJpb3VzLiBEb2luZwp0aGluZ3MgaW4gbXVsdGlwbGUgdGhyZWFkcyBraWxscyBu
-b3V2ZWF1LCBhbmQgbXB2IGRvZXMgcHJlY2lzZWx5IHRoYXQuCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1314921800==
+Content-Type: multipart/alternative; boundary="15027438981.2c23A.30636";
+ charset="UTF-8"
+
+
+--15027438981.2c23A.30636
+Date: Mon, 14 Aug 2017 20:51:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102106
+
+--- Comment #11 from jffry-VwIFZPTo/vqsTnJN9+BGXg@public.gmane.org ---
+I ssh'ed in, started Xorg with sudo Xorg :1, ssh'ed in a second time, set
+DISPLAY, and ran the test.
+
+Both ssh sessions died, and when I went back in, I saw that Xorg was still
+running on :1
+
+So now I am confused. The Xorg logs show no errors.
+
+What else can I check?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15027438981.2c23A.30636
+Date: Mon, 14 Aug 2017 20:51:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xorg crashes when running gscan2pdf (libgtk2-perl) test c=
+ase"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106#c11">Comme=
+nt # 11</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xorg crashes when running gscan2pdf (libgtk2-perl) test c=
+ase"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106">bug 10210=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jffry&#64;posteo.net" title=3D"jffry&#64;posteo.net">jffry&#64;posteo.net</=
+a>
+</span></b>
+        <pre>I ssh'ed in, started Xorg with sudo Xorg :1, ssh'ed in a secon=
+d time, set
+DISPLAY, and ran the test.
+
+Both ssh sessions died, and when I went back in, I saw that Xorg was still
+running on :1
+
+So now I am confused. The Xorg logs show no errors.
+
+What else can I check?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15027438981.2c23A.30636--
+
+--===============1314921800==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1314921800==--
