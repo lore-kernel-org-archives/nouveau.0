@@ -1,86 +1,33 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+From: Michal Hocko <mhocko@kernel.org>
 Subject: Re: nouveau driver locks up with 4.11 kernel
-Date: Mon, 14 Aug 2017 15:27:20 -0400
-Message-ID: <CAKb7UvhCt1gw=oOyTtnPHH88f3vNE2s4Dc7QvtH1qd382bN9_A@mail.gmail.com>
+Date: Mon, 14 Aug 2017 22:29:40 +0200
+Message-ID: <20170814202939.GA23014@dhcp22.suse.cz>
 References: <20170814191818.GA20455@dhcp22.suse.cz>
+ <CAKb7UvhCt1gw=oOyTtnPHH88f3vNE2s4Dc7QvtH1qd382bN9_A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170814191818.GA20455-2MMpYkNvuYDjFM9bn6wA6Q@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Michal Hocko <mhocko-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UvhCt1gw=oOyTtnPHH88f3vNE2s4Dc7QvtH1qd382bN9_A@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBBdWcgMTQsIDIwMTcgYXQgMzoxOCBQTSwgTWljaGFsIEhvY2tvIDxtaG9ja29Aa2Vy
-bmVsLm9yZz4gd3JvdGU6Cj4gSGksCj4gSSBhbSBoYXZpbmcgaXNzdWVzIHdpdGggbm91dmVhdSBk
-cml2ZXIgaW4gNC4xMSBEZWJpYW4gZGlzdHJpYnV0aW9uCj4ga2VybmVsLiBJIGNhbiBzdGFydCBY
-IHNlc3Npb24gYnV0IHRoZSBzY3JlZW4gbG9ja3MgdXAgZS5nLiB3aGVuIEkgdHJ5IHRvCj4gZXhp
-dCBtcGxheWVyIGZ1bGxzY3JlZW4gbW9kZS4gVGhlIGxvY2sgaXMgc3dhbXBlZCB3aXRoIHRvbnMg
-b2YKPiBub3V2ZWF1IDAwMDA6MDM6MDAuMDogZmlmbzogU0NIRURfRVJST1IgMTMgW10KPgo+IG1l
-c3NhZ2VzIGFuZCBJIGFsc28gY2FuIHNlZSBzb21lIHdhcm5pbmdzCj4gIC0tLS0tLS0tLS0tLVsg
-Y3V0IGhlcmUgXS0tLS0tLS0tLS0tLQo+ICBXQVJOSU5HOiBDUFU6IDEgUElEOiAzNTM1IGF0IC9i
-dWlsZC9saW51eC1KNExNdHYvbGludXgtNC4xMS42L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
-a20vZW5naW5lL2ZpZm8vZ3BmaWZvZ2YxMDAuYzo4NSBnZjEwMF9maWZvX2dwZmlmb19lbmdpbmVf
-ZmluaSsweDE0Zi8weDFkMCBbbm91dmVhdV0KPiAgbm91dmVhdSAwMDAwOjAzOjAwLjA6IHRpbWVv
-dXQKPiAgTW9kdWxlcyBsaW5rZWQgaW46IG5vdXZlYXUgbXhtX3dtaSB3bWkgdHRtIGNwdWZyZXFf
-cG93ZXJzYXZlIGNwdWZyZXFfY29uc2VydmF0aXZlIGNwdWZyZXFfdXNlcnNwYWNlIGlwdGFibGVf
-ZmlsdGVyIGlwdGFibGVfbmF0IG5mX2Nvbm50cmFja19pcHY0IG5mX2RlZnJhZ19pcHY0IG5mX25h
-dF9pcHY0IG5mX25hdCBpcHRhYmxlX21hbmdsZSBpcF90YWJsZXMgeF90YWJsZXMgYmluZm10X21p
-c2MgbmZzZCBhdXRoX3JwY2dzcyBvaWRfcmVnaXN0cnkgbmZzX2FjbCBuZnMgbG9ja2QgZ3JhY2Ug
-ZnNjYWNoZSBzdW5ycGMgaTJjX3Npczk2eCBod21vbl92aWQgbmZfY29ubnRyYWNrX2Z0cCBuZl9j
-b25udHJhY2sgZnVzZSBpMmNfZGV2IHRoZXJtYWwgZmFuIGFjIGJhdHRlcnkgbnRmcyBzbmRfaW50
-ZWw4eDAgc25kX2FjOTdfY29kZWMgYWM5N19idXMgcHNtb3VzZSBscCBzbmRfaGRhX2NvZGVjX3Jl
-YWx0ZWsgc25kX2hkYV9jb2RlY19oZG1pIHNuZF9oZGFfY29kZWNfZ2VuZXJpYyBzbmRfaGRhX2lu
-dGVsIHBwZGV2IGludGVsX3Bvd2VyY2xhbXAgaVRDT193ZHQgaVRDT192ZW5kb3Jfc3VwcG9ydCBz
-bmRfaGRhX2NvZGVjIGNvcmV0ZW1wIGdtYTUwMF9nZnggc25kX2hkYV9jb3JlIGV2ZGV2IHNlcmlv
-X3JhdyBkcm1fa21zX2hlbHBlciBzbmRfaHdkZXAgc25kX3BjbV9vc3MgcGNzcGtyIHNuZF9taXhl
-cl9vc3Mgc25kX3BjbSBkcm0gc25kX3NlcV9taWRpIHNuZF9zZXFfbWlkaV9ldmVudCBzZyBzbmRf
-cmF3bWlkaSBzbmRfc2VxIHNuZF9zZXFfZGV2aWNlIHNuZF90aW1lciBwYXJwb3J0X3BjIHNuZCBz
-b3VuZGNvcmUKPiAgIHBhcnBvcnQgaTJjX2FsZ29fYml0IHNocGNocCBscGNfaWNoIHRwbV9pbmZp
-bmVvbiBtZmRfY29yZSB2aWRlbyBidXR0b24gZXh0NCBjcmMxNiBqYmQyIGZzY3J5cHRvIGVjYiBj
-cnlwdG9fc2ltZCBjcnlwdGQgYWVzX2k1ODYgbWJjYWNoZSByYWlkMTAgcmFpZDQ1NiBhc3luY19y
-YWlkNl9yZWNvdiBhc3luY19tZW1jcHkgYXN5bmNfcHEgYXN5bmNfeG9yIGFzeW5jX3R4IHhvciBy
-YWlkNl9wcSBsaWJjcmMzMmMgY3JjMzJjX2dlbmVyaWMgcmFpZDAgbXVsdGlwYXRoIGxpbmVhciB1
-YXMgdXNiX3N0b3JhZ2UgZG1fbW9kIHJhaWQxIG1kX21vZCBzZF9tb2QgaGlkX2dlbmVyaWMgdXNi
-aGlkIGhpZCBhaGNpIGxpYmFoY2kgbGliYXRhIGkyY19pODAxIHNjc2lfbW9kIGVoY2lfcGNpIHVo
-Y2lfaGNkIGUxMDAwZSBwdHAgcHBzX2NvcmUgZWhjaV9oY2QgdXNiY29yZSB1c2JfY29tbW9uCj4g
-IENQVTogMSBQSUQ6IDM1MzUgQ29tbTogbXB2L3ZvIFRhaW50ZWQ6IEcgICAgICAgIFcgICAgICAg
-NC4xMS4wLTEtNjg2LXBhZSAjMSBEZWJpYW4gNC4xMS42LTEKPiAgSGFyZHdhcmUgbmFtZTogICAg
-ICAgICAgICAgICAgICAvRDI1MDBITiwgQklPUyBNVUNEVDEwTi44NkEuMDA3My4yMDEyLjExMDEu
-MTYzOCAxMS8wMS8yMDEyCj4gIENhbGwgVHJhY2U6Cj4gICA/IGR1bXBfc3RhY2srMHg1NS8weDcz
-Cj4gICA/IF9fd2FybisweGVhLzB4MTEwCj4gICA/IGdmMTAwX2ZpZm9fZ3BmaWZvX2VuZ2luZV9m
-aW5pKzB4MTRmLzB4MWQwIFtub3V2ZWF1XQo+ICAgPyBnZjEwMF9maWZvX2dwZmlmb19lbmdpbmVf
-ZmluaSsweDE0Zi8weDFkMCBbbm91dmVhdV0KPiAgID8gd2Fybl9zbG93cGF0aF9mbXQrMHg0Ni8w
-eDYwCj4gICA/IGdmMTAwX2ZpZm9fZ3BmaWZvX2VuZ2luZV9maW5pKzB4MTRmLzB4MWQwIFtub3V2
-ZWF1XQo+ICAgPyBnZjEwMF9maWZvX2dwZmlmb19lbmdpbmVfYWRkci5pc3JhLjErMHhhMC8weGEw
-IFtub3V2ZWF1XQo+ICAgPyBudmttX2ZpZm9fY2hhbl9jaGlsZF9maW5pKzB4NGUvMHgxMjAgW25v
-dXZlYXVdCj4gICA/IG52a21fb2JqZWN0X2RlbCsweDU4LzB4OTAgW25vdXZlYXVdCj4gICA/IGt0
-aW1lX2dldCsweDRiLzB4MTEwCj4gICA/IG52a21fb3Byb3h5X2ZpbmkrMHgyMy8weDgwIFtub3V2
-ZWF1XQo+ICAgPyBudmttX29iamVjdF9maW5pKzB4MTM3LzB4MzAwIFtub3V2ZWF1XQo+ICAgPyBu
-dmttX2lvY3RsX2RlbCsweDhjLzB4YTAgW25vdXZlYXVdCj4gICA/IG52a21faW9jdGwrMHgxMDAv
-MHgyOTAgW25vdXZlYXVdCj4gICA/IF9fY2hlY2tfb2JqZWN0X3NpemUrMHg5ZS8weDEzYwo+ICAg
-PyBfX2NoZWNrX29iamVjdF9zaXplKzB4OWUvMHgxM2MKPiAgID8gbnZpZl9jbGllbnRfaW9jdGwr
-MHgyYi8weDQwIFtub3V2ZWF1XQo+ICAgPyB1c2lmX2lvY3RsKzB4NGViLzB4NzkwIFtub3V2ZWF1
-XQo+ICAgPyBub3V2ZWF1X2RybV9pb2N0bCsweGFiLzB4YjAgW25vdXZlYXVdCj4gICA/IG5vdXZl
-YXVfcG1vcHNfcmVzdW1lKzB4ODAvMHg4MCBbbm91dmVhdV0KPiAgID8gZG9fdmZzX2lvY3RsKzB4
-OTEvMHg2YjAKPiAgID8gU3lTX2lvY3RsKzB4NjAvMHg3MAo+ICAgPyBkb19mYXN0X3N5c2NhbGxf
-MzIrMHg4YS8weDE1MAo+ICAgPyBlbnRyeV9TWVNFTlRFUl8zMisweDRlLzB4N2MKPiAgLS0tWyBl
-bmQgdHJhY2UgMWJmNmM3MzEwMThjMmU1MiBdLS0tCj4KPiBmb2xsb3dlZCBieQo+IG5vdXZlYXUg
-MDAwMDowMzowMC4wOiBmaWZvOiBjaGFubmVsIDYgW21wdi92b1szNTM1XV0ga2ljayB0aW1lb3V0
-Cj4gbm91dmVhdTogbXB2L3ZvWzM1MzVdOjAwMDAwMDAwOjAwMDA5MDZmOiBkZXRhY2ggZ3IgZmFp
-bGVkLCAtMTEwCgpBcmUgeW91IHVzaW5nIG1wdiBpbiBjb25qdW5jdGlvbiB3aXRoIHRoZSBHTCB2
-aWRlbyBvdXRwdXQgYW5kClZEUEFVLWJhc2VkIGFjY2VsZXJhdGlvbj8gVGhhdCB3aWxsIGtpbGwg
-bm91dmVhdS4gRm9yIFZEUEFVLCBJCnJlY29tbWVuZCBtcGxheWVyLgoKQ2hlZXJzLAoKICAtaWxp
-YQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
-IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+On Mon 14-08-17 15:27:20, Ilia Mirkin wrote:
+> On Mon, Aug 14, 2017 at 3:18 PM, Michal Hocko <mhocko@kernel.org> wrote:
+[...]
+> > nouveau 0000:03:00.0: fifo: channel 6 [mpv/vo[3535]] kick timeout
+> > nouveau: mpv/vo[3535]:00000000:0000906f: detach gr failed, -110
+> 
+> Are you using mpv in conjunction with the GL video output and
+> VDPAU-based acceleration? That will kill nouveau. For VDPAU, I
+> recommend mplayer.
+
+Well, I am using mplayer package and vo=sdl. Which video output should I
+try instead? Btw. xine seems to be using VDPAU as well, yet it doesn't
+lockup the whole X session. The videou output doesn't work properly
+either but at least I am able to kill xine and still have the session.
+-- 
+Michal Hocko
+SUSE Labs
