@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102106] xorg crashes when running gscan2pdf
- (libgtk2-perl) test case
-Date: Mon, 14 Aug 2017 20:51:38 +0000
-Message-ID: <bug-102106-8800-In6OEU9u5r@http.bugs.freedesktop.org/>
-References: <bug-102106-8800@http.bugs.freedesktop.org/>
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: [PATCH] drm/Makefile: Support custom output dir with O
+Date: Tue, 15 Aug 2017 12:08:35 +0200
+Message-ID: <20170815100835.18341-1-pierre.morrow@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1314921800=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102106-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,104 +15,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1314921800==
-Content-Type: multipart/alternative; boundary="15027438981.2c23A.30636";
- charset="UTF-8"
-
-
---15027438981.2c23A.30636
-Date: Mon, 14 Aug 2017 20:51:38 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102106
-
---- Comment #11 from jffry-VwIFZPTo/vqsTnJN9+BGXg@public.gmane.org ---
-I ssh'ed in, started Xorg with sudo Xorg :1, ssh'ed in a second time, set
-DISPLAY, and ran the test.
-
-Both ssh sessions died, and when I went back in, I saw that Xorg was still
-running on :1
-
-So now I am confused. The Xorg logs show no errors.
-
-What else can I check?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15027438981.2c23A.30636
-Date: Mon, 14 Aug 2017 20:51:38 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xorg crashes when running gscan2pdf (libgtk2-perl) test c=
-ase"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106#c11">Comme=
-nt # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xorg crashes when running gscan2pdf (libgtk2-perl) test c=
-ase"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102106">bug 10210=
-6</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jffry&#64;posteo.net" title=3D"jffry&#64;posteo.net">jffry&#64;posteo.net</=
-a>
-</span></b>
-        <pre>I ssh'ed in, started Xorg with sudo Xorg :1, ssh'ed in a secon=
-d time, set
-DISPLAY, and ran the test.
-
-Both ssh sessions died, and when I went back in, I saw that Xorg was still
-running on :1
-
-So now I am confused. The Xorg logs show no errors.
-
-What else can I check?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15027438981.2c23A.30636--
-
---===============1314921800==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1314921800==--
+SWYgdGhlIGBPYCB2YXJpYWJsZSBmcm9tIE1ha2VmaWxlIOKAlOKAr3doaWNoIGFsbG93cyB0byBz
+cGVjaWZ5IHRoZSBvdXRwdXQgZm9sZGVyCmZvciB0aGUgYnVpbGQgcHJvY2Vzc+KAr+KAlCBpcyB1
+c2VkIHdoZW4gYnVpbGRpbmcgTGludXgsIGl0IG5lZWRzIHRvIGJlIHNwZWNpZmllZAp3aGVuIGJ1
+aWxkaW5nIE5vdXZlYXUsIGV2ZW4gd2hlbiBvdXQtb2YtdHJlZS4KClRoaXMgcGF0Y2ggZG9lc27i
+gJl0IGZpeCBhbnkgaXNzdWVzIGJ1dCBsZXQgdGhlIGRldmVsb3BlcnMg4oCU4oCvd2hvIHVzZXMg
+dGhlIGBPYAp2YXJpYWJsZeKAr+KAlCBhdm9pZCBoYXZpbmcgdG8ga2VlcCBhIGN1c3RvbSBwYXRj
+aCBhcm91bmQuCgpTaWduZWQtb2ZmLWJ5OiBQaWVycmUgTW9yZWF1IDxwaWVycmUubW9ycm93QGZy
+ZWUuZnI+Ci0tLQogZHJtL01ha2VmaWxlIHwgMyArKysKIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2Vy
+dGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcm0vTWFrZWZpbGUgYi9kcm0vTWFrZWZpbGUKaW5kZXgg
+ZDVlMjM3MzguLjFmNGVmNDVlIDEwMDY0NAotLS0gYS9kcm0vTWFrZWZpbGUKKysrIGIvZHJtL01h
+a2VmaWxlCkBAIC0xMSw2ICsxMSw5IEBAIGVuZGlmCiAKIEtCVUlMRF9PUFRTIDo9IE09JChDVVJE
+SVIpL25vdXZlYXUKIEtCVUlMRF9PUFRTICs9IEtDUFBGTEFHUz0iLUlpbmNsdWRlL3VhcGkvZHJt
+IgoraWZkZWYgT1VUUFVURElSCisgIEtCVUlMRF9PUFRTICs9IE89JChPVVRQVVRESVIpCitlbmRp
+ZgogCiBhbGw6IG1vZHVsZXMKIAotLSAKMi4xNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
