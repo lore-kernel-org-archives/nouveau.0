@@ -1,50 +1,59 @@
-From: Colin King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: [PATCH][V2] drm/nouveau: perform null check on msto[i]
-	rathern than msto
-Date: Thu, 17 Aug 2017 23:03:23 +0100
-Message-ID: <20170817220323.26717-1-colin.king@canonical.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: [PATCH][V2] drm/nouveau: perform null check on msto[i] rathern
+ than msto
+Date: Thu, 17 Aug 2017 18:07:11 -0400
+Message-ID: <CAKb7Uvh0G_KyVjh=p59R_qLF8qz+j0_s93WhscAhMYcV1-Z1AA@mail.gmail.com>
+References: <20170817220323.26717-1-colin.king@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20170817220323.26717-1-colin.king@canonical.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Colin King <colin.king@canonical.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, kernel-janitors@vger.kernel.org, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KClRoZSBudWxs
-IGNoZWNrIG9uIHRoZSBhcnJheSBtc3RvIGlzIGluY29ycmVjdCBzaW5jZSBtc3RvIGlzIG5ldmVy
-Cm51bGwuIFRoZSBudWxsIGNoZWNrIHNob3VsZCBiZSBpbnN0ZWFkIG9uIG1zdG9baV0gc2luY2Ug
-dGhpcyBpcwpiZWluZyBkZXJlZmVyZW5jZWQgaW4gdGhlIGNhbGwgdG8gZHJtX21vZGVfY29ubmVj
-dG9yX2F0dGFjaF9lbmNvZGVyLgoKVGhhbmtzIHRvIEVtaWwgVmVsaWtvdiBmb3IgcG9pbnRpbmcg
-b3V0IHRoZSBtaXN0YWtlIGluIG15IG9yaWdpbmFsCmZpeCBhbmQgZm9yIHN1Z2dlc3RpbmcgdGhl
-IGNvcnJlY3QgZml4LgoKRGV0ZWN0ZWQgYnkgQ292ZXJpdHlTY2FuLCBDSUQjMTM3NTkxNSAoIkFy
-cmF5IGNvbXBhcmVkIGFnYWluc3QgMCIpCgpGaXhlczogZjQ3OWMwYmE0YTE3ICgiZHJtL25vdXZl
-YXUva21zL252NTA6IGluaXRpYWwgc3VwcG9ydCBmb3IgRFAgMS4yIG11bHRpLXN0cmVhbSIpClNp
-Z25lZC1vZmYtYnk6IENvbGluIElhbiBLaW5nIDxjb2xpbi5raW5nQGNhbm9uaWNhbC5jb20+Ci0t
-LQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgfCAyICstCiAxIGZpbGUg
-Y2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L252NTBfZGlzcGxheS5jCmluZGV4IGY3YjQzMjZhNDY0MS4uZWQ0NDRlY2Q5ZTg1IDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYworKysgYi9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwpAQCAtMzE0MSw3ICszMTQxLDcgQEAg
-bnY1MF9tc3RjX25ldyhzdHJ1Y3QgbnY1MF9tc3RtICptc3RtLCBzdHJ1Y3QgZHJtX2RwX21zdF9w
-b3J0ICpwb3J0LAogCW1zdGMtPmNvbm5lY3Rvci5mdW5jcy0+cmVzZXQoJm1zdGMtPmNvbm5lY3Rv
-cik7CiAJbm91dmVhdV9jb25uX2F0dGFjaF9wcm9wZXJ0aWVzKCZtc3RjLT5jb25uZWN0b3IpOwog
-Ci0JZm9yIChpID0gMDsgaSA8IEFSUkFZX1NJWkUobXN0bS0+bXN0bykgJiYgbXN0bS0+bXN0bzsg
-aSsrKQorCWZvciAoaSA9IDA7IGkgPCBBUlJBWV9TSVpFKG1zdG0tPm1zdG8pICYmIG1zdG0tPm1z
-dG9baV07IGkrKykKIAkJZHJtX21vZGVfY29ubmVjdG9yX2F0dGFjaF9lbmNvZGVyKCZtc3RjLT5j
-b25uZWN0b3IsICZtc3RtLT5tc3RvW2ldLT5lbmNvZGVyKTsKIAogCWRybV9vYmplY3RfYXR0YWNo
-X3Byb3BlcnR5KCZtc3RjLT5jb25uZWN0b3IuYmFzZSwgZGV2LT5tb2RlX2NvbmZpZy5wYXRoX3By
-b3BlcnR5LCAwKTsKLS0gCjIuMTEuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+On Thu, Aug 17, 2017 at 6:03 PM, Colin King <colin.king@canonical.com> wrote:
+> From: Colin Ian King <colin.king@canonical.com>
+>
+> The null check on the array msto is incorrect since msto is never
+> null. The null check should be instead on msto[i] since this is
+> being dereferenced in the call to drm_mode_connector_attach_encoder.
+>
+> Thanks to Emil Velikov for pointing out the mistake in my original
+> fix and for suggesting the correct fix.
+>
+> Detected by CoverityScan, CID#1375915 ("Array compared against 0")
+>
+> Fixes: f479c0ba4a17 ("drm/nouveau/kms/nv50: initial support for DP 1.2 multi-stream")
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+> ---
+>  drivers/gpu/drm/nouveau/nv50_display.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
+> index f7b4326a4641..ed444ecd9e85 100644
+> --- a/drivers/gpu/drm/nouveau/nv50_display.c
+> +++ b/drivers/gpu/drm/nouveau/nv50_display.c
+> @@ -3141,7 +3141,7 @@ nv50_mstc_new(struct nv50_mstm *mstm, struct drm_dp_mst_port *port,
+>         mstc->connector.funcs->reset(&mstc->connector);
+>         nouveau_conn_attach_properties(&mstc->connector);
+>
+> -       for (i = 0; i < ARRAY_SIZE(mstm->msto) && mstm->msto; i++)
+> +       for (i = 0; i < ARRAY_SIZE(mstm->msto) && mstm->msto[i]; i++)
+
+Ben will have to rule on which way is correct, but another
+interpretation is that it should be
+
+for (...; i < ARRAY_SIZE; i++)
+  if (mstm->msto[i])
+    do_stuff()
+
+I haven't the faintest clue whether the msto array can have "holes" or not.
+
+>                 drm_mode_connector_attach_encoder(&mstc->connector, &mstm->msto[i]->encoder);
+>
+>         drm_object_attach_property(&mstc->connector.base, dev->mode_config.path_property, 0);
+> --
+> 2.11.0
+>
