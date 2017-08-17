@@ -1,59 +1,67 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH][V2] drm/nouveau: perform null check on msto[i] rathern
- than msto
-Date: Thu, 17 Aug 2017 18:07:11 -0400
-Message-ID: <CAKb7Uvh0G_KyVjh=p59R_qLF8qz+j0_s93WhscAhMYcV1-Z1AA@mail.gmail.com>
+From: Colin Ian King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: Re: [PATCH][V2] drm/nouveau: perform null check on
+ msto[i] rathern than msto
+Date: Thu, 17 Aug 2017 23:16:47 +0100
+Message-ID: <83ec451a-ceaa-5d62-948e-c34bbd670c0e@canonical.com>
 References: <20170817220323.26717-1-colin.king@canonical.com>
+ <CAKb7Uvh0G_KyVjh=p59R_qLF8qz+j0_s93WhscAhMYcV1-Z1AA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20170817220323.26717-1-colin.king@canonical.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Colin King <colin.king@canonical.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, kernel-janitors@vger.kernel.org, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7Uvh0G_KyVjh=p59R_qLF8qz+j0_s93WhscAhMYcV1-Z1AA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Aug 17, 2017 at 6:03 PM, Colin King <colin.king@canonical.com> wrote:
-> From: Colin Ian King <colin.king@canonical.com>
->
-> The null check on the array msto is incorrect since msto is never
-> null. The null check should be instead on msto[i] since this is
-> being dereferenced in the call to drm_mode_connector_attach_encoder.
->
-> Thanks to Emil Velikov for pointing out the mistake in my original
-> fix and for suggesting the correct fix.
->
-> Detected by CoverityScan, CID#1375915 ("Array compared against 0")
->
-> Fixes: f479c0ba4a17 ("drm/nouveau/kms/nv50: initial support for DP 1.2 multi-stream")
-> Signed-off-by: Colin Ian King <colin.king@canonical.com>
-> ---
->  drivers/gpu/drm/nouveau/nv50_display.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-> index f7b4326a4641..ed444ecd9e85 100644
-> --- a/drivers/gpu/drm/nouveau/nv50_display.c
-> +++ b/drivers/gpu/drm/nouveau/nv50_display.c
-> @@ -3141,7 +3141,7 @@ nv50_mstc_new(struct nv50_mstm *mstm, struct drm_dp_mst_port *port,
->         mstc->connector.funcs->reset(&mstc->connector);
->         nouveau_conn_attach_properties(&mstc->connector);
->
-> -       for (i = 0; i < ARRAY_SIZE(mstm->msto) && mstm->msto; i++)
-> +       for (i = 0; i < ARRAY_SIZE(mstm->msto) && mstm->msto[i]; i++)
-
-Ben will have to rule on which way is correct, but another
-interpretation is that it should be
-
-for (...; i < ARRAY_SIZE; i++)
-  if (mstm->msto[i])
-    do_stuff()
-
-I haven't the faintest clue whether the msto array can have "holes" or not.
-
->                 drm_mode_connector_attach_encoder(&mstc->connector, &mstm->msto[i]->encoder);
->
->         drm_object_attach_property(&mstc->connector.base, dev->mode_config.path_property, 0);
-> --
-> 2.11.0
->
+T24gMTcvMDgvMTcgMjM6MDcsIElsaWEgTWlya2luIHdyb3RlOgo+IE9uIFRodSwgQXVnIDE3LCAy
+MDE3IGF0IDY6MDMgUE0sIENvbGluIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4gd3Jv
+dGU6Cj4+IEZyb206IENvbGluIElhbiBLaW5nIDxjb2xpbi5raW5nQGNhbm9uaWNhbC5jb20+Cj4+
+Cj4+IFRoZSBudWxsIGNoZWNrIG9uIHRoZSBhcnJheSBtc3RvIGlzIGluY29ycmVjdCBzaW5jZSBt
+c3RvIGlzIG5ldmVyCj4+IG51bGwuIFRoZSBudWxsIGNoZWNrIHNob3VsZCBiZSBpbnN0ZWFkIG9u
+IG1zdG9baV0gc2luY2UgdGhpcyBpcwo+PiBiZWluZyBkZXJlZmVyZW5jZWQgaW4gdGhlIGNhbGwg
+dG8gZHJtX21vZGVfY29ubmVjdG9yX2F0dGFjaF9lbmNvZGVyLgo+Pgo+PiBUaGFua3MgdG8gRW1p
+bCBWZWxpa292IGZvciBwb2ludGluZyBvdXQgdGhlIG1pc3Rha2UgaW4gbXkgb3JpZ2luYWwKPj4g
+Zml4IGFuZCBmb3Igc3VnZ2VzdGluZyB0aGUgY29ycmVjdCBmaXguCj4+Cj4+IERldGVjdGVkIGJ5
+IENvdmVyaXR5U2NhbiwgQ0lEIzEzNzU5MTUgKCJBcnJheSBjb21wYXJlZCBhZ2FpbnN0IDAiKQo+
+Pgo+PiBGaXhlczogZjQ3OWMwYmE0YTE3ICgiZHJtL25vdXZlYXUva21zL252NTA6IGluaXRpYWwg
+c3VwcG9ydCBmb3IgRFAgMS4yIG11bHRpLXN0cmVhbSIpCj4+IFNpZ25lZC1vZmYtYnk6IENvbGlu
+IElhbiBLaW5nIDxjb2xpbi5raW5nQGNhbm9uaWNhbC5jb20+Cj4+IC0tLQo+PiAgZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgfCAyICstCj4+ICAxIGZpbGUgY2hhbmdlZCwg
+MSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bnY1MF9kaXNwbGF5LmMKPj4gaW5kZXggZjdiNDMyNmE0NjQxLi5lZDQ0NGVjZDllODUgMTAwNjQ0
+Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCj4+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCj4+IEBAIC0zMTQxLDcgKzMx
+NDEsNyBAQCBudjUwX21zdGNfbmV3KHN0cnVjdCBudjUwX21zdG0gKm1zdG0sIHN0cnVjdCBkcm1f
+ZHBfbXN0X3BvcnQgKnBvcnQsCj4+ICAgICAgICAgbXN0Yy0+Y29ubmVjdG9yLmZ1bmNzLT5yZXNl
+dCgmbXN0Yy0+Y29ubmVjdG9yKTsKPj4gICAgICAgICBub3V2ZWF1X2Nvbm5fYXR0YWNoX3Byb3Bl
+cnRpZXMoJm1zdGMtPmNvbm5lY3Rvcik7Cj4+Cj4+IC0gICAgICAgZm9yIChpID0gMDsgaSA8IEFS
+UkFZX1NJWkUobXN0bS0+bXN0bykgJiYgbXN0bS0+bXN0bzsgaSsrKQo+PiArICAgICAgIGZvciAo
+aSA9IDA7IGkgPCBBUlJBWV9TSVpFKG1zdG0tPm1zdG8pICYmIG1zdG0tPm1zdG9baV07IGkrKykK
+PiAKPiBCZW4gd2lsbCBoYXZlIHRvIHJ1bGUgb24gd2hpY2ggd2F5IGlzIGNvcnJlY3QsIGJ1dCBh
+bm90aGVyCj4gaW50ZXJwcmV0YXRpb24gaXMgdGhhdCBpdCBzaG91bGQgYmUKPiAKPiBmb3IgKC4u
+LjsgaSA8IEFSUkFZX1NJWkU7IGkrKykKPiAgIGlmIChtc3RtLT5tc3RvW2ldKQo+ICAgICBkb19z
+dHVmZigpCgpZZXMsIEkgc3VzcGVjdCB0aGF0IGlzIGEgYmV0dGVyIGdlbmVyaWMgc29sdXRpb24g
+dG9wIGNvcGUgd2l0aCBwb3RlbnRpYWwKImhvbGVzIi4KPiAKPiBJIGhhdmVuJ3QgdGhlIGZhaW50
+ZXN0IGNsdWUgd2hldGhlciB0aGUgbXN0byBhcnJheSBjYW4gaGF2ZSAiaG9sZXMiIG9yIG5vdC4K
+CkluZGVlZC4gTGV0J3Mgc2VlIHdoYXQgQmVuIHNheXMuCgoKPiAKPj4gICAgICAgICAgICAgICAg
+IGRybV9tb2RlX2Nvbm5lY3Rvcl9hdHRhY2hfZW5jb2RlcigmbXN0Yy0+Y29ubmVjdG9yLCAmbXN0
+bS0+bXN0b1tpXS0+ZW5jb2Rlcik7Cj4+Cj4+ICAgICAgICAgZHJtX29iamVjdF9hdHRhY2hfcHJv
+cGVydHkoJm1zdGMtPmNvbm5lY3Rvci5iYXNlLCBkZXYtPm1vZGVfY29uZmlnLnBhdGhfcHJvcGVy
+dHksIDApOwo+PiAtLQo+PiAyLjExLjAKPj4KPiAtLQo+IFRvIHVuc3Vic2NyaWJlIGZyb20gdGhp
+cyBsaXN0OiBzZW5kIHRoZSBsaW5lICJ1bnN1YnNjcmliZSBrZXJuZWwtamFuaXRvcnMiIGluCj4g
+dGhlIGJvZHkgb2YgYSBtZXNzYWdlIHRvIG1ham9yZG9tb0B2Z2VyLmtlcm5lbC5vcmcKPiBNb3Jl
+IG1ham9yZG9tbyBpbmZvIGF0ICBodHRwOi8vdmdlci5rZXJuZWwub3JnL21ham9yZG9tby1pbmZv
+Lmh0bWwKPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
