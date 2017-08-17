@@ -1,15 +1,11 @@
-From: Colin Ian King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: remove redundant null check on
- array mstm->msto
-Date: Thu, 17 Aug 2017 14:02:07 +0100
-Message-ID: <5fc967a5-5627-6308-f42b-786be477c30b@canonical.com>
-References: <20170817103752.16440-1-colin.king@canonical.com>
- <CACvgo53Bg=HkA-ohgrybg=FqS-p-oxehhsnrA_ZpQpGPo7Oy7Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 102275] New: Laptop bootup and suspend and wake
+	issues
+Date: Thu, 17 Aug 2017 15:36:25 +0000
+Message-ID: <bug-102275-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2111519020=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACvgo53Bg=HkA-ohgrybg=FqS-p-oxehhsnrA_ZpQpGPo7Oy7Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,39 +15,301 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "Linux-Kernel@Vger. Kernel. Org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTcvMDgvMTcgMTM6MjEsIEVtaWwgVmVsaWtvdiB3cm90ZToKPiBPbiAxNyBBdWd1c3QgMjAx
-NyBhdCAxMTozNywgQ29saW4gS2luZyA8Y29saW4ua2luZ0BjYW5vbmljYWwuY29tPiB3cm90ZToK
-Pj4gRnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KPj4KPj4g
-VGhlIGNoZWNrIHRvIHNlZSBpZiBtc3RtLT5tc3RvIGlzIG51bGwgaXMgcmVkdW5kYW50IGJlY2F1
-c2UgaXQgaXMKPj4gYW4gYXJyYXkgYW5kIGhlbmNlIGNhbiBuZXZlciBiZSBudWxsLiAgUmVtb3Zl
-IHRoZSByZWR1bmRhbnQgY2hlY2suCj4+Cj4+IERldGVjdGVkIGJ5IENvdmVyaXR5U2NhbiwgQ0lE
-IzEzNzU5MTUgKCJBcnJheSBjb21wYXJlZCBhZ2FpbnN0IDAiKQo+Pgo+PiBTaWduZWQtb2ZmLWJ5
-OiBDb2xpbiBJYW4gS2luZyA8Y29saW4ua2luZ0BjYW5vbmljYWwuY29tPgo+PiAtLS0KPj4gIGRy
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jIHwgMiArLQo+PiAgMSBmaWxlIGNo
-YW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252NTBfZGlzcGxheS5jCj4+IGluZGV4IGY3YjQzMjZhNDY0MS4uNTFlOTA4MWI5NWEw
-IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwo+
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwo+PiBAQCAtMzE0
-MSw3ICszMTQxLDcgQEAgbnY1MF9tc3RjX25ldyhzdHJ1Y3QgbnY1MF9tc3RtICptc3RtLCBzdHJ1
-Y3QgZHJtX2RwX21zdF9wb3J0ICpwb3J0LAo+PiAgICAgICAgIG1zdGMtPmNvbm5lY3Rvci5mdW5j
-cy0+cmVzZXQoJm1zdGMtPmNvbm5lY3Rvcik7Cj4+ICAgICAgICAgbm91dmVhdV9jb25uX2F0dGFj
-aF9wcm9wZXJ0aWVzKCZtc3RjLT5jb25uZWN0b3IpOwo+Pgo+PiAtICAgICAgIGZvciAoaSA9IDA7
-IGkgPCBBUlJBWV9TSVpFKG1zdG0tPm1zdG8pICYmIG1zdG0tPm1zdG87IGkrKykKPj4gKyAgICAg
-ICBmb3IgKGkgPSAwOyBpIDwgQVJSQVlfU0laRShtc3RtLT5tc3RvKTsgaSsrKQo+IEkgdGhpbmsg
-dGhhdCBzaG91bGQgYmUgbXN0bS0+bXN0b1tpXS4gQWZ0ZXIgYWxsIHdlIGFyZSBkZXJlZmVyZW5j
-aW5nCj4gdGhlIHBvaW50ZXIsIHNvIHdlIGRvbid0IHdhbnQgdG8gY3Jhc2guCgpZZXMsIHRoYXQg
-bWFrZXMgZmFyIG1vcmUgc2Vuc2UuIEknbGwgc2VuZCBhIFYyLiBUaGFua3MgRW1pbC4KCj4gCj4+
-ICAgICAgICAgICAgICAgICBkcm1fbW9kZV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoJm1zdGMt
-PmNvbm5lY3RvciwgJm1zdG0tPm1zdG9baV0tPmVuY29kZXIpOwo+IAo+IC1FbWlsCj4gLS0KPiBU
-byB1bnN1YnNjcmliZSBmcm9tIHRoaXMgbGlzdDogc2VuZCB0aGUgbGluZSAidW5zdWJzY3JpYmUg
-a2VybmVsLWphbml0b3JzIiBpbgo+IHRoZSBib2R5IG9mIGEgbWVzc2FnZSB0byBtYWpvcmRvbW9A
-dmdlci5rZXJuZWwub3JnCj4gTW9yZSBtYWpvcmRvbW8gaW5mbyBhdCAgaHR0cDovL3ZnZXIua2Vy
-bmVsLm9yZy9tYWpvcmRvbW8taW5mby5odG1sCj4gCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+
+--===============2111519020==
+Content-Type: multipart/alternative; boundary="15029841850.b81832.32117";
+ charset="UTF-8"
+
+
+--15029841850.b81832.32117
+Date: Thu, 17 Aug 2017 15:36:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102275
+
+            Bug ID: 102275
+           Summary: Laptop bootup and suspend and wake issues
+           Product: Mesa
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: majzoube-9kdMmqzM7is@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 133577
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D133577&action=3Dedit
+output of journalctl -b -1 booting into 4.12.5-300
+
+I don't know exactly where to post this bug. Initially I posted on RedHat
+bugzilla #1481510, but it appears perhaps I should be posting it here. The
+problem started on upgrading from kernel 4.11.11-300 to 4.12.5-300.
+
+Description of problem:
+
+15-30 seconds of black screen and unresponsive mouse, trackpad, keyboard on
+bootup and suspend and wake.
+
+Version-Release number of selected component (if applicable):
+
+kernel 4.12.5-300
+
+How reproducible:
+
+Every time booting up or suspending and waking laptop
+
+Steps to Reproduce:
+1. Boot up and wait for login screen
+2. suspend laptop by closing lid with AC power on
+3. wake computer by opening lid=20
+
+Actual results:
+
+
+Expected results:
+
+
+Additional info:
+I was having lots of trouble with suspend and wake issues. See Bug 1470473.
+Resolved all issues after setting boot parameters and updating Dell XPS BIOS
+firmware and everything was working well with kernel 4.11.11-300.
+
+Current boot sequence that works with 4.11.11-300 is:
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+load_video
+set gfxpayload=3Dkeep
+insmod gzio
+insmod part_gpt
+insmod ext2
+if [ x$feature_platform_search_hint =3D xy ]; then
+  search --no-floppy --fs-uuid --set=3Droot  46985d35-b7e3-41f9-9bc0-8ae6c1=
+1bc84c
+else
+  search --no-floppy --fs-uuid --set=3Droot 46985d35-b7e3-41f9-9bc0-8ae6c11=
+bc84c
+fi
+linuxefi /vmlinuz-4.11.11-300.fc26.x86_64 root=3D/dev/mapper/fedora-root ro
+rd.lvm.lv=3Dfedora/root rd.lvm.lv=3Dfedora/swap nouveau.runpm=3D0 rhgb quiet
+resume=3D/dev/dm-1
+initrdefi /initramfs-4.11.11-300.fc26.x86_64.img
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+
+Using the same boot sequence with 4.12.5-300 is problematic with bootup and
+suspend and wake.
+
+
+Hardware: XPS 15 9560
+Fedora 26: all the latest updates current as of 14 Aug 2017
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15029841850.b81832.32117
+Date: Thu, 17 Aug 2017 15:36:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Laptop bootup and suspend and wake issues"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102275">102275</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Laptop bootup and suspend and wake issues
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>majzoube&#64;umsl.edu
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D133577=
+" name=3D"attach_133577" title=3D"output of journalctl -b -1 booting into 4=
+.12.5-300">attachment 133577</a> <a href=3D"attachment.cgi?id=3D133577&amp;=
+action=3Dedit" title=3D"output of journalctl -b -1 booting into 4.12.5-300"=
+>[details]</a></span>
+output of journalctl -b -1 booting into 4.12.5-300
+
+I don't know exactly where to post this bug. Initially I posted on RedHat
+bugzilla #1481510, but it appears perhaps I should be posting it here. The
+problem started on upgrading from kernel 4.11.11-300 to 4.12.5-300.
+
+Description of problem:
+
+15-30 seconds of black screen and unresponsive mouse, trackpad, keyboard on
+bootup and suspend and wake.
+
+Version-Release number of selected component (if applicable):
+
+kernel 4.12.5-300
+
+How reproducible:
+
+Every time booting up or suspending and waking laptop
+
+Steps to Reproduce:
+1. Boot up and wait for login screen
+2. suspend laptop by closing lid with AC power on
+3. wake computer by opening lid=20
+
+Actual results:
+
+
+Expected results:
+
+
+Additional info:
+I was having lots of trouble with suspend and wake issues. See Bug 1470473.
+Resolved all issues after setting boot parameters and updating Dell XPS BIOS
+firmware and everything was working well with kernel 4.11.11-300.
+
+Current boot sequence that works with 4.11.11-300 is:
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+load_video
+set gfxpayload=3Dkeep
+insmod gzio
+insmod part_gpt
+insmod ext2
+if [ x$feature_platform_search_hint =3D xy ]; then
+  search --no-floppy --fs-uuid --set=3Droot  46985d35-b7e3-41f9-9bc0-8ae6c1=
+1bc84c
+else
+  search --no-floppy --fs-uuid --set=3Droot 46985d35-b7e3-41f9-9bc0-8ae6c11=
+bc84c
+fi
+linuxefi /vmlinuz-4.11.11-300.fc26.x86_64 root=3D/dev/mapper/fedora-root ro
+rd.lvm.lv=3Dfedora/root rd.lvm.lv=3Dfedora/swap nouveau.runpm=3D0 rhgb quiet
+resume=3D/dev/dm-1
+initrdefi /initramfs-4.11.11-300.fc26.x86_64.img
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+
+Using the same boot sequence with 4.12.5-300 is problematic with bootup and
+suspend and wake.
+
+
+Hardware: XPS 15 9560
+Fedora 26: all the latest updates current as of 14 Aug 2017</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15029841850.b81832.32117--
+
+--===============2111519020==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2111519020==--
