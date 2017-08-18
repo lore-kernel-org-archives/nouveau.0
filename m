@@ -1,184 +1,60 @@
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH][V2] drm/nouveau: perform null check on
- msto[i] rathern than msto
-Date: Fri, 18 Aug 2017 08:23:48 +1000
-Message-ID: <2f8ba630-525d-439c-7e6c-c4abbcec68a5@redhat.com>
-References: <20170817220323.26717-1-colin.king@canonical.com>
- <CAKb7Uvh0G_KyVjh=p59R_qLF8qz+j0_s93WhscAhMYcV1-Z1AA@mail.gmail.com>
- <83ec451a-ceaa-5d62-948e-c34bbd670c0e@canonical.com>
- <53264562-fddf-8214-859c-0f491b2ca42a@gmail.com>
+From: Tom St Denis <tom.stdenis@amd.com>
+Subject: [PATCH] drm/nouveau: use new TTM populate/DMA map function
+Date: Fri, 18 Aug 2017 10:23:00 -0400
+Message-ID: <20170818142300.9787-1-tom.stdenis@amd.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0761673625=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <53264562-fddf-8214-859c-0f491b2ca42a-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Colin Ian King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: nouveau@lists.freedesktop.org
+Cc: Tom St Denis <tom.stdenis@amd.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0761673625==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="Eg4oAVa0S1rKCO1V7V7m3hlNtkUOtGv4p"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---Eg4oAVa0S1rKCO1V7V7m3hlNtkUOtGv4p
-Content-Type: multipart/mixed; boundary="PiLvlbiTddDmgw1kGi4E4cOkD3sWOrrWp";
- protected-headers="v1"
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Colin Ian King
- <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>,
- "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>,
- kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org,
- "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>,
- "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Message-ID: <2f8ba630-525d-439c-7e6c-c4abbcec68a5-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH][V2] drm/nouveau: perform null check on msto[i]
- rathern than msto
-References: <20170817220323.26717-1-colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
- <CAKb7Uvh0G_KyVjh=p59R_qLF8qz+j0_s93WhscAhMYcV1-Z1AA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
- <83ec451a-ceaa-5d62-948e-c34bbd670c0e-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
- <53264562-fddf-8214-859c-0f491b2ca42a-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-In-Reply-To: <53264562-fddf-8214-859c-0f491b2ca42a-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-
---PiLvlbiTddDmgw1kGi4E4cOkD3sWOrrWp
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-On 08/18/2017 08:20 AM, Ben Skeggs wrote:
-> On 08/18/2017 08:16 AM, Colin Ian King wrote:
->> On 17/08/17 23:07, Ilia Mirkin wrote:
->>> On Thu, Aug 17, 2017 at 6:03 PM, Colin King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org=
-> wrote:
->>>> From: Colin Ian King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
->>>>
->>>> The null check on the array msto is incorrect since msto is never
->>>> null. The null check should be instead on msto[i] since this is
->>>> being dereferenced in the call to drm_mode_connector_attach_encoder.=
-
->>>>
->>>> Thanks to Emil Velikov for pointing out the mistake in my original
->>>> fix and for suggesting the correct fix.
->>>>
->>>> Detected by CoverityScan, CID#1375915 ("Array compared against 0")
->>>>
->>>> Fixes: f479c0ba4a17 ("drm/nouveau/kms/nv50: initial support for DP 1=
-=2E2 multi-stream")
->>>> Signed-off-by: Colin Ian King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
->>>> ---
->>>>  drivers/gpu/drm/nouveau/nv50_display.c | 2 +-
->>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/dr=
-m/nouveau/nv50_display.c
->>>> index f7b4326a4641..ed444ecd9e85 100644
->>>> --- a/drivers/gpu/drm/nouveau/nv50_display.c
->>>> +++ b/drivers/gpu/drm/nouveau/nv50_display.c
->>>> @@ -3141,7 +3141,7 @@ nv50_mstc_new(struct nv50_mstm *mstm, struct d=
-rm_dp_mst_port *port,
->>>>         mstc->connector.funcs->reset(&mstc->connector);
->>>>         nouveau_conn_attach_properties(&mstc->connector);
->>>>
->>>> -       for (i =3D 0; i < ARRAY_SIZE(mstm->msto) && mstm->msto; i++)=
-
->>>> +       for (i =3D 0; i < ARRAY_SIZE(mstm->msto) && mstm->msto[i]; i=
-++)
->>>
->>> Ben will have to rule on which way is correct, but another
->>> interpretation is that it should be
->>>
->>> for (...; i < ARRAY_SIZE; i++)
->>>   if (mstm->msto[i])
->>>     do_stuff()
->>
->> Yes, I suspect that is a better generic solution top cope with potenti=
-al
->> "holes".
->>>
->>> I haven't the faintest clue whether the msto array can have "holes" o=
-r not.
->>
->> Indeed. Let's see what Ben says.
-> No, there can't be holes here.  I believe the V2 patch to be correct.
-Also, I've taken the patch in my tree, and will get it to Dave at some
-point.
-
-Thank you!
-Ben.
-
->=20
-> Ben.
->>
->>
->>>
->>>>                 drm_mode_connector_attach_encoder(&mstc->connector, =
-&mstm->msto[i]->encoder);
->>>>
->>>>         drm_object_attach_property(&mstc->connector.base, dev->mode_=
-config.path_property, 0);
->>>> --
->>>> 2.11.0
->>>>
->>> --
->>> To unsubscribe from this list: send the line "unsubscribe kernel-jani=
-tors" in
->>> the body of a message to majordomo-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
->>> More majordomo info at  http://vger.kernel.org/majordomo-info.html
->>>
->>
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> https://lists.freedesktop.org/mailman/listinfo/nouveau
->>
->=20
-
-
---PiLvlbiTddDmgw1kGi4E4cOkD3sWOrrWp--
-
---Eg4oAVa0S1rKCO1V7V7m3hlNtkUOtGv4p
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEETp/uv2nr9kIVth0/dgucYlCSkfsFAlmWF3QACgkQdgucYlCS
-kftszw//XV8cGOyJSIVOXsP/5JCuVOl+S8wdIftXWwkoCgCX3i1evt/NoB1E6uL4
-bp5tw2brPLOYmS0wbelBqJmS4FEYGIOJ2cXTo9Ap4ZYf0zKQ12E36vJab9H6bM/M
-OA61OooLZNgXi9P8AZwO8jRAMzygubBQp+8TJnCRPnjqEpVERSFn1HLE7ZUHDmLn
-NVZLc4UAUOVgmBVPHl1EEnV23ffTwc8GF1YlxZdCXZhzc3RjzcZmjfyR26xDNaIZ
-iYjT/BbEJyRlvI25NL2Z8OMtmJkqONubzWsg+fIrgImDkvhHY4KvxIV/KmYk23pL
-7ETgluDy22jeDk4Ctibx8cMYAkSXVjSsuFVQApuGzilbN+KIsCY0giUFCxlm8N1J
-XdNLcN8+1WmVCCAMAhY4y3KLnsg3lPB3FAJuwONiOv5g3lmudzqxpTB7I0RskBIB
-fXYH04TXK76CDxCMUXbqNXLBc1haBkIhlEafZRhjSTXVLBZjW2VUVafOgQQOubaF
-tCCVNYa45yDWEgQbfm/VLvsdzBVGxtv99yiMiTee0kFNN/CJK3ljHAA1PRoua+dx
-SsIgqnFxWmnK26ZyLzFhD6171dpjBhyVsesyd+9wzjEa7hn4AFCwtLAL5V0Jyyej
-dh/YbmOcJwh7lozSyzCEfnSXMlDdikor98pkJGiq5glCnB7nzlw=
-=dR84
------END PGP SIGNATURE-----
-
---Eg4oAVa0S1rKCO1V7V7m3hlNtkUOtGv4p--
-
---===============0761673625==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0761673625==--
+UmVtb3ZlcyBjb21tb24gY29kZSBmb3VuZCBpbiBudW1lcm91cyB2ZW5kb3IgZHJpdmVycyBhbmQg
+cGxhY2VzCml0IGhpZ2hlciB1cCBpbiB0aGUgVFRNIHRyZWUuCgpTaWduZWQtb2ZmLWJ5OiBUb20g
+U3QgRGVuaXMgPHRvbS5zdGRlbmlzQGFtZC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbm91dmVhdV9iby5jIHwgMzcgKystLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+CiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAzNSBkZWxldGlvbnMoLSkKCmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKaW5kZXggZTQyN2Y4MDM0NGM0Li42YWQwYWQ1MzA0
+N2EgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKQEAgLTE0NDgsOCArMTQ0OCw2
+IEBAIG5vdXZlYXVfdHRtX3R0X3BvcHVsYXRlKHN0cnVjdCB0dG1fdHQgKnR0bSkKIAlzdHJ1Y3Qg
+bnZrbV9kZXZpY2UgKmRldmljZTsKIAlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2OwogCXN0cnVjdCBk
+ZXZpY2UgKnBkZXY7Ci0JdW5zaWduZWQgaTsKLQlpbnQgcjsKIAlib29sIHNsYXZlID0gISEodHRt
+LT5wYWdlX2ZsYWdzICYgVFRNX1BBR0VfRkxBR19TRyk7CiAKIAlpZiAodHRtLT5zdGF0ZSAhPSB0
+dF91bnBvcHVsYXRlZCkKQEAgLTE0ODAsMzAgKzE0NzgsNyBAQCBub3V2ZWF1X3R0bV90dF9wb3B1
+bGF0ZShzdHJ1Y3QgdHRtX3R0ICp0dG0pCiAJfQogI2VuZGlmCiAKLQlyID0gdHRtX3Bvb2xfcG9w
+dWxhdGUodHRtKTsKLQlpZiAocikgewotCQlyZXR1cm4gcjsKLQl9Ci0KLQlmb3IgKGkgPSAwOyBp
+IDwgdHRtLT5udW1fcGFnZXM7IGkrKykgewotCQlkbWFfYWRkcl90IGFkZHI7Ci0KLQkJYWRkciA9
+IGRtYV9tYXBfcGFnZShwZGV2LCB0dG0tPnBhZ2VzW2ldLCAwLCBQQUdFX1NJWkUsCi0JCQkJICAg
+IERNQV9CSURJUkVDVElPTkFMKTsKLQotCQlpZiAoZG1hX21hcHBpbmdfZXJyb3IocGRldiwgYWRk
+cikpIHsKLQkJCXdoaWxlIChpLS0pIHsKLQkJCQlkbWFfdW5tYXBfcGFnZShwZGV2LCB0dG1fZG1h
+LT5kbWFfYWRkcmVzc1tpXSwKLQkJCQkJICAgICAgIFBBR0VfU0laRSwgRE1BX0JJRElSRUNUSU9O
+QUwpOwotCQkJCXR0bV9kbWEtPmRtYV9hZGRyZXNzW2ldID0gMDsKLQkJCX0KLQkJCXR0bV9wb29s
+X3VucG9wdWxhdGUodHRtKTsKLQkJCXJldHVybiAtRUZBVUxUOwotCQl9Ci0KLQkJdHRtX2RtYS0+
+ZG1hX2FkZHJlc3NbaV0gPSBhZGRyOwotCX0KLQlyZXR1cm4gMDsKKwlyZXR1cm4gdHRtX3BvcHVs
+YXRlX2FuZF9tYXBfcGFnZXMocGRldiwgdHRtX2RtYSk7CiB9CiAKIHN0YXRpYyB2b2lkCkBAIC0x
+NTE0LDcgKzE0ODksNiBAQCBub3V2ZWF1X3R0bV90dF91bnBvcHVsYXRlKHN0cnVjdCB0dG1fdHQg
+KnR0bSkKIAlzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZTsKIAlzdHJ1Y3QgZHJtX2RldmljZSAq
+ZGV2OwogCXN0cnVjdCBkZXZpY2UgKnBkZXY7Ci0JdW5zaWduZWQgaTsKIAlib29sIHNsYXZlID0g
+ISEodHRtLT5wYWdlX2ZsYWdzICYgVFRNX1BBR0VfRkxBR19TRyk7CiAKIAlpZiAoc2xhdmUpCkBA
+IC0xNTM5LDE0ICsxNTEzLDcgQEAgbm91dmVhdV90dG1fdHRfdW5wb3B1bGF0ZShzdHJ1Y3QgdHRt
+X3R0ICp0dG0pCiAJfQogI2VuZGlmCiAKLQlmb3IgKGkgPSAwOyBpIDwgdHRtLT5udW1fcGFnZXM7
+IGkrKykgewotCQlpZiAodHRtX2RtYS0+ZG1hX2FkZHJlc3NbaV0pIHsKLQkJCWRtYV91bm1hcF9w
+YWdlKHBkZXYsIHR0bV9kbWEtPmRtYV9hZGRyZXNzW2ldLCBQQUdFX1NJWkUsCi0JCQkJICAgICAg
+IERNQV9CSURJUkVDVElPTkFMKTsKLQkJfQotCX0KLQotCXR0bV9wb29sX3VucG9wdWxhdGUodHRt
+KTsKKwl0dG1fdW5tYXBfYW5kX3VucG9wdWxhdGVfcGFnZXMocGRldiwgdHRtX2RtYSk7CiB9CiAK
+IHZvaWQKLS0gCjIuMTIuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJp
+LWRldmVsCg==
