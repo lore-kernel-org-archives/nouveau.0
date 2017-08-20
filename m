@@ -1,188 +1,207 @@
-From: Rodrigo Vivi <rodrigo.vivi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: XDC 2017 : Call for paper
-Date: Sat, 19 Aug 2017 19:47:30 +0000
-Message-ID: <CABVU7+sa84=7r=CskwRRhKqchRGb4Cev5wxv78ysRL7GFO0+Zg@mail.gmail.com>
-References: <b8797a4f-ecf9-862a-bb01-ef5f0ccbbcfe@free.fr>
- <CACP_E++WPjYvJwnWujnY8Tx_yC=WGob1SE-+WXSNN+zhg5z1qQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101887] gtx 970 black screen
+Date: Sun, 20 Aug 2017 11:29:24 +0000
+Message-ID: <bug-101887-8800-1RKL4JViU2@http.bugs.freedesktop.org/>
+References: <bug-101887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1958754330=="
-Return-path: <wayland-devel-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACP_E++WPjYvJwnWujnY8Tx_yC=WGob1SE-+WXSNN+zhg5z1qQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/wayland-devel>,
- <mailto:wayland-devel-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/wayland-devel>
-List-Post: <mailto:wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:wayland-devel-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/wayland-devel>,
- <mailto:wayland-devel-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: wayland-devel-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "wayland-devel" <wayland-devel-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>, =?UTF-8?Q?St=C3=A9phane_Marchesin?= <stephane.marchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: apitrace-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "X . Org development list" <xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, X_Org Foundation <board-UUNKDCO5ciMA0k6STJqGzw@public.gmane.org>, events-go0+a7rfsptAfugRpC6u6w@public.gmane.org, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1694560637=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1958754330==
-Content-Type: multipart/alternative; boundary="f403045eae1abae5230557208453"
 
---f403045eae1abae5230557208453
+--===============1694560637==
+Content-Type: multipart/alternative; boundary="15032285641.e2Cdd3d46.21866";
+ charset="UTF-8"
+
+
+--15032285641.e2Cdd3d46.21866
+Date: Sun, 20 Aug 2017 11:29:24 +0000
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-Hi Stephane,
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101887
 
-I will attend. Please, add me to the list.
-I just couldn't edit the wiki for some reason...
+--- Comment #16 from fariouche-Qt13gs6zZMY@public.gmane.org ---
+I have a good news: just update my kernel to 4.13.0-rc5 from git, with no
+patches, and it works!
 
-Thanks,
-Rodrigo
+Only one error in dmesg (FAULT when MMIO write...) but I do not see any obv=
+ious
+issue...
 
-On Fri, Aug 18, 2017 at 5:51 PM St=C3=A9phane Marchesin <
-stephane.marchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+I suppose that we can close this bug.
 
-> On Tue, Jun 6, 2017 at 4:19 PM, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> wrote=
-:
-> > Hello,
-> >
-> > I have the pleasure to announce that the X.org Developer Conference 201=
-7
-> > will be held in Mountain View, California from September 20th to
-> > September 22nd. The venue is located at the Googleplex.
-> >
-> > The official page for the event is http://www.x.org/wiki/Events/XDC2017
-> > while the call for paper is at
-> http://www.x.org/wiki/Other/Press/CFP2017/
-> >
-> > As usual, we are open to talks across the layers of the graphics stack,
-> > from the kernel to desktop environments / graphical applications and
-> > about how to make things better for the developers who build them.
-> > Given that the conference is located at Google, we would welcome topics
-> > related to Android and Chromebooks. We would also like to hear about
-> > Virtual Reality and end-to-end buffer format negociation. If you're not
-> > sure if something might fit, mail me or add it to the ideas list found
-> > in the program page.
-> >
-> > The conference is free of charge and open to the general public. If
-> > you plan on coming, please add yourself to the attendees list. We'll
-> > use this list to make badges and plan for the catering, so if you are
-> > attending please add your name as early as possible.
-> >
-> > I am looking forward to seeing you there. If you have any
-> > inquiries/questions, please send them to St=C3=A9phane Marchesin (pleas=
-e also
-> > CC: board at foundation.x.org).
->
-> Hi all,
->
-> For logistical reasons, we would like to be able to finalize the
-> attendee list by September 8. If at all possible, please register on
-> the wiki (or email me if you don't have access and I will add you).
->
-> Thanks,
-> St=C3=A9phane
->
-> >
-> > Martin Peres
-> _______________________________________________
-> xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org: X.Org development
-> Archives: http://lists.x.org/archives/xorg-devel
-> Info: https://lists.x.org/mailman/listinfo/xorg-devel
+The part of the dmesg output is here:
+
+[    0.940114] nouveau 0000:03:00.0: NVIDIA GM204 (124020a1)
+[    1.030897] nouveau 0000:03:00.0: bios: version 84.04.36.00.0b
+[    1.031759] nouveau 0000:03:00.0: fb: 4096 MiB GDDR5
+[    1.032013] nouveau 0000:03:00.0: bus: MMIO write of 80000422 FAULT at
+10eb14 [ IBUS ]
+[    1.040367] [TTM] Zone  kernel: Available graphics memory: 8214694 kiB
+[    1.040538] [TTM] Zone   dma32: Available graphics memory: 2097152 kiB
+[    1.040704] [TTM] Initializing pool allocator
+[    1.040868] [TTM] Initializing DMA pool allocator
+[    1.041112] nouveau 0000:03:00.0: DRM: VRAM: 4096 MiB
+[    1.041278] nouveau 0000:03:00.0: DRM: GART: 1048576 MiB
+[    1.041444] nouveau 0000:03:00.0: DRM: TMDS table version 2.0
+[    1.041610] nouveau 0000:03:00.0: DRM: DCB version 4.1
+[    1.041774] nouveau 0000:03:00.0: DRM: DCB outp 00: 01000f02 00020030
+[    1.041941] nouveau 0000:03:00.0: DRM: DCB outp 01: 02000f00 00000000
+[    1.042115] nouveau 0000:03:00.0: DRM: DCB outp 02: 02811f76 04400020
+[    1.042285] nouveau 0000:03:00.0: DRM: DCB outp 03: 02011f72 00020020
+[    1.042452] nouveau 0000:03:00.0: DRM: DCB outp 04: 04822f86 04400010
+[    1.042618] nouveau 0000:03:00.0: DRM: DCB outp 05: 04022f82 00020010
+[    1.042785] nouveau 0000:03:00.0: DRM: DCB outp 06: 04833f96 04400020
+[    1.042952] nouveau 0000:03:00.0: DRM: DCB outp 07: 04033f92 00020020
+[    1.043127] nouveau 0000:03:00.0: DRM: DCB outp 08: 02044f62 00020010
+[    1.043296] nouveau 0000:03:00.0: DRM: DCB outp 15: 01df5ff8 00000000
+[    1.043463] nouveau 0000:03:00.0: DRM: DCB conn 00: 00001030
+[    1.043628] nouveau 0000:03:00.0: DRM: DCB conn 01: 00020146
+[    1.043792] nouveau 0000:03:00.0: DRM: DCB conn 02: 01000246
+[    1.043957] nouveau 0000:03:00.0: DRM: DCB conn 03: 02000346
+[    1.044130] nouveau 0000:03:00.0: DRM: DCB conn 04: 00010461
+[    1.044298] nouveau 0000:03:00.0: DRM: DCB conn 05: 00000570
+[    1.044463] nouveau 0000:03:00.0: DRM: Pointer to flat panel table inval=
+id
+[    1.044654] nouveau 0000:03:00.0: disp: dcb 15 type 8 unknown
+[    1.097223] nouveau 0000:03:00.0: DRM: unknown connector type 70
+[    1.097413] nouveau 0000:03:00.0: DRM: failed to create encoder 1/8/0: -=
+19
+[    1.097586] nouveau 0000:03:00.0: DRM: Unknown-1 has no encoders, removi=
+ng
+[    1.097787] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    1.097957] [drm] Driver supports precise vblank timestamp query.
+[    1.207976] nouveau 0000:03:00.0: DRM: MM: using COPY for buffer copies
+[    1.561492] nouveau 0000:03:00.0: DRM: allocated 4096x2160 fb: 0x60000, =
+bo
+ffff88041ca58000
 
 --=20
-Rodrigo Vivi
-Blog: http://blog.vivi.eng.br
+You are receiving this mail because:
+You are the assignee for the bug.=
 
---f403045eae1abae5230557208453
+--15032285641.e2Cdd3d46.21866
+Date: Sun, 20 Aug 2017 11:29:24 +0000
+MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-<div><div dir=3D"auto">Hi Stephane,</div><div dir=3D"auto"><br></div><div d=
-ir=3D"auto">I will attend. Please, add me to the list.</div><div dir=3D"aut=
-o">I just couldn&#39;t edit the wiki for some reason...</div><div dir=3D"au=
-to"><br></div><div dir=3D"auto">Thanks,</div><div dir=3D"auto">Rodrigo</div=
-><div dir=3D"auto"><br></div><div class=3D"gmail_quote"><div>On Fri, Aug 18=
-, 2017 at 5:51 PM St=C3=A9phane Marchesin &lt;<a href=3D"mailto:stephane.ma=
-rchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">stephane.marchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
-ccc solid;padding-left:1ex">On Tue, Jun 6, 2017 at 4:19 PM, Martin Peres &l=
-t;<a href=3D"mailto:martin.peres-GANU6spQydw@public.gmane.org" target=3D"_blank">martin.peres@fr=
-ee.fr</a>&gt; wrote:<br>
-&gt; Hello,<br>
-&gt;<br>
-&gt; I have the pleasure to announce that the X.org Developer Conference 20=
-17<br>
-&gt; will be held in Mountain View, California from September 20th to<br>
-&gt; September 22nd. The venue is located at the Googleplex.<br>
-&gt;<br>
-&gt; The official page for the event is <a href=3D"http://www.x.org/wiki/Ev=
-ents/XDC2017" rel=3D"noreferrer" target=3D"_blank">http://www.x.org/wiki/Ev=
-ents/XDC2017</a><br>
-&gt; while the call for paper is at <a href=3D"http://www.x.org/wiki/Other/=
-Press/CFP2017/" rel=3D"noreferrer" target=3D"_blank">http://www.x.org/wiki/=
-Other/Press/CFP2017/</a><br>
-&gt;<br>
-&gt; As usual, we are open to talks across the layers of the graphics stack=
-,<br>
-&gt; from the kernel to desktop environments / graphical applications and<b=
-r>
-&gt; about how to make things better for the developers who build them.<br>
-&gt; Given that the conference is located at Google, we would welcome topic=
-s<br>
-&gt; related to Android and Chromebooks. We would also like to hear about<b=
-r>
-&gt; Virtual Reality and end-to-end buffer format negociation. If you&#39;r=
-e not<br>
-&gt; sure if something might fit, mail me or add it to the ideas list found=
-<br>
-&gt; in the program page.<br>
-&gt;<br>
-&gt; The conference is free of charge and open to the general public. If<br=
->
-&gt; you plan on coming, please add yourself to the attendees list. We&#39;=
-ll<br>
-&gt; use this list to make badges and plan for the catering, so if you are<=
-br>
-&gt; attending please add your name as early as possible.<br>
-&gt;<br>
-&gt; I am looking forward to seeing you there. If you have any<br>
-&gt; inquiries/questions, please send them to St=C3=A9phane Marchesin (plea=
-se also<br>
-&gt; CC: board at <a href=3D"http://foundation.x.org" rel=3D"noreferrer" ta=
-rget=3D"_blank">foundation.x.org</a>).<br>
-<br>
-Hi all,<br>
-<br>
-For logistical reasons, we would like to be able to finalize the<br>
-attendee list by September 8. If at all possible, please register on<br>
-the wiki (or email me if you don&#39;t have access and I will add you).<br>
-<br>
-Thanks,<br>
-St=C3=A9phane<br>
-<br>
-&gt;<br>
-&gt; Martin Peres<br>
-_______________________________________________<br>
-<a href=3D"mailto:xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org" target=3D"_blank">xorg-devel@list=
-s.x.org</a>: X.Org development<br>
-Archives: <a href=3D"http://lists.x.org/archives/xorg-devel" rel=3D"norefer=
-rer" target=3D"_blank">http://lists.x.org/archives/xorg-devel</a><br>
-Info: <a href=3D"https://lists.x.org/mailman/listinfo/xorg-devel" rel=3D"no=
-referrer" target=3D"_blank">https://lists.x.org/mailman/listinfo/xorg-devel=
-</a></blockquote></div></div><div dir=3D"ltr">-- <br></div><div class=3D"gm=
-ail_signature" data-smartmail=3D"gmail_signature"><div>Rodrigo Vivi</div><d=
-iv>Blog: <a href=3D"http://blog.vivi.eng.br" target=3D"_blank">http://blog.=
-vivi.eng.br</a></div><div>=C2=A0</div></div>
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - gtx 970 black screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c16">Comme=
+nt # 16</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - gtx 970 black screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887">bug 10188=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+fariouche&#64;yahoo.fr" title=3D"fariouche&#64;yahoo.fr">fariouche&#64;yaho=
+o.fr</a>
+</span></b>
+        <pre>I have a good news: just update my kernel to 4.13.0-rc5 from g=
+it, with no
+patches, and it works!
 
---f403045eae1abae5230557208453--
+Only one error in dmesg (FAULT when MMIO write...) but I do not see any obv=
+ious
+issue...
 
---===============1958754330==
+I suppose that we can close this bug.
+
+The part of the dmesg output is here:
+
+[    0.940114] nouveau 0000:03:00.0: NVIDIA GM204 (124020a1)
+[    1.030897] nouveau 0000:03:00.0: bios: version 84.04.36.00.0b
+[    1.031759] nouveau 0000:03:00.0: fb: 4096 MiB GDDR5
+[    1.032013] nouveau 0000:03:00.0: bus: MMIO write of 80000422 FAULT at
+10eb14 [ IBUS ]
+[    1.040367] [TTM] Zone  kernel: Available graphics memory: 8214694 kiB
+[    1.040538] [TTM] Zone   dma32: Available graphics memory: 2097152 kiB
+[    1.040704] [TTM] Initializing pool allocator
+[    1.040868] [TTM] Initializing DMA pool allocator
+[    1.041112] nouveau 0000:03:00.0: DRM: VRAM: 4096 MiB
+[    1.041278] nouveau 0000:03:00.0: DRM: GART: 1048576 MiB
+[    1.041444] nouveau 0000:03:00.0: DRM: TMDS table version 2.0
+[    1.041610] nouveau 0000:03:00.0: DRM: DCB version 4.1
+[    1.041774] nouveau 0000:03:00.0: DRM: DCB outp 00: 01000f02 00020030
+[    1.041941] nouveau 0000:03:00.0: DRM: DCB outp 01: 02000f00 00000000
+[    1.042115] nouveau 0000:03:00.0: DRM: DCB outp 02: 02811f76 04400020
+[    1.042285] nouveau 0000:03:00.0: DRM: DCB outp 03: 02011f72 00020020
+[    1.042452] nouveau 0000:03:00.0: DRM: DCB outp 04: 04822f86 04400010
+[    1.042618] nouveau 0000:03:00.0: DRM: DCB outp 05: 04022f82 00020010
+[    1.042785] nouveau 0000:03:00.0: DRM: DCB outp 06: 04833f96 04400020
+[    1.042952] nouveau 0000:03:00.0: DRM: DCB outp 07: 04033f92 00020020
+[    1.043127] nouveau 0000:03:00.0: DRM: DCB outp 08: 02044f62 00020010
+[    1.043296] nouveau 0000:03:00.0: DRM: DCB outp 15: 01df5ff8 00000000
+[    1.043463] nouveau 0000:03:00.0: DRM: DCB conn 00: 00001030
+[    1.043628] nouveau 0000:03:00.0: DRM: DCB conn 01: 00020146
+[    1.043792] nouveau 0000:03:00.0: DRM: DCB conn 02: 01000246
+[    1.043957] nouveau 0000:03:00.0: DRM: DCB conn 03: 02000346
+[    1.044130] nouveau 0000:03:00.0: DRM: DCB conn 04: 00010461
+[    1.044298] nouveau 0000:03:00.0: DRM: DCB conn 05: 00000570
+[    1.044463] nouveau 0000:03:00.0: DRM: Pointer to flat panel table inval=
+id
+[    1.044654] nouveau 0000:03:00.0: disp: dcb 15 type 8 unknown
+[    1.097223] nouveau 0000:03:00.0: DRM: unknown connector type 70
+[    1.097413] nouveau 0000:03:00.0: DRM: failed to create encoder 1/8/0: -=
+19
+[    1.097586] nouveau 0000:03:00.0: DRM: Unknown-1 has no encoders, removi=
+ng
+[    1.097787] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    1.097957] [drm] Driver supports precise vblank timestamp query.
+[    1.207976] nouveau 0000:03:00.0: DRM: MM: using COPY for buffer copies
+[    1.561492] nouveau 0000:03:00.0: DRM: allocated 4096x2160 fb: 0x60000, =
+bo
+ffff88041ca58000</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15032285641.e2Cdd3d46.21866--
+
+--===============1694560637==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18Kd2F5bGFuZC1k
-ZXZlbCBtYWlsaW5nIGxpc3QKd2F5bGFuZC1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby93YXlsYW5kLWRldmVs
-Cg==
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1958754330==--
+--===============1694560637==--
