@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102352] New: nv4x fan run whole time at 100%,
- stable patch existing since about 1 year, please merge
-Date: Mon, 21 Aug 2017 22:26:42 +0000
-Message-ID: <bug-102352-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98631] GPU lock ups when starting GDM, SDDM,
+	and Plasma Desktop
+Date: Mon, 21 Aug 2017 22:50:46 +0000
+Message-ID: <bug-98631-8800-bxHWM8GBpB@http.bugs.freedesktop.org/>
+References: <bug-98631-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1100317262=="
+Content-Type: multipart/mixed; boundary="===============0353302499=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98631-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,53 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1100317262==
-Content-Type: multipart/alternative; boundary="15033544020.0DBCA43f.16488";
+--===============0353302499==
+Content-Type: multipart/alternative; boundary="15033558460.AA15.21243";
  charset="UTF-8"
 
 
---15033544020.0DBCA43f.16488
-Date: Mon, 21 Aug 2017 22:26:42 +0000
+--15033558460.AA15.21243
+Date: Mon, 21 Aug 2017 22:50:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102352
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98631
 
-            Bug ID: 102352
-           Summary: nv4x fan run whole time at 100%, stable patch existing
-                    since about 1 year, please merge
-           Product: xorg
-           Version: unspecified
-          Hardware: All
-                OS: Linux (All)
-            Status: NEW
-          Severity: trivial
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: caguduzexi-ybJNiJ/GDrisTnJN9+BGXg@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+caguduzexi-ybJNiJ/GDrisTnJN9+BGXg@public.gmane.org changed:
 
-Martin Peres have made a fix for this issue in Sep.2016:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
 
-https://lists.freedesktop.org/archives/nouveau/2016-September/026082.html
+--- Comment #6 from caguduzexi-ybJNiJ/GDrisTnJN9+BGXg@public.gmane.org ---
+Quote: "After a minute or two, the display responds again, but only showing=
+ a
+black background with several randomly colored pixels, and some white block=
+s."
 
-He also tagged this fix as stable:
+Yes, this is exactly what i had on x86_64.
+It would be great if you could create a gdb log. With such a log the develo=
+pers
+could see if its the same problem like i had here:
 
-https://lists.freedesktop.org/archives/nouveau/2016-October/026105.html
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102349
 
-
-After months nothing happening, imirkin have send out a ping:
-
-https://lists.freedesktop.org/archives/nouveau/2017-February/027290.html
-
-
-Now over a half year later still nothing happened. Could someone take a loo=
-k at
-this?
+Side note: I had to change from tty to the x-server and move the mouse arou=
+nd
+to cause a segfault error. Then change back to the tty and read out the gdb=
+ log
+with "thread apply all bt"
 
 Thanks
 
@@ -73,8 +67,8 @@ Thanks
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15033544020.0DBCA43f.16488
-Date: Mon, 21 Aug 2017 22:26:42 +0000
+--15033558460.AA15.21243
+Date: Mon, 21 Aug 2017 22:50:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -85,114 +79,70 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nv4x fan run whole time at 100%, stable patch existing si=
-nce about 1 year, please merge"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102352">102352</a>
-          </td>
-        </tr>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:caguduzex=
+i&#64;go2vpn.net" title=3D"caguduzexi&#64;go2vpn.net">caguduzexi&#64;go2vpn=
+.net</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - GPU lock ups when starting GDM, SDDM, and Plasma Des=
+ktop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98631">bug 98631<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>nv4x fan run whole time at 100%, stable patch existing since =
-about 1 year, please merge
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>trivial
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>caguduzexi&#64;go2vpn.net
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Martin Peres have made a fix for this issue in Sep.2016:
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - GPU lock ups when starting GDM, SDDM, and Plasma Des=
+ktop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98631#c6">Comment=
+ # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - GPU lock ups when starting GDM, SDDM, and Plasma Des=
+ktop"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98631">bug 98631<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+caguduzexi&#64;go2vpn.net" title=3D"caguduzexi&#64;go2vpn.net">caguduzexi&#=
+64;go2vpn.net</a>
+</span></b>
+        <pre>Quote: &quot;After a minute or two, the display responds again=
+, but only showing a
+black background with several randomly colored pixels, and some white block=
+s.&quot;
 
-<a href=3D"https://lists.freedesktop.org/archives/nouveau/2016-September/02=
-6082.html">https://lists.freedesktop.org/archives/nouveau/2016-September/02=
-6082.html</a>
+Yes, this is exactly what i had on x86_64.
+It would be great if you could create a gdb log. With such a log the develo=
+pers
+could see if its the same problem like i had here:
 
-He also tagged this fix as stable:
+<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"show_bug.cgi?id=3D102349">https://bugs.freedesktop.org/show_bug.=
+cgi?id=3D102349</a>
 
-<a href=3D"https://lists.freedesktop.org/archives/nouveau/2016-October/0261=
-05.html">https://lists.freedesktop.org/archives/nouveau/2016-October/026105=
-.html</a>
-
-
-After months nothing happening, imirkin have send out a ping:
-
-<a href=3D"https://lists.freedesktop.org/archives/nouveau/2017-February/027=
-290.html">https://lists.freedesktop.org/archives/nouveau/2017-February/0272=
-90.html</a>
-
-
-Now over a half year later still nothing happened. Could someone take a loo=
-k at
-this?
+Side note: I had to change from tty to the x-server and move the mouse arou=
+nd
+to cause a segfault error. Then change back to the tty and read out the gdb=
+ log
+with &quot;thread apply all bt&quot;
 
 Thanks</pre>
         </div>
@@ -208,9 +158,9 @@ Thanks</pre>
     </body>
 </html>=
 
---15033544020.0DBCA43f.16488--
+--15033558460.AA15.21243--
 
---===============1100317262==
+--===============0353302499==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -220,4 +170,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1100317262==--
+--===============0353302499==--
