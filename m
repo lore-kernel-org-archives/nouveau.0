@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 95251] vdpau decoder capabilities: not supported
-Date: Mon, 21 Aug 2017 01:23:32 +0000
-Message-ID: <bug-95251-8800-DiOayq8fxt@http.bugs.freedesktop.org/>
+Date: Mon, 21 Aug 2017 01:23:06 +0000
+Message-ID: <bug-95251-8800-0pdw4swoOf@http.bugs.freedesktop.org/>
 References: <bug-95251-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1198200687=="
+Content-Type: multipart/mixed; boundary="===============1713708314=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-95251-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1198200687==
-Content-Type: multipart/alternative; boundary="15032786130.7Ad5.4529";
+--===============1713708314==
+Content-Type: multipart/alternative; boundary="15032785860.fB12Fd.4224";
  charset="UTF-8"
 
 
---15032786130.7Ad5.4529
-Date: Mon, 21 Aug 2017 01:23:33 +0000
+--15032785860.fB12Fd.4224
+Date: Mon, 21 Aug 2017 01:23:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,7 +35,7 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D95251
 
---- Comment #9 from sansan <tuyulwarboy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+--- Comment #8 from sansan <tuyulwarboy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 Comment on attachment 123444
   --> https://bugs.freedesktop.org/attachment.cgi?id=3D123444
 vdpauinfo
@@ -1574,11 +1574,11 @@ Response.End%>
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15032786130.7Ad5.4529
-Date: Mon, 21 Aug 2017 01:23:33 +0000
+--15032785860.fB12Fd.4224
+Date: Mon, 21 Aug 2017 01:23:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -1595,8 +1595,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED FIXED - vdpau decoder capabilities: not supported"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95251#c9">Comment=
- # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95251#c8">Comment=
+ # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED FIXED - vdpau decoder capabilities: not supported"
@@ -3361,15 +3361,15 @@ Response.End%&gt;</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15032786130.7Ad5.4529--
+--15032785860.fB12Fd.4224--
 
---===============1198200687==
+--===============1713708314==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -3379,4 +3379,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1198200687==--
+--===============1713708314==--
