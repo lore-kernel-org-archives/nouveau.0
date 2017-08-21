@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102382] nv50ir: isImmediate doesn't properly work
- for integers if Value is typed as float
-Date: Thu, 24 Aug 2017 22:14:11 +0000
-Message-ID: <bug-102382-8800-fB2t3Bq32p@http.bugs.freedesktop.org/>
-References: <bug-102382-8800@http.bugs.freedesktop.org/>
+From: Shahar Or <mightyiampresence-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: GTX 1080 Ti (NV132/GP102)
+Date: Mon, 21 Aug 2017 14:01:36 +0000
+Message-ID: <CAF3gKszQB4CDfKESqVFWjzE8vhMu3KzSCyXRKQvUww8WBWwRXA@mail.gmail.com>
+References: <CAF3gKsxF4aHmPXaBp_hBWU9YY0b4POU7Q-zVMxQdvfLPXbLkQA@mail.gmail.com>
+ <CAKb7UvizmS==c21wZfe2V2q1p7awpWmi8FwQhYJWX-V+sxcdgQ@mail.gmail.com>
+ <CAF3gKsx=HrJEB+cmJU8comm6F4JbEC0ATHG76sT34sR4qhuVeg@mail.gmail.com>
+ <CAKb7UvhwFfUF4Nn-4uW9ykK=T1nSbJYMvDkO9OmA6j6SiGyGQQ@mail.gmail.com>
+ <CAF3gKszoN1kSZD7RBAnvJ=BqsMRK37ws3-vNp6wdys=V62D4vg@mail.gmail.com>
+ <20170525162044.jit5ciapzee2b5gg@pmoreau.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0811802896=="
+Content-Type: multipart/mixed; boundary="===============0214395661=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20170525162044.jit5ciapzee2b5gg-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,122 +21,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+--===============0214395661==
+Content-Type: multipart/alternative; boundary="f403045f8f826b34cd055743ebe0"
 
---===============0811802896==
-Content-Type: multipart/alternative; boundary="15036128501.eed20E01.18431";
- charset="UTF-8"
-
-
---15036128501.eed20E01.18431
-Date: Thu, 24 Aug 2017 22:14:10 +0000
-MIME-Version: 1.0
+--f403045f8f826b34cd055743ebe0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102382
+Since the Ubuntu 17.10 that I'm running now has Linux 4.12, there should be
+some support for my card, yet I still experience the same phenomenon.
 
-Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+If I DO NOT use `nomodeset`, I see the boot log shooting through and then
+blank. I can tell that it is not a system halt, because I can
+ctrl-alt-delete and the OS catches that and safely reboots.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+It is the official Ubuntu 4.12.0-11-generic, x86_64.
 
---- Comment #1 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-nothing was wrong with isImmediate, but the tetexfetch was fixed in
-96be442b7795a6eb3d50f4061f2b98dddc39aa4d
+03:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce GTX
+1080 Ti] (rev a1)
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+How can I further help you help me, please?
 
---15036128501.eed20E01.18431
-Date: Thu, 24 Aug 2017 22:14:10 +0000
-MIME-Version: 1.0
+On Thu, May 25, 2017 at 7:20 PM Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> wrote:
+
+> > Another issue is that in Google Chrome I seem have no hardware
+> acceleration
+> > for anything other than "Multiple Raster Threads". See attached.
+>
+> Two things: you are using nomodeset, and hardware acceleration for Pascal
+> cards
+> was only merged in 4.12 (which has not been released yet), as pointed out
+> by
+> Ilia.
+>
+> Pierre
+>
+
+--f403045f8f826b34cd055743ebe0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:karolherb=
-st&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.com&gt;">=
- <span class=3D"fn">Karol Herbst</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - nv50ir: isImmediate doesn't properly work for =
-integers if Value is typed as float"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102382">bug 10238=
-2</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+<div dir=3D"ltr">Since the Ubuntu 17.10 that I&#39;m running now has Linux =
+4.12, there should be some support for my card, yet I still experience the =
+same phenomenon.<div><br></div><div>If I DO NOT use `nomodeset`, I see the =
+boot log shooting through and then blank. I can tell that it is not a syste=
+m halt, because I can ctrl-alt-delete and the OS catches that and safely re=
+boots.</div><div><br></div><div>It is the official Ubuntu 4.12.0-11-generic=
+, x86_64.</div><div><br></div><div>03:00.0 VGA compatible controller: NVIDI=
+A Corporation GP102 [GeForce GTX 1080 Ti] (rev a1)<br></div><div><br></div>=
+<div>How can I further help you help me, please?</div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr">On Thu, May 25, 2017 at 7:20 PM Pierre Mo=
+reau &lt;<a href=3D"mailto:pierre.morrow-GANU6spQydw@public.gmane.org">pierre.morrow-GANU6spQydw@public.gmane.org</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
+0 .8ex;border-left:1px #ccc solid;padding-left:1ex">&gt; Another issue is t=
+hat in Google Chrome I seem have no hardware acceleration<br>
+&gt; for anything other than &quot;Multiple Raster Threads&quot;. See attac=
+hed.<br>
+<br>
+Two things: you are using nomodeset, and hardware acceleration for Pascal c=
+ards<br>
+was only merged in 4.12 (which has not been released yet), as pointed out b=
+y<br>
+Ilia.<br>
+<br>
+Pierre<br>
+</blockquote></div>
 
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
+--f403045f8f826b34cd055743ebe0--
 
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - nv50ir: isImmediate doesn't properly work for =
-integers if Value is typed as float"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102382#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - nv50ir: isImmediate doesn't properly work for =
-integers if Value is typed as float"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102382">bug 10238=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
-</span></b>
-        <pre>nothing was wrong with isImmediate, but the tetexfetch was fix=
-ed in
-96be442b7795a6eb3d50f4061f2b98dddc39aa4d</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15036128501.eed20E01.18431--
-
---===============0811802896==
+--===============0214395661==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -142,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0811802896==--
+--===============0214395661==--
