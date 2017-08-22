@@ -1,104 +1,45 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102352] nv4x fan run whole time at 100%,
- stable patch existing since about 1 year, please merge
-Date: Tue, 22 Aug 2017 07:54:49 +0000
-Message-ID: <bug-102352-8800-Fo6dFzEZdL@http.bugs.freedesktop.org/>
-References: <bug-102352-8800@http.bugs.freedesktop.org/>
+From: Andy Furniss <adf.lists@gmail.com>
+Subject: Re: VDPAU issues in 17.2 and master, and a test request
+Date: Tue, 22 Aug 2017 10:56:17 +0100
+Message-ID: <f27b36f6-110d-f45b-510b-f1c3910c9a75@gmail.com>
+References: <CAKb7UvgyjMCKdi0uSYBk+tULH-cB_i3s=fgE0uXJs=iuV0hV0w@mail.gmail.com>
+ <e8009d31-22d4-ad34-20f5-073b29ea99d1@gmail.com>
+ <CAKb7UvhC5E=rqLAqwRUE0QUoJRuzviCEY6d3bjZNEjMuN4ptJg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0774647246=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102352-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7UvhC5E=rqLAqwRUE0QUoJRuzviCEY6d3bjZNEjMuN4ptJg@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0774647246==
-Content-Type: multipart/alternative; boundary="15033884891.Db2c90E.20219";
- charset="UTF-8"
-
-
---15033884891.Db2c90E.20219
-Date: Tue, 22 Aug 2017 07:54:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102352
-
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The patch you're talking about has been merged for a long time now.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15033884891.Db2c90E.20219
-Date: Tue, 22 Aug 2017 07:54:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nv4x fan run whole time at 100%, stable patch existing si=
-nce about 1 year, please merge"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102352#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nv4x fan run whole time at 100%, stable patch existing si=
-nce about 1 year, please merge"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102352">bug 10235=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>The patch you're talking about has been merged for a long time=
- now.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15033884891.Db2c90E.20219--
-
---===============0774647246==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0774647246==--
+SWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gTW9uLCBBdWcgMjEsIDIwMTcgYXQgNTo1NCBQTSwgQW5k
+eSBGdXJuaXNzIDxhZGYubGlzdHNAZ21haWwuY29tPgo+IHdyb3RlOgo+PiBJbGlhIE1pcmtpbiB3
+cm90ZToKPj4gCj4+PiBBcyBJIGRvbid0IGhhdmUgdGhlIGhhcmR3YXJlIG15c2VsZiwgSSB3YXMg
+aG9waW5nIHNvbWVvbmUgY291bGQgCj4+PiBjb25maXJtIHRoYXQgdGhpcyBpcyBhIG5vdXZlYXUg
+aXNzdWUgYW5kIG5vdCBhIG1vcmUgZ2VuZXJhbCBvbmUuIAo+Pj4gSWRlYWxseSB0aGlzIHdvdWxk
+IGJlIGRvbmUgYnkgdGVzdGluZyBWRFBBVSBvbiBib3RoIHJhZGVvbnNpIGFuZAo+Pj4gcjYwMCwg
+YXMgd2VsbCBhcyBib3RoIHRoZSBEUkkzIGFuZCB0aGUgRFJJMiBwYXRocy4gUGxlYXNlIHVzZQo+
+Pj4gbXBsYXllciBmb3IgdGhpcywgbm90IG1wdiBvciBtcGxheWVyMiBvciBhbnl0aGluZyBlbHNl
+IC0tIGFsbAo+Pj4gdGhvc2UgaGF2ZSB2YXJpb3VzIGRpZmZlcmVuY2VzIGluIGhvdyB0aGUgcmVu
+ZGVyaW5nIGlzIGRvbmUgZnJvbQo+Pj4gbXBsYXllciwgd2hpY2ggY291bGQgYWNjb3VudCBmb3Ig
+YSBkaWZmZXJlbnQgZmluYWwgcmVzdWx0Lgo+PiAKPj4gCj4+IEN1cnJlbnQgc3ZuIG1wbGF5ZXIg
+KyBnaXQgZmZtcGVnLCB2ZHBhdSB2byBpcyBPSyBmb3IgbWUgb24KPj4gcmFkZW9uc2kuIE9wdGlv
+biAiRFJJMyIgIm9mZiIgaW4gYW1kZ3B1LmNvbmYgZm9yIGRkeCBpcyBhbHNvIE9LLgo+IAo+IFRo
+YW5rcywgQW5keS4gV2hhdCB2ZXJzaW9uIG9mIG1lc2Egd2FzIHRoaXMgd2l0aD8KClRoaXMgaXMg
+d2l0aCBjdXJyZW50IGdpdC4KCnZkcGF1IGlzIHRoZSBkZWZhdWx0IChmb3IgbWUpIHdpdGggbXBs
+YXllciwgYW5kIEkgaGF2ZSB1c2VkIGl0IHdpdGggZ2l0Cm1lc2FzIGZvciBhIGxvbmcgdGltZS4g
+VW50aWwgeWVzdGVyZGF5IEkgaGFkbid0IHVwZGF0ZWQgbXBsYXllciBpdHMgc2VsZgpmb3Igc2V2
+ZXJhbCBtb250aHMuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
