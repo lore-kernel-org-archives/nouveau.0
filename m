@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102337] Full system crash when running a custom
- OpenGL 4.3 graphic engine
-Date: Tue, 22 Aug 2017 12:44:03 +0000
-Message-ID: <bug-102337-8800-28vCPCNt11@http.bugs.freedesktop.org/>
-References: <bug-102337-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102349] nv4x crashing with plasmashell - gdb log
+	included
+Date: Wed, 23 Aug 2017 05:10:37 +0000
+Message-ID: <bug-102349-8800-kyJn7ouHFL@http.bugs.freedesktop.org/>
+References: <bug-102349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1003307364=="
+Content-Type: multipart/mixed; boundary="===============1596722863=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102337-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-102349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,49 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1003307364==
-Content-Type: multipart/alternative; boundary="15034058430.dd3fc41.24910";
+--===============1596722863==
+Content-Type: multipart/alternative; boundary="15034650372.dE3Bb.13595";
  charset="UTF-8"
 
 
---15034058430.dd3fc41.24910
-Date: Tue, 22 Aug 2017 12:44:03 +0000
+--15034650372.dE3Bb.13595
+Date: Wed, 23 Aug 2017 05:10:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102337
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102349
 
---- Comment #4 from TheBrokenGod <from.the.darkest.past-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I tried the 08/21 image but I'm having trouble installing the needed packag=
-es.
-I managed to install and run LXDE but when trying to install the rest it sa=
-ys
-there is no enough space, which is strange because with 8GB of RAM there sh=
-ould
-be plenty of it. Unfortunately I have no free partition on which perform the
-installation.
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 133709
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D133709&action=3Dedit
+hackpatch
 
-Anyway, it is very simple to reproduce the problem:
-
-1) Download the whole project from https://github.com/TheBrokenGod/OmegaEng=
-ine
-and unzip it
-2) Install the following packages and libraries: make, g++, glfw, glew, ass=
-imp,
-freeimage
-3) Run 'make -f makefile' in the root directory of the project
-4) Launch the test scene with './omega Scene/scene.dae'
+OK, so it looks like a PUSH_RESET happens when there's no bufctx is bound. I
+can definitely see how that can happen, unfortunately -- if a context becom=
+es
+active and is then deleted, then the screen's pushbuf->user_priv =3D NULL. =
+Then a
+PUSH_RESET comes in, and *boom*. This is a giant hack, but I suspect this p=
+atch
+could resolve the issue.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15034058430.dd3fc41.24910
-Date: Tue, 22 Aug 2017 12:44:03 +0000
+--15034650372.dE3Bb.13595
+Date: Wed, 23 Aug 2017 05:10:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,39 +71,33 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Full system crash when running a custom OpenGL 4.3 graphi=
-c engine"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102337#c4">Commen=
-t # 4</a>
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349#c1">Commen=
+t # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Full system crash when running a custom OpenGL 4.3 graphi=
-c engine"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102337">bug 10233=
-7</a>
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-from.the.darkest.past&#64;gmail.com" title=3D"TheBrokenGod &lt;from.the.dar=
-kest.past&#64;gmail.com&gt;"> <span class=3D"fn">TheBrokenGod</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I tried the 08/21 image but I'm having trouble installing the =
-needed packages.
-I managed to install and run LXDE but when trying to install the rest it sa=
-ys
-there is no enough space, which is strange because with 8GB of RAM there sh=
-ould
-be plenty of it. Unfortunately I have no free partition on which perform the
-installation.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D133709=
+" name=3D"attach_133709" title=3D"hackpatch">attachment 133709</a> <a href=
+=3D"attachment.cgi?id=3D133709&amp;action=3Dedit" title=3D"hackpatch">[deta=
+ils]</a></span> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D102349&amp=
+;attachment=3D133709'>[review]</a>
+hackpatch
 
-Anyway, it is very simple to reproduce the problem:
-
-1) Download the whole project from <a href=3D"https://github.com/TheBrokenG=
-od/OmegaEngine">https://github.com/TheBrokenGod/OmegaEngine</a>
-and unzip it
-2) Install the following packages and libraries: make, g++, glfw, glew, ass=
-imp,
-freeimage
-3) Run 'make -f makefile' in the root directory of the project
-4) Launch the test scene with './omega Scene/scene.dae'</pre>
+OK, so it looks like a PUSH_RESET happens when there's no bufctx is bound. I
+can definitely see how that can happen, unfortunately -- if a context becom=
+es
+active and is then deleted, then the screen's pushbuf-&gt;user_priv =3D NUL=
+L. Then a
+PUSH_RESET comes in, and *boom*. This is a giant hack, but I suspect this p=
+atch
+could resolve the issue.</pre>
         </div>
       </p>
 
@@ -120,15 +106,14 @@ freeimage
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15034058430.dd3fc41.24910--
+--15034650372.dE3Bb.13595--
 
---===============1003307364==
+--===============1596722863==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -138,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1003307364==--
+--===============1596722863==--
