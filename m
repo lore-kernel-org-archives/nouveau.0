@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 102368] Since Archlinux testing migrate to mesa
  17.1.7, I got a pink overlay in webcam software.
-Date: Wed, 23 Aug 2017 12:29:34 +0000
-Message-ID: <bug-102368-8800-SJE7PG8tDR@http.bugs.freedesktop.org/>
+Date: Wed, 23 Aug 2017 13:34:42 +0000
+Message-ID: <bug-102368-8800-bAFWbwipHj@http.bugs.freedesktop.org/>
 References: <bug-102368-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0006781454=="
+Content-Type: multipart/mixed; boundary="===============0641862692=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-102368-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0006781454==
-Content-Type: multipart/alternative; boundary="15034913740.4aa48.4664";
+--===============0641862692==
+Content-Type: multipart/alternative; boundary="15034952821.CdAdEfc.20639";
  charset="UTF-8"
 
 
---15034913740.4aa48.4664
-Date: Wed, 23 Aug 2017 12:29:34 +0000
+--15034952821.CdAdEfc.20639
+Date: Wed, 23 Aug 2017 13:34:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D102368
 
---- Comment #4 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Frederic Bezies from comment #3)
-> Another option : just give me a link to your patch I can reverse and rebu=
-ild
-> mesa 17.1.7 without it. It will be quicker and more direct :)
->=20
-> Thanks!
-
-I will try to reproduce on my system first, but this also has to wait today.
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+https://cgit.freedesktop.org/mesa/mesa/commit/?h=3D17.1&id=3D8aa358bd69862d=
+4a88148942c85ee74048fa2561
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15034913740.4aa48.4664
-Date: Wed, 23 Aug 2017 12:29:34 +0000
+--15034952821.CdAdEfc.20639
+Date: Wed, 23 Aug 2017 13:34:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Since Archlinux testing migrate to mesa 17.1.7, I got a p=
 ink overlay in webcam software."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102368#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102368#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Since Archlinux testing migrate to mesa 17.1.7, I got a p=
@@ -79,19 +73,13 @@ ink overlay in webcam software."
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102368">bug 10236=
 8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Frederic Bezies from <a href=3D"show_bug.cgi?id=
-=3D102368#c3">comment #3</a>)
-<span class=3D"quote">&gt; Another option : just give me a link to your pat=
-ch I can reverse and rebuild
-&gt; mesa 17.1.7 without it. It will be quicker and more direct :)
-&gt;=20
-&gt; Thanks!</span >
-
-I will try to reproduce on my system first, but this also has to wait today=
-.</pre>
+        <pre><a href=3D"https://cgit.freedesktop.org/mesa/mesa/commit/?h=3D=
+17.1&amp;id=3D8aa358bd69862d4a88148942c85ee74048fa2561">https://cgit.freede=
+sktop.org/mesa/mesa/commit/?h=3D17.1&amp;id=3D8aa358bd69862d4a88148942c85ee=
+74048fa2561</a></pre>
         </div>
       </p>
 
@@ -106,9 +94,9 @@ I will try to reproduce on my system first, but this also has to wait today=
     </body>
 </html>=
 
---15034913740.4aa48.4664--
+--15034952821.CdAdEfc.20639--
 
---===============0006781454==
+--===============0641862692==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0006781454==--
+--===============0641862692==--
