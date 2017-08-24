@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93629] [NVE6] complete system freeze,
- PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
-Date: Thu, 24 Aug 2017 15:17:15 +0000
-Message-ID: <bug-93629-8800-IQ9PJUldHf@http.bugs.freedesktop.org/>
-References: <bug-93629-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102349] nv4x crashing with plasmashell - gdb log
+	included
+Date: Thu, 24 Aug 2017 16:00:04 +0000
+Message-ID: <bug-102349-8800-OfsqvvmrcG@http.bugs.freedesktop.org/>
+References: <bug-102349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1176253640=="
+Content-Type: multipart/mixed; boundary="===============2050954079=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-102349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1176253640==
-Content-Type: multipart/alternative; boundary="15035878354.e8bdB.5613";
+--===============2050954079==
+Content-Type: multipart/alternative; boundary="15035904030.79Aaa.17070";
  charset="UTF-8"
 
 
---15035878354.e8bdB.5613
-Date: Thu, 24 Aug 2017 15:17:15 +0000
+--15035904030.79Aaa.17070
+Date: Thu, 24 Aug 2017 16:00:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102349
 
---- Comment #37 from dangelovich-+RhfMwYnRBSZFXHMiJVqBHS5uNuOjpZe@public.gmane.org ---
-Same issue, Ubuntu 17 with kernel 4.10.0.32.32
+--- Comment #6 from caguduzexi-ybJNiJ/GDrisTnJN9+BGXg@public.gmane.org ---
+The
+" push->user_priv =3D &nv30->bufctx;
 
-kernel.log shows:
-Aug 24 11:05:15 dangelovich-ud kernel: [95310.061112] nouveau 0000:01:00.0:
-fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-Aug 24 11:05:15 dangelovich-ud kernel: [95310.061118] nouveau 0000:01:00.0:
-fifo: gr engine fault on channel 10, recovering...
+Somewhere towards the top of nv30_clear (before it calls nv30_state_validat=
+e)"
 
-
-Then the machine hangs (frozen, but can still move the cursor) and I have to
-power off. It's pretty regular at this point, so if more info is required l=
-et
-me know what and how to get it.
+patch worked. I got into the desktop screen.
+In the desktop screen i have now again the known errors with colored rectan=
+gles
+beginning in one of the corners and stretching over the whole screen. Shoul=
+d i
+open for those a new bugreport? How can those be properly reported?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15035878354.e8bdB.5613
-Date: Thu, 24 Aug 2017 15:17:15 +0000
+--15035904030.79Aaa.17070
+Date: Thu, 24 Aug 2017 16:00:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,33 +71,30 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c37">Commen=
-t # 37</a>
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
-/a>
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dangelovich&#64;maxpowerindustries.com" title=3D"dangelovich&#64;maxpowerin=
-dustries.com">dangelovich&#64;maxpowerindustries.com</a>
+caguduzexi&#64;go2vpn.net" title=3D"caguduzexi&#64;go2vpn.net">caguduzexi&#=
+64;go2vpn.net</a>
 </span></b>
-        <pre>Same issue, Ubuntu 17 with kernel 4.10.0.32.32
+        <pre>The
+&quot; push-&gt;user_priv =3D &amp;nv30-&gt;bufctx;
 
-kernel.log shows:
-Aug 24 11:05:15 dangelovich-ud kernel: [95310.061112] nouveau 0000:01:00.0:
-fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-Aug 24 11:05:15 dangelovich-ud kernel: [95310.061118] nouveau 0000:01:00.0:
-fifo: gr engine fault on channel 10, recovering...
+Somewhere towards the top of nv30_clear (before it calls nv30_state_validat=
+e)&quot;
 
-
-Then the machine hangs (frozen, but can still move the cursor) and I have to
-power off. It's pretty regular at this point, so if more info is required l=
-et
-me know what and how to get it.</pre>
+patch worked. I got into the desktop screen.
+In the desktop screen i have now again the known errors with colored rectan=
+gles
+beginning in one of the corners and stretching over the whole screen. Shoul=
+d i
+open for those a new bugreport? How can those be properly reported?</pre>
         </div>
       </p>
 
@@ -112,9 +108,9 @@ me know what and how to get it.</pre>
     </body>
 </html>=
 
---15035878354.e8bdB.5613--
+--15035904030.79Aaa.17070--
 
---===============1176253640==
+--===============2050954079==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1176253640==--
+--===============2050954079==--
