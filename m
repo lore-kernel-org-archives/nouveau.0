@@ -1,17 +1,11 @@
-From: Shahar Or <mightyiampresence-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: GTX 1080 Ti (NV132/GP102)
-Date: Mon, 21 Aug 2017 14:01:36 +0000
-Message-ID: <CAF3gKszQB4CDfKESqVFWjzE8vhMu3KzSCyXRKQvUww8WBWwRXA@mail.gmail.com>
-References: <CAF3gKsxF4aHmPXaBp_hBWU9YY0b4POU7Q-zVMxQdvfLPXbLkQA@mail.gmail.com>
- <CAKb7UvizmS==c21wZfe2V2q1p7awpWmi8FwQhYJWX-V+sxcdgQ@mail.gmail.com>
- <CAF3gKsx=HrJEB+cmJU8comm6F4JbEC0ATHG76sT34sR4qhuVeg@mail.gmail.com>
- <CAKb7UvhwFfUF4Nn-4uW9ykK=T1nSbJYMvDkO9OmA6j6SiGyGQQ@mail.gmail.com>
- <CAF3gKszoN1kSZD7RBAnvJ=BqsMRK37ws3-vNp6wdys=V62D4vg@mail.gmail.com>
- <20170525162044.jit5ciapzee2b5gg@pmoreau.org>
+From: "Su, Yunde" <su.526-Fg7SviYvi7p1eIqQ5PyeMpVzexx5G7lz@public.gmane.org>
+Subject: glx error with nouveau
+Date: Thu, 24 Aug 2017 17:29:33 +0000
+Message-ID: <DM5PR01MB23614484ABB840515916DA73919A0@DM5PR01MB2361.prod.exchangelabs.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0214395661=="
+Content-Type: multipart/mixed; boundary="===============1822164170=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170525162044.jit5ciapzee2b5gg-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,77 +15,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0214395661==
-Content-Type: multipart/alternative; boundary="f403045f8f826b34cd055743ebe0"
+--===============1822164170==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DM5PR01MB23614484ABB840515916DA73919A0DM5PR01MB2361prod_"
 
---f403045f8f826b34cd055743ebe0
-Content-Type: text/plain; charset="UTF-8"
-
-Since the Ubuntu 17.10 that I'm running now has Linux 4.12, there should be
-some support for my card, yet I still experience the same phenomenon.
-
-If I DO NOT use `nomodeset`, I see the boot log shooting through and then
-blank. I can tell that it is not a system halt, because I can
-ctrl-alt-delete and the OS catches that and safely reboots.
-
-It is the official Ubuntu 4.12.0-11-generic, x86_64.
-
-03:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce GTX
-1080 Ti] (rev a1)
-
-How can I further help you help me, please?
-
-On Thu, May 25, 2017 at 7:20 PM Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> wrote:
-
-> > Another issue is that in Google Chrome I seem have no hardware
-> acceleration
-> > for anything other than "Multiple Raster Threads". See attached.
->
-> Two things: you are using nomodeset, and hardware acceleration for Pascal
-> cards
-> was only merged in 4.12 (which has not been released yet), as pointed out
-> by
-> Ilia.
->
-> Pierre
->
-
---f403045f8f826b34cd055743ebe0
-Content-Type: text/html; charset="UTF-8"
+--_000_DM5PR01MB23614484ABB840515916DA73919A0DM5PR01MB2361prod_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Since the Ubuntu 17.10 that I&#39;m running now has Linux =
-4.12, there should be some support for my card, yet I still experience the =
-same phenomenon.<div><br></div><div>If I DO NOT use `nomodeset`, I see the =
-boot log shooting through and then blank. I can tell that it is not a syste=
-m halt, because I can ctrl-alt-delete and the OS catches that and safely re=
-boots.</div><div><br></div><div>It is the official Ubuntu 4.12.0-11-generic=
-, x86_64.</div><div><br></div><div>03:00.0 VGA compatible controller: NVIDI=
-A Corporation GP102 [GeForce GTX 1080 Ti] (rev a1)<br></div><div><br></div>=
-<div>How can I further help you help me, please?</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr">On Thu, May 25, 2017 at 7:20 PM Pierre Mo=
-reau &lt;<a href=3D"mailto:pierre.morrow-GANU6spQydw@public.gmane.org">pierre.morrow-GANU6spQydw@public.gmane.org</a>=
-&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
-0 .8ex;border-left:1px #ccc solid;padding-left:1ex">&gt; Another issue is t=
-hat in Google Chrome I seem have no hardware acceleration<br>
-&gt; for anything other than &quot;Multiple Raster Threads&quot;. See attac=
-hed.<br>
-<br>
-Two things: you are using nomodeset, and hardware acceleration for Pascal c=
-ards<br>
-was only merged in 4.12 (which has not been released yet), as pointed out b=
-y<br>
-Ilia.<br>
-<br>
-Pierre<br>
-</blockquote></div>
+Hello all,
 
---f403045f8f826b34cd055743ebe0--
 
---===============0214395661==
+My laptop has Nouveau installed as the graphic driver. The version is 2.6.3=
+2-573.12.1.el6.x86_64. And when I tried to run a software(CONVERGE STUDIO),=
+ I find such errors:
+
+Xlib:  extension "GLX" missing on display ":0.0".
+QGLTempContext: No GL capable X visuals available.
+Xlib:  extension "GLX" missing on display ":0.0".
+Xlib:  extension "GLX" missing on display ":0.0".
+Xlib:  extension "GLX" missing on display ":0.0".
+Xlib:  extension "GLX" missing on display ":0.0".
+Xlib:  extension "GLX" missing on display ":0.0".
+
+
+Could you give some suggestions on how to solve this problem?
+
+
+Thanks and best wishes.
+
+
+Best,
+
+Yunde
+
+--_000_DM5PR01MB23614484ABB840515916DA73919A0DM5PR01MB2361prod_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size: 12pt; color: rgb(0, 0,=
+ 0); font-family: Calibri,Helvetica,sans-serif,&quot;EmojiFont&quot;,&quot;=
+Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Seg=
+oe UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols;" dir=3D"ltr">
+<p>Hello all,</p>
+<p><br>
+</p>
+<p>My laptop has Nouveau installed as the graphic driver. The version is <s=
+pan>2.6.32-573.12.1.el6.x86_64</span>. And when I tried to run a software(C=
+ONVERGE STUDIO), I find such errors:</p>
+<p><font style=3D"font-family: Calibri,Helvetica,sans-serif,serif,&quot;Emo=
+jiFont&quot;;" size=3D"3" face=3D"Calibri,Helvetica,sans-serif" color=3D"bl=
+ack"><span style=3D"font-size:12pt;" id=3D"divtagdefaultwrapper">Xlib:&nbsp=
+; extension &quot;GLX&quot; missing on display &quot;:0.0&quot;.<br>
+QGLTempContext: No GL capable X visuals available.<br>
+Xlib:&nbsp; extension &quot;GLX&quot; missing on display &quot;:0.0&quot;.<=
+br>
+Xlib:&nbsp; extension &quot;GLX&quot; missing on display &quot;:0.0&quot;.<=
+br>
+Xlib:&nbsp; extension &quot;GLX&quot; missing on display &quot;:0.0&quot;.<=
+br>
+Xlib:&nbsp; extension &quot;GLX&quot; missing on display &quot;:0.0&quot;.<=
+br>
+Xlib:&nbsp; extension &quot;GLX&quot; missing on display &quot;:0.0&quot;.<=
+/span></font><br>
+</p>
+<p><br>
+</p>
+<p>Could you give some suggestions on how to solve this problem?</p>
+<p><br>
+</p>
+<p>Thanks and best wishes.</p>
+<p><br>
+</p>
+<p>Best,</p>
+<p>Yunde<br>
+</p>
+<div id=3D"Signature"></div>
+</div>
+</body>
+</html>
+
+--_000_DM5PR01MB23614484ABB840515916DA73919A0DM5PR01MB2361prod_--
+
+--===============1822164170==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0214395661==--
+--===============1822164170==--
