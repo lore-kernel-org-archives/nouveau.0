@@ -1,39 +1,149 @@
-From: =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
-Subject: [PATCH] drm: nouveau: replace magic constant for TASK_COMM_LEN
-Date: Thu, 31 Aug 2017 19:39:24 +0200
-Message-ID: <aed4ab093ddbfbd94247ac9d68285c09258a6011.1504200976.git.mirq-linux@rere.qmqm.pl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101220] [NV137/GP107] xorg-server-1.19.3 crashes
+ when trying to enable HDMI output
+Date: Thu, 31 Aug 2017 22:28:27 +0000
+Message-ID: <bug-101220-8800-TH5TNnxaBu@http.bugs.freedesktop.org/>
+References: <bug-101220-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0657581184=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q2xpZW50J3MgbmFtZSBpcyB0YXNrX2NvbW0gKyBwaWQ6IHVzZSBjb25zdGFudCBmb3IgY2xhcml0
-eSBhbmQgcHJlcGFyZQpmb3IgY2hhbmdlZCBUQVNLX0NPTU1fTEVOLgoKU2lnbmVkLW9mZi1ieTog
-TWljaGHFgiBNaXJvc8WCYXcgPG1pcnEtbGludXhAcmVyZS5xbXFtLnBsPgotLS0KIGRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBp
-bnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2RybS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
-cm0uYwppbmRleCAxNWExM2QwOWQ0MzEuLjI4Mzk2ZDBiMDg2NCAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9ub3V2ZWF1X2RybS5jCkBAIC04MzAsNyArODMwLDcgQEAgbm91dmVhdV9kcm1fb3Blbihz
-dHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3QgZHJtX2ZpbGUgKmZwcml2KQogewogCXN0cnVj
-dCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKIAlzdHJ1Y3Qgbm91dmVhdV9j
-bGkgKmNsaTsKLQljaGFyIG5hbWVbMzJdLCB0bXBuYW1lW1RBU0tfQ09NTV9MRU5dOworCWNoYXIg
-bmFtZVtUQVNLX0NPTU1fTEVOICsgMTZdLCB0bXBuYW1lW1RBU0tfQ09NTV9MRU5dOwogCWludCBy
-ZXQ7CiAKIAkvKiBuZWVkIHRvIGJyaW5nIHVwIHBvd2VyIGltbWVkaWF0ZWx5IGlmIG9wZW5pbmcg
-ZGV2aWNlICovCi0tIAoyLjExLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2RyaS1kZXZlbAo=
+
+--===============0657581184==
+Content-Type: multipart/alternative; boundary="15042185070.FFDDF.14005";
+ charset="UTF-8"
+
+
+--15042185070.FFDDF.14005
+Date: Thu, 31 Aug 2017 22:28:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
+
+Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=3D100228
+            Summary|xorg-server-1.19.3 crashes  |[NV137/GP107]
+                   |when trying to enable HDMI  |xorg-server-1.19.3 crashes
+                   |output                      |when trying to enable HDMI
+                   |                            |output
+
+--- Comment #15 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Looks very closely related to, if not the same as, bz#100228
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15042185070.FFDDF.14005
+Date: Thu, 31 Aug 2017 22:28:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rhyskidd&=
+#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;"> <span cl=
+ass=3D"fn">Rhys Kidd</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
+nable HDMI output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
+0</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">See Also</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>xorg-server-1.19.3 crashes when trying to enable HDMI output
+           </td>
+           <td>[NV137/GP107] xorg-server-1.19.3 crashes when trying to enab=
+le HDMI output
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
+nable HDMI output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c15">Comme=
+nt # 15</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
+nable HDMI output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
+ <span class=3D"fn">Rhys Kidd</span></a>
+</span></b>
+        <pre>Looks very closely related to, if not the same as, bz#100228</=
+pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15042185070.FFDDF.14005--
+
+--===============0657581184==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0657581184==--
