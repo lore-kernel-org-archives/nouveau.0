@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101220] [NV137/GP107] xorg-server-1.19.3 crashes
- when trying to enable HDMI output
+Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
+ 409800 [ TIMEOUT ]
 Date: Thu, 31 Aug 2017 22:28:27 +0000
-Message-ID: <bug-101220-8800-TH5TNnxaBu@http.bugs.freedesktop.org/>
-References: <bug-101220-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-100228-8800-lptZF6JCL7@http.bugs.freedesktop.org/>
+References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0657581184=="
+Content-Type: multipart/mixed; boundary="===============1103236963=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0657581184==
-Content-Type: multipart/alternative; boundary="15042185070.FFDDF.14005";
+--===============1103236963==
+Content-Type: multipart/alternative; boundary="15042185078.BAaC.14005";
  charset="UTF-8"
 
 
---15042185070.FFDDF.14005
+--15042185078.BAaC.14005
 Date: Thu, 31 Aug 2017 22:28:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -34,27 +34,20 @@ Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
 
 Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=3D100228
-            Summary|xorg-server-1.19.3 crashes  |[NV137/GP107]
-                   |when trying to enable HDMI  |xorg-server-1.19.3 crashes
-                   |output                      |when trying to enable HDMI
-                   |                            |output
-
---- Comment #15 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Looks very closely related to, if not the same as, bz#100228
+                   |                            |g/show_bug.cgi?id=3D101220
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15042185070.FFDDF.14005
+--15042185078.BAaC.14005
 Date: Thu, 31 Aug 2017 22:28:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -72,10 +65,10 @@ ass=3D"fn">Rhys Kidd</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
-nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
-0</a>
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
+8</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -89,39 +82,10 @@ nable HDMI output"
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>xorg-server-1.19.3 crashes when trying to enable HDMI output
-           </td>
-           <td>[NV137/GP107] xorg-server-1.19.3 crashes when trying to enab=
-le HDMI output
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
-nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c15">Comme=
-nt # 15</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
-nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
- <span class=3D"fn">Rhys Kidd</span></a>
-</span></b>
-        <pre>Looks very closely related to, if not the same as, bz#100228</=
-pre>
-        </div>
       </p>
 
 
@@ -134,9 +98,9 @@ pre>
     </body>
 </html>=
 
---15042185070.FFDDF.14005--
+--15042185078.BAaC.14005--
 
---===============0657581184==
+--===============1103236963==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0657581184==--
+--===============1103236963==--
