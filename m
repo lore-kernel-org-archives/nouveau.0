@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101220] [NV137/GP107] xorg-server-1.19.3 crashes
- when trying to enable HDMI output
-Date: Fri, 01 Sep 2017 10:49:15 +0000
-Message-ID: <bug-101220-8800-QkmQFHpNLl@http.bugs.freedesktop.org/>
-References: <bug-101220-8800@http.bugs.freedesktop.org/>
+From: Marko Schuetz-Schmuck <MarkoSchuetz-S0/GAf8tV78@public.gmane.org>
+Subject: trouble connecting to Panduit VGA adapter
+Date: Fri, 01 Sep 2017 12:50:44 -0400
+Message-ID: <8760d2l5wb.fsf@tpad-m.i-did-not-set--mail-host-address--so-tickle-me>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0675143144=="
+Content-Type: multipart/mixed; boundary="===============0357448354=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,145 +17,50 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0357448354==
+Content-Type: multipart/signed; boundary="=-=-=";
+	micalg=pgp-sha1; protocol="application/pgp-signature"
 
---===============0675143144==
-Content-Type: multipart/alternative; boundary="15042629551.a463fCd1C.28022";
- charset="UTF-8"
-
-
---15042629551.a463fCd1C.28022
-Date: Fri, 1 Sep 2017 10:49:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--=-=-=
+Content-Type: text/plain
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
+I want to connect to an InFocus projector that sits behind a Panduit VGA
+adapter. I use a Thinkpad P51 with a mini display-port to VGA
+converter. The laptop runs Manjaro and has the
+video-hybrid-intel-nouveau-prime installed and it works with other
+monitors. For some reason it does not detect the projector that is
+connected through the Panduit. The keyboard shortcut to switch monitor
+configuration says "No External Display". xrandr reports only the
+built-in screen.=20
 
-Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> changed:
+I talked to the technician for the room installation and he told me that
+he had seen this before on a Ubuntu machine and that switching to the
+proprietary nvidia driver solved that problem. For various reasons I'd
+rather not switch to that driver.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org
+I also found some lines with "DRM: DDC responded, but no EDID for DP-1"
+in them from around the time I tried connecting to the projector. Could
+they be related?
 
---- Comment #16 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
-Created attachment 133924
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D133924&action=3Dedit
-[PATCH] Don't advertise any PRIME offloading capabilities without accelerat=
-ion
+Is there some setting or configuration that can help in this case?
 
-(In reply to Michel D=C3=A4nzer from comment #6)
-> (In reply to Ilia Mirkin from comment #5)
-> > I wonder if this is due to the fact that it's running in NoAccel mode.
->=20
-> Possibly, you might want something like
->=20
-> https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/
-> ?id=3Db19417e2fddf4df725951aea5ad5e9558338f59e
+Best regards,
 
-Something like this for nouveau?
+Marko
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
 
---15042629551.a463fCd1C.28022
-Date: Fri, 1 Sep 2017 10:49:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+-----BEGIN PGP SIGNATURE-----
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:carlo&#64=
-;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> <span cla=
-ss=3D"fn">Carlo Caione</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
-nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
-0</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+iF0EARECAB0WIQTovfrETQc10zr+ME0PTg+AoZH0KgUCWamP5AAKCRAPTg+AoZH0
+KgnQAKCG/bDmaAoYWgfvcBK0GnPMvM7xLQCcDaAxY55y8wU8noteSKWDL3tep60=
+=Sd8B
+-----END PGP SIGNATURE-----
+--=-=-=--
 
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>carlo&#64;caione.org
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
-nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c16">Comme=
-nt # 16</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
-nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
-<span class=3D"fn">Carlo Caione</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D133924=
-" name=3D"attach_133924" title=3D"[PATCH] Don't advertise any PRIME offload=
-ing capabilities without acceleration">attachment 133924</a> <a href=3D"att=
-achment.cgi?id=3D133924&amp;action=3Dedit" title=3D"[PATCH] Don't advertise=
- any PRIME offloading capabilities without acceleration">[details]</a></spa=
-n> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D101220&amp;attachment=
-=3D133924'>[review]</a>
-[PATCH] Don't advertise any PRIME offloading capabilities without accelerat=
-ion
-
-(In reply to Michel D=C3=A4nzer from <a href=3D"show_bug.cgi?id=3D101220#c6=
-">comment #6</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D101220#c5">comment #5</a>)
-&gt; &gt; I wonder if this is due to the fact that it's running in NoAccel =
-mode.
-&gt;=20
-&gt; Possibly, you might want something like
-&gt;=20
-&gt; <a href=3D"https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/com=
-mit/">https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/</a>
-&gt; ?id=3Db19417e2fddf4df725951aea5ad5e9558338f59e</span >
-
-Something like this for nouveau?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15042629551.a463fCd1C.28022--
-
---===============0675143144==
+--===============0357448354==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -168,4 +70,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0675143144==--
+--===============0357448354==--
