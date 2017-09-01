@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100660] [nouveau] No temperature/voltages/GPU and
- RAM frequency/fan speed reporting for GTX 1060 6GB
-Date: Fri, 01 Sep 2017 01:59:51 +0000
-Message-ID: <bug-100660-8800-ZutGoUDaDE@http.bugs.freedesktop.org/>
-References: <bug-100660-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101220] [NV137/GP107] xorg-server-1.19.3 crashes
+ when trying to enable HDMI output
+Date: Fri, 01 Sep 2017 10:49:15 +0000
+Message-ID: <bug-101220-8800-QkmQFHpNLl@http.bugs.freedesktop.org/>
+References: <bug-101220-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1335849848=="
+Content-Type: multipart/mixed; boundary="===============0675143144=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,50 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1335849848==
-Content-Type: multipart/alternative; boundary="15042311901.CAad.11088";
+--===============0675143144==
+Content-Type: multipart/alternative; boundary="15042629551.a463fCd1C.28022";
  charset="UTF-8"
 
 
---15042311901.CAad.11088
-Date: Fri, 1 Sep 2017 01:59:50 +0000
+--15042629551.a463fCd1C.28022
+Date: Fri, 1 Sep 2017 10:49:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100660
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
 
---- Comment #3 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Artem: I'm working on getting at least the new temperature sensor subset of
-this bug report working on the Pascal series.
+Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> changed:
 
-See: https://patchwork.freedesktop.org/patch/174696/
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org
+
+--- Comment #16 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
+Created attachment 133924
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D133924&action=3Dedit
+[PATCH] Don't advertise any PRIME offloading capabilities without accelerat=
+ion
+
+(In reply to Michel D=C3=A4nzer from comment #6)
+> (In reply to Ilia Mirkin from comment #5)
+> > I wonder if this is due to the fact that it's running in NoAccel mode.
+>=20
+> Possibly, you might want something like
+>=20
+> https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/
+> ?id=3Db19417e2fddf4df725951aea5ad5e9558338f59e
+
+Something like this for nouveau?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15042311901.CAad.11088
-Date: Fri, 1 Sep 2017 01:59:50 +0000
+--15042629551.a463fCd1C.28022
+Date: Fri, 1 Sep 2017 10:49:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,31 +75,74 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:carlo&#64=
+;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> <span cla=
+ss=3D"fn">Carlo Caione</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
+nable HDMI output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
+0</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>carlo&#64;caione.org
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nouveau] No temperature/voltages/GPU and RAM frequency/f=
-an speed reporting for GTX 1060 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660#c3">Commen=
-t # 3</a>
+   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
+nable HDMI output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c16">Comme=
+nt # 16</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nouveau] No temperature/voltages/GPU and RAM frequency/f=
-an speed reporting for GTX 1060 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660">bug 10066=
+   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
+nable HDMI output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
- <span class=3D"fn">Rhys Kidd</span></a>
+carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
+<span class=3D"fn">Carlo Caione</span></a>
 </span></b>
-        <pre>Artem: I'm working on getting at least the new temperature sen=
-sor subset of
-this bug report working on the Pascal series.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D133924=
+" name=3D"attach_133924" title=3D"[PATCH] Don't advertise any PRIME offload=
+ing capabilities without acceleration">attachment 133924</a> <a href=3D"att=
+achment.cgi?id=3D133924&amp;action=3Dedit" title=3D"[PATCH] Don't advertise=
+ any PRIME offloading capabilities without acceleration">[details]</a></spa=
+n> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D101220&amp;attachment=
+=3D133924'>[review]</a>
+[PATCH] Don't advertise any PRIME offloading capabilities without accelerat=
+ion
 
-See: <a href=3D"https://patchwork.freedesktop.org/patch/174696/">https://pa=
-tchwork.freedesktop.org/patch/174696/</a></pre>
+(In reply to Michel D=C3=A4nzer from <a href=3D"show_bug.cgi?id=3D101220#c6=
+">comment #6</a>)
+<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
+g.cgi?id=3D101220#c5">comment #5</a>)
+&gt; &gt; I wonder if this is due to the fact that it's running in NoAccel =
+mode.
+&gt;=20
+&gt; Possibly, you might want something like
+&gt;=20
+&gt; <a href=3D"https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/com=
+mit/">https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/</a>
+&gt; ?id=3Db19417e2fddf4df725951aea5ad5e9558338f59e</span >
+
+Something like this for nouveau?</pre>
         </div>
       </p>
 
@@ -96,9 +156,9 @@ tchwork.freedesktop.org/patch/174696/</a></pre>
     </body>
 </html>=
 
---15042311901.CAad.11088--
+--15042629551.a463fCd1C.28022--
 
---===============1335849848==
+--===============0675143144==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +168,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1335849848==--
+--===============0675143144==--
