@@ -1,14 +1,13 @@
-From: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
-Subject: Re: trouble connecting to Panduit VGA adapter
-Date: Fri, 1 Sep 2017 18:09:37 +0100
-Message-ID: <87b721bd-0780-f5bd-4b72-9b047e93f60a@spliet.org>
-References: <8760d2l5wb.fsf@tpad-m.i-did-not-set--mail-host-address--so-tickle-me>
- <CAKb7Uvg37iJGwzCZZyJHzSRNb=KHAtDjHutzdWB=gjr0JTe9bQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93629] [NVE6] complete system freeze,
+ PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
+Date: Sat, 02 Sep 2017 06:16:06 +0000
+Message-ID: <bug-93629-8800-xRo60QI0oO@http.bugs.freedesktop.org/>
+References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0338979585=="
+Content-Type: multipart/mixed; boundary="===============1015252411=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvg37iJGwzCZZyJHzSRNb=KHAtDjHutzdWB=gjr0JTe9bQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,153 +20,202 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============0338979585==
-Content-Type: multipart/alternative;
- boundary="------------78DDF9DF81F6478330CD6A0A"
-Content-Language: en-US
 
-This is a multi-part message in MIME format.
---------------78DDF9DF81F6478330CD6A0A
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-If this doesn't work I suspect the converter is really blocking/damaging 
-the EDID information. The official NVIDIA driver is willing to fall back 
-to default modes, but this fall-back was handled less gracefully on 
-nouveau last time I checked.
-
-You might be able to use the xrandr tool to manually add a mode for the 
-display. Forgive me for not knowing the exact syntax, but from what I 
-recall you can use cvt to generate a modeline and copy-paste the 
-parameters into an xrandr command to add, then use a second xrandr 
-command to enable the display either in mirror mode or positioned 
-relative to another display. If you're lucky, that mode corresponds well 
-enough with what the projector will accept to just work.
+--===============1015252411==
+Content-Type: multipart/alternative; boundary="15043329661.B5FF.22263";
+ charset="UTF-8"
 
 
-Op 01-09-17 om 18:01 schreef Ilia Mirkin:
-> Are you running a v4.12-based kernel? If so, update to v4.13-rcN or
-> integrate https://github.com/skeggsb/linux/commit/13a86519202c5d119d83640d6f781f3181205d2c
-> into your kernel build.
->
-> On Fri, Sep 1, 2017 at 12:50 PM, Marko Schuetz-Schmuck
-> <MarkoSchuetz-S0/GAf8tV78@public.gmane.org> wrote:
->> I want to connect to an InFocus projector that sits behind a Panduit VGA
->> adapter. I use a Thinkpad P51 with a mini display-port to VGA
->> converter. The laptop runs Manjaro and has the
->> video-hybrid-intel-nouveau-prime installed and it works with other
->> monitors. For some reason it does not detect the projector that is
->> connected through the Panduit. The keyboard shortcut to switch monitor
->> configuration says "No External Display". xrandr reports only the
->> built-in screen.
->>
->> I talked to the technician for the room installation and he told me that
->> he had seen this before on a Ubuntu machine and that switching to the
->> proprietary nvidia driver solved that problem. For various reasons I'd
->> rather not switch to that driver.
->>
->> I also found some lines with "DRM: DDC responded, but no EDID for DP-1"
->> in them from around the time I tried connecting to the projector. Could
->> they be related?
->>
->> Is there some setting or configuration that can help in this case?
->>
->> Best regards,
->>
->> Marko
->>
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> https://lists.freedesktop.org/mailman/listinfo/nouveau
->>
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+--15043329661.B5FF.22263
+Date: Sat, 2 Sep 2017 06:16:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
+
+--- Comment #38 from Robb Ebright <robbt-UEAdIY/G9B/YtjvyW6yDsg@public.gmane.org> ---
+I ran into a similar bug with a recent Debian install. It occurs only when I
+plugged in a monitor into the DVI port. It works fine with the HDMI port as=
+ I'm
+using it to type. But it freezes with the following error.
+
+I'm installing the proprietary drivers so but I wanted to provide this
+confirmation/documentation in case it is helpful to anyone trying to solve
+this. In an ideal world I would use the free software drivers as well but t=
+here
+is evidently some issue with the software that is causing it to crash.
 
 
---------------78DDF9DF81F6478330CD6A0A
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+1 23:07:09 dragonpunk /usr/lib/gdm3/gdm-x-session[787]: (II) systemd-logind:
+got pause for 226:0
+Sep  1 23:07:09 dragonpunk /usr/lib/gdm3/gdm-x-session[787]: (II)
+systemd-logind: got pause for 13:67
+Sep  1 23:07:09 dragonpunk /usr/lib/gdm3/gdm-x-session[787]: (II)
+systemd-logind: got pause for 13:66
+Sep  1 23:07:09 dragonpunk /usr/lib/gdm3/gdm-x-session[787]: (II)
+systemd-logind: got pause for 13:64
+Sep  1 23:07:09 dragonpunk /usr/lib/gdm3/gdm-x-session[787]: (II)
+systemd-logind: got pause for 13:65
+Sep  1 23:07:09 dragonpunk /usr/lib/gdm3/gdm-x-session[787]: (II)
+systemd-logind: got pause for 13:68
+Sep  1 23:07:09 dragonpunk kernel: [74586.320157] nouveau 0000:01:00.0: fif=
+o:
+write fault at 000031d000 engine 05 [BAR3] client 08 [BAR_WRITE] reason 02
+[PAGE_NOT_PRESENT] on channel -1 [003ff35000 unknown]
+Sep  1 23:07:09 dragonpunk kernel: [74586.320169] nouveau 0000:01:00.0: fif=
+o:
+INTR 08000000
+Sep  1 23:07:09 dragonpunk kernel: [74586.825813] nouveau 0000:01:00.0: gr:
+TRAP ch 2 [003fd30000 systemd-logind[448]]
+Sep  1 23:07:09 dragonpunk kernel: [74586.825826] nouveau 0000:01:00.0: gr:
+GPC0/TPC0/TEX: 80000041
+Sep  1 23:07:09 dragonpunk kernel: [74586.825834] nouveau 0000:01:00.0: gr:
+GPC0/TPC1/TEX: 80000041
+Sep  1 23:07:09 dragonpunk kernel: [74586.825846] nouveau 0000:01:00.0: gr:
+GPC1/TPC0/TEX: 80000041
+Sep  1 23:07:09 dragonpunk kernel: [74586.825854] nouveau 0000:01:00.0: gr:
+GPC1/TPC2/TEX: 80000041
+Sep  1 23:07:09 dragonpunk kernel: [74586.825866] nouveau 0000:01:00.0: fif=
+o:
+read fault at 0002f61000 engine 00 [PGRAPH] client 01 [GPC1/TEX] reason 02
+[PAGE_NOT_PRESENT] on channel 2 [003fd30000 systemd-logind[448]]
+Sep  1 23:07:09 dragonpunk kernel: [74586.825868] nouveau 0000:01:00.0: fif=
+o:
+gr engine fault on channel 2, recovering...
+Sep  1 23:07:09 dragonpunk kernel: [74586.881742] nouveau 0000:01:00.0: fif=
+o:
+write fault at 0000278000 engine 00 [PGRAPH] client 0f [GPC0/PROP] reason 02
+[PAGE_NOT_PRESENT] on channel 3 [003fc83000 Xwayland[602]]
+Sep  1 23:07:09 dragonpunk kernel: [74586.881746] nouveau 0000:01:00.0: fif=
+o:
+gr engine fault on channel 3, recovering...
+Sep  1 23:07:48 dragonpunk gnome-shell[566]: Failed to apply DRM plane
+transform 0: Invalid argument
+Sep  1 23:08:06 dragonpunk gnome-shell[566]: Failed to apply DRM plane
+transform 0: Invalid argument
+Sep  1 23:08:06 dragonpunk gnome-shell[566]: Failed to apply DRM plane
+transform 0: Invalid argument
+Sep  1 23:08:19 dragonpunk gnome-shell[566]: Failed to apply DRM plane
+transform 0: Invalid argument
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15043329661.B5FF.22263
+Date: Sat, 2 Sep 2017 06:16:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><font size="-1">If this doesn't work I suspect the converter is
-        really blocking/damaging the EDID information. The official
-        NVIDIA driver is willing to fall back to default modes, but this
-        fall-back was handled less gracefully on nouveau last time I
-        checked.</font></p>
-    <p><font size="-1">You might be able to use the xrandr tool to
-        manually add a mode for the display. Forgive me for not knowing
-        the exact syntax, but from what I recall you can use cvt to
-        generate a modeline and copy-paste the parameters into an xrandr
-        command to add, then use a second xrandr command to enable the
-        display either in mirror mode or positioned relative to another
-        display. If you're lucky, that mode corresponds well enough with
-        what the projector will accept to just work.</font></p>
-    <br>
-    <div class="moz-cite-prefix">Op 01-09-17 om 18:01 schreef Ilia
-      Mirkin:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAKb7Uvg37iJGwzCZZyJHzSRNb=KHAtDjHutzdWB=gjr0JTe9bQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org">
-      <pre wrap="">Are you running a v4.12-based kernel? If so, update to v4.13-rcN or
-integrate <a class="moz-txt-link-freetext" href="https://github.com/skeggsb/linux/commit/13a86519202c5d119d83640d6f781f3181205d2c">https://github.com/skeggsb/linux/commit/13a86519202c5d119d83640d6f781f3181205d2c</a>
-into your kernel build.
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c38">Commen=
+t # 38</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+robbt&#64;azone.org" title=3D"Robb Ebright &lt;robbt&#64;azone.org&gt;"> <s=
+pan class=3D"fn">Robb Ebright</span></a>
+</span></b>
+        <pre>I ran into a similar bug with a recent Debian install. It occu=
+rs only when I
+plugged in a monitor into the DVI port. It works fine with the HDMI port as=
+ I'm
+using it to type. But it freezes with the following error.
 
-On Fri, Sep 1, 2017 at 12:50 PM, Marko Schuetz-Schmuck
-<a class="moz-txt-link-rfc2396E" href="mailto:MarkoSchuetz-S0/GAf8tV78@public.gmane.org">&lt;MarkoSchuetz-S0/GAf8tV78@public.gmane.org&gt;</a> wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">I want to connect to an InFocus projector that sits behind a Panduit VGA
-adapter. I use a Thinkpad P51 with a mini display-port to VGA
-converter. The laptop runs Manjaro and has the
-video-hybrid-intel-nouveau-prime installed and it works with other
-monitors. For some reason it does not detect the projector that is
-connected through the Panduit. The keyboard shortcut to switch monitor
-configuration says "No External Display". xrandr reports only the
-built-in screen.
+I'm installing the proprietary drivers so but I wanted to provide this
+confirmation/documentation in case it is helpful to anyone trying to solve
+this. In an ideal world I would use the free software drivers as well but t=
+here
+is evidently some issue with the software that is causing it to crash.
 
-I talked to the technician for the room installation and he told me that
-he had seen this before on a Ubuntu machine and that switching to the
-proprietary nvidia driver solved that problem. For various reasons I'd
-rather not switch to that driver.
 
-I also found some lines with "DRM: DDC responded, but no EDID for DP-1"
-in them from around the time I tried connecting to the projector. Could
-they be related?
+1 23:07:09 dragonpunk /usr/lib/gdm3/gdm-x-session[787]: (II) systemd-logind:
+got pause for 226:0
+Sep  1 23:07:09 dragonpunk /usr/lib/gdm3/gdm-x-session[787]: (II)
+systemd-logind: got pause for 13:67
+Sep  1 23:07:09 dragonpunk /usr/lib/gdm3/gdm-x-session[787]: (II)
+systemd-logind: got pause for 13:66
+Sep  1 23:07:09 dragonpunk /usr/lib/gdm3/gdm-x-session[787]: (II)
+systemd-logind: got pause for 13:64
+Sep  1 23:07:09 dragonpunk /usr/lib/gdm3/gdm-x-session[787]: (II)
+systemd-logind: got pause for 13:65
+Sep  1 23:07:09 dragonpunk /usr/lib/gdm3/gdm-x-session[787]: (II)
+systemd-logind: got pause for 13:68
+Sep  1 23:07:09 dragonpunk kernel: [74586.320157] nouveau 0000:01:00.0: fif=
+o:
+write fault at 000031d000 engine 05 [BAR3] client 08 [BAR_WRITE] reason 02
+[PAGE_NOT_PRESENT] on channel -1 [003ff35000 unknown]
+Sep  1 23:07:09 dragonpunk kernel: [74586.320169] nouveau 0000:01:00.0: fif=
+o:
+INTR 08000000
+Sep  1 23:07:09 dragonpunk kernel: [74586.825813] nouveau 0000:01:00.0: gr:
+TRAP ch 2 [003fd30000 systemd-logind[448]]
+Sep  1 23:07:09 dragonpunk kernel: [74586.825826] nouveau 0000:01:00.0: gr:
+GPC0/TPC0/TEX: 80000041
+Sep  1 23:07:09 dragonpunk kernel: [74586.825834] nouveau 0000:01:00.0: gr:
+GPC0/TPC1/TEX: 80000041
+Sep  1 23:07:09 dragonpunk kernel: [74586.825846] nouveau 0000:01:00.0: gr:
+GPC1/TPC0/TEX: 80000041
+Sep  1 23:07:09 dragonpunk kernel: [74586.825854] nouveau 0000:01:00.0: gr:
+GPC1/TPC2/TEX: 80000041
+Sep  1 23:07:09 dragonpunk kernel: [74586.825866] nouveau 0000:01:00.0: fif=
+o:
+read fault at 0002f61000 engine 00 [PGRAPH] client 01 [GPC1/TEX] reason 02
+[PAGE_NOT_PRESENT] on channel 2 [003fd30000 systemd-logind[448]]
+Sep  1 23:07:09 dragonpunk kernel: [74586.825868] nouveau 0000:01:00.0: fif=
+o:
+gr engine fault on channel 2, recovering...
+Sep  1 23:07:09 dragonpunk kernel: [74586.881742] nouveau 0000:01:00.0: fif=
+o:
+write fault at 0000278000 engine 00 [PGRAPH] client 0f [GPC0/PROP] reason 02
+[PAGE_NOT_PRESENT] on channel 3 [003fc83000 Xwayland[602]]
+Sep  1 23:07:09 dragonpunk kernel: [74586.881746] nouveau 0000:01:00.0: fif=
+o:
+gr engine fault on channel 3, recovering...
+Sep  1 23:07:48 dragonpunk gnome-shell[566]: Failed to apply DRM plane
+transform 0: Invalid argument
+Sep  1 23:08:06 dragonpunk gnome-shell[566]: Failed to apply DRM plane
+transform 0: Invalid argument
+Sep  1 23:08:06 dragonpunk gnome-shell[566]: Failed to apply DRM plane
+transform 0: Invalid argument
+Sep  1 23:08:19 dragonpunk gnome-shell[566]: Failed to apply DRM plane
+transform 0: Invalid argument</pre>
+        </div>
+      </p>
 
-Is there some setting or configuration that can help in this case?
 
-Best regards,
+      <hr>
+      <span>You are receiving this mail because:</span>
 
-Marko
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
 
-_______________________________________________
-Nouveau mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/nouveau">https://lists.freedesktop.org/mailman/listinfo/nouveau</a>
+--15043329661.B5FF.22263--
 
-</pre>
-      </blockquote>
-      <pre wrap="">_______________________________________________
-Nouveau mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/nouveau">https://lists.freedesktop.org/mailman/listinfo/nouveau</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------78DDF9DF81F6478330CD6A0A--
-
---===============0338979585==
+--===============1015252411==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -177,4 +225,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0338979585==--
+--===============1015252411==--
