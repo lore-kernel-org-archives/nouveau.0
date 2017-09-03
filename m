@@ -1,12 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: v4.12 backport request: 13a86519202
- (drm/nouveau/i2c/gf119-: add support for address-only transactions)
-Date: Sun, 3 Sep 2017 11:46:57 -0400
-Message-ID: <CAKb7UviPvnF_VuffWJW3HAXN66Jv4617On2-cC8qqho0suop6g@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
+Date: Sun, 03 Sep 2017 16:07:47 +0000
+Message-ID: <bug-70972-8800-LqwgzfM8W9@http.bugs.freedesktop.org/>
+References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1629463440=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,34 +16,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: stable <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q29tbWl0IGRmOGRjOTdjZDE3IChkcm0vbm91dmVhdS9rbXMvbnY1MDogdXNlIGRybSBjb3JlIGky
-Yy1vdmVyLWF1eAphbGdvcml0aG0pIHN3aXRjaGVkIHRoaW5ncyBvdmVyIHRvIHRoZSBkcm0gYWxn
-by4gVW5mb3J0dW5hdGVseSBpdApnZW5lcmF0ZXMgYWRkcmVzcy1vbmx5IHRyYW5zYWN0aW9ucy4g
-UHJpb3IgdG8gR0YxMTksIHRoZSBoYXJkd2FyZSBoYWQKbm8gc3VwcG9ydCBmb3Igc3VjaCB0aGlu
-Z3MsIGFuZCBHRjExOSsgdGhlIG5vdXZlYXUgY29kZSBkaWQgbm90IGhhbmRsZQp0aGVzZSBwcm9w
-ZXJseS4KClRoZSByZXN1bHQgb2YgdGhpcyBidWcgaXMgdGhhdCBFRElEIGRvZXNuJ3QgbWFrZSBp
-dCBvdmVyIGZvciBEUCAoYW5kCmVEUCkgc2NyZWVucywgd2hpY2ggaW4gdHVybiB3cmVha3MgYWxs
-IHNvcnRzIG9mIGhhdm9jLiBUaGVyZSBoYXZlIGJlZW4KbG90cyBvZiByZXBvcnRzIG9uIElSQywg
-YSBmZXcgb24gbWFpbGluZyBsaXN0cywgYW5kIGFsc286CgpodHRwczovL2J1Z3MuZnJlZWRlc2t0
-b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDI1MjgKCkNvbW1pdCAxM2E4NjUxOTIwMiAoZHJtL25v
-dXZlYXUvaTJjL2dmMTE5LTogYWRkIHN1cHBvcnQgZm9yCmFkZHJlc3Mtb25seSB0cmFuc2FjdGlv
-bnMpIGZpeGVzIHRoZSBub3V2ZWF1IHN1cHBvcnQgZm9yIHN1Y2gKdHJhbnNhY3Rpb25zIG9uIEdG
-MTE5KyBhbmQgZmxpcHMgdGhpbmdzIGJhY2sgb3ZlciB0byB0aGUgY3VzdG9tIGFsZ28KZm9yIGVh
-cmxpZXIgY2hpcHMuIFBsZWFzZSBpbmNsdWRlIGludG8gdGhlIG5leHQgdjQuMTIueCByZWxlYXNl
-OgoKY29tbWl0IDEzYTg2NTE5MjAyYzVkMTE5ZDgzNjQwZDZmNzgxZjMxODEyMDVkMmMKQXV0aG9y
-OiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+CkRhdGU6ICAgV2VkIEp1bCAxOSAxNjo0
-OTo1OSAyMDE3ICsxMDAwCgogICAgZHJtL25vdXZlYXUvaTJjL2dmMTE5LTogYWRkIHN1cHBvcnQg
-Zm9yIGFkZHJlc3Mtb25seSB0cmFuc2FjdGlvbnMKCiAgICBTaW5jZSBzd2l0Y2hpbmcgdGhlIEky
-Qy1vdmVyLUFVWCBoZWxwZXJzLCB0aGVyZSBoYXZlIGJlZW4gcmVncmVzc2lvbnMgb24KICAgIHNv
-bWUgZGlzcGxheSBjb21iaW5hdGlvbnMgZHVlIHRvIHVzIG5vdCBoYXZpbmcgc3VwcG9ydCBmb3Ig
-ImFkZHJlc3Mgb25seSIKICAgIHRyYW5zYWN0aW9ucy4KCiAgICBUaGlzIGNvbW1pdHMgZW5hYmxl
-cyBzdXBwb3J0IGZvciB0aGVtIGZvciBHRjExOSBhbmQgbmV3ZXIuCgogICAgRWFybGllciBHUFVz
-IGhhdmUgYmVlbiByZXZlcnRlZCB0byBhIGN1c3RvbSBJMkMtb3Zlci1BVVggYWxnb3JpdGhtLgoK
-ICAgIFNpZ25lZC1vZmYtYnk6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1629463440==
+Content-Type: multipart/alternative; boundary="15044548671.66caE7f4.19431";
+ charset="UTF-8"
+
+
+--15044548671.66caE7f4.19431
+Date: Sun, 3 Sep 2017 16:07:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D70972
+
+--- Comment #40 from Nerijus Bali=C5=ABnas <nerijus-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> =
+---
+Where in the source should I look?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15044548671.66caE7f4.19431
+Date: Sun, 3 Sep 2017 16:07:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV67] Modesetting failure at 1280x800"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972#c40">Commen=
+t # 40</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV67] Modesetting failure at 1280x800"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972">bug 70972<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+nerijus&#64;users.sourceforge.net" title=3D"Nerijus Bali=C5=ABnas &lt;nerij=
+us&#64;users.sourceforge.net&gt;"> <span class=3D"fn">Nerijus Bali=C5=ABnas=
+</span></a>
+</span></b>
+        <pre>Where in the source should I look?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15044548671.66caE7f4.19431--
+
+--===============1629463440==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1629463440==--
