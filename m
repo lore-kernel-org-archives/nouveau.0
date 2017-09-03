@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
-Date: Sun, 03 Sep 2017 14:33:23 +0000
-Message-ID: <bug-70972-8800-fXsxr9Y26F@http.bugs.freedesktop.org/>
+Date: Sun, 03 Sep 2017 15:20:02 +0000
+Message-ID: <bug-70972-8800-LfHSIBeagh@http.bugs.freedesktop.org/>
 References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2037235012=="
+Content-Type: multipart/mixed; boundary="===============0641570216=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2037235012==
-Content-Type: multipart/alternative; boundary="15044492030.ec36f952.29772";
+--===============0641570216==
+Content-Type: multipart/alternative; boundary="15044520021.682Bf.9265";
  charset="UTF-8"
 
 
---15044492030.ec36f952.29772
-Date: Sun, 3 Sep 2017 14:33:23 +0000
+--15044520021.682Bf.9265
+Date: Sun, 3 Sep 2017 15:20:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,20 +35,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D70972
 
---- Comment #36 from Nerijus Bali=C5=ABnas <nerijus-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> =
----
-Just tried with 1.0.15 and options
-        Option "AccelMethod" "none"
-        Option "WrappedFB" "on"
-        Option "PageFlip" "off"
-Nothing changed, the screen is garbled.
+--- Comment #37 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Modesetting is all done in the kernel, so no xf86-video-nouveau options will
+affect it one way or the other.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15044492030.ec36f952.29772
-Date: Sun, 3 Sep 2017 14:33:23 +0000
+--15044520021.682Bf.9265
+Date: Sun, 3 Sep 2017 15:20:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,23 +61,20 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV67] Modesetting failure at 1280x800"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972#c36">Commen=
-t # 36</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972#c37">Commen=
+t # 37</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV67] Modesetting failure at 1280x800"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972">bug 70972<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nerijus&#64;users.sourceforge.net" title=3D"Nerijus Bali=C5=ABnas &lt;nerij=
-us&#64;users.sourceforge.net&gt;"> <span class=3D"fn">Nerijus Bali=C5=ABnas=
-</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Just tried with 1.0.15 and options
-        Option &quot;AccelMethod&quot; &quot;none&quot;
-        Option &quot;WrappedFB&quot; &quot;on&quot;
-        Option &quot;PageFlip&quot; &quot;off&quot;
-Nothing changed, the screen is garbled.</pre>
+        <pre>Modesetting is all done in the kernel, so no xf86-video-nouvea=
+u options will
+affect it one way or the other.</pre>
         </div>
       </p>
 
@@ -95,9 +88,9 @@ Nothing changed, the screen is garbled.</pre>
     </body>
 </html>=
 
---15044492030.ec36f952.29772--
+--15044520021.682Bf.9265--
 
---===============2037235012==
+--===============0641570216==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2037235012==--
+--===============0641570216==--
