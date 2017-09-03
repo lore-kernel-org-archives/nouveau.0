@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
-Date: Sun, 03 Sep 2017 16:34:08 +0000
-Message-ID: <bug-70972-8800-7TQMteHDYo@http.bugs.freedesktop.org/>
-References: <bug-70972-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102528] Display messed up shortly after boot on
+ laptop with GT218M
+Date: Sun, 03 Sep 2017 18:46:45 +0000
+Message-ID: <bug-102528-8800-RvPgPjiJPV@http.bugs.freedesktop.org/>
+References: <bug-102528-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0309860985=="
+Content-Type: multipart/mixed; boundary="===============0763232727=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-102528-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,59 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0309860985==
-Content-Type: multipart/alternative; boundary="15044564480.9a84c91.27267";
+--===============0763232727==
+Content-Type: multipart/alternative; boundary="15044644050.afedA28D.26074";
  charset="UTF-8"
 
 
---15044564480.9a84c91.27267
-Date: Sun, 3 Sep 2017 16:34:07 +0000
+--15044644050.afedA28D.26074
+Date: Sun, 3 Sep 2017 18:46:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D70972
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102528
 
---- Comment #41 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-All of the modesetting logic (for pre-G80 chips) lives in
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Oh, and btw, additional GT21x issues exist. One is fixed in drm-next:
 
-drivers/gpu/drm/nouveau/dispnv04
+https://github.com/skeggsb/linux/commit/715e7d261dea75911c4dad468a110316893=
+3d913
+https://github.com/skeggsb/linux/commit/6b1277c837630749b55f743dd62023d9dd7=
+a510a
 
-This is mostly an adaptation of xf86-video-nv to work in the kernel, with s=
-ome
-IMHO misguided "cleanups" that were applied to some of the incomprehensible
-clock/etc calculation code. Unfortunately those are also mixed in with legit
-fixes, so it's hard to undo.
-
-Either way, since xf86-video-nv also reputedly can't make 1280x800 work,
-reading that source is unlikely to be of much help. However at least the NV=
-1A
-and NV1F IGP's tend to have their own very special clock calculation logic,=
- so
-perhaps that's missing (might look at what e.g. NV4C/NV4E do, as those
-allegedly work well).
-
-There are already traces of both the blob and nouveau and how they perform =
-the
-modesetting (see attachments in this bug). What's largely missing is
-identifying what nouveau does differently, and then coming up with a way to=
- fix
-it.
-
-You can use 'demmio' from envytools to help analyze the traces
-(https://github.com/envytools/envytools).
-
-If you have questions about the tooling or the code, feel free to join in
-#nouveau on irc.freenode.net.
+But there's some stuff that remains in devinit, where certain things are
+accessed before they're supposed to. Or something along those lines.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15044564480.9a84c91.27267
-Date: Sun, 3 Sep 2017 16:34:07 +0000
+--15044644050.afedA28D.26074
+Date: Sun, 3 Sep 2017 18:46:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -88,50 +68,32 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV67] Modesetting failure at 1280x800"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972#c41">Commen=
-t # 41</a>
+   title=3D"NEW - Display messed up shortly after boot on laptop with GT218=
+M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102528#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV67] Modesetting failure at 1280x800"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70972">bug 70972<=
-/a>
+   title=3D"NEW - Display messed up shortly after boot on laptop with GT218=
+M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102528">bug 10252=
+8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>All of the modesetting logic (for pre-G80 chips) lives in
+        <pre>Oh, and btw, additional GT21x issues exist. One is fixed in dr=
+m-next:
 
-drivers/gpu/drm/nouveau/dispnv04
+<a href=3D"https://github.com/skeggsb/linux/commit/715e7d261dea75911c4dad46=
+8a1103168933d913">https://github.com/skeggsb/linux/commit/715e7d261dea75911=
+c4dad468a1103168933d913</a>
+<a href=3D"https://github.com/skeggsb/linux/commit/6b1277c837630749b55f743d=
+d62023d9dd7a510a">https://github.com/skeggsb/linux/commit/6b1277c837630749b=
+55f743dd62023d9dd7a510a</a>
 
-This is mostly an adaptation of xf86-video-nv to work in the kernel, with s=
-ome
-IMHO misguided &quot;cleanups&quot; that were applied to some of the incomp=
-rehensible
-clock/etc calculation code. Unfortunately those are also mixed in with legit
-fixes, so it's hard to undo.
-
-Either way, since xf86-video-nv also reputedly can't make 1280x800 work,
-reading that source is unlikely to be of much help. However at least the NV=
-1A
-and NV1F IGP's tend to have their own very special clock calculation logic,=
- so
-perhaps that's missing (might look at what e.g. NV4C/NV4E do, as those
-allegedly work well).
-
-There are already traces of both the blob and nouveau and how they perform =
-the
-modesetting (see attachments in this bug). What's largely missing is
-identifying what nouveau does differently, and then coming up with a way to=
- fix
-it.
-
-You can use 'demmio' from envytools to help analyze the traces
-(<a href=3D"https://github.com/envytools/envytools">https://github.com/envy=
-tools/envytools</a>).
-
-If you have questions about the tooling or the code, feel free to join in
-#nouveau on irc.freenode.net.</pre>
+But there's some stuff that remains in devinit, where certain things are
+accessed before they're supposed to. Or something along those lines.</pre>
         </div>
       </p>
 
@@ -145,9 +107,9 @@ If you have questions about the tooling or the code, feel free to join in
     </body>
 </html>=
 
---15044564480.9a84c91.27267--
+--15044644050.afedA28D.26074--
 
---===============0309860985==
+--===============0763232727==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0309860985==--
+--===============0763232727==--
