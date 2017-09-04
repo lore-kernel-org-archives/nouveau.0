@@ -1,62 +1,44 @@
-From: rosenp@gmail.com
-Subject: Re: [Nouveau] v4.12 backport request: 13a86519202
+From: Greg KH <greg-U8xfFu+wG4EAvxtiuMwx3w@public.gmane.org>
+Subject: Re: v4.12 backport request: 13a86519202
  (drm/nouveau/i2c/gf119-: add support for address-only transactions)
-Date: Sun, 03 Sep 2017 15:56:02 -0700
-Message-ID: <1504479362.18990.1.camel@gmail.com>
+Date: Mon, 4 Sep 2017 13:19:18 +0200
+Message-ID: <20170904111918.GA9450@kroah.com>
 References: <CAKb7UviPvnF_VuffWJW3HAXN66Jv4617On2-cC8qqho0suop6g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <CAKb7UviPvnF_VuffWJW3HAXN66Jv4617On2-cC8qqho0suop6g@mail.gmail.com>
-Sender: stable-owner@vger.kernel.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>, stable <stable@vger.kernel.org>
-Cc: Dave Airlie <airlied@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UviPvnF_VuffWJW3HAXN66Jv4617On2-cC8qqho0suop6g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Fedora bug: https://bugzilla.redhat.com/show_bug.cgi?id=1482220
-
-Also, +1.
-
-On Sun, 2017-09-03 at 11:46 -0400, Ilia Mirkin wrote:
-> Commit df8dc97cd17 (drm/nouveau/kms/nv50: use drm core i2c-over-aux
-> algorithm) switched things over to the drm algo. Unfortunately it
-> generates address-only transactions. Prior to GF119, the hardware had
-> no support for such things, and GF119+ the nouveau code did not
-> handle
-> these properly.
-> 
-> The result of this bug is that EDID doesn't make it over for DP (and
-> eDP) screens, which in turn wreaks all sorts of havoc. There have
-> been
-> lots of reports on IRC, a few on mailing lists, and also:
-> 
-> https://bugs.freedesktop.org/show_bug.cgi?id=102528
-> 
-> Commit 13a86519202 (drm/nouveau/i2c/gf119-: add support for
-> address-only transactions) fixes the nouveau support for such
-> transactions on GF119+ and flips things back over to the custom algo
-> for earlier chips. Please include into the next v4.12.x release:
-> 
-> commit 13a86519202c5d119d83640d6f781f3181205d2c
-> Author: Ben Skeggs <bskeggs@redhat.com>
-> Date:   Wed Jul 19 16:49:59 2017 +1000
-> 
->     drm/nouveau/i2c/gf119-: add support for address-only transactions
-> 
->     Since switching the I2C-over-AUX helpers, there have been
-> regressions on
->     some display combinations due to us not having support for
-> "address only"
->     transactions.
-> 
->     This commits enables support for them for GF119 and newer.
-> 
->     Earlier GPUs have been reverted to a custom I2C-over-AUX
-> algorithm.
-> 
->     Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+T24gU3VuLCBTZXAgMDMsIDIwMTcgYXQgMTE6NDY6NTdBTSAtMDQwMCwgSWxpYSBNaXJraW4gd3Jv
+dGU6Cj4gQ29tbWl0IGRmOGRjOTdjZDE3IChkcm0vbm91dmVhdS9rbXMvbnY1MDogdXNlIGRybSBj
+b3JlIGkyYy1vdmVyLWF1eAo+IGFsZ29yaXRobSkgc3dpdGNoZWQgdGhpbmdzIG92ZXIgdG8gdGhl
+IGRybSBhbGdvLiBVbmZvcnR1bmF0ZWx5IGl0Cj4gZ2VuZXJhdGVzIGFkZHJlc3Mtb25seSB0cmFu
+c2FjdGlvbnMuIFByaW9yIHRvIEdGMTE5LCB0aGUgaGFyZHdhcmUgaGFkCj4gbm8gc3VwcG9ydCBm
+b3Igc3VjaCB0aGluZ3MsIGFuZCBHRjExOSsgdGhlIG5vdXZlYXUgY29kZSBkaWQgbm90IGhhbmRs
+ZQo+IHRoZXNlIHByb3Blcmx5Lgo+IAo+IFRoZSByZXN1bHQgb2YgdGhpcyBidWcgaXMgdGhhdCBF
+RElEIGRvZXNuJ3QgbWFrZSBpdCBvdmVyIGZvciBEUCAoYW5kCj4gZURQKSBzY3JlZW5zLCB3aGlj
+aCBpbiB0dXJuIHdyZWFrcyBhbGwgc29ydHMgb2YgaGF2b2MuIFRoZXJlIGhhdmUgYmVlbgo+IGxv
+dHMgb2YgcmVwb3J0cyBvbiBJUkMsIGEgZmV3IG9uIG1haWxpbmcgbGlzdHMsIGFuZCBhbHNvOgo+
+IAo+IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwMjUyOAo+
+IAo+IENvbW1pdCAxM2E4NjUxOTIwMiAoZHJtL25vdXZlYXUvaTJjL2dmMTE5LTogYWRkIHN1cHBv
+cnQgZm9yCj4gYWRkcmVzcy1vbmx5IHRyYW5zYWN0aW9ucykgZml4ZXMgdGhlIG5vdXZlYXUgc3Vw
+cG9ydCBmb3Igc3VjaAo+IHRyYW5zYWN0aW9ucyBvbiBHRjExOSsgYW5kIGZsaXBzIHRoaW5ncyBi
+YWNrIG92ZXIgdG8gdGhlIGN1c3RvbSBhbGdvCj4gZm9yIGVhcmxpZXIgY2hpcHMuIFBsZWFzZSBp
+bmNsdWRlIGludG8gdGhlIG5leHQgdjQuMTIueCByZWxlYXNlOgoKTm93IHF1ZXVlZCB1cCwgdGhh
+bmtzLgoKZ3JlZyBrLWgKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
