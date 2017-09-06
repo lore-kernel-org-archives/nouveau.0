@@ -1,79 +1,48 @@
-From: Karol Herbst <karolherbst@gmail.com>
-Subject: Re: [Nouveau] [PATCH] [RESEND] drm/nouveau/clk: fix gcc-7
+From: Arnd Bergmann <arnd-r2nGTMty4D4@public.gmane.org>
+Subject: Re: [PATCH] [RESEND] drm/nouveau/clk: fix gcc-7
  -Wint-in-bool-context warning
-Date: Wed, 6 Sep 2017 16:20:59 +0200
-Message-ID: <CAEXux-YvOeosEpZ9jCUsyLG2PUY=97KHcWDZJHxbZpo_paDu9w@mail.gmail.com>
+Date: Wed, 6 Sep 2017 22:11:44 +0200
+Message-ID: <CAK8P3a3_2JfEOncxwRfV1qGiMcsxQu+=N6gnXnu04fLGok7mQg@mail.gmail.com>
 References: <20170906135628.3513172-1-arnd@arndb.de>
+ <CAEXux-YvOeosEpZ9jCUsyLG2PUY=97KHcWDZJHxbZpo_paDu9w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20170906135628.3513172-1-arnd@arndb.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, ML nouveau <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAEXux-YvOeosEpZ9jCUsyLG2PUY=97KHcWDZJHxbZpo_paDu9w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Sep 6, 2017 at 3:56 PM, Arnd Bergmann <arnd@arndb.de> wrote:
-> gcc thinks that interpreting a multiplication result as a bool
-> is confusing:
->
-> drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c: In function 'read_pll':
-> drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c:133:8: error: '*' in boolean context, suggest '&&' instead [-Werror=int-in-bool-context]
->
-> In this instance, I think using multiplication is more intuitive
-> than '&&', so I'm adding a comparison to zero instead to shut up
-> the warning. To further improve readability, I also make the
-> error case indented and leave the normal case as the final 'return'
-> statement.
->
-
-I think to make perfectly clear why this check is done, we simply
-should precompute the denominator and do something like this:
-
-int denominator = M * P
-if (denominator == 0)
-   return 0;
-return sclk * N / denominator;
-
-but with a better name for "denominator". I even imagine, that there
-are some macros in the kernel for dealing with something like this
-already, so that we could do instead:
-
-return AWESOME_DIV_MACRO(sclk * N, M * P)
-
-> Fixes: 7632b30e4b8b ("drm/nouveau/clk: namespace + nvidia gpu names (no binary change)")
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
-> Originally submitted on July 14, but no reply. This is the same
-> patch again. The warning is currently disabled in mainline, but
-> I think we can turn it back on in the future, and this change here
-> seems harmless.
-> ---
->  drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c
-> index 96e0941c8edd..04b4f4ccf186 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c
-> @@ -130,10 +130,10 @@ read_pll(struct gt215_clk *clk, int idx, u32 pll)
->                 sclk = read_clk(clk, 0x10 + idx, false);
->         }
->
-> -       if (M * P)
-> -               return sclk * N / (M * P);
-> +       if (M * P == 0)
-> +               return 0;
->
-> -       return 0;
-> +       return sclk * N / (M * P);
->  }
->
->  static int
-> --
-> 2.9.0
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+T24gV2VkLCBTZXAgNiwgMjAxNyBhdCA0OjIwIFBNLCBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0
+QGdtYWlsLmNvbT4gd3JvdGU6Cj4+IEluIHRoaXMgaW5zdGFuY2UsIEkgdGhpbmsgdXNpbmcgbXVs
+dGlwbGljYXRpb24gaXMgbW9yZSBpbnR1aXRpdmUKPj4gdGhhbiAnJiYnLCBzbyBJJ20gYWRkaW5n
+IGEgY29tcGFyaXNvbiB0byB6ZXJvIGluc3RlYWQgdG8gc2h1dCB1cAo+PiB0aGUgd2FybmluZy4g
+VG8gZnVydGhlciBpbXByb3ZlIHJlYWRhYmlsaXR5LCBJIGFsc28gbWFrZSB0aGUKPj4gZXJyb3Ig
+Y2FzZSBpbmRlbnRlZCBhbmQgbGVhdmUgdGhlIG5vcm1hbCBjYXNlIGFzIHRoZSBmaW5hbCAncmV0
+dXJuJwo+PiBzdGF0ZW1lbnQuCj4+Cj4KPiBJIHRoaW5rIHRvIG1ha2UgcGVyZmVjdGx5IGNsZWFy
+IHdoeSB0aGlzIGNoZWNrIGlzIGRvbmUsIHdlIHNpbXBseQo+IHNob3VsZCBwcmVjb21wdXRlIHRo
+ZSBkZW5vbWluYXRvciBhbmQgZG8gc29tZXRoaW5nIGxpa2UgdGhpczoKPgo+IGludCBkZW5vbWlu
+YXRvciA9IE0gKiBQCj4gaWYgKGRlbm9taW5hdG9yID09IDApCj4gICAgcmV0dXJuIDA7Cj4gcmV0
+dXJuIHNjbGsgKiBOIC8gZGVub21pbmF0b3I7Cj4KPiBidXQgd2l0aCBhIGJldHRlciBuYW1lIGZv
+ciAiZGVub21pbmF0b3IiLgoKSSBkb24ndCBrbm93IHdoYXQgTSBhbmQgUCBhY3R1YWxseSBhcmUg
+aW4gdGhpcyBmdW5jdGlvbiwgc28gSSBjb3VsZG4ndApjb21lIHVwIHdpdGggYSBtdWNoIGJldHRl
+ciBuYW1lIGVpdGhlciwgaG93IGFib3V0IHNpbXBseSAnZGl2aXNvcic/Cgo+IEkgZXZlbiBpbWFn
+aW5lLCB0aGF0IHRoZXJlCj4gYXJlIHNvbWUgbWFjcm9zIGluIHRoZSBrZXJuZWwgZm9yIGRlYWxp
+bmcgd2l0aCBzb21ldGhpbmcgbGlrZSB0aGlzCj4gYWxyZWFkeSwgc28gdGhhdCB3ZSBjb3VsZCBk
+byBpbnN0ZWFkOgo+Cj4gcmV0dXJuIEFXRVNPTUVfRElWX01BQ1JPKHNjbGsgKiBOLCBNICogUCkK
+CkkgZG9uJ3QgdGhpbmsgdGhhdCBleGlzdHMsIHRoZSBiZWhhdmlvciBmb3IgZGl2aWRlLWJ5LXpl
+cm8gcmVhbGx5CmRlcGVuZHMgYSBsb3Qgb24gdGhlIGNvbnRleHQsIGFuZCByZXR1cm5pbmcgemVy
+byBpcyBwcm9iYWJseQpvZnRlbiBub3QgYSBnb29kIHNvbHV0aW9uLgoKICAgICAgQXJuZApfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
+bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
