@@ -1,52 +1,79 @@
-From: Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH] [RESEND] drm/nouveau/clk: fix gcc-7 -Wint-in-bool-context
- warning
-Date: Wed,  6 Sep 2017 15:56:08 +0200
-Message-ID: <20170906135628.3513172-1-arnd@arndb.de>
+From: Karol Herbst <karolherbst@gmail.com>
+Subject: Re: [Nouveau] [PATCH] [RESEND] drm/nouveau/clk: fix gcc-7
+ -Wint-in-bool-context warning
+Date: Wed, 6 Sep 2017 16:20:59 +0200
+Message-ID: <CAEXux-YvOeosEpZ9jCUsyLG2PUY=97KHcWDZJHxbZpo_paDu9w@mail.gmail.com>
+References: <20170906135628.3513172-1-arnd@arndb.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20170906135628.3513172-1-arnd@arndb.de>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, ML nouveau <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-Z2NjIHRoaW5rcyB0aGF0IGludGVycHJldGluZyBhIG11bHRpcGxpY2F0aW9uIHJlc3VsdCBhcyBh
-IGJvb2wKaXMgY29uZnVzaW5nOgoKZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-Y2xrL2d0MjE1LmM6IEluIGZ1bmN0aW9uICdyZWFkX3BsbCc6CmRyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L252a20vc3ViZGV2L2Nsay9ndDIxNS5jOjEzMzo4OiBlcnJvcjogJyonIGluIGJvb2xlYW4g
-Y29udGV4dCwgc3VnZ2VzdCAnJiYnIGluc3RlYWQgWy1XZXJyb3I9aW50LWluLWJvb2wtY29udGV4
-dF0KCkluIHRoaXMgaW5zdGFuY2UsIEkgdGhpbmsgdXNpbmcgbXVsdGlwbGljYXRpb24gaXMgbW9y
-ZSBpbnR1aXRpdmUKdGhhbiAnJiYnLCBzbyBJJ20gYWRkaW5nIGEgY29tcGFyaXNvbiB0byB6ZXJv
-IGluc3RlYWQgdG8gc2h1dCB1cAp0aGUgd2FybmluZy4gVG8gZnVydGhlciBpbXByb3ZlIHJlYWRh
-YmlsaXR5LCBJIGFsc28gbWFrZSB0aGUKZXJyb3IgY2FzZSBpbmRlbnRlZCBhbmQgbGVhdmUgdGhl
-IG5vcm1hbCBjYXNlIGFzIHRoZSBmaW5hbCAncmV0dXJuJwpzdGF0ZW1lbnQuCgpGaXhlczogNzYz
-MmIzMGU0YjhiICgiZHJtL25vdXZlYXUvY2xrOiBuYW1lc3BhY2UgKyBudmlkaWEgZ3B1IG5hbWVz
-IChubyBiaW5hcnkgY2hhbmdlKSIpClNpZ25lZC1vZmYtYnk6IEFybmQgQmVyZ21hbm4gPGFybmRA
-YXJuZGIuZGU+Ci0tLQpPcmlnaW5hbGx5IHN1Ym1pdHRlZCBvbiBKdWx5IDE0LCBidXQgbm8gcmVw
-bHkuIFRoaXMgaXMgdGhlIHNhbWUKcGF0Y2ggYWdhaW4uIFRoZSB3YXJuaW5nIGlzIGN1cnJlbnRs
-eSBkaXNhYmxlZCBpbiBtYWlubGluZSwgYnV0CkkgdGhpbmsgd2UgY2FuIHR1cm4gaXQgYmFjayBv
-biBpbiB0aGUgZnV0dXJlLCBhbmQgdGhpcyBjaGFuZ2UgaGVyZQpzZWVtcyBoYXJtbGVzcy4KLS0t
-CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ3QyMTUuYyB8IDYgKysr
-LS0tCiAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQoKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9ndDIxNS5j
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2d0MjE1LmMKaW5kZXgg
-OTZlMDk0MWM4ZWRkLi4wNGI0ZjRjY2YxODYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2Nsay9ndDIxNS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L252a20vc3ViZGV2L2Nsay9ndDIxNS5jCkBAIC0xMzAsMTAgKzEzMCwxMCBAQCByZWFkX3Bs
-bChzdHJ1Y3QgZ3QyMTVfY2xrICpjbGssIGludCBpZHgsIHUzMiBwbGwpCiAJCXNjbGsgPSByZWFk
-X2NsayhjbGssIDB4MTAgKyBpZHgsIGZhbHNlKTsKIAl9CiAKLQlpZiAoTSAqIFApCi0JCXJldHVy
-biBzY2xrICogTiAvIChNICogUCk7CisJaWYgKE0gKiBQID09IDApCisJCXJldHVybiAwOwogCi0J
-cmV0dXJuIDA7CisJcmV0dXJuIHNjbGsgKiBOIC8gKE0gKiBQKTsKIH0KIAogc3RhdGljIGludAot
-LSAKMi45LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+On Wed, Sep 6, 2017 at 3:56 PM, Arnd Bergmann <arnd@arndb.de> wrote:
+> gcc thinks that interpreting a multiplication result as a bool
+> is confusing:
+>
+> drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c: In function 'read_pll':
+> drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c:133:8: error: '*' in boolean context, suggest '&&' instead [-Werror=int-in-bool-context]
+>
+> In this instance, I think using multiplication is more intuitive
+> than '&&', so I'm adding a comparison to zero instead to shut up
+> the warning. To further improve readability, I also make the
+> error case indented and leave the normal case as the final 'return'
+> statement.
+>
+
+I think to make perfectly clear why this check is done, we simply
+should precompute the denominator and do something like this:
+
+int denominator = M * P
+if (denominator == 0)
+   return 0;
+return sclk * N / denominator;
+
+but with a better name for "denominator". I even imagine, that there
+are some macros in the kernel for dealing with something like this
+already, so that we could do instead:
+
+return AWESOME_DIV_MACRO(sclk * N, M * P)
+
+> Fixes: 7632b30e4b8b ("drm/nouveau/clk: namespace + nvidia gpu names (no binary change)")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+> Originally submitted on July 14, but no reply. This is the same
+> patch again. The warning is currently disabled in mainline, but
+> I think we can turn it back on in the future, and this change here
+> seems harmless.
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c
+> index 96e0941c8edd..04b4f4ccf186 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.c
+> @@ -130,10 +130,10 @@ read_pll(struct gt215_clk *clk, int idx, u32 pll)
+>                 sclk = read_clk(clk, 0x10 + idx, false);
+>         }
+>
+> -       if (M * P)
+> -               return sclk * N / (M * P);
+> +       if (M * P == 0)
+> +               return 0;
+>
+> -       return 0;
+> +       return sclk * N / (M * P);
+>  }
+>
+>  static int
+> --
+> 2.9.0
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
