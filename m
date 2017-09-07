@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101220] [NV137/GP107] xorg-server-1.19.3 crashes
- when trying to enable HDMI output
-Date: Thu, 07 Sep 2017 08:39:14 +0000
-Message-ID: <bug-101220-8800-Cn1Nur2ter@http.bugs.freedesktop.org/>
-References: <bug-101220-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102593] New: Dell Precision m65 laptop,
+ Nvidia Quadro FX 350M: the Nouveau driver seems to ruin the
+ functionality of the screen
+Date: Thu, 07 Sep 2017 17:06:45 +0000
+Message-ID: <bug-102593-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1987651320=="
+Content-Type: multipart/mixed; boundary="===============1946463243=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +20,83 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1987651320==
-Content-Type: multipart/alternative; boundary="15047735543.e2d6eD.25603";
+--===============1946463243==
+Content-Type: multipart/alternative; boundary="15048040050.d9304073.19797";
  charset="UTF-8"
 
 
---15047735543.e2d6eD.25603
-Date: Thu, 7 Sep 2017 08:39:14 +0000
+--15048040050.d9304073.19797
+Date: Thu, 7 Sep 2017 17:06:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102593
 
---- Comment #17 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #12)
-[...]
-> #2: we should figure out what's going on with accel on your GP107 -- looks
-> like stuff is just hanging (that's the "timeout" messages you see, we're
-> waiting for some condition to become true, and it never does).
->=20
-> I can help with the former, and hopefully Ben Skeggs can investigate the
-> latter.
+            Bug ID: 102593
+           Summary: Dell Precision m65 laptop, Nvidia Quadro FX 350M: the
+                    Nouveau driver seems to ruin the functionality of the
+                    screen
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: only1ryan-7CfLA4ij27fR7s880joybQ@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-As a side note, I am still unable to run with "accel" enabled even with ker=
-nel
-4.13.0 :/
+I don't know how to put it other than the combination of a Dell Precision m=
+65
+laptop, Nvidia Quadro FX 350M graphics card, and Nouveau driver leads to so=
+me
+bizarre behavior by the screen.
+
+The first stage of symptoms is the screen remains black during the boot
+process.  As the kernel loads, only when it kicks into graphics mode does t=
+he
+screen turn on.  (This makes it impossible to edit the BIOS settings on the
+computer.)  Also, the brightness/contrast settings stop working properly.  =
+Only
+two options remain: maximum brightness or minimum brightness.
+
+The second stage of symptoms is, after the screen comes alive during graphi=
+cs
+mode, when it boots into the desktop environment it becomes dark again.  Or,
+the screen remains dark during the entire boot process.  In either case I h=
+ave
+to reboot the computer and cross my fingers it will work the next time.
+
+The last stage of symptoms is the screen, when it does work, becomes fuzzy =
+and
+nearly unreadable.  At that point the only option is to use an external
+monitor, but sometimes that fails to work properly too.  More important, it
+ruins the point of having a portable computer.
+
+I have witnessed the same outcome on two different m65 laptops.  I did not =
+keep
+track of the timeline of events for the first one, but the second one went
+through the first two stages in less than two days.  I would like to rescue=
+ it
+before it reaches the third stage.
+
+I have attached the output from the kernel and X11.  If there are any
+questions, please ask.
+
+
+Thanks
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15047735543.e2d6eD.25603
-Date: Thu, 7 Sep 2017 08:39:14 +0000
+--15048040050.d9304073.19797
+Date: Thu, 7 Sep 2017 17:06:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,41 +107,130 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Dell Precision m65 laptop, Nvidia Quadro FX 350M: the Nou=
+veau driver seems to ruin the functionality of the screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102593">102593</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Dell Precision m65 laptop, Nvidia Quadro FX 350M: the Nouveau=
+ driver seems to ruin the functionality of the screen
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>only1ryan&#64;postpro.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
-nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c17">Comme=
-nt # 17</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
-nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pachoramos1&#64;gmail.com" title=3D"Pacho Ramos &lt;pachoramos1&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D101=
-220#c12">comment #12</a>)
-[...]
-<span class=3D"quote">&gt; #2: we should figure out what's going on with ac=
-cel on your GP107 -- looks
-&gt; like stuff is just hanging (that's the &quot;timeout&quot; messages yo=
-u see, we're
-&gt; waiting for some condition to become true, and it never does).
-&gt;=20
-&gt; I can help with the former, and hopefully Ben Skeggs can investigate t=
-he
-&gt; latter.</span >
+        <pre>I don't know how to put it other than the combination of a Del=
+l Precision m65
+laptop, Nvidia Quadro FX 350M graphics card, and Nouveau driver leads to so=
+me
+bizarre behavior by the screen.
 
-As a side note, I am still unable to run with &quot;accel&quot; enabled eve=
-n with kernel
-4.13.0 :/</pre>
+The first stage of symptoms is the screen remains black during the boot
+process.  As the kernel loads, only when it kicks into graphics mode does t=
+he
+screen turn on.  (This makes it impossible to edit the BIOS settings on the
+computer.)  Also, the brightness/contrast settings stop working properly.  =
+Only
+two options remain: maximum brightness or minimum brightness.
+
+The second stage of symptoms is, after the screen comes alive during graphi=
+cs
+mode, when it boots into the desktop environment it becomes dark again.  Or,
+the screen remains dark during the entire boot process.  In either case I h=
+ave
+to reboot the computer and cross my fingers it will work the next time.
+
+The last stage of symptoms is the screen, when it does work, becomes fuzzy =
+and
+nearly unreadable.  At that point the only option is to use an external
+monitor, but sometimes that fails to work properly too.  More important, it
+ruins the point of having a portable computer.
+
+I have witnessed the same outcome on two different m65 laptops.  I did not =
+keep
+track of the timeline of events for the first one, but the second one went
+through the first two stages in less than two days.  I would like to rescue=
+ it
+before it reaches the third stage.
+
+I have attached the output from the kernel and X11.  If there are any
+questions, please ask.
+
+
+Thanks</pre>
         </div>
       </p>
 
@@ -114,9 +244,9 @@ n with kernel
     </body>
 </html>=
 
---15047735543.e2d6eD.25603--
+--15048040050.d9304073.19797--
 
---===============1987651320==
+--===============1946463243==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -126,4 +256,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1987651320==--
+--===============1946463243==--
