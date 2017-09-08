@@ -1,73 +1,47 @@
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: [PATCH 4.12 35/43] drm/nouveau: Fix error handling in nv50_disp_atomic_commit
-Date: Fri,  8 Sep 2017 15:19:23 +0200
-Message-ID: <20170908131827.837496355@linuxfoundation.org>
-References: <20170908131826.555428826@linuxfoundation.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: nvidia geforce 1050 on xps 9560 crashing - howto debug
+Date: Fri, 8 Sep 2017 09:37:58 -0400
+Message-ID: <CAKb7Uvjb8kn5uDnPgVp97k9yrM_5hkMbobJc3uJyEgZswKjjXA@mail.gmail.com>
+References: <773f5580-ee2d-7907-df2e-d7701168ceeb@matos-sorge.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20170908131826.555428826@linuxfoundation.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: linux-kernel@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Sean Paul <seanpaul@chromium.org>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <773f5580-ee2d-7907-df2e-d7701168ceeb-dvLnIFN4ijfbeXlDLKSl0A@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Paulo Matos <paulo-dvLnIFN4ijfbeXlDLKSl0A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-4.12-stable review patch.  If anyone has any objections, please let me know.
-
-------------------
-
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-
-commit 813a7e1604eaad1c2792d37d402e1b48b8d0eb3f upstream.
-
-Make it more clear that post commit return ret is really return 0,
-
-and add a missing drm_atomic_helper_cleanup_planes when
-drm_atomic_helper_wait_for_fences fails.
-
-Fixes: 839ca903f12e ("drm/nouveau/kms/nv50: transition to atomic interfaces internally")
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Link: http://patchwork.freedesktop.org/patch/msgid/20170711143314.2148-2-maarten.lankhorst@linux.intel.com
-Reviewed-by: Sean Paul <seanpaul@chromium.org>
-[mlankhorst: Use if (ret) to remove the goto in success case.]
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-
----
- drivers/gpu/drm/nouveau/nv50_display.c |    7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
-
---- a/drivers/gpu/drm/nouveau/nv50_display.c
-+++ b/drivers/gpu/drm/nouveau/nv50_display.c
-@@ -4091,7 +4091,7 @@ nv50_disp_atomic_commit(struct drm_devic
- 	if (!nonblock) {
- 		ret = drm_atomic_helper_wait_for_fences(dev, state, true);
- 		if (ret)
--			goto done;
-+			goto err_cleanup;
- 	}
- 
- 	for_each_plane_in_state(state, plane, plane_state, i) {
-@@ -4119,7 +4119,7 @@ nv50_disp_atomic_commit(struct drm_devic
- 		if (crtc->state->enable) {
- 			if (!drm->have_disp_power_ref) {
- 				drm->have_disp_power_ref = true;
--				return ret;
-+				return 0;
- 			}
- 			active = true;
- 			break;
-@@ -4131,6 +4131,9 @@ nv50_disp_atomic_commit(struct drm_devic
- 		drm->have_disp_power_ref = false;
- 	}
- 
-+err_cleanup:
-+	if (ret)
-+		drm_atomic_helper_cleanup_planes(dev, state);
- done:
- 	pm_runtime_put_autosuspend(dev->dev);
- 	return ret;
+SSBiZWxpZXZlIGEgbnVtYmVyIG9mIHBlb3BsZSBhcmUgaGl0dGluZyB0aGlzIGlzc3VlIChhbGwg
+d2l0aCB0aGUgRGVsbApYUFMgOTU2MCAtIG5vdCBzdXJlIGlmIGl0J3MgcG9wdWxhciBvciBpZiB0
+aGVyZSdzIHNvbWV0aGluZyBzcGVjaWFsCmFib3V0IGl0KS4KCkhhdmUgYSBsb29rIGF0CgpodHRw
+czovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDAyMjgKaHR0cHM6Ly9i
+dWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTAxMjIwCgpDaGVlcnMsCgogIC1p
+bGlhCgpPbiBGcmksIFNlcCA4LCAyMDE3IGF0IDk6MTAgQU0sIFBhdWxvIE1hdG9zIDxwYXVsb0Bt
+YXRvcy1zb3JnZS5jb20+IHdyb3RlOgo+IEhpLAo+Cj4gSSBhbSBzbGlnaHRseSBzdHVjayBpbiBh
+IGNvcm5lciBjYXNlIEkgZG9uJ3Qga25vdyBob3cgdG8gZGVidWcuCj4gSSBoYXZlIGFuIG9wdGlt
+dXMgc2V0dXAgaW4gYSBkZWxsIHhwcyA5NTYwIHdpdGggYSBkaXNjcmV0ZSBncHUgbnZpZGlhCj4g
+Z2Vmb3JjZSAxMDUwIChQYXNjYWwgLSBOVjEzMCkuCj4KPiBJIGluc3RhbGxlZCBGZWRvcmEgYW5k
+IGlmIEkgZG8gbm90IGJvb3Qgd2l0aCBub3V2ZWF1Lm1vZGVzZXQ9MCwgdGhlbiB0aGUKPiBjb21w
+dXRlciBjcmFzaGVzIGFzIHNvb24gYXMgSSB0cnkgdG8gc3RhcnQgWG9yZyAoSSBoYXZlIGRpc2Fi
+bGVkCj4gd2F5bGFuZCkuIFNvLCBnZG0gc3RhcnRzIGJ1dCB0aGVuIGFzIHNvb24gYXMgSSBnZXQg
+aW50byBpMyBvciBnbm9tZSwgdGhlCj4gY29tcHV0ZXIgY3Jhc2hlcyBhbmQgaGFuZ3MuCj4KPiBI
+b3cgY2FuIEkgZGVidWcgd2hhdCdzIGhhcHBlbmluZyBvciBnZW5lcmF0ZSBlbm91Z2ggaW5mb3Jt
+YXRpb24gdG8gaGVscAo+IHNvbWVvbmUgdG8gc29ydCBpdCBvdXQ/Cj4KPiBJcyB0aGVyZSBzb21l
+IHNvcnQgb2YgZGVidWcgZmxhZyBJIGNhbiBhY3RpdmF0ZSwgdGhlbiBjcmFzaCB0aGUgY29tcHV0
+ZXIKPiBhbmQgY2FwdHVyZSB0aGF0IGluZm8gaW4gYSBuZXcgYm9vaz8KPgo+IGtpbmQgcmVnYXJk
+cywKPgo+IC0tCj4gUGF1bG8gTWF0b3MKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
