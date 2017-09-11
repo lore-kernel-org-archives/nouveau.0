@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 102648] unable to use nvidia gpu after suspend
-Date: Mon, 11 Sep 2017 03:14:20 +0000
-Message-ID: <bug-102648-8800-2qt445rEKe@http.bugs.freedesktop.org/>
+Date: Mon, 11 Sep 2017 03:14:51 +0000
+Message-ID: <bug-102648-8800-D8PBmrc4bd@http.bugs.freedesktop.org/>
 References: <bug-102648-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0828595220=="
+Content-Type: multipart/mixed; boundary="===============1082443574=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-102648-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0828595220==
-Content-Type: multipart/alternative; boundary="15050996600.BEFbE.15595";
+--===============1082443574==
+Content-Type: multipart/alternative; boundary="15050996910.C652B74B.15723";
  charset="UTF-8"
 
 
---15050996600.BEFbE.15595
-Date: Mon, 11 Sep 2017 03:14:20 +0000
+--15050996910.C652B74B.15723
+Date: Mon, 11 Sep 2017 03:14:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D102648
 
---- Comment #1 from RazorSiS <razorsis100-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 134146
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134146&action=3Dedit
-acpidump
+--- Comment #2 from RazorSiS <razorsis100-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 134147
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134147&action=3Dedit
+xorg log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15050996600.BEFbE.15595
-Date: Mon, 11 Sep 2017 03:14:20 +0000
+--15050996910.C652B74B.15723
+Date: Mon, 11 Sep 2017 03:14:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - unable to use nvidia gpu after suspend"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102648#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102648#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - unable to use nvidia gpu after suspend"
@@ -73,11 +73,11 @@ t # 1</a>
 razorsis100&#64;gmail.com" title=3D"RazorSiS &lt;razorsis100&#64;gmail.com&=
 gt;"> <span class=3D"fn">RazorSiS</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134146=
-" name=3D"attach_134146" title=3D"acpidump">attachment 134146</a> <a href=
-=3D"attachment.cgi?id=3D134146&amp;action=3Dedit" title=3D"acpidump">[detai=
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134147=
+" name=3D"attach_134147" title=3D"xorg log">attachment 134147</a> <a href=
+=3D"attachment.cgi?id=3D134147&amp;action=3Dedit" title=3D"xorg log">[detai=
 ls]</a></span>
-acpidump</pre>
+xorg log</pre>
         </div>
       </p>
 
@@ -91,9 +91,9 @@ acpidump</pre>
     </body>
 </html>=
 
---15050996600.BEFbE.15595--
+--15050996910.C652B74B.15723--
 
---===============0828595220==
+--===============1082443574==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0828595220==--
+--===============1082443574==--
