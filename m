@@ -1,10 +1,9 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102631] New: Multiple nouveau stacks on kernel log
- when connecting a external monitor
-Date: Fri, 08 Sep 2017 23:20:05 +0000
-Message-ID: <bug-102631-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102648] New: unable to use nvidia gpu after suspend
+Date: Mon, 11 Sep 2017 03:13:04 +0000
+Message-ID: <bug-102648-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1634130484=="
+Content-Type: multipart/mixed; boundary="===============1335122806=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,97 +18,65 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1634130484==
-Content-Type: multipart/alternative; boundary="15049128050.c05c25Dbc.23829";
+--===============1335122806==
+Content-Type: multipart/alternative; boundary="15050995840.7c8c.15061";
  charset="UTF-8"
 
 
---15049128050.c05c25Dbc.23829
-Date: Fri, 8 Sep 2017 23:20:05 +0000
+--15050995840.7c8c.15061
+Date: Mon, 11 Sep 2017 03:13:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102631
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102648
 
-            Bug ID: 102631
-           Summary: Multiple nouveau stacks on kernel log when connecting
-                    a external monitor
-           Product: Mesa
-           Version: 17.1
-          Hardware: Other
-                OS: All
+            Bug ID: 102648
+           Summary: unable to use nvidia gpu after suspend
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
             Status: NEW
-          Severity: normal
+          Severity: critical
           Priority: medium
-         Component: Drivers/DRI/nouveau
+         Component: Driver/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: emilio-pwgiZpOOZhphl2p70BpVqQ@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: razorsis100-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Created attachment 134100
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134100&action=3Dedit
-relevant dmesg output
+Created attachment 134145
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134145&action=3Dedit
+dmesg with the problem before and after suspend
 
-Sorry for the non-descriptive bug title in advance, I'm not sure which part=
-s of
-the logs are worth a bug report, but I'm moderately sure that something in =
-here
-deserves a bug filed.
+Os: Arch X86_64 Updated regularly
+System : Notebook Asus X556UR
 
-My machine is a Lenovo P50 with:
+Tried with bumblebee nvidia:
+Works perefectly after boot
+but after a suspend/wake optirun output: Failed to initialize secondary GPU
 
-    VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro M2000M] =
-(rev
-a2)
+only way to make it work again is:=20
+reboot or pci bus remove/rescan(doesn't work sometimes)
 
-And mesa version 17.1.8
+So I consulted with Lekensteyn and did numerous testings
+checked nvidia card powermanagement, parent bus power mangement
+PM is on for both but it just doesn't work after suspend/wake
 
-I connected an external monitor to the HDMI port, and I got black screens f=
-or a
-few retries.
+switched to nouveau (removed bumblebee nvidia)
+tested with lspci, no errors after boot
+but after suspend/wake: DRM: failed to idle channel 0 [DRM]
 
-On an unrelated (maybe not so unrelated?) note, I get reproducible FAULTs on
-startup, regardless of any monitor attached or not I believe. I also got so=
-me
-others on today's log, but that may be just related to the problem above. T=
-he
-first two lines below repro even without an external monitor:
-
-    [    2.690083] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-022554 [ IBUS ]
-    [    2.691514] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-10ac08 [ IBUS ]
-    [   23.396822] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-690000 [ TIMEOUT ]
-    [   41.791019] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-690000 [ TIMEOUT ]
-    [   41.791902] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-6900c0 [ TIMEOUT ]
-    [   51.876682] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-690000 [ TIMEOUT ]
-    [   61.915247] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-690000 [ TIMEOUT ]
-    [   75.297725] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-690000 [ TIMEOUT ]
-
-Happy to help providing more information, testing, or even trying to contri=
-bute
-a fix (with some guidance ideally, since I know nothing about the driver's =
-code
-:P).
-
-Thanks a lot in advance.
+So he suggested to file a bug for nouveau with kernel log and acpidump
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15049128050.c05c25Dbc.23829
-Date: Fri, 8 Sep 2017 23:20:05 +0000
+--15050995840.7c8c.15061
+Date: Mon, 11 Sep 2017 03:13:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -125,40 +92,38 @@ Auto-Submitted: auto-generated
           <th>Bug ID</th>
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Multiple nouveau stacks on kernel log when connecting a e=
-xternal monitor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102631">102631</a>
+   title=3D"NEW - unable to use nvidia gpu after suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102648">102648</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>Multiple nouveau stacks on kernel log when connecting a exter=
-nal monitor
+          <td>unable to use nvidia gpu after suspend
           </td>
         </tr>
 
         <tr>
           <th>Product</th>
-          <td>Mesa
+          <td>xorg
           </td>
         </tr>
 
         <tr>
           <th>Version</th>
-          <td>17.1
+          <td>unspecified
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>Other
+          <td>x86-64 (AMD64)
           </td>
         </tr>
 
         <tr>
           <th>OS</th>
-          <td>All
+          <td>Linux (All)
           </td>
         </tr>
 
@@ -170,7 +135,7 @@ nal monitor
 
         <tr>
           <th>Severity</th>
-          <td>normal
+          <td>critical
           </td>
         </tr>
 
@@ -182,7 +147,7 @@ nal monitor
 
         <tr>
           <th>Component</th>
-          <td>Drivers/DRI/nouveau
+          <td>Driver/nouveau
           </td>
         </tr>
 
@@ -194,72 +159,43 @@ nal monitor
 
         <tr>
           <th>Reporter</th>
-          <td>emilio&#64;crisal.io
+          <td>razorsis100&#64;gmail.com
           </td>
         </tr>
 
         <tr>
           <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
+          <td>xorg-team&#64;lists.x.org
           </td>
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134100=
-" name=3D"attach_134100" title=3D"relevant dmesg output">attachment 134100<=
-/a> <a href=3D"attachment.cgi?id=3D134100&amp;action=3Dedit" title=3D"relev=
-ant dmesg output">[details]</a></span>
-relevant dmesg output
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134145=
+" name=3D"attach_134145" title=3D"dmesg with the problem before and after s=
+uspend">attachment 134145</a> <a href=3D"attachment.cgi?id=3D134145&amp;act=
+ion=3Dedit" title=3D"dmesg with the problem before and after suspend">[deta=
+ils]</a></span>
+dmesg with the problem before and after suspend
 
-Sorry for the non-descriptive bug title in advance, I'm not sure which part=
-s of
-the logs are worth a bug report, but I'm moderately sure that something in =
-here
-deserves a bug filed.
+Os: Arch X86_64 Updated regularly
+System : Notebook Asus X556UR
 
-My machine is a Lenovo P50 with:
+Tried with bumblebee nvidia:
+Works perefectly after boot
+but after a suspend/wake optirun output: Failed to initialize secondary GPU
 
-    VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro M2000M] =
-(rev
-a2)
+only way to make it work again is:=20
+reboot or pci bus remove/rescan(doesn't work sometimes)
 
-And mesa version 17.1.8
+So I consulted with Lekensteyn and did numerous testings
+checked nvidia card powermanagement, parent bus power mangement
+PM is on for both but it just doesn't work after suspend/wake
 
-I connected an external monitor to the HDMI port, and I got black screens f=
-or a
-few retries.
+switched to nouveau (removed bumblebee nvidia)
+tested with lspci, no errors after boot
+but after suspend/wake: DRM: failed to idle channel 0 [DRM]
 
-On an unrelated (maybe not so unrelated?) note, I get reproducible FAULTs on
-startup, regardless of any monitor attached or not I believe. I also got so=
-me
-others on today's log, but that may be just related to the problem above. T=
-he
-first two lines below repro even without an external monitor:
-
-    [    2.690083] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-022554 [ IBUS ]
-    [    2.691514] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-10ac08 [ IBUS ]
-    [   23.396822] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-690000 [ TIMEOUT ]
-    [   41.791019] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-690000 [ TIMEOUT ]
-    [   41.791902] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-6900c0 [ TIMEOUT ]
-    [   51.876682] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-690000 [ TIMEOUT ]
-    [   61.915247] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-690000 [ TIMEOUT ]
-    [   75.297725] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-690000 [ TIMEOUT ]
-
-Happy to help providing more information, testing, or even trying to contri=
-bute
-a fix (with some guidance ideally, since I know nothing about the driver's =
-code
-:P).
-
-Thanks a lot in advance.</pre>
+So he suggested to file a bug for nouveau with kernel log and acpidump</pre>
         </div>
       </p>
 
@@ -269,14 +205,13 @@ Thanks a lot in advance.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15049128050.c05c25Dbc.23829--
+--15050995840.7c8c.15061--
 
---===============1634130484==
+--===============1335122806==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -286,4 +221,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1634130484==--
+--===============1335122806==--
