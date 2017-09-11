@@ -1,15 +1,14 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+From: Nicolas Mercier <mercier.nicolas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: Nouveau: kernel hang on Optimus+Intel+NVidia GeForce
- 1060m
-Date: Mon, 11 Sep 2017 20:49:49 +0200
-Message-ID: <cb794e03-6ca8-7e80-9277-ea780ee0bbd2@mni.thm.de>
+	1060m
+Date: Mon, 11 Sep 2017 21:52:31 +0200
+Message-ID: <CAKyUnMVeWzgptcN0CVLg4SYriY7+29wXcdaAH4Xig7tXSuXBtA@mail.gmail.com>
 References: <CAKyUnMW6f-EpyjZ=tocOR6Ji8MLprF71YzNsOKv-+UGtbvqH=g@mail.gmail.com>
+ <cb794e03-6ca8-7e80-9277-ea780ee0bbd2@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1161123377=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKyUnMW6f-EpyjZ=tocOR6Ji8MLprF71YzNsOKv-+UGtbvqH=g@mail.gmail.com>
-Content-Language: en-US
+In-Reply-To: <cb794e03-6ca8-7e80-9277-ea780ee0bbd2-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,59 +18,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nicolas Mercier <mercier.nicolas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgppIHJlbWVtYmVyIHNlZWluZyB0aGUgc2FtZSBlcnJvciB3aXRoIGVhcmxpZXIgZmlybXdh
-cmUgdmVyc2lvbiB3aXRoIGEKc2ltaWxhciBzeXN0ZW0gKEdQMTA2KSBvbmNlIGluIGEgd2hpbGUg
-b24gYm9vdCwgeWV0IGl0IGRvZXMgbm90IGhhcHBlbgp3aXRoIG5ld2VyIHZlcnNpb25zLiBNYXli
-ZSB5b3UgY291bGQgdHJ5IHRvIHVwZGF0ZSB0aGUgZmlybXdhcmUgdG8gdGhlCmxhdGVzdCB2ZXJz
-aW9uIGZyb20ga2VybmVsLWZpcm13YXJlLgoKQXMgYSBzbWFsbCBhZGRpdGlvbjogSSByZW1lbWJl
-ciBkZWVwbHk6IHlvdSBzaG91bGQgaWdub3JlIHRoZQpfT1NJKExpbnV4KSBxdWVyeSwgYXMgaXQg
-bWF5IGJyZWFrIHRoZSBzeXN0ZW0gaW4gc29tZSB3YXlzLCBpZiB5b3UgZG9uJ3QKaGF2ZSBhIHNw
-ZWNpZmljIGJ1ZyBmaXhlZCB3aXRoIGFkZGluZyBfT1NJKExpbnV4KSwgcmVtb3ZpbmcgaXQgZnJv
-bSB0aGUKY21kbGluZSBpcyBhIHRoaW5nIHRvIHRlc3QhCgpHcmVldGluZ3MsCgpUb2JpYXMKCgpP
-biA5LzExLzE3IDQ6NTQgUE0sIE5pY29sYXMgTWVyY2llciB3cm90ZToKPiBIaSwKPiBJIGhhdmUg
-YW4gT3B0aW11cy1lbmFibGVkIGxhcHRvcCB3aXRoIGEgR1RYIDEwNjBtLiBJIG5ldmVyIGdvdCBp
-dCB0bwo+IGZ1bGx5IHdvcmsgd2l0aCBOb3V2ZWF1IGV2ZW4gYWZ0ZXIgUGFzY2FsIHN1cHBvcnQg
-d2FzIGFkZGVkLiBJIG5lZWQgdG8KPiBydW4gdGhlIGtlcm5lbCB3aXRoIG5vdXZlYXUucnVucG09
-MCB0byBnZXQgaXQgdG8gd29yay4gVW5mb3J0dW5hdGVseQo+IHdpdGhvdXQgcHJvcGVyIHBvd2Vy
-IG1hbmdlbWVudCBzdXBwb3J0LCBteSBsYXB0b3Agd2lsbCBydW4gb3V0IG9mCj4gYmF0dGVyeSBh
-ZnRlciBhYm91dCAxaDMwLCBzbyBJJ2QgbG92ZSB0byBnZXQgT3B0aW11cyB3b3JraW5nLgo+Cj4g
-V2hhdCBJIGNhbiBzZWUgaXMgdGhhdCB3aGVuIHRoZSBleHRyYSBHUFUgaXMgbm90IGluIHVzZSwg
-Tm91dmVhdSB3aWxsCj4gdHJ5IHRvIHNodXQgaXQgb2ZmLiBUaGlzIHNlZW1zIHRvIHdvcmssIGFz
-IHRoZSBpbmRpY2F0b3Igb2YgdGhlIGxhcHRvcAo+IGNoYW5nZXMgdG8gYW1iZXIgKGRpc2NyZXRl
-IEdQVSBpbiB1c2UpIHRvIGJsdWUgKGRpc2NyZXRlIEdQVSBwb3dlcmVkCj4gb2ZmKSwgYW5kIHRo
-ZSBrZXJuZWwgbG9nIChhdHRhY2hlZCkgcmVwb3J0cyB0aGF0IHRoZSBHUFUgd2VudCBvZmYuCj4K
-PiBJZiBJIHdha2UgdXAgdGhlIEdQVSAocGx1Z2dpbmcgaW4vb3V0IHRoZSBleHRlcm5hbCBtb25p
-dG9yLCBydW5uaW5nIGEKPiBHTCBjb21tYW5kIHdpdGggRFJJX1BSSU1FPTEsIG9yIGV2ZW4gbHNw
-Y2kpIHdpbGwgbWFrZSB0aGUgY29tcHV0ZXIKPiB1bnJlc3BvbnNpdmUgYW5kIG9ubHkgYSBmb3Jj
-ZSBzaHV0ZG93biB3aWxsIHdvcmssIGFzIG5vIGdyYXBoaWNzCj4gY29tbWFuZCBzZWVtcyB0byBi
-ZSBhYmxlIHRvIGV4ZWN1dGUgYW55bW9yZS4gTm91dmVhdSAobGlrZWx5LCB2Z2EKPiBzd2l0Y2hl
-cm9vKSB0cmllcyB0byB3YWtlIHVwIHRoZSBHUFUgYnV0IGl0IHNlZW1zIHRvIGZhaWwuIFRoZSBM
-RUQKPiBpbmRpY2F0b3IgZG9lcyBpbmRpY2F0ZSB0aGUgR1BVIGhhcyBwb3dlciB0aG91Z2guCj4K
-PiBNb3N0IG9mIHRoZSB0aW1lIChidXQgbm90IG9mdGVuIHdoZW4gSSBoYXZlIGFuIGV4dGVybmFs
-IG1vbml0b3IKPiBwbHVnZ2VkIGludG8gdGhlIGRpc2NyZXRlIGNhcmQgYmVmb3JlIEkgYm9vdCB0
-aGUgY29tcHV0ZXIpIEkgZ2V0IGEKPiB0aW1lb3V0IGR1cmluZyBib290IG9yIGR1cmluZyBtb2Rw
-cm9iZSAoc2VlIGtlcm5lbCBsb2cpLiBFdmVuIHdpdGgKPiBydW5wbT0wLCBJIGNhbid0IHNlZW0g
-dG8gYmUgYWJsZSB0byBydW4gR0wgY29tbWFuZHMgb24gaXQ6Cj4KPiB5bmd3ZUBsYWJhcmJhcmE6
-ICUgRFJJX1BSSU1FPTEgZ2x4aW5mbwo+IG5hbWUgb2YgZGlzcGxheTogOjAuMAo+IG52YzBfc2Ny
-ZWVuX2NyZWF0ZTo4NTcgLSBFcnJvciBhbGxvY2F0aW5nIFBHUkFQSCBjb250ZXh0IGZvciBNMk1G
-OiAtMTYKPiBsaWJHTCBlcnJvcjogZmFpbGVkIHRvIGNyZWF0ZSBkcmkgc2NyZWVuCj4gbGliR0wg
-ZXJyb3I6IGZhaWxlZCB0byBsb2FkIGRyaXZlcjogbm91dmVhdQo+IGRpc3BsYXk6IDowIMKgc2Ny
-ZWVuOiAwCj4gZGlyZWN0IHJlbmRlcmluZzogWWVzCj4gLi4uIGZvbGxvd3MgdXAgdXNpbmcgdGhl
-IEludGVsIGNhcmQgLi4uCj4KPiB0aGUgZXJyb3IgSSBnZXQgaW4gdGhlIGtlcm5lbCBpbiB0aGF0
-IGNhc2U6Cj4gWyDCoDIwMS42MTI1ODNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogRkVDUyBm
-YWxjb24gYWxyZWFkeSBhY3F1aXJlZAo+IGJ5IGdyIQo+IFsgwqAyMDEuNjEyNTg2XSBub3V2ZWF1
-IDAwMDA6MDE6MDAuMDogZ3I6IGluaXQgZmFpbGVkLCAtMTYKPgo+IEl0IHJ1bnMgb24gRGViaWFu
-IHRlc3RpbmcgKyB0aGUgZmlybXdhcmUgZnJvbSBVYnVudHUgYXMgRGViaWFuJ3MKPiBmaXJtd2Fy
-ZSBkb2VzIG5vdCBoYXZlIHRoZSBudmlkaWEgYmxvYnMsIGtlcm5lbCB3YXMgZWl0aGVyIDQuMTIv
-NC4xMwo+IHJlbGVhc2UgY2FuZGlkYXRlcyBmcm9tIERlYmlhbiByZXBvc2l0b3JpZXMgb3Iga2Vy
-bmVsIDQuMTMuMSBzZWxmCj4gY29tcGlsZWQuIEkgYWx3YXlzIGhhZCBleGFjdGx5IHRoZSBzYW1l
-IHN5bXB0b21zIG9uIGFsbCB0aGVzZSBrZXJuZWxzLgo+Cj4gL25pY29sYXMKPgo+Cj4gX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxp
-bmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+--===============1161123377==
+Content-Type: multipart/alternative; boundary="001a114e7ae27590e00558ef440a"
+
+--001a114e7ae27590e00558ef440a
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Tobias,
+
+On Mon, Sep 11, 2017 at 8:49 PM, Tobias Klausmann <
+tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> wrote:
+
+> Hi,
+>
+> i remember seeing the same error with earlier firmware version with a
+> similar system (GP106) once in a while on boot, yet it does not happen
+> with newer versions. Maybe you could try to update the firmware to the
+> latest version from kernel-firmware.
+>
+Thanks for the suggestion Tobias. I updated the firmware (pulled it down
+straight from Git) but unfortunately i got the exact same result.
+
+
+> As a small addition: I remember deeply: you should ignore the
+> _OSI(Linux) query, as it may break the system in some ways, if you don't
+> have a specific bug fixed with adding _OSI(Linux), removing it from the
+> cmdline is a thing to test!
+>
+Actually I tried both with and without, it just happens that I forgot to
+remove it after many tests.
+I read also that it is better to not add _OSI(Linux) so I completely agree,
+I will take it out again.
+
+--001a114e7ae27590e00558ef440a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">Hi T=
+obias,=C2=A0</div><div class=3D"gmail_quote"><br></div><div class=3D"gmail_=
+quote">On Mon, Sep 11, 2017 at 8:49 PM, Tobias Klausmann <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org" target=3D"_blan=
+k">tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org</a>&gt;</span> wrote:<br><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
+id;padding-left:1ex">Hi,<br>
+<br>
+i remember seeing the same error with earlier firmware version with a<br>
+similar system (GP106) once in a while on boot, yet it does not happen<br>
+with newer versions. Maybe you could try to update the firmware to the<br>
+latest version from kernel-firmware.<br></blockquote><div>Thanks for the su=
+ggestion Tobias. I updated the firmware (pulled it down straight from Git) =
+but unfortunately i got the exact same result.</div><div>=C2=A0</div><block=
+quote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc=
+ solid;padding-left:1ex">
+As a small addition: I remember deeply: you should ignore the<br>
+_OSI(Linux) query, as it may break the system in some ways, if you don&#39;=
+t<br>
+have a specific bug fixed with adding _OSI(Linux), removing it from the<br>
+cmdline is a thing to test!<br></blockquote><div>Actually I tried both with=
+ and without, it just happens that I forgot to remove it after many tests.<=
+/div><div>I read also that it is better to not add _OSI(Linux) so I complet=
+ely agree, I will take it out again.</div><div><br></div></div></div></div>
+
+--001a114e7ae27590e00558ef440a--
+
+--===============1161123377==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1161123377==--
