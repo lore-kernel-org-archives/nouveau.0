@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 102648] unable to use nvidia gpu after suspend
-Date: Mon, 11 Sep 2017 03:15:26 +0000
-Message-ID: <bug-102648-8800-mgPWnlhNBD@http.bugs.freedesktop.org/>
+Date: Mon, 11 Sep 2017 03:21:02 +0000
+Message-ID: <bug-102648-8800-wsjaWMmzma@http.bugs.freedesktop.org/>
 References: <bug-102648-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0007829062=="
+Content-Type: multipart/mixed; boundary="===============0593312719=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-102648-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0007829062==
-Content-Type: multipart/alternative; boundary="15050997260.eE5Bc.15738";
+--===============0593312719==
+Content-Type: multipart/alternative; boundary="15051000620.49Aa30D.16362";
  charset="UTF-8"
 
 
---15050997260.eE5Bc.15738
-Date: Mon, 11 Sep 2017 03:15:26 +0000
+--15051000620.49Aa30D.16362
+Date: Mon, 11 Sep 2017 03:21:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D102648
 
---- Comment #3 from RazorSiS <razorsis100-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 134148
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134148&action=3Dedit
-nvidia vbios
+RazorSiS <razorsis100-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #134145|text/x-log                  |text/plain
+          mime type|                            |
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15050997260.eE5Bc.15738
-Date: Mon, 11 Sep 2017 03:15:26 +0000
+--15051000620.49Aa30D.16362
+Date: Mon, 11 Sep 2017 03:21:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,29 +58,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - unable to use nvidia gpu after suspend"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102648#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:razorsis1=
+00&#64;gmail.com" title=3D"RazorSiS &lt;razorsis100&#64;gmail.com&gt;"> <sp=
+an class=3D"fn">RazorSiS</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - unable to use nvidia gpu after suspend"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102648">bug 10264=
 8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-razorsis100&#64;gmail.com" title=3D"RazorSiS &lt;razorsis100&#64;gmail.com&=
-gt;"> <span class=3D"fn">RazorSiS</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134148=
-" name=3D"attach_134148" title=3D"nvidia vbios">attachment 134148</a> <a hr=
-ef=3D"attachment.cgi?id=3D134148&amp;action=3Dedit" title=3D"nvidia vbios">=
-[details]</a></span>
-nvidia vbios</pre>
-        </div>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #134145 mime type</td>
+           <td>text/x-log
+           </td>
+           <td>text/plain
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -91,9 +95,9 @@ nvidia vbios</pre>
     </body>
 </html>=
 
---15050997260.eE5Bc.15738--
+--15051000620.49Aa30D.16362--
 
---===============0007829062==
+--===============0593312719==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0007829062==--
+--===============0593312719==--
