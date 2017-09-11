@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102648] unable to use nvidia gpu after suspend
-Date: Mon, 11 Sep 2017 03:58:04 +0000
-Message-ID: <bug-102648-8800-5G8ont39Us@http.bugs.freedesktop.org/>
-References: <bug-102648-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Re: Nouveau: kernel hang on Optimus+Intel+NVidia GeForce
+ 1060m
+Date: Mon, 11 Sep 2017 20:49:49 +0200
+Message-ID: <cb794e03-6ca8-7e80-9277-ea780ee0bbd2@mni.thm.de>
+References: <CAKyUnMW6f-EpyjZ=tocOR6Ji8MLprF71YzNsOKv-+UGtbvqH=g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1856730409=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102648-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKyUnMW6f-EpyjZ=tocOR6Ji8MLprF71YzNsOKv-+UGtbvqH=g@mail.gmail.com>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,91 +19,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nicolas Mercier <mercier.nicolas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1856730409==
-Content-Type: multipart/alternative; boundary="15051022840.D442F53.21514";
- charset="UTF-8"
-
-
---15051022840.D442F53.21514
-Date: Mon, 11 Sep 2017 03:58:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102648
-
---- Comment #4 from RazorSiS <razorsis100-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Kernel: 4.12.12-1-ARCH
-
-with bumblebee nvidia after supend/wake then running optirun:
-dmesg outputs some error like "RmInitAdapter failed"
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15051022840.D442F53.21514
-Date: Mon, 11 Sep 2017 03:58:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - unable to use nvidia gpu after suspend"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102648#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - unable to use nvidia gpu after suspend"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102648">bug 10264=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-razorsis100&#64;gmail.com" title=3D"RazorSiS &lt;razorsis100&#64;gmail.com&=
-gt;"> <span class=3D"fn">RazorSiS</span></a>
-</span></b>
-        <pre>Kernel: 4.12.12-1-ARCH
-
-with bumblebee nvidia after supend/wake then running optirun:
-dmesg outputs some error like &quot;RmInitAdapter failed&quot;</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15051022840.D442F53.21514--
-
---===============1856730409==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1856730409==--
+SGksCgppIHJlbWVtYmVyIHNlZWluZyB0aGUgc2FtZSBlcnJvciB3aXRoIGVhcmxpZXIgZmlybXdh
+cmUgdmVyc2lvbiB3aXRoIGEKc2ltaWxhciBzeXN0ZW0gKEdQMTA2KSBvbmNlIGluIGEgd2hpbGUg
+b24gYm9vdCwgeWV0IGl0IGRvZXMgbm90IGhhcHBlbgp3aXRoIG5ld2VyIHZlcnNpb25zLiBNYXli
+ZSB5b3UgY291bGQgdHJ5IHRvIHVwZGF0ZSB0aGUgZmlybXdhcmUgdG8gdGhlCmxhdGVzdCB2ZXJz
+aW9uIGZyb20ga2VybmVsLWZpcm13YXJlLgoKQXMgYSBzbWFsbCBhZGRpdGlvbjogSSByZW1lbWJl
+ciBkZWVwbHk6IHlvdSBzaG91bGQgaWdub3JlIHRoZQpfT1NJKExpbnV4KSBxdWVyeSwgYXMgaXQg
+bWF5IGJyZWFrIHRoZSBzeXN0ZW0gaW4gc29tZSB3YXlzLCBpZiB5b3UgZG9uJ3QKaGF2ZSBhIHNw
+ZWNpZmljIGJ1ZyBmaXhlZCB3aXRoIGFkZGluZyBfT1NJKExpbnV4KSwgcmVtb3ZpbmcgaXQgZnJv
+bSB0aGUKY21kbGluZSBpcyBhIHRoaW5nIHRvIHRlc3QhCgpHcmVldGluZ3MsCgpUb2JpYXMKCgpP
+biA5LzExLzE3IDQ6NTQgUE0sIE5pY29sYXMgTWVyY2llciB3cm90ZToKPiBIaSwKPiBJIGhhdmUg
+YW4gT3B0aW11cy1lbmFibGVkIGxhcHRvcCB3aXRoIGEgR1RYIDEwNjBtLiBJIG5ldmVyIGdvdCBp
+dCB0bwo+IGZ1bGx5IHdvcmsgd2l0aCBOb3V2ZWF1IGV2ZW4gYWZ0ZXIgUGFzY2FsIHN1cHBvcnQg
+d2FzIGFkZGVkLiBJIG5lZWQgdG8KPiBydW4gdGhlIGtlcm5lbCB3aXRoIG5vdXZlYXUucnVucG09
+MCB0byBnZXQgaXQgdG8gd29yay4gVW5mb3J0dW5hdGVseQo+IHdpdGhvdXQgcHJvcGVyIHBvd2Vy
+IG1hbmdlbWVudCBzdXBwb3J0LCBteSBsYXB0b3Agd2lsbCBydW4gb3V0IG9mCj4gYmF0dGVyeSBh
+ZnRlciBhYm91dCAxaDMwLCBzbyBJJ2QgbG92ZSB0byBnZXQgT3B0aW11cyB3b3JraW5nLgo+Cj4g
+V2hhdCBJIGNhbiBzZWUgaXMgdGhhdCB3aGVuIHRoZSBleHRyYSBHUFUgaXMgbm90IGluIHVzZSwg
+Tm91dmVhdSB3aWxsCj4gdHJ5IHRvIHNodXQgaXQgb2ZmLiBUaGlzIHNlZW1zIHRvIHdvcmssIGFz
+IHRoZSBpbmRpY2F0b3Igb2YgdGhlIGxhcHRvcAo+IGNoYW5nZXMgdG8gYW1iZXIgKGRpc2NyZXRl
+IEdQVSBpbiB1c2UpIHRvIGJsdWUgKGRpc2NyZXRlIEdQVSBwb3dlcmVkCj4gb2ZmKSwgYW5kIHRo
+ZSBrZXJuZWwgbG9nIChhdHRhY2hlZCkgcmVwb3J0cyB0aGF0IHRoZSBHUFUgd2VudCBvZmYuCj4K
+PiBJZiBJIHdha2UgdXAgdGhlIEdQVSAocGx1Z2dpbmcgaW4vb3V0IHRoZSBleHRlcm5hbCBtb25p
+dG9yLCBydW5uaW5nIGEKPiBHTCBjb21tYW5kIHdpdGggRFJJX1BSSU1FPTEsIG9yIGV2ZW4gbHNw
+Y2kpIHdpbGwgbWFrZSB0aGUgY29tcHV0ZXIKPiB1bnJlc3BvbnNpdmUgYW5kIG9ubHkgYSBmb3Jj
+ZSBzaHV0ZG93biB3aWxsIHdvcmssIGFzIG5vIGdyYXBoaWNzCj4gY29tbWFuZCBzZWVtcyB0byBi
+ZSBhYmxlIHRvIGV4ZWN1dGUgYW55bW9yZS4gTm91dmVhdSAobGlrZWx5LCB2Z2EKPiBzd2l0Y2hl
+cm9vKSB0cmllcyB0byB3YWtlIHVwIHRoZSBHUFUgYnV0IGl0IHNlZW1zIHRvIGZhaWwuIFRoZSBM
+RUQKPiBpbmRpY2F0b3IgZG9lcyBpbmRpY2F0ZSB0aGUgR1BVIGhhcyBwb3dlciB0aG91Z2guCj4K
+PiBNb3N0IG9mIHRoZSB0aW1lIChidXQgbm90IG9mdGVuIHdoZW4gSSBoYXZlIGFuIGV4dGVybmFs
+IG1vbml0b3IKPiBwbHVnZ2VkIGludG8gdGhlIGRpc2NyZXRlIGNhcmQgYmVmb3JlIEkgYm9vdCB0
+aGUgY29tcHV0ZXIpIEkgZ2V0IGEKPiB0aW1lb3V0IGR1cmluZyBib290IG9yIGR1cmluZyBtb2Rw
+cm9iZSAoc2VlIGtlcm5lbCBsb2cpLiBFdmVuIHdpdGgKPiBydW5wbT0wLCBJIGNhbid0IHNlZW0g
+dG8gYmUgYWJsZSB0byBydW4gR0wgY29tbWFuZHMgb24gaXQ6Cj4KPiB5bmd3ZUBsYWJhcmJhcmE6
+ICUgRFJJX1BSSU1FPTEgZ2x4aW5mbwo+IG5hbWUgb2YgZGlzcGxheTogOjAuMAo+IG52YzBfc2Ny
+ZWVuX2NyZWF0ZTo4NTcgLSBFcnJvciBhbGxvY2F0aW5nIFBHUkFQSCBjb250ZXh0IGZvciBNMk1G
+OiAtMTYKPiBsaWJHTCBlcnJvcjogZmFpbGVkIHRvIGNyZWF0ZSBkcmkgc2NyZWVuCj4gbGliR0wg
+ZXJyb3I6IGZhaWxlZCB0byBsb2FkIGRyaXZlcjogbm91dmVhdQo+IGRpc3BsYXk6IDowIMKgc2Ny
+ZWVuOiAwCj4gZGlyZWN0IHJlbmRlcmluZzogWWVzCj4gLi4uIGZvbGxvd3MgdXAgdXNpbmcgdGhl
+IEludGVsIGNhcmQgLi4uCj4KPiB0aGUgZXJyb3IgSSBnZXQgaW4gdGhlIGtlcm5lbCBpbiB0aGF0
+IGNhc2U6Cj4gWyDCoDIwMS42MTI1ODNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogRkVDUyBm
+YWxjb24gYWxyZWFkeSBhY3F1aXJlZAo+IGJ5IGdyIQo+IFsgwqAyMDEuNjEyNTg2XSBub3V2ZWF1
+IDAwMDA6MDE6MDAuMDogZ3I6IGluaXQgZmFpbGVkLCAtMTYKPgo+IEl0IHJ1bnMgb24gRGViaWFu
+IHRlc3RpbmcgKyB0aGUgZmlybXdhcmUgZnJvbSBVYnVudHUgYXMgRGViaWFuJ3MKPiBmaXJtd2Fy
+ZSBkb2VzIG5vdCBoYXZlIHRoZSBudmlkaWEgYmxvYnMsIGtlcm5lbCB3YXMgZWl0aGVyIDQuMTIv
+NC4xMwo+IHJlbGVhc2UgY2FuZGlkYXRlcyBmcm9tIERlYmlhbiByZXBvc2l0b3JpZXMgb3Iga2Vy
+bmVsIDQuMTMuMSBzZWxmCj4gY29tcGlsZWQuIEkgYWx3YXlzIGhhZCBleGFjdGx5IHRoZSBzYW1l
+IHN5bXB0b21zIG9uIGFsbCB0aGVzZSBrZXJuZWxzLgo+Cj4gL25pY29sYXMKPgo+Cj4gX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxp
+bmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
