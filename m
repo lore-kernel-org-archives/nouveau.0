@@ -1,25 +1,106 @@
-From: David Miller <davem@davemloft.net>
-Subject: Re: [PATCH 06/10] drivers:ethernet: return -ENOMEM on allocation
- failure.
-Date: Wed, 13 Sep 2017 09:20:31 -0700 (PDT)
-Message-ID: <20170913.092031.2176431746672254970.davem@davemloft.net>
-References: <1505287939-14106-1-git-send-email-allen.lkml@gmail.com>
-        <1505287939-14106-6-git-send-email-allen.lkml@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 102648] unable to use nvidia gpu after suspend
+Date: Mon, 11 Sep 2017 03:14:20 +0000
+Message-ID: <bug-102648-8800-2qt445rEKe@http.bugs.freedesktop.org/>
+References: <bug-102648-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-crypto-owner@vger.kernel.org>
-In-Reply-To: <1505287939-14106-6-git-send-email-allen.lkml@gmail.com>
-Sender: linux-crypto-owner@vger.kernel.org
-To: allen.lkml@gmail.com
-Cc: linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, linux-crypto@vger.kernel.org, dri-devel@lists.freedesktop.org, MPT-FusionLinux.pdl@broadcom.com, linux-scsi@vger.kernel.org, netdev@vger.kernel.org, megaraidlinux.pdl@broadcom.com, target-devel@vger.kernel.org, linux-fbdev@vger.kernel.org, linux-btrfs@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============0828595220=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-102648-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-From: Allen Pais <allen.lkml@gmail.com>
-Date: Wed, 13 Sep 2017 13:02:15 +0530
 
-> Signed-off-by: Allen Pais <allen.lkml@gmail.com>
+--===============0828595220==
+Content-Type: multipart/alternative; boundary="15050996600.BEFbE.15595";
+ charset="UTF-8"
 
-This is quite pointless as the caller doesn't do anything with
-the value, it just tests whether a negative value is returned
-or not.
+
+--15050996600.BEFbE.15595
+Date: Mon, 11 Sep 2017 03:14:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102648
+
+--- Comment #1 from RazorSiS <razorsis100-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 134146
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134146&action=3Dedit
+acpidump
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15050996600.BEFbE.15595
+Date: Mon, 11 Sep 2017 03:14:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - unable to use nvidia gpu after suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102648#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - unable to use nvidia gpu after suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102648">bug 10264=
+8</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+razorsis100&#64;gmail.com" title=3D"RazorSiS &lt;razorsis100&#64;gmail.com&=
+gt;"> <span class=3D"fn">RazorSiS</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134146=
+" name=3D"attach_134146" title=3D"acpidump">attachment 134146</a> <a href=
+=3D"attachment.cgi?id=3D134146&amp;action=3Dedit" title=3D"acpidump">[detai=
+ls]</a></span>
+acpidump</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15050996600.BEFbE.15595--
+
+--===============0828595220==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0828595220==--
