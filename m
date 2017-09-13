@@ -1,105 +1,46 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: Re: Nouveau: kernel hang on Optimus+Intel+NVidia GeForce
- 1060m
-Date: Wed, 13 Sep 2017 14:28:29 +0200
-Message-ID: <e3e5a763-4a54-0b62-2151-d3f123ab5067@mni.thm.de>
-References: <CAKyUnMW6f-EpyjZ=tocOR6Ji8MLprF71YzNsOKv-+UGtbvqH=g@mail.gmail.com>
- <cb794e03-6ca8-7e80-9277-ea780ee0bbd2@mni.thm.de>
- <CAKyUnMVeWzgptcN0CVLg4SYriY7+29wXcdaAH4Xig7tXSuXBtA@mail.gmail.com>
- <CAKyUnMW-OUpMtXoVgP0xz-LawgtewPGQEcu5P=CgYU_Bi9pqaQ@mail.gmail.com>
+From: Allen <allen.lkml@gmail.com>
+Subject: Re: [PATCH 06/10] drivers:ethernet: return -ENOMEM on allocation failure.
+Date: Wed, 13 Sep 2017 18:34:17 +0530
+Message-ID: <CAOMdWS+mOcm=6722SD=-SvfD59AeXpwAARLhT31UycQSqWTxdg@mail.gmail.com>
+References: <1505287939-14106-1-git-send-email-allen.lkml@gmail.com>
+ <1505287939-14106-6-git-send-email-allen.lkml@gmail.com> <20170913121628.GB11820@lunn.ch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKyUnMW-OUpMtXoVgP0xz-LawgtewPGQEcu5P=CgYU_Bi9pqaQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nicolas Mercier <mercier.nicolas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-crypto-owner@vger.kernel.org>
+In-Reply-To: <20170913121628.GB11820@lunn.ch>
+Sender: linux-crypto-owner@vger.kernel.org
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, linux-crypto@vger.kernel.org, dri-devel@lists.freedesktop.org, MPT-FusionLinux.pdl@broadcom.com, linux-scsi@vger.kernel.org, netdev@vger.kernel.org, megaraidlinux.pdl@broadcom.com, target-devel@vger.kernel.org, linux-fbdev@vger.kernel.org, linux-btrfs@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgp0aGUgc3lzdGVtIGZhaWxzIHRvIGluaXRpYWxpemUgeW91ciB2YmlvcyB1c2luZyBzZWN1
-cmVib290IChpIGhhZCBhIHJhcmUKY2hhbmNlIHRvIG9uIG15IHN5c3RlbSB0byB3aXRuZXNzIGl0
-IGFnYWluKSwgZm9yIG5vdyBpIHRyYWNlZCBpdCB0bwphY3JfYm9vdF9mYWxjb24oKSBpbgoibGlu
-dXgvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9mYWxjb24vbXNncXVldWVfMDE0OGNkZWMu
-YyIgd2hlcmUgaXQKdGhyb3dzIC0xMTAgd2hpY2ggaXMgLUVUSU1FRE9VVC4gWW91IGNvdWxkIHRy
-eSB0byBpbmNyZWFzZSB0aGUgdGltZW91dAphbmQgc2VlIGlmIGl0IGhlbHBzIHNvbWV0aGluZywg
-c2ltaWxhciB0byB0aGUgZm9sbG93aW5nOgoKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9udmttL2ZhbGNvbi9tc2dxdWV1ZS5jCmIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bnZrbS9mYWxjb24vbXNncXVldWUuYwppbmRleCA3NzI3M2I1MzY3MmMuLmZjMGNiMTg3ZDgwZCAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9mYWxjb24vbXNncXVldWUu
-YworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2ZhbGNvbi9tc2dxdWV1ZS5jCkBA
-IC0zMjYsNyArMzI2LDcgQEAgbnZrbV9tc2dxdWV1ZV9wb3N0KHN0cnVjdCBudmttX21zZ3F1ZXVl
-ICpwcml2LCBlbnVtCm1zZ3F1ZXVlX21zZ19wcmlvcml0eSBwcmlvLArCoMKgwqDCoMKgwqDCoCBp
-bnQgcmV0OwrCoArCoMKgwqDCoMKgwqDCoCBpZiAod2FpdF9pbml0ICYmICF3YWl0X2Zvcl9jb21w
-bGV0aW9uX3RpbWVvdXQoJnByaXYtPmluaXRfZG9uZSwKLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBt
-c2Vjc190b19qaWZmaWVzKDEwMDApKSkKK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtc2Vjc190b19q
-aWZmaWVzKDUwMDApKSkKwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiAtRVRJ
-TUVET1VUOwrCoArCoMKgwqDCoMKgwqDCoCBxdWV1ZSA9IHByaXYtPmZ1bmMtPmNtZF9xdWV1ZShw
-cml2LCBwcmlvKTsKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2Zh
-bGNvbi9tc2dxdWV1ZV8wMTM3YzYzZC5jCmIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9m
-YWxjb24vbXNncXVldWVfMDEzN2M2M2QuYwppbmRleCBmZWMwMjczMTU4ZjYuLmMyYWU1MjVhMDc4
-MCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9mYWxjb24vbXNncXVl
-dWVfMDEzN2M2M2QuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2ZhbGNvbi9t
-c2dxdWV1ZV8wMTM3YzYzZC5jCkBAIC0yNzksNiArMjc5LDcgQEAgYWNyX2Jvb3RfZmFsY29uKHN0
-cnVjdCBudmttX21zZ3F1ZXVlICpwcml2LCBlbnVtCm52a21fc2VjYm9vdF9mYWxjb24gZmFsY29u
-KQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdTMyIGZsYWdzOwrCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgdTMyIGZhbGNvbl9pZDsKwqDCoMKgwqDCoMKgwqAgfSBjbWQ7CivC
-oMKgwqDCoMKgwqAgY29uc3Qgc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSBwcml2LT5mYWxj
-b24tPm93bmVyOwrCoArCoMKgwqDCoMKgwqDCoCBtZW1zZXQoJmNtZCwgMCwgc2l6ZW9mKGNtZCkp
-OwrCoApAQCAtMjkwLDcgKzI5MSw4IEBAIGFjcl9ib290X2ZhbGNvbihzdHJ1Y3QgbnZrbV9tc2dx
-dWV1ZSAqcHJpdiwgZW51bQpudmttX3NlY2Jvb3RfZmFsY29uIGZhbGNvbikKwqDCoMKgwqDCoMKg
-wqAgbnZrbV9tc2dxdWV1ZV9wb3N0KHByaXYsIE1TR1FVRVVFX01TR19QUklPUklUWV9ISUdILCAm
-Y21kLmhkciwKwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBh
-Y3JfYm9vdF9mYWxjb25fY2FsbGJhY2ssICZjb21wbGV0ZWQsIHRydWUpOwrCoAotwqDCoMKgwqDC
-oMKgIGlmICghd2FpdF9mb3JfY29tcGxldGlvbl90aW1lb3V0KCZjb21wbGV0ZWQsCm1zZWNzX3Rv
-X2ppZmZpZXMoMTAwMCkpKQorwqDCoMKgwqDCoMKgIG52a21fZXJyb3Ioc3ViZGV2LCAid2FpdGlu
-ZyBmb3IgdGltZW91dCBpbiBhY3JfYm9vdF9mYWxjb24KKG1zZ3F1ZXVlXzAxMzdiY2E1KVxuIik7
-CivCoMKgwqDCoMKgwqAgaWYgKCF3YWl0X2Zvcl9jb21wbGV0aW9uX3RpbWVvdXQoJmNvbXBsZXRl
-ZCwKbXNlY3NfdG9famlmZmllcyg1MDAwKSkpCsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCByZXR1cm4gLUVUSU1FRE9VVDsKwqAKwqDCoMKgwqDCoMKgwqAgcmV0dXJuIDA7CgoKCk9uIDkv
-MTMvMTcgMTE6MzcgQU0sIE5pY29sYXMgTWVyY2llciB3cm90ZToKPiBJIGFtIHN0aWxsIGxvb2tp
-bmcgZm9yIGEgc29sdXRpb24uIEkgaGF2ZSBoYWNrZWQgYXJvdW5kIGluIHRoZSBjb2RlCj4gYW5k
-IGZvdW5kIG91dCB0aGUgZm9sbG93aW5nOgo+IC0gTm91dmVhdSBwcmVmZXJzIHVzaW5nIFBDSUUg
-cG93ZXIgbWFuYWdlbWV0IG92ZXIgQUNQSSBPcHRpbXVzIGNhbGxzLgo+IEkgdHJpZWQgdG8gZm9y
-Y2UgaXQgdG8gdXNlIE9wdGltdXMgQUNQSSBjYWxscywgYnV0IHRoZXJlIHdhcyBhbiBlcnJvcgo+
-IGNhbGxpbmcgdGhlIEFDUEkgbWV0aG9kIHNvIGl0IGJhaWxzIG91dCBhbmQgdXNlcyBQQ0lFIFBN
-IGFueXdheS4KPiAtIEkgdHJpZWQgdG8gZGVidWcgdGhlIFBDSUUgcG0gc3RhdGVzIHdoaWNoIGlu
-dGVybmFsbHkgdXNlcyBBQ1BJIHRvCj4gdHVybiBwb3dlciBvbi9vZmYuIEkgY291bGQgcHJpbnQg
-ZGlmZmVyZW50IHN0YXR1c2VzIGhlcmUgYW5kIHRoZXJlLgo+IFdoZW4gdGhlIHBvd2VyIGlzIHN3
-aXRjaGVkIG9mZiwgQUNQSSBjYWxscyB0dXJuIHRoZSBwb3dlciBvZmYgdGhlbiB0aGUKPiBrZXJu
-ZWwgc3VjY2Vzc2Z1bGx5IHB1dHMgdGhlIGRldmljZSBpbiBzdGF0ZSBEM0NvbGQgKGFsc28gdHVy
-bmluZyBvZmYKPiBwb3dlciB0byB0aGUgUENJIEV4cHJlc3MgcG9ydCkuIFdoZW4gd2FraW5nIHVw
-LCBBQ1BJIHR1cm5zIHRoZSBwb3dlcgo+IG9uLCBhcHBhcmVudGx5IHN1Y2Nlc3NmdWxseSAoRGV2
-aWNlIFtQRUdQXSB0cmFuc2l0aW9uZWQgdG8gRDApLiBCdXQgYQo+IHJlYWQgZnJvbSB0aGUgUENJ
-IGJ1cyB0byBnZXQgdGhlIHBvd2VyIHN0YXRlICYgb3RoZXIgZmxhZ3MgcmV0dXJuCj4gNjU1MzUg
-KH4wKSBhbmQgdGhlIGtlcm5lbCBmYWlscyB0byBzZXQgdGhlIGRldmljZSBpbiBEMCAoYWx0aG91
-Z2ggQUNQSQo+IGNsYWltcyBpdCBpcyBpbiBEMCkKPiBUaGUgY2FsbCB0byBwY2lfcmF3X3NldF9w
-b3dlcl9zdGF0ZSAoaW4gZHJpdmVycy9wY2kvcGNpLmMpIHNlZW1zIHRvCj4gZmFpbCBiZWNhdXNl
-IHBjaV9yZWFkX2NvbmZpZ193b3JkIHJldHVybnMgIn4wIiAoYW5kIGRvZXMgbm90IHJldHVybgo+
-IGFueSBlcnJvciBjb2RlKQo+Cj4gSSBoYXZlIHRyaWVkIGRpZmZlcmVudCB0aGluZ3M7IGlmIEkg
-dXNlIHBjaWVfcG9ydF9wbT1vZmYsIHRoZSBOVmlkaWEKPiBjYXJkIGdvZXMgdG8gc3RhdGUgRDNI
-b3QgKGlmIEkgYW0gbm90IG1pc3Rha2VuLCBpdHMgUENJRSBwb3J0IGlzIHN0aWxsCj4gcG93ZXJl
-ZCkgYnV0IHRoYXQgZGlkIG5vdCBmaXggaXQuIEkgdHJpZWQgdG8gdHVybiBvbiBvciBvZmYgZGlm
-ZmVyZW50Cj4gUENJL1BDSWV4cHJlc3MgZmVhdHVyZXMgc3VjaCBhcyBob3RwbHVnLCBQTSBhbmQg
-c28gb24uIFRoZSBvbmx5IHRoaW5nCj4gdGhhdCB3b3JrcyBpcyB0aGF0IFBNIGlzIGZ1bGx5IGRp
-c2FibGVkLCB3aGljaCBlcXVhbHMgdG8gdGhlIGRldmljZQo+IG5vdCBiZWluZyBwb3dlcmVkIG9m
-Ziwgc28gdGhhdCB3b3VsZCBiZSBlcXVpdmFsZW50IHRvIG5vdXZlYXUucnVucG09MCwKPiB3aGlj
-aCBpcyBub3QgaGVscGluZyBhIGxvdC4gSSBoYXZlIHRyaWVkIHRvIGZvcmNlIHBjaWUgYXNwbSBi
-eQo+IHJlY29tcGlsaW5nIHRoZSBBQ1BJIHRhYmxlLCBzdGlsbCBubyBsdWNrLgo+Cj4gSSBhbSBz
-dGlsbCB0YWtpbmcgYSBsb29rLCBidXQgaXQgc2VlbXMgbGlrZSB0aGUgcHJvYmxlbSBjb21lcyBm
-cm9tIHRoZQo+IFBDSUV4cHJlc3MgUE0gZnVuY3Rpb25zIGFuZCBBQ1BJLCBub3QgZGlyZWN0bHkg
-ZnJvbSBOb3V2ZWF1Cj4KPiAvbgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+>
+> static int cas_alloc_rxds(struct cas *cp)
+> {
+>         int i;
+>
+>         for (i = 0; i < N_RX_DESC_RINGS; i++) {
+>                 if (cas_alloc_rx_desc(cp, i) < 0) {
+>                         cas_free_rxds(cp);
+>                         return -1;
+>                 }
+>         }
+>         return 0;
+> }
+>
+> Again, your change is correct, but in the end the value is not used.
+> And if you fix it at the cas_alloc_rxds level, you also need a fix at
+> the next level up:
+>
+>         err = -ENOMEM;
+>         if (cas_tx_tiny_alloc(cp) < 0)
+>                 goto err_unlock;
+>
+>         /* alloc rx descriptors */
+>         if (cas_alloc_rxds(cp) < 0)
+>                 goto err_tx_tiny;
+>
+> again, the return value is discarded.
+
+ I agree. I could send out v2 with fixes at both level.
+
+- Allen
