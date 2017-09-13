@@ -1,17 +1,19 @@
-From: Nicolas Mercier <mercier.nicolas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Nouveau: kernel hang on Optimus+Intel+NVidia GeForce
-	1060m
-Date: Thu, 14 Sep 2017 00:13:59 +0200
-Message-ID: <CAKyUnMVKNHkYa9TMf9_MFXEfLV-qx42Vg5eKh1ReT03Eo+3xJQ@mail.gmail.com>
-References: <CAKyUnMW6f-EpyjZ=tocOR6Ji8MLprF71YzNsOKv-+UGtbvqH=g@mail.gmail.com>
- <cb794e03-6ca8-7e80-9277-ea780ee0bbd2@mni.thm.de>
- <CAKyUnMVeWzgptcN0CVLg4SYriY7+29wXcdaAH4Xig7tXSuXBtA@mail.gmail.com>
- <CAKyUnMW-OUpMtXoVgP0xz-LawgtewPGQEcu5P=CgYU_Bi9pqaQ@mail.gmail.com>
- <e3e5a763-4a54-0b62-2151-d3f123ab5067@mni.thm.de>
+From: Shahar Or <mightyiampresence-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: GTX 1080 Ti (NV132/GP102)
+Date: Wed, 13 Sep 2017 18:35:55 +0000
+Message-ID: <CAF3gKszQ6XFBntSgoxnuaEiGjphyD+L0ZAvgwqrwy3EC7z9k1A@mail.gmail.com>
+References: <CAF3gKsxF4aHmPXaBp_hBWU9YY0b4POU7Q-zVMxQdvfLPXbLkQA@mail.gmail.com>
+ <CAKb7UvizmS==c21wZfe2V2q1p7awpWmi8FwQhYJWX-V+sxcdgQ@mail.gmail.com>
+ <CAF3gKsx=HrJEB+cmJU8comm6F4JbEC0ATHG76sT34sR4qhuVeg@mail.gmail.com>
+ <CAKb7UvhwFfUF4Nn-4uW9ykK=T1nSbJYMvDkO9OmA6j6SiGyGQQ@mail.gmail.com>
+ <CAF3gKszoN1kSZD7RBAnvJ=BqsMRK37ws3-vNp6wdys=V62D4vg@mail.gmail.com>
+ <20170525162044.jit5ciapzee2b5gg@pmoreau.org>
+ <CAF3gKszQB4CDfKESqVFWjzE8vhMu3KzSCyXRKQvUww8WBWwRXA@mail.gmail.com>
+ <1503706621.2730.3.camel@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0930219062=="
+Content-Type: multipart/mixed; boundary="===============1388617831=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <e3e5a763-4a54-0b62-2151-d3f123ab5067-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <1503706621.2730.3.camel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,276 +23,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: rosenp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Eden Berger <eden2036-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0930219062==
-Content-Type: multipart/alternative; boundary="001a114c7eaa0d24f10559197afb"
+--===============1388617831==
+Content-Type: multipart/alternative; boundary="94eb2c14a384cc0f420559166ec2"
 
---001a114c7eaa0d24f10559197afb
+--94eb2c14a384cc0f420559166ec2
 Content-Type: text/plain; charset="UTF-8"
 
-Thanks Tobias, I tried this but unfortunately the only effect was thta the
-boot was delayed by an additional 4 seconds :(
-The original timeout is at
-drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c
-I tried to increase that timeout, but it did not seem to make a difference
-either.
+Hey. Thanks for the tip. I finally got around to capturing these long
+entries. So, here they are:
+http://paste.ubuntu.com/25529150/
 
-I think I get this error less often when I have a cable plugged in the
-output of that card at boot, whereas I always get this error when I boot
-without a monitor attached to the card.
+I hope it helps. What you can see in it, are two consecutive boot-ups. The
+first is without `nomodeset` and therefore fails (so I don't get any
+display output) and the second is with `nomodeset` so I do get a usable
+computer but no GPU acceleration.
 
-On Wed, Sep 13, 2017 at 2:28 PM, Tobias Klausmann <
-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> wrote:
+What do the logs tell us, please?
 
-> Hi,
+On Sat, Aug 26, 2017 at 3:17 AM <rosenp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+
+> dmesg | grep nouveau . You can do this if you have ssh enabled on your
+> machine.
 >
-> the system fails to initialize your vbios using secureboot (i had a rare
-> chance to on my system to witness it again), for now i traced it to
-> acr_boot_falcon() in
-> "linux/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue_0148cdec.c" where it
-> throws -110 which is -ETIMEDOUT. You could try to increase the timeout
-> and see if it helps something, similar to the following:
+> On my 980, There was an issue introduced in 4.12 which gives me similar
+> behavior where I cannot boot up GNOME. Commit that fixes it which is
+> part of 4.13 is called "add support for address-only transactions".
 >
+> Ask your distro to backport.
 >
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue.c
-> b/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue.c
-> index 77273b53672c..fc0cb187d80d 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue.c
-> @@ -326,7 +326,7 @@ nvkm_msgqueue_post(struct nvkm_msgqueue *priv, enum
-> msgqueue_msg_priority prio,
->         int ret;
->
->         if (wait_init && !wait_for_completion_timeout(&priv->init_done,
-> -                                        msecs_to_jiffies(1000)))
-> +                                        msecs_to_jiffies(5000)))
->                 return -ETIMEDOUT;
->
->         queue = priv->func->cmd_queue(priv, prio);
->
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue_0137c63d.c
-> b/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue_0137c63d.c
-> index fec0273158f6..c2ae525a0780 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue_0137c63d.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue_0137c63d.c
-> @@ -279,6 +279,7 @@ acr_boot_falcon(struct nvkm_msgqueue *priv, enum
-> nvkm_secboot_falcon falcon)
->                 u32 flags;
->                 u32 falcon_id;
->         } cmd;
-> +       const struct nvkm_subdev *subdev = priv->falcon->owner;
->
->         memset(&cmd, 0, sizeof(cmd));
->
-> @@ -290,7 +291,8 @@ acr_boot_falcon(struct nvkm_msgqueue *priv, enum
-> nvkm_secboot_falcon falcon)
->         nvkm_msgqueue_post(priv, MSGQUEUE_MSG_PRIORITY_HIGH, &cmd.hdr,
->                         acr_boot_falcon_callback, &completed, true);
->
-> -       if (!wait_for_completion_timeout(&completed,
-> msecs_to_jiffies(1000)))
-> +       nvkm_error(subdev, "waiting for timeout in acr_boot_falcon
-> (msgqueue_0137bca5)\n");
-> +       if (!wait_for_completion_timeout(&completed,
-> msecs_to_jiffies(5000)))
->                 return -ETIMEDOUT;
->
->         return 0;
->
->
->
-> On 9/13/17 11:37 AM, Nicolas Mercier wrote:
-> > I am still looking for a solution. I have hacked around in the code
-> > and found out the following:
-> > - Nouveau prefers using PCIE power managemet over ACPI Optimus calls.
-> > I tried to force it to use Optimus ACPI calls, but there was an error
-> > calling the ACPI method so it bails out and uses PCIE PM anyway.
-> > - I tried to debug the PCIE pm states which internally uses ACPI to
-> > turn power on/off. I could print different statuses here and there.
-> > When the power is switched off, ACPI calls turn the power off then the
-> > kernel successfully puts the device in state D3Cold (also turning off
-> > power to the PCI Express port). When waking up, ACPI turns the power
-> > on, apparently successfully (Device [PEGP] transitioned to D0). But a
-> > read from the PCI bus to get the power state & other flags return
-> > 65535 (~0) and the kernel fails to set the device in D0 (although ACPI
-> > claims it is in D0)
-> > The call to pci_raw_set_power_state (in drivers/pci/pci.c) seems to
-> > fail because pci_read_config_word returns "~0" (and does not return
-> > any error code)
+> On Mon, 2017-08-21 at 14:01 +0000, Shahar Or wrote:
+> > Since the Ubuntu 17.10 that I'm running now has Linux 4.12, there
+> > should be some support for my card, yet I still experience the same
+> > phenomenon.
 > >
-> > I have tried different things; if I use pcie_port_pm=off, the NVidia
-> > card goes to state D3Hot (if I am not mistaken, its PCIE port is still
-> > powered) but that did not fix it. I tried to turn on or off different
-> > PCI/PCIexpress features such as hotplug, PM and so on. The only thing
-> > that works is that PM is fully disabled, which equals to the device
-> > not being powered off, so that would be equivalent to nouveau.runpm=0,
-> > which is not helping a lot. I have tried to force pcie aspm by
-> > recompiling the ACPI table, still no luck.
+> > If I DO NOT use `nomodeset`, I see the boot log shooting through and
+> > then blank. I can tell that it is not a system halt, because I can
+> > ctrl-alt-delete and the OS catches that and safely reboots.
 > >
-> > I am still taking a look, but it seems like the problem comes from the
-> > PCIExpress PM functions and ACPI, not directly from Nouveau
+> > It is the official Ubuntu 4.12.0-11-generic, x86_64.
 > >
-> > /n
+> > 03:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce
+> > GTX 1080 Ti] (rev a1)
+> >
+> > How can I further help you help me, please?
+> >
+> > On Thu, May 25, 2017 at 7:20 PM Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+> > wrote:
+> > > > Another issue is that in Google Chrome I seem have no hardware
+> > > acceleration
+> > > > for anything other than "Multiple Raster Threads". See attached.
+> > >
+> > > Two things: you are using nomodeset, and hardware acceleration for
+> > > Pascal cards
+> > > was only merged in 4.12 (which has not been released yet), as
+> > > pointed out by
+> > > Ilia.
+> > >
+> > > Pierre
+> >
+> > _______________________________________________
+> > Nouveau mailing list
+> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > https://lists.freedesktop.org/mailman/listinfo/nouveau
 >
 
---001a114c7eaa0d24f10559197afb
+--94eb2c14a384cc0f420559166ec2
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks Tobias, I tried this but unfortunately the only eff=
-ect was thta the boot was delayed by an additional 4 seconds :(<div>The ori=
-ginal timeout is at=C2=A0<span style=3D"color:rgb(0,0,0);font-family:&quot;=
-Courier New&quot;,Courier,monospace,arial,sans-serif;font-size:14px;white-s=
-pace:pre-wrap">drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueu=
-e.c</span><div>I tried to increase that timeout, but it did not seem to mak=
-e a difference either.</div></div><div><br></div><div>I think I get this er=
-ror less often when I have a cable plugged in the output of that card at bo=
-ot, whereas I always get this error when I boot without a monitor attached =
-to the card.</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_=
-quote">On Wed, Sep 13, 2017 at 2:28 PM, Tobias Klausmann <span dir=3D"ltr">=
-&lt;<a href=3D"mailto:tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org" target=3D"_blan=
-k">tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org</a>&gt;</span> wrote:<br><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
-id;padding-left:1ex">Hi,<br>
+<div dir=3D"ltr">Hey. Thanks for the tip. I finally got around to capturing=
+ these long entries. So, here they are:<br><a href=3D"http://paste.ubuntu.c=
+om/25529150/">http://paste.ubuntu.com/25529150/</a><div><br></div><div>I ho=
+pe it helps. What you can see in it, are two consecutive boot-ups. The firs=
+t is without `nomodeset` and therefore fails (so I don&#39;t get any displa=
+y output) and the second is with `nomodeset` so I do get a usable computer =
+but no GPU acceleration.</div><div><br></div><div>What do the logs tell us,=
+ please?</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Sat, =
+Aug 26, 2017 at 3:17 AM &lt;<a href=3D"mailto:rosenp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">rosenp@gmai=
+l.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">dmesg | grep n=
+ouveau . You can do this if you have ssh enabled on your<br>
+machine.<br>
 <br>
-the system fails to initialize your vbios using secureboot (i had a rare<br=
->
-chance to on my system to witness it again), for now i traced it to<br>
-acr_boot_falcon() in<br>
-&quot;linux/drivers/gpu/drm/<wbr>nouveau/nvkm/falcon/msgqueue_<wbr>0148cdec=
-.c&quot; where it<br>
-throws -110 which is -ETIMEDOUT. You could try to increase the timeout<br>
-and see if it helps something, similar to the following:<br>
+On my 980, There was an issue introduced in 4.12 which gives me similar<br>
+behavior where I cannot boot up GNOME. Commit that fixes it which is<br>
+part of 4.13 is called &quot;add support for address-only transactions&quot=
+;.<br>
 <br>
+Ask your distro to backport.<br>
 <br>
-diff --git a/drivers/gpu/drm/nouveau/<wbr>nvkm/falcon/msgqueue.c<br>
-b/drivers/gpu/drm/nouveau/<wbr>nvkm/falcon/msgqueue.c<br>
-index 77273b53672c..fc0cb187d80d 100644<br>
---- a/drivers/gpu/drm/nouveau/<wbr>nvkm/falcon/msgqueue.c<br>
-+++ b/drivers/gpu/drm/nouveau/<wbr>nvkm/falcon/msgqueue.c<br>
-@@ -326,7 +326,7 @@ nvkm_msgqueue_post(struct nvkm_msgqueue *priv, enum<br>
-msgqueue_msg_priority prio,<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int ret;<br>
-=C2=A0<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (wait_init &amp;&amp; !wait_f=
-or_completion_timeout(&amp;<wbr>priv-&gt;init_done,<br>
--=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 msecs_to_jiffies(1000)))<br>
-+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 msecs_to_jiffies(5000)))<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 return -ETIMEDOUT;<br>
-=C2=A0<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 queue =3D priv-&gt;func-&gt;cmd_=
-queue(priv, prio);<br>
-<br>
-diff --git a/drivers/gpu/drm/nouveau/<wbr>nvkm/falcon/msgqueue_0137c63d.<wb=
-r>c<br>
-b/drivers/gpu/drm/nouveau/<wbr>nvkm/falcon/msgqueue_0137c63d.<wbr>c<br>
-index fec0273158f6..c2ae525a0780 100644<br>
---- a/drivers/gpu/drm/nouveau/<wbr>nvkm/falcon/msgqueue_0137c63d.<wbr>c<br>
-+++ b/drivers/gpu/drm/nouveau/<wbr>nvkm/falcon/msgqueue_0137c63d.<wbr>c<br>
-@@ -279,6 +279,7 @@ acr_boot_falcon(struct nvkm_msgqueue *priv, enum<br>
-nvkm_secboot_falcon falcon)<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 u32 flags;<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 u32 falcon_id;<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 } cmd;<br>
-+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct nvkm_subdev *subdev =3D =
-priv-&gt;falcon-&gt;owner;<br>
-=C2=A0<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 memset(&amp;cmd, 0, sizeof(cmd))=
-;<br>
-=C2=A0<br>
-@@ -290,7 +291,8 @@ acr_boot_falcon(struct nvkm_msgqueue *priv, enum<br>
-nvkm_secboot_falcon falcon)<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nvkm_msgqueue_post(priv, MSGQUEU=
-E_MSG_PRIORITY_HIGH, &amp;cmd.hdr,<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 acr_boot_fa=
-lcon_callback, &amp;completed, true);<br>
-=C2=A0<br>
--=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!wait_for_completion_timeout(<wbr=
->&amp;completed,<br>
-msecs_to_jiffies(1000)))<br>
-+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nvkm_error(subdev, &quot;waiting for =
-timeout in acr_boot_falcon<br>
-(msgqueue_0137bca5)\n&quot;);<br>
-+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!wait_for_completion_timeout(<wbr=
->&amp;completed,<br>
-msecs_to_jiffies(5000)))<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 return -ETIMEDOUT;<br>
-=C2=A0<br>
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-<br>
-<br>
-On 9/13/17 11:37 AM, Nicolas Mercier wrote:<br>
-&gt; I am still looking for a solution. I have hacked around in the code<br=
->
-&gt; and found out the following:<br>
-&gt; - Nouveau prefers using PCIE power managemet over ACPI Optimus calls.<=
+On Mon, 2017-08-21 at 14:01 +0000, Shahar Or wrote:<br>
+&gt; Since the Ubuntu 17.10 that I&#39;m running now has Linux 4.12, there<=
 br>
-&gt; I tried to force it to use Optimus ACPI calls, but there was an error<=
-br>
-&gt; calling the ACPI method so it bails out and uses PCIE PM anyway.<br>
-&gt; - I tried to debug the PCIE pm states which internally uses ACPI to<br=
+&gt; should be some support for my card, yet I still experience the same<br=
 >
-&gt; turn power on/off. I could print different statuses here and there.<br=
->
-&gt; When the power is switched off, ACPI calls turn the power off then the=
-<br>
-&gt; kernel successfully puts the device in state D3Cold (also turning off<=
-br>
-&gt; power to the PCI Express port). When waking up, ACPI turns the power<b=
+&gt; phenomenon.<br>
+&gt;<br>
+&gt; If I DO NOT use `nomodeset`, I see the boot log shooting through and<b=
 r>
-&gt; on, apparently successfully (Device [PEGP] transitioned to D0). But a<=
-br>
-&gt; read from the PCI bus to get the power state &amp; other flags return<=
-br>
-&gt; 65535 (~0) and the kernel fails to set the device in D0 (although ACPI=
-<br>
-&gt; claims it is in D0)<br>
-&gt; The call to pci_raw_set_power_state (in drivers/pci/pci.c) seems to<br=
->
-&gt; fail because pci_read_config_word returns &quot;~0&quot; (and does not=
- return<br>
-&gt; any error code)<br>
+&gt; then blank. I can tell that it is not a system halt, because I can<br>
+&gt; ctrl-alt-delete and the OS catches that and safely reboots.<br>
 &gt;<br>
-&gt; I have tried different things; if I use pcie_port_pm=3Doff, the NVidia=
-<br>
-&gt; card goes to state D3Hot (if I am not mistaken, its PCIE port is still=
-<br>
-&gt; powered) but that did not fix it. I tried to turn on or off different<=
-br>
-&gt; PCI/PCIexpress features such as hotplug, PM and so on. The only thing<=
-br>
-&gt; that works is that PM is fully disabled, which equals to the device<br=
->
-&gt; not being powered off, so that would be equivalent to nouveau.runpm=3D=
-0,<br>
-&gt; which is not helping a lot. I have tried to force pcie aspm by<br>
-&gt; recompiling the ACPI table, still no luck.<br>
+&gt; It is the official Ubuntu 4.12.0-11-generic, x86_64.<br>
 &gt;<br>
-&gt; I am still taking a look, but it seems like the problem comes from the=
-<br>
-&gt; PCIExpress PM functions and ACPI, not directly from Nouveau<br>
+&gt; 03:00.0 VGA compatible controller: NVIDIA Corporation GP102 [GeForce<b=
+r>
+&gt; GTX 1080 Ti] (rev a1)<br>
 &gt;<br>
-&gt; /n<br>
-</div></div></blockquote></div><br></div>
+&gt; How can I further help you help me, please?<br>
+&gt;<br>
+&gt; On Thu, May 25, 2017 at 7:20 PM Pierre Moreau &lt;<a href=3D"mailto:pi=
+erre.morrow-GANU6spQydw@public.gmane.org" target=3D"_blank">pierre.morrow-GANU6spQydw@public.gmane.org</a>&gt;<br>
+&gt; wrote:<br>
+&gt; &gt; &gt; Another issue is that in Google Chrome I seem have no hardwa=
+re<br>
+&gt; &gt; acceleration<br>
+&gt; &gt; &gt; for anything other than &quot;Multiple Raster Threads&quot;.=
+ See attached.<br>
+&gt; &gt;<br>
+&gt; &gt; Two things: you are using nomodeset, and hardware acceleration fo=
+r<br>
+&gt; &gt; Pascal cards<br>
+&gt; &gt; was only merged in 4.12 (which has not been released yet), as<br>
+&gt; &gt; pointed out by<br>
+&gt; &gt; Ilia.<br>
+&gt; &gt;<br>
+&gt; &gt; Pierre<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; Nouveau mailing list<br>
+&gt; <a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" target=3D"_blank">Nou=
+veau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org</a><br>
+&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.freedesktop.org/mailman/lis=
+tinfo/nouveau</a><br>
+</blockquote></div></div></div>
 
---001a114c7eaa0d24f10559197afb--
+--94eb2c14a384cc0f420559166ec2--
 
---===============0930219062==
+--===============1388617831==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -300,4 +174,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0930219062==--
+--===============1388617831==--
