@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 102722] [regression] changing resolution hangs the
  display on Lenovo Thinkpad p51
-Date: Thu, 14 Sep 2017 06:48:34 +0000
-Message-ID: <bug-102722-8800-1TU5fjZM56@http.bugs.freedesktop.org/>
+Date: Thu, 14 Sep 2017 06:49:11 +0000
+Message-ID: <bug-102722-8800-vnZyyHpL5s@http.bugs.freedesktop.org/>
 References: <bug-102722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1022356740=="
+Content-Type: multipart/mixed; boundary="===============0518167446=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-102722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1022356740==
-Content-Type: multipart/alternative; boundary="15053717140.cC4fe.30571";
+--===============0518167446==
+Content-Type: multipart/alternative; boundary="15053717511.98E9180C.30624";
  charset="UTF-8"
 
 
---15053717140.cC4fe.30571
-Date: Thu, 14 Sep 2017 06:48:34 +0000
+--15053717511.98E9180C.30624
+Date: Thu, 14 Sep 2017 06:49:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D102722
 
---- Comment #4 from craig harmer <charmer-freedesktop.org-kYREfu93XNOEi8DpZVb4nw@public.gmane.org> ---
-Created attachment 134216
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134216&action=3Dedit
-output of lspci
+--- Comment #5 from craig harmer <charmer-freedesktop.org-kYREfu93XNOEi8DpZVb4nw@public.gmane.org> ---
+Created attachment 134217
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134217&action=3Dedit
+output of xrandr --verbose
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15053717140.cC4fe.30571
-Date: Thu, 14 Sep 2017 06:48:34 +0000
+--15053717511.98E9180C.30624
+Date: Thu, 14 Sep 2017 06:49:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [regression] changing resolution hangs the display on Len=
 ovo Thinkpad p51"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102722#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102722#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [regression] changing resolution hangs the display on Len=
@@ -77,11 +77,11 @@ charmer-freedesktop.org&#64;punchdown.org" title=3D"craig harmer &lt;charme=
 r-freedesktop.org&#64;punchdown.org&gt;"> <span class=3D"fn">craig harmer</=
 span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134216=
-" name=3D"attach_134216" title=3D"output of lspci">attachment 134216</a> <a=
- href=3D"attachment.cgi?id=3D134216&amp;action=3Dedit" title=3D"output of l=
-spci">[details]</a></span>
-output of lspci</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134217=
+" name=3D"attach_134217" title=3D"output of xrandr --verbose">attachment 13=
+4217</a> <a href=3D"attachment.cgi?id=3D134217&amp;action=3Dedit" title=3D"=
+output of xrandr --verbose">[details]</a></span>
+output of xrandr --verbose</pre>
         </div>
       </p>
 
@@ -95,9 +95,9 @@ output of lspci</pre>
     </body>
 </html>=
 
---15053717140.cC4fe.30571--
+--15053717511.98E9180C.30624--
 
---===============1022356740==
+--===============0518167446==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1022356740==--
+--===============0518167446==--
