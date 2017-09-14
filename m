@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 102722] [regression] changing resolution hangs the
  display on Lenovo Thinkpad p51
-Date: Thu, 14 Sep 2017 06:47:56 +0000
-Message-ID: <bug-102722-8800-qqHXxNobPt@http.bugs.freedesktop.org/>
+Date: Thu, 14 Sep 2017 06:48:34 +0000
+Message-ID: <bug-102722-8800-1TU5fjZM56@http.bugs.freedesktop.org/>
 References: <bug-102722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1886779399=="
+Content-Type: multipart/mixed; boundary="===============1022356740=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-102722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1886779399==
-Content-Type: multipart/alternative; boundary="15053716771.dEDbeAcD.30839";
+--===============1022356740==
+Content-Type: multipart/alternative; boundary="15053717140.cC4fe.30571";
  charset="UTF-8"
 
 
---15053716771.dEDbeAcD.30839
-Date: Thu, 14 Sep 2017 06:47:57 +0000
+--15053717140.cC4fe.30571
+Date: Thu, 14 Sep 2017 06:48:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,26 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D102722
 
-craig harmer <charmer-freedesktop.org-kYREfu93XNOEi8DpZVb4nw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |charmer-freedesktop.org@pun
-                   |                            |chdown.org
-
---- Comment #3 from craig harmer <charmer-freedesktop.org-kYREfu93XNOEi8DpZVb4nw@public.gmane.org> ---
-Created attachment 134215
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134215&action=3Dedit
-Kubuntu 16.04.3 dmesg output (probably nothing that's not in /var/log/syslo=
-g,
-above)
+--- Comment #4 from craig harmer <charmer-freedesktop.org-kYREfu93XNOEi8DpZVb4nw@public.gmane.org> ---
+Created attachment 134216
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134216&action=3Dedit
+output of lspci
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15053716771.dEDbeAcD.30839
-Date: Thu, 14 Sep 2017 06:47:57 +0000
+--15053717140.cC4fe.30571
+Date: Thu, 14 Sep 2017 06:48:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,40 +57,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:charmer-f=
-reedesktop.org&#64;punchdown.org" title=3D"craig harmer &lt;charmer-freedes=
-ktop.org&#64;punchdown.org&gt;"> <span class=3D"fn">craig harmer</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [regression] changing resolution hangs the display on Len=
-ovo Thinkpad p51"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102722">bug 10272=
-2</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>charmer-freedesktop.org&#64;punchdown.org
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [regression] changing resolution hangs the display on Len=
 ovo Thinkpad p51"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102722#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102722#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [regression] changing resolution hangs the display on Len=
@@ -111,15 +77,11 @@ charmer-freedesktop.org&#64;punchdown.org" title=3D"craig harmer &lt;charme=
 r-freedesktop.org&#64;punchdown.org&gt;"> <span class=3D"fn">craig harmer</=
 span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134215=
-" name=3D"attach_134215" title=3D"Kubuntu 16.04.3 dmesg output (probably no=
-thing that's not in /var/log/syslog, above)">attachment 134215</a> <a href=
-=3D"attachment.cgi?id=3D134215&amp;action=3Dedit" title=3D"Kubuntu 16.04.3 =
-dmesg output (probably nothing that's not in /var/log/syslog, above)">[deta=
-ils]</a></span>
-Kubuntu 16.04.3 dmesg output (probably nothing that's not in /var/log/syslo=
-g,
-above)</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134216=
+" name=3D"attach_134216" title=3D"output of lspci">attachment 134216</a> <a=
+ href=3D"attachment.cgi?id=3D134216&amp;action=3Dedit" title=3D"output of l=
+spci">[details]</a></span>
+output of lspci</pre>
         </div>
       </p>
 
@@ -133,9 +95,9 @@ above)</pre>
     </body>
 </html>=
 
---15053716771.dEDbeAcD.30839--
+--15053717140.cC4fe.30571--
 
---===============1886779399==
+--===============1022356740==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -145,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1886779399==--
+--===============1022356740==--
