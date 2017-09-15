@@ -1,13 +1,13 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [RFC PATCH 29/29] clk: limit clocks on battery
-Date: Fri, 15 Sep 2017 19:11:29 +0200
-Message-ID: <20170915171129.5009-30-karolherbst@gmail.com>
-References: <20170915171129.5009-1-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 102648] [ASUS X556UR] Can't use Nvidia gpu after
+	Suspend/Wake
+Date: Fri, 15 Sep 2017 20:16:20 +0000
+Message-ID: <bug-102648-8800-cdWIjk4HPW@http.bugs.freedesktop.org/>
+References: <bug-102648-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0235999429=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170915171129.5009-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-102648-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,40 +20,93 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Ci0tLQog
-ZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9jbGsuaCB8ICAxICsKIGRybS9ub3V2ZWF1
-L252a20vc3ViZGV2L2Nsay9iYXNlLmMgICAgfCAxOCArKysrKysrKysrKysrKysrKysKIDIgZmls
-ZXMgY2hhbmdlZCwgMTkgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2lu
-Y2x1ZGUvbnZrbS9zdWJkZXYvY2xrLmggYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2
-L2Nsay5oCmluZGV4IDcwNTA1YzliLi5mYWU0NWU2ZSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUv
-aW5jbHVkZS9udmttL3N1YmRldi9jbGsuaAorKysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20v
-c3ViZGV2L2Nsay5oCkBAIC0xMjAsNiArMTIwLDcgQEAgc3RydWN0IG52a21fY2xrIHsKIAl1OCAg
-Ym9vc3RfbW9kZTsKIAlzdHJ1Y3QgbnZrbV9jbGtfbGltaXQgYmFzZV9saW1pdDsKIAlzdHJ1Y3Qg
-bnZrbV9jbGtfbGltaXQgYm9vc3RfbGltaXQ7CisJc3RydWN0IG52a21fY2xrX2xpbWl0IGJhdHRf
-bGltaXQ7CiAJdTMyIG1heF9raHo7CiAKIAkvKlhYWDogZGllLCB0aGVzZSBhcmUgaGVyZSAqb25s
-eSogdG8gc3VwcG9ydCB0aGUgY29tcGxldGVseQpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvY2xrL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMK
-aW5kZXggOTk0ZDMyYjkuLjBkZTViM2RjIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL3N1
-YmRldi9jbGsvYmFzZS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMK
-QEAgLTk4LDYgKzk4LDE0IEBAIG52a21fY3N0YXRlX3ZhbGlkKHN0cnVjdCBudmttX2NsayAqY2xr
-LCBzdHJ1Y3QgbnZrbV9jc3RhdGUgKmNzdGF0ZSwKIAkJYnJlYWs7CiAJfQogCisJaWYgKCFjbGst
-PnB3cnNyYykgeworCQl1MzIgYmxpbWl0ID0gY2xrLT5iYXR0X2xpbWl0Lm1heF9raHo7CisJCWlm
-ICghbGltaXQpCisJCQlsaW1pdCA9IGJsaW1pdDsKKwkJZWxzZSBpZiAoYmxpbWl0KQorCQkJbGlt
-aXQgPSBtaW4oYmxpbWl0LCBsaW1pdCk7CisJfQorCiAJaWYgKGxpbWl0KSB7CiAJCWZvciAoOyBk
-b21haW4gJiYgZG9tYWluLT5uYW1lICE9IG52X2Nsa19zcmNfbWF4OyBkb21haW4rKykgewogCQkJ
-dTMyIGZyZXE7CkBAIC0zMDksNiArMzE3LDE0IEBAIG52a21fcHN0YXRlX2ZpbmRfYmVzdChzdHJ1
-Y3QgbnZrbV9jbGsgKmNsaywgc3RydWN0IG52a21fcHN0YXRlICpzdGFydCkKIAkJYnJlYWs7CiAJ
-fQogCisJaWYgKCFjbGstPnB3cnNyYykgeworCQl1OCBibGltaXQgPSBjbGstPmJhdHRfbGltaXQu
-cHN0YXRlOworCQlpZiAoIWxpbWl0KQorCQkJbGltaXQgPSBibGltaXQ7CisJCWVsc2UgaWYgKGJs
-aW1pdCkKKwkJCWxpbWl0ID0gbWluKGJsaW1pdCwgbGltaXQpOworCX0KKwogCWlmICghbGltaXQp
-CiAJCXJldHVybiBzdGFydDsKIApAQCAtODA3LDYgKzgyMyw4IEBAIG52a21fY2xrX2N0b3IoY29u
-c3Qgc3RydWN0IG52a21fY2xrX2Z1bmMgKmZ1bmMsIHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNl
-LAogCQkJbnZrbV9jbGtfZmlsbF9saW1pdCgmY2xrLT5ib29zdF9saW1pdCwgJnZwZSk7CiAJCWlm
-ICghbnZiaW9zX3Zwc3RhdGVfZW50cnkoYmlvcywgJmgsIGguYmFzZV9pZCwgJnZwZSkpCiAJCQlu
-dmttX2Nsa19maWxsX2xpbWl0KCZjbGstPmJhc2VfbGltaXQsICZ2cGUpOworCQlpZiAoIW52Ymlv
-c192cHN0YXRlX2VudHJ5KGJpb3MsICZoLCBoLmJhdHRlcnlfaWQsICZ2cGUpKQorCQkJbnZrbV9j
-bGtfZmlsbF9saW1pdCgmY2xrLT5iYXR0X2xpbWl0LCAmdnBlKTsKIAl9CiAKIAljbGstPmZ1bmMg
-PSBmdW5jOwotLSAKMi4xNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============0235999429==
+Content-Type: multipart/alternative; boundary="15055065801.47bc94a.24843";
+ charset="UTF-8"
+
+
+--15055065801.47bc94a.24843
+Date: Fri, 15 Sep 2017 20:16:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102648
+
+RazorSiS <razorsis100-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|unable to use nvidia gpu    |[ASUS X556UR] Can't use
+                   |after suspend               |Nvidia gpu after
+                   |                            |Suspend/Wake
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15055065801.47bc94a.24843
+Date: Fri, 15 Sep 2017 20:16:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:razorsis1=
+00&#64;gmail.com" title=3D"RazorSiS &lt;razorsis100&#64;gmail.com&gt;"> <sp=
+an class=3D"fn">RazorSiS</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [ASUS X556UR] Can't use Nvidia gpu after Suspend/Wake"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102648">bug 10264=
+8</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>unable to use nvidia gpu after suspend
+           </td>
+           <td>[ASUS X556UR] Can't use Nvidia gpu after Suspend/Wake
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15055065801.47bc94a.24843--
+
+--===============0235999429==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0235999429==--
