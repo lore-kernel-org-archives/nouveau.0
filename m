@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101220] [NV137/GP107] xorg-server-1.19.3 crashes
- when trying to enable HDMI output
-Date: Thu, 14 Sep 2017 10:31:51 +0000
-Message-ID: <bug-101220-8800-wW9m7hRMiG@http.bugs.freedesktop.org/>
-References: <bug-101220-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [RFC PATCH 00/29] Current State of my clk patches
+Date: Fri, 15 Sep 2017 19:11:00 +0200
+Message-ID: <20170915171129.5009-1-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0960676254=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,130 +18,83 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0960676254==
-Content-Type: multipart/alternative; boundary="15053851112.4e3c.5033";
- charset="UTF-8"
-
-
---15053851112.4e3c.5033
-Date: Thu, 14 Sep 2017 10:31:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
-
---- Comment #18 from Carlo Caione <carlo-KA+7E9HrN00dnm+yROfE0A@public.gmane.org> ---
-(In reply to Carlo Caione from comment #16)
-> Created attachment 133924 [details] [review]
-> [PATCH] Don't advertise any PRIME offloading capabilities without
-> acceleration
->=20
-> (In reply to Michel D=C3=A4nzer from comment #6)
-> > (In reply to Ilia Mirkin from comment #5)
-> > > I wonder if this is due to the fact that it's running in NoAccel mode.
-> >=20
-> > Possibly, you might want something like
-> >=20
-> > https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/
-> > ?id=3Db19417e2fddf4df725951aea5ad5e9558338f59e
->=20
-> Something like this for nouveau?
-
-ping on this patch. It's not the solution for the underlying problem but at
-least it's nice to have Xorg not crashing.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15053851112.4e3c.5033
-Date: Thu, 14 Sep 2017 10:31:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
-nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c18">Comme=
-nt # 18</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
-nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-carlo&#64;caione.org" title=3D"Carlo Caione &lt;carlo&#64;caione.org&gt;"> =
-<span class=3D"fn">Carlo Caione</span></a>
-</span></b>
-        <pre>(In reply to Carlo Caione from <a href=3D"show_bug.cgi?id=3D10=
-1220#c16">comment #16</a>)
-<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
-gi?id=3D133924" name=3D"attach_133924" title=3D"[PATCH] Don't advertise any=
- PRIME offloading capabilities without acceleration">attachment 133924</a> =
-<a href=3D"attachment.cgi?id=3D133924&amp;action=3Dedit" title=3D"[PATCH] D=
-on't advertise any PRIME offloading capabilities without acceleration">[det=
-ails]</a></span> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D101220&am=
-p;attachment=3D133924'>[review]</a> [review]
-&gt; [PATCH] Don't advertise any PRIME offloading capabilities without
-&gt; acceleration
-&gt;=20
-&gt; (In reply to Michel D=C3=A4nzer from <a href=3D"show_bug.cgi?id=3D1012=
-20#c6">comment #6</a>)
-&gt; &gt; (In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D101220=
-#c5">comment #5</a>)
-&gt; &gt; &gt; I wonder if this is due to the fact that it's running in NoA=
-ccel mode.
-&gt; &gt;=20
-&gt; &gt; Possibly, you might want something like
-&gt; &gt;=20
-&gt; &gt; <a href=3D"https://cgit.freedesktop.org/xorg/driver/xf86-video-at=
-i/commit/">https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/<=
-/a>
-&gt; &gt; ?id=3Db19417e2fddf4df725951aea5ad5e9558338f59e
-&gt;=20
-&gt; Something like this for nouveau?</span >
-
-ping on this patch. It's not the solution for the underlying problem but at
-least it's nice to have Xorg not crashing.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15053851112.4e3c.5033--
-
---===============0960676254==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0960676254==--
+SnVzdCB3YW50ZWQgdG8gcG9zdCB1cGRhdGVkIHZlcnNpb25zIG9mIG15IGxhc3Qgc2VyaWVzL3Bh
+dGNoZXMuIFJldmlld3MKd2VsY29tZWQuCgpJdCB3b3VsZCBiZSBhbHNvIG5pY2UgaWYgd2UgYWdy
+ZWUgb24gZmVhdHVyZXMgSSBzaG91bGQgZm9jdXMgdXBzdHJlYW1pbmcsIHNvCnRoYXQgdGhpcyB3
+b3JrIGNhbiBiZSBiZXR0ZXIgc3BsaXR0ZWQgb3IgcmVvcmRlcmVkLgoKU2FkbHkgbW9zdCBvZiBt
+eSBwYXRjaGVzIGRlcGVuZCBvbiB0aGUgcmF0aGVyIGJpZyBjbGsgc3ViZGV2IHJld29yayBhbmQg
+SSB0aGluawp0aG9zZSBwYXRjaGVzIHNob3dzIGJlc3QsIHdoeSBJIHRoaW5rIHRoaXMgcmV3b3Jr
+IGlzIGFjdHVhbGx5IG5lZWRlZCBhbmQgbWFrZXMKdGhpbmdzIG11Y2ggZWFzaWVyIHRvIGFkZCBs
+YXRlciBvbi4KCkZlYXR1cmUgb3ZlcnZpZXc6CiAgMS0gMzogSHdtb24gZml4ZXMgb24gc3VzcGVu
+ZGVkIGRldmljZQogIDQtIDg6IENsayBzdWJkZXYgcmV3b3JrIHRvIGRlY291cGxlIGN1cnJlbnQg
+YW5kIGV4cGVjdGVkIGNsb2NrIHN0YXRlcwogICAgICAgIEZpeCByZWNsb2NraW5nIHdoaWxlIHN1
+c3BlbmRlZAogICAgIDk6IFJlc3RvcmUgY2xvY2tzIG9uIFN1c3BlbmQKICAgIDEwOiBGaXggcmVj
+bG9ja2luZyB3aGlsZSBnb2luZyBpbnRvIHN1c3BlbmQKICAgIDExOiBGaXggcmVjbG9ja2luZyB3
+aGlsZSBzdXNwZW5kaW5nCiAxMi0xNDogVGhlcm1hbCBkYWVtb24gdHJpZ2dlcnMgcmVjbG9ja3Mg
+b24gdGVtcGVyYXR1cmUgY2hhbmdlIHdoZW4gbmVlZGVkCiAgICAgICAgICBpbmNsdWRlcyB2b2x0
+IHVwZGF0ZXMgYW5kIGRyb3BwaW5nIGNzdGF0ZXMgYWNjb3JkaW5nIHRvIHRoZSB2YmlvcwogMTUt
+MTc6IFRoZXJtYWwgdGhyb3R0bGluZwogICAgMTg6IERvbid0IGRvIGZ1bGwgcmVjbG9ja3Mgd2hl
+biBvbmx5IHBhcnRzIG5lZWQgdG8gYmUgdXBkYXRlZAogMTktMjA6IEhhY2t5IFdvcmthcm91bmQg
+Zm9yIGVuYWJsaW5nIE1heHdlbGwyIHJlY2xvY2tpbmcgKGhpZGRlbiBiZWhpbmQgbW9kdWxlIHBh
+cmFtZXRlcikKIDIxLTIzOiBkZWJ1Z2ZzIGZpbGUgdG8gY2hhbmdlIGJvb3N0IG1vZGUKIDI0LTI5
+OiBQYXJzZSBiYXR0ZXJ5IHZwc3RhdGUgdG8gdGhyb3R0bGUgY2xvY2tzIHdoZW4gc3lzdGVtIGlz
+IHJ1bm5pbmcgb24gYmF0dGVyeQoKS2Fyb2wgSGVyYnN0ICgyOSk6CiAgdGhlcm06IHNwbGl0IHJl
+dHVybiBjb2RlIGFuZCB2YWx1ZSBpbiBudmttX2dldF90ZW1wCiAgaHdtb246IHByb3Blcmx5IGNo
+ZWNrIGZvciBlcnJvcnMKICBzdWJkZXYvdm9sdC9nazEwNDogcmV0dXJuIGVycm9yIHdoZW4gcmVh
+ZCBmYWlscwogIGNsazogUmVuYW1lIG52a21fcHN0YXRlX2NhbGMgdG8gbnZrbV9jbGtfdXBkYXRl
+IGFuZCBleHBvcnQgaXQKICBjbGs6IFJlbW92ZSBkc3RhdGUKICBjbGs6IE1ha2UgcHN0YXRlIGEg
+cG9pbnRlciB0byBudmttX3BzdGF0ZQogIGNsazogSG9sZCBpbmZvcm1hdGlvbiBhYm91dCB0aGUg
+Y3VycmVudCBjc3RhdGUgc3RhdHVzCiAgY2xrOiBXZSBzaG91bGQgcGFzcyB0aGUgcHN0YXRlIGlk
+IGFyb3VuZCBub3QgdGhlIGluZGV4IGluIHRoZSBsaXN0CiAgY2xrOiBTZXQgY2xvY2tzIHRvIHBy
+ZSBzdXNwZW5kIHN0YXRlIGFmdGVyIHN1c3BlbmQKICBjb3JlL2RldmljZTogTW92ZSB0aGVybSBi
+ZWhpbmQgY2xrCiAgZGVidWdmczogV2FrZSB1cCBHUFUgYmVmb3JlIGRvaW5nIGFueSByZWNsb2Nr
+aW5nCiAgdGhlcm06IERvbid0IGNhbmNlbCB0aGUgdGltZXIKICB0aGVybTogTW92ZSB0aGUgdGVt
+cCByZWFkb3V0IGludG8gdGhlIGFsYXJtCiAgdGhlcm06IFRyaWdnZXIgcmVjbG9jayBpbiB0ZW1w
+ZXJhdHVyZSBkYWVtb24KICBiaW9zOiBhZGQgdGhlcm1hbCBwb2xpY2llcyB0YWJsZQogIGNsazog
+cGFyc2UgdGhlcm1hbCBwb2xpY2llcyBmb3IgdGhyb3R0bGluZyB0aHJlc2hvbGRzCiAgY2xrOiB0
+aGVybWFsIHRocm90dGxpbmcKICBjbGs6IE9ubHkgZG8gcGFydGlhbCByZWNsb2NrcyBhcyByZXF1
+aXJlZAogIHNlY2Jvb3QvYWNyMzUyOiByZXNldCBQTVUgYWZ0ZXIgc2VjYm9vdAogIGRldmljZTog
+ZW5hYmxlIGNsayBmb3IgTWF4d2VsbDIKICBjbGs6IFNhdmUgdGhlIG1heCBjbG9jayB3ZSBjYW4g
+c2V0CiAgbnZpZjogQWRkIGJvb3N0IGluZm8gYW5kIHNldCBvcGVyYXRpb25zCiAgZGVidWdmczog
+QWRkIGJvb3N0IGludGVyZmFjZSB0byBjaGFuZ2UgdGhlIGJvb3N0X21vZGUKICBiaW9zL3Zwc3Rh
+dGU6IHRoZXJlIGFyZSBzb21lIGZlcm1pIHZiaW9zIHdpdGggbm8gYm9vc3Qgb3IgdGRwIGVudHJ5
+CiAgYmlvcy92cHN0YXRlOiBwYXJzZSBtYXggYmF0dGVyeSBpZAogIGNsazogcmVmYWN0b3IgdGhl
+IGJhc2UgYW5kIGJvb3N0IGNsb2NrIGxpbWl0cyBzbyB0aGF0IHdlIGNhbiBsaW1pdAogICAgcHN0
+YXRlcyBhcyB3ZWxsCiAgY2xrOiBpbXBsZW1lbnQgbGltaXRpbmcgcHN0YXRlcyBqdXN0IGxpa2Ug
+d2UgZG8gZm9yIGNzdGF0ZXMKICBjbGs6IG1vdmUgdGhlIHN3aXRjaCBvdXQgb2YgdGhlIGxvb3Ag
+aW4gbnZrbV9jc3RhdGVfdmFsaWQKICBjbGs6IGxpbWl0IGNsb2NrcyBvbiBiYXR0ZXJ5CgogZHJt
+L25vdXZlYXUvaW5jbHVkZS9udmlmL2lmMDAwMS5oICAgICAgICAgICAgICAgICAgfCAgMTUgKwog
+ZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2NvcmUvZGV2aWNlLmggICAgICAgICAgICAgfCAgIDIg
+Ky0KIC4uLi9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3MvdGhlcm1hbF9wb2xpY2llcy5oICAgIHwg
+IDI3ICsrCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3MvdnBzdGF0ZS5oICAg
+ICB8ICAgMSArCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Nsay5oICAgICAgICAg
+ICAgICB8ICAyMyArLQogZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi90aGVybS5oICAg
+ICAgICAgICAgfCAgIDMgKy0KIGRybS9ub3V2ZWF1L25vdXZlYXVfZGVidWdmcy5jICAgICAgICAg
+ICAgICAgICAgICAgIHwgIDkwICsrKystCiBkcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMgICAg
+ICAgICAgICAgICAgICAgICAgICB8ICA0OCArKy0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2Rl
+dmljZS9iYXNlLmMgICAgICAgICAgICAgIHwgICAzICsKIGRybS9ub3V2ZWF1L252a20vZW5naW5l
+L2RldmljZS9jdHJsLmMgICAgICAgICAgICAgIHwgIDY2ICsrKy0KIGRybS9ub3V2ZWF1L252a20v
+c3ViZGV2L2Jpb3MvS2J1aWxkICAgICAgICAgICAgICAgIHwgICAxICsKIGRybS9ub3V2ZWF1L252
+a20vc3ViZGV2L2Jpb3MvdGhlcm1hbF9wb2xpY2llcy5jICAgIHwgIDgxICsrKysrCiBkcm0vbm91
+dmVhdS9udmttL3N1YmRldi9iaW9zL3Zwc3RhdGUuYyAgICAgICAgICAgICB8ICAxMyArLQogZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYyAgICAgICAgICAgICAgICAgfCAzNzUgKysr
+KysrKysrKysrKysrLS0tLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2sxMDQuYyAg
+ICAgICAgICAgICAgICB8ICAxMCArLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2drMjBh
+LmMgICAgICAgICAgICAgICAgfCAgMTggKy0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jv
+b3QvYWNyX3IzNTIuYyAgICAgICAgIHwgIDEzICsKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3Ro
+ZXJtL2Jhc2UuYyAgICAgICAgICAgICAgIHwgIDU5ICsrLS0KIGRybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L3RoZXJtL2c4NC5jICAgICAgICAgICAgICAgIHwgIDExICstCiBkcm0vbm91dmVhdS9udmtt
+L3N1YmRldi90aGVybS9ncDEwMC5jICAgICAgICAgICAgICB8ICAgOSArLQogZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvdGhlcm0vbnY0MC5jICAgICAgICAgICAgICAgfCAgIDkgKy0KIGRybS9ub3V2
+ZWF1L252a20vc3ViZGV2L3RoZXJtL252NTAuYyAgICAgICAgICAgICAgIHwgICA5ICstCiBkcm0v
+bm91dmVhdS9udmttL3N1YmRldi90aGVybS9wcml2LmggICAgICAgICAgICAgICB8ICAgNCArLQog
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vdGVtcC5jICAgICAgICAgICAgICAgfCAgMTYg
+Ky0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvYmFzZS5jICAgICAgICAgICAgICAgIHwg
+ICAzICsKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2sxMDQuYyAgICAgICAgICAgICAg
+IHwgICA3ICstCiAyNiBmaWxlcyBjaGFuZ2VkLCA3MjMgaW5zZXJ0aW9ucygrKSwgMTkzIGRlbGV0
+aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJk
+ZXYvYmlvcy90aGVybWFsX3BvbGljaWVzLmgKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVh
+dS9udmttL3N1YmRldi9iaW9zL3RoZXJtYWxfcG9saWNpZXMuYwoKLS0gCjIuMTQuMQoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
