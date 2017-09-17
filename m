@@ -1,13 +1,19 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99889] nouveau preventing shutdown after
-	suspend-resume
-Date: Sun, 17 Sep 2017 22:45:34 +0000
-Message-ID: <bug-99889-8800-0jsEgyBpHl@http.bugs.freedesktop.org/>
-References: <bug-99889-8800@http.bugs.freedesktop.org/>
+From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
+Subject: Re: Nouveau: kernel hang on Optimus+Intel+NVidia
+	GeForce	1060m
+Date: Mon, 18 Sep 2017 00:37:01 +0100
+Message-ID: <CC3EAE9B-175B-47EA-9286-A543C9357DAD@lekensteyn.nl>
+References: <CAKyUnMW6f-EpyjZ=tocOR6Ji8MLprF71YzNsOKv-+UGtbvqH=g@mail.gmail.com>
+ <cb794e03-6ca8-7e80-9277-ea780ee0bbd2@mni.thm.de>
+ <CAKyUnMVeWzgptcN0CVLg4SYriY7+29wXcdaAH4Xig7tXSuXBtA@mail.gmail.com>
+ <CAKyUnMW-OUpMtXoVgP0xz-LawgtewPGQEcu5P=CgYU_Bi9pqaQ@mail.gmail.com>
+ <e3e5a763-4a54-0b62-2151-d3f123ab5067@mni.thm.de>
+ <CAKyUnMVKNHkYa9TMf9_MFXEfLV-qx42Vg5eKh1ReT03Eo+3xJQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0160675623=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKyUnMVKNHkYa9TMf9_MFXEfLV-qx42Vg5eKh1ReT03Eo+3xJQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,85 +23,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Nicolas Mercier <mercier.nicolas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0160675623==
-Content-Type: multipart/alternative; boundary="15056883342.CDBDD8768.11316";
- charset="UTF-8"
-
-
---15056883342.CDBDD8768.11316
-Date: Sun, 17 Sep 2017 22:45:34 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99889
-
---- Comment #9 from Ali <sunmooon15-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-respond please
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15056883342.CDBDD8768.11316
-Date: Sun, 17 Sep 2017 22:45:34 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889">bug 99889<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sunmooon15&#64;gmail.com" title=3D"Ali &lt;sunmooon15&#64;gmail.com&gt;"> <=
-span class=3D"fn">Ali</span></a>
-</span></b>
-        <pre>respond please</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15056883342.CDBDD8768.11316--
-
---===============0160675623==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0160675623==--
+SGkgTmljaG9sYXMsCgpJbmNyZWFzaW5nIHRoZSB0aW1lb3V0IHdvbid0IGhlbHAgYXMgdGhlIGRH
+UFUgaXMgbm90IHBvd2VyZWQvYXZhaWxhYmxlLiBJZiB5b3UgaGF2ZSBhbiBleHRlcm5hbCBtb25p
+dG9yIGNvbm5lY3RlZCwgdGhlIGRHUFUgd2lsbCBzdGF5IHBvd2VyZWQgb24gYW5kIG5vdCBzdXNw
+ZW5kICh3aXRoIGEgKHRlbXBvcmFyeSkgZWZmZWN0IHNpbWlsYXIgdG8gYm9vdGluZyB3aXRoIG5v
+dXZlYXUucnVucG09MCkuCgpUaGUgcmVhc29uIGZvciB0aGUgZmFpbHVyZSB0byByZXN0b3JlIHBv
+d2VyIGlzIHN0aWxsIHVua25vd24sIGl0IHNlZW1zIHJlbGF0ZWQgdG8gdGhlIFBDSSBjb3JlLgoK
+S2luZCByZWdhcmRzLApQZXRlcgpodHRwczovL2xla2Vuc3RleW4ubmwKKHBhcmRvbiBteSBicmV2
+aXR5LCB0b3AtcG9zdGluZyBhbmQgZm9ybWF0dGluZywgc2VudCBmcm9tIG15IHBob25lKQoKCk9u
+IDEzIFNlcHRlbWJlciAyMDE3IDIzOjEzOjU5IEJTVCwgTmljb2xhcyBNZXJjaWVyIDxtZXJjaWVy
+Lm5pY29sYXNAZ21haWwuY29tPiB3cm90ZToKPlRoYW5rcyBUb2JpYXMsIEkgdHJpZWQgdGhpcyBi
+dXQgdW5mb3J0dW5hdGVseSB0aGUgb25seSBlZmZlY3Qgd2FzIHRodGEKPnRoZQo+Ym9vdCB3YXMg
+ZGVsYXllZCBieSBhbiBhZGRpdGlvbmFsIDQgc2Vjb25kcyA6KAo+VGhlIG9yaWdpbmFsIHRpbWVv
+dXQgaXMgYXQKPmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvbHNf
+dWNvZGVfbXNncXVldWUuYwo+SSB0cmllZCB0byBpbmNyZWFzZSB0aGF0IHRpbWVvdXQsIGJ1dCBp
+dCBkaWQgbm90IHNlZW0gdG8gbWFrZSBhCj5kaWZmZXJlbmNlCj5laXRoZXIuCj4KPkkgdGhpbmsg
+SSBnZXQgdGhpcyBlcnJvciBsZXNzIG9mdGVuIHdoZW4gSSBoYXZlIGEgY2FibGUgcGx1Z2dlZCBp
+biB0aGUKPm91dHB1dCBvZiB0aGF0IGNhcmQgYXQgYm9vdCwgd2hlcmVhcyBJIGFsd2F5cyBnZXQg
+dGhpcyBlcnJvciB3aGVuIEkKPmJvb3QKPndpdGhvdXQgYSBtb25pdG9yIGF0dGFjaGVkIHRvIHRo
+ZSBjYXJkLgo+Cj5PbiBXZWQsIFNlcCAxMywgMjAxNyBhdCAyOjI4IFBNLCBUb2JpYXMgS2xhdXNt
+YW5uIDwKPnRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRobS5kZT4gd3JvdGU6Cj4KPj4g
+SGksCj4+Cj4+IHRoZSBzeXN0ZW0gZmFpbHMgdG8gaW5pdGlhbGl6ZSB5b3VyIHZiaW9zIHVzaW5n
+IHNlY3VyZWJvb3QgKGkgaGFkIGEKPnJhcmUKPj4gY2hhbmNlIHRvIG9uIG15IHN5c3RlbSB0byB3
+aXRuZXNzIGl0IGFnYWluKSwgZm9yIG5vdyBpIHRyYWNlZCBpdCB0bwo+PiBhY3JfYm9vdF9mYWxj
+b24oKSBpbgo+PiAibGludXgvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9mYWxjb24vbXNn
+cXVldWVfMDE0OGNkZWMuYyIgd2hlcmUKPml0Cj4+IHRocm93cyAtMTEwIHdoaWNoIGlzIC1FVElN
+RURPVVQuIFlvdSBjb3VsZCB0cnkgdG8gaW5jcmVhc2UgdGhlCj50aW1lb3V0Cj4+IGFuZCBzZWUg
+aWYgaXQgaGVscHMgc29tZXRoaW5nLCBzaW1pbGFyIHRvIHRoZSBmb2xsb3dpbmc6Cj4+Cj4+Cj4+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2ZhbGNvbi9tc2dxdWV1
+ZS5jCj4+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9mYWxjb24vbXNncXVldWUuYwo+
+PiBpbmRleCA3NzI3M2I1MzY3MmMuLmZjMGNiMTg3ZDgwZCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9mYWxjb24vbXNncXVldWUuYwo+PiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9udmttL2ZhbGNvbi9tc2dxdWV1ZS5jCj4+IEBAIC0zMjYsNyArMzI2
+LDcgQEAgbnZrbV9tc2dxdWV1ZV9wb3N0KHN0cnVjdCBudmttX21zZ3F1ZXVlICpwcml2LAo+ZW51
+bQo+PiBtc2dxdWV1ZV9tc2dfcHJpb3JpdHkgcHJpbywKPj4gICAgICAgICBpbnQgcmV0Owo+Pgo+
+PiAgICAgICAgIGlmICh3YWl0X2luaXQgJiYKPiF3YWl0X2Zvcl9jb21wbGV0aW9uX3RpbWVvdXQo
+JnByaXYtPmluaXRfZG9uZSwKPj4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBtc2Vjc190b19qaWZmaWVzKDEwMDApKSkKPj4gKyAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBtc2Vjc190b19qaWZmaWVzKDUwMDApKSkKPj4gICAgICAgICAgICAg
+ICAgIHJldHVybiAtRVRJTUVET1VUOwo+Pgo+PiAgICAgICAgIHF1ZXVlID0gcHJpdi0+ZnVuYy0+
+Y21kX3F1ZXVlKHByaXYsIHByaW8pOwo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnZrbS9mYWxjb24vbXNncXVldWVfMDEzN2M2M2QuYwo+PiBiL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L252a20vZmFsY29uL21zZ3F1ZXVlXzAxMzdjNjNkLmMKPj4gaW5kZXggZmVj
+MDI3MzE1OGY2Li5jMmFlNTI1YTA3ODAgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252a20vZmFsY29uL21zZ3F1ZXVlXzAxMzdjNjNkLmMKPj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnZrbS9mYWxjb24vbXNncXVldWVfMDEzN2M2M2QuYwo+PiBAQCAtMjc5
+LDYgKzI3OSw3IEBAIGFjcl9ib290X2ZhbGNvbihzdHJ1Y3QgbnZrbV9tc2dxdWV1ZSAqcHJpdiwg
+ZW51bQo+PiBudmttX3NlY2Jvb3RfZmFsY29uIGZhbGNvbikKPj4gICAgICAgICAgICAgICAgIHUz
+MiBmbGFnczsKPj4gICAgICAgICAgICAgICAgIHUzMiBmYWxjb25faWQ7Cj4+ICAgICAgICAgfSBj
+bWQ7Cj4+ICsgICAgICAgY29uc3Qgc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSBwcml2LT5m
+YWxjb24tPm93bmVyOwo+Pgo+PiAgICAgICAgIG1lbXNldCgmY21kLCAwLCBzaXplb2YoY21kKSk7
+Cj4+Cj4+IEBAIC0yOTAsNyArMjkxLDggQEAgYWNyX2Jvb3RfZmFsY29uKHN0cnVjdCBudmttX21z
+Z3F1ZXVlICpwcml2LCBlbnVtCj4+IG52a21fc2VjYm9vdF9mYWxjb24gZmFsY29uKQo+PiAgICAg
+ICAgIG52a21fbXNncXVldWVfcG9zdChwcml2LCBNU0dRVUVVRV9NU0dfUFJJT1JJVFlfSElHSCwK
+PiZjbWQuaGRyLAo+PiAgICAgICAgICAgICAgICAgICAgICAgICBhY3JfYm9vdF9mYWxjb25fY2Fs
+bGJhY2ssICZjb21wbGV0ZWQsIHRydWUpOwo+Pgo+PiAtICAgICAgIGlmICghd2FpdF9mb3JfY29t
+cGxldGlvbl90aW1lb3V0KCZjb21wbGV0ZWQsCj4+IG1zZWNzX3RvX2ppZmZpZXMoMTAwMCkpKQo+
+PiArICAgICAgIG52a21fZXJyb3Ioc3ViZGV2LCAid2FpdGluZyBmb3IgdGltZW91dCBpbiBhY3Jf
+Ym9vdF9mYWxjb24KPj4gKG1zZ3F1ZXVlXzAxMzdiY2E1KVxuIik7Cj4+ICsgICAgICAgaWYgKCF3
+YWl0X2Zvcl9jb21wbGV0aW9uX3RpbWVvdXQoJmNvbXBsZXRlZCwKPj4gbXNlY3NfdG9famlmZmll
+cyg1MDAwKSkpCj4+ICAgICAgICAgICAgICAgICByZXR1cm4gLUVUSU1FRE9VVDsKPj4KPj4gICAg
+ICAgICByZXR1cm4gMDsKPj4KPj4KPj4KPj4gT24gOS8xMy8xNyAxMTozNyBBTSwgTmljb2xhcyBN
+ZXJjaWVyIHdyb3RlOgo+PiA+IEkgYW0gc3RpbGwgbG9va2luZyBmb3IgYSBzb2x1dGlvbi4gSSBo
+YXZlIGhhY2tlZCBhcm91bmQgaW4gdGhlIGNvZGUKPj4gPiBhbmQgZm91bmQgb3V0IHRoZSBmb2xs
+b3dpbmc6Cj4+ID4gLSBOb3V2ZWF1IHByZWZlcnMgdXNpbmcgUENJRSBwb3dlciBtYW5hZ2VtZXQg
+b3ZlciBBQ1BJIE9wdGltdXMKPmNhbGxzLgo+PiA+IEkgdHJpZWQgdG8gZm9yY2UgaXQgdG8gdXNl
+IE9wdGltdXMgQUNQSSBjYWxscywgYnV0IHRoZXJlIHdhcyBhbgo+ZXJyb3IKPj4gPiBjYWxsaW5n
+IHRoZSBBQ1BJIG1ldGhvZCBzbyBpdCBiYWlscyBvdXQgYW5kIHVzZXMgUENJRSBQTSBhbnl3YXku
+Cj4+ID4gLSBJIHRyaWVkIHRvIGRlYnVnIHRoZSBQQ0lFIHBtIHN0YXRlcyB3aGljaCBpbnRlcm5h
+bGx5IHVzZXMgQUNQSSB0bwo+PiA+IHR1cm4gcG93ZXIgb24vb2ZmLiBJIGNvdWxkIHByaW50IGRp
+ZmZlcmVudCBzdGF0dXNlcyBoZXJlIGFuZCB0aGVyZS4KPj4gPiBXaGVuIHRoZSBwb3dlciBpcyBz
+d2l0Y2hlZCBvZmYsIEFDUEkgY2FsbHMgdHVybiB0aGUgcG93ZXIgb2ZmIHRoZW4KPnRoZQo+PiA+
+IGtlcm5lbCBzdWNjZXNzZnVsbHkgcHV0cyB0aGUgZGV2aWNlIGluIHN0YXRlIEQzQ29sZCAoYWxz
+byB0dXJuaW5nCj5vZmYKPj4gPiBwb3dlciB0byB0aGUgUENJIEV4cHJlc3MgcG9ydCkuIFdoZW4g
+d2FraW5nIHVwLCBBQ1BJIHR1cm5zIHRoZQo+cG93ZXIKPj4gPiBvbiwgYXBwYXJlbnRseSBzdWNj
+ZXNzZnVsbHkgKERldmljZSBbUEVHUF0gdHJhbnNpdGlvbmVkIHRvIEQwKS4gQnV0Cj5hCj4+ID4g
+cmVhZCBmcm9tIHRoZSBQQ0kgYnVzIHRvIGdldCB0aGUgcG93ZXIgc3RhdGUgJiBvdGhlciBmbGFn
+cyByZXR1cm4KPj4gPiA2NTUzNSAofjApIGFuZCB0aGUga2VybmVsIGZhaWxzIHRvIHNldCB0aGUg
+ZGV2aWNlIGluIEQwIChhbHRob3VnaAo+QUNQSQo+PiA+IGNsYWltcyBpdCBpcyBpbiBEMCkKPj4g
+PiBUaGUgY2FsbCB0byBwY2lfcmF3X3NldF9wb3dlcl9zdGF0ZSAoaW4gZHJpdmVycy9wY2kvcGNp
+LmMpIHNlZW1zIHRvCj4+ID4gZmFpbCBiZWNhdXNlIHBjaV9yZWFkX2NvbmZpZ193b3JkIHJldHVy
+bnMgIn4wIiAoYW5kIGRvZXMgbm90IHJldHVybgo+PiA+IGFueSBlcnJvciBjb2RlKQo+PiA+Cj4+
+ID4gSSBoYXZlIHRyaWVkIGRpZmZlcmVudCB0aGluZ3M7IGlmIEkgdXNlIHBjaWVfcG9ydF9wbT1v
+ZmYsIHRoZQo+TlZpZGlhCj4+ID4gY2FyZCBnb2VzIHRvIHN0YXRlIEQzSG90IChpZiBJIGFtIG5v
+dCBtaXN0YWtlbiwgaXRzIFBDSUUgcG9ydCBpcwo+c3RpbGwKPj4gPiBwb3dlcmVkKSBidXQgdGhh
+dCBkaWQgbm90IGZpeCBpdC4gSSB0cmllZCB0byB0dXJuIG9uIG9yIG9mZgo+ZGlmZmVyZW50Cj4+
+ID4gUENJL1BDSWV4cHJlc3MgZmVhdHVyZXMgc3VjaCBhcyBob3RwbHVnLCBQTSBhbmQgc28gb24u
+IFRoZSBvbmx5Cj50aGluZwo+PiA+IHRoYXQgd29ya3MgaXMgdGhhdCBQTSBpcyBmdWxseSBkaXNh
+YmxlZCwgd2hpY2ggZXF1YWxzIHRvIHRoZSBkZXZpY2UKPj4gPiBub3QgYmVpbmcgcG93ZXJlZCBv
+ZmYsIHNvIHRoYXQgd291bGQgYmUgZXF1aXZhbGVudCB0bwo+bm91dmVhdS5ydW5wbT0wLAo+PiA+
+IHdoaWNoIGlzIG5vdCBoZWxwaW5nIGEgbG90LiBJIGhhdmUgdHJpZWQgdG8gZm9yY2UgcGNpZSBh
+c3BtIGJ5Cj4+ID4gcmVjb21waWxpbmcgdGhlIEFDUEkgdGFibGUsIHN0aWxsIG5vIGx1Y2suCj4+
+ID4KPj4gPiBJIGFtIHN0aWxsIHRha2luZyBhIGxvb2ssIGJ1dCBpdCBzZWVtcyBsaWtlIHRoZSBw
+cm9ibGVtIGNvbWVzIGZyb20KPnRoZQo+PiA+IFBDSUV4cHJlc3MgUE0gZnVuY3Rpb25zIGFuZCBB
+Q1BJLCBub3QgZGlyZWN0bHkgZnJvbSBOb3V2ZWF1Cj4+ID4KPj4gPiAvbgo+PgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
