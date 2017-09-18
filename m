@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 102840] nouveau PGRAPH - ERROR nsource: ILLEGAL_MTHD
  nstatus: PROTECTION_FAULT
-Date: Mon, 18 Sep 2017 14:52:10 +0000
-Message-ID: <bug-102840-8800-53XfD18fv4@http.bugs.freedesktop.org/>
+Date: Mon, 18 Sep 2017 14:59:53 +0000
+Message-ID: <bug-102840-8800-yDgv27YMPl@http.bugs.freedesktop.org/>
 References: <bug-102840-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1778324759=="
+Content-Type: multipart/mixed; boundary="===============0729474283=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-102840-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1778324759==
-Content-Type: multipart/alternative; boundary="15057463300.DBc9dDEd.409";
+--===============0729474283==
+Content-Type: multipart/alternative; boundary="15057467920.1Ccc4bE.3123";
  charset="UTF-8"
 
 
---15057463300.DBc9dDEd.409
-Date: Mon, 18 Sep 2017 14:52:10 +0000
+--15057467920.1Ccc4bE.3123
+Date: Mon, 18 Sep 2017 14:59:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,26 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D102840
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Nouveau has been rewritten 5 times since kernel 3.2 came out some short 5.5
-years ago, both userspace and kernel driver.
-
-Your issue is some kind of problem with binding a class to a subchannel (th=
-at
-0x8800004 value is not a valid class id). But I have no idea what might cau=
-se
-it.
-
-Please try with more recent software. You can play with a x86_64 livecd at
-https://nouveau.pmoreau.org/ or use your favorite distribution's recent
-release.
+--- Comment #2 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+We are a few French Nouveau developers, so feel free to come to our IRC cha=
+nnel
+#nouveau on freenode, if you would rather speak French than English; those
+conversations would be held privately, as not everyone speaks French on the
+channel.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15057463300.DBc9dDEd.409
-Date: Mon, 18 Sep 2017 14:52:10 +0000
+--15057467920.1Ccc4bE.3123
+Date: Mon, 18 Sep 2017 14:59:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,8 +66,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - nouveau PGRAPH - ERROR nsource: ILLEGAL_MTHD nstatus: PRO=
 TECTION_FAULT"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102840#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102840#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau PGRAPH - ERROR nsource: ILLEGAL_MTHD nstatus: PRO=
@@ -82,23 +75,14 @@ TECTION_FAULT"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102840">bug 10284=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
+e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>Nouveau has been rewritten 5 times since kernel 3.2 came out s=
-ome short 5.5
-years ago, both userspace and kernel driver.
-
-Your issue is some kind of problem with binding a class to a subchannel (th=
-at
-0x8800004 value is not a valid class id). But I have no idea what might cau=
-se
-it.
-
-Please try with more recent software. You can play with a x86_64 livecd at
-<a href=3D"https://nouveau.pmoreau.org/">https://nouveau.pmoreau.org/</a> o=
-r use your favorite distribution's recent
-release.</pre>
+        <pre>We are a few French Nouveau developers, so feel free to come t=
+o our IRC channel
+#nouveau on freenode, if you would rather speak French than English; those
+conversations would be held privately, as not everyone speaks French on the
+channel.</pre>
         </div>
       </p>
 
@@ -112,9 +96,9 @@ release.</pre>
     </body>
 </html>=
 
---15057463300.DBc9dDEd.409--
+--15057467920.1Ccc4bE.3123--
 
---===============1778324759==
+--===============0729474283==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1778324759==--
+--===============0729474283==--
