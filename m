@@ -1,18 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: nVidia GT218M [GeForce 315M] issues on kUbuntu 17.04
-	x86-64.
-Date: Tue, 19 Sep 2017 00:15:08 -0400
-Message-ID: <CAKb7Uvhs9spOEkXY2-kOc0B=o+pzOKTcN4HtT+6O5fE=eTcRQA@mail.gmail.com>
-References: <7574d8f0a7ff3cb65ed5797d5991dca9@mail2.ca>
- <CAKb7Uvh0UTVO9mxQHcjmtPtHgP0yQ0w6M=XBCxFHHY37zQ=Dgw@mail.gmail.com>
- <CAKb7Uvh0KJBVPNHO7gWZy89STLNBb+FCYkWacNLywu4kG3900A@mail.gmail.com>
- <CAKb7Uvgd7H0wingurzfM_kOp+ufvSFZfTRqDfATdTySNvGoMgw@mail.gmail.com>
- <7ce7aff7e8a6b05b5e86620c296f1a0f@mail2.ca>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 102860] New: Nvidia 940MX (NV118,
+ GM108) is reported as a NV117, GM107
+Date: Tue, 19 Sep 2017 13:51:43 +0000
+Message-ID: <bug-102860-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0795374943=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <7ce7aff7e8a6b05b5e86620c296f1a0f-VsQdQPVIGO4@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,74 +15,225 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: ygrishin-lists-VsQdQPVIGO4@public.gmane.org
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-R2VuZXJpY2FsbHksIHllcywgdGhlIGhhcmR3YXJlIGlzIHN1cHBvcnRlZC4KCk9uIE1vbiwgU2Vw
-IDE4LCAyMDE3IGF0IDExOjQyIFBNLCAgPHlncmlzaGluLWxpc3RzQG1haWwyLmNhPiB3cm90ZToK
-PiBJIHdpbGwgdXBkYXRlIHRoZSB0aHJlYWQgYXMgc29vbiBhcyBJIGdldCB0aGUgaGFyZHdhcmUg
-YmFjay4gSXQgd2FzCj4gc29tZXRoaW5nIHNlcmlvdXMgbGlrZSBhcnRpZmFjdHMgb3Igbm8gdmlk
-ZW8gaW4gWCBzbyB0aGF0IEkgaGFkIHRvIHJlc29ydCB0bwo+IHByb3ByaWV0YXJ5IGRyaXZlcnMu
-Cj4gU28gdGhlIHF1ZXN0aW9uIGlzIHdoZXRoZXIgdGhpcyBoYXJkd2FyZSBpcyBzdXBwb3J0ZWQg
-b3Igbm90Lgo+Cj4KPiBPbiAyMDE3LTA5LTE4IDIxOjMxLCBJbGlhIE1pcmtpbiB3cm90ZToKPj4K
-Pj4gV2hhdCBzZWVtcyB0byBiZSB0aGUgcHJvYmxlbT8gSSB0aGluayB5b3UgZm9yZ290IHRvIGlu
-Y2x1ZGUgYQo+PiBkZXNjcmlwdGlvbiBvZiB0aGUgaXNzdWVzIHlvdSdyZSBzZWVpbmcuCj4+Cj4+
-IE9uIFNlcCAxOCwgMjAxNyAxMToyMyBQTSwgPHlncmlzaGluLWxpc3RzQG1haWwyLmNhPiB3cm90
-ZToKPj4KPj4+IEhlbGxvIGxvb2tzIGxpa2UgdGhlIGRldmljZSBpcyBub3Qgc3VwcG9ydGVkLCB0
-aGUgbG9ncyBhcmUgYXMKPj4+IGZvbGxvd3M6Cj4+Pgo+Pj4gLS0tCj4+PiAjIGRtZXNnIHwgZ3Jl
-cCBub3V2ZQo+Pj4gWyAgICAyLjc4OTg5OV0gZmI6IHN3aXRjaGluZyB0byBub3V2ZWF1ZmIgZnJv
-bSBWRVNBIFZHQQo+Pj4gWyAgICAyLjc5MDA2MF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IE5WSURJ
-QSBHVDIxOCAoMGE4ZDAwYjEpCj4+PiBbICAgIDIuODE1NTk2XSBub3V2ZWF1IDAwMDA6MDE6MDAu
-MDogYmlvczogdmVyc2lvbiA3MC4xOC43Zi4wMC4xNAo+Pj4gWyAgICAyLjgxNjQyMV0gbm91dmVh
-dSAwMDAwOjAxOjAwLjA6IGJpb3M6IE9PQiAxIDAxNDUyMzAxIDAxNDUyMzAxCj4+PiBbICAgIDIu
-ODE2NDI3XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogYmlvczogT09CIDEgMjIyMzRkMjAgMjIyMzRk
-MjAKPj4+IFsgICAgMi44MTY0MzFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBiaW9zOiBPT0IgMSAy
-MjIzNGQyMCAyMjIzNGQyMAo+Pj4gWyAgICAyLjgxNjQzNF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6
-IGJpb3M6IE9PQiAxIDIyMjM0ZDIwIDIyMjM0ZDIwCj4+PiBbICAgIDIuODE3NTYwXSBub3V2ZWF1
-IDAwMDA6MDE6MDAuMDogZmI6IDEwMjQgTWlCIEREUjMKPj4+IFsgICAgMi44Njg2NTFdIG5vdXZl
-YXUgMDAwMDowMTowMC4wOiBEUk06IFZSQU06IDEwMjQgTWlCCj4+PiBbICAgIDIuODY4NjUyXSBu
-b3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBHQVJUOiAxMDQ4NTc2IE1pQgo+Pj4gWyAgICAyLjg2
-ODY1NV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogVE1EUyB0YWJsZSB2ZXJzaW9uIDIuMAo+
-Pj4gWyAgICAyLjg2ODY1N10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIHZlcnNpb24g
-NC4wCj4+PiBbICAgIDIuODY4NjU5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0
-cCAwMDogMDEwMDAzMjMKPj4+IDAwMDEwMDM0Cj4+PiBbICAgIDIuODY4NjYxXSBub3V2ZWF1IDAw
-MDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMTogMDIwMTQzMDAKPj4+IDAwMDAwMDAwCj4+PiBb
-ICAgIDIuODY4NjYyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMjogMDIw
-MjEzNjIKPj4+IDAwMDIwMDEwCj4+PiBbICAgIDIuODY4NjYzXSBub3V2ZWF1IDAwMDA6MDE6MDAu
-MDogRFJNOiBEQ0IgY29ubiAwMDogMDAwMDAzNDAKPj4+IFsgICAgMi44Njg2NjRdIG5vdXZlYXUg
-MDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAxOiAwMDAwMTA2MQo+Pj4gWyAgICAyLjg2ODY2
-NV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIGNvbm4gMDI6IDAwMDAwMTQ3Cj4+PiBb
-ICAgIDIuODY4NjY3XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwMzogMDAy
-MDIzNDYKPj4+IFsgICAgMi44Njg2NjhdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBj
-b25uIDA0OiAwMDAwMDQwMAo+Pj4gWyAgICAyLjg2ODY2OV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6
-IERSTTogRENCIGNvbm4gMDU6IDAwMDAwMjEwCj4+PiBbICAgIDIuODY4NjcwXSBub3V2ZWF1IDAw
-MDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwNjogMDAwMDAyMTEKPj4+IFsgICAgMi44Njg2NzFd
-IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDA3OiAwMDAwMDIxMwo+Pj4gWyAg
-ICAyLjg3Njg2Ml0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGh3bW9uX2RldmljZV9yZWdpc3Rlcigp
-IGlzCj4+PiBkZXByZWNhdGVkLiBQbGVhc2UgY29udmVydCB0aGUgZHJpdmVyIHRvIHVzZQo+Pj4g
-aHdtb25fZGV2aWNlX3JlZ2lzdGVyX3dpdGhfaW5mbygpLgo+Pj4gWyAgICAyLjg5OTE0Nl0gbm91
-dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogTU06IHVzaW5nIENPUFkgZm9yIGJ1ZmZlcgo+Pj4gY29w
-aWVzCj4+PiBbICAgIDIuOTQ3NDE0XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBhbGxvY2F0
-ZWQgMTM2Nng3NjggZmI6Cj4+PiAweDcwMDAwLCBibyBmZmZmOTg0ODgxMjliODAwCj4+PiBbICAg
-IDIuOTQ4NzYyXSBmYmNvbjogbm91dmVhdWZiIChmYjApIGlzIHByaW1hcnkgZGV2aWNlCj4+PiBb
-ICAgIDIuOTQ4ODcyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmIwOiBub3V2ZWF1ZmIgZnJhbWUg
-YnVmZmVyCj4+PiBkZXZpY2UKPj4+IFsgICAgMi45OTY2NjddIFtkcm1dIEluaXRpYWxpemVkIG5v
-dXZlYXUgMS4zLjEgMjAxMjA4MDEgZm9yCj4+PiAwMDAwOjAxOjAwLjAgb24gbWlub3IgMAo+Pj4g
-WyAgIDQ5LjU5MjE3Nl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERpcmVjdCBmaXJtd2FyZSBsb2Fk
-IGZvcgo+Pj4gbm91dmVhdS9udmE4X2Z1YzA4NCBmYWlsZWQgd2l0aCBlcnJvciAtMgo+Pj4gWyAg
-IDQ5LjU5MjE5N10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERpcmVjdCBmaXJtd2FyZSBsb2FkIGZv
-cgo+Pj4gbm91dmVhdS9udmE4X2Z1YzA4NGQgZmFpbGVkIHdpdGggZXJyb3IgLTIKPj4+IFsgICA0
-OS41OTIxOTldIG5vdXZlYXUgMDAwMDowMTowMC4wOiBtc3ZsZDogdW5hYmxlIHRvIGxvYWQgZmly
-bXdhcmUKPj4+IGRhdGEKPj4+IFsgICA0OS41OTIyMDZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBt
-c3ZsZDogaW5pdCBmYWlsZWQsIC0xOQo+Pj4KPj4+IDAxOjAwLjAgVkdBIGNvbXBhdGlibGUgY29u
-dHJvbGxlcjogTlZJRElBIENvcnBvcmF0aW9uIEdUMjE4TQo+Pj4gW0dlRm9yY2UgMzE1TV0gKHJl
-diBhMikKPj4+IC0tLQo+Pj4KPj4+IFRoaXMgaXMgMjAxMSBUb3NoaWJhIFNhdGVsbGl0ZS4KPj4+
-IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+PiBOb3V2
-ZWF1IG1haWxpbmcgbGlzdAo+Pj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4+IGh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdSBbMV0K
-Pj4KPj4KPj4KPj4KPj4gTGlua3M6Cj4+IC0tLS0tLQo+PiBbMV0gaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4KPgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0795374943==
+Content-Type: multipart/alternative; boundary="15058291030.Db56B63cB.29845";
+ charset="UTF-8"
+
+
+--15058291030.Db56B63cB.29845
+Date: Tue, 19 Sep 2017 13:51:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102860
+
+            Bug ID: 102860
+           Summary: Nvidia 940MX (NV118, GM108) is reported as a NV117,
+                    GM107
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: minor
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: bojescu.mihai-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 134334
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134334&action=3Dedit
+Kernel log
+
+The Nvidia 940MX video card is reported wrong (according to the CodeNames p=
+age
+and other sources such as videocardz). Should be reported as NV118 (GM108),=
+ is
+reported as NV117 (GM107). GlxGears also reports it as NV117. GlxInfo also
+reports it as NV117. Not sure if this brings other problems along.
+
+michael@Michael:~$ DRI_PRIME=3D1 glxgears -info
+Running synchronized to the vertical refresh.  The framerate should be
+approximately the same as the monitor refresh rate.
+GL_RENDERER   =3D Gallium 0.4 on NV117
+GL_VERSION    =3D 3.0 Mesa 13.0.6
+GL_VENDOR     =3D nouveau
+
+michael@Michael:~$ DRI_PRIME=3D1 glxinfo | grep render
+direct rendering: Yes
+    GLX_MESA_multithread_makecurrent, GLX_MESA_query_renderer,=20
+    GLX_MESA_multithread_makecurrent, GLX_MESA_query_renderer,=20
+Extended renderer info (GLX_MESA_query_renderer):
+OpenGL renderer string: Gallium 0.4 on NV117
+    GL_ARB_conditional_render_inverted, GL_ARB_conservative_depth,=20
+    GL_MESA_texture_signed_rgba, GL_NV_conditional_render, GL_NV_depth_clam=
+p,=20
+    GL_ARB_conditional_render_inverted, GL_ARB_conservative_depth,=20
+    GL_NV_conditional_render, GL_NV_depth_clamp, GL_NV_fog_distance,=20
+    GL_OES_element_index_uint, GL_OES_fbo_render_mipmap,
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15058291030.Db56B63cB.29845
+Date: Tue, 19 Sep 2017 13:51:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia 940MX (NV118, GM108) is reported as a NV117, GM107"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102860">102860</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nvidia 940MX (NV118, GM108) is reported as a NV117, GM107
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>minor
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>bojescu.mihai&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134334=
+" name=3D"attach_134334" title=3D"Kernel log">attachment 134334</a> <a href=
+=3D"attachment.cgi?id=3D134334&amp;action=3Dedit" title=3D"Kernel log">[det=
+ails]</a></span>
+Kernel log
+
+The Nvidia 940MX video card is reported wrong (according to the CodeNames p=
+age
+and other sources such as videocardz). Should be reported as NV118 (GM108),=
+ is
+reported as NV117 (GM107). GlxGears also reports it as NV117. GlxInfo also
+reports it as NV117. Not sure if this brings other problems along.
+
+michael&#64;Michael:~$ DRI_PRIME=3D1 glxgears -info
+Running synchronized to the vertical refresh.  The framerate should be
+approximately the same as the monitor refresh rate.
+GL_RENDERER   =3D Gallium 0.4 on NV117
+GL_VERSION    =3D 3.0 Mesa 13.0.6
+GL_VENDOR     =3D nouveau
+
+michael&#64;Michael:~$ DRI_PRIME=3D1 glxinfo | grep render
+direct rendering: Yes
+    GLX_MESA_multithread_makecurrent, GLX_MESA_query_renderer,=20
+    GLX_MESA_multithread_makecurrent, GLX_MESA_query_renderer,=20
+Extended renderer info (GLX_MESA_query_renderer):
+OpenGL renderer string: Gallium 0.4 on NV117
+    GL_ARB_conditional_render_inverted, GL_ARB_conservative_depth,=20
+    GL_MESA_texture_signed_rgba, GL_NV_conditional_render, GL_NV_depth_clam=
+p,=20
+    GL_ARB_conditional_render_inverted, GL_ARB_conservative_depth,=20
+    GL_NV_conditional_render, GL_NV_depth_clamp, GL_NV_fog_distance,=20
+    GL_OES_element_index_uint, GL_OES_fbo_render_mipmap,</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15058291030.Db56B63cB.29845--
+
+--===============0795374943==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0795374943==--
