@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102840] nouveau PGRAPH - ERROR nsource: ILLEGAL_MTHD
- nstatus: PROTECTION_FAULT
-Date: Mon, 18 Sep 2017 14:59:53 +0000
-Message-ID: <bug-102840-8800-yDgv27YMPl@http.bugs.freedesktop.org/>
-References: <bug-102840-8800@http.bugs.freedesktop.org/>
+From: ygrishin-lists-VsQdQPVIGO4@public.gmane.org
+Subject: nVidia GT218M [GeForce 315M] issues on kUbuntu 17.04
+	x86-64.
+Date: Mon, 18 Sep 2017 21:04:16 -0600
+Message-ID: <7574d8f0a7ff3cb65ed5797d5991dca9@mail2.ca>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0729474283=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102840-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,92 +19,51 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0729474283==
-Content-Type: multipart/alternative; boundary="15057467920.1Ccc4bE.3123";
- charset="UTF-8"
-
-
---15057467920.1Ccc4bE.3123
-Date: Mon, 18 Sep 2017 14:59:52 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102840
-
---- Comment #2 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-We are a few French Nouveau developers, so feel free to come to our IRC cha=
-nnel
-#nouveau on freenode, if you would rather speak French than English; those
-conversations would be held privately, as not everyone speaks French on the
-channel.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15057467920.1Ccc4bE.3123
-Date: Mon, 18 Sep 2017 14:59:52 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau PGRAPH - ERROR nsource: ILLEGAL_MTHD nstatus: PRO=
-TECTION_FAULT"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102840#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau PGRAPH - ERROR nsource: ILLEGAL_MTHD nstatus: PRO=
-TECTION_FAULT"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102840">bug 10284=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>We are a few French Nouveau developers, so feel free to come t=
-o our IRC channel
-#nouveau on freenode, if you would rather speak French than English; those
-conversations would be held privately, as not everyone speaks French on the
-channel.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15057467920.1Ccc4bE.3123--
-
---===============0729474283==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0729474283==--
+SGVsbG8gbG9va3MgbGlrZSB0aGUgZGV2aWNlIGlzIG5vdCBzdXBwb3J0ZWQsIHRoZSBsb2dzIGFy
+ZSBhcyBmb2xsb3dzOgoKLS0tCiMgZG1lc2cgfCBncmVwIG5vdXZlClsgICAgMi43ODk4OTldIGZi
+OiBzd2l0Y2hpbmcgdG8gbm91dmVhdWZiIGZyb20gVkVTQSBWR0EKWyAgICAyLjc5MDA2MF0gbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IE5WSURJQSBHVDIxOCAoMGE4ZDAwYjEpClsgICAgMi44MTU1OTZd
+IG5vdXZlYXUgMDAwMDowMTowMC4wOiBiaW9zOiB2ZXJzaW9uIDcwLjE4LjdmLjAwLjE0ClsgICAg
+Mi44MTY0MjFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBiaW9zOiBPT0IgMSAwMTQ1MjMwMSAwMTQ1
+MjMwMQpbICAgIDIuODE2NDI3XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogYmlvczogT09CIDEgMjIy
+MzRkMjAgMjIyMzRkMjAKWyAgICAyLjgxNjQzMV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGJpb3M6
+IE9PQiAxIDIyMjM0ZDIwIDIyMjM0ZDIwClsgICAgMi44MTY0MzRdIG5vdXZlYXUgMDAwMDowMTow
+MC4wOiBiaW9zOiBPT0IgMSAyMjIzNGQyMCAyMjIzNGQyMApbICAgIDIuODE3NTYwXSBub3V2ZWF1
+IDAwMDA6MDE6MDAuMDogZmI6IDEwMjQgTWlCIEREUjMKWyAgICAyLjg2ODY1MV0gbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IERSTTogVlJBTTogMTAyNCBNaUIKWyAgICAyLjg2ODY1Ml0gbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IERSTTogR0FSVDogMTA0ODU3NiBNaUIKWyAgICAyLjg2ODY1NV0gbm91dmVh
+dSAwMDAwOjAxOjAwLjA6IERSTTogVE1EUyB0YWJsZSB2ZXJzaW9uIDIuMApbICAgIDIuODY4NjU3
+XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgdmVyc2lvbiA0LjAKWyAgICAyLjg2ODY1
+OV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIG91dHAgMDA6IDAxMDAwMzIzIDAwMDEw
+MDM0ClsgICAgMi44Njg2NjFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAx
+OiAwMjAxNDMwMCAwMDAwMDAwMApbICAgIDIuODY4NjYyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDog
+RFJNOiBEQ0Igb3V0cCAwMjogMDIwMjEzNjIgMDAwMjAwMTAKWyAgICAyLjg2ODY2M10gbm91dmVh
+dSAwMDAwOjAxOjAwLjA6IERSTTogRENCIGNvbm4gMDA6IDAwMDAwMzQwClsgICAgMi44Njg2NjRd
+IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAxOiAwMDAwMTA2MQpbICAgIDIu
+ODY4NjY1XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwMjogMDAwMDAxNDcK
+WyAgICAyLjg2ODY2N10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIGNvbm4gMDM6IDAw
+MjAyMzQ2ClsgICAgMi44Njg2NjhdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25u
+IDA0OiAwMDAwMDQwMApbICAgIDIuODY4NjY5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBE
+Q0IgY29ubiAwNTogMDAwMDAyMTAKWyAgICAyLjg2ODY3MF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6
+IERSTTogRENCIGNvbm4gMDY6IDAwMDAwMjExClsgICAgMi44Njg2NzFdIG5vdXZlYXUgMDAwMDow
+MTowMC4wOiBEUk06IERDQiBjb25uIDA3OiAwMDAwMDIxMwpbICAgIDIuODc2ODYyXSBub3V2ZWF1
+IDAwMDA6MDE6MDAuMDogaHdtb25fZGV2aWNlX3JlZ2lzdGVyKCkgaXMgCmRlcHJlY2F0ZWQuIFBs
+ZWFzZSBjb252ZXJ0IHRoZSBkcml2ZXIgdG8gdXNlIApod21vbl9kZXZpY2VfcmVnaXN0ZXJfd2l0
+aF9pbmZvKCkuClsgICAgMi44OTkxNDZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IE1NOiB1
+c2luZyBDT1BZIGZvciBidWZmZXIgCmNvcGllcwpbICAgIDIuOTQ3NDE0XSBub3V2ZWF1IDAwMDA6
+MDE6MDAuMDogRFJNOiBhbGxvY2F0ZWQgMTM2Nng3NjggZmI6IAoweDcwMDAwLCBibyBmZmZmOTg0
+ODgxMjliODAwClsgICAgMi45NDg3NjJdIGZiY29uOiBub3V2ZWF1ZmIgKGZiMCkgaXMgcHJpbWFy
+eSBkZXZpY2UKWyAgICAyLjk0ODg3Ml0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZiMDogbm91dmVh
+dWZiIGZyYW1lIGJ1ZmZlciBkZXZpY2UKWyAgICAyLjk5NjY2N10gW2RybV0gSW5pdGlhbGl6ZWQg
+bm91dmVhdSAxLjMuMSAyMDEyMDgwMSBmb3IgMDAwMDowMTowMC4wIApvbiBtaW5vciAwClsgICA0
+OS41OTIxNzZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEaXJlY3QgZmlybXdhcmUgbG9hZCBmb3Ig
+Cm5vdXZlYXUvbnZhOF9mdWMwODQgZmFpbGVkIHdpdGggZXJyb3IgLTIKWyAgIDQ5LjU5MjE5N10g
+bm91dmVhdSAwMDAwOjAxOjAwLjA6IERpcmVjdCBmaXJtd2FyZSBsb2FkIGZvciAKbm91dmVhdS9u
+dmE4X2Z1YzA4NGQgZmFpbGVkIHdpdGggZXJyb3IgLTIKWyAgIDQ5LjU5MjE5OV0gbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IG1zdmxkOiB1bmFibGUgdG8gbG9hZCBmaXJtd2FyZSBkYXRhClsgICA0OS41
+OTIyMDZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBtc3ZsZDogaW5pdCBmYWlsZWQsIC0xOQoKCjAx
+OjAwLjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxlcjogTlZJRElBIENvcnBvcmF0aW9uIEdUMjE4
+TSBbR2VGb3JjZSAKMzE1TV0gKHJldiBhMikKLS0tCgpUaGlzIGlzIDIwMTEgVG9zaGliYSBTYXRl
+bGxpdGUuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
+dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
