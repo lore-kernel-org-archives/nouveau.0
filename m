@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 102860] Nvidia 940MX (NV118,
  GM108) is reported as a NV117, GM107
-Date: Tue, 19 Sep 2017 13:53:35 +0000
-Message-ID: <bug-102860-8800-QjAprAtyAo@http.bugs.freedesktop.org/>
+Date: Tue, 19 Sep 2017 13:56:21 +0000
+Message-ID: <bug-102860-8800-PqE4shVfzd@http.bugs.freedesktop.org/>
 References: <bug-102860-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0395761429=="
+Content-Type: multipart/mixed; boundary="===============1175920172=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-102860-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0395761429==
-Content-Type: multipart/alternative; boundary="15058292151.0d42DdEC.30458";
+--===============1175920172==
+Content-Type: multipart/alternative; boundary="15058293811.Cac0.31299";
  charset="UTF-8"
 
 
---15058292151.0d42DdEC.30458
-Date: Tue, 19 Sep 2017 13:53:35 +0000
+--15058293811.Cac0.31299
+Date: Tue, 19 Sep 2017 13:56:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D102860
 
---- Comment #1 from Bojescu Mihai <bojescu.mihai-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 134335
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134335&action=3Dedit
-glxgears log
+--- Comment #2 from Bojescu Mihai <bojescu.mihai-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 134336
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134336&action=3Dedit
+glxinfo log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15058292151.0d42DdEC.30458
-Date: Tue, 19 Sep 2017 13:53:35 +0000
+--15058293811.Cac0.31299
+Date: Tue, 19 Sep 2017 13:56:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia 940MX (NV118, GM108) is reported as a NV117, GM107"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102860#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102860#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia 940MX (NV118, GM108) is reported as a NV117, GM107"
@@ -74,11 +74,11 @@ t # 1</a>
 bojescu.mihai&#64;gmail.com" title=3D"Bojescu Mihai &lt;bojescu.mihai&#64;g=
 mail.com&gt;"> <span class=3D"fn">Bojescu Mihai</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134335=
-" name=3D"attach_134335" title=3D"glxgears log">attachment 134335</a> <a hr=
-ef=3D"attachment.cgi?id=3D134335&amp;action=3Dedit" title=3D"glxgears log">=
-[details]</a></span>
-glxgears log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134336=
+" name=3D"attach_134336" title=3D"glxinfo log">attachment 134336</a> <a hre=
+f=3D"attachment.cgi?id=3D134336&amp;action=3Dedit" title=3D"glxinfo log">[d=
+etails]</a></span>
+glxinfo log</pre>
         </div>
       </p>
 
@@ -92,9 +92,9 @@ glxgears log</pre>
     </body>
 </html>=
 
---15058292151.0d42DdEC.30458--
+--15058293811.Cac0.31299--
 
---===============0395761429==
+--===============1175920172==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0395761429==--
+--===============1175920172==--
