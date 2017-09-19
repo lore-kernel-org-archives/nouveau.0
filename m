@@ -1,15 +1,17 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+From: ygrishin-lists-VsQdQPVIGO4@public.gmane.org
 Subject: Re: nVidia GT218M [GeForce 315M] issues on kUbuntu 17.04
-	x86-64.
-Date: Mon, 18 Sep 2017 23:31:39 -0400
-Message-ID: <CAKb7Uvgd7H0wingurzfM_kOp+ufvSFZfTRqDfATdTySNvGoMgw@mail.gmail.com>
+ x86-64.
+Date: Mon, 18 Sep 2017 21:42:34 -0600
+Message-ID: <7ce7aff7e8a6b05b5e86620c296f1a0f@mail2.ca>
 References: <7574d8f0a7ff3cb65ed5797d5991dca9@mail2.ca>
  <CAKb7Uvh0UTVO9mxQHcjmtPtHgP0yQ0w6M=XBCxFHHY37zQ=Dgw@mail.gmail.com>
  <CAKb7Uvh0KJBVPNHO7gWZy89STLNBb+FCYkWacNLywu4kG3900A@mail.gmail.com>
+ <CAKb7Uvgd7H0wingurzfM_kOp+ufvSFZfTRqDfATdTySNvGoMgw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1175255453=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvh0KJBVPNHO7gWZy89STLNBb+FCYkWacNLywu4kG3900A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAKb7Uvgd7H0wingurzfM_kOp+ufvSFZfTRqDfATdTySNvGoMgw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,174 +21,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: ygrishin-lists-VsQdQPVIGO4@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, ibmirkin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1175255453==
-Content-Type: multipart/alternative; boundary="001a113bfbee4d48680559827fe7"
-
---001a113bfbee4d48680559827fe7
-Content-Type: text/plain; charset="UTF-8"
-
-What seems to be the problem? I think you forgot to include a description
-of the issues you're seeing.
-
-On Sep 18, 2017 11:23 PM, <ygrishin-lists-VsQdQPVIGO4@public.gmane.org> wrote:
-
-Hello looks like the device is not supported, the logs are as follows:
-
----
-# dmesg | grep nouve
-[    2.789899] fb: switching to nouveaufb from VESA VGA
-[    2.790060] nouveau 0000:01:00.0: NVIDIA GT218 (0a8d00b1)
-[    2.815596] nouveau 0000:01:00.0: bios: version 70.18.7f.00.14
-[    2.816421] nouveau 0000:01:00.0: bios: OOB 1 01452301 01452301
-[    2.816427] nouveau 0000:01:00.0: bios: OOB 1 22234d20 22234d20
-[    2.816431] nouveau 0000:01:00.0: bios: OOB 1 22234d20 22234d20
-[    2.816434] nouveau 0000:01:00.0: bios: OOB 1 22234d20 22234d20
-[    2.817560] nouveau 0000:01:00.0: fb: 1024 MiB DDR3
-[    2.868651] nouveau 0000:01:00.0: DRM: VRAM: 1024 MiB
-[    2.868652] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-[    2.868655] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
-[    2.868657] nouveau 0000:01:00.0: DRM: DCB version 4.0
-[    2.868659] nouveau 0000:01:00.0: DRM: DCB outp 00: 01000323 00010034
-[    2.868661] nouveau 0000:01:00.0: DRM: DCB outp 01: 02014300 00000000
-[    2.868662] nouveau 0000:01:00.0: DRM: DCB outp 02: 02021362 00020010
-[    2.868663] nouveau 0000:01:00.0: DRM: DCB conn 00: 00000340
-[    2.868664] nouveau 0000:01:00.0: DRM: DCB conn 01: 00001061
-[    2.868665] nouveau 0000:01:00.0: DRM: DCB conn 02: 00000147
-[    2.868667] nouveau 0000:01:00.0: DRM: DCB conn 03: 00202346
-[    2.868668] nouveau 0000:01:00.0: DRM: DCB conn 04: 00000400
-[    2.868669] nouveau 0000:01:00.0: DRM: DCB conn 05: 00000210
-[    2.868670] nouveau 0000:01:00.0: DRM: DCB conn 06: 00000211
-[    2.868671] nouveau 0000:01:00.0: DRM: DCB conn 07: 00000213
-[    2.876862] nouveau 0000:01:00.0: hwmon_device_register() is deprecated.
-Please convert the driver to use hwmon_device_register_with_info().
-[    2.899146] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
-[    2.947414] nouveau 0000:01:00.0: DRM: allocated 1366x768 fb: 0x70000,
-bo ffff98488129b800
-[    2.948762] fbcon: nouveaufb (fb0) is primary device
-[    2.948872] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
-[    2.996667] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
-minor 0
-[   49.592176] nouveau 0000:01:00.0: Direct firmware load for
-nouveau/nva8_fuc084 failed with error -2
-[   49.592197] nouveau 0000:01:00.0: Direct firmware load for
-nouveau/nva8_fuc084d failed with error -2
-[   49.592199] nouveau 0000:01:00.0: msvld: unable to load firmware data
-[   49.592206] nouveau 0000:01:00.0: msvld: init failed, -19
-
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GT218M [GeForce 315M]
-(rev a2)
----
-
-This is 2011 Toshiba Satellite.
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---001a113bfbee4d48680559827fe7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto"><div>What seems to be the problem? I think you forgot to =
-include a description of the issues you&#39;re seeing.<br><div class=3D"gma=
-il_extra"><br><div class=3D"gmail_quote">On Sep 18, 2017 11:23 PM,  &lt;<a =
-href=3D"mailto:ygrishin-lists-VsQdQPVIGO4@public.gmane.org">ygrishin-lists-VsQdQPVIGO4@public.gmane.org</a>&gt; wro=
-te:<br type=3D"attribution"><blockquote class=3D"quote" style=3D"margin:0 0=
- 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello looks like the d=
-evice is not supported, the logs are as follows:<br>
-<br>
----<br>
-# dmesg | grep nouve<br>
-[=C2=A0 =C2=A0 2.789899] fb: switching to nouveaufb from VESA VGA<br>
-[=C2=A0 =C2=A0 2.790060] nouveau 0000:01:00.0: NVIDIA GT218 (0a8d00b1)<br>
-[=C2=A0 =C2=A0 2.815596] nouveau 0000:01:00.0: bios: version 70.18.7f.00.14=
-<br>
-[=C2=A0 =C2=A0 2.816421] nouveau 0000:01:00.0: bios: OOB 1 01452301 0145230=
-1<br>
-[=C2=A0 =C2=A0 2.816427] nouveau 0000:01:00.0: bios: OOB 1 22234d20 22234d2=
-0<br>
-[=C2=A0 =C2=A0 2.816431] nouveau 0000:01:00.0: bios: OOB 1 22234d20 22234d2=
-0<br>
-[=C2=A0 =C2=A0 2.816434] nouveau 0000:01:00.0: bios: OOB 1 22234d20 22234d2=
-0<br>
-[=C2=A0 =C2=A0 2.817560] nouveau 0000:01:00.0: fb: 1024 MiB DDR3<br>
-[=C2=A0 =C2=A0 2.868651] nouveau 0000:01:00.0: DRM: VRAM: 1024 MiB<br>
-[=C2=A0 =C2=A0 2.868652] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB<br>
-[=C2=A0 =C2=A0 2.868655] nouveau 0000:01:00.0: DRM: TMDS table version 2.0<=
-br>
-[=C2=A0 =C2=A0 2.868657] nouveau 0000:01:00.0: DRM: DCB version 4.0<br>
-[=C2=A0 =C2=A0 2.868659] nouveau 0000:01:00.0: DRM: DCB outp 00: 01000323 0=
-0010034<br>
-[=C2=A0 =C2=A0 2.868661] nouveau 0000:01:00.0: DRM: DCB outp 01: 02014300 0=
-0000000<br>
-[=C2=A0 =C2=A0 2.868662] nouveau 0000:01:00.0: DRM: DCB outp 02: 02021362 0=
-0020010<br>
-[=C2=A0 =C2=A0 2.868663] nouveau 0000:01:00.0: DRM: DCB conn 00: 00000340<b=
-r>
-[=C2=A0 =C2=A0 2.868664] nouveau 0000:01:00.0: DRM: DCB conn 01: 00001061<b=
-r>
-[=C2=A0 =C2=A0 2.868665] nouveau 0000:01:00.0: DRM: DCB conn 02: 00000147<b=
-r>
-[=C2=A0 =C2=A0 2.868667] nouveau 0000:01:00.0: DRM: DCB conn 03: 00202346<b=
-r>
-[=C2=A0 =C2=A0 2.868668] nouveau 0000:01:00.0: DRM: DCB conn 04: 00000400<b=
-r>
-[=C2=A0 =C2=A0 2.868669] nouveau 0000:01:00.0: DRM: DCB conn 05: 00000210<b=
-r>
-[=C2=A0 =C2=A0 2.868670] nouveau 0000:01:00.0: DRM: DCB conn 06: 00000211<b=
-r>
-[=C2=A0 =C2=A0 2.868671] nouveau 0000:01:00.0: DRM: DCB conn 07: 00000213<b=
-r>
-[=C2=A0 =C2=A0 2.876862] nouveau 0000:01:00.0: hwmon_device_register() is d=
-eprecated. Please convert the driver to use hwmon_device_register_with_inf<=
-wbr>o().<br>
-[=C2=A0 =C2=A0 2.899146] nouveau 0000:01:00.0: DRM: MM: using COPY for buff=
-er copies<br>
-[=C2=A0 =C2=A0 2.947414] nouveau 0000:01:00.0: DRM: allocated 1366x768 fb: =
-0x70000, bo ffff98488129b800<br>
-[=C2=A0 =C2=A0 2.948762] fbcon: nouveaufb (fb0) is primary device<br>
-[=C2=A0 =C2=A0 2.948872] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer =
-device<br>
-[=C2=A0 =C2=A0 2.996667] [drm] Initialized nouveau 1.3.1 20120801 for 0000:=
-01:00.0 on minor 0<br>
-[=C2=A0 =C2=A049.592176] nouveau 0000:01:00.0: Direct firmware load for nou=
-veau/nva8_fuc084 failed with error -2<br>
-[=C2=A0 =C2=A049.592197] nouveau 0000:01:00.0: Direct firmware load for nou=
-veau/nva8_fuc084d failed with error -2<br>
-[=C2=A0 =C2=A049.592199] nouveau 0000:01:00.0: msvld: unable to load firmwa=
-re data<br>
-[=C2=A0 =C2=A049.592206] nouveau 0000:01:00.0: msvld: init failed, -19<br>
-<br>
-<br>
-01:00.0 VGA compatible controller: NVIDIA Corporation GT218M [GeForce 315M]=
- (rev a2)<br>
----<br>
-<br>
-This is 2011 Toshiba Satellite.<br>
-______________________________<wbr>_________________<br>
-Nouveau mailing list<br>
-<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" target=3D"_blank">Nouveau@=
-lists.freedesktop.org</a><br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau" rel=3D"n=
-oreferrer" target=3D"_blank">https://lists.freedesktop.org/<wbr>mailman/lis=
-tinfo/nouveau</a><br>
-</blockquote></div><br></div></div></div>
-
---001a113bfbee4d48680559827fe7--
-
---===============1175255453==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1175255453==--
+SSB3aWxsIHVwZGF0ZSB0aGUgdGhyZWFkIGFzIHNvb24gYXMgSSBnZXQgdGhlIGhhcmR3YXJlIGJh
+Y2suIEl0IHdhcyAKc29tZXRoaW5nIHNlcmlvdXMgbGlrZSBhcnRpZmFjdHMgb3Igbm8gdmlkZW8g
+aW4gWCBzbyB0aGF0IEkgaGFkIHRvIApyZXNvcnQgdG8gcHJvcHJpZXRhcnkgZHJpdmVycy4KU28g
+dGhlIHF1ZXN0aW9uIGlzIHdoZXRoZXIgdGhpcyBoYXJkd2FyZSBpcyBzdXBwb3J0ZWQgb3Igbm90
+LgoKT24gMjAxNy0wOS0xOCAyMTozMSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gV2hhdCBzZWVtcyB0
+byBiZSB0aGUgcHJvYmxlbT8gSSB0aGluayB5b3UgZm9yZ290IHRvIGluY2x1ZGUgYQo+IGRlc2Ny
+aXB0aW9uIG9mIHRoZSBpc3N1ZXMgeW91J3JlIHNlZWluZy4KPiAKPiBPbiBTZXAgMTgsIDIwMTcg
+MTE6MjMgUE0sIDx5Z3Jpc2hpbi1saXN0c0BtYWlsMi5jYT4gd3JvdGU6Cj4gCj4+IEhlbGxvIGxv
+b2tzIGxpa2UgdGhlIGRldmljZSBpcyBub3Qgc3VwcG9ydGVkLCB0aGUgbG9ncyBhcmUgYXMKPj4g
+Zm9sbG93czoKPj4gCj4+IC0tLQo+PiAjIGRtZXNnIHwgZ3JlcCBub3V2ZQo+PiBbICAgIDIuNzg5
+ODk5XSBmYjogc3dpdGNoaW5nIHRvIG5vdXZlYXVmYiBmcm9tIFZFU0EgVkdBCj4+IFsgICAgMi43
+OTAwNjBdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBOVklESUEgR1QyMTggKDBhOGQwMGIxKQo+PiBb
+ICAgIDIuODE1NTk2XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogYmlvczogdmVyc2lvbiA3MC4xOC43
+Zi4wMC4xNAo+PiBbICAgIDIuODE2NDIxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogYmlvczogT09C
+IDEgMDE0NTIzMDEgMDE0NTIzMDEKPj4gWyAgICAyLjgxNjQyN10gbm91dmVhdSAwMDAwOjAxOjAw
+LjA6IGJpb3M6IE9PQiAxIDIyMjM0ZDIwIDIyMjM0ZDIwCj4+IFsgICAgMi44MTY0MzFdIG5vdXZl
+YXUgMDAwMDowMTowMC4wOiBiaW9zOiBPT0IgMSAyMjIzNGQyMCAyMjIzNGQyMAo+PiBbICAgIDIu
+ODE2NDM0XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogYmlvczogT09CIDEgMjIyMzRkMjAgMjIyMzRk
+MjAKPj4gWyAgICAyLjgxNzU2MF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZiOiAxMDI0IE1pQiBE
+RFIzCj4+IFsgICAgMi44Njg2NTFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IFZSQU06IDEw
+MjQgTWlCCj4+IFsgICAgMi44Njg2NTJdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEdBUlQ6
+IDEwNDg1NzYgTWlCCj4+IFsgICAgMi44Njg2NTVdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06
+IFRNRFMgdGFibGUgdmVyc2lvbiAyLjAKPj4gWyAgICAyLjg2ODY1N10gbm91dmVhdSAwMDAwOjAx
+OjAwLjA6IERSTTogRENCIHZlcnNpb24gNC4wCj4+IFsgICAgMi44Njg2NTldIG5vdXZlYXUgMDAw
+MDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAwOiAwMTAwMDMyMwo+PiAwMDAxMDAzNAo+PiBbICAg
+IDIuODY4NjYxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMTogMDIwMTQz
+MDAKPj4gMDAwMDAwMDAKPj4gWyAgICAyLjg2ODY2Ml0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERS
+TTogRENCIG91dHAgMDI6IDAyMDIxMzYyCj4+IDAwMDIwMDEwCj4+IFsgICAgMi44Njg2NjNdIG5v
+dXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAwOiAwMDAwMDM0MAo+PiBbICAgIDIu
+ODY4NjY0XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwMTogMDAwMDEwNjEK
+Pj4gWyAgICAyLjg2ODY2NV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIGNvbm4gMDI6
+IDAwMDAwMTQ3Cj4+IFsgICAgMi44Njg2NjddIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERD
+QiBjb25uIDAzOiAwMDIwMjM0Ngo+PiBbICAgIDIuODY4NjY4XSBub3V2ZWF1IDAwMDA6MDE6MDAu
+MDogRFJNOiBEQ0IgY29ubiAwNDogMDAwMDA0MDAKPj4gWyAgICAyLjg2ODY2OV0gbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IERSTTogRENCIGNvbm4gMDU6IDAwMDAwMjEwCj4+IFsgICAgMi44Njg2NzBd
+IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDA2OiAwMDAwMDIxMQo+PiBbICAg
+IDIuODY4NjcxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwNzogMDAwMDAy
+MTMKPj4gWyAgICAyLjg3Njg2Ml0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGh3bW9uX2RldmljZV9y
+ZWdpc3RlcigpIGlzCj4+IGRlcHJlY2F0ZWQuIFBsZWFzZSBjb252ZXJ0IHRoZSBkcml2ZXIgdG8g
+dXNlCj4+IGh3bW9uX2RldmljZV9yZWdpc3Rlcl93aXRoX2luZm8oKS4KPj4gWyAgICAyLjg5OTE0
+Nl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogTU06IHVzaW5nIENPUFkgZm9yIGJ1ZmZlcgo+
+PiBjb3BpZXMKPj4gWyAgICAyLjk0NzQxNF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogYWxs
+b2NhdGVkIDEzNjZ4NzY4IGZiOgo+PiAweDcwMDAwLCBibyBmZmZmOTg0ODgxMjliODAwCj4+IFsg
+ICAgMi45NDg3NjJdIGZiY29uOiBub3V2ZWF1ZmIgKGZiMCkgaXMgcHJpbWFyeSBkZXZpY2UKPj4g
+WyAgICAyLjk0ODg3Ml0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZiMDogbm91dmVhdWZiIGZyYW1l
+IGJ1ZmZlcgo+PiBkZXZpY2UKPj4gWyAgICAyLjk5NjY2N10gW2RybV0gSW5pdGlhbGl6ZWQgbm91
+dmVhdSAxLjMuMSAyMDEyMDgwMSBmb3IKPj4gMDAwMDowMTowMC4wIG9uIG1pbm9yIDAKPj4gWyAg
+IDQ5LjU5MjE3Nl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERpcmVjdCBmaXJtd2FyZSBsb2FkIGZv
+cgo+PiBub3V2ZWF1L252YThfZnVjMDg0IGZhaWxlZCB3aXRoIGVycm9yIC0yCj4+IFsgICA0OS41
+OTIxOTddIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEaXJlY3QgZmlybXdhcmUgbG9hZCBmb3IKPj4g
+bm91dmVhdS9udmE4X2Z1YzA4NGQgZmFpbGVkIHdpdGggZXJyb3IgLTIKPj4gWyAgIDQ5LjU5MjE5
+OV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IG1zdmxkOiB1bmFibGUgdG8gbG9hZCBmaXJtd2FyZQo+
+PiBkYXRhCj4+IFsgICA0OS41OTIyMDZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBtc3ZsZDogaW5p
+dCBmYWlsZWQsIC0xOQo+PiAKPj4gMDE6MDAuMCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVyOiBO
+VklESUEgQ29ycG9yYXRpb24gR1QyMThNCj4+IFtHZUZvcmNlIDMxNU1dIChyZXYgYTIpCj4+IC0t
+LQo+PiAKPj4gVGhpcyBpcyAyMDExIFRvc2hpYmEgU2F0ZWxsaXRlLgo+PiBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlz
+dAo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUgWzFdCj4gCj4gCj4gCj4gTGlua3M6
+Cj4gLS0tLS0tCj4gWzFdIGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
