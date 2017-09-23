@@ -1,67 +1,38 @@
-From: Pavel Machek <pavel@ucw.cz>
-Subject: drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.c: broken emergency
- poweroff handling
-Date: Sat, 23 Sep 2017 21:04:06 +0200
-Message-ID: <20170923190406.GA21587@amd>
+From: Sergi Granell <xerpi.g.12-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau/bo: remove duplicated variable
+	initialization
+Date: Sun, 24 Sep 2017 00:39:44 +0200
+Message-ID: <20170923223944.18164-1-xerpi.g.12@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="huq684BweRXVnRxX"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie, colin.king@canonical.com, martin.peres@free.fr, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---huq684BweRXVnRxX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi!
-
-Not only it is unneccessarily complex, it is also broken; GFP_ATOMIC
-allocation can fail.. and then you fail to shut down the machine.
-
-Someone please fix this.
-
-Thanks,
-								Pavel
-
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.c
-@@ -120,6 +120,11 @@ nvkm_therm_sensor_event(struct nvkm_therm *therm, enum=
- nvkm_therm_thrs thrs,
-                        struct work_struct *work;
-
-                        work =3D kmalloc(sizeof(*work), GFP_ATOMIC);
-+                       /* FIXME:
-+                          1) this is total overkill, orderly_poweroff() al=
-ready
-+                          uses schedule_work internally
-+                          2) it would  be good to at least printk what is =
-going on
-+                       */
-                        if (work) {
-                                INIT_WORK(work, nv_poweroff_work);
-                                schedule_work(work);
-
-
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---huq684BweRXVnRxX
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAlnGsCYACgkQMOfwapXb+vJNcACgk7h8X3WoQQPlyMRVABEgQJz6
-oXIAn01Qk9OojEvV+BUAqeMM7v52yjT8
-=2gQa
------END PGP SIGNATURE-----
-
---huq684BweRXVnRxX--
+VGhlIHBhZ2VfY291bnQgdmFyaWFibGUgaW4gbnYwNF9ib19tb3ZlX20ybWYgd2FzCnJlZHVuZGFu
+dGx5IGluaXRpYWxpemVkIHR3aWNlIHdpdGggdGhlIHNhbWUgdmFsdWUuCgpTaWduZWQtb2ZmLWJ5
+OiBTZXJnaSBHcmFuZWxsIDx4ZXJwaS5nLjEyQGdtYWlsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMgfCAxIC0KIDEgZmlsZSBjaGFuZ2VkLCAxIGRlbGV0aW9u
+KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jIGIv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jCmluZGV4IDU0OGYzNmQzLi4yNzI0
+OTA3YSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYwpAQCAtOTY3LDcgKzk2Nyw2
+IEBAIG52MDRfYm9fbW92ZV9tMm1mKHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW4sIHN0cnVj
+dCB0dG1fYnVmZmVyX29iamVjdCAqYm8sCiAJT1VUX1JJTkcgIChjaGFuLCBub3V2ZWF1X2JvX21l
+bV9jdHhkbWEoYm8sIGNoYW4sIG9sZF9yZWcpKTsKIAlPVVRfUklORyAgKGNoYW4sIG5vdXZlYXVf
+Ym9fbWVtX2N0eGRtYShibywgY2hhbiwgbmV3X3JlZykpOwogCi0JcGFnZV9jb3VudCA9IG5ld19y
+ZWctPm51bV9wYWdlczsKIAl3aGlsZSAocGFnZV9jb3VudCkgewogCQlpbnQgbGluZV9jb3VudCA9
+IChwYWdlX2NvdW50ID4gMjA0NykgPyAyMDQ3IDogcGFnZV9jb3VudDsKIAotLSAKMi4xNC4xCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
+aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
