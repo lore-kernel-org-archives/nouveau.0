@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98582] nouveau on a GM108 fails to resume properly
- from suspension
-Date: Fri, 22 Sep 2017 18:59:25 +0000
-Message-ID: <bug-98582-8800-f1RaAnA6BH@http.bugs.freedesktop.org/>
-References: <bug-98582-8800@http.bugs.freedesktop.org/>
+From: Brock York <twunknown-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: FERMI clocking status and help
+Date: Sat, 23 Sep 2017 12:32:40 +1000
+Message-ID: <1506133960.3223.1.camel@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0119866415=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98582-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,132 +15,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0119866415==
-Content-Type: multipart/alternative; boundary="15061067650.f8Ab2.18127";
- charset="UTF-8"
-
-
---15061067650.f8Ab2.18127
-Date: Fri, 22 Sep 2017 18:59:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98582
-
-hoboprimate-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|FIXED                       |---
-             Status|RESOLVED                    |REOPENED
-
---- Comment #13 from hoboprimate-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Just re-opening because I'm still having some occasional failed resumes, wh=
-ere
-the display becomes visible showing gnome's lock screen, but otherwise the
-laptop remains unresponsive.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15061067650.f8Ab2.18127
-Date: Fri, 22 Sep 2017 18:59:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:hoboprima=
-te&#64;gmail.com" title=3D"hoboprimate&#64;gmail.com">hoboprimate&#64;gmail=
-.com</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - nouveau on a GM108 fails to resume properly from sus=
-pension"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>FIXED
-           </td>
-           <td>---
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>REOPENED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - nouveau on a GM108 fails to resume properly from sus=
-pension"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582#c13">Commen=
-t # 13</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - nouveau on a GM108 fails to resume properly from sus=
-pension"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98582">bug 98582<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-hoboprimate&#64;gmail.com" title=3D"hoboprimate&#64;gmail.com">hoboprimate&=
-#64;gmail.com</a>
-</span></b>
-        <pre>Just re-opening because I'm still having some occasional faile=
-d resumes, where
-the display becomes visible showing gnome's lock screen, but otherwise the
-laptop remains unresponsive.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15061067650.f8Ab2.18127--
-
---===============0119866415==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0119866415==--
+SGVsbG8KCkkgcmVjZW50bHkgcmV0aXJlZCBteSBvbGQgZGVza3RvcCB3aGljaCBoYXMgYSBOdmlk
+aWEgR2Vmb3JjZSA0ODAgR1RYIGluCml0LgpJJ20gbm93IGhvcGluZyB0byB1c2UgaXQgYXMgYSBk
+ZXZlbG9wbWVudCBib3ggZm9yIE5vdXZlYXUuCgpJIGhhdmUgbm8gZXhwZXJpZW5jZSB3aXRoIE5v
+dXZlYXUgZGV2ZWxvcG1lbnQgYnV0IGFtIGhvcGluZyB0bwp0cnkgYW5kIHdvcmsgb24gY2xvY2tp
+bmcgc3VwcG9ydCBmb3IgdGhlIDQ4MCBhbmQgYW0gd29uZGVyaW5nIGhvdyB0bwpzdGFydD8KCkkg
+aGF2ZSB3YXRjaGVkIGEgZmV3IHZpZGVvcyBpbiBwYXJ0aWN1bGFyIHRoZSBYREMyMDE0IFByb2pl
+Y3QgUmVDbG9jawpieSBSb3kgU3BsaWV0LgoKV2hlcmUgaXMgdGhlIGN1cnJlbnQgRkVSTUkgY2xv
+Y2tpbmcgY29kZT8gTXkgYmFzZSBrZXJuZWwganVzdCBnaXZlcyBtZQpmYWlsZWQgdG8gd3JpdGUg
+d2hlbiBJIGVjaG8gdG8gL3N5cy9rZXJuZWwvZGVidWcvZHJpLzAvcHN0YXRlLiBJJ3ZlCmRvd25s
+b2FkZWQgdGhlIG5vdXZlYXUgbGludXggdHJlZSBmcm9tIHNrZWdnc2Ivbm91dmVhdSBhbmQgYnVp
+bHQgdGhlCjQuMTQga2VybmVsIGJyYW5jaCBhbmQgSSBzdGlsbCBnZXQgYSB3cml0ZSBlcnJvciBz
+YXlpbmcgZnVuY3Rpb24gbm90CmltcGxlbWVudGVkLiBJcyB0aGVyZSBubyBjbG9ja2luZyBzdXBw
+b3J0IGF0IGFsbCBmb3IgRkVSTUkgY2FyZHM/CgpJJ2QgbGlrZSB0byB0cnkgYW5kIGhlbHAgd2l0
+aCBzdXBwb3J0aW5nIEZFUk1JIGNhcmRzIGJ1dCBub3Qgc3VyZSBvbgpob3cgdG8gYmVnaW4uIEFu
+eSBwb2ludGVycyBvciBoZWxwIGlzIG11Y2ggYXBwcmVjaWF0ZWQuCgpUaGFuayB5b3UKUmVnYXJk
+cyBCcm9jay4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
