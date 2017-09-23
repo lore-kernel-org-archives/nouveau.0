@@ -1,47 +1,67 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: FERMI clocking status and help
-Date: Fri, 22 Sep 2017 23:12:01 -0400
-Message-ID: <CAKb7Uvgj2PTxeqr_uqs9nV=U6ecfZF+R9HJwMcXWexLxw9_sGw@mail.gmail.com>
-References: <1506133960.3223.1.camel@gmail.com>
+From: Pavel Machek <pavel@ucw.cz>
+Subject: drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.c: broken emergency
+ poweroff handling
+Date: Sat, 23 Sep 2017 21:04:06 +0200
+Message-ID: <20170923190406.GA21587@amd>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1506133960.3223.1.camel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Brock York <twunknown-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="huq684BweRXVnRxX"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie, colin.king@canonical.com, martin.peres@free.fr, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBTZXAgMjIsIDIwMTcgYXQgMTA6MzIgUE0sIEJyb2NrIFlvcmsgPHR3dW5rbm93bkBn
-bWFpbC5jb20+IHdyb3RlOgo+IFdoZXJlIGlzIHRoZSBjdXJyZW50IEZFUk1JIGNsb2NraW5nIGNv
-ZGU/IE15IGJhc2Uga2VybmVsIGp1c3QgZ2l2ZXMgbWUKPiBmYWlsZWQgdG8gd3JpdGUgd2hlbiBJ
-IGVjaG8gdG8gL3N5cy9rZXJuZWwvZGVidWcvZHJpLzAvcHN0YXRlLiBJJ3ZlCj4gZG93bmxvYWRl
-ZCB0aGUgbm91dmVhdSBsaW51eCB0cmVlIGZyb20gc2tlZ2dzYi9ub3V2ZWF1IGFuZCBidWlsdCB0
-aGUKPiA0LjE0IGtlcm5lbCBicmFuY2ggYW5kIEkgc3RpbGwgZ2V0IGEgd3JpdGUgZXJyb3Igc2F5
-aW5nIGZ1bmN0aW9uIG5vdAo+IGltcGxlbWVudGVkLiBJcyB0aGVyZSBubyBjbG9ja2luZyBzdXBw
-b3J0IGF0IGFsbCBmb3IgRkVSTUkgY2FyZHM/CgpOb3BlLgoKPiBJJ2QgbGlrZSB0byB0cnkgYW5k
-IGhlbHAgd2l0aCBzdXBwb3J0aW5nIEZFUk1JIGNhcmRzIGJ1dCBub3Qgc3VyZSBvbgo+IGhvdyB0
-byBiZWdpbi4gQW55IHBvaW50ZXJzIG9yIGhlbHAgaXMgbXVjaCBhcHByZWNpYXRlZC4KClVudGls
-IFJveSByZXNwb25kcyB3aXRoIG1vcmUgZGV0YWlsczoKCkJlbiBoYXMgbWFkZSBhbiBlZmZvcnQg
-YXQgaHR0cHM6Ly9naXRodWIuY29tL3NrZWdnc2Ivbm91dmVhdS9jb21taXRzL2RldmVsLWNsawpS
-b3kgaGFzIG1hZGUgYW4gZWZmb3J0IGF0Cmh0dHBzOi8vZ2l0aHViLmNvbS9SU3BsaWV0L2tlcm5l
-bC1ub3V2ZWF1LW52NTAtcG0vY29tbWl0cy9tYXN0ZXIKClRoZWlyIGFwcHJvYWNoZXMgYXJlIGRp
-ZmZlcmVudCAtLSBSb3kncyBhaW0gaXMgdG8gZ2V0IHNvbWV0aGluZwp3b3JraW5nIGFuZCBidWls
-ZCB1cCwgd2hpbGUgQmVuJ3MgYWltIGlzIHRvIGdldCBldmVyeXRoaW5nIChzb3J0YSkKd29ya2lu
-ZyB1cCBmcm9udCwgZG9pbmcgYSBmdWxsIGZ1enogb2YgYWxsIHRoZSByZWxldmFudCB2YmlvcyBi
-aXRzIG9uZQpieSBvbmUuIE5laXRoZXIgaGFzIHRvbyBtdWNoIHRpbWUgdG8gcHV0IHRvd2FyZHMg
-dGhpcywgYW5kIHRoZXJlIGFyZQpzb21lIHVuZm9ydHVuYXRlIGRlcGVuZGVuY2llcy4KCkZlZWwg
-ZnJlZSB0byBqb2luIGluIG9uIHRoZSBkZXZlbG9wbWVudCBhdCAjbm91dmVhdSBvbiBpcmMuZnJl
-ZW5vZGUubmV0LgoKQ2hlZXJzLAoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+
+--huq684BweRXVnRxX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi!
+
+Not only it is unneccessarily complex, it is also broken; GFP_ATOMIC
+allocation can fail.. and then you fail to shut down the machine.
+
+Someone please fix this.
+
+Thanks,
+								Pavel
+
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.c
+@@ -120,6 +120,11 @@ nvkm_therm_sensor_event(struct nvkm_therm *therm, enum=
+ nvkm_therm_thrs thrs,
+                        struct work_struct *work;
+
+                        work =3D kmalloc(sizeof(*work), GFP_ATOMIC);
++                       /* FIXME:
++                          1) this is total overkill, orderly_poweroff() al=
+ready
++                          uses schedule_work internally
++                          2) it would  be good to at least printk what is =
+going on
++                       */
+                        if (work) {
+                                INIT_WORK(work, nv_poweroff_work);
+                                schedule_work(work);
+
+
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--huq684BweRXVnRxX
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAlnGsCYACgkQMOfwapXb+vJNcACgk7h8X3WoQQPlyMRVABEgQJz6
+oXIAn01Qk9OojEvV+BUAqeMM7v52yjT8
+=2gQa
+-----END PGP SIGNATURE-----
+
+--huq684BweRXVnRxX--
