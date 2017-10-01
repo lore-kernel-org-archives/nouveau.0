@@ -1,14 +1,12 @@
-From: Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v2] drm/nouveau: Document nouveau support for
-	Tegra in DRIVER_DESC
-Date: Sun,  1 Oct 2017 10:13:53 -0400
-Message-ID: <20171001141353.25420-1-rhyskidd@gmail.com>
-References: <20170811105616.9727-1-rhyskidd@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 102913] Nouveau on >4.12.12 not loading EDID
+Date: Sun, 01 Oct 2017 15:26:45 +0000
+Message-ID: <bug-102913-8800-5xmls4dZLc@http.bugs.freedesktop.org/>
+References: <bug-102913-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0186655450=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170811105616.9727-1-rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-102913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,26 +16,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-bm91dmVhdSBzdXBwb3J0cyB0aGUgVGVncmEgSzEgYW5kIGhpZ2hlciBhZnRlciB0aGUgU29DLWJh
-c2VkIEdQVXMgY29udmVyZ2VkCndpdGggdGhlIG1haW4gR2VGb3JjZSBHUFUgZmFtaWxpZXMuCgp2
-MjoKLSBRdWFsaWZ5IHRoYXQgc3VwcG9ydCBpcyBUZWdyYSBLMSsgKE1hcnRpbiBQZXJlcykKClNp
-Z25lZC1vZmYtYnk6IFJoeXMgS2lkZCA8cmh5c2tpZGRAZ21haWwuY29tPgpSZXZpZXdlZC1ieTog
-TWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4KQWNrZWQtYnk6IFBpZXJyZSBNb3Jl
-YXUgPHBpZXJyZS5tb3Jyb3dAZnJlZS5mcj4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2Rydi5oIHwgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRl
-bGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
-cnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmgKaW5kZXggODIyZmUx
-ZDRkMzVlLi5lYzYwZDUyNzkwZTMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYu
-aApAQCAtNSw3ICs1LDcgQEAKICNkZWZpbmUgRFJJVkVSX0VNQUlMCQkibm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmciCiAKICNkZWZpbmUgRFJJVkVSX05BTUUJCSJub3V2ZWF1IgotI2RlZmlu
-ZSBEUklWRVJfREVTQwkJIm5WaWRpYSBSaXZhL1ROVC9HZUZvcmNlL1F1YWRyby9UZXNsYSIKKyNk
-ZWZpbmUgRFJJVkVSX0RFU0MJCSJuVmlkaWEgUml2YS9UTlQvR2VGb3JjZS9RdWFkcm8vVGVzbGEv
-VGVncmEgSzErIgogI2RlZmluZSBEUklWRVJfREFURQkJIjIwMTIwODAxIgogCiAjZGVmaW5lIERS
-SVZFUl9NQUpPUgkJMQotLSAKMi4xMS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+
+--===============0186655450==
+Content-Type: multipart/alternative; boundary="15068716050.0aD6EBBFa.9066";
+ charset="UTF-8"
+
+
+--15068716050.0aD6EBBFa.9066
+Date: Sun, 1 Oct 2017 15:26:45 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102913
+
+--- Comment #1 from andrewb03-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Issue still occurs on 4.13.3 (Arch Linux default kernel).
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15068716050.0aD6EBBFa.9066
+Date: Sun, 1 Oct 2017 15:26:45 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau on &gt;4.12.12 not loading EDID"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102913#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau on &gt;4.12.12 not loading EDID"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102913">bug 10291=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+andrewb03&#64;gmail.com" title=3D"andrewb03&#64;gmail.com">andrewb03&#64;gm=
+ail.com</a>
+</span></b>
+        <pre>Issue still occurs on 4.13.3 (Arch Linux default kernel).</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15068716050.0aD6EBBFa.9066--
+
+--===============0186655450==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0186655450==--
