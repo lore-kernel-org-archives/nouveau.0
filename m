@@ -1,41 +1,52 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] bsp/g92: disable by default
-Date: Sun,  1 Oct 2017 13:52:43 -0400
-Message-ID: <20171001175243.25603-1-imirkin@alum.mit.edu>
+From: =?UTF-8?q?J=C3=A9r=C3=A9my=20Lefaure?=
+        <jeremy.lefaure@lse.epita.fr>
+Subject: [PATCH 00/18] use ARRAY_SIZE macro
+Date: Sun,  1 Oct 2017 15:30:38 -0400
+Message-ID: <20171001193101.8898-1-jeremy.lefaure@lse.epita.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+Cc: alsa-devel@alsa-project.org, amd-gfx@lists.freedesktop.org, brcm80211-dev-list@cypress.com, brcm80211-dev-list.pdl@broadcom.com, devel@acpica.org, devel@driverdev.osuosl.org, dm-devel@redhat.com, dri-devel@lists.freedesktop.org, ecryptfs@vger.kernel.org, intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, intel-wired-lan@lists.osuosl.org, Jason Gunthorpe <jgunthorpe@obsidianresearch.com>, linux-acpi@vger.kernel.org, linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-nfs@vger.kernel.org, linux-raid@vger.kernel.org, linux-rdma@vger.kernel.org, linux-scsi@vger.kernel.org, linux-usb@vger.kernel.org, linux-video@atrey.karlin.mff.cuni.cz, linux-wireless@vger.kernel.org, netdev@vger.kernel.org, nouveau@lists.
 List-Id: nouveau.vger.kernel.org
 
-RzkyJ3Mgc2VlbSB0byByZXF1aXJlIHNvbWUgYWRkaXRpb25hbCBiaXQgb2YgaW5pdGlhbGl6YXRp
-b24gYmVmb3JlIHRoZQpCU1AgZW5naW5lIGNhbiB3b3JrLiBJdCBmZWVscyBsaWtlIGNsb2NrcyBh
-cmUgbm90IHNldCB1cCBmb3IgdGhlCnVuZGVybHlpbmcgVkxEIGVuZ2luZSwgd2hpY2ggbWVhbnMg
-dGhhdCBhbGwgY29tbWFuZHMgc3VibWl0dGVkIHRvIHRoZQp4dGVuc2EgY2hpcCBlbmQgdXAgaGFu
-Z2luZy4gVlAgc2VlbXMgdG8gd29yayBmaW5lIHRob3VnaC4KClRoaXMgc3RpbGwgYWxsb3dzIHBl
-b3BsZSB0byBmb3JjZS1lbmFibGUgdGhlIGJzcCBlbmdpbmUgaWYgdGhleSB3YW50IHRvCnBsYXkg
-YXJvdW5kIHdpdGggaXQsIGJ1dCBtYWtlcyBpdCBoYXJkZXIgZm9yIHRoZSBjYXJkIHRvIGhhbmcg
-YnkKZGVmYXVsdC4KClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0
-LmVkdT4KLS0tCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9ic3AvZzg0LmMgfCAyICstCiAxIGZp
-bGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9k
-cm0vbm91dmVhdS9udmttL2VuZ2luZS9ic3AvZzg0LmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2lu
-ZS9ic3AvZzg0LmMKaW5kZXggOGUyZTI0YTcuLjQ0ZTExNmY3IDEwMDY0NAotLS0gYS9kcm0vbm91
-dmVhdS9udmttL2VuZ2luZS9ic3AvZzg0LmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
-YnNwL2c4NC5jCkBAIC0zOSw1ICszOSw1IEBAIGludAogZzg0X2JzcF9uZXcoc3RydWN0IG52a21f
-ZGV2aWNlICpkZXZpY2UsIGludCBpbmRleCwgc3RydWN0IG52a21fZW5naW5lICoqcGVuZ2luZSkK
-IHsKIAlyZXR1cm4gbnZrbV94dGVuc2FfbmV3XygmZzg0X2JzcCwgZGV2aWNlLCBpbmRleCwKLQkJ
-CQl0cnVlLCAweDEwMzAwMCwgcGVuZ2luZSk7CisJCQkJZGV2aWNlLT5jaGlwc2V0ICE9IDB4OTIs
-IDB4MTAzMDAwLCBwZW5naW5lKTsKIH0KLS0gCjIuMTMuNgoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+Hi everyone,
+Using ARRAY_SIZE improves the code readability. I used coccinelle (I
+made a change to the array_size.cocci file [1]) to find several places
+where ARRAY_SIZE could be used instead of other macros or sizeof
+division.
+
+I tried to divide the changes into a patch per subsystem (excepted for
+staging). If one of the patch should be split into several patches, let
+me know.
+
+In order to reduce the size of the To: and Cc: lines, each patch of the
+series is sent only to the maintainers and lists concerned by the patch.
+This cover letter is sent to every list concerned by this series.
+
+This series is based on linux-next next-20170929. Each patch has been
+tested by building the relevant files with W=1.
+
+This series contains the following patches:
+[PATCH 01/18] sound: use ARRAY_SIZE
+[PATCH 02/18] tracing/filter: use ARRAY_SIZE
+[PATCH 03/18] media: use ARRAY_SIZE
+[PATCH 04/18] IB/mlx5: Use ARRAY_SIZE
+[PATCH 05/18] net: use ARRAY_SIZE
+[PATCH 06/18] drm: use ARRAY_SIZE
+[PATCH 07/18] scsi: bfa: use ARRAY_SIZE
+[PATCH 08/18] ecryptfs: use ARRAY_SIZE
+[PATCH 09/18] nfsd: use ARRAY_SIZE
+[PATCH 10/18] orangefs: use ARRAY_SIZE
+[PATCH 11/18] dm space map metadata: use ARRAY_SIZE
+[PATCH 12/18] x86: use ARRAY_SIZE
+[PATCH 13/18] tpm: use ARRAY_SIZE
+[PATCH 14/18] ipmi: use ARRAY_SIZE
+[PATCH 15/18] acpi: use ARRAY_SIZE
+[PATCH 16/18] media: staging: atomisp: use ARRAY_SIZE
+[PATCH 17/18] staging: rtl8723bs: use ARRAY_SIZE
+[PATCH 18/18] staging: rtlwifi: use ARRAY_SIZE
+
+
+[1]: https://lkml.org/lkml/2017/9/13/689
