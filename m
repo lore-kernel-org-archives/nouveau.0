@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102913] Nouveau on >4.12.12 not loading EDID
-Date: Sun, 01 Oct 2017 15:26:45 +0000
-Message-ID: <bug-102913-8800-5xmls4dZLc@http.bugs.freedesktop.org/>
-References: <bug-102913-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] bsp/g92: disable by default
+Date: Sun,  1 Oct 2017 13:52:43 -0400
+Message-ID: <20171001175243.25603-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0186655450=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,85 +15,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0186655450==
-Content-Type: multipart/alternative; boundary="15068716050.0aD6EBBFa.9066";
- charset="UTF-8"
-
-
---15068716050.0aD6EBBFa.9066
-Date: Sun, 1 Oct 2017 15:26:45 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102913
-
---- Comment #1 from andrewb03-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Issue still occurs on 4.13.3 (Arch Linux default kernel).
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15068716050.0aD6EBBFa.9066
-Date: Sun, 1 Oct 2017 15:26:45 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau on &gt;4.12.12 not loading EDID"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102913#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau on &gt;4.12.12 not loading EDID"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102913">bug 10291=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-andrewb03&#64;gmail.com" title=3D"andrewb03&#64;gmail.com">andrewb03&#64;gm=
-ail.com</a>
-</span></b>
-        <pre>Issue still occurs on 4.13.3 (Arch Linux default kernel).</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15068716050.0aD6EBBFa.9066--
-
---===============0186655450==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0186655450==--
+RzkyJ3Mgc2VlbSB0byByZXF1aXJlIHNvbWUgYWRkaXRpb25hbCBiaXQgb2YgaW5pdGlhbGl6YXRp
+b24gYmVmb3JlIHRoZQpCU1AgZW5naW5lIGNhbiB3b3JrLiBJdCBmZWVscyBsaWtlIGNsb2NrcyBh
+cmUgbm90IHNldCB1cCBmb3IgdGhlCnVuZGVybHlpbmcgVkxEIGVuZ2luZSwgd2hpY2ggbWVhbnMg
+dGhhdCBhbGwgY29tbWFuZHMgc3VibWl0dGVkIHRvIHRoZQp4dGVuc2EgY2hpcCBlbmQgdXAgaGFu
+Z2luZy4gVlAgc2VlbXMgdG8gd29yayBmaW5lIHRob3VnaC4KClRoaXMgc3RpbGwgYWxsb3dzIHBl
+b3BsZSB0byBmb3JjZS1lbmFibGUgdGhlIGJzcCBlbmdpbmUgaWYgdGhleSB3YW50IHRvCnBsYXkg
+YXJvdW5kIHdpdGggaXQsIGJ1dCBtYWtlcyBpdCBoYXJkZXIgZm9yIHRoZSBjYXJkIHRvIGhhbmcg
+YnkKZGVmYXVsdC4KClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0
+LmVkdT4KLS0tCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9ic3AvZzg0LmMgfCAyICstCiAxIGZp
+bGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9k
+cm0vbm91dmVhdS9udmttL2VuZ2luZS9ic3AvZzg0LmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2lu
+ZS9ic3AvZzg0LmMKaW5kZXggOGUyZTI0YTcuLjQ0ZTExNmY3IDEwMDY0NAotLS0gYS9kcm0vbm91
+dmVhdS9udmttL2VuZ2luZS9ic3AvZzg0LmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
+YnNwL2c4NC5jCkBAIC0zOSw1ICszOSw1IEBAIGludAogZzg0X2JzcF9uZXcoc3RydWN0IG52a21f
+ZGV2aWNlICpkZXZpY2UsIGludCBpbmRleCwgc3RydWN0IG52a21fZW5naW5lICoqcGVuZ2luZSkK
+IHsKIAlyZXR1cm4gbnZrbV94dGVuc2FfbmV3XygmZzg0X2JzcCwgZGV2aWNlLCBpbmRleCwKLQkJ
+CQl0cnVlLCAweDEwMzAwMCwgcGVuZ2luZSk7CisJCQkJZGV2aWNlLT5jaGlwc2V0ICE9IDB4OTIs
+IDB4MTAzMDAwLCBwZW5naW5lKTsKIH0KLS0gCjIuMTMuNgoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
