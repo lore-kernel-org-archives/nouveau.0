@@ -1,106 +1,43 @@
-From: Pierre Moreau <pierre.morrow@free.fr>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: Document nouveau support for
- Tegra in DRIVER_DESC
-Date: Sun, 1 Oct 2017 15:39:14 +0200
-Message-ID: <20171001133914.uwyaowazyh4byxr6@pmoreau.org>
+From: Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH v2] drm/nouveau: Document nouveau support for
+	Tegra in DRIVER_DESC
+Date: Sun,  1 Oct 2017 10:13:53 -0400
+Message-ID: <20171001141353.25420-1-rhyskidd@gmail.com>
 References: <20170811105616.9727-1-rhyskidd@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1086776022=="
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20170811105616.9727-1-rhyskidd@gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Rhys Kidd <rhyskidd@gmail.com>
-Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20170811105616.9727-1-rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1086776022==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3yufvcz42gksgede"
-Content-Disposition: inline
-
-
---3yufvcz42gksgede
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-You are right, Tegra should probably be part of the description, even if we=
- do
-not support pre-K1 Tegras.
-
-Acked-by: Pierre Moreau <pierre.morrow@free.fr>
-
-On 2017-08-11 =E2=80=94 10:56, Rhys Kidd wrote:
-> nouveau supports the Tegra K1 and higher after the SoC-based GPUs converg=
-ed
-> with the main GeForce GPU families.
->=20
-> Signed-off-by: Rhys Kidd <rhyskidd@gmail.com>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_drv.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouv=
-eau/nouveau_drv.h
-> index 822fe1d4d35e..fbe42ec0a5f1 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-> @@ -5,7 +5,7 @@
->  #define DRIVER_EMAIL		"nouveau@lists.freedesktop.org"
-> =20
->  #define DRIVER_NAME		"nouveau"
-> -#define DRIVER_DESC		"nVidia Riva/TNT/GeForce/Quadro/Tesla"
-> +#define DRIVER_DESC		"nVidia Riva/TNT/GeForce/Quadro/Tesla/Tegra"
->  #define DRIVER_DATE		"20120801"
-> =20
->  #define DRIVER_MAJOR		1
-> --=20
-> 2.11.0
->=20
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---3yufvcz42gksgede
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEYgBv5JnnDxeItcEHU3l4X80+KSQFAlnQ7/4ACgkQU3l4X80+
-KSRpXQ//YWDa6VY+KXhpwihZy0aVBD/obTGs0Q9uNU3R9DQJ4MFfBMXz/5DjSUli
-y/643kyjpJNJ/IMex18H+InD9TKypSGf0QSiu7pMwtdv0A/4JW2EhuwCyjvvUVgJ
-bnXWYOqeuT96y6Bss9cbNIkCjXh7Nv8XUHoEFD+yFTmwzmZLPwLpd/7Yn4qiBF9n
-rnNsRJMuD4GgFOHyH3tIgkB7/63RheRg3HkHioPhpgPGuQEXf+BpTF/rBdGhbRlb
-f0lya737Y2IVELxN1B0X8Xnsdou9d8hrini0Orcbuf2dzUGfrRFUiEjb2AYNs4pQ
-3Re5XrFiZx9fhcd8pXgRVyOcJP+jXwpT/HMjZpV962rzW0m4xFn3gYmiyrcjqxFy
-shpndrDoBMke6TWxtQ6VLkN/YnFr+yznZA/M95EkoWbJZ50zr3h5Dh0tT/uRbbb7
-Lsk5eDoNHUpDcnBmDxyai+tfvAkeL2cPwuMLF2J7HvhYSwa6iQnlZA5RF3fin9KC
-XcG1LByMUdo3mzhupbpSTVSMgKnju7kfNRrVe5s+cZZ9X+EVCxdFnhAhUJ3cGdLB
-h/EYNVOtrYne93SqOSlVBBG29KvCKwfYtOf8HtHcJy4KKvo5RqL/orZQAkXiJLPa
-oNuJEtz6F9gaB1CiFUYQooYfII6AegRTb0qCXhKFu5WK3I2quTg=
-=mYr7
------END PGP SIGNATURE-----
-
---3yufvcz42gksgede--
-
---===============1086776022==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
-IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
-
---===============1086776022==--
+bm91dmVhdSBzdXBwb3J0cyB0aGUgVGVncmEgSzEgYW5kIGhpZ2hlciBhZnRlciB0aGUgU29DLWJh
+c2VkIEdQVXMgY29udmVyZ2VkCndpdGggdGhlIG1haW4gR2VGb3JjZSBHUFUgZmFtaWxpZXMuCgp2
+MjoKLSBRdWFsaWZ5IHRoYXQgc3VwcG9ydCBpcyBUZWdyYSBLMSsgKE1hcnRpbiBQZXJlcykKClNp
+Z25lZC1vZmYtYnk6IFJoeXMgS2lkZCA8cmh5c2tpZGRAZ21haWwuY29tPgpSZXZpZXdlZC1ieTog
+TWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4KQWNrZWQtYnk6IFBpZXJyZSBNb3Jl
+YXUgPHBpZXJyZS5tb3Jyb3dAZnJlZS5mcj4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2Rydi5oIHwgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRl
+bGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
+cnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmgKaW5kZXggODIyZmUx
+ZDRkMzVlLi5lYzYwZDUyNzkwZTMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L25vdXZlYXVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYu
+aApAQCAtNSw3ICs1LDcgQEAKICNkZWZpbmUgRFJJVkVSX0VNQUlMCQkibm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmciCiAKICNkZWZpbmUgRFJJVkVSX05BTUUJCSJub3V2ZWF1IgotI2RlZmlu
+ZSBEUklWRVJfREVTQwkJIm5WaWRpYSBSaXZhL1ROVC9HZUZvcmNlL1F1YWRyby9UZXNsYSIKKyNk
+ZWZpbmUgRFJJVkVSX0RFU0MJCSJuVmlkaWEgUml2YS9UTlQvR2VGb3JjZS9RdWFkcm8vVGVzbGEv
+VGVncmEgSzErIgogI2RlZmluZSBEUklWRVJfREFURQkJIjIwMTIwODAxIgogCiAjZGVmaW5lIERS
+SVZFUl9NQUpPUgkJMQotLSAKMi4xMS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
