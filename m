@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 102352] nv4x fan run whole time at 100%,
  stable patch existing since about 1 year, please merge
-Date: Tue, 03 Oct 2017 21:15:51 +0000
-Message-ID: <bug-102352-8800-9OgeNUFtbE@http.bugs.freedesktop.org/>
+Date: Tue, 03 Oct 2017 21:26:16 +0000
+Message-ID: <bug-102352-8800-KgNkRKhlqG@http.bugs.freedesktop.org/>
 References: <bug-102352-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0341371922=="
+Content-Type: multipart/mixed; boundary="===============0757632494=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-102352-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0341371922==
-Content-Type: multipart/alternative; boundary="15070653500.6cEF1ac0.13814";
+--===============0757632494==
+Content-Type: multipart/alternative; boundary="15070659761.1EaAD40.15395";
  charset="UTF-8"
 
 
---15070653500.6cEF1ac0.13814
-Date: Tue, 3 Oct 2017 21:15:50 +0000
+--15070659761.1EaAD40.15395
+Date: Tue, 3 Oct 2017 21:26:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D102352
 
---- Comment #5 from caguduzexi-ybJNiJ/GDrisTnJN9+BGXg@public.gmane.org ---
-Created attachment 134645
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134645&action=3Dedit
-NV43 Quadro FX550 Vbios dump
+--- Comment #6 from caguduzexi-ybJNiJ/GDrisTnJN9+BGXg@public.gmane.org ---
+Thanks to mupuf. He find out that the reason for not working fan is:
 
-Here is a VBIOS dump of a Nvidia Quadro FX550 card. I got it by running=20
-"cp /sys/kernel/debug/dri/0/vbios.rom  ./vbios_fx550.rom"
+nouveau 0000:08:00.0: therm: parsing the fan table failed
+
+
+This have been displayed by adding "nouveau.debug=3Ddebug" to the kernel bo=
+ot
+line.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15070653500.6cEF1ac0.13814
-Date: Tue, 3 Oct 2017 21:15:50 +0000
+--15070659761.1EaAD40.15395
+Date: Tue, 3 Oct 2017 21:26:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,8 +69,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - nv4x fan run whole time at 100%, stable patch existing si=
 nce about 1 year, please merge"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102352#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102352#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nv4x fan run whole time at 100%, stable patch existing si=
@@ -79,14 +81,15 @@ nce about 1 year, please merge"
 caguduzexi&#64;go2vpn.net" title=3D"caguduzexi&#64;go2vpn.net">caguduzexi&#=
 64;go2vpn.net</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134645=
-" name=3D"attach_134645" title=3D"NV43 Quadro FX550 Vbios dump">attachment =
-134645</a> <a href=3D"attachment.cgi?id=3D134645&amp;action=3Dedit" title=
-=3D"NV43 Quadro FX550 Vbios dump">[details]</a></span>
-NV43 Quadro FX550 Vbios dump
+        <pre>Thanks to mupuf. He find out that the reason for not working f=
+an is:
 
-Here is a VBIOS dump of a Nvidia Quadro FX550 card. I got it by running=20
-&quot;cp /sys/kernel/debug/dri/0/vbios.rom  ./vbios_fx550.rom&quot;</pre>
+nouveau 0000:08:00.0: therm: parsing the fan table failed
+
+
+This have been displayed by adding &quot;nouveau.debug=3Ddebug&quot; to the=
+ kernel boot
+line.</pre>
         </div>
       </p>
 
@@ -100,9 +103,9 @@ Here is a VBIOS dump of a Nvidia Quadro FX550 card. I got it by running=20
     </body>
 </html>=
 
---15070653500.6cEF1ac0.13814--
+--15070659761.1EaAD40.15395--
 
---===============0341371922==
+--===============0757632494==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0341371922==--
+--===============0757632494==--
