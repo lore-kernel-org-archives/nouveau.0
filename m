@@ -1,44 +1,109 @@
-From: =?UTF-8?B?SsOpcsOpbXk=?= Lefaure <jeremy.lefaure@lse.epita.fr>
-Subject: Re: [PATCH 00/18] use ARRAY_SIZE macro
-Date: Mon, 2 Oct 2017 21:33:12 -0400
-Message-ID: <20171002213312.3f904290@blatinox-laptop.localdomain>
-References: <20171001193101.8898-1-jeremy.lefaure@lse.epita.fr>
- <20171001220131.GA11812@eros>
- <20171001205220.10b78086@blatinox-laptop.localdomain>
- <20171002053554.GA28743@kroah.com>
- <20171002192224.GD1903@fieldses.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 102349] nv4x crashing with plasmashell - gdb log
+	included
+Date: Tue, 03 Oct 2017 16:05:02 +0000
+Message-ID: <bug-102349-8800-8ZnOMCM9FN@http.bugs.freedesktop.org/>
+References: <bug-102349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <openipmi-developer-bounces@lists.sourceforge.net>
-In-Reply-To: <20171002192224.GD1903@fieldses.org>
-List-Unsubscribe: <https://lists.sourceforge.net/lists/options/openipmi-developer>,
- <mailto:openipmi-developer-request@lists.sourceforge.net?subject=unsubscribe>
-List-Archive: <http://sourceforge.net/mailarchive/forum.php?forum_name=openipmi-developer>
-List-Post: <mailto:openipmi-developer@lists.sourceforge.net>
-List-Help: <mailto:openipmi-developer-request@lists.sourceforge.net?subject=help>
-List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/openipmi-developer>,
- <mailto:openipmi-developer-request@lists.sourceforge.net?subject=subscribe>
-Errors-To: openipmi-developer-bounces@lists.sourceforge.net
-To: "J. Bruce Fields" <bfields@fieldses.org>
-Cc: alsa-devel@alsa-project.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, dm-devel@redhat.com, brcm80211-dev-list@cypress.com, devel@driverdev.osuosl.org, linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org, amd-gfx@lists.freedesktop.org, Jason Gunthorpe <jgunthorpe@obsidianresearch.com>, linux-acpi@vger.kernel.org, linux-video@atrey.karlin.mff.cuni.cz, intel-wired-lan@lists.osuosl.org, Greg KH <greg@kroah.com>, linux-media@vger.kernel.org, intel-gfx@lists.freedesktop.org, ecryptfs@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com, linux-raid@vger.kernel.org, openipmi-developer@lists.sourceforge.net, intel-gvt-dev@lists.freedesktop.org, devel@acpica.org, linux-nfs@vger.kernel.org, jlayton@redhat.com, netdev@vger.kernel.org, linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1405856864=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-102349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAyIE9jdCAyMDE3IDE1OjIyOjI0IC0wNDAwCmJmaWVsZHNAZmllbGRzZXMub3JnIChK
-LiBCcnVjZSBGaWVsZHMpIHdyb3RlOgoKPiBNYWlubHkgSSdkIGp1c3QgbGlrZSB0byBrbm93IHdo
-aWNoIHlvdSdyZSBhc2tpbmcgZm9yLiAgRG8geW91IHdhbnQgbWUgdG8KPiBhcHBseSB0aGlzLCBv
-ciB0byBBQ0sgaXQgc28gc29tZW9uZSBlbHNlIGNhbj8gIElmIGl0J3Mgc2VudCBhcyBhIHNlcmll
-cwo+IEkgdGVuZCB0byBhc3N1bWUgdGhlIGxhdHRlci4KPiAKPiBCdXQgaW4gdGhpcyBjYXNlIEkn
-bSBhc3N1bWluZyBpdCdzIHRoZSBmb3JtZXIsIHNvIEknbGwgcGljayB1cCB0aGUgbmZzZAo+IG9u
-ZS4uLi4KQ291bGQgeW91IHRvIGFwcGx5IHRoZSBORlNEIHBhdGNoICgibmZzZDogdXNlIEFSUkFZ
-X1NJWkUiKSB3aXRoIHRoZQpSZXZpZXdlZC1ieTogSmVmZiBMYXl0b24gPGpsYXl0b25AcmVkaGF0
-LmNvbT4pIHRhZyBwbGVhc2UgPwoKVGhpcyBwYXRjaCBpcyBhbiBpbmRpdmlkdWFsIHBhdGNoIGFu
-ZCBpdCBzaG91bGQgbm90IGhhdmUgYmVlbiBzZW50IGluIGEKc2VyaWVzIChzb3JyeSBhYm91dCB0
-aGF0KS4KClRoYW5rIHlvdSwKSsOpcsOpbXkKCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpDaGVjayBv
-dXQgdGhlIHZpYnJhbnQgdGVjaCBjb21tdW5pdHkgb24gb25lIG9mIHRoZSB3b3JsZCdzIG1vc3QK
-ZW5nYWdpbmcgdGVjaCBzaXRlcywgU2xhc2hkb3Qub3JnISBodHRwOi8vc2RtLmxpbmsvc2xhc2hk
-b3QKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KT3Blbmlw
-bWktZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApPcGVuaXBtaS1kZXZlbG9wZXJAbGlzdHMuc291cmNl
-Zm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL29w
-ZW5pcG1pLWRldmVsb3Blcgo=
+
+--===============1405856864==
+Content-Type: multipart/alternative; boundary="15070467020.36C881.30464";
+ charset="UTF-8"
+
+
+--15070467020.36C881.30464
+Date: Tue, 3 Oct 2017 16:05:02 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102349
+
+--- Comment #7 from caguduzexi-ybJNiJ/GDrisTnJN9+BGXg@public.gmane.org ---
+imirkin, i had send you additional on private (because of data privacy) a t=
+race
+of the problem. You told that you have got it.
+
+What are the plans on fixing this bug?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15070467020.36C881.30464
+Date: Tue, 3 Oct 2017 16:05:02 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349#c7">Commen=
+t # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+caguduzexi&#64;go2vpn.net" title=3D"caguduzexi&#64;go2vpn.net">caguduzexi&#=
+64;go2vpn.net</a>
+</span></b>
+        <pre>imirkin, i had send you additional on private (because of data=
+ privacy) a trace
+of the problem. You told that you have got it.
+
+What are the plans on fixing this bug?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15070467020.36C881.30464--
+
+--===============1405856864==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1405856864==--
