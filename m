@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103132] GTX 1060 6GB corrupts screen drawing in
- Konsole and other apps
-Date: Sat, 07 Oct 2017 10:20:03 +0000
-Message-ID: <bug-103132-8800-sA46VLfezW@http.bugs.freedesktop.org/>
-References: <bug-103132-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101587] [BISECTED][REGRESSION] Nouveau kernel module
+ (>4.10) on NVA8 renders the system unusable
+Date: Sat, 07 Oct 2017 12:18:51 +0000
+Message-ID: <bug-101587-8800-hmktI3R1dY@http.bugs.freedesktop.org/>
+References: <bug-101587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2101508665=="
+Content-Type: multipart/mixed; boundary="===============0644069660=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103132-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2101508665==
-Content-Type: multipart/alternative; boundary="15073716020.C2fa09D.14059";
+--===============0644069660==
+Content-Type: multipart/alternative; boundary="15073787310.1eAAc0EcB.13482";
  charset="UTF-8"
 
 
---15073716020.C2fa09D.14059
-Date: Sat, 7 Oct 2017 10:20:02 +0000
+--15073787310.1eAAc0EcB.13482
+Date: Sat, 7 Oct 2017 12:18:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103132
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101587
 
-barry-LJgwZTY9oXz8xeUnPfcrCQ@public.gmane.org changed:
+Daniel Otero <otero.o.daniel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|GTX 1060 6GB corrupts       |GTX 1060 6GB corrupts
-                   |screen drawing in Kconsole  |screen drawing in Konsole
-                   |and other apps              |and other apps
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
+
+--- Comment #4 from Daniel Otero <otero.o.daniel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The bug has been fixed some time ago and no longer occurs.
+
+Thanks to all people involved.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15073716020.C2fa09D.14059
-Date: Sat, 7 Oct 2017 10:20:02 +0000
+--15073787310.1eAAc0EcB.13482
+Date: Sat, 7 Oct 2017 12:18:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,16 +64,16 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:barry&#64=
-;barrys-emacs.org" title=3D"barry&#64;barrys-emacs.org">barry&#64;barrys-em=
-acs.org</a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:otero.o.d=
+aniel&#64;gmail.com" title=3D"Daniel Otero &lt;otero.o.daniel&#64;gmail.com=
+&gt;"> <span class=3D"fn">Daniel Otero</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
- apps"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132">bug 10313=
-2</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [BISECTED][REGRESSION] Nouveau kernel module (=
+&gt;4.10) on NVA8 renders the system unusable"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101587">bug 10158=
+7</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -79,15 +83,42 @@ acs.org</a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>GTX 1060 6GB corrupts screen drawing in Kconsole and other a=
-pps
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
            </td>
-           <td>GTX 1060 6GB corrupts screen drawing in Konsole and other ap=
-ps
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [BISECTED][REGRESSION] Nouveau kernel module (=
+&gt;4.10) on NVA8 renders the system unusable"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101587#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [BISECTED][REGRESSION] Nouveau kernel module (=
+&gt;4.10) on NVA8 renders the system unusable"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101587">bug 10158=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+otero.o.daniel&#64;gmail.com" title=3D"Daniel Otero &lt;otero.o.daniel&#64;=
+gmail.com&gt;"> <span class=3D"fn">Daniel Otero</span></a>
+</span></b>
+        <pre>The bug has been fixed some time ago and no longer occurs.
+
+Thanks to all people involved.</pre>
+        </div>
       </p>
 
 
@@ -100,9 +131,9 @@ ps
     </body>
 </html>=
 
---15073716020.C2fa09D.14059--
+--15073787310.1eAAc0EcB.13482--
 
---===============2101508665==
+--===============0644069660==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +143,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2101508665==--
+--===============0644069660==--
