@@ -1,14 +1,16 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: [RFC PATCH 08/29] clk: We should pass the pstate id
- around not the index in the list
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RFC PATCH 06/29] clk: Make pstate a pointer to
+	nvkm_pstate
 Date: Sun, 8 Oct 2017 16:23:23 +0200
-Message-ID: <20171008142323.ybxla2z2yqsd6wfk@pmoreau.org>
+Message-ID: <CAEXux-Y1-ax9J9v5Optf=q_qbFie8W6_D4aPRALO8nEkHPjNog@mail.gmail.com>
 References: <20170915171129.5009-1-karolherbst@gmail.com>
- <20170915171129.5009-9-karolherbst@gmail.com>
+ <20170915171129.5009-7-karolherbst@gmail.com>
+ <20171008114733.ypjk3vyimyj3bt6i@pmoreau.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2085431149=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170915171129.5009-9-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <20171008114733.ypjk3vyimyj3bt6i-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,261 +20,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2085431149==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yq4c4lsga7slhexl"
-Content-Disposition: inline
-
-
---yq4c4lsga7slhexl
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 2017-09-15 =E2=80=94 17:11, Karol Herbst wrote:
-> This makes the code easier, because we can compare the id with
-> pstate->pstate and saves us from the trouble of iterating over the pstates
-> to match the index.
-
-I don=E2=80=99t remember whether I have already done  this comment before, =
-but I am not
-sure where your iterating over the pstates savings are, as in this patch at
-least, you iterate as much as you did before.
-
-A few more comments below
-
-> v2: reword commit message
->=20
-> Signed-off-by: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Reviewed-by: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-> ---
->  drm/nouveau/nouveau_debugfs.c      |  6 +--
->  drm/nouveau/nvkm/subdev/clk/base.c | 78 +++++++++++++++++++-------------=
-------
->  2 files changed, 41 insertions(+), 43 deletions(-)
->=20
-> diff --git a/drm/nouveau/nouveau_debugfs.c b/drm/nouveau/nouveau_debugfs.c
-> index 963a4dba..27281c4e 100644
-> --- a/drm/nouveau/nouveau_debugfs.c
-> +++ b/drm/nouveau/nouveau_debugfs.c
-> @@ -96,11 +96,11 @@ nouveau_debugfs_pstate_get(struct seq_file *m, void *=
-data)
->  		} while (attr.index);
-> =20
->  		if (state >=3D 0) {
-> -			if (info.ustate_ac =3D=3D state)
-> +			if (info.ustate_ac =3D=3D attr.state)
->  				seq_printf(m, " AC");
-> -			if (info.ustate_dc =3D=3D state)
-> +			if (info.ustate_dc =3D=3D attr.state)
->  				seq_printf(m, " DC");
-> -			if (info.pstate =3D=3D state)
-> +			if (info.pstate =3D=3D attr.state)
->  				seq_printf(m, " *");
->  		} else {
->  			if (info.ustate_ac < -1)
-> diff --git a/drm/nouveau/nvkm/subdev/clk/base.c b/drm/nouveau/nvkm/subdev=
-/clk/base.c
-> index d37c13b7..1d71bf09 100644
-> --- a/drm/nouveau/nvkm/subdev/clk/base.c
-> +++ b/drm/nouveau/nvkm/subdev/clk/base.c
-> @@ -272,23 +272,26 @@ nvkm_cstate_new(struct nvkm_clk *clk, int idx, stru=
-ct nvkm_pstate *pstate)
->   * P-States
->   ***********************************************************************=
-******/
->  static int
-> -nvkm_pstate_prog(struct nvkm_clk *clk, int pstatei)
-> +nvkm_pstate_prog(struct nvkm_clk *clk, int pstateid)
->  {
->  	struct nvkm_subdev *subdev =3D &clk->subdev;
->  	struct nvkm_fb *fb =3D subdev->device->fb;
->  	struct nvkm_pci *pci =3D subdev->device->pci;
->  	struct nvkm_pstate *pstate;
-> -	int ret, idx =3D 0;
-> +	int ret;
-> =20
-> -	if (pstatei =3D=3D NVKM_CLK_PSTATE_DEFAULT)
-> +	if (pstateid =3D=3D NVKM_CLK_PSTATE_DEFAULT)
->  		return 0;
-> =20
->  	list_for_each_entry(pstate, &clk->states, head) {
-> -		if (idx++ =3D=3D pstatei)
-> +		if (pstate->pstate =3D=3D pstateid)
->  			break;
->  	}
-> =20
-> -	nvkm_debug(subdev, "setting performance state %d\n", pstatei);
-> +	if (!pstate)
-> +		return -EINVAL;
-> +
-> +	nvkm_debug(subdev, "setting performance state %x\n", pstateid);
->  	clk->pstate =3D pstate;
-> =20
->  	nvkm_pcie_set_link(pci, pstate->pcie_speed, pstate->pcie_width);
-> @@ -329,7 +332,6 @@ nvkm_clk_update_work(struct work_struct *work)
->  	pstate =3D clk->pwrsrc ? clk->ustate_ac : clk->ustate_dc;
->  	if (clk->state_nr && pstate !=3D -1) {
->  		pstate =3D (pstate < 0) ? clk->astate : pstate;
-> -		pstate =3D min(pstate, clk->state_nr - 1);
->  	} else {
->  		pstate =3D NVKM_CLK_PSTATE_DEFAULT;
->  	}
-> @@ -490,33 +492,10 @@ nvkm_pstate_new(struct nvkm_clk *clk, int idx)
->  /***********************************************************************=
-*******
->   * Adjustment triggers
->   ***********************************************************************=
-******/
-> -static int
-> -nvkm_clk_ustate_update(struct nvkm_clk *clk, int req)
-> -{
-> -	struct nvkm_pstate *pstate;
-> -	int i =3D 0;
-> -
-> -	if (!clk->allow_reclock)
-> -		return -ENOSYS;
-> -
-> -	if (req !=3D -1 && req !=3D -2) {
-> -		list_for_each_entry(pstate, &clk->states, head) {
-> -			if (pstate->pstate =3D=3D req)
-> -				break;
-> -			i++;
-> -		}
-> -
-> -		if (pstate->pstate !=3D req)
-> -			return -EINVAL;
-> -		req =3D i;
-> -	}
-> -
-> -	return req + 2;
-> -}
-> -
->  static int
->  nvkm_clk_nstate(struct nvkm_clk *clk, const char *mode, int arglen)
->  {
-> +	struct nvkm_pstate *pstate;
->  	int ret =3D 1;
-> =20
->  	if (clk->allow_reclock && !strncasecmpz(mode, "auto", arglen))
-> @@ -528,27 +507,46 @@ nvkm_clk_nstate(struct nvkm_clk *clk, const char *m=
-ode, int arglen)
-> =20
->  		((char *)mode)[arglen] =3D '\0';
->  		if (!kstrtol(mode, 0, &v)) {
-> -			ret =3D nvkm_clk_ustate_update(clk, v);
-> +			ret =3D v;
->  			if (ret < 0)
->  				ret =3D 1;
->  		}
->  		((char *)mode)[arglen] =3D save;
->  	}
-> =20
-> -	return ret - 2;
-> +	if (ret < 0)
-> +		return ret;
-
-Don=E2=80=99t you need to check for `clk->allow_reclock`, as it was done in
-`nvkm_clk_ustate_update()`?
-
-> +
-> +	list_for_each_entry(pstate, &clk->states, head) {
-> +		if (pstate->pstate =3D=3D ret)
-> +			return ret;
-> +	}
-> +	return -EINVAL;
->  }
-> =20
->  int
->  nvkm_clk_ustate(struct nvkm_clk *clk, int req, int pwr)
->  {
-> -	int ret =3D nvkm_clk_ustate_update(clk, req);
-> -	if (ret >=3D 0) {
-> -		if (ret -=3D 2, pwr) clk->ustate_ac =3D ret;
-> -		else		   clk->ustate_dc =3D ret;
-> -		clk->exp_cstateid =3D NVKM_CLK_CSTATE_HIGHEST;
-> -		return nvkm_clk_update(clk, true);
-> +	struct nvkm_pstate *pstate;
-> +	bool valid =3D false;
-
-Same here, don=E2=80=99t you need to check for `clk->allow_reclock`, as it =
-was done in
-`nvkm_clk_ustate_update()`?
-
-> +
-> +	list_for_each_entry(pstate, &clk->states, head) {
-> +		if (pstate->pstate =3D=3D req) {
-> +			valid =3D true;
-> +			break;
-> +		}
->  	}
-> -	return ret;
-> +
-> +	if (!valid)
-> +		return -EINVAL;
-> +
-> +	if (pwr)
-> +		clk->ustate_ac =3D req;
-> +	else
-> +		clk->ustate_dc =3D req;
-> +
-> +	clk->exp_cstateid =3D NVKM_CLK_CSTATE_HIGHEST;
-> +	return nvkm_clk_update(clk, true);
->  }
-> =20
->  int
-> @@ -627,7 +625,7 @@ nvkm_clk_init(struct nvkm_subdev *subdev)
->  	if (clk->func->init)
->  		return clk->func->init(clk);
-> =20
-> -	clk->astate =3D clk->state_nr - 1;
-> +	clk->astate =3D NVKM_CLK_PSTATE_DEFAULT;
->  	clk->pstate =3D NULL;
->  	clk->exp_cstateid =3D NVKM_CLK_CSTATE_DEFAULT;
->  	clk->cstate =3D NULL;
-> --=20
-> 2.14.1
->=20
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---yq4c4lsga7slhexl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEYgBv5JnnDxeItcEHU3l4X80+KSQFAlnaNNgACgkQU3l4X80+
-KSR8IA/+NPKerOu4F940bnk6SequwOSipwSfTtlqw9VJ2deZXzSJ8V6dS1fzGq9i
-hfcBddynJOaftI4fm8cFIv8N2NovDmaYFo9rcJyda5zJ9FR1u7jF32j/C2VZtYw9
-C257KgXLytilV0X4ozkCVb9OMAY0238oF84jSSOkZgXeIQ8GyqxRmuJElA3xxB0J
-N9BSb7BlgiY4y1LwmyykCcimeydMQy8jXg3VsQqLcRB+OHA33XxFMx96kdZt7vj5
-1vXth1zzTSb1g5+M3mCYKjgnMLlyyJLwwOUU1jz+0VtPrPaFWiY5g1YWW6xYc2sX
-IGOSCIZCQ7in4sEUVlg25SYg25o89BZwHV9Ha0C0ZJYBJmoG27kB3eLF/sbDddqi
-j226T/9VhbNi078F/hBUathqzMTiWjB8unXxbIz9TsrdGvILTSqSQYXFEp0alYaP
-3tkFJyzRbLizV3IaRc2OjvEnqZi47vgKAmfHcZUW9n7W83rZwWRiH8fTuKoL+Htq
-2wB+UfUr2XaZFP1aP6BNxLz9WAWmapuni7SD/+9vMTq+gL6ik6OvZomOcwhEh23w
-IVGcKghUnSlDQslVK5NgonsbawQ/fZCaTgGDF/apq8wqYO012z3wAGpJN1e+tJSP
-2aHxyg3O4Mz+J/Xan2qE0UvTzVZDImgzARc/Fkh7ZFIc9rYSoPg=
-=vnH7
------END PGP SIGNATURE-----
-
---yq4c4lsga7slhexl--
-
---===============2085431149==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2085431149==--
+T24gU3VuLCBPY3QgOCwgMjAxNyBhdCAxOjQ3IFBNLCBQaWVycmUgTW9yZWF1IDxwaWVycmUubW9y
+cm93QGZyZWUuZnI+IHdyb3RlOgo+IFRoZSBwYXRjaCBzZWVtcyBmaW5lIGJ1dCBJIGZvdW5kIGl0
+IHN1cGVyIGNvbmZ1c2luZyB0aGF0IHNvbWV0aW1lcyBgcHN0YXRlYCBpcwo+IGEgcG9pbnRlciAo
+Zm9yIGV4YW1wbGUgYGNsay0+cHN0YXRlYCksIHNvbWV0aW1lcyBpdCBpcyBhbiBpbnQgKGZvciBl
+eGFtcGxlCj4gYGFyZ3MtPnYwLnBzdGF0ZWApLgo+Cgp5ZWFoIEkgc3RpbGwgcGxhbiB0byBjbGVh
+biB0aGUgbmFtZXMgdXAgd2hlbiBJIGZpbmQgc29tZSB0aW1lIHRvCmZpbmlzaCB0aG9zZSBwYXRj
+aGVzIGZvciByZWFsCgo+IE9uIDIwMTctMDktMTUg4oCUIDE3OjExLCBLYXJvbCBIZXJic3Qgd3Jv
+dGU6Cj4+IFdlIHdpbGwgYWNjZXNzIHRoZSBjdXJyZW50IGNzdGF0ZSBhdCBsZWFzdCBldmVyeSBz
+ZWNvbmQgYW5kIHRoaXMgc2F2ZXMgdXMKPj4gc29tZSBDUFUgY3ljbGVzIGxvb2tpbmcgdGhlbSB1
+cCBldmVyeSBzZWNvbmQuCj4+Cj4+IHYyOiBSZXdvcmRpbmcgY29tbWl0IG1lc3NhZ2UuCj4+Cj4+
+IFNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgo+PiBS
+ZXZpZXdlZC1ieTogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4KPj4gLS0tCj4+
+ICBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Nsay5oIHwgIDQgKysrLQo+PiAgZHJt
+L25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2N0cmwuYyB8ICA1ICsrKystCj4+ICBkcm0vbm91
+dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jICAgIHwgMTcgKysrKysrKysrKysrLS0tLS0KPj4g
+IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9nazIwYS5jICAgfCAxOCArKysrKysrLS0tLS0t
+LS0tLS0KPj4gIDQgZmlsZXMgY2hhbmdlZCwgMjYgaW5zZXJ0aW9ucygrKSwgMTggZGVsZXRpb25z
+KC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Ns
+ay5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9jbGsuaAo+PiBpbmRleCAxMzQw
+ZjViOC4uZWM1MzdlMDggMTAwNjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9z
+dWJkZXYvY2xrLmgKPj4gKysrIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9jbGsu
+aAo+PiBAQCAtMTAsNiArMTAsOCBAQCBzdHJ1Y3QgbnZrbV9wbGxfdmFsczsKPj4gICNkZWZpbmUg
+TlZLTV9DTEtfQ1NUQVRFX0JBU0UgICAgLTIgLyogcHN0YXRlIGJhc2UgKi8KPj4gICNkZWZpbmUg
+TlZLTV9DTEtfQ1NUQVRFX0hJR0hFU1QgLTMgLyogaGlnaGVzdCBwb3NzaWJsZSAqLwo+Pgo+PiAr
+I2RlZmluZSBOVktNX0NMS19QU1RBVEVfREVGQVVMVCAtMQo+PiArCj4+ICBlbnVtIG52X2Nsa19z
+cmMgewo+PiAgICAgICBudl9jbGtfc3JjX2NyeXN0YWwsCj4+ICAgICAgIG52X2Nsa19zcmNfaHJl
+ZiwKPj4gQEAgLTk1LDcgKzk3LDcgQEAgc3RydWN0IG52a21fY2xrIHsKPj4KPj4gICAgICAgc3Ry
+dWN0IG52a21fbm90aWZ5IHB3cnNyY19udGZ5Owo+PiAgICAgICBpbnQgcHdyc3JjOwo+PiAtICAg
+ICBpbnQgcHN0YXRlOyAvKiBjdXJyZW50ICovCj4+ICsgICAgIHN0cnVjdCBudmttX3BzdGF0ZSAq
+cHN0YXRlOyAvKiBjdXJyZW50ICovCj4+ICAgICAgIGludCB1c3RhdGVfYWM7IC8qIHVzZXItcmVx
+dWVzdGVkICgtMSBkaXNhYmxlZCwgLTIgcGVyZm1vbikgKi8KPj4gICAgICAgaW50IHVzdGF0ZV9k
+YzsgLyogdXNlci1yZXF1ZXN0ZWQgKC0xIGRpc2FibGVkLCAtMiBwZXJmbW9uKSAqLwo+PiAgICAg
+ICBpbnQgYXN0YXRlOyAvKiBwZXJmbW9uIGFkanVzdG1lbnQgKGJhc2UpICovCj4+IGRpZmYgLS1n
+aXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvY3RybC5jIGIvZHJtL25vdXZlYXUv
+bnZrbS9lbmdpbmUvZGV2aWNlL2N0cmwuYwo+PiBpbmRleCBiMGVjZTcxYS4uZGE3MDYyNmMgMTAw
+NjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9jdHJsLmMKPj4gKysr
+IGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2N0cmwuYwo+PiBAQCAtNTIsNyArNTIs
+MTAgQEAgbnZrbV9jb250cm9sX210aGRfcHN0YXRlX2luZm8oc3RydWN0IG52a21fY29udHJvbCAq
+Y3RybCwgdm9pZCAqZGF0YSwgdTMyIHNpemUpCj4+ICAgICAgICAgICAgICAgYXJncy0+djAudXN0
+YXRlX2FjID0gY2xrLT51c3RhdGVfYWM7Cj4+ICAgICAgICAgICAgICAgYXJncy0+djAudXN0YXRl
+X2RjID0gY2xrLT51c3RhdGVfZGM7Cj4+ICAgICAgICAgICAgICAgYXJncy0+djAucHdyc3JjID0g
+Y2xrLT5wd3JzcmM7Cj4+IC0gICAgICAgICAgICAgYXJncy0+djAucHN0YXRlID0gY2xrLT5wc3Rh
+dGU7Cj4+ICsgICAgICAgICAgICAgaWYgKGNsay0+cHN0YXRlKQo+PiArICAgICAgICAgICAgICAg
+ICAgICAgYXJncy0+djAucHN0YXRlID0gY2xrLT5wc3RhdGUtPnBzdGF0ZTsKPj4gKyAgICAgICAg
+ICAgICBlbHNlCj4+ICsgICAgICAgICAgICAgICAgICAgICBhcmdzLT52MC5wc3RhdGUgPSBOVktN
+X0NMS19QU1RBVEVfREVGQVVMVDsKPj4gICAgICAgfSBlbHNlIHsKPj4gICAgICAgICAgICAgICBh
+cmdzLT52MC5jb3VudCA9IDA7Cj4+ICAgICAgICAgICAgICAgYXJncy0+djAudXN0YXRlX2FjID0g
+TlZJRl9DT05UUk9MX1BTVEFURV9JTkZPX1YwX1VTVEFURV9ESVNBQkxFOwo+PiBkaWZmIC0tZ2l0
+IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20v
+c3ViZGV2L2Nsay9iYXNlLmMKPj4gaW5kZXggMDdkNTMwZWQuLjBkNGQ5ZmRmIDEwMDY0NAo+PiAt
+LS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4+ICsrKyBiL2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMKPj4gQEAgLTI3MSwxMyArMjcxLDE2IEBAIG52a21f
+cHN0YXRlX3Byb2coc3RydWN0IG52a21fY2xrICpjbGssIGludCBwc3RhdGVpKQo+PiAgICAgICBz
+dHJ1Y3QgbnZrbV9wc3RhdGUgKnBzdGF0ZTsKPj4gICAgICAgaW50IHJldCwgaWR4ID0gMDsKPj4K
+Pj4gKyAgICAgaWYgKHBzdGF0ZWkgPT0gTlZLTV9DTEtfUFNUQVRFX0RFRkFVTFQpCj4+ICsgICAg
+ICAgICAgICAgcmV0dXJuIDA7Cj4+ICsKPj4gICAgICAgbGlzdF9mb3JfZWFjaF9lbnRyeShwc3Rh
+dGUsICZjbGstPnN0YXRlcywgaGVhZCkgewo+PiAgICAgICAgICAgICAgIGlmIChpZHgrKyA9PSBw
+c3RhdGVpKQo+PiAgICAgICAgICAgICAgICAgICAgICAgYnJlYWs7Cj4+ICAgICAgIH0KPj4KPj4g
+ICAgICAgbnZrbV9kZWJ1ZyhzdWJkZXYsICJzZXR0aW5nIHBlcmZvcm1hbmNlIHN0YXRlICVkXG4i
+LCBwc3RhdGVpKTsKPj4gLSAgICAgY2xrLT5wc3RhdGUgPSBwc3RhdGVpOwo+PiArICAgICBjbGst
+PnBzdGF0ZSA9IHBzdGF0ZTsKPj4KPj4gICAgICAgbnZrbV9wY2llX3NldF9saW5rKHBjaSwgcHN0
+YXRlLT5wY2llX3NwZWVkLCBwc3RhdGUtPnBjaWVfd2lkdGgpOwo+Pgo+PiBAQCAtMzA2LDggKzMw
+OSwxMiBAQCBudmttX2Nsa191cGRhdGVfd29yayhzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmspCj4+
+ICAgICAgICAgICAgICAgcmV0dXJuOwo+PiAgICAgICBjbGstPnB3cnNyYyA9IHBvd2VyX3N1cHBs
+eV9pc19zeXN0ZW1fc3VwcGxpZWQoKTsKPj4KPj4gKyAgICAgaWYgKGNsay0+cHN0YXRlKQo+PiAr
+ICAgICAgICAgICAgIHBzdGF0ZSA9IGNsay0+cHN0YXRlLT5wc3RhdGU7Cj4+ICsgICAgIGVsc2UK
+Pj4gKyAgICAgICAgICAgICBwc3RhdGUgPSBOVktNX0NMS19QU1RBVEVfREVGQVVMVDsKPj4gICAg
+ICAgbnZrbV90cmFjZShzdWJkZXYsICJQICVkIFBXUiAlZCBVKEFDKSAlZCBVKERDKSAlZCBBICVk
+IFQgJWTCsENcbiIsCj4+IC0gICAgICAgICAgICAgICAgY2xrLT5wc3RhdGUsIGNsay0+cHdyc3Jj
+LCBjbGstPnVzdGF0ZV9hYywgY2xrLT51c3RhdGVfZGMsCj4+ICsgICAgICAgICAgICAgICAgcHN0
+YXRlLCBjbGstPnB3cnNyYywgY2xrLT51c3RhdGVfYWMsIGNsay0+dXN0YXRlX2RjLAo+PiAgICAg
+ICAgICAgICAgICAgIGNsay0+YXN0YXRlLCBjbGstPnRlbXApOwo+Pgo+PiAgICAgICBwc3RhdGUg
+PSBjbGstPnB3cnNyYyA/IGNsay0+dXN0YXRlX2FjIDogY2xrLT51c3RhdGVfZGM7Cj4KPiBJbiB0
+aGUgaWYtc3RhdGVtZW50IGZvbGxvd2luZyB0aGUgcHJldmlvdXMgbGluZSwgdGhlIC0xIGNvdWxk
+IGJlIHJlcGxhY2VkIGJ5Cj4gTlZLTV9DTEtfUFNUQVRFX0RFRkFVTFQuCj4KPj4gQEAgLTMxNSwx
+MSArMzIyLDExIEBAIG52a21fY2xrX3VwZGF0ZV93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29y
+aykKPj4gICAgICAgICAgICAgICBwc3RhdGUgPSAocHN0YXRlIDwgMCkgPyBjbGstPmFzdGF0ZSA6
+IHBzdGF0ZTsKPgo+IENhbiBgcHN0YXRlYCBoYXZlIG5lZ2F0aXZlIHZhbHVlcyBvdGhlciB0aGFu
+IC0xPwoKbm90IHlldCwgYnV0ID49MCBtZWFucyBhIHBzdGF0ZSBpcyBzZWxlY3RlZCBieSBhbiBp
+ZCwgPDAgYnV0IGEgdHlwZSwKYnV0IGl0IG1pZ2h0IGJlIHRoYXQgd2UnbGwgbmV2ZXIgbmVlZCBt
+b3JlIHRoYW4gdGhlIGRlZmF1bHQgb25lLgoKPgo+PiAgICAgICAgICAgICAgIHBzdGF0ZSA9IG1p
+bihwc3RhdGUsIGNsay0+c3RhdGVfbnIgLSAxKTsKPj4gICAgICAgfSBlbHNlIHsKPj4gLSAgICAg
+ICAgICAgICBwc3RhdGUgPSBjbGstPnBzdGF0ZSA9IC0xOwo+PiArICAgICAgICAgICAgIHBzdGF0
+ZSA9IE5WS01fQ0xLX1BTVEFURV9ERUZBVUxUOwo+Cj4gU2hvdWxkbuKAmXQgeW91IGFsc28gcmVz
+ZXQgYGNsay0+cHN0YXRlYCB0byBOVUxMPyBPciBtYXliZSBpdCBpcwo+IGBudmttX3BzdGF0ZV9w
+cm9nKClgIHdoaWNoIHNob3VsZCBkbyBpdCBpZgo+IGBwc3RhdGVpID09IE5WS01fQ0xLX1BTVEFU
+RV9ERUZBVUxUYC4KPgoKbm8uIFdlIGNhbid0IGdvIGJhY2sgdG8gdGhlIGRlZmF1bHQgY2xvY2tz
+IGV4Y2VwdCB3ZSBydW4gZGV2aW5pdAphZ2Fpbi4gRGVmYXVsdCBtZWFuczogc3RhdGUgYWZ0ZXIg
+cG93ZXJpbmcgb24gdGhlIEdQVS4gYW5kIGNsay0+cHN0YXRlCnBvaW50cyB0byB0aGUgY3VycmVu
+dCBwc3RhdGUgd2UgcmVjbG9ja2VkIHRvIGxhc3QuIFdoaWNoIG1lYW5zIGlmIHdlCmhpdCB0aGUg
+ZWxzZSBicmFuY2ggaGVyZSwgY2xrLT5wc3RhdGUgaXMgYWxyZWFkeSBOVUxMLgoKPj4gICAgICAg
+fQo+Pgo+PiAgICAgICBudmttX3RyYWNlKHN1YmRldiwgIi0+ICVkXG4iLCBwc3RhdGUpOwo+PiAt
+ICAgICBpZiAocHN0YXRlICE9IGNsay0+cHN0YXRlKSB7Cj4+ICsgICAgIGlmICghY2xrLT5wc3Rh
+dGUgfHwgcHN0YXRlICE9IGNsay0+cHN0YXRlLT5wc3RhdGUpIHsKPj4gICAgICAgICAgICAgICBp
+bnQgcmV0ID0gbnZrbV9wc3RhdGVfcHJvZyhjbGssIHBzdGF0ZSk7Cj4+ICAgICAgICAgICAgICAg
+aWYgKHJldCkgewo+PiAgICAgICAgICAgICAgICAgICAgICAgbnZrbV9lcnJvcihzdWJkZXYsICJl
+cnJvciBzZXR0aW5nIHBzdGF0ZSAlZDogJWRcbiIsCj4+IEBAIC02MTAsNyArNjE3LDcgQEAgbnZr
+bV9jbGtfaW5pdChzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldikKPj4gICAgICAgICAgICAgICBy
+ZXR1cm4gY2xrLT5mdW5jLT5pbml0KGNsayk7Cj4+Cj4+ICAgICAgIGNsay0+YXN0YXRlID0gY2xr
+LT5zdGF0ZV9uciAtIDE7Cj4+IC0gICAgIGNsay0+cHN0YXRlID0gLTE7Cj4+ICsgICAgIGNsay0+
+cHN0YXRlID0gTlVMTDsKPj4gICAgICAgY2xrLT50ZW1wID0gOTA7IC8qIHJlYXNvbmFibGUgZGVm
+YXVsdCB2YWx1ZSAqLwo+PiAgICAgICBudmttX2Nsa191cGRhdGUoY2xrLCB0cnVlKTsKPj4gICAg
+ICAgcmV0dXJuIDA7Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUv
+Z2syMGEuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9nazIwYS5jCj4+IGluZGV4IDA1
+ZTgxODU1Li5kZTU3OTcyNiAxMDA2NDQKPj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
+cG11L2drMjBhLmMKPj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2drMjBhLmMK
+Pj4gQEAgLTU1LDI0ICs1NSwyMiBAQCBnazIwYV9wbXVfZHZmc190YXJnZXQoc3RydWN0IGdrMjBh
+X3BtdSAqcG11LCBpbnQgKnN0YXRlKQo+PiAgICAgICByZXR1cm4gbnZrbV9jbGtfYXN0YXRlKGNs
+aywgKnN0YXRlLCAwLCBmYWxzZSk7Cj4+ICB9Cj4+Cj4+IC1zdGF0aWMgdm9pZAo+PiAtZ2syMGFf
+cG11X2R2ZnNfZ2V0X2N1cl9zdGF0ZShzdHJ1Y3QgZ2syMGFfcG11ICpwbXUsIGludCAqc3RhdGUp
+Cj4+IC17Cj4+IC0gICAgIHN0cnVjdCBudmttX2NsayAqY2xrID0gcG11LT5iYXNlLnN1YmRldi5k
+ZXZpY2UtPmNsazsKPj4gLQo+PiAtICAgICAqc3RhdGUgPSBjbGstPnBzdGF0ZTsKPj4gLX0KPj4g
+LQo+PiAgc3RhdGljIGludAo+PiAgZ2syMGFfcG11X2R2ZnNfZ2V0X3RhcmdldF9zdGF0ZShzdHJ1
+Y3QgZ2syMGFfcG11ICpwbXUsCj4+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGludCAq
+c3RhdGUsIGludCBsb2FkKQo+PiAgewo+PiAgICAgICBzdHJ1Y3QgZ2syMGFfcG11X2R2ZnNfZGF0
+YSAqZGF0YSA9IHBtdS0+ZGF0YTsKPj4gICAgICAgc3RydWN0IG52a21fY2xrICpjbGsgPSBwbXUt
+PmJhc2Uuc3ViZGV2LmRldmljZS0+Y2xrOwo+PiArICAgICBzdHJ1Y3QgbnZrbV9wc3RhdGUgKnBz
+dGF0ZSA9IGNsay0+cHN0YXRlOwo+PiAgICAgICBpbnQgY3VyX2xldmVsLCBsZXZlbDsKPj4KPj4g
+KyAgICAgaWYgKCFwc3RhdGUpIHsKPj4gKyAgICAgICAgICAgICAqc3RhdGUgPSAwOwo+PiArICAg
+ICAgICAgICAgIHJldHVybiAxOwo+PiArICAgICB9Cj4+ICsKPj4gICAgICAgLyogRm9yIEdLMjBB
+LCB0aGUgcGVyZm9ybWFuY2UgbGV2ZWwgaXMgZGlyZWN0bHkgbWFwcGVkIHRvIHBzdGF0ZSAqLwo+
+PiAtICAgICBsZXZlbCA9IGN1cl9sZXZlbCA9IGNsay0+cHN0YXRlOwo+PiArICAgICBsZXZlbCA9
+IGN1cl9sZXZlbCA9IGNsay0+cHN0YXRlLT5wc3RhdGU7Cj4+Cj4+ICAgICAgIGlmIChsb2FkID4g
+ZGF0YS0+cF9sb2FkX21heCkgewo+PiAgICAgICAgICAgICAgIGxldmVsID0gbWluKGNsay0+c3Rh
+dGVfbnIgLSAxLCBsZXZlbCArIChjbGstPnN0YXRlX25yIC8gMykpOwo+PiBAQCAtMTQyLDggKzE0
+MCw2IEBAIGdrMjBhX3BtdV9kdmZzX3dvcmsoc3RydWN0IG52a21fYWxhcm0gKmFsYXJtKQo+PiAg
+ICAgICBudmttX3RyYWNlKHN1YmRldiwgInV0aWxpemF0aW9uID0gJWQgJSUsIGF2Z19sb2FkID0g
+JWQgJSVcbiIsCj4+ICAgICAgICAgICAgICAgICAgdXRpbGl6YXRpb24sIGRhdGEtPmF2Z19sb2Fk
+KTsKPj4KPj4gLSAgICAgZ2syMGFfcG11X2R2ZnNfZ2V0X2N1cl9zdGF0ZShwbXUsICZzdGF0ZSk7
+Cj4+IC0KPj4gICAgICAgaWYgKGdrMjBhX3BtdV9kdmZzX2dldF90YXJnZXRfc3RhdGUocG11LCAm
+c3RhdGUsIGRhdGEtPmF2Z19sb2FkKSkgewo+PiAgICAgICAgICAgICAgIG52a21fdHJhY2Uoc3Vi
+ZGV2LCAic2V0IG5ldyBzdGF0ZSB0byAlZFxuIiwgc3RhdGUpOwo+PiAgICAgICAgICAgICAgIGdr
+MjBhX3BtdV9kdmZzX3RhcmdldChwbXUsICZzdGF0ZSk7Cj4+IC0tCj4+IDIuMTQuMQo+Pgo+PiBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1
+IG1haWxpbmcgbGlzdAo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
